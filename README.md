@@ -10,3 +10,4 @@
 | Economics.Deal  |     交易插件     | 少司命 |
 | Economics.Shop  |     商店插件     | 少司命 |
 | Economics.Skill | 技能插件(未完成) | 少司命 |
+| CreateSpawn     |  出生点建筑生成  | 少司命 |

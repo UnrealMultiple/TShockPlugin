@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Shop", "Economics
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Skill", "Economics.Skill\Economics.Skill.csproj", "{B94BB79F-53DB-4C3E-8E9D-53194CB20577}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateSpawn", "CreateSpawn\CreateSpawn.csproj", "{36BD8152-E8E7-45BE-906E-0FC048F9794E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{B94BB79F-53DB-4C3E-8E9D-53194CB20577}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B94BB79F-53DB-4C3E-8E9D-53194CB20577}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B94BB79F-53DB-4C3E-8E9D-53194CB20577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36BD8152-E8E7-45BE-906E-0FC048F9794E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36BD8152-E8E7-45BE-906E-0FC048F9794E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36BD8152-E8E7-45BE-906E-0FC048F9794E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36BD8152-E8E7-45BE-906E-0FC048F9794E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
