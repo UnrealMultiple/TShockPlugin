@@ -80,7 +80,7 @@ public class Plugin : TerrariaPlugin
                         
                     case "player_leave":
                         { 
-                             var jobj = json.ToObject<PlayerJoinMessage>()!;
+                             var jobj = json.ToObject<PlayerLeaveMessage>()!;
                             TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name} 离开服务器", jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
                             break;
                         }
