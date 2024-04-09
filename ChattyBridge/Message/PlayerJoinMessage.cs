@@ -13,4 +13,8 @@ internal class PlayerJoinMessage : PlayerMessage
     {
         Type = MsgType.Join;
     }
+    public PlayerJoinMessage()
+    {
+        
+    }
 }

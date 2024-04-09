@@ -17,4 +17,8 @@ internal class PlayerChatMessage : PlayerMessage
         Text = text;
         Type = MsgType.Chat;
     }
+    public PlayerChatMessage()
+    {
+        
+    }
 }

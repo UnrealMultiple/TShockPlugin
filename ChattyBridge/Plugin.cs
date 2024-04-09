@@ -72,7 +72,7 @@ public class Plugin : TerrariaPlugin
                 switch(type.ToString())
                 {
                     case "player_join":
-                        { 
+                        {
                             var jobj = json.ToObject<PlayerJoinMessage>()!;
                             TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name} 加入服务器", jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
                             break;
@@ -104,7 +104,7 @@ public class Plugin : TerrariaPlugin
             {
                 try
                 {
-                    var url = $"http://{host}{RestAPI}?&msg={msg}";
+                    var url = $"http://{host}{RestAPI}?msg={msg}";
                     Client.Send(new HttpRequestMessage(HttpMethod.Get, url));
                 }
                 catch

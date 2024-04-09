@@ -13,4 +13,8 @@ internal class PlayerLeaveMessage : PlayerMessage
     {
         Type = MsgType.Leave;
     }
+    public PlayerLeaveMessage()
+    {
+        
+    }
 }

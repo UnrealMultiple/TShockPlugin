@@ -20,7 +20,7 @@ internal class EnumConveter : JsonConverter
                 var attr = item.GetCustomAttribute<DescriptionAttribute>();
                 if (attr != null && attr.Description == type)
                 {
-                    return item.GetValue(-1);
+                    return (MsgType)item.GetValue(-1)!;
                 }
             }
         }
@@ -29,14 +29,13 @@ internal class EnumConveter : JsonConverter
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
-        if(value is MsgType type)
+        var field = value.GetType().GetField(value.ToString());
+        var des = field.GetCustomAttribute<DescriptionAttribute>();
+        if (des != null)
         {
-            var attr = typeof(MsgType).GetField(type.ToString())?.GetCustomAttribute<DescriptionAttribute>();
-            if (attr != null)
-            {
-                writer.WriteValue(attr.Description);
-            }
+            writer.WriteValue(des.Description);
+            return;
         }
-        writer.WriteValue("unknow");
+        writer.WriteValue("");
     }
 }

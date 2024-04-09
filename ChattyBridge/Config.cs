@@ -5,10 +5,10 @@ namespace ChattyBridge;
 public class Config
 {
     [JsonProperty("Rest地址")]
-    public List<string> RestHost = new();
+    public List<string> RestHost { get; set; } = new();
 
     [JsonProperty("服务器名称")]
-    public string ServerName = string.Empty;
+    public string ServerName { get; set; } = string.Empty;
 
     [JsonIgnore]
     public static string PATH => Path.Combine(TShockAPI.TShock.SavePath, "ChattyBridge.json");
