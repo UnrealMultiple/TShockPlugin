@@ -1,6 +1,7 @@
 ﻿using ChattyBridge.Message;
 using Newtonsoft.Json.Linq;
 using Rests;
+using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -11,6 +12,14 @@ namespace ChattyBridge;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
+    public override string Author => "少司命";
+
+    public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
+
+    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
+
+    public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+
     private HttpClient Client { get; set; }
 
     internal static Config Config { get; set; } = new();

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\template.targets" />
+
+	<ItemGroup>
+		<ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
+		<ProjectReference Include="..\EconomicsAPI\EconomicsAPI.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="EventArgs\" />
+	</ItemGroup>
+
+</Project>
