@@ -22,17 +22,17 @@ jobs:
       - name: Build Plugins
         shell: powershell
         run: |
-          dotnet build Plugin\Plugin.sln --self-contained=false -p:PublishSingleFile=false -p:IncludeContentInSingleFile=false -p:RuntimeIdentifier=${{ matrix.runtimeIdentifier }} --framework net6.0
+          dotnet build Plugin.sln --self-contained=false -p:PublishSingleFile=false -p:IncludeContentInSingleFile=false -p:RuntimeIdentifier=${{ matrix.runtimeIdentifier }} --framework net6.0
 
       - name: Upload binary files(${{ matrix.runtimeIdentifier }}) for .NET 6.0
         uses: actions/upload-artifact@v3
         with:
           name: Plugins_${{ matrix.runtimeIdentifier }}_6.0
-          path: Plugin/out/Debug/${{ matrix.runtimeIdentifier }}
+          path: out/Debug/${{ matrix.runtimeIdentifier }}
           
       - name: Compress file
         run: |
-          Compress-Archive -Path 'Plugin\out\Debug\${{ matrix.runtimeIdentifier }}' -DestinationPath  'Plugins_${{ matrix.runtimeIdentifier }}_6.0.zip'
+          Compress-Archive -Path 'out\Debug\${{ matrix.runtimeIdentifier }}' -DestinationPath  'Plugins_${{ matrix.runtimeIdentifier }}_6.0.zip'
           
       - name: Prepare release files
         uses: actions/upload-artifact@v3
