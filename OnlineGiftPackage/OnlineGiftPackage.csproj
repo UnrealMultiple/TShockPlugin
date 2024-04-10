@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <AssemblyName>$(MSBuildProjectName) v1.1.0</AssemblyName>
+        <Platforms>AnyCPU;x64</Platforms>
+    </PropertyGroup>
+    <ItemGroup>
+      <None Remove="C:\Users\羽学\.nuget\packages\tshock\5.2.0\contentFiles\any\net6.0\HttpServer.dll" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="TShock" Version="5.*" />
+    </ItemGroup>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="copy bin\Release\net6.0\*.dll C:\Users\羽学\Desktop\Beta\ServerPlugins\&#xD;&#xA;taskkill /F /IM TShock.Server.exe" />
+    </Target>
+</Project>

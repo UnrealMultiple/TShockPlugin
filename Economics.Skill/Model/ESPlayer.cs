@@ -1,4 +1,4 @@
-﻿using Economics.RPG.Extensions;
+﻿using Economics.Skill.Extensions;
 using Terraria;
 using TShockAPI;
 
