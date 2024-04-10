@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\template.targets" />
+
+</Project>    <None Remove="C:\Users\Administrator\.nuget\packages\tshock\5.0.0\contentFiles\any\net6.0\HttpServer.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+
