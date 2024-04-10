@@ -22,7 +22,7 @@ jobs:
       - name: Build Plugins
         shell: powershell
         run: |
-          dotnet build Plugin.sln --self-contained=false -p:PublishSingleFile=false -p:IncludeContentInSingleFile=false -p:RuntimeIdentifier=${{ matrix.runtimeIdentifier }} --framework net6.0
+          dotnet build Plugin\Plugin.sln --self-contained=false -p:PublishSingleFile=false -p:IncludeContentInSingleFile=false -p:RuntimeIdentifier=${{ matrix.runtimeIdentifier }} --framework net6.0
 
       - name: Upload binary files(${{ matrix.runtimeIdentifier }}) for .NET 6.0
         uses: actions/upload-artifact@v3
