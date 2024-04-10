@@ -11,7 +11,7 @@ namespace LifemaxExtra
         public override string Author => "佚名，肝帝熙恩添加自定义";
         public override string Description => "提升生命值上限";
         public override string Name => "LifemaxExtra";
-        public override Version Version => new Version(1, 0, 0, 5);
+        public override Version Version => new Version(1, 0, 0, 6);
         public static Configuration Config;
         private bool[] controlUseItemOld;
         private int[] itemUseTime;
