@@ -20,7 +20,7 @@ internal class EnumConveter : JsonConverter
                 var attr = item.GetCustomAttribute<DescriptionAttribute>();
                 if (attr != null && attr.Description == type)
                 {
-                    return (MsgType)item.GetValue(-1)!;
+                    return Convert.ChangeType(item.GetValue(-1), typeof(MsgType));
                 }
             }
         }

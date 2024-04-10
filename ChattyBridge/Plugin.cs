@@ -92,6 +92,9 @@ public class Plugin : TerrariaPlugin
                                 TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name}: {jobj.Text}", jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
                                 break;
                             }
+                        default:
+                            TShock.Log.ConsoleError($"接收到未知类型:{type}");
+                            break;
                     }
                 }
             }
