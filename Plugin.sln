@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoBroadcast", "AutoBroadc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTeam", "AutoTeam\AutoTeam.csproj", "{2555CB6C-2DDB-4C21-A610-EC056B885939}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifemaxExtra", "LifemaxExtra\LifemaxExtra.csproj", "{F4D43E91-626F-4B28-A20F-50BC034DC808}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{2555CB6C-2DDB-4C21-A610-EC056B885939}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2555CB6C-2DDB-4C21-A610-EC056B885939}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2555CB6C-2DDB-4C21-A610-EC056B885939}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4D43E91-626F-4B28-A20F-50BC034DC808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4D43E91-626F-4B28-A20F-50BC034DC808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4D43E91-626F-4B28-A20F-50BC034DC808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4D43E91-626F-4B28-A20F-50BC034DC808}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
