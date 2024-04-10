@@ -19,7 +19,7 @@ jobs:
         with:
           dotnet-version: 6.0.x
           
-      - name: Build MorMor
+      - name: Build Plugins
         shell: powershell
         run: |
           dotnet build Plugin.sln
@@ -28,11 +28,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Plugins
-          path: out/${{ matrix.runtimeIdentifier }}
+          path: out/Debug/${{ matrix.runtimeIdentifier }}
           
       - name: Compress file
         run: |
-          Compress-Archive -Path 'out\' -DestinationPath  'Plugins_6.0.zip'
+          Compress-Archive -Path 'out\Debug\' -DestinationPath  'Plugins_6.0.zip'
           
       - name: Prepare release files
         uses: actions/upload-artifact@v3
@@ -64,7 +64,7 @@ jobs:
           tag: v${{ steps.setenvo.outputs.TAG_NAME }}
           name: Release v${{ steps.setenvo.outputs.TAG_NAME }}
           prerelease: true
-          body: '> ⚠️This is a nightly release.'
+          body: 'Pligin release.'
           artifacts: |
             ./bin/*
           allowUpdates: true
