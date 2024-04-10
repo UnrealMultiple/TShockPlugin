@@ -12,3 +12,5 @@
 | Economics.Skill | 技能插件(未完成) |  少司命   |
 | CreateSpawn     |  出生点建筑生成  |  少司命   |
 | AutoBroadcast   |     自动广播     | Scavenger |
+| AutoTeams   |     自动队伍     | 十七，肝帝熙恩 |
+| LifemaxExtra   |     吃更多生命果/水晶     | 佚名，肝帝熙恩 |

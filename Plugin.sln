@@ -26,9 +26,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoBroadcast", "AutoBroadc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTeam", "AutoTeam\AutoTeam.csproj", "{2555CB6C-2DDB-4C21-A610-EC056B885939}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineGiftPackage", "OnlineGiftPackage\OnlineGiftPackage.csproj", "{9065B928-F9AE-41AC-A313-A27A848C4579}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "怪物不掉钱", "DisableMonsCoin\怪物不掉钱.csproj", "{91615E8A-4B79-4B25-8E22-7340BDA1BF0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,24 +105,6 @@ Global
 		{2555CB6C-2DDB-4C21-A610-EC056B885939}.Debug|x64.Build.0 = Debug|Any CPU
 		{2555CB6C-2DDB-4C21-A610-EC056B885939}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2555CB6C-2DDB-4C21-A610-EC056B885939}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2555CB6C-2DDB-4C21-A610-EC056B885939}.Release|x64.ActiveCfg = Release|Any CPU
-		{2555CB6C-2DDB-4C21-A610-EC056B885939}.Release|x64.Build.0 = Release|Any CPU
-		{9065B928-F9AE-41AC-A313-A27A848C4579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9065B928-F9AE-41AC-A313-A27A848C4579}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9065B928-F9AE-41AC-A313-A27A848C4579}.Debug|x64.ActiveCfg = Debug|x64
-		{9065B928-F9AE-41AC-A313-A27A848C4579}.Debug|x64.Build.0 = Debug|x64
-		{9065B928-F9AE-41AC-A313-A27A848C4579}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9065B928-F9AE-41AC-A313-A27A848C4579}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9065B928-F9AE-41AC-A313-A27A848C4579}.Release|x64.ActiveCfg = Release|x64
-		{9065B928-F9AE-41AC-A313-A27A848C4579}.Release|x64.Build.0 = Release|x64
-		{91615E8A-4B79-4B25-8E22-7340BDA1BF0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{91615E8A-4B79-4B25-8E22-7340BDA1BF0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{91615E8A-4B79-4B25-8E22-7340BDA1BF0B}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{91615E8A-4B79-4B25-8E22-7340BDA1BF0B}.Debug|x64.Build.0 = Debug|Any CPU
-		{91615E8A-4B79-4B25-8E22-7340BDA1BF0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{91615E8A-4B79-4B25-8E22-7340BDA1BF0B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{91615E8A-4B79-4B25-8E22-7340BDA1BF0B}.Release|x64.ActiveCfg = Release|Any CPU
-		{91615E8A-4B79-4B25-8E22-7340BDA1BF0B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
