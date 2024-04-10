@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Economics.RPG.Extensions;
+namespace Economics.Skill.Extensions;
 
 /// <summary>
 /// 扩展方法
