@@ -22,23 +22,23 @@ jobs:
       - name: Build MorMor
         shell: powershell
         run: |
-          dotnet build Plugin.sln -p:RuntimeIdentifier=${{ matrix.runtimeIdentifier }}
+          dotnet build Plugin.sln
 
-      - name: Upload binary files(${{ matrix.runtimeIdentifier }}) for .NET 6.0
+      - name: Upload binary files for .NET 6.0
         uses: actions/upload-artifact@v3
         with:
-          name: Plugins_${{ matrix.runtimeIdentifier }}_6.0
+          name: Plugins
           path: out/${{ matrix.runtimeIdentifier }}
           
       - name: Compress file
         run: |
-          Compress-Archive -Path 'out\${{ matrix.runtimeIdentifier }}' -DestinationPath  'Plugins_${{ matrix.runtimeIdentifier }}_6.0.zip'
+          Compress-Archive -Path 'out\' -DestinationPath  'Plugins_6.0.zip'
           
       - name: Prepare release files
         uses: actions/upload-artifact@v3
         with:
           name: Plugins_all
-          path: Plugins_${{ matrix.runtimeIdentifier }}_6.0.zip
+          path: Plugins_6.0.zip
   NightlyRelease:
     name: Nightly Release
     runs-on: ubuntu-latest
