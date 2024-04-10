@@ -3,7 +3,7 @@
 修改：羽学  
 插件来源：https://gitee.com/star-night-flower/tshock-gift  
   
-根据config里的【发放间隔】与【触发序列】随机发放【礼包列表】里的物品
+根据config里的【DistributionInterval】与【TriggerSequence】随机发放【礼包列表】里的物品
 
 
 ## 命令
@@ -54,31 +54,31 @@ v1.0.7
 {
   "总概率": 60,
   "启用": true,
-  "发放间隔/秒": 1800,
+  "DistributionInterval/秒": 1800,
   "跳过生命上限": 500,
-  "每次发放礼包记录后台": false,
+  "OutputConsole": false,
   "将未符合条件者记录后台": false,
   "礼包列表": [
     {
       "物品名称": "铂金币",
       "物品ID": 74,
-      "物品数量": [
+      "ItemAmount": [
         2,
         5
       ],
-      "所占概率": 1
+      "Probability": 1
     },
     {
       "物品名称": "蠕虫罐头",
       "物品ID": 4345,
-      "物品数量": [
+      "ItemAmount": [
         2,
         5
       ],
-      "所占概率": 1
+      "Probability": 1
     }
 ],
-"触发序列": {
+"TriggerSequence": {
     "1": "[c/55CDFF:服主]送了你1个礼包",
     "2": "[c/55CDFF:服主]送了你1个礼包",
     "3": "[c/55CDFF:服主]送了你1个礼包",

@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineGiftPackage", "Online
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifemaxExtra", "LifemaxExtra\LifemaxExtra.csproj", "{10DCA587-C35B-4578-95F9-E6F2FD878F85}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "怪物不掉钱", "DisableMonsCoin\怪物不掉钱.csproj", "{F215A5E2-1713-43A7-8448-92C93F7884FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableMonsCoin", "DisableMonsCoin\DisableMonsCoin.csproj", "{F215A5E2-1713-43A7-8448-92C93F7884FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

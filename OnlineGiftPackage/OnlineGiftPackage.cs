@@ -5,6 +5,7 @@ using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
+using 在线礼包;
 
 // 插件命名空间
 namespace OnlineGiftPackage
@@ -49,7 +50,7 @@ namespace OnlineGiftPackage
             Commands.ChatCommands.Add(new Command(GetProbability, "在线礼包"));
             // 监听服务器重载事件，以便在重载后重新设置定时器
             GeneralHooks.ReloadEvent += ReloadEvent;
-            timer = new Timer(Timer_Elapsed, "", config.发放间隔 * 1000, config.发放间隔 * 1000); // 注意转换为毫秒
+            timer = new Timer(Timer_Elapsed, "", config.DistributionInterval * 1000, config.DistributionInterval * 1000); // 注意转换为毫秒
         }
 
         //加载并创建配置文件
@@ -78,8 +79,8 @@ namespace OnlineGiftPackage
             config.UpdateTotalProbabilityOnReload();
 
             // 更新定时器触发间隔
-            timer.Change(config.发放间隔 * 1000, config.发放间隔 * 1000); // 注意转换为毫秒
-            Console.WriteLine($"已重载 [在线礼包] 配置文件,下次发放将在{config.发放间隔}秒后");
+            timer.Change(config.DistributionInterval * 1000, config.DistributionInterval * 1000); // 注意转换为毫秒
+            Console.WriteLine($"已重载 [在线礼包] 配置文件,下次发放将在{config.DistributionInterval}秒后");
             int totalProbability = config.CalculateTotalProbability();
             Console.WriteLine($"所有礼包的总概率为：{totalProbability}");
         }
@@ -97,7 +98,7 @@ namespace OnlineGiftPackage
 
                 foreach (var player in TShock.Players.Where(p => p != null && p.Active && p.IsLoggedIn && p.TPlayer.statLifeMax < config.SkipStatLifeMax))
                 {
-                    if (!config.启用)
+                    if (!config.Enabled)
                     {
                         return;
                     }
@@ -112,7 +113,7 @@ namespace OnlineGiftPackage
                     }
 
                     // 根据玩家在线时长发放对应礼包
-                    if (players[player.Name] >= config.触发序列.Keys.Min())
+                    if (players[player.Name] >= config.TriggerSequence.Keys.Min())
                     {
                         Gift gift = RandGift();
                         if (gift == null)
@@ -121,18 +122,18 @@ namespace OnlineGiftPackage
                             continue;
                         }
 
-                        // 获取随机物品数量
-                        int itemCount = new Random().Next(minValue: gift.物品数量[0], gift.物品数量[1]);
+                        // 获取随机ItemAmount
+                        int itemCount = new Random().Next(minValue: gift.ItemAmount[0], gift.ItemAmount[1]);
 
                         // 给玩家发放物品
-                        player.GiveItem(gift.物品ID, itemCount);
+                        player.GiveItem(gift.ItamID, itemCount);
 
                         // 构建礼包发放提示消息
-                        string playerMessageFormat = config.触发序列[players[player.Name]];
-                        string packageInfoMessage = string.Format(playerMessageFormat + " [i/s{0}:{1}] ", players[player.Name], gift.物品ID, itemCount);
+                        string playerMessageFormat = config.TriggerSequence[players[player.Name]];
+                        string packageInfoMessage = string.Format(playerMessageFormat + " [i/s{0}:{1}] ", players[player.Name], gift.ItamID, itemCount);
 
-                        // 添加发放间隔信息
-                        int intervalForDisplay = config.发放间隔;
+                        // 添加DistributionInterval信息
+                        int intervalForDisplay = config.DistributionInterval;
                         string intervalMessage = $"下次发放将在{intervalForDisplay}秒后";
 
                         // 合并两条消息
@@ -142,15 +143,15 @@ namespace OnlineGiftPackage
                         player.SendMessage(combinedMessage, Color.GreenYellow);
 
                         // 控制台输出
-                        if (config.每次发放礼包记录后台)
+                        if (config.OutputConsole)
                         {
-                            Console.WriteLine($"执行在线礼包发放任务，下次发放将在{config.发放间隔}秒后");
+                            Console.WriteLine($"执行在线礼包发放任务，下次发放将在{config.DistributionInterval}秒后");
                             int totalProbability = config.CalculateTotalProbability();
                             Console.WriteLine($"所有礼包的总概率为：{totalProbability}");
                         }
 
                         // 发放成功后重置玩家在线时长
-                        players[player.Name] %= config.发放间隔;
+                        players[player.Name] %= config.DistributionInterval;
                     }
                 }
             }
@@ -159,7 +160,7 @@ namespace OnlineGiftPackage
         // 显示礼包获取概率的命令处理程序
         private void GetProbability(CommandArgs args)
         {
-            if (args.Player.HasPermission("在线礼包"))
+            if (args.Player.HasPermission("OnlineGiftPackage"))
             {
                 Task.Run(() =>
                 {
@@ -169,10 +170,10 @@ namespace OnlineGiftPackage
                     sb.AppendLine("在线礼包概率表：\n");
 
                     // 显示所有礼包的获取概率，按每5个一组分批显示
-                    for (int i = 0; i < config.礼包列表.Count; i++)
+                    for (int i = 0; i < config.GiftPackList.Count; i++)
                     {
-                        Gift gift = config.礼包列表[i];
-                        sb.Append("[i/s1:{0}]:{1:0.##}% ".SFormat(gift.物品ID, 100.0 * ((double)gift.所占概率 / config.总概率)));
+                        Gift gift = config.GiftPackList[i];
+                        sb.Append("[i/s1:{0}]:{1:0.##}% ".SFormat(gift.ItamID, 100.0 * ((double)gift.Probability / config.TotalProbability)));
 
                         // 每显示5个礼包后换行
                         if ((i + 1) % 5 == 0)
@@ -199,16 +200,16 @@ namespace OnlineGiftPackage
         Random rand = new Random();
         public Gift? RandGift()
         {
-            int index = rand.Next(config.总概率);
+            int index = rand.Next(config.TotalProbability);
             int sum = 0;
 
             // 从索引0开始遍历，修正for循环起点
-            for (int i = 0; i < config.礼包列表.Count; i++)
+            for (int i = 0; i < config.GiftPackList.Count; i++)
             {
-                sum += config.礼包列表[i].所占概率;
+                sum += config.GiftPackList[i].Probability;
                 if (index < sum)
                 {
-                    return config.礼包列表[i];
+                    return config.GiftPackList[i];
                 }
             }
             return null;
