@@ -32,7 +32,7 @@ jobs:
           
       - name: Compress file
         run: |
-          Compress-Archive -Path 'out\${{ matrix.runtimeIdentifier }}' -DestinationPath  'TShockAdapter_${{ matrix.runtimeIdentifier }}_6.0.zip'
+          Compress-Archive -Path 'out\${{ matrix.runtimeIdentifier }}' -DestinationPath  'Plugins_${{ matrix.runtimeIdentifier }}_6.0.zip'
           
       - name: Prepare release files
         uses: actions/upload-artifact@v3
