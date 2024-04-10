@@ -29,13 +29,16 @@ internal class EnumConveter : JsonConverter
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
-        var field = value.GetType().GetField(value.ToString());
-        var des = field.GetCustomAttribute<DescriptionAttribute>();
-        if (des != null)
+        if(value is MsgType type)
         {
-            writer.WriteValue(des.Description);
-            return;
+            var field = value.GetType().GetField(type.ToString());
+            var des = field?.GetCustomAttribute<DescriptionAttribute>();
+            if (des != null)
+            {
+                writer.WriteValue(des.Description);
+                return;
+            }
         }
-        writer.WriteValue("");
+        writer.WriteValue("unknow");
     }
 }

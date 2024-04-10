@@ -66,32 +66,40 @@ public class Plugin : TerrariaPlugin
         var msg = args.Parameters["msg"];
         if (!string.IsNullOrEmpty(msg))
         {
-            var json = JObject.Parse(msg);
-            if (json.TryGetValue("type", out var type))
+            try
             { 
-                switch(type.ToString())
+                var json = JObject.Parse(msg);
+                if (json.TryGetValue("type", out var type))
                 {
-                    case "player_join":
-                        {
-                            var jobj = json.ToObject<PlayerJoinMessage>()!;
-                            TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name} 加入服务器", jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
-                            break;
-                        }
-                        
-                    case "player_leave":
-                        { 
-                             var jobj = json.ToObject<PlayerLeaveMessage>()!;
-                            TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name} 离开服务器", jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
-                            break;
-                        }
-                    case "player_chat":
-                        {
-                            var jobj = json.ToObject<PlayerChatMessage>()!;
-                            TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name}: {jobj.Text}", jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
-                            break;
-                        }
+                    switch (type.ToString())
+                    {
+                        case "player_join":
+                            {
+                                var jobj = json.ToObject<PlayerJoinMessage>()!;
+                                TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name} 加入服务器", jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
+                                break;
+                            }
+
+                        case "player_leave":
+                            {
+                                var jobj = json.ToObject<PlayerLeaveMessage>()!;
+                                TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name} 离开服务器", jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
+                                break;
+                            }
+                        case "player_chat":
+                            {
+                                var jobj = json.ToObject<PlayerChatMessage>()!;
+                                TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name}: {jobj.Text}", jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
+                                break;
+                            }
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                TShock.Log.ConsoleError(ex.ToString());
+            }
+            
         }
         return new RestObject("200");
     }
