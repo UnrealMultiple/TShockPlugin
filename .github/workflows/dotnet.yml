@@ -22,7 +22,7 @@ jobs:
       - name: Build MorMor
         shell: powershell
         run: |
-          dotnet build Plugin.sln
+          dotnet build Plugin.sln -p:RuntimeIdentifier=${{ matrix.runtimeIdentifier }}
 
       - name: Upload binary files(${{ matrix.runtimeIdentifier }}) for .NET 6.0
         uses: actions/upload-artifact@v3
