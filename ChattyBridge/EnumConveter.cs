@@ -6,10 +6,7 @@ namespace ChattyBridge;
 
 internal class EnumConveter : JsonConverter
 {
-    public override bool CanConvert(Type objectType)
-    {
-        return true;
-    }
+    public override bool CanConvert(Type objectType) => true;
 
     public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
@@ -20,7 +17,7 @@ internal class EnumConveter : JsonConverter
                 var attr = item.GetCustomAttribute<DescriptionAttribute>();
                 if (attr != null && attr.Description == type)
                 {
-                    return Convert.ChangeType(item.GetValue(-1), typeof(MsgType));
+                    return (MsgType)Convert.ChangeType(item.GetValue(-1), typeof(MsgType))!;
                 }
             }
         }

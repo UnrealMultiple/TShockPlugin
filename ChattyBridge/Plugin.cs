@@ -138,7 +138,7 @@ public class Plugin : TerrariaPlugin
     private void OnJoin(JoinEventArgs args)
     {
         var player = TShock.Players[args.Who];
-        if (player == null || args.Handled)
+        if (player == null)
             return;
         var msg = new PlayerJoinMessage(player).ToJson();
         SendMessage(msg);
@@ -147,7 +147,7 @@ public class Plugin : TerrariaPlugin
     private void OnChat(ServerChatEventArgs args)
     {
         var player = TShock.Players[args.Who];
-        if (player == null || args.Handled)
+        if (player == null)
             return;
         var msg = new PlayerChatMessage(player, args.Text).ToJson();
         SendMessage(msg);
