@@ -2,7 +2,6 @@
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
-using static TShockAPI.GetDataHandlers;
 
 namespace LifemaxExtra
 {
@@ -39,7 +38,7 @@ namespace LifemaxExtra
         public override void Initialize()
         {
             GeneralHooks.ReloadEvent += ReloadConfig;
-            GetDataHandlers.PlayerUpdate += OnPlayerUpdate;
+            ServerApi.Hooks.GameUpdate.Register(this, new HookHandler<EventArgs>(this.OnUpdate));
             PlayerHooks.PlayerPostLogin += OnPlayerPostLogin;
         }
 
@@ -49,7 +48,7 @@ namespace LifemaxExtra
             {
                 GeneralHooks.ReloadEvent -= ReloadConfig;
                 PlayerHooks.PlayerPostLogin -= OnPlayerPostLogin;
-                GetDataHandlers.PlayerUpdate -= OnPlayerUpdate;
+                ServerApi.Hooks.GameUpdate.Deregister(this, new HookHandler<EventArgs>(this.OnUpdate));
             }
             base.Dispose(disposing);
         }
@@ -80,61 +79,64 @@ namespace LifemaxExtra
             }
         }
 
-        private void OnPlayerUpdate(object sender, PlayerUpdateEventArgs args)
+        private void OnUpdate(EventArgs args)
         {
-            TSPlayer tsplayer = TShock.Players[args.PlayerId];
-            if (tsplayer != null)
+            foreach (TSPlayer tsplayer in TShock.Players)
             {
-                int index = tsplayer.Index;
-                Player tplayer = tsplayer.TPlayer;
-                Item heldItem = tplayer.HeldItem;
 
-                if (!this.controlUseItemOld[index] && tsplayer.TPlayer.controlUseItem && this.itemUseTime[index] <= 0)
+                if (!(tsplayer == null))
                 {
-                    int useTime = heldItem.useTime; // 获取物品使用时间
-                    int type = heldItem.type; // 获取物品类型
+                    int index = tsplayer.Index;
+                    Player tplayer = tsplayer.TPlayer;
+                    Item heldItem = tplayer.HeldItem;
 
-                    if (type != 29) // 如果物品不是 ID 为 29 的物品
+                    if (!this.controlUseItemOld[index] && tsplayer.TPlayer.controlUseItem && this.itemUseTime[index] <= 0)
                     {
-                        if (type == 1291) // 如果物品是 ID 为 1291 的物品（Life Fruit）
+                        int useTime = heldItem.useTime; // 获取物品使用时间
+                        int type = heldItem.type; // 获取物品类型
+
+                        if (type != 29) // 如果物品不是 ID 为 29 的物品
                         {
-                            if (tplayer.statLifeMax >= Config.LifeCrystalMaxLife) // 如果玩家的生命上限大于等于配置的最大水晶生命值
+                            if (type == 1291) // 如果物品是 ID 为 1291 的物品（Life Fruit）
                             {
-                                if (tsplayer.TPlayer.statLifeMax < Config.LifeFruitMaxLife) // 如果玩家当前生命上限小于配置的最大果实生命值
+                                if (tplayer.statLifeMax >= Config.LifeCrystalMaxLife) // 如果玩家的生命上限大于等于配置的最大水晶生命值
                                 {
-                                    tsplayer.TPlayer.inventory[tsplayer.TPlayer.selectedItem].stack--; // 减少玩家背包中选定物品的堆叠数量
-                                    tsplayer.SendData(PacketTypes.PlayerSlot, "", index, (float)tplayer.selectedItem); // 更新客户端的选定物品槽位
-                                    tplayer.statLifeMax += 5; // 增加玩家的生命上限
-                                    tsplayer.SendData(PacketTypes.PlayerHp, "", index); // 更新客户端的生命值显示
+                                    if (tsplayer.TPlayer.statLifeMax < Config.LifeFruitMaxLife) // 如果玩家当前生命上限小于配置的最大果实生命值
+                                    {
+                                        tsplayer.TPlayer.inventory[tsplayer.TPlayer.selectedItem].stack--; // 减少玩家背包中选定物品的堆叠数量
+                                        tsplayer.SendData(PacketTypes.PlayerSlot, "", index, (float)tplayer.selectedItem); // 更新客户端的选定物品槽位
+                                        tplayer.statLifeMax += 5; // 增加玩家的生命上限
+                                        tsplayer.SendData(PacketTypes.PlayerHp, "", index); // 更新客户端的生命值显示
+                                    }
+                                    else if (tsplayer.TPlayer.statLifeMax > Config.LifeFruitMaxLife) // 如果玩家当前生命上限大于配置的最大果实生命值
+                                    {
+                                        tplayer.statLifeMax = Config.LifeFruitMaxLife; // 将玩家的生命上限设置为配置的最大果实生命值
+                                        tsplayer.SendData(PacketTypes.PlayerHp, "", index); // 更新客户端的生命值显示
+                                    } 
                                 }
-                                else if (tsplayer.TPlayer.statLifeMax > Config.LifeFruitMaxLife) // 如果玩家当前生命上限大于配置的最大果实生命值
+                            }
+                        }
+                        else // 如果物品是 ID 为 29 的物品（Life Crystal）
+                        {
+                            if (tplayer.statLifeMax <= Config.LifeCrystalMaxLife) // 如果玩家的生命上限小于等于最大水晶生命值
                                 {
-                                    tplayer.statLifeMax = Config.LifeFruitMaxLife; // 将玩家的生命上限设置为配置的最大果实生命值
-                                    tsplayer.SendData(PacketTypes.PlayerHp, "", index); // 更新客户端的生命值显示
+                                    if (tsplayer.TPlayer.statLifeMax < Config.LifeCrystalMaxLife) // 如果玩家当前生命上限小于配置的最大水晶生命值
+                                    {
+                                        tsplayer.TPlayer.inventory[tplayer.selectedItem].stack--; // 减少玩家背包中选定物品的堆叠数量
+                                        tsplayer.SendData(PacketTypes.PlayerSlot, "", index, (float)tplayer.selectedItem); // 更新客户端的选定物品槽位
+                                        tplayer.statLifeMax += 20; // 增加玩家的生命上限
+                                        tsplayer.SendData(PacketTypes.PlayerHp, "", index); // 更新客户端的生命值显示
+                                    }
+                                    else if (tsplayer.TPlayer.statLifeMax > Config.LifeFruitMaxLife) // 如果玩家当前生命上限大于配置的最大果生命值
+                                    {
+                                        tplayer.statLifeMax = Config.LifeFruitMaxLife; // 将玩家的生命上限设置为配置的最大生命果生命值
+                                        tsplayer.SendData(PacketTypes.PlayerHp, "", index); // 更新客户端的生命值显示
                                 }
                             }
                         }
                     }
-                    else // 如果物品是 ID 为 29 的物品（Life Crystal）
-                    {
-                        if (tplayer.statLifeMax <= Config.LifeCrystalMaxLife) // 如果玩家的生命上限小于等于最大水晶生命值
-                        {
-                            if (tsplayer.TPlayer.statLifeMax < Config.LifeCrystalMaxLife) // 如果玩家当前生命上限小于配置的最大水晶生命值
-                            {
-                                tsplayer.TPlayer.inventory[tplayer.selectedItem].stack--; // 减少玩家背包中选定物品的堆叠数量
-                                tsplayer.SendData(PacketTypes.PlayerSlot, "", index, (float)tplayer.selectedItem); // 更新客户端的选定物品槽位
-                                tplayer.statLifeMax += 20; // 增加玩家的生命上限
-                                tsplayer.SendData(PacketTypes.PlayerHp, "", index); // 更新客户端的生命值显示
-                            }
-                            else if (tsplayer.TPlayer.statLifeMax > Config.LifeFruitMaxLife) // 如果玩家当前生命上限大于配置的最大果生命值
-                            {
-                                tplayer.statLifeMax = Config.LifeFruitMaxLife; // 将玩家的生命上限设置为配置的最大生命果生命值
-                                tsplayer.SendData(PacketTypes.PlayerHp, "", index); // 更新客户端的生命值显示
-                            }
-                        }
-                    }
+                    this.controlUseItemOld[index] = tsplayer.TPlayer.controlUseItem;
                 }
-                this.controlUseItemOld[index] = tsplayer.TPlayer.controlUseItem;
             }
         }
     }
