@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Rests;
 using System.Reflection;
+using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -68,7 +69,8 @@ public class Plugin : TerrariaPlugin
         {
             try
             { 
-                var json = JObject.Parse(msg);
+                var sourceMsg = Encoding.UTF8.GetString(Convert.FromBase64String(msg));
+                var json = JObject.Parse(sourceMsg);
                 if (json.TryGetValue("type", out var type))
                 {
                     switch (type.ToString())
@@ -76,20 +78,20 @@ public class Plugin : TerrariaPlugin
                         case "player_join":
                             {
                                 var jobj = json.ToObject<PlayerJoinMessage>()!;
-                                TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name} 加入服务器", jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
+                                TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name} 加入服务器", (byte)jobj.RGB[0], (byte)jobj.RGB[1], (byte)jobj.RGB[2]);
                                 break;
                             }
 
                         case "player_leave":
                             {
                                 var jobj = json.ToObject<PlayerLeaveMessage>()!;
-                                TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name} 离开服务器", jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
+                                TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name} 离开服务器", (byte)jobj.RGB[0], (byte)jobj.RGB[1], (byte)jobj.RGB[2]);
                                 break;
                             }
                         case "player_chat":
                             {
                                 var jobj = json.ToObject<PlayerChatMessage>()!;
-                                TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name}: {jobj.Text}", jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
+                                TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name}: {jobj.Text}", (byte)jobj.RGB[0], (byte)jobj.RGB[1], (byte)jobj.RGB[2]);
                                 break;
                             }
                         default:
@@ -111,11 +113,12 @@ public class Plugin : TerrariaPlugin
     {
         Task.Run(() =>
         {
+            var baseStr = Convert.ToBase64String(Encoding.UTF8.GetBytes(msg));
             foreach (var host in Config.RestHost)
             {
                 try
                 {
-                    var url = $"http://{host}{RestAPI}?msg={msg}";
+                    var url = $"http://{host}{RestAPI}?msg={baseStr}";
                     Client.Send(new HttpRequestMessage(HttpMethod.Get, url));
                 }
                 catch

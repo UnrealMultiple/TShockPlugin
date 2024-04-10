@@ -18,7 +18,7 @@ public class PlayerMessage
     public string Group { get; init; }
 
     [JsonProperty("rgb")]
-    public byte[] RGB { get; init; } = new byte[3];
+    public int[] RGB { get; init; } = new int[3];
 
     [JsonProperty("type")]
     [JsonConverter(typeof(EnumConveter))]
@@ -29,7 +29,7 @@ public class PlayerMessage
         Name = player.Name;
         Prefix = player.Group.Prefix;
         Group = player.Group.Name;
-        RGB = new byte[3]
+        RGB = new int[3]
         {
             player.Group.R,
             player.Group.G,
