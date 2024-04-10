@@ -24,6 +24,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateSpawn", "CreateSpawn\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoBroadcast", "AutoBroadcast\AutoBroadcast.csproj", "{2ECD2226-ABB7-43D8-BB04-89B0F567002A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTeam", "AutoTeam\AutoTeam.csproj", "{2555CB6C-2DDB-4C21-A610-EC056B885939}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{2ECD2226-ABB7-43D8-BB04-89B0F567002A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ECD2226-ABB7-43D8-BB04-89B0F567002A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ECD2226-ABB7-43D8-BB04-89B0F567002A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2555CB6C-2DDB-4C21-A610-EC056B885939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2555CB6C-2DDB-4C21-A610-EC056B885939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2555CB6C-2DDB-4C21-A610-EC056B885939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2555CB6C-2DDB-4C21-A610-EC056B885939}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
