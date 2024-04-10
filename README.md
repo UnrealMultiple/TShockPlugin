@@ -8,8 +8,8 @@
 | [EconomicsAPI](https://github.com/Controllerdestiny/TShockPlugin/tree/master/EconomicsAPI)           |   经济插件前置    |             无             |
 | [Economics.RPG](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.RPG)         |        RPG        |        EconomicsAPI        |
 | [Economics.Deal](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.RPG)        |     交易插件      |        EconomicsAPI        |
-| [Economics.Shop](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.Shop)       |     商店插件      | EconomicsAPI,Economics.RPG |
-| [Economics.Skill](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.Skill)     | 技能插件(未完成)  | EconomicsAPI,Economics.RPG |
+| [Economics.Shop](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.Shop)       |     商店插件      | EconomicsAPI<br>Economics.RPG |
+| [Economics.Skill](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.Skill)     | 技能插件(未完成)  | EconomicsAPI<br>Economics.RPG |
 | [CreateSpawn](https://github.com/Controllerdestiny/TShockPlugin/tree/master/CreateSpawn)             |  出生点建筑生成   |             无             |
 | [AutoBroadcast](https://github.com/Controllerdestiny/TShockPlugin/tree/master/AutoBroadcast)         |     自动广播      |             无             |
 | [AutoTeams](https://github.com/Controllerdestiny/TShockPlugin/tree/master/AutoTeams)                 |     自动队伍      |             无             |
