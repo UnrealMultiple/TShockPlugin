@@ -1,8 +1,14 @@
-#PermaBuff 永久 buff
+# PermaBuff 永久 buff
 
 - 作者: 少司命
 - 出处: 无
 - 让玩家永久拥有 buff
+
+## 更新日志
+
+```
+暂无
+```
 
 ## 指令
 

@@ -1,8 +1,14 @@
-#ShortCommand 短指令
+# ShortCommand 短指令
 
 - 作者: GK
 - 出处: GK
 - 使命令更加简洁
+
+## 更新日志
+
+```
+暂无
+```
 
 ## 指令
 
