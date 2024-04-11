@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CriticalHit", "CriticalHit\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Back", "Back\Back.csproj", "{A93C4B1F-F36A-49BB-BFF4-544702A3AD59}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BanNpc", "BanNpc\BanNpc.csproj", "{A0CD7941-8248-4DEE-B6C1-972995A9D511}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -146,6 +148,14 @@ Global
 		{A93C4B1F-F36A-49BB-BFF4-544702A3AD59}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A93C4B1F-F36A-49BB-BFF4-544702A3AD59}.Release|x64.ActiveCfg = Release|Any CPU
 		{A93C4B1F-F36A-49BB-BFF4-544702A3AD59}.Release|x64.Build.0 = Release|Any CPU
+		{A0CD7941-8248-4DEE-B6C1-972995A9D511}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0CD7941-8248-4DEE-B6C1-972995A9D511}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0CD7941-8248-4DEE-B6C1-972995A9D511}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A0CD7941-8248-4DEE-B6C1-972995A9D511}.Debug|x64.Build.0 = Debug|Any CPU
+		{A0CD7941-8248-4DEE-B6C1-972995A9D511}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0CD7941-8248-4DEE-B6C1-972995A9D511}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0CD7941-8248-4DEE-B6C1-972995A9D511}.Release|x64.ActiveCfg = Release|Any CPU
+		{A0CD7941-8248-4DEE-B6C1-972995A9D511}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
