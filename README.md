@@ -37,3 +37,4 @@
 | [ProgressBag](https://github.com/Controllerdestiny/TShockPlugin/tree/master/ProgressBag)             |     进度礼包      |              无               |
 | [CriticalHit](https://github.com/Controllerdestiny/TShockPlugin/tree/master/CriticalHit)             |     击打提示      |              无               |
 | [DisableMonsCoin](https://github.com/Controllerdestiny/TShockPlugin/tree/master/DisableMonsCoin)     |    怪物不掉钱     |              无               |
+| [Back](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Back)                           |     死亡回溯      |              无               |
