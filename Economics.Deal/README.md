@@ -19,3 +19,12 @@
 | /deal buy [ID]    |  economics.deal.use  |   购买交易物品   |
 | /deal recall [ID] |  economics.deal.use  |   撤回发布物品   |
 | /deal reset       | economics.deal.reset |     重置交易     |
+
+## 配置
+
+```(json)
+{
+  "最大显示页": 10,
+  "交易列表": []
+}
+```
