@@ -40,6 +40,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressBag", "ProgressBag\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermaBuff", "PermaBuff\PermaBuff.csproj", "{410FBB22-3C12-4E79-B347-33BBEB947625}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CriticalHit", "CriticalHit\CriticalHit.csproj", "{6CD20D14-14DE-4022-A24D-3D8488553BEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -176,6 +178,14 @@ Global
 		{410FBB22-3C12-4E79-B347-33BBEB947625}.Release|Any CPU.Build.0 = Release|Any CPU
 		{410FBB22-3C12-4E79-B347-33BBEB947625}.Release|x64.ActiveCfg = Release|Any CPU
 		{410FBB22-3C12-4E79-B347-33BBEB947625}.Release|x64.Build.0 = Release|Any CPU
+		{6CD20D14-14DE-4022-A24D-3D8488553BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD20D14-14DE-4022-A24D-3D8488553BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CD20D14-14DE-4022-A24D-3D8488553BEB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6CD20D14-14DE-4022-A24D-3D8488553BEB}.Debug|x64.Build.0 = Debug|Any CPU
+		{6CD20D14-14DE-4022-A24D-3D8488553BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CD20D14-14DE-4022-A24D-3D8488553BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CD20D14-14DE-4022-A24D-3D8488553BEB}.Release|x64.ActiveCfg = Release|Any CPU
+		{6CD20D14-14DE-4022-A24D-3D8488553BEB}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
