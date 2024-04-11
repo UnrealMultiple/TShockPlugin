@@ -25,7 +25,7 @@ public class Plugin : TerrariaPlugin
     {
     }
 
-    
+
     public override void Initialize()
     {
         LoadConfig();

@@ -22,7 +22,7 @@ public class Deal : TerrariaPlugin
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Deal.json");
 
-    internal static Config Config { get; set; } 
+    internal static Config Config { get; set; }
 
     public Deal(Main game) : base(game)
     {
@@ -86,7 +86,7 @@ public class Deal : TerrariaPlugin
                     , DealContext.Cost.Color(TShockAPI.Utils.GreenHighlight)));
                 index++;
             }
-            
+
             Show(lines);
         }
         else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "buy")
@@ -158,4 +158,4 @@ public class Deal : TerrariaPlugin
             args.Player.SendInfoMessage("输入/deal help 查看命令使用方法");
         }
     }
- }
+}

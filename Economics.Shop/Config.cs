@@ -1,7 +1,6 @@
 ﻿
 using Economics.Shop.Model;
 using Newtonsoft.Json;
-using System.Reflection.Metadata.Ecma335;
 
 namespace Economics.Shop;
 

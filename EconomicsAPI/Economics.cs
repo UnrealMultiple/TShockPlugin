@@ -39,7 +39,7 @@ public class Economics : TerrariaPlugin
 
     public Economics(Main game) : base(game)
     {
-        if(!Directory.Exists(SaveDirPath))
+        if (!Directory.Exists(SaveDirPath))
             Directory.CreateDirectory(SaveDirPath);
     }
 
@@ -61,8 +61,8 @@ public class Economics : TerrariaPlugin
     private void OnKillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
     {
         if (Setting.DeathDropRate >= 0)
-        { 
-        
+        {
+
         }
     }
 
@@ -112,7 +112,7 @@ public class Economics : TerrariaPlugin
                     CurrencyManager.AddUserCurrency(player.name, num);
                     if (Setting.ShowAboveHead)
                         player.SendCombatMsg($"+{num}$", Color.AntiqueWhite);
-                }    
+                }
             }
         }
         Strike.Remove(args.npc);

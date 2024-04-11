@@ -1,10 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TShockAPI;
 using TShockAPI.DB;
 
@@ -40,8 +35,8 @@ public class CurrencyManager
     public void UpdataAll()
     {
         foreach (var name in Currency.Keys)
-        { 
-            if(!Update(name))
+        {
+            if (!Update(name))
                 Write(name);
         }
     }
@@ -57,7 +52,7 @@ public class CurrencyManager
 
     public long GetUserCurrency(string name)
     {
-        if(Currency.TryGetValue(name, out var currency))
+        if (Currency.TryGetValue(name, out var currency))
             return currency;
         return 0;
     }

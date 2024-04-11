@@ -1,9 +1,6 @@
-﻿
-using Economics.Skill.Converter;
-using Economics.Skill.Enumerates;
+﻿using Economics.Skill.Enumerates;
 using Economics.Skill.Model;
 using TShockAPI;
-using Terraria;
 
 namespace Economics.Skill.Events;
 
@@ -11,10 +8,10 @@ public class PlayerSparkSkillHandler
 {
     public delegate void EventCallBack<in TEventArgs>(TEventArgs args) where TEventArgs : System.EventArgs;
 
-    public static  List<SkillSparkType> SparkType = typeof(SkillSparkType)
+    public static List<SkillSparkType> SparkType = typeof(SkillSparkType)
             .GetFields()
             .Where(f => f.FieldType == typeof(SkillSparkType))
-            .Select(f => (SkillSparkType) f.GetValue(-1)!)
+            .Select(f => (SkillSparkType)f.GetValue(-1)!)
             .ToList();
 
     public static void Adapter(TSPlayer player, SkillContext skillContext, SkillSparkType skillSparkType)
@@ -63,12 +60,12 @@ public class PlayerSparkSkillHandler
                     SkillSparkType.Kill => await Skill.ESPlayers[e.Player.Index].IsKillNpc(TimeSpan.FromMilliseconds(10)),
                     SkillSparkType.Strike => skillSparkType == SkillSparkType.Strike,
                     _ => false
-                } ;
+                };
                 if (enable == false)
                     break;
             }
-            if(enable)
-            Console.WriteLine(enable);
+            if (enable)
+                Console.WriteLine(enable);
         }
     }
 }

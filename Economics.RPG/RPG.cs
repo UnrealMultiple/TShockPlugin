@@ -1,6 +1,5 @@
 ﻿using Economics.RPG.Setting;
 using EconomicsAPI.Configured;
-using Newtonsoft.Json;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -51,11 +50,11 @@ public class RPG : TerrariaPlugin
         {
             TShock.Utils.Broadcast(string.Format(level.ChatFormat,
                 level.ChatPrefix,
-                e.Player.Name, 
-                level.ChatSuffix, 
-                e.RawText), 
-                (byte)level.ChatRGB[0], 
-                (byte)level.ChatRGB[1], 
+                e.Player.Name,
+                level.ChatSuffix,
+                e.RawText),
+                (byte)level.ChatRGB[0],
+                (byte)level.ChatRGB[1],
                 (byte)level.ChatRGB[2]);
             e.Handled = true;
         }

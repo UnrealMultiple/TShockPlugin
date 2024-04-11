@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using TShockAPI;
 
 namespace autoteam
@@ -25,7 +23,7 @@ namespace autoteam
             if (GroupTeamMap.ContainsKey(groupName))
                 return GroupTeamMap[groupName];
             else
-                return "无队伍"; 
+                return "无队伍";
         }
 
 

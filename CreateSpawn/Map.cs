@@ -9,7 +9,7 @@ internal class Map
         using BinaryWriter writer = new(fs);
         writer.Write("by 少司命");
         writer.Write(building.Count);
-        foreach(var data in building)
+        foreach (var data in building)
         {
             writer.Write(data.bTileHeader);
             writer.Write(data.bTileHeader2);
@@ -30,7 +30,7 @@ internal class Map
         reader.ReadString();
         var count = reader.ReadInt32();
         var building = new List<Building>();
-        for(int i = 0; i < count;i++)
+        for (int i = 0; i < count; i++)
         {
             building.Add(new()
             {

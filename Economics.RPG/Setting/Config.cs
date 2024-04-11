@@ -45,7 +45,7 @@ internal class Config
                 level.Parent = info;
             }
         }
-     
+
         foreach (var (name, level) in RPG)
         {
             level.AllParentLevels = GetLevelAllParent(name);
@@ -92,10 +92,10 @@ internal class Config
     }
 
     public HashSet<Level> GetLevelAllParent(string name)
-    { 
+    {
         var parents = new HashSet<Level>();
         var level = GetLevel(name);
-        while(level != null)
+        while (level != null)
         {
             if (level.Parent?.Name == DefaultLevel.Name)
             {

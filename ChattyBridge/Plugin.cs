@@ -51,7 +51,7 @@ public class Plugin : TerrariaPlugin
                 Config = Config.Read();
                 Config.Write();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TShock.Log.ConsoleError(ex.Message);
             }
@@ -68,7 +68,7 @@ public class Plugin : TerrariaPlugin
         if (!string.IsNullOrEmpty(msg))
         {
             try
-            { 
+            {
                 var sourceMsg = Encoding.UTF8.GetString(Convert.FromBase64String(msg));
                 var json = JObject.Parse(sourceMsg);
                 if (json.TryGetValue("type", out var type))
@@ -104,7 +104,7 @@ public class Plugin : TerrariaPlugin
             {
                 TShock.Log.ConsoleError(ex.ToString());
             }
-            
+
         }
         return new RestObject("200");
     }

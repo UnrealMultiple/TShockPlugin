@@ -1,4 +1,4 @@
-﻿using Economics.RPG.Extensions;
+﻿using Economics.Skill.Extensions;
 using Terraria;
 using TShockAPI;
 
@@ -26,11 +26,11 @@ public class ESPlayer
 
     public async Task<bool> IsKillNpc(TimeSpan timeout)
     {
-        var npc = await KillNpc.Task.WaitAsync(timeout).RunCatch(e=>
+        var npc = await KillNpc.Task.WaitAsync(timeout).RunCatch(e =>
         {
             return null;
         });
-        if(npc != null)
+        if (npc != null)
         {
             KillNpc = new TaskCompletionSource<NPC?>();
             return true;

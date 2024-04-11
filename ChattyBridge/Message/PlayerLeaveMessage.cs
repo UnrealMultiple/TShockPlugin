@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TShockAPI;
+﻿using TShockAPI;
 
 namespace ChattyBridge.Message;
 
@@ -15,6 +10,6 @@ internal class PlayerLeaveMessage : PlayerMessage
     }
     public PlayerLeaveMessage()
     {
-        
+
     }
 }

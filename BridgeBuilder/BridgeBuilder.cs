@@ -34,7 +34,7 @@ namespace SFactions
         public override void Initialize()
         {
             GeneralHooks.ReloadEvent += ReloadConfig;
-            TShockAPI.Commands.ChatCommands.Add(new("bridgebuilder.bridge", BridgeCmd, "bridge" , "桥来")
+            TShockAPI.Commands.ChatCommands.Add(new("bridgebuilder.bridge", BridgeCmd, "bridge", "桥来")
             {
                 AllowServer = false,
                 HelpText = "朝着你看的方向建造桥梁。（你需要持有一定数量的平台或团队块或种植盆。）"
@@ -43,7 +43,8 @@ namespace SFactions
 
         private async void BridgeCmd(CommandArgs args)
         {
-            await Task.Run(() => {
+            await Task.Run(() =>
+            {
                 TSPlayer plr = args.Player;
                 int direction = plr.TPlayer.direction;
                 int startX = direction == -1 ? plr.TileX - 1 : plr.TileX + 2;

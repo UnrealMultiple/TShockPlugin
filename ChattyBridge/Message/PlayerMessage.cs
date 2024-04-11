@@ -38,11 +38,11 @@ public class PlayerMessage
     }
     public PlayerMessage()
     {
-        
+
     }
 
     public string ToJson()
-    { 
+    {
         return JsonConvert.SerializeObject(this);
     }
 }

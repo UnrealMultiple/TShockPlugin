@@ -6,11 +6,11 @@ namespace EconomicsAPI;
 internal class Command
 {
     #region 货币查询
-    [CommandMap( "查询", EconomicsPerm.QueryCurrency)]
+    [CommandMap("查询", EconomicsPerm.QueryCurrency)]
     public void QueryCurrency(CommandArgs args)
     {
-        args.Player.SendInfoMessage(string.Format(Economics.Setting.QueryFormat, 
-            Economics.Setting.CurrencyName, 
+        args.Player.SendInfoMessage(string.Format(Economics.Setting.QueryFormat,
+            Economics.Setting.CurrencyName,
             Economics.CurrencyManager.GetUserCurrency(args.Player.Name)));
     }
     #endregion

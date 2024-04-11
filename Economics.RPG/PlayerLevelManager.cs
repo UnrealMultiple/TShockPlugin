@@ -1,8 +1,8 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Economics.RPG.Model;
+using MySql.Data.MySqlClient;
 using System.Data;
-using TShockAPI.DB;
 using TShockAPI;
-using Economics.RPG.Model;
+using TShockAPI.DB;
 
 namespace Economics.RPG;
 
