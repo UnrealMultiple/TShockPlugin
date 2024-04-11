@@ -1,5 +1,4 @@
 ﻿using EconomicsAPI.Model;
-using IL.Terraria.DataStructures;
 using Newtonsoft.Json;
 
 namespace Economics.Deal;
@@ -13,5 +12,5 @@ public class DealContext
     public long Cost { get; set; }
 
     [JsonProperty("物品")]
-    public Item Item { get; set; } 
+    public Item Item { get; set; }
 }

@@ -10,14 +10,14 @@ public class ConfigHelper
         return JsonConvert.DeserializeObject<T>(File.ReadAllText(Path)) ?? new T();
     }
 
-  
+
     public static void Write<T>(string PATH, T obj)
     {
         var data = JsonConvert.SerializeObject(obj, Formatting.Indented);
         File.WriteAllText(PATH, data);
     }
 
-  
+
     public static T LoadConfig<T>(string PATH) where T : new()
     {
         T obj = new();

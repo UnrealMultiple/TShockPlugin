@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 using static TShockAPI.GetDataHandlers;
-using Terraria;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace autoteam
 {
     [ApiVersion(2, 1)]
     public class Autoteam : TerrariaPlugin
     {
-    public override string Author => "十七改，肝帝熙恩改";
-    public override Version Version => new Version(2, 3);
-    public override string Description => "自动队伍";
-    public override string Name => "AutoTeamPlus";
-    public static Configuration Config;
+        public override string Author => "十七改，肝帝熙恩改";
+        public override Version Version => new Version(2, 3);
+        public override string Description => "自动队伍";
+        public override string Name => "AutoTeamPlus";
+        public static Configuration Config;
 
-    private readonly Dictionary<string, string> teamNames = new Dictionary<string, string>
+        private readonly Dictionary<string, string> teamNames = new Dictionary<string, string>
     {
         { "none", "无队伍" },
         { "red", "红队" },
@@ -28,29 +25,29 @@ namespace autoteam
         { "pink", "粉队" }
     };
 
-    public Autoteam(Main game) : base(game) 
+        public Autoteam(Main game) : base(game)
         {
             LoadConfig();
         }
 
-    private static void LoadConfig()
-    {
-        Config = Configuration.Read(Configuration.FilePath);
-        Config.Write(Configuration.FilePath);
-    }
+        private static void LoadConfig()
+        {
+            Config = Configuration.Read(Configuration.FilePath);
+            Config.Write(Configuration.FilePath);
+        }
 
-    private static void ReloadConfig(ReloadEventArgs args)
-    {
-        LoadConfig();
-        args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(Autoteam).Name);
-    }
+        private static void ReloadConfig(ReloadEventArgs args)
+        {
+            LoadConfig();
+            args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(Autoteam).Name);
+        }
 
-    public override void Initialize()
-    {
-        GeneralHooks.ReloadEvent += ReloadConfig;
-        ServerApi.Hooks.NetGreetPlayer.Register(this, OnJoin);
-        PlayerHooks.PlayerPostLogin += OnLogin;
-        GetDataHandlers.PlayerTeam += Team;
+        public override void Initialize()
+        {
+            GeneralHooks.ReloadEvent += ReloadConfig;
+            ServerApi.Hooks.NetGreetPlayer.Register(this, OnJoin);
+            PlayerHooks.PlayerPostLogin += OnLogin;
+            GetDataHandlers.PlayerTeam += Team;
             Commands.ChatCommands.Add(new Command("autoteam.toggle", TogglePlugin, "autoteam", "at"));
         }
 
@@ -83,33 +80,33 @@ namespace autoteam
         }
 
         protected override void Dispose(bool disposing)
-    {
-        if (disposing)
         {
-            ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnJoin);
-            PlayerHooks.PlayerPostLogin -= OnLogin;
-            GetDataHandlers.PlayerTeam -= Team;
+            if (disposing)
+            {
+                ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnJoin);
+                PlayerHooks.PlayerPostLogin -= OnLogin;
+                GetDataHandlers.PlayerTeam -= Team;
+            }
+            base.Dispose(disposing);
         }
-        base.Dispose(disposing);
-    }
 
-    private void Team(object sender, PlayerTeamEventArgs args)
-    {
-        SetTeam(args.Player);
-        args.Handled = true;
-    }
+        private void Team(object sender, PlayerTeamEventArgs args)
+        {
+            SetTeam(args.Player);
+            args.Handled = true;
+        }
 
-    private void OnJoin(GreetPlayerEventArgs args)
-    {
-        var player = TShock.Players[args.Who];
-        SetTeam(player);
-    }
+        private void OnJoin(GreetPlayerEventArgs args)
+        {
+            var player = TShock.Players[args.Who];
+            SetTeam(player);
+        }
 
-    private void OnLogin(PlayerPostLoginEventArgs args)
-    {
-        var player = args.Player;
-        SetTeam(player);
-    }
+        private void OnLogin(PlayerPostLoginEventArgs args)
+        {
+            var player = args.Player;
+            SetTeam(player);
+        }
 
         private void SetTeam(TSPlayer player)
         {

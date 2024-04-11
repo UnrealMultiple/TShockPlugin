@@ -1,19 +1,14 @@
 ﻿using Economics.Skill.Enumerates;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Economics.Skill.Converter;
 
 public class SkillSparkConverter : JsonConverter
 {
-    public override bool CanRead => true;   
+    public override bool CanRead => true;
 
     public override bool CanWrite => true;
     public override bool CanConvert(Type objectType)
@@ -35,7 +30,7 @@ public class SkillSparkConverter : JsonConverter
     {
         if (value is List<SkillSparkType> sparks)
         {
-           
+
             writer.WriteStartArray();
             foreach (var spark in sparks)
             {
@@ -49,7 +44,7 @@ public class SkillSparkConverter : JsonConverter
     {
         var field = typeof(SkillSparkType).GetField(type.ToString());
         if (field != null)
-        { 
+        {
             var Des = field.GetCustomAttribute<DescriptionAttribute>();
             if (Des != null)
             {
@@ -62,12 +57,12 @@ public class SkillSparkConverter : JsonConverter
     public static SkillSparkType GetSparkType(string name)
     {
         var fields = typeof(SkillSparkType).GetFields();
-        foreach(var field in fields)
+        foreach (var field in fields)
         {
             var Des = field.GetCustomAttribute<DescriptionAttribute>();
             if (Des != null && Des.Description == name)
             {
-                return (SkillSparkType)Convert.ChangeType(field.GetValue(-1),typeof(SkillSparkType))!;
+                return (SkillSparkType)Convert.ChangeType(field.GetValue(-1), typeof(SkillSparkType))!;
             }
         }
         return default;

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace Economics.Skill.Extensions;
+﻿namespace Economics.Skill.Extensions;
 
 /// <summary>
 /// 扩展方法

@@ -15,7 +15,7 @@ public class Config
     public int AdjustX { get; set; } = 0;
 
     [JsonProperty("微调Y")]
-    public int AdjustY  { get; set; } = 0;
+    public int AdjustY { get; set; } = 0;
 
 
     /// <summary>
@@ -36,7 +36,7 @@ public class Config
     /// <param name="Path">配置文件路径</param>
     public void Write(string Path)
     {
-        File.WriteAllText(Path,JsonConvert.SerializeObject(this, Formatting.Indented));
+        File.WriteAllText(Path, JsonConvert.SerializeObject(this, Formatting.Indented));
     }
 
 }

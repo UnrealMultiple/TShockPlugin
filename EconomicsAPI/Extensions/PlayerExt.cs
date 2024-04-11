@@ -1,5 +1,4 @@
-﻿using EconomicsAPI.Model;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Localization;
 using TShockAPI;
@@ -14,7 +13,7 @@ public static class PlayerExt
     }
 
     public static void SendCombatMsg(this TSPlayer player, string text, Color color)
-    { 
+    {
         SendCombatMsg(player.TPlayer, text, color);
     }
 
@@ -27,7 +26,7 @@ public static class PlayerExt
 
     public static void ExecCommand(this TSPlayer player, IEnumerable<string> cmds)
     {
-        foreach(var cmd in cmds)
+        foreach (var cmd in cmds)
         {
             player.ExecCommand(cmd);
         }
@@ -35,7 +34,7 @@ public static class PlayerExt
 
     public static void GiveItems(this TSPlayer player, IEnumerable<Model.Item> items)
     {
-        foreach(var item in items)
+        foreach (var item in items)
         {
             player.GiveItem(item.netID, item.Stack, item.Prefix);
         }

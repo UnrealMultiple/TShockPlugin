@@ -59,8 +59,8 @@ public class Skill : TerrariaPlugin
     {
         TimerCount++;
         if ((TimerCount % 6) == 0)
-        { 
-           
+        {
+
         }
     }
 
@@ -71,7 +71,7 @@ public class Skill : TerrariaPlugin
 
     private void OnConnent(ConnectEventArgs args)
     {
-        
+
     }
 
     private void OnMP(object? sender, GetDataHandlers.PlayerManaEventArgs e)
@@ -103,7 +103,7 @@ public class Skill : TerrariaPlugin
         if (e.Player.TPlayer.controlUseItem && e.Player.TPlayer.HeldItem.shoot == 0)
         {
             PlayerSparkSkillHandler.Adapter(e.Player, Config.SkillContexts[0], Enumerates.SkillSparkType.Take);
-        }   
+        }
     }
 
     private static void LoadConfig()
@@ -119,9 +119,9 @@ public class Skill : TerrariaPlugin
                 SkillContexts = new()
                 {
                     new Model.SkillContext()
-                    { 
+                    {
                         Projectiles = new()
-                        { 
+                        {
                             new()
                             {
                                 ProjectileCycle = new()

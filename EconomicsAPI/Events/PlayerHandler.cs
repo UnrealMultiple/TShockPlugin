@@ -11,11 +11,11 @@ public class PlayerHandler
     internal static bool PlayerKillNpc(PlayerKillNpcArgs args)
     {
         if (OnPlayerKillNpc != null)
-        { 
+        {
             OnPlayerKillNpc(args);
             return args.Handler;
         }
-            
+
         return false;
     }
 }

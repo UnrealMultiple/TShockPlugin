@@ -10,7 +10,7 @@ internal class EnumConveter : JsonConverter
 
     public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
-        if(reader.Value is string type)
+        if (reader.Value is string type)
         {
             foreach (var item in typeof(MsgType).GetFields())
             {
@@ -26,7 +26,7 @@ internal class EnumConveter : JsonConverter
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
-        if(value is MsgType type)
+        if (value is MsgType type)
         {
             var field = value.GetType().GetField(type.ToString());
             var des = field?.GetCustomAttribute<DescriptionAttribute>();

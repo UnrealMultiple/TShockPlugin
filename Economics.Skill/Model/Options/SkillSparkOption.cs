@@ -12,11 +12,11 @@ public class SkillSparkOption
     public List<SkillSparkType> SparkMethod { get; set; } = new();
 
     [JsonProperty("冷却")]
-    public int CD { get; set;}
+    public int CD { get; set; }
 
     [JsonProperty("血量")]
-    public int HP { get; set;}
+    public int HP { get; set; }
 
     [JsonProperty("蓝量")]
-    public int MP { get; set;}
+    public int MP { get; set; }
 }
