@@ -27,7 +27,7 @@
 | [Economics.Skill](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.Skill)     | 技能插件(未完成)  | EconomicsAPI<br>Economics.RPG |
 | [CreateSpawn](https://github.com/Controllerdestiny/TShockPlugin/tree/master/CreateSpawn)             |  出生点建筑生成   |              无               |
 | [AutoBroadcast](https://github.com/Controllerdestiny/TShockPlugin/tree/master/AutoBroadcast)         |     自动广播      |              无               |
-| [AutoTeams](https://github.com/Controllerdestiny/TShockPlugin/tree/master/AutoTeams)                 |     自动队伍      |              无               |
+| [AutoTeam](https://github.com/Controllerdestiny/TShockPlugin/tree/master/AutoTeam)                   |     自动队伍      |              无               |
 | [BridgeBuilder](https://github.com/Controllerdestiny/TShockPlugin/tree/master/BridgeBuilder)         |     快速铺桥      |              无               |
 | [OnlineGiftPackage](https://github.com/Controllerdestiny/TShockPlugin/tree/master/OnlineGiftPackage) |     在线礼包      |              无               |
 | [LifemaxExtra](https://github.com/Controllerdestiny/TShockPlugin/tree/master/LifemaxExtra)           | 吃更多生命果/水晶 |              无               |
