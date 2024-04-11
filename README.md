@@ -4,6 +4,10 @@
 ## 开发者注意事项
 - 该项目中代码避免使用中文变量，且尽量避免使用多线程。
 - 请给每个插件项目附带一个README.md说明文件
+## 鸣谢以下代码贡献
+- [熙恩](https://github.com/THEXN)
+- [羽学](https://github.com/1242509682)
+- [tshock团队](https://github.com/Pryaxis/TShock)
 ### 已收集插件
 
 | 名称                                                                                                 |     插件说明      |            前置            |
