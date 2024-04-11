@@ -32,5 +32,6 @@
 | [OnlineGiftPackage](https://github.com/Controllerdestiny/TShockPlugin/tree/master/OnlineGiftPackage) |     在线礼包      |              无               |
 | [LifemaxExtra](https://github.com/Controllerdestiny/TShockPlugin/tree/master/LifemaxExtra)           | 吃更多生命果/水晶 |              无               |
 | [DisableMonsCoin](https://github.com/Controllerdestiny/TShockPlugin/tree/master/DisableMonsCoin)     |    怪物不掉钱     |              无               |
+| [PermaBuff](https://github.com/Controllerdestiny/TShockPlugin/tree/master/PermaBuff)                 |     永久 Buff     |              无               |
 | [ShortCommand](https://github.com/Controllerdestiny/TShockPlugin/tree/master/ShortCommand)           |     简短指令      |              无               |
 | [ProgressBag](https://github.com/Controllerdestiny/TShockPlugin/tree/master/ProgressBag)             |     进度礼包      |              无               |
