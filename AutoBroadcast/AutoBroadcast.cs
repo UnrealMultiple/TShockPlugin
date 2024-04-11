@@ -11,7 +11,7 @@ namespace AutoBroadcast
         public override string Name { get { return "AutoBroadcast"; } }
         public override string Author { get { return "Scavenger"; } }
         public override string Description { get { return "自动广播"; } }
-        public override Version Version { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
+        public override Version Version { get { return Assembly.GetExecutingAssembly().GetName().Version!; } }
 
         public string ConfigPath { get { return Path.Combine(TShock.SavePath, "AutoBroadcastConfig.json"); } }
         public ABConfig Config = new ABConfig();
@@ -39,30 +39,23 @@ namespace AutoBroadcast
 
         public void OnInitialize(EventArgs args)
         {
-            Commands.ChatCommands.Add(new Command("abroadcast", autobc, "autobc"));
-
-            try
+            autobc();
+            TShockAPI.Hooks.GeneralHooks.ReloadEvent += (_) =>
             {
-                Config = ABConfig.Read(ConfigPath).Write(ConfigPath);
-            }
-            catch (Exception ex)
-            {
-                Config = new ABConfig();
-                TShock.Log.ConsoleError("[AutoBroadcast]解析自动广播配置时发生异常!\n{0}".SFormat(ex.ToString()));
-            }
+                TSPlayer.Server.SendSuccessMessage("已成功重新加载自动广播配置！");
+                autobc();
+            } ;
         }
 
-        public void autobc(CommandArgs args)
+        public void autobc()
         {
             try
             {
                 Config = ABConfig.Read(ConfigPath).Write(ConfigPath);
-                args.Player.SendSuccessMessage("已成功重新加载自动广播配置！");
             }
             catch (Exception ex)
             {
                 Config = new ABConfig();
-                args.Player.SendWarningMessage("解析自动广播配置时发生异常！查看日志以获取更多详细信息！");
                 TShock.Log.Error("[AutoBroadcast]解析自动广播配置时发生异常!\n{0}".SFormat(ex.ToString()));
             }
         }

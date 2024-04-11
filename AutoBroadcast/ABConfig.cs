@@ -26,12 +26,12 @@ namespace AutoBroadcast
             File.WriteAllText(file, @"{
 			  ""Broadcasts"": [
 				{
-				  ""Name"": ""Example Broadcast"",
+				  ""Name"": ""E实例广播"",
 				  ""Enabled"": false,
 				  ""Messages"": [
-					""This is an example broadcast"",
-					""It will broadcast every 5 minutes"",
-					""Broadcasts can also execute commands"",
+					""这是一条广播"",
+					""每五分钟执行一次"",
+					""可以执行命令"",
 					""/time noon""
 				  ],
 				  ""ColorRGB"": [
