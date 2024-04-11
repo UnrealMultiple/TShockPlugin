@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortCommand", "ShortComman
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermaBuff", "PermBuff\PermaBuff.csproj", "{FDEC39EF-29B1-4A5F-9D37-0AA4F79EAF57}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressBag", "ProgressBag\ProgressBag.csproj", "{097CF991-3EFA-459D-92CF-DDBD60D2792B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -166,6 +168,14 @@ Global
 		{FDEC39EF-29B1-4A5F-9D37-0AA4F79EAF57}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FDEC39EF-29B1-4A5F-9D37-0AA4F79EAF57}.Release|x64.ActiveCfg = Release|Any CPU
 		{FDEC39EF-29B1-4A5F-9D37-0AA4F79EAF57}.Release|x64.Build.0 = Release|Any CPU
+		{097CF991-3EFA-459D-92CF-DDBD60D2792B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{097CF991-3EFA-459D-92CF-DDBD60D2792B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{097CF991-3EFA-459D-92CF-DDBD60D2792B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{097CF991-3EFA-459D-92CF-DDBD60D2792B}.Debug|x64.Build.0 = Debug|Any CPU
+		{097CF991-3EFA-459D-92CF-DDBD60D2792B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{097CF991-3EFA-459D-92CF-DDBD60D2792B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{097CF991-3EFA-459D-92CF-DDBD60D2792B}.Release|x64.ActiveCfg = Release|Any CPU
+		{097CF991-3EFA-459D-92CF-DDBD60D2792B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
