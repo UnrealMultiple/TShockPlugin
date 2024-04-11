@@ -95,7 +95,6 @@ public class Plugin : TerrariaPlugin
         config.CritMessages.Add(WeaponType.Explosive, critMessage);
         critMessage = new CritMessage();
         critMessage.Messages.Add("Biu biu!", new int[3] { 50, 255, 10 });
-        critMessage.Messages.Add("悠月我草你妈", new int[3] { 50, 255, 10 });
         config.CritMessages.Add(WeaponType.Ranged, critMessage);
         critMessage = new CritMessage();
         critMessage.Messages.Add("啪嗒!", new int[3] { 10, 50, 255 });
