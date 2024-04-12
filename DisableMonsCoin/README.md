@@ -1,5 +1,7 @@
 ## 怪物不掉钱插件说明
 ```
+作者：豆沙
+修改：羽学  
 插件来源：https://gitee.com/Crafty/bean-points
 将其BPNPC.cs中的ClearCoins方法单独提取出来作为一个独立插件
 ```
