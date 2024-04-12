@@ -39,3 +39,4 @@
 | [DisableMonsCoin](https://github.com/Controllerdestiny/TShockPlugin/tree/master/DisableMonsCoin)     |    怪物不掉钱     |              无               |
 | [Back](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Back)                           |     死亡回溯      |              无               |
 | [BanNpc](https://github.com/Controllerdestiny/TShockPlugin/tree/master/BanNpc)                       |   阻止怪物生成    |              无               |
+| [MapTeleport](https://github.com/Controllerdestiny/TShockPlugin/tree/master/MapTeleport)             |   双击大地图传送  |              无               |
