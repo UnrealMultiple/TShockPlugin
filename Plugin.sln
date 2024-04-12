@@ -40,6 +40,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapTp", "MapTp\MapTp.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandRespawn", "RandRespawn\RandRespawn.csproj", "{44DF105C-3615-4B15-AE72-7835C44A3864}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGive", "CGive\CGive.csproj", "{7A15E6B2-F299-4F07-8429-129119F4553C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -176,6 +178,14 @@ Global
 		{44DF105C-3615-4B15-AE72-7835C44A3864}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44DF105C-3615-4B15-AE72-7835C44A3864}.Release|x64.ActiveCfg = Release|Any CPU
 		{44DF105C-3615-4B15-AE72-7835C44A3864}.Release|x64.Build.0 = Release|Any CPU
+		{7A15E6B2-F299-4F07-8429-129119F4553C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A15E6B2-F299-4F07-8429-129119F4553C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A15E6B2-F299-4F07-8429-129119F4553C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7A15E6B2-F299-4F07-8429-129119F4553C}.Debug|x64.Build.0 = Debug|Any CPU
+		{7A15E6B2-F299-4F07-8429-129119F4553C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A15E6B2-F299-4F07-8429-129119F4553C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A15E6B2-F299-4F07-8429-129119F4553C}.Release|x64.ActiveCfg = Release|Any CPU
+		{7A15E6B2-F299-4F07-8429-129119F4553C}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

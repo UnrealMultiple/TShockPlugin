@@ -41,3 +41,4 @@
 | [BanNpc](https://github.com/Controllerdestiny/TShockPlugin/tree/master/BanNpc)                       |   阻止怪物生成    |              无               |
 | [MapTeleport](https://github.com/Controllerdestiny/TShockPlugin/tree/master/MapTp)                   |  双击大地图传送   |              无               |
 | [RandReSpawn](https://github.com/Controllerdestiny/TShockPlugin/tree/master/RandRespawn)             |    随机出生点     |              无               |
+| [CGive](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Cgive)                         |     离线命令      |              无               |
