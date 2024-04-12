@@ -6,8 +6,10 @@ using TerrariaApi.Server;
 using TShockAPI;
 using static TShockAPI.GetDataHandlers;
 
+namespace TownNPCHomes;
+
 [ApiVersion(2, 1)]
-public class MainPlugin : TerrariaPlugin
+public class Plugin : TerrariaPlugin
 {
     public override string Author => "棱镜 羽学优化";
 
@@ -17,7 +19,7 @@ public class MainPlugin : TerrariaPlugin
 
     private ConcurrentDictionary<int, Vector2> npcHomePositions = new ConcurrentDictionary<int, Vector2>();
 
-    public MainPlugin(Main game)
+    public Plugin(Main game)
         : base(game)
     {
     }

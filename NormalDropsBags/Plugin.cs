@@ -2,10 +2,10 @@
 using Terraria.DataStructures;
 using TerrariaApi.Server;
 
-namespace 普通难度宝藏袋
+namespace NormalDropsBags
 {
     [ApiVersion(2, 1)]
-    public class 普通难度宝藏袋 : TerrariaPlugin
+    public class Plugin : TerrariaPlugin
     {
         // 同时请参阅TShock的插件开发骨架示例：TShock文档-Hello World
 
@@ -17,7 +17,7 @@ namespace 普通难度宝藏袋
 
         public override Version Version => new Version(1, 1, 3, 0);
 
-        public 普通难度宝藏袋(Main game) : base(game)
+        public Plugin(Main game) : base(game)
         {
 
         }

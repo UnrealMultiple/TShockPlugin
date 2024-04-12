@@ -4,10 +4,10 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 
-namespace 禁地表弹幕
+namespace DisableSurfaceProjectiles
 {
     [ApiVersion(2, 1)]
-    public class DisableSurfaceProjectiles : TerrariaPlugin
+    public class Plugin : TerrariaPlugin
     {
         public override string Author => "羽学 感谢Cai 西江小子 熙恩";
         public override string Description => "禁止特定弹幕在地表产生";
@@ -15,7 +15,7 @@ namespace 禁地表弹幕
         public override Version Version => new(1, 0, 0, 5);
         internal static Configuration Config;
         public static bool _isEnabled; // 存储插件是否启用的状态，默认为false
-        public DisableSurfaceProjectiles(Main game) : base(game)
+        public Plugin(Main game) : base(game)
         {
             Order = 40;
             _isEnabled = false; // 初始化为关闭状态

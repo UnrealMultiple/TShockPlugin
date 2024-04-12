@@ -2,8 +2,10 @@
 using TerrariaApi.Server;
 using TShockAPI;
 
+namespace DisableMonsCoin;
+
 [ApiVersion(2, 1)]
-public class DisableMonsCoin : TerrariaPlugin
+public class Plugin : TerrariaPlugin
 {
     // 插件的名称。
     public override string Name => "禁止怪物掉钱";
@@ -19,7 +21,7 @@ public class DisableMonsCoin : TerrariaPlugin
 
     // 插件的构造函数
     // 在这里设置插件的顺序（可选）和任何其他构造函数逻辑
-    public DisableMonsCoin(Main game) : base(game)
+    public Plugin(Main game) : base(game)
     {
     }
 

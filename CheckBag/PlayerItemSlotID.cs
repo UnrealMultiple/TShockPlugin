@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace 检查背包
+namespace CheckBag
 {
     public static class PlayerItemSlotID
     {

@@ -3,13 +3,12 @@ using System.IO;
 using System.Timers;
 using Terraria;
 using TerrariaApi.Server;
-using static 阻止玩家无敌;
 using TShockAPI;
-using TShockAPI.DB;
-using TShockAPI.Hooks;
+
+namespace DisableGodMod;
 
 [ApiVersion(2, 1)]
-public class 阻止玩家无敌 : TerrariaPlugin
+public class Plugin : TerrariaPlugin
 {
     public class LPlayer
     {
@@ -71,7 +70,7 @@ public class 阻止玩家无敌 : TerrariaPlugin
 
     private LPlayer[] LPlayers { get; set; }
 
-    public 阻止玩家无敌(Main game)
+    public Plugin(Main game)
         : base(game)
     {
         LPlayers = new LPlayer[256];

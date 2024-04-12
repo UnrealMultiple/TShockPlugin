@@ -2,7 +2,7 @@
 using Terraria;
 using TShockAPI;
 
-namespace 禁地表弹幕
+namespace DisableSurfaceProjectiles
 {
     public class Configuration
     {
