@@ -43,3 +43,9 @@
 | [RandReSpawn](https://github.com/Controllerdestiny/TShockPlugin/tree/master/RandRespawn)             |     随机出生点     |              无               |
 | [CGive](https://github.com/Controllerdestiny/TShockPlugin/tree/master/CGive)                         |      离线命令      |              无               |
 | [RainbowChat](https://github.com/Controllerdestiny/TShockPlugin/tree/master/RainbowChat)             | 每次说话颜色不一样 |              无               |
+| [NormalDropsBags](https://github.com/Controllerdestiny/TShockPlugin/tree/master/NormalDropsBags)             | 普通难度宝藏袋 |              无               |
+| [CheckBag](https://github.com/Controllerdestiny/TShockPlugin/tree/master/CheckBag)             | 检查背包（超进度物品检测） |              无               |
+| [DisableSurfaceProjectiles](https://github.com/Controllerdestiny/TShockPlugin/tree/master/DisableSurfaceProjectiles)             | 禁地表弹幕 |              无               |
+| [RecipesBrowser](https://github.com/Controllerdestiny/TShockPlugin/tree/master/RecipesBrowser)             | 合成表 |              无               |
+| [DisableGodMod](https://github.com/Controllerdestiny/TShockPlugin/tree/master/DisableGodMod)             | 阻止玩家无敌 |              无               |
+| [TownNPCHomes](https://github.com/Controllerdestiny/TShockPlugin/tree/master/TownNPCHomes)             | NPC快速回家 |              无               |
