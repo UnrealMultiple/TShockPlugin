@@ -17,29 +17,29 @@
 
 ### 已收集插件
 
-| 名称                                                                                                 |     插件说明      |             前置              |
-| ---------------------------------------------------------------------------------------------------- | :---------------: | :---------------------------: |
-| [ChattyBridge](https://github.com/Controllerdestiny/TShockPlugin/tree/master/ChattyBridge)           |   用于跨服聊天    |              无               |
-| [EconomicsAPI](https://github.com/Controllerdestiny/TShockPlugin/tree/master/EconomicsAPI)           |   经济插件前置    |              无               |
-| [Economics.RPG](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.RPG)         |        RPG        |         EconomicsAPI          |
-| [Economics.Deal](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.RPG)        |     交易插件      |         EconomicsAPI          |
-| [Economics.Shop](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.Shop)       |     商店插件      | EconomicsAPI<br>Economics.RPG |
-| [Economics.Skill](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.Skill)     | 技能插件(未完成)  | EconomicsAPI<br>Economics.RPG |
-| [CreateSpawn](https://github.com/Controllerdestiny/TShockPlugin/tree/master/CreateSpawn)             |  出生点建筑生成   |              无               |
-| [AutoBroadcast](https://github.com/Controllerdestiny/TShockPlugin/tree/master/AutoBroadcast)         |     自动广播      |              无               |
-| [AutoTeam](https://github.com/Controllerdestiny/TShockPlugin/tree/master/AutoTeam)                   |     自动队伍      |              无               |
-| [BridgeBuilder](https://github.com/Controllerdestiny/TShockPlugin/tree/master/BridgeBuilder)         |     快速铺桥      |              无               |
-| [OnlineGiftPackage](https://github.com/Controllerdestiny/TShockPlugin/tree/master/OnlineGiftPackage) |     在线礼包      |              无               |
-| [LifemaxExtra](https://github.com/Controllerdestiny/TShockPlugin/tree/master/LifemaxExtra)           | 吃更多生命果/水晶 |              无               |
-| [DisableMonsCoin](https://github.com/Controllerdestiny/TShockPlugin/tree/master/DisableMonsCoin)     |    怪物不掉钱     |              无               |
-| [PermaBuff](https://github.com/Controllerdestiny/TShockPlugin/tree/master/PermaBuff)                 |     永久 Buff     |              无               |
-| [ShortCommand](https://github.com/Controllerdestiny/TShockPlugin/tree/master/ShortCommand)           |     简短指令      |              无               |
-| [ProgressBag](https://github.com/Controllerdestiny/TShockPlugin/tree/master/ProgressBag)             |     进度礼包      |              无               |
-| [CriticalHit](https://github.com/Controllerdestiny/TShockPlugin/tree/master/CriticalHit)             |     击打提示      |              无               |
-| [DisableMonsCoin](https://github.com/Controllerdestiny/TShockPlugin/tree/master/DisableMonsCoin)     |    怪物不掉钱     |              无               |
-| [Back](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Back)                           |     死亡回溯      |              无               |
-| [BanNpc](https://github.com/Controllerdestiny/TShockPlugin/tree/master/BanNpc)                       |   阻止怪物生成    |              无               |
-| [MapTeleport](https://github.com/Controllerdestiny/TShockPlugin/tree/master/MapTp)                   |  双击大地图传送   |              无               |
-| [RandReSpawn](https://github.com/Controllerdestiny/TShockPlugin/tree/master/RandRespawn)             |    随机出生点     |              无               |
-| [CGive](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Cgive)                         |     离线命令      |              无               |
-| [RainbowChat](https://github.com/Controllerdestiny/TShockPlugin/tree/master/RainbowChat)             | 每次说话颜色不一样|              无               |
+| 名称                                                                                                 |      插件说明      |             前置              |
+| ---------------------------------------------------------------------------------------------------- | :----------------: | :---------------------------: |
+| [ChattyBridge](https://github.com/Controllerdestiny/TShockPlugin/tree/master/ChattyBridge)           |    用于跨服聊天    |              无               |
+| [EconomicsAPI](https://github.com/Controllerdestiny/TShockPlugin/tree/master/EconomicsAPI)           |    经济插件前置    |              无               |
+| [Economics.RPG](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.RPG)         |        RPG         |         EconomicsAPI          |
+| [Economics.Deal](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.RPG)        |      交易插件      |         EconomicsAPI          |
+| [Economics.Shop](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.Shop)       |      商店插件      | EconomicsAPI<br>Economics.RPG |
+| [Economics.Skill](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.Skill)     |  技能插件(未完成)  | EconomicsAPI<br>Economics.RPG |
+| [CreateSpawn](https://github.com/Controllerdestiny/TShockPlugin/tree/master/CreateSpawn)             |   出生点建筑生成   |              无               |
+| [AutoBroadcast](https://github.com/Controllerdestiny/TShockPlugin/tree/master/AutoBroadcast)         |      自动广播      |              无               |
+| [AutoTeam](https://github.com/Controllerdestiny/TShockPlugin/tree/master/AutoTeam)                   |      自动队伍      |              无               |
+| [BridgeBuilder](https://github.com/Controllerdestiny/TShockPlugin/tree/master/BridgeBuilder)         |      快速铺桥      |              无               |
+| [OnlineGiftPackage](https://github.com/Controllerdestiny/TShockPlugin/tree/master/OnlineGiftPackage) |      在线礼包      |              无               |
+| [LifemaxExtra](https://github.com/Controllerdestiny/TShockPlugin/tree/master/LifemaxExtra)           | 吃更多生命果/水晶  |              无               |
+| [DisableMonsCoin](https://github.com/Controllerdestiny/TShockPlugin/tree/master/DisableMonsCoin)     |     怪物不掉钱     |              无               |
+| [PermaBuff](https://github.com/Controllerdestiny/TShockPlugin/tree/master/PermaBuff)                 |     永久 Buff      |              无               |
+| [ShortCommand](https://github.com/Controllerdestiny/TShockPlugin/tree/master/ShortCommand)           |      简短指令      |              无               |
+| [ProgressBag](https://github.com/Controllerdestiny/TShockPlugin/tree/master/ProgressBag)             |      进度礼包      |              无               |
+| [CriticalHit](https://github.com/Controllerdestiny/TShockPlugin/tree/master/CriticalHit)             |      击打提示      |              无               |
+| [DisableMonsCoin](https://github.com/Controllerdestiny/TShockPlugin/tree/master/DisableMonsCoin)     |     怪物不掉钱     |              无               |
+| [Back](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Back)                           |      死亡回溯      |              无               |
+| [BanNpc](https://github.com/Controllerdestiny/TShockPlugin/tree/master/BanNpc)                       |    阻止怪物生成    |              无               |
+| [MapTeleport](https://github.com/Controllerdestiny/TShockPlugin/tree/master/MapTp)                   |   双击大地图传送   |              无               |
+| [RandReSpawn](https://github.com/Controllerdestiny/TShockPlugin/tree/master/RandRespawn)             |     随机出生点     |              无               |
+| [CGive](https://github.com/Controllerdestiny/TShockPlugin/tree/master/CGive)                         |      离线命令      |              无               |
+| [RainbowChat](https://github.com/Controllerdestiny/TShockPlugin/tree/master/RainbowChat)             | 每次说话颜色不一样 |              无               |
