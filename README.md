@@ -42,3 +42,4 @@
 | [MapTeleport](https://github.com/Controllerdestiny/TShockPlugin/tree/master/MapTp)                   |  双击大地图传送   |              无               |
 | [RandReSpawn](https://github.com/Controllerdestiny/TShockPlugin/tree/master/RandRespawn)             |    随机出生点     |              无               |
 | [CGive](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Cgive)                         |     离线命令      |              无               |
+| [RainbowChat](https://github.com/Controllerdestiny/TShockPlugin/tree/master/RainbowChat)             | 每次说话颜色不一样|              无               |
