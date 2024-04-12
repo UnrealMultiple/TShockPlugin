@@ -1,4 +1,4 @@
-# 插件名
+# RecipesBrowser 合成表
 
 - 作者: 棱镜、羽学
 - 出处: [github](https://github.com/1242509682/RecipesBrowser)

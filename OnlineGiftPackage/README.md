@@ -1,6 +1,6 @@
 # Online Gift Package 在线礼包
 
-- 作者: 羽学
+- 作者: 星夜神花、羽学
 - 出处: [github](https://gitee.com/star-night-flower/tshock-gift)
 - 这是一个Tshock服务器插件主要用于对服务器内的在线玩家进行发放随机的在线奖励
 - 在【在线礼包.json】文件中添加完物品，游戏发送/Reload可自动计算获取总概率
