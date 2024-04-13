@@ -1,4 +1,4 @@
-# RegionView 区域显示
+# SwitchCommand 区域显示
 
 - 作者: Johuan ,Cjx
 - 出处: github
