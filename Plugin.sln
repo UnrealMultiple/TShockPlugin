@@ -60,6 +60,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesBrowser", "RecipesBr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TownNPCHomes", "TownNPCHomes\TownNPCHomes.csproj", "{6FAF2ED2-38B1-46C7-83F1-B909D260D70E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegionView", "RegionView\RegionView.csproj", "{41B3DE8D-F7B2-44E0-AD35-971140F49E81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -276,6 +278,14 @@ Global
 		{6FAF2ED2-38B1-46C7-83F1-B909D260D70E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6FAF2ED2-38B1-46C7-83F1-B909D260D70E}.Release|x64.ActiveCfg = Release|Any CPU
 		{6FAF2ED2-38B1-46C7-83F1-B909D260D70E}.Release|x64.Build.0 = Release|Any CPU
+		{41B3DE8D-F7B2-44E0-AD35-971140F49E81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41B3DE8D-F7B2-44E0-AD35-971140F49E81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41B3DE8D-F7B2-44E0-AD35-971140F49E81}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{41B3DE8D-F7B2-44E0-AD35-971140F49E81}.Debug|x64.Build.0 = Debug|Any CPU
+		{41B3DE8D-F7B2-44E0-AD35-971140F49E81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41B3DE8D-F7B2-44E0-AD35-971140F49E81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41B3DE8D-F7B2-44E0-AD35-971140F49E81}.Release|x64.ActiveCfg = Release|Any CPU
+		{41B3DE8D-F7B2-44E0-AD35-971140F49E81}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
