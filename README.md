@@ -20,7 +20,7 @@
 
 | 名称                                                                                                 |      插件说明      |             前置              |
 | ---------------------------------------------------------------------------------------------------- | :----------------: | :---------------------------: |
-| [ChattyBridge](ChattyBridge/README)           |    用于跨服聊天    |              无               |
+| [ChattyBridge](ChattyBridge/README.md)           |    用于跨服聊天    |              无               |
 | [EconomicsAPI](https://github.com/Controllerdestiny/TShockPlugin/tree/master/EconomicsAPI)           |    经济插件前置    |              无               |
 | [Economics.RPG](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.RPG)         |        RPG         |         EconomicsAPI          |
 | [Economics.Deal](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Economics.RPG)        |      交易插件      |         EconomicsAPI          |
