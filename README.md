@@ -13,6 +13,7 @@
 
 - [熙恩](https://github.com/THEXN)
 - [羽学](https://github.com/1242509682)
+- [Cxj](https://github.com/FHTXcjx8848)
 - [tshock 团队](https://github.com/Pryaxis/TShock)
 
 ### 已收集插件
