@@ -55,3 +55,4 @@
 | [GolfRewards](GolfRewards/README.md)                             |    区域执行指令    |              无               |
 | [DataSync](DataSync/README.md)                                   |      进度同步      |              无               |
 | [ProgressRestrict](ProgressRestrict/README.md)                   |     超进度检测     |           DataSync            |
+| [PacketsStop](PacketsStop/README.md)                             |       包拦截       |           DataSync            |
