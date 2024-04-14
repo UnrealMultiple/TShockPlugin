@@ -53,3 +53,4 @@
 | [RegionView](RegionView/README.md)                               |        显示区域边界        |              无               |
 | [Noagent](Noagent/README.md)                                     |      禁止代理 ip 进入      |              无               |
 | [SwitchCommands](SwitchCommands/README.md)                       |        区域执行指令        |              无               |
+| [GolfRewards](GolfRewards/README.md)                             |        区域执行指令        |              无               |
