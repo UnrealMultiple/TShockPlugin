@@ -74,6 +74,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressRestrict", "Progres
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CriticalHit", "CriticalHit\CriticalHit.csproj", "{FB53565D-8A75-4A8D-9DBA-F3F260D714CE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacketsStop", "..\Plugin\PacketsStop\PacketsStop.csproj", "{EA684BA7-CA95-46BA-B053-02192000FDC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -346,6 +348,14 @@ Global
 		{FB53565D-8A75-4A8D-9DBA-F3F260D714CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB53565D-8A75-4A8D-9DBA-F3F260D714CE}.Release|x64.ActiveCfg = Release|Any CPU
 		{FB53565D-8A75-4A8D-9DBA-F3F260D714CE}.Release|x64.Build.0 = Release|Any CPU
+		{EA684BA7-CA95-46BA-B053-02192000FDC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA684BA7-CA95-46BA-B053-02192000FDC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA684BA7-CA95-46BA-B053-02192000FDC5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EA684BA7-CA95-46BA-B053-02192000FDC5}.Debug|x64.Build.0 = Debug|Any CPU
+		{EA684BA7-CA95-46BA-B053-02192000FDC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA684BA7-CA95-46BA-B053-02192000FDC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA684BA7-CA95-46BA-B053-02192000FDC5}.Release|x64.ActiveCfg = Release|Any CPU
+		{EA684BA7-CA95-46BA-B053-02192000FDC5}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
