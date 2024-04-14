@@ -52,4 +52,5 @@
 | [TownNPCHomes](https://github.com/Controllerdestiny/TShockPlugin/tree/master/TownNPCHomes)            |     NPC快速回家   |              无               |
 | [RegionView](https://github.com/Controllerdestiny/TShockPlugin/tree/master/RegionView)                |    显示区域边界   |              无               |
 | [Noagent](https://github.com/Controllerdestiny/TShockPlugin/tree/master/Noagent)                      |   禁止代理ip进入  |              无               |
-| [SwitchCommands](https://github.com/Controllerdestiny/TShockPlugin/tree/master/SwitchCommands)                      |   区域执行指令  |              无               |
+| [SwitchCommands](https://github.com/Controllerdestiny/TShockPlugin/tree/master/SwitchCommands)        |     区域执行指令   |              无              |
+| [GolfRewards](https://github.com/Controllerdestiny/TShockPlugin/tree/master/GolfRewards)              |   打高尔夫获得奖励 |              无              |
