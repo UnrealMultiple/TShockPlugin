@@ -162,7 +162,7 @@ namespace ProgressBag
                 }
                 else
                 {
-                    foreach (var n in GameProgress.Names)
+                    foreach (var n in ProgressUtil.Names)
                     {
                         Bag bag = new();
                         bag.Limit.Add(n);

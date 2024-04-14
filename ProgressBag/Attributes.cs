@@ -11,18 +11,33 @@ public class ProgressNameAttribute : Attribute
     }
 }
 
+[AttributeUsage(AttributeTargets.Field)]
+public class ProgressMapID : Attribute
+{
+    public int[] ID { get; set; }
+
+    public ProgressMapID(params int[] id)
+    {
+        ID = id;
+    }
+}
+
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
 public class ProgressMapAttribute : Attribute
 {
     public string Filed { get; set; }
 
-    public object value { get; set; }
+    public Type Target { get; set; }
 
-    public ProgressMapAttribute(string Filed, object value)
+    public object Value { get; set; }
+
+    public ProgressMapAttribute(string Filed, Type target, object value)
     {
         this.Filed = Filed;
 
-        this.value = value;
+        this.Target = target;
+
+        this.Value = value;
     }
 }
 

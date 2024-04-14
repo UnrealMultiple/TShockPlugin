@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
 	<Import Project="..\template.targets" />
-	<ItemGroup>
-	  <Folder Include="Attributes\" />
-	</ItemGroup>
+
 </Project>
