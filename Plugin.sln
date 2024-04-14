@@ -66,6 +66,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noagent", "Noagent\Noagent.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchCommands", "SwitchCommands\SwitchCommands.csproj", "{572F74CB-7DE5-45DE-AF20-71858721C9DA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GolfRewards", "GolfRewards\GolfRewards.csproj", "{F291429A-188A-4245-8504-9ABA25C7EDC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -306,6 +308,14 @@ Global
 		{572F74CB-7DE5-45DE-AF20-71858721C9DA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{572F74CB-7DE5-45DE-AF20-71858721C9DA}.Release|x64.ActiveCfg = Release|Any CPU
 		{572F74CB-7DE5-45DE-AF20-71858721C9DA}.Release|x64.Build.0 = Release|Any CPU
+		{F291429A-188A-4245-8504-9ABA25C7EDC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F291429A-188A-4245-8504-9ABA25C7EDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F291429A-188A-4245-8504-9ABA25C7EDC3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F291429A-188A-4245-8504-9ABA25C7EDC3}.Debug|x64.Build.0 = Debug|Any CPU
+		{F291429A-188A-4245-8504-9ABA25C7EDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F291429A-188A-4245-8504-9ABA25C7EDC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F291429A-188A-4245-8504-9ABA25C7EDC3}.Release|x64.ActiveCfg = Release|Any CPU
+		{F291429A-188A-4245-8504-9ABA25C7EDC3}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
