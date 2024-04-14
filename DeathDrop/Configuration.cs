@@ -5,7 +5,7 @@ using TShockAPI;
 
 namespace DeathDrop
 {
-    internal class DeathDropConfig
+    public class Configuration
     {
         public class Monster
         {
@@ -47,16 +47,31 @@ namespace DeathDrop
             new Monster()
         };
 
-        public static readonly string ConfigFilePath = Path.Combine(TShock.SavePath, "死亡掉落配置表.json");
-
-        public static DeathDropConfig GetConfig()
+        public static readonly string FilePath = Path.Combine(TShock.SavePath, "死亡掉落配置表.json");
+        public void Write(string path)
         {
-            if (!File.Exists(ConfigFilePath))
+            using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
             {
-                File.WriteAllText(ConfigFilePath, JsonConvert.SerializeObject(new DeathDropConfig(), Formatting.Indented));
+                var str = JsonConvert.SerializeObject(this, Formatting.Indented);
+                using (var sw = new StreamWriter(fs))
+                {
+                    sw.Write(str);
+                }
             }
+        }
 
-            return JsonConvert.DeserializeObject<DeathDropConfig>(File.ReadAllText(ConfigFilePath));
+        public static Configuration Read(string path)
+        {
+            if (!File.Exists(path))
+                return new Configuration();
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                using (var sr = new StreamReader(fs))
+                {
+                    var cf = JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd());
+                    return cf;
+                }
+            }
         }
     }
 }

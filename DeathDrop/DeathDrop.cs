@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace DeathDrop
 {
@@ -12,17 +13,43 @@ namespace DeathDrop
     public class DeathDrop : TerrariaPlugin
     {
         public static Random RandomGenerator = new Random();
+        public static Configuration Config;
 
         public override string Author => "大豆子，肝帝熙恩更新优化";
-        public override string Description => "自定义怪物死亡随机掉落物";
-        public override string Name => "死亡随机掉落";
-        public override Version Version => new Version(1, 0, 1);
+        public override string Description => "怪物死亡随机和自定义掉落物品";
+        public override string Name => "死亡掉落";
+        public override Version Version => new Version(1, 0, 3);
 
-        public DeathDrop(Main game) : base(game) { }
+        public DeathDrop(Main game) : base(game)
+        {
+            LoadConfig();
+        }
 
         public override void Initialize()
         {
+            GeneralHooks.ReloadEvent += ReloadConfig;
             ServerApi.Hooks.NpcKilled.Register(this, NPCDead);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                GeneralHooks.ReloadEvent -= ReloadConfig;
+                ServerApi.Hooks.NpcKilled.Deregister(this, NPCDead);
+            }
+            base.Dispose(disposing);
+        }
+        private static void LoadConfig()
+        {
+            Config = Configuration.Read(Configuration.FilePath);
+            Config.Write(Configuration.FilePath);
+        }
+
+        private static void ReloadConfig(ReloadEventArgs args)
+        {
+            LoadConfig();
+            args.Player?.SendSuccessMessage("[死亡掉落] 重新加载配置完毕。");
         }
 
         private void NPCDead(NpcKilledEventArgs args)
@@ -35,78 +62,69 @@ namespace DeathDrop
                 ? TShock.Players[args.npc.lastInteraction]
                 : null;
 
-            try
+            if (Config.EnableRandomDrops)
             {
-                DeathDropConfig config = DeathDropConfig.GetConfig();
+                int itemId = GetRandomItemIdFromGlobalConfig(Config);
 
-                if (config.EnableRandomDrops)
+                if (Candorp(Config.RandomDropChance))
                 {
-                    int itemId = GetRandomItemIdFromGlobalConfig(config);
+                    Item item = TShock.Utils.GetItemById(itemId);
+                    int dropAmount = RandomGenerator.Next(Config.MinRandomDropAmount, Config.MaxRandomDropAmount + 1);
 
-                    if (Candorp(config.RandomDropChance))
+                    int itemNumber = Item.NewItem(
+                        null,
+                        (int)args.npc.position.X,
+                        (int)args.npc.position.Y,
+                        item.width,
+                        item.height,
+                        item.type,
+                        dropAmount
+                    );
+
+                    // 只有当玩家不为 null 时才发送数据包
+                    if (player != null)
                     {
-                        Item item = TShock.Utils.GetItemById(itemId);
-                        int dropAmount = RandomGenerator.Next(config.MinRandomDropAmount, config.MaxRandomDropAmount + 1);
+                        player.SendData(PacketTypes.SyncExtraValue, null, itemNumber);
+                        player.SendData(PacketTypes.ItemOwner, null, itemNumber);
+                        player.SendData(PacketTypes.TweakItem, null, itemNumber, 255f, 63f);
+                    }
+                }
+            }
 
-                        int itemNumber = Item.NewItem(
+            if (Config.EnableCustomDrops)
+            {
+                foreach (Configuration.Monster monster in Config.DeathDropSet)
+                {
+                    if (monster.NPCID == npcNetID && Candorp(monster.DropChance))
+                    {
+                        int dropItemId = GetRandomItemIdFromMonsterConfig(monster);
+
+                        Item dropItem = TShock.Utils.GetItemById(dropItemId);
+                        int dropAmount = RandomGenerator.Next(monster.RandomDropMinAmount, monster.RandomDropMaxAmount + 1);
+
+                        int dropItemNumber = Item.NewItem(
                             null,
-                            (int)args.npc.position.X,
-                            (int)args.npc.position.Y,
-                            item.width,
-                            item.height,
-                            item.type,
+                            (int)npcPosition.X,
+                            (int)npcPosition.Y,
+                            dropItem.width,
+                            dropItem.height,
+                            dropItem.type,
                             dropAmount
                         );
 
                         // 只有当玩家不为 null 时才发送数据包
                         if (player != null)
                         {
-                            player.SendData(PacketTypes.SyncExtraValue, null, itemNumber);
-                            player.SendData(PacketTypes.ItemOwner, null, itemNumber);
-                            player.SendData(PacketTypes.TweakItem, null, itemNumber, 255f, 63f);
+                            player.SendData(PacketTypes.SyncExtraValue, null, dropItemNumber);
+                            player.SendData(PacketTypes.ItemOwner, null, dropItemNumber);
+                            player.SendData(PacketTypes.TweakItem, null, dropItemNumber, 255f, 63f);
                         }
                     }
                 }
-
-                if (config.EnableCustomDrops)
-                {
-                    foreach (DeathDropConfig.Monster monster in config.DeathDropSet)
-                    {
-                        if (monster.NPCID == npcNetID && Candorp(monster.DropChance))
-                        {
-                            int dropItemId = GetRandomItemIdFromMonsterConfig(monster);
-
-                            Item dropItem = TShock.Utils.GetItemById(dropItemId);
-                            int dropAmount = RandomGenerator.Next(monster.RandomDropMinAmount, monster.RandomDropMaxAmount + 1);
-
-                            int dropItemNumber = Item.NewItem(
-                                null,
-                                (int)npcPosition.X,
-                                (int)npcPosition.Y,
-                                dropItem.width,
-                                dropItem.height,
-                                dropItem.type,
-                                dropAmount
-                            );
-
-                            // 只有当玩家不为 null 时才发送数据包
-                            if (player != null)
-                            {
-                                player.SendData(PacketTypes.SyncExtraValue, null, dropItemNumber);
-                                player.SendData(PacketTypes.ItemOwner, null, dropItemNumber);
-                                player.SendData(PacketTypes.TweakItem, null, dropItemNumber, 255f, 63f);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"死亡掉落插件发生异常：{ex.Message}");
             }
         }
 
-        private int GetRandomItemIdFromGlobalConfig(DeathDropConfig config)
+        private int GetRandomItemIdFromGlobalConfig(Configuration config)
         {
             if (config.FullRandomDrops)
             {
@@ -126,7 +144,7 @@ namespace DeathDrop
             }
         }
 
-        private int GetRandomItemIdFromMonsterConfig(DeathDropConfig.Monster monster)
+        private int GetRandomItemIdFromMonsterConfig(Configuration.Monster monster)
         {
             if (monster.FullRandomDrops)
             {
