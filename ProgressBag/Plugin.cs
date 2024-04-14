@@ -1,7 +1,6 @@
 ﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using ProgressTool;
 
 namespace ProgressBag
 {
