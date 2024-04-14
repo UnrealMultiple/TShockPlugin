@@ -78,6 +78,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacketsStop", "PacketsStop\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeathDrop", "DeathDrop\DeathDrop.csproj", "{7901BF97-3A58-4D80-B99F-FE9D41AB4729}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PvPer", "PvPer\PvPer.csproj", "{C08C83AE-611E-4F2C-8AE0-1CE815CD59AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -366,6 +368,14 @@ Global
 		{7901BF97-3A58-4D80-B99F-FE9D41AB4729}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7901BF97-3A58-4D80-B99F-FE9D41AB4729}.Release|x64.ActiveCfg = Release|Any CPU
 		{7901BF97-3A58-4D80-B99F-FE9D41AB4729}.Release|x64.Build.0 = Release|Any CPU
+		{C08C83AE-611E-4F2C-8AE0-1CE815CD59AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C08C83AE-611E-4F2C-8AE0-1CE815CD59AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C08C83AE-611E-4F2C-8AE0-1CE815CD59AC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C08C83AE-611E-4F2C-8AE0-1CE815CD59AC}.Debug|x64.Build.0 = Debug|Any CPU
+		{C08C83AE-611E-4F2C-8AE0-1CE815CD59AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C08C83AE-611E-4F2C-8AE0-1CE815CD59AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C08C83AE-611E-4F2C-8AE0-1CE815CD59AC}.Release|x64.ActiveCfg = Release|Any CPU
+		{C08C83AE-611E-4F2C-8AE0-1CE815CD59AC}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
