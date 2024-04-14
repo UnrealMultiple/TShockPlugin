@@ -16,7 +16,6 @@ namespace PacketsStop
 
         #region 配置方法的工具
         private readonly Dictionary<string, Dictionary<PacketTypes, DateTime>> countDictionary = new Dictionary<string, Dictionary<PacketTypes, DateTime>>();
-        private readonly object lockObject = new object();
         private const double PacketInterval = 1000.0;
         private bool _Enabled = false;
         internal static Configuration Config;
@@ -71,15 +70,17 @@ namespace PacketsStop
 
         private void Command(CommandArgs args)
         {
-            // 确保玩家不为null且具有相应权限
             if (args.Player != null && !args.Player.HasPermission("拦截"))
             {
                 args.Player.SendErrorMessage("你没有使用数据包拦截的权限");
                 return;
             }
+            else
+            {
+                _Enabled = !_Enabled;
+                TSPlayer.All.SendInfoMessage($"[数据包拦截]已{(_Enabled ? "启用" : "禁用")}");
+            }
 
-            _Enabled = !_Enabled;
-            args.Player.SendSuccessMessage($"数据包处理已{(_Enabled ? "启用" : "禁用")}");
 
             if (args.Parameters.Count != 2)
             {
@@ -139,21 +140,15 @@ namespace PacketsStop
         {
             TSPlayer player = TShock.Players[args.Msg.whoAmI];
 
-            if (!_Enabled)
+            if (!_Enabled ||! Packets.Contains(args.MsgID))
             {
                 return;
             }
 
             if (!player.HasPermission("免拦截"))
             {
-                if (!Packets.Contains(args.MsgID))
-                {
-                    args.Handled = true;
-                }
-                else
-                {
-                    HandlePacket(player, args.MsgID);
-                }
+
+                HandlePacket(player, args.MsgID);
             }
         }
 
@@ -176,31 +171,28 @@ namespace PacketsStop
         #endregion
 
         #region 处理数据包方法
-        private void HandlePacket(TSPlayer tsplayer, PacketTypes packetType)
+        private void HandlePacket(TSPlayer args, PacketTypes packetType)
         {
             if (_Enabled)
             {
-                lock (lockObject)
+                DateTime now = DateTime.Now;
+                if (args.Name != null)
                 {
-                    DateTime now = DateTime.Now;
-                    if (tsplayer.Name != null)
+                    if (!countDictionary.TryGetValue(args.Name, out var packetDictionary))
                     {
-                        if (!countDictionary.TryGetValue(tsplayer.Name, out var packetDictionary))
-                        {
-                            packetDictionary = new Dictionary<PacketTypes, DateTime>();
-                            countDictionary[tsplayer.Name] = packetDictionary;
-                        }
-                        if (packetDictionary.TryGetValue(packetType, out DateTime lastPacketTime))
-                        {
-                            if ((now - lastPacketTime).TotalMilliseconds >= PacketInterval)
-                            {
-                                packetDictionary[packetType] = now;
-                            }
-                        }
-                        else
+                        packetDictionary = new Dictionary<PacketTypes, DateTime>();
+                        countDictionary[args.Name] = packetDictionary;
+                    }
+                    if (packetDictionary.TryGetValue(packetType, out DateTime lastPacketTime))
+                    {
+                        if ((now - lastPacketTime).TotalMilliseconds >= PacketInterval)
                         {
                             packetDictionary[packetType] = now;
                         }
+                    }
+                    else
+                    {
+                        packetDictionary[packetType] = now;
                     }
                 }
             }
