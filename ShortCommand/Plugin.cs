@@ -26,9 +26,9 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "简短指令改良版";
 
-    public override string Author => "GK 超级改良";
+    public override string Author => "GK 少司命修复版";
 
-    public override Version Version => new Version(1, 0, 1, 7);
+    public override Version Version => new Version(1, 3, 0, 0);
 
     public override string Description => "由GK改良的简短指令插件！";
 
@@ -107,7 +107,7 @@ public class Plugin : TerrariaPlugin
             ServerApi.Hooks.GameInitialize.Deregister(this, this.OnInitialize);
             PlayerHooks.PlayerCommand -= this.OnChat;
         }
-        this.Dispose(disposing);
+        base.Dispose(disposing);
     }
 
     private void OnInitialize(EventArgs args)
@@ -121,6 +121,12 @@ public class Plugin : TerrariaPlugin
         {
             return;
         }
+
+        if (args.Player.HasPermission("免禁指令"))
+        {
+            return;
+        }
+
         if (this.NotSourceCmd.Contains(args.CommandName))
         {
             args.Player.SendErrorMessage("该指令已被禁止使用!");
