@@ -76,40 +76,21 @@ namespace RewardSection
 
         private void CMD2(CommandArgs args)
         {
-            LPlayer[] lplayers = LC.LPlayers;
-            lock (lplayers)
+            if (LC.LPlayers.TryGetValue(args.Player.Index, out LPlayer player) && player != null)
             {
-                bool flag2 = LC.LPlayers[args.Player.Index] != null;
-                if (flag2)
-                {
-                    LC.LPlayers[args.Player.Index].tip = true;
-                }
+                player.tip = true;
             }
             args.Player.SendSuccessMessage("敲击物块以确认其坐标!");
         }
 
-
         private void OnGreetPlayer(GreetPlayerEventArgs e)
         {
-            LPlayer[] lplayers = LC.LPlayers;
-            lock (lplayers)
-            {
-                LC.LPlayers[e.Who] = new LPlayer(e.Who);
-            }
+            LC.LPlayers.AddOrUpdate(e.Who, new LPlayer(e.Who), (_, existingPlayer) => existingPlayer);
         }
-
 
         private void OnLeave(LeaveEventArgs e)
         {
-            LPlayer[] lplayers = LC.LPlayers;
-            lock (lplayers)
-            {
-                bool flag2 = LC.LPlayers[e.Who] != null;
-                if (flag2)
-                {
-                    LC.LPlayers[e.Who] = null;
-                }
-            }
+            LC.LPlayers.TryRemove(e.Who, out _);
         }
 
         private void TileEdit(object sender, GetDataHandlers.TileEditEventArgs args)
@@ -121,14 +102,10 @@ namespace RewardSection
             if (tsplayer == null)
                 return;
 
-            LPlayer[] lplayers = LC.LPlayers;
-            lock (lplayers)
+            if (LC.LPlayers.TryGetValue(args.Player.Index, out LPlayer player) && player != null && player.tip)
             {
-                if (LC.LPlayers[args.Player.Index] != null && LC.LPlayers[args.Player.Index].tip)
-                {
-                    LC.LPlayers[args.Player.Index].tip = false;
-                    tsplayer.SendInfoMessage($"目标坐标为: X{args.X} Y{args.Y}");
-                }
+                player.tip = false;
+                tsplayer.SendInfoMessage($"目标坐标为: X{args.X} Y{args.Y}");
             }
         }
 

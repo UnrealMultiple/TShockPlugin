@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.IO;
 using TShockAPI;
 
@@ -8,13 +9,14 @@ namespace RewardSection
     {
         public static ConfigFile LConfig { get; set; }
         internal static string LConfigPath => Path.Combine(TShock.SavePath, "高尔夫奖励.json");
-        public static LPlayer[] LPlayers { get; set; }
+        public static ConcurrentDictionary<int, LPlayer> LPlayers { get; set; }
         public static Random LRadom = new Random();
 
         public static void RI()
         {
             LConfig = new ConfigFile();
-            LPlayers = new LPlayer[256];
+            // 初始化 LPlayers 为 ConcurrentDictionary
+            LPlayers = new ConcurrentDictionary<int, LPlayer>();
         }
 
         public static void RC()
