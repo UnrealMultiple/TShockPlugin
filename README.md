@@ -54,4 +54,4 @@
 | [SwitchCommands](SwitchCommands/README.md)                       |    区域执行指令    |              无               |
 | [GolfRewards](GolfRewards/README.md)                             |    区域执行指令    |              无               |
 | [DataSync](DataSync/README.md)                                   |      进度同步      |              无               |
-| [ProgressRestrict](ProgressRestrict/README.md)                   |     超进度检测     |              无               |
+| [ProgressRestrict](ProgressRestrict/README.md)                   |     超进度检测     |           DataSync            |

@@ -1,9 +1,10 @@
-# GolfRewards 高尔夫奖励
+# ProgressRestrict 超进度检测
 
 - 作者: 少司命 & 恋恋魔改三合一
 - 出处: github
 - 超进度检测
 - 可对物品，弹幕，buff 进行超进度检测
+- 注意安装前置插件[DataSync](../DataSync/README.md)
 
 ## 更新日志
 
