@@ -23,8 +23,8 @@
 | /pvp add 玩家名 |  pvper.use  | 邀请玩家参加决斗 |
 | /pvp yes | pvper.use    |同意决斗|
 | /pvp no | pvper.use    |拒绝决斗|
-| /pvp start | pvper.use   | 开始决斗 |
 | /pvp list | pvper.use   |  排行榜 |
+| /pvp data | pvper.use   | 战绩查询 |
 | /决斗重置 | pvper.admin   |  重置玩家的数据库表 |
 
 ## 配置

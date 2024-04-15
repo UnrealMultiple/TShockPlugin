@@ -28,7 +28,7 @@ namespace PvPer
             GetDataHandlers.KillMe += OnKill;
             ServerApi.Hooks.ServerLeave.Register(this, OnServerLeave);
             GeneralHooks.ReloadEvent += OnReload;
-            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.admin", ClearAllDataCmd, "决斗重置","pvp reset")
+            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.admin", ClearAllDataCmd, "决斗重置","repvp")
             {
                 AllowServer = true, // 允许服务器端使用
                 HelpText = "清除数据库中所有玩家的数据（仅限管理员）",
