@@ -13,7 +13,7 @@ namespace PvPer
                 "[c/74D3E8:/pvp add 玩家名] - [c/7EE874:邀请玩家参加决斗] \n " +
                 "[c/74D3E8:/pvp yes] - [c/7EE874:接受决斗] \n " +
                 "[c/74D3E8:/pvp no] - [c/7EE874:拒绝决斗] \n " +
-                "[c/74D3E8:/pvp start] - [c/7EE874:开始挑战]\n " +
+                "[c/74D3E8:/pvp data] - [c/7EE874:战绩查询]\n " +
                 "[c/FFFE80:/pvp list] - [c/7EE874:排名]\n ");
                 return;
             }
@@ -39,8 +39,8 @@ namespace PvPer
                 case "拒绝":
                     RejectCommand(args);
                     return;
-                case "start":
-                case "开始":
+                case "data":
+                case "战绩":
                     StatsCommand(args);
                     return;
                 case "l":
@@ -53,7 +53,7 @@ namespace PvPer
                     "[c/74D3E8:/pvp add 玩家名] - [c/7EE874:邀请玩家参加决斗] \n " +
                     "[c/74D3E8:/pvp yes] - [c/7EE874:接受决斗] \n " +
                     "[c/74D3E8:/pvp no] - [c/7EE874:拒绝决斗] \n " +
-                    "[c/74D3E8:/pvp start] - [c/7EE874:开始挑战]\n " +
+                    "[c/74D3E8:/pvp data] - [c/7EE874:战绩查询]\n " +
                     "[c/FFFE80:/pvp list] - [c/7EE874:排名]\n ");
                     return;
             }
