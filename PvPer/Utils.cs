@@ -1,5 +1,7 @@
 using TShockAPI;
 
+
+
 namespace PvPer
 {
     public class Utils
@@ -30,19 +32,6 @@ namespace PvPer
             return null;
         }
 
-        public static Pair? GetInvitationFromReceiverIndex(int playerIndex)
-        {
-            foreach (Pair p in PvPer.Invitations)
-            {
-                if (p.Player2 == playerIndex)
-                {
-                    return p;
-                }
-            }
-
-            return null;
-        }
-
         public static Pair? GetDuel(int playerIndex)
         {
             foreach (Pair p in PvPer.ActiveDuels)
@@ -56,19 +45,34 @@ namespace PvPer
             return null;
         }
 
-        public static bool IsPlayerInArena(TSPlayer player)
+        public static Pair? GetInvitationFromReceiverIndex(int playerIndex)
         {
-            return player.TileX > PvPer.Config.ArenaPosX1 &&
-                   player.TileY > PvPer.Config.ArenaPosY1 &&
-                   player.TileX < PvPer.Config.ArenaPosX2 &&
-                   player.TileY < PvPer.Config.ArenaPosY2;
+            foreach (Pair p in PvPer.Invitations)
+            {
+                if (p.Player2 == playerIndex)
+                {
+                    return p;
+                }
+            }
+
+            return null;
         }
 
-        public static bool IsLocationInArena(int x, int y) {
-            return x > PvPer.Config.ArenaPosX1 &&
-                   y > PvPer.Config.ArenaPosY1 &&
-                   x < PvPer.Config.ArenaPosX2 &&
-                   y < PvPer.Config.ArenaPosY2;
+        public static bool IsPlayerInArena(TSPlayer player)
+        {
+            return player.X >= PvPer.Config.ArenaPosX1 * 16 &&
+                   player.Y >= PvPer.Config.ArenaPosY1 * 16 &&
+                   player.X <= PvPer.Config.ArenaPosX2 * 16 &&
+                   player.Y <= PvPer.Config.ArenaPosY2 * 16;
         }
+
+        public static bool IsLocationInArena(int x, int y)
+        {
+            return x >= PvPer.Config.ArenaPosX1 * 16 &&
+                   y >= PvPer.Config.ArenaPosY1 * 16 &&
+                   x <= PvPer.Config.ArenaPosX2 * 16 &&
+                   y <= PvPer.Config.ArenaPosY2 * 16;
+        }
+
     }
 }

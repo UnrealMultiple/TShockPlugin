@@ -1,4 +1,4 @@
-using Steamworks;
+using Microsoft.Xna.Framework;
 using TShockAPI;
 
 namespace PvPer
@@ -7,14 +7,15 @@ namespace PvPer
     {
         public static void Duel(CommandArgs args)
         {
-            if (args.Parameters.Count < 1)
+            if (args.Parameters.Count == 0)
             {
-                args.Player.SendErrorMessage("决斗系统指令菜单：\n " +
-                "[c/74D3E8:/pvp add 玩家名] - [c/7EE874:邀请玩家参加决斗] \n " +
-                "[c/74D3E8:/pvp yes] - [c/7EE874:接受决斗] \n " +
-                "[c/74D3E8:/pvp no] - [c/7EE874:拒绝决斗] \n " +
-                "[c/74D3E8:/pvp data] - [c/7EE874:战绩查询]\n " +
-                "[c/FFFE80:/pvp list] - [c/7EE874:排名]\n ");
+                args.Player.SendErrorMessage("未知的决斗系统子命令，请参考以下指令菜单：\n " +
+                    "[c/74D3E8:/pvp add 或 /pvp 邀请 玩家名] - [c/7EE874:邀请玩家参加决斗] \n " +
+                    "[c/74D3E8:/pvp yes 或 /pvp 接受] - [c/7EE874:接受决斗] \n " +
+                    "[c/74D3E8:/pvp no 或 /pvp 拒绝] - [c/7EE874:拒绝决斗] \n " +
+                    "[c/74D3E8:/pvp data 或 /pvp 战绩] - [c/7EE874:战绩查询]\n " +
+                    "[c/FFFE80:/pvp l 或 /pvp list 或 /pvp 排名] - [c/7EE874:排名]\n " +
+                    "[c/FFFE80:/pvp s 或 /pvp set <1/2/3/4>] - [c/7EE874:1/2玩家位置 3/4竞技场边界]\n ");
                 return;
             }
 
@@ -31,10 +32,12 @@ namespace PvPer
                         InviteCmd(args);
                     }
                     return;
+                case "1":
                 case "yes":
                 case "接受":
                     AcceptCmd(args);
                     return;
+                case "2":
                 case "no":
                 case "拒绝":
                     RejectCommand(args);
@@ -48,16 +51,76 @@ namespace PvPer
                 case "排名":
                     LeaderboardCommand(args);
                     return;
+                case "s":
+                case "set":
+                    {
+                        int result;
+                        if (args.Parameters.Count == 2 && int.TryParse(args.Parameters[1], out result) && IsValidLocationType(result))
+                        {
+                            int x = args.Player.TileX;
+                            int y = args.Player.TileY;
+
+                            switch (result)
+                            {
+                                case 1:
+                                    PvPer.Config.Player1PositionX = x;
+                                    PvPer.Config.Player1PositionY = y;
+                                    args.Player.SendMessage($"已将你所在的位置设置为[c/F75454:邀请者]传送点，坐标为({x}, {y})", Color.CadetBlue);
+                                    Console.WriteLine($"【决斗系统】邀请者传送点已设置，坐标为({x}, {y})", Color.BurlyWood);
+                                    break;
+                                case 2:
+                                    PvPer.Config.Player2PositionX = x;
+                                    PvPer.Config.Player2PositionY = y;
+                                    args.Player.SendMessage($"已将你所在的位置设置为[c/49B3D6:受邀者]传送点，坐标为({x}, {y})", Color.CadetBlue);
+                                    Console.WriteLine($"【决斗系统】受邀者传送点已设置，坐标为({x}, {y})", Color.BurlyWood);
+                                    break;
+
+                                case 3:
+                                    PvPer.Config.ArenaPosX1 = x;
+                                    PvPer.Config.ArenaPosY1 = y;
+                                    args.Player.SendMessage($"已将你所在的位置设置为[c/9487D6:竞技场]左上角，坐标为({x}, {y})", Color.Yellow);
+                                    Console.WriteLine($"【决斗系统】竞技场左上角已设置，坐标为({x}, {y})", Color.Yellow);
+                                    break;
+                                case 4:
+                                    PvPer.Config.ArenaPosX2 = x;
+                                    PvPer.Config.ArenaPosY2 = y;
+                                    args.Player.SendMessage($"已将你所在的位置设置为[c/9487D6:竞技场]右下角，坐标为({x}, {y})", Color.Yellow);
+                                    Console.WriteLine($"【决斗系统】竞技场右下角已设置，坐标为({x}, {y})", Color.Yellow);
+                                    break;
+
+                                default:
+                                    args.Player.SendErrorMessage("[i:4080]指令错误! [c/CCEB60:正确指令: /pvp set [1/2/3/4]]");
+                                    return;
+                            }
+
+                            PvPer.Config.Write(Configuration.FilePath); 
+                        }
+                        else
+                        {
+                            args.Player.SendErrorMessage("[i:4080]指令错误! \n正确指令: /pvp set [1/2/3/4] - [c/7EE874:1/2玩家位置 3/4竞技场边界]");
+                        }
+                        break;
+                    }
                 default:
-                    args.Player.SendErrorMessage("决斗系统指令菜单：\n " +
-                    "[c/74D3E8:/pvp add 玩家名] - [c/7EE874:邀请玩家参加决斗] \n " +
-                    "[c/74D3E8:/pvp yes] - [c/7EE874:接受决斗] \n " +
-                    "[c/74D3E8:/pvp no] - [c/7EE874:拒绝决斗] \n " +
-                    "[c/74D3E8:/pvp data] - [c/7EE874:战绩查询]\n " +
-                    "[c/FFFE80:/pvp list] - [c/7EE874:排名]\n ");
-                    return;
+                    args.Player.SendErrorMessage("未知的子命令，请参考以下指令菜单：\n " +
+                        "[c/74D3E8:/pvp add 或 /pvp 邀请 玩家名] - [c/7EE874:邀请玩家参加决斗] \n " +
+                        "[c/74D3E8:/pvp yes 或 /pvp 接受] - [c/7EE874:接受决斗] \n " +
+                        "[c/74D3E8:/pvp no 或 /pvp 拒绝] - [c/7EE874:拒绝决斗] \n " +
+                        "[c/74D3E8:/pvp data 或 /pvp 战绩] - [c/7EE874:战绩查询]\n " +
+                        "[c/FFFE80:/pvp l 或 /pvp list 或 /pvp 排名] - [c/7EE874:排名]\n " +
+                        "[c/FFFE80:/pvp s 或 /pvp set <1/2/3/4>] - [c/7EE874:1/2设置玩家位置 3/4设置竞技场边界]\n ");
+                    break;
             }
         }
+
+
+
+        private static bool IsValidLocationType(int locationType)
+        {
+            return locationType >= 1 && locationType <= 4;
+        }
+
+
 
         private static void InviteCmd(CommandArgs args)
         {
