@@ -58,3 +58,4 @@
 | [PacketsStop](PacketsStop/README.md)                             |       数据包拦截       |           无           |
 | [DeathDrop](DeathDrop/README.md)                                 |怪物死亡随机和自定义掉落物品 |           无          |
 | [PerPlayerLoot](PerPlayerLoot/README.md)                         | 玩家战利品单独箱子 |                无             |
+| [PvPer](PvPer/README.md)                             |       决斗系统       |           无           |
