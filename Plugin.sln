@@ -82,6 +82,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerPlayerLoot", "PerPlayerL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PvPer", "PvPer\PvPer.csproj", "{757ACBB0-6CDC-40C8-9A79-4C52B3479939}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DamageStatistic", "DamageStatistic\DamageStatistic.csproj", "{386DBCE3-3B33-4CA1-97B2-B829836969A7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DumpTerrariaID", "DumpTerrariaID\DumpTerrariaID.csproj", "{11865290-2C16-44F3-885B-35C01F8EB7B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -386,14 +390,22 @@ Global
 		{757ACBB0-6CDC-40C8-9A79-4C52B3479939}.Release|Any CPU.Build.0 = Release|Any CPU
 		{757ACBB0-6CDC-40C8-9A79-4C52B3479939}.Release|x64.ActiveCfg = Release|Any CPU
 		{757ACBB0-6CDC-40C8-9A79-4C52B3479939}.Release|x64.Build.0 = Release|Any CPU
-    {B33654A0-953D-4906-AB2E-DECF8702A348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B33654A0-953D-4906-AB2E-DECF8702A348}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B33654A0-953D-4906-AB2E-DECF8702A348}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B33654A0-953D-4906-AB2E-DECF8702A348}.Debug|x64.Build.0 = Debug|Any CPU
-		{B33654A0-953D-4906-AB2E-DECF8702A348}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B33654A0-953D-4906-AB2E-DECF8702A348}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B33654A0-953D-4906-AB2E-DECF8702A348}.Release|x64.ActiveCfg = Release|Any CPU
-		{B33654A0-953D-4906-AB2E-DECF8702A348}.Release|x64.Build.0 = Release|Any CPU
+		{386DBCE3-3B33-4CA1-97B2-B829836969A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{386DBCE3-3B33-4CA1-97B2-B829836969A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{386DBCE3-3B33-4CA1-97B2-B829836969A7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{386DBCE3-3B33-4CA1-97B2-B829836969A7}.Debug|x64.Build.0 = Debug|Any CPU
+		{386DBCE3-3B33-4CA1-97B2-B829836969A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{386DBCE3-3B33-4CA1-97B2-B829836969A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{386DBCE3-3B33-4CA1-97B2-B829836969A7}.Release|x64.ActiveCfg = Release|Any CPU
+		{386DBCE3-3B33-4CA1-97B2-B829836969A7}.Release|x64.Build.0 = Release|Any CPU
+		{11865290-2C16-44F3-885B-35C01F8EB7B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11865290-2C16-44F3-885B-35C01F8EB7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11865290-2C16-44F3-885B-35C01F8EB7B6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{11865290-2C16-44F3-885B-35C01F8EB7B6}.Debug|x64.Build.0 = Debug|Any CPU
+		{11865290-2C16-44F3-885B-35C01F8EB7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11865290-2C16-44F3-885B-35C01F8EB7B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11865290-2C16-44F3-885B-35C01F8EB7B6}.Release|x64.ActiveCfg = Release|Any CPU
+		{11865290-2C16-44F3-885B-35C01F8EB7B6}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
