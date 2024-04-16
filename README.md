@@ -61,3 +61,4 @@
 | [PvPer](PvPer/README.md)                                         |           决斗系统           |              无               |
 | [DumpTerrariaID](DumpTerrariaID/README.md)                       |           输出 ID            |              无               |
 | [DamageStatistic](DamageStatistic/README.md)                     |           伤害统计           |              无               |
+| [AdditionalPylons](AdditionalPylons/README.md)                   |          放置更多晶塔         |              无               |
