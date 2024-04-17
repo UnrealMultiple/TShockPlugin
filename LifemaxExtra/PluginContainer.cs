@@ -1,145 +1,363 @@
-﻿using Terraria;
+﻿using Terraria.ID;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 using static TShockAPI.GetDataHandlers;
+using System;
 
-namespace LifemaxExtra
+namespace LifemaxExtra;
+
+[ApiVersion(2, 1)]
+public class LifemaxExtra : TerrariaPlugin
 {
-    [ApiVersion(2, 1)]
-    public class LifemaxExtra : TerrariaPlugin
+    public override string Author => "佚名 & 肝帝熙恩 & 少司命";
+    public override string Description => "提升生命值上限";
+    public override string Name => "LifemaxExtra";
+    public override Version Version => new Version(1, 0, 0, 6);
+    public static Configuration Config;
+
+    public LifemaxExtra(Main game) : base(game)
     {
-        public override string Author => "佚名，肝帝熙恩添加自定义";
-        public override string Description => "提升生命值上限";
-        public override string Name => "LifemaxExtra";
-        public override Version Version => new Version(1, 0, 0, 6);
-        public static Configuration Config;
-        private bool[] controlUseItemOld;
-        private int[] itemUseTime;
+        LoadConfig();
+    }
 
-        public LifemaxExtra(Main game) : base(game)
+    private static void LoadConfig()
+    {
+        Config = Configuration.Read(Configuration.FilePath);
+        Config.Write(Configuration.FilePath);
+    }
+
+    private static void ReloadConfig(ReloadEventArgs args)
+    {
+        LoadConfig();
+        args.Player.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(LifemaxExtra).Name);
+    }
+
+    public override void Initialize()
+    {
+        Commands.ChatCommands.Add(new Command("lifemaxextra.use", HP, "hp"));
+        Commands.ChatCommands.Add(new Command("lifemaxextra.use", Mana, "mp"));
+        GeneralHooks.ReloadEvent += ReloadConfig;
+        GetDataHandlers.PlayerUpdate += OnPlayerUpdate;
+        //PlayerHooks.PlayerPostLogin += OnPlayerPostLogin;
+    }
+
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
         {
-            LoadConfig();
-            this.controlUseItemOld = new bool[255];
-            this.itemUseTime = new int[255];
+            GeneralHooks.ReloadEvent -= ReloadConfig;
+            //PlayerHooks.PlayerPostLogin -= OnPlayerPostLogin;
+            GetDataHandlers.PlayerUpdate -= OnPlayerUpdate;
         }
+        base.Dispose(disposing);
+    }
 
-        private static void LoadConfig()
+    private void Mana(CommandArgs args)
+    {
+        if (args.Parameters.Count == 3 && args.Parameters[0].ToLower() == "enh")
         {
-            Config = Configuration.Read(Configuration.FilePath);
-            Config.Write(Configuration.FilePath);
-        }
-
-        private static void ReloadConfig(ReloadEventArgs args)
-        {
-            LoadConfig();
-            args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(LifemaxExtra).Name);
-            if(Config.LifeCrystalMaxLife> Config.LifeFruitMaxLife)
+            var plys = TSPlayer.FindByNameOrID(args.Parameters[1]);
+            if (plys.Count > 0)
             {
-
-            }
-        }
-
-        public override void Initialize()
-        {
-            GeneralHooks.ReloadEvent += ReloadConfig;
-            GetDataHandlers.PlayerUpdate += OnPlayerUpdate;
-            PlayerHooks.PlayerPostLogin += OnPlayerPostLogin;
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                GeneralHooks.ReloadEvent -= ReloadConfig;
-                PlayerHooks.PlayerPostLogin -= OnPlayerPostLogin;
-                GetDataHandlers.PlayerUpdate -= OnPlayerUpdate;
-            }
-            base.Dispose(disposing);
-        }
-
-        private void OnPlayerPostLogin(PlayerPostLoginEventArgs args)
-        {
-            foreach (TSPlayer tsplayer in TShock.Players)
-            {
-                if (tsplayer != null)
+                if (int.TryParse(args.Parameters[2], out int hp) && hp >= 0)
                 {
-                    // 检查生命上限并设置生命值
-                    CheckAndSetPlayerHealth(tsplayer);
+                    SetPlayerMana(plys[0], hp, true);
+                    args.Player.SendSuccessMessage($"成功为玩家`{plys[0].Name}`提高{hp}魔法上限!");
+                }
+                else
+                {
+                    args.Player.SendErrorMessage("输入的数值有误!");
                 }
             }
-        }
-
-        private static void CheckAndSetPlayerHealth(TSPlayer tsplayer)
-        {
-            int index = tsplayer.Index;
-            Player tplayer = tsplayer.TPlayer;
-
-            // 如果生命上限大于配置的最大值
-            if (tplayer.statLifeMax > Config.LifeFruitMaxLife)
+            else
             {
-                // 将生命值设置为配置的最大值
-                tplayer.statLifeMax = Config.LifeFruitMaxLife;
-                tsplayer.SendData(PacketTypes.PlayerHp, "", index);
+                args.Player.SendErrorMessage("目标玩家不在线!");
             }
         }
-
-        private void OnPlayerUpdate(object sender, PlayerUpdateEventArgs args)
+        else if (args.Parameters.Count == 3 && args.Parameters[0].ToLower() == "set")
         {
-            TSPlayer tsplayer = TShock.Players[args.PlayerId];
-            if (tsplayer != null)
+            var plys = TSPlayer.FindByNameOrID(args.Parameters[1]);
+            if (plys.Count > 0)
             {
-                int index = tsplayer.Index;
-                Player tplayer = tsplayer.TPlayer;
-                Item heldItem = tplayer.HeldItem;
-
-                if (!this.controlUseItemOld[index] && tsplayer.TPlayer.controlUseItem && this.itemUseTime[index] <= 0)
+                if (int.TryParse(args.Parameters[2], out int hp) && hp >= 0)
                 {
-                    int useTime = heldItem.useTime; // 获取物品使用时间
-                    int type = heldItem.type; // 获取物品类型
+                    SetPlayerMana(plys[0], hp);
+                    args.Player.SendSuccessMessage($"成功设置玩家`{plys[0].Name}`魔法上限!");
+                }
+                else
+                {
+                    args.Player.SendErrorMessage("输入的数值有误!");
+                }
+            }
+            else
+            {
+                args.Player.SendErrorMessage("目标玩家不在线!");
+            }
+        }
+        else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "enh")
+        {
+            if (int.TryParse(args.Parameters[1], out int hp) && hp >= 0)
+            {
+                SetPlayerMana(args.Player, hp, true);
+                args.Player.SendSuccessMessage($"成功为玩家`{args.Player.Name}`提高{hp}魔法上限!");
+            }
+            else
+            {
+                args.Player.SendErrorMessage("输入的数值有误!");
+            }
+        }
+        else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "set")
+        {
+            if (int.TryParse(args.Parameters[1], out int hp) && hp >= 0)
+            {
+                SetPlayerMana(args.Player, hp);
+                args.Player.SendSuccessMessage($"成功设置玩家`{args.Player.Name}`魔法上限{hp}!");
+            }
+            else
+            {
+                args.Player.SendErrorMessage("输入的数值有误!");
+            }
+        }
+        else
+        {
+            args.Player.SendErrorMessage("语法错误");
+            args.Player.SendInfoMessage("/mp enh <玩家> <提升数值>");
+            args.Player.SendInfoMessage("/mp set <玩家> <数值>");
+            args.Player.SendInfoMessage("/mp enh <提升数值>");
+            args.Player.SendInfoMessage("/mp set <数值>");
+        }
 
-                    if (type != 29) // 如果物品不是 ID 为 29 的物品
+    }
+
+    private void OnMana(object? sender, PlayerManaEventArgs e)
+    {
+        if (e.Player.IsLoggedIn && e.Max > Config.MaxMP)
+        {
+            e.Player.TPlayer.statManaMax = Config.MaxMP;
+            e.Player.SendData(PacketTypes.PlayerMana, "", e.Player.Index);
+            e.Player.SendInfoMessage("最大蓝量不得超过{0}!", Config.MaxHP);
+        }
+    }
+
+ 
+
+    private void OnHP(object? sender, PlayerHPEventArgs e)
+    {
+        if (e.Player.IsLoggedIn && e.Max > Config.MaxHP)
+        {
+            e.Player.TPlayer.statLifeMax = Config.MaxHP;
+            e.Player.SendData(PacketTypes.PlayerHp, "", e.Player.Index);
+            e.Player.SendInfoMessage("最大血量不得超过{0}!", Config.MaxHP);
+        }
+    }
+
+    private void SetPlayerMana(TSPlayer ply, int Mana, bool enh = false)
+    {
+        var MaxMP = ply.TPlayer.statManaMax;
+        int raise;
+        int currency;
+        if (Mana > short.MaxValue || MaxMP + Mana > short.MaxValue)
+        {
+            raise = short.MaxValue - MaxMP;
+            currency = short.MaxValue;
+            ply.SendErrorMessage("生命值无法大于{0}!", short.MaxValue);
+        }
+        else
+        {
+            if (enh)
+            {
+                raise = Mana;
+                currency = MaxMP + Mana;
+            }
+            else
+            {
+                raise = Mana - MaxMP;
+                currency = Mana;
+            }
+        }
+        ply.TPlayer.statManaMax = currency;
+        ply.TPlayer.statManaMax2 = currency;
+        ply.TPlayer.statMana = currency;
+        ply.SendData(PacketTypes.PlayerMana, null, ply.Index);
+        ply.SendData(PacketTypes.EffectMana, null, ply.Index, raise);
+    }
+
+    private void SetPlayerHP(TSPlayer ply, int HP, bool enh = false)
+    {
+        var MaxHP = ply.TPlayer.statLifeMax;
+        int raise;
+        int currency;
+        if (HP > short.MaxValue || MaxHP + HP > short.MaxValue)
+        {
+            raise = short.MaxValue - MaxHP;
+            currency = short.MaxValue;
+            ply.SendErrorMessage("生命值无法大于{0}!", short.MaxValue);
+        }
+        else
+        {
+            if (enh)
+            {
+                raise = HP;
+                currency = MaxHP +  HP;
+            }
+            else
+            {
+                raise = HP - MaxHP;
+                currency = HP;
+            }
+        }
+        ply.TPlayer.statLifeMax = currency;
+        ply.TPlayer.statLifeMax2 = currency;
+        ply.TPlayer.statLife = currency;
+        ply.SendData(PacketTypes.PlayerHp, null, ply.Index);
+        ply.SendData(PacketTypes.EffectHeal, null, ply.Index, raise);
+    }
+
+
+    private void HP(CommandArgs args)
+    {
+        if (args.Parameters.Count == 3 && args.Parameters[0].ToLower() == "enh")
+        {
+            var plys = TSPlayer.FindByNameOrID(args.Parameters[1]);
+            if (plys.Count > 0)
+            {
+                if (int.TryParse(args.Parameters[2], out int hp) && hp >= 0)
+                {
+                    SetPlayerHP(plys[0], hp, true);
+                    args.Player.SendSuccessMessage($"成功为玩家`{plys[0].Name}`提高{hp}血量上限!");
+                }
+                else
+                {
+                    args.Player.SendErrorMessage("输入的数值有误!");
+                }
+            }
+            else
+            {
+                args.Player.SendErrorMessage("目标玩家不在线!");
+            }
+        }
+        else if (args.Parameters.Count == 3 && args.Parameters[0].ToLower() == "set")
+        {
+            var plys = TSPlayer.FindByNameOrID(args.Parameters[1]);
+            if (plys.Count > 0)
+            {
+                if (int.TryParse(args.Parameters[2], out int hp) && hp >= 0)
+                {
+                    SetPlayerHP(plys[0], hp);
+                    args.Player.SendSuccessMessage($"成功设置玩家`{plys[0].Name}`血量上限!");
+                }
+                else
+                {
+                    args.Player.SendErrorMessage("输入的数值有误!");
+                }
+            }
+            else
+            {
+                args.Player.SendErrorMessage("目标玩家不在线!");
+            }
+        }
+        else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "enh")
+        {
+            if (int.TryParse(args.Parameters[1], out int hp) && hp >= 0)
+            {
+                SetPlayerHP(args.Player, hp, true);
+                args.Player.SendSuccessMessage($"成功为玩家`{args.Player.Name}`提高{hp}血量上限!");
+            }
+            else
+            {
+                args.Player.SendErrorMessage("输入的数值有误!");
+            }
+        }
+        else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "set")
+        {
+            if (int.TryParse(args.Parameters[1], out int hp) && hp >= 0)
+            {
+                SetPlayerHP(args.Player, hp);
+                args.Player.SendSuccessMessage($"成功设置玩家`{args.Player.Name}`血量上限{hp}!");
+            }
+            else
+            {
+                args.Player.SendErrorMessage("输入的数值有误!");
+            }
+        }
+        else
+        {
+            args.Player.SendErrorMessage("语法错误");
+            args.Player.SendInfoMessage("/hp enh <玩家> <提升数值>");
+            args.Player.SendInfoMessage("/hp set <玩家> <数值>");
+            args.Player.SendInfoMessage("/hp enh <提升数值>");
+            args.Player.SendInfoMessage("/hp set <数值>");
+        }
+    }
+
+
+    public void UseItemRaiseHP(TSPlayer Player, int hp)
+    {
+        Player.SelectedItem.stack--; // 减少玩家背包中选定物品的堆叠数量
+        Player.SendData(PacketTypes.PlayerSlot, "", Player.Index, Player.TPlayer.selectedItem);
+        SetPlayerHP(Player, hp, true);
+        Player.TPlayer.ApplyItemTime(Player.SelectedItem);
+    }
+
+    public void UseItemRaiseMP(TSPlayer Player, int mp)
+    {
+        Player.SelectedItem.stack--; // 减少玩家背包中选定物品的堆叠数量
+        Player.SendData(PacketTypes.PlayerSlot, "", Player.Index, Player.TPlayer.selectedItem);
+        SetPlayerMana(Player, mp, true);
+        Player.TPlayer.ApplyItemTime(Player.SelectedItem);
+    }
+
+    private void OnPlayerUpdate(object? sender, PlayerUpdateEventArgs args)
+    {
+        if (args.Player.TPlayer.ItemTimeIsZero && args.Player.TPlayer.controlUseItem)
+        {
+            if (Config.ItemRaiseHP.TryGetValue(args.Player.SelectedItem.type, out var raiseHp))
+            {
+                if (args.Player.TPlayer.statLifeMax < raiseHp.Max)
+                {
+                    switch (args.Player.SelectedItem.type)
                     {
-                        if (type == 1291) // 如果物品是 ID 为 1291 的物品（Life Fruit）
-                        {
-                            if (tplayer.statLifeMax >= Config.LifeCrystalMaxLife) // 如果玩家的生命上限大于等于配置的最大水晶生命值
+                        case ItemID.LifeCrystal:
+                            if (args.Player.TPlayer.statLifeMax >= 400)
                             {
-                                if (tsplayer.TPlayer.statLifeMax < Config.LifeFruitMaxLife) // 如果玩家当前生命上限小于配置的最大果实生命值
-                                {
-                                    tsplayer.TPlayer.inventory[tsplayer.TPlayer.selectedItem].stack--; // 减少玩家背包中选定物品的堆叠数量
-                                    tsplayer.SendData(PacketTypes.PlayerSlot, "", index, (float)tplayer.selectedItem); // 更新客户端的选定物品槽位
-                                    tplayer.statLifeMax += 5; // 增加玩家的生命上限
-                                    tsplayer.SendData(PacketTypes.PlayerHp, "", index); // 更新客户端的生命值显示
-                                }
-                                else if (tsplayer.TPlayer.statLifeMax > Config.LifeFruitMaxLife) // 如果玩家当前生命上限大于配置的最大果实生命值
-                                {
-                                    tplayer.statLifeMax = Config.LifeFruitMaxLife; // 将玩家的生命上限设置为配置的最大果实生命值
-                                    tsplayer.SendData(PacketTypes.PlayerHp, "", index); // 更新客户端的生命值显示
-                                }
+                                UseItemRaiseHP(args.Player, raiseHp.Raise);
                             }
-                        }
-                    }
-                    else // 如果物品是 ID 为 29 的物品（Life Crystal）
-                    {
-                        if (tplayer.statLifeMax <= Config.LifeCrystalMaxLife) // 如果玩家的生命上限小于等于最大水晶生命值
-                        {
-                            if (tsplayer.TPlayer.statLifeMax < Config.LifeCrystalMaxLife) // 如果玩家当前生命上限小于配置的最大水晶生命值
+                            break;
+                        case ItemID.LifeFruit:
+                            if (args.Player.TPlayer.statLifeMax >= 500)
                             {
-                                tsplayer.TPlayer.inventory[tplayer.selectedItem].stack--; // 减少玩家背包中选定物品的堆叠数量
-                                tsplayer.SendData(PacketTypes.PlayerSlot, "", index, (float)tplayer.selectedItem); // 更新客户端的选定物品槽位
-                                tplayer.statLifeMax += 20; // 增加玩家的生命上限
-                                tsplayer.SendData(PacketTypes.PlayerHp, "", index); // 更新客户端的生命值显示
+                                UseItemRaiseHP(args.Player, raiseHp.Raise);
                             }
-                            else if (tsplayer.TPlayer.statLifeMax > Config.LifeFruitMaxLife) // 如果玩家当前生命上限大于配置的最大果生命值
-                            {
-                                tplayer.statLifeMax = Config.LifeFruitMaxLife; // 将玩家的生命上限设置为配置的最大生命果生命值
-                                tsplayer.SendData(PacketTypes.PlayerHp, "", index); // 更新客户端的生命值显示
-                            }
-                        }
+                            break;
+                        default:
+                            UseItemRaiseHP(args.Player, raiseHp.Raise);
+                            break;
                     }
                 }
-                this.controlUseItemOld[index] = tsplayer.TPlayer.controlUseItem;
+            }
+
+            if (Config.ItemRaiseMP.TryGetValue(args.Player.SelectedItem.type, out var raiseMp))
+            {
+                if (args.Player.TPlayer.statManaMax < raiseMp.Max)
+                {
+                    switch (args.Player.SelectedItem.type)
+                    {
+                        case ItemID.ManaCrystal:
+                            if (args.Player.TPlayer.statManaMax >= 200)
+                            {
+                                UseItemRaiseMP(args.Player, raiseMp.Raise);
+                            }
+                            break;
+                        default:
+                            UseItemRaiseMP(args.Player, raiseMp.Raise);
+                            break;
+                    }
+                }    
             }
         }
     }
+
 }
