@@ -88,6 +88,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DumpTerrariaID", "DumpTerra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdditionalPylons", "AdditionalPylons\AdditionalPylons.csproj", "{A86130C5-D9DD-4B60-9D60-666B7E8593D3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "History", "History\History.csproj", "{8A851EF7-2B1D-4A82-A5B9-EF1A96BFE693}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -416,6 +418,14 @@ Global
 		{A86130C5-D9DD-4B60-9D60-666B7E8593D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A86130C5-D9DD-4B60-9D60-666B7E8593D3}.Release|x64.ActiveCfg = Release|Any CPU
 		{A86130C5-D9DD-4B60-9D60-666B7E8593D3}.Release|x64.Build.0 = Release|Any CPU
+		{8A851EF7-2B1D-4A82-A5B9-EF1A96BFE693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A851EF7-2B1D-4A82-A5B9-EF1A96BFE693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A851EF7-2B1D-4A82-A5B9-EF1A96BFE693}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8A851EF7-2B1D-4A82-A5B9-EF1A96BFE693}.Debug|x64.Build.0 = Debug|Any CPU
+		{8A851EF7-2B1D-4A82-A5B9-EF1A96BFE693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A851EF7-2B1D-4A82-A5B9-EF1A96BFE693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A851EF7-2B1D-4A82-A5B9-EF1A96BFE693}.Release|x64.ActiveCfg = Release|Any CPU
+		{8A851EF7-2B1D-4A82-A5B9-EF1A96BFE693}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,14 +2,22 @@
 
 ## 前言
 
-这是一个致力于收集整合 TShock 插件的仓库，因项目的特殊性，可能会造成侵权行为，如有侵权请联系我们解决
+这是一个致力于收集整合 TShock 插件的仓库，因项目的特殊性，可能会造成侵权行为，如有侵权请联系我们解决  
+我们将持续收集优质的 TShock 插件，并及时进行更新，期待各位的加入。  
+如果遇到插件使用上的问题或建议，可在此仓库或分支仓库发起 issue，我们会进行修复。
+
+## 使用注意事项
+
+- 注意有些插件可能需要前置，请查看下方列表安装前置插件
+- 每个插件都有一个使用说明，在下方列表点击超链查看具体说明事项。
+- 如有使用说明不够明确请通知我们及时更改
 
 ## 开发者注意事项
 
 - 该项目中代码避免使用中文变量，且尽量避免使用多线程。
 - 请给每个插件项目附带一个 README.md 说明文件
 
-## 鸣谢以下代码贡献
+## 代码贡献
 
 - [熙恩](https://github.com/THEXN)
 - [羽学](https://github.com/1242509682)
@@ -61,4 +69,5 @@
 | [PvPer](PvPer/README.md)                                         |           决斗系统           |              无               |
 | [DumpTerrariaID](DumpTerrariaID/README.md)                       |           输出 ID            |              无               |
 | [DamageStatistic](DamageStatistic/README.md)                     |           伤害统计           |              无               |
-| [AdditionalPylons](AdditionalPylons/README.md)                   |          放置更多晶塔         |              无               |
+| [AdditionalPylons](AdditionalPylons/README.md)                   |         放置更多晶塔         |              无               |
+| [History](History/README.md)                                     |         历史图格记录         |              无               |
