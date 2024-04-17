@@ -40,7 +40,8 @@ public class LifemaxExtra : TerrariaPlugin
         Commands.ChatCommands.Add(new Command("lifemaxextra.use", Mana, "mp"));
         GeneralHooks.ReloadEvent += ReloadConfig;
         GetDataHandlers.PlayerUpdate += OnPlayerUpdate;
-        //PlayerHooks.PlayerPostLogin += OnPlayerPostLogin;
+        GetDataHandlers.PlayerHP += OnHP;
+        GetDataHandlers.PlayerMana += OnMana;
     }
 
 
@@ -49,8 +50,9 @@ public class LifemaxExtra : TerrariaPlugin
         if (disposing)
         {
             GeneralHooks.ReloadEvent -= ReloadConfig;
-            //PlayerHooks.PlayerPostLogin -= OnPlayerPostLogin;
             GetDataHandlers.PlayerUpdate -= OnPlayerUpdate;
+            GetDataHandlers.PlayerHP -= OnHP;
+            GetDataHandlers.PlayerMana -= OnMana;
         }
         base.Dispose(disposing);
     }
@@ -138,7 +140,7 @@ public class LifemaxExtra : TerrariaPlugin
         {
             e.Player.TPlayer.statManaMax = Config.MaxMP;
             e.Player.SendData(PacketTypes.PlayerMana, "", e.Player.Index);
-            e.Player.SendInfoMessage("最大蓝量不得超过{0}!", Config.MaxHP);
+            e.Player.SendInfoMessage("最大蓝量不得超过{0}!", Config.MaxMP);
         }
     }
 
