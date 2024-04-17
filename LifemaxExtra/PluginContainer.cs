@@ -34,6 +34,10 @@ namespace LifemaxExtra
         {
             LoadConfig();
             args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(LifemaxExtra).Name);
+            if(Config.LifeCrystalMaxLife> Config.LifeFruitMaxLife)
+            {
+
+            }
         }
 
         public override void Initialize()
