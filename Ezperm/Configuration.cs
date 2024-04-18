@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using TShockAPI;
 
-namespace ezperm
+namespace Ezperm
 {
     internal class GroupInfo
     {

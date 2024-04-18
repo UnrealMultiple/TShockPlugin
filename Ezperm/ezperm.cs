@@ -7,17 +7,17 @@ using TShockAPI;
 using static Org.BouncyCastle.Math.EC.ECCurve;
 using TShockAPI.Hooks;
 
-namespace ezperm
+namespace Ezperm
 {
 	[ApiVersion(2, 1)]
-	public class ezperm : TerrariaPlugin
+	public class Ezperm : TerrariaPlugin
 	{
-        public override string Name => "ezperm";
+        public override string Name => "Ezperm";
         public override string Author => "大豆子,肝帝熙恩优化1449";
         public override string Description => "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限";
         public override Version Version => new Version(1, 2);
         internal static Configuration Config;
-        public ezperm(Main game) : base(game)
+        public Ezperm(Main game) : base(game)
 		{
 		}
         private static void LoadConfig()
@@ -30,7 +30,7 @@ namespace ezperm
         private static void ReloadConfig(ReloadEventArgs args)
         {
             LoadConfig();
-            args.Player?.SendSuccessMessage("重新加载{0}配置完毕。", typeof(ezperm).Name);
+            args.Player?.SendSuccessMessage("重新加载{0}配置完毕。", typeof(Ezperm).Name);
         }
         public override void Initialize()
 		{
