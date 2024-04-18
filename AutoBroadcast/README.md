@@ -20,7 +20,7 @@
 {
   "Broadcasts": [
     {
-      "Name": "E实例广播",
+      "Name": "实例广播",
       "Enabled": false,
       "Messages": [
         "这是一条广播",

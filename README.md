@@ -71,3 +71,5 @@
 | [DamageStatistic](DamageStatistic/README.md)                     |           伤害统计           |              无               |
 | [AdditionalPylons](AdditionalPylons/README.md)                   |         放置更多晶塔         |              无               |
 | [History](History/README.md)                                     |         历史图格记录         |              无               |
+| [Invincibility](Invincibility/README.md)                         |           限时无敌           |              无               |
+| [Ezperm](Ezperm/README.md)                                       |           批量改权限         |              无               |
