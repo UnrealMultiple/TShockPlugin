@@ -19,7 +19,9 @@ namespace Ezperm
         internal static Configuration Config;
         public Ezperm(Main game) : base(game)
 		{
-		}
+            LoadConfig();
+
+        }
         private static void LoadConfig()
         {
 
