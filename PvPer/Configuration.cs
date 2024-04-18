@@ -11,8 +11,9 @@ namespace PvPer
         [JsonProperty("竞技场边界说明")]
         public string README2 = "/pvp set 3 4 要比玩家传送坐标高或低3格设置";
         [JsonProperty("离开竞技场杀死玩家")]
-        public bool KillPlayer = true;
-
+        public bool KillPlayer = false;
+        [JsonProperty("离场扣血")]
+        public int SlapPlayer = 100;
 
         [JsonProperty("邀请者传送坐标.X")]
         public int Player1PositionX = 0;

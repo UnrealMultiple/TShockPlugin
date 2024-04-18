@@ -2,13 +2,21 @@ namespace PvPer
 {
     public class DPlayer
     {
-        public int AccountID, Kills, Deaths;
+        public int AccountID { get; set; }
+        public int Kills { get; set; }
+        public int Deaths { get; set; }
+        public int Rating { get; set; }
+        public int RatingDeviation { get; set; }
+        public int RatingVolatility { get; set; }
 
-        public DPlayer(int accountID, int kills, int deaths)
+        public int WinStreak { get; set; } // Ìí¼ÓWinStreakÊôĞÔ
+
+        public DPlayer(int accountID, int kills = 0, int deaths = 0, int winStreak = 0)
         {
             AccountID = accountID;
             Kills = kills;
             Deaths = deaths;
+            WinStreak = winStreak;
         }
 
         public double GetKillDeathRatio()
