@@ -8,6 +8,7 @@ namespace PvPer
     public class Pair
     {
         public int Player1, Player2;
+        public static Configuration Config = new Configuration();
 
         public Pair(int player1, int player2)
         {
@@ -72,7 +73,7 @@ namespace PvPer
             plr1.SendSuccessMessage($"决斗开始！");
             plr2.SendSuccessMessage($"决斗开始！");
 
-            // Teleport and buffs
+            // 传送玩家和设置BUFF
             plr1.Teleport(PvPer.Config.Player1PositionX * 16, PvPer.Config.Player1PositionY * 16);
             plr2.Teleport(PvPer.Config.Player2PositionX * 16, PvPer.Config.Player2PositionY * 16);
 
@@ -134,27 +135,44 @@ namespace PvPer
             });
         }
 
+        // 结束决斗后的方法
         public void EndDuel(int winner)
         {
             int loser = winner == Player1 ? Player2 : Player1;
-            TSPlayer.All.SendMessage($"{TShock.Players[winner].Name} 已战胜 {TShock.Players[loser].Name}!", 255, 204, 255);
+            string msg = DeathMessages.GetMessage(TShock.Players[winner].Name, TShock.Players[loser].Name);
+            TSPlayer.All.SendMessage(msg, 255, 204, 255);
 
             PvPer.ActiveDuels.Remove(this);
             TShock.Players[winner].SetPvP(false);
             TShock.Players[loser].SetPvP(false);
 
-            Task.Run(async () =>
-            {
-                SavePlayersData(winner);
+            // 保存赢家数据并计算连胜次数
+            SavePlayersData(winner);
+            // 重置输家的连胜次数为0
+            ResetLoserWinStreak(loser);
+            // 更新赢家连胜次数
+            DPlayer winnerData = PvPer.DbManager.GetDPlayer(TShock.Players[winner].Account.ID);
+            winnerData.WinStreak++; // 增加赢家连胜次数
+            PvPer.DbManager.SavePlayer(winnerData); // 保存更新后的赢家数据
 
-                int p = Projectile.NewProjectile(Projectile.GetNoneSource(), TShock.Players[winner].TPlayer.position.X + 16,
-                    TShock.Players[winner].TPlayer.position.Y - 64f, 0f, -8f, ProjectileID.RocketFireworkGreen, 0, 0);
-                Main.projectile[p].Kill();
-                await Task.Delay(5000);
-                TShock.Players[winner].Teleport(Main.spawnTileX * 16, Main.spawnTileY * 16);
-            });
+            int winStreak = winnerData.WinStreak;// 直接使用更新后的赢家连胜次数
+            TSPlayer.All.SendMessage($"{TShock.Players[winner].Name} 已经连胜 {winStreak} 场决斗!", 255, 255, 90);
+
+            //放烟花
+            int p = Projectile.NewProjectile(Projectile.GetNoneSource(), TShock.Players[winner].TPlayer.position.X + 16,
+            TShock.Players[winner].TPlayer.position.Y - 64f, 0f, -8f, ProjectileID.RocketFireworkGreen, 0, 0);
+            Main.projectile[p].Kill();
         }
 
+        // 重置输家的连胜次数为0
+        private void ResetLoserWinStreak(int loser)
+        {
+            DPlayer playerData = PvPer.DbManager.GetDPlayer(TShock.Players[loser].Account.ID);
+            playerData.WinStreak = 0; // WinStreak的属性存储玩家连胜次数
+            PvPer.DbManager.SavePlayer(playerData); // 保存更新后的输家数据
+        }
+
+        //存储玩家胜负值数据
         public void SavePlayersData(int winnerIndex)
         {
             DPlayer plr1, plr2;

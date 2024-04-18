@@ -9,18 +9,21 @@ namespace PvPer
         {
             if (args.Parameters.Count == 0)
             {
-                args.Player.SendErrorMessage("未知的决斗系统子命令，请参考以下指令菜单：\n " +
-                    "[c/74D3E8:/pvp add 或 /pvp 邀请 玩家名] - [c/7EE874:邀请玩家参加决斗] \n " +
-                    "[c/74D3E8:/pvp yes 或 /pvp 接受] - [c/7EE874:接受决斗] \n " +
-                    "[c/74D3E8:/pvp no 或 /pvp 拒绝] - [c/7EE874:拒绝决斗] \n " +
-                    "[c/74D3E8:/pvp data 或 /pvp 战绩] - [c/7EE874:战绩查询]\n " +
-                    "[c/FFFE80:/pvp l 或 /pvp list 或 /pvp 排名] - [c/7EE874:排名]\n " +
-                    "[c/FFFE80:/pvp s 或 /pvp set <1/2/3/4>] - [c/7EE874:1/2玩家位置 3/4竞技场边界]\n ");
+                HelpCmd(args);
                 return;
             }
 
             switch (args.Parameters[0].ToLower())
             {
+                case "h":
+                case "help":
+                case "菜单":
+                    if (args.Parameters.Count < 2)
+                    {
+                        HelpCmd(args);
+                    }
+                    return; //结束
+                case "0":
                 case "add":
                 case "邀请":
                     if (args.Parameters.Count < 2)
@@ -31,7 +34,7 @@ namespace PvPer
                     {
                         InviteCmd(args);
                     }
-                    return;
+                    return; //结束
                 case "1":
                 case "yes":
                 case "接受":
@@ -43,6 +46,7 @@ namespace PvPer
                     RejectCommand(args);
                     return;
                 case "data":
+                case "mark":
                 case "战绩":
                     StatsCommand(args);
                     return;
@@ -53,6 +57,7 @@ namespace PvPer
                     return;
                 case "s":
                 case "set":
+                case "设置":
                     {
                         int result;
                         if (args.Parameters.Count == 2 && int.TryParse(args.Parameters[1], out result) && IsValidLocationType(result))
@@ -93,7 +98,7 @@ namespace PvPer
                                     return;
                             }
 
-                            PvPer.Config.Write(Configuration.FilePath); 
+                            PvPer.Config.Write(Configuration.FilePath);
                         }
                         else
                         {
@@ -101,19 +106,63 @@ namespace PvPer
                         }
                         break;
                     }
+                case "r":
+                case "reset":
+                case "重置":
+                    if (args.Parameters.Count < 2)
+                    {
+                        var name = args.Player.Name;
+                        // 权限
+                        if (!args.Player.HasPermission("pvper.admin"))
+                        {
+                            args.Player.SendErrorMessage("你没有重置决斗系统数据表的权限。");
+                            TShock.Log.ConsoleInfo($"{name}试图执行重置决斗系统数据指令");
+                            return;
+                        }
+                        else
+                        {
+                            ClearAllData(args);
+                        }
+                    }
+                    return; //结束
                 default:
-                    args.Player.SendErrorMessage("未知的子命令，请参考以下指令菜单：\n " +
-                        "[c/74D3E8:/pvp add 或 /pvp 邀请 玩家名] - [c/7EE874:邀请玩家参加决斗] \n " +
-                        "[c/74D3E8:/pvp yes 或 /pvp 接受] - [c/7EE874:接受决斗] \n " +
-                        "[c/74D3E8:/pvp no 或 /pvp 拒绝] - [c/7EE874:拒绝决斗] \n " +
-                        "[c/74D3E8:/pvp data 或 /pvp 战绩] - [c/7EE874:战绩查询]\n " +
-                        "[c/FFFE80:/pvp l 或 /pvp list 或 /pvp 排名] - [c/7EE874:排名]\n " +
-                        "[c/FFFE80:/pvp s 或 /pvp set <1/2/3/4>] - [c/7EE874:1/2设置玩家位置 3/4设置竞技场边界]\n ");
+                    HelpCmd(args);
                     break;
             }
         }
 
 
+        private static void HelpCmd(CommandArgs args)
+        {
+            if (args.Player != null)
+            {
+                args.Player.SendMessage("【决斗系统】请参考以下指令菜单：\n " +
+                 "[c/FFFE80:/pvp add 或 /pvp 邀请 玩家名] - [c/7EE874:邀请玩家参加决斗] \n " +
+                 "[c/74D3E8:/pvp yes 或 /pvp 接受] - [c/7EE874:接受决斗] \n " +
+                 "[c/74D3E8:/pvp no 或 /pvp 拒绝] - [c/7EE874:拒绝决斗] \n " +
+                 "[c/74D3E8:/pvp data 或 /pvp 战绩] - [c/7EE874:战绩查询]\n " +
+                 "[c/74D3E8:/pvp list 或 /pvp 排名] - [c/7EE874:排名]\n " +
+                 "[c/FFFE80:/pvp s 或 /pvp 设置 1 2 3 4] - [c/7EE874:1/2玩家位置 3/4竞技场边界]\n " +
+                 "[c/74D3E8:/pvp r 或 /pvp 重置] - [c/7EE874:重置玩家数据库]\n ", Color.GreenYellow);
+            }
+        }
+
+        #region 使用指令清理数据库、设置位置方法
+        private static void ClearAllData(CommandArgs args)
+        {
+            // 尝试从数据库中删除所有玩家数据
+            if (DbManager.ClearData())
+            {
+                args.Player.SendSuccessMessage("数据库中所有玩家的决斗数据已被成功清除。");
+                TShock.Log.ConsoleInfo("数据库中所有玩家的决斗数据已被成功清除。");
+            }
+            else
+            {
+                args.Player.SendErrorMessage("清除所有玩家决斗数据时发生错误。");
+                TShock.Log.ConsoleInfo("清除所有玩家决斗数据时发生错误。");
+            }
+        }
+        #endregion
 
         private static bool IsValidLocationType(int locationType)
         {
@@ -195,6 +244,7 @@ namespace PvPer
                     args.Player.SendInfoMessage("[c/FFCB80:您的战绩:]\n" +
                                                 $"[c/63DC5A:击杀: ]{plr.Kills}\n" +
                                                 $"[c/F56469:死亡:] {plr.Deaths}\n" +
+                                                $"[c/F56469:连胜:] {plr.WinStreak}\n" +
                                                 $"击杀/死亡 [c/5993DB:胜负值: ]{plr.GetKillDeathRatio()}");
                 }
                 catch (NullReferenceException)
@@ -219,6 +269,7 @@ namespace PvPer
                     args.Player.SendInfoMessage("[c/FFCB80:您的战绩:]\n" +
                                                 $"[c/63DC5A:击杀: ]{plr.Kills}\n" +
                                                 $"[c/F56469:死亡:] {plr.Deaths}\n" +
+                                                $"[c/F56469:连胜:] {plr.WinStreak}\n" +
                                                 $"击杀/死亡 [c/5993DB:胜负值: ]{plr.GetKillDeathRatio()}");
                 }
                 catch (NullReferenceException)

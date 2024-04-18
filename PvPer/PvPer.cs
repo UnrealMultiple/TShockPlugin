@@ -11,14 +11,11 @@ namespace PvPer
     public class PvPer : TerrariaPlugin
     {
         public override string Name => "决斗系统";
-        public override Version Version => new Version(1, 0, 3);
+        public override Version Version => new Version(1, 1, 0);
         public override string Author => "Soofa 羽学修改";
         public override string Description => "不是你死就是我活系列";
         public PvPer(Main game) : base(game)
         {
-
-            var configPath = "决斗系统.json";
-            var configuration = Configuration.Read(configPath);
         }
         public static Configuration Config = new Configuration();
         public static DbManager DbManager = new DbManager(new SqliteConnection("Data Source=" + Path.Combine(TShock.SavePath, "决斗系统.sqlite")));
@@ -36,14 +33,9 @@ namespace PvPer
             ServerApi.Hooks.ServerLeave.Register(this, OnServerLeave);
             GeneralHooks.ReloadEvent += LoadConfig;
             TShockAPI.Commands.ChatCommands.Add(new Command("pvper.use", Commands.Duel, "决斗", "pvp"));
-            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.admin", ClearAllDataCmd, "决斗重置", "repvp")
-            {
-                AllowServer = true, // 允许服务器端使用
-                HelpText = "清除数据库中所有玩家的数据（仅限管理员）",
-            });
-
         }
 
+        #region 创建与加载配置文件方法
         private static void LoadConfig(ReloadEventArgs args = null!)
         {
             string configPath = Configuration.FilePath;
@@ -59,24 +51,28 @@ namespace PvPer
                 Config.Write(configPath);
             }
         }
+        #endregion
 
         #region Hooks
 
-        public static void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs args)
+        public static async void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs args)
         {
             TSPlayer plr = TShock.Players[args.PlayerId];
+            string playerName = plr.Name;
 
             if (Utils.IsPlayerInADuel(args.PlayerId) && !Utils.IsPlayerInArena(plr))
             {
-                if (PvPer.Config.KillPlayer)
+                if (Config.KillPlayer)
                 {
-                    args.Player.KillPlayer();
-                    plr.SendMessage("你已离开竞技场，系统已自动判定怯战 惩罚为：[c/F86565:失败并死亡]。", Color.Yellow);
+                    plr.KillPlayer();
+                    plr.SendMessage($"{playerName}[c/E84B54:逃离]竞技场! 已判定为[C/13A1D1:怯战] 执行惩罚：[C/F86565:死亡]", Color.Yellow);
+                    return;
                 }
                 else
                 {
-                    args.Player.DamagePlayer(int.MaxValue);
-                    plr.SendMessage("你已离开竞技场，系统已自动判定怯战 惩罚为：[c/F86565:失败并扣血]。", Color.Yellow);
+                    plr.DamagePlayer(Config.SlapPlayer);
+                    plr.SendMessage($"{playerName}[c/E84B54:逃离]竞技场! 已判定为[C/13A1D1:怯战] 执行惩罚：[c/F86565:扣{Config.SlapPlayer}血", Color.Yellow);
+                    return;
                 }
             }
         }
@@ -120,7 +116,7 @@ namespace PvPer
         {
             Pair? duel = Utils.GetDuel(args.ID);
 
-            if (duel != null && !Utils.IsLocationInArena((int)(args.X / 16), (int)(args.Y / 16)))
+            if (duel != null && Config.KillPlayer && !Utils.IsLocationInArena((int)(args.X / 16), (int)(args.Y / 16)))
             {
                 args.Player.KillPlayer();
             }
@@ -140,28 +136,5 @@ namespace PvPer
         }
         #endregion
 
-        #region 使用指令清理数据库、设置位置方法
-        private void ClearAllDataCmd(CommandArgs args)
-        {
-            // 权限
-            if (!args.Player.HasPermission("pvper.admin"))
-            {
-                args.Player.SendErrorMessage("你没有权限重置决斗系统数据表。");
-                TShock.Log.ConsoleInfo("玩家试图执行重置决斗系统数据指令");
-                return;
-            }
-            // 尝试从数据库中删除所有玩家数据
-            if (DbManager.ClearData())
-            {
-                args.Player.SendSuccessMessage("数据库中所有玩家的决斗数据已被成功清除。");
-                TShock.Log.ConsoleInfo("数据库中所有玩家的决斗数据已被成功清除。");
-            }
-            else
-            {
-                args.Player.SendErrorMessage("清除所有玩家决斗数据时发生错误。");
-                TShock.Log.ConsoleInfo("清除所有玩家决斗数据时发生错误。");
-            }
-        }
-        #endregion
     }
 }
