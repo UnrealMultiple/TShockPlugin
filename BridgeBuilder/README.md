@@ -15,7 +15,7 @@
 
 | 语法           |        权限         |   说明   |
 | -------------- | :-----------------: | :------: |
-| bridgebuilder.bridge | bridge 或 桥来   | 快速铺桥指令|
+| /bridge 或 /桥来 |  bridgebuilder.bridge  | 快速铺桥指令|
 
 ## 配置
 

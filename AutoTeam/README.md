@@ -14,7 +14,7 @@
 
 | 语法           |        权限         |   说明   |
 | -------------- | :-----------------: | :------: |
-| /autoteam或/at | autoteam.toggle  |   开关自动队伍功能   |
+| /autoteam 或 /at | autoteam.toggle  |   开关自动队伍功能   |
 | 无 | noautoteam  |   有该权限不会被自动分配队伍   |
 
 ## 配置

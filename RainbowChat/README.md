@@ -14,7 +14,7 @@
 
 | 语法           |        权限         |   说明   |
 | -------------- | :-----------------: | :------: |
-| /rainbowchat或/rc | rainbowchat.use  |   开关彩虹聊天功能   |
+| /rainbowchat 或 /rc | rainbowchat.use  |   开关彩虹聊天功能   |
 
 ## 配置
 
