@@ -11,14 +11,16 @@ namespace InvincibilityPlugin
     [ApiVersion(2, 1)]
     public class InvincibilityPlugin : TerrariaPlugin
     {
-        private Timer invincibleTimer;
-        private float duration;
         public override string Author => "肝帝熙恩";
         public override string Description => "在命令中给予玩家一段时间的无敌状态。";
         public override string Name => "InvincibilityPlugin";
-        public override Version Version => new Version(1, 0, 0, 4);
+        public override Version Version => new Version(1, 0, 5);
         public static Configuration Config;
-        public InvincibilityPlugin(Main game) : base(game)
+        private Dictionary<TSPlayer, DateTime> invincibleStartTime = new Dictionary<TSPlayer, DateTime>();
+        private Dictionary<TSPlayer, float> invincibleDurations = new Dictionary<TSPlayer, float>();
+        private Dictionary<TSPlayer, float> frameDurations = new Dictionary<TSPlayer, float>();
+
+        public InvincibilityPlugin(Main game) : base(game) 
         {
             LoadConfig();
         }
@@ -38,21 +40,75 @@ namespace InvincibilityPlugin
         {
             GeneralHooks.ReloadEvent += ReloadConfig;
             ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
+            ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
                 ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
+                ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
             }
             base.Dispose(disposing);
         }
 
         private void OnInitialize(EventArgs args)
         {
-            Commands.ChatCommands.Add(new Command("限时god无敌", InvincibleCommand, "tgod", "限时god无敌"));
-            Commands.ChatCommands.Add(new Command("限时无敌帧无敌", ActivateFrameInvincibility, "tframe", "限时无敌帧无敌"));
+            Commands.ChatCommands.Add(new Command("Invincibility.god", InvincibleCommand, "tgod", "限时god无敌"));
+            Commands.ChatCommands.Add(new Command("Invincibility.frame", ActivateFrameInvincibility, "tframe", "限时无敌帧无敌"));
+        }
+
+        private void OnUpdate(EventArgs args)
+        {
+            List<TSPlayer> playersToRemove = new List<TSPlayer>();
+
+            // 处理无敌持续时间结束的玩家
+            foreach (var pair in invincibleDurations.ToList())
+            {
+                TSPlayer player = pair.Key;
+                float duration = pair.Value;
+
+                if (DateTime.UtcNow - invincibleStartTime[player] >= TimeSpan.FromSeconds(duration))
+                {
+                    delGodMode(player);
+                    playersToRemove.Add(player);
+                }
+            }
+
+            // 移除无敌持续时间结束的玩家
+            foreach (var player in playersToRemove)
+            {
+                invincibleStartTime.Remove(player);
+                invincibleDurations.Remove(player);
+            }
+
+            // 处理无敌帧效果
+            playersToRemove.Clear(); // 清空玩家列表，用于处理无敌帧结束的玩家
+            foreach (var pair in frameDurations.ToList())
+            {
+                TSPlayer player = pair.Key;
+                float duration = pair.Value;
+
+                if (duration >= 1.33f)
+                {
+                    // 在玩家的客户端发送无敌帧效果
+                    player.SendData(PacketTypes.PlayerDodge, "", player.Index, 2f, 0f, 0f, 0);
+                    duration -= 0.1f;
+                    frameDurations[player] = duration;
+                }
+                else
+                {
+                    // 无敌帧结束，添加到待移除玩家列表中
+                    playersToRemove.Add(player);
+                }
+            }
+
+            // 移除无敌帧结束的玩家
+            foreach (var player in playersToRemove)
+            {
+                frameDurations.Remove(player);
+                player.SendSuccessMessage($"{Config.CustomEndFrameText}");
+            }
         }
 
         private void InvincibleCommand(CommandArgs args)
@@ -65,10 +121,11 @@ namespace InvincibilityPlugin
 
             if (args.Parameters.Count < 1)
             {
-                args.Player.SendErrorMessage("用法: /限时god无敌 或 tgod <持续时间秒数>");
+                args.Player.SendErrorMessage("用法: /限时god无敌或tgod <持续时间秒数>");
                 return;
             }
 
+            float duration;
             if (!float.TryParse(args.Parameters[0], out duration) || duration <= 0)
             {
                 args.Player.SendErrorMessage("无效的持续时间。请输入一个正数。");
@@ -83,23 +140,14 @@ namespace InvincibilityPlugin
                 return;
             }
 
-            addGodMode(player);
-
-            invincibleTimer = new Timer(RemoveInvincibility, player, (int)(duration * 1000), Timeout.Infinite);
+            addGodMode(player, duration);
+            invincibleStartTime[player] = DateTime.UtcNow;
+            invincibleDurations[player] = duration;
         }
 
-
-
-        private void RemoveInvincibility(object state)
+        private void addGodMode(TSPlayer player, float duration)
         {
-            TSPlayer player = (TSPlayer)state;
-            delGodMode(player);
-            invincibleTimer.Dispose();
-        }
-
-        private void addGodMode(TSPlayer player)
-        {
-            player.GodMode = !player.GodMode;
+            player.GodMode = true;
             CreativePowerManager.Instance.GetPower<CreativePowers.GodmodePower>().SetEnabledState(player.Index, player.GodMode);
             if (Config.EnableInvincibleReminder)
             {
@@ -110,25 +158,22 @@ namespace InvincibilityPlugin
             {
                 player.SendSuccessMessage(Config.CustomInvincibleReminderText);
             }
-
-
             NetMessage.SendData((int)PacketTypes.PlayerInfo, -1, -1, null, player.Index, 1f);
         }
 
         private void delGodMode(TSPlayer player)
         {
-            player.GodMode = !player.GodMode;
+            player.GodMode = false;
             CreativePowerManager.Instance.GetPower<CreativePowers.GodmodePower>().SetEnabledState(player.Index, player.GodMode);
             player.SendSuccessMessage($"{Config.CustomInvincibleDisableText}");
-
             NetMessage.SendData((int)PacketTypes.PlayerInfo, -1, -1, null, player.Index, 1f);
         }
 
-        private async void ActivateFrameInvincibility(CommandArgs args)
+        private void ActivateFrameInvincibility(CommandArgs args)
         {
-            if (args.Parameters.Count < 1 || !double.TryParse(args.Parameters[0], out double duration) || duration <= 0)
+            if (args.Parameters.Count < 1 || !float.TryParse(args.Parameters[0], out float duration) || duration <= 0)
             {
-                args.Player.SendSuccessMessage("用法: /限时无敌帧无敌或tframe <持续时间秒数>");
+                args.Player.SendErrorMessage("用法: /限时无敌帧无敌或tframe <持续时间秒数>");
                 return;
             }
 
@@ -143,19 +188,7 @@ namespace InvincibilityPlugin
                 player.SendSuccessMessage(Config.CustomStartFrameText);
             }
 
-            while (duration >= 1.33)
-            {
-                player.SendData(PacketTypes.PlayerDodge, "", player.Index, 2f, 0f, 0f, 0);
-                duration -= 0.1;
-                await Task.Delay(100);
-            }
-
-            if (!string.IsNullOrEmpty(Config.CustomEndFrameText))
-            {
-                player.SendSuccessMessage(Config.CustomEndFrameText);
-            }
+            frameDurations[player] = duration;
         }
-
-
     }
 }
