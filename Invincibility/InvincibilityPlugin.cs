@@ -67,7 +67,7 @@ namespace InvincibilityPlugin
             {
                 foreach (var player in invincibleDurations.Keys.ToList())
                 {
-                    if (invincibleDurations[player] <= 100)
+                    if (invincibleDurations[player] <= 100 || !player.Active)
                     {
                         delGodMode(player);
                     }
@@ -79,7 +79,7 @@ namespace InvincibilityPlugin
 
                 foreach (var player in frameDurations.Keys.ToList())
                 {
-                    if (frameDurations[player] >= 0)
+                    if (frameDurations[player] >= 0 && player.Active)
                     {
                         player.SendData(PacketTypes.PlayerDodge, "", player.Index, 2f, 0f, 0f, 0);
                         frameDurations[player] -= 100;
@@ -95,12 +95,6 @@ namespace InvincibilityPlugin
 
         private void InvincibleCommand(CommandArgs args)
         {
-            if (!args.Player.HasPermission("限时god无敌"))
-            {
-                args.Player.SendErrorMessage("你没有执行此命令的权限。");
-                return;
-            }
-
             if (args.Parameters.Count < 1)
             {
                 args.Player.SendErrorMessage("用法: /限时god无敌或tgod <持续时间秒数>");
@@ -120,9 +114,7 @@ namespace InvincibilityPlugin
                 args.Player.SendErrorMessage("玩家不在线。");
                 return;
             }
-
-            addGodMode(player, duration);
-            
+            addGodMode(player, duration); 
         }
 
         private void addGodMode(TSPlayer player, float duration)
@@ -158,19 +150,16 @@ namespace InvincibilityPlugin
                 args.Player.SendErrorMessage("用法: /限时无敌帧无敌或tframe <持续时间秒数>");
                 return;
             }
-
-            TSPlayer player = args.Player;
-
             if (Config.EnableFrameReminder)
             {
                 args.Player.SendSuccessMessage($"你将在 {args.Parameters[0]} 秒内无敌.");
             }
             if (!string.IsNullOrEmpty(Config.CustomStartFrameText))
             {
-                player.SendSuccessMessage(Config.CustomStartFrameText);
+                args.Player.SendSuccessMessage(Config.CustomStartFrameText);
             }
 
-            frameDurations[player] = duration * 1000;
+            frameDurations[args.Player] = duration * 1000;
         }
     }
 }
