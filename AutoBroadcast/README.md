@@ -18,22 +18,22 @@
 
 ```json
 {
-  "Broadcasts": [
+  "广播列表": [
     {
-      "Name": "实例广播",
-      "Enabled": false,
-      "Messages": [
+      "广播名称": "实例广播",
+      "启用": false,
+      "广播消息": [
         "这是一条广播",
         "每五分钟执行一次",
         "可以执行命令",
         "/time noon"
       ],
-      "ColorRGB": [255.0, 0.0, 0.0],
-      "Interval": 300,
-      "StartDelay": 60,
-      "Groups": [],
-      "TriggerWords": [],
-      "TriggerToWholeGroup": false
+      "RGB颜色": [255.0, 0.0, 0.0],
+      "时间间隔": 300,
+      "延迟执行": 60,
+      "广播组": [],
+      "触发词语": [], //可以设置聊天消息关键词触发此广播
+      "触发整个组": false //开启后将会对'广播组'内所有玩家执行此广播
     }
   ]
 }

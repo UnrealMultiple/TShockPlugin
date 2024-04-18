@@ -3,7 +3,6 @@ using TShockAPI;
 using Terraria;
 using Terraria.GameContent.Creative;
 using TShockAPI.Hooks;
-using Google.Protobuf.WellKnownTypes;
 
 namespace InvincibilityPlugin
 {
