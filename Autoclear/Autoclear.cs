@@ -17,6 +17,7 @@ namespace Autoclear
         public static Configuration Config;
         private bool _sweepScheduled = false;
         private DateTime _sweepScheduledAt;
+        private int _updateCounter;
 
         public Autoclear(Main game) : base(game)
         {
@@ -52,34 +53,39 @@ namespace Autoclear
 
         private void OnUpdate(EventArgs args)
         {
-            int totalItems2 = 0;
-            for (int i = 0; i < Main.item.Length; i++)
-            {
-                if (Main.item[i].active && !Config.NonSweepableItemIDs.Contains(Main.item[i].type))
-                {
-                    totalItems2++;
-                }
-            }
+            _updateCounter++;
 
-            if (totalItems2 >= Config.SmartSweepThreshold)
+            if (_updateCounter % 60 == 0) 
             {
-                if (!_sweepScheduled)
+                int totalItems2 = 0;
+                for (int i = 0; i < Main.item.Length; i++)
                 {
-                    _sweepScheduled = true;
-                    _sweepScheduledAt = DateTime.UtcNow.AddSeconds(Config.DelayedSweepTimeoutSeconds);
-
-                    // 发送倒计时消息
-                    if (Config.SpecificMessage)
+                    if (Main.item[i].active && !Config.NonSweepableItemIDs.Contains(Main.item[i].type))
                     {
-                        TSPlayer.All.SendSuccessMessage($"{Config.DelayedSweepCustomMessage}");
+                        totalItems2++;
                     }
                 }
-            }
-            if (_sweepScheduled && DateTime.UtcNow >= _sweepScheduledAt)
-            {
-                // 到达清扫时间，执行清扫任务
-                _sweepScheduled = false;
-                PerformSmartSweep();
+
+                if (totalItems2 >= Config.SmartSweepThreshold)
+                {
+                    if (!_sweepScheduled)
+                    {
+                        _sweepScheduled = true;
+                        _sweepScheduledAt = DateTime.UtcNow.AddSeconds(Config.DelayedSweepTimeoutSeconds);
+
+                        // 发送倒计时消息
+                        if (Config.SpecificMessage)
+                        {
+                            TSPlayer.All.SendSuccessMessage($"{Config.DelayedSweepCustomMessage}");
+                        }
+                    }
+                }
+                if (_sweepScheduled && DateTime.UtcNow >= _sweepScheduledAt)
+                {
+                    // 到达清扫时间，执行清扫任务
+                    _sweepScheduled = false;
+                    PerformSmartSweep();
+                }
             }
         }
 
