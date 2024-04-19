@@ -1,5 +1,5 @@
-name-template: 'v$NEXT_PATCH_VERSION'
-tag-template: 'v$NEXT_PATCH_VERSION'
+name-template: 'V$NEXT_PATCH_VERSION'
+tag-template: 'V$NEXT_PATCH_VERSION'
 version-template: $MAJOR.$MINOR.$PATCH
 # Emoji reference: https://gitmoji.carloscuesta.me/
 categories:
