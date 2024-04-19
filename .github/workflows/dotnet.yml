@@ -67,6 +67,7 @@ jobs:
             ./bin/*
           allowUpdates: true
           removeArtifacts: true
+          generate_release_notes: true
 
   ClearTempArtifacts:
     name: Clear Temp Artifacts
