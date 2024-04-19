@@ -39,6 +39,7 @@ jobs:
         with:
           name: Plugins_all
           path: Plugins_6.0.zip
+          
   NightlyRelease:
     name: Nightly Release
     runs-on: ubuntu-latest
@@ -56,20 +57,20 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v3
         with:
-          name: Plugins_all
+          name: Lagrange.OneBot_all
           path: ./bin
       - name: Update Nightly Release
         uses: ncipollo/release-action@v1
         with:
-          tag: v${{ steps.setenvo.outputs.TAG_NAME }}
-          name: Release v${{ steps.setenvo.outputs.TAG_NAME }}
+          tag: nightly
+          name: "Nightly Release"
           prerelease: true
-          body: 'Pligin release.'
+          body: "> 这是最新版本."
           artifacts: |
             ./bin/*
           allowUpdates: true
           removeArtifacts: true
-  
+
   ClearTempArtifacts:
     name: Clear Temp Artifacts
     if: always()
@@ -82,4 +83,4 @@ jobs:
       - uses: geekyeggo/delete-artifact@v2
         with:
           name: |
-            Plugins_all
+            Lagrange.OneBot_all
