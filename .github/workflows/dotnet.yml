@@ -66,7 +66,22 @@ jobs:
             ./bin/*
           allowUpdates: true
           removeArtifacts: true
+          
+      - name: Build Changelog
+        uses: mikepenz/release-changelog-builder-action@v4
+        with:
+          configurationJson: |
+            {
+              "template": "#{{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n#{{UNCATEGORIZED}}\n</details>",
+              "categories": [
+                {
+                    "title": "## 💬 Other",
+                    "labels": ["other"]
+                }
+              ]
+            }
 
+         
   ClearTempArtifacts:
     name: Clear Temp Artifacts
     if: always()
