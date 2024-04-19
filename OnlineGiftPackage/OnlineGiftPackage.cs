@@ -30,14 +30,13 @@ namespace OnlineGiftPackage
         // 当前系统日期的天数
         public static int Day = DateTime.Now.Day;
 
-        // 定时器实例，用于定期检查在线玩家并发放礼包
-        Timer timer;
+        public long FrameCount;
 
         // 使用线程安全的字典存储玩家在线时长
         private ConcurrentDictionary<string, int> players = new ConcurrentDictionary<string, int>();
 
         // 配置文件加载实例
-        private static Configuration? config; // 将config声明为静态字段
+        private static Configuration config = new(); // 将config声明为静态字段
 
         private object syncRoot = new object(); // 用于锁定发放礼包的临界区
 
@@ -48,9 +47,17 @@ namespace OnlineGiftPackage
             LoadConfig();
             // 注册命令，用于显示礼包获取概率
             Commands.ChatCommands.Add(new Command(GetProbability, "在线礼包"));
+            ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
             // 监听服务器重载事件，以便在重载后重新设置定时器
             GeneralHooks.ReloadEvent += ReloadEvent;
-            timer = new Timer(Timer_Elapsed, "", config.DistributionInterval * 1000, config.DistributionInterval * 1000); // 注意转换为毫秒
+            
+        }
+
+        private void OnUpdate(EventArgs args)
+        {
+            FrameCount++;
+            if (FrameCount % (60 * config.DistributionInterval) == 0)
+                Timer_Elapsed();
         }
 
         //加载并创建配置文件
@@ -78,81 +85,77 @@ namespace OnlineGiftPackage
             // 调用UpdateTotalProbabilityOnReload方法来更新总概率
             config.UpdateTotalProbabilityOnReload();
 
-            // 更新定时器触发间隔
-            timer.Change(config.DistributionInterval * 1000, config.DistributionInterval * 1000); // 注意转换为毫秒
             Console.WriteLine($"已重载 [在线礼包] 配置文件,下次发放将在{config.DistributionInterval}秒后");
             int totalProbability = config.CalculateTotalProbability();
             Console.WriteLine($"所有礼包的总概率为：{totalProbability}");
         }
 
-        private void Timer_Elapsed(object? state)
+        private void Timer_Elapsed()
         {
-            lock (syncRoot)
+
+            // 获取当前日期，并清理在线时长记录（每天只在第一次执行时清空）
+            if (DateTime.Now.Day != Day)
             {
-                // 获取当前日期，并清理在线时长记录（每天只在第一次执行时清空）
-                if (DateTime.Now.Day != Day)
+                Day = DateTime.Now.Day;
+                players.Clear();
+            }
+
+            foreach (var player in TShock.Players.Where(p => p != null && p.Active && p.IsLoggedIn && p.TPlayer.statLifeMax < config.SkipStatLifeMax))
+            {
+                if (!config.Enabled)
                 {
-                    Day = DateTime.Now.Day;
-                    players.Clear();
+                    return;
                 }
 
-                foreach (var player in TShock.Players.Where(p => p != null && p.Active && p.IsLoggedIn && p.TPlayer.statLifeMax < config.SkipStatLifeMax))
+                // 记录或增加玩家在线时长
+                players.AddOrUpdate(player.Name, 1, (_, currentCount) => currentCount + 1);
+
+                // 跳过生命值大于多少的玩家
+                if (player.TPlayer.statLifeMax >= config.SkipStatLifeMax)
                 {
-                    if (!config.Enabled)
-                    {
-                        return;
-                    }
+                    continue;
+                }
 
-                    // 记录或增加玩家在线时长
-                    players.AddOrUpdate(player.Name, 1, (_, currentCount) => currentCount + 1);
-
-                    // 跳过生命值大于多少的玩家
-                    if (player.TPlayer.statLifeMax >= config.SkipStatLifeMax)
+                // 根据玩家在线时长发放对应礼包
+                if (players[player.Name] >= config.TriggerSequence.Keys.Min())
+                {
+                    Gift gift = RandGift();
+                    if (gift == null)
                     {
+                        Console.WriteLine($"无法获取有效礼包，玩家 {player.Name} 的在线时长：{players[player.Name]} 秒");
                         continue;
                     }
 
-                    // 根据玩家在线时长发放对应礼包
-                    if (players[player.Name] >= config.TriggerSequence.Keys.Min())
+                    // 获取随机ItemAmount
+                    int itemCount = new Random().Next(minValue: gift.ItemAmount[0], gift.ItemAmount[1]);
+
+                    // 给玩家发放物品
+                    player.GiveItem(gift.ItamID, itemCount);
+
+                    // 构建礼包发放提示消息
+                    string playerMessageFormat = config.TriggerSequence[players[player.Name]];
+                    string packageInfoMessage = string.Format(playerMessageFormat + " [i/s{0}:{1}] ", players[player.Name], gift.ItamID, itemCount);
+
+                    // 添加DistributionInterval信息
+                    int intervalForDisplay = config.DistributionInterval;
+                    string intervalMessage = $"下次发放将在{intervalForDisplay}秒后";
+
+                    // 合并两条消息
+                    string combinedMessage = $"{packageInfoMessage} {intervalMessage}";
+
+                    // 将合并后的消息发送给玩家
+                    player.SendMessage(combinedMessage, Color.GreenYellow);
+
+                    // 控制台输出
+                    if (config.OutputConsole)
                     {
-                        Gift gift = RandGift();
-                        if (gift == null)
-                        {
-                            Console.WriteLine($"无法获取有效礼包，玩家 {player.Name} 的在线时长：{players[player.Name]} 秒");
-                            continue;
-                        }
-
-                        // 获取随机ItemAmount
-                        int itemCount = new Random().Next(minValue: gift.ItemAmount[0], gift.ItemAmount[1]);
-
-                        // 给玩家发放物品
-                        player.GiveItem(gift.ItamID, itemCount);
-
-                        // 构建礼包发放提示消息
-                        string playerMessageFormat = config.TriggerSequence[players[player.Name]];
-                        string packageInfoMessage = string.Format(playerMessageFormat + " [i/s{0}:{1}] ", players[player.Name], gift.ItamID, itemCount);
-
-                        // 添加DistributionInterval信息
-                        int intervalForDisplay = config.DistributionInterval;
-                        string intervalMessage = $"下次发放将在{intervalForDisplay}秒后";
-
-                        // 合并两条消息
-                        string combinedMessage = $"{packageInfoMessage} {intervalMessage}";
-
-                        // 将合并后的消息发送给玩家
-                        player.SendMessage(combinedMessage, Color.GreenYellow);
-
-                        // 控制台输出
-                        if (config.OutputConsole)
-                        {
-                            Console.WriteLine($"执行在线礼包发放任务，下次发放将在{config.DistributionInterval}秒后");
-                            int totalProbability = config.CalculateTotalProbability();
-                            Console.WriteLine($"所有礼包的总概率为：{totalProbability}");
-                        }
-
-                        // 发放成功后重置玩家在线时长
-                        players[player.Name] %= config.DistributionInterval;
+                        Console.WriteLine($"执行在线礼包发放任务，下次发放将在{config.DistributionInterval}秒后");
+                        int totalProbability = config.CalculateTotalProbability();
+                        Console.WriteLine($"所有礼包的总概率为：{totalProbability}");
                     }
+
+                    // 发放成功后重置玩家在线时长
+                    players[player.Name] %= config.DistributionInterval;
                 }
             }
         }
