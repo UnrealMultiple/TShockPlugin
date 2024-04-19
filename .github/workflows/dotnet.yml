@@ -57,7 +57,7 @@ jobs:
           name: Plugins_all
           path: ./bin
       - name: Update Official Release
-        uses: softprops/action-gh-release@v1
+        uses: ncipollo/release-action@v1
         with:
           tag: V1.0.0.0
           name: "Official Version"
@@ -67,7 +67,7 @@ jobs:
             ./bin/Debug/*
           allowUpdates: true
           removeArtifacts: true
-          generate_release_notes: true
+          generateReleaseNotes: true
 
   ClearTempArtifacts:
     name: Clear Temp Artifacts
