@@ -1,10 +1,7 @@
 name: Release Drafter Workflow
 
 on:
-  workflow_call:
-    secrets:
-      GH_TOKEN:
-        required: false
+  push:
 
 permissions:
   contents: write
@@ -19,5 +16,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
         with:
-          commitish: main
+          commitish: master
           config-name: Note.yml
