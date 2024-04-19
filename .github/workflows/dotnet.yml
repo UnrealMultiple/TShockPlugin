@@ -62,11 +62,10 @@ jobs:
           tag: V1.0.0.0
           name: "Official Version"
           body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release."
-          generateReleaseNotes: true
           artifacts: |
             ./bin/*
           allowUpdates: true
-          #removeArtifacts: true
+          removeArtifacts: true
 
   ClearTempArtifacts:
     name: Clear Temp Artifacts
