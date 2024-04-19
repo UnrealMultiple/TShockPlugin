@@ -57,14 +57,14 @@ jobs:
           name: Plugins_all
           path: ./bin
       - name: Update Official Release
-        uses: ncipollo/release-action@v1
+        uses: softprops/action-gh-release@v1
         with:
           tag: V1.0.0.0
           name: "Official Version"
           prerelease: true
           body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release."
           artifacts: |
-            ./bin/*
+            ./bin/Debug/*
           allowUpdates: true
           removeArtifacts: true
           generate_release_notes: true
