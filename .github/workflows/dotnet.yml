@@ -66,11 +66,6 @@ jobs:
             ./bin/*
           allowUpdates: true
           removeArtifacts: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Generate Release Notes
-        uses: release-drafter/release-drafter@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
   ClearTempArtifacts:
     name: Clear Temp Artifacts
