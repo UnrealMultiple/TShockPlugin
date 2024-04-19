@@ -94,6 +94,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invincibility", "Invincibil
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ezperm", "Ezperm\Ezperm.csproj", "{4AB96380-C0D3-4746-87FF-D5FF0AFF1AE3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autoclear", "Autoclear\Autoclear.csproj", "{75442E3B-E8FD-4B36-BA0B-7113005E5D11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -446,6 +448,14 @@ Global
 		{4AB96380-C0D3-4746-87FF-D5FF0AFF1AE3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4AB96380-C0D3-4746-87FF-D5FF0AFF1AE3}.Release|x64.ActiveCfg = Release|Any CPU
 		{4AB96380-C0D3-4746-87FF-D5FF0AFF1AE3}.Release|x64.Build.0 = Release|Any CPU
+		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Debug|x64.Build.0 = Debug|Any CPU
+		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Release|x64.ActiveCfg = Release|Any CPU
+		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
