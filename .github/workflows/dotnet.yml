@@ -71,16 +71,14 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v4
         with:
           configurationJson: |
+            configurationJson: |
             {
-              "template": "#{{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n#{{UNCATEGORIZED}}\n</details>",
+              "template": "#{{CHANGELOG}}",
+              "pr_template": "PR: ##{{NUMBER}}",
               "categories": [
                 {
-                    "title": "## 添加插件",
-                    "labels": ["添加插件"]
-                },
-                {
-                    "title": "## 更新文档",
-                    "labels": ["Update README.md"]
+                    "title": "## Everything",
+                    "labels": []
                 }
               ]
             }
