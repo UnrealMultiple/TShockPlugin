@@ -11,7 +11,7 @@ namespace RandReSpawn
     [ApiVersion(2, 1)]
     public class MainPlugin : TerrariaPlugin
     {
-        private Random rand;
+        private Random rand = new();
         public override string Name => "RandRespawn";
         public override string Author => "1413,¸ÎµÛÎõ¶÷ÊÊÅä1449";
         public MainPlugin(Main game) : base(game)
