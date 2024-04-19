@@ -80,7 +80,7 @@ jobs:
                 },
                 {
                     "title": "## 更新文档",
-                    "labels": ["*.md"]
+                    "labels": ["Update README.md"]
                 }
               ]
             }
