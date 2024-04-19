@@ -1,24 +1,31 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: .NET
+name: Plugin Build
 
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
-    branches: [ "master" ]
+    branches: 
+      - master
+  workflow_dispatch:
 
 jobs:
   build:
-
-    runs-on: window-latest
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 6.0.x
-    - name: Build Plugin
-      run: dotnet build Plugin.sln
+      - uses: actions/checkout@v4
+
+      - name: Install .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+          
+      - name: Build Plugins
+        shell: powershell
+        run: |
+          dotnet build Plugin.sln
+
+      - name: Upload binary files(${{ matrix.runtimeIdentifier }}) for .NET 6.0
+        uses: actions/upload-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          name: Plugin_${{ matrix.runtimeIdentifier }}_6.0
+          path: out/Debug/${{ matrix.runtimeIdentifier }}
