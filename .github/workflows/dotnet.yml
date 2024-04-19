@@ -64,7 +64,7 @@ jobs:
           prerelease: true
           body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release."
           artifacts: |
-            ./bin/Debug/*
+            ./Debug/*
           allowUpdates: true
           removeArtifacts: true
           generateReleaseNotes: true
