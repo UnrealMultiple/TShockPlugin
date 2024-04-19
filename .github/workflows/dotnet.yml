@@ -62,6 +62,18 @@ jobs:
                 }
               ]
             }
+            cache: ${{ steps.external_changelog_collect.outputs.cache }}
+      - name: Echo External Repo Configuration Changelog
+        env:
+          CHANGELOG: ${{ steps.external_changelog.outputs.changelog }}
+          CHANGELOG_SECOND: ${{ steps.external_changelog_second.outputs.changelog }}
+        run: |
+          echo "First:"
+          echo "$CHANGELOG"
+
+          echo "Second:"
+          echo "$CHANGELOG_SECOND"
+          
       - name: Update Official Tag
         run: |
           git tag -f V1.0.0.0
