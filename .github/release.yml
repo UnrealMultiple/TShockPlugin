@@ -1,0 +1,23 @@
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+  categories:
+    - title: 'Add Plugin'
+      labels:
+        - '添加插件'
+        - 'Plugin'
+    - title: 'Bug Fixes'
+      labels:
+        - 'fix'
+        - '修正'
+        - '修复'
+    - title: 'Deprecated'
+      labels:
+        - '*.md'
+    - title: 📦 Dependencies
+      labels:
+        - dependencies
+    - title: Other Changes
+      labels:
+        - "*"
