@@ -35,4 +35,4 @@ jobs:
            config-name: .github/Note.yml
         #   disable-autolabeler: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ env.GH_TOKEN }}
