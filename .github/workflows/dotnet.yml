@@ -57,7 +57,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v3
         with:
-          name: Lagrange.OneBot_all
+          name: Plugins_all
           path: ./bin
       - name: Update Nightly Release
         uses: ncipollo/release-action@v1
@@ -83,4 +83,4 @@ jobs:
       - uses: geekyeggo/delete-artifact@v2
         with:
           name: |
-            Lagrange.OneBot_all
+            Plugins_all
