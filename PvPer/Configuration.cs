@@ -10,10 +10,16 @@ namespace PvPer
         public string README1 = "pvper.use / pvper.admin";
         [JsonProperty("竞技场边界说明")]
         public string README2 = "/pvp set 3 4 要比玩家传送坐标高或低3格设置";
+        [JsonProperty("竞技场边界说明2")]
+        public string README3 = "拉取范围：会从玩家冲出竞技场方向,拉回到竞技场中心的指定反向位置（当为负数则是正向位置）,关闭杀死玩家选项后默认开启扣血";
+        [JsonProperty("拉回竞技场")]
+        public bool PullArena = true;
+        [JsonProperty("拉取范围")]
+        public int PullRange = -20;
         [JsonProperty("离开竞技场杀死玩家")]
         public bool KillPlayer = false;
         [JsonProperty("离场扣血")]
-        public int SlapPlayer = 100;
+        public int SlapPlayer = 20;
 
         [JsonProperty("邀请者传送坐标.X")]
         public int Player1PositionX = 0;

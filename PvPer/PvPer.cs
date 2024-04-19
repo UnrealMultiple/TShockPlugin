@@ -11,7 +11,7 @@ namespace PvPer
     public class PvPer : TerrariaPlugin
     {
         public override string Name => "决斗系统";
-        public override Version Version => new Version(1, 1, 0);
+        public override Version Version => new Version(1, 1, 1);
         public override string Author => "Soofa 羽学修改";
         public override string Description => "不是你死就是我活系列";
         public PvPer(Main game) : base(game)
@@ -55,28 +55,79 @@ namespace PvPer
 
         #region Hooks
 
-        public static async void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs args)
+        public static void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs args)
         {
             TSPlayer plr = TShock.Players[args.PlayerId];
-            string playerName = plr.Name;
+            string name = plr.Name;
 
             if (Utils.IsPlayerInADuel(args.PlayerId) && !Utils.IsPlayerInArena(plr))
             {
                 if (Config.KillPlayer)
                 {
                     plr.KillPlayer();
-                    plr.SendMessage($"{playerName}[c/E84B54:逃离]竞技场! 已判定为[C/13A1D1:怯战] 执行惩罚：[C/F86565:死亡]", Color.Yellow);
+                    TSPlayer.All.SendMessage($"{name}[c/E84B54:逃离]竞技场! 已判定为[C/13A1D1:怯战] 执行惩罚：[C/F86565:死亡]", Color.Yellow);
                     return;
                 }
                 else
                 {
                     plr.DamagePlayer(Config.SlapPlayer);
-                    plr.SendMessage($"{playerName}[c/E84B54:逃离]竞技场! 已判定为[C/13A1D1:怯战] 执行惩罚：[c/F86565:扣{Config.SlapPlayer}血", Color.Yellow);
-                    return;
+                    plr.SendMessage($"[c/E84B54:禁止逃离竞技场!]惩罚：[c/F86565:扣{Config.SlapPlayer}血]", Color.Yellow);
+                }
+
+                if (Config.PullArena)
+                {
+                    float playerX = ((Entity)plr.TPlayer).Center.X;
+                    float playerY = ((Entity)plr.TPlayer).Center.Y;
+
+                    // 计算玩家到竞技场中心的向量（dx, dy）
+                    float centerX = (PvPer.Config.ArenaPosX1 * 16 + PvPer.Config.ArenaPosX2 * 16) / 2f;
+                    float centerY = (PvPer.Config.ArenaPosY1 * 16 + PvPer.Config.ArenaPosY2 * 16) / 2f;
+                    float dx = centerX - playerX;
+                    float dy = centerY - playerY;
+
+                    // 确保拉取半径在竞技场范围内
+                    float maxR = Math.Max(Math.Abs(PvPer.Config.ArenaPosX1 * 16 - centerX), Math.Abs(PvPer.Config.ArenaPosY1 * 16 - centerY)) / 2f;
+                    float pullR = Math.Min(maxR, Config.PullRange);
+
+                    // 新增配置项：拉取到竞技场中心的距离范围
+                    float PullRange = Config.PullRange * 16;
+
+                    // 计算拉取目标坐标
+                    float targetX = (float)(centerX + dx * PullRange / Math.Sqrt(dx * dx + dy * dy));
+                    float targetY = (float)(centerY + dy * PullRange / Math.Sqrt(dx * dx + dy * dy));
+
+                    PullTP(plr, targetX, targetY, (int)Math.Max(pullR, 0));
+
+                    TSPlayer.All.SendMessage($"{name}[c/E84B54:逃离]竞技场! 执行：[C/4284CD:拉回]", Color.Yellow);
                 }
             }
         }
 
+        #region 拉回竞技场方法
+
+        //拉取玩家的方法
+        public static void PullTP(TSPlayer plr, float x, float y, int r)
+        {
+            if (r <= 0)
+            {
+                plr.Teleport(x, y, 1);
+                return;
+            }
+            float x2 = ((Entity)plr.TPlayer).Center.X;
+            float y2 = ((Entity)plr.TPlayer).Center.Y;
+            x2 -= x;
+            y2 -= y;
+            if (x2 != 0f || y2 != 0f)
+            {
+                double num = Math.Atan2(y2, x2) * 180.0 / Math.PI;
+                x2 = (float)((double)r * Math.Cos(num * Math.PI / 180.0));
+                y2 = (float)((double)r * Math.Sin(num * Math.PI / 180.0));
+                x2 += x;
+                y2 += y;
+                plr.Teleport(x2, y2, 1);
+            }
+        }
+        #endregion
 
         public void OnKill(object? sender, GetDataHandlers.KillMeEventArgs args)
         {
