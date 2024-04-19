@@ -25,7 +25,7 @@ jobs:
 
       - name: Upload binary files(${{ matrix.runtimeIdentifier }}) for .NET 6.0
         uses: actions/upload-artifact@v4
-        if: github.event_name != 'pull_request'
+        if: github.event_name == 'pull_request'
         with:
           name: Plugin_${{ matrix.runtimeIdentifier }}_6.0
           path: out/Debug/${{ matrix.runtimeIdentifier }}
