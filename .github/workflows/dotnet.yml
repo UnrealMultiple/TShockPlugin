@@ -49,8 +49,8 @@ jobs:
           fetch-depth: 0
       - name: Update Official Tag
         run: |
-          git tag -f nightly
-          git push -f origin nightly
+          git tag -f V1.0.0.0
+          git push -f origin V1.0.0.0
       - name: Download Artifacts
         uses: actions/download-artifact@v3
         with:
