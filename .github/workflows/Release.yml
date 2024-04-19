@@ -21,4 +21,5 @@ jobs:
         with:
            config-name: .github/Note.yml
         env:
-          GITHUB_TOKEN: $
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
