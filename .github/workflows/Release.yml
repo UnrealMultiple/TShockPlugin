@@ -1,20 +1,23 @@
-name: Fancy Release Drafter
+name: Release Drafter Workflow
 
 on:
   workflow_call:
+    secrets:
+      GH_TOKEN:
+        required: false
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 
 jobs:
-  update-release-log:
-    permissions:
-      contents: write
+  release-drafter:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Note
-        uses: release-drafter/release-drafter@v5.21.1
-      - with:
-           config-name: Note.yml
+      - uses: release-drafter/release-drafter@v5.23.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+        with:
+          commitish: main
+          config-name: Note.yml
