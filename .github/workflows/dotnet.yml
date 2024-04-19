@@ -75,8 +75,8 @@ jobs:
               "template": "#{{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n#{{UNCATEGORIZED}}\n</details>",
               "categories": [
                 {
-                    "title": "## 💬 Other",
-                    "labels": ["other"]
+                    "title": "## 添加插件",
+                    "labels": ["添加插件"]
                 }
               ]
             }
