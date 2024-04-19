@@ -1,29 +1,20 @@
-name: Release Drafter
+name: Fancy Release Drafter
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches: 
-      - master
+  workflow_call:
 
 permissions:
   contents: read
 
 jobs:
-  update_release_draft:
+  update-release-log:
     permissions:
-      # write permission is required to create a github release
       contents: write
-      # write permission is required for autolabeler
-      # otherwise, read permission is required at least
-      pull-requests: write
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - name: Update GitHub Release
-        uses: release-drafter/release-drafter@v5
-        with:
-          config-name: Note.yml
+      - name: Note
+        uses: release-drafter/release-drafter@v5.21.1
+      - with:
+           config-name: Note.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
