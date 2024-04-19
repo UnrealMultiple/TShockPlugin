@@ -55,7 +55,7 @@ namespace Autoclear
         {
             _updateCounter++;
 
-            if (_updateCounter % 60 == 0) 
+            if (_updateCounter % (60 * Config.detectionIntervalSeconds) == 0) 
             {
                 int totalItems2 = 0;
                 for (int i = 0; i < Main.item.Length; i++)

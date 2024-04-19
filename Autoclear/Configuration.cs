@@ -9,11 +9,14 @@ namespace Autoclear
     {
     public static readonly string FilePath = Path.Combine(TShock.SavePath, "AutoClear.json");
 
+        [JsonProperty("多久检测一次(s)")]
+        public int SmartSweepThreshold { get; set; } = 100;
+
         [JsonProperty("不清扫的物品ID列表")]
         public List<int> NonSweepableItemIDs { get; set; } = new List<int>();
 
         [JsonProperty("智能清扫数量临界值")]
-        public int SmartSweepThreshold { get; set; } = 100;
+        public int detectionIntervalSeconds { get; set; } = 10;
 
         [JsonProperty("延迟清扫(s)")]
         public int DelayedSweepTimeoutSeconds { get; set; } = 10;
