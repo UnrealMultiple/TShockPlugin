@@ -7,6 +7,7 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+    
 jobs:
   Build:
     runs-on: windows-latest
@@ -42,10 +43,11 @@ jobs:
           
   OfficialRelease:
     name: Official Release
+    if: github.event_name == "merge_request_event"
     runs-on: ubuntu-latest
     needs: Build
     permissions:
-      contents: write
+         contents: write
     steps:
       - uses: actions/checkout@v4
         with:
