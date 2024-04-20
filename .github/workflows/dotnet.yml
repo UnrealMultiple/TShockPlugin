@@ -51,16 +51,7 @@ jobs:
         id: external_changelog_second
         uses: mikepenz/release-changelog-builder-action@v4
         with:
-          configurationJson: |
-            {
-              "template": "#{{CHANGELOG}} by#{{OWNER}}",
-              "categories": [
-                {
-                    "title": "## 日志",
-                    "labels": ["添加", "add", "加入", "feat"]
-                }
-              ]
-            }
+          configuration: "Config/Config_Rep.json"
             #cache: ${{ steps.external_changelog_collect.outputs.cache }}
       - name: Echo External Repo Configuration Changelog
         env:
