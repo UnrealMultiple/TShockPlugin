@@ -19,7 +19,7 @@
     ],
     "label_extractor": [
         {
-            "pattern": "(\\w+) (.+)",
+            "pattern": "(.*?)",
             "target": "$1",
             "on_property": "title"
         }
