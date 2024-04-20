@@ -3,28 +3,38 @@ using Newtonsoft.Json;
 
 namespace EssentialsPlus
 {
-	public class Config
-	{
-		public string[] DisabledCommandsInPvp = new string[]
-		{
-			"back"
-		};
+    public class Config
+    {
+        [JsonProperty("Pvp禁用命令")]
+        public string[] DisabledCommandsInPvp = new string[]
+        {
+            "eback"
+        };
 
-		public int BackPositionHistory = 10;
+        [JsonProperty("回退位置历史记录")]
+        public int BackPositionHistory = 10;
 
-		public string MySqlHost = "";
-		public string MySqlDbName = "";
-		public string MySqlUsername = "";
-		public string MySqlPassword = "";
+        [JsonProperty("MySql主机")]
+        public string MySqlHost = "";
 
-		public void Write(string path)
-		{
-			File.WriteAllText(path, JsonConvert.SerializeObject(this, Formatting.Indented));
-		}
+        [JsonProperty("MySql数据库名称")]
+        public string MySqlDbName = "";
 
-		public static Config Read(string path)
-		{
-			return File.Exists(path) ? JsonConvert.DeserializeObject<Config>(File.ReadAllText(path)) : new Config();
-		}
-	}
+        [JsonProperty("MySql用户名")]
+        public string MySqlUsername = "";
+
+        [JsonProperty("MySql密码")]
+        public string MySqlPassword = "";
+
+        public void Write(string path)
+        {
+            File.WriteAllText(path, JsonConvert.SerializeObject(this, Formatting.Indented));
+        }
+
+        public static Config Read(string path)
+        {
+            return File.Exists(path) ? JsonConvert.DeserializeObject<Config>(File.ReadAllText(path)) : new Config();
+        }
+    }
 }
+

@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using EssentialsPlus.Db;
 using EssentialsPlus.Extensions;
+using Microsoft.Data.Sqlite;
 using MySql.Data.MySqlClient;
 using Terraria;
 using TerrariaApi.Server;
@@ -23,27 +24,16 @@ namespace EssentialsPlus
 		public static HomeManager Homes { get; private set; }
 		public static MuteManager Mutes { get; private set; }
 
-		public override string Author
-		{
-			get { return "Cjx适配"; }
-		}
+        public override string Author => "WhiteX等人，Average,Cjx,肝帝熙恩翻译";
 
-		public override string Description
-		{
-			get { return "拓展管理插件"; }
-		}
+        public override string Description => "增强版Essentials";
 
-		public override string Name
-		{
-			get { return "EssentialsPlus"; }
-		}
+        public override string Name => "EssentialsPlus";
 
-		public override Version Version
-		{
-			get { return Assembly.GetExecutingAssembly().GetName().Version; }
-		}
+        public override Version Version => Assembly.GetExecutingAssembly().GetName().Version;
 
-		public EssentialsPlus(Main game)
+
+        public EssentialsPlus(Main game)
 			: base(game)
 		{
 		}
@@ -55,6 +45,7 @@ namespace EssentialsPlus
 				GeneralHooks.ReloadEvent -= OnReload;
 				PlayerHooks.PlayerCommand -= OnPlayerCommand;
 
+				ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
 				ServerApi.Hooks.GamePostInitialize.Deregister(this, OnPostInitialize);
 				ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
 				ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
@@ -64,242 +55,249 @@ namespace EssentialsPlus
 
 		public override void Initialize()
 		{
-            GeneralHooks.ReloadEvent += OnReload;
+			GeneralHooks.ReloadEvent += OnReload;
 			PlayerHooks.PlayerCommand += OnPlayerCommand;
-			OnInitialize();
-            ServerApi.Hooks.GamePostInitialize.Register(this, OnPostInitialize);
+
+			ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
+			ServerApi.Hooks.GamePostInitialize.Register(this, OnPostInitialize);
 			ServerApi.Hooks.NetGetData.Register(this, OnGetData);
 			ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
-        }
+		}
 
-        private async void OnReload(ReloadEventArgs e)
+		private async void OnReload(ReloadEventArgs e)
 		{
-            string path = Path.Combine(TShock.SavePath, "essentials.json");
+			string path = Path.Combine(TShock.SavePath, "essentials.json");
 			Config = Config.Read(path);
 			if (!File.Exists(path))
 			{
 				Config.Write(path);
 			}
 			await Homes.ReloadAsync();
-			e.Player.SendSuccessMessage("[EssentialsPlus] 重读配置成功!");
-		}
+            e.Player.SendSuccessMessage("[EssentialsPlus] 重新加载配置和家!");
+        }
 
-		private List<string> teleportCommands = new List<string>
+        private List<string> teleportCommands = new List<string>
 		{
 			"tp", "tppos", "tpnpc", "warp", "spawn", "home"
 		};
 
-		private void OnPlayerCommand(PlayerCommandEventArgs e)
-		{
+        private void OnPlayerCommand(PlayerCommandEventArgs e)
+        {
             if (e.Handled || e.Player == null)
-			{
-				return;
-			}
+            {
+                return;
+            }
 
-			Command command = e.CommandList.FirstOrDefault();
-			if (command == null || (command.Permissions.Any() && !command.Permissions.Any(s => e.Player.Group.HasPermission(s))))
-			{
-				return;
-			}
+            Command command = e.CommandList.FirstOrDefault();
+            if (command == null || (command.Permissions.Any() && !command.Permissions.Any(s => e.Player.Group.HasPermission(s))))
+            {
+                return;
+            }
 
-			if (e.Player.TPlayer.hostile &&
-				command.Names.Select(s => s.ToLowerInvariant())
-					.Intersect(Config.DisabledCommandsInPvp.Select(s => s.ToLowerInvariant()))
-					.Any())
-			{
-				e.Player.SendErrorMessage("此命令在PVP模式下禁用!");
-				e.Handled = true;
-				return;
-			}
+            if (e.Player.TPlayer.hostile &&
+                command.Names.Select(s => s.ToLowerInvariant())
+                    .Intersect(Config.DisabledCommandsInPvp.Select(s => s.ToLowerInvariant()))
+                    .Any())
+            {
+                e.Player.SendErrorMessage("在PvP中无法使用该命令！");
+                e.Handled = true;
+                return;
+            }
 
-			if (e.Player.Group.HasPermission(Permissions.LastCommand) && command.CommandDelegate != Commands.RepeatLast)
-			{
-				e.Player.GetPlayerInfo().LastCommand = e.CommandText;
-			}
+            if (e.Player.Group.HasPermission(Permissions.LastCommand) && command.CommandDelegate != Commands.RepeatLast)
+            {
+                e.Player.GetPlayerInfo().LastCommand = e.CommandText;
+            }
 
-			if (teleportCommands.Contains(e.CommandName) && e.Player.Group.HasPermission(Permissions.TpBack))
-			{
-				e.Player.GetPlayerInfo().PushBackHistory(e.Player.TPlayer.position);
-			}
-		}
+            if (teleportCommands.Contains(e.CommandName) && e.Player.Group.HasPermission(Permissions.TpBack))
+            {
+                e.Player.GetPlayerInfo().PushBackHistory(e.Player.TPlayer.position);
+            }
+        }
 
-		private void OnInitialize()
-		{
+
+        private void OnInitialize(EventArgs e)
+        {
             #region Config
 
             string path = Path.Combine(TShock.SavePath, "essentials.json");
-			Config = Config.Read(path);
-			if (!File.Exists(path))
-			{
-				Config.Write(path);
-			}
+            Config = Config.Read(path);
+            if (!File.Exists(path))
+            {
+                Config.Write(path);
+            }
 
-			#endregion
+            #endregion
 
-			#region Database
+            #region Database
 
-			if (TShock.Config.Settings.StorageType.Equals("mysql", StringComparison.OrdinalIgnoreCase))
-			{
-				if (string.IsNullOrWhiteSpace(Config.MySqlHost) ||
-					string.IsNullOrWhiteSpace(Config.MySqlDbName))
-				{
-					Console.ForegroundColor = ConsoleColor.Red;
-					Console.WriteLine("[Essentials+] MYSQL已经被启用但是配置文件并没有完成配置.");
-					Console.WriteLine("[Essentials+] 请完成配置文件中MYSQL数据库的配置.");
-					Console.WriteLine("[Essentials+] 此插件已被禁用...");
-					Console.ResetColor();
+            if (TShock.Config.Settings.StorageType.Equals("mysql", StringComparison.OrdinalIgnoreCase))
+            {
+                if (string.IsNullOrWhiteSpace(Config.MySqlHost) ||
+                    string.IsNullOrWhiteSpace(Config.MySqlDbName))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("[Essentials+] MySQL已启用，但未设置Essentials+ MySQL配置。");
+                    Console.WriteLine("[Essentials+] 请在essentials.json中配置您的MySQL服务器信息，然后重新启动服务器。");
+                    Console.WriteLine("[Essentials+] 此插件现在将禁用自身...");
+                    Console.ResetColor();
 
-					GeneralHooks.ReloadEvent -= OnReload;
-					PlayerHooks.PlayerCommand -= OnPlayerCommand;
+                    GeneralHooks.ReloadEvent -= OnReload;
+                    PlayerHooks.PlayerCommand -= OnPlayerCommand;
 
-					ServerApi.Hooks.GamePostInitialize.Deregister(this, OnPostInitialize);
-					ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
-					ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
+                    ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
+                    ServerApi.Hooks.GamePostInitialize.Deregister(this, OnPostInitialize);
+                    ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
+                    ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
 
-					return;
-				}
+                    return;
+                }
 
-				string[] host = Config.MySqlHost.Split(':');
-				Db = new MySqlConnection
-				{
-					ConnectionString = String.Format("Server={0}; Port={1}; Database={2}; Uid={3}; Pwd={4};",
-						host[0],
-						host.Length == 1 ? "3306" : host[1],
-						Config.MySqlDbName,
-						Config.MySqlUsername,
-						Config.MySqlPassword)
-				};
-			}
-			else if (TShock.Config.Settings.StorageType.Equals("sqlite", StringComparison.OrdinalIgnoreCase))
-			{
-				Db = TShock.DB;
-			}
-			else
-			{
-				throw new InvalidOperationException("不存在的数据库类型!");
-			}
+                string[] host = Config.MySqlHost.Split(':');
+                Db = new MySqlConnection
+                {
+                    ConnectionString = String.Format("Server={0}; Port={1}; Database={2}; Uid={3}; Pwd={4};",
+                        host[0],
+                        host.Length == 1 ? "3306" : host[1],
+                        Config.MySqlDbName,
+                        Config.MySqlUsername,
+                        Config.MySqlPassword)
+                };
+            }
+            else if (TShock.Config.Settings.StorageType.Equals("sqlite", StringComparison.OrdinalIgnoreCase))
+            {
+                Db = new SqliteConnection(
+                    "Data Source=" + Path.Combine(TShock.SavePath, "essentials.sqlite"));
+            }
+            else
+            {
+                throw new InvalidOperationException("无效的存储类型！");
+            }
 
-			Mutes = new MuteManager(Db);
+            Mutes = new MuteManager(Db);
 
-			#endregion
+            #endregion
 
-			#region Commands
+            #region Commands
 
-			//Allows overriding of already created commands.
-			Action<Command> Add = c =>
-			{
-				//Finds any commands with names and aliases that match the new command and removes them.
-				TShockAPI.Commands.ChatCommands.RemoveAll(c2 => c2.Names.Exists(s2 => c.Names.Contains(s2)));
-				//Then adds the new command.
-				TShockAPI.Commands.ChatCommands.Add(c);
-			};
+            //允许覆盖已创建的命令。
+            Action<Command> Add = c =>
+            {
+                //找到与新命令匹配的名称和别名的任何命令，并将其删除。
+                TShockAPI.Commands.ChatCommands.RemoveAll(c2 => c2.Names.Exists(s2 => c.Names.Contains(s2)));
+                //然后添加新命令。
+                TShockAPI.Commands.ChatCommands.Add(c);
+            };
 
-			Add(new Command(Permissions.Find, Commands.Find, "find","查")
-			{
-				HelpText = "查找信息指令."
-			});
+            Add(new Command(Permissions.Find, Commands.Find, "find", "查找")
+            {
+                HelpText = "查找具有指定名称的物品和/或NPC。"
+            });
 
-            Add(new Command(Permissions.FreezeTime, Commands.FreezeTime, "freezetime")
-			{
-				HelpText = "锁定时间."
-			});
+            Add(new Command(Permissions.FreezeTime, Commands.FreezeTime, "freezetime", "冻结时间")
+            {
+                HelpText = "切换冻结时间。"
+            });
 
-			Add(new Command(Permissions.HomeDelete, Commands.DeleteHome, "delhome")
-			{
-				AllowServer = false,
-				HelpText = "删除你的一个家园传送点."
-			});
-			Add(new Command(Permissions.HomeSet, Commands.SetHome, "sethome")
-			{
-				AllowServer = false,
-				HelpText = "Sets you a home point."
-			});
-			Add(new Command(Permissions.HomeTp, Commands.MyHome, "myhome")
-			{
-				AllowServer = false,
-				HelpText = "Teleports you to one of your home points."
-			});
+            Add(new Command(Permissions.HomeDelete, Commands.DeleteHome, "delhome", "删除家点")
+            {
+                AllowServer = false,
+                HelpText = "删除您的一个家点。"
+            });
+            Add(new Command(Permissions.HomeSet, Commands.SetHome, "sethome", "设置家点")
+            {
+                AllowServer = false,
+                HelpText = "设置您的一个家点。"
+            });
+            Add(new Command(Permissions.HomeTp, Commands.MyHome, "myhome", "我的家点")
+            {
+                AllowServer = false,
+                HelpText = "传送到您的一个家点。"
+            });
 
-			Add(new Command(Permissions.KickAll, Commands.KickAll, "kickall")
-			{
-				HelpText = "Kicks everyone on the server."
-			});
+            Add(new Command(Permissions.KickAll, Commands.KickAll, "kickall", "踢出所有人")
+            {
+                HelpText = "踢出服务器上的所有人。"
+            });
 
-			Add(new Command(Permissions.LastCommand, Commands.RepeatLast, "=")
-			{
-				HelpText = "Allows you to repeat your last command."
-			});
+            Add(new Command(Permissions.LastCommand, Commands.RepeatLast, "=", "重复上一条命令")
+            {
+                HelpText = "允许您重复上一条命令。"
+            });
 
-			Add(new Command(Permissions.More, Commands.More, "more")
-			{
-				AllowServer = false,
-				HelpText = "Maximizes item stack of held item."
-			});
+            Add(new Command(Permissions.More, Commands.More, "more", "最大化堆叠")
+            {
+                AllowServer = false,
+                HelpText = "最大化手持物品的堆叠。"
+            });
 
-			//This will override TShock's 'mute' command
-			Add(new Command(Permissions.Mute, Commands.Mute, "mute")
-			{
-				HelpText = "管理禁言."
-			});
+            //这将覆盖TShock的 'mute' 命令
+            Add(new Command(Permissions.Mute, Commands.Mute, "mute", "静音管理")
+            {
+                HelpText = "管理静音。"
+            });
 
-			Add(new Command(Permissions.PvP, Commands.PvP, "pvp")
-			{
-				AllowServer = false,
-				HelpText = "Toggles your PvP status."
-			});
+            Add(new Command(Permissions.PvP, Commands.PvP, "pvpget2", "切换PvP状态")
+            {
+                AllowServer = false,
+                HelpText = "切换您的PvP状态。"
+            });
 
-			Add(new Command(Permissions.Ruler, Commands.Ruler, "ruler")
-			{
-				AllowServer = false,
-				HelpText = "Allows you to measure the distances between two blocks."
-			});
+            Add(new Command(Permissions.Ruler, Commands.Ruler, "ruler", "测量工具")
+            {
+                AllowServer = false,
+                HelpText = "允许您测量两个方块之间的距离。"
+            });
 
-			Add(new Command(Permissions.Send, Commands.Send, "send")
-			{
-				HelpText = "Broadcasts a message in a custom color."
-			});
+            Add(new Command(Permissions.Send, Commands.Send, "send", "广播消息")
+            {
+                HelpText = "以自定义颜色广播消息。"
+            });
 
-			Add(new Command(Permissions.Sudo, Commands.Sudo, "sudo")
-			{
-				HelpText = "Allows you to execute a command as another user."
-			});
+            Add(new Command(Permissions.Sudo, Commands.Sudo, "sudo", "代执行")
+            {
+                HelpText = "允许您以其他用户的身份执行命令。"
+            });
 
-			Add(new Command(Permissions.TimeCmd, Commands.TimeCmd, "timecmd")
-			{
-				HelpText = "Executes a command after a given time interval."
-			});
+            Add(new Command(Permissions.TimeCmd, Commands.TimeCmd, "timecmd", "定时命令")
+            {
+                HelpText = "在给定时间间隔后执行命令。"
+            });
 
-			Add(new Command(Permissions.TpBack, Commands.Back, "back", "b")
-			{
-				AllowServer = false,
-				HelpText = "Teleports you back to your previous position after dying or teleporting."
-			});
-			Add(new Command(Permissions.TpDown, Commands.Down, "down")
-			{
-				AllowServer = false,
-				HelpText = "Teleports you down through a layer of blocks."
-			});
-			Add(new Command(Permissions.TpLeft, Commands.Left, "left")
-			{
-				AllowServer = false,
-				HelpText = "Teleports you left through a layer of blocks."
-			});
-			Add(new Command(Permissions.TpRight, Commands.Right, "right")
-			{
-				AllowServer = false,
-				HelpText = "Teleports you right through a layer of blocks."
-			});
-			Add(new Command(Permissions.TpUp, Commands.Up, "up")
-			{
-				AllowServer = false,
-				HelpText = "Teleports you up through a layer of blocks."
-			});
+            Add(new Command(Permissions.TpBack, Commands.Back, "eback", "b", "回到")
+            {
+                AllowServer = false,
+                HelpText = "在死亡或传送后将您传送回之前的位置。"
+            });
+            Add(new Command(Permissions.TpDown, Commands.Down, "down", "向下传送")
+            {
+                AllowServer = false,
+                HelpText = "通过一个方块层向下传送您。"
+            });
+            Add(new Command(Permissions.TpLeft, Commands.Left, "left", "向左传送")
+            {
+                AllowServer = false,
+                HelpText = "通过一个方块层向左传送您。"
+            });
+            Add(new Command(Permissions.TpRight, Commands.Right, "right", "向右传送")
+            {
+                AllowServer = false,
+                HelpText = "通过一个方块层向右传送您。"
+            });
+            Add(new Command(Permissions.TpUp, Commands.Up, "up", "向上传送")
+            {
+                AllowServer = false,
+                HelpText = "通过一个方块层向上传送您。"
+            });
 
-			#endregion
-		}
+
+            #endregion
+        }
+
+
         private void OnPostInitialize(EventArgs args)
 		{
-            Homes = new HomeManager(Db);
+			Homes = new HomeManager(Db);
 		}
 
 		private async void OnJoin(JoinEventArgs e)
@@ -317,24 +315,24 @@ namespace EssentialsPlus
 
 			DateTime muteExpiration = await Mutes.GetExpirationAsync(player);
 
-			if (DateTime.UtcNow < muteExpiration)
-			{
-				player.mute = true;
-				try
-				{
-					await Task.Delay(muteExpiration - DateTime.UtcNow, player.GetPlayerInfo().MuteToken);
-					player.mute = false;
-					player.SendInfoMessage("你已被禁言.");
-				}
-				catch (TaskCanceledException)
-				{
-				}
-			}
-		}
+            if (DateTime.UtcNow < muteExpiration)
+            {
+                player.mute = true;
+                try
+                {
+                    await Task.Delay(muteExpiration - DateTime.UtcNow, player.GetPlayerInfo().MuteToken);
+                    player.mute = false;
+                    player.SendInfoMessage("您已被解除禁言。");
+                }
+                catch (TaskCanceledException)
+                {
+                }
+            }
+        }
 
-		private void OnGetData(GetDataEventArgs e)
+        private void OnGetData(GetDataEventArgs e)
 		{
-            if (e.Handled)
+			if (e.Handled)
 			{
 				return;
 			}
