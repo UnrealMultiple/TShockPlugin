@@ -67,6 +67,7 @@ jobs:
           CHANGELOG: ${{ steps.external_changelog.outputs.changelog }}
           CHANGELOG_SECOND: ${{ steps.external_changelog_second.outputs.changelog }}
         run: |
+          echo ${{ steps.external_changelog_collect.outputs.cache }}
           echo "First:"
           echo "$CHANGELOG"
 
