@@ -313,7 +313,7 @@ namespace EssentialsPlus
 				return;
 			}
 
-			DateTime muteExpiration = await Mutes.GetExpirationAsync(player);
+			DateTime muteExpiration = Mutes.GetExpirationAsync(player);
 
             if (DateTime.UtcNow < muteExpiration)
             {

@@ -1,9 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\template.targets" />
-	<ItemGroup>
-	  <PackageReference Include="Chireiden.TShock.Omni" Version="0.0.159-ci" >
-		  <PrivateAssets>IncludeAssets</PrivateAssets>
-	  </PackageReference>
-	</ItemGroup>
+
+
 </Project>

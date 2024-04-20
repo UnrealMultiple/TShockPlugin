@@ -288,7 +288,7 @@ namespace EssentialsPlus
             }
         }
 
-        public static async void DeleteHome(CommandArgs e)
+        public static void DeleteHome(CommandArgs e)
         {
             if (e.Parameters.Count > 1)
             {
@@ -297,10 +297,10 @@ namespace EssentialsPlus
             }
 
             string homeName = e.Parameters.Count == 1 ? e.Parameters[0] : "home";
-            Home home = await EssentialsPlus.Homes.GetAsync(e.Player, homeName);
+            var home = EssentialsPlus.Homes.GetAsync(e.Player, homeName);
             if (home != null)
             {
-                if (await EssentialsPlus.Homes.DeleteAsync(e.Player, homeName))
+                if (EssentialsPlus.Homes.DeleteAsync(e.Player, homeName))
                 {
                     e.Player.SendSuccessMessage("成功删除您的家 '{0}'。", homeName);
                 }
@@ -325,13 +325,13 @@ namespace EssentialsPlus
 
             if (Regex.Match(e.Message, @"^\w+ -l(?:ist)?$").Success)
             {
-                List<Home> homes = await EssentialsPlus.Homes.GetAllAsync(e.Player);
+                List<Home> homes = EssentialsPlus.Homes.GetAllAsync(e.Player);
                 e.Player.SendInfoMessage(homes.Count == 0 ? "您没有设置家。" : "家的列表: {0}", string.Join(", ", homes.Select(h => h.Name)));
             }
             else
             {
                 string homeName = e.Parameters.Count == 1 ? e.Parameters[0] : "home";
-                Home home = await EssentialsPlus.Homes.GetAsync(e.Player, homeName);
+                var home = EssentialsPlus.Homes.GetAsync(e.Player, homeName);
                 if (home != null)
                 {
                     e.Player.Teleport(home.X, home.Y);
@@ -353,9 +353,9 @@ namespace EssentialsPlus
             }
 
             string homeName = e.Parameters.Count == 1 ? e.Parameters[0] : "home";
-            if (await EssentialsPlus.Homes.GetAsync(e.Player, homeName) != null)
+            if (EssentialsPlus.Homes.GetAsync(e.Player, homeName) != null)
             {
-                if (await EssentialsPlus.Homes.UpdateAsync(e.Player, homeName, e.Player.X, e.Player.Y))
+                if (EssentialsPlus.Homes.UpdateAsync(e.Player, homeName, e.Player.X, e.Player.Y))
                 {
                     e.Player.SendSuccessMessage("更新了您的家 '{0}'。", homeName);
                 }
@@ -366,13 +366,13 @@ namespace EssentialsPlus
                 return;
             }
 
-            if ((await EssentialsPlus.Homes.GetAllAsync(e.Player)).Count >= e.Player.Group.GetDynamicPermission(Permissions.HomeSet))
+            if ((EssentialsPlus.Homes.GetAllAsync(e.Player)).Count >= e.Player.Group.GetDynamicPermission(Permissions.HomeSet))
             {
                 e.Player.SendErrorMessage("您已达到家的设置上限！");
                 return;
             }
 
-            if (await EssentialsPlus.Homes.AddAsync(e.Player, homeName, e.Player.X, e.Player.Y))
+            if (EssentialsPlus.Homes.AddAsync(e.Player, homeName, e.Player.X, e.Player.Y))
             {
                 e.Player.SendSuccessMessage("设置了您的家 '{0}'。", homeName);
             }
@@ -508,7 +508,7 @@ namespace EssentialsPlus
                                     return;
                                 }
 
-                                if (await EssentialsPlus.Mutes.AddAsync(user, DateTime.UtcNow.AddSeconds(seconds)))
+                                if (EssentialsPlus.Mutes.AddAsync(user, DateTime.UtcNow.AddSeconds(seconds)))
                                 {
                                     TSPlayer.All.SendInfoMessage("{0} 禁言了 {1}。", e.Player.Name, user.Name);
                                 }
@@ -531,7 +531,7 @@ namespace EssentialsPlus
                                 return;
                             }
 
-                            if (await EssentialsPlus.Mutes.AddAsync(players[0], DateTime.UtcNow.AddSeconds(seconds)))
+                            if (EssentialsPlus.Mutes.AddAsync(players[0], DateTime.UtcNow.AddSeconds(seconds)))
                             {
                                 TSPlayer.All.SendInfoMessage("{0} 禁言了 {1}。", e.Player.Name, players[0].Name);
 
@@ -578,7 +578,7 @@ namespace EssentialsPlus
                                 e.Player.SendErrorMessage("无效的玩家或账户 '{0}'！", playerName);
                             else
                             {
-                                if (await EssentialsPlus.Mutes.DeleteAsync(user))
+                                if (EssentialsPlus.Mutes.DeleteAsync(user))
                                     TSPlayer.All.SendInfoMessage("{0} 解除了 {1} 的禁言。", e.Player.Name, user.Name);
                                 else
                                     e.Player.SendErrorMessage("无法解除禁言，请查看日志获取更多信息。");
@@ -588,7 +588,7 @@ namespace EssentialsPlus
                             e.Player.SendErrorMessage("匹配到多个玩家：{0}", String.Join(", ", players.Select(p => p.Name)));
                         else
                         {
-                            if (await EssentialsPlus.Mutes.DeleteAsync(players[0]))
+                            if (EssentialsPlus.Mutes.DeleteAsync(players[0]))
                             {
                                 players[0].mute = false;
                                 TSPlayer.All.SendInfoMessage("{0} 解除了 {1} 的禁言。", e.Player.Name, players[0].Name);
