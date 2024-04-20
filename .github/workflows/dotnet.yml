@@ -48,6 +48,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Build Changelog
+        id: external_changelog_second
         uses: mikepenz/release-changelog-builder-action@v4
         with:
           configurationJson: |
@@ -64,7 +65,7 @@ jobs:
             cache: ${{ steps.external_changelog_collect.outputs.cache }}
       - name: Echo External Repo Configuration Changelog
         env:
-          CHANGELOG: ${{ steps.external_changelog.outputs.changelog }}
+          CHANGELOG: ${{ steps.external_changelog_second.outputs.changelog }}
           CHANGELOG_SECOND: ${{ steps.external_changelog_second.outputs.changelog }}
         run: |
           echo ${{ steps.external_changelog_collect.outputs.cache }}
@@ -88,7 +89,7 @@ jobs:
         with:
           tag: V1.0.0.0
           name: "Official Version"
-          body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release.\n${{steps.github_release.outputs.changelog}}"
+          body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release.\n${{steps.external_changelog_second.outputs.changelog}}"
           artifacts: |
             ./bin/*
           allowUpdates: true
