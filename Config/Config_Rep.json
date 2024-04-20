@@ -19,25 +19,22 @@
     ],
     "label_extractor": [
         {
-            "pattern": ".*(?i)(feature|feat|add|添加).*",
+            "pattern": ".*(feature|feat|add|添加).*",
             "target": "$1",
             "on_property": "title"
         },
-        "label_extractor": [
         {
-            "pattern": ".*(?i)(fix|修复).*",
+            "pattern": ".*(fix|修复).*",
             "target": "$1",
             "on_property": "title"
         },
-        "label_extractor": [
         {
-            "pattern": ".*(?i)README.*",
+            "pattern": ".*README.*",
             "target": "$1",
             "on_property": "title"
         },
-            "label_extractor": [
         {
-            "pattern": ".*(?i)update.*",
+            "pattern": ".*update.*",
             "target": "$1",
             "on_property": "title"
         }
