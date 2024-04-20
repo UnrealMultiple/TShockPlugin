@@ -98,6 +98,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autoclear", "Autoclear\Auto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EssentialsPlus", "EssentialsPlus\EssentialsPlus.csproj", "{F1D3C3A7-247D-4537-A9DE-C5988AF7EAFD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShowArmors", "ShowArmors\ShowArmors.csproj", "{32AA74DF-D75A-44B7-9BFD-F48BE66247CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -466,6 +468,14 @@ Global
 		{F1D3C3A7-247D-4537-A9DE-C5988AF7EAFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1D3C3A7-247D-4537-A9DE-C5988AF7EAFD}.Release|x64.ActiveCfg = Release|Any CPU
 		{F1D3C3A7-247D-4537-A9DE-C5988AF7EAFD}.Release|x64.Build.0 = Release|Any CPU
+		{32AA74DF-D75A-44B7-9BFD-F48BE66247CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32AA74DF-D75A-44B7-9BFD-F48BE66247CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32AA74DF-D75A-44B7-9BFD-F48BE66247CB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{32AA74DF-D75A-44B7-9BFD-F48BE66247CB}.Debug|x64.Build.0 = Debug|Any CPU
+		{32AA74DF-D75A-44B7-9BFD-F48BE66247CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32AA74DF-D75A-44B7-9BFD-F48BE66247CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32AA74DF-D75A-44B7-9BFD-F48BE66247CB}.Release|x64.ActiveCfg = Release|Any CPU
+		{32AA74DF-D75A-44B7-9BFD-F48BE66247CB}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
