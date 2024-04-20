@@ -52,7 +52,6 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v4
         with:
           configurationJson: |
-            configurationJson: |
             {
                "categories": [
                 {
