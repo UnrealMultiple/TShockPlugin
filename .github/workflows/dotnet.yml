@@ -52,15 +52,27 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v4
         with:
           configurationJson: |
-            configurationJson: |
             {
-              "template": "#{{CHANGELOG}}",
-              "categories": [
+               "categories": [
                 {
-                    "title": "## Everything",
-                    "labels": []
+                    "title": "## 🚀 Features",
+                    "labels": ["feature","feat","添加","add"]
+                },
+                {
+                    "title": "## 🐛 Fixes",
+                    "labels": ["fix","修复","修正"]
+                },
+                {
+                    "title": "## 🧪 Docs",
+                    "labels": ["*.md"]
                 }
-              ]
+            ],
+            "sort": "ASC",
+            "template": "${{CHANGELOG}} by#${{OWNER}} #${{FROM_TAG}}",
+            "pr_template": "- ${{TITLE}}\n   - PR: #${{NUMBER}}",
+            "empty_template": "- no changes",
+            "max_pull_requests": 1000,
+            "max_back_track_time_days": 1000
             }
             cache: ${{ steps.external_changelog_collect.outputs.cache }}
       - name: Echo External Repo Configuration Changelog
