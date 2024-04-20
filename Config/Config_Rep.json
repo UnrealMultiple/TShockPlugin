@@ -2,11 +2,11 @@
     "categories": [
         {
             "title": "## 🚀 Features",
-            "labels": ["feature", "feat", "add", "添加"]
+            "labels": ["Feat", "Add", "feature", "feat", "add", "添加"]
         },
         {
             "title": "## 🐛 Fixes",
-            "labels": ["fix","修复"]
+            "labels": ["fix","Fix", "修复"]
         },
         {
             "title": "## 🧪 Docs",
@@ -14,7 +14,7 @@
         },
         {
             "title": "## 🧪 Update",
-            "labels": ["update"]
+            "labels": ["update","Update"]
         }
     ],
     "label_extractor": [
