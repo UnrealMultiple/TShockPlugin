@@ -76,3 +76,4 @@
 | [AutoClear](Autoclear/README.md)                                 |         智能自动扫地         |              无               |
 | [EssentialsPlus](EssentialsPlus/README.md)                       |         更多管理指令         |              无               |
 | [ShowArmors](ShowArmors/README.md)                               |          展示装备栏          |              无               |
+| [VeinMiner](VeinMiner/README.md)                                 |           连锁挖矿           |              无               |
