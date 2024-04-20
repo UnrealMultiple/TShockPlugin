@@ -17,6 +17,17 @@
             "labels": ["update","Update"]
         }
     ],
+    "custom_placeholders": [
+        {
+          "name": "TITLE_ONLY",
+          "source": "TITLE",
+          "transformer": {
+            "method": "regexr",
+            "pattern": "(\\w+(\\(.+\\))?: ?)?(.+)",
+            "target": "$2 $3"
+          }
+        }
+      ],
     "label_extractor": [
         {
             "pattern": ".*(feature|feat|add|添加|Feat|Add).*",
