@@ -19,7 +19,7 @@
 		public static readonly string SudoSuper = "essentials.sudo.super";
 		public static readonly string SudoInvisible = "essentials.sudo.invisible";
 		public static readonly string TimeCmd = "essentials.timecmd";
-		public static readonly string TpBack = "essentials.tp.back";
+		public static readonly string TpBack = "essentials.tp.eback";
 		public static readonly string TpDown = "essentials.tp.down";
 		public static readonly string TpLeft = "essentials.tp.left";
 		public static readonly string TpRight = "essentials.tp.right";
