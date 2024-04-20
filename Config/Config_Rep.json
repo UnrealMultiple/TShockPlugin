@@ -17,6 +17,13 @@
             "labels": ["update"]
         }
     ],
+    "label_extractor": [
+        {
+            "pattern": "(\\w+) (.+)",
+            "target": "$1",
+            "on_property": "title"
+        }
+    ],
     "sort": "ASC",
     "template": "${{CHANGELOG}} by#{{OWNER}}",
     "pr_template": "- ${{TITLE}}\n   - PR: #${{NUMBER}}",
