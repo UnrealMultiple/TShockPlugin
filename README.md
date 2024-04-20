@@ -74,3 +74,4 @@
 | [Invincibility](Invincibility/README.md)                         |           限时无敌           |              无               |
 | [Ezperm](Ezperm/README.md)                                       |          批量改权限          |              无               |
 | [AutoClear](Autoclear/README.md)                                 |         智能自动扫地         |              无               |
+| [EssentialsPlus](EssentialsPlus/README.md)                                 |         更多管理指令         |              无               |
