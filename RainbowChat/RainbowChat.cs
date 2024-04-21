@@ -1,39 +1,38 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using Microsoft.Xna.Framework;
+using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace RainbowChat;
 
 [ApiVersion(2, 1)]
 public class RainbowChat : TerrariaPlugin
 {
-	private Random _rand = new Random();
+    public override string Name => "【五彩斑斓聊天】 Rainbow Chat";
 
-	private bool[] _rainbowChat = new bool[255];
+    public override string Author => "Professor X制作,nnt升级/汉化,肝帝熙恩、羽学更新1449";
 
-	public override string Name => "【五彩斑斓聊天】 Rainbow Chat";
+    public override string Description => "使玩家每次说话的颜色不一样.";
 
-	public override string Author => "Professor X制作,nnt升级/汉化,肝帝熙恩更新1449";
+    public override Version Version => new Version(1, 0, 3);
 
-	public override string Description => "使玩家每次说话的颜色不一样.";
+    public RainbowChat(Main game): base(game)
+    {
+    }
 
-	public override Version Version => new Version(1, 0, 2);
+    #region 注册与卸载
 
-	public RainbowChat(Main game)
-		: base(game)
-	{
-	}
+    private Random _rand = new Random();
+    private bool[] _rainbowChat = new bool[255];
+    private bool[] _Gradient = new bool[255];
+    internal static Configuration Config = null!;
 
     public override void Initialize()
     {
-        // 注册事件
+        LoadConfig();
+        GeneralHooks.ReloadEvent += LoadConfig;
         ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
         ServerApi.Hooks.ServerChat.Register(this, OnChat);
     }
@@ -51,114 +50,144 @@ public class RainbowChat : TerrariaPlugin
         base.Dispose(disposing);
     }
 
-
-
     private void OnInitialize(EventArgs args)
-	{
-		Commands.ChatCommands.Add(new Command("rainbowchat.use", RainbowChatCallback, "rainbowchat", "rc"));
-	}
+    {
+        Commands.ChatCommands.Add(new Command("rainbowchat.use", RainbowChatCallback, "rainbowchat", "rc"));
+    }
+    #endregion
 
-	private void OnChat(ServerChatEventArgs e)
-	{
-        // 如果事件已经被处理，直接返回
-        if (e.Handled)
-		{
-			return;
-		}
+    #region 配置文件创建与重读加载方法
+    private static void LoadConfig(ReloadEventArgs args = null!)
+    {
+        Config = Configuration.Read(Configuration.FilePath);
+        Config.Write(Configuration.FilePath);
+        if (args != null && args.Player != null)
+        {
+            args.Player.SendSuccessMessage("[彩色聊天]重新加载配置完毕。");
+        }
+    }
+    #endregion
+
+    private void OnChat(ServerChatEventArgs e)
+    {
+        var gradientStartColor = Config.GradientStartColor;
+        var gradientEndColor = Config.GradientEndColor;
+
+        if (e.Handled ) { return; }
+        if ((e.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) || e.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier))) { return; }
 
         TSPlayer player = TShock.Players[e.Who];
-        if (player == null || !player.HasPermission(Permissions.canchat) || player.mute)
-		{
+        if (player == null || !player.HasPermission(Permissions.canchat) || player.mute) { return; }
+
+        if (_rainbowChat[player.Index])
+        {
+            List<Color> colors = GetColors();
+            string coloredMessage = string.Join(" ", e.Text.Split(' ').Select((word, index) => TShock.Utils.ColorTag(word, colors[_rand.Next(colors.Count)])));
+            TSPlayer.All.SendMessage(string.Format(TShock.Config.Settings.ChatFormat, player.Group.Name, player.Group.Prefix, player.Name, player.Group.Suffix, coloredMessage), player.Group.R, player.Group.G, player.Group.B);
+            e.Handled = true;
+        }
+        else if (_Gradient[player.Index])
+        {
+            string gradientMessage = Tools.TextGradient(e.Text, gradientStartColor, gradientEndColor);
+            TSPlayer.All.SendMessage(string.Format(TShock.Config.Settings.ChatFormat, player.Group.Name, player.Group.Prefix, player.Name, player.Group.Suffix, gradientMessage), player.Group.R, player.Group.G, player.Group.B);
+            e.Handled = true;
+        }
+        else
+        {
+            TSPlayer.Server.SendMessage(string.Format(TShock.Config.Settings.ChatFormat, player.Group.Name, player.Group.Prefix, player.Name, player.Group.Suffix, e.Text), player.Group.R, player.Group.G, player.Group.B);
+        }
+    }
+
+    private void RainbowChatCallback(CommandArgs e)
+    {
+        TSPlayer player = e.Player;
+
+        if (e.Parameters.Count == 0)
+        {
+            player.SendSuccessMessage(string.Format("可用命令：/rc 随机 或 /rc 渐变"));
             return;
         }
 
-        // 检查是否是命令，如果是，不进行处理
-        if (e.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) ||
-            e.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier))
-			{
-            return;
-			}
+        string subCommand = e.Parameters[0].ToLower();
 
-        // 检查是否启用了彩虹聊天功能
-        if (!_rainbowChat[player.Index])
+        switch (subCommand)
+        {
+            case "random":
+            case "随机":
+                CRainbowChat(e);
+                break;
+            case "gradient":
+            case "渐变":
+                GradientChat(e);
+                break;
+            default:
+                player.SendErrorMessage("无效的子命令,可用子命令：/rc 随机 或 /rc 渐变.");
+                return;
+        }
+    }
+
+    private void CRainbowChat(CommandArgs e)
+    {
+        TSPlayer Player = GetTargetPlayer(e);
+
+        if (Player == null)
         {
             return;
-		}
+        }
 
-        // 获取颜色列表
-        List<Color> colors = GetColors();
+        _rainbowChat[Player.Index] = !_rainbowChat[Player.Index];
+        string statusMessage = _rainbowChat[Player.Index] ? "启用" : "禁用";
+        e.Player.SendSuccessMessage(string.Format("{0} 的彩虹聊天已 {1}.", Player.Name, statusMessage));
+    }
 
-        // 使用string.Join和Lambda表达式来构建彩色消息
-        string coloredMessage = string.Join(" ", e.Text.Split(' ').Select((word, index) =>
-            TShock.Utils.ColorTag(word, colors[_rand.Next(colors.Count)])));
+    private void GradientChat(CommandArgs e)
+    {
+        TSPlayer Player = GetTargetPlayer(e);
 
-        // 发送彩色消息给所有玩家
-        TSPlayer.All.SendMessage(string.Format(TShock.Config.Settings.ChatFormat, player.Group.Name, player.Group.Prefix, player.Name, player.Group.Suffix, coloredMessage), player.Group.R, player.Group.G, player.Group.B);
+        if (Player == null)
+        {
+            return;
+        }
 
-        // 发送原始消息到服务器日志
-        TSPlayer.Server.SendMessage(string.Format(TShock.Config.Settings.ChatFormat, player.Group.Name, player.Group.Prefix, player.Name, player.Group.Suffix, e.Text), player.Group.R, player.Group.G, player.Group.B);
+        _Gradient[Player.Index] = !_Gradient[Player.Index];
+        string statusMessage = _Gradient[Player.Index] ? "启用" : "禁用";
+        e.Player.SendSuccessMessage(string.Format("{0} 的渐变聊天已 {1}.", Player.Name, statusMessage));
+    }
 
-        // 标记事件为已处理
-        e.Handled = true;
-	}
+    private TSPlayer GetTargetPlayer(CommandArgs e)
+    {
+        if (e.Parameters.Count <= 1)
+        {
+            return e.Player;
+        }
 
-
-	private void RainbowChatCallback(CommandArgs e)
-	{
-        // 获取当前玩家的彩虹聊天状态
-        bool currentState = _rainbowChat[e.Player.Index];
-
-        // 切换状态
-        _rainbowChat[e.Player.Index] = !currentState;
-
-        // 如果没有提供参数，则只更新当前玩家的状态
-		if (e.Parameters.Count == 0)
-		{
-            e.Player.SendSuccessMessage(string.Format("你 {0} 彩虹聊天.", currentState ? "已关闭" : "已开启"));
-			return;
-		}
-
-        // 查找玩家
-        List<TSPlayer> players = TSPlayer.FindByNameOrID(e.Parameters[0]);
+        List<TSPlayer> players = TSPlayer.FindByNameOrID(e.Parameters[1]);
         if (players.Count == 0)
-		{
-			e.Player.SendErrorMessage("错误的玩家!");
-            return;
-		}
-
-        // 确保只有一个匹配的玩家
+        {
+            e.Player.SendErrorMessage("错误的玩家!");
+            return null;
+        }
         if (players.Count > 1)
-		{
+        {
             e.Player.SendMultipleMatchError(players.Select(p => p.Name));
-            return;
-		}
+            return null;
+        }
 
-        // 切换找到的玩家的彩虹聊天状态
-        _rainbowChat[players[0].Index] = !_rainbowChat[players[0].Index];
+        return players[0];
+    }
 
-        // 发送成功消息
-        e.Player.SendSuccessMessage(string.Format("{0} 已 {1} 彩虹聊天.", players[0].Name, currentState ? "已关闭" : "已开启"));
-	}
-
-
-	private List<Color> GetColors()
-	{
+    private List<Color> GetColors()
+    {
         List<Color> colors = new List<Color>();
-
-        // 获取Color类型的所有静态颜色属性
         PropertyInfo[] properties = typeof(Color).GetProperties(BindingFlags.Static | BindingFlags.Public);
 
         foreach (PropertyInfo property in properties)
-		{
-            // 确保属性是Color类型且可读
+        {
             if (property.PropertyType == typeof(Color) && property.CanRead)
-			{
-                // 添加静态颜色属性到列表中
+            {
                 colors.Add((Color)property.GetValue(null));
-			}
-		}
-
+            }
+        }
         return colors;
-	}
-
+    }
 }
