@@ -92,10 +92,6 @@ public class RainbowChat : TerrariaPlugin
             TSPlayer.All.SendMessage(string.Format(TShock.Config.Settings.ChatFormat, player.Group.Name, player.Group.Prefix, player.Name, player.Group.Suffix, gradientMessage), player.Group.R, player.Group.G, player.Group.B);
             e.Handled = true;
         }
-        else
-        {
-            TSPlayer.Server.SendMessage(string.Format(TShock.Config.Settings.ChatFormat, player.Group.Name, player.Group.Prefix, player.Name, player.Group.Suffix, e.Text), player.Group.R, player.Group.G, player.Group.B);
-        }
     }
 
     private void RainbowChatCallback(CommandArgs e)
