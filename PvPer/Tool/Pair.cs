@@ -158,15 +158,10 @@ namespace PvPer
             int winStreak = winnerData.WinStreak;// 直接使用更新后的赢家连胜次数
             TSPlayer.All.SendMessage($"{TShock.Players[winner].Name} 已经连胜 {winStreak} 场决斗!", 255, 255, 90);
 
-            Task.Run(async () =>
-            {
-                int p = Projectile.NewProjectile(Projectile.GetNoneSource(), TShock.Players[winner].TPlayer.position.X + 16,
-                    TShock.Players[winner].TPlayer.position.Y - 64f, 0f, -8f, ProjectileID.RocketFireworkGreen, 0, 0);
-                Main.projectile[p].Kill();
-                await Task.Delay(5000);
-                TShock.Players[winner].Teleport(Main.spawnTileX * 16, Main.spawnTileY * 16);
-                TShock.Players[loser].Teleport(Main.spawnTileX * 16, Main.spawnTileY * 16);
-            });
+            int p = Projectile.NewProjectile(Projectile.GetNoneSource(), TShock.Players[winner].TPlayer.position.X + 16,
+            TShock.Players[winner].TPlayer.position.Y - 64f, 0f, -8f, ProjectileID.RocketFireworkGreen, 0, 0);
+            Main.projectile[p].Kill();
+
         }
 
         // 重置输家的连胜次数为0

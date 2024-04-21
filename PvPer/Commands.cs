@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using TShockAPI;
 
+
 namespace PvPer
 {
     public class Commands
@@ -9,20 +10,18 @@ namespace PvPer
         {
             if (args.Parameters.Count == 0)
             {
-                HelpCmd(args);
+                args.Player.SendMessage($"请输入 [c/42B2CE:/pvp help] [c/F25E61:共两页]", Color.YellowGreen);
                 return;
             }
-
             switch (args.Parameters[0].ToLower())
             {
                 case "h":
                 case "help":
                 case "菜单":
-                    if (args.Parameters.Count < 2)
-                    {
-                        HelpCmd(args);
-                    }
-                    return; //结束
+                    args.Parameters.RemoveAt(0);
+                    HelpCmd(args);
+                    return;
+
                 case "0":
                 case "add":
                 case "邀请":
@@ -34,27 +33,48 @@ namespace PvPer
                     {
                         InviteCmd(args);
                     }
-                    return; //结束
+                    return;
+
                 case "1":
                 case "yes":
                 case "接受":
                     AcceptCmd(args);
                     return;
+
                 case "2":
                 case "no":
                 case "拒绝":
                     RejectCommand(args);
                     return;
+
                 case "data":
                 case "mark":
                 case "战绩":
                     StatsCommand(args);
                     return;
+
                 case "l":
                 case "list":
                 case "排名":
                     LeaderboardCommand(args);
                     return;
+
+                case "wl":
+                    args.Player.SendMessage($"注意：/pvp.WL 中间有个英文字符[c/F75454:“点”【 . 】]",Color.YellowGreen);
+                    return;
+
+                case "bl":
+                    args.Player.SendMessage($"注意：/pvp.BL 中间有个英文字符[c/F75454:“点”【 . 】]", Color.YellowGreen);
+                    return;
+
+                case "bb":
+                    args.Player.SendMessage($"注意：/pvp.BB 中间有个英文字符[c/F75454:“点”【 . 】]", Color.YellowGreen);
+                    return;
+
+                case "bw":
+                    args.Player.SendMessage($"注意：/pvp.BW 中间有个英文[c/F75454:“点”【 . 】]", Color.YellowGreen);
+                    return;
+
                 case "s":
                 case "set":
                 case "设置":
@@ -106,13 +126,13 @@ namespace PvPer
                         }
                         break;
                     }
+
                 case "r":
                 case "reset":
                 case "重置":
                     if (args.Parameters.Count < 2)
                     {
                         var name = args.Player.Name;
-                        // 权限
                         if (!args.Player.HasPermission("pvper.admin"))
                         {
                             args.Player.SendErrorMessage("你没有重置决斗系统数据表的权限。");
@@ -126,8 +146,8 @@ namespace PvPer
                     }
                     return; //结束
                 default:
-                    HelpCmd(args);
-                    break;
+                    args.Player.SendErrorMessage($"请输入/pvp help [c/F75454:共两页]", Color.YellowGreen);
+                    return;
             }
         }
 
@@ -136,14 +156,50 @@ namespace PvPer
         {
             if (args.Player != null)
             {
-                args.Player.SendMessage("【决斗系统】请参考以下指令菜单：\n " +
-                 "[c/FFFE80:/pvp add 或 /pvp 邀请 玩家名] - [c/7EE874:邀请玩家参加决斗] \n " +
-                 "[c/74D3E8:/pvp yes 或 /pvp 接受] - [c/7EE874:接受决斗] \n " +
-                 "[c/74D3E8:/pvp no 或 /pvp 拒绝] - [c/7EE874:拒绝决斗] \n " +
-                 "[c/74D3E8:/pvp data 或 /pvp 战绩] - [c/7EE874:战绩查询]\n " +
-                 "[c/74D3E8:/pvp list 或 /pvp 排名] - [c/7EE874:排名]\n " +
-                 "[c/FFFE80:/pvp s 或 /pvp 设置 1 2 3 4] - [c/7EE874:1/2玩家位置 3/4竞技场边界]\n " +
-                 "[c/74D3E8:/pvp r 或 /pvp 重置] - [c/7EE874:重置玩家数据库]\n ", Color.GreenYellow);
+                int page = 1;
+                if (args.Parameters.Count > 0)
+                {
+                    if (int.TryParse(args.Parameters[0], out page) && page >= 1)
+                    {
+                        args.Parameters.RemoveAt(0); 
+                    }
+                    else
+                    {
+                        page = 1;
+                    }
+                }
+
+                string helpMessage;
+
+                switch (page)
+                {
+                    case 1:
+                        helpMessage = "———————\n " +
+                                     "《决斗系统》 第1页 （1/2）：\n " +
+                                     "[c/FFFE80:/pvp add 或 /pvp 邀请 玩家名] - [c/7EE874:邀请玩家参加决斗] \n " +
+                                     "[c/74D3E8:/pvp yes 或 /pvp 接受] - [c/7EE874:接受决斗] \n " +
+                                     "[c/74D3E8:/pvp no 或 /pvp 拒绝] - [c/7EE874:拒绝决斗] \n " +
+                                     "[c/74D3E8:/pvp data 或 /pvp 战绩] - [c/7EE874:战绩查询]\n " +
+                                     "[c/74D3E8:/pvp list 或 /pvp 排名] - [c/7EE874:排名]\n " +
+                                     "[c/FFFE80:/pvp s 或 /pvp 设置 1 2 3 4] - [c/7EE874:1/2玩家位置 3/4竞技场边界]";
+                        break;
+
+                    case 2:
+                        helpMessage ="———————\n " +
+                                     "《决斗系统》 第2页 （2/2）：\n " +
+                                     "[c/74D3E8:/pvp.WL ] - [c/7EE874:查看封禁武器表]\n " +
+                                     "[c/74D3E8:/pvp.BL ] - [c/7EE874:查看封禁增益表]\n " +
+                                     "[c/74D3E8:/pvp.BW add|del <武器名> ] - [c/7EE874:封禁指定武器]\n " +
+                                     "[c/74D3E8:/pvp.BB add|del <增益名/ID> ] - [c/7EE874:封禁指定Buff]\n " +
+                                     "[c/74D3E8:/pvp R 或 /pvp 重置] - [c/7EE874:重置玩家数据库]";
+                        break;
+
+                    default:
+                        HelpCmd(args);
+                        return;
+                }
+
+                args.Player.SendMessage(helpMessage, Color.GreenYellow);
             }
         }
 
@@ -168,8 +224,6 @@ namespace PvPer
         {
             return locationType >= 1 && locationType <= 4;
         }
-
-
 
         private static void InviteCmd(CommandArgs args)
         {

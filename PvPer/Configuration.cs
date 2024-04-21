@@ -12,6 +12,10 @@ namespace PvPer
         public string README2 = "/pvp set 3 4 要比玩家传送坐标高或低3格设置";
         [JsonProperty("竞技场边界说明2")]
         public string README3 = "拉取范围：会从玩家冲出竞技场方向,拉回到竞技场中心的指定反向位置（当为负数则是正向位置）,关闭杀死玩家选项后默认开启扣血";
+        [JsonProperty("启用检查")]
+        public bool CheckaAll = true;
+        [JsonProperty("是否检查第7个饰品栏")]
+        public bool Check7 = false;
         [JsonProperty("拉回竞技场")]
         public bool PullArena = true;
         [JsonProperty("拉取范围")]
@@ -20,7 +24,6 @@ namespace PvPer
         public bool KillPlayer = false;
         [JsonProperty("离场扣血")]
         public int SlapPlayer = 20;
-
         [JsonProperty("邀请者传送坐标.X")]
         public int Player1PositionX = 0;
         [JsonProperty("邀请者传送坐标.Y")]
@@ -40,6 +43,14 @@ namespace PvPer
 
         public static readonly string FilePath = Path.Combine(TShock.SavePath + "/决斗系统.json");
 
+        [JsonProperty("禁武器表")]
+        public List<string> WeaponList { get; set; } = new List<string>();
+
+        [JsonProperty("禁BUFF表")]
+        public List<int> BuffList { get; set; } = new List<int>();
+
+
+        #region 配置文件读取创建方法
         public void Write(string path)
         {
             using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
@@ -68,6 +79,7 @@ namespace PvPer
                     return cf!;
                 }
             }
-        }
+        } 
+        #endregion
     }
 }
