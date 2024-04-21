@@ -60,10 +60,10 @@ namespace PvPer
 
         public static bool IsPlayerInArena(TSPlayer player)
         {
-            return player.X  >= PvPer.Config.ArenaPosX1 * 16 &&
-                   player.X  <= PvPer.Config.ArenaPosX2 * 16 &&
-                   player.Y  >= PvPer.Config.ArenaPosY1 * 16 &&
-                   player.Y  <= PvPer.Config.ArenaPosY2 * 16;
+            return player.X >= PvPer.Config.ArenaPosX1 * 16 &&
+                   player.Y >= PvPer.Config.ArenaPosY1 * 16 &&
+                   player.X <= PvPer.Config.ArenaPosX2 * 16 &&
+                   player.Y <= PvPer.Config.ArenaPosY2 * 16;
         }
 
         public static bool IsLocationInArena(int x, int y)

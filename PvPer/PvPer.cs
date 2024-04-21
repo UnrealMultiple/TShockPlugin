@@ -11,16 +11,26 @@ namespace PvPer
     public class PvPer : TerrariaPlugin
     {
         public override string Name => "决斗系统";
-        public override Version Version => new Version(1, 1, 1);
+        public override Version Version => new Version(1, 1, 2);
         public override string Author => "Soofa 羽学修改";
         public override string Description => "不是你死就是我活系列";
         public PvPer(Main game) : base(game)
         {
         }
+
         public static Configuration Config = new Configuration();
         public static DbManager DbManager = new DbManager(new SqliteConnection("Data Source=" + Path.Combine(TShock.SavePath, "决斗系统.sqlite")));
         public static List<Pair> Invitations = new List<Pair>();
         public static List<Pair> ActiveDuels = new List<Pair>();
+
+        #region PVP 检查
+        List<int> illegalMeleePrefixes = new List<int>();
+        List<int> illegalRangedPrefixes = new List<int>();
+        List<int> illegalMagicPrefixes = new List<int>();
+        public List<string> weaponbans;
+        public List<int> buffbans;
+        string path = Path.Combine(TShock.SavePath, "决斗系统.json");
+        #endregion
 
         public override void Initialize()
         {
@@ -33,6 +43,21 @@ namespace PvPer
             ServerApi.Hooks.ServerLeave.Register(this, OnServerLeave);
             GeneralHooks.ReloadEvent += LoadConfig;
             TShockAPI.Commands.ChatCommands.Add(new Command("pvper.use", Commands.Duel, "决斗", "pvp"));
+            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.use", BuffList,"pvp.bl" ));
+            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.use", WeaponList, "pvp.wl"));
+            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.admin", BanWeapon, "pvp.bw" ));
+            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.admin", BanBuff,"pvp.bb" ));
+
+            #region PVP 检查
+            weaponbans = new List<string>(Config.WeaponList);
+            buffbans = new List<int>(Config.BuffList);
+            illegalMeleePrefixes.AddRange(DataIDs.RangedPrefixIDs);
+            illegalMeleePrefixes.AddRange(DataIDs.MagicPrefixIDs);
+            illegalRangedPrefixes.AddRange(DataIDs.MeleePrefixIDs);
+            illegalRangedPrefixes.AddRange(DataIDs.MagicPrefixIDs);
+            illegalMagicPrefixes.AddRange(DataIDs.MeleePrefixIDs);
+            illegalMagicPrefixes.AddRange(DataIDs.RangedPrefixIDs);
+            #endregion
         }
 
         #region 创建与加载配置文件方法
@@ -54,11 +79,11 @@ namespace PvPer
         #endregion
 
         #region Hooks
-
-        public static void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs args)
+        public void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs args)
         {
             TSPlayer plr = TShock.Players[args.PlayerId];
             string name = plr.Name;
+            if (plr == null) return;
 
             if (Utils.IsPlayerInADuel(args.PlayerId) && !Utils.IsPlayerInArena(plr))
             {
@@ -100,6 +125,21 @@ namespace PvPer
 
                     TSPlayer.All.SendMessage($"{name}[c/E84B54:逃离]竞技场! 执行：[C/4284CD:拉回]", Color.Yellow);
                 }
+
+                if (Config.CheckaAll)
+                {
+                    if (plr == null || !plr.TPlayer.hostile || !args.Control.IsUsingItem) return;
+                    if (!plr.HasPermission("pvper.admin"))
+                    {
+                        CheckWeapons(plr);
+                        CheckBuffs(plr);
+                        CheckIllegalPrefixWeapons(plr);
+                        CheckPrefixAmmo(plr);
+                        CheckPrefixArmor(plr);
+                        CheckAccs(plr);
+                        Check7AccsSlot(plr);
+                    }
+                }
             }
         }
 
@@ -129,6 +169,8 @@ namespace PvPer
         }
         #endregion
 
+
+        #region 原插件自带的处罚方式
         public void OnKill(object? sender, GetDataHandlers.KillMeEventArgs args)
         {
             TSPlayer plr = TShock.Players[args.PlayerId];
@@ -187,5 +229,288 @@ namespace PvPer
         }
         #endregion
 
+
+        #region 检查使用的命令
+
+        public void WeaponList(CommandArgs args)
+        {
+            if (args.Player == null)
+                return;
+            string str = "以下武器在PvP中禁止使用： ";
+            int num = 0;
+            foreach (string weapon in weaponbans)
+            {
+                if (num != 0) str += ", ";
+                str += weapon;
+                ++num;
+            }
+            args.Player.SendInfoMessage(str + ".");
+        }
+
+        public void BuffList(CommandArgs args)
+        {
+            if (args.Player == null)
+                return;
+            string str = "以下增益效果在PvP中禁止使用： ";
+            int num = 0;
+            foreach (int buff in buffbans)
+            {
+                if (num != 0) str += ", ";
+                str += TShock.Utils.GetBuffName(buff);
+                ++num;
+            }
+            args.Player.SendInfoMessage(str + ".");
+        }
+
+        public void BanWeapon(CommandArgs args)
+        {
+            if (args.Parameters.Count >= 2 && (args.Parameters[0] == "add" || args.Parameters[0] == "del"))
+            {
+                string input = string.Join(" ", args.Parameters.Skip(1).ToArray());
+                string wname;
+
+                List<string> wlist = new List<string>();
+                List<Item> foundweapons = TShock.Utils.GetItemByName(input);
+
+                foreach (Item item in foundweapons)
+                {
+                    wlist.Add(item.Name);
+                }
+
+                if (wlist.Count < 1)
+                {
+                    args.Player.SendErrorMessage("未找到任何以此名称命名的物品。");
+                    return;
+
+                }
+                if(wlist.Count > 1)
+                {
+                    args.Player.SendMultipleMatchError(wlist);
+                    return;
+                }
+                else
+                {
+                    wname = wlist[0];
+                }
+
+                switch (args.Parameters[0])
+                {
+                    case "add":
+                        weaponbans.Add(wname);
+                        Config.WeaponList.Add(wname); // 添加到配置文件的 WeaponList
+                        args.Player.SendSuccessMessage("已禁止 " + wname + " 在PvP中使用。");
+                        PvPer.Config.Write(Configuration.FilePath);
+                        break;
+
+                    case "del":
+                        weaponbans.Remove(wname);
+                        Config.WeaponList.Remove(wname); // 从配置文件的 WeaponList 移除
+                        args.Player.SendSuccessMessage("已解除对 " +wname+ " 在PvP中的禁用。");
+                        PvPer.Config.Write(Configuration.FilePath);
+                        break;
+                }
+            }
+            else
+            {
+                args.Player.SendErrorMessage("命令格式不正确。 /pvp.bw add|del <武器名>");
+            }
+        }
+
+        public void BanBuff(CommandArgs args)
+        {
+            if (args.Parameters.Count == 2)
+            {
+                int buffid;
+
+                if (!Int32.TryParse(args.Parameters[1], out buffid))
+                {
+                    List<int> blist = new List<int>();
+                    blist = TShock.Utils.GetBuffByName(args.Parameters[2]);
+
+                    if (blist.Count < 1)
+                    {
+                        args.Player.SendErrorMessage("未找到以此名称命名的增益效果。");
+                        return;
+                    }
+                    else if (blist.Count > 1)
+                    {
+                        args.Player.SendMultipleMatchError(blist.Select(p => TShock.Utils.GetBuffName(p)));
+                        return;
+                    }
+                    else
+                    {
+                        buffid = blist[0];
+                    }
+                }
+
+                switch (args.Parameters[0])
+                {
+                    case "add":
+                        buffbans.Add(buffid);
+                        Config.BuffList.Add(buffid); 
+                        args.Player.SendMessage("已禁止 " + TShock.Utils.GetBuffName(buffid) + " 在PvP中使用。",232,74,83);
+                        PvPer.Config.Write(Configuration.FilePath);
+                        break;
+
+                    case "del":
+                        buffbans.Remove(buffid);
+                        Config.BuffList.Remove(buffid);
+                        args.Player.SendMessage("已解除对 " + TShock.Utils.GetBuffName(buffid) + " 在PvP中的禁用。", 238, 232, 76);
+                        PvPer.Config.Write(Configuration.FilePath);
+                        break;
+
+                    default:
+                        args.Player.SendErrorMessage("命令格式不正确。 /pvp.bb add|del <增益名/ID>");
+                        break;
+                }
+            }
+            else
+            {
+                args.Player.SendErrorMessage("命令格式不正确。 /pvp.bb add|del <增益名/ID>");
+            }
+        }
+
+        #endregion
+
+
+        #region 检查需要的反馈
+        public void CheckWeapons(TSPlayer plr)
+        {
+            foreach (string bannedWeapon in weaponbans)
+            {
+                if (plr.ItemInHand.Name == bannedWeapon || plr.SelectedItem.Name == bannedWeapon)
+                {
+                    DisableAndSendErrorMessage(plr, "使用了禁止的PvP武器", bannedWeapon + " 在PvP中无法使用，请查看 /pvp.wl");
+                    break;
+                }
+            }
+        }
+
+        public void CheckBuffs(TSPlayer plr)
+        {
+            foreach (int bannedBuff in buffbans)
+            {
+                foreach (int playerBuff in plr.TPlayer.buffType)
+                {
+                    if (playerBuff == bannedBuff)
+                    {
+                        DisableAndSendErrorMessage(plr, "使用了禁止的增益效果", TShock.Utils.GetBuffName(playerBuff) + " 在PvP中不可使用，请查看 /pvp.bl");
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void CheckIllegalPrefixWeapons(TSPlayer plr)
+        {
+            if (IsStackableAndPrefix(plr.ItemInHand) || IsStackableAndPrefix(plr.SelectedItem))
+            {
+                DisableAndSendErrorMessage(plr, "使用了非法前缀武器", "PvP中不允许使用非法前缀武器");
+            }
+            else if (IsMeleeAndHasIllegalPrefix(plr.ItemInHand, illegalMeleePrefixes.ToArray()) ||
+                     IsMeleeAndHasIllegalPrefix(plr.SelectedItem, illegalMeleePrefixes.ToArray()))
+            {
+                DisableAndSendErrorMessage(plr, "使用了非法前缀武器", "PvP中不允许使用非法前缀武器");
+            }
+            else if (IsRangedAndHasIllegalPrefix(plr.ItemInHand, illegalRangedPrefixes.ToArray()) ||
+                     IsRangedAndHasIllegalPrefix(plr.SelectedItem, illegalRangedPrefixes.ToArray()))
+            {
+                DisableAndSendErrorMessage(plr, "使用了非法前缀武器", "PvP中不允许使用非法前缀武器");
+            }
+            else if (IsMagicOrSummonedAndHasIllegalPrefix(plr.ItemInHand, illegalMagicPrefixes.ToArray()) ||
+                     IsMagicOrSummonedAndHasIllegalPrefix(plr.SelectedItem, illegalMagicPrefixes.ToArray()))
+            {
+                DisableAndSendErrorMessage(plr, "使用了非法前缀武器", "PvP中不允许使用非法前缀武器");
+            }
+        }
+
+        public void CheckPrefixAmmo(TSPlayer plr)
+        {
+            foreach (int ammo in DataIDs.ammoIDs)
+            {
+                foreach (Item inventoryItem in plr.TPlayer.inventory)
+                {
+                    if (inventoryItem.netID == ammo && inventoryItem.prefix != 0)
+                    {
+                        DisableAndSendErrorMessage(plr, "使用了前缀弹药", $"请移除PvP中的前缀弹药：{inventoryItem.Name}");
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void CheckPrefixArmor(TSPlayer plr)
+        {
+            for (int index = 0; index < 3; index++)
+            {
+                if (plr.TPlayer.armor[index].prefix != 0)
+                {
+                    DisableAndSendErrorMessage(plr, "使用了前缀护甲", $"请移除PvP中的前缀护甲：{plr.TPlayer.armor[index].Name}");
+                    break;
+                }
+            }
+        }
+
+        public void CheckAccs(TSPlayer plr)
+        {
+            Dictionary<int, bool> duplicateItems = new Dictionary<int, bool>();
+            foreach (Item equippedItem in plr.TPlayer.armor)
+            {
+                if (duplicateItems.ContainsKey(equippedItem.netID))
+                {
+                    DisableAndSendErrorMessage(plr, "使用了重复饰品", $"请移除PvP中的重复饰品：{equippedItem.Name}");
+                    break;
+                }
+                else if (equippedItem.netID != 0)
+                {
+                    duplicateItems.Add(equippedItem.netID, true);
+                }
+            }
+        }
+
+        public void Check7AccsSlot(TSPlayer plr)
+        {
+            if (Config.Check7 || plr.TPlayer.armor[9].netID != 0)
+            {
+                DisableAndSendErrorMessage(plr, "使用了第七个饰品槽", "PvP中不允许使用第七个饰品槽");
+            }
+        }
+
+        public bool IsStackableAndPrefix(Item item)
+        {
+            return item.maxStack > 1 && item.prefix != 0;
+        }
+
+        public bool IsMeleeAndHasIllegalPrefix(Item item, int[] illegalPrefixes)
+        {
+            return item.melee && HasIllegalPrefix(item, illegalPrefixes);
+        }
+
+        public bool IsRangedAndHasIllegalPrefix(Item item, int[] illegalPrefixes)
+        {
+            return item.ranged && HasIllegalPrefix(item, illegalPrefixes);
+        }
+
+        public bool IsMagicOrSummonedAndHasIllegalPrefix(Item item, int[] illegalPrefixes)
+        {
+            return (item.magic || item.summon || item.DD2Summon) && HasIllegalPrefix(item, illegalPrefixes);
+        }
+
+        public bool HasIllegalPrefix(Item item, int[] illegalPrefixes)
+        {
+            return illegalPrefixes.Contains(item.prefix);
+        }
+
+        public void DisableAndSendErrorMessage(TSPlayer player, string disableReason, string errorMessage)
+        {
+            player.Disable(disableReason, DisableFlags.WriteToLog);
+            player.SendErrorMessage(errorMessage);
+        }
+
+
+        #endregion
+
+
+        #endregion
     }
 }

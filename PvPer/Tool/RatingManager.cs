@@ -1,4 +1,4 @@
-﻿namespace PvPer
+﻿namespace PvPer.Tool
 {
     public static class RatingManager
     {
