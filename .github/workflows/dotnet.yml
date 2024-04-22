@@ -25,7 +25,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Plugins
-          path: out/Debug/${{ matrix.runtimeIdentifier }}
+          path: out/Debug/*${{ matrix.runtimeIdentifier }}
           
       - name: Compress file
         run: |
