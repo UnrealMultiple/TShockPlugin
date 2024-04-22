@@ -19,7 +19,7 @@ jobs:
       - name: Build Plugins
         shell: powershell
         run: |
-          dotnet build **/Plugin.sln
+          dotnet build
 
       - name: Upload binary files for .NET 6.0
         uses: actions/upload-artifact@v3
