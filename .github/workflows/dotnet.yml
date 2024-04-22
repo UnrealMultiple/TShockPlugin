@@ -17,7 +17,6 @@ jobs:
           dotnet-version: 6.0.x
           
       - name: Build Plugins
-        shell: powershell
         run: |
           dotnet build Plugin.sln
 
@@ -25,7 +24,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Plugins
-          path: out/Debug/*${{ matrix.runtimeIdentifier }}
+          path: out/Debug/${{ matrix.runtimeIdentifier }}
           
       - name: Compress file
         run: |
