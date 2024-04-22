@@ -36,8 +36,8 @@ jobs:
       - name: Prepare Artifact
         id: pa
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: 
-          zip -r AutoReset.zip out/Debug/
+        run: |
+          Compress-Archive -Path 'out\Debug\' -DestinationPath  'Plugins_6.0.zip'
       
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -46,4 +46,4 @@ jobs:
           prerelease: false
           tag_name: Pre-Release
           name: Release
-          files: AutoReset.zip
+          files: Plugins_6.0.zip
