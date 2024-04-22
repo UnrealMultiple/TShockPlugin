@@ -1,0 +1,3 @@
+[submodule "yaaiomni"]
+	path = yaaiomni
+	url = https://github.com/sgkoishi/yaaiomni.git
