@@ -78,3 +78,4 @@
 | [ShowArmors](ShowArmors/README.md)                               |          展示装备栏          |              无               |
 | [VeinMiner](VeinMiner/README.md)                                 |           连锁挖矿           |              无               |
 | [PersonalPermission](PersonalPermission/README.md)               |       为玩家单独设置权限      |              无               |
+| [ItemPreserver](ItemPreserver/README.md)                         |        指定物品不消耗         |              无               |
