@@ -104,7 +104,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VeinMiner", "VeinMiner\Vein
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalPermission", "PersonalPermission\PersonalPermission.csproj", "{673A34A5-8C67-4909-885F-BD47AF0F58A4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemPreserver", "..\完善\源码\ItemPreserver\ItemPreserver\ItemPreserver\ItemPreserver.csproj", "{95E40399-76DD-4D08-A9DC-7B1851B58EDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemPreserver", "ItemPreserver\ItemPreserver.csproj", "{403509B6-B74A-4E42-A044-EDC8F31DDF6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -498,14 +498,14 @@ Global
 		{673A34A5-8C67-4909-885F-BD47AF0F58A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{673A34A5-8C67-4909-885F-BD47AF0F58A4}.Release|x64.ActiveCfg = Release|Any CPU
 		{673A34A5-8C67-4909-885F-BD47AF0F58A4}.Release|x64.Build.0 = Release|Any CPU
-		{95E40399-76DD-4D08-A9DC-7B1851B58EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95E40399-76DD-4D08-A9DC-7B1851B58EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95E40399-76DD-4D08-A9DC-7B1851B58EDE}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{95E40399-76DD-4D08-A9DC-7B1851B58EDE}.Debug|x64.Build.0 = Debug|Any CPU
-		{95E40399-76DD-4D08-A9DC-7B1851B58EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95E40399-76DD-4D08-A9DC-7B1851B58EDE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{95E40399-76DD-4D08-A9DC-7B1851B58EDE}.Release|x64.ActiveCfg = Release|Any CPU
-		{95E40399-76DD-4D08-A9DC-7B1851B58EDE}.Release|x64.Build.0 = Release|Any CPU
+		{403509B6-B74A-4E42-A044-EDC8F31DDF6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{403509B6-B74A-4E42-A044-EDC8F31DDF6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{403509B6-B74A-4E42-A044-EDC8F31DDF6D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{403509B6-B74A-4E42-A044-EDC8F31DDF6D}.Debug|x64.Build.0 = Debug|Any CPU
+		{403509B6-B74A-4E42-A044-EDC8F31DDF6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{403509B6-B74A-4E42-A044-EDC8F31DDF6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{403509B6-B74A-4E42-A044-EDC8F31DDF6D}.Release|x64.ActiveCfg = Release|Any CPU
+		{403509B6-B74A-4E42-A044-EDC8F31DDF6D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
