@@ -24,9 +24,11 @@ jobs:
 
       - name: Build and NuGet
         run: |
-          dotnet build Plugin.sln
+          dotnet build
+          dotnet nuget push **/bin/Debug/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
           New-Item -ItemType Directory Artifact
-          Copy-Item **/out/Debug/* Artifact
+          Copy-Item **/bin/Debug/net6.0/* Artifact
+          Copy-Item LICENSE,README.md Artifact
 
       - name: CI Artifact
         uses: actions/upload-artifact@v3
@@ -40,8 +42,8 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           echo "TAG_NAME=$(git rev-list --count HEAD)" >> $env:GITHUB_OUTPUT
-          dotnet build
-          Copy-Item **/out/Debug/* Artifact
+          dotnet build /p:GenerateDocumentationFile=true
+          Copy-Item **/bin/Debug/net6.0/* Artifact
           tar cvf Artifact.tar Artifact
           Compress-Archive -Path Artifact Artifact.zip
 
