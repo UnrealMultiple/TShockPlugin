@@ -2,9 +2,5 @@
 
 	<Import Project="..\template.targets" />
 
-	<ItemGroup>
-	  <ProjectReference Include="..\yaaiomni\Core\Plugin.csproj" />
-	</ItemGroup>
-
 
 </Project>
