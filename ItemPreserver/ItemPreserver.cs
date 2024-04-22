@@ -45,7 +45,7 @@ public class ItemPreserver : TerrariaPlugin
         LoadConfig();
         foreach (var ply in TShock.Players)
         {
-            if (!ItemUse.TryGetValue(ply, out var slot) || slot == null)
+            if (ply != null && (!ItemUse.TryGetValue(ply, out var slot) || slot == null))
             {
                 ItemUse[ply] = new Dictionary<int, Pitem>();
             }

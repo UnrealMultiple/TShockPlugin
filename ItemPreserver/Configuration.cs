@@ -10,9 +10,6 @@ public class Configuration
     [JsonProperty("不消耗物品")]
     public HashSet<int> NoConsumItem { get; set; } = new();
 
-
-
-
     public void Write(string path)
     {
         using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
