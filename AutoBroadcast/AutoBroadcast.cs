@@ -63,6 +63,10 @@ namespace AutoBroadcast
         #region Chat
         public void OnChat(ServerChatEventArgs args)
         {
+            if (TShock.Players[args.Who] == null)
+            {
+                return;
+            }
             string[] Groups = new string[0];
             string[] Messages = new string[0];
             float[] Colour = new float[0];
