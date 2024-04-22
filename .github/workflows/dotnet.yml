@@ -1,60 +1,102 @@
-name: Main
+name: NET
 
-on: [push, pull_request]
-
-defaults:
-  run:
-    shell: pwsh
-
+on:
+  push:
+    branches: [ "master" ]
+    
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  Build:
+    runs-on: windows-latest
+    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          submodules: 'recursive'
+      - uses: actions/checkout@v4
 
-      - name: Setup dotnet
+      - name: Install .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.100'
-
-      - name: Build and NuGet
+          dotnet-version: 6.0.x
+          
+      - name: Build Plugins
+        shell: powershell
         run: |
-          dotnet build
-          dotnet nuget push **/bin/Debug/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-          New-Item -ItemType Directory Artifact
-          Copy-Item **/bin/Debug/net6.0/* Artifact
-          Copy-Item LICENSE,README.md Artifact
+          dotnet build Plugin.sln
 
-      - name: CI Artifact
+      - name: Upload binary files for .NET 6.0
         uses: actions/upload-artifact@v3
         with:
-          name: Plugin
-          path: |
-            Artifact
-
-      - name: Prepare Release
-        id: setenvo
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+          name: Plugins
+          path: out/Debug/*${{ matrix.runtimeIdentifier }}
+          
+      - name: Compress file
         run: |
-          echo "TAG_NAME=$(git rev-list --count HEAD)" >> $env:GITHUB_OUTPUT
-          dotnet build /p:GenerateDocumentationFile=true
-          Copy-Item **/bin/Debug/net6.0/* Artifact
-          tar cvf Artifact.tar Artifact
-          Compress-Archive -Path Artifact Artifact.zip
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+          Compress-Archive -Path 'out\Debug\' -DestinationPath  'Plugins_6.0.zip'
+          
+      - name: Prepare release files
+        uses: actions/upload-artifact@v3
         with:
-          prerelease: true
-          tag_name: v${{ steps.setenvo.outputs.TAG_NAME }}
-          target_commitish: ${{ github.sha }}
-          name: Release v${{ steps.setenvo.outputs.TAG_NAME }}
-          files: |
-            Artifact.tar
-            Artifact.zip
+          name: Plugins_all
+          path: Plugins_6.0.zip
+          
+  OfficialRelease:
+    name: Official Release
+    runs-on: ubuntu-latest
+    needs: Build
+    permissions:
+         contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Build Changelog
+        id: external_changelog_second
+        uses: mikepenz/release-changelog-builder-action@v4
+        with:
+          configuration: "Config/Config_Rep.json"
+            #cache: ${{ steps.external_changelog_collect.outputs.cache }}
+      - name: Echo External Repo Configuration Changelog
+        env:
+          CHANGELOG: ${{ steps.external_changelog_second.outputs.changelog }}
+          CHANGELOG_SECOND: ${{ steps.external_changelog_second.outputs.changelog }}
+        run: |
+          echo ${{ steps.external_changelog_collect.outputs.cache }}
+          echo "First:"
+          echo "$CHANGELOG"
+
+          echo "Second:"
+          echo "$CHANGELOG_SECOND"
+          
+      - name: Update Official Tag
+        run: |
+          git tag -f V1.0.0.0
+          git push -f origin V1.0.0.0
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: Plugins_all
+          path: ./bin
+      - name: Update Official Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: V1.0.0.0
+          name: "Official Version"
+          body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release.\n${{steps.external_changelog_second.outputs.changelog}}"
+          artifacts: |
+            ./bin/*
+          allowUpdates: true
+          removeArtifacts: true
+          
+      
+         
+  ClearTempArtifacts:
+    name: Clear Temp Artifacts
+    if: always()
+    runs-on: ubuntu-latest
+    needs:
+      - OfficialRelease
+    permissions:
+      actions: write
+    steps:
+      - uses: geekyeggo/delete-artifact@v2
+        with:
+          name: |
+            Plugins_all
