@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <NoWarn>$(NoWarn);CS1591;MSB3270</NoWarn>
+    <AssemblyName>Chireiden.TShock.Omni.Misc</AssemblyName>
+    <RootNamespace>Chireiden.TShock.Omni</RootNamespace>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Chireiden</Authors>
+    <Description>Yet another misc plugin for TShock - the miscellaneous part</Description>
+    <PackageProjectUrl>https://github.com/sgkoishi/yaaiomni</PackageProjectUrl>
+    <AssemblyTitle>$(PackageProjectUrl)</AssemblyTitle>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageType>TShockPlugin</PackageType>
+    <Copyright>Copyright (c) Chireiden 2023</Copyright>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <!-- https://github.com/Pryaxis/TShock/issues/2895 -->
+    <!-- <GenerateDocumentationFile>true</GenerateDocumentationFile> -->
+    <EmbedAllSources>true</EmbedAllSources>
+    <PrivateRepositoryUrl>https://github.com/sgkoishi/yaaiomni</PrivateRepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../Core/LanguagePolyfill.cs" />
+    <None Include="..\README.md" Link="README.md">
+      <PackagePath>\</PackagePath>
+      <Pack>true</Pack>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TShock" Version="5.2.0">
+      <ExcludeAssets>ContentFiles</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <Target Name="githash" BeforeTargets="PreBuildEvent">
+    <Exec Command="git rev-list --count HEAD" ContinueOnError="true" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="CommitVersionValue" />
+    </Exec>
+    <Exec Command="git log -1 --pretty=&quot;format:%25H&quot;" ContinueOnError="true" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="CommitHashValue" />
+    </Exec>
+
+    <PropertyGroup>
+      <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+      <PackageVersion>0.0.$(CommitVersionValue)-ci</PackageVersion>
+      <Version>0.0.$(CommitVersionValue)</Version>
+      <RepositoryCommit>$(CommitHashValue)</RepositoryCommit>
+    </PropertyGroup>
+    <ItemGroup>
+      <AssemblyAttribute Include="Chireiden.CommitHashAttribute">
+        <_Parameter1>$(CommitHashValue)</_Parameter1>
+      </AssemblyAttribute>
+    </ItemGroup>
+  </Target>
+
+</Project>
