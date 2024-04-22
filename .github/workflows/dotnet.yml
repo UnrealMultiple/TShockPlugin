@@ -39,11 +39,7 @@ jobs:
         run: |
           Compress-Archive -Path 'out\Debug\' -DestinationPath  'Plugins_6.0.zip'
 
-      - name: Download Artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: Plugins_all
-          path: ./bin
+      
       - name: Release
         uses: ncipollo/release-action@v1
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -51,7 +47,6 @@ jobs:
           tag: V1.0.0.0
           name: "Official Version"
           body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release.\n${{steps.external_changelog_second.outputs.changelog}}"
-          artifacts: |
-            ./bin/*
+          artifacts: Plugins_6.0.zip
           allowUpdates: true
           removeArtifacts: true
