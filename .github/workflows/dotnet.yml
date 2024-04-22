@@ -40,10 +40,13 @@ jobs:
           Compress-Archive -Path 'out\Debug\' -DestinationPath  'Plugins_6.0.zip'
       
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: ncipollo/release-action@v1
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         with:
-          prerelease: false
-          tag_name: Pre-Release
-          name: Release
-          files: Plugins_6.0.zip
+          tag: V1.0.0.0
+          name: "Official Version"
+          body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release.\n${{steps.external_changelog_second.outputs.changelog}}"
+          artifacts: |
+            ./bin/*
+          allowUpdates: true
+          removeArtifacts: true
