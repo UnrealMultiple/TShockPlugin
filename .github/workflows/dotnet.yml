@@ -1,102 +1,49 @@
-name: NET
+name: Build
 
-on:
+# Controls when the workflow will run
+on: 
   push:
-    branches: [ "master" ]
-    
+  pull_request:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  Build:
-    runs-on: windows-latest
-    
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 6.0.x
-          
-      - name: Build Plugins
-        shell: powershell
-        run: |
-          dotnet build Plugin.sln
-
-      - name: Upload binary files for .NET 6.0
-        uses: actions/upload-artifact@v3
-        with:
-          name: Plugins
-          path: out/Debug/*${{ matrix.runtimeIdentifier }}
-          
-      - name: Compress file
-        run: |
-          Compress-Archive -Path 'out\Debug\' -DestinationPath  'Plugins_6.0.zip'
-          
-      - name: Prepare release files
-        uses: actions/upload-artifact@v3
-        with:
-          name: Plugins_all
-          path: Plugins_6.0.zip
-          
-  OfficialRelease:
-    name: Official Release
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    needs: Build
-    permissions:
-         contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Build Changelog
-        id: external_changelog_second
-        uses: mikepenz/release-changelog-builder-action@v4
-        with:
-          configuration: "Config/Config_Rep.json"
-            #cache: ${{ steps.external_changelog_collect.outputs.cache }}
-      - name: Echo External Repo Configuration Changelog
-        env:
-          CHANGELOG: ${{ steps.external_changelog_second.outputs.changelog }}
-          CHANGELOG_SECOND: ${{ steps.external_changelog_second.outputs.changelog }}
-        run: |
-          echo ${{ steps.external_changelog_collect.outputs.cache }}
-          echo "First:"
-          echo "$CHANGELOG"
 
-          echo "Second:"
-          echo "$CHANGELOG_SECOND"
-          
-      - name: Update Official Tag
-        run: |
-          git tag -f V1.0.0.0
-          git push -f origin V1.0.0.0
-      - name: Download Artifacts
-        uses: actions/download-artifact@v3
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
         with:
-          name: Plugins_all
-          path: ./bin
-      - name: Update Official Release
-        uses: ncipollo/release-action@v1
+          dotnet-version: '6.0.100'
+
+      - name: Build the solution
+        run: dotnet build -c Release
+             
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
-          tag: V1.0.0.0
-          name: "Official Version"
-          body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release.\n${{steps.external_changelog_second.outputs.changelog}}"
-          artifacts: |
-            ./bin/*
-          allowUpdates: true
-          removeArtifacts: true
-          
+          name: AutoReset
+          path: out/Debug/
+        
+      - name: Prepare Artifact
+        id: pa
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: 
+          zip -r AutoReset.zip out/Debug/
       
-         
-  ClearTempArtifacts:
-    name: Clear Temp Artifacts
-    if: always()
-    runs-on: ubuntu-latest
-    needs:
-      - OfficialRelease
-    permissions:
-      actions: write
-    steps:
-      - uses: geekyeggo/delete-artifact@v2
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         with:
-          name: |
-            Plugins_all
+          prerelease: false
+          tag_name: Pre-Release
+          name: Release
+          files: AutoReset.zip
