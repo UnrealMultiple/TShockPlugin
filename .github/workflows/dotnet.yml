@@ -38,7 +38,12 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           Compress-Archive -Path 'out\Debug\' -DestinationPath  'Plugins_6.0.zip'
-      
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: Plugins_all
+          path: ./bin
       - name: Release
         uses: ncipollo/release-action@v1
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
