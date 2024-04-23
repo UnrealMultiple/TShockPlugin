@@ -45,12 +45,12 @@ public class ItemPreserver : TerrariaPlugin
         LoadConfig();
         foreach (var ply in TShock.Players)
         {
-            if (ply != null && (!ItemUse.TryGetValue(ply, out var slot) || slot == null))
-            {
-                ItemUse[ply] = new Dictionary<int, Pitem>();
-            }
             if (ply != null && ply.Active)
             {
+                if ((!ItemUse.TryGetValue(ply, out var slot) || slot == null))
+                {
+                    ItemUse[ply] = new Dictionary<int, Pitem>();
+                }
                 for (int i = 0; i < ply.TPlayer.inventory.Length; i++)
                 {
                     ItemUse[ply][i] = new(ply.TPlayer.inventory[i].netID, ply.TPlayer.inventory[i].stack);

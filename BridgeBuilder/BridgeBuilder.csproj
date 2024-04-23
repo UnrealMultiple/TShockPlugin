@@ -2,5 +2,4 @@
 
 	<Import Project="..\template.targets" />
 
-
 </Project>
