@@ -34,6 +34,7 @@
 | [Economics.Deal](Economics.RPG/README.md)                        |           交易插件           |         EconomicsAPI          |
 | [Economics.Shop](Economics.Shop/README.md)                       |           商店插件           | EconomicsAPI<br>Economics.RPG |
 | [Economics.Skill](Economics.Skill/README.md)                     |       技能插件(未完成)       | EconomicsAPI<br>Economics.RPG |
+| [Economics.Regain](Economics.Regain/README.md)                   |           物品回收           |         EconomicsAPI          |
 | [CreateSpawn](CreateSpawn/README.md)                             |        出生点建筑生成        |              无               |
 | [AutoBroadcast](AutoBroadcast/README.md)                         |           自动广播           |              无               |
 | [AutoTeam](AutoTeam/README.md)                                   |           自动队伍           |              无               |
@@ -63,7 +64,7 @@
 | [DataSync](DataSync/README.md)                                   |           进度同步           |              无               |
 | [ProgressRestrict](ProgressRestrict/README.md)                   |          超进度检测          |           DataSync            |
 | [PacketsStop](PacketsStop/README.md)                             |          数据包拦截          |              无               |
-| [DeathDrop](DeathDrop/README.md)                                 | 怪物死亡随机和自定义掉落物品  |              无               |
+| [DeathDrop](DeathDrop/README.md)                                 | 怪物死亡随机和自定义掉落物品 |              无               |
 | [DTEntryBlock](DTEntryBlock/README.md)                           |      阻止进入地牢或神庙      |              无               |
 | [PerPlayerLoot](PerPlayerLoot/README.md)                         |      玩家战利品单独箱子      |              无               |
 | [PvPer](PvPer/README.md)                                         |           决斗系统           |              无               |
@@ -77,5 +78,5 @@
 | [EssentialsPlus](EssentialsPlus/README.md)                       |         更多管理指令         |              无               |
 | [ShowArmors](ShowArmors/README.md)                               |          展示装备栏          |              无               |
 | [VeinMiner](VeinMiner/README.md)                                 |           连锁挖矿           |              无               |
-| [PersonalPermission](PersonalPermission/README.md)               |       为玩家单独设置权限      |              无               |
-| [ItemPreserver](ItemPreserver/README.md)                         |        指定物品不消耗         |              无               |
+| [PersonalPermission](PersonalPermission/README.md)               |      为玩家单独设置权限      |              无               |
+| [ItemPreserver](ItemPreserver/README.md)                         |        指定物品不消耗        |              无               |

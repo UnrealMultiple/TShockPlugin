@@ -62,7 +62,19 @@ public class RegainPlugin : TerrariaPlugin
                     break;
                 }
             case 1:
-                { 
+                {
+                    if (args.Parameters[0].ToLower() == "list")
+                    {
+                        if (Config.Regains.Count > 0)
+                            args.Player.SendSuccessMessage("回收物品表:");
+                        foreach (var info in Config.Regains)
+                        {
+                            var item = TShock.Utils.GetItemById(info.ID);
+                            if(item != null)
+                                args.Player.SendSuccessMessage($"[i:{info.ID}] {item.Name} 价格:{info.Cost}");
+                        }
+                        return;
+                    }
                     if (!int.TryParse(args.Parameters[0], out var count) && count > 0)
                     {
                         args.Player.SendErrorMessage($"值{args.Parameters[0]}无效!");
@@ -77,6 +89,7 @@ public class RegainPlugin : TerrariaPlugin
                 args.Player.SendInfoMessage("/regain语法");
                 args.Player.SendInfoMessage("/regain");
                 args.Player.SendInfoMessage("/regain [数量]");
+                args.Player.SendInfoMessage("/regain list");
                 break;
                
         }
