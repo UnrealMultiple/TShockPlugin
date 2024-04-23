@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using MySqlX.XDevAPI.Relational;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -12,13 +13,13 @@ public class RainbowChat : TerrariaPlugin
 {
     public override string Name => "【五彩斑斓聊天】 Rainbow Chat";
 
-    public override string Author => "Professor X制作,nnt升级/汉化,肝帝熙恩、羽学更新1449";
+    public override string Author => "Professor 修改：熙恩 羽学";
 
     public override string Description => "使玩家每次说话的颜色不一样.";
 
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
 
-    public RainbowChat(Main game): base(game)
+    public RainbowChat(Main game) : base(game)
     {
     }
 
@@ -35,6 +36,8 @@ public class RainbowChat : TerrariaPlugin
         GeneralHooks.ReloadEvent += LoadConfig;
         ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
         ServerApi.Hooks.ServerChat.Register(this, OnChat);
+        ServerApi.Hooks.ServerLeave.Register(this, OnServerLeave);
+        ServerApi.Hooks.ServerJoin.Register(this, OnServerJoin);
     }
 
     protected override void Dispose(bool disposing)
@@ -44,6 +47,8 @@ public class RainbowChat : TerrariaPlugin
             // 注销事件
             ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
             ServerApi.Hooks.ServerChat.Deregister(this, OnChat);
+            ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
+            ServerApi.Hooks.ServerJoin.Deregister(this, OnServerJoin);
         }
 
         // 调用基类的Dispose方法
@@ -68,12 +73,54 @@ public class RainbowChat : TerrariaPlugin
     }
     #endregion
 
+    //自动为加入服务器的玩家开启渐变聊天
+    private void OnServerJoin(JoinEventArgs args)
+    {
+        if (args == null || TShock.Players[args.Who] == null)
+        {
+            return;
+        }
+
+        TSPlayer player = TShock.Players[args.Who];
+
+        if (!player.mute && player.HasPermission(Permissions.canchat))
+        {
+            if (Config.Enable)
+            {
+
+                _Gradient[player.Index] = true;
+                player.SendSuccessMessage("您的渐变聊天功能已自动开启.");
+
+            }
+        }
+    }
+
+    //退出服务器的玩家关闭渐变与随机聊天
+    private void OnServerLeave(LeaveEventArgs args)
+    {
+        if (args == null || TShock.Players[args.Who] == null)
+        {
+            return;
+        }
+
+        TSPlayer player = TShock.Players[args.Who];
+
+        if (!player.mute && player.HasPermission(Permissions.canchat))
+        {
+
+            _Gradient[player.Index] = false;
+            _rainbowChat[player.Index] = false;
+
+        }
+    }
+
+
     private void OnChat(ServerChatEventArgs e)
     {
         var gradientStartColor = Config.GradientStartColor;
         var gradientEndColor = Config.GradientEndColor;
 
-        if (e.Handled ) { return; }
+        if (e.Handled) { return; }
         if ((e.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) || e.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier))) { return; }
 
         TSPlayer player = TShock.Players[e.Who];
@@ -100,7 +147,11 @@ public class RainbowChat : TerrariaPlugin
 
         if (e.Parameters.Count == 0)
         {
-            player.SendSuccessMessage(string.Format("可用命令：/rc 随机 或 /rc 渐变"));
+            player.SendSuccessMessage(string.Format("<彩虹聊天>,可用子命令：" +
+                                "\n/rc 随机 - 开启随机单色整句（不能和渐变同开）" +
+                                "\n/rc 渐变 - 开启随机整句花色（与随机色相对）" +
+                                "\n/rc 渐变 开始 R,G,B - 设置渐变聊天起始颜色" +
+                                "\n/rc 渐变 结束 R,G,B - 设置渐变聊天结束颜色", Color.Yellow));
             return;
         }
 
@@ -114,10 +165,66 @@ public class RainbowChat : TerrariaPlugin
                 break;
             case "gradient":
             case "渐变":
-                GradientChat(e);
+                if (e.Parameters.Count >= 3)
+                {
+                    string mode = e.Parameters[1].ToLower();
+
+                    if (mode == "开始" || mode == "begin")
+                    {
+                        if (e.Parameters.Count >= 3)
+                        {
+                            string[] colorComponents = e.Parameters[2].Split(',');
+                            if (colorComponents.Length == 3 && byte.TryParse(colorComponents[0], out byte r) && byte.TryParse(colorComponents[1], out byte g) && byte.TryParse(colorComponents[2], out byte b))
+                            {
+                                Config.GradientStartColor = new Color(r, g, b);
+                                player.SendSuccessMessage($"渐变开始颜色已设置为 R:{r}, G:{g}, B:{b}");
+                            }
+                            else
+                            {
+                                player.SendErrorMessage("无效的起始颜色值。请使用格式如 'R,G,B'（逗号分隔）的颜色表示法。");
+                            }
+                        }
+                        else
+                        {
+                            player.SendErrorMessage("起始颜色值缺失。请使用如 '/rc 渐变 开始 255,0,0' 的格式。");
+                        }
+                    }
+                    else if (mode == "结束" || mode == "end")
+                    {
+                        if (e.Parameters.Count >= 3)
+                        {
+                            string[] colorComponents = e.Parameters[2].Split(',');
+                            if (colorComponents.Length == 3 && byte.TryParse(colorComponents[0], out byte r) && byte.TryParse(colorComponents[1], out byte g) && byte.TryParse(colorComponents[2], out byte b))
+                            {
+                                Config.GradientEndColor = new Color(r, g, b);
+                                player.SendSuccessMessage($"渐变结束颜色已设置为 R:{r}, G:{g}, B:{b}");
+                            }
+                            else
+                            {
+                                player.SendErrorMessage("无效的结束颜色值。请使用格式如 'R,G,B'（逗号分隔）的颜色表示法。");
+                            }
+                        }
+                        else
+                        {
+                            player.SendErrorMessage("结束颜色值缺失。请使用如 '/rc 渐变 结束 0,255,0' 的格式。");
+                        }
+                    }
+                    else
+                    {
+                        GradientChat(e);
+                    }
+                }
+                else
+                {
+                    GradientChat(e);
+                }
                 break;
             default:
-                player.SendErrorMessage("无效的子命令,可用子命令：/rc 随机 或 /rc 渐变.");
+                player.SendMessage("<彩虹聊天>,可用子命令：" +
+                                "\n/rc 随机 - 开启随机单色整句（不能和渐变同开）" +
+                                "\n/rc 渐变 - 开启随机整句花色（与随机色相对）" +
+                                "\n/rc 渐变 开始 R,G,B - 设置渐变聊天起始颜色" +
+                                "\n/rc 渐变 结束 R,G,B - 设置渐变聊天结束颜色", Color.Yellow);
                 return;
         }
     }

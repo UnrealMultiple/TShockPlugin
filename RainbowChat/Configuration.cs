@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System.Text;
 using TShockAPI;
 using System.Globalization;
+using Newtonsoft.Json.Linq;
 
 namespace RainbowChat
 {
@@ -11,27 +12,28 @@ namespace RainbowChat
         // 配置文件存放路径
         public static readonly string FilePath = Path.Combine(TShock.SavePath, "RainbowChat.json");
 
-        [JsonProperty("渐变开始颜色")]
-        private string? _gradientStartColorHex = "#615EF2";
+        [JsonProperty("使用说明")]
+        public string Text = "权限名（rainbowchat.use） /rc 渐变 用指令修改的颜色不会写进配置文件，这里改的是全体默认渐变色，开启【随机色】渐变会默认失效";
 
-        [JsonProperty("渐变结束颜色")]
-        private string? _gradientEndColorHex = "#D6C053";
+        [JsonProperty("进服自动开启渐变色")]
+        public bool Enable = false;
 
         [JsonProperty("修改渐变开始颜色")]
-        public Microsoft.Xna.Framework.Color GradientStartColor
-        {
-            get => HexToXnaColor(_gradientStartColorHex!);
-            set => _gradientStartColorHex = XnaColorToHex(value);
-        }
+        [JsonConverter(typeof(ColorJsonConverter))]
+        public Microsoft.Xna.Framework.Color GradientStartColor { get; set; }
 
         [JsonProperty("修改渐变结束颜色")]
-        public Microsoft.Xna.Framework.Color GradientEndColor
+        [JsonConverter(typeof(ColorJsonConverter))]
+        public Microsoft.Xna.Framework.Color GradientEndColor { get; set; }
+
+        //赋个默认值 避免色盲不会调色
+        public Configuration()
         {
-            get => HexToXnaColor(_gradientEndColorHex!);
-            set => _gradientEndColorHex = XnaColorToHex(value);
+            GradientStartColor = new Microsoft.Xna.Framework.Color(r: 166, g: 213, b: 234); 
+            GradientEndColor = new Microsoft.Xna.Framework.Color(r: 245, g: 247, b: 175); 
         }
 
-        #region 色彩转换辅助方法
+        #region 色彩辅助方法
 
         // 将十六进制颜色字符串转换为Microsoft.Xna.Framework.Color
         private static Microsoft.Xna.Framework.Color HexToXnaColor(string hexColor)
@@ -39,32 +41,24 @@ namespace RainbowChat
             if (hexColor.StartsWith("#"))
                 hexColor = hexColor.Substring(1);
 
-            byte r, g, b, a;
+            byte r, g, b;
             switch (hexColor.Length)
             {
                 case 6:
                     r = byte.Parse(hexColor.Substring(0, 2), NumberStyles.HexNumber);
                     g = byte.Parse(hexColor.Substring(2, 2), NumberStyles.HexNumber);
                     b = byte.Parse(hexColor.Substring(4, 2), NumberStyles.HexNumber);
-                    a = 255; // 默认全透明
                     break;
                 case 8:
                     r = byte.Parse(hexColor.Substring(0, 2), NumberStyles.HexNumber);
                     g = byte.Parse(hexColor.Substring(2, 2), NumberStyles.HexNumber);
                     b = byte.Parse(hexColor.Substring(4, 2), NumberStyles.HexNumber);
-                    a = byte.Parse(hexColor.Substring(6, 2), NumberStyles.HexNumber);
                     break;
                 default:
-                    throw new ArgumentException("Invalid hexadecimal color string.");
+                    throw new ArgumentException("无效的十六进制颜色字符串。");
             }
 
-            return new Microsoft.Xna.Framework.Color(r, g, b, a);
-        }
-
-        // 将Microsoft.Xna.Framework.Color转换为十六进制颜色字符串
-        private static string XnaColorToHex(Microsoft.Xna.Framework.Color xnaColor)
-        {
-            return $"#{xnaColor.PackedValue.ToString("X8").Substring(2)}";
+            return new Microsoft.Xna.Framework.Color(r, g, b);
         }
         #endregion
 
@@ -101,6 +95,36 @@ namespace RainbowChat
                 }
             }
         }
+        #endregion
+
+
+        #region 用于反序列化的JsonConverter 使Config看得简洁
+
+        internal class ColorJsonConverter : JsonConverter<Color>
+        {
+            public override void WriteJson(JsonWriter writer, Color value, JsonSerializer serializer)
+            {
+                JObject colorObject = new JObject
+                {
+                    ["R"] = value.R,
+                    ["G"] = value.G,
+                    ["B"] = value.B,
+                };
+
+                colorObject.WriteTo(writer);
+            }
+
+            public override Color ReadJson(JsonReader reader, Type objectType, Color existingValue, bool hasExistingValue, JsonSerializer serializer)
+            {
+                JObject colorObject = JObject.Load(reader);
+
+                byte r = colorObject["R"].Value<byte>();
+                byte g = colorObject["G"].Value<byte>();
+                byte b = colorObject["B"].Value<byte>();
+
+                return new Color(r, g, b);
+            }
+        } 
         #endregion
     }
 }
