@@ -58,6 +58,8 @@ public class RegainPlugin : TerrariaPlugin
                 { 
                     var num = args.Player.SelectedItem.stack * regain.Cost;
                     EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num);
+                    args.Player.SelectedItem.stack = 0;
+                    args.Player.SendData(PacketTypes.PlayerSlot, "", args.Player.Index, args.Player.TPlayer.selectedItem);
                     args.Player.SendSuccessMessage($"成功兑换{num}个{EconomicsAPI.Economics.Setting.CurrencyName}!");
                     break;
                 }
@@ -80,9 +82,11 @@ public class RegainPlugin : TerrariaPlugin
                         args.Player.SendErrorMessage($"值{args.Parameters[0]}无效!");
                         return;
                     }
-                    var num = count > args.Player.SelectedItem.stack ?  args.Player.SelectedItem.stack * regain.Cost : count* regain.Cost;
-                    EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num);
-                    args.Player.SendSuccessMessage($"成功兑换{num}个{EconomicsAPI.Economics.Setting.CurrencyName}!");
+                    count = count > args.Player.SelectedItem.stack ? args.Player.SelectedItem.stack : count;
+                    EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, count * regain.Cost);
+                    args.Player.SelectedItem.stack -= count;
+                    args.Player.SendData(PacketTypes.PlayerSlot, "", args.Player.Index, args.Player.TPlayer.selectedItem);
+                    args.Player.SendSuccessMessage($"成功兑换{count * regain.Cost}个{EconomicsAPI.Economics.Setting.CurrencyName}!");
                     break;
                 }
             default:
