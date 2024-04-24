@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\template.targets" />
+
+	<ItemGroup>
+	  <Reference Include="Chireiden.TShock.Omni">
+	    <HintPath>..\lib\Chireiden.TShock.Omni.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+</Project>
