@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using MiniGamesAPI;
+using Newtonsoft.Json;
 using TShockAPI;
-using MiniGamesAPI;
 
 
 //命名空间，想其他项目调用这个项目必须统一命名空间
@@ -38,7 +38,7 @@ namespace MainPlugin
                 }
                 else
                 {
-                    File.WriteAllText(roomsPath, JsonConvert.SerializeObject((object)rooms, (Formatting)1));
+                    File.WriteAllText(roomsPath, JsonConvert.SerializeObject(rooms, (Formatting)1));
                 }
                 if (File.Exists(evaluatePath))
                 {
@@ -46,7 +46,7 @@ namespace MainPlugin
                 }
                 else
                 {
-                    File.WriteAllText(evaluatePath, JsonConvert.SerializeObject((object)evaluatePack, (Formatting)1));
+                    File.WriteAllText(evaluatePath, JsonConvert.SerializeObject(evaluatePack, (Formatting)1));
                 }
                 if (File.Exists(defaultPath))
                 {
@@ -54,7 +54,7 @@ namespace MainPlugin
                 }
                 else
                 {
-                    File.WriteAllText(defaultPath, JsonConvert.SerializeObject((object)defaultPack, (Formatting)1));
+                    File.WriteAllText(defaultPath, JsonConvert.SerializeObject(defaultPack, (Formatting)1));
                 }
                 if (File.Exists(configPath))
                 {
@@ -62,58 +62,58 @@ namespace MainPlugin
                 }
                 else
                 {
-                    File.WriteAllText(configPath, JsonConvert.SerializeObject((object)config, (Formatting)1));
+                    File.WriteAllText(configPath, JsonConvert.SerializeObject(config, (Formatting)1));
                 }
             }
             else
             {
                 Directory.CreateDirectory(configDir);
-                File.WriteAllText(roomsPath, JsonConvert.SerializeObject((object)rooms, (Formatting)1));
-                File.WriteAllText(evaluatePath, JsonConvert.SerializeObject((object)evaluatePack, (Formatting)1));
-                File.WriteAllText(defaultPath, JsonConvert.SerializeObject((object)defaultPack, (Formatting)1));
-                File.WriteAllText(configPath, JsonConvert.SerializeObject((object)config, (Formatting)1));
+                File.WriteAllText(roomsPath, JsonConvert.SerializeObject(rooms, (Formatting)1));
+                File.WriteAllText(evaluatePath, JsonConvert.SerializeObject(evaluatePack, (Formatting)1));
+                File.WriteAllText(defaultPath, JsonConvert.SerializeObject(defaultPack, (Formatting)1));
+                File.WriteAllText(configPath, JsonConvert.SerializeObject(config, (Formatting)1));
             }
         }
 
         public static void UpdateRooms(int id)
         {
             List<BuildRoom> list = JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath));
-            int index = list.FindIndex((BuildRoom r) => ((MiniRoom)r).ID == id);
-            list[index] = rooms.Find((BuildRoom r) => ((MiniRoom)r).ID == id);
-            File.WriteAllText(roomsPath, JsonConvert.SerializeObject((object)rooms, (Formatting)1));
+            int index = list.FindIndex((BuildRoom r) => r.ID == id);
+            list[index] = rooms.Find((BuildRoom r) => r.ID == id);
+            File.WriteAllText(roomsPath, JsonConvert.SerializeObject(rooms, (Formatting)1));
         }
 
         public static void AddRoom(BuildRoom room)
         {
             JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath)).Add(room);
-            File.WriteAllText(roomsPath, JsonConvert.SerializeObject((object)rooms, (Formatting)1));
+            File.WriteAllText(roomsPath, JsonConvert.SerializeObject(rooms, (Formatting)1));
         }
 
         public static void RemoveRoom(int id)
         {
-            JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath)).RemoveAll((BuildRoom r) => ((MiniRoom)r).ID == id);
-            File.WriteAllText(roomsPath, JsonConvert.SerializeObject((object)rooms, (Formatting)1));
+            JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath)).RemoveAll((BuildRoom r) => r.ID == id);
+            File.WriteAllText(roomsPath, JsonConvert.SerializeObject(rooms, (Formatting)1));
         }
 
         public static BuildRoom GetRoomByID(int id)
         {
-            return rooms.Find((BuildRoom r) => ((MiniRoom)r).ID == id);
+            return rooms.Find((BuildRoom r) => r.ID == id);
         }
 
         public static BuildRoom GetRoomByIDFromLocal(int id)
         {
-            return JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath)).Find((BuildRoom r) => ((MiniRoom)r).ID == id);
+            return JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath)).Find((BuildRoom r) => r.ID == id);
         }
 
         public static BuildPlayer GetPlayerByName(string name)
         {
-            return players.Find((BuildPlayer p) => ((MiniPlayer)p).Name == name);
+            return players.Find((BuildPlayer p) => p.Name == name);
         }
 
         public static void UpdatePack()
         {
-            File.WriteAllText(defaultPath, JsonConvert.SerializeObject((object)defaultPack, (Formatting)1));
-            File.WriteAllText(evaluatePath, JsonConvert.SerializeObject((object)evaluatePack, (Formatting)1));
+            File.WriteAllText(defaultPath, JsonConvert.SerializeObject(defaultPack, (Formatting)1));
+            File.WriteAllText(evaluatePath, JsonConvert.SerializeObject(evaluatePack, (Formatting)1));
         }
 
         public static void ReloadConfig()

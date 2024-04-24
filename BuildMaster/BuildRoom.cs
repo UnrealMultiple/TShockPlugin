@@ -1,12 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+using MiniGamesAPI;
 using Newtonsoft.Json;
 using System.Text;
 using System.Timers;
 using Terraria;
-using Terraria.ID;
 using Terraria.Utilities;
 using TShockAPI;
-using MiniGamesAPI;
 using static MiniGamesAPI.Enum;
 
 namespace MainPlugin
@@ -76,12 +75,12 @@ namespace MainPlugin
             {
                 Conclude();
             }
-            if ((int)((MiniRoom)this).Status != 2)
+            if ((int)this.Status != 2)
             {
                 return;
             }
             ShowRoomMemberInfo();
-            if (((MiniRoom)this).GamingTime == 0)
+            if (this.GamingTime == 0)
             {
                 PlayerIndex = 0;
                 Gaming_Timer.Stop();
@@ -91,30 +90,30 @@ namespace MainPlugin
                     ConfigUtils.evaluatePack.RestoreCharacter((MiniPlayer)(object)buildPlayer);
                     buildPlayer.Locked = true;
                     buildPlayer.UnCreative();
-                    ((MiniPlayer)buildPlayer).Teleport(Players[PlayerIndex].CurrentRegion.Center);
-                    ((MiniPlayer)buildPlayer).SendInfoMessage("已来到 " + ((MiniPlayer)Players[PlayerIndex]).Name + " 的作品");
+                    buildPlayer.Teleport(Players[PlayerIndex].CurrentRegion.Center);
+                    buildPlayer.SendInfoMessage("已来到 " + Players[PlayerIndex].Name + " 的作品");
                 }
                 Scoring_Timer.Start();
-                ((MiniRoom)this).Status = (RoomStatus)1;
+                this.Status = (RoomStatus)1;
             }
             else
             {
-                if (((MiniRoom)this).GamingTime <= 5)
+                if (this.GamingTime <= 5)
                 {
-                    Broadcast($"还有 {((MiniRoom)this).GamingTime} 秒进入评分环节...", Color.MediumAquamarine);
+                    Broadcast($"还有 {this.GamingTime} 秒进入评分环节...", Color.MediumAquamarine);
                 }
-                ((MiniRoom)this).GamingTime = ((MiniRoom)this).GamingTime - 1;
+                this.GamingTime = this.GamingTime - 1;
             }
         }
 
         private void OnWaiting(object sender, ElapsedEventArgs e)
         {
             ShowRoomMemberInfo();
-            if (Players.Count == 0 || Players.Where((BuildPlayer p) => ((MiniPlayer)p).IsReady).Count() < ((MiniRoom)this).MinPlayer)
+            if (Players.Count == 0 || Players.Where((BuildPlayer p) => p.IsReady).Count() < this.MinPlayer)
             {
                 return;
             }
-            if (((MiniRoom)this).WaitingTime == 0)
+            if (this.WaitingTime == 0)
             {
                 Waiting_Timer.Stop();
                 SelectTopic();
@@ -122,19 +121,19 @@ namespace MainPlugin
                 for (int num = Players.Count - 1; num >= 0; num--)
                 {
                     BuildPlayer buildPlayer = Players[num];
-                    ((MiniPlayer)buildPlayer).Status = (PlayerStatus)2;
-                    ((MiniPlayer)buildPlayer).IsReady = true;
-                    ((MiniPlayer)buildPlayer).Godmode(true);
+                    buildPlayer.Status = (PlayerStatus)2;
+                    buildPlayer.IsReady = true;
+                    buildPlayer.Godmode(true);
                     buildPlayer.Creative();
                     ConfigUtils.defaultPack.RestoreCharacter((MiniPlayer)(object)buildPlayer);
                 }
-                ((MiniRoom)this).Status = (RoomStatus)2;
+                this.Status = (RoomStatus)2;
                 Gaming_Timer.Start();
             }
             else
             {
-                Broadcast($"游戏还有 {((MiniRoom)this).WaitingTime} 秒开始....", Color.DarkTurquoise);
-                ((MiniRoom)this).WaitingTime = ((MiniRoom)this).WaitingTime - 1;
+                Broadcast($"游戏还有 {this.WaitingTime} 秒开始....", Color.DarkTurquoise);
+                this.WaitingTime = this.WaitingTime - 1;
             }
         }
 
@@ -160,30 +159,30 @@ namespace MainPlugin
             {
                 Conclude();
             }
-            if ((int)((MiniRoom)this).Status != 1)
+            if ((int)this.Status != 1)
             {
                 return;
             }
             ShowRoomMemberInfo();
-            if (((MiniRoom)this).SeletingTime == 0)
+            if (this.SeletingTime == 0)
             {
                 Scoring_Timer.Stop();
                 RoundClude();
                 Scoring_Timer.Start();
                 return;
             }
-            if (((MiniRoom)this).SeletingTime <= 10)
+            if (this.SeletingTime <= 10)
             {
                 if (PlayerIndex + 1 < Players.Count)
                 {
-                    Broadcast($"还有 {((MiniRoom)this).SeletingTime} 秒进入下一个玩家的建筑区域评分,下一个玩家为{((MiniPlayer)Players[PlayerIndex + 1]).Name}", Color.MediumAquamarine);
+                    Broadcast($"还有 {this.SeletingTime} 秒进入下一个玩家的建筑区域评分,下一个玩家为{Players[PlayerIndex + 1].Name}", Color.MediumAquamarine);
                 }
                 else
                 {
-                    Broadcast($"还有 {((MiniRoom)this).SeletingTime} 秒结束游戏", Color.MediumAquamarine);
+                    Broadcast($"还有 {this.SeletingTime} 秒结束游戏", Color.MediumAquamarine);
                 }
             }
-            ((MiniRoom)this).SeletingTime = ((MiniRoom)this).SeletingTime - 1;
+            this.SeletingTime = this.SeletingTime - 1;
         }
 
         public void Dispose()
@@ -192,43 +191,43 @@ namespace MainPlugin
             for (int num = Players.Count - 1; num >= 0; num--)
             {
                 BuildPlayer buildPlayer = Players[num];
-                ((MiniPlayer)buildPlayer).Teleport(Main.spawnTileX, Main.spawnTileY);
-                ((MiniPlayer)buildPlayer).SendInfoMessage("游戏被强制停止！");
-                ((MiniPlayer)buildPlayer).BackUp.RestoreCharacter((MiniPlayer)(object)buildPlayer);
-                ((MiniPlayer)buildPlayer).BackUp = null;
-                ((MiniPlayer)buildPlayer).CurrentRoomID = 0;
+                buildPlayer.Teleport(Main.spawnTileX, Main.spawnTileY);
+                buildPlayer.SendInfoMessage("游戏被强制停止！");
+                buildPlayer.BackUp.RestoreCharacter((MiniPlayer)(object)buildPlayer);
+                buildPlayer.BackUp = null;
+                buildPlayer.CurrentRoomID = 0;
                 buildPlayer.CurrentRegion = null;
                 buildPlayer.AquiredMarks = 0;
                 buildPlayer.GiveMarks = 0;
                 buildPlayer.SelectedTopic = "";
-                ((MiniPlayer)buildPlayer).IsReady = false;
+                buildPlayer.IsReady = false;
                 buildPlayer.Locked = false;
                 buildPlayer.Marked = false;
-                ((MiniPlayer)buildPlayer).Godmode(false);
+                buildPlayer.Godmode(false);
             }
             Restore();
             Players.Clear();
-            ((MiniRoom)this).Status = (RoomStatus)5;
+            this.Status = (RoomStatus)5;
         }
 
         public void Conclude()
         {
-            ((MiniRoom)this).Status = (RoomStatus)3;
+            this.Status = (RoomStatus)3;
             ShowVictory();
             for (int num = Players.Count - 1; num >= 0; num--)
             {
                 BuildPlayer buildPlayer = Players[num];
-                ((MiniPlayer)buildPlayer).Teleport(WaitingPoint);
-                ((MiniPlayer)buildPlayer).SendInfoMessage("游戏结束！");
-                ((MiniPlayer)buildPlayer).BackUp.RestoreCharacter((MiniPlayer)(object)buildPlayer);
+                buildPlayer.Teleport(WaitingPoint);
+                buildPlayer.SendInfoMessage("游戏结束！");
+                buildPlayer.BackUp.RestoreCharacter((MiniPlayer)(object)buildPlayer);
                 buildPlayer.CurrentRegion = null;
                 buildPlayer.AquiredMarks = 0;
-                ((MiniPlayer)buildPlayer).IsReady = false;
+                buildPlayer.IsReady = false;
                 buildPlayer.Locked = false;
                 buildPlayer.Marked = false;
                 buildPlayer.SelectedTopic = "";
                 buildPlayer.GiveMarks = 0;
-                ((MiniPlayer)buildPlayer).Godmode(false);
+                buildPlayer.Godmode(false);
             }
             Restore();
         }
@@ -236,8 +235,8 @@ namespace MainPlugin
         public void RoundClude()
         {
             int num = 0;
-            BuildRoom roomByIDFromLocal = ConfigUtils.GetRoomByIDFromLocal(((MiniRoom)this).ID);
-            ((MiniRoom)this).SeletingTime = ((MiniRoom)roomByIDFromLocal).SeletingTime;
+            BuildRoom roomByIDFromLocal = ConfigUtils.GetRoomByIDFromLocal(this.ID);
+            this.SeletingTime = roomByIDFromLocal.SeletingTime;
             PlayerIndex++;
             if (PlayerIndex < Players.Count)
             {
@@ -247,8 +246,8 @@ namespace MainPlugin
                     buildPlayer.Marked = true;
                     num += buildPlayer.GiveMarks;
                     buildPlayer.GiveMarks = 0;
-                    ((MiniPlayer)buildPlayer).Teleport(Players[PlayerIndex].CurrentRegion.Center);
-                    ((MiniPlayer)buildPlayer).SendInfoMessage("已来到 " + ((MiniPlayer)Players[PlayerIndex]).Name + " 的建筑区域");
+                    buildPlayer.Teleport(Players[PlayerIndex].CurrentRegion.Center);
+                    buildPlayer.SendInfoMessage("已来到 " + Players[PlayerIndex].Name + " 的建筑区域");
                     buildPlayer.Marked = false;
                 }
             }
@@ -262,7 +261,7 @@ namespace MainPlugin
         public void Start()
         {
             Waiting_Timer.Start();
-            ((MiniRoom)this).Status = (RoomStatus)0;
+            this.Status = 0;
         }
 
         public void Stop()
@@ -274,20 +273,20 @@ namespace MainPlugin
 
         public void Restore()
         {
-            ((MiniRoom)this).Status = (RoomStatus)4;
-            BuildRoom roomByIDFromLocal = ConfigUtils.GetRoomByIDFromLocal(((MiniRoom)this).ID);
-            ((MiniRoom)this).WaitingTime = ((MiniRoom)roomByIDFromLocal).WaitingTime;
-            ((MiniRoom)this).GamingTime = ((MiniRoom)roomByIDFromLocal).GamingTime;
-            ((MiniRoom)this).SeletingTime = ((MiniRoom)roomByIDFromLocal).SeletingTime;
+            this.Status = (RoomStatus)4;
+            BuildRoom roomByIDFromLocal = ConfigUtils.GetRoomByIDFromLocal(this.ID);
+            this.WaitingTime = roomByIDFromLocal.WaitingTime;
+            this.GamingTime = roomByIDFromLocal.GamingTime;
+            this.SeletingTime = roomByIDFromLocal.SeletingTime;
             Topics = roomByIDFromLocal.Topics;
-            ((MiniRoom)this).MaxPlayer = ((MiniRoom)roomByIDFromLocal).MaxPlayer;
-            ((MiniRoom)this).MinPlayer = ((MiniRoom)roomByIDFromLocal).MinPlayer;
+            this.MaxPlayer = roomByIDFromLocal.MaxPlayer;
+            this.MinPlayer = roomByIDFromLocal.MinPlayer;
             PerHeight = roomByIDFromLocal.PerHeight;
             PerWidth = roomByIDFromLocal.PerWidth;
             Gap = roomByIDFromLocal.Gap;
             PlayerAreas.Clear();
             GameBoard.ReBuild(true);
-            ((MiniRoom)this).Status = (RoomStatus)0;
+            this.Status = 0;
             Start();
         }
 
@@ -296,21 +295,21 @@ namespace MainPlugin
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(MiniGamesAPI.Utils.EndLine_10);
             stringBuilder.AppendLine("————房内信息————");
-            RoomStatus status = ((MiniRoom)this).Status;
+            RoomStatus status = this.Status;
             switch ((int)status)
             {
                 case 0:
                     {
-                        int num = ((MiniRoom)this).WaitingTime / 60;
-                        int num2 = ((MiniRoom)this).WaitingTime % 60;
+                        int num = this.WaitingTime / 60;
+                        int num2 = this.WaitingTime % 60;
                         stringBuilder.AppendLine($"倒计时[{num}:{num2}]");
                         stringBuilder.AppendLine("主题:" + (string.IsNullOrEmpty(Topic) ? "无" : Topic));
                         for (int num3 = Players.Count - 1; num3 >= 0; num3--)
                         {
                             BuildPlayer buildPlayer = Players[num3];
-                            stringBuilder.AppendLine("[" + ((MiniPlayer)buildPlayer).Name + "][" + (((MiniPlayer)buildPlayer).IsReady ? "已准备" : "未准备") + "]");
+                            stringBuilder.AppendLine("[" + buildPlayer.Name + "][" + (buildPlayer.IsReady ? "已准备" : "未准备") + "]");
                         }
-                        stringBuilder.AppendLine($"当前人数:{GetPlayerCount()}/{((MiniRoom)this).MaxPlayer}");
+                        stringBuilder.AppendLine($"当前人数:{GetPlayerCount()}/{this.MaxPlayer}");
                         stringBuilder.AppendLine("输入/bm ready 准备/未准备");
                         stringBuilder.AppendLine("输入/bm leave 离开房间");
                         stringBuilder.AppendLine("输入/bm tl 查看主题列表");
@@ -319,27 +318,27 @@ namespace MainPlugin
                     }
                 case 2:
                     {
-                        int num = ((MiniRoom)this).GamingTime / 60;
-                        int num2 = ((MiniRoom)this).GamingTime % 60;
+                        int num = this.GamingTime / 60;
+                        int num2 = this.GamingTime % 60;
                         stringBuilder.AppendLine($"倒计时[{num}:{num2}]");
                         stringBuilder.AppendLine("主题:" + (string.IsNullOrEmpty(Topic) ? "无" : Topic));
-                        stringBuilder.AppendLine($"当前人数:{GetPlayerCount()}/{((MiniRoom)this).MaxPlayer}");
+                        stringBuilder.AppendLine($"当前人数:{GetPlayerCount()}/{this.MaxPlayer}");
                         break;
                     }
                 case 1:
                     {
-                        int num = ((MiniRoom)this).SeletingTime / 60;
-                        int num2 = ((MiniRoom)this).SeletingTime % 60;
+                        int num = this.SeletingTime / 60;
+                        int num2 = this.SeletingTime % 60;
                         stringBuilder.AppendLine($"倒计时[{num}:{num2}]");
                         stringBuilder.AppendLine("主题:" + (string.IsNullOrEmpty(Topic) ? "无" : Topic));
-                        stringBuilder.AppendLine($"当前人数:{GetPlayerCount()}/{((MiniRoom)this).MaxPlayer}");
+                        stringBuilder.AppendLine($"当前人数:{GetPlayerCount()}/{this.MaxPlayer}");
                         break;
                     }
             }
             stringBuilder.AppendLine(MiniGamesAPI.Utils.EndLine_15);
             for (int num4 = Players.Count - 1; num4 >= 0; num4--)
             {
-                ((MiniPlayer)Players[num4]).SendBoardMsg(stringBuilder.ToString());
+                Players[num4].SendBoardMsg(stringBuilder.ToString());
             }
         }
 
@@ -350,7 +349,7 @@ namespace MainPlugin
             int num = 1;
             foreach (BuildPlayer player in Players)
             {
-                stringBuilder.AppendLine($"[{num}] {((MiniPlayer)player).Name} 得分:{player.AquiredMarks}");
+                stringBuilder.AppendLine($"[{num}] {player.Name} 得分:{player.AquiredMarks}");
                 num++;
             }
             Broadcast(stringBuilder.ToString(), Color.MediumAquamarine);
@@ -360,7 +359,7 @@ namespace MainPlugin
         {
             for (int num = Players.Count - 1; num >= 0; num--)
             {
-                ((MiniPlayer)Players[num]).SendMessage(msg, color);
+                Players[num].SendMessage(msg, color);
             }
         }
 
@@ -376,22 +375,22 @@ namespace MainPlugin
             {
                 playerArea.BuildFramework(118, false);
             }
-            TSPlayer.All.SendTileRect((short)GamingArea.Area.X, (short)GamingArea.Area.Y, (byte)(GamingArea.Area.Width + 3), (byte)(GamingArea.Area.Height + 3), (TileChangeType)0);
+            TSPlayer.All.SendTileRect((short)GamingArea.Area.X, (short)GamingArea.Area.Y, (byte)(GamingArea.Area.Width + 3), (byte)(GamingArea.Area.Height + 3), 0);
             for (int i = 0; i < PlayerAreas.Count; i++)
             {
                 MiniRegion val = PlayerAreas[i];
                 BuildPlayer buildPlayer = Players[i];
-                val.Owners.Add(((MiniPlayer)Players[i]).Name);
+                val.Owners.Add(Players[i].Name);
                 buildPlayer.CurrentRegion = val;
-                ((MiniPlayer)buildPlayer).Teleport(val.Center);
-                ((MiniPlayer)buildPlayer).SendInfoMessage("已将你传送到建筑区域");
+                buildPlayer.Teleport(val.Center);
+                buildPlayer.SendInfoMessage("已将你传送到建筑区域");
             }
             return true;
         }
 
         public void LoadRegion()
         {
-            GamingArea = new MiniRegion(((MiniRoom)this).Name, ((MiniRoom)this).ID, TL.X, TL.Y, BR.X, BR.Y);
+            GamingArea = new MiniRegion(this.Name, this.ID, TL.X, TL.Y, BR.X, BR.Y);
             GameBoard = new PrebuildBoard(GamingArea);
             Loaded = true;
         }
