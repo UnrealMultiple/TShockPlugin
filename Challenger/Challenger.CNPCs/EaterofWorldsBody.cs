@@ -1,5 +1,4 @@
-﻿using System;
-using Challenger;
+﻿using Challenger;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -23,27 +22,27 @@ namespace ChalleAnger
             switch (State)
             {
                 case 1:
-                    if (Vector2.DistanceSquared(((NPCAimedTarget)(targetData)).Center, ((Entity)npc).Center) <= 250000f && Main.rand.Next(1200) == 0)
+                    if (Vector2.DistanceSquared(targetData.Center, npc.Center) <= 250000f && Main.rand.Next(1200) == 0)
                     {
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, -Vector2.UnitY * 6f, 671, 8, 0f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center, -Vector2.UnitY * 6f, 671, 8, 0f, -1, 0f, 0f, 0f);
                     }
                     break;
                 case 2:
-                    if (Vector2.DistanceSquared(((NPCAimedTarget)(targetData)).Center, ((Entity)npc).Center) <= 490000f && Main.rand.Next(800) == 0)
+                    if (Vector2.DistanceSquared(targetData.Center, npc.Center) <= 490000f && Main.rand.Next(800) == 0)
                     {
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, -Vector2.UnitY * 12f, 671, 14, 0f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center, -Vector2.UnitY * 12f, 671, 14, 0f, -1, 0f, 0f, 0f);
                     }
                     break;
                 case 3:
-                    if (Vector2.DistanceSquared(((NPCAimedTarget)(targetData)).Center, ((Entity)npc).Center) <= 640000f && Main.rand.Next(300) == 0)
+                    if (Vector2.DistanceSquared(targetData.Center, npc.Center) <= 640000f && Main.rand.Next(300) == 0)
                     {
                         if (Main.rand.Next(2) == 0)
                         {
-                            Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, Terraria.Utils.RotatedByRandom(Terraria.Utils.DirectionTo(((Entity)npc).Center, ((NPCAimedTarget)(targetData)).Center), 0.1) * 12f, 671, 17, 0f, -1, 0f, 0f, 0f);
+                            Projectile.NewProjectile(null, npc.Center, Terraria.Utils.RotatedByRandom(Terraria.Utils.DirectionTo(npc.Center, targetData.Center), 0.1) * 12f, 671, 17, 0f, -1, 0f, 0f, 0f);
                         }
                         else
                         {
-                            Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, -Terraria.Utils.RotatedByRandom(Vector2.UnitY, 0.2) * 10f, 671, 17, 0f, -1, 0f, 0f, 0f);
+                            Projectile.NewProjectile(null, npc.Center, -Terraria.Utils.RotatedByRandom(Vector2.UnitY, 0.2) * 10f, 671, 17, 0f, -1, 0f, 0f, 0f);
                         }
                     }
                     break;
@@ -56,7 +55,7 @@ namespace ChalleAnger
             NPC[] array = Main.npc;
             foreach (NPC val in array)
             {
-                if ((val.type == 13 || val.type == 14 || val.type == 15) && ((Entity)val).active)
+                if ((val.type == 13 || val.type == 14 || val.type == 15) && val.active)
                 {
                     num++;
                 }
@@ -100,12 +99,12 @@ namespace ChalleAnger
         {
             if (State == 0 || State == 2)
             {
-                int num = Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, Vector2.Zero, 501, 13, 0f, -1, 0f, 0f, 0f);
+                int num = Projectile.NewProjectile(null, npc.Center, Vector2.Zero, 501, 13, 0f, -1, 0f, 0f, 0f);
                 Main.npc[num].timeLeft = 1;
                 CProjectile.Update(num);
                 for (int i = 0; i < 6; i++)
                 {
-                    Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, Terraria.Utils.RotatedBy(Vector2.UnitY, Math.PI / 3.0 * (double)i, default(Vector2)) * 5f, 909, 14, 0f, -1, 0f, 0f, 0f);
+                    Projectile.NewProjectile(null, npc.Center, Terraria.Utils.RotatedBy(Vector2.UnitY, Math.PI / 3.0 * i, default(Vector2)) * 5f, 909, 14, 0f, -1, 0f, 0f, 0f);
                 }
             }
         }

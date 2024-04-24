@@ -1,9 +1,5 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TerrariaApi.Server;
 using Terraria;
-using Microsoft.Xna.Framework;
+using TerrariaApi.Server;
 using TShockAPI;
 
 namespace RandReSpawn
@@ -21,7 +17,7 @@ namespace RandReSpawn
         public override void Initialize()
         {
             rand = new Random();
-            GetDataHandlers.PlayerSpawn.Register(OnSpawn,HandlerPriority.Lowest);
+            GetDataHandlers.PlayerSpawn.Register(OnSpawn, HandlerPriority.Lowest);
         }
         protected override void Dispose(bool disposing)
         {
@@ -31,10 +27,10 @@ namespace RandReSpawn
         private void OnSpawn(object sender, GetDataHandlers.SpawnEventArgs args)
         {
             var (x, y) = Search();
-	    args.SpawnX = x;
-	    args.SpawnY = y;
-	    Task.Run(()=>{try{Thread.Sleep(50);args.Player.Teleport(x * 16, y * 16);/*Console.WriteLine($"({x}, {y})");*/}catch{}});
-	    
+            args.SpawnX = x;
+            args.SpawnY = y;
+            Task.Run(() => { try { Thread.Sleep(50); args.Player.Teleport(x * 16, y * 16);/*Console.WriteLine($"({x}, {y})");*/} catch { } });
+
         }
         private (int x, int y) Search()
         {

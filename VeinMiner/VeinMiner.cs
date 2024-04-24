@@ -1,8 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -13,8 +9,8 @@ namespace VeinMiner
     public class VeinMiner : TerrariaPlugin
     {
         public override string Name => "VeinMiner";
-        public override Version Version => new Version( 1, 6, 0, 2);    
-        public override string Author => "Megghy|YSpoof|Maxthegreat99|肝帝熙恩"; 
+        public override Version Version => new Version(1, 6, 0, 2);
+        public override string Author => "Megghy|YSpoof|Maxthegreat99|肝帝熙恩";
         public override string Description => "VeinMiner by Megghy 适用于 TShock 5.2 支持！";
 
         internal static Config Config = new();

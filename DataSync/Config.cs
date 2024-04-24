@@ -225,12 +225,12 @@ public static class Config
     internal static readonly Dictionary<ProgressType, string> _default = typeof(ProgressType)
         .GetFields()
         .Where(f => f.FieldType == typeof(ProgressType))
-        .ToDictionary(f => (ProgressType) f.GetValue(null)!, f => f.GetCustomAttribute<AliasAttribute>()!.Alias[0]);
+        .ToDictionary(f => (ProgressType)f.GetValue(null)!, f => f.GetCustomAttribute<AliasAttribute>()!.Alias[0]);
     internal static readonly Dictionary<string, ProgressType> _names = typeof(ProgressType)
         .GetFields()
         .Where(f => f.FieldType == typeof(ProgressType))
         .SelectMany(field => field.GetCustomAttribute<AliasAttribute>()!.Alias.Select(a => (field, a)))
-        .ToDictionary(t => t.a, t => (ProgressType) t.field.GetValue(null)!);
+        .ToDictionary(t => t.a, t => (ProgressType)t.field.GetValue(null)!);
 
     public static string GetProgressName(ProgressType type)
     {

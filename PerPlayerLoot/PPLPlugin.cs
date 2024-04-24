@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Terraria;
-using TShockAPI;
+﻿using Terraria;
 using TerrariaApi.Server;
-using System.IO;
-using System.IO.Streams;
+using TShockAPI;
 
 namespace PerPlayerLoot
 {
@@ -27,7 +21,7 @@ namespace PerPlayerLoot
 
         public static bool enablePpl = true;
 
-        public PPLPlugin(Main game) : base(game) {}
+        public PPLPlugin(Main game) : base(game) { }
 
         public override void Initialize()
         {
@@ -69,9 +63,12 @@ namespace PerPlayerLoot
         private void ToggleCommand(CommandArgs args)
         {
             enablePpl = !enablePpl;
-            if (enablePpl) {
+            if (enablePpl)
+            {
                 args.Player.SendSuccessMessage("现在启用了每个玩家单独的宝箱!");
-            } else {
+            }
+            else
+            {
                 args.Player.SendSuccessMessage("每个玩家单独的宝箱现在被禁用！您现在可以修改宝箱，它们将被视为普通宝箱.");
             }
         }
@@ -82,9 +79,9 @@ namespace PerPlayerLoot
 
             // get the chest object from id
             Chest realChest = Main.chest[e.ID];
-            if (realChest == null) 
+            if (realChest == null)
                 return;
-            
+
             // check if it's a piggy bank or safe transaction
             if (realChest.bankChest)
                 return;
@@ -101,7 +98,7 @@ namespace PerPlayerLoot
 
             // get the per-player chest
             Chest fakeChest = fakeChestDb.GetOrCreateFakeChest(e.ID, e.Player.UUID);
-            
+
             // update the slot with the item
             fakeChest.item[e.Slot] = item;
 
@@ -119,10 +116,10 @@ namespace PerPlayerLoot
             long position = packetWriter.BaseStream.Position;
 
             packetWriter.BaseStream.Position += 2L;
-            packetWriter.Write((byte) PacketTypes.ChestItem);
+            packetWriter.Write((byte)PacketTypes.ChestItem);
 
-            packetWriter.Write((short) chestId);
-            packetWriter.Write((byte) slot);
+            packetWriter.Write((short)chestId);
+            packetWriter.Write((byte)slot);
 
             short netId = (short)item.netID;
             if (item.Name == null)
@@ -130,11 +127,11 @@ namespace PerPlayerLoot
                 netId = 0;
             }
 
-            packetWriter.Write((short) item.stack);
+            packetWriter.Write((short)item.stack);
             packetWriter.Write(item.prefix);
             packetWriter.Write(netId);
 
-            int positionAfter = (int) packetWriter.BaseStream.Position;
+            int positionAfter = (int)packetWriter.BaseStream.Position;
 
             packetWriter.BaseStream.Position = position;
             packetWriter.Write((ushort)positionAfter);
@@ -156,11 +153,11 @@ namespace PerPlayerLoot
             Chest realChest = Main.chest[chestId];
 
             // make sure it exists
-            if (realChest == null) 
+            if (realChest == null)
                 return;
 
             // piggy bank, safe, etc.
-            if (realChest.bankChest) 
+            if (realChest.bankChest)
                 return;
 
             // check if it's player placed

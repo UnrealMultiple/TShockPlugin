@@ -1,5 +1,4 @@
 using Rests;
-using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -74,14 +73,14 @@ public class Main : TerrariaPlugin
                 continue;
             }
             if (array.Length == 5)
-            { 
+            {
                 var prefixByIdOrName = TShock.Utils.GetPrefixByIdOrName(array[4]);
                 if (prefixByIdOrName.Count != 0)
                 {
                     list.Add(new Warehouse(result, item.netID, prefixByIdOrName[0]));
                 }
             }
-            
+
         }
         return list.Count == 0
             ? new RestObject()
@@ -145,67 +144,67 @@ public class Main : TerrariaPlugin
                 args.Player.SendSuccessMessage("成功删除所有数据");
                 break;
             case "del":
-            {
-                if (int.TryParse(args.Parameters[1], out var netID))
                 {
-                    var cGive2 = new CGive
+                    if (int.TryParse(args.Parameters[1], out var netID))
                     {
-                        id = netID
-                    };
-                    cGive2.Del();
-                    args.Player.SendSuccessMessage("已执行删除");
+                        var cGive2 = new CGive
+                        {
+                            id = netID
+                        };
+                        cGive2.Del();
+                        args.Player.SendSuccessMessage("已执行删除");
+                    }
+                    else
+                    {
+                        args.Player.SendErrorMessage("ID输入错误!");
+                    }
+                    break;
                 }
-                else
-                {
-                    args.Player.SendErrorMessage("ID输入错误!");
-                }
-                break;
-            }
             case "list":
-            {
-                foreach (var item in CGive.GetCGive())
                 {
-                    var player = args.Player;
-                    player.SendInfoMessage($"执行者:{item.Executer} 被执行者:{item.who} 命令:{item.cmd} id:{item.id}");
+                    foreach (var item in CGive.GetCGive())
+                    {
+                        var player = args.Player;
+                        player.SendInfoMessage($"执行者:{item.Executer} 被执行者:{item.who} 命令:{item.cmd} id:{item.id}");
+                    }
+                    break;
                 }
-                break;
-            }
             case "all":
-            {
-                var executer2 = args.Parameters[1];
-                var cmd2 = args.Parameters[2];
-                var who2 = "-1";
-                var cGive3 = new CGive
                 {
-                    who = who2,
-                    Executer = executer2,
-                    cmd = cmd2
-                };
-                cGive3.Execute();
-                break;
-            }
+                    var executer2 = args.Parameters[1];
+                    var cmd2 = args.Parameters[2];
+                    var who2 = "-1";
+                    var cGive3 = new CGive
+                    {
+                        who = who2,
+                        Executer = executer2,
+                        cmd = cmd2
+                    };
+                    cGive3.Execute();
+                    break;
+                }
             case "personal":
-            {
-                var executer = "Server";
-                var who = args.Parameters[2];
-                var cmd = args.Parameters[1];
-                var cGive = new CGive
                 {
-                    Executer = executer,
-                    who = who,
-                    cmd = cmd
-                };
-                if (!cGive.Execute())
-                {
-                    args.Player.SendInfoMessage("命令已保存");
-                    cGive.Save();
+                    var executer = "Server";
+                    var who = args.Parameters[2];
+                    var cmd = args.Parameters[1];
+                    var cGive = new CGive
+                    {
+                        Executer = executer,
+                        who = who,
+                        cmd = cmd
+                    };
+                    if (!cGive.Execute())
+                    {
+                        args.Player.SendInfoMessage("命令已保存");
+                        cGive.Save();
+                    }
+                    else
+                    {
+                        args.Player.SendInfoMessage("命令执行成功！");
+                    }
+                    break;
                 }
-                else
-                {
-                    args.Player.SendInfoMessage("命令执行成功！");
-                }
-                break;
-            }
         }
     }
 

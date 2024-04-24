@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using static TShockAPI.GetDataHandlers;
@@ -28,7 +27,7 @@ namespace Challenger
         {
             get
             {
-                return npc != null && npc.netID == netID && ((Entity)npc).whoAmI == index && ((Entity)npc).active && _isActive;
+                return npc != null && npc.netID == netID && npc.whoAmI == index && npc.active && _isActive;
             }
             set
             {
@@ -64,11 +63,11 @@ namespace Challenger
             {
                 this.npc = npc;
                 netID = npc.netID;
-                index = ((Entity)npc).whoAmI;
+                index = npc.whoAmI;
                 ai = new float[8];
                 state = 0;
                 LifeMax = npc.life;
-                isActive = ((Entity)npc).active;
+                isActive = npc.active;
             }
             AccOfObsidian = new HashSet<string>();
         }
@@ -89,11 +88,11 @@ namespace Challenger
             {
                 this.npc = npc;
                 netID = npc.netID;
-                index = ((Entity)npc).whoAmI;
+                index = npc.whoAmI;
                 this.ai = ai;
                 this.state = state;
                 LifeMax = npc.life;
-                isActive = ((Entity)npc).active;
+                isActive = npc.active;
             }
             AccOfObsidian = new HashSet<string>();
         }

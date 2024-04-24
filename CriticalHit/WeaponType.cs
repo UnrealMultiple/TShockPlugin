@@ -5,10 +5,10 @@ namespace CriticalHit;
 
 public enum WeaponType
 {
-	Melee,
-	Ranged,
-	Magic,
-	Explosive
+    Melee,
+    Ranged,
+    Magic,
+    Explosive
 }
 public class WeaponTypeDictionaryConverter : JsonConverter
 {

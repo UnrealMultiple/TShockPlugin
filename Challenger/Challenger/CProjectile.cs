@@ -58,11 +58,11 @@ namespace Challenger
             {
                 this.proj = proj;
                 type = proj.type;
-                index = ((Entity)proj).whoAmI;
+                index = proj.whoAmI;
                 owner = proj.owner;
                 ai = new float[8];
                 lable = 0;
-                isActive = ((Entity)proj).active;
+                isActive = proj.active;
             }
         }
 
@@ -82,17 +82,17 @@ namespace Challenger
             {
                 this.proj = proj;
                 type = proj.type;
-                index = ((Entity)proj).whoAmI;
+                index = proj.whoAmI;
                 owner = proj.owner;
                 this.ai = ai;
                 this.lable = lable;
-                isActive = ((Entity)proj).active;
+                isActive = proj.active;
             }
         }
 
         public static void CKill(int index)
         {
-            if (Main.projectile[index] != null && ((Entity)Main.projectile[index]).active)
+            if (Main.projectile[index] != null && Main.projectile[index].active)
             {
                 Main.projectileIdentity[Main.projectile[index].owner, Main.projectile[index].identity] = -1;
                 Main.projectile[index].timeLeft = 0;
@@ -100,8 +100,8 @@ namespace Challenger
                 {
                     Main.projectile[index].TryGettingHitByOtherPlayersExplosives();
                 }
-                ((Entity)Main.projectile[index]).active = false;
-                TSPlayer.All.SendData((PacketTypes)29, "", Main.projectile[index].identity, (float)Main.projectile[index].owner, 0f, 0f, 0);
+                Main.projectile[index].active = false;
+                TSPlayer.All.SendData((PacketTypes)29, "", Main.projectile[index].identity, Main.projectile[index].owner, 0f, 0f, 0);
                 if (Collect.cprojs[index] != null)
                 {
                     Collect.cprojs[index].isActive = false;
@@ -111,7 +111,7 @@ namespace Challenger
 
         public void CKill()
         {
-            if (proj != null && ((Entity)proj).active)
+            if (proj != null && proj.active)
             {
                 Main.projectileIdentity[proj.owner, proj.identity] = -1;
                 proj.timeLeft = 0;
@@ -119,23 +119,23 @@ namespace Challenger
                 {
                     proj.TryGettingHitByOtherPlayersExplosives();
                 }
-                ((Entity)proj).active = false;
-                TSPlayer.All.SendData((PacketTypes)29, "", proj.identity, (float)proj.owner, 0f, 0f, 0);
-                if (Collect.cprojs[((Entity)proj).whoAmI] != null)
+                proj.active = false;
+                TSPlayer.All.SendData((PacketTypes)29, "", proj.identity, proj.owner, 0f, 0f, 0);
+                if (Collect.cprojs[proj.whoAmI] != null)
                 {
-                    Collect.cprojs[((Entity)proj).whoAmI].isActive = false;
+                    Collect.cprojs[proj.whoAmI].isActive = false;
                 }
             }
         }
 
         public static void Update(int index)
         {
-            TSPlayer.All.SendData((PacketTypes)27, (string)null, index, 0f, 0f, 0f, 0);
+            TSPlayer.All.SendData((PacketTypes)27, null, index, 0f, 0f, 0f, 0);
         }
 
         public void Update()
         {
-            TSPlayer.All.SendData((PacketTypes)27, (string)null, index, 0f, 0f, 0f, 0);
+            TSPlayer.All.SendData((PacketTypes)27, null, index, 0f, 0f, 0f, 0);
         }
 
         public virtual void ProjectileAI()

@@ -79,7 +79,7 @@ namespace PvPer
                     return cf!;
                 }
             }
-        } 
+        }
         #endregion
     }
 }

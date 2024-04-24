@@ -44,7 +44,7 @@ namespace AutoBroadcast
             {
                 TSPlayer.Server.SendSuccessMessage("已成功重新加载自动广播配置！");
                 autobc();
-            } ;
+            };
         }
 
         public void autobc()

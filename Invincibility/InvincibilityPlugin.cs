@@ -1,7 +1,7 @@
-﻿using TerrariaApi.Server;
-using TShockAPI;
-using Terraria;
+﻿using Terraria;
 using Terraria.GameContent.Creative;
+using TerrariaApi.Server;
+using TShockAPI;
 using TShockAPI.Hooks;
 
 namespace InvincibilityPlugin
@@ -20,7 +20,7 @@ namespace InvincibilityPlugin
 
         public long FrameCount;
 
-        public InvincibilityPlugin(Main game) : base(game) 
+        public InvincibilityPlugin(Main game) : base(game)
         {
             LoadConfig();
         }
@@ -71,7 +71,7 @@ namespace InvincibilityPlugin
                         delGodMode(player);
                     }
                     else
-                    { 
+                    {
                         invincibleDurations[player] -= 100;
                     }
                 }
@@ -87,7 +87,7 @@ namespace InvincibilityPlugin
                     {
                         player.SendSuccessMessage(Config.CustomEndFrameText);
                         frameDurations.Remove(player);
-                    } 
+                    }
                 }
             }
         }
@@ -113,7 +113,7 @@ namespace InvincibilityPlugin
                 args.Player.SendErrorMessage("玩家不在线。");
                 return;
             }
-            addGodMode(player, duration); 
+            addGodMode(player, duration);
         }
 
         private void addGodMode(TSPlayer player, float duration)

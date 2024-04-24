@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Timers;
+﻿using System.Timers;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -117,7 +115,7 @@ public class Plugin : TerrariaPlugin
 
     public static bool Timeout(DateTime Start, bool warn = true, int ms = 500)
     {
-        bool flag = (DateTime.Now - Start).TotalMilliseconds >= (double)ms;
+        bool flag = (DateTime.Now - Start).TotalMilliseconds >= ms;
         if (flag)
         {
             ULock = false;
@@ -150,7 +148,7 @@ public class Plugin : TerrariaPlugin
 
     private void OnSpawn(NpcSpawnEventArgs args)
     {
-        if (args.Handled || !Main.npc[args.NpcId].boss || !((Entity)Main.npc[args.NpcId]).active)
+        if (args.Handled || !Main.npc[args.NpcId].boss || !Main.npc[args.NpcId].active)
         {
             return;
         }
@@ -196,11 +194,11 @@ public class Plugin : TerrariaPlugin
         }
         lock (LPlayers)
         {
-            if (LPlayers[((Entity)args.Player).whoAmI] != null && (DateTime.UtcNow - LPlayers[((Entity)args.Player).whoAmI].LCheckTiem).TotalMilliseconds > 600000.0)
+            if (LPlayers[args.Player.whoAmI] != null && (DateTime.UtcNow - LPlayers[args.Player.whoAmI].LCheckTiem).TotalMilliseconds > 600000.0)
             {
-                LPlayers[((Entity)args.Player).whoAmI].LCheckTiem = DateTime.UtcNow;
-                LPlayers[((Entity)args.Player).whoAmI].Tr = 0;
-                LPlayers[((Entity)args.Player).whoAmI].Mis = 0;
+                LPlayers[args.Player.whoAmI].LCheckTiem = DateTime.UtcNow;
+                LPlayers[args.Player.whoAmI].Tr = 0;
+                LPlayers[args.Player.whoAmI].Mis = 0;
             }
         }
     }

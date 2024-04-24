@@ -20,7 +20,7 @@ public class Plugin : TerrariaPlugin
     {
         foreach (var variant in typeof(ProgressType).GetFields().Where(f => f.FieldType == typeof(ProgressType)))
         {
-            var value = (ProgressType) variant.GetValue(null)!;
+            var value = (ProgressType)variant.GetValue(null)!;
             foreach (var match in variant.GetCustomAttributes<MatchAttribute>()!)
             {
                 foreach (var id in match.NPCID)
@@ -128,36 +128,62 @@ public class Plugin : TerrariaPlugin
         switch (args.Parameters.Count)
         {
             case 2:
-            {
-                if (!args.Player.HasPermission("DataSync.set"))
                 {
-                    args.Player.SendErrorMessage("你没有权限设置进度");
+                    if (!args.Player.HasPermission("DataSync.set"))
+                    {
+                        args.Player.SendErrorMessage("你没有权限设置进度");
+                        return;
+                    }
+                    var type = Config.GetProgressType(args.Parameters[0]);
+                    if (type == null)
+                    {
+                        args.Player.SendErrorMessage($"进度 '{args.Parameters[0]}' 不存在");
+                        return;
+                    }
+                    if (!bool.TryParse(args.Parameters[1], out var result))
+                    {
+                        args.Player.SendErrorMessage($"值 '{args.Parameters[1]}' 应为 true 或 false");
+                        return;
+                    }
+                    if (_flagaccessors.TryGetValue(type.Value, out var accessor))
+                    {
+                        accessor(result);
+                    }
+                    UpdateProgress(type.Value, result, true);
                     return;
                 }
-                var type = Config.GetProgressType(args.Parameters[0]);
-                if (type == null)
-                {
-                    args.Player.SendErrorMessage($"进度 '{args.Parameters[0]}' 不存在");
-                    return;
-                }
-                if (!bool.TryParse(args.Parameters[1], out var result))
-                {
-                    args.Player.SendErrorMessage($"值 '{args.Parameters[1]}' 应为 true 或 false");
-                    return;
-                }
-                if (_flagaccessors.TryGetValue(type.Value, out var accessor))
-                {
-                    accessor(result);
-                }
-                UpdateProgress(type.Value, result, true);
-                return;
-            }
             case 1 when !string.Equals(args.Parameters[0], "local", StringComparison.OrdinalIgnoreCase):
-            {
-                if (string.Equals(args.Parameters[0], "remote", StringComparison.OrdinalIgnoreCase))
                 {
-                    args.Player.SendInfoMessage("远程进度:");
-                    var readable = GetReadableProgress(SyncedProgress);
+                    if (string.Equals(args.Parameters[0], "remote", StringComparison.OrdinalIgnoreCase))
+                    {
+                        args.Player.SendInfoMessage("远程进度:");
+                        var readable = GetReadableProgress(SyncedProgress);
+                        if (readable.ContainsKey(true))
+                        {
+                            args.Player.SendInfoMessage("已完成:");
+                            args.Player.SendSuccessMessage(string.Join(", ", readable[true]));
+                        }
+                        if (readable.ContainsKey(false))
+                        {
+                            args.Player.SendInfoMessage("未完成:");
+                            args.Player.SendErrorMessage(string.Join(", ", readable[false]));
+                        }
+                        return;
+                    }
+                    var type = Config.GetProgressType(args.Parameters[0]);
+                    if (type == null)
+                    {
+                        args.Player.SendErrorMessage($"进度 '{args.Parameters[0]}' 不存在");
+                        return;
+                    }
+                    args.Player.SendInfoMessage($"进度 '{args.Parameters[0]}' 的值为 '{LocalProgress[type.Value]}'");
+                    return;
+                }
+
+            default:
+                {
+                    args.Player.SendInfoMessage("本地进度:");
+                    var readable = GetReadableProgress(LocalProgress);
                     if (readable.ContainsKey(true))
                     {
                         args.Player.SendInfoMessage("已完成:");
@@ -170,32 +196,6 @@ public class Plugin : TerrariaPlugin
                     }
                     return;
                 }
-                var type = Config.GetProgressType(args.Parameters[0]);
-                if (type == null)
-                {
-                    args.Player.SendErrorMessage($"进度 '{args.Parameters[0]}' 不存在");
-                    return;
-                }
-                args.Player.SendInfoMessage($"进度 '{args.Parameters[0]}' 的值为 '{LocalProgress[type.Value]}'");
-                return;
-            }
-
-            default:
-            {
-                args.Player.SendInfoMessage("本地进度:");
-                var readable = GetReadableProgress(LocalProgress);
-                if (readable.ContainsKey(true))
-                {
-                    args.Player.SendInfoMessage("已完成:");
-                    args.Player.SendSuccessMessage(string.Join(", ", readable[true]));
-                }
-                if (readable.ContainsKey(false))
-                {
-                    args.Player.SendInfoMessage("未完成:");
-                    args.Player.SendErrorMessage(string.Join(", ", readable[false]));
-                }
-                return;
-            }
         }
     }
 

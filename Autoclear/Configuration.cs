@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using TShockAPI;
 
 namespace Autoclear
 {
     public class Configuration
     {
-    public static readonly string FilePath = Path.Combine(TShock.SavePath, "AutoClear.json");
+        public static readonly string FilePath = Path.Combine(TShock.SavePath, "AutoClear.json");
 
         [JsonProperty("多久检测一次(s)")]
         public int SmartSweepThreshold { get; set; } = 100;
@@ -47,29 +45,29 @@ namespace Autoclear
 
 
         public void Write(string path)
-    {
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
         {
-            var str = JsonConvert.SerializeObject(this, Formatting.Indented);
-            using (var sw = new StreamWriter(fs))
+            using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
             {
-                sw.Write(str);
+                var str = JsonConvert.SerializeObject(this, Formatting.Indented);
+                using (var sw = new StreamWriter(fs))
+                {
+                    sw.Write(str);
+                }
             }
         }
-    }
 
-    public static Configuration Read(string path)
-    {
-        if (!File.Exists(path))
-            return new Configuration();
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+        public static Configuration Read(string path)
         {
-            using (var sr = new StreamReader(fs))
+            if (!File.Exists(path))
+                return new Configuration();
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                var cf = JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd());
-                return cf;
+                using (var sr = new StreamReader(fs))
+                {
+                    var cf = JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd());
+                    return cf;
+                }
             }
         }
     }
-}
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using TShockAPI;
 
 namespace fixbugpe
@@ -24,7 +21,7 @@ namespace fixbugpe
         public int Bufftime { get; set; } = 60;
 
         [JsonProperty("上什么buff")]
-        public int[] BuffTypes { get; set; } = { 163, 149 , 23 , 164 };
+        public int[] BuffTypes { get; set; } = { 163, 149, 23, 164 };
 
         [JsonProperty("是否踢出")]
         public bool KickPlayerOnUse { get; set; } = false;

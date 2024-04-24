@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
@@ -201,7 +198,7 @@ namespace PersonalPermission
                         TShock.Players.FirstOrDefault(p => p?.Name == account.Name).GetData<Group>("PersonalPermission")?.RemovePermission(perm);
                         plr.SendSuccessMessage($"已为玩家 {account.Name} 移除权限 {perm}.");
                     }
-                    else 
+                    else
                         plr.SendErrorMessage($"移除权限失败.");
                 }
                 else

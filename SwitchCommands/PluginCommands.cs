@@ -1,41 +1,43 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 //using PlaceholderAPI;
 using TShockAPI;
 
-namespace SwitchCommands {
-    public class PluginCommands {
+namespace SwitchCommands
+{
+    public class PluginCommands
+    {
         public static string switchParameters = "/开关 <添加/列表/删除/冷却/权限忽略/取消/重绑/完成>";
 
-        public static void RegisterCommands() {
-            Commands.ChatCommands.Add(new Command("switch.admin", SwitchCmd, "开关","kg", "switch"));
-            Commands.ChatCommands.Add(new Command("switch.admin", SwitchReload, "重载开关","reload"));
+        public static void RegisterCommands()
+        {
+            Commands.ChatCommands.Add(new Command("switch.admin", SwitchCmd, "开关", "kg", "switch"));
+            Commands.ChatCommands.Add(new Command("switch.admin", SwitchReload, "重载开关", "reload"));
         }
 
-        private static void SwitchReload(CommandArgs args) {
+        private static void SwitchReload(CommandArgs args)
+        {
             SwitchCommands.database = Database.Read(Database.databasePath);
             args.Player.SendErrorMessage("开关插件重载成功！！！");
-            if (!File.Exists(Database.databasePath)) {
+            if (!File.Exists(Database.databasePath))
+            {
                 SwitchCommands.database.Write(Database.databasePath);
             }
         }
 
-        private static void SwitchCmd(CommandArgs args) {
+        private static void SwitchCmd(CommandArgs args)
+        {
             var player = args.Player;
 
-            switch (player.GetData<PlayerState>("PlayerState")) {
+            switch (player.GetData<PlayerState>("PlayerState"))
+            {
                 case PlayerState.None:
                     player.SendSuccessMessage("激活一个开关以将其绑定,之后可输入/开关 ，查看子命令");
                     player.SetData("PlayerState", PlayerState.SelectingSwitch);
                     return;
 
                 case PlayerState.AddingCommands:
-                    if (args.Parameters.Count == 0) {
+                    if (args.Parameters.Count == 0)
+                    {
                         player.SendErrorMessage("正确指令：");
                         player.SendErrorMessage(switchParameters);
                         return;
@@ -46,7 +48,8 @@ namespace SwitchCommands {
 
                     var cmdInfo = player.GetData<CommandInfo>("CommandInfo");
 
-                    switch (args.Parameters[0].ToLower()) {
+                    switch (args.Parameters[0].ToLower())
+                    {
                         case "add":
                         case "添加":
                         case "tj":
@@ -55,12 +58,13 @@ namespace SwitchCommands {
                             player.SendSuccessMessage("成功添加: {0}".SFormat(command));
                             SwitchCommands.database.Write(Database.databasePath);
                             break;
-                            
+
                         case "list":
                         case "列表":
                         case "lb":
                             player.SendMessage("当前开关绑定的指令:", Color.Green);
-                            for (int x = 0; x < cmdInfo.commandList.Count; x++) {
+                            for (int x = 0; x < cmdInfo.commandList.Count; x++)
+                            {
                                 player.SendMessage("({0}) ".SFormat(x) + cmdInfo.commandList[x], Color.Yellow);
                                 SwitchCommands.database.Write(Database.databasePath);
                             }
@@ -71,7 +75,8 @@ namespace SwitchCommands {
                         case "sc":
                             int commandIndex = 0;
 
-                            if (args.Parameters.Count < 2 || !int.TryParse(args.Parameters[1], out commandIndex)) {
+                            if (args.Parameters.Count < 2 || !int.TryParse(args.Parameters[1], out commandIndex))
+                            {
                                 player.SendErrorMessage("语法错误：/开关 del <指令>");
                                 SwitchCommands.database.Write(Database.databasePath);
                                 return;
@@ -89,7 +94,8 @@ namespace SwitchCommands {
                         case "lq":
                             float 冷却 = 0;
 
-                            if (args.Parameters.Count < 2 || !float.TryParse(args.Parameters[1], out 冷却)) {
+                            if (args.Parameters.Count < 2 || !float.TryParse(args.Parameters[1], out 冷却))
+                            {
                                 player.SendErrorMessage("语法错误：/开关 冷却 <秒>");
                                 SwitchCommands.database.Write(Database.databasePath);
                                 return;
@@ -106,14 +112,15 @@ namespace SwitchCommands {
                         case "qxhl":
                             bool 权限忽略 = false;
 
-                            if (args.Parameters.Count < 2 || !bool.TryParse(args.Parameters[1], out 权限忽略)) {
+                            if (args.Parameters.Count < 2 || !bool.TryParse(args.Parameters[1], out 权限忽略))
+                            {
                                 player.SendErrorMessage("语法错误：/开关 权限忽略 <true/false>");
                                 SwitchCommands.database.Write(Database.databasePath);
                                 return;
                             }
 
                             cmdInfo.ignorePerms = 权限忽略;
-                            
+
                             player.SendSuccessMessage("是否忽略玩家权限设置为: {0}.".SFormat(权限忽略));
                             SwitchCommands.database.Write(Database.databasePath);
                             break;
@@ -141,7 +148,8 @@ namespace SwitchCommands {
                             var switchPos = player.GetData<SwitchPos>("SwitchPos");
 
                             player.SendSuccessMessage("设置成功的开关位于 X： {0}， Y： {1}".SFormat(switchPos.X, switchPos.Y));
-                            foreach(string cmd in cmdInfo.commandList) {
+                            foreach (string cmd in cmdInfo.commandList)
+                            {
                                 player.SendMessage(cmd, Color.Yellow);
                                 SwitchCommands.database.Write(Database.databasePath);
                             }
@@ -163,7 +171,8 @@ namespace SwitchCommands {
             }
         }
 
-        public enum PlayerState {
+        public enum PlayerState
+        {
             None,
             AddingCommands,
             SelectingSwitch

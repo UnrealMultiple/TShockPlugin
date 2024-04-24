@@ -15,7 +15,7 @@ public class ItemPreserver : TerrariaPlugin
     public static Configuration Config;
 
     public class Pitem
-    { 
+    {
         public int Type { get; set; }
 
         public int Stack { get; set; }
@@ -118,6 +118,6 @@ public class ItemPreserver : TerrariaPlugin
         base.Dispose(disposing);
     }
 
- 
+
 
 }

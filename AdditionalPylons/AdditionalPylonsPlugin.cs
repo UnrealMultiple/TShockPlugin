@@ -147,7 +147,7 @@ namespace AdditionalPylons
             // 如果玩家没有无限放置晶塔的权限，则向所有客户端发送STR以更新非无限晶塔玩家的第一个晶塔放置
             if (!e.Player.HasPermission(permission_infiniteplace))
             {
-                TShockAPI.TSPlayer.All.SendTileRect((short)e.X, (short)e.Y, 3, 4);
+                TShockAPI.TSPlayer.All.SendTileRect(e.X, e.Y, 3, 4);
                 return;
             }
 
@@ -159,7 +159,7 @@ namespace AdditionalPylons
             Main.PylonSystem.Reset();
 
             // 由于其他客户端不知道这个晶塔，所以在手动执行TETeleportationPylon.Place()之后发送STR
-            TShockAPI.TSPlayer.All.SendTileRect((short)e.X, (short)e.Y, 3, 4);
+            TShockAPI.TSPlayer.All.SendTileRect(e.X, e.Y, 3, 4);
 
             // 从持有晶塔的玩家列表中移除当前玩家
             playersHoldingPylon.Remove(e.Player.Index);

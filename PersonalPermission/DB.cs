@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Data;
 using TShockAPI;
 using TShockAPI.DB;
 
@@ -46,7 +43,8 @@ namespace PersonalPermission
                 var list = new List<string>();
                 if (reader.Read())
                 {
-                    try {
+                    try
+                    {
                         var text = reader.Get<string>("Permissions") ?? "";
                         if (text.Contains(","))
                         {

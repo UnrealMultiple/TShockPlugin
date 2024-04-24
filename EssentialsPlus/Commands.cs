@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using EssentialsPlus.Db;
+using EssentialsPlus.Extensions;
+using Microsoft.Xna.Framework;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using EssentialsPlus.Db;
-using EssentialsPlus.Extensions;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -17,12 +12,12 @@ using TShockAPI.DB;
 
 namespace EssentialsPlus
 {
-	public static class Commands
-	{
-		public static async void Find(CommandArgs e)
-		{
-			var regex = new Regex(@"^\w+ -(?<switch>\w+) (?<search>.+?) ?(?<page>\d*)$");
-			Match match = regex.Match(e.Message);
+    public static class Commands
+    {
+        public static async void Find(CommandArgs e)
+        {
+            var regex = new Regex(@"^\w+ -(?<switch>\w+) (?<search>.+?) ?(?<page>\d*)$");
+            Match match = regex.Match(e.Message);
             if (!match.Success)
             {
                 e.Player.SendErrorMessage("格式错误！正确的语法是：{0}find <-类> <名称...> [页数]",
@@ -45,7 +40,7 @@ namespace EssentialsPlus
             }
 
             switch (match.Groups["switch"].Value.ToLowerInvariant())
-			{
+            {
                 #region Command
 
                 case "command":
@@ -261,10 +256,10 @@ namespace EssentialsPlus
             }
         }
 
-		public static System.Timers.Timer FreezeTimer = new System.Timers.Timer(1000);
+        public static System.Timers.Timer FreezeTimer = new System.Timers.Timer(1000);
 
-		public static void FreezeTime(CommandArgs e)
-		{
+        public static void FreezeTime(CommandArgs e)
+        {
             if (FreezeTimer.Enabled)
             {
                 FreezeTimer.Stop();
@@ -272,18 +267,18 @@ namespace EssentialsPlus
             }
             else
             {
-				bool dayTime = Main.dayTime;
-				double time = Main.time;
+                bool dayTime = Main.dayTime;
+                double time = Main.time;
 
-				FreezeTimer.Dispose();
-				FreezeTimer = new System.Timers.Timer(1000);
-				FreezeTimer.Elapsed += (o, ee) =>
-				{
-					Main.dayTime = dayTime;
-					Main.time = time;
-					TSPlayer.All.SendData(PacketTypes.TimeSet);
-				};
-				FreezeTimer.Start();
+                FreezeTimer.Dispose();
+                FreezeTimer = new System.Timers.Timer(1000);
+                FreezeTimer.Elapsed += (o, ee) =>
+                {
+                    Main.dayTime = dayTime;
+                    Main.time = time;
+                    TSPlayer.All.SendData(PacketTypes.TimeSet);
+                };
+                FreezeTimer.Start();
                 TSPlayer.All.SendInfoMessage("{0} 冻结了时间。", e.Player.Name);
             }
         }

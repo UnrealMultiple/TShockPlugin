@@ -60,7 +60,7 @@ namespace PvPer
                     return;
 
                 case "wl":
-                    args.Player.SendMessage($"注意：/pvp.WL 中间有个英文字符[c/F75454:“点”【 . 】]",Color.YellowGreen);
+                    args.Player.SendMessage($"注意：/pvp.WL 中间有个英文字符[c/F75454:“点”【 . 】]", Color.YellowGreen);
                     return;
 
                 case "bl":
@@ -161,7 +161,7 @@ namespace PvPer
                 {
                     if (int.TryParse(args.Parameters[0], out page) && page >= 1)
                     {
-                        args.Parameters.RemoveAt(0); 
+                        args.Parameters.RemoveAt(0);
                     }
                     else
                     {
@@ -185,7 +185,7 @@ namespace PvPer
                         break;
 
                     case 2:
-                        helpMessage ="———————\n " +
+                        helpMessage = "———————\n " +
                                      "《决斗系统》 第2页 （2/2）：\n " +
                                      "[c/74D3E8:/pvp.WL ] - [c/7EE874:查看封禁武器表]\n " +
                                      "[c/74D3E8:/pvp.BL ] - [c/7EE874:查看封禁增益表]\n " +

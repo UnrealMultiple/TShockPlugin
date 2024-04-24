@@ -50,7 +50,7 @@ namespace OnlineGiftPackage
             ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
             // 监听服务器重载事件，以便在重载后重新设置定时器
             GeneralHooks.ReloadEvent += ReloadEvent;
-            
+
         }
 
         private void OnUpdate(EventArgs args)

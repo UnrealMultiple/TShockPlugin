@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Configuration;
 using System.Text;
 using TShockAPI;
 
@@ -12,7 +11,7 @@ namespace Challenger
         [JsonProperty("是否启用挑战模式")]
         public bool enableChallenge = true;
 
-        [JsonProperty("是否启用BOSS魔改")] 
+        [JsonProperty("是否启用BOSS魔改")]
         public bool enableBossAI = false;
 
         [JsonProperty("是否启用怪物吸血")]
@@ -171,7 +170,7 @@ namespace Challenger
             this.lifeXnum = b5;
             enableBossAI = b6;
         }
-        */ 
+        */
         #endregion
     }
 }

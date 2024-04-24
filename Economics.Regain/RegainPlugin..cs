@@ -55,7 +55,7 @@ public class RegainPlugin : TerrariaPlugin
         switch (args.Parameters.Count)
         {
             case 0:
-                { 
+                {
                     var num = args.Player.SelectedItem.stack * regain.Cost;
                     EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num);
                     args.Player.SelectedItem.stack = 0;
@@ -72,7 +72,7 @@ public class RegainPlugin : TerrariaPlugin
                         foreach (var info in Config.Regains)
                         {
                             var item = TShock.Utils.GetItemById(info.ID);
-                            if(item != null)
+                            if (item != null)
                                 args.Player.SendSuccessMessage($"[i:{info.ID}] {item.Name} 价格:{info.Cost}");
                         }
                         return;
@@ -95,7 +95,7 @@ public class RegainPlugin : TerrariaPlugin
                 args.Player.SendInfoMessage("/regain [数量]");
                 args.Player.SendInfoMessage("/regain list");
                 break;
-               
+
         }
     }
 }

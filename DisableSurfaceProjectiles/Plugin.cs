@@ -1,5 +1,4 @@
 ﻿using Terraria;
-using System.Timers;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;

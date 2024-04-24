@@ -1,5 +1,4 @@
-﻿using Terraria;
-using TShockAPI;
+﻿using TShockAPI;
 
 namespace Challenger
 {
@@ -49,7 +48,7 @@ namespace Challenger
         {
             get
             {
-                return me != null && me.Active && index == me.Index && index == ((Entity)me.TPlayer).whoAmI && me.TPlayer != null && ((Entity)me.TPlayer).active && _isActive;
+                return me != null && me.Active && index == me.Index && index == me.TPlayer.whoAmI && me.TPlayer != null && me.TPlayer.active && _isActive;
             }
             set
             {

@@ -1,6 +1,4 @@
-﻿using System;
-using Challenger;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using TShockAPI;
@@ -27,22 +25,22 @@ namespace Challenger
             skill0 -= 1f;
             skill1 -= 1f;
             NPCAimedTarget targetData = npc.GetTargetData(true);
-            Vector2 val = ((Entity)npc).DirectionTo(targetData.Position);
+            Vector2 val = npc.DirectionTo(targetData.Position);
             SetState();
             if (skill0 < 0f)
             {
                 switch (state)
                 {
                     case 0:
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, val * 13f, 467, 14, 5f, -1, 0f, 0f, 0f);
-                        skill0 = CooldownOfSkill0 + (float)Main.rand.Next(51);
+                        Projectile.NewProjectile(null, npc.Center, val * 13f, 467, 14, 5f, -1, 0f, 0f, 0f);
+                        skill0 = CooldownOfSkill0 + Main.rand.Next(51);
                         break;
                     case 1:
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, val * 20f, 467, 18, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center, val * 20f, 467, 18, 5f, -1, 0f, 0f, 0f);
                         skill0 = CooldownOfSkill0;
                         break;
                     case 2:
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, val * 26f, 467, 22, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center, val * 26f, 467, 22, 5f, -1, 0f, 0f, 0f);
                         skill0 = CooldownOfSkill0 - 20f;
                         break;
                 }
@@ -52,25 +50,25 @@ namespace Challenger
                 switch (state)
                 {
                     case 0:
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 14, 5f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 14, 5f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 14, 5f, -1, 0f, 0f, 0f);
-                        skill1 = CooldownOfSkill0 + (float)Main.rand.Next(51);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 14, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 14, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 14, 5f, -1, 0f, 0f, 0f);
+                        skill1 = CooldownOfSkill0 + Main.rand.Next(51);
                         break;
                     case 1:
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 18, 5f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 18, 5f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 18, 5f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 18, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 18, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 18, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 18, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 18, 5f, -1, 0f, 0f, 0f);
                         skill1 = CooldownOfSkill0;
                         break;
                     case 2:
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 20, 5f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 20, 5f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 20, 5f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 20, 5f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 20, 5f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + new Vector2(0f, (float)Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 20, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 20, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 20, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 20, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 20, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 20, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + new Vector2(0f, Main.rand.Next(-200, 200)), (val + Terraria.Utils.RotateRandom(Vector2.One, Math.PI) * 0.2f) * 10f, 811, 20, 5f, -1, 0f, 0f, 0f);
                         skill1 = CooldownOfSkill0;
                         break;
                 }
@@ -79,7 +77,7 @@ namespace Challenger
 
         public override int SetState()
         {
-            if ((float)npc.life >= (float)LifeMax * 0.6f)
+            if (npc.life >= LifeMax * 0.6f)
             {
                 if (state == 0)
                 {
@@ -91,7 +89,7 @@ namespace Challenger
                 }
                 return state;
             }
-            if ((float)npc.life >= (float)LifeMax * 0.3f)
+            if (npc.life >= LifeMax * 0.3f)
             {
                 if (state == 1)
                 {

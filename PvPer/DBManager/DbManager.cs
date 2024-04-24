@@ -22,7 +22,7 @@ namespace PvPer
                 ));
         }
 
-        public bool InsertPlayer(int accountID, int kills = 0, int deaths = 0, int winStreak =0)
+        public bool InsertPlayer(int accountID, int kills = 0, int deaths = 0, int winStreak = 0)
         {
             return _db.Query("INSERT INTO Players (AccountID, Kills, Deaths, WinStreak) VALUES (@0, @1, @2, @3)", accountID, kills, deaths, winStreak) != 0;
         }

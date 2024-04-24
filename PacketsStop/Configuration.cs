@@ -14,7 +14,7 @@ namespace PacketsStop
         [JsonProperty("第一次使用输这个")]
         public string README3 = "/group addperm default 免拦截";
 
-        [JsonProperty("拦截的数据包名")] 
+        [JsonProperty("拦截的数据包名")]
         public HashSet<string> Packets { get; set; } = new HashSet<string>();
 
         public static readonly string FilePath = Path.Combine(TShock.SavePath, "数据包拦截.json");
@@ -54,7 +54,7 @@ namespace PacketsStop
         {
             if (!File.Exists(path))
             {
-                var defaultConfig = new Configuration(); 
+                var defaultConfig = new Configuration();
                 defaultConfig.Write(path);
                 return defaultConfig;
             }

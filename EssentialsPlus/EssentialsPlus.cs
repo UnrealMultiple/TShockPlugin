@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using EssentialsPlus.Db;
+﻿using EssentialsPlus.Db;
 using EssentialsPlus.Extensions;
 using Microsoft.Data.Sqlite;
 using MySql.Data.MySqlClient;
+using System.Data;
+using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -16,13 +11,13 @@ using TShockAPI.Hooks;
 
 namespace EssentialsPlus
 {
-	[ApiVersion(2, 1)]
-	public class EssentialsPlus : TerrariaPlugin
-	{
-		public static Config Config { get; private set; }
-		public static IDbConnection Db { get; private set; }
-		public static HomeManager Homes { get; private set; }
-		public static MuteManager Mutes { get; private set; }
+    [ApiVersion(2, 1)]
+    public class EssentialsPlus : TerrariaPlugin
+    {
+        public static Config Config { get; private set; }
+        public static IDbConnection Db { get; private set; }
+        public static HomeManager Homes { get; private set; }
+        public static MuteManager Mutes { get; private set; }
 
         public override string Author => "WhiteX等人，Average,Cjx,肝帝熙恩翻译";
 
@@ -34,52 +29,52 @@ namespace EssentialsPlus
 
 
         public EssentialsPlus(Main game)
-			: base(game)
-		{
-		}
+            : base(game)
+        {
+        }
 
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				GeneralHooks.ReloadEvent -= OnReload;
-				PlayerHooks.PlayerCommand -= OnPlayerCommand;
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                GeneralHooks.ReloadEvent -= OnReload;
+                PlayerHooks.PlayerCommand -= OnPlayerCommand;
 
-				ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
-				ServerApi.Hooks.GamePostInitialize.Deregister(this, OnPostInitialize);
-				ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
-				ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
-			}
-			base.Dispose(disposing);
-		}
+                ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
+                ServerApi.Hooks.GamePostInitialize.Deregister(this, OnPostInitialize);
+                ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
+                ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
+            }
+            base.Dispose(disposing);
+        }
 
-		public override void Initialize()
-		{
-			GeneralHooks.ReloadEvent += OnReload;
-			PlayerHooks.PlayerCommand += OnPlayerCommand;
+        public override void Initialize()
+        {
+            GeneralHooks.ReloadEvent += OnReload;
+            PlayerHooks.PlayerCommand += OnPlayerCommand;
 
-			ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
-			ServerApi.Hooks.GamePostInitialize.Register(this, OnPostInitialize);
-			ServerApi.Hooks.NetGetData.Register(this, OnGetData);
-			ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
-		}
+            ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
+            ServerApi.Hooks.GamePostInitialize.Register(this, OnPostInitialize);
+            ServerApi.Hooks.NetGetData.Register(this, OnGetData);
+            ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
+        }
 
-		private async void OnReload(ReloadEventArgs e)
-		{
-			string path = Path.Combine(TShock.SavePath, "essentials.json");
-			Config = Config.Read(path);
-			if (!File.Exists(path))
-			{
-				Config.Write(path);
-			}
-			await Homes.ReloadAsync();
+        private async void OnReload(ReloadEventArgs e)
+        {
+            string path = Path.Combine(TShock.SavePath, "essentials.json");
+            Config = Config.Read(path);
+            if (!File.Exists(path))
+            {
+                Config.Write(path);
+            }
+            await Homes.ReloadAsync();
             e.Player.SendSuccessMessage("[EssentialsPlus] 重新加载配置和家!");
         }
 
         private List<string> teleportCommands = new List<string>
-		{
-			"tp", "tppos", "tpnpc", "warp", "spawn", "home"
-		};
+        {
+            "tp", "tppos", "tpnpc", "warp", "spawn", "home"
+        };
 
         private void OnPlayerCommand(PlayerCommandEventArgs e)
         {
@@ -296,24 +291,24 @@ namespace EssentialsPlus
 
 
         private void OnPostInitialize(EventArgs args)
-		{
-			Homes = new HomeManager(Db);
-		}
+        {
+            Homes = new HomeManager(Db);
+        }
 
-		private async void OnJoin(JoinEventArgs e)
-		{
-			if (e.Handled)
-			{
-				return;
-			}
+        private async void OnJoin(JoinEventArgs e)
+        {
+            if (e.Handled)
+            {
+                return;
+            }
 
-			TSPlayer player = TShock.Players[e.Who];
-			if (player == null)
-			{
-				return;
-			}
+            TSPlayer player = TShock.Players[e.Who];
+            if (player == null)
+            {
+                return;
+            }
 
-			DateTime muteExpiration = Mutes.GetExpirationAsync(player);
+            DateTime muteExpiration = Mutes.GetExpirationAsync(player);
 
             if (DateTime.UtcNow < muteExpiration)
             {
@@ -331,58 +326,58 @@ namespace EssentialsPlus
         }
 
         private void OnGetData(GetDataEventArgs e)
-		{
-			if (e.Handled)
-			{
-				return;
-			}
+        {
+            if (e.Handled)
+            {
+                return;
+            }
 
-			TSPlayer tsplayer = TShock.Players[e.Msg.whoAmI];
-			if (tsplayer == null)
-			{
-				return;
-			}
+            TSPlayer tsplayer = TShock.Players[e.Msg.whoAmI];
+            if (tsplayer == null)
+            {
+                return;
+            }
 
-			switch (e.MsgID)
-			{
-				#region Packet 118 - PlayerDeathV2
+            switch (e.MsgID)
+            {
+                #region Packet 118 - PlayerDeathV2
 
-				case PacketTypes.PlayerDeathV2:
-					if (tsplayer.Group.HasPermission(Permissions.TpBack))
-					{
-						tsplayer.GetPlayerInfo().PushBackHistory(tsplayer.TPlayer.position);
-					}
-					return;
+                case PacketTypes.PlayerDeathV2:
+                    if (tsplayer.Group.HasPermission(Permissions.TpBack))
+                    {
+                        tsplayer.GetPlayerInfo().PushBackHistory(tsplayer.TPlayer.position);
+                    }
+                    return;
 
-				case PacketTypes.Teleport:
-					{
-						if (tsplayer.Group.HasPermission(Permissions.TpBack))
-						{
-							using (MemoryStream ms = new MemoryStream(e.Msg.readBuffer, e.Index, e.Length))
-							{
-								BitsByte flags = (byte)ms.ReadByte();
+                case PacketTypes.Teleport:
+                    {
+                        if (tsplayer.Group.HasPermission(Permissions.TpBack))
+                        {
+                            using (MemoryStream ms = new MemoryStream(e.Msg.readBuffer, e.Index, e.Length))
+                            {
+                                BitsByte flags = (byte)ms.ReadByte();
 
-								int type = 0;
-								if (flags[1])
-								{
-									type = 2;
-								}
+                                int type = 0;
+                                if (flags[1])
+                                {
+                                    type = 2;
+                                }
 
-								if (type == 0 && tsplayer.Group.HasPermission(TShockAPI.Permissions.rod))
-								{
-									tsplayer.GetPlayerInfo().PushBackHistory(tsplayer.TPlayer.position);
-								}
-								else if (type == 2 && tsplayer.Group.HasPermission(TShockAPI.Permissions.wormhole))
-								{
-									tsplayer.GetPlayerInfo().PushBackHistory(tsplayer.TPlayer.position);
-								}
-							}
-						}
-					}
-					return;
+                                if (type == 0 && tsplayer.Group.HasPermission(TShockAPI.Permissions.rod))
+                                {
+                                    tsplayer.GetPlayerInfo().PushBackHistory(tsplayer.TPlayer.position);
+                                }
+                                else if (type == 2 && tsplayer.Group.HasPermission(TShockAPI.Permissions.wormhole))
+                                {
+                                    tsplayer.GetPlayerInfo().PushBackHistory(tsplayer.TPlayer.position);
+                                }
+                            }
+                        }
+                    }
+                    return;
 
-					#endregion
-			}
-		}
-	}
+                    #endregion
+            }
+        }
+    }
 }

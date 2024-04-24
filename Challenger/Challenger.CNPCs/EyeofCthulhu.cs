@@ -1,5 +1,4 @@
-﻿using Challenger;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using TShockAPI;
@@ -39,14 +38,14 @@ namespace Challenger
             {
                 for (int i = 0; i < number; i++)
                 {
-                    NPC.NewNPC((IEntitySource)null, (int)((Entity)npc).Bottom.X + Main.rand.Next(-32, 33), (int)((Entity)npc).Bottom.Y, 5, 0, 0f, 0f, 0f, 0f, 255);
+                    NPC.NewNPC(null, (int)npc.Bottom.X + Main.rand.Next(-32, 33), (int)npc.Bottom.Y, 5, 0, 0f, 0f, 0f, 0f, 255);
                 }
             }
             else
             {
                 for (int j = 0; j < 20 - num; j++)
                 {
-                    NPC.NewNPC((IEntitySource)null, (int)((Entity)npc).Bottom.X + Main.rand.Next(-32, 33), (int)((Entity)npc).Bottom.Y, 5, 0, 0f, 0f, 0f, 0f, 255);
+                    NPC.NewNPC(null, (int)npc.Bottom.X + Main.rand.Next(-32, 33), (int)npc.Bottom.Y, 5, 0, 0f, 0f, 0f, 0f, 255);
                 }
             }
         }
@@ -56,7 +55,7 @@ namespace Challenger
             NPCAimedTarget targetData = npc.GetTargetData(true);
             if (npc.ai[0] == 1f && npc.ai[1] % 2f == 0f)
             {
-                Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, Terraria.Utils.ToRotationVector2(npc.rotation) * 3f, 96, 8, 5f, -1, 0f, 0f, 0f);
+                Projectile.NewProjectile(null, npc.Center, Terraria.Utils.ToRotationVector2(npc.rotation) * 3f, 96, 8, 5f, -1, 0f, 0f, 0f);
             }
             SetState();
             switch (state)
@@ -65,25 +64,25 @@ namespace Challenger
                     skill0 -= 1f;
                     if (skill0 < 0f && npc.ai[1] == 0f)
                     {
-                        Vector2 val4 = ((Entity)npc).DirectionTo(targetData.Position);
+                        Vector2 val4 = npc.DirectionTo(targetData.Position);
                         if (npc.ai[2] == 40f)
                         {
-                            Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Bottom, val4 * 8f, 96, 4, 5f, -1, 0f, 0f, 0f);
+                            Projectile.NewProjectile(null, npc.Bottom, val4 * 8f, 96, 4, 5f, -1, 0f, 0f, 0f);
                         }
                         else if (npc.ai[2] == 80f)
                         {
-                            Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Bottom, val4 * 10f, 96, 5, 5f, -1, 0f, 0f, 0f);
+                            Projectile.NewProjectile(null, npc.Bottom, val4 * 10f, 96, 5, 5f, -1, 0f, 0f, 0f);
                         }
                         else if (npc.ai[2] == 100f)
                         {
-                            Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Bottom, val4 * 10f, 96, 6, 6f, -1, 0f, 0f, 0f);
-                            skill0 = 150f + (float)Main.rand.Next(100);
+                            Projectile.NewProjectile(null, npc.Bottom, val4 * 10f, 96, 6, 6f, -1, 0f, 0f, 0f);
+                            skill0 = 150f + Main.rand.Next(100);
                         }
                     }
                     if (npc.ai[1] == 2f && (npc.ai[3] == 0f || npc.ai[3] == 1f || npc.ai[3] == 2f) && npc.ai[2] <= 2f)
                     {
                         NPC? obj3 = npc;
-                        ((Entity)obj3).velocity = ((Entity)obj3).velocity + ((Entity)npc).velocity * 0.1f;
+                        obj3.velocity = obj3.velocity + npc.velocity * 0.1f;
                         npc.netUpdate = true;
                     }
                     break;
@@ -91,19 +90,19 @@ namespace Challenger
                     skill0 -= 1f;
                     if (skill0 < 0f && npc.ai[1] == 0f)
                     {
-                        Vector2 val2 = ((Entity)npc).DirectionTo(targetData.Position);
+                        Vector2 val2 = npc.DirectionTo(targetData.Position);
                         if (npc.ai[2] == 120f)
                         {
                             if (Main.rand.Next(1, 3) == 1)
                             {
-                                Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, val2 * 12f, 96, 8, 5f, -1, 0f, 0f, 0f);
-                                Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, Terraria.Utils.RotatedBy(val2, 0.1, default(Vector2)) * 11f, 96, 7, 5f, -1, 0f, 0f, 0f);
-                                Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, Terraria.Utils.RotatedBy(val2, -0.1, default(Vector2)) * 11f, 96, 7, 5f, -1, 0f, 0f, 0f);
+                                Projectile.NewProjectile(null, npc.Center, val2 * 12f, 96, 8, 5f, -1, 0f, 0f, 0f);
+                                Projectile.NewProjectile(null, npc.Center, Terraria.Utils.RotatedBy(val2, 0.1, default(Vector2)) * 11f, 96, 7, 5f, -1, 0f, 0f, 0f);
+                                Projectile.NewProjectile(null, npc.Center, Terraria.Utils.RotatedBy(val2, -0.1, default(Vector2)) * 11f, 96, 7, 5f, -1, 0f, 0f, 0f);
                             }
                             else
                             {
-                                Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, Terraria.Utils.RotatedBy(val2, 0.1, default(Vector2)) * 11f, 96, 7, 5f, -1, 0f, 0f, 0f);
-                                Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, Terraria.Utils.RotatedBy(val2, -0.1, default(Vector2)) * 11f, 96, 7, 5f, -1, 0f, 0f, 0f);
+                                Projectile.NewProjectile(null, npc.Center, Terraria.Utils.RotatedBy(val2, 0.1, default(Vector2)) * 11f, 96, 7, 5f, -1, 0f, 0f, 0f);
+                                Projectile.NewProjectile(null, npc.Center, Terraria.Utils.RotatedBy(val2, -0.1, default(Vector2)) * 11f, 96, 7, 5f, -1, 0f, 0f, 0f);
                             }
                             skill0 = 150f;
                             npc.ai[2] = 100f;
@@ -113,10 +112,10 @@ namespace Challenger
                     if (npc.ai[1] == 2f && (npc.ai[3] == 0f || npc.ai[3] == 1f || npc.ai[3] == 2f) && npc.ai[2] == 0f)
                     {
                         NPC? obj2 = npc;
-                        ((Entity)obj2).velocity = ((Entity)obj2).velocity + ((Entity)npc).velocity;
-                        Vector2 val3 = Terraria.Utils.SafeNormalize(((Entity)npc).velocity, Vector2.Zero);
+                        obj2.velocity = obj2.velocity + npc.velocity;
+                        Vector2 val3 = Terraria.Utils.SafeNormalize(npc.velocity, Vector2.Zero);
                         npc.netUpdate = true;
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + val3 * 2f, val3 * 18f, 96, 5, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + val3 * 2f, val3 * 18f, 96, 5, 5f, -1, 0f, 0f, 0f);
                     }
                     break;
                 case 3:
@@ -124,21 +123,21 @@ namespace Challenger
                     if (skill1 < 0f)
                     {
                         Spawn(3);
-                        skill1 = 150f + (float)Main.rand.Next(51);
+                        skill1 = 150f + Main.rand.Next(51);
                     }
                     if (npc.ai[1] == 4f && npc.ai[2] % 15f == 0f)
                     {
-                        int num2 = Collect.MyNewProjectile(null, ((Entity)npc).Center, Terraria.Utils.RotateRandom(Vector2.One, 6.2831854820251465) * 0.5f, 96, 6, 5f);
+                        int num2 = Collect.MyNewProjectile(null, npc.Center, Terraria.Utils.RotateRandom(Vector2.One, 6.2831854820251465) * 0.5f, 96, 6, 5f);
                         Main.projectile[num2].timeLeft = 240;
                         CProjectile.Update(num2);
                     }
                     if (npc.ai[1] == 4f && (npc.ai[3] == 0f || npc.ai[3] == 1f || npc.ai[3] == 2f) && npc.ai[2] == 0f)
                     {
                         NPC? obj4 = npc;
-                        ((Entity)obj4).velocity = ((Entity)obj4).velocity + ((Entity)npc).velocity;
-                        Vector2 val5 = Terraria.Utils.SafeNormalize(((Entity)npc).velocity, Vector2.Zero);
+                        obj4.velocity = obj4.velocity + npc.velocity;
+                        Vector2 val5 = Terraria.Utils.SafeNormalize(npc.velocity, Vector2.Zero);
                         npc.netUpdate = true;
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + val5 * 2f, val5 * 20f, 96, 5, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + val5 * 2f, val5 * 20f, 96, 5, 5f, -1, 0f, 0f, 0f);
                     }
                     break;
                 case 4:
@@ -147,7 +146,7 @@ namespace Challenger
                     if (skill1 < 0f)
                     {
                         Spawn(3);
-                        skill1 = 250f + (float)Main.rand.Next(150);
+                        skill1 = 250f + Main.rand.Next(150);
                     }
                     if (skill2 < 0f && npc.ai[1] == 4f && npc.ai[3] == 4f)
                     {
@@ -156,17 +155,17 @@ namespace Challenger
                     }
                     if (npc.ai[1] == 4f && npc.ai[2] % 10f == 0f)
                     {
-                        int num = Collect.MyNewProjectile(null, ((Entity)npc).Center, Terraria.Utils.RotateRandom(Vector2.One, 6.2831854820251465) * 0.5f, 96, 9, 5f);
+                        int num = Collect.MyNewProjectile(null, npc.Center, Terraria.Utils.RotateRandom(Vector2.One, 6.2831854820251465) * 0.5f, 96, 9, 5f);
                         Main.projectile[num].timeLeft = 600;
                         CProjectile.Update(num);
                     }
                     if (npc.ai[1] == 4f && (npc.ai[3] == 0f || npc.ai[3] == 1f || npc.ai[3] == 2f) && npc.ai[2] == 0f)
                     {
                         NPC? obj = npc;
-                        ((Entity)obj).velocity = ((Entity)obj).velocity + ((Entity)npc).velocity;
-                        Vector2 val = Terraria.Utils.SafeNormalize(((Entity)npc).velocity, Vector2.Zero);
+                        obj.velocity = obj.velocity + npc.velocity;
+                        Vector2 val = Terraria.Utils.SafeNormalize(npc.velocity, Vector2.Zero);
                         npc.netUpdate = true;
-                        Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center + val * 2f, val * 30f, 96, 6, 5f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, npc.Center + val * 2f, val * 30f, 96, 6, 5f, -1, 0f, 0f, 0f);
                     }
                     break;
             }
@@ -174,7 +173,7 @@ namespace Challenger
 
         public override int SetState()
         {
-            if ((float)npc.life >= (float)LifeMax * 0.7f)
+            if (npc.life >= LifeMax * 0.7f)
             {
                 if (state == 0)
                 {
@@ -186,7 +185,7 @@ namespace Challenger
                 }
                 return 0;
             }
-            if ((float)npc.life >= (float)LifeMax * 0.4f)
+            if (npc.life >= LifeMax * 0.4f)
             {
                 if (state == 1)
                 {
@@ -198,7 +197,7 @@ namespace Challenger
                 }
                 return 1;
             }
-            if ((float)npc.life >= (float)LifeMax * 0.2f)
+            if (npc.life >= LifeMax * 0.2f)
             {
                 if (state == 2)
                 {
@@ -228,11 +227,11 @@ namespace Challenger
                 int num = Main.rand.Next(1, 3);
                 if (num == 1)
                 {
-                    global::Challenger.Challenger.SendPlayerText("就这就这！", new Color(200, 200, 200), ((Entity)npc).Center + new Vector2(0f, -30f));
+                    global::Challenger.Challenger.SendPlayerText("就这就这！", new Color(200, 200, 200), npc.Center + new Vector2(0f, -30f));
                 }
                 else
                 {
-                    global::Challenger.Challenger.SendPlayerText("看我创死你", new Color(200, 200, 200), ((Entity)npc).Center + new Vector2(0f, -30f));
+                    global::Challenger.Challenger.SendPlayerText("看我创死你", new Color(200, 200, 200), npc.Center + new Vector2(0f, -30f));
                 }
             }
         }

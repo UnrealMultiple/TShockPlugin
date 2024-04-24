@@ -21,7 +21,7 @@ public enum ProgressType
     [ProgressMap(nameof(NPC.downedSlimeKing), typeof(NPC), true)]
     SlimeKing,
 
-    [ProgressName( "世界吞噬者", "世界吞噬怪", "世吞")]
+    [ProgressName("世界吞噬者", "世界吞噬怪", "世吞")]
     [ProgressMapID(NPCID.EaterofWorldsHead)]
     [ProgressMap(nameof(NPC.downedBoss2), typeof(NPC), true)]
     EvilBoss,
@@ -234,7 +234,7 @@ public enum ProgressType
     [ProgressMap(nameof(Main.dontStarveWorld), typeof(Main), true)]
     DontStarveWorld,
 
-    [ProgressName("天顶世界","天顶")]
+    [ProgressName("天顶世界", "天顶")]
     [ProgressMap(nameof(Main.zenithWorld), typeof(Main), true)]
     zenithWorld,
 

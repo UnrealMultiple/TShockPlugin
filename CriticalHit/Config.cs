@@ -1,8 +1,4 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CriticalHit;
 public class Config
@@ -25,7 +21,7 @@ public class Config
 
     public void Write(Stream stream)
     {
-        string value = JsonConvert.SerializeObject((object)this, (Formatting)1);
+        string value = JsonConvert.SerializeObject(this, (Formatting)1);
         using StreamWriter streamWriter = new StreamWriter(stream);
         streamWriter.Write(value);
     }

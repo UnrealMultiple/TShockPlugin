@@ -1,10 +1,9 @@
-﻿using Terraria.ID;
-using Terraria;
+﻿using Terraria;
+using Terraria.ID;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 using static TShockAPI.GetDataHandlers;
-using System;
 
 namespace LifemaxExtra;
 
@@ -144,7 +143,7 @@ public class LifemaxExtra : TerrariaPlugin
         }
     }
 
- 
+
 
     private void OnHP(object? sender, PlayerHPEventArgs e)
     {
@@ -203,7 +202,7 @@ public class LifemaxExtra : TerrariaPlugin
             if (enh)
             {
                 raise = HP;
-                currency = MaxHP +  HP;
+                currency = MaxHP + HP;
             }
             else
             {
@@ -357,7 +356,7 @@ public class LifemaxExtra : TerrariaPlugin
                             UseItemRaiseMP(args.Player, raiseMp.Raise);
                             break;
                     }
-                }    
+                }
             }
         }
     }

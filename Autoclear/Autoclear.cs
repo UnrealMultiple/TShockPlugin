@@ -1,6 +1,4 @@
-﻿using System;
-using System.Configuration;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
@@ -55,7 +53,7 @@ namespace Autoclear
         {
             _updateCounter++;
 
-            if (_updateCounter % (60 * Config.detectionIntervalSeconds) == 0) 
+            if (_updateCounter % (60 * Config.detectionIntervalSeconds) == 0)
             {
                 int totalItems2 = 0;
                 for (int i = 0; i < Main.item.Length; i++)

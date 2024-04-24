@@ -1,4 +1,3 @@
-using System.Data;
 using TShockAPI;
 using TShockAPI.DB;
 

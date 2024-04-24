@@ -140,7 +140,7 @@ namespace PacketsStop
         {
             TSPlayer player = TShock.Players[args.Msg.whoAmI];
 
-            if (!_Enabled ||! Packets.Contains(args.MsgID))
+            if (!_Enabled || !Packets.Contains(args.MsgID))
             {
                 return;
             }

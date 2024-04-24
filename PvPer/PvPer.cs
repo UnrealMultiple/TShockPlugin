@@ -1,9 +1,9 @@
 ﻿using Microsoft.Data.Sqlite;
+using Microsoft.Xna.Framework;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
-using Microsoft.Xna.Framework;
 
 namespace PvPer
 {
@@ -43,10 +43,10 @@ namespace PvPer
             ServerApi.Hooks.ServerLeave.Register(this, OnServerLeave);
             GeneralHooks.ReloadEvent += LoadConfig;
             TShockAPI.Commands.ChatCommands.Add(new Command("pvper.use", Commands.Duel, "决斗", "pvp"));
-            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.use", BuffList,"pvp.bl" ));
+            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.use", BuffList, "pvp.bl"));
             TShockAPI.Commands.ChatCommands.Add(new Command("pvper.use", WeaponList, "pvp.wl"));
-            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.admin", BanWeapon, "pvp.bw" ));
-            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.admin", BanBuff,"pvp.bb" ));
+            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.admin", BanWeapon, "pvp.bw"));
+            TShockAPI.Commands.ChatCommands.Add(new Command("pvper.admin", BanBuff, "pvp.bb"));
 
             #region PVP 检查
             weaponbans = new List<string>(Config.WeaponList);
@@ -101,8 +101,8 @@ namespace PvPer
 
                 if (Config.PullArena)
                 {
-                    float playerX = ((Entity)plr.TPlayer).Center.X;
-                    float playerY = ((Entity)plr.TPlayer).Center.Y;
+                    float playerX = plr.TPlayer.Center.X;
+                    float playerY = plr.TPlayer.Center.Y;
 
                     // 计算玩家到竞技场中心的向量（dx, dy）
                     float centerX = (PvPer.Config.ArenaPosX1 * 16 + PvPer.Config.ArenaPosX2 * 16) / 2f;
@@ -153,15 +153,15 @@ namespace PvPer
                 plr.Teleport(x, y, 1);
                 return;
             }
-            float x2 = ((Entity)plr.TPlayer).Center.X;
-            float y2 = ((Entity)plr.TPlayer).Center.Y;
+            float x2 = plr.TPlayer.Center.X;
+            float y2 = plr.TPlayer.Center.Y;
             x2 -= x;
             y2 -= y;
             if (x2 != 0f || y2 != 0f)
             {
                 double num = Math.Atan2(y2, x2) * 180.0 / Math.PI;
-                x2 = (float)((double)r * Math.Cos(num * Math.PI / 180.0));
-                y2 = (float)((double)r * Math.Sin(num * Math.PI / 180.0));
+                x2 = (float)(r * Math.Cos(num * Math.PI / 180.0));
+                y2 = (float)(r * Math.Sin(num * Math.PI / 180.0));
                 x2 += x;
                 y2 += y;
                 plr.Teleport(x2, y2, 1);
@@ -283,7 +283,7 @@ namespace PvPer
                     return;
 
                 }
-                if(wlist.Count > 1)
+                if (wlist.Count > 1)
                 {
                     args.Player.SendMultipleMatchError(wlist);
                     return;
@@ -305,7 +305,7 @@ namespace PvPer
                     case "del":
                         weaponbans.Remove(wname);
                         Config.WeaponList.Remove(wname); // 从配置文件的 WeaponList 移除
-                        args.Player.SendSuccessMessage("已解除对 " +wname+ " 在PvP中的禁用。");
+                        args.Player.SendSuccessMessage("已解除对 " + wname + " 在PvP中的禁用。");
                         PvPer.Config.Write(Configuration.FilePath);
                         break;
                 }
@@ -347,8 +347,8 @@ namespace PvPer
                 {
                     case "add":
                         buffbans.Add(buffid);
-                        Config.BuffList.Add(buffid); 
-                        args.Player.SendMessage("已禁止 " + TShock.Utils.GetBuffName(buffid) + " 在PvP中使用。",232,74,83);
+                        Config.BuffList.Add(buffid);
+                        args.Player.SendMessage("已禁止 " + TShock.Utils.GetBuffName(buffid) + " 在PvP中使用。", 232, 74, 83);
                         PvPer.Config.Write(Configuration.FilePath);
                         break;
 

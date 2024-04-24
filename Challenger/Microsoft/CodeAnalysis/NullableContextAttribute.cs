@@ -1,6 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using Microsoft.CodeAnalysis;
+﻿using System.Runtime.CompilerServices;
 
 namespace Challenger
 {

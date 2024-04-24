@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using TShockAPI;
 
 namespace BP

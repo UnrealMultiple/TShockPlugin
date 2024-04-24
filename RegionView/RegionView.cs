@@ -3,7 +3,6 @@ using System.Timers;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.DB;
 using TShockAPI.Hooks;
 
 namespace RegionView
@@ -11,11 +10,11 @@ namespace RegionView
     [ApiVersion(2, 1)]
     public class RegionView : TerrariaPlugin
     {
-		public const int NearRange = 100;
+        public const int NearRange = 100;
 
-		public List<RegionPlayer> Players { get; } = new();
+        public List<RegionPlayer> Players { get; } = new();
 
-        public static Color[] TextColors { get; } = new[] 
+        public static Color[] TextColors { get; } = new[]
         {
             new Color(244,  93,  93),
             new Color(244, 169,  93),
@@ -43,16 +42,16 @@ namespace RegionView
         public override Version Version
             => new(1, 1);
 
-		private readonly System.Timers.Timer _refreshTimer = new(5000);
+        private readonly System.Timers.Timer _refreshTimer = new(5000);
 
-		public RegionView(Main game)
+        public RegionView(Main game)
             : base(game)
         {
             Order = 1;
         }
 
-		public override void Initialize()
-		{
+        public override void Initialize()
+        {
             Commands.ChatCommands.Add(new Command("regionvision.regionview", CommandView, "regionview", "rv")
             {
                 AllowServer = false,
@@ -73,106 +72,106 @@ namespace RegionView
 
             GetDataHandlers.TileEdit += HandlerList<GetDataHandlers.TileEditEventArgs>.Create(OnTileEdit!, HandlerPriority.High, false);
 
-			ServerApi.Hooks.ServerJoin.Register(this, OnPlayerJoin);
-			ServerApi.Hooks.ServerLeave.Register(this, OnPlayerLeave);
+            ServerApi.Hooks.ServerJoin.Register(this, OnPlayerJoin);
+            ServerApi.Hooks.ServerLeave.Register(this, OnPlayerLeave);
 
-			PlayerHooks.PlayerCommand += OnPlayerCommand;
-			RegionHooks.RegionCreated += RegionCreated;
-			RegionHooks.RegionDeleted += RegionDeleted;
+            PlayerHooks.PlayerCommand += OnPlayerCommand;
+            RegionHooks.RegionCreated += RegionCreated;
+            RegionHooks.RegionDeleted += RegionDeleted;
 
-			_refreshTimer.AutoReset = false;
+            _refreshTimer.AutoReset = false;
 
-			_refreshTimer.Elapsed += (x, _) => RefreshRegions();
-		}
+            _refreshTimer.Elapsed += (x, _) => RefreshRegions();
+        }
 
-		private void RegionDeleted(RegionHooks.RegionDeletedEventArgs args)
-		{
-			if (args.Region.WorldID != Main.worldID.ToString()) return;
+        private void RegionDeleted(RegionHooks.RegionDeletedEventArgs args)
+        {
+            if (args.Region.WorldID != Main.worldID.ToString()) return;
 
-			// If any players were viewing this region, clear its border.
-			lock (Players)
-			{
-				foreach (var player in Players)
-				{
-					for (var i = 0; i < player.Regions.Count; i++)
-					{
-						var region = player.Regions[i];
-						if (region.Name.Equals(args.Region.Name))
-						{
+            // If any players were viewing this region, clear its border.
+            lock (Players)
+            {
+                foreach (var player in Players)
+                {
+                    for (var i = 0; i < player.Regions.Count; i++)
+                    {
+                        var region = player.Regions[i];
+                        if (region.Name.Equals(args.Region.Name))
+                        {
                             player.TSPlayer.SendMessage("区域显示 " + region.Name + " 已被删除。", TextColors[region.Color - 13]);
                             region.Refresh(player.TSPlayer);
-							player.Regions.RemoveAt(i);
+                            player.Regions.RemoveAt(i);
 
-							foreach (var region2 in player.Regions)
-								region2.SetFakeTiles();
-							foreach (var region2 in player.Regions)
-								region2.Refresh(player.TSPlayer);
-							foreach (var region2 in player.Regions.Reverse<Region>())
-								region2.UnsetFakeTiles();
+                            foreach (var region2 in player.Regions)
+                                region2.SetFakeTiles();
+                            foreach (var region2 in player.Regions)
+                                region2.Refresh(player.TSPlayer);
+                            foreach (var region2 in player.Regions.Reverse<Region>())
+                                region2.UnsetFakeTiles();
 
-							break;
-						}
-					}
-				}
-			}
-		}
+                            break;
+                        }
+                    }
+                }
+            }
+        }
 
-		private void RegionCreated(RegionHooks.RegionCreatedEventArgs args)
-		{
-			_refreshTimer.Stop();
-			RefreshRegions();
-		}
+        private void RegionCreated(RegionHooks.RegionCreatedEventArgs args)
+        {
+            _refreshTimer.Stop();
+            RefreshRegions();
+        }
 
-		public RegionPlayer? FindPlayer(int index) 
-			=> Players.FirstOrDefault(p => p.Index == index);
+        public RegionPlayer? FindPlayer(int index)
+            => Players.FirstOrDefault(p => p.Index == index);
 
-		private void CommandView(CommandArgs args)
-		{
-			TShockAPI.DB.Region? tRegion = null;
-			var matches = new List<TShockAPI.DB.Region>();
+        private void CommandView(CommandArgs args)
+        {
+            TShockAPI.DB.Region? tRegion = null;
+            var matches = new List<TShockAPI.DB.Region>();
 
-			if (args.Parameters.Count < 1)
-			{
+            if (args.Parameters.Count < 1)
+            {
                 args.Player.SendErrorMessage("用法: /regionview <区域名称>");
                 return;
-			}
+            }
 
-			// Find the specified region.
-			for (var pass = 1; pass <= 3 && tRegion == null && matches.Count == 0; pass++)
-			{
-				foreach (var _tRegion in TShock.Regions.Regions)
-				{
-					switch (pass)
-					{
-						case 1:  // Pass 1: exact match
-							if (_tRegion.Name == args.Parameters[0])
-							{
-								tRegion = _tRegion;
-								break;
-							}
-							else if (_tRegion.Name.Equals(args.Parameters[0], StringComparison.OrdinalIgnoreCase))
-								matches.Add(_tRegion);
-							break;
-						case 2:  // Pass 2: case-sensitive partial match
-							if (_tRegion.Name.StartsWith(args.Parameters[0]))
-								matches.Add(_tRegion);
-							break;
-						case 3:  // Pass 3: case-insensitive partial match
-							if (_tRegion.Name.StartsWith(args.Parameters[0], StringComparison.OrdinalIgnoreCase))
-								matches.Add(_tRegion);
-							break;
-					}
-					if (tRegion != null) 
-						break;
-				}
-			}
+            // Find the specified region.
+            for (var pass = 1; pass <= 3 && tRegion == null && matches.Count == 0; pass++)
+            {
+                foreach (var _tRegion in TShock.Regions.Regions)
+                {
+                    switch (pass)
+                    {
+                        case 1:  // Pass 1: exact match
+                            if (_tRegion.Name == args.Parameters[0])
+                            {
+                                tRegion = _tRegion;
+                                break;
+                            }
+                            else if (_tRegion.Name.Equals(args.Parameters[0], StringComparison.OrdinalIgnoreCase))
+                                matches.Add(_tRegion);
+                            break;
+                        case 2:  // Pass 2: case-sensitive partial match
+                            if (_tRegion.Name.StartsWith(args.Parameters[0]))
+                                matches.Add(_tRegion);
+                            break;
+                        case 3:  // Pass 3: case-insensitive partial match
+                            if (_tRegion.Name.StartsWith(args.Parameters[0], StringComparison.OrdinalIgnoreCase))
+                                matches.Add(_tRegion);
+                            break;
+                    }
+                    if (tRegion != null)
+                        break;
+                }
+            }
 
-			if (tRegion == null)
-			{
-				if (matches.Count == 1)
-				{
-					tRegion = matches[0];
-				}
+            if (tRegion == null)
+            {
+                if (matches.Count == 1)
+                {
+                    tRegion = matches[0];
+                }
                 else if (matches.Count == 0)
                 {
                     args.Player.SendErrorMessage("没有找到这样的区域。");
@@ -191,40 +190,40 @@ namespace RegionView
             }
 
             if (tRegion!.Area.Width < 0 || tRegion.Area.Height < 0)
-			{
+            {
                 args.Player.SendErrorMessage("区域 {0} 不包含任何图块。 (找到的尺寸: {1} × {2})\n使用 [c/FF8080:/region resize] 来修复它。", tRegion.Name, tRegion.Area.Width, tRegion.Area.Height);
                 return;
-			}
+            }
 
-			lock (Players)
-			{
-				var player = FindPlayer(args.Player.Index);
+            lock (Players)
+            {
+                var player = FindPlayer(args.Player.Index);
 
-				if (player == null) 
-					return;
+                if (player == null)
+                    return;
 
-				// Register this region.
-				var region = player.Regions.FirstOrDefault(r => r.Name == tRegion.Name);
+                // Register this region.
+                var region = player.Regions.FirstOrDefault(r => r.Name == tRegion.Name);
 
-				if (region == null)
-					region = new Region(tRegion.Name, tRegion.Area);
-				else
-					player.Regions.Remove(region);
+                if (region == null)
+                    region = new Region(tRegion.Name, tRegion.Area);
+                else
+                    player.Regions.Remove(region);
 
-				foreach (var _region in player.Regions)
-					_region.SetFakeTiles();
+                foreach (var _region in player.Regions)
+                    _region.SetFakeTiles();
 
-				if (region.ShowArea != region.Area) 
-					region.Refresh(player.TSPlayer);
+                if (region.ShowArea != region.Area)
+                    region.Refresh(player.TSPlayer);
 
-				player.Regions.Add(region);
+                player.Regions.Add(region);
 
-				region.CalculateArea(args.Player);
-				region.SetFakeTiles();
-				region.Refresh(player.TSPlayer);
+                region.CalculateArea(args.Player);
+                region.SetFakeTiles();
+                region.Refresh(player.TSPlayer);
 
-				foreach (var _region in player.Regions.Reverse<Region>())
-					_region.UnsetFakeTiles();
+                foreach (var _region in player.Regions.Reverse<Region>())
+                    _region.UnsetFakeTiles();
 
                 var message = "您现在正在查看 " + region.Name + " 区域。";
                 // 如果区域很大，显示区域的大小。
@@ -268,32 +267,32 @@ namespace RegionView
                 }
                 args.Player.SendMessage(message, TextColors[region.Color - 13]);
 
-				_refreshTimer.Interval = 7000;
-				_refreshTimer.Enabled = true;
-			}
-		}
+                _refreshTimer.Interval = 7000;
+                _refreshTimer.Enabled = true;
+            }
+        }
 
-		private void CommandClear(CommandArgs args)
-		{
-			lock (Players)
-			{
-				var player = FindPlayer(args.Player.Index);
-				if (player == null) 
-					return;
+        private void CommandClear(CommandArgs args)
+        {
+            lock (Players)
+            {
+                var player = FindPlayer(args.Player.Index);
+                if (player == null)
+                    return;
 
-				player.IsViewingNearby = false;
-				ClearRegions(player);
-			}
-		}
+                player.IsViewingNearby = false;
+                ClearRegions(player);
+            }
+        }
 
-		private void CommandViewNearby(CommandArgs args)
-		{
-			lock (Players)
-			{
-				var player = FindPlayer(args.Player.Index);
+        private void CommandViewNearby(CommandArgs args)
+        {
+            lock (Players)
+            {
+                var player = FindPlayer(args.Player.Index);
 
-				if (player == null) 
-					return;
+                if (player == null)
+                    return;
 
                 if (player.IsViewingNearby)
                 {
@@ -311,297 +310,297 @@ namespace RegionView
             }
         }
 
-		public static void ClearRegions(RegionPlayer player)
-		{
-			foreach (var region in player.Regions)
-				region.Refresh(player.TSPlayer);
+        public static void ClearRegions(RegionPlayer player)
+        {
+            foreach (var region in player.Regions)
+                region.Refresh(player.TSPlayer);
 
-			player.Regions.Clear();
-		}
+            player.Regions.Clear();
+        }
 
-		private void OnTileEdit(object sender, GetDataHandlers.TileEditEventArgs e)
-		{
-			if (e.Action is > GetDataHandlers.EditAction.KillTileNoItem or GetDataHandlers.EditAction.KillWall) 
-				return;
+        private void OnTileEdit(object sender, GetDataHandlers.TileEditEventArgs e)
+        {
+            if (e.Action is > GetDataHandlers.EditAction.KillTileNoItem or GetDataHandlers.EditAction.KillWall)
+                return;
 
-			if (e.Action == GetDataHandlers.EditAction.PlaceTile && e.EditData == Terraria.ID.TileID.MagicalIceBlock) 
-				return;
+            if (e.Action == GetDataHandlers.EditAction.PlaceTile && e.EditData == Terraria.ID.TileID.MagicalIceBlock)
+                return;
 
-			lock (Players)
-			{
-				var player = this.FindPlayer(e.Player.Index);
-				if (player == null)
-					return;
+            lock (Players)
+            {
+                var player = this.FindPlayer(e.Player.Index);
+                if (player == null)
+                    return;
 
-				if (player.Regions.Count == 0)
-					return;
+                if (player.Regions.Count == 0)
+                    return;
 
-				// Stop the edit if a phantom tile is the only thing making it possible.
-				foreach (var region in player.Regions)
-				{
-					// Clear the region borders if they break one of the phantom ice blocks.
-					if ((e.Action == GetDataHandlers.EditAction.KillTile || e.Action == GetDataHandlers.EditAction.KillTileNoItem) && (Main.tile[e.X, e.Y] == null || !Main.tile[e.X, e.Y].active()) &&
-						e.X >= region.ShowArea.Left - 1 && e.X <= region.ShowArea.Right + 1 && e.Y >= region.ShowArea.Top - 1 && e.Y <= region.ShowArea.Bottom + 1 &&
-						!(e.X >= region.ShowArea.Left + 2 && e.X <= region.ShowArea.Right - 2 && e.Y >= region.ShowArea.Top + 2 && e.Y <= region.ShowArea.Bottom - 2))
-					{
-						e.Handled = true;
-						//clearRegions(player);
-						break;
-					}
-					if ((e.Action == GetDataHandlers.EditAction.PlaceTile || e.Action == GetDataHandlers.EditAction.PlaceWall) && !TileValidityCheck(region, e.X, e.Y, e.Action))
-					{
-						e.Handled = true;
-						player.TSPlayer.SendData(PacketTypes.TileSendSquare, "", 1, e.X, e.Y, 0, 0);
-						if (e.Action == GetDataHandlers.EditAction.PlaceTile) GiveTile(player, e);
-						if (e.Action == GetDataHandlers.EditAction.PlaceWall) GiveWall(player, e);
-						break;
-					}
-				}
+                // Stop the edit if a phantom tile is the only thing making it possible.
+                foreach (var region in player.Regions)
+                {
+                    // Clear the region borders if they break one of the phantom ice blocks.
+                    if ((e.Action == GetDataHandlers.EditAction.KillTile || e.Action == GetDataHandlers.EditAction.KillTileNoItem) && (Main.tile[e.X, e.Y] == null || !Main.tile[e.X, e.Y].active()) &&
+                        e.X >= region.ShowArea.Left - 1 && e.X <= region.ShowArea.Right + 1 && e.Y >= region.ShowArea.Top - 1 && e.Y <= region.ShowArea.Bottom + 1 &&
+                        !(e.X >= region.ShowArea.Left + 2 && e.X <= region.ShowArea.Right - 2 && e.Y >= region.ShowArea.Top + 2 && e.Y <= region.ShowArea.Bottom - 2))
+                    {
+                        e.Handled = true;
+                        //clearRegions(player);
+                        break;
+                    }
+                    if ((e.Action == GetDataHandlers.EditAction.PlaceTile || e.Action == GetDataHandlers.EditAction.PlaceWall) && !TileValidityCheck(region, e.X, e.Y, e.Action))
+                    {
+                        e.Handled = true;
+                        player.TSPlayer.SendData(PacketTypes.TileSendSquare, "", 1, e.X, e.Y, 0, 0);
+                        if (e.Action == GetDataHandlers.EditAction.PlaceTile) GiveTile(player, e);
+                        if (e.Action == GetDataHandlers.EditAction.PlaceWall) GiveWall(player, e);
+                        break;
+                    }
+                }
 
-				if (e.Handled) 
-					ClearRegions(player);
-			}
-		}
+                if (e.Handled)
+                    ClearRegions(player);
+            }
+        }
 
-		private void OnPlayerJoin(JoinEventArgs e)
-		{
-			lock (Players)
-				Players.Add(new(e.Who));
-		}
+        private void OnPlayerJoin(JoinEventArgs e)
+        {
+            lock (Players)
+                Players.Add(new(e.Who));
+        }
 
-		private void OnPlayerLeave(LeaveEventArgs e)
-		{
-			lock (Players)
-				for (var i = 0; i < Players.Count; i++)
-				{
-					if (Players[i].Index == e.Who)
-					{
-						Players.RemoveAt(i);
-						break;
-					}
-				}
-		}
+        private void OnPlayerLeave(LeaveEventArgs e)
+        {
+            lock (Players)
+                for (var i = 0; i < Players.Count; i++)
+                {
+                    if (Players[i].Index == e.Who)
+                    {
+                        Players.RemoveAt(i);
+                        break;
+                    }
+                }
+        }
 
-		private void OnPlayerCommand(PlayerCommandEventArgs e)
-		{
-			if (e.Parameters.Count >= 2 && e.CommandName.ToLower() == "region" && new[] { "delete", "resize", "expand" }.Contains(e.Parameters[0].ToLower()))
-			{
-				if (Commands.ChatCommands.Any(c => c.HasAlias("region") && c.CanRun(e.Player)))
-					_refreshTimer.Interval = 1500;
-			}
-		}
+        private void OnPlayerCommand(PlayerCommandEventArgs e)
+        {
+            if (e.Parameters.Count >= 2 && e.CommandName.ToLower() == "region" && new[] { "delete", "resize", "expand" }.Contains(e.Parameters[0].ToLower()))
+            {
+                if (Commands.ChatCommands.Any(c => c.HasAlias("region") && c.CanRun(e.Player)))
+                    _refreshTimer.Interval = 1500;
+            }
+        }
 
-		private void Tick(object sender, ElapsedEventArgs e) 
-			=> this.RefreshRegions();
+        private void Tick(object sender, ElapsedEventArgs e)
+            => this.RefreshRegions();
 
-		private void RefreshRegions()
-		{
-			var anyRegions = false;
+        private void RefreshRegions()
+        {
+            var anyRegions = false;
 
-			// Check for regions that have changed.
-			lock (Players)
-			{
-				foreach (var player in Players)
-				{
-					var refreshFlag = false;
+            // Check for regions that have changed.
+            lock (Players)
+            {
+                foreach (var player in Players)
+                {
+                    var refreshFlag = false;
 
-					for (var i = 0; i < player.Regions.Count; i++)
-					{
-						var region = player.Regions[i];
-						var tRegion = TShock.Regions.GetRegionByName(region.Name);
+                    for (var i = 0; i < player.Regions.Count; i++)
+                    {
+                        var region = player.Regions[i];
+                        var tRegion = TShock.Regions.GetRegionByName(region.Name);
 
-						if (tRegion == null)
-						{
-							// The region was removed.
-							refreshFlag = true;
-							region.Refresh(player.TSPlayer);
-							player.Regions.RemoveAt(i--);
-						}
-						else
-						{
-							var newArea = tRegion.Area;
-							if (!region.Command && (!player.IsViewingNearby || !IsPlayerNearby(player.TSPlayer, region.Area)))
-							{
-								// The player is no longer near the region.
-								refreshFlag = true;
-								region.Refresh(player.TSPlayer);
-								player.Regions.RemoveAt(i--);
-							}
-							else
-							if (newArea != region.Area)
-							{
-								// The region was resized.
-								if (newArea.Width < 0 || newArea.Height < 0)
-								{
-									refreshFlag = true;
-									region.Refresh(player.TSPlayer);
-									player.Regions.RemoveAt(i--);
-								}
-								else
-								{
-									anyRegions = true;
-									refreshFlag = true;
-									region.Refresh(player.TSPlayer);
-									region.Area = newArea;
-									region.CalculateArea(player.TSPlayer);
-								}
-							}
-							else
-							{
-								anyRegions = true;
-							}
-						}
-					}
+                        if (tRegion == null)
+                        {
+                            // The region was removed.
+                            refreshFlag = true;
+                            region.Refresh(player.TSPlayer);
+                            player.Regions.RemoveAt(i--);
+                        }
+                        else
+                        {
+                            var newArea = tRegion.Area;
+                            if (!region.Command && (!player.IsViewingNearby || !IsPlayerNearby(player.TSPlayer, region.Area)))
+                            {
+                                // The player is no longer near the region.
+                                refreshFlag = true;
+                                region.Refresh(player.TSPlayer);
+                                player.Regions.RemoveAt(i--);
+                            }
+                            else
+                            if (newArea != region.Area)
+                            {
+                                // The region was resized.
+                                if (newArea.Width < 0 || newArea.Height < 0)
+                                {
+                                    refreshFlag = true;
+                                    region.Refresh(player.TSPlayer);
+                                    player.Regions.RemoveAt(i--);
+                                }
+                                else
+                                {
+                                    anyRegions = true;
+                                    refreshFlag = true;
+                                    region.Refresh(player.TSPlayer);
+                                    region.Area = newArea;
+                                    region.CalculateArea(player.TSPlayer);
+                                }
+                            }
+                            else
+                            {
+                                anyRegions = true;
+                            }
+                        }
+                    }
 
-					if (player.IsViewingNearby)
-					{
-						anyRegions = true;
+                    if (player.IsViewingNearby)
+                    {
+                        anyRegions = true;
 
-						// Search for nearby regions
-						foreach (var tRegion in TShock.Regions.Regions)
-						{
-							if (tRegion.WorldID == Main.worldID.ToString() && tRegion.Area.Width >= 0 && tRegion.Area.Height >= 0)
-							{
-								if (IsPlayerNearby(player.TSPlayer, tRegion.Area))
-								{
-									if (!player.Regions.Any(r => r.Name == tRegion.Name))
-									{
-										refreshFlag = true;
-										var region = new Region(tRegion.Name, tRegion.Area, false);
-										region.CalculateArea(player.TSPlayer);
-										player.Regions.Add(region);
-										player.TSPlayer.SendMessage("你正在看区域 " + region.Name + ".", TextColors[region.Color - 13]);
-									}
-								}
-							}
-						}
-					}
+                        // Search for nearby regions
+                        foreach (var tRegion in TShock.Regions.Regions)
+                        {
+                            if (tRegion.WorldID == Main.worldID.ToString() && tRegion.Area.Width >= 0 && tRegion.Area.Height >= 0)
+                            {
+                                if (IsPlayerNearby(player.TSPlayer, tRegion.Area))
+                                {
+                                    if (!player.Regions.Any(r => r.Name == tRegion.Name))
+                                    {
+                                        refreshFlag = true;
+                                        var region = new Region(tRegion.Name, tRegion.Area, false);
+                                        region.CalculateArea(player.TSPlayer);
+                                        player.Regions.Add(region);
+                                        player.TSPlayer.SendMessage("你正在看区域 " + region.Name + ".", TextColors[region.Color - 13]);
+                                    }
+                                }
+                            }
+                        }
+                    }
 
-					if (refreshFlag)
-					{
-						foreach (var region in player.Regions)
-							region.SetFakeTiles();
-						foreach (var region in player.Regions)
-							region.Refresh(player.TSPlayer);
-						foreach (var region in player.Regions.Reverse<Region>())
-							region.UnsetFakeTiles();
-					}
-				}
-			}
+                    if (refreshFlag)
+                    {
+                        foreach (var region in player.Regions)
+                            region.SetFakeTiles();
+                        foreach (var region in player.Regions)
+                            region.Refresh(player.TSPlayer);
+                        foreach (var region in player.Regions.Reverse<Region>())
+                            region.UnsetFakeTiles();
+                    }
+                }
+            }
 
-			if (anyRegions)
-			{
-				_refreshTimer.Interval = 7000;
-				_refreshTimer.Enabled = true;
-			}
-		}
+            if (anyRegions)
+            {
+                _refreshTimer.Interval = 7000;
+                _refreshTimer.Enabled = true;
+            }
+        }
 
-		public static bool IsPlayerNearby(TSPlayer tPlayer, Rectangle area)
-		{
-			var playerX = (int)(tPlayer.X / 16);
-			var playerY = (int)(tPlayer.Y / 16);
+        public static bool IsPlayerNearby(TSPlayer tPlayer, Rectangle area)
+        {
+            var playerX = (int)(tPlayer.X / 16);
+            var playerY = (int)(tPlayer.Y / 16);
 
-			return playerX >= area.Left - NearRange &&
-					playerX <= area.Right + NearRange &&
-					playerY >= area.Top - NearRange &&
-					playerY <= area.Bottom + NearRange;
-		}
+            return playerX >= area.Left - NearRange &&
+                    playerX <= area.Right + NearRange &&
+                    playerY >= area.Top - NearRange &&
+                    playerY <= area.Bottom + NearRange;
+        }
 
-		public static bool TileValidityCheck(Region region, int x, int y, GetDataHandlers.EditAction editType)
-		{
-			// Check if there's a wall or another tile next to this tile.
-			if (editType == GetDataHandlers.EditAction.PlaceWall)
-			{
-				if (Main.tile[x, y] != null && Main.tile[x, y].active())
-					return true;
+        public static bool TileValidityCheck(Region region, int x, int y, GetDataHandlers.EditAction editType)
+        {
+            // Check if there's a wall or another tile next to this tile.
+            if (editType == GetDataHandlers.EditAction.PlaceWall)
+            {
+                if (Main.tile[x, y] != null && Main.tile[x, y].active())
+                    return true;
 
-				if (Main.tile[x - 1, y] != null && ((Main.tile[x - 1, y].active() && !Main.tileNoAttach[Main.tile[x - 1, y].type]) || Main.tile[x - 1, y].wall > 0))
-					return true;
+                if (Main.tile[x - 1, y] != null && ((Main.tile[x - 1, y].active() && !Main.tileNoAttach[Main.tile[x - 1, y].type]) || Main.tile[x - 1, y].wall > 0))
+                    return true;
 
-				if (Main.tile[x + 1, y] != null && ((Main.tile[x + 1, y].active() && !Main.tileNoAttach[Main.tile[x + 1, y].type]) || Main.tile[x + 1, y].wall > 0))
-					return true;
+                if (Main.tile[x + 1, y] != null && ((Main.tile[x + 1, y].active() && !Main.tileNoAttach[Main.tile[x + 1, y].type]) || Main.tile[x + 1, y].wall > 0))
+                    return true;
 
-				if (Main.tile[x, y - 1] != null && ((Main.tile[x, y - 1].active() && !Main.tileNoAttach[Main.tile[x, y - 1].type]) || Main.tile[x, y - 1].wall > 0))
-					return true;
+                if (Main.tile[x, y - 1] != null && ((Main.tile[x, y - 1].active() && !Main.tileNoAttach[Main.tile[x, y - 1].type]) || Main.tile[x, y - 1].wall > 0))
+                    return true;
 
-				if (Main.tile[x, y + 1] != null && ((Main.tile[x, y + 1].active() && !Main.tileNoAttach[Main.tile[x, y + 1].type]) || Main.tile[x, y + 1].wall > 0))
-					return true;
-			}
-			else
-			{
-				if (Main.tile[x, y] != null && Main.tile[x, y].wall > 0)
-					return true;
+                if (Main.tile[x, y + 1] != null && ((Main.tile[x, y + 1].active() && !Main.tileNoAttach[Main.tile[x, y + 1].type]) || Main.tile[x, y + 1].wall > 0))
+                    return true;
+            }
+            else
+            {
+                if (Main.tile[x, y] != null && Main.tile[x, y].wall > 0)
+                    return true;
 
-				if (Main.tile[x - 1, y] != null && Main.tile[x - 1, y].wall > 0)
-					return true;
+                if (Main.tile[x - 1, y] != null && Main.tile[x - 1, y].wall > 0)
+                    return true;
 
-				if (Main.tile[x + 1, y] != null && Main.tile[x + 1, y].wall > 0)
-					return true;
+                if (Main.tile[x + 1, y] != null && Main.tile[x + 1, y].wall > 0)
+                    return true;
 
-				if (Main.tile[x, y - 1] != null && Main.tile[x, y - 1].wall > 0)
-					return true;
+                if (Main.tile[x, y - 1] != null && Main.tile[x, y - 1].wall > 0)
+                    return true;
 
-				if (Main.tile[x, y + 1] != null && Main.tile[x, y + 1].wall > 0)
-					return true;
+                if (Main.tile[x, y + 1] != null && Main.tile[x, y + 1].wall > 0)
+                    return true;
 
-				if (Main.tile[x - 1, y] != null && Main.tile[x - 1, y].active() && !Main.tileNoAttach[Main.tile[x - 1, y].type])
-					return true;
+                if (Main.tile[x - 1, y] != null && Main.tile[x - 1, y].active() && !Main.tileNoAttach[Main.tile[x - 1, y].type])
+                    return true;
 
-				if (Main.tile[x + 1, y] != null && Main.tile[x + 1, y].active() && !Main.tileNoAttach[Main.tile[x + 1, y].type])
-					return true;
+                if (Main.tile[x + 1, y] != null && Main.tile[x + 1, y].active() && !Main.tileNoAttach[Main.tile[x + 1, y].type])
+                    return true;
 
-				if (Main.tile[x, y - 1] != null && Main.tile[x, y - 1].active() && !Main.tileNoAttach[Main.tile[x, y - 1].type])
-					return true;
+                if (Main.tile[x, y - 1] != null && Main.tile[x, y - 1].active() && !Main.tileNoAttach[Main.tile[x, y - 1].type])
+                    return true;
 
-				if (Main.tile[x, y - 1] != null && Main.tile[x, y + 1].active() && !Main.tileNoAttach[Main.tile[x, y + 1].type])
-					return true;
-			}
+                if (Main.tile[x, y - 1] != null && Main.tile[x, y + 1].active() && !Main.tileNoAttach[Main.tile[x, y + 1].type])
+                    return true;
+            }
 
-			// Check if this tile is next to a region boundary.
-			return x < region.ShowArea.Left - 1 || x > region.ShowArea.Right + 1 || y < region.ShowArea.Top - 1 || y > region.ShowArea.Bottom + 1 ||
-				x >= region.ShowArea.Left + 2 && x <= region.ShowArea.Right - 2 && y >= region.ShowArea.Top + 2 && y <= region.ShowArea.Bottom - 2;
-		}
+            // Check if this tile is next to a region boundary.
+            return x < region.ShowArea.Left - 1 || x > region.ShowArea.Right + 1 || y < region.ShowArea.Top - 1 || y > region.ShowArea.Bottom + 1 ||
+                x >= region.ShowArea.Left + 2 && x <= region.ShowArea.Right - 2 && y >= region.ShowArea.Top + 2 && y <= region.ShowArea.Bottom - 2;
+        }
 
-		public static void GiveTile(RegionPlayer player, GetDataHandlers.TileEditEventArgs e)
-		{
-			var item = new Item();
-			var found = false;
+        public static void GiveTile(RegionPlayer player, GetDataHandlers.TileEditEventArgs e)
+        {
+            var item = new Item();
+            var found = false;
 
-			for (var i = 1; i <= Terraria.ID.ItemID.Count; i++)
-			{
-				item.SetDefaults(i, true);
-				if (item.createTile == e.EditData && item.placeStyle == e.Style)
-				{
-					if (item.tileWand != -1) item.SetDefaults(item.tileWand, true);
-					found = true;
-					break;
-				}
-			}
+            for (var i = 1; i <= Terraria.ID.ItemID.Count; i++)
+            {
+                item.SetDefaults(i, true);
+                if (item.createTile == e.EditData && item.placeStyle == e.Style)
+                {
+                    if (item.tileWand != -1) item.SetDefaults(item.tileWand, true);
+                    found = true;
+                    break;
+                }
+            }
 
-			if (found)
-				GiveItem(player, item);
-		}
+            if (found)
+                GiveItem(player, item);
+        }
 
-		public static void GiveWall(RegionPlayer player, GetDataHandlers.TileEditEventArgs e)
-		{
-			var item = new Item(); var found = false;
-			for (var i = 1; i <= Terraria.ID.ItemID.Count; i++)
-			{
-				item.SetDefaults(i, true);
-				if (item.createWall == e.EditData)
-				{
-					found = true;
-					break;
-				}
-			}
-			if (found)
-			{
-				item.stack = 1;
-				GiveItem(player, item);
-			}
-		}
+        public static void GiveWall(RegionPlayer player, GetDataHandlers.TileEditEventArgs e)
+        {
+            var item = new Item(); var found = false;
+            for (var i = 1; i <= Terraria.ID.ItemID.Count; i++)
+            {
+                item.SetDefaults(i, true);
+                if (item.createWall == e.EditData)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (found)
+            {
+                item.stack = 1;
+                GiveItem(player, item);
+            }
+        }
 
-		public static void GiveItem(RegionPlayer player, Item item)
-			=> player.TSPlayer.GiveItem(item.type, 1);
-	}
+        public static void GiveItem(RegionPlayer player, Item item)
+            => player.TSPlayer.GiveItem(item.type, 1);
+    }
 }

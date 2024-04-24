@@ -1,11 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.IO;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using System.Timers;
 
 namespace MapTeleport
 {

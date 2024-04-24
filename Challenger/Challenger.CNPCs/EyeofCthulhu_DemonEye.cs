@@ -19,11 +19,11 @@ namespace Challenger
         {
             skill0 -= 1f;
             NPCAimedTarget targetData = npc.GetTargetData(true);
-            Vector2 val = ((Entity)npc).DirectionTo(targetData.Position + new Vector2((float)Main.rand.Next(-32, 33), (float)Main.rand.Next(-32, 33)));
-            if (skill0 < 0f && val.X * ((Entity)npc).velocity.X > 0f && npc.HasPlayerTarget)
+            Vector2 val = npc.DirectionTo(targetData.Position + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)));
+            if (skill0 < 0f && val.X * npc.velocity.X > 0f && npc.HasPlayerTarget)
             {
-                Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, val * 6f, 84, 4, 5f, -1, 0f, 0f, 0f);
-                skill0 += CooldownOfSkill0 + (float)Main.rand.Next(51);
+                Projectile.NewProjectile(null, npc.Center, val * 6f, 84, 4, 5f, -1, 0f, 0f, 0f);
+                skill0 += CooldownOfSkill0 + Main.rand.Next(51);
             }
         }
     }

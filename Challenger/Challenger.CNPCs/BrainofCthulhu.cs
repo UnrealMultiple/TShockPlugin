@@ -32,10 +32,10 @@ namespace Challenger
                         {
                             float num5 = (float)Main.rand.NextDouble() - 0.5f;
                             float num6 = -0.25f * (float)Math.Cos(3.1415927410125732 * (double)num5);
-                            Projectile.NewProjectile(null, ((NPCAimedTarget)(targetData)).Center * 2f - ((Entity)npc).Center, new Vector2(0f - num5, 0f - num6) * 17f, 811, 0, 0f, -1, 0f, 0f, 0f);
-                            Projectile.NewProjectile(null, new Vector2((((NPCAimedTarget)(targetData)).Center - ((Entity)npc).Center).X * 2f, 0f) + ((Entity)npc).Center, new Vector2(0f - num5, num6) * 17f, 811, 0, 0f, -1, 0f, 0f, 0f);
-                            Projectile.NewProjectile(null, new Vector2(0f, (((NPCAimedTarget)(targetData)).Center - ((Entity)npc).Center).Y * 2f) + ((Entity)npc).Center, new Vector2(num5, 0f - num6) * 17f, 811, 0, 0f, -1, 0f, 0f, 0f);
-                            Projectile.NewProjectile(null, ((Entity)npc).Center, new Vector2(num5, num6) * 17f, 811, 15, 5f, -1, 0f, 0f, 0f);
+                            Projectile.NewProjectile(null, targetData.Center * 2f - npc.Center, new Vector2(0f - num5, 0f - num6) * 17f, 811, 0, 0f, -1, 0f, 0f, 0f);
+                            Projectile.NewProjectile(null, new Vector2((targetData.Center - npc.Center).X * 2f, 0f) + npc.Center, new Vector2(0f - num5, num6) * 17f, 811, 0, 0f, -1, 0f, 0f, 0f);
+                            Projectile.NewProjectile(null, new Vector2(0f, (targetData.Center - npc.Center).Y * 2f) + npc.Center, new Vector2(num5, 0f - num6) * 17f, 811, 0, 0f, -1, 0f, 0f, 0f);
+                            Projectile.NewProjectile(null, npc.Center, new Vector2(num5, num6) * 17f, 811, 15, 5f, -1, 0f, 0f, 0f);
                         }
                         break;
                     }
@@ -46,10 +46,10 @@ namespace Challenger
                         {
                             float num2 = (float)Main.rand.NextDouble() - 0.5f;
                             float num3 = -0.25f * (float)Math.Cos(3.1415927410125732 * (double)num2);
-                            Projectile.NewProjectile((IEntitySource)null, ((NPCAimedTarget)(targetData)).Center * 2f - ((Entity)npc).Center, new Vector2(0f - num2, 0f - num3) * 17f, 811, 14, 5f, -1, 0f, 0f, 0f);
-                            Projectile.NewProjectile((IEntitySource)null, new Vector2((((NPCAimedTarget)(targetData)).Center - ((Entity)npc).Center).X * 2f, 0f) + ((Entity)npc).Center, new Vector2(0f - num2, num3) * 17f, 811, 18, 5f, -1, 0f, 0f, 0f);
-                            Projectile.NewProjectile((IEntitySource)null, new Vector2(0f, (((NPCAimedTarget)(targetData)).Center - ((Entity)npc).Center).Y * 2f) + ((Entity)npc).Center, new Vector2(num2, 0f - num3) * 17f, 811, 18, 5f, -1, 0f, 0f, 0f);
-                            Projectile.NewProjectile((IEntitySource)null, ((Entity)npc).Center, new Vector2(num2, num3) * 17f, 811, 18, 5f, -1, 0f, 0f, 0f);
+                            Projectile.NewProjectile(null, targetData.Center * 2f - npc.Center, new Vector2(0f - num2, 0f - num3) * 17f, 811, 14, 5f, -1, 0f, 0f, 0f);
+                            Projectile.NewProjectile(null, new Vector2((targetData.Center - npc.Center).X * 2f, 0f) + npc.Center, new Vector2(0f - num2, num3) * 17f, 811, 18, 5f, -1, 0f, 0f, 0f);
+                            Projectile.NewProjectile(null, new Vector2(0f, (targetData.Center - npc.Center).Y * 2f) + npc.Center, new Vector2(num2, 0f - num3) * 17f, 811, 18, 5f, -1, 0f, 0f, 0f);
+                            Projectile.NewProjectile(null, npc.Center, new Vector2(num2, num3) * 17f, 811, 18, 5f, -1, 0f, 0f, 0f);
                         }
                         break;
                     }
@@ -58,7 +58,7 @@ namespace Challenger
 
         public override int SetState()
         {
-            if ((float)npc.life >= (float)LifeMax * 0.98f)
+            if (npc.life >= LifeMax * 0.98f)
             {
                 if (state == 0)
                 {
@@ -70,7 +70,7 @@ namespace Challenger
                 }
                 return state;
             }
-            if ((float)npc.life >= (float)LifeMax * 0.5f)
+            if (npc.life >= LifeMax * 0.5f)
             {
                 if (state == 1)
                 {
@@ -100,11 +100,11 @@ namespace Challenger
                 int num = Main.rand.Next(1, 3);
                 if (num == 1)
                 {
-                    global::Challenger.Challenger.SendPlayerText("糊你一脸", Color.Red, ((Entity)npc).Center + new Vector2(0f, -30f));
+                    global::Challenger.Challenger.SendPlayerText("糊你一脸", Color.Red, npc.Center + new Vector2(0f, -30f));
                 }
                 else
                 {
-                    global::Challenger.Challenger.SendPlayerText("哇哇嗷", Color.Red, ((Entity)npc).Center + new Vector2(0f, -30f));
+                    global::Challenger.Challenger.SendPlayerText("哇哇嗷", Color.Red, npc.Center + new Vector2(0f, -30f));
                 }
             }
         }

@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Terraria;
-using TShockAPI;
-using TerrariaApi.Server;
-using System.IO;
-using System.IO.Streams;
-
+﻿using Microsoft.Data.Sqlite;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
-using System.Runtime.Serialization.Formatters.Binary;
-using Microsoft.Data.Sqlite;
+using Terraria;
+using TShockAPI;
 
 namespace PerPlayerLoot
 {
@@ -66,7 +57,7 @@ namespace PerPlayerLoot
                     );
                 ";
 
-                using (var cmd = new SqliteCommand(sql, conn)) 
+                using (var cmd = new SqliteCommand(sql, conn))
                     cmd.ExecuteNonQuery();
 
             }
@@ -95,12 +86,12 @@ namespace PerPlayerLoot
                         List<Item> items = new List<Item>();
 
                         // read blob from column
-                        MemoryStream itemsRaw = new MemoryStream((byte[]) reader["items"]);
+                        MemoryStream itemsRaw = new MemoryStream((byte[])reader["items"]);
                         // deserialize with bson
                         using (var br = new BsonReader(itemsRaw))
                         {
                             br.ReadRootValueAsArray = true;
-                            
+
                             // do the actual deserialization
                             var jItems = (new JsonSerializer()).Deserialize<IList<JItem>>(br);
 
@@ -235,7 +226,7 @@ namespace PerPlayerLoot
 
             if (!playerChests.ContainsKey(chestId))
             {
-                
+
                 Chest realChest = Main.chest[chestId];
 
                 // copy the chest data from the real untouched chest

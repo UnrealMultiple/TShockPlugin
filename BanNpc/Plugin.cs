@@ -1,7 +1,6 @@
-﻿using TShockAPI;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
-using IL.OTAPI;
+using TShockAPI;
 using TShockAPI.Hooks;
 
 namespace BanNpc;
@@ -21,7 +20,7 @@ public class Plugin : TerrariaPlugin
 
     private static string PATH => Path.Combine(TShock.SavePath, "禁止怪物表.json");
 
-    public Plugin(Main game) : base(game) 
+    public Plugin(Main game) : base(game)
     {
 
     }
@@ -62,7 +61,7 @@ public class Plugin : TerrariaPlugin
         }
         base.Dispose(disposing);
     }
-  
+
     private void BanCommand(CommandArgs args)
     {
 
@@ -79,7 +78,7 @@ public class Plugin : TerrariaPlugin
             NPC npc;
             List<NPC> matchedNPCs = TShock.Utils.GetNPCByIdOrName(args.Parameters[1]);
             if (matchedNPCs.Count == 0)
-            { 
+            {
                 args.Player.SendErrorMessage("无效NPC: {0} !", args.Parameters[1]);
                 return;
             }
@@ -88,7 +87,7 @@ public class Plugin : TerrariaPlugin
                 args.Player.SendMultipleMatchError(matchedNPCs.Select(i => i.FullName));
                 return;
             }
-            else 
+            else
             {
                 npc = matchedNPCs[0];
             }
@@ -97,9 +96,9 @@ public class Plugin : TerrariaPlugin
                 case "add":
                     {
                         if (Config.Npcs.Contains(npc.netID))
-                        { 
-                            args.Player.SendErrorMessage("NPC ID {0} 已在阻止列表中!", npc.netID); 
-                            return; 
+                        {
+                            args.Player.SendErrorMessage("NPC ID {0} 已在阻止列表中!", npc.netID);
+                            return;
                         }
                         Config.Npcs.Add(npc.netID);
                         Config.Write(PATH);

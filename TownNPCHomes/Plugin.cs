@@ -1,6 +1,5 @@
-﻿using System.Collections.Concurrent;
-using System.Reflection;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Concurrent;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -47,7 +46,7 @@ public class Plugin : TerrariaPlugin
         {
             if (val != null && !(!val.active || !val.townNPC) && !val.homeless)
             {
-                Vector2 position = new Vector2((float)(val.homeTileX * 16), (float)(val.homeTileY * 16));
+                Vector2 position = new Vector2(val.homeTileX * 16, val.homeTileY * 16);
                 npcHomePositions.TryAdd(val.whoAmI, position);
                 npcIdsToUpdate.Add(val.whoAmI);
             }

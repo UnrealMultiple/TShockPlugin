@@ -28,7 +28,7 @@ namespace Challenger
             int num = -1;
             for (int num2 = 899; num2 >= 0; num2--)
             {
-                if (!((Entity)Main.projectile[num2]).active)
+                if (!Main.projectile[num2].active)
                 {
                     num = num2;
                     break;
@@ -40,39 +40,39 @@ namespace Challenger
             }
             Projectile val = Main.projectile[num];
             val.SetDefaults(Type);
-            ((Entity)val).position.X = X - (float)((Entity)val).width * 0.5f;
-            ((Entity)val).position.Y = Y - (float)((Entity)val).height * 0.5f;
+            val.position.X = X - val.width * 0.5f;
+            val.position.Y = Y - val.height * 0.5f;
             val.owner = Owner;
-            ((Entity)val).velocity.X = SpeedX;
-            ((Entity)val).velocity.Y = SpeedY;
+            val.velocity.X = SpeedX;
+            val.velocity.Y = SpeedY;
             val.damage = Damage;
             val.knockBack = KnockBack;
             val.identity = num;
             val.gfxOffY = 0f;
             val.stepSpeed = 1f;
-            ((Entity)val).wet = Collision.WetCollision(((Entity)val).position, ((Entity)val).width, ((Entity)val).height);
+            val.wet = Collision.WetCollision(val.position, val.width, val.height);
             if (val.ignoreWater)
             {
-                ((Entity)val).wet = false;
+                val.wet = false;
             }
-            ((Entity)val).honeyWet = Collision.honey;
-            ((Entity)val).shimmerWet = Collision.shimmer;
+            val.honeyWet = Collision.honey;
+            val.shimmerWet = Collision.shimmer;
             Main.projectileIdentity[Owner, num] = num;
             Projectile.FindBannerToAssociateTo(spawnSource, val);
             if (val.aiStyle == 1)
             {
-                while (((Entity)val).velocity.X >= 16f || ((Entity)val).velocity.X <= -16f || ((Entity)val).velocity.Y >= 16f || ((Entity)val).velocity.Y < -16f)
+                while (val.velocity.X >= 16f || val.velocity.X <= -16f || val.velocity.Y >= 16f || val.velocity.Y < -16f)
                 {
                     Projectile val2 = val;
-                    ((Entity)val2).velocity.X = ((Entity)val2).velocity.X * 0.97f;
+                    val2.velocity.X = val2.velocity.X * 0.97f;
                     Projectile val3 = val;
-                    ((Entity)val3).velocity.Y = ((Entity)val3).velocity.Y * 0.97f;
+                    val3.velocity.Y = val3.velocity.Y * 0.97f;
                 }
             }
             if (Type == 434)
             {
-                val.ai[0] = ((Entity)val).position.X;
-                val.ai[1] = ((Entity)val).position.Y;
+                val.ai[0] = val.position.X;
+                val.ai[1] = val.position.Y;
             }
             if (Type > 0 && Type < ProjectileID.Count)
             {
@@ -171,19 +171,19 @@ namespace Challenger
             val.SetDefaults(Type);
             val.Prefix(pfix);
             val.stack = Stack;
-            ((Entity)val).position.X = X + Width / 2 - ((Entity)val).width / 2;
-            ((Entity)val).position.Y = Y + Height / 2 - ((Entity)val).height / 2;
-            ((Entity)val).wet = Collision.WetCollision(((Entity)val).position, ((Entity)val).width, ((Entity)val).height);
-            ((Entity)val).velocity.X = (float)Main.rand.Next(-30, 31) * 0.1f;
-            ((Entity)val).velocity.Y = (float)Main.rand.Next(-40, -15) * 0.1f;
+            val.position.X = X + Width / 2 - val.width / 2;
+            val.position.Y = Y + Height / 2 - val.height / 2;
+            val.wet = Collision.WetCollision(val.position, val.width, val.height);
+            val.velocity.X = Main.rand.Next(-30, 31) * 0.1f;
+            val.velocity.Y = Main.rand.Next(-40, -15) * 0.1f;
             if (Type == 859 || Type == 4743)
             {
-                ((Entity)val).velocity = ((Entity)val).velocity * 0f;
+                val.velocity = val.velocity * 0f;
             }
             if (Type == 520 || Type == 521 || (val.type >= 0 && ItemID.Sets.NebulaPickup[val.type]))
             {
-                ((Entity)val).velocity.X = (float)Main.rand.Next(-30, 31) * 0.1f;
-                ((Entity)val).velocity.Y = (float)Main.rand.Next(-30, 31) * 0.1f;
+                val.velocity.X = Main.rand.Next(-30, 31) * 0.1f;
+                val.velocity.Y = Main.rand.Next(-30, 31) * 0.1f;
             }
             val.active = true;
             val.timeSinceItemSpawned = ItemID.Sets.OverflowProtectionTimeOffset[val.type];
