@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using TShockAPI;
 
 namespace MiniGamesAPI
@@ -63,13 +61,13 @@ namespace MiniGamesAPI
 
         public void ShowFramework()
         {
-            Vector2 vector1 = new Vector2((float)(TopRight.X + 1 - TopLeft.X) * 16f, 0f);
-            Vector2 vector2 = new Vector2(0f, (float)(BottomRight.Y + 1 - TopLeft.Y) * 16f);
-            Vector2 center = new Vector2((float)Area.Center.X * 16f, (float)Area.Center.Y * 16f);
+            Vector2 vector1 = new Vector2((TopRight.X + 1 - TopLeft.X) * 16f, 0f);
+            Vector2 vector2 = new Vector2(0f, (BottomRight.Y + 1 - TopLeft.Y) * 16f);
+            Vector2 center = new Vector2(Area.Center.X * 16f, Area.Center.Y * 16f);
 
             int projectile1 = Projectile.NewProjectile(
                 new EntitySource_DebugCommand(),
-                new Vector2((float)TopLeft.X * 16f, (float)TopLeft.Y * 16f),
+                new Vector2(TopLeft.X * 16f, TopLeft.Y * 16f),
                 vector1 * 0.01f,
                 116,
                 0,
@@ -81,7 +79,7 @@ namespace MiniGamesAPI
 
             int projectile2 = Projectile.NewProjectile(
                 new EntitySource_DebugCommand(),
-                new Vector2((float)TopLeft.X * 16f, (float)BottomLeft.Y * 16f),
+                new Vector2(TopLeft.X * 16f, BottomLeft.Y * 16f),
                 vector2 * 0.01f,
                 116,
                 0,
@@ -93,7 +91,7 @@ namespace MiniGamesAPI
 
             int projectile3 = Projectile.NewProjectile(
                 new EntitySource_DebugCommand(),
-                new Vector2((float)BottomRight.X * 16f, (float)(BottomRight.Y + 1) * 16f),
+                new Vector2(BottomRight.X * 16f, (BottomRight.Y + 1) * 16f),
                 vector1 * 0.01f,
                 116,
                 0,
@@ -105,7 +103,7 @@ namespace MiniGamesAPI
 
             int projectile4 = Projectile.NewProjectile(
                 new EntitySource_DebugCommand(),
-                new Vector2((float)(TopRight.X + 1) * 16f, (float)TopRight.Y * 16f),
+                new Vector2((TopRight.X + 1) * 16f, TopRight.Y * 16f),
                 vector2 * 0.01f,
                 116,
                 0,
@@ -164,7 +162,7 @@ namespace MiniGamesAPI
 
             if (send)
             {
-                TSPlayer.All.SendTileRect((short)TopLeft.X, (short)TopLeft.Y, (byte)(Area.Width + 3), (byte)(Area.Height + 3), (TileChangeType)0);
+                TSPlayer.All.SendTileRect((short)TopLeft.X, (short)TopLeft.Y, (byte)(Area.Width + 3), (byte)(Area.Height + 3), 0);
             }
         }
 

@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using TerrariaApi.Server;
-using TShockAPI.Hooks;
 
 
 namespace MiniGamesAPI
@@ -19,13 +18,13 @@ namespace MiniGamesAPI
         public MiniGamesAPI(Main game) : base(game) { }
         public override void Initialize()
         {
-            ServerApi.Hooks.GamePostUpdate.Register((TerrariaPlugin)(object)this, (HookHandler<EventArgs>)OnPostUpdate);
+            ServerApi.Hooks.GamePostUpdate.Register((TerrariaPlugin)(object)this, OnPostUpdate);
         }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                ServerApi.Hooks.GamePostUpdate.Deregister((TerrariaPlugin)(object)this, (HookHandler<EventArgs>)OnPostUpdate);
+                ServerApi.Hooks.GamePostUpdate.Deregister((TerrariaPlugin)(object)this, OnPostUpdate);
             }
             base.Dispose(disposing);
         }
@@ -37,9 +36,6 @@ namespace MiniGamesAPI
             GameTick++;
             if ((GameTick %= 60) != 0)
             {
-                Task.Run(delegate
-                {
-                });
             }
         }
 

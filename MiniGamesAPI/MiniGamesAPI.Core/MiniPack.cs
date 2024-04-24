@@ -283,47 +283,47 @@ namespace MiniGamesAPI
             float num9 = 0f;
             for (int k = 0; k < NetItem.InventorySlots; k++)
             {
-                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].inventory[k].Name), player.Index, num9, (float)(int)Main.player[player.Index].inventory[k].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].inventory[k].Name), player.Index, num9, Main.player[player.Index].inventory[k].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             for (int l = 0; l < NetItem.ArmorSlots; l++)
             {
-                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].armor[l].Name), player.Index, num9, (float)(int)Main.player[player.Index].armor[l].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].armor[l].Name), player.Index, num9, Main.player[player.Index].armor[l].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             for (int m = 0; m < NetItem.DyeSlots; m++)
             {
-                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].dye[m].Name), player.Index, num9, (float)(int)Main.player[player.Index].dye[m].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].dye[m].Name), player.Index, num9, Main.player[player.Index].dye[m].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             for (int n = 0; n < NetItem.MiscEquipSlots; n++)
             {
-                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].miscEquips[n].Name), player.Index, num9, (float)(int)Main.player[player.Index].miscEquips[n].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].miscEquips[n].Name), player.Index, num9, Main.player[player.Index].miscEquips[n].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             for (int num10 = 0; num10 < NetItem.MiscDyeSlots; num10++)
             {
-                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].miscDyes[num10].Name), player.Index, num9, (float)(int)Main.player[player.Index].miscDyes[num10].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].miscDyes[num10].Name), player.Index, num9, Main.player[player.Index].miscDyes[num10].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             for (int num11 = 0; num11 < NetItem.PiggySlots; num11++)
             {
-                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].bank.item[num11].Name), player.Index, num9, (float)(int)Main.player[player.Index].bank.item[num11].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].bank.item[num11].Name), player.Index, num9, Main.player[player.Index].bank.item[num11].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             for (int num12 = 0; num12 < NetItem.SafeSlots; num12++)
             {
-                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].bank2.item[num12].Name), player.Index, num9, (float)(int)Main.player[player.Index].bank2.item[num12].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].bank2.item[num12].Name), player.Index, num9, Main.player[player.Index].bank2.item[num12].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             int num13 = -1;
             int num14 = -1;
             NetworkText val = NetworkText.FromLiteral(Main.player[player.Index].trashItem.Name);
             int index = player.Index;
-            NetMessage.SendData(5, num13, num14, val, index, num9++, (float)(int)Main.player[player.Index].trashItem.prefix, 0f, 0, 0, 0);
+            NetMessage.SendData(5, num13, num14, val, index, num9++, Main.player[player.Index].trashItem.prefix, 0f, 0, 0, 0);
             for (int num15 = 0; num15 < NetItem.ForgeSlots; num15++)
             {
-                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].bank3.item[num15].Name), player.Index, num9, (float)(int)Main.player[player.Index].bank3.item[num15].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, -1, -1, NetworkText.FromLiteral(Main.player[player.Index].bank3.item[num15].Name), player.Index, num9, Main.player[player.Index].bank3.item[num15].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             NetMessage.SendData(4, -1, -1, NetworkText.FromLiteral(player.Name), player.Index, 0f, 0f, 0f, 0, 0, 0);
@@ -332,47 +332,47 @@ namespace MiniGamesAPI
             num9 = 0f;
             for (int num16 = 0; num16 < NetItem.InventorySlots; num16++)
             {
-                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].inventory[num16].Name), player.Index, num9, (float)(int)Main.player[player.Index].inventory[num16].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].inventory[num16].Name), player.Index, num9, Main.player[player.Index].inventory[num16].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             for (int num17 = 0; num17 < NetItem.ArmorSlots; num17++)
             {
-                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].armor[num17].Name), player.Index, num9, (float)(int)Main.player[player.Index].armor[num17].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].armor[num17].Name), player.Index, num9, Main.player[player.Index].armor[num17].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             for (int num18 = 0; num18 < NetItem.DyeSlots; num18++)
             {
-                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].dye[num18].Name), player.Index, num9, (float)(int)Main.player[player.Index].dye[num18].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].dye[num18].Name), player.Index, num9, Main.player[player.Index].dye[num18].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             for (int num19 = 0; num19 < NetItem.MiscEquipSlots; num19++)
             {
-                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].miscEquips[num19].Name), player.Index, num9, (float)(int)Main.player[player.Index].miscEquips[num19].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].miscEquips[num19].Name), player.Index, num9, Main.player[player.Index].miscEquips[num19].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             for (int num20 = 0; num20 < NetItem.MiscDyeSlots; num20++)
             {
-                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].miscDyes[num20].Name), player.Index, num9, (float)(int)Main.player[player.Index].miscDyes[num20].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].miscDyes[num20].Name), player.Index, num9, Main.player[player.Index].miscDyes[num20].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             for (int num21 = 0; num21 < NetItem.PiggySlots; num21++)
             {
-                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].bank.item[num21].Name), player.Index, num9, (float)(int)Main.player[player.Index].bank.item[num21].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].bank.item[num21].Name), player.Index, num9, Main.player[player.Index].bank.item[num21].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             for (int num22 = 0; num22 < NetItem.SafeSlots; num22++)
             {
-                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].bank2.item[num22].Name), player.Index, num9, (float)(int)Main.player[player.Index].bank2.item[num22].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].bank2.item[num22].Name), player.Index, num9, Main.player[player.Index].bank2.item[num22].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             int index2 = player.Index;
             int num23 = -1;
             NetworkText val2 = NetworkText.FromLiteral(Main.player[player.Index].trashItem.Name);
             int index3 = player.Index;
-            NetMessage.SendData(5, index2, num23, val2, index3, num9++, (float)(int)Main.player[player.Index].trashItem.prefix, 0f, 0, 0, 0);
+            NetMessage.SendData(5, index2, num23, val2, index3, num9++, Main.player[player.Index].trashItem.prefix, 0f, 0, 0, 0);
             for (int num24 = 0; num24 < NetItem.ForgeSlots; num24++)
             {
-                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].bank3.item[num24].Name), player.Index, num9, (float)(int)Main.player[player.Index].bank3.item[num24].prefix, 0f, 0, 0, 0);
+                NetMessage.SendData(5, player.Index, -1, NetworkText.FromLiteral(Main.player[player.Index].bank3.item[num24].Name), player.Index, num9, Main.player[player.Index].bank3.item[num24].prefix, 0f, 0, 0, 0);
                 num9 += 1f;
             }
             NetMessage.SendData(4, player.Index, -1, NetworkText.FromLiteral(player.Name), player.Index, 0f, 0f, 0f, 0, 0, 0);

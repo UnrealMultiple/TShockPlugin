@@ -5,7 +5,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using TShockAPI;
-using static Terraria.GameContent.Creative.CreativePowers;
 
 namespace MiniGamesAPI
 {
@@ -41,7 +40,7 @@ namespace MiniGamesAPI
         public global::MiniGamesAPI.Enum.PlayerStatus Status { get; set; }
 
         [JsonIgnore]
-        public Vector2 Position => ((Entity)Player.TPlayer).position;
+        public Vector2 Position => Player.TPlayer.position;
 
         public void Ready()
         {
@@ -98,14 +97,14 @@ namespace MiniGamesAPI
             int val2 = Math.Max(0, point.Y);
             val = Math.Min(val, Main.maxTilesX - 1);
             val2 = Math.Min(val2, Main.maxTilesY - 1);
-            Player.Teleport((float)(val * 16), (float)(val2 * 16 - 48), (byte)1);
+            Player.Teleport(val * 16, val2 * 16 - 48, 1);
         }
 
         public virtual void Teleport(int x, int y)
         {
             x = Math.Min(x, Main.maxTilesX - 1);
             y = Math.Min(y, Main.maxTilesY - 1);
-            Player.Teleport((float)(x * 16), (float)(y * 16 - 48), (byte)1);
+            Player.Teleport(x * 16, y * 16 - 48, 1);
         }
 
         public virtual void SendInfoMessage(string msg)
@@ -161,10 +160,10 @@ namespace MiniGamesAPI
         {
             int num = Player.TPlayer.FindItem(itemID);
             Item val = Player.TPlayer.inventory[num];
-            int num2 = Item.NewItem((IEntitySource)new EntitySource_DebugCommand(), ((Entity)Player.TPlayer).position, ((Entity)Player.TPlayer).width, ((Entity)Player.TPlayer).height, val.type, val.stack, true, (int)val.prefix, false, false);
+            int num2 = Item.NewItem(new EntitySource_DebugCommand(), Player.TPlayer.position, Player.TPlayer.width, Player.TPlayer.height, val.type, val.stack, true, val.prefix, false, false);
             TSPlayer.All.SendData((PacketTypes)21, "", num2, 0f, 0f, 0f, 0);
             val.netID = 0;
-            TSPlayer.All.SendData((PacketTypes)5, val.Name, Player.Index, (float)num, (float)(int)val.prefix, 0f, 0);
+            TSPlayer.All.SendData((PacketTypes)5, val.Name, Player.Index, num, val.prefix, 0f, 0);
         }
 
         public virtual bool CheckContainItem(int netid)
@@ -213,7 +212,7 @@ namespace MiniGamesAPI
         public void Godmode(bool state)
         {
             Player.GodMode = state;
-            ((APerPlayerTogglePower) CreativePowerManager.Instance.GetPower< CreativePowers.GodmodePower >()).SetEnabledState(Player.Index, Player.GodMode);
+            CreativePowerManager.Instance.GetPower<CreativePowers.GodmodePower>().SetEnabledState(Player.Index, Player.GodMode);
         }
 
         public int FindItem(int netid)
@@ -225,7 +224,7 @@ namespace MiniGamesAPI
         {
             int num = FindItem(netid);
             Player.TPlayer.inventory[num].netDefaults(0);
-            Player.SendData((PacketTypes)5, "", Player.Index, (float)num, (float)(int)Player.TPlayer.inventory[num].prefix, 0f, 0);
+            Player.SendData((PacketTypes)5, "", Player.Index, num, Player.TPlayer.inventory[num].prefix, 0f, 0);
         }
 
         public void Firework(int num)
@@ -246,7 +245,7 @@ namespace MiniGamesAPI
                     num2 = 418;
                     break;
             }
-            int num3 = Projectile.NewProjectile((IEntitySource)new EntitySource_DebugCommand(), ((Entity)Player.TPlayer).position.X, ((Entity)Player.TPlayer).position.Y - 64f, 0f, -8f, num2, 0, 0f, 255, 0f, 0f);
+            int num3 = Projectile.NewProjectile(new EntitySource_DebugCommand(), Player.TPlayer.position.X, Player.TPlayer.position.Y - 64f, 0f, -8f, num2, 0, 0f, 255, 0f, 0f);
             TSPlayer.All.SendData((PacketTypes)27, "", num3, 0f, 0f, 0f, 0);
         }
 
