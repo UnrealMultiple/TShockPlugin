@@ -83,3 +83,4 @@
 | [SimultaneousUseFix](SimultaneousUseFix/README.md)               | 解决卡双锤卡星旋机枪之类的问题|[Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/releases)|
 | [Challenger](Challenger/README.md)                         |        挑战者模式        |              无               |
 | [MiniGamesAPI](MiniGamesAPI/README.md)                         |        豆沙小游戏API        |              无               |
+| [BuildMaster](BuildMaster/README.md)                         |        豆沙小游戏·建筑大师模式        |[MiniGamesAPI](https://github.com/Controllerdestiny/TShockPlugin/tree/master/MiniGamesAPI)|
