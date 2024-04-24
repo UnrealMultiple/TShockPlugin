@@ -81,3 +81,4 @@
 | [PersonalPermission](PersonalPermission/README.md)               |      为玩家单独设置权限      |              无               |
 | [ItemPreserver](ItemPreserver/README.md)                         |        指定物品不消耗        |              无               |
 | [SimultaneousUseFix](SimultaneousUseFix/README.md)               | 解决卡双锤卡星旋机枪之类的问题|[Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/releases)|
+| [Challenger](Challenger/README.md)                         |        挑战者模式        |              无               |
