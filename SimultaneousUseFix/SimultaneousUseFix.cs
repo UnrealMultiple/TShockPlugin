@@ -38,7 +38,6 @@ namespace fixbugpe
 
         public override void Initialize()
         {
-            // 事件订阅代码
             GeneralHooks.ReloadEvent += ReloadConfig;
             ServerApi.Plugins.Get<Chireiden.TShock.Omni.Plugin>().Detections.SwapWhileUse += OnSwapWhileUse;
         }
@@ -73,7 +72,7 @@ namespace fixbugpe
                     TShock.Utils.Broadcast("玩家 " + player.Name + " 因为卡换格子bug被上buff", Color.Green);
                     foreach (int buffType in Config.BuffTypes)
                     {
-                        player.SetBuff(buffType, Config.Bufftime); // 持续1分钟，以秒为单位
+                        player.SetBuff(buffType, Config.Bufftime);
                     }
                 }
 
@@ -84,7 +83,6 @@ namespace fixbugpe
         {
             if (disposing)
             {
-                // 移除事件订阅
                 ServerApi.Plugins.Get<Chireiden.TShock.Omni.Plugin>().Detections.SwapWhileUse -= OnSwapWhileUse;
             }
 
