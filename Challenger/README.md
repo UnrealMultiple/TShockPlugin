@@ -1,4 +1,4 @@
-# ShowArmors 发送装备
+# Challenger 挑战者模式
 
 - 作者: 星夜神花、枳、羽学
 - 出处: bbstr.net，[github](https://github.com/skywhale-zhi/Challenger)
