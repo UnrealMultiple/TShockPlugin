@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Text;
-using Terraria.ID;
 using TShockAPI;
 
 namespace MiniGamesAPI
@@ -58,7 +57,7 @@ namespace MiniGamesAPI
                 tile.Kill(noItem);
                 tile.Place();
             }
-            TSPlayer.All.SendTileRect((short)Region.TopLeft.X, (short)Region.TopLeft.Y, (byte)Region.Area.Width, (byte)Region.Area.Height, (TileChangeType)0);
+            TSPlayer.All.SendTileRect((short)Region.TopLeft.X, (short)Region.TopLeft.Y, (byte)Region.Area.Width, (byte)Region.Area.Height, 0);
         }
 
         public string ShowInfo()

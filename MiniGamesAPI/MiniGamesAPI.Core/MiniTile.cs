@@ -1,5 +1,4 @@
-﻿using Terraria.ID;
-using Terraria;
+﻿using Terraria;
 using TShockAPI;
 
 namespace MiniGamesAPI
@@ -20,12 +19,12 @@ namespace MiniGamesAPI
         {
             X = x;
             Y = y;
-            Tile = (ITile)new Tile(tile);
+            Tile = new Tile(tile);
         }
 
         public void Place()
         {
-            Main.tile[X, Y] = (ITile)new Tile(Tile);
+            Main.tile[X, Y] = new Tile(Tile);
         }
 
         public void Kill(bool fail = false, bool effectOnly = false, bool noitem = false)
@@ -35,7 +34,7 @@ namespace MiniGamesAPI
 
         public void Update()
         {
-            TSPlayer.All.SendTileRect((short)X, (short)Y, (byte)1, (byte)1, (TileChangeType)0);
+            TSPlayer.All.SendTileRect((short)X, (short)Y, 1, 1, 0);
         }
     }
 }

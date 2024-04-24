@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Localization;
 using TShockAPI;
 
 namespace MiniGamesAPI
@@ -17,7 +16,7 @@ namespace MiniGamesAPI
         public static int DropItem(float x, float y, int netid, int stack, byte prefix)
         {
             Item itemById = TShock.Utils.GetItemById(netid);
-            int num = Item.NewItem((IEntitySource)new EntitySource_DebugCommand(), (int)x, (int)y, ((Entity)itemById).width, ((Entity)itemById).height, netid, stack, false, (int)prefix, false, false);
+            int num = Item.NewItem(new EntitySource_DebugCommand(), (int)x, (int)y, itemById.width, itemById.height, netid, stack, false, prefix, false, false);
             TSPlayer.All.SendData((PacketTypes)21, "", num, 0f, 0f, 0f, 0);
             return num;
         }
@@ -65,8 +64,8 @@ namespace MiniGamesAPI
 
         public static void ClearItem(int id)
         {
-            ((Entity)Main.item[id]).active = false;
-            NetMessage.SendData(21, -1, -1, (NetworkText)null, id, 0f, 0f, 0f, 0, 0, 0);
+            Main.item[id].active = false;
+            NetMessage.SendData(21, -1, -1, null, id, 0f, 0f, 0f, 0, 0, 0);
         }
 
         public static IEnumerable<float> TopTen(List<float> records)
@@ -79,11 +78,11 @@ namespace MiniGamesAPI
             for (int i = 0; i < 400; i++)
             {
                 Item val = Main.item[i];
-                float num = ((Entity)val).position.X - position.X;
-                float num2 = ((Entity)val).position.Y - position.Y;
-                if (((Entity)val).active && val.netID == id && num * num + num2 * num2 <= (float)(radius * radius) * 256f)
+                float num = val.position.X - position.X;
+                float num2 = val.position.Y - position.Y;
+                if (val.active && val.netID == id && num * num + num2 * num2 <= radius * radius * 256f)
                 {
-                    ((Entity)Main.item[i]).active = false;
+                    Main.item[i].active = false;
                     TSPlayer.All.SendData((PacketTypes)21, "", i, 0f, 0f, 0f, 0);
                 }
             }

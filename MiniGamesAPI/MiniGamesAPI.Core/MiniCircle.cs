@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace MiniGamesAPI
 {
@@ -20,8 +19,8 @@ namespace MiniGamesAPI
 
         public bool Contain(Point point)
         {
-            double num = (float)point.X * 16f;
-            double num2 = (float)point.Y * 16f;
+            double num = point.X * 16f;
+            double num2 = point.Y * 16f;
             return Math.Abs((x - num) * (x - num) - (y - num2) * (y - num2)) <= radius * radius;
         }
 
