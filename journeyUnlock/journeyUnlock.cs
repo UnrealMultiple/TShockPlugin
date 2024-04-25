@@ -28,7 +28,7 @@ namespace journeyUnlock
             Commands.ChatCommands.Add(new Command(
                 permissions: new List<string> { "journeyunlock.unlock" },
                 cmd: this.unlockCommand,
-                "journeyunlock", "junlock" , "i解锁"));
+                "journeyunlock", "junlock", "i解锁"){ AllowServer = false });
 
             Commands.ChatCommands.Add(new Command(
                 permissions: new List<string> { "journeyunlock.unlockfor" },
