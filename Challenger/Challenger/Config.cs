@@ -77,13 +77,13 @@ namespace Challenger
         [JsonProperty("神圣套额外弹幕多少伤害/默认55%")]
         public double HallowedArmorEffect = 0.55;
 
-        [JsonProperty("叶绿套加多少血")]
+        [JsonProperty("叶绿套加多少生命上限")]
         public int ChlorophyteArmorEffect = 100;
 
-        [JsonProperty("海龟套加多少血")]
+        [JsonProperty("海龟套加多少生命上限")]
         public int TurtleArmorEffect = 60;
 
-        [JsonProperty("提基套加多少血")]
+        [JsonProperty("提基套加多少生命上限")]
         public int TikiArmorEffect = 20;
 
         [JsonProperty("阴森套是否出南瓜弹幕")]
@@ -92,12 +92,23 @@ namespace Challenger
         [JsonProperty("蘑菇套是否产蘑菇")]
         public bool ShroomiteArmorEffect = true;
 
-        [JsonProperty("幽灵套加多少血和魔力")]
+        [JsonProperty("幽灵套加多少生命和魔力上限")]
         public int SpectreArmorEffect = 60;
 
+        [JsonProperty("幽灵兜帽是否出幽灵弹幕")]
+        public bool EnableSpectreArmorEffect_1 = true;
 
-        [JsonProperty("甲虫套加多少血")]
+        [JsonProperty("幽灵面具是否出幽灵弹幕")]
+        public bool EnableSpectreArmorEffect_2 = false;
+
+        [JsonProperty("甲虫套加多少生命上限")]
         public int BeetleArmorEffect_1 = 60;
+
+        [JsonProperty("甲虫套受到伤害给其他玩家的回血转换比例/默认30%")]
+        public double BeetleArmorEffect_3 = 0.3;
+
+        [JsonProperty("甲虫套减多少回复量/默认为0")]
+        public int OtherPlayerHealAmount = 10;
 
         [JsonProperty("甲虫套带骑士盾时给圣锤加多少伤害/默认90%")]
         public float BeetleArmorEffect_2 = 0.9f;

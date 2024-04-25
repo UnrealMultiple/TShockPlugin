@@ -10,6 +10,9 @@ namespace Challenger
             : base(projectile, ai, lable)
         {
         }
+        //用Config控制其他玩家恢复量
+        internal static Config config = new Config();
+        public static int OtherPlayerHealAmount => config.OtherPlayerHealAmount;
 
         public override void ProjectileAI()
         {
@@ -31,7 +34,7 @@ namespace Challenger
                 }
                 try
                 {
-                    int num = (int)ai[0];
+                    int num = (int)ai[0] - config.OtherPlayerHealAmount; ;
                     TSPlayer[] players = TShock.Players;
                     foreach (TSPlayer val2 in players)
                     {

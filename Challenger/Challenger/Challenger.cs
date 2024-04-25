@@ -25,6 +25,7 @@ namespace Challenger
 
         public static long Timer = 0L;
 
+
         public static Dictionary<int, int> honey = new Dictionary<int, int>();
 
         public override string Author => "z枳 & 星夜神花 修改：羽学";
@@ -33,7 +34,7 @@ namespace Challenger
 
         public override string Name => "Challenger";
 
-        public override Version Version => new Version(1, 0, 0, 2);
+        public override Version Version => new Version(1, 0, 0, 3);
 
         public Challenger(Main game)
             : base(game)
@@ -74,6 +75,7 @@ namespace Challenger
             if (disposing)
             {
                 GeneralHooks.ReloadEvent -= new ReloadEventD(LoadConfig);
+
                 ServerApi.Hooks.GameUpdate.Deregister((TerrariaPlugin)(object)this, OnGameUpdate);
                 GetDataHandlers.PlayerDamage.UnRegister(PlayerSufferDamage);
                 ServerApi.Hooks.ProjectileAIUpdate.Deregister((TerrariaPlugin)(object)this, OnProjAIUpdate);
@@ -637,8 +639,9 @@ namespace Challenger
 
         public void BeetleArmorEffect(Player? player, GetDataHandlers.PlayerDamageEventArgs? e, NpcStrikeEventArgs? args)
         {
-            var any1 = config.BeetleArmorEffect_1;
-            var any2 = config.BeetleArmorEffect_2;
+            var any1 = config.BeetleArmorEffect_1;//生命上限
+            var any2 = config.BeetleArmorEffect_2;//圣骑士锤伤害
+            var any3 = config.BeetleArmorEffect_3;//自定义受伤回血比例
 
             if (player != null)
             {
@@ -674,7 +677,7 @@ namespace Challenger
                 if (armor2[0].type == 2199 && (armor2[1].type == 2200 || armor2[1].type == 2201) && armor2[2].type == 2202)
                 {
                     Vector2 center = Main.player[e.Player.TPlayer.whoAmI].Center;
-                    int num = (int)(e.Damage * 0.3);
+                    int num = (int)(e.Damage * any3);
                     BeetleHeal.NewCProjectile(center, Vector2.Zero, e.Player.TPlayer.whoAmI, new float[2] { num, 0f }, 0);
                 }
                 return;
@@ -761,10 +764,13 @@ namespace Challenger
         public void SpectreArmorEffect(Player player)
         {
             var any = config.SpectreArmorEffect;
+            var clear = config.EnableSpectreArmorEffect_1;//关闭幽灵兜帽弹幕开关
+            var clear2 = config.EnableSpectreArmorEffect_2;//关闭面具弹幕开关
 
             Item[] armor = player.armor;
             bool flag = armor[0].type == 1503 && armor[1].type == 1504 && armor[2].type == 1505;
-            if (flag && !Collect.cplayers[player.whoAmI].SpectreArmorEffectLife)
+
+            if (flag && clear == !Collect.cplayers[player.whoAmI].SpectreArmorEffectLife)
             {
                 player.statLifeMax += any;
                 Collect.cplayers[player.whoAmI].ExtraLife += any;
@@ -774,14 +780,23 @@ namespace Challenger
                 {
                     SendPlayerText($"生命值上限 + {any}", new Color(0, 255, 255), player.Center);
                 }
-                Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
+
+
+                if (config.EnableSpectreArmorEffect_1)
+                {
+                    Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
+                }
             }
+
             else if (flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectLife && !Collect.cprojs[Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex].isActive)
             {
+
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
             }
+
             else if (!flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectLife)
             {
+
                 player.statLifeMax -= any;
                 Collect.cplayers[player.whoAmI].ExtraLife -= any;
                 NetMessage.SendData(16, -1, -1, NetworkText.Empty, player.whoAmI, 0f, 0f, 0f, 0, 0, 0);
@@ -793,20 +808,26 @@ namespace Challenger
                 CProjectile.CKill(Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex);
             }
             flag = armor[0].type == 2189 && armor[1].type == 1504 && armor[2].type == 1505;
-            if (flag && !Collect.cplayers[player.whoAmI].SpectreArmorEffectMana)
+            if (flag && clear2 == !Collect.cplayers[player.whoAmI].SpectreArmorEffectMana)
             {
                 player.statManaMax += any;
                 Collect.cplayers[player.whoAmI].ExtraMana += any;
                 NetMessage.SendData(42, -1, -1, NetworkText.Empty, player.whoAmI, 0f, 0f, 0f, 0, 0, 0);
+
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectMana = true;
                 if (config.EnableConsumptionMode)
                 {
                     SendPlayerText($"魔力值上限 + {any}", new Color(0, 255, 255), player.Center + new Vector2(0f, 32f));
                 }
-                Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
+
+                if (config.EnableSpectreArmorEffect_2)
+                {
+                    Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
+                }
             }
             else if (flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectMana && !Collect.cprojs[Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex].isActive)
             {
+
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
             }
             if (!flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectMana)
