@@ -2,8 +2,7 @@
 
 - 作者: Maxthegreat99，肝帝熙恩汉化
 - 出处: [github](https://github.com/Maxthegreat99/journeyUnlock)
-- 快速向玩家面向的平行方向铺路，碰到方块则停止
-- 可自定义铺桥方块，默认配置内已有：平台，种植盆，团队块
+- 解锁旅途物品，可以一件解锁全部物品
 
 ## 更新日志
 
