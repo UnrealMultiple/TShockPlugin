@@ -1,6 +1,6 @@
 # EssentialsPlus
 
-- 作者: 未知,Cjx，肝帝熙恩适配与修改
+- 作者: WhiteX等人，Average,Cjx，肝帝熙恩适配与修改
 - 出处: [github](https://github.com/QuiCM/EssentialsPlus)
 - 提供一些管理指令
 
