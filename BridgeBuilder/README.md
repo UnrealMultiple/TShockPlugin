@@ -1,7 +1,7 @@
 # BridgeBuilder 快速铺桥
 
 - 作者: Soofa，肝帝熙恩
-- 出处: github
+- 出处: [github](https://github.com/Soof4/BridgeBuilder)
 - 快速向玩家面向的平行方向铺路，碰到方块则停止
 - 可自定义铺桥方块，默认配置内已有：平台，种植盆，团队块
 
