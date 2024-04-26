@@ -1,7 +1,7 @@
 # AdditionalPylons 放置更多晶塔权
 
 - 作者: Stealownz，肝帝熙恩优化1449
-- 出处: github
+- 出处: [github](https://github.com/Adventure-Terraria-Server-Project/AdditionalPylons-Plugin)
 - 晶塔环境不受限制，数量可提升
 - 所有晶塔都无视环境
 - 所有晶塔都至少可以放一个
