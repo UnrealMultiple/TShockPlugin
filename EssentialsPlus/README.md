@@ -1,7 +1,7 @@
 # EssentialsPlus
 
-- 作者: 未知,Cjx适配与修改
-- 出处: 网络
+- 作者: 未知,Cjx，肝帝熙恩适配与修改
+- 出处: [github](https://github.com/QuiCM/EssentialsPlus)
 - 提供一些管理指令
 
 ## 更新日志
