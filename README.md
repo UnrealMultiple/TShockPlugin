@@ -46,7 +46,7 @@
 | [ShortCommand](ShortCommand/README.md)                           |           简短指令           |              无               |
 | [ProgressBag](ProgressBag/README.md)                             |           进度礼包           |              无               |
 | [CriticalHit](CriticalHit/README.md)                             |           击打提示           |              无               |
-| [Back](Back/RETUEN)                                              |           死亡回溯           |              无               |
+| [Back](Back/README.md)                                           |           死亡回溯           |              无               |
 | [BanNpc](BanNpc/README.md)                                       |         阻止怪物生成         |              无               |
 | [MapTeleport](MapTp/README.md)                                   |        双击大地图传送        |              无               |
 | [RandReSpawn](RandRespawn/README.md)                             |          随机出生点          |              无               |
