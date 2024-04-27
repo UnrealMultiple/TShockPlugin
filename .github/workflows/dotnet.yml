@@ -2,7 +2,7 @@ name: NET
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master","cai" ]
     
 jobs:
   Build:
@@ -21,24 +21,30 @@ jobs:
         run: |
           dotnet build Plugin.sln
 
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+          
+      - name: Execute BuildHelper.py
+        run: python BuildHelper.py
+        env:
+          PYTHONIOENCODING: 'utf-8'
+      
       - name: Upload binary files for .NET 6.0
         uses: actions/upload-artifact@v3
         with:
           name: Plugins
-          path: out/Debug/${{ matrix.runtimeIdentifier }}
-          
-      - name: Compress file
-        run: |
-          Compress-Archive -Path 'out\Debug\' -DestinationPath  'Plugins_6.0.zip'
-          
+          path: Plugins.zip
+
       - name: Prepare release files
         uses: actions/upload-artifact@v3
         with:
-          name: Plugins_all
-          path: Plugins_6.0.zip
+          name: Plugins
+          path: Plugins.zip
           
-  OfficialRelease:
-    name: Official Release
+  LatestRelease:
+    name: Latest Release
     runs-on: ubuntu-latest
     needs: Build
     permissions:
@@ -65,20 +71,20 @@ jobs:
           echo "Second:"
           echo "$CHANGELOG_SECOND"
           
-      - name: Update Official Tag
+      - name: Update Latest Tag
         run: |
           git tag -f V1.0.0.0
           git push -f origin V1.0.0.0
       - name: Download Artifacts
         uses: actions/download-artifact@v3
         with:
-          name: Plugins_all
+          name: Plugins
           path: ./bin
-      - name: Update Official Release
+      - name: Update Latest Release
         uses: ncipollo/release-action@v1
         with:
           tag: V1.0.0.0
-          name: "Official Version"
+          name: "Latest Version"
           body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release.\n${{steps.external_changelog_second.outputs.changelog}}"
           artifacts: |
             ./bin/*
@@ -92,11 +98,11 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     needs:
-      - OfficialRelease
+      - LatestRelease
     permissions:
       actions: write
     steps:
       - uses: geekyeggo/delete-artifact@v2
         with:
           name: |
-            Plugins_all
+            Plugins

@@ -4,6 +4,7 @@ on:
   pull_request:
     branches: 
       - master
+      - cai
   workflow_dispatch:
 
 jobs:
@@ -22,10 +23,20 @@ jobs:
         shell: powershell
         run: |
           dotnet build Plugin.sln
-
+          
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+          
+      - name: Execute BuildHelper.py
+        run: python BuildHelper.py
+        env:
+          PYTHONIOENCODING: 'utf-8'
+      
       - name: Upload binary files(${{ matrix.runtimeIdentifier }}) for .NET 6.0
         uses: actions/upload-artifact@v4
         if: github.event_name == 'pull_request'
         with:
           name: Plugin_${{ matrix.runtimeIdentifier }}_6.0
-          path: out/Debug/${{ matrix.runtimeIdentifier }}
+          path: Plugins.zip
