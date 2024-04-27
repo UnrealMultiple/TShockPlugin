@@ -4,17 +4,17 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 
-namespace SFactions
+namespace BridgeBuilder
 {
     [ApiVersion(2, 1)]
-    public class SFactions : TerrariaPlugin
+    public class BridgeBuilder : TerrariaPlugin
     {
         public override string Name => "BridgeBuilder";
-        public override Version Version => new Version(1, 0, 4);
+        public override Version Version => new Version(1, 0, 5);
         public override string Author => "Soofa，肝帝熙恩汉化1449";
         public override string Description => "铺桥!";
         public static Configuration Config;
-        public SFactions(Main game) : base(game)
+        public BridgeBuilder(Main game) : base(game)
         {
             LoadConfig();
         }
@@ -71,7 +71,7 @@ namespace SFactions
                 {
                     if (!Config.AllowedTileIDs.Contains(selectedItem.createTile))
                     {
-                        plr.SendErrorMessage("你手持的物品无法自动建造桥梁。（一般仅允许使用平台或团队块或种植盆。）");
+                        plr.SendErrorMessage("你手持的物块无法自动建造桥梁。（一般仅允许使用平台或团队块或种植盆。）");
                         return;
                     }
 
@@ -89,13 +89,21 @@ namespace SFactions
                 }
                 else
                 {
+                    if (!Config.AllowedwallIDs.Contains(selectedItem.createWall))
+                    {
+                        plr.SendErrorMessage("你手持的墙壁无法自动建造桥梁。（一般仅允许使用平台或团队块或种植盆。）");
+                        return;
+                    }
+                    int wallCount = 0;
                     while (CheckTileAvailability(startX, startX + i, j, plr))
                     {
                         Main.tile[startX + i, j].wall = (ushort)selectedItem.createWall;
                         TSPlayer.All.SendTileRect((short)(startX + i), (short)j, 1, 1);
                         plr.SelectedItem.stack--;
                         i += direction;
+                        wallCount++;
                     }
+                    plr.SendSuccessMessage($"{wallCount}格桥梁建造完成！");
                 }
 
                 NetMessage.SendData((int)PacketTypes.PlayerSlot, -1, -1, NetworkText.FromLiteral(plr.SelectedItem.Name), plr.Index, plr.TPlayer.selectedItem);
@@ -106,11 +114,18 @@ namespace SFactions
 
         private static bool CheckTileAvailability(int startX, int x, int y, TSPlayer plr)
         {
-            return x < Main.maxTilesX && x >= 0 &&
-                   Math.Abs(startX - x) < Config.MaxPlaceLength &&
-                   plr.SelectedItem.stack > 0 &&
-                   !TShock.Regions.InArea(x, y) &&
-                   !Main.tile[x, y].active();
+            bool canPlace = x < Main.maxTilesX && x >= 0 &&
+                            Math.Abs(startX - x) < Config.MaxPlaceLength &&
+                            plr.SelectedItem.stack > 0 &&
+                            !TShock.Regions.InArea(x, y) &&
+                            !Main.tile[x, y].active();
+
+            if (plr.SelectedItem.createTile < 0 && plr.SelectedItem.createWall >= 0) 
+            {
+                canPlace &= Main.tile[x, y].wall == 0;
+            }
+
+            return canPlace;
         }
     }
 }

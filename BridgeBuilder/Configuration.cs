@@ -1,13 +1,15 @@
 ﻿using Newtonsoft.Json;
 using TShockAPI;
 
-namespace SFactions
+namespace BridgeBuilder
 {
     public class Configuration
     {
         public static readonly string FilePath = Path.Combine(TShock.SavePath, "铺桥配置.json");
         [JsonProperty("允许快速铺路方块id")]
         public int[] AllowedTileIDs { get; set; } = { 19, 380, 427, 435, 436, 437, 438, 439 };
+        [JsonProperty("允许快速铺路墙壁id")]
+        public int[] AllowedwallIDs { get; set; } = Array.Empty<int>();
         [JsonProperty("一次性最长铺多少格")]
         public int MaxPlaceLength { get; set; } = 256;
 
