@@ -34,13 +34,13 @@ jobs:
       - name: Upload binary files for .NET 6.0
         uses: actions/upload-artifact@v3
         with:
-          name: Plugins
+          name: Plugins.zip
           path: Plugins.zip
 
       - name: Prepare release files
         uses: actions/upload-artifact@v3
         with:
-          name: Plugins_all
+          name: Plugins.zip
           path: Plugins.zip
           
   LatestRelease:
@@ -78,7 +78,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v3
         with:
-          name: Plugins_all
+          name: Plugins.zip
           path: Plugins.zip
       - name: Update Latest Release
         uses: ncipollo/release-action@v1
