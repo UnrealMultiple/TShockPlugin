@@ -22,7 +22,12 @@ jobs:
         shell: powershell
         run: |
           dotnet build Plugin.sln
-
+          
+      - name: Delete JSON files and Copy MD files
+        shell: powershell
+        run: |
+          Remove-Item out/Debug/*.json
+          Get-ChildItem -Recurse -Filter *.md | ForEach-Object { Copy-Item $_.FullName -Destination out/Debug }
       - name: Upload binary files(${{ matrix.runtimeIdentifier }}) for .NET 6.0
         uses: actions/upload-artifact@v4
         if: github.event_name == 'pull_request'
