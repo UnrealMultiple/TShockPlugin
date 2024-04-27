@@ -118,6 +118,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildMaster", "BuildMaster\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "journeyUnlock", "journeyUnlock\journeyUnlock.csproj", "{5F1AE666-CFDD-4BE7-9C24-1D505BC56BAE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WikiLangPackLoader", "WikiLangPackLoader\WikiLangPackLoader.csproj", "{37CB1619-7451-41CB-91E1-8F473839631B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -566,6 +568,14 @@ Global
 		{5F1AE666-CFDD-4BE7-9C24-1D505BC56BAE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F1AE666-CFDD-4BE7-9C24-1D505BC56BAE}.Release|x64.ActiveCfg = Release|x64
 		{5F1AE666-CFDD-4BE7-9C24-1D505BC56BAE}.Release|x64.Build.0 = Release|x64
+		{37CB1619-7451-41CB-91E1-8F473839631B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37CB1619-7451-41CB-91E1-8F473839631B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37CB1619-7451-41CB-91E1-8F473839631B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{37CB1619-7451-41CB-91E1-8F473839631B}.Debug|x64.Build.0 = Debug|Any CPU
+		{37CB1619-7451-41CB-91E1-8F473839631B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37CB1619-7451-41CB-91E1-8F473839631B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37CB1619-7451-41CB-91E1-8F473839631B}.Release|x64.ActiveCfg = Release|Any CPU
+		{37CB1619-7451-41CB-91E1-8F473839631B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
