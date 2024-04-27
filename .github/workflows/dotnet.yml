@@ -79,7 +79,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: Plugins
-          path: Plugins.zip
+          path: ./bin
       - name: Update Latest Release
         uses: ncipollo/release-action@v1
         with:
@@ -87,7 +87,7 @@ jobs:
           name: "Latest Version"
           body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release.\n${{steps.external_changelog_second.outputs.changelog}}"
           artifacts: |
-            Plugins.zip
+            ./bin/*
           allowUpdates: true
           removeArtifacts: true
           
