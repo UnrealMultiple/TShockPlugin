@@ -21,6 +21,12 @@ jobs:
         run: |
           dotnet build Plugin.sln
 
+      - name: Delete JSON files and Copy MD files
+        shell: powershell
+        run: |
+          Remove-Item out/Debug/*.json
+          Get-ChildItem -Recurse -Filter *.md | ForEach-Object { Copy-Item $_.FullName -Destination out/Debug }
+      
       - name: Upload binary files for .NET 6.0
         uses: actions/upload-artifact@v3
         with:
@@ -37,8 +43,8 @@ jobs:
           name: Plugins_all
           path: Plugins_6.0.zip
           
-  OfficialRelease:
-    name: Official Release
+  LatestRelease:
+    name: Latest Release
     runs-on: ubuntu-latest
     needs: Build
     permissions:
@@ -65,7 +71,7 @@ jobs:
           echo "Second:"
           echo "$CHANGELOG_SECOND"
           
-      - name: Update Official Tag
+      - name: Update Latest Tag
         run: |
           git tag -f V1.0.0.0
           git push -f origin V1.0.0.0
@@ -74,11 +80,11 @@ jobs:
         with:
           name: Plugins_all
           path: ./bin
-      - name: Update Official Release
+      - name: Update Latest Release
         uses: ncipollo/release-action@v1
         with:
           tag: V1.0.0.0
-          name: "Official Version"
+          name: "Latest Version"
           body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release.\n${{steps.external_changelog_second.outputs.changelog}}"
           artifacts: |
             ./bin/*
@@ -92,7 +98,7 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     needs:
-      - OfficialRelease
+      - LatestRelease
     permissions:
       actions: write
     steps:
