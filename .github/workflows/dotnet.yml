@@ -28,12 +28,14 @@ jobs:
           
       - name: Execute BuildHelper.py
         run: python BuildHelper.py
+        env:
+          PYTHONIOENCODING: 'utf-8'
       
       - name: Upload binary files for .NET 6.0
         uses: actions/upload-artifact@v3
         with:
           name: Plugins
-          path: out/Debug/${{ matrix.runtimeIdentifier }}
+          path: Plugins.zip
 
       - name: Prepare release files
         uses: actions/upload-artifact@v3
