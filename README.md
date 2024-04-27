@@ -64,7 +64,7 @@
 | [DataSync](DataSync/README.md)                                   |           进度同步           |              无               |
 | [ProgressRestrict](ProgressRestrict/README.md)                   |          超进度检测          |           DataSync            |
 | [PacketsStop](PacketsStop/README.md)                             |          数据包拦截          |              无               |
-| [DeathDrop](DeathDrop/README.md)                                 | 怪物死亡随机和自定义掉落物品 |              无               |
+| [DeathDrop](DeathDrop/README.md)                                 |  怪物死亡随机和自定义掉落物品 |              无               |
 | [DTEntryBlock](DTEntryBlock/README.md)                           |      阻止进入地牢或神庙      |              无               |
 | [PerPlayerLoot](PerPlayerLoot/README.md)                         |      玩家战利品单独箱子      |              无               |
 | [PvPer](PvPer/README.md)                                         |           决斗系统           |              无               |
@@ -85,3 +85,4 @@
 | [MiniGamesAPI](MiniGamesAPI/README.md)                           |        豆沙小游戏API         |              无               |
 | [BuildMaster](BuildMaster/README.md)                             |   豆沙小游戏·建筑大师模式     |[MiniGamesAPI](https://github.com/Controllerdestiny/TShockPlugin/tree/master/MiniGamesAPI)|
 | [journeyUnlock](journeyUnlock/README.md)                         |          解锁旅途物品        |              无               |
+| [ListPlugins](ListPlugins/README.md)                             |          查已装插件          |              无               |
