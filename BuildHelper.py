@@ -2,7 +2,7 @@ import os
 import glob
 import shutil
 import zipfile
-print(f"😋打包脚本By Cai...")
+print(f"╰(*°▽°*)╯打包脚本By Cai...")
 
 def zip_files_in_folder(folder_path, zip_file_path):
     # Create a ZipFile object in write mode
@@ -17,14 +17,14 @@ def zip_files_in_folder(folder_path, zip_file_path):
                 zipf.write(file_path, arcname=os.path.basename(file_path))
     print(f"生成压缩包: {zip_file_path}")
 
-print(f"⚡开始删除json文件")
+print(f"( •̀ ω •́ )✧开始删除json文件")
 for file in glob.glob(os.path.join("out/Debug/", "*.json")):
     os.remove(file)
     print(f"删除文件: {file}")
-print("⚡删除json文件成功~")
+print("(●'◡'●)删除json文件成功~")
 
 # Get the current working directory
-print("⚡开始移动README.md")
+print("( •̀ ω •́ )✧开始移动README.md")
 cwd = os.getcwd()
 shutil.copyfile("README.md","out/Debug/README.md")
 # Iterate over all directories in the current working directory
@@ -45,11 +45,11 @@ for dir_name in os.listdir(cwd):
                     shutil.copyfile(source_path, destination_path)
                     print(f"找到README.md({destination_path})")
             except:
-                print(f"🤕README移动失败({file_name})")
-print("⚡移动README.md成功~")
+                print(f"README移动失败({file_name})")
+print("(●'◡'●)移动README.md成功~")
 
 # 调用函数来压缩文件夹中的所有文件
 # 注意：这里需要替换为实际的文件夹路径和zip文件路径
-print("⚡准备打包插件")
+print("( •̀ ω •́ )✧准备打包插件")
 zip_files_in_folder("out", "Plugins.zip")
-print("😋插件打包成功~")
+print("(❁´◡`❁)插件打包成功~")
