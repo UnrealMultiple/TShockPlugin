@@ -87,3 +87,4 @@
 | [BuildMaster](BuildMaster/README.md)                             |   豆沙小游戏·建筑大师模式     |[MiniGamesAPI](https://github.com/Controllerdestiny/TShockPlugin/tree/master/MiniGamesAPI)|
 | [journeyUnlock](journeyUnlock/README.md)                         |          解锁旅途物品        |              无               |
 | [ListPlugins](ListPlugins/README.md)                             |          查已装插件          |              无               |
+| [BagPing](BagPing/README.md)                                     |       地图上标记宝藏袋        |              无               |

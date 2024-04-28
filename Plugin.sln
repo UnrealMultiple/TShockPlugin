@@ -122,6 +122,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WikiLangPackLoader", "WikiL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListPlugins", "ListPlugins\ListPlugins.csproj", "{9738B985-8435-4D15-ADCE-817DFDD44D0C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BagPing", "BagPing\BagPing.csproj", "{F079DF85-5F24-4159-915F-01302A9F3243}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -586,6 +588,14 @@ Global
 		{9738B985-8435-4D15-ADCE-817DFDD44D0C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9738B985-8435-4D15-ADCE-817DFDD44D0C}.Release|x64.ActiveCfg = Release|Any CPU
 		{9738B985-8435-4D15-ADCE-817DFDD44D0C}.Release|x64.Build.0 = Release|Any CPU
+		{F079DF85-5F24-4159-915F-01302A9F3243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F079DF85-5F24-4159-915F-01302A9F3243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F079DF85-5F24-4159-915F-01302A9F3243}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F079DF85-5F24-4159-915F-01302A9F3243}.Debug|x64.Build.0 = Debug|Any CPU
+		{F079DF85-5F24-4159-915F-01302A9F3243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F079DF85-5F24-4159-915F-01302A9F3243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F079DF85-5F24-4159-915F-01302A9F3243}.Release|x64.ActiveCfg = Release|Any CPU
+		{F079DF85-5F24-4159-915F-01302A9F3243}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
