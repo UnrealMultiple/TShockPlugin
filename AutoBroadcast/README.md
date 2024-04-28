@@ -1,6 +1,6 @@
 # AutoBroadcast 自动广播
 
-- 作者: Scavenger
+- 作者: Scavenger，Zaicon,GK 小改良，肝帝熙恩更新至1449
 - 出处: 无
 - 定时在服务器中广播，或执行命令。
 
