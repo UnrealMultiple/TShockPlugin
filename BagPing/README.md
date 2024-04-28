@@ -1,15 +1,14 @@
-# Noagent 反代理插件
+# BagPing 地图上标记宝藏袋
 
-- 作者: Jonesn，肝帝熙恩
-- 出处: TShock中文官方群
-- 调用`https://blackbox.ipinfo.app/lookup/`进行检测，实测效果还行
-
+- 作者: Cai
+- 出处: [github](https://github.com/THEXN/CaiPlugins)
+- 在小地图上标记掉落的宝藏袋
 ## 更新日志
 
 ```
-暂无
+1.0.1
+修改了描述
 ```
-
 ## 指令
 
 ```
@@ -18,7 +17,7 @@
 
 ## 配置
 
-```json
+```
 暂无
 ```
 ## 反馈

@@ -22,5 +22,5 @@
 ```
 
 ## 反馈
-- 共同维护的插件库：https://github.com/THEXN/TShockPlugin/
+- 共同维护的插件库：https://github.com/Controllerdestiny/TShockPlugin
 - 国内社区trhub.cn 或 TShock官方群等
