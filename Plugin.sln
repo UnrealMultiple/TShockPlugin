@@ -126,6 +126,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BagPing", "BagPing\BagPing.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerTools", "ServerTools\ServerTools.csproj", "{0B3404AE-F96A-4F5E-9798-1F9E77D030D2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform", "Platform\Platform.csproj", "{3F528630-8E37-4001-BCB9-71148D841127}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -606,6 +608,14 @@ Global
 		{0B3404AE-F96A-4F5E-9798-1F9E77D030D2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0B3404AE-F96A-4F5E-9798-1F9E77D030D2}.Release|x64.ActiveCfg = Release|Any CPU
 		{0B3404AE-F96A-4F5E-9798-1F9E77D030D2}.Release|x64.Build.0 = Release|Any CPU
+		{3F528630-8E37-4001-BCB9-71148D841127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F528630-8E37-4001-BCB9-71148D841127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F528630-8E37-4001-BCB9-71148D841127}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3F528630-8E37-4001-BCB9-71148D841127}.Debug|x64.Build.0 = Debug|Any CPU
+		{3F528630-8E37-4001-BCB9-71148D841127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F528630-8E37-4001-BCB9-71148D841127}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F528630-8E37-4001-BCB9-71148D841127}.Release|x64.ActiveCfg = Release|Any CPU
+		{3F528630-8E37-4001-BCB9-71148D841127}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
