@@ -41,8 +41,14 @@ public class Config
     [JsonProperty("禁止快速放入箱子")]
     public bool LimitForceItemIntoNearestChest = false;
 
+    [JsonProperty("死亡倒计时")]
+    public bool DeadTimer = false;
+
     [JsonProperty("阻止死亡角色进入")]
     public bool PreventsDeathStateJoin = true;
+
+    [JsonProperty("死亡倒计时格式")]
+    public string DeadFormat = "你还有{0}秒复活!";
 
     [JsonProperty("未注册阻止语句")]
     public string BlockEntryStatement = "未注册不能进入服务器";

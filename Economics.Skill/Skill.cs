@@ -1,5 +1,4 @@
 ﻿using Economics.Skill.Events;
-using Economics.Skill.Model;
 using Economics.Skill.Setting;
 using EconomicsAPI.Configured;
 using EconomicsAPI.EventArgs;
@@ -24,9 +23,9 @@ public class Skill : TerrariaPlugin
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
-    internal static ESPlayer[] ESPlayers = new ESPlayer[Main.maxPlayers];
-
     public long TimerCount;
+
+    public static object ILock = new();
 
     internal static Config Config { get; set; }
 
@@ -37,7 +36,6 @@ public class Skill : TerrariaPlugin
     public override void Initialize()
     {
         LoadConfig();
-        ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreetPlayer);
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
         GetDataHandlers.PlayerUpdate.Register(OnPlayerUpdate);
@@ -49,12 +47,6 @@ public class Skill : TerrariaPlugin
 
         //Commands.ChatCommands.Add(new(e => PlayerSparkSkillHandler.Adapter(Config.SkillContexts[0], Enumerates.SkillSparkType.Take), "skill")); 
     }
-
-    private void OnGreetPlayer(GreetPlayerEventArgs args)
-    {
-        ESPlayers[args.Who] = new ESPlayer(args.Who);
-    }
-
     private void OnUpdate(EventArgs args)
     {
         TimerCount++;
@@ -66,7 +58,11 @@ public class Skill : TerrariaPlugin
 
     private void OnNewProj(object? sender, GetDataHandlers.NewProjectileEventArgs e)
     {
-        PlayerSparkSkillHandler.Adapter(e, Config.SkillContexts[0], Enumerates.SkillSparkType.Take);
+        Task.Run(() =>
+        {
+            PlayerSparkSkillHandler.Adapter(e, Config.SkillContexts[0], Enumerates.SkillSparkType.Take);
+        });
+        
     }
 
     private void OnConnent(ConnectEventArgs args)
@@ -86,21 +82,24 @@ public class Skill : TerrariaPlugin
 
     private void OnStrike(NpcStrikeEventArgs args)
     {
-        var esplayer = ESPlayers[args.Player.whoAmI];
-        esplayer.StrikeNpc.TrySetResult(args.Npc);
-        //PlayerSparkSkillHandler.Adapter(TShock.Players[args.Player.whoAmI], Config.SkillContexts[0], Enumerates.SkillSparkType.Strike);
+        var player = TShock.Players[args.Player.whoAmI];
+        var strike = player.GetData<ManualResetEventSlim>("strike");
+        if (player == null || strike == null)
+            return;
+        strike.Set();
     }
 
     private void OnKillNpc(PlayerKillNpcArgs args)
     {
-        var esplayer = ESPlayers[args.Player.Index];
-        esplayer.KillNpc.TrySetResult(args.Npc);
-        //PlayerSparkSkillHandler.Adapter(args.Player, Config.SkillContexts[0], Enumerates.SkillSparkType.Kill);
+        var kill = args.Player.GetData<ManualResetEventSlim>("kill");
+        if (args.Player == null || kill == null)
+            return;
+        kill.Set();
     }
 
     private void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
     {
-        if (e.Player.TPlayer.controlUseItem && e.Player.TPlayer.HeldItem.shoot == 0)
+        if (e.Player.TPlayer.ItemTimeIsZero && e.Player.TPlayer.controlUseItem && e.Player.TPlayer.HeldItem.shoot == 0)
         {
             PlayerSparkSkillHandler.Adapter(e.Player, Config.SkillContexts[0], Enumerates.SkillSparkType.Take);
         }

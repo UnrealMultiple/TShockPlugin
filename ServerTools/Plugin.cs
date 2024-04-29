@@ -66,6 +66,7 @@ namespace ServerTools
             GetDataHandlers.NewProjectile.Register(NewProj);
             GetDataHandlers.ItemDrop.Register(OnItemDrop);
             GetDataHandlers.KillMe.Register(KillMe);
+            GetDataHandlers.PlayerSpawn.Register(OnPlayerSpawn);
             GeneralHooks.ReloadEvent += (_) => LoadConfig();
             #endregion
 
@@ -77,7 +78,13 @@ namespace ServerTools
             HandleCommandLine(Environment.GetCommandLineArgs());
         }
 
-       
+        private void OnPlayerSpawn(object? sender, GetDataHandlers.SpawnEventArgs e)
+        {
+            if(e.Player != null)
+            {
+                Deads.Remove(e.Player);
+            }
+        }
 
         private void OnItemDrop(object? sender, GetDataHandlers.ItemDropEventArgs e)
         {
@@ -116,8 +123,17 @@ namespace ServerTools
         private void OnUpdate(EventArgs e)
         {
             TimerCount++;
-            if (TimerCount % 60 == 0)   
+            if (TimerCount % 60 == 0)
+            {
                 Timer?.Invoke(e);
+                foreach (var ply in Deads)
+                {
+                    if (ply != null && ply.Active && ply.Dead)
+                    {
+                        ply.SendInfoMessage(Config.DeadFormat, ply.RespawnTimer);
+                    }
+                }
+            }  
         }
 
         private void OnLeave(LeaveEventArgs args)
