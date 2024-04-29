@@ -89,3 +89,4 @@
 | [ListPlugins](ListPlugins/README.md)                             |           查已装插件           |                                             无                                             |
 | [BagPing](BagPing/README.md)                                     |        地图上标记宝藏袋        |                                             无                                             |
 | [ServerTools](ServerTools/README.md)                             |         服务器管理工具         |                                             无                                             |
+| [Platform](Platform/README.md)                                   |          判断玩家设备          |                                             无                                             |
