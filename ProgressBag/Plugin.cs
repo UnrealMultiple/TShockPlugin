@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Newtonsoft.Json;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -125,6 +126,7 @@ namespace ProgressBag
             }
             else if (args.Parameters.Count == 1 && args.Parameters[0] == "领取全部")
             {
+                File.WriteAllText(Path.Combine(TShock.SavePath,"进度.json"),JsonConvert.SerializeObject(args.Player.GetProgress(),Formatting.Indented));
                 int i = 0;
                 foreach (Bag bag in config.Bag)
                 {

@@ -23,10 +23,10 @@ public static class ProgressUtil
 
     public static bool CompareVlaue(ProgressMapAttribute? map, object? obj)
     {
-        var flag = BindingFlags.Public | BindingFlags.Static;
+        var flag = BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance;
         var value = map?.Target.GetField(map.Filed, flag)?.GetValue(obj)
                     ?? map?.Target.GetProperty(map.Filed, flag)?.GetValue(obj);
-        if (value == null && map != null)
+        if (value != null && map != null)
             return map.Value.Equals(value);
         return false;
     }
@@ -69,7 +69,8 @@ public static class ProgressUtil
         var gameProgress = Player.GetProgress();
         foreach (var name in names)
         {
-            return gameProgress.TryGetValue(name, out var code) && code;
+           if(!(gameProgress.TryGetValue(name, out var code) && code))
+                return false;
         }
         return true;
     }
