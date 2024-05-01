@@ -2,10 +2,9 @@ import os
 import glob
 import shutil
 import sys
-from pypandoc import convert_file
 import pypandoc
 import zipfile
-
+import subprocess
 def zip_files_in_folder(folder_path, zip_file_path):
     # Create a ZipFile object in write mode
     with zipfile.ZipFile(zip_file_path, 'w') as zipf:
@@ -20,12 +19,16 @@ def zip_files_in_folder(folder_path, zip_file_path):
     print(f"生成压缩包: {zip_file_path}")
 
 def md_to_pdf(input_filename):
-    print(input_filename)
-    convert_file(input_filename, 'pdf', outputfile=input_filename.replace('.md', '.pdf'),extra_args=[
-        '--pdf-engine=xelatex',  # 设置 LaTeX 引擎为 xelatex
-        '-V', "mainfont='Noto Serif CJK SC'"
-
-    ],)
+    command = [
+        'pandoc',
+        '--pdf-engine=xelatex',
+        '-V',
+        "mainfont='Noto Serif CJK SC'",
+        file_name,
+        '-o',
+        input_filename.replace('.md', '.pdf')
+    ]
+    subprocess.run(command, check=True)
     
 
 if __name__ == '__main__':
@@ -74,3 +77,9 @@ if __name__ == '__main__':
     print("😋准备打包插件")
     zip_files_in_folder("out", "Plugins.zip")
     print("😋😋😋插件打包成功~")
+
+
+
+
+
+
