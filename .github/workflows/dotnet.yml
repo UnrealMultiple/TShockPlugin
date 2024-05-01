@@ -27,9 +27,9 @@ jobs:
         with:
           python-version: '3.x'
           
-      - name: Install Pypandoc
+      - name: Install Pandoc
         run: 
-          pip install pypandoc
+          sudo apt-get install pandoc
         env:
           PYTHONIOENCODING: 'utf-8'
         
