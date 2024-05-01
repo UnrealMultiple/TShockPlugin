@@ -21,7 +21,10 @@ def zip_files_in_folder(folder_path, zip_file_path):
 
 def md_to_pdf(input_filename):
     print(input_filename)
-    convert_file(input_filename, 'pdf', outputfile=input_filename.replace('.md', '.pdf'),extra_args=['--pdf-engine', 'xelatex','mainfont', 'Noto Serif CJK SC'])
+    convert_file(input_filename, 'pdf', outputfile=input_filename.replace('.md', '.pdf'),extra_args=[
+        '--pdf-engine=xelatex',  # 设置 LaTeX 引擎为 xelatex
+        '-V', 'mainfont:Noto Serif CJK SC'  # 设置主字体为 Noto Serif CJK SC
+    ],)
     
 
 if __name__ == '__main__':
