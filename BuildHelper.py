@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
     for file_name in os.listdir(f"out/{build_type}"):
         if file_name.endswith('.md'):
-            md_to_pdf(f"out/{build_type}/{file_name}")
+            md_to_pdf(f"{cwd}/out/{build_type}/{file_name}")
     
      
     # 调用函数来压缩文件夹中的所有文件
