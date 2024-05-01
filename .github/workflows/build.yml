@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +20,6 @@ jobs:
           dotnet-version: 6.0.x
           
       - name: Build Plugins
-        shell: powershell
         run: |
           dotnet build Plugin.sln
           
@@ -29,7 +28,7 @@ jobs:
         with:
           python-version: '3.x'
           
-      - name: Execute BuildHelper.py
+      - name: Package
         run: python BuildHelper.py
         env:
           PYTHONIOENCODING: 'utf-8'
@@ -38,5 +37,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: github.event_name == 'pull_request'
         with:
-          name: Plugin_${{ matrix.runtimeIdentifier }}_6.0
-          path: Plugins.zip
+          name: Plugin
+          path: out/*
