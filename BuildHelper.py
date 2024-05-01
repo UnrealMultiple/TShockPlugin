@@ -17,9 +17,9 @@ def zip_files_in_folder(folder_path, zip_file_path):
     print(f"生成压缩包: {zip_file_path}")
 
 def md_to_pdf(input_filename):
+    print(f"pandoc --pdf-engine=xelatex  -V mainfont='Noto Serif CJK SC' -V geometry:margin=0.5in  {file_name} -o {input_filename.replace('.md', '.pdf')}")
     os.system(f"pandoc --pdf-engine=xelatex  -V mainfont='Noto Serif CJK SC' -V geometry:margin=0.5in  {file_name} -o {input_filename.replace('.md', '.pdf')}")
     
-
 if __name__ == '__main__':
     print(f"😋😋😋打包脚本By Cai...")
     build_type = sys.argv[1]
