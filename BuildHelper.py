@@ -22,7 +22,7 @@ def zip_files_in_folder(folder_path, zip_file_path):
 
 def md_to_pdf(input_filename):
     print(input_filename)
-    convert_file(input_filename, 'pdf', outputfile=input_filename.replace('.md', '.pdf'),extra_args=['--pdf-engine', "pandoc/"])
+    convert_file(input_filename, 'pdf', outputfile=input_filename.replace('.md', '.pdf'))
     
 
 if __name__ == '__main__':
@@ -102,7 +102,7 @@ if __name__ == '__main__':
 
         # 删除子文件夹
         os.rmdir(subfolder_path)
-
+    os.environ['PATH'] = "pandoc:" + os.environ['PATH']
     for file_name in os.listdir(f"out/{build_type}"):
         if file_name.endswith('.md'):
             md_to_pdf(f"out/{build_type}/"+file_name)
