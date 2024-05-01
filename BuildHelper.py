@@ -23,9 +23,7 @@ def md_to_pdf(input_filename):
     print(input_filename)
     convert_file(input_filename, 'pdf', outputfile=input_filename.replace('.md', '.pdf'),extra_args=[
         '--pdf-engine=xelatex',  # 设置 LaTeX 引擎为 xelatex
-        '-V', 'mainfont:Noto Serif SC',  # 设置主字体为 Noto Serif CJK SC
-        '-V', 'sansfont:Noto Sans SC', 
-        '-V', 'monofont:Noto Sans Mono'
+        '-V', "mainfont='Noto Serif CJK SC'"
 
     ],)
     
