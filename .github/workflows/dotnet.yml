@@ -37,6 +37,10 @@ jobs:
         run: |
           sudo apt-get install -y texlive-xetex
 
+      - name: Install Noto
+        run: |
+          sudo apt install fonts-noto-cjk
+
       - name: Package
         run: 
           python BuildHelper.py Release
