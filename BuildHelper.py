@@ -74,9 +74,3 @@ if __name__ == '__main__':
     print("😋准备打包插件")
     zip_files_in_folder("out", "Plugins.zip")
     print("😋😋😋插件打包成功~")
-
-
-
-
-
-
