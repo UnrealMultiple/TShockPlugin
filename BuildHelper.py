@@ -2,9 +2,7 @@ import os
 import glob
 import shutil
 import sys
-import pypandoc
 import zipfile
-import subprocess
 def zip_files_in_folder(folder_path, zip_file_path):
     # Create a ZipFile object in write mode
     with zipfile.ZipFile(zip_file_path, 'w') as zipf:
@@ -56,7 +54,6 @@ if __name__ == '__main__':
                     print(f"README移动失败({file_name})")
     print("移动README.md成功~")
 
-    pypandoc.download_pandoc()
 
     for file_name in os.listdir(f"out/{build_type}"):
         if file_name.endswith('.md'):
