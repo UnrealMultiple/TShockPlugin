@@ -23,7 +23,9 @@ namespace CaiLib
 
         public virtual TSettings Settings { get; set; } = new TSettings();
 
-
+        /// <summary>
+		/// 写入Config
+		/// </summary>
         public void Write()
         {
             using (var fs = new FileStream(FilePath, FileMode.Create, FileAccess.Write, FileShare.Write))
@@ -35,7 +37,9 @@ namespace CaiLib
                 }
             }
         }
-
+        /// <summary>
+		/// 创造并读取Config
+		/// </summary>
         public CaiConfig<TSettings> Read()
         {
             if (!File.Exists(FilePath))
