@@ -6,51 +6,51 @@ namespace PvPer
 {
     public class Configuration
     {
-        [JsonProperty("²å¼şÈ¨ÏŞÃû")]
+        [JsonProperty("æ’ä»¶æƒé™å")]
         public string README1 = "pvper.use / pvper.admin";
-        [JsonProperty("¾º¼¼³¡±ß½çËµÃ÷")]
-        public string README2 = "/pvp set 3 4 Òª±ÈÍæ¼Ò´«ËÍ×ø±ê¸ß»òµÍ3¸ñÉèÖÃ";
-        [JsonProperty("¾º¼¼³¡±ß½çËµÃ÷2")]
-        public string README3 = "À­È¡·¶Î§£º»á´ÓÍæ¼Ò³å³ö¾º¼¼³¡·½Ïò,À­»Øµ½¾º¼¼³¡ÖĞĞÄµÄÖ¸¶¨·´ÏòÎ»ÖÃ£¨µ±Îª¸ºÊıÔòÊÇÕıÏòÎ»ÖÃ£©,¹Ø±ÕÉ±ËÀÍæ¼ÒÑ¡ÏîºóÄ¬ÈÏ¿ªÆô¿ÛÑª";
-        [JsonProperty("ÆôÓÃ¼ì²é")]
+        [JsonProperty("ç«æŠ€åœºè¾¹ç•Œè¯´æ˜")]
+        public string README2 = "/pvp set 3 4 è¦æ¯”ç©å®¶ä¼ é€åæ ‡é«˜æˆ–ä½3æ ¼è®¾ç½®";
+        [JsonProperty("ç«æŠ€åœºè¾¹ç•Œè¯´æ˜2")]
+        public string README3 = "æ‹‰å–èŒƒå›´ï¼šä¼šä»ç©å®¶å†²å‡ºç«æŠ€åœºæ–¹å‘,æ‹‰å›åˆ°ç«æŠ€åœºä¸­å¿ƒçš„æŒ‡å®šåå‘ä½ç½®ï¼ˆå½“ä¸ºè´Ÿæ•°åˆ™æ˜¯æ­£å‘ä½ç½®ï¼‰,å…³é—­æ€æ­»ç©å®¶é€‰é¡¹åé»˜è®¤å¼€å¯æ‰£è¡€";
+        [JsonProperty("å¯ç”¨æ£€æŸ¥")]
         public bool CheckaAll = true;
-        [JsonProperty("ÊÇ·ñ¼ì²éµÚ7¸öÊÎÆ·À¸")]
+        [JsonProperty("æ˜¯å¦æ£€æŸ¥ç¬¬7ä¸ªé¥°å“æ ")]
         public bool Check7 = false;
-        [JsonProperty("À­»Ø¾º¼¼³¡")]
+        [JsonProperty("æ‹‰å›ç«æŠ€åœº")]
         public bool PullArena = true;
-        [JsonProperty("À­È¡·¶Î§")]
+        [JsonProperty("æ‹‰å–èŒƒå›´")]
         public int PullRange = -20;
-        [JsonProperty("Àë¿ª¾º¼¼³¡É±ËÀÍæ¼Ò")]
+        [JsonProperty("ç¦»å¼€ç«æŠ€åœºæ€æ­»ç©å®¶")]
         public bool KillPlayer = false;
-        [JsonProperty("Àë³¡¿ÛÑª")]
+        [JsonProperty("ç¦»åœºæ‰£è¡€")]
         public int SlapPlayer = 20;
-        [JsonProperty("ÑûÇëÕß´«ËÍ×ø±ê.X")]
+        [JsonProperty("é‚€è¯·è€…ä¼ é€åæ ‡.X")]
         public int Player1PositionX = 0;
-        [JsonProperty("ÑûÇëÕß´«ËÍ×ø±ê.Y")]
+        [JsonProperty("é‚€è¯·è€…ä¼ é€åæ ‡.Y")]
         public int Player1PositionY = 0;
-        [JsonProperty("ÊÜÑûÕß´«ËÍ×ø±ê.X")]
+        [JsonProperty("å—é‚€è€…ä¼ é€åæ ‡.X")]
         public int Player2PositionX = 0;
-        [JsonProperty("ÊÜÑûÕß´«ËÍ×ø±ê.Y")]
+        [JsonProperty("å—é‚€è€…ä¼ é€åæ ‡.Y")]
         public int Player2PositionY = 0;
-        [JsonProperty("¾º¼¼³¡×óÉÏ½Ç×ø±ê.X")]
+        [JsonProperty("ç«æŠ€åœºå·¦ä¸Šè§’åæ ‡.X")]
         public int ArenaPosX1 = 0;
-        [JsonProperty("¾º¼¼³¡×óÉÏ½Ç×ø±ê.Y")]
+        [JsonProperty("ç«æŠ€åœºå·¦ä¸Šè§’åæ ‡.Y")]
         public int ArenaPosY1 = 0;
-        [JsonProperty("¾º¼¼³¡ÓÒÏÂ½Ç×ø±ê.X")]
+        [JsonProperty("ç«æŠ€åœºå³ä¸‹è§’åæ ‡.X")]
         public int ArenaPosX2 = 0;
-        [JsonProperty("¾º¼¼³¡ÓÒÏÂ½Ç×ø±ê.Y")]
+        [JsonProperty("ç«æŠ€åœºå³ä¸‹è§’åæ ‡.Y")]
         public int ArenaPosY2 = 0;
 
-        public static readonly string FilePath = Path.Combine(TShock.SavePath + "/¾ö¶·ÏµÍ³.json");
+        public static readonly string FilePath = Path.Combine(TShock.SavePath + "/å†³æ–—ç³»ç»Ÿ.json");
 
-        [JsonProperty("½ûÎäÆ÷±í")]
+        [JsonProperty("ç¦æ­¦å™¨è¡¨")]
         public List<string> WeaponList { get; set; } = new List<string>();
 
-        [JsonProperty("½ûBUFF±í")]
+        [JsonProperty("ç¦BUFFè¡¨")]
         public List<int> BuffList { get; set; } = new List<int>();
 
 
-        #region ÅäÖÃÎÄ¼ş¶ÁÈ¡´´½¨·½·¨
+        #region é…ç½®æ–‡ä»¶è¯»å–åˆ›å»ºæ–¹æ³•
         public void Write(string path)
         {
             using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
