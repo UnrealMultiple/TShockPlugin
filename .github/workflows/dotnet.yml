@@ -14,7 +14,7 @@ jobs:
       - name: Initialize .NET 6
         uses: actions/setup-dotnet@v3
         env:
-          DOTNET_CLI_UI_LANGUAGE: 'zh-CN'
+          DOTNET_CLI_UI_LANGUAGE: zh-CN
         with:
           dotnet-version: 6.0.x
           
