@@ -17,8 +17,8 @@ def zip_files_in_folder(folder_path, zip_file_path):
     print(f"生成压缩包: {zip_file_path}")
 
 def md_to_pdf(file_name):
-    #print(f"pandoc --pdf-engine=xelatex  -V mainfont='Noto Serif CJK SC' -V geometry:margin=0.5in  {file_name} -o {filename.replace('.md', '.pdf')}")
-    os.system(f"pandoc --pdf-engine=xelatex  -V mainfont='Noto Serif CJK SC' -V geometry:margin=0.5in  {file_name} -o {filename.replace('.md', '.pdf')}")
+    #print(f"pandoc --pdf-engine=xelatex  -V mainfont='Noto Serif CJK SC' -V geometry:margin=0.5in  {file_name} -o {file_name.replace('.md', '.pdf')}")
+    os.system(f"pandoc --pdf-engine=xelatex  -V mainfont='Noto Serif CJK SC' -V geometry:margin=0.5in  {file_name} -o {file_name.replace('.md', '.pdf')}")
     
 if __name__ == '__main__':
     print(f"😋😋😋打包脚本By Cai...")
@@ -54,12 +54,12 @@ if __name__ == '__main__':
                     print(f"README移动失败({file_name})")
     print("移动README.md成功~")
 
-
+    print("😋准备转换PDF")
     for file_name in os.listdir(f"out/{build_type}"):
         if file_name.endswith('.md'):
             md_to_pdf(f"{cwd}/out/{build_type}/{file_name}")
     
-     
+    print("PDF转换完成～")
     # 调用函数来压缩文件夹中的所有文件
     # 注意：这里需要替换为实际的文件夹路径和zip文件路径
     print("😋准备打包插件")
