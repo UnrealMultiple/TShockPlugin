@@ -97,7 +97,7 @@ jobs:
         with:
           tag: V1.0.0.0
           name: "Latest Version"
-          body: "每当仓库更新都会更新此Release\n此仓库只有这一个Release.\n${{steps.external_changelog_second.outputs.changelog}}"
+          body: "🚀 每次仓库更新，我们都会在这里发布最新的Release。请注意，这个仓库只有一个Release，所以你总是能在这里找到最新的版本。\n📦 你可以在页面的最底部找到插件包的下载链接。下载完成后，你需要使用ZIP压缩工具进行解压。\n${{steps.external_changelog_second.outputs.changelog}}"
           artifacts: |
             ./bin/*
           allowUpdates: true
