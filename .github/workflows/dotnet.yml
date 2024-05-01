@@ -25,12 +25,12 @@ jobs:
       - name: Initialize Python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.11.7'
+          python-version: '3.x'
           
       - name: Package
         run: 
           pip install pypandoc
-          python BuildHelper.py Release
+
         env:
           PYTHONIOENCODING: 'utf-8'
       
