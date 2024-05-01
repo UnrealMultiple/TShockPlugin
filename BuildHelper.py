@@ -16,7 +16,7 @@ def zip_files_in_folder(folder_path, zip_file_path):
                 zipf.write(file_path, arcname=os.path.basename(file_path))
     print(f"生成压缩包: {zip_file_path}")
 
-def md_to_pdf(filename):
+def md_to_pdf(file_name):
     #print(f"pandoc --pdf-engine=xelatex  -V mainfont='Noto Serif CJK SC' -V geometry:margin=0.5in  {file_name} -o {filename.replace('.md', '.pdf')}")
     os.system(f"pandoc --pdf-engine=xelatex  -V mainfont='Noto Serif CJK SC' -V geometry:margin=0.5in  {file_name} -o {filename.replace('.md', '.pdf')}")
     
