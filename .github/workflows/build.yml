@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +20,7 @@ jobs:
           dotnet-version: 6.0.x
           
       - name: Build Plugins
-        shell: powershell
+        shell: bash
         run: |
           dotnet build Plugin.sln
           
@@ -38,5 +38,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: github.event_name == 'pull_request'
         with:
-          name: Plugin_${{ matrix.runtimeIdentifier }}_6.0
-          path: Plugins.zip
+          name: Plugin
+          path: out/*
