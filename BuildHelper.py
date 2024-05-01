@@ -2,9 +2,8 @@ import os
 import glob
 import shutil
 import sys
-import tarfile
 from pypandoc import convert_file
-import requests
+import pypandoc
 import zipfile
 
 def zip_files_in_folder(folder_path, zip_file_path):
@@ -22,7 +21,7 @@ def zip_files_in_folder(folder_path, zip_file_path):
 
 def md_to_pdf(input_filename):
     print(input_filename)
-    convert_file(input_filename, 'pdf', outputfile=input_filename.replace('.md', '.pdf'))
+    convert_file(input_filename, 'pdf', outputfile=input_filename.replace('.md', '.pdf'),extra_args=['--pdf-engine', 'xelatex'])
     
 
 if __name__ == '__main__':
@@ -32,7 +31,7 @@ if __name__ == '__main__':
     for file in glob.glob(os.path.join(f"out/{build_type}/", "*.json")):
         os.remove(file)
         print(f"删除文件: {file}")
-    print("(删除json文件成功~")
+    print("删除json文件成功~")
 
     # Get the current working directory
     print("😋开始移动README.md")
@@ -59,53 +58,12 @@ if __name__ == '__main__':
                     print(f"README移动失败({file_name})")
     print("移动README.md成功~")
 
+    pypandoc.download_pandoc()
 
-    # 获取最新的release信息
-    response = requests.get('https://api.github.com/repos/jgm/pandoc/releases/latest')
-    data = response.json()
-    tag_name = data['tag_name']
-    tarball_url = data['tarball_url']
-
-    # 下载tar.gz文件
-    response = requests.get(tarball_url)
-    filename = f'{tag_name}.tar.gz'
-    with open(filename, 'wb') as f:
-        f.write(response.content)
-
-    # 解压tar.gz文件
-    tar = tarfile.open(filename)
-
-
-    # 创建pandoc文件夹
-    if not os.path.exists('pandoc'):
-        os.makedirs('pandoc')
-    # 解压tar.gz文件到pandoc文件夹
-    tar = tarfile.open(filename)
-    tar.extractall(path='pandoc')
-    tar.close()
-    # 删除下载的tar.gz文件
-    os.remove(filename)
-    # 指定你的目标文件夹
-    folder_path = 'pandoc'
-
-    # 获取文件夹中的所有子文件夹
-    subfolders = [d for d in os.listdir(folder_path) if os.path.isdir(os.path.join(folder_path, d))]
-
-    # 如果文件夹中只有一个子文件夹
-    if len(subfolders) == 1:
-        subfolder_path = os.path.join(folder_path, subfolders[0])
-
-        # 遍历子文件夹中的所有文件和子文件夹
-        for item in os.listdir(subfolder_path):
-            item_path = os.path.join(subfolder_path, item)
-            shutil.move(item_path, folder_path)
-
-        # 删除子文件夹
-        os.rmdir(subfolder_path)
-    os.environ['PATH'] = "pandoc:" + os.environ['PATH']
     for file_name in os.listdir(f"out/{build_type}"):
         if file_name.endswith('.md'):
-            md_to_pdf(f"out/{build_type}/"+file_name)
+            md_to_pdf(os.path.join(f"out/{build_type}", file_name))
+    
      
     # 调用函数来压缩文件夹中的所有文件
     # 注意：这里需要替换为实际的文件夹路径和zip文件路径
