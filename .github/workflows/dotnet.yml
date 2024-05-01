@@ -28,7 +28,7 @@ jobs:
           python-version: '3.x'
           
       - name: Package
-        run: python BuildHelper.py
+        run: python BuildHelper.py Release
         env:
           PYTHONIOENCODING: 'utf-8'
       
