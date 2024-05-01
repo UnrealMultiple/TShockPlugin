@@ -41,6 +41,10 @@ jobs:
         run: |
           sudo apt install fonts-noto-cjk
 
+      - name: Setup Noto
+        run: |
+          sudo fc-cache -f -v
+
       - name: Package
         run: 
           python BuildHelper.py Release
