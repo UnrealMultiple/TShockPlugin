@@ -23,7 +23,10 @@ def md_to_pdf(input_filename):
     print(input_filename)
     convert_file(input_filename, 'pdf', outputfile=input_filename.replace('.md', '.pdf'),extra_args=[
         '--pdf-engine=xelatex',  # 设置 LaTeX 引擎为 xelatex
-        '-V', 'mainfont="Noto Sans Mono CJK SC"'  # 设置主字体为 Noto Serif CJK SC
+        '-V', 'mainfont:Noto Serif SC',  # 设置主字体为 Noto Serif CJK SC
+        '-V', 'sansfont:Noto Sans SC', 
+        '-V', 'monofont:Noto Sans Mono'
+
     ],)
     
 
@@ -73,3 +76,9 @@ if __name__ == '__main__':
     print("😋准备打包插件")
     zip_files_in_folder("out", "Plugins.zip")
     print("😋😋😋插件打包成功~")
+
+
+
+
+
+
