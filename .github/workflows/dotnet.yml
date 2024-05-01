@@ -27,8 +27,19 @@ jobs:
         with:
           python-version: '3.x'
           
+      - name: Install Pandoc
+        run: 
+          sudo apt-get install pandoc
+        env:
+          PYTHONIOENCODING: 'utf-8'
+        
+      - name: Install TeX Live
+        run: |
+          sudo apt-get install -y texlive-xetex
+
       - name: Package
-        run: python BuildHelper.py Release
+        run: 
+          sudo python BuildHelper.py Release
         env:
           PYTHONIOENCODING: 'utf-8'
       
