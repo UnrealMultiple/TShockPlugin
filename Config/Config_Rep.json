@@ -1,20 +1,24 @@
 {
     "categories": [
         {
-            "title": "## 🚀 Features",
+            "title": "## 🚀 插件/功能",
             "labels": ["Feat", "Add", "feature", "feat", "add", "添加"]
         },
         {
-            "title": "## 🐛 Fixes",
+            "title": "## 🐛 修复",
             "labels": ["fix","Fix", "修复"]
         },
         {
-            "title": "## 🧪 Docs",
-            "labels": ["README"]
+            "title": "## 📝 文档",
+            "labels": ["README","文档"]
         },
         {
-            "title": "## 🧪 Update",
-            "labels": ["update","Update"]
+            "title": "## 🧪 更新",
+            "labels": ["update","Update","更新"]
+        },
+        {
+            "title": "## 🧰 工作流",
+            "labels": ["工作流","Workflow","Action"]
         }
     ],
     "custom_placeholders": [
@@ -40,12 +44,17 @@
             "on_property": "title"
         },
         {
-            "pattern": ".*README.*",
+            "pattern": ".*(README|文档).*",
             "target": "$1",
             "on_property": "title"
         },
         {
-            "pattern": ".*(update|Update).*",
+            "pattern": ".*(update|更新|Update).*",
+            "target": "$1",
+            "on_property": "title"
+        },
+        {
+            "pattern": ".*(工作流|Workflow|Action).*",
             "target": "$1",
             "on_property": "title"
         }
