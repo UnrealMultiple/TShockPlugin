@@ -27,10 +27,15 @@ jobs:
         with:
           python-version: '3.x'
           
-      - name: Package
+      - name: Install Pypandoc
         run: 
           pip install pypandoc
+        env:
+          PYTHONIOENCODING: 'utf-8'
 
+      - name: Package
+        run: 
+          python BuildHelper.py Release
         env:
           PYTHONIOENCODING: 'utf-8'
       
