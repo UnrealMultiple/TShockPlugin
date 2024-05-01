@@ -3,6 +3,7 @@ import glob
 import shutil
 import sys
 import zipfile
+import urllib.request
 def zip_files_in_folder(folder_path, zip_file_path):
     # Create a ZipFile object in write mode
     with zipfile.ZipFile(zip_file_path, 'w') as zipf:
@@ -18,7 +19,7 @@ def zip_files_in_folder(folder_path, zip_file_path):
 
 def md_to_pdf(file_name):
     #print(f"pandoc --pdf-engine=xelatex  -V mainfont='Noto Serif CJK SC' -V geometry:margin=0.5in  {file_name} -o {file_name.replace('.md', '.pdf')}")
-    os.system(f"pandoc --pdf-engine=xelatex  -V mainfont='Noto Serif CJK SC' -V geometry:margin=0.5in  {file_name} -o {file_name.replace('.md', '.pdf')}")
+    os.system(f"pandoc --pdf-engine=xelatex  -V mainfont=LXGWWenKaiMono-Regular.ttf -V geometry:margin=0.5in --template eisvogel.tex  {file_name} -o {file_name.replace('.md', '.pdf')}")
     
 if __name__ == '__main__':
     print(f"😋😋😋打包脚本By Cai...")
@@ -55,6 +56,20 @@ if __name__ == '__main__':
     print("移动README.md成功~")
 
     print("😋准备转换PDF")
+    urllib.request.urlretrieve("https://raw.githubusercontent.com/lxgw/LxgwWenKai/main/fonts/TTF/LXGWWenKaiMono-Regular.ttf", "LXGWWenKaiMono-Regular.ttf")
+    urllib.request.urlretrieve("https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/master/eisvogel.tex", "eisvogel.tex")
+    # 指定的目录
+    directory = '/usr/share/texmf/fonts/opentype/public/lm/'
+
+    # 指定的文件
+    specified_file = 'LXGWWenKaiMono-Regular.ttf'
+
+    # 遍历指定目录
+    for filename in os.listdir(directory):
+        if os.path.isfile(os.path.join(directory, filename)):
+            # 复制指定文件到目标文件，覆盖目标文件
+            shutil.copy2(specified_file, os.path.join(directory, filename))
+
     for file_name in os.listdir(f"out/{build_type}"):
         if file_name.endswith('.md'):
             md_to_pdf(f"{cwd}/out/{build_type}/{file_name}")
@@ -65,7 +80,6 @@ if __name__ == '__main__':
     print("😋准备打包插件")
     zip_files_in_folder("out", "Plugins.zip")
     print("😋😋😋插件打包成功~")
-
 
 
 
