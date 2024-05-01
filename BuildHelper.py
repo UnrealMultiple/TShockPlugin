@@ -54,29 +54,31 @@ if __name__ == '__main__':
                 except:
                     print(f"README移动失败({file_name})")
     print("移动README.md成功~")
+    if build_type == "Release":
+        print("😋准备转换PDF")
+        urllib.request.urlretrieve("https://raw.githubusercontent.com/lxgw/LxgwWenKai/main/fonts/TTF/LXGWWenKaiMono-Regular.ttf", "LXGWWenKaiMono-Regular.ttf")
+        urllib.request.urlretrieve("https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/master/eisvogel.tex", "eisvogel.tex")
+        # 指定的目录
+        directory = '/usr/share/texmf/fonts/opentype/public/lm/'
 
-    print("😋准备转换PDF")
-    urllib.request.urlretrieve("https://raw.githubusercontent.com/lxgw/LxgwWenKai/main/fonts/TTF/LXGWWenKaiMono-Regular.ttf", "LXGWWenKaiMono-Regular.ttf")
-    urllib.request.urlretrieve("https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/master/eisvogel.tex", "eisvogel.tex")
-    # 指定的目录
-    directory = '/usr/share/texmf/fonts/opentype/public/lm/'
+        # 指定的文件
+        specified_file = 'LXGWWenKaiMono-Regular.ttf'
 
-    # 指定的文件
-    specified_file = 'LXGWWenKaiMono-Regular.ttf'
+        # 遍历指定目录
+        for filename in os.listdir(directory):
+            if os.path.isfile(os.path.join(directory, filename)):
+                # 复制指定文件到目标文件，覆盖目标文件
+                shutil.copy2(specified_file, os.path.join(directory, filename))
 
-    # 遍历指定目录
-    for filename in os.listdir(directory):
-        if os.path.isfile(os.path.join(directory, filename)):
-            # 复制指定文件到目标文件，覆盖目标文件
-            shutil.copy2(specified_file, os.path.join(directory, filename))
-
-    for file_name in os.listdir(f"out/{build_type}"):
-        if file_name.endswith('.md'):
-            md_to_pdf(f"{cwd}/out/{build_type}/{file_name}")
-    
-    print("PDF转换完成～")
-    # 调用函数来压缩文件夹中的所有文件
-    # 注意：这里需要替换为实际的文件夹路径和zip文件路径
+        for file_name in os.listdir(f"out/{build_type}"):
+            if file_name.endswith('.md'):
+                md_to_pdf(f"{cwd}/out/{build_type}/{file_name}")
+                os.remove(f"{cwd}/out/{build_type}/{file_name}")
+                print(f"{file_name}转换成功...")
+        
+        print("PDF转换完成～")
+        # 调用函数来压缩文件夹中的所有文件
+        # 注意：这里需要替换为实际的文件夹路径和zip文件路径
     print("😋准备打包插件")
     zip_files_in_folder("out", "Plugins.zip")
     print("😋😋😋插件打包成功~")
