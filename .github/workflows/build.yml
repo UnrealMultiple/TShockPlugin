@@ -29,7 +29,7 @@ jobs:
           python-version: '3.x'
           
       - name: Package
-        run: python BuildHelper.py
+        run: python BuildHelper.py Debug
         env:
           PYTHONIOENCODING: 'utf-8'
       
@@ -38,4 +38,4 @@ jobs:
         if: github.event_name == 'pull_request'
         with:
           name: Plugin
-          path: out/*
+          path: out/Debug/*
