@@ -28,7 +28,9 @@ jobs:
           python-version: '3.x'
           
       - name: Package
-        run: python BuildHelper.py Release
+        run: 
+          pip install pypandoc
+          python BuildHelper.py Release
         env:
           PYTHONIOENCODING: 'utf-8'
       
