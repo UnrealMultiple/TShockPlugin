@@ -3,31 +3,31 @@ using TShockAPI;
 
 
 namespace PvPer
-{
+{ 
     public class Commands
     {
         public static void Duel(CommandArgs args)
         {
             if (args.Parameters.Count == 0)
             {
-                args.Player.SendMessage($"ÇëÊäÈë [c/42B2CE:/pvp help] [c/F25E61:¹²Á½Ò³]", Color.YellowGreen);
+                args.Player.SendMessage($"è¯·è¾“å…¥ [c/42B2CE:/pvp help] [c/F25E61:å…±ä¸¤é¡µ]", Color.YellowGreen);
                 return;
             }
             switch (args.Parameters[0].ToLower())
             {
                 case "h":
                 case "help":
-                case "²Ëµ¥":
+                case "èœå•":
                     args.Parameters.RemoveAt(0);
                     HelpCmd(args);
                     return;
 
                 case "0":
                 case "add":
-                case "ÑûÇë":
+                case "é‚€è¯·":
                     if (args.Parameters.Count < 2)
                     {
-                        args.Player.SendErrorMessage("ÇëÖ¸¶¨Ä¿±êÍæ¼ÒµÄÃû³Æ¡£");
+                        args.Player.SendErrorMessage("è¯·æŒ‡å®šç›®æ ‡ç©å®¶çš„åç§°ã€‚");
                     }
                     else
                     {
@@ -37,47 +37,47 @@ namespace PvPer
 
                 case "1":
                 case "yes":
-                case "½ÓÊÜ":
+                case "æ¥å—":
                     AcceptCmd(args);
                     return;
 
                 case "2":
                 case "no":
-                case "¾Ü¾ø":
+                case "æ‹’ç»":
                     RejectCommand(args);
                     return;
 
                 case "data":
                 case "mark":
-                case "Õ½¼¨":
+                case "æˆ˜ç»©":
                     StatsCommand(args);
                     return;
 
                 case "l":
                 case "list":
-                case "ÅÅÃû":
+                case "æ’å":
                     LeaderboardCommand(args);
                     return;
 
                 case "wl":
-                    args.Player.SendMessage($"×¢Òâ£º/pvp.WL ÖĞ¼äÓĞ¸öÓ¢ÎÄ×Ö·û[c/F75454:¡°µã¡±¡¾ . ¡¿]", Color.YellowGreen);
+                    args.Player.SendMessage($"æ³¨æ„ï¼š/pvp.WL ä¸­é—´æœ‰ä¸ªè‹±æ–‡å­—ç¬¦[c/F75454:â€œç‚¹â€ã€ . ã€‘]", Color.YellowGreen);
                     return;
 
                 case "bl":
-                    args.Player.SendMessage($"×¢Òâ£º/pvp.BL ÖĞ¼äÓĞ¸öÓ¢ÎÄ×Ö·û[c/F75454:¡°µã¡±¡¾ . ¡¿]", Color.YellowGreen);
+                    args.Player.SendMessage($"æ³¨æ„ï¼š/pvp.BL ä¸­é—´æœ‰ä¸ªè‹±æ–‡å­—ç¬¦[c/F75454:â€œç‚¹â€ã€ . ã€‘]", Color.YellowGreen);
                     return;
 
                 case "bb":
-                    args.Player.SendMessage($"×¢Òâ£º/pvp.BB ÖĞ¼äÓĞ¸öÓ¢ÎÄ×Ö·û[c/F75454:¡°µã¡±¡¾ . ¡¿]", Color.YellowGreen);
+                    args.Player.SendMessage($"æ³¨æ„ï¼š/pvp.BB ä¸­é—´æœ‰ä¸ªè‹±æ–‡å­—ç¬¦[c/F75454:â€œç‚¹â€ã€ . ã€‘]", Color.YellowGreen);
                     return;
 
                 case "bw":
-                    args.Player.SendMessage($"×¢Òâ£º/pvp.BW ÖĞ¼äÓĞ¸öÓ¢ÎÄ[c/F75454:¡°µã¡±¡¾ . ¡¿]", Color.YellowGreen);
+                    args.Player.SendMessage($"æ³¨æ„ï¼š/pvp.BW ä¸­é—´æœ‰ä¸ªè‹±æ–‡[c/F75454:â€œç‚¹â€ã€ . ã€‘]", Color.YellowGreen);
                     return;
 
                 case "s":
                 case "set":
-                case "ÉèÖÃ":
+                case "è®¾ç½®":
                     {
                         int result;
                         if (args.Parameters.Count == 2 && int.TryParse(args.Parameters[1], out result) && IsValidLocationType(result))
@@ -90,31 +90,31 @@ namespace PvPer
                                 case 1:
                                     PvPer.Config.Player1PositionX = x;
                                     PvPer.Config.Player1PositionY = y;
-                                    args.Player.SendMessage($"ÒÑ½«ÄãËùÔÚµÄÎ»ÖÃÉèÖÃÎª[c/F75454:ÑûÇëÕß]´«ËÍµã£¬×ø±êÎª({x}, {y})", Color.CadetBlue);
-                                    Console.WriteLine($"¡¾¾ö¶·ÏµÍ³¡¿ÑûÇëÕß´«ËÍµãÒÑÉèÖÃ£¬×ø±êÎª({x}, {y})", Color.BurlyWood);
+                                    args.Player.SendMessage($"å·²å°†ä½ æ‰€åœ¨çš„ä½ç½®è®¾ç½®ä¸º[c/F75454:é‚€è¯·è€…]ä¼ é€ç‚¹ï¼Œåæ ‡ä¸º({x}, {y})", Color.CadetBlue);
+                                    Console.WriteLine($"ã€å†³æ–—ç³»ç»Ÿã€‘é‚€è¯·è€…ä¼ é€ç‚¹å·²è®¾ç½®ï¼Œåæ ‡ä¸º({x}, {y})", Color.BurlyWood);
                                     break;
                                 case 2:
                                     PvPer.Config.Player2PositionX = x;
                                     PvPer.Config.Player2PositionY = y;
-                                    args.Player.SendMessage($"ÒÑ½«ÄãËùÔÚµÄÎ»ÖÃÉèÖÃÎª[c/49B3D6:ÊÜÑûÕß]´«ËÍµã£¬×ø±êÎª({x}, {y})", Color.CadetBlue);
-                                    Console.WriteLine($"¡¾¾ö¶·ÏµÍ³¡¿ÊÜÑûÕß´«ËÍµãÒÑÉèÖÃ£¬×ø±êÎª({x}, {y})", Color.BurlyWood);
+                                    args.Player.SendMessage($"å·²å°†ä½ æ‰€åœ¨çš„ä½ç½®è®¾ç½®ä¸º[c/49B3D6:å—é‚€è€…]ä¼ é€ç‚¹ï¼Œåæ ‡ä¸º({x}, {y})", Color.CadetBlue);
+                                    Console.WriteLine($"ã€å†³æ–—ç³»ç»Ÿã€‘å—é‚€è€…ä¼ é€ç‚¹å·²è®¾ç½®ï¼Œåæ ‡ä¸º({x}, {y})", Color.BurlyWood);
                                     break;
 
                                 case 3:
                                     PvPer.Config.ArenaPosX1 = x;
                                     PvPer.Config.ArenaPosY1 = y;
-                                    args.Player.SendMessage($"ÒÑ½«ÄãËùÔÚµÄÎ»ÖÃÉèÖÃÎª[c/9487D6:¾º¼¼³¡]×óÉÏ½Ç£¬×ø±êÎª({x}, {y})", Color.Yellow);
-                                    Console.WriteLine($"¡¾¾ö¶·ÏµÍ³¡¿¾º¼¼³¡×óÉÏ½ÇÒÑÉèÖÃ£¬×ø±êÎª({x}, {y})", Color.Yellow);
+                                    args.Player.SendMessage($"å·²å°†ä½ æ‰€åœ¨çš„ä½ç½®è®¾ç½®ä¸º[c/9487D6:ç«æŠ€åœº]å·¦ä¸Šè§’ï¼Œåæ ‡ä¸º({x}, {y})", Color.Yellow);
+                                    Console.WriteLine($"ã€å†³æ–—ç³»ç»Ÿã€‘ç«æŠ€åœºå·¦ä¸Šè§’å·²è®¾ç½®ï¼Œåæ ‡ä¸º({x}, {y})", Color.Yellow);
                                     break;
                                 case 4:
                                     PvPer.Config.ArenaPosX2 = x;
                                     PvPer.Config.ArenaPosY2 = y;
-                                    args.Player.SendMessage($"ÒÑ½«ÄãËùÔÚµÄÎ»ÖÃÉèÖÃÎª[c/9487D6:¾º¼¼³¡]ÓÒÏÂ½Ç£¬×ø±êÎª({x}, {y})", Color.Yellow);
-                                    Console.WriteLine($"¡¾¾ö¶·ÏµÍ³¡¿¾º¼¼³¡ÓÒÏÂ½ÇÒÑÉèÖÃ£¬×ø±êÎª({x}, {y})", Color.Yellow);
+                                    args.Player.SendMessage($"å·²å°†ä½ æ‰€åœ¨çš„ä½ç½®è®¾ç½®ä¸º[c/9487D6:ç«æŠ€åœº]å³ä¸‹è§’ï¼Œåæ ‡ä¸º({x}, {y})", Color.Yellow);
+                                    Console.WriteLine($"ã€å†³æ–—ç³»ç»Ÿã€‘ç«æŠ€åœºå³ä¸‹è§’å·²è®¾ç½®ï¼Œåæ ‡ä¸º({x}, {y})", Color.Yellow);
                                     break;
 
                                 default:
-                                    args.Player.SendErrorMessage("[i:4080]Ö¸Áî´íÎó! [c/CCEB60:ÕıÈ·Ö¸Áî: /pvp set [1/2/3/4]]");
+                                    args.Player.SendErrorMessage("[i:4080]æŒ‡ä»¤é”™è¯¯! [c/CCEB60:æ­£ç¡®æŒ‡ä»¤: /pvp set [1/2/3/4]]");
                                     return;
                             }
 
@@ -122,21 +122,21 @@ namespace PvPer
                         }
                         else
                         {
-                            args.Player.SendErrorMessage("[i:4080]Ö¸Áî´íÎó! \nÕıÈ·Ö¸Áî: /pvp set [1/2/3/4] - [c/7EE874:1/2Íæ¼ÒÎ»ÖÃ 3/4¾º¼¼³¡±ß½ç]");
+                            args.Player.SendErrorMessage("[i:4080]æŒ‡ä»¤é”™è¯¯! \næ­£ç¡®æŒ‡ä»¤: /pvp set [1/2/3/4] - [c/7EE874:1/2ç©å®¶ä½ç½® 3/4ç«æŠ€åœºè¾¹ç•Œ]");
                         }
                         break;
                     }
 
                 case "r":
                 case "reset":
-                case "ÖØÖÃ":
+                case "é‡ç½®":
                     if (args.Parameters.Count < 2)
                     {
                         var name = args.Player.Name;
                         if (!args.Player.HasPermission("pvper.admin"))
                         {
-                            args.Player.SendErrorMessage("ÄãÃ»ÓĞÖØÖÃ¾ö¶·ÏµÍ³Êı¾İ±íµÄÈ¨ÏŞ¡£");
-                            TShock.Log.ConsoleInfo($"{name}ÊÔÍ¼Ö´ĞĞÖØÖÃ¾ö¶·ÏµÍ³Êı¾İÖ¸Áî");
+                            args.Player.SendErrorMessage("ä½ æ²¡æœ‰é‡ç½®å†³æ–—ç³»ç»Ÿæ•°æ®è¡¨çš„æƒé™ã€‚");
+                            TShock.Log.ConsoleInfo($"{name}è¯•å›¾æ‰§è¡Œé‡ç½®å†³æ–—ç³»ç»Ÿæ•°æ®æŒ‡ä»¤");
                             return;
                         }
                         else
@@ -144,9 +144,9 @@ namespace PvPer
                             ClearAllData(args);
                         }
                     }
-                    return; //½áÊø
+                    return; //ç»“æŸ
                 default:
-                    args.Player.SendErrorMessage($"ÇëÊäÈë/pvp help [c/F75454:¹²Á½Ò³]", Color.YellowGreen);
+                    args.Player.SendErrorMessage($"è¯·è¾“å…¥/pvp help [c/F75454:å…±ä¸¤é¡µ]", Color.YellowGreen);
                     return;
             }
         }
@@ -174,24 +174,24 @@ namespace PvPer
                 switch (page)
                 {
                     case 1:
-                        helpMessage = "¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n " +
-                                     "¡¶¾ö¶·ÏµÍ³¡· µÚ1Ò³ £¨1/2£©£º\n " +
-                                     "[c/FFFE80:/pvp add »ò /pvp ÑûÇë Íæ¼ÒÃû] - [c/7EE874:ÑûÇëÍæ¼Ò²Î¼Ó¾ö¶·] \n " +
-                                     "[c/74D3E8:/pvp yes »ò /pvp ½ÓÊÜ] - [c/7EE874:½ÓÊÜ¾ö¶·] \n " +
-                                     "[c/74D3E8:/pvp no »ò /pvp ¾Ü¾ø] - [c/7EE874:¾Ü¾ø¾ö¶·] \n " +
-                                     "[c/74D3E8:/pvp data »ò /pvp Õ½¼¨] - [c/7EE874:Õ½¼¨²éÑ¯]\n " +
-                                     "[c/74D3E8:/pvp list »ò /pvp ÅÅÃû] - [c/7EE874:ÅÅÃû]\n " +
-                                     "[c/FFFE80:/pvp s »ò /pvp ÉèÖÃ 1 2 3 4] - [c/7EE874:1/2Íæ¼ÒÎ»ÖÃ 3/4¾º¼¼³¡±ß½ç]";
+                        helpMessage = "â€”â€”â€”â€”â€”â€”â€”\n " +
+                                     "ã€Šå†³æ–—ç³»ç»Ÿã€‹ ç¬¬1é¡µ ï¼ˆ1/2ï¼‰ï¼š\n " +
+                                     "[c/FFFE80:/pvp add æˆ– /pvp é‚€è¯· ç©å®¶å] - [c/7EE874:é‚€è¯·ç©å®¶å‚åŠ å†³æ–—] \n " +
+                                     "[c/74D3E8:/pvp yes æˆ– /pvp æ¥å—] - [c/7EE874:æ¥å—å†³æ–—] \n " +
+                                     "[c/74D3E8:/pvp no æˆ– /pvp æ‹’ç»] - [c/7EE874:æ‹’ç»å†³æ–—] \n " +
+                                     "[c/74D3E8:/pvp data æˆ– /pvp æˆ˜ç»©] - [c/7EE874:æˆ˜ç»©æŸ¥è¯¢]\n " +
+                                     "[c/74D3E8:/pvp list æˆ– /pvp æ’å] - [c/7EE874:æ’å]\n " +
+                                     "[c/FFFE80:/pvp s æˆ– /pvp è®¾ç½® 1 2 3 4] - [c/7EE874:1/2ç©å®¶ä½ç½® 3/4ç«æŠ€åœºè¾¹ç•Œ]";
                         break;
 
                     case 2:
-                        helpMessage = "¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n " +
-                                     "¡¶¾ö¶·ÏµÍ³¡· µÚ2Ò³ £¨2/2£©£º\n " +
-                                     "[c/74D3E8:/pvp.WL ] - [c/7EE874:²é¿´·â½ûÎäÆ÷±í]\n " +
-                                     "[c/74D3E8:/pvp.BL ] - [c/7EE874:²é¿´·â½ûÔöÒæ±í]\n " +
-                                     "[c/74D3E8:/pvp.BW add|del <ÎäÆ÷Ãû> ] - [c/7EE874:·â½ûÖ¸¶¨ÎäÆ÷]\n " +
-                                     "[c/74D3E8:/pvp.BB add|del <ÔöÒæÃû/ID> ] - [c/7EE874:·â½ûÖ¸¶¨Buff]\n " +
-                                     "[c/74D3E8:/pvp R »ò /pvp ÖØÖÃ] - [c/7EE874:ÖØÖÃÍæ¼ÒÊı¾İ¿â]";
+                        helpMessage = "â€”â€”â€”â€”â€”â€”â€”\n " +
+                                     "ã€Šå†³æ–—ç³»ç»Ÿã€‹ ç¬¬2é¡µ ï¼ˆ2/2ï¼‰ï¼š\n " +
+                                     "[c/74D3E8:/pvp.WL ] - [c/7EE874:æŸ¥çœ‹å°ç¦æ­¦å™¨è¡¨]\n " +
+                                     "[c/74D3E8:/pvp.BL ] - [c/7EE874:æŸ¥çœ‹å°ç¦å¢ç›Šè¡¨]\n " +
+                                     "[c/74D3E8:/pvp.BW add|del <æ­¦å™¨å> ] - [c/7EE874:å°ç¦æŒ‡å®šæ­¦å™¨]\n " +
+                                     "[c/74D3E8:/pvp.BB add|del <å¢ç›Šå/ID> ] - [c/7EE874:å°ç¦æŒ‡å®šBuff]\n " +
+                                     "[c/74D3E8:/pvp R æˆ– /pvp é‡ç½®] - [c/7EE874:é‡ç½®ç©å®¶æ•°æ®åº“]";
                         break;
 
                     default:
@@ -203,19 +203,19 @@ namespace PvPer
             }
         }
 
-        #region Ê¹ÓÃÖ¸ÁîÇåÀíÊı¾İ¿â¡¢ÉèÖÃÎ»ÖÃ·½·¨
+        #region ä½¿ç”¨æŒ‡ä»¤æ¸…ç†æ•°æ®åº“ã€è®¾ç½®ä½ç½®æ–¹æ³•
         private static void ClearAllData(CommandArgs args)
         {
-            // ³¢ÊÔ´ÓÊı¾İ¿âÖĞÉ¾³ıËùÓĞÍæ¼ÒÊı¾İ
+            // å°è¯•ä»æ•°æ®åº“ä¸­åˆ é™¤æ‰€æœ‰ç©å®¶æ•°æ®
             if (DbManager.ClearData())
             {
-                args.Player.SendSuccessMessage("Êı¾İ¿âÖĞËùÓĞÍæ¼ÒµÄ¾ö¶·Êı¾İÒÑ±»³É¹¦Çå³ı¡£");
-                TShock.Log.ConsoleInfo("Êı¾İ¿âÖĞËùÓĞÍæ¼ÒµÄ¾ö¶·Êı¾İÒÑ±»³É¹¦Çå³ı¡£");
+                args.Player.SendSuccessMessage("æ•°æ®åº“ä¸­æ‰€æœ‰ç©å®¶çš„å†³æ–—æ•°æ®å·²è¢«æˆåŠŸæ¸…é™¤ã€‚");
+                TShock.Log.ConsoleInfo("æ•°æ®åº“ä¸­æ‰€æœ‰ç©å®¶çš„å†³æ–—æ•°æ®å·²è¢«æˆåŠŸæ¸…é™¤ã€‚");
             }
             else
             {
-                args.Player.SendErrorMessage("Çå³ıËùÓĞÍæ¼Ò¾ö¶·Êı¾İÊ±·¢Éú´íÎó¡£");
-                TShock.Log.ConsoleInfo("Çå³ıËùÓĞÍæ¼Ò¾ö¶·Êı¾İÊ±·¢Éú´íÎó¡£");
+                args.Player.SendErrorMessage("æ¸…é™¤æ‰€æœ‰ç©å®¶å†³æ–—æ•°æ®æ—¶å‘ç”Ÿé”™è¯¯ã€‚");
+                TShock.Log.ConsoleInfo("æ¸…é™¤æ‰€æœ‰ç©å®¶å†³æ–—æ•°æ®æ—¶å‘ç”Ÿé”™è¯¯ã€‚");
             }
         }
         #endregion
@@ -232,13 +232,13 @@ namespace PvPer
 
             if (plrList.Count == 0)
             {
-                args.Player.SendErrorMessage("Î´ÕÒµ½Ö¸¶¨Íæ¼Ò¡£");
+                args.Player.SendErrorMessage("æœªæ‰¾åˆ°æŒ‡å®šç©å®¶ã€‚");
                 return;
             }
 
             if (Utils.IsPlayerInADuel(args.Player.Index))
             {
-                args.Player.SendErrorMessage("ÄúÏÖÔÚÒÑ¾­ÔÚ¾ö¶·ÖĞÁË¡£");
+                args.Player.SendErrorMessage("æ‚¨ç°åœ¨å·²ç»åœ¨å†³æ–—ä¸­äº†ã€‚");
                 return;
             }
 
@@ -246,19 +246,19 @@ namespace PvPer
 
             if (targetPlr.Index == args.Player.Index)
             {
-                args.Player.SendErrorMessage("Äú²»ÄÜÓë×Ô¼º¾ö¶·£¡");
+                args.Player.SendErrorMessage("æ‚¨ä¸èƒ½ä¸è‡ªå·±å†³æ–—ï¼");
                 return;
             }
 
             if (Utils.IsPlayerInADuel(targetPlr.Index))
             {
-                args.Player.SendErrorMessage($"{targetPlr.Name} ÕıÔÚ½øĞĞÒ»³¡¾ö¶·¡£");
+                args.Player.SendErrorMessage($"{targetPlr.Name} æ­£åœ¨è¿›è¡Œä¸€åœºå†³æ–—ã€‚");
                 return;
             }
 
             PvPer.Invitations.Add(new Pair(args.Player.Index, targetPlr.Index));
-            args.Player.SendSuccessMessage($"³É¹¦ÑûÇë {targetPlr.Name} ½øĞĞ¾ö¶·¡£");
-            targetPlr.SendMessage($"{args.Player.Name} [c/FE7F81:ÒÑÏòÄú·¢ËÍ¾ö¶·ÑûÇë] \nÇëÊäÈë [c/CCFFCC:/pvp yes ½ÓÊÜ]  »ò [c/FFE6CC:/pvp no¾Ü¾ø] ", 255, 204, 255);
+            args.Player.SendSuccessMessage($"æˆåŠŸé‚€è¯· {targetPlr.Name} è¿›è¡Œå†³æ–—ã€‚");
+            targetPlr.SendMessage($"{args.Player.Name} [c/FE7F81:å·²å‘æ‚¨å‘é€å†³æ–—é‚€è¯·] \nè¯·è¾“å…¥ [c/CCFFCC:/pvp yes æ¥å—]  æˆ– [c/FFE6CC:/pvp noæ‹’ç»] ", 255, 204, 255);
         }
 
         private static void AcceptCmd(CommandArgs args)
@@ -267,7 +267,7 @@ namespace PvPer
 
             if (invitation == null)
             {
-                args.Player.SendErrorMessage("[c/FE7F81:Äúµ±Ç°Ã»ÓĞÊÕµ½ÈÎºÎ¾ö¶·ÑûÇë]");
+                args.Player.SendErrorMessage("[c/FE7F81:æ‚¨å½“å‰æ²¡æœ‰æ”¶åˆ°ä»»ä½•å†³æ–—é‚€è¯·]");
                 return;
             }
 
@@ -280,11 +280,11 @@ namespace PvPer
 
             if (invitation == null)
             {
-                args.Player.SendErrorMessage("[c/FE7F81:Äúµ±Ç°Ã»ÓĞÊÕµ½ÈÎºÎ¾ö¶·ÑûÇë]");
+                args.Player.SendErrorMessage("[c/FE7F81:æ‚¨å½“å‰æ²¡æœ‰æ”¶åˆ°ä»»ä½•å†³æ–—é‚€è¯·]");
                 return;
             }
 
-            TShock.Players[invitation.Player1].SendErrorMessage("[c/FFCB80:¶Ô·½Íæ¼ÒÒÑ¾Ü¾øÄúµÄ¾ö¶·ÑûÇë]¡£");
+            TShock.Players[invitation.Player1].SendErrorMessage("[c/FFCB80:å¯¹æ–¹ç©å®¶å·²æ‹’ç»æ‚¨çš„å†³æ–—é‚€è¯·]ã€‚");
             PvPer.Invitations.Remove(invitation);
         }
 
@@ -295,15 +295,15 @@ namespace PvPer
                 try
                 {
                     DPlayer plr = PvPer.DbManager.GetDPlayer(args.Player.Account.ID);
-                    args.Player.SendInfoMessage("[c/FFCB80:ÄúµÄÕ½¼¨:]\n" +
-                                                $"[c/63DC5A:»÷É±: ]{plr.Kills}\n" +
-                                                $"[c/F56469:ËÀÍö:] {plr.Deaths}\n" +
-                                                $"[c/F56469:Á¬Ê¤:] {plr.WinStreak}\n" +
-                                                $"»÷É±/ËÀÍö [c/5993DB:Ê¤¸ºÖµ: ]{plr.GetKillDeathRatio()}");
+                    args.Player.SendInfoMessage("[c/FFCB80:æ‚¨çš„æˆ˜ç»©:]\n" +
+                                                $"[c/63DC5A:å‡»æ€: ]{plr.Kills}\n" +
+                                                $"[c/F56469:æ­»äº¡:] {plr.Deaths}\n" +
+                                                $"[c/F56469:è¿èƒœ:] {plr.WinStreak}\n" +
+                                                $"å‡»æ€/æ­»äº¡ [c/5993DB:èƒœè´Ÿå€¼: ]{plr.GetKillDeathRatio()}");
                 }
                 catch (NullReferenceException)
                 {
-                    args.Player.SendErrorMessage("Íæ¼ÒÎ´ÕÒµ½£¡");
+                    args.Player.SendErrorMessage("ç©å®¶æœªæ‰¾åˆ°ï¼");
                 }
             }
             else
@@ -315,20 +315,20 @@ namespace PvPer
 
                     if (matchedAccounts.Count == 0)
                     {
-                        args.Player.SendErrorMessage("Íæ¼ÒÎ´ÕÒµ½£¡");
+                        args.Player.SendErrorMessage("ç©å®¶æœªæ‰¾åˆ°ï¼");
                         return;
                     }
 
                     DPlayer plr = PvPer.DbManager.GetDPlayer(matchedAccounts[0].ID);
-                    args.Player.SendInfoMessage("[c/FFCB80:ÄúµÄÕ½¼¨:]\n" +
-                                                $"[c/63DC5A:»÷É±: ]{plr.Kills}\n" +
-                                                $"[c/F56469:ËÀÍö:] {plr.Deaths}\n" +
-                                                $"[c/F56469:Á¬Ê¤:] {plr.WinStreak}\n" +
-                                                $"»÷É±/ËÀÍö [c/5993DB:Ê¤¸ºÖµ: ]{plr.GetKillDeathRatio()}");
+                    args.Player.SendInfoMessage("[c/FFCB80:æ‚¨çš„æˆ˜ç»©:]\n" +
+                                                $"[c/63DC5A:å‡»æ€: ]{plr.Kills}\n" +
+                                                $"[c/F56469:æ­»äº¡:] {plr.Deaths}\n" +
+                                                $"[c/F56469:è¿èƒœ:] {plr.WinStreak}\n" +
+                                                $"å‡»æ€/æ­»äº¡ [c/5993DB:èƒœè´Ÿå€¼: ]{plr.GetKillDeathRatio()}");
                 }
                 catch (NullReferenceException)
                 {
-                    args.Player.SendErrorMessage("Íæ¼ÒÎ´ÕÒµ½£¡");
+                    args.Player.SendErrorMessage("ç©å®¶æœªæ‰¾åˆ°ï¼");
                 }
             }
         }

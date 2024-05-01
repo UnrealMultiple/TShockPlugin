@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite;
 using Microsoft.Xna.Framework;
 using Terraria;
 using TerrariaApi.Server;
