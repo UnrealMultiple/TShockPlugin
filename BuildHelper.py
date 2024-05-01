@@ -21,7 +21,7 @@ def zip_files_in_folder(folder_path, zip_file_path):
 
 def md_to_pdf(input_filename):
     print(input_filename)
-    convert_file(input_filename, 'pdf', outputfile=input_filename.replace('.md', '.pdf'),extra_args=['--pdf-engine', 'xelatex'])
+    convert_file(input_filename, 'pdf', outputfile=input_filename.replace('.md', '.pdf'),extra_args=['--pdf-engine', 'xelatex',"mainfont","SimSun"])
     
 
 if __name__ == '__main__':
