@@ -128,7 +128,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerTools", "ServerTools\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform", "Platform\Platform.csproj", "{3F528630-8E37-4001-BCB9-71148D841127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaiLib", "CaiLib\CaiLib.csproj", "{3B98CF6B-A295-485C-8ABC-64388BA995BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaiLib", "CaiLib\CaiLib.csproj", "{3B98CF6B-A295-485C-8ABC-64388BA995BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateMap", "GenerateMap\GenerateMap.csproj", "{70B2E6F1-D38D-406F-BFBD-98301AE327CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -626,6 +628,14 @@ Global
 		{3B98CF6B-A295-485C-8ABC-64388BA995BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3B98CF6B-A295-485C-8ABC-64388BA995BE}.Release|x64.ActiveCfg = Release|Any CPU
 		{3B98CF6B-A295-485C-8ABC-64388BA995BE}.Release|x64.Build.0 = Release|Any CPU
+		{70B2E6F1-D38D-406F-BFBD-98301AE327CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70B2E6F1-D38D-406F-BFBD-98301AE327CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70B2E6F1-D38D-406F-BFBD-98301AE327CA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{70B2E6F1-D38D-406F-BFBD-98301AE327CA}.Debug|x64.Build.0 = Debug|Any CPU
+		{70B2E6F1-D38D-406F-BFBD-98301AE327CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70B2E6F1-D38D-406F-BFBD-98301AE327CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70B2E6F1-D38D-406F-BFBD-98301AE327CA}.Release|x64.ActiveCfg = Release|Any CPU
+		{70B2E6F1-D38D-406F-BFBD-98301AE327CA}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

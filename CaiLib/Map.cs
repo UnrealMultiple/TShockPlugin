@@ -8,25 +8,21 @@ using SixLabors.ImageSharp.PixelFormats;
 using Terraria.Map;
 using Terraria;
 using System.Reflection;
+using SixLabors.ImageSharp.Formats.Png;
 
 namespace CaiLib
 {
     public static class CaiMap
     {
-        private static Assembly LoadLib()
+        public static byte[] CreateMapBytes()
         {
-            string resourceName = "CaiLib.SixLabors.ImageSharp.dll";
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
-            {
-                byte[] assemblyData = new byte[stream.Length];
-                stream.Read(assemblyData, 0, assemblyData.Length);
-                return Assembly.Load(assemblyData);
-            }
+            var image = CreateMapImage();
+            using var ms = new MemoryStream();
+            image.Save(ms, new PngEncoder());
+            return ms.ToArray();
         }
-
         public static Image CreateMapImage()
         {
-            LoadLib();
             Image<Rgba32> image = new Image<Rgba32>(Main.maxTilesX, Main.maxTilesY);
 
             MapHelper.Initialize();

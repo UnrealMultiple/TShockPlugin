@@ -90,3 +90,6 @@
 | [BagPing](BagPing/README.md)                                     |        地图上标记宝藏袋        |                                             无                                             |
 | [ServerTools](ServerTools/README.md)                             |         服务器管理工具         |                                             无                                             |
 | [Platform](Platform/README.md)                                   |          判断玩家设备          |                                             无                                             |
+| [CaiLib](CaiLib/README.md)                                       |          Cai 的前置库          |                                             无                                             |
+| [GenerateMap](GenerateMap/README.md)                             |          生成地图图片          |                                           CaiLib                                           |
+| [WikiLangPackLoader](WikiLangPackLoader/README.md)               |   为服务器加载 Wkiki 语言包    |                                             无                                             |

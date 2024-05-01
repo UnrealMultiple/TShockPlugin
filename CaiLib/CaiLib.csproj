@@ -14,7 +14,8 @@
 
 	<ItemGroup>
 	  <Reference Include="SixLabors.ImageSharp">
-	    <HintPath>..\lib\SixLabors.ImageSharp.dll</HintPath>
+	    <HintPath>SixLabors.ImageSharp.dll</HintPath>
+	    <Private>False</Private>
 	  </Reference>
 	</ItemGroup>
 
