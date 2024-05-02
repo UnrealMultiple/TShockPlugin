@@ -39,6 +39,7 @@ if __name__ == '__main__':
                         print(f"🔍 找到README.md({destination_path})")
                 except:
                     print(f"⚠️ README移动失败({file_name})")
+    shutil.copyfile('README.md', f"out/{build_type}/README.md")
     print("✅ README.md移动成功！")
 
     if build_type == "Release":
