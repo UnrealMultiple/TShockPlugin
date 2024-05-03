@@ -25,6 +25,9 @@
 - [Cai](https://github.com/ACaiCat)
 - [tshock 团队](https://github.com/Pryaxis/TShock)
 
+## 友情链接
+- [TShock开发文档](https://github.com/ACaiCat/TShockPluginDocument)
+
 ### 已收集插件
 
 | 名称                                                             |            插件说明            |                                            前置                                            |
