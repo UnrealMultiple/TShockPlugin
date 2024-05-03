@@ -1,9 +1,9 @@
-using Newtonsoft.Json;
+ï»¿using Newtonsoft.Json;
 
 namespace CriticalHit;
 
 public class CritMessage
 {
-    [JsonProperty("ÏêÏ¸ÏûÏ¢ÉèÖÃ")]
+    [JsonProperty("è¯¦ç»†æ¶ˆæ¯è®¾ç½®")]
     public Dictionary<string, int[]> Messages = new Dictionary<string, int[]>();
 }

@@ -1,16 +1,16 @@
-using Newtonsoft.Json;
+ï»¿using Newtonsoft.Json;
 
 namespace CriticalHit;
 public class Config
 {
-    [JsonProperty("×Ü¿ª¹Ø")]
+    [JsonProperty("æ€»å¼€å…³")]
     public bool Enable = true;
-    [JsonProperty("½ö±©»÷ÏÔÊ¾")]
+    [JsonProperty("ä»…æš´å‡»æ˜¾ç¤º")]
     public bool NoCritMessages = true;
 
-    // Ê¹ÓÃJsonConverter
+    // ä½¿ç”¨JsonConverter
     [JsonConverter(typeof(WeaponTypeDictionaryConverter))]
-    [JsonProperty("ÏûÏ¢·ÖÀà")]
+    [JsonProperty("æ¶ˆæ¯åˆ†ç±»")]
     public Dictionary<WeaponType, CritMessage> CritMessages { get; set; } = new Dictionary<WeaponType, CritMessage>();
 
     public void Write(string path)
@@ -44,7 +44,7 @@ public class Config
         this.CopyFrom(deserializedConfig);
     }
 
-    // Ìí¼ÓÒ»¸öĞÂµÄ CopyFrom ·½·¨À´¸´ÖÆÊôĞÔÖµ
+    // æ·»åŠ ä¸€ä¸ªæ–°çš„ CopyFrom æ–¹æ³•æ¥å¤åˆ¶å±æ€§å€¼
     public void CopyFrom(Config sourceConfig)
     {
         this.Enable = sourceConfig.Enable;

@@ -1,4 +1,4 @@
-namespace PvPer
+ï»¿namespace PvPer
 {
     public class DPlayer
     {
@@ -9,7 +9,7 @@ namespace PvPer
         public int RatingDeviation { get; set; }
         public int RatingVolatility { get; set; }
 
-        public int WinStreak { get; set; } // Ìí¼ÓWinStreakÊôĞÔ
+        public int WinStreak { get; set; } // æ·»åŠ WinStreakå±æ€§
 
         public DPlayer(int accountID, int kills = 0, int deaths = 0, int winStreak = 0)
         {
