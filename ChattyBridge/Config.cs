@@ -4,6 +4,9 @@ namespace ChattyBridge;
 
 public class Config
 {
+    [JsonProperty("是否转发指令")]
+    public bool ForwardCommamd { get; set; } = false;
+
     [JsonProperty("Rest地址")]
     public List<string> RestHost { get; set; } = new();
 

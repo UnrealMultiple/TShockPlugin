@@ -152,6 +152,10 @@ public class Plugin : TerrariaPlugin
         var player = TShock.Players[args.Who];
         if (player == null)
             return;
+        if (!Config.ForwardCommamd &&
+            (args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier)
+            || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier)))
+            return;
         var msg = new PlayerChatMessage(player, args.Text).ToJson();
         SendMessage(msg);
     }
