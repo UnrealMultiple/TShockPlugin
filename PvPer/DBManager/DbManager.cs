@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+ï»¿using MySql.Data.MySqlClient;
 using System.Data;
 using TShockAPI.DB;
 
@@ -18,7 +18,7 @@ namespace PvPer
                 new SqlColumn("AccountID", MySqlDbType.Int32) { Primary = true, Unique = true },
                 new SqlColumn("Kills", MySqlDbType.Int32),
                 new SqlColumn("Deaths", MySqlDbType.Int32),
-                new SqlColumn("WinStreak", MySqlDbType.Int32) // Ìí¼ÓWinStreakÁĞ
+                new SqlColumn("WinStreak", MySqlDbType.Int32) // æ·»åŠ WinStreakåˆ—
                 ));
         }
 
@@ -48,15 +48,15 @@ namespace PvPer
             using var reader = _db.QueryReader("SELECT * FROM Players");
             while (reader.Read())
             {
-                list.Add(new DPlayer(reader.Get<int>("AccountID"), reader.Get<int>("Kills"), reader.Get<int>("Deaths"), reader.Get<int>("WinStreak"))); // Ìí¼ÓWinStreak²ÎÊı
+                list.Add(new DPlayer(reader.Get<int>("AccountID"), reader.Get<int>("Kills"), reader.Get<int>("Deaths"), reader.Get<int>("WinStreak"))); // æ·»åŠ WinStreakå‚æ•°
             }
             return list;
         }
 
-        // Çå¿ÕÍæ¼ÒÊı¾İ±íÖĞµÄËùÓĞ¼ÇÂ¼£¨ÓğÑ§¼Ó£©
+        // æ¸…ç©ºç©å®¶æ•°æ®è¡¨ä¸­çš„æ‰€æœ‰è®°å½•ï¼ˆç¾½å­¦åŠ ï¼‰
         public static bool ClearData()
         {
-            // É¾³ıPlayers±íÖĞµÄËùÓĞ¼ÇÂ¼
+            // åˆ é™¤Playersè¡¨ä¸­çš„æ‰€æœ‰è®°å½•
             return _db.Query("DELETE FROM Players") != 0;
         }
     }
