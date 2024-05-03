@@ -3,7 +3,9 @@
 	<Import Project="..\template.targets" />
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Yaaiomni\Core\Plugin.csproj" />
+	  <Reference Include="Chireiden.TShock.Omni">
+	    <HintPath>..\lib\Chireiden.TShock.Omni.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 </Project>
