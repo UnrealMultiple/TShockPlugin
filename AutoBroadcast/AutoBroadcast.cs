@@ -94,9 +94,9 @@ public class AutoBroadcast : TerrariaPlugin
             ABConfig.Broadcast[] broadcasts = Config.Broadcasts;
             foreach (ABConfig.Broadcast broadcast in broadcasts)
             {
-                string[] array = new string[0];
-                string[] messages = new string[0];
-                float[] colour = new float[0];
+                string[] array = Array.Empty<string>();
+                string[] messages = new string[broadcast.Messages.Length];
+                float[] colour = Array.Empty<float>();
                 if (Timeout(now))
                 {
                     break;
@@ -105,10 +105,10 @@ public class AutoBroadcast : TerrariaPlugin
                 {
                     continue;
                 }
-                string[] messages2 = broadcast.Messages;
-                for (int j = 0; j < messages2.Length; j++)
+                //string[] messages2 = broadcast.Messages;
+                for (int j = 0; j < broadcast.Messages.Length; j++)
                 {
-                    messages2[j] = messages2[j].Replace("{player}", TShock.Players[args.Who].Name);
+                    messages[j] = broadcast.Messages[j].Replace("{player}", TShock.Players[args.Who].Name);
                 }
                 string[] triggerWords = broadcast.TriggerWords;
                 foreach (string value in triggerWords)
@@ -123,7 +123,7 @@ public class AutoBroadcast : TerrariaPlugin
                         {
                             array = broadcast.Groups;
                         }
-                        messages = broadcast.Messages;
+                        //messages = broadcast.Messages;
                         colour = broadcast.ColorRGB;
                         break;
                     }
