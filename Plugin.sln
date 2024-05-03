@@ -130,7 +130,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform", "Platform\Platfo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaiLib", "CaiLib\CaiLib.csproj", "{3B98CF6B-A295-485C-8ABC-64388BA995BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateMap", "GenerateMap\GenerateMap.csproj", "{70B2E6F1-D38D-406F-BFBD-98301AE327CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenerateMap", "GenerateMap\GenerateMap.csproj", "{70B2E6F1-D38D-406F-BFBD-98301AE327CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestInventory", "RestInventory\RestInventory.csproj", "{C7CD581C-8521-480A-BF30-034D7537C4AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -636,6 +638,14 @@ Global
 		{70B2E6F1-D38D-406F-BFBD-98301AE327CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{70B2E6F1-D38D-406F-BFBD-98301AE327CA}.Release|x64.ActiveCfg = Release|Any CPU
 		{70B2E6F1-D38D-406F-BFBD-98301AE327CA}.Release|x64.Build.0 = Release|Any CPU
+		{C7CD581C-8521-480A-BF30-034D7537C4AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7CD581C-8521-480A-BF30-034D7537C4AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7CD581C-8521-480A-BF30-034D7537C4AE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C7CD581C-8521-480A-BF30-034D7537C4AE}.Debug|x64.Build.0 = Debug|Any CPU
+		{C7CD581C-8521-480A-BF30-034D7537C4AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7CD581C-8521-480A-BF30-034D7537C4AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7CD581C-8521-480A-BF30-034D7537C4AE}.Release|x64.ActiveCfg = Release|Any CPU
+		{C7CD581C-8521-480A-BF30-034D7537C4AE}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
