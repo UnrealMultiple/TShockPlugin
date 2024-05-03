@@ -92,5 +92,6 @@
 | [Platform](Platform/README.md)                                   |          判断玩家设备          |                                             无                                             |
 | [CaiLib](CaiLib/README.md)                                       |          Cai 的前置库          |                                             无                                             |
 | [GenerateMap](GenerateMap/README.md)                             |          生成地图图片          |                                           CaiLib                                           |
+| [RestInventory](RestInventory/README.md)                         |     提供 REST 查询背包接口     |                                             无                                             |
 | [WikiLangPackLoader](WikiLangPackLoader/README.md)               |    为服务器加载 Wiki 语言包     |                                             无                                             |
 | [HelpPlus](HelpPlus/README.md)                                   |    修复和增强Help命令           |                                             无                                             |
