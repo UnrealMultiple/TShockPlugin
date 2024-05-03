@@ -26,7 +26,8 @@
 - [tshock 团队](https://github.com/Pryaxis/TShock)
 
 ## 友情链接
-- [TShock开发文档](https://github.com/ACaiCat/TShockPluginDocument)
+
+- [TShock 插件开发文档](https://github.com/ACaiCat/TShockPluginDocument)
 
 ### 已收集插件
 
@@ -96,5 +97,5 @@
 | [CaiLib](CaiLib/README.md)                                       |          Cai 的前置库          |                                             无                                             |
 | [GenerateMap](GenerateMap/README.md)                             |          生成地图图片          |                                           CaiLib                                           |
 | [RestInventory](RestInventory/README.md)                         |     提供 REST 查询背包接口     |                                             无                                             |
-| [WikiLangPackLoader](WikiLangPackLoader/README.md)               |    为服务器加载 Wiki 语言包     |                                             无                                             |
-| [HelpPlus](HelpPlus/README.md)                                   |    修复和增强Help命令           |                                             无                                             |
+| [WikiLangPackLoader](WikiLangPackLoader/README.md)               |    为服务器加载 Wiki 语言包    |                                             无                                             |
+| [HelpPlus](HelpPlus/README.md)                                   |      修复和增强 Help 命令      |                                             无                                             |
