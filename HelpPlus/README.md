@@ -1,0 +1,46 @@
+﻿# HelpPlus 更好的帮助
+
+- 作者: Cai
+- 出处: 此仓库
+- 修复/help指令无法使用的问题  
+- 为/help添加简短提示  
+- 为/help <命令> 可以看见更详细的命令帮助
+
+## 更新日志
+
+```
+- v1.0.0 修复Help需要权限的奇怪问题
+```
+
+## 指令
+
+```
+/help <页码> 查看命令列表
+/help <命令> 查看命令的详细帮助
+```
+
+## 配置
+
+```json
+{
+  "简短提示开关": true,
+  "简短提示对应": {
+    "user": "用户管理",
+    "login": "登录",
+    "logout": "登出",
+    "password": "修改密码",
+    "register": "注册",
+    "accountinfo": "账号信息",
+    "ban": "封禁",
+    "broadcast": "广播",
+    ......
+    "deal": "交易",
+    "igen": "快速构建",
+    "relive": "复活NPC",
+    "bossinfo": "进度查询"
+  }
+}
+```
+## 反馈
+- 共同维护的插件库：https://github.com/Controllerdestiny/TShockPlugin
+- 国内社区trhub.cn 或 TShock官方群等

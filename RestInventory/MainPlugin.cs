@@ -17,7 +17,7 @@ namespace RestInventory
         public RetObject retObject = new RetObject();
         public override void Initialize()
         {
-            TShock.RestApi.Register(new SecureRestCommand("/beanInvsee", BInvSee, "查询背包权限"));
+            TShock.RestApi.Register(new SecureRestCommand("/beanInvsee", BInvSee, "beanInvsee.use"));
         }
 
 
