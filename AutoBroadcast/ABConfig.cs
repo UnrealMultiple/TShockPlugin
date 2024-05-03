@@ -1,9 +1,9 @@
-using Newtonsoft.Json;
+ï»¿using Newtonsoft.Json;
 
 
 public class ABConfig
 {
-    [JsonProperty("¹ã²¥ÁĞ±í")]
+    [JsonProperty("å¹¿æ’­åˆ—è¡¨")]
     public Broadcast[] Broadcasts = new Broadcast[0];
 
     public ABConfig Write(string file)
@@ -25,9 +25,9 @@ public class ABConfig
     {
         Broadcast broadcast = new Broadcast
         {
-            Name = "Ê¾Àı¹ã²¥",
+            Name = "ç¤ºä¾‹å¹¿æ’­",
             Enabled = false,
-            Messages = new[] { "ÕâÊÇÒ»¸ö¹ã²¥Ê¾Àı", "Ã¿5·ÖÖÓ²¥³öÒ»´Î", "¹ã²¥Ò²¿ÉÒÔÖ´ĞĞÃüÁî", "/time noon" },
+            Messages = new[] { "è¿™æ˜¯ä¸€ä¸ªå¹¿æ’­ç¤ºä¾‹", "æ¯5åˆ†é’Ÿæ’­å‡ºä¸€æ¬¡", "å¹¿æ’­ä¹Ÿå¯ä»¥æ‰§è¡Œå‘½ä»¤", "/time noon" },
             ColorRGB = new[] { 255f, 0f, 0f },
             Interval = 300,
             StartDelay = 60
@@ -43,27 +43,27 @@ public class ABConfig
 
     public class Broadcast
     {
-        [JsonProperty("Ãû³Æ")]
+        [JsonProperty("åç§°")]
         public string Name { get; set; } = string.Empty;
-        [JsonProperty("ÊÇ·ñÆôÓÃ")]
+        [JsonProperty("æ˜¯å¦å¯ç”¨")]
         public bool Enabled { get; set; } = false;
-        [JsonProperty("ÏûÏ¢ÁĞ±í")]
+        [JsonProperty("æ¶ˆæ¯åˆ—è¡¨")]
         public string[] Messages { get; set; } = new string[0];
-        [JsonProperty("ÑÕÉ«RGB")]
+        [JsonProperty("é¢œè‰²RGB")]
         public float[] ColorRGB { get; set; } = new float[3];
-        [JsonProperty("¼ä¸ôÊ±¼ä")]
+        [JsonProperty("é—´éš”æ—¶é—´")]
         public int Interval { get; set; } = 0;
-        [JsonProperty("ÑÓ³ÙÊ±¼ä")]
+        [JsonProperty("å»¶è¿Ÿæ—¶é—´")]
         public int StartDelay { get; set; } = 0;
-        [JsonProperty("´¥·¢ÇøÓò")]
+        [JsonProperty("è§¦å‘åŒºåŸŸ")]
         public string[] TriggerRegions { get; set; } = new string[0];
-        [JsonProperty("ÇøÓò´¥·¢Æ÷")]
+        [JsonProperty("åŒºåŸŸè§¦å‘å™¨")]
         public string RegionTrigger { get; set; } = "none";
-        [JsonProperty("×é")]
+        [JsonProperty("ç»„")]
         public string[] Groups { get; set; } = new string[0];
-        [JsonProperty("´¥·¢´Ê")]
+        [JsonProperty("è§¦å‘è¯")]
         public string[] TriggerWords { get; set; } = new string[0];
-        [JsonProperty("ÊÇ·ñ´¥·¢Õû¸ö×é")]
+        [JsonProperty("æ˜¯å¦è§¦å‘æ•´ä¸ªç»„")]
         public bool TriggerToWholeGroup { get; set; } = false;
     }
 }
