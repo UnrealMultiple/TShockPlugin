@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+ï»¿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using TShockAPI;
@@ -42,24 +42,24 @@ namespace PvPer
             {
                 if (!plr1.Active || !plr2.Active)
                 {
-                    plr1.SendErrorMessage("¾ö¶·ÒÑ±»È¡Ïû£¬ÒòÎªÆäÖĞÒ»Ãû²ÎÓëÕß²»ÔÚÏß¡£");
-                    plr2.SendErrorMessage("¾ö¶·ÒÑ±»È¡Ïû£¬ÒòÎªÆäÖĞÒ»Ãû²ÎÓëÕß²»ÔÚÏß¡£");
+                    plr1.SendErrorMessage("å†³æ–—å·²è¢«å–æ¶ˆï¼Œå› ä¸ºå…¶ä¸­ä¸€åå‚ä¸è€…ä¸åœ¨çº¿ã€‚");
+                    plr2.SendErrorMessage("å†³æ–—å·²è¢«å–æ¶ˆï¼Œå› ä¸ºå…¶ä¸­ä¸€åå‚ä¸è€…ä¸åœ¨çº¿ã€‚");
                     PvPer.Invitations.Remove(this);
                     return;
                 }
 
                 if (plr1.Dead || plr2.Dead)
                 {
-                    plr1.SendErrorMessage("¾ö¶·ÒÑ±»È¡Ïû£¬ÒòÎªÆäÖĞÒ»Ãû²ÎÓëÕßÒÑ¾­ËÀÍö¡£");
-                    plr2.SendErrorMessage("¾ö¶·ÒÑ±»È¡Ïû£¬ÒòÎªÆäÖĞÒ»Ãû²ÎÓëÕßÒÑ¾­ËÀÍö¡£");
+                    plr1.SendErrorMessage("å†³æ–—å·²è¢«å–æ¶ˆï¼Œå› ä¸ºå…¶ä¸­ä¸€åå‚ä¸è€…å·²ç»æ­»äº¡ã€‚");
+                    plr2.SendErrorMessage("å†³æ–—å·²è¢«å–æ¶ˆï¼Œå› ä¸ºå…¶ä¸­ä¸€åå‚ä¸è€…å·²ç»æ­»äº¡ã€‚");
                     PvPer.Invitations.Remove(this);
                     return;
                 }
 
                 if (Utils.IsPlayerInADuel(plr1.Index) || Utils.IsPlayerInADuel(plr2.Index))
                 {
-                    plr1.SendErrorMessage("¾ö¶·ÒÑ±»È¡Ïû£¬ÒòÎªÆäÖĞÒ»Ãû²ÎÓëÕßÒÑ´¦ÓÚÁíÒ»³¡¾ö¶·ÖĞ¡£");
-                    plr2.SendErrorMessage("¾ö¶·ÒÑ±»È¡Ïû£¬ÒòÎªÆäÖĞÒ»Ãû²ÎÓëÕßÒÑ´¦ÓÚÁíÒ»³¡¾ö¶·ÖĞ¡£");
+                    plr1.SendErrorMessage("å†³æ–—å·²è¢«å–æ¶ˆï¼Œå› ä¸ºå…¶ä¸­ä¸€åå‚ä¸è€…å·²å¤„äºå¦ä¸€åœºå†³æ–—ä¸­ã€‚");
+                    plr2.SendErrorMessage("å†³æ–—å·²è¢«å–æ¶ˆï¼Œå› ä¸ºå…¶ä¸­ä¸€åå‚ä¸è€…å·²å¤„äºå¦ä¸€åœºå†³æ–—ä¸­ã€‚");
                     PvPer.Invitations.Remove(this);
                     return;
                 }
@@ -70,10 +70,10 @@ namespace PvPer
                 return;
             }
 
-            plr1.SendSuccessMessage($"¾ö¶·¿ªÊ¼£¡");
-            plr2.SendSuccessMessage($"¾ö¶·¿ªÊ¼£¡");
+            plr1.SendSuccessMessage($"å†³æ–—å¼€å§‹ï¼");
+            plr2.SendSuccessMessage($"å†³æ–—å¼€å§‹ï¼");
 
-            // ´«ËÍÍæ¼ÒºÍÉèÖÃBUFF
+            // ä¼ é€ç©å®¶å’Œè®¾ç½®BUFF
             plr1.Teleport(PvPer.Config.Player1PositionX * 16, PvPer.Config.Player1PositionY * 16);
             plr2.Teleport(PvPer.Config.Player2PositionX * 16, PvPer.Config.Player2PositionY * 16);
 
@@ -89,19 +89,19 @@ namespace PvPer
             plr1.SendData(PacketTypes.PlayerDodge, number: plr1.Index, number2: 6);
             plr2.SendData(PacketTypes.PlayerDodge, number: plr1.Index, number2: 6);
 
-            // ½«Õâ¶Ô¾ö¶·ÕßÒÆÈë»îÔ¾¾ö¶·ÁĞ±í
+            // å°†è¿™å¯¹å†³æ–—è€…ç§»å…¥æ´»è·ƒå†³æ–—åˆ—è¡¨
             PvPer.Invitations.Remove(this);
             PvPer.ActiveDuels.Add(this);
 
-            // ¼ÆÊ±µ¹Êı²¢ÎªÃ¿Î»Íæ¼ÒÉèÖÃPvPÄ£Ê½
+            // è®¡æ—¶å€’æ•°å¹¶ä¸ºæ¯ä½ç©å®¶è®¾ç½®PvPæ¨¡å¼
             Task.Run(async () =>
             {
                 NetMessage.SendData((int)PacketTypes.CreateCombatTextExtended, Player1, -1,
-                    Terraria.Localization.NetworkText.FromLiteral("¾ö¶·¼´½«¿ªÊ¼..."), (int)new Color(0, 255, 0).PackedValue,
+                    Terraria.Localization.NetworkText.FromLiteral("å†³æ–—å³å°†å¼€å§‹..."), (int)new Color(0, 255, 0).PackedValue,
                     plr1.X + 16, plr1.Y - 16);
 
                 NetMessage.SendData((int)PacketTypes.CreateCombatTextExtended, Player2, -1,
-                    Terraria.Localization.NetworkText.FromLiteral("¾ö¶·¼´½«¿ªÊ¼..."), (int)new Color(0, 255, 0).PackedValue,
+                    Terraria.Localization.NetworkText.FromLiteral("å†³æ–—å³å°†å¼€å§‹..."), (int)new Color(0, 255, 0).PackedValue,
                     plr2.X + 16, plr2.Y - 16);
 
                 for (int i = 5; i > 0; i--)
@@ -119,11 +119,11 @@ namespace PvPer
                 await Task.Delay(1000);
 
                 NetMessage.SendData((int)PacketTypes.CreateCombatTextExtended, Player1, -1,
-                    Terraria.Localization.NetworkText.FromLiteral("¿ªÕ½!!"), (int)new Color(255, 0, 0).PackedValue,
+                    Terraria.Localization.NetworkText.FromLiteral("å¼€æˆ˜!!"), (int)new Color(255, 0, 0).PackedValue,
                     plr1.X + 16, plr1.Y - 16);
 
                 NetMessage.SendData((int)PacketTypes.CreateCombatTextExtended, Player2, -1,
-                    Terraria.Localization.NetworkText.FromLiteral("¿ªÕ½!!"), (int)new Color(255, 0, 0).PackedValue,
+                    Terraria.Localization.NetworkText.FromLiteral("å¼€æˆ˜!!"), (int)new Color(255, 0, 0).PackedValue,
                     plr2.X + 16, plr2.Y - 16);
 
                 plr1.TPlayer.hostile = true;
@@ -135,7 +135,7 @@ namespace PvPer
             });
         }
 
-        // ½áÊø¾ö¶·ºóµÄ·½·¨
+        // ç»“æŸå†³æ–—åçš„æ–¹æ³•
         public void EndDuel(int winner)
         {
             int loser = winner == Player1 ? Player2 : Player1;
@@ -146,17 +146,17 @@ namespace PvPer
             TShock.Players[winner].SetPvP(false);
             TShock.Players[loser].SetPvP(false);
 
-            // ±£´æÓ®¼ÒÊı¾İ²¢¼ÆËãÁ¬Ê¤´ÎÊı
+            // ä¿å­˜èµ¢å®¶æ•°æ®å¹¶è®¡ç®—è¿èƒœæ¬¡æ•°
             SavePlayersData(winner);
-            // ÖØÖÃÊä¼ÒµÄÁ¬Ê¤´ÎÊıÎª0
+            // é‡ç½®è¾“å®¶çš„è¿èƒœæ¬¡æ•°ä¸º0
             ResetLoserWinStreak(loser);
-            // ¸üĞÂÓ®¼ÒÁ¬Ê¤´ÎÊı
+            // æ›´æ–°èµ¢å®¶è¿èƒœæ¬¡æ•°
             DPlayer winnerData = PvPer.DbManager.GetDPlayer(TShock.Players[winner].Account.ID);
-            winnerData.WinStreak++; // Ôö¼ÓÓ®¼ÒÁ¬Ê¤´ÎÊı
-            PvPer.DbManager.SavePlayer(winnerData); // ±£´æ¸üĞÂºóµÄÓ®¼ÒÊı¾İ
+            winnerData.WinStreak++; // å¢åŠ èµ¢å®¶è¿èƒœæ¬¡æ•°
+            PvPer.DbManager.SavePlayer(winnerData); // ä¿å­˜æ›´æ–°åçš„èµ¢å®¶æ•°æ®
 
-            int winStreak = winnerData.WinStreak;// Ö±½ÓÊ¹ÓÃ¸üĞÂºóµÄÓ®¼ÒÁ¬Ê¤´ÎÊı
-            TSPlayer.All.SendMessage($"{TShock.Players[winner].Name} ÒÑ¾­Á¬Ê¤ {winStreak} ³¡¾ö¶·!", 255, 255, 90);
+            int winStreak = winnerData.WinStreak;// ç›´æ¥ä½¿ç”¨æ›´æ–°åçš„èµ¢å®¶è¿èƒœæ¬¡æ•°
+            TSPlayer.All.SendMessage($"{TShock.Players[winner].Name} å·²ç»è¿èƒœ {winStreak} åœºå†³æ–—!", 255, 255, 90);
 
             int p = Projectile.NewProjectile(Projectile.GetNoneSource(), TShock.Players[winner].TPlayer.position.X + 16,
             TShock.Players[winner].TPlayer.position.Y - 64f, 0f, -8f, ProjectileID.RocketFireworkGreen, 0, 0);
@@ -164,15 +164,15 @@ namespace PvPer
 
         }
 
-        // ÖØÖÃÊä¼ÒµÄÁ¬Ê¤´ÎÊıÎª0
+        // é‡ç½®è¾“å®¶çš„è¿èƒœæ¬¡æ•°ä¸º0
         private void ResetLoserWinStreak(int loser)
         {
             DPlayer playerData = PvPer.DbManager.GetDPlayer(TShock.Players[loser].Account.ID);
-            playerData.WinStreak = 0; // WinStreakµÄÊôĞÔ´æ´¢Íæ¼ÒÁ¬Ê¤´ÎÊı
-            PvPer.DbManager.SavePlayer(playerData); // ±£´æ¸üĞÂºóµÄÊä¼ÒÊı¾İ
+            playerData.WinStreak = 0; // WinStreakçš„å±æ€§å­˜å‚¨ç©å®¶è¿èƒœæ¬¡æ•°
+            PvPer.DbManager.SavePlayer(playerData); // ä¿å­˜æ›´æ–°åçš„è¾“å®¶æ•°æ®
         }
 
-        //´æ´¢Íæ¼ÒÊ¤¸ºÖµÊı¾İ
+        //å­˜å‚¨ç©å®¶èƒœè´Ÿå€¼æ•°æ®
         public void SavePlayersData(int winnerIndex)
         {
             DPlayer plr1, plr2;

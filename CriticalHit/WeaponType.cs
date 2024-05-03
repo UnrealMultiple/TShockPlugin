@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+ï»¿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace CriticalHit;
@@ -14,10 +14,10 @@ public class WeaponTypeDictionaryConverter : JsonConverter
 {
     private static readonly Dictionary<WeaponType, string> DisplayNames = new Dictionary<WeaponType, string>
     {
-        { WeaponType.Melee, "½üÕ½" },
-        { WeaponType.Ranged, "Ô¶³Ì" },
-        { WeaponType.Magic, "Ä§·¨" },
-        { WeaponType.Explosive, "±¬Õ¨" },
+        { WeaponType.Melee, "è¿‘æˆ˜" },
+        { WeaponType.Ranged, "è¿œç¨‹" },
+        { WeaponType.Magic, "é­”æ³•" },
+        { WeaponType.Explosive, "çˆ†ç‚¸" },
     };
 
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
