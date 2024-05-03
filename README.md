@@ -93,3 +93,4 @@
 | [CaiLib](CaiLib/README.md)                                       |          Cai 的前置库          |                                             无                                             |
 | [GenerateMap](GenerateMap/README.md)                             |          生成地图图片          |                                           CaiLib                                           |
 | [WikiLangPackLoader](WikiLangPackLoader/README.md)               |    为服务器加载 Wiki 语言包     |                                             无                                             |
+| [HelpPlus](HelpPlus/README.md)                                   |    修复和增强Help命令           |                                             无                                             |
