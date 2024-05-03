@@ -34,27 +34,27 @@
       ],
     "label_extractor": [
         {
-            "pattern": ".*(feature|feat|add|添加|Feat|Add).*",
+            "pattern": "^(feature|feat|add|添加|Feat|Add).*",
             "target": "$1",
             "on_property": "title"
         },
         {
-            "pattern": ".*(fix|修复|Fix).*",
+            "pattern": "^(fix|修复|Fix).*",
             "target": "$1",
             "on_property": "title"
         },
         {
-            "pattern": ".*(README|文档).*",
+            "pattern": "^(README|文档).*",
             "target": "$1",
             "on_property": "title"
         },
         {
-            "pattern": ".*(update|更新|Update).*",
+            "pattern": "^(update|更新|Update).*",
             "target": "$1",
             "on_property": "title"
         },
         {
-            "pattern": ".*(工作流|Workflow|Action).*",
+            "pattern": "^(工作流|Workflow|Action).*",
             "target": "$1",
             "on_property": "title"
         }
