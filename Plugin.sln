@@ -136,6 +136,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestInventory", "RestInvent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelpPlus", "HelpPlus\HelpPlus.csproj", "{B744AA76-F785-4E85-8C68-450758FD55D0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortCommand", "ShortCommand\ShortCommand.csproj", "{BA90E5D8-66F8-4340-8D03-FB8A8CC907AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -656,6 +658,14 @@ Global
 		{B744AA76-F785-4E85-8C68-450758FD55D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B744AA76-F785-4E85-8C68-450758FD55D0}.Release|x64.ActiveCfg = Release|Any CPU
 		{B744AA76-F785-4E85-8C68-450758FD55D0}.Release|x64.Build.0 = Release|Any CPU
+		{BA90E5D8-66F8-4340-8D03-FB8A8CC907AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA90E5D8-66F8-4340-8D03-FB8A8CC907AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA90E5D8-66F8-4340-8D03-FB8A8CC907AB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BA90E5D8-66F8-4340-8D03-FB8A8CC907AB}.Debug|x64.Build.0 = Debug|Any CPU
+		{BA90E5D8-66F8-4340-8D03-FB8A8CC907AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA90E5D8-66F8-4340-8D03-FB8A8CC907AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA90E5D8-66F8-4340-8D03-FB8A8CC907AB}.Release|x64.ActiveCfg = Release|Any CPU
+		{BA90E5D8-66F8-4340-8D03-FB8A8CC907AB}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
