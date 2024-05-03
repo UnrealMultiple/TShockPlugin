@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,11 +16,11 @@ public class AutoBroadcast : TerrariaPlugin
 
     public static bool ULock = false;
 
-    public override string Name => "×Ô¶¯¹ã²¥";
+    public override string Name => "è‡ªåŠ¨å¹¿æ’­";
 
-    public override string Author => "Zaicon,GK Ğ¡¸ÄÁ¼£¬¸ÎµÛÎõ¶÷¸üĞÂÖÁ1449";
+    public override string Author => "Zaicon,GK å°æ”¹è‰¯ï¼Œè‚å¸ç†™æ©æ›´æ–°è‡³1449";
 
-    public override string Description => "Ã¿¸ôNÃë×Ô¶¯¹ã²¥Ò»ÌõÏûÏ¢»òÃüÁî";
+    public override string Description => "æ¯éš”Nç§’è‡ªåŠ¨å¹¿æ’­ä¸€æ¡æ¶ˆæ¯æˆ–å‘½ä»¤";
 
     public override Version Version => new Version(1, 0, 4);
 
@@ -61,7 +61,7 @@ public class AutoBroadcast : TerrariaPlugin
         catch (Exception ex)
         {
             Config = new ABConfig();
-            TShock.Log.ConsoleError("[×Ô¶¯¹ã²¥] ·ÖÎöAutoBroadcastÅäÖÃÊ±·¢ÉúÒì³££¡\n{0}".SFormat(ex.ToString()));
+            TShock.Log.ConsoleError("[è‡ªåŠ¨å¹¿æ’­] åˆ†æAutoBroadcasté…ç½®æ—¶å‘ç”Ÿå¼‚å¸¸ï¼\n{0}".SFormat(ex.ToString()));
         }
 
     }
@@ -71,13 +71,13 @@ public class AutoBroadcast : TerrariaPlugin
         try
         {
             Config = ABConfig.Read(ConfigPath).Write(ConfigPath);
-            TShock.Log.Info("ÒÑ³É¹¦ÖØĞÂ¼ÓÔØAutoBroadcastÅäÖÃ£¡");
+            TShock.Log.Info("å·²æˆåŠŸé‡æ–°åŠ è½½AutoBroadcasté…ç½®ï¼");
         }
         catch (Exception ex)
         {
             Config = new ABConfig();
-            args.Player.SendWarningMessage("·ÖÎöAutoBroadcastÅäÖÃÊ±·¢ÉúÒì³££¡²é¿´ÈÕÖ¾ÁË½â¸ü¶àÏêÏ¸ĞÅÏ¢£¡");
-            TShock.Log.ConsoleError("[×Ô¶¯¹ã²¥] ·ÖÎöAutoBroadcastÅäÖÃÊ±·¢ÉúÒì³££¡\n{0}".SFormat(ex.ToString()));
+            args.Player.SendWarningMessage("åˆ†æAutoBroadcasté…ç½®æ—¶å‘ç”Ÿå¼‚å¸¸ï¼æŸ¥çœ‹æ—¥å¿—äº†è§£æ›´å¤šè¯¦ç»†ä¿¡æ¯ï¼");
+            TShock.Log.ConsoleError("[è‡ªåŠ¨å¹¿æ’­] åˆ†æAutoBroadcasté…ç½®æ—¶å‘ç”Ÿå¼‚å¸¸ï¼\n{0}".SFormat(ex.ToString()));
         }
     }
 
@@ -86,7 +86,7 @@ public class AutoBroadcast : TerrariaPlugin
         DateTime now = DateTime.Now;
         if (TShock.Players[args.Who] == null || TShock.Players[args.Who].Group == null)
         {
-            return; // Èç¹ûÍæ¼Ò¶ÔÏó»òÍæ¼Ò×éÎªnull£¬ÔòÖ±½Ó·µ»Ø£¬±ÜÃâ¿ÕÒıÓÃÒì³£
+            return; // å¦‚æœç©å®¶å¯¹è±¡æˆ–ç©å®¶ç»„ä¸ºnullï¼Œåˆ™ç›´æ¥è¿”å›ï¼Œé¿å…ç©ºå¼•ç”¨å¼‚å¸¸
         }
         string name = TShock.Players[args.Who].Group.Name;
         lock (Config.Broadcasts)
@@ -356,8 +356,8 @@ public class AutoBroadcast : TerrariaPlugin
         }
         if (warn && flag)
         {
-            Console.WriteLine("ÔÚAutoBroadcastÖĞ¼ì²âµ½¹Ò¹³³¬Ê±¡£Äã¿ÉÄÜÏë±¨¸æÕâ¼şÊÂ¡£");
-            TShock.Log.Error("ÔÚAutoBroadcastÖĞ¼ì²âµ½¹Ò¹³³¬Ê±¡£Äã¿ÉÄÜÏë±¨¸æÕâ¼şÊÂ¡£");
+            Console.WriteLine("åœ¨AutoBroadcastä¸­æ£€æµ‹åˆ°æŒ‚é’©è¶…æ—¶ã€‚ä½ å¯èƒ½æƒ³æŠ¥å‘Šè¿™ä»¶äº‹ã€‚");
+            TShock.Log.Error("åœ¨AutoBroadcastä¸­æ£€æµ‹åˆ°æŒ‚é’©è¶…æ—¶ã€‚ä½ å¯èƒ½æƒ³æŠ¥å‘Šè¿™ä»¶äº‹ã€‚");
         }
         return flag;
     }
