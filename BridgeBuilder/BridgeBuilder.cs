@@ -10,7 +10,7 @@ namespace BridgeBuilder
     public class BridgeBuilder : TerrariaPlugin
     {
         public override string Name => "BridgeBuilder";
-        public override Version Version => new Version(1, 0, 6);
+        public override Version Version => new Version(1, 0, 7);
         public override string Author => "Soofa，肝帝熙恩汉化1449";
         public override string Description => "铺桥!";
         public static Configuration Config;
@@ -59,7 +59,7 @@ namespace BridgeBuilder
                     }
                 }
 
-                int startX = directionX == 0 ? plr.TileX : (directionX == -1 ? plr.TileX - 1 : plr.TileX + 2);
+                int startX = plr.TileX + (directionX == -1 ? -2 : 1);
                 int i = 0;
                 int j = plr.TileY + (directionY == -1 ? -1 : (directionY == 1 ? 3 : 3));
 
@@ -119,22 +119,32 @@ namespace BridgeBuilder
 
         private static bool CheckTileAvailability(int x, int y, TSPlayer plr, int directionX = 0, int directionY = 0)
         {
-            bool canPlace = x < Main.maxTilesX && x >= 0 && y < Main.maxTilesY && y >= 0 &&
-                            Math.Abs(directionX != 0 ? plr.TileX - x : plr.TileY - y) < Config.MaxPlaceLength &&
-                            plr.SelectedItem.stack > 0 &&
-                            !TShock.Regions.InArea(x, y);
+            bool canPlace = x < Main.maxTilesX && x >= 0 && y < Main.maxTilesY && y >= 0;
+            if (!canPlace)
+            {
+                return false;
+            }
 
-            if (plr.SelectedItem.createTile < 0 && plr.SelectedItem.createWall >= 0) // 检查墙壁
+            int horizontalDistance = Math.Abs(plr.TileX - x); // 计算水平方向上的距离
+            int verticalDistance = Math.Abs(plr.TileY - y); // 计算竖直方向上的距离
+            canPlace &= horizontalDistance < Config.MaxPlaceLength && verticalDistance < Config.MaxPlaceLength;
+            canPlace &= horizontalDistance < Config.MaxPlaceLength && verticalDistance < Config.MaxPlaceLength;
+            canPlace &= plr.SelectedItem.stack > 0;
+            canPlace &= !TShock.Regions.InArea(x, y);
+
+            // 根据物品类型进一步检查
+            if (plr.SelectedItem.createTile < 0 && plr.SelectedItem.createWall >= 0)
             {
                 canPlace &= Main.tile[x, y].wall == 0;
             }
-            else if (plr.SelectedItem.createTile >= 0) // 检查物块
+            else if (plr.SelectedItem.createTile >= 0)
             {
                 canPlace &= !Main.tile[x, y].active();
             }
 
             return canPlace;
         }
+
 
     }
 }
