@@ -126,13 +126,17 @@ namespace ServerTools
             if (TimerCount % 60 == 0)
             {
                 Timer?.Invoke(e);
-                foreach (var ply in Deads)
+                if (Config.DeadTimer)
                 {
-                    if (ply != null && ply.Active && ply.Dead)
+                    foreach (var ply in Deads)
                     {
-                        ply.SendInfoMessage(Config.DeadFormat, ply.RespawnTimer);
+                        if (ply != null && ply.Active && ply.Dead)
+                        {
+                            ply.SendInfoMessage(Config.DeadFormat, ply.RespawnTimer);
+                        }
                     }
                 }
+                
             }  
         }
 
