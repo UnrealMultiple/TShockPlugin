@@ -7,7 +7,7 @@ namespace ServerTools.DB;
 
 public class PlayerDeath : Dictionary<string, int>
 {
-    public new int this[string key]
+    private new int this[string key]
     {
         get
         { 
@@ -47,9 +47,15 @@ public class PlayerDeath : Dictionary<string, int>
 
     public void Add(string name)
     {
-        this[name] += 1;
-        if (database.Query("UPDATE Death SET Count = @0 WHERE Name = @1", this[name], name) != 1)
-            database.Query("INSERT INTO `Death` (`Name`, `Count`) VALUES (@0, @1)", this[name], 1);
-            
+        if (ContainsKey(name))
+        {
+            this[name] += 1;
+            database.Query("UPDATE Death SET Count = @0 WHERE Name = @1", this[name], name);
+        }
+        else
+        {
+            this[name] = 1;
+            database.Query("INSERT INTO `Death` (`Name`, `Count`) VALUES (@0, @1)", name, 1);
+        }    
     }
 }

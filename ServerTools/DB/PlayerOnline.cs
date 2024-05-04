@@ -7,6 +7,7 @@ namespace ServerTools.DB;
 
 public class PlayerOnline : Dictionary<string, int>
 {
+    private HashSet<string> _players = new();
     public new int this[string key]
     { 
         get 
@@ -42,6 +43,7 @@ public class PlayerOnline : Dictionary<string, int>
             string username = reader.Get<string>("username");
             int duration = reader.Get<int>("duration");
             this[username] = duration;
+            _players.Add(username);
         }
     }
 
@@ -67,6 +69,7 @@ public class PlayerOnline : Dictionary<string, int>
     }
     public bool Insert(string Name, int duration)
     {
+        _players.Add(Name);
         return 1 == database.Query("INSERT INTO `OnlineDuration` (`username`, `duration`) VALUES (@0, @1)", Name, duration);
     }
 
@@ -75,7 +78,9 @@ public class PlayerOnline : Dictionary<string, int>
 
     public void AddOrUpdate(string name, int duration)
     {
-        if (!Update(name, duration))
+        if (_players.Contains(name))
+            Update(name, duration);
+        else
             Insert(name, duration);
     }
 
