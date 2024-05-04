@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.WebSockets;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
@@ -343,7 +344,7 @@ namespace CaiBotPlugin
                             NPC.downedTowerStardust
                         } }
                     });
-                    var re = new RestObject 
+                    var re = new RestObject
                     {
                         { "type","process" },
                         { "result",processList },
@@ -387,8 +388,188 @@ namespace CaiBotPlugin
                     };
                     await SendDateAsync(re.ToJson());
                     break;
-            }
-        }
+                case "lookbag":
+                    name = (string)jsonObject["name"];
+                    List<TSPlayer> playerList3 = TSPlayer.FindByNameOrID("tsn:" + name);
+                    List<int> buffs = new();
+                    if (playerList3.Count != 0)
+                    {
+                        Console.WriteLine(1);
+                        // 在线
+                        Player plr = playerList3[0].TPlayer;
+                        buffs = plr.buffType.ToList();
+                        NetItem[] invs = new NetItem[NetItem.MaxInventory];
+                        Item[] inventory = plr.inventory;
+                        Item[] armor = plr.armor;
+                        Item[] dye = plr.dye;
+                        Item[] miscEqups = plr.miscEquips;
+                        Item[] miscDyes = plr.miscDyes;
+                        Item[] piggy = plr.bank.item;
+                        Item[] safe = plr.bank2.item;
+                        Item[] forge = plr.bank3.item;
+                        Item[] voidVault = plr.bank4.item;
+                        Item trash = plr.trashItem;
+                        Item[] loadout1Armor = plr.Loadouts[0].Armor;
+                        Item[] loadout1Dye = plr.Loadouts[0].Dye;
+                        Item[] loadout2Armor = plr.Loadouts[1].Armor;
+                        Item[] loadout2Dye = plr.Loadouts[1].Dye;
+                        Item[] loadout3Armor = plr.Loadouts[2].Armor;
+                        Item[] loadout3Dye = plr.Loadouts[2].Dye;
+                        for (int i = 0; i < NetItem.MaxInventory; i++)
+                        {
+                            if (i < NetItem.InventoryIndex.Item2)
+                            {
+                                //0-58
+                                invs[i] = (NetItem)inventory[i];
+                            }
+                            else if (i < NetItem.ArmorIndex.Item2)
+                            {
+                                //59-78
+                                var index = i - NetItem.ArmorIndex.Item1;
+                                invs[i] = (NetItem)armor[index];
+                            }
+                            else if (i < NetItem.DyeIndex.Item2)
+                            {
+                                //79-88
+                                var index = i - NetItem.DyeIndex.Item1;
+                                invs[i] = (NetItem)dye[index];
+                            }
+                            else if (i < NetItem.MiscEquipIndex.Item2)
+                            {
+                                //89-93
+                                var index = i - NetItem.MiscEquipIndex.Item1;
+                                invs[i] = (NetItem)miscEqups[index];
+                            }
+                            else if (i < NetItem.MiscDyeIndex.Item2)
+                            {
+                                //93-98
+                                var index = i - NetItem.MiscDyeIndex.Item1;
+                                invs[i] = (NetItem)miscDyes[index];
+                            }
+                            else if (i < NetItem.PiggyIndex.Item2)
+                            {
+                                //98-138
+                                var index = i - NetItem.PiggyIndex.Item1;
+                                invs[i] = (NetItem)piggy[index];
+                            }
+                            else if (i < NetItem.SafeIndex.Item2)
+                            {
+                                //138-178
+                                var index = i - NetItem.SafeIndex.Item1;
+                                invs[i] = (NetItem)safe[index];
+                            }
+                            else if (i < NetItem.TrashIndex.Item2)
+                            {
+                                //179-219
+                                invs[i] = (NetItem)trash;
+                            }
+                            else if (i < NetItem.ForgeIndex.Item2)
+                            {
+                                //220
+                                var index = i - NetItem.ForgeIndex.Item1;
+                                invs[i] = (NetItem)forge[index];
+                            }
+                            else if (i < NetItem.VoidIndex.Item2)
+                            {
+                                //220
+                                var index = i - NetItem.VoidIndex.Item1;
+                                invs[i] = (NetItem)voidVault[index];
+                            }
+                            else if (i < NetItem.Loadout1Armor.Item2)
+                            {
+                                var index = i - NetItem.Loadout1Armor.Item1;
+                                invs[i] = (NetItem)loadout1Armor[index];
+                            }
+                            else if (i < NetItem.Loadout1Dye.Item2)
+                            {
+                                var index = i - NetItem.Loadout1Dye.Item1;
+                                invs[i] = (NetItem)loadout1Dye[index];
+                            }
+                            else if (i < NetItem.Loadout2Armor.Item2)
+                            {
+                                var index = i - NetItem.Loadout2Armor.Item1;
+                                invs[i] = (NetItem)loadout2Armor[index];
+                            }
+                            else if (i < NetItem.Loadout2Dye.Item2)
+                            {
+                                var index = i - NetItem.Loadout2Dye.Item1;
+                                invs[i] = (NetItem)loadout2Dye[index];
+                            }
+                            else if (i < NetItem.Loadout3Armor.Item2)
+                            {
+                                var index = i - NetItem.Loadout3Armor.Item1;
+                                invs[i] = (NetItem)loadout3Armor[index];
+                            }
+                            else if (i < NetItem.Loadout3Dye.Item2)
+                            {
+                                var index = i - NetItem.Loadout3Dye.Item1;
+                                invs[i] = (NetItem)loadout3Dye[index];
+                            }
+                        }
+                        var itemList = new List<List<int>>();
+                        foreach (var i in invs)
+                        {
+                            itemList.Add(new List<int>() { i.NetId, i.Stack });
+                        }
+                        re = new RestObject
+                        {
+                            { "type","lookbag" },
+                            { "name",name},
+                            { "exist",1},
+                            { "inventory", itemList},
+                            { "buffs", buffs}
+                        };
+                        await SendDateAsync(re.ToJson());
+                        return;
+                    }
+                    else
+                    {
 
-    }
+                            var acc = TShock.UserAccounts.GetUserAccountByName(name);
+                            if (acc == null)
+                            {
+                                re = new RestObject
+                            {
+                                { "type","lookbag" },
+                                { "exist",0}
+                            };
+                                await SendDateAsync(re.ToJson());
+                                return;
+                            }
+                            var data = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), acc.ID);
+
+                            if (data == null)
+                            {
+                                
+                                re = new RestObject
+                            {
+                                { "type","lookbag" },
+                                { "exist",0}
+                            };
+                                await SendDateAsync(re.ToJson());
+                                return;
+                            }
+                            var itemList = new List<List<int>>();
+                            foreach (var i in data.inventory)
+                            {
+                                itemList.Add(new List<int>() { i.NetId, i.Stack });
+                            }
+                            re = new RestObject
+                            {
+                                { "type","lookbag" },
+                                { "exist",1},
+                                { "name",name},
+                                { "inventory", itemList},
+                                { "buffs", buffs}
+                            };
+                            await SendDateAsync(re.ToJson());
+
+                        
+                    }
+                    break;
+
+            }
+
+        }
+    } 
 }
