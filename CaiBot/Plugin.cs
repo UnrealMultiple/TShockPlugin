@@ -31,7 +31,7 @@ namespace CaiBotPlugin
         public override string Name => "CaiBotPlugin";
 
         //插件的版本
-        public override Version Version => Assembly.GetExecutingAssembly().GetName().Version;
+        public override Version Version => new Version(1,1,0,0);
 
         //插件的构造器
         public Plugin(Main game) : base(game)
