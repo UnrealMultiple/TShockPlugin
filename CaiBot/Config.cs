@@ -62,5 +62,7 @@ namespace CaiBotPlugin
         public string Token = "";
         [JsonProperty("白名单开关")]
         public bool WhiteList = true;
+        [JsonProperty("白名单拦截提示的群号")]
+        public int GroupNumber = 0;
     }
 }

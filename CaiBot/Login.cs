@@ -93,6 +93,7 @@ namespace CaiBotPlugin
         public static async Task<bool> CheckWhiteAsync(string name, int code,List<string> uuids)
         {
             var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
+            var number = Config.config.GroupNumber;
             if (playerList.Count == 0)
             {
                 return false;
@@ -122,7 +123,7 @@ namespace CaiBotPlugin
                             TShock.Log.Info($"[白名单]玩家[{name}](IP: {plr.IP};UUID: {plr.UUID})没有添加白名单...");
                             Console.WriteLine($"[白名单]玩家[{name}](IP: {plr.IP})没有添加白名单...");
                             plr.SilentKickInProgress = true;
-                            plr.Disconnect("没有添加白名单\n请在群内发送'添加白名单'");
+                            plr.Disconnect($"没有添加白名单\n请在群{number}内发送'添加白名单 角色名字'");
                             return false;
                         }
                     case 403:
@@ -138,7 +139,7 @@ namespace CaiBotPlugin
                             TShock.Log.Info($"[白名单]玩家[{name}](IP: {plr.IP};UUID: {plr.UUID})不在本群内...");
                             Console.WriteLine($"[白名单]玩家[{name}](IP: {plr.IP})不在本群内...");
                             plr.SilentKickInProgress = true;
-                            plr.Disconnect("[白名单]不在本服务器群内!\n请加入服务器群");
+                            plr.Disconnect($"[白名单]不在本服务器群内!\n请加入服务器群：{number}");
                             return false;
                         }
                     default:
@@ -162,7 +163,7 @@ namespace CaiBotPlugin
                     TShock.Log.Info($"[白名单]玩家[{name}](IP: {plr.IP};UUID: {plr.UUID})没有批准登录...");
                     Console.WriteLine($"[白名单]玩家[{name}](IP: {plr.IP})没有批准登录...");
                     plr.SilentKickInProgress = true;
-                    plr.Disconnect("[白名单]在群内发送'登录'，以批准此设备登录");
+                    plr.Disconnect($"[白名单]在群{number}内发送'登录'，以批准此设备登录");
 
                     var re = new RestObject
                         {
@@ -184,7 +185,7 @@ namespace CaiBotPlugin
                 TShock.Log.Info("[XSB适配插件]:\n" + ex);
                 Console.WriteLine("[XSB适配插件]:\n" + ex);
                 plr.SilentKickInProgress = true;
-                plr.Disconnect("[白名单]服务器发生错误无法处理该请求!请尝试重新加入游戏或者联系服务器管理员");
+                plr.Disconnect($"[白名单]服务器发生错误无法处理该请求!请尝试重新加入游戏或者联系服务器群{number}管理员");
                 return false;
             }
             
