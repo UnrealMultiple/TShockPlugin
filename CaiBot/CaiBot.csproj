@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+   <Import Project="..\template.targets" />
+
+  <ItemGroup>
+    <None Remove="SixLabors.ImageSharp.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="SixLabors.ImageSharp.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NuGet.Versioning">
+      <HintPath>..\..\TShock\TShockLauncher\bin\Release\TShock NET8\NuGet.Versioning.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.ImageSharp">
+      <HintPath>..\lib\SixLabors.ImageSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
