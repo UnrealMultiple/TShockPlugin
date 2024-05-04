@@ -99,3 +99,4 @@
 | [RestInventory](RestInventory/README.md)                         |     提供 REST 查询背包接口     |                                             无                                             |
 | [WikiLangPackLoader](WikiLangPackLoader/README.md)               |    为服务器加载 Wiki 语言包    |                                             无                                             |
 | [HelpPlus](HelpPlus/README.md)                                   |      修复和增强 Help 命令      |                                             无                                             |
+| [CaiBot](CaiBot/README.md)                                       |    CaiBot适配插件        |                                              自带前置                                           |
