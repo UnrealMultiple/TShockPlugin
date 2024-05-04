@@ -13,7 +13,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
+        with:
+           submodules: 'recursive'
+           
       - name: Install .NET
         uses: actions/setup-dotnet@v3
         with:
