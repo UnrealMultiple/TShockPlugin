@@ -2,7 +2,7 @@ name: NET
 
 on:
   push:
-    branches: [ "master","cai", "main"]
+    branches: [ "master","cai"]
     
 jobs:
   Build:
