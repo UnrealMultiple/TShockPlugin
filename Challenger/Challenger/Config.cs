@@ -17,12 +17,8 @@ namespace Challenger
         public bool enableMonsterSucksBlood = true;
         [JsonProperty("怪物吸血比率")]
         public float BloodAbsorptionRatio = 0.25f;
-        [JsonProperty("怪物吸血条件:玩家受到多少伤害触发")]
-        public int BloodAbsorptionRatio_2 = 1500;
-        [JsonProperty("怪物吸血条件:给非BOSS小于多少生命值上限的怪回血")]
-        public float BloodAbsorptionRatio_3 = 4000000f;
-        [JsonProperty("怪物弹幕吸血条件:给非BOSS小于多少生命值上限的怪回血")]
-        public float BloodAbsorptionRatio_4 = 9000000f;
+        [JsonProperty("怪物回血上限：小怪>1.5倍则会消失")]
+        public float BloodAbsorptionRatio_Max { get;  set; } = 1.5f;
         [JsonProperty("怪物吸血比率对于Boss")]
         public float BloodAbsorptionRatioForBoss = 0.5f;
 
@@ -31,26 +27,49 @@ namespace Challenger
         [JsonProperty("启用广播话痨模式")]
         public bool EnableBroadcastConsumptionMode = false;
 
-        [JsonProperty("所有怪物血量倍数")]
+        [JsonProperty("所有怪物血量倍数(仅开启魔改BOSS时生效)")]
         public float lifeXnum = 1.00f;
 
         [JsonProperty("蜜蜂背包是否扔毒蜂罐")]
         public bool HivePack = true;
+        [JsonProperty("蜜蜂背包首次弹幕ID")]
+        public int HivePack_1 = 346;
+        [JsonProperty("蜜蜂背包首次弹幕伤害")]
+        public int HivePack_2 = 0;
+        [JsonProperty("蜜蜂背包首次弹幕击退")]
+        public float HivePack_3 = 0f;
+        [JsonProperty("蜜蜂背包弹幕爆炸后的弹幕ID")]
+        public int HivePack_4 = 566;
+        [JsonProperty("蜜蜂背包弹幕爆炸后的弹幕伤害")]
+        public int HivePack_5 = 30;
+        [JsonProperty("蜜蜂背包弹幕爆炸后的弹幕击退")]
+        public float HivePack_6 = 0f;
 
         [JsonProperty("化石套是否出琥珀光球")]
         public bool FossilArmorEffect = true;
+        [JsonProperty("化石套的弹幕ID")]
+        public int FossilArmorEffect_0 = 732;
+        [JsonProperty("化石套的弹幕射程")]
+        public float FossilArmorEffect_1 = 18f;
+        [JsonProperty("化石套的弹幕伤害")]
+        public int FossilArmorDamage = 10;
+        [JsonProperty("化石套的弹幕击退")]
+        public float FossilArmorEffect_2 = 8f;
+
+        [JsonProperty("钓鱼套包含哪些永久BUFF")]
+        public int[] AnglerArmorEffectList { get; set; } = new int[] { 106, 123, 121, 122 };
 
         [JsonProperty("丛林套是否环绕伤害孢子")]
         public bool JungleArmorEffect = true;
-        [JsonProperty("丛林套弹幕旋转大小")]
+        [JsonProperty("丛林套弹幕射程/速率")]
         public float JungleArmorEffect_2 = 1.5f;
         [JsonProperty("丛林套弹幕ID1")]
         public int JungleArmorEffect_3 = 569;
         [JsonProperty("丛林套弹幕ID2")]
         public int JungleArmorEffect_4 = 572;
-        [JsonProperty("丛林套弹幕生命值")]
+        [JsonProperty("丛林套弹幕伤害")]
         public int JungleArmorEffect_5 = 15;
-        [JsonProperty("丛林套弹幕缩放比例")]
+        [JsonProperty("丛林套弹幕击退")]
         public float JungleArmorEffect_6 = 8f;
 
         [JsonProperty("忍者套是否会闪避")]
@@ -59,6 +78,10 @@ namespace Challenger
         public int NinjaArmorEffect_2 = 4;
         [JsonProperty("忍者套闪避释放的弹幕ID")]
         public int NinjaArmorEffect_3 = 196;
+        [JsonProperty("忍者套闪避释放的弹幕伤害")]
+        public int NinjaArmorEffect_4 = 0;
+        [JsonProperty("忍者套闪避释放的弹幕击退")]
+        public float NinjaArmorEffect_5 = 0f;
 
         [JsonProperty("流星套是否下落星")]
         public bool MeteorArmorEffect = true;
@@ -66,7 +89,7 @@ namespace Challenger
         public int MeteorArmorEffect_2 = 725;
         [JsonProperty("流星套的弹幕射程")]
         public int MeteorArmorEffect_3 = 1000;
-        [JsonProperty("流星套的弹幕速度大小")]
+        [JsonProperty("流星套的弹幕速度")]
         public float MeteorArmorEffect_4 = 16f;
 
         [JsonProperty("蜜蜂套是否撒蜂糖罐")]
@@ -96,9 +119,9 @@ namespace Challenger
 
         [JsonProperty("水晶刺客套是否释放水晶碎片")]
         public bool CrystalAssassinArmorEffect = true;
-        [JsonProperty("水晶刺客套受伤释放什么弹幕ID")]
+        [JsonProperty("水晶刺客套遇怪自动释放的弹幕ID")]
         public int CrystalAssassinArmorEffect_2 = 90;
-        [JsonProperty("水晶刺客套受伤释放什么弹幕ID2")]
+        [JsonProperty("水晶刺客套受伤释放的弹幕ID")]
         public int CrystalAssassinArmorEffect_3 = 94;
 
         [JsonProperty("蜘蛛套给NPC施加什么BUFF1")]
@@ -114,15 +137,17 @@ namespace Challenger
         public bool ForbiddenArmorEffect = true;
         [JsonProperty("禁戒套释放什么弹幕ID")]
         public int ForbiddenArmorEffect_2 = 659;
-        [JsonProperty("禁戒套的弹幕速度")]
+        [JsonProperty("禁戒套的弹幕伤害")]
         public int ForbiddenArmorEffect_3 = 45;
 
         [JsonProperty("寒霜套是否下北极弹幕")]
         public bool FrostArmorEffect = true;
         [JsonProperty("寒霜套释放什么弹幕ID")]
         public int FrostArmorEffect_2 = 344;
-        [JsonProperty("寒霜套的弹幕速度")]
+        [JsonProperty("寒霜套的弹幕伤害")]
         public int FrostArmorEffect_3 = 50;
+        [JsonProperty("寒霜套的弹幕击退")]
+        public float FrostArmorEffect_4 = 0f;
 
         [JsonProperty("神圣套额外弹幕多少伤害/默认55%")]
         public double HallowedArmorEffect = 0.55;
@@ -161,6 +186,12 @@ namespace Challenger
 
         [JsonProperty("蘑菇套是否产蘑菇")]
         public bool ShroomiteArmorEffect = true;
+        [JsonProperty("蘑菇套的弹幕ID")]
+        public int ShroomiteArmorEffect_1 = 131;
+        [JsonProperty("蘑菇套的弹幕伤害倍数")]
+        public float ShroomiteArmorEffect_2 = 0.32f;
+        [JsonProperty("蘑菇套的弹幕击退")]
+        public float ShroomiteArmorEffect_3 = 1.14514f;
 
         [JsonProperty("幽灵套加多少生命和魔力上限")]
         public int SpectreArmorEffect = 60;
@@ -168,6 +199,18 @@ namespace Challenger
         public bool EnableSpectreArmorEffect_1 = true;
         [JsonProperty("幽灵面具是否出幽灵弹幕")]
         public bool EnableSpectreArmorEffect_2 = false;
+        [JsonProperty("幽灵套的弹幕ID")]
+        public int EnableSpectreArmorEffect_3 = 356;
+        [JsonProperty("幽灵套的弹幕伤害倍数")]
+        public float EnableSpectreArmorEffect_4 = 120f;
+        [JsonProperty("幽灵套的弹幕击退")]
+        public float EnableSpectreArmorEffect_5 = 0f;
+        [JsonProperty("幽灵套环绕的弹幕ID")]
+        public int EnableSpectreArmorEffect_6 = 299;
+        [JsonProperty("幽灵套环绕的弹幕伤害")]
+        public int EnableSpectreArmorEffect_7 = 0;
+        [JsonProperty("幽灵套环绕的弹幕击退")]
+        public float EnableSpectreArmorEffect_8 = 0f;
 
         [JsonProperty("甲虫套加多少生命上限")]
         public int BeetleArmorEffect_1 = 60;
@@ -178,7 +221,7 @@ namespace Challenger
         [JsonProperty("甲虫套带骑士盾时给圣锤加多少伤害/默认90%")]
         public float BeetleArmorEffect_2 = 0.9f;
 
-        [JsonProperty("克苏鲁之盾闪避冷却时间/默认12秒")]
+        [JsonProperty("冲刺饰品类的闪避冷却时间/默认12秒")]
         public int CthulhuShieldTime = 12;
 
         [JsonProperty("皇家凝胶是否下物品雨")]
@@ -193,12 +236,8 @@ namespace Challenger
         public bool EnableWormScarf = true;
         [JsonProperty("蠕虫围巾遍历前几个buff")]
         public int WormScarfImmuneList_2 = 22;
-        [JsonProperty("蠕虫围巾免疫DeBuff列表")]
+        [JsonProperty("蠕虫围巾免疫DeBuff列表/遇到会清空所有BUFF")]
         public int[] WormScarfImmuneList { get; set; } = new int[] { 39, 69, 44, 46 };
-
-
-
-
 
 
         #region 读取与创建配置文件方法

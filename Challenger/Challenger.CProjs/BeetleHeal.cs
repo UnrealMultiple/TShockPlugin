@@ -49,7 +49,7 @@ namespace Challenger
                             val2.SetBuff(95, 300, false);
                             if (global::Challenger.Challenger.config.EnableConsumptionMode)
                             {
-                                global::Challenger.Challenger.SendPlayerText($"甲虫治疗 + {num} 治疗者:{Main.player[proj.owner].name}", new Color(210, 0, 255), val2.TPlayer.Center + new Vector2(Main.rand.Next(-60, 61), Main.rand.Next(61)));
+                                Challenger.SendPlayerText($"甲虫治疗 + {num} 治疗者:{Main.player[proj.owner].name}", new Color(210, 0, 255), val2.TPlayer.Center + new Vector2(Main.rand.Next(-60, 61), Main.rand.Next(61)));
                                 val2.SendMessage($"你被 {Main.player[proj.owner].name} 治疗了 {num} 点生命值", new Color(210, 0, 255));
                             }
                             else
