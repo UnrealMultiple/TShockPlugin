@@ -1,4 +1,5 @@
-﻿using Terraria;
+using MonoMod.RuntimeDetour;
+using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -29,9 +30,11 @@ namespace ServerTools
 
         public event Action<EventArgs>? Timer;
 
+        public static Hook CmdHook;
+
         public Plugin(Main game) : base(game)
         {
-
+           
         }
 
         public override void Initialize()
@@ -70,12 +73,31 @@ namespace ServerTools
             GeneralHooks.ReloadEvent += (_) => LoadConfig();
             #endregion
 
+            CmdHook = new Hook(typeof(Commands).GetMethod(nameof(Commands.HandleCommand)), CommandHook);
+
             #region RestAPI
             TShock.RestApi.Register("/deathrank", DeadRank);
             TShock.RestApi.Register("/onlineDuration", Queryduration);
             #endregion
             Timer += OnUpdatePlayerOnline;
             HandleCommandLine(Environment.GetCommandLineArgs());
+        }
+
+        public static bool CommandHook(TSPlayer ply, string cmd)
+        {
+            CmdHook.Undo();
+            if (ply.GetType() == typeof(TSRestPlayer))
+            {
+                ply.Account = new()
+                { 
+                    Name = ply.Name,
+                    Group = ply.Group.Name,
+                    ID = ply.Index
+                };
+            }
+            var status = Commands.HandleCommand(ply, cmd);
+            CmdHook.Apply();
+            return status;
         }
 
         private void OnPlayerSpawn(object? sender, GetDataHandlers.SpawnEventArgs e)
