@@ -22,7 +22,7 @@ namespace CaiBotPlugin
     public class Plugin : TerrariaPlugin
     {
         //定义插件的作者名称
-        public override string Author => "Cai";
+        public override string Author => "Cai 羽学";
 
         //插件的一句话描述
         public override string Description => "CaiBot机器人的适配插件";
@@ -31,7 +31,7 @@ namespace CaiBotPlugin
         public override string Name => "CaiBotPlugin";
 
         //插件的版本
-        public override Version Version => new Version(1,1,0,0);
+        public override Version Version => new Version(1,1,1,0);
 
         //插件的构造器
         public Plugin(Main game) : base(game)
