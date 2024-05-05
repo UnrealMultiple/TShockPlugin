@@ -1,4 +1,5 @@
 using MonoMod.RuntimeDetour;
+using System.ComponentModel;
 using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
@@ -16,7 +17,7 @@ namespace ServerTools
 
         public override string Name => "ServerTools";// 插件名字
 
-        public override Version Version => new(1, 0, 0, 0);// 插件版本
+        public override Version Version => new(1, 0, 1, 0);// 插件版本
 
         private static Config Config = new();
 
@@ -72,7 +73,6 @@ namespace ServerTools
             GetDataHandlers.PlayerSpawn.Register(OnPlayerSpawn);
             GeneralHooks.ReloadEvent += (_) => LoadConfig();
             #endregion
-
             CmdHook = new Hook(typeof(Commands).GetMethod(nameof(Commands.HandleCommand)), CommandHook);
 
             #region RestAPI
@@ -152,7 +152,7 @@ namespace ServerTools
                 {
                     foreach (var ply in Deads)
                     {
-                        if (ply != null && ply.Active && ply.Dead)
+                        if (ply != null && ply.Active && ply.Dead && ply.RespawnTimer > 0)
                         {
                             ply.SendInfoMessage(Config.DeadFormat, ply.RespawnTimer);
                         }
@@ -279,9 +279,11 @@ namespace ServerTools
 
         private void GetData(GetDataEventArgs args)
         {
-            if (args.Handled) return;
+            var ply = TShock.Players[args.Msg.whoAmI];
+            if (args.Handled || ply == null) return;
             if (args.MsgID == PacketTypes.ForceItemIntoNearestChest && Config.LimitForceItemIntoNearestChest)
             {
+                ply.SendErrorMessage("禁止快速堆叠!");
                 args.Handled = true;
                 return;
             }
@@ -289,6 +291,31 @@ namespace ServerTools
             {
                 args.Handled = true;
                 return;
+            }
+
+            if (Config.KeepOpenChest && args.MsgID == PacketTypes.ChestOpen)
+            {
+                
+                using BinaryReader binaryReader5 = new(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length));
+                short ChestId = binaryReader5.ReadInt16();
+                if (ChestId != -1 && ply.ActiveChest != -1)
+                {
+                    ply.ActiveChest = -1;
+                    ply.SendData(PacketTypes.ChestOpen, "", -1);
+                    ply.SendErrorMessage("禁止双箱!");
+                    args.Handled = true;
+                }
+            }
+
+            if (args.MsgID == PacketTypes.ChestGetContents && Config.KeepOpenChest)
+            {
+                if (ply.ActiveChest != -1)
+                {
+                    ply.ActiveChest = -1;
+                    ply.SendData(PacketTypes.ChestOpen, "", -1);
+                    ply.SendErrorMessage("禁止双箱!");
+                    args.Handled = true;
+                }
             }
         }
 
