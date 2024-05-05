@@ -3,6 +3,7 @@ using EconomicsAPI.DB;
 using EconomicsAPI.EventArgs;
 using EconomicsAPI.Events;
 using EconomicsAPI.Extensions;
+using EconomicsAPI.Model;
 using EconomicsAPI.Utils;
 using Microsoft.Xna.Framework;
 using System.Reflection;
@@ -35,6 +36,8 @@ public class Economics : TerrariaPlugin
 
     private long TimerCount;
 
+    private Dictionary<TSPlayer, PingData> PlayerPing = new();
+
     public static Setting Setting { get; private set; } = new();
 
     public Economics(Main game) : base(game)
@@ -49,13 +52,26 @@ public class Economics : TerrariaPlugin
         CurrencyManager = new CurrencyManager();
         Helper.InitPluginAttributes();
         ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreet);
+        ServerApi.Hooks.NetGetData.Register(this, OnGetData);
         ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
         ServerApi.Hooks.NpcKilled.Register(this, OnKillNpc);
         ServerApi.Hooks.NpcSpawn.Register(this, OnNpcSpawn);
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
         GetDataHandlers.KillMe.Register(OnKillMe);
+        PlayerHandler.OnPlayerCountertop += PlayerHandler_OnPlayerCountertop;
         TShockAPI.Hooks.GeneralHooks.ReloadEvent += (_) => Setting = ConfigHelper.LoadConfig(ConfigPATH, Setting);
+    }
+
+    private void PlayerHandler_OnPlayerCountertop(PlayerCountertopArgs args)
+    {
+        args.Messages.Add(new($"当前延迟:{args.Ping.GetPing():F1}", 7));
+        args.Messages.Add(new($"玩家名称:{args.Ping.TSPlayer.Name}", 1));
+        args.Messages.Add(new($"{Setting.CurrencyName}数量:{CurrencyManager.GetUserCurrency(args.Ping.TSPlayer.Name)}", 3));
+        args.Messages.Add(new($"在线人数:{TShock.Utils.GetActivePlayerCount()}/{Main.maxPlayers}", 4));
+        args.Messages.Add(new($"世界名称:{Main.worldName}", 9));
+        args.Messages.Add(new($"当前生命:{args.Ping.TSPlayer.TPlayer.statLife}/{args.Ping.TSPlayer.TPlayer.statLifeMax}", 5));
+        args.Messages.Add(new($"当前魔力:{args.Ping.TSPlayer.TPlayer.statMana} / {args.Ping.TSPlayer.TPlayer.statManaMax}", 6));
     }
 
     private void OnKillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
@@ -69,6 +85,21 @@ public class Economics : TerrariaPlugin
     private void OnUpdate(System.EventArgs args)
     {
         TimerCount++;
+        if (TimerCount % 60 == 0)
+        {
+            foreach (var ply in ServerPlayers)
+            {
+                Ping(ply, data =>
+                {
+                    var status = new PlayerCountertopArgs()
+                    {
+                        Ping = data,
+                    };
+                    if (!PlayerHandler.PlayerCountertopUpdate(status))
+                        Helper.CountertopUpdate(status);
+                });
+            }
+        }
         if (TimerCount % (60 * Setting.SaveTime) == 0)
         {
             CurrencyManager.UpdataAll();
@@ -116,6 +147,46 @@ public class Economics : TerrariaPlugin
             }
         }
         Strike.Remove(args.npc);
+    }
+
+    public void Ping(TSPlayer player, Action<PingData> action)
+    {
+        var data = new PingData()
+        {
+            TSPlayer = player,
+            action = action
+        };
+        PlayerPing[player] = data;
+        int num = -1;
+        for (int i = 0; i < Main.item.Length; i++)
+        {
+            if (Main.item[i] != null && (!Main.item[i].active || Main.item[i].playerIndexTheItemIsReservedFor == 255))
+            {
+                num = i;
+                break;
+            }
+        }
+        NetMessage.TrySendData(39, player.Index, -1, null, num);
+    }
+
+    private void OnGetData(GetDataEventArgs args)
+    {
+        if (args.Handled || args.MsgID != PacketTypes.ItemOwner || TShock.Players[args.Msg.whoAmI] == null)
+        {
+            return;
+        }
+        using BinaryReader binaryReader = new(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length));
+        int num = binaryReader.ReadInt16();
+        if (binaryReader.ReadByte() == byte.MaxValue)
+        {
+
+            if (PlayerPing.TryGetValue(TShock.Players[args.Msg.whoAmI], out var data))
+            {
+                data.End = DateTime.Now;
+                data.action.Invoke(data);
+                PlayerPing.Remove(TShock.Players[args.Msg.whoAmI]);
+            }
+        }
     }
 
     private void OnLeave(LeaveEventArgs args)

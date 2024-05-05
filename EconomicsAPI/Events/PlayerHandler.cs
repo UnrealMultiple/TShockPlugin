@@ -8,6 +8,8 @@ public class PlayerHandler
 
     public static event EventCallBack<PlayerKillNpcArgs> OnPlayerKillNpc;
 
+    public static event EventCallBack<PlayerCountertopArgs> OnPlayerCountertop;
+
     internal static bool PlayerKillNpc(PlayerKillNpcArgs args)
     {
         if (OnPlayerKillNpc != null)
@@ -16,6 +18,16 @@ public class PlayerHandler
             return args.Handler;
         }
 
+        return false;
+    }
+
+    internal static bool PlayerCountertopUpdate(PlayerCountertopArgs args)
+    {
+        if (OnPlayerCountertop != null)
+        {
+            OnPlayerCountertop(args);
+            return args.Handler;
+        }
         return false;
     }
 }
