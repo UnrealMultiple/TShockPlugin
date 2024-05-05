@@ -47,6 +47,9 @@ public class Config
     [JsonProperty("阻止死亡角色进入")]
     public bool PreventsDeathStateJoin = true;
 
+    [JsonProperty("禁止双箱")]
+    public bool KeepOpenChest = true;
+
     [JsonProperty("死亡倒计时格式")]
     public string DeadFormat = "你还有{0}秒复活!";
 
