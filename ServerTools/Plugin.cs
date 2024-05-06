@@ -1,5 +1,4 @@
 using MonoMod.RuntimeDetour;
-using System.ComponentModel;
 using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
@@ -56,6 +55,7 @@ namespace ServerTools
 
             #region 指令
             Commands.ChatCommands.Add(new Command(Permissions.clear, Clear, "clp"));
+            Commands.ChatCommands.Add(new Command("servertool.query.exit", Exit, "退出"));
             Commands.ChatCommands.Add(new Command("servertool.query.wall", WallQ, "查花苞"));
             Commands.ChatCommands.Add(new Command("servertool.query.wall", RWall, "移除花苞"));
             Commands.ChatCommands.Add(new Command("servertool.user.kick", SelfKick, "自踢"));
@@ -81,6 +81,11 @@ namespace ServerTools
             #endregion
             Timer += OnUpdatePlayerOnline;
             HandleCommandLine(Environment.GetCommandLineArgs());
+        }
+
+        private void Exit(CommandArgs args)
+        {
+            args.Player.SendData(PacketTypes.ChestOpen, "", args.Player.Index, -1);
         }
 
         public static bool CommandHook(TSPlayer ply, string cmd)
@@ -167,6 +172,7 @@ namespace ServerTools
             var ply = TShock.Players[args.Who];
             if (ply == null)
                 return;
+            Deads.Remove(ply);
             if (ply.Dead)
                 PlayerDeath[ply.Name] = DateTime.Now.AddSeconds(ply.RespawnTimer);
         }
