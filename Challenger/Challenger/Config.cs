@@ -8,27 +8,29 @@ namespace Challenger
     {
         public static readonly string FilePath = Path.Combine(TShock.SavePath, "ChallengerConfig.json");
 
-        [JsonProperty("是否启用挑战模式")]
+        [JsonProperty("是否启用挑战模式", Order = -5)]
         public bool enableChallenge = true;
-        [JsonProperty("是否启用BOSS魔改")]
+        [JsonProperty("是否启用BOSS魔改", Order = -5)]
         public bool enableBossAI = false;
-
-        [JsonProperty("是否启用怪物吸血")]
-        public bool enableMonsterSucksBlood = true;
-        [JsonProperty("怪物吸血比率")]
-        public float BloodAbsorptionRatio = 0.25f;
-        [JsonProperty("怪物回血上限：小怪>1.5倍则会消失")]
-        public float BloodAbsorptionRatio_Max { get;  set; } = 1.5f;
-        [JsonProperty("怪物吸血比率对于Boss")]
-        public float BloodAbsorptionRatioForBoss = 0.5f;
-
-        [JsonProperty("启用话痨模式")]
+        [JsonProperty("启用话痨模式", Order = -5)]
         public bool EnableConsumptionMode = false;
-        [JsonProperty("启用广播话痨模式")]
+        [JsonProperty("启用广播话痨模式", Order = -5)]
         public bool EnableBroadcastConsumptionMode = false;
 
-        [JsonProperty("所有怪物血量倍数(仅开启魔改BOSS时生效)")]
+        [JsonProperty("是否启用怪物吸血", Order = -4)]
+        public bool enableMonsterSucksBlood = true;
+        [JsonProperty("怪物吸血比率", Order = -4)]
+        public float BloodAbsorptionRatio = 0.25f;
+        [JsonProperty("怪物吸血比率对于Boss", Order = -4)]
+        public float BloodAbsorptionRatioForBoss = 0.5f;
+        [JsonProperty("怪物回血上限：小怪>1.5倍则会消失", Order = -4)]
+        public float BloodAbsorptionRatio_Max { get;  set; } = 1.5f;
+
+        [JsonProperty("所有怪物血量倍数(仅开启魔改BOSS时生效)", Order = -3)]
         public float lifeXnum = 1.00f;
+
+        [JsonProperty("冲刺饰品类的闪避冷却时间/默认12秒", Order = -2)]
+        public int CthulhuShieldTime = 12;
 
         [JsonProperty("蜜蜂背包是否扔毒蜂罐")]
         public bool HivePack = true;
@@ -55,9 +57,6 @@ namespace Challenger
         public int FossilArmorDamage = 10;
         [JsonProperty("化石套的弹幕击退")]
         public float FossilArmorEffect_2 = 8f;
-
-        [JsonProperty("钓鱼套包含哪些永久BUFF")]
-        public int[] AnglerArmorEffectList { get; set; } = new int[] { 106, 123, 121, 122 };
 
         [JsonProperty("丛林套是否环绕伤害孢子")]
         public bool JungleArmorEffect = true;
@@ -97,7 +96,6 @@ namespace Challenger
         [JsonProperty("猩红套的弹幕击退")]
         public float CrimsonArmorEffect_3 = 0f;
 
-
         [JsonProperty("流星套是否下落星")]
         public bool MeteorArmorEffect = true;
         [JsonProperty("流星套的弹幕ID")]
@@ -106,13 +104,6 @@ namespace Challenger
         public int MeteorArmorEffect_3 = 1000;
         [JsonProperty("流星套的弹幕速度")]
         public float MeteorArmorEffect_4 = 16f;
-
-        [JsonProperty("蜜蜂套是否撒蜂糖罐")]
-        public bool BeeArmorEffect = true;
-        [JsonProperty("蜜蜂套给什么永久BUFF")]
-        public int[] BeeArmorEffectList { get; set; } = new int[] { 48 };
-        [JsonProperty("蜜蜂套的BUFF时长")]
-        public int BeeArmorEffectTime = 150;
 
         [JsonProperty("死灵套是否产生额外弹幕")]
         public bool NecroArmor = true;
@@ -238,30 +229,39 @@ namespace Challenger
         [JsonProperty("甲虫套带骑士盾时给圣锤加多少伤害/默认90%")]
         public float BeetleArmorEffect_2 = 0.9f;
 
-        [JsonProperty("冲刺饰品类的闪避冷却时间/默认12秒")]
-        public int CthulhuShieldTime = 12;
-
-        [JsonProperty("皇家凝胶是否下物品雨")]
+        [JsonProperty("皇家凝胶是否下物品雨", Order = 1)]
         public bool RoyalGel = true;
-        [JsonProperty("皇家凝胶物品雨表")]
+        [JsonProperty("皇家凝胶物品雨表", Order = 1)]
         public int[] RoyalGelList { get; set; } = new int[] { 23 };
 
-        [JsonProperty("挥发凝胶击中敌怪掉落物品表")]
-        public int[] VolatileGelatin { get; set; } = new int[] { 23, 409, 502, 3111 }; 
+        [JsonProperty("挥发凝胶击中敌怪掉落物品表", Order = 2)]
+        public int[] VolatileGelatin { get; set; } = new int[] { 23, 409, 502, 3111 };
 
-        [JsonProperty("狱岩套给什么永久BUFF")]
+        [JsonProperty("蜜蜂套是否撒蜂糖罐", Order = 3)]
+        public bool BeeArmorEffect = true;
+        [JsonProperty("蜜蜂套给什么永久BUFF", Order = 3)]
+        public int[] BeeArmorEffectList { get; set; } = new int[] { 48 };
+        [JsonProperty("蜜蜂套的BUFF时长", Order = 3)]
+        public int BeeArmorEffectTime = 150;
+
+        [JsonProperty("狱岩套给什么永久BUFF", Order = 4)]
         public int[] MoltenArmor { get; set; } = new int[] { 1, 116 };
 
-        [JsonProperty("挖矿套给什么永久BUFF")]
-        public int[] MiningArmor { get; set; } = new int[] { 104, 192  };
-        [JsonProperty("挖矿套连锁图格ID表")]
+        [JsonProperty("钓鱼套包含哪些永久BUFF", Order = 5)]
+        public int[] AnglerArmorEffectList { get; set; } = new int[] { 106, 123, 121, 122 };
+
+        [JsonProperty("挖矿套是否开启连锁挖矿", Order = 6)]
+        public bool MiningArmor_1 = true;
+        [JsonProperty("挖矿套给什么永久BUFF", Order = 6)]
+        public int[] MiningArmor { get; set; } = new int[] { 104, 192 };
+        [JsonProperty("挖矿套连锁图格ID表", Order = 6)]
         public int[] Tile { get; set; } = new int[] { 6, 7, 8, 9, 166, 167, 168, 169, 22, 221, 222, 223, 224, 232, 37, 404, 408, 48, 481, 482, 483, 56, 571, 58, 63, 64, 65, 66, 67, 68, 107, 108, 111, 123, 178, 204, 211, 229, 230 };
 
-        [JsonProperty("蠕虫围巾免疫buff是否开启")]
+        [JsonProperty("蠕虫围巾免疫buff是否开启", Order = 7)]
         public bool EnableWormScarf = false;
-        [JsonProperty("蠕虫围巾遍历前几个buff")]
+        [JsonProperty("蠕虫围巾遍历前几个buff", Order = 7)]
         public int WormScarfImmuneList_2 = 22;
-        [JsonProperty("蠕虫围巾免疫DeBuff列表/遇到会清空所有BUFF")]
+        [JsonProperty("蠕虫围巾免疫DeBuff列表/遇到会清空所有BUFF", Order = 7)]
         public int[] WormScarfImmuneList { get; set; } = new int[] { 39, 69, 44, 46 };
 
 

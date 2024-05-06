@@ -440,7 +440,10 @@ namespace Challenger
                 {
                     TShock.Players[player.whoAmI].SetBuff(effect, 180, false);
                 }
-                VeinMinerOpen = true;
+                if (config.MiningArmor_1)
+                {
+                    VeinMinerOpen = true;
+                }
             }
             else
             {
