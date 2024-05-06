@@ -26,8 +26,12 @@ public partial class Plugin
     private void OnGreet(GreetPlayerEventArgs args)
     {
         var ply = TShock.Players[args.Who];
-        if(ply != null)
+        if (ply != null)
+        { 
             ActivePlayers.Add(ply);
+            ply.RespawnTimer = 0;
+        }
+            
     }
 
     private void OnUpdatePlayerOnline(EventArgs args)
