@@ -27,7 +27,7 @@ namespace Challenger
         public override void OnKilled()
         {
             NPCAimedTarget targetData = npc.GetTargetData(true);
-            Projectile.NewProjectile(null, npc.Center, Utils.DirectionTo(npc.Center, targetData.Center) * 5f, 270, 6, 30f, -1, 0f, 0f, 0f);
+            Projectile.NewProjectile(null, npc.Center, Terraria.Utils.DirectionTo(npc.Center, targetData.Center) * 5f, 270, 6, 30f, -1, 0f, 0f, 0f);
         }
     }
 }

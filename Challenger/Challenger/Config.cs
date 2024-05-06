@@ -83,6 +83,21 @@ namespace Challenger
         [JsonProperty("忍者套闪避释放的弹幕击退")]
         public float NinjaArmorEffect_5 = 0f;
 
+        [JsonProperty("暗影套的弹幕ID")]
+        public int ShadowArmorEffect = 307;
+        [JsonProperty("暗影套的弹幕伤害")]
+        public int ShadowArmorEffect_2 = 20;
+        [JsonProperty("暗影套的弹幕击退")]
+        public float ShadowArmorEffect_3 = 2f;
+
+        [JsonProperty("猩红套的弹幕ID")]
+        public int CrimsonArmorEffect = 305;
+        [JsonProperty("猩红套的弹幕伤害")]
+        public int CrimsonArmorEffect_2 = 0;
+        [JsonProperty("猩红套的弹幕击退")]
+        public float CrimsonArmorEffect_3 = 0f;
+
+
         [JsonProperty("流星套是否下落星")]
         public bool MeteorArmorEffect = true;
         [JsonProperty("流星套的弹幕ID")]
@@ -116,6 +131,8 @@ namespace Challenger
 
         [JsonProperty("黑曜石套是否盗窃双倍掉落物")]
         public bool ObsidianArmorEffect = true;
+        [JsonProperty("黑曜石套盗窃的稀有等级")]
+        public int ObsidianArmorEffect_1 = 1;
 
         [JsonProperty("水晶刺客套是否释放水晶碎片")]
         public bool CrystalAssassinArmorEffect = true;
@@ -229,11 +246,19 @@ namespace Challenger
         [JsonProperty("皇家凝胶物品雨表")]
         public int[] RoyalGelList { get; set; } = new int[] { 23 };
 
+        [JsonProperty("挥发凝胶击中敌怪掉落物品表")]
+        public int[] VolatileGelatin { get; set; } = new int[] { 23, 409, 502, 3111 }; 
+
         [JsonProperty("狱岩套给什么永久BUFF")]
         public int[] MoltenArmor { get; set; } = new int[] { 1, 116 };
 
+        [JsonProperty("挖矿套给什么永久BUFF")]
+        public int[] MiningArmor { get; set; } = new int[] { 104, 192  };
+        [JsonProperty("挖矿套连锁图格ID表")]
+        public int[] Tile { get; set; } = new int[] { 6, 7, 8, 9, 166, 167, 168, 169, 22, 221, 222, 223, 224, 232, 37, 404, 408, 48, 481, 482, 483, 56, 571, 58, 63, 64, 65, 66, 67, 68, 107, 108, 111, 123, 178, 204, 211, 229, 230 };
+
         [JsonProperty("蠕虫围巾免疫buff是否开启")]
-        public bool EnableWormScarf = true;
+        public bool EnableWormScarf = false;
         [JsonProperty("蠕虫围巾遍历前几个buff")]
         public int WormScarfImmuneList_2 = 22;
         [JsonProperty("蠕虫围巾免疫DeBuff列表/遇到会清空所有BUFF")]

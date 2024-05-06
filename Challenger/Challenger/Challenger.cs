@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using OTAPI;
+using System.Net.NetworkInformation;
 using System.Text;
 using Terraria;
 using Terraria.GameContent.Events;
@@ -34,7 +35,7 @@ namespace Challenger
 
         public override string Name => "Challenger";
 
-        public override Version Version => new Version(1, 0, 0, 6);
+        public override Version Version => new Version(1, 0, 0, 7);
 
         public Challenger(Main game)
             : base(game)
@@ -44,6 +45,7 @@ namespace Challenger
         public override void Initialize()
         {
             LoadConfig();
+            GetDataHandlers.TileEdit += OnTileEdit;
             GeneralHooks.ReloadEvent += new GeneralHooks.ReloadEventD(LoadConfig);
             ServerApi.Hooks.GameUpdate.Register((TerrariaPlugin)(object)this, OnGameUpdate);
             GetDataHandlers.PlayerDamage.Register(PlayerSufferDamage, (HandlerPriority)3, false);
@@ -223,6 +225,9 @@ namespace Challenger
 
         public void CrimsonArmorEffect(NpcStrikeEventArgs args)
         {
+            var any = config.CrimsonArmorEffect;
+            var any2 = config.CrimsonArmorEffect_2;
+            var any3 = config.CrimsonArmorEffect_3;
             CPlayer cPlayer = Collect.cplayers[args.Player.whoAmI];
             if (args.Player.armor[0].type != 792 || args.Player.armor[1].type != 793 || args.Player.armor[2].type != 794 || !args.Critical || Timer - cPlayer.CrimsonArmorEffectTimer < 300 || !args.Npc.CanBeChasedBy(null, false))
             {
@@ -243,20 +248,24 @@ namespace Challenger
                 {
                     break;
                 }
-                Projectile.NewProjectile(null, val.Center, Vector2.Zero, 305, 0, 0f, -1, args.Player.whoAmI, num2, 0f);
+                Projectile.NewProjectile(null, val.Center, Vector2.Zero, any, any2, any3, -1, args.Player.whoAmI, num2, 0f);
             }
             cPlayer.CrimsonArmorEffectTimer = (int)Timer;
         }
 
         public void ShadowArmorEffect(NpcStrikeEventArgs args)
         {
+            var any = config.ShadowArmorEffect;
+            var any2 = config.ShadowArmorEffect_2;
+            var any3 = config.ShadowArmorEffect_3;
+
             Item[] armor = args.Player.armor;
             if ((armor[0].netID == 102 || armor[0].netID == 956) && (armor[1].netID == 101 || armor[1].netID == 957) && (armor[2].netID == 100 || armor[2].netID == 958) && args.Critical && Timer - Collect.cplayers[args.Player.whoAmI].ShadowArmorEffectTimer >= 60)
             {
                 int num = Main.rand.Next(2, 6);
                 for (int i = 0; i < num; i++)
                 {
-                    int num2 = Collect.MyNewProjectile(null, args.Player.Center, new Vector2((float)Math.Cos(Main.rand.NextDouble() * 6.2831854820251465), (float)Math.Sin(Main.rand.NextDouble() * 6.2831854820251465)), 307, 20, 2f, args.Player.whoAmI);
+                    int num2 = Collect.MyNewProjectile(null, args.Player.Center, new Vector2((float)Math.Cos(Main.rand.NextDouble() * 6.2831854820251465), (float)Math.Sin(Main.rand.NextDouble() * 6.2831854820251465)), any, any2, any3, args.Player.whoAmI);
                     Projectile obj = Main.projectile[num2];
                     obj.scale *= 0.5f;
                     CProjectile.Update(num2);
@@ -342,7 +351,7 @@ namespace Challenger
             }
         }
 
-        public void NecroArmor(GetDataHandlers.PlayerDamageEventArgs? e, NpcStrikeEventArgs? args)
+        public void NecroArmor(PlayerDamageEventArgs? e, NpcStrikeEventArgs? args)
         {
             if (config.NecroArmor)
             {
@@ -360,7 +369,7 @@ namespace Challenger
                     {
                         for (int i = 0; i < 8; i++)
                         {
-                            Vector2 velocity = Terraria.Utils.RotatedBy(Vector2.UnitY, (double)((float)Math.PI / 4f * i + (float)Math.PI / 8f), default(Vector2)) * 4f;
+                            Vector2 velocity = Terraria.Utils.RotatedBy(Vector2.UnitY, (double)((float)Math.PI / 4f * i + (float)Math.PI / 8f), default) * 4f;
                             int index = Collect.MyNewProjectile(null, Main.player[e.Player.Index].Center, velocity, any, any2, any3, e.Player.Index);
                             CProjectile.Update(index);
                         }
@@ -383,6 +392,8 @@ namespace Challenger
         {
             if (config.ObsidianArmorEffect)
             {
+                var any = config.ObsidianArmorEffect_1; //自定义掉落稀有度
+
                 Item[] armor = args.Player.armor;
                 if (armor[0].type != 3266 || armor[1].type != 3267 || armor[2].type != 3268 || !args.Npc.CanBeChasedBy(null, false) || args.Npc.SpawnedFromStatue)
                 {
@@ -390,7 +401,7 @@ namespace Challenger
                 }
                 try
                 {
-                    if (!args.Npc.boss && args.Npc.rarity <= 1 && args.Npc.lifeMax <= 7000)
+                    if (!args.Npc.boss && args.Npc.rarity <= any && args.Npc.lifeMax <= 7000)
                     {
                         Collect.cnpcs[args.Npc.whoAmI].AccOfObsidian.Add(args.Player.name);
                     }
@@ -414,6 +425,114 @@ namespace Challenger
                 }
             }
         }
+
+        #region 新加挖矿套永久BUFF效果 + VeinMiner 连锁挖矿
+        public bool VeinMinerOpen { get; set; } = false;
+
+        public void MiningArmor(Player player, Config config)
+        {
+            var any = config.MiningArmor;
+
+            Item[] armor = player.armor;
+            if ((armor[0].type == 88 || armor[0].type == 4008) && armor[1].type == 410 && armor[2].type == 411 && Timer % 20 == 0)
+            {
+                foreach (var effect in any)
+                {
+                    TShock.Players[player.whoAmI].SetBuff(effect, 180, false);
+                }
+                VeinMinerOpen = true;
+            }
+            else
+            {
+                VeinMinerOpen = false;
+            }
+        }
+
+        #region 连锁挖矿方法
+        public void OnTileEdit(object o, TileEditEventArgs args)
+        {
+            if (Main.tile[args.X, args.Y] is { } tile && config.Tile.Contains(tile.type) && args.Action == EditAction.KillTile && args.EditData == 0)
+            {
+                var plr = args.Player;
+                if (plr != null && VeinMinerOpen)
+                {
+                    args.Handled = true;
+                    Mine(plr, args.X, args.Y, tile.type);
+                }
+            }
+        }
+
+        void Mine(TSPlayer plr, int x, int y, int type)
+        {
+            var list = GetVein(new List<Point>(), x, y, type);
+            var count = list.Count;
+            var item = Utils.GetItemFromTile(x, y);
+            if (plr.IsSpaceEnough(item.netID, count))
+            {
+                plr.GiveItem(item.netID, count);
+                KillTileAndSend(list, true);
+                plr.SendMessage($"[c/95CFA6:<挑战者:挖矿套>] 连锁挖掘了 [c/95CFA6: {count} {(item.type == 0 ? "未知" : item.Name)}].", Color.White);
+            }
+            else
+            {
+                plr.SendInfoMessage($"[c/95CFA6:<挑战者:挖矿套>] 背包已满，还需空位：[c/95CFA6:{count}] 以放入 [c/95CFA6:{item.Name}] .");
+                plr.SendTileSquareCentered(x, y, 1);
+            }
+        }
+
+        public static void KillTileAndSend(List<Point> list, bool noItem)
+        {
+            Task.Run(() =>
+            {
+                if (!list.Any())
+                    return;
+                var minX = list[0].X;
+                var minY = list[0].Y;
+                var maxX = minX;
+                var maxY = minY;
+                list.ForEach(p =>
+                {
+                    if (p.X < minX) minX = p.X;
+                    if (p.X > maxX) maxX = p.X;
+                    if (p.Y < minY) minY = p.Y;
+                    if (p.Y > maxY) maxY = p.Y;
+                    WorldGen.KillTile(p.X, p.Y, false, false, noItem);
+                    NetMessage.SendData(17, -1, -1, null, 4, p.X, p.Y, false.GetHashCode());
+                });
+                NetMessage.SendTileSquare(-1, minX, minY, maxX - minX + 1, maxY - minY + 1, Terraria.ID.TileChangeType.None);
+            });
+        }
+
+        public static List<Point> GetVein(List<Point> list, int x, int y, int type)
+        {
+            var stack = new Stack<(int X, int Y)>();
+            stack.Push((x, y));
+
+            while (stack.Any() && list.Count <= 1000)
+            {
+                var (curX, curY) = stack.Pop();
+
+                if (!list.Any(p => p.Equals(new Point(curX, curY))) && Main.tile[curX, curY] is { } tile && tile.active() && tile.type == type)
+                {
+                    list.Add(new Point(curX, curY));
+                    var directions = new[] { (1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1) };
+                    foreach (var (dx, dy) in directions)
+                    {
+                        var newX = curX + dx;
+                        var newY = curY + dy;
+                        if (newX >= 0 && newX < Main.maxTilesX && newY >= 0 && newY < Main.maxTilesY)
+                        {
+                            stack.Push((newX, newY));
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+        #endregion
+
+
+        #endregion
 
         public void SpiderArmorEffect(NpcStrikeEventArgs? args, Player? player)
         {
@@ -992,30 +1111,27 @@ namespace Challenger
         {
             if (args.Npc.CanBeChasedBy(null, false) && !args.Npc.SpawnedFromStatue)
             {
-                int num = Main.rand.Next(700);
-                if (num >= 90 && num < 100)
-                {
-                    Item.NewItem(null, args.Npc.Center, new Vector2(20f, 20f), 502, 1, false, 0, false, false);
-                }
-                else if (num >= 80 && num < 90 && Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[-4]) > 0)
-                {
-                    Item.NewItem(null, args.Npc.Center, new Vector2(20f, 20f), 3111, 1, false, 0, false, false);
-                }
-                else if (num >= 60 && num < 80)
-                {
-                    Item.NewItem(null, args.Npc.Center, new Vector2(20f, 20f), 409, 1, false, 0, false, false);
-                }
-                else if (num >= 40 && num < 60)
-                {
-                    Item.NewItem(null, args.Npc.Center, new Vector2(20f, 20f), 23, 1, false, 0, false, false);
-                }
+                // 直接从配置的Config数组中随机选择一个物品ID
+                int randomIndex = Main.rand.Next(config.VolatileGelatin.Length);
+                int itemId = config.VolatileGelatin[randomIndex];
+
+                // 创建掉落物，使用随机选中的itemId
+                Item.NewItem(null, args.Npc.Center, new Vector2(20f, 20f), itemId, 1, false, 0, false, false);
             }
         }
+
+
 
         public void DisplayTips(TSPlayer tsplayer, short type)
         {
             switch (type)
             {
+                case 88:
+                case 4008:
+                case 410:
+                case 411:
+                    SendPlayerText(tsplayer, "【挖矿套装】\n挑战模式奖励：给予永久的挖矿、糖果冲刺Buff\n启用连锁挖矿能力", new Color(91, 101, 132), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    break;
                 case 2367:
                 case 2368:
                 case 2369:
@@ -1339,6 +1455,7 @@ namespace Challenger
                     default:
                         if (Timer % 5 == 0)
                         {
+                            MiningArmor(tPlayer, config);
                             FossilArmorEffect(tPlayer);
                             ChlorophyteArmorEffect(tPlayer);
                             TurtleArmorEffect(tPlayer);
