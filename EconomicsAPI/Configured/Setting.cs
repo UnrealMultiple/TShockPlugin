@@ -25,6 +25,12 @@ public class Setting
     [JsonProperty("显示信息")]
     public bool StatusText = true;
 
+    [JsonProperty("显示信息左移")]
+    public int StatusTextShiftLeft = 60;
+
+    [JsonProperty("显示信息下移")]
+    public int StatusTextShiftDown = 0;
+
     [JsonProperty("查询提示")]
     public string QueryFormat = "[c/FFA500:你当前拥有{0}{1}个]";
 }
