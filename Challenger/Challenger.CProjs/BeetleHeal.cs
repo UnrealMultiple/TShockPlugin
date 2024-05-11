@@ -16,7 +16,7 @@ namespace Challenger
 
         public override void ProjectileAI()
         {
-            Player val = global::Challenger.Challenger.NearWeakestPlayer(proj.Center, 640000f, Main.player[proj.owner]);
+            Player val = Challenger.NearWeakestPlayer(proj.Center, 640000f, Main.player[proj.owner]);
             if (val != null && proj.owner != val.whoAmI)
             {
                 Projectile? obj = proj;
@@ -45,16 +45,16 @@ namespace Challenger
                         Vector2 val3 = proj.Center - val2.TPlayer.Center;
                         if (((Vector2)val3).LengthSquared() <= val2.TPlayer.width * val2.TPlayer.height)
                         {
-                            global::Challenger.Challenger.HealPlayer(val2.TPlayer, num, visible: false);
+                            Challenger.HealPlayer(val2.TPlayer, num, visible: false);
                             val2.SetBuff(95, 300, false);
-                            if (global::Challenger.Challenger.config.EnableConsumptionMode)
+                            if (Challenger.config.EnableConsumptionMode)
                             {
                                 Challenger.SendPlayerText($"甲虫治疗 + {num} 治疗者:{Main.player[proj.owner].name}", new Color(210, 0, 255), val2.TPlayer.Center + new Vector2(Main.rand.Next(-60, 61), Main.rand.Next(61)));
                                 val2.SendMessage($"你被 {Main.player[proj.owner].name} 治疗了 {num} 点生命值", new Color(210, 0, 255));
                             }
                             else
                             {
-                                global::Challenger.Challenger.SendPlayerText($"{num}", new Color(0, 255, 0), val2.TPlayer.Center + new Vector2(Main.rand.Next(-60, 61), Main.rand.Next(61)));
+                                Challenger.SendPlayerText($"{num}", new Color(0, 255, 0), val2.TPlayer.Center + new Vector2(Main.rand.Next(-60, 61), Main.rand.Next(61)));
                             }
                             CKill();
                             return;

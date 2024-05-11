@@ -1,12 +1,12 @@
 ﻿using ChalleAnger;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
+using NuGet.Protocol.Plugins;
+using Org.BouncyCastle.Asn1.Cmp;
 using OTAPI;
-using System.Net.NetworkInformation;
 using System.Text;
 using Terraria;
 using Terraria.GameContent.Events;
-using Terraria.ID;
 using Terraria.Localization;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -35,7 +35,7 @@ namespace Challenger
 
         public override string Name => "Challenger";
 
-        public override Version Version => new Version(1, 0, 0, 7);
+        public override Version Version => new Version(1, 0, 0, 8);
 
         public Challenger(Main game)
             : base(game)
@@ -45,7 +45,7 @@ namespace Challenger
         public override void Initialize()
         {
             LoadConfig();
-            GetDataHandlers.TileEdit += OnTileEdit;
+            GetDataHandlers.TileEdit += OnTileEdit!;
             GeneralHooks.ReloadEvent += new GeneralHooks.ReloadEventD(LoadConfig);
             ServerApi.Hooks.GameUpdate.Register((TerrariaPlugin)(object)this, OnGameUpdate);
             GetDataHandlers.PlayerDamage.Register(PlayerSufferDamage, (HandlerPriority)3, false);
@@ -57,7 +57,7 @@ namespace Challenger
             ServerApi.Hooks.NpcStrike.Register((TerrariaPlugin)(object)this, OnNpcStrike);
             GetDataHandlers.PlayerSlot.Register(OnHoldItem, (HandlerPriority)3, false);
             ServerApi.Hooks.NetGreetPlayer.Register((TerrariaPlugin)(object)this, OnGreetPlayer);
-            //       ServerApi.Hooks.ServerLeave.Register((TerrariaPlugin)(object)this, OnServerLeave);
+            //ServerApi.Hooks.ServerLeave.Register((TerrariaPlugin)(object)this, OnServerLeave);
             Commands.ChatCommands.Add(new Command("challenger.enable", new CommandDelegate(EnableModel), new string[1] { "cenable" })
             {
                 HelpText = "输入 /cenable  来启用挑战模式，再次使用取消"
@@ -77,7 +77,7 @@ namespace Challenger
             if (disposing)
             {
                 GeneralHooks.ReloadEvent -= new ReloadEventD(LoadConfig);
-
+                GetDataHandlers.TileEdit -= OnTileEdit!;
                 ServerApi.Hooks.GameUpdate.Deregister((TerrariaPlugin)(object)this, OnGameUpdate);
                 GetDataHandlers.PlayerDamage.UnRegister(PlayerSufferDamage);
                 ServerApi.Hooks.ProjectileAIUpdate.Deregister((TerrariaPlugin)(object)this, OnProjAIUpdate);
@@ -426,6 +426,45 @@ namespace Challenger
             }
         }
 
+        #region  箭袋无限弹药方法
+        // 定义一个方法用于为玩家补充箭矢
+        private void RefillArrow(Player player)
+        {
+            if (config.RefillEnabled)
+            {
+                if (Timer % config.RefillTime == 0)
+                {
+                    foreach (var Type in config.RefillArrow)
+                    {
+                        int itemCount = 0;
+                        for (int i = 0; i < player.inventory.Length; i++)
+                        {
+                            if (player.controlUseItem && player.inventory[i].consumable && player.inventory[i].type > 0 && config.RefillArrow.Contains(player.inventory[i].type))
+                            {
+                                player.inventory[i].stack = config.Refillstack;
+                                TShock.Players[player.whoAmI].SendData(PacketTypes.PlayerSlot, null, player.whoAmI, i);
+                            }
+                            else if (player.inventory[i].type == Type)
+                            {
+                                itemCount++;
+                                if (itemCount > 1)
+                                {
+                                    player.inventory[i].type = 0;
+                                    player.inventory[i].stack = 0;
+                                    TShock.Players[player.whoAmI].SendData(PacketTypes.PlayerSlot, null, player.whoAmI, i);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            foreach (var effect in config.RefillBuff)
+            {
+                TShock.Players[player.whoAmI].SetBuff(effect, 180, false);
+            }
+        }
+        #endregion
+
         #region 新加挖矿套永久BUFF效果 + VeinMiner 连锁挖矿
         public bool VeinMinerOpen { get; set; } = false;
 
@@ -534,7 +573,6 @@ namespace Challenger
         }
         #endregion
 
-
         #endregion
 
         public void SpiderArmorEffect(NpcStrikeEventArgs? args, Player? player)
@@ -610,12 +648,14 @@ namespace Challenger
             {
                 var any = config.ForbiddenArmorEffect_2;
                 var any2 = config.ForbiddenArmorEffect_3;
+                var any3 = config.ForbiddenArmorEffect_4;
+                var any4 = config.ForbiddenArmorEffect_5;
 
                 Item[] armor = player.armor;
-                if (armor[0].type == 3776 && armor[1].type == 3777 && armor[2].type == 3778 && Main.rand.Next(20) == 0)
+                if (armor[0].type == 3776 && armor[1].type == 3777 && armor[2].type == 3778 && Main.rand.Next(any3) == 0)
                 {
                     NPC val = NearestHostileNPC(player.Center, 1000000f);
-                    Vector2 postion = player.Center + Terraria.Utils.RotatedByRandom(Vector2.UnitX, 6.2831854820251465) * Main.rand.Next(100);
+                    Vector2 postion = player.Center + Terraria.Utils.RotatedByRandom(Vector2.UnitX, 6.2831854820251465) * Main.rand.Next(any4);
                     int index = ((val == null) ? Collect.MyNewProjectile(null, postion, Vector2.Zero, any, any2, 0f, player.whoAmI, -2f) : Collect.MyNewProjectile(null, postion, Vector2.Zero, any, any2, 0f, player.whoAmI, val.whoAmI));
                     CProjectile.Update(index);
                 }
@@ -815,6 +855,7 @@ namespace Challenger
             var any1 = config.BeetleArmorEffect_1;//生命上限
             var any2 = config.BeetleArmorEffect_2;//圣骑士锤伤害
             var any3 = config.BeetleArmorEffect_3;//自定义受伤回血比例
+            var any4 = config.BeetleArmorEffect_4;//弹幕ID
 
             if (player != null)
             {
@@ -871,7 +912,7 @@ namespace Challenger
                 double num2 = Main.rand.NextDouble();
                 Vector2 val = args.Npc.Center + new Vector2((float)Math.Cos(num2 * 6.2831854820251465), (float)Math.Sin(num2 * 6.2831854820251465)) * 250f;
                 Vector2 velocity = Terraria.Utils.SafeNormalize(args.Npc.Center - val, Vector2.Zero) * 20f;
-                int index = Collect.MyNewProjectile(Projectile.GetNoneSource(), val, velocity, 301, flag3 ? ((int)(args.Damage * any2)) : ((int)(args.Damage * 0.45f)), 20.114f, args.Player.whoAmI);
+                int index = Collect.MyNewProjectile(Projectile.GetNoneSource(), val, velocity, any4, flag3 ? ((int)(args.Damage * any2)) : ((int)(args.Damage * 0.45f)), 20.114f, args.Player.whoAmI);
                 CProjectile.Update(index);
             }
         }
@@ -946,7 +987,6 @@ namespace Challenger
 
             Item[] armor = player.armor;
             bool flag = armor[0].type == 1503 && armor[1].type == 1504 && armor[2].type == 1505;
-
             if (flag && clear == !Collect.cplayers[player.whoAmI].SpectreArmorEffectLife)
             {
                 player.statLifeMax += any;
@@ -958,7 +998,6 @@ namespace Challenger
                     SendPlayerText($"生命值上限 + {any}", new Color(0, 255, 255), player.Center);
                 }
 
-
                 if (config.EnableSpectreArmorEffect_1)
                 {
                     Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
@@ -967,7 +1006,6 @@ namespace Challenger
 
             else if (flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectLife && !Collect.cprojs[Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex].isActive)
             {
-
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
             }
 
@@ -984,19 +1022,18 @@ namespace Challenger
                 }
                 CProjectile.CKill(Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex);
             }
+
             flag = armor[0].type == 2189 && armor[1].type == 1504 && armor[2].type == 1505;
             if (flag && clear2 == !Collect.cplayers[player.whoAmI].SpectreArmorEffectMana)
             {
                 player.statManaMax += any;
                 Collect.cplayers[player.whoAmI].ExtraMana += any;
                 NetMessage.SendData(42, -1, -1, NetworkText.Empty, player.whoAmI, 0f, 0f, 0f, 0, 0, 0);
-
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectMana = true;
                 if (config.EnableConsumptionMode)
                 {
                     SendPlayerText($"魔力值上限 + {any}", new Color(0, 255, 255), player.Center + new Vector2(0f, 32f));
                 }
-
                 if (config.EnableSpectreArmorEffect_2)
                 {
                     Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
@@ -1004,7 +1041,6 @@ namespace Challenger
             }
             else if (flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectMana && !Collect.cprojs[Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex].isActive)
             {
-
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
             }
             if (!flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectMana)
@@ -1045,6 +1081,7 @@ namespace Challenger
                 }
             }
         }
+
 
         public void HivePack(Player player)
         {
@@ -1093,7 +1130,6 @@ namespace Challenger
             {
                 var c = config.WormScarfImmuneList_2; //遍历前多少个数量
                 int[] List = config.WormScarfImmuneList; //免疫的BUFFID
-
                 bool flag = false;
                 for (int i = 0; i < c; i++)
                 {
@@ -1107,6 +1143,12 @@ namespace Challenger
                 {
                     TShock.Players[player.whoAmI].SendData((PacketTypes)50, "", player.whoAmI, 0f, 0f, 0f, 0);
                 }
+            }
+
+            var any = config.WormScarfSetBuff;
+            foreach (var effect in any)
+            {
+                TShock.Players[player.whoAmI].SetBuff(effect, 180, false);
             }
         }
 
@@ -1296,6 +1338,11 @@ namespace Challenger
                 case 3333:
                     SendPlayerText(tsplayer, "【蜜蜂背包】\n挑战模式奖励：不间断地向四周扔出毒蜂罐，爆炸\n后释放一只蜜蜂", new Color(232, 229, 74), Main.player[tsplayer.Index].Center);
                     break;
+                case 1321:
+                case 4002:
+                case 4006:
+                    SendPlayerText(tsplayer, "【箭袋】\n挑战模式奖励：无限补充弹药，额外获得BUFF", new Color(232, 229, 74), Main.player[tsplayer.Index].Center);
+                    break;
                 case 4987:
                     SendPlayerText(tsplayer, "【挥发明胶】\n挑战模式奖励：击中敌人有概率掉落碎魔晶，珍珠\n石，凝胶等", new Color(232, 229, 74), Main.player[tsplayer.Index].Center);
                     break;
@@ -1332,13 +1379,13 @@ namespace Challenger
                 {
                     if (Collect.cplayers[args.Who].ExtraLife > 0)
                     {
-                        Player obj = Main.player[args.Who];
+                        Player obj = Main.tplayer[args.Who];
                         obj.statLifeMax -= Collect.cplayers[args.Who].ExtraLife;
                         NetMessage.SendData(16, -1, -1, NetworkText.Empty, args.Who, 0f, 0f, 0f, 0, 0, 0);
                     }
                     if (Collect.cplayers[args.Who].ExtraMana > 0)
                     {
-                        Player obj2 = Main.player[args.Who];
+                        Player obj2 = Main.tplayer[args.Who];
                         obj2.statManaMax -= Collect.cplayers[args.Who].ExtraMana;
                         NetMessage.SendData(42, -1, -1, NetworkText.Empty, args.Who, 0f, 0f, 0f, 0, 0, 0);
                     }
@@ -1477,6 +1524,11 @@ namespace Challenger
                 {
                     switch (armor[j].type)
                     {
+                        case 1321:
+                        case 4002:
+                        case 4006:
+                            RefillArrow(tPlayer);
+                            break;
                         case 3333:
                             HivePack(tPlayer);
                             break;
