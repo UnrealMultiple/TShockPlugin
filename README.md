@@ -120,11 +120,7 @@
 
 ## 代码贡献
 
-- [熙恩](https://github.com/THEXN)
-- [羽学](https://github.com/1242509682)
-- [Cjx](https://github.com/FHTXcjx8848)
-- [Cai](https://github.com/ACaiCat)
-- [tshock 团队](https://github.com/Pryaxis/TShock)
+[![Contributors](https://stats.deeptrain.net/contributor/Controllerdestiny/TShockPlugin)](https://github.com/Controllerdestiny/TShockPlugin/graphs/contributors)
 
 ## 友情链接
 
