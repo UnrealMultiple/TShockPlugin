@@ -1,39 +1,48 @@
+<div align = "center">
+
 # 这是一个 TShock 插件搜集仓库
+
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Controllerdestiny/TShockPlugin/total)
 ![GitHub stars](https://img.shields.io/github/stars/Controllerdestiny/TShockPlugin?style=flat)
 ![GitHub forks](https://img.shields.io/github/forks/Controllerdestiny/TShockPlugin?style=flat)
 ![GitHub contributors](https://img.shields.io/github/contributors/Controllerdestiny/TShockPlugin?style=flat)
+![C#](https://img.shields.io/badge/Core-%20.NET_6-blue)
+[![QQ](https://img.shields.io/badge/QQ-EB1923?logo=tencent-qq&logoColor=white)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=NS-Vih3vtiBDSRRRlq_KG9f_5MgE3IPj&authKey=srNGvhGh1Qp1lnZ283UbIltsa57PcKbuVuYd52k%2BlLpuOT%2FwQ3NE2YVskGMBWYz%2F&noverify=0&group_code=816771079)
+[![TShock](https://img.shields.io/badge/TShock5.2.0-2B579A.svg?&logo=TShock&logoColor=white)](https://github.com/Pryaxis/TShock)
+
+</div>
 
 ## 前言
 
-这是一个致力于收集整合 TShock 插件的仓库，因项目的特殊性，可能会造成侵权行为，如有侵权请联系我们解决。  
-我们将持续收集优质的 TShock 插件，并及时进行更新，期待各位的加入。  
-如果遇到插件使用上的问题或建议，可在此仓库或分支仓库发起 issue，我们会进行修复。
+这是一个致力于收集整合 `TShock` 插件的仓库。  
+库中内插件容部分来源于网络收集以及反编译，因项目的特殊性，可能会造成侵权行为，如有侵权请联系我们解决。  
+我们将持续收集优质的 `TShock` 插件，进行及时的更新。并跟进`TShock`的最新版本。  
+如果你也想加入我们，请按照下方`开发者注意事项`的规定对本仓库`Pull Request`。
 
-## 使用注意事项
+## 使用者注意事项
 
 - 注意有些插件可能需要前置，请查看下方列表安装前置插件。
 - 每个插件都有一个使用说明，在下方列表点击超链查看具体说明事项。
-- 如有使用说明不够明确请通知我们及时更改。
 
 ## 开发者注意事项
 
-- 该项目中代码避免使用中文变量，且尽量避免使用多线程。
+> 代码规范
+
+- 禁止使用中文变量
+- 禁止使用危险功能
+- 尽量避免使用多线程
+- 禁止为插件留有后门
 - 请给每个插件项目附带一个 README.md 说明文件。
 
-## 代码贡献
+## 反馈
 
-- [熙恩](https://github.com/THEXN)
-- [羽学](https://github.com/1242509682)
-- [Cjx](https://github.com/FHTXcjx8848)
-- [Cai](https://github.com/ACaiCat)
-- [tshock 团队](https://github.com/Pryaxis/TShock)
+> 对于本代码库的任何反馈、建议或改进，将被视为公共贡献，并可能被纳入本代码库，除非明确声明其他意图。
 
-## 友情链接
-
-- [TShock 插件开发文档](https://github.com/ACaiCat/TShockPluginDocument)
+- 如有 bug，请规范`issue`提供相关系统以及 TShock 版本 bug 复现流程。
 
 ### 已收集插件
+
+> 点击蓝链可查看插件详细说明
 
 | 名称                                                             |            插件说明            |                                            前置                                            |
 | ---------------------------------------------------------------- | :----------------------------: | :----------------------------------------------------------------------------------------: |
@@ -103,4 +112,16 @@
 | [RestInventory](RestInventory/README.md)                         |     提供 REST 查询背包接口     |                                             无                                             |
 | [WikiLangPackLoader](WikiLangPackLoader/README.md)               |    为服务器加载 Wiki 语言包    |                                             无                                             |
 | [HelpPlus](HelpPlus/README.md)                                   |      修复和增强 Help 命令      |                                             无                                             |
-| [CaiBot](CaiBot/README.md)                                       |    CaiBot适配插件        |                                              自带前置                                           |
+| [CaiBot](CaiBot/README.md)                                       |        CaiBot 适配插件         |                                          自带前置                                          |
+
+## 代码贡献
+
+- [熙恩](https://github.com/THEXN)
+- [羽学](https://github.com/1242509682)
+- [Cjx](https://github.com/FHTXcjx8848)
+- [Cai](https://github.com/ACaiCat)
+- [tshock 团队](https://github.com/Pryaxis/TShock)
+
+## 友情链接
+
+- [TShock 插件开发文档](https://github.com/ACaiCat/TShockPluginDocument)
