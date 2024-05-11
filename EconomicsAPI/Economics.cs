@@ -66,13 +66,13 @@ public class Economics : TerrariaPlugin
 
     private void PlayerHandler_OnPlayerCountertop(PlayerCountertopArgs args)
     {
-        args.Messages.Add(new($"当前延迟:{args.Ping.GetPing():F1}", 7));
-        args.Messages.Add(new($"玩家名称:{args.Player.Name}", 1));
-        args.Messages.Add(new($"{Setting.CurrencyName}数量:{CurrencyManager.GetUserCurrency(args.Player.Name)}", 3));
-        args.Messages.Add(new($"在线人数:{TShock.Utils.GetActivePlayerCount()}/{Main.maxPlayers}", 4));
-        args.Messages.Add(new($"世界名称:{Main.worldName}", 9));
-        args.Messages.Add(new($"当前生命:{args.Player.TPlayer.statLife}/{args.Player.TPlayer.statLifeMax}", 5));
-        args.Messages.Add(new($"当前魔力:{args.Player.TPlayer.statMana} / {args.Player.TPlayer.statManaMax}", 6));
+        args.Messages.Add(new($"当前延迟: {args.Ping.GetPing():F1}ms", 7));
+        args.Messages.Add(new($"玩家名称: {args.Player.Name}", 1));
+        args.Messages.Add(new($"{Setting.CurrencyName}数量: {CurrencyManager.GetUserCurrency(args.Player.Name)}", 3));
+        args.Messages.Add(new($"在线人数: {TShock.Utils.GetActivePlayerCount()}/{Main.maxPlayers}", 4));
+        args.Messages.Add(new($"世界名称: {Main.worldName}", 9));
+        args.Messages.Add(new($"当前生命: {args.Player.TPlayer.statLife}/{args.Player.TPlayer.statLifeMax}", 5));
+        args.Messages.Add(new($"当前魔力: {args.Player.TPlayer.statMana}/{args.Player.TPlayer.statManaMax}", 6));
     }
 
     private void OnKillMe(object? sender, GetDataHandlers.KillMeEventArgs e)

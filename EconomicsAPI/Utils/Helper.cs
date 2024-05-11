@@ -1,7 +1,6 @@
 ﻿using EconomicsAPI.Attributes;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
 using EconomicsAPI.Extensions;
-using EconomicsAPI.Model;
 using Rests;
 using System.Reflection;
 using System.Text;
@@ -74,17 +73,13 @@ public class Helper
     public static void CountertopUpdate(PlayerCountertopArgs args)
     {
         StringBuilder sb = new();
-        string EndLine9 = new('\n', 9);
-        string EndLine15 = new('\n', 15);
-        sb.Append(EndLine9);
-        sb.Append("\n\n");
-        args.Messages.OrderBy(x => x.Order).ForEach(x => sb.AppendLine(x.Message));
-        sb.Append(EndLine15);
-        sb.Append(EndLine15);
-        sb.Append(EndLine15);
-        if (args.Ping.TSPlayer != null)
+        string down = new('\n', Economics.Setting.StatusTextShiftDown);
+        string Left = new(' ', Economics.Setting.StatusTextShiftLeft);
+        sb.AppendLine(down);
+        args.Messages.OrderBy(x => x.Order).ForEach(x => sb.AppendLine(x.Message + Left));
+        if (args.Player != null)
         {
-            args.Ping.TSPlayer.SendData(PacketTypes.Status, sb.ToString(), 0, 0);
+            args.Player.SendData(PacketTypes.Status, sb.ToString(), 0, 1);
         }
     }
 
