@@ -49,9 +49,11 @@ public class RPG : TerrariaPlugin
         if (level != null && !string.IsNullOrEmpty(level.ChatFormat))
         {
             TShock.Utils.Broadcast(string.Format(level.ChatFormat,
-                level.ChatPrefix,
-                e.Player.Name,
-                level.ChatSuffix,
+                e.Player.Group.Name, //{0} 组名
+                level.Name,          //{1} 职业名
+                level.ChatPrefix,    //{2} 聊天前缀
+                e.Player.Name,       //{3} 玩家名
+                level.ChatSuffix,    //{4} 聊天后缀
                 e.RawText),
                 (byte)level.ChatRGB[0],
                 (byte)level.ChatRGB[1],
