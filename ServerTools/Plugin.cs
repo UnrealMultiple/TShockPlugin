@@ -65,7 +65,6 @@ namespace ServerTools
             Commands.ChatCommands.Add(new Command("servertool.user.dead", DeathRank, "死亡排行"));
             Commands.ChatCommands.Add(new("servertool.user.online", Online, "在线排行"));
             #endregion
-
             #region TShcok 钩子
             GetDataHandlers.NewProjectile.Register(NewProj);
             GetDataHandlers.ItemDrop.Register(OnItemDrop);
@@ -82,6 +81,8 @@ namespace ServerTools
             Timer += OnUpdatePlayerOnline;
             HandleCommandLine(Environment.GetCommandLineArgs());
         }
+
+       
 
         private void Exit(CommandArgs args)
         {
@@ -191,7 +192,7 @@ namespace ServerTools
             if (Main.projectile[e.Index].bobber && Config.MultipleFishingRodsAreProhibited && Config.ForbiddenBuoys.FindAll(f => f == e.Type).Count > 0)
             {
                 var bobber = Main.projectile.Where(f => f != null && f.owner == e.Owner && f.active && f.type == e.Type);
-                if (bobber.Count() > 1)
+                if (bobber.Count() > 2)
                 {
                     e.Player.SendErrorMessage("你因多鱼线被石化3秒钟!");
                     e.Player.SetBuff(156, 180, true);
@@ -287,14 +288,15 @@ namespace ServerTools
         {
             var ply = TShock.Players[args.Msg.whoAmI];
             if (args.Handled || ply == null) return;
-            if (args.MsgID == PacketTypes.ForceItemIntoNearestChest && Config.LimitForceItemIntoNearestChest)
-            {
-                ply.SendErrorMessage("禁止快速堆叠!");
-                args.Handled = true;
-                return;
-            }
+
             if (Config.PickUpMoney && args.MsgID == PacketTypes.SyncExtraValue)
             {
+                using BinaryReader reader = new(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length));
+                var npcid = reader.ReadInt16();
+                var money = reader.ReadInt32();
+                var x = reader.ReadSingle();
+                var y = reader.ReadSingle();
+                ply.SendData(PacketTypes.SyncExtraValue, "", npcid, 0, x, y);
                 args.Handled = true;
                 return;
             }
