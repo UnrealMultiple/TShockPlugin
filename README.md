@@ -1,4 +1,8 @@
 # 这是一个 TShock 插件搜集仓库
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Controllerdestiny/TShockPlugin/total)
+![GitHub stars](https://img.shields.io/github/stars/Controllerdestiny/TShockPlugin?style=flat)
+![GitHub forks](https://img.shields.io/github/forks/Controllerdestiny/TShockPlugin?style=flat)
+![GitHub contributors](https://img.shields.io/github/contributors/Controllerdestiny/TShockPlugin?style=flat)
 
 ## 前言
 
