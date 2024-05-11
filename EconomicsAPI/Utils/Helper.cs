@@ -1,5 +1,5 @@
 ﻿using EconomicsAPI.Attributes;
-using EconomicsAPI.EventArgs;
+using EconomicsAPI.EventArgs.PlayerEventArgs;
 using EconomicsAPI.Extensions;
 using EconomicsAPI.Model;
 using Rests;

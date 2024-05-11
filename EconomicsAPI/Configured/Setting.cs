@@ -22,6 +22,9 @@ public class Setting
     [JsonProperty("死亡掉落率")]
     public float DeathDropRate = 0f;
 
+    [JsonProperty("显示信息")]
+    public bool StatusText = true;
+
     [JsonProperty("查询提示")]
     public string QueryFormat = "[c/FFA500:你当前拥有{0}{1}个]";
 }

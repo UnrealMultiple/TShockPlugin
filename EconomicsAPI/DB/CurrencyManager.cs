@@ -1,4 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using EconomicsAPI.Enumerates;
+using EconomicsAPI.EventArgs.PlayerEventArgs;
+using EconomicsAPI.Events;
+using MySql.Data.MySqlClient;
 using System.Data;
 using TShockAPI;
 using TShockAPI.DB;
@@ -59,6 +62,25 @@ public class CurrencyManager
 
     public void AddUserCurrency(string name, long num)
     {
+        var player = Economics.ServerPlayers.Find(x => x.Name == name && x.Active);
+        if (player != null)
+        {
+            var args = new PlayerCurrencyUpdateArgs()
+            {
+                Change = num,
+                CurrentType = CurrencyUpdateType.Added,
+                Player = player,
+                Current = Currency.TryGetValue(name, out var cur) ? cur : 0
+            };
+            if (PlayerHandler.PlayerCurrencyUpdate(args))
+                return;
+            num = args.Change;
+        }
+        Add(name, num);
+    }
+
+    private void Add(string name, long num)
+    {
         if (Currency.ContainsKey(name))
             Currency[name] += num;
         else
@@ -70,7 +92,7 @@ public class CurrencyManager
         Currency[name] = 0;
     }
 
-    public bool DelUserCurrency(string name, long num)
+    public bool Del(string name, long num)
     {
         if (GetUserCurrency(name) >= num)
         {
@@ -78,6 +100,25 @@ public class CurrencyManager
             return true;
         }
         return false;
+    }
+
+    public bool DelUserCurrency(string name, long num)
+    {
+        var player = Economics.ServerPlayers.Find(x => x.Name == name && x.Active);
+        if (player != null)
+        {
+            var args = new PlayerCurrencyUpdateArgs()
+            {
+                Change = num,
+                CurrentType = CurrencyUpdateType.Delete,
+                Player = player,
+                Current = Currency.TryGetValue(name, out var cur) ? cur : 0
+            };
+            if (PlayerHandler.PlayerCurrencyUpdate(args))
+                return true;
+            num = args.Change;
+        }
+        return Del(name, num);
     }
 
     public void Reset()

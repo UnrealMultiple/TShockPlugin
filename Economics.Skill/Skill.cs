@@ -1,7 +1,7 @@
 ﻿using Economics.Skill.Events;
 using Economics.Skill.Setting;
 using EconomicsAPI.Configured;
-using EconomicsAPI.EventArgs;
+using EconomicsAPI.EventArgs.PlayerEventArgs;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;

@@ -1,17 +1,13 @@
 ﻿using Terraria;
 using TShockAPI;
 
-namespace EconomicsAPI.EventArgs;
+namespace EconomicsAPI.EventArgs.PlayerEventArgs;
 
-public class PlayerKillNpcArgs : System.EventArgs
+public class PlayerKillNpcArgs : BasePlayerEventArgs
 {
-    public TSPlayer Player { get; }
-
     public NPC Npc { get; }
 
     public int Damage { get; }
-
-    public bool Handler { get; set; } = false;
 
     internal PlayerKillNpcArgs(Player player, NPC npc, int damage)
     {
