@@ -38,9 +38,6 @@ public class Config
     [JsonProperty("禁止多鱼线")]
     public bool MultipleFishingRodsAreProhibited = true;
 
-    [JsonProperty("禁止快速放入箱子")]
-    public bool LimitForceItemIntoNearestChest = false;
-
     [JsonProperty("死亡倒计时")]
     public bool DeadTimer = false;
 
