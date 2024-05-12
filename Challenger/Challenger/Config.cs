@@ -223,6 +223,8 @@ namespace Challenger
         public int EnableSpectreArmorEffect_7 = 0;
         [JsonProperty("幽灵套环绕的弹幕击退", Order = 2)]
         public float EnableSpectreArmorEffect_8 = 0f;
+        [JsonProperty("幽灵套给什么永久BUFF", Order = 2)]
+        public int[] SpectreArmorEffectList { get; set; } = new int[] { 6, 7, 181, 178 };
 
         [JsonProperty("甲虫套加多少生命上限")]
         public int BeetleArmorEffect_1 = 60;
