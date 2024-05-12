@@ -166,7 +166,6 @@ namespace Challenger
                 {
                     foreach (int buffId in config.AnglerArmorEffectList)
                     {
-                        // 为玩家设置BUFF，持续时间为180秒，不显示图标
                         TShock.Players[player.whoAmI].SetBuff(buffId, 180, false);
                     }
                 }
@@ -984,9 +983,16 @@ namespace Challenger
             var any = config.SpectreArmorEffect;
             var clear = config.EnableSpectreArmorEffect_1;//关闭幽灵兜帽弹幕开关
             var clear2 = config.EnableSpectreArmorEffect_2;//关闭面具弹幕开关
-
             Item[] armor = player.armor;
             bool flag = armor[0].type == 1503 && armor[1].type == 1504 && armor[2].type == 1505;
+            if (flag)
+            {
+                foreach (var effect in config.SpectreArmorEffectList)
+                {
+                    TShock.Players[player.whoAmI].SetBuff(effect, 180, false);
+                }
+            }
+
             if (flag && clear == !Collect.cplayers[player.whoAmI].SpectreArmorEffectLife)
             {
                 player.statLifeMax += any;
@@ -1006,6 +1012,7 @@ namespace Challenger
 
             else if (flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectLife && !Collect.cprojs[Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex].isActive)
             {
+
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
             }
 
@@ -1022,18 +1029,27 @@ namespace Challenger
                 }
                 CProjectile.CKill(Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex);
             }
-
             flag = armor[0].type == 2189 && armor[1].type == 1504 && armor[2].type == 1505;
+            if (flag)
+            {
+                foreach (var effect in config.SpectreArmorEffectList)
+                {
+                    TShock.Players[player.whoAmI].SetBuff(effect, 180, false);
+                }
+            }
+
             if (flag && clear2 == !Collect.cplayers[player.whoAmI].SpectreArmorEffectMana)
             {
                 player.statManaMax += any;
                 Collect.cplayers[player.whoAmI].ExtraMana += any;
                 NetMessage.SendData(42, -1, -1, NetworkText.Empty, player.whoAmI, 0f, 0f, 0f, 0, 0, 0);
+
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectMana = true;
                 if (config.EnableConsumptionMode)
                 {
                     SendPlayerText($"魔力值上限 + {any}", new Color(0, 255, 255), player.Center + new Vector2(0f, 32f));
                 }
+
                 if (config.EnableSpectreArmorEffect_2)
                 {
                     Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
@@ -1041,6 +1057,7 @@ namespace Challenger
             }
             else if (flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectMana && !Collect.cprojs[Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex].isActive)
             {
+
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + Vector2.UnitY * 100f, Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
             }
             if (!flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectMana)
@@ -1120,7 +1137,7 @@ namespace Challenger
             }
             if (Timer - Collect.cplayers[player.whoAmI].CthulhuShieldTime == (time * 60))
             {
-                SendPlayerText(TShock.Players[player.whoAmI], "克苏鲁之盾冷却完成", new Color(255, 183, 183), player.Center);
+                SendPlayerText(TShock.Players[player.whoAmI], "冲刺类饰品冷却完成", new Color(255, 183, 183), player.Center);
             }
         }
 
@@ -1137,19 +1154,13 @@ namespace Challenger
                     {
                         flag = true;
                         player.buffType[i] = 0;
+                        player.buffTime[i] = 0;
+                        player.buffImmune[i] = true;
                     }
                 }
-                if (flag)
-                {
-                    TShock.Players[player.whoAmI].SendData((PacketTypes)50, "", player.whoAmI, 0f, 0f, 0f, 0);
-                }
+                if (flag){TShock.Players[player.whoAmI].SendData((PacketTypes)50, "", player.whoAmI, 0f, 0f, 0f, 0);}
             }
-
-            var any = config.WormScarfSetBuff;
-            foreach (var effect in any)
-            {
-                TShock.Players[player.whoAmI].SetBuff(effect, 180, false);
-            }
+            foreach (var effect in config.WormScarfSetBuff){TShock.Players[player.whoAmI].SetBuff(effect, 180, false);}
         }
 
         public void VolatileGelatin(NpcStrikeEventArgs args)

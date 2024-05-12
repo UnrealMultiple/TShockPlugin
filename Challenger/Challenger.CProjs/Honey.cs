@@ -36,14 +36,14 @@ namespace Challenger
                             {
                                 num = Main.rand.Next(8, 16);
                             }
-                            if (global::Challenger.Challenger.config.EnableConsumptionMode)
+                            if (Challenger.config.EnableConsumptionMode)
                             {
-                                global::Challenger.Challenger.HealPlayer(Main.player[val.whoAmI], num, visible: false);
-                                global::Challenger.Challenger.SendPlayerText($"蜂糖罐治疗 + {num}", new Color(232, 229, 74), val.Center);
+                                Challenger.HealPlayer(Main.player[val.whoAmI], num, visible: false);
+                                Challenger.SendPlayerText($"蜂糖罐治疗 + {num}", new Color(232, 229, 74), val.Center);
                             }
                             else
                             {
-                                global::Challenger.Challenger.HealPlayer(Main.player[val.whoAmI], num);
+                                Challenger.HealPlayer(Main.player[val.whoAmI], num);
                             }
                             TShock.Players[val.whoAmI].SetBuff(48, 300, false);
                             CKill();
@@ -54,9 +54,9 @@ namespace Challenger
                 if (proj.timeLeft < 120)
                 {
                     CKill();
-                    if (!global::Challenger.Challenger.honey.TryAdd(proj.whoAmI, 0))
+                    if (!Challenger.honey.TryAdd(proj.whoAmI, 0))
                     {
-                        global::Challenger.Challenger.honey[proj.whoAmI] = 0;
+                        Challenger.honey[proj.whoAmI] = 0;
                     }
                 }
             }
@@ -66,9 +66,9 @@ namespace Challenger
                 Main.projectile[num2].usesLocalNPCImmunity = true;
                 Update(num2);
                 CKill();
-                if (!global::Challenger.Challenger.honey.TryAdd(proj.whoAmI, 0))
+                if (!Challenger.honey.TryAdd(proj.whoAmI, 0))
                 {
-                    global::Challenger.Challenger.honey[proj.whoAmI] = 0;
+                    Challenger.honey[proj.whoAmI] = 0;
                 }
             }
         }
