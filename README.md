@@ -117,6 +117,7 @@
 | [WikiLangPackLoader](WikiLangPackLoader/README.md)               |    为服务器加载 Wiki 语言包    |                                             无                                             |
 | [HelpPlus](HelpPlus/README.md)                                   |      修复和增强 Help 命令      |                                             无                                             |
 | [CaiBot](CaiBot/README.md)                                       |        CaiBot 适配插件         |                                          自带前置                                          |
+| [HouseRegion](HouseRegion/README.md)                             |            圈地插件            |                                                                                            |
 </Details>
 
 ## 代码贡献
