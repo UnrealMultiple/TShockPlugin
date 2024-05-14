@@ -5,6 +5,7 @@ using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
+using TShockAPI.Hooks;
 
 
 namespace HouseRegion
@@ -89,12 +90,15 @@ namespace HouseRegion
         #region 插件的各种初始化
         public override void Initialize()// 插件启动时，用于初始化各种狗子
         {
-            RC(); RD(); GetDataHandlers.InitGetDataHandler();//初始化配置值，RH要放在服务器开成后再读不然世界ID读不出
+            RC(); 
+            RD(); 
+            GetDataHandlers.InitGetDataHandler();//初始化配置值，RH要放在服务器开成后再读不然世界ID读不出
             ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);//钩住游戏初始化时
             ServerApi.Hooks.NetGetData.Register(this, GetData);//收到数据
             ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreetPlayer);//玩家进入服务器
             ServerApi.Hooks.ServerLeave.Register(this, OnLeave);//玩家退出服务器
             ServerApi.Hooks.GamePostInitialize.Register(this, PostInitialize);//地图读入后
+            GeneralHooks.ReloadEvent += (_) => RC();
         }
         protected override void Dispose(bool disposing)// 插件关闭时
         {
