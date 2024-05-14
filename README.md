@@ -2,22 +2,24 @@
 
 # 这是一个 TShock 插件搜集仓库
 
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Controllerdestiny/TShockPlugin/total)
+![TShockPlugin](https://socialify.git.ci/Controllerdestiny/TShockPlugin/image?description=1&descriptionEditable=%E4%B8%80%E4%B8%AA%E6%94%B6%E9%9B%86TShock%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BB%93%E5%BA%93&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Foiapi.net%2FAPI%2FTShockPlugin%2F&name=1&pattern=Diagonal%20Stripes&pulls=1&stargazers=1&theme=Auto)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Controllerdestiny/TShockPlugin/.github%2Fworkflows%2Fdotnet.yml)
 ![GitHub stars](https://img.shields.io/github/stars/Controllerdestiny/TShockPlugin?style=flat)
 ![GitHub forks](https://img.shields.io/github/forks/Controllerdestiny/TShockPlugin?style=flat)
 ![GitHub contributors](https://img.shields.io/github/contributors/Controllerdestiny/TShockPlugin?style=flat)
 ![C#](https://img.shields.io/badge/Core-%20.NET_6-blue)
-[![QQ](https://img.shields.io/badge/QQ-EB1923?logo=tencent-qq&logoColor=white)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=NS-Vih3vtiBDSRRRlq_KG9f_5MgE3IPj&authKey=srNGvhGh1Qp1lnZ283UbIltsa57PcKbuVuYd52k%2BlLpuOT%2FwQ3NE2YVskGMBWYz%2F&noverify=0&group_code=816771079)
+[![QQ](https://img.shields.io/badge/QQ-EB1923?logo=tencent-qq&logoColor=white)](https://qm.qq.com/cgi-bin/qm/qr?k=54tOesIU5g13yVBNFIuMBQ6AzjgE6f0m&jump_from=webapi&authKey=6jzafzJEqQGzq7b2mAHBw+Ws5uOdl83iIu7CvFmrfm/Xxbo2kNHKSNXJvDGYxhSW)
 [![TShock](https://img.shields.io/badge/TShock5.2.0-2B579A.svg?&logo=TShock&logoColor=white)](https://github.com/Pryaxis/TShock)
 
 </div>
 
 ## 前言
 
-这是一个致力于收集整合 `TShock` 插件的仓库。  
-库中内插件容部分来源于网络收集以及反编译，因项目的特殊性，可能会造成侵权行为，如有侵权请联系我们解决。  
-我们将持续收集优质的 `TShock` 插件，进行及时的更新。并跟进`TShock`的最新版本。  
-如果你也想加入我们，请按照下方`开发者注意事项`的规定对本仓库`Pull Request`。
+- 这是一个致力于收集整合 `TShock` 插件的仓库。  
+- 库中内插件容部分来源于网络收集以及反编译。
+- 因项目的特殊性，可能会造成侵权行为，如有侵权请联系我们解决。  
+- 我们将持续收集优质的 `TShock` 插件，进行及时的更新。并跟进`TShock`的最新版本。  
+- 如果你也想加入我们，请按照下方`开发者注意事项`的规定对本仓库`Pull Request`。
 
 ## 使用者注意事项
 
@@ -43,6 +45,8 @@
 ### 已收集插件
 
 > 点击蓝链可查看插件详细说明
+<Details>
+<Summary>插件列表</Summary>
 
 | 名称                                                             |            插件说明            |                                            前置                                            |
 | ---------------------------------------------------------------- | :----------------------------: | :----------------------------------------------------------------------------------------: |
@@ -114,14 +118,11 @@
 | [HelpPlus](HelpPlus/README.md)                                   |      修复和增强 Help 命令      |                                             无                                             |
 | [CaiBot](CaiBot/README.md)                                       |        CaiBot 适配插件         |                                          自带前置                                          |
 | [HouseRegion](HouseRegion/README.md)                             |            圈地插件            |                                                                                            |
+</Details>
 
 ## 代码贡献
 
-- [熙恩](https://github.com/THEXN)
-- [羽学](https://github.com/1242509682)
-- [Cjx](https://github.com/FHTXcjx8848)
-- [Cai](https://github.com/ACaiCat)
-- [tshock 团队](https://github.com/Pryaxis/TShock)
+[![Contributors](https://stats.deeptrain.net/contributor/Controllerdestiny/TShockPlugin)](https://github.com/Controllerdestiny/TShockPlugin/graphs/contributors)
 
 ## 友情链接
 

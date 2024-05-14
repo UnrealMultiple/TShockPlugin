@@ -125,11 +125,11 @@ namespace Challenger
             {
                 if (Type == 58)
                 {
-                    Type = Utils.NextFromList<short>(Main.rand, new short[3] { 1734, 1867, 58 });
+                    Type = Terraria.Utils.NextFromList<short>(Main.rand, new short[3] { 1734, 1867, 58 });
                 }
                 if (Type == 184)
                 {
-                    Type = Utils.NextFromList<short>(Main.rand, new short[3] { 1735, 1868, 184 });
+                    Type = Terraria.Utils.NextFromList<short>(Main.rand, new short[3] { 1735, 1868, 184 });
                 }
             }
             if (Main.halloween)
