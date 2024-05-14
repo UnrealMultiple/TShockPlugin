@@ -12,6 +12,9 @@ namespace Challenger
 
         public override void ProjectileAI()
         {
+            var any = Challenger.config.EnableSpectreArmorEffect_3;
+            var any2 = Challenger.config.EnableSpectreArmorEffect_4;
+            var any3 = Challenger.config.EnableSpectreArmorEffect_5;
             if (lable == 1)
             {
                 Vector2 one = Vector2.One;
@@ -26,9 +29,9 @@ namespace Challenger
                 {
                     val2 = val3.Center - proj.Center;
                     float num = ((Vector2)val2).LengthSquared() / 1000000f;
-                    int damage = (int)(40f + (1f - num) * 120f);
+                    int damage = (int)(40f + (1f - num) * any2);
                     Vector2 val4 = (val3.Center - proj.Center).SafeNormalize(Vector2.Zero);
-                    int num2 = Collect.MyNewProjectile(null, proj.Center, val4 * 4f, 356, damage, 0f, proj.owner);
+                    int num2 = Collect.MyNewProjectile(null, proj.Center, val4 * 4f, any, damage, any3, proj.owner);
                     Main.projectile[num2].timeLeft = 480;
                     Update(num2);
                 }
@@ -37,7 +40,11 @@ namespace Challenger
 
         public static SpectreArmorProj NewCProjectile(Vector2 position, Vector2 velocity, int owner, float[] ai, int lable)
         {
-            int num = Collect.MyNewProjectile(null, position, velocity, 299, 0, 0f, owner);
+            var any4 = Challenger.config.EnableSpectreArmorEffect_6;
+            var any5 = Challenger.config.EnableSpectreArmorEffect_7;
+            var any6 = Challenger.config.EnableSpectreArmorEffect_8;
+
+            int num = Collect.MyNewProjectile(null, position, velocity, any4, any5, any6, owner);
             SpectreArmorProj spectreArmorProj = new SpectreArmorProj(Main.projectile[num], ai, lable);
             Collect.cprojs[num] = spectreArmorProj;
             Update(num);

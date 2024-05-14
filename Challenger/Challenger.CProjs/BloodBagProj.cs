@@ -71,7 +71,7 @@ namespace Challenger
             }
             else
             {
-                val = global::Challenger.Challenger.NearestWeakestNPC(proj.position, 4000000f);
+                val = Challenger.NearestWeakestNPC(proj.position, 4000000f);
                 if (val != null)
                 {
                     Projectile? obj2 = proj;
@@ -86,14 +86,21 @@ namespace Challenger
                 if (((Vector2)val2).LengthSquared() <= val.width * val.height / 2)
                 {
                     NPC obj3 = val;
-                    obj3.life += (int)ai[4];
-                    if (val.lifeMax < val.life)
+
+                    // 直接从配置中读取回血比例上限
+                    float bloodMax = Challenger.config.BloodAbsorptionRatio_Max;
+
+                    // 计算允许回血的上限值
+                    int maxHeal = (int)(val.lifeMax *  bloodMax);
+                    int healAmount = (int)ai[4];
+                    if (val.life + healAmount > maxHeal)
                     {
-                        val.lifeMax = val.life + 1;
+                        healAmount = maxHeal - val.life; // 调整回血量不超过允许的上限
                     }
-                    if (global::Challenger.Challenger.config.EnableConsumptionMode)
+                    obj3.life += healAmount;
+                    if (Challenger.config.EnableConsumptionMode)
                     {
-                        global::Challenger.Challenger.SendPlayerText($"敌怪治疗 + {(int)ai[4]}", new Color(190, 255, 0), val.Center);
+                        Challenger.SendPlayerText($"敌怪治疗 + {(int)ai[4]}", new Color(190, 255, 0), val.Center);
                     }
                     else
                     {
@@ -116,14 +123,14 @@ namespace Challenger
                     val2 = proj.Center - val3.Center;
                     if (((Vector2)val2).LengthSquared() <= val3.width * val3.height / 2 && !val3.dead)
                     {
-                        if (global::Challenger.Challenger.config.EnableConsumptionMode)
+                        if (Challenger.config.EnableConsumptionMode)
                         {
-                            global::Challenger.Challenger.HealPlayer(Main.player[val3.whoAmI], (int)ai[0], visible: false);
-                            global::Challenger.Challenger.SendPlayerText($"血包治疗 + {(int)ai[0]}", new Color(0, 255, 0), val3.Center);
+                            Challenger.HealPlayer(Main.player[val3.whoAmI], (int)ai[0], visible: false);
+                            Challenger.SendPlayerText($"血包治疗 + {(int)ai[0]}", new Color(0, 255, 0), val3.Center);
                         }
                         else
                         {
-                            global::Challenger.Challenger.HealPlayer(Main.player[val3.whoAmI], (int)ai[0]);
+                            Challenger.HealPlayer(Main.player[val3.whoAmI], (int)ai[0]);
                         }
                         CKill();
                         return;

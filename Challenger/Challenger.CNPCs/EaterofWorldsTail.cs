@@ -20,7 +20,7 @@ namespace Challenger
                 CProjectile.Update(num);
                 for (int i = 0; i < 6; i++)
                 {
-                    Projectile.NewProjectile(null, npc.Center, Utils.RotatedBy(Vector2.UnitY, Math.PI / 3.0 * i, default(Vector2)) * 5f, 909, 14, 0f, -1, 0f, 0f, 0f);
+                    Projectile.NewProjectile(null, npc.Center, Terraria.Utils.RotatedBy(Vector2.UnitY, Math.PI / 3.0 * i, default(Vector2)) * 5f, 909, 14, 0f, -1, 0f, 0f, 0f);
                 }
             }
         }

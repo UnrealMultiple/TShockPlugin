@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography;
 using System.Text;
+using CaiBot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NuGet.Protocol;
@@ -18,6 +19,7 @@ using SixLabors.ImageSharp;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.DB;
 using Utils = TShockAPI.Utils;
 
 namespace CaiBotPlugin
@@ -525,36 +527,38 @@ namespace CaiBotPlugin
                     else
                     {
 
-                            var acc = TShock.UserAccounts.GetUserAccountByName(name);
-                            if (acc == null)
-                            {
-                                re = new RestObject
-                            {
-                                { "type","lookbag" },
-                                { "exist",0}
-                            };
-                                await SendDateAsync(re.ToJson());
-                                return;
-                            }
-                            var data = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), acc.ID);
-
-                            if (data == null)
-                            {
-                                
-                                re = new RestObject
-                            {
-                                { "type","lookbag" },
-                                { "exist",0}
-                            };
-                                await SendDateAsync(re.ToJson());
-                                return;
-                            }
-                            var itemList = new List<List<int>>();
-                            foreach (var i in data.inventory)
-                            {
-                                itemList.Add(new List<int>() { i.NetId, i.Stack });
-                            }
+                        var acc = TShock.UserAccounts.GetUserAccountByName(name);
+                        if (acc == null)
+                        {
                             re = new RestObject
+                            {
+                                { "type","lookbag" },
+                                { "exist",0}
+                            };
+                            await SendDateAsync(re.ToJson());
+                            return;
+                        }
+
+                        var data = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), acc.ID);
+
+                        if (data == null)
+                        {
+
+                            re = new RestObject
+                            {
+                                { "type","lookbag" },
+                                { "exist",0}
+                            };
+                            await SendDateAsync(re.ToJson());
+                            return;
+                        }
+                        var itemList = new List<List<int>>();
+                        foreach (var i in data.inventory)
+                        {
+                            itemList.Add(new List<int>() { i.NetId, i.Stack });
+                        }
+                        buffs = CaiBot.Utils.GetActiveBuffs(TShock.DB, acc.ID,acc.Name);
+                        re = new RestObject
                             {
                                 { "type","lookbag" },
                                 { "exist",1},
@@ -562,14 +566,14 @@ namespace CaiBotPlugin
                                 { "inventory", itemList},
                                 { "buffs", buffs}
                             };
-                            await SendDateAsync(re.ToJson());
+                        await SendDateAsync(re.ToJson());
 
-                        
+
                     }
                     break;
 
             }
 
         }
-    } 
+    }
 }
