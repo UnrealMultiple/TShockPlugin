@@ -7,7 +7,7 @@ namespace HouseRegion
         [JsonProperty("进出房屋提示")]
         public bool HouseRegion = true;
 
-        [JsonProperty("房屋嘴大大小")]
+        [JsonProperty("房屋最大面积")]
         public int HouseMaxSize = 1000;
 
         [JsonProperty("房屋最小宽度")]
@@ -31,7 +31,7 @@ namespace HouseRegion
         [JsonProperty("冻结警告破坏者")]
         public bool WarningSpoiler = true;
 
-        [JsonProperty("禁止分享所有者7")]
+        [JsonProperty("禁止分享所有者")]
         public bool ProhibitSharingOwner = false;
 
         [JsonProperty("禁止分享使用者")]

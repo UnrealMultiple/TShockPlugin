@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Timers;
+﻿
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 [ApiVersion(2, 1)]
 public class AutoBroadcast : TerrariaPlugin
@@ -22,7 +17,7 @@ public class AutoBroadcast : TerrariaPlugin
 
     public override string Description => "每隔N秒自动广播一条消息或命令";
 
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new(1, 0, 5);
 
     public string ConfigPath => Path.Combine(TShock.SavePath, "AutoBroadcastConfig.json");
 
@@ -143,7 +138,7 @@ public class AutoBroadcast : TerrariaPlugin
                 }
                 if (array.Length != 0)
                 {
-                    BroadcastToGroups(array, messages, colour);
+                    BroadcastToGroups(array.ToArray(), messages.ToArray(), colour.ToArray());
                 }
                 else
                 {
@@ -218,9 +213,9 @@ public class AutoBroadcast : TerrariaPlugin
             {
                 return;
             }
-            string[] array = new string[0];
-            string[] messages = new string[0];
-            float[] colour = new float[0];
+            List<string> array = new();
+            List<string> messages = new();
+            List<float> colour = new();
             lock (Config.Broadcasts)
             {
                 if (Config.Broadcasts[i] != null && Config.Broadcasts[i].Enabled && Config.Broadcasts[i].Interval >= 1)
@@ -228,9 +223,9 @@ public class AutoBroadcast : TerrariaPlugin
                     if (Config.Broadcasts[i].StartDelay <= 0)
                     {
                         Config.Broadcasts[i].StartDelay = Config.Broadcasts[i].Interval;
-                        array = Config.Broadcasts[i].Groups;
-                        messages = Config.Broadcasts[i].Messages;
-                        colour = Config.Broadcasts[i].ColorRGB;
+                        array = Config.Broadcasts[i].Groups.ToList();
+                        messages = Config.Broadcasts[i].Messages.ToList();
+                        colour = Config.Broadcasts[i].ColorRGB.ToList();
                         goto IL_01b4;
                     }
                     Config.Broadcasts[i].StartDelay--;
@@ -239,7 +234,7 @@ public class AutoBroadcast : TerrariaPlugin
             continue;
         IL_01b4:
             bool flag = false;
-            string[] array2 = array;
+            List<string> array2 = array;
             foreach (string text in array2)
             {
                 if (text == "*")
@@ -249,15 +244,15 @@ public class AutoBroadcast : TerrariaPlugin
             }
             if (flag)
             {
-                array = new string[1] { "*" };
+                array = new() { "*" };
             }
-            if (array.Length != 0)
+            if (array.Count != 0)
             {
-                BroadcastToGroups(array, messages, colour);
+                BroadcastToGroups(array.ToArray(), messages.ToArray(), colour.ToArray());
             }
             else
             {
-                BroadcastToAll(messages, colour);
+                BroadcastToAll(messages.ToArray(), colour.ToArray());
             }
         }
         ULock = false;
@@ -349,7 +344,7 @@ public class AutoBroadcast : TerrariaPlugin
 
     public static bool Timeout(DateTime Start, int ms = 500, bool warn = true)
     {
-        bool flag = (DateTime.Now - Start).TotalMilliseconds >= (double)ms;
+        bool flag = (DateTime.Now - Start).TotalMilliseconds >= ms;
         if (ms == 500 && flag)
         {
             ULock = false;
