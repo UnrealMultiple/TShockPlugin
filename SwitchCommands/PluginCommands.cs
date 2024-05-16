@@ -6,22 +6,12 @@ namespace SwitchCommands
 {
     public class PluginCommands
     {
-        public static string switchParameters = "/开关 <添加/列表/删除/冷却/权限忽略/取消/重绑/完成>";
+        public static Database database = null!;
+        public static string switchParameters = "/开关 <添加/列表/删除/冷却/说明/权限忽略/取消/重绑/完成> (支持拼音)";
 
         public static void RegisterCommands()
         {
             Commands.ChatCommands.Add(new Command("switch.admin", SwitchCmd, "开关", "kg", "switch"));
-            Commands.ChatCommands.Add(new Command("switch.admin", SwitchReload, "重载开关", "reload"));
-        }
-
-        private static void SwitchReload(CommandArgs args)
-        {
-            SwitchCommands.database = Database.Read(Database.databasePath);
-            args.Player.SendErrorMessage("开关插件重载成功！！！");
-            if (!File.Exists(Database.databasePath))
-            {
-                SwitchCommands.database.Write(Database.databasePath);
-            }
         }
 
         private static void SwitchCmd(CommandArgs args)
@@ -53,7 +43,7 @@ namespace SwitchCommands
                         case "add":
                         case "添加":
                         case "tj":
-                            var command = "/" + string.Join(" ", args.Parameters.Skip(1));
+                            var command = $"{database.SwitchPrefix}" + string.Join(" ", args.Parameters.Skip(1));
                             cmdInfo.commandList.Add(command);
                             player.SendSuccessMessage("成功添加: {0}".SFormat(command));
                             SwitchCommands.database.Write(Database.databasePath);
@@ -107,6 +97,22 @@ namespace SwitchCommands
                             SwitchCommands.database.Write(Database.databasePath);
                             break;
 
+                        case "说明":
+                        case "sm":
+                            if (args.Parameters.Count < 2)
+                            {
+                                player.SendErrorMessage("语法错误：/开关 说明 <内容>");
+                                SwitchCommands.database.Write(Database.databasePath);
+                                return;
+                            }
+                            string 说明 = args.Parameters[1];
+
+                            cmdInfo.show = 说明;
+
+                            player.SendSuccessMessage($"开关说明已设置为：{说明}");
+                            SwitchCommands.database.Write(Database.databasePath);
+                            break;
+
                         case "权限忽略":
                         case "ignoreperms":
                         case "qxhl":
@@ -137,6 +143,7 @@ namespace SwitchCommands
                         case "重绑":
                         case "rebind":
                         case "zb":
+                        case "cb":
                             player.SendSuccessMessage("重新激活开关后可以重新绑定");
                             player.SetData("PlayerState", PlayerState.SelectingSwitch);
                             SwitchCommands.database.Write(Database.databasePath);

@@ -1,18 +1,25 @@
-﻿using TShockAPI;
+﻿using Newtonsoft.Json;
+using TShockAPI;
 //using PlaceholderAPI;
 
 namespace SwitchCommands
 {
     public class CommandInfo
     {
+        [JsonProperty("指令")]
         public List<string> commandList = new List<string>();
+        [JsonProperty("冷却时间")]
         public float cooldown = 0;
+        [JsonProperty("忽略权限")]
         public bool ignorePerms = false;
+        [JsonProperty("开关说明")]
+        public string show = "";
     }
 
     public class SwitchPos
     {
-        public int X = 0, Y = 0;
+        public int X = 0;
+        public int Y = 0;
 
         public SwitchPos()
         {

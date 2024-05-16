@@ -1,8 +1,11 @@
-﻿using System.IO.Streams;
+﻿using Org.BouncyCastle.Asn1.X509;
+using System.IO.Streams;
 using Terraria;
 using Terraria.ID;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
+
 //using PlaceholderAPI;
 using static SwitchCommands.PluginCommands;
 
@@ -12,37 +15,65 @@ namespace SwitchCommands
     public class SwitchCommands : TerrariaPlugin
     {
 
-        public static Database database;
+        public static Database database = null!;
+        public static SwitchPos switchPos = null!;
 
         public override string Name => "SwitchCommands";
-        public override string Author => "Johuan（Cjx适配）";
+        public override string Author => "Johuan Cjx适配 羽学优化";
         public override string Description => "触发开关可以执行指令";
-        public override Version Version => new Version(1, 2, 0, 0);
+        public override Version Version => new Version(1, 2, 1, 0);
 
         public SwitchCommands(Main game) : base(game) { }
 
         public override void Initialize()
         {
-            database = Database.Read(Database.databasePath);
-            if (!File.Exists(Database.databasePath))
-            {
-                database.Write(Database.databasePath);
-            }
-
+            LoadConfig();
+            GeneralHooks.ReloadEvent += LoadConfig;
+            GetDataHandlers.TileEdit.Register(OnEdit);
             PluginCommands.RegisterCommands();
             ServerApi.Hooks.NetGetData.Register(this, GetData);
-
         }
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                ServerApi.Hooks.NetGetData.Deregister(this, GetData);
-
-                database.Write(Database.databasePath);
-            }
+            GeneralHooks.ReloadEvent -= LoadConfig;
+            GetDataHandlers.TileEdit.UnRegister(OnEdit);
             base.Dispose(disposing);
         }
+
+        #region 配置文件创建与重读加载方法
+        private static void LoadConfig(ReloadEventArgs args = null!)
+        {
+            database = Database.Read(Database.databasePath);
+            database.Write(Database.databasePath);
+            if (args != null && args.Player != null)
+            {
+                args.Player.SendSuccessMessage("[开关指令插件]重新加载配置完毕。");
+            }
+        }
+        #endregion
+
+        #region 阻止没有权限的人破坏开关
+        private static void OnEdit(object? sender, GetDataHandlers.TileEditEventArgs e)
+        {
+            var pos = new SwitchPos(e.X, e.Y);
+            if (IsProtectedSwitch(pos))
+            {
+                if (e == null || !database.SwitchEnable || e.Player.HasPermission("switch.admin")) { return; } 
+
+                if (Main.tile[e.X, e.Y].type == 136 && e.Player.Active) 
+                {
+                    e.Player.SendMessage($"{database.SwitchText}", color: Microsoft.Xna.Framework.Color.Yellow);
+                    e.Player.SendTileSquareCentered(e.X, e.Y, 1); 
+                    e.Handled = true; 
+                }
+            }
+        }
+
+        private static bool IsProtectedSwitch(SwitchPos pos)
+        {
+            return database.switchCommandList.ContainsKey(pos.ToString());
+        }
+        #endregion
 
         private void GetData(GetDataEventArgs args)
         {
@@ -62,6 +93,11 @@ namespace SwitchCommands
 
                             if (tile.frameY == 0)
                                 pos.Y++;
+                        }
+
+                        if (database.switchCommandList.ContainsKey(pos.ToString()) && !string.IsNullOrEmpty(database.switchCommandList[pos.ToString()].show))
+                        {
+                            player.SendMessage($"开关说明：{database.switchCommandList[pos.ToString()].show}",color:Microsoft.Xna.Framework.Color.Yellow);
                         }
 
                         var playerState = player.GetData<PlayerState>("PlayerState");
