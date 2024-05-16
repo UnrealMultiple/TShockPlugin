@@ -24,12 +24,10 @@ namespace SignInSign
             {
                 case "r":
                 case "reload":
-                case "重置":
                     ReloadCmd(args);
                     return;
                 case "s":
                 case "set":
-                case "设置":
                     if (args.Parameters.Count != 1)
                     {
                         args.Player.SendMessage("[告示牌登录]设置传送点命令无需额外参数，将会使用你当前位置。", Microsoft.Xna.Framework.Color.Yellow);
