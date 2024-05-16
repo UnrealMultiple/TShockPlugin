@@ -93,7 +93,7 @@ public class SignInSign : TerrariaPlugin
     #region 阻止没有权限的人破坏告示牌
     private static void OnEdit(object? sender, GetDataHandlers.TileEditEventArgs e)
     {
-        if (e == null || e.Player.HasPermission("sign.edit")) return;
+        if (e == null || e.Player.HasPermission("sign.edit")) { return; }
         if (Main.tile[e.X, e.Y].type == 55 &&
             Math.Abs(e.X - Main.spawnTileX) < 10 &&
             Math.Abs(e.Y - Main.spawnTileY) < 10 &&
@@ -101,7 +101,7 @@ public class SignInSign : TerrariaPlugin
         {
             e.Player.SendTileSquareCentered(e.X, e.Y, 4);
             e.Player.SendMessage($"{Config.SignText3}", color: Microsoft.Xna.Framework.Color.Yellow);
-            e.Handled = false;
+            e.Handled = true;
         }
     }
     #endregion
