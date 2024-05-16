@@ -29,7 +29,6 @@ namespace SignInSign
                     return;
                 case "s":
                 case "set":
-                case "add":
                 case "…Ë÷√":
                     if (args.Parameters.Count != 1)
                     {
