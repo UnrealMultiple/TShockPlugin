@@ -1,7 +1,7 @@
 # SignInSign 告示板登录
 
 - 作者: Soofa、羽学、少司命
-- 出处: [github](https://github.com/Soof4/PvPer/)  
+- 出处: [github](https://github.com/Soof4/SignInSign)  
 + 这是一个Tshock服务器插件主要用于：  
 + 玩家进服可弹窗显示告示牌，可通过告示牌注册登录、获取物品、BUFF、传送、记录玩家密码等功能
 + 注意：
