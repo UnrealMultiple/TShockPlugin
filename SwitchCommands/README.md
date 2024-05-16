@@ -1,4 +1,4 @@
-# SwitchCommand 区域显示
+# SwitchCommand 开关指令
 
 - 作者: Johuan ,Cjx，羽学
 - 出处: github
