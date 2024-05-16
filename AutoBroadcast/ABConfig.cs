@@ -1,79 +1,71 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 
-
-public class ABConfig
+namespace AutoBroadcast
 {
-    [JsonProperty("广播列表")]
-    public Broadcast[] Broadcasts = new Broadcast[0];
-
-    public ABConfig Write(string file)
+    public class ABConfig
     {
-        File.WriteAllText(file, JsonConvert.SerializeObject(this, Formatting.Indented));
-        return this;
-    }
+        [JsonProperty("广播列表")]
+        public Broadcast[] Broadcasts = new Broadcast[0];
 
-    public static ABConfig Read(string file)
-    {
-        if (!File.Exists(file))
+        public ABConfig Write(string file)
         {
-            WriteExample(file);
+            File.WriteAllText(file, JsonConvert.SerializeObject(this, Formatting.Indented));
+            return this;
         }
-        return JsonConvert.DeserializeObject<ABConfig>(File.ReadAllText(file)) ?? new();
-    }
 
-    public static void WriteExample(string file)
-    {
-        Broadcast broadcast = new Broadcast
+        public static ABConfig Read(string file)
         {
-            Name = "示例广播",
-            Enabled = false,
-            Messages = new[] { "这是一个广播示例", "每5分钟播出一次", "广播也可以执行命令", "/time noon" },
-            ColorRGB = new[] { 255f, 0f, 0f },
-            Interval = 300,
-            StartDelay = 60
-        };
+            if (!File.Exists(file))
+            {
+                ABConfig.WriteExample(file);
+            }
+            return JsonConvert.DeserializeObject<ABConfig>(File.ReadAllText(file)) ?? new();
+        }
 
-        ABConfig aBConfig = new ABConfig
+        public static void WriteExample(string file)
         {
-            Broadcasts = new[] { broadcast }
-        };
 
-        aBConfig.Write(file);
+            File.WriteAllText(file, JsonConvert.SerializeObject(new Broadcast[]
+            {
+                new Broadcast()
+                {
+                    Name = "示例广播",
+                    Enabled = true,
+                    Messages = new string[] { "/time 4:30", "设置时间为4:30" },
+                    ColorRGB = new float[] { 255, 234, 115 },
+                    Interval = 600,
+                }
+            }, Formatting.Indented));
+        }
     }
 
     public class Broadcast
     {
-        [JsonProperty("名称")]
-        public string Name { get; set; } = string.Empty;
+        [JsonProperty("广播名称")]
+        public string Name = string.Empty;
 
-        [JsonProperty("是否启用")]
-        public bool Enabled { get; set; } = false;
+        [JsonProperty("启用")]
+        public bool Enabled = false;
 
-        [JsonProperty("消息列表")]
-        public string[] Messages { get; set; } = new string[0];
+        [JsonProperty("广播消息")]
+        public string[] Messages = new string[0];
 
-        [JsonProperty("颜色RGB")]
-        public float[] ColorRGB { get; set; } = new float[3];
+        [JsonProperty("RGB颜色")]
+        public float[] ColorRGB = new float[3];
 
-        [JsonProperty("间隔时间")]
-        public int Interval { get; set; } = 0;
+        [JsonProperty("时间间隔")]
+        public int Interval = 0;
 
-        [JsonProperty("延迟时间")]
-        public int StartDelay { get; set; } = 0;
+        [JsonProperty("延迟执行")]
+        public int StartDelay = 0;
 
-        [JsonProperty("触发区域")]
-        public string[] TriggerRegions { get; set; } = new string[0];
-
-        [JsonProperty("区域触发器")]
-        public string RegionTrigger { get; set; } = "none";
-
-        [JsonProperty("组")]
+        [JsonProperty("广播组")]
         public string[] Groups { get; set; } = new string[0];
 
-        [JsonProperty("触发词")]
+        [JsonProperty("触发词语")]
         public string[] TriggerWords { get; set; } = new string[0];
 
-        [JsonProperty("是否触发整个组")]
+        [JsonProperty("触发整个组")]
         public bool TriggerToWholeGroup { get; set; } = false;
     }
 }
