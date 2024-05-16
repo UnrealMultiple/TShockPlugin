@@ -27,7 +27,6 @@ namespace SignInSign
                 case "ÖØÖÃ":
                     ReloadCmd(args);
                     return;
-
                 case "s":
                 case "set":
                 case "add":
