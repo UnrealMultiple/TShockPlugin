@@ -119,6 +119,7 @@
 | [CaiBot](CaiBot/README.md)                                       |        CaiBot 适配插件         |                                          自带前置                                          |
 | [HouseRegion](HouseRegion/README.md)                             |            圈地插件            |                                                                                            |
 | [SignInSign](SignInSign/README.md)                             |            告示牌登录插件            |                                         无                                             |
+| [WeaponPlusCostCoin](WeaponPlusCostCoin/README.md)                             |            武器强化钱币版            |                                         无                                             |
 </Details>
 
 ## 代码贡献
