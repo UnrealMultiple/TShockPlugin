@@ -43,7 +43,7 @@ namespace SwitchCommands
                         case "add":
                         case "添加":
                         case "tj":
-                            var command = $"{database.SwitchPrefix}" + string.Join(" ", args.Parameters.Skip(1));
+                            var command = "/" + string.Join(" ", args.Parameters.Skip(1));
                             cmdInfo.commandList.Add(command);
                             player.SendSuccessMessage("成功添加: {0}".SFormat(command));
                             SwitchCommands.database.Write(Database.databasePath);

@@ -14,9 +14,6 @@ namespace SwitchCommands
         [JsonProperty("试图破坏开关的警告", Order = -3)]
         public string SwitchText = "你没有权限破坏指令开关！";
 
-        [JsonProperty("添加指令时的前缀", Order = -3)]
-        public string SwitchPrefix = "/'";
-
         [JsonProperty("开关指令表")]
         public Dictionary<string, CommandInfo> switchCommandList = new Dictionary<string, CommandInfo>();
 
