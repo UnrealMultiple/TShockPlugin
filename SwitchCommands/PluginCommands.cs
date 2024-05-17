@@ -116,9 +116,15 @@ namespace SwitchCommands
                         case "权限忽略":
                         case "ignoreperms":
                         case "qxhl":
+                        case "hl":
                             bool 权限忽略 = false;
 
-                            if (args.Parameters.Count < 2 || !bool.TryParse(args.Parameters[1], out 权限忽略))
+                            if (args.Parameters.Count < 2)
+                            {
+                                // 如果没有提供第二个参数，默认设置为true
+                                权限忽略 = true;
+                            }
+                            else if (!bool.TryParse(args.Parameters[1], out 权限忽略))
                             {
                                 player.SendErrorMessage("语法错误：/开关 权限忽略 <true/false>");
                                 SwitchCommands.database.Write(Database.databasePath);
@@ -127,7 +133,8 @@ namespace SwitchCommands
 
                             cmdInfo.ignorePerms = 权限忽略;
 
-                            player.SendSuccessMessage("是否忽略玩家权限设置为: {0}.".SFormat(权限忽略));
+                            string statusMessage = 权限忽略 ? "是" : "否";
+                            player.SendSuccessMessage("是否忽略玩家权限设置为: {0}.".SFormat(statusMessage));
                             SwitchCommands.database.Write(Database.databasePath);
                             break;
 
