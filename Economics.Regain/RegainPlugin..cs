@@ -1,6 +1,4 @@
-﻿
-
-using EconomicsAPI.Configured;
+﻿using EconomicsAPI.Configured;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -37,6 +35,24 @@ public class RegainPlugin : TerrariaPlugin
 
     private void CRegain(CommandArgs args)
     {
+        void Show(List<string> line)
+        {
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, args.Player, out int pageNumber))
+                return;
+
+            PaginationTools.SendPage(
+                    args.Player,
+                    pageNumber,
+                    line,
+                    new PaginationTools.Settings
+                    {
+                        MaxLinesPerPage = Config.PageMax,
+                        NothingToDisplayString = "当前可回收物品",
+                        HeaderFormat = "回收物品列表 ({0}/{1})：",
+                        FooterFormat = "输入 {0}regain list {{0}} 查看更多".SFormat(Commands.Specifier)
+                    }
+                );
+        }
         bool Verify(out Config.RegainInfo? regain)
         {
             if (!Config.TryGetRegain(args.Player.SelectedItem.netID, out regain) || regain == null)
@@ -74,14 +90,8 @@ public class RegainPlugin : TerrariaPlugin
                 {
                     if (args.Parameters[0].ToLower() == "list")
                     {
-                        if (Config.Regains.Count > 0)
-                            args.Player.SendSuccessMessage("回收物品表:");
-                        foreach (var info in Config.Regains)
-                        {
-                            var item = TShock.Utils.GetItemById(info.ID);
-                            if (item != null)
-                                args.Player.SendSuccessMessage($"[i:{info.ID}] {item.Name} 价格:{info.Cost}");
-                        }
+                        var line = Config.Regains.Select(x => x.ToString()).ToList();
+                        Show(line);
                         return;
                     }
                     if (!int.TryParse(args.Parameters[0], out var count) && count > 0)
