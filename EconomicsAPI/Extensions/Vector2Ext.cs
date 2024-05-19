@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using System.Security.Cryptography;
 using Terraria;
 
@@ -33,9 +33,7 @@ public static class Vector2Ext
 
     public static Vector2 RotationAngle(this Vector2 vel, float angle)
     {
-        vel.X = (float)(Math.Cos(angle) * Math.PI / 180f);
-        vel.Y = (float)(Math.Sin(angle) * Math.PI / 180f);
-        return vel;
+        return vel.RotatedBy(angle * (Math.PI / 180));
     }
 
     public static Vector2 ToLenOf(this Vector2 vec, float len)
@@ -45,5 +43,19 @@ public static class Vector2Ext
         if (vec.HasNanOrInf())
             return old * len;
         return vec * len;
+    }
+    
+    public static Vector2[] GetCircleEdgePoints(this Vector2 pos, float radius, float distanceBetweenPoints)
+    {
+        int numPoints = (int)Math.Ceiling(2 * Math.PI * radius / distanceBetweenPoints);
+        Vector2[] points = new Vector2[numPoints];
+        for (int i = 0; i < numPoints; i++)
+        {
+            float angle = (float)(i * (2 * Math.PI) / numPoints);
+            float x = radius * (float)Math.Cos(angle);
+            float y = radius * (float)Math.Sin(angle);
+            points[i] = pos + new Vector2(x, y);
+        }
+        return points;
     }
 }
