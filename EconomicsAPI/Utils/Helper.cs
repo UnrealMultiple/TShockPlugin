@@ -1,6 +1,7 @@
 ﻿using EconomicsAPI.Attributes;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
 using EconomicsAPI.Extensions;
+using Microsoft.Xna.Framework;
 using Rests;
 using System.Reflection;
 using System.Text;
@@ -11,6 +12,31 @@ namespace EconomicsAPI.Utils;
 
 public class Helper
 {
+    //代码来自于CaiLib
+    public static string GetGradientText(string text)
+    {
+        string result = "";
+        var info = Terraria.UI.Chat.ChatManager.ParseMessage(text, Color.White);
+        var colors = Economics.Setting.GradientColor;
+        foreach (var item in info)
+        {
+            var index = 0;
+            for(int i = 0; i< item.Text.Length; i++)
+            {
+                if (index >= colors.Count)
+                {
+                    result += item.Text[i];
+                    index = 0;
+                }
+                else
+                {
+                    result += Economics.Setting.GradientColor[index].SFormat(item.Text[i]);
+                }
+                index++;
+            }
+        }
+        return result;
+    }
     /// <summary>
     ///
     /// </summary>
@@ -76,11 +102,8 @@ public class Helper
         string down = new('\n', Economics.Setting.StatusTextShiftDown);
         string Left = new(' ', Economics.Setting.StatusTextShiftLeft);
         sb.AppendLine(down);
-        args.Messages.OrderBy(x => x.Order).ForEach(x => sb.AppendLine(x.Message + Left));
-        if (args.Player != null)
-        {
-            args.Player.SendData(PacketTypes.Status, sb.ToString(), 0, 1);
-        }
+        args.Messages.OrderBy(x => x.Order).ForEach(x => sb.AppendLine(GetGradientText(x.Message) + Left));
+        args.Player?.SendData(PacketTypes.Status, sb.ToString(), 0, 1);
     }
 
     /// <summary>

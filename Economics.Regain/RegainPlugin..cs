@@ -1,6 +1,4 @@
-﻿
-
-using EconomicsAPI.Configured;
+﻿using EconomicsAPI.Configured;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -37,25 +35,50 @@ public class RegainPlugin : TerrariaPlugin
 
     private void CRegain(CommandArgs args)
     {
+        void Show(List<string> line)
+        {
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, args.Player, out int pageNumber))
+                return;
+
+            PaginationTools.SendPage(
+                    args.Player,
+                    pageNumber,
+                    line,
+                    new PaginationTools.Settings
+                    {
+                        MaxLinesPerPage = Config.PageMax,
+                        NothingToDisplayString = "当前可回收物品",
+                        HeaderFormat = "回收物品列表 ({0}/{1})：",
+                        FooterFormat = "输入 {0}regain list {{0}} 查看更多".SFormat(Commands.Specifier)
+                    }
+                );
+        }
+        bool Verify(out Config.RegainInfo? regain)
+        {
+            if (!Config.TryGetRegain(args.Player.SelectedItem.netID, out regain) || regain == null)
+            {
+                args.Player.SendErrorMessage("该物品暂时无法回收!");
+                return false;
+            }
+            if (args.Player.SelectedItem.stack == 0 || args.Player.SelectedItem.netID == 0)
+            {
+                args.Player.SendErrorMessage("请手持一个有效物品!");
+                return false;
+            }
+            return true;
+        }
         if (!args.Player.RealPlayer || !args.Player.IsLoggedIn)
         {
             args.Player.SendErrorMessage("你必须登录游戏使用此命令!");
             return;
         }
-        if (!Config.TryGetRegain(args.Player.SelectedItem.netID, out var regain) || regain == null)
-        {
-            args.Player.SendErrorMessage("该物品暂时无法回收!");
-            return;
-        }
-        if (args.Player.SelectedItem.stack == 0 || args.Player.SelectedItem.netID == 0)
-        {
-            args.Player.SendErrorMessage("请手持一个有效物品!");
-            return;
-        }
+        
         switch (args.Parameters.Count)
         {
             case 0:
                 {
+                    if (!Verify(out var regain) || regain == null)
+                        return;
                     var num = args.Player.SelectedItem.stack * regain.Cost;
                     EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num);
                     args.Player.SelectedItem.stack = 0;
@@ -64,17 +87,12 @@ public class RegainPlugin : TerrariaPlugin
                     break;
                 }
             case 1:
+            case 2:
                 {
                     if (args.Parameters[0].ToLower() == "list")
                     {
-                        if (Config.Regains.Count > 0)
-                            args.Player.SendSuccessMessage("回收物品表:");
-                        foreach (var info in Config.Regains)
-                        {
-                            var item = TShock.Utils.GetItemById(info.ID);
-                            if (item != null)
-                                args.Player.SendSuccessMessage($"[i:{info.ID}] {item.Name} 价格:{info.Cost}");
-                        }
+                        var line = Config.Regains.Select(x => x.ToString()).ToList();
+                        Show(line);
                         return;
                     }
                     if (!int.TryParse(args.Parameters[0], out var count) && count > 0)
@@ -82,6 +100,8 @@ public class RegainPlugin : TerrariaPlugin
                         args.Player.SendErrorMessage($"值{args.Parameters[0]}无效!");
                         return;
                     }
+                    if (!Verify(out var regain) || regain == null)
+                        return;
                     count = count > args.Player.SelectedItem.stack ? args.Player.SelectedItem.stack : count;
                     EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, count * regain.Cost);
                     args.Player.SelectedItem.stack -= count;

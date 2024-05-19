@@ -1,5 +1,6 @@
 ﻿using Economics.RPG.Setting;
 using EconomicsAPI.Configured;
+using EconomicsAPI.EventArgs.PlayerEventArgs;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -36,6 +37,7 @@ public class RPG : TerrariaPlugin
         PlayerLevelManager = new();
         PlayerHooks.PlayerPermission += PlayerHooks_PlayerPermission;
         PlayerHooks.PlayerChat += PlayerHooks_PlayerChat;
+        EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop += OnCounterTop;
         GeneralHooks.ReloadEvent += (_) =>
         {
             Config = ConfigHelper.LoadConfig(PATH, Config);
@@ -43,18 +45,25 @@ public class RPG : TerrariaPlugin
         };
     }
 
+    private void OnCounterTop(PlayerCountertopArgs args)
+    {
+        var level = PlayerLevelManager.GetLevel(args.Player.Name);
+        args.Messages.Add(new($"当前职业: {level.Name}", 10));
+        args.Messages.Add(new($"升级职业: {string.Join(",", level.RankLevels.Select(x=>$"{x.Name}({x.Cost})"))}", 11));
+    }
+
     private void PlayerHooks_PlayerChat(PlayerChatEventArgs e)
     {
         var level = PlayerLevelManager.GetLevel(e.Player.Name);
         if (level != null && !string.IsNullOrEmpty(level.ChatFormat))
         {
-            TShock.Utils.Broadcast(string.Format(level.ChatFormat,
+            TShock.Utils.Broadcast(EconomicsAPI.Utils.Helper.GetGradientText(string.Format(level.ChatFormat,
                 e.Player.Group.Name, //{0} 组名
                 level.Name,          //{1} 职业名
                 level.ChatPrefix,    //{2} 聊天前缀
                 e.Player.Name,       //{3} 玩家名
                 level.ChatSuffix,    //{4} 聊天后缀
-                e.RawText),
+                e.RawText)),
                 (byte)level.ChatRGB[0],
                 (byte)level.ChatRGB[1],
                 (byte)level.ChatRGB[2]);

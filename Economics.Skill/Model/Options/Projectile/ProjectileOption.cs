@@ -7,9 +7,6 @@ public class ProjectileOption
     [JsonProperty("弹幕ID")]
     public int ID { get; set; }
 
-    [JsonProperty("优先级")]
-    public int Index { get; set; }
-
     [JsonProperty("伤害")]
     public int Damage { get; set; }
 

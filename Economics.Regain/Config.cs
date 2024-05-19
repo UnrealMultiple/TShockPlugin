@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using TShockAPI;
 
 namespace Economics.Regain;
 
@@ -11,7 +12,16 @@ public class Config
 
         [JsonProperty("回收价格")]
         public int Cost { get; set; }
+
+        public override string ToString()
+        {
+            var item = TShock.Utils.GetItemById(ID);
+            return $"[i:{ID}] {item.Name} 价格:{Cost}";
+        }
     }
+
+    [JsonProperty("最大显示页")]
+    public int PageMax { get; set; } = 20;
 
     [JsonProperty("回收物品表")]
     public List<RegainInfo> Regains { get; set; } = new();
