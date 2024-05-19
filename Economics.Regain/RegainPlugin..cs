@@ -87,6 +87,7 @@ public class RegainPlugin : TerrariaPlugin
                     break;
                 }
             case 1:
+            case 2:
                 {
                     if (args.Parameters[0].ToLower() == "list")
                     {

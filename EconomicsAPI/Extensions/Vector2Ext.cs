@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Security.Cryptography;
 using Terraria;
 
 namespace EconomicsAPI.Extensions;
@@ -28,6 +29,13 @@ public static class Vector2Ext
             || float.IsNaN(vec.Y) || float.IsInfinity(vec.Y)
             || float.IsPositiveInfinity(vec.X) || float.IsPositiveInfinity(vec.Y);
 
+    }
+
+    public static Vector2 RotationAngle(this Vector2 vel, float angle)
+    {
+        vel.X = (float)(Math.Cos(angle) * Math.PI / 180f);
+        vel.Y = (float)(Math.Sin(angle) * Math.PI / 180f);
+        return vel;
     }
 
     public static Vector2 ToLenOf(this Vector2 vec, float len)

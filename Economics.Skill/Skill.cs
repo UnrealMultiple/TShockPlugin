@@ -25,8 +25,6 @@ public class Skill : TerrariaPlugin
 
     public long TimerCount;
 
-    public static object ILock = new();
-
     internal static Config Config { get; set; }
 
     public Skill(Main game) : base(game)
@@ -44,8 +42,6 @@ public class Skill : TerrariaPlugin
         GetDataHandlers.NewProjectile.Register(OnNewProj);
         EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += OnKillNpc;
         GeneralHooks.ReloadEvent += e => LoadConfig();
-
-        //Commands.ChatCommands.Add(new(e => PlayerSparkSkillHandler.Adapter(Config.SkillContexts[0], Enumerates.SkillSparkType.Take), "skill")); 
     }
     private void OnUpdate(EventArgs args)
     {
@@ -73,10 +69,14 @@ public class Skill : TerrariaPlugin
 
     private void OnStrike(NpcStrikeEventArgs args)
     {
+        var tsply = TShock.Players[args.Player.whoAmI];
+        if (tsply != null)
+            PlayerSparkSkillHandler.Adapter(tsply, Config.SkillContexts[0], Enumerates.SkillSparkType.Strike);
     }
 
     private void OnKillNpc(PlayerKillNpcArgs args)
     {
+        PlayerSparkSkillHandler.Adapter(args.Player, Config.SkillContexts[0], Enumerates.SkillSparkType.Strike);
     }
 
     private void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
