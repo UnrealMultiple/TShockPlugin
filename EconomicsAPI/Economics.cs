@@ -1,4 +1,4 @@
-﻿using EconomicsAPI.Configured;
+using EconomicsAPI.Configured;
 using EconomicsAPI.DB;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
 using EconomicsAPI.Events;
@@ -68,26 +68,26 @@ public class Economics : TerrariaPlugin
         if (!File.Exists(ConfigPATH))
             Setting.GradientColor = new List<string>()
             {
-                "[c/40c900:{0}]",
-                "[c/00c427:{0}]",
-                "[c/00be3b:{0}]",
-                "[c/00b650:{0}]",
-                "[c/00ad5f:{0}]",
-                "[c/00a569:{0}]",
-                "[c/009d70:{0}]",
-                "[c/009575:{0}]",
-                "[c/008d78:{0}]",
-                "[c/008579:{0}]",
-                "[c/007e7a:{0}]",
-                "[c/007779:{0}]",
-                "[c/007078:{0}]",
-                "[c/006976:{0}]",
-                "[c/006373:{0}]",
-                "[c/005c71:{0}]",
-                "[c/00556e:{0}]",
-                "[c/004f6b:{0}]",
-                "[c/004765:{0}]",
-                "[c/00405c:{0}]"
+                "[c/00ffbf:{0}]",
+                "[c/1aecb8:{0}]",
+                "[c/33d9b1:{0}]",
+                "[c/80a09c:{0}]",
+                "[c/998c95:{0}]",
+                "[c/b3798e:{0}]",
+                "[c/cc6687:{0}]",
+                "[c/e65380:{0}]",
+                "[c/ff4079:{0}]",
+                "[c/ed4086:{0}]",
+                "[c/db4094:{0}]",
+                "[c/9440c9:{0}]",
+                "[c/8240d7:{0}]",
+                "[c/7040e4:{0}]",
+                "[c/5e40f2:{0}]",
+                "[c/944eaa:{0}]",
+                "[c/b75680:{0}]",
+                "[c/db5d55:{0}]",
+                "[c/ed6040:{0}]",
+                "[c/ff642b:{0}]"
             };
         Setting = ConfigHelper.LoadConfig(ConfigPATH, Setting);
     }
@@ -116,18 +116,21 @@ public class Economics : TerrariaPlugin
         TimerCount++;
         if (TimerCount % 60 == 0)
         {
-            foreach (var ply in ServerPlayers)
+            lock (ServerPlayers)
             {
-                Ping(ply, data =>
+                foreach (var ply in ServerPlayers)
                 {
-                    var status = new PlayerCountertopArgs()
+                    Ping(ply, data =>
                     {
-                        Ping = data,
-                        Player = data.TSPlayer
-                    };
-                    if (Setting.StatusText && !PlayerHandler.PlayerCountertopUpdate(status))
-                        Helper.CountertopUpdate(status);
-                });
+                        var status = new PlayerCountertopArgs()
+                        {
+                            Ping = data,
+                            Player = data.TSPlayer
+                        };
+                        if (Setting.StatusText && !PlayerHandler.PlayerCountertopUpdate(status))
+                            Helper.CountertopUpdate(status);
+                    });
+                }
             }
         }
         if (TimerCount % (60 * Setting.SaveTime) == 0)
@@ -222,14 +225,21 @@ public class Economics : TerrariaPlugin
     private void OnLeave(LeaveEventArgs args)
     {
         var player = TShock.Players[args.Who];
-        if (player != null)
-            ServerPlayers.Remove(player);
+        lock (ServerPlayers)
+        { 
+            if (player != null)
+                ServerPlayers.Remove(player);
+        }
+        
     }
 
     private void OnGreet(GreetPlayerEventArgs args)
     {
         var player = TShock.Players[args.Who];
-        if (player != null)
-            ServerPlayers.Add(player);
+        lock (ServerPlayers)
+        { 
+            if (player != null)
+                ServerPlayers.Add(player);
+        }
     }
 }

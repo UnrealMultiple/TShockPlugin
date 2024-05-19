@@ -17,7 +17,7 @@ public class Helper
     {
         string result = "";
         var info = Terraria.UI.Chat.ChatManager.ParseMessage(text, Color.White);
-        var colors = Economics.Setting.GradientColor.OrderBy(x => Guid.NewGuid()).ToList();
+        var colors = Economics.Setting.GradientColor;
         foreach (var item in info)
         {
             var index = 0;
