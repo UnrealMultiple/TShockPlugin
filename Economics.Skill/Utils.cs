@@ -26,8 +26,8 @@ public class Utils
     {
         EmitGeneralSkill(Player, skill);
         foreach (var proj in skill.Projectiles)
-        { 
-            var vel = Player.TPlayer.ItemUseAngle()
+        {
+            var vel = Player.TPlayer.ItemUseAngle();
         }
     }
 }
