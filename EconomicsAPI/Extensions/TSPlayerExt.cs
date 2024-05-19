@@ -7,9 +7,15 @@ namespace EconomicsAPI.Extensions;
 
 public static class TSPlayerExt
 {
+    
     public static void SendCombatMsg(this TSPlayer player, string text, Color color)
     {
         player.TPlayer.SendCombatMsg(text, color);
+    }
+
+    public static void SendGradientMsg(this TSPlayer player, string text)
+    {
+        player.SendInfoMessage(Utils.Helper.GetGradientText(text));
     }
 
     public static void ExecCommand(this TSPlayer player, string cmd)

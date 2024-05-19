@@ -1,6 +1,5 @@
 ﻿using EconomicsAPI.Configured;
 using EconomicsAPI.DB;
-using EconomicsAPI.EventArgs;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
 using EconomicsAPI.Events;
 using EconomicsAPI.Extensions;
@@ -49,7 +48,7 @@ public class Economics : TerrariaPlugin
 
     public override void Initialize()
     {
-        Setting = ConfigHelper.LoadConfig<Setting>(ConfigPATH);
+        LoadConfig();
         CurrencyManager = new CurrencyManager();
         Helper.InitPluginAttributes();
         ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreet);
@@ -61,7 +60,36 @@ public class Economics : TerrariaPlugin
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
         GetDataHandlers.KillMe.Register(OnKillMe);
         PlayerHandler.OnPlayerCountertop += PlayerHandler_OnPlayerCountertop;
-        TShockAPI.Hooks.GeneralHooks.ReloadEvent += (_) => Setting = ConfigHelper.LoadConfig(ConfigPATH, Setting);
+        TShockAPI.Hooks.GeneralHooks.ReloadEvent += (_) => LoadConfig();
+    }
+
+    private void LoadConfig()
+    {
+        if (!File.Exists(ConfigPATH))
+            Setting.GradientColor = new List<string>()
+            {
+                "[c/40c900:{0}]",
+                "[c/00c427:{0}]",
+                "[c/00be3b:{0}]",
+                "[c/00b650:{0}]",
+                "[c/00ad5f:{0}]",
+                "[c/00a569:{0}]",
+                "[c/009d70:{0}]",
+                "[c/009575:{0}]",
+                "[c/008d78:{0}]",
+                "[c/008579:{0}]",
+                "[c/007e7a:{0}]",
+                "[c/007779:{0}]",
+                "[c/007078:{0}]",
+                "[c/006976:{0}]",
+                "[c/006373:{0}]",
+                "[c/005c71:{0}]",
+                "[c/00556e:{0}]",
+                "[c/004f6b:{0}]",
+                "[c/004765:{0}]",
+                "[c/00405c:{0}]"
+            };
+        Setting = ConfigHelper.LoadConfig(ConfigPATH, Setting);
     }
 
     private void PlayerHandler_OnPlayerCountertop(PlayerCountertopArgs args)

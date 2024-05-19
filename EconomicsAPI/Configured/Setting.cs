@@ -33,4 +33,7 @@ public class Setting
 
     [JsonProperty("查询提示")]
     public string QueryFormat = "[c/FFA500:你当前拥有{0}{1}个]";
+
+    [JsonProperty("渐变颜色")]
+    public List<string> GradientColor = new();
 }
