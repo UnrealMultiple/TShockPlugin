@@ -9,7 +9,8 @@ public class Utils
 {
     public static void EmitGeneralSkill(TSPlayer Player, SkillContext skill)
     {
-        TShock.Utils.Broadcast(skill.Broadcast, Color.Wheat);
+        if (!string.IsNullOrEmpty(skill.Broadcast))
+            TShock.Utils.Broadcast(skill.Broadcast, Color.Wheat);
         Player.StrikeNpc(skill.StrikeNpc.Damage, skill.StrikeNpc.Range);
         Player.ExecRangeCommands(skill.ExecCommand.Range, skill.ExecCommand.Commands);
         Player.HealAllLife(skill.HealPlayerHPOption.Range, skill.HealPlayerHPOption.HP);
@@ -25,9 +26,45 @@ public class Utils
     public static void EmitSkill(TSPlayer Player, SkillContext skill)
     {
         EmitGeneralSkill(Player, skill);
-        foreach (var proj in skill.Projectiles)
+        //原始发射位置
+        var pos = Player.TPlayer.Center + Player.TPlayer.ItemOffSet();
+        //原始角度速度参数
+        var vel = Player.TPlayer.ItemOffSet();
+        Task.Run(() =>
         {
-            var vel = Player.TPlayer.ItemUseAngle();
-        }
+            foreach (var proj in skill.Projectiles)
+            {
+                foreach (var opt in proj.ProjectileCycle.ProjectileCycles)
+                {
+                    var _vel = vel.RotationAngle(proj.Angle).ToLenOf(proj.Speed);
+                    var _pos = pos + new Vector2(proj.X, proj.Y);
+                    for (int i = 0; i < opt.Count; i++)
+                    {
+                        #region 生成弹幕
+                        int index = EconomicsAPI.Utils.Projectile.NewProjectile(
+                            //发射原无期
+                           Player.TPlayer.GetProjectileSource_Item(Player.TPlayer.HeldItem),
+                           //发射位置
+                           _pos,
+                           _vel,
+                           proj.ID,
+                           proj.Damage, 
+                           proj.Knockback, 
+                           Player.Index);
+                        TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
+                        #endregion
+
+                        #region 数值重置
+                        _vel = _vel.RotationAngle(opt.GrowAngle).ToLenOf(proj.Speed);
+                        if (opt.FollowPlayer)
+                            _pos = Player.TPlayer.Center + Player.TPlayer.ItemOffSet() + new Vector2(opt.GrowX, opt.GrowY);
+                        else
+                            _pos += new Vector2(opt.GrowX, opt.GrowY);
+                        #endregion
+                        Task.Delay(opt.Dealy).Wait();
+                    }
+                }
+            }
+        });
     }
 }

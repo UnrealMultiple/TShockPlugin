@@ -31,7 +31,7 @@ public class PlayerSparkSkillHandler
                     SkillSparkType.MP => Player.TPlayer.statMana <= skillContext.SkillSpark.MP,
                     SkillSparkType.CD => true,
                     SkillSparkType.Death => Player.Dead,
-                    SkillSparkType.Take => Player.TPlayer.controlUseItem,
+                    SkillSparkType.Take => true,
                     SkillSparkType.Kill => true,
                     SkillSparkType.Strike => true,
                     _ => false
@@ -46,7 +46,8 @@ public class PlayerSparkSkillHandler
 
     public static void Adapter(TSPlayer Player, SkillContext skillContext, SkillSparkType skillSparkType)
     {
-        
+        if (IsSpark(Player, skillContext, skillSparkType))
+            Utils.EmitSkill(Player, skillContext);
     }
 
     public static void Adapter(GetDataHandlers.NewProjectileEventArgs e, SkillContext skillContext, SkillSparkType skillSparkType)
