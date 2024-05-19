@@ -58,16 +58,7 @@ public class Skill : TerrariaPlugin
 
     private void OnNewProj(object? sender, GetDataHandlers.NewProjectileEventArgs e)
     {
-        Task.Run(() =>
-        {
-            PlayerSparkSkillHandler.Adapter(e, Config.SkillContexts[0], Enumerates.SkillSparkType.Take);
-        });
-        
-    }
-
-    private void OnConnent(ConnectEventArgs args)
-    {
-
+        PlayerSparkSkillHandler.Adapter(e, Config.SkillContexts[0], Enumerates.SkillSparkType.Take);
     }
 
     private void OnMP(object? sender, GetDataHandlers.PlayerManaEventArgs e)
@@ -82,19 +73,10 @@ public class Skill : TerrariaPlugin
 
     private void OnStrike(NpcStrikeEventArgs args)
     {
-        var player = TShock.Players[args.Player.whoAmI];
-        var strike = player.GetData<ManualResetEventSlim>("strike");
-        if (player == null || strike == null)
-            return;
-        strike.Set();
     }
 
     private void OnKillNpc(PlayerKillNpcArgs args)
     {
-        var kill = args.Player.GetData<ManualResetEventSlim>("kill");
-        if (args.Player == null || kill == null)
-            return;
-        kill.Set();
     }
 
     private void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
