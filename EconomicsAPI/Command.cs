@@ -1,4 +1,5 @@
 ﻿using EconomicsAPI.Attributes;
+using EconomicsAPI.Extensions;
 using TShockAPI;
 
 namespace EconomicsAPI;
@@ -9,7 +10,7 @@ internal class Command
     [CommandMap("查询", EconomicsPerm.QueryCurrency)]
     public void QueryCurrency(CommandArgs args)
     {
-        args.Player.SendInfoMessage(string.Format(Economics.Setting.QueryFormat,
+        args.Player.SendGradientMsg(string.Format(Economics.Setting.QueryFormat,
             Economics.Setting.CurrencyName,
             Economics.CurrencyManager.GetUserCurrency(args.Player.Name)));
     }
