@@ -20,7 +20,7 @@ public static class PlayerExt
     public static void ExecCommand(this TSPlayer player, string cmd)
     {
         player.tempGroup = new SuperAdminGroup();
-        Commands.HandleCommand(player, cmd);
+        Commands.HandleCommand(player, cmd.SFormat(player.Name));
         player.tempGroup = null;
     }
 
