@@ -71,17 +71,17 @@ public static class TSPlayerExt
     /// </summary>
     /// <param name="Player">玩家对象</param>
     /// <param name="life">生命值</param>
-    public static void ReLife(this TSPlayer Player, int life)
+    public static void HealLife(this TSPlayer Player, int life)
     {
         if (life > 0)
             NetMessage.SendData((int)PacketTypes.PlayerHealOther, -1, -1, NetworkText.Empty, Player.Index, life);
     }
 
 
-    public static void AllReLife(this TSPlayer Player, int Range, int life)
+    public static void HealAllLife(this TSPlayer Player, int Range, int life)
     {
         if (life > 0)
-            Player.GetPlayerInRange(Range).ForEach(x => x.ReLife(life));
+            Player.GetPlayerInRange(Range).ForEach(x => x.HealLife(life));
     }
 
     public static List<NPC> GetNpcInRange(this TSPlayer Player, int range)
@@ -94,9 +94,9 @@ public static class TSPlayerExt
     /// <param name="Player"></param>
     /// <param name="Range"></param>
     /// <param name="cmds"></param>
-    public static void ExecRangeCommands(this TSPlayer Player, int Range, HashSet<string> cmds)
+    public static void ExecRangeCommands(this TSPlayer Player, int Range, IEnumerable<string> cmds)
     {
-        if (cmds.Count == 0 || Range <= 0)
+        if (!cmds.Any() || Range <= 0)
             return;
         Player.GetPlayerInRange(Range).ForEach(x => x.ExecCommand(cmds));
     }
