@@ -71,12 +71,7 @@ namespace Autoclear
                     {
                         _sweepScheduled = true;
                         _sweepScheduledAt = DateTime.UtcNow.AddSeconds(Config.DelayedSweepTimeoutSeconds);
-
-                        // 发送倒计时消息
-                        if (Config.SpecificMessage)
-                        {
-                            TSPlayer.All.SendSuccessMessage($"{Config.DelayedSweepCustomMessage}");
-                        }
+                        TSPlayer.All.SendSuccessMessage($"{Config.DelayedSweepCustomMessage}");
                     }
                 }
                 if (_sweepScheduled && DateTime.UtcNow >= _sweepScheduledAt)
