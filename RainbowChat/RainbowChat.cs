@@ -133,7 +133,7 @@ namespace RainbowChat
                 TSPlayer.All.SendMessage(string.Format(TShock.Config.Settings.ChatFormat, player.Group.Name, player.Group.Prefix, player.Name, player.Group.Suffix, coloredMessage), player.Group.R, player.Group.G, player.Group.B);
 
                 // 在控制台打印原始消息
-                Console.WriteLine($"[{player.Group.Name}]{player.Name}:{e.Text}");
+                Console.Write(string.Format($"〖{player.Group.Name}〗[{e.Who}] {player.Name}：{e.Text}\n"));
             }
             else if (_Gradient[player.Index])
             {
@@ -143,7 +143,7 @@ namespace RainbowChat
                 TSPlayer.All.SendMessage(string.Format(TShock.Config.Settings.ChatFormat, player.Group.Name, player.Group.Prefix, player.Name, player.Group.Suffix, gradientMessage), player.Group.R, player.Group.G, player.Group.B);
 
                 // 在控制台打印原始消息
-                Console.WriteLine($"[{player.Group.Name}]{player.Name}:{e.Text}");
+                Console.Write(string.Format($"〖{player.Group.Name}〗[{e.Who}] {player.Name}：{e.Text}\n"));
             }
 
             // 标记事件已处理
