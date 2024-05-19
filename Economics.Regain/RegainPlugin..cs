@@ -37,25 +37,32 @@ public class RegainPlugin : TerrariaPlugin
 
     private void CRegain(CommandArgs args)
     {
+        bool Verify(out Config.RegainInfo? regain)
+        {
+            if (!Config.TryGetRegain(args.Player.SelectedItem.netID, out regain) || regain == null)
+            {
+                args.Player.SendErrorMessage("该物品暂时无法回收!");
+                return false;
+            }
+            if (args.Player.SelectedItem.stack == 0 || args.Player.SelectedItem.netID == 0)
+            {
+                args.Player.SendErrorMessage("请手持一个有效物品!");
+                return false;
+            }
+            return true;
+        }
         if (!args.Player.RealPlayer || !args.Player.IsLoggedIn)
         {
             args.Player.SendErrorMessage("你必须登录游戏使用此命令!");
             return;
         }
-        if (!Config.TryGetRegain(args.Player.SelectedItem.netID, out var regain) || regain == null)
-        {
-            args.Player.SendErrorMessage("该物品暂时无法回收!");
-            return;
-        }
-        if (args.Player.SelectedItem.stack == 0 || args.Player.SelectedItem.netID == 0)
-        {
-            args.Player.SendErrorMessage("请手持一个有效物品!");
-            return;
-        }
+        
         switch (args.Parameters.Count)
         {
             case 0:
                 {
+                    if (!Verify(out var regain) || regain == null)
+                        return;
                     var num = args.Player.SelectedItem.stack * regain.Cost;
                     EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num);
                     args.Player.SelectedItem.stack = 0;
@@ -82,6 +89,8 @@ public class RegainPlugin : TerrariaPlugin
                         args.Player.SendErrorMessage($"值{args.Parameters[0]}无效!");
                         return;
                     }
+                    if (!Verify(out var regain) || regain == null)
+                        return;
                     count = count > args.Player.SelectedItem.stack ? args.Player.SelectedItem.stack : count;
                     EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, count * regain.Cost);
                     args.Player.SelectedItem.stack -= count;
