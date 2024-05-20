@@ -15,10 +15,10 @@
 
 ## 前言
 
-- 这是一个致力于收集整合 `TShock` 插件的仓库。  
+- 这是一个致力于收集整合 `TShock` 插件的仓库。
 - 库中内插件容部分来源于网络收集以及反编译。
-- 因项目的特殊性，可能会造成侵权行为，如有侵权请联系我们解决。  
-- 我们将持续收集优质的 `TShock` 插件，进行及时的更新。并跟进`TShock`的最新版本。  
+- 因项目的特殊性，可能会造成侵权行为，如有侵权请联系我们解决。
+- 我们将持续收集优质的 `TShock` 插件，进行及时的更新。并跟进`TShock`的最新版本。
 - 如果你也想加入我们，请按照下方`开发者注意事项`的规定对本仓库`Pull Request`。
 
 ## 使用者注意事项
@@ -45,6 +45,7 @@
 ### 已收集插件
 
 > 点击蓝链可查看插件详细说明
+
 <Details>
 <Summary>插件列表</Summary>
 
@@ -57,6 +58,7 @@
 | [Economics.Shop](Economics.Shop/README.md)                       |            商店插件            |                               EconomicsAPI<br>Economics.RPG                                |
 | [Economics.Skill](Economics.Skill/README.md)                     |        技能插件(未完成)        |                               EconomicsAPI<br>Economics.RPG                                |
 | [Economics.Regain](Economics.Regain/README.md)                   |            物品回收            |                                        EconomicsAPI                                        |
+| [Economics.Projectile](Economics.Projectile/README.md)           |           自定义弹幕           |                               EconomicsAPI<br>Economics.RPG                                |
 | [CreateSpawn](CreateSpawn/README.md)                             |         出生点建筑生成         |                                             无                                             |
 | [AutoBroadcast](AutoBroadcast/README.md)                         |            自动广播            |                                             无                                             |
 | [AutoTeam](AutoTeam/README.md)                                   |            自动队伍            |                                             无                                             |
@@ -118,8 +120,9 @@
 | [HelpPlus](HelpPlus/README.md)                                   |      修复和增强 Help 命令      |                                             无                                             |
 | [CaiBot](CaiBot/README.md)                                       |        CaiBot 适配插件         |                                          自带前置                                          |
 | [HouseRegion](HouseRegion/README.md)                             |            圈地插件            |                                                                                            |
-| [SignInSign](SignInSign/README.md)                             |            告示牌登录插件            |                                         无                                             |
-| [WeaponPlusCostCoin](WeaponPlusCostCoin/README.md)                             |            武器强化钱币版            |                                         无                                             |
+| [SignInSign](SignInSign/README.md)                               |         告示牌登录插件         |                                             无                                             |
+| [WeaponPlusCostCoin](WeaponPlusCostCoin/README.md)               |         武器强化钱币版         |                                             无                                             |
+
 </Details>
 
 ## 代码贡献
