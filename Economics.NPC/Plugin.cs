@@ -61,7 +61,7 @@ public class Plugin : TerrariaPlugin
         {
             if (cfg.DynamicPartition)
             {
-                double rw = args.Damage / args.Npc.lifeMax;
+                float rw = args.Damage / args.Npc.lifeMax;
                 long Curr = Convert.ToInt64(Math.Round(rw * cfg.ExtraReward));
                 EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr);
                 if (Config.Prompt)

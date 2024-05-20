@@ -7,9 +7,9 @@ public class PlayerKillNpcArgs : BasePlayerEventArgs
 {
     public NPC Npc { get; }
 
-    public int Damage { get; }
+    public float Damage { get; }
 
-    internal PlayerKillNpcArgs(Player player, NPC npc, int damage)
+    internal PlayerKillNpcArgs(Player player, NPC npc, float damage)
     {
         Player = TShock.Players[player.whoAmI];
         Npc = npc;
