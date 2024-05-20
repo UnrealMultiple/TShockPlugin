@@ -1,4 +1,5 @@
-﻿using Economics.Skill.Events;
+﻿using Economics.Skill.DB;
+using Economics.Skill.Events;
 using Economics.Skill.Setting;
 using EconomicsAPI.Configured;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
@@ -25,7 +26,9 @@ public class Skill : TerrariaPlugin
 
     public long TimerCount;
 
-    internal static Config Config { get; set; }
+    internal static Config Config { get; set; } = new();
+
+    internal static PlayerSKillManager PlayerSKillManager { get; set; }
 
     public Skill(Main game) : base(game)
     {
@@ -34,6 +37,7 @@ public class Skill : TerrariaPlugin
     public override void Initialize()
     {
         LoadConfig();
+        PlayerSKillManager = new();
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
         GetDataHandlers.PlayerUpdate.Register(OnPlayerUpdate);
@@ -48,42 +52,43 @@ public class Skill : TerrariaPlugin
         TimerCount++;
         if ((TimerCount % 6) == 0)
         {
-
+            SkillCD.Updata();
         }
     }
 
     private void OnNewProj(object? sender, GetDataHandlers.NewProjectileEventArgs e)
     {
-        PlayerSparkSkillHandler.Adapter(e, Config.SkillContexts[0], Enumerates.SkillSparkType.Take);
+        if (e.Player.TPlayer.controlUseItem)
+            PlayerSparkSkillHandler.Adapter(e, Enumerates.SkillSparkType.Take);
     }
 
     private void OnMP(object? sender, GetDataHandlers.PlayerManaEventArgs e)
     {
-        PlayerSparkSkillHandler.Adapter(e.Player, Config.SkillContexts[0], Enumerates.SkillSparkType.MP);
+        PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.MP);
     }
 
     private void OnHP(object? sender, GetDataHandlers.PlayerHPEventArgs e)
     {
-        PlayerSparkSkillHandler.Adapter(e.Player, Config.SkillContexts[0], Enumerates.SkillSparkType.HP);
+        PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.HP);
     }
 
     private void OnStrike(NpcStrikeEventArgs args)
     {
         var tsply = TShock.Players[args.Player.whoAmI];
         if (tsply != null)
-            PlayerSparkSkillHandler.Adapter(tsply, Config.SkillContexts[0], Enumerates.SkillSparkType.Strike);
+            PlayerSparkSkillHandler.Adapter(tsply, Enumerates.SkillSparkType.Strike);
     }
 
     private void OnKillNpc(PlayerKillNpcArgs args)
     {
-        PlayerSparkSkillHandler.Adapter(args.Player, Config.SkillContexts[0], Enumerates.SkillSparkType.Strike);
+        PlayerSparkSkillHandler.Adapter(args.Player, Enumerates.SkillSparkType.Kill);
     }
 
     private void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
     {
         if (e.Player.TPlayer.ItemTimeIsZero && e.Player.TPlayer.controlUseItem && e.Player.TPlayer.HeldItem.shoot == 0)
         {
-            PlayerSparkSkillHandler.Adapter(e.Player, Config.SkillContexts[0], Enumerates.SkillSparkType.Take);
+            PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.Take);
         }
     }
 
@@ -105,6 +110,10 @@ public class Skill : TerrariaPlugin
                         {
                             new()
                             {
+                                CircleProjectiles = new()
+                                {
+                                    new()
+                                },
                                 ProjectileCycle = new()
                                 {
                                     ProjectileCycles = new()

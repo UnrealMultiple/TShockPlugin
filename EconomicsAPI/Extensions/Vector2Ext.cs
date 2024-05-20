@@ -1,28 +1,10 @@
 using Microsoft.Xna.Framework;
-using System.Security.Cryptography;
 using Terraria;
 
 namespace EconomicsAPI.Extensions;
 
 public static class Vector2Ext
 {
-    public static double ItemUseAngle(this Player TPlayer)
-    {
-        double angle = TPlayer.itemRotation;
-        if (TPlayer.direction == -1)
-        {
-            angle += Math.PI;
-        }
-        return angle;
-    }
-
-    public static Vector2 ItemOffSet(this Player player)
-    {
-        float length = player.HeldItem.height;
-        var offset = new Vector2(length, 0).RotatedBy(player.ItemUseAngle());
-        return offset;
-    }
-
     public static bool HasNanOrInf(this Vector2 vec)
     {
         return float.IsNaN(vec.X) || float.IsInfinity(vec.X)
@@ -58,4 +40,23 @@ public static class Vector2Ext
         }
         return points;
     }
+    
+    public static Vector2[] GetArcPoints(this Vector2 vel ,float startAngle, float endAngle, float radius, float interval)
+    {
+        var points = new List<Vector2>();
+        int steps = (int)Math.Round((endAngle - startAngle + 360) % 360 / interval);
+        for (int i = 0; i <= steps; i++)
+        {
+            float angle = (startAngle + i * interval + 360) % 360;
+            float x = (float)(radius * Math.Cos(angle * Math.PI / 180));
+            float y = (float)(radius * Math.Sin(angle * Math.PI / 180));
+            points.Add(new Vector2(x, y) + vel);
+        }
+        return points.ToArray();
+    }
 }
+
+
+
+
+

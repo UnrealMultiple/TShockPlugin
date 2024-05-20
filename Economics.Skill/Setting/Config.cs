@@ -13,10 +13,10 @@ public class Config
     public int WeapoeBindMaxCount { get; set; }
 
     [JsonProperty("禁止拉怪表")]
-    public HashSet<int> BanPullNpcs { get; set; }
+    public HashSet<int> BanPullNpcs { get; set; } = new();
 
-    [JsonProperty("技能唯一性")]
-    public bool SkillUnique { get; set; }
+    [JsonProperty("最大显示页")]
+    public int PageMax { get; set; } = 20;
 
     [JsonProperty("技能列表")]
     public List<SkillContext> SkillContexts { get; set; } = new();
@@ -25,6 +25,6 @@ public class Config
     {
         if (index < 1 || index > SkillContexts.Count)
             return null;
-        return SkillContexts[index];
+        return SkillContexts[index - 1];
     }
 }

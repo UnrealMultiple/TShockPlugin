@@ -22,6 +22,23 @@ public static class PlayerExt
         }).ToList();
     }
 
+    public static double ItemUseAngle(this Player TPlayer)
+    {
+        double angle = TPlayer.itemRotation;
+        if (TPlayer.direction == -1)
+        {
+            angle += Math.PI;
+        }
+        return angle;
+    }
+
+    public static Vector2 ItemOffSet(this Player player)
+    {
+        float length = player.HeldItem.height;
+        var offset = new Vector2(length, 0).RotatedBy(player.ItemUseAngle());
+        return offset;
+    }
+
     public static List<NPC> GetNpcInRange(this Player Player, int range)
     {
         return Main.npc.Where(p =>

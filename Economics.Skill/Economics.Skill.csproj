@@ -13,4 +13,8 @@
 		<ProjectReference Include="..\EconomicsAPI\EconomicsAPI.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Extensions\" />
+	</ItemGroup>
+
 </Project>

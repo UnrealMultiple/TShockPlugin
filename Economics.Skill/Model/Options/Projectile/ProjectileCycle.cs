@@ -13,9 +13,6 @@ public class ProjectileCycle
     [JsonProperty("Y递增")]
     public int GrowY { get; set; }
 
-    [JsonProperty("位置平移")]
-    public int Translate { get; set; }
-
     [JsonProperty("角度递增")]
     public int GrowAngle { get; set; }
 
