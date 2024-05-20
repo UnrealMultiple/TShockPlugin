@@ -56,7 +56,7 @@
 | [Economics.RPG](Economics.RPG/README.md)                         |              RPG               |                                        EconomicsAPI                                        |
 | [Economics.Deal](Economics.RPG/README.md)                        |            交易插件            |                                        EconomicsAPI                                        |
 | [Economics.Shop](Economics.Shop/README.md)                       |            商店插件            |                               EconomicsAPI<br>Economics.RPG                                |
-| [Economics.Skill](Economics.Skill/README.md)                     |        技能插件(未完成)        |                               EconomicsAPI<br>Economics.RPG                                |
+| [Economics.Skill](Economics.Skill/README.md)                     |            技能插件            |                               EconomicsAPI<br>Economics.RPG                                |
 | [Economics.Regain](Economics.Regain/README.md)                   |            物品回收            |                                        EconomicsAPI                                        |
 | [Economics.Projectile](Economics.Projectile/README.md)           |           自定义弹幕           |                               EconomicsAPI<br>Economics.RPG                                |
 | [Economics.NPC](Economics.NPC/README.md)                         |         自定义怪物奖励         |                                        EconomicsAPI                                        |
