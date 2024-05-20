@@ -49,7 +49,6 @@ public class Helper
                 index++;
             }
         }
-        Console.WriteLine(result);
         return result;
     }
     /// <summary>
