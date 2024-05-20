@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Rests;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -12,17 +13,29 @@ namespace EconomicsAPI.Utils;
 
 public class Helper
 {
-    //代码来自于CaiLib
+    private static readonly Regex Regex = new(@"\[(?<type>[^\]]+):(?<id>\d+)\]");
     public static string GetGradientText(string text)
     {
         string result = "";
+        //匹配物品消息
+        var matchs = Regex.Matches(text);
+        var chat = matchs.Select(x => x.Groups).ToDictionary(x => x[1].Index, x => x);
         var info = Terraria.UI.Chat.ChatManager.ParseMessage(text, Color.White);
         var colors = Economics.Setting.GradientColor;
+        var fullIndex = 1;
+        var index = 0;
         foreach (var item in info)
         {
-            var index = 0;
             for(int i = 0; i< item.Text.Length; i++)
             {
+                fullIndex++;
+                if (chat.TryGetValue(fullIndex - 1, out var group) && group != null)
+                {
+                    result += item.TextOriginal;
+                    fullIndex += item.Text.Length + 1;
+                    break;
+                }
+                else
                 if (index >= colors.Count)
                 {
                     result += item.Text[i];
@@ -32,9 +45,11 @@ public class Helper
                 {
                     result += Economics.Setting.GradientColor[index].SFormat(item.Text[i]);
                 }
+                
                 index++;
             }
         }
+        Console.WriteLine(result);
         return result;
     }
     /// <summary>

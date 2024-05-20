@@ -32,7 +32,7 @@ public class RPG : TerrariaPlugin
 
     public override void Initialize()
     {
-        Config = ConfigHelper.LoadConfig<Config>(PATH);
+        Config = ConfigHelper.LoadConfig<Config>(PATH, Config);
         Config.Init();
         PlayerLevelManager = new();
         PlayerHooks.PlayerPermission += PlayerHooks_PlayerPermission;
