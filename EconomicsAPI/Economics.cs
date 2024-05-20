@@ -26,7 +26,7 @@ public class Economics : TerrariaPlugin
 
     public readonly static List<TSPlayer> ServerPlayers = new();
 
-    private readonly Dictionary<NPC, Dictionary<Player, int>> Strike = new();
+    private readonly Dictionary<NPC, Dictionary<Player, float>> Strike = new();
 
     public static string SaveDirPath => Path.Combine(TShock.SavePath, "Economics");
 
@@ -145,11 +145,21 @@ public class Economics : TerrariaPlugin
     {
         if (Strike.TryGetValue(args.Npc, out var data))
         {
-            if (data.TryGetValue(args.Player, out int damage))
+            if (data.TryGetValue(args.Player, out float damage))
             {
                 Strike[args.Npc][args.Player] += args.Damage;
             }
-            Strike[args.Npc][args.Player] = args.Damage;
+            else
+            {
+                Strike[args.Npc][args.Player] = args.Damage;
+            }
+        }
+        else
+        {
+            Strike[args.Npc] = new()
+            {
+                { args.Player, args.Damage }
+            };
         }
     }
 
