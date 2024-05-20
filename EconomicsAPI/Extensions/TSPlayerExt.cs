@@ -136,12 +136,12 @@ public static class TSPlayerExt
     /// <param name="Player"></param>
     /// <param name="Range"></param>
     /// <param name="code"></param>
-    public static void CollectNPC(this TSPlayer Player, int Range, HashSet<int> notNpc)
+    public static void CollectNPC(this TSPlayer Player, int Range, HashSet<int> notNpc, int x = 0, int y = 0)
     {
         Player.GetNpcInRange(Range).ForEach(npc =>
         {
             if (!notNpc.Contains(npc.type))
-                npc.Teleport(Player.TPlayer.position);
+                npc.Teleport(Player.TPlayer.position + new Vector2(x, y));
         });
     }
 }
