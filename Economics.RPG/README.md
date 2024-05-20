@@ -7,7 +7,11 @@
 ## 更新日志
 
 ```
-暂无
+V1.0.0.1
+- 增加显示信息
+- 添加/level reset指令
+- 添加自定义消息玩家组
+- 添加RPG聊天渐变色
 ```
 
 ## 指令
@@ -16,6 +20,7 @@
 | -------------- | :-----------------: | :------: |
 | /rank [职业名] | economics.rpg.rank  |   升级   |
 | /重置等级      | economics.rpg.reset | 重置职业 |
+| /level reset   | economics.rpg.admin | 重置     |
 
 ## 配置
 
