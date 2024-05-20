@@ -88,4 +88,19 @@ internal class Command
         if (RPG.Config.ResetKick)
             args.Player.Disconnect("你因重置等级被踢出!");
     }
+
+    [CommandMap("level", "economics.rpg.admin")]
+    public void Level(CommandArgs args)
+    {
+        if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "reset")
+        {
+            RPG.PlayerLevelManager.RemoveAll();
+            args.Player.SendSuccessMessage("玩家等级信息重置成功!");
+        }
+        else
+        {
+            args.Player.SendErrorMessage("语法错误，正确语法:");
+            args.Player.SendErrorMessage("/level reset");
+        }
+    }
 }

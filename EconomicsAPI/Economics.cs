@@ -103,7 +103,9 @@ public class Economics : TerrariaPlugin
     {
         if (Setting.DeathDropRate >= 0)
         {
-
+            var drop = CurrencyManager.GetUserCurrency(e.Player.Name) * Setting.DeathDropRate;
+            CurrencyManager.DelUserCurrency(e.Player.Name, Convert.ToInt64(drop));
+            e.Player.SendErrorMessage($"你因死亡掉落{drop:F0}个{Setting.CurrencyName}!");
         }
     }
 
