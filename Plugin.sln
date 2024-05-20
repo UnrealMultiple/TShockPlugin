@@ -158,6 +158,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Economics.Projectile", "Eco
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Economics.NPC", "Economics.NPC\Economics.NPC.csproj", "{40542E99-97E7-4A2F-A7FA-4405CAAF0967}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Economics.Task", "Economics.Task\Economics.Task.csproj", "{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -766,6 +768,14 @@ Global
 		{40542E99-97E7-4A2F-A7FA-4405CAAF0967}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40542E99-97E7-4A2F-A7FA-4405CAAF0967}.Release|x64.ActiveCfg = Release|Any CPU
 		{40542E99-97E7-4A2F-A7FA-4405CAAF0967}.Release|x64.Build.0 = Release|Any CPU
+		{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}.Debug|x64.Build.0 = Debug|Any CPU
+		{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}.Release|x64.ActiveCfg = Release|Any CPU
+		{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
