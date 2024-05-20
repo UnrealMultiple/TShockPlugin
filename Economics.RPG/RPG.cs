@@ -45,6 +45,21 @@ public class RPG : TerrariaPlugin
         };
     }
 
+    public static bool InLevel(string Name, IEnumerable<string> list)
+    {
+        if (!list.Any())
+            return true;
+        var level = PlayerLevelManager.GetLevel(Name);
+        if(list.Any(x => x == level.Name))
+            return true;
+        foreach (var name in list)
+        {
+            if (level.AllParentLevels.Any(x => x.Name == name))
+                return true;
+        }
+        return false;
+    }
+
     private void OnCounterTop(PlayerCountertopArgs args)
     {
         var level = PlayerLevelManager.GetLevel(args.Player.Name);

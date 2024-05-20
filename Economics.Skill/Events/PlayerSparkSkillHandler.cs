@@ -1,5 +1,5 @@
-﻿using Economics.Skill.Enumerates;
-using Economics.Skill.Model;
+﻿using Economics.Skill.DB;
+using Economics.Skill.Enumerates;
 using TShockAPI;
 
 namespace Economics.Skill.Events;
@@ -8,50 +8,57 @@ public class PlayerSparkSkillHandler
 {
     public delegate void EventCallBack<in TEventArgs>(TEventArgs args) where TEventArgs : System.EventArgs;
 
-    public static List<SkillSparkType> SparkType = typeof(SkillSparkType)
-            .GetFields()
-            .Where(f => f.FieldType == typeof(SkillSparkType))
-            .Select(f => (SkillSparkType)f.GetValue(-1)!)
-            .ToList();
-    public static bool IsSpark(TSPlayer Player, SkillContext skillContext, SkillSparkType skillSparkType)
+    public static bool IsSpark(TSPlayer Player, PlayerSKillManager.PlayerSkill skill, SkillSparkType skillSparkType)
     {
         bool enable = false;
-        if (skillContext.SkillSpark.SparkMethod.Contains(skillSparkType))
+        if (skill.Skill!.SkillSpark.SparkMethod.Contains(skillSparkType))
         {
-            foreach (var Spark in skillContext.SkillSpark.SparkMethod)
+            foreach (var Spark in skill.Skill!.SkillSpark.SparkMethod)
             {
-                if (Spark == skillSparkType)
-                {
-                    enable = true;
-                    continue;
-                }
                 enable = Spark switch
                 {
-                    SkillSparkType.HP => Player.TPlayer.statLife <= skillContext.SkillSpark.HP,
-                    SkillSparkType.MP => Player.TPlayer.statMana <= skillContext.SkillSpark.MP,
-                    SkillSparkType.CD => true,
+                    SkillSparkType.HP => Player.TPlayer.statLife <= skill.Skill!.SkillSpark.HP,
+                    SkillSparkType.MP => Player.TPlayer.statMana <= skill.Skill!.SkillSpark.MP,
+                    SkillSparkType.CD => skill.SkillCD <= 0,
                     SkillSparkType.Death => Player.Dead,
-                    SkillSparkType.Take => true,
-                    SkillSparkType.Kill => true,
-                    SkillSparkType.Strike => true,
+                    SkillSparkType.Take => skillSparkType == SkillSparkType.Take && skill.BindItem == Player.SelectedItem.netID,
+                    SkillSparkType.Kill => skillSparkType == SkillSparkType.Kill,
+                    SkillSparkType.Strike => skillSparkType == SkillSparkType.Strike,
                     _ => false
                 };
-                if (enable == false)
-                    break;
+                if (!enable)
+                    return false;
             }
         }
         return enable;
     }
 
 
-    public static void Adapter(TSPlayer Player, SkillContext skillContext, SkillSparkType skillSparkType)
+    public static void Adapter(TSPlayer Player, SkillSparkType skillSparkType)
     {
-        if (IsSpark(Player, skillContext, skillSparkType))
-            Utils.EmitSkill(Player, skillContext);
+        var skills = Skill.PlayerSKillManager.QuerySkill(Player.Name);
+        foreach (var skill in skills)
+        {
+            if (skill.Skill != null && IsSpark(Player, skill, skillSparkType))
+            {
+                Utils.EmitSkill(Player, skill.Skill);
+                skill.ResetCD();
+            }
+
+        }
+
     }
 
-    public static void Adapter(GetDataHandlers.NewProjectileEventArgs e, SkillContext skillContext, SkillSparkType skillSparkType)
+    public static void Adapter(GetDataHandlers.NewProjectileEventArgs e, SkillSparkType skillSparkType)
     {
-       
+        var skills = Skill.PlayerSKillManager.QuerySkill(e.Player.Name);
+        foreach (var skill in skills)
+        {
+            if (skill.Skill != null && IsSpark(e.Player, skill, skillSparkType))
+            {
+                Utils.EmitSkill(e, skill.Skill);
+                skill.ResetCD();
+            }
+        }
     }
 }

@@ -25,6 +25,9 @@ public class ProjectileOption
     [JsonProperty("起始角度")]
     public int Angle { get; set; }
 
+    [JsonProperty("画圆")]
+    public List<CircleProjectile> CircleProjectiles { get; set; } = new();
+
     [JsonProperty("弹幕循环")]
     public ProjectileCycleOption ProjectileCycle { get; set; } = new();
 }

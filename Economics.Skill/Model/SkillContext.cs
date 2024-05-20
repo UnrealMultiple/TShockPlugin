@@ -13,6 +13,15 @@ public class SkillContext
     [JsonProperty("喊话")]
     public string Broadcast { get; set; } = string.Empty;
 
+    [JsonProperty("技能唯一")]
+    public bool SkillUnique { get; set; }
+
+    [JsonProperty("全服唯一")]
+    public bool SkillUniqueAll { get; set; }
+
+    [JsonProperty("技能价格")]
+    public long Cost { get; set; }
+
     [JsonProperty("限制等级")]
     public List<string> LimitLevel { get; set; } = new();
 
