@@ -44,7 +44,7 @@ public class Utils
         Player.ExecRangeCommands(skill.ExecCommand.Range, skill.ExecCommand.Commands);
         Player.HealAllLife(skill.HealPlayerHPOption.Range, skill.HealPlayerHPOption.HP);
         Player.ClearProj(skill.ClearProjectile.Range);
-        Player.CollectNPC(skill.PullNpc.Range, Skill.Config.BanPullNpcs);
+        Player.CollectNPC(skill.PullNpc.Range, Skill.Config.BanPullNpcs, skill.PullNpc.X, skill.PullNpc.Y);
     }
 
     /// <summary>

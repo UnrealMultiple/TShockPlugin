@@ -12,9 +12,4 @@
 		<ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
 		<ProjectReference Include="..\EconomicsAPI\EconomicsAPI.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Extensions\" />
-	</ItemGroup>
-
 </Project>
