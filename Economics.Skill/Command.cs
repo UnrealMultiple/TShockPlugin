@@ -70,13 +70,11 @@ public class Command
                     }
                     else if (args.Parameters[0].ToLower() == "del")
                     {
-                        if (!Skill.PlayerSKillManager.HasSkill(args.Player.Name, args.Player.SelectedItem.netID, index))
+                        if (!Skill.PlayerSKillManager.HasSkill(args.Player.Name, args.Player.SelectedItem.netID, index)
+                            && !Skill.PlayerSKillManager.HasSkill(args.Player.Name, index))
                         {
-                            if (!Skill.PlayerSKillManager.HasSkill(args.Player.Name, index))
-                            {
                                 args.Player.SendErrorMessage("你未绑定此技能，无需删除！");
                                 return;
-                            } 
                         }
                         Skill.PlayerSKillManager.Remove(args.Player.Name, index);
                         args.Player.SendSuccessMessage("技能移除成功!");
