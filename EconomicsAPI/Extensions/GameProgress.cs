@@ -48,10 +48,15 @@ public static class GameProgress
 
     public static bool InProgress(this TSPlayer Player, IEnumerable<string> names)
     {
+        var anti = false;
         var gameProgress = Player.GetProgress();
         foreach (var name in names)
         {
-            return gameProgress.TryGetValue(name, out var code) && code;
+            if (name.StartsWith('!'))
+                anti = true;
+            if (gameProgress.TryGetValue(name, out var code))
+                if (code == anti)
+                    return false;
         }
         return true;
     }
