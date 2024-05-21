@@ -94,10 +94,10 @@ public class PlayerSKillManager
         PlayerSkills.Add(new(index, Name, bindItem));
     }
 
-    public void Remove(string Name, int bindItem, int index)
+    public void Remove(string Name, int index)
     {
-        database.Query("DELETE FROM Skill WHERE Name = @0 and BindItem = @1 and ID=@2", Name, bindItem, index);
-        PlayerSkills.RemoveAll(x => x.Name == Name && x.BindItem == bindItem && x.ID == index);
+        database.Query("DELETE FROM Skill WHERE Name = @0 and BindItem = @1 and ID=@1", Name, index);
+        PlayerSkills.RemoveAll(x => x.Name == Name && x.ID == index);
     }
 
     public void ClearTable()

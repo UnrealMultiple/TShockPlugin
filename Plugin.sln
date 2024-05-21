@@ -154,11 +154,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignInSign", "SignInSign\Si
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeaponPlus", "WeaponPlusCostCoin\WeaponPlus.csproj", "{D860EB42-E6F5-4991-8F2D-DB84FBD6BA1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Economics.Projectile", "Economics.Projectile\Economics.Projectile.csproj", "{1F11D206-B4CE-430B-A8BD-6D7C93BC4C8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Projectile", "Economics.Projectile\Economics.Projectile.csproj", "{1F11D206-B4CE-430B-A8BD-6D7C93BC4C8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Economics.NPC", "Economics.NPC\Economics.NPC.csproj", "{40542E99-97E7-4A2F-A7FA-4405CAAF0967}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.NPC", "Economics.NPC\Economics.NPC.csproj", "{40542E99-97E7-4A2F-A7FA-4405CAAF0967}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Economics.Task", "Economics.Task\Economics.Task.csproj", "{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Task", "Economics.Task\Economics.Task.csproj", "{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RolesModifying", "RolesModifying\RolesModifying.csproj", "{12D5F858-3716-4BD7-ACD0-141D926E7E63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -776,6 +778,14 @@ Global
 		{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}.Release|x64.ActiveCfg = Release|Any CPU
 		{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}.Release|x64.Build.0 = Release|Any CPU
+		{12D5F858-3716-4BD7-ACD0-141D926E7E63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12D5F858-3716-4BD7-ACD0-141D926E7E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12D5F858-3716-4BD7-ACD0-141D926E7E63}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{12D5F858-3716-4BD7-ACD0-141D926E7E63}.Debug|x64.Build.0 = Debug|Any CPU
+		{12D5F858-3716-4BD7-ACD0-141D926E7E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12D5F858-3716-4BD7-ACD0-141D926E7E63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12D5F858-3716-4BD7-ACD0-141D926E7E63}.Release|x64.ActiveCfg = Release|Any CPU
+		{12D5F858-3716-4BD7-ACD0-141D926E7E63}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
