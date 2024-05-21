@@ -96,7 +96,7 @@ public class PlayerSKillManager
 
     public void Remove(string Name, int index)
     {
-        database.Query("DELETE FROM Skill WHERE Name = @0 and BindItem = @1 and ID=@1", Name, index);
+        database.Query("DELETE FROM Skill WHERE Name = @0 and ID = @1", Name, index);
         PlayerSkills.RemoveAll(x => x.Name == Name && x.ID == index);
     }
 
