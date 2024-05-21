@@ -47,10 +47,8 @@ public class RPG : TerrariaPlugin
 
     public static bool InLevel(string Name, IEnumerable<string> list)
     {
-        if (!list.Any())
-            return true;
         var level = PlayerLevelManager.GetLevel(Name);
-        if(list.Any(x => x == level.Name))
+        if (!list.Any() || list.Contains(level.Name))
             return true;
         foreach (var name in list)
         {

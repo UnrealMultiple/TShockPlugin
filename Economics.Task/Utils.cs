@@ -1,5 +1,6 @@
 ﻿using Economics.Task.Model;
 using EconomicsAPI.Extensions;
+using Terraria;
 using TShockAPI;
 
 namespace Economics.Task;
@@ -40,6 +41,37 @@ public class UserTaskData
         return UserTask.ContainsKey(Name);
     }
 
+    public static Dictionary<int, Item> GetTaskFishingItem(TSPlayer player, List<EconomicsAPI.Model.Item> items)
+    { 
+        var res = new Dictionary<int, Item>();
+        foreach (var item in items)
+        {
+            if (item.Prefix == 0)
+            {
+                for (int i = 0; i < player.TPlayer.inventory.Length; i++)
+                {
+                    var bgitem = player.TPlayer.inventory[i];
+                    if (bgitem.netID == item.netID)
+                    {
+                        res.Add(i, bgitem);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < player.TPlayer.inventory.Length; i++)
+                {
+                    var bgitem = player.TPlayer.inventory[i];
+                    if (bgitem.netID == item.netID && bgitem.prefix == item.Prefix)
+                    {
+                        res.Add(i, bgitem);
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
     public static List<string> GetTaskProgress(TSPlayer ply)
     {
         var result = new List<string>();
@@ -58,6 +90,8 @@ public class UserTaskData
                 var str = $"击杀怪物 {TShock.Utils.GetNPCById(x.ID).FullName} ({Plugin.KillNPCManager.GetKillNpcsCountByID(ply.Name, x.ID)}/{x.Count})";
                 result.Add(str);
             });
+
+
 
             task.TaskInfo.Items.ForEach(x =>
             {

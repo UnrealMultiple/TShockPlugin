@@ -72,10 +72,13 @@ public class Command
                     {
                         if (!Skill.PlayerSKillManager.HasSkill(args.Player.Name, args.Player.SelectedItem.netID, index))
                         {
-                            args.Player.SendErrorMessage("手持武器未绑定此技能，无需删除！");
-                            return;
+                            if (!Skill.PlayerSKillManager.HasSkill(args.Player.Name, index))
+                            {
+                                args.Player.SendErrorMessage("你未绑定此技能，无需删除！");
+                                return;
+                            } 
                         }
-                        Skill.PlayerSKillManager.Remove(args.Player.Name, args.Player.SelectedItem.netID, index);
+                        Skill.PlayerSKillManager.Remove(args.Player.Name, index);
                         args.Player.SendSuccessMessage("技能移除成功!");
                         return;
                     }
@@ -107,7 +110,7 @@ public class Command
                         }
                         foreach (var skill in skills)
                         {
-                            Skill.PlayerSKillManager.Remove(args.Player.Name, args.Player.SelectedItem.netID, skill.ID);
+                            Skill.PlayerSKillManager.Remove(args.Player.Name, skill.ID);
                         }
                         args.Player.SendSuccessMessage("成功移除了手持武器的所有技能!");
                         return;
@@ -122,7 +125,7 @@ public class Command
                         }
                         foreach (var skill in skills)
                         {
-                            Skill.PlayerSKillManager.Remove(args.Player.Name, args.Player.SelectedItem.netID, skill.ID);
+                            Skill.PlayerSKillManager.Remove(args.Player.Name, skill.ID);
                         }
                         args.Player.SendSuccessMessage("成功移除了绑定的所有技能!");
                         return;
