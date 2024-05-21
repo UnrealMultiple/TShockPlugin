@@ -92,8 +92,9 @@ public class CurrencyManager
         Currency[name] = 0;
     }
 
-    public bool Del(string name, long num)
+    private bool Del(string name, long num)
     {
+        if(num == 0) return true;
         if (GetUserCurrency(name) >= num)
         {
             Currency[name] -= num;
