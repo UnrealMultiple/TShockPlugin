@@ -93,8 +93,18 @@ public class Command
                             return;
                         }
                         args.Player.SendSuccessMessage("查询成功!");
-                        foreach(var skill in skills)
-                        args.Player.SendSuccessMessage($"[i:{skill.BindItem}] 绑定技能  {skill.Name}");
+                        foreach (var skill in skills)
+                        {
+                            if (skill.Skill != null)
+                            {
+                                args.Player.SendSuccessMessage(skill.Skill.SkillSpark.SparkMethod.Contains(Enumerates.SkillSparkType.Take) ? $"主动技能 [i:{skill.BindItem}] 绑定 {skill.Name}" : $"被动技能 {skill.Name}");
+                            }
+                            else
+                            {
+                                args.Player.SendErrorMessage($"无法溯源的技能序号: {skill.ID}");
+                            }
+                        }
+                        
                         return;
                     }
 
