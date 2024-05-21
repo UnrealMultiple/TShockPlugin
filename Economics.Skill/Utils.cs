@@ -13,7 +13,7 @@ public class Utils
     public static SkillContext VerifyBindSkill(TSPlayer Player, int index)
     {
         var context = Skill.Config.GetSkill(index) ?? throw new NullReferenceException($"技能序号{index} 不存在！");
-        if (context.SkillSpark.SparkMethod.Contains(SkillSparkType.Take) && Player.SelectedItem.netID == 0 || Player.SelectedItem.stack == 0)
+        if (context.SkillSpark.SparkMethod.Contains(SkillSparkType.Take) && (Player.SelectedItem.netID == 0 || Player.SelectedItem.stack == 0))
             throw new Exception("这是一个主动技能，请手持一个有效武器!");
         if (!RPG.RPG.InLevel(Player.Name, context.LimitLevel))
             throw new Exception($"你当前等级无法购买此技能，限制等级:{string.Join(", ", context.LimitLevel)}");
