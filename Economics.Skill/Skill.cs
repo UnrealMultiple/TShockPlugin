@@ -43,10 +43,16 @@ public class Skill : TerrariaPlugin
         GetDataHandlers.PlayerUpdate.Register(OnPlayerUpdate);
         GetDataHandlers.PlayerHP.Register(OnHP);
         GetDataHandlers.PlayerMana.Register(OnMP);
+        GetDataHandlers.KillMe.Register(KillMe);
         GetDataHandlers.NewProjectile.Register(OnNewProj);
         EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += OnKillNpc;
         EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop += OnPlayerCountertop;
         GeneralHooks.ReloadEvent += e => LoadConfig();
+    }
+
+    private void KillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
+    {
+        PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.Death);
     }
 
     private void OnPlayerCountertop(PlayerCountertopArgs args)
