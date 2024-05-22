@@ -12,6 +12,9 @@ public class Config
     [JsonProperty("单武器绑定最大技能数量")]
     public int WeapoeBindMaxCount { get; set; }
 
+    [JsonProperty("被动绑定最大技能数量")]
+    public int PSkillMaxCount { get; set; }
+
     [JsonProperty("禁止拉怪表")]
     public HashSet<int> BanPullNpcs { get; set; } = new();
 
