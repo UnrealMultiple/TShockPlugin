@@ -54,6 +54,42 @@ public static class Vector2Ext
         }
         return points.ToArray();
     }
+    
+    public static float Magnitude(this Vector2 vel)
+    {
+        return Convert.ToSingle(Math.Sqrt(vel.X * vel.X + vel.Y * vel.Y));
+    }
+    
+    public static Vector2 Normalized(this Vector2 vel)
+    {
+        float magnitude = vel.Magnitude();
+        return new Vector2(vel.X / magnitude, vel.Y / magnitude);
+    }
+    
+    public static List<Vector2> GenerateCurvePoints(Vector2 pointA, Vector2 pointB, float radius, float interval)
+    {
+        if (radius == 0)
+        {
+            return new List<Vector2> { pointA, pointB };
+        }
+        List<Vector2> curvePoints = new();
+        double distance = (pointB - pointA).Magnitude();
+        int numPoints = (int)Math.Round(distance / interval);
+        for (int i = 0; i <= numPoints; i++)
+        {
+            float t = i / (float)numPoints;
+            Vector2 midPoint = Vector2.Lerp(pointA, pointB, t);
+            Vector2 direction = (pointB - pointA).Normalized();
+            Vector2 perpendicular = new Vector2(-direction.Y, direction.X);
+            Vector2 curvePoint = midPoint + radius * perpendicular;
+            if (radius < 0)
+            {
+                curvePoint = midPoint - Math.Abs(radius) * perpendicular;
+            }
+            curvePoints.Add(curvePoint);
+        }
+        return curvePoints;
+    }
 }
 
 

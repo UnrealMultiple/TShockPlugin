@@ -77,11 +77,23 @@ public static class TSPlayerExt
             NetMessage.SendData((int)PacketTypes.PlayerHealOther, -1, -1, NetworkText.Empty, Player.Index, life);
     }
 
+    public static void HealMana(this TSPlayer player, int mana)
+    {
+        player.TPlayer.statMana += mana;
+        player.SendData(PacketTypes.PlayerMana, null, player.Index);
+        NetMessage.TrySendData(43, -1, player.Index, null, player.Index, mana);
+    }
 
     public static void HealAllLife(this TSPlayer Player, int Range, int life)
     {
         if (life > 0)
             Player.GetPlayerInRange(Range).ForEach(x => x.HealLife(life));
+    }
+
+    public static void HealAllMana(this TSPlayer Player, int Range, int mana) 
+    {
+        if (mana > 0)
+            Player.GetPlayerInRange(Range).ForEach(x => x.HealMana(mana));
     }
 
     public static List<NPC> GetNpcInRange(this TSPlayer Player, int range)
