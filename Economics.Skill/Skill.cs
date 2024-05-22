@@ -115,6 +115,10 @@ public class Skill : TerrariaPlugin
                 {
                     new Model.SkillContext()
                     {
+                        BuffOption = new()
+                        { 
+                            Buffs = new()
+                        },
                         Projectiles = new()
                         {
                             new()

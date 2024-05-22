@@ -43,8 +43,12 @@ public class Utils
         Player.StrikeNpc(skill.StrikeNpc.Damage, skill.StrikeNpc.Range);
         Player.ExecRangeCommands(skill.ExecCommand.Range, skill.ExecCommand.Commands);
         Player.HealAllLife(skill.HealPlayerHPOption.Range, skill.HealPlayerHPOption.HP);
+        Player.HealAllMana(skill.HealPlayerHPOption.Range, skill.HealPlayerHPOption.MP);
         Player.ClearProj(skill.ClearProjectile.Range);
         Player.CollectNPC(skill.PullNpc.Range, Skill.Config.BanPullNpcs, skill.PullNpc.X, skill.PullNpc.Y);
+        foreach (var ply in Player.GetPlayerInRange(skill.BuffOption.Range))
+            foreach (var buff in skill.BuffOption.Buffs)
+                ply.SetBuff(buff.BuffId, buff.Time);
     }
 
     /// <summary>
@@ -68,9 +72,9 @@ public class Utils
                         var angle = vec.AngleFrom(pos);
                         Vector2 vel;
                         if (!circle.FollowPlayer)
-                            vel = vec + new Vector2(circle.X, circle.Y);
+                            vel = vec + new Vector2(circle.X * 16, circle.Y * 16);
                         else
-                            vel = Player.TPlayer.Center + Player.TPlayer.ItemOffSet() + new Vector2(circle.X, circle.Y);
+                            vel = Player.TPlayer.Center + Player.TPlayer.ItemOffSet() + new Vector2(circle.X * 16, circle.Y * 16);
                         var radiusvel = vec.RotatedBy(angle).ToLenOf(circle.Speed) * reverse;
                         int index = EconomicsAPI.Utils.Projectile.NewProjectile(
                             //发射原无期
@@ -108,7 +112,7 @@ public class Utils
                 foreach (var opt in proj.ProjectileCycle.ProjectileCycles)
                 {
                     var _vel = vel.RotationAngle(proj.Angle).ToLenOf(proj.Speed);
-                    var _pos = pos + new Vector2(proj.X, proj.Y);
+                    var _pos = pos + new Vector2(proj.X * 16, proj.Y * 16);
                     for (int i = 0; i < opt.Count; i++)
                     {
                         #region 生成弹幕
@@ -128,9 +132,9 @@ public class Utils
                         #region 数值重置
                         _vel = _vel.RotationAngle(opt.GrowAngle).ToLenOf(proj.Speed);
                         if (opt.FollowPlayer)
-                            _pos = Player.TPlayer.Center + Player.TPlayer.ItemOffSet() + new Vector2(opt.GrowX, opt.GrowY);
+                            _pos = Player.TPlayer.Center + Player.TPlayer.ItemOffSet() + new Vector2(opt.GrowX * 16, opt.GrowY * 16);
                         else
-                            _pos += new Vector2(opt.GrowX, opt.GrowY);
+                            _pos += new Vector2(opt.GrowX * 16, opt.GrowY * 16);
                         #endregion
                         Task.Delay(opt.Dealy).Wait();
                     }
