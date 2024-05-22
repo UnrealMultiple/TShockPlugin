@@ -34,6 +34,9 @@ public class CircleProjectile
     [JsonProperty("射速")]
     public float Speed { get; set; }
 
+    [JsonProperty("AI")]
+    public float[] AI { get; set; } = new float[3];
+
     [JsonProperty("半径")]
     public int Radius { get; set; }
 

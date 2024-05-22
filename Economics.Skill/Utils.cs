@@ -26,8 +26,10 @@ public class Utils
             throw new Exception("此技能全服唯一已经有其他人绑定了此技能!");
         if (bind.Count >= Skill.Config.SkillMaxCount)
             throw new Exception("技能已超过规定的最大绑定数量!");
-        if (bind.Count >= Skill.Config.WeapoeBindMaxCount)
+        if (bind.Where(x => Convert.ToBoolean(x.Skill?.SkillSpark.SparkMethod.Contains(SkillSparkType.Take))).Count() >= Skill.Config.WeapoeBindMaxCount)
             throw new Exception("此武器已超过规定的最大绑定数量!");
+        if (bind.Where(x => !Convert.ToBoolean(x.Skill?.SkillSpark.SparkMethod.Contains(SkillSparkType.Take))).Count() >= Skill.Config.PSkillMaxCount)
+            throw new Exception("被动类型技能已超过最大绑定数量!");
         return context;
     }
 
@@ -45,7 +47,7 @@ public class Utils
         Player.HealAllLife(skill.HealPlayerHPOption.Range, skill.HealPlayerHPOption.HP);
         Player.HealAllMana(skill.HealPlayerHPOption.Range, skill.HealPlayerHPOption.MP);
         Player.ClearProj(skill.ClearProjectile.Range);
-        Player.CollectNPC(skill.PullNpc.Range, Skill.Config.BanPullNpcs, skill.PullNpc.X, skill.PullNpc.Y);
+        Player.CollectNPC(skill.PullNpc.Range, Skill.Config.BanPullNpcs, skill.PullNpc.X * 16, skill.PullNpc.Y * 16);
         foreach (var ply in Player.GetPlayerInRange(skill.BuffOption.Range))
             foreach (var buff in skill.BuffOption.Buffs)
                 ply.SetBuff(buff.BuffId, buff.Time);
@@ -76,7 +78,7 @@ public class Utils
                         else
                             vel = Player.TPlayer.Center + Player.TPlayer.ItemOffSet() + new Vector2(circle.X * 16, circle.Y * 16);
                         var radiusvel = vec.RotatedBy(angle).ToLenOf(circle.Speed) * reverse;
-                        int index = EconomicsAPI.Utils.Projectile.NewProjectile(
+                        int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(
                             //发射原无期
                             Player.TPlayer.GetProjectileSource_Item(Player.TPlayer.HeldItem),
                             //发射位置
@@ -85,7 +87,10 @@ public class Utils
                             circle.ID,
                             circle.Damage,
                             circle.Knockback,
-                            Player.Index);
+                            Player.Index,
+                            circle.AI[0],
+                            circle.AI[1],
+                            circle.AI[2]);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
                     }
                     Task.Delay(circle.Dealy).Wait();
@@ -116,7 +121,7 @@ public class Utils
                     for (int i = 0; i < opt.Count; i++)
                     {
                         #region 生成弹幕
-                        int index = EconomicsAPI.Utils.Projectile.NewProjectile(
+                        int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(
                             //发射原无期
                             Player.TPlayer.GetProjectileSource_Item(Player.TPlayer.HeldItem),
                             //发射位置
@@ -125,7 +130,10 @@ public class Utils
                             proj.ID,
                             proj.Damage,
                             proj.Knockback,
-                            Player.Index);
+                            Player.Index,
+                            proj.AI[0],
+                            proj.AI[1],
+                            proj.AI[2]);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
                         #endregion
 
