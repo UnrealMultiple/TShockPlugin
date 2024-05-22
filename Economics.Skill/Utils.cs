@@ -46,6 +46,9 @@ public class Utils
         Player.HealAllMana(skill.HealPlayerHPOption.Range, skill.HealPlayerHPOption.MP);
         Player.ClearProj(skill.ClearProjectile.Range);
         Player.CollectNPC(skill.PullNpc.Range, Skill.Config.BanPullNpcs, skill.PullNpc.X, skill.PullNpc.Y);
+        foreach (var ply in Player.GetPlayerInRange(skill.BuffOption.Range))
+            foreach (var buff in skill.BuffOption.Buffs)
+                ply.SetBuff(buff.BuffId, buff.Time);
     }
 
     /// <summary>

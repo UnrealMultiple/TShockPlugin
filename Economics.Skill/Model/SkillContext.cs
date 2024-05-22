@@ -46,6 +46,9 @@ public class SkillContext
     [JsonProperty("拉怪")]
     public PullNpcOption PullNpc { get; set; } = new();
 
+    [JsonProperty("范围Buff")]
+    public BuffOption BuffOption { get; set; } = new();
+
     [JsonProperty("弹幕")]
     public List<ProjectileOption> Projectiles { get; set; } = new();
 

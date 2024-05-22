@@ -33,6 +33,7 @@ public static class TSPlayerExt
         }
     }
 
+
     public static void GiveItems(this TSPlayer player, IEnumerable<Model.Item> items)
     {
         foreach (var item in items)
@@ -153,7 +154,7 @@ public static class TSPlayerExt
         Player.GetNpcInRange(Range).ForEach(npc =>
         {
             if (!notNpc.Contains(npc.type))
-                npc.Teleport(Player.TPlayer.position + new Vector2(x, y));
+                npc.Teleport(Player.TPlayer.position + new Vector2(x * Player.TPlayer.direction, y));
         });
     }
 }
