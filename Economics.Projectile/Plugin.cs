@@ -1,4 +1,5 @@
-﻿using EconomicsAPI.Extensions;
+using EconomicsAPI.Extensions;
+using Microsoft.Xna.Framework;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -24,7 +25,7 @@ public class Plugin : TerrariaPlugin
 
     private readonly int[] useCD = new int[Main.maxPlayers];
 
-    private readonly int[] MiniCD = new int[Main.maxPlayers];
+    private readonly int[] MiniCD = new int[Main.maxProjectiles];
 
 
     public Plugin(Main game) : base(game)
@@ -47,11 +48,10 @@ public class Plugin : TerrariaPlugin
     {
         if (self.minion && Config.ProjectileReplace.TryGetValue(self.type, out ProjectileData? data) && data != null && data.IsMinion)
         {
-            if (MiniCD[self.whoAmI] == 0)
+            if (MiniCD[self.identity] == 0)
             {
                 int id = -1;
-                self.Minion_FindTargetInRange(300, ref id, false);
-                MiniCD[self.whoAmI] += data.CD;
+                self.Minion_FindTargetInRange(1500, ref id, false);
             }
         }
     }
@@ -60,7 +60,7 @@ public class Plugin : TerrariaPlugin
     {
         if (Config.ProjectileReplace.TryGetValue(self.type, out ProjectileData? data) && data != null)
         {
-            float num = startAttackRange;
+            float num = 1500;
             float num2 = num;
             float num3 = num;
             NPC ownerMinionAttackTargetNPC = self.OwnerMinionAttackTargetNPC;
@@ -77,7 +77,7 @@ public class Plugin : TerrariaPlugin
                 for (int i = 0; i < 200; i++)
                 {
                     NPC nPC = Main.npc[i];
-                    if (nPC.damage > 0 && nPC.CanBeChasedBy(this) && self.IsInRangeOfMeOrMyOwner(nPC, num, out var myDistance2, out var playerDistance2, out var closerIsMe2) && (!skipIfCannotHitWithOwnBody || self.CanHitWithOwnBody(nPC)) && (customEliminationCheck == null || customEliminationCheck(nPC, attackTarget)))
+                    if (nPC.damage > 0 && nPC.CanBeChasedBy(self) && self.IsInRangeOfMeOrMyOwner(nPC, num, out var myDistance2, out var playerDistance2, out var closerIsMe2) && (!skipIfCannotHitWithOwnBody || self.CanHitWithOwnBody(nPC)) && (customEliminationCheck == null || customEliminationCheck(nPC, attackTarget)))
                     {
                         attackTarget = i;
                         num = closerIsMe2 ? myDistance2 : playerDistance2;
@@ -93,7 +93,7 @@ public class Plugin : TerrariaPlugin
                     }
                 }
             }
-            if (attackTarget >= 0)
+            if (attackTarget >= 0 && MiniCD[self.identity]== 0)
             {
                 for (int i = 0; i < data.ProjData.Count; i++)
                 {
@@ -105,12 +105,13 @@ public class Plugin : TerrariaPlugin
                         //击退
                         float knockback = proj.KnockBack;
                         //速度
-                        var speed = self.position.RotatedBy(self.position.AngleTo(Main.npc[attackTarget].position)).ToLenOf(proj.speed);
-
-                        int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), self.position, speed, proj.ID, (int)damage, knockback, self.owner);
-
+                        
+                        NPC npc = Main.npc[attackTarget];
+						self.Distance(npc.Center);
+                        var speed = self.DirectionTo(npc.Center).SafeNormalize(-Vector2.UnitY) * self.velocity.Length();
+                        int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), self.Center, speed.ToLenOf(proj.speed), proj.ID, (int)damage, knockback, self.owner);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
-
+                        MiniCD[self.identity] += data.CD;
                     }
                 }
             }
@@ -125,6 +126,10 @@ public class Plugin : TerrariaPlugin
             {
                 useCD[i]--;
             }
+        }
+
+        for(int i = 0; i<Main.maxProjectiles; i++)
+        {
             if (MiniCD[i] > 0)
             {
                 MiniCD[i]--;

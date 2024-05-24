@@ -58,7 +58,7 @@ public class SpawnProjectile
             while (projectile.velocity.X >= 16f || projectile.velocity.X <= -16f || projectile.velocity.Y >= 16f || projectile.velocity.Y < -16f)
             {
                 if (projectile.velocity.HasNanOrInf())
-                    projectile.velocity = Vector2.One;
+                    projectile.velocity = Vector2.One * 10;
                 projectile.velocity.X *= 0.97f;
                 projectile.velocity.Y *= 0.97f;
             }
