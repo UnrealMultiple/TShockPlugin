@@ -172,7 +172,7 @@ public class Economics : TerrariaPlugin
 
     private void OnKillNpc(NpcKilledEventArgs args)
     {
-        if (args.npc.SpawnedFromStatue && Setting.IgnoreStatue)
+        if ((args.npc.SpawnedFromStatue && Setting.IgnoreStatue) || args.npc == null)
             return;
         if (Strike.TryGetValue(args.npc, out var result))
         {
