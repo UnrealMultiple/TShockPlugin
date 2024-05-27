@@ -2,7 +2,7 @@
 
 # 这是一个 TShock 插件搜集仓库
 
-![TShockPlugin](https://socialify.git.ci/Controllerdestiny/TShockPlugin/image?description=1&descriptionEditable=%E4%B8%80%E4%B8%AA%E6%94%B6%E9%9B%86TShock%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BB%93%E5%BA%93&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Foiapi.net%2FAPI%2FTShockPlugin%2F&name=1&pattern=Diagonal%20Stripes&pulls=1&stargazers=1&theme=Auto)
+![TShockPlugin](https://socialify.git.ci/Controllerdestiny/TShockPlugin/image?description=1&descriptionEditable=%E4%B8%80%E4%B8%AA%E6%94%B6%E9%9B%86TShock%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BB%93%E5%BA%93&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Fpic.niaoluo.top%2F%25E5%25A4%2596%25E9%2583%25A8%25E4%25BD%25BF%25E7%2594%25A8%2Fe5a4bb8ce7f3169b49fadbee71a9fb5a.jpg&name=1&pattern=Diagonal%20Stripes&pulls=1&stargazers=1&theme=Auto)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Controllerdestiny/TShockPlugin/.github%2Fworkflows%2Fdotnet.yml)
 ![GitHub stars](https://img.shields.io/github/stars/Controllerdestiny/TShockPlugin?style=flat)
 ![GitHub forks](https://img.shields.io/github/forks/Controllerdestiny/TShockPlugin?style=flat)
