@@ -4,6 +4,7 @@ using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
+using Newtonsoft.Json;
 
 namespace ServerTools
 {
@@ -73,6 +74,7 @@ namespace ServerTools
             GeneralHooks.ReloadEvent += (_) => LoadConfig();
             #endregion
             CmdHook = new Hook(typeof(Commands).GetMethod(nameof(Commands.HandleCommand)), CommandHook);
+            new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static), ViewAccountInfo);
 
             #region RestAPI
             TShock.RestApi.Register("/deathrank", DeadRank);
@@ -82,7 +84,46 @@ namespace ServerTools
             HandleCommandLine(Environment.GetCommandLineArgs());
         }
 
-       
+        private static void ViewAccountInfo(CommandArgs args)
+        {
+            if (args.Parameters.Count < 1)
+			{
+				args.Player.SendErrorMessage("语法错误，正确语法: {0}accountinfo <username>.", Commands.Specifier);
+				return;
+			}
+
+			string username = String.Join(" ", args.Parameters);
+			if (!string.IsNullOrWhiteSpace(username))
+			{
+				var account = TShock.UserAccounts.GetUserAccountByName(username);
+				if (account != null)
+				{
+					DateTime LastSeen;
+					string Timezone = TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now).Hours.ToString("+#;-#");
+
+					if (DateTime.TryParse(account.LastAccessed, out LastSeen))
+					{
+						LastSeen = DateTime.Parse(account.LastAccessed).ToLocalTime();
+						args.Player.SendSuccessMessage("{0} 最后的登录时间为 {1} {2} UTC{3}.", account.Name, LastSeen.ToShortDateString(),
+							LastSeen.ToShortTimeString(), Timezone);
+					}
+
+					if (args.Player.Group.HasPermission(Permissions.advaccountinfo))
+					{
+						List<string> KnownIps = JsonConvert.DeserializeObject<List<string>>(account.KnownIps?.ToString() ?? string.Empty);
+						string ip = KnownIps?[KnownIps.Count - 1] ?? "N/A";
+						DateTime Registered = DateTime.Parse(account.Registered).ToLocalTime();
+                        args.Player.SendSuccessMessage("{0} 账户ID为 {1}.", account.Name, account.ID);
+                        args.Player.SendSuccessMessage("{0} 权限组为 {1}.", account.Name, account.Group);
+						args.Player.SendSuccessMessage("{0} 最后登录使用的IP为 {1}.", account.Name, ip);
+						args.Player.SendSuccessMessage("{0} 注册时间为 {1} {2} UTC{3}.", account.Name, Registered.ToShortDateString(), Registered.ToShortTimeString(), Timezone);
+					}
+				}
+				else
+					args.Player.SendErrorMessage("用户 {0} 不存在.", username);
+			}
+			else args.Player.SendErrorMessage("语法错误，正确语法: {0}accountinfo <username>.", Commands.Specifier);
+        }
 
         private void Exit(CommandArgs args)
         {
