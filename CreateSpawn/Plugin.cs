@@ -48,9 +48,9 @@ public class Plugin : TerrariaPlugin
 
     private void copy(CommandArgs args)
     {
-        if (args.Parameters.Count == 2 && args.Parameters[1].ToLower() == "set")
+        if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "set")
         {
-            switch (args.Parameters[0])
+            switch (args.Parameters[1])
             {
                 case "1":
                     args.Player.AwaitingTempPoint = 1;
@@ -60,27 +60,28 @@ public class Plugin : TerrariaPlugin
                     args.Player.AwaitingTempPoint = 2;
                     args.Player.SendInfoMessage("请选择复制区域的右下角");
                     break;
-                case "save":
-                    if (args.Player.TempPoints[0].X == 0 || args.Player.TempPoints[1].X == 0)
-                    {
-                        args.Player.SendInfoMessage("您还没有选择复制的区域！");
-                    }
-                    else
-                    {
-                        CopyBuilding(args.Player.TempPoints[0].X, args.Player.TempPoints[0].Y, args.Player.TempPoints[1].X, args.Player.TempPoints[1].Y);
-                        args.Player.SendInfoMessage("保存成功!");
-                    }
-                    break;
                 default:
                     args.Player.SendInfoMessage($"正确指令：/cb set <1/2> --选择复制的区域");
-                    args.Player.SendInfoMessage("/cb set save");
+                    args.Player.SendInfoMessage("/cb save");
                     break;
             }
         }
+        else if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "save")
+        {
+            if (args.Player.TempPoints[0].X == 0 || args.Player.TempPoints[1].X == 0)
+            {
+                args.Player.SendInfoMessage("您还没有选择复制的区域！");
+            }
+            else
+            {
+                CopyBuilding(args.Player.TempPoints[0].X, args.Player.TempPoints[0].Y, args.Player.TempPoints[1].X, args.Player.TempPoints[1].Y);
+                args.Player.SendInfoMessage("保存成功!");
+            }
+            }
         else
         {
             args.Player.SendInfoMessage($"/cb set <1/2> --选择复制的区域");
-            args.Player.SendInfoMessage("/cb set save");
+            args.Player.SendInfoMessage("/cb save");
         }
     }
 
