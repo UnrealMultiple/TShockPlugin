@@ -58,12 +58,12 @@ public enum ProgressType
 
     [ProgressName("毁灭者", "铁长直")]
     [ProgressMapID(NPCID.TheDestroyer)]
-    [ProgressMap(nameof(NPC.downedMechBoss3), typeof(NPC), true)]
+    [ProgressMap(nameof(NPC.downedMechBoss2), typeof(NPC), true)]
     TheDestroyer,
 
     [ProgressName("机械骷髅王")]
     [ProgressMapID(NPCID.SkeletronPrime)]
-    [ProgressMap(nameof(NPC.downedMechBoss2), typeof(NPC), true)]
+    [ProgressMap(nameof(NPC.downedMechBoss3), typeof(NPC), true)]
     SkeletronPrime,
 
     [ProgressName("世纪之花", "世花")]
