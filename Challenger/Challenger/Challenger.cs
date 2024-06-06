@@ -35,7 +35,7 @@ namespace Challenger
 
         public override string Name => "Challenger";
 
-        public override Version Version => new Version(1, 0, 0, 8);
+        public override Version Version => new Version(1, 0, 0, 9);
 
         public Challenger(Main game)
             : base(game)
@@ -57,7 +57,7 @@ namespace Challenger
             ServerApi.Hooks.NpcStrike.Register((TerrariaPlugin)(object)this, OnNpcStrike);
             GetDataHandlers.PlayerSlot.Register(OnHoldItem, (HandlerPriority)3, false);
             ServerApi.Hooks.NetGreetPlayer.Register((TerrariaPlugin)(object)this, OnGreetPlayer);
-            //ServerApi.Hooks.ServerLeave.Register((TerrariaPlugin)(object)this, OnServerLeave);
+            ServerApi.Hooks.ServerLeave.Register((TerrariaPlugin)(object)this, OnServerLeave);
             Commands.ChatCommands.Add(new Command("challenger.enable", new CommandDelegate(EnableModel), new string[1] { "cenable" })
             {
                 HelpText = "输入 /cenable  来启用挑战模式，再次使用取消"
@@ -87,7 +87,7 @@ namespace Challenger
                 ServerApi.Hooks.NpcStrike.Deregister((TerrariaPlugin)(object)this, OnNpcStrike);
                 GetDataHandlers.PlayerSlot.UnRegister(OnHoldItem);
                 ServerApi.Hooks.NetGreetPlayer.Deregister((TerrariaPlugin)(object)this, OnGreetPlayer);
-                //   ServerApi.Hooks.ServerLeave.Deregister((TerrariaPlugin)(object)this, OnServerLeave);
+                ServerApi.Hooks.ServerLeave.Deregister((TerrariaPlugin)(object)this, OnServerLeave);
             }
             base.Dispose(disposing);
         }
@@ -1376,8 +1376,6 @@ namespace Challenger
             }
         }
 
-
-        /* //
         private void OnServerLeave(LeaveEventArgs args)
         {
             if (args == null || TShock.Players[args.Who] == null)
@@ -1390,13 +1388,13 @@ namespace Challenger
                 {
                     if (Collect.cplayers[args.Who].ExtraLife > 0)
                     {
-                        Player obj = Main.tplayer[args.Who];
+                        Player obj = Main.player[args.Who];
                         obj.statLifeMax -= Collect.cplayers[args.Who].ExtraLife;
                         NetMessage.SendData(16, -1, -1, NetworkText.Empty, args.Who, 0f, 0f, 0f, 0, 0, 0);
                     }
                     if (Collect.cplayers[args.Who].ExtraMana > 0)
                     {
-                        Player obj2 = Main.tplayer[args.Who];
+                        Player obj2 = Main.player[args.Who];
                         obj2.statManaMax -= Collect.cplayers[args.Who].ExtraMana;
                         NetMessage.SendData(42, -1, -1, NetworkText.Empty, args.Who, 0f, 0f, 0f, 0, 0, 0);
                     }
@@ -1416,7 +1414,6 @@ namespace Challenger
             }
             Collect.cplayers[args.Who].isActive = false;
         }
-        */
 
         private void OnGameUpdate(EventArgs args)
         {
