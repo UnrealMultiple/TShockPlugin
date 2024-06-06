@@ -60,7 +60,7 @@ namespace DamageStatistic
                 double npcLifeMax = 0;
                 data.ForEach(p => npcLifeMax += data[p.Key]);
                 var text = new StringBuilder();
-                data.Keys.ForEach(p => text.Append($"{p}: [c/74F3C9:{data[p]}] <{data[p] / npcLifeMax:0.00%}>, "));
+                data.Keys.ForEach(p => text.AppendLine($"{p}: [c/74F3C9:{data[p]}] <{data[p] / npcLifeMax:0.00%}>, "));
                 TShock.Utils.Broadcast($"[c/74F3C9:{data.Count}] 位玩家击败了 [c/74F3C9:{args.npc.FullName}]\n{text}", new Color(247, 244, 150));
                 DamageList.Remove(args.npc);
             }

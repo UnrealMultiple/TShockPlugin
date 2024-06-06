@@ -3,6 +3,9 @@ using Economics.Skill.Events;
 using Economics.Skill.Setting;
 using EconomicsAPI.Configured;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
+using EconomicsAPI.Extensions;
+using Microsoft.Xna.Framework;
+using System.Configuration;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -40,6 +43,7 @@ public class Skill : TerrariaPlugin
         PlayerSKillManager = new();
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
+        ServerApi.Hooks.ProjectileAIUpdate.Register(this, OnProjectileAIUpdate);
         GetDataHandlers.PlayerUpdate.Register(OnPlayerUpdate);
         GetDataHandlers.PlayerHP.Register(OnHP);
         GetDataHandlers.PlayerMana.Register(OnMP);
@@ -48,6 +52,13 @@ public class Skill : TerrariaPlugin
         EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += OnKillNpc;
         EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop += OnPlayerCountertop;
         GeneralHooks.ReloadEvent += e => LoadConfig();
+    }
+
+
+    private void OnProjectileAIUpdate(ProjectileAiUpdateEventArgs args)
+    {
+        //if (Utils.spawnProjectiles.Contains(args.Projectile) && args.Projectile.active)
+        //    AIStyle.环绕(args.Projectile);
     }
 
     private void KillMe(object? sender, GetDataHandlers.KillMeEventArgs e)

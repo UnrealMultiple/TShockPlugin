@@ -54,6 +54,7 @@
 | [ChattyBridge](ChattyBridge/README.md)                           |          用于跨服聊天          |                                             无                                             |
 | [EconomicsAPI](EconomicsAPI/README.md)                           |          经济插件前置          |                                             无                                             |
 | [Economics.RPG](Economics.RPG/README.md)                         |              RPG               |                                        EconomicsAPI                                        |
+| [Economics.WeaponPlus](Economics.WeaponPlus/README.md)                         |              强化武器               |                                        EconomicsAPI                                        |
 | [Economics.Deal](Economics.RPG/README.md)                        |            交易插件            |                                        EconomicsAPI                                        |
 | [Economics.Shop](Economics.Shop/README.md)                       |            商店插件            |                               EconomicsAPI<br>Economics.RPG                                |
 | [Economics.Skill](Economics.Skill/README.md)                     |            技能插件            |                               EconomicsAPI<br>Economics.RPG                                |
