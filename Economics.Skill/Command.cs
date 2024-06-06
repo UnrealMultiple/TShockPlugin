@@ -26,7 +26,7 @@ public class Command
                     }
                 );
         }
-        if (!args.Player.IsLoggedIn && (args.Parameters.Count == 1 && args.Parameters[0].ToLower() != "reset"))
+        if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() != "reset")
         {
             args.Player.SendErrorMessage("你必须登陆游戏才能购买技能!");
             return;
