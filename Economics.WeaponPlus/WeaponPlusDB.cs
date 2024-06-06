@@ -10,6 +10,7 @@ namespace Economics.WeaponPlus
 {
     public class WeaponPlusDB
     {
+        #region 创建数据库表
         private IDbConnection database;
 
         private string tableName;
@@ -24,7 +25,9 @@ namespace Economics.WeaponPlus
             SqlTableCreator sqlTableCreator = new SqlTableCreator(database, queryBuilder);
             sqlTableCreator.EnsureTableStructure(table);
         }
+        #endregion
 
+        #region 读取数据库从拥有者处获取物品数据
         public WItem[] ReadDBGetWItemsFromOwner(string owner, int ID = 0)
         {
             List<WItem> list = new List<WItem>();
@@ -56,7 +59,9 @@ namespace Economics.WeaponPlus
                 return list.ToArray();
             }
         }
+        #endregion
 
+        #region 写入数据
         public bool WriteDB(WItem[] WItem)
         {
             if (WItem.Length == 0)
@@ -116,7 +121,9 @@ namespace Economics.WeaponPlus
                 return false;
             }
         }
+        #endregion
 
+        #region 删除指定数据表
         public bool DeleteDB(string owner, int ID = 0)
         {
             try
@@ -133,7 +140,9 @@ namespace Economics.WeaponPlus
                 return false;
             }
         }
+        #endregion
 
+        #region 删除所有数据表
         public bool DeleteDBAll()
         {
             try
@@ -149,6 +158,7 @@ namespace Economics.WeaponPlus
                 Console.WriteLine("错误：DeleteDBAll " + ex.ToString());
                 return false;
             }
-        }
+        } 
+        #endregion
     }
 }

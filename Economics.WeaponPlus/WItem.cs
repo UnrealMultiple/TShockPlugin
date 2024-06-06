@@ -8,6 +8,7 @@ namespace Economics.WeaponPlus
 {
     public class WItem
     {
+        #region 变量
         public int id;
 
         public string owner;
@@ -43,11 +44,11 @@ namespace Economics.WeaponPlus
         public readonly int orig_shoot;
 
         public int Level => damage_level + scale_level + knockBack_level + useSpeed_level + shootSpeed_level;
+        #endregion
 
+        #region 强化物品的结构
         public WItem(int ID, string owner = "")
         {
-            //IL_0097: Unknown result type (might be due to invalid IL or missing references)
-            //IL_009c: Unknown result type (might be due to invalid IL or missing references)
             Item itemById = TShock.Utils.GetItemById(ID);
             id = ID;
             this.owner = owner;
@@ -66,7 +67,9 @@ namespace Economics.WeaponPlus
             orig_color = itemById.color;
             orig_shoot = itemById.shoot;
         }
+        #endregion
 
+        #region 检查数据库
         public void CheckDB()
         {
             if (string.IsNullOrWhiteSpace(owner) || Level > 0)
@@ -91,7 +94,9 @@ namespace Economics.WeaponPlus
             {
             }
         }
+        #endregion
 
+        #region 武器信息
         public string ItemMess()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -204,7 +209,9 @@ namespace Economics.WeaponPlus
             }
             return stringBuilder.ToString();
         }
+        #endregion
 
+        #region 强化价格
         public bool plusPrice(PlusType plus, out long price, int gap = 1)
         {
             Item itemById = TShock.Utils.GetItemById(id);
@@ -390,7 +397,8 @@ namespace Economics.WeaponPlus
                 }
             }
             return true;
-        }
+        } 
+        #endregion
     }
 
 }
