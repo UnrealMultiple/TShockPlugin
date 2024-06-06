@@ -65,7 +65,24 @@ public static class Vector2Ext
         float magnitude = vel.Magnitude();
         return new Vector2(vel.X / magnitude, vel.Y / magnitude);
     }
-    
+
+
+    public static NPC? FindRangeNPC(this Vector2 pos, float distanceSquared)
+    {
+        foreach (var npc in Main.npc)
+        {
+            if (npc != null && npc.active && npc.CanBeChasedBy(null, false))
+            {
+                var val = npc.Center - pos;
+                if (distanceSquared > val.LengthSquared())
+                {
+                    return npc;
+                }
+            }
+        }
+        return null;
+    }
+
     public static List<Vector2> GenerateCurvePoints(Vector2 pointA, Vector2 pointB, float radius, float interval)
     {
         if (radius == 0)
