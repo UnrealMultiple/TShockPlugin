@@ -52,7 +52,7 @@ public enum ProgressType
     TheDestroyer,
 
     [ProgressName("机械骷髅王")]
-    [ProgressMap(nameof(NPC.downedMechBoss2), true)]
+    [ProgressMap(nameof(NPC.downedMechBoss3), true)]
     SkeletronPrime,
 
     [ProgressName("世纪之花", "世花")]
