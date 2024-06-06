@@ -9,6 +9,7 @@ using Terraria.Utilities;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
+using static TerrariaMap.Config;
 
 
 namespace Economics.WeaponPlus
@@ -31,7 +32,7 @@ namespace Economics.WeaponPlus
 
         public string configPath = Path.Combine(TShock.SavePath, "WeaponPlus.json");
 
-        public static Config config = new Config();
+        public static TerrariaMap.Config config = new TerrariaMap.Config();
 
         public static WPlayer[] wPlayers = new WPlayer[256];
 
@@ -163,8 +164,8 @@ namespace Economics.WeaponPlus
         #region 配置文件创建与重读加载方法
         private static void LoadConfig(ReloadEventArgs args = null!)
         {
-            config = Config.Read(Config.configPath);
-            config.Write(Config.configPath);
+            config = TerrariaMap.Config.Read(TerrariaMap.Config.configPath);
+            config.Write(TerrariaMap.Config.configPath);
             if (args != null && args.Player != null)
             {
                 args.Player.SendSuccessMessage("[武器强化EC版]重新加载配置完毕。");
