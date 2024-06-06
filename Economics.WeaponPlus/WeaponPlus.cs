@@ -1,5 +1,6 @@
 ﻿using EconomicsAPI;
 using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -15,35 +16,36 @@ namespace Economics.WeaponPlus
     [ApiVersion(2, 1)]
     public class WeaponPlus : TerrariaPlugin
     {
+        #region 插件信息
+        public override string Name => "WeaponPlusBasedOnEconomics";
+
+        public override string Author => "z枳 少司命";
+
+        public override string Description => "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes";
+
+        public override Version Version => new Version(1, 0, 0, 3);
+        #endregion
+
+        #region 实例变量
+        public static WeaponPlusDB DB { get; set; }
+
         public string configPath = Path.Combine(TShock.SavePath, "WeaponPlus.json");
 
         public static Config config = new Config();
 
         public static WPlayer[] wPlayers = new WPlayer[256];
 
-        public static List<List<string>> LangTips = new List<List<string>>();
+        public static List<List<string>> LangTips = new List<List<string>>(); 
+        #endregion
 
-        public override string Author => "z枳";
-
-        public override string Description => "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes";
-
-        public override string Name => "WeaponPlusBasedOnEconomics";
-
-        public override Version Version => new Version(1, 0, 0, 3);
-
-        public static WeaponPlusDB DB { get; set; }
-
-        public WeaponPlus(Main game)
-            : base(game)
-        {
-        }
-
+        #region 注册与卸载钩子
+        public WeaponPlus(Main game) : base(game) { }
         public override void Initialize()
         {
-            config = Config.Read();
             DB = new WeaponPlusDB(TShock.DB);
             NewLangTips();
-            GeneralHooks.ReloadEvent += OnReload;
+            LoadConfig();
+            GeneralHooks.ReloadEvent += LoadConfig;
             ServerApi.Hooks.NetGreetPlayer.Register((TerrariaPlugin)(object)this, OnGreetPlayer);
             ServerApi.Hooks.ServerLeave.Register((TerrariaPlugin)(object)this, OnServerLeave);
             Commands.ChatCommands.Add(new Command("weaponplus.plus", PlusItem, "plus")
@@ -60,56 +62,90 @@ namespace Economics.WeaponPlus
         {
             if (disposing)
             {
-                GeneralHooks.ReloadEvent -= OnReload;
+                GeneralHooks.ReloadEvent -= LoadConfig;
                 ServerApi.Hooks.NetGreetPlayer.Deregister((TerrariaPlugin)(object)this, OnGreetPlayer);
                 ServerApi.Hooks.ServerLeave.Deregister((TerrariaPlugin)(object)this, OnServerLeave);
             }
-        }
+        } 
+        #endregion
 
+        #region 创建提示语
         public void NewLangTips()
         {
-            LangTips.Add(new List<string> { "几乎所有的武器和弹药都能强化，但是强化结果会无效化词缀，作为补偿，前三次强化价格降低 80%", "Almost all weapons and ammunition can be strengthened, but the strengthening results will invalidate the affixes. As compensation, the price of the first three enhancements will be reduced by 80%" });
-            LangTips.Add(new List<string> { "强化绑定一类武器，即同 ID 武器，而不是单独的一个物品。强化与人物绑定，不可分享，扔出即失效，只在背包，猪猪等个人私有库存内起效。", "Strengthen the binding of a type of weapon, that is, the same ID weapon, rather than a single item. Strengthen the binding with the character, which cannot be shared. Throw it out and it will become invalid. It only works in the private inventory of backpacks, piggy bank and other individuals." });
-            LangTips.Add(new List<string> { "当你不小心扔出或其他原因导致强化无效，请使用指令 /plus load 来重新获取。每次重新获取都会从当前背包中查找并强制拿出来重给，请注意捡取避免丢失。", "When you throw it out carelessly or the reinforcement is invalid for other reasons, please use the command </plus load> to retrieve it again. Each time you retrieve it, you will find it from the current backpack and force it to be taken out again. Please pay attention to picking up to avoid loss." });
-            LangTips.Add(new List<string> { "重新获取时重给的物品是单独给予，不会被其他玩家捡走，每次进入服务器时会默认强制重新获取。", "The items to be re-acquired are given separately and will not be picked up by other players. Each time you enter the server, you will be forced to re-acquire by default." });
-            LangTips.Add(new List<string> { "第一个物品栏是强化栏，指令只对该物品栏内的物品起效，强化完即可将武器拿走换至其他栏位，功能类似于哥布林的重铸槽。", "The first item column is the reinforcement column. The command only works on the items in this item column. After the reinforcement, the weapon can be taken away and replaced to another column. The function is similar to the recasting slot of Goblin." });
-            LangTips.Add(new List<string> { "输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料", "Enter /plus     --to view the current level status of the weapon and how many materials are needed to upgrade to the next level" });
-            LangTips.Add(new List<string> { "输入 /plus help    查看 plus 系列指令帮助", "Enter /plus help     --to view the help of the plus series of instructions" });
-            LangTips.Add(new List<string> { "输入 /plus load    将当前身上所有已升级的武器重新获取", "Enter /plus load     --to reacquire all upgraded weapons on the current inventory" });
-            LangTips.Add(new List<string> { "输入 /plus <damage/da/伤害> <up/down> <num>   升级/降级当前武器的伤害等级", "Enter /plus <damage/da> <up/down> <num>    --to upgrade/downgrade the damage level of the current weapon" });
-            LangTips.Add(new List<string> { "输入 /plus <scale/sc/大小> <up/down> <num>  升级/降级当前武器或射弹的体积等级 ±5%", "Enter /plus <scale/sc> <up/down> <num>    --to upgrade/downgrade the volume level of the current weapon or projectile by ± 5%" });
-            LangTips.Add(new List<string> { "输入 /plus <knockback/kn/击退> <up/down> <num>   升级/降级当前武器的击退等级 ±5%", "Enter /plus <knockback/kn> <up/down> <num>    --to upgrade/downgrade the knockback level of the current weapon by ± 5%" });
-            LangTips.Add(new List<string> { "输入 /plus <usespeed/us/用速> <up/down> <num>   升级/降级当前武器的使用速度等级", "Enter /plus <usespeed/us> <up/down> <num>    --to upgrade/downgrade the speed level of the current weapon" });
-            LangTips.Add(new List<string> { "输入 /plus <shootspeed/sh/飞速> <up/down> <num>   升级/降级当前武器的射弹飞行速度等级，影响鞭类武器范围±5%", "Enter /plus <shootspeed/sh> <up/down> <num>    --to upgrade/downgrade the projectile flying speed level of the current weapon, affecting the range of whip weapons by ± 5%" });
-            LangTips.Add(new List<string> { "输入 /plus clear    清理当前武器的所有等级，可以回收一点消耗物", "Enter /plus clear     --to clear all levels of the current weapon, and you can recycle some consumables" });
-            LangTips.Add(new List<string> { "输入 /clearallplayersplus    将数据库中所有玩家的所有强化物品全部清理，管理员专属", "Enter /clearallplayersplus     --to clear all enhancement items of all players in the database, exclusive to the administrator" });
-            LangTips.Add(new List<string> { "该指令必须在游戏内使用", "This command must be used in the game" });
-            LangTips.Add(new List<string> { "请在第一个物品栏内放入武器而不是其他什么东西或空", "Please put weapons in the first item column instead of anything else or empty" });
+            LangTips.Add(new List<string> {
+                "几乎所有的武器和弹药都能强化，但是强化结果会无效化词缀，作为补偿，前三次强化价格降低 80%",
+                "Almost all weapons and ammunition can be strengthened, but the strengthening results will invalidate the affixes. As compensation, the price of the first three enhancements will be reduced by 80%" });
+            LangTips.Add(new List<string> {
+                "强化绑定一类武器，即同 ID 武器，而不是单独的一个物品。强化与人物绑定，不可分享，扔出即失效，只在背包，猪猪等个人私有库存内起效。",
+                "Strengthen the binding of a type of weapon, that is, the same ID weapon, rather than a single item. Strengthen the binding with the character, which cannot be shared. Throw it out and it will become invalid. It only works in the private inventory of backpacks, piggy bank and other individuals." });
+            LangTips.Add(new List<string> {
+                "当你不小心扔出或其他原因导致强化无效，请使用指令 /plus load 来重新获取。每次重新获取都会从当前背包中查找并强制拿出来重给，请注意捡取避免丢失。",
+                "When you throw it out carelessly or the reinforcement is invalid for other reasons, please use the command </plus load> to retrieve it again. Each time you retrieve it, you will find it from the current backpack and force it to be taken out again. Please pay attention to picking up to avoid loss." });
+            LangTips.Add(new List<string> {
+                "重新获取时重给的物品是单独给予，不会被其他玩家捡走，每次进入服务器时会默认强制重新获取。",
+                "The items to be re-acquired are given separately and will not be picked up by other players. Each time you enter the server, you will be forced to re-acquire by default." });
+            LangTips.Add(new List<string> {
+                "第一个物品栏是强化栏，指令只对该物品栏内的物品起效，强化完即可将武器拿走换至其他栏位，功能类似于哥布林的重铸槽。",
+                "The first item column is the reinforcement column. The command only works on the items in this item column. After the reinforcement, the weapon can be taken away and replaced to another column. The function is similar to the recasting slot of Goblin." });
+            LangTips.Add(new List<string> {
+                "输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料",
+                "Enter /plus     --to view the current level status of the weapon and how many materials are needed to upgrade to the next level" });
+            LangTips.Add(new List<string> {
+                "输入 /plus help    查看 plus 系列指令帮助",
+                "Enter /plus help     --to view the help of the plus series of instructions" });
+            LangTips.Add(new List<string> {
+                "输入 /plus load    将当前身上所有已升级的武器重新获取",
+                "Enter /plus load     --to reacquire all upgraded weapons on the current inventory" });
+            LangTips.Add(new List<string> {
+                "输入 /plus [damage/da/伤害] [up/down] [num]   升级/降级当前武器的伤害等级",
+                "Enter /plus [damage/da] [up/down] [num]    --to upgrade/downgrade the damage level of the current weapon" });
+            LangTips.Add(new List<string> {
+                "输入 /plus [scale/sc/大小] [up/down] [num]  升级/降级当前武器或射弹的体积等级 ±5%",
+                "Enter /plus [scale/sc] [up/down] [num]    --to upgrade/downgrade the volume level of the current weapon or projectile by ± 5%" });
+            LangTips.Add(new List<string> {
+                "输入 /plus [knockback/kn/击退] [up/down] [num]   升级/降级当前武器的击退等级 ±5%",
+                "Enter /plus [knockback/kn] [up/down] [num]    --to upgrade/downgrade the knockback level of the current weapon by ± 5%" });
+            LangTips.Add(new List<string> {
+                "输入 /plus [usespeed/us/用速] [up/down] [num]   升级/降级当前武器的使用速度等级",
+                "Enter /plus [usespeed/us] [up/down] [num]    --to upgrade/downgrade the speed level of the current weapon" });
+            LangTips.Add(new List<string> {
+                "输入 /plus [shootspeed/sh/飞速] [up/down] [num]   升级/降级当前武器的射弹飞行速度等级，影响鞭类武器范围±5%",
+                "Enter /plus [shootspeed/sh] [up/down] [num]    --to upgrade/downgrade the projectile flying speed level of the current weapon, affecting the range of whip weapons by ± 5%" });
+            LangTips.Add(new List<string> {
+                "输入 /plus clear    清理当前武器的所有等级，可以回收一点消耗物",
+                "Enter /plus clear     --to clear all levels of the current weapon, and you can recycle some consumables" });
+            LangTips.Add(new List<string> {
+                "输入 /clearallplayersplus    将数据库中所有玩家的所有强化物品全部清理，管理员专属",
+                "Enter /clearallplayersplus     --to clear all enhancement items of all players in the database, exclusive to the administrator" });
+            LangTips.Add(new List<string> {
+                "该指令必须在游戏内使用",
+                "This command must be used in the game" });
+            LangTips.Add(new List<string> {
+                "请在第一个物品栏内放入武器而不是其他什么东西或空",
+                "Please put weapons in the first item column instead of anything else or empty" });
             LangTips.Add(new List<string> { "当前物品：", "Current item: " });
-            LangTips.Add(new List<string> { "您当前的升级武器已重新读取", "Your current upgraded weapon has been re-read" });
-            LangTips.Add(new List<string> { "当前武器没有任何等级，不用回炉重做", "The current weapon has no level, so you don't need to redo it" });
-            LangTips.Add(new List<string>
-        {
-            "完全重置成功！" + EconomicsAPI.Economics.Setting.CurrencyName + "回收：",
-            "Complete reset succeeded! " + EconomicsAPI.Economics.Setting.CurrencyName + " recovery: "
-        });
+            LangTips.Add(new List<string> {
+                "您当前的升级武器已重新读取",
+                "Your current upgraded weapon has been re-read" });
+            LangTips.Add(new List<string> {
+                "当前武器没有任何等级，不用回炉重做",
+                "The current weapon has no level, so you don't need to redo it" });
+            LangTips.Add(new List<string> {
+                "完全重置成功！钱币回收：",
+                "Complete reset succeeded! Coin recovery: " });
             LangTips.Add(new List<string> { "升级成功", "Upgrade succeeded" });
             LangTips.Add(new List<string> { "共计消耗：", "Total consumption: " });
             LangTips.Add(new List<string> { "降级成功", "Degraded successfully" });
             LangTips.Add(new List<string> { "等级过低", "The grade is too low" });
-            LangTips.Add(new List<string> { "当前该类型升级已达到上限，无法升级", "Currently, the upgrade of this type has reached the upper limit and cannot be upgraded" });
-            LangTips.Add(new List<string>
-        {
-            "扣除" + EconomicsAPI.Economics.Setting.CurrencyName + "：",
-            "Deduct " + EconomicsAPI.Economics.Setting.CurrencyName + ": "
-        });
+            LangTips.Add(new List<string> {
+                "当前该类型升级已达到上限，无法升级",
+                "Currently, the upgrade of this type has reached the upper limit and cannot be upgraded" });
+            LangTips.Add(new List<string> { "扣除钱币：", "Deduct coins: " });
             LangTips.Add(new List<string> { "当前剩余：", "Current remaining: " });
-            LangTips.Add(new List<string>
-        {
-            EconomicsAPI.Economics.Setting.CurrencyName + "不足！",
-            "Not enough " + EconomicsAPI.Economics.Setting.CurrencyName + "!"
-        });
-            LangTips.Add(new List<string> { "所有玩家的所有强化数据全部清理成功！", "All enhancement data of all players have been cleared successfully!" });
+            LangTips.Add(new List<string> { "钱币不够！", "Not enough money!" });
+            LangTips.Add(new List<string> {
+                "所有玩家的所有强化数据全部清理成功！",
+                "All enhancement data of all players have been cleared successfully!" });
             LangTips.Add(new List<string> { "强化数据清理失败！！!", "Enhanced data cleaning failed!!!" });
             LangTips.Add(new List<string> { "当前总等级：", "Current total level: " });
             LangTips.Add(new List<string> { "剩余强化次数：", "How many times can the weapon be strengthened: " });
@@ -136,7 +172,9 @@ namespace Economics.WeaponPlus
             LangTips.Add(new List<string> { "SSC 未开启", "SSC is disable" });
             LangTips.Add(new List<string> { "请输入正整数", "Please enter a positive integer" });
         }
+        #endregion
 
+        #region 切换提示语语言方法
         public static string LangTipsGet(string str)
         {
             foreach (List<string> langTip in LangTips)
@@ -152,12 +190,21 @@ namespace Economics.WeaponPlus
             }
             return string.Empty;
         }
+        #endregion
 
-        private void OnReload(ReloadEventArgs e)
+        #region 配置文件创建与重读加载方法
+        private static void LoadConfig(ReloadEventArgs args = null!)
         {
-            config = Config.Read();
+            config = Config.Read(Config.configPath);
+            config.Write(Config.configPath);
+            if (args != null && args.Player != null)
+            {
+                args.Player.SendSuccessMessage("[武器强化EC版]重新加载配置完毕。");
+            }
         }
+        #endregion
 
+        #region 问候玩家
         private void OnGreetPlayer(GreetPlayerEventArgs args)
         {
             if (args == null)
@@ -174,8 +221,10 @@ namespace Economics.WeaponPlus
             {
                 ReplaceWeaponsInBackpack(Main.player[args.Who], hasItem);
             }
-        }
+        } 
+        #endregion
 
+        #region 离开服务器
         private void OnServerLeave(LeaveEventArgs args)
         {
             if (args == null || TShock.Players[args.Who] == null)
@@ -193,23 +242,11 @@ namespace Economics.WeaponPlus
             {
             }
         }
+        #endregion
 
+        #region  强化物品
         private void PlusItem(CommandArgs args)
         {
-            //IL_01b3: Unknown result type (might be due to invalid IL or missing references)
-            //IL_01c6: Unknown result type (might be due to invalid IL or missing references)
-            //IL_040a: Unknown result type (might be due to invalid IL or missing references)
-            //IL_05e6: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0a1e: Unknown result type (might be due to invalid IL or missing references)
-            //IL_08d3: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0d20: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0bd5: Unknown result type (might be due to invalid IL or missing references)
-            //IL_1022: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0ed7: Unknown result type (might be due to invalid IL or missing references)
-            //IL_1324: Unknown result type (might be due to invalid IL or missing references)
-            //IL_11d9: Unknown result type (might be due to invalid IL or missing references)
-            //IL_1626: Unknown result type (might be due to invalid IL or missing references)
-            //IL_14db: Unknown result type (might be due to invalid IL or missing references)
             string text = LangTipsGet("几乎所有的武器和弹药都能强化，但是强化结果会无效化词缀，作为补偿，前三次强化价格降低 80%") + "\n" + LangTipsGet("强化绑定一类武器，即同 ID 武器，而不是单独的一个物品。强化与人物绑定，不可分享，扔出即失效，只在背包，猪猪等个人私有库存内起效。") + "\n" + LangTipsGet("当你不小心扔出或其他原因导致强化无效，请使用指令 /plus load 来重新获取。每次重新获取都会从当前背包中查找并强制拿出来重给，请注意捡取避免丢失。") + "\n" + LangTipsGet("重新获取时重给的物品是单独给予，不会被其他玩家捡走，每次进入服务器时会默认强制重新获取。") + "\n" + LangTipsGet("第一个物品栏是强化栏，指令只对该物品栏内的物品起效，强化完即可将武器拿走换至其他栏位，功能类似于哥布林的重铸槽。");
             string text2 = LangTipsGet("输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料") + "\n" + LangTipsGet("输入 /plus load    将当前身上所有已升级的武器重新获取") + "\n" + LangTipsGet("输入 /plus <damage/da/伤害> <up/down> <num>   升级/降级当前武器的伤害等级") + "\n" + LangTipsGet("输入 /plus <scale/sc/大小> <up/down> <num>  升级/降级当前武器或射弹的体积等级 ±5%") + "\n" + LangTipsGet("输入 /plus <knockback/kn/击退> <up/down> <num>   升级/降级当前武器的击退等级 ±5%") + "\n" + LangTipsGet("输入 /plus <usespeed/us/用速> <up/down> <num>   升级/降级当前武器的使用速度等级") + "\n" + LangTipsGet("输入 /plus <shootspeed/sh/飞速> <up/down> <num>   升级/降级当前武器的射弹飞行速度等级，影响鞭类武器范围±5%") + "\n" + LangTipsGet("输入 /plus clear    清理当前武器的所有等级，可以回收一点消耗物") + "\n" + LangTipsGet("输入 /clearallplayersplus    将数据库中所有玩家的所有强化物品全部清理，管理员专属");
             if (args.Parameters.Count == 1 && args.Parameters[0].Equals("help", StringComparison.OrdinalIgnoreCase))
@@ -471,7 +508,9 @@ namespace Economics.WeaponPlus
                 args.Player.SendInfoMessage(LangTipsGet("输入 /plus help    查看 plus 系列指令帮助"));
             }
         }
+        #endregion
 
+        #region 清理强化物品
         private void ClearPlusItem(CommandArgs args)
         {
             if (args.Parameters.Count == 0)
@@ -502,29 +541,17 @@ namespace Economics.WeaponPlus
             {
                 args.Player.SendInfoMessage(LangTipsGet("输入 /clearallplayersplus   将数据库中强化物品全部清理"));
             }
-        }
+        } 
+        #endregion
 
+        #region 新物品
         public static int MyNewItem(IEntitySource source, Vector2 pos, Vector2 randomBox, int Type, int Stack = 1, bool noBroadcast = false, int prefixGiven = 0, bool noGrabDelay = false, bool reverseLookup = false)
         {
-            //IL_0002: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0009: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0010: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0017: Unknown result type (might be due to invalid IL or missing references)
             return MyNewItem(source, (int)pos.X, (int)pos.Y, (int)randomBox.X, (int)randomBox.Y, Type, Stack, noBroadcast, prefixGiven, noGrabDelay, reverseLookup);
         }
 
         public static int MyNewItem(IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack = 1, bool noBroadcast = false, int pfix = 0, bool noGrabDelay = false, bool reverseLookup = false)
         {
-            //IL_0023: Unknown result type (might be due to invalid IL or missing references)
-            //IL_002d: Expected O, but got Unknown
-            //IL_014c: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0152: Expected O, but got Unknown
-            //IL_0182: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0188: Expected O, but got Unknown
-            //IL_01e1: Unknown result type (might be due to invalid IL or missing references)
-            //IL_025a: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0264: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0269: Unknown result type (might be due to invalid IL or missing references)
             if (WorldGen.gen)
             {
                 return 0;
@@ -537,11 +564,11 @@ namespace Economics.WeaponPlus
             {
                 if (Type == 58)
                 {
-                    Type = Main.rand.NextFromList(new short[3] { 1734, 1867, 58 });
+                    Type = Terraria.Utils.NextFromList(Main.rand, new short[3] { 1734, 1867, 58 });
                 }
                 if (Type == 184)
                 {
-                    Type = Main.rand.NextFromList(new short[3] { 1735, 1868, 184 });
+                    Type = Terraria.Utils.NextFromList(Main.rand, new short[3] { 1735, 1868, 184 });
                 }
             }
             if (Main.halloween)
@@ -592,7 +619,7 @@ namespace Economics.WeaponPlus
             {
                 val.velocity = val.velocity * 0f;
             }
-            if (Type == 520 || Type == 521 || val.type >= 0 && ItemID.Sets.NebulaPickup[val.type])
+            if (Type == 520 || Type == 521 || (val.type >= 0 && ItemID.Sets.NebulaPickup[val.type]))
             {
                 val.velocity.X = Main.rand.Next(-30, 31) * 0.1f;
                 val.velocity.Y = Main.rand.Next(-30, 31) * 0.1f;
@@ -610,7 +637,9 @@ namespace Economics.WeaponPlus
             }
             return num;
         }
+        #endregion
 
+        #region 更换背包中的武器
         public static void ReplaceWeaponsInBackpack(Player? player, WItem? item, int model = 0)
         {
             if (player == null || !player.active || item == null)
@@ -630,11 +659,11 @@ namespace Economics.WeaponPlus
                     {
                         case 0:
                             {
-                                int num2 = MyNewItem(null, player.Center, new Vector2(1f, 1f), item.id, stack);
+                                int num2 = MyNewItem(null!, player.Center, new Vector2(1f, 1f), item.id, stack);
                                 Main.item[num2].playerIndexTheItemIsReservedFor = whoAmI;
                                 Main.item[num2].prefix = prefix;
                                 int num3 = (int)(item.orig_damage * 0.05f * item.damage_level);
-                                num3 = num3 < item.damage_level ? item.damage_level : num3;
+                                num3 = ((num3 < item.damage_level) ? item.damage_level : num3);
                                 Item obj = Main.item[num2];
                                 obj.damage += num3;
                                 Item obj2 = Main.item[num2];
@@ -652,7 +681,7 @@ namespace Economics.WeaponPlus
                             }
                         case 1:
                             {
-                                int num = MyNewItem(null, player.Center, new Vector2(1f, 1f), item.id, stack);
+                                int num = MyNewItem(null!, player.Center, new Vector2(1f, 1f), item.id, stack);
                                 Main.item[num].playerIndexTheItemIsReservedFor = whoAmI;
                                 Main.item[num].prefix = prefix;
                                 TShock.Players[whoAmI].SendData((PacketTypes)21, null, num);
@@ -663,7 +692,9 @@ namespace Economics.WeaponPlus
                 }
             }
         }
+        #endregion
 
+        #region 扣钱的方法
         public bool Deduction(WItem WItem, int whoAMI, PlusType plusType, int gap = 1)
         {
             string name = TShock.Players[whoAMI].Name;
@@ -681,10 +712,13 @@ namespace Economics.WeaponPlus
             TShock.Players[whoAMI].SendInfoMessage(LangTipsGet(EconomicsAPI.Economics.Setting.CurrencyName + "不足！"));
             return false;
         }
+        #endregion
 
+        #region 提示语的随机颜色方法
         public Color getRandColor()
         {
             return new Color(Main.rand.Next(60, 255), Main.rand.Next(60, 255), Main.rand.Next(60, 255));
         }
+        #endregion
     }
 }
