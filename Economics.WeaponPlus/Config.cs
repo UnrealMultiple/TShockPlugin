@@ -13,7 +13,7 @@ public class Config
     public static readonly string configPath = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "WeaponPlus.json");
 
     [JsonProperty("启用英文", Order = -6)]
-    public bool EnableEnglish { get; set; } = false;
+    public bool EnableEnglish = false;
     [JsonProperty("进服时是否开启自动重读武器", Order = -6)]
     public bool WhetherToTurnOnAutomaticLoadWeaponsWhenEnteringTheGame = true;
     [JsonProperty("最多升级次数", Order = -6)]
