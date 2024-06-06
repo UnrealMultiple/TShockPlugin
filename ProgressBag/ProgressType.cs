@@ -53,12 +53,12 @@ public enum ProgressType
 
     [ProgressName("双子魔眼")]
     [ProgressMapID(NPCID.Retinazer, NPCID.Spazmatism)]
-    [ProgressMap(nameof(NPC.downedMechBoss1), typeof(NPC), true)]
+    [ProgressMap(nameof(NPC.downedMechBoss2), typeof(NPC), true)]
     TheTwins,
 
     [ProgressName("毁灭者", "铁长直")]
     [ProgressMapID(NPCID.TheDestroyer)]
-    [ProgressMap(nameof(NPC.downedMechBoss2), typeof(NPC), true)]
+    [ProgressMap(nameof(NPC.downedMechBoss1), typeof(NPC), true)]
     TheDestroyer,
 
     [ProgressName("机械骷髅王")]

@@ -44,11 +44,11 @@ public enum ProgressType
     MechBossAny,
 
     [ProgressName("双子魔眼")]
-    [ProgressMap(nameof(NPC.downedMechBoss1), true)]
+    [ProgressMap(nameof(NPC.downedMechBoss2), true)]
     TheTwins,
 
     [ProgressName("毁灭者", "铁长直")]
-    [ProgressMap(nameof(NPC.downedMechBoss2), true)]
+    [ProgressMap(nameof(NPC.downedMechBoss1), true)]
     TheDestroyer,
 
     [ProgressName("机械骷髅王")]

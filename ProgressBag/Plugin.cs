@@ -14,7 +14,7 @@ namespace ProgressBag
 
         public override string Name => "进度礼包";
 
-        public override Version Version => new(1, 0, 0, 7);
+        public override Version Version => new(1, 0, 0, 9);
 
         public static Config config = new();
 
