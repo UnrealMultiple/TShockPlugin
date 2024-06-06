@@ -2,7 +2,7 @@
 
 - 作者: Maxthegreat99，肝帝熙恩汉化
 - 出处: [github](https://github.com/Maxthegreat99/journeyUnlock)
-- 解锁旅途物品，可以一件解锁全部物品
+- 解锁旅途物品，可以一键解锁全部物品
 
 ## 更新日志
 
