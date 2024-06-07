@@ -17,7 +17,7 @@ namespace CaiBotPlugin
     public class Plugin : TerrariaPlugin
     {
         //定义插件的作者名称
-        public override string Author => "Cai 羽学";
+        public override string Author => "Cai,羽学";
 
         //插件的一句话描述
         public override string Description => "CaiBot机器人的适配插件";
@@ -65,7 +65,7 @@ namespace CaiBotPlugin
                         {
                             await Task.Delay(TimeSpan.FromSeconds(5));
                         }
-                        if (Terraria.Program.LaunchParameters.ContainsKey("-caidebug"))
+                        if (Terraria.Program.LaunchParameters.ContainsKey("-cailocalbot"))
                             await ws.ConnectAsync(new Uri("ws://127.0.0.1:22333/bot/" + Config.config.Token), CancellationToken.None);
                         else
                             await ws.ConnectAsync(new Uri("ws://110.42.98.64:22333/bot/" + Config.config.Token), CancellationToken.None);
