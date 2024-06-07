@@ -1,6 +1,5 @@
 ﻿using EconomicsAPI.EventArgs;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
-using TShockAPI;
 
 namespace EconomicsAPI.Events;
 

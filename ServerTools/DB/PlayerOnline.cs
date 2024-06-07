@@ -1,20 +1,20 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Data;
-using TShockAPI.DB;
 using TShockAPI;
+using TShockAPI.DB;
 
 namespace ServerTools.DB;
 
 public class PlayerOnline : Dictionary<string, int>
 {
-    private HashSet<string> _players = new();
+    private readonly HashSet<string> _players = new();
     public new int this[string key]
-    { 
-        get 
-        { 
-            if(TryGetValue(key, out int result))
+    {
+        get
+        {
+            if (TryGetValue(key, out int result))
                 return result;
-            return 0; 
+            return 0;
         }
 
         set
@@ -22,7 +22,7 @@ public class PlayerOnline : Dictionary<string, int>
             base[key] = value;
         }
     }
-    private IDbConnection database;
+    private readonly IDbConnection database;
     public PlayerOnline()
     {
         database = TShock.DB;
@@ -65,7 +65,7 @@ public class PlayerOnline : Dictionary<string, int>
     public bool Update(string Name, int duration)
     {
         return 1 == database.Query("UPDATE `OnlineDuration` SET `duration` = @0 WHERE `OnlineDuration`.`username` = @1", duration, Name);
-        
+
     }
     public bool Insert(string Name, int duration)
     {

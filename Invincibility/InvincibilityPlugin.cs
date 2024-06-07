@@ -15,8 +15,8 @@ namespace InvincibilityPlugin
         public override Version Version => new Version(1, 0, 5);
         public static Configuration Config;
 
-        private Dictionary<TSPlayer, float> invincibleDurations = new();
-        private Dictionary<TSPlayer, float> frameDurations = new();
+        private readonly Dictionary<TSPlayer, float> invincibleDurations = new();
+        private readonly Dictionary<TSPlayer, float> frameDurations = new();
 
         public long FrameCount;
 

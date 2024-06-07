@@ -2,7 +2,7 @@
 {
     public static class DeathMessages
     {
-        private static Random Random = new Random();
+        private static readonly Random Random = new Random();
         public static string[] Messages = new string[] {
             "@0以为能胜过@1，结果却是舞到力竭！",
             "野生@1出现！@0瞬间倒下。",

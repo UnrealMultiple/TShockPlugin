@@ -33,7 +33,7 @@ namespace WeaponPlus
             queryBuilder.CreateTable(table);
             SqlTableCreator sqlTableCreator = new SqlTableCreator(database, queryBuilder);
             sqlTableCreator.EnsureTableStructure(table);
-        } 
+        }
         #endregion
 
         #region 读取数据库从拥有者处获取物品数据
@@ -47,14 +47,16 @@ namespace WeaponPlus
                 {
                     while (queryResult.Read())
                     {
-                        WItem wItem = new WItem(queryResult.Get<int>("itemID"), owner);
-                        wItem.lable = queryResult.Get<int>("lable");
-                        wItem.damage_level = queryResult.Get<int>("damage_level");
-                        wItem.scale_level = queryResult.Get<int>("scale_level");
-                        wItem.knockBack_level = queryResult.Get<int>("knockBack_level");
-                        wItem.useSpeed_level = queryResult.Get<int>("useSpeed_level");
-                        wItem.shootSpeed_level = queryResult.Get<int>("shootSpeed_level");
-                        wItem.allCost = queryResult.Get<long>("allCost");
+                        WItem wItem = new WItem(queryResult.Get<int>("itemID"), owner)
+                        {
+                            lable = queryResult.Get<int>("lable"),
+                            damage_level = queryResult.Get<int>("damage_level"),
+                            scale_level = queryResult.Get<int>("scale_level"),
+                            knockBack_level = queryResult.Get<int>("knockBack_level"),
+                            useSpeed_level = queryResult.Get<int>("useSpeed_level"),
+                            shootSpeed_level = queryResult.Get<int>("shootSpeed_level"),
+                            allCost = queryResult.Get<long>("allCost")
+                        };
                         list.Add(wItem);
                     }
                 }
@@ -167,7 +169,7 @@ namespace WeaponPlus
                 Console.WriteLine("错误：DeleteDBAll " + ex.ToString());
                 return false;
             }
-        } 
+        }
         #endregion
     }
 }

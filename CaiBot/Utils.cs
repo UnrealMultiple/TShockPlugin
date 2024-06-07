@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 
 namespace CaiBot
 {
     public static class Utils
     {
-        public static List<int> GetActiveBuffs(IDbConnection connection, int userId,string name)
+        public static List<int> GetActiveBuffs(IDbConnection connection, int userId, string name)
         {
             try
             {

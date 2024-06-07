@@ -2,25 +2,14 @@
 //恋恋的TShock插件模板，有改动（为了配合章节名）
 //来自棱镜的插件教程
 
-using System;
-using System.Collections.Generic;
-using System.Net.WebSockets;
-using System.Reflection;
-using System.Runtime.ConstrainedExecution;
-using System.Security.Cryptography;
-using System.Text;
-using CaiBot;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NuGet.Protocol;
-using Org.BouncyCastle.Asn1.BC;
 using Rests;
 using SixLabors.ImageSharp;
+using System.Net.WebSockets;
+using System.Text;
 using Terraria;
-using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.DB;
-using Utils = TShockAPI.Utils;
 
 namespace CaiBotPlugin
 {
@@ -557,7 +546,7 @@ namespace CaiBotPlugin
                         {
                             itemList.Add(new List<int>() { i.NetId, i.Stack });
                         }
-                        buffs = CaiBot.Utils.GetActiveBuffs(TShock.DB, acc.ID,acc.Name);
+                        buffs = CaiBot.Utils.GetActiveBuffs(TShock.DB, acc.ID, acc.Name);
                         re = new RestObject
                             {
                                 { "type","lookbag" },

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
-using Terraria.Map;
-using Terraria;
-using System.Reflection;
+﻿using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
+using SixLabors.ImageSharp.PixelFormats;
+using Terraria;
+using Terraria.Map;
 
 namespace CaiLib
 {
@@ -26,10 +20,7 @@ namespace CaiLib
             Image<Rgba32> image = new Image<Rgba32>(Main.maxTilesX, Main.maxTilesY);
 
             MapHelper.Initialize();
-            if (Main.Map == null)
-            {
-                Main.Map = new WorldMap(0, 0);
-            }
+            Main.Map ??= new WorldMap(0, 0);
             for (var x = 0; x < Main.maxTilesX; x++)
             {
                 for (var y = 0; y < Main.maxTilesY; y++)

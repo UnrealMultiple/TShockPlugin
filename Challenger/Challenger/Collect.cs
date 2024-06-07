@@ -64,9 +64,9 @@ namespace Challenger
                 while (val.velocity.X >= 16f || val.velocity.X <= -16f || val.velocity.Y >= 16f || val.velocity.Y < -16f)
                 {
                     Projectile val2 = val;
-                    val2.velocity.X = val2.velocity.X * 0.97f;
+                    val2.velocity.X *= 0.97f;
                     Projectile val3 = val;
-                    val3.velocity.Y = val3.velocity.Y * 0.97f;
+                    val3.velocity.Y *= 0.97f;
                 }
             }
             if (Type == 434)
@@ -117,10 +117,7 @@ namespace Challenger
             {
                 return 0;
             }
-            if (Main.rand == null)
-            {
-                Main.rand = new UnifiedRandom();
-            }
+            Main.rand ??= new UnifiedRandom();
             if (Main.tenthAnniversaryWorld)
             {
                 if (Type == 58)
@@ -178,7 +175,7 @@ namespace Challenger
             val.velocity.Y = Main.rand.Next(-40, -15) * 0.1f;
             if (Type == 859 || Type == 4743)
             {
-                val.velocity = val.velocity * 0f;
+                val.velocity *= 0f;
             }
             if (Type == 520 || Type == 521 || (val.type >= 0 && ItemID.Sets.NebulaPickup[val.type]))
             {

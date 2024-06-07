@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using System.ComponentModel;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Configuration;
 using TShockAPI.Hooks;
 using static TShockAPI.Hooks.GeneralHooks;
 
@@ -26,9 +24,9 @@ namespace RainbowChat
         {
         }
         #region 注册与卸载
-        private Random _rand = new Random();
-        private bool[] _rainbowChat = new bool[255];
-        private bool[] _Gradient = new bool[255];
+        private readonly Random _rand = new Random();
+        private readonly bool[] _rainbowChat = new bool[255];
+        private readonly bool[] _Gradient = new bool[255];
         internal static Configuration Config = null!;
         public override void Initialize()
         {
@@ -148,7 +146,7 @@ namespace RainbowChat
 
             // 标记事件已处理
             e.Handled = true;
-        } 
+        }
         #endregion
 
         #region 指令方法
@@ -226,7 +224,7 @@ namespace RainbowChat
                     player.SendMessage("<彩虹聊天>,可用子命令：\n/rc 随机 - 开启随机单色整句（不能和渐变同开）\n/rc 渐变 - 开启随机整句花色（与随机色相对）\n/rc 渐变 开始 R,G,B - 设置渐变聊天起始颜色\n/rc 渐变 结束 R,G,B - 设置渐变聊天结束颜色", Color.Yellow);
                     break;
             }
-        } 
+        }
         #endregion
 
         #region 指令调用开启的方法
@@ -287,7 +285,7 @@ namespace RainbowChat
                 }
             }
             return list;
-        } 
+        }
         #endregion
     }
 }

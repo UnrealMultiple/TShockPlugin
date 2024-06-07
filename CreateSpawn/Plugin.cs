@@ -16,7 +16,7 @@ public class Plugin : TerrariaPlugin
     public override Version Version => new(1, 0, 0, 0);
 
 
-    private string SavePath = Path.Combine(TShock.SavePath, "Create.json");
+    private readonly string SavePath = Path.Combine(TShock.SavePath, "Create.json");
 
     public Config Config = new();
 
@@ -77,7 +77,7 @@ public class Plugin : TerrariaPlugin
                 CopyBuilding(args.Player.TempPoints[0].X, args.Player.TempPoints[0].Y, args.Player.TempPoints[1].X, args.Player.TempPoints[1].Y);
                 args.Player.SendInfoMessage("保存成功!");
             }
-            }
+        }
         else
         {
             args.Player.SendInfoMessage($"/cb set <1/2> --选择复制的区域");

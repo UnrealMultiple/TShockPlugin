@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Configuration;
 using Terraria;
-using Terraria.ID;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;

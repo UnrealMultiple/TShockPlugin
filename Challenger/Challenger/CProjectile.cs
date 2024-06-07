@@ -7,11 +7,11 @@ namespace Challenger
     {
         public Projectile? proj;
 
-        private int type;
+        private readonly int type;
 
-        private int index;
+        private readonly int index;
 
-        private int owner;
+        private readonly int owner;
 
         public float[] ai;
 

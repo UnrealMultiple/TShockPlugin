@@ -173,7 +173,7 @@ namespace RegionView
             else
             {
                 // There isn't a tile there; place an ice block.
-                if (Main.rand == null) Main.rand = new UnifiedRandom();
+                Main.rand ??= new UnifiedRandom();
                 fakeTile.active(true);
                 fakeTile.inActive(true);
                 fakeTile.type = Terraria.ID.TileID.MagicalIceBlock;

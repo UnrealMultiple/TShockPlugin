@@ -16,7 +16,7 @@ public class Plugin : TerrariaPlugin
 
     public override Version Version => new Version(1, 1, 0);
 
-    private ConcurrentDictionary<int, Vector2> npcHomePositions = new ConcurrentDictionary<int, Vector2>();
+    private readonly ConcurrentDictionary<int, Vector2> npcHomePositions = new ConcurrentDictionary<int, Vector2>();
 
     public Plugin(Main game)
         : base(game)

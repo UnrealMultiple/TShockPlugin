@@ -1,15 +1,15 @@
-﻿using Terraria;
+﻿using Rests;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using Rests;
 
 namespace RestInventory
 {
     [ApiVersion(2, 1)]
     public class MainPlugin : TerrariaPlugin
     {
-        
-        public MainPlugin(Main game) : base(game){}
+
+        public MainPlugin(Main game) : base(game) { }
         public override string Name => "BeanInvsee";
         public override Version Version => new Version(1, 0, 0, 1);
         public override string Author => "少司命";
@@ -30,10 +30,10 @@ namespace RestInventory
             {
                 tsplayer = players[0].TPlayer;
             }
-            else 
+            else
             {
                 var offline = TShock.UserAccounts.GetUserAccountByName(playerName);
-                if ( offline == null)
+                if (offline == null)
                 {
                     return new RestObject("201") { { "response", "无效用户" } };
                 }
@@ -76,7 +76,7 @@ namespace RestInventory
                     };
                 }
                 else
-                { 
+                {
                     retObject.Loadout[i] = new Suits()
                     {
                         armor = Utils.GetInventoryData(tsplayer.Loadouts[i].Armor, tsplayer.Loadouts[i].Armor.Length),
@@ -98,7 +98,7 @@ namespace RestInventory
             return new RestObject() { { "response", "查询成功" }, { "data", retObject } };
         }
 
-       
+
 
         protected override void Dispose(bool disposing)
         {

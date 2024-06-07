@@ -1,6 +1,4 @@
-﻿using EconomicsAPI;
-using Microsoft.Xna.Framework;
-using System.IO;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -9,7 +7,6 @@ using Terraria.Utilities;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
-using static TerrariaMap.Config;
 
 
 namespace Economics.WeaponPlus
@@ -36,7 +33,7 @@ namespace Economics.WeaponPlus
 
         public static WPlayer[] wPlayers = new WPlayer[256];
 
-        public static List<List<string>> LangTips = new List<List<string>>(); 
+        public static List<List<string>> LangTips = new List<List<string>>();
         #endregion
 
         #region 注册与卸载钩子
@@ -180,8 +177,10 @@ namespace Economics.WeaponPlus
             {
                 return;
             }
-            wPlayers[args.Who] = new WPlayer(TShock.Players[args.Who]);
-            wPlayers[args.Who].hasItems = DB.ReadDBGetWItemsFromOwner(TShock.Players[args.Who].Name).ToList();
+            wPlayers[args.Who] = new WPlayer(TShock.Players[args.Who])
+            {
+                hasItems = DB.ReadDBGetWItemsFromOwner(TShock.Players[args.Who].Name).ToList()
+            };
             if (!config.WhetherToTurnOnAutomaticLoadWeaponsWhenEnteringTheGame || wPlayers.Length == 0)
             {
                 return;
@@ -190,7 +189,7 @@ namespace Economics.WeaponPlus
             {
                 ReplaceWeaponsInBackpack(Main.player[args.Who], hasItem);
             }
-        } 
+        }
         #endregion
 
         #region 离开服务器
@@ -242,10 +241,7 @@ namespace Economics.WeaponPlus
             WPlayer wPlayer = wPlayers[args.Player.Index];
             Item firstItem = args.Player.TPlayer.inventory[0];
             WItem select = wPlayer.hasItems.Find((x) => x.id == firstItem.netID);
-            if (select == null)
-            {
-                select = new WItem(firstItem.netID, args.Player.Name);
-            }
+            select ??= new WItem(firstItem.netID, args.Player.Name);
             if ((firstItem == null || firstItem.IsAir || TShock.Utils.GetItemById(firstItem.type).damage <= 0 || firstItem.accessory || firstItem.netID == 0) && (args.Parameters.Count != 1 || !args.Parameters[0].Equals("load", StringComparison.OrdinalIgnoreCase)))
             {
                 args.Player.SendInfoMessage(LangTipsGet("请在第一个物品栏内放入武器而不是其他什么东西或空"));
@@ -510,7 +506,7 @@ namespace Economics.WeaponPlus
             {
                 args.Player.SendInfoMessage(LangTipsGet("输入 /clearallplayersplus   将数据库中强化物品全部清理"));
             }
-        } 
+        }
         #endregion
 
         #region 新物品
@@ -525,10 +521,7 @@ namespace Economics.WeaponPlus
             {
                 return 0;
             }
-            if (Main.rand == null)
-            {
-                Main.rand = new UnifiedRandom();
-            }
+            Main.rand ??= new UnifiedRandom();
             if (Main.tenthAnniversaryWorld)
             {
                 if (Type == 58)
@@ -586,7 +579,7 @@ namespace Economics.WeaponPlus
             val.velocity.Y = Main.rand.Next(-40, -15) * 0.1f;
             if (Type == 859 || Type == 4743)
             {
-                val.velocity = val.velocity * 0f;
+                val.velocity *= 0f;
             }
             if (Type == 520 || Type == 521 || (val.type >= 0 && ItemID.Sets.NebulaPickup[val.type]))
             {

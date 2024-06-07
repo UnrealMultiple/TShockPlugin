@@ -1,17 +1,11 @@
-﻿using Terraria;
-using TerrariaApi.Server;
-
-using Microsoft.Xna.Framework;
-
-using Terraria.Localization;
-
-using Terraria.IO;
-using System.Reflection;
-
-
-using System.IO.Compression;
+﻿using Microsoft.Xna.Framework;
 using ReLogic.Content.Sources;
-using System.Text.RegularExpressions;
+using System.IO.Compression;
+using System.Reflection;
+using Terraria;
+using Terraria.IO;
+using Terraria.Localization;
+using TerrariaApi.Server;
 using TShockAPI.Hooks;
 
 namespace WikiLangPackLoader
@@ -34,7 +28,7 @@ namespace WikiLangPackLoader
         }
         public override void Initialize()
         {
-            
+
             On.Terraria.Localization.LanguageManager.SetLanguage_GameCulture += LanguageManager_SetLanguage_GameCulture;
             //On.Terraria.Localization.LanguageManager.SetLanguage_int += LanguageManager_SetLanguage_int;
             //On.Terraria.Localization.LanguageManager.SetLanguage_string += LanguageManager_SetLanguage_string;
@@ -47,13 +41,13 @@ namespace WikiLangPackLoader
             Load();
         }
 
-      
+
 
         private void LanguageManager_SetLanguage_GameCulture(On.Terraria.Localization.LanguageManager.orig_SetLanguage_GameCulture orig, LanguageManager self, GameCulture culture)
         {
 
             orig(self, culture);
-            if (culture.LegacyId==7)
+            if (culture.LegacyId == 7)
                 Load();
             else
             {

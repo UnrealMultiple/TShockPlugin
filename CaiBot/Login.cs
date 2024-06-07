@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Streams;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NuGet.Protocol;
+﻿using NuGet.Protocol;
 using Rests;
+using System.IO.Streams;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -20,7 +15,7 @@ namespace CaiBotPlugin
         {
             if (!Config.config.WhiteList)
                 return;
-            
+
             var type = args.MsgID;
 
             var player = TShock.Players[args.Msg.whoAmI];
@@ -90,7 +85,7 @@ namespace CaiBotPlugin
                 TShock.Log.ConsoleError(e.ToString());
             }
         }
-        public static async Task<bool> CheckWhiteAsync(string name, int code,List<string> uuids)
+        public static async Task<bool> CheckWhiteAsync(string name, int code, List<string> uuids)
         {
             var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
             var number = Config.config.GroupNumber;
@@ -154,7 +149,7 @@ namespace CaiBotPlugin
                 if (!uuids.Contains(plr.UUID))
                 {
                     if (string.IsNullOrEmpty(plr.UUID))
-                            
+
                     {
                         plr.SilentKickInProgress = true;
                         plr.Disconnect("[白名单]UUID为空\n请尝试重新加入游戏或者联系服务器管理员");
@@ -188,9 +183,9 @@ namespace CaiBotPlugin
                 plr.Disconnect($"[白名单]服务器发生错误无法处理该请求!请尝试重新加入游戏或者联系服务器群{number}管理员");
                 return false;
             }
-            
 
-           
+
+
             return true;
             //NetMessage.SendData(9, plr.Index, -1, NetworkText.FromLiteral("正在检查白名单..."), 1);
 

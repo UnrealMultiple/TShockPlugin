@@ -10,14 +10,14 @@ public class PlayerDeath : Dictionary<string, int>
     private new int this[string key]
     {
         get
-        { 
-            if(TryGetValue(key, out int result))
+        {
+            if (TryGetValue(key, out int result))
                 return result;
             return 0;
         }
 
         set
-        { 
+        {
             base[key] = value;
         }
     }
@@ -56,6 +56,6 @@ public class PlayerDeath : Dictionary<string, int>
         {
             this[name] = 1;
             database.Query("INSERT INTO `Death` (`Name`, `Count`) VALUES (@0, @1)", name, 1);
-        }    
+        }
     }
 }

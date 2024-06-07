@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text;
-using System.Text.RegularExpressions;
-using MonoMod.Utils;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -39,7 +35,7 @@ namespace Platform
         private void OnJoin(JoinEventArgs args)
         {
             TShock.Log.ConsoleInfo($"[Platform]玩家{TShock.Players[args.Who].Name}游玩平台:{Platforms[args.Who]}");
-            
+
         }
 
 
@@ -59,7 +55,7 @@ namespace Platform
                 Platforms[instance.whoAmI] = (PlatformType)Platform;
                 //Console.WriteLine($"[PE]PlayerSlot={PlayerSlot},Plat={Platform}");
             }
-            
+
             return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
         }
         public enum PlatformType : byte // TypeDefIndex: 5205
@@ -92,5 +88,5 @@ namespace Platform
             return Platform.Platforms[plr.Index].ToString();
         }
 
-    } 
+    }
 }

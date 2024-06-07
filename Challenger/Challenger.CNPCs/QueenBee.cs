@@ -29,12 +29,12 @@ namespace Challenger
                         if ((npc.direction == 1 && targetData.Position.X > npc.position.X) || (npc.direction == -1 && targetData.Position.X < npc.position.X))
                         {
                             NPC? obj5 = npc;
-                            obj5.velocity = obj5.velocity + npc.velocity * 0.04f;
+                            obj5.velocity += npc.velocity * 0.04f;
                         }
                         else
                         {
                             NPC? obj6 = npc;
-                            obj6.velocity = obj6.velocity - npc.velocity * 0.04f;
+                            obj6.velocity -= npc.velocity * 0.04f;
                         }
                         npc.netUpdate = true;
                     }
@@ -50,12 +50,12 @@ namespace Challenger
                         if ((npc.direction == 1 && targetData.Position.X > npc.position.X) || (npc.direction == -1 && targetData.Position.X < npc.position.X))
                         {
                             NPC? obj7 = npc;
-                            obj7.velocity = obj7.velocity + npc.velocity * 0.07f;
+                            obj7.velocity += npc.velocity * 0.07f;
                         }
                         else
                         {
                             NPC? obj8 = npc;
-                            obj8.velocity = obj8.velocity - npc.velocity * 0.07f;
+                            obj8.velocity -= npc.velocity * 0.07f;
                         }
                         npc.netUpdate = true;
                     }
@@ -71,12 +71,12 @@ namespace Challenger
                         if ((npc.direction == 1 && targetData.Position.X > npc.position.X) || (npc.direction == -1 && targetData.Position.X < npc.position.X))
                         {
                             NPC? obj3 = npc;
-                            obj3.velocity = obj3.velocity + npc.velocity * 0.12f;
+                            obj3.velocity += npc.velocity * 0.12f;
                         }
                         else
                         {
                             NPC? obj4 = npc;
-                            obj4.velocity = obj4.velocity - npc.velocity * 0.12f;
+                            obj4.velocity -= npc.velocity * 0.12f;
                         }
                         npc.netUpdate = true;
                     }
@@ -96,12 +96,12 @@ namespace Challenger
                         if ((npc.direction == 1 && targetData.Position.X > npc.position.X) || (npc.direction == -1 && targetData.Position.X < npc.position.X))
                         {
                             NPC? obj = npc;
-                            obj.velocity = obj.velocity + npc.velocity * 0.12f;
+                            obj.velocity += npc.velocity * 0.12f;
                         }
                         else
                         {
                             NPC? obj2 = npc;
-                            obj2.velocity = obj2.velocity - npc.velocity * 0.12f;
+                            obj2.velocity -= npc.velocity * 0.12f;
                         }
                         npc.netUpdate = true;
                     }

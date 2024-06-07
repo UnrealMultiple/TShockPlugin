@@ -102,7 +102,7 @@ namespace MainPlugin
                 {
                     Broadcast($"还有 {this.GamingTime} 秒进入评分环节...", Color.MediumAquamarine);
                 }
-                this.GamingTime = this.GamingTime - 1;
+                this.GamingTime--;
             }
         }
 
@@ -133,7 +133,7 @@ namespace MainPlugin
             else
             {
                 Broadcast($"游戏还有 {this.WaitingTime} 秒开始....", Color.DarkTurquoise);
-                this.WaitingTime = this.WaitingTime - 1;
+                this.WaitingTime--;
             }
         }
 
@@ -182,7 +182,7 @@ namespace MainPlugin
                     Broadcast($"还有 {this.SeletingTime} 秒结束游戏", Color.MediumAquamarine);
                 }
             }
-            this.SeletingTime = this.SeletingTime - 1;
+            this.SeletingTime--;
         }
 
         public void Dispose()

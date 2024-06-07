@@ -26,7 +26,7 @@ public class Helper
         var index = 0;
         foreach (var item in info)
         {
-            for(int i = 0; i< item.Text.Length; i++)
+            for (int i = 0; i < item.Text.Length; i++)
             {
                 fullIndex++;
                 if (chat.TryGetValue(fullIndex - 1, out var group) && group != null)
@@ -45,7 +45,7 @@ public class Helper
                 {
                     result += Economics.Setting.GradientColor[index].SFormat(item.Text[i]);
                 }
-                
+
                 index++;
             }
         }

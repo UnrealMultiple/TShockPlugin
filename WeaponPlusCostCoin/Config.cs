@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Configuration;
 using System.Text;
 using TShockAPI;
 
@@ -44,7 +43,7 @@ namespace WeaponPlus
 
         [JsonProperty("魔法武器伤害上限倍数", Order = -1)]
         public float MaximumDamageMultipleOfMagicWeapons = 2.3f;
-        [JsonProperty("魔法武器升级攻速上限", Order = -1)] 
+        [JsonProperty("魔法武器升级攻速上限", Order = -1)]
         public int MaximumAttackSpeedOfMagicWeaponUpgrade = 6;
 
         [JsonProperty("召唤武器伤害上限倍数", Order = 1)]

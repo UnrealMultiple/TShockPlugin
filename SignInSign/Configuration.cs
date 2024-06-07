@@ -13,7 +13,7 @@ namespace SignInSign
         [JsonProperty("记录角色密码", Order = -3)]
         public bool PassInfo = false;
 
-        [JsonProperty("对登录玩家显示告示牌", Order =-2)]
+        [JsonProperty("对登录玩家显示告示牌", Order = -2)]
         public bool SignEnable1 = true;
 
         [JsonProperty("是否允许点击告示牌", Order = -2)]
@@ -30,11 +30,11 @@ namespace SignInSign
         [JsonProperty("点击告示牌执行什么指令")]
         public string[] CommandsOnSignRead { get; set; } = new string[0];
         [JsonProperty("点击告示牌给什么BUFF")]
-        public int[] BuffID { get; set; } = new int[] {};
+        public int[] BuffID { get; set; } = new int[] { };
         [JsonProperty("点击告示牌BUFF时长/分钟")]
         public int BuffTime { get; set; } = 10;
         [JsonProperty("点击告示牌给什么物品")]
-        public int[] ItemID { get; set; } = new int[] {};
+        public int[] ItemID { get; set; } = new int[] { };
         [JsonProperty("点击告示牌给物品数量")]
         public int ItemStack { get; set; } = 1;
 

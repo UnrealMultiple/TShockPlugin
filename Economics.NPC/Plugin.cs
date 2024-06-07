@@ -36,7 +36,7 @@ public class Plugin : TerrariaPlugin
 
     private void LoadConfig()
     {
-        if(!File.Exists(PATH))
+        if (!File.Exists(PATH))
         {
             Config.NPCS.Add(new());
         }

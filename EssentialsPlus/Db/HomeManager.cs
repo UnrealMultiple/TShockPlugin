@@ -8,9 +8,9 @@ namespace EssentialsPlus.Db
 {
     public class HomeManager
     {
-        private IDbConnection db;
-        private List<Home> homes = new List<Home>();
-        private object syncLock = new object();
+        private readonly IDbConnection db;
+        private readonly List<Home> homes = new List<Home>();
+        private readonly object syncLock = new object();
 
         public HomeManager(IDbConnection db)
         {

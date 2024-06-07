@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -30,7 +28,7 @@ namespace Plugin
             GeneralHooks.ReloadEvent += ReloadConfig;
             ServerApi.Hooks.ServerJoin.Register(this, OnServerJoin);
             GetDataHandlers.PlayerSpawn += Rebirth;
-            Commands.ChatCommands.Add(new Command("EndureBoost", SetPlayerBuffcmd, "ebbuff","ldbuff","loadbuff"));
+            Commands.ChatCommands.Add(new Command("EndureBoost", SetPlayerBuffcmd, "ebbuff", "ldbuff", "loadbuff"));
         }
 
         private void SetPlayerBuffcmd(CommandArgs args)
@@ -106,7 +104,7 @@ namespace Plugin
                         int buffType = GetBuffIDByItemID(itemId); // 获取物品的 buff 类型
                         if (buffType != 0)
                         {
-                            player.SetBuff(buffType, Config.duration*60);
+                            player.SetBuff(buffType, Config.duration * 60);
                         }
                     }
                 }
@@ -133,7 +131,7 @@ namespace Plugin
 
                     if (itemCount >= station.RequiredStack)
                     {
-                        player.SetBuff(station.BuffType, Config.duration*60);
+                        player.SetBuff(station.BuffType, Config.duration * 60);
                     }
                 }
             }

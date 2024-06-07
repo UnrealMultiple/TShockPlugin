@@ -4,7 +4,7 @@ namespace MiniGamesAPI
 {
     public class MiniNpc
     {
-        private NPC realNpc;
+        private readonly NPC realNpc;
 
         public NPC RealNpc => realNpc;
 

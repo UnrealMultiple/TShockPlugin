@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 

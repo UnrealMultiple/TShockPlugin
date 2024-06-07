@@ -1,20 +1,9 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using On.OTAPI;
+using System.Text;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using Terraria.DataStructures;
-using IL.Terraria.ID;
-using IL.Terraria.Chat.Commands;
-using Microsoft.Xna.Framework;
-using System.Timers;
-using On.OTAPI;
-using static MonoMod.InlineRT.MonoModRule;
-using MonoMod.RuntimeDetour;
-using Terraria.Localization;
-using System.Diagnostics;
-using Terraria.Chat;
-using static System.Net.Mime.MediaTypeNames;
-using System.Text;
-using MySqlX.XDevAPI;
 using TShockAPI.Hooks;
 
 namespace UserCheck
@@ -35,7 +24,7 @@ namespace UserCheck
         {
             Order = int.MaxValue;
         }
-        Command Command = new Command(Help, "help");
+        readonly Command Command = new Command(Help, "help");
         public override void Initialize()
         {
             GeneralHooks.ReloadEvent += GeneralHooks_ReloadEvent;
@@ -122,7 +111,7 @@ namespace UserCheck
                         return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
                     }
                     TSPlayer player = TShock.Players[instance.whoAmI];
-                    string text = "/help "+ msg.Text;
+                    string text = "/help " + msg.Text;
                     string Specifier = TShock.Config.Settings.CommandSpecifier;
                     string cmdText = text.Remove(0, 1);
                     string cmdPrefix = text[0].ToString();
@@ -150,10 +139,10 @@ namespace UserCheck
                     if (cmdName == "help")
                     {
                         Help(new CommandArgs(null, false, player, args));
-                        TShock.Utils.SendLogs($"{player.Name}执行了/{cmdText}。" ,Color.PaleVioletRed, player);
+                        TShock.Utils.SendLogs($"{player.Name}执行了/{cmdText}。", Color.PaleVioletRed, player);
                         return false;
                     }
-                     
+
                 }
             }
 
@@ -179,7 +168,7 @@ namespace UserCheck
 
                 IEnumerable<string> cmdNames = from cmd in TShockAPI.Commands.ChatCommands
                                                where cmd.CanRun(args.Player) && (cmd.Name != "setup" || TShock.SetupToken != 0)
-                                               select Specifier + cmd.Name+GetShort(cmd.Name);
+                                               select Specifier + cmd.Name + GetShort(cmd.Name);
 
                 PaginationTools.SendPage(args.Player, pageNumber, PaginationTools.BuildLinesFromTerms(cmdNames),
                     new PaginationTools.Settings
@@ -212,7 +201,7 @@ namespace UserCheck
                 if (command.HelpDesc == null)
                 {
                     args.Player.SendWarningMessage(command.HelpText);
-                    
+
                 }
                 else
                 {
@@ -223,7 +212,7 @@ namespace UserCheck
                 }
                 if (command.Names.Count > 1)
                     args.Player.SendInfoMessage($"别名: [c/00ffff:{string.Join(',', command.Names)}]");
-                args.Player.SendInfoMessage($"权限: {(command.Permissions.Count == 0||command.Permissions.Count(i=>i=="")==command.Permissions.Count ? "[c/c2ff39:无权限限制]" : "[c/bf0705:"+string.Join(',', command.Permissions)+"]")}");
+                args.Player.SendInfoMessage($"权限: {(command.Permissions.Count == 0 || command.Permissions.Count(i => i == "") == command.Permissions.Count ? "[c/c2ff39:无权限限制]" : "[c/bf0705:" + string.Join(',', command.Permissions) + "]")}");
                 args.Player.SendInfoMessage($"来源插件: [c/8500ff:{command.CommandDelegate.Method.DeclaringType.Assembly.FullName.Split(',').First()}]");
                 if (!command.AllowServer)
                     args.Player.SendInfoMessage("*此命令只能游戏内执行");
@@ -237,7 +226,7 @@ namespace UserCheck
             if (Config.config.DisPlayShort && Config.config.ShortCommands.ContainsKey(str))
             {
                 return $"({Config.config.ShortCommands[str].Color(TShockAPI.Utils.BoldHighlight)})";
-   
+
             }
             else
             {
@@ -250,7 +239,7 @@ namespace UserCheck
             if (disposing)
             {
                 On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= MessageBuffer_InvokeGetData;
-                GeneralHooks.ReloadEvent-= GeneralHooks_ReloadEvent;
+                GeneralHooks.ReloadEvent -= GeneralHooks_ReloadEvent;
             }
             base.Dispose(disposing);
         }

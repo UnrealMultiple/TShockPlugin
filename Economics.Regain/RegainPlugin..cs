@@ -72,7 +72,7 @@ public class RegainPlugin : TerrariaPlugin
             args.Player.SendErrorMessage("你必须登录游戏使用此命令!");
             return;
         }
-        
+
         switch (args.Parameters.Count)
         {
             case 0:

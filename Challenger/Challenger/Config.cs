@@ -24,7 +24,7 @@ namespace Challenger
         [JsonProperty("怪物吸血比率对于Boss", Order = -4)]
         public float BloodAbsorptionRatioForBoss = 0.5f;
         [JsonProperty("怪物回血上限：小怪>1.5倍则会消失", Order = -4)]
-        public float BloodAbsorptionRatio_Max { get;  set; } = 1.5f;
+        public float BloodAbsorptionRatio_Max { get; set; } = 1.5f;
 
         [JsonProperty("所有怪物血量倍数(仅开启魔改BOSS时生效)", Order = -3)]
         public float lifeXnum = 1.00f;
@@ -283,7 +283,7 @@ namespace Challenger
         [JsonProperty("箭袋补充物品ID", Order = 8)]
         public int[] RefillArrow { get; set; } = new int[] { 40, 41, 47, 51, 516, 545, 988, 1235, 1334, 1341, 3003, 3568, 5348 };
         [JsonProperty("箭袋给什么永久BUFF", Order = 8)]
-        public int[] RefillBuff { get; set; } = new int[] { 16,  93, 112 };
+        public int[] RefillBuff { get; set; } = new int[] { 16, 93, 112 };
 
 
         #region 读取与创建配置文件方法

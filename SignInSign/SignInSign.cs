@@ -9,7 +9,7 @@ namespace SignInSign;
 public class SignInSign : TerrariaPlugin
 {
     #region 插件信息
-    
+
     public override string Name => "告示牌登录 SignInSign";
     public override string Description => "告示牌登录交互插件 支持进服弹窗！";
     public override string Author => "Soofa 羽学 少司命";
@@ -19,7 +19,7 @@ public class SignInSign : TerrariaPlugin
 
     #region 实例变量
     public static Configuration Config = Configuration.Reload();
-    private static int SignID = -1; 
+    private static int SignID = -1;
     #endregion
 
     #region 注册与卸载钩子
@@ -142,7 +142,7 @@ public class SignInSign : TerrariaPlugin
             Directory.CreateDirectory(MiMaPath); // 创建日志文件夹
             string FileName = $"告示牌登录 {DateTime.Now.ToString("yyyy-MM-dd")}.txt"; //给日志名字加上日期
             File.AppendAllLines(Path.Combine(MiMaPath, FileName), new string[] { DateTime.Now.ToString("u") + $" 玩家【{args.Player.Name}】的密码为：{password}" }); //写入日志log
-        } 
+        }
         #endregion
 
         //检查区域保护,暂时还没有任何作用
@@ -191,7 +191,7 @@ public class SignInSign : TerrariaPlugin
             //当点击告示牌是否传送为true,将玩家传送到指定坐标（仅对已登录玩家有效）
             if (Config.Teleport == true || args.Player.IsLoggedIn)
             {
-                if (Config.Teleport_X  <= 0 || Config.Teleport_Y <= 0)
+                if (Config.Teleport_X <= 0 || Config.Teleport_Y <= 0)
                 {
                     args.Player!.SendMessage($"[告示牌登录]请使用 [c/F25E61:/gs s] 设置传送坐标，当前坐标为：{Config.Teleport_X},{Config.Teleport_Y}", color: Microsoft.Xna.Framework.Color.Yellow);
                 }

@@ -20,7 +20,7 @@ namespace Challenger
             if (val != null && proj.owner != val.whoAmI)
             {
                 Projectile? obj = proj;
-                obj.Center = obj.Center + (val.Center - proj.Center).SafeNormalize(Vector2.Zero) * 10f;
+                obj.Center += (val.Center - proj.Center).SafeNormalize(Vector2.Zero) * 10f;
             }
             if (proj.active && proj.timeLeft <= ai[1] - 60f)
             {

@@ -11,7 +11,7 @@ public partial class Plugin
     public static readonly List<TSPlayer> Deads = new();
     public void InitDeathRank()
     {
-        
+
     }
 
     private void KillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
@@ -26,7 +26,7 @@ public partial class Plugin
     {
         var data = PlayerDeathRank
             .OrderByDescending(x => x.Value)
-            .Select(x => new { Name = x.Key , Count = x.Value})
+            .Select(x => new { Name = x.Key, Count = x.Value })
             .ToList();
         return new RestObject("200")
         {

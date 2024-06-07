@@ -10,7 +10,7 @@ namespace Challenger
     {
         private float rotate = 0f;
 
-        private List<int> surrandIndex = new List<int>();
+        private readonly List<int> surrandIndex = new List<int>();
 
         private const int MaxSurrandNum = 10;
 

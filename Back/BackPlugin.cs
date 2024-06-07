@@ -9,7 +9,7 @@ namespace BP
     [ApiVersion(2, 1)]
     public class BackPlugin : TerrariaPlugin
     {
-        private Dictionary<int, DateTime> cooldowns = new Dictionary<int, DateTime>();
+        private readonly Dictionary<int, DateTime> cooldowns = new Dictionary<int, DateTime>();
 
         public override string Author => "Megghy,熙恩改";
         public override string Description => "允许玩家传送回死亡地点";

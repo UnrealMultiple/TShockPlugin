@@ -42,7 +42,7 @@ public class UserTaskData
     }
 
     public static Dictionary<int, Item> GetTaskFishingItem(TSPlayer player, List<EconomicsAPI.Model.Item> items)
-    { 
+    {
         var res = new Dictionary<int, Item>();
         foreach (var item in items)
         {

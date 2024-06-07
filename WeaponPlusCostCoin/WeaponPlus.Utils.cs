@@ -23,10 +23,7 @@ namespace WeaponPlus
             {
                 return 0;
             }
-            if (Main.rand == null)
-            {
-                Main.rand = new UnifiedRandom();
-            }
+            Main.rand ??= new UnifiedRandom();
             if (Main.tenthAnniversaryWorld)
             {
                 if (Type == 58)
@@ -84,7 +81,7 @@ namespace WeaponPlus
             val.velocity.Y = Main.rand.Next(-40, -15) * 0.1f;
             if (Type == 859 || Type == 4743)
             {
-                val.velocity = val.velocity * 0f;
+                val.velocity *= 0f;
             }
             if (Type == 520 || Type == 521 || (val.type >= 0 && ItemID.Sets.NebulaPickup[val.type]))
             {
@@ -103,7 +100,7 @@ namespace WeaponPlus
                 val.playerIndexTheItemIsReservedFor = Main.myPlayer;
             }
             return num;
-        } 
+        }
         #endregion
 
         #region 更换背包中的武器
@@ -182,14 +179,14 @@ namespace WeaponPlus
             }
             whoAMI.SendInfoMessage(LangTipsGet("钱币不够！"));
             return false;
-        } 
+        }
         #endregion
 
         #region 提示语的随机颜色方法
         public Color getRandColor()
         {
             return new Color(Main.rand.Next(60, 255), Main.rand.Next(60, 255), Main.rand.Next(60, 255));
-        } 
+        }
         #endregion
 
         #region 扣钱方法
@@ -417,7 +414,7 @@ namespace WeaponPlus
                 }
             }
             return true;
-        } 
+        }
         #endregion
 
         #region 共串
@@ -444,7 +441,7 @@ namespace WeaponPlus
             itemById4.stack = (int)num;
             items.Add(itemById4);
             return $"{num4}[i:74],  {num3}[i:73],  {num2}[i:72],  {num}[i:71]";
-        } 
+        }
         #endregion
     }
 }

@@ -26,7 +26,7 @@ public static class Vector2Ext
             return old * len;
         return vec * len;
     }
-    
+
     public static Vector2[] GetCircleEdgePoints(this Vector2 pos, float radius, float distanceBetweenPoints)
     {
         int numPoints = (int)Math.Ceiling(2 * Math.PI * radius / distanceBetweenPoints);
@@ -40,8 +40,8 @@ public static class Vector2Ext
         }
         return points;
     }
-    
-    public static Vector2[] GetArcPoints(this Vector2 vel ,float startAngle, float endAngle, float radius, float interval)
+
+    public static Vector2[] GetArcPoints(this Vector2 vel, float startAngle, float endAngle, float radius, float interval)
     {
         var points = new List<Vector2>();
         int steps = (int)Math.Round((endAngle - startAngle + 360) % 360 / interval);
@@ -54,12 +54,12 @@ public static class Vector2Ext
         }
         return points.ToArray();
     }
-    
+
     public static float Magnitude(this Vector2 vel)
     {
         return Convert.ToSingle(Math.Sqrt(vel.X * vel.X + vel.Y * vel.Y));
     }
-    
+
     public static Vector2 Normalized(this Vector2 vel)
     {
         float magnitude = vel.Magnitude();

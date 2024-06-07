@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.DataStructures;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 
 namespace WeaponPlus
 {
@@ -17,8 +16,10 @@ namespace WeaponPlus
             {
                 return;
             }
-            wPlayers[args.Who] = new WPlayer(TShock.Players[args.Who]);
-            wPlayers[args.Who].hasItems = DB.ReadDBGetWItemsFromOwner(TShock.Players[args.Who].Name).ToList();
+            wPlayers[args.Who] = new WPlayer(TShock.Players[args.Who])
+            {
+                hasItems = DB.ReadDBGetWItemsFromOwner(TShock.Players[args.Who].Name).ToList()
+            };
             if (!config.WhetherToTurnOnAutomaticLoadWeaponsWhenEnteringTheGame)
             {
                 return;
@@ -92,10 +93,7 @@ namespace WeaponPlus
             WPlayer wPlayer = wPlayers[args.Player.Index];
             Item firstItem = args.Player.TPlayer.inventory[0];
             WItem select = wPlayer.hasItems.Find((WItem x) => x.id == firstItem.netID)!;
-            if (select == null)
-            {
-                select = new WItem(firstItem.netID, args.Player.Name);
-            }
+            select ??= new WItem(firstItem.netID, args.Player.Name);
             if ((firstItem == null || firstItem.IsAir || TShock.Utils.GetItemById(firstItem.type).damage <= 0 || firstItem.accessory || firstItem.netID == 0) && (args.Parameters.Count != 1 || !args.Parameters[0].Equals("load", StringComparison.OrdinalIgnoreCase)))
             {
                 args.Player.SendInfoMessage(LangTipsGet("请在第一个物品栏内放入武器而不是其他什么东西或空"));
@@ -385,7 +383,7 @@ namespace WeaponPlus
             {
                 args.Player.SendInfoMessage(LangTipsGet("输入 /clearallplayersplus   将数据库中强化物品全部清理"));
             }
-        } 
+        }
         #endregion
     }
 }

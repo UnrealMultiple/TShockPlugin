@@ -1,5 +1,4 @@
-﻿using System.Security.Policy;
-using Terraria;
+﻿using Terraria;
 using Terraria.GameContent.NetModules;
 using Terraria.ID;
 using Terraria.Net;
@@ -28,15 +27,16 @@ namespace journeyUnlock
             Commands.ChatCommands.Add(new Command(
                 permissions: new List<string> { "journeyunlock.unlock" },
                 cmd: this.unlockCommand,
-                "journeyunlock", "junlock", "i解锁"){ AllowServer = false });
+                "journeyunlock", "junlock", "i解锁")
+            { AllowServer = false });
 
             Commands.ChatCommands.Add(new Command(
                 permissions: new List<string> { "journeyunlock.unlockfor" },
                 cmd: this.unlockForCommand,
-                "unlockfor", "unlockf" , "g解锁玩家"));
+                "unlockfor", "unlockf", "g解锁玩家"));
         }
 
-        private void unlock(Player tplayer, TSPlayer sender , string parameter, bool isSelf)
+        private void unlock(Player tplayer, TSPlayer sender, string parameter, bool isSelf)
         {
 
             //Case: unlock every item

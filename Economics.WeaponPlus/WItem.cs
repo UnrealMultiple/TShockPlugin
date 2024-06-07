@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
 using System.Text;
-using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
 
@@ -397,7 +396,7 @@ namespace Economics.WeaponPlus
                 }
             }
             return true;
-        } 
+        }
         #endregion
     }
 
