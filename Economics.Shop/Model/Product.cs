@@ -22,4 +22,7 @@ public class Product
 
     [JsonProperty("商品内容")]
     public List<Item> Items { get; set; } = new();
+
+    [JsonProperty("物品条件")]
+    public List<ItemTerm> ItemTerm { get; set; } = new();
 }

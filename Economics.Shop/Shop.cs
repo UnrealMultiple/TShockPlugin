@@ -1,7 +1,9 @@
 ﻿using Economics.RPG.Extensions;
+using Economics.Shop.Model;
 using EconomicsAPI.Attributes;
 using EconomicsAPI.Configured;
 using EconomicsAPI.Extensions;
+using Org.BouncyCastle.Bcpg;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -32,6 +34,47 @@ public class Shop : TerrariaPlugin
     {
         Config = ConfigHelper.LoadConfig<Config>(PATH);
         GeneralHooks.ReloadEvent += (_) => Config = ConfigHelper.LoadConfig(PATH, Config);
+    }
+
+    public static bool HasItem(TSPlayer player, List<ItemTerm> itemTerms)
+    {
+        foreach (ItemTerm term in itemTerms)
+        {
+            var count = 0;
+            CheckBanksForItem(player, term.netID, ref count);
+            if (count < term.Stack)
+                return false;
+
+        }
+        foreach (ItemTerm term in itemTerms)
+        {
+            var stack = term.Stack;
+            for (int j = 0; j < player.TPlayer.inventory.Length; j++)
+            {
+                var item = player.TPlayer.inventory[j];
+                if (item.stack >= stack)
+                {
+                    item.stack -= stack;
+                    TSPlayer.All.SendData(PacketTypes.PlayerSlot, "", player.Index, j);
+                }
+                else
+                { 
+                    stack -= item.stack;
+                }
+            }
+        }
+        return true;
+    }
+
+    private static void CheckBanksForItem(TSPlayer player, int itemId, ref int itemCount)
+    {
+        for (int j = 0; j < player.TPlayer.inventory.Length; j++)
+        {
+            if (player.TPlayer.inventory[j].type == itemId)// 检查猪猪储钱罐
+            {
+                itemCount += player.TPlayer.bank.item[j].stack;
+            }
+        }
     }
 
     [CommandMap("shop", "economics.shop")]
@@ -66,11 +109,17 @@ public class Shop : TerrariaPlugin
             }
             Show(lines);
         }
-        else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "buy")
+        else if (args.Parameters.Count >= 2 && args.Parameters[0].ToLower() == "buy")
         {
             if (!int.TryParse(args.Parameters[1], out var index))
             {
                 args.Player.SendErrorMessage("请输入正确的序号!");
+                return;
+            }
+            var count = 1;
+            if (!int.TryParse(args.Parameters[2], out count))
+            {
+                args.Player.SendErrorMessage("你输入的购买数量不正确!");
                 return;
             }
             var product = Config.GetProduct(index);
@@ -89,12 +138,21 @@ public class Shop : TerrariaPlugin
                 args.Player.SendErrorMessage($"购买此商品需达到以下等级之一: {string.Join(",", product.LevelLimit)}");
                 return;
             }
+            if (!HasItem(args.Player, product.ItemTerm))
+            {
+                args.Player.SendErrorMessage($"请满足物品条件: {string.Join(",", product.ItemTerm.Select(x => x.ToString()))}");
+                return;
+            }
             if (!EconomicsAPI.Economics.CurrencyManager.DelUserCurrency(args.Player.Name, product.Cost))
             {
                 args.Player.SendErrorMessage($"你的{EconomicsAPI.Economics.Setting.CurrencyName}不足!");
                 return;
             }
-            args.Player.GiveItems(product.Items);
+            for (int i = 0; i < count; i++)
+            { 
+                args.Player.GiveItems(product.Items);
+            }
+            
             args.Player.ExecCommand(product.Commamds);
             args.Player.SendSuccessMessage("购买成功!");
         }
