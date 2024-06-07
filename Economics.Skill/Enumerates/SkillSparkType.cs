@@ -6,38 +6,32 @@ namespace Economics.Skill.Enumerates;
 public enum SkillSparkType
 {
     [Description("")]
-    Null =
-        0b0000000,
+    Null,
 
     [Description("主动")]
-    Take =
-        0b00000001,
+    Take,
 
     [Description("血量")]
-    HP =
-        0b00000100,
+    HP,
 
     [Description("蓝量")]
-    MP =
-        0b00001000,
+    MP,
 
     [Description("CD")]
-    CD =
-        0b00010000,
+    CD,
 
     [Description("死亡")]
-    Death =
-        0b00100000,
+    Death,
 
     [Description("击杀")]
-    Kill =
-        0b01000000,
+    Kill,
 
     [Description("击打")]
-    Strike =
-        0b10000000,
+    Strike,
 
     [Description("冲刺")]
-    Dash =
-        0b100000000,
+    Dash,
+
+    [Description("装备")]
+    Armor,
 }

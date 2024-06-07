@@ -53,14 +53,27 @@ public class Utils
                 ply.SetBuff(buff.BuffId, buff.Time);
     }
 
-    public static bool HasItem(TSPlayer player, List<EconomicsAPI.Model.Item> terms)
+    public static bool HasItem(TSPlayer player, List<TermItem> terms)
     {
-        var inventory = player.TPlayer.inventory.Concat(player.TPlayer.armor);
         foreach (var item in terms)
         {
-            var inv = inventory.Where(x => x.netID == item.netID);
-            if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
-                return false;
+            if (item.Inventory)
+            {
+                var inv = player.TPlayer.inventory.Where(x => x.netID == item.netID);
+                if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
+                    return false;
+            }
+            if (item.Armory)
+            {
+                var inv = player.TPlayer.armor.Where(x => x.netID == item.netID);
+                if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
+                    return false;
+            }
+            if (item.HeldItem)
+            {
+                if (player.SelectedItem.netID != item.netID)
+                    return false;
+            }
         }
         return true;
     }
