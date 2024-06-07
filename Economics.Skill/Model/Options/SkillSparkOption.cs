@@ -19,4 +19,7 @@ public class SkillSparkOption
 
     [JsonProperty("蓝量")]
     public int MP { get; set; }
+
+    [JsonProperty("物品条件")]
+    public List<TermItem> TermItem { get; set; } = new();
 }
