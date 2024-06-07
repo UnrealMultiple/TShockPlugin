@@ -3,6 +3,7 @@ using Economics.Skill.Model;
 using Economics.Skill.Model.Options;
 using EconomicsAPI.Extensions;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using TShockAPI;
 
@@ -75,7 +76,29 @@ public class Utils
                     return false;
             }
         }
+        ConsumeItem(player, terms);
         return true;
+    }
+
+    private static void ConsumeItem(TSPlayer player, List<TermItem> terms)
+    {
+        foreach (var term in terms)
+        {
+            var stack = term.Stack;
+            for (int j = 0; j < player.TPlayer.inventory.Length; j++)
+            {
+                var item = player.TPlayer.inventory[j];
+                if (item.stack >= stack)
+                {
+                    item.stack -= stack;
+                    TSPlayer.All.SendData(PacketTypes.PlayerSlot, "", player.Index, j);
+                }
+                else
+                {
+                    stack -= item.stack;
+                }
+            }
+        }
     }
 
     /// <summary>
