@@ -1,40 +1,40 @@
-using Newtonsoft.Json;
+ï»¿using Newtonsoft.Json;
 using TShockAPI;
 
 public class Configuration
 {
     public static readonly string FilePath = Path.Combine(TShock.SavePath, "EndureBoost.json");
-    [JsonProperty("ÖíÖí´¢Ç®¹Ş")]
+    [JsonProperty("çŒªçŒªå‚¨é’±ç½")]
     public bool bank = true;
-    [JsonProperty("±£ÏÕÏä")]
+    [JsonProperty("ä¿é™©ç®±")]
     public bool bank2 = true;
-    [JsonProperty("»¤ÎÀÈÛÂ¯")]
+    [JsonProperty("æŠ¤å«ç†”ç‚‰")]
     public bool bank3 = false;
-    [JsonProperty("Ğé¿Õ±¦²Ø´ü")]
+    [JsonProperty("è™šç©ºå®è—è¢‹")]
     public bool bank4 = false;
-    [JsonProperty("³ÖĞøÊ±¼ä(s)")]
+    [JsonProperty("æŒç»­æ—¶é—´(s)")]
     public int duration = 3600;
 
     public class Potion
     {
-        [JsonProperty("Ò©Ë®id")]
+        [JsonProperty("è¯æ°´id")]
         public int[] ItemID { get; set; }
-        [JsonProperty("Ò©Ë®ÊıÁ¿")]
+        [JsonProperty("è¯æ°´æ•°é‡")]
         public int RequiredStack { get; set; }
     }
 
     public class Station
     {
-        [JsonProperty("ÎïÆ·id")]
+        [JsonProperty("ç‰©å“id")]
         public int[] Type { get; set; }
-        [JsonProperty("ÎïÆ·ÊıÁ¿")]
+        [JsonProperty("ç‰©å“æ•°é‡")]
         public int RequiredStack { get; set; }
-        [JsonProperty("¸øbuffµÄid")]
+        [JsonProperty("ç»™buffçš„id")]
         public int BuffType { get; set; }
     }
-    [JsonProperty("Ò©Ë®")]
+    [JsonProperty("è¯æ°´")]
     public List<Potion> Potions { get; set; } = new List<Potion>();
-    [JsonProperty("ÆäËûÎïÆ·")]
+    [JsonProperty("å…¶ä»–ç‰©å“")]
     public List<Station> Stations { get; set; } = new List<Station>();
 
     public void Write(string path)
