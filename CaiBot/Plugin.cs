@@ -31,7 +31,7 @@ namespace CaiBotPlugin
         public override string Name => "CaiBotPlugin";
 
         //插件的版本
-        public static readonly Version VersionNum = new Version(2024, 6, 7, 0); //日期+版本号(0,1,2...)
+        public static readonly Version VersionNum = new Version(2024, 6, 7, 1); //日期+版本号(0,1,2...)
         public override Version Version
         {
             get { return VersionNum; }
