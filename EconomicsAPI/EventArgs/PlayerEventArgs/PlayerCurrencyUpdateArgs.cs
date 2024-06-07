@@ -1,9 +1,8 @@
 ﻿using EconomicsAPI.Enumerates;
-using TShockAPI;
 
 namespace EconomicsAPI.EventArgs.PlayerEventArgs;
 
-public class PlayerCurrencyUpdateArgs: BasePlayerEventArgs
+public class PlayerCurrencyUpdateArgs : BasePlayerEventArgs
 {
     public long Current { get; init; }
 

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Cryptography;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.IO;
 using TShockAPI;
-using Terraria;
-using Terraria.ID;
-using Terraria.GameContent.Creative;
 using TShockAPI.DB;
 
 namespace CaiLib
@@ -32,7 +27,7 @@ namespace CaiLib
         /// <param name="player">玩家对象</param>
         /// <param name="path">路径</param>
         /// <param name="difficulty">玩家角色难度(软核0，中核1，硬核2，旅行3)</param>
-        public static void SavePlayerFile(Player player, string path,int difficulty = 0)
+        public static void SavePlayerFile(Player player, string path, int difficulty = 0)
         {
             // Player.cs Serialize();
             //RijndaelManaged rijndaelManaged = new RijndaelManaged();
@@ -278,7 +273,7 @@ namespace CaiLib
                 player.statManaMax = data.maxMana;
                 player.extraAccessory = data.extraSlot == 1;
 
-                player.difficulty = (byte)0;
+                player.difficulty = 0;
 
                 // 火把神
                 player.unlockedBiomeTorches = data.unlockedBiomeTorches == 1;
@@ -340,6 +335,6 @@ namespace CaiLib
             }
             return player;
         }
-        
+
     }
 }

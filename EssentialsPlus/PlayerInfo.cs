@@ -4,8 +4,8 @@ namespace EssentialsPlus
 {
     public class PlayerInfo
     {
-        private List<Vector2> backHistory = new List<Vector2>();
-        private CancellationTokenSource mute = new CancellationTokenSource();
+        private readonly List<Vector2> backHistory = new List<Vector2>();
+        private readonly CancellationTokenSource mute = new CancellationTokenSource();
         private CancellationTokenSource timeCmd = new CancellationTokenSource();
 
         public const string KEY = "EssentialsPlus_Data";

@@ -14,14 +14,12 @@ using CaiBot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NuGet.Protocol;
-using Org.BouncyCastle.Asn1.BC;
 using Rests;
 using SixLabors.ImageSharp;
+using System.Net.WebSockets;
+using System.Text;
 using Terraria;
-using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.DB;
-using Utils = TShockAPI.Utils;
 
 namespace CaiBotPlugin
 {
@@ -585,9 +583,9 @@ namespace CaiBotPlugin
                         {
                             itemList.Add(new List<int>() { i.NetId, i.Stack });
                         }
+                        buffs = CaiBot.Utils.GetActiveBuffs(TShock.DB, acc.ID, acc.Name);
 
                         #endregion
-                        buffs = CaiBot.Utils.GetActiveBuffs(TShock.DB, acc.ID,acc.Name);
                         re = new RestObject
                             {
                                 { "type","lookbag" },

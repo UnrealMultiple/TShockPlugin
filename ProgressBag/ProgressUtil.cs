@@ -69,7 +69,7 @@ public static class ProgressUtil
         var gameProgress = Player.GetProgress();
         foreach (var name in names)
         {
-           if(!(gameProgress.TryGetValue(name, out var code) && code))
+            if (!(gameProgress.TryGetValue(name, out var code) && code))
                 return false;
         }
         return true;

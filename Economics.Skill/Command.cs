@@ -73,8 +73,8 @@ public class Command
                         if (!Skill.PlayerSKillManager.HasSkill(args.Player.Name, args.Player.SelectedItem.netID, index)
                             && !Skill.PlayerSKillManager.HasSkill(args.Player.Name, index))
                         {
-                                args.Player.SendErrorMessage("你未绑定此技能，无需删除！");
-                                return;
+                            args.Player.SendErrorMessage("你未绑定此技能，无需删除！");
+                            return;
                         }
                         Skill.PlayerSKillManager.Remove(args.Player.Name, index);
                         args.Player.SendSuccessMessage("技能移除成功!");
@@ -104,7 +104,7 @@ public class Command
                                 args.Player.SendErrorMessage($"无法溯源的技能序号: {skill.ID}");
                             }
                         }
-                        
+
                         return;
                     }
 

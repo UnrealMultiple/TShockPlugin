@@ -16,13 +16,13 @@ public class Plugin : TerrariaPlugin
 
     public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
 
-    private string PATH = Path.Combine(TShock.SavePath, "permbuff.json");
+    private readonly string PATH = Path.Combine(TShock.SavePath, "permbuff.json");
 
     private Config config = new();
 
     private long TimerCount = 0;
 
-    private HashSet<TSPlayer> players = new();
+    private readonly HashSet<TSPlayer> players = new();
 
     public Plugin(Main game) : base(game)
     {

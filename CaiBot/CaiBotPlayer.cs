@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
 using System.Text.RegularExpressions;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.UI.Chat;
 using TShockAPI.DB;
@@ -21,7 +19,7 @@ namespace TShockAPI
             {
                 Name = "CaiBot"
             };
-            
+
         }
 
         public override void SendMessage(string msg, Color color)
@@ -34,7 +32,7 @@ namespace TShockAPI
             string result1 = "";
             foreach (TextSnippet item in ChatManager.ParseMessage(msg, new Color(red, green, blue)))
             {
-                result1+= item.Text;
+                result1 += item.Text;
             }
             Regex regex = new Regex(@"\[i(tem)?(?:\/s(?<Stack>\d{1,4}))?(?:\/p(?<Prefix>\d{1,3}))?:(?<NetID>-?\d{1,4})\]");
 

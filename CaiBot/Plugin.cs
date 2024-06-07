@@ -2,18 +2,13 @@
 //恋恋的TShock插件模板，有改动（为了配合章节名）
 //来自棱镜的插件教程
 
-using System;
-using System.Collections.Generic;
+using System.Net.WebSockets;
 using System.Reflection;
+using System.Text;
 using Terraria;
+using Terraria.Localization;
 using TerrariaApi.Server;
 using TShockAPI;
-using System.Net.WebSockets;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Text;
-using OTAPI;
-using Terraria.Localization;
 
 
 namespace CaiBotPlugin
@@ -30,7 +25,6 @@ namespace CaiBotPlugin
         //插件的名称
         public override string Name => "CaiBotPlugin";
 
-        //插件的版本
         public static readonly Version VersionNum = new Version(2024, 6, 7, 1); //日期+版本号(0,1,2...)
         public override Version Version
         {
@@ -42,7 +36,7 @@ namespace CaiBotPlugin
         {
         }
         public static int code = -1;
-        
+
         public static ClientWebSocket ws = new ClientWebSocket();
 
         private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
@@ -60,13 +54,13 @@ namespace CaiBotPlugin
             Config.Read();
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
             On.OTAPI.Hooks.MessageBuffer.InvokeGetData += MessageBuffer_InvokeGetData;
-            ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData,int.MaxValue);
+            ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
             ServerApi.Hooks.GamePostInitialize.Register(this, GenCode);
             Task task = Task.Run(async () =>
             {
                 while (true)
                 {
-                   
+
                     try
                     {
                         ws = new ClientWebSocket();
@@ -81,8 +75,8 @@ namespace CaiBotPlugin
 
                         // 连接成功，发送和接收消息的逻辑
                         // ...
-                        
-                        
+
+
                         // 关闭 WebSocket 连接
                         //await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "Client closed", CancellationToken.None);
                         while (true)
@@ -93,7 +87,7 @@ namespace CaiBotPlugin
                             if (Terraria.Program.LaunchParameters.ContainsKey("-caidebug"))
                                 TShock.Log.ConsoleInfo($"[CaiAPI]收到BOT数据包: {receivedData}");
                             MessageHandle.HandleMessageAsync(receivedData);
-                            
+
                         }
                     }
                     catch (Exception ex)
@@ -108,7 +102,7 @@ namespace CaiBotPlugin
                     // 等待一段时间后再次尝试连接
                     await Task.Delay(TimeSpan.FromSeconds(5));
                 }
-                
+
             });
         }
 
@@ -140,7 +134,7 @@ namespace CaiBotPlugin
                 string token = Guid.NewGuid().ToString();
                 if (data == code.ToString())
                 {
-                    
+
                     NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable(token));
                     Config.config.Token = token;
                     Config.config.Write();
@@ -169,7 +163,7 @@ namespace CaiBotPlugin
             }
             base.Dispose(disposing);
         }
-        
+
 
 
     }

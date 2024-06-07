@@ -33,12 +33,12 @@ namespace OnlineGiftPackage
         public long FrameCount;
 
         // 使用线程安全的字典存储玩家在线时长
-        private ConcurrentDictionary<string, int> players = new ConcurrentDictionary<string, int>();
+        private readonly ConcurrentDictionary<string, int> players = new ConcurrentDictionary<string, int>();
 
         // 配置文件加载实例
         private static Configuration config = new(); // 将config声明为静态字段
 
-        private object syncRoot = new object(); // 用于锁定发放礼包的临界区
+        private readonly object syncRoot = new object(); // 用于锁定发放礼包的临界区
 
         // 插件初始化方法
         public override void Initialize()
@@ -200,7 +200,7 @@ namespace OnlineGiftPackage
         }
 
         // 随机选取礼包的方法
-        Random rand = new Random();
+        readonly Random rand = new Random();
         public Gift? RandGift()
         {
             int index = rand.Next(config.TotalProbability);

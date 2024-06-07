@@ -24,12 +24,12 @@ namespace PvPer
         public static List<Pair> ActiveDuels = new List<Pair>();
 
         #region PVP 检查
-        List<int> illegalMeleePrefixes = new List<int>();
-        List<int> illegalRangedPrefixes = new List<int>();
-        List<int> illegalMagicPrefixes = new List<int>();
+        readonly List<int> illegalMeleePrefixes = new List<int>();
+        readonly List<int> illegalRangedPrefixes = new List<int>();
+        readonly List<int> illegalMagicPrefixes = new List<int>();
         public List<string> weaponbans;
         public List<int> buffbans;
-        string path = Path.Combine(TShock.SavePath, "决斗系统.json");
+        readonly string path = Path.Combine(TShock.SavePath, "决斗系统.json");
         #endregion
 
         public override void Initialize()

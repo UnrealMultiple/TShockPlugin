@@ -1,10 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
-using Newtonsoft.Json;
-using TShockAPI;
-using TShockAPI.DB;
-using Region = TShockAPI.DB.Region;
+﻿using Newtonsoft.Json;
 
 namespace UserCheck
 {

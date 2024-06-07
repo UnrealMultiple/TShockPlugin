@@ -9,9 +9,9 @@ namespace Challenger
     {
         public NPC? npc;
 
-        private int netID;
+        private readonly int netID;
 
-        private int index;
+        private readonly int index;
 
         public float[] ai;
 

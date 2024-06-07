@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using TShockAPI;
-using TShockAPI.Configuration;
 
 namespace CaiLib
 {
@@ -12,7 +11,7 @@ namespace CaiLib
 		/// <param name="name">配置文件的名字</param>
 		/// <param name="settings">配置文件的类模板</param>
         public CaiConfig(string name, TSettings settings)
-        { 
+        {
             FilePath = Path.Combine(TShock.SavePath, name);
             Settings = settings;
         }

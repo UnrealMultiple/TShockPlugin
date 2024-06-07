@@ -35,7 +35,7 @@ public class PlayerSKillManager
         }
     }
 
-    private IDbConnection database;
+    private readonly IDbConnection database;
 
     internal List<PlayerSkill> PlayerSkills = new();
     public PlayerSKillManager()

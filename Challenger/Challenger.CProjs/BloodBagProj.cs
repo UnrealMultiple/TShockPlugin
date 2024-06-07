@@ -67,7 +67,7 @@ namespace Challenger
             if ((int)ai[3] != -1 && val != null && val.active)
             {
                 Projectile? obj = proj;
-                obj.Center = obj.Center + (val.Center - proj.Center).SafeNormalize(Vector2.Zero) * v;
+                obj.Center += (val.Center - proj.Center).SafeNormalize(Vector2.Zero) * v;
             }
             else
             {
@@ -75,7 +75,7 @@ namespace Challenger
                 if (val != null)
                 {
                     Projectile? obj2 = proj;
-                    obj2.Center = obj2.Center + (val.Center - proj.Center).SafeNormalize(Vector2.Zero) * v;
+                    obj2.Center += (val.Center - proj.Center).SafeNormalize(Vector2.Zero) * v;
                     ai[3] = val.whoAmI;
                 }
             }
@@ -91,7 +91,7 @@ namespace Challenger
                     float bloodMax = Challenger.config.BloodAbsorptionRatio_Max;
 
                     // 计算允许回血的上限值
-                    int maxHeal = (int)(val.lifeMax *  bloodMax);
+                    int maxHeal = (int)(val.lifeMax * bloodMax);
                     int healAmount = (int)ai[4];
                     if (val.life + healAmount > maxHeal)
                     {

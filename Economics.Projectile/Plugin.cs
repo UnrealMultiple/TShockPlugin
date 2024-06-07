@@ -92,7 +92,7 @@ public class Plugin : TerrariaPlugin
                     }
                 }
             }
-            if (attackTarget >= 0 && MiniCD[self.identity]== 0)
+            if (attackTarget >= 0 && MiniCD[self.identity] == 0)
             {
                 for (int i = 0; i < data.ProjData.Count; i++)
                 {
@@ -104,9 +104,9 @@ public class Plugin : TerrariaPlugin
                         //击退
                         float knockback = proj.KnockBack;
                         //速度
-                        
+
                         NPC npc = Main.npc[attackTarget];
-						self.Distance(npc.Center);
+                        self.Distance(npc.Center);
                         var speed = self.DirectionTo(npc.Center).SafeNormalize(-Vector2.UnitY) * self.velocity.Length();
                         int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), self.Center, speed.ToLenOf(proj.speed), proj.ID, (int)damage, knockback, self.owner);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
@@ -127,7 +127,7 @@ public class Plugin : TerrariaPlugin
             }
         }
 
-        for(int i = 0; i<Main.maxProjectiles; i++)
+        for (int i = 0; i < Main.maxProjectiles; i++)
         {
             if (MiniCD[i] > 0)
             {

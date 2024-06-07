@@ -3,7 +3,6 @@ using Economics.Shop.Model;
 using EconomicsAPI.Attributes;
 using EconomicsAPI.Configured;
 using EconomicsAPI.Extensions;
-using Org.BouncyCastle.Bcpg;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -157,10 +156,10 @@ public class Shop : TerrariaPlugin
                 return;
             }
             for (int i = 0; i < count; i++)
-            { 
+            {
                 args.Player.GiveItems(product.Items);
             }
-            
+
             args.Player.ExecCommand(product.Commamds);
             args.Player.SendSuccessMessage("购买成功!");
         }

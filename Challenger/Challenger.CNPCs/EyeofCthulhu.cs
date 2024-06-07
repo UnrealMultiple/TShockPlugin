@@ -82,7 +82,7 @@ namespace Challenger
                     if (npc.ai[1] == 2f && (npc.ai[3] == 0f || npc.ai[3] == 1f || npc.ai[3] == 2f) && npc.ai[2] <= 2f)
                     {
                         NPC? obj3 = npc;
-                        obj3.velocity = obj3.velocity + npc.velocity * 0.1f;
+                        obj3.velocity += npc.velocity * 0.1f;
                         npc.netUpdate = true;
                     }
                     break;
@@ -112,7 +112,7 @@ namespace Challenger
                     if (npc.ai[1] == 2f && (npc.ai[3] == 0f || npc.ai[3] == 1f || npc.ai[3] == 2f) && npc.ai[2] == 0f)
                     {
                         NPC? obj2 = npc;
-                        obj2.velocity = obj2.velocity + npc.velocity;
+                        obj2.velocity += npc.velocity;
                         Vector2 val3 = Terraria.Utils.SafeNormalize(npc.velocity, Vector2.Zero);
                         npc.netUpdate = true;
                         Projectile.NewProjectile(null, npc.Center + val3 * 2f, val3 * 18f, 96, 5, 5f, -1, 0f, 0f, 0f);
@@ -134,7 +134,7 @@ namespace Challenger
                     if (npc.ai[1] == 4f && (npc.ai[3] == 0f || npc.ai[3] == 1f || npc.ai[3] == 2f) && npc.ai[2] == 0f)
                     {
                         NPC? obj4 = npc;
-                        obj4.velocity = obj4.velocity + npc.velocity;
+                        obj4.velocity += npc.velocity;
                         Vector2 val5 = Terraria.Utils.SafeNormalize(npc.velocity, Vector2.Zero);
                         npc.netUpdate = true;
                         Projectile.NewProjectile(null, npc.Center + val5 * 2f, val5 * 20f, 96, 5, 5f, -1, 0f, 0f, 0f);
@@ -162,7 +162,7 @@ namespace Challenger
                     if (npc.ai[1] == 4f && (npc.ai[3] == 0f || npc.ai[3] == 1f || npc.ai[3] == 2f) && npc.ai[2] == 0f)
                     {
                         NPC? obj = npc;
-                        obj.velocity = obj.velocity + npc.velocity;
+                        obj.velocity += npc.velocity;
                         Vector2 val = Terraria.Utils.SafeNormalize(npc.velocity, Vector2.Zero);
                         npc.netUpdate = true;
                         Projectile.NewProjectile(null, npc.Center + val * 2f, val * 30f, 96, 6, 5f, -1, 0f, 0f, 0f);

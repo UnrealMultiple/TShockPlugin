@@ -1,7 +1,6 @@
 ﻿using Economics.Skill.Model.Options;
 using Economics.Skill.Model.Options.Projectile;
 using Economics.Skill.Model.Options.Range;
-using EconomicsAPI.Model;
 using Newtonsoft.Json;
 
 namespace Economics.Skill.Model;

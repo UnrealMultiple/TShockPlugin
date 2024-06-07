@@ -23,7 +23,7 @@ namespace PerPlayerLoot
 
         public static HashSet<(int, int)> playerPlacedChests = new HashSet<(int, int)>(); // tile x, y of player placed chests
 
-        private static string connString = "Data Source=tshock/perplayerloot.sqlite";
+        private static readonly string connString = "Data Source=tshock/perplayerloot.sqlite";
 
         public FakeChestDatabase() { }
 
@@ -113,10 +113,12 @@ namespace PerPlayerLoot
                             }
                         }
 
-                        Chest chest = new Chest(); // construct a terraria chest
-                        chest.x = Convert.ToInt32(reader["x"]);
-                        chest.y = Convert.ToInt32(reader["y"]);
-                        chest.item = items.ToArray();
+                        Chest chest = new Chest
+                        {
+                            x = Convert.ToInt32(reader["x"]),
+                            y = Convert.ToInt32(reader["y"]),
+                            item = items.ToArray()
+                        }; // construct a terraria chest
 
                         // save it in the fake chest map
                         var playerChests = fakeChestsMap.GetValueOrDefault(playerUuid, new Dictionary<int, Chest>());
@@ -169,11 +171,12 @@ namespace PerPlayerLoot
 
                         foreach (var item in chest.item)
                         {
-                            var jItem = new JItem();
-
-                            jItem.id = item.type;
-                            jItem.stack = item.stack;
-                            jItem.prefix = item.prefix;
+                            var jItem = new JItem
+                            {
+                                id = item.type,
+                                stack = item.stack,
+                                prefix = item.prefix
+                            };
 
                             jItems.Add(jItem);
                         }
@@ -230,9 +233,11 @@ namespace PerPlayerLoot
                 Chest realChest = Main.chest[chestId];
 
                 // copy the chest data from the real untouched chest
-                Chest fakeChest = new Chest();
-                fakeChest.x = realChest.x;
-                fakeChest.y = realChest.y;
+                Chest fakeChest = new Chest
+                {
+                    x = realChest.x,
+                    y = realChest.y
+                };
                 realChest.item.CopyTo(fakeChest.item, 0);
 
                 // save it in the fake chest list

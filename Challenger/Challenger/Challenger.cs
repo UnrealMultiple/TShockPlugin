@@ -1,8 +1,6 @@
 ﻿using ChalleAnger;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
-using NuGet.Protocol.Plugins;
-using Org.BouncyCastle.Asn1.Cmp;
 using OTAPI;
 using System.Text;
 using Terraria;
@@ -1158,9 +1156,9 @@ namespace Challenger
                         player.buffImmune[i] = true;
                     }
                 }
-                if (flag){TShock.Players[player.whoAmI].SendData((PacketTypes)50, "", player.whoAmI, 0f, 0f, 0f, 0);}
+                if (flag) { TShock.Players[player.whoAmI].SendData((PacketTypes)50, "", player.whoAmI, 0f, 0f, 0f, 0); }
             }
-            foreach (var effect in config.WormScarfSetBuff){TShock.Players[player.whoAmI].SetBuff(effect, 180, false);}
+            foreach (var effect in config.WormScarfSetBuff) { TShock.Players[player.whoAmI].SetBuff(effect, 180, false); }
         }
 
         public void VolatileGelatin(NpcStrikeEventArgs args)

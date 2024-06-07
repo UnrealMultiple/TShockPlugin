@@ -16,7 +16,7 @@ public class Plugin : TerrariaPlugin
 
     internal Random r = new Random();
 
-    private string path = Path.Combine(TShock.SavePath, "CriticalConfig.json");
+    private readonly string path = Path.Combine(TShock.SavePath, "CriticalConfig.json");
 
     public override string Author => "White制作,Stone·Free汉化整合，肝帝熙恩更新适配1449";
 

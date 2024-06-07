@@ -1,9 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
-using Newtonsoft.Json;
-using TShockAPI;
-using TShockAPI.DB;
+﻿using Newtonsoft.Json;
 
 namespace CaiBotPlugin
 {

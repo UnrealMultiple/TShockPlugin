@@ -2,21 +2,18 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
-using System;
-using System.Collections.Generic;
 
 namespace Respawn
 {
     [ApiVersion(2, 1)]
     public class Respawn : TerrariaPlugin
     {
-        public override string Author => "leader，肝帝熙恩"; 
+        public override string Author => "leader，肝帝熙恩";
         public override string Description => "原地复活";
         public override string Name => "Respawn";
-        public override Version Version => new Version(1, 0, 1); 
+        public override Version Version => new Version(1, 0, 1);
         private long TimerCount = 0;
-        private Dictionary<int, (DateTime DeathTime, Vector2 DeathPosition)> playerDeathRecords = new Dictionary<int, (DateTime, Vector2)>();
+        private readonly Dictionary<int, (DateTime DeathTime, Vector2 DeathPosition)> playerDeathRecords = new Dictionary<int, (DateTime, Vector2)>();
         private int respawnTime;
 
         public Respawn(Main game) : base(game)

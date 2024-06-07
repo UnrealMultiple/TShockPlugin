@@ -19,7 +19,7 @@ public class GetDataHandlerArgs : EventArgs//要让这个数据在数据的基�
 }
 public static class GetDataHandlers
 {
-    static string EditHouse = "house.edit";
+    static readonly string EditHouse = "house.edit";
     private static Dictionary<PacketTypes, GetDataHandlerDelegate> GetDataHandlerDelegates;//创建词典
     public static void InitGetDataHandler()
     {

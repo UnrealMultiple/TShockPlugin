@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TShockAPI;
-using Terraria;
-using Terraria.Localization;
+﻿using TShockAPI;
 
 namespace CaiLib
 {
@@ -38,7 +31,7 @@ namespace CaiLib
         /// <param name="helpDesc">帮助文档</param>
         /// <param name="allowServer">允许非玩家</param>
         /// <param name="doLog">日志记录参数</param>
-        public static void AddCommand(List<string> perms, CommandDelegate commandDelegate, List<string> names, bool replaceCommand = false, string helpText = null,string[] helpDesc = null, bool allowServer = true, bool doLog = true)
+        public static void AddCommand(List<string> perms, CommandDelegate commandDelegate, List<string> names, bool replaceCommand = false, string helpText = null, string[] helpDesc = null, bool allowServer = true, bool doLog = true)
         {
             if (replaceCommand)
             {

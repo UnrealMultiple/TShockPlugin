@@ -1,5 +1,4 @@
-﻿using Org.BouncyCastle.Asn1.X509;
-using System.IO.Streams;
+﻿using System.IO.Streams;
 using Terraria;
 using Terraria.ID;
 using TerrariaApi.Server;
@@ -58,13 +57,13 @@ namespace SwitchCommands
             var pos = new SwitchPos(e.X, e.Y);
             if (IsProtectedSwitch(pos))
             {
-                if (e == null || !database.SwitchEnable || e.Player.HasPermission("switch.admin")) { return; } 
+                if (e == null || !database.SwitchEnable || e.Player.HasPermission("switch.admin")) { return; }
 
-                if (Main.tile[e.X, e.Y].type == 136 && e.Player.Active) 
+                if (Main.tile[e.X, e.Y].type == 136 && e.Player.Active)
                 {
                     e.Player.SendMessage($"{database.SwitchText}", color: Microsoft.Xna.Framework.Color.Yellow);
-                    e.Player.SendTileSquareCentered(e.X, e.Y, 1); 
-                    e.Handled = true; 
+                    e.Player.SendTileSquareCentered(e.X, e.Y, 1);
+                    e.Handled = true;
                 }
             }
         }
@@ -97,7 +96,7 @@ namespace SwitchCommands
 
                         if (database.switchCommandList.ContainsKey(pos.ToString()) && !string.IsNullOrEmpty(database.switchCommandList[pos.ToString()].show))
                         {
-                            player.SendMessage($"开关说明：{database.switchCommandList[pos.ToString()].show}",color:Microsoft.Xna.Framework.Color.Yellow);
+                            player.SendMessage($"开关说明：{database.switchCommandList[pos.ToString()].show}", color: Microsoft.Xna.Framework.Color.Yellow);
                         }
 
                         var playerState = player.GetData<PlayerState>("PlayerState");

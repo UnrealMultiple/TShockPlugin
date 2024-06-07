@@ -7,7 +7,7 @@ namespace EconomicsAPI.Extensions;
 
 public static class TSPlayerExt
 {
-    
+
     public static void SendCombatMsg(this TSPlayer player, string text, Color color)
     {
         player.TPlayer.SendCombatMsg(text, color);
@@ -91,7 +91,7 @@ public static class TSPlayerExt
             Player.GetPlayerInRange(Range).ForEach(x => x.HealLife(life));
     }
 
-    public static void HealAllMana(this TSPlayer Player, int Range, int mana) 
+    public static void HealAllMana(this TSPlayer Player, int Range, int mana)
     {
         if (mana > 0)
             Player.GetPlayerInRange(Range).ForEach(x => x.HealMana(mana));

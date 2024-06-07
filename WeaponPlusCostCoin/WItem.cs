@@ -48,7 +48,7 @@ namespace WeaponPlus
             orig_shootSpeed = itemById.shootSpeed;
             orig_color = itemById.color;
             orig_shoot = itemById.shoot;
-        } 
+        }
         #endregion
 
         #region 检查数据库
@@ -375,7 +375,7 @@ namespace WeaponPlus
                 price += (long)(num3 * itemById.maxStack * WeaponPlus.config.CostParameters);
             }
             return true;
-        } 
+        }
         #endregion
     }
 }

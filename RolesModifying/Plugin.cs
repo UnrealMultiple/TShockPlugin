@@ -1,5 +1,4 @@
-﻿using Org.BouncyCastle.Asn1.Microsoft;
-using System.Reflection;
+﻿using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -33,7 +32,7 @@ public class Plugin : TerrariaPlugin
 
     public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
 
-    private Dictionary<TSPlayer, ModifyData> TempData = new();
+    private readonly Dictionary<TSPlayer, ModifyData> TempData = new();
     public Plugin(Main game) : base(game)
     {
     }
@@ -134,11 +133,13 @@ public class Plugin : TerrariaPlugin
     /// <returns></returns>
     public PlayerData CopyCharacter(TSPlayer player)
     {
-        var PlayerData = new PlayerData(player);
-        PlayerData.health = player.TPlayer.statLife > 0 ? player.TPlayer.statLife : 1;
-        PlayerData.maxHealth = player.TPlayer.statLifeMax;
-        PlayerData.mana = player.TPlayer.statMana;
-        PlayerData.maxMana = player.TPlayer.statManaMax;
+        var PlayerData = new PlayerData(player)
+        {
+            health = player.TPlayer.statLife > 0 ? player.TPlayer.statLife : 1,
+            maxHealth = player.TPlayer.statLifeMax,
+            mana = player.TPlayer.statMana,
+            maxMana = player.TPlayer.statManaMax
+        };
         if (player.sX > 0 && player.sY > 0)
         {
             PlayerData.spawnX = player.sX;

@@ -28,8 +28,10 @@ namespace Challenger
         public static SpiderArmorProj NewCProjectile(Vector2 position, Vector2 velocity, int lable, int owner, float[] ai)
         {
             int num = Collect.MyNewProjectile(Projectile.GetNoneSource(), position, velocity, 249, 20, 0f, owner);
-            SpiderArmorProj spiderArmorProj = new SpiderArmorProj(Main.projectile[num], ai, lable);
-            spiderArmorProj.lable = 2012;
+            SpiderArmorProj spiderArmorProj = new SpiderArmorProj(Main.projectile[num], ai, lable)
+            {
+                lable = 2012
+            };
             spiderArmorProj.Update();
             Collect.cprojs[num] = spiderArmorProj;
             return spiderArmorProj;

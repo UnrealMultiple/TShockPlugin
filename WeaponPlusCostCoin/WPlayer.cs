@@ -9,13 +9,13 @@ namespace WeaponPlus
         private readonly int index = 255;
         private readonly string name = string.Empty;
 
-        public bool isActive => me != null 
-            && me.Active 
-            && index == me.Index 
-            && me.TPlayer != null 
-            && index == me.TPlayer.whoAmI 
+        public bool isActive => me != null
+            && me.Active
+            && index == me.Index
+            && me.TPlayer != null
+            && index == me.TPlayer.whoAmI
             && me.TPlayer.active
-            && name == me.Name 
+            && name == me.Name
             && name == me.TPlayer.name;
 
         public WPlayer(TSPlayer? me)

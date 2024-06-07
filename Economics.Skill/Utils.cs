@@ -3,7 +3,6 @@ using Economics.Skill.Model;
 using Economics.Skill.Model.Options;
 using EconomicsAPI.Extensions;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using TShockAPI;
 
@@ -89,8 +88,8 @@ public class Utils
             {
                 var item = player.TPlayer.inventory[j];
                 if (item.netID == term.netID)
-                { 
-                     if (item.stack >= stack)
+                {
+                    if (item.stack >= stack)
                     {
                         item.stack -= stack;
                         TSPlayer.All.SendData(PacketTypes.PlayerSlot, "", player.Index, j);

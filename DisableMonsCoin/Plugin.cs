@@ -17,7 +17,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => "清理怪物身边的钱币";
 
     public NPC RealNPC { get; set; }
-    private int radius;
+    private readonly int radius;
 
     // 插件的构造函数
     // 在这里设置插件的顺序（可选）和任何其他构造函数逻辑

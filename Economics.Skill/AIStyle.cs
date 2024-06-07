@@ -19,7 +19,7 @@ internal class AIStyle
         if (Main.rand.Next(40) == 0 && target != null)
         {
             var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY) * projectile.velocity.Length();
-            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(10), 79, (int)50, 5, projectile.owner);
+            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(10), 79, 50, 5, projectile.owner);
             TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
         }
     }

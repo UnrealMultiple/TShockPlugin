@@ -1,8 +1,5 @@
-using System.ComponentModel;
-using System.IO;
-using System.Text;
 using Newtonsoft.Json;
-using TShockAPI;
+using System.Text;
 
 namespace TerrariaMap;
 

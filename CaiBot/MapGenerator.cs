@@ -1,11 +1,8 @@
-using System.Drawing;
-using Microsoft.Xna.Framework;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using Terraria;
 using Terraria.Map;
 using Image = SixLabors.ImageSharp.Image;
-using Rectangle = SixLabors.ImageSharp.Rectangle;
 //using System.Drawing;
 
 namespace CaiBotPlugin

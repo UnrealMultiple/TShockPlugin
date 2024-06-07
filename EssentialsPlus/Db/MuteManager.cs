@@ -43,9 +43,9 @@ public class MuteManager
             Expiration = exp;
         }
     }
-    private IDbConnection db;
+    private readonly IDbConnection db;
 
-    private List<Mute> Mutes = new();
+    private readonly List<Mute> Mutes = new();
 
     public MuteManager(IDbConnection db)
     {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Terraria;
-using TShockAPI;
+﻿using TShockAPI;
 
 namespace Economics.WeaponPlus
 {
@@ -10,9 +8,9 @@ namespace Economics.WeaponPlus
 
         public List<WItem> hasItems;
 
-        private int index = 255;
+        private readonly int index = 255;
 
-        private string name = string.Empty;
+        private readonly string name = string.Empty;
 
         public bool isActive => me != null && me.Active && index == me.Index && me.TPlayer != null && index == me.TPlayer.whoAmI && me.TPlayer.active && name == me.Name && name == me.TPlayer.name;
 

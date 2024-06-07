@@ -3,7 +3,7 @@ using TShockAPI;
 
 
 namespace PvPer
-{ 
+{
     public class Commands
     {
         public static void Duel(CommandArgs args)

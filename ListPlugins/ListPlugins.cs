@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.Text;
+﻿using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

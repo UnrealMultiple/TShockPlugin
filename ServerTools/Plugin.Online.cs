@@ -13,7 +13,7 @@ public partial class Plugin
 
     private object Queryduration(RestRequestArgs args)
     {
-        var data = PlayerOnlines.OrderByDescending(x => x.Value).Select(x => new { name = x.Key, duration = x.Value});
+        var data = PlayerOnlines.OrderByDescending(x => x.Value).Select(x => new { name = x.Key, duration = x.Value });
         return new RestObject() { { "response", "查询成功" }, { "data", data } };
     }
 
@@ -27,11 +27,11 @@ public partial class Plugin
     {
         var ply = TShock.Players[args.Who];
         if (ply != null)
-        { 
+        {
             ActivePlayers.Add(ply);
             ply.RespawnTimer = 0;
         }
-            
+
     }
 
     private void OnUpdatePlayerOnline(EventArgs args)

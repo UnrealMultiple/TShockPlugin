@@ -36,7 +36,7 @@ public class Economics : TerrariaPlugin
 
     private long TimerCount;
 
-    private Dictionary<TSPlayer, PingData> PlayerPing = new();
+    private readonly Dictionary<TSPlayer, PingData> PlayerPing = new();
 
     public static Setting Setting { get; private set; } = new();
 
@@ -234,18 +234,18 @@ public class Economics : TerrariaPlugin
     {
         var player = TShock.Players[args.Who];
         lock (ServerPlayers)
-        { 
+        {
             if (player != null)
                 ServerPlayers.Remove(player);
         }
-        
+
     }
 
     private void OnGreet(GreetPlayerEventArgs args)
     {
         var player = TShock.Players[args.Who];
         lock (ServerPlayers)
-        { 
+        {
             if (player != null)
                 ServerPlayers.Add(player);
         }

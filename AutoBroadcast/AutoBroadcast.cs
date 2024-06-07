@@ -54,7 +54,7 @@ public class AutoBroadcast : TerrariaPlugin
         {
             Config = ABConfig.Read(ConfigPath).Write(ConfigPath);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Config = new ABConfig();
             TShock.Log.Error("[AutoBroadcast]配置读取发生错误!\n{0}".SFormat(ex.ToString()));
@@ -64,7 +64,7 @@ public class AutoBroadcast : TerrariaPlugin
     #region Chat
     public void OnChat(ServerChatEventArgs args)
     {
-        if(TShock.Players[args.Who] == null)
+        if (TShock.Players[args.Who] == null)
         {
             return;
         }
@@ -73,7 +73,7 @@ public class AutoBroadcast : TerrariaPlugin
         float[] Colour = new float[0];
         var PlayerGroup = TShock.Players[args.Who].Group.Name;
 
-        lock(Config.Broadcasts)
+        lock (Config.Broadcasts)
             foreach (var broadcast in Config.Broadcasts)
             {
                 if (broadcast == null || !broadcast.Enabled ||
@@ -82,7 +82,7 @@ public class AutoBroadcast : TerrariaPlugin
                     continue;
                 }
 
-                foreach(string Word in broadcast.TriggerWords)
+                foreach (string Word in broadcast.TriggerWords)
                 {
                     if (args.Text.Contains(Word))
                     {
@@ -115,9 +115,9 @@ public class AutoBroadcast : TerrariaPlugin
         {
             LastCheck = DateTime.UtcNow;
             int NumBroadcasts = 0;
-            lock(Config.Broadcasts)
+            lock (Config.Broadcasts)
                 NumBroadcasts = Config.Broadcasts.Length;
-            for(int i = 0; i < NumBroadcasts; i++)
+            for (int i = 0; i < NumBroadcasts; i++)
             {
                 string[] Groups = new string[0];
                 string[] Messages = new string[0];
@@ -125,11 +125,11 @@ public class AutoBroadcast : TerrariaPlugin
 
                 lock (Config.Broadcasts)
                 {
-                    if(Config.Broadcasts[i] == null || !Config.Broadcasts[i].Enabled || Config.Broadcasts[i].Interval < 1)
+                    if (Config.Broadcasts[i] == null || !Config.Broadcasts[i].Enabled || Config.Broadcasts[i].Interval < 1)
                     {
                         continue;
                     }
-                    if(Config.Broadcasts[i].StartDelay > 0)
+                    if (Config.Broadcasts[i].StartDelay > 0)
                     {
                         Config.Broadcasts[i].StartDelay--;
                         continue;
@@ -140,7 +140,7 @@ public class AutoBroadcast : TerrariaPlugin
                     Colour = Config.Broadcasts[i].ColorRGB;
                 }
 
-                if(Groups.Length > 0)
+                if (Groups.Length > 0)
                 {
                     BroadcastToGroups(Groups, Messages, Colour);
                 }
@@ -155,7 +155,7 @@ public class AutoBroadcast : TerrariaPlugin
 
     public static void BroadcastToGroups(string[] Groups, string[] Messages, float[] Colour)
     {
-        foreach(string Line in Messages)
+        foreach (string Line in Messages)
         {
             if (Line.StartsWith("/"))
             {
@@ -168,7 +168,7 @@ public class AutoBroadcast : TerrariaPlugin
                     {
                         if (player != null && Groups.Contains(player.Group.Name))
                         {
-                            player.SendMessage(Line, (byte)Colour[0],(byte)Colour[1], (byte)Colour[2]);
+                            player.SendMessage(Line, (byte)Colour[0], (byte)Colour[1], (byte)Colour[2]);
                         }
                     }
             }
@@ -176,7 +176,7 @@ public class AutoBroadcast : TerrariaPlugin
     }
     public static void BroadcastToAll(string[] Messages, float[] Colour)
     {
-        foreach(string Line in Messages)
+        foreach (string Line in Messages)
         {
             if (Line.StartsWith("/"))
             {
@@ -184,13 +184,13 @@ public class AutoBroadcast : TerrariaPlugin
             }
             else
             {
-                TSPlayer.All.SendMessage(Line, (byte)Colour[0],(byte)Colour[1], (byte)Colour[2]);
+                TSPlayer.All.SendMessage(Line, (byte)Colour[0], (byte)Colour[1], (byte)Colour[2]);
             }
         }
     }
     public static void BroadcastToPlayer(int plr, string[] Messages, float[] Colour)
     {
-        foreach(string Line in Messages)
+        foreach (string Line in Messages)
         {
             if (Line.StartsWith("/"))
             {
@@ -198,7 +198,7 @@ public class AutoBroadcast : TerrariaPlugin
             }
             else lock (TShock.Players)
                 {
-                    TShock.Players[plr].SendMessage(Line,(byte)Colour[0], (byte)Colour[1],(byte)Colour[2]);
+                    TShock.Players[plr].SendMessage(Line, (byte)Colour[0], (byte)Colour[1], (byte)Colour[2]);
                 }
         }
     }

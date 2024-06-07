@@ -90,8 +90,8 @@ namespace HouseRegion
         #region 插件的各种初始化
         public override void Initialize()// 插件启动时，用于初始化各种狗子
         {
-            RC(); 
-            RD(); 
+            RC();
+            RD();
             GetDataHandlers.InitGetDataHandler();//初始化配置值，RH要放在服务器开成后再读不然世界ID读不出
             ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);//钩住游戏初始化时
             ServerApi.Hooks.NetGetData.Register(this, GetData);//收到数据
@@ -138,7 +138,7 @@ namespace HouseRegion
         {
             if (!args.Player.IsLoggedIn || args.Player.Account == null || args.Player.Account.ID == 0)
             { args.Player.SendErrorMessage("你必须登录才能使用房子插件。"); return; }
-            string cmd = "help"; 
+            string cmd = "help";
             const string AdminHouse = "house.admin";//定义管理权限和定义默认指令即如果指令后面什么都没跟的时候的指令
             if (args.Parameters.Count > 0) cmd = args.Parameters[0].ToLower();
             switch (cmd)

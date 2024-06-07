@@ -71,7 +71,7 @@ namespace EssentialsPlus
             e.Player.SendSuccessMessage("[EssentialsPlus] 重新加载配置和家!");
         }
 
-        private List<string> teleportCommands = new List<string>
+        private readonly List<string> teleportCommands = new List<string>
         {
             "tp", "tppos", "tpnpc", "warp", "spawn", "home"
         };
