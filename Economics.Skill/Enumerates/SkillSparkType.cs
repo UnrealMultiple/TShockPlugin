@@ -35,5 +35,9 @@ public enum SkillSparkType
 
     [Description("击打")]
     Strike =
-        0b10000000
+        0b10000000,
+
+    [Description("冲刺")]
+    Dash =
+        0b100000000,
 }

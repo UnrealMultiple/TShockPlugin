@@ -21,5 +21,5 @@ public class Product
     public List<string> Commamds { get; set; } = new();
 
     [JsonProperty("商品内容")]
-    public List<Item> Items { get; set; }
+    public List<Item> Items { get; set; } = new();
 }
