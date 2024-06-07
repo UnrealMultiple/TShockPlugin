@@ -1,11 +1,6 @@
 ﻿
 using EconomicsAPI.Model;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Economics.Skill.Model;
 
@@ -19,4 +14,7 @@ public class TermItem : Item
 
     [JsonProperty("手持物品")]
     public bool HeldItem { get; set; } = false;
+
+    [JsonProperty("是否消耗")]
+    public bool Consume { get; set; } = false;
 }
