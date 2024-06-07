@@ -46,24 +46,32 @@ public class Shop : TerrariaPlugin
                 return false;
 
         }
-        foreach (ItemTerm term in itemTerms)
+        ConsumeItem(player, itemTerms);
+        return true;
+    }
+
+    private static void ConsumeItem(TSPlayer player, List<ItemTerm> terms)
+    {
+        foreach (var term in terms)
         {
             var stack = term.Stack;
             for (int j = 0; j < player.TPlayer.inventory.Length; j++)
             {
                 var item = player.TPlayer.inventory[j];
-                if (item.stack >= stack)
+                if (item.netID == term.netID)
                 {
-                    item.stack -= stack;
-                    TSPlayer.All.SendData(PacketTypes.PlayerSlot, "", player.Index, j);
-                }
-                else
-                { 
-                    stack -= item.stack;
+                    if (item.stack >= stack)
+                    {
+                        item.stack -= stack;
+                        TSPlayer.All.SendData(PacketTypes.PlayerSlot, "", player.Index, j);
+                    }
+                    else
+                    {
+                        stack -= item.stack;
+                    }
                 }
             }
         }
-        return true;
     }
 
     private static void CheckBanksForItem(TSPlayer player, int itemId, ref int itemCount)

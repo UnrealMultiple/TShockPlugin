@@ -88,14 +88,17 @@ public class Utils
             for (int j = 0; j < player.TPlayer.inventory.Length; j++)
             {
                 var item = player.TPlayer.inventory[j];
-                if (item.stack >= stack)
-                {
-                    item.stack -= stack;
-                    TSPlayer.All.SendData(PacketTypes.PlayerSlot, "", player.Index, j);
-                }
-                else
-                {
-                    stack -= item.stack;
+                if (item.netID == term.netID)
+                { 
+                     if (item.stack >= stack)
+                    {
+                        item.stack -= stack;
+                        TSPlayer.All.SendData(PacketTypes.PlayerSlot, "", player.Index, j);
+                    }
+                    else
+                    {
+                        stack -= item.stack;
+                    }
                 }
             }
         }
