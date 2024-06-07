@@ -54,7 +54,7 @@
 | [ChattyBridge](ChattyBridge/README.md)                           |          用于跨服聊天          |                                             无                                             |
 | [EconomicsAPI](EconomicsAPI/README.md)                           |          经济插件前置          |                                             无                                             |
 | [Economics.RPG](Economics.RPG/README.md)                         |              RPG               |                                        EconomicsAPI                                        |
-| [Economics.WeaponPlus](Economics.WeaponPlus/README.md)                         |              强化武器               |                                        EconomicsAPI                                        |
+| [Economics.WeaponPlus](Economics.WeaponPlus/README.md)           |              强化武器          |                                        EconomicsAPI                                         |
 | [Economics.Deal](Economics.RPG/README.md)                        |            交易插件            |                                        EconomicsAPI                                        |
 | [Economics.Shop](Economics.Shop/README.md)                       |            商店插件            |                               EconomicsAPI<br>Economics.RPG                                |
 | [Economics.Skill](Economics.Skill/README.md)                     |            技能插件            |                               EconomicsAPI<br>Economics.RPG                                |
@@ -126,6 +126,7 @@
 | [SignInSign](SignInSign/README.md)                               |         告示牌登录插件         |                                             无                                             |
 | [WeaponPlusCostCoin](WeaponPlusCostCoin/README.md)               |         武器强化钱币版         |                                             无                                             |
 | [Respawn](Respawn/README.md)                                     |            原地复活            |                                             无                                             |
+| [EndureBoost](EndureBoost/README.md)                             |      物品一定数量后长时间buff   |                                             无                                             |
 
 </Details>
 
