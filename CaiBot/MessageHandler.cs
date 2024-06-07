@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Net.WebSockets;
 using System.Reflection;
 using System.Runtime.ConstrainedExecution;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using CaiBot;
@@ -86,6 +87,30 @@ namespace CaiBotPlugin
                     break;
                 case "hello":
                     TShock.Log.ConsoleInfo("[CaiAPI]CaiBOT连接成功...");
+                    //发送服务器信息
+                    var serverInfo = new RestObject
+                            {
+                                { "type","hello" },
+                                { "tshock_version",TShock.VersionNum.ToString()},
+                                { "plugin_version",Plugin.VersionNum},
+                                { "terraria_version",  Main.versionNumber},
+                                { "cai_whitelist", Config.config.WhiteList},
+                                { "os",RuntimeInformation.RuntimeIdentifier }
+                                
+                            };
+                    await SendDateAsync(serverInfo.ToJson());
+                    break;
+                case "groupid":
+                    long groupId = (long)jsonObject["groupid"];
+                    TShock.Log.ConsoleInfo($"[CaiAPI]群号获取成功: {groupId}");
+                    if (Config.config.GroupNumber != 0L)
+                    {
+                        TShock.Log.ConsoleWarn($"[CaiAPI]检测到你在配置文件中已设置群号[{Config.config.GroupNumber}],BOT自动获取的群号将被忽略！");
+                    }
+                    else
+                    {
+                        Config.config.GroupNumber = groupId;
+                    }
                     break;
                 case "cmd":
                     string cmd = (string)jsonObject["cmd"];
@@ -126,7 +151,7 @@ namespace CaiBotPlugin
                     }
                     List<string> list = new List<string>();
                     List<string> list2 = new List<string>();
-
+                    #region 进度查询
                     if (NPC.downedSlimeKing)
                     {
                         list.Add("史王");
@@ -226,7 +251,7 @@ namespace CaiBotPlugin
                         process = list2.ElementAt(0) + "前";
                     }
 
-
+                    #endregion
 
                     dictionary = new()
                     {
@@ -396,7 +421,7 @@ namespace CaiBotPlugin
                     List<int> buffs = new();
                     if (playerList3.Count != 0)
                     {
-                        Console.WriteLine(1);
+                        #region 查背包 在线
                         // 在线
                         Player plr = playerList3[0].TPlayer;
                         buffs = plr.buffType.ToList();
@@ -513,6 +538,8 @@ namespace CaiBotPlugin
                         {
                             itemList.Add(new List<int>() { i.NetId, i.Stack });
                         }
+
+                        #endregion
                         re = new RestObject
                         {
                             { "type","lookbag" },
@@ -526,7 +553,7 @@ namespace CaiBotPlugin
                     }
                     else
                     {
-
+                        #region 查背包 离线
                         var acc = TShock.UserAccounts.GetUserAccountByName(name);
                         if (acc == null)
                         {
@@ -557,6 +584,8 @@ namespace CaiBotPlugin
                         {
                             itemList.Add(new List<int>() { i.NetId, i.Stack });
                         }
+
+                        #endregion
                         buffs = CaiBot.Utils.GetActiveBuffs(TShock.DB, acc.ID,acc.Name);
                         re = new RestObject
                             {
