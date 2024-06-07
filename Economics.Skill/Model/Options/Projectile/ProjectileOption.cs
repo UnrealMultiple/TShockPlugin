@@ -19,6 +19,15 @@ public class ProjectileOption
     [JsonProperty("Y轴起始位置")]
     public int Y { get; set; }
 
+    [JsonProperty("X轴速度")]
+    public float SpeedX { get; set; } = 0f;
+
+    [JsonProperty("Y轴速度")]
+    public float SpeedY { get; set; } = 0f;
+
+    [JsonProperty("自动方向")]
+    public bool AutoDirection { get; set; } = true;
+
     [JsonProperty("持续时间")]
     public int TimeLeft { get; set; } = -1;
 

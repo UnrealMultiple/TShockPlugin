@@ -124,6 +124,8 @@ public class Utils
         EmitGeneralSkill(Player, skill);
         foreach (var proj in skill.Projectiles)
         {
+            if (!proj.AutoDirection)
+                vel = new Vector2(proj.SpeedX, proj.SpeedY);
             SpawnPointsOnArcProj(Player, proj.CircleProjectiles, pos);
             Task.Run(() =>
             {
