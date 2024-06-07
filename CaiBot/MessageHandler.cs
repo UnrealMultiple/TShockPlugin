@@ -95,8 +95,9 @@ namespace CaiBotPlugin
                                 { "plugin_version",Plugin.VersionNum},
                                 { "terraria_version",  Main.versionNumber},
                                 { "cai_whitelist", Config.config.WhiteList},
-                                { "os",RuntimeInformation.RuntimeIdentifier }
-                                
+                                { "os",RuntimeInformation.RuntimeIdentifier },
+                                {"world", (TShock.Config.Settings.UseServerName ? TShock.Config.Settings.ServerName : Main.worldName)}
+
                             };
                     await SendDateAsync(serverInfo.ToJson());
                     break;
