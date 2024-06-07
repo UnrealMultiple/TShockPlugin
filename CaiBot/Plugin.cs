@@ -25,8 +25,11 @@ namespace CaiBotPlugin
         //插件的名称
         public override string Name => "CaiBotPlugin";
 
-        //插件的版本
-        public override Version Version => new Version(1, 1, 1, 0);
+        public static readonly Version VersionNum = new Version(2024, 6, 7, 1); //日期+版本号(0,1,2...)
+        public override Version Version
+        {
+            get { return VersionNum; }
+        }
 
         //插件的构造器
         public Plugin(Main game) : base(game)
