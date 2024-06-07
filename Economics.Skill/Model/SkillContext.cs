@@ -1,6 +1,7 @@
 ﻿using Economics.Skill.Model.Options;
 using Economics.Skill.Model.Options.Projectile;
 using Economics.Skill.Model.Options.Range;
+using EconomicsAPI.Model;
 using Newtonsoft.Json;
 
 namespace Economics.Skill.Model;
@@ -48,6 +49,9 @@ public class SkillContext
 
     [JsonProperty("范围Buff")]
     public BuffOption BuffOption { get; set; } = new();
+
+    [JsonProperty("物品条件")]
+    public List<Item> TermItem { get; set; } = new();
 
     [JsonProperty("弹幕")]
     public List<ProjectileOption> Projectiles { get; set; } = new();

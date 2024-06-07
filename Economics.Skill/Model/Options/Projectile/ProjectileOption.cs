@@ -19,6 +19,9 @@ public class ProjectileOption
     [JsonProperty("Y轴起始位置")]
     public int Y { get; set; }
 
+    [JsonProperty("持续时间")]
+    public int TimeLeft { get; set; } = -1;
+
     [JsonProperty("AI")]
     public float[] AI { get; set; } = new float[3];
 

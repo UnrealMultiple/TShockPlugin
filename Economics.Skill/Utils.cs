@@ -53,6 +53,18 @@ public class Utils
                 ply.SetBuff(buff.BuffId, buff.Time);
     }
 
+    public static bool HasItem(TSPlayer player, List<EconomicsAPI.Model.Item> terms)
+    {
+        var inventory = player.TPlayer.inventory.Concat(player.TPlayer.armor);
+        foreach (var item in terms)
+        {
+            var inv = inventory.Where(x => x.netID == item.netID);
+            if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
+                return false;
+        }
+        return true;
+    }
+
     /// <summary>
     /// 圆弧技能触发器
     /// </summary>
@@ -90,7 +102,8 @@ public class Utils
                             Player.Index,
                             circle.AI[0],
                             circle.AI[1],
-                            circle.AI[2]);
+                            circle.AI[2],
+                            circle.TimeLeft);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
                     }
                     Task.Delay(circle.Dealy).Wait();
@@ -133,7 +146,8 @@ public class Utils
                             Player.Index,
                             proj.AI[0],
                             proj.AI[1],
-                            proj.AI[2]);
+                            proj.AI[2],
+                            proj.TimeLeft);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
                         #endregion
 

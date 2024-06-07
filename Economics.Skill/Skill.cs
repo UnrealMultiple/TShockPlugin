@@ -116,6 +116,11 @@ public class Skill : TerrariaPlugin
         {
             PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.Take);
         }
+
+        if (e.Player.TPlayer.dashDelay == -1)
+        {
+            PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.Dash);
+        }
     }
 
     private static void LoadConfig()

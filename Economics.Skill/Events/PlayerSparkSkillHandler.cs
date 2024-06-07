@@ -19,6 +19,7 @@ public class PlayerSparkSkillHandler
                 {
                     SkillSparkType.HP => Player.TPlayer.statLife <= skill.Skill!.SkillSpark.HP,
                     SkillSparkType.MP => Player.TPlayer.statMana <= skill.Skill!.SkillSpark.MP,
+                    SkillSparkType.Dash => Player.TPlayer.dashDelay == -1,
                     SkillSparkType.CD => skill.SkillCD <= 0,
                     SkillSparkType.Death => Player.Dead,
                     SkillSparkType.Take => skillSparkType == SkillSparkType.Take && skill.BindItem == Player.SelectedItem.netID,
@@ -30,6 +31,7 @@ public class PlayerSparkSkillHandler
                     return false;
             }
         }
+        enable = Utils.HasItem(Player, skill.Skill.TermItem);
         return enable;
     }
 

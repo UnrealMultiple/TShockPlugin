@@ -34,7 +34,7 @@ public static class PlayerExt
 
     public static Vector2 ItemOffSet(this Player player)
     {
-        float length = player.HeldItem.height;
+        float length = player.HeldItem.netID == 0 ? 10 : player.HeldItem.height;
         var offset = new Vector2(length, 0).RotatedBy(player.ItemUseAngle());
         return offset;
     }
