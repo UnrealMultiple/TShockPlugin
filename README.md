@@ -1,7 +1,5 @@
 <div align = "center">
-
-# 这是一个 TShock 插件搜集仓库
-
+  
 ![TShockPlugin](https://socialify.git.ci/Controllerdestiny/TShockPlugin/image?description=1&descriptionEditable=%E4%B8%80%E4%B8%AA%E6%94%B6%E9%9B%86TShock%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BB%93%E5%BA%93&font=Inter&forks=1&issues=1&name=1&pattern=Diagonal%20Stripes&pulls=1&stargazers=1&theme=Auto)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Controllerdestiny/TShockPlugin/.github%2Fworkflows%2Fdotnet.yml)
 ![GitHub contributors](https://img.shields.io/github/contributors/Controllerdestiny/TShockPlugin?style=flat)
