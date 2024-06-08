@@ -1,11 +1,7 @@
 <div align = "center">
-
-# 这是一个 TShock 插件搜集仓库
-
-![TShockPlugin](https://socialify.git.ci/Controllerdestiny/TShockPlugin/image?description=1&descriptionEditable=%E4%B8%80%E4%B8%AA%E6%94%B6%E9%9B%86TShock%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BB%93%E5%BA%93&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Fpic.niaoluo.top%2F1%2Ficon.jpg&name=1&pattern=Diagonal%20Stripes&pulls=1&stargazers=1&theme=Auto)
+  
+![TShockPlugin](https://socialify.git.ci/Controllerdestiny/TShockPlugin/image?description=1&descriptionEditable=%E4%B8%80%E4%B8%AA%E6%94%B6%E9%9B%86TShock%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BB%93%E5%BA%93&font=Inter&forks=1&issues=1&name=1&pattern=Diagonal%20Stripes&pulls=1&stargazers=1&theme=Auto)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Controllerdestiny/TShockPlugin/.github%2Fworkflows%2Fdotnet.yml)
-![GitHub stars](https://img.shields.io/github/stars/Controllerdestiny/TShockPlugin?style=flat)
-![GitHub forks](https://img.shields.io/github/forks/Controllerdestiny/TShockPlugin?style=flat)
 ![GitHub contributors](https://img.shields.io/github/contributors/Controllerdestiny/TShockPlugin?style=flat)
 ![C#](https://img.shields.io/badge/Core-%20.NET_6-blue)
 [![QQ](https://img.shields.io/badge/QQ-EB1923?logo=tencent-qq&logoColor=white)](https://qm.qq.com/cgi-bin/qm/qr?k=54tOesIU5g13yVBNFIuMBQ6AzjgE6f0m&jump_from=webapi&authKey=6jzafzJEqQGzq7b2mAHBw+Ws5uOdl83iIu7CvFmrfm/Xxbo2kNHKSNXJvDGYxhSW)
@@ -127,7 +123,8 @@
 | [WeaponPlusCostCoin](WeaponPlusCostCoin/README.md)               |         武器强化钱币版         |                                             无                                             |
 | [Respawn](Respawn/README.md)                                     |            原地复活            |                                             无                                             |
 | [EndureBoost](EndureBoost/README.md)                             |      物品一定数量后长时间buff   |                                             无                                             |
-
+| [AnnouncementBoxPlus](AnnouncementBoxPlus/README.md)             |      广播盒功能强化             |                                             无                                             |
+| [ConsoleSql](ConsoleSql/README.md)                               |      允许你在控制台执行SQL语句   |                                             无                                             |
 </Details>
 
 ## 代码贡献
