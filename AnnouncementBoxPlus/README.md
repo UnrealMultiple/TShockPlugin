@@ -6,19 +6,22 @@
 
 ## 介绍
 
-1. 广播盒内插占位符和格式化
-2. 可以开关广播盒
-3. 可以设置广播盒有效范围(单位:像素)
-3. 可以添加编辑广播盒的权限
+1. 广播盒内插占位符和格式化   
+   ![image](https://github.com/ACaiCat/TShockPlugin/assets/62058454/cc489eff-de45-4264-bc4e-8e19c9c91883)   
+2. 可以添加编辑广播盒的权限   
+   ![image](https://github.com/ACaiCat/TShockPlugin/assets/62058454/9177fc0f-df5b-4568-81fa-496364587497)   
+4. 可以开关广播盒   
+5. 可以设置广播盒有效范围(单位:像素)   
+
 
 ## 配置
 
 ```json
-路径: tshock/AnnouncementBoxPlus.json
+配置路径: tshock/AnnouncementBoxPlus.json
 {
   "禁用广播盒": false,
   "广播内容仅触发者可见": true,
-  "广播范围(格)(0为无限制)": 50,
+  "广播范围(像素)(0为无限制)": 50,
   "启用广播盒权限(AnnouncementBoxPlus.Edit)": true,
   "启用插件广播盒发送格式": false,
   "广播盒发送格式": "%当前时间% %玩家组名% %玩家名%:%内容% #详细可查阅文档",

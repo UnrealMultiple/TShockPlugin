@@ -1,27 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using Terraria;
-using TerrariaApi.Server;
-using TShockAPI;
-using System.IO.Streams;
+﻿using Microsoft.Xna.Framework;
 using On.OTAPI;
+using System.Reflection;
+using System.Text;
 using Terraria;
-using TerrariaApi.Server;
-using TShockAPI;
-
-using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent.Events;
-using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.Localization;
-using System.Runtime.CompilerServices;
-using System.Text;
-using static System.Net.Mime.MediaTypeNames;
+using TerrariaApi.Server;
+using TShockAPI;
 using TShockAPI.Hooks;
 namespace AnnouncementBoxPlus
 {
@@ -38,7 +23,7 @@ namespace AnnouncementBoxPlus
         public override string Name => "AnnouncementBoxPlus";
 
         //插件的版本
-        public override Version Version => Assembly.GetExecutingAssembly().GetName().Version;
+        public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
 
         //插件的构造器
         public AnnouncementBoxPlus(Main game) : base(game)
@@ -77,7 +62,7 @@ namespace AnnouncementBoxPlus
         private void OnSignRead(object? sender, GetDataHandlers.SignReadEventArgs e)
         {
             ITile tile = Main.tile[e.X, e.Y];
-            if (tile.type== 425&& Config.config.usePerm)
+            if (tile.type == 425 && Config.config.usePerm)
             {
                 if (!e.Player.HasPermission("AnnouncementBoxPlus.Edit"))
                 {
@@ -85,7 +70,7 @@ namespace AnnouncementBoxPlus
                     e.Handled = true;
                 }
             }
-                
+
         }
 
         private bool OnAnnouncementBox(Hooks.Wiring.orig_InvokeAnnouncementBox orig, int x, int y, int signId)
@@ -109,15 +94,15 @@ namespace AnnouncementBoxPlus
 
                     if (Config.config.range <= 0)
                     {
-                        NetMessage.SendData(107, Wiring.CurrentUser, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, Wiring.CurrentUser)), 255, (int)Color.White.R, (int)Color.White.G, (int)Color.White.B, 460);
+                        NetMessage.SendData(107, Wiring.CurrentUser, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, Wiring.CurrentUser)), 255, Color.White.R, Color.White.G, Color.White.B, 460);
 
                     }
                     else
                     {
 
-                        if (Main.player[Wiring.CurrentUser].active && Main.player[Wiring.CurrentUser].Distance(new Vector2(x * 16 + 16, y * 16 + 16)) <= (float)Config.config.range)
+                        if (Main.player[Wiring.CurrentUser].active && Main.player[Wiring.CurrentUser].Distance(new Vector2(x * 16 + 16, y * 16 + 16)) <= Config.config.range)
                         {
-                            NetMessage.SendData(107, Wiring.CurrentUser, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, Wiring.CurrentUser)), 255, (int)Color.White.R, (int)Color.White.G, (int)Color.White.B, 460);
+                            NetMessage.SendData(107, Wiring.CurrentUser, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, Wiring.CurrentUser)), 255, Color.White.R, Color.White.G, Color.White.B, 460);
                         }
                     }
                 }
@@ -125,21 +110,21 @@ namespace AnnouncementBoxPlus
                 {
                     if (Config.config.range <= 0)
                     {
-                        for (int i = 0; i < 255; i++)
+                        for (int i = 0; i < Main.maxPlayers; i++)
                         {
                             if (Main.player[i].active)
                             {
-                                NetMessage.SendData(107, i, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, i)), 255, (int)Color.White.R, (int)Color.White.G, (int)Color.White.B, 460);
+                                NetMessage.SendData(107, i, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, i)), 255, Color.White.R, Color.White.G, Color.White.B, 460);
                             }
                         }
                     }
                     else
                     {
-                        for (int i = 0; i < 255; i++)
+                        for (int i = 0; i < Main.maxPlayers; i++)
                         {
-                            if (Main.player[i].active && Main.player[i].Distance(new Vector2(x * 16 + 16, y * 16 + 16)) <= (float)Config.config.range)
+                            if (Main.player[i].active && Main.player[i].Distance(new Vector2(x * 16 + 16, y * 16 + 16)) <= Config.config.range)
                             {
-                                NetMessage.SendData(107, i, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, i)), 255, (int)Color.White.R, (int)Color.White.G, (int)Color.White.B, 460);
+                                NetMessage.SendData(107, i, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, i)), 255, Color.White.R, Color.White.G, Color.White.B, 460);
                             }
                         }
                     }
@@ -151,13 +136,8 @@ namespace AnnouncementBoxPlus
             }
             return false;
         }
-        //public static readonly List<string> tags = new()
-        //{
-        //    {"%玩家名%"},{"%玩家组名%"},{"%玩家血量%"},{"%玩家血量最大值%"},{"%玩家魔力%"},{"%玩家魔力最大值%"},{"%玩家幸运值%"},{"%玩家X坐标%"},{"%玩家Y坐标%"},{"%玩家所处区域%"}, //10
-        //    {"%玩家死亡状态%"},{"%重生倒计时%" },{"%当前环境%"},
-        //    {"%当前服务器在线人数%"},{服务器在线列表}{"%渔夫任务鱼名称%"},{"%渔夫任务鱼ID%"},{"%渔夫任务鱼地点%"},{"%渔夫任务鱼完成%"},{"%地图名称%"},{ "%当前时间%"}//9
-        //};
-        public static string FormatBox(string text,int index) 
+      
+        public static string FormatBox(string text, int index)
         {
             string online = "";
             if (TShock.Utils.GetActivePlayerCount() == 0)
@@ -174,50 +154,84 @@ namespace AnnouncementBoxPlus
                 }
             }
             online = string.Join(",", players);
-            if (index == 255 || TShock.Players[index] == null)
+            if (index >= Main.maxPlayers || TShock.Players[index] == null)
             {
                 if (Config.config.useFormat)
                 {
-                    text = Config.config.formation.Replace("%玩家组名%", "").Replace("%玩家名%", "[服务器]").Replace("%当前时间%", DateTime.Now.ToString("HH:mm")).Replace("%内容%", text);
+                    text = Config.config.formation
+                        .Replace("%玩家组名%", "")
+                        .Replace("%玩家名%", "[服务器]")
+                        .Replace("%当前时间%", DateTime.Now.ToString("HH:mm"))
+                        .Replace("%内容%", text);
                 }
                 if (Config.config.usePlaceholder)
                 {
-                    text = text.Replace("%玩家组名%", "").Replace("%玩家名%", "[服务器]").Replace("%当前时间%", DateTime.Now.ToString("HH:mm")).Replace("%当前服务器在线人数%", TShock.Utils.GetActivePlayerCount().ToString())
-                        .Replace("%渔夫任务鱼名称%", Tools.GetFisheMissionName()).Replace("%渔夫任务鱼ID%", Tools.GetFisheId().ToString()).Replace("%渔夫任务鱼地点%", Tools.GetFisheMissionPlace()).Replace("%地图名称%", Main.worldName)
-                        .Replace("%玩家血量%", "无法获取").Replace("%玩家魔力%", "无法获取").Replace("%玩家血量最大值%", "无法获取").Replace("%玩家魔力最大值%", "无法获取")
-                        .Replace("%玩家幸运值%", "无法获取").Replace("%玩家X坐标%", "无法获取").Replace("%玩家Y坐标%", "无法获取").Replace("%玩家所处区域%", "无法获取").Replace("%玩家死亡状态%", "无法获取").Replace("%重生倒计时%", "无法获取")
-                        .Replace("%当前环境%", "无法获取").Replace("%服务器在线列表%", online).Replace("%渔夫任务鱼完成%","未完成");
-
-
-
+                    text = text.Replace("%玩家组名%", "")
+                        .Replace("%玩家名%", "[服务器]")
+                        .Replace("%当前时间%", DateTime.Now.ToString("HH:mm"))
+                        .Replace("%当前服务器在线人数%", TShock.Utils.GetActivePlayerCount().ToString())
+                        .Replace("%渔夫任务鱼名称%", Tools.GetFisheMissionName())
+                        .Replace("%渔夫任务鱼ID%", Tools.GetFisheId().ToString())
+                        .Replace("%渔夫任务鱼地点%", Tools.GetFisheMissionPlace())
+                        .Replace("%地图名称%", Main.worldName)
+                        .Replace("%玩家血量%", "无法获取")
+                        .Replace("%玩家魔力%", "无法获取")
+                        .Replace("%玩家血量最大值%", "无法获取")
+                        .Replace("%玩家魔力最大值%", "无法获取")
+                        .Replace("%玩家幸运值%", "无法获取")
+                        .Replace("%玩家X坐标%", "无法获取")
+                        .Replace("%玩家Y坐标%", "无法获取")
+                        .Replace("%玩家所处区域%", "无法获取")
+                        .Replace("%玩家死亡状态%", "无法获取")
+                        .Replace("%重生倒计时%", "无法获取")
+                        .Replace("%当前环境%", "无法获取")
+                        .Replace("%服务器在线列表%", online)
+                        .Replace("%渔夫任务鱼完成%", "未完成");
                 }
-
                 return text;
             }
             var plr = TShock.Players[index];
             if (Config.config.useFormat)
             {
-                text = Config.config.formation.Replace("%玩家组名%", plr.Group.Name).Replace("%玩家名%", plr.Name).Replace("%当前时间%", DateTime.Now.ToString("HH:mm")).Replace("%内容%", text);
+                text = Config.config.formation
+                    .Replace("%玩家组名%", plr.Group.Name)
+                    .Replace("%玩家名%", plr.Name)
+                    .Replace("%当前时间%", DateTime.Now.ToString("HH:mm"))
+                    .Replace("%内容%", text);
             }
             if (Config.config.usePlaceholder)
             {
-                text = text.Replace("%玩家组名%", plr.Group.Name).Replace("%玩家名%", plr.Name).Replace("%当前时间%", DateTime.Now.ToString("HH:mm")).Replace("%当前服务器在线人数%", TShock.Utils.GetActivePlayerCount().ToString())
-                        .Replace("%渔夫任务鱼名称%", Tools.GetFisheMissionName()).Replace("%渔夫任务鱼ID%", Tools.GetFisheId().ToString()).Replace("%渔夫任务鱼地点%", Tools.GetFisheMissionPlace()).Replace("%地图名称%", Main.worldName)
-                        .Replace("%玩家血量%", plr.TPlayer.statLife.ToString()).Replace("%玩家魔力%", plr.TPlayer.statMana.ToString()).Replace("%玩家血量最大值%", plr.TPlayer.statLifeMax2.ToString()).Replace("%玩家魔力最大值%", plr.TPlayer.statManaMax2.ToString())
-                        .Replace("%玩家幸运值%", plr.TPlayer.luck.ToString()).Replace("%玩家X坐标%", plr.TileX.ToString()).Replace("%玩家Y坐标%", plr.TileY.ToString()).Replace("%玩家所处区域%", plr.CurrentRegion == null ? "空区域" : plr.CurrentRegion.Name).Replace("%玩家死亡状态%", plr.Dead ? "已死亡" : "存活").Replace("%重生倒计时%", plr.RespawnTimer == 0 ? "未死亡" : $"%plr.RespawnTimer%")
-                        .Replace("%当前环境%", plr.GetEnvString()).Replace("%服务器在线列表%", online).Replace("%渔夫任务鱼完成%", Main.anglerWhoFinishedToday.Exists((string x) => x == plr.Name) ? "已完成" : "未完成");
+                text = text.Replace("%玩家组名%", plr.Group.Name)
+                    .Replace("%玩家名%", plr.Name)
+                    .Replace("%当前时间%", DateTime.Now.ToString("HH:mm"))
+                    .Replace("%当前服务器在线人数%", TShock.Utils.GetActivePlayerCount().ToString())
+                    .Replace("%渔夫任务鱼名称%", Tools.GetFisheMissionName())
+                    .Replace("%渔夫任务鱼ID%", Tools.GetFisheId().ToString())
+                    .Replace("%渔夫任务鱼地点%", Tools.GetFisheMissionPlace())
+                    .Replace("%地图名称%", Main.worldName)
+                    .Replace("%玩家血量%", plr.TPlayer.statLife.ToString())
+                    .Replace("%玩家魔力%", plr.TPlayer.statMana.ToString())
+                    .Replace("%玩家血量最大值%", plr.TPlayer.statLifeMax2.ToString())
+                    .Replace("%玩家魔力最大值%", plr.TPlayer.statManaMax2.ToString())
+                    .Replace("%玩家幸运值%", plr.TPlayer.luck.ToString())
+                    .Replace("%玩家X坐标%", plr.TileX.ToString())
+                    .Replace("%玩家Y坐标%", plr.TileY.ToString())
+                    .Replace("%玩家所处区域%", plr.CurrentRegion == null ? "空区域" : plr.CurrentRegion.Name)
+                    .Replace("%玩家死亡状态%", plr.Dead ? "已死亡" : "存活").Replace("%重生倒计时%", plr.RespawnTimer == 0 ? "未死亡" : $"%plr.RespawnTimer%")
+                    .Replace("%当前环境%", plr.GetEnvString())
+                    .Replace("%服务器在线列表%", online)
+                    .Replace("%渔夫任务鱼完成%", Main.anglerWhoFinishedToday.Exists((string x) => x == plr.Name) ? "已完成" : "未完成");
             }
 
             return text;
         }
 
-        //插件卸载时执行的代码
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                
+
             }
             base.Dispose(disposing);
         }
@@ -228,9 +242,6 @@ namespace AnnouncementBoxPlus
 
         public static string GetFisheMissionName()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-
-
             int itemID = Main.anglerQuestItemNetIDs[Main.anglerQuest];
             string questText3 = Language.GetTextValue("AnglerQuestText.Quest_" + ItemID.Search.GetName(itemID));
             string[] splits = questText3.Split("\n\n".ToCharArray());
@@ -240,14 +251,12 @@ namespace AnnouncementBoxPlus
         }
         public static int GetFisheId()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-
             int itemID = Main.anglerQuestItemNetIDs[Main.anglerQuest];
             return itemID;
         }
+
         public static string GetFisheMissionPlace()
         {
-            StringBuilder stringBuilder = new StringBuilder();
             int itemID = Main.anglerQuestItemNetIDs[Main.anglerQuest];
             string questText3 = Language.GetTextValue("AnglerQuestText.Quest_" + ItemID.Search.GetName(itemID));
             string[] splits = questText3.Split("\n\n".ToCharArray());
@@ -261,14 +270,13 @@ namespace AnnouncementBoxPlus
         }
         public static bool CheckNPCActive(string npcId)
         {
-            int result = 0;
-            if (!int.TryParse(npcId, out result))
+            if (!int.TryParse(npcId, out var result))
             {
-                result = int.Parse(npcId);
+                return false;
             }
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < Main.npc.Length; i++)
             {
-                if (Main.npc[i].active && Main.npc[i].netID == result)
+                if (Main.npc[i] != null && Main.npc[i].active && Main.npc[i].netID == result)
                 {
                     return true;
                 }
@@ -278,7 +286,7 @@ namespace AnnouncementBoxPlus
 
         public static string GetEnvString(this TSPlayer plr)
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new();
             var envInfo = plr.GetEnvInfo();
             string envStr = (envInfo.Exists((string x) => x == "空岛") ? ("[c/00BFFF:" + string.Join(',', envInfo) + "]") : (envInfo.Exists((string x) => x == "地下") ? ("[c/FF8C00:" + string.Join(',', envInfo) + "]") : (envInfo.Exists((string x) => x == "洞穴") ? ("[c/A0522D:" + string.Join(',', envInfo) + "]") : ((!envInfo.Exists((string x) => x == "地狱")) ? ("[c/008000:" + string.Join(',', envInfo) + "]") : ("[c/FF0000:" + string.Join(',', envInfo) + "]")))));
             stringBuilder.Append(envStr);
