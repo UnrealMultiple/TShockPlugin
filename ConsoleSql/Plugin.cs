@@ -108,7 +108,7 @@ namespace ConsoleSql
 
                         foreach (DataColumn column in dt.Columns)
                         {
-                            sb.AppendFormat("| {0,-20}", column.ColumnName);
+                            sb.AppendFormat("| {0,-20} ", column.ColumnName);
                         }
                         sb.AppendLine("|");
 
