@@ -104,20 +104,20 @@ namespace ConsoleSql
                         sb.Append("+");
                         foreach (DataColumn column in dt.Columns)
                         {
-                            sb.Append("----------------------+");
+                            sb.Append("----------------------------+");
                         }
                         sb.AppendLine();
 
                         foreach (DataColumn column in dt.Columns)
                         {
-                            sb.AppendFormat("| {0,-20}", column.ColumnName);
+                            sb.AppendFormat("| {0,-26} ", column.ColumnName);
                         }
                         sb.AppendLine("|");
 
                         sb.Append("+");
                         foreach (DataColumn column in dt.Columns)
                         {
-                            sb.Append("----------------------+");
+                            sb.Append("----------------------------+");
                         }
                         sb.AppendLine();
 
@@ -126,14 +126,14 @@ namespace ConsoleSql
                         {
                             foreach (DataColumn column in dt.Columns)
                             {
-                                sb.AppendFormat("| {0,-20}", row[column]);
+                                sb.AppendFormat("| {0,-26} ", row[column]);
                             }
                             sb.AppendLine("|");
 
                             sb.Append("+");
                             foreach (DataColumn column in dt.Columns)
                             {
-                                sb.Append("----------------------+");
+                                sb.Append("----------------------------+");
                             }
                             sb.AppendLine();
                         }
