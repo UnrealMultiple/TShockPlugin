@@ -79,7 +79,7 @@ public class Shop : TerrariaPlugin
         {
             if (player.TPlayer.inventory[j].type == itemId)// 检查猪猪储钱罐
             {
-                itemCount += player.TPlayer.bank.item[j].stack;
+                itemCount += player.TPlayer.inventory[j].stack;
             }
         }
     }
