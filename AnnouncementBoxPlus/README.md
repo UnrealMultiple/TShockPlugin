@@ -17,11 +17,11 @@
 ## 配置
 
 ```json
-路径: tshock/AnnouncementBoxPlus.json
+配置路径: tshock/AnnouncementBoxPlus.json
 {
   "禁用广播盒": false,
   "广播内容仅触发者可见": true,
-  "广播范围(格)(0为无限制)": 50,
+  "广播范围(像素)(0为无限制)": 50,
   "启用广播盒权限(AnnouncementBoxPlus.Edit)": true,
   "启用插件广播盒发送格式": false,
   "广播盒发送格式": "%当前时间% %玩家组名% %玩家名%:%内容% #详细可查阅文档",
