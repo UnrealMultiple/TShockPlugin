@@ -1,12 +1,11 @@
 ﻿using Newtonsoft.Json;
-using TShockAPI;
 
 namespace AnnouncementBoxPlus
 {
     public class Config
     {
-        public  const string FilePath = "tshock/AnnouncementBoxPlus.json";
-        public static Config config= new();
+        public const string FilePath = "tshock/AnnouncementBoxPlus.json";
+        public static Config config = new();
         [JsonProperty("禁用广播盒")]
         public bool disabled { get; set; } = false;
         [JsonProperty("广播内容仅触发者可见")]
@@ -38,7 +37,7 @@ namespace AnnouncementBoxPlus
             }
         }
 
-        public static Config Read(string path=FilePath)
+        public static Config Read(string path = FilePath)
         {
             if (!File.Exists(path))
             {
@@ -54,7 +53,7 @@ namespace AnnouncementBoxPlus
                     return cf;
                 }
             }
-            
+
         }
     }
 }
