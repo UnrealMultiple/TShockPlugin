@@ -5,6 +5,9 @@ on:
     branches: 
       - master
       - cai
+  push:
+    branches-ignore:
+      - master
   workflow_dispatch:
 
 jobs:
