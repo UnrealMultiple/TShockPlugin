@@ -124,7 +124,7 @@ public class Shop : TerrariaPlugin
                 return;
             }
             var count = 1;
-            if (!int.TryParse(args.Parameters[2], out count))
+            if (args.Parameters.Count > 2 && !int.TryParse(args.Parameters[2], out count))
             {
                 args.Player.SendErrorMessage("你输入的购买数量不正确!");
                 return;
@@ -165,7 +165,7 @@ public class Shop : TerrariaPlugin
         }
         else if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "help")
         {
-            args.Player.SendInfoMessage("/shop buy [序号]");
+            args.Player.SendInfoMessage("/shop buy [序号] [数量]");
             args.Player.SendInfoMessage("/shop list [序号]");
         }
         else
