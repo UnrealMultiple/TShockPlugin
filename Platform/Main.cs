@@ -82,7 +82,7 @@ namespace Platform
             {
 
                 On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= OnGetData;
-                ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
+                ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreet);
             }
             base.Dispose(disposing);
         }
