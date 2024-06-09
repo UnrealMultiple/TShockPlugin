@@ -29,10 +29,10 @@ namespace Platform
         public override void Initialize()
         {
             On.OTAPI.Hooks.MessageBuffer.InvokeGetData += OnGetData;
-            ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
+            ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreet);
         }
 
-        private void OnJoin(JoinEventArgs args)
+        private void OnGreet(GreetPlayerEventArgs args)
         {
             if (TShock.Players[args.Who]==null || Platforms[args.Who]==null)
             {
