@@ -68,11 +68,11 @@ namespace ConsoleSql
                 args.Player.SendWarningMessage("常用SQL语句:");
                 args.Player.SendWarningMessage("->Sqlite列出表格:SELECT name FROM sqlite_master WHERE type='table';");
                 args.Player.SendWarningMessage("->Mysql列出表格:SHOW TABLES;");
-                args.Player.SendWarningMessage("->删除表格:DROP TABLE <表格名字>;");
-                args.Player.SendWarningMessage("->清空表格:DELETE FROM <表格名字>;");
+                args.Player.SendWarningMessage("->清空表格:DROP TABLE <表格名字>;");
+                args.Player.SendWarningMessage("->删除表格:DELETE FROM <表格名字>;");
+                args.Player.SendWarningMessage("->删除记录:DELETE FROM <表格名字> WHERE <条件>;");
                 args.Player.SendWarningMessage("->查询表格内容:SELECT * FROM <表格名字>;");
                 args.Player.SendWarningMessage("->查询表格内容扩展:SELECT * FROM <表格名字> WHERE <条件 > LIMIT <返回行数>;");
-                args.Player.SendWarningMessage("->删除记录:DELETE FROM <表格名字> WHERE <条件>;");
                 args.Player.SendWarningMessage("->修改数据表指定内容:UPDATE <表格名字> SET <更新列名> = '更新值' WHERE <条件>");
                 args.Player.SendWarningMessage("*详细教程：https://www.runoob.com/sql/sql-tutorial.html");
 
