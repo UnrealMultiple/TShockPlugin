@@ -29,12 +29,14 @@ jobs:
         run: |
           wget https://github.com/ACaiCat/PluginInfoLoaderr/releases/download/v1.0.0.0/linux-x64.zip
           unzip linux-x64.zip
-
+      
       - name: 运行TShock生成Plugins.json
+        timeout-minutes: 3
         run: |
+          cp /out/Release/*.dll linux-x64/ServerPlugins/
           cd linux-x64
           chmod +x TShock.Server
-          ./TShock.Server -additionalplugins /home/runner/work/TShockPlugin/TShockPlugin/out/Release/
+          ./TShock.Server
   
       - name: 移动Plugins.json
         run: |
