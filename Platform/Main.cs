@@ -14,7 +14,7 @@ namespace Platform
 
         public override string Name => "Platform(判断玩家设备)";
 
-        public override Version Version => new Version(1, 0, 0, 0);
+        public override Version Version => new Version(1, 1, 0, 0);
 
         public Platform(Main game)
         : base(game)
@@ -29,11 +29,15 @@ namespace Platform
         public override void Initialize()
         {
             On.OTAPI.Hooks.MessageBuffer.InvokeGetData += OnGetData;
-            ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
+            ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreet);
         }
 
-        private void OnJoin(JoinEventArgs args)
+        private void OnGreet(GreetPlayerEventArgs args)
         {
+            if (TShock.Players[args.Who]==null || Platforms[args.Who]==null)
+            {
+                return;
+            }
             TShock.Log.ConsoleInfo($"[Platform]玩家{TShock.Players[args.Who].Name}游玩平台:{Platforms[args.Who]}");
 
         }
@@ -41,21 +45,25 @@ namespace Platform
 
         private bool OnGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
         {
-            if (messageType == 1)
+            try
             {
-                Platforms[instance.whoAmI] = PlatformType.PC;
-            }
+                if (messageType == 1)
+                {
+                    Platforms[instance.whoAmI] = PlatformType.PC;
+                }
 
-            if (messageType == 150)
-            {
-                instance.ResetReader();
-                instance.reader.BaseStream.Position = start + 1;
-                var PlayerSlot = instance.reader.ReadByte();
-                var Platform = instance.reader.ReadByte();
-                Platforms[instance.whoAmI] = (PlatformType)Platform;
-                //Console.WriteLine($"[PE]PlayerSlot={PlayerSlot},Plat={Platform}");
+                if (messageType == 150)
+                {
+                    instance.ResetReader();
+                    instance.reader.BaseStream.Position = start + 1;
+                    var PlayerSlot = instance.reader.ReadByte();
+                    var Platform = instance.reader.ReadByte();
+                    Platforms[instance.whoAmI] = (PlatformType)Platform;
+                    //Console.WriteLine($"[PE]PlayerSlot={PlayerSlot},Plat={Platform}");
+                }
             }
-
+            catch { }
+            
             return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
         }
         public enum PlatformType : byte // TypeDefIndex: 5205
@@ -74,7 +82,7 @@ namespace Platform
             {
 
                 On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= OnGetData;
-                ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
+                ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreet);
             }
             base.Dispose(disposing);
         }

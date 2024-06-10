@@ -44,6 +44,7 @@ public class SpawnProjectile
         projectile.identity = num;
         projectile.gfxOffY = 0f;
         projectile.stepSpeed = 1f;
+        projectile.active = true;
         projectile.wet = Collision.WetCollision(projectile.position, projectile.width, projectile.height);
         if (projectile.ignoreWater)
         {
@@ -264,7 +265,7 @@ public class SpawnProjectile
         {
             Main.player[Owner].TryUpdateChannel(projectile);
         }
-        if (timeLeft >= 0)
+        if (timeLeft > 0)
         {
             projectile.timeLeft = timeLeft;
         }
