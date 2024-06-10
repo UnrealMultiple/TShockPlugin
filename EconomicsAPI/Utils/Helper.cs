@@ -51,7 +51,7 @@ public class Helper
         }
         return result;
     }
-  
+
     /// <summary>
     /// 
     /// </summary>
@@ -63,7 +63,7 @@ public class Helper
     public static Dictionary<MethodInfo, (object?, T)> MatchAssemblyMethodByAttribute<T>(Assembly assembly, Type result, params Type[] paramType) where T : Attribute
     {
         var Modules = new Dictionary<MethodInfo, (object?, T)>();
-        var flag = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public;
+        var flag = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
         Dictionary<Type, MethodInfo[]> mapping = assembly.GetExportedTypes()
             .Where(x => x.IsDefined(typeof(RegisterSeries)))
             .Select(type => (type, type.GetMethods(flag)
