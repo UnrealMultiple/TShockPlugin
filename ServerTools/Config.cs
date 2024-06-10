@@ -47,6 +47,9 @@ public class Config
     [JsonProperty("禁止双箱")]
     public bool KeepOpenChest = true;
 
+    [JsonProperty("禁止双饰品")]
+    public bool KeepArmor = true;
+
     [JsonProperty("死亡倒计时格式")]
     public string DeadFormat = "你还有{0}秒复活!";
 
