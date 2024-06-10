@@ -33,7 +33,7 @@ jobs:
       - name: 运行TShock生成Plugins.json
         timeout-minutes: 3
         run: |
-          cp /out/Release/*.dll linux-x64/ServerPlugins/
+          cp ./out/Release/*.dll ./linux-x64/ServerPlugins/
           cd linux-x64
           chmod +x TShock.Server
           ./TShock.Server
