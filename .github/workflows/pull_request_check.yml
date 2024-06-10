@@ -1,4 +1,4 @@
-name: Plugin Build
+name: 拉取请求检查
 
 on:
   pull_request:

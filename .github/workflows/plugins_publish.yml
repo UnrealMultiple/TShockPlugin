@@ -1,4 +1,4 @@
-name: NET
+name: 插件发布
 
 on:
   push:
