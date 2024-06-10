@@ -8,7 +8,7 @@ using TShockAPI.Hooks;
 namespace Economics.Regain;
 
 [ApiVersion(2, 1)]
-public class RegainPlugin : TerrariaPlugin
+public class Regain : TerrariaPlugin
 {
     public override string Author => "少司命";
 
@@ -20,7 +20,7 @@ public class RegainPlugin : TerrariaPlugin
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Regain.json");
 
-    public RegainPlugin(Main game) : base(game)
+    public Regain(Main game) : base(game)
     {
     }
 

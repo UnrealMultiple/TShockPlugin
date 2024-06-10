@@ -4,7 +4,8 @@ using TShockAPI;
 
 namespace EconomicsAPI;
 
-internal class Command
+[RegisterSeries]
+public class Command
 {
     #region 货币查询
     [CommandMap("查询", EconomicsPerm.QueryCurrency)]

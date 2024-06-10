@@ -3,6 +3,7 @@ using TShockAPI;
 
 namespace Economics.Skill;
 
+[RegisterSeries]
 public class Command
 {
     [CommandMap("skill", Permission.SkillUse)]

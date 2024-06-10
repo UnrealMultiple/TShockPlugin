@@ -4,6 +4,7 @@ using TShockAPI;
 
 namespace Economics.Task;
 
+[RegisterSeries]
 public class Command
 {
     [CommandMap("task", Permission.TaskUse)]
