@@ -121,6 +121,7 @@
 | [HouseRegion](HouseRegion/README.md)                             |            圈地插件            |                                                                                            |
 | [SignInSign](SignInSign/README.md)                               |         告示牌登录插件         |                                             无                                             |
 | [WeaponPlusCostCoin](WeaponPlusCostCoin/README.md)               |         武器强化钱币版         |                                             无                                             |
+| [WeaponPlusCostCoin](Economics.WeaponPlus/README.md)               |         武器强化EC版         |                                             无                                             |
 | [Respawn](Respawn/README.md)                                     |            原地复活            |                                             无                                             |
 | [EndureBoost](EndureBoost/README.md)                             |      物品一定数量后长时间buff   |                                             无                                             |
 | [AnnouncementBoxPlus](AnnouncementBoxPlus/README.md)             |      广播盒功能强化             |                                             无                                             |
