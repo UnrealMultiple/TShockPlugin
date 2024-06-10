@@ -46,7 +46,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          if [ "$REPO" = "https://github.com/Controllerdestiny/TShockPlugin.git" ]; then
+          if [ "$GITHUB_ACTION_REPOSITORY" = "Controllerdestiny/TShockPlugin" ]; then
             git add Plugins.json
             if git diff --staged --quiet; then
               echo "跳过更新：没有插件版本变化"
