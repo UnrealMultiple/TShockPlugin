@@ -17,7 +17,7 @@ namespace UserCheck
         public override string Description => "更好的Help";
 
         public override string Name => "Help+(更好的Help)";
-        public override Version Version => new Version(1, 0, 0, 0);
+        public override Version Version => new Version(1,1 , 0, 0);
 
         public HelpPlus(Main game)
         : base(game)
@@ -92,7 +92,6 @@ namespace UserCheck
         }
         private bool MessageBuffer_InvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
         {
-            //Console.WriteLine(1);
             if (messageType == 82)
             {
 
@@ -100,11 +99,8 @@ namespace UserCheck
                 instance.reader.BaseStream.Position = start + 1;
 
                 ushort moduleId = instance.reader.ReadUInt16();
-                //LoadNetModule is now used for sending chat text.
-                //Read the module ID to determine if this is in fact the text module
                 if (moduleId == Terraria.Net.NetManager.Instance.GetId<Terraria.GameContent.NetModules.NetTextModule>())
                 {
-                    //Then deserialize the message from the reader
                     Terraria.Chat.ChatMessage msg = Terraria.Chat.ChatMessage.Deserialize(instance.reader);
                     if (msg.CommandId._name != "Help")
                     {
@@ -124,7 +120,6 @@ namespace UserCheck
                             break;
                         }
                     }
-                    //player.Account.VerifyPassword("114514");
                     string cmdName;
                     if (index < 0)
                         cmdName = cmdText.ToLower();
@@ -218,6 +213,7 @@ namespace UserCheck
                     args.Player.SendInfoMessage("*此命令只能游戏内执行");
                 if (!command.DoLog)
                     args.Player.SendInfoMessage("*此命令不记录命令参数");
+                args.Player.SendInfoMessage("*本插件只能查询主命令权限，详细权限请使用/whynot查看!");
             }
         }
 
