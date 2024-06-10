@@ -46,7 +46,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add Plugins.json
           git commit -m "自动更新Plugins.json [skip ci]"
           git push
 
