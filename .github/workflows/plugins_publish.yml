@@ -24,7 +24,7 @@ jobs:
         run: |
           dotnet build Plugin.sln -c Release
 
-      - name: Initialize Python
+      - name: 初始化Python
         uses: actions/setup-python@v3
         with:
           python-version: '3.x'
@@ -39,7 +39,7 @@ jobs:
         run: |
           sudo apt-get install -y texlive-xetex
 
-      - name: Package
+      - name: 打包
         run: 
           sudo python BuildHelper.py Release
         env:
