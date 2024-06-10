@@ -23,6 +23,32 @@ jobs:
       - name: 构建插件
         run: |
           dotnet build Plugin.sln -c Release
+                
+  
+      - name: 下载PluginInfoLoader
+        run: |
+          wget https://github.com/ACaiCat/PluginInfoLoaderr/releases/download/v1.0.0.0/linux-x64.zip
+          unzip linux-x64.zip
+      
+      - name: 运行TShock生成Plugins.json
+        timeout-minutes: 3
+        run: |
+          cp ./out/Release/*.dll ./linux-x64/ServerPlugins/
+          cd linux-x64
+          chmod +x TShock.Server
+          ./TShock.Server
+  
+      - name: 移动Plugins.json
+        run: |
+          mv linux-x64/Plugins.json ./
+
+      - name: 自动更新Plugins.json
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add Plugins.json
+          git commit -m "自动更新Plugins.json [skip ci]"
+          git push
 
       - name: 初始化Python
         uses: actions/setup-python@v3
