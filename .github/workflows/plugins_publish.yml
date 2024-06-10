@@ -33,6 +33,7 @@ jobs:
       - name: 运行TShock生成Plugins.json
         run: |
           cd linux-x64
+          chmod +x TShock.Server
           ./TShock.Server -additionalplugins ./out/Release/
   
       - name: 移动Plugins.json
