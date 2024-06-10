@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
 using Terraria;
@@ -71,6 +72,7 @@ namespace ServerTools
             GetDataHandlers.ItemDrop.Register(OnItemDrop);
             GetDataHandlers.KillMe.Register(KillMe);
             GetDataHandlers.PlayerSpawn.Register(OnPlayerSpawn);
+            GetDataHandlers.PlayerUpdate.Register(OnUpdate);
             GeneralHooks.ReloadEvent += (_) => LoadConfig();
             #endregion
             CmdHook = new Hook(typeof(Commands).GetMethod(nameof(Commands.HandleCommand)), CommandHook);
@@ -82,6 +84,21 @@ namespace ServerTools
             #endregion
             Timer += OnUpdatePlayerOnline;
             HandleCommandLine(Environment.GetCommandLineArgs());
+        }
+
+        private void OnUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
+        {
+            if (!Config.KeepArmor)
+                return;
+            var ArmorGroup = e.Player.TPlayer.armor
+                .GroupBy(x => x.netID)
+                .Where(x => x.Count() > 2)
+                .Select(x => x.First());
+            foreach (var keepArmor in ArmorGroup)
+            {
+                e.Player.SetBuff(156, 180, true);
+                TShock.Utils.Broadcast($"玩家 [{e.Player.Name}] 因多饰品被冻结3秒，请清理多饰品装备[i:{keepArmor.netID}]", Color.DarkRed);
+            }
         }
 
         private static void ViewAccountInfo(CommandArgs args)
