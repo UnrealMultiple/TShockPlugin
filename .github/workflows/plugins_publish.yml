@@ -1,4 +1,4 @@
-name: NET
+name: 插件发布
 
 on:
   push:
@@ -7,58 +7,52 @@ on:
 jobs:
   Build:
     runs-on: ubuntu-latest
-    
+    name: 构建插件
     steps:
       - uses: actions/checkout@v4
         with:
            submodules: 'recursive'
            
-      - name: Initialize .NET 6
+      - name: 初始化.NET 6
         uses: actions/setup-dotnet@v3
         env:
           DOTNET_CLI_UI_LANGUAGE: zh-CN
         with:
           dotnet-version: 6.0.x
           
-      - name: Build Plugin
+      - name: 构建插件
         run: |
           dotnet build Plugin.sln -c Release
 
-      - name: Initialize Python
+      - name: 初始化Python
         uses: actions/setup-python@v3
         with:
           python-version: '3.x'
           
-      - name: Install Pandoc
+      - name: 安装Pandoc
         run: 
           sudo apt-get install pandoc
         env:
           PYTHONIOENCODING: 'utf-8'
         
-      - name: Install TeX Live
+      - name: 安装TeX Live
         run: |
           sudo apt-get install -y texlive-xetex
 
-      - name: Package
+      - name: 打包
         run: 
           sudo python BuildHelper.py Release
         env:
           PYTHONIOENCODING: 'utf-8'
       
-      - name: Temporary Upload Plugin
-        uses: actions/upload-artifact@v3
-        with:
-          name: Plugins
-          path: Plugins.zip
-
-      - name: Prepare Release Files
+      - name: 上传临时插件包
         uses: actions/upload-artifact@v3
         with:
           name: Plugins
           path: Plugins.zip
           
   LatestRelease:
-    name: Latest Release
+    name: 发布插件
     runs-on: ubuntu-latest
     needs: Build
     permissions:
@@ -67,13 +61,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Get Changelog
+      - name: 获取更新日志
         id: external_changelog_second
         uses: mikepenz/release-changelog-builder-action@v4
         with:
           configuration: "Config/Config_Rep.json"
             #cache: ${{ steps.external_changelog_collect.outputs.cache }}
-      - name: Echo External Repo Configuration Changelog
+      - name: 生成更新日志
         env:
           CHANGELOG: ${{ steps.external_changelog_second.outputs.changelog }}
           CHANGELOG_SECOND: ${{ steps.external_changelog_second.outputs.changelog }}
@@ -85,20 +79,20 @@ jobs:
           echo "Second:"
           echo "$CHANGELOG_SECOND"
           
-      - name: Update Tag
+      - name: 更新发布标签
         run: |
           git tag -f V1.0.0.0
           git push -f origin V1.0.0.0
-      - name: Download Artifacts
+      - name: 下载临时插件包
         uses: actions/download-artifact@v3
         with:
           name: Plugins
           path: ./bin
-      - name: Update Latest Release
+      - name: 发布插件包
         uses: ncipollo/release-action@v1
         with:
           tag: V1.0.0.0
-          name: "Latest Version"
+          name: "最新版本"
           body: "# 插件下载和更新日志\n###  📅 每次仓库更新，我们都会在这里发布最新的Release。请注意，这个仓库只有一个Release，所以你总是能在这里找到最新的版本。\n### 📖文档已经以PDF的形式附在插件包中。更推荐你直接在仓库主页中的[插件列表](https://github.com/Controllerdestiny/TShockPlugin?tab=readme-ov-file#%E5%B7%B2%E6%94%B6%E9%9B%86%E6%8F%92%E4%BB%B6)，点击插件名跳转到每个插件的详细文档。\n###  📦 你可以在页面的`最底部↓↓↓`找到插件包的下载链接。下载完成后，你需要使用`ZIP压缩工具`进行解压。\n> [!CAUTION]\n>**请你`详细`的看`上面的说明`，不要到处问`插件怎么用`、`ZIP如何解压`、`PDF怎么打开`**\n<details>\n<summary>更新日志</summary>\n\n${{steps.external_changelog_second.outputs.changelog}}</details>"
           artifacts: |
             ./bin/*
@@ -108,7 +102,7 @@ jobs:
       
          
   ClearTempArtifacts:
-    name: Clear Temp Artifacts
+    name: 清理临时文件
     if: always()
     runs-on: ubuntu-latest
     needs:
