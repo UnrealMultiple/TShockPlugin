@@ -92,7 +92,7 @@ namespace ServerTools
                 return;
             var ArmorGroup = e.Player.TPlayer.armor
                 .GroupBy(x => x.netID)
-                .Where(x => x.Count() > 2)
+                .Where(x => x.Count() > 1)
                 .Select(x => x.First());
             foreach (var keepArmor in ArmorGroup)
             {
