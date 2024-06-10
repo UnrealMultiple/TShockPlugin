@@ -1,4 +1,4 @@
-using Terraria;
+ï»¿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -9,7 +9,7 @@ namespace RandReSpawn
     {
         private Random rand = new();
         public override string Name => "RandRespawn";
-        public override string Author => "1413,¸ÎµÛÎõ¶÷ÊÊÅä1449";
+        public override string Author => "1413,è‚å¸ç†™æ©é€‚é…1449";
         public MainPlugin(Main game) : base(game)
         {
 
