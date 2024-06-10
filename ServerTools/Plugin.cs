@@ -57,8 +57,8 @@ namespace ServerTools
             #region 指令
             Commands.ChatCommands.Add(new Command(Permissions.clear, Clear, "clp"));
             Commands.ChatCommands.Add(new Command("servertool.query.exit", Exit, "退出"));
-            Commands.ChatCommands.Add(new Command("servertool.query.wall", WallQ, "查花苞"));
-            Commands.ChatCommands.Add(new Command("servertool.query.wall", RWall, "移除花苞"));
+            Commands.ChatCommands.Add(new Command("servertool.query.wall", WallQ, "查花苞","scp"));
+            Commands.ChatCommands.Add(new Command("servertool.query.wall", RWall, "移除花苞","rcp"));
             Commands.ChatCommands.Add(new Command("servertool.user.kick", SelfKick, "自踢"));
             Commands.ChatCommands.Add(new Command("servertool.user.kill", SelfKill, "自杀"));
             Commands.ChatCommands.Add(new Command("servertool.user.ghost", Ghost, "ghost"));
