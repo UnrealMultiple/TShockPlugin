@@ -34,7 +34,7 @@ jobs:
         run: |
           cd linux-x64
           chmod +x TShock.Server
-          ./TShock.Server -additionalplugins ./out/Release/
+          ./TShock.Server -additionalplugins /home/runner/work/TShockPlugin/TShockPlugin/out/Release/
   
       - name: 移动Plugins.json
         run: |
