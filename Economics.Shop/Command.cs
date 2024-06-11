@@ -6,7 +6,7 @@ using Economics.RPG.Extensions;
 namespace Economics.Shop;
 
 [RegisterSeries]
-internal class Command
+public class Command
 {
     [CommandMap("shop", "economics.shop")]
     public static void CShop(CommandArgs args)
