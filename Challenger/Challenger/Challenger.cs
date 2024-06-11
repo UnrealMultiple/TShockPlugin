@@ -3,6 +3,7 @@ using Google.Protobuf.WellKnownTypes;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using OTAPI;
+using System.Configuration;
 using System.Text;
 using Terraria;
 using Terraria.GameContent.Events;
@@ -34,7 +35,7 @@ namespace Challenger
 
         public override string Name => "Challenger";
 
-        public override Version Version => new Version(1, 0, 1, 0);
+        public override Version Version => new Version(1, 0, 1, 1);
 
         public Challenger(Main game)
             : base(game)
@@ -1136,13 +1137,17 @@ namespace Challenger
         {
             if (config.RoyalGel && config.RoyalGelList.Length > 0)
             {
-                var List = config.RoyalGelList[Main.rand.Next(config.RoyalGelList.Length)];
-
-                if (Timer % 120 == 0)
+                if (Main.rand.Next(1, 101) <= config.RoyalGel_rand)
                 {
-                    int num = Item.NewItem(null, player.Center + new Vector2(Main.rand.Next(-860, 861), -600f), new Vector2(36f, 36f), List, 1, false, 0, false, false);
-                    Main.item[num].color = new Color(Main.rand.Next(256), Main.rand.Next(256), Main.rand.Next(256));
-                    TSPlayer.All.SendData((PacketTypes)88, null, num, 1f, 0f, 0f, 0);
+                    var itemList = config.RoyalGelList;
+                    var list = itemList[Main.rand.Next(itemList.Length)];
+
+                    if (Timer % config.RoyalGel_Timer == 0)
+                    {
+                        int num = Item.NewItem(null, player.Center + new Vector2(Main.rand.Next(-860, 861), -600f), new Vector2(36f, 36f), list, 1, false, 0, false, false);
+                        Main.item[num].color = new Color(Main.rand.Next(256), Main.rand.Next(256), Main.rand.Next(256));
+                        TSPlayer.All.SendData((PacketTypes)88, null, num, 1f, 0f, 0f, 0);
+                    }
                 }
             }
         }
