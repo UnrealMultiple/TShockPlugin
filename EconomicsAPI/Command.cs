@@ -18,7 +18,7 @@ public class Command
     #endregion
 
     #region bank 命令
-    [CommandMap("bank", EconomicsPerm.CurrencyAdmin, EconomicsPerm.PayCurrency)]
+    [CommandMap("bank", EconomicsPerm.CurrencyAdmin)]
     public void Bank(CommandArgs args)
     {
         if (args.Parameters.Count == 3)
