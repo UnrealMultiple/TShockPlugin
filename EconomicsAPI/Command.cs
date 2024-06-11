@@ -21,6 +21,11 @@ public class Command
     [CommandMap("bank", EconomicsPerm.CurrencyAdmin, EconomicsPerm.PayCurrency)]
     public void Bank(CommandArgs args)
     {
+        if (args.Parameters.Count > 0 && args.Parameters[0].ToLower() != "pay" && !args.Player.HasPermission(EconomicsPerm.CurrencyAdmin))
+        {
+             args.Player.SendErrorMessage("你没有权限执行此命令!");
+             return;
+        }
         if (args.Parameters.Count == 3)
         {
             var name = args.Parameters[1];
@@ -55,12 +60,16 @@ public class Command
                             return;
                         }
                         if (Economics.CurrencyManager.DelUserCurrency(args.Player.Name, num))
-                        {
-                            Economics.CurrencyManager.AddUserCurrency(name, num);
-                            args.Player.SendSuccessMessage($"成功转账给`{name}` {num} 个{Economics.Setting.CurrencyName}");
-                            return;
-                        }
-                        break;
+                         {
+                             Economics.CurrencyManager.AddUserCurrency(name, num);
+                             args.Player.SendSuccessMessage($"成功转账给`{name}` {num} 个{Economics.Setting.CurrencyName}");
+                             return;
+                         }
+                         else
+                         {
+                             args.Player.SendSuccessMessage($"你的{Economics.Setting.CurrencyName}不足，无法转账!");
+                             return;
+                         }
                     }
 
                 default:
