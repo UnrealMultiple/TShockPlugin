@@ -15,6 +15,7 @@ namespace Challenger
             var any = Challenger.config.EnableSpectreArmorEffect_3;
             var any2 = Challenger.config.EnableSpectreArmorEffect_4;
             var any3 = Challenger.config.EnableSpectreArmorEffect_5;
+            var any5 = Challenger.config.EnableSpectreArmorEffect_9;
             if (lable == 1)
             {
                 Vector2 one = Vector2.One;
@@ -25,7 +26,7 @@ namespace Challenger
                 proj.Center = Main.player[proj.owner].Center + one;
                 Update();
                 NPC val3 = Challenger.NearestHostileNPC(proj.Center, 1000000f);
-                if (Main.rand.Next(40) == 0 && val3 != null)
+                if (Main.rand.Next(40) == 0 && val3 != null && Challenger.Timer % any5 == 0)
                 {
                     val2 = val3.Center - proj.Center;
                     float num = ((Vector2)val2).LengthSquared() / 1000000f;
