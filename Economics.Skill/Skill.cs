@@ -104,7 +104,8 @@ public class Skill : TerrariaPlugin
 
     private void OnKillNpc(PlayerKillNpcArgs args)
     {
-        PlayerSparkSkillHandler.Adapter(args.Player, Enumerates.SkillSparkType.Kill);
+        if (args.Player != null)
+            PlayerSparkSkillHandler.Adapter(args.Player, Enumerates.SkillSparkType.Kill);
     }
 
     private void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
