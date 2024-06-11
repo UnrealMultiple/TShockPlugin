@@ -134,9 +134,12 @@ public class Economics : TerrariaPlugin
         if (TimerCount % (60 * Setting.SaveTime) == 0)
         {
             CurrencyManager.UpdataAll();
-            foreach (var npc in Strike.Keys.Where(npc => npc == null || !npc.active || npc.life <= 0).ToList())
+            for (int i = 0; i < Strike.Count; i++)
             {
-                Strike.Remove(npc);
+                var (npc, _) = Strike.ElementAt(i);
+                if (!npc.active || npc.life <= 0)
+                    Strike.Remove(npc);
+            
             }
         }
     }
