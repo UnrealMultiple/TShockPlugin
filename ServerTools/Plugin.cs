@@ -91,8 +91,9 @@ namespace ServerTools
             if (!Config.KeepArmor || e.Player.HasPermission("servertool.armor.white"))
                 return;
             var ArmorGroup = e.Player.TPlayer.armor
+                .Where(x => x.netID != 0)
                 .GroupBy(x => x.netID)
-                .Where(x => x.netID != 0 && x.Count() > 1)
+                .Where(x.Count() > 1)
                 .Select(x => x.First());
             foreach (var keepArmor in ArmorGroup)
             {
