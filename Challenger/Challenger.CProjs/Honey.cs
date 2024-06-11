@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Google.Protobuf.WellKnownTypes;
+using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
 
@@ -16,6 +17,7 @@ namespace Challenger
             var any4 = Challenger.config.HivePack_4;
             var any5 = Challenger.config.HivePack_5;
             var any6 = Challenger.config.HivePack_6;
+            var any8 = Challenger.config.HivePack_Time2;
 
             if (lable == 1)
             {
@@ -60,15 +62,18 @@ namespace Challenger
                     }
                 }
             }
-            else if (lable == 2 && proj.active && proj.timeLeft < ai[0] - 60f)
+            else if (lable == 2 && proj.active && proj.timeLeft < ai[0] - 60)
             {
-                int num2 = Collect.MyNewProjectile(proj.GetProjectileSource_FromThis(), proj.Center, Vector2.Zero, any4, any5, any6, proj.owner);
-                Main.projectile[num2].usesLocalNPCImmunity = true;
-                Update(num2);
-                CKill();
-                if (!Challenger.honey.TryAdd(proj.whoAmI, 0))
+                if (Challenger.Timer % any8 == 0)
                 {
-                    Challenger.honey[proj.whoAmI] = 0;
+                    int num2 = Collect.MyNewProjectile(proj.GetProjectileSource_FromThis(), proj.Center, Vector2.Zero, any4, any5, any6, proj.owner);
+                    Main.projectile[num2].usesLocalNPCImmunity = true;
+                    Update(num2);
+                    CKill();
+                    if (!Challenger.honey.TryAdd(proj.whoAmI, 0))
+                    {
+                        Challenger.honey[proj.whoAmI] = 0;
+                    }
                 }
             }
         }
@@ -84,6 +89,7 @@ namespace Challenger
             honey.ai[0] = honey.proj.timeLeft;
             Collect.cprojs[num] = honey;
             Update(num);
+
             return honey;
         }
     }
