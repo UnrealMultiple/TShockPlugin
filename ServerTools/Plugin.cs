@@ -88,7 +88,7 @@ namespace ServerTools
 
         private void OnUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
         {
-            if (!Config.KeepArmor)
+            if (!Config.KeepArmor || e.Player.HasPermission("servertool.armor.white"))
                 return;
             var ArmorGroup = e.Player.TPlayer.armor
                 .GroupBy(x => x.netID)

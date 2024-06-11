@@ -5,11 +5,18 @@ using TShockAPI;
 
 namespace Economics.RPG;
 
-internal class Command
+
+[RegisterSeries]
+public class Command
 {
     [CommandMap("rank", "economics.rpg.rank")]
     public void Rank(CommandArgs args)
     {
+        if (!args.Player.IsLoggedIn)
+        {
+            args.Player.SendErrorMessage("你必须登陆才能使用此命令!");
+            return;
+        }
         var level = RPG.PlayerLevelManager.GetLevel(args.Player.Name);
         if (level.RankLevels.Count > 1)
         {
@@ -78,6 +85,11 @@ internal class Command
     [CommandMap("重置等级", "economics.rpg.reset")]
     public void ResetLevel(CommandArgs args)
     {
+        if (!args.Player.IsLoggedIn)
+        {
+            args.Player.SendErrorMessage("你必须登陆才能使用此命令!");
+            return;
+        }
         RPG.PlayerLevelManager.ResetPlayerLevel(args.Player.Name);
         args.Player.SendSuccessMessage("您已成功重置等级!");
         foreach (var cmd in RPG.Config.ResetCommand)
