@@ -35,7 +35,7 @@ namespace Challenger
 
         public override string Name => "Challenger";
 
-        public override Version Version => new Version(1, 0, 1, 1);
+        public override Version Version => new Version(1, 0, 1, 2);
 
         public Challenger(Main game)
             : base(game)
@@ -1408,27 +1408,38 @@ namespace Challenger
             {
                 return;
             }
+
             try
             {
-                if (Collect.cplayers[args.Who] != null)
+                var playerData = Collect.cplayers[args.Who];
+                if (playerData != null)
                 {
-                    if (Collect.cplayers[args.Who].ExtraLife > 0)
+                    if (playerData.ExtraLife > 0)
                     {
-                        Player obj = Main.player[args.Who];
-                        obj.statLifeMax -= Collect.cplayers[args.Who].ExtraLife;
-                        NetMessage.SendData(16, -1, -1, NetworkText.Empty, args.Who, 0f, 0f, 0f, 0, 0, 0);
+                        var player = Main.player[args.Who];
+                        if (player != null)
+                        {
+                            player.statLifeMax -= playerData.ExtraLife;
+                            NetMessage.SendData(16, -1, -1, NetworkText.Empty, args.Who, 0f, 0f, 0f, 0, 0, 0);
+                        }
                     }
-                    if (Collect.cplayers[args.Who].ExtraMana > 0)
+
+                    if (playerData.ExtraMana > 0)
                     {
-                        Player obj2 = Main.player[args.Who];
-                        obj2.statManaMax -= Collect.cplayers[args.Who].ExtraMana;
-                        NetMessage.SendData(42, -1, -1, NetworkText.Empty, args.Who, 0f, 0f, 0f, 0, 0, 0);
+                        var player2 = Main.player[args.Who];
+                        if (player2 != null)
+                        {
+                            player2.statManaMax -= playerData.ExtraMana;
+                            NetMessage.SendData(42, -1, -1, NetworkText.Empty, args.Who, 0f, 0f, 0f, 0, 0, 0);
+                        }
                     }
+
                     for (int i = 0; i < 1000; i++)
                     {
-                        if (Collect.cprojs[i] != null && Collect.cprojs[i].isActive)
+                        var proj = Collect.cprojs[i];
+                        if (proj != null && proj.isActive)
                         {
-                            Collect.cprojs[i].CKill();
+                            proj.CKill();
                         }
                     }
                 }
