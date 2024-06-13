@@ -278,6 +278,10 @@ namespace Challenger
 
         [JsonProperty("皇家凝胶是否下物品雨", Order = 1)]
         public bool RoyalGel = true;
+        [JsonProperty("皇家凝胶物品雨随机概率", Order = 1)]
+        public int RoyalGel_rand = 25;
+        [JsonProperty("皇家凝胶物品雨间隔/帧", Order = 1)]
+        public int RoyalGel_Timer = 180;
         [JsonProperty("皇家凝胶物品雨表", Order = 1)]
         public int[] RoyalGelList { get; set; } = new int[] { 75 };
 
