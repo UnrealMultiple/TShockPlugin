@@ -6,6 +6,7 @@ using EconomicsAPI.Extensions;
 using EconomicsAPI.Model;
 using EconomicsAPI.Utils;
 using Microsoft.Xna.Framework;
+using System.Collections.Concurrent;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -26,7 +27,7 @@ public class Economics : TerrariaPlugin
 
     public readonly static List<TSPlayer> ServerPlayers = new();
 
-    private readonly Dictionary<NPC, Dictionary<Player, float>> Strike = new();
+    private readonly ConcurrentDictionary<NPC, Dictionary<Player, float>> Strike = new();
 
     public static string SaveDirPath => Path.Combine(TShock.SavePath, "Economics");
 
@@ -118,6 +119,8 @@ public class Economics : TerrariaPlugin
             {
                 foreach (var ply in ServerPlayers)
                 {
+                    if (ply == null || !ply.Active)
+                        continue;
                     Ping(ply, data =>
                     {
                         var status = new PlayerCountertopArgs()
@@ -138,15 +141,15 @@ public class Economics : TerrariaPlugin
             {
                 var (npc, _) = Strike.ElementAt(i);
                 if (!npc.active || npc.life <= 0)
-                    Strike.Remove(npc);
-            
+                    Strike.Remove(npc, out var _);
             }
+           
         }
     }
 
     private void OnStrike(NpcStrikeEventArgs args)
     {
-        if (Strike.TryGetValue(args.Npc, out var data))
+        if (Strike.TryGetValue(args.Npc, out var data) && data != null)
         {
             if (data.TryGetValue(args.Player, out float damage))
             {
@@ -190,7 +193,7 @@ public class Economics : TerrariaPlugin
                 }
             }
         }
-        Strike.Remove(args.npc);
+        Strike.Remove(args.npc, out var _);
     }
 
     public void Ping(TSPlayer player, Action<PingData> action)
