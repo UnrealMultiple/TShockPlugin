@@ -1,4 +1,10 @@
-﻿[
+[
+  {
+    "Name": "ProgressControl",
+    "Version": "1.0.0.5",
+    "Author": "枳 羽学",
+    "Description": "计划书（自动化控制服务器）"
+  },
   {
     "Name": "Platform(判断玩家设备)",
     "Version": "1.1.0.0",
@@ -37,7 +43,7 @@
   },
   {
     "Name": "AutoTeamPlus",
-    "Version": "2.4",
+    "Version": "2.3",
     "Author": "十七改，肝帝熙恩改",
     "Description": "自动队伍"
   },
