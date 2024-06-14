@@ -61,6 +61,10 @@ namespace DeathDrop
 
             if (Config.EnableRandomDrops)
             {
+                if (GetRandomItemIdFromGlobalConfig(Config) == 0)
+                {
+                    return;
+                }
                 int itemId = GetRandomItemIdFromGlobalConfig(Config);
 
                 if (Candorp(Config.RandomDropChance))
@@ -125,19 +129,26 @@ namespace DeathDrop
         {
             if (config.FullRandomDrops)
             {
-                int itemId = RandomGenerator.Next(1, 5453);
-
-                while (config.FullRandomExcludedItems.Contains(itemId))
+                int itemId;
+                do
                 {
                     itemId = RandomGenerator.Next(1, 5453);
-                }
+                } while (config.FullRandomExcludedItems.Contains(itemId));
 
                 return itemId;
             }
             else
             {
-                int randomIndex = RandomGenerator.Next(config.CommonRandomDrops.Count);
-                return config.CommonRandomDrops[randomIndex];
+                // 检查CommonRandomDrops列表是否非空
+                if (config.CommonRandomDrops.Count > 0)
+                {
+                    int randomIndex = RandomGenerator.Next(config.CommonRandomDrops.Count);
+                    return config.CommonRandomDrops[randomIndex];
+                }
+                else
+                {
+                    return 0;
+                }
             }
         }
 
@@ -156,8 +167,15 @@ namespace DeathDrop
             }
             else
             {
-                int randomIndex = RandomGenerator.Next(monster.CommonRandomDrops.Count);
+                if (monster.CommonRandomDrops.Count > 0)
+                {
+                    int randomIndex = RandomGenerator.Next(monster.CommonRandomDrops.Count);
                 return monster.CommonRandomDrops[randomIndex];
+                }
+                else
+                {
+                    return 0;
+                }
             }
         }
 
