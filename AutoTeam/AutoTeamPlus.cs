@@ -10,20 +10,10 @@ namespace autoteam
     public class Autoteam : TerrariaPlugin
     {
         public override string Author => "十七改，肝帝熙恩改";
-        public override Version Version => new Version(2, 3);
+        public override Version Version => new Version(2, 4);
         public override string Description => "自动队伍";
         public override string Name => "AutoTeamPlus";
         public static Configuration Config;
-
-        private readonly Dictionary<string, string> teamNames = new Dictionary<string, string>
-    {
-        { "none", "无队伍" },
-        { "red", "红队" },
-        { "green", "绿队" },
-        { "blue", "蓝队" },
-        { "yellow", "黄队" },
-        { "pink", "粉队" }
-    };
 
         public Autoteam(Main game) : base(game)
         {
