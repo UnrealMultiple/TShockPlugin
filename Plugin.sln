@@ -172,8 +172,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnouncementBoxPlus", "Anno
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleSql", "ConsoleSql\ConsoleSql.csproj", "{E256745D-5ADA-4F89-886D-7FE3DAAAF6F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressControl", "ProgressControl\ProgressControl.csproj", "{625563E6-33C6-4E38-A39E-31946A75E642}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
