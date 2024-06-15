@@ -1,10 +1,12 @@
 ﻿using Terraria;
+using Microsoft.Xna.Framework;
 using TShockAPI;
 
 namespace ServerTools
 {
     internal class ClearPlayersItem
     {
+        #region 清理盔甲组逻辑
         public void ClearItem(Item[] items, TSPlayer tSPlayer)
         {
             for (int i = 0; i < 10; i++)
@@ -19,5 +21,6 @@ namespace ServerTools
                 }
             }
         }
+        #endregion
     }
 }
