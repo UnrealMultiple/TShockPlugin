@@ -19,7 +19,7 @@ namespace ServerTools
 
         public override string Name => "ServerTools";// 插件名字
 
-        public override Version Version => new(1, 0, 5, 0);// 插件版本
+        public override Version Version => new(1, 1, 5, 0);// 插件版本
 
         private static Config Config = new();
 
@@ -103,14 +103,10 @@ namespace ServerTools
 
             foreach (var keepArmor in ArmorGroup)
             {
-                var duplicates = e.Player.TPlayer.armor
-                    .Where(x => x.netID == keepArmor.netID && !x.Equals(keepArmor))
-                    .ToList();
-
-                itemsToRemove.AddRange(duplicates);
+                itemsToRemove.AddRange(ArmorGroup);
 
                 e.Player.SetBuff(156, 180, true);
-                TShock.Utils.Broadcast($"玩家 [{e.Player.Name}] 因多饰品被冻结3秒，请清理多饰品装备[i:{keepArmor.netID}]", Color.DarkRed);
+                TShock.Utils.Broadcast($"[ServerTools] 玩家 [{e.Player.Name}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{keepArmor.netID}]", Color.DarkRed);
             }
             clear.ClearItem(itemsToRemove.ToArray(), e.Player);
         }
