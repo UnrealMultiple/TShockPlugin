@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using NuGet.Configuration;
 using NuGet.Protocol.Plugins;
 using System.Linq;
+using Terraria.DataStructures;
 using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
@@ -97,7 +98,7 @@ namespace ServerTools
         private void OnUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
         {
             if (!Config.KeepArmor || e.Player.HasPermission("servertool.armor.white")) return;
-            if (Config.KeepArmor2 || !Main.hardMode) { clear.Clear7Item(e); }
+
 
             var ArmorGroup = e.Player.TPlayer.armor
                 .Take(10)
@@ -113,30 +114,47 @@ namespace ServerTools
             }
             if (ArmorGroup.Any())
                 clear.ClearItem(ArmorGroup.ToArray(), e.Player);
+
+            if (Config.KeepArmor2 && !Main.hardMode) { Clear7Item(e.Player); }
         }
+
+        private static void Clear7Item(TSPlayer args)
+        {
+            if (!args.TPlayer.armor[9].IsAir)
+            {
+                Item i = args.TPlayer.armor[9];
+                GiveItem(args, i.type, i.stack, i.prefix);
+                args.TPlayer.armor[9].TurnToAir();
+                args.SendData(PacketTypes.PlayerSlot, "", args.Index, Terraria.ID.PlayerItemSlotID.Armor0 + 9);
+                TShock.Utils.Broadcast($"[ServerTools] 世界未开启困难模式，禁止玩家 [{args.Name}]使用恶魔心饰品栏", Color.DarkRed);
+            }
+        }
+
+        private static void GiveItem(TSPlayer p, int type, int stack, int prefix = 0)
+        {
+            int num = Item.NewItem(new EntitySource_DebugCommand(), (int)p.TPlayer.Center.X, (int)p.TPlayer.Center.Y, p.TPlayer.width, p.TPlayer.height, type, stack, true, prefix, true, false);
+            Main.item[num].playerIndexTheItemIsReservedFor = p.Index;
+            p.SendData(PacketTypes.ItemDrop, "", num, 1f, 0f, 0f, 0);
+            p.SendData(PacketTypes.ItemOwner, null, num, 0f, 0f, 0f, 0);
+        }
+
         #endregion
 
         #region NPC保护方法
-        private void OnStrike(NpcStrikeEventArgs args)
+        private static void OnStrike(NpcStrikeEventArgs args)
         {
-            if (!Config.NpcProtect || TShock.Players[args.Player.whoAmI].HasPermission("servertool.npc.Strike")) return;
+            if (!Config.NpcProtect || TShock.Players[args.Player.whoAmI].HasPermission("servertool.npc.strike")) return;
             if (Config.NpcProtectList.Contains(args.Npc.netID))
             {
-                args.Damage = 0;
-                args.Npc.life = args.Npc.lifeMax;
-                args.Npc.active = true;
-
-                if (args.Damage < 9090) args.Npc.HealEffect(args.Damage, true);
-                else { args.Npc.HealEffect(114514, true); }
-                TShock.Players[args.Player.whoAmI].SendData((PacketTypes)23, "", args.Npc.whoAmI, 0f, 0f, 0f, 0);
+                args.Handled = true;
                 TShock.Players[args.Player.whoAmI].SendInfoMessage("[ServerTools] " + args.Npc.FullName + " 被系统保护");
             }
         }
 
-        private void OnNPCUpdate(NpcAiUpdateEventArgs args)
+        private static void OnNPCUpdate(NpcAiUpdateEventArgs args)
         {
             if (!Config.NpcProtect) return;
-            if (Config.NpcProtectList.Contains(args.Npc.netID) && (args.Npc.life != args.Npc.lifeMax || !args.Npc.active))
+            if (Config.NpcProtectList.Contains(args.Npc.netID) && args.Npc.active)
             {
                 args.Npc.life = args.Npc.lifeMax;
                 args.Npc.active = true;
