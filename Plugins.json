@@ -1,10 +1,4 @@
-[
-  {
-    "Name": "ProgressControls",
-    "Version": "1.0.0.5",
-    "Author": "枳 羽学",
-    "Description": "计划书（自动化控制服务器）"
-  },
+﻿[
   {
     "Name": "Platform(判断玩家设备)",
     "Version": "1.1.0.0",
@@ -43,7 +37,7 @@
   },
   {
     "Name": "AutoTeamPlus",
-    "Version": "2.3",
+    "Version": "2.4",
     "Author": "十七改，肝帝熙恩改",
     "Description": "自动队伍"
   },
@@ -270,6 +264,12 @@
     "Description": "允许为玩家单独设置权限."
   },
   {
+    "Name": "ProgressControl",
+    "Version": "1.0.0.5",
+    "Author": "z枳 羽学",
+    "Description": "计划书"
+  },
+  {
     "Name": "Rainbow Chat",
     "Version": "1.0.5",
     "Author": "Professor X 熙恩 羽学",
@@ -301,7 +301,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.0.1.0",
+    "Version": "1.1.5.0",
     "Author": "少司命",
     "Description": "服务器工具"
   },
