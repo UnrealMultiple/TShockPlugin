@@ -35,9 +35,6 @@ public class Config
     [JsonProperty("清理掉落物")]
     public bool ClearDrop = false;
 
-    [JsonProperty("禁止多鱼线")]
-    public bool MultipleFishingRodsAreProhibited = true;
-
     [JsonProperty("死亡倒计时")]
     public bool DeadTimer = false;
 
@@ -50,6 +47,9 @@ public class Config
     [JsonProperty("禁止双饰品")]
     public bool KeepArmor = true;
 
+    [JsonProperty("禁止肉前第七格饰品")]
+    public bool KeepArmor2 = true;
+
     [JsonProperty("死亡倒计时格式")]
     public string DeadFormat = "你还有{0}秒复活!";
 
@@ -59,7 +59,14 @@ public class Config
     [JsonProperty("未注册启动服务器执行命令")]
     public string[] ResetExecCommands = Array.Empty<string>();
 
-    [JsonProperty("浮漂列表")]
+    [JsonProperty("开启NPC保护", Order = 7)]
+    public bool NpcProtect = false;
+    [JsonProperty("NPC保护表", Order = 7)]
+    public List<int> NpcProtectList = new ();
+
+    [JsonProperty("禁止多鱼线", Order = 8)]
+    public bool MultipleFishingRodsAreProhibited = true;
+    [JsonProperty("浮漂列表", Order = 8)]
     public List<short> ForbiddenBuoys = new();
 
     public static Config Read(string PATH)

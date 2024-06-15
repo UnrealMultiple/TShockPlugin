@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
+using NuGet.Configuration;
+using NuGet.Protocol.Plugins;
 using System.Linq;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -19,7 +21,7 @@ namespace ServerTools
 
         public override string Name => "ServerTools";// 插件名字
 
-        public override Version Version => new(1, 1, 5, 0);// 插件版本
+        public override Version Version => new(1, 1, 6, 0);// 插件版本
 
         private static Config Config = new();
 
@@ -56,13 +58,15 @@ namespace ServerTools
             ServerApi.Hooks.NetGetData.Register(this, GetData);
             ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreet);
             ServerApi.Hooks.ServerLeave.Register(this, _OnLeave);
+            ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
+            ServerApi.Hooks.NpcAIUpdate.Register(this, OnNPCUpdate);
             #endregion
 
             #region 指令
             Commands.ChatCommands.Add(new Command(Permissions.clear, Clear, "clp"));
             Commands.ChatCommands.Add(new Command("servertool.query.exit", Exit, "退出"));
-            Commands.ChatCommands.Add(new Command("servertool.query.wall", WallQ, "查花苞","scp"));
-            Commands.ChatCommands.Add(new Command("servertool.query.wall", RWall, "移除花苞","rcp"));
+            Commands.ChatCommands.Add(new Command("servertool.query.wall", WallQ, "查花苞", "scp"));
+            Commands.ChatCommands.Add(new Command("servertool.query.wall", RWall, "移除花苞", "rcp"));
             Commands.ChatCommands.Add(new Command("servertool.user.kick", SelfKick, "自踢"));
             Commands.ChatCommands.Add(new Command("servertool.user.kill", SelfKill, "自杀"));
             Commands.ChatCommands.Add(new Command("servertool.user.ghost", Ghost, "ghost"));
@@ -89,11 +93,12 @@ namespace ServerTools
             HandleCommandLine(Environment.GetCommandLineArgs());
         }
 
+        #region 禁双饰品与肉前第7格饰品位方法
         private void OnUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
         {
-            if (!Config.KeepArmor || e.Player.HasPermission("servertool.armor.white"))
-                return;
-            var itemsToRemove = new List<Item>();
+            if (!Config.KeepArmor || e.Player.HasPermission("servertool.armor.white")) return;
+            if (Config.KeepArmor2 || !Main.hardMode) { clear.Clear7Item(e); }
+
             var ArmorGroup = e.Player.TPlayer.armor
                 .Take(10)
                 .Where(x => x.netID != 0)
@@ -103,15 +108,39 @@ namespace ServerTools
 
             foreach (var keepArmor in ArmorGroup)
             {
-                //itemsToRemove.AddRange(ArmorGroup);
-
                 e.Player.SetBuff(156, 180, true);
                 TShock.Utils.Broadcast($"[ServerTools] 玩家 [{e.Player.Name}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{keepArmor.netID}]", Color.DarkRed);
             }
             if (ArmorGroup.Any())
                 clear.ClearItem(ArmorGroup.ToArray(), e.Player);
-            //clear.ClearItem(itemsToRemove.ToArray(), e.Player);
         }
+        #endregion
+
+        #region NPC保护方法
+        private void OnStrike(NpcStrikeEventArgs args)
+        {
+            if (!Config.NpcProtect || TShock.Players[args.Player.whoAmI].HasPermission("servertool.npc.Strike")) return;
+            if (Config.NpcProtectList.Contains(args.Npc.netID))
+
+            args.Damage = 0;
+            args.Npc.life = args.Npc.lifeMax;
+            args.Npc.active = true;
+
+            if (args.Damage < 9090) args.Npc.HealEffect(args.Damage, true);
+            else { args.Npc.HealEffect(114514, true); }
+            TShock.Players[args.Player.whoAmI].SendData((PacketTypes)23, "", args.Npc.whoAmI, 0f, 0f, 0f, 0);
+            TShock.Players[args.Player.whoAmI].SendInfoMessage("[ServerTools] " + args.Npc.FullName + " 被系统保护");
+        }
+
+        private void OnNPCUpdate(NpcAiUpdateEventArgs args)
+        {
+            if (!Config.NpcProtect) return;
+            if (Config.NpcProtectList.Contains(args.Npc.netID) && (args.Npc.life != args.Npc.lifeMax || !args.Npc.active))
+                args.Npc.life = args.Npc.lifeMax;
+            args.Npc.active = true;
+            TSPlayer.All.SendData((PacketTypes)23, "", args.Npc.whoAmI, 0f, 0f, 0f, 0);
+        }
+        #endregion
 
         private static void ViewAccountInfo(CommandArgs args)
         {
@@ -194,10 +223,6 @@ namespace ServerTools
             }
         }
 
-
-
-
-
         private void OnGreetPlayer(GreetPlayerEventArgs args)
         {
             if (Config.PreventsDeathStateJoin && Main.player[args.Who].dead)
@@ -270,8 +295,6 @@ namespace ServerTools
             }
         }
 
-
-
         private void HandleCommandLine(string[] param)
         {
             Dictionary<string, string> args = Terraria.Utils.ParseArguements(param);
@@ -285,6 +308,7 @@ namespace ServerTools
                 }
             }
         }
+
         public void LoadConfig()
         {
             if (File.Exists(PATH))
@@ -302,6 +326,7 @@ namespace ServerTools
             else
             {
                 Config.ForbiddenBuoys = new List<short>() { 360, 361, 362, 363, 364, 365, 366, 381, 382, 760, 775, 986, 987, 988, 989, 990, 991, 992, 993 };
+                Config.NpcProtectList = new List<int>() { 17, 18, 19, 20, 38, 105, 106, 107, 108, 160, 123, 124, 142, 207, 208, 227, 228, 229, 353, 354, 376, 441, 453, 550, 579, 588, 589, 633, 663, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 375, 442, 443, 539, 444, 445, 446, 447, 448, 605, 627, 601, 613 };
             }
             Config.Write(PATH);
         }
@@ -333,8 +358,6 @@ namespace ServerTools
             return true;
         }
 
-
-
         private void PostInitialize(EventArgs args)
         {
             //设置世界模式
@@ -352,7 +375,6 @@ namespace ServerTools
                 SetJourneyDiff(Config.JourneyMode);
             }
         }
-
 
         private void GetData(GetDataEventArgs args)
         {
@@ -396,7 +418,6 @@ namespace ServerTools
                 }
             }
         }
-
 
         private void OnInitialize(EventArgs args)
         {
