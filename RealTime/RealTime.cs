@@ -22,7 +22,7 @@ namespace RealTime
         public override string Author => "十七";
         public override string Description => "同步现实时间";
         public override string Name => "RealTime";
-        public override Version Version => new Version(2, 3, 0, 0);
+        public override Version Version => new Version(2, 4, 0, 0);
         public RealTime(Main game) : base(game)
         {
         }
@@ -64,23 +64,32 @@ namespace RealTime
         bool lastBloodMoon = false;
         bool lastEclipse = false;
         bool lastPumpkinMoon = false;
-        bool lastSnowMoon = false;
+        bool lastSnowMoon = false;       
         DateTime time = DateTime.Now;
         private void OnGameUpdate(EventArgs args)
-        {
+        {  
             #region 血月
             if (lastBloodMoon ^ Main.bloodMoon)
             {
                 if (Main.bloodMoon)
                 {
                     //血月开启瞬间
-                    time = DateTime.Now + TimeSpan.FromMinutes(30);
+                    time = DateTime.Now + TimeSpan.FromMinutes(20);
                 }
             }
             lastBloodMoon = Main.bloodMoon;
             if (Main.bloodMoon == true)
             {
-
+                TShock.Players.Where(p => p != null).ToList().ForEach(p=>
+                {
+                    if (Main.player[p.Index].hostile == false)
+                    {                       
+                        Main.player[p.Index].hostile = true;
+                        NetMessage.SendData((int)PacketTypes.TogglePvp, -1, -1, NetworkText.Empty, p.Index);
+                        p.SendWarningMessage(
+                            "血月的邪恶影响会阻止你的PvP关闭。");
+                    }
+                });                
                 if (DateTime.Now >= time)
                 {
                     Main.bloodMoon = false;
@@ -93,12 +102,22 @@ namespace RealTime
                 if (Main.eclipse)
                 {
                     //日食开启瞬间
-                    time = DateTime.Now + TimeSpan.FromMinutes(30);
+                    time = DateTime.Now + TimeSpan.FromMinutes(20);
                 }
             }
             lastEclipse = Main.eclipse;
             if (Main.eclipse == true)
             {
+                TShock.Players.Where(p => p != null).ToList().ForEach(p =>
+                {
+                    if (Main.player[p.Index].hostile == false)
+                    {
+                        Main.player[p.Index].hostile = true;
+                        NetMessage.SendData((int)PacketTypes.TogglePvp, -1, -1, NetworkText.Empty, p.Index);
+                        p.SendWarningMessage(
+                            "日食的邪恶影响会阻止你的PvP关闭。");
+                    }
+                });
                 if (DateTime.Now >= time)
                 {
                     Main.eclipse = false;
@@ -119,6 +138,16 @@ namespace RealTime
             {
                 if (DateTime.Now >= time)
                 {
+                    TShock.Players.Where(p => p != null).ToList().ForEach(p =>
+                    {
+                        if (Main.player[p.Index].hostile == false)
+                        {
+                            Main.player[p.Index].hostile = true;
+                            NetMessage.SendData((int)PacketTypes.TogglePvp, -1, -1, NetworkText.Empty, p.Index);
+                            p.SendWarningMessage(
+                                "万圣节的邪恶影响会阻止你的PvP关闭。");
+                        }
+                    });
                     Main.pumpkinMoon = false;
                 }
             }
@@ -137,6 +166,16 @@ namespace RealTime
             {
                 if (DateTime.Now >= time)
                 {
+                    TShock.Players.Where(p => p != null).ToList().ForEach(p =>
+                    {
+                        if (Main.player[p.Index].hostile == false)
+                        {
+                            Main.player[p.Index].hostile = true;
+                            NetMessage.SendData((int)PacketTypes.TogglePvp, -1, -1, NetworkText.Empty, p.Index);
+                            p.SendWarningMessage(
+                                "霜月的邪恶影响会阻止你的PvP关闭。");
+                        }
+                    });
                     Main.snowMoon = false;
                 }
             }
@@ -214,7 +253,7 @@ namespace RealTime
                 else
                 {
                     Random ran = new Random();
-                    int num = ran.Next(1, 50); //100以内随机数
+                    int num = ran.Next(1, 50); //1-50随机数
                     ChangeCloud[] arr =
                     {
                         ()=>Main.cloudBGActive=num,

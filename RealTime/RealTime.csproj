@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>RealTime_现实时间_新_</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TShock" Version="5.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HttpServer">
+      <HintPath>C:\Users\十七\Desktop\TShock--1.4.4.9\bin\HttpServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ModFramework">
+      <HintPath>C:\Users\十七\Desktop\TShock--1.4.4.9\bin\ModFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="OTAPI">
+      <HintPath>C:\Users\十七\Desktop\TShock--1.4.4.9\bin\OTAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="OTAPI.Runtime">
+      <HintPath>C:\Users\十七\Desktop\TShock--1.4.4.9\bin\OTAPI.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="TerrariaServer">
+      <HintPath>C:\Users\十七\Desktop\TShock--1.4.4.9\bin\TerrariaServer.dll</HintPath>
+    </Reference>
+    <Reference Include="TShockAPI">
+      <HintPath>C:\Users\十七\Desktop\TShock--1.4.4.9\ServerPlugins\TShockAPI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
