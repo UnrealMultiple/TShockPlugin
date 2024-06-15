@@ -103,12 +103,14 @@ namespace ServerTools
 
             foreach (var keepArmor in ArmorGroup)
             {
-                itemsToRemove.AddRange(ArmorGroup);
+                //itemsToRemove.AddRange(ArmorGroup);
 
                 e.Player.SetBuff(156, 180, true);
                 TShock.Utils.Broadcast($"[ServerTools] 玩家 [{e.Player.Name}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{keepArmor.netID}]", Color.DarkRed);
             }
-            clear.ClearItem(itemsToRemove.ToArray(), e.Player);
+            if (ArmoryGroup.Any())
+                cleat.ClearItem(ArmorGroup.ToArray(), e.Player);
+            //clear.ClearItem(itemsToRemove.ToArray(), e.Player);
         }
 
         private static void ViewAccountInfo(CommandArgs args)
