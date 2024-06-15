@@ -174,6 +174,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleSql", "ConsoleSql\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressControls", "ProgressControls\ProgressControls.csproj", "{34DCF4B3-6541-4CD8-81C5-3364E676BC86}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTime(现实时间 新)", "RealTime\RealTime(现实时间 新).csproj", "{D76BDE0A-9491-468C-99E6-B5FC82927F01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -846,6 +848,14 @@ Global
 		{34DCF4B3-6541-4CD8-81C5-3364E676BC86}.Release|Any CPU.Build.0 = Release|Any CPU
 		{34DCF4B3-6541-4CD8-81C5-3364E676BC86}.Release|x64.ActiveCfg = Release|Any CPU
 		{34DCF4B3-6541-4CD8-81C5-3364E676BC86}.Release|x64.Build.0 = Release|Any CPU
+		{D76BDE0A-9491-468C-99E6-B5FC82927F01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D76BDE0A-9491-468C-99E6-B5FC82927F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D76BDE0A-9491-468C-99E6-B5FC82927F01}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D76BDE0A-9491-468C-99E6-B5FC82927F01}.Debug|x64.Build.0 = Debug|Any CPU
+		{D76BDE0A-9491-468C-99E6-B5FC82927F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D76BDE0A-9491-468C-99E6-B5FC82927F01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D76BDE0A-9491-468C-99E6-B5FC82927F01}.Release|x64.ActiveCfg = Release|Any CPU
+		{D76BDE0A-9491-468C-99E6-B5FC82927F01}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
