@@ -282,6 +282,12 @@
     "Description": "None"
   },
   {
+    "Name": "RealTime",
+    "Version": "2.3.0.0",
+    "Author": "十七",
+    "Description": "同步现实时间"
+  },
+  {
     "Name": "RecipesBrowser",
     "Version": "0.5",
     "Author": "棱镜 羽学适配",
