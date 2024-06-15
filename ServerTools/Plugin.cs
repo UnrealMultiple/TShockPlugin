@@ -121,24 +121,27 @@ namespace ServerTools
         {
             if (!Config.NpcProtect || TShock.Players[args.Player.whoAmI].HasPermission("servertool.npc.Strike")) return;
             if (Config.NpcProtectList.Contains(args.Npc.netID))
+            {
+                args.Damage = 0;
+                args.Npc.life = args.Npc.lifeMax;
+                args.Npc.active = true;
 
-            args.Damage = 0;
-            args.Npc.life = args.Npc.lifeMax;
-            args.Npc.active = true;
-
-            if (args.Damage < 9090) args.Npc.HealEffect(args.Damage, true);
-            else { args.Npc.HealEffect(114514, true); }
-            TShock.Players[args.Player.whoAmI].SendData((PacketTypes)23, "", args.Npc.whoAmI, 0f, 0f, 0f, 0);
-            TShock.Players[args.Player.whoAmI].SendInfoMessage("[ServerTools] " + args.Npc.FullName + " 被系统保护");
+                if (args.Damage < 9090) args.Npc.HealEffect(args.Damage, true);
+                else { args.Npc.HealEffect(114514, true); }
+                TShock.Players[args.Player.whoAmI].SendData((PacketTypes)23, "", args.Npc.whoAmI, 0f, 0f, 0f, 0);
+                TShock.Players[args.Player.whoAmI].SendInfoMessage("[ServerTools] " + args.Npc.FullName + " 被系统保护");
+            }
         }
 
         private void OnNPCUpdate(NpcAiUpdateEventArgs args)
         {
             if (!Config.NpcProtect) return;
             if (Config.NpcProtectList.Contains(args.Npc.netID) && (args.Npc.life != args.Npc.lifeMax || !args.Npc.active))
+            {
                 args.Npc.life = args.Npc.lifeMax;
-            args.Npc.active = true;
-            TSPlayer.All.SendData((PacketTypes)23, "", args.Npc.whoAmI, 0f, 0f, 0f, 0);
+                args.Npc.active = true;
+                TSPlayer.All.SendData((PacketTypes)23, "", args.Npc.whoAmI, 0f, 0f, 0f, 0);
+            }
         }
         #endregion
 
