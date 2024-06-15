@@ -124,8 +124,9 @@
 | [Respawn](Respawn/README.md)                                     |            原地复活            |                                             无                                             |
 | [EndureBoost](EndureBoost/README.md)                             |      物品一定数量后长时间buff   |                                             无                                             |
 | [AnnouncementBoxPlus](AnnouncementBoxPlus/README.md)             |      广播盒功能强化             |                                             无                                             |
-| [ConsoleSql](ConsoleSql/README.md)                               |      允许你在控制台执行SQL语句   |                                             无                                             |
-| [ProgressControl](ProgressControls/README.md)                               |      计划书（自动化控制服务器）   |                                             无                                             |
+| [ConsoleSql](ConsoleSql/README.md)                               |      允许你在控制台执行SQL语句  |                                             无                                             |
+| [ProgressControl](ProgressControls/README.md)                    |      计划书（自动化控制服务器） |                                             无                                             |
+| [RealTime](RealTime/README.md)                                   |    使服务器内时间同步现实时间   |                                             无                                             |
 </Details>
 
 ## 代码贡献
