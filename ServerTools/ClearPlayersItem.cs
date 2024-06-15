@@ -7,7 +7,7 @@ namespace ServerTools
     {
         public void ClearItem(Item[] items, TSPlayer tSPlayer)
         {
-            for (int i = 0; i < tSPlayer.TPlayer.armor.Length; i++)
+            for (int i = 0; i < 10; i++)
             {
                 foreach (Item item in items)
                 {
