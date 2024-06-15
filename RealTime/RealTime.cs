@@ -22,7 +22,7 @@ namespace RealTime
         public override string Author => "十七";
         public override string Description => "同步现实时间";
         public override string Name => "RealTime";
-        public override Version Version => new Version(2, 4, 0, 0);
+        public override Version Version => new Version(2, 4, 5, 0);
         public RealTime(Main game) : base(game)
         {
         }
