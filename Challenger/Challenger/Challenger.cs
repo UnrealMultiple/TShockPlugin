@@ -47,17 +47,17 @@ namespace Challenger
             LoadConfig();
             GetDataHandlers.TileEdit += OnTileEdit!;
             GeneralHooks.ReloadEvent += new GeneralHooks.ReloadEventD(LoadConfig);
-            ServerApi.Hooks.GameUpdate.Register((TerrariaPlugin)(object)this, OnGameUpdate);
+            ServerApi.Hooks.GameUpdate.Register(this, OnGameUpdate);
             GetDataHandlers.PlayerDamage.Register(PlayerSufferDamage, (HandlerPriority)3, false);
             GetDataHandlers.NewProjectile.Register(OnProjSpawn, (HandlerPriority)3, false);
-            ServerApi.Hooks.ProjectileAIUpdate.Register((TerrariaPlugin)(object)this, OnProjAIUpdate);
+            ServerApi.Hooks.ProjectileAIUpdate.Register(this, OnProjAIUpdate);
             GetDataHandlers.ProjectileKill.Register(OnProjKilled, (HandlerPriority)3, false);
-            ServerApi.Hooks.NpcAIUpdate.Register((TerrariaPlugin)(object)this, OnNPCAI);
+            ServerApi.Hooks.NpcAIUpdate.Register(this, OnNPCAI);
             Hooks.NPC.Killed += OnNPCKilled;
-            ServerApi.Hooks.NpcStrike.Register((TerrariaPlugin)(object)this, OnNpcStrike);
+            ServerApi.Hooks.NpcStrike.Register(this, OnNpcStrike);
             GetDataHandlers.PlayerSlot.Register(OnHoldItem, (HandlerPriority)3, false);
-            ServerApi.Hooks.NetGreetPlayer.Register((TerrariaPlugin)(object)this, OnGreetPlayer);
-            ServerApi.Hooks.ServerLeave.Register((TerrariaPlugin)(object)this, OnServerLeave);
+            ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreetPlayer);
+            ServerApi.Hooks.ServerLeave.Register(this, OnServerLeave);
             Commands.ChatCommands.Add(new Command("challenger.enable", new CommandDelegate(EnableModel), new string[1] { "cenable" })
             {
                 HelpText = "输入 /cenable  来启用挑战模式，再次使用取消"
@@ -78,16 +78,16 @@ namespace Challenger
             {
                 GeneralHooks.ReloadEvent -= new ReloadEventD(LoadConfig);
                 GetDataHandlers.TileEdit -= OnTileEdit!;
-                ServerApi.Hooks.GameUpdate.Deregister((TerrariaPlugin)(object)this, OnGameUpdate);
+                ServerApi.Hooks.GameUpdate.Deregister(this, OnGameUpdate);
                 GetDataHandlers.PlayerDamage.UnRegister(PlayerSufferDamage);
-                ServerApi.Hooks.ProjectileAIUpdate.Deregister((TerrariaPlugin)(object)this, OnProjAIUpdate);
+                ServerApi.Hooks.ProjectileAIUpdate.Deregister(this, OnProjAIUpdate);
                 GetDataHandlers.ProjectileKill.UnRegister(OnProjKilled);
-                ServerApi.Hooks.NpcAIUpdate.Deregister((TerrariaPlugin)(object)this, OnNPCAI);
+                ServerApi.Hooks.NpcAIUpdate.Deregister(this, OnNPCAI);
                 Hooks.NPC.Killed -= OnNPCKilled;
-                ServerApi.Hooks.NpcStrike.Deregister((TerrariaPlugin)(object)this, OnNpcStrike);
+                ServerApi.Hooks.NpcStrike.Deregister(this, OnNpcStrike);
                 GetDataHandlers.PlayerSlot.UnRegister(OnHoldItem);
-                ServerApi.Hooks.NetGreetPlayer.Deregister((TerrariaPlugin)(object)this, OnGreetPlayer);
-                ServerApi.Hooks.ServerLeave.Deregister((TerrariaPlugin)(object)this, OnServerLeave);
+                ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);
+                ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
             }
             base.Dispose(disposing);
         }
@@ -1171,6 +1171,7 @@ namespace Challenger
         {
             if (config.EnableWormScarf)//是否关闭蠕虫围巾免疫
             {
+                if (player == null || !config.EnableWormScarf) return;
                 var c = config.WormScarfImmuneList_2; //遍历前多少个数量
                 int[] List = config.WormScarfImmuneList; //免疫的BUFFID
                 bool flag = false;
@@ -1184,8 +1185,7 @@ namespace Challenger
                         player.buffImmune[i] = true;
                     }
                 }
-                if (flag) { TShock.Players[player.whoAmI].SendData((PacketTypes)50, "", player.whoAmI, 0f, 0f, 0f, 0); }
-            }
+                if (flag) { TShock.Players[player.whoAmI].SendData((PacketTypes)50, "", player.whoAmI, 0f, 0f, 0f, 0); }            }
             foreach (var effect in config.WormScarfSetBuff) { TShock.Players[player.whoAmI].SetBuff(effect, 180, false); }
         }
 
@@ -1408,38 +1408,27 @@ namespace Challenger
             {
                 return;
             }
-
             try
             {
-                var playerData = Collect.cplayers[args.Who];
-                if (playerData != null)
+                if (Collect.cplayers[args.Who] != null)
                 {
-                    if (playerData.ExtraLife > 0)
+                    if (Collect.cplayers[args.Who].ExtraLife > 0)
                     {
-                        var player = Main.player[args.Who];
-                        if (player != null)
-                        {
-                            player.statLifeMax -= playerData.ExtraLife;
-                            NetMessage.SendData(16, -1, -1, NetworkText.Empty, args.Who, 0f, 0f, 0f, 0, 0, 0);
-                        }
+                        Player obj = Main.player[args.Who];
+                        obj.statLifeMax -= Collect.cplayers[args.Who].ExtraLife;
+                        NetMessage.SendData(16, -1, -1, NetworkText.Empty, args.Who, 0f, 0f, 0f, 0, 0, 0);
                     }
-
-                    if (playerData.ExtraMana > 0)
+                    if (Collect.cplayers[args.Who].ExtraMana > 0)
                     {
-                        var player2 = Main.player[args.Who];
-                        if (player2 != null)
-                        {
-                            player2.statManaMax -= playerData.ExtraMana;
-                            NetMessage.SendData(42, -1, -1, NetworkText.Empty, args.Who, 0f, 0f, 0f, 0, 0, 0);
-                        }
+                        Player obj2 = Main.player[args.Who];
+                        obj2.statManaMax -= Collect.cplayers[args.Who].ExtraMana;
+                        NetMessage.SendData(42, -1, -1, NetworkText.Empty, args.Who, 0f, 0f, 0f, 0, 0, 0);
                     }
-
                     for (int i = 0; i < 1000; i++)
                     {
-                        var proj = Collect.cprojs[i];
-                        if (proj != null && proj.isActive)
+                        if (Collect.cprojs[i] != null && Collect.cprojs[i].isActive)
                         {
-                            proj.CKill();
+                            Collect.cprojs[i].CKill();
                         }
                     }
                 }
@@ -1455,10 +1444,7 @@ namespace Challenger
         private void OnGameUpdate(EventArgs args)
         {
             Timer++;
-            if (!config.enableChallenge)
-            {
-                return;
-            }
+            if (!config.enableChallenge) { return; }
             if (Collect.worldevent != 0)
             {
                 switch (Collect.worldevent)
@@ -1502,99 +1488,99 @@ namespace Challenger
                 }
             }
             TSPlayer[] players = TShock.Players;
-            foreach (TSPlayer val in players)
+            if (players != null)
             {
-                if (val == null || Collect.cplayers[val.Index] == null || !Collect.cplayers[val.Index].isActive)
+                foreach (TSPlayer val in players)
                 {
-                    continue;
-                }
-                Player tPlayer = val.TPlayer;
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append(tPlayer.armor[0].type).Append(tPlayer.armor[1].type).Append(tPlayer.armor[2].type);
-                switch (stringBuilder.ToString())
-                {
-                    case "228229230":
-                    case "960961962":
-                    case "228961230":
-                    case "228229962":
-                    case "960229230":
-                    case "960961230":
-                    case "960229962":
-                    case "228961962":
-                        JungleArmorEffect(tPlayer);
-                        break;
-                    case "231232233":
-                        MoltenArmor(tPlayer, config);
-                        break;
-                    case "236723682369":
-                        AnglerArmorEffect(tPlayer);
-                        break;
-                    case "236123622363":
-                        BeeArmorEffect(tPlayer);
-                        break;
-                    case "123124125":
-                        MeteorArmorEffect(null, tPlayer);
-                        break;
-                    case "237023712372":
-                        SpiderArmorEffect(null, tPlayer);
-                        break;
-                    case "377637773778":
-                        ForbiddenArmorEffect(tPlayer);
-                        break;
-                    case "498249834984":
-                        CrystalAssassinArmorEffect(tPlayer, null);
-                        break;
-                    case "684685686":
-                        FrostArmorEffect(tPlayer);
-                        break;
-                    default:
-                        if (Timer % 5 == 0)
-                        {
-                            MiningArmor(tPlayer, config);
-                            FossilArmorEffect(tPlayer);
-                            ChlorophyteArmorEffect(tPlayer);
-                            TurtleArmorEffect(tPlayer);
-                            TikiArmorEffect(tPlayer, null);
-                            BeetleArmorEffect(tPlayer, null, null);
-                            SpectreArmorEffect(tPlayer);
-                        }
-                        break;
-                }
-                if (Timer % 4 != 0)
-                {
-                    continue;
-                }
-                Item[] armor = tPlayer.armor;
-                for (int j = 3; j < 10; j++)
-                {
-                    switch (armor[j].type)
+                    if (val == null || Collect.cplayers[val.Index] == null || !Collect.cplayers[val.Index].isActive)
                     {
-                        case 1321:
-                        case 4002:
-                        case 4006:
-                            RefillArrow(tPlayer);
+                        continue;
+                    }
+                    Player tPlayer = val.TPlayer;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.Append(tPlayer.armor[0].type).Append(tPlayer.armor[1].type).Append(tPlayer.armor[2].type);
+                    switch (stringBuilder.ToString())
+                    {
+                        case "228229230":
+                        case "960961962":
+                        case "228961230":
+                        case "228229962":
+                        case "960229230":
+                        case "960961230":
+                        case "960229962":
+                        case "228961962":
+                            JungleArmorEffect(tPlayer);
                             break;
-                        case 3333:
-                            HivePack(tPlayer);
+                        case "231232233":
+                            MoltenArmor(tPlayer, config);
                             break;
-                        case 3090:
-                            RoyalGel(tPlayer);
+                        case "236723682369":
+                            AnglerArmorEffect(tPlayer);
                             break;
-                        case 3224:
-                            WormScarf(tPlayer, config);
+                        case "236123622363":
+                            BeeArmorEffect(tPlayer);
                             break;
-                        case 3097:
-                        case 977:
-                        case 984:
-                            CthulhuShield(tPlayer);
+                        case "123124125":
+                            MeteorArmorEffect(null, tPlayer);
                             break;
+                        case "237023712372":
+                            SpiderArmorEffect(null, tPlayer);
+                            break;
+                        case "377637773778":
+                            ForbiddenArmorEffect(tPlayer);
+                            break;
+                        case "498249834984":
+                            CrystalAssassinArmorEffect(tPlayer, null);
+                            break;
+                        case "684685686":
+                            FrostArmorEffect(tPlayer);
+                            break;
+                        default:
+                            if (Timer % 5 == 0)
+                            {
+                                MiningArmor(tPlayer, config);
+                                FossilArmorEffect(tPlayer);
+                                ChlorophyteArmorEffect(tPlayer);
+                                TurtleArmorEffect(tPlayer);
+                                TikiArmorEffect(tPlayer, null);
+                                BeetleArmorEffect(tPlayer, null, null);
+                                SpectreArmorEffect(tPlayer);
+                            }
+                            break;
+                    }
+                    if (Timer % 4 != 0)
+                    {
+                        continue;
+                    }
+                    Item[] armor = tPlayer.armor;
+                    for (int j = 3; j < 10; j++)
+                    {
+                        switch (armor[j].type)
+                        {
+                            case 1321:
+                            case 4002:
+                            case 4006:
+                                RefillArrow(tPlayer);
+                                break;
+                            case 3333:
+                                HivePack(tPlayer);
+                                break;
+                            case 3090:
+                                RoyalGel(tPlayer);
+                                break;
+                            case 3224:
+                                WormScarf(tPlayer, config);
+                                break;
+                            case 3097:
+                            case 977:
+                            case 984:
+                                CthulhuShield(tPlayer);
+                                break;
+                        }
                     }
                 }
             }
-            if (honey.Count == 0)
-            {
-                return;
-            }
+            if (honey.Count == 0) { return; }
             foreach (KeyValuePair<int, int> item in honey)
             {
                 if (item.Value < 4)
