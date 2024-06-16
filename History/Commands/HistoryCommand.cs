@@ -48,4 +48,10 @@ public class HistoryCommand : HCommand
             this.sender.SendErrorMessage("没有查询到这个图格的修改历史.");
         }
     }
+
+    // 清空数据表
+    public static bool ClearData()
+    {
+        return History.Database.Query("DELETE FROM History") != 0;
+    }
 }

@@ -1395,6 +1395,7 @@ public class History : TerrariaPlugin
         TShockAPI.Commands.ChatCommands.Add(new Command("history.reenact", this.Reenact, "reenact", "复现"));
         TShockAPI.Commands.ChatCommands.Add(new Command("history.rollback", this.Rollback, "rollback", "回溯"));
         TShockAPI.Commands.ChatCommands.Add(new Command("history.rollback", this.Undo, "rundo", "撤销"));
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.admin", this.ResetCmd, "hreset", "重置历史"));
         var sqlcreator = new SqlTableCreator(Database, new SqliteQueryCreator());
         sqlcreator.EnsureTableStructure(new SqlTable("History",
             new SqlColumn("Time", MySqlDbType.Int32),
@@ -1425,7 +1426,8 @@ public class History : TerrariaPlugin
         }
         this.CommandQueueThread = new Thread(this.QueueCallback!);
         this.CommandQueueThread.Start();
-    }
+    }   
+
     void OnSaveWorld(WorldSaveEventArgs e)
     {
         new SaveCommand(Actions.ToArray()).Execute();
@@ -1466,7 +1468,9 @@ public class History : TerrariaPlugin
         {
             if (e.Parameters.Count != 2 && e.Parameters.Count != 3)
             {
-                e.Player.SendErrorMessage("用法错误! 正确用法: /history [账号名] [时间] [范围]");
+                e.Player.SendErrorMessage(
+                    "用法错误! 正确用法: \n" +
+                    "/history [账号名] [时间] [范围]");
                 return;
             }
             var radius = 10000;
@@ -1558,4 +1562,37 @@ public class History : TerrariaPlugin
             e.Player.SendErrorMessage("没有要撤消的内容!");
         }
     }
+
+    #region 使用指令清理数据库
+    private void ResetCmd(CommandArgs e)
+    {
+        if (e.Parameters.Count > 0) {e.Player.SendErrorMessage("用法错误! 正确用法: /hreset"); return;}
+        else
+        {
+            if (!e.Player.HasPermission("history.admin"))
+            {
+                e.Player.SendErrorMessage("你没有重置【History】数据表的权限。");
+                TShock.Log.ConsoleInfo($"{e.Player.Name}试图执行 [History] 数据重置指令");
+                return;
+            }
+            else
+            {
+                ClearAllData(e);
+                return;
+            }
+        }
+    }
+
+    private static void ClearAllData(CommandArgs args)
+    {
+        if (HistoryCommand.ClearData())
+        {
+            TShock.Utils.Broadcast($"[History] 数据库已被 [{args.Player.Name}] 成功清除", Color.DarkRed);
+        }
+        else
+        {
+            TShock.Log.ConsoleInfo("[History] 数据库清除失败");
+        }
+    }
+    #endregion
 }

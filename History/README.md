@@ -22,6 +22,7 @@
 | /reenact [账号名] [时间] [范围]  | /复现 | history.reenact  | 在时间跨度和半径内重新创建玩家的所有动作 |
 | /rollback [账号名] [时间] [范围] | /回溯 | history.rollback |   在时间跨度和半径内还原玩家的所有动作   |
 | /rollback [账号名] [时间] [范围] | /撤销 | history.rollback |   在时间跨度和半径内还原玩家的所有动作   |
+| /hreset |/重置历史| history.admin |   重置数据库表   |
 
 ## 配置
 
