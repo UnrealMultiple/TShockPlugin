@@ -180,7 +180,7 @@ public class Economics : TerrariaPlugin
     {
         if ((args.npc.SpawnedFromStatue && Setting.IgnoreStatue) || args.npc == null)
             return;
-        if (Strike.TryGetValue(args.npc, out var result))
+        if (Strike.TryGetValue(args.npc, out var result) && result != null)
         {
             foreach (var (player, damage) in result)
             {

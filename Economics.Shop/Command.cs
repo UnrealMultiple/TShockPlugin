@@ -48,7 +48,7 @@ public class Command
                 return;
             }
             var count = 1;
-            if (args.Parameters.Count > 2 && !int.TryParse(args.Parameters[2], out count))
+            if (args.Parameters.Count > 2 && !int.TryParse(args.Parameters[2], out count) && count > 0)
             {
                 args.Player.SendErrorMessage("你输入的购买数量不正确!");
                 return;
@@ -74,7 +74,7 @@ public class Command
                 args.Player.SendErrorMessage($"请满足物品条件: {string.Join(",", product.ItemTerm.Select(x => x.ToString()))}");
                 return;
             }
-            if (!EconomicsAPI.Economics.CurrencyManager.DelUserCurrency(args.Player.Name, product.Cost))
+            if (!EconomicsAPI.Economics.CurrencyManager.DelUserCurrency(args.Player.Name, product.Cost * count))
             {
                 args.Player.SendErrorMessage($"你的{EconomicsAPI.Economics.Setting.CurrencyName}不足!");
                 return;
