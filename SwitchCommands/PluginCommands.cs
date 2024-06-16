@@ -7,7 +7,7 @@ namespace SwitchCommands
     public class PluginCommands
     {
         public static Database database = null!;
-        public static string switchParameters = "/开关 <添加/列表/删除/冷却/说明/权限忽略/取消/重绑/完成> (支持拼音)";
+        public static string switchParameters = "/开关 <添加/列表/删除/冷却/权限忽略/取消/重绑/完成>（拼音首字母也可以）\n/switch <add/list/del/cooldown/ignoreperms/cancel/rebind/done>";
 
         public static void RegisterCommands()
         {
@@ -82,18 +82,18 @@ namespace SwitchCommands
                         case "冷却":
                         case "cooldown":
                         case "lq":
-                            float 冷却 = 0;
+                            float cooldown = 0;
 
-                            if (args.Parameters.Count < 2 || !float.TryParse(args.Parameters[1], out 冷却))
+                            if (args.Parameters.Count < 2 || !float.TryParse(args.Parameters[1], out cooldown))
                             {
                                 player.SendErrorMessage("语法错误：/开关 冷却 <秒>");
                                 SwitchCommands.database.Write(Database.databasePath);
                                 return;
                             }
 
-                            cmdInfo.cooldown = 冷却;
+                            cmdInfo.cooldown = cooldown;
 
-                            player.SendSuccessMessage("冷却时间已设置为 {0} 秒".SFormat(冷却));
+                            player.SendSuccessMessage("冷却时间已设置为 {0} 秒".SFormat(cooldown));
                             SwitchCommands.database.Write(Database.databasePath);
                             break;
 
@@ -105,11 +105,11 @@ namespace SwitchCommands
                                 SwitchCommands.database.Write(Database.databasePath);
                                 return;
                             }
-                            string 说明 = args.Parameters[1];
+                            string shows = args.Parameters[1];
 
-                            cmdInfo.show = 说明;
+                            cmdInfo.show = shows;
 
-                            player.SendSuccessMessage($"开关说明已设置为：{说明}");
+                            player.SendSuccessMessage($"开关说明已设置为：{shows}");
                             SwitchCommands.database.Write(Database.databasePath);
                             break;
 
@@ -117,23 +117,27 @@ namespace SwitchCommands
                         case "ignoreperms":
                         case "qxhl":
                         case "hl":
-                            bool 权限忽略 = false;
-
+                            bool ignoreperms = false;
+                            if (!args.Player.HasPermission("switch.ignoreperms"))//权限控制
+                            {
+                                player.SendErrorMessage("你没有权限使用此命令");
+                                return;
+                            }
                             if (args.Parameters.Count < 2)
                             {
                                 // 如果没有提供第二个参数，默认设置为true
-                                权限忽略 = true;
+                                ignoreperms = true;
                             }
-                            else if (!bool.TryParse(args.Parameters[1], out 权限忽略))
+                            else if (!bool.TryParse(args.Parameters[1], out ignoreperms))
                             {
                                 player.SendErrorMessage("语法错误：/开关 权限忽略 <true/false>");
                                 SwitchCommands.database.Write(Database.databasePath);
                                 return;
                             }
 
-                            cmdInfo.ignorePerms = 权限忽略;
+                            cmdInfo.ignorePerms = ignoreperms;
 
-                            string statusMessage = 权限忽略 ? "是" : "否";
+                            string statusMessage = ignoreperms ? "是" : "否";
                             player.SendSuccessMessage("是否忽略玩家权限设置为: {0}.".SFormat(statusMessage));
                             SwitchCommands.database.Write(Database.databasePath);
                             break;
