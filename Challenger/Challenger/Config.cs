@@ -311,11 +311,11 @@ namespace Challenger
         public int[] Tile { get; set; } = new int[] { 6, 7, 8, 9, 166, 167, 168, 169, 22, 221, 222, 223, 224, 232, 37, 404, 408, 48, 481, 482, 483, 56, 571, 58, 63, 64, 65, 66, 67, 68, 107, 108, 111, 123, 178, 204, 211, 229, 230 };
 
         [JsonProperty("蠕虫围巾免疫buff是否开启", Order = 7)]
-        public bool EnableWormScarf = false;
+        public bool EnableWormScarf = true;
         [JsonProperty("蠕虫围巾遍历前几个buff", Order = 7)]
         public int WormScarfImmuneList_2 = 22;
         [JsonProperty("蠕虫围巾免疫DeBuff列表/遇到会清空所有BUFF", Order = 7)]
-        public int[] WormScarfImmuneList { get; set; } = new int[] { 39, 69, 44, 46 };
+        public int[] WormScarfImmuneList { get; set; } = new int[] {};
         [JsonProperty("蠕虫围巾给什么永久BUFF", Order = 7)]
         public int[] WormScarfSetBuff { get; set; } = new int[] { 5, 114, 215 };
 
