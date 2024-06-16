@@ -111,7 +111,7 @@ public class Utils
     /// <param name="pos"></param>
     public static void SpawnPointsOnArcProj(TSPlayer Player, List<CircleProjectile> circles, Vector2 pos)
     {
-        Task.Run(() =>
+        Task.Run(async () =>
         {
             foreach (var circle in circles)
             {
@@ -144,7 +144,7 @@ public class Utils
                             circle.TimeLeft);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
                     }
-                    Task.Delay(circle.Dealy).Wait();
+                    await Task.Delay(circle.Dealy);
                 }
             }
         });
@@ -165,7 +165,7 @@ public class Utils
             if (!proj.AutoDirection)
                 vel = new Vector2(proj.SpeedX, proj.SpeedY);
             SpawnPointsOnArcProj(Player, proj.CircleProjectiles, pos);
-            Task.Run(() =>
+            Task.Run(async () =>
             {
                 foreach (var opt in proj.ProjectileCycle.ProjectileCycles)
                 {
@@ -198,7 +198,7 @@ public class Utils
                         else
                             _pos += new Vector2(opt.GrowX * 16, opt.GrowY * 16);
                         #endregion
-                        Task.Delay(opt.Dealy).Wait();
+                        await Task.Delay(opt.Dealy);
                     }
                 }
             });

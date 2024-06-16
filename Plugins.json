@@ -283,7 +283,7 @@
   },
   {
     "Name": "RealTime",
-    "Version": "2.4.0.0",
+    "Version": "2.4.5.0",
     "Author": "十七",
     "Description": "同步现实时间"
   },
@@ -325,8 +325,8 @@
   },
   {
     "Name": "SwitchCommands",
-    "Version": "1.2.1.0",
-    "Author": "Johuan Cjx适配 羽学优化",
+    "Version": "1.2.2",
+    "Author": "Johuan Cjx适配 羽学，肝帝熙恩优化",
     "Description": "触发开关可以执行指令"
   },
   {
