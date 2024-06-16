@@ -22,7 +22,7 @@ namespace RealTime
         public override string Author => "十七";
         public override string Description => "同步现实时间";
         public override string Name => "RealTime";
-        public override Version Version => new Version(2, 4, 0, 0);
+        public override Version Version => new Version(2, 4, 5, 0);
         public RealTime(Main game) : base(game)
         {
         }
@@ -130,7 +130,7 @@ namespace RealTime
                 if (Main.pumpkinMoon)
                 {
                     //万圣节开启瞬间
-                    time = DateTime.Now + TimeSpan.FromMinutes(59);
+                    time = DateTime.Now + TimeSpan.FromMinutes(40);
                 }
             }
             lastPumpkinMoon = Main.pumpkinMoon;
@@ -158,7 +158,7 @@ namespace RealTime
                 if (Main.snowMoon)
                 {
                     //霜月开启瞬间
-                    time = DateTime.Now + TimeSpan.FromMinutes(59);
+                    time = DateTime.Now + TimeSpan.FromMinutes(40);
                 }
             }
             lastSnowMoon = Main.snowMoon;
@@ -205,7 +205,7 @@ namespace RealTime
             #endregion
             #region npc生成、月相、天气、渔夫任务刷新
             y++;
-            if (y == 54000)//npc生成 月相、天气、渔夫任务刷新
+            if (y == 86400)//npc生成 月相、天气、渔夫任务刷新
             {
                 var AllNPCS = Main.npc.Where(n => n != null);
                 foreach (var TNPC in AllNPCS)
