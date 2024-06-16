@@ -48,7 +48,7 @@ public class Command
                 return;
             }
             var count = 1;
-            if (args.Parameters.Count > 2 && !int.TryParse(args.Parameters[2], out count) && count > 0)
+            if (args.Parameters.Count > 2 && !int.TryParse(args.Parameters[2], out count) && count <= 0)
             {
                 args.Player.SendErrorMessage("你输入的购买数量不正确!");
                 return;
