@@ -438,6 +438,12 @@
     "Description": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙"
   },
   {
+    "Name": "音乐播放器",
+    "Version": "1.0.2",
+    "Author": "Olink，Cjx适配，肝帝熙恩修改, yu大改",
+    "Description": "一个简单的音乐播放插件."
+  },
+  {
     "Name": "进度礼包",
     "Version": "1.0.0.9",
     "Author": "少司命",
