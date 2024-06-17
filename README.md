@@ -129,7 +129,7 @@
 | [RealTime](RealTime/README.md)                                   |    使服务器内时间同步现实时间   |                                             无                                             |
 | [GoodNight](GoodNight/README.md)                                 |              宵禁              |                                             无                                             |
 | [Musicplayer](Musicplayer/README.md)                             |         简易音乐播放器          |                                             无                                             |
-</详细信息>
+</Details>
 
 ## 代码贡献
 
