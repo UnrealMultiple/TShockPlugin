@@ -22,7 +22,7 @@ namespace ServerTools
 
         public override string Name => "ServerTools";// 插件名字
 
-        public override Version Version => new(1, 1, 6, 0);// 插件版本
+        public override Version Version => new(1, 1, 7, 0);// 插件版本
 
         private static Config Config = new();
 
@@ -30,7 +30,7 @@ namespace ServerTools
 
         private DateTime LastCommandUseTime = DateTime.Now;
 
-        private long TimerCount = 0;
+        private static long TimerCount = 0;
 
         private readonly Dictionary<string, DateTime> PlayerDeath = new();
 
@@ -112,7 +112,7 @@ namespace ServerTools
                 e.Player.SetBuff(156, 180, true);
                 TShock.Utils.Broadcast($"[ServerTools] 玩家 [{e.Player.Name}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{keepArmor.netID}]", Color.DarkRed);
             }
-            if (ArmorGroup.Any())
+            if (ArmorGroup.Any() && TimerCount % 20 == 0)
                 clear.ClearItem(ArmorGroup.ToArray(), e.Player);
 
             if (Config.KeepArmor2 && !Main.hardMode) { Clear7Item(e.Player); }
@@ -120,12 +120,12 @@ namespace ServerTools
 
         private static void Clear7Item(TSPlayer args)
         {
-            if (!args.TPlayer.armor[9].IsAir)
+            if (!args.TPlayer.armor[8].IsAir && TimerCount % 20 == 0)
             {
-                Item i = args.TPlayer.armor[9];
+                Item i = args.TPlayer.armor[8];
                 GiveItem(args, i.type, i.stack, i.prefix);
-                args.TPlayer.armor[9].TurnToAir();
-                args.SendData(PacketTypes.PlayerSlot, "", args.Index, Terraria.ID.PlayerItemSlotID.Armor0 + 9);
+                args.TPlayer.armor[8].TurnToAir();
+                args.SendData(PacketTypes.PlayerSlot, "", args.Index, Terraria.ID.PlayerItemSlotID.Armor0 + 8);
                 TShock.Utils.Broadcast($"[ServerTools] 世界未开启困难模式，禁止玩家 [{args.Name}]使用恶魔心饰品栏", Color.DarkRed);
             }
         }
