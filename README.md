@@ -127,7 +127,8 @@
 | [ConsoleSql](ConsoleSql/README.md)                               |      允许你在控制台执行SQL语句  |                                             无                                             |
 | [ProgressControl](ProgressControls/README.md)                    |      计划书（自动化控制服务器） |                                             无                                             |
 | [RealTime](RealTime/README.md)                                   |    使服务器内时间同步现实时间   |                                             无                                             |
-| [GoodNight](GoodNight/README.md)                                   |    宵禁   |                                             无                                             |
+| [GoodNight](GoodNight/README.md)                                 |              宵禁              |                                             无                                             |
+| [Musicplayer](Musicplayer/README.md)                             |         简易音乐播放器          |                                             无                                             |
 </Details>
 
 ## 代码贡献
