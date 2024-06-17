@@ -85,7 +85,7 @@ namespace Goodnight
             }
         }
 
-        private bool IsExempt(string Name) { return Config.ExemptPlayers.Contains(Name); }
+        private bool IsExempt(string Name) => Config.ExemptPlayers.Contains(Name);
         #endregion
 
         #region 禁止召唤怪物
