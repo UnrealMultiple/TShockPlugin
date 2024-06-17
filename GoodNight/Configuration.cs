@@ -19,12 +19,10 @@ namespace Goodnight
 
         [JsonProperty("宵禁是否断连", Order = -9)]
         public bool DiscPlayers = false;
-        [JsonProperty("玩家发弹幕断连消息", Order = -9)]
-        public string Message1 = "别肝了，休息一会吧！大半夜推进度这河里吗？";
-        [JsonProperty("玩家攻击时断连消息", Order = -9)]
-        public string Message2 = "到点了，晚安";
         [JsonProperty("玩家进服拦截消息", Order = -9)]
         public string JoinMessage = "当前为宵禁时间，无法加入游戏。";
+        [JsonProperty("玩家攻击断连消息", Order = -9)]
+        public string NewProjMessage = "到点了，晚安";
         [JsonProperty("断连豁免玩家", Order = -9)]
         public List<string> ExemptPlayers = new List<string>();
 
