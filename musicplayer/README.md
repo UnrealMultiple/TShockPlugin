@@ -3,7 +3,7 @@
 - 作者: Olink，Cjx适配，肝帝熙恩修改, yu大改
 - 出处: [github](https://github.com/Olink/SongPlayer)远古仓库
 - 装上插件会在Tshock文件夹下生成一个Songs文件夹，里面放音乐文件
-- 通过读取音高文件，使用竖琴/铃铛/吉他模拟播放音乐，提供了[简易转换脚本工具]()，你也可以自己手搓,和[示范音乐转换文件（mid），和成品文件]()
+- 通过读取音高文件，使用竖琴/铃铛/吉他模拟播放音乐，提供了[简易转换脚本](https://github.com/THEXN/TShockPlugin/blob/master/musicplayer/%E8%BD%AC%E6%8D%A2%E8%84%9A%E6%9C%AC%E5%8F%82%E8%80%83.py)，你也可以自己手搓,和[示范音乐转换文件（mid），和成品文件]()
 - 不推荐过高音和过低音，泰拉本身不支持，音高范围为C4-C6
 - 
 ## 更新日志
