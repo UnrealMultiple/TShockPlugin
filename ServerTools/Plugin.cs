@@ -30,13 +30,11 @@ namespace ServerTools
 
         private DateTime LastCommandUseTime = DateTime.Now;
 
-        private long TimerCount = 0;
+        private static long TimerCount = 0;
 
         private readonly Dictionary<string, DateTime> PlayerDeath = new();
 
         public event Action<EventArgs>? Timer;
-
-        public static long _timer = 0L;
 
         public static Hook CmdHook;
 
@@ -114,7 +112,7 @@ namespace ServerTools
                 e.Player.SetBuff(156, 180, true);
                 TShock.Utils.Broadcast($"[ServerTools] 玩家 [{e.Player.Name}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{keepArmor.netID}]", Color.DarkRed);
             }
-            if (ArmorGroup.Any() && _timer % 20 == 0)
+            if (ArmorGroup.Any() && TimerCount % 20 == 0)
                 clear.ClearItem(ArmorGroup.ToArray(), e.Player);
 
             if (Config.KeepArmor2 && !Main.hardMode) { Clear7Item(e.Player); }
@@ -122,7 +120,7 @@ namespace ServerTools
 
         private static void Clear7Item(TSPlayer args)
         {
-            if (!args.TPlayer.armor[8].IsAir && _timer % 20 == 0)
+            if (!args.TPlayer.armor[8].IsAir && TimerCount % 20 == 0)
             {
                 Item i = args.TPlayer.armor[8];
                 GiveItem(args, i.type, i.stack, i.prefix);
