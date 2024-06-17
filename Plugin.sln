@@ -178,6 +178,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTime", "RealTime\RealTi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goodnight", "GoodNight\Goodnight.csproj", "{520927A7-8935-4D71-B6BF-E23F714DE7BA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicPlayer", "musicplayer\MusicPlayer.csproj", "{57C04DD8-4DAE-42AE-BC48-E1D41152321E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -866,6 +868,14 @@ Global
 		{520927A7-8935-4D71-B6BF-E23F714DE7BA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{520927A7-8935-4D71-B6BF-E23F714DE7BA}.Release|x64.ActiveCfg = Release|Any CPU
 		{520927A7-8935-4D71-B6BF-E23F714DE7BA}.Release|x64.Build.0 = Release|Any CPU
+		{57C04DD8-4DAE-42AE-BC48-E1D41152321E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C04DD8-4DAE-42AE-BC48-E1D41152321E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C04DD8-4DAE-42AE-BC48-E1D41152321E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{57C04DD8-4DAE-42AE-BC48-E1D41152321E}.Debug|x64.Build.0 = Debug|Any CPU
+		{57C04DD8-4DAE-42AE-BC48-E1D41152321E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C04DD8-4DAE-42AE-BC48-E1D41152321E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57C04DD8-4DAE-42AE-BC48-E1D41152321E}.Release|x64.ActiveCfg = Release|Any CPU
+		{57C04DD8-4DAE-42AE-BC48-E1D41152321E}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
