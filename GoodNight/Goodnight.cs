@@ -29,8 +29,8 @@ namespace Goodnight
             ServerApi.Hooks.NpcSpawn.Register(this, OnSpawn);
             ServerApi.Hooks.NpcTransform.Register(this, OnTransform);
             ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
-            NewProjectile += HandleEvent;
-            
+            NewProjectile += NewProj;
+
         }
 
         protected override void Dispose(bool disposing)
@@ -41,7 +41,7 @@ namespace Goodnight
                 ServerApi.Hooks.NpcSpawn.Deregister(this, OnSpawn);
                 ServerApi.Hooks.NpcTransform.Deregister(this, OnTransform);
                 ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
-                NewProjectile -= HandleEvent;
+                NewProjectile -= NewProj;
             }
             base.Dispose(disposing);
         }
@@ -65,50 +65,27 @@ namespace Goodnight
         private void OnJoin(JoinEventArgs args)
         {
             if (!Config.Enabled) return;
-            if (args is JoinEventArgs joinArgs)
+            var plr = TShock.Players[args.Who];
+            if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.End)
             {
-                var plr = TShock.Players[joinArgs.Who];
-                if (plr != null && !IsExempt(plr.Name))
-                {
-                    if (Config.DiscPlayers)
+                if (Config.DiscPlayers)
+                    if (plr != null && !IsExempt(plr.Name))
                         plr.Disconnect($"{Config.JoinMessage} \n禁止游戏时间:{Config.Time.Start}-{Config.Time.End}");
-                }
             }
         }
 
-        private void HandleEvent(object sender, EventArgs e)
+        private void NewProj(object sender, NewProjectileEventArgs e)
         {
             if (!Config.Enabled) return;
             if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.End)
             {
-                if (e is NewProjectileEventArgs)
-                {
-                    var Disconnect = TShock.Players.Where(p => p != null && !IsExempt(p.Name)).ToList();
-                    foreach (var plr in Disconnect)
-                    {
-                        if (Config.DiscPlayers)
-                            plr.Disconnect($"{Config.Message2} \n禁止游戏时间:{Config.Time.Start}-{Config.Time.End}");
-                    }
-                }
-
-                else
-                {
-                    foreach (var plr in TShock.Players.Where(p => p != null))
-                    {
-                        if (!IsExempt(plr.Name))
-                        {
-                            if (Config.DiscPlayers)
-                                NetMessage.SendData(2, plr.TPlayer.whoAmI, -1, NetworkText.FromLiteral(Config.Message1 + $"\n禁止游戏时间:{Config.Time.Start}-{Config.Time.End}"), 0, 0f, 0f, 0f, 0, 0, 0);
-                        }
-                    }
-                }
+                if (Config.DiscPlayers)
+                    if (e.Player != null && !IsExempt(e.Player.Name))
+                        e.Player.Disconnect($"{Config.NewProjMessage} \n禁止游戏时间:{Config.Time.Start}-{Config.Time.End}");
             }
         }
 
-        private bool IsExempt(string playerName)
-        {
-            return Config.ExemptPlayers.Contains(playerName);
-        }
+        private bool IsExempt(string Name) { return Config.ExemptPlayers.Contains(Name); }
         #endregion
 
         #region 禁止召唤怪物
@@ -118,7 +95,7 @@ namespace Goodnight
             else if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.End)
             {
                 int PlayerCount = TShock.Utils.GetActivePlayerCount();
-                if (PlayerCount <= Config.MaxPlayers -1)
+                if (PlayerCount < Config.MaxPlayers && Config.MaxPlayers > 0)
                 {
                     if (Config.Npcs.Contains(Main.npc[args.NpcId].netID))
                     {
@@ -139,7 +116,7 @@ namespace Goodnight
             else if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.End)
             {
                 int PlayerCount = TShock.Utils.GetActivePlayerCount();
-                if (PlayerCount <= Config.MaxPlayers -1)
+                if (PlayerCount < Config.MaxPlayers && Config.MaxPlayers > 0)
                 {
                     if (Config.Npcs.Contains(Main.npc[args.NpcId].netID))
                     {
