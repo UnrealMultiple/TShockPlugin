@@ -307,7 +307,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.6.0",
+    "Version": "1.1.7.0",
     "Author": "少司命",
     "Description": "服务器工具"
   },
@@ -376,6 +376,12 @@
     "Version": "1.0.1.1",
     "Author": "星夜神花 羽学适配",
     "Description": "在线礼包插件 "
+  },
+  {
+    "Name": "宵禁 Goodnight",
+    "Version": "2.0.0",
+    "Author": "Jonesn 羽学",
+    "Description": "宵禁插件，设置服务器无法进入的时段"
   },
   {
     "Name": "数据包拦截 PacketsStop",
