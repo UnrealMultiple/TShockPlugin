@@ -53,7 +53,7 @@ namespace Goodnight
         internal static void LoadConfig(ReloadEventArgs args = null!)
         {
             if (File.Exists(Configuration.FilePath)) 
-                Config = Configuration.Read(Configuration.FilePath); 
+                Config = Configuration.Read(); 
             else
             {
                 Config.PlayersList =  new() { "羽学" };

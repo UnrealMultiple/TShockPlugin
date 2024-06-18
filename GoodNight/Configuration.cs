@@ -51,7 +51,7 @@ namespace Goodnight
                 sw.Write(JsonConvert.SerializeObject(this, Formatting.Indented));
         }
 
-        public static Configuration Read(string path)
+        public static Configuration Read()
         {
             if (!File.Exists(FilePath))
             {
@@ -60,7 +60,7 @@ namespace Goodnight
             }
             else
             {
-                using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 using (var sr = new StreamReader(fs))
                     return JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd())!;
             }
