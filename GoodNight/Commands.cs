@@ -68,11 +68,6 @@ namespace Goodnight
                     args.Player.SendMultipleMatchError(matchedNPCs.Select(i => i.FullName));
                     return;
                 }
-                if (matchedNPCs.Count == 0)
-                {
-                    args.Player.SendErrorMessage("不存在的NPC");
-                    return;
-                }
                 else
                 {
                     
