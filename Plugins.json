@@ -96,6 +96,12 @@
     "Description": "增强游戏难度，更好的游戏体验"
   },
   {
+    "Name": "Chameleon",
+    "Version": "1.0.0",
+    "Author": "mistzzt，肝帝熙恩修复1449",
+    "Description": "账户系统交互替换方案"
+  },
+  {
     "Name": "ChattyBridge",
     "Version": "1.0.0.0",
     "Author": "少司命",
@@ -385,7 +391,7 @@
   },
   {
     "Name": "宵禁",
-    "Version": "2.1.0",
+    "Version": "2.2.0",
     "Author": "Jonesn 羽学",
     "Description": "设置服务器无法进入或禁止生成怪物的时段"
   },
