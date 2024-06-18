@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
 using TShockAPI;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 public class TimeRange
 {
@@ -25,7 +24,7 @@ namespace Goodnight
         [JsonProperty("踢出玩家断连消息", Order = -9)]
         public string NewProjMessage = "到点了，晚安";
         [JsonProperty("断连豁免玩家", Order = -9)]
-        public HashSet<string> PlayersList { get; set; } = new HashSet<string>();
+        public List<string> PlayersList { get; set; } = new List<string>();
 
         [JsonProperty("禁怪少于人数(设1为关闭禁怪)", Order = -8)]
         public int MaxPlayers { get; set; } = 2;
