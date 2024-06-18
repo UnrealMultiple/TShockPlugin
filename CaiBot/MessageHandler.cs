@@ -94,8 +94,8 @@ namespace CaiBotPlugin
                                 { "terraria_version",  Main.versionNumber},
                                 { "cai_whitelist", Config.config.WhiteList},
                                 { "os",RuntimeInformation.RuntimeIdentifier },
-                                {"world", (TShock.Config.Settings.UseServerName ? TShock.Config.Settings.ServerName : Main.worldName)}
-
+                                {"world", (TShock.Config.Settings.UseServerName ? TShock.Config.Settings.ServerName : Main.worldName)},
+                                { "group" , (long)jsonObject["group"]}
                             };
                     await SendDateAsync(serverInfo.ToJson());
                     break;
@@ -116,14 +116,14 @@ namespace CaiBotPlugin
 
                     CaiBotPlayer tr = new CaiBotPlayer();
                     Commands.HandleCommand(tr, cmd);
-                    Dictionary<string, string> dictionary = new()
+                    var re = new RestObject
                     {
                         { "type", "cmd" },
                         { "result", string.Join('\n', tr.GetCommandOutput()) },
-                        { "at" ,(string)jsonObject["at"] }
-
+                        { "at" ,(string)jsonObject["at"] },
+                        { "group" , (long)jsonObject["group"]}
                     };
-                    await SendDateAsync(dictionary.ToJson());
+                    await SendDateAsync(re.ToJson());
                     break;
                 case "online":
                     string result = "";
@@ -252,14 +252,15 @@ namespace CaiBotPlugin
 
                     #endregion
 
-                    dictionary = new()
+                    re = new RestObject
                     {
                         { "type", "online" },
                         { "result", result },
                         { "worldname", Main.worldName},
-                        { "process",process }
+                        { "process",process },
+                        { "group" , (long)jsonObject["group"]}
                     };
-                    await SendDateAsync(dictionary.ToJson());
+                    await SendDateAsync(re.ToJson());
                     break;
                 case "process":
                     List<Dictionary<string, bool>> processList = new List<Dictionary<string, bool>>(new Dictionary<string, bool>[21]
@@ -370,11 +371,12 @@ namespace CaiBotPlugin
                             NPC.downedTowerStardust
                         } }
                     });
-                    var re = new RestObject
+                    re = new RestObject
                     {
                         { "type","process" },
                         { "result",processList },
-                        { "worldname",Main.worldName}
+                        { "worldname",Main.worldName},
+                        { "group" , (long)jsonObject["group"]}
                     };
                     await SendDateAsync(re.ToJson());
                     break;
@@ -410,7 +412,8 @@ namespace CaiBotPlugin
                     re = new RestObject
                     {
                         { "type","mappng" },
-                        { "result",base64 }
+                        { "result",base64 },
+                        { "group" , (long)jsonObject["group"]}
                     };
                     await SendDateAsync(re.ToJson());
                     break;
@@ -545,7 +548,8 @@ namespace CaiBotPlugin
                             { "name",name},
                             { "exist",1},
                             { "inventory", itemList},
-                            { "buffs", buffs}
+                            { "buffs", buffs},
+                            { "group" , (long)jsonObject["group"]}
                         };
                         await SendDateAsync(re.ToJson());
                         return;
@@ -592,7 +596,8 @@ namespace CaiBotPlugin
                                 { "exist",1},
                                 { "name",name},
                                 { "inventory", itemList},
-                                { "buffs", buffs}
+                                { "buffs", buffs} ,
+                                { "group" , (long)jsonObject["group"]}
                             };
                         await SendDateAsync(re.ToJson());
 
