@@ -180,6 +180,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goodnight", "GoodNight\Good
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicPlayer", "musicplayer\MusicPlayer.csproj", "{57C04DD8-4DAE-42AE-BC48-E1D41152321E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimerKeeper", "TimerKeeper\TimerKeeper.csproj", "{5F5D175C-F0EF-44E0-B5C4-7C9CA89E01D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -876,6 +878,14 @@ Global
 		{57C04DD8-4DAE-42AE-BC48-E1D41152321E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{57C04DD8-4DAE-42AE-BC48-E1D41152321E}.Release|x64.ActiveCfg = Release|Any CPU
 		{57C04DD8-4DAE-42AE-BC48-E1D41152321E}.Release|x64.Build.0 = Release|Any CPU
+		{5F5D175C-F0EF-44E0-B5C4-7C9CA89E01D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F5D175C-F0EF-44E0-B5C4-7C9CA89E01D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F5D175C-F0EF-44E0-B5C4-7C9CA89E01D1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5F5D175C-F0EF-44E0-B5C4-7C9CA89E01D1}.Debug|x64.Build.0 = Debug|Any CPU
+		{5F5D175C-F0EF-44E0-B5C4-7C9CA89E01D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F5D175C-F0EF-44E0-B5C4-7C9CA89E01D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F5D175C-F0EF-44E0-B5C4-7C9CA89E01D1}.Release|x64.ActiveCfg = Release|Any CPU
+		{5F5D175C-F0EF-44E0-B5C4-7C9CA89E01D1}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
