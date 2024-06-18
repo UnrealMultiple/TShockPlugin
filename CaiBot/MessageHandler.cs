@@ -123,7 +123,7 @@ namespace CaiBotPlugin
                         { "at" ,(string)jsonObject["at"] },
                         { "group" , (long)jsonObject["group"]}
                     };
-                    await SendDateAsync(dictionary.ToJson());
+                    await SendDateAsync(re.ToJson());
                     break;
                 case "online":
                     string result = "";
