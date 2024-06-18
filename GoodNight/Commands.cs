@@ -58,8 +58,12 @@ namespace Goodnight
             {
                 NPC npc;
                 List<NPC> matchedNPCs = TShock.Utils.GetNPCByIdOrName(args.Parameters[1]);
-
-                if (matchedNPCs.Count > 1 && matchedNPCs.Count != 0)
+                if(matchedNPCs.Count != 0)
+                {
+                    args.Player.SendErrorMessage("未知的NPC 请输入一个正确的NPCid或名字");
+                    return;
+                }
+                if (matchedNPCs.Count > 1)
                 {
                     args.Player.SendMultipleMatchError(matchedNPCs.Select(i => i.FullName));
                     return;
@@ -119,7 +123,7 @@ namespace Goodnight
             #endregion
 
             #region 修改豁免名单方法
-            if (args.Parameters.Count == 3 || (args.Parameters[0].ToLower() == "hm"))
+            if (args.Parameters.Count == 3 && args.Parameters[0].ToLower() == "hm")
             {
                 switch (args.Parameters[1].ToLower())
                 {
