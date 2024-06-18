@@ -71,7 +71,7 @@ namespace CaiBotPlugin
                         if (Terraria.Program.LaunchParameters.ContainsKey("-cailocalbot"))
                             await ws.ConnectAsync(new Uri("ws://127.0.0.1:22333/bot/" + Config.config.Token), CancellationToken.None);
                         else
-                            await ws.ConnectAsync(new Uri("ws://110.42.98.64:22333/bot/" + Config.config.Token), CancellationToken.None);
+                            await ws.ConnectAsync(new Uri("ws://api.terraria.ink:22333/bot/" + Config.config.Token), CancellationToken.None);
 
                         // 连接成功，发送和接收消息的逻辑
                         // ...
