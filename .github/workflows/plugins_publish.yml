@@ -27,8 +27,8 @@ jobs:
   
       - name: 下载PluginInfoLoader
         run: |
-          wget https://github.com/ACaiCat/PluginInfoLoaderr/releases/download/v1.0.0.0/linux-x64.zip
-          unzip linux-x64.zip
+          wget -q https://github.com/ACaiCat/PluginInfoLoaderr/releases/download/v1.0.0.0/linux-x64.zip
+          unzip -qq linux-x64.zip
       
       - name: 运行TShock生成Plugins.json
         timeout-minutes: 3
@@ -43,6 +43,7 @@ jobs:
           mv linux-x64/Plugins.json ./
 
       - name: 自动更新Plugins.json
+        continue-on-error: true
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
