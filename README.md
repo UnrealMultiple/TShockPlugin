@@ -130,6 +130,7 @@
 | [GoodNight](GoodNight/README.md)                                 |              宵禁              |                                             无                                             |
 | [Musicplayer](Musicplayer/README.md)                             |         简易音乐播放器          |                                             无                                             |
 | [TimerKeeper](TimerKeeper/README.md)                             |         保存计时器状态          |                                             无                                             |
+| [Chameleon](Chameleon/README.md)                                 |           进服前登录            |                                             无                                             |
 </Details>
 
 ## 代码贡献
