@@ -25,7 +25,7 @@ namespace Goodnight
         [JsonProperty("踢出玩家断连消息", Order = -9)]
         public string NewProjMessage = "到点了，晚安";
         [JsonProperty("断连豁免玩家", Order = -9)]
-        public List<string> PlayersList { get; set; } = new List<string>();
+        public List<string> PlayersList { get; set; } = new List<string>() { "羽学" };
 
         [JsonProperty("禁怪少于人数(设1为关闭禁怪)", Order = -8)]
         public int MaxPlayers { get; set; } = 2;

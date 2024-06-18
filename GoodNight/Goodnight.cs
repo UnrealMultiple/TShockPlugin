@@ -52,12 +52,16 @@ namespace Goodnight
         #region 配置文件创建与重读加载方法
         internal static void LoadConfig(ReloadEventArgs args = null!)
         {
-            if (Config == null)
+            if (!File.Exists(Configuration.FilePath))
             {
                 Config = new Configuration();
                 Config.Write();
             }
-            Config = Configuration.Read();
+
+            else
+            {
+                Config = Configuration.Read();
+            }
 
             if (args != null && args.Player != null)
             {
