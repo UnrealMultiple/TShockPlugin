@@ -65,13 +65,7 @@ namespace Goodnight
                     return;
                 }
 
-                if (matchedNPCs.Count != 0 && args.Parameters[0].ToLower() != "plr")
-                {
-                    args.Player.SendErrorMessage("未知的NPC 请输入一个正确的NPCid或名字");
-                    return;
-                }
-
-                if (matchedNPCs.Count == 0)
+               else if (matchedNPCs.Count == 0)
                 {
                     args.Player.SendErrorMessage("不存在的NPC");
                     return;
@@ -148,7 +142,7 @@ namespace Goodnight
                             if (!String.IsNullOrEmpty(text) && Goodnight.Config.Del(text))
                             {
                                 var plrs = TShock.Players.Where
-                                (x => x != null && x.Active && x.ConnectionAlive && x.Name == args.Player.Name).ToList();
+                                (x => x != null && x.Active && x.ConnectionAlive && x.Name == text).ToList();
                                 if (plrs.Any())
                                     if (!plrs[0].HasPermission("goodnight.admin"))
                                         plrs[0].Disconnect("【宵禁】你已被移出服务器豁免名单");
@@ -211,11 +205,11 @@ namespace Goodnight
                  "/gn --查看宵禁指令菜单\n" +
                  "/gn on --开启或关闭宵禁功能\n" +
                  "/gn kick --开启或关闭断连功能\n" +
-                 "/gn time start 或 stop 02:00:00 --设置宵禁开启结束时间\n" +
+                 "/gn time start 或 stop 23:59:59 --设置宵禁开启结束时间\n" +
                  "/gn add NPC名字 或 ID --添加指定禁止召唤怪物\n" +
                  "/gn del NPC名字 或 ID --删除指定禁止召唤怪物\n" +
                  "/gn list --列出禁止怪物表\n" +
-                 "/gn plr 数字 --设置宵禁时间内解禁怪物的在线人数\n" +
+                 "/gn plr 人数 --设置宵禁时间内解禁怪物的在线人数\n" +
                  "/gn plr add 玩家名字 --添加指定玩家到豁免名单\n" +
                  "/gn plr del 玩家名字 --把指定玩家从豁免名单移除\n" +
                  "/reload --重载宵禁配置文件\n");
