@@ -57,21 +57,20 @@ namespace Goodnight
             {
                 NPC npc;
                 List<NPC> matchedNPCs = TShock.Utils.GetNPCByIdOrName(args.Parameters[1]);
-
-
                 if (matchedNPCs.Count > 1)
                 {
                     args.Player.SendMultipleMatchError(matchedNPCs.Select(i => i.FullName));
                     return;
                 }
 
-               else if (matchedNPCs.Count == 0)
+               if (matchedNPCs.Count == 0)
                 {
                     args.Player.SendErrorMessage("不存在的NPC");
                     return;
                 }
 
-                else { npc = matchedNPCs[0]; }
+                else 
+                    npc = matchedNPCs[0]; 
 
                 switch (args.Parameters[0].ToLower())
                 {
