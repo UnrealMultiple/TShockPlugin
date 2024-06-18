@@ -21,10 +21,7 @@ namespace Goodnight
             #region 列出禁止怪物表
             if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "list")
             {
-                if (Goodnight.Config.Npcs.Count < 1)
-                    args.Player.SendInfoMessage("当前禁止怪物生成表为空.");
-                else
-                    args.Player.SendInfoMessage("禁止怪物生成表: " + string.Join(", ", Goodnight.Config.Npcs.Select(x => TShock.Utils.GetNPCById(x)?.FullName + "({0})".SFormat(x))));
+                args.Player.SendInfoMessage("禁止怪物生成表: " + string.Join(", ", Goodnight.Config.Npcs.Select(x => TShock.Utils.GetNPCById(x)?.FullName + "({0})".SFormat(x))));
                 return;
             }
             #endregion
@@ -119,14 +116,14 @@ namespace Goodnight
             #endregion
 
             #region 修改豁免名单方法
-            if (args.Parameters.Count >= 3 && (args.Parameters[0].ToLower() == "hm"))
+            if (args.Parameters.Count == 3 && (args.Parameters[1].ToLower() == "hm"))
             {
-                switch (args.Parameters[2])
+                switch (args.Parameters[1].ToLower())
                 {
                     case "update":
                         {
-                            string text = args.Parameters[3];
-                            if (text != null && Goodnight.Config.Add(text))
+                            string text = args.Parameters[2];
+                            if (!String.IsNullOrEmpty(text) && Goodnight.Config.Add(text))
                                 args.Player.SendMessage("成功添加玩家 " + text + " 进入豁免名单", Color.Aquamarine);
                             else
                                 args.Player.SendMessage("该玩家已存在豁免名单中", Color.Salmon);
@@ -134,8 +131,8 @@ namespace Goodnight
                         }
                     case "clear":
                         {
-                            string text = args.Parameters[3];
-                            if (text != null && Goodnight.Config.Del(text))
+                            string text = args.Parameters[2];
+                            if (!String.IsNullOrEmpty(text) && Goodnight.Config.Del(text))
                             {
                                 TSPlayer plr = TSPlayer.FindByNameOrID(text)[0];
                                 if (plr != null && plr.Active && plr.ConnectionAlive)
