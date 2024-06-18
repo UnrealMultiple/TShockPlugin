@@ -391,7 +391,7 @@
   },
   {
     "Name": "宵禁",
-    "Version": "2.2.0",
+    "Version": "2.2.1",
     "Author": "Jonesn 羽学",
     "Description": "设置服务器无法进入或禁止生成怪物的时段"
   },
