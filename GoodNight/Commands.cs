@@ -148,7 +148,7 @@ namespace Goodnight
                             if (!String.IsNullOrEmpty(text) && Goodnight.Config.Del(text))
                             {
                                 var plrs = TShock.Players.Where
-                                (x => x != null && x.Active && x.ConnectionAlive && x.Name == args.Player.Name).ToList();
+                                (x => x != null  && x.Active && x.ConnectionAlive && x.Name == text).ToList();
                                 if (plrs.Any())
                                     if (!plrs[0].HasPermission("goodnight.admin"))
                                         plrs[0].Disconnect("【宵禁】你已被移出服务器豁免名单");
