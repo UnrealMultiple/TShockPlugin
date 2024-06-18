@@ -30,16 +30,16 @@ v2.0.0
 
 | 语法                             | 别名  |       权限       |                   说明                   |
 | -------------------------------- | :---: | :--------------: | :--------------------------------------: |
-| /gn |  宵禁  |  goodnight.admin |    查看宵禁指令菜单    |
+| /gn |  /宵禁  |  goodnight.admin |    查看宵禁指令菜单    |
 | /gn on | 无 |  goodnight.admin |    开启或关闭宵禁功能    |
 | /gn kick | 无 |  goodnight.admin |    开启或关闭断连功能    |
-| /gn time start & stop hh:mm:ss | 无 |  goodnight.admin |    设置宵禁开启结束时间    |
-| /gn plr num | 无 |  goodnight.admin |    设置宵禁时间内解禁怪物的在线人数    |
-| /gn hm update name | 无 |  goodnight.admin |    添加指定玩家到豁免名单    |
-| /gn hm clear name | 无 |  goodnight.admin |    把指定玩家从豁免名单移除    |
+| /gn time start & stop 23:59:59 | 无 |  goodnight.admin |    设置宵禁开启结束时间    |
 | /gn list | 无 |  goodnight.admin |    列出禁止怪物表    |
-| /gn add name & id| 无 |  goodnight.admin |    添加指定禁止召唤怪物    |
-| /gn del name & id| 无 |  goodnight.admin |    删除指定禁止召唤怪物    |
+| /gn add 怪名 或 id| 无 |  goodnight.admin |    添加指定禁止召唤怪物    |
+| /gn del 怪名 或 id| 无 |  goodnight.admin |    删除指定禁止召唤怪物    |
+| /gn plr 人数 | 无 |  goodnight.admin |    设置宵禁时间内解禁怪物的在线人数    |
+| /gn plr add 玩家名 | 无 |  goodnight.admin |    添加指定玩家到豁免名单    |
+| /gn plr del 玩家名 | 无 |  goodnight.admin |    把指定玩家从豁免名单移除    |
 | /reload |  无  |  tshock.cfg.reload |    重载配置文件    |
 
 
