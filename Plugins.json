@@ -330,6 +330,12 @@
     "Description": "触发开关可以执行指令"
   },
   {
+    "Name": "TimerKeeper",
+    "Version": "1.0.0.0",
+    "Author": "Cai",
+    "Description": "保存计时器"
+  },
+  {
     "Name": "TownNPCHomes",
     "Version": "1.1.0",
     "Author": "棱镜 羽学优化",
