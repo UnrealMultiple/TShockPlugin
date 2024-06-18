@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
 using TShockAPI;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 public class TimeRange
 {
@@ -24,7 +25,7 @@ namespace Goodnight
         [JsonProperty("踢出玩家断连消息", Order = -9)]
         public string NewProjMessage = "到点了，晚安";
         [JsonProperty("断连豁免玩家", Order = -9)]
-        public List<string> PlayersList { get; set; }
+        public HashSet<string> PlayersList { get; set; } = new HashSet<string>();
 
         [JsonProperty("禁怪少于人数(设1为关闭禁怪)", Order = -8)]
         public int MaxPlayers { get; set; } = 2;
@@ -36,14 +37,9 @@ namespace Goodnight
         };
 
         [JsonProperty("禁止怪物生成表(NpcID)", Order = -6)]
-        public HashSet<int> Npcs = new();
+        public HashSet<int> Npcs = new HashSet<int>();
 
         #region 读取与创建配置文件方法
-        public Configuration()
-        {
-            PlayersList = new List<string>();
-        }
-
         public void Write()
         {
             using (var fs = new FileStream(FilePath, FileMode.Create, FileAccess.Write, FileShare.Write))
@@ -53,17 +49,9 @@ namespace Goodnight
 
         public static Configuration Read()
         {
-            if (!File.Exists(FilePath))
-            {
-                new Configuration().Write();
-                return new Configuration();
-            }
-            else
-            {
                 using (var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 using (var sr = new StreamReader(fs))
                     return JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd())!;
-            }
         }
         #endregion
 
@@ -96,7 +84,7 @@ namespace Goodnight
                 return true;
             }
             return false;
-        } 
+        }
         #endregion
     }
 }

@@ -14,7 +14,7 @@ namespace Goodnight
         #region 变量与插件信息
         public override string Name => "宵禁";
         public override string Author => "Jonesn 羽学";
-        public override Version Version => new Version(2, 2, 0);
+        public override Version Version => new Version(2, 2, 1);
         public override string Description => "设置服务器无法进入或禁止生成怪物的时段";
         internal static Configuration Config;
         #endregion
@@ -52,14 +52,17 @@ namespace Goodnight
         #region 配置文件创建与重读加载方法
         internal static void LoadConfig(ReloadEventArgs args = null!)
         {
-            if (File.Exists(Configuration.FilePath)) 
-                Config = Configuration.Read(); 
+            if (!File.Exists(Configuration.FilePath))
+            {
+                Config = new Configuration();
+                Config.Write();
+            }
+
             else
             {
-                Config.PlayersList =  new() { "羽学" };
-                Config.Npcs = new HashSet<int>() { 4, 13, 14, 15, 35, 36, 37, 50, 113, 114, 125, 126, 127, 128, 129, 130, 131, 134, 135, 136, 222, 245, 246, 247, 248, 249, 262, 266, 370, 396, 397, 398, 400, 439, 440, 422, 493, 507, 517, 636, 657, 668 };
+                Config = Configuration.Read();
             }
-            Config.Write();
+
             if (args != null && args.Player != null)
             {
                 args.Player.SendSuccessMessage("[宵禁]重新加载配置完毕。");
