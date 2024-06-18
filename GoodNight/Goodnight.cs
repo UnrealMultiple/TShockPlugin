@@ -14,7 +14,7 @@ namespace Goodnight
         #region 变量与插件信息
         public override string Name => "宵禁";
         public override string Author => "Jonesn 羽学";
-        public override Version Version => new Version(2, 2, 0);
+        public override Version Version => new Version(2, 2, 1);
         public override string Description => "设置服务器无法进入或禁止生成怪物的时段";
         internal static Configuration Config;
         #endregion
