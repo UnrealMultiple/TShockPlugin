@@ -44,18 +44,18 @@ namespace Goodnight
             PlayersList = new List<string>();
         }
 
-        public void Write(string path)
+        public void Write()
         {
-            using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
+            using (var fs = new FileStream(FilePath, FileMode.Create, FileAccess.Write, FileShare.Write))
             using (var sw = new StreamWriter(fs, new UTF8Encoding(false)))
                 sw.Write(JsonConvert.SerializeObject(this, Formatting.Indented));
         }
 
         public static Configuration Read(string path)
         {
-            if (!File.Exists(path))
+            if (!File.Exists(FilePath))
             {
-                new Configuration().Write(path);
+                new Configuration().Write();
                 return new Configuration();
             }
             else
@@ -82,7 +82,7 @@ namespace Goodnight
                 return false;
             }
             PlayersList.Add(name);
-            Write(FilePath);
+            Write();
             return true;
         }
 
@@ -92,7 +92,7 @@ namespace Goodnight
             if (Exempt(name))
             {
                 PlayersList.Remove(name);
-                Write(FilePath);
+                Write();
                 return true;
             }
             return false;

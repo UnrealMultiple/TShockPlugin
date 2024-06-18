@@ -59,7 +59,7 @@ namespace Goodnight
                 Config.PlayersList =  new() { "羽学" };
                 Config.Npcs = new HashSet<int>() { 4, 13, 14, 15, 35, 36, 37, 50, 113, 114, 125, 126, 127, 128, 129, 130, 131, 134, 135, 136, 222, 245, 246, 247, 248, 249, 262, 266, 370, 396, 397, 398, 400, 439, 440, 422, 493, 507, 517, 636, 657, 668 };
             }
-            Config.Write(Configuration.FilePath);
+            Config.Write();
             if (args != null && args.Player != null)
             {
                 args.Player.SendSuccessMessage("[宵禁]重新加载配置完毕。");

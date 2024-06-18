@@ -21,7 +21,10 @@ namespace Goodnight
             #region 列出禁止怪物表
             if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "list")
             {
-                args.Player.SendInfoMessage("禁止怪物生成表: " + string.Join(", ", Goodnight.Config.Npcs.Select(x => TShock.Utils.GetNPCById(x)?.FullName + "({0})".SFormat(x))));
+                if (Goodnight.Config.Npcs.Count < 1)
+                    args.Player.SendInfoMessage("当前阻止表为空.");
+                else
+                    args.Player.SendInfoMessage("禁止怪物生成表: " + string.Join(", ", Goodnight.Config.Npcs.Select(x => TShock.Utils.GetNPCById(x)?.FullName + "({0})".SFormat(x))));
                 return;
             }
             #endregion
@@ -33,7 +36,7 @@ namespace Goodnight
                 Goodnight.Config.Enabled = !isEnabled;
                 string statusStr = isEnabled ? "禁用" : "启用";
                 args.Player.SendSuccessMessage($"已{statusStr}宵禁功能。");
-                Goodnight.Config.Write(Configuration.FilePath);
+                Goodnight.Config.Write();
                 return;
             }
             #endregion
@@ -45,7 +48,7 @@ namespace Goodnight
                 Goodnight.Config.DiscPlayers = !enabled;
                 string status = enabled ? "禁用" : "启用";
                 args.Player.SendSuccessMessage($"已{status}在宵禁时间断开玩家连接。");
-                Goodnight.Config.Write(Configuration.FilePath);
+                Goodnight.Config.Write();
                 return;
             }
             #endregion
@@ -56,7 +59,7 @@ namespace Goodnight
                 NPC npc;
                 List<NPC> matchedNPCs = TShock.Utils.GetNPCByIdOrName(args.Parameters[1]);
 
-                if (matchedNPCs.Count > 1)
+                if (matchedNPCs.Count > 1 && matchedNPCs.Count != 0)
                 {
                     args.Player.SendMultipleMatchError(matchedNPCs.Select(i => i.FullName));
                     return;
@@ -76,7 +79,7 @@ namespace Goodnight
                                 return;
                             }
                             Goodnight.Config.Npcs.Add(npc.netID);
-                            Goodnight.Config.Write(Configuration.FilePath);
+                            Goodnight.Config.Write();
                             args.Player.SendSuccessMessage("已成功将NPC ID添加到阻止列表: {0}!", npc.netID);
                             break;
                         }
@@ -90,7 +93,7 @@ namespace Goodnight
                                 return;
                             }
                             Goodnight.Config.Npcs.Remove(npc.netID);
-                            Goodnight.Config.Write(Configuration.FilePath);
+                            Goodnight.Config.Write();
                             args.Player.SendSuccessMessage("已成功从阻止列表中删除NPC ID: {0}!", npc.netID);
                             break;
                         }
@@ -100,7 +103,7 @@ namespace Goodnight
                             if (int.TryParse(args.Parameters[1], out int num))
                             {
                                 Goodnight.Config.MaxPlayers = num;
-                                Goodnight.Config.Write(Configuration.FilePath);
+                                Goodnight.Config.Write();
                                 args.Player.SendSuccessMessage("已成功将解禁怪物玩家人数设置为: {0} 人!", npc.netID);
                             }
                             break;
@@ -167,13 +170,13 @@ namespace Goodnight
                         case "start":
                             Goodnight.Config.Time.Start = SetTime;
                             args.Player.SendSuccessMessage($"已成功设置宵禁开始时间为：{Goodnight.Config.Time.Start}");
-                            Goodnight.Config.Write(Configuration.FilePath);
+                            Goodnight.Config.Write();
                             break;
                         case "end":
                         case "stop":
                             Goodnight.Config.Time.Stop = SetTime;
                             args.Player.SendSuccessMessage($"已成功设置宵禁结束时间为：{Goodnight.Config.Time.Stop}");
-                            Goodnight.Config.Write(Configuration.FilePath);
+                            Goodnight.Config.Write();
                             break;
                         default:
                             args.Player.SendInfoMessage("设置宵禁时间: /gn time start 或 stop 02:00:00"); ;
