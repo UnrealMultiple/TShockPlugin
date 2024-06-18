@@ -52,14 +52,13 @@ namespace Goodnight
         #region 配置文件创建与重读加载方法
         internal static void LoadConfig(ReloadEventArgs args = null!)
         {
-            if (File.Exists(Configuration.FilePath)) 
-                Config = Configuration.Read(); 
-            else
+            if (Config == null)
             {
-                Config.PlayersList =  new() { "羽学" };
-                Config.Npcs = new HashSet<int>() { 4, 13, 14, 15, 35, 36, 37, 50, 113, 114, 125, 126, 127, 128, 129, 130, 131, 134, 135, 136, 222, 245, 246, 247, 248, 249, 262, 266, 370, 396, 397, 398, 400, 439, 440, 422, 493, 507, 517, 636, 657, 668 };
+                Config = new Configuration();
+                Config.Write();
             }
-            Config.Write();
+            Config = Configuration.Read();
+
             if (args != null && args.Player != null)
             {
                 args.Player.SendSuccessMessage("[宵禁]重新加载配置完毕。");
