@@ -116,7 +116,7 @@ namespace CaiBotPlugin
 
                     CaiBotPlayer tr = new CaiBotPlayer();
                     Commands.HandleCommand(tr, cmd);
-                    Dictionary<string, string> dictionary = new()
+                    var re = new RestObject
                     {
                         { "type", "cmd" },
                         { "result", string.Join('\n', tr.GetCommandOutput()) },
@@ -252,7 +252,7 @@ namespace CaiBotPlugin
 
                     #endregion
 
-                    dictionary = new()
+                    re = new RestObject
                     {
                         { "type", "online" },
                         { "result", result },
@@ -260,7 +260,7 @@ namespace CaiBotPlugin
                         { "process",process },
                         { "group" , (long)jsonObject["group"]}
                     };
-                    await SendDateAsync(dictionary.ToJson());
+                    await SendDateAsync(re.ToJson());
                     break;
                 case "process":
                     List<Dictionary<string, bool>> processList = new List<Dictionary<string, bool>>(new Dictionary<string, bool>[21]
@@ -371,7 +371,7 @@ namespace CaiBotPlugin
                             NPC.downedTowerStardust
                         } }
                     });
-                    var re = new RestObject
+                    re = new RestObject
                     {
                         { "type","process" },
                         { "result",processList },
