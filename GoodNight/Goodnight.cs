@@ -17,7 +17,6 @@ namespace Goodnight
         public override Version Version => new Version(2, 2, 0);
         public override string Description => "设置服务器无法进入或禁止生成怪物的时段";
         internal static Configuration Config;
-        internal static GnUtils Utils;
         #endregion
 
         #region 构造注册卸载
@@ -77,7 +76,7 @@ namespace Goodnight
             if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.Stop)
             {
                 if (Config.DiscPlayers)
-                    if (plr != null && !Utils.Exempt(plr.Name))
+                    if (plr != null && !Config.Exempt(plr.Name))
                         plr.Disconnect($"{Config.JoinMessage} \n禁止游戏时间:{Config.Time.Start}-{Config.Time.Stop}");
             }
         }
@@ -88,7 +87,7 @@ namespace Goodnight
             if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.Stop)
             {
                 if (Config.DiscPlayers)
-                    if (e.Player != null && !Utils.Exempt(e.Player.Name) && !e.Player.HasPermission("goodnight.admin"))
+                    if (e.Player != null && !Config.Exempt(e.Player.Name) && !e.Player.HasPermission("goodnight.admin"))
                         e.Player.Disconnect($"{Config.NewProjMessage} \n禁止游戏时间:{Config.Time.Start}-{Config.Time.Stop}");
             }
         }

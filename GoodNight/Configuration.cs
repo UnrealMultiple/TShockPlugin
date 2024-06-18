@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
 using TShockAPI;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 public class TimeRange
 {
@@ -66,6 +65,38 @@ namespace Goodnight
                     return JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd())!;
             }
         }
+        #endregion
+
+        #region 豁免名单增删改查方法
+        //获取断连豁免名单中的名字
+        internal bool Exempt(string Name) => PlayersList.Contains(Name);
+
+        //列出豁免名单
+        public string GetList() => JsonConvert.SerializeObject(PlayersList, (Formatting)1);
+
+        //添加豁免名单名字
+        public bool Add(string name)
+        {
+            if (Exempt(name))
+            {
+                return false;
+            }
+            PlayersList.Add(name);
+            Write(FilePath);
+            return true;
+        }
+
+        //移除豁免名单名字
+        public bool Del(string name)
+        {
+            if (Exempt(name))
+            {
+                PlayersList.Remove(name);
+                Write(FilePath);
+                return true;
+            }
+            return false;
+        } 
         #endregion
     }
 }

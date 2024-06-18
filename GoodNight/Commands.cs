@@ -126,7 +126,7 @@ namespace Goodnight
                     case "update":
                         {
                             string text = args.Parameters[3];
-                            if (text != null && Goodnight.Utils.Add(text))
+                            if (text != null && Goodnight.Config.Add(text))
                                 args.Player.SendMessage("成功添加玩家 " + text + " 进入豁免名单", Color.Aquamarine);
                             else
                                 args.Player.SendMessage("该玩家已存在豁免名单中", Color.Salmon);
@@ -135,7 +135,7 @@ namespace Goodnight
                     case "clear":
                         {
                             string text = args.Parameters[3];
-                            if (text != null && Goodnight.Utils.Del(text))
+                            if (text != null && Goodnight.Config.Del(text))
                             {
                                 TSPlayer plr = TSPlayer.FindByNameOrID(text)[0];
                                 if (plr != null && plr.Active && plr.ConnectionAlive)
