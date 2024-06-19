@@ -58,7 +58,7 @@
 | [Economics.Regain](Economics.Regain/README.md)                   |            物品回收            |                                        EconomicsAPI                                        |
 | [Economics.Projectile](Economics.Projectile/README.md)           |           自定义弹幕           |                               EconomicsAPI<br>Economics.RPG                                |
 | [Economics.NPC](Economics.NPC/README.md)                         |            任务插件            |                               EconomicsAPI                              |
-| [Economics.Task](Economics.Task/README.md)                       |         自定义怪物奖励         |                                        EconomicsAPI、Economics.RPG                         |
+| [Economics.Task](Economics.Task/README.md)                       |         自定义怪物奖励         |                                        EconomicsAPI<br>Economics.RPG                         |
 | [CreateSpawn](CreateSpawn/README.md)                             |         出生点建筑生成         |                                             无                                             |
 | [AutoBroadcast](AutoBroadcast/README.md)                         |            自动广播            |                                             无                                             |
 | [AutoTeam](AutoTeam/README.md)                                   |            自动队伍            |                                             无                                             |
