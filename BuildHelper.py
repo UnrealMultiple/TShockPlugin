@@ -41,7 +41,8 @@ if __name__ == '__main__':
                     print(f"⚠️ README移动失败({file_name})")
     shutil.copyfile('README.md', f"out/{build_type}/README.md")
     print("✅ README.md移动成功！")
-
+    shutil.copyfile('Plugins.json', f"out/{build_type}/Plugins.json")
+    print("✅ Plugins.json移动成功！")
     if build_type == "Release":
         print("🔄 准备转换PDF...")
         urllib.request.urlretrieve("https://raw.githubusercontent.com/lxgw/LxgwWenKai/main/fonts/TTF/LXGWWenKaiMono-Regular.ttf", "LXGWWenKaiMono-Regular.ttf")
