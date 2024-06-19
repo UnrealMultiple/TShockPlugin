@@ -65,7 +65,17 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: '3.x'
-          
+
+      - name: 安装beautifulsoup4
+        run: |
+            sudo pip install beautifulsoup4
+      
+      - name: 更新论坛
+        env:
+            PYTHONIOENCODING: 'utf-8'
+        run: 
+          sudo python ForumHelper.py ${{ secrets.MONIKA_TR_NAME }} ${{ secrets.MONIKA_TR_PASSWORD }}
+      
       - name: 安装Pandoc
         run: |
           sudo apt-get update
