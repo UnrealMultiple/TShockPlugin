@@ -1,9 +1,9 @@
 <div align = "center">
   
-![TShockPlugin](https://socialify.git.ci/Controllerdestiny/TShockPlugin/image?description=1&descriptionEditable=%E4%B8%80%E4%B8%AA%E6%94%B6%E9%9B%86TShock%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BB%93%E5%BA%93&font=Inter&forks=1&issues=1&name=1&pattern=Diagonal%20Stripes&pulls=1&stargazers=1&theme=Auto)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Controllerdestiny/TShockPlugin/.github%2Fworkflows%2Fplugins_publish.yml)
-![GitHub contributors](https://img.shields.io/github/contributors/Controllerdestiny/TShockPlugin?style=flat)
-![C#](https://img.shields.io/badge/Core-%20.NET_6-blue)
+[![TShockPlugin](https://socialify.git.ci/Controllerdestiny/TShockPlugin/image?description=1&descriptionEditable=%E4%B8%80%E4%B8%AA%E6%94%B6%E9%9B%86TShock%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BB%93%E5%BA%93&font=Inter&forks=1&issues=1&name=1&pattern=Diagonal%20Stripes&pulls=1&stargazers=1&theme=Auto)](https://github.com/Controllerdestiny/TShockPlugin)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Controllerdestiny/TShockPlugin/.github%2Fworkflows%2Fplugins_publish.yml)](https://github.com/Controllerdestiny/TShockPlugin/actions)
+[![GitHub contributors](https://img.shields.io/github/contributors/Controllerdestiny/TShockPlugin?style=flat)](https://github.com/Controllerdestiny/TShockPlugin/graphs/contributors)
+[![NET6](https://img.shields.io/badge/Core-%20.NET_6-blue)](https://dotnet.microsoft.com/zh-cn/)
 [![QQ](https://img.shields.io/badge/QQ-EB1923?logo=tencent-qq&logoColor=white)](https://qm.qq.com/cgi-bin/qm/qr?k=54tOesIU5g13yVBNFIuMBQ6AzjgE6f0m&jump_from=webapi&authKey=6jzafzJEqQGzq7b2mAHBw+Ws5uOdl83iIu7CvFmrfm/Xxbo2kNHKSNXJvDGYxhSW)
 [![TShock](https://img.shields.io/badge/TShock5.2.0-2B579A.svg?&logo=TShock&logoColor=white)](https://github.com/Pryaxis/TShock)
 
@@ -21,6 +21,7 @@
 
 - 注意有些插件可能需要前置，请查看下方列表安装前置插件。
 - 每个插件都有一个使用说明，在下方列表点击超链查看具体说明事项。
+- 听说喜欢给仓库点星星的人，插件都不容易报错
 
 ## 开发者注意事项
 
