@@ -99,7 +99,6 @@ public class Plugin : TerrariaPlugin
                 if (plugin.Name == latestPluginInfo.Name && plugin.Version != latestPluginInfo.Version)
                     pluginUpdateList.Add(new PluginUpdateInfo(plugin.Name, plugin.Author, latestPluginInfo.Version, plugin.Version, plugin.Path, latestPluginInfo.Path));
         return pluginUpdateList;
-        // Console.WriteLine($"{i.Name} v{i.OldVersion}({i.LocalPath}) => {i.Name} v{i.NewVersion} ({i.RemotePath})");
     }
 
     private static List<PluginVersionInfo> GetPlugins()
@@ -110,35 +109,13 @@ public class Plugin : TerrariaPlugin
             plugins.Add(new PluginVersionInfo()
             {
                 AssemblyName = plugin.Plugin.GetType().Assembly.GetName().Name!,
-                Path = plugin.Plugin.GetType().Assembly.GetName().FullName!,
+                Path = Path.Combine(ServerApi.ServerPluginsDirectoryPath, plugin.Plugin.GetType().Assembly.GetName().Name! + ".dll"),
                 Author = plugin.Plugin.Author,
                 Name = plugin.Plugin.Name,
                 Description = plugin.Plugin.Description,
                 Version = plugin.Plugin.Version.ToString()
             });
         }
-        //List<FileInfo> fileInfos = new DirectoryInfo(ServerApi.ServerPluginsDirectoryPath).GetFiles("*.dll").ToList();
-        //fileInfos.AddRange(new DirectoryInfo(ServerApi.ServerPluginsDirectoryPath).GetFiles("*.dll-plugin"));
-        //foreach (FileInfo fileInfo in fileInfos)
-        //{
-        //    try
-        //    {
-        //        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileInfo.Name);
-
-        //        var assembly = Assembly.Load(File.ReadAllBytes(fileInfo.FullName));
-        //        for (int i = 0; i < plugins.Count; i++)
-        //        {
-        //            if (plugins[i].AssemblyName == assembly.GetName().Name)
-        //            {
-        //                plugins[i].Path = fileInfo.Name;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        continue;
-        //    }
-        //}
         return plugins;
     }
 
@@ -164,12 +141,14 @@ public class Plugin : TerrariaPlugin
         foreach (var pluginUpdateInfo in pluginUpdateInfos)
         {
             string sourcePath = Path.Combine("TempFile", "Plugins", pluginUpdateInfo.RemotePath);
-            string destinationPath = Path.Combine("ServerPlugins", pluginUpdateInfo.LocalPath);
+            string destinationPath = Path.Combine(ServerApi.ServerPluginsDirectoryPath, pluginUpdateInfo.LocalPath);
             // 确保目标目录存在
             string destinationDirectory = Path.GetDirectoryName(destinationPath)!;
             // 复制并覆盖文件
             File.Copy(sourcePath, destinationPath, true);
         }
+        if (Directory.Exists("TempFile"))
+            Directory.Delete("TempFile");
     }
     #endregion
 }
