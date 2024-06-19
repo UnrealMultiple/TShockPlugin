@@ -7,9 +7,7 @@
 ## 介绍
 
 1. 广播盒内插占位符和格式化   
-   ![image](https://github.com/ACaiCat/TShockPlugin/assets/62058454/cc489eff-de45-4264-bc4e-8e19c9c91883)   
 2. 可以添加编辑广播盒的权限   
-   ![image](https://github.com/ACaiCat/TShockPlugin/assets/62058454/9177fc0f-df5b-4568-81fa-496364587497)   
 4. 可以开关广播盒   
 5. 可以设置广播盒有效范围(单位:像素)   
 
