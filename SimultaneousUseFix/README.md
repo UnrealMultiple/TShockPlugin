@@ -4,7 +4,9 @@
 - 出处: 无
 - 解决卡双锤卡星旋机枪之类的问题
 - 因为一些检测原因，最后一个桶会被判定，所以加了免检测
-- 需要前置：https://github.com/sgkoishi/yaaiomni/releases
+> [!NOTE]  
+> 需要前置：https://github.com/sgkoishi/yaaiomni/releases
+
 ## 更新日志
 
 ```

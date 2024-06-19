@@ -3,8 +3,10 @@
 - 作者: 少司命
 - 出处: 无
 - 一个可以释放技能的插件
-- 注意安装前置插件 `EconomicsAPI` `Economics.RPG`
 
+> [!NOTE]  
+> 需要安装前置插件：EconomicsAPI、Economics.RPG (本仓库) 
+ 
 ## 更新日志
 
 ```
