@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Text;
 using TShockAPI;
 
@@ -24,7 +25,7 @@ namespace Goodnight
         [JsonProperty("踢出玩家断连消息", Order = -9)]
         public string NewProjMessage = "到点了，晚安";
         [JsonProperty("断连豁免玩家", Order = -9)]
-        public List<string> PlayersList { get; set; } = new List<string>();
+        public HashSet<string> PlayersList { get; set; } = new HashSet<string>();
 
         [JsonProperty("禁怪少于人数(设1为关闭禁怪)", Order = -8)]
         public int MaxPlayers { get; set; } = 2;
@@ -35,7 +36,9 @@ namespace Goodnight
             Stop = TimeSpan.FromHours(5)
         };
 
-        [JsonProperty("禁止怪物生成表(NpcID)", Order = -6)]
+        [JsonProperty("已击败进度限制(NpcID)", Order = -6)]
+        public HashSet<int> NpcDie = new HashSet<int>();
+        [JsonProperty("禁止怪物生成表(NpcID)", Order = -5)]
         public HashSet<int> Npcs = new HashSet<int>();
 
         #region 读取与创建配置文件方法
@@ -48,9 +51,12 @@ namespace Goodnight
 
         public static Configuration Read()
         {
-                using (var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-                using (var sr = new StreamReader(fs))
-                    return JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd())!;
+            using (var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var sr = new StreamReader(fs))
+            {
+                var End = sr.ReadToEnd();
+                return JsonConvert.DeserializeObject<Configuration>(End) ?? new Configuration();
+            }
         }
         #endregion
 
