@@ -2,8 +2,10 @@
 
 - 作者: Cai
 - 出处: 本仓库
-- 允许你使用在控制台和BOT中执行SQL语句   
-![image](https://github.com/ACaiCat/TShockPlugin/assets/62058454/e0d24d17-cea7-49b3-9172-0b8d49e3e23f)
+- 允许你使用在控制台和BOT中执行SQL语句
+ 
+> [!CAUTION]
+> 执行危险SQL语句(DELETE、DROP等)时，请仔细检查(条件等)，否则可能造成严重不可逆后果
 
 ## 示例
 ```
