@@ -19,6 +19,10 @@ namespace Goodnight
 
         [JsonProperty("宵禁是否断连", Order = -9)]
         public bool DiscPlayers = false;
+
+        [JsonProperty("是否开启允许召唤区(禁用自动计数)", Order = -9)]
+        public bool Region = false;
+
         [JsonProperty("玩家进服拦截消息", Order = -9)]
         public string JoinMessage = "当前为宵禁时间，无法加入游戏。";
         [JsonProperty("踢出玩家断连消息", Order = -9)]
@@ -32,7 +36,7 @@ namespace Goodnight
         public TimeRange Time { get; set; } = new TimeRange()
         {
             Start = TimeSpan.FromHours(0),
-            Stop = TimeSpan.FromHours(5)
+            Stop = TimeSpan.FromHours(7)
         };
 
         [JsonProperty("击杀多少次开始记录进度", Order = -6)]
@@ -54,11 +58,16 @@ namespace Goodnight
 
         public static Configuration Read()
         {
-            using (var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (var sr = new StreamReader(fs))
+            if (!File.Exists(FilePath))
             {
-                var End = sr.ReadToEnd();
-                return JsonConvert.DeserializeObject<Configuration>(End) ?? new Configuration();
+                new Configuration().Write();
+                return new Configuration();
+            }
+            else
+            {
+                using (var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var sr = new StreamReader(fs))
+                    return JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd())!;
             }
         }
         #endregion
@@ -68,7 +77,10 @@ namespace Goodnight
         internal bool Exempt(string Name) => PlayersList.Contains(Name);
 
         //列出豁免名单
-        public string GetList() => JsonConvert.SerializeObject(PlayersList, (Formatting)1);
+        public string GetExemptPlayersAsString()
+        {
+            return string.Join(", ", PlayersList);
+        }
 
         //添加豁免名单名字
         public bool Add(string name)
