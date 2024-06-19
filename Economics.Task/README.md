@@ -3,7 +3,9 @@
 - 作者: 少司命
 - 出处: 无
 - 给玩家发任务
-- 注意安装前置插件 `EconomicsAPI` `Economics.RPG`
+
+> [!NOTE]  
+> 需要安装前置插件：EconomicsAPI、Economics.RPG (本仓库) 
 
 ## 更新日志
 
