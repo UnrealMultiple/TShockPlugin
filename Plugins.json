@@ -49,6 +49,13 @@
     "Path": "AutoTeam.dll"
   },
   {
+    "Name": "AutoUpdatePlugin",
+    "Version": "1.6.0.2",
+    "Author": "少司命，Cai",
+    "Description": "自动更新你的插件！",
+    "Path": "AutoUpdatePlugin.dll"
+  },
+  {
     "Name": "BackPlugin",
     "Version": "1.0.0.3",
     "Author": "Megghy,熙恩改",
@@ -365,7 +372,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.7.0",
+    "Version": "1.1.7.1",
     "Author": "少司命",
     "Description": "服务器工具",
     "Path": "ServerTools.dll"
