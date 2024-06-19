@@ -1,10 +1,6 @@
 using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
-using NuGet.Configuration;
-using NuGet.Protocol.Plugins;
-using System.Linq;
-using Terraria.DataStructures;
 using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
@@ -22,7 +18,7 @@ namespace ServerTools
 
         public override string Name => "ServerTools";// 插件名字
 
-        public override Version Version => new(1, 1, 7, 0);// 插件版本
+        public override Version Version => new(1, 1, 7, 1);// 插件版本
 
         private static Config Config = new();
 
@@ -37,8 +33,6 @@ namespace ServerTools
         public event Action<EventArgs>? Timer;
 
         public static Hook CmdHook;
-
-        private static ClearPlayersItem clear = new();
 
         public Plugin(Main game) : base(game)
         {
@@ -112,30 +106,11 @@ namespace ServerTools
                 e.Player.SetBuff(156, 180, true);
                 TShock.Utils.Broadcast($"[ServerTools] 玩家 [{e.Player.Name}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{keepArmor.netID}]", Color.DarkRed);
             }
-            if (ArmorGroup.Any() && TimerCount % 20 == 0)
-                clear.ClearItem(ArmorGroup.ToArray(), e.Player);
+            if (ArmorGroup.Any())
+                Utils.ClearItem(ArmorGroup.ToArray(), e.Player);
 
-            if (Config.KeepArmor2 && !Main.hardMode) { Clear7Item(e.Player); }
-        }
-
-        private static void Clear7Item(TSPlayer args)
-        {
-            if (!args.TPlayer.armor[8].IsAir && TimerCount % 20 == 0)
-            {
-                Item i = args.TPlayer.armor[8];
-                GiveItem(args, i.type, i.stack, i.prefix);
-                args.TPlayer.armor[8].TurnToAir();
-                args.SendData(PacketTypes.PlayerSlot, "", args.Index, Terraria.ID.PlayerItemSlotID.Armor0 + 8);
-                TShock.Utils.Broadcast($"[ServerTools] 世界未开启困难模式，禁止玩家 [{args.Name}]使用恶魔心饰品栏", Color.DarkRed);
-            }
-        }
-
-        private static void GiveItem(TSPlayer p, int type, int stack, int prefix = 0)
-        {
-            int num = Item.NewItem(new EntitySource_DebugCommand(), (int)p.TPlayer.Center.X, (int)p.TPlayer.Center.Y, p.TPlayer.width, p.TPlayer.height, type, stack, true, prefix, true, false);
-            Main.item[num].playerIndexTheItemIsReservedFor = p.Index;
-            p.SendData(PacketTypes.ItemDrop, "", num, 1f, 0f, 0f, 0);
-            p.SendData(PacketTypes.ItemOwner, null, num, 0f, 0f, 0f, 0);
+            if (Config.KeepArmor2 && !Main.hardMode)
+                Utils.Clear7Item(e.Player);
         }
 
         #endregion
