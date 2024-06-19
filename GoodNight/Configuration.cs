@@ -53,7 +53,10 @@ namespace Goodnight
         {
             using (var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (var sr = new StreamReader(fs))
-                return JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd())!;
+            {
+                var End = sr.ReadToEnd();
+                return JsonConvert.DeserializeObject<Configuration>(End) ?? new Configuration();
+            }
         }
         #endregion
 
