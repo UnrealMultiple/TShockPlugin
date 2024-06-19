@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Collections;
 using System.Text;
 using TShockAPI;
 
@@ -36,9 +35,13 @@ namespace Goodnight
             Stop = TimeSpan.FromHours(5)
         };
 
-        [JsonProperty("已击败进度限制(NpcID)", Order = -6)]
-        public HashSet<int> NpcDie = new HashSet<int>();
-        [JsonProperty("禁止怪物生成表(NpcID)", Order = -5)]
+        [JsonProperty("击杀多少次开始记录进度", Order = -6)]
+        public int DeadCount { get; set; } = 2;
+        [JsonProperty("击败什么重置允许召唤怪物表", Order = -6)]
+        public int ResetNpcDead { get; set; } = 398;
+        [JsonProperty("允许召唤怪物表(自动计数)", Order = -5)]
+        public HashSet<int> NpcDead = new HashSet<int>();
+        [JsonProperty("禁止怪物生成表(NpcID)", Order = -4)]
         public HashSet<int> Npcs = new HashSet<int>();
 
         #region 读取与创建配置文件方法
