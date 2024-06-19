@@ -2,7 +2,9 @@
 
 - 作者: Cai
 - 出处: [github](https://github.com/THEXN/CaiPlugins)
-- 保存计时器状态，重启后继续计时
+- 保存计时器状态，重启后继续计时  
+> [!NOTE]  
+> 如果重置地图，你需要删除数据库表格`TimerKeeper`来重置计时器保存记录
 
 ## 更新日志
 
