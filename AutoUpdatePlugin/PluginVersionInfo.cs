@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AutoUpdatePlugin;
+﻿namespace AutoUpdatePlugin;
 
 public class PluginVersionInfo
 {
-    public string? Version { get; set; }
+    public string Version { get; set; } = string.Empty;
 
-    public string? Author { get; set; }
+    public string Author { get; set; } = string.Empty;
 
-    public string? Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
-    public string? Description { get; set; }
+    public string Description { get; set; } = string.Empty;
 
-    public string? Path { get; set; }
+    public string Path { get; set; } = string.Empty;
 
-    public string? AssemblyName { get; set; }
+    public string AssemblyName { get; set; } = string.Empty;
 }

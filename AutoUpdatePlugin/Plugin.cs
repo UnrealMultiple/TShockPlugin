@@ -1,18 +1,20 @@
-﻿using System.IO.Compression;
-using System.Reflection;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.IO.Compression;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
 namespace AutoUpdatePlugin;
 
-[ApiVersion(2,1)]
+[ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoUpdatePlugin";
-    public override Version Version => new Version(1, 6, 0, 2);
+
+    public override Version Version => new(1, 6, 0, 2);
+
     public override string Author => "少司命，Cai";
+
     public override string Description => "自动更新你的插件！";
 
     private const string ReleaseUrl = "https://github.com/Controllerdestiny/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
@@ -21,11 +23,7 @@ public class Plugin : TerrariaPlugin
 
     private const string PluginsUrl = "https://raw.githubusercontent.com/Controllerdestiny/TShockPlugin/master/Plugins.json";
 
-    private const string ZipName = "TempPlugin.zip";
-
-    private const string SaveDir = ".temp";
-
-    private static HttpClient _httpClient = new();
+    private static readonly HttpClient _httpClient = new();
 
 
     public Plugin(Main game) : base(game)
@@ -41,51 +39,47 @@ public class Plugin : TerrariaPlugin
 
     private void UpdateCmd(CommandArgs args)
     {
-        List<PluginUpdateInfo> updates;
         try
         {
-            updates = GetUpdate();
+            var updates = GetUpdate();
+            if (updates.Count == 0)
+            {
+                args.Player.SendSuccessMessage("你的插件全是最新版本，无需更新哦~");
+                return;
+            }
+            args.Player.SendInfoMessage("正在下载最新插件包...");
+            DownLoadPlugin();
+            args.Player.SendInfoMessage("正在解压插件包...");
+            ExtractDirectoryZip();
+            args.Player.SendInfoMessage("正在升级插件...");
+            UpdatePlugin(updates);
+            args.Player.SendSuccessMessage("[更新完成]\n" + string.Join("\n", updates.Select(i => $"{i.Name} v{i.OldVersion}  =>  {i.Name} v{i.NewVersion}")));
+            args.Player.SendSuccessMessage("重启服务器后插件生效!");
+        }
+        catch (Exception ex)
+        {
+            args.Player.SendErrorMessage("自动更新出现错误:" + ex.Message);
+            return;
+        }
+    }
+
+    private void CheckCmd(CommandArgs args)
+    {
+        try
+        {
+            var updates = GetUpdate();
+            if (updates.Count == 0)
+            {
+                args.Player.SendSuccessMessage("你的插件全是最新版本，无需更新哦~");
+                return;
+            }
+            args.Player.SendInfoMessage("[插件更新列表]\n" + string.Join("\n", updates.Select(i => $"{i.Name} v{i.OldVersion}  =>  {i.Name} v{i.NewVersion}")));
         }
         catch (Exception ex)
         {
             args.Player.SendErrorMessage("无法获取更新:" + ex.Message);
             return;
         }
-        if (updates.Count == 0)
-        {
-            args.Player.SendSuccessMessage("你的插件全是最新版本，无需更新哦~");
-            return;
-        }
-        args.Player.SendInfoMessage("正在下载最新插件包...");
-        DownLoadPlugin();
-        args.Player.SendInfoMessage("正在解压插件包...");
-        ExtractDirectoryZip();
-        args.Player.SendInfoMessage("正在升级插件...");
-        UpdatePlugin(updates);
-        args.Player.SendSuccessMessage("[更新完成]\n" + string.Join("\n", updates.Select(i => $"{i.Name} v{i.OldVersion}  =>  {i.Name} v{i.NewVersion}")));
-        args.Player.SendSuccessMessage("重启服务器后插件生效!");
-
-    }
-
-    private void CheckCmd(CommandArgs args)
-    {
-        List<PluginUpdateInfo> updates;
-        try
-        {
-            updates = GetUpdate(); 
-        }
-        catch (Exception ex)
-        {
-            args.Player.SendErrorMessage("无法获取更新:"+ex.Message);
-            return;
-        }
-        if (updates.Count == 0)
-        {
-            args.Player.SendSuccessMessage("你的插件全是最新版本，无需更新哦~");
-            return;
-        }
-        args.Player.SendInfoMessage("[插件更新列表]\n" + string.Join("\n", updates.Select(i => $"{i.Name} v{i.OldVersion}  =>  {i.Name} v{i.NewVersion}")));
-
     }
 
     #region 工具方法
@@ -93,7 +87,7 @@ public class Plugin : TerrariaPlugin
     {
         var plugins = GetPlugins();
         HttpClient httpClient = new();
-        var response = httpClient.GetAsync(PUrl+PluginsUrl).Result;
+        var response = httpClient.GetAsync(PUrl + PluginsUrl).Result;
 
         if (!response.IsSuccessStatusCode)
             throw new Exception("无法连接服务器");
@@ -105,7 +99,7 @@ public class Plugin : TerrariaPlugin
                 if (plugin.Name == latestPluginInfo.Name && plugin.Version != latestPluginInfo.Version)
                     pluginUpdateList.Add(new PluginUpdateInfo(plugin.Name, plugin.Author, latestPluginInfo.Version, plugin.Version, plugin.Path, latestPluginInfo.Path));
         return pluginUpdateList;
-         // Console.WriteLine($"{i.Name} v{i.OldVersion}({i.LocalPath}) => {i.Name} v{i.NewVersion} ({i.RemotePath})");
+        // Console.WriteLine($"{i.Name} v{i.OldVersion}({i.LocalPath}) => {i.Name} v{i.NewVersion} ({i.RemotePath})");
     }
 
     private static List<PluginVersionInfo> GetPlugins()
@@ -115,36 +109,36 @@ public class Plugin : TerrariaPlugin
         {
             plugins.Add(new PluginVersionInfo()
             {
-                AssemblyName = plugin.Plugin.GetType().Assembly.GetName().Name,
+                AssemblyName = plugin.Plugin.GetType().Assembly.GetName().Name!,
+                Path = plugin.Plugin.GetType().Assembly.GetName().FullName!,
                 Author = plugin.Plugin.Author,
                 Name = plugin.Plugin.Name,
                 Description = plugin.Plugin.Description,
                 Version = plugin.Plugin.Version.ToString()
             });
         }
-        List<FileInfo> fileInfos = new DirectoryInfo(ServerApi.ServerPluginsDirectoryPath).GetFiles("*.dll").ToList();
-        fileInfos.AddRange(new DirectoryInfo(ServerApi.ServerPluginsDirectoryPath).GetFiles("*.dll-plugin"));
-        foreach (FileInfo fileInfo in fileInfos)
-        {
-            try
-            {
-                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileInfo.Name);
-                Assembly assembly;
-                byte[] pe = null;
-                assembly = Assembly.Load(pe = File.ReadAllBytes(fileInfo.FullName));
-                for (int i =0;i<plugins.Count;i++)
-                {
-                    if (plugins[i].AssemblyName==assembly.GetName().Name)
-                    {
-                        plugins[i].Path = fileInfo.Name;
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                continue;
-            }
-        }
+        //List<FileInfo> fileInfos = new DirectoryInfo(ServerApi.ServerPluginsDirectoryPath).GetFiles("*.dll").ToList();
+        //fileInfos.AddRange(new DirectoryInfo(ServerApi.ServerPluginsDirectoryPath).GetFiles("*.dll-plugin"));
+        //foreach (FileInfo fileInfo in fileInfos)
+        //{
+        //    try
+        //    {
+        //        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileInfo.Name);
+
+        //        var assembly = Assembly.Load(File.ReadAllBytes(fileInfo.FullName));
+        //        for (int i = 0; i < plugins.Count; i++)
+        //        {
+        //            if (plugins[i].AssemblyName == assembly.GetName().Name)
+        //            {
+        //                plugins[i].Path = fileInfo.Name;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        continue;
+        //    }
+        //}
         return plugins;
     }
 
@@ -156,12 +150,13 @@ public class Plugin : TerrariaPlugin
             directoryInfo.Create();
         HttpClient httpClient = new();
         var zipBytes = httpClient.GetByteArrayAsync(PUrl + ReleaseUrl).Result;
-        File.WriteAllBytes(Path.Combine(directoryInfo.FullName,"Plugins.zip"), zipBytes);
+        File.WriteAllBytes(Path.Combine(directoryInfo.FullName, "Plugins.zip"), zipBytes);
     }
+
     private static void ExtractDirectoryZip()
     {
         DirectoryInfo directoryInfo = new("TempFile");
-        ZipFile.ExtractToDirectory(Path.Combine(directoryInfo.FullName, "Plugins.zip"), Path.Combine(directoryInfo.FullName, "Plugins"),true);
+        ZipFile.ExtractToDirectory(Path.Combine(directoryInfo.FullName, "Plugins.zip"), Path.Combine(directoryInfo.FullName, "Plugins"), true);
     }
 
     private static void UpdatePlugin(List<PluginUpdateInfo> pluginUpdateInfos)
@@ -171,7 +166,7 @@ public class Plugin : TerrariaPlugin
             string sourcePath = Path.Combine("TempFile", "Plugins", pluginUpdateInfo.RemotePath);
             string destinationPath = Path.Combine("ServerPlugins", pluginUpdateInfo.LocalPath);
             // 确保目标目录存在
-            string destinationDirectory = Path.GetDirectoryName(destinationPath);
+            string destinationDirectory = Path.GetDirectoryName(destinationPath)!;
             // 复制并覆盖文件
             File.Copy(sourcePath, destinationPath, true);
         }
