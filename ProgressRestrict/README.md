@@ -4,7 +4,9 @@
 - 出处: github
 - 超进度检测
 - 可对物品，弹幕，buff 进行超进度检测
-- 注意安装前置插件[DataSync](../DataSync/README.md)
+
+> [!NOTE]  
+> 需要安装前置插件：DataSync(本仓库) 
 
 ## 更新日志
 

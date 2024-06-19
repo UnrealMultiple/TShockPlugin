@@ -4,6 +4,9 @@
 - 出处: 无
 - 商店插件
 
+> [!NOTE]  
+> 需要安装前置插件：EconomicsAPI、Economics.RPG (本仓库) 
+
 ## 更新日志
 
 ```

@@ -4,7 +4,10 @@
 - 出处: [github](https://github.com/Maxthegreat99/TSHockVeinMiner)
 - 连锁挖矿，字面意思
 - 可以连锁挖一堆矿然后爆指定物品
-
+  
+> [!IMPORTANT]
+> 启用连锁挖矿需要权限`veinminer`  
+> 授权命令: `/group addperm default veinminer`(`default`为默认组，你也可以替换为你需要的组)  
 ## 更新日志
 
 ```
