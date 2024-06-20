@@ -35,18 +35,23 @@ namespace Goodnight
         public int MaxPlayers { get; set; } = 2;
         [JsonProperty("是否开启召唤区", Order = -11)]
         public bool Region = false;
+        [JsonProperty("只播报BOSS或非BOSS", Order = -11)]
+        public bool BcstSwitch = true;
+        [JsonProperty("关闭切换播报类型", Order = -11)]
+        public bool BcstSwitchOff = true;
         [JsonProperty("召唤区的名字", Order = -10)]
         public string RegionName = "召唤区";
-        [JsonProperty("召唤区是否需要所有人", Order = -8)]
+        [JsonProperty("召唤区是否需要所有人", Order = -9)]
         public bool PlayersInRegion = true;
-        [JsonProperty("计入'允许召唤表'的击杀次数", Order = -7)]
+        [JsonProperty("计入'允许召唤表'的击杀次数", Order = -8)]
         public int DeadCount { get; set; } = 2;
-        [JsonProperty("重置'允许召唤表'的怪物ID", Order = -6)]
+        [JsonProperty("重置'允许召唤表'的怪物ID", Order = -7)]
         public int ResetNpcDead { get; set; } = 398;
-        [JsonProperty("允许召唤表(根据禁怪表ID自动写入)", Order = -5)]
+        [JsonProperty("允许召唤表(根据禁怪表ID自动写入)", Order = -6)]
         public HashSet<int> NpcDead = new HashSet<int>();
-        [JsonProperty("禁止怪物生成表(NpcID)", Order = -4)]
+        [JsonProperty("禁止怪物生成表(NpcID)", Order = -5)]
         public HashSet<int> Npcs = new HashSet<int>();
+       
 
         #region 读取与创建配置文件方法
         public void Write()
