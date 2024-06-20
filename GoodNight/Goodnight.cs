@@ -94,7 +94,7 @@ namespace Goodnight
             bool NpcDead = Config.NpcDead.Contains(Main.npc[args.NpcId].netID); 
             bool NoPlr = PlayerCount < Config.MaxPlayers && Config.MaxPlayers > 0; 
             var NpcDeadInfo = string.Join(", ", Config.NpcDead.Select(x => TShock.Utils.GetNPCById(x)?.FullName)); 
-            bool isInRegion = Config.PlayersInRegion ? InRegion($"{Config.RegionName}") : InRegion2($"{Config.RegionName}"); 
+            bool isInRegion = Config.PlayersInRegion ? InRegion() : InRegion2(); 
             string RegionInfo = Config.PlayersInRegion ? $"所有人([c/FF3A4B:{PlayerCount}人])" : "有一人";
             if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.Stop)
             {
@@ -251,8 +251,8 @@ namespace Goodnight
         #endregion
 
         #region 判断玩家在召唤区方法
-        //需要所有人在
-        private static bool InRegion(string regionName)
+        //需要所有人在召唤区才能召唤
+        private static bool InRegion()
         {
             int PlayerCount = TShock.Utils.GetActivePlayerCount(); 
             int inRegionCount = 0;
@@ -261,22 +261,22 @@ namespace Goodnight
                 if (plr != null 
                     && plr.Active 
                     && plr.CurrentRegion != null 
-                    && plr.CurrentRegion.Name == regionName)
+                    && plr.CurrentRegion.Name == Config.RegionName)
                     inRegionCount++;
             }
             return inRegionCount == PlayerCount;
         }
 
-        //有1人在区域,其他人都可以在任意位置召唤
-        private static bool InRegion2(string regionName)
+        //需有一人在召唤区才能召唤
+        private static bool InRegion2()
         {
             foreach (var plr in TShock.Players)
             {
                 if (plr != null
                     && plr.Active
                     && plr.CurrentRegion != null
-                    && plr.CurrentRegion.Name == regionName) 
-                    return regionName == $"{Config.RegionName}";
+                    && plr.CurrentRegion.Name == Config.RegionName)
+                    return true;
             }
             return false;
         }
