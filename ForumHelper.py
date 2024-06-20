@@ -183,8 +183,8 @@ data = {
 }
 html = rq.post("https://api.github.com/markdown", headers=headers, data=json.dumps(data)).text
 data = {
-    "title": "Shock插件收集仓库(自动更新版)",
-    "tag_line": "此帖会自动更新插件列表",
+    "title": "TShock插件收集仓库(自动更新版)",
+    "tag_line": "此帖会自动更新插件列表(BBSTR高概率同步失败)",
     "custom_fields[1]": "TShock Chinese Plugins Collection",
     "custom_fields[2]": "TShock插件收集仓库",
     "custom_fields[3]": "2",
