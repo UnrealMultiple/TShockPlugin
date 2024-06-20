@@ -14,32 +14,36 @@ namespace Goodnight
     {
         public static readonly string FilePath = Path.Combine(TShock.SavePath, "宵禁.json");
 
-        [JsonProperty("是否关闭宵禁", Order = -10)]
+        [JsonProperty("是否关闭宵禁", Order = -15)]
         public bool Enabled { get; set; } = true;
-
-        [JsonProperty("宵禁是否断连", Order = -9)]
-        public bool DiscPlayers = false;
-        [JsonProperty("玩家进服拦截消息", Order = -9)]
-        public string JoinMessage = "当前为宵禁时间，无法加入游戏。";
-        [JsonProperty("踢出玩家断连消息", Order = -9)]
-        public string NewProjMessage = "到点了，晚安";
-        [JsonProperty("断连豁免玩家", Order = -9)]
-        public HashSet<string> PlayersList { get; set; } = new HashSet<string>();
-
-        [JsonProperty("禁怪少于人数(设1为关闭禁怪)", Order = -8)]
-        public int MaxPlayers { get; set; } = 2;
-        [JsonProperty("宵禁时间设置(禁怪/断连)", Order = -7)]
+        [JsonProperty("宵禁时间设置(禁怪/断连)", Order = -14)]
         public TimeRange Time { get; set; } = new TimeRange()
         {
             Start = TimeSpan.FromHours(0),
-            Stop = TimeSpan.FromHours(5)
+            Stop = TimeSpan.FromHours(7)
         };
+        [JsonProperty("宵禁是否断连", Order = -13)]
+        public bool DiscPlayers = false;
+        [JsonProperty("玩家进服拦截消息", Order = -13)]
+        public string JoinMessage = "当前为宵禁时间，无法加入游戏。";
+        [JsonProperty("踢出玩家断连消息", Order = -13)]
+        public string NewProjMessage = "到点了，晚安";
+        [JsonProperty("断连白名单", Order = -13)]
+        public HashSet<string> PlayersList { get; set; } = new HashSet<string>();
 
-        [JsonProperty("击杀多少次开始记录进度", Order = -6)]
+        [JsonProperty("关闭禁怪所需人数(设1为关闭)", Order = -12)]
+        public int MaxPlayers { get; set; } = 2;
+        [JsonProperty("是否开启召唤区", Order = -11)]
+        public bool Region = false;
+        [JsonProperty("召唤区的名字", Order = -10)]
+        public string RegionName = "召唤区";
+        [JsonProperty("召唤区是否需要所有人", Order = -8)]
+        public bool PlayersInRegion = true;
+        [JsonProperty("计入'允许召唤表'的击杀次数", Order = -7)]
         public int DeadCount { get; set; } = 2;
-        [JsonProperty("击败什么重置允许召唤怪物表", Order = -6)]
+        [JsonProperty("重置'允许召唤表'的怪物ID", Order = -6)]
         public int ResetNpcDead { get; set; } = 398;
-        [JsonProperty("允许召唤怪物表(自动计数)", Order = -5)]
+        [JsonProperty("允许召唤表(根据禁怪表ID自动写入)", Order = -5)]
         public HashSet<int> NpcDead = new HashSet<int>();
         [JsonProperty("禁止怪物生成表(NpcID)", Order = -4)]
         public HashSet<int> Npcs = new HashSet<int>();
@@ -54,23 +58,28 @@ namespace Goodnight
 
         public static Configuration Read()
         {
-            using (var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (var sr = new StreamReader(fs))
+            if (!File.Exists(FilePath))
             {
-                var End = sr.ReadToEnd();
-                return JsonConvert.DeserializeObject<Configuration>(End) ?? new Configuration();
+                new Configuration().Write();
+                return new Configuration();
+            }
+            else
+            {
+                using (var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var sr = new StreamReader(fs))
+                    return JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd())!;
             }
         }
         #endregion
 
-        #region 豁免名单增删改查方法
-        //获取断连豁免名单中的名字
+        #region 白名单增删改查方法
         internal bool Exempt(string Name) => PlayersList.Contains(Name);
 
-        //列出豁免名单
-        public string GetList() => JsonConvert.SerializeObject(PlayersList, (Formatting)1);
+        public string GetExemptPlayersAsString()
+        {
+            return string.Join(", ", PlayersList);
+        }
 
-        //添加豁免名单名字
         public bool Add(string name)
         {
             if (Exempt(name))
@@ -82,7 +91,6 @@ namespace Goodnight
             return true;
         }
 
-        //移除豁免名单名字
         public bool Del(string name)
         {
             if (Exempt(name))

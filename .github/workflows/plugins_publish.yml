@@ -72,6 +72,7 @@ jobs:
             sudo pip install beautifulsoup4
       
       - name: 更新论坛
+        continue-on-error: true
         env:
             PYTHONIOENCODING: 'utf-8'
         run: 
