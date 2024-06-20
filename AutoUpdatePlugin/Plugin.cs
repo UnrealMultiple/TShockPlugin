@@ -39,6 +39,43 @@ public class Plugin : TerrariaPlugin
     {
         Commands.ChatCommands.Add(new("AutoUpdatePlugin", CheckCmd, "cplugin"));
         Commands.ChatCommands.Add(new("AutoUpdatePlugin", UpdateCmd, "uplugin"));
+        ServerApi.Hooks.GamePostInitialize.Register(this, AutoCheckUpdate,int.MinValue); //最低优先级
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, AutoCheckUpdate);
+        }
+
+        base.Dispose(disposing);
+    }
+
+    private void AutoCheckUpdate(EventArgs args)
+    {
+        Task.Run(() =>
+        {
+            try
+            {
+                Task.Delay(5000).Wait();
+                TShock.Log.ConsoleInfo("[AutoUpdate]开始检查更新...");
+                var updates = GetUpdate();
+                if (updates.Count == 0)
+                {
+                    TShock.Log.ConsoleInfo("[AutoUpdate]你的插件全是最新版本，无需更新哦~");
+                    return;
+                }
+                TShock.Log.ConsoleInfo("[以下插件有新的版本更新]\n" + string.Join("\n", updates.Select(i => $"[{i.Name}] V{i.OldVersion} >>> V{i.NewVersion}")));
+                TShock.Log.ConsoleInfo("你可以使用命令/uplugin更新插件哦~");
+            }
+            catch (Exception ex)
+            {
+                TShock.Log.ConsoleInfo("[AutoUpdate]无法获取更新:" + ex.Message);
+                return;
+            }
+        });
     }
 
     private void UpdateCmd(CommandArgs args)
@@ -120,30 +157,14 @@ public class Plugin : TerrariaPlugin
                 Version = plugin.Plugin.Version.ToString()
             });
         }
-        //从插件文件夹中读取插件路径(通过对比AssemblyName)
-        List<FileInfo> fileInfos = new DirectoryInfo(ServerApi.ServerPluginsDirectoryPath).GetFiles("*.dll").ToList();
-        fileInfos.AddRange(new DirectoryInfo(ServerApi.ServerPluginsDirectoryPath).GetFiles("*.dll-plugin"));
-        foreach (FileInfo fileInfo in fileInfos) 
-        {
-            try
-            {
-                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileInfo.Name);
-                Assembly assembly;
-                byte[] pe = null;
-                assembly = Assembly.Load(pe = File.ReadAllBytes(fileInfo.FullName));
-                for (int i = 0; i < plugins.Count; i++)
-                {
-                    if (plugins[i].AssemblyName == assembly.GetName().Name)
-                    {
-                        plugins[i].Path = fileInfo.Name!;
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                continue;
-            }
-        }
+        //反射拯救了TSAPI
+        var type = typeof(ServerApi);
+        var field = type.GetField("loadedAssemblies", BindingFlags.NonPublic | BindingFlags.Static)!;
+        var loadedAssemblies = (Dictionary<string, Assembly>)field.GetValue(null)!;
+        foreach (var loadedAssembly in loadedAssemblies)
+            for (int i = 0; i < plugins.Count; i++)
+                if (plugins[i].AssemblyName == loadedAssembly.Value.GetName().Name)
+                    plugins[i].Path = loadedAssembly.Key + ".dll"; 
         return plugins;
     }
 
@@ -166,15 +187,24 @@ public class Plugin : TerrariaPlugin
 
     private static void UpdatePlugin(List<PluginUpdateInfo> pluginUpdateInfos)
     {
-        foreach (var pluginUpdateInfo in pluginUpdateInfos)
+        for (int i = pluginUpdateInfos.Count - 1; i >= 0; i--)
         {
+            var pluginUpdateInfo = pluginUpdateInfos[i];
             string sourcePath = Path.Combine(TempSaveDir, "Plugins", pluginUpdateInfo.RemotePath);
             string destinationPath = Path.Combine(ServerApi.ServerPluginsDirectoryPath, pluginUpdateInfo.LocalPath);
             // 确保目标目录存在
             string destinationDirectory = Path.GetDirectoryName(destinationPath)!;
-            // 复制并覆盖文件
-            File.Copy(sourcePath, destinationPath, true);
+            if (File.Exists(destinationPath))
+            {
+                File.Copy(sourcePath, destinationPath, true);
+            }
+            else
+            {
+                TShock.Log.ConsoleWarn($"[跳过更新]无法在本地找到插件{pluginUpdateInfo.Name}({destinationPath}),可能是云加载或使用-additionalplugins加载");
+                pluginUpdateInfos.RemoveAt(i);  // 移除元素
+            }
         }
+
         if (Directory.Exists(TempSaveDir))
             Directory.Delete(TempSaveDir, true);
     }
