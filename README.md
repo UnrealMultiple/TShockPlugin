@@ -17,11 +17,18 @@
 - 我们将持续收集优质的 `TShock` 插件，进行及时的更新。并跟进`TShock`的最新版本。
 - 如果你也想加入我们，请按照下方`开发者注意事项`的规定对本仓库`Pull Request`。
 
+
 ## 使用者注意事项
 
 - 注意有些插件可能需要前置，请查看下方列表安装前置插件。
 - 每个插件都有一个使用说明，在下方列表点击超链查看具体说明事项。
 - 听说喜欢给仓库点星星的人，插件都不容易报错
+
+## 下载
+
+- 国内镜像: [Plugins.zip](https://github.moeyy.xyz/https://github.com/Controllerdestiny/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
+- 本仓库: [Plugins.zip](https://github.com/Controllerdestiny/TShockPlugin/releases/tag/V1.0.0.0)
+
 
 ## 开发者注意事项
 
@@ -132,7 +139,7 @@
 | [Musicplayer](Musicplayer/README.md)                             |         简易音乐播放器         |                                                                        无                                                                        |
 | [TimerKeeper](TimerKeeper/README.md)                             |         保存计时器状态         |                                                                        无                                                                        |
 | [Chameleon](Chameleon/README.md)                                 |           进服前登录           |                                                                        无                                                                        |
-
+| [AutoUpdatePlugin](AutoUpdatePlugin/README.md)                   |        一键自动更新插件        |                                                                        无                                                                        |
 </Details>
 
 ## 代码贡献
