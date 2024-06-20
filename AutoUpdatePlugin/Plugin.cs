@@ -60,21 +60,26 @@ public class Plugin : TerrariaPlugin
     {
         _timer.AutoReset = true;
         _timer.Enabled = true;
-        _timer.Interval = 60 * 60 * 1000 * 12;
+        _timer.Interval = 60 * 30 * 1000;
         _timer.Elapsed += (_, _) =>
         {
             try
             {
 
-                TShock.Log.ConsoleInfo("[AutoUpdate]开始检查更新...");
+                //TShock.Log.ConsoleInfo("[AutoUpdate]开始检查更新...");
+                //var updates = GetUpdate();
+                //if (updates.Count == 0)
+                //{
+                //    TShock.Log.ConsoleInfo("[AutoUpdate]你的插件全是最新版本，无需更新哦~");
+                //    return;
+                //}
                 var updates = GetUpdate();
-                if (updates.Count == 0)
-                {
-                    TShock.Log.ConsoleInfo("[AutoUpdate]你的插件全是最新版本，无需更新哦~");
-                    return;
+                if (updates.Any())
+                { 
+                     TShock.Log.ConsoleInfo("[以下插件有新的版本更新]\n" + string.Join("\n", updates.Select(i => $"[{i.Name}] V{i.OldVersion} >>> V{i.NewVersion}")));
+                     TShock.Log.ConsoleInfo("你可以使用命令/uplugin更新插件哦~");
                 }
-                TShock.Log.ConsoleInfo("[以下插件有新的版本更新]\n" + string.Join("\n", updates.Select(i => $"[{i.Name}] V{i.OldVersion} >>> V{i.NewVersion}")));
-                TShock.Log.ConsoleInfo("你可以使用命令/uplugin更新插件哦~");
+               
             }
             catch (Exception ex)
             {
