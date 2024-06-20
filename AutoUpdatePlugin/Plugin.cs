@@ -65,6 +65,7 @@ public class Plugin : TerrariaPlugin
         {
             try
             {
+
                 TShock.Log.ConsoleInfo("[AutoUpdate]开始检查更新...");
                 var updates = GetUpdate();
                 if (updates.Count == 0)
@@ -82,7 +83,6 @@ public class Plugin : TerrariaPlugin
             }
         };
         _timer.Start();
-
     }
 
     private void UpdateCmd(CommandArgs args)
@@ -176,7 +176,7 @@ public class Plugin : TerrariaPlugin
         foreach (var (fileName, assembly) in loadedAssemblies)
             for (int i = 0; i < plugins.Count; i++)
                 if (plugins[i].AssemblyName == assembly.GetName().Name)
-                    plugins[i].Path = fileName + ".dll"; 
+                    plugins[i].Path = fileName + ".dll";
         return plugins;
     }
 
