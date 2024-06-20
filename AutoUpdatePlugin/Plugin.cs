@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.IO.Compression;
+using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -11,7 +12,7 @@ public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoUpdatePlugin";
 
-    public override Version Version => new(1, 6, 0, 2);
+    public override Version Version => new(2024, 6, 20, 2);
 
     public override string Author => "少司命，Cai";
 
@@ -107,17 +108,41 @@ public class Plugin : TerrariaPlugin
     private static List<PluginVersionInfo> GetPlugins()
     {
         List<PluginVersionInfo> plugins = new();
-        foreach (var plugin in ServerApi.Plugins)
+        //获取已安装的插件，并且读取插件信息和AssemblyName
+        foreach (var plugin in ServerApi.Plugins) 
         {
             plugins.Add(new PluginVersionInfo()
             {
                 AssemblyName = plugin.Plugin.GetType().Assembly.GetName().Name!,
-                Path = Path.Combine(ServerApi.ServerPluginsDirectoryPath, plugin.Plugin.GetType().Assembly.GetName().Name! + ".dll"),
                 Author = plugin.Plugin.Author,
                 Name = plugin.Plugin.Name,
                 Description = plugin.Plugin.Description,
                 Version = plugin.Plugin.Version.ToString()
             });
+        }
+        //从插件文件夹中读取插件路径(通过对比AssemblyName)
+        List<FileInfo> fileInfos = new DirectoryInfo(ServerApi.ServerPluginsDirectoryPath).GetFiles("*.dll").ToList();
+        fileInfos.AddRange(new DirectoryInfo(ServerApi.ServerPluginsDirectoryPath).GetFiles("*.dll-plugin"));
+        foreach (FileInfo fileInfo in fileInfos) 
+        {
+            try
+            {
+                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileInfo.Name);
+                Assembly assembly;
+                byte[] pe = null;
+                assembly = Assembly.Load(pe = File.ReadAllBytes(fileInfo.FullName));
+                for (int i = 0; i < plugins.Count; i++)
+                {
+                    if (plugins[i].AssemblyName == assembly.GetName().Name)
+                    {
+                        plugins[i].Path = fileInfo.Name!;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                continue;
+            }
         }
         return plugins;
     }
