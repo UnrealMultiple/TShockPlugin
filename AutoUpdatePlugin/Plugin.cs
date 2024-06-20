@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.IO.Compression;
 using System.Reflection;
+using System.Timers;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -30,6 +31,8 @@ public class Plugin : TerrariaPlugin
 
     private const string TempZipName = "Plugins.zip";
 
+    private readonly System.Timers.Timer _timer = new();
+
     public Plugin(Main game) : base(game)
     {
 
@@ -55,27 +58,36 @@ public class Plugin : TerrariaPlugin
 
     private void AutoCheckUpdate(EventArgs args)
     {
-        Task.Run(() =>
+        _timer.AutoReset = true;
+        _timer.Enabled = true;
+        _timer.Interval = 60 * 30 * 1000;
+        _timer.Elapsed += (_, _) =>
         {
             try
             {
-                Task.Delay(5000).Wait();
-                TShock.Log.ConsoleInfo("[AutoUpdate]开始检查更新...");
+
+                //TShock.Log.ConsoleInfo("[AutoUpdate]开始检查更新...");
+                //var updates = GetUpdate();
+                //if (updates.Count == 0)
+                //{
+                //    TShock.Log.ConsoleInfo("[AutoUpdate]你的插件全是最新版本，无需更新哦~");
+                //    return;
+                //}
                 var updates = GetUpdate();
-                if (updates.Count == 0)
-                {
-                    TShock.Log.ConsoleInfo("[AutoUpdate]你的插件全是最新版本，无需更新哦~");
-                    return;
+                if (updates.Any())
+                { 
+                     TShock.Log.ConsoleInfo("[以下插件有新的版本更新]\n" + string.Join("\n", updates.Select(i => $"[{i.Name}] V{i.OldVersion} >>> V{i.NewVersion}")));
+                     TShock.Log.ConsoleInfo("你可以使用命令/uplugin更新插件哦~");
                 }
-                TShock.Log.ConsoleInfo("[以下插件有新的版本更新]\n" + string.Join("\n", updates.Select(i => $"[{i.Name}] V{i.OldVersion} >>> V{i.NewVersion}")));
-                TShock.Log.ConsoleInfo("你可以使用命令/uplugin更新插件哦~");
+               
             }
             catch (Exception ex)
             {
                 TShock.Log.ConsoleInfo("[AutoUpdate]无法获取更新:" + ex.Message);
                 return;
             }
-        });
+        };
+        _timer.Start();
     }
 
     private void UpdateCmd(CommandArgs args)
@@ -166,10 +178,10 @@ public class Plugin : TerrariaPlugin
         var type = typeof(ServerApi);
         var field = type.GetField("loadedAssemblies", BindingFlags.NonPublic | BindingFlags.Static)!;
         var loadedAssemblies = (Dictionary<string, Assembly>)field.GetValue(null)!;
-        foreach (var loadedAssembly in loadedAssemblies)
+        foreach (var (fileName, assembly) in loadedAssemblies)
             for (int i = 0; i < plugins.Count; i++)
-                if (plugins[i].AssemblyName == loadedAssembly.Value.GetName().Name)
-                    plugins[i].Path = loadedAssembly.Key + ".dll"; 
+                if (plugins[i].AssemblyName == assembly.GetName().Name)
+                    plugins[i].Path = fileName + ".dll";
         return plugins;
     }
 
