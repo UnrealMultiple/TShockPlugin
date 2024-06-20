@@ -166,10 +166,10 @@ public class Plugin : TerrariaPlugin
         var type = typeof(ServerApi);
         var field = type.GetField("loadedAssemblies", BindingFlags.NonPublic | BindingFlags.Static)!;
         var loadedAssemblies = (Dictionary<string, Assembly>)field.GetValue(null)!;
-        foreach (var loadedAssembly in loadedAssemblies)
+        foreach (var(fileName, assembly) in loadedAssemblies)
             for (int i = 0; i < plugins.Count; i++)
-                if (plugins[i].AssemblyName == loadedAssembly.Value.GetName().Name)
-                    plugins[i].Path = loadedAssembly.Key + ".dll"; 
+                if (plugins[i].AssemblyName == assembly.GetName().Name)
+                    plugins[i].Path = fileName + ".dll"; 
         return plugins;
     }
 
