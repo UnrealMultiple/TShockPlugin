@@ -60,7 +60,7 @@ public class Plugin : TerrariaPlugin
     {
         _timer.AutoReset = true;
         _timer.Enabled = true;
-        _timer.Interval = 30 * 60 * 1000;
+        _timer.Interval = 60 * 60 * 1000 * 12;
         _timer.Elapsed += (_, _) =>
         {
             try
