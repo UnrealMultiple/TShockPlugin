@@ -52,7 +52,7 @@ namespace Goodnight
             }
             #endregion
 
-            #region 修改禁止怪物ID + 修改解禁怪物在线人数 
+            #region 修改禁止怪物ID + 修改解禁怪物在线人数等等
             if (args.Parameters.Count == 2)
             {
                 NPC npc;
@@ -108,6 +108,28 @@ namespace Goodnight
                                 Goodnight.Config.MaxPlayers = num;
                                 Goodnight.Config.Write();
                                 args.Player.SendSuccessMessage("已成功将解禁怪物玩家人数设置为: {0} 人!", npc.netID);
+                            }
+                            break;
+                        }
+
+                    case "boss":
+                        {
+                            if (int.TryParse(args.Parameters[1], out int num))
+                            {
+                                Goodnight.Config.DeadCount = num;
+                                Goodnight.Config.Write();
+                                args.Player.SendSuccessMessage("已成功将记录进度击杀次数设置为: {0} 次!", npc.netID);
+                            }
+                            break;
+                        }
+
+                    case "reset":
+                        {
+                            if (int.TryParse(args.Parameters[1], out int num))
+                            {
+                                Goodnight.Config.ResetNpcDead = num;
+                                Goodnight.Config.Write();
+                                args.Player.SendSuccessMessage("已设置重置允许召唤表的怪物ID为: {0} !", npc.netID);
                             }
                             break;
                         }
@@ -205,11 +227,13 @@ namespace Goodnight
                  "/gn on --开启或关闭宵禁功能\n" +
                  "/gn kick --开启或关闭断连功能\n" +
                  "/gn time start 或 stop 23:59:59 --设置宵禁开启结束时间\n" +
-                 "/gn add NPC名字 或 ID --添加指定禁止召唤怪物\n" +
-                 "/gn del NPC名字 或 ID --删除指定禁止召唤怪物\n" +
-                 "/gn list --列出禁止怪物表\n" +
-                 "/gn plr 人数 --设置宵禁时间内解禁怪物的在线人数\n" +
-                 "/gn plr add 玩家名字 --添加指定玩家到豁免名单\n" +
+                 "/gn add NPC名字 或 ID --添加《禁止怪物生成表》的指定怪物\n" +
+                 "/gn del NPC名字 或 ID --删除《禁止怪物生成表》的指定怪物\n" +
+                 "/gn list --列出《禁止怪物生成表》\n" +
+                 "/gn boss 次数 --设置加入《允许召唤怪物表》击杀要求次数\n" +
+                 "/gn reset ID --设置重置《允许召唤怪物表》的怪物ID\n" +
+                 "/gn plr 人数 --设置宵禁时段无视《禁止怪物生成表》在线人数\n" +
+                 "/gn plr add 玩家名字 --添加指定玩家到断连豁免名单\n" +
                  "/gn plr del 玩家名字 --把指定玩家从豁免名单移除\n" +
                  "/reload --重载宵禁配置文件\n");
             }
