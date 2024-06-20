@@ -92,7 +92,7 @@ namespace Goodnight
             int PlayerCount = TShock.Utils.GetActivePlayerCount(); 
             bool NpcList = Config.Npcs.Contains(Main.npc[args.NpcId].netID); 
             bool NpcDead = Config.NpcDead.Contains(Main.npc[args.NpcId].netID); 
-            bool NoPlr = PlayerCount < Config.MaxPlayers && Config.MaxPlayers > 0; 
+            bool NoPlr = PlayerCount <= Config.MaxPlayers && Config.MaxPlayers > 0; 
             var NpcDeadInfo = string.Join(", ", Config.NpcDead.Select(x => TShock.Utils.GetNPCById(x)?.FullName)); 
             bool isInRegion = Config.PlayersInRegion ? InRegion() : InRegion2(); 
             string RegionInfo = Config.PlayersInRegion ? $"所有人([c/FF3A4B:{PlayerCount}人])" : "有一人";
