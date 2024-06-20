@@ -20,13 +20,13 @@ namespace Goodnight
             #region 列出所有表
             if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "list")
             {
-                    args.Player.SendInfoMessage("—— —— —— —— —— ");
-                    args.Player.SendInfoMessage("《禁止怪物生成表》:\n" + string.Join(", ", Goodnight.Config.Npcs.Select(x => TShock.Utils.GetNPCById(x)?.FullName + "({0})".SFormat(x))));
-                    args.Player.SendInfoMessage("—— —— —— —— —— ");
-                    args.Player.SendInfoMessage("《允许召唤怪物表》:\n" + string.Join(", ", Goodnight.Config.NpcDead.Select(x => TShock.Utils.GetNPCById(x)?.FullName + "({0})".SFormat(x))));
-                    args.Player.SendInfoMessage("—— —— —— —— —— ");
-                    args.Player.SendInfoMessage($"《断连豁免名单》:\n {Goodnight.Config.GetExemptPlayersAsString()}");
-                    args.Player.SendInfoMessage("—— —— —— —— —— ");
+                args.Player.SendInfoMessage("—— —— —— —— —— ");
+                args.Player.SendInfoMessage("《禁止怪物生成表》:\n" + string.Join(", ", Goodnight.Config.Npcs.Select(x => TShock.Utils.GetNPCById(x)?.FullName + "({0})".SFormat(x))));
+                args.Player.SendInfoMessage("—— —— —— —— —— ");
+                args.Player.SendInfoMessage("《允许召唤怪物表》:\n" + string.Join(", ", Goodnight.Config.NpcDead.Select(x => TShock.Utils.GetNPCById(x)?.FullName + "({0})".SFormat(x))));
+                args.Player.SendInfoMessage("—— —— —— —— —— ");
+                args.Player.SendInfoMessage($"《不被断连的白名单》:\n {Goodnight.Config.GetExemptPlayersAsString()}");
+                args.Player.SendInfoMessage("—— —— —— —— —— ");
                 return;
             }
             #endregion
@@ -61,8 +61,24 @@ namespace Goodnight
                 bool enabled = Goodnight.Config.Region;
                 Goodnight.Config.Region = !enabled;
                 string status = enabled ? "禁用" : "启用";
-                args.Player.SendSuccessMessage($"已{status}召唤区，宵禁逻辑已切换。\n" +
+                args.Player.SendSuccessMessage(
+                    $"已{status}召唤区，宵禁逻辑已切换。\n" +
                     $"可用TS自带的/Region指令建个“召唤区”的领地");
+                Goodnight.Config.Write();
+                return;
+            }
+            #endregion
+
+            #region 开启或关闭所有人在召唤区
+            if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "all")
+            {
+                bool enabled = Goodnight.Config.PlayersInRegion;
+                Goodnight.Config.PlayersInRegion = !enabled;
+                string status = enabled ? "禁用" : "启用";
+                args.Player.SendSuccessMessage(
+                    $"已{status}召唤区人数条件，召唤区逻辑已切换。\n" +
+                    $"【启用】所有人都得在召唤区\n" +
+                    $"【禁用】有一人在召唤区，其他人可在任意位置召唤");
                 Goodnight.Config.Write();
                 return;
             }
@@ -158,7 +174,7 @@ namespace Goodnight
             }
             #endregion
 
-            #region 修改豁免名单方法
+            #region 白名单方法
             if (args.Parameters.Count == 3 && (args.Parameters[0].ToLower() == "plr"))
             {
                 switch (args.Parameters[1].ToLower())
@@ -167,9 +183,9 @@ namespace Goodnight
                         {
                             string text = args.Parameters[2];
                             if (!String.IsNullOrEmpty(text) && Goodnight.Config.Add(text))
-                                args.Player.SendMessage("成功添加玩家 " + text + " 进入豁免名单", Color.Aquamarine);
+                                args.Player.SendMessage("成功添加玩家 " + text + " 进入白名单", Color.Aquamarine);
                             else
-                                args.Player.SendMessage("该玩家已存在豁免名单中", Color.Salmon);
+                                args.Player.SendMessage("该玩家已存在白名单中", Color.Salmon);
                             break;
                         }
                     case "del":
@@ -181,11 +197,11 @@ namespace Goodnight
                                 (x => x != null && x.Active && x.ConnectionAlive && x.Name == text).ToList();
                                 if (plrs.Any())
                                     if (!plrs[0].HasPermission("goodnight.admin"))
-                                        plrs[0].Disconnect("【宵禁】你已被移出服务器豁免名单");
-                                args.Player.SendMessage("成功删除玩家豁免名单： " + text + " ", Color.Aquamarine);
+                                        plrs[0].Disconnect("【宵禁】你已被移出服务器白名单");
+                                args.Player.SendMessage("成功删除玩家白名单： " + text + " ", Color.Aquamarine);
                             }
                             else
-                                args.Player.SendMessage("该玩家不存在豁免名单中", Color.Salmon);
+                                args.Player.SendMessage("该玩家不存在白名单中", Color.Salmon);
                             break;
                         }
                 }
@@ -238,26 +254,19 @@ namespace Goodnight
                  "/gn —— 查看宵禁指令菜单\n" +
                  "/gn list —— 列出所有宵禁表\n" +
                  "/reload —— 重载宵禁配置文件\n" +
-                 "/gn on —— 开启或关闭宵禁功能\n" +
-                 "/gn kick —— 开启或关闭断连功能\n" +
-                 "/gn pos —— 开启或关闭召唤区,会关闭《允许召怪表》相关功能\n" +
-                 "/gn boss 次数 —— 设置加入《允许召唤怪物表》击杀要求次数\n" +
-                 "/gn reset ID —— 设置重置《允许召唤怪物表》的怪物ID\n" +
-                 "/gn plr 人数 —— 设置宵禁时段无视《禁止怪物生成表》在线人数\n" +
-                 "/gn plr add 或 del 玩家名字 —— 添加或移除指定玩家到断连豁免名单\n" +
-                 "/gn add 或 del 怪物名字 —— 添加或删除《禁止怪物生成表》的指定怪物\n" +
+                 "/gn on —— 开启|关闭宵禁功能\n" +
+                 "/gn kick —— 开启|关闭断连功能\n" +
+                 "/gn pos —— 开启|关闭召唤区\n" +
+                 "/gn all —— 开启|关闭召唤区需所有人在场\n" +
+                 "/gn boss 次数 —— 设置加入《允许召唤表》击杀要求次数\n" +
+                 "/gn reset ID —— 设置重置《允许召唤表》的怪物ID\n" +
+                 "/gn plr 人数 —— 设置无视《禁止怪物表》在线人数\n" +
+                 "/gn plr add 或 del 玩家名字 —— 添加|移除指定玩家到断连白名单\n" +
+                 "/gn add 或 del 怪物名字 —— 添加|删除《禁止怪物表》的指定怪物\n" +
                  "/gn time a 或 b 23:59 —— 设置宵禁开启结束时间\n" +
-                 "/region define 召唤区 —— 使用TS自带/Region指令设置召唤区",Color.AntiqueWhite);
+                 "/region define 召唤区 —— 使用TS自带/Region指令设置召唤区", Color.AntiqueWhite);
             }
         }
         #endregion
-
-        #region 位置类型
-        private static bool LocationType(int Type)
-        {
-            return Type >= 1 && Type <= 4;
-        }
-        #endregion
-
     }
 }
