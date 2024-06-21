@@ -95,10 +95,10 @@ namespace Goodnight
             bool NoPlr = PlayerCount <= Config.MaxPlayers && Config.MaxPlayers > 0;
             var NpcDeadInfo = string.Join(", ", Config.NpcDead.Select(x => TShock.Utils.GetNPCById(x)?.FullName));
             bool isInRegion = Config.PlayersInRegion ? InRegion() : InRegion2();
-            string RegionInfo = Config.PlayersInRegion ? $"所有人([c/FF3A4B:{PlayerCount}人])" : "有一人";
+            string RegionInfo = Config.PlayersInRegion ? $"所有在线人员([c/FF3A4B:{PlayerCount}人])" : "有[c/FF3A4B:1人]";
             bool BcstSwitch = Config.BcstSwitch ? IsBoss(args) : IsNotBoss(args);
             bool BcstDefault = Config.BcstSwitch;
-            bool BcstSwitchOFF = Config.BcstSwitchOff; 
+            bool BcstSwitchOFF = Config.BcstSwitchOff;
 
             if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.Stop)
             {
@@ -112,25 +112,48 @@ namespace Goodnight
                             {
                                 args.Handled = false;
                                 Main.npc[args.NpcId].active = true;
-                                if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
-                                TShock.Utils.Broadcast(
-                                $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}/{Config.MaxPlayers}]个玩家! \n" +
-                                $"检测到{RegionInfo}已在【[c/FF3A4B:召唤区]】允许召唤以下怪物：\n" +
-                                $"[c/6EABE9:{NpcDeadInfo}]", Color.Aquamarine);
+                                if (!string.IsNullOrEmpty(NpcDeadInfo))
+                                {
+                                    if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
+                                        TShock.Utils.Broadcast(
+                                        $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}/{Config.MaxPlayers}]个玩家! \n" +
+                                        $"检测到{RegionInfo}已在【[c/E2FA76:{Config.RegionName}]】\n" +
+                                        $"允许召唤以下怪物：\n" +
+                                        $"[c/6EABE9:{NpcDeadInfo}]", Color.Aquamarine);
+                                }
+                                else
+                                {
+                                    if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
+                                        TShock.Utils.Broadcast(
+                                        $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}/{Config.MaxPlayers}]个玩家! \n" +
+                                        $"允许召唤表为[c/6EABE9:空]，请在满足[c/FF3A4B:{Config.MaxPlayers}人]\n" +
+                                        $"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n" +
+                                        $"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])来获取允许召唤权", Color.AntiqueWhite);
+                                }
                             }
                             else if (NpcList)
                             {
                                 args.Handled = true;
                                 Main.npc[args.NpcId].active = false;
-                                if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
-                                    TShock.Utils.Broadcast(
-                                    $"【宵禁】当前服务器处于维护时间\n" +
-                                    $"解禁在线人数少于:[c/FF3A4B:{Config.MaxPlayers}人]\n" +
-                                    $"或该怪物未被击败:[c/338AE1:{Config.DeadCount}次]\n" +
-                                    $"{RegionInfo}需要到【[c/FF3A4B:召唤区]】才允许召唤以下怪物：\n" +
-                                    $"[c/6EABE9:{NpcDeadInfo}] \n" +
-                                    $"禁止召唤怪物时段: " +
-                                    $"[c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]", Color.AntiqueWhite);
+                                if (!string.IsNullOrEmpty(NpcDeadInfo))
+                                {
+                                    if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
+                                        TShock.Utils.Broadcast(
+                                        $"【宵禁】当前服务器处于维护时间\n" +
+                                        $"{RegionInfo}需要到【[c/E2FA76:{Config.RegionName}]】\n" +
+                                        $"可召唤以下怪物：\n" +
+                                        $"[c/6EABE9:{NpcDeadInfo}] \n" +
+                                        $"宵禁时段: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]", Color.AntiqueWhite);
+                                }
+                                else
+                                {
+                                    if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
+                                        TShock.Utils.Broadcast(
+                                        $"【宵禁】当前服务器处于维护时间\n" +
+                                        $"允许召唤表为[c/6EABE9:空]，请在满足[c/FF3A4B:{Config.MaxPlayers}人]\n" +
+                                        $"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n" +
+                                        $"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])，来获取允许召唤权。", Color.AntiqueWhite);
+                                }
                             }
                         }
                         else
@@ -139,13 +162,12 @@ namespace Goodnight
                             {
                                 args.Handled = true;
                                 Main.npc[args.NpcId].active = false;
-                                if (BcstSwitchOFF || (BcstDefault && BcstSwitch)) 
-                                   TShock.Utils.Broadcast(
-                                   $"【宵禁】不在召唤区无法生成怪物\n" +
-                                   $"解禁在线人数少于:[c/FF3A4B:{Config.MaxPlayers}人]\n" +
-                                   $"或该怪物未被击败:[c/338AE1:{Config.DeadCount}次]\n" +
-                                   $"或需要{RegionInfo}处于[c/338AE1:召唤区]\n" +
-                                   $"请联系管理员使用[c/6EABE9:/region]创建一个[c/DF95EC:'召唤区']", Color.AntiqueWhite);
+                                if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
+                                    TShock.Utils.Broadcast(
+                                    $"【宵禁】不在【[c/E2FA76:{Config.RegionName}]】无法生成指定怪物\n" +
+                                    $"{RegionInfo}需要到[c/338AE1:{Config.RegionName}]才能召唤怪物\n" +
+                                    $"请联系管理员使用[c/6EABE9:/region]创建一个[c/E2FA76:'{Config.RegionName}']\n" +
+                                    $"如已创建请输入指令传送:[c/E2FAB4:/region tp {Config.RegionName}]", Color.AntiqueWhite);
                             }
                         }
                     }
@@ -155,9 +177,25 @@ namespace Goodnight
                         {
                             args.Handled = false;
                             Main.npc[args.NpcId].active = true;
-                            if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
-                            TShock.Utils.Broadcast(
-                            $"允许召唤的已击败怪物为：\n[c/6EABE9:{NpcDeadInfo}]", Color.Aquamarine);
+                            if (!string.IsNullOrEmpty(NpcDeadInfo))
+                            {
+                                if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
+                                    TShock.Utils.Broadcast(
+                                    $"【宵禁】当前服务器处于维护时间\n" +
+                                    $"当前在线人数不满足:[c/FF3A4B:{PlayerCount}/{Config.MaxPlayers}人" +
+                                    $"且处于宵禁时段: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n"+
+                                    $"仅允许召唤以下怪物：\n" +
+                                    $"[c/6EABE9:{NpcDeadInfo}]\n", Color.Aquamarine);
+                            }
+                            else
+                            {
+                                if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
+                                    TShock.Utils.Broadcast(
+                                    $"【宵禁】当前服务器处于维护时间\n" +
+                                    $"允许召唤表为[c/6EABE9:空]，请在满足[c/FF3A4B:{Config.MaxPlayers}人]\n" +
+                                    $"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n" +
+                                    $"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])，来获取允许召唤权。", Color.AntiqueWhite);
+                            }
                         }
                         else if (NpcList)
                         {
@@ -166,10 +204,10 @@ namespace Goodnight
                             if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                                 TShock.Utils.Broadcast(
                                 $"【宵禁】当前服务器处于维护时间\n" +
-                                $"解禁在线人数少于:[c/FF3A4B:{Config.MaxPlayers}人]\n" +
-                                $"或该怪物未被击败:[c/338AE1:{Config.DeadCount}次]\n" +
-                                $"禁止召唤怪物时段: " +
-                                $"[c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]", Color.AntiqueWhite);
+                                $"你所召唤的怪物未被击败:[c/338AE1:{Config.DeadCount}次]\n" +
+                                $"请在服务器人数满足:[c/FF3A4B:{Config.MaxPlayers}人]\n" +
+                                $"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n" +
+                                $"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])，来获取允许召唤权。", Color.AntiqueWhite);
                         }
                     }
                 }
