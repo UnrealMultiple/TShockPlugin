@@ -51,7 +51,7 @@ namespace Goodnight
         public HashSet<int> NpcDead = new HashSet<int>();
         [JsonProperty("禁止怪物生成表(NpcID)", Order = -5)]
         public HashSet<int> Npcs = new HashSet<int>();
-       
+
 
         #region 读取与创建配置文件方法
         public void Write()
@@ -65,8 +65,11 @@ namespace Goodnight
         {
             if (!File.Exists(FilePath))
             {
+                var NewConfig = new Configuration();
+                NewConfig.PlayersList = new HashSet<string>() {"羽学"};
+                NewConfig.Npcs = new HashSet<int>() { 4,13,14,15,35,36,50,113,114,125,126,127,128,129,130,131,134,135,136,222,245,246,247,248,249,262,266,370,396,397,398,400,439,440,422,493,507,517,636,657,668 };
                 new Configuration().Write();
-                return new Configuration();
+                return NewConfig;
             }
             else
             {
