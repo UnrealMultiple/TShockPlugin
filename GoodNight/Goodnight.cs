@@ -13,7 +13,7 @@ namespace Goodnight
         #region 变量与插件信息
         public override string Name => "宵禁";
         public override string Author => "Jonesn 羽学 少司命";
-        public override Version Version => new Version(2, 6, 0);
+        public override Version Version => new Version(2, 7, 0);
         public override string Description => "设置服务器无法进入或禁止生成怪物的时段";
         internal static Configuration Config;
         #endregion
@@ -43,7 +43,7 @@ namespace Goodnight
                 ServerApi.Hooks.NpcTransform.Deregister(this, OnTransform);
                 ServerApi.Hooks.NpcKilled.Deregister(this, OnNPCKilled);
                 ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
-                TShockAPI.Commands.ChatCommands.Remove(new Command("goodnight.admin", Commands.GnCmd, "gn", "宵禁"));
+                TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.GnCmd);
 
             }
             base.Dispose(disposing);
@@ -89,13 +89,17 @@ namespace Goodnight
         private void OnSpawn(NpcSpawnEventArgs args)
         {
             if (args.Handled || !Config.Enabled) return;
-            int PlayerCount = TShock.Utils.GetActivePlayerCount(); 
-            bool NpcList = Config.Npcs.Contains(Main.npc[args.NpcId].netID); 
-            bool NpcDead = Config.NpcDead.Contains(Main.npc[args.NpcId].netID); 
-            bool NoPlr = PlayerCount < Config.MaxPlayers && Config.MaxPlayers > 0; 
-            var NpcDeadInfo = string.Join(", ", Config.NpcDead.Select(x => TShock.Utils.GetNPCById(x)?.FullName)); 
-            bool isInRegion = Config.PlayersInRegion ? InRegion($"{Config.RegionName}") : InRegion2($"{Config.RegionName}"); 
+            int PlayerCount = TShock.Utils.GetActivePlayerCount();
+            bool NpcList = Config.Npcs.Contains(Main.npc[args.NpcId].netID);
+            bool NpcDead = Config.NpcDead.Contains(Main.npc[args.NpcId].netID);
+            bool NoPlr = PlayerCount <= Config.MaxPlayers && Config.MaxPlayers > 0;
+            var NpcDeadInfo = string.Join(", ", Config.NpcDead.Select(x => TShock.Utils.GetNPCById(x)?.FullName));
+            bool isInRegion = Config.PlayersInRegion ? InRegion() : InRegion2();
             string RegionInfo = Config.PlayersInRegion ? $"所有人([c/FF3A4B:{PlayerCount}人])" : "有一人";
+            bool BcstSwitch = Config.BcstSwitch ? IsBoss(args) : IsNotBoss(args);
+            bool BcstDefault = Config.BcstSwitch;
+            bool BcstSwitchOFF = Config.BcstSwitchOff; 
+
             if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.Stop)
             {
                 if (NoPlr)
@@ -107,15 +111,19 @@ namespace Goodnight
                             if (NpcDead)
                             {
                                 args.Handled = false;
-                                Main.npc[args.NpcId].active = true; TShock.Utils.Broadcast(
-                                    $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}/{Config.MaxPlayers}]个玩家! \n" +
-                                    $"检测到{RegionInfo}已在【[c/FF3A4B:召唤区]】允许召唤以下怪物：\n" +
-                                    $"[c/6EABE9:{NpcDeadInfo}]", Color.Aquamarine);
+                                Main.npc[args.NpcId].active = true;
+                                if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
+                                TShock.Utils.Broadcast(
+                                $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}/{Config.MaxPlayers}]个玩家! \n" +
+                                $"检测到{RegionInfo}已在【[c/FF3A4B:召唤区]】允许召唤以下怪物：\n" +
+                                $"[c/6EABE9:{NpcDeadInfo}]", Color.Aquamarine);
                             }
                             else if (NpcList)
                             {
                                 args.Handled = true;
-                                Main.npc[args.NpcId].active = false; TShock.Utils.Broadcast(
+                                Main.npc[args.NpcId].active = false;
+                                if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
+                                    TShock.Utils.Broadcast(
                                     $"【宵禁】当前服务器处于维护时间\n" +
                                     $"解禁在线人数少于:[c/FF3A4B:{Config.MaxPlayers}人]\n" +
                                     $"或该怪物未被击败:[c/338AE1:{Config.DeadCount}次]\n" +
@@ -130,12 +138,14 @@ namespace Goodnight
                             if (NpcList)
                             {
                                 args.Handled = true;
-                                Main.npc[args.NpcId].active = false; TShock.Utils.Broadcast(
-                                $"【宵禁】不在召唤区无法生成怪物\n" +
-                                $"解禁在线人数少于:[c/FF3A4B:{Config.MaxPlayers}人]\n" +
-                                $"或该怪物未被击败:[c/338AE1:{Config.DeadCount}次]\n" +
-                                $"或需要{RegionInfo}处于[c/338AE1:召唤区]\n" +
-                                $"请联系管理员使用[c/6EABE9:/region]创建一个[c/DF95EC:'召唤区']", Color.AntiqueWhite);
+                                Main.npc[args.NpcId].active = false;
+                                if (BcstSwitchOFF || (BcstDefault && BcstSwitch)) 
+                                   TShock.Utils.Broadcast(
+                                   $"【宵禁】不在召唤区无法生成怪物\n" +
+                                   $"解禁在线人数少于:[c/FF3A4B:{Config.MaxPlayers}人]\n" +
+                                   $"或该怪物未被击败:[c/338AE1:{Config.DeadCount}次]\n" +
+                                   $"或需要{RegionInfo}处于[c/338AE1:召唤区]\n" +
+                                   $"请联系管理员使用[c/6EABE9:/region]创建一个[c/DF95EC:'召唤区']", Color.AntiqueWhite);
                             }
                         }
                     }
@@ -144,13 +154,17 @@ namespace Goodnight
                         if (NpcDead)
                         {
                             args.Handled = false;
-                            Main.npc[args.NpcId].active = true; TShock.Utils.Broadcast(
-                                $"允许召唤的已击败怪物为：\n[c/6EABE9:{NpcDeadInfo}]", Color.Aquamarine);
+                            Main.npc[args.NpcId].active = true;
+                            if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
+                            TShock.Utils.Broadcast(
+                            $"允许召唤的已击败怪物为：\n[c/6EABE9:{NpcDeadInfo}]", Color.Aquamarine);
                         }
                         else if (NpcList)
                         {
                             args.Handled = true;
-                            Main.npc[args.NpcId].active = false; TShock.Utils.Broadcast(
+                            Main.npc[args.NpcId].active = false;
+                            if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
+                                TShock.Utils.Broadcast(
                                 $"【宵禁】当前服务器处于维护时间\n" +
                                 $"解禁在线人数少于:[c/FF3A4B:{Config.MaxPlayers}人]\n" +
                                 $"或该怪物未被击败:[c/338AE1:{Config.DeadCount}次]\n" +
@@ -165,34 +179,63 @@ namespace Goodnight
                     Main.npc[args.NpcId].active = true;
                 }
             }
-
         }
 
         private void OnTransform(NpcTransformationEventArgs args)
         {
-            int PlayerCount = TShock.Utils.GetActivePlayerCount(); 
-            bool NpcDead = Config.NpcDead.Contains(Main.npc[args.NpcId].netID); 
-            bool NpcList = Config.Npcs.Contains(Main.npc[args.NpcId].netID); 
+            int PlayerCount = TShock.Utils.GetActivePlayerCount();
+            bool NpcList = Config.Npcs.Contains(Main.npc[args.NpcId].netID);
+            bool NpcDead = Config.NpcDead.Contains(Main.npc[args.NpcId].netID);
             bool NoPlr = PlayerCount <= Config.MaxPlayers && Config.MaxPlayers > 0;
+            bool isInRegion = Config.PlayersInRegion ? InRegion() : InRegion2();
+
             if (args.Handled || !Config.Enabled) return;
             else if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.Stop)
             {
                 if (NoPlr)
                 {
-                    if (NpcDead)
+                    if (Config.Region)
                     {
-                        Main.npc[args.NpcId].active = true;
+                        if (isInRegion)
+                        {
+                            if (NpcDead)
+                            {
+                                args.Handled = false;
+                                Main.npc[args.NpcId].active = true;
+                            }
+                            else if (NpcList)
+                            {
+                                args.Handled = true;
+                                Main.npc[args.NpcId].active = false;
+                            }
+                        }
+                        else
+                        {
+                            if (NpcList)
+                            {
+                                args.Handled = true;
+                                Main.npc[args.NpcId].active = false;
+                            }
+                        }
                     }
-
-                    else if (NpcList)
+                    else if (!Config.Region)
                     {
-                        Main.npc[args.NpcId].active = false;
+                        if (NpcDead)
+                        {
+                            args.Handled = false;
+                            Main.npc[args.NpcId].active = true;
+                        }
+                        else if (NpcList)
+                        {
+                            args.Handled = true;
+                            Main.npc[args.NpcId].active = false;
+                        }
                     }
                 }
-
                 else
                 {
-                    if (NpcList) Main.npc[args.NpcId].active = true;
+                    if (NpcList) args.Handled = false;
+                    Main.npc[args.NpcId].active = true;
                 }
             }
         }
@@ -204,8 +247,8 @@ namespace Goodnight
         {
             if (!Config.Enabled || args.npc == null) return;
 
-            int KillNpc = args.npc.netID; 
-            string npcName = TShock.Utils.GetNPCById(KillNpc)?.FullName ?? "未知NPC"; 
+            int KillNpc = args.npc.netID;
+            string npcName = TShock.Utils.GetNPCById(KillNpc)?.FullName ?? "未知NPC";
             var NpcListInfo = string.Join(", ", Config.NpcDead.Select(x => TShock.Utils.GetNPCById(x)?.FullName + $"({x})"));
             if (Config.Npcs.Contains(KillNpc))
             {
@@ -221,16 +264,16 @@ namespace Goodnight
                 if (!Config.NpcDead.Contains(KillNpc))
                 {
                     TShock.Utils.Broadcast(
-                        $"【宵禁】击败NPC【[c/FF9187:{npcName}({KillNpc})]】\n" +
-                        $"计入《允许召唤表》要求次数:[c/FF3A4B:{KillCounters[KillNpc]}]/[c/E2FA75:{Config.DeadCount}次]", Color.AntiqueWhite);
+                    $"【宵禁】击败NPC【[c/FF9187:{npcName}({KillNpc})]】\n" +
+                    $"计入《允许召唤表》要求次数:[c/FF3A4B:{KillCounters[KillNpc]}]/[c/E2FA75:{Config.DeadCount}次]", Color.AntiqueWhite);
                 }
 
                 if (KillCounters[KillNpc] >= Config.DeadCount)
                 {
                     if (!Config.NpcDead.Contains(KillNpc))
                     {
-                        Config.NpcDead.Add(KillNpc); 
-                        Config.Write(); 
+                        Config.NpcDead.Add(KillNpc);
+                        Config.Write();
                         TShock.Utils.Broadcast(
                             $"\n因击杀次数达到[c/E2FA75:{Config.DeadCount}次] 将不再播报计数\n" +
                             $"已计入《允许召唤表》：\n[c/6EABE9:{NpcListInfo}]\n" +
@@ -242,43 +285,55 @@ namespace Goodnight
 
             else if (KillNpc == Config.ResetNpcDead)
             {
-                Config.NpcDead.Clear(); 
-                KillCounters.Clear(); 
-                Config.Write(); 
+                Config.NpcDead.Clear();
+                KillCounters.Clear();
+                Config.Write();
                 TShock.Utils.Broadcast($"【宵禁】玩家已击败:[c/FF9187:{npcName}({KillNpc})]，现清空《允许召唤表》", Color.AntiqueWhite);
             }
         }
         #endregion
 
         #region 判断玩家在召唤区方法
-        //需要所有人在
-        private static bool InRegion(string regionName)
+        //需要所有人在召唤区才能召唤
+        private static bool InRegion()
         {
-            int PlayerCount = TShock.Utils.GetActivePlayerCount(); 
+            int PlayerCount = TShock.Utils.GetActivePlayerCount();
             int inRegionCount = 0;
             foreach (var plr in TShock.Players)
             {
-                if (plr != null 
-                    && plr.Active 
-                    && plr.CurrentRegion != null 
-                    && plr.CurrentRegion.Name == regionName)
+                if (plr != null
+                    && plr.Active
+                    && plr.CurrentRegion != null
+                    && plr.CurrentRegion.Name == Config.RegionName)
                     inRegionCount++;
             }
             return inRegionCount == PlayerCount;
         }
 
-        //有1人在区域,其他人都可以在任意位置召唤
-        private static bool InRegion2(string regionName)
+        //需有一人在召唤区才能召唤
+        private static bool InRegion2()
         {
             foreach (var plr in TShock.Players)
             {
                 if (plr != null
                     && plr.Active
                     && plr.CurrentRegion != null
-                    && plr.CurrentRegion.Name == regionName) 
-                    return regionName == $"{Config.RegionName}";
+                    && plr.CurrentRegion.Name == Config.RegionName)
+                    return true;
             }
             return false;
+        }
+        #endregion
+
+        #region 播报类型：判断boss与取反第1种方法判断非BOSS（用于解决自然刷新怪ID在禁怪表时广播刷屏问题）
+        private bool IsBoss(NpcSpawnEventArgs args)
+        {
+            return Main.npc[args.NpcId].boss;
+        }
+
+        private bool IsNotBoss(NpcSpawnEventArgs args)
+        {
+            return !IsBoss(args);
         }
         #endregion
     }
