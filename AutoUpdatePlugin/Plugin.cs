@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.IO.Compression;
 using System.Reflection;
-using System.Timers;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -13,7 +12,7 @@ public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoUpdatePlugin";
 
-    public override Version Version => new(2024, 6, 20, 2);
+    public override Version Version => new(2024, 6, 21, 3);
 
     public override string Author => "少司命，Cai";
 
@@ -65,14 +64,6 @@ public class Plugin : TerrariaPlugin
         {
             try
             {
-
-                //TShock.Log.ConsoleInfo("[AutoUpdate]开始检查更新...");
-                //var updates = GetUpdate();
-                //if (updates.Count == 0)
-                //{
-                //    TShock.Log.ConsoleInfo("[AutoUpdate]你的插件全是最新版本，无需更新哦~");
-                //    return;
-                //}
                 var updates = GetUpdate();
                 if (updates.Any())
                 { 
@@ -99,6 +90,15 @@ public class Plugin : TerrariaPlugin
             {
                 args.Player.SendSuccessMessage("你的插件全是最新版本，无需更新哦~");
                 return;
+            }
+            if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "-t")
+            {
+                if (!updates.Any(x => x.Name == args.Parameters[1]))
+                {
+                    args.Player.SendSuccessMessage("指定更新的插件: {0} 无需更新!", args.Parameters[1]);
+                    return;
+                }
+                updates.RemoveAll(x => x.Name != args.Parameters[1]);
             }
             args.Player.SendInfoMessage("正在下载最新插件包...");
             DownLoadPlugin();
@@ -177,11 +177,11 @@ public class Plugin : TerrariaPlugin
         //反射拯救了TSAPI
         var type = typeof(ServerApi);
         var field = type.GetField("loadedAssemblies", BindingFlags.NonPublic | BindingFlags.Static)!;
-        var loadedAssemblies = (Dictionary<string, Assembly>)field.GetValue(null)!;
-        foreach (var (fileName, assembly) in loadedAssemblies)
-            for (int i = 0; i < plugins.Count; i++)
-                if (plugins[i].AssemblyName == assembly.GetName().Name)
-                    plugins[i].Path = fileName + ".dll";
+        if(field.GetValue(null) is Dictionary<string, Assembly> loadedAssemblies)
+            foreach (var (fileName, assembly) in loadedAssemblies)
+                for (int i = 0; i < plugins.Count; i++)
+                    if (plugins[i].AssemblyName == assembly.GetName().Name)
+                        plugins[i].Path = fileName + ".dll";
         return plugins;
     }
 

@@ -7,7 +7,7 @@
 ## 更新日志
 
 ```
-暂无
+1. 更新指定插件命令
 ```
 
 ## 指令
@@ -16,6 +16,7 @@
 | -------------- | :-----------------: | :------: |
 | /cplugin | AutoUpdatePlugin   | 检查插件更新|
 | /uplugin | AutoUpdatePlugin   | 一键升级插件(需要重启服务器)|
+| /uplugin -t [插件名] | AutoUpdatePlugin   | 更新指定插件|
 ## 配置
 
 ```json
