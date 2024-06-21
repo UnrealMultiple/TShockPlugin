@@ -70,9 +70,8 @@ namespace Goodnight
             }
             else
             {
-                using (var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-                using (var sr = new StreamReader(fs))
-                    return JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd())!;
+                string jsonContent = File.ReadAllText(FilePath);
+                return JsonConvert.DeserializeObject<Configuration>(jsonContent)!;
             }
         }
         #endregion
