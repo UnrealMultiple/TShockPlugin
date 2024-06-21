@@ -1,7 +1,8 @@
 name: 论坛同步PR日志
 on:
-  pull_request:
-    types: [closed]
+  push:
+    branches:
+      - master
 
 jobs:
   build:
