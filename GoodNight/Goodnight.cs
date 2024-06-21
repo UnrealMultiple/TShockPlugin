@@ -43,7 +43,7 @@ namespace Goodnight
                 ServerApi.Hooks.NpcTransform.Deregister(this, OnTransform);
                 ServerApi.Hooks.NpcKilled.Deregister(this, OnNPCKilled);
                 ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
-                TShockAPI.Commands.ChatCommands.Remove(new Command("goodnight.admin", Commands.GnCmd, "gn", "宵禁"));
+                TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.GnCmd);
 
             }
             base.Dispose(disposing);
