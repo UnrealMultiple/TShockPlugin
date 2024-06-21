@@ -184,7 +184,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimerKeeper", "TimerKeeper\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chameleon", "Chameleon\Chameleon.csproj", "{53CD6498-27DE-4C8C-A706-3CD2BD106D9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoUpdatePlugin", "AutoUpdatePlugin\AutoUpdatePlugin.csproj", "{9B88AC5E-E11C-4424-A5DC-5C1D094860B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoUpdatePlugin", "AutoUpdatePlugin\AutoUpdatePlugin.csproj", "{9B88AC5E-E11C-4424-A5DC-5C1D094860B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
