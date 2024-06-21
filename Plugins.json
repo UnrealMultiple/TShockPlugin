@@ -50,7 +50,7 @@
   },
   {
     "Name": "AutoUpdatePlugin",
-    "Version": "2024.6.20.2",
+    "Version": "2024.6.21.3",
     "Author": "少司命，Cai",
     "Description": "自动更新你的插件！",
     "Path": "AutoUpdatePlugin.dll"
@@ -323,7 +323,7 @@
   },
   {
     "Name": "ProgressControl",
-    "Version": "1.0.0.5",
+    "Version": "1.0.0.6",
     "Author": "z枳 羽学",
     "Description": "计划书",
     "Path": "ProgressControls.dll"
