@@ -61,77 +61,10 @@ namespace ProgressControl
             HowLongTimeOfAotuResetServer = 176;
             ResetTSCharacter = true;
             DeleteWorldForReset = true;
-            NpcKillCountForAutoReset = new Dictionary<int, ArrayList>()
-            {
-                { 398, new ArrayList { 3, "pco reset hand","bc 击杀月总3次自动重置" } }
-            };
-            CommandForBeforeResetting = new HashSet<string>()
-            {
-                "clall",
-                "zout all",
-                "wat clearall",
-                "pbreload",
-                "pco copy",
-                "礼包 重置",
-                "礼包重置",
-                "pvp reset",
-                "派系 reset",
-                "bwl reload",
-                "task clear",
-                "task reset",
-                "rpg reset",
-                "bank reset",
-                "deal reset",
-                "skill reset",
-                "level reset",
-                "replenreload",
-                "重读多重限制",
-                "重读阶段库存",
-                "clearbuffs all",
-                "重读物品超数量封禁",
-                "重读自定义怪物血量",
-                "重读禁止召唤怪物表",
-                "zresetallplayers",
-                "clearallplayersplus",
-                "reload"
-            };
-            DeleteSQLiteForBeforeResetting = new HashSet<string>()
-            {
-                "HousingDistrict",
-                "TerrariaRobot死亡统计",
-                "Warps",
-                "渡劫表",
-                "RememberedPos",
-                "Zhipm_PlayerBackUp",
-                "Zhipm_PlayerExtra",
-                "Research",
-                "使用日志",
-                "区域执行指令",
-                "Economics",
-                "Economicsskill",
-                "Regions",
-                "RPG",
-                "Skill",
-                "Permabuff",
-                "Permabuffs",
-                "Onlineduration",
-                "Onlybaniplist",
-                "Stronger",
-                "Synctable",
-                "Task",
-                "TaskKillnpc",
-                "TaskTallk",
-                "OnlineDuration",
-                "WeaponPlusDBcostCoin",
-                "WeaponPlusdbbasedOnEconomics"
-            };
-            DeleteFileForBeforeResetting = new HashSet<string>()
-            {
-                "tshock/backups/*.bak",
-                "tshock/logs/*.log",
-                "tshock/Watcher/logs/*.log",
-                "tshock/检查背包/检查日志/*.txt",
-            };
+            NpcKillCountForAutoReset = new Dictionary<int, ArrayList>();
+            CommandForBeforeResetting = new HashSet<string>();
+            DeleteSQLiteForBeforeResetting = new HashSet<string>();
+            DeleteFileForBeforeResetting = new HashSet<string>();
             MapSizeForAfterReset = 3;
             MapDifficultyForAfterReset = 2;
             WorldSeedForAfterReset = "";
@@ -183,7 +116,7 @@ namespace ProgressControl
             CheckPerm = true;
             ServerLogWriterEnabledForAotuResetting = false;
             Command_PcoDelFile_DeletePath = new HashSet<string>();
-            Command_PcoCopy_CopyPath = new HashSet<string>() { "world/SFE4.wld" };
+            Command_PcoCopy_CopyPath = new HashSet<string>();
             Command_PcoCopy_PastePath = "tshock/Zhipm/";
             Command_PcoCopy_CoverFile = true;
         }

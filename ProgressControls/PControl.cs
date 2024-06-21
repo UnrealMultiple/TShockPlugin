@@ -20,7 +20,7 @@ namespace ProgressControl
         public override string Author => "z枳 羽学";
         public override string Description => "计划书";
         public override string Name => "ProgressControl";
-        public override Version Version => new Version(1, 0, 0, 5);
+        public override Version Version => new Version(1, 0, 0, 6);
 
         public static Config config = new Config();
 
