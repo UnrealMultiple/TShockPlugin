@@ -50,7 +50,7 @@
   },
   {
     "Name": "AutoUpdatePlugin",
-    "Version": "2024.6.20.2",
+    "Version": "2024.6.21.3",
     "Author": "少司命，Cai",
     "Description": "自动更新你的插件！",
     "Path": "AutoUpdatePlugin.dll"
@@ -323,7 +323,7 @@
   },
   {
     "Name": "ProgressControl",
-    "Version": "1.0.0.5",
+    "Version": "1.0.0.7",
     "Author": "z枳 羽学",
     "Description": "计划书",
     "Path": "ProgressControls.dll"
@@ -463,7 +463,7 @@
   },
   {
     "Name": "宵禁",
-    "Version": "2.7.0",
+    "Version": "2.7.2",
     "Author": "Jonesn 羽学 少司命",
     "Description": "设置服务器无法进入或禁止生成怪物的时段",
     "Path": "Goodnight.dll"
