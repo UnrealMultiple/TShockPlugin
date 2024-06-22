@@ -25,7 +25,7 @@ namespace EssentialsPlus
 
         public override string Name => "EssentialsPlus";
 
-        public override Version Version => Assembly.GetExecutingAssembly().GetName().Version;
+        public override Version Version => new Version(1, 0, 0);
 
 
         public EssentialsPlus(Main game)
