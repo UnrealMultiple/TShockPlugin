@@ -28,7 +28,7 @@ public class History : TerrariaPlugin
     private Thread CommandQueueThread;
     public override string Description => "记录图格操作.";
     public override string Name => "History";
-    public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+    public override Version Version => new Version(1, 0, 0);
 
     public History(Main game) : base(game)
     {
