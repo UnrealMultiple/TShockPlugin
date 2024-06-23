@@ -10,7 +10,7 @@ namespace AutoPluginManager;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public override string Name => "AutoUpdatePlugin";
+    public override string Name => "AutoPluginManager";
 
     public override Version Version => new(2, 0, 0, 0);
 
