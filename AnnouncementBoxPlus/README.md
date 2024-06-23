@@ -13,7 +13,7 @@
 
 
 ## 配置
-	配置文件位置：tshock/AnnouncementBoxPlus.json
+> 配置文件位置：tshock/AnnouncementBoxPlus.json
 ```json
 {
   "禁用广播盒": false,
