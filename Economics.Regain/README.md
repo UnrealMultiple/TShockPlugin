@@ -22,7 +22,7 @@
 | /regain             | economics.regain |  兑换手持物品  |
 
 ## 配置
-
+> 配置文件位置：tshock/Economics/Regain.json
 ```json
 {
   "回收物品表": [
