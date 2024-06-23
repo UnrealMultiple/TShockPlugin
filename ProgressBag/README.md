@@ -22,7 +22,7 @@
 ## 具体进度请查看 ProgressType.cs 文件
 
 ## 配置
-    配置文件位置：tshock/进度礼包.json
+> 配置文件位置：tshock/进度礼包.json
 ```json
 {
   "礼包": [
