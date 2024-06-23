@@ -47,9 +47,9 @@
 | /bma reload| bm.admin | 重载配置文件非房间文件 |
 
 ## 配置
-    配置文件位置：tshock/BuildMaster
+> 配置文件位置：tshock/BuildMaster
 ```json
-Config.json  
+> Config.json  
   
 {
   "UnlockAll": true,
