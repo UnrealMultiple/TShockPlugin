@@ -224,6 +224,13 @@
     "Path": "Economics.Task.dll"
   },
   {
+    "Name": "Economics.WeaponPlus",
+    "Version": "1.0.0.3",
+    "Author": "z枳 少司命",
+    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+    "Path": "Economics.WeaponPlus.dll"
+  },
+  {
     "Name": "EconomicsAPI",
     "Version": "1.0.0.0",
     "Author": "少司命",
@@ -418,13 +425,6 @@
     "Author": "Megghy|YSpoof|Maxthegreat99|肝帝熙恩",
     "Description": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
     "Path": "VeinMiner.dll"
-  },
-  {
-    "Name": "WeaponPlusBasedOnEconomics",
-    "Version": "1.0.0.3",
-    "Author": "z枳 少司命",
-    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
-    "Path": "Economics.WeaponPlus.dll"
   },
   {
     "Name": "WeaponPlusCostCoin",
