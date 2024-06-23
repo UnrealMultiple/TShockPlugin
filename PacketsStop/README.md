@@ -27,7 +27,7 @@
 | 无 | 免拦截   | 不受插件数据包拦截影响 |
 
 ## 配置
-    配置文件位置：tshock/数据包拦截.json
+> 配置文件位置：tshock/数据包拦截.json
 ```json
 {
   "数据包名可查看": "https://github.com/Pryaxis/TSAPI/blob/general-devel/TerrariaServerAPI/TerrariaApi.Server/PacketTypes.cs",
