@@ -16,7 +16,7 @@ namespace Plugin
 
         public override string Name => "EndureBoost";
 
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
 
         public EndureBoost(Main game) : base(game)
         {
@@ -73,6 +73,10 @@ namespace Plugin
 
         private void Rebirth(object o, GetDataHandlers.SpawnEventArgs args)
         {
+            if (args.Player == null)
+            {
+                return;
+            }
             TSPlayer player = args.Player;
             SetPlayerBuff(player);
         }

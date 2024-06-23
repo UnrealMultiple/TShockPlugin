@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using TShockAPI;
 
 namespace ChattyBridge;
 
@@ -13,10 +14,16 @@ public class Config
     [JsonProperty("服务器名称")]
     public string ServerName { get; set; } = string.Empty;
 
+    [JsonProperty("验证令牌")]
+    public string Verify { get; set; } = string.Empty;
+
+    [JsonProperty("消息设置")]
+    public MessageFormat MessageFormat { get; set; } = new();
+
     [JsonIgnore]
     public static string PATH => Path.Combine(TShockAPI.TShock.SavePath, "ChattyBridge.json");
 
-    public Config Read()
+    public static Config Read()
     {
         if (File.Exists(PATH))
             return JsonConvert.DeserializeObject<Config>(File.ReadAllText(PATH)) ?? new();
@@ -27,4 +34,5 @@ public class Config
     {
         File.WriteAllText(PATH, JsonConvert.SerializeObject(this, Formatting.Indented));
     }
+
 }

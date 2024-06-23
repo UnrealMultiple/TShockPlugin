@@ -40,7 +40,7 @@ namespace RegionView
             => "区域显示";
 
         public override Version Version
-            => new(1, 1);
+            => new(1, 1, 0);
 
         private readonly System.Timers.Timer _refreshTimer = new(5000);
 

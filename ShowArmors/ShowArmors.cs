@@ -15,7 +15,7 @@ namespace Plugin
 
         public override string Name => "Show Armors";
 
-        public override Version Version => Assembly.GetExecutingAssembly().GetName().Version;
+        public override Version Version => new Version(1, 0, 1);
 
         public ShowArmors(Main game) : base(game)
         {
