@@ -48,18 +48,16 @@
 
 ## 配置
 > 配置文件位置：tshock/BuildMaster
-```json
-> Config.json  
-  
+> Config.json
+```json    
 {
   "UnlockAll": true,
   "Range": {},
   "BanItem": []
 }
 ```
+> default.json
 ```json
-default.json  
-
 {
   "Name": "基础套",
   "ID": 2,
