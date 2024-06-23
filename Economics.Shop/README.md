@@ -21,7 +21,7 @@
 | /shop list [页码] | economics.shop | 查看商品列表 |
 
 ## 配置
-
+> 配置文件位置：tshock/Economics/Shop.json
 ```json
 {
   "最大显示页": 10,
