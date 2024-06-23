@@ -35,7 +35,7 @@
 
 
 ## 配置
-    配置文件位置：tshock/RainbowChat.json
+> 配置文件位置：tshock/RainbowChat.json
 ```json
 {
   "使用说明": "权限名（rainbowchat.use） /rc 渐变 用指令修改的颜色不会写进配置文件，这里改的是全体默认渐变色，开启【随机】渐变会默认失效",
