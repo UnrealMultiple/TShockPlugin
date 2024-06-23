@@ -28,7 +28,7 @@
 | /mp set [血量]          | lifemaxextra.use | 设置自身魔力 |
 
 ## 配置
-    配置文件位置：tshock/LifemaxExtra.json
+> 配置文件位置：tshock/LifemaxExtra.json
 ```json
 {
   "最大生命值": 1000,
