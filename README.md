@@ -139,7 +139,7 @@
 | [Musicplayer](Musicplayer/README.md)                             |         简易音乐播放器         |                                                                        无                                                                        |
 | [TimerKeeper](TimerKeeper/README.md)                             |         保存计时器状态         |                                                                        无                                                                        |
 | [Chameleon](Chameleon/README.md)                                 |           进服前登录           |                                                                        无                                                                        |
-| [AutoUpdatePlugin](AutoUpdatePlugin/README.md)                   |        一键自动更新插件        |                                                                        无                                                                        |
+| [AutoPluginManager](AutoPluginManager/README.md)                   |        一键自动更新插件        |                                                                        无                                                                        |                                                          无                                                                        |
 | [WorldModify](WorldModify/README.md)                   |        世界修改器插件        |                                                                        无                                                                        |
 </Details>
 
