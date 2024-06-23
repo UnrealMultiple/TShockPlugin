@@ -48,6 +48,7 @@
 
 ## 配置
 > 配置文件位置：tshock/BuildMaster
+
 > Config.json
 ```json    
 {
