@@ -50,7 +50,7 @@
 | /reload | 无  | 自动计算总概率 |
 
 ## 配置
-    配置文件位置：tshock/在线礼包.json
+> 配置文件位置：tshock/在线礼包.json
 ```json
 {
   "启用": true,
