@@ -15,7 +15,7 @@ namespace Economics.WeaponPlus
     public class WeaponPlus : TerrariaPlugin
     {
         #region 插件信息
-        public override string Name => "WeaponPlusBasedOnEconomics";
+        public override string Name => "Economics.WeaponPlus";
 
         public override string Author => "z枳 少司命";
 
