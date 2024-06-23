@@ -18,7 +18,7 @@
 | /ebbuff，/ldbuff，/loadbuff | EndureBoost| 立即刷新长时间buff状态|
 
 ## 配置
-    配置文件路径：tshock/EndureBoost.json
+> 配置文件路径：tshock/EndureBoost.json
 ```json
 {
   "猪猪储钱罐": false,// 示例
