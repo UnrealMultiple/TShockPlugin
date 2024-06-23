@@ -24,7 +24,7 @@
 | /deal reset       | economics.deal.reset |     重置交易     |
 
 ## 配置
-
+> 配置文件位置：tshock/Economics/Deal.json
 ```json
 {
   "最大显示页": 10,
