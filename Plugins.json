@@ -127,7 +127,7 @@
   },
   {
     "Name": "ChattyBridge",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": "ChattyBridge",
     "Path": "ChattyBridge.dll"
