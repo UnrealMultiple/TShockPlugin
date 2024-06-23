@@ -10,7 +10,7 @@ namespace PerPlayerLoot
         #region info
         public override string Name => "PerPlayerLoot";
 
-        public override Version Version => new Version(2, 0);
+        public override Version Version => new Version(2, 0, 0);
 
         public override string Author => "Codian,肝帝熙恩汉化1449";
 

@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using Rests;
 using System.Reflection;
 using System.Text;
+using System.Web;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -19,7 +20,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+    public override Version Version => new(1, 0, 0, 1);
 
     private HttpClient Client { get; set; }
 
@@ -37,12 +38,12 @@ public class Plugin : TerrariaPlugin
         LoadConfig();
         TShock.RestApi.Register(RestAPI, Receive);
         ServerApi.Hooks.ServerChat.Register(this, OnChat);
-        ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
+        ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreet);
         ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
         GeneralHooks.ReloadEvent += (_) => LoadConfig();
     }
 
-    public void LoadConfig()
+    public static void LoadConfig()
     {
         if (File.Exists(Config.PATH))
         {
@@ -65,7 +66,8 @@ public class Plugin : TerrariaPlugin
     private object Receive(RestRequestArgs args)
     {
         var msg = args.Parameters["msg"];
-        if (!string.IsNullOrEmpty(msg))
+        var isVer = args.Parameters["verify"] == Config.Verify;
+        if (!string.IsNullOrEmpty(msg) && isVer)
         {
             try
             {
@@ -78,20 +80,20 @@ public class Plugin : TerrariaPlugin
                         case "player_join":
                             {
                                 var jobj = json.ToObject<PlayerJoinMessage>()!;
-                                TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name} 加入服务器", (byte)jobj.RGB[0], (byte)jobj.RGB[1], (byte)jobj.RGB[2]);
+                                TShock.Utils.Broadcast(string.Join(Config.MessageFormat.JoinFormat, jobj.ServerName, jobj.Name), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
                                 break;
                             }
 
                         case "player_leave":
                             {
                                 var jobj = json.ToObject<PlayerLeaveMessage>()!;
-                                TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name} 离开服务器", (byte)jobj.RGB[0], (byte)jobj.RGB[1], (byte)jobj.RGB[2]);
+                                TShock.Utils.Broadcast(string.Join(Config.MessageFormat.LeaveFormat, jobj.ServerName, jobj.Name), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
                                 break;
                             }
                         case "player_chat":
                             {
                                 var jobj = json.ToObject<PlayerChatMessage>()!;
-                                TShock.Utils.Broadcast($"[{jobj.ServerName}] {jobj.Name}: {jobj.Text}", (byte)jobj.RGB[0], (byte)jobj.RGB[1], (byte)jobj.RGB[2]);
+                                TShock.Utils.Broadcast(string.Join(Config.MessageFormat.ChatFormat, jobj.ServerName, jobj.Name, jobj.Text), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
                                 break;
                             }
                         default:
@@ -118,8 +120,12 @@ public class Plugin : TerrariaPlugin
             {
                 try
                 {
-                    var url = $"http://{host}{RestAPI}?msg={baseStr}";
-                    Client.Send(new HttpRequestMessage(HttpMethod.Get, url));
+                    var url = $"http://{host}{RestAPI}";
+                    HttpGet(url, new Dictionary<string, string>()
+                    {
+                        { "msg", baseStr },
+                        { "verify", Config.Verify }
+                    });
                 }
                 catch
                 {
@@ -127,6 +133,16 @@ public class Plugin : TerrariaPlugin
                 }
             }
         });
+    }
+
+    public void HttpGet(string url, Dictionary<string, string> playload)
+    {
+        var urlBuild = new UriBuilder(url);
+        var param = HttpUtility.ParseQueryString(urlBuild.Query);
+        foreach (var (key, value) in playload)
+            param[key] = value;
+        urlBuild.Query = param.ToString();
+        Client.Send(new HttpRequestMessage(HttpMethod.Get, url));
     }
 
     private void OnLeave(LeaveEventArgs args)
@@ -138,7 +154,7 @@ public class Plugin : TerrariaPlugin
         SendMessage(msg);
     }
 
-    private void OnJoin(JoinEventArgs args)
+    private void OnGreet(GreetPlayerEventArgs args)
     {
         var player = TShock.Players[args.Who];
         if (player == null)
