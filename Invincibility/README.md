@@ -20,7 +20,7 @@
 | /tframe 或 /限时无敌帧无敌 |  Invincibility.frame  | 无敌帧无敌|
 
 ## 配置
-	配置文件路径：tshock/限时无敌.json
+> 配置文件路径：tshock/限时无敌.json
 ```json
 {
   "插件自带god无敌开启提示": true,
