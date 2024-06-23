@@ -19,7 +19,7 @@
 | /clearbuffs                     | clearbuffs.use |          清空自身所有 buff          |
 
 ## 配置
-	配置文件位置：tshock/permbuff.json
+> 配置文件位置：tshock/permbuff.json
 ```json
 {
   "不可添加buff": []
