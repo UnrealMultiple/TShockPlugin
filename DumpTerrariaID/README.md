@@ -17,7 +17,7 @@
 | /dumpid | dump.id | 输出到文件 |
 
 ## 配置
-
+	配置文件位置：tshock/TerrariaID.json
 ```json
 TerrariaID表
 ```

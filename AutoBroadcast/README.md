@@ -15,7 +15,7 @@
 无
 
 ## 配置
-
+    配置文件位置：tshock/AutoBroadcast.json
 ```json
 {
   "广播列表": [

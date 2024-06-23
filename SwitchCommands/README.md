@@ -33,7 +33,7 @@
 | /switch ignoreperm  <true/false>  | switch.ignoreperm | 独立权限，当有这个权限时，才可以赋予指令开关忽略权限的能力 |
 
 ## 配置
-
+    配置文件位置：tshock/开关配置表.json
 ```json
 {
   "是否开启开关保护": true,

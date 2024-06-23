@@ -20,7 +20,7 @@
 | 无 |  SimultaneousUseFix  | 完全免检权限 |
 
 ## 配置
-
+    配置文件位置：tshock/解决卡双锤卡星旋机枪之类的问题.json
 ```json
 {
   "免检测物品列表": [

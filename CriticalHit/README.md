@@ -19,7 +19,7 @@
 ```
 
 ## 配置
-
+    配置文件位置：tshock/CriticalConfig.json
 ```json
 {
   "总开关": true,

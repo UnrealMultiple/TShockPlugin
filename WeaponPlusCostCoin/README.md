@@ -25,7 +25,7 @@
 | /clearallplayersplus  | 无 |  weaponplus.admin |  将所有玩家的强化物品清除|
 
 ## 配置
-
+	配置文件位置：tshock/WeaponPlus.json
 ```
 {
   "启用英文": false,

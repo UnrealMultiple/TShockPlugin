@@ -18,7 +18,7 @@
 ```
 
 ## 配置
-
+	配置文件位置：tshock/Autoclear.json
 ```json
 {
   "多久检测一次(s)": 10,

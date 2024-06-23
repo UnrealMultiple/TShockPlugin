@@ -20,7 +20,7 @@
 ```
 
 ## 配置
-
+    配置文件位置：tshock/HelpPlus.json
 ```json
 {
   "简短提示开关": true,

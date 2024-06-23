@@ -70,7 +70,7 @@ V1.0.0.3
 | /onlineDuration | 查询在线排行数据 |
 
 ## 配置
-
+	配置文件位置：tshock/ServerTools.json
 `ServerTools.json`
 
 ```json

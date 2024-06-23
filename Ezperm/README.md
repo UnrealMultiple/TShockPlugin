@@ -18,7 +18,7 @@
 | /inperms 或 /批量改权限 |  inperms.admin  | 批量改权限|
 
 ## 配置
-
+    配置文件位置：tshock/ezperm.json
 ```json
 {
   "Groups": [

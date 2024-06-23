@@ -22,7 +22,7 @@
 | /vm [任意参数]|  veinminer  | 开关连锁挖矿提示消息指令|
 
 ## 配置
-
+    配置文件位置：tshock/VeinMiner.json
 ```json
 {
   "启用": true,

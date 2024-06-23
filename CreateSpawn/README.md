@@ -21,7 +21,7 @@
 | /create   | create.copy |      生成建筑      |
 
 ## 配置
-
+	配置文件位置：tshock/Create.json
 ```json
 {
   "centreX": 145, //不要动

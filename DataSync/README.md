@@ -26,7 +26,7 @@
 | /进度                          |   DataSync   | 进度查询 |
 
 ## 配置
-
+	配置文件位置：tshock/DataSync.json
 ```json
 {
   "KingSlime": false,

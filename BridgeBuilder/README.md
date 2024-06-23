@@ -26,7 +26,7 @@
 | /bridge [up/down] 或 /桥来 [up/down]|  bridgebuilder.bridge  | 快速铺桥指令|
 
 ## 配置
-
+    配置文件位置：tshock/铺桥配置.json
 ```json
 {
   "允许快速铺路方块id": [//注意！是图格id，不是物品id，可以在wiki上搜到图格id

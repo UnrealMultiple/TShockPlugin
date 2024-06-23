@@ -18,7 +18,7 @@
 ```
 
 ## 配置
-
+	配置文件位置：tshock/ItemPreserverConfig.json
 ```json
 {
   "不消耗物品": []

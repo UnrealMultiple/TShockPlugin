@@ -18,7 +18,7 @@
 | 无 | noautoteam  |   有该权限不会被自动分配队伍   |
 
 ## 配置
-
+    配置文件位置：tshock/AutoTeamPlus.json
 ```json
 {
   "组的队伍": {

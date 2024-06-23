@@ -53,7 +53,7 @@
 
 
 ## 配置
-
+	配置文件位置：tshock/决斗系统.json
 ```json
 {
   "插件权限名": "pvper.use / pvper.admin",

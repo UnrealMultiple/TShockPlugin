@@ -18,7 +18,7 @@
 | /bm list     | bannpc.use |  查看禁止生成表  |
 
 ## 配置
-
+	配置文件位置：tshock/禁止怪物表.json
 ```json
 {
   "阻止怪物生成表": []

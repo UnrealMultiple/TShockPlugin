@@ -125,7 +125,7 @@ OnGameUpdate/WormScarf/OnServerLeave
 | /cf |  无 |无 |  用于切换或触发装备被动技能类型 |
 
 ## 配置
-
+    配置文件位置：tshock/ChallengerConfig.json
 ```
 {
   "是否启用挑战模式": true,
