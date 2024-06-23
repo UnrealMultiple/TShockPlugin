@@ -19,7 +19,7 @@
 | 无 | AdditionalPylons   | 放置更多晶塔权限|
 
 ## 配置
-	配置文件位置：tshock/无限晶塔.json
+> 配置文件位置：tshock/无限晶塔.json
 ```json
 {
   "丛林晶塔数量上限": 2,
