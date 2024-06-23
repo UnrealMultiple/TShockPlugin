@@ -15,7 +15,7 @@
   },
   {
     "Name": "[放置更多晶塔] AdditionalPylons",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0",
     "Author": "Stealownz，肝帝熙恩优化1449",
     "Description": "晶塔环境不受限制，数量可提升",
     "Path": "AdditionalPylons.dll"
@@ -29,31 +29,31 @@
   },
   {
     "Name": "AnnouncementBoxPlus",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0",
     "Author": "Cai",
     "Description": "优化广播盒",
     "Path": "AnnouncementBoxPlus.dll"
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.0.0.0",
+    "Version": "1.0.3",
     "Author": "Scavenger",
     "Description": "自动广播插件",
     "Path": "AutoBroadcast.dll"
   },
   {
+    "Name": "AutoPluginManager",
+    "Version": "2.0.0.0",
+    "Author": "少司命，Cai",
+    "Description": "自动更新你的插件！",
+    "Path": "AutoPluginManager.dll"
+  },
+  {
     "Name": "AutoTeamPlus",
-    "Version": "2.4",
+    "Version": "2.4.0",
     "Author": "十七改，肝帝熙恩改",
     "Description": "自动队伍",
     "Path": "AutoTeam.dll"
-  },
-  {
-    "Name": "AutoUpdatePlugin",
-    "Version": "2024.6.21.3",
-    "Author": "少司命，Cai",
-    "Description": "自动更新你的插件！",
-    "Path": "AutoUpdatePlugin.dll"
   },
   {
     "Name": "BackPlugin",
@@ -85,7 +85,7 @@
   },
   {
     "Name": "BuildMaster",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0",
     "Author": "豆沙 羽学适配",
     "Description": "A minigame that is named BuildMaster",
     "Path": "BuildMaster.dll"
@@ -127,14 +127,14 @@
   },
   {
     "Name": "ChattyBridge",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": "ChattyBridge",
     "Path": "ChattyBridge.dll"
   },
   {
     "Name": "ConsoleSql",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0",
     "Author": "Cai",
     "Description": "让控制台可以执行SQL操作数据库",
     "Path": "ConsoleSql.dll"
@@ -148,14 +148,14 @@
   },
   {
     "Name": "CriticalHit!",
-    "Version": "1.2",
+    "Version": "1.2.0",
     "Author": "White制作,Stone·Free汉化整合，肝帝熙恩更新适配1449",
     "Description": "提供攻击NPC跳出浮动文字效果",
     "Path": "CriticalHit.dll"
   },
   {
     "Name": "DamageStatistic-伤害统计",
-    "Version": "1.0",
+    "Version": "1.0.0",
     "Author": "Megghy",
     "Description": "Show the damage caused by each player after each boss battle",
     "Path": "DamageStatistic.dll"
@@ -232,21 +232,21 @@
   },
   {
     "Name": "EndureBoost",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "肝帝熙恩",
     "Description": "一定数量后长时间buff",
     "Path": "EndureBoost.dll"
   },
   {
     "Name": "EssentialsPlus",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0",
     "Author": "WhiteX等人，Average,Cjx,肝帝熙恩翻译",
     "Description": "增强版Essentials",
     "Path": "EssentialsPlus.dll"
   },
   {
     "Name": "Ezperm",
-    "Version": "1.2",
+    "Version": "1.2.0",
     "Author": "大豆子,肝帝熙恩优化1449",
     "Description": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
     "Path": "Ezperm.dll"
@@ -288,7 +288,7 @@
   },
   {
     "Name": "MapTeleport",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0",
     "Author": "Nova4334，肝帝熙恩汉化适配1449",
     "Description": "允许玩家传送到地图上的选定位置.",
     "Path": "MapTp.dll"
@@ -309,7 +309,7 @@
   },
   {
     "Name": "PerPlayerLoot",
-    "Version": "2.0",
+    "Version": "2.0.0",
     "Author": "Codian,肝帝熙恩汉化1449",
     "Description": "玩家战利品单独箱子.",
     "Path": "PerPlayerLoot.dll"
@@ -337,9 +337,9 @@
   },
   {
     "Name": "RandRespawn",
-    "Version": "1.0",
+    "Version": "1.0.0",
     "Author": "1413,肝帝熙恩适配1449",
-    "Description": "None",
+    "Description": "随机出生点，任何回到出生点的操作都会被随机传送",
     "Path": "RandRespawn.dll"
   },
   {
@@ -379,7 +379,7 @@
   },
   {
     "Name": "Show Armors",
-    "Version": "1.0.0.0",
+    "Version": "1.0.1",
     "Author": "Ak，肝帝熙恩更新",
     "Description": "展示装备栏",
     "Path": "ShowArmors.dll"
@@ -442,7 +442,7 @@
   },
   {
     "Name": "区域显示",
-    "Version": "1.1",
+    "Version": "1.1.0",
     "Author": "TBC开发者团队,肝帝熙恩汉化",
     "Description": "为地区添加区域边界视图。",
     "Path": "RegionView.dll"
@@ -491,7 +491,7 @@
   },
   {
     "Name": "查已装插件",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "iheart 修改：羽学，肝帝熙恩",
     "Description": "用指令查已装插件",
     "Path": "ListPlugins.dll"
@@ -547,7 +547,7 @@
   },
   {
     "Name": "History",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0",
     "Author": "Cracker64 & Zaicon & Cai",
     "Description": "记录图格操作.",
     "Path": "History.dll"
