@@ -1,4 +1,4 @@
-﻿namespace AutoUpdatePlugin;
+﻿namespace AutoPluginManager;
 
 public class PluginVersionInfo
 {
