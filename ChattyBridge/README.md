@@ -17,7 +17,7 @@ v1.0.0.1
 
 ## 配置
     配置文件位置：tshock/ChattyBridge.json
-```(json)
+```json
 {
   "是否转发指令": false,
   "Rest地址": [
