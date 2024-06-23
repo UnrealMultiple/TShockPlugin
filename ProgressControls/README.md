@@ -55,7 +55,7 @@ v1.0.7
 
 
 ## 配置
-    配置文件位置：tshock/ProgressControl.json
+> 配置文件位置：tshock/ProgressControl.json
 ```
 {
   "开服日期": "2024-06-14T17:15:20.1069407+08:00",
