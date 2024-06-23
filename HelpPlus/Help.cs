@@ -17,7 +17,7 @@ namespace UserCheck
         public override string Description => "更好的Help";
 
         public override string Name => "Help+(更好的Help)";
-        public override Version Version => new Version(1,1 , 0, 0);
+        public override Version Version => new Version(1, 1, 0, 0);
 
         public HelpPlus(Main game)
         : base(game)

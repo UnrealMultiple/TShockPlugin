@@ -17,7 +17,7 @@ namespace MainPlugin
     {
         public override string Name => "BuildMaster";
 
-        public override Version Version => Assembly.GetExecutingAssembly().GetName().Version;
+        public override Version Version => new Version(1, 0, 0);
 
         public override string Author => "豆沙 羽学适配";
 

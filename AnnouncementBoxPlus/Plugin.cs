@@ -23,7 +23,7 @@ namespace AnnouncementBoxPlus
         public override string Name => "AnnouncementBoxPlus";
 
         //插件的版本
-        public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+        public override Version Version => new Version(1, 0, 0);
 
         //插件的构造器
         public AnnouncementBoxPlus(Main game) : base(game)
