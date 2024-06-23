@@ -19,7 +19,7 @@
       <HintPath>..\..\TShock\TShockLauncher\bin\Release\TShock NET8\NuGet.Versioning.dll</HintPath>
     </Reference>
     <Reference Include="SixLabors.ImageSharp">
-      <HintPath>..\lib\SixLabors.ImageSharp.dll</HintPath>
+      <HintPath>SixLabors.ImageSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
 

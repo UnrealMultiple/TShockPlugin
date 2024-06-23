@@ -18,7 +18,7 @@
 ```
 
 ## 配置
-
+> 配置文件位置：tshock/Chameleon.json
 ```json
 {
   "等待列表长度": 10,
@@ -41,5 +41,6 @@
 }
 ```
 ## 反馈
-- 共同维护的插件库：https://github.com/Controllerdestiny/TShockPlugin
-- 国内社区trhub.cn 或 TShock官方群等
+- 优先发issued -> 共同维护的插件库：https://github.com/Controllerdestiny/TShockPlugin
+- 次优先：TShock官方群：816771079
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love

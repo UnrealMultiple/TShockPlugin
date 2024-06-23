@@ -101,7 +101,7 @@ v2.0.0
 | /region define 召唤区 | 无 |  tshock.admin.region |    使用TS自带/Region指令设置召唤区    |
 
 ## 配置
-
+> 配置文件位置：tshock/宵禁.json
 ```json
 {
   "是否关闭宵禁": true,

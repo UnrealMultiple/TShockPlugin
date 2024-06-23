@@ -32,7 +32,7 @@
 | 无 | 免检地表弹幕 | 不对其检测 |
 
 ## 配置
-
+> 配置文件位置：tshock/禁地表弹幕.json
 ```json
   "配置说明1": "(注意：颠倒和正常地表只能开启一个，高度阈值数值649为1倍 正常种子：大世界10384（16倍）",
   "配置说明2": "(颠倒地图种子：小世界25960（40倍）中世界31476（48.5倍） 大世界35370（54.5倍）",
@@ -110,5 +110,6 @@
   ]
 ```
 ## 反馈
-- 共同维护的插件库：https://github.com/Controllerdestiny/TShockPlugin
-- 国内社区trhub.cn 或 TShock官方群等
+- 优先发issued -> 共同维护的插件库：https://github.com/Controllerdestiny/TShockPlugin
+- 次优先：TShock官方群：816771079
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love

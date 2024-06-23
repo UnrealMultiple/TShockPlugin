@@ -26,7 +26,7 @@
 | /进度                          |   DataSync   | 进度查询 |
 
 ## 配置
-
+> 配置文件位置：tshock/DataSync.json
 ```json
 {
   "KingSlime": false,
@@ -75,5 +75,6 @@
 }
 ```
 ## 反馈
-- 共同维护的插件库：https://github.com/Controllerdestiny/TShockPlugin
-- 国内社区trhub.cn 或 TShock官方群等
+- 优先发issued -> 共同维护的插件库：https://github.com/Controllerdestiny/TShockPlugin
+- 次优先：TShock官方群：816771079
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love

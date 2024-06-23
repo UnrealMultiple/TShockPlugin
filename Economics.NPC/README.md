@@ -18,7 +18,7 @@
 无
 
 ## 配置
-
+> 配置文件位置：tshock/Economics/NPC.json
 ```json
 {
   "开启提示": true,

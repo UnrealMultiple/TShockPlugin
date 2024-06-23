@@ -18,7 +18,7 @@
 无
 
 ## 配置
-
+> 配置文件位置：tshock/Economics/Projectile.json
 ```json
 {
   "弹幕触发": {

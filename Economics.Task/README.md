@@ -26,7 +26,7 @@
 | /task reset           | economics.task.admin |     重置任务     |
 
 ## 配置
-
+> 配置文件位置：tshock/Economics/Task.json
 ```json
 {
   "不可重复接任务": true,

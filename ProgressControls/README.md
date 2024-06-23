@@ -55,7 +55,7 @@ v1.0.7
 
 
 ## 配置
-
+> 配置文件位置：tshock/ProgressControl.json
 ```
 {
   "开服日期": "2024-06-14T17:15:20.1069407+08:00",
@@ -190,5 +190,6 @@ v1.0.7
 ```
 
 ## 反馈
-- 共同维护的插件库：https://github.com/Controllerdestiny/TShockPlugin
-- 国内社区trhub.cn 或 TShock官方群等
+- 优先发issued -> 共同维护的插件库：https://github.com/Controllerdestiny/TShockPlugin
+- 次优先：TShock官方群：816771079
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love

@@ -18,7 +18,7 @@
 ```
 
 ## 配置
-
+> 配置文件位置：tshock/死亡掉落配置表.json
 ```json
 {
   "是否开启随机掉落": false,//随机掉落的总开关，必须设置这个为true能设置除了自定义以外的内容
@@ -43,5 +43,6 @@
 }
 ```
 ## 反馈
-- 共同维护的插件库：https://github.com/Controllerdestiny/TShockPlugin
-- 国内社区trhub.cn 或 TShock官方群等
+- 优先发issued -> 共同维护的插件库：https://github.com/Controllerdestiny/TShockPlugin
+- 次优先：TShock官方群：816771079
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love

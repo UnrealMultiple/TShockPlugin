@@ -28,7 +28,7 @@
 | /house lock [屋名]            |  无  | `house.use` `house.admin` |     房屋锁     |
 
 ## 配置
-
+	配置文件位置：tshock/HouseRegion.json
 > HouseRegion.json
 
 ```json
