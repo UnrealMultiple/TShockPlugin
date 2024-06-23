@@ -22,7 +22,7 @@
 | /songlist [歌曲名字] | songlist   | 查看歌曲文件列表 |
 
 ## 配置
-	tshock/Song文件夹内放音乐文件
+> tshock/Song文件夹内放音乐文件
 ```
 200//速度，越小越快
 D#4
