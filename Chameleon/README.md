@@ -18,7 +18,7 @@
 ```
 
 ## 配置
-    配置文件位置：tshock/Chameleon.json
+> 配置文件位置：tshock/Chameleon.json
 ```json
 {
   "等待列表长度": 10,
