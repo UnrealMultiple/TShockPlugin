@@ -186,8 +186,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chameleon", "Chameleon\Cham
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoPluginManager", "AutoPluginManager\AutoPluginManager.csproj", "{9A3AB28D-42A7-427F-9F76-2F8398570540}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldModify", "WorldModify\WorldModify.csproj", "{D65820D7-D117-4C64-95A3-CFA0CB0DA36E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
