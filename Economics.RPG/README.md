@@ -26,7 +26,7 @@ V1.0.0.1
 | /level reset   | economics.rpg.admin | 重置     |
 
 ## 配置
-
+> 配置文件位置：tshock/Economics/RPG.json
 ```json
 {
   "RPG信息": {
