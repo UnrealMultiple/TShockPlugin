@@ -434,13 +434,6 @@
     "Path": "WeaponPlus.dll"
   },
   {
-    "Name": "WorldModify",
-    "Version": "1.0.0.0",
-    "Author": "hufang360",
-    "Description": "简易的世界修改器（测试版本：V20221116）",
-    "Path": "WorldModify.dll"
-  },
-  {
     "Name": "决斗系统",
     "Version": "1.1.2",
     "Author": "Soofa 羽学修改",
