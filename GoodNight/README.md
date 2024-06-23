@@ -100,10 +100,6 @@ v2.0.0
 | /gn time a & b 23:59 | /gn time start & stop |  goodnight.admin |    设置宵禁开启结束时间    |
 | /region define 召唤区 | 无 |  tshock.admin.region |    使用TS自带/Region指令设置召唤区    |
 
-
-
-
-
 ## 配置
 
 ```json
