@@ -42,18 +42,18 @@
     "Path": "AutoBroadcast.dll"
   },
   {
+    "Name": "AutoPluginManager",
+    "Version": "2.0.0.0",
+    "Author": "少司命，Cai",
+    "Description": "自动更新你的插件！",
+    "Path": "AutoPluginManager.dll"
+  },
+  {
     "Name": "AutoTeamPlus",
     "Version": "2.4.0",
     "Author": "十七改，肝帝熙恩改",
     "Description": "自动队伍",
     "Path": "AutoTeam.dll"
-  },
-  {
-    "Name": "AutoUpdatePlugin",
-    "Version": "2.0.0.0",
-    "Author": "少司命，Cai",
-    "Description": "自动更新你的插件！",
-    "Path": "AutoPluginManager.dll"
   },
   {
     "Name": "BackPlugin",
