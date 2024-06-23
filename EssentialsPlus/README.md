@@ -66,7 +66,7 @@
 - essentials.tp.up -> 允许使用 /up 命令。
 
 ## 配置
-    配置文件位置：tshock/EssentialsPlus.json
+> 配置文件位置：tshock/EssentialsPlus.json
 ```json
 {
   "Pvp禁用命令": [
