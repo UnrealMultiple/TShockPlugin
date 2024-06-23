@@ -26,7 +26,7 @@ V2.0.0.0
 | /查询                       | economics.currency.query | 查询货币 |
 
 ## 配置
-
+> 配置文件位置：tshock/Economics/Economics.json
 ```json
 {
   "货币名称": "魂力",
