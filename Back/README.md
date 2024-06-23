@@ -17,7 +17,7 @@
 | /back | back   | 返回死亡地点|
 
 ## 配置
-	配置文件位置：tshock/Back.json
+> 配置文件位置：tshock/Back.json
 ```json
 {
   "back冷却时间": 20
