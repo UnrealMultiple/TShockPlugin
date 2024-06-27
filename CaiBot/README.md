@@ -7,12 +7,14 @@
 - 使用 \-cailocalbot开启本地BOT模式 (机器人服务器会指向127.0.0.1)
 ## CaiBOT详细文档
 
-- [ACaiCat/CaiBotDocument](https://github.com/ACaiCat/CaiBotDocument)
+- [ACaiCat/CaiBotDocument](https://github.com/ACaiCat/CaiBotDocument)  
+  
 ## 更新日志
 
 ```
 v1.1 修复前置加载失败的问题
 v2024.6.7.0 添加自动获取群号，向BOT发送服务器的一些信息(平台、白名单状态、服务器进服密码、插件版本、TShock版本、Terraria版本)，将调试模式(-caidebug)和本地BOT模式(-cailocalbot)分离
+v2024.6.19.1 支持共享服务器(Beta测试)
 ```
 
 ## 指令
