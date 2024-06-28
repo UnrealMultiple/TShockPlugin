@@ -32,7 +32,7 @@ public class History : TerrariaPlugin
 
     public History(Main game) : base(game)
     {
-        this.Order = -1;
+        this.Order = 5;
     }
     protected override void Dispose(bool disposing)
     {
@@ -50,7 +50,7 @@ public class History : TerrariaPlugin
         Connect();
         this.InitBreaks();
         ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);
-        ServerApi.Hooks.NetGetData.Register(this, this.OnGetData);
+        ServerApi.Hooks.NetGetData.Register(this, this.OnGetData, int.MinValue);
         ServerApi.Hooks.WorldSave.Register(this, this.OnSaveWorld);
     }
 
