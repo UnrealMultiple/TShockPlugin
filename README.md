@@ -140,6 +140,7 @@
 | [TimerKeeper](TimerKeeper/README.md)                             |         保存计时器状态         |                                                                        无                                                                        |
 | [Chameleon](Chameleon/README.md)                                 |           进服前登录           |                                                                        无                                                                        |
 | [AutoPluginManager](AutoPluginManager/README.md)                   |        一键自动更新插件        |                                                                        无                                                                        |                                                          无                                                                        |
+| [SpclPerm](SpclPerm/README.md)                                 |           服主特权           |                                                                        无                                                                        |
 
 </Details>
 
