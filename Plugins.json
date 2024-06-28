@@ -14,6 +14,13 @@
     "Path": "Chireiden.TShock.Omni.dll"
   },
   {
+    "Name": "History",
+    "Version": "1.0.1",
+    "Author": "Cracker64 & Zaicon & Cai & 肝帝熙恩",
+    "Description": "记录图格操作.",
+    "Path": "History.dll"
+  },
+  {
     "Name": "[放置更多晶塔] AdditionalPylons",
     "Version": "1.0.0",
     "Author": "Stealownz，肝帝熙恩优化1449",
@@ -544,13 +551,6 @@
     "Author": "少司命",
     "Description": "进度礼包",
     "Path": "ProgressBag.dll"
-  },
-  {
-    "Name": "History",
-    "Version": "1.0.0",
-    "Author": "Cracker64 & Zaicon & Cai",
-    "Description": "记录图格操作.",
-    "Path": "History.dll"
   },
   {
     "Name": "HousingDistricts",
