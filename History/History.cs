@@ -21,18 +21,18 @@ public class History : TerrariaPlugin
     public const int SaveCount = 10;
 
     private readonly bool[] AwaitingHistory = new bool[256];
-    public override string Author => "Cracker64 & Zaicon & Cai";
+    public override string Author => "Cracker64 & Zaicon & Cai & 肝帝熙恩";
 
     readonly CancellationTokenSource Cancel = new();
     private readonly BlockingCollection<HCommand> CommandQueue = new();
     private Thread CommandQueueThread;
     public override string Description => "记录图格操作.";
     public override string Name => "History";
-    public override Version Version => new Version(1, 0, 0);
+    public override Version Version => new Version(1, 0, 1);
 
     public History(Main game) : base(game)
     {
-        this.Order = 5;
+        this.Order = -1;
     }
     protected override void Dispose(bool disposing)
     {
@@ -81,14 +81,14 @@ public class History : TerrariaPlugin
             case 13: //bottle
             case 36: //present
                      //case 49: //water candle Removing - No different styles?
-            case 174: //platinum candle
-                      //case 78: //clay pot
             case 82: //herb
             case 83: //herb
             case 84: //herb
             case 91: //banner
             case 144: //timer
             case 149: //christmas light
+            case 174: //platinum candle
+                      //case 78: //clay pot
             case 178: //gems
             case 184:
             case 239: //bars
