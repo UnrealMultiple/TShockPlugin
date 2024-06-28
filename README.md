@@ -72,7 +72,7 @@
 | [BridgeBuilder](BridgeBuilder/README.md)                         |            快速铺桥            |                                                                        无                                                                        |
 | [OnlineGiftPackage](OnlineGiftPackage/README.md)                 |            在线礼包            |                                                                        无                                                                        |
 | [LifemaxExtra](LifemaxExtra/README.md)                           |       吃更多生命果/水晶        |                                                                        无                                                                        |
-| [DisableMonsCoin](DisableMonsCoin/README.md)                     |           怪物不掉钱           |                                                                        无                                                                        |
+| [DisableMonsCoin](DisableMonsCoin/README.md)                     |           禁怪物掉落           |                                                                        无                                                                        |
 | [PermaBuff](PermaBuff/README.md)                                 |           永久 Buff            |                                                                        无                                                                        |
 | [ShortCommand](ShortCommand/README.md)                           |            简短指令            |                                                                        无                                                                        |
 | [ProgressBag](ProgressBag/README.md)                             |            进度礼包            |                                                                        无                                                                        |
@@ -140,6 +140,8 @@
 | [TimerKeeper](TimerKeeper/README.md)                             |         保存计时器状态         |                                                                        无                                                                        |
 | [Chameleon](Chameleon/README.md)                                 |           进服前登录           |                                                                        无                                                                        |
 | [AutoPluginManager](AutoPluginManager/README.md)                   |        一键自动更新插件        |                                                                        无                                                                        |                                                          无                                                                        |
+| [SpclPerm](SpclPerm/README.md)                                 |           服主特权           |                                                                        无                                                                        |
+| [MonsterRegen](MonsterRegen/README.md)                                 |           怪物进度回血           |                                                                        无                                                                        |
 
 </Details>
 
