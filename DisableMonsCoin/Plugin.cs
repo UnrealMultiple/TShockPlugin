@@ -1,88 +1,149 @@
 ﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
+using static DisableMonsCoin.Configuration;
+using static DisableMonsCoin.Commands;
+
 
 namespace DisableMonsCoin;
 
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    // 插件的名称。
-    public override string Name => "禁止怪物掉钱";
-    // 插件的当前版本。
-    public override Version Version => new Version(1, 0, 0);
-    // 插件的作者。
+    #region 插件信息
+    public override string Name => "禁怪物掉落";
+    public override Version Version => new Version(1, 2, 0);
     public override string Author => "羽学";
-    // 插件用途的简短一行描述。
-    public override string Description => "清理怪物身边的钱币";
+    public override string Description => "清理怪物身边掉落物";
+    #endregion
 
-    public NPC RealNPC { get; set; }
-    private readonly int radius;
-
-    // 插件的构造函数
-    // 在这里设置插件的顺序（可选）和任何其他构造函数逻辑
-    public Plugin(Main game) : base(game)
-    {
-    }
-
-    // 执行插件初始化逻辑。
-    // 在这里添加你的钩子、配置文件读写等。
+    #region 注册释放钩子
+    public Plugin(Main game) : base(game) { }
     public override void Initialize()
     {
-        //On.Terraria.NPC.NPCLoot_DropMoney += OnDropMoney; //西江提供的方法
-        ServerApi.Hooks.NpcKilled.Register(this, NPC_Killed);
+        LoadConfig();
+        GeneralHooks.ReloadEvent += (_) => LoadConfig();
+        ServerApi.Hooks.NpcKilled.Register(this, KillItem);
+        TShockAPI.Commands.ChatCommands.Add(new Command("killitem.admin", kdm, "kdm", "禁掉落"));
     }
 
-    /*
-    //西江提供的清理掉钱方法
-    private void OnDropMoney(On.Terraria.NPC.orig_NPCLoot_DropMoney orig, NPC self, Player closestPlayer)
-    {
-        for (int i = 0; i < Terraria.Main.maxItems; i++)
-        {
-            var item = Terraria.Main.item[i];
-            float dX = item.position.X - RealNPC.position.X;
-            float dY = item.position.Y - RealNPC.position.Y;
-            if (item.active == true && (item.netID == 71 || item.netID == 72 || item.netID == 73 || item.netID == 74) && dX * dX + dY * dY <= radius * radius * 256f)
-            {
-                Terraria.Main.item[i].active = false;
-                TSPlayer.All.SendData(PacketTypes.ItemDrop, "", i);
-            }
-        }
-    }
-    */
-
-    // 当NPC被杀死时触发此方法
-    private void NPC_Killed(NpcKilledEventArgs args)
-    {
-        RealNPC = args.npc; // 初始化RealNPC引用
-        ClearCoins(10); // 示例：默认清理半径为10格
-    }
-
-
-    // 清理怪物周围钱币的方法
-    public void ClearCoins(int radius)
-    {
-        for (int i = 0; i < Terraria.Main.maxItems; i++)
-        {
-            var item = Terraria.Main.item[i];
-            float dX = item.position.X - RealNPC.position.X;
-            float dY = item.position.Y - RealNPC.position.Y;
-            if (item.active == true && (item.netID == 71 || item.netID == 72 || item.netID == 73 || item.netID == 74) && dX * dX + dY * dY <= radius * radius * 256f)
-            {
-                Terraria.Main.item[i].active = false;
-                TSPlayer.All.SendData(PacketTypes.ItemDrop, "", i);
-            }
-        }
-    }
-
-    // 执行插件清理逻辑
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            //On.Terraria.NPC.NPCLoot_DropMoney += OnDropMoney;
-            ServerApi.Hooks.NpcKilled.Register(this, NPC_Killed);
+            GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+            ServerApi.Hooks.NpcKilled.Deregister(this, KillItem);
         }
         base.Dispose(disposing);
     }
+    #endregion
+
+    #region 配置重载读取与写入方法
+    internal static Configuration Config = new();
+    private static void LoadConfig()
+    {
+        Config = Read();
+        WriteName();
+        Config.Write();
+        TShock.Log.ConsoleInfo("[禁怪物掉落]重新加载配置完毕。");
+    }
+    #endregion
+
+    #region 获取NPCID的中文名
+    private static void WriteName()
+    {
+        foreach (var group in Config.BossList)
+        {
+            var Names = new HashSet<string>(group.Name.Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries));
+
+            foreach (int id in group.ID)
+            {
+                string npcName;
+                npcName = (string)Lang.GetNPCName(id);
+                if (!Names.Contains(npcName))
+                {
+                    Names.Add(npcName);
+                }
+            }
+            group.Name = string.Join(", ", Names);
+        }
+    }
+    #endregion
+
+
+
+    #region 击杀指定怪物组 关闭清理的方法
+    internal static Dictionary<int, HashSet<int>> BossDowned = new Dictionary<int, HashSet<int>>();
+    private readonly object npcLock = new object();
+    public NPC RealNPC { get; set; }
+    private void KillItem(NpcKilledEventArgs args)
+    {
+        lock (npcLock)
+        {
+            if (args.npc == null || !Config.Enabled) return;
+
+            foreach (var npc in Config.BossList)
+            {
+                if (npc.ID.Contains(args.npc.netID))
+                {
+                    if (!Config.KillAll)
+                    {
+                        if (!BossDowned.ContainsKey(npc.ID.First()))
+                        {
+                            BossDowned[npc.ID.First()] = new HashSet<int>();
+                            npc.Enabled = false;
+                            Config.Write();
+                        }
+                    }
+
+                    else
+                    {
+                        BossDowned[npc.ID.First()].Add(args.npc.netID);
+                        if (BossDowned[npc.ID.First()].Count == npc.ID.Length)
+                        {
+                            npc.Enabled = false;
+                            Config.Write();
+                        }
+                    }
+                    break;
+                }
+
+                if (npc.Enabled) //控制是否清理
+                {
+                    RealNPC = args.npc;
+                    ClearItems(Config.radius, npc.ItemID);
+                }
+
+            }
+        }
+    }
+    #endregion
+
+    
+
+    #region 清理物品方法
+    private void ClearItems(int radius, int[] ItemIDs)
+    {
+        if (!Config.Enabled) return;
+
+        for (int i = 0; i < Terraria.Main.maxItems; i++)
+        {
+            var item = Terraria.Main.item[i];
+            float dx = item.position.X - RealNPC.position.X;
+            float dy = item.position.Y - RealNPC.position.Y;
+            float Distance = dx * dx + dy * dy;
+
+            if (item.active && Distance <= radius * radius * 256f)
+            {
+                if (ItemIDs.Contains(item.netID))
+                {
+                    Terraria.Main.item[i].active = false;
+                    TSPlayer.All.SendData(PacketTypes.ItemDrop, "", i);
+                }
+            }
+        }
+    }
+    #endregion
+
 }
