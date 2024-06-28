@@ -469,6 +469,13 @@
     "Path": "Goodnight.dll"
   },
   {
+    "Name": "怪物进度回血",
+    "Version": "1.7.0",
+    "Author": "途逗 羽学",
+    "Description": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+    "Path": "MonsterRegen.dll"
+  },
+  {
     "Name": "数据包拦截 PacketsStop",
     "Version": "1.0.0",
     "Author": "羽学 感谢少司命",
@@ -490,6 +497,13 @@
     "Path": "Autoclear.dll"
   },
   {
+    "Name": "服主特权",
+    "Version": "1.8.0",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "SpclPerm.dll"
+  },
+  {
     "Name": "查已装插件",
     "Version": "1.0.4",
     "Author": "iheart 修改：羽学，肝帝熙恩",
@@ -504,18 +518,18 @@
     "Path": "DeathDrop.dll"
   },
   {
+    "Name": "禁怪物掉落",
+    "Version": "1.2.0",
+    "Author": "羽学",
+    "Description": "清理怪物身边掉落物",
+    "Path": "DisableMonsCoin.dll"
+  },
+  {
     "Name": "禁止怪物",
     "Version": "1.0.0.0",
     "Author": "Patrikk,GK 改良",
     "Description": "禁止指定怪物的出没",
     "Path": "BanNpc.dll"
-  },
-  {
-    "Name": "禁止怪物掉钱",
-    "Version": "1.0.0",
-    "Author": "羽学",
-    "Description": "清理怪物身边的钱币",
-    "Path": "DisableMonsCoin.dll"
   },
   {
     "Name": "超进度限制",
