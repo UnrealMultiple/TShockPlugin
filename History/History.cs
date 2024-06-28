@@ -28,11 +28,11 @@ public class History : TerrariaPlugin
     private Thread CommandQueueThread;
     public override string Description => "记录图格操作.";
     public override string Name => "History";
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
 
     public History(Main game) : base(game)
     {
-        this.Order = -1;
+        this.Order = 5;
     }
     protected override void Dispose(bool disposing)
     {
@@ -50,7 +50,7 @@ public class History : TerrariaPlugin
         Connect();
         this.InitBreaks();
         ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);
-        ServerApi.Hooks.NetGetData.Register(this, this.OnGetData);
+        ServerApi.Hooks.NetGetData.Register(this, this.OnGetData, int.MinValue);
         ServerApi.Hooks.WorldSave.Register(this, this.OnSaveWorld);
     }
 
