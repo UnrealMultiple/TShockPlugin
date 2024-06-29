@@ -44,17 +44,17 @@ session.post("https://tr.monika.love/login/login",data=data,allow_redirects=True
 
 data = {
     "new_update": "1",
-	"update_title": "同步仓库更新",
-	"update_message_html": f"{html}",
-	#"attachment_hash": "ed8d3a4157b31fcf4911bfaf14fb7300",
-	#"attachment_hash_combined": "{\"type\":\"resource_update\",\"context\":{\"resource_id\":115},\"hash\":\"ed8d3a4157b31fcf4911bfaf14fb7300\"}",
-	"_xfRequestUri": "/resources/115/post-update",
-	"_xfWithData": "1",
-	"_xfToken": data_csrf,
-	"_xfResponseType": "json"
+    "update_title": "同步仓库更新",
+    "update_message_html": f"{html}",
+    #"attachment_hash": "ed8d3a4157b31fcf4911bfaf14fb7300",
+    #"attachment_hash_combined": "{\"type\":\"resource_update\",\"context\":{\"resource_id\":115},\"hash\":\"ed8d3a4157b31fcf4911bfaf14fb7300\"}",
+    "_xfRequestUri": "/resources/104/post-update",
+    "_xfWithData": "1",
+    "_xfToken": data_csrf,
+    "_xfResponseType": "json"
 }
 try:
-    resp = session.post("https://tr.monika.love/resources/115/post-update",data=data)
+    resp = session.post("https://tr.monika.love/resources/104/post-update",data=data)
     res = resp.json()
     if res['status'] == 'ok':
         print(f"[MONIKA]修改成功: {res}")
