@@ -4,6 +4,15 @@ namespace Economics.NPC;
 
 public class Config
 {
+    public class NpcAllocationRatioOption
+    {
+        [JsonProperty("转换率")]
+        public float AllocationRatio { get; set; }
+
+        [JsonProperty("进度条件")]
+        public List<string> Progress { get; set; } = new();
+    }
+
     [JsonProperty("开启提示")]
     public bool Prompt = true;
 
@@ -14,5 +23,5 @@ public class Config
     public List<NpcOption> NPCS = new();
 
     [JsonProperty("转换率更改")]
-    public Dictionary<int, double> AllocationRatio = new();
+    public Dictionary<int, NpcAllocationRatioOption> AllocationRatio = new();
 }
