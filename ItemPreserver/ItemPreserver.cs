@@ -11,8 +11,8 @@ public class ItemPreserver : TerrariaPlugin
     public override string Author => "肝帝熙恩 & 少司命";
     public override string Description => "指定物品不消耗";
     public override string Name => "ItemPreserver";
-    public override Version Version => new Version(1, 0, 5);
-    public static Configuration Config;
+    public override Version Version => new(1, 0, 6);
+    public static Configuration Config = new();
 
     public class Pitem
     {
@@ -75,7 +75,10 @@ public class ItemPreserver : TerrariaPlugin
             {
                 if (e.Type == 0 || e.Stack == 0)
                 {
-                    if (e.Player.TPlayer.controlUseItem && e.Player.TPlayer.inventory[e.Slot].consumable && Config.NoConsumItem.Contains(slot.Type))
+                    if (e.Player.TPlayer.controlUseItem 
+                        && e.Player.TPlayer.inventory[e.Slot].consumable 
+                        && Config.NoConsumItem.TryGetValue(slot.Type, out var num) 
+                        && (slot.Stack >= num || num <= 0))
                     {
                         e.Player.TPlayer.inventory[e.Slot].netDefaults(slot.Type);
                         e.Player.TPlayer.inventory[e.Slot].stack = 1;
@@ -84,7 +87,10 @@ public class ItemPreserver : TerrariaPlugin
                 }
                 else
                 {
-                    if (e.Player.TPlayer.controlUseItem && e.Player.TPlayer.inventory[e.Slot].consumable && Config.NoConsumItem.Contains(e.Type))
+                    if (e.Player.TPlayer.controlUseItem 
+                        && e.Player.TPlayer.inventory[e.Slot].consumable 
+                        && Config.NoConsumItem.TryGetValue(e.Type, out var num)
+                        && (slot.Stack >= num || num <= 0))
                     {
                         e.Player.TPlayer.inventory[e.Slot].stack = slot.Stack;
                         e.Player.SendData(PacketTypes.PlayerSlot, null, e.Player.Index, e.Slot);
