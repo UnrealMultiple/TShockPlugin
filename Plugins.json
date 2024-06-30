@@ -183,7 +183,7 @@
   },
   {
     "Name": "Economics.NPC",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": "Economics.NPC",
     "Path": "Economics.NPC.dll"
@@ -582,7 +582,7 @@
   },
   {
     "Name": "Economics.Projectile",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": "Economics.Projectile",
     "Path": "Economics.Projectile.dll"
