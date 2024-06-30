@@ -19,8 +19,14 @@ public class ProjectileReplace
     public float KnockBack = 0f;
 
     [JsonProperty("弹幕射速")]
-    public float speed = 0f;
+    public float Speed = 0f;
+
+    [JsonProperty("持续时间")]
+    public int TimeLeft = -1;
 
     [JsonProperty("限制等级")]
     public List<string> Limit { get; set; } = new();
+
+    [JsonProperty("弹幕AI")]
+    public float[] AI { get; set; } = new float[3];
 }

@@ -108,7 +108,7 @@ public class Plugin : TerrariaPlugin
                         NPC npc = Main.npc[attackTarget];
                         self.Distance(npc.Center);
                         var speed = self.DirectionTo(npc.Center).SafeNormalize(-Vector2.UnitY) * self.velocity.Length();
-                        int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), self.Center, speed.ToLenOf(proj.speed), proj.ID, (int)damage, knockback, self.owner);
+                        int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), self.Center, speed.ToLenOf(proj.Speed), proj.ID, (int)damage, knockback, self.owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
                         MiniCD[self.identity] += data.CD;
                     }
@@ -152,9 +152,9 @@ public class Plugin : TerrariaPlugin
                     //击退
                     float knockback = proj.KnockBack;
                     //速度
-                    var speed = e.Player.TPlayer.ItemOffSet().ToLenOf(proj.speed);
+                    var speed = e.Player.TPlayer.ItemOffSet().ToLenOf(proj.Speed);
 
-                    int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Player.TPlayer.position, speed, proj.ID, (int)damage, knockback, e.PlayerId);
+                    int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Player.TPlayer.position, speed, proj.ID, (int)damage, knockback, e.PlayerId, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft);
                     Main.projectile[index].active = true;
                     Main.projectile[index].type = proj.ID;
                     TSPlayer.All.SendData(PacketTypes.ProjectileNew, null, index);
@@ -184,9 +184,9 @@ public class Plugin : TerrariaPlugin
                             //击退
                             float knockback = proj.KnockBackFollow ? (e.Knockback - e.Player.SelectedItem.knockBack) / e.Knockback * proj.KnockBack : proj.KnockBack;
                             //速度
-                            var speed = proj.speed > 0f ? e.Velocity.ToLenOf(proj.speed) : e.Velocity;
+                            var speed = proj.Speed > 0f ? e.Velocity.ToLenOf(proj.Speed) : e.Velocity;
 
-                            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Position, speed, proj.ID, (int)damage, knockback, e.Owner);
+                            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Position, speed, proj.ID, (int)damage, knockback, e.Owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft);
 
                             e.Player.SendData(PacketTypes.ProjectileNew, "", index);
 
@@ -214,9 +214,9 @@ public class Plugin : TerrariaPlugin
                                 float knockback = proj.KnockBackFollow ? (e.Knockback - e.Player.SelectedItem.knockBack) / e.Knockback * proj.KnockBack : proj.KnockBack;
                                 //速度
 
-                                var speed = proj.speed > 0f ? e.Velocity.ToLenOf(proj.speed) : e.Velocity;
+                                var speed = proj.Speed > 0f ? e.Velocity.ToLenOf(proj.Speed) : e.Velocity;
 
-                                int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Position, speed, proj.ID, (int)damage, knockback, e.Owner);
+                                int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Position, speed, proj.ID, (int)damage, knockback, e.Owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft);
 
                                 e.Player.SendData(PacketTypes.ProjectileNew, "", index);
 
@@ -242,7 +242,7 @@ public class Plugin : TerrariaPlugin
                     new()
                     {
                         ID = 132,
-                        speed = 15,
+                        Speed = 15,
                         Damage=80,
                         KnockBack = 10,
                         Limit = new()
@@ -257,7 +257,7 @@ public class Plugin : TerrariaPlugin
                     new()
                     {
                         ID = 132,
-                        speed = 15,
+                        Speed = 15,
                         Damage=80,
                         KnockBack = 10,
                         Limit = new()
