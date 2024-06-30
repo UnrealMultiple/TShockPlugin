@@ -46,10 +46,12 @@ public class Plugin : TerrariaPlugin
     private void OnPlayerKillNpc(EconomicsAPI.EventArgs.PlayerEventArgs.PlayerKillNpcArgs args)
     {
         if (args.Npc == null || args.Player == null) return;
-        if (Config.AllocationRatio.TryGetValue(args.Npc.netID, out double ra))
+        if (Config.AllocationRatio.TryGetValue(args.Npc.netID, out var ra) && ra != null)
         {
+            if (!args.Player.InProgress(ra.Progress))
+                return;
             double rw = args.Damage / args.Npc.lifeMax;
-            long Curr = Convert.ToInt64(rw * ra);
+            long Curr = Convert.ToInt64(rw * ra.AllocationRatio);
             EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr);
             args.Player.SendCombatMsg($"+{Curr}$", Color.AliceBlue);
             args.Handler = true;
