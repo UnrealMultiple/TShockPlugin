@@ -274,7 +274,7 @@
   },
   {
     "Name": "ItemPreserver",
-    "Version": "1.0.5",
+    "Version": "1.0.6",
     "Author": "肝帝熙恩 & 少司命",
     "Description": "指定物品不消耗",
     "Path": "ItemPreserver.dll"
