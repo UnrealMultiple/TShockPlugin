@@ -44,7 +44,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGive", "CGive\CGive.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableGodMod", "DisableGodMod\DisableGodMod.csproj", "{5C7C65FD-E104-4BDA-B7E5-4FC1BF0D2F16}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableMonsCoin", "DisableMonsCoin\DisableMonsCoin.csproj", "{C8B631CB-F176-4921-B313-6E49A4AAC3AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableMonsLoot", "DisableMonsCoin\DisableMonsLoot.csproj", "{C8B631CB-F176-4921-B313-6E49A4AAC3AC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableSurfaceProjectiles", "DisableSurfaceProjectiles\DisableSurfaceProjectiles.csproj", "{CD5A7945-D416-4DEE-8079-DF0B9B3652ED}"
 EndProject

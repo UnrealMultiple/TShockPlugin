@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using TShockAPI;
 
-namespace DisableMonsCoin
+namespace DisableMonsLoot
 {
     internal class Configuration
     {

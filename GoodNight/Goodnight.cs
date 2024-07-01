@@ -116,7 +116,7 @@ namespace Goodnight
                                 {
                                     if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                                         TShock.Utils.Broadcast(
-                                        $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}]/{Config.MaxPlayers}]个玩家! \n" +
+                                        $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}]/{Config.MaxPlayers}个玩家! \n" +
                                         $"检测到{RegionInfo}已在【[c/E2FA76:{Config.RegionName}]】\n" +
                                         $"允许召唤以下怪物：\n" +
                                         $"[c/6EABE9:{NpcDeadInfo}]", Color.Aquamarine);

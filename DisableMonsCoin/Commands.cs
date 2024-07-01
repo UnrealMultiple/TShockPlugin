@@ -1,7 +1,7 @@
 ﻿using TShockAPI;
 using Microsoft.Xna.Framework;
 
-namespace DisableMonsCoin
+namespace DisableMonsLoot
 {
     public class Commands
     {
