@@ -7,7 +7,7 @@
     "Path": "Platform.dll"
   },
   {
-    "Name": "Chireiden.TShock.Omni 1dc7967580",
+    "Name": "Chireiden.TShock.Omni b73e8bb854",
     "Version": "0.0.1.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
@@ -463,7 +463,7 @@
   },
   {
     "Name": "宵禁",
-    "Version": "2.7.2",
+    "Version": "2.7.3",
     "Author": "Jonesn 羽学 少司命",
     "Description": "设置服务器无法进入或禁止生成怪物的时段",
     "Path": "Goodnight.dll"
@@ -522,7 +522,7 @@
     "Version": "1.2.0",
     "Author": "羽学",
     "Description": "清理怪物身边掉落物",
-    "Path": "DisableMonsCoin.dll"
+    "Path": "DisableMonsLoot.dll"
   },
   {
     "Name": "禁止怪物",
