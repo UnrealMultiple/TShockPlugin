@@ -13,7 +13,7 @@ namespace Goodnight
         #region 变量与插件信息
         public override string Name => "宵禁";
         public override string Author => "Jonesn 羽学 少司命";
-        public override Version Version => new Version(2, 7, 2);
+        public override Version Version => new Version(2, 7, 3);
         public override string Description => "设置服务器无法进入或禁止生成怪物的时段";
         internal static Configuration Config;
         #endregion
@@ -116,7 +116,7 @@ namespace Goodnight
                                 {
                                     if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                                         TShock.Utils.Broadcast(
-                                        $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}/{Config.MaxPlayers}]个玩家! \n" +
+                                        $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}]/{Config.MaxPlayers}]个玩家! \n" +
                                         $"检测到{RegionInfo}已在【[c/E2FA76:{Config.RegionName}]】\n" +
                                         $"允许召唤以下怪物：\n" +
                                         $"[c/6EABE9:{NpcDeadInfo}]", Color.Aquamarine);
@@ -125,7 +125,7 @@ namespace Goodnight
                                 {
                                     if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                                         TShock.Utils.Broadcast(
-                                        $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}/{Config.MaxPlayers}]个玩家! \n" +
+                                        $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}]/{Config.MaxPlayers}]个玩家! \n" +
                                         $"允许召唤表为[c/6EABE9:空]，请在满足[c/FF3A4B:{Config.MaxPlayers}人]\n" +
                                         $"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n" +
                                         $"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])来获取允许召唤权", Color.AntiqueWhite);
@@ -182,7 +182,7 @@ namespace Goodnight
                                 if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                                     TShock.Utils.Broadcast(
                                     $"【宵禁】当前服务器处于维护时间\n" +
-                                    $"当前在线人数不满足:[c/FF3A4B:{PlayerCount}/{Config.MaxPlayers}人" +
+                                    $"当前在线人数不满足:[c/FF3A4B:{PlayerCount}]/{Config.MaxPlayers}人\n" +
                                     $"且处于宵禁时段: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n"+
                                     $"仅允许召唤以下怪物：\n" +
                                     $"[c/6EABE9:{NpcDeadInfo}]\n", Color.Aquamarine);
@@ -280,7 +280,7 @@ namespace Goodnight
         #endregion
 
         #region 判断杀怪计数到《允许召唤表》方法
-        private Dictionary<int, int> KillCounters = new Dictionary<int, int>();
+        internal static Dictionary<int, int> KillCounters = new Dictionary<int, int>();
         private void OnNPCKilled(NpcKilledEventArgs args)
         {
             if (!Config.Enabled || args.npc == null) return;
@@ -288,6 +288,7 @@ namespace Goodnight
             int KillNpc = args.npc.netID;
             string npcName = TShock.Utils.GetNPCById(KillNpc)?.FullName ?? "未知NPC";
             var NpcListInfo = string.Join(", ", Config.NpcDead.Select(x => TShock.Utils.GetNPCById(x)?.FullName + $"({x})"));
+
             if (Config.Npcs.Contains(KillNpc))
             {
                 if (!KillCounters.ContainsKey(KillNpc))
@@ -353,10 +354,10 @@ namespace Goodnight
         {
             foreach (var plr in TShock.Players)
             {
-                if (plr != null
-                    && plr.Active
-                    && plr.CurrentRegion != null
-                    && plr.CurrentRegion.Name == Config.RegionName)
+                if (plr != null &&
+                    plr.Active &&
+                    plr.CurrentRegion != null &&
+                    plr.CurrentRegion.Name == Config.RegionName)
                     return true;
             }
             return false;
