@@ -1,4 +1,4 @@
-# DisableMonsCoin 禁怪物掉落
+# DisableMonsLoot 禁怪物掉落
 
 - 作者: 羽学
 - 出处: [github](https://gitee.com/Crafty/bean-points)

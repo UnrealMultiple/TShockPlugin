@@ -13,6 +13,10 @@
 ## 更新日志
 
 ```
+v2.7.3
+修正一些广播格式
+加入了清理《允许召唤表》的指令（/gn clear）
+
 v2.7.2
 修复检测到没有配置文件时，创建的配置没有参数
 不会因为使用/reload重复写入或覆盖原来参数等问题
@@ -92,6 +96,7 @@ v2.0.0
 | /gn kick | 无 |  goodnight.admin |    开启或关闭断连功能    |
 | /gn pos | 无 |  goodnight.admin |    开启或关闭召唤区   |
 | /gn all | 无 |  goodnight.admin |    开启或关闭召唤区需所有人在场   |
+| /gn clear | 无 |  goodnight.admin |    清理《允许召唤表》的怪物ID   |
 | /gn boss 次数 | 无 |  goodnight.admin |    设置加入《允许召唤表》击杀要求次数    |
 | /gn reset 怪物ID | 无 |  goodnight.admin |    设置重置《允许召唤表》的怪物ID    |
 | /gn plr 人数 | 无 |  goodnight.admin |    设置无视《禁止怪物表》在线人数    |
