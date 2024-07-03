@@ -142,6 +142,10 @@
 | [AutoPluginManager](AutoPluginManager/README.md)                   |        一键自动更新插件        |                                                                        无                                                                        |                                                          无                                                                        |
 | [SpclPerm](SpclPerm/README.md)                                 |           服主特权           |                                                                        无                                                                        |
 | [MonsterRegen](MonsterRegen/README.md)                                 |           怪物进度回血           |                                                                        无                                                                        |
+| [HardPlayerDrop](HardPlayerDrop/README.md)                                 |           硬核死亡掉生命水晶           |                                                                        无                                                                        |
+| [ReFishTask](ReFishTask/README.md)                                 |           自动刷新渔夫任务           |                                                                        无                                                                        |
+| [Sandstorm](Sandstorm/README.md)                                 |           切换沙尘暴           |                                                                        无                                                                        |
+| [RandomBroadcast](RandomBroadcast/README.md)                                 |           随机广播           |                                                                        无                                                                        |
 
 </Details>
 
