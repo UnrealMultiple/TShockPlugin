@@ -14,8 +14,8 @@ namespace Plugin
         [JsonProperty("同发数量", Order = -1)]
         public int Cout { get; set; } = 1;
 
-        [JsonProperty("默认间隔/分钟", Order = 2)]
-        public double DefaultTimer { get; set; } = 0.01;
+        [JsonProperty("默认间隔/秒", Order = 2)]
+        public double DefaultTimer { get; set; } = 0.1;
 
         [JsonProperty("内容表", Order = 3)]
         public List<ItemData> MessageList { get; set; } = new List<ItemData>();
@@ -51,8 +51,8 @@ namespace Plugin
         {
             MessageList = new List<ItemData>
             {
-                new ItemData(0.1, 255, 234, 115 ,new[] { ".time 7:30", "我又来啦" }),
-                new ItemData(0.1, 190, 233, 250, new[] { "/time 19:30", "我又走啦" }),
+                new ItemData(0.5, 255, 234, 115 ,new[] { ".time 7:30", "我又来啦" }),
+                new ItemData(0.5, 190, 233, 250, new[] { "/time 19:30", "我又走啦" }),
             };
         }
         #endregion
