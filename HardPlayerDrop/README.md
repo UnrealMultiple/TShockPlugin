@@ -2,9 +2,7 @@
 
 - 作者: onusai 羽学
 - 出处: [tshock-hc-drop-hearts](https://github.com/onusai/tshock-hc-drop-hearts)
-- 修复/help指令无法使用的问题  
-- 为/help添加简短提示  
-- 为/help <命令> 可以看见更详细的命令帮助
+- 根据玩家血量计算死亡后会掉落多少生命水晶（因为硬核死亡在服务器会把玩家重置为初始状态）
 
 ## 更新日志
 
