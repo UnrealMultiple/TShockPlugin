@@ -32,7 +32,7 @@ namespace Plugin
         }
         #endregion
 
-        #region 硬核死亡掉落方法 我帮他修了
+        #region 硬核死亡掉落方法
         private static void OnPlayerDeath(object sender, TShockAPI.GetDataHandlers.KillMeEventArgs args)
         {
             var plr = TShock.Players[args.Player.Index];
@@ -41,12 +41,6 @@ namespace Plugin
             if (plr.Difficulty != 2 || drop_amount == 0) return;
 
             int itemIndex = Item.NewItem(null, (int)plr.X, (int)plr.Y, plr.TPlayer.width, plr.TPlayer.height, 29, drop_amount, true, 0, true);
-            if (plr.Difficulty == 2 && plr.TPlayer.dead)
-            {
-                plr.GiveItem(29, drop_amount);
-
-                TSPlayer.All.SendData(PacketTypes.ItemDrop, "", 29, itemIndex, 1);
-            }
         }
         #endregion
 
