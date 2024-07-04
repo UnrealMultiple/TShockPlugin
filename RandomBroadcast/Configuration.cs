@@ -1,26 +1,30 @@
 ﻿using Newtonsoft.Json;
 using TShockAPI;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace Plugin
 {
     internal class Configuration
     {
-        [JsonProperty("使用说明", Order = -3)]
-        public string Text { get; set; } = "【触发概率】1为100%，【消息内容】含【/或.】的会当指令执行，【同发数量】会随机发多组内容";
+        [JsonProperty("使用说明", Order = -2)]
+        public string Text { get; set; } = "【总概率】会根据【触发概率】自动计算，【消息内容】含【/或.】的会当指令执行，【同发数量】会随机发多组内容";
 
-        [JsonProperty("开启插件", Order = -2)]
+        [JsonProperty("开启插件", Order = -1)]
         public bool Enable { get; set; } = true;
 
-        [JsonProperty("是否开启触发概率", Order = -1)]
+        [JsonProperty("同发数量", Order = 0)]
+        public int SendCount { get; set; } = 1;
+
+        [JsonProperty("默认间隔/秒", Order = 1)]
+        public double DefaultTimer { get; set; } = 1.1;
+
+        [JsonProperty("是否开启触发概率", Order = 2)]
         public bool RateOpen { get; set; } = true;
 
-        [JsonProperty("同发数量", Order = -1)]
-        public int Cout { get; set; } = 1;
+        [JsonProperty("总概率(自动更新)", Order = 3)]
+        public int TotalRate { get; set; }
 
-        [JsonProperty("默认间隔/秒", Order = 2)]
-        public double DefaultTimer { get; set; } = 0.1;
-
-        [JsonProperty("内容表", Order = 3)]
+        [JsonProperty("内容表", Order = 4)]
         public List<ItemData> MessageList { get; set; } = new List<ItemData>();
 
 
@@ -28,7 +32,7 @@ namespace Plugin
         public class ItemData
         {
             [JsonProperty("触发概率", Order = 1)]
-            public double Rate { get; set; }
+            public int Rate { get; set; }
 
             [JsonProperty("消息内容", Order = 2)]
             public string[] Message { get; set; }
@@ -37,9 +41,8 @@ namespace Plugin
             public float[] ColorRGB { get; set; } = new float[3];
 
 
-            public ItemData(double rate, float r, float g, float b, string[] ms)
+            public ItemData(int rate, float r, float g, float b, string[] ms)
             {
-                if (rate < 0 || rate > 1) throw new ArgumentOutOfRangeException ("概率必须介于0和1之间");
                 Rate = rate;
                 ColorRGB[0] = r;
                 ColorRGB[1] = g;
@@ -49,13 +52,30 @@ namespace Plugin
         }
         #endregion
 
+        #region 计算与更新总概率方法
+        public int CalculateTotalRate() //计算总概率方法
+        {
+            if (MessageList != null)
+                return MessageList.Sum(item => item.Rate);
+            else
+                TShock.Log.ConsoleInfo("无法计算总概率，因消息表为空。");
+                return 0;
+        }
+        
+        public void UpdateTotalRate() //更新总概率方法
+        {
+            TotalRate = Read().CalculateTotalRate();
+            Write();
+        }
+        #endregion
+
         #region 预设参数方法
         public void Ints()
         {
             MessageList = new List<ItemData>
             {
-                new ItemData(0.5, 255, 234, 115 ,new[] { ".time 7:30", "我又来啦" }),
-                new ItemData(0.5, 190, 233, 250, new[] { "/time 19:30", "我又走啦" }),
+                new ItemData(1, 255, 234, 115 ,new[] { ".time 7:30", "我又来啦" }),
+                new ItemData(1, 190, 233, 250, new[] { "/time 19:30", "我又走啦" }),
             };
         }
         #endregion
