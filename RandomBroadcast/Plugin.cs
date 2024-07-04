@@ -1,11 +1,9 @@
 ﻿using System.Text;
-using System.Timers;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 using static Plugin.Configuration;
-using Timer = System.Timers.Timer;
 
 namespace Plugin
 {
@@ -55,7 +53,7 @@ namespace Plugin
         public long TimerCount;
         private void OnGameUpdate(EventArgs args)
         {
-            if(args == null || !Config.Enable)return;
+            if (args == null || !Config.Enable) return;
 
             TimerCount++;
             if (TimerCount % (Config.DefaultTimer * 60) == 0)
@@ -69,21 +67,22 @@ namespace Plugin
         #region 发送消息方法
         public static void Message()
         {
+            ItemData item = SelectMessage()!;
+            List<string> CommandList = new List<string>();
+            StringBuilder StringBuilder = new StringBuilder();
             int SendCout = random.Next(1, Config.Cout + 1);
+
             for (int i = 0; i < SendCout; i++)
             {
-                ItemData item = SelectMessage()!;
                 if (item != null)
                 {
                     foreach (var OneMessage in item.Message)
                     {
                         string[] lines = OneMessage.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-                        List<string> CommandList = new List<string>();
-                        StringBuilder StringBuilder = new StringBuilder();
 
                         foreach (string line in lines)
                         {
-                            if (line.StartsWith("/") || line.StartsWith("."))
+                            if (line.StartsWith(TShock.Config.Settings.CommandSpecifier) || line.StartsWith(TShock.Config.Settings.CommandSilentSpecifier))
                             {
                                 CommandList.Add(line);
                             }
@@ -102,8 +101,7 @@ namespace Plugin
 
                         if (StringBuilder.Length > 0)
                         {
-                            string MessageContent = StringBuilder.ToString();
-                            TSPlayer.All.SendMessage(MessageContent, (byte)item.ColorRGB[0], (byte)item.ColorRGB[1], (byte)item.ColorRGB[2]);
+                            TSPlayer.All.SendMessage(StringBuilder.ToString(), (byte)item.ColorRGB[0], (byte)item.ColorRGB[1], (byte)item.ColorRGB[2]);
                         }
                     }
                 }
@@ -116,14 +114,20 @@ namespace Plugin
         {
             double RandomValue = random.NextDouble();
             double Sum = 0.0;
-
-            foreach (var item in Config.MessageList)
+            if (Config.RateOpen)
             {
-                Sum += item.Rate;
-                if (RandomValue < Sum)
+                foreach (var item in Config.MessageList)
                 {
-                    return item;
+                    Sum += item.Rate;
+                    if (RandomValue < Sum)
+                    {
+                        return item;
+                    }
                 }
+            }
+            else
+            {
+                return Config.MessageList.OrderBy(f => Guid.NewGuid()).First();
             }
             return null;
         }

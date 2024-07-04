@@ -5,11 +5,14 @@ namespace Plugin
 {
     internal class Configuration
     {
-        [JsonProperty("使用说明", Order = -2)]
+        [JsonProperty("使用说明", Order = -3)]
         public string Text { get; set; } = "【触发概率】1为100%，【消息内容】含【/或.】的会当指令执行，【同发数量】会随机发多组内容";
 
-        [JsonProperty("开启插件", Order = -1)]
+        [JsonProperty("开启插件", Order = -2)]
         public bool Enable { get; set; } = true;
+
+        [JsonProperty("是否开启触发概率", Order = -1)]
+        public bool RateOpen { get; set; } = true;
 
         [JsonProperty("同发数量", Order = -1)]
         public int Cout { get; set; } = 1;
@@ -36,7 +39,7 @@ namespace Plugin
 
             public ItemData(double rate, float r, float g, float b, string[] ms)
             {
-                if (rate < 0 || rate > 1) throw new ArgumentException("概率必须介于0和1之间");
+                if (rate < 0 || rate > 1) throw new ArgumentOutOfRangeException ("概率必须介于0和1之间");
                 Rate = rate;
                 ColorRGB[0] = r;
                 ColorRGB[1] = g;
