@@ -12,8 +12,13 @@
 修正位置偏移
 ```
 
+## 指令
+
+| 语法           |        权限         |   说明   |
+| -------------- | :-----------------: | :------: |
+| /shome	     | bed.spawn.set       |  设置出生点|
 
 
 ## 文件位置
-> tshock/重生点/{PlayerName}{WorldName}.txt
+> tshock/Bed.json
 
