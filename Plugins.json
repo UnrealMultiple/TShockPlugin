@@ -378,6 +378,13 @@
     "Path": "RolesModifying.dll"
   },
   {
+    "Name": "Sandstorm",
+    "Version": "1.0.0",
+    "Author": "羽学",
+    "Description": "使用指令切换沙尘暴",
+    "Path": "Sandstorm.dll"
+  },
+  {
     "Name": "ServerTools",
     "Version": "1.1.7.1",
     "Author": "少司命",
@@ -439,6 +446,13 @@
     "Author": "Soofa 羽学修改",
     "Description": "不是你死就是我活系列",
     "Path": "PvPer.dll"
+  },
+  {
+    "Name": "刷新渔夫任务",
+    "Version": "1.4.0",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "ReFishTask.dll"
   },
   {
     "Name": "区域显示",
@@ -518,6 +532,13 @@
     "Path": "DeathDrop.dll"
   },
   {
+    "Name": "硬核死亡掉生命水晶",
+    "Version": "1.0.0",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "HardPlayerDrop.dll"
+  },
+  {
     "Name": "禁怪物掉落",
     "Version": "1.2.0",
     "Author": "羽学",
@@ -544,6 +565,13 @@
     "Author": "肝帝熙恩",
     "Description": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
     "Path": "DTEntryBlock.dll"
+  },
+  {
+    "Name": "随机广播",
+    "Version": "1.0.1",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "RandomBroadcast.dll"
   },
   {
     "Name": "音乐播放器",
