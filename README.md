@@ -146,6 +146,7 @@
 | [ReFishTask](ReFishTask/README.md)                                 |           自动刷新渔夫任务           |                                                                        无                                                                        |
 | [Sandstorm](Sandstorm/README.md)                                 |           切换沙尘暴           |                                                                        无                                                                        |
 | [RandomBroadcast](RandomBroadcast/README.md)                                 |           随机广播           |                                                                        无                                                                        |
+| [ConvertWorld](ConvertWorld/README.md)                                 |           击败怪物转换世界物品           |                                                                        无                                                                        |
 
 </Details>
 
