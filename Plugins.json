@@ -448,6 +448,13 @@
     "Path": "PvPer.dll"
   },
   {
+    "Name": "击败怪物替换世界物品",
+    "Version": "1.0.0",
+    "Author": "onusai 羽学",
+    "Description": "击败指定怪物替换世界指定图格与所有箱子内物品",
+    "Path": "ConvertWorld.dll"
+  },
+  {
     "Name": "刷新渔夫任务",
     "Version": "1.4.0",
     "Author": "羽学",
@@ -568,7 +575,7 @@
   },
   {
     "Name": "随机广播",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "羽学",
     "Description": "涡轮增压不蒸鸭",
     "Path": "RandomBroadcast.dll"

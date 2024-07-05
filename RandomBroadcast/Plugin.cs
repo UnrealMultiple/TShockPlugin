@@ -14,7 +14,7 @@ namespace Plugin
         #region 插件信息
         public override string Name => "随机广播";
         public override string Author => "羽学";
-        public override Version Version => new Version(1, 0, 1);
+        public override Version Version => new Version(1, 0, 2);
         public override string Description => "涡轮增压不蒸鸭";
         private static readonly Random random = new Random();
         #endregion
@@ -44,6 +44,7 @@ namespace Plugin
         private void LoadConfig()
         {
             Config = Configuration.Read();
+            Config.UpdateTotalRate();
             Config.Write();
             TShock.Log.ConsoleInfo("[随机发送消息]重新加载配置完毕。");
         }
@@ -67,24 +68,22 @@ namespace Plugin
         #region 发送消息方法
         public static void Message()
         {
-            ItemData item = SelectMessage()!;
-            List<string> CommandList = new List<string>();
-            StringBuilder StringBuilder = new StringBuilder();
-            int SendCout = random.Next(1, Config.Cout + 1);
-
-            for (int i = 0; i < SendCout; i++)
+            for (int i = 0; i < Config.SendCount; i++)
             {
+                ItemData item = SelectMessage()!;
                 if (item != null)
                 {
                     foreach (var OneMessage in item.Message)
                     {
                         string[] lines = OneMessage.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                        List<string> CmdList = new List<string>();
+                        StringBuilder StringBuilder = new StringBuilder();
 
                         foreach (string line in lines)
                         {
                             if (line.StartsWith(TShock.Config.Settings.CommandSpecifier) || line.StartsWith(TShock.Config.Settings.CommandSilentSpecifier))
                             {
-                                CommandList.Add(line);
+                                CmdList.Add(line);
                             }
                             else
                             {
@@ -94,9 +93,9 @@ namespace Plugin
                             }
                         }
 
-                        foreach (var command in CommandList)
+                        foreach (var Cmd in CmdList)
                         {
-                            Commands.HandleCommand(TSPlayer.Server, command);
+                            Commands.HandleCommand(TSPlayer.Server, Cmd);
                         }
 
                         if (StringBuilder.Length > 0)
@@ -112,8 +111,8 @@ namespace Plugin
         #region 随机选择消息方法
         private static ItemData? SelectMessage()
         {
-            double RandomValue = random.NextDouble();
-            double Sum = 0.0;
+            int RandomValue = random.Next(Config.TotalRate);
+            int Sum = 0;
             if (Config.RateOpen)
             {
                 foreach (var item in Config.MessageList)
