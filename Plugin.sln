@@ -200,6 +200,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomBroadcast", "RandomBr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConvertWorld", "ConvertWorld\ConvertWorld.csproj", "{D748F74C-6AD1-48EF-A180-B48B7155DF50}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoStoreItems", "AutoStoreItems\AutoStoreItems.csproj", "{40AED1FF-94C6-493E-87E9-80CCA39F5B9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -976,6 +978,14 @@ Global
 		{D748F74C-6AD1-48EF-A180-B48B7155DF50}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D748F74C-6AD1-48EF-A180-B48B7155DF50}.Release|x64.ActiveCfg = Release|Any CPU
 		{D748F74C-6AD1-48EF-A180-B48B7155DF50}.Release|x64.Build.0 = Release|Any CPU
+		{40AED1FF-94C6-493E-87E9-80CCA39F5B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40AED1FF-94C6-493E-87E9-80CCA39F5B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40AED1FF-94C6-493E-87E9-80CCA39F5B9C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{40AED1FF-94C6-493E-87E9-80CCA39F5B9C}.Debug|x64.Build.0 = Debug|Any CPU
+		{40AED1FF-94C6-493E-87E9-80CCA39F5B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40AED1FF-94C6-493E-87E9-80CCA39F5B9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40AED1FF-94C6-493E-87E9-80CCA39F5B9C}.Release|x64.ActiveCfg = Release|Any CPU
+		{40AED1FF-94C6-493E-87E9-80CCA39F5B9C}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
