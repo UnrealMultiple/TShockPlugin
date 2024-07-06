@@ -77,6 +77,13 @@
     "Path": "RestInventory.dll"
   },
   {
+    "Name": "BedSet 床设置",
+    "Version": "1.0.0.1",
+    "Author": "cmgy",
+    "Description": "",
+    "Path": "BedSet.dll"
+  },
+  {
     "Name": "BridgeBuilder",
     "Version": "1.0.7",
     "Author": "Soofa，肝帝熙恩汉化1449",
