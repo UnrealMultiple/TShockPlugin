@@ -1,5 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-	<Import Project="..\template.targets" />
-
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
+    <ItemGroup>
+      <Compile Remove="C:\Users\羽学\.nuget\packages\tshock\5.2.0\contentFiles\any\net6.0\Database.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="AutoStoreItem.cs~RF37a673c.TMP" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="TShock" Version="5.*" />
+    </ItemGroup>
 </Project>
