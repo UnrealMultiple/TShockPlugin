@@ -567,6 +567,13 @@
     "Path": "BanNpc.dll"
   },
   {
+    "Name": "自动存储",
+    "Version": "1.2.1",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "AutoStoreItems.dll"
+  },
+  {
     "Name": "超进度限制",
     "Version": "1.0.0.0",
     "Author": "少司命 & 恋恋魔改三合一",
