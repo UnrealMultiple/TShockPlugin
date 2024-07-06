@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using TShockAPI;
 
@@ -8,41 +7,39 @@ namespace Plugin
     internal class Configuration
     {
         [JsonProperty("插件开关", Order = -12)]
-        public bool Enable = true;
+        public bool Enable { get; set; } = true;
         [JsonProperty("储存速度", Order = -11)]
         public float time { get; set; } = 120f;
 
         [JsonProperty("使用说明1", Order = -10)]
-        public static string Text = "[是否手持] 需要选中 [持有物品] 其中1个才会启动存储功能，关闭则背包含有 其中1个就会启动";
+        public static string Text { get; set; } = "[是否手持] 需要选中 [持有物品] 其中1个才会启动存储功能，关闭则背包含有 其中1个就会启动";
 
         [JsonProperty("使用说明2", Order = -10)]
-        public static string Text2 = "[储存速度] 不要低于60帧(推荐120)，否则手动 [连续] 快速放入 [同样物品到存储空间格子] 会导致物品数量翻倍";
+        public static string Text2 { get; set; } = "[储存速度] 不要低于60帧(推荐120)，否则手动 [连续] 快速放入 [同样物品到存储空间格子] 会导致物品数量翻倍";
 
         [JsonProperty("使用说明3", Order = -10)]
-        public static string Text3 = "[控超堆叠] 会在物品超过9999的时候 对该物品减-1处理 然后通知玩家整理空间";
+        public static string Text3 { get; set; } = "使用此插件需要给玩家免检堆栈权限：/group addpern defualt tshock.ignore.itemstack ";
 
         [JsonProperty("使用说明4", Order = -10)]
-        public static string Text4 = "[物品名] 会在使用 [/Reload] 指令时根据 [物品ID] 自动写入，[物品数量] 为储存最低数量要求 ";
+        public static string Text4 { get; set; } = "[物品名] 会在使用 [/Reload] 指令时根据 [物品ID] 自动写入，[物品数量] 为储存最低数量要求 ";
 
         [JsonProperty("使用说明5", Order = -10)]
-        public static string Text5 = "[存在BUG] 收藏的物品会被取消收藏(指虚空袋药水有堆叠进箱子的风险) ";
+        public static string Text5 { get; set; } = "[存在BUG] 收藏的物品会被取消收藏，物品堆栈会超过9999触发Tshock的堆叠检测 ";
 
         [JsonProperty("存钱罐", Order = -9)]
-        public bool bank1 = true;
+        public bool bank1 { get; set; } = true;
         [JsonProperty("保险箱", Order = -8)]
-        public bool bank2 = true;
+        public bool bank2 { get; set; } = true;
         [JsonProperty("护卫熔炉", Order = -6)]
-        public bool bank3 = true;
+        public bool bank3 { get; set; } = true;
         [JsonProperty("虚空袋", Order = -7)]
-        public bool bank4 = true;
+        public bool bank4 { get; set; } = true;
 
-        [JsonProperty("控超堆叠", Order = -5)]
-        public bool clear = true;
         [JsonProperty("存储提示", Order = -4)]
-        public bool Mess = true;
+        public bool Mess { get; set; } = true;
 
         [JsonProperty("是否手持(↓)", Order = -1)]
-        public bool Hand = false;
+        public bool Hand { get; set; } = false;
 
         [JsonProperty("持有物品", Order = 1)]
         public int[] HoldItems { get; set; } = new int[7] { 87, 346 , 3213, 3813, 4076, 4131, 5325 };

@@ -13,7 +13,7 @@ namespace Plugin
         #region 插件信息
         public override string Name => "自动存储";
         public override string Author => "羽学";
-        public override Version Version => new Version(1, 2, 1);
+        public override Version Version => new Version(1, 2, 2);
         public override string Description => "涡轮增压不蒸鸭";
         #endregion
 
@@ -67,83 +67,67 @@ namespace Plugin
         }
         #endregion
 
-        #region 判断持有物品方法
+        #region 检测持有物品方法
         public static long Timer = 0L;
         private void OnGameUpdate(EventArgs args)
         {
             Timer++;
-            TShock.Players.Where(plr => plr != null && plr.Active).ToList().ForEach(plr =>
+
+            foreach (var plr in TShock.Players.Where(plr => plr != null && plr.Active && plr.IsLoggedIn && Config.Enable))
             {
-                if (!plr.IsLoggedIn || !Config.Enable) return;
-                else if (Timer % Config.time == 0)
+                if (!plr.HasPermission("tshock.ignore.itemstack") && Timer % 300 == 0)
+                    TShock.Utils.Broadcast($"\n【自动储存】请通知管理给予免检堆栈权限：\n" +
+                        $"/group addpern defualt [c/92C5EC:tshock.ignore.itemstack]\n", 255, 246, 158);
+
+                if (Timer % Config.time == 0)
                 {
                     foreach (var item in Config.HoldItems)
                     {
+                        bool Stored = false;
                         for (int i = 0; i < plr.TPlayer.inventory.Length; i++)
                         {
                             var inv = plr.TPlayer.inventory[i];
-                            bool HandSwitch = Config.Hand ? plr.TPlayer.inventory[plr.TPlayer.selectedItem].type == item : inv.type == item ;
-
-                            if (HandSwitch)
-                            {
-                                bool Stored = false;  //用来防止4个储存空间有同样物品刷堆叠用
-                                if (Config.bank1 && !Stored)
-                                    Stored = AutoStoredItem(plr);
-                                if (Config.bank2 && !Stored)
-                                    Stored = AutoStoredItem2(plr);
-                                if (Config.bank3 && !Stored)
-                                    Stored = AutoStoredItem3(plr);
-                                if (Config.bank4 && !Stored)
-                                    Stored = AutoStoredItem4(plr);
-                                if (Stored) break;
-                            }
+                            if ((Config.Hand ? inv.type == plr.TPlayer.inventory[plr.TPlayer.selectedItem].type : inv.type == item) &&
+                                (Config.bank1 && !Stored && (Stored = AutoStoredItem(plr, plr.TPlayer.bank.item, PlayerItemSlotID.Bank1_0, "存钱罐")) ||
+                                 Config.bank2 && !Stored && (Stored = AutoStoredItem(plr, plr.TPlayer.bank2.item, PlayerItemSlotID.Bank2_0, "保险箱")) ||
+                                 Config.bank3 && !Stored && (Stored = AutoStoredItem(plr, plr.TPlayer.bank3.item, PlayerItemSlotID.Bank3_0, "护卫熔炉")) ||
+                                 Config.bank4 && !Stored && (Stored = AutoStoredItem(plr, plr.TPlayer.bank4.item, PlayerItemSlotID.Bank4_0, "虚空袋"))))
+                                break;
                         }
                     }
                 }
-            });
+            }
         }
         #endregion
 
-        #region 自动存储方法(存钱罐）
-        public static bool AutoStoredItem(TSPlayer args)
+        #region 自动储存物品方法
+        public static bool AutoStoredItem(TSPlayer player, Item[] bankItems, int bankSlot, string bankName)
         {
-            if (!args.IsLoggedIn || !Config.Enable || !Config.bank1) return false;
+            if (!player.IsLoggedIn || !Config.Enable) return false;
 
-            Player plr = args.TPlayer;
-            foreach (var item in Config.Items)
+            Player plr = player.TPlayer;
+            HashSet<int> itemID = new HashSet<int>(Config.Items.SelectMany(x => x.ID));
+
+            foreach (var bank in bankItems)
             {
-                for (int b = 0; b < plr.bank.item.Length; b++)
+                for (int i = 0; i < plr.inventory.Length; i++)
                 {
-                    var bank = plr.bank.item[b];
-
-                    for (int i = 0; i < plr.inventory.Length; i++)
+                    var inv = plr.inventory[i];
+                    var items = Config.Items.FirstOrDefault(x => x.ID.Contains(inv.type));
+                    if (items != null
+                        && inv.stack >= items.Stack
+                        && itemID.Contains(inv.type)
+                        && inv.type == bank.type
+                        && inv.type != plr.inventory[plr.selectedItem].type)
                     {
-                        var inv = plr.inventory[i];
-                        if (inv.stack >= item.Stack
-                            && Array.Exists(item.ID, id => id == inv.type)
-                            && inv.type == bank.type
-                            && Array.Exists(item.ID, id => id == bank.type)
-                            && Array.Exists(item.ID, id => id != plr.inventory[plr.selectedItem].type))
-                        {
+                        bank.stack += inv.stack;
+                        inv.TurnToAir();
+                        player.SendData(PacketTypes.PlayerSlot, null, player.Index, PlayerItemSlotID.Inventory0 + i);
+                        player.SendData(PacketTypes.PlayerSlot, null, player.Index, bankSlot + Array.IndexOf(bankItems, bank));
 
-                            bank.stack += inv.stack;
-                            inv.TurnToAir();
-                            args.SendData(PacketTypes.PlayerSlot, "", args.Index, PlayerItemSlotID.Inventory0 + i);
-                            args.SendData(PacketTypes.PlayerSlot, "", args.Index, PlayerItemSlotID.Bank1_0 + b);
-
-                            if (Config.Mess)
-                                args.SendMessage($"【自动储存】已将'[c/92C5EC:{bank.Name}]'存入您的存钱罐 当前数量: {bank.stack}", 255, 246, 158);
-                            return true;
-                        }
-
-                        else if (Config.clear && bank.stack >= 9999)
-                        {
-                            bank.stack = 9999 - 1;
-                            args.SendData(PacketTypes.PlayerSlot, "", args.Index, PlayerItemSlotID.Bank1_0 + b);
-                            if (Config.Mess)
-                                args.SendMessage($"【自动储存】检测到'[c/92C5EC:{bank.Name}]'已达到 [c/F7575C:{bank.stack}] 请整理你的存钱罐", 255, 246, 158);
-                        }
-
+                        if (Config.Mess)
+                            player.SendMessage($"【自动储存】已将'[c/92C5EC:{bank.Name}]'存入您的{bankName} 当前数量: {bank.stack}", 255, 246, 158);
+                        return true;
                     }
                 }
             }
@@ -151,145 +135,5 @@ namespace Plugin
         }
         #endregion
 
-        #region 自动存储方法（保险箱）
-        public static bool AutoStoredItem2(TSPlayer args)
-        {
-            if (!args.IsLoggedIn || !Config.Enable || !Config.bank2) return false;
-
-            Player plr = args.TPlayer;
-            foreach (var item in Config.Items)
-            {
-                for (int b = 0; b < plr.bank2.item.Length; b++)
-                {
-                    var bank = plr.bank2.item[b];
-
-                    for (int i = 0; i < plr.inventory.Length; i++)
-                    {
-                        var inv = plr.inventory[i];
-                        if (inv.stack >= item.Stack
-                           && Array.Exists(item.ID, id => id == inv.type)
-                           && inv.type == bank.type
-                           && Array.Exists(item.ID, id => id == bank.type)
-                           && Array.Exists(item.ID, id => id != plr.inventory[plr.selectedItem].type))
-                        {
-
-                            bank.stack += inv.stack;
-                            inv.TurnToAir();
-                            args.SendData(PacketTypes.PlayerSlot, "", args.Index, PlayerItemSlotID.Inventory0 + i);
-                            args.SendData(PacketTypes.PlayerSlot, "", args.Index, PlayerItemSlotID.Bank2_0 + b);
-
-                            if (Config.Mess)
-                                args.SendMessage($"【自动储存】已将'[c/92C5EC:{bank.Name}]'存入您的保险箱 当前数量: {bank.stack}", 255, 246, 158);
-                            return true;
-                        }
-
-                        else if (Config.clear && bank.stack >= 9999)
-                        {
-                            bank.stack = 9999 - 1;
-                            args.SendData(PacketTypes.PlayerSlot, "", args.Index, PlayerItemSlotID.Bank2_0 + b);
-                            if (Config.Mess)
-                                args.SendMessage($"【自动储存】检测到'[c/92C5EC:{bank.Name}]'已达到 [c/F7575C:{bank.stack}] 请整理你的保险箱", 255, 246, 158);
-                        }
-
-                    }
-                }
-            }
-            return false;
-        }
-        #endregion
-
-        #region 自动存储方法（护卫熔炉）
-        public static bool AutoStoredItem3(TSPlayer args)
-        {
-            if (!args.IsLoggedIn || !Config.Enable || !Config.bank3) return false;
-
-            Player plr = args.TPlayer;
-            foreach (var item in Config.Items)
-            {
-                for (int b = 0; b < plr.bank3.item.Length; b++)
-                {
-                    var bank = plr.bank3.item[b];
-
-                    for (int i = 0; i < plr.inventory.Length; i++)
-                    {
-                        var inv = plr.inventory[i];
-                        if (inv.stack >= item.Stack
-                            && Array.Exists(item.ID, id => id == inv.type)
-                            && inv.type == bank.type
-                            && Array.Exists(item.ID, id => id == bank.type)
-                            && Array.Exists(item.ID, id => id != plr.inventory[plr.selectedItem].type))
-                        {
-
-                            bank.stack += inv.stack;
-                            inv.TurnToAir();
-                            args.SendData(PacketTypes.PlayerSlot, "", args.Index, PlayerItemSlotID.Inventory0 + i);
-                            args.SendData(PacketTypes.PlayerSlot, "", args.Index, PlayerItemSlotID.Bank3_0 + b);
-
-                            if (Config.Mess)
-                                args.SendMessage($"【自动储存】已将'[c/92C5EC:{bank.Name}]'存入您的护卫熔炉 当前数量: {bank.stack}", 255, 246, 158);
-                            return true;
-                        }
-
-                        else if (Config.clear && bank.stack >= 9999)
-                        {
-                            bank.stack = 9999 - 1;
-                            args.SendData(PacketTypes.PlayerSlot, "", args.Index, PlayerItemSlotID.Bank3_0 + b);
-                            if (Config.Mess)
-                                args.SendMessage($"【自动储存】检测到'[c/92C5EC:{bank.Name}]'已达到 [c/F7575C:{bank.stack}] 请整理你的护卫熔炉", 255, 246, 158);
-                        }
-
-                    }
-                }
-            }
-            return false;
-        }
-        #endregion
-
-        #region 自动存储方法（虚空袋）
-        public static bool AutoStoredItem4(TSPlayer args)
-        {
-            if (!args.IsLoggedIn || !Config.Enable || !Config.bank4) return false;
-
-            Player plr = args.TPlayer;
-            foreach (var item in Config.Items)
-            {
-                for (int b = 0; b < plr.bank4.item.Length; b++)
-                {
-                    var bank = plr.bank4.item[b];
-
-                    for (int i = 0; i < plr.inventory.Length; i++)
-                    {
-                        var inv = plr.inventory[i];
-                        if (inv.stack >= item.Stack
-                           && Array.Exists(item.ID, id => id == inv.type)
-                           && inv.type == bank.type
-                           && Array.Exists(item.ID, id => id == bank.type)
-                           && Array.Exists(item.ID, id => id != plr.inventory[plr.selectedItem].type))
-                        {
-
-                            bank.stack += inv.stack;
-                            inv.TurnToAir();
-                            args.SendData(PacketTypes.PlayerSlot, "", args.Index, PlayerItemSlotID.Inventory0 + i);
-                            args.SendData(PacketTypes.PlayerSlot, "", args.Index, PlayerItemSlotID.Bank4_0 + b);
-
-                            if (Config.Mess)
-                                args.SendMessage($"【自动储存】已将'[c/92C5EC:{bank.Name}]'存入您的虚空袋 当前数量: {bank.stack}", 255, 246, 158);
-                            return true;
-                        }
-
-                        else if (Config.clear && bank.stack >= 9999)
-                        {
-                            bank.stack = 9999 - 1;
-                            args.SendData(PacketTypes.PlayerSlot, "", args.Index, PlayerItemSlotID.Bank4_0 + b);
-                            if (Config.Mess)
-                                args.SendMessage($"【自动储存】检测到'[c/92C5EC:{bank.Name}]'已达到 [c/F7575C:{bank.stack}] 请整理你的虚空袋", 255, 246, 158);
-                        }
-
-                    }
-                }
-            }
-            return false;
-        }
-        #endregion
     }
 }
