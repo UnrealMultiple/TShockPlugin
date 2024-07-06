@@ -568,7 +568,7 @@
   },
   {
     "Name": "自动存储",
-    "Version": "1.2.1",
+    "Version": "1.2.2",
     "Author": "羽学",
     "Description": "涡轮增压不蒸鸭",
     "Path": "AutoStoreItems.dll"
