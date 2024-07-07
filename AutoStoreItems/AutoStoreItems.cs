@@ -99,10 +99,10 @@ namespace Plugin
                         {
                             if (Config.Hand ? inv.type == plr.TPlayer.inventory[plr.TPlayer.selectedItem].type : inv.type == item)
                             {
-                                for (int j = 71; j <= 74; j++)
-                                {
-                                    CoinToBank(plr, j);
-                                }
+                                CoinToBank(plr, 71);
+                                CoinToBank(plr, 72);
+                                CoinToBank(plr, 73);
+                                CoinToBank(plr, 74);
                             }
                         }
                     }
