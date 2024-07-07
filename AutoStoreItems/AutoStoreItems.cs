@@ -13,7 +13,7 @@ namespace Plugin
         #region 插件信息
         public override string Name => "自动存储";
         public override string Author => "羽学 cmgy雱";
-        public override Version Version => new Version(1, 2, 3);
+        public override Version Version => new Version(1, 2, 4);
         public override string Description => "涡轮增压不蒸鸭";
         #endregion
 
@@ -23,13 +23,16 @@ namespace Plugin
         {
             LoadConfig();
             GeneralHooks.ReloadEvent += (_) => LoadConfig();
+            GetDataHandlers.PlayerUpdate.Register(PlayerUpdate);
             ServerApi.Hooks.GameUpdate.Register(this, OnGameUpdate);
         }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
                 GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+                GetDataHandlers.PlayerUpdate.UnRegister(PlayerUpdate);
                 ServerApi.Hooks.GameUpdate.Deregister(this, OnGameUpdate);
             }
             base.Dispose(disposing);
@@ -67,7 +70,7 @@ namespace Plugin
         }
         #endregion
 
-        #region 检测持有物品方法
+        #region 检测背包持有物品方法
         public static long Timer = 0L;
         private void OnGameUpdate(EventArgs args)
         {
@@ -96,10 +99,10 @@ namespace Plugin
                         {
                             if (Config.Hand ? inv.type == plr.TPlayer.inventory[plr.TPlayer.selectedItem].type : inv.type == item)
                             {
-                                CoinToBank(plr, 71);
-                                CoinToBank(plr, 72);
-                                CoinToBank(plr, 73);
-                                CoinToBank(plr, 74);
+                                for (int j = 71; j <= 74; j++)
+                                {
+                                    CoinToBank(plr, j);
+                                }
                             }
                         }
                     }
@@ -108,10 +111,40 @@ namespace Plugin
         }
         #endregion
 
+        #region 检测装备物品方法
+        private void PlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
+        {
+            var plr = e.Player;
+            if (plr == null || !Config.Enable2) return;
+
+            bool stored = false;
+            foreach (var item in Config.ArmorItem)
+            {
+                var armor = plr.TPlayer.armor.Take(10).Where(x => x.netID == item).ToList();
+                bool hasArmor = armor.Any();
+
+                if (hasArmor)
+                {
+                    for (int i = 71; i <= 74; i++)
+                    {
+                        CoinToBank(plr, i);
+                    }
+
+                    stored |= AutoStoredItem(plr, plr.TPlayer.bank.item, PlayerItemSlotID.Bank1_0, "存钱罐") && Config.bank1;
+                    stored |= AutoStoredItem(plr, plr.TPlayer.bank2.item, PlayerItemSlotID.Bank2_0, "保险箱") && Config.bank2;
+                    stored |= AutoStoredItem(plr, plr.TPlayer.bank3.item, PlayerItemSlotID.Bank3_0, "护卫熔炉") && Config.bank3;
+                    stored |= AutoStoredItem(plr, plr.TPlayer.bank4.item, PlayerItemSlotID.Bank4_0, "虚空袋") && Config.bank4;
+
+                    if (stored) break;
+                }
+            }
+        }
+        #endregion
+
         #region 自动储存物品方法
         public static bool AutoStoredItem(TSPlayer tplr, Item[] bankItems, int bankSlot, string bankName)
         {
-            if (!tplr.IsLoggedIn || !Config.Enable) return false;
+            if (!tplr.IsLoggedIn || tplr == null) return false;
 
             Player plr = tplr.TPlayer;
             HashSet<int> itemID = new HashSet<int>(Config.Items.SelectMany(x => x.ID));
