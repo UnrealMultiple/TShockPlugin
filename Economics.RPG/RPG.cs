@@ -68,7 +68,7 @@ public class RPG : TerrariaPlugin
     private void PlayerHooks_PlayerChat(PlayerChatEventArgs e)
     {
         var level = PlayerLevelManager.GetLevel(e.Player.Name);
-        if (e.Player.HasPermission("economics.rpg.chat") && level != null && !string.IsNullOrEmpty(level.ChatFormat))
+        if (!e.Player.HasPermission("economics.rpg.chat") && level != null && !string.IsNullOrEmpty(level.ChatFormat))
         {
             TShock.Utils.Broadcast(EconomicsAPI.Utils.Helper.GetGradientText(string.Format(level.ChatFormat,
                 e.Player.Group.Name, //{0} 组名
