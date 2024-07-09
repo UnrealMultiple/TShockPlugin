@@ -7,7 +7,7 @@
     "Path": "Platform.dll"
   },
   {
-    "Name": "Chireiden.TShock.Omni 1dc7967580",
+    "Name": "Chireiden.TShock.Omni b73e8bb854",
     "Version": "0.0.1.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
@@ -75,6 +75,13 @@
     "Author": "少司命",
     "Description": "rest查询背包",
     "Path": "RestInventory.dll"
+  },
+  {
+    "Name": "BedSet 床设置",
+    "Version": "1.0.0.1",
+    "Author": "cmgy",
+    "Description": "",
+    "Path": "BedSet.dll"
   },
   {
     "Name": "BridgeBuilder",
@@ -183,7 +190,7 @@
   },
   {
     "Name": "Economics.NPC",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": "Economics.NPC",
     "Path": "Economics.NPC.dll"
@@ -274,7 +281,7 @@
   },
   {
     "Name": "ItemPreserver",
-    "Version": "1.0.5",
+    "Version": "1.0.6",
     "Author": "肝帝熙恩 & 少司命",
     "Description": "指定物品不消耗",
     "Path": "ItemPreserver.dll"
@@ -378,6 +385,13 @@
     "Path": "RolesModifying.dll"
   },
   {
+    "Name": "Sandstorm",
+    "Version": "1.0.0",
+    "Author": "羽学",
+    "Description": "使用指令切换沙尘暴",
+    "Path": "Sandstorm.dll"
+  },
+  {
     "Name": "ServerTools",
     "Version": "1.1.7.1",
     "Author": "少司命",
@@ -441,6 +455,20 @@
     "Path": "PvPer.dll"
   },
   {
+    "Name": "击败怪物替换世界物品",
+    "Version": "1.0.0",
+    "Author": "onusai 羽学",
+    "Description": "击败指定怪物替换世界指定图格与所有箱子内物品",
+    "Path": "ConvertWorld.dll"
+  },
+  {
+    "Name": "刷新渔夫任务",
+    "Version": "1.4.0",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "ReFishTask.dll"
+  },
+  {
     "Name": "区域显示",
     "Version": "1.1.0",
     "Author": "TBC开发者团队,肝帝熙恩汉化",
@@ -463,7 +491,7 @@
   },
   {
     "Name": "宵禁",
-    "Version": "2.7.2",
+    "Version": "2.7.3",
     "Author": "Jonesn 羽学 少司命",
     "Description": "设置服务器无法进入或禁止生成怪物的时段",
     "Path": "Goodnight.dll"
@@ -518,11 +546,18 @@
     "Path": "DeathDrop.dll"
   },
   {
+    "Name": "硬核死亡掉生命水晶",
+    "Version": "1.0.0",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "HardPlayerDrop.dll"
+  },
+  {
     "Name": "禁怪物掉落",
     "Version": "1.2.0",
     "Author": "羽学",
     "Description": "清理怪物身边掉落物",
-    "Path": "DisableMonsCoin.dll"
+    "Path": "DisableMonsLoot.dll"
   },
   {
     "Name": "禁止怪物",
@@ -530,6 +565,13 @@
     "Author": "Patrikk,GK 改良",
     "Description": "禁止指定怪物的出没",
     "Path": "BanNpc.dll"
+  },
+  {
+    "Name": "自动存储",
+    "Version": "1.2.4",
+    "Author": "羽学 cmgy雱",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "AutoStoreItems.dll"
   },
   {
     "Name": "超进度限制",
@@ -544,6 +586,13 @@
     "Author": "肝帝熙恩",
     "Description": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
     "Path": "DTEntryBlock.dll"
+  },
+  {
+    "Name": "随机广播",
+    "Version": "1.0.2",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "RandomBroadcast.dll"
   },
   {
     "Name": "音乐播放器",
@@ -582,7 +631,7 @@
   },
   {
     "Name": "Economics.Projectile",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": "Economics.Projectile",
     "Path": "Economics.Projectile.dll"

@@ -2,11 +2,11 @@
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
-using static DisableMonsCoin.Configuration;
-using static DisableMonsCoin.Commands;
+using static DisableMonsLoot.Configuration;
+using static DisableMonsLoot.Commands;
 
 
-namespace DisableMonsCoin;
+namespace DisableMonsLoot;
 
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin

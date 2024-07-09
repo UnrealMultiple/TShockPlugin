@@ -2,6 +2,7 @@
 using System.Globalization;
 using Terraria;
 using TShockAPI;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace Goodnight
 {
@@ -79,6 +80,17 @@ namespace Goodnight
                     $"已{status}召唤区人数条件，召唤区逻辑已切换。\n" +
                     $"【启用】所有人都得在召唤区\n" +
                     $"【禁用】有一人在召唤区，其他人可在任意位置召唤");
+                Goodnight.Config.Write();
+                return;
+            }
+            #endregion
+
+            #region 清理允许召唤表
+            if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "clear")
+            {
+                Goodnight.Config.NpcDead.Clear();
+                Goodnight.KillCounters.Clear();
+                args.Player.SendSuccessMessage($"已清理《允许召唤表》的怪物ID");
                 Goodnight.Config.Write();
                 return;
             }
@@ -258,6 +270,7 @@ namespace Goodnight
                  "/gn kick —— 开启|关闭断连功能\n" +
                  "/gn pos —— 开启|关闭召唤区\n" +
                  "/gn all —— 开启|关闭召唤区需所有人在场\n" +
+                 "/gn clear —— 清理《允许召唤表》\n" +
                  "/gn boss 次数 —— 设置加入《允许召唤表》击杀要求次数\n" +
                  "/gn reset ID —— 设置重置《允许召唤表》的怪物ID\n" +
                  "/gn plr 人数 —— 设置无视《禁止怪物表》在线人数\n" +
