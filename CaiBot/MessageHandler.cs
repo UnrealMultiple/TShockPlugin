@@ -23,7 +23,6 @@ using TShockAPI;
 
 namespace CaiBotPlugin
 {
-
     public class MessageHandle
     {
         public static async Task SendDateAsync(string message)
@@ -31,21 +30,18 @@ namespace CaiBotPlugin
             if (Terraria.Program.LaunchParameters.ContainsKey("-caidebug"))
                 TShock.Log.ConsoleInfo($"[CaiAPI]发送BOT数据包：{message}");
             byte[] messageBytes = Encoding.UTF8.GetBytes(message);
-            await Plugin.ws.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true, CancellationToken.None);
-
+            await Plugin.ws.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true,
+                CancellationToken.None);
         }
 
         public static bool isWebsocketConnected
         {
-            get
-            {
-                return (Plugin.ws != null && Plugin.ws.State == WebSocketState.Open);
-            }
+            get { return (Plugin.ws != null && Plugin.ws.State == WebSocketState.Open); }
         }
 
         public static string FileToBase64String(string path)
         {
-            FileStream fsForRead = new FileStream(path, FileMode.Open);//文件路径
+            FileStream fsForRead = new FileStream(path, FileMode.Open); //文件路径
             string base64Str = "";
             try
             {
@@ -67,6 +63,7 @@ namespace CaiBotPlugin
                 fsForRead.Close();
             }
         }
+
         public static async Task HandleMessageAsync(string receivedData)
         {
             JObject jsonObject = JObject.Parse(receivedData);
@@ -87,16 +84,19 @@ namespace CaiBotPlugin
                     TShock.Log.ConsoleInfo("[CaiAPI]CaiBOT连接成功...");
                     //发送服务器信息
                     var serverInfo = new RestObject
-                            {
-                                { "type","hello" },
-                                { "tshock_version",TShock.VersionNum.ToString()},
-                                { "plugin_version",Plugin.VersionNum},
-                                { "terraria_version",  Main.versionNumber},
-                                { "cai_whitelist", Config.config.WhiteList},
-                                { "os",RuntimeInformation.RuntimeIdentifier },
-                                {"world", (TShock.Config.Settings.UseServerName ? TShock.Config.Settings.ServerName : Main.worldName)},
-                                { "group" , (long)jsonObject["group"]}
-                            };
+                    {
+                        { "type", "hello" },
+                        { "tshock_version", TShock.VersionNum.ToString() },
+                        { "plugin_version", Plugin.VersionNum },
+                        { "terraria_version", Main.versionNumber },
+                        { "cai_whitelist", Config.config.WhiteList },
+                        { "os", RuntimeInformation.RuntimeIdentifier },
+                        {
+                            "world",
+                            (TShock.Config.Settings.UseServerName ? TShock.Config.Settings.ServerName : Main.worldName)
+                        },
+                        { "group", (long)jsonObject["group"] }
+                    };
                     await SendDateAsync(serverInfo.ToJson());
                     break;
                 case "groupid":
@@ -110,6 +110,7 @@ namespace CaiBotPlugin
                     {
                         Config.config.GroupNumber = groupId;
                     }
+
                     break;
                 case "cmd":
                     string cmd = (string)jsonObject["cmd"];
@@ -120,8 +121,8 @@ namespace CaiBotPlugin
                     {
                         { "type", "cmd" },
                         { "result", string.Join('\n', tr.GetCommandOutput()) },
-                        { "at" ,(string)jsonObject["at"] },
-                        { "group" , (long)jsonObject["group"]}
+                        { "at", (string)jsonObject["at"] },
+                        { "group", (long)jsonObject["group"] }
                     };
                     await SendDateAsync(re.ToJson());
                     break;
@@ -142,15 +143,18 @@ namespace CaiBotPlugin
                         {
                             if (ply != null && ply.Active)
                             {
-
                                 players.Add(ply.Name);
                             }
                         }
+
                         result += string.Join(',', players);
                     }
+
                     List<string> list = new List<string>();
                     List<string> list2 = new List<string>();
+
                     #region 进度查询
+
                     if (NPC.downedSlimeKing)
                     {
                         list.Add("史王");
@@ -159,6 +163,7 @@ namespace CaiBotPlugin
                     {
                         list2.Add("史王");
                     }
+
                     if (NPC.downedBoss1)
                     {
                         list.Add("克眼");
@@ -167,6 +172,7 @@ namespace CaiBotPlugin
                     {
                         list2.Add("克眼");
                     }
+
                     if (NPC.downedBoss2)
                     {
                         list.Add("世吞/克脑");
@@ -184,6 +190,7 @@ namespace CaiBotPlugin
                     {
                         list2.Add("骷髅王");
                     }
+
                     if (Main.hardMode)
                     {
                         list.Add("血肉墙");
@@ -240,6 +247,7 @@ namespace CaiBotPlugin
                     {
                         list2.Add("月总");
                     }
+
                     string process = "";
                     if (!list2.Any() || list2 == null)
                     {
@@ -256,127 +264,170 @@ namespace CaiBotPlugin
                     {
                         { "type", "online" },
                         { "result", result },
-                        { "worldname", Main.worldName},
-                        { "process",process },
-                        { "group" , (long)jsonObject["group"]}
+                        { "worldname", Main.worldName },
+                        { "process", process },
+                        { "group", (long)jsonObject["group"] }
                     };
                     await SendDateAsync(re.ToJson());
                     break;
                 case "process":
-                    List<Dictionary<string, bool>> processList = new List<Dictionary<string, bool>>(new Dictionary<string, bool>[21]
-                    {
-                        new Dictionary<string, bool> {
+                    List<Dictionary<string, bool>> processList = new List<Dictionary<string, bool>>(
+                        new Dictionary<string, bool>[21]
                         {
-                            "King Slime",
-                            NPC.downedSlimeKing
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Eye of Cthulhu",
-                            NPC.downedBoss1
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Eater of Worlds / Brain of Cthulhu",
-                            NPC.downedBoss2
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Queen Bee",
-                            NPC.downedQueenBee
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Skeletron",
-                            NPC.downedBoss3
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Deerclops",
-                            NPC.downedDeerclops
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Wall of Flesh",
-                            Main.hardMode
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Queen Slime",
-                            NPC.downedQueenSlime
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "The Twins",
-                            NPC.downedMechBoss2
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "The Destroyer",
-                            NPC.downedMechBoss1
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Skeletron Prime",
-                            NPC.downedMechBoss3
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Plantera",
-                            NPC.downedPlantBoss
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Golem",
-                            NPC.downedGolemBoss
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Duke Fishron",
-                            NPC.downedFishron
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Empress of Light",
-                            NPC.downedEmpressOfLight
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Lunatic Cultist",
-                            NPC.downedAncientCultist
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Moon Lord",
-                            NPC.downedMoonlord
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Solar Pillar",
-                            NPC.downedTowerSolar
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Nebula Pillar",
-                            NPC.downedTowerNebula
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Vortex Pillar",
-                            NPC.downedTowerVortex
-                        } },
-                        new Dictionary<string, bool> {
-                        {
-                            "Stardust Pillar",
-                            NPC.downedTowerStardust
-                        } }
-                    });
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "King Slime",
+                                    NPC.downedSlimeKing
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Eye of Cthulhu",
+                                    NPC.downedBoss1
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Eater of Worlds / Brain of Cthulhu",
+                                    NPC.downedBoss2
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Queen Bee",
+                                    NPC.downedQueenBee
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Skeletron",
+                                    NPC.downedBoss3
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Deerclops",
+                                    NPC.downedDeerclops
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Wall of Flesh",
+                                    Main.hardMode
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Queen Slime",
+                                    NPC.downedQueenSlime
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "The Twins",
+                                    NPC.downedMechBoss2
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "The Destroyer",
+                                    NPC.downedMechBoss1
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Skeletron Prime",
+                                    NPC.downedMechBoss3
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Plantera",
+                                    NPC.downedPlantBoss
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Golem",
+                                    NPC.downedGolemBoss
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Duke Fishron",
+                                    NPC.downedFishron
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Empress of Light",
+                                    NPC.downedEmpressOfLight
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Lunatic Cultist",
+                                    NPC.downedAncientCultist
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Moon Lord",
+                                    NPC.downedMoonlord
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Solar Pillar",
+                                    NPC.downedTowerSolar
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Nebula Pillar",
+                                    NPC.downedTowerNebula
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Vortex Pillar",
+                                    NPC.downedTowerVortex
+                                }
+                            },
+                            new Dictionary<string, bool>
+                            {
+                                {
+                                    "Stardust Pillar",
+                                    NPC.downedTowerStardust
+                                }
+                            }
+                        });
                     re = new RestObject
                     {
-                        { "type","process" },
-                        { "result",processList },
-                        { "worldname",Main.worldName},
-                        { "group" , (long)jsonObject["group"]}
+                        { "type", "process" },
+                        { "result", processList },
+                        { "worldname", Main.worldName },
+                        { "group", (long)jsonObject["group"] }
                     };
                     await SendDateAsync(re.ToJson());
                     break;
@@ -391,9 +442,11 @@ namespace CaiBotPlugin
                         {
                             return;
                         }
+
                         TSPlayer plr = playerList[0];
                         Login.HandleLogin(plr, Guid.NewGuid().ToString());
                     }
+
                     break;
                 case "selfkick":
                     name = (string)jsonObject["name"];
@@ -402,6 +455,7 @@ namespace CaiBotPlugin
                     {
                         return;
                     }
+
                     playerList2[0].Kick("在群中使用自踢命令.", true, saveSSI: true);
 
                     break;
@@ -411,9 +465,9 @@ namespace CaiBotPlugin
                     string base64 = FileToBase64String("map.png");
                     re = new RestObject
                     {
-                        { "type","mappng" },
-                        { "result",base64 },
-                        { "group" , (long)jsonObject["group"]}
+                        { "type", "mappng" },
+                        { "result", base64 },
+                        { "group", (long)jsonObject["group"] }
                     };
                     await SendDateAsync(re.ToJson());
                     break;
@@ -424,6 +478,7 @@ namespace CaiBotPlugin
                     if (playerList3.Count != 0)
                     {
                         #region 查背包 在线
+
                         // 在线
                         Player plr = playerList3[0].TPlayer;
                         buffs = plr.buffType.ToList();
@@ -535,6 +590,7 @@ namespace CaiBotPlugin
                                 invs[i] = (NetItem)loadout3Dye[index];
                             }
                         }
+
                         var itemList = new List<List<int>>();
                         foreach (var i in invs)
                         {
@@ -542,14 +598,15 @@ namespace CaiBotPlugin
                         }
 
                         #endregion
+
                         re = new RestObject
                         {
-                            { "type","lookbag" },
-                            { "name",name},
-                            { "exist",1},
-                            { "inventory", itemList},
-                            { "buffs", buffs},
-                            { "group" , (long)jsonObject["group"]}
+                            { "type", "lookbag" },
+                            { "name", name },
+                            { "exist", 1 },
+                            { "inventory", itemList },
+                            { "buffs", buffs },
+                            { "group", (long)jsonObject["group"] }
                         };
                         await SendDateAsync(re.ToJson());
                         return;
@@ -557,13 +614,14 @@ namespace CaiBotPlugin
                     else
                     {
                         #region 查背包 离线
+
                         var acc = TShock.UserAccounts.GetUserAccountByName(name);
                         if (acc == null)
                         {
                             re = new RestObject
                             {
-                                { "type","lookbag" },
-                                { "exist",0}
+                                { "type", "lookbag" },
+                                { "exist", 0 }
                             };
                             await SendDateAsync(re.ToJson());
                             return;
@@ -573,40 +631,39 @@ namespace CaiBotPlugin
 
                         if (data == null)
                         {
-
                             re = new RestObject
                             {
-                                { "type","lookbag" },
-                                { "exist",0}
+                                { "type", "lookbag" },
+                                { "exist", 0 }
                             };
                             await SendDateAsync(re.ToJson());
                             return;
                         }
+
                         var itemList = new List<List<int>>();
                         foreach (var i in data.inventory)
                         {
                             itemList.Add(new List<int>() { i.NetId, i.Stack });
                         }
+
                         buffs = CaiBot.Utils.GetActiveBuffs(TShock.DB, acc.ID, acc.Name);
 
                         #endregion
+
                         re = new RestObject
-                            {
-                                { "type","lookbag" },
-                                { "exist",1},
-                                { "name",name},
-                                { "inventory", itemList},
-                                { "buffs", buffs} ,
-                                { "group" , (long)jsonObject["group"]}
-                            };
+                        {
+                            { "type", "lookbag" },
+                            { "exist", 1 },
+                            { "name", name },
+                            { "inventory", itemList },
+                            { "buffs", buffs },
+                            { "group", (long)jsonObject["group"] }
+                        };
                         await SendDateAsync(re.ToJson());
-
-
                     }
+
                     break;
-
             }
-
         }
     }
 }

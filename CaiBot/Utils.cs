@@ -26,9 +26,11 @@ namespace CaiBot
                         }
                     }
                 }
-
             }
-            catch { }
+            catch
+            {
+            }
+
             try
             {
                 string queryString = $"SELECT ActiveBuffs FROM Permabuffs WHERE UserID = '{userId}'";
@@ -49,9 +51,11 @@ namespace CaiBot
                         }
                     }
                 }
-
             }
-            catch { }
+            catch
+            {
+            }
+
             return new List<int>();
         }
     }
