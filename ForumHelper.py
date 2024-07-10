@@ -11,12 +11,6 @@ print(f"论坛自动更新脚本 (by Cai😘)")
 print(f"登录名: {name}")
 print(f"密码: {password}")
 
-# 转换MD->HTML
-data = {
-    "text": md
-}
-html = rq.post("https://api.github.com/markdown", headers=headers, data=json.dumps(data)).text
-
 # tr.monika.love
 # 创建会话
 session = rq.Session()
@@ -47,6 +41,12 @@ headers = {
 
 # 修复插件列表路径
 md = re.sub(r'\b[^(\[]*\/README.md\b', lambda x: "https://gitee.com/kksjsj/TShockPlugin/blob/master/" + x.group(), md)
+
+data = {
+    "text": md
+}
+html = rq.post("https://api.github.com/markdown", headers=headers, data=json.dumps(data)).text
+
 
 # 编辑论坛仓库帖子
 data = {
@@ -100,17 +100,6 @@ data = {
 }
 session.post("https://trhub.cn/login/login",data=data,allow_redirects=True)
 
-# 使用GithubAPI转换MD到Html
-with open('README.md', 'r',encoding='utf-8') as file:
-    md = file.read()
-headers = {
-    "Accept": "application/vnd.github+json",
-    #"Authorization": "Bearer <YOUR-TOKEN>",
-    "X-GitHub-Api-Version": "2022-11-28"
-}
-
-# 修复插件列表路径
-md = re.sub(r'\b[^(\[]*\/README.md\b', lambda x: "https://gitee.com/kksjsj/TShockPlugin/blob/master/" + x.group(), md)
 
 # 编辑论坛仓库帖子
 data = {
@@ -161,18 +150,6 @@ data = {
 }
 session.post("https://www.bbstr.net/login/login",data=data,allow_redirects=True)
 
-
-# 使用GithubAPI转换MD到Html
-with open('README.md', 'r',encoding='utf-8') as file:
-    md = file.read()
-headers = {
-    "Accept": "application/vnd.github+json",
-    #"Authorization": "Bearer <YOUR-TOKEN>",
-    "X-GitHub-Api-Version": "2022-11-28"
-}
-
-# 修复插件列表路径
-md = re.sub(r'\b[^(\[]*\/README.md\b', lambda x: "https://gitee.com/kksjsj/TShockPlugin/blob/master/" + x.group(), md)
 
 # 编辑论坛仓库帖子
 data = {

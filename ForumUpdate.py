@@ -13,7 +13,7 @@ if result[0]['merged_at'] is None:
 
         
 
-html =f'<font size="6">✅ <a href="{result[0]['html_url']}">{result[0]['title']}</a> ({datetime.datetime.strptime(result[0]['closed_at'], '%Y-%m-%dT%H:%M:%SZ').date()})</font>'
+html = f'<font size="6">✅ <a href="{result[0]["html_url"]}">{result[0]["title"]}</a> ({datetime.datetime.strptime(result[0]["closed_at"], "%Y-%m-%dT%H:%M:%SZ").date()})</font>'
 # 读取用户名 密码
 name = sys.argv[1] 
 password = sys.argv[2]
