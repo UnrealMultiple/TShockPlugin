@@ -553,6 +553,13 @@
     "Path": "DeathDrop.dll"
   },
   {
+    "Name": "生成基础建设",
+    "Version": "1.1.0",
+    "Author": "羽学",
+    "Description": "给新世界创建NPC住房、地狱直通车、地表和地狱平台（轨道）",
+    "Path": "SpawnInfra.dll"
+  },
+  {
     "Name": "硬核死亡掉生命水晶",
     "Version": "1.0.0",
     "Author": "羽学",
