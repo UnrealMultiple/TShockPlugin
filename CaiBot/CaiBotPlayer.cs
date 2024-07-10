@@ -19,7 +19,6 @@ namespace TShockAPI
             {
                 Name = "CaiBot"
             };
-
         }
 
         public override void SendMessage(string msg, Color color)
@@ -34,7 +33,9 @@ namespace TShockAPI
             {
                 result1 += item.Text;
             }
-            Regex regex = new Regex(@"\[i(tem)?(?:\/s(?<Stack>\d{1,4}))?(?:\/p(?<Prefix>\d{1,3}))?:(?<NetID>-?\d{1,4})\]");
+
+            Regex regex =
+                new Regex(@"\[i(tem)?(?:\/s(?<Stack>\d{1,4}))?(?:\/p(?<Prefix>\d{1,3}))?:(?<NetID>-?\d{1,4})\]");
 
             string result = regex.Replace(result1, m =>
             {
@@ -47,7 +48,8 @@ namespace TShockAPI
                     if (prefix == "0")
                         return $"[{Lang.GetItemName(int.Parse(netID))}]";
                     else
-                        return $"[{Lang.prefix[int.Parse(prefix)]} {Lang.GetItemName(int.Parse(netID))}]"; //return $"[{Terraria.Lang.prefix[int.Parse(netID)]}]";
+                        return
+                            $"[{Lang.prefix[int.Parse(prefix)]} {Lang.GetItemName(int.Parse(netID))}]"; //return $"[{Terraria.Lang.prefix[int.Parse(netID)]}]";
                 return $"[{Lang.prefix[int.Parse(prefix)]} {Lang.GetItemName(int.Parse(netID))} ({stack})]";
             });
             CommandOutput.Add(result);

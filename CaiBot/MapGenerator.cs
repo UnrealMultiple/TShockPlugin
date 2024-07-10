@@ -3,6 +3,7 @@ using SixLabors.ImageSharp.PixelFormats;
 using Terraria;
 using Terraria.Map;
 using Image = SixLabors.ImageSharp.Image;
+
 //using System.Drawing;
 
 namespace CaiBotPlugin

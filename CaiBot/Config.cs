@@ -7,6 +7,7 @@ namespace CaiBotPlugin
         public const string Path = "tshock/CaiBot.json";
 
         public static Config config = new Config();
+
         public void Write(string path = Path)
         {
             using (FileStream fileStream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
@@ -40,6 +41,7 @@ namespace CaiBotPlugin
                     result = Config.Read(fileStream);
                 }
             }
+
             config = result;
             return result;
         }
@@ -51,13 +53,12 @@ namespace CaiBotPlugin
             {
                 result = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd());
             }
+
             return result;
         }
-        [JsonProperty("密钥")]
-        public string Token = "";
-        [JsonProperty("白名单开关")]
-        public bool WhiteList = true;
-        [JsonProperty("白名单拦截提示的群号")]
-        public long GroupNumber = 0;
+
+        [JsonProperty("密钥")] public string Token = "";
+        [JsonProperty("白名单开关")] public bool WhiteList = true;
+        [JsonProperty("白名单拦截提示的群号")] public long GroupNumber = 0;
     }
 }
