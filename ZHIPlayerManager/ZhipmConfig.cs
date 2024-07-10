@@ -20,7 +20,7 @@ namespace ZHIPlayerManager
             if (!File.Exists(configPath))
             {
                 File.WriteAllText(configPath, JsonConvert.SerializeObject(new ZhipmConfig(
-                    true, true, true, false, true, false, true, true, 20, 5, new List<int>() { 68 }, new List<int>(), true, 40, 1.0f
+                    true, true, true, false, true, false, true, true, 20, 5, new List<int>() { 68 }, new List<int>(), true, 40, 1.0f, false
                     ), Formatting.Indented));
             }
 
@@ -49,7 +49,8 @@ namespace ZHIPlayerManager
             List<int> creaturesTreatedAsRareForKills,
             bool allowPlayerRespawnAtLastDeathPoint,
             int respawnCostPoints,
-            float pointsLossMultiplierOnDeath
+            float pointsLossMultiplierOnDeath,
+            bool enableSpecialNameBan
         )
         {
             this.EnableOnlineTimeTracking = enableOnlineTimeTracking;
@@ -67,6 +68,8 @@ namespace ZHIPlayerManager
             this.AllowPlayerRespawnAtLastDeathPoint = allowPlayerRespawnAtLastDeathPoint;
             this.RespawnCostPoints = respawnCostPoints;
             this.PointsLossMultiplierOnDeath = pointsLossMultiplierOnDeath;
+            this.EnableSpecialNameBan = enableSpecialNameBan;
+
         }
 
         [JsonProperty("是否启用在线时长统计")]
@@ -113,5 +116,8 @@ namespace ZHIPlayerManager
 
         [JsonProperty("死亡时丢失点数乘数")]
         public float PointsLossMultiplierOnDeath { get; set; }
+
+        [JsonProperty("是否允许特殊名字")]
+        public bool EnableSpecialNameBan { get; set; }
     }
 }

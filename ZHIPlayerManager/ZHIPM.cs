@@ -15,7 +15,7 @@ namespace ZHIPlayerManager
 
         public override string Name => "ZHIPlayerManager";
 
-        public override Version Version => new Version(1, 0, 0, 4);
+        public override Version Version => new Version(1, 0, 0, 5);
 
         #region 字段或属性
         /// <summary>

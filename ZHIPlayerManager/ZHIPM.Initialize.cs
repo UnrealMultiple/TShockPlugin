@@ -2372,42 +2372,45 @@ namespace ZHIPlayerManager
             {
                 return;
             }
-            TSPlayer tsplayer = TShock.Players[args.Who];
-            if (string.IsNullOrWhiteSpace(tsplayer.Name))
+            if (config.EnableSpecialNameBan)
             {
-                tsplayer.Kick("请不要起空名字", true);
-            }
-            else if (int.TryParse(tsplayer.Name, out int num) || double.TryParse(tsplayer.Name, out double num2))
-            {
-                tsplayer.Kick("请不要起纯数字名字", true);
-            }
-            else if ((tsplayer.Name[0] >= ' ' && tsplayer.Name[0] <= '/') || (tsplayer.Name[0] >= ':' && tsplayer.Name[0] <= '@') || (tsplayer.Name[0] > '[' && tsplayer.Name[0] <= '`') || (tsplayer.Name[0] >= '{' && tsplayer.Name[0] <= '~'))
-            {
-                tsplayer.Kick("请不要在名字中使用特殊符号", true);
-            }
-            else if (tsplayer.Name.Equals("all", StringComparison.OrdinalIgnoreCase))
-            {
-                tsplayer.Kick("你的名字含有指令关键字: all ，请更换", true);
-            }
-            else if (tsplayer.Name.Equals("time", StringComparison.OrdinalIgnoreCase))
-            {
-                tsplayer.Kick("你的名字含有指令关键字: time ，请更换", true);
-            }
-            else if (tsplayer.Name.Equals("help", StringComparison.OrdinalIgnoreCase))
-            {
-                tsplayer.Kick("你的名字含有指令关键字: help ，请更换", true);
-            }
-            else if (tsplayer.Name.Equals("me", StringComparison.OrdinalIgnoreCase))
-            {
-                tsplayer.Kick("你的名字含有指令关键字: me ，请更换", true);
-            }
-            else if (tsplayer.Name.Equals("uuid", StringComparison.OrdinalIgnoreCase))
-            {
-                tsplayer.Kick("你的名字含有指令关键字: uuid ，请更换", true);
-            }
-            else if (tsplayer.Name.Equals("ip", StringComparison.OrdinalIgnoreCase))
-            {
-                tsplayer.Kick("你的名字含有指令关键字: ip ，请更换", true);
+                TSPlayer tsplayer = TShock.Players[args.Who];
+                if (string.IsNullOrWhiteSpace(tsplayer.Name))
+                {
+                    tsplayer.Kick("请不要起空名字", true);
+                }
+                else if (int.TryParse(tsplayer.Name, out int num) || double.TryParse(tsplayer.Name, out double num2))
+                {
+                    tsplayer.Kick("请不要起纯数字名字", true);
+                }
+                else if ((tsplayer.Name[0] >= ' ' && tsplayer.Name[0] <= '/') || (tsplayer.Name[0] >= ':' && tsplayer.Name[0] <= '@') || (tsplayer.Name[0] > '[' && tsplayer.Name[0] <= '`') || (tsplayer.Name[0] >= '{' && tsplayer.Name[0] <= '~'))
+                {
+                    tsplayer.Kick("请不要在名字中使用特殊符号", true);
+                }
+                else if (tsplayer.Name.Equals("all", StringComparison.OrdinalIgnoreCase))
+                {
+                    tsplayer.Kick("你的名字含有指令关键字: all ，请更换", true);
+                }
+                else if (tsplayer.Name.Equals("time", StringComparison.OrdinalIgnoreCase))
+                {
+                    tsplayer.Kick("你的名字含有指令关键字: time ，请更换", true);
+                }
+                else if (tsplayer.Name.Equals("help", StringComparison.OrdinalIgnoreCase))
+                {
+                    tsplayer.Kick("你的名字含有指令关键字: help ，请更换", true);
+                }
+                else if (tsplayer.Name.Equals("me", StringComparison.OrdinalIgnoreCase))
+                {
+                    tsplayer.Kick("你的名字含有指令关键字: me ，请更换", true);
+                }
+                else if (tsplayer.Name.Equals("uuid", StringComparison.OrdinalIgnoreCase))
+                {
+                    tsplayer.Kick("你的名字含有指令关键字: uuid ，请更换", true);
+                }
+                else if (tsplayer.Name.Equals("ip", StringComparison.OrdinalIgnoreCase))
+                {
+                    tsplayer.Kick("你的名字含有指令关键字: ip ，请更换", true);
+                }
             }
         }
 
