@@ -11,6 +11,11 @@ print(f"论坛自动更新脚本 (by Cai😘)")
 print(f"登录名: {name}")
 print(f"密码: {password}")
 
+# 转换MD->HTML
+data = {
+    "text": md
+}
+html = rq.post("https://api.github.com/markdown", headers=headers, data=json.dumps(data)).text
 
 # tr.monika.love
 # 创建会话
@@ -44,10 +49,6 @@ headers = {
 md = re.sub(r'\b[^(\[]*\/README.md\b', lambda x: "https://gitee.com/kksjsj/TShockPlugin/blob/master/" + x.group(), md)
 
 # 编辑论坛仓库帖子
-data = {
-    "text": md
-}
-html = rq.post("https://api.github.com/markdown", headers=headers, data=json.dumps(data)).text
 data = {
     "_xfToken": data_csrf,
     "prefix_id[]": 7,
@@ -113,10 +114,6 @@ md = re.sub(r'\b[^(\[]*\/README.md\b', lambda x: "https://gitee.com/kksjsj/TShoc
 
 # 编辑论坛仓库帖子
 data = {
-    "text": md
-}
-html = rq.post("https://api.github.com/markdown", headers=headers, data=json.dumps(data)).text
-data = {
     "_xfToken": data_csrf,
     "prefix_id": 0,
     "title": "TShock插件收集仓库(自动更新版)",
@@ -147,7 +144,7 @@ except:
 name = "Cai233"
 # 创建会话
 session = rq.Session()
-resp = session.get("https://tr.lizigo.cn/") 
+resp = session.get("https://www.bbstr.net/") 
 
 # 获取xf_token
 soup = BeautifulSoup(resp.text, 'html.parser')
@@ -160,9 +157,9 @@ data = {
     "login":name,
     "password": password,
     "remember": 0,
-    "_xfRedirect": "https://tr.lizigo.cn/",
+    "_xfRedirect": "https://www.bbstr.net/",
 }
-session.post("https://tr.lizigo.cn/login/login",data=data,allow_redirects=True)
+session.post("https://www.bbstr.net/login/login",data=data,allow_redirects=True)
 
 
 # 使用GithubAPI转换MD到Html
@@ -178,10 +175,6 @@ headers = {
 md = re.sub(r'\b[^(\[]*\/README.md\b', lambda x: "https://gitee.com/kksjsj/TShockPlugin/blob/master/" + x.group(), md)
 
 # 编辑论坛仓库帖子
-data = {
-    "text": md
-}
-html = rq.post("https://api.github.com/markdown", headers=headers, data=json.dumps(data)).text
 data = {
     "title": "TShock插件收集仓库(自动更新版)",
     "tag_line": "此帖会自动更新插件列表(BBSTR高概率同步失败)",
@@ -216,7 +209,7 @@ data = {
 
 
 try:
-    resp = session.post("https://tr.lizigo.cn/resources/167/edit",data=data)
+    resp = session.post("https://www.bbstr.net/resources/167/edit",data=data,timeout=10)
     res = resp.json()
     if res['status'] == 'ok':
         print(f"[BBSTR]修改成功: {res}")
