@@ -150,6 +150,7 @@
 | [ConvertWorld](ConvertWorld/README.md)                           |     击败怪物转换世界物品        |                                                                        无                                                                        |
 | [AutoStoreItems](AutoStoreItems/README.md)                       |           自动储存             |                                                                        无                                                                        |
 | [ZHIPlayerManager](ZHIPlayerManager/README.md)                   |        zhi的玩家管理插件        |                                                                        无                                                                        |
+| [SpawnInfra](SpawnInfra/README.md)                   |        生成基础建设        |                                                                        无                                                                        |
 
 
 </Details>
