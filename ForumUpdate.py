@@ -120,6 +120,8 @@ resp = session.get("https://www.bbstr.net/",timeout=10)
 soup = BeautifulSoup(resp.text, 'html.parser')
 data_csrf = soup.html['data-csrf']
  
+proxies = {'http': "220.248.70.237:9002",
+           'https': "220.248.70.237:9002"}
 
 # 模拟登录
 data = {
@@ -129,7 +131,7 @@ data = {
     "remember": 0,
     "_xfRedirect": "https://www.bbstr.net/",
 }
-session.post("https://www.bbstr.net/login/login",data=data,allow_redirects=True)
+session.post("https://www.bbstr.net/login/login",data=data,allow_redirects=True,proxies=proxies)
 
 # 模拟登录
 
@@ -150,7 +152,7 @@ data = {
     "_xfResponseType": "json"
 }
 try:
-    resp = session.post("https://www.bbstr.net/threads/2427/add-reply",data=data,timeout=10)
+    resp = session.post("https://www.bbstr.net/threads/2427/add-reply",data=data,timeout=10,proxies=proxies)
     res = resp.json()
     if res['status'] == 'ok':
         print(f"[BBSTR]修改成功: {res}")

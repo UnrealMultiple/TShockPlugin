@@ -11,163 +11,148 @@ using TerrariaApi.Server;
 using TShockAPI;
 
 
-namespace CaiBotPlugin
+namespace CaiBot;
+
+[ApiVersion(2, 1)]
+public class Plugin : TerrariaPlugin
 {
-    [ApiVersion(2, 1)]
-    public class Plugin : TerrariaPlugin
+    //定义插件的作者名称
+    public override string Author => "Cai,羽学";
+
+    //插件的一句话描述
+    public override string Description => "CaiBot机器人的适配插件";
+
+    //插件的名称
+    public override string Name => "CaiBotPlugin";
+
+    public static readonly Version VersionNum = new(2024, 7, 11, 1); //日期+版本号(0,1,2...)
+
+    public override Version Version => VersionNum;
+
+    //插件的构造器
+    public Plugin(Main game) : base(game)
     {
-        //定义插件的作者名称
-        public override string Author => "Cai,羽学";
+    }
 
-        //插件的一句话描述
-        public override string Description => "CaiBot机器人的适配插件";
+    public static int InitCode = -1;
 
-        //插件的名称
-        public override string Name => "CaiBotPlugin";
+    public static ClientWebSocket WebSocket = new();
 
-        public static readonly Version VersionNum = new Version(2024, 7, 10, 1); //日期+版本号(0,1,2...)
+    public Task WsTask;
 
-        public override Version Version
+    #region 加载前置
+
+    private Assembly CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
+    {
+        string resourceName =
+            $"{Assembly.GetExecutingAssembly().GetName().Name}.{new AssemblyName(args.Name).Name}.dll";
+        using Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+        if (stream == null)
+            throw new NullReferenceException("无法加载程序集:" + args.Name);
+        byte[] assemblyData = new byte[stream.Length];
+        stream.Read(assemblyData, 0, assemblyData.Length);
+        return Assembly.Load(assemblyData);
+    }
+
+    #endregion
+
+    public override void Initialize()
+    {
+        Config.Read();
+        AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+        On.OTAPI.Hooks.MessageBuffer.InvokeGetData += MessageBuffer_InvokeGetData;
+        ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
+        ServerApi.Hooks.GamePostInitialize.Register(this, GenCode);
+        WsTask = Task.Run(async () =>
         {
-            get { return VersionNum; }
-        }
-
-        //插件的构造器
-        public Plugin(Main game) : base(game)
-        {
-        }
-
-        public static int code = -1;
-
-        public static ClientWebSocket ws = new ClientWebSocket();
-
-        public Task wsTask;
-
-        #region 加载前置
-
-        private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
-        {
-            string resourceName =
-                $"{Assembly.GetExecutingAssembly().GetName().Name}.{new AssemblyName(args.Name).Name}.dll";
-            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
-            if (stream == null)
-                throw new NullReferenceException("无法加载程序集:" + args.Name);
-            byte[] assemblyData = new byte[stream.Length];
-            stream.Read(assemblyData, 0, assemblyData.Length);
-            return Assembly.Load(assemblyData);
-        }
-
-        #endregion
-
-        public override void Initialize()
-        {
-            Config.Read();
-            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
-            On.OTAPI.Hooks.MessageBuffer.InvokeGetData += MessageBuffer_InvokeGetData;
-            ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
-            ServerApi.Hooks.GamePostInitialize.Register(this, GenCode);
-            wsTask = Task.Run(async () =>
+            while (true)
             {
-                while (true)
+                try
                 {
-                    try
-                    {
-                        ws = new ClientWebSocket();
-                        while (Config.config.Token == "")
-                        {
-                            await Task.Delay(TimeSpan.FromSeconds(5));
-                        }
+                    WebSocket = new ClientWebSocket();
+                    while (Config.config.Token == "") await Task.Delay(TimeSpan.FromSeconds(5));
 
-                        if (Terraria.Program.LaunchParameters.ContainsKey("-cailocalbot"))
-                            await ws.ConnectAsync(new Uri("ws://127.0.0.1:22333/bot/" + Config.config.Token),
-                                CancellationToken.None);
-                        else
-                            await ws.ConnectAsync(new Uri("ws://api.terraria.ink:22333/bot/" + Config.config.Token),
-                                CancellationToken.None);
-                        while (true)
-                        {
-                            byte[] buffer = new byte[1024];
-                            WebSocketReceiveResult result = await ws.ReceiveAsync(new ArraySegment<byte>(buffer),
-                                CancellationToken.None);
-                            string receivedData = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                            if (Terraria.Program.LaunchParameters.ContainsKey("-caidebug"))
-                                TShock.Log.ConsoleInfo($"[CaiAPI]收到BOT数据包: {receivedData}");
-                            MessageHandle.HandleMessageAsync(receivedData);
-                        }
-                    }
-                    catch (Exception ex)
+                    if (Terraria.Program.LaunchParameters.ContainsKey("-cailocalbot"))
+                        await WebSocket.ConnectAsync(new Uri("ws://127.0.0.1:22333/bot/" + Config.config.Token),
+                            CancellationToken.None);
+                    else
+                        await WebSocket.ConnectAsync(new Uri("ws://api.terraria.ink:22333/bot/" + Config.config.Token),
+                            CancellationToken.None);
+                    while (true)
                     {
-                        TShock.Log.ConsoleInfo($"[CaiAPI]CaiBot断开连接...");
+                        byte[] buffer = new byte[1024];
+                        WebSocketReceiveResult result = await WebSocket.ReceiveAsync(new ArraySegment<byte>(buffer),
+                            CancellationToken.None);
+                        string receivedData = Encoding.UTF8.GetString(buffer, 0, result.Count);
                         if (Terraria.Program.LaunchParameters.ContainsKey("-caidebug"))
-                            TShock.Log.ConsoleError(ex.ToString());
-                        else
-                            TShock.Log.ConsoleError("链接失败原因: " + ex.Message);
+                            TShock.Log.ConsoleInfo($"[CaiAPI]收到BOT数据包: {receivedData}");
+                        await MessageHandle.HandleMessageAsync(receivedData);
                     }
-
-                    // 等待一段时间后再次尝试连接
-                    await Task.Delay(TimeSpan.FromSeconds(5));
                 }
-            });
-        }
+                catch (Exception ex)
+                {
+                    TShock.Log.ConsoleInfo($"[CaiAPI]CaiBot断开连接...");
+                    if (Terraria.Program.LaunchParameters.ContainsKey("-caidebug"))
+                        TShock.Log.ConsoleError(ex.ToString());
+                    else
+                        TShock.Log.ConsoleError("链接失败原因: " + ex.Message);
+                }
 
-        private void GenCode(EventArgs args)
+                // 等待一段时间后再次尝试连接
+                await Task.Delay(TimeSpan.FromSeconds(5));
+            }
+        });
+    }
+
+    private void GenCode(EventArgs args)
+    {
+        if (!string.IsNullOrEmpty(Config.config.Token)) return;
+        InitCode = new Random().Next(10000000, 99999999);
+        TShock.Log.ConsoleError($"[CaiBot]您的服务器绑定码为: {InitCode}");
+    }
+
+    private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig,
+        MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length,
+        ref int messageType, int maxPackets)
+    {
+        if (messageType == 217)
         {
-            if (Config.config.Token != "")
+            if (!string.IsNullOrEmpty(Config.config.Token))
             {
-                return;
+                NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable("exist"));
+                return false;
             }
 
-            Random rnd = new Random();
-            code = rnd.Next(10000000, 99999999);
-            TShock.Log.ConsoleError($"[CaiBot]您的服务器绑定码为: {code}");
-        }
-
-        private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig,
-            MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length,
-            ref int messageType, int maxPackets)
-        {
-            //Console.WriteLine(1);
-            if (messageType == 217)
+            instance.ResetReader();
+            instance.reader.BaseStream.Position = start + 1;
+            string data = instance.reader.ReadString();
+            string token = Guid.NewGuid().ToString();
+            if (data == InitCode.ToString())
             {
-                if (!string.IsNullOrEmpty(Config.config.Token))
-                {
-                    NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable("exist"));
-                    return false;
-                }
-
-                instance.ResetReader();
-                instance.reader.BaseStream.Position = start + 1;
-                string data = instance.reader.ReadString();
-                string token = Guid.NewGuid().ToString();
-                if (data == code.ToString())
-                {
-                    NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable(token));
-                    Config.config.Token = token;
-                    Config.config.Write();
-                }
-                else
-                {
-                    NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable("code"));
-                }
+                NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable(token));
+                Config.config.Token = token;
+                Config.config.Write();
             }
-
-
-            return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
-        }
-
-
-        //插件卸载时执行的代码
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+            else
             {
-                AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
-                On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= MessageBuffer_InvokeGetData;
-                ServerApi.Hooks.NetGetData.Deregister(this, Login.OnGetData);
-                ServerApi.Hooks.GamePostInitialize.Deregister(this, GenCode);
+                NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable("code"));
             }
-
-            base.Dispose(disposing);
         }
+
+
+        return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
+            On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= MessageBuffer_InvokeGetData;
+            ServerApi.Hooks.NetGetData.Deregister(this, Login.OnGetData);
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, GenCode);
+        }
+
+        base.Dispose(disposing);
     }
 }
