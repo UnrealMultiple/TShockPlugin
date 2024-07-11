@@ -129,11 +129,15 @@ try:
 except:
     print(f"[TRHUB]修改失败!{resp.text}")
 
+
+proxies = {'http': "220.248.70.237:9002",
+           'https': "220.248.70.237:9002"}
+
 # BBSTR
 name = "Cai233"
 # 创建会话
 session = rq.Session()
-resp = session.get("https://www.bbstr.net/") 
+resp = session.get("https://www.bbstr.net/",timeout=10,proxies=proxies) 
 
 # 获取xf_token
 soup = BeautifulSoup(resp.text, 'html.parser')
@@ -148,7 +152,7 @@ data = {
     "remember": 0,
     "_xfRedirect": "https://www.bbstr.net/",
 }
-session.post("https://www.bbstr.net/login/login",data=data,allow_redirects=True)
+session.post("https://www.bbstr.net/login/login",data=data,allow_redirects=True,proxies=proxies)
 
 
 # 编辑论坛仓库帖子
@@ -186,7 +190,7 @@ data = {
 
 
 try:
-    resp = session.post("https://www.bbstr.net/resources/167/edit",data=data,timeout=10)
+    resp = session.post("https://www.bbstr.net/resources/167/edit",data=data,timeout=10,proxies=proxies)
     res = resp.json()
     if res['status'] == 'ok':
         print(f"[BBSTR]修改成功: {res}")
