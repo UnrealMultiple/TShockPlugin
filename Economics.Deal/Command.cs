@@ -82,6 +82,7 @@ public class Command
                 return;
             }
             EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(context.Publisher, context.Cost);
+            args.Player.GiveItem(context.Item.netID, context.Item.Stack, context.Item.Prefix);
             args.Player.SendSuccessMessage("交易成功!");
             TShock.Utils.Broadcast(string.Format("玩家{0}购买了{1}发布的物品{2}!", args.Player.Name, context.Publisher, context.Item.ToString()), Color.OrangeRed);
             Deal.Config.RemoveItem(index - 1);
