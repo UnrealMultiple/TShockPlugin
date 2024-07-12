@@ -99,7 +99,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2024.6.19.1",
+    "Version": "2024.7.11.1",
     "Author": "Cai,羽学",
     "Description": "CaiBot机器人的适配插件",
     "Path": "CaiBot.dll"
@@ -551,6 +551,13 @@
     "Author": "大豆子，肝帝熙恩更新优化",
     "Description": "怪物死亡随机和自定义掉落物品",
     "Path": "DeathDrop.dll"
+  },
+  {
+    "Name": "生成基础建设",
+    "Version": "1.1.0",
+    "Author": "羽学",
+    "Description": "给新世界创建NPC住房、地狱直通车、地表和地狱平台（轨道）",
+    "Path": "SpawnInfra.dll"
   },
   {
     "Name": "硬核死亡掉生命水晶",

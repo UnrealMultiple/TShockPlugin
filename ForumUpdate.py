@@ -13,7 +13,7 @@ if result[0]['merged_at'] is None:
 
         
 
-html =f'<font size="6">✅ [{result[0]["title"]}]({result[0]["html_url"]}) ({datetime.datetime.strptime(result[0]["closed_at"], "%Y-%m-%dT%H:%M:%SZ").date()})</font>'
+html = f'<font size="6">✅ <a href="{result[0]["html_url"]}">{result[0]["title"]}</a> ({datetime.datetime.strptime(result[0]["closed_at"], "%Y-%m-%dT%H:%M:%SZ").date()})</font>'
 # 读取用户名 密码
 name = sys.argv[1] 
 password = sys.argv[2]
@@ -114,12 +114,14 @@ except:
 name = "Cai233"
 # 创建会话
 session = rq.Session()
-resp = session.get("https://tr.lizigo.cn/") 
+resp = session.get("https://www.bbstr.net/",timeout=10) 
 
 # 获取xf_token
 soup = BeautifulSoup(resp.text, 'html.parser')
 data_csrf = soup.html['data-csrf']
  
+proxies = {'http': "220.248.70.237:9002",
+           'https': "220.248.70.237:9002"}
 
 # 模拟登录
 data = {
@@ -127,9 +129,9 @@ data = {
     "login":name,
     "password": password,
     "remember": 0,
-    "_xfRedirect": "https://tr.lizigo.cn/",
+    "_xfRedirect": "https://www.bbstr.net/",
 }
-session.post("https://tr.lizigo.cn/login/login",data=data,allow_redirects=True)
+session.post("https://www.bbstr.net/login/login",data=data,allow_redirects=True,proxies=proxies)
 
 # 模拟登录
 
@@ -150,7 +152,7 @@ data = {
     "_xfResponseType": "json"
 }
 try:
-    resp = session.post("https://tr.lizigo.cn/threads/2427/add-reply",data=data)
+    resp = session.post("https://www.bbstr.net/threads/2427/add-reply",data=data,timeout=10,proxies=proxies)
     res = resp.json()
     if res['status'] == 'ok':
         print(f"[BBSTR]修改成功: {res}")
