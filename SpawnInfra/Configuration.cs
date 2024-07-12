@@ -6,9 +6,9 @@ namespace SpawnInfra
     internal class Configuration
     {
         [JsonProperty("使用说明", Order = -15)]
-        public string Text { get; set; } = "[左海平台]没适配好不推荐用，[刷怪场缩放值]不建议乱动（影响站立位/箱子位/计时位/岩浆区）";
+        public string Text { get; set; } = "[微光直通车]的高度是从[世界平台]到湖中心";
         [JsonProperty("使用说明2", Order = -14)]
-        public string Text2 { get; set; } = "出生点过低会引起[世界平台]贯穿海洋或地图太小容易上太空，建议自己根据情况调整,[微光直通车]的高度是从[世界平台]到湖中心";
+        public string Text2 { get; set; } = "[世界平台]与[左海…]判断高度为太空层往下的距离，[刷怪场比例缩放]为倍数放大，建议不要调太高";
         [JsonProperty("使用说明3", Order = -13)]
         public string Text3 { get; set; } = "改[箱子数量]要同时改[出生点偏移X]，改[箱子层数]要同时改[出生点偏移Y]，[层数间隔]和[箱子宽度]不建议动";
         [JsonProperty("使用说明4", Order = -12)]
@@ -147,18 +147,20 @@ namespace SpawnInfra
             public bool Enabled { get; set; } = true;
             [JsonProperty("是否建世界轨道", Order = -7)]
             public bool Enabled2 { get; set; } = true;
-            [JsonProperty("是否建左海平台", Order = -7)]
-            public bool Enabled3 { get; set; } = false;
+            [JsonProperty("是否建左海平台", Order = -6)]
+            public bool Enabled3 { get; set; } = true;
 
             [JsonProperty("世界平台图格", Order = 2)]
             public int ID { get; set; }
             [JsonProperty("世界平台样式", Order = 3)]
             public int Style { get; set; }
             [JsonProperty("世界平台高度", Order = 5)]
-            public int SpawnTileY { get; set; }
+            public int SkyY { get; set; }
             [JsonProperty("平台清理高度", Order = 6)]
             public int Height { get; set; }
 
+            [JsonProperty("世界平台禁入左海距离", Order = 7)]
+            public int Limit { get; set; }
             [JsonProperty("左海平台长度", Order = 8)]
             public int Wide { get; set; }
             [JsonProperty("左海平台高度", Order = 9)]
@@ -166,12 +168,13 @@ namespace SpawnInfra
             [JsonProperty("左海平台间隔", Order = 10)]
             public int Interval { get; set; }
 
-            public ItemData2(int id, int style,int tileY, int height, int wide,int height2,int interval )
+            public ItemData2(int id, int style,int tileY, int height,int limit, int wide,int height2,int interval )
             {
                 ID = id;
                 Style = style;
-                SpawnTileY = tileY;
+                SkyY = tileY;
                 Height = height;
+                Limit = limit;
                 Wide = wide;
                 Height2 = height2;
                 Interval = interval;
@@ -192,8 +195,10 @@ namespace SpawnInfra
             public bool Enabled4 { get; set; } = true;
             [JsonProperty("是否建刷怪场", Order = -2)]
             public bool Enabled5 { get; set; } = true;
-            [JsonProperty("刷怪场只清不建", Order = -1)]
+            [JsonProperty("只清刷怪区域", Order = -1)]
             public bool Enabled6 { get; set; } = false;
+            [JsonProperty("直通车贯穿刷怪场", Order = 0)]
+            public bool Enabled7 { get; set; } = true;
 
             [JsonProperty("方块图格", Order = 1)]
             public ushort ID { get; set; }
@@ -218,9 +223,9 @@ namespace SpawnInfra
 
             [JsonProperty("刷怪场清理深度", Order = 10)]
             public int Height { get; set; }
-            [JsonProperty("刷怪场清理宽度", Order = 10)]
+            [JsonProperty("刷怪场清理宽度", Order = 11)]
             public int Width3 { get; set; }
-            [JsonProperty("刷怪中心偏移", Order = 10)]
+            [JsonProperty("刷怪场比例缩放", Order = 12)]
             public int Center { get; set; }
 
 
@@ -257,12 +262,12 @@ namespace SpawnInfra
 
             WorldPlatform = new List<ItemData2>
             {
-                new ItemData2(19, 43, -150,35,270,218,30),
+                new ItemData2(19, 43, -150,35,200,270,200,30),
             };
 
             HellTunnel = new List<ItemData3>
             {
-                new ItemData3(38, 214, 19, 43, 0, 0,5,40,2,150,150,0),
+                new ItemData3(38, 214, 19, 43, 0, 0,5,40,2,200,200,2),
             };
         }
         #endregion
