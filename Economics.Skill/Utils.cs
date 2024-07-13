@@ -87,7 +87,7 @@ public class Utils
             for (int j = 0; j < player.TPlayer.inventory.Length; j++)
             {
                 var item = player.TPlayer.inventory[j];
-                if (item.netID == term.netID)
+                if (item.netID == term.netID && term.Consume)
                 {
                     if (item.stack >= stack)
                     {
