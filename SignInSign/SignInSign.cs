@@ -13,7 +13,7 @@ public class SignInSign : TerrariaPlugin
     public override string Name => "告示牌登录 SignInSign";
     public override string Description => "告示牌登录交互插件 支持进服弹窗！";
     public override string Author => "Soofa 羽学 少司命";
-    public override Version Version => new(1, 0, 3);
+    public override Version Version => new(1, 0, 4);
 
     #endregion
 
@@ -27,9 +27,9 @@ public class SignInSign : TerrariaPlugin
     public override void Initialize()
     {
         LoadConfig();
-        TShockAPI.Commands.ChatCommands.Add(new TShockAPI.Command("signinsign.setup", Command.SetupCmd, "setupsign", "gs", "告示"));
+        TShockAPI.Commands.ChatCommands.Add(new TShockAPI.Command(Command.SetupCmd, "setupsign", "gs", "告示"));
         ServerApi.Hooks.NetGreetPlayer.Register(this, OnNetGreetPlayer);
-        ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize);
+        ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize,-100); //优先级为倒数100 避免和CreateSpawn、SpawnInfra冲突
         GetDataHandlers.TileEdit.Register(OnEdit);
         GetDataHandlers.Sign.Register(OnSignChange);
         GetDataHandlers.SignRead.Register(OnSignRead);
@@ -159,9 +159,8 @@ public class SignInSign : TerrariaPlugin
     public static void OnSignRead(object? sender, GetDataHandlers.SignReadEventArgs args)
     {
         //当是否允许点击告示牌为false，则返回不做任何处理
-        if (args.Player == null || Config.SignEnable2 == false) { args.Handled = true; }
+        if (args.Player == null || Config.SignEnable2 == false || !args.Player.IsLoggedIn) args.Handled = true;
 
-        //否则
         else
         {
             if (Config.SignEnable3 == true)
@@ -169,35 +168,50 @@ public class SignInSign : TerrariaPlugin
                 args.Player!.SendMessage($"{Config.SignText2}", color: Microsoft.Xna.Framework.Color.Yellow);
             }
 
-            // 从配置中读取CommandsOnSignRead列表，并依次执行每个命令
-            foreach (var command in Config.CommandsOnSignRead)
-            {
-                // 执行命令，这里使用TSPlayer.Server执行命令意味着由服务器执行
-                Commands.HandleCommand(TSPlayer.Server, command);
-            }
+            //执行指令方法
+            Cmd(args.Player);
 
-            //遍历配置文件中的BUFFID，点击设置BUFF
             foreach (var BuffID in Config.BuffID)
             {
                 args.Player.SetBuff(BuffID, Config.BuffTime * 3600, false);
             }
 
-            //遍历配置文件中的物品ID，点击给予物品
             foreach (var ItemID in Config.ItemID)
             {
                 args.Player.GiveItem(ItemID, Config.ItemStack, 0);
             }
 
             //当点击告示牌是否传送为true,将玩家传送到指定坐标（仅对已登录玩家有效）
-            if (Config.Teleport == true || args.Player.IsLoggedIn)
+            if (Config.Teleport == true)
             {
                 if (Config.Teleport_X <= 0 || Config.Teleport_Y <= 0)
                 {
-                    args.Player!.SendMessage($"[告示牌登录]请使用 [c/F25E61:/gs s] 设置传送坐标，当前坐标为：{Config.Teleport_X},{Config.Teleport_Y}", color: Microsoft.Xna.Framework.Color.Yellow);
+                    args.Player!.SendMessage($"[告示牌登录]请使用 [c/F25E61:/gs s] 设置传送坐标，当前坐标为：{Config.Teleport_X},{Config.Teleport_Y} \n" +
+                        $"指令 [c/F25E61:/gs s] 的权限名为：signinsign.tp", color: Microsoft.Xna.Framework.Color.Yellow);
                 }
-                else { args.Player.Teleport(x: Config.Teleport_X * 16, y: Config.Teleport_Y * 16, style: Config.Style); }
+                else args.Player.Teleport(x: Config.Teleport_X * 16, y: Config.Teleport_Y * 16, style: Config.Style);
             }
         }
     }
     #endregion
+
+    #region 用超管组身份帮玩家执行指令方法
+    private static void Cmd(TSPlayer plr)
+    {
+        Group group = plr.Group;
+        try
+        {
+            plr.Group = new SuperAdminGroup();
+            foreach (var cmd in Config.CmdList)
+            {
+                Commands.HandleCommand(plr, cmd);
+            }
+        }
+        finally
+        {
+            plr.Group = group;
+        }
+    } 
+    #endregion
+
 }
