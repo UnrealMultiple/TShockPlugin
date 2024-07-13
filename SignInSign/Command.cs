@@ -23,8 +23,18 @@ namespace SignInSign
             switch (args.Parameters[0].ToLower())
             {
                 case "r":
+                case "reset":
                 case "reload":
-                    ReloadCmd(args);
+                    if (args.Player.HasPermission("signinsign.setup"))
+                    {
+                        ReloadCmd(args);
+                        if (SignInSign.Config.Teleport_X > 0 && SignInSign.Config.Teleport_Y > 0)
+                        {
+                            SignInSign.Config.Teleport_X = 0;
+                            SignInSign.Config.Teleport_Y = 0;
+                            SignInSign.Config.Write(Configuration.ConfigPath);
+                        }
+                    }
                     return;
                 case "s":
                 case "set":
@@ -32,7 +42,7 @@ namespace SignInSign
                     {
                         args.Player.SendMessage("[告示牌登录]设置传送点命令无需额外参数，将会使用你当前位置。", Microsoft.Xna.Framework.Color.Yellow);
                     }
-                    else
+                    else if (args.Parameters.Count == 1 && (args.Player.HasPermission("signinsign.tp") || args.Player.HasPermission("signinsign.setup"))) //加个玩家设置TP的权限
                     {
                         SignInSign.Config.Teleport_X = x;
                         SignInSign.Config.Teleport_Y = y;
@@ -55,11 +65,14 @@ namespace SignInSign
             //清掉原有的图格
             WorldGen.KillTile(Main.spawnTileX, Main.spawnTileY - 3);
 
-            //设置墙壁和图格
-            Main.tile[Main.spawnTileX, Main.spawnTileY - 3].wall = WallID.EchoWall;
-            Main.tile[Main.spawnTileX, Main.spawnTileY - 2].wall = WallID.EchoWall;
-            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].wall = WallID.EchoWall;
-            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].wall = WallID.EchoWall;
+            //检查墙壁是否为空，空则放置回声墙
+            if (Main.tile[Main.spawnTileX, Main.spawnTileY - 3].wall == WallID.None)
+            {
+                Main.tile[Main.spawnTileX, Main.spawnTileY - 3].wall = WallID.EchoWall;
+                Main.tile[Main.spawnTileX, Main.spawnTileY - 2].wall = WallID.EchoWall;
+                Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].wall = WallID.EchoWall;
+                Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].wall = WallID.EchoWall;
+            }
 
             Main.tile[Main.spawnTileX, Main.spawnTileY - 3].active(false);
             Main.tile[Main.spawnTileX, Main.spawnTileY - 2].active(false);
