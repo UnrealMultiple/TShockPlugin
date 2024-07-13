@@ -484,7 +484,7 @@
   },
   {
     "Name": "告示牌登录 SignInSign",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "Soofa 羽学 少司命",
     "Description": "告示牌登录交互插件 支持进服弹窗！",
     "Path": "SignInSign.dll"
