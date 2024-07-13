@@ -12,7 +12,7 @@ namespace SpawnInfra
         #region 插件信息
         public override string Name => "生成基础建设";
         public override string Author => "羽学";
-        public override Version Version => new Version(1, 4, 0);
+        public override Version Version => new Version(1, 5, 0);
         public override string Description => "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）";
         #endregion
 
@@ -22,7 +22,7 @@ namespace SpawnInfra
         {
             LoadConfig();
             GeneralHooks.ReloadEvent += (_) => LoadConfig();
-            ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize,20);//提高优先级避免覆盖CreateSpawn插件
+            ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize, 20); //提高优先级避免覆盖CreateSpawn插件
             Commands.ChatCommands.Add(new Command("room.use", Comds.Comd, "rm", "基建")
             {
                 HelpText = "生成基础建设"
@@ -62,30 +62,53 @@ namespace SpawnInfra
                     GenLargeHouse(Main.spawnTileX + item.spawnTileX, Main.spawnTileY + item.spawnTileY, item.Width, item.Height);
                 }
 
+                //太空层
+                var sky = Main.worldSurface * 0.3499999940395355;
+
+                //地狱直通车与刷怪场
                 foreach (var item in Config.HellTunnel)
                 {
-                    if (Config.HellTunnel[0].Enabled7)
+                    if (!Main.zenithWorld || !Main.remixWorld) //不是颠倒种子
                     {
-                        RockTrialField(Main.rockLayer, item.Height, item.Width3, item.Center);
-                        HellTunnel(Main.spawnTileX + item.SpawnTileX, Main.spawnTileY + item.SpawnTileY, item.Width);
+                        if (Config.HellTunnel[0].Enabled7) //直通车是否贯穿刷怪场
+                        {
+                            RockTrialField(Main.rockLayer, item.Height, item.Width3, item.Center);
+                            HellTunnel(Main.spawnTileX + item.SpawnTileX, Main.spawnTileY + item.SpawnTileY, item.Width);
+                        }
+                        else //换个顺序就能避免直通车覆盖刷怪场
+                            HellTunnel(Main.spawnTileX + item.SpawnTileX, Main.spawnTileY + item.SpawnTileY, item.Width);
+                            RockTrialField(Main.rockLayer, item.Height, item.Width3, item.Center);
                     }
-                    else
+
+                    else //颠倒
                     {
-                        HellTunnel(Main.spawnTileX + item.SpawnTileX, Main.spawnTileY + item.SpawnTileY, item.Width);
-
-                        RockTrialField(Main.rockLayer, item.Height, item.Width3, item.Center);
+                        if (Config.HellTunnel[0].Enabled7)//直通车是否贯穿刷怪场
+                        {
+                            //刷怪场 = 地狱层 除一半 补上自定义高度 
+                            RockTrialField(Main.rockLayer / 2 + item.Height, item.Height, item.Width3, item.Center);
+                            //直通车 = 地狱 - 地表 - 世界平台高度
+                            HellTunnel(Main.spawnTileX + item.SpawnTileX, (int)Main.rockLayer - (int)Main.worldSurface - ((int)sky - Config.WorldPlatform[0].SkyY), item.Width);
+                        }
+                        else //没啥不同就换个先后顺序
+                        {
+                            HellTunnel(Main.spawnTileX + item.SpawnTileX, (int)Main.rockLayer - (int)Main.worldSurface - ((int)sky - Config.WorldPlatform[0].SkyY), item.Width);
+                            RockTrialField(Main.rockLayer / 2 + item.Height, item.Height, item.Width3, item.Center);
+                        }
                     }
 
-                    ShimmerBiome(item.Width2);
+                    //微光湖直通车
+                    if (!Main.zenithWorld || !Main.remixWorld || !Main.tenthAnniversaryWorld) ShimmerBiome(item.Width2);
+                    else ZenithShimmerBiome(item.Width2);
+
+                    //地狱平台不用改判断 天顶可以继续用 考虑活动范围不够大 可以往上升一点
                     UnderworldPlatform(Main.UnderworldLayer + item.PlatformY, item.PlatformY);
                 }
 
-                //太空层
-                var sky = Main.worldSurface * 0.3499999940395355;
+                //世界平台依旧照常用，考虑到天顶失重建议高度往下降一点
                 foreach (var item in Config.WorldPlatform)
                 {
                     WorldPlatform((int)sky - item.SkyY, item.Height);
-                    BuildOceanPlatforms(item.Wide, item.Height2, item.Interval, item.Interval - 1);
+                    OceanPlatforms(item.Wide, item.Height2, item.Interval, item.Interval - 1);
                 }
 
                 foreach (var item in Config.Chests)
@@ -110,6 +133,7 @@ namespace SpawnInfra
         private static void RockTrialField(double posY, int Height, int Width, int CenterVal)
         {
             int clear = (int)posY - Height;
+
             // 计算顶部、底部和中间位置
             int top = clear + Height * 2;
             int bottom = (int)posY + Height * 2;
@@ -144,6 +168,7 @@ namespace SpawnInfra
                         }
 
                         WorldGen.PlaceTile(x, middle + 11 + CenterVal, Config.HellTunnel[0].ID, false, true, -1, 0); //中间下11格放箱子的实体块
+
                         WorldGen.PlaceTile(x, middle + 10 + CenterVal, Config.Chests[0].ChestID, false, true, -1, Config.Chests[0].ChestStyle); //中间下10格放箱子
 
                         WorldGen.PlaceTile(x, middle + 2, Config.HellTunnel[0].ID, false, true, -1, 0); //放计时器的平台
@@ -398,7 +423,7 @@ namespace SpawnInfra
         #endregion
 
         #region 左海平台
-        private static void BuildOceanPlatforms(int wide, int hight, int interval, int IntlClear)
+        private static void OceanPlatforms(int wide, int hight, int interval, int IntlClear)
         {
             if (!Config.WorldPlatform[0].Enabled3) return;
 
@@ -536,7 +561,7 @@ namespace SpawnInfra
         }
         #endregion
 
-        #region 微光湖直通车
+        #region 普通世界微光湖直通车
         private static void ShimmerBiome(int Width)
         {
             if (!Config.HellTunnel[0].Enabled4) return;
@@ -589,10 +614,9 @@ namespace SpawnInfra
                         int CenterX = (x + Right) / 2;
                         //深度到为中心湖面
                         int CenterY = (y + Bottom) / 2 - 8;
-                        //中止条件为世界轨道的距离
+                        //太空层
                         var sky = Main.worldSurface * 0.3499999940395355;
                         int Height = (int)sky - Config.WorldPlatform[0].SkyY;
-
                         // 从微光湖中心点向上挖通道直至地表
                         for (int TunnelY = CenterY; TunnelY >= Height; TunnelY--)
                             for (int TunnelX = CenterX - Width; TunnelX <= CenterX + Width; TunnelX++)
@@ -610,11 +634,111 @@ namespace SpawnInfra
                                 }
                             }
                         #endregion
-
                     }
                 }
         }
-    }
-    #endregion
+        #endregion
 
+        #region 天顶微光直通车
+        private static int MaxTunnels = 1; // 全局最大隧道数
+        private static int CurrentTunnels = 0; // 当前已创建的隧道数
+        private static void ZenithShimmerBiome(int Width)
+        {
+            if (!Config.HellTunnel[0].Enabled4 || CurrentTunnels >= MaxTunnels) return;
+
+            const int MinLakeSize = 200; // 只为大于等于200个瓷砖的微光湖创建隧道
+            var skipTile = new bool[Main.maxTilesX, Main.maxTilesY];
+            List<Tuple<int, int>> ConedLakes = new List<Tuple<int, int>>();
+            int[] labelMap = new int[Main.maxTilesX * Main.maxTilesY]; // 用于标记连通组件
+
+            // 使用连通组件分析检测微光湖
+            for (int x = 0; x < Main.maxTilesX; x++)
+                for (int y = 0; y < Main.maxTilesY; y++)
+                {
+                    if (Main.tile[x, y]?.shimmer() == true && !skipTile[x, y])
+                    {
+                        // 发现新的微光湖，开始标记
+                        int label = ConedLakes.Count + 1;
+                        FloodFill(x, y, label, ref labelMap, ref skipTile);
+                        ConedLakes.Add(Tuple.Create(x, y));
+                    }
+                }
+
+            // 从连通组件中选择最大的微光湖
+            Tuple<int, int> SCenter = null;
+            foreach (var lake in ConedLakes)
+            {
+                int label = ConedLakes.IndexOf(lake) + 1;
+                int size = CountSize(labelMap, label);
+                if (size >= MinLakeSize)
+                {
+                    // 更新选定的微光湖中心点
+                    if (SCenter == null || size > CountSize(labelMap, ConedLakes.FindIndex(l => l.Equals(SCenter)) + 1))
+                    {
+                        SCenter = lake;
+                    }
+                }
+            }
+
+            // 创建隧道
+            if (SCenter != null)
+            {
+                CreateTunnel(SCenter.Item1, SCenter.Item2, Width);
+                CurrentTunnels++;
+            }
+        }
+
+        //大量填充，根据邻近点合并，统计连通区域的大小（主打一个扫雷）
+        private static void FloodFill(int x, int y, int label, ref int[] labelMap, ref bool[,] skipTile)
+        {
+            if (x < 0 || x >= Main.maxTilesX || y < 0 || y >= Main.maxTilesY || !Main.tile[x, y].shimmer() || skipTile[x, y])
+                return;
+
+            int index = y * Main.maxTilesX + x;
+            labelMap[index] = label;
+            skipTile[x, y] = true;
+
+            FloodFill(x + 1, y, label, ref labelMap, ref skipTile);
+            FloodFill(x - 1, y, label, ref labelMap, ref skipTile);
+            FloodFill(x, y + 1, label, ref labelMap, ref skipTile);
+            FloodFill(x, y - 1, label, ref labelMap, ref skipTile);
+        }
+
+        //计数大小
+        private static int CountSize(int[] labelMap, int label)
+        {
+            int count = 0;
+            for (int i = 0; i < labelMap.Length; i++)
+            {
+                if (labelMap[i] == label)
+                    count++;
+            }
+            return count;
+        }
+
+        //创建隧道
+        private static void CreateTunnel(int CenterX, int CenterY, int Width)
+        {
+            int CenterYOffset = -8; // 调整到微光湖中心偏上的位置
+            int Height = (int)(Main.worldSurface * 0.3499999940395355) - Config.WorldPlatform[0].SkyY;
+
+            // 开始挖掘隧道
+            for (int y = CenterY + CenterYOffset; y >= Height; y--)
+            {
+                for (int x = CenterX - Width; x <= CenterX + Width; x++)
+                {
+                    if (x >= 0 && x < Main.maxTilesX)
+                    {
+                        Main.tile[x, y].ClearEverything();
+                        if (x == CenterX - Width || x == CenterX + Width)
+                            WorldGen.PlaceTile(x, y, Config.HellTunnel[0].ID, false, true, -1, 0); // 两侧放置特殊方块
+                        else if (y == CenterY + CenterYOffset)
+                            WorldGen.PlaceTile(x, y, 460, false, true, -1, 0); // 底部放置雨云
+                    }
+                }
+            }
+        }
+        #endregion
+
+    }
 }

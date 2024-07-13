@@ -257,17 +257,17 @@ namespace SpawnInfra
 
             Chests = new List<ItemData1>
             {
-                new ItemData1(-38,27,2,18,8,2,30,21,1,19,43)
+                new ItemData1(-38,27,2,18,8,2,20,21,1,19,43)
             };
 
             WorldPlatform = new List<ItemData2>
             {
-                new ItemData2(19, 43, -150,35,200,270,200,30),
+                new ItemData2(19, 43, -200 ,35,150,270,200,30),
             };
 
             HellTunnel = new List<ItemData3>
             {
-                new ItemData3(38, 214, 19, 43, 0, 0,5,40,2,200,200,2),
+                new ItemData3(38, 214, 19, 43, 0, 0,5,25,2,200,200,2),
             };
         }
         #endregion
