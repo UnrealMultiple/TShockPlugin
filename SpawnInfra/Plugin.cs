@@ -22,7 +22,7 @@ namespace SpawnInfra
         {
             LoadConfig();
             GeneralHooks.ReloadEvent += (_) => LoadConfig();
-            ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize);
+            ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize,20);//提高优先级避免覆盖CreateSpawn插件
             Commands.ChatCommands.Add(new Command("room.use", Comds.Comd, "rm", "基建")
             {
                 HelpText = "生成基础建设"
