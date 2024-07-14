@@ -1,6 +1,8 @@
+using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
+using OTAPI;
 using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
@@ -79,14 +81,39 @@ namespace ServerTools
             #endregion
             CmdHook = new Hook(typeof(Commands).GetMethod(nameof(Commands.HandleCommand)), CommandHook);
             new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static), ViewAccountInfo);
-
             #region RestAPI
             TShock.RestApi.Register("/deathrank", DeadRank);
             TShock.RestApi.Register("/onlineDuration", Queryduration);
             #endregion
             Timer += OnUpdatePlayerOnline;
+            On.OTAPI.Hooks.MessageBuffer.InvokeGetData += MessageBuffer_InvokeGetData;
             HandleCommandLine(Environment.GetCommandLineArgs());
         }
+
+        private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
+        {
+            
+            if (packetId == (byte)PacketTypes.LoadNetModule)
+            {
+                using MemoryStream ms = new MemoryStream(instance.readBuffer);
+                ms.Position = readOffset;
+                using BinaryReader reader = new BinaryReader(ms);
+                var id = reader.ReadUInt16();
+                if (id == Terraria.Net.NetManager.Instance.GetId<Terraria.GameContent.NetModules.NetTextModule>())
+                { 
+                    var msg = Terraria.Chat.ChatMessage.Deserialize(reader);
+                    if (Regex.IsMatch(msg.Text, @"[\uD800-\uDBFF][\uDC00-\uDFFF]"))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+        }
+
+
+
+
 
         #region 禁双饰品与肉前第7格饰品位方法
         private void OnUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
@@ -388,6 +415,7 @@ namespace ServerTools
                 args.Handled = true;
                 return;
             }
+           
 
             if (Config.KeepOpenChest && args.MsgID == PacketTypes.ChestOpen)
             {
