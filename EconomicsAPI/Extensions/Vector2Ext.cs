@@ -20,11 +20,8 @@ public static class Vector2Ext
 
     public static Vector2 ToLenOf(this Vector2 vec, float len)
     {
-        var old = vec;
-        vec.Normalize();
-        if (vec.HasNanOrInf())
-            return old * len;
-        return vec * len;
+        var newVec = vec.SafeNormalize(default);
+        return newVec * len;
     }
 
     public static Vector2[] GetCircleEdgePoints(this Vector2 pos, float radius, float distanceBetweenPoints)
