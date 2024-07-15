@@ -19,7 +19,7 @@ public class SpawnProjectile
             Owner = Main.myPlayer;
         }
         int num = 1000;
-        for (int i = 9999; i > 0; i--)
+        for (int i = 999; i > 0; i--)
         {
             if (!Main.projectile[i].active)
             {
