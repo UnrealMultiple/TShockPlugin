@@ -6,7 +6,7 @@ namespace SpawnInfra
     internal class Configuration
     {
         [JsonProperty("使用说明", Order = -15)]
-        public string Text { get; set; } = "[微光直通车]的高度是从[世界平台]到湖中心";
+        public string Text { get; set; } = "[微光直通车]的高度是从[世界平台]到湖中心,[自建微光湖]天顶从地狱往上算，其他以出生点往下算,开启则关闭[微光直通]";
         [JsonProperty("使用说明2", Order = -14)]
         public string Text2 { get; set; } = "[世界平台]与[左海…]判断高度为太空层往下的距离，[刷怪场比例缩放]为倍数放大，建议不要调太高";
         [JsonProperty("使用说明3", Order = -13)]
@@ -15,9 +15,14 @@ namespace SpawnInfra
         public string Text4 { get; set; } = "给玩家用的建晶塔房指令:/rm 数量 权限名:room.use (千万别在出生点用，有炸图风险)";
         [JsonProperty("使用说明5", Order = -11)]
         public string Text5 { get; set; } = "每次重置服务器前使用一遍：/rm 重置，或者直接把这个指令写进重置插件里";
+        [JsonProperty("使用说明6", Order = -11)]
+        public string Text6 { get; set; } = "以下参数仅适用于大地图，小地图需自己调试适配";
 
         [JsonProperty("开服自动基建", Order = -10)]
         public bool Enabled { get; set; } = true;
+
+        [JsonProperty("自建微光湖", Order = 0)]
+        public List<ItemData4> SpawnShimmerBiome { get; set; } = new List<ItemData4>();
 
         [JsonProperty("监狱集群", Order = 1)]
         public List<ItemData> Prison { get; set; } = new List<ItemData>();
@@ -31,12 +36,11 @@ namespace SpawnInfra
         [JsonProperty("直通车/刷怪场", Order = 4)]
         public List<ItemData3> HellTunnel { get; set; } = new List<ItemData3>();
 
-
         #region 监狱数据
         public class ItemData
         {
             [JsonProperty("是否建监狱", Order = -9)]
-            public bool Enabled { get; set; } = true;
+            public bool BigHouseEnabled { get; set; } = true;
 
             [JsonProperty("出生点偏移X", Order = -2)]
             public int spawnTileX { get; set; }
@@ -45,10 +49,10 @@ namespace SpawnInfra
             public int spawnTileY { get; set; }
 
             [JsonProperty("监狱集群宽度", Order = -2)]
-            public int Width { get; set; }
+            public int BigHouseWidth { get; set; }
 
             [JsonProperty("监狱集群高度", Order = -1)]
-            public int Height { get; set; }
+            public int BigHouseHeight { get; set; }
 
             [JsonProperty("图格ID", Order = 1)]
             public ushort TileID { get; set; }
@@ -74,8 +78,8 @@ namespace SpawnInfra
                 WallID = wallID;
                 spawnTileX = tileX;
                 spawnTileY = tileY;
-                Width = width;
-                Height = height;
+                BigHouseWidth = width;
+                BigHouseHeight = height;
                 PlatformStyle = platformstyle;
                 ChairStyle = chairstyle;
                 BenchStyle = benchstyle;
@@ -88,7 +92,7 @@ namespace SpawnInfra
         public class ItemData1
         {
             [JsonProperty("是否建箱子", Order = -9)]
-            public bool Enabled { get; set; } = true;
+            public bool SpawnChestEnabled { get; set; } = true;
 
             [JsonProperty("出生点偏移X", Order = -3)]
             public int spawnTileX { get; set; }
@@ -97,45 +101,45 @@ namespace SpawnInfra
             public int spawnTileY { get; set; }
 
             [JsonProperty("箱子数量", Order = -2)]
-            public int Count { get; set; }
+            public int ChestCount { get; set; }
 
             [JsonProperty("箱子层数", Order = -2)]
-            public int Layers { get; set; }
+            public int ChestLayers { get; set; }
 
             [JsonProperty("层数间隔", Order = -2)]
             public int LayerHeight { get; set; }
 
             [JsonProperty("清理高度", Order = -1)]
-            public int Height { get; set; }
+            public int ClearHeight { get; set; }
 
             [JsonProperty("箱子宽度", Order = -1)]
-            public int Width { get; set; }
+            public int ChestWidth { get; set; }
 
             [JsonProperty("箱子ID", Order = 0)]
-            public ushort ChestID { get; set; }
+            public ushort ChestTileID { get; set; }
 
             [JsonProperty("箱子样式", Order = 0)]
             public int ChestStyle { get; set; }
 
             [JsonProperty("平台ID", Order = 1)]
-            public ushort PlatformID { get; set; }
+            public ushort ChestPlatformID { get; set; }
 
             [JsonProperty("平台样式", Order = 2)]
-            public int PlatformStyle { get; set; }
+            public int ChestPlatformStyle { get; set; }
 
             public ItemData1(int tileX, int tileY, int width, int count ,int layers, int layerheight, int height, ushort chestID, int chestStyle,  ushort platformID, int platformstyle)
             {
                 spawnTileX = tileX;
                 spawnTileY = tileY;
-                Width = width;
-                Layers = layers;
+                ChestWidth = width;
+                ChestLayers = layers;
                 LayerHeight = layerheight;
-                Count = count;
-                Height = height;
-                ChestID = chestID;
+                ChestCount = count;
+                ClearHeight = height;
+                ChestTileID = chestID;
                 ChestStyle = chestStyle;
-                PlatformID = platformID;
-                PlatformStyle = platformstyle;
+                ChestPlatformID = platformID;
+                ChestPlatformStyle = platformstyle;
             }
         }
         #endregion
@@ -144,40 +148,43 @@ namespace SpawnInfra
         public class ItemData2
         {
             [JsonProperty("是否建世界平台", Order = -8)]
-            public bool Enabled { get; set; } = true;
+            public bool WorldPlatformEnabled { get; set; } = true;
             [JsonProperty("是否建世界轨道", Order = -7)]
-            public bool Enabled2 { get; set; } = true;
+            public bool WorldTrackEnabled { get; set; } = true;
             [JsonProperty("是否建左海平台", Order = -6)]
-            public bool Enabled3 { get; set; } = true;
+            public bool OceanPlatformEnabled { get; set; } = true;
 
             [JsonProperty("世界平台图格", Order = 2)]
-            public int ID { get; set; }
+            public int WorldPlatformID { get; set; }
             [JsonProperty("世界平台样式", Order = 3)]
-            public int Style { get; set; }
+            public int WorldPlatformStyle { get; set; }
             [JsonProperty("世界平台高度", Order = 5)]
-            public int SkyY { get; set; }
+            public int WorldPlatformY { get; set; }
             [JsonProperty("平台清理高度", Order = 6)]
-            public int Height { get; set; }
+            public int WorldPlatformClearY { get; set; }
 
             [JsonProperty("世界平台禁入左海距离", Order = 7)]
-            public int Limit { get; set; }
+            public int WorldPlatformFromOceanLimit { get; set; }
+            [JsonProperty("左海平台禁入出生点距离", Order = 7)]
+            public int OceanPlatformFormSpwanXLimit { get; set; }
             [JsonProperty("左海平台长度", Order = 8)]
-            public int Wide { get; set; }
+            public int OceanPlatformWide { get; set; }
             [JsonProperty("左海平台高度", Order = 9)]
-            public int Height2 { get; set; }
+            public int OceanPlatformHeight { get; set; }
             [JsonProperty("左海平台间隔", Order = 10)]
-            public int Interval { get; set; }
+            public int OceanPlatformInterval { get; set; }
 
-            public ItemData2(int id, int style,int tileY, int height,int limit, int wide,int height2,int interval )
+            public ItemData2(int id, int style,int tileY, int height,int limit, int limit2,int wide,int height2,int interval )
             {
-                ID = id;
-                Style = style;
-                SkyY = tileY;
-                Height = height;
-                Limit = limit;
-                Wide = wide;
-                Height2 = height2;
-                Interval = interval;
+                WorldPlatformID = id;
+                WorldPlatformStyle = style;
+                WorldPlatformY = tileY;
+                WorldPlatformClearY = height;
+                WorldPlatformFromOceanLimit = limit;
+                OceanPlatformFormSpwanXLimit = limit2;
+                OceanPlatformWide = wide;
+                OceanPlatformHeight = height2;
+                OceanPlatformInterval = interval;
             }
         }
         #endregion
@@ -186,24 +193,24 @@ namespace SpawnInfra
         public class ItemData3
         {
             [JsonProperty("是否建地狱直通车", Order = -6)]
-            public bool Enabled { get; set; } = true;
+            public bool HellTunnelEnabled { get; set; } = true;
             [JsonProperty("是否建地狱平台", Order = -5)]
-            public bool Enabled2 { get; set; } = true;
+            public bool HellPlatformEnabled { get; set; } = true;
             [JsonProperty("是否建地狱轨道", Order = -4)]
-            public bool Enabled3 { get; set; } = true;
+            public bool HellTrackEnabled { get; set; } = true;
             [JsonProperty("是否建微光直通车", Order = -3)]
-            public bool Enabled4 { get; set; } = true;
+            public bool ShimmerBiomeTunnelEnabled { get; set; } = true;
             [JsonProperty("是否建刷怪场", Order = -2)]
-            public bool Enabled5 { get; set; } = true;
+            public bool BrushMonstEnabled { get; set; } = true;
             [JsonProperty("只清刷怪区域", Order = -1)]
-            public bool Enabled6 { get; set; } = false;
+            public bool ClearRegionEnabled { get; set; } = false;
             [JsonProperty("直通车贯穿刷怪场", Order = 0)]
-            public bool Enabled7 { get; set; } = true;
+            public bool HellTrunnelCoverBrushMonst { get; set; } = true;
 
             [JsonProperty("方块图格", Order = 1)]
-            public ushort ID { get; set; }
+            public ushort Hell_BM_TileID { get; set; }
             [JsonProperty("绳子图格", Order = 2)]
-            public ushort ID2 { get; set; }
+            public ushort Cord_TileID { get; set; }
             [JsonProperty("平台图格", Order = 3)]
             public ushort PlatformID { get; set; }
             [JsonProperty("平台样式", Order = 3)]
@@ -214,35 +221,62 @@ namespace SpawnInfra
             [JsonProperty("直通车偏移Y", Order = 5)]
             public int SpawnTileY { get; set; }
             [JsonProperty("地狱直通车宽度", Order = 6)]
-            public int Width { get; set; }
+            public int HellTrunnelWidth { get; set; }
             [JsonProperty("地狱平台深度", Order = 7)]
-            public int PlatformY{ get; set; }
+            public int HellPlatformY{ get; set; }
 
             [JsonProperty("微光直通车宽度", Order = 8)]
-            public int Width2 { get; set; }
+            public int ShimmerBiomeTunnelWidth { get; set; }
 
             [JsonProperty("刷怪场清理深度", Order = 10)]
-            public int Height { get; set; }
+            public int BrushMonstHeight { get; set; }
             [JsonProperty("刷怪场清理宽度", Order = 11)]
-            public int Width3 { get; set; }
+            public int BrushMonstWidth { get; set; }
             [JsonProperty("刷怪场比例缩放", Order = 12)]
-            public int Center { get; set; }
+            public int BrushMonstCenter { get; set; }
+            [JsonProperty("是否放岩浆", Order = 13)]
+            public bool Lava { get; set; } = true;
+            [JsonProperty("是否放尖球", Order = 13)]
+            public bool Trap { get; set; } = true;
+            [JsonProperty("是否放飞镖", Order = 13)]
+            public bool Dart { get; set; } = true;
 
 
             public ItemData3(ushort id, ushort id2, ushort platformID, int platformstyle, int tileX, int tileY, int width ,int platformY, int width2,int height,int width3, int center)
             {
-                ID = id;
-                ID2 = id2;
+                Hell_BM_TileID = id;
+                Cord_TileID = id2;
                 PlatformID = platformID;
                 PlatformStyle = platformstyle;
                 SpawnTileX = tileX;
                 SpawnTileY = tileY;
-                Width = width;
-                PlatformY = platformY;
-                Width2 = width2;
-                Height = height;
-                Width3 = width3;
-                Center = center;
+                HellTrunnelWidth = width;
+                HellPlatformY = platformY;
+                ShimmerBiomeTunnelWidth = width2;
+                BrushMonstHeight = height;
+                BrushMonstWidth = width3;
+                BrushMonstCenter = center;
+            }
+        }
+        #endregion
+
+        #region 自建微光湖
+        public class ItemData4
+        {
+            [JsonProperty("生成微光湖", Order = -9)]
+            public bool SpawnShimmerBiome { get; set; } = false;
+
+            [JsonProperty("出生点偏移X", Order = -3)]
+            public int TileX { get; set; }
+
+            [JsonProperty("出生点偏移Y", Order = -3)]
+            public int TileY { get; set; }
+
+
+            public ItemData4(int tileX, int tileY)
+            {
+                TileX = tileX;
+                TileY = tileY;
             }
         }
         #endregion
@@ -262,12 +296,17 @@ namespace SpawnInfra
 
             WorldPlatform = new List<ItemData2>
             {
-                new ItemData2(19, 43, -200 ,35,150,270,200,30),
+                new ItemData2(19, 43, -200 ,35,150,50,270,200,30),
             };
 
             HellTunnel = new List<ItemData3>
             {
                 new ItemData3(38, 214, 19, 43, 0, 0,5,25,2,200,200,2),
+            };
+
+            SpawnShimmerBiome = new List<ItemData4>
+            {
+                new ItemData4(0, 200),
             };
         }
         #endregion
