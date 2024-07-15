@@ -12,15 +12,14 @@ public class SpawnProjectile
         return NewProjectile(spawnSource, position.X, position.Y, velocity.X, velocity.Y, Type, Damage, KnockBack, Owner, ai0, ai1, ai2, timeLeft);
     }
 
-
-    public static int NewProjectile(IEntitySource spawnSource, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner = -1, float ai0 = 0f, float ai1 = 0f, float ai2 = 0f, int timeLeft = -1)
+    public static int NewProjectile(IEntitySource spawnSource, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner = -1, float ai0 = 0f, float ai1 = 0f, float ai2 = 0, int timeLeft = -1)
     {
         if (Owner == -1)
         {
             Owner = Main.myPlayer;
         }
         int num = 1000;
-        for (int i = 1000; i >= 0; i--)
+        for (int i = 999; i > 0; i--)
         {
             if (!Main.projectile[i].active)
             {
@@ -30,12 +29,12 @@ public class SpawnProjectile
         }
         if (num == 1000)
         {
-            num = Projectile.FindOldestProjectile();
+            num = Terraria.Projectile.FindOldestProjectile();
         }
         Projectile projectile = Main.projectile[num];
         projectile.SetDefaults(Type);
-        projectile.position.X = X - projectile.width * 0.5f;
-        projectile.position.Y = Y - projectile.height * 0.5f;
+        projectile.position.X = X - (float)projectile.width * 0.5f;
+        projectile.position.Y = Y - (float)projectile.height * 0.5f;
         projectile.owner = Owner;
         projectile.velocity.X = SpeedX;
         projectile.velocity.Y = SpeedY;
@@ -44,7 +43,6 @@ public class SpawnProjectile
         projectile.identity = num;
         projectile.gfxOffY = 0f;
         projectile.stepSpeed = 1f;
-        projectile.active = true;
         projectile.wet = Collision.WetCollision(projectile.position, projectile.width, projectile.height);
         if (projectile.ignoreWater)
         {
@@ -53,7 +51,7 @@ public class SpawnProjectile
         projectile.honeyWet = Collision.honey;
         projectile.shimmerWet = Collision.shimmer;
         Main.projectileIdentity[Owner, num] = num;
-        Projectile.FindBannerToAssociateTo(spawnSource, projectile);
+        Terraria.Projectile.FindBannerToAssociateTo(spawnSource, projectile);
         if (projectile.aiStyle == 1)
         {
             while (projectile.velocity.X >= 16f || projectile.velocity.X <= -16f || projectile.velocity.Y >= 16f || projectile.velocity.Y < -16f)
@@ -69,17 +67,17 @@ public class SpawnProjectile
             switch (Type)
             {
                 case 206:
-                    projectile.ai[0] = Main.rand.Next(-100, 101) * 0.0005f;
-                    projectile.ai[1] = Main.rand.Next(-100, 101) * 0.0005f;
+                    projectile.ai[0] = (float)Main.rand.Next(-100, 101) * 0.0005f;
+                    projectile.ai[1] = (float)Main.rand.Next(-100, 101) * 0.0005f;
                     break;
                 case 335:
                     projectile.ai[1] = Main.rand.Next(4);
                     break;
                 case 358:
-                    projectile.ai[1] = Main.rand.Next(10, 31) * 0.1f;
+                    projectile.ai[1] = (float)Main.rand.Next(10, 31) * 0.1f;
                     break;
                 case 406:
-                    projectile.ai[1] = Main.rand.Next(10, 21) * 0.1f;
+                    projectile.ai[1] = (float)Main.rand.Next(10, 21) * 0.1f;
                     break;
                 default:
                     projectile.ai[0] = ai0;
@@ -119,7 +117,7 @@ public class SpawnProjectile
                 int num3 = 0;
                 int num4 = 0;
                 int num5 = 99999999;
-                for (int j = 0; j < 1000; j++)
+                for (int j = 999; j > 0; j--)
                 {
                     if (Main.projectile[j].active && ProjectileID.Sets.IsAGolfBall[Main.projectile[j].type] && Main.projectile[j].owner == Owner && Main.projectile[j].damage <= 0)
                     {
@@ -265,11 +263,14 @@ public class SpawnProjectile
         {
             Main.player[Owner].TryUpdateChannel(projectile);
         }
+        if (timeLeft == 0)
+        { 
+            projectile.Kill();
+        }
         if (timeLeft > 0)
         {
             projectile.timeLeft = timeLeft;
         }
         return num;
     }
-
 }

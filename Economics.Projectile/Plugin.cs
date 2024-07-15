@@ -53,6 +53,7 @@ public class Plugin : TerrariaPlugin
                 self.Minion_FindTargetInRange(1500, ref id, false);
             }
         }
+        orig(self);
     }
 
     private void Projectile_Minion_FindTargetInRange(On.Terraria.Projectile.orig_Minion_FindTargetInRange orig, Terraria.Projectile self, int startAttackRange, ref int attackTarget, bool skipIfCannotHitWithOwnBody, Func<Entity, int, bool> customEliminationCheck)
@@ -115,6 +116,7 @@ public class Plugin : TerrariaPlugin
                 }
             }
         }
+        orig(self, startAttackRange, ref attackTarget, skipIfCannotHitWithOwnBody, customEliminationCheck);
     }
 
     private void Onupdate(EventArgs args)
