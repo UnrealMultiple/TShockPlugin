@@ -372,7 +372,7 @@
   },
   {
     "Name": "Respawn",
-    "Version": "1.0.1",
+    "Version": "2.0.0.0",
     "Author": "leader，肝帝熙恩",
     "Description": "原地复活",
     "Path": "Respawn.dll"
