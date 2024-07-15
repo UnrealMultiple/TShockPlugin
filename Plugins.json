@@ -239,7 +239,7 @@
   },
   {
     "Name": "EconomicsAPI",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": "EconomicsAPI",
     "Path": "EconomicsAPI.dll"
@@ -393,7 +393,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.7.1",
+    "Version": "1.1.7.2",
     "Author": "少司命",
     "Description": "服务器工具",
     "Path": "ServerTools.dll"
