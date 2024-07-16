@@ -76,6 +76,7 @@ public class Skill : TerrariaPlugin
         TimerCount++;
         if ((TimerCount % 6) == 0)
         {
+            SkillCD.SendGodPacket();
             SkillCD.Updata();
         }
     }
