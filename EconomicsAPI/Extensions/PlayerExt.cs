@@ -49,6 +49,24 @@ public static class PlayerExt
         }).ToList();
     }
 
+    public static NPC? GetNpcInRangeByHp(this Player Player, int range)
+    {
+        var npcs = Player.GetNpcInRange(range);
+        if (npcs.Count == 0)
+            return null;
+        var boss = npcs.OrderBy(x => x.life);
+        return boss.FirstOrDefault(x => x.boss, boss.First());
+    }
+
+    public static NPC? GetNpcInRangeByDis(this Player Player, int range)
+    {
+        var npcs = Player.GetNpcInRange(range);
+        if (npcs.Count == 0)
+            return null;
+        var boss = npcs.OrderBy(x => Math.Abs(x.position.Distance(Player.position)));
+        return boss.FirstOrDefault(x => x.boss, boss.First());
+    }
+
     public static List<Player> GetPlayerInRange(this Player player, int range)
     {
         return Economics.ServerPlayers
