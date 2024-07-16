@@ -8,7 +8,7 @@ namespace SpawnInfra
         [JsonProperty("使用说明", Order = -15)]
         public string Text { get; set; } = "[微光直通车]的高度是从[世界平台]到湖中心,[自建微光湖]天顶从地狱往上算，其他以出生点往下算,开启则关闭[微光直通]";
         [JsonProperty("使用说明2", Order = -14)]
-        public string Text2 { get; set; } = "[世界平台]与[左海…]判断高度为太空层往下的距离，[刷怪场比例缩放]为倍数放大，建议不要调太高";
+        public string Text2 { get; set; } = "[世界平台]普通世界从出生点往上算，天顶从太空层往下算，[刷怪场比例缩放]为倍数放大，建议不要调太高";
         [JsonProperty("使用说明3", Order = -13)]
         public string Text3 { get; set; } = "改[箱子数量]要同时改[出生点偏移X]，改[箱子层数]要同时改[出生点偏移Y]，[层数间隔]和[箱子宽度]不建议动";
         [JsonProperty("使用说明4", Order = -12)]
@@ -127,7 +127,7 @@ namespace SpawnInfra
             [JsonProperty("平台样式", Order = 2)]
             public int ChestPlatformStyle { get; set; }
 
-            public ItemData1(int tileX, int tileY, int width, int count ,int layers, int layerheight, int height, ushort chestID, int chestStyle,  ushort platformID, int platformstyle)
+            public ItemData1(int tileX, int tileY, int width, int count, int layers, int layerheight, int height, ushort chestID, int chestStyle, ushort platformID, int platformstyle)
             {
                 spawnTileX = tileX;
                 spawnTileY = tileY;
@@ -174,7 +174,14 @@ namespace SpawnInfra
             [JsonProperty("左海平台间隔", Order = 10)]
             public int OceanPlatformInterval { get; set; }
 
-            public ItemData2(int id, int style,int tileY, int height,int limit, int limit2,int wide,int height2,int interval )
+            [JsonProperty("实体块包围左海平台(天顶必开)", Order = 11)]
+            public bool Enclose { get; set; } = true;
+            [JsonProperty("左右实体块是否对齐上下(加载很慢)", Order = 11)]
+            public bool AccordantY { get; set; } = false;
+            [JsonProperty("左海平台产生液(非空岛不需要开)", Order = 13)]
+            public bool PlaceLiquid { get; set; } = false;
+
+            public ItemData2(int id, int style, int tileY, int height, int limit, int limit2, int wide, int height2, int interval)
             {
                 WorldPlatformID = id;
                 WorldPlatformStyle = style;
@@ -223,7 +230,7 @@ namespace SpawnInfra
             [JsonProperty("地狱直通车宽度", Order = 6)]
             public int HellTrunnelWidth { get; set; }
             [JsonProperty("地狱平台深度", Order = 7)]
-            public int HellPlatformY{ get; set; }
+            public int HellPlatformY { get; set; }
 
             [JsonProperty("微光直通车宽度", Order = 8)]
             public int ShimmerBiomeTunnelWidth { get; set; }
@@ -242,7 +249,7 @@ namespace SpawnInfra
             public bool Dart { get; set; } = true;
 
 
-            public ItemData3(ushort id, ushort id2, ushort platformID, int platformstyle, int tileX, int tileY, int width ,int platformY, int width2,int height,int width3, int center)
+            public ItemData3(ushort id, ushort id2, ushort platformID, int platformstyle, int tileX, int tileY, int width, int platformY, int width2, int height, int width3, int center)
             {
                 Hell_BM_TileID = id;
                 Cord_TileID = id2;
@@ -291,7 +298,7 @@ namespace SpawnInfra
 
             Chests = new List<ItemData1>
             {
-                new ItemData1(-38,27,2,18,8,2,20,21,1,19,43)
+                new ItemData1(-38,27,2,18,8,2,2,21,1,19,43)
             };
 
             WorldPlatform = new List<ItemData2>
