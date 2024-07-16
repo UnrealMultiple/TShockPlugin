@@ -1,6 +1,5 @@
 ﻿using Economics.Skill.Enumerates;
 using Economics.Skill.Model;
-using Economics.Skill.Model.Options;
 using EconomicsAPI.Extensions;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -26,9 +25,9 @@ public class Utils
             throw new Exception("此技能全服唯一已经有其他人绑定了此技能!");
         if (bind.Count >= Skill.Config.SkillMaxCount)
             throw new Exception("技能已超过规定的最大绑定数量!");
-        if (bind.Where(x => Convert.ToBoolean(x.Skill?.SkillSpark.SparkMethod.Contains(SkillSparkType.Take))).Count() >= Skill.Config.WeapoeBindMaxCount)
+        if (bind.Where(x => x.Skill != null && x.Skill.SkillSpark.SparkMethod.Contains(SkillSparkType.Take)).Count() >= Skill.Config.WeapoeBindMaxCount)
             throw new Exception("此武器已超过规定的最大绑定数量!");
-        if (bind.Where(x => !Convert.ToBoolean(x.Skill?.SkillSpark.SparkMethod.Contains(SkillSparkType.Take))).Count() >= Skill.Config.PSkillMaxCount)
+        if (bind.Where(x => x.Skill != null && x.Skill.SkillSpark.SparkMethod.Contains(SkillSparkType.Take)).Count() >= Skill.Config.PSkillMaxCount)
             throw new Exception("被动类型技能已超过最大绑定数量!");
         return context;
     }
@@ -103,52 +102,7 @@ public class Utils
         }
     }
 
-    /// <summary>
-    /// 圆弧技能触发器
-    /// </summary>
-    /// <param name="Player"></param>
-    /// <param name="circles"></param>
-    /// <param name="pos"></param>
-    public static void SpawnPointsOnArcProj(TSPlayer Player, List<CircleProjectile> circles, Vector2 pos)
-    {
-        Task.Run(async () =>
-        {
-            foreach (var circle in circles)
-            {
-                if (circle.Enable)
-                {
-                    var posed = pos.GetArcPoints(circle.StartAngle, circle.EndAngle, circle.Radius, circle.Interval);
-                    var reverse = circle.Reverse ? -1 : 1;
-                    foreach (var vec in posed)
-                    {
-                        var angle = vec.AngleFrom(pos);
-                        Vector2 vel;
-                        if (!circle.FollowPlayer)
-                            vel = vec + new Vector2(circle.X * 16, circle.Y * 16);
-                        else
-                            vel = Player.TPlayer.Center + Player.TPlayer.ItemOffSet() + new Vector2(circle.X * 16, circle.Y * 16);
-                        var radiusvel = vec.RotatedBy(angle).ToLenOf(circle.Speed) * reverse;
-                        int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(
-                            //发射原无期
-                            Player.TPlayer.GetProjectileSource_Item(Player.TPlayer.HeldItem),
-                            //发射位置
-                            vel,
-                            radiusvel,
-                            circle.ID,
-                            circle.Damage,
-                            circle.Knockback,
-                            Player.Index,
-                            circle.AI[0],
-                            circle.AI[1],
-                            circle.AI[2],
-                            circle.TimeLeft);
-                        TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
-                    }
-                    await Task.Delay(circle.Dealy);
-                }
-            }
-        });
-    }
+  
 
     /// <summary>
     /// 技能触发器
@@ -160,26 +114,62 @@ public class Utils
     public static void SpawnSkillProjectile(TSPlayer Player, SkillContext skill, Vector2 vel, Vector2 pos)
     {
         EmitGeneralSkill(Player, skill);
-        foreach (var proj in skill.Projectiles)
+        Task.Run(async () =>
         {
-            if (!proj.AutoDirection)
-                vel = new Vector2(proj.SpeedX, proj.SpeedY);
-            SpawnPointsOnArcProj(Player, proj.CircleProjectiles, pos);
-            Task.Run(async () =>
+            foreach (var proj in skill.Projectiles)
             {
+                if (!proj.AutoDirection)
+                    vel = new Vector2(proj.SpeedX, proj.SpeedY);
+                NPC? lockNpc = null;
+                if (proj.LockNpcOption.Enable)
+                {
+                    if (proj.LockNpcOption.LockCenter)
+                    {
+                        lockNpc = proj.LockNpcOption.LockMinHp ? Player.TPlayer.GetNpcInRangeByHp(proj.LockNpcOption.Range) : Player.TPlayer.GetNpcInRangeByDis(proj.LockNpcOption.Range);
+                        if (lockNpc != null)
+                            pos = lockNpc.Center;
+                    }
+                }
+
                 foreach (var opt in proj.ProjectileCycle.ProjectileCycles)
                 {
-                    var _vel = vel.RotationAngle(proj.Angle).ToLenOf(proj.Speed);
+                    Vector2 _vel;
+                    #region 锁定敌怪
+                    if (proj.LockNpcOption.Enable && proj.LockNpcOption.Lock && lockNpc != null)
+                    {
+                        pos.Distance(lockNpc.Center);
+                        _vel = (pos.DirectionTo(lockNpc.Center).SafeNormalize(-Vector2.UnitY) * lockNpc.velocity.Length()).ToLenOf(proj.Speed);
+                    }
+                    else
+                    {
+                        _vel = vel.RotationAngle(proj.StartAngle).ToLenOf(proj.Speed);
+                    }
+                    #endregion
+
                     var _pos = pos + new Vector2(proj.X * 16, proj.Y * 16);
+                    var oldpos = _pos;
+                    var cpos = _pos.GetPointsOnCircle(opt.Radius * 16, proj.StartAngle, opt.GrowAngle, opt.Count);
+
                     for (int i = 0; i < opt.Count; i++)
                     {
+
+                        if (opt.NewPos)
+                        {
+                            _vel = oldpos.DirectionTo(cpos[i]).SafeNormalize(-Vector2.UnitY).ToLenOf(proj.Speed);
+                            _pos = cpos[i];
+                        }
+                        //判断锁定敌怪
+                        if (proj.LockNpcOption.Enable && proj.LockNpcOption.Lock && lockNpc != null)
+                        {
+                            _vel = (_pos.DirectionTo(lockNpc.Center).SafeNormalize(-Vector2.UnitY)).ToLenOf(proj.Speed);
+                        }
                         #region 生成弹幕
                         int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(
                             //发射原无期
                             Player.TPlayer.GetProjectileSource_Item(Player.TPlayer.HeldItem),
                             //发射位置
                             _pos,
-                            _vel,
+                            _vel * (opt.Reverse ? -1 : 1),
                             proj.ID,
                             proj.Damage,
                             proj.Knockback,
@@ -190,19 +180,23 @@ public class Utils
                             proj.TimeLeft);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
                         #endregion
-
+                        AISytle.AI(Main.projectile[index], proj.AISytle);
                         #region 数值重置
-                        _vel = _vel.RotationAngle(opt.GrowAngle).ToLenOf(proj.Speed);
+
+                        if (!opt.NewPos)
+                            _vel = _vel.RotationAngle(opt.GrowAngle).ToLenOf(proj.Speed);
                         if (opt.FollowPlayer)
                             _pos = Player.TPlayer.Center + Player.TPlayer.ItemOffSet() + new Vector2(opt.GrowX * 16, opt.GrowY * 16);
                         else
                             _pos += new Vector2(opt.GrowX * 16, opt.GrowY * 16);
+                        
                         #endregion
                         await Task.Delay(opt.Dealy);
                     }
                 }
-            });
-        }
+                await Task.Delay(proj.Dealy);
+            }
+        });
     }
     /// <summary>
     /// 释放技能

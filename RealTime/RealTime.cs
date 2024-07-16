@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TShockAPI;
+﻿using TShockAPI;
 using Terraria;
 using TerrariaApi.Server;
-using System.Timers;
-using System.Threading.Tasks;
-using Terraria.Localization;
-using Utils = TShockAPI.Utils;
-using TShockAPI.Hooks;
-using System.ComponentModel;
-using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace RealTime
 {
@@ -22,7 +12,7 @@ namespace RealTime
         public override string Author => "十七";
         public override string Description => "同步现实时间";
         public override string Name => "RealTime";
-        public override Version Version => new Version(2, 4, 5, 0);
+        public override Version Version => new Version(2, 5, 0, 0);
         public RealTime(Main game) : base(game)
         {
         }
@@ -30,6 +20,7 @@ namespace RealTime
         {
             ServerApi.Hooks.GameUpdate.Register(this, OnGameUpdate);
             On.Terraria.Main.UpdateTime += NPCS;
+            GetDataHandlers.PlayerTeam += Team;
         }
 
         protected override void Dispose(bool disposing)
@@ -38,8 +29,19 @@ namespace RealTime
             {
                 ServerApi.Hooks.GameUpdate.Deregister(this, OnGameUpdate);
                 On.Terraria.Main.UpdateTime -= NPCS;
+                GetDataHandlers.PlayerTeam -= Team;
             }
             base.Dispose(disposing);
+        }
+
+        private void Team(object o, GetDataHandlers.PlayerTeamEventArgs args)//队伍判断
+        {
+            if (Main.bloodMoon == true || Main.eclipse == true || Main.pumpkinMoon == true || Main.snowMoon == true)
+            {
+                args.Player.SetTeam(0);
+                args.Handled = true;
+                args.Player.SendInfoMessage("事件禁止切换队伍。");
+            }
         }
 
         private void NPCS(On.Terraria.Main.orig_UpdateTime orig)//通过拦截时间更新，然后让其在非白天情况下npc入住
@@ -82,12 +84,12 @@ namespace RealTime
             {
                 TShock.Players.Where(p => p != null).ToList().ForEach(p=>
                 {
-                    if (Main.player[p.Index].hostile == false)
-                    {                       
-                        Main.player[p.Index].hostile = true;
-                        NetMessage.SendData((int)PacketTypes.TogglePvp, -1, -1, NetworkText.Empty, p.Index);
-                        p.SendWarningMessage(
-                            "血月的邪恶影响会阻止你的PvP关闭。");
+                    if (p.TPlayer.hostile == false)
+                    {
+                        p.SetTeam(0);
+                        p.TPlayer.hostile = true;
+                        p.SendData(PacketTypes.TogglePvp, "", p.Index);
+                        p.SendInfoMessage("血月的邪恶影响会阻止你的PvP关闭。");
                     }
                 });                
                 if (DateTime.Now >= time)
@@ -110,12 +112,12 @@ namespace RealTime
             {
                 TShock.Players.Where(p => p != null).ToList().ForEach(p =>
                 {
-                    if (Main.player[p.Index].hostile == false)
+                    if (p.TPlayer.hostile == false)
                     {
-                        Main.player[p.Index].hostile = true;
-                        NetMessage.SendData((int)PacketTypes.TogglePvp, -1, -1, NetworkText.Empty, p.Index);
-                        p.SendWarningMessage(
-                            "日食的邪恶影响会阻止你的PvP关闭。");
+                        p.TPlayer.hostile = true;
+                        p.SetTeam(0);
+                        p.SendData(PacketTypes.TogglePvp, "", p.Index);
+                        p.SendInfoMessage("日食的邪恶影响会阻止你的PvP关闭。");
                     }
                 });
                 if (DateTime.Now >= time)
@@ -140,12 +142,12 @@ namespace RealTime
                 {
                     TShock.Players.Where(p => p != null).ToList().ForEach(p =>
                     {
-                        if (Main.player[p.Index].hostile == false)
+                        if (p.TPlayer.hostile == false)
                         {
-                            Main.player[p.Index].hostile = true;
-                            NetMessage.SendData((int)PacketTypes.TogglePvp, -1, -1, NetworkText.Empty, p.Index);
-                            p.SendWarningMessage(
-                                "万圣节的邪恶影响会阻止你的PvP关闭。");
+                            p.TPlayer.hostile = true;
+                            p.SetTeam(0);
+                            p.SendData(PacketTypes.TogglePvp, "", p.Index);
+                            p.SendInfoMessage("万圣节的邪恶影响会阻止你的PvP关闭。");
                         }
                     });
                     Main.pumpkinMoon = false;
@@ -168,12 +170,12 @@ namespace RealTime
                 {
                     TShock.Players.Where(p => p != null).ToList().ForEach(p =>
                     {
-                        if (Main.player[p.Index].hostile == false)
+                        if (p.TPlayer.hostile == false)
                         {
-                            Main.player[p.Index].hostile = true;
-                            NetMessage.SendData((int)PacketTypes.TogglePvp, -1, -1, NetworkText.Empty, p.Index);
-                            p.SendWarningMessage(
-                                "霜月的邪恶影响会阻止你的PvP关闭。");
+                            p.TPlayer.hostile = true;
+                            p.SetTeam(0);
+                            p.SendData(PacketTypes.TogglePvp, "", p.Index);
+                            p.SendInfoMessage("霜月的邪恶影响会阻止你的PvP关闭。");
                         }
                     });
                     Main.snowMoon = false;

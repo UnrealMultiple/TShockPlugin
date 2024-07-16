@@ -210,6 +210,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpawnInfra", "SpawnInfra\Sp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CNPCShop", "CNPCShop\CNPCShop.csproj", "{8A6FA1CC-8299-41D0-A060-676D26594215}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SessionSentinel", "SessionSentinel\SessionSentinel.csproj", "{F863132D-5ED4-4C74-A752-342D67CEF597}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1026,6 +1028,14 @@ Global
 		{8A6FA1CC-8299-41D0-A060-676D26594215}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8A6FA1CC-8299-41D0-A060-676D26594215}.Release|x64.ActiveCfg = Release|Any CPU
 		{8A6FA1CC-8299-41D0-A060-676D26594215}.Release|x64.Build.0 = Release|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Debug|x64.Build.0 = Debug|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Release|x64.ActiveCfg = Release|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

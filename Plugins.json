@@ -7,7 +7,7 @@
     "Path": "Platform.dll"
   },
   {
-    "Name": "Chireiden.TShock.Omni b73e8bb854",
+    "Name": "Chireiden.TShock.Omni 1dc7967580",
     "Version": "0.0.1.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
@@ -218,7 +218,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.0.0.1",
+    "Version": "1.1.0.0",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"
@@ -239,7 +239,7 @@
   },
   {
     "Name": "EconomicsAPI",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.4",
     "Author": "少司命",
     "Description": "EconomicsAPI",
     "Path": "EconomicsAPI.dll"
@@ -358,7 +358,7 @@
   },
   {
     "Name": "RealTime",
-    "Version": "2.4.5.0",
+    "Version": "2.5.0.0",
     "Author": "十七",
     "Description": "同步现实时间",
     "Path": "RealTime.dll"
@@ -397,6 +397,13 @@
     "Author": "少司命",
     "Description": "服务器工具",
     "Path": "ServerTools.dll"
+  },
+  {
+    "Name": "SessionSentinel",
+    "Version": "1.0.0",
+    "Author": "肝帝熙恩",
+    "Description": "处理长时间不发送数据包的玩家",
+    "Path": "SessionSentinel.dll"
   },
   {
     "Name": "Show Armors",
@@ -554,7 +561,7 @@
   },
   {
     "Name": "生成基础建设",
-    "Version": "1.5.1",
+    "Version": "1.5.3",
     "Author": "羽学",
     "Description": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
     "Path": "SpawnInfra.dll"
