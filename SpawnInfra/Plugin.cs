@@ -1,5 +1,4 @@
-﻿using System;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
@@ -64,7 +63,6 @@ namespace SpawnInfra
 
             if (Config.Enabled)
             {
-
                 foreach (var item in Config.Chests)
                 {
                     SpawnChest(Main.spawnTileX + item.spawnTileX, Main.spawnTileY + item.spawnTileY, item.ClearHeight, item.ChestWidth, item.ChestCount, item.ChestLayers);
@@ -108,7 +106,9 @@ namespace SpawnInfra
                         ZenithShimmerBiome(item.ShimmerBiomeTunnelWidth, Main.spawnTileY + Config.WorldPlatform[0].WorldPlatformY + 1);
                     //其他世界
                     else
+                    {
                         ShimmerBiome(Main.spawnTileY + Config.WorldPlatform[0].WorldPlatformY + 1, item.ShimmerBiomeTunnelWidth);
+                    }
 
                     if (Main.zenithWorld || Main.remixWorld) //是颠倒种子
                     {
@@ -206,7 +206,7 @@ namespace SpawnInfra
 
                         WorldGen.PlaceTile(x, bottom, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0); //刷怪场底部放1层
 
-                        //如果不是天顶 或 开启直通车贯穿刷怪场 则放岩浆禁止刷怪
+                        //如果不是天顶 或 开启直通车贯穿刷怪场 则放岩浆在底部禁止刷怪
                         if ((!Main.zenithWorld || !Main.remixWorld) && Config.HellTunnel[0].HellTrunnelCoverBrushMonst && Config.HellTunnel[0].Lava)
                         {
                             WorldGen.PlaceLiquid(x, bottom - 1, 1, 1); //岩浆高于底部一格
@@ -246,12 +246,20 @@ namespace SpawnInfra
                             {
                                 // 创建矩形判断
                                 if (wallY >= middle - 10 - CenterVal && wallY <= middle - 1 && x >= CenterLeft + 1 && x <= CenterRight - 1)
+                                {
                                     // 挖空方块
                                     Main.tile[x, wallY].ClearEverything();
+                                }
                                 else
                                 {
                                     // 在矩形范围外放置方块
                                     WorldGen.PlaceTile(x, wallY, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
+
+                                    //放一层半砖平台让怪穿进中心区
+                                    WorldGen.PlaceTile(CenterLeft - 1, wallY, 19, false, true, -1, 43);
+                                    Main.tile[CenterLeft - 1, wallY].slope(2); // 设置为右斜坡
+                                    WorldGen.PlaceTile(CenterRight + 1, wallY, 19, false, true, -1, 43);
+                                    Main.tile[CenterRight + 1, wallY].slope(1); // 设置为左斜坡
                                 }
 
                                 // 检查是否在中间位置，如果是则放置岩浆
@@ -262,7 +270,7 @@ namespace SpawnInfra
                                     {
                                         Main.tile[x - 1, wallY + 2].liquid = 60;  //设置1格液体
                                         Main.tile[x - 1, wallY + 2].liquidType(1); // 设置为岩浆
-                                        WorldGen.SquareTileFrame(x, wallY + 2, false);
+                                        WorldGen.SquareTileFrame(x - 1, wallY + 2, false);
                                     }
 
                                     //是否放尖球
@@ -344,18 +352,32 @@ namespace SpawnInfra
                             //是否放飞镖
                             if (Config.HellTunnel[0].Dart)
                             {
-                                //右边 无限飞镖
+                                //每30格 放一个 一共6个
                                 for (int k = 1; k <= 6; k++)
                                 {
+                                    //给电线从中心y0拉线到下位3
                                     for (int l = 0; l <= 3; l++)
                                     {
-                                        //飞镖机关每30格放1个 一共6个 冷却时间为5秒 刚好无限飞镖
-                                        WorldGen.PlaceTile(CenterRight + 30 * k, middle + 1, 137, false, true, -1, 5);
-                                        WorldGen.PlaceTile(CenterRight + 30 * k, middle + 3, 137, false, true, -1, 5);
-                                        WorldGen.PlaceWire(CenterRight + 30 * k, middle + l);
-                                        //把飞镖机关虚化
-                                        Main.tile[CenterRight + 30 * k, middle + 1].inActive(true);
-                                        Main.tile[CenterRight + 30 * k, middle + 3].inActive(true);
+                                        //输出1 3 忽略偶数（刷怪层为0 ，下1和3格放飞镖）
+                                        for (int m = 1; m <= 3; m += 2)
+                                        {
+                                            //右飞镖
+                                            WorldGen.PlaceTile(CenterRight + 30 * k, middle + m, 137, false, true, -1, 5);
+                                            //电线
+                                            WorldGen.PlaceWire(CenterRight + 30 * k, middle + l);
+                                            //把飞镖机关虚化
+                                            Main.tile[CenterRight + 30 * k, middle + m].inActive(true);
+
+                                            //左飞镖
+                                            WorldGen.PlaceTile(CenterLeft - 30 * k, middle + m, 137, false, true, -1, 5);
+                                            //给飞镖换个方向
+                                            ITile obj = Main.tile[CenterLeft - 30 * k, middle + m];
+                                            obj.frameX = 18;
+                                            //放电线
+                                            WorldGen.PlaceWire(CenterLeft - 30 * k, middle + l);
+                                            //把飞镖机关虚化
+                                            Main.tile[CenterLeft - 30 * k, middle + m].inActive(true);
+                                        }
                                     }
                                 }
                             }
@@ -369,21 +391,28 @@ namespace SpawnInfra
                     WorldGen.PlaceTile(left - 1, y2, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
                     WorldGen.PlaceTile(right, y2, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
 
-                    //如果直通车没有贯穿刷怪场 则放置飞镖
-                    if (!Config.HellTunnel[0].HellTrunnelCoverBrushMonst && Config.HellTunnel[0].Dart)
+                    //是否放置飞镖
+                    if (Config.HellTunnel[0].Dart)
                     {
                         // 避免核心区放置边界飞镖
-                        int placeTop = middle + 8 + CenterVal - 11; // 平台上方两格开始
+                        int placeTop = middle + 8 + CenterVal - 11; // 平台上方11格开始
                         int placeBottom = middle + 8 + CenterVal + 3; // 平台下方3格结束
                         if (y2 < placeTop || y2 > placeBottom)
                         {
-                            //飞镖
+                            //右飞镖
                             WorldGen.PlaceTile(right - 1, y2, 137, false, true, -1, 5);
+                            //左飞镖
+                            WorldGen.PlaceTile(left, y2, 137, false, true, -1, 5);
+                            //给左飞镖换朝向
+                            ITile obj = Main.tile[left, y2];
+                            obj.frameX = 18;
                             //把飞镖机关虚化
                             Main.tile[right - 1, y2].inActive(true);
+                            Main.tile[left, y2].inActive(true);
                         }
                         //放电线
                         WorldGen.PlaceWire(right - 1, y2);
+                        WorldGen.PlaceWire(left, y2);
                     }
                 }
             }
@@ -939,5 +968,6 @@ namespace SpawnInfra
             }
         }
         #endregion
+
     }
 }
