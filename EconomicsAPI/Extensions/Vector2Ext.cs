@@ -104,6 +104,65 @@ public static class Vector2Ext
         }
         return curvePoints;
     }
+    
+    public static List<Vector2> GetPointsOnCircle(this Vector2 pos1, Vector2 pos2, float startAngle, float angleIncrement, int maxCount)
+    {
+        List<Vector2> points = new List<Vector2>();
+        float radius = (float)Math.Sqrt(Math.Pow(pos1.X - pos2.X, 2) + Math.Pow(pos1.Y - pos2.Y, 2));
+        float currentAngle = startAngle;
+        while (points.Count < maxCount && currentAngle < 360)
+        {
+            float x = pos2.X + radius * (float)Math.Cos(currentAngle * Math.PI / 180);
+            float y = pos2.Y + radius * (float)Math.Sin(currentAngle * Math.PI / 180);
+            points.Add(new Vector2(x, y));
+            currentAngle += angleIncrement;
+        }
+        return points;
+    }
+    
+
+    
+    public static List<Vector2> GetPointsOnCircle(this Vector2 center, float radius, float startAngle, float angleIncrement, int loopCount)
+    {
+        List<Vector2> points = new List<Vector2>();
+        float currentAngle = startAngle;
+        for (int i = 0; i < loopCount; i++)
+        {
+            float x = center.X + radius * (float)Math.Cos(currentAngle * Math.PI / 180);
+            float y = center.Y + radius * (float)Math.Sin(currentAngle * Math.PI / 180);
+            points.Add(new Vector2(x, y));
+            currentAngle += angleIncrement;
+        }
+        return points;
+    }
+
+    
+    //public static List<Vector2> GenerateCircle(this Vector2 startPoint, Vector2 centerPoint, float radius, float angleIncrement)
+    //{
+    //    List<Vector2> points = new List<Vector2>();
+    //    for (float angle = -360; angle <= 360; angle += angleIncrement)
+    //    {
+    //        float x = centerPoint.x + radius * (float)Math.Cos(angle * Math.PI / 180);
+    //        float y = centerPoint.y + radius * (float)Math.Sin(angle * Math.PI / 180);
+    //        points.Add(new Vector2(x, y));
+    //    }
+    //    return points;
+    //}
+    
+    public static List<Vector2> CreateCircle(this Vector2 startPoint, Vector2 centerPoint, int angleIncrement, int numberOfPoints)
+    {
+        List<Vector2> points = new List<Vector2>();
+        for (int i = 0; i < numberOfPoints; i++)
+        {
+            float angle = angleIncrement * i;
+            float x = centerPoint.X + (float)Math.Cos(angle) * (startPoint.X - centerPoint.X);
+            float y = centerPoint.Y + (float)Math.Sin(angle) * (startPoint.Y - centerPoint.Y);
+            points.Add(new Vector2(x, y));
+        }
+        return points;
+    }
+ 
+
 }
 
 

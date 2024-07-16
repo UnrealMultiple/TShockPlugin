@@ -110,8 +110,8 @@ public class SpawnProjectile
         {
             NetMessage.SendData(27, -1, -1, null, num);
         }
-        //if (Owner == Main.myPlayer)
-        //{
+        if (Owner == Main.myPlayer)
+        {
             if (ProjectileID.Sets.IsAGolfBall[Type] && Damage <= 0)
             {
                 int num3 = 0;
@@ -254,18 +254,14 @@ public class SpawnProjectile
             {
                 projectile.timeLeft = 180;
             }
-        //}
+        }
         if (Type == 249)
         {
             projectile.frame = Main.rand.Next(5);
         }
-        //if (Owner == Main.myPlayer)
-        //{
+        if (Owner == Main.myPlayer)
+        {
             Main.player[Owner].TryUpdateChannel(projectile);
-        //}
-        if (timeLeft == 0)
-        { 
-            projectile.Kill();
         }
         if (timeLeft > 0)
         {

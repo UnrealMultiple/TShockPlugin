@@ -20,7 +20,7 @@ public class Skill : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 1);
+    public override Version Version => new(1, 1, 0, 0);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
@@ -40,7 +40,6 @@ public class Skill : TerrariaPlugin
         PlayerSKillManager = new();
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
-        ServerApi.Hooks.ProjectileAIUpdate.Register(this, OnProjectileAIUpdate);
         GetDataHandlers.PlayerUpdate.Register(OnPlayerUpdate);
         GetDataHandlers.PlayerHP.Register(OnHP);
         GetDataHandlers.PlayerMana.Register(OnMP);
@@ -49,13 +48,15 @@ public class Skill : TerrariaPlugin
         EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += OnKillNpc;
         EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop += OnPlayerCountertop;
         GeneralHooks.ReloadEvent += e => LoadConfig();
+        On.Terraria.Projectile.Update += Projectile_Update;
     }
 
 
-    private void OnProjectileAIUpdate(ProjectileAiUpdateEventArgs args)
+    private void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Projectile self, int i)
     {
-        //if (Utils.spawnProjectiles.Contains(args.Projectile) && args.Projectile.active)
-        //    AIStyle.环绕(args.Projectile);
+        if (self.timeLeft <= 0)
+            self.Kill();
+        orig(self, i);
     }
 
     private void KillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
@@ -143,10 +144,6 @@ public class Skill : TerrariaPlugin
                         {
                             new()
                             {
-                                CircleProjectiles = new()
-                                {
-                                    new()
-                                },
                                 ProjectileCycle = new()
                                 {
                                     ProjectileCycles = new()
