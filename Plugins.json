@@ -561,7 +561,7 @@
   },
   {
     "Name": "生成基础建设",
-    "Version": "1.5.2",
+    "Version": "1.5.3",
     "Author": "羽学",
     "Description": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
     "Path": "SpawnInfra.dll"
