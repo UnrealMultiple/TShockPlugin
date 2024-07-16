@@ -29,7 +29,7 @@ public class SpawnProjectile
         }
         if (num == 1000)
         {
-            num = Terraria.Projectile.FindOldestProjectile();
+            num = Projectile.FindOldestProjectile();
         }
         Projectile projectile = Main.projectile[num];
         projectile.SetDefaults(Type);
@@ -62,8 +62,8 @@ public class SpawnProjectile
                 projectile.velocity.Y *= 0.97f;
             }
         }
-        if (Owner == Main.myPlayer)
-        {
+        //if (Owner == Main.myPlayer)
+        //{
             switch (Type)
             {
                 case 206:
@@ -85,7 +85,7 @@ public class SpawnProjectile
                     projectile.ai[2] = ai2;
                     break;
             }
-        }
+        //}
         if (Type == 434)
         {
             projectile.ai[0] = projectile.position.X;
@@ -110,8 +110,8 @@ public class SpawnProjectile
         {
             NetMessage.SendData(27, -1, -1, null, num);
         }
-        if (Owner == Main.myPlayer)
-        {
+        //if (Owner == Main.myPlayer)
+        //{
             if (ProjectileID.Sets.IsAGolfBall[Type] && Damage <= 0)
             {
                 int num3 = 0;
@@ -254,15 +254,15 @@ public class SpawnProjectile
             {
                 projectile.timeLeft = 180;
             }
-        }
+        //}
         if (Type == 249)
         {
             projectile.frame = Main.rand.Next(5);
         }
-        if (Owner == Main.myPlayer)
-        {
+        //if (Owner == Main.myPlayer)
+        //{
             Main.player[Owner].TryUpdateChannel(projectile);
-        }
+        //}
         if (timeLeft == 0)
         { 
             projectile.Kill();
