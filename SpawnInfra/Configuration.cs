@@ -17,6 +17,8 @@ namespace SpawnInfra
         public string Text5 { get; set; } = "每次重置服务器前使用一遍：/rm 重置，或者直接把这个指令写进重置插件里";
         [JsonProperty("使用说明6", Order = -11)]
         public string Text6 { get; set; } = "以下参数仅适用于大地图，小地图需自己调试适配";
+        [JsonProperty("使用说明7", Order = -11)]
+        public string Text7 { get; set; } = "[设置刷怪率]需所有在线玩家在刷怪场中心且击败[肉山]后生效";
 
         [JsonProperty("开服自动基建", Order = -10)]
         public bool Enabled { get; set; } = true;
@@ -248,8 +250,15 @@ namespace SpawnInfra
             [JsonProperty("是否放飞镖", Order = 13)]
             public bool Dart { get; set; } = true;
 
+            [JsonProperty("设置刷怪率", Order = 15)]
+            public bool SpawnRate { get; set; } = true;
+            [JsonProperty("刷怪间隔/帧", Order = 15)]
+            public int defaultSpawnRate { get; set; }
+            [JsonProperty("刷怪上限/个", Order = 15)]
+            public int defaultMaxSpawns { get; set; }
 
-            public ItemData3(ushort id, ushort id2, ushort platformID, int platformstyle, int tileX, int tileY, int width, int platformY, int width2, int height, int width3, int center)
+
+            public ItemData3(ushort id, ushort id2, ushort platformID, int platformstyle, int tileX, int tileY, int width, int platformY, int width2, int height, int width3, int center,int deSpawn,int MaxSpawn)
             {
                 Hell_BM_TileID = id;
                 Cord_TileID = id2;
@@ -263,6 +272,8 @@ namespace SpawnInfra
                 BrushMonstHeight = height;
                 BrushMonstWidth = width3;
                 BrushMonstCenter = center;
+                defaultSpawnRate = deSpawn;
+                defaultMaxSpawns = MaxSpawn;
             }
         }
         #endregion
@@ -308,7 +319,7 @@ namespace SpawnInfra
 
             HellTunnel = new List<ItemData3>
             {
-                new ItemData3(38, 214, 19, 43, 0, 0,5,25,2,200,200,2),
+                new ItemData3(38, 214, 19, 43, 0, 0,5,25,2,200,200,2,60,100),
             };
 
             SpawnShimmerBiome = new List<ItemData4>
