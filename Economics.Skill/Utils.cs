@@ -184,7 +184,7 @@ public class Utils
                             proj.TimeLeft);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
                         #endregion
-                        AISytle.AI(Main.projectile[index], proj.AISytle);
+                        AIStyle.Set(Main.projectile[index], proj.AISytle);
                         #region 数值重置
 
                         if (!opt.NewPos)

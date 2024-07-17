@@ -21,6 +21,7 @@ internal class SkillCD
                 player.SkillCD -= 100;
             }
         }
+        AIStyle.Remove();
     }
 
     public static void GodPlayer(TSPlayer player, int time)
