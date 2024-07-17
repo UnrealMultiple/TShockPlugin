@@ -112,6 +112,13 @@
     "Path": "CaiLib.dll"
   },
   {
+    "Name": "CaiRewardChest",
+    "Version": "1.0.0.0",
+    "Author": "Cai",
+    "Description": "奖励箱！！",
+    "Path": "CaiRewardChest.dll"
+  },
+  {
     "Name": "CGive",
     "Version": "1.0.0.0",
     "Author": "Leader",
