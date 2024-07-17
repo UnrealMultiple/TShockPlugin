@@ -48,7 +48,7 @@ public class Utils
         Player.ClearProj(skill.ClearProjectile.Range);
         Player.CollectNPC(skill.PullNpc.Range, Skill.Config.BanPullNpcs, skill.PullNpc.X * 16, skill.PullNpc.Y * 16);
         if (skill.PlayerTp.Enable)
-            Player.Teleport(Player.X + skill.PlayerTp.X * 16, Player.Y + skill.PlayerTp.Y * 16);
+            Player.Teleport(Player.X + skill.PlayerTp.X * 16 * (skill.PlayerTp.Incline ? Player.TPlayer.direction : 1), Player.Y + skill.PlayerTp.Y * 16); 
         if (skill.PlayerGod.Enable)
             SkillCD.GodPlayer(Player, skill.PlayerGod.Time);
         foreach (var ply in Player.GetPlayerInRange(skill.BuffOption.Range))
