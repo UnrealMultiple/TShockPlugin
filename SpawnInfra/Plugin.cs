@@ -3,7 +3,6 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 
-
 namespace SpawnInfra
 {
     [ApiVersion(2, 1)]
@@ -12,7 +11,7 @@ namespace SpawnInfra
         #region 插件信息
         public override string Name => "生成基础建设";
         public override string Author => "羽学";
-        public override Version Version => new Version(1, 5, 1);
+        public override Version Version => new Version(1, 5, 3);
         public override string Description => "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）";
         #endregion
 
@@ -22,7 +21,8 @@ namespace SpawnInfra
         {
             LoadConfig();
             GeneralHooks.ReloadEvent += (_) => LoadConfig();
-            ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize, 20); //提高优先级避免覆盖CreateSpawn插件
+            //提高优先级避免覆盖CreateSpawn插件
+            ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize, 20);
             Commands.ChatCommands.Add(new Command("room.use", Comds.Comd, "rm", "基建")
             {
                 HelpText = "生成基础建设"
@@ -56,72 +56,112 @@ namespace SpawnInfra
         {
             if (args == null) return;
 
+            //太空层
+            var sky = Main.worldSurface * 0.3499999940395355;
+            //临近地下层
+            var surface = Main.worldSurface * 0.7;
+
             if (Config.Enabled)
             {
-                foreach (var item in Config.Prison)
+                foreach (var item in Config.Chests)
                 {
-                    GenLargeHouse(Main.spawnTileX + item.spawnTileX, Main.spawnTileY + item.spawnTileY, item.Width, item.Height);
+                    SpawnChest(Main.spawnTileX + item.spawnTileX, Main.spawnTileY + item.spawnTileY, item.ClearHeight, item.ChestWidth, item.ChestCount, item.ChestLayers);
                 }
 
-                //太空层
-                var sky = Main.worldSurface * 0.3499999940395355;
+                foreach (var item in Config.WorldPlatform)
+                {
+                    if (Main.zenithWorld || Main.remixWorld) //天顶 颠倒以天空层往下算
+                    {
+                        WorldPlatform((int)sky - item.WorldPlatformY, item.WorldPlatformClearY);
+                    }
+                    else //正常世界从出生点算
+                    {
+                        WorldPlatform(Main.spawnTileY + item.WorldPlatformY, item.WorldPlatformClearY);
+                    }
+                }
+
+                //自建微光湖
+                foreach (var item in Config.SpawnShimmerBiome)
+                {
+                    if (item.SpawnShimmerBiome)
+                        //天顶、颠倒以地狱为起点往上建微光湖
+                        if (Main.zenithWorld || Main.remixWorld || !Main.tenthAnniversaryWorld)
+                            WorldGen.ShimmerMakeBiome(Main.spawnTileX + item.TileX, Main.UnderworldLayer - item.TileY);
+
+                        //普通地图按出生点为起点往下建
+                        else
+                            WorldGen.ShimmerMakeBiome(Main.spawnTileX + item.TileX, Main.spawnTileY + item.TileY); //坐标为出生点
+                }
+
+
 
                 //地狱直通车与刷怪场
                 foreach (var item in Config.HellTunnel)
                 {
-                    if (Main.zenithWorld || Main.remixWorld) //不是颠倒种子
+                    //微光湖直通车 天顶
+                    if (Main.zenithWorld)
+                        ZenithShimmerBiome(item.ShimmerBiomeTunnelWidth, (int)sky - Config.WorldPlatform[0].WorldPlatformY);
+                    //十周年
+                    else if (Main.tenthAnniversaryWorld)
+                        ZenithShimmerBiome(item.ShimmerBiomeTunnelWidth, Main.spawnTileY + Config.WorldPlatform[0].WorldPlatformY + 1);
+                    //其他世界
+                    else
                     {
-                        if (Config.HellTunnel[0].Enabled7)//直通车是否贯穿刷怪场
+                        ShimmerBiome(Main.spawnTileY + Config.WorldPlatform[0].WorldPlatformY + 1, item.ShimmerBiomeTunnelWidth);
+                    }
+
+                    if (Main.zenithWorld || Main.remixWorld) //是颠倒种子
+                    {
+                        if (Config.HellTunnel[0].HellTrunnelCoverBrushMonst)//直通车是否贯穿刷怪场
                         {
                             //刷怪场 = 地狱层 除一半 补上自定义高度 
-                            RockTrialField(Main.rockLayer / 2 + item.Height, item.Height, item.Width3, item.Center);
-                            //直通车 = 地狱 - 地表 - 世界平台高度
-                            HellTunnel(Main.spawnTileX + item.SpawnTileX, (int)Main.rockLayer - (int)Main.worldSurface - ((int)sky - Config.WorldPlatform[0].SkyY *2), item.Width);
+                            RockTrialField(Main.rockLayer / 2 + item.BrushMonstHeight, item.BrushMonstHeight, item.BrushMonstWidth, item.BrushMonstCenter);
+                            //直通车 = 地狱 - 世界平台高度
+                            HellTunnel(Main.spawnTileX + item.SpawnTileX, (int)sky - Config.WorldPlatform[0].WorldPlatformY, item.HellTrunnelWidth);
                         }
                         else //没啥不同就换个先后顺序
                         {
-                            HellTunnel(Main.spawnTileX + item.SpawnTileX, (int)Main.rockLayer - (int)Main.worldSurface - ((int)sky - Config.WorldPlatform[0].SkyY *2), item.Width);
-                            RockTrialField(Main.rockLayer / 2 + item.Height, item.Height, item.Width3, item.Center);
+                            HellTunnel(Main.spawnTileX + item.SpawnTileX, (int)sky - Config.WorldPlatform[0].WorldPlatformY, item.HellTrunnelWidth);
+                            RockTrialField(Main.rockLayer / 2 + item.BrushMonstHeight, item.BrushMonstHeight, item.BrushMonstWidth, item.BrushMonstCenter);
                         }
+
+                        //左海平台挖到地下层为止 避免失重不好打猪鲨
+                        OceanPlatforms((int)surface,
+                            Config.WorldPlatform[0].OceanPlatformWide,
+                            Config.WorldPlatform[0].OceanPlatformHeight,
+                            Config.WorldPlatform[0].OceanPlatformInterval,
+                            Config.WorldPlatform[0].OceanPlatformInterval - 1,
+                            Config.WorldPlatform[0].OceanPlatformFormSpwanXLimit);
                     }
-                    else
+                    else //普通世界
                     {
-                        if (Config.HellTunnel[0].Enabled7)
+                        if (Config.HellTunnel[0].HellTrunnelCoverBrushMonst)
                         {
-                            RockTrialField(Main.rockLayer, item.Height, item.Width3, item.Center);
-                            HellTunnel(Main.spawnTileX + item.SpawnTileX, Main.spawnTileY + item.SpawnTileY, item.Width);
+                            RockTrialField(Main.rockLayer, item.BrushMonstHeight, item.BrushMonstWidth, item.BrushMonstCenter);
+                            HellTunnel(Main.spawnTileX + item.SpawnTileX, Main.spawnTileY + item.SpawnTileY, item.HellTrunnelWidth);
                         }
                         else
                         {
-                            HellTunnel(Main.spawnTileX + item.SpawnTileX, Main.spawnTileY + item.SpawnTileY, item.Width);
-                            RockTrialField(Main.rockLayer, item.Height, item.Width3, item.Center);
+                            HellTunnel(Main.spawnTileX + item.SpawnTileX, Main.spawnTileY + item.SpawnTileY, item.HellTrunnelWidth);
+                            RockTrialField(Main.rockLayer, item.BrushMonstHeight, item.BrushMonstWidth, item.BrushMonstCenter);
                         }
-                    }
 
-                    //微光湖直通车
-                    if (Main.zenithWorld || Main.tenthAnniversaryWorld)
-                    {
-                        ZenithShimmerBiome(item.Width2);
+                        //不超过海平面就行
+                        OceanPlatforms((int)sky,
+                            Config.WorldPlatform[0].OceanPlatformWide,
+                            Config.WorldPlatform[0].OceanPlatformHeight,
+                            Config.WorldPlatform[0].OceanPlatformInterval,
+                            Config.WorldPlatform[0].OceanPlatformInterval - 1,
+                            Config.WorldPlatform[0].OceanPlatformFormSpwanXLimit);
                     }
-                    else
-                    {
-                        ShimmerBiome(item.Width2);
-                    }
-
-                    //地狱平台不用改判断 天顶可以继续用 考虑活动范围不够大 可以往上升一点
-                    UnderworldPlatform(Main.UnderworldLayer + item.PlatformY, item.PlatformY);
+                    //地狱平台
+                    UnderworldPlatform(Main.UnderworldLayer + item.HellPlatformY, item.HellPlatformY);
                 }
 
-                //世界平台依旧照常用，考虑到天顶失重建议高度往下降一点
-                foreach (var item in Config.WorldPlatform)
+                //监狱
+                foreach (var item in Config.Prison)
                 {
-                    WorldPlatform((int)sky - item.SkyY, item.Height);
-                    OceanPlatforms(item.Wide, item.Height2, item.Interval, item.Interval - 1);
-                }
-
-                foreach (var item in Config.Chests)
-                {
-                    SpawnChest(Main.spawnTileX + item.spawnTileX, Main.spawnTileY + item.spawnTileY, item.Height, item.Width, item.Count, item.Layers);
+                    GenLargeHouse(Main.spawnTileX + item.spawnTileX, Main.spawnTileY + item.spawnTileY, item.BigHouseWidth, item.BigHouseHeight);
                 }
 
                 TShock.Utils.Broadcast(
@@ -154,7 +194,7 @@ namespace SpawnInfra
             int CenterLeft = Main.spawnTileX - 8 - CenterVal;
             int CenterRight = Main.spawnTileX + 8 + CenterVal;
 
-            if (Config.HellTunnel[0].Enabled5)
+            if (Config.HellTunnel[0].BrushMonstEnabled && !Config.HellTunnel[0].ClearRegionEnabled)
             {
                 for (int y = (int)posY; y > clear; y--)
                 {
@@ -162,11 +202,17 @@ namespace SpawnInfra
                     {
                         Main.tile[x, y + Height * 2].ClearEverything(); // 清除方块
 
-                        WorldGen.PlaceTile(x, top, Config.HellTunnel[0].ID, false, true, -1, 0); // 在清理顶部放1层（防液体流进刷怪场）
+                        WorldGen.PlaceTile(x, top, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0); // 在清理顶部放1层（防液体流进刷怪场）
 
-                        WorldGen.PlaceTile(x, bottom, Config.HellTunnel[0].ID, false, true, -1, 0); //刷怪场底部放1层
+                        WorldGen.PlaceTile(x, bottom, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0); //刷怪场底部放1层
 
-                        WorldGen.PlaceTile(x, middle, Config.HellTunnel[0].ID, false, true, -1, 0); //刷怪场中间放1层（刷怪用）
+                        //如果不是天顶 或 开启直通车贯穿刷怪场 则放岩浆在底部禁止刷怪
+                        if ((!Main.zenithWorld || !Main.remixWorld) && Config.HellTunnel[0].HellTrunnelCoverBrushMonst && Config.HellTunnel[0].Lava)
+                        {
+                            WorldGen.PlaceLiquid(x, bottom - 1, 1, 1); //岩浆高于底部一格
+                        }
+
+                        WorldGen.PlaceTile(x, middle, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0); //刷怪场中间放1层（刷怪用）
 
                         WorldGen.PlaceTile(x, middle + 8 + CenterVal, Config.HellTunnel[0].PlatformID, false, true, -1, Config.HellTunnel[0].PlatformStyle);//中间下8格放一层方便站人
 
@@ -185,13 +231,13 @@ namespace SpawnInfra
                             }
                         }
 
-                        WorldGen.PlaceTile(x, middle + 11 + CenterVal, Config.HellTunnel[0].ID, false, true, -1, 0); //中间下11格放箱子的实体块
+                        WorldGen.PlaceTile(x, middle + 11 + CenterVal, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0); //中间下11格放箱子的实体块
 
-                        WorldGen.PlaceTile(x, middle + 10 + CenterVal, Config.Chests[0].ChestID, false, true, -1, Config.Chests[0].ChestStyle); //中间下10格放箱子
+                        WorldGen.PlaceTile(x, middle + 10 + CenterVal, Config.Chests[0].ChestTileID, false, true, -1, Config.Chests[0].ChestStyle); //中间下10格放箱子
 
-                        WorldGen.PlaceTile(x, middle + 2, Config.HellTunnel[0].ID, false, true, -1, 0); //放计时器的平台
+                        WorldGen.PlaceTile(x, middle + 2, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0); //放计时器的平台
 
-                        WorldGen.PlaceTile(x, middle + 4, Config.HellTunnel[0].ID, false, true, -1, 0); //防掉怪下来
+                        WorldGen.PlaceTile(x, middle + 4, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0); //防掉怪下来
 
                         // 如果x值在中心范围内，放置10格高的方块
                         if (x >= CenterLeft && x <= CenterRight)
@@ -200,42 +246,62 @@ namespace SpawnInfra
                             {
                                 // 创建矩形判断
                                 if (wallY >= middle - 10 - CenterVal && wallY <= middle - 1 && x >= CenterLeft + 1 && x <= CenterRight - 1)
+                                {
                                     // 挖空方块
                                     Main.tile[x, wallY].ClearEverything();
+                                }
                                 else
                                 {
                                     // 在矩形范围外放置方块
-                                    WorldGen.PlaceTile(x, wallY, Config.HellTunnel[0].ID, false, true, -1, 0);
+                                    WorldGen.PlaceTile(x, wallY, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
+
+                                    //放一层半砖平台让怪穿进中心区
+                                    WorldGen.PlaceTile(CenterLeft - 1, wallY, 19, false, true, -1, 43);
+                                    Main.tile[CenterLeft - 1, wallY].slope(2); // 设置为右斜坡
+                                    WorldGen.PlaceTile(CenterRight + 1, wallY, 19, false, true, -1, 43);
+                                    Main.tile[CenterRight + 1, wallY].slope(1); // 设置为左斜坡
                                 }
 
                                 // 检查是否在中间位置，如果是则放置岩浆
                                 if (wallY == middle - 10 - CenterVal)
                                 {
-                                    Main.tile[x - 1, wallY + 2].liquid = 60;  //设置1格液体
-                                    Main.tile[x - 1, wallY + 2].liquidType(1); // 设置为岩浆
-                                    WorldGen.SquareTileFrame(x, wallY + 2, false);
-                                    //加一排尖球
-                                    for (int j = 1; j <= 5 + CenterVal; j++)
+                                    //是否放岩浆
+                                    if (Config.HellTunnel[0].Lava)
                                     {
-                                        WorldGen.PlaceWire(x - j, wallY - j);
-                                        WorldGen.PlaceWire(x + j, wallY - j);
-                                        WorldGen.PlaceTile(x - j, wallY - j, 137, true, false, -1, 3);
-                                        WorldGen.PlaceTile(x + j, wallY - j, 137, true, false, -1, 3);
-                                        WorldGen.PlaceActuator(x - j, wallY - j);
-                                        WorldGen.PlaceActuator(x + j, wallY - j);
+                                        Main.tile[x - 1, wallY + 2].liquid = 60;  //设置1格液体
+                                        Main.tile[x - 1, wallY + 2].liquidType(1); // 设置为岩浆
+                                        WorldGen.SquareTileFrame(x - 1, wallY + 2, false);
                                     }
-                                    //给尖球加电线
-                                    for (int j = 2; j <= 10 + CenterVal; j++)
+
+                                    //是否放尖球
+                                    if (Config.HellTunnel[0].Trap)
                                     {
-                                        WorldGen.PlaceWire(CenterLeft - 1, middle - j);
-                                        WorldGen.PlaceWire(CenterRight + 1, middle - j);
+                                        //加一排尖球
+                                        for (int j = 1; j <= 5 + CenterVal; j++)
+                                        {
+                                            //电线
+                                            WorldGen.PlaceWire(x - j, wallY - j);
+                                            WorldGen.PlaceWire(x + j, wallY - j);
+                                            //尖球
+                                            WorldGen.PlaceTile(x - j, wallY - j, 137, true, false, -1, 3);
+                                            WorldGen.PlaceTile(x + j, wallY - j, 137, true, false, -1, 3);
+                                            //给尖球加制动器
+                                            WorldGen.PlaceActuator(x - j, wallY - j);
+                                            WorldGen.PlaceActuator(x + j, wallY - j);
+                                        }
+                                        //给尖球加电线
+                                        for (int j = 2; j <= 10 + CenterVal; j++)
+                                        {
+                                            WorldGen.PlaceWire(CenterLeft - 1, middle - j);
+                                            WorldGen.PlaceWire(CenterRight + 1, middle - j);
+                                        }
                                     }
                                 }
                             }
                         }
                         else //不在中心 左右生成半砖推怪平台
                         {
-                            Main.tile[x, middle - 1].type = Config.HellTunnel[0].ID;
+                            Main.tile[x, middle - 1].type = Config.HellTunnel[0].Hell_BM_TileID;
                             Main.tile[x, middle - 1].active(true);
                             Main.tile[x, middle - 1].halfBrick(false);
 
@@ -283,34 +349,91 @@ namespace SpawnInfra
                             for (int j = 5; j <= 23; j++)
                                 WorldGen.PlaceObject(CenterRight + j, middle + 3 + CenterVal, 4, false, j, -1, -1);
 
-                            //右边 无限飞镖
-                            for (int k = 1; k <= 6; k++)
+                            //是否放飞镖
+                            if (Config.HellTunnel[0].Dart)
                             {
-                                for (int l = 0; l <= 3; l++)
+                                //每30格 放一个 一共6个
+                                for (int k = 1; k <= 6; k++)
                                 {
-                                    //飞镖机关每30格放1个 一共6个 冷却时间为5秒 刚好无限飞镖
-                                    WorldGen.PlaceTile(CenterRight + 30 * k, middle + 1, 137, false, true, -1, 1);
-                                    WorldGen.PlaceTile(CenterRight + 30 * k, middle + 3, 137, false, true, -1, 1);
-                                    WorldGen.PlaceWire(CenterRight + 30 * k, middle + l);
-                                    //把飞镖机关虚化
-                                    Main.tile[CenterRight + 30 * k, middle + 1].inActive(true);
-                                    Main.tile[CenterRight + 30 * k, middle + 3].inActive(true);
+                                    //给电线从中心y0拉线到下位3
+                                    for (int l = 0; l <= 3; l++)
+                                    {
+                                        //输出1 3 忽略偶数（刷怪层为0 ，下1和3格放飞镖）
+                                        for (int m = 1; m <= 3; m += 2)
+                                        {
+                                            //右飞镖
+                                            WorldGen.PlaceTile(CenterRight + 30 * k, middle + m, 137, false, true, -1, 5);
+                                            //电线
+                                            WorldGen.PlaceWire(CenterRight + 30 * k, middle + l);
+                                            //把飞镖机关虚化
+                                            Main.tile[CenterRight + 30 * k, middle + m].inActive(true);
+
+                                            //左飞镖
+                                            WorldGen.PlaceTile(CenterLeft - 30 * k, middle + m, 137, false, true, -1, 5);
+                                            //给飞镖换个方向
+                                            ITile obj = Main.tile[CenterLeft - 30 * k, middle + m];
+                                            obj.frameX = 18;
+                                            //放电线
+                                            WorldGen.PlaceWire(CenterLeft - 30 * k, middle + l);
+                                            //把飞镖机关虚化
+                                            Main.tile[CenterLeft - 30 * k, middle + m].inActive(true);
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
+
+                // 左右各放一列把刷怪场封闭起来
+                for (int y2 = top; y2 < bottom + 1; y2++)
+                {
+                    WorldGen.PlaceTile(left - 1, y2, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
+                    WorldGen.PlaceTile(right, y2, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
+
+                    //是否放置飞镖
+                    if (Config.HellTunnel[0].Dart)
+                    {
+                        // 避免核心区放置边界飞镖
+                        int placeTop = middle + 8 + CenterVal - 11; // 平台上方11格开始
+                        int placeBottom = middle + 8 + CenterVal + 3; // 平台下方3格结束
+                        if (y2 < placeTop || y2 > placeBottom)
+                        {
+                            //右飞镖
+                            WorldGen.PlaceTile(right - 1, y2, 137, false, true, -1, 5);
+                            //左飞镖
+                            WorldGen.PlaceTile(left, y2, 137, false, true, -1, 5);
+                            //给左飞镖换朝向
+                            ITile obj = Main.tile[left, y2];
+                            obj.frameX = 18;
+                            //把飞镖机关虚化
+                            Main.tile[right - 1, y2].inActive(true);
+                            Main.tile[left, y2].inActive(true);
+                        }
+                        //放电线
+                        WorldGen.PlaceWire(right - 1, y2);
+                        WorldGen.PlaceWire(left, y2);
+                    }
+                }
             }
             //只清场地不建刷怪场 帮定中心点与刷怪范围
-            else if (Config.HellTunnel[0].Enabled6)
+            else
             {
                 for (int y = (int)posY; y > clear; y--)
                 {
                     for (int x = left; x < right; x++)
                     {
                         Main.tile[x, y + Height * 2].ClearEverything(); // 清除方块
-                        WorldGen.PlaceTile(x, top, Config.HellTunnel[0].ID, false, true, -1, 0); // 在清理顶部放1层（防液体流进刷怪场）
-                        WorldGen.PlaceTile(x, bottom, Config.HellTunnel[0].ID, false, true, -1, 0); //刷怪场底部放1层
+
+                        WorldGen.PlaceTile(x, top, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0); // 在清理顶部放1层（防液体流进刷怪场）
+
+                        WorldGen.PlaceTile(x, bottom, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0); //刷怪场底部放1层
+
+                        //如果不是天顶 或 开启直通车贯穿刷怪场 则放岩浆禁止刷怪
+                        if ((!Main.zenithWorld || !Main.remixWorld) && Config.HellTunnel[0].HellTrunnelCoverBrushMonst && Config.HellTunnel[0].Lava)
+                        {
+                            WorldGen.PlaceLiquid(x, bottom - 1, 1, 1);  //岩浆高于底部一格
+                        }
 
                         //定中心
                         WorldGen.PlaceTile(CenterLeft, middle, 267, false, true, -1, 0);
@@ -332,6 +455,13 @@ namespace SpawnInfra
                         }
                     }
                 }
+
+                // 左右各放一列把刷怪场封闭起来
+                for (int y2 = top; y2 < bottom + 1; y2++)
+                {
+                    WorldGen.PlaceTile(left - 1, y2, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
+                    WorldGen.PlaceTile(right, y2, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
+                }
             }
         }
         #endregion
@@ -339,7 +469,7 @@ namespace SpawnInfra
         #region 构造监狱集群方法
         public static void GenLargeHouse(int startX, int startY, int width, int height)
         {
-            if (!Config.Prison[0].Enabled) return;
+            if (!Config.Prison[0].BigHouseEnabled) return;
 
             int roomsAcross = width / 5;
             int roomsDown = height / 9;
@@ -441,7 +571,7 @@ namespace SpawnInfra
         #region 箱子集群方法
         private static void SpawnChest(int posX, int posY, int hight, int width, int count, int layers)
         {
-            if (!Config.Chests[0].Enabled) return;
+            if (!Config.Chests[0].SpawnChestEnabled) return;
 
             int ClearHeight = hight + (layers - 1) * (width + Config.Chests[0].LayerHeight);
 
@@ -460,40 +590,91 @@ namespace SpawnInfra
 
                     for (int wx = currentXPos; wx < currentXPos + width; wx++)
                     {
-                        WorldGen.PlaceTile(wx, currentYPos + 1, Config.Chests[0].PlatformID, false, true, -1, Config.Chests[0].PlatformStyle);
+                        WorldGen.PlaceTile(wx, currentYPos + 1, Config.Chests[0].ChestPlatformID, false, true, -1, Config.Chests[0].ChestPlatformStyle);
                     }
 
-                    WorldGen.PlaceTile(currentXPos, currentYPos, Config.Chests[0].ChestID, false, true, -1, Config.Chests[0].ChestStyle);
+                    WorldGen.PlaceTile(currentXPos, currentYPos, Config.Chests[0].ChestTileID, false, true, -1, Config.Chests[0].ChestStyle);
                 }
             }
         }
         #endregion
 
         #region 左海平台
-        private static void OceanPlatforms(int wide, int hight, int interval, int IntlClear)
+        private static void OceanPlatforms(int sky, int wide, int height, int interval, int IntlClear, int Radius)
         {
-            if (!Config.WorldPlatform[0].Enabled3) return;
+            if (!Config.WorldPlatform[0].OceanPlatformEnabled) return;
 
-            var sky = Main.worldSurface * 0.3499999940395355;
-            int clear = Math.Max(3, hight);
-
-            for (int y = Main.oceanBG + interval; y < sky + clear; y += interval)
+            int clear = Math.Max(0, height);
+            for (int y = Main.oceanBG; y < sky + clear; y += interval)
             {
-                // 清理平台下方的方块
-                for (int yBelow = y - IntlClear; yBelow < y; yBelow++)
+                for (int top = y - IntlClear; top < y; top++)
                 {
                     for (int x = 0; x < wide; x++)
                     {
-                        Main.tile[x, yBelow].ClearEverything();
-                    }
-                }
+                        // 停止放置平台的条件
+                        if (x >= Main.maxTilesX || x < 0 || y < sky) continue;
+                        if (Math.Abs(x - Main.spawnTileX) <= Radius) continue;
 
-                // 放置平台
-                for (int x = 0; x < wide; x++)
-                {
-                    Main.tile[x, y].ClearEverything();
-                    if (x >= Main.maxTilesX || x < 0) continue;
-                    WorldGen.PlaceTile(x, y, Config.WorldPlatform[0].ID, false, true, -1, Config.WorldPlatform[0].Style);
+                        // 清理方块和墙（保留液体方法）
+                        WorldGen.KillTile(x, y);
+                        WorldGen.KillWall(x, y);
+                        WorldGen.KillTile(x, top);
+                        WorldGen.KillWall(x, top);
+
+                        // 正常放置平台
+                        WorldGen.PlaceTile(x, y, Config.WorldPlatform[0].WorldPlatformID, false, true, -1, Config.WorldPlatform[0].WorldPlatformStyle);
+
+                        //是否让平台生成液体（怕海水太多把平台阉了）
+                        if (Config.WorldPlatform[0].PlaceLiquid)
+                        {
+                            //从每层平台的位置生成水 避免原来的海水下落体积过大游戏引擎过载（液体碰撞就会流动了）
+                            WorldGen.PlaceLiquid(x, y, 0, 255);
+                        }
+
+                        //开启实体块包围左海平台
+                        if (Config.WorldPlatform[0].Enclose)
+                        {
+                            //清理顶部上面一层
+                            for (int j = 1; j < clear; j++)
+                            {
+                                Main.tile[x, sky - clear + height - j].ClearTile(); // 清除方块
+                            }
+                            //左海平台顶部放1层格栅让海水流下来
+                            WorldGen.PlaceTile(x, sky - clear + height, 546, false, false, -1, 0);
+
+                            //清理底部上面一层
+                            for (int j = 1; j < IntlClear; j++)
+                            {
+                                Main.tile[x, sky + clear - j].ClearEverything(); // 清除所有
+                            }
+                            //左海平台底部放1层
+                            WorldGen.PlaceTile(x, sky + clear, 38, false, true, -1, 0);
+
+                            // 左右侧实体块对上下对齐 (这个对CPU算力要求很高 加载超级慢
+                            if (Config.WorldPlatform[0].AccordantY)
+                            {
+                                for (int y2 = sky - clear + height; y2 < sky + clear; y2++)
+                                {
+                                    WorldGen.PlaceTile(0, y2, 38, false, true, -1, 0);
+                                    WorldGen.PlaceTile(wide - 1, y2, 38, false, true, -1, 0);
+                                }
+                            }
+                            else
+                            {
+                                //左边放一列 这列只能从地图编辑器看（41以内的x轴坐标已经超出地图边界外了）
+                                WorldGen.PlaceTile(0, x + y - IntlClear, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
+
+                                //考虑十周年有些出生点离左海太近 所以不放右侧
+                                if (Math.Abs(wide - Main.spawnTileX) < Radius) continue;
+                                else
+                                {
+                                    //正常出生点的左海都会放右侧墙
+                                    WorldGen.PlaceTile(wide, x + y - IntlClear, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
+                                }
+                            }
+
+                        }
+                    }
                 }
             }
         }
@@ -506,9 +687,9 @@ namespace SpawnInfra
 
             for (int x = 0; x < Main.maxTilesX; x++)
             {
-                if (Config.WorldPlatform[0].Enabled3)
+                if (Config.WorldPlatform[0].OceanPlatformEnabled)
                 {
-                    if (x - clear <= Main.oceanBG + Config.WorldPlatform[0].Limit) continue;
+                    if (x - clear <= Main.oceanBG + Config.WorldPlatform[0].WorldPlatformFromOceanLimit) continue;
                 }
 
                 for (int y = posY - clear; y <= posY; y++)
@@ -516,9 +697,9 @@ namespace SpawnInfra
                     Main.tile[x, y].ClearEverything();
                 }
 
-                if (Config.WorldPlatform[0].Enabled)
-                    WorldGen.PlaceTile(x, posY, Config.WorldPlatform[0].ID, false, true, -1, Config.WorldPlatform[0].Style);
-                if (Config.WorldPlatform[0].Enabled2)
+                if (Config.WorldPlatform[0].WorldPlatformEnabled)
+                    WorldGen.PlaceTile(x, posY, Config.WorldPlatform[0].WorldPlatformID, false, true, -1, Config.WorldPlatform[0].WorldPlatformStyle);
+                if (Config.WorldPlatform[0].WorldTrackEnabled)
                     WorldGen.PlaceTile(x, posY - 1, 314, false, true, -1, 0);
             }
         }
@@ -529,7 +710,7 @@ namespace SpawnInfra
         {
             int hell = 0;
 
-            if (Config.HellTunnel[0].Enabled)
+            if (Config.HellTunnel[0].HellTunnelEnabled)
             {
                 int xtile;
 
@@ -559,14 +740,14 @@ namespace SpawnInfra
                         val.ClearEverything();
                         if (cx == Xstart + Width / 2)
                         {
-                            val.type = Config.HellTunnel[0].ID2; //绳子
+                            val.type = Config.HellTunnel[0].Cord_TileID; //绳子
                             val.active(true);
                             val.slope(0);
                             val.halfBrick(false);
                         }
                         else if (cx == Xstart || cx == Xstart + Width - 1)
                         {
-                            val.type = Config.HellTunnel[0].ID; //边界方块
+                            val.type = Config.HellTunnel[0].Hell_BM_TileID; //边界方块
                             val.active(true);
                             val.slope(0);
                             val.halfBrick(false);
@@ -599,19 +780,20 @@ namespace SpawnInfra
                 {
                     Main.tile[x, y].ClearEverything(); // 清除方块
 
-                    if (Config.HellTunnel[0].Enabled2)
+                    if (Config.HellTunnel[0].HellPlatformEnabled)
                         WorldGen.PlaceTile(x, posY, Config.HellTunnel[0].PlatformID, false, true, -1, Config.HellTunnel[0].PlatformStyle); //地狱平台
 
-                    if (Config.HellTunnel[0].Enabled3)
+                    if (Config.HellTunnel[0].HellTrackEnabled)
                         WorldGen.PlaceTile(x, posY - 1, 314, false, true, -1, 0); //地狱轨道
                 }
         }
         #endregion
 
         #region 普通世界微光湖直通车
-        private static void ShimmerBiome(int Width)
+        private static void ShimmerBiome(int spawnY, int Width)
         {
-            if (!Config.HellTunnel[0].Enabled4) return;
+            //开启出生点微光湖则返回
+            if (!Config.HellTunnel[0].ShimmerBiomeTunnelEnabled || Config.SpawnShimmerBiome[0].SpawnShimmerBiome) return;
 
             //西江的判断微光湖位置方法
             var skipTile = new bool[Main.maxTilesX, Main.maxTilesY];
@@ -661,11 +843,9 @@ namespace SpawnInfra
                         int CenterX = (x + Right) / 2;
                         //深度到为中心湖面
                         int CenterY = (y + Bottom) / 2 - 8;
-                        //太空层
-                        var sky = Main.worldSurface * 0.3499999940395355;
-                        int Height = (int)sky - Config.WorldPlatform[0].SkyY;
+
                         // 从微光湖中心点向上挖通道直至地表
-                        for (int TunnelY = CenterY; TunnelY >= Height; TunnelY--)
+                        for (int TunnelY = CenterY; TunnelY >= spawnY; TunnelY--)
                             for (int TunnelX = CenterX - Width; TunnelX <= CenterX + Width; TunnelX++)
                             {
                                 if (TunnelX >= 0 && TunnelX < Main.maxTilesX)
@@ -673,7 +853,7 @@ namespace SpawnInfra
                                     Main.tile[TunnelX, TunnelY].ClearEverything();
                                     //直通车的两侧的方块
                                     if (TunnelX == CenterX - Width || TunnelX == CenterX + Width)
-                                        WorldGen.PlaceTile(TunnelX, TunnelY, Config.HellTunnel[0].ID, false, true, -1, 0);
+                                        WorldGen.PlaceTile(TunnelX, TunnelY, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
 
                                     //微光湖底部放一层雨云 防摔
                                     else if (TunnelY == CenterY)
@@ -689,9 +869,10 @@ namespace SpawnInfra
         #region 天顶微光直通车
         private static int MaxTunnels = 1; // 全局最大隧道数
         private static int CurrentTunnels = 0; // 当前已创建的隧道数
-        private static void ZenithShimmerBiome(int Width)
+        private static void ZenithShimmerBiome(int Width, int Height)
         {
-            if (!Config.HellTunnel[0].Enabled4 || CurrentTunnels >= MaxTunnels) return;
+            //开启出生点微光湖则返回
+            if (!Config.HellTunnel[0].ShimmerBiomeTunnelEnabled || CurrentTunnels >= MaxTunnels || Config.SpawnShimmerBiome[0].SpawnShimmerBiome) return;
 
             const int MinLakeSize = 200; // 只为大于等于200个瓷砖的微光湖创建隧道
             var skipTile = new bool[Main.maxTilesX, Main.maxTilesY];
@@ -712,7 +893,7 @@ namespace SpawnInfra
                 }
 
             // 从连通组件中选择最大的微光湖
-            Tuple<int, int> SCenter = null;
+            Tuple<int, int> SCenter = null!;
             foreach (var lake in ConedLakes)
             {
                 int label = ConedLakes.IndexOf(lake) + 1;
@@ -730,7 +911,7 @@ namespace SpawnInfra
             // 创建隧道
             if (SCenter != null)
             {
-                CreateTunnel(SCenter.Item1, SCenter.Item2, Width);
+                CreateTunnel(SCenter.Item1, SCenter.Item2, Width, Height);
                 CurrentTunnels++;
             }
         }
@@ -766,10 +947,9 @@ namespace SpawnInfra
         }
 
         //创建隧道
-        private static void CreateTunnel(int CenterX, int CenterY, int Width)
+        private static void CreateTunnel(int CenterX, int CenterY, int Width, int Height)
         {
             int CenterYOffset = -8; // 调整到微光湖中心偏上的位置
-            int Height = (int)(Main.worldSurface * 0.3499999940395355) - Config.WorldPlatform[0].SkyY;
 
             // 开始挖掘隧道
             for (int y = CenterY + CenterYOffset; y >= Height; y--)
@@ -780,7 +960,7 @@ namespace SpawnInfra
                     {
                         Main.tile[x, y].ClearEverything();
                         if (x == CenterX - Width || x == CenterX + Width)
-                            WorldGen.PlaceTile(x, y, Config.HellTunnel[0].ID, false, true, -1, 0); // 两侧放置特殊方块
+                            WorldGen.PlaceTile(x, y, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0); // 两侧放置特殊方块
                         else if (y == CenterY + CenterYOffset)
                             WorldGen.PlaceTile(x, y, 460, false, true, -1, 0); // 底部放置雨云
                     }

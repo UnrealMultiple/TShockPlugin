@@ -1,7 +1,10 @@
+using System.Security.Permissions;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
+using Mono.Cecil;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Asn1.X509;
 using OTAPI;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -89,6 +92,15 @@ namespace ServerTools
             On.OTAPI.Hooks.MessageBuffer.InvokeGetData += MessageBuffer_InvokeGetData;
             HandleCommandLine(Environment.GetCommandLineArgs());
         }
+   
+
+   
+        //private void NPC_AI1(On.Terraria.NPC.orig_AI orig, NPC self)
+        //{
+        //    if(Collision.CanHit(self.Center,))
+        //}
+
+       
 
         private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
         {
