@@ -112,6 +112,13 @@
     "Path": "CaiLib.dll"
   },
   {
+    "Name": "CaiRewardChest",
+    "Version": "1.0.0.0",
+    "Author": "Cai",
+    "Description": "奖励箱！！",
+    "Path": "CaiRewardChest.dll"
+  },
+  {
     "Name": "CGive",
     "Version": "1.0.0.0",
     "Author": "Leader",
@@ -218,7 +225,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.1.0.0",
+    "Version": "1.2.0.0",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"

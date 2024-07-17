@@ -39,7 +39,7 @@ public class BaseProjtileOption
     public float[] AI { get; set; } = new float[3];
 
     [JsonProperty("AI样式")]
-    public int AISytle { get; set; } = -1;
+    public AIStyleOption AISytle { get; set; } = new();
 
     [JsonProperty("射速")]
     public float Speed { get; set; }
