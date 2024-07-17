@@ -136,7 +136,7 @@
 | [ProgressControl](ProgressControls/README.md)                    |   计划书（自动化控制服务器）   |                                                                        无                                                                        |
 | [RealTime](RealTime/README.md)                                   |   使服务器内时间同步现实时间   |                                                                        无                                                                        |
 | [GoodNight](GoodNight/README.md)                                 |              宵禁             |                                                                        无                                                                        |
-| [Musicplayer](Musicplayer/README.md)                             |         简易音乐播放器         |                                                                        无                                                                        |
+| [Musicplayer](musicplayer/README.md)                             |         简易音乐播放器         |                                                                        无                                                                        |
 | [TimerKeeper](TimerKeeper/README.md)                             |         保存计时器状态         |                                                                        无                                                                        |
 | [Chameleon](Chameleon/README.md)                                 |        进服前登录              |                                                                        无                                                                        |
 | [AutoPluginManager](AutoPluginManager/README.md)                 |       一键自动更新插件         |                                                                        无                                                                        |
@@ -150,7 +150,7 @@
 | [ConvertWorld](ConvertWorld/README.md)                           |     击败怪物转换世界物品        |                                                                        无                                                                        |
 | [AutoStoreItems](AutoStoreItems/README.md)                       |           自动储存             |                                                                        无                                                                        |
 | [ZHIPlayerManager](ZHIPlayerManager/README.md)                   |        zhi的玩家管理插件        |                                                                        无                                                                        |
-| [SpawnInfra](SpawnInfra/README.md)                   |        生成基础建设        |                                                                        无                                                                        |
+| [SpawnInfra](SpawnInfra/README.md)                               |           生成基础建设          |                                                                        无                                                                        |
 
 
 </Details>
