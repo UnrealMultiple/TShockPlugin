@@ -40,6 +40,7 @@ public class Skill : TerrariaPlugin
         PlayerSKillManager = new();
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
+        ServerApi.Hooks.ProjectileAIUpdate.Register(this, OnAiUpdate);
         GetDataHandlers.PlayerUpdate.Register(OnPlayerUpdate);
         GetDataHandlers.PlayerHP.Register(OnHP);
         GetDataHandlers.PlayerMana.Register(OnMP);
@@ -51,11 +52,17 @@ public class Skill : TerrariaPlugin
         On.Terraria.Projectile.Update += Projectile_Update;
     }
 
+    private void OnAiUpdate(ProjectileAiUpdateEventArgs args)
+    {
+        AIStyle.AI(args.Projectile);
+    }
 
     private void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Projectile self, int i)
     {
         if (self.timeLeft <= 0)
             self.Kill();
+        else
+            AIStyle.AI(self);
         orig(self, i);
     }
 
@@ -73,7 +80,7 @@ public class Skill : TerrariaPlugin
 
     private void OnUpdate(EventArgs args)
     {
-        TimerCount++;
+        TimerCount++;     
         if ((TimerCount % 6) == 0)
         {
             SkillCD.SendGodPacket();
