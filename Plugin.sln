@@ -209,6 +209,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpawnInfra", "SpawnInfra\SpawnInfra.csproj", "{723DB1E5-AB0B-495F-AD1C-D67142E41441}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaiRewardChest", "CaiRewardChest\CaiRewardChest.csproj", "{77E718D8-82FA-43E9-A396-04A5A9717051}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CNPCShop", "CNPCShop\CNPCShop.csproj", "{8A6FA1CC-8299-41D0-A060-676D26594215}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SessionSentinel", "SessionSentinel\SessionSentinel.csproj", "{F863132D-5ED4-4C74-A752-342D67CEF597}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1026,6 +1029,22 @@ Global
 		{77E718D8-82FA-43E9-A396-04A5A9717051}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77E718D8-82FA-43E9-A396-04A5A9717051}.Release|x64.ActiveCfg = Release|Any CPU
 		{77E718D8-82FA-43E9-A396-04A5A9717051}.Release|x64.Build.0 = Release|Any CPU
+		{8A6FA1CC-8299-41D0-A060-676D26594215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A6FA1CC-8299-41D0-A060-676D26594215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A6FA1CC-8299-41D0-A060-676D26594215}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8A6FA1CC-8299-41D0-A060-676D26594215}.Debug|x64.Build.0 = Debug|Any CPU
+		{8A6FA1CC-8299-41D0-A060-676D26594215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A6FA1CC-8299-41D0-A060-676D26594215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A6FA1CC-8299-41D0-A060-676D26594215}.Release|x64.ActiveCfg = Release|Any CPU
+		{8A6FA1CC-8299-41D0-A060-676D26594215}.Release|x64.Build.0 = Release|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Debug|x64.Build.0 = Debug|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Release|x64.ActiveCfg = Release|Any CPU
+		{F863132D-5ED4-4C74-A752-342D67CEF597}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

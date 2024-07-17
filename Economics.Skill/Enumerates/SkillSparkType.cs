@@ -34,4 +34,7 @@ public enum SkillSparkType
 
     [Description("装备")]
     Armor,
+
+    [Description("跳跃")]
+    Jump
 }

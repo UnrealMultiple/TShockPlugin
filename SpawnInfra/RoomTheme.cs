@@ -1,5 +1,4 @@
-﻿using Terraria.ID;
-using static SpawnInfra.Plugin;
+﻿using static SpawnInfra.Plugin;
 
 namespace SpawnInfra
 {

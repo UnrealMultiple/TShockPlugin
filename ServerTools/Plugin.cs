@@ -1,6 +1,11 @@
+using System.Security.Permissions;
+using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
+using Mono.Cecil;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Asn1.X509;
+using OTAPI;
 using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
@@ -18,7 +23,7 @@ namespace ServerTools
 
         public override string Name => "ServerTools";// 插件名字
 
-        public override Version Version => new(1, 1, 7, 1);// 插件版本
+        public override Version Version => new(1, 1, 7, 2);// 插件版本
 
         private static Config Config = new();
 
@@ -79,14 +84,48 @@ namespace ServerTools
             #endregion
             CmdHook = new Hook(typeof(Commands).GetMethod(nameof(Commands.HandleCommand)), CommandHook);
             new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static), ViewAccountInfo);
-
             #region RestAPI
             TShock.RestApi.Register("/deathrank", DeadRank);
             TShock.RestApi.Register("/onlineDuration", Queryduration);
             #endregion
             Timer += OnUpdatePlayerOnline;
+            On.OTAPI.Hooks.MessageBuffer.InvokeGetData += MessageBuffer_InvokeGetData;
             HandleCommandLine(Environment.GetCommandLineArgs());
         }
+   
+
+   
+        //private void NPC_AI1(On.Terraria.NPC.orig_AI orig, NPC self)
+        //{
+        //    if(Collision.CanHit(self.Center,))
+        //}
+
+       
+
+        private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
+        {
+            
+            if (packetId == (byte)PacketTypes.LoadNetModule)
+            {
+                using MemoryStream ms = new MemoryStream(instance.readBuffer);
+                ms.Position = readOffset;
+                using BinaryReader reader = new BinaryReader(ms);
+                var id = reader.ReadUInt16();
+                if (id == Terraria.Net.NetManager.Instance.GetId<Terraria.GameContent.NetModules.NetTextModule>())
+                { 
+                    var msg = Terraria.Chat.ChatMessage.Deserialize(reader);
+                    if (Regex.IsMatch(msg.Text, @"[\uD800-\uDBFF][\uDC00-\uDFFF]"))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+        }
+
+
+
+
 
         #region 禁双饰品与肉前第7格饰品位方法
         private void OnUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
@@ -388,6 +427,7 @@ namespace ServerTools
                 args.Handled = true;
                 return;
             }
+           
 
             if (Config.KeepOpenChest && args.MsgID == PacketTypes.ChestOpen)
             {
