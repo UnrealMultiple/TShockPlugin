@@ -18,7 +18,7 @@ public class Deal : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+    public override Version Version => new Version(1, 0, 0, 1);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Deal.json");
 

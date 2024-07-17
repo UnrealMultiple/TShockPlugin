@@ -20,7 +20,7 @@ public class Skill : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+    public override Version Version => new(1, 2, 0, 0);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
@@ -40,7 +40,7 @@ public class Skill : TerrariaPlugin
         PlayerSKillManager = new();
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
-        ServerApi.Hooks.ProjectileAIUpdate.Register(this, OnProjectileAIUpdate);
+        ServerApi.Hooks.ProjectileAIUpdate.Register(this, OnAiUpdate);
         GetDataHandlers.PlayerUpdate.Register(OnPlayerUpdate);
         GetDataHandlers.PlayerHP.Register(OnHP);
         GetDataHandlers.PlayerMana.Register(OnMP);
@@ -49,13 +49,21 @@ public class Skill : TerrariaPlugin
         EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += OnKillNpc;
         EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop += OnPlayerCountertop;
         GeneralHooks.ReloadEvent += e => LoadConfig();
+        On.Terraria.Projectile.Update += Projectile_Update;
     }
 
-
-    private void OnProjectileAIUpdate(ProjectileAiUpdateEventArgs args)
+    private void OnAiUpdate(ProjectileAiUpdateEventArgs args)
     {
-        //if (Utils.spawnProjectiles.Contains(args.Projectile) && args.Projectile.active)
-        //    AIStyle.环绕(args.Projectile);
+        AIStyle.AI(args.Projectile);
+    }
+
+    private void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Projectile self, int i)
+    {
+        if (self.timeLeft <= 0)
+            self.Kill();
+        else
+            AIStyle.AI(self);
+        orig(self, i);
     }
 
     private void KillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
@@ -72,9 +80,10 @@ public class Skill : TerrariaPlugin
 
     private void OnUpdate(EventArgs args)
     {
-        TimerCount++;
+        TimerCount++;     
         if ((TimerCount % 6) == 0)
         {
+            SkillCD.SendGodPacket();
             SkillCD.Updata();
         }
     }
@@ -119,6 +128,10 @@ public class Skill : TerrariaPlugin
         {
             PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.Dash);
         }
+        if (e.Player.TPlayer.jump > 0)
+        {
+            PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.Jump);
+        }
     }
 
     private static void LoadConfig()
@@ -143,10 +156,6 @@ public class Skill : TerrariaPlugin
                         {
                             new()
                             {
-                                CircleProjectiles = new()
-                                {
-                                    new()
-                                },
                                 ProjectileCycle = new()
                                 {
                                     ProjectileCycles = new()

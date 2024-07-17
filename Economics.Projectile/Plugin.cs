@@ -53,6 +53,7 @@ public class Plugin : TerrariaPlugin
                 self.Minion_FindTargetInRange(1500, ref id, false);
             }
         }
+        orig(self);
     }
 
     private void Projectile_Minion_FindTargetInRange(On.Terraria.Projectile.orig_Minion_FindTargetInRange orig, Terraria.Projectile self, int startAttackRange, ref int attackTarget, bool skipIfCannotHitWithOwnBody, Func<Entity, int, bool> customEliminationCheck)
@@ -115,6 +116,7 @@ public class Plugin : TerrariaPlugin
                 }
             }
         }
+        orig(self, startAttackRange, ref attackTarget, skipIfCannotHitWithOwnBody, customEliminationCheck);
     }
 
     private void Onupdate(EventArgs args)
@@ -186,7 +188,7 @@ public class Plugin : TerrariaPlugin
                             //速度
                             var speed = proj.Speed > 0f ? e.Velocity.ToLenOf(proj.Speed) : e.Velocity;
 
-                            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Position, speed, proj.ID, (int)damage, knockback, e.Owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft);
+                            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Main.projectile[e.Index].GetProjectileSource_FromThis(), e.Position, speed, proj.ID, (int)damage, knockback, e.Owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft);
 
                             e.Player.SendData(PacketTypes.ProjectileNew, "", index);
 

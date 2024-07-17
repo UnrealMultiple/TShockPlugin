@@ -22,13 +22,13 @@ namespace SignInSign
         public bool SignEnable3 = false;
 
         [JsonProperty("创建告示牌的内容,重设指令:/gs r")]
-        public string SignText = "欢迎来到开荒服\n本服支持连锁挖矿,更多晶塔放置使用\nNPC售卖更多物品,更多材料微光转换\n更有RPG职业商店与魔改BOSS等你体验！\n并配备了在线礼包,进度礼包等福利助你快速成长\n需导出本服角色/地图可加群联系服主\n服务器群：123456\n\n编辑此处输入密码（保存2次）可快速注册登录：\n";
+        public string SignText = "欢迎来到开荒服！！\n本服支持PE/PC跨平台联机游玩\n每25分钟清理世界与Boss战排名统计\n更多指令教学请输入/help\n点击告示牌可进行传送\n\nTShock官方群：816771079\n";
         [JsonProperty("点击告示牌的广播/仅使用者可见")]
         public string SignText2 = "在本告示牌依序输入2次：\n[c/F7CCF0:123456]  进行注册登录。";
         [JsonProperty("试图破坏告示牌的广播")]
         public string SignText3 = "此告示牌不可被修改!";
         [JsonProperty("点击告示牌执行什么指令")]
-        public string[] CommandsOnSignRead { get; set; } = new string[0];
+        public string[] CmdList { get; set; } = new string[0];
         [JsonProperty("点击告示牌给什么BUFF")]
         public int[] BuffID { get; set; } = new int[] { };
         [JsonProperty("点击告示牌BUFF时长/分钟")]

@@ -22,10 +22,13 @@ namespace SignInSign
         public static int SpawnSign(int x, int y)
         {
             WorldGen.KillTile(x, y);
-            Main.tile[Main.spawnTileX, Main.spawnTileY - 3].wall = WallID.EchoWall;
-            Main.tile[Main.spawnTileX, Main.spawnTileY - 2].wall = WallID.EchoWall;
-            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].wall = WallID.EchoWall;
-            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].wall = WallID.EchoWall;
+            if (Main.tile[x, y].wall == WallID.None) //检查墙壁是否为空，空则放置隐形墙
+            {
+                Main.tile[Main.spawnTileX, Main.spawnTileY - 3].wall = WallID.EchoWall;
+                Main.tile[Main.spawnTileX, Main.spawnTileY - 2].wall = WallID.EchoWall;
+                Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].wall = WallID.EchoWall;
+                Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].wall = WallID.EchoWall;
+            }
 
             Main.tile[Main.spawnTileX, Main.spawnTileY - 3].active(false);
             Main.tile[Main.spawnTileX, Main.spawnTileY - 2].active(false);
