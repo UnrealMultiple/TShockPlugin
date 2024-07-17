@@ -19,6 +19,7 @@ public class PlayerSparkSkillHandler
                 {
                     SkillSparkType.HP => Player.TPlayer.statLife <= skill.Skill!.SkillSpark.HP,
                     SkillSparkType.MP => Player.TPlayer.statMana <= skill.Skill!.SkillSpark.MP,
+                    SkillSparkType.Jump => Player.TPlayer.jump > 0,
                     SkillSparkType.Dash => Player.TPlayer.dashDelay == -1,
                     SkillSparkType.CD => skill.SkillCD <= 0,
                     SkillSparkType.Armor => Utils.HasItem(Player, skill.Skill.SkillSpark.TermItem),

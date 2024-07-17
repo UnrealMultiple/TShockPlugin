@@ -12,6 +12,9 @@ public class PlayerTpOption
     [JsonProperty("启用")]
     public bool Enable { get; set; }
 
+    [JsonProperty("面向修正")]
+    public bool Incline { get; set; }
+
     [JsonProperty("X轴位置")]
     public int X { get; set; }
 

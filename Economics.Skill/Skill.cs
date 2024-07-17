@@ -20,7 +20,7 @@ public class Skill : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 1, 0, 2);
+    public override Version Version => new(1, 2, 0, 0);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
@@ -127,6 +127,10 @@ public class Skill : TerrariaPlugin
         if (e.Player.TPlayer.dashDelay == -1)
         {
             PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.Dash);
+        }
+        if (e.Player.TPlayer.jump > 0)
+        {
+            PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.Jump);
         }
     }
 
