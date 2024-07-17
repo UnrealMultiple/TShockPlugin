@@ -208,6 +208,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZHIPlayerManager", "ZHIPlay
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpawnInfra", "SpawnInfra\SpawnInfra.csproj", "{723DB1E5-AB0B-495F-AD1C-D67142E41441}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaiRewardChest", "CaiRewardChest\CaiRewardChest.csproj", "{77E718D8-82FA-43E9-A396-04A5A9717051}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1016,6 +1018,14 @@ Global
 		{723DB1E5-AB0B-495F-AD1C-D67142E41441}.Release|Any CPU.Build.0 = Release|Any CPU
 		{723DB1E5-AB0B-495F-AD1C-D67142E41441}.Release|x64.ActiveCfg = Release|Any CPU
 		{723DB1E5-AB0B-495F-AD1C-D67142E41441}.Release|x64.Build.0 = Release|Any CPU
+		{77E718D8-82FA-43E9-A396-04A5A9717051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77E718D8-82FA-43E9-A396-04A5A9717051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77E718D8-82FA-43E9-A396-04A5A9717051}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{77E718D8-82FA-43E9-A396-04A5A9717051}.Debug|x64.Build.0 = Debug|Any CPU
+		{77E718D8-82FA-43E9-A396-04A5A9717051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77E718D8-82FA-43E9-A396-04A5A9717051}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77E718D8-82FA-43E9-A396-04A5A9717051}.Release|x64.ActiveCfg = Release|Any CPU
+		{77E718D8-82FA-43E9-A396-04A5A9717051}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
