@@ -20,7 +20,7 @@ public class Skill : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 2, 0, 2);
+    public override Version Version => new(1, 2, 0, 3);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 

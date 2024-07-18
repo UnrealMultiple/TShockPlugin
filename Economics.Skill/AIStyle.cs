@@ -1,7 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using Economics.Skill.Model.Options;
 using EconomicsAPI.Extensions;
-using Google.Protobuf.WellKnownTypes;
 using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
@@ -52,7 +51,7 @@ public class AIStyle
         var target = projectile.position.FindRangeNPC(1000000f);
         if (Main.time % aIStyleOption.Interval == 0.0 && target != null)
         {
-            var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY) * projectile.velocity.Length();
+            var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY);
             int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner);
             TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
         }
@@ -65,7 +64,7 @@ public class AIStyle
         var target = projectile.position.FindRangeNPC(1000000f);
         if (Main.time % aIStyleOption.Interval == 0.0 && target != null)
         {
-            var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY) * projectile.velocity.Length();
+            var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY);
             int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner);
             TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
         }
