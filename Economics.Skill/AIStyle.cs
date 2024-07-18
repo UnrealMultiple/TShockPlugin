@@ -1,4 +1,5 @@
-﻿using Economics.Skill.Model.Options;
+﻿using System.Collections.Concurrent;
+using Economics.Skill.Model.Options;
 using EconomicsAPI.Extensions;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Xna.Framework;
@@ -9,25 +10,25 @@ namespace Economics.Skill;
 
 public class AIStyle
 {
-    private static readonly Dictionary<Projectile, AIStyleOption> projectiles = new();
+    private static readonly ConcurrentDictionary<Projectile, (string, AIStyleOption)> projectiles = new();
 
-    public static void Set(Projectile projectile, AIStyleOption style)
+    public static void Set(Projectile projectile, AIStyleOption style, string guid)
     {
         if (style.Style < 0)
             return;
-        projectiles[projectile] = style;
+        projectiles[projectile] = (guid, style);
     }
     public static void AI(Projectile projectile)
     {
-        if (projectiles.TryGetValue(projectile, out var style))
+        if (projectiles.TryGetValue(projectile, out var style) && projectile.miscText == style.Item1)
         {
-             switch (style.Style)
+             switch (style.Item2.Style)
             {
                 case 0:
-                    Revolve(projectile, style);
+                    Revolve(projectile, style.Item2);
                     break;
                 case 1:
-                    Hover(projectile, style); break;
+                    Hover(projectile, style.Item2); break;
             }
         }
     }
