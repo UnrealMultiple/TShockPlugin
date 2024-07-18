@@ -17,8 +17,14 @@ public class SkillSparkOption
     [JsonProperty("血量")]
     public int HP { get; set; }
 
+    [JsonProperty("血量比例计算")]
+    public bool HpRatio { get; set; }
+
     [JsonProperty("蓝量")]
     public int MP { get; set; }
+
+    [JsonProperty("蓝量比例计算")]
+    public bool MpRatio { get; set; }
 
     [JsonProperty("物品条件")]
     public List<TermItem> TermItem { get; set; } = new();

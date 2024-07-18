@@ -18,6 +18,9 @@ public class AIStyleOption
     [JsonProperty("射速")]
     public int Speed { get; set; }
 
+    [JsonProperty("攻击范围")]
+    public int AttackRange { get; set; } = 50;
+
     [JsonProperty("环绕大小")]
     public int Range { get; set; }
 
