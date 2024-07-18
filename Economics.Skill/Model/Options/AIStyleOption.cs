@@ -23,4 +23,7 @@ public class AIStyleOption
 
     [JsonProperty("攻击间隔")]
     public int Interval { get; set; } = 10;
+
+    [JsonProperty("AI")]
+    public float[] AI { get; set; } = new float[3];
 }
