@@ -225,7 +225,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.2.0.3",
+    "Version": "1.2.0.4",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"
@@ -467,6 +467,13 @@
     "Author": "z枳",
     "Description": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
     "Path": "ZHIPlayerManager.dll"
+  },
+  {
+    "Name": "传送请求",
+    "Version": "1.0.1",
+    "Author": "原作者: MarioE, 修改者: Dr.Toxic，肝帝熙恩",
+    "Description": "传送前需要被传送者接受或拒绝请求",
+    "Path": "TeleportRequest.dll"
   },
   {
     "Name": "决斗系统",
