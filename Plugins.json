@@ -225,7 +225,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.2.0.4",
+    "Version": "1.2.0.5",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"
@@ -246,7 +246,7 @@
   },
   {
     "Name": "EconomicsAPI",
-    "Version": "1.0.0.4",
+    "Version": "1.0.0.5",
     "Author": "少司命",
     "Description": "EconomicsAPI",
     "Path": "EconomicsAPI.dll"
