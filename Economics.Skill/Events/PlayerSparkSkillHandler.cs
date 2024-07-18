@@ -17,8 +17,8 @@ public class PlayerSparkSkillHandler
             {
                 enable = Spark switch
                 {
-                    SkillSparkType.HP => Player.TPlayer.statLife <= skill.Skill!.SkillSpark.HP,
-                    SkillSparkType.MP => Player.TPlayer.statMana <= skill.Skill!.SkillSpark.MP,
+                    SkillSparkType.HP => skill.Skill!.SkillSpark.HpRatio ? (((float)Player.TPlayer.statLife / (float)Player.TPlayer.statLifeMax) * 100 <= skill.Skill!.SkillSpark.HP) : Player.TPlayer.statLife <= skill.Skill!.SkillSpark.HP,
+                    SkillSparkType.MP => skill.Skill!.SkillSpark.MpRatio ? (((float)Player.TPlayer.statMana / (float)Player.TPlayer.statManaMax) * 100 <= skill.Skill!.SkillSpark.MP) : Player.TPlayer.statMana <= skill.Skill!.SkillSpark.MP,
                     SkillSparkType.Jump => Player.TPlayer.jump > 0,
                     SkillSparkType.Dash => Player.TPlayer.dashDelay == -1,
                     SkillSparkType.CD => skill.SkillCD <= 0,
@@ -27,6 +27,7 @@ public class PlayerSparkSkillHandler
                     SkillSparkType.Take => skillSparkType == SkillSparkType.Take && skill.BindItem == Player.SelectedItem.netID,
                     SkillSparkType.Kill => skillSparkType == SkillSparkType.Kill,
                     SkillSparkType.Strike => skillSparkType == SkillSparkType.Strike,
+                    SkillSparkType.Struck => skillSparkType == SkillSparkType.Struck,
                     _ => false
                 };
                 if (!enable)

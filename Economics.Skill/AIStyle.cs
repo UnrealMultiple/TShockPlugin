@@ -48,7 +48,7 @@ public class AIStyle
         var one = val.RotatedBy(1.03, default) * aIStyleOption.Range * 16;
         projectile.Center = Main.player[projectile.owner].Center + one;
         TSPlayer.All.SendData(PacketTypes.ProjectileNew, null, projectile.whoAmI, 0f, 0f, 0f, 0);
-        var target = projectile.position.FindRangeNPC(1000000f);
+        var target = projectile.position.FindRangeNPC(aIStyleOption.AttackRange * 16f);
         if (Main.time % aIStyleOption.Interval == 0.0 && target != null)
         {
             var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY);
@@ -61,7 +61,7 @@ public class AIStyle
     {
         projectile.Center = Main.player[projectile.owner].Center + new Vector2(0, 5 * 16 * -1);
         TSPlayer.All.SendData(PacketTypes.ProjectileNew, null, projectile.whoAmI, 0f, 0f, 0f, 0);
-        var target = projectile.position.FindRangeNPC(1000000f);
+        var target = projectile.position.FindRangeNPC(aIStyleOption.AttackRange * 16f);
         if (Main.time % aIStyleOption.Interval == 0.0 && target != null)
         {
             var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY);

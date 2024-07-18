@@ -64,21 +64,32 @@ public static class Vector2Ext
     }
 
 
-    public static NPC? FindRangeNPC(this Vector2 pos, float distanceSquared)
+    public static List<NPC> FindRangeNPCs(this Vector2 pos, float distanceSquared)
     {
+        var npcs = new List<NPC>();
         foreach (var npc in Main.npc)
         {
             if (npc != null && npc.active && npc.CanBeChasedBy(null, false))
             {
-                var val = npc.Center - pos;
-                if (distanceSquared > val.LengthSquared())
+                if (distanceSquared > Math.Abs(npc.Center.Distance(pos)))
                 {
-                    return npc;
+                    npcs.Add(npc);
                 }
             }
         }
-        return null;
+        return npcs;
     }
+
+    public static NPC? FindRangeNPC(this Vector2 pos, float distanceSquared)
+    {
+        var npcs = pos.FindRangeNPCs(distanceSquared);
+        if (npcs.Count == 0)
+            return null;
+        var boss = npcs.OrderBy(x => Math.Abs(x.position.Distance(pos)));
+        return boss.FirstOrDefault(x => x.boss, boss.First());
+    }
+
+
 
     public static List<Vector2> GenerateCurvePoints(Vector2 pointA, Vector2 pointB, float radius, float interval)
     {
