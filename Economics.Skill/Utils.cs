@@ -168,6 +168,7 @@ public class Utils
                             _vel = (_pos.DirectionTo(lockNpc.Center).SafeNormalize(-Vector2.UnitY)).ToLenOf(proj.Speed);
                         }
                         #region 生成弹幕
+                        var guid = Guid.NewGuid().ToString();
                         int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(
                             //发射原无期
                             Player.TPlayer.GetProjectileSource_Item(Player.TPlayer.HeldItem),
@@ -181,10 +182,11 @@ public class Utils
                             proj.AI[0],
                             proj.AI[1],
                             proj.AI[2],
-                            proj.TimeLeft);
+                            proj.TimeLeft,
+                            guid);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
                         #endregion
-                        AIStyle.Set(Main.projectile[index], proj.AISytle);
+                        AIStyle.Set(Main.projectile[index], proj.AISytle, guid);
                         #region 数值重置
 
                         if (!opt.NewPos)
