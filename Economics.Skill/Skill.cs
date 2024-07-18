@@ -20,7 +20,7 @@ public class Skill : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 2, 0, 0);
+    public override Version Version => new(1, 2, 0, 1);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
@@ -59,7 +59,7 @@ public class Skill : TerrariaPlugin
 
     private void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Projectile self, int i)
     {
-        if (self.timeLeft <= 0)
+        if (self.timeLeft <= 0 && self.active)
             self.Kill();
         else
             AIStyle.AI(self);

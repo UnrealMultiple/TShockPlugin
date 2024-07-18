@@ -133,6 +133,21 @@ public static class TSPlayerExt
         }
     }
 
+    public static void StrikeNpc(this TSPlayer Player, int damage, int Range, HashSet<int> Strike)
+    {
+        if (damage > 0)
+        {
+            Player.GetNpcInRange(Range).ForEach(npc =>
+            {
+                if (!Strike.Contains(npc.netID))
+                {
+                    npc.StrikeNPC(damage, 0, 0);
+                    NetMessage.SendData(28, -1, -1, NetworkText.Empty, npc.whoAmI, damage, 0, 0, Player.Index);
+                }
+            });
+        }
+    }
+
     /// <summary>
     /// 重生
     /// </summary>
