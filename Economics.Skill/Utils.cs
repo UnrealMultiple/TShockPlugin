@@ -41,7 +41,7 @@ public class Utils
     {
         if (!string.IsNullOrEmpty(skill.Broadcast))
             TShock.Utils.Broadcast(skill.Broadcast, Color.Wheat);
-        Player.StrikeNpc(skill.StrikeNpc.Damage, skill.StrikeNpc.Range);
+        Player.StrikeNpc(skill.StrikeNpc.Damage, skill.StrikeNpc.Range, Skill.Config.BanStrikeNpcs);
         Player.ExecRangeCommands(skill.ExecCommand.Range, skill.ExecCommand.Commands);
         Player.HealAllLife(skill.HealPlayerHPOption.Range, skill.HealPlayerHPOption.HP);
         Player.HealAllMana(skill.HealPlayerHPOption.Range, skill.HealPlayerHPOption.MP);

@@ -18,6 +18,9 @@ public class Config
     [JsonProperty("禁止拉怪表")]
     public HashSet<int> BanPullNpcs { get; set; } = new();
 
+    [JsonProperty("禁止伤怪表")]
+    public HashSet<int> BanStrikeNpcs { get; set; } = new();
+
     [JsonProperty("最大显示页")]
     public int PageMax { get; set; } = 20;
 
