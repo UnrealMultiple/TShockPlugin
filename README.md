@@ -153,6 +153,7 @@
 | [SpawnInfra](SpawnInfra/README.md)                               |           生成基础建设          |                                                                        无                                                                        |
 | [CNPCShop](CNPCShop/README.md)                                   |          自定义NPC商店          |                                                                        无                                                                        |
 | [SessionSentinel](SessionSentinel/README.md)                     |    处理长时间不发送数据包的玩家  |                                                                        无                                                                        |
+| [TeleportRequest](TeleportRequest/README.md)                     |             传送请求            |                                                                        无                                                                        |
 
 
 </Details>
