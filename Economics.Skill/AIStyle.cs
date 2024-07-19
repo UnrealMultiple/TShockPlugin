@@ -14,6 +14,8 @@ public class AIStyle
 
     private delegate void StyleCall(Projectile projectile, AIStyleOption option);
 
+    private static string UUID = Guid.NewGuid().ToString();
+
     private static readonly Dictionary<AIStyleType, StyleCall> TypeCall = new Dictionary<AIStyleType, StyleCall>()
     {
         { AIStyleType.Revolve, Revolve },
@@ -70,7 +72,7 @@ public class AIStyle
         if (Main.time % aIStyleOption.Interval == 0.0 && target != null)
         {
             var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY);
-            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner, aIStyleOption.AI[0], aIStyleOption.AI[1], aIStyleOption.AI[2]);
+            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner, aIStyleOption.AI[0], aIStyleOption.AI[1], aIStyleOption.AI[2], -1, UUID);
             TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
         }
     }
@@ -83,7 +85,7 @@ public class AIStyle
         if (Main.time % aIStyleOption.Interval == 0.0 && target != null)
         {
             var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY);
-            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner, aIStyleOption.AI[0], aIStyleOption.AI[1], aIStyleOption.AI[2]);
+            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner, aIStyleOption.AI[0], aIStyleOption.AI[1], aIStyleOption.AI[2], -1, UUID); 
             TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
         }
     }
