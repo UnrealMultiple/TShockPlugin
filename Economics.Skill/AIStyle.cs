@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using Economics.Skill.Enumerates;
 using Economics.Skill.Model.Options;
 using EconomicsAPI.Extensions;
 using Microsoft.Xna.Framework;
@@ -11,24 +12,41 @@ public class AIStyle
 {
     private static readonly ConcurrentDictionary<Projectile, (string, AIStyleOption)> projectiles = new();
 
+    private delegate void StyleCall(Projectile projectile, AIStyleOption option);
+
+    private static readonly Dictionary<AIStyleType, StyleCall> TypeCall = new Dictionary<AIStyleType, StyleCall>()
+    {
+        { AIStyleType.Revolve, Revolve },
+        { AIStyleType.Hover, Hover },
+        { AIStyleType.Trace, Trace }
+    };
+
     public static void Set(Projectile projectile, AIStyleOption style, string guid)
     {
         if (style.Style < 0)
             return;
         projectiles[projectile] = (guid, style);
     }
+
     public static void AI(Projectile projectile)
     {
         if (projectiles.TryGetValue(projectile, out var style) && projectile.miscText == style.Item1)
         {
-             switch (style.Item2.Style)
-            {
-                case 0:
-                    Revolve(projectile, style.Item2);
-                    break;
-                case 1:
-                    Hover(projectile, style.Item2); break;
-            }
+            if (TypeCall.TryGetValue(style.Item2.Style, out var func))
+                func(projectile, style.Item2);
+        }
+    }
+
+    private static void Trace(Projectile projectile, AIStyleOption aIStyleOption)
+    {
+        var target = projectile.position.FindRangeNPC(aIStyleOption.AttackRange * 16f);
+        if (target != null)
+        {
+            var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY);
+            projectile.velocity = speed.ToLenOf(aIStyleOption.Speed);
+            TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", projectile.whoAmI);
+            if (Math.Abs(target.Distance(projectile.Center)) <= 16f)
+                projectiles.Remove(projectile, out var _);
         }
     }
 
@@ -52,7 +70,7 @@ public class AIStyle
         if (Main.time % aIStyleOption.Interval == 0.0 && target != null)
         {
             var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY);
-            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner, aIStyleOption.AI[0], aIStyleOption.AI[1], aIStyleOption.AI[2]);
+            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner, aIStyleOption.AI[0], aIStyleOption.AI[1], aIStyleOption.AI[2]);
             TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
         }
     }
@@ -65,7 +83,7 @@ public class AIStyle
         if (Main.time % aIStyleOption.Interval == 0.0 && target != null)
         {
             var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY);
-            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner, aIStyleOption.AI[0], aIStyleOption.AI[1], aIStyleOption.AI[2]);
+            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner, aIStyleOption.AI[0], aIStyleOption.AI[1], aIStyleOption.AI[2]);
             TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
         }
     }
