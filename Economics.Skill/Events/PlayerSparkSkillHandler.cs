@@ -17,12 +17,12 @@ public class PlayerSparkSkillHandler
             {
                 enable = Spark switch
                 {
-                    SkillSparkType.HP => skill.Skill!.SkillSpark.HpRatio ? (((float)Player.TPlayer.statLife / (float)Player.TPlayer.statLifeMax) * 100 <= skill.Skill!.SkillSpark.HP) : Player.TPlayer.statLife <= skill.Skill!.SkillSpark.HP,
-                    SkillSparkType.MP => skill.Skill!.SkillSpark.MpRatio ? (((float)Player.TPlayer.statMana / (float)Player.TPlayer.statManaMax) * 100 <= skill.Skill!.SkillSpark.MP) : Player.TPlayer.statMana <= skill.Skill!.SkillSpark.MP,
+                    SkillSparkType.HP => skill.Skill!.SkillSpark.MeetHP(Player),
+                    SkillSparkType.MP => skill.Skill!.SkillSpark.MeetMP(Player),
                     SkillSparkType.Jump => Player.TPlayer.jump > 0,
                     SkillSparkType.Dash => Player.TPlayer.dashDelay == -1,
                     SkillSparkType.CD => skill.SkillCD <= 0,
-                    SkillSparkType.Armor => Utils.HasItem(Player, skill.Skill.SkillSpark.TermItem),
+                    SkillSparkType.Armor => skill.Skill!.SkillSpark.HasItem(Player),
                     SkillSparkType.Death => Player.Dead,
                     SkillSparkType.Take => skillSparkType == SkillSparkType.Take && skill.BindItem == Player.SelectedItem.netID,
                     SkillSparkType.Kill => skillSparkType == SkillSparkType.Kill,
