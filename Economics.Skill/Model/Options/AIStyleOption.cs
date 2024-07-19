@@ -1,5 +1,6 @@
 ﻿
 
+using Economics.Skill.Enumerates;
 using Newtonsoft.Json;
 
 namespace Economics.Skill.Model.Options;
@@ -7,7 +8,7 @@ namespace Economics.Skill.Model.Options;
 public class AIStyleOption
 {
     [JsonProperty("样式")]
-    public int Style { get; set; } = -1;
+    public AIStyleType Style { get; set; } = AIStyleType.None;
 
     [JsonProperty("发射弹幕")] 
     public int ProjID { get; set; }
