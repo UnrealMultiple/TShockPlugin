@@ -20,7 +20,7 @@ public class Skill : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 2, 0, 0);
+    public override Version Version => new(1, 2, 0, 7);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
@@ -46,20 +46,27 @@ public class Skill : TerrariaPlugin
         GetDataHandlers.PlayerMana.Register(OnMP);
         GetDataHandlers.KillMe.Register(KillMe);
         GetDataHandlers.NewProjectile.Register(OnNewProj);
+        GetDataHandlers.PlayerDamage.Register(OnPlayerDamage);
         EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += OnKillNpc;
         EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop += OnPlayerCountertop;
         GeneralHooks.ReloadEvent += e => LoadConfig();
         On.Terraria.Projectile.Update += Projectile_Update;
     }
 
+    private void OnPlayerDamage(object? sender, GetDataHandlers.PlayerDamageEventArgs e)
+    {
+        PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.Struck);
+    }
+
     private void OnAiUpdate(ProjectileAiUpdateEventArgs args)
     {
-        AIStyle.AI(args.Projectile);
+        if (!string.IsNullOrEmpty(args.Projectile.miscText))
+            AIStyle.AI(args.Projectile);
     }
 
     private void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Projectile self, int i)
     {
-        if (self.timeLeft <= 0)
+        if (self.timeLeft <= 0 || !self.active)
             self.Kill();
         else
             AIStyle.AI(self);

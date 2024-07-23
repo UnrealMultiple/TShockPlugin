@@ -168,9 +168,8 @@ public class Plugin : TerrariaPlugin
 
     private void OnProj(object? sender, GetDataHandlers.NewProjectileEventArgs e)
     {
-        Main.projectile[e.Identity].active = true;
-        Main.projectile[e.Identity].owner = e.Player.Index;
-        if (e.Player.TPlayer.controlUseItem && e.Player.SelectedItem.useAmmo != 0)
+        var projectile = Main.projectile[e.Index];
+        if (projectile.miscText == "" && e.Player.TPlayer.controlUseItem && e.Player.SelectedItem.useAmmo != 0)
         {
             if (Config.ItemReplace.TryGetValue(e.Player.SelectedItem.netID, out var pr) && pr != null)
             {

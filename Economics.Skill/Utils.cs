@@ -39,72 +39,10 @@ public class Utils
     /// <param name="skill"></param>
     public static void EmitGeneralSkill(TSPlayer Player, SkillContext skill)
     {
-        if (!string.IsNullOrEmpty(skill.Broadcast))
-            TShock.Utils.Broadcast(skill.Broadcast, Color.Wheat);
-        Player.StrikeNpc(skill.StrikeNpc.Damage, skill.StrikeNpc.Range);
-        Player.ExecRangeCommands(skill.ExecCommand.Range, skill.ExecCommand.Commands);
-        Player.HealAllLife(skill.HealPlayerHPOption.Range, skill.HealPlayerHPOption.HP);
-        Player.HealAllMana(skill.HealPlayerHPOption.Range, skill.HealPlayerHPOption.MP);
-        Player.ClearProj(skill.ClearProjectile.Range);
-        Player.CollectNPC(skill.PullNpc.Range, Skill.Config.BanPullNpcs, skill.PullNpc.X * 16, skill.PullNpc.Y * 16);
-        if (skill.PlayerTp.Enable)
-            Player.Teleport(Player.X + skill.PlayerTp.X * 16 * (skill.PlayerTp.Incline ? Player.TPlayer.direction : 1), Player.Y + skill.PlayerTp.Y * 16); 
-        if (skill.PlayerGod.Enable)
-            SkillCD.GodPlayer(Player, skill.PlayerGod.Time);
-        foreach (var ply in Player.GetPlayerInRange(skill.BuffOption.Range))
-            foreach (var buff in skill.BuffOption.Buffs)
-                ply.SetBuff(buff.BuffId, buff.Time);
+        skill.EmitGeneralSkill(Player);
     }
 
-    public static bool HasItem(TSPlayer player, List<TermItem> terms)
-    {
-        foreach (var item in terms)
-        {
-            if (item.Inventory)
-            {
-                var inv = player.TPlayer.inventory.Where(x => x.netID == item.netID);
-                if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
-                    return false;
-            }
-            if (item.Armory)
-            {
-                var inv = player.TPlayer.armor.Where(x => x.netID == item.netID);
-                if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
-                    return false;
-            }
-            if (item.HeldItem)
-            {
-                if (player.SelectedItem.netID != item.netID)
-                    return false;
-            }
-        }
-        ConsumeItem(player, terms);
-        return true;
-    }
-
-    private static void ConsumeItem(TSPlayer player, List<TermItem> terms)
-    {
-        foreach (var term in terms)
-        {
-            var stack = term.Stack;
-            for (int j = 0; j < player.TPlayer.inventory.Length; j++)
-            {
-                var item = player.TPlayer.inventory[j];
-                if (item.netID == term.netID && term.Consume)
-                {
-                    if (item.stack >= stack)
-                    {
-                        item.stack -= stack;
-                        TSPlayer.All.SendData(PacketTypes.PlayerSlot, "", player.Index, j);
-                    }
-                    else
-                    {
-                        stack -= item.stack;
-                    }
-                }
-            }
-        }
-    }
+   
 
   
 
@@ -168,6 +106,7 @@ public class Utils
                             _vel = (_pos.DirectionTo(lockNpc.Center).SafeNormalize(-Vector2.UnitY)).ToLenOf(proj.Speed);
                         }
                         #region 生成弹幕
+                        var guid = Guid.NewGuid().ToString();
                         int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(
                             //发射原无期
                             Player.TPlayer.GetProjectileSource_Item(Player.TPlayer.HeldItem),
@@ -181,10 +120,11 @@ public class Utils
                             proj.AI[0],
                             proj.AI[1],
                             proj.AI[2],
-                            proj.TimeLeft);
+                            proj.TimeLeft,
+                            guid);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
                         #endregion
-                        AIStyle.Set(Main.projectile[index], proj.AISytle);
+                        AIStyle.Set(Main.projectile[index], proj.AISytle, guid);
                         #region 数值重置
 
                         if (!opt.NewPos)
