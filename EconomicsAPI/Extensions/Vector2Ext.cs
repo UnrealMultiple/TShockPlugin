@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using TShockAPI;
 
 namespace EconomicsAPI.Extensions;
 
@@ -64,20 +65,78 @@ public static class Vector2Ext
     }
 
 
-    public static NPC? FindRangeNPC(this Vector2 pos, float distanceSquared)
+    public static List<NPC> FindRangeNPCs(this Vector2 pos, float distanceSquared)
     {
+        var npcs = new List<NPC>();
         foreach (var npc in Main.npc)
         {
             if (npc != null && npc.active && npc.CanBeChasedBy(null, false))
             {
-                var val = npc.Center - pos;
-                if (distanceSquared > val.LengthSquared())
+                if (distanceSquared > Math.Abs(npc.Center.Distance(pos)))
                 {
-                    return npc;
+                    npcs.Add(npc);
                 }
             }
         }
-        return null;
+        return npcs;
+    }
+
+    public static List<Projectile> FindRangeProjectiles(this Vector2 pos, float distanceSquared)
+    {
+        var projectile = new List<Projectile>();
+        foreach (var proj in Main.projectile)
+        {
+            if (proj != null && proj.active)
+            {
+                if (distanceSquared > Math.Abs(proj.Center.Distance(pos)))
+                {
+                    projectile.Add(proj);
+                }
+            }
+        }
+        return projectile;
+    }
+
+    public static List<Player> FindRangePlayers(this Vector2 pos, float distanceSquared)
+    {
+        var players = new List<Player>();
+        foreach (var ply in Main.player)
+        {
+            if (ply != null && ply.active)
+            {
+                if (distanceSquared > Math.Abs(ply.Center.Distance(pos)))
+                {
+                    players.Add(ply);
+                }
+            }
+        }
+        return players;
+    }
+
+    public static List<TSPlayer> FindRangeTSPlayers(this Vector2 pos, float distanceSquared)
+    {
+        var players = new List<TSPlayer>();
+        foreach (var ply in Economics.ServerPlayers)
+        {
+            if (ply != null && ply.Active)
+            {
+                if (distanceSquared > Math.Abs(ply.TPlayer.Center.Distance(pos)))
+                {
+                    players.Add(ply);
+                }
+            }
+        }
+        return players;
+    }
+
+
+    public static NPC? FindRangeNPC(this Vector2 pos, float distanceSquared)
+    {
+        var npcs = pos.FindRangeNPCs(distanceSquared);
+        if (npcs.Count == 0)
+            return null;
+        var boss = npcs.OrderBy(x => Math.Abs(x.position.Distance(pos)));
+        return boss.FirstOrDefault(x => x.boss, boss.First());
     }
 
     public static List<Vector2> GenerateCurvePoints(Vector2 pointA, Vector2 pointB, float radius, float interval)
@@ -136,19 +195,7 @@ public static class Vector2Ext
         return points;
     }
 
-    
-    //public static List<Vector2> GenerateCircle(this Vector2 startPoint, Vector2 centerPoint, float radius, float angleIncrement)
-    //{
-    //    List<Vector2> points = new List<Vector2>();
-    //    for (float angle = -360; angle <= 360; angle += angleIncrement)
-    //    {
-    //        float x = centerPoint.x + radius * (float)Math.Cos(angle * Math.PI / 180);
-    //        float y = centerPoint.y + radius * (float)Math.Sin(angle * Math.PI / 180);
-    //        points.Add(new Vector2(x, y));
-    //    }
-    //    return points;
-    //}
-    
+   
     public static List<Vector2> CreateCircle(this Vector2 startPoint, Vector2 centerPoint, int angleIncrement, int numberOfPoints)
     {
         List<Vector2> points = new List<Vector2>();

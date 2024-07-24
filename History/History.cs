@@ -28,7 +28,7 @@ public class History : TerrariaPlugin
     private Thread CommandQueueThread;
     public override string Description => "记录图格操作.";
     public override string Name => "History";
-    public override Version Version => new Version(1, 0, 2);
+    public override Version Version => new Version(1, 0, 3);
 
     public History(Main game) : base(game)
     {
@@ -1489,8 +1489,18 @@ public class History : TerrariaPlugin
         }
         else
         {
-            e.Player.SendMessage("敲击(放置)一个方块查询这个坐标的历史记录.", Color.LimeGreen);
-            this.AwaitingHistory[e.Player.Index] = true;
+            if(e.Player.Index == -1)
+            {
+                TShock.Log.ConsoleError("单独的/history命令只能在服务器内使用.");
+                TShock.Log.ConsoleError("你也可以在后台使用/history <账号名> <时间> <范围>");
+                return;
+            }
+            else
+            {
+                e.Player.SendMessage("敲击(放置)一个方块查询这个坐标的历史记录.", Color.LimeGreen);
+                this.AwaitingHistory[e.Player.Index] = true;
+            }
+
         }
     }
     void Reenact(CommandArgs e)

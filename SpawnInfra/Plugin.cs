@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.Utilities;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
@@ -11,7 +12,7 @@ namespace SpawnInfra
         #region 插件信息
         public override string Name => "生成基础建设";
         public override string Author => "羽学";
-        public override Version Version => new Version(1, 5, 3);
+        public override Version Version => new Version(1, 5, 4);
         public override string Description => "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）";
         #endregion
 
@@ -23,6 +24,7 @@ namespace SpawnInfra
             GeneralHooks.ReloadEvent += (_) => LoadConfig();
             //提高优先级避免覆盖CreateSpawn插件
             ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize, 20);
+            GetDataHandlers.PlayerUpdate.Register(PlayerUpdate);
             Commands.ChatCommands.Add(new Command("room.use", Comds.Comd, "rm", "基建")
             {
                 HelpText = "生成基础建设"
@@ -35,6 +37,7 @@ namespace SpawnInfra
             {
                 GeneralHooks.ReloadEvent -= (_) => LoadConfig();
                 ServerApi.Hooks.GamePostInitialize.Deregister(this, OnGamePostInitialize);
+                GetDataHandlers.PlayerUpdate.UnRegister(PlayerUpdate);
                 Commands.ChatCommands.Remove(new Command("room.use", Comds.Comd, "rm", "基建"));
             }
             base.Dispose(disposing);
@@ -92,8 +95,6 @@ namespace SpawnInfra
                         else
                             WorldGen.ShimmerMakeBiome(Main.spawnTileX + item.TileX, Main.spawnTileY + item.TileY); //坐标为出生点
                 }
-
-
 
                 //地狱直通车与刷怪场
                 foreach (var item in Config.HellTunnel)
@@ -175,6 +176,65 @@ namespace SpawnInfra
                 Config.Enabled = false;
                 Config.Write();
             }
+        }
+        #endregion
+
+        #region 提高刷怪场中的刷怪率方法
+        private void PlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
+        {
+            if (e == null || !Config.Enabled || !Config.HellTunnel[0].SpawnRate ||
+                !Config.HellTunnel[0].BrushMonstEnabled || !Main.hardMode) return;
+
+            if (Main.zenithWorld || Main.remixWorld)//颠倒种子
+                MonsterRegion(Main.rockLayer / 2 + Config.HellTunnel[0].BrushMonstHeight,
+                    Config.HellTunnel[0].BrushMonstHeight, Config.HellTunnel[0].BrushMonstWidth, Config.HellTunnel[0].BrushMonstCenter);
+
+            else //普通世界
+                MonsterRegion(Main.rockLayer, Config.HellTunnel[0].BrushMonstHeight,
+                    Config.HellTunnel[0].BrushMonstWidth, Config.HellTunnel[0].BrushMonstCenter);
+        }
+
+        private static void MonsterRegion(double posY, int height, int width, int centerVal)
+        {
+            if (InRegion(posY, height, width, centerVal))
+            {
+                NPC.defaultSpawnRate = Config.HellTunnel[0].defaultSpawnRate;
+                NPC.defaultMaxSpawns = Config.HellTunnel[0].defaultMaxSpawns;
+            }
+            else
+            {
+                NPC.defaultSpawnRate = TShock.Config.Settings.DefaultSpawnRate;
+                NPC.defaultMaxSpawns = TShock.Config.Settings.DefaultMaximumSpawns;
+            }
+        }
+        #endregion
+
+        #region 判断所有玩家在刷怪区方法
+        public static bool InRegion(double posY, int height, int width, int centerVal)
+        {
+            int region = (int)posY - height;
+            int top = region + height * 2;
+            int bottom = (int)posY + height * 2;
+            int middle = (top + bottom) / 2 + centerVal;
+
+            int centerTop = middle + 8 + centerVal - 11;
+            int centerBottom = middle + 8 + centerVal + 3;
+            int centerLeft = Main.spawnTileX - 8 - centerVal;
+            int centerRight = Main.spawnTileX + 8 + centerVal;
+
+            for (int i = 0; i < Main.maxPlayers; i++) //所有在线玩家
+            {
+                Player plr = Main.player[i];
+                if (plr.active)
+                {
+                    int plrX = (int)(plr.position.X / 16);
+                    int plrY = (int)(plr.position.Y / 16);
+                    if (!(plrX >= centerLeft && plrX <= centerRight
+                        && plrY >= centerTop && plrY <= centerBottom))
+                        return false;
+                }
+            }
+            return true;
         }
         #endregion
 
@@ -285,9 +345,9 @@ namespace SpawnInfra
                                             //尖球
                                             WorldGen.PlaceTile(x - j, wallY - j, 137, true, false, -1, 3);
                                             WorldGen.PlaceTile(x + j, wallY - j, 137, true, false, -1, 3);
-                                            //给尖球加制动器
-                                            WorldGen.PlaceActuator(x - j, wallY - j);
-                                            WorldGen.PlaceActuator(x + j, wallY - j);
+                                            //给尖球虚化
+                                            Main.tile[x - j, wallY - j].inActive(true);
+                                            Main.tile[x + j, wallY - j].inActive(true);
                                         }
                                         //给尖球加电线
                                         for (int j = 2; j <= 10 + CenterVal; j++)
@@ -309,11 +369,14 @@ namespace SpawnInfra
                             if (x < Main.spawnTileX)
                             {
                                 Main.tile[x, middle - 1].slope(3); // 设置为右斜坡
+                                WorldGen.PlaceTile(x, middle, 421, false, true, -1, 0); //刷怪场中间左边放1层传送带（刷怪取物品用）
                             }
                             else
                             {
                                 Main.tile[x, middle - 1].slope(4); // 设置为左斜坡
+                                WorldGen.PlaceTile(x, middle, 422, false, true, -1, 0); //刷怪场中间右边放1层传送带（刷怪取物品用） 
                             }
+
                             // 把半砖替换成推怪平台
                             WorldGen.PlaceTile(x, middle - 1, Config.HellTunnel[0].PlatformID, false, true, -1, Config.HellTunnel[0].PlatformStyle);
                             //平台加电线+制动器
