@@ -1,6 +1,7 @@
 ﻿using System.Net.WebSockets;
 using System.Runtime.InteropServices;
 using System.Text;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NuGet.Protocol;
 using Rests;
@@ -83,7 +84,7 @@ public static class MessageHandle
                     },
                     { "group", (long)jsonObject["group"]! }
                 };
-                await SendDateAsync(result.ToJson());
+                await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "groupid":
                 long groupId = (long)jsonObject["groupid"]!;
@@ -105,7 +106,7 @@ public static class MessageHandle
                     { "at", (string)jsonObject["at"]! },
                     { "group", (long)jsonObject["group"]! }
                 };
-                await SendDateAsync(result.ToJson());
+                await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "online":
                 string onlineResult = "";
@@ -189,7 +190,7 @@ public static class MessageHandle
                     { "process", onlineProcess },
                     { "group", (long)jsonObject["group"]! }
                 };
-                await SendDateAsync(result.ToJson());
+                await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "process":
                 List<Dictionary<string, bool>> processList = new(
@@ -350,7 +351,7 @@ public static class MessageHandle
                     { "worldname", Main.worldName },
                     { "group", (long)jsonObject["group"]! }
                 };
-                await SendDateAsync(result.ToJson());
+                await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "whitelist":
                 string name = (string)jsonObject["name"]!;
@@ -386,7 +387,7 @@ public static class MessageHandle
                     };
                 }
 
-                await SendDateAsync(result.ToJson());
+                await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "lookbag":
                 name = (string)jsonObject["name"]!;
@@ -520,7 +521,7 @@ public static class MessageHandle
                         { "buffs", buffs },
                         { "group", (long)jsonObject["group"]! }
                     };
-                    await SendDateAsync(result.ToJson());
+                    await SendDateAsync(JsonConvert.SerializeObject(result));
                 }
                 else
                 {
@@ -534,7 +535,7 @@ public static class MessageHandle
                             { "type", "lookbag" },
                             { "exist", 0 }
                         };
-                        await SendDateAsync(result.ToJson());
+                        await SendDateAsync(JsonConvert.SerializeObject(result));
                         return;
                     }
 
@@ -547,7 +548,7 @@ public static class MessageHandle
                             { "type", "lookbag" },
                             { "exist", 0 }
                         };
-                        await SendDateAsync(result.ToJson());
+                        await SendDateAsync(JsonConvert.SerializeObject(result));
                         return;
                     }
 
@@ -567,7 +568,7 @@ public static class MessageHandle
                         { "buffs", buffs },
                         { "group", (long)jsonObject["group"]! }
                     };
-                    await SendDateAsync(result.ToJson());
+                    await SendDateAsync(JsonConvert.SerializeObject(result));
                 }
 
                 break;
@@ -582,7 +583,7 @@ public static class MessageHandle
                     { "name", info.Name },
                     { "group", (long)jsonObject["group"]! }
                 };
-                await SendDateAsync(result.ToJson());
+                await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "worldfile":
                 result = new RestObject
@@ -592,7 +593,7 @@ public static class MessageHandle
                     { "base64", FileToBase64String(Main.worldPathName) },
                     { "group", (long)jsonObject["group"]! }
                 };
-                await SendDateAsync(result.ToJson());
+                await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
         }
     }
