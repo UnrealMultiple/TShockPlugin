@@ -16,17 +16,10 @@ namespace CaiBot;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    //定义插件的作者名称
     public override string Author => "Cai,羽学";
-
-    //插件的一句话描述
     public override string Description => "CaiBot机器人的适配插件";
-
-    //插件的名称
     public override string Name => "CaiBotPlugin";
-
-    public static readonly Version VersionNum = new(2024, 7, 11, 1); //日期+版本号(0,1,2...)
-
+    public static readonly Version VersionNum = new(2024, 7, 24, 1); //日期+版本号(0,1,2...)
     public override Version Version => VersionNum;
 
     //插件的构造器
@@ -37,8 +30,9 @@ public class Plugin : TerrariaPlugin
     public static int InitCode = -1;
 
     public static ClientWebSocket WebSocket = new();
-
+    
     public Task WsTask;
+    public Task HeartBeat;
 
     #region 加载前置
 
@@ -98,8 +92,25 @@ public class Plugin : TerrariaPlugin
                         TShock.Log.ConsoleError("链接失败原因: " + ex.Message);
                 }
 
-                // 等待一段时间后再次尝试连接
-                await Task.Delay(TimeSpan.FromSeconds(5));
+                await Task.Delay(5000);
+            }
+        });
+        HeartBeat = Task.Run(async () =>
+        {
+            while (true)
+            {
+                await Task.Delay(60000);
+                try
+                {
+                    if (WebSocket.State == WebSocketState.Open)
+                    {
+                        await MessageHandle.SendDateAsync("{type:HeartBeat}");
+                    }
+                }
+                catch
+                {
+                    TShock.Log.ConsoleInfo("[CaiBot]心跳包发送失败!");
+                }
             }
         });
     }

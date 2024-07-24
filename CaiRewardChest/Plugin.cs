@@ -8,18 +8,18 @@ namespace CaiRewardChest;
 [ApiVersion(2, 1)]
 public class CaiRewardChest : TerrariaPlugin
 {
+    public CaiRewardChest(Main game)
+        : base(game)
+    {
+    }
+
     public override string Author => "Cai";
 
     public override string Description => "奖励箱！！";
 
     public override string Name => "CaiRewardChest";
 
-    public override Version Version => new(1, 0, 0, 0);
-
-    public CaiRewardChest(Main game)
-        : base(game)
-    {
-    }
+    public override Version Version => new(2024, 7, 24, 1);
 
 
     public override void Initialize()
@@ -161,6 +161,7 @@ public class CaiRewardChest : TerrariaPlugin
             GetDataHandlers.ChestOpen.UnRegister(OnChestOpen);
             Hooks.Chest.InvokeQuickStack -= ChestOnInvokeQuickStack;
         }
+
         base.Dispose(disposing);
     }
 }

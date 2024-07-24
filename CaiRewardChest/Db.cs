@@ -8,7 +8,7 @@ namespace CaiRewardChest;
 
 public static class Db
 {
-    public static IDbConnection DbConnection => TShock.DB;
+    private static IDbConnection DbConnection => TShock.DB;
 
     public static void Init()
     {

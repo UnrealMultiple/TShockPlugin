@@ -9,7 +9,7 @@ namespace CaiBot;
 
 public class CaiBotPlayer : TSPlayer
 {
-    internal List<string> CommandOutput = new();
+    private readonly List<string>  _commandOutput = new();
 
     public CaiBotPlayer()
         : base("CaiBot")
@@ -49,7 +49,7 @@ public class CaiBotPlayer : TSPlayer
                         $"[{Lang.prefix[int.Parse(prefix)]} {Lang.GetItemName(int.Parse(netId))}]"; //return $"[{Terraria.Lang.prefix[int.Parse(netID)]}]";
             return $"[{Lang.prefix[int.Parse(prefix)]} {Lang.GetItemName(int.Parse(netId))} ({stack})]";
         });
-        CommandOutput.Add(result);
+        _commandOutput.Add(result);
     }
 
     public override void SendInfoMessage(string msg)
@@ -74,6 +74,6 @@ public class CaiBotPlayer : TSPlayer
 
     public List<string> GetCommandOutput()
     {
-        return CommandOutput;
+        return _commandOutput;
     }
 }
