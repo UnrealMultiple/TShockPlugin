@@ -6,7 +6,6 @@ using Terraria;
 using Terraria.Map;
 using Color = Microsoft.Xna.Framework.Color;
 using Image = SixLabors.ImageSharp.Image;
-using ReLogic.OS;
 using System.IO.Compression;
 using Terraria.IO;
 using Terraria.ID;
@@ -36,7 +35,7 @@ internal class CreateMapFile
 {
     public static readonly CreateMapFile Instance = new();
 
-    public bool Status { get; private set; } = false;
+    public bool Status { get; private set; }
 
     private WorldMap WorldMap { get; set; }
 
@@ -156,7 +155,7 @@ internal class CreateMapFile
                     byte b4;
                     byte b3;
                     byte b5 = b4 = b3 = 0;
-                    int num4 = 0;
+                    int num4;
                     bool flag = true;
                     bool flag2 = true;
                     int num5 = 0;
@@ -345,30 +344,10 @@ internal class CreateMapFile
 
             if (num > 0)
                 deflateStream.Write(array, 0, num);
-            deflateStream.Dispose();
             return new MapInfo(text, memoryStream.ToArray());
         }
     }
-
-    public void Dispose()
-    {
-        Main.netMode = 2;
-        WorldGen.clearWorld();
-        for (int i = 0; i < Main.tile.Width; i++)
-        for (int j = 0; j < Main.tile.Height; j++)
-            Main.tile[i, j] = null;
-        WorldMap = null;
-        for (int num3 = 0; num3 < 6000; num3++) Main.dust[num3] = null;
-        for (int num4 = 0; num4 < 600; num4++) Main.gore[num4] = null;
-        for (int num5 = 0; num5 < 400; num5++) Main.item[num5] = null;
-        for (int num6 = 0; num6 < 200; num6++) Main.npc[num6] = null;
-        for (int num7 = 0; num7 < 1000; num7++) Main.projectile[num7] = null;
-        for (int num8 = 0; num8 < 8000; num8++) Main.chest[num8] = null;
-        for (int num9 = 0; num9 < 1000; num9++) Main.sign[num9] = null;
-        for (int num10 = 0; num10 < Liquid.maxLiquid; num10++) Main.liquid[num10] = null;
-        for (int num11 = 0; num11 < 50000; num11++) Main.liquidBuffer[num11] = null;
-        GC.Collect();
-    }
+    
 }
 
 public class MapInfo
@@ -388,7 +367,7 @@ public class WorldMap
     public readonly int MaxWidth;
     public readonly int MaxHeight;
     public readonly int BlackEdgeWidth = 40;
-    private MapTile[,] _tiles;
+    private readonly MapTile[,] _tiles;
 
     public MapTile this[int x, int y] => _tiles[x, y];
 
@@ -398,76 +377,10 @@ public class WorldMap
         MaxHeight = maxHeight;
         _tiles = new MapTile[MaxWidth, MaxHeight];
     }
-
-    public void ConsumeUpdate(int x, int y) => _tiles[x, y].IsChanged = false;
-
-    public void Update(int x, int y, byte light) => _tiles[x, y] = MapHelper.CreateMapTile(x, y, light);
-
+    
     public void SetTile(int x, int y, ref MapTile tile) => _tiles[x, y] = tile;
 
-    public bool IsRevealed(int x, int y) => _tiles[x, y].Light > 0;
+    
 
-    public bool UpdateLighting(int x, int y, byte light)
-    {
-        MapTile tile = _tiles[x, y];
-        if (light == 0 && tile.Light == 0)
-            return false;
-        MapTile mapTile = MapHelper.CreateMapTile(x, y, Math.Max(tile.Light, light));
-        if (mapTile.Equals(ref tile))
-            return false;
-        _tiles[x, y] = mapTile;
-        return true;
-    }
-
-    public bool UpdateType(int x, int y)
-    {
-        MapTile mapTile = MapHelper.CreateMapTile(x, y, _tiles[x, y].Light);
-
-        return true;
-    }
-
-    public void UnlockMapSection(int sectionX, int sectionY)
-    {
-    }
-
-    public void Load()
-    {
-
-    }
-
-    public void Save()
-    { }
-
-    public void Clear()
-    {
-        for (int index1 = 0; index1 < MaxWidth; ++index1)
-        {
-            for (int index2 = 0; index2 < MaxHeight; ++index2)
-                _tiles[index1, index2].Clear();
-        }
-    }
-
-    public void ClearEdges()
-    {
-        for (int index1 = 0; index1 < MaxWidth; ++index1)
-        {
-            for (int index2 = 0; index2 < BlackEdgeWidth; ++index2)
-                _tiles[index1, index2].Clear();
-        }
-        for (int index3 = 0; index3 < MaxWidth; ++index3)
-        {
-            for (int index4 = MaxHeight - BlackEdgeWidth; index4 < MaxHeight; ++index4)
-                _tiles[index3, index4].Clear();
-        }
-        for (int index = 0; index < BlackEdgeWidth; ++index)
-        {
-            for (int blackEdgeWidth = BlackEdgeWidth; blackEdgeWidth < MaxHeight - BlackEdgeWidth; ++blackEdgeWidth)
-                _tiles[index, blackEdgeWidth].Clear();
-        }
-        for (int index = MaxWidth - BlackEdgeWidth; index < MaxWidth; ++index)
-        {
-            for (int blackEdgeWidth = BlackEdgeWidth; blackEdgeWidth < MaxHeight - BlackEdgeWidth; ++blackEdgeWidth)
-                _tiles[index, blackEdgeWidth].Clear();
-        }
-    }
+    
 }

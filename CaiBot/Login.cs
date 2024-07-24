@@ -13,7 +13,7 @@ public static class Login
 {
     public static async void OnGetData(GetDataEventArgs args)
     {
-        if (!Config.config!.WhiteList)
+        if (!Config.config.WhiteList)
             return;
 
         PacketTypes type = args.MsgID;
@@ -84,7 +84,7 @@ public static class Login
     public static async Task<bool> CheckWhiteAsync(string name, int code, List<string> uuids)
     {
         List<TSPlayer>? playerList = TSPlayer.FindByNameOrID("tsn:" + name);
-        long number = Config.config!.GroupNumber;
+        long number = Config.config.GroupNumber;
         if (playerList.Count == 0) return false;
 
         TSPlayer plr = playerList[0];
