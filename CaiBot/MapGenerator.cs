@@ -16,9 +16,9 @@ public static class MapGenerator
 {
     public static Image Create()
     {
-        Image<Rgba32> image = new(Main.maxTilesX, Main.maxTilesY);
+        Image<Rgba32> image = new(Main.tile.Width, Main.tile.Height);
         MapHelper.Initialize();
-        Main.Map = new (0, 0);
+        Main.Map = new (Main.tile.Width, Main.tile.Height);
         for (int x = 0; x < Main.maxTilesX; x++)
         for (int y = 0; y < Main.maxTilesY; y++)
         {
@@ -161,7 +161,7 @@ internal class CreateMapFile
                     int num5 = 0;
                     int num6 = 0;
                     byte b6 = 0;
-                    int num7;
+                    int num7 = 0;
                     ushort num8;
                     if (mapTile.Light <= 18)
                     {
@@ -344,6 +344,7 @@ internal class CreateMapFile
 
             if (num > 0)
                 deflateStream.Write(array, 0, num);
+            deflateStream.Dispose();
             return new MapInfo(text, memoryStream.ToArray());
         }
     }

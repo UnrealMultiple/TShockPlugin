@@ -5,6 +5,7 @@
 using System.Net.WebSockets;
 using System.Reflection;
 using System.Text;
+using Newtonsoft.Json;
 using Terraria;
 using Terraria.Localization;
 using TerrariaApi.Server;
@@ -19,7 +20,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "Cai,羽学";
     public override string Description => "CaiBot机器人的适配插件";
     public override string Name => "CaiBotPlugin";
-    public static readonly Version VersionNum = new(2024, 7, 24, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new(2024, 7, 24, 2); //日期+版本号(0,1,2...)
     public override Version Version => VersionNum;
 
     //插件的构造器
@@ -104,7 +105,11 @@ public class Plugin : TerrariaPlugin
                 {
                     if (WebSocket.State == WebSocketState.Open)
                     {
-                        await MessageHandle.SendDateAsync("{type:HeartBeat}");
+                        Dictionary<string, string> heartBeat = new()
+                        {
+                            { "type", "HeartBeat" }
+                        };
+                        await MessageHandle.SendDateAsync(JsonConvert.SerializeObject(heartBeat));
                     }
                 }
                 catch
