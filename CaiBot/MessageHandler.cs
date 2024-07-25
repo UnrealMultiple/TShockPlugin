@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NuGet.Protocol;
 using Rests;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
