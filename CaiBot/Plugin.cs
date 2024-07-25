@@ -20,7 +20,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "Cai,羽学";
     public override string Description => "CaiBot机器人的适配插件";
     public override string Name => "CaiBotPlugin";
-    public static readonly Version VersionNum = new(2024, 7, 24, 2); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new(2024, 7, 25, 1); //日期+版本号(0,1,2...)
     public override Version Version => VersionNum;
 
     //插件的构造器
@@ -81,7 +81,7 @@ public class Plugin : TerrariaPlugin
                         string receivedData = Encoding.UTF8.GetString(buffer, 0, result.Count);
                         if (Terraria.Program.LaunchParameters.ContainsKey("-caidebug"))
                             TShock.Log.ConsoleInfo($"[CaiAPI]收到BOT数据包: {receivedData}");
-                        await MessageHandle.HandleMessageAsync(receivedData);
+                        MessageHandle.HandleMessageAsync(receivedData);
                     }
                 }
                 catch (Exception ex)
