@@ -1,16 +1,17 @@
 <div align = "center">
   
-[![TShockPlugin](https://socialify.git.ci/Controllerdestiny/TShockPlugin/image?description=1&descriptionEditable=%E4%B8%80%E4%B8%AA%E6%94%B6%E9%9B%86TShock%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BB%93%E5%BA%93&font=Inter&forks=1&issues=1&name=1&pattern=Diagonal%20Stripes&pulls=1&stargazers=1&theme=Auto)](https://github.com/Controllerdestiny/TShockPlugin)
+[![TShockPlugin](https://socialify.git.ci/Controllerdestiny/TShockPlugin/image?description=1&descriptionEditable=%E4%B8%80%E4%B8%AATShock%E6%94%B6%E9%9B%86%E4%BB%93%E5%BA%93&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fgithub.com%2FControllerdestiny%2FTShockPlugin%2Fblob%2Fmaster%2Ficon.png%3Fraw%3Dtrue&name=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Auto)](https://github.com/Controllerdestiny/TShockPlugin)  
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Controllerdestiny/TShockPlugin/.github%2Fworkflows%2Fplugins_publish.yml)](https://github.com/Controllerdestiny/TShockPlugin/actions)
 [![GitHub contributors](https://img.shields.io/github/contributors/Controllerdestiny/TShockPlugin?style=flat)](https://github.com/Controllerdestiny/TShockPlugin/graphs/contributors)
 [![NET6](https://img.shields.io/badge/Core-%20.NET_6-blue)](https://dotnet.microsoft.com/zh-cn/)
 [![QQ](https://img.shields.io/badge/QQ-EB1923?logo=tencent-qq&logoColor=white)](https://qm.qq.com/cgi-bin/qm/qr?k=54tOesIU5g13yVBNFIuMBQ6AzjgE6f0m&jump_from=webapi&authKey=6jzafzJEqQGzq7b2mAHBw+Ws5uOdl83iIu7CvFmrfm/Xxbo2kNHKSNXJvDGYxhSW)
 [![TShock](https://img.shields.io/badge/TShock5.2.0-2B579A.svg?&logo=TShock&logoColor=white)](https://github.com/Pryaxis/TShock)
 
+**&gt; 简体中文 &lt;** | [English](README_en.md)
+
 </div>
 
 ## 前言
-
 - 这是一个致力于收集整合 `TShock` 插件的仓库。
 - 库中内插件容部分来源于网络收集以及反编译。
 - 因项目的特殊性，可能会造成侵权行为，如有侵权请联系我们解决。
@@ -64,8 +65,8 @@
 | [Economics.Skill](Economics.Skill/README.md)                     |          技能插件           | [EconomicsAPI](EconomicsAPI/README.md)<br>[Economics.RPG](https://github.com/Controllerdestiny/TShockPlugin/blob/master/Economics.RPG/README.md) |
 | [Economics.Regain](Economics.Regain/README.md)                   |          物品回收           |                                                      [EconomicsAPI](EconomicsAPI/README.md)                                                      |
 | [Economics.Projectile](Economics.Projectile/README.md)           |          自定义弹幕          |                                [EconomicsAPI](EconomicsAPI/README.md)<br>[Economics.RPG](Economics.RPG/README.md)                                |
-| [Economics.NPC](Economics.NPC/README.md)                         |          任务插件           |                                                      [EconomicsAPI](EconomicsAPI/README.md)                                                      |
-| [Economics.Task](Economics.Task/README.md)                       |         自定义怪物奖励         | [EconomicsAPI](EconomicsAPI/README.md)<br>[Economics.RPG](https://github.com/Controllerdestiny/TShockPlugin/blob/master/Economics.RPG/README.md) |
+| [Economics.NPC](Economics.NPC/README.md)                         |         自定义怪物奖励         |                                                      [EconomicsAPI](EconomicsAPI/README.md)                                                      |
+| [Economics.Task](Economics.Task/README.md)                       |          任务插件           | [EconomicsAPI](EconomicsAPI/README.md)<br>[Economics.RPG](https://github.com/Controllerdestiny/TShockPlugin/blob/master/Economics.RPG/README.md) |
 | [CreateSpawn](CreateSpawn/README.md)                             |         出生点建筑生成         |                                                                        无                                                                        |
 | [AutoBroadcast](AutoBroadcast/README.md)                         |          自动广播           |                                                                        无                                                                        |
 | [AutoTeam](AutoTeam/README.md)                                   |          自动队伍           |                                                                        无                                                                        |
@@ -147,13 +148,13 @@
 | [Sandstorm](Sandstorm/README.md)                                 |          切换沙尘暴          |                                                                        无                                                                        |
 | [RandomBroadcast](RandomBroadcast/README.md)                     |          随机广播           |                                                                        无                                                                        |
 | [BedSet](BedSet/README.md)                                       |        设置并记录重生点         |                                                                        无                                                                        |
-| [ConvertWorld](ConvertWorld/README.md)                           |     击败怪物转换世界物品        |                                                                        无                                                                        |
-| [AutoStoreItems](AutoStoreItems/README.md)                       |           自动储存             |                                                                        无                                                                        |
-| [ZHIPlayerManager](ZHIPlayerManager/README.md)                   |        zhi的玩家管理插件        |                                                                        无                                                                        |
-| [SpawnInfra](SpawnInfra/README.md)                               |           生成基础建设          |                                                                        无                                                                        |
-| [CNPCShop](CNPCShop/README.md)                                   |          自定义NPC商店          |                                                                        无                                                                        |
-| [SessionSentinel](SessionSentinel/README.md)                     |    处理长时间不发送数据包的玩家  |                                                                        无                                                                        |
-| [TeleportRequest](TeleportRequest/README.md)                     |             传送请求            |                                                                        无                                                                        |
+| [ConvertWorld](ConvertWorld/README.md)                           |       击败怪物转换世界物品        |                                                                        无                                                                        |
+| [AutoStoreItems](AutoStoreItems/README.md)                       |          自动储存           |                                                                        无                                                                        |
+| [ZHIPlayerManager](ZHIPlayerManager/README.md)                   |       zhi的玩家管理插件        |                                                                        无                                                                        |
+| [SpawnInfra](SpawnInfra/README.md)                               |         生成基础建设          |                                                                        无                                                                        |
+| [CNPCShop](CNPCShop/README.md)                                   |        自定义NPC商店         |                                                                        无                                                                        |
+| [SessionSentinel](SessionSentinel/README.md)                     |     处理长时间不发送数据包的玩家      |                                                                        无                                                                        |
+| [TeleportRequest](TeleportRequest/README.md)                     |          传送请求           |                                                                        无                                                                        |
 | [CaiRewardChest](CaiRewardChest/README.md)                     | 将自然生成的箱子变为所有人都可以领一次的奖励箱 |    
 
 
