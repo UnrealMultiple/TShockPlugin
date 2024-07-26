@@ -8,6 +8,8 @@ namespace Economics.Skill;
 internal class SkillCD
 {
     private readonly static ConcurrentDictionary<TSPlayer, int> God = new();
+
+    private static long Count = 0;
     public static void Updata()
     {
         foreach (var player in Skill.PlayerSKillManager.PlayerSkills)
@@ -21,7 +23,9 @@ internal class SkillCD
                 player.SkillCD -= 100;
             }
         }
-        AIStyle.Remove();
+        if (Count % 100 == 0)
+            AIStyle.Remove();
+        Count++;
     }
 
     public static void GodPlayer(TSPlayer player, int time)

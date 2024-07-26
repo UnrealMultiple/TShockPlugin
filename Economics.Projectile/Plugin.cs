@@ -17,7 +17,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 2);
+    public override Version Version => new(1, 0, 0, 3);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Projectile.json");
 
@@ -144,14 +144,10 @@ public class Plugin : TerrariaPlugin
                 MiniCD[i]--;
             }
         }
-        if (Main.time % 60 == 0)
+        if (Main.time % 600 == 0)
         {
-            for (int i = 0; i < FollowProj.Count; i++)
-            {
-                var (uid, proj) = FollowProj.ElementAt(i);
-                if (!proj.active || proj.timeLeft <= 0)
-                    FollowProj.Remove(uid, out var _);
-            }
+            foreach (var (proj, _) in FollowProj.Where(x => x.Value == null || !x.Value.active).ToList())
+                FollowProj.Remove(proj, out var _);
         }
     }
 

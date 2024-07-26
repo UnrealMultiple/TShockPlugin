@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using Economics.Skill.Enumerates;
 using Economics.Skill.Model.Options;
 using EconomicsAPI.Extensions;
@@ -54,12 +55,8 @@ public class AIStyle
 
     public static void Remove()
     {
-        for (int i = 0; i < projectiles.Count; i++)
-        {
-            var (guid, proj) = projectiles.ElementAt(i);
-            if (!proj.Item1.active || proj.Item1.timeLeft <= 0)
-                projectiles.Remove(guid, out var _);
-        }
+        foreach (var (npc, _) in projectiles.Where(x => x.Value.Item1 == null || !x.Value.Item1.active).ToList())
+            projectiles.Remove(npc, out var _);
     }
 
     public static void Revolve(Projectile projectile, AIStyleOption aIStyleOption)
