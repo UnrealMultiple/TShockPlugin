@@ -148,15 +148,14 @@
 | [Sandstorm](Sandstorm/README.md)                                 |          切换沙尘暴          |                                                                        无                                                                        |
 | [RandomBroadcast](RandomBroadcast/README.md)                     |          随机广播           |                                                                        无                                                                        |
 | [BedSet](BedSet/README.md)                                       |        设置并记录重生点         |                                                                        无                                                                        |
-| [ConvertWorld](ConvertWorld/README.md)                           |       击败怪物转换世界物品        |                                                                        无                                                                        |
-| [AutoStoreItems](AutoStoreItems/README.md)                       |          自动储存           |                                                                        无                                                                        |
-| [ZHIPlayerManager](ZHIPlayerManager/README.md)                   |       zhi的玩家管理插件        |                                                                        无                                                                        |
-| [SpawnInfra](SpawnInfra/README.md)                               |         生成基础建设          |                                                                        无                                                                        |
-| [CNPCShop](CNPCShop/README.md)                                   |        自定义NPC商店         |                                                                        无                                                                        |
-| [SessionSentinel](SessionSentinel/README.md)                     |     处理长时间不发送数据包的玩家      |                                                                        无                                                                        |
-| [TeleportRequest](TeleportRequest/README.md)                     |          传送请求           |                                                                        无                                                                        |
-| [CaiRewardChest](CaiRewardChest/README.md)                     | 将自然生成的箱子变为所有人都可以领一次的奖励箱 |    
-
+| [ConvertWorld](ConvertWorld/README.md)                           |     击败怪物转换世界物品        |                                                                        无                                                                        |
+| [AutoStoreItems](AutoStoreItems/README.md)                       |           自动储存             |                                                                        无                                                                        |
+| [ZHIPlayerManager](ZHIPlayerManager/README.md)                   |        zhi的玩家管理插件        |                                                                        无                                                                        |
+| [SpawnInfra](SpawnInfra/README.md)                               |           生成基础建设          |                                                                        无                                                                        |
+| [CNPCShop](CNPCShop/README.md)                                   |          自定义NPC商店          |                                                                        无                                                                        |
+| [SessionSentinel](SessionSentinel/README.md)                     |    处理长时间不发送数据包的玩家  |                                                                        无                                                                        |
+| [TeleportRequest](TeleportRequest/README.md)                     |             传送请求            |                                                                        无                                                                        |
+| [CaiRewardChest](CaiRewardChest/README.md)                     | 将自然生成的箱子变为所有人都可以领一次的奖励箱 |  无  
 
 </Details>
 
