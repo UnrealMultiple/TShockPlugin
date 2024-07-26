@@ -23,11 +23,13 @@ public class Economics : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 7);
+    public override Version Version => new(1, 0, 0, 9);
 
     public readonly static List<TSPlayer> ServerPlayers = new();
 
     private readonly ConcurrentDictionary<NPC, Dictionary<Player, float>> Strike = new();
+
+    private readonly object TLock = new();
 
     public static string SaveDirPath => Path.Combine(TShock.SavePath, "Economics");
 
@@ -137,12 +139,8 @@ public class Economics : TerrariaPlugin
         if (TimerCount % (60 * Setting.SaveTime) == 0)
         {
             CurrencyManager.UpdataAll();
-            for (int i = 0; i < Strike.Count; i++)
-            {
-                var (npc, _) = Strike.ElementAt(i);
-                if (!npc.active || npc.life <= 0)
-                    Strike.Remove(npc, out var _);
-            }
+            foreach (var (npc, _) in Strike.Where(x => x.Key == null || !x.Key.active).ToList())
+                Strike.Remove(npc, out var _);
            
         }
     }
