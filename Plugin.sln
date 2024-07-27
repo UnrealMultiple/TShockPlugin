@@ -216,6 +216,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SessionSentinel", "SessionS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeleportRequest", "TeleportRequest\TeleportRequest.csproj", "{55299CAE-C066-4768-ADF7-F9ADB34DBCD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaiCustomEmojiCommand", "CaiCustomEmojiCommand\CaiCustomEmojiCommand.csproj", "{6F089D9D-01B1-4212-BDC6-71A1C7FFEC69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1056,6 +1058,14 @@ Global
 		{55299CAE-C066-4768-ADF7-F9ADB34DBCD3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55299CAE-C066-4768-ADF7-F9ADB34DBCD3}.Release|x64.ActiveCfg = Release|Any CPU
 		{55299CAE-C066-4768-ADF7-F9ADB34DBCD3}.Release|x64.Build.0 = Release|Any CPU
+		{6F089D9D-01B1-4212-BDC6-71A1C7FFEC69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F089D9D-01B1-4212-BDC6-71A1C7FFEC69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F089D9D-01B1-4212-BDC6-71A1C7FFEC69}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6F089D9D-01B1-4212-BDC6-71A1C7FFEC69}.Debug|x64.Build.0 = Debug|Any CPU
+		{6F089D9D-01B1-4212-BDC6-71A1C7FFEC69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F089D9D-01B1-4212-BDC6-71A1C7FFEC69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F089D9D-01B1-4212-BDC6-71A1C7FFEC69}.Release|x64.ActiveCfg = Release|Any CPU
+		{6F089D9D-01B1-4212-BDC6-71A1C7FFEC69}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
