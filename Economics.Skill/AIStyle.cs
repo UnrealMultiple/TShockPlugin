@@ -10,7 +10,7 @@ namespace Economics.Skill;
 
 public class AIStyle
 {
-    private static readonly ConcurrentDictionary<Projectile, (string, AIStyleOption)> projectiles = new();
+    private static readonly ConcurrentDictionary<string, (Projectile, AIStyleOption)> projectiles = new();
 
     private delegate void StyleCall(Projectile projectile, AIStyleOption option);
 
@@ -27,12 +27,12 @@ public class AIStyle
     {
         if (style.Style < 0)
             return;
-        projectiles[projectile] = (guid, style);
+        projectiles[guid] = (projectile, style);
     }
 
     public static void AI(Projectile projectile)
     {
-        if (projectiles.TryGetValue(projectile, out var style) && projectile.miscText == style.Item1)
+        if (projectiles.TryGetValue(projectile.miscText, out var style))
         {
             if (TypeCall.TryGetValue(style.Item2.Style, out var func))
                 func(projectile, style.Item2);
@@ -48,7 +48,7 @@ public class AIStyle
             projectile.velocity = speed.ToLenOf(aIStyleOption.Speed);
             TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", projectile.whoAmI);
             if (Math.Abs(target.Distance(projectile.Center)) <= 16f)
-                projectiles.Remove(projectile, out var _);
+                projectiles.Remove(projectile.miscText, out var _);
         }
     }
 
@@ -56,9 +56,9 @@ public class AIStyle
     {
         for (int i = 0; i < projectiles.Count; i++)
         {
-            var (proj, _) = projectiles.ElementAt(i);
-            if (!proj.active || proj.timeLeft <= 0)
-                projectiles.Remove(proj, out var _);
+            var (guid, proj) = projectiles.ElementAt(i);
+            if (!proj.Item1.active || proj.Item1.timeLeft <= 0)
+                projectiles.Remove(guid, out var _);
         }
     }
 

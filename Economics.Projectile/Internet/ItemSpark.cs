@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 
 namespace Economics.Projectile;
-public class ItemData
+public class ItemSpark
 {
     [JsonProperty("弹幕数据")]
-    public List<ProjectileReplace> ProjData { get; set; } = new();
+    public List<CustomProjectile> ProjData { get; set; } = new();
 
     [JsonProperty("物品使用弹药")]
     public bool UseAmmo { get; set; } = false;

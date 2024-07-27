@@ -6,6 +6,7 @@
 
 > [!NOTE]  
 > 需要安装前置插件：EconomicsAPI、Economics.RPG (本仓库) 
+> 使用AI样式功能可能会造成占用大量带宽量力而为
  
 ## 更新日志
 

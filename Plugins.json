@@ -99,7 +99,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2024.7.11.1",
+    "Version": "2024.7.25.1",
     "Author": "Cai,羽学",
     "Description": "CaiBot机器人的适配插件",
     "Path": "CaiBot.dll"
@@ -113,7 +113,7 @@
   },
   {
     "Name": "CaiRewardChest",
-    "Version": "1.0.0.0",
+    "Version": "2024.7.25.1",
     "Author": "Cai",
     "Description": "奖励箱！！",
     "Path": "CaiRewardChest.dll"
@@ -225,7 +225,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.2.0.7",
+    "Version": "1.2.0.8",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"
@@ -666,7 +666,7 @@
   },
   {
     "Name": "Economics.Projectile",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命",
     "Description": "Economics.Projectile",
     "Path": "Economics.Projectile.dll"

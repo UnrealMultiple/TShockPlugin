@@ -2,10 +2,10 @@
 
 namespace Economics.Projectile;
 
-public class ProjectileData
+public class ProjectileSpark
 {
     [JsonProperty("弹幕数据")]
-    public List<ProjectileReplace> ProjData { get; set; } = new();
+    public List<CustomProjectile> ProjData { get; set; } = new();
 
     [JsonProperty("使用物品时触发")]
     public bool useItem = true;
