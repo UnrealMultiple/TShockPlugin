@@ -14,7 +14,7 @@ namespace BP
         public override string Author => "Megghy,熙恩改";
         public override string Description => "允许玩家传送回死亡地点";
         public override string Name => "BackPlugin";
-        public override Version Version => new Version(1, 0, 0, 3);
+        public override Version Version => new Version(1, 0, 0, 4);
         public static Configuration Config;
         public BackPlugin(Main game) : base(game)
         {
@@ -49,9 +49,11 @@ namespace BP
         {
             if (disposing)
             {
+                GeneralHooks.ReloadEvent -= ReloadConfig;
                 ServerApi.Hooks.ServerLeave.Deregister(this, ResetPos);
                 ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnPlayerJoin);
                 GetDataHandlers.KillMe -= OnDead;
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Back);
             }
 
             base.Dispose(disposing);

@@ -10,7 +10,7 @@ namespace BridgeBuilder
     public class BridgeBuilder : TerrariaPlugin
     {
         public override string Name => "BridgeBuilder";
-        public override Version Version => new Version(1, 0, 7);
+        public override Version Version => new Version(1, 0, 8);
         public override string Author => "Soofa，肝帝熙恩汉化1449";
         public override string Description => "铺桥!";
         public static Configuration Config;
@@ -39,6 +39,18 @@ namespace BridgeBuilder
                 AllowServer = false,
                 HelpText = "朝着你看的方向建造桥梁。（你需要持有一定数量的平台或团队块或种植盆。）"
             });
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == BridgeCmd);
+                GeneralHooks.ReloadEvent -= ReloadConfig;
+            }
+
+            // Call the base class dispose method.
+            base.Dispose(disposing);
         }
 
         private async void BridgeCmd(CommandArgs args)

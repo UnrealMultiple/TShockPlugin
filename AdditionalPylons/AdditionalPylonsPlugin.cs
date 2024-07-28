@@ -16,7 +16,7 @@ namespace AdditionalPylons
         #region Plugin Properties
         public override string Name => "[放置更多晶塔] AdditionalPylons";
 
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
 
         public override string Author => "Stealownz，肝帝熙恩优化1449";
 
@@ -54,6 +54,18 @@ namespace AdditionalPylons
             GetDataHandlers.PlaceTileEntity.Register(OnPlaceTileEntity, HandlerPriority.High);
             GetDataHandlers.SendTileRect.Register(OnSendTileRect, HandlerPriority.High);
             GeneralHooks.ReloadEvent += ReloadConfig;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                GetDataHandlers.PlayerUpdate.UnRegister(OnPlayerUpdate);
+                GetDataHandlers.PlaceTileEntity.UnRegister(OnPlaceTileEntity);
+                GetDataHandlers.SendTileRect.UnRegister(OnSendTileRect);
+                GeneralHooks.ReloadEvent -= ReloadConfig;
+            }
+            base.Dispose(disposing);
         }
         #endregion // Plugin overrides
 

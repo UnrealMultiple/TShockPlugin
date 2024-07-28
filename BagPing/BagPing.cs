@@ -30,6 +30,18 @@ namespace BagPing
         }
 
 
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                ServerApi.Hooks.NpcKilled.Deregister(this, OnNpcKilled);
+
+            }
+            base.Dispose(disposing);
+        }
+
+
         private void OnNpcKilled(NpcKilledEventArgs e)
         {
             if (e.npc.boss)
@@ -52,20 +64,5 @@ namespace BagPing
                 });
             }
         }
-
-
-
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                ServerApi.Hooks.NpcKilled.Deregister(this, OnNpcKilled);
-
-            }
-            base.Dispose(disposing);
-        }
-
-
     }
 }

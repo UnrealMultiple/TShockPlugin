@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "禁止怪物";
 
-    public override Version Version => new(1, 0, 0, 0);
+    public override Version Version => new(1, 0, 0, 1);
 
     private static Config Config { get; set; } = new();
 
@@ -58,7 +58,12 @@ public class Plugin : TerrariaPlugin
         {
             ServerApi.Hooks.NpcSpawn.Deregister(this, OnSpawn);
             ServerApi.Hooks.NpcTransform.Deregister(this, OnTransform);
+            GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == BanCommand);
         }
+
+        // Call the base class dispose method.
         base.Dispose(disposing);
     }
 

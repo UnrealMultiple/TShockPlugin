@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoPluginManager";
 
-    public override Version Version => new(2, 0, 0, 0);
+    public override Version Version => new(2, 0, 0, 1);
 
     public override string Author => "少司命，Cai";
 
@@ -49,7 +49,7 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
-
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == PluginManager);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, AutoCheckUpdate);
         }
 
