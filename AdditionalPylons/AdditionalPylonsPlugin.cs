@@ -55,19 +55,32 @@ namespace AdditionalPylons
             GetDataHandlers.SendTileRect.Register(OnSendTileRect, HandlerPriority.High);
             GeneralHooks.ReloadEvent += ReloadConfig;
         }
+        #endregion
+        #region [IDisposable Implementation]
+        private bool isDisposed = false;
 
-        protected override void Dispose(bool disposing)
+        public bool IsDisposed
         {
-            if (disposing)
+            get { return this.isDisposed; }
+        }
+
+        protected override void Dispose(bool isDisposing)
+        {
+            if (this.IsDisposed)
+                return;
+
+            if (isDisposing)
             {
                 GetDataHandlers.PlayerUpdate.UnRegister(OnPlayerUpdate);
                 GetDataHandlers.PlaceTileEntity.UnRegister(OnPlaceTileEntity);
                 GetDataHandlers.SendTileRect.UnRegister(OnSendTileRect);
                 GeneralHooks.ReloadEvent -= ReloadConfig;
             }
-            base.Dispose(disposing);
+
+            base.Dispose(isDisposing);
+            this.isDisposed = true;
         }
-        #endregion // Plugin overrides
+        #endregion // [IDisposable Implementation]
 
         #region Plugin Hooks
         private void OnSendTileRect(object sender, GetDataHandlers.SendTileRectEventArgs e)
@@ -288,29 +301,5 @@ namespace AdditionalPylons
             }
         }
 
-        #region [IDisposable Implementation]
-        private bool isDisposed = false;
-
-        public bool IsDisposed
-        {
-            get { return this.isDisposed; }
-        }
-
-        protected override void Dispose(bool isDisposing)
-        {
-            if (this.IsDisposed)
-                return;
-
-            if (isDisposing)
-            {
-                GetDataHandlers.PlayerUpdate.UnRegister(OnPlayerUpdate);
-                GetDataHandlers.PlaceTileEntity.UnRegister(OnPlaceTileEntity);
-                GetDataHandlers.SendTileRect.UnRegister(OnSendTileRect);
-            }
-
-            base.Dispose(isDisposing);
-            this.isDisposed = true;
-        }
-        #endregion // [IDisposable Implementation]
     }
 }
