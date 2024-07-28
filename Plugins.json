@@ -15,7 +15,7 @@
   },
   {
     "Name": "[放置更多晶塔] AdditionalPylons",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "Stealownz，肝帝熙恩优化1449",
     "Description": "晶塔环境不受限制，数量可提升",
     "Path": "AdditionalPylons.dll"
@@ -29,7 +29,7 @@
   },
   {
     "Name": "AnnouncementBoxPlus",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "Cai",
     "Description": "优化广播盒",
     "Path": "AnnouncementBoxPlus.dll"
@@ -43,21 +43,21 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.0.0",
+    "Version": "2.0.0.1",
     "Author": "少司命，Cai",
     "Description": "自动更新你的插件！",
     "Path": "AutoPluginManager.dll"
   },
   {
     "Name": "AutoTeamPlus",
-    "Version": "2.4.0",
+    "Version": "2.4.1",
     "Author": "十七改，肝帝熙恩改",
     "Description": "自动队伍",
     "Path": "AutoTeam.dll"
   },
   {
     "Name": "BackPlugin",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "Megghy,熙恩改",
     "Description": "允许玩家传送回死亡地点",
     "Path": "Back.dll"
@@ -85,15 +85,15 @@
   },
   {
     "Name": "BridgeBuilder",
-    "Version": "1.0.7",
+    "Version": "1.0.8",
     "Author": "Soofa，肝帝熙恩汉化1449",
     "Description": "铺桥!",
     "Path": "BridgeBuilder.dll"
   },
   {
     "Name": "BuildMaster",
-    "Version": "1.0.0",
-    "Author": "豆沙 羽学适配",
+    "Version": "1.0.1",
+    "Author": "豆沙 羽学，肝帝熙恩适配",
     "Description": "A minigame that is named BuildMaster",
     "Path": "BuildMaster.dll"
   },
@@ -603,7 +603,7 @@
   },
   {
     "Name": "禁止怪物",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "Patrikk,GK 改良",
     "Description": "禁止指定怪物的出没",
     "Path": "BanNpc.dll"
