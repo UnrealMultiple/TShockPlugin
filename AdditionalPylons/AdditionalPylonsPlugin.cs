@@ -16,7 +16,7 @@ namespace AdditionalPylons
         #region Plugin Properties
         public override string Name => "[放置更多晶塔] AdditionalPylons";
 
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
 
         public override string Author => "Stealownz，肝帝熙恩优化1449";
 
@@ -55,7 +55,32 @@ namespace AdditionalPylons
             GetDataHandlers.SendTileRect.Register(OnSendTileRect, HandlerPriority.High);
             GeneralHooks.ReloadEvent += ReloadConfig;
         }
-        #endregion // Plugin overrides
+        #endregion
+        #region [IDisposable Implementation]
+        private bool isDisposed = false;
+
+        public bool IsDisposed
+        {
+            get { return this.isDisposed; }
+        }
+
+        protected override void Dispose(bool isDisposing)
+        {
+            if (this.IsDisposed)
+                return;
+
+            if (isDisposing)
+            {
+                GetDataHandlers.PlayerUpdate.UnRegister(OnPlayerUpdate);
+                GetDataHandlers.PlaceTileEntity.UnRegister(OnPlaceTileEntity);
+                GetDataHandlers.SendTileRect.UnRegister(OnSendTileRect);
+                GeneralHooks.ReloadEvent -= ReloadConfig;
+            }
+
+            base.Dispose(isDisposing);
+            this.isDisposed = true;
+        }
+        #endregion // [IDisposable Implementation]
 
         #region Plugin Hooks
         private void OnSendTileRect(object sender, GetDataHandlers.SendTileRectEventArgs e)
@@ -276,29 +301,5 @@ namespace AdditionalPylons
             }
         }
 
-        #region [IDisposable Implementation]
-        private bool isDisposed = false;
-
-        public bool IsDisposed
-        {
-            get { return this.isDisposed; }
-        }
-
-        protected override void Dispose(bool isDisposing)
-        {
-            if (this.IsDisposed)
-                return;
-
-            if (isDisposing)
-            {
-                GetDataHandlers.PlayerUpdate.UnRegister(OnPlayerUpdate);
-                GetDataHandlers.PlaceTileEntity.UnRegister(OnPlaceTileEntity);
-                GetDataHandlers.SendTileRect.UnRegister(OnSendTileRect);
-            }
-
-            base.Dispose(isDisposing);
-            this.isDisposed = true;
-        }
-        #endregion // [IDisposable Implementation]
     }
 }

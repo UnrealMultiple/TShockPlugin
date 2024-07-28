@@ -17,9 +17,9 @@ namespace MainPlugin
     {
         public override string Name => "BuildMaster";
 
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
 
-        public override string Author => "豆沙 羽学适配";
+        public override string Author => "豆沙 羽学，肝帝熙恩适配";
 
         public override string Description => "A minigame that is named BuildMaster";
 
@@ -29,10 +29,10 @@ namespace MainPlugin
         }
         public override void Initialize()
         {
-            ServerApi.Hooks.GamePostInitialize.Register((TerrariaPlugin)(object)this, OnPostInitialize);
-            ServerApi.Hooks.NetGreetPlayer.Register((TerrariaPlugin)(object)this, OnJoin);
-            ServerApi.Hooks.ServerLeave.Register((TerrariaPlugin)(object)this, OnLeave);
-            ServerApi.Hooks.ServerChat.Register((TerrariaPlugin)(object)this, OnChat);
+            ServerApi.Hooks.GamePostInitialize.Register(this, OnPostInitialize);
+            ServerApi.Hooks.NetGreetPlayer.Register(this, OnJoin);
+            ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
+            ServerApi.Hooks.ServerChat.Register(this, OnChat);
             GetDataHandlers.TogglePvp += OnTogglePVP;
             GetDataHandlers.TileEdit += OnTileEdit;
             GetDataHandlers.PlayerUpdate += OnPlayerUpdate;
@@ -40,6 +40,27 @@ namespace MainPlugin
             GetDataHandlers.LiquidSet += OnSetLiquid;
             GetDataHandlers.PlayerSlot += OnPlayerSlot;
             ConfigUtils.LoadConfig();
+        }
+
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                ServerApi.Hooks.GamePostInitialize.Deregister(this, OnPostInitialize);
+                ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnJoin);
+                ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
+                ServerApi.Hooks.ServerChat.Deregister(this, OnChat);
+                GetDataHandlers.TogglePvp -= OnTogglePVP;
+                GetDataHandlers.TileEdit -= OnTileEdit;
+                GetDataHandlers.PlayerUpdate -= OnPlayerUpdate;
+                GetDataHandlers.PlayerTeam -= OnTeam;
+                GetDataHandlers.LiquidSet -= OnSetLiquid;
+                GetDataHandlers.PlayerSlot -= OnPlayerSlot;
+            }
+
+            base.Dispose(disposing);
         }
 
         private void OnChat(ServerChatEventArgs args)
@@ -233,23 +254,6 @@ namespace MainPlugin
 
 
 
-
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                ServerApi.Hooks.GamePostInitialize.Register((TerrariaPlugin)(object)this, OnPostInitialize);
-                ServerApi.Hooks.NetGreetPlayer.Register((TerrariaPlugin)(object)this, OnJoin);
-                ServerApi.Hooks.ServerLeave.Register((TerrariaPlugin)(object)this, OnLeave);
-                GetDataHandlers.TogglePvp -= OnTogglePVP;
-                GetDataHandlers.TileEdit -= OnTileEdit;
-                GetDataHandlers.PlayerUpdate -= OnPlayerUpdate;
-                GetDataHandlers.PlayerTeam -= OnTeam;
-                ConfigUtils.players.Clear();
-            }
-            base.Dispose(disposing);
-        }
 
         private void OnPostInitialize(EventArgs args)
         {

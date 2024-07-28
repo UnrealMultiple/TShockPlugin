@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using NuGet.Protocol.Plugins;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
@@ -10,7 +11,7 @@ namespace autoteam
     public class Autoteam : TerrariaPlugin
     {
         public override string Author => "十七改，肝帝熙恩改";
-        public override Version Version => new Version(2, 4, 0);
+        public override Version Version => new Version(2, 4, 1);
         public override string Description => "自动队伍";
         public override string Name => "AutoTeamPlus";
         public static Configuration Config;
@@ -41,6 +42,19 @@ namespace autoteam
             Commands.ChatCommands.Add(new Command("autoteam.toggle", TogglePlugin, "autoteam", "at"));
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                GeneralHooks.ReloadEvent -= ReloadConfig;
+                ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnJoin);
+                PlayerHooks.PlayerPostLogin -= OnLogin;
+                GetDataHandlers.PlayerTeam -= Team;
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == TogglePlugin);
+            }
+            base.Dispose(disposing);
+        }
+
         private void TogglePlugin(CommandArgs args)
         {
             var player = args.Player;
@@ -69,16 +83,6 @@ namespace autoteam
             }
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnJoin);
-                PlayerHooks.PlayerPostLogin -= OnLogin;
-                GetDataHandlers.PlayerTeam -= Team;
-            }
-            base.Dispose(disposing);
-        }
 
         private void Team(object sender, PlayerTeamEventArgs args)
         {

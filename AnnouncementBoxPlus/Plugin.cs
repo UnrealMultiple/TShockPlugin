@@ -23,7 +23,7 @@ namespace AnnouncementBoxPlus
         public override string Name => "AnnouncementBoxPlus";
 
         //插件的版本
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
 
         //插件的构造器
         public AnnouncementBoxPlus(Main game) : base(game)
@@ -39,7 +39,17 @@ namespace AnnouncementBoxPlus
             GetDataHandlers.SignRead.Register(OnSignRead);
             GetDataHandlers.Sign.Register(OnSign);
         }
-
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                GetDataHandlers.SignRead.UnRegister(OnSignRead);
+                GetDataHandlers.Sign.UnRegister(OnSign);
+                On.OTAPI.Hooks.Wiring.InvokeAnnouncementBox -= OnAnnouncementBox;
+                GeneralHooks.ReloadEvent -= GeneralHooks_ReloadEvent;
+            }
+            base.Dispose(disposing);
+        }
         private void GeneralHooks_ReloadEvent(ReloadEventArgs e)
         {
             Config.Read();
@@ -227,14 +237,6 @@ namespace AnnouncementBoxPlus
         }
 
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-
-            }
-            base.Dispose(disposing);
-        }
 
     }
     public static class Tools
