@@ -7,7 +7,7 @@
     "Path": "Platform.dll"
   },
   {
-    "Name": "Chireiden.TShock.Omni 1dc7967580",
+    "Name": "Chireiden.TShock.Omni b73e8bb854",
     "Version": "0.0.1.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
@@ -152,6 +152,13 @@
     "Author": "少司命",
     "Description": "ChattyBridge",
     "Path": "ChattyBridge.dll"
+  },
+  {
+    "Name": "CNPCShop",
+    "Version": "1.0.0",
+    "Author": "Megghy，肝帝熙恩更新1449",
+    "Description": "自定义NPC商店出售的物品",
+    "Path": "CNPCShop.dll"
   },
   {
     "Name": "ConsoleSql",
