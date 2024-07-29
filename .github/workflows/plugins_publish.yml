@@ -113,7 +113,7 @@ jobs:
           fetch-depth: 0
       - name: 获取更新日志
         id: external_changelog_second
-        uses: mikepenz/release-changelog-builder-action@v4
+        uses: mikepenz/release-changelog-builder-action@v5
         with:
           configuration: "Config/Config_Rep.json"
             #cache: ${{ steps.external_changelog_collect.outputs.cache }}
