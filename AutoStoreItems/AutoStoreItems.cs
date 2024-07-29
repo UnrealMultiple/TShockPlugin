@@ -18,11 +18,13 @@ namespace Plugin
         #endregion
 
         #region 注册与释放
+        private GeneralHooks.ReloadEventD _reloadHandler;
         public AutoStoreItems(Main game) : base(game) { }
         public override void Initialize()
         {
             LoadConfig();
-            GeneralHooks.ReloadEvent += (_) => LoadConfig();
+            _reloadHandler = (_) => LoadConfig();
+            GeneralHooks.ReloadEvent += _reloadHandler;
             GetDataHandlers.PlayerUpdate.Register(PlayerUpdate);
             ServerApi.Hooks.GameUpdate.Register(this, OnGameUpdate);
         }
@@ -31,7 +33,7 @@ namespace Plugin
         {
             if (disposing)
             {
-                GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+                GeneralHooks.ReloadEvent -= _reloadHandler;
                 GetDataHandlers.PlayerUpdate.UnRegister(PlayerUpdate);
                 ServerApi.Hooks.GameUpdate.Deregister(this, OnGameUpdate);
             }

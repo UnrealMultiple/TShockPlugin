@@ -13,17 +13,19 @@ public class Plugin : TerrariaPlugin
 {
     #region 插件信息
     public override string Name => "禁怪物掉落";
-    public override Version Version => new Version(1, 2, 0);
+    public override Version Version => new Version(1, 2, 1);
     public override string Author => "羽学";
     public override string Description => "清理怪物身边掉落物";
     #endregion
 
     #region 注册释放钩子
+    private GeneralHooks.ReloadEventD _reloadHandler;
     public Plugin(Main game) : base(game) { }
     public override void Initialize()
     {
         LoadConfig();
-        GeneralHooks.ReloadEvent += (_) => LoadConfig();
+        _reloadHandler = (_) => LoadConfig();
+        GeneralHooks.ReloadEvent += _reloadHandler;
         ServerApi.Hooks.NpcKilled.Register(this, KillItem);
         TShockAPI.Commands.ChatCommands.Add(new Command("killitem.admin", kdm, "kdm", "禁掉落"));
     }
@@ -32,9 +34,11 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+            GeneralHooks.ReloadEvent -= _reloadHandler;
             ServerApi.Hooks.NpcKilled.Deregister(this, KillItem);
+            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == kdm);
         }
+
         base.Dispose(disposing);
     }
     #endregion

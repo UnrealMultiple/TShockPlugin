@@ -48,6 +48,9 @@
 
 ```
 更新日志
+1.1.3
+补全卸载函数
+
 1.1.2 fix
 尝试修复以下三个方法引起的空引用
 OnGameUpdate/WormScarf/OnServerLeave

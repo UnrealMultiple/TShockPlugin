@@ -11,7 +11,7 @@ namespace DumpTerrariaID
         public override string Author => "少司命";
         public override string Description => "DumpID";
         public override string Name => "DumpTerrariaID";
-        public override Version Version => new(1, 0, 0, 0);
+        public override Version Version => new(1, 0, 0, 1);
         public Dump Dump = new();
         public readonly Dictionary<int, string> EnglishBuffs = new();
         public readonly Dictionary<int, string> Prefixs = new();
@@ -25,6 +25,19 @@ namespace DumpTerrariaID
             SaveName();
             Commands.ChatCommands.Add(new Command("dump.id", DumpID, "dumpid"));
 
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == DumpID);
+                EnglishBuffs.Clear();
+                Projecttile.Clear();
+                Prefixs.Clear();
+            }
+
+            base.Dispose(disposing);
         }
 
         public void SaveName()

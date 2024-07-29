@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace CreateSpawn;
 
@@ -13,7 +14,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "CreateSpawn";
 
-    public override Version Version => new(1, 0, 0, 0);
+    public override Version Version => new(1, 0, 0, 1);
 
 
     private readonly string SavePath = Path.Combine(TShock.SavePath, "Create.json");
@@ -25,19 +26,37 @@ public class Plugin : TerrariaPlugin
     {
     }
 
-
     public override void Initialize()
     {
         LoadConfig();
-        On.Terraria.WorldBuilding.GenerationProgress.End += (_, _) => create = true;
-        TShockAPI.Hooks.GeneralHooks.ReloadEvent += (_) => LoadConfig();
+        On.Terraria.WorldBuilding.GenerationProgress.End += GenerationProgress_End;
+        GeneralHooks.ReloadEvent += LoadConfig;
         Commands.ChatCommands.Add(new Command("create.copy", copy, "cb"));
         Commands.ChatCommands.Add(new Command("create.copy", CreateBuilding, "create"));
-        ServerApi.Hooks.GamePostInitialize.Register(this, (_) =>
+        ServerApi.Hooks.GamePostInitialize.Register(this, GamePost);
+    }
+
+    private void GamePost(EventArgs args)
+    {
+        if (create)
+            SpawnBuilding();
+    }
+
+
+    private void GenerationProgress_End(On.Terraria.WorldBuilding.GenerationProgress.orig_End orig, Terraria.WorldBuilding.GenerationProgress self) => create = true;
+
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
         {
-            if (create)
-                SpawnBuilding();
-        });
+            On.Terraria.WorldBuilding.GenerationProgress.End -= GenerationProgress_End;
+            GeneralHooks.ReloadEvent -= LoadConfig;
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == copy || x.CommandDelegate == CreateBuilding);
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, GamePost);
+        }
+
+        base.Dispose(disposing);
     }
 
     private void CreateBuilding(CommandArgs args)
@@ -153,7 +172,7 @@ public class Plugin : TerrariaPlugin
         });
     }
 
-    public void LoadConfig()
+    public void LoadConfig(ReloadEventArgs? args = null)
     {
         if (File.Exists(SavePath))
         {

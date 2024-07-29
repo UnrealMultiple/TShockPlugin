@@ -156,7 +156,7 @@
 | [SessionSentinel](SessionSentinel/README.md)                     |     处理长时间不发送数据包的玩家      |                                                                        无                                                                         |
 | [TeleportRequest](TeleportRequest/README.md)                     |          传送请求           |                                                                        无                                                                         |
 | [CaiRewardChest](CaiRewardChest/README.md)                       | 将自然生成的箱子变为所有人都可以领一次的奖励箱 |                                                                        无                                                                         |
-| [CaiCustomEmojiCommand](CaiCustomEmojiCommand/README.md)                                                               |        自定义表情命令          |                                                                    无                                                                             |
+| [CaiCustomEmojiCommand](CaiCustomEmojiCommand/README.md)         |        自定义表情命令          |                                                                    无                                                                             |
 
 </Details>
 
@@ -167,3 +167,4 @@
 ## 友情链接
 
 - [TShock 插件开发文档](https://github.com/ACaiCat/TShockPluginDocument)
+- [Tshock 相关内容大全导航](https://gitee.com/THEXN/Tshock-nav)

@@ -11,7 +11,7 @@ namespace DisableSurfaceProjectiles
         public override string Author => "羽学 感谢Cai 西江小子 熙恩";
         public override string Description => "禁止特定弹幕在地表产生";
         public override string Name => "禁地表弹幕";
-        public override Version Version => new(1, 0, 0, 5);
+        public override Version Version => new(1, 0, 0, 6);
         internal static Configuration Config;
         public static bool _isEnabled; // 存储插件是否启用的状态，默认为false
         public Plugin(Main game) : base(game)
@@ -33,6 +33,19 @@ namespace DisableSurfaceProjectiles
             GeneralHooks.ReloadEvent += ReloadConfig;
             ServerApi.Hooks.GamePostInitialize.Register(this, OnWorldload);
             Commands.ChatCommands.Add(new Command("禁地表弹幕", Command, "禁地表弹幕")); //添加一个指令权限
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                GetDataHandlers.NewProjectile -= OnProjectileNew;
+                GeneralHooks.ReloadEvent -= ReloadConfig;
+                ServerApi.Hooks.GamePostInitialize.Deregister(this, OnWorldload);
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Command);
+            }
+
+            base.Dispose(disposing);
         }
 
         private static void OnWorldload(EventArgs args)

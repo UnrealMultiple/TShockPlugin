@@ -44,13 +44,15 @@ public class Plugin : TerrariaPlugin
             TShock.Log.ConsoleError("禁止怪物表读取错误:" + ex.ToString());
         }
     }
+    private GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
         LoadConfig();
+        _reloadHandler = (_) => LoadConfig();
         Commands.ChatCommands.Add(new Command("bannpc.use", BanCommand, "bm"));
         ServerApi.Hooks.NpcSpawn.Register(this, OnSpawn);
         ServerApi.Hooks.NpcTransform.Register(this, OnTransform);
-        GeneralHooks.ReloadEvent += (_) => LoadConfig();
+        GeneralHooks.ReloadEvent += _reloadHandler;
     }
     protected override void Dispose(bool disposing)
     {
@@ -58,7 +60,7 @@ public class Plugin : TerrariaPlugin
         {
             ServerApi.Hooks.NpcSpawn.Deregister(this, OnSpawn);
             ServerApi.Hooks.NpcTransform.Deregister(this, OnTransform);
-            GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+            GeneralHooks.ReloadEvent -= _reloadHandler;
 
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == BanCommand);
         }

@@ -35,7 +35,7 @@ namespace Challenger
 
         public override string Name => "Challenger";
 
-        public override Version Version => new Version(1, 0, 1, 2);
+        public override Version Version => new Version(1, 0, 1, 3);
 
         public Challenger(Main game)
             : base(game)
@@ -76,10 +76,11 @@ namespace Challenger
         {
             if (disposing)
             {
-                GeneralHooks.ReloadEvent -= new ReloadEventD(LoadConfig);
+                GeneralHooks.ReloadEvent -= new GeneralHooks.ReloadEventD(LoadConfig);
                 GetDataHandlers.TileEdit -= OnTileEdit!;
                 ServerApi.Hooks.GameUpdate.Deregister(this, OnGameUpdate);
                 GetDataHandlers.PlayerDamage.UnRegister(PlayerSufferDamage);
+                GetDataHandlers.NewProjectile.UnRegister(OnProjSpawn);
                 ServerApi.Hooks.ProjectileAIUpdate.Deregister(this, OnProjAIUpdate);
                 GetDataHandlers.ProjectileKill.UnRegister(OnProjKilled);
                 ServerApi.Hooks.NpcAIUpdate.Deregister(this, OnNPCAI);
@@ -88,6 +89,12 @@ namespace Challenger
                 GetDataHandlers.PlayerSlot.UnRegister(OnHoldItem);
                 ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);
                 ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
+
+                Commands.ChatCommands.RemoveAll(x =>
+                    x.CommandDelegate == EnableModel ||
+                    x.CommandDelegate == EnableTips ||
+                    x.CommandDelegate == Function
+                );
             }
             base.Dispose(disposing);
         }
