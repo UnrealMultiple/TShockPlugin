@@ -88,6 +88,7 @@ namespace HouseRegion
         #endregion
 
         #region 插件的各种初始化
+        private GeneralHooks.ReloadEventD _reloadHandler;
         public override void Initialize()// 插件启动时，用于初始化各种狗子
         {
             RC();
@@ -98,8 +99,8 @@ namespace HouseRegion
             ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreetPlayer);//玩家进入服务器
             ServerApi.Hooks.ServerLeave.Register(this, OnLeave);//玩家退出服务器
             ServerApi.Hooks.GamePostInitialize.Register(this, PostInitialize);//地图读入后
-            GeneralHooks.ReloadEvent +
-                => RC();
+            _reloadHandler = (_) => RC();
+            GeneralHooks.ReloadEvent += _reloadHandler; 
         }
         protected override void Dispose(bool disposing)// 插件关闭时
         {
@@ -111,6 +112,7 @@ namespace HouseRegion
                 ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);//玩家退出服务器
                 ServerApi.Hooks.GamePostInitialize.Deregister(this, PostInitialize);//地图读入后
                 Update.Elapsed -= OnUpdate; Update.Stop();//销毁时钟
+                GeneralHooks.ReloadEvent -= _reloadHandler;
             }
             base.Dispose(disposing);
         }
