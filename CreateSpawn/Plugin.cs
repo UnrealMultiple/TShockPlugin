@@ -27,33 +27,35 @@ public class Plugin : TerrariaPlugin
     }
 
     private GeneralHooks.ReloadEventD _reloadHandler;//这个大概还是有问题
+    private HookHandler<EventArgs> _gamePostInitializeHandler;
+    private void GenerationProgress_end(On.Terraria.WorldBuilding.GenerationProgress.orig_End orig, Terraria.WorldBuilding.GenerationProgress self)
+    {
+        create = true;
+    }
     public override void Initialize()
     {
         LoadConfig();
         _reloadHandler = (_) => LoadConfig();
-        On.Terraria.WorldBuilding.GenerationProgress.End += (_, _) => create = true;
-        TShockAPI.Hooks.GeneralHooks.ReloadEvent += _reloadHandler;
-        Commands.ChatCommands.Add(new Command("create.copy", copy, "cb"));
-        Commands.ChatCommands.Add(new Command("create.copy", CreateBuilding, "create"));
-        ServerApi.Hooks.GamePostInitialize.Register(this, (_) =>
+        _gamePostInitializeHandler = (_) =>
         {
             if (create)
                 SpawnBuilding();
-        });
+        };
+        On.Terraria.WorldBuilding.GenerationProgress.End += GenerationProgress_end;
+        TShockAPI.Hooks.GeneralHooks.ReloadEvent += _reloadHandler;
+        Commands.ChatCommands.Add(new Command("create.copy", copy, "cb"));
+        Commands.ChatCommands.Add(new Command("create.copy", CreateBuilding, "create"));
+        ServerApi.Hooks.GamePostInitialize.Register(this, _gamePostInitializeHandler);
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            On.Terraria.WorldBuilding.GenerationProgress.End -= (_, _) => create = true;
+            On.Terraria.WorldBuilding.GenerationProgress.End -= GenerationProgress_end;
             TShockAPI.Hooks.GeneralHooks.ReloadEvent -= _reloadHandler;
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == copy || x.CommandDelegate == CreateBuilding);
-            ServerApi.Hooks.GamePostInitialize.Deregister(this, (_) =>
-            {
-                if (create)
-                    SpawnBuilding();
-            });
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, _gamePostInitializeHandler);
         }
 
         base.Dispose(disposing);
