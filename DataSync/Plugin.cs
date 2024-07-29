@@ -115,6 +115,27 @@ public class Plugin : TerrariaPlugin
         Commands.ChatCommands.Add(new Command("DataSync", ProgressCommand, "进度", "progress"));
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            ServerApi.Hooks.NpcKilled.Deregister(this, NpcKilled);
+            ServerApi.Hooks.GameUpdate.Deregister(this, args =>
+            {
+                _frameCount++;
+                if (_frameCount % 300 == 0)
+                {
+                    LoadProgress();
+                }
+            });
+            GeneralHooks.ReloadEvent -= (_) => Reload();
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, args => LoadProgress());
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == ClearProgress || x.CommandDelegate == ProgressCommand);
+        }
+
+        base.Dispose(disposing);
+    }
+
     private static object ProgressRest(RestRequestArgs args)
     {
         return new RestObject {

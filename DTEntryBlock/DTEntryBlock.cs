@@ -12,7 +12,7 @@ namespace DTEntryBlock
         public override string Author => "肝帝熙恩";
         public override string Name => "阻止进入地牢或神庙";
         public override string Description => "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙";
-        public override Version Version => new Version(1, 1, 3);
+        public override Version Version => new Version(1, 1, 4);
         public static Configuration Config;
         Color orangeColor = new Color(255, 165, 0);
 
@@ -41,6 +41,7 @@ namespace DTEntryBlock
         {
             if (disposing)
             {
+                GeneralHooks.ReloadEvent -= ReloadConfig;
                 GetDataHandlers.PlayerUpdate.UnRegister(OnPlayerUpdatePhysics);
             }
             base.Dispose(disposing);

@@ -19,7 +19,7 @@ public class CaiRewardChest : TerrariaPlugin
 
     public override string Name => "CaiRewardChest";
 
-    public override Version Version => new(2024, 7, 25, 1);
+    public override Version Version => new(2024, 7, 29, 1);
 
 
     public override void Initialize()
@@ -32,6 +32,22 @@ public class CaiRewardChest : TerrariaPlugin
         Commands.ChatCommands.Add(new Command("CaiRewardChest.Admin", DeleteChest, "删除奖励箱"));
         Commands.ChatCommands.Add(new Command("CaiRewardChest.Admin", AddChest, "添加奖励箱"));
         Commands.ChatCommands.Add(new Command("CaiRewardChest.Admin", EditChest, "编辑奖励箱"));
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            GetDataHandlers.ChestOpen.UnRegister(OnChestOpen);
+            Hooks.Chest.InvokeQuickStack -= ChestOnInvokeQuickStack;
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == InitChest ||
+                                                x.CommandDelegate == ClearChest ||
+                                                x.CommandDelegate == DeleteChest ||
+                                                x.CommandDelegate == AddChest ||
+                                                x.CommandDelegate == EditChest);
+        }
+
+        base.Dispose(disposing);
     }
 
     private bool ChestOnInvokeQuickStack(Hooks.Chest.orig_InvokeQuickStack orig, int playerid, Item item,
@@ -153,15 +169,4 @@ public class CaiRewardChest : TerrariaPlugin
         args.Player.SendSuccessMessage($"[i:48]奖励箱初始化完成,共添加{count}个奖励箱~");
     }
 
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            GetDataHandlers.ChestOpen.UnRegister(OnChestOpen);
-            Hooks.Chest.InvokeQuickStack -= ChestOnInvokeQuickStack;
-        }
-
-        base.Dispose(disposing);
-    }
 }

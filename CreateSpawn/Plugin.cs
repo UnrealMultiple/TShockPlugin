@@ -13,7 +13,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "CreateSpawn";
 
-    public override Version Version => new(1, 0, 0, 0);
+    public override Version Version => new(1, 0, 0, 1);
 
 
     private readonly string SavePath = Path.Combine(TShock.SavePath, "Create.json");
@@ -38,6 +38,23 @@ public class Plugin : TerrariaPlugin
             if (create)
                 SpawnBuilding();
         });
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            On.Terraria.WorldBuilding.GenerationProgress.End -= (_, _) => create = true;
+            TShockAPI.Hooks.GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == copy || x.CommandDelegate == CreateBuilding);
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, (_) =>
+            {
+                if (create)
+                    SpawnBuilding();
+            });
+        }
+
+        base.Dispose(disposing);
     }
 
     private void CreateBuilding(CommandArgs args)

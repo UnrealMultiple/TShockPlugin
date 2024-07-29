@@ -13,7 +13,7 @@ public class Plugin : TerrariaPlugin
 {
     #region 插件信息
     public override string Name => "禁怪物掉落";
-    public override Version Version => new Version(1, 2, 0);
+    public override Version Version => new Version(1, 2, 1);
     public override string Author => "羽学";
     public override string Description => "清理怪物身边掉落物";
     #endregion
@@ -34,7 +34,9 @@ public class Plugin : TerrariaPlugin
         {
             GeneralHooks.ReloadEvent -= (_) => LoadConfig();
             ServerApi.Hooks.NpcKilled.Deregister(this, KillItem);
+            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == kdm);
         }
+
         base.Dispose(disposing);
     }
     #endregion
