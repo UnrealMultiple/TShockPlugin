@@ -51,6 +51,8 @@ public class Plugin : TerrariaPlugin
         {
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == PluginManager);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, AutoCheckUpdate);
+            _timer.Stop();
+            _timer.Dispose();
         }
 
         base.Dispose(disposing);
