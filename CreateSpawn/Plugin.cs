@@ -26,36 +26,34 @@ public class Plugin : TerrariaPlugin
     {
     }
 
-    private GeneralHooks.ReloadEventD _reloadHandler;//这个大概还是有问题
-    private HookHandler<EventArgs> _gamePostInitializeHandler;
-    private void GenerationProgress_end(On.Terraria.WorldBuilding.GenerationProgress.orig_End orig, Terraria.WorldBuilding.GenerationProgress self)
-    {
-        create = true;
-    }
     public override void Initialize()
     {
         LoadConfig();
-        _reloadHandler = (_) => LoadConfig();
-        _gamePostInitializeHandler = (_) =>
-        {
-            if (create)
-                SpawnBuilding();
-        };
-        On.Terraria.WorldBuilding.GenerationProgress.End += GenerationProgress_end;
-        TShockAPI.Hooks.GeneralHooks.ReloadEvent += _reloadHandler;
+        On.Terraria.WorldBuilding.GenerationProgress.End += GenerationProgress_End;
+        GeneralHooks.ReloadEvent += LoadConfig;
         Commands.ChatCommands.Add(new Command("create.copy", copy, "cb"));
         Commands.ChatCommands.Add(new Command("create.copy", CreateBuilding, "create"));
-        ServerApi.Hooks.GamePostInitialize.Register(this, _gamePostInitializeHandler);
+        ServerApi.Hooks.GamePostInitialize.Register(this, GamePost);
     }
+
+    private void GamePost(EventArgs args)
+    {
+        if (create)
+            SpawnBuilding();
+    }
+
+
+    private void GenerationProgress_End(On.Terraria.WorldBuilding.GenerationProgress.orig_End orig, Terraria.WorldBuilding.GenerationProgress self) => create = true;
+
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            On.Terraria.WorldBuilding.GenerationProgress.End -= GenerationProgress_end;
-            TShockAPI.Hooks.GeneralHooks.ReloadEvent -= _reloadHandler;
+            On.Terraria.WorldBuilding.GenerationProgress.End -= GenerationProgress_End;
+            GeneralHooks.ReloadEvent -= LoadConfig;
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == copy || x.CommandDelegate == CreateBuilding);
-            ServerApi.Hooks.GamePostInitialize.Deregister(this, _gamePostInitializeHandler);
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, GamePost);
         }
 
         base.Dispose(disposing);
@@ -174,7 +172,7 @@ public class Plugin : TerrariaPlugin
         });
     }
 
-    public void LoadConfig()
+    public void LoadConfig(ReloadEventArgs? args = null)
     {
         if (File.Exists(SavePath))
         {
