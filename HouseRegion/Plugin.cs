@@ -98,7 +98,8 @@ namespace HouseRegion
             ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreetPlayer);//玩家进入服务器
             ServerApi.Hooks.ServerLeave.Register(this, OnLeave);//玩家退出服务器
             ServerApi.Hooks.GamePostInitialize.Register(this, PostInitialize);//地图读入后
-            GeneralHooks.ReloadEvent += (_) => RC();
+            GeneralHooks.ReloadEvent +
+                => RC();
         }
         protected override void Dispose(bool disposing)// 插件关闭时
         {

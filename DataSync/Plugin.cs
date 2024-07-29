@@ -94,11 +94,12 @@ public class Plugin : TerrariaPlugin
     }
 
     private int _frameCount = 0;
+    private GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
         Config.LoadConfig();
         EnsureTable();
-
+        _reloadHandler = (_) => Reload();
         ServerApi.Hooks.NpcKilled.Register(this, this.NpcKilled);
         ServerApi.Hooks.GameUpdate.Register(this, args =>
         {
@@ -108,7 +109,7 @@ public class Plugin : TerrariaPlugin
                 LoadProgress();
             }
         });
-        GeneralHooks.ReloadEvent += (_) => Reload();
+        GeneralHooks.ReloadEvent += _reloadHandler;
         ServerApi.Hooks.GamePostInitialize.Register(this, args => LoadProgress());
         Commands.ChatCommands.Add(new Command("DataSync", this.ClearProgress, "重置进度同步"));
         TShock.RestApi.Register(new SecureRestCommand("/DataSync", ProgressRest, "DataSync"));
@@ -128,7 +129,7 @@ public class Plugin : TerrariaPlugin
                     LoadProgress();
                 }
             });
-            GeneralHooks.ReloadEvent -= (_) => Reload();
+            GeneralHooks.ReloadEvent -= _reloadHandler;
             ServerApi.Hooks.GamePostInitialize.Deregister(this, args => LoadProgress());
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == ClearProgress || x.CommandDelegate == ProgressCommand);
         }

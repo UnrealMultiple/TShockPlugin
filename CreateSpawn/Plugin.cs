@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace CreateSpawn;
 
@@ -25,12 +26,13 @@ public class Plugin : TerrariaPlugin
     {
     }
 
-
+    private GeneralHooks.ReloadEventD _reloadHandler;//这个大概还是有问题
     public override void Initialize()
     {
         LoadConfig();
+        _reloadHandler = (_) => LoadConfig();
         On.Terraria.WorldBuilding.GenerationProgress.End += (_, _) => create = true;
-        TShockAPI.Hooks.GeneralHooks.ReloadEvent += (_) => LoadConfig();
+        TShockAPI.Hooks.GeneralHooks.ReloadEvent += _reloadHandler;
         Commands.ChatCommands.Add(new Command("create.copy", copy, "cb"));
         Commands.ChatCommands.Add(new Command("create.copy", CreateBuilding, "create"));
         ServerApi.Hooks.GamePostInitialize.Register(this, (_) =>
@@ -45,7 +47,7 @@ public class Plugin : TerrariaPlugin
         if (disposing)
         {
             On.Terraria.WorldBuilding.GenerationProgress.End -= (_, _) => create = true;
-            TShockAPI.Hooks.GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+            TShockAPI.Hooks.GeneralHooks.ReloadEvent -= _reloadHandler;
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == copy || x.CommandDelegate == CreateBuilding);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, (_) =>
             {

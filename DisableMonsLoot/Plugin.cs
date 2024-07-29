@@ -19,11 +19,13 @@ public class Plugin : TerrariaPlugin
     #endregion
 
     #region 注册释放钩子
+    private GeneralHooks.ReloadEventD _reloadHandler;
     public Plugin(Main game) : base(game) { }
     public override void Initialize()
     {
         LoadConfig();
-        GeneralHooks.ReloadEvent += (_) => LoadConfig();
+        _reloadHandler = (_) => LoadConfig();
+        GeneralHooks.ReloadEvent += _reloadHandler;
         ServerApi.Hooks.NpcKilled.Register(this, KillItem);
         TShockAPI.Commands.ChatCommands.Add(new Command("killitem.admin", kdm, "kdm", "禁掉落"));
     }
@@ -32,7 +34,7 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+            GeneralHooks.ReloadEvent -= _reloadHandler;
             ServerApi.Hooks.NpcKilled.Deregister(this, KillItem);
             TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == kdm);
         }
