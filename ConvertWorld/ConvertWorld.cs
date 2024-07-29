@@ -16,20 +16,18 @@ namespace ConvertWorld
         #endregion
 
         #region 注册与释放
-        private GeneralHooks.ReloadEventD _reloadHandler;
         public Plugin(Main game) : base(game) { }
         public override void Initialize()
         {
-            LoadConfig();
-            _reloadHandler = (_) => LoadConfig();
-            GeneralHooks.ReloadEvent += _reloadHandler;
+            LoadConfig();;
+            GeneralHooks.ReloadEvent += LoadConfig;
             ServerApi.Hooks.NpcKilled.Register(this, OnNPCKilled);
         }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                GeneralHooks.ReloadEvent -= _reloadHandler;
+                GeneralHooks.ReloadEvent -= LoadConfig;
                 ServerApi.Hooks.NpcKilled.Deregister(this, OnNPCKilled);
             }
             base.Dispose(disposing);
@@ -38,7 +36,7 @@ namespace ConvertWorld
 
         #region 配置重载读取与写入方法
         internal static Configuration Config = new();
-        private static void LoadConfig()
+        private static void LoadConfig(ReloadEventArgs? args = null)
         {
             Config = Configuration.Read();
             WriteName();
