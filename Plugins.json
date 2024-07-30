@@ -631,7 +631,7 @@
   },
   {
     "Name": "阻止进入地牢或神庙",
-    "Version": "1.1.4",
+    "Version": "1.1.5",
     "Author": "肝帝熙恩",
     "Description": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
     "Path": "DTEntryBlock.dll"
