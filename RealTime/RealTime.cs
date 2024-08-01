@@ -12,7 +12,7 @@ namespace RealTime
         public override string Author => "十七";
         public override string Description => "同步现实时间";
         public override string Name => "RealTime";
-        public override Version Version => new Version(2, 5, 0, 0);
+        public override Version Version => new Version(2, 6, 0, 0);
         public RealTime(Main game) : base(game)
         {
         }
@@ -66,10 +66,10 @@ namespace RealTime
         bool lastBloodMoon = false;
         bool lastEclipse = false;
         bool lastPumpkinMoon = false;
-        bool lastSnowMoon = false;       
+        bool lastSnowMoon = false;
         DateTime time = DateTime.Now;
         private void OnGameUpdate(EventArgs args)
-        {  
+        {
             #region 血月
             if (lastBloodMoon ^ Main.bloodMoon)
             {
@@ -82,7 +82,7 @@ namespace RealTime
             lastBloodMoon = Main.bloodMoon;
             if (Main.bloodMoon == true)
             {
-                TShock.Players.Where(p => p != null).ToList().ForEach(p=>
+                TShock.Players.Where(p => p != null).ToList().ForEach(p =>
                 {
                     if (p.TPlayer.hostile == false)
                     {
@@ -91,7 +91,7 @@ namespace RealTime
                         p.SendData(PacketTypes.TogglePvp, "", p.Index);
                         p.SendInfoMessage("血月的邪恶影响会阻止你的PvP关闭。");
                     }
-                });                
+                });
                 if (DateTime.Now >= time)
                 {
                     Main.bloodMoon = false;
@@ -206,7 +206,7 @@ namespace RealTime
             }
             #endregion
             #region npc生成、月相、天气、渔夫任务刷新
-            y++;
+            y++; q++;
             if (y == 86400)//npc生成 月相、天气、渔夫任务刷新
             {
                 var AllNPCS = Main.npc.Where(n => n != null);
@@ -220,7 +220,6 @@ namespace RealTime
                             {
                                 TSPlayer.Server.SpawnNPC(37, "老人", 200, Main.dungeonX, Main.dungeonY, 50, 20);
                             }
-
                         }
                     }
                     if (TNPC.netID == 439)
@@ -234,8 +233,10 @@ namespace RealTime
                         }
                     }
                 }
+                Chest.SetupTravelShop();
+                NetMessage.SendData(72);
                 Main.AnglerQuestSwap();//更换渔夫任务
-                TSPlayer.All.SendInfoMessage("渔夫任务已更换");
+                TSPlayer.All.SendInfoMessage("渔夫任务和旅商商品已更换");
                 if ((DateTime.Now.Hour >= 19 && DateTime.Now.Hour <= 24) || (0 <= DateTime.Now.Hour && DateTime.Now.Hour <= 4))
                 {
                     if (0 <= Main.moonPhase + 1 && Main.moonPhase + 1 <= 7)
@@ -276,7 +277,7 @@ namespace RealTime
                         };
                     GetRandom(arr)();
                     NetMessage.SendData(7);
-                    TSPlayer.All.SendInfoMessage("天气已变更" );
+                    TSPlayer.All.SendInfoMessage("天气已变更");
                 }
                 y = 0;
             }
