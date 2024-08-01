@@ -7,7 +7,7 @@
     "Path": "Platform.dll"
   },
   {
-    "Name": "Chireiden.TShock.Omni b73e8bb854",
+    "Name": "Chireiden.TShock.Omni 1dc7967580",
     "Version": "0.0.1.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
@@ -99,7 +99,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2024.7.25.1",
+    "Version": "2024.8.1.1",
     "Author": "Cai,羽学",
     "Description": "CaiBot机器人的适配插件",
     "Path": "CaiBot.dll"
@@ -113,7 +113,7 @@
   },
   {
     "Name": "CaiLib",
-    "Version": "1.0.0.0",
+    "Version": "2024.8.1.1",
     "Author": "Cai",
     "Description": "CaiLib",
     "Path": "CaiLib.dll"
@@ -239,7 +239,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.2.0.9",
+    "Version": "1.2.1.0",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"
@@ -274,8 +274,8 @@
   },
   {
     "Name": "EssentialsPlus",
-    "Version": "1.0.0",
-    "Author": "WhiteX等人，Average,Cjx,肝帝熙恩翻译",
+    "Version": "1.0.1",
+    "Author": "WhiteX等人，Average,Cjx,肝帝熙恩翻译,Cai更新",
     "Description": "增强版Essentials",
     "Path": "EssentialsPlus.dll"
   },
@@ -379,7 +379,7 @@
   },
   {
     "Name": "RealTime",
-    "Version": "2.5.0.0",
+    "Version": "2.6.0.0",
     "Author": "十七",
     "Description": "同步现实时间",
     "Path": "RealTime.dll"
@@ -631,7 +631,7 @@
   },
   {
     "Name": "阻止进入地牢或神庙",
-    "Version": "1.1.4",
+    "Version": "1.1.5",
     "Author": "肝帝熙恩",
     "Description": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
     "Path": "DTEntryBlock.dll"
@@ -680,7 +680,7 @@
   },
   {
     "Name": "Economics.Projectile",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "少司命",
     "Description": "Economics.Projectile",
     "Path": "Economics.Projectile.dll"
