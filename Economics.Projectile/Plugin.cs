@@ -48,7 +48,7 @@ public class Plugin : TerrariaPlugin
 
     private void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Terraria.Projectile self, int i)
     {
-        if (self.active && self.timeLeft > 0 && FollowProj.TryGetValue(self.miscText, out var porj))
+        if (self.active && self.timeLeft > 0 && !string.IsNullOrEmpty(self.miscText) && FollowProj.TryGetValue(self.miscText, out var porj))
         {
             var target = self.position.FindRangeNPC(60 * 16f);
             if (target != null)

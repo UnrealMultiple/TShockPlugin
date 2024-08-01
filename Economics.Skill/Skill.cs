@@ -66,7 +66,7 @@ public class Skill : TerrariaPlugin
 
     private void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Projectile self, int i)
     {
-        if(string.IsNullOrEmpty(self.miscText))
+        if(!string.IsNullOrEmpty(self.miscText) && self.timeLeft > 0 && self.active)
             AIStyle.AI(self);
         if (Main.time % 6 == 0 && self.timeLeft <= 0 && self.active)
             self.Kill();
