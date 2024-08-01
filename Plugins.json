@@ -239,7 +239,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.2.0.9",
+    "Version": "1.2.1.0",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"
@@ -680,7 +680,7 @@
   },
   {
     "Name": "Economics.Projectile",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "少司命",
     "Description": "Economics.Projectile",
     "Path": "Economics.Projectile.dll"
