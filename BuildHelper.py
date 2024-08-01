@@ -6,7 +6,7 @@ import zipfile
 import urllib.request
 
 def zip_files_in_folder(folder_path, zip_file_path):
-    with zipfile.ZipFile(zip_file_path, 'w') as zipf:
+    with zipfile.ZipFile(zip_file_path, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zipf:
         for foldername, subfolders, filenames in os.walk(folder_path):
             for filename in filenames:
                 file_path = os.path.join(foldername, filename)
