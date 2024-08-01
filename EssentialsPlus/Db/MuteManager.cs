@@ -63,7 +63,7 @@ public class MuteManager
             new SqlColumn("Date", MySqlDbType.Text),
             new SqlColumn("Expiration", MySqlDbType.Text)));
 
-        using QueryResult result = db.QueryReader("SELECT * FROM Homes WHERE WorldID = @0", Main.worldID);
+        using QueryResult result = db.QueryReader("SELECT * FROM Mutes WHERE WorldID = @0", Main.worldID);
         while (result.Read())
         {
             Mutes.Add(new Mute(
@@ -76,7 +76,7 @@ public class MuteManager
         }
     }
 
-    public bool AddAsync(TSPlayer player, DateTime expiration)
+    public bool AddMute(TSPlayer player, DateTime expiration)
     {
         try
         {
@@ -102,7 +102,7 @@ public class MuteManager
             return false;
         }
     }
-    public bool AddAsync(UserAccount user, DateTime expiration)
+    public bool AddMute(UserAccount user, DateTime expiration)
     {
         try
         {
@@ -131,7 +131,7 @@ public class MuteManager
             return false;
         }
     }
-    public bool DeleteAsync(TSPlayer player)
+    public bool DeleteMute(TSPlayer player)
     {
         string query = db.GetSqlType() == SqlType.Mysql ?
             "DELETE FROM Mutes WHERE UUID = @0 OR IP = @1 ORDER BY ID DESC LIMIT 1" :
@@ -148,7 +148,7 @@ public class MuteManager
             return false;
         }
     }
-    public bool DeleteAsync(UserAccount user)
+    public bool DeleteMute(UserAccount user)
     {
         string query = db.GetSqlType() == SqlType.Mysql ?
             "DELETE FROM Mutes WHERE UUID = @0 OR IP = @1 ORDER BY ID DESC LIMIT 1" :
@@ -165,7 +165,7 @@ public class MuteManager
             return false;
         }
     }
-    public DateTime GetExpirationAsync(TSPlayer player)
+    public DateTime GetExpiration(TSPlayer player)
     {
         return Mutes.Find(f => f.UUID == player.UUID)?.Expiration ?? DateTime.MinValue;
     }
