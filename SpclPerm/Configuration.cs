@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System.Text;
-using TShockAPI;
+﻿using System.Text;
+using Newtonsoft.Json;
 using Terraria.ID;
+using TShockAPI;
 
 namespace Plugin
 {
@@ -122,7 +122,7 @@ namespace Plugin
             public BuffData(int id, int minute)
             {
                 ID = id;
-                Min = minute ;
+                Min = minute;
             }
         }
         #endregion

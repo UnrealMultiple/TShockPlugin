@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
+﻿using System.Collections;
+using Newtonsoft.Json;
 using Terraria;
 using TShockAPI;
 

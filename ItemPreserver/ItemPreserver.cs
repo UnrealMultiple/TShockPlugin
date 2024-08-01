@@ -75,9 +75,9 @@ public class ItemPreserver : TerrariaPlugin
             {
                 if (e.Type == 0 || e.Stack == 0)
                 {
-                    if (e.Player.TPlayer.controlUseItem 
-                        && e.Player.TPlayer.inventory[e.Slot].consumable 
-                        && Config.NoConsumItem.TryGetValue(slot.Type, out var num) 
+                    if (e.Player.TPlayer.controlUseItem
+                        && e.Player.TPlayer.inventory[e.Slot].consumable
+                        && Config.NoConsumItem.TryGetValue(slot.Type, out var num)
                         && (slot.Stack >= num || num <= 0))
                     {
                         e.Player.TPlayer.inventory[e.Slot].netDefaults(slot.Type);
@@ -87,8 +87,8 @@ public class ItemPreserver : TerrariaPlugin
                 }
                 else
                 {
-                    if (e.Player.TPlayer.controlUseItem 
-                        && e.Player.TPlayer.inventory[e.Slot].consumable 
+                    if (e.Player.TPlayer.controlUseItem
+                        && e.Player.TPlayer.inventory[e.Slot].consumable
                         && Config.NoConsumItem.TryGetValue(e.Type, out var num)
                         && (slot.Stack >= num || num <= 0))
                     {

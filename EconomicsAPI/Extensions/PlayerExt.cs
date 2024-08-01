@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
 
 namespace EconomicsAPI.Extensions;
@@ -36,7 +35,7 @@ public static class PlayerExt
 
     public static List<NPC> GetNpcInRange(this Player Player, int range)
     {
-       return Player.position.FindRangeNPCs(range);
+        return Player.position.FindRangeNPCs(range);
     }
 
     public static NPC? GetNpcInRangeByHp(this Player Player, int range)

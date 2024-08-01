@@ -1,7 +1,7 @@
-﻿using EconomicsAPI.Configured;
+﻿using System.Reflection;
+using EconomicsAPI.Configured;
 using EconomicsAPI.Extensions;
 using Microsoft.Xna.Framework;
-using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI.Hooks;

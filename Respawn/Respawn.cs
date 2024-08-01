@@ -39,7 +39,7 @@ public class Respawn : TerrariaPlugin
             });
         }
     }
-        
+
 
     protected override void Dispose(bool disposing)
     {
@@ -53,9 +53,9 @@ public class Respawn : TerrariaPlugin
 
     private void OnKillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
     {
-        if(e.Handled) return;
+        if (e.Handled) return;
         DeadPos[e.Player] = e.Player.TPlayer.position;
     }
 
-   
+
 }

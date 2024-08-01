@@ -1,5 +1,5 @@
-using Microsoft.Xna.Framework;
 using System.IO.Streams;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;

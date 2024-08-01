@@ -1,7 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System.Reflection;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using Rests;
-using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

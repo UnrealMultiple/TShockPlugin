@@ -1,10 +1,7 @@
-﻿using System.Drawing;
-using System.IO.Streams;
-using System.Text;
+﻿using System.IO.Streams;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 
 namespace TimerKeeper
 {

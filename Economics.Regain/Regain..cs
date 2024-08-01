@@ -1,5 +1,5 @@
-﻿using EconomicsAPI.Configured;
-using System.Reflection;
+﻿using System.Reflection;
+using EconomicsAPI.Configured;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

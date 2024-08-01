@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
+using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
 using TShockAPI.DB;

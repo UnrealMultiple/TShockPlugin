@@ -1,6 +1,6 @@
-﻿using Economics.Skill.Model;
+﻿using System.Data;
+using Economics.Skill.Model;
 using MySql.Data.MySqlClient;
-using System.Data;
 using TShockAPI;
 using TShockAPI.DB;
 

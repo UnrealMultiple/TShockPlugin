@@ -1,7 +1,6 @@
-﻿using TShockAPI;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
-using Microsoft.Xna.Framework;
+using TShockAPI;
 
 namespace RealTime
 {
@@ -66,10 +65,10 @@ namespace RealTime
         bool lastBloodMoon = false;
         bool lastEclipse = false;
         bool lastPumpkinMoon = false;
-        bool lastSnowMoon = false;       
+        bool lastSnowMoon = false;
         DateTime time = DateTime.Now;
         private void OnGameUpdate(EventArgs args)
-        {  
+        {
             #region 血月
             if (lastBloodMoon ^ Main.bloodMoon)
             {
@@ -82,7 +81,7 @@ namespace RealTime
             lastBloodMoon = Main.bloodMoon;
             if (Main.bloodMoon == true)
             {
-                TShock.Players.Where(p => p != null).ToList().ForEach(p=>
+                TShock.Players.Where(p => p != null).ToList().ForEach(p =>
                 {
                     if (p.TPlayer.hostile == false)
                     {
@@ -91,7 +90,7 @@ namespace RealTime
                         p.SendData(PacketTypes.TogglePvp, "", p.Index);
                         p.SendInfoMessage("血月的邪恶影响会阻止你的PvP关闭。");
                     }
-                });                
+                });
                 if (DateTime.Now >= time)
                 {
                     Main.bloodMoon = false;
@@ -276,7 +275,7 @@ namespace RealTime
                         };
                     GetRandom(arr)();
                     NetMessage.SendData(7);
-                    TSPlayer.All.SendInfoMessage("天气已变更" );
+                    TSPlayer.All.SendInfoMessage("天气已变更");
                 }
                 y = 0;
             }

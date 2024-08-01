@@ -1,13 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.IO;
 using Terraria.Localization;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ZHIPlayerManager
 {

@@ -1,5 +1,5 @@
-﻿using TShockAPI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using TShockAPI;
 
 namespace DisableMonsLoot
 {
@@ -37,7 +37,7 @@ namespace DisableMonsLoot
 
             if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "list")
             {
-                var itemList = string.Join(", ",Plugin.Config.BossList.SelectMany(data => data.ID.Select(id => TShock.Utils.GetNPCById(id)?.FullName ?? $"未知NPC")));
+                var itemList = string.Join(", ", Plugin.Config.BossList.SelectMany(data => data.ID.Select(id => TShock.Utils.GetNPCById(id)?.FullName ?? $"未知NPC")));
                 args.Player.SendInfoMessage("【禁止掉落的怪物表】\n" + itemList);
                 return;
             }
@@ -76,7 +76,7 @@ namespace DisableMonsLoot
                             {
                                 Plugin.Config.radius = num;
                                 Plugin.Config.Write();
-                                args.Player.SendSuccessMessage($"【禁怪物掉落】\n"+"已成功将清理范围设置为: {num} 格!");
+                                args.Player.SendSuccessMessage($"【禁怪物掉落】\n" + "已成功将清理范围设置为: {num} 格!");
                             }
                             break;
                         }

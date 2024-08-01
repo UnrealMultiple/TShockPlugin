@@ -1,9 +1,9 @@
-﻿using ChattyBridge.Message;
-using Newtonsoft.Json.Linq;
-using Rests;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 using System.Web;
+using ChattyBridge.Message;
+using Newtonsoft.Json.Linq;
+using Rests;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

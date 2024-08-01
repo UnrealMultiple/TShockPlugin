@@ -1,5 +1,5 @@
-using Newtonsoft.Json;
 using System.Reflection;
+using Newtonsoft.Json;
 using Terraria.ID;
 using TShockAPI;
 

@@ -1,5 +1,5 @@
-﻿using Rests;
-using System.Reflection;
+﻿using System.Reflection;
+using Rests;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

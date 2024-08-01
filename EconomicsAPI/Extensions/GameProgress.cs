@@ -1,6 +1,6 @@
-﻿using EconomicsAPI.Attributes;
+﻿using System.Reflection;
+using EconomicsAPI.Attributes;
 using EconomicsAPI.Enumerates;
-using System.Reflection;
 using Terraria;
 using Terraria.GameContent.Events;
 using TShockAPI;
@@ -54,7 +54,7 @@ public static class GameProgress
             var anti = false;
             var pn = name;
             if (name.StartsWith('!'))
-            { 
+            {
                 anti = true;
                 pn = name[1..];
             }

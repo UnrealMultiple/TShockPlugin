@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Data;
+using Microsoft.Xna.Framework;
 using MySql.Data.MySqlClient;
-using System.Data;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
@@ -356,7 +356,7 @@ namespace ZHIPlayerManager
                 {
                     try
                     {
-                        for(int c = 1; c < config.MaxBackupsPerPlayer; c++)
+                        for (int c = 1; c < config.MaxBackupsPerPlayer; c++)
                         {
                             text.RemoveAll(x => x.Equals(player.Account.ID.ToString() + "-" + c.ToString()));
                         }
@@ -535,7 +535,7 @@ namespace ZHIPlayerManager
                     return extraData.time;
                 }
             }
-            
+
 
             /// <summary>
             /// 将这个用户的额外数据写入数据库
@@ -668,7 +668,7 @@ namespace ZHIPlayerManager
                     case ExtraDataDate.hidekillTips:
                     case ExtraDataDate.killBossID:
                     case ExtraDataDate.killRareNPCID:
-                        sqlmeg += " ORDER BY Account";break;
+                        sqlmeg += " ORDER BY Account"; break;
                     case ExtraDataDate.Name:
                         sqlmeg += " ORDER BY Name"; break;
                     case ExtraDataDate.time:
@@ -751,11 +751,11 @@ namespace ZHIPlayerManager
             /// <summary>
             /// 击杀boss的id统计，id -> 击杀数
             /// </summary>
-            public Dictionary<int,int> killBossID;
+            public Dictionary<int, int> killBossID;
             /// <summary>
             /// 击杀罕见生物的id统计，id -> 击杀数
             /// </summary>
-            public Dictionary<int,int> killRareNPCID;
+            public Dictionary<int, int> killRareNPCID;
             /// <summary>
             /// 点数
             /// </summary>

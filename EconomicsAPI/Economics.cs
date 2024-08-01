@@ -1,3 +1,5 @@
+using System.Collections.Concurrent;
+using System.Reflection;
 using EconomicsAPI.Configured;
 using EconomicsAPI.DB;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
@@ -6,8 +8,6 @@ using EconomicsAPI.Extensions;
 using EconomicsAPI.Model;
 using EconomicsAPI.Utils;
 using Microsoft.Xna.Framework;
-using System.Collections.Concurrent;
-using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -141,7 +141,7 @@ public class Economics : TerrariaPlugin
             CurrencyManager.UpdataAll();
             foreach (var (npc, _) in Strike.Where(x => x.Key == null || !x.Key.active).ToList())
                 Strike.Remove(npc, out var _);
-           
+
         }
     }
 

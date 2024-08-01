@@ -1,11 +1,11 @@
-﻿using EconomicsAPI.Attributes;
+﻿using System.Reflection;
+using System.Text;
+using System.Text.RegularExpressions;
+using EconomicsAPI.Attributes;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
 using EconomicsAPI.Extensions;
 using Microsoft.Xna.Framework;
 using Rests;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
 using TerrariaApi.Server;
 using TShockAPI;
 

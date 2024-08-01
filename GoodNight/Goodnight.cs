@@ -183,7 +183,7 @@ namespace Goodnight
                                     TShock.Utils.Broadcast(
                                     $"【宵禁】当前服务器处于维护时间\n" +
                                     $"当前在线人数不满足:[c/FF3A4B:{PlayerCount}]/{Config.MaxPlayers}人\n" +
-                                    $"且处于宵禁时段: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n"+
+                                    $"且处于宵禁时段: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n" +
                                     $"仅允许召唤以下怪物：\n" +
                                     $"[c/6EABE9:{NpcDeadInfo}]\n", Color.Aquamarine);
                             }

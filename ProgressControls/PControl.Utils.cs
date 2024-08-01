@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Reflection;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using TerrariaApi.Server;

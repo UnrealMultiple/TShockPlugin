@@ -1,7 +1,7 @@
-using EconomicsAPI.Extensions;
-using Microsoft.Xna.Framework;
 using System.Collections.Concurrent;
 using System.Reflection;
+using EconomicsAPI.Extensions;
+using Microsoft.Xna.Framework;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -153,11 +153,11 @@ public class Plugin : TerrariaPlugin
 
     private void OnDate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
     {
-        if (e.Player.IsLoggedIn 
-            && !e.Player.Dead 
-            && e.Player.TPlayer.controlUseItem 
-            && useCD[e.PlayerId] == 0 
-            && Config.ItemReplace.TryGetValue(e.Player.TPlayer.HeldItem.netID, out ItemSpark? data) 
+        if (e.Player.IsLoggedIn
+            && !e.Player.Dead
+            && e.Player.TPlayer.controlUseItem
+            && useCD[e.PlayerId] == 0
+            && Config.ItemReplace.TryGetValue(e.Player.TPlayer.HeldItem.netID, out ItemSpark? data)
             && data != null)
         {
             if (data.UseAmmo)

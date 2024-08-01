@@ -1,7 +1,7 @@
-﻿using Economics.RPG.Setting;
+﻿using System.Reflection;
+using Economics.RPG.Setting;
 using EconomicsAPI.Configured;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
-using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using ReLogic.Content.Sources;
-using System.IO.Compression;
+﻿using System.IO.Compression;
 using System.Reflection;
+using Microsoft.Xna.Framework;
+using ReLogic.Content.Sources;
 using Terraria;
 using Terraria.IO;
 using Terraria.Localization;

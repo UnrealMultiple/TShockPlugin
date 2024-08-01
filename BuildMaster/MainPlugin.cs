@@ -1,8 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using MiniGamesAPI;
-using System.ComponentModel;
-using System.Reflection;
+﻿using System.ComponentModel;
 using System.Text;
+using Microsoft.Xna.Framework;
+using MiniGamesAPI;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

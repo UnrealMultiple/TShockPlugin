@@ -1,9 +1,8 @@
-﻿using EssentialsPlus.Db;
+﻿using System.Data;
+using EssentialsPlus.Db;
 using EssentialsPlus.Extensions;
 using Microsoft.Data.Sqlite;
 using MySql.Data.MySqlClient;
-using System.Data;
-using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

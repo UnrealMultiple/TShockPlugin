@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using System.IO.Compression;
+﻿using System.IO.Compression;
 using System.Reflection;
+using Newtonsoft.Json;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

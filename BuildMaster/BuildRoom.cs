@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Text;
+using System.Timers;
+using Microsoft.Xna.Framework;
 using MiniGamesAPI;
 using Newtonsoft.Json;
-using System.Text;
-using System.Timers;
 using Terraria;
 using Terraria.Utilities;
 using TShockAPI;

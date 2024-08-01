@@ -64,27 +64,27 @@ public class SpawnProjectile
         }
         //if (Owner == Main.myPlayer)
         //{
-            switch (Type)
-            {
-                case 206:
-                    projectile.ai[0] = (float)Main.rand.Next(-100, 101) * 0.0005f;
-                    projectile.ai[1] = (float)Main.rand.Next(-100, 101) * 0.0005f;
-                    break;
-                case 335:
-                    projectile.ai[1] = Main.rand.Next(4);
-                    break;
-                case 358:
-                    projectile.ai[1] = (float)Main.rand.Next(10, 31) * 0.1f;
-                    break;
-                case 406:
-                    projectile.ai[1] = (float)Main.rand.Next(10, 21) * 0.1f;
-                    break;
-                default:
-                    projectile.ai[0] = ai0;
-                    projectile.ai[1] = ai1;
-                    projectile.ai[2] = ai2;
-                    break;
-            }
+        switch (Type)
+        {
+            case 206:
+                projectile.ai[0] = (float)Main.rand.Next(-100, 101) * 0.0005f;
+                projectile.ai[1] = (float)Main.rand.Next(-100, 101) * 0.0005f;
+                break;
+            case 335:
+                projectile.ai[1] = Main.rand.Next(4);
+                break;
+            case 358:
+                projectile.ai[1] = (float)Main.rand.Next(10, 31) * 0.1f;
+                break;
+            case 406:
+                projectile.ai[1] = (float)Main.rand.Next(10, 21) * 0.1f;
+                break;
+            default:
+                projectile.ai[0] = ai0;
+                projectile.ai[1] = ai1;
+                projectile.ai[2] = ai2;
+                break;
+        }
         //}
         if (Type == 434)
         {

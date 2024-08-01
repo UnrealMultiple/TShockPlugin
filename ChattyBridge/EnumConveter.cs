@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Reflection;
+using Newtonsoft.Json;
 
 namespace ChattyBridge;
 

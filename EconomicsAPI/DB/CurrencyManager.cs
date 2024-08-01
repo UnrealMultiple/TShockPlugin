@@ -1,8 +1,8 @@
-﻿using EconomicsAPI.Enumerates;
+﻿using System.Data;
+using EconomicsAPI.Enumerates;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
 using EconomicsAPI.Events;
 using MySql.Data.MySqlClient;
-using System.Data;
 using TShockAPI;
 using TShockAPI.DB;
 

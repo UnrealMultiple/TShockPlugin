@@ -1,10 +1,7 @@
-﻿using EconomicsAPI.Attributes;
+﻿using System.Reflection;
 using EconomicsAPI.Configured;
-using Microsoft.Xna.Framework;
-using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
-using TShockAPI;
 using TShockAPI.Hooks;
 
 namespace Economics.Deal;

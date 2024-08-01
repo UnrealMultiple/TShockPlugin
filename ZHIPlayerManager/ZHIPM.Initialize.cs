@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using System.IO.Compression;
+﻿using System.IO.Compression;
 using System.Text;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

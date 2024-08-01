@@ -1,9 +1,9 @@
-﻿using Economics.Skill.DB;
+﻿using System.Reflection;
+using Economics.Skill.DB;
 using Economics.Skill.Events;
 using Economics.Skill.Setting;
 using EconomicsAPI.Configured;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
-using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -87,7 +87,7 @@ public class Skill : TerrariaPlugin
 
     private void OnUpdate(EventArgs args)
     {
-        TimerCount++;     
+        TimerCount++;
         if ((TimerCount % 6) == 0)
         {
             SkillCD.SendGodPacket();

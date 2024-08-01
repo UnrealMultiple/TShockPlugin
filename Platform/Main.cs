@@ -34,7 +34,7 @@ namespace Platform
 
         private void OnGreet(GreetPlayerEventArgs args)
         {
-            if (TShock.Players[args.Who]==null || Platforms[args.Who]==null)
+            if (TShock.Players[args.Who] == null || Platforms[args.Who] == null)
             {
                 return;
             }
@@ -63,7 +63,7 @@ namespace Platform
                 }
             }
             catch { }
-            
+
             return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
         }
         public enum PlatformType : byte // TypeDefIndex: 5205

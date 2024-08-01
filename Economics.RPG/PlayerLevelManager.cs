@@ -1,6 +1,6 @@
-﻿using Economics.RPG.Model;
+﻿using System.Data;
+using Economics.RPG.Model;
 using MySql.Data.MySqlClient;
-using System.Data;
 using TShockAPI;
 using TShockAPI.DB;
 

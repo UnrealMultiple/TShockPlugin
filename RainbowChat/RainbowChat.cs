@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using System.Reflection;
+﻿using System.Reflection;
+using Microsoft.Xna.Framework;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

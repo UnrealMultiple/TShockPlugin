@@ -190,8 +190,8 @@ public class HelpPlus : TerrariaPlugin
             if (!PaginationTools.TryParsePageNumber(args.Parameters, 0, args.Player, out pageNumber)) return;
 
             IEnumerable<string> cmdNames = from cmd in Commands.ChatCommands
-                where cmd.CanRun(args.Player) && (cmd.Name != "setup" || TShock.SetupToken != 0)
-                select Specifier + cmd.Name + GetShort(cmd.Name);
+                                           where cmd.CanRun(args.Player) && (cmd.Name != "setup" || TShock.SetupToken != 0)
+                                           select Specifier + cmd.Name + GetShort(cmd.Name);
 
             PaginationTools.SendPage(args.Player, pageNumber, PaginationTools.BuildLinesFromTerms(cmdNames),
                 new PaginationTools.Settings

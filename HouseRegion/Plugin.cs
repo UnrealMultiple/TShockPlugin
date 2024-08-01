@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Timers;
+using Microsoft.Xna.Framework;
 using MySql.Data.MySqlClient;
-using System.Timers;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -100,7 +100,7 @@ namespace HouseRegion
             ServerApi.Hooks.ServerLeave.Register(this, OnLeave);//玩家退出服务器
             ServerApi.Hooks.GamePostInitialize.Register(this, PostInitialize);//地图读入后
             _reloadHandler = (_) => RC();
-            GeneralHooks.ReloadEvent += _reloadHandler; 
+            GeneralHooks.ReloadEvent += _reloadHandler;
         }
         protected override void Dispose(bool disposing)// 插件关闭时
         {

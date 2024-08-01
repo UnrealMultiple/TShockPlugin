@@ -2,8 +2,8 @@
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
-using static DisableMonsLoot.Configuration;
 using static DisableMonsLoot.Commands;
+using static DisableMonsLoot.Configuration;
 
 
 namespace DisableMonsLoot;
@@ -124,7 +124,7 @@ public class Plugin : TerrariaPlugin
     }
     #endregion
 
-    
+
 
     #region 清理物品方法
     private void ClearItems(int radius, int[] ItemIDs)

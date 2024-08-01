@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using System.Timers;
+﻿using System.Timers;
+using Microsoft.Xna.Framework;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

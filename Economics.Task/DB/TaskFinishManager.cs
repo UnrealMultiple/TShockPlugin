@@ -1,5 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using System.Data;
+﻿using System.Data;
+using MySql.Data.MySqlClient;
 using TShockAPI;
 using TShockAPI.DB;
 

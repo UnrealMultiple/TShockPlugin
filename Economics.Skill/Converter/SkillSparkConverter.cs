@@ -1,8 +1,8 @@
-﻿using Economics.Skill.Enumerates;
+﻿using System.ComponentModel;
+using System.Reflection;
+using Economics.Skill.Enumerates;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.ComponentModel;
-using System.Reflection;
 
 namespace Economics.Skill.Converter;
 

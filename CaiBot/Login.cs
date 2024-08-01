@@ -1,6 +1,6 @@
-﻿using NuGet.Protocol;
+﻿using System.IO.Streams;
+using NuGet.Protocol;
 using Rests;
-using System.IO.Streams;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -101,35 +101,35 @@ public static class Login
             switch (code)
             {
                 case 200:
-                {
-                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})已通过白名单验证...");
-                    //NetMessage.SendData(9, args.Who, -1, Terraria.Localization.NetworkText.FromLiteral($"[Cai白名单]白名单校验成功!\n"), 1);
-                    break;
-                }
+                    {
+                        TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})已通过白名单验证...");
+                        //NetMessage.SendData(9, args.Who, -1, Terraria.Localization.NetworkText.FromLiteral($"[Cai白名单]白名单校验成功!\n"), 1);
+                        break;
+                    }
                 case 404:
-                {
-                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})没有添加白名单...");
-                    plr.SilentKickInProgress = true;
-                    plr.Disconnect($"没有添加白名单!\n" +
-                                   $"请在群{number}内发送'添加白名单 角色名字'");
-                    return false;
-                }
+                    {
+                        TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})没有添加白名单...");
+                        plr.SilentKickInProgress = true;
+                        plr.Disconnect($"没有添加白名单!\n" +
+                                       $"请在群{number}内发送'添加白名单 角色名字'");
+                        return false;
+                    }
                 case 403:
-                {
-                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})被屏蔽，处于CaiBot云黑名单中...");
-                    plr.SilentKickInProgress = true;
-                    plr.Disconnect("[Cai白名单]你已被服务器屏蔽,\n" +
-                                   "你处于CaiBot云黑名单中!");
-                    return false;
-                }
+                    {
+                        TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})被屏蔽，处于CaiBot云黑名单中...");
+                        plr.SilentKickInProgress = true;
+                        plr.Disconnect("[Cai白名单]你已被服务器屏蔽,\n" +
+                                       "你处于CaiBot云黑名单中!");
+                        return false;
+                    }
                 case 401:
-                {
-                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})不在本群内...");
-                    plr.SilentKickInProgress = true;
-                    plr.Disconnect($"[Cai白名单]你不在服务器群内!\n" +
-                                   $"请加入服务器群: {number}");
-                    return false;
-                }
+                    {
+                        TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})不在本群内...");
+                        plr.SilentKickInProgress = true;
+                        plr.Disconnect($"[Cai白名单]你不在服务器群内!\n" +
+                                       $"请加入服务器群: {number}");
+                        return false;
+                    }
             }
 
             if (!uuids.Contains(plr.UUID))

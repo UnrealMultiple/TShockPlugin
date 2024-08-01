@@ -1,9 +1,6 @@
-﻿using Economics.RPG.Extensions;
+﻿using System.Reflection;
 using Economics.Shop.Model;
-using EconomicsAPI.Attributes;
 using EconomicsAPI.Configured;
-using EconomicsAPI.Extensions;
-using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -84,5 +81,5 @@ public class Shop : TerrariaPlugin
         }
     }
 
-  
+
 }

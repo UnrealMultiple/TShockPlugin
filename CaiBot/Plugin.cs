@@ -31,7 +31,7 @@ public class Plugin : TerrariaPlugin
     public static int InitCode = -1;
 
     public static ClientWebSocket WebSocket = new();
-    
+
     public Task WsTask;
     public Task HeartBeat;
 

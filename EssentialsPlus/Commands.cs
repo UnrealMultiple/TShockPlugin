@@ -1,9 +1,9 @@
-﻿using EssentialsPlus.Db;
-using EssentialsPlus.Extensions;
-using Microsoft.Xna.Framework;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using EssentialsPlus.Db;
+using EssentialsPlus.Extensions;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;

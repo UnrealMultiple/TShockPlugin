@@ -1,8 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using System.Globalization;
+﻿using System.Globalization;
+using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace Goodnight
 {

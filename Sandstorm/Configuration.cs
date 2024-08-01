@@ -29,7 +29,7 @@ namespace Plugin
 
         public void Write()
         {
-            string json = JsonConvert.SerializeObject(this, Formatting.Indented); 
+            string json = JsonConvert.SerializeObject(this, Formatting.Indented);
             File.WriteAllText(FilePath, json);
         }
 

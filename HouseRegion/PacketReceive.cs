@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using System.IO.Streams;
+﻿using System.IO.Streams;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Tile_Entities;

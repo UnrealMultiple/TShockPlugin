@@ -1942,7 +1942,7 @@ namespace ProgressControl
                 string temppath = Path.Combine(destDirName, subdir.Name);
                 DirectoryCopy(subdir.FullName, temppath, overwrite);
             }
-        } 
+        }
         #endregion
 
         /// <summary>

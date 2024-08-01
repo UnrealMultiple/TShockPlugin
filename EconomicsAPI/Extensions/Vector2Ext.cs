@@ -163,7 +163,7 @@ public static class Vector2Ext
         }
         return curvePoints;
     }
-    
+
     public static List<Vector2> GetPointsOnCircle(this Vector2 pos1, Vector2 pos2, float startAngle, float angleIncrement, int maxCount)
     {
         List<Vector2> points = new List<Vector2>();
@@ -178,9 +178,9 @@ public static class Vector2Ext
         }
         return points;
     }
-    
 
-    
+
+
     public static List<Vector2> GetPointsOnCircle(this Vector2 center, float radius, float startAngle, float angleIncrement, int loopCount)
     {
         List<Vector2> points = new List<Vector2>();
@@ -195,7 +195,7 @@ public static class Vector2Ext
         return points;
     }
 
-   
+
     public static List<Vector2> CreateCircle(this Vector2 startPoint, Vector2 centerPoint, int angleIncrement, int numberOfPoints)
     {
         List<Vector2> points = new List<Vector2>();
@@ -208,7 +208,7 @@ public static class Vector2Ext
         }
         return points;
     }
- 
+
 
 }
 

@@ -1,11 +1,7 @@
-using System.Security.Permissions;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
-using Mono.Cecil;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
-using Org.BouncyCastle.Asn1.X509;
-using OTAPI;
 using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
@@ -92,19 +88,11 @@ namespace ServerTools
             On.OTAPI.Hooks.MessageBuffer.InvokeGetData += MessageBuffer_InvokeGetData;
             HandleCommandLine(Environment.GetCommandLineArgs());
         }
-   
 
-   
-        //private void NPC_AI1(On.Terraria.NPC.orig_AI orig, NPC self)
-        //{
-        //    if(Collision.CanHit(self.Center,))
-        //}
-
-       
 
         private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
         {
-            
+
             if (packetId == (byte)PacketTypes.LoadNetModule)
             {
                 using MemoryStream ms = new MemoryStream(instance.readBuffer);
@@ -112,7 +100,7 @@ namespace ServerTools
                 using BinaryReader reader = new BinaryReader(ms);
                 var id = reader.ReadUInt16();
                 if (id == Terraria.Net.NetManager.Instance.GetId<Terraria.GameContent.NetModules.NetTextModule>())
-                { 
+                {
                     var msg = Terraria.Chat.ChatMessage.Deserialize(reader);
                     if (Regex.IsMatch(msg.Text, @"[\uD800-\uDBFF][\uDC00-\uDFFF]"))
                     {
@@ -427,7 +415,7 @@ namespace ServerTools
                 args.Handled = true;
                 return;
             }
-           
+
 
             if (Config.KeepOpenChest && args.MsgID == PacketTypes.ChestOpen)
             {

@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Text;
+using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
-using System.Text;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;

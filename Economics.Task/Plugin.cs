@@ -1,9 +1,9 @@
-﻿using Economics.Task.DB;
+﻿using System.Reflection;
+using Economics.Task.DB;
 using Economics.Task.Model;
 using EconomicsAPI.Configured;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
 using Rests;
-using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -146,7 +146,7 @@ public class Plugin : TerrariaPlugin
 
     private void OnKillNpc(PlayerKillNpcArgs args)
     {
-        if(args.Npc == null) return;
+        if (args.Npc == null) return;
         var task = UserTaskData.GetUserTask(args.Player.Name);
         if (task != null)
         {
