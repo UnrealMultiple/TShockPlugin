@@ -68,10 +68,10 @@ public class Plugin : TerrariaPlugin
                     while (Config.config.Token == "") await Task.Delay(TimeSpan.FromSeconds(5));
 
                     if (Terraria.Program.LaunchParameters.ContainsKey("-cailocalbot"))
-                        await WebSocket.ConnectAsync(new Uri("ws://127.0.0.1:22333/bot/" + Config.config.Token),
+                        await WebSocket.ConnectAsync(new Uri("ws://127.0.0.1:22334/bot/" + Config.config.Token),
                             CancellationToken.None);
                     else
-                        await WebSocket.ConnectAsync(new Uri("ws://api.terraria.ink:22333/bot/" + Config.config.Token),
+                        await WebSocket.ConnectAsync(new Uri("ws://api.terraria.ink:22334/bot/" + Config.config.Token),
                             CancellationToken.None);
                     while (true)
                     {
