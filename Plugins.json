@@ -99,7 +99,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2024.7.25.1",
+    "Version": "2024.8.1.1",
     "Author": "Cai,羽学",
     "Description": "CaiBot机器人的适配插件",
     "Path": "CaiBot.dll"
@@ -113,7 +113,7 @@
   },
   {
     "Name": "CaiLib",
-    "Version": "1.0.0.0",
+    "Version": "2024.8.1.1",
     "Author": "Cai",
     "Description": "CaiLib",
     "Path": "CaiLib.dll"
@@ -239,7 +239,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.2.0.9",
+    "Version": "1.2.1.0",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"
@@ -274,8 +274,8 @@
   },
   {
     "Name": "EssentialsPlus",
-    "Version": "1.0.0",
-    "Author": "WhiteX等人，Average,Cjx,肝帝熙恩翻译",
+    "Version": "1.0.1",
+    "Author": "WhiteX等人，Average,Cjx,肝帝熙恩翻译,Cai更新",
     "Description": "增强版Essentials",
     "Path": "EssentialsPlus.dll"
   },
@@ -680,7 +680,7 @@
   },
   {
     "Name": "Economics.Projectile",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "少司命",
     "Description": "Economics.Projectile",
     "Path": "Economics.Projectile.dll"
