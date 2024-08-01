@@ -12,7 +12,7 @@ namespace DTEntryBlock
         public override string Author => "肝帝熙恩";
         public override string Name => "阻止进入地牢或神庙";
         public override string Description => "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙";
-        public override Version Version => new Version(1, 1, 4);
+        public override Version Version => new Version(1, 1, 5);
         public static Configuration Config;
         Color orangeColor = new Color(255, 165, 0);
 
@@ -62,9 +62,10 @@ namespace DTEntryBlock
                 // 检查骷髅王是否被击败
                 if (!NPC.downedBoss3)
                 {
-                    player.SendMessage("因为在没击败骷髅王的时候探索地牢，你被传送到出生点.", orangeColor);
+                   
                     if (Config.TeleportPlayersEnterDungeonForUnkilledSkullKing)
                     {
+                        player.SendMessage("因为在没击败骷髅王的时候探索地牢，你被传送到出生点.", orangeColor);
                         player.Teleport(Main.spawnTileX * 16, Main.spawnTileY * 16);
                         player.TPlayer.ZoneDungeon = false;
                     }
@@ -83,9 +84,9 @@ namespace DTEntryBlock
                 // 检查世纪之花是否被击败
                 if (!NPC.downedPlantBoss)
                 {
-                    player.SendMessage("禁止在没击败世纪之花的时候探索神庙，你被传送到出生点", orangeColor);
                     if (Config.TeleportPlayersEnterTempleForUnkilledPlantBoss)
                     {
+                        player.SendMessage("禁止在没击败世纪之花的时候探索神庙，你被传送到出生点", orangeColor);
                         player.Teleport(Main.spawnTileX * 16, Main.spawnTileY * 16);
                         player.TPlayer.ZoneLihzhardTemple = false;
                     }
@@ -101,12 +102,18 @@ namespace DTEntryBlock
 
         private bool IsPlayerInDungeon(TSPlayer player)
         {
-            return player.TPlayer.ZoneDungeon;
+            if (Main.drunkWorld)
+            {
+                return player.TPlayer.ZoneDungeon && !(player.TPlayer.position.Y / 16f < (float)(Main.dungeonY + 40));
+            }
+            else
+            {
+                return player.TPlayer.ZoneDungeon;
+            }
         }
 
         private bool IsPlayerInTemple(TSPlayer player)
         {
-            // 假设您有与神庙相关的Zone属性，例如 ZoneLihzhardTemple，此处替换为实际属性名
             return player.TPlayer.ZoneLihzhardTemple;
         }
     }

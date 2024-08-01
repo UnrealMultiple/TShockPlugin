@@ -292,10 +292,10 @@ namespace EssentialsPlus
             }
 
             string homeName = e.Parameters.Count == 1 ? e.Parameters[0] : "home";
-            var home = EssentialsPlus.Homes.GetAsync(e.Player, homeName);
+            var home = EssentialsPlus.Homes.GetHome(e.Player, homeName);
             if (home != null)
             {
-                if (EssentialsPlus.Homes.DeleteAsync(e.Player, homeName))
+                if (EssentialsPlus.Homes.DeleteHome(e.Player, homeName))
                 {
                     e.Player.SendSuccessMessage("成功删除您的家 '{0}'。", homeName);
                 }
@@ -326,7 +326,7 @@ namespace EssentialsPlus
             else
             {
                 string homeName = e.Parameters.Count == 1 ? e.Parameters[0] : "home";
-                var home = EssentialsPlus.Homes.GetAsync(e.Player, homeName);
+                var home = EssentialsPlus.Homes.GetHome(e.Player, homeName);
                 if (home != null)
                 {
                     e.Player.Teleport(home.X, home.Y);
@@ -348,9 +348,9 @@ namespace EssentialsPlus
             }
 
             string homeName = e.Parameters.Count == 1 ? e.Parameters[0] : "home";
-            if (EssentialsPlus.Homes.GetAsync(e.Player, homeName) != null)
+            if (EssentialsPlus.Homes.GetHome(e.Player, homeName) != null)
             {
-                if (EssentialsPlus.Homes.UpdateAsync(e.Player, homeName, e.Player.X, e.Player.Y))
+                if (EssentialsPlus.Homes.UpdateHome(e.Player, homeName, e.Player.X, e.Player.Y))
                 {
                     e.Player.SendSuccessMessage("更新了您的家 '{0}'。", homeName);
                 }
@@ -367,7 +367,7 @@ namespace EssentialsPlus
                 return;
             }
 
-            if (EssentialsPlus.Homes.AddAsync(e.Player, homeName, e.Player.X, e.Player.Y))
+            if (EssentialsPlus.Homes.AddHome(e.Player, homeName, e.Player.X, e.Player.Y))
             {
                 e.Player.SendSuccessMessage("设置了您的家 '{0}'。", homeName);
             }
@@ -503,7 +503,7 @@ namespace EssentialsPlus
                                     return;
                                 }
 
-                                if (EssentialsPlus.Mutes.AddAsync(user, DateTime.UtcNow.AddSeconds(seconds)))
+                                if (EssentialsPlus.Mutes.AddMute(user, DateTime.UtcNow.AddSeconds(seconds)))
                                 {
                                     TSPlayer.All.SendInfoMessage("{0} 禁言了 {1}。", e.Player.Name, user.Name);
                                 }
@@ -526,7 +526,7 @@ namespace EssentialsPlus
                                 return;
                             }
 
-                            if (EssentialsPlus.Mutes.AddAsync(players[0], DateTime.UtcNow.AddSeconds(seconds)))
+                            if (EssentialsPlus.Mutes.AddMute(players[0], DateTime.UtcNow.AddSeconds(seconds)))
                             {
                                 TSPlayer.All.SendInfoMessage("{0} 禁言了 {1}。", e.Player.Name, players[0].Name);
 
@@ -573,7 +573,7 @@ namespace EssentialsPlus
                                 e.Player.SendErrorMessage("无效的玩家或账户 '{0}'！", playerName);
                             else
                             {
-                                if (EssentialsPlus.Mutes.DeleteAsync(user))
+                                if (EssentialsPlus.Mutes.DeleteMute(user))
                                     TSPlayer.All.SendInfoMessage("{0} 解除了 {1} 的禁言。", e.Player.Name, user.Name);
                                 else
                                     e.Player.SendErrorMessage("无法解除禁言，请查看日志获取更多信息。");
@@ -583,7 +583,7 @@ namespace EssentialsPlus
                             e.Player.SendErrorMessage("匹配到多个玩家：{0}", String.Join(", ", players.Select(p => p.Name)));
                         else
                         {
-                            if (EssentialsPlus.Mutes.DeleteAsync(players[0]))
+                            if (EssentialsPlus.Mutes.DeleteMute(players[0]))
                             {
                                 players[0].mute = false;
                                 TSPlayer.All.SendInfoMessage("{0} 解除了 {1} 的禁言。", e.Player.Name, players[0].Name);

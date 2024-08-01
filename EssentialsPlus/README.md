@@ -1,13 +1,12 @@
 # EssentialsPlus
 
-- 作者: WhiteX等人，Average,Cjx，肝帝熙恩适配与修改
+- 作者: WhiteX等人，Average,Cjx，肝帝熙恩适配与修改,Cai更新
 - 出处: [github](https://github.com/QuiCM/EssentialsPlus)
 - 提供一些管理指令
 
 ## 更新日志
-
 ```
-暂无
+1.0.1 修复重启无法获取禁言的BUG, 重命名一些方法
 ```
 
 ## 指令 ##

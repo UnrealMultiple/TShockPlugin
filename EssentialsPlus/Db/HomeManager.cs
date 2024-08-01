@@ -37,7 +37,7 @@ namespace EssentialsPlus.Db
             }
         }
 
-        public bool AddAsync(TSPlayer player, string name, float x, float y)
+        public bool AddHome(TSPlayer player, string name, float x, float y)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace EssentialsPlus.Db
             }
         }
 
-        public bool DeleteAsync(TSPlayer player, string name)
+        public bool DeleteHome(TSPlayer player, string name)
         {
             string query = db.GetSqlType() == SqlType.Mysql
                 ? "DELETE FROM Homes WHERE UserID = @0 AND Name = @1 AND WorldID = @2"
@@ -77,7 +77,7 @@ namespace EssentialsPlus.Db
 
         }
 
-        public Home? GetAsync(TSPlayer player, string name)
+        public Home? GetHome(TSPlayer player, string name)
         {
             return
                 homes.Find(h =>
@@ -90,7 +90,7 @@ namespace EssentialsPlus.Db
             return homes.FindAll(h => h.UserID == player.Account.ID);
         }
 
-        public async Task<bool> ReloadAsync()
+        public bool Reload()
         {
             try
             {
@@ -115,7 +115,7 @@ namespace EssentialsPlus.Db
             }
         }
 
-        public bool UpdateAsync(TSPlayer player, string name, float x, float y)
+        public bool UpdateHome(TSPlayer player, string name, float x, float y)
         {
             string query = db.GetSqlType() == SqlType.Mysql
                 ? "UPDATE Homes SET X = @0, Y = @1 WHERE UserID = @2 AND Name = @3 AND WorldID = @4"

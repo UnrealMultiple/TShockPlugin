@@ -9,15 +9,7 @@
     <ItemGroup>
         <EmbeddedResource Include="SixLabors.ImageSharp.dll"/>
     </ItemGroup>
-
     <ItemGroup>
-        <PackageReference Include="TShock" Version="5.2.0"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Reference Include="NuGet.Versioning">
-            <HintPath>..\..\TShock\TShockLauncher\bin\Release\TShock NET8\NuGet.Versioning.dll</HintPath>
-        </Reference>
         <Reference Include="SixLabors.ImageSharp">
             <HintPath>SixLabors.ImageSharp.dll</HintPath>
         </Reference>
