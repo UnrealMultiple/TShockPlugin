@@ -19,13 +19,13 @@ namespace EssentialsPlus
         public static HomeManager Homes { get; private set; }
         public static MuteManager Mutes { get; private set; }
 
-        public override string Author => "WhiteX等人，Average,Cjx,肝帝熙恩翻译";
+        public override string Author => "WhiteX等人，Average,Cjx,肝帝熙恩翻译,Cai更新";
 
         public override string Description => "增强版Essentials";
 
         public override string Name => "EssentialsPlus";
 
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
 
 
         public EssentialsPlus(Main game)
@@ -59,7 +59,7 @@ namespace EssentialsPlus
             ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
         }
 
-        private async void OnReload(ReloadEventArgs e)
+        private void OnReload(ReloadEventArgs e)
         {
             string path = Path.Combine(TShock.SavePath, "essentials.json");
             Config = Config.Read(path);
@@ -67,7 +67,7 @@ namespace EssentialsPlus
             {
                 Config.Write(path);
             }
-            await Homes.ReloadAsync();
+            Homes.Reload();
             e.Player.SendSuccessMessage("[EssentialsPlus] 重新加载配置和家!");
         }
 
@@ -227,9 +227,9 @@ namespace EssentialsPlus
             });
 
             //这将覆盖TShock的 'mute' 命令
-            Add(new Command(Permissions.Mute, Commands.Mute, "mute", "静音管理")
+            Add(new Command(Permissions.Mute, Commands.Mute, "mute", "禁言管理")
             {
-                HelpText = "管理静音。"
+                HelpText = "管理禁言。"
             });
 
             Add(new Command(Permissions.PvP, Commands.PvP, "pvpget2", "切换PvP状态")
@@ -308,7 +308,7 @@ namespace EssentialsPlus
                 return;
             }
 
-            DateTime muteExpiration = Mutes.GetExpirationAsync(player);
+            DateTime muteExpiration = Mutes.GetExpiration(player);
 
             if (DateTime.UtcNow < muteExpiration)
             {

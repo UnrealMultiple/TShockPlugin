@@ -13,7 +13,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+    public override Version Version => new Version(2024,8,1,1);
 
     public Plugin(Main game) : base(game)
     {
@@ -33,6 +33,6 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        throw new NotImplementedException();
+        
     }
 }
