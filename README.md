@@ -157,7 +157,7 @@
 | [TeleportRequest](TeleportRequest/README.md)                     |          传送请求           |                                                                        无                                                                         |
 | [CaiRewardChest](CaiRewardChest/README.md)                       | 将自然生成的箱子变为所有人都可以领一次的奖励箱 |                                                                        无                                                                         |
 | [CaiCustomEmojiCommand](CaiCustomEmojiCommand/README.md)         |        自定义表情命令          |                                                                    无                                                                             |
-| [BetterWhitelist](BetterWhitelist/README.md)                     |         姓名白名单插件          |                                                                    无                                                                             |
+| [BetterWhitelist](BetterWhitelist/README.md)                     |         白名单插件          |                                                                    无                                                                             |
 
 </Details>
 
