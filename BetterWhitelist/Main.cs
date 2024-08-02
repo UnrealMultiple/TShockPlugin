@@ -14,7 +14,7 @@ namespace BetterWhitelist
 
         public override string Name => "BetterWhitelist";
 
-        public override Version Version => new Version(2, 3);
+        public override Version Version => new Version(2, 4);
 
         public override string Author => "豆沙，肝帝熙恩修改";
 
@@ -27,9 +27,9 @@ namespace BetterWhitelist
                 Directory.CreateDirectory(path);
             }
 
-            this.Load();
+            Load();
 
-            Commands.ChatCommands.Add(new Command("bwl.use", new CommandDelegate(this.bwl), new string[] { "bwl" }));
+            Commands.ChatCommands.Add(new Command("bwl.use", bwl, "bwl"));
             ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
             ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
         }
@@ -65,51 +65,51 @@ namespace BetterWhitelist
                     break;
 
                 case "false":
-                    if (Main._config.Disabled)
+                    if (_config.Disabled)
                     {
                         args.Player.SendErrorMessage("禁用失败 ! 插件已是关闭状态");
                     }
                     else
                     {
-                        Main._config.Disabled = true;
+                        _config.Disabled = true;
                         args.Player.SendSuccessMessage("禁用成功!");
-                        File.WriteAllText(Main.config_path, JsonConvert.SerializeObject(Main._config, Formatting.Indented));
+                        File.WriteAllText(config_path, JsonConvert.SerializeObject(_config, Formatting.Indented));
                     }
                     break;
 
                 case "true":
-                    if (!Main._config.Disabled)
+                    if (!_config.Disabled)
                     {
                         args.Player.SendErrorMessage("启用失败 ! 插件已是打开状态");
                     }
                     else
                     {
-                        Main._config.Disabled = false;
+                        _config.Disabled = false;
                         args.Player.SendSuccessMessage("启用成功!");
 
-                        if (Main.players.Count > 0)
+                        if (players.Count > 0)
                         {
-                            if (Main._config.WhitePlayers.Count > 0)
+                            if (_config.WhitePlayers.Count > 0)
                             {
-                                foreach (TSPlayer tsplayer in Main.players.Values.Where(player => !Main._config.WhitePlayers.Contains(player.Name)))
+                                foreach (TSPlayer tsplayer in players.Values.Where(player => !_config.WhitePlayers.Contains(player.Name)))
                                 {
                                     tsplayer.Disconnect(_config.NotInWhiteList);
                                 }
                             }
                             else
                             {
-                                foreach (TSPlayer tsplayer in Main.players.Values)
+                                foreach (TSPlayer tsplayer in players.Values)
                                 {
                                     tsplayer.Disconnect(_config.NotInWhiteList);
                                 }
                             }
                         }
-                        File.WriteAllText(Main.config_path, JsonConvert.SerializeObject(Main._config, Formatting.Indented));
+                        File.WriteAllText(config_path, JsonConvert.SerializeObject(_config, Formatting.Indented));
                     }
                     break;
 
                 case "add":
-                    if (Main._config.Disabled)
+                    if (_config.Disabled)
                     {
                         args.Player.SendErrorMessage("插件开关已被禁用，请检查配置文件!");
                     }
@@ -117,11 +117,11 @@ namespace BetterWhitelist
                     {
                         string playerNameToAdd = args.Parameters.ElementAtOrDefault(1);
 
-                        if (playerNameToAdd != null && !Main._config.WhitePlayers.Contains(playerNameToAdd))
+                        if (playerNameToAdd != null && !_config.WhitePlayers.Contains(playerNameToAdd))
                         {
-                            Main._config.WhitePlayers.Add(playerNameToAdd);
+                            _config.WhitePlayers.Add(playerNameToAdd);
                             args.Player.SendSuccessMessage("添加成功!");
-                            File.WriteAllText(Main.config_path, JsonConvert.SerializeObject(Main._config, Formatting.Indented));
+                            File.WriteAllText(config_path, JsonConvert.SerializeObject(_config, Formatting.Indented));
                         }
                         else
                         {
@@ -131,12 +131,12 @@ namespace BetterWhitelist
                     break;
 
                 case "reload":
-                    Main._config = JsonConvert.DeserializeObject<BConfig>(File.ReadAllText(Main.config_path));
+                    _config = JsonConvert.DeserializeObject<BConfig>(File.ReadAllText(config_path));
                     args.Player.SendSuccessMessage("重载成功!");
                     break;
 
                 case "del":
-                    if (Main._config.Disabled)
+                    if (_config.Disabled)
                     {
                         args.Player.SendErrorMessage("插件开关已被禁用，请检查配置文件!");
                     }
@@ -144,15 +144,15 @@ namespace BetterWhitelist
                     {
                         string playerNameToDelete = args.Parameters.ElementAtOrDefault(1);
 
-                        if (playerNameToDelete != null && Main._config.WhitePlayers.Contains(playerNameToDelete))
+                        if (playerNameToDelete != null && _config.WhitePlayers.Contains(playerNameToDelete))
                         {
-                            Main._config.WhitePlayers.Remove(playerNameToDelete);
+                            _config.WhitePlayers.Remove(playerNameToDelete);
                             args.Player.SendSuccessMessage("删除成功!");
-                            File.WriteAllText(Main.config_path, JsonConvert.SerializeObject(Main._config, Formatting.Indented));
+                            File.WriteAllText(config_path, JsonConvert.SerializeObject(_config, Formatting.Indented));
 
-                            if (Main.players.ContainsKey(playerNameToDelete))
+                            if (players.ContainsKey(playerNameToDelete))
                             {
-                                Main.players[playerNameToDelete].Disconnect("你已经不在白名单中！");
+                                players[playerNameToDelete].Disconnect("你已经不在白名单中！");
                             }
                         }
                     }
@@ -164,13 +164,13 @@ namespace BetterWhitelist
         private void OnJoin(JoinEventArgs args)
         {
             TSPlayer tsplayer = new TSPlayer(args.Who);
-            Main.players.Add(tsplayer.Name, tsplayer);
+            players.Add(tsplayer.Name, tsplayer);
 
-            if (!Main._config.Disabled && !Main._config.WhitePlayers.Contains(tsplayer.Name))
+            if (!_config.Disabled && !_config.WhitePlayers.Contains(tsplayer.Name))
             {
                 tsplayer.Disconnect(_config.NotInWhiteList);
             }
-            else if (Main._config.Disabled)
+            else if (_config.Disabled)
             {
                 TShock.Log.ConsoleInfo("插件开关已被禁用，请检查配置文件!");
             }
@@ -178,8 +178,8 @@ namespace BetterWhitelist
 
         private void Load()
         {
-            Main._config = BConfig.Load(Main.config_path);
-            File.WriteAllText(Main.config_path, JsonConvert.SerializeObject(Main._config, Formatting.Indented));
+            _config = BConfig.Load(config_path);
+            File.WriteAllText(config_path, JsonConvert.SerializeObject(_config, Formatting.Indented));
         }
 
         protected override void Dispose(bool disposing)
@@ -194,7 +194,7 @@ namespace BetterWhitelist
 
         public static string bwldir = Path.Combine(TShock.SavePath, "BetterWhitelist");
 
-        public static string config_path = Path.Combine(Main.bwldir, "config.json");
+        public static string config_path = Path.Combine(bwldir, "config.json");
 
         public static BConfig _config;
 
