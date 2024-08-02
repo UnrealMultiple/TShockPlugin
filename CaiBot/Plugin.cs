@@ -2,10 +2,12 @@
 //恋恋的TShock插件模板，有改动（为了配合章节名）
 //来自棱镜的插件教程
 
+using System.Net;
 using System.Net.WebSockets;
 using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Terraria;
 using Terraria.Localization;
 using TerrariaApi.Server;
@@ -20,7 +22,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "Cai,羽学";
     public override string Description => "CaiBot机器人的适配插件";
     public override string Name => "CaiBotPlugin";
-    public static readonly Version VersionNum = new(2024, 8, 1, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new(2024, 8, 2, 1); //日期+版本号(0,1,2...)
     public override Version Version => VersionNum;
 
     //插件的构造器
@@ -65,13 +67,33 @@ public class Plugin : TerrariaPlugin
                 try
                 {
                     WebSocket = new ClientWebSocket();
-                    while (Config.config.Token == "") await Task.Delay(TimeSpan.FromSeconds(5));
+                    while (Config.config.Token == "")
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(10));
+                        HttpClient client = new();
+                        HttpResponseMessage? response;
+                        client.Timeout = TimeSpan.FromSeconds(5.0);
+                        response = client.GetAsync($"http://api.terraria.ink:22334/bot/get_token?" +
+                                                   $"code={InitCode}")
+                            .Result;
+                        //TShock.Log.ConsoleInfo($"[CaiAPI]尝试被动绑定,状态码:{response.StatusCode}");
+                        if (response.StatusCode == HttpStatusCode.OK && Config.config.Token == "")
+                        {
+                            string responseBody = await response.Content.ReadAsStringAsync();
+                            JObject json = JObject.Parse(responseBody);
+                            string token = json["token"]!.ToString();
+                            Config.config.Token = token;
+                            Config.config.Write();
+                            TShock.Log.ConsoleInfo($"[CaiAPI]被动绑定成功!");
+                        }
+                        
+                    }
 
                     if (Terraria.Program.LaunchParameters.ContainsKey("-cailocalbot"))
-                        await WebSocket.ConnectAsync(new Uri("ws://127.0.0.1:22333/bot/" + Config.config.Token),
+                        await WebSocket.ConnectAsync(new Uri("ws://127.0.0.1:22334/bot/" + Config.config.Token),
                             CancellationToken.None);
                     else
-                        await WebSocket.ConnectAsync(new Uri("ws://api.terraria.ink:22333/bot/" + Config.config.Token),
+                        await WebSocket.ConnectAsync(new Uri("ws://api.terraria.ink:22334/bot/" + Config.config.Token),
                             CancellationToken.None);
                     while (true)
                     {
@@ -136,6 +158,7 @@ public class Plugin : TerrariaPlugin
             if (!string.IsNullOrEmpty(Config.config.Token))
             {
                 NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable("exist"));
+                TShock.Log.ConsoleInfo($"[CaiAPI]试图绑定已绑定服务器!");
                 return false;
             }
 
@@ -148,6 +171,8 @@ public class Plugin : TerrariaPlugin
                 NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable(token));
                 Config.config.Token = token;
                 Config.config.Write();
+                TShock.Log.ConsoleInfo($"[CaiAPI]主动绑定成功!");
+                return false;
             }
             else
             {
