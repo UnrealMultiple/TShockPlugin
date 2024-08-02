@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Newtonsoft.Json;
-using Terraria;
+﻿using Newtonsoft.Json;
 using TerrariaApi.Server;
 using TShockAPI;
 
 namespace BetterWhitelist
 {
-	[ApiVersion(2, 1)]
-	public class Main : TerrariaPlugin
-	{
-		public Main(Terraria.Main game) : base(game)
-		{
-			Order = 9999;
-		}
+    [ApiVersion(2, 1)]
+    public class Main : TerrariaPlugin
+    {
+        public Main(Terraria.Main game) : base(game)
+        {
+            Order = 9999;
+        }
 
-		public override string Name => "BetterWhitelist";
+        public override string Name => "BetterWhitelist";
 
-		public override Version Version => new Version(2, 3);
+        public override Version Version => new Version(2, 3);
 
-		public override string Author => "豆沙，肝帝熙恩修改";
+        public override string Author => "豆沙，肝帝熙恩修改";
 
-		public override string Description => "通过检查玩家姓名的玩家白名单";
+        public override string Description => "通过检查玩家姓名的玩家白名单";
         public override void Initialize()
         {
             string path = Path.Combine(TShock.SavePath, "BetterWhitelist");
@@ -36,15 +31,15 @@ namespace BetterWhitelist
 
             Commands.ChatCommands.Add(new Command("bwl.use", new CommandDelegate(this.bwl), new string[] { "bwl" }));
             ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
-            ServerApi.Hooks.ServerLeave.Register(this,OnLeave);
+            ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
         }
 
 
         private void OnLeave(LeaveEventArgs args)
-		{
-			TSPlayer tsplayer = new TSPlayer(args.Who);
+        {
+            TSPlayer tsplayer = new TSPlayer(args.Who);
             players.Remove(tsplayer.Name);
-		}
+        }
         private void bwl(CommandArgs args)
         {
             if (args.Parameters.Count < 1)
@@ -182,27 +177,27 @@ namespace BetterWhitelist
         }
 
         private void Load()
-		{
-			Main._config = BConfig.Load(Main.config_path);
-			File.WriteAllText(Main.config_path, JsonConvert.SerializeObject(Main._config, Formatting.Indented));
-		}
+        {
+            Main._config = BConfig.Load(Main.config_path);
+            File.WriteAllText(Main.config_path, JsonConvert.SerializeObject(Main._config, Formatting.Indented));
+        }
 
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
-				ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
-			}
-			base.Dispose(disposing);
-		}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
+                ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
+            }
+            base.Dispose(disposing);
+        }
 
-		public static string bwldir = Path.Combine(TShock.SavePath, "BetterWhitelist");
+        public static string bwldir = Path.Combine(TShock.SavePath, "BetterWhitelist");
 
-		public static string config_path = Path.Combine(Main.bwldir, "config.json");
+        public static string config_path = Path.Combine(Main.bwldir, "config.json");
 
-		public static BConfig _config;
+        public static BConfig _config;
 
-		public static Dictionary<string, TSPlayer> players = new Dictionary<string, TSPlayer>();
-	}
+        public static Dictionary<string, TSPlayer> players = new Dictionary<string, TSPlayer>();
+    }
 }
