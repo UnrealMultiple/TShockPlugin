@@ -24,7 +24,7 @@
 {
   "替换文件": {
     "/tshock/原神.json": "原神.json",
-    "/tshock/XSB数据缓存.json": ""
+    "/tshock/XSB数据缓存.json": ""//表示删除/tshock/XSB数据缓存.json
   },
   "击杀重置": {
     "击杀重置开关": false,
