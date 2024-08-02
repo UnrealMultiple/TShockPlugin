@@ -9,6 +9,8 @@ namespace BetterWhitelist
 	{
         [JsonProperty("插件开关")]
         public bool Disabled { get; set; }
+        [JsonProperty("连接时不在白名单提示")]
+        public string NotInWhiteList { get; set; } = "你不在服务器白名单中！";
         [JsonProperty("白名单玩家")]
         public List<string> WhitePlayers = new List<string>();
         public static BConfig Load(string path)

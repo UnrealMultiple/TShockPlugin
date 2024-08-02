@@ -20,6 +20,7 @@ namespace BetterWhitelist
 		public override string Name => "BetterWhitelist";
 
 		public override Version Version => new Version(2, 3);
+
 		public override string Author => "豆沙，肝帝熙恩修改";
 
 		public override string Description => "通过检查玩家姓名的玩家白名单";
@@ -48,7 +49,7 @@ namespace BetterWhitelist
         {
             if (args.Parameters.Count < 1)
             {
-                args.Player.SendErrorMessage(_translation.language["未知指令提示文本"]);
+                args.Player.SendErrorMessage("用法: 输入 /bwl help 显示帮助信息.");
                 return;
             }
 
@@ -58,7 +59,7 @@ namespace BetterWhitelist
             {
                 case "help":
                     args.Player.SendInfoMessage("-------[BetterWhitelist]-------");
-                    args.Player.SendInfoMessage(_translation.language["全部的指令帮助提示"]);
+                    args.Player.SendInfoMessage("/bwl help, 显示帮助信息\n/bwl add {name}, 添加玩家名到白名单中\n/bwl del {name}, 将玩家移出白名单\n/bwl list, 显示白名单上的全部玩家\n/bwl true, 启用插件\n/bwl false, 关闭插件\n/bwl reload, 重载插件");
                     break;
 
                 case "list":
@@ -71,12 +72,12 @@ namespace BetterWhitelist
                 case "false":
                     if (Main._config.Disabled)
                     {
-                        args.Player.SendErrorMessage(Main._translation.language["禁用失败提示"]);
+                        args.Player.SendErrorMessage("禁用失败 ! 插件已是关闭状态");
                     }
                     else
                     {
                         Main._config.Disabled = true;
-                        args.Player.SendSuccessMessage(Main._translation.language["禁用成功提示"]);
+                        args.Player.SendSuccessMessage("禁用成功!");
                         File.WriteAllText(Main.config_path, JsonConvert.SerializeObject(Main._config, Formatting.Indented));
                     }
                     break;
@@ -84,12 +85,12 @@ namespace BetterWhitelist
                 case "true":
                     if (!Main._config.Disabled)
                     {
-                        args.Player.SendErrorMessage(Main._translation.language["启用失败提示"]);
+                        args.Player.SendErrorMessage("启用失败 ! 插件已是打开状态");
                     }
                     else
                     {
                         Main._config.Disabled = false;
-                        args.Player.SendSuccessMessage(Main._translation.language["启用成功提示"]);
+                        args.Player.SendSuccessMessage("启用成功!");
 
                         if (Main.players.Count > 0)
                         {
@@ -97,14 +98,14 @@ namespace BetterWhitelist
                             {
                                 foreach (TSPlayer tsplayer in Main.players.Values.Where(player => !Main._config.WhitePlayers.Contains(player.Name)))
                                 {
-                                    tsplayer.Disconnect(Main._translation.language["连接时不在白名单提示"]);
+                                    tsplayer.Disconnect(_config.NotInWhiteList);
                                 }
                             }
                             else
                             {
                                 foreach (TSPlayer tsplayer in Main.players.Values)
                                 {
-                                    tsplayer.Disconnect(Main._translation.language["连接时不在白名单提示"]);
+                                    tsplayer.Disconnect(_config.NotInWhiteList);
                                 }
                             }
                         }
@@ -115,7 +116,7 @@ namespace BetterWhitelist
                 case "add":
                     if (Main._config.Disabled)
                     {
-                        args.Player.SendErrorMessage(Main._translation.language["未启用插件提示"]);
+                        args.Player.SendErrorMessage("插件开关已被禁用，请检查配置文件!");
                     }
                     else
                     {
@@ -124,26 +125,25 @@ namespace BetterWhitelist
                         if (playerNameToAdd != null && !Main._config.WhitePlayers.Contains(playerNameToAdd))
                         {
                             Main._config.WhitePlayers.Add(playerNameToAdd);
-                            args.Player.SendSuccessMessage(Main._translation.language["添加成功提示"]);
+                            args.Player.SendSuccessMessage("添加成功!");
                             File.WriteAllText(Main.config_path, JsonConvert.SerializeObject(Main._config, Formatting.Indented));
                         }
                         else
                         {
-                            args.Player.SendSuccessMessage(Main._translation.language["添加失败提示"]);
+                            args.Player.SendSuccessMessage("添加失败! 该玩家已经在白名单中");
                         }
                     }
                     break;
 
                 case "reload":
                     Main._config = JsonConvert.DeserializeObject<BConfig>(File.ReadAllText(Main.config_path));
-                    Main._translation = JsonConvert.DeserializeObject<Translation>(File.ReadAllText(Main.translation_path));
-                    args.Player.SendSuccessMessage(Main._translation.language["重载成功提示"]);
+                    args.Player.SendSuccessMessage("重载成功!");
                     break;
 
                 case "del":
                     if (Main._config.Disabled)
                     {
-                        args.Player.SendErrorMessage(Main._translation.language["未启用插件提示"]);
+                        args.Player.SendErrorMessage("插件开关已被禁用，请检查配置文件!");
                     }
                     else
                     {
@@ -152,12 +152,12 @@ namespace BetterWhitelist
                         if (playerNameToDelete != null && Main._config.WhitePlayers.Contains(playerNameToDelete))
                         {
                             Main._config.WhitePlayers.Remove(playerNameToDelete);
-                            args.Player.SendSuccessMessage(Main._translation.language["删除成功提示"]);
+                            args.Player.SendSuccessMessage("删除成功!");
                             File.WriteAllText(Main.config_path, JsonConvert.SerializeObject(Main._config, Formatting.Indented));
 
                             if (Main.players.ContainsKey(playerNameToDelete))
                             {
-                                Main.players[playerNameToDelete].Disconnect(Main._translation.language["删除白名单后断开玩家连接提示"]);
+                                Main.players[playerNameToDelete].Disconnect("你已经不在白名单中！");
                             }
                         }
                     }
@@ -173,20 +173,18 @@ namespace BetterWhitelist
 
             if (!Main._config.Disabled && !Main._config.WhitePlayers.Contains(tsplayer.Name))
             {
-                tsplayer.Disconnect(Main._translation.language["连接时不在白名单提示"]);
+                tsplayer.Disconnect(_config.NotInWhiteList);
             }
             else if (Main._config.Disabled)
             {
-                TShock.Log.ConsoleInfo(Main._translation.language["未启用插件提示"]);
+                TShock.Log.ConsoleInfo("插件开关已被禁用，请检查配置文件!");
             }
         }
 
         private void Load()
 		{
 			Main._config = BConfig.Load(Main.config_path);
-			Main._translation = Translation.Load(Main.translation_path);
 			File.WriteAllText(Main.config_path, JsonConvert.SerializeObject(Main._config, Formatting.Indented));
-			File.WriteAllText(Main.translation_path, JsonConvert.SerializeObject(Main._translation, Formatting.Indented));
 		}
 
 		protected override void Dispose(bool disposing)
@@ -203,11 +201,7 @@ namespace BetterWhitelist
 
 		public static string config_path = Path.Combine(Main.bwldir, "config.json");
 
-		public static string translation_path = Path.Combine(Main.bwldir, "language.json");
-
 		public static BConfig _config;
-
-		public static Translation _translation;
 
 		public static Dictionary<string, TSPlayer> players = new Dictionary<string, TSPlayer>();
 	}
