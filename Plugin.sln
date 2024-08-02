@@ -220,6 +220,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaiCustomEmojiCommand", "Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterWhitelist", "BetterWhitelist\BetterWhitelist.csproj", "{5A3A8B24-9E4D-400C-B4DD-A1EB3EE756AD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoReset", "AutoReset\AutoReset.csproj", "{023244CF-F536-4621-9C89-6BCD0D242878}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1076,6 +1078,14 @@ Global
 		{5A3A8B24-9E4D-400C-B4DD-A1EB3EE756AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A3A8B24-9E4D-400C-B4DD-A1EB3EE756AD}.Release|x64.ActiveCfg = Release|Any CPU
 		{5A3A8B24-9E4D-400C-B4DD-A1EB3EE756AD}.Release|x64.Build.0 = Release|Any CPU
+		{023244CF-F536-4621-9C89-6BCD0D242878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{023244CF-F536-4621-9C89-6BCD0D242878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{023244CF-F536-4621-9C89-6BCD0D242878}.Debug|x64.ActiveCfg = Debug|x64
+		{023244CF-F536-4621-9C89-6BCD0D242878}.Debug|x64.Build.0 = Debug|x64
+		{023244CF-F536-4621-9C89-6BCD0D242878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{023244CF-F536-4621-9C89-6BCD0D242878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{023244CF-F536-4621-9C89-6BCD0D242878}.Release|x64.ActiveCfg = Release|x64
+		{023244CF-F536-4621-9C89-6BCD0D242878}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
