@@ -158,6 +158,7 @@
 | [CaiRewardChest](CaiRewardChest/README.md)                       | 将自然生成的箱子变为所有人都可以领一次的奖励箱 |                                                                        无                                                                         |
 | [CaiCustomEmojiCommand](CaiCustomEmojiCommand/README.md)         |        自定义表情命令          |                                                                    无                                                                             |
 | [BetterWhitelist](BetterWhitelist/README.md)                     |         白名单插件          |                                                                    无                                                                             |
+| [AutoReset](AutoReset/README.md)                                 |         完全自动重置          |                                                                    无                                                                             |
 
 </Details>
 
