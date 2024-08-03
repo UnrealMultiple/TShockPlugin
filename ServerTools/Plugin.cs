@@ -23,7 +23,7 @@ namespace ServerTools
 
         public override string Name => "ServerTools";// 插件名字
 
-        public override Version Version => new(1, 1, 7, 2);// 插件版本
+        public override Version Version => new(1, 1, 7, 3);// 插件版本
 
         private static Config Config = new();
 
