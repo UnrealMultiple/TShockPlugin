@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.Net;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace journeyUnlock
 {
@@ -28,6 +29,15 @@ namespace journeyUnlock
             { AllowServer = false });
 
             Commands.ChatCommands.Add(new Command("journeyunlock.unlockfor",unlockForCommand,"unlockfor", "unlockf", "g解锁玩家"));
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == unlockCommand || x.CommandDelegate == unlockForCommand);
+            }
+            base.Dispose(disposing);
         }
 
         private void unlock(Player tplayer, TSPlayer sender, string parameter, bool isSelf)
