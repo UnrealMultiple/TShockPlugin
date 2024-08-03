@@ -114,10 +114,10 @@ namespace ServerTools
                 if (id == Terraria.Net.NetManager.Instance.GetId<Terraria.GameContent.NetModules.NetTextModule>())
                 { 
                     var msg = Terraria.Chat.ChatMessage.Deserialize(reader);
-                    if (Regex.IsMatch(msg.Text, @"[\uD800-\uDBFF][\uDC00-\uDFFF]"))
-                    {
+                    if(msg.Text.Length > Config.ChatLength)
                         return false;
-                    }
+                    if (Regex.IsMatch(msg.Text, @"[\uD800-\uDBFF][\uDC00-\uDFFF]"))
+                        return false;
                 }
             }
             return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
