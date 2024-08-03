@@ -21,7 +21,7 @@ public class Config
     public int WorldMode = 2;
 
     [JsonProperty("限制发言长度")]
-    public int ChatLength = 2;
+    public int ChatLength = 50;
 
     [JsonProperty("设置旅途模式难度")]
     public bool SetJourneyDifficult = false;
