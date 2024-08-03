@@ -12,7 +12,7 @@ namespace InvincibilityPlugin
         public override string Author => "肝帝熙恩";
         public override string Description => "在命令中给予玩家一段时间的无敌状态。";
         public override string Name => "InvincibilityPlugin";
-        public override Version Version => new Version(1, 0, 5);
+        public override Version Version => new Version(1, 0, 6);
         public static Configuration Config;
 
         private readonly Dictionary<TSPlayer, float> invincibleDurations = new();
@@ -46,6 +46,7 @@ namespace InvincibilityPlugin
         {
             if (disposing)
             {
+                GeneralHooks.ReloadEvent -= ReloadConfig;
                 ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
                 ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
             }
