@@ -23,7 +23,7 @@ namespace ServerTools
 
         public override string Name => "ServerTools";// 插件名字
 
-        public override Version Version => new(1, 1, 7, 2);// 插件版本
+        public override Version Version => new(1, 1, 7, 3);// 插件版本
 
         private static Config Config = new();
 
@@ -114,10 +114,10 @@ namespace ServerTools
                 if (id == Terraria.Net.NetManager.Instance.GetId<Terraria.GameContent.NetModules.NetTextModule>())
                 { 
                     var msg = Terraria.Chat.ChatMessage.Deserialize(reader);
-                    if (Regex.IsMatch(msg.Text, @"[\uD800-\uDBFF][\uDC00-\uDFFF]"))
-                    {
+                    if(msg.Text.Length > Config.ChatLength)
                         return false;
-                    }
+                    if (Regex.IsMatch(msg.Text, @"[\uD800-\uDBFF][\uDC00-\uDFFF]"))
+                        return false;
                 }
             }
             return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
