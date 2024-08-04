@@ -11,7 +11,7 @@ namespace Ezperm
         public override string Name => "Ezperm";
         public override string Author => "大豆子,肝帝熙恩优化1449";
         public override string Description => "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限";
-        public override Version Version => new Version(1, 2, 0);
+        public override Version Version => new Version(1, 2, 1);
         internal static Configuration Config;
         public Ezperm(Main game) : base(game)
         {
@@ -33,14 +33,16 @@ namespace Ezperm
         public override void Initialize()
         {
             GeneralHooks.ReloadEvent += ReloadConfig;
-            Commands.ChatCommands.Add(new Command(new List<string>
+            Commands.ChatCommands.Add(new Command("inperms.admin",Cmd,"inperms","批量改权限"));
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                "inperms.admin"
-            }, new CommandDelegate(this.Cmd), new string[]
-            {
-                "inperms",
-                "批量改权限"
-            }));
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Cmd);
+                GeneralHooks.ReloadEvent -= ReloadConfig;
+            }
+            base.Dispose(disposing);
         }
         private void Cmd(CommandArgs args)
         {

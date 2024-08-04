@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using Terraria;
 
 namespace BetterWhitelist;
 

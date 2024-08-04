@@ -11,7 +11,7 @@ public class ItemPreserver : TerrariaPlugin
     public override string Author => "肝帝熙恩 & 少司命";
     public override string Description => "指定物品不消耗";
     public override string Name => "ItemPreserver";
-    public override Version Version => new(1, 0, 6);
+    public override Version Version => new(1, 0, 7);
     public static Configuration Config = new();
 
     public class Pitem
@@ -120,6 +120,7 @@ public class ItemPreserver : TerrariaPlugin
         if (disposing)
         {
             GeneralHooks.ReloadEvent -= ReloadConfig;
+            GetDataHandlers.PlayerSlot.UnRegister(OnSlot);
         }
         base.Dispose(disposing);
     }

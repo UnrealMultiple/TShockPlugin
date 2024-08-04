@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.Net;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace journeyUnlock
 {
@@ -16,7 +17,7 @@ namespace journeyUnlock
 
         public override string Name => "journeyUnlock";
 
-        public override Version Version => new(1, 0, 1, 0);
+        public override Version Version => new(1, 0, 1, 1);
 
         public journeyUnlock(Main game) : base(game)
         {
@@ -24,16 +25,19 @@ namespace journeyUnlock
 
         public override void Initialize()
         {
-            Commands.ChatCommands.Add(new Command(
-                permissions: new List<string> { "journeyunlock.unlock" },
-                cmd: this.unlockCommand,
-                "journeyunlock", "junlock", "i解锁")
+            Commands.ChatCommands.Add(new Command("journeyunlock.unlock",unlockCommand,"journeyunlock", "junlock", "i解锁")
             { AllowServer = false });
 
-            Commands.ChatCommands.Add(new Command(
-                permissions: new List<string> { "journeyunlock.unlockfor" },
-                cmd: this.unlockForCommand,
-                "unlockfor", "unlockf", "g解锁玩家"));
+            Commands.ChatCommands.Add(new Command("journeyunlock.unlockfor",unlockForCommand,"unlockfor", "unlockf", "g解锁玩家"));
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == unlockCommand || x.CommandDelegate == unlockForCommand);
+            }
+            base.Dispose(disposing);
         }
 
         private void unlock(Player tplayer, TSPlayer sender, string parameter, bool isSelf)
