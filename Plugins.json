@@ -295,7 +295,7 @@
   },
   {
     "Name": "Ezperm",
-    "Version": "1.2.0",
+    "Version": "1.2.1",
     "Author": "大豆子,肝帝熙恩优化1449",
     "Description": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
     "Path": "Ezperm.dll"
@@ -309,21 +309,21 @@
   },
   {
     "Name": "InvincibilityPlugin",
-    "Version": "1.0.5",
+    "Version": "1.0.6",
     "Author": "肝帝熙恩",
     "Description": "在命令中给予玩家一段时间的无敌状态。",
     "Path": "Invincibility.dll"
   },
   {
     "Name": "ItemPreserver",
-    "Version": "1.0.6",
+    "Version": "1.0.7",
     "Author": "肝帝熙恩 & 少司命",
     "Description": "指定物品不消耗",
     "Path": "ItemPreserver.dll"
   },
   {
     "Name": "journeyUnlock",
-    "Version": "1.0.1.0",
+    "Version": "1.0.1.1",
     "Author": "Maxthegreat99，肝帝熙恩汉化",
     "Description": "允许您为旅途中的角色解锁所有或特定物品",
     "Path": "journeyUnlock.dll"
@@ -687,7 +687,7 @@
   },
   {
     "Name": "高尔夫奖励",
-    "Version": "1.0.5",
+    "Version": "1.0.6",
     "Author": "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449",
     "Description": "将高尔夫打入球洞会得到奖励.",
     "Path": "GolfRewards.dll"
