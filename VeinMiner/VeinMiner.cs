@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -9,7 +10,7 @@ namespace VeinMiner
     public class VeinMiner : TerrariaPlugin
     {
         public override string Name => "VeinMiner";
-        public override Version Version => new Version(1, 6, 0, 2);
+        public override Version Version => new Version(1, 6, 0, 3);
         public override string Author => "Megghy|YSpoof|Maxthegreat99|肝帝熙恩";
         public override string Description => "VeinMiner by Megghy 适用于 TShock 5.2 支持！";
 
@@ -84,47 +85,72 @@ namespace VeinMiner
             var list = GetVein(new(), x, y, type).Result;
             var count = list.Count;
             var item = Utils.GetItemFromTile(x, y);
-            if (Config.Exchange.Where(e => e.Type == type && count >= e.MinSize).ToList() is { Count: > 0 } exchangeList)
-                exchangeList.ForEach(e =>
-                {
-                    if (e.Item.Count <= plr.GetBlankSlot())
-                    {
-                        e.Item.ForEach(ex => plr.GiveItem(ex.Key, ex.Value));
-                        if (e.OnlyGiveItem)
-                            KillTileAndSend(list, true);
-                        else
-                            GiveItem();
-                        plr.SendMessage($"[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {count} {(item.type == 0 ? "未知" : item.Name)}].", Color.White);
-                        return;
-                    }
-                    else
-                    {
-                        plr.SendInfoMessage($"[c/95CFA6:<VeinMiner>] 背包已满，还需空位：[c/95CFA6:{e.Item.Count}] .");
-                        plr.SendTileSquareCentered(x, y, 1);
-                        return;
-                    }
-                });
-            else
-                GiveItem();
-            void GiveItem()
+            var mineableList = new List<Point>();
+
+            // 过滤出可挖的矿石坐标
+            foreach (var point in list)
             {
-                if (Config.PutInInventory)
+                if (point.Y > 0 && Config.NotMine.Contains(Main.tile[point.X, point.Y - 1].type))
                 {
-                    if (plr.IsSpaceEnough(item.netID, count))
+                    continue;
+                }
+
+                mineableList.Add(point);
+            }
+
+            var mineCount = mineableList.Count;
+            if (mineCount > 0)
+            {
+                list = mineableList;
+
+                if (Config.Exchange.Where(e => e.Type == type && mineCount >= e.MinSize).ToList() is { Count: > 0 } exchangeList)
+                    exchangeList.ForEach(e =>
                     {
-                        plr.GiveItem(item.netID, count);
-                        KillTileAndSend(list, true);
+                        if (e.Item.Count <= plr.GetBlankSlot())
+                        {
+                            e.Item.ForEach(ex => plr.GiveItem(ex.Key, ex.Value));
+                            if (e.OnlyGiveItem)
+                                KillTileAndSend(list, true); 
+                            else
+                                GiveItem();
+                            plr.SendMessage($"[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {mineCount} {(item.type == 0 ? "未知" : item.Name)}].", Color.White);
+                            return;
+                        }
+                        else
+                        {
+                            plr.SendInfoMessage($"[c/95CFA6:<VeinMiner>] 背包已满，还需空位：[c/95CFA6:{e.Item.Count}] .");
+                            plr.SendTileSquareCentered(x, y, 1);
+                            return;
+                        }
+                    });
+                else
+                    GiveItem();
+
+                void GiveItem()
+                {
+                    if (Config.PutInInventory)
+                    {
+                        if (plr.IsSpaceEnough(item.netID, mineCount)) 
+                        {
+                            plr.GiveItem(item.netID, mineCount); 
+                            KillTileAndSend(list, true); 
+                        }
+                        else
+                        {
+                            WorldGen.KillTile(x, y);
+                            plr.SendInfoMessage($"[c/95CFA6:<VeinMiner>] 背包已满，需额外空位：[c/95CFA6:{mineCount}] 以放入 [c/95CFA6:{item.Name}] .");
+                        }
                     }
                     else
-                    {
-                        WorldGen.KillTile(x, y);
-                        plr.SendInfoMessage($"[c/95CFA6:<VeinMiner>] 背包已满，需额外空位：[c/95CFA6:{count}] 以放入 [c/95CFA6:{item.Name}] .");
-                    }
+                        KillTileAndSend(list, false); 
+
+                    if (plr.GetData<VMStatus>("VeinMiner").EnableBroadcast && Config.Broadcast && mineCount > 1)
+                        plr.SendMessage($"[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{mineCount} {(item.type == 0 ? "未知" : item.Name)}].", Color.White);
                 }
-                else
-                    KillTileAndSend(list, false);
-                if (plr.GetData<VMStatus>("VeinMiner").EnableBroadcast && Config.Broadcast && count > 1)
-                    plr.SendMessage($"[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{count} {(item.type == 0 ? "未知" : item.Name)}].", Color.White);
+            }
+            else if (count > 0)
+            {
+                plr.SendMessage($"[c/95CFA6:<VeinMiner>] 无法挖取矿石，可能是因为矿石上方有不可破坏的物体.", Color.White);
             }
         }
 
@@ -134,20 +160,12 @@ namespace VeinMiner
             {
                 if (!list.Any())
                     return;
-                /*var minX = list[0].X;
-                var minY = list[0].Y;
-                var maxX = minX;
-                var maxY = minY;*/
+
                 list.ForEach(p =>
                 {
-                    /*if (p.X < minX) minX = p.X;
-                    if (p.X > maxX) maxX = p.X;
-                    if (p.Y < minY) minY = p.Y;
-                    if (p.Y > maxY) maxY = p.Y;*/
                     WorldGen.KillTile(p.X, p.Y, false, false, noItem);
                     NetMessage.SendData(17, -1, -1, null, 4, p.X, p.Y, false.GetHashCode());
                 });
-                //NetMessage.SendTileSquare(-1, minX, minY, maxX - minX + 1, maxY - minY + 1, Terraria.ID.TileChangeType.None);
             });
         }
 
