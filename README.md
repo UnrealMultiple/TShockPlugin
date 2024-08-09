@@ -159,7 +159,7 @@
 | [CaiCustomEmojiCommand](CaiCustomEmojiCommand/README.md)         |        自定义表情命令          |                                                                    无                                                                             |
 | [BetterWhitelist](BetterWhitelist/README.md)                     |         白名单插件          |                                                                    无                                                                             |
 | [AutoReset](AutoReset/README.md)                                 |         完全自动重置          |                                                                    无                                                                             |
-| [SmartRegion](SmartRegion/README.md)                           |         智能区域          |                                                                    无                                                                             |
+| [SmartRegions](SmartRegions/README.md)                           |         智能区域          |                                                                    无                                                                             |
 
 </Details>
 
