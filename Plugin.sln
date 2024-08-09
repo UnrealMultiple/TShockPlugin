@@ -222,6 +222,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Misc", "Yaaiomni\Misc\Misc.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourceGen", "Yaaiomni\SourceGen\SourceGen.csproj", "{0CD78DBF-DC60-4B91-B5EF-4910172547CE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartRegions", "SmartRegions\SmartRegions.csproj", "{CBB56AB5-84D6-460A-8D0C-DA85A03BA811}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1086,6 +1088,14 @@ Global
 		{0CD78DBF-DC60-4B91-B5EF-4910172547CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0CD78DBF-DC60-4B91-B5EF-4910172547CE}.Release|x64.ActiveCfg = Release|Any CPU
 		{0CD78DBF-DC60-4B91-B5EF-4910172547CE}.Release|x64.Build.0 = Release|Any CPU
+		{CBB56AB5-84D6-460A-8D0C-DA85A03BA811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB56AB5-84D6-460A-8D0C-DA85A03BA811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB56AB5-84D6-460A-8D0C-DA85A03BA811}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CBB56AB5-84D6-460A-8D0C-DA85A03BA811}.Debug|x64.Build.0 = Debug|Any CPU
+		{CBB56AB5-84D6-460A-8D0C-DA85A03BA811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB56AB5-84D6-460A-8D0C-DA85A03BA811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBB56AB5-84D6-460A-8D0C-DA85A03BA811}.Release|x64.ActiveCfg = Release|Any CPU
+		{CBB56AB5-84D6-460A-8D0C-DA85A03BA811}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
