@@ -455,6 +455,13 @@
     "Path": "SimultaneousUseFix.dll"
   },
   {
+    "Name": "Smart Regions",
+    "Version": "1.4.2",
+    "Author": "GameRoom，肝帝熙恩汉化修复",
+    "Description": "当玩家进入区域时运行命令。",
+    "Path": "SmartRegions.dll"
+  },
+  {
     "Name": "SwitchCommands",
     "Version": "1.2.2",
     "Author": "Johuan Cjx适配 羽学，肝帝熙恩优化",
