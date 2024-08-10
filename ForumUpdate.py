@@ -110,6 +110,7 @@ try:
 except:
     print(f"[TRHUB]修改失败!{resp.text}")
 
+'''
 # BBSTR
 name = "Cai233"
 # 创建会话
@@ -160,3 +161,4 @@ try:
         print(f"[BBSTR]修改失败: {res}")
 except:
     print(f"[BBSTR]修改失败!{resp.text}")
+'''
