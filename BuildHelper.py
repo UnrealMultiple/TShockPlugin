@@ -4,6 +4,7 @@ import shutil
 import sys
 import zipfile
 import urllib.request
+import requests as rq
 
 def zip_files_in_folder(folder_path, zip_file_path):
     with zipfile.ZipFile(zip_file_path, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zipf:
