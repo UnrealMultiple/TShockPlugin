@@ -33,14 +33,13 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install markdown imgkit
-
-      - name: 安装beautifulsoup4 和 wkhtmltopdf
+      - name: 安装Py模块
         run: |
             sudo pip install beautifulsoup4
+            sudo pip install markdown imgkit
+
+      - name: 安装wkhtmltopdf
+        run: |
             sudo apt-get install wkhtmltopdf
           
       - name: 打包插件
