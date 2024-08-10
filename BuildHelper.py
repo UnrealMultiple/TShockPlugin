@@ -5,6 +5,7 @@ import sys
 import zipfile
 import urllib.request
 import requests as rq
+import time
 
 def zip_files_in_folder(folder_path, zip_file_path):
     with zipfile.ZipFile(zip_file_path, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zipf:
@@ -62,6 +63,7 @@ if __name__ == '__main__':
                 md_to_png(f"{cwd}/out/{build_type}/{file_name}")
                 os.remove(f"{cwd}/out/{build_type}/{file_name}")
                 print(f"✅ {file_name}转换成功...")
+                time.sleep(0.5);
     if build_type == "Release":
         print("🔄 准备转换PDF...")
         urllib.request.urlretrieve("https://raw.githubusercontent.com/lxgw/LxgwWenKai/main/fonts/TTF/LXGWWenKaiMono-Regular.ttf", "LXGWWenKaiMono-Regular.ttf")
