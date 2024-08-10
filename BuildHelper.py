@@ -16,22 +16,16 @@ def zip_files_in_folder(folder_path, zip_file_path):
                 zipf.write(file_path, arcname=os.path.basename(file_path))
     print(f"📦 压缩包已生成: {zip_file_path}")
 def md_to_png(file_name):
-    '''
+    
     with open(file_name, 'r', encoding='utf-8') as file:
         content = file.read()
-        html = markdown.markdown(content)
-    '''
-    with open(file_name, 'r',encoding='utf-8') as file:
-        md = file.read()
-        headers = {
-            "Accept": "application/vnd.github+json",
-            #"Authorization": "Bearer <YOUR-TOKEN>",
-            "X-GitHub-Api-Version": "2022-11-28"
+    headers = {
+        "Accept": "application/vnd.github+json",
+        #"Authorization": "Bearer <YOUR-TOKEN>",
+        "X-GitHub-Api-Version": "2022-11-28"
         }
-    # 修复插件列表路径
-    #md = re.sub(r'\b[^(\[]*\/README.md\b', lambda x: "https://gitee.com/kksjsj/TShockPlugin/blob/master/" + x.group(), md)
     data = {
-        "text": md
+        "text": content
     }
     html = rq.post("https://api.github.com/markdown", headers=headers, data=json.dumps(data)).text
     imgkit.from_string(html, file_name + ".png", {
