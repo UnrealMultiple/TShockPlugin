@@ -4,6 +4,8 @@ import shutil
 import sys
 import zipfile
 import urllib.request
+import markdown
+import imgkit
 
 def zip_files_in_folder(folder_path, zip_file_path):
     with zipfile.ZipFile(zip_file_path, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zipf:
@@ -12,6 +14,14 @@ def zip_files_in_folder(folder_path, zip_file_path):
                 file_path = os.path.join(foldername, filename)
                 zipf.write(file_path, arcname=os.path.basename(file_path))
     print(f"📦 压缩包已生成: {zip_file_path}")
+def md_to_png:
+    with open('文件名.txt', 'r', encoding='utf-8') as file:
+        content = file.read()
+        html = markdown.markdown(md_text)
+    imgkit.from_string(html, "out.png", {
+        "format" : "png",
+        "encoding" : "UTF-8"
+    })
 
 def md_to_pdf(file_name):
     os.system(f"pandoc --pdf-engine=xelatex  -V mainfont=LXGWWenKaiMono-Regular.ttf -V geometry:margin=0.5in --template eisvogel.tex  {file_name} -o {file_name.replace('.md', '.pdf')}")
