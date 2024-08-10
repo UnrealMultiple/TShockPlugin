@@ -19,9 +19,9 @@ def md_to_png(file_name):
         content = file.read()
     data = {
         "content": content,
-        "dark": true,
-        "height": true,
-        "width": true
+        "dark": True,
+        "height": True,
+        "width": True
     }
     response = rq.post("https://api.github.com/markdown", data=data)
     if response.status_code == 200:
