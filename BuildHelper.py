@@ -23,7 +23,7 @@ def md_to_png(file_name):
         "height": True,
         "width": True
     }
-    response = rq.post("https://api.github.com/markdown", data=data)
+    response = rq.post("https://oiapi.net/API/MarkdownToImage", data=data)
     with open(file_name + ".png", "wb") as f:
         f.write(response.content)
 
