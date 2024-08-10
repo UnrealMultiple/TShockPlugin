@@ -14,8 +14,8 @@ def zip_files_in_folder(folder_path, zip_file_path):
                 file_path = os.path.join(foldername, filename)
                 zipf.write(file_path, arcname=os.path.basename(file_path))
     print(f"📦 压缩包已生成: {zip_file_path}")
-def md_to_png:
-    with open('文件名.txt', 'r', encoding='utf-8') as file:
+def md_to_png(file_name):
+    with open(file_name, 'r', encoding='utf-8') as file:
         content = file.read()
         html = markdown.markdown(content)
     imgkit.from_string(html, "out.png", {
