@@ -67,9 +67,10 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: 安装beautifulsoup4
+      - name: 安装beautifulsoup4 和 wkhtmltopdf
         run: |
             sudo pip install beautifulsoup4
+            sudo apt-get install wkhtmltopdf
       
       - name: 更新论坛
         continue-on-error: true
