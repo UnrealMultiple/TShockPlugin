@@ -21,7 +21,7 @@ if __name__ == '__main__':
         os.remove(file)
         print(f"✅ 已删除文件: {file}")
     print("✅ json文件删除成功！")
-
+    
     print("📝 开始移动README.md...")
     cwd = os.getcwd()
     for dir_name in os.listdir(cwd):
@@ -37,7 +37,7 @@ if __name__ == '__main__':
                 except:
                     print(f"⚠️ README移动失败({file_name})")
                     
-    shutil.copyfile('README.md', f"out/{build_type}/README.md")
+    shutil.copyfile('README.md', f"out/{build_type}/TShockPlugin.md")
     print("✅ README.md移动成功！")
     shutil.copyfile('Plugins.json', f"out/{build_type}/Plugins.json")
     print("✅ Plugins.json移动成功！")
