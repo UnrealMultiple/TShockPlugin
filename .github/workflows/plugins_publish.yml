@@ -2,7 +2,7 @@ name: 插件发布
 
 on:
   push:
-    branches: [ "master","cai"]
+    branches: [ "master","cai", "main"]
     
 jobs:
   Build:
@@ -61,13 +61,12 @@ jobs:
             echo "非Controllerdestiny/TShockPlugin仓库，跳过提交."
           fi
 
-
       - name: 初始化Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-
-      - name: 安装beautifulsoup4
+          
+      - name: 安装Py模块
         run: |
             sudo pip install beautifulsoup4
       
