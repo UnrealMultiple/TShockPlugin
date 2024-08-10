@@ -20,11 +20,22 @@ def md_to_png(file_name):
         content = file.read()
         html = markdown.markdown(content)
     '''
-    imgkit.from_file(file_name, file_name + ".png", {
+    with open(file_name, 'r',encoding='utf-8') as file:
+        md = file.read()
+        headers = {
+            "Accept": "application/vnd.github+json",
+            #"Authorization": "Bearer <YOUR-TOKEN>",
+            "X-GitHub-Api-Version": "2022-11-28"
+        }
+    # 修复插件列表路径
+    #md = re.sub(r'\b[^(\[]*\/README.md\b', lambda x: "https://gitee.com/kksjsj/TShockPlugin/blob/master/" + x.group(), md)
+    data = {
+        "text": md
+    }
+    html = rq.post("https://api.github.com/markdown", headers=headers, data=json.dumps(data)).text
+    imgkit.from_string(html, file_name + ".png", {
         "format" : "png",
-        "encoding" : "UTF-8",
-        'width': 800,
-        'height': 600
+        "encoding" : "UTF-8"
     })
 
 def md_to_pdf(file_name):
