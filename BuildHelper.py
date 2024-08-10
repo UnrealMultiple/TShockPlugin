@@ -15,12 +15,16 @@ def zip_files_in_folder(folder_path, zip_file_path):
                 zipf.write(file_path, arcname=os.path.basename(file_path))
     print(f"📦 压缩包已生成: {zip_file_path}")
 def md_to_png(file_name):
+    '''
     with open(file_name, 'r', encoding='utf-8') as file:
         content = file.read()
         html = markdown.markdown(content)
-    imgkit.from_string(html, file_name + ".png", {
+    '''
+    imgkit.from_file(file_name, file_name + ".png", {
         "format" : "png",
-        "encoding" : "UTF-8"
+        "encoding" : "UTF-8",
+        'width': 800,
+        'height': 600
     })
 
 def md_to_pdf(file_name):
