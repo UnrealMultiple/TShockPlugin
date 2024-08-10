@@ -32,6 +32,16 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install markdown imgkit
+
+      - name: 安装beautifulsoup4 和 wkhtmltopdf
+        run: |
+            sudo pip install beautifulsoup4
+            sudo apt-get install wkhtmltopdf
           
       - name: 打包插件
         run: python BuildHelper.py Debug
