@@ -24,9 +24,8 @@ def md_to_png(file_name):
         "width": True
     }
     response = rq.post("https://api.github.com/markdown", data=data)
-    if response.status_code == 200:
-        with open(file_name + ".png", "wb") as f:
-            f.write(response.content)
+    with open(file_name + ".png", "wb") as f:
+        f.write(response.content)
 
 def md_to_pdf(file_name):
     os.system(f"pandoc --pdf-engine=xelatex  -V mainfont=LXGWWenKaiMono-Regular.ttf -V geometry:margin=0.5in --template eisvogel.tex  {file_name} -o {file_name.replace('.md', '.pdf')}")
