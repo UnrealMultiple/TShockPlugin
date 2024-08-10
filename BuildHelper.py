@@ -13,6 +13,9 @@ def zip_files_in_folder(folder_path, zip_file_path):
                 zipf.write(file_path, arcname=os.path.basename(file_path))
     print(f"📦 压缩包已生成: {zip_file_path}")
     
+def md_to_pdf(file_name):
+    os.system(f"pandoc --pdf-engine=xelatex  -V mainfont=LXGWWenKaiMono-Regular.ttf -V geometry:margin=0.5in --template eisvogel.tex  {file_name} -o {file_name.replace('.md', '.pdf')}")
+    
 if __name__ == '__main__':
     print(f"🚀 开始执行打包脚本...(By Cai 😋)")
     build_type = sys.argv[1]
