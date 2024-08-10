@@ -4,9 +4,6 @@ import shutil
 import sys
 import zipfile
 import urllib.request
-import markdown
-import imgkit
-import json
 import requests as rq
 
 def zip_files_in_folder(folder_path, zip_file_path):
@@ -16,23 +13,20 @@ def zip_files_in_folder(folder_path, zip_file_path):
                 file_path = os.path.join(foldername, filename)
                 zipf.write(file_path, arcname=os.path.basename(file_path))
     print(f"📦 压缩包已生成: {zip_file_path}")
-def md_to_png(file_name):
     
+def md_to_png(file_name):
     with open(file_name, 'r', encoding='utf-8') as file:
         content = file.read()
-    headers = {
-        "Accept": "application/vnd.github+json",
-        #"Authorization": "Bearer <YOUR-TOKEN>",
-        "X-GitHub-Api-Version": "2022-11-28"
-        }
     data = {
-        "text": content
+        "content": content,
+        "dark": true,
+        "height": true,
+        "width": true
     }
-    html = rq.post("https://api.github.com/markdown", headers=headers, data=json.dumps(data)).text
-    imgkit.from_string(html, file_name + ".png", {
-        "format" : "png",
-        "encoding" : "UTF-8"
-    })
+    response = rq.post("https://api.github.com/markdown", headers=headers, data=json.dumps(data))
+    if response.status_code == 200:
+        with open(file_name + ".png", "wb") as f:
+            f.write(response.content)
 
 def md_to_pdf(file_name):
     os.system(f"pandoc --pdf-engine=xelatex  -V mainfont=LXGWWenKaiMono-Regular.ttf -V geometry:margin=0.5in --template eisvogel.tex  {file_name} -o {file_name.replace('.md', '.pdf')}")
