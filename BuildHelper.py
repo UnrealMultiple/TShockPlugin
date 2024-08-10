@@ -17,7 +17,7 @@ def zip_files_in_folder(folder_path, zip_file_path):
 def md_to_png:
     with open('文件名.txt', 'r', encoding='utf-8') as file:
         content = file.read()
-        html = markdown.markdown(md_text)
+        html = markdown.markdown(content)
     imgkit.from_string(html, "out.png", {
         "format" : "png",
         "encoding" : "UTF-8"
