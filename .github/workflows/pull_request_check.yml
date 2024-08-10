@@ -40,6 +40,7 @@ jobs:
 
       - name: 安装wkhtmltopdf
         run: |
+            sudo apt-get update
             sudo apt-get install wkhtmltopdf
           
       - name: 打包插件
