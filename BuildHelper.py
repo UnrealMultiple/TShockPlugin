@@ -6,6 +6,7 @@ import zipfile
 import urllib.request
 import markdown
 import imgkit
+import json
 import requests as rq
 
 def zip_files_in_folder(folder_path, zip_file_path):
