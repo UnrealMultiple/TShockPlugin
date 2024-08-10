@@ -18,7 +18,7 @@ def md_to_png(file_name):
     with open(file_name, 'r', encoding='utf-8') as file:
         content = file.read()
         html = markdown.markdown(content)
-    imgkit.from_string(html, "out.png", {
+    imgkit.from_string(html, file_name + ".png", {
         "format" : "png",
         "encoding" : "UTF-8"
     })
@@ -53,6 +53,11 @@ if __name__ == '__main__':
     print("✅ README.md移动成功！")
     shutil.copyfile('Plugins.json', f"out/{build_type}/Plugins.json")
     print("✅ Plugins.json移动成功！")
+    for file_name in os.listdir(f"out/{build_type}"):
+            if file_name.endswith('.md'):
+                md_to_png(f"{cwd}/out/{build_type}/{file_name}")
+                os.remove(f"{cwd}/out/{build_type}/{file_name}")
+                print(f"✅ {file_name}转换成功...")
     if build_type == "Release":
         print("🔄 准备转换PDF...")
         urllib.request.urlretrieve("https://raw.githubusercontent.com/lxgw/LxgwWenKai/main/fonts/TTF/LXGWWenKaiMono-Regular.ttf", "LXGWWenKaiMono-Regular.ttf")
