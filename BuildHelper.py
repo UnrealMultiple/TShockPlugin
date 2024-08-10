@@ -23,7 +23,7 @@ def md_to_png(file_name):
         "height": true,
         "width": true
     }
-    response = rq.post("https://api.github.com/markdown", headers=headers, data=json.dumps(data))
+    response = rq.post("https://api.github.com/markdown", data=data)
     if response.status_code == 200:
         with open(file_name + ".png", "wb") as f:
             f.write(response.content)
