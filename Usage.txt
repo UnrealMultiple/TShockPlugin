@@ -1,0 +1,11 @@
+[使用说明]
+1. 本仓库所有插件都遵循GNU General Public License v3.0，且全部开源免费，禁止倒卖本仓库构建或分发的任何插件
+2. 使用插件前请详细阅读每个插件的文档(md，或在 https://tr.monika.love/resources/104/ 查看)
+3. 如果在使用最新版的本仓库插件时遇到问题可以在Github通过Issues提问
+[文件作用]
+dll: 插件本体, 要放在ServerPligins文件夹
+pdb: 插件的调试文件，和dll放在一起即可，安装后插件报错可以显示更多的细节，帮助开发者快速定位错误
+md: 仓库插件的READEME文件，如果没有md查看器，可以在 https://tr.monika.love/resources/104/ 的插件列表中查看每个插件的文档、
+LICENSE: 插件仓库的开源协议(GNU General Public License v3.0)
+Plugins.json: 插件仓库插件的版本信息，一般用于自动更新
+TShockPlugin.md: 插件仓库的文档文件，有插件列表和一些说明
