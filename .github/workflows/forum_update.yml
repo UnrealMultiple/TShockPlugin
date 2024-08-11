@@ -26,3 +26,10 @@ jobs:
         PYTHONIOENCODING: 'utf-8'
       run: 
        sudo python ForumUpdate.py ${{ secrets.MONIKA_TR_NAME }} ${{ secrets.MONIKA_TR_PASSWORD }}
+     
+    - name: 更新论坛主文档
+      continue-on-error: true
+      env:
+          PYTHONIOENCODING: 'utf-8'
+      run: 
+         sudo python ForumHelper.py ${{ secrets.MONIKA_TR_NAME }} ${{ secrets.MONIKA_TR_PASSWORD }}
