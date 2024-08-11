@@ -164,20 +164,20 @@ public static class Vector2Ext
         return curvePoints;
     }
     
-    public static List<Vector2> GetPointsOnCircle(this Vector2 pos1, Vector2 pos2, float startAngle, float angleIncrement, int maxCount)
-    {
-        List<Vector2> points = new List<Vector2>();
-        float radius = (float)Math.Sqrt(Math.Pow(pos1.X - pos2.X, 2) + Math.Pow(pos1.Y - pos2.Y, 2));
-        float currentAngle = startAngle;
-        while (points.Count < maxCount && currentAngle < 360)
-        {
-            float x = pos2.X + radius * (float)Math.Cos(currentAngle * Math.PI / 180);
-            float y = pos2.Y + radius * (float)Math.Sin(currentAngle * Math.PI / 180);
-            points.Add(new Vector2(x, y));
-            currentAngle += angleIncrement;
-        }
-        return points;
-    }
+    //public static List<Vector2> GetPointsOnCircle(this Vector2 pos1, Vector2 pos2, float startAngle, float angleIncrement, int maxCount)
+    //{
+    //    List<Vector2> points = new List<Vector2>();
+    //    float radius = (float)Math.Sqrt(Math.Pow(pos1.X - pos2.X, 2) + Math.Pow(pos1.Y - pos2.Y, 2));
+    //    float currentAngle = startAngle;
+    //    while (points.Count < maxCount && currentAngle < 360)
+    //    {
+    //        float x = pos2.X + radius * (float)Math.Cos(currentAngle * Math.PI / 180);
+    //        float y = pos2.Y + radius * (float)Math.Sin(currentAngle * Math.PI / 180);
+    //        points.Add(new Vector2(x, y));
+    //        currentAngle += angleIncrement;
+    //    }
+    //    return points;
+    //}
     
 
     

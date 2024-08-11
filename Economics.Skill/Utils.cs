@@ -1,4 +1,5 @@
 ﻿using Economics.Skill.Enumerates;
+using Economics.Skill.JSInterpreter;
 using Economics.Skill.Model;
 using EconomicsAPI.Extensions;
 using Microsoft.Xna.Framework;
@@ -154,6 +155,7 @@ public class Utils
         //原始角度速度参数
         var vel = Player.TPlayer.ItemOffSet();
         SpawnSkillProjectile(Player, skill, vel, pos);
+        Interpreter.ExecuteScript(skill, Player, pos, vel);
     }
 
     public static void EmitSkill(GetDataHandlers.NewProjectileEventArgs e, SkillContext skill)
@@ -163,5 +165,6 @@ public class Utils
         //原始角度速度参数
         var vel = e.Velocity;
         SpawnSkillProjectile(e.Player, skill, vel, pos);
+        Interpreter.ExecuteScript(skill, e.Player, pos, vel);
     }
 }
