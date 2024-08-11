@@ -1,4 +1,5 @@
-﻿using Economics.Skill.Model.Options;
+﻿using Economics.Skill.JSInterpreter;
+using Economics.Skill.Model.Options;
 using Economics.Skill.Model.Options.Projectile;
 using Economics.Skill.Model.Options.Range;
 using EconomicsAPI.Extensions;
@@ -61,8 +62,40 @@ public class SkillContext
     [JsonProperty("范围Buff")]
     public BuffOption BuffOption { get; set; } = new();
 
+    [JsonProperty("执行脚本")]
+    public string? ExecuteScript 
+    {
+        get { return JsScript?.FilePathOrUri; }
+        set
+        {
+            JsScript = Set(value);
+        } 
+    }
+
     [JsonProperty("弹幕")]
     public List<ProjectileOption> Projectiles { get; set; } = new();
+
+    [JsonIgnore]
+    public JsScript? JsScript { get; set; }
+
+    public JsScript? Set(string? path)
+    {
+        var jistScript = new JsScript
+        {
+            FilePathOrUri = path
+        };
+        try
+        {
+            jistScript.Script = File.ReadAllText(Path.Combine(Interpreter.ScriptsDir, jistScript.FilePathOrUri));
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error("无法加载{0}: {1}", path, ex.Message);
+            return null;
+        }
+        ScriptContainer.PreprocessRequires(jistScript);
+        return jistScript;
+    }
 
     public void AddNpcBuff(TSPlayer Player)
     {

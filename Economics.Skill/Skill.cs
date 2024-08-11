@@ -1,9 +1,9 @@
 ﻿using Economics.Skill.DB;
 using Economics.Skill.Events;
+using Economics.Skill.JSInterpreter;
 using Economics.Skill.Setting;
 using EconomicsAPI.Configured;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
-using Jint;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -23,8 +23,6 @@ public class Skill : TerrariaPlugin
 
     public override Version Version => new(1, 2, 1, 0);
 
-    public static readonly Engine Script = new();
-
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
     public long TimerCount;
@@ -35,13 +33,28 @@ public class Skill : TerrariaPlugin
 
     public Skill(Main game) : base(game)
     {
-        
+        AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+    }
+
+    private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
+    {
+        string resourceName = $"{Assembly.GetExecutingAssembly().GetName().Name}.lib.{new AssemblyName(args.Name).Name}.dll";
+        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+        if (stream != null)
+        { 
+            byte[] assemblyData = new byte[stream.Length];
+            stream.Read(assemblyData, 0, assemblyData.Length);
+            return Assembly.Load(assemblyData);
+        }
+        return null;
     }
 
     public override void Initialize()
     {
         LoadConfig();
+        
         PlayerSKillManager = new();
+        ServerApi.Hooks.GamePostInitialize.Register(this, OnPost);
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
         ServerApi.Hooks.ProjectileAIUpdate.Register(this, OnAiUpdate);
@@ -53,8 +66,16 @@ public class Skill : TerrariaPlugin
         GetDataHandlers.PlayerDamage.Register(OnPlayerDamage);
         EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += OnKillNpc;
         EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop += OnPlayerCountertop;
-        GeneralHooks.ReloadEvent += e => LoadConfig();
+        GeneralHooks.ReloadEvent += e =>
+        {
+            LoadConfig();
+        };
         On.Terraria.Projectile.Update += Projectile_Update;
+    }
+
+    private void OnPost(EventArgs args)
+    {
+        Interpreter.LoadFunction();
     }
 
     private void OnPlayerDamage(object? sender, GetDataHandlers.PlayerDamageEventArgs e)
