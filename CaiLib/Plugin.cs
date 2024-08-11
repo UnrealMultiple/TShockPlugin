@@ -24,7 +24,7 @@ public class Plugin : TerrariaPlugin
     {
         string resourceName = $"{Assembly.GetExecutingAssembly().GetName().Name}.{new AssemblyName(args.Name).Name}.dll";
         using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
-        if (stream == null)
+        if (stream != null)
         {
             byte[] assemblyData = new byte[stream.Length];
             stream.Read(assemblyData, 0, assemblyData.Length);
