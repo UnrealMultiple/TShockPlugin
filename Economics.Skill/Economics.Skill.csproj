@@ -12,4 +12,17 @@
 		<ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
 		<ProjectReference Include="..\EconomicsAPI\EconomicsAPI.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="lib\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Acornima">
+	    <HintPath>lib\Acornima.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Jint">
+	    <HintPath>lib\Jint.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
 </Project>

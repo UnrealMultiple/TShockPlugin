@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoPluginManager";
 
-    public override Version Version => new(2, 0, 0, 1);
+    public override Version Version => new(2, 0, 0, 2);
 
     public override string Author => "少司命，Cai";
 
@@ -303,7 +303,7 @@ public class Plugin : TerrariaPlugin
     {
         foreach (var info in plugininfos)
         {
-            string sourcePath = Path.Combine(TempSaveDir, "Plugins", info.Path);
+            string sourcePath = Path.Combine(TempSaveDir, "Plugins", "Plugins", info.Path);
             string destinationPath = Path.Combine(ServerApi.ServerPluginsDirectoryPath, info.Path);
             File.Copy(sourcePath, destinationPath, true);
             //热添加插件emmm
@@ -318,7 +318,7 @@ public class Plugin : TerrariaPlugin
         for (int i = pluginUpdateInfos.Count - 1; i >= 0; i--)
         {
             var pluginUpdateInfo = pluginUpdateInfos[i];
-            string sourcePath = Path.Combine(TempSaveDir, "Plugins", pluginUpdateInfo.RemotePath);
+            string sourcePath = Path.Combine(TempSaveDir, "Plugins", "Plugins", pluginUpdateInfo.RemotePath);
             string destinationPath = Path.Combine(ServerApi.ServerPluginsDirectoryPath, pluginUpdateInfo.LocalPath);
             // 确保目标目录存在
             string destinationDirectory = Path.GetDirectoryName(destinationPath)!;

@@ -3,6 +3,7 @@ using Economics.Skill.Events;
 using Economics.Skill.Setting;
 using EconomicsAPI.Configured;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
+using Jint;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -22,6 +23,8 @@ public class Skill : TerrariaPlugin
 
     public override Version Version => new(1, 2, 1, 0);
 
+    public static readonly Engine Script = new();
+
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
     public long TimerCount;
@@ -32,6 +35,7 @@ public class Skill : TerrariaPlugin
 
     public Skill(Main game) : base(game)
     {
+        
     }
 
     public override void Initialize()
