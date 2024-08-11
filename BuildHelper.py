@@ -50,7 +50,7 @@ if __name__ == '__main__':
     shutil.copyfile('README.md', f"out/{build_type}/TShockPlugin.md")
     print("✅ README.md移动成功！")
 
-    shutil.copyfile('Useage.txt', f"out/{build_type}/使用前须知.txt")
+    shutil.copyfile('Usage.txt', f"out/{build_type}/使用前须知.txt")
     print("✅ 使用前须知.txt移动成功！")
 
     shutil.copyfile('Plugins.json', f"out/{build_type}/Plugins.json")
