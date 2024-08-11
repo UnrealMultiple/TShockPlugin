@@ -1,6 +1,6 @@
 # BetterWhitelist 更好的白名单
 
-- 作者: 豆沙，肝帝熙恩修改
+- 作者: 豆沙，肝帝熙恩修,Cai改
 - 出处: [gitee](https://gitee.com/Crafty/BetterWhitelist)
 - 将玩家名字加入白名单，仅在白名单内的玩家可进入游戏
 

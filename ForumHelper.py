@@ -130,6 +130,7 @@ except:
     print(f"[TRHUB]修改失败!{resp.text}")
 
 
+'''
 proxies = {'http': "220.248.70.237:9002",
            'https': "220.248.70.237:9002"}
 
@@ -198,4 +199,5 @@ try:
         print(f"[BBSTR]修改失败: {res}")
 except:
     print(f"[BBSTR]修改失败!{resp.text}")
+'''
 

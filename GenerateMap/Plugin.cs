@@ -3,6 +3,7 @@ using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace GenerateMap;
 
@@ -25,6 +26,15 @@ public class Plugin : TerrariaPlugin
     {
         TShock.RestApi.Register(new SecureRestCommand("/generatemqp", RestGenerateMap, "generate.map"));
         Commands.ChatCommands.Add(new("generate.map", CGenerate, "生成地图"));
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == CGenerate);
+        }
+        base.Dispose(disposing);
     }
 
     private object RestGenerateMap(RestRequestArgs args)
