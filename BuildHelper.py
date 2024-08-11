@@ -62,5 +62,5 @@ if __name__ == '__main__':
     print("✅ 开源协议移动成功！")
 
     print("📦 准备打包插件...")
-    zip_files_in_folder("out/{build_type}/", "Plugins.zip")
+    zip_files_in_folder("out", "Plugins.zip")
     print("🎉 插件打包成功！")
