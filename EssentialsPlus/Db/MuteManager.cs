@@ -63,7 +63,7 @@ public class MuteManager
             new SqlColumn("Date", MySqlDbType.Text),
             new SqlColumn("Expiration", MySqlDbType.Text)));
 
-        using QueryResult result = db.QueryReader("SELECT * FROM Mutes WHERE WorldID = @0", Main.worldID);
+        using QueryResult result = db.QueryReader("SELECT * FROM Mutes");
         while (result.Read())
         {
             Mutes.Add(new Mute(

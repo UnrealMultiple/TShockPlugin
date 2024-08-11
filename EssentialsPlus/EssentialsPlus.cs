@@ -25,7 +25,7 @@ namespace EssentialsPlus
 
         public override string Name => "EssentialsPlus";
 
-        public override Version Version => new Version(1, 0, 1);
+        public override Version Version => new Version(1, 0, 2);
 
 
         public EssentialsPlus(Main game)
