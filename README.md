@@ -156,10 +156,11 @@
 | [SessionSentinel](SessionSentinel/README.md)                     |     处理长时间不发送数据包的玩家      |                                                                        无                                                                         |
 | [TeleportRequest](TeleportRequest/README.md)                     |          传送请求           |                                                                        无                                                                         |
 | [CaiRewardChest](CaiRewardChest/README.md)                       | 将自然生成的箱子变为所有人都可以领一次的奖励箱 |                                                                        无                                                                         |
-| [CaiCustomEmojiCommand](CaiCustomEmojiCommand/README.md)         |        自定义表情命令          |                                                                    无                                                                             |
-| [BetterWhitelist](BetterWhitelist/README.md)                     |         白名单插件          |                                                                    无                                                                             |
-| [AutoReset](AutoReset/README.md)                                 |         完全自动重置          |                                                                    无                                                                             |
-| [SmartRegions](SmartRegions/README.md)                           |         智能区域          |                                                                    无                                                                             |
+| [CaiCustomEmojiCommand](CaiCustomEmojiCommand/README.md)         |         自定义表情命令         |                                                                        无                                                                         |
+| [BetterWhitelist](BetterWhitelist/README.md)                     |          白名单插件          |                                                                        无                                                                         |
+| [AutoReset](AutoReset/README.md)                                 |         完全自动重置          |                                                                        无                                                                         |
+| [SmartRegions](SmartRegions/README.md)                           |          智能区域           |                                                                        无                                                                         |
+| [ProxyProtocolSocket](ProxyProtocolSocket/README.md)             |  接受 proxy protocol 协议   |                                                                        无                                                                         |
 
 </Details>
 
