@@ -27,15 +27,16 @@ if __name__ == '__main__':
     cwd = os.getcwd()
     for dir_name in os.listdir(cwd):
         dir_path = os.path.join(cwd, dir_name)
-        for file_name in os.listdir(dir_path):
-            try:
-                if file_name.endswith('.csproj'):
-                    source_path = os.path.join(dir_path, 'README.md')
-                    destination_path = os.path.join(cwd, 'out', f'{build_type}', file_name.replace('.csproj', '.md'))
-                    shutil.copyfile(source_path, destination_path)
-                    print(f"🔍 找到README.md({destination_path})")
-            except:
-                print(f"⚠️ README移动失败({file_name})")
+        if os.path.isdir(dir_path):
+            for file_name in os.listdir(dir_path):
+                try:
+                    if file_name.endswith('.csproj'):
+                        source_path = os.path.join(dir_path, 'README.md')
+                        destination_path = os.path.join(cwd, 'out', f'{build_type}', file_name.replace('.csproj', '.md'))
+                        shutil.copyfile(source_path, destination_path)
+                        print(f"🔍 找到README.md({destination_path})")
+                except:
+                    print(f"⚠️ README移动失败({file_name})")
 
 
     os.makedirs(f'out/{build_type}/Plugins', exist_ok=True)
