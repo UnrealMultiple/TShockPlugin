@@ -9,7 +9,7 @@ def zip_files_in_folder(folder_path, zip_file_path):
         for foldername, subfolders, filenames in os.walk(folder_path):
             for filename in filenames:
                 file_path = os.path.join(foldername, filename)
-                arcname = os.path.relpath(file_path, os.path.dirname(folder_path))
+                arcname = os.path.relpath(file_path, folder_path)
                 zipf.write(file_path, arcname=arcname)
     print(f"📦 压缩包已生成: {zip_file_path}")
     
@@ -62,5 +62,5 @@ if __name__ == '__main__':
     print("✅ 开源协议移动成功！")
 
     print("📦 准备打包插件...")
-    zip_files_in_folder("out", "Plugins.zip")
+    zip_files_in_folder("out/{build_type}", "Plugins.zip")
     print("🎉 插件打包成功！")
