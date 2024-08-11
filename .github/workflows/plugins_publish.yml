@@ -2,7 +2,7 @@ name: 插件发布
 
 on:
   push:
-    branches: [ "master","cai", "main"]
+    branches: [ "master","cai"]
     
 jobs:
   Build:
