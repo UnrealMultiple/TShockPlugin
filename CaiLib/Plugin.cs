@@ -24,11 +24,13 @@ public class Plugin : TerrariaPlugin
     {
         string resourceName = $"{Assembly.GetExecutingAssembly().GetName().Name}.{new AssemblyName(args.Name).Name}.dll";
         using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
-        if (stream == null)
-            throw new NullReferenceException("无法加载程序集:" + args.Name);
-        byte[] assemblyData = new byte[stream.Length];
-        stream.Read(assemblyData, 0, assemblyData.Length);
-        return Assembly.Load(assemblyData);
+        if (stream != null)
+        {
+            byte[] assemblyData = new byte[stream.Length];
+            stream.Read(assemblyData, 0, assemblyData.Length);
+            return Assembly.Load(assemblyData);
+        }
+        return null;
     }
 
     public override void Initialize()
