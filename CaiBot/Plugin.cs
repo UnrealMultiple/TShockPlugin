@@ -22,7 +22,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "Cai,羽学";
     public override string Description => "CaiBot机器人的适配插件";
     public override string Name => "CaiBotPlugin";
-    public static readonly Version VersionNum = new(2024, 8, 2, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new(2024, 8, 12, 1); //日期+版本号(0,1,2...)
     public override Version Version => VersionNum;
 
     //插件的构造器
@@ -39,16 +39,18 @@ public class Plugin : TerrariaPlugin
 
     #region 加载前置
 
-    private Assembly CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
+    private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
     {
         string resourceName =
             $"{Assembly.GetExecutingAssembly().GetName().Name}.{new AssemblyName(args.Name).Name}.dll";
         using Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
         if (stream == null)
-            throw new NullReferenceException("无法加载程序集:" + args.Name);
-        byte[] assemblyData = new byte[stream.Length];
-        stream.Read(assemblyData, 0, assemblyData.Length);
-        return Assembly.Load(assemblyData);
+        { 
+            byte[] assemblyData = new byte[stream.Length];
+            stream.Read(assemblyData, 0, assemblyData.Length);
+            return Assembly.Load(assemblyData);
+        }
+        return null;
     }
 
     #endregion
