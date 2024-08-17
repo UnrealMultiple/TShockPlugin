@@ -19,6 +19,25 @@ jobs:
           DOTNET_CLI_UI_LANGUAGE: zh-CN
         with:
           dotnet-version: 6.0.x
+
+      - name: 更新子模块
+        continue-on-error: true
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          echo ${{ github.repository }}
+          if [ "${{ github.repository }}" = "UnrealMultiple/TShockPlugin" ]; then
+            git submodule update --remote
+            if git diff --staged --quiet; then
+              echo "跳过更新：子模块没有变化"
+            else
+              git commit -am "自动更新子模块 [skip ci]"
+              git pull
+              git push
+            fi
+          else
+            echo "非UnrealMultiple/TShockPlugin仓库，跳过提交."
+          fi
           
       - name: 构建插件
         run: |
@@ -48,7 +67,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           echo ${{ github.repository }}
-          if [ "${{ github.repository }}" = "Controllerdestiny/TShockPlugin" ]; then
+          if [ "${{ github.repository }}" = "UnrealMultiple/TShockPlugin" ]; then
             git add Plugins.json
             if git diff --staged --quiet; then
               echo "跳过更新：没有插件版本变化"
@@ -58,7 +77,7 @@ jobs:
               git push
             fi
           else
-            echo "非Controllerdestiny/TShockPlugin仓库，跳过提交."
+            echo "非UnrealMultiple/TShockPlugin仓库，跳过提交."
           fi
 
       - name: 初始化Python
