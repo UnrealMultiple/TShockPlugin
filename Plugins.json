@@ -7,8 +7,8 @@
     "Path": "Platform.dll"
   },
   {
-    "Name": "Chireiden.TShock.Omni b29b9e99f4",
-    "Version": "0.0.1.0",
+    "Name": "Chireiden.TShock.Omni 3c758322fb",
+    "Version": "0.0.186.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
     "Path": "Chireiden.TShock.Omni.dll"
@@ -50,7 +50,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.0.1",
+    "Version": "2.0.0.2",
     "Author": "少司命，Cai",
     "Description": "自动更新你的插件！",
     "Path": "AutoPluginManager.dll"
@@ -113,7 +113,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2024.8.2.1",
+    "Version": "2024.8.12.1",
     "Author": "Cai,羽学",
     "Description": "CaiBot机器人的适配插件",
     "Path": "CaiBot.dll"
@@ -166,6 +166,13 @@
     "Author": "少司命",
     "Description": "ChattyBridge",
     "Path": "ChattyBridge.dll"
+  },
+  {
+    "Name": "ChestRestore",
+    "Version": "1.0.0.0",
+    "Author": "Cjx修改",
+    "Description": "箱子自动补充资源",
+    "Path": "ChestRestore.dll"
   },
   {
     "Name": "CNPCShop",
@@ -253,7 +260,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.2.1.0",
+    "Version": "1.2.1.1",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"
@@ -481,6 +488,13 @@
     "Author": "棱镜 羽学优化",
     "Description": "None",
     "Path": "TownNPCHomes.dll"
+  },
+  {
+    "Name": "UnseenInventory",
+    "Version": "1.0.0",
+    "Author": "肝帝熙恩",
+    "Description": "允许服务器端生成“无法获取”的物品",
+    "Path": "UnseenInventory.dll"
   },
   {
     "Name": "VeinMiner",
@@ -712,6 +726,13 @@
     "Author": "羽学 感谢Cai 西江小子 熙恩",
     "Description": "禁止特定弹幕在地表产生",
     "Path": "DisableSurfaceProjectiles.dll"
+  },
+  {
+    "Name": "ProxyProtocolSocket",
+    "Version": "2.1.0.0",
+    "Author": "LaoSparrow",
+    "Description": "Proxy Protocol on TShock",
+    "Path": "ProxyProtocolSocket.dll"
   },
   {
     "Name": "阻止玩家无敌",
