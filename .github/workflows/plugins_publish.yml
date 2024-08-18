@@ -29,13 +29,11 @@ jobs:
           if [ "${{ github.repository }}" = "UnrealMultiple/TShockPlugin" ]; then
             git submodule update --remote --merge
             git add .
-            git pull --rebase --allow-unrelated-histories
             if git diff --staged --quiet; then
               echo "跳过更新：子模块没有变化"
             else
               git commit -am "自动更新子模块 [skip ci]"
-              git add .
-              git pull
+              git pull --rebase --allow-unrelated-histories
               git push
             fi
           else
