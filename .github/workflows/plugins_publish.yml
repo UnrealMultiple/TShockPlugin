@@ -27,7 +27,8 @@ jobs:
           git config --local user.name "GitHub Action"
           echo ${{ github.repository }}
           if [ "${{ github.repository }}" = "UnrealMultiple/TShockPlugin" ]; then
-            git submodule update --remote
+            git submodule update --remote --merge
+            git fetch --all
             git add .
             if git diff --staged --quiet; then
               echo "跳过更新：子模块没有变化"
