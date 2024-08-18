@@ -30,6 +30,7 @@ jobs:
             git pull --recurse-submodules
             git submodule update --remote --recursive
             git add .
+            git pull --rebase --allow-unrelated-histories
             if git diff --staged --quiet; then
               echo "跳过更新：子模块没有变化"
             else
