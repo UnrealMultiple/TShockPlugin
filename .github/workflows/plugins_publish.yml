@@ -25,7 +25,7 @@ jobs:
           git config --local user.name "GitHub Action"
           echo ${{ github.repository }}
           if [ "${{ github.repository }}" = "UnrealMultiple/TShockPlugin" ]; then
-            submodule update --init
+            git submodule update --init
             git submodule update --remote --recursive
             git add .
             git pull
