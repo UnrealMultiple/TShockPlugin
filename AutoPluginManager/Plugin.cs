@@ -71,7 +71,7 @@ public class Plugin : TerrariaPlugin
                 if (updates.Any())
                 {
                     TShock.Log.ConsoleInfo("[以下插件有新的版本更新]\n" + string.Join("\n", updates.Select(i => $"[{i.Name}] V{i.OldVersion} >>> V{i.NewVersion}")));
-                    TShock.Log.ConsoleInfo("你可以使用命令/uplugin更新插件哦~");
+                    TShock.Log.ConsoleInfo("你可以使用命令/amp -u更新插件哦~");
                 }
 
             }
