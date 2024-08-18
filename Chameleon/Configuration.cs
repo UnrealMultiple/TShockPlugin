@@ -31,50 +31,55 @@ namespace Chameleon
             " 1. 在\"服务器密码\"中输入自己的密码, 以后加服时输入这个密码即可",
             " 1. 阅读完毕后请重新加入"
         };
-    [JsonProperty("同步注册服务器")]
-		public List<RESTser> SyncServerReg = new List<RESTser>
-		{
-			new RESTser
-			{
-				Name ="测试服务器",
-				IPAddress = "http://127.0.0.1:7878/",
-				Token="TOKENTEST"
-			}
-		};
+        [JsonProperty("同步注册服务器")]
+        public List<RESTser> SyncServerReg { get; set; }
 
-		public class RESTser
-		{
+        public class RESTser
+        {
             [JsonProperty("名称")]
             public string Name { get; set; }
             [JsonProperty("地址")]
             public string IPAddress { get; set; }
             public string Token { get; set; }
-		}
+        }
 
-		public void Write(string path)
-		{
-			using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
-			{
-				var str = JsonConvert.SerializeObject(this, Formatting.Indented);
-				using (var sw = new StreamWriter(fs))
-				{
-					sw.Write(str);
-				}
-			}
-		}
+        public Configuration()
+        {
+            SyncServerReg = new List<RESTser>
+        {
+            new RESTser
+            {
+                Name ="测试服务器",
+                IPAddress = "http://127.0.0.1:7878/",
+                Token="TOKENTEST"
+            }
+        };
+        }
 
-		public static Configuration Read(string path)
-		{
-			if (!File.Exists(path))
-				return new Configuration();
-			using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-			{
-				using (var sr = new StreamReader(fs))
-				{
-					var cf = JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd());
-					return cf;
-				}
-			}
-		}
-	}
+        public void Write(string path)
+        {
+            using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
+            {
+                var str = JsonConvert.SerializeObject(this, Formatting.Indented);
+                using (var sw = new StreamWriter(fs))
+                {
+                    sw.Write(str);
+                }
+            }
+        }
+
+        public static Configuration Read(string path)
+        {
+            if (!File.Exists(path))
+                return null;
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                using (var sr = new StreamReader(fs))
+                {
+                    var cf = JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd());
+                    return cf;
+                }
+            }
+        }
+    }
 }
