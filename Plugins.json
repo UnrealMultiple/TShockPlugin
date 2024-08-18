@@ -155,7 +155,7 @@
   },
   {
     "Name": "Chameleon",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "mistzzt，肝帝熙恩修复1449",
     "Description": "账户系统交互替换方案",
     "Path": "Chameleon.dll"
@@ -169,9 +169,9 @@
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.0.0.0",
-    "Author": "Cjx修改",
-    "Description": "箱子自动补充资源",
+    "Version": "1.0.1",
+    "Author": "Cjx修改，肝帝熙恩简单修改",
+    "Description": "无限宝箱插件",
     "Path": "ChestRestore.dll"
   },
   {
