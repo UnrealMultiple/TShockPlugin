@@ -32,7 +32,7 @@ jobs:
             if git diff --staged --quiet; then
               echo "跳过更新：子模块没有变化"
             else
-              git commit -am "自动更新子模块 [skip ci]"
+              git commit -m "自动更新子模块 [skip ci]"
               git pull
               git push
             fi
