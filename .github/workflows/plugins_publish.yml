@@ -28,11 +28,11 @@ jobs:
           echo ${{ github.repository }}
           if [ "${{ github.repository }}" = "UnrealMultiple/TShockPlugin" ]; then
             git submodule update --remote
+            git add .
             if git diff --staged --quiet; then
               echo "跳过更新：子模块没有变化"
             else
               git commit -am "自动更新子模块 [skip ci]"
-              git add .
               git pull
               git push
             fi
