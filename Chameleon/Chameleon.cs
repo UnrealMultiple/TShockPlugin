@@ -25,7 +25,7 @@ namespace Chameleon
 
         public override string Description => "账户系统交互替换方案";
 
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
 
         private readonly string _clientWasBooted;
 
@@ -327,7 +327,12 @@ namespace Chameleon
         private static void LoadConfig()
         {
             Config = Configuration.Read(Configuration.FilePath);
-            Config.Write(Configuration.FilePath);
+
+            if (Config == null)
+            {
+                Config = new Configuration();
+                Config.Write(Configuration.FilePath);
+            }
 
             if (Config.AwaitBufferSize != Size)
             {
