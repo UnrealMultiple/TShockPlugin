@@ -10,8 +10,6 @@ jobs:
     name: 构建插件
     steps:
       - uses: actions/checkout@v4
-        with:
-           submodules: 'recursive'
            
       - name: 初始化.NET 6
         uses: actions/setup-dotnet@v4
@@ -27,10 +25,10 @@ jobs:
           git config --local user.name "GitHub Action"
           echo ${{ github.repository }}
           if [ "${{ github.repository }}" = "UnrealMultiple/TShockPlugin" ]; then
-            git submodule deinit -f --all
+            submodule update --init
             git submodule update --remote --recursive
             git add .
-            git pull --rebase --allow-unrelated-histories
+            git pull
             if git diff --staged --quiet; then
               echo "跳过更新：子模块没有变化"
             else
