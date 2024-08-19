@@ -50,7 +50,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.0.2",
+    "Version": "2.0.0.3",
     "Author": "少司命，Cai",
     "Description": "自动更新你的插件！",
     "Path": "AutoPluginManager.dll"
@@ -280,6 +280,13 @@
     "Path": "Economics.WeaponPlus.dll"
   },
   {
+    "Name": "Economics.WeaponPlus",
+    "Version": "1.0.0.3",
+    "Author": "z枳",
+    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+    "Path": "WeaponPlus.dll"
+  },
+  {
     "Name": "EconomicsAPI",
     "Version": "1.0.0.9",
     "Author": "少司命",
@@ -502,13 +509,6 @@
     "Author": "Megghy|YSpoof|Maxthegreat99|肝帝熙恩",
     "Description": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
     "Path": "VeinMiner.dll"
-  },
-  {
-    "Name": "WeaponPlusCostCoin",
-    "Version": "1.0.0.2",
-    "Author": "z枳",
-    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
-    "Path": "WeaponPlus.dll"
   },
   {
     "Name": "ZHIPlayerManager",
