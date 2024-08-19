@@ -10,10 +10,10 @@ namespace WeaponPlus
     public partial class WeaponPlus : TerrariaPlugin
     {
         #region 插件信息
-        public override string Name => "WeaponPlusCostCoin";
+        public override string Name => "Economics.WeaponPlus";
         public override string Author => "z枳";
         public override string Description => "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes";
-        public override Version Version => new Version(1, 0, 0, 2);
+        public override Version Version => new Version(1, 0, 0, 3);
         #endregion
 
         #region 实例变量
