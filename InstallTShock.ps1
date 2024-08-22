@@ -37,7 +37,7 @@ function Get-TShockZip{
     )
 
      process {
-        try {
+
             $download_url = Get-DownloadUrl
             $url = $proxy + $download_url
             if($null -eq $download_url){
@@ -60,10 +60,7 @@ function Get-TShockZip{
                 Set-Location ./TShockServer
                 Start-Process -FilePath ./TShock.Server.exe -ArgumentList "-lang 7"
             }
-        }
-        catch [System.Net.WebException], [System.Management.Automation.PSInvocationException] {
-            throw "Error when attempting to get version from '$url': $_"
-        }
+
     }
 }
 
