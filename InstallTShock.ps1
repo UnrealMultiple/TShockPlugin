@@ -18,7 +18,7 @@ function Get-DownloadUrl {
             }
 
             $json = $response.Content | ConvertFrom-Json
-            # 验证JSON是否包含tag_name属性
+      
             if (-not ($json -and $json.assets[3].browser_download_url)) {
                 throw "The JSON content at '$url' does not contain a valid 'tag_name' property."
             }
@@ -50,10 +50,12 @@ function Get-TShockZip{
             #$ProgressPreference = 'SilentlyContinue'
             $zipFile = "./TShock.zip"
 
-            $response = Invoke-WebRequest -Uri $url -UseBasicParsing
+            $response = Invoke-WebRequest -Uri $url -UseBasicParsing    
+            # 检查HTTP状态码
+            if ($response.StatusCode -ne 200) {
+                throw "Failed to retrieve the resource at '$url'. Status code: $($response.StatusCode)"
+            }
             [IO.File]::WriteAllBytes($zipFile, $response.Content)
-            #$wc = New-Object System.Net.WebClient
-            #$wc.DownloadFile($url, $zipFile)
             Write-Host "Ready to start unzipping TShock.zip...."
             Expand-Archive -Path "./TShock.zip" -DestinationPath "./TShockServer/"
             Remove-Item -Path $zipFile -Force
@@ -62,9 +64,9 @@ function Get-TShockZip{
                 Set-Location ./TShockServer
                 Start-Process -FilePath ./TShock.Server.exe -ArgumentList "-lang 7"
             }
-        }
-        catch{
-            throw "$_"
+        }catch [System.Net.WebException], [System.Management.Automation.PSInvocationException] {
+            # 处理可能的网络异常和JSON解析异常
+            throw "Error when attempting to get version from '$url': $_"
         }
     }
 }
@@ -83,5 +85,3 @@ if ($proxys -ge 0 -and $index -lt $proxys.Length){
 }else{
     Write-Host "Input Number Error!"
 }
-    
-    
