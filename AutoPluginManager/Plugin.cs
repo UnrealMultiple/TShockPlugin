@@ -12,17 +12,17 @@ public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoPluginManager";
 
-    public override Version Version => new(2, 0, 0, 2);
+    public override Version Version => new(2, 0, 0,3);
 
     public override string Author => "少司命，Cai";
 
     public override string Description => "自动更新你的插件！";
 
-    private const string ReleaseUrl = "https://github.com/Controllerdestiny/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
+    private const string ReleaseUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
 
     private const string PUrl = "https://github.moeyy.xyz/";
 
-    private const string PluginsUrl = "https://raw.githubusercontent.com/Controllerdestiny/TShockPlugin/master/Plugins.json";
+    private const string PluginsUrl = "https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/Plugins.json";
 
     private static readonly HttpClient _httpClient = new();
 
@@ -71,7 +71,7 @@ public class Plugin : TerrariaPlugin
                 if (updates.Any())
                 {
                     TShock.Log.ConsoleInfo("[以下插件有新的版本更新]\n" + string.Join("\n", updates.Select(i => $"[{i.Name}] V{i.OldVersion} >>> V{i.NewVersion}")));
-                    TShock.Log.ConsoleInfo("你可以使用命令/amp -u更新插件哦~");
+                    TShock.Log.ConsoleInfo("你可以使用命令/apm -u 更新插件哦~");
                 }
 
             }

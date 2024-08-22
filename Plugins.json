@@ -50,7 +50,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.0.2",
+    "Version": "2.0.0.3",
     "Author": "少司命，Cai",
     "Description": "自动更新你的插件！",
     "Path": "AutoPluginManager.dll"
@@ -155,7 +155,7 @@
   },
   {
     "Name": "Chameleon",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "mistzzt，肝帝熙恩修复1449",
     "Description": "账户系统交互替换方案",
     "Path": "Chameleon.dll"
@@ -169,9 +169,9 @@
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.0.0.0",
-    "Author": "Cjx修改",
-    "Description": "箱子自动补充资源",
+    "Version": "1.0.1",
+    "Author": "Cjx修改，肝帝熙恩简单修改",
+    "Description": "无限宝箱插件",
     "Path": "ChestRestore.dll"
   },
   {
@@ -278,6 +278,13 @@
     "Author": "z枳 少司命",
     "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
     "Path": "Economics.WeaponPlus.dll"
+  },
+  {
+    "Name": "Economics.WeaponPlus",
+    "Version": "1.0.0.3",
+    "Author": "z枳",
+    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+    "Path": "WeaponPlus.dll"
   },
   {
     "Name": "EconomicsAPI",
@@ -502,13 +509,6 @@
     "Author": "Megghy|YSpoof|Maxthegreat99|肝帝熙恩",
     "Description": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
     "Path": "VeinMiner.dll"
-  },
-  {
-    "Name": "WeaponPlusCostCoin",
-    "Version": "1.0.0.2",
-    "Author": "z枳",
-    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
-    "Path": "WeaponPlus.dll"
   },
   {
     "Name": "ZHIPlayerManager",
