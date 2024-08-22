@@ -30,6 +30,29 @@ namespace Platform
         {
             On.OTAPI.Hooks.MessageBuffer.InvokeGetData += OnGetData;
             ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreet);
+            Commands.ChatCommands.Add(new Command("Platform", PlatformCommand, "Platform", "判断玩家设备"));
+        }
+
+        private void PlatformCommand(CommandArgs args)
+        {
+            if (args.Parameters.Count == 1)
+            {
+                var plys = TSPlayer.FindByNameOrID(args.Parameters[0]);
+                if (plys.Count > 0)
+                {
+                    string platform = PlatformTool.GetPlatform(plys[0]);
+                    args.Player.SendInfoMessage($"玩家 `{plys[0].Name}` 的设备是: {platform}");
+                }
+                else
+                {
+                    args.Player.SendErrorMessage("目标玩家不在线!");
+                }
+            }
+            else
+            {
+                args.Player.SendErrorMessage("语法错误");
+                args.Player.SendInfoMessage("/platform <玩家名字/序号id>");
+            }
         }
 
         private void OnGreet(GreetPlayerEventArgs args)
@@ -80,9 +103,9 @@ namespace Platform
         {
             if (disposing)
             {
-
                 On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= OnGetData;
                 ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreet);
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == PlatformCommand);
             }
             base.Dispose(disposing);
         }
