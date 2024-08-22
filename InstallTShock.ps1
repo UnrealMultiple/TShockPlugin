@@ -18,8 +18,10 @@ function Get-DownloadUrl {
             }
 
             $json = $response.Content | ConvertFrom-Json
-            # 验证JSON是否包含tag_name属�?            if (-not ($json -and $json.assets[3].browser_download_url)) {
+      
+            if (-not ($json -and $json.assets[3].browser_download_url)) {
                 throw "The JSON content at '$url' does not contain a valid 'tag_name' property."
+            }
 
             return $json.assets[3].browser_download_url
         }
@@ -37,7 +39,7 @@ function Get-TShockZip{
     )
 
      process {
-
+        try {
             $download_url = Get-DownloadUrl
             $url = $proxy + $download_url
             if($null -eq $download_url){
@@ -60,7 +62,10 @@ function Get-TShockZip{
                 Set-Location ./TShockServer
                 Start-Process -FilePath ./TShock.Server.exe -ArgumentList "-lang 7"
             }
-
+        }catch [System.Net.WebException], [System.Management.Automation.PSInvocationException] {
+            # 处理可能的网络异常和JSON解析异常
+            throw "Error when attempting to get version from '$url': $_"
+        }
     }
 }
 
