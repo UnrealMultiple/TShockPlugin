@@ -30,6 +30,12 @@
 - 国内镜像: [Plugins.zip](https://github.moeyy.xyz/https://github.com/Controllerdestiny/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
 - 本仓库: [Plugins.zip](https://github.com/Controllerdestiny/TShockPlugin/releases/tag/V1.0.0.0)
 
+## 如何安装TShock
+- 如果你是Window用户可以选择使用以下命令一次性安装(在pwsh中运行此命令即可)
+```
+curl -o install.ps1 https://github.moeyy.xyz/https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/main/InstallTShock.ps1
+powershell -ExecutionPolicy ByPass -File ./install.ps1 -verb runas
+```
 
 ## 开发者注意事项
 

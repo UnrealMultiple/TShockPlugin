@@ -51,9 +51,11 @@ function Get-TShockZip{
             $zipFile = "./TShock.zip"
 
             $response = Invoke-WebRequest -Uri $url -UseBasicParsing    
+            # 检查HTTP状态码
+            if ($response.StatusCode -ne 200) {
+                throw "Failed to retrieve the resource at '$url'. Status code: $($response.StatusCode)"
+            }
             [IO.File]::WriteAllBytes($zipFile, $response.Content)
-            #$wc = New-Object System.Net.WebClient
-            #$wc.DownloadFile($url, $zipFile)
             Write-Host "Ready to start unzipping TShock.zip...."
             Expand-Archive -Path "./TShock.zip" -DestinationPath "./TShockServer/"
             Remove-Item -Path $zipFile -Force
