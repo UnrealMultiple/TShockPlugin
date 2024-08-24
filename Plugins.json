@@ -1,7 +1,7 @@
 ﻿[
   {
     "Name": "Platform(判断玩家设备)",
-    "Version": "1.1.0.0",
+    "Version": "1.1.0.1",
     "Author": "Cai",
     "Description": "判断玩家设备",
     "Path": "Platform.dll"
@@ -344,14 +344,14 @@
   },
   {
     "Name": "LifemaxExtra",
-    "Version": "1.0.0.6",
+    "Version": "1.0.0.7",
     "Author": "佚名 & 肝帝熙恩 & 少司命",
     "Description": "提升生命值上限",
     "Path": "LifemaxExtra.dll"
   },
   {
     "Name": "MapTeleport",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "Nova4334，肝帝熙恩汉化适配1449",
     "Description": "允许玩家传送到地图上的选定位置.",
     "Path": "MapTp.dll"
@@ -365,7 +365,7 @@
   },
   {
     "Name": "PermaBuff",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0",
     "Author": "少司命",
     "Description": "PermaBuff",
     "Path": "PermaBuff.dll"
@@ -379,28 +379,28 @@
   },
   {
     "Name": "PersonalPermission",
-    "Version": "1.1.0.0",
+    "Version": "1.1.0.1",
     "Author": "Megghy，肝帝熙恩更新1449",
     "Description": "允许为玩家单独设置权限.",
     "Path": "PersonalPermission.dll"
   },
   {
     "Name": "ProgressControl",
-    "Version": "1.0.0.7",
+    "Version": "1.0.0.8",
     "Author": "z枳 羽学",
     "Description": "计划书",
     "Path": "ProgressControls.dll"
   },
   {
     "Name": "Rainbow Chat",
-    "Version": "1.0.5",
+    "Version": "1.0.6",
     "Author": "Professor X 熙恩 羽学",
     "Description": "使玩家每次说话的颜色不一样.",
     "Path": "RainbowChat.dll"
   },
   {
     "Name": "RandRespawn",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "1413,肝帝熙恩适配1449",
     "Description": "随机出生点，任何回到出生点的操作都会被随机传送",
     "Path": "RandRespawn.dll"
@@ -414,7 +414,7 @@
   },
   {
     "Name": "RecipesBrowser",
-    "Version": "0.5",
+    "Version": "1.0.6",
     "Author": "棱镜 羽学适配",
     "Description": "通过指令获取物品合成表",
     "Path": "RecipesBrowser.dll"
@@ -428,7 +428,7 @@
   },
   {
     "Name": "RolesModifying",
-    "Version": "1.0.0.0",
+    "Version": "1.0.1",
     "Author": "少司命",
     "Description": "RolesModifying",
     "Path": "RolesModifying.dll"
@@ -526,7 +526,7 @@
   },
   {
     "Name": "决斗系统",
-    "Version": "1.1.2",
+    "Version": "1.1.3",
     "Author": "Soofa 羽学修改",
     "Description": "不是你死就是我活系列",
     "Path": "PvPer.dll"
@@ -540,14 +540,14 @@
   },
   {
     "Name": "刷新渔夫任务",
-    "Version": "1.4.0",
+    "Version": "1.4.1",
     "Author": "羽学",
     "Description": "涡轮增压不蒸鸭",
     "Path": "ReFishTask.dll"
   },
   {
     "Name": "区域显示",
-    "Version": "1.1.0",
+    "Version": "1.1.1",
     "Author": "TBC开发者团队,肝帝熙恩汉化",
     "Description": "为地区添加区域边界视图。",
     "Path": "RegionView.dll"
@@ -561,7 +561,7 @@
   },
   {
     "Name": "在线礼包",
-    "Version": "1.0.1.1",
+    "Version": "1.0.1.2",
     "Author": "星夜神花 羽学适配",
     "Description": "在线礼包插件 ",
     "Path": "OnlineGiftPackage.dll"
@@ -575,14 +575,14 @@
   },
   {
     "Name": "怪物进度回血",
-    "Version": "1.7.0",
+    "Version": "1.7.1",
     "Author": "途逗 羽学",
     "Description": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
     "Path": "MonsterRegen.dll"
   },
   {
     "Name": "数据包拦截 PacketsStop",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "羽学 感谢少司命",
     "Description": "拦截没有指定权限的用户组数据包",
     "Path": "PacketsStop.dll"
@@ -610,7 +610,7 @@
   },
   {
     "Name": "查已装插件",
-    "Version": "1.0.4",
+    "Version": "1.0.5",
     "Author": "iheart 修改：羽学，肝帝熙恩",
     "Description": "用指令查已装插件",
     "Path": "ListPlugins.dll"
@@ -673,7 +673,7 @@
   },
   {
     "Name": "随机广播",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "羽学",
     "Description": "涡轮增压不蒸鸭",
     "Path": "RandomBroadcast.dll"
@@ -687,7 +687,7 @@
   },
   {
     "Name": "进度礼包",
-    "Version": "1.0.0.9",
+    "Version": "1.0.1.0",
     "Author": "少司命",
     "Description": "进度礼包",
     "Path": "ProgressBag.dll"
