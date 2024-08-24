@@ -10,7 +10,7 @@ namespace PacketsStop
     {
 
         public override string Name => "数据包拦截 PacketsStop";
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
         public override string Author => "羽学 感谢少司命";
         public override string Description => "拦截没有指定权限的用户组数据包";
 
@@ -41,6 +41,8 @@ namespace PacketsStop
             if (disposing)
             {
                 ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Command);
+                GeneralHooks.ReloadEvent -= LoadConfig;
             }
             base.Dispose(disposing);
         }

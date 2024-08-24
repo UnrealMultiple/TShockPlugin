@@ -17,7 +17,7 @@ namespace RainbowChat
 
         public override string Description => "使玩家每次说话的颜色不一样.";
 
-        public override Version Version => new Version(1, 0, 5);
+        public override Version Version => new Version(1, 0, 6);
 
         public RainbowChat(Main game)
             : base(game)
@@ -31,29 +31,27 @@ namespace RainbowChat
         public override void Initialize()
         {
             LoadConfig();
-            GeneralHooks.ReloadEvent += new ReloadEventD(LoadConfig);
-            ServerApi.Hooks.GameInitialize.Register((TerrariaPlugin)(object)this, OnInitialize);
-            ServerApi.Hooks.ServerChat.Register((TerrariaPlugin)(object)this, OnChat);
-            ServerApi.Hooks.ServerLeave.Register((TerrariaPlugin)(object)this, OnServerLeave);
-            ServerApi.Hooks.ServerJoin.Register((TerrariaPlugin)(object)this, OnServerJoin);
+            GeneralHooks.ReloadEvent += LoadConfig;
+            Commands.ChatCommands.Add(new Command("rainbowchat.use", RainbowChatCallback, "rainbowchat", "rc"));
+            ServerApi.Hooks.ServerChat.Register(this, OnChat);
+            ServerApi.Hooks.ServerLeave.Register(this, OnServerLeave);
+            ServerApi.Hooks.ServerJoin.Register(this, OnServerJoin);
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                ServerApi.Hooks.GameInitialize.Deregister((TerrariaPlugin)(object)this, OnInitialize);
-                ServerApi.Hooks.ServerChat.Deregister((TerrariaPlugin)(object)this, OnChat);
-                ServerApi.Hooks.ServerLeave.Deregister((TerrariaPlugin)(object)this, OnServerLeave);
-                ServerApi.Hooks.ServerJoin.Deregister((TerrariaPlugin)(object)this, OnServerJoin);
+                GeneralHooks.ReloadEvent -= LoadConfig; 
+                Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == RainbowChatCallback);
+                ServerApi.Hooks.ServerChat.Deregister(this, OnChat);
+                ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
+                ServerApi.Hooks.ServerJoin.Deregister(this, OnServerJoin);
             }
             base.Dispose(disposing);
         }
 
-        private void OnInitialize(EventArgs args)
-        {
-            Commands.ChatCommands.Add(new Command("rainbowchat.use", new CommandDelegate(RainbowChatCallback), new string[2] { "rainbowchat", "rc" }));
-        }
+
         #endregion
 
         #region 配置文件创建与重读加载方法

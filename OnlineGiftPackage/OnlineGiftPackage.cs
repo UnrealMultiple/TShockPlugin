@@ -21,7 +21,7 @@ namespace OnlineGiftPackage
         // 插件名称
         public override string Name => "在线礼包";
         // 插件版本号
-        public override Version Version => new Version(1, 0, 1, 1);
+        public override Version Version => new Version(1, 0, 1, 2);
         // 构造函数，初始化插件与游戏关联
         public OnlineGiftPackage(Main game) : base(game)
         {
@@ -51,6 +51,17 @@ namespace OnlineGiftPackage
             // 监听服务器重载事件，以便在重载后重新设置定时器
             GeneralHooks.ReloadEvent += ReloadEvent;
 
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == GetProbability);
+                ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
+                GeneralHooks.ReloadEvent -= ReloadEvent;
+            }
+            base.Dispose(disposing);
         }
 
         private void OnUpdate(EventArgs args)

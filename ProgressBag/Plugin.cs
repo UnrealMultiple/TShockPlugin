@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace ProgressBag
 {
@@ -13,7 +14,7 @@ namespace ProgressBag
 
         public override string Name => "进度礼包";
 
-        public override Version Version => new(1, 0, 0, 9);
+        public override Version Version => new(1, 0, 1, 0);
 
         public static Config config = new();
 
@@ -23,19 +24,21 @@ namespace ProgressBag
         {
             Order = 3;
         }
-
+        private GeneralHooks.ReloadEventD _reloadHandler;
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                Commands.ChatCommands.RemoveAll(f => f.Name == "礼包");
+                GeneralHooks.ReloadEvent -= _reloadHandler;
+                Commands.ChatCommands.RemoveAll(f => f.CommandDelegate == GiftBag);
             }
             base.Dispose(disposing);
         }
         public override void Initialize()
         {
             LoadConfig();
-            TShockAPI.Hooks.GeneralHooks.ReloadEvent += e => LoadConfig();
+            _reloadHandler = e => LoadConfig();
+            GeneralHooks.ReloadEvent += _reloadHandler;
             Commands.ChatCommands.Add(new Command("bag.use", GiftBag, "礼包"));
         }
 

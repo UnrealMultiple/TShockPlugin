@@ -40,7 +40,7 @@ namespace RegionView
             => "区域显示";
 
         public override Version Version
-            => new(1, 1, 0);
+            => new(1, 1, 1);
 
         private readonly System.Timers.Timer _refreshTimer = new(5000);
 
@@ -82,6 +82,21 @@ namespace RegionView
             _refreshTimer.AutoReset = false;
 
             _refreshTimer.Elapsed += (x, _) => RefreshRegions();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == CommandView || c.CommandDelegate == CommandClear || c.CommandDelegate == CommandViewNearby);
+                ServerApi.Hooks.ServerJoin.Deregister(this, OnPlayerJoin);
+                ServerApi.Hooks.ServerLeave.Deregister(this, OnPlayerLeave);
+                PlayerHooks.PlayerCommand -= OnPlayerCommand;
+                RegionHooks.RegionCreated -= RegionCreated;
+                RegionHooks.RegionDeleted -= RegionDeleted;
+                _refreshTimer.Elapsed -= (x, _) => RefreshRegions();
+            }
+            base.Dispose(disposing);
         }
 
         private void RegionDeleted(RegionHooks.RegionDeletedEventArgs args)

@@ -9,7 +9,7 @@ using TShockAPI;
 public class ListPlugins : TerrariaPlugin
 {
     public override string Name => "查已装插件";
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
     public override string Author => "iheart 修改：羽学，肝帝熙恩";
     public override string Description => "用指令查已装插件";
 
@@ -21,6 +21,14 @@ public class ListPlugins : TerrariaPlugin
     public override void Initialize()
     {
         Commands.ChatCommands.Add(new Command("ListPlugin", ListPluginsCommand, "插件列表", "pllist"));
+    }
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == ListPluginsCommand);
+        }
+        base.Dispose(disposing);
     }
 
     private void ListPluginsCommand(CommandArgs args)

@@ -20,7 +20,7 @@ namespace ProgressControl
         public override string Author => "z枳 羽学";
         public override string Description => "计划书";
         public override string Name => "ProgressControl";
-        public override Version Version => new Version(1, 0, 0, 7);
+        public override Version Version => new Version(1, 0, 0, 8);
 
         public static Config config = new Config();
 
@@ -386,6 +386,7 @@ namespace ProgressControl
                 ServerApi.Hooks.GamePostInitialize.Deregister(this, PostInit);
                 ServerApi.Hooks.NpcKilled.Deregister(this, OnNPCKilled);
                 GeneralHooks.ReloadEvent -= OnReload;
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == PCO);
             }
             base.Dispose(disposing);
         }

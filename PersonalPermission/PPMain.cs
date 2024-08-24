@@ -10,7 +10,7 @@ namespace PersonalPermission
     public class PPMain : TerrariaPlugin
     {
         public override string Name => "PersonalPermission";
-        public override Version Version => new Version(1, 1, 0, 0);
+        public override Version Version => new Version(1, 1, 0, 1);
         public override string Author => "Megghy，肝帝熙恩更新1449";
         public override string Description => "允许为玩家单独设置权限.";
         public PPMain(Main game) : base(game)
@@ -19,14 +19,17 @@ namespace PersonalPermission
         public override void Initialize()
         {
             DB.TryCreateTable();
-            ServerApi.Hooks.GamePostInitialize.Register(this, OnPostInitialize);
-        }
-        public void OnPostInitialize(EventArgs args)
-        {
             ServerApi.Hooks.ServerJoin.Register(this, OnJoin, int.MinValue);
             PlayerHooks.PlayerPermission += OnPermissionCheck;
             GeneralHooks.ReloadEvent += OnReload;
             Commands.ChatCommands.Add(new Command("personalpermission.admin", PPCommand, "pp"));
+        }
+        protected override void Dispose(bool disposing)
+        {
+            ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
+            PlayerHooks.PlayerPermission -= OnPermissionCheck;
+            GeneralHooks.ReloadEvent -= OnReload;
+            Commands.ChatCommands.RemoveAll(p => p.CommandDelegate == PPCommand);
         }
         void OnJoin(JoinEventArgs args)
         {
@@ -204,12 +207,6 @@ namespace PersonalPermission
                 else
                     plr.SendErrorMessage($"玩家 {account.Name} 未存在权限 {perm}.");
             }
-        }
-        protected override void Dispose(bool disposing)
-        {
-            ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
-            PlayerHooks.PlayerPermission -= OnPermissionCheck;
-            GeneralHooks.ReloadEvent -= OnReload;
         }
     }
 }

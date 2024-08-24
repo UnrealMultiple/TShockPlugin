@@ -2,6 +2,7 @@
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace RolesModifying;
 
@@ -30,7 +31,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+    public override Version Version => new(1, 0, 1);
 
     private readonly Dictionary<TSPlayer, ModifyData> TempData = new();
     public Plugin(Main game) : base(game)
@@ -41,6 +42,16 @@ public class Plugin : TerrariaPlugin
     {
         ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
         Commands.ChatCommands.Add(new Command("tshock.user.rolesmodifying", Roles, "rm", "修改", "查背包"));
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Roles);
+        }
+        base.Dispose(disposing);
     }
 
     private void Roles(CommandArgs args)

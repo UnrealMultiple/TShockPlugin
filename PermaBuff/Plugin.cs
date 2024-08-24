@@ -2,6 +2,7 @@
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace PermaBuff;
 
@@ -14,7 +15,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+    public override Version Version => new(1, 0, 0);
 
     private readonly string PATH = Path.Combine(TShock.SavePath, "permbuff.json");
 
@@ -27,10 +28,11 @@ public class Plugin : TerrariaPlugin
     public Plugin(Main game) : base(game)
     {
     }
-
+    private GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
         LoadConfig();
+        _reloadHandler = (_) => LoadConfig();
         DB.Init();
         DB.ReadAll();
         ServerApi.Hooks.NetGreetPlayer.Register(this, OnJoin);
@@ -39,9 +41,20 @@ public class Plugin : TerrariaPlugin
         Commands.ChatCommands.Add(new Command("permabuff.use", PAbuff, "permabuff"));
         Commands.ChatCommands.Add(new Command("gpermabuff.use", GPbuff, "gpermabuff"));
         Commands.ChatCommands.Add(new Command("clearbuffs.use", Cbuff, "clearbuffs"));
-        TShockAPI.Hooks.GeneralHooks.ReloadEvent += (_) => LoadConfig();
+        GeneralHooks.ReloadEvent += _reloadHandler;
     }
-
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnJoin);
+            ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
+            ServerApi.Hooks.GameUpdate.Deregister(this, Update);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == PAbuff||x.CommandDelegate==GPbuff||x.CommandDelegate==Cbuff);
+            GeneralHooks.ReloadEvent -= _reloadHandler;
+        }
+        base.Dispose(disposing);
+    }
     private void LoadConfig()
     {
         if (File.Exists(PATH))

@@ -12,16 +12,18 @@ namespace Plugin
         #region 插件信息
         public override string Name => "刷新渔夫任务";
         public override string Author => "羽学";
-        public override Version Version => new Version(1, 4, 0);
+        public override Version Version => new Version(1, 4, 1);
         public override string Description => "涡轮增压不蒸鸭";
         #endregion
 
         #region 注册与释放
         public ReFishTask(Main game) : base(game) { }
+        private GeneralHooks.ReloadEventD _reloadHandler;
         public override void Initialize()
         {
             LoadConfig();
-            GeneralHooks.ReloadEvent += (_) => LoadConfig();
+            _reloadHandler = (_) => LoadConfig();
+            GeneralHooks.ReloadEvent += _reloadHandler;
             ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
             ServerApi.Hooks.NetGetData.Register(this, OnGetData);
         }
@@ -29,7 +31,7 @@ namespace Plugin
         {
             if (disposing)
             {
-                GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+                GeneralHooks.ReloadEvent -= _reloadHandler;
                 ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
                 ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
             }

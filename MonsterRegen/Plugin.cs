@@ -14,7 +14,7 @@ namespace Plugin.Configuration
         #region 插件信息
         public override string Name => "怪物进度回血";
         public override string Author => "途逗 羽学";
-        public override Version Version => new Version(1, 7, 0);
+        public override Version Version => new Version(1, 7, 1);
         public override string Description => "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔";
         internal static Configuration Config = new();
         private Timer? Timer;
@@ -23,9 +23,11 @@ namespace Plugin.Configuration
 
         #region 注册与释放
         public Plugin(Main game) : base(game) { }
+        private GeneralHooks.ReloadEventD _reloadHandler;
         public override void Initialize()
         {
             LoadConfig();
+            _reloadHandler = (_) => LoadConfig();
             if (Config.Enable)
             {
                 Timer = new Timer(Config.DefaultTimer * 1000.0);
@@ -33,7 +35,7 @@ namespace Plugin.Configuration
                 Timer.AutoReset = true;
                 Timer.Enabled = true;
             }
-            GeneralHooks.ReloadEvent += (_) => LoadConfig();
+            GeneralHooks.ReloadEvent += _reloadHandler;
             ServerApi.Hooks.NpcKilled.Register(this, OnNpcKilled);
         }
 
@@ -41,7 +43,7 @@ namespace Plugin.Configuration
         {
             if (disposing)
             {
-                GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+                GeneralHooks.ReloadEvent -= _reloadHandler;
                 ServerApi.Hooks.NpcKilled.Deregister(this, OnNpcKilled);
                 if (Timer != null)
                 {

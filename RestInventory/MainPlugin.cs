@@ -19,7 +19,9 @@ namespace RestInventory
         {
             TShock.RestApi.Register(new SecureRestCommand("/beanInvsee", BInvSee, "beanInvsee.use"));
         }
-
+        protected override void Dispose(bool disposing)
+        {
+        }
 
         private object BInvSee(RestRequestArgs args)
         {
@@ -96,15 +98,6 @@ namespace RestInventory
             retObject.VoidVault = Utils.GetInventoryData(tsplayer.bank4.item, NetItem.VoidSlots);
 
             return new RestObject() { { "response", "查询成功" }, { "data", retObject } };
-        }
-
-
-
-        protected override void Dispose(bool disposing)
-        {
-
-
-
         }
     }
 }

@@ -11,7 +11,7 @@ namespace RandReSpawn
         public override string Name => "RandRespawn";
         public override string Author => "1413,肝帝熙恩适配1449";
         public override string Description => "随机出生点，任何回到出生点的操作都会被随机传送";
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
         public MainPlugin(Main game) : base(game)
         {
 
@@ -23,7 +23,10 @@ namespace RandReSpawn
         }
         protected override void Dispose(bool disposing)
         {
-            GetDataHandlers.PlayerSpawn -= OnSpawn;
+            if (disposing)
+            {
+                GetDataHandlers.PlayerSpawn -= OnSpawn;
+            }
             base.Dispose(disposing);
         }
         private void OnSpawn(object sender, GetDataHandlers.SpawnEventArgs args)
