@@ -12,7 +12,7 @@ namespace fixbugpe
         public override string Author => "熙恩，感谢恋恋";
         public override string Description => "解决卡双锤，卡星旋机枪之类的问题";
         public override string Name => "SimultaneousUseFix";
-        public override Version Version => new Version(1, 0, 5);
+        public override Version Version => new Version(1, 0, 6);
         public static Configuration Config;
         public bool otherPluginExists = false;
 
@@ -39,7 +39,16 @@ namespace fixbugpe
             GeneralHooks.ReloadEvent += ReloadConfig;
             ServerApi.Plugins.Get<Chireiden.TShock.Omni.Plugin>().Detections.SwapWhileUse += OnSwapWhileUse;
         }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                GeneralHooks.ReloadEvent -= ReloadConfig;
+                ServerApi.Plugins.Get<Chireiden.TShock.Omni.Plugin>().Detections.SwapWhileUse -= OnSwapWhileUse;
+            }
 
+            base.Dispose(disposing);
+        }
         private void OnSwapWhileUse(int playerId, int slot)
         {
             TSPlayer player = TShock.Players[playerId];
@@ -75,16 +84,6 @@ namespace fixbugpe
                 }
 
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                ServerApi.Plugins.Get<Chireiden.TShock.Omni.Plugin>().Detections.SwapWhileUse -= OnSwapWhileUse;
-            }
-
-            base.Dispose(disposing);
         }
     }
 }

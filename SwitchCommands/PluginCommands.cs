@@ -14,6 +14,11 @@ namespace SwitchCommands
             Commands.ChatCommands.Add(new Command("switch.admin", SwitchCmd, "开关", "kg", "switch"));
         }
 
+        public static void UnregisterCommands()
+        {
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == SwitchCmd);
+        }
+
         private static void SwitchCmd(CommandArgs args)
         {
             var player = args.Player;

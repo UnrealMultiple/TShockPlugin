@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Org.BouncyCastle.Asn1.Cms;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -15,7 +16,7 @@ namespace ZHIPlayerManager
 
         public override string Name => "ZHIPlayerManager";
 
-        public override Version Version => new Version(1, 0, 0, 5);
+        public override Version Version => new Version(1, 0, 0, 6);
 
         #region 字段或属性
         /// <summary>
@@ -228,9 +229,34 @@ namespace ZHIPlayerManager
                 ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
                 ServerApi.Hooks.NpcStrike.Deregister(this, OnNpcStrike);
                 ServerApi.Hooks.NpcKilled.Deregister(this, OnNPCKilled);
+                GetDataHandlers.KillMe.UnRegister(OnPlayerKilled);
                 GeneralHooks.ReloadEvent -= OnReload;
+                Commands.ChatCommands.RemoveAll(
+                    x => x.CommandDelegate == Help
+                         || x.CommandDelegate == MySSCSave
+                         || x.CommandDelegate == MySSCSaveAuto
+                         || x.CommandDelegate == ViewMySSCSave
+                         || x.CommandDelegate == MySSCBack
+                         || x.CommandDelegate == SSCClone
+                         || x.CommandDelegate == SSCModify
+                         || x.CommandDelegate == ZhiExportPlayer
+                         || x.CommandDelegate == ZhiSortPlayer
+                         || x.CommandDelegate == HideTips
+                         || x.CommandDelegate == Clear
+                         || x.CommandDelegate == ZFreeze
+                         || x.CommandDelegate == ZUnFreeze
+                         || x.CommandDelegate == ZResetPlayerDB
+                         || x.CommandDelegate == ZResetPlayerEX
+                         || x.CommandDelegate == ZResetPlayer
+                         || x.CommandDelegate == ZResetPlayerAll
+                         || x.CommandDelegate == ViewInvent
+                         || x.CommandDelegate == ViewInventDisorder
+                         || x.CommandDelegate == ViewState
+                         || x.CommandDelegate == SuperBan
+                         || x.CommandDelegate == Function
+                );
+                base.Dispose(disposing);
             }
-            base.Dispose(disposing);
         }
 
         /*

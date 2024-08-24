@@ -32,8 +32,8 @@ namespace WeaponPlus
             NewLangTips();
             LoadConfig();
             GeneralHooks.ReloadEvent += LoadConfig;
-            ServerApi.Hooks.NetGreetPlayer.Register((TerrariaPlugin)(object)this, OnGreetPlayer);
-            ServerApi.Hooks.ServerLeave.Register((TerrariaPlugin)(object)this, OnServerLeave);
+            ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreetPlayer);
+            ServerApi.Hooks.ServerLeave.Register(this, OnServerLeave);
             Commands.ChatCommands.Add(new Command("weaponplus.plus", PlusItem, "plus")
             {
                 HelpText = LangTipsGet("输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料")
@@ -48,9 +48,11 @@ namespace WeaponPlus
         {
             if (disposing)
             {
+                LangTips.Clear();
                 GeneralHooks.ReloadEvent -= LoadConfig;
-                ServerApi.Hooks.NetGreetPlayer.Deregister((TerrariaPlugin)(object)this, OnGreetPlayer);
-                ServerApi.Hooks.ServerLeave.Deregister((TerrariaPlugin)(object)this, OnServerLeave);
+                ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);
+                ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == PlusItem || x.CommandDelegate == ClearPlusItem);
             }
         }
         #endregion
@@ -171,6 +173,7 @@ namespace WeaponPlus
             LangTips.Add(new List<string> { "请输入正整数", "Please enter a positive integer" });
         }
         #endregion
+
 
         #region 切换提示语语言方法
         public static string LangTipsGet(string str)

@@ -15,7 +15,7 @@ namespace Plugin
 
         public override string Name => "Show Armors";
 
-        public override Version Version => new Version(1, 0, 1);
+        public override Version Version => new Version(1, 0, 2);
 
         public ShowArmors(Main game) : base(game)
         {
@@ -24,10 +24,7 @@ namespace Plugin
         public override void Initialize()
         {
 
-            Commands.ChatCommands.Add(new Command(
-                permissions: "ShowArmors",
-                cmd: ShowMySlots,
-                "装备", "show", "zb")
+            Commands.ChatCommands.Add(new Command("ShowArmors",ShowMySlots,"装备", "show", "zb")
             {
                 HelpText = "发送自己的装备配置到聊天框。别名：show 和 zb "
             });
@@ -38,9 +35,8 @@ namespace Plugin
             if (disposing)
             {
                 // 清理托管资源
-                Commands.ChatCommands.RemoveAll(cmd => cmd.Names.Contains("装备") || cmd.Names.Contains("show") || cmd.Names.Contains("zb"));
+                Commands.ChatCommands.RemoveAll(cmd => cmd.CommandDelegate == ShowMySlots);
             }
-
             base.Dispose(disposing);
         }
 

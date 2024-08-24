@@ -20,7 +20,7 @@ namespace SwitchCommands
         public override string Name => "SwitchCommands";
         public override string Author => "Johuan Cjx适配 羽学，肝帝熙恩优化";
         public override string Description => "触发开关可以执行指令";
-        public override Version Version => new Version(1, 2, 2);
+        public override Version Version => new Version(1, 2, 3);
 
         public SwitchCommands(Main game) : base(game) { }
 
@@ -34,8 +34,14 @@ namespace SwitchCommands
         }
         protected override void Dispose(bool disposing)
         {
-            GeneralHooks.ReloadEvent -= LoadConfig;
-            GetDataHandlers.TileEdit.UnRegister(OnEdit);
+            if (disposing)
+            {
+                GeneralHooks.ReloadEvent -= LoadConfig;
+                GetDataHandlers.TileEdit.UnRegister(OnEdit);
+                PluginCommands.UnregisterCommands();
+                ServerApi.Hooks.NetGetData.Deregister(this, GetData);
+
+            }
             base.Dispose(disposing);
         }
 
