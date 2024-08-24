@@ -168,7 +168,7 @@ powershell -ExecutionPolicy ByPass -File ./install.ps1 -verb runas
 | [SmartRegions](SmartRegions/README.md)                           |          智能区域           |                                                                        无                                                                         |
 | [ProxyProtocolSocket](ProxyProtocolSocket/README.md)             |  接受 proxy protocol 协议   |                                                                        无                                                                         |
 | [UnseenInventory](UnseenInventory/README.md)                     |  允许服务器端生成“无法获取”的物品   |                                                                        无                                                                         |
-| [ChestRestore](ChestRestore/README.md)                     |  资源服无限物品   |                                                                        无                                                                         |
+| [ChestRestore](ChestRestore/README.md)                           |  资源服无限物品   |                                                                        无                                                                         |
 
 </Details>
 
@@ -179,4 +179,4 @@ powershell -ExecutionPolicy ByPass -File ./install.ps1 -verb runas
 ## 友情链接
 
 - [TShock 插件开发文档](https://github.com/ACaiCat/TShockPluginDocument)
-- [Tshock 相关内容大全导航](https://gitee.com/THEXN/Tshock-nav)
+- [Tshock 相关内容大全导航](https://github.com/UnrealMultiple/Tshock-nav)
