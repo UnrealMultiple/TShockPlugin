@@ -17,7 +17,7 @@ namespace MainPlugin
     {
         public override string Name => "BuildMaster";
 
-        public override Version Version => new Version(1, 0, 1);
+        public override Version Version => new Version(1, 0, 2);
 
         public override string Author => "豆沙 羽学，肝帝熙恩适配";
 
@@ -29,7 +29,8 @@ namespace MainPlugin
         }
         public override void Initialize()
         {
-            ServerApi.Hooks.GamePostInitialize.Register(this, OnPostInitialize);
+            Commands.ChatCommands.Add(new Command("bm.user", BM, "bm", "建筑大师" ));
+            Commands.ChatCommands.Add(new Command("bm.admin", BMA, "bma", "建筑大师管理" ));
             ServerApi.Hooks.NetGreetPlayer.Register(this, OnJoin);
             ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
             ServerApi.Hooks.ServerChat.Register(this, OnChat);
@@ -48,7 +49,7 @@ namespace MainPlugin
         {
             if (disposing)
             {
-                ServerApi.Hooks.GamePostInitialize.Deregister(this, OnPostInitialize);
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == BM || x.CommandDelegate == BMA);
                 ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnJoin);
                 ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
                 ServerApi.Hooks.ServerChat.Deregister(this, OnChat);
@@ -252,14 +253,6 @@ namespace MainPlugin
             }
         }
 
-
-
-
-        private void OnPostInitialize(EventArgs args)
-        {
-            Commands.ChatCommands.Add(new Command("bm.user", new CommandDelegate(BM), new string[2] { "bm", "建筑大师" }));
-            Commands.ChatCommands.Add(new Command("bm.admin", new CommandDelegate(BMA), new string[2] { "bma", "建筑大师管理" }));
-        }
 
         private void BMA(CommandArgs args)
         {
