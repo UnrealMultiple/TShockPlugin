@@ -177,4 +177,4 @@ powershell -ExecutionPolicy ByPass -File ./install.ps1 -verb runas
 ## Friendly Links
 
 - [TShock Plugin Development Documentation](https://github.com/ACaiCat/TShockPluginDocument)
-- [Tshock Comprehensive Navigation](https://gitee.com/THEXN/Tshock-nav)
+- [Tshock Comprehensive Navigation](https://github.com/UnrealMultiple/Tshock-nav)
