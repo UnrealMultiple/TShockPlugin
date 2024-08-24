@@ -12,16 +12,18 @@ namespace SpawnInfra
         #region 插件信息
         public override string Name => "生成基础建设";
         public override string Author => "羽学";
-        public override Version Version => new Version(1, 5, 4);
+        public override Version Version => new Version(1, 5, 5);
         public override string Description => "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）";
         #endregion
 
         #region 注册与释放
         public Plugin(Main game) : base(game) { }
+        private GeneralHooks.ReloadEventD _reloadHandler;
         public override void Initialize()
         {
             LoadConfig();
-            GeneralHooks.ReloadEvent += (_) => LoadConfig();
+            _reloadHandler = (_) => LoadConfig();
+            GeneralHooks.ReloadEvent += _reloadHandler;
             //提高优先级避免覆盖CreateSpawn插件
             ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize, 20);
             GetDataHandlers.PlayerUpdate.Register(PlayerUpdate);
@@ -35,10 +37,10 @@ namespace SpawnInfra
         {
             if (disposing)
             {
-                GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+                GeneralHooks.ReloadEvent -= _reloadHandler;
                 ServerApi.Hooks.GamePostInitialize.Deregister(this, OnGamePostInitialize);
                 GetDataHandlers.PlayerUpdate.UnRegister(PlayerUpdate);
-                Commands.ChatCommands.Remove(new Command("room.use", Comds.Comd, "rm", "基建"));
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Comds.Comd);
             }
             base.Dispose(disposing);
         }

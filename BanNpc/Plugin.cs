@@ -58,11 +58,10 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == BanCommand);
             ServerApi.Hooks.NpcSpawn.Deregister(this, OnSpawn);
             ServerApi.Hooks.NpcTransform.Deregister(this, OnTransform);
             GeneralHooks.ReloadEvent -= _reloadHandler;
-
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == BanCommand);
         }
 
         // Call the base class dispose method.

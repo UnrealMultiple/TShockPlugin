@@ -28,7 +28,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Author => "GK 少司命修复版";
 
-    public override Version Version => new Version(1, 3, 0, 0);
+    public override Version Version => new Version(1, 3, 0, 1);
 
     public override string Description => "由GK改良的简短指令插件！";
 
@@ -91,21 +91,24 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);
-        PlayerHooks.PlayerCommand += this.OnChat;
-        GeneralHooks.ReloadEvent += (e) =>
-        {
-            this.RC();
-            e.Player.SendSuccessMessage("简短指令重读成功!");
-        };
+        ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
+        PlayerHooks.PlayerCommand += OnChat;
+        GeneralHooks.ReloadEvent += Reload;
+    }
+
+    private void Reload(ReloadEventArgs e)
+    {
+        this.RC();
+        e.Player.SendSuccessMessage("简短指令重读成功!");
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            ServerApi.Hooks.GameInitialize.Deregister(this, this.OnInitialize);
-            PlayerHooks.PlayerCommand -= this.OnChat;
+            ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
+            PlayerHooks.PlayerCommand -= OnChat;
+            GeneralHooks.ReloadEvent -= Reload;
         }
         base.Dispose(disposing);
     }

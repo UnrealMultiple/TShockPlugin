@@ -168,7 +168,7 @@ powershell -ExecutionPolicy ByPass -File ./install.ps1 -verb runas
 | [SmartRegions](SmartRegions/README.md)                           |          智能区域           |                                                                        无                                                                         |
 | [ProxyProtocolSocket](ProxyProtocolSocket/README.md)             |  接受 proxy protocol 协议   |                                                                        无                                                                         |
 | [UnseenInventory](UnseenInventory/README.md)                     |  允许服务器端生成“无法获取”的物品   |                                                                        无                                                                         |
-| [ChestRestore](ChestRestore/README.md)                     |  资源服无限物品   |                                                                        无                                                                         |
+| [ChestRestore](ChestRestore/README.md)                           |  资源服无限物品   |                                                                        无                                                                         |
 
 </Details>
 

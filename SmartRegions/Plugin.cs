@@ -29,7 +29,7 @@ namespace SmartRegions
 
         public Plugin(Main game) : base(game) { }
 
-        public override Version Version => new Version(1, 4, 2);
+        public override Version Version => new Version(1, 4, 3);
 
         public override string Name => "Smart Regions";
 
@@ -64,6 +64,7 @@ namespace SmartRegions
         {
             if (Disposing)
             {
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == regionCommand || x.CommandDelegate == replaceRegion);
                 ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);
                 ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
                 DBConnection?.Close();

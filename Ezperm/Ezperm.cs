@@ -11,7 +11,7 @@ namespace Ezperm
         public override string Name => "Ezperm";
         public override string Author => "大豆子,肝帝熙恩优化1449";
         public override string Description => "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限";
-        public override Version Version => new Version(1, 2, 1);
+        public override Version Version => new Version(1, 2, 2);
         internal static Configuration Config;
         public Ezperm(Main game) : base(game)
         {

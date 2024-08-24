@@ -8,6 +8,8 @@
 ## 更新日志
 
 ```
+v1.2.2
+加了几个权限
 v1.2.1
 优化代码，完善卸载函数
 ```
@@ -28,6 +30,9 @@ v1.2.1
       "添加的权限": [
         "tshock.world.movenpc",
         "tshock.tp.pylon",
+        "tshock.tp.demonconch",
+        "tshock.tp.magicconch",
+        "tshock.tp.tppotion",
         "tshock.tp.rod",
         "tshock.npc.startdd2",
         "tshock.tp.wormhole",

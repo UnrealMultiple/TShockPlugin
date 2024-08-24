@@ -3,7 +3,12 @@
 - 出处: [tshock-onus-utility](https://github.com/onusai/tshock-onus-utility)
 - 使用指令切换沙尘暴开启停止，可在配置文件定义'风速值'
 
- 
+ ## 更新日志
+
+```
+1.0.1
+完善卸载函数
+```
 ## 指令
 
 | 语法                             | 别名  |       权限       |                   说明                   |

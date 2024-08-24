@@ -13,7 +13,7 @@ public class SignInSign : TerrariaPlugin
     public override string Name => "告示牌登录 SignInSign";
     public override string Description => "告示牌登录交互插件 支持进服弹窗！";
     public override string Author => "Soofa 羽学 少司命";
-    public override Version Version => new(1, 0, 4);
+    public override Version Version => new(1, 0, 5);
 
     #endregion
 
@@ -37,14 +37,19 @@ public class SignInSign : TerrariaPlugin
         Config = Configuration.Reload();
     }
 
-    public static void DisposeHandlers(TerrariaPlugin deregistrator)
+    protected override void Dispose(bool disposing)
     {
-        ServerApi.Hooks.NetGreetPlayer.Deregister(deregistrator, OnNetGreetPlayer);
-        ServerApi.Hooks.GamePostInitialize.Deregister(deregistrator, OnGamePostInitialize);
-        GetDataHandlers.TileEdit.UnRegister(OnEdit);
-        GetDataHandlers.Sign.UnRegister(OnSignChange);
-        GetDataHandlers.SignRead.UnRegister(OnSignRead);
-        GeneralHooks.ReloadEvent -= LoadConfig;
+        if (disposing)
+        {
+            TShockAPI.Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == Command.SetupCmd);
+            ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnNetGreetPlayer);
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, OnGamePostInitialize);
+            GetDataHandlers.TileEdit.UnRegister(OnEdit);
+            GetDataHandlers.Sign.UnRegister(OnSignChange);
+            GetDataHandlers.SignRead.UnRegister(OnSignRead);
+            GeneralHooks.ReloadEvent -= LoadConfig;
+        }
+        base.Dispose(disposing);
     }
     #endregion
 

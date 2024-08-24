@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "TownNPCHomes";
 
-    public override Version Version => new Version(1, 1, 0);
+    public override Version Version => new Version(1, 1, 1);
 
     private readonly ConcurrentDictionary<int, Vector2> npcHomePositions = new ConcurrentDictionary<int, Vector2>();
 
@@ -25,7 +25,7 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("tshock.world.movenpc", new CommandDelegate(TeleportNpcToTheirHomesCmd), new string[1] { "npchome" }));
+        Commands.ChatCommands.Add(new Command("tshock.world.movenpc", TeleportNpcToTheirHomesCmd, "npchome" ));
         NPCHome += OnNpcHome;
     }
 
@@ -33,6 +33,7 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == TeleportNpcToTheirHomesCmd);
             NPCHome -= OnNpcHome;
         }
         base.Dispose(disposing);

@@ -36,7 +36,11 @@ public class BetterWhitelist : TerrariaPlugin
 
         Commands.ChatCommands.Add(new Command("bwl.use", BetterWhitelistCommand, "bwl"));
     }
-
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing) Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == BetterWhitelistCommand);
+        base.Dispose(disposing);
+    }
 
     private void BetterWhitelistCommand(CommandArgs args)
     {
@@ -164,11 +168,5 @@ public class BetterWhitelist : TerrariaPlugin
     {
         _config = BConfig.Load(ConfigPath);
         File.WriteAllText(ConfigPath, JsonConvert.SerializeObject(_config, Formatting.Indented));
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing) Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == BetterWhitelistCommand);
-        base.Dispose(disposing);
     }
 }

@@ -23,7 +23,7 @@ namespace ServerTools
 
         public override string Name => "ServerTools";// 插件名字
 
-        public override Version Version => new(1, 1, 7, 3);// 插件版本
+        public override Version Version => new(1, 1, 7, 4);// 插件版本
 
         private static Config Config = new();
 
@@ -43,11 +43,12 @@ namespace ServerTools
         {
 
         }
-
+        private GeneralHooks.ReloadEventD _reloadHandler;
         public override void Initialize()
         {
 
             LoadConfig();
+            _reloadHandler = (_) => LoadConfig();
             #region 钩子
             ServerApi.Hooks.GamePostInitialize.Register(this, PostInitialize);
             ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
@@ -72,7 +73,7 @@ namespace ServerTools
             Commands.ChatCommands.Add(new Command("servertool.user.ghost", Ghost, "ghost"));
             Commands.ChatCommands.Add(new Command("servertool.set.journey", JourneyDiff, "旅途难度"));
             Commands.ChatCommands.Add(new Command("servertool.user.dead", DeathRank, "死亡排行"));
-            Commands.ChatCommands.Add(new("servertool.user.online", Online, "在线排行"));
+            Commands.ChatCommands.Add(new Command("servertool.user.online", Online, "在线排行"));
             #endregion
             #region TShcok 钩子
             GetDataHandlers.NewProjectile.Register(NewProj);
@@ -80,7 +81,7 @@ namespace ServerTools
             GetDataHandlers.KillMe.Register(KillMe);
             GetDataHandlers.PlayerSpawn.Register(OnPlayerSpawn);
             GetDataHandlers.PlayerUpdate.Register(OnUpdate);
-            GeneralHooks.ReloadEvent += (_) => LoadConfig();
+            GeneralHooks.ReloadEvent += _reloadHandler;
             #endregion
             CmdHook = new Hook(typeof(Commands).GetMethod(nameof(Commands.HandleCommand)), CommandHook);
             new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static), ViewAccountInfo);
@@ -92,15 +93,52 @@ namespace ServerTools
             On.OTAPI.Hooks.MessageBuffer.InvokeGetData += MessageBuffer_InvokeGetData;
             HandleCommandLine(Environment.GetCommandLineArgs());
         }
-   
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                #region 钩子
+                GeneralHooks.ReloadEvent -= _reloadHandler;
+                ServerApi.Hooks.GamePostInitialize.Deregister(this, PostInitialize);
+                ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
+                ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
+                ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);
+                ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
+                ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
+                ServerApi.Hooks.NetGetData.Deregister(this, GetData);
+                ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreet);
+                ServerApi.Hooks.ServerLeave.Deregister(this, _OnLeave);
+                ServerApi.Hooks.NpcStrike.Deregister(this, OnStrike);
+                ServerApi.Hooks.NpcAIUpdate.Deregister(this, OnNPCUpdate);
+                #endregion
 
-   
+                #region 指令
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Clear||x.CommandDelegate == WallQ||x.CommandDelegate == RWall||x.CommandDelegate == SelfKill||x.CommandDelegate == SelfKick||x.CommandDelegate == Ghost||x.CommandDelegate == JourneyDiff||x.CommandDelegate == DeathRank||x.CommandDelegate == Online);
+                #endregion
+                #region TShcok 钩子
+                GetDataHandlers.NewProjectile.UnRegister(NewProj);
+                GetDataHandlers.ItemDrop.UnRegister(OnItemDrop);
+                GetDataHandlers.KillMe.UnRegister(KillMe);
+                GetDataHandlers.PlayerSpawn.UnRegister(OnPlayerSpawn);
+                GetDataHandlers.PlayerUpdate.UnRegister(OnUpdate);
+                GeneralHooks.ReloadEvent += _reloadHandler;
+                #endregion
+                CmdHook.Dispose();
+                Timer -= OnUpdatePlayerOnline;
+                On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= MessageBuffer_InvokeGetData;
+                //不确定是否卸载完全
+
+            }
+            base.Dispose(disposing);
+        }
+
+
         //private void NPC_AI1(On.Terraria.NPC.orig_AI orig, NPC self)
         //{
         //    if(Collision.CanHit(self.Center,))
         //}
 
-       
+
 
         private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
         {

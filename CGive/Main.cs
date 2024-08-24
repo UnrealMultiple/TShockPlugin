@@ -13,7 +13,7 @@ public class Main : TerrariaPlugin
 
     public override string Name => "CGive";
 
-    public override Version Version => new Version(1, 0, 0, 0);
+    public override Version Version => new Version(1, 0, 0, 1);
 
     public Main(Terraria.Main game)
         : base(game)
@@ -22,10 +22,21 @@ public class Main : TerrariaPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("cgive.admin", this.cgive, "cgive"));
-        ServerApi.Hooks.GameInitialize.Register(this, this.OnGameInit);
-        ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);
-        TShock.RestApi.Register("/getWarehouse", this.getWarehouse);
+        Commands.ChatCommands.Add(new Command("cgive.admin", cgive, "cgive"));
+        ServerApi.Hooks.GameInitialize.Register(this, OnGameInit);
+        ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreetPlayer);
+        TShock.RestApi.Register("/getWarehouse", getWarehouse);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == cgive);
+            ServerApi.Hooks.GameInitialize.Deregister(this, OnGameInit);
+            ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);
+        }
+        base.Dispose(disposing);
     }
 
     private object getWarehouse(RestRequestArgs args)
@@ -206,16 +217,5 @@ public class Main : TerrariaPlugin
                     break;
                 }
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            Commands.ChatCommands.RemoveAll((Command CommandDelegate) => CommandDelegate.HasAlias("cgive"));
-            ServerApi.Hooks.GameInitialize.Deregister(this, this.OnGameInit);
-            ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreetPlayer);
-        }
-        base.Dispose(disposing);
     }
 }

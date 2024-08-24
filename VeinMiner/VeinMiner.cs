@@ -10,7 +10,7 @@ namespace VeinMiner
     public class VeinMiner : TerrariaPlugin
     {
         public override string Name => "VeinMiner";
-        public override Version Version => new Version(1, 6, 0, 3);
+        public override Version Version => new Version(1, 6, 0, 4);
         public override string Author => "Megghy|YSpoof|Maxthegreat99|肝帝熙恩";
         public override string Description => "VeinMiner by Megghy 适用于 TShock 5.2 支持！";
 
@@ -50,6 +50,7 @@ namespace VeinMiner
         {
             if (disposing)
             {
+                Commands.ChatCommands.RemoveAll(x => x.Permissions.Contains("veinminer"));
                 GetDataHandlers.TileEdit -= OnTileEdit;
                 TShockAPI.Hooks.GeneralHooks.ReloadEvent -= Config.Load;
                 ServerApi.Hooks.ServerJoin.Deregister(this, OnPlayerJoin);

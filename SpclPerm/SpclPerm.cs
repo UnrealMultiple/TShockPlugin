@@ -15,30 +15,30 @@ namespace Plugin
         #region 插件信息
         public override string Name => "服主特权";
         public override string Author => "羽学";
-        public override Version Version => new Version(1, 8, 0);
+        public override Version Version => new Version(1, 8, 1);
         public override string Description => "涡轮增压不蒸鸭";
         #endregion
 
 
         #region 注册与释放
         public Plugin(Main game) : base(game) { }
+        private GeneralHooks.ReloadEventD _reloadHandler;
         public override void Initialize()
         {
             LoadConfig();
-            GeneralHooks.ReloadEvent += (_) => LoadConfig();
+            _reloadHandler = (_) => LoadConfig();
+            GeneralHooks.ReloadEvent += _reloadHandler;
             PlayerSpawn += OnSpawn!;
             AccountCreate += OnRegister;
             ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
             ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
         }
 
-
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+                GeneralHooks.ReloadEvent -= _reloadHandler;
                 PlayerSpawn -= OnSpawn!;
                 AccountCreate -= OnRegister;
                 ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);

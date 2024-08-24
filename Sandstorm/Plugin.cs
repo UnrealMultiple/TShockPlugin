@@ -13,23 +13,26 @@ namespace Plugin
         #region 插件信息
         public override string Name => "Sandstorm";
         public override string Author => "羽学";
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
         public override string Description => "使用指令切换沙尘暴";
         #endregion
 
         #region 注册与释放
         public Plugin(Main game) : base(game) { }
+        private GeneralHooks.ReloadEventD _reloadHandler;
         public override void Initialize()
         {
             LoadConfig();
-            GeneralHooks.ReloadEvent += (_) => LoadConfig();
+            _reloadHandler = (_) => LoadConfig();
+            GeneralHooks.ReloadEvent += _reloadHandler;
             TShockAPI.Commands.ChatCommands.Add(new Command("Sandstorm.admin", ToggleSandstorm, "sd", "沙尘暴"));
         }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                GeneralHooks.ReloadEvent -= (_) => LoadConfig();
+                GeneralHooks.ReloadEvent -= _reloadHandler;
+                TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == ToggleSandstorm);
             }
             base.Dispose(disposing);
         }
