@@ -163,10 +163,8 @@ powershell -ExecutionPolicy ByPass -File ./install.ps1 -verb runas
 | [TeleportRequest](TeleportRequest/README.md)                     |                                  Teleport Request                                  |                                                                        No                                                                        |
 | [CaiRewardChest](CaiRewardChest/README.md)                       | Convert Naturally Generated Chests into Reward Chests that Everyone Can Claim Once |                                                                        No                                                                        |
 | [ProxyProtocolSocket](ProxyProtocolSocket/README.md)             |                         Accept proxy protocol connections                          |                                                                        No                                                                        |
-| [UnseenInventory](UnseenInventory/README.md)                     |       Allows the server to generate items that are normally 'unobtainable'.        |      
-       No                                                                        |
-| [ChestRestore](ChestRestore/README.md)                           |                              Infinite chest items                                  |       
-        No                                                                       |
+| [UnseenInventory](UnseenInventory/README.md)                     |       Allows the server to generate items that are normally 'unobtainable'.        |                                                                        No                                                                        |
+| [ChestRestore](ChestRestore/README.md)                           |                              Infinite chest items                                  |                                                                        No                                                                        |
 
 </Details>
 
