@@ -179,4 +179,4 @@ powershell -ExecutionPolicy ByPass -File ./install.ps1 -verb runas
 ## 友情链接
 
 - [TShock 插件开发文档](https://github.com/ACaiCat/TShockPluginDocument)
-- [Tshock 相关内容大全导航](https://gitee.com/THEXN/Tshock-nav)
+- [Tshock 相关内容大全导航](https://github.com/UnrealMultiple/Tshock-nav)
