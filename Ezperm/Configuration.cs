@@ -43,7 +43,7 @@ namespace Ezperm
                         new GroupInfo
                         {
                             Name = "default",
-                            AddPermissions = new List<string> { "tshock.world.movenpc","tshock.tp.pylon","tshock.tp.rod","tshock.npc.startdd2","tshock.tp.wormhole","tshock.npc.summonboss","tshock.npc.startinvasion","tshock.world.time.usesundial" },
+                            AddPermissions = new List<string> { "tshock.world.movenpc","tshock.tp.pylon", "tshock.tp.demonconch", "tshock.tp.magicconch", "tshock.tp.tppotion", "tshock.tp.rod","tshock.npc.startdd2","tshock.tp.wormhole","tshock.npc.summonboss","tshock.npc.startinvasion","tshock.world.time.usesundial" },
                             DelPermissions = new List<string> { "tshock.admin" }
                         }
                     }
