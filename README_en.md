@@ -16,6 +16,7 @@
 - Some of the plugins in the library are collected from the internet and decompiled.
 - Due to the special nature of the project, it may cause infringement. If there is any infringement, please contact us to resolve it.
 - We will continue to collect high-quality `TShock` plugins, update them in a timely manner, and keep up with the latest version of `TShock`.
+- If you wish to join us, follow the `Developer Notes` and submit a `Pull Request` to this repository.
 
 
 ## User Notes
@@ -28,6 +29,23 @@
 
 - Chinese mirror: [Plugins.zip](https://github.moeyy.xyz/https://github.com/Controllerdestiny/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
 - This repository: [Plugins.zip](https://github.com/Controllerdestiny/TShockPlugin/releases/tag/V1.0.0.0)
+
+## How to Install TShock
+- If you are a Windows user, you can choose to install it using the following command (run this command in pwsh):
+```powershell
+curl -o install.ps1 https://github.moeyy.xyz/https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/InstallTShock.ps1
+powershell -ExecutionPolicy ByPass -File ./install.ps1 -verb runas
+```
+
+## Developer Notes
+
+> Coding Standards
+
+- Do not use Chinese variable names.
+- Do not use dangerous features.
+- Avoid using multithreading where possible.
+- Do not leave backdoors in plugins.
+- Please include a README.md file with each plugin project.
 
 ## Feedback
 
@@ -145,6 +163,10 @@
 | [TeleportRequest](TeleportRequest/README.md)                     |                                  Teleport Request                                  |                                                                        No                                                                        |
 | [CaiRewardChest](CaiRewardChest/README.md)                       | Convert Naturally Generated Chests into Reward Chests that Everyone Can Claim Once |                                                                        No                                                                        |
 | [ProxyProtocolSocket](ProxyProtocolSocket/README.md)             |                         Accept proxy protocol connections                          |                                                                        No                                                                        |
+| [UnseenInventory](UnseenInventory/README.md)                     |       Allows the server to generate items that are normally 'unobtainable'.        |      
+       No                                                                        |
+| [ChestRestore](ChestRestore/README.md)                           |                              Infinite chest items                                  |       
+        No                                                                       |
 
 </Details>
 
@@ -155,3 +177,4 @@
 ## Friendly Links
 
 - [TShock Plugin Development Documentation](https://github.com/ACaiCat/TShockPluginDocument)
+- [Tshock Comprehensive Navigation](https://gitee.com/THEXN/Tshock-nav)
