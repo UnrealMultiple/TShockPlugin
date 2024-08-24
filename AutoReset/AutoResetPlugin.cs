@@ -32,7 +32,7 @@ public class AutoResetPlugin : TerrariaPlugin
 
     public override string Name => "AutoReset";
 
-    public override Version Version => new(2024, 8, 2);
+    public override Version Version => new(2024, 8, 24);
 
     public override string Author => "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩";
 
@@ -104,6 +104,19 @@ public class AutoResetPlugin : TerrariaPlugin
         };
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {//不确定是否卸载完全
+            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == ResetCmd||c.CommandDelegate==OnWho||c.CommandDelegate==ResetSetting);
+            ServerApi.Hooks.NpcKilled.Deregister(this, CountKill);
+            ServerApi.Hooks.ServerJoin.Deregister(this, OnServerJoin);
+            ServerApi.Hooks.WorldSave.Deregister(this, OnWorldSave);
+            GeneralHooks.ReloadEvent -= delegate (ReloadEventArgs e){};
+        }
+
+        base.Dispose(disposing);
+    }
 
     private void OnWho(CommandArgs args)
     {
@@ -129,18 +142,6 @@ public class AutoResetPlugin : TerrariaPlugin
             case Status.Available:
                 break;
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            ServerApi.Hooks.NpcKilled.Deregister(this, CountKill);
-            ServerApi.Hooks.ServerJoin.Deregister(this, OnServerJoin);
-            ServerApi.Hooks.WorldSave.Deregister(this, OnWorldSave);
-        }
-
-        base.Dispose(disposing);
     }
 
     private void CountKill(NpcKilledEventArgs args)
