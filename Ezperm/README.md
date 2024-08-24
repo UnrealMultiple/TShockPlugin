@@ -30,6 +30,9 @@ v1.2.1
       "添加的权限": [
         "tshock.world.movenpc",
         "tshock.tp.pylon",
+        "tshock.tp.demonconch",
+        "tshock.tp.magicconch",
+        "tshock.tp.tppotion",
         "tshock.tp.rod",
         "tshock.npc.startdd2",
         "tshock.tp.wormhole",
