@@ -11,7 +11,7 @@ namespace PvPer
     public class PvPer : TerrariaPlugin
     {
         public override string Name => "决斗系统";
-        public override Version Version => new Version(1, 1, 2);
+        public override Version Version => new Version(1, 1, 3);
         public override string Author => "Soofa 羽学修改";
         public override string Description => "不是你死就是我活系列";
         public PvPer(Main game) : base(game)
@@ -60,6 +60,21 @@ namespace PvPer
             #endregion
         }
 
+        protected override void Dispose(bool disposing)
+        {     //不确定是否完成卸载标记
+            if (disposing)
+            {
+                GetDataHandlers.PlayerTeam -= OnPlayerChangeTeam;
+                GetDataHandlers.TogglePvp -= OnPlayerTogglePvP;
+                GetDataHandlers.Teleport -= OnPlayerTeleport;
+                GetDataHandlers.PlayerUpdate -= OnPlayerUpdate;
+                GetDataHandlers.KillMe -= OnKill;
+                ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
+                GeneralHooks.ReloadEvent -= LoadConfig;
+                TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Duel || x.CommandDelegate == BuffList || x.CommandDelegate == WeaponList || x.CommandDelegate == BanWeapon || x.CommandDelegate == BanBuff);
+            }
+            base.Dispose(disposing);
+        }
         #region 创建与加载配置文件方法
         private static void LoadConfig(ReloadEventArgs args = null!)
         {

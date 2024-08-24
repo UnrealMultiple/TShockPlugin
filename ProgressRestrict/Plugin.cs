@@ -26,7 +26,6 @@ public class Plugin : TerrariaPlugin
     {
         this.config = Config.LoadConfig(this.path);
     }
-
     public override void Initialize()
     {
         this.config = Config.LoadConfig(this.path);
@@ -40,6 +39,15 @@ public class Plugin : TerrariaPlugin
             this.UpdateRestricted();
         };
         DataSync.Plugin.OnProgressChanged += this.UpdateRestricted;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            //未完成卸载标记
+        }
+        base.Dispose(disposing);
     }
 
     private void OnBuff(object? sender, GetDataHandlers.PlayerBuffEventArgs e)

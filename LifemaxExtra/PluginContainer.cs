@@ -13,7 +13,7 @@ public class LifemaxExtra : TerrariaPlugin
     public override string Author => "佚名 & 肝帝熙恩 & 少司命";
     public override string Description => "提升生命值上限";
     public override string Name => "LifemaxExtra";
-    public override Version Version => new Version(1, 0, 0, 6);
+    public override Version Version => new Version(1, 0, 0, 7);
     public static Configuration Config;
 
     public LifemaxExtra(Main game) : base(game)
@@ -48,6 +48,7 @@ public class LifemaxExtra : TerrariaPlugin
     {
         if (disposing)
         {
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == HP || x.CommandDelegate == Mana);
             GeneralHooks.ReloadEvent -= ReloadConfig;
             GetDataHandlers.PlayerUpdate -= OnPlayerUpdate;
             GetDataHandlers.PlayerHP -= OnHP;

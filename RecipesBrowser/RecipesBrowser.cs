@@ -9,7 +9,7 @@ public class MainPlugin : TerrariaPlugin
 {
     public override string Name => "RecipesBrowser";
 
-    public override Version Version => new Version(0, 5);
+    public override Version Version => new Version(1, 0, 6);
 
     public override string Author => "棱镜 羽学适配";
 
@@ -22,7 +22,7 @@ public class MainPlugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command(FindRecipe, "查", "find", "fd"));
+        Commands.ChatCommands.Add(new Command("" , FindRecipe, "查", "find", "fd"));
         MapHelper.Initialize();
         BuildMapAtlas();
     }
@@ -347,6 +347,7 @@ public class MainPlugin : TerrariaPlugin
     {
         if (disposing)
         {
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == FindRecipe);
             MapHelper.Initialize();
             BuildMapAtlas();
         }

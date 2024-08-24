@@ -13,7 +13,7 @@ namespace MapTeleport
         {
             Order = 1;
         }
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
         public override string Author => "Nova4334，肝帝熙恩汉化适配1449";
         public override string Name => "MapTeleport";
         public override string Description => "允许玩家传送到地图上的选定位置.";
@@ -21,6 +21,14 @@ namespace MapTeleport
         public override void Initialize()
         {
             GetDataHandlers.ReadNetModule.Register(teleport);
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                GetDataHandlers.ReadNetModule.UnRegister(teleport);
+            }
+            base.Dispose(disposing);
         }
 
         public const string ALLOWED = "maptp.noclip";
