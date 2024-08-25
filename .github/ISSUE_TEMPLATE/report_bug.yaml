@@ -52,12 +52,12 @@ body:
   - type: dropdown
     id: system
     attributes:
-    label: 系统
-    options:
-      - Windows
-      - Linux
-      - Mac
-      - 手机
+      label: 系统
+      options:
+        - Windows
+        - Linux
+        - Mac
+        - 手机
     validations:
       required: true
   
