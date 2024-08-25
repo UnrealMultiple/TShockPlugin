@@ -1,4 +1,5 @@
-﻿using System.Net.WebSockets;
+﻿using System.IO.Compression;
+using System.Net.WebSockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using Newtonsoft.Json;
@@ -48,6 +49,19 @@ public static class MessageHandle
         finally
         {
             fsForRead.Close();
+        }
+    }
+    
+    public static string CompressBase64(string base64String)
+    {
+        byte[] base64Bytes = Encoding.UTF8.GetBytes(base64String);
+        using (var outputStream = new MemoryStream())
+        {
+            using (var gzipStream = new GZipStream(outputStream, CompressionMode.Compress))
+            {
+                gzipStream.Write(base64Bytes, 0, base64Bytes.Length);
+            }
+            return Convert.ToBase64String(outputStream.ToArray());
         }
     }
 
@@ -380,12 +394,11 @@ public static class MessageHandle
                     string base64 = Convert.ToBase64String(imageBytes);
                     result = new RestObject
                     {
-                        { "type", "mappng" },
-                        { "result", base64 },
+                        { "type", "mappngV2" },
+                        { "result", CompressBase64(base64) },
                         { "group", (long)jsonObject["group"]! }
                     };
                 }
-
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "lookbag":
@@ -577,8 +590,8 @@ public static class MessageHandle
                 string mapfileBase64 = Convert.ToBase64String(info.Buffer);
                 result = new RestObject
                 {
-                    { "type", "mapfile" },
-                    { "base64", mapfileBase64 },
+                    { "type", "mapfileV2" },
+                    { "base64", CompressBase64(mapfileBase64) },
                     { "name", info.Name },
                     { "group", (long)jsonObject["group"]! }
                 };
@@ -587,9 +600,9 @@ public static class MessageHandle
             case "worldfile":
                 result = new RestObject
                 {
-                    { "type", "worldfile" },
+                    { "type", "worldfileV2" },
                     { "name", Main.worldPathName },
-                    { "base64", FileToBase64String(Main.worldPathName) },
+                    { "base64",CompressBase64(FileToBase64String(Main.worldPathName)) },
                     { "group", (long)jsonObject["group"]! }
                 };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
