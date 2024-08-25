@@ -2,7 +2,7 @@
 
 public class PluginUpdateInfo
 {
-    public PluginUpdateInfo(string name, string author, string newVersion, string oldVersion, string localPath, string remotePath)
+    public PluginUpdateInfo(string name, string author, Version newVersion, Version oldVersion, string localPath, string remotePath)
     {
         NewVersion = newVersion;
         OldVersion = oldVersion;
@@ -11,8 +11,8 @@ public class PluginUpdateInfo
         LocalPath = localPath;
         RemotePath = remotePath;
     }
-    public string NewVersion { get; set; }
-    public string OldVersion { get; set; }
+    public Version NewVersion { get; set; }
+    public Version OldVersion { get; set; }
     public string Author { get; set; }
     public string Name { get; set; }
     public string LocalPath { get; set; }
