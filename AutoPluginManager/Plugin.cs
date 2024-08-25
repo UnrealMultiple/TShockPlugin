@@ -4,6 +4,7 @@ using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace AutoPluginManager;
 
@@ -12,7 +13,7 @@ public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoPluginManager";
 
-    public override Version Version => new(2, 0, 0, 3);
+    public override Version Version => new(2, 0, 1, 1);
 
     public override string Author => "少司命，Cai";
 
@@ -23,8 +24,8 @@ public class Plugin : TerrariaPlugin
     private const string PUrl = "https://github.moeyy.xyz/";
 
     private const string PluginsUrl = "https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/Plugins.json";
-
-    private static readonly HttpClient _httpClient = new();
+    
+    public static readonly Dictionary<string,Version> HasUpdated = new();
 
     private const string TempSaveDir = "TempFile";
 
@@ -40,11 +41,12 @@ public class Plugin : TerrariaPlugin
     public override void Initialize()
     {
         Commands.ChatCommands.Add(new("AutoUpdatePlugin", PluginManager, "apm"));
-        ServerApi.Hooks.GamePostInitialize.Register(this, AutoCheckUpdate, int.MinValue); //最低优先级
+        ServerApi.Hooks.GamePostInitialize.Register(this, AutoCheckUpdate, int.MinValue);
+        Config.Read();
+        GeneralHooks.ReloadEvent += GeneralHooksOnReloadEvent;
+        
     }
-
-
-
+    
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -57,7 +59,11 @@ public class Plugin : TerrariaPlugin
 
         base.Dispose(disposing);
     }
-
+    private void GeneralHooksOnReloadEvent(ReloadEventArgs e)
+    {
+        Config.Read();
+        e.Player.SendSuccessMessage("[AutoUpdatePlugin]插件配置已重载~");
+    }
     private void AutoCheckUpdate(EventArgs args)
     {
         _timer.AutoReset = true;
@@ -71,7 +77,17 @@ public class Plugin : TerrariaPlugin
                 if (updates.Any())
                 {
                     TShock.Log.ConsoleInfo("[以下插件有新的版本更新]\n" + string.Join("\n", updates.Select(i => $"[{i.Name}] V{i.OldVersion} >>> V{i.NewVersion}")));
-                    TShock.Log.ConsoleInfo("你可以使用命令/apm -u 更新插件哦~");
+                    if (Config.PluginConfig.AutoUpdate)
+                    {
+                        TShock.Log.ConsoleInfo("正在自动更新插件...");
+                        UpdateCmd(TSPlayer.Server,Array.Empty<string>());
+                    }
+                    else
+                    {
+                        TShock.Log.ConsoleInfo("你可以使用命令/apm -u 更新插件哦~");
+                    }
+                    
+                    
                 }
 
             }
@@ -86,18 +102,18 @@ public class Plugin : TerrariaPlugin
 
     private void PluginManager(CommandArgs args)
     {
-        if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "-c")
+        if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-c"||args.Parameters[0].ToLower() == "c"))
         {
             CheckCmd(args.Player);
         }
-        else if (args.Parameters.Count >= 1 && args.Parameters[0].ToLower() == "-u")
+        else if (args.Parameters.Count >= 1 && (args.Parameters[0].ToLower() == "-u"||args.Parameters[0].ToLower() == "u"))
         {
             var targets = Array.Empty<string>();
             if (args.Parameters.Count > 1)
                 targets = args.Parameters[1].Split(",");
             UpdateCmd(args.Player, targets);
         }
-        else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "-i")
+        else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-i"||args.Parameters[0].ToLower() == "i"))
         {
             var indexs = args.Parameters[1].Split(",").Select(x =>
             {
@@ -107,19 +123,55 @@ public class Plugin : TerrariaPlugin
             });
             InstallCmd(args.Player, indexs);
         }
-        else if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "-l")
+        else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-l"||args.Parameters[0].ToLower() == "l"))
         {
             var repo = GetRepoPlugin();
             args.Player.SendInfoMessage("可安装插件列表:");
             for (int i = 0; i < repo.Count; i++)
-                args.Player.SendInfoMessage($"{i + 1}.{repo[i].Name} {repo[i].Path} {repo[i].Version}");
+                args.Player.SendInfoMessage($"{i + 1}.{repo[i].Name} v{repo[i].Version} (by {repo[i].Author}) - {repo[i].Description}");
+            args.Player.SendInfoMessage("*使用/apm -i <序号> 即可安装哦~");
+        }
+        else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-b"||args.Parameters[0].ToLower() == "b"))
+        {
+            var plugins = GetPlugins();
+            if (!plugins.Exists(p => p.Name == args.Parameters[1]))
+            {
+                args.Player.SendErrorMessage("排除失败, 没有在你的插件列表里找到这个插件呢~");
+                return;
+            }
+            Config.PluginConfig.UpdateBlackList.Add(args.Parameters[1]);
+            Config.PluginConfig.Write();
+            args.Player.SendSuccessMessage("排除成功, 已跳过此插件的更新检查~");
+        }
+        else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-rb"||args.Parameters[0].ToLower() == "rb"))
+        {
+            if (!Config.PluginConfig.UpdateBlackList.Contains(args.Parameters[1]))
+            {
+                args.Player.SendErrorMessage("删除失败, 没有在你的插件列表里找到这个插件呢~");
+                return;
+            }
+            Config.PluginConfig.UpdateBlackList.Remove(args.Parameters[1]);
+            Config.PluginConfig.Write();
+            args.Player.SendSuccessMessage("删除成功, 此插件将会被检查更新~");
+        }
+        else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-lb"||args.Parameters[0].ToLower() == "lb"))
+        {
+            if (Config.PluginConfig.UpdateBlackList.Count==0)
+            {
+                args.Player.SendSuccessMessage("当前没有排除任何一个插件哦~");
+                return;
+            }
+            args.Player.SendErrorMessage("插件更新排除列表:\n" + string.Join('\n',Config.PluginConfig.UpdateBlackList));
         }
         else
         {
-            args.Player.SendInfoMessage("apm -c 检测已安装插件更新");
-            args.Player.SendInfoMessage("apm -u [插件名] 更新所有插件或指定插件");
-            args.Player.SendInfoMessage("apm -i [序号] 安装指定插件");
-            args.Player.SendInfoMessage("apm -l 查看可安装插件表");
+            args.Player.SendInfoMessage("apm c 检测已安装插件更新");
+            args.Player.SendInfoMessage("apm u [插件名] 更新所有插件或指定插件");
+            args.Player.SendInfoMessage("apm i [序号] 安装指定插件");
+            args.Player.SendInfoMessage("apm l 查看可安装插件表");
+            args.Player.SendInfoMessage("apm b [插件名字] 更新时跳过指定插件");
+            args.Player.SendInfoMessage("apm rb [插件名字] 取消更新排除");
+            args.Player.SendInfoMessage("apm lb 查看更新排除列表");
         }
     }
 
@@ -228,8 +280,9 @@ public class Plugin : TerrariaPlugin
         List<PluginUpdateInfo> pluginUpdateList = new();
         foreach (var latestPluginInfo in latestPluginList)
             foreach (var plugin in plugins)
-                if (plugin.Name == latestPluginInfo.Name && plugin.Version != latestPluginInfo.Version)
+                if (plugin.Name == latestPluginInfo.Name && plugin.Version < latestPluginInfo.Version)
                     pluginUpdateList.Add(new PluginUpdateInfo(plugin.Name, plugin.Author, latestPluginInfo.Version, plugin.Version, plugin.Path, latestPluginInfo.Path));
+        pluginUpdateList.RemoveAll(x => Config.PluginConfig.UpdateBlackList.Contains(x.Name));
         return pluginUpdateList;
     }
 
@@ -239,8 +292,8 @@ public class Plugin : TerrariaPlugin
         var plugins = GetPlugins();
         foreach (var latestPluginInfo in latestPluginList)
             foreach (var plugin in plugins)
-                if (plugin.Name == latestPluginInfo.Name && plugin.Version != latestPluginInfo.Version)
-                    pluginUpdateList.Add(new PluginUpdateInfo(plugin.Name, plugin.Author, latestPluginInfo.Version, plugin.Version, plugin.Path, latestPluginInfo.Path));
+                if (plugin.Name == latestPluginInfo.Name && plugin.Version < latestPluginInfo.Version)
+                    pluginUpdateList.Add(new PluginUpdateInfo(plugin.Name, plugin.Author,latestPluginInfo.Version, plugin.Version, plugin.Path, latestPluginInfo.Path));
         return pluginUpdateList;
     }
 
@@ -262,16 +315,18 @@ public class Plugin : TerrariaPlugin
         //获取已安装的插件，并且读取插件信息和AssemblyName
         foreach (var plugin in ServerApi.Plugins)
         {
+            Version version = HasUpdated.ContainsKey(plugin.Plugin.Name) //将插件版本设为上次更新的新版本
+                ? HasUpdated[plugin.Plugin.Name]
+                : plugin.Plugin.Version;
             plugins.Add(new PluginVersionInfo()
             {
                 AssemblyName = plugin.Plugin.GetType().Assembly.GetName().Name!,
                 Author = plugin.Plugin.Author,
                 Name = plugin.Plugin.Name,
                 Description = plugin.Plugin.Description,
-                Version = plugin.Plugin.Version.ToString()
+                Version = version
             });
         }
-        //反射拯救了TSAPI
         var type = typeof(ServerApi);
         var field = type.GetField("loadedAssemblies", BindingFlags.NonPublic | BindingFlags.Static)!;
         if (field.GetValue(null) is Dictionary<string, Assembly> loadedAssemblies)
@@ -317,18 +372,26 @@ public class Plugin : TerrariaPlugin
     {
         for (int i = pluginUpdateInfos.Count - 1; i >= 0; i--)
         {
-            var pluginUpdateInfo = pluginUpdateInfos[i];
-            string sourcePath = Path.Combine(TempSaveDir, "Plugins", "Plugins", pluginUpdateInfo.RemotePath);
-            string destinationPath = Path.Combine(ServerApi.ServerPluginsDirectoryPath, pluginUpdateInfo.LocalPath);
+            var currentPluginInfo = pluginUpdateInfos[i];
+            string sourcePath = Path.Combine(TempSaveDir, "Plugins", "Plugins", currentPluginInfo.RemotePath);
+            string destinationPath = Path.Combine(ServerApi.ServerPluginsDirectoryPath, currentPluginInfo.LocalPath);
             // 确保目标目录存在
             string destinationDirectory = Path.GetDirectoryName(destinationPath)!;
             if (File.Exists(destinationPath))
             {
                 File.Copy(sourcePath, destinationPath, true);
+                if (HasUpdated.ContainsKey(currentPluginInfo.Name))
+                {
+                    HasUpdated[currentPluginInfo.Name] = currentPluginInfo.NewVersion;
+                }
+                else
+                {
+                    HasUpdated.Add(currentPluginInfo.Name,currentPluginInfo.NewVersion);
+                }
             }
             else
             {
-                TShock.Log.ConsoleWarn($"[跳过更新]无法在本地找到插件{pluginUpdateInfo.Name}({destinationPath}),可能是云加载或使用-additionalplugins加载");
+                TShock.Log.ConsoleWarn($"[跳过更新]无法在本地找到插件{currentPluginInfo.Name}({destinationPath}),可能是云加载或使用-additionalplugins加载");
                 pluginUpdateInfos.RemoveAt(i);  // 移除元素
             }
         }
