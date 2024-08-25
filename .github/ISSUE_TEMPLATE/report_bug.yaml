@@ -1,0 +1,98 @@
+name: 报告BUG
+description: 提交一个本仓库插件BUG
+title: '[BUG] '
+labels: bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        很高兴你能提交新的Bug，为了能够更好的解决问题，请你填写下面的表格捏
+  - type: checkboxes
+    id: read-first-issue
+    attributes:
+      label: 我已经阅读发ISSUE必看
+      description: 这里包含了问问题的须知
+      options:
+        - label: 是
+          required: true
+  - type: checkboxes
+    id: read2
+    attributes:
+      label: 我已确保所有信息都填写完整
+      description: 我已确保所有信息都填写完整
+      options:
+        - label: 是
+          required: true
+  - type: checkboxes
+    id: read3
+    attributes:
+      label: 我已确保我复现BUG的方法可用
+      description: 我已确保我复现BUG的方法可用
+      options:
+        - label: 是
+          required: true
+  - type: checkboxes
+    id: read4
+    attributes:
+      label: 我已确保我复现BUG的方法可用
+      description: 我已确保我复现BUG的方法可用
+      options:
+        - label: 是
+          required: true
+          
+  - type: input
+    id: plugin-name
+    attributes:
+      label: 插件名字
+      description: 出问题的插件
+      placeholder: CaiBotPlugin
+    validations:
+      required: true
+  - type: dropdown
+    id: system
+    attributes:
+    label: 系统
+    options:
+      - Windows
+      - Linux
+      - Mac
+      - 手机
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 发生了什么?
+      description: 填写对问题的描述
+    validations:
+      required: true
+  - type: textarea
+    id: how-reproduce
+    attributes:
+      label: 如何复现
+      description: 填写应当如何操作才会让BUG出现
+      placeholder: |
+        1. xxx
+        2. xxx
+        3. xxx
+    validations:
+      required: true
+  - type: textarea
+    id: what-expected
+    attributes:
+      label: 期望的结果?
+      description: 填写如果你觉得插件正常，会出现的结果
+    validations:
+      required: true
+  - type: textarea
+    id: llonebot-log
+    attributes:
+      label: 控制台日志
+      description: 在控制台的报错截图，没有请忽略
+      render: shell
+  - type: textarea
+    id: onebot-client-log
+    attributes:
+      label: 文本日志
+      description: tshock文本日志的不正常、报错部分
+      render: shell
