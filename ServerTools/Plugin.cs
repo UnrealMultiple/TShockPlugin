@@ -39,6 +39,8 @@ namespace ServerTools
 
         public static Hook CmdHook;
 
+        public static Hook AccountInfoHook;
+
         public Plugin(Main game) : base(game)
         {
 
@@ -84,7 +86,7 @@ namespace ServerTools
             GeneralHooks.ReloadEvent += _reloadHandler;
             #endregion
             CmdHook = new Hook(typeof(Commands).GetMethod(nameof(Commands.HandleCommand)), CommandHook);
-            new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static), ViewAccountInfo);
+            AccountInfoHook = new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static), ViewAccountInfo);
             #region RestAPI
             TShock.RestApi.Register("/deathrank", DeadRank);
             TShock.RestApi.Register("/onlineDuration", Queryduration);
@@ -121,12 +123,13 @@ namespace ServerTools
                 GetDataHandlers.KillMe.UnRegister(KillMe);
                 GetDataHandlers.PlayerSpawn.UnRegister(OnPlayerSpawn);
                 GetDataHandlers.PlayerUpdate.UnRegister(OnUpdate);
-                GeneralHooks.ReloadEvent += _reloadHandler;
+                GeneralHooks.ReloadEvent -= _reloadHandler;
                 #endregion
-                CmdHook.Dispose();
+                CmdHook?.Dispose();
+                AccountInfoHook?.Dispose();
                 Timer -= OnUpdatePlayerOnline;
                 On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= MessageBuffer_InvokeGetData;
-                //不确定是否卸载完全
+                //不确定是否卸载完全,restapi可能会用到反射
 
             }
             base.Dispose(disposing);

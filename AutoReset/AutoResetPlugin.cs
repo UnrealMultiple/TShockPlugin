@@ -32,13 +32,67 @@ public class AutoResetPlugin : TerrariaPlugin
 
     public override string Name => "AutoReset";
 
-    public override Version Version => new(2024, 8, 24);
+    public override Version Version => new(2024, 8, 25);
 
     public override string Author => "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩";
 
     public override string Description => "完全自动重置插件";
 
     public override void Initialize()
+    {
+        LoadConfig();
+        Commands.ChatCommands.Add(new Command("reset.admin", ResetCmd, "reset", "重置世界"));
+        Commands.ChatCommands.Add(new Command("", OnWho, "who", "playing", "online"));
+
+        Commands.ChatCommands.Add(new Command("reset.admin", ResetSetting, "rs", "重置设置"));
+        ServerApi.Hooks.ServerJoin.Register(this, OnServerJoin, int.MaxValue);
+        ServerApi.Hooks.WorldSave.Register(this, OnWorldSave, int.MaxValue);
+        ServerApi.Hooks.NpcKilled.Register(this, CountKill);
+        GeneralHooks.ReloadEvent += ReloadConfig;
+;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == ResetCmd || c.CommandDelegate == OnWho || c.CommandDelegate == ResetSetting);
+            ServerApi.Hooks.NpcKilled.Deregister(this, CountKill);
+            ServerApi.Hooks.ServerJoin.Deregister(this, OnServerJoin);
+            ServerApi.Hooks.WorldSave.Deregister(this, OnWorldSave);
+            GeneralHooks.ReloadEvent -= ReloadConfig;
+        }
+
+        base.Dispose(disposing);
+    }
+
+    private void ReloadConfig(ReloadEventArgs e)
+    {
+        if (File.Exists(_configPath))
+        {
+            Config = JsonConvert.DeserializeObject<ResetConfig>(File.ReadAllText(_configPath))!;
+        }
+        else
+        {
+            Config = new ResetConfig
+            {
+                KillToReset = new ResetConfig.AutoReset(),
+                SetWorld = new ResetConfig.SetWorldConfig(),
+                PreResetCommands = Array.Empty<string>(),
+                PostResetCommands = Array.Empty<string>(),
+                SqLs = new[]
+                {
+                        "DELETE FROM tsCharacter"
+                    },
+                Files = new Dictionary<string, string>()
+            };
+            File.WriteAllText(_configPath, Config.ToJson());
+        }
+
+        e.Player.SendSuccessMessage("[AutoReset]自动重置插件配置已重载");
+    }
+
+    private void LoadConfig()
     {
         string _AllPath = Path.Combine(TShock.SavePath, "AutoReset");
         if (!Directory.Exists(_AllPath))
@@ -52,7 +106,7 @@ public class AutoResetPlugin : TerrariaPlugin
                 KillToReset = new ResetConfig.AutoReset(),
                 SetWorld = new ResetConfig.SetWorldConfig(),
                 PreResetCommands = new string[] { "/结算金币" },
-                PostResetCommands = new string[] { "/reload","/初始化进度补给箱","/rpg reset" },
+                PostResetCommands = new string[] { "/reload", "/初始化进度补给箱", "/rpg reset" },
                 SqLs = new[]
                 {
                     "DELETE FROM tsCharacter"
@@ -69,53 +123,6 @@ public class AutoResetPlugin : TerrariaPlugin
         {
             Config = JsonConvert.DeserializeObject<ResetConfig>(File.ReadAllText(_configPath))!;
         }
-
-        Commands.ChatCommands.Add(new Command("reset.admin", ResetCmd, "reset", "重置世界"));
-        Commands.ChatCommands.Add(new Command("", OnWho, "who", "playing", "online"));
-
-        Commands.ChatCommands.Add(new Command("reset.admin", ResetSetting, "rs", "重置设置"));
-        ServerApi.Hooks.ServerJoin.Register(this, OnServerJoin, int.MaxValue);
-        ServerApi.Hooks.WorldSave.Register(this, OnWorldSave, int.MaxValue);
-        ServerApi.Hooks.NpcKilled.Register(this, CountKill);
-        GeneralHooks.ReloadEvent += delegate(ReloadEventArgs e)
-        {
-            if (File.Exists(_configPath))
-            {
-                Config = JsonConvert.DeserializeObject<ResetConfig>(File.ReadAllText(_configPath))!;
-            }
-            else
-            {
-                Config = new ResetConfig
-                {
-                    KillToReset = new ResetConfig.AutoReset(),
-                    SetWorld = new ResetConfig.SetWorldConfig(),
-                    PreResetCommands = Array.Empty<string>(),
-                    PostResetCommands = Array.Empty<string>(),
-                    SqLs = new[]
-                    {
-                        "DELETE FROM tsCharacter"
-                    },
-                    Files = new Dictionary<string, string>()
-                };
-                File.WriteAllText(_configPath, Config.ToJson());
-            }
-
-            e.Player.SendSuccessMessage("[AutoReset]自动重置插件配置已重载");
-        };
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {//不确定是否卸载完全
-            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == ResetCmd||c.CommandDelegate==OnWho||c.CommandDelegate==ResetSetting);
-            ServerApi.Hooks.NpcKilled.Deregister(this, CountKill);
-            ServerApi.Hooks.ServerJoin.Deregister(this, OnServerJoin);
-            ServerApi.Hooks.WorldSave.Deregister(this, OnWorldSave);
-            GeneralHooks.ReloadEvent -= delegate (ReloadEventArgs e){};
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnWho(CommandArgs args)
