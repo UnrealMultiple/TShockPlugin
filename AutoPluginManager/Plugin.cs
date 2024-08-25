@@ -53,6 +53,7 @@ public class Plugin : TerrariaPlugin
         {
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == PluginManager);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, AutoCheckUpdate);
+            GeneralHooks.ReloadEvent -= GeneralHooksOnReloadEvent;
             _timer.Stop();
             _timer.Dispose();
         }
