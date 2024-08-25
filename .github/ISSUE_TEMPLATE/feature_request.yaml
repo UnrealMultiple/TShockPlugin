@@ -1,0 +1,49 @@
+name: 请求新功能
+description: 提交一个本仓库插件BUG
+title: '[建议] '
+labels: suggest
+body:
+  - type: markdown
+    attributes:
+      value: |
+        很高兴你能提交新的功能，为了能够更好的描述功能，请你填写下面的表格捏
+  - type: checkboxes
+    id: read-first-issue
+    attributes:
+      label: 已阅须知
+      description: 我已经阅读发ISSUE必看
+      options:
+        - label: 是
+          required: true
+  - type: checkboxes
+    id: read2
+    attributes:
+      label: 功能有益
+      description: 我已确我提交的功能对大部分服主有益
+      options:
+        - label: 是
+          required: true
+          
+  - type: input
+    id: plugin-name
+    attributes:
+      label: 插件名字
+      description: 建议的插件
+      placeholder: CaiBotPlugin
+    validations:
+      required: true
+      
+
+  - type: textarea
+    id: how-reproduce
+    attributes:
+      label: 需要什么功能?
+      description: 详细的说说你的功能
+      placeholder: |
+        1. 新命令: /slap Cai 给Cai来一巴掌
+        2. 导出人物存档的功能
+        3. 给玩家加一个聊天前缀用来显示金币数,比如:[114514]
+    validations:
+      required: true
+      
+
