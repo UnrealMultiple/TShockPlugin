@@ -48,6 +48,7 @@ body:
       placeholder: CaiBotPlugin
     validations:
       required: true
+      
   - type: dropdown
     id: system
     attributes:
@@ -59,6 +60,7 @@ body:
       - 手机
     validations:
       required: true
+  
   - type: textarea
     id: what-happened
     attributes:
@@ -77,6 +79,7 @@ body:
         3. xxx
     validations:
       required: true
+      
   - type: textarea
     id: what-expected
     attributes:
@@ -84,12 +87,14 @@ body:
       description: 填写如果你觉得插件正常，会出现的结果
     validations:
       required: true
+      
   - type: textarea
     id: llonebot-log
     attributes:
       label: 控制台日志
       description: 在控制台的报错截图，没有请忽略
       render: shell
+      
   - type: textarea
     id: onebot-client-log
     attributes:
