@@ -50,7 +50,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.0.3",
+    "Version": "2.0.1.1",
     "Author": "少司命，Cai",
     "Description": "自动更新你的插件！",
     "Path": "AutoPluginManager.dll"
