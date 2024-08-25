@@ -10,23 +10,15 @@ body:
   - type: checkboxes
     id: read-first-issue
     attributes:
-      label: 我已经阅读发ISSUE必看
-      description: 这里包含了问问题的须知
-      options:
-        - label: 是
-          required: true
-  - type: checkboxes
-    id: read2
-    attributes:
-      label: 我已确保所有信息都填写完整
-      description: 我已确保所有信息都填写完整
+      label: 已阅须知
+      description: 我已经阅读发ISSUE必看
       options:
         - label: 是
           required: true
   - type: checkboxes
     id: read3
     attributes:
-      label: 我已确保我复现BUG的方法可用
+      label: BUG可复现
       description: 我已确保我复现BUG的方法可用
       options:
         - label: 是
@@ -34,8 +26,8 @@ body:
   - type: checkboxes
     id: read4
     attributes:
-      label: 我已确保我复现BUG的方法可用
-      description: 我已确保我复现BUG的方法可用
+      label: 插件最新
+      description: 我已确保我的插件是最新版本
       options:
         - label: 是
           required: true
@@ -66,6 +58,8 @@ body:
     attributes:
       label: 发生了什么?
       description: 填写对问题的描述
+      placeholder: |
+        输入/slap Cai 结果给Koko打了一巴掌
     validations:
       required: true
   - type: textarea
@@ -74,8 +68,8 @@ body:
       label: 如何复现
       description: 填写应当如何操作才会让BUG出现
       placeholder: |
-        1. xxx
-        2. xxx
+        1. 输入/slap Cai
+        2. 然后打了Koko
         3. xxx
     validations:
       required: true
@@ -85,19 +79,63 @@ body:
     attributes:
       label: 期望的结果?
       description: 填写如果你觉得插件正常，会出现的结果
+      placeholder: |
+        输入/slap Cai 会打Cai一巴掌
     validations:
       required: true
-      
+
   - type: textarea
-    id: llonebot-log
-    attributes:
-      label: 控制台日志
-      description: 在控制台的报错截图，没有请忽略
-      render: shell
-      
-  - type: textarea
-    id: onebot-client-log
+    id: text-log
     attributes:
       label: 文本日志
       description: tshock文本日志的不正常、报错部分
       render: shell
+      placeholder: |
+        2024-07-17 11:34:58 - Utils: INFO: Server执行了/slap Cai。
+        2024-07-17 11:34:58 - Slap: ERROR: System.Exception: 致命的扇巴掌数据库初始化错误：连接MySQL失败。查看内部异常以获取详细信息。
+        ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: ChestID'.
+        at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+        at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements(Stopwatch timer)+MoveNext()
+        at Microsoft.Data.Sqlite.SqliteCommand.GetStatements(Stopwatch timer)+MoveNext()
+        at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+        at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+        at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReader(CommandBehavior behavior)
+        at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+        at TShockAPI.DB.DbExt.QueryReader(IDbConnection olddb, String query, Object[] args)
+        --- End of inner exception stack trace ---
+        at TShockAPI.DB.DbExt.QueryReader(IDbConnection olddb, String query, Object[] args)
+        at CaiRewardChest.Db.GetChestById(Int32 chestId) in C:\Users\13110\source\repos\CaiPlugins\CaiRewardChest\Db.cs:line 35
+        at CaiRewardChest.Db.GetChestByPos(Int32 x, Int32 y) in C:\Users\13110\source\repos\CaiPlugins\CaiRewardChest\Db.cs:line 29
+        at CaiRewardChest.CaiRewardChest.OnChestOpen(Object sender, ChestOpenEventArgs e) in C:\Users\13110\source\repos\CaiPlugins\CaiRewardChest\Plugin.cs:line 39
+        at TShockAPI.HandlerList`1.Invoke(Object sender, T e)
+        at TShockAPI.GetDataHandlers.OnChestOpen(MemoryStream data, Int32 x, Int32 y, TSPlayer player)
+        at TShockAPI.GetDataHandlers.HandleChestOpen(GetDataHandlerArgs args)
+      
+  - type: textarea
+    id: console-log
+    attributes:
+      label: 控制台日志
+      description: 在控制台的报错截图或文本，没有请忽略
+      render: shell
+      placeholder: |
+        Server执行了/slap Cai。
+        ERROR: System.Exception: 致命的扇巴掌数据库初始化错误：连接MySQL失败。查看内部异常以获取详细信息。
+        ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: ChestID'.
+        at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+        at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements(Stopwatch timer)+MoveNext()
+        at Microsoft.Data.Sqlite.SqliteCommand.GetStatements(Stopwatch timer)+MoveNext()
+        at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+        at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+        at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReader(CommandBehavior behavior)
+        at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+        at TShockAPI.DB.DbExt.QueryReader(IDbConnection olddb, String query, Object[] args)
+        --- End of inner exception stack trace ---
+        at TShockAPI.DB.DbExt.QueryReader(IDbConnection olddb, String query, Object[] args)
+        at CaiRewardChest.Db.GetChestById(Int32 chestId) in C:\Users\13110\source\repos\CaiPlugins\CaiRewardChest\Db.cs:line 35
+        at CaiRewardChest.Db.GetChestByPos(Int32 x, Int32 y) in C:\Users\13110\source\repos\CaiPlugins\CaiRewardChest\Db.cs:line 29
+        at CaiRewardChest.CaiRewardChest.OnChestOpen(Object sender, ChestOpenEventArgs e) in C:\Users\13110\source\repos\CaiPlugins\CaiRewardChest\Plugin.cs:line 39
+        at TShockAPI.HandlerList`1.Invoke(Object sender, T e)
+        at TShockAPI.GetDataHandlers.OnChestOpen(MemoryStream data, Int32 x, Int32 y, TSPlayer player)
+        at TShockAPI.GetDataHandlers.HandleChestOpen(GetDataHandlerArgs args)
+      
+
