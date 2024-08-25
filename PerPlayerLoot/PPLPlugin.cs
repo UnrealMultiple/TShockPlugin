@@ -10,7 +10,7 @@ namespace PerPlayerLoot
         #region info
         public override string Name => "PerPlayerLoot";
 
-        public override Version Version => new Version(2, 0, 0);
+        public override Version Version => new Version(2, 0, 1);
 
         public override string Author => "Codian,肝帝熙恩汉化1449";
 
@@ -25,7 +25,8 @@ namespace PerPlayerLoot
 
         public override void Initialize()
         {
-            ServerApi.Hooks.GamePostInitialize.Register(this, OnWorldLoaded);
+            fakeChestDb.Initialize();
+            Commands.ChatCommands.Add(new Command("perplayerloot.toggle", ToggleCommand, "ppltoggle"));
             ServerApi.Hooks.WorldSave.Register(this, OnWorldSave);
 
             TShockAPI.GetDataHandlers.PlaceChest += OnChestPlace;
@@ -37,7 +38,7 @@ namespace PerPlayerLoot
         {
             if (disposing)
             {
-                ServerApi.Hooks.GamePostInitialize.Deregister(this, OnWorldLoaded);
+                Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == ToggleCommand);
                 ServerApi.Hooks.WorldSave.Deregister(this, OnWorldSave);
 
                 TShockAPI.GetDataHandlers.PlaceChest -= OnChestPlace;
@@ -52,12 +53,6 @@ namespace PerPlayerLoot
         private void OnWorldSave(WorldSaveEventArgs args)
         {
             fakeChestDb.SaveFakeChests();
-        }
-
-        private void OnWorldLoaded(EventArgs args)
-        {
-            fakeChestDb.Initialize();
-            Commands.ChatCommands.Add(new Command("perplayerloot.toggle", ToggleCommand, "ppltoggle"));
         }
 
         private void ToggleCommand(CommandArgs args)

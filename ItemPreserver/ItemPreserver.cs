@@ -64,7 +64,6 @@ public class ItemPreserver : TerrariaPlugin
     {
         GeneralHooks.ReloadEvent += ReloadConfig;
         GetDataHandlers.PlayerSlot.Register(OnSlot);
-
     }
 
     private void OnSlot(object? sender, GetDataHandlers.PlayerSlotEventArgs e)

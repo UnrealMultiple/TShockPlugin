@@ -16,7 +16,7 @@ namespace HouseRegion
         public override string Author => "GK 阁下 改良";
         public override string Description => "一个著名的用于保护房屋的插件。";
         public override string Name => "HousingDistricts";
-        public override Version Version => new Version(1, 0, 0, 3);
+        public override Version Version => new Version(1, 0, 0, 4);
         public HousingPlugin(Main game) : base(game) { LPlayers = new LPlayer[256]; Order = 5; LConfig = new Config(); }
         public static Config LConfig { get; set; }
         internal static string LConfigPath { get { return Path.Combine(TShock.SavePath, "HouseRegion.json"); } }
@@ -94,7 +94,7 @@ namespace HouseRegion
             RC();
             RD();
             GetDataHandlers.InitGetDataHandler();//初始化配置值，RH要放在服务器开成后再读不然世界ID读不出
-            ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);//钩住游戏初始化时
+            Commands.ChatCommands.Add(new Command("house.use", HCommands, "house") { HelpText = "输入/house help可以显示与房子相关的操作提示。" });
             ServerApi.Hooks.NetGetData.Register(this, GetData);//收到数据
             ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreetPlayer);//玩家进入服务器
             ServerApi.Hooks.ServerLeave.Register(this, OnLeave);//玩家退出服务器
@@ -106,7 +106,7 @@ namespace HouseRegion
         {
             if (disposing)
             {
-                ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);//销毁游戏初始化狗子
+                Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == HCommands);
                 ServerApi.Hooks.NetGetData.Deregister(this, GetData);//收到数据
                 ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);//玩家进入服务器
                 ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);//玩家退出服务器
@@ -125,10 +125,6 @@ namespace HouseRegion
         {
             lock (LPlayers)
                 if (LPlayers[e.Who] != null) LPlayers[e.Who] = null;
-        }
-        private void OnInitialize(EventArgs args)//游戏初始化
-        {
-            Commands.ChatCommands.Add(new Command("house.use", HCommands, "house") { HelpText = "输入/house help可以显示与房子相关的操作提示。" });
         }
         public void PostInitialize(EventArgs e)
         {
