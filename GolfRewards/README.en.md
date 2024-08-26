@@ -28,7 +28,7 @@ v1.0.6
 > Configuration file location: TSHOCK/Golf reward.json
 Each reward node (`Reward`) Including the following attributes:
 
-- `Cave coordinates x`: The coordinates of the ball on the X -axis.
+- `Cave coordinates x`: The coordinates of the ball on the X axis.
 - `Cave coordinates y`: The coordinates of the ball on the y -axis.
 - `Minimum rod`: The minimum number of poles needed for players to hit the ball.
 - `Maximum rod`: The maximum number of rods needed for players to enter the hole.
