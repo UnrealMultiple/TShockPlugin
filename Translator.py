@@ -2,7 +2,9 @@ import os
 import subprocess
 import shutil
 
+os.remove("MarkdownTranslator/config.yaml")
 shutil.copy("Config/config.yaml","MarkdownTranslator/config.yaml")
+print(os.listdir("MarkdownTranslator"))
 cmd = ["MarkdownTranslator/MarkdownTranslator.exe", "-f"]
 for file in os.listdir("./"):
     path = f"{file}/README.md"
