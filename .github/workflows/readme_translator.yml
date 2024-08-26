@@ -1,0 +1,12 @@
+name: 插件发布
+
+on:
+  push:
+    branches: [ "master","main"]
+    
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    name: 构建插件
+    steps:
+      - uses: actions/checkout@v4
