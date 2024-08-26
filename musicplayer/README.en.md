@@ -8,7 +8,7 @@
 - Put the plug -in will generate a song folder under the TSHOCK folder, which plays the music file inside
 - By reading high files, use the harp/bell/guitar simulation to play music
 - - 提供了 [Simple conversion script](https://github.com/THEXN/TShockPlugin/blob/master/musicplayer/%E8%BD%AC%E6%8D%A2%E8%84%9A%E6%9C%AC%E5%8F%82%E8%80%83.py) you can also rub your hands by yourself, and [Demonstration music conversion file (MID), and finished product files](https://github.com/THEXN/TShockPlugin/tree/master/musicplayer/%E7%A4%BA%E4%BE%8B%E6%AD%8C%E6%9B%B2) 
-- It is not recommended for overpowered and overwhelming, Tella itself does not support it, the range of the sound height is C4-C6
+- It is not recommended for overpowers and bass, Talla itself does not support it, the range of sound height is C4-C6
 - 
 ## Update log
 
