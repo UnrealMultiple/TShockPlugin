@@ -18,4 +18,4 @@ for file in os.listdir("./"):
 
 subprocess.run(["git", "commit", "-m", "自动更新README.md"])
 subprocess.run(["git", "pull"])
-subprocess.run(["git", ["push"])
+subprocess.run(["git", "push"])
