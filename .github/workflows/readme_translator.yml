@@ -10,3 +10,8 @@ jobs:
     name: 构建插件
     steps:
       - uses: actions/checkout@v4
+
+      - name: 下载
+        run: |
+         pwsh Invoke-WebRequest -Uri https://github.com/CrazyMayfly/Free-Markdown-Translator/releases/download/1.2/MarkdownTranslator.v1.2.zip -OutFile "MarkdownTranslator.zip"
+         Expand-Archive -Path ./MarkdownTranslator.zip -DestinationPath MarkdownTranslator
