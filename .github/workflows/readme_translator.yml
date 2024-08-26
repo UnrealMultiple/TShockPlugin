@@ -13,6 +13,5 @@ jobs:
       - name: 下载
         shell: powershell
         run: |
-         $ProgressPreference = 'SilentlyContinue'
-         Invoke-WebRequest -Uri https://github.com/CrazyMayfly/Free-Markdown-Translator/releases/download/1.2/MarkdownTranslator.v1.2.zip -OutFile "MarkdownTranslator.zip"
+         Invoke-WebRequest -Uri https://github.com/CrazyMayfly/Free-Markdown-Translator/releases/download/1.2/MarkdownTranslator.v1.2.zip -OutFile "MarkdownTranslator.zip" -DisableKeepAlive
          Expand-Archive -Path ./MarkdownTranslator.zip -DestinationPath MarkdownTranslator
