@@ -10,12 +10,6 @@ jobs:
     name: 初始化
     steps:
       - uses: actions/checkout@v4
-
-      - name: 设置PowerShell版本
-        uses: jamesgeorge007/setup-pwsh@v1{ref_2}
-        with:
-          version: '7.x' 
-          
       - name: 下载
         shell: powershell
         run: |
