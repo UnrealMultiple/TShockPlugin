@@ -4,7 +4,7 @@ import shutil
 
 os.remove("MarkdownTranslator/config.yaml")
 shutil.copy("Config/config.yaml","MarkdownTranslator/config.yaml")
-for file in os.listdir("./MarkdownTranslator"):
+for file in os.listdir("MarkdownTranslator"):
     print(file)
 cmd = ["MarkdownTranslator/MarkdownTranslator.exe", "-f"]
 for file in os.listdir("./"):
