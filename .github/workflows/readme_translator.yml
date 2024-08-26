@@ -18,7 +18,7 @@ jobs:
          Copy-Item -Path ./Config/config.yaml -Destination ./MarkdownTranslator/config.yaml
 
       - name: 初始化Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
          python-version: '3.x'
 
