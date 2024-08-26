@@ -1,15 +1,15 @@
-# pvper duel system
+# Pvper duel system
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: SOOFA, Yu Xue
+- Authors: Soofa, feather science
 - - 出处: [github](https://github.com/Soof4/PvPer/) 
-+ This is a TSHOCK server plug -in mainly used for:
-- The PVP combat function among players is implemented. The plug -in uses the SQLite database storage duel data.
-- Limit and manage player behavior through the event hook monitoring the game event to ensure that the duel rules are followed.
-- At the same time, the plug -in supports configuration file loading and overload.
-- Note: Players will be directly killed if they get out of the scope of competition.
++This is a Tshock server plug-in mainly used for:
+- The PvP combat function between players is realized, and the plug-in uses SQLite database to store duel data.
+- Monitor game events through event hooks, restrict and manage players' behaviors, and ensure that duel rules are followed.
+- At the same time, the plug-in supports configuration file loading and overloading.
+- Note: if the player leaves the competition range, he will be killed directly and will be judged to lose.
 ## Update log
 
 ```
@@ -42,23 +42,23 @@
 ```
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/PVP ADD player name|pvper.use|Invite players to participate|
-|/pvp yes|pvper.use|Consent|
-|/PVP NO|pvper.use|Refuse to duel|
-|/PVP List|pvper.use|Ranking|
-|/PVP DATA|pvper.use|Record query|
-|/pvp.wl|pvper.use|Check the Banning weapon table|
-|/pvp.bl|pvper.use|Check the BUFF table|
-|/pvp set 1 2 3 4|pvper.use|Synchronize the current position to the coordinate 1/2 is the player's location 3/4 is the border of the arena|
-|/PVP Reset|pvper.admin|Reset the player's database table|
-|/pvp.bw add <Weapon Name>|pvper.admin|Specifying weapons in the PVP state|
-|/PVP.BB ADD <gain ID>|pvper.admin|Specify the specified gain in the PVP state|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/pvp add player name|pvper.use|Invite players to a duel|
+|/pvp yes|pvper.use|Agree to a duel|
+|/pvp no|pvper.use|Refuse a duel|
+|/pvp list|pvper.use|ranking list|
+|/pvp data|pvper.use|Record inquiry|
+|/pvp.WL|pvper.use|Seal up the list of prohibited weapons|
+|/pvp.BL|pvper.use|Seal up the forbidden BUFF table|
+|/pvp set 1 2 3 4|pvper.use|Synchronizing the current position to coordinate 1/2 is the player's position and 3/4 is the arena boundary.|
+|/pvp reset|pvper.admin|Reset the player's database table|
+|/pvp.BW add < weapon name >|pvper.admin|Prohibit designated weapons in PVP state|
+|/pvp.BB add < gain ID >|pvper.admin|Specified gain in banned PVP state|
 
 
-## Configuration
-> Configure file location: TSHOCK/Dueling System.json
+## deploy
+> Configuration file location: tshock/ dueling system. json
 ```json
 {
    "插件权限名": "pvper.use / pvper.admin",
@@ -83,6 +83,6 @@
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.
