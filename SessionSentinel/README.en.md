@@ -4,7 +4,7 @@
 
 - Author: Liver Emperor Xi En
 - Source: This warehouse
-- The initial purpose was to prevent PE players from cutting back -end card bugs invincible
+- The original purpose is to prevent PE players from cutting back -end card bugs invincible
 -原理为踢出20秒内不发playerupdate的玩家
 
  

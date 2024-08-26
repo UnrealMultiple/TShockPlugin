@@ -62,7 +62,7 @@ Configuration Note
     
 2.`Existence` don't be lower than `60 frames`(recommend `120`), Otherwise manual `continuous` put in `The same items to the storage space grid` will cause items `Double` 
     
-3.`Object name` will use `/Reload` instruction time basis `Object ID` automatically write,`Quantity` to store the minimum quantity requirements
+3.`Object name` will be used `/Reload` instruction time basis `Object ID` automatically write,`Quantity` to store the minimum quantity requirements
 
 4. 4..`Jewelry` only detect `Equipment 3 grid+jewelry 7 grid`,and `Existence` it has nothing to do, the equipment is specified `Jewelry (armor)` players will trigger self -survive as long as they move or attack
     

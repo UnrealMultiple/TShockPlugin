@@ -34,7 +34,7 @@ The amount of treatment to the player is slightly lower than that of other playe
 - Paramia: increase the upper limit of 20 blood, leave spores on the trajectory of the whip
 - Beetle cover: increase the 60 blood limit, part of the enemy's injury will treat the surrounding teammates and give BUFF;
 When equipped with the Paladin Shield or its superior synthesizer, the damage of melee weapons is doubled
-- Mushroom Set: Firemons will leave mushrooms unstablely
+- Mushroom Set: Bullets will leave mushrooms unstablely
 - Yinyan: When using a whip, throw out the bat or pumpkin head
 - Ghost Set: Add 40 blood maximum or 80 magic upper limit according to the headdress; summon two ghost curse surround players and attack nearby enemies
 - Royal Gel: The sky began to undergo light rain in the sky
