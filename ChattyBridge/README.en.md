@@ -1,11 +1,11 @@
-# Chattybridge Chat Qiaoqiao
+# ChattyBridge chat bridge
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- Let multiple servers chat with each other
+- Let multiple servers chat with each other.
 
 ## Update log
 
@@ -19,10 +19,10 @@ v1.0.0.1
 
 ## instruction
 
-none
+without
 
-## Configuration
-> Configuration file location: TSHOCK/COTTYBRIDGE.JSON
+## deploy
+> Configuration file location: tshock/ChattyBridge.json
 ```json
 {
    "是否转发指令": false,
@@ -39,6 +39,6 @@ none
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

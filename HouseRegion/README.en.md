@@ -1,11 +1,11 @@
-# Houseregg circular plug -in
+# HouseRegion enclosure plug-in
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
 - Author: GK
 - Source: None
-- Better circle plug -in
+- Better enclosure plug-in
 
 ## Update log
 
@@ -15,24 +15,24 @@
 
 ## instruction
 
-|grammar|Alias|Authority|illustrate|
-| ----------------------------- |:-:|: -----------------------:|: --------------:|
-|/House set 1|none|House.use|Tap the upper left corner|
-|/House set 2|none|House.use|Tap the lower right corner|
-|/House Clear|none|House.use|Reset the temporary knocking point|
-|/House Allow [Player] [House]|none|`house.use`  `house.admin`|Add|
-|/House disallow [Player] [House]|none|`house.use`  `house.admin`|Eliminator|
-|/House Adduser [Player] [House]|none|`house.use`  `house.admin`|Add user|
-|/House Deluser [Player] [House]|none|`house.use`  `house.admin`|Delete user|
-|/House Delete [House Name]|none|`house.use`  `house.admin`|Delete a house|
-|/House list [page number]|none|`house.use`  `house.admin`|View house list|
-|/House Redefine [House Name]|none|`house.use`  `house.admin`|Redefine the house|
-|/House Info [House Name]|none|`house.use`  `house.admin`|House information|
-|/House Lock [House name]|none|`house.use`  `house.admin`|House lock|
+|grammar|another name|limit of authority|explain|
+| ----------------------------- |:--:|:-----------------------:|:------------:|
+|/house set 1|without|house.use|Tap the upper left corner|
+|/house set 2|without|house.use|Tap the lower right corner|
+|/house clear|without|house.use|Reset temporary tapping point|
+|/house allow [player] [house]|without|`house.use`  `house.admin`|Add owner|
+|/house disallow [player] [house]|without|`house.use`  `house.admin`|Remove owner|
+|/house adduser [player] [house]|without|`house.use`  `house.admin`|Add users|
+|/house deluser [player] [house]|without|`house.use`  `house.admin`|Delete user|
+|/house delete [house name]|without|`house.use`  `house.admin`|Delete a house|
+|/house list [page number]|without|`house.use`  `house.admin`|View house list|
+|/house redefine [house name]|without|`house.use`  `house.admin`|Redefine the house|
+|/house info [house name]|without|`house.use`  `house.admin`|Housing information|
+|/门锁[屋名]|无|`house.use`  `house.admin`|房屋锁|
 
-## Configuration
-Configuration file location: TSHOCK/HOUSEREGION.JSON
-> Houseregg.json
+## 配置
+配置文件位置:tshock/HouseRegion.json
+> 豪斯区域. json
 
 ```json
 {
@@ -51,7 +51,7 @@ Configuration file location: TSHOCK/HOUSEREGION.JSON
 }
 ```
 
-## feedback
+## 反馈
 
-- Co -maintained plug -in library: https://github.com/Controllerdestiny/tshockplugin
-- The official group of Trhub.cn or Tshock in the domestic community
+- 共同维护的插件库:https://github . com/controller destiny/TShockPlugin
+- 国内社区trhub.cn或TShock官方群等

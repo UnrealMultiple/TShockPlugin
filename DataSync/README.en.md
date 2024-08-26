@@ -1,11 +1,11 @@
-# DataSync progress synchronization plug -in
+# DataSync progress synchronization plug-in
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
 - Author: love
 - Source: github
-- The progress is synchronized when the two server -side databases use a database
+- When two servers share a database, progress synchronization is realized.
 
 ## Update log
 
@@ -14,23 +14,23 @@
 咋没版本，补全卸载函数
 ```
 
-## REST APO
+## Rest APO
 
-|Path|Authority|illustrate|
-| --------- |: -------:|: -------:|
-|/Datasync|DataSync|Query progress|
+|path|limit of authority|explain|
+| --------- |:------:|:------:|
+|/DataSync|DataSync|Query progress|
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| ------------------------------ |: -----------:|: -------:|
-|/Reset progress synchronization|DataSync|none|
-|/Progress [Progress Name] [True Or False]|Datasenc.set|Set progress|
-|/Progress Local|DataSync|Progress query|
-|Progress|DataSync|Progress query|
+|grammar|limit of authority|explain|
+| ------------------------------ |:----------:|:------:|
+|/Reset progress synchronization|DataSync|without|
+|/progress [progress name] [true or false]|DataSync.set|Set the schedule|
+|/progress local|DataSync|Progress query|
+|/progress|DataSync|Progress query|
 
-## Configuration
-> Configuration file location: tshock/datasync.json
+## deploy
+> Configuration file location: tshock/DataSync.json
 ```json
 {
    "KingSlime": false,
@@ -79,6 +79,6 @@
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

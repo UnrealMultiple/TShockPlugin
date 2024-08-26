@@ -1,11 +1,11 @@
-# Listplugins View plug -in list
+# ListPlugins view plug-in list
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Iheart, Yu Xue, Liver Emperor Xien
-- Source: Unknown
-- Use the instruction to check the plug -in, display the plug -in name, author, describe
+- Authors: iheart, Feather Studies, Gan Di Xi En.
+- Source: unknown
+- Check the installed plug-in with instructions, and display the name, author and description of the plug-in.
 
 ## Update log
 
@@ -18,16 +18,16 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/Plug -in list or /PLLIST|Listplugin|Check the plug -in|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/plugin list or /pllist|ListPlugin|Check the installed plug-ins|
 
-## Configuration
+## deploy
 ```
 暂无
 ```
 
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

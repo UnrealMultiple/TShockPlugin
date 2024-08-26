@@ -1,14 +1,14 @@
-# Economics.shop store plug -in
+# Economics.Shop store plug-in
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- Store plug -in
+- Store plug-in
 
-> [! Note]
-> Need to install front plug -ins: Economicsapi, Economics.rpg (this warehouse)
+> [! NOTE]
+> Pre-plug-ins need to be installed: EconomicsAPI, Economics.RPG (this warehouse).
 
 ## Update log
 
@@ -18,13 +18,13 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| ----------------- |: --------------:|: -----------:|
-|/Shop Buy [serial number]|economics.shop|Buy goods|
-|/shop list [page number]|economics.shop|View product list|
+|grammar|limit of authority|explain|
+| ----------------- |:------------:|:----------:|
+|/shop buy [serial number]|economics.shop|Buy goods|
+|/shop list [page number]|economics.shop|View the list of goods|
 
-## Configuration
-> Configuration file location: TSHOCK/ECONOMICS/Shop.json
+## deploy
+> Configuration file location: tshock/Economics/Shop.json
 ```json
 {
    "最大显示页": 10,
@@ -47,6 +47,6 @@
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

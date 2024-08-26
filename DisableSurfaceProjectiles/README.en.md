@@ -1,9 +1,9 @@
-## Prohibit Surface Projectiles
+## Surface projectiles prohibit surface barrage.
 
-- Author: Yu Xue
+- Author: feather science
 - - 出处: [github](https://github.com/1242509682/ProhibitSurfaceProjectiles) 
-- This is a TSHOCK server plug -in mainly used to prohibit the generated barrage produced when the player in the server is on the world.
-- Especially people who destroy the server map for malicious use of explosives.
+- This is a Tshock server plug-in, which is mainly used to prohibit the generation of barrage when players in the server are on the surface of the world.
+- Especially for those who maliciously use explosives to destroy the server map.
 
 ## Update log
 
@@ -27,14 +27,14 @@
 ```
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/regoad|none|Heavy load configuration file|
-|/Forbidden ground watch barrage|Ban on the barrage|Function switch|
-|none|Surreal surface barrage|No test|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/reload|without|Overloaded configuration file|
+|/forbidden table barrage|Off-limits watch barrage|Function switch|
+|without|Inspection-free surface barrage|Do not test it.|
 
-## Configuration
-> Configuration file location: TSHOCK/Forbidden Floor Barrage .json
+## deploy
+> Configuration file location: tshock/ forbidden list barrage.json.
 ```json
    "配置说明1": "(注意：颠倒和正常地表只能开启一个，高度阈值数值649为1倍 正常种子：大世界10384（16倍）",
    "配置说明2": "(颠倒地图种子：小世界25960（40倍）中世界31476（48.5倍） 大世界35370（54.5倍）",
@@ -112,6 +112,6 @@
   ]
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

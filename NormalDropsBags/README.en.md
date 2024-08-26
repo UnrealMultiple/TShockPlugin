@@ -1,13 +1,13 @@
-# Normaldropsbags common difficulty drops treasure collection bag
+# NormalDropsBags ordinary difficulty drop treasure bag
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Beerik94, Yu Xue
-- Source: https://github.com/Beerik94/normalbossbags
-- This is a TSHOCK server plug -in mainly used for:
-- Let the common mode boss drop the treasure bag
-- It only affects ordinary difficulty maps. If experts or masters are used, no operation is performed.
+- Author: beerik94, feather science
+- Source: https://github.com/beerik94/NormalBossBags.
+- This is a Tshock server plug-in mainly used for:
+- Let the BOSS in normal mode drop the treasure bag
+- Only ordinary difficulty maps are affected. If experts or masters are enabled, nothing will be done.
 
 ## Update log
 
@@ -16,16 +16,16 @@
 ```
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|none|none|none|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|without|without|without|
 
-## Configuration
+## deploy
 
 ```
 暂无
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

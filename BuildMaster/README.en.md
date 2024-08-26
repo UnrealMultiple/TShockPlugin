@@ -1,15 +1,15 @@
-# Buildmaster bean paste mini game · architecture master
+# BuildMaster red bean paste games and master architect
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
-- Author: [Bean_Paste] https://gitee.com/crafty/projects, Yu Xue
-- Source: [bbstr] https://www.bbstr.net/r/117//117/
-- This is a new mini -game, based on the MINIGAMESAPI framework, its gameplay is similar to a small game in MC (quickly build a big competition).
-- Players will need to complete the corresponding theme of the subjects within a certain period of time. After the time, each player will be scored.
-- The scoring will be ranked after the game. Come and use your imagination and make the building!
+- Author: [bean _ paste] https://gitee.com/craft/projects, feather science
+- Source: [bbstr] https://www.bbstr.net/r/117/
+- This is a brand-new mini-game, which is developed based on MiniGamesAPI framework, and its gameplay is similar to the mini-game in MC (Quick Build Competition).
+- Players will need to complete the construction of the corresponding theme within a certain period of time, and each player will score after the time is up.
+- Scores will be ranked after the game. Come and use your imagination and get the building up!
 
-> [! Note]
-> You need to install front plug -in: minigamesapi (this warehouse)
+> [! NOTE]
+> Need to install the pre-plug-in: MiniGamesAPI (this warehouse)
 
 ## Update log
 
@@ -26,35 +26,35 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| ----------------------------- |: ----------:|: ---------------------:|
-|/BM List|BM.USER|View room list|
-|/BM Join room id|BM.USER|Join the room|
-|/BM Leave|BM.USER|Leave the room|
-|/BM Ready|BM.USER|Preparation/Unprepared|
-|/bm vote theme|BM.USER|Voting theme|
-|/Bma List|bm.admin|List all rooms|
-|/Bma Create room name|bm.admin|Create a room|
-|/bma remove room ID|bm.admin|Remove the designated room|
+|grammar|limit of authority|explain|
+| ----------------------------- |:---------:|:--------------------:|
+|/bm list|bm.user|View room list|
+|/bm join room ID|bm.user|Join the room|
+|/bm leave|bm.user|leave the room|
+|/bm ready|bm.user|Ready/not ready|
+|/bm vote theme|bm.user|Voting theme|
+|/bma list|bm.admin|List all rooms|
+|/bma create room name|bm.admin|Create a room|
+|/bma remove room ID|bm.admin|Remove the specified room|
 |/bma start room ID|bm.admin|Open the designated room|
 |/bma stop room ID|bm.admin|Close the designated room|
-|/bma SMP room ID number|bm.admin|Set the largest number of players in the room|
-|/BMA SDP room ID number|bm.admin|Set the number of players in the room|
-|/bma SWT room ID time|bm.admin|Setting waiting time (unit: second)|
-|/BMA SGT room ID time|bm.admin|Set the game time (unit: second)|
-|/bma sst room ID time|bm.admin|Set the scoring time (unit: second)|
-|/BMA SP 1/2|bm.admin|Select point 1/2|
-|/BMA SR room id theme|bm.admin|Set the game area of ​​the room|
-|/bma addt room ID theme name|bm.admin|Add theme|
-|/BMA SH room ID height|bm.admin|Set the high area high|
-|/BMA SW Room ID width|bm.admin|Set the width of the community|
-|/BMA SG room id interval|bm.admin|Set the community interval|
-|/bma DP player name|bm.admin|Set the player's basic construction backpack|
-|/BMA EP|bm.admin|Set the scoring set|
-|/Bma RELOAD|bm.admin|Non -room file of heavy load configuration file|
+|/bma smp room ID number of people|bm.admin|Set the maximum number of players in the room.|
+|/bma sdp Room ID Number of people|bm.admin|Set the minimum number of players in the room|
+|/bmawt room ID time|bm.admin|Set the waiting time (unit: seconds)|
+|/bma sgt room ID time|bm.admin|Set the game time (unit: seconds)|
+|/bma sst room ID time|bm.admin|Set the scoring time (unit: seconds)|
+|/bma sp 1/2|bm.admin|Select point 1/2.|
+|/bma sr room ID theme|bm.admin|Set the game area of the room.|
+|/bma addt room ID theme name|bm.admin|Add a theme|
+|/bma sh room ID height|bm.admin|Set the small area height|
+|/bma sw room ID width|bm.admin|Set the small area width|
+|/bma sg room ID interval|bm.admin|Set small area interval|
+|/bma dp player name|bm.admin|Set the player's foundation to build a backpack.|
+|/bma ep|bm.admin|Set the scoring package|
+|/bma reload|bm.admin|Overloaded configuration file is not a room file.|
 
-## Configuration
-> Configuration file location: TSHOCK/BUILDMASTER
+## deploy
+> Configuration file location: tshock/BuildMaster
 
 > Config.json
 ```json    
@@ -155,7 +155,7 @@
    "Items": []
 }
 ```
-> Eva.json
+> eva.json
 ```json
 {
    "Name": "评分套",
@@ -246,11 +246,11 @@
    "Items": []
 }
 ```
-> Rooms.json
+> rooms.json
 ```json
 []
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

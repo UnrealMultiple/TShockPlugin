@@ -1,11 +1,11 @@
-# Dumpterraariaid output Terrariaid
+# DumpTerrariaID output TerrariaID
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- Terring Terraria's internal ID merged and output into a file
+- Integrate Terraria internal ID and output it to a file.
 
 ## Update log
 
@@ -16,16 +16,16 @@ v1.0.0.1
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| ------- |: -----:|: ----------:|
-|/dumpid|dump.id|Output to the file|
+|grammar|limit of authority|explain|
+| ------- |:-----:|:--------:|
+|/dumpid|dump.id|Output to file|
 
-## Configuration
-> Configuration file location: TSHOCK/TERRARIAID.JSON
+## deploy
+> Configuration file location: tshock/TerrariaID.json
 ```json
 TerrariaID表
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

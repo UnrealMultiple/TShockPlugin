@@ -1,11 +1,11 @@
-# CNPCSHOP custom NPC store
+# CNPCShop custom NPC store
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Meggy, Liver Emperor Xien updated 1449
+- Author: Megghy, Gan Di Xi En Update 1449
 - - 出处: [github](https://github.com/Megghy/CNPCShop) 
-- Make you customize the products sold by NPC
+- Enables you to customize the goods sold by NPC.
 
 ## Update log
 
@@ -15,10 +15,10 @@
 
 ## instruction
 
-none
+without
 
-## Configuration
-> Configuration file location: TSHOCK/CNPCSHOP.JSON
+## deploy
+> Configuration file location: tshock/CNPCShop.json
 ```json
 {
    "更新间隔": 500,  //默认为500, 单位毫秒, 一般来说这个间隔差不多够用了, 不过要是想替换得更快的话可以调低, 不过建议尽量不要低于100, 再低不仅十分占用带宽而且也没啥意义
@@ -127,6 +127,6 @@ none
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

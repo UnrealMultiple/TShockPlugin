@@ -1,12 +1,12 @@
-# EZPERM convenience authority
+# Ezperm convenience permissions
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Dadou, Liver Emperor Heen Optimized 1449
-- Source: TSHOCK Chinese official group
-- One instruction helps Xiaobai to add missing permissions to the initial server, and you can also add the permission in batches
-- In fact, you can also directly/group addperm group name permissions 1 permissions 2 permissions 3 3 3
+- Author: Soybean Seed, Gan Di Xi En Optimization 1449
+- Source: TShock Chinese official group
+- One instruction helps Xiaobai to add missing permissions to the initial server, and can also add and delete permissions in batches.
+- In fact, you can also directly /group addperm group name permission 1 permission 2 permission 3.
 
 ## Update log
 
@@ -19,12 +19,12 @@ v1.2.1
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/inperms or /batch modification permissions|inperms.admin|Batch modification|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/inperms or/batch change permissions|inperms.admin|Batch change authority|
 
-## Configuration
-> Configuration file location: TSHOCK/EZPERM.JSON
+## deploy
+> Configuration file location: tshock/ezperm.json
 ```json
 {
    "Groups": [
@@ -51,6 +51,6 @@ v1.2.1
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

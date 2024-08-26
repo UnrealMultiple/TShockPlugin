@@ -1,16 +1,16 @@
-# CairewardChes reward box
+# CaiRewardChest reward box
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: CAI
-- Source: This warehouse
-- Can I still worry about the server box once? Try the reward box of the CAI.
-- Use after new maps `/Initialization reward box` you can turn the box of the full map into the reward box that each player can only receive once,
-- And just click on it, and it will give the player the corresponding box withering
-- Of course, you can also use it `/Add a reward box` and `/Edit reward box` set your own reward box
+- Author: Cai
+- Source: this warehouse
+- Still worrying that the server box can only be collected once, try Cai's reward box.
+- Use after creating a new map.`/Initialize the reward box` you can turn the box of the whole map into a reward box that each player can only get once.
+- And you can get it by clicking it, and you will give the player the corresponding box litter.
+- Of course, you can also use.`/Add bonus box` and `/Edit the reward box` set your own reward box
 
-> Note: Please use it after generating a map `/Initialization reward box` otherwise, the player’s box may be mistakenly marked
+> Note: Please use after generating the map.`/Initialize the reward box` otherwise, the player's box may be marked by mistake.
 
 ## Update log
 
@@ -24,14 +24,14 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
-|---------|: ---------------------:|: ---------------------:|
-|/Initialization reward box|Cairewardchest.admin|Set the full picture box to a reward box (just just opened the service)|
-|/Add a reward box|Cairewardchest.admin|Add a reward box|
-|/Edit reward box|Cairewardchest.admin|Edit a reward box|
-|/Delete the reward box|Cairewardchest.admin|Delete a reward box|
+|grammar|limit of authority|explain|
+|---------|:--------------------:|:------------------:|
+|/Initialize the reward box|CaiRewardChest.Admin|Set the full picture box as a reward box (only applicable when just opened)|
+|/Add bonus box|CaiRewardChest.Admin|Add a reward box|
+|/Edit the reward box|CaiRewardChest.Admin|Edit a reward box|
+|/Delete the reward box|CaiRewardChest.Admin|Delete a reward box|
 
-## Configuration
+## deploy
 
 ```json    
 无
@@ -39,6 +39,6 @@
 
 ## feedback
 
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

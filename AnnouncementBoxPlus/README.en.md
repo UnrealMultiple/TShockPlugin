@@ -1,22 +1,22 @@
-# Announdmentboxplus
+# AnnouncementBoxPlus
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: CAI
-- Source: This warehouse
-- Broadcast box enhancement and management control
+- Author: Cai
+- Source: this warehouse
+- Broadcast box strengthening and management control
 
 ## introduce
 
-1. Insert bits and formatting in the broadcast box
-2. You can add permissions of editing broadcast boxes
-4. Can switch to broadcast boxes
-5. You can set the effective range of broadcast boxes (unit: pixel)
+1. Broadcast box interpolation placeholder and formatting
+2. You can add the right to edit the broadcast box.
+4. The broadcast box can be switched on and off
+5. You can set the effective range of the broadcast box (in pixels).
 
 
-## Configuration
-> Configuration file location: TSHOCK/AnnoundcementBoxplus.json
+## deploy
+> Configuration file location: tshock/announcementboxplus.json.
 ```json
 {
    "禁用广播盒": false,
@@ -28,44 +28,44 @@
    "启用广播盒占位符(详细查看文档)": true
 }
 ```
-## Order
+## order
 
-|Order name|illustrate|
-| -------------- |: --------------------:
-|/regoad|Heavy load configuration file
-## Broadcast box format placement symbol
+|Command name|explain|
+| -------------- |:-----------------:
+|/reload|Overloaded configuration file
+## Broadcast box format placeholder
 
-|Occupy|illustrate|
-| -------------- |: --------------------:
-|% Player group name%|The name of the player group
-|% Player name%|Player name
-|% Current time%|Current actual time
-|%content%|Broadcast box original content
+|placeholder|explain|
+| -------------- |:-----------------:
+|% Player Group Name%|Name of the player group
+|% player name%|Player name
+|% current time%|Current real time
+|% content%|Original content of broadcast box
 
-## Broadcast box content placement symbol
+## Broadcast box content placeholder
 
-|Occupy|illustrate|
-| -------------- |: --------------------:
-|% Player group name%|The name of the player group
-|% Player name%|Player name
-|% Current time%|Current actual time
-|%Of the current server online%%%|Get the number of online servers online
-|%Fisherman task fish name%%|Fisherman task fish name
-|%Fisherman task fish ID%|Fisherman task fish ID
-|%Fisherman task fish location%%|Fisherman task fish location
-|%Map name%|Current map name
-|%Of player blood%%%|Player blood volume
-|%Player Magic%|Player magic
-|%Player's maximum blood volume%%%|Player's maximum blood volume
-|%Player Magic Most value%%%|Player Magic Most Value
-|%Player lucky value%%|Player lucky value
-|%Player x coordinates%|Player graphm X coordinates
-|%Player Y coordinates%|Player graphm y coordinates
-|%Of the area where the player is located|Region region where the player is located
-|%Player Death Status%%|Player death state
-|%Current environment%|Player's current environment
-|%Server online list%|Server online list (/who)
-|%Fisherman task fish complete%|Whether the player completes the fisherman task fish
+|placeholder|explain|
+| -------------- |:-----------------:
+|% Player Group Name%|Name of the player group
+|% player name%|Player name
+|% current time%|Current real time
+|% The number of people currently online on the server%|Get the number of online users of the current server.
+|% Fisherman Task Fish Name%|Fisherman's task fish name
+|% fisherman task fish ID%|Fisherman task fish ID
+|% fisherman's mission fish location%|Fisherman's mission fish location
+|% map name%|Current map name
+|% Player HP%|Player blood volume
+|% Player Magic%|Player magic
+|% Maximum player's HP%|Maximum player blood volume
+|% Player Magic Maximum%|Maximum player magic
+|% Player Lucky Value%|Player's lucky value
+|% player x coordinate%|X coordinate of player graph
+|% player y coordinate%|Y coordinate of player graph lattice
+|% player's area%|Region where the player is located
+|% Player Death Status%|Player death state
+|% current environment%|Player's current environment
+|% Server Online List%|Online list of servers (/who)
+|% fisherman's task fish completed%|Does the player complete the fisherman's task fish?
 
 
 ## Update log
@@ -75,6 +75,6 @@ v1.0.1 完善卸载函数
 ```
 
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

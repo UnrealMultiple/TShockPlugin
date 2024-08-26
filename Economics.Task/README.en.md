@@ -1,14 +1,14 @@
-# Economics.task task plug -in
+# Economics.Task task plug-in
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- Send a task for players
+- Send tasks to players
 
-> [! Note]
-> Need to install front plug -ins: Economicsapi, Economics.rpg (this warehouse)
+> [! NOTE]
+> Pre-plug-ins need to be installed: EconomicsAPI, Economics.RPG (this warehouse).
 
 ## Update log
 
@@ -18,18 +18,18 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| --------------------- |: ---------------------:|: ----------------:|
-|/Task Pick [Mission Index]|economics.task.use|Take a task|
-|/Task Info [Task Index]|economics.task.use|View the task details|
-|/task prog|economics.task.use|View task completion progress|
-|/Task PR|economics.task.use|Submit task|
-|/task del|economics.task.use|Abandon the task|
-|/task list [page number]|economics.task.use|View task list|
-|/Task Reset|economics.task.admin|Reset|
+|grammar|limit of authority|explain|
+| --------------------- |:------------------:|:--------------:|
+|/task pick [task index]|economics.task.use|Pick up a task|
+|/task info [task index]|economics.task.use|View task details|
+|/task prog|economics.task.use|View the task completion progress|
+|/task pr|economics.task.use|Submit a task|
+|/task del|economics.task.use|Give up the task|
+|/任务列表[页码]|经济.任务.用途|查看任务列表|
+|/任务重置|经济.任务.管理|重置任务|
 
-## Configuration
-> Configuration file location: TSHOCK/ECONOMICS/TASK.JSON
+## 配置
+> 配置文件位置:tshock/Economics/Task.json
 ```json
 {
    "不可重复接任务": true,
@@ -72,7 +72,7 @@
 }
 ```
 
-## feedback
+## 反馈
 
-- Co -maintained plug -in library: https://github.com/Controllerdestiny/tshockplugin
-- The official group of Trhub.cn or Tshock in the domestic community
+- 共同维护的插件库:https://github . com/controller destiny/TShockPlugin
+- 国内社区trhub.cn或TShock官方群等

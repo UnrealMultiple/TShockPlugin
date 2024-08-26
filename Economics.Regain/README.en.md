@@ -1,14 +1,14 @@
-# Economics.regain recycling item plug -in
+# Economics.Regain Recycled Items Plug-in
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- Can customize recycling items plug -in
+- Customizable plug-in for recycled items
 
-> [! Note]
-> You need to install front plug -in: Economicsapi (this warehouse)
+> [! NOTE]
+> Need to install the pre-plug-in: EconomicsAPI (this warehouse)
 
 ## Update log
 
@@ -18,14 +18,14 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| ------------------- |: ----------------:|: --------------:|
-|/regain [quantity]|economics.regain|Exchange handheld items|
-|/regain list [page number]|economics.regain|View convertible items|
-|/regain|economics.regain|Exchange handheld items|
+|grammar|limit of authority|explain|
+| ------------------- |:--------------:|:------------:|
+|/regain [quantity]|economics.regain|Redeem hand-held articles|
+|/regain list [page number]|economics.regain|View redeemable items|
+|/regain|economics.regain|Redeem hand-held articles|
 
-## Configuration
-> Configuration file location: TSHOCK/ECONOMICS/Regain.json
+## deploy
+> Configuration file location: tshock/economics/regain.json.
 ```json
 {
    "回收物品表": [
@@ -37,6 +37,6 @@
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

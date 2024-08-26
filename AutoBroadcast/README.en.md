@@ -1,11 +1,11 @@
-# Autobroadcast automatic broadcast
+# AutoBroadcast automatic broadcast
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: scavenger, zaicon, GK small improvement, liver Emperor Xien updated to 1449
+- Authors: Scavenger, Zaicon,GK minor improvement, Gan Di Xi 'en updated to 1449.
 - Source: None
-- Broadcast or execute commands in the server regularly.
+- Broadcast in the server regularly, or execute commands.
 
 ## Update log
 
@@ -15,10 +15,10 @@
 
 ## instruction
 
-none
+without
 
-## Configuration
-> Configuration file location: TSHOCK/AutobroadCast.json
+## deploy
+> Configuration file location: tshock/AutoBroadcast.json
 ```json
 {
    "广播列表": [
@@ -42,6 +42,6 @@ none
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

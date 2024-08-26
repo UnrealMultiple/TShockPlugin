@@ -1,15 +1,15 @@
-# Disablegodmod to prevent the player invincible
+# DisableGodMod prevents players from being invincible
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: GK, Yu Xue
+- Authors: GK, feather science
 - Source: QQ group (232109072)
-- The main purpose of the plug -in is to monitor and prevent players from using invincible or other cheating in the game.
-- The changes in information such as the health, defense value, stealth state, dodge state, and the treatment effect of the player.
-- The kick operation will be performed for illegal players. At the same time, in order to avoid concurrent problems,
-- Synchronized lock processing of the player's data container.
-- Analyze and judge the behavior of the player. When the suspected invincible or illegally modify the maximum life value of life, etc.,
+- The main purpose of plug-ins is to monitor and prevent players from using invincible or other cheating behaviors in the game.
+- By monitoring the changes of players' health value, defense value, stealth state, evasion state and treatment effect,
+- Kick out the offending player. At the same time, in order to avoid concurrency problems,
+- Synchronize and lock the player data container.
+- Analyze and judge the player's behavior, and when it is found that it is suspected of being invincible or illegally modifying the upper limit of health,
 ## Update log
 
 ```
@@ -19,16 +19,16 @@
 ```
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|none|Invincible inspection|Do not detect the plug -in|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|without|Invincible from inspection|Plug-ins do not detect it.|
 
-## Configuration
+## deploy
 
 ```json
 暂无
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

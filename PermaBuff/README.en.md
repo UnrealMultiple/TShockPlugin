@@ -1,11 +1,11 @@
-# Permabuff permanent buff
+# PermaBuff permanent buff
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- Let the player have buffs permanently
+- Let players have buff forever.
 
 ## Update log
 
@@ -16,20 +16,20 @@ v.1.0.1
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| ------------------------------- |: --------------:|: -----------------------------------------------------------------------------:|
-|/Permabuff [BUFFID]|permabuff.use|Give your own permanent buff (Remove it again)|
-|/GperMabuff [Player Name] [Buffid]|gpermabuff.use|Give players a permanent buff (Remove it again)|
-|/Clearbuffs|clearbuffs.use|Clear all buffs yourself|
+|grammar|limit of authority|explain|
+| ------------------------------- |:------------:|:---------------------------------:|
+|/permabuff [buffID]|permabuff.use|Give yourself a permanent buff (use it again to remove)|
+|/gpermabuff [player name] [buffid]|gpermabuff.use|Give the player a permanent buff (use it again to remove)|
+|/clearbuffs|clearbuffs.use|Empty all your buff.|
 
-## Configuration
-> Configuration file location: TSHOCK/PERMBUFF.JSON
+## deploy
+> Configuration file location: tshock/permbuff.json
 ```json
 {
    "不可添加buff": []
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

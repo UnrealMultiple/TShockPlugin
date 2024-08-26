@@ -1,12 +1,12 @@
-# Golfrewards golf reward
+# GolfRewards golf award
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: GK will be customized by pigeons, liver Emperor Xien updates and adapts 1449
-- Source: TSHOCK Chinese official group
-- Players hit the ball in the golf hole and get the corresponding reward based on the number of hitting times (number of rods).
-- The plug -in supports the custom reward form, including the item rewards and execution commands.
+- Author: GK is customized by pigeons, updated and adapted by Gan Di Xi 'en 1449.
+- Source: TShock Chinese official group
+- Players will be rewarded according to the number of strokes (the number of strokes) when they hit the ball in the golf hole.
+- Plug-ins support custom reward tables, including item rewards and executed commands.
 
 ## Update log
 
@@ -20,21 +20,21 @@ v1.0.6
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/Block coordinates|Block coordinates|Auxiliary instructions, determine the square coordinates|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/block coordinates|Block coordinates|Auxiliary command, determine the box coordinates.|
 
-## Configuration
-> Configuration file location: TSHOCK/Golf reward.json
-Each reward node (`Reward`) Including the following attributes:
+## deploy
+> Profile location: tshock/ golf award.json
+Each reward node (`Bonus Festival`) contains the following properties:
 
-- `Cave coordinates x`: The coordinates of the ball on the X -axis.
-- `Cave coordinates y`: The coordinates of the ball on the y -axis.
-- `Minimum rod`: The minimum number of poles needed for players to hit the ball.
-- `Maximum rod`: The maximum number of rods needed for players to enter the hole.
-- `This location only receives the reward`: If it is `true` then players can only receive once rewards at this location.
-- `Festival`: A list, which contains the item rewards that the player can get. Each item reward includes items ID, quantity and prefix.
-- `Instruction`: A list contains the commands that the player may execute after the player is successful.
+- `Hole coordinate x`: the coordinates of the hole on the x axis.
+- `Hole coordinate y`: the coordinates of the hole on the y axis.
+- `Minimum number of rods`: The minimum number of strokes required for a player to hit the ball into the hole.
+- `Maximum number of rods`: The maximum number of strokes a player needs to hit the ball into the hole.
+- `This position only receives this reward.`: If it is `true`, the player can only receive a reward once in this position.
+- `Goods festival`: A list of items that players can get. Each item reward includes item ID, quantity and item prefix.
+- `Instruction section`: A list containing the commands that the player may execute after hitting the ball successfully.
 
 ```json
 {
@@ -62,6 +62,6 @@ Each reward node (`Reward`) Including the following attributes:
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

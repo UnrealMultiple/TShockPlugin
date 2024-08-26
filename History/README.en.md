@@ -1,14 +1,14 @@
-# History record graphic operation
+# History records grid operations
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Cracker64 & Zaicon & Cai
+- Authors: Cracker64 & Zaicon & Cai
 - Source: None
-- Record each player's operation of the graphit
-- This allows you to use instructions to restore the graphic
-- Or reproduce the player's operation
-- Avoid some cases from the intention of the player's intentional damage that the game cannot be performed normally
+- Record each player's operation on the graph.
+- This allows you to use instructions to restore the graph.
+- Or reproduce the player's operation.
+- Avoid some situations where the game can't be played normally due to the intentional destruction of the player.
 
 ## Update log
 
@@ -25,30 +25,30 @@ v1.0.1
 
 ## instruction
 
-|grammar|Alias|Authority|illustrate|
-| -------------------------------- |: ---:|: ----------------:|: ----------------------------------------:|
-|/history [Account Name] [Time] [Scope]|/history|hestory.get|Restore a user's behavior in time span and radius|
-|/prunehist [Time]|/delete|hestory.prune|Delete a historical record of a time span|
-|/Reenact [Account Name] [Time] [Scope]|/Reproduce|hestory.reenAct|Create all the actions of the player in time span and radius|
-|/rollback [Account Name] [Time] [range]|Trace|hestory.rollback|Restore all the movements of the player in time span and radius|
-|/rollback [Account Name] [Time] [range]|/Revoke|hestory.rollback|Restore all the movements of the player in time span and radius|
-|/hreset|/Reset history|hestory.admin|Reset the database table|
+|grammar|another name|limit of authority|explain|
+| -------------------------------- |:---:|:--------------:|:--------------------------------------:|
+|/history [account name] [time] [range]|/history|history.get|Restore a user's behavior in time span and radius.|
+|/prunehist [time]|/delete|history.prune|Delete the history over a time span.|
+|/reenact [account name] [time] [range]|/reappearance|history.reenact|Recreate all the player's actions within the time span and radius.|
+|/rollback [account name] [time] [range]|/backtracking|history.rollback|Restore all the actions of the player within the time span and radius.|
+|/rollback [account name] [time] [range]|/cancel|history.rollback|Restore all the actions of the player within the time span and radius.|
+|/hreset|/reset history|history.admin|Reset database table|
 
 ---
-Note
+Instructions for attention
 ---
-1. 1.`time` format `dd:hh:mm:ss`[天/hour/minute/second]
+1.`time` format is `dd:hh:mm:ss`[Day/hour/minute/second]
   
-2.`scope` where you are `Diameter number` 
+2.`range` for your location `Radius lattice number` 
 
-For example, restore feathers `2 hours ago` in the current position `200 square meters` modified the graphic within the range:/rollback Yu Xue 2H 200
+For example, reductionism `Two hours ago` in the current position `200 grids` the graph grid has been modified in the range: /rollback feather 2h 200.
 
-## Configuration
+## deploy
 
 ```json
 暂无
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

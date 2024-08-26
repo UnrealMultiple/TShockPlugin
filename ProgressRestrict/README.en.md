@@ -1,15 +1,15 @@
-# ProgresSrestrict Super Progress Detection
+# ProgressRestrict over-schedule detection
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Life & Love Demon Reform Three -in -One
+- Author: Young Si Ming & Love magic change Trinity
 - Source: github
-- Super progress detection
-- It can be detected by items, barrage, and buff
+- Over-schedule detection
+- Can carry out over-schedule detection on items, barrage and buff.
 
-> [! Note]
-> You need to install the front plug -in: DataSync (this warehouse)
+> [! NOTE]
+> Need to install the pre-plug-in: DataSync (this warehouse)
 
 ## Update log
 
@@ -19,14 +19,14 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| ---- |: --------------------------:|: -----------------------:|
-|null|Progress.item.white|Super inactive item inspection white name permissions|
-|null|Progress.projecttile.white|Super Progress Barrage Inspection White Names Authority|
-|null|progress.buff.white|Super Progress BUFF Check the White Name Right|
+|grammar|limit of authority|explain|
+| ---- |:------------------------:|:----------------------:|
+|empty|progress.item.white|Permission to check the white name of over-scheduled items|
+|empty|progress.projecttile.white|Super-schedule barrage check white name permission|
+|empty|progress.buff.white|Super progress Buff check white name permission|
 
-## Configuration
-> Configuration file location: TSHOCK/Super Progress detection.json
+## deploy
+> Configuration file location: tshock/ over-progress detection.json.
 ```json
 {
    "惩罚违规": true,
@@ -342,6 +342,6 @@
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

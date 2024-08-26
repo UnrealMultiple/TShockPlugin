@@ -1,16 +1,16 @@
-# Consolesql
+# ConsoleSql
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: CAI
-- Source: This warehouse
-- Allow you to use SQL statements in the console and bot
+- Author: Cai
+- Source: this warehouse
+- Allows you to execute SQL statements in the console and BOT.
  
-> [! Caution]
-> When performing a dangerous SQL statement (delete, drop, etc.), please check (condition, etc.) carefully, otherwise it may cause serious irreversible consequences
+> [! CAUTION]
+> When executing dangerous SQL statements (DELETE, DROP, etc.), please carefully check (conditions, etc.), otherwise it may cause serious irreversible consequences.
 
-## Exemplary example
+## example
 ```
 列出Tshock的数据表名：  
 sql select name from sqlite_master where type='table'  
@@ -20,16 +20,16 @@ sql select * from users
 sql update users set username='熙恩' where id=2   
 ```
 
-## Configuration
+## deploy
 
 ```json
 无
 ```
-## Order
+## order
 
-|Order name|Authority|illustrate|
-| -------------- |: -----------------------|: --------------------:
-|/sql <sql statement>|Consolesql.use|Execute SQL
+|Command name|limit of authority|explain|
+| -------------- |:-----------------|:-----------------:
+|/sql <SQL statement >|ConsoleSql.Use|Execute SQL
 
 
 ## Update log
@@ -39,6 +39,6 @@ sql update users set username='熙恩' where id=2
 ```
 
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

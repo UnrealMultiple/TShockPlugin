@@ -1,11 +1,11 @@
-# PluginManager automatic update plug -in
+# PluginManager automatic update plug-in
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming, CAI
-- Source: This warehouse
-- Use the instruction to automatically update the server's plug -in (only the warehouse)
+- Authors: Shao Siming, Cai,
+- Source: this warehouse
+- Use the instruction to automatically update the plug-in of the server (this warehouse only)
 
 ## Update log
 
@@ -26,21 +26,21 @@ V2.0.0.0
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/APM -C|Autopdateplugin|Check the plug -in update|
-|/APM -U [Plug -in Name]|Autopdateplugin|One -click upgrade plug -in, you need to restart the server, the plug -in name can be selected more `English comma separate`|
-|/APM -L|Autopdateplugin|View warehouse plug -in list|
-|/APM -i [Plug -in serial number]|Autopdateplugin|Install the plug -in, you need to restart the server, the plug -in serial number is multiple choice `English comma separate` cooperate `/apm -i` instruction|
-|/apm -b [plug -in name]|Autopdateplugin|Exclude the plug -in update|
-|/APM -RB [Plug -in name]|Autopdateplugin|Removal and update|
-|/APM -LB|Autopdateplugin|List the plug -in to exclude the update|
-## Configuration
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/apm -c|AutoUpdatePlugin|Check plug-in updates|
+|/apm -u [plug-in name]|AutoUpdatePlugin|To upgrade the plug-in with one click, the server needs to be restarted, and the plug-in name can be multiple.`English comma separation`|
+|/apm -l|AutoUpdatePlugin|View the list of warehouse plug-ins|
+|/apm -i [plug-in serial number]|AutoUpdatePlugin|To install the plug-in, you need to restart the server, and the serial number of the plug-in is multiple.`English comma separation` cooperate `/apm -i` instruction use|
+|/apm -b [plug-in name]|AutoUpdatePlugin|Exclude plug-ins from updates|
+|/apm -rb [plug-in name]|AutoUpdatePlugin|Remove exclude updates|
+|/apm -lb|AutoUpdatePlugin|List plug-ins that exclude updates|
+## deploy
 
 ```json
 暂无
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

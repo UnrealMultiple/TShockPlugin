@@ -1,10 +1,10 @@
-# Minigamesapi bean paste game API
+# MiniGamesAPI bean paste game API
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
-- Author: [Bean_Paste] https://gitee.com/crafty/projects, Yu Xue
-- Source: [bbstr] https://www.bbstr.net/r/107//107/
-- The original intention of the development of Minigamesapi is to provide plug -in developers with the overall deployment of a fast mini -game. This plug -in has built -in classes and code commonly used in many small game plug -ins.
+- Author: [bean _ paste] https://gitee.com/craft/projects, feather science
+- Source: [bbstr] https://www.bbstr.net/r/107/
+- MiniGamesAPI was originally developed to provide quick overall deployment of small games for plug-in developers. This plug-in has many classes and codes commonly used by small game plug-ins.
 
 ## Update log
 
@@ -20,16 +20,16 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| ----------------------------- |: ----------:|: ---------------------:|
-|none|none|none|
+|grammar|limit of authority|explain|
+| ----------------------------- |:---------:|:--------------------:|
+|without|without|without|
 
-## Configuration
+## deploy
 
 ```
 暂无
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

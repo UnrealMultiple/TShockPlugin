@@ -1,17 +1,17 @@
-# Caibot adaptation plugin
+# CaiBot adapter plug-in
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: CAI
-- Warehouse: This warehouse
-- CAI Cloud Black Robot adaptation plug -in
-- Use \ -Caidebug to turn on the debug mode
-- Use \ -Cailocalbot to open the local BOT mode (robot server will point to 127.0.0.1)
+- Author: Cai
+- Warehouse: This warehouse.
+- Adapting plug-in of Cai cloud black robot
+- Use \-caidebug to start debugging mode.
+- Use \-cailocalBOT to start the local bot mode (the robot server will point to 127.0.0.1).
 
-## Caibot detailed documentation
+## CaiBOT detailed document
 
-- - [Acactt/caibotdocument](https://github.com/ACaiCat/CaiBotDocument) 
+- - [ACaiCat/CaiBotDocument](https://github.com/ACaiCat/CaiBotDocument) 
 
 ## Update log
 
@@ -35,9 +35,9 @@ v2024.8.25.1 发送base64前用gzip压缩
 暂无  
 ```
 
-## Configuration
+## deploy
 
-> Configuration file location: TSHOCK/CAIBOT.JSON
+> Configuration file location: tshock/CaiBot.json
 
 ```json
 {
@@ -49,22 +49,22 @@ v2024.8.25.1 发送base64前用gzip压缩
 
 ----------
 
-## How to use (lightweight version):
+## How to use (light version):
 
-1. Install the plug -in in serverplugins/
+1. install the plug-in in ServerPlugins/
 
-2. Restart server
+2. Restart the server
 
-3. The authorization code will be displayed after starting the server
+3. The authorization code will be displayed after starting the server.
 
-4. Send the add server <P address> <port> <verification code>
+4. send and add server < IP address > < port > < verification code > within the group.
 
-5. Complete configuration
+5. Complete the configuration
 
 ----------
 
 ## feedback
 
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

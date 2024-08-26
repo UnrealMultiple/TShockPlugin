@@ -1,10 +1,10 @@
-# Autoreset completely automatically reset the plug -in
+# AutoReset fully automatic reset plug-in
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: CC04 & Leader & Prism & Cai & Liver Emperor Xien
-- Completely reset the plug -in, what should I customize what to reset
+- Author: cc04 & Leader & Prism & Cai&Gan Di Xi En
+- Fully automatically reset the plug-in, customize what to reset.
   
 
 ## Update log
@@ -16,14 +16,14 @@ v.2024.8.24
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/reset or /reset the world|reset.admin|Reset the world|
-|/rs or /reset settings|reset.admin|Reset|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/reset or/reset the world|reset.admin|Reset the world|
+|/rs or/reset settings|reset.admin|Reset settings|
 
 
 ## File location
-> TSHOCK/Autoreset/Reset_config.json
+> tshock/AutoReset/reset_config.json
 ```json
 {
    "替换文件": {
@@ -57,6 +57,6 @@ v.2024.8.24
 ```
 
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

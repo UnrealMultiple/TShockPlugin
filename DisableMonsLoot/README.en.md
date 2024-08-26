@@ -1,15 +1,15 @@
-# DisablemonsLoot Monster drop
+# DisableMonsLoot prohibits monsters from falling.
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Yu Xue
+- Author: feather science
 - - 出处: [github](https://gitee.com/Crafty/bean-points) 
-- Magic reform <Monster does not drop money plug -in> The original intention of development is to cooperate with random drops to open up wasteland
-- This plug -in cleans up the current progress through the monster death incident,
-- If you defeat [Monster ID], any monster will automatically close [Cleaning function]
-- If [Whether to kill] is turned on, you need to defeat [Monster ID] all monsters will automatically close
-- Enter/kdm reset to turn on all [cleaning up] switches to restore the server
+- Magic change's "Monster Can't Lose Money Plug-in" was originally developed to cooperate with random falling items for land reclamation.
+- This plug-in cleans up the items in the current progress through the monster death event.
+- If you defeat any monster in 【 Monster ID 】, you will automatically turn off 【 Cleaning Function 】.
+- If 【 Kill All 】 is turned on, all monsters will be automatically turned off only after defeating 【 Monster ID 】.
+- Enter /kdm reset to turn on all the 【 Clean 】 switches, so as to restore when resetting the server.
 
 ## Update log
 ```
@@ -44,12 +44,12 @@ v1.1.0
 ```
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/kdm|killitem.admin|Check the ban instruction menu|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/kdm|killitem.admin|Check the forbidden monster drop command menu.|
 
-## Configuration
-> Configuration file location: TSHOCK/Forbidden Monster drop .json
+## deploy
+> Configuration file location: tshock/ no monsters falling. json
 ```json
 {
    "使用说明": "你只管改‘ID’就行，‘清理’和‘怪物名’不用动，击杀其中1个怪物ID自动关闭清理功能。指令：/kdm (权限killitem.admin)",
@@ -76,6 +76,6 @@ v1.1.0
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

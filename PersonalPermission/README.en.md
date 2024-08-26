@@ -1,12 +1,12 @@
-# Personalpermission player alone permissions
+# PersonalPermission player's individual permissions
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Meggy, Liver Emperor Xien updated 1449
+- Author: Megghy, Gan Di Xi En Update 1449
 - - 出处: [github](https://github.com/Megghy/PersonalPermission) 
-- To give players a separate authority instead of adding to the user group where it is located.
-- For developers: <TSPlayer>. Getdata <Group> (Getdata <Group> (Getdata <Group> ("PersonalPermission"); Get a user group object that contains independent permissions, and directly call. Haspermission will automatically judge the permissions.
+- To give the player a separate right instead of adding it to the user group.
+- For developers, you can use < TS Player >. getdata < group > ("PersonalPermission"); To get a user group object with independent permissions, and calling. HasPermission directly will automatically determine permissions.
 
 
 ## Update log
@@ -18,16 +18,16 @@ v1.1.0.1
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/PP|Personalpermission.admin|Add instructions such as add/delete permissions for players|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/pp|personalpermission.admin|Add/delete permissions and other instructions for players.|
 
-## Configuration
+## deploy
 
 ```
 暂无
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

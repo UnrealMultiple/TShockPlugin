@@ -1,14 +1,14 @@
-# Generatemap saves the map to the picture
+# GenerateMap saves the map to a picture.
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
 - Generate map pictures
   
-> [! Note]
-> Pay attention to installing front plug -in Cailib (this warehouse)
+> [! NOTE]
+> Pay attention to the installation of pre-plug-in CaiLib (this warehouse).
 
 ## Update log
 
@@ -18,17 +18,17 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| --------- |: -----------:|: -----------:|
-|/Generate map|generate.map|Generate map pictures|
+|grammar|limit of authority|explain|
+| --------- |:----------:|:----------:|
+|/generate map|generate.map|Generate map pictures|
 
 ## REST API
 
-|Path|Authority|illustrate|
-| ------------ |: -----------:|: -----------:|
-|/Generatemap|generate.map|Generate map pictures|
+|path|limit of authority|explain|
+| ------------ |:----------:|:----------:|
+|/generatemap|generate.map|Generate map pictures|
 
-## Configuration
+## deploy
 
 ```json
 暂无
@@ -36,5 +36,5 @@
 
 ## feedback
 
-- Co -maintained plug -in library: https://github.com/Controllerdestiny/tshockplugin
-- The official group of Trhub.cn or Tshock in the domestic community
+- Co-maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin
+- Domestic community, trhub.cn or TShock official group, etc.

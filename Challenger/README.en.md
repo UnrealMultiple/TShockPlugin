@@ -3,49 +3,49 @@
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Star Night God Flower, Tale, Yu Xue
+- Authors: starry night flower, bitter orange, feather science
 - - 出处: [github](https://github.com/skywhale-zhi/Challenger) 
-- This is a TSHOCK server plug -in mainly used to modify the magic reform and equipment set of the server BOSSAI, the passive skills of accessories, etc.
-- And the player will be pulled out when injured, and the blood bag will give the nearby enemy monsters (BOSS priority). If the player can intercept the blood bag, he can return the blood to himself.
-- And allow the blood volume multiple of all monsters by modifying the configuration file. Due to the author's loss of version 1.0.1, Yu Xue compiled the plug -in for secondary open source and update.
+- This is a Tshock server plug-in, which is mainly used to modify the server BOSSAI's magic change and equipment set, passive skills of accessories, etc.
+- And when the player is injured, the blood bag will be drawn out, and the blood bag will give blood back to the nearby enemies (boss takes priority). If the player can intercept the blood bag, he can give blood back to himself.
+- It also allows you to control the blood multiple of all monsters by modifying the configuration file. Because the author lost the source code of version 1.0.1, Yuxue decompiled the plug-in for secondary open source and update.
 - 
-- The modified set enhancement effect is:
-- Bagding jewelry: Give permanent buff, enable unlimited ammunition
-- Mining set: Give permanent mining, candy sprint buff, enable chain mining capabilities
-- Fishing set: Give permanent sound, fishing, treasure box, calm buff
-- Ninja set: a quarter of probability to avoid non -fatal damage and release smoke
-- Fossil set: Call a amber light ball on the head, throw a very fast lightning vector to the enemy
-- Shadow set: During the crit, the surrounding of monster missiles to attack the surrounding enemies from the player, cooling for 1 second
-- Scarlet set: During the crit, the amount of blood from each enemy around the surrounding surroundings is absorbed by the number of blood volume with the number of enemy monsters.
-- Meteorite: Restore a little magic during the crit, intermittently drops high damage to the star to attack the enemy
-- Bee condom: Gives permanent honey gain; sprinkle bee sugar cans around uninterruptedly, players return blood and give 15 seconds of honey gain after contact;
-The amount of treatment to the player is slightly lower than that of other players
-- Jungle cover (ancient cobalt): generate harmful spores from the players intermittently
-- Naddonic set: When injured, splash bones around the surroundings; occasionally launch bone arrows when attacking
-- Obsidian set: Because of the blessings of the thief, the drop -off will try to drop twice (only effective for non -BOSS creatures and non -high -blood monsters)
-- Lava set: immune magma, giving permanent hell fire gain
-- Spider sleeve: During the attack, give the enemy poisoning and toxic reducing benefits, press the "UP" key to generate a toothproof drug water bottle, and explode when hitting the enemy "
-- Crystal Assassin: When an enemy is nearby, the crystal fragments are released; if the player is hit, it releases a stronger fragment
-- Cold frost set: start snowing around (the "Arctic" barrage of the ice and snow queen drops the weapon "Arctic")
-- Forbidden ring set: Release the automatic search of the spiritual flame soul fire attack nearby enemies
-- Sacred set (ancient sacred): Summon light and dark sword gas when hitting the enemy, enter "/cf" to switch sword air type
-- Leaf green sleeve: release inaccurate leaf green crystal vessels, the power of the jungle gives you a higher life limit
-- Turtle set: increase the upper limit of 60 blood, automatically release explosion fragments nearby
-- Paramia: increase the upper limit of 20 blood, leave spores on the trajectory of the whip
-- Beetle cover: increase the 60 blood limit, part of the enemy's injury will treat the surrounding teammates and give BUFF;
-When equipped with the Paladin Shield or its superior synthesizer, the damage of melee weapons is doubled
-- Mushroom Set: Bullets will leave mushrooms unstablely
-- Yinyan: When using a whip, throw out the bat or pumpkin head
-- Ghost Set: Add 40 blood maximum or 80 magic upper limit according to the headdress; summon two ghost curse surround players and attack nearby enemies
-- Royal Gel: The sky began to undergo light rain in the sky
-- Kuuru's shield: Get a short period of invincible time during sprint, cool for 12 seconds
-- The chaotic brain: enter "/cf" all the enemy monsters around the chaos
-- Porch scarf: immune cold, frost fire, spiritual fluid and spell fire
-- Radio parts: Enter "/CF" to listen to the weather forecast, you can listen to the world prophet forecast in the difficult mode
-- Bee backpack: throw poison bee tanks around uninterrupted, release a bee after explosion
-- Virgin gel: The enemy has a probability of falling down the magic crystal, pearls, gel, etc.
+- The enhanced effects of the modified package are as follows:
+- Arrow bag ornaments: give permanent buff and enable unlimited ammunition.
+- Mining package: give permanent mining and candy sprint buff, and enable chain mining ability.
+- Fishing set: give permanent sonar, fishing, treasure box and calming Buff.
+- Ninja set: There is a one-fourth chance to avoid non-fatal damage and release smoke.
+- Fossil set: Summon an amber ball on your head and throw a lightning bolt at the enemy.
+- Shadow Set: During crit, a devouring missile is generated from around the player to attack nearby enemies, and it is cooled for 1 second.
+- Scarlet set: Absorb a certain amount of blood from every enemy monster around you during critical strike. With the increase of enemy monster number, the blood-sucking amount is -1, and it is cooled for 5 seconds.
+- Meteorite set: Restore some magic when crit, and intermittently drop high-damage falling stars to attack the enemy.
+- Bee set: give permanent honey gain; Continuously sprinkle bee candy cans around, and the player will return to blood after contact and give 15 seconds of honey gain;
+The amount of treatment for the player himself is slightly lower than that for other players.
+- Jungle sleeve (ancient cobalt): intermittently generates harmful spores from around the player.
+- Necromancer's sleeve: when you are injured, splash bones around; Occasionally fire bone arrows when attacking.
+- Obsidian sleeve: Due to the blessing of thieves, the falling object will try to fall twice (only valid for non-boss creatures and non-high-blood monsters).
+- Lava sleeve: immune to magma, giving permanent Hellfire gain.
+- Spider cover: when attacking, give the enemy poison and toxic poison, press the "up" key to generate a poisonous tooth medicine bottle, which will explode when hitting the enemy. "
+- Crystal Assassin's Set: When an enemy is nearby, it releases crystal fragments by itself; If the player is hit, release more powerful fragments.
+- Frost cover: It starts to snow around you (the Snow Queen drops her weapon "North Pole" barrage).
+- Forbidden ring set: release the soul fire of automatic search to attack nearby enemies.
+- Sacred Set (Ancient Sacred): Summon light and dark shock wave when hitting the enemy, and enter "/cf" to switch the shock wave type.
+- Leaf green set: release the inaccurate leaf green crystal vector, and the power of the jungle will give you a higher life limit.
+- Turtle Cover: Increases the maximum blood by 60, and automatically releases explosive fragments nearby.
+- Raise the base cover: increase the maximum blood by 20, leaving spores on the whip track.
+- Beetle Cover: Increase the upper limit of 60 blood, and part of the enemy's damage will heal nearby teammates and give buff；;
+When equipped with a paladin shield or its superior composition, melee weapon damage doubles.
+- Mushroom cover: Projectile will leave mushrooms unsteadily.
+- Dark cover: When using a whip, throw out the head of a bat or pumpkin.
+- Ghost sleeve: increase 40 blood limit or 80 magic limit according to the choice of headdress; Summon 2 ghost curses to surround the player and attack nearby enemies.
+- Royal gel: the sky began to drizzle with gel
+- Cthulhu Shield: Get a short invincible time when sprinting, and cool down for 12 seconds.
+- Brain of Chaos: Enter "/cf" to confuse all enemies around.
+- Worm scarf: immune to cold, frost fire, spiritual fluid and spell fire.
+- Radio parts: Enter "/cf" to listen to the weather forecast, and you can listen to the World Prophet forecast in difficult mode.
+- Bee backpack: throw poison bee cans around continuously, and release a bee after the explosion.
+- Volatile gelatin: If you hit the enemy, you may drop broken magic crystal, nacrite, gel, etc.
 - 
-- [Current problems]: The damage caused by the increase will not be considered as caused by players, but it can still kill monsters
+- [Existing Problems]: The damage caused by the increased effect will not be counted as the damage caused by the player, but it can still kill the monster.
 
 ## Update log
 
@@ -124,14 +124,14 @@ OnGameUpdate/WormScarf/OnServerLeave
 
 ## instruction
 
-|grammar|Alias|Authority|illustrate|
-| -------------- |: ----------:|: --------------:|: -------:|
-|/Finable|none|challenger.enable|Enable the challenge mode and use it again|
-|/TIPS|none|challenger.tips|Enable the content prompt, such as the text prompts of various items, use the cancellation again|
-|/CF|none|none|Used to switch or trigger equipment passive skills types|
+|grammar|another name|limit of authority|explain|
+| -------------- |:---------:|:------------:|:------:|
+|/cenable|without|challenger.enable|Enable challenge mode and use cancel again.|
+|/tips|without|challenger.tips|Enable content prompts, such as text prompts for various items, and use Cancel again.|
+|/cf|without|without|Used to switch or trigger passive skill types of equipment.|
 
-## Configuration
-> Configuration file location: TSHOCK/ChallengerConfig.json
+## deploy
+> Configuration file location: tshock/ChallengerConfig.json
 ```
 {
    "是否启用挑战模式": true,
@@ -372,6 +372,6 @@ OnGameUpdate/WormScarf/OnServerLeave
 ```
 
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

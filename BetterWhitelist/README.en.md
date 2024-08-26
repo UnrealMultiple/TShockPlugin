@@ -1,11 +1,11 @@
-# Betterwhitelist better whitelist
+# BetterWhitelist
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Doudan, Liver Emperor Xixiu Xiu, CAI change
+- Authors: Dousha, Gan Di Xi Enxiu, Cai Gai,
 - - 出处: [gitee](https://gitee.com/Crafty/BetterWhitelist) 
-- Add the player's name to the whitelist, players who only in the white list can enter the game
+- Add the player's name to the white list, and only players in the white list can enter the game.
 
 ## Update log
 
@@ -15,19 +15,19 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
+|grammar|limit of authority|explain|
 |-------------------|-----------|-------------|
 |`/bwl help`|`bwl.use`|Display help information|
 |`/bwl add {name}`|`bwl.use`|Add the player name to the white list|
-|`/bwl del {name}`|`bwl.use`|Move the player out of the whitelist|
-|`/bwl list`|`bwl.use`|Show all the players on the white list|
-|`/bwl true`|`bwl.use`|Enable plug -in|
-|`/bwl false`|`bwl.use`|Turn off the plug -in|
-|`/bwl reload`|`bwl.use`|Heavy load plug -in|
+|`/bwl del {name}`|`bwl.use`|Remove players from the white list|
+|`/bwl list`|`bwl.use`|Show all players on the white list|
+|`/bwl true`|`bwl.use`|Enable plug-in|
+|`/bwl false`|`bwl.use`|Close plug-in|
+|`/bwl reload`|`bwl.use`|Overloaded plug-in|
 
-## Configuration
+## deploy
 
-> Configuration file location: TSHOCK/BETTERWHITELIST/Config.json
+> Configuration file location: tshock/betterwhitelist/config.json.
 
 ```json
 {
@@ -39,6 +39,6 @@
 
 ## feedback
 
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

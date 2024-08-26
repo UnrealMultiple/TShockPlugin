@@ -1,13 +1,13 @@
-# Invincibilityplugin is invincible for a limited time
+# InvincibilityPlugin is invincible in a limited time
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Liver Emperor Xi En
+- Author: Gan Di Xi En
 - Source: None
-- Divided into two types, God and Frame
-- God is absolutely invincible, and the blue volume is not consumed.
-- Frame is an invincible frame, if you are soaked in your own magma, you may still be hurt
+- There are two kinds, god and frame.
+- God is absolutely invincible, and the amount of blue is not consumed.
+- Frame is an invincible frame for you. If you soak yourself in magma, you may still get hurt.
 
 ## Update log
 
@@ -18,13 +18,13 @@ v1.0.6
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/TGOD or /Limited Time Invincible|Invincibility.god|God invincible|
-|/tframe or /time -limited invincible frame invincible|Invincibility.frame|Invincible frame invincible|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/tgod or/limited time god invincible|Invincibility.god|God is invincible|
+|/tframe or/time-limited invincible frame invincible|Invincibility.frame|Invincible frame invincible|
 
-## Configuration
-> Configuration file path: TSHOCK/Limited time invincible.json
+## deploy
+> Configuration file path: tshock/ time-limited invincible.json.
 ```json
 {
    "插件自带god无敌开启提示": true,
@@ -36,6 +36,6 @@ v1.0.6
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

@@ -1,12 +1,12 @@
-# Dethdrop Death drop
+# DeathDrop death drop
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Dadou, Liver Emperor Xien Update and Optimization
-- Source: TSHOCK Chinese official group
-- Allow custom monsters when the monster dies.
-- Random or custom, does not affect each other
+- Author: soybean seed, Gan Di Xi 'en renewal optimization
+- Source: TShock Chinese official group
+- Allows you to customize what falls when a monster dies.
+- Random or custom, do not affect each other.
 
 ## Update log
 
@@ -20,8 +20,8 @@
 暂无
 ```
 
-## Configuration
-> Configuration file location: TSHOCK/Death drop configuration table.json
+## deploy
+> Configuration file location: tshock/ death drop configuration table. json
 ```json
 {
    "是否开启随机掉落": false,//随机掉落的总开关，必须设置这个为true能设置除了自定义以外的内容
@@ -46,6 +46,6 @@
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

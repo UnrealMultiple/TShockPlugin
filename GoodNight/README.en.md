@@ -1,17 +1,17 @@
-# GOODNIGHT Note
+# Goodnight curfew
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
-- Author: jonesn, Yu Xue, Shao Si Ming
+- Authors: Jonesn, feather science, Shao Siming
 - Source: None
-- Daily specified time to prohibit or summon monsters (to meet the number of online people automatically lifted the ban monster)
-- This plugin integrates plug -in functions such as whitelist, curfew, and prohibition of monsters
-- Determine according to the number of people online during the curfew period, whether or not to summon monsters that have not been defeated or defeated
-- In the case of satisfying the number of online people and the time of curfes:
-- The monster ID of the NPC death incident in the [Prohibition of Monster Tables] is automatically assigned to the [Allow Summon Form] by killing.
-- It is convenient to allow players to summon which monsters are allowed to avoid the progress of single -person pushing server progress.
-- The number of online people is not satisfied with [The number of people needed to close the prohibited monster]:
-- You can summon all online players to reach the specified region territory through [Open the Summoning Area] to summon the monsters in the "Allow Summon Form" 
+- It is forbidden to take clothes or summon monsters at the specified time every day (automatically lift the ban and summon monsters when the number of online people meets)
+- This plug-in integrates the plug-in functions such as white list, curfew and no summoning monsters.
+- According to the number of people online during the curfew, whether it is allowed to summon unbeaten or defeated monsters is judged.
+- In case of meeting the number of people online and outside the curfew time:
+- Compare the monster ID in 【 Prohibited Monster Table 】 through NPC death events, and automatically assign it to 【 Allowed Summon Table 】 through killing count.
+- Convenient curfew time allows players to summon monsters, avoiding the situation that a single person pushes the progress of the server.
+- When the number of people online does not meet the number of people required to turn off the ban:
+- All online players can reach the designated Region territory through [Open Summoning Area] to summon the monsters in the Allowed Summoning Table.
 
 ## Update log
 
@@ -90,26 +90,26 @@ v2.0.0
 
 ## instruction
 
-|grammar|Alias|Authority|illustrate|
-| ------------------------------ |: ---:|: ----------------:|: ----------------------------------------:|
-|/gn|/curfew|goodnight.admin|Check the curfew instruction menu|
-|/gn list|none|goodnight.admin|List all curfes|
-|/regoad|none|tshock.cfg.reload|Heavy load configuration file|
-|/gn on|none|goodnight.admin|Open or close the curfew function|
-|/gn kick|none|goodnight.admin|Open or turn off the disconnected function|
-|/gn pos|none|goodnight.admin|Open or close the summoning area|
-|/gn all|none|goodnight.admin|Everyone is present to open or close the summoning area|
-|/Gn Clear|none|goodnight.admin|Clean up the monster ID of "Allow Summon Form"|
-|/gn boss times|none|goodnight.admin|Set up the number of killing requirements for the "Allow Summon Form"|
-|/Gn Reset Monster ID|none|goodnight.admin|Set the monster ID of "Allow Summon Form"|
-|/GN PLR number|none|goodnight.admin|Set the number of online people who ignore the "No Monster Watch"|
-|/gn add or del monster name|none|goodnight.admin|Add or remove the designated player to the disconnected list|
-|/gn plr add or del player name|none|goodnight.admin|Add or delete the specified monster of "Prohibition of Monsters"|
-|/gn time a & b 23:59|/Gn Time Start & Stop|goodnight.admin|Set up a curfew time to open the end time|
-|/Region Define Summoning Area|none|tshock.admin.region|Use TS to bring/region instructions to set the summoning area|
+|grammar|another name|limit of authority|explain|
+| ------------------------------ |:---:|:--------------:|:--------------------------------------:|
+|/gn|/curfew|goodnight.admin|Check the curfew command menu.|
+|/gn list|without|goodnight.admin|List all curfew tables|
+|/reload|without|tshock.cfg.reload|Overloaded configuration file|
+|/gn on|without|goodnight.admin|Turn the curfew function on or off.|
+|/gn kick|without|goodnight.admin|Turn the disconnect function on or off.|
+|/gn pos|without|goodnight.admin|Turn on or off the summoning area|
+|/gn all|without|goodnight.admin|Everyone needs to be present to open or close the calling area.|
+|/gn clear|without|goodnight.admin|Clean up the monster ID in the Allowed Summon Table.|
+|/gn boss times|without|goodnight.admin|Set the number of times to join the Allow Call Table to kill.|
+|/gn reset monster ID|without|goodnight.admin|Set the monster ID that resets the Allowed Summon Table.|
+|/gn plr number of people|without|goodnight.admin|Set the online number of people who ignore the "No Monsters Table"|
+|/gn add or del monster name|without|goodnight.admin|Add or remove the specified player to the disconnected whitelist.|
+|/gn plr add or del player name|without|goodnight.admin|Add or delete the specified monsters in the list of prohibited monsters.|
+|/gn time a & b 23:59|/gn time start & stop|goodnight.admin|Set the curfew opening and ending time|
+|/region define Summoning Area|without|tshock.admin.region|Set the calling area with TS /Region command.|
 
-## Configuration
-> Configuration file location: TSHOCK/Note .json
+## deploy
+> Configuration file location: tshock/ curfew.json
 ```json
 {
    "是否关闭宵禁": true,
@@ -180,4 +180,4 @@ v2.0.0
 }
 ```
 ## feedback
-- Commonly maintained plug-in library: HTTPS: -The domestic community Trhub.cn or TSHOCK official group, etc.
+- Jointly maintained plug-in library: https:- domestic community trhub.cn or TShock official group, etc.

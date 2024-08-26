@@ -1,13 +1,13 @@
-# Chameleon login before entering the service
+# Chameleon logged in before taking the clothes.
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Mistzzt, liver Emperor Xien fixed 1449
+- Author: mistzzt, Gan Di Xi 'en Repair 1449
 - - 出处: [github](https://github.com/mistzzt/Chameleon) 
-- Players who enter the service for the first time will get a prompt, and ask them to withdraw and log in again
-- After entering the service next time, they will ask them to enter the password. The password entered this input will be saved, which is equivalent
-- After that, if the player changes the device (or uuid), or those who are repeated to enter the game, they will ask them to enter the user password again
+- Players who take the service for the first time will be prompted and asked to log out and log in again.
+- They will be asked to enter a password after the next service, and the password entered this time will be saved, which is equivalent to the player's own user password (equivalent to registration).
+- After that, if the player changes the device (or UUID), or someone with the same name enters the game, they will be asked to enter the user password again.
 ## Update log
 
 ```
@@ -21,8 +21,8 @@ v1.0.1
 暂无
 ```
 
-## Configuration
-> Configuration file location: TSHOCK/Chameleon.json
+## deploy
+> Configuration file location: tshock/Chameleon.json
 ```json
 {
    "等待列表长度": 10,
@@ -45,6 +45,6 @@ v1.0.1
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

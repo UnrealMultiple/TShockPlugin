@@ -1,6 +1,6 @@
-## Donotfuck swear words
+## DonotFuck swearing
 
-- Author: Cai Yu Xue Modification
+- Author: Cai feather study revision
 - - 出处: [github](https://github.com/1242509682/ProhibitSurfaceProjectiles) 
 - 
 
@@ -11,14 +11,14 @@
 ```
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/regoad|none|Heavy load configuration file|
-|/Forbidden ground watch barrage|Ban on the barrage|Function switch|
-|none|Surreal surface barrage|No test|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/reload|without|Overloaded configuration file|
+|/forbidden table barrage|Off-limits watch barrage|Function switch|
+|without|Inspection-free surface barrage|Do not test it.|
 
-## Configuration
-> Configuration file path: TSHOCK/Forbidden swear words.json
+## deploy
+> Configuration file path: tshock/ json swearing.json.
 ```json
    "配置说明1": "(注意：颠倒和正常地表只能开启一个，高度阈值数值649为1倍 正常种子：大世界10384（16倍）",
    "配置说明2": "(颠倒地图种子：小世界25960（40倍）中世界31476（48.5倍） 大世界35370（54.5倍）",
@@ -97,5 +97,5 @@
 ```
 ## feedback
 - - 优先发issued -> 共同维护的插件库:https://github.com/Controllerdestiny/TShockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

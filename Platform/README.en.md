@@ -1,15 +1,15 @@
-# Platform judge the player's device
+# Platform judges the player's equipment
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: CAI, CC04 (dimension)
+- Authors: Cai, cc04 (dimension)
 - - 出处: [github](https://github.com/ACaiCat/CaiPlugins) 
-- Determine what the player comes in (can only judge the type)
+- Judge what equipment the player came in with (only the type can be judged)
 
-> [! Note]
-> This plug -in is used as a front plug -in for other plug -in calls (can be used for chat prefix, scoring board judgment, etc.)
-> PE, STADIA, Xbox, PSN, Editor, Switch, PC
+> [! NOTE]
+> This plug-in is used as a pre-plug-in for other plug-ins to call (it can be used for chat prefix, scorecard judgment, etc.)
+> At present, PE, Stadia, XBOX, PSN, Editor, Switch and PC that support differentiation are available.
 
 ## Update log
 
@@ -23,12 +23,12 @@
 暂无
 ```
 
-## Configuration
+## deploy
 
 ```
 暂无
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

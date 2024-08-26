@@ -1,4 +1,4 @@
-# Bannpc stops monsters from generating
+# BanNpc prevents monsters from generating.
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
@@ -15,20 +15,20 @@ v1.0.0.1
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| ------------ |: ----------:|: ----------------:|
-|/bm add [ID]|bannpc.use|Add NPC|
-|/bm del [ID]|bannpc.use|Remove the prohibited generation NPC|
-|/BM List|bannpc.use|Check the prohibited generation table|
+|grammar|limit of authority|explain|
+| ------------ |:--------:|:--------------:|
+|/bm add [ID]|bannpc.use|Add prohibit NPC generation|
+|/bm del [ID]|bannpc.use|Remove prohibited NPC generation|
+|/bm list|bannpc.use|View forbidden generation table|
 
-## Configuration
-> Configuration file location: TSHOCK/Forbidden Monster table.json
+## deploy
+> Configuration file location: tshock/ forbidden monster table. json
 ```json
 {
    "阻止怪物生成表": []
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

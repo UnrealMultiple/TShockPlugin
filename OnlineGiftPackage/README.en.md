@@ -1,12 +1,12 @@
-# Online Gift Package Online Gift Package
+# Online Gift Package online gift package
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Star Night God Flower, Yu Xue
+- Author: starry night flower and feather science
 - - 出处: [github](https://gitee.com/star-night-flower/tshock-gift) 
-- This is a TSHOCK server plug -in mainly used to issue random online rewards for online players in the server
-- Add the items to the [Online Gift Pack.json] file, the game sending/RELOAD can automatically calculate the total probability of acquisition
+- This is a Tshock server plug-in, which is mainly used to distribute random online rewards to online players in the server.
+- After adding items in the online package. json file, the game send /Reload can automatically calculate the total probability of acquisition.
 ## Update log
 
 ```
@@ -50,13 +50,13 @@
 ```
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/Online gift package|OnlineGiftpackage|Show the probability table of all items in the gift package|
-|/regoad|none|Automatic calculation total probability|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/online gift package|OnlineGiftPackage|Displays the probability table of all items in the package.|
+|/reload|without|Automatic calculation of total probability|
 
-## Configuration
-> Configure file location: TSHOCK/Line Gift Pack.json
+## deploy
+> Configuration file location: tshock/ online package. json
 ```json
 {
    "启用": true,
@@ -81,6 +81,6 @@
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

@@ -1,11 +1,11 @@
-# AutoTeamplus better automatic team
+# AutoTeamPlus better automatic team
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: 17, Liver Emperor Xien
+- Author: Seventeen, Gan Di Xi En
 - Source: None
-- Automatically allocate a group of players to a specific team
+- Automatically assign a group of players to a specific team.
 
 ## Update log
 
@@ -16,13 +16,13 @@ v2.4.1
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/AutoTeam or /AT|AutoTeam.toggle|Switch automatic team function|
-|none|noAutoteam|With this permissions, the team will not be automatically assigned the team|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/autoteam or /at|autoteam.toggle|Switch automatic queue function|
+|without|noautoteam|With this permission, teams will not be automatically assigned.|
 
-## Configuration
-> Configuration file location: TSHOCK/AutoTeamplus.json
+## deploy
+> Configuration file location: tshock/AutoTeamPlus.json
 ```json
 {
    "组的队伍": {
@@ -34,6 +34,6 @@ v2.4.1
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

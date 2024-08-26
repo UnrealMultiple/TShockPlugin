@@ -1,10 +1,10 @@
-# Convertworld defeats monsters and replace world items
+# ConvertWorld defeats monsters and replaces world items.
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
-- Author: Onusai Yu Xue
-- - 出处: [TSHOCK-PLESS-Workd](https://github.com/onusai/tshock-bless-world) 
-- Defeat the specified monster conversion of all graphics and the items in the box in the world
+- Author: onusai feather science
+- - 出处: [tshock-bless-world](https://github.com/onusai/tshock-bless-world) 
+- Defeat the specified monster and transform all the pictures and items in the box in the world.
 
 ## Update log
 ```
@@ -14,26 +14,26 @@ v1.0.0
 加入了从《怪物ID》取值，通过/reload事件重载，自动赋名给《怪物名》    
 ```
   
-## Order
+## order
 ```
 暂无
 ```
 
 ---
-Configuration Note
+Configuration considerations
 ---
-1. 1.`World graphite replacement table` it's a graphic ID,`Box item replacement table` is item ID
+1.`World graph substitution table` is the graph ID,`Box item replacement table` it's the item ID
   
-2.`Monster name` it will be based on your use/regoad `Monster ID` automatic supplement
+2.`Monster name` will be based on when you use /reload.`Monster ID` automatic replenishment
   
-3..`Monster ID` you can write multiple monsters
+3.`Monster ID` you can write multiple monsters
   
-4. 4..`Defeat everything` you need to defeat `Monster ID` after all the monsters inside,
-as long as the world exists `Specified graphm` or `Items in the box` if you kill any intention 1, you will be converted,
-if there is no convertible ID, it will not `Prompt broadcast` essence
+4.`Beat all` you need to beat `Monster ID` after all the monsters in the room,
+as long as there is in the world `Designated graph lattice` or `The contents of the box` killing any one will change,
+not if there is no translatable id.`Prompt broadcast`.
   
-## Configuration
-> Configuration file location: TSHOCK/defeat monsters replace world items .json
+## deploy
+> Configuration file location: tshock/ Defeat monsters and replace world items. json
 ```json
 {
    "使用说明":"击败指定NPC将世界所有指定图格与箱子内物品对比1:1转换",
@@ -83,6 +83,6 @@ if there is no convertible ID, it will not `Prompt broadcast` essence
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

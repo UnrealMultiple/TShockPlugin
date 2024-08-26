@@ -1,14 +1,14 @@
-# Economics.projectile custom barrage
+# Economics.Projectile custom barrage
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- Custom barrage makes your weapon more cool
+- Custom barrage makes your weapon more cool.
 
-> [! Note]
-> Need to install front plug -ins: Economicsapi, Economics.rpg (this warehouse)
+> [! NOTE]
+> Pre-plug-ins need to be installed: EconomicsAPI, Economics.RPG (this warehouse).
 
 ## Update log
 
@@ -18,10 +18,10 @@
 
 ## instruction
 
-none
+without
 
-## Configuration
-> Configuration file location: TSHOCK/ECONOMICS/Projectile.json
+## deploy
+> Configuration file location: tshock/economics/project.json.
 ```json
 {
    "弹幕触发": {
@@ -66,5 +66,5 @@ none
 
 ## feedback
 
-- Co -maintained plug -in library: https://github.com/Controllerdestiny/tshockplugin
-- The official group of Trhub.cn or Tshock in the domestic community
+- Co-maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin
+- Domestic community, trhub.cn or TShock official group, etc.

@@ -1,14 +1,14 @@
-# Economics.npc plugin custom monster reward
+# Economics.NPC plug-in custom monster reward
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- Configure NPC exclusive reward
+- Configure NPC exclusive rewards
 
-> [! Note]
-> You need to install front plug -in: Economicsapi (this warehouse)
+> [! NOTE]
+> Need to install the pre-plug-in: EconomicsAPI (this warehouse)
 
 ## Update log
 
@@ -18,10 +18,10 @@
 
 ## instruction
 
-none
+without
 
-## Configuration
-> Configuration file location: TSHOCK/ECONOMICS/NPC.JSON
+## deploy
+> Configuration file location: tshock/economics/npc.json.
 ```json
 {
    "开启提示": true,
@@ -42,5 +42,5 @@ none
 
 ## feedback
 
-- Co -maintained plug -in library: https://github.com/Controllerdestiny/tshockplugin
-- The official group of Trhub.cn or Tshock in the domestic community
+- Co-maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin
+- Domestic community, trhub.cn or TShock official group, etc.

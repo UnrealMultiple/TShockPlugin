@@ -1,18 +1,18 @@
-# ECONOMICS.weaponPlus Weapon Reinforcement EC Edition
+# Economics.WeaponPlus weapon enhanced EC version
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: 少, Shao Si Ming
+- Authors: Fructus Aurantii, Shao Siming
 - - 出处: [github](https://github.com/skywhale-zhi/WeaponPlusCostCoin) 
-- This is a TSHOCK server plug -in mainly used to use Economics' economic enhanced weapons
-- Through instructions to have items reinforcement damage multiple, repellers, size, attack speed, ejection speed
-- The definition of attributes of melee, spells, remote, summoning, and other weapons
-- Reinforcement levels to store players' weapons from TSHOCK.SQLITE database will not be strengthened due to discarding weapons or re -entered the server
-- This plug -in supports Chinese and English conversion
+- This is a Tshock server plug-in, which is mainly used to use the economic strengthening weapon of Economics.
+- Strengthen the damage multiple, repulsion, size, attack speed and bounce speed of the items owned by the player through instructions.
+- The attribute definitions of melee, spell, ranged, summoning and other weapons are distinguished.
+- Storing player's weapon enhancement level through tshock.sqlite database will not be enhanced due to discarding weapons or re-entering the server.
+- This plugin supports Chinese-English conversion.
 
-> [! Note]
-> You need to install front plug -in: Economicsapi (this warehouse)
+> [! NOTE]
+> Need to install the pre-plug-in: EconomicsAPI (this warehouse)
 
 ## Update log
 
@@ -31,13 +31,13 @@
 
 ## instruction
 
-|grammar|Alias|Authority|illustrate|
-| -------------- |: ----------:|: --------------:|: -------:|
-|/plus help|none|weaponplus.plus|View weapon reinforcement menu|
-|/Clearallplayersplus|none|weaponplus.admin|Clear the enhanced items of all players|
+|grammar|another name|limit of authority|explain|
+| -------------- |:---------:|:------------:|:------:|
+|/plus help|without|weaponplus.plus|View weapon enhancement menu|
+|/clearallplayersplus|without|weaponplus.admin|Clear all players' enhancement items.|
 
-## Configuration
-> Configuration file location: TSHOCK/ECONOMICS/WeaponPlus.json
+## deploy
+> Configuration file location: tshock/economics/weaponplus.json.
 ```
 {
    "启用英文": false,
@@ -64,6 +64,6 @@
 ```
 
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

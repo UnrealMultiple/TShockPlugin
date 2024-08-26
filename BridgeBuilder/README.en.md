@@ -1,14 +1,14 @@
-# Bridgebuilder fast paving bridge
+# BridgeBuilder quick paving bridge
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: SOOFA, Liver Emperor Xien
+- Author: Soofa, Gan Di Xi 'en
 - - 出处: [github](https://github.com/Soof4/BridgeBuilder) 
-- Pay the way to players in the parallel direction, and stop
-- It can customize bridge paving blocks, and the default configuration already has: platform, planting basin, team block
-- Can be placed vertically
-- Popular science: <> Inner must be filled, [] is selected and filled
+- Quickly pave the way in the parallel direction facing the player, and stop when touching the box.
+- You can customize the paving box, and the default configuration already includes: platform, planting basin and team block.
+- You can put it vertically.
+- Popular science: < > is required, [] is optional.
 ## Update log
 
 ```
@@ -26,12 +26,12 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/Bridge [up/down] or/bridge [up/down]|bridebuilder.bridge|Quick Bridge Directive|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/bridge [up/down] or/bridge [up/down]|bridgebuilder.bridge|Fast bridge laying instruction|
 
-## Configuration
-> Configuration file location: TSHOCK/Bridge configuration.json
+## deploy
+> Configuration file location: tshock/ bridge paving configuration.json.
 ```json
 {
    "允许快速铺路方块id": [//注意！是图格id，不是物品id，可以在wiki上搜到图格id
@@ -48,6 +48,6 @@
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

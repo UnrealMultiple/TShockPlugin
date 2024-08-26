@@ -1,14 +1,14 @@
-# Economics.rpg upgrade professional plug -in
+# Economics.RPG Upgrade Career Plug-in
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- RPG upgrade plug -in
+- RPG upgrade plug-in
 
-> [! Note]
-> You need to install front plug -in: Economicsapi (this warehouse)
+> [! NOTE]
+> Need to install the pre-plug-in: EconomicsAPI (this warehouse)
 
 ## Update log
 
@@ -25,14 +25,14 @@ V1.0.0.1
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/RANK [Occupation name]|economics.rpg.rank|upgrade|
-|/Reset level|economics.rpg.reset|Reset|
-|/level reset|economics.rpg.admin|Repossess|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/rank [professional name]|economics.rpg.rank|upgrade|
+|/reset level|economics.rpg.reset|Resetting occupation|
+|/level reset|economics.rpg.admin|reset|
 
-## Configuration
-> Configuration file location: TSHOCK/ECONOMICS/RPG.JSON
+## deploy
+> Configuration file location: tshock/economics/rpg.json.
 ```json
 {
    "RPG信息": {
@@ -70,6 +70,6 @@ V1.0.0.1
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

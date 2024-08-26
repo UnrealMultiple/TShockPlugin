@@ -1,11 +1,11 @@
-# Economicsapi plug -in [Economic Kit Pre -in front]
+# EconomicsAPI Plug-in [Pre-installed for Economic Suite]
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- Economic kit front plug -in
+- Pre-plug-in for economic package
 
 ## Update log
 
@@ -21,15 +21,15 @@ V2.0.0.0
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| --------------------------- |: -----------------------:|: -------:|
-|/Bank add [Player Name] [Number]|economics.bank|Add currency|
-|/Bank Del [Player Name] [Number]|economics.bank|Delete currency|
-|/Bank Pay [Player Name] [Number]|economics.bank.pay|Transfer currency|
-|/Query|economics.currency.query|Query currency|
+|grammar|limit of authority|explain|
+| --------------------------- |:----------------------:|:------:|
+|/bank add [player name] [quantity]|economics.bank|Add currency|
+|/bank del [player name] [quantity]|economics.bank|Delete currency|
+|/bank pay [player name] [quantity]|economics.bank.pay|Transfer currency|
+|/query|economics.currency.query|Query currency|
 
-## Configuration
-> Configuration file location: TSHOCK/ECONOMICS/Economics.json
+## deploy
+> Configuration file location: tshock/economics/economics.json
 ```json
 {
    "货币名称": "魂力",
@@ -67,6 +67,6 @@ V2.0.0.0
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

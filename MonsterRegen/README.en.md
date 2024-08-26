@@ -1,16 +1,16 @@
-# Monsterregen monster progress returns blood back
+# MonsterRegen monster progress back to blood.
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
-- Author: Tu Teanu Xue
-- Source: TSHOCK official Q group-816771079
-- The monster can be set up per second by creating a chronograph,
-- Defeat the configuration specified boss to improve the class,
-- Let's determine the amount of recovery and recovery of all monsters
-- Can define the upper and lower limit of [response quantity], [reply interval]
-- If you do not need [Progress Model], you can control [minimum/multi -reply quantity]
-- Control the fixed blood value of the monster [percentage return blood]
-- [Forbidden Blood Return] Just fill in the monster ID (only valid for this plug -in)
+- Author: Tudou feather science
+- Source: Tshock official q group -816771079
+- By creating a timer for the monster to realize the setting of blood return per second,
+- Defeat the configuration of the designated BOSS to improve the class,
+- To determine the recovery amount and recovery interval of all monsters.
+- You can define the upper and lower limits of Recovery Amount and Recovery Interval.
+- If [Progress Mode] is not needed, [Minimum/Multiple Response Quantity] can be controlled.
+- Control the monster's [Percentage Blood Return] fixed blood return value.
+- [No Blood Return Table] Only need to fill in the monster ID (only valid for this plug-in)
 
 ## Update log
 
@@ -61,12 +61,12 @@ v1.2.0
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/regoad|tshock.cfg.reload|Return to Monster Progress Blood Blood Configuration File|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/reload|tshock.cfg.reload|Overloaded monster progress blood return configuration file|
 
-## Configuration
-> Configuration file location: TSHOCK/Monster Progress Blood .json
+## deploy
+> Configuration file location: tshock/ monster progress blood. json
 ```json
 {
    "插件开关": true,
@@ -102,6 +102,6 @@ v1.2.0
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

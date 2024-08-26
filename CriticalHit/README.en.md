@@ -1,13 +1,13 @@
-# Criticalhit strike text prompt
+# CriticalHit hits text prompts
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: White, Stone · Free, Liver Emperor Xien
-- Source: TSHOCK official group chat
-- If the NPC has a crit, a special floating text will pop up (the same as the damage number)
-- Different texts are generated according to different types of weapon types
-- You can set the text even if you do not criticize
+- Authors: White,Stone·Free, Gan Di Xi 'en,
+- Source: TShock official group chat
+- If crit is generated when attacking NPC, special floating text will pop up (the same as damage number).
+- Different characters are generated according to different types of weapons.
+- You can set to generate text even without crit.
 
 ## Update log
 
@@ -21,8 +21,8 @@
 暂无
 ```
 
-## Configuration
-> Configuration file location: TSHOCK/CRITICALCONFIG.JSON
+## deploy
+> Configuration file location: tshock/CriticalConfig.json
 ```json
 {
    "总开关": true,
@@ -98,6 +98,6 @@
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

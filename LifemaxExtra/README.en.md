@@ -1,13 +1,13 @@
-# Lifemaxextra to increase the maximum life value
+# LifemaxExtra increases the maximum health.
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Anonymous, Liver Emperor Xien, Shao Life
-- Source: TSHOCK official group chat
-- Can customize the use of items to increase the blood volume and break the upper limit of the blood volume
-- Due to the special nature of magic power, the maximum improvement can only reach 400
-- Only SSC
+- Author: Anonymous, Gan Di Xi En, Shao Si Ming
+- Source: TShock official group chat
+- Customized items can be used to increase blood volume and break through the upper limit of blood volume.
+- Due to the particularity of magic, the actual maximum increase can only reach 400.
+- SSC only
 
 ## Update log
 
@@ -22,19 +22,19 @@ v1.0.0.7
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| ----------------------- |: ----------------:|: -----------:|
-|/HP ENH [Player Name] [Blood Volume]|lifemaxextra.use|Increase player blood volume|
-|/hp set [Player name] [Blood volume]|lifemaxextra.use|Set player blood volume|
-|/hp enh [blood volume]|lifemaxextra.use|Increase your own blood volume|
+|grammar|limit of authority|explain|
+| ----------------------- |:--------------:|:----------:|
+|/hp enh [player name] [blood volume]|lifemaxextra.use|Increase player's blood volume|
+|/hp set [player name] [blood volume]|lifemaxextra.use|Set the player's blood volume|
+|/hp enh [blood volume]|lifemaxextra.use|Increase one's blood volume|
 |/hp set [blood volume]|lifemaxextra.use|Set your own blood volume|
-|/mp enh [Player name] [Blood volume]|lifemaxextra.use|Enhance the magic of the player|
-|/mp set [Player name] [Blood volume]|lifemaxextra.use|Set up player magic|
-|/mp enh [blood volume]|lifemaxextra.use|Improve your magic|
-|/mp set [blood volume]|lifemaxextra.use|Set your own magic|
+|/mp enh [player name] [blood volume]|lifemaxextra.use|Enhance the player's magic|
+|/mp set [player name] [blood volume]|lifemaxextra.use|Set player magic|
+|/mp enh [blood volume]|lifemaxextra.use|Improve one's magic|
+|/mp set [blood volume]|lifemaxextra.use|Set one's own magic|
 
-## Configuration
-> Configuration file location: TSHOCK/LIFEMAXExtra.json
+## deploy
+> Configuration file location: tshock/LifemaxExtra.json
 ```json
 {
    "最大生命值": 1000,
@@ -60,6 +60,6 @@ v1.0.0.7
 ```
 
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

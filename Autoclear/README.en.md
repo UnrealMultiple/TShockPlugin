@@ -1,12 +1,12 @@
-# AutoClear intelligent automatic sweeping ground
+# Autoclear intelligent automatic sweeping floor
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Dadou [MUTE adaptation 1447], liver Emperor Xien updated
-- Source: TSHOCK Chinese official group
-- The number of local items reaches a certain value and starts to clean up the time
-- What/which type of items can be customized
+- Author: soybean seed [Mute adaptation 1447], updated by Gan Di Xi 'en.
+- Source: TShock Chinese official group
+- When the number of items on the ground reaches a certain value, the countdown to cleaning begins.
+- You can customize which/which items are not cleaned.
 
 ## Update log
 
@@ -20,8 +20,8 @@
 暂无
 ```
 
-## Configuration
-> Configuration file location: TSHOCK/AutoClear.json
+## deploy
+> Configuration file location: tshock/Autoclear.json
 ```json
 {
    "多久检测一次(s)": 10,
@@ -39,6 +39,6 @@
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

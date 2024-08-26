@@ -1,10 +1,10 @@
-# BEDSET settings rebirth points
+# BedSet sets the regeneration point
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
 - Author: pang2333
-- Use the back city items to record the rebirth point, transfer after exiting and death
+- Record the regeneration point with the returned items, and send it after exit and death.
   
 
 ## Update log
@@ -16,19 +16,19 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/shome|bed.spawn.set|Set the birth point|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/shome|bed.spawn.set|Set birth point|
 
 
 ## File location
-> TSHOCK/BED.JSON
+> tshock/Bed.json
 ```json
 {
    "重生点": {}
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

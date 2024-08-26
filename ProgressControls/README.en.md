@@ -1,20 +1,20 @@
-# ProgressControl program
+# ProgressControl plan
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author:, Yu Xue
+- Authors: Fructus Aurantii and Feather Studies
 - - 出处: [github](https://github.com/skywhale-zhi/ProgressControl) 
-- This is a TSHOCK server plug -in mainly used for automation:
-- Reset the server, restart server, execute commands, control NPC progress, backup or delete files
-- 1. Be able to automatically reset the map
-- Can set the size, mode, seeds, names, map storage directory, and other functions of resetting maps
+- This is a Tshock server plug-in mainly used for automation:
+- Reset the server, restart the server, execute commands, control NPC progress, back up or delete files.
+- 1. The map can be automatically reset.
+- You can set the functions of resetting the size, mode, seed, name, map storage directory and so on of the map.
 - 2. Can automatically restart the map
-- According to the current port, map data to restart the Tyraria server
+- Tara rhea server can be restarted according to the current port and map data.
 - 3. Can automatically execute instructions
-- Automatically execute the instruction you want to set, support the original and other plug -ins
-- 4. Based on the boss and NPC according to time. If the time is not possible, it will disappear automatically
-- 5. The instruction function can also delete or copy the specified path file (clean and backup)
+- Automatically execute the instructions you want to set, and support the original and other plug-ins.
+- 4. The Boss and NPC are banned according to the time. If you can't play before the time, it will disappear automatically.
+- 5. The command function can also delete or copy files with specified paths (for cleaning and backup).
 
 ## Update log
 
@@ -46,22 +46,22 @@ v1.0.7
 
 ## instruction
 
-|grammar|Alias|Authority|illustrate|
-| -------------- |: ----------:|: --------------:|: -------:|
-|/PCO Help|/PCO|none|Check all the help instructions under this plug -in|
-|/PCO now|none|pco.admin|Synchronize the current time: the date of opening, the last restart date, and the date of the previous automatic execution instruction|
-|/PCO DELFILE|none|pco.admin|Delete the specified path file or folder in the configuration item|
-|/PCO COPY|none|pco.admin|Copy the specified path file or folder in the configuration item and rename it|
-|/PCO NPC Help|none|pCO.NPC|View instructions to control the progress of NPC|
-|/PCO COM Help|none|pco.com|View instructions for executing instructions help|
-|/PCO RELOAD Help|none|pco.reload|View instructions for automatic restart help|
-|/PCO Reset Help|none|pco.reset|View instructions for automatic reset help|
-|/PCO MESS|/PCO VIEW|Having any of the above 1 permissions|Come and see the automation plan of the current server, detailed version|
+|grammar|another name|limit of authority|explain|
+| -------------- |:---------:|:------------:|:------:|
+|/pco help|/pco|without|View all the help instructions under this plugin.|
+|/pco now|without|pco.admin|Synchronize the current time as: service opening date, last restart date and last automatic instruction execution date.|
+|/pco delFile|without|pco.admin|Delete that file or folder with the specify path in the configuration item.|
+|/pco copy|without|pco.admin|Copy the path file or folder specified in the configuration item and rename it.|
+|/pco npc help|without|pco.npc|View the command help for controlling NPC progress.|
+|/pco com help|without|pco.com|View instruction help for executing instructions.|
+|/pco reload help|without|pco.reload|Check the instruction help for automatic restart.|
+|/pco reset help|without|pco.reset|View the instruction help for automatic reset.|
+|/pco mess|/pco view|Have any one of the above permissions|To view the automation plan of the current server, detailed version.|
 
 
 
-## Configuration
-> Configuration file location: TSHOCK/ProgressControl.json
+## deploy
+> Configuration file location: tshock/ProgressControl.json
 ```
 {
    "开服日期": "2024-06-14T17:15:20.1069407+08:00",
@@ -196,6 +196,6 @@ v1.0.7
 ```
 
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

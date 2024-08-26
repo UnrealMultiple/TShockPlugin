@@ -1,11 +1,11 @@
-# Marked treasure bag on the baby map
+# Mark the treasure bag on BagPing map.
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: CAI
+- Author: Cai
 - - 出处: [github](https://github.com/THEXN/CaiPlugins) 
-- Mark the drop -off treasure bag on the small map
+- Mark the fallen treasure bag on the small map.
 ## Update log
 
 ```
@@ -18,12 +18,12 @@
 暂无
 ```
 
-## Configuration
+## deploy
 
 ```
 暂无
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

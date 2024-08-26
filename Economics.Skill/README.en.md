@@ -1,15 +1,15 @@
-# Economics.skill skill plug -in
+# Economics.Skill skill plug-in
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- A plugin that can release skills
+- A plug-in that can release skills
 
-> [! Note]
-> Need to install front plug -ins: Economicsapi, Economics.rpg (this warehouse)
-> Using AI style function may cause a large amount of bandwidth for force and
+> [! NOTE]
+> Pre-plug-ins need to be installed: EconomicsAPI, Economics.RPG (this warehouse).
+> Using AI-style functions may cause a lot of bandwidth to be occupied.
  
 ## Update log
 
@@ -23,23 +23,23 @@ V1.0.0.1
 修复:物品消耗
 ```
 
-## Configuration Note
+## Configuration considerations
 
-- In the trigger mode `Kill`   `Fight`   `initiative` three models, any of them cannot be combined, killing and hitting itself is an active manifestation.
+- In trigger mode `slay`   `beat`   `initiative` three modes, any two of which can not be combined, killing and hitting itself is the embodiment of initiative.
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| --------------------- |: -----------------------:|: ---------------------:|
-|/Skill Buy [Skill Index]|economics.skill.use|Purchase skills|
-|/Skill Del [Skill Index]|economics.skill.use|Unbinding skills|
-|/Skill MS|economics.skill.use|View the binding skills|
-|/skill deeely|economics.skill.use|All the skills to unbind the handheld weapon|
-|/Skill Clear|economics.skill.use|Unbind all skills|
-|/Skill Reset|economics.skill.admin|Reset|
+|grammar|limit of authority|explain|
+| --------------------- |:-------------------:|:--------------------:|
+|/skill buy [skill index]|economics.skill.use|Buying skills|
+|/skill del [skill index]|economics.skill.use|Unbinding skill|
+|/skill ms|economics.skill.use|View bound skills|
+|/skill delall|经济、技能、用途|解绑手持武器的所有技能|
+|/技能清除|经济、技能、用途|解绑所有技能|
+|/技能重置|经济、技能、管理|重置技能|
 
-## Configuration
-> Configuration file location: TSHOCK/ECONOMICS/SKILL.JSON
+## 配置
+> 配置文件位置:tshock/Economics/Skill.json
 ```json
 {
    "购买主动技能最大数量": 1,
@@ -149,7 +149,7 @@ V1.0.0.1
 }
 ```
 
-## feedback
+## 反馈
 
-- Co -maintained plug -in library: https://github.com/Controllerdestiny/tshockplugin
-- The official group of Trhub.cn or Tshock in the domestic community
+- 共同维护的插件库:https://github . com/controller destiny/TShockPlugin
+- 国内社区trhub.cn或TShock官方群等

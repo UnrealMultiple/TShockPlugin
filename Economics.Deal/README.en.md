@@ -1,14 +1,14 @@
-# Economics.deal trading plug -in
+# Economics.Deal transaction plug-in
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- Trading items plug -in
+- Trading item plug-in
 
-> [! Note]
-> You need to install front plug -in: Economicsapi (this warehouse)
+> [! NOTE]
+> Need to install the pre-plug-in: EconomicsAPI (this warehouse)
 
 ## Update log
 
@@ -18,16 +18,16 @@
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| ----------------- |: ---------------------:|: ----------------:|
-|/deal push [Price]|economics.deal.use|Publish handheld items|
-|/deal list [page number]|economics.deal.use|View the list of transaction items|
-|/deal buy [id]|economics.deal.use|Buy transaction items|
-|/dead recall [ID]|economics.deal.use|Cover the publishing items|
-|/Deal Reset|economics.deal.reset|Reset the transaction|
+|grammar|limit of authority|explain|
+| ----------------- |:------------------:|:--------------:|
+|/deal push [price]|economics.deal.use|Release hand-held items|
+|/deal list [page number]|economics.deal.use|View the list of trading items|
+|/deal buy [ID]|economics.deal.use|Buy trading goods|
+|/deal recall [ID]|economics.deal.use|Withdraw published articles|
+|/deal reset|economics.deal.reset|Reset transaction|
 
-## Configuration
-> Configuration file location: TSHOCK/ECONOMICS/Deal.json
+## deploy
+> Configuration file location: tshock/economics/deal.json.
 ```json
 {
    "最大显示页": 10,
@@ -35,6 +35,6 @@
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

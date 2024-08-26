@@ -1,12 +1,12 @@
-# MAPTP double -click the big map transmission
+# Maptp Double-click Big Map Transfer
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: nova4334, Liver Emperor Xien
-- Source: Unknown
-- After the authorized player opens the ground map, double -click to go to the specified location
-- Whether the step is allowed to be transmitted to the solid block
+- Author: Nova4334, Gan Di Xi En
+- Source: unknown
+- After the authorized player opens the big map, double-click to go to the specified location.
+- Whether the further step allows sending to the solid box?
 
 ## Update log
 
@@ -17,17 +17,17 @@ v1.0.1
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|none|maptp.noclip|Allow double -click transmission (excluding solid block)|
-|none|maptp|Allow double -click transmission (including solid block)|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|without|maptp.noclip|Allow double-click transmission (excluding solid boxes)|
+|without|maptp|Allow double-click transmission (including solid boxes)|
 
-## Configuration
+## deploy
 
 ```
 暂无
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

@@ -1,11 +1,11 @@
-# Progressbag progress gift package
+# ProgressBag progress package
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- Whenever a progress is completed, you can receive a gift package
+- You can get a gift package every time you complete a progress.
 
 ## Update log
 
@@ -18,17 +18,17 @@ v1.0.1.0
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| --------------------- |: --------:|: ---------------------:|
-|/Gift Package [Gift Pack Name]|bag.use|Receive a gift package|
-|/Gift package collection all|bag.use|Receive all the gift packages|
-|/Gift Pack List|bag.use|View gift package list|
-|/Gift Pack Reset|bag.admin|Reset and receive gift package|
+|grammar|limit of authority|explain|
+| --------------------- |:-------:|:----------------:|
+|/Gift Package Collection [Gift Package Name]|bag.use|Receive a gift package|
+|/gift package to receive all|bag.use|Collect all available gift packages|
+|/gift package list|bag.use|View gift package list|
+|/gift package reset|bag.admin|Reset the gift package|
 
-## For specific progress, please check the prOGRESSTYPE.CS file
+## Please check the ProgressType.cs file for specific progress.
 
-## Configuration
-> Configure file location: TSHOCK/Progress Pack.json
+## deploy
+> Configuration file location: tshock/ progress package. json
 ```json
 {
    "礼包": [
@@ -97,6 +97,6 @@ v1.0.1.0
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

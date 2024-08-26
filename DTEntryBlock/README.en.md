@@ -1,11 +1,11 @@
-# DTENTRYBLOCK prevents entering the dungeon or temple
+# DTEntryBlock prevents access to dungeons or temples.
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Liver Emperor Xi En
+- Author: Gan Di Xi En
 - Source: None
-- Prevent players from entering the dungeon/temple before defeating the Skeleton King/Century Flower
+- Prevent players from entering the dungeon/temple before defeating the Skull King/Flower of the Century.
 
 ## Update log
 
@@ -19,13 +19,13 @@ v1.1.4
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|none|skullking.bypass|Ignore to stop entering the dungeon|
-|none|Plant.bypass|Ignore to stop entering the temple|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|without|skullking.bypass|Ignore and stop entering the dungeon|
+|without|Plant.bypass|Ignore and stop entering the temple|
 
-## Configuration
-> Configure file path: TSHOCK/Prevent entering the dungeon or temple .json
+## deploy
+> Configuration file path: tshock/ block access to dungeons or temples. json
 ```json
 {
    "阻止玩家进入地牢总开关": true,
@@ -37,5 +37,5 @@ v1.1.4
 }
 ```
 ## feedback
-- Commonly maintained plug -in library: https://github.com/thexn/tshockplugin/
-- The official group of Trhub.cn or Tshock in the domestic community
+- Co-maintained plug-in library: https://github.com/THEXN/TShockPlugin/
+- Domestic community, trhub.cn or TShock official group, etc.

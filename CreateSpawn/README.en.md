@@ -1,12 +1,12 @@
-# Createspawn Born point building
+# CreateSpawn birth point building
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Shao Si Ming
+- Author: Shao Siming
 - Source: None
-- When creating a map, generate your copy of the building at the birth point
-- Use mask video:
+- When creating a map, generate the building you copied at the birth point.
+- Use masking video:
 
 ## Update log
 
@@ -17,15 +17,15 @@ v1.0.0.1
 
 ## instruction
 
-|grammar|Authority|illustrate|
-| --------- |: ----------:|: ---------------------:|
-|/CB SET 1|create.copy|Tap the upper left corner of the building|
-|/CB SET 2|create.copy|Tap the upper right corner of the building|
-|/cb save|create.copy|Save the copy of the building information|
-|/Create|create.copy|Generate|
+|grammar|limit of authority|explain|
+| --------- |:---------:|:----------------:|
+|/cb set 1|create.copy|Tap the upper left corner of the building|
+|/cb set 2|create.copy|Tap on the upper right corner of the building|
+|/cb save|create.copy|Save the copied building information|
+|/create|create.copy|Generative architecture|
 
-## Configuration
-> Configuration file location: TSHOCK/CREATE.JSON
+## deploy
+> Configuration file location: tshock/Create.json
 ```json
 {
    "centreX": 145, //不要动
@@ -35,6 +35,6 @@ v1.0.0.1
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

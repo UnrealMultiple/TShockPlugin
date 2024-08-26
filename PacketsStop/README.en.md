@@ -3,15 +3,15 @@
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: Yu Xue
+- Author: feather science
 - - 出处: [github](https://github.com/1242509682/PacketsStop/) 
-- The source code of the plug -in is to the tourists who are in Shaoshi's life to restrict the plug -in, and make the data packet method into an independent functional plug -in
-- This is a TSHOCK server plug -in mainly used for:
-- Use the instruction to open the intercepting player packet
-- Before use, you must give the Default group a permissions [free interception]
-- Then modify the configuration file to add the data packet name to use/RELOAD overload
-- Enter the [/intercept ADD name] to allocate the player to a new [LJ group]
-- Most of the availability limit is blocked and intercepted its data packets.
+- The source code of the plug-in comes from the tourist restriction plug-in, and its data packet processing method is made into an independent functional plug-in
+- This is a Tshock server plug-in mainly used for:
+- Use the command to turn on blocking player packets.
+- You must give the default group a permission before using it [No Interception].
+- Then, by modifying the configuration file, the package name is added using the /reload overload.
+- Enter [/intercept add name] to assign players to a newly created [LJ Group].
+- Blocked most of the available permissions and intercepted their packets.
 ## Update log
 
 ```
@@ -24,15 +24,15 @@
 ```
 ## instruction
 
-|grammar|Authority|illustrate|
-| -------------- |: --------------------:|: -------:|
-|/Block|Intercept|Open function|
-|/Intercept ADD player name|Intercept|Add an intercept the designated player and allocate it to an automatic LJ group|
-|/Intercept Del player name|Intercept|Remove and intercept the designated player and allocate back to the DEFAULT group|
-|none|Exempt|Not affected by the interception of the plug -in packet|
+|grammar|limit of authority|explain|
+| -------------- |:-----------------:|:------:|
+|/intercept|intercept|Open function|
+|/block add player name|intercept|Add intercept specified players and assign them to an automatically created LJ group.|
+|/block del player name|intercept|Remove and intercept the specified player and assign it back to the default group.|
+|without|Interception free|Not affected by plug-in packet interception|
 
-## Configuration
-> Configuration file location: TSHOCK/Data Pack Intercept.json
+## deploy
+> Configuration file location: tshock/ packet interception.json.
 ```json
 {
    "数据包名可查看": "https://github.com/Pryaxis/TSAPI/blob/general-devel/TerrariaServerAPI/TerrariaApi.Server/PacketTypes.cs",
@@ -54,6 +54,6 @@
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

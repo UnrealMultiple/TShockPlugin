@@ -1,11 +1,11 @@
-# AutoreItems automatic storage
+# AutoStoreItems automatic storage
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
-- Author: Yu Xue CMGY 作
+- Author: feather science cmgy Kan
 - Source: None
-- Holding the designated item automatically in the storage space according to the configuration item ID
-- (Support automatic saving money, thank you for the coin stacking algorithm for CMGY 雱)
+- Holding the specified items is automatically stored in the storage space according to the configured item ID.
+- (Support automatic deposit, thanks to cmgy's coin stacking algorithm)
   
 ## Update log
 ```
@@ -50,26 +50,26 @@ v1.0.0
 根据背包/存钱罐/配置表里存在的物品进行自动存储  
 ```
   
-## Order
+## order
 ```
 暂无
 ```
 
 ---
-Configuration Note
+Configuration considerations
 ---
-1. 1.`Whether to hold` need to choose `Hold item` one of them will start the storage function. Close: Backpack `Contains one of them` will start
+1.`Whether to hold it?` need to be selected `Possession of goods` one of them will start the storage function, and the other will be closed: backpack.`Contains one of them.` it will start.
     
-2.`Existence` don't be lower than `60 frames`(recommend `120`), Otherwise manual `continuous` put in `The same items to the storage space grid` will cause items `Double` 
+2.`Storage speed` don't fall below `60 frames`(Recommended `120`), otherwise manually.`continuously` quickly put in `Same item to storage space grid` can lead to objects `Double the number` 
     
-3.`Object name` will be used `/Reload` instruction time basis `Object ID` automatically write,`Quantity` to store the minimum quantity requirements
+3.`Item name` will be in use `/Reload` according to the instruction `Item ID` automatic writing,`Quantity of articles` in order to store the minimum quantity requirements
 
-4. 4..`Jewelry` only detect `Equipment 3 grid+jewelry 7 grid`,and `Existence` it has nothing to do, the equipment is specified `Jewelry (armor)` players will trigger self -survive as long as they move or attack
+4.`Equipment ornaments` only detect `Equipment 3+ornaments 7`, and `Storage speed` irrelevant, equipment designation `Ornaments (armor)` as long as the player moves or attacks, it will trigger self-storage
     
-5.`Existing bug` favorites will be affected `Cancel collection`(refer to `Void bag` there is a potion `Stack the box` risk)
+5.`There is a BUG` collected items will be `Cancel the collection`(refers to `Void bag` the potions are `Stack into a box` risk)
     
-## Configuration
-> Configuration file location: TSHOCK/Automatic Storage .json
+## deploy
+> Configuration file location: tshock/ autosave. json
 ```json
 {
    "装备持有检测": true,
@@ -121,6 +121,6 @@ Configuration Note
 }
 ```
 ## feedback
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.

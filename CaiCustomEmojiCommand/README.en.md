@@ -1,11 +1,11 @@
-# Caicustomemojicommand custom expression command
+# CaiCustomEmojiCommand custom expression command
 
 > Warning: This page is translated by MACHINE, which may lead to POOR QUALITY or INCORRECT INFORMATION, please read with CAUTION!
 
 
-- Author: CAI
-- Source: This warehouse
-- Don't bother to lose some long commands? Try custom emoticon command and convert the commonly used commands with emoji execution
+- Author: Cai
+- Source: this warehouse
+- Too lazy to lose some long orders? Try to customize the emoticon command, and convert the commonly used command into emoticon execution.
 
 ## Update log
 
@@ -14,8 +14,8 @@
 ```
 
 ## instruction
-none
-## Configuration
+without
+## deploy
 
 ```json    
 {
@@ -67,6 +67,6 @@ none
 
 ## feedback
 
-- Priority to ISSUED-> Commonly maintained plug -in library: https://github.com/Controllerdestiny/tshockPlugin
-- Two priority: TSHOCK official group: 816771079
-- It may not be seen in a high probability, but it can also be: domestic community trhub.cn, bbstr.net, tr.monika.love
+- Give priority to issued-> jointly maintained plug-in library: https://github.com/Controllerdestiny/TShockPlugin.
+- Second priority: TShock official group: 816771079
+- You can't see it with a high probability, but you can: domestic communities trhub.cn, bbstr.net, tr. monika.love.
