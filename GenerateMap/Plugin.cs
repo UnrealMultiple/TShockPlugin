@@ -16,7 +16,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+    public override Version Version => new Version(1, 0, 1);
 
     public Plugin(Main game) : base(game)
     {
@@ -32,6 +32,10 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
+            ((List<RestCommand>)typeof(Rest)
+                .GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+                .GetValue(TShock.RestApi)!)
+                .RemoveAll(x => x.Name == "/generatemqp");
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == CGenerate);
         }
         base.Dispose(disposing);

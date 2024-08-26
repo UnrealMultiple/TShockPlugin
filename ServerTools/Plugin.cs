@@ -95,6 +95,10 @@ namespace ServerTools
         new RestCommand("/deathrank", DeadRank),
         new RestCommand("/onlineDuration", Queryduration)
             };
+            foreach (var command in addRestCommands)
+            {
+                TShock.RestApi.Register(command);
+            }
             #endregion
             Timer += OnUpdatePlayerOnline;
             On.OTAPI.Hooks.MessageBuffer.InvokeGetData += MessageBuffer_InvokeGetData;
@@ -118,7 +122,9 @@ namespace ServerTools
                 ServerApi.Hooks.NpcStrike.Deregister(this, OnStrike);
                 ServerApi.Hooks.NpcAIUpdate.Deregister(this, OnNPCUpdate);
                 #endregion
-                ((List<RestCommand>)typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!.GetValue(TShock.RestApi)!).RemoveAll(x => x.Name == "onlineDuration" || x.Name == "deathrank");
+                ((List<RestCommand>)typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+                    .GetValue(TShock.RestApi)!)
+                    .RemoveAll(x => x.Name == "/onlineDuration" || x.Name == "/deathrank");
                 #region 指令
                 Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Clear||x.CommandDelegate == WallQ||x.CommandDelegate == RWall||x.CommandDelegate == SelfKill||x.CommandDelegate == SelfKick||x.CommandDelegate == Ghost||x.CommandDelegate == JourneyDiff||x.CommandDelegate == DeathRank||x.CommandDelegate == Online);
                 #endregion
@@ -134,7 +140,6 @@ namespace ServerTools
                 AccountInfoHook?.Dispose();
                 Timer -= OnUpdatePlayerOnline;
                 On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= MessageBuffer_InvokeGetData;
-                //不确定是否卸载完全,restapi可能会用到反射
 
             }
             base.Dispose(disposing);
