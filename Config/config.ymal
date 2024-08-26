@@ -54,6 +54,29 @@ compact_langs:
 
 # markdown中Front Matter不用翻译的部分
 front_matter_transparent_keys:
+  - 'date:'
+  - 'slug:'
+  - 'toc'
+  - 'image'
+  - 'comments'
+  - 'readingTime'
+  - 'menu:'
+  - '    main:'
+  - '        weight:'
+  - '        params:'
+  - '            icon:'
+  - 'links:'
+  - '    website:'
+  - '    image:'
+  - 'layout:'
+  - 'outputs:'
+  - '    - html'
+  - '    - json'
+  - 'license:'
+  - '#'
+  - 'style:'
+  - '    background:'
+  - '    color:'
 
 
 # Front Matter中需要以Key-Value形式翻译的部分
