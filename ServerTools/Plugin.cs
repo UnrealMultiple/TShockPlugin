@@ -6,6 +6,7 @@ using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Asn1.X509;
 using OTAPI;
+using Rests;
 using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
@@ -46,6 +47,7 @@ namespace ServerTools
 
         }
         private GeneralHooks.ReloadEventD _reloadHandler;
+        private RestCommand[] addRestCommands;
         public override void Initialize()
         {
 
@@ -88,8 +90,11 @@ namespace ServerTools
             CmdHook = new Hook(typeof(Commands).GetMethod(nameof(Commands.HandleCommand)), CommandHook);
             AccountInfoHook = new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static), ViewAccountInfo);
             #region RestAPI
-            TShock.RestApi.Register("/deathrank", DeadRank);
-            TShock.RestApi.Register("/onlineDuration", Queryduration);
+            addRestCommands = new RestCommand[]
+            {
+        new RestCommand("/deathrank", DeadRank),
+        new RestCommand("/onlineDuration", Queryduration)
+            };
             #endregion
             Timer += OnUpdatePlayerOnline;
             On.OTAPI.Hooks.MessageBuffer.InvokeGetData += MessageBuffer_InvokeGetData;
@@ -113,7 +118,7 @@ namespace ServerTools
                 ServerApi.Hooks.NpcStrike.Deregister(this, OnStrike);
                 ServerApi.Hooks.NpcAIUpdate.Deregister(this, OnNPCUpdate);
                 #endregion
-
+                ((List<RestCommand>)typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!.GetValue(TShock.RestApi)!).RemoveAll(x => x.Name == "onlineDuration" || x.Name == "deathrank");
                 #region 指令
                 Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Clear||x.CommandDelegate == WallQ||x.CommandDelegate == RWall||x.CommandDelegate == SelfKill||x.CommandDelegate == SelfKick||x.CommandDelegate == Ghost||x.CommandDelegate == JourneyDiff||x.CommandDelegate == DeathRank||x.CommandDelegate == Online);
                 #endregion
