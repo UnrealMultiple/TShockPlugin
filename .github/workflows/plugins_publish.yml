@@ -85,6 +85,8 @@ jobs:
           wget -q https://github.com/CrazyMayfly/Free-Markdown-Translator/releases/download/1.2/MarkdownTranslator.v1.2.zip
           unzip -qq -d MarkdownTranslator MarkdownTranslator.v1.2.zip
           cp ./Config/config.yml ./MarkdownTranslator
+          cd MarkdownTranslator
+          chmod +x MarkdownTranslator.exe
 
       - name: 初始化Python
         uses: actions/setup-python@v5
