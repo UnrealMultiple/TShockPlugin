@@ -24,7 +24,7 @@
     "Name": "[放置更多晶塔] AdditionalPylons",
     "Version": "1.0.1",
     "Author": "Stealownz，肝帝熙恩优化1449",
-    "Description": "晶塔环境不受限制，数量可提升",
+    "Description": " 自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
     "Path": "AdditionalPylons.dll"
   },
   {
@@ -57,7 +57,7 @@
   },
   {
     "Name": "AutoReset",
-    "Version": "2024.8.24",
+    "Version": "2024.8.25",
     "Author": "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩",
     "Description": "完全自动重置插件",
     "Path": "AutoReset.dll"
@@ -85,7 +85,7 @@
   },
   {
     "Name": "BeanInvsee",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命",
     "Description": "rest查询背包",
     "Path": "RestInventory.dll"
@@ -141,7 +141,7 @@
   },
   {
     "Name": "CGive",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "Leader",
     "Description": "离线give",
     "Path": "CGive.dll"
@@ -316,14 +316,14 @@
   },
   {
     "Name": "GenerateMap",
-    "Version": "1.0.0.0",
+    "Version": "1.0.1",
     "Author": "少司命",
     "Description": "GenerateMap",
     "Path": "GenerateMap.dll"
   },
   {
     "Name": "InvincibilityPlugin",
-    "Version": "1.0.6",
+    "Version": "1.0.7",
     "Author": "肝帝熙恩",
     "Description": "在命令中给予玩家一段时间的无敌状态。",
     "Path": "Invincibility.dll"
@@ -372,7 +372,7 @@
   },
   {
     "Name": "PerPlayerLoot",
-    "Version": "2.0.0",
+    "Version": "2.0.1",
     "Author": "Codian,肝帝熙恩汉化1449",
     "Description": "玩家战利品单独箱子.",
     "Path": "PerPlayerLoot.dll"
@@ -659,7 +659,7 @@
   },
   {
     "Name": "超进度限制",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命 & 恋恋魔改三合一",
     "Description": "根据进度限制",
     "Path": "ProgressRestrict.dll"
@@ -694,14 +694,14 @@
   },
   {
     "Name": "History",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "Cracker64 & Zaicon & Cai & 肝帝熙恩",
     "Description": "记录图格操作.",
     "Path": "History.dll"
   },
   {
     "Name": "HousingDistricts",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "GK 阁下 改良",
     "Description": "一个著名的用于保护房屋的插件。",
     "Path": "HouseRegion.dll"
