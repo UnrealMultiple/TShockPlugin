@@ -2,7 +2,7 @@ name: 插件发布
 
 on:
   push:
-    branches: [ "master","cai"]
+    branches: [ "master","cai", "main"]
     
 jobs:
   Build:
@@ -42,12 +42,12 @@ jobs:
       - name: 构建插件
         run: |
           dotnet build Plugin.sln -c Release
-                
-  
+          
       - name: 下载PluginInfoLoader
         run: |
           wget -q https://github.com/ACaiCat/PluginInfoLoaderr/releases/download/v1.0.0.0/linux-x64.zip
           unzip -qq linux-x64.zip
+          cp ./out/Release/*.dll ./linux-x64/ServerPlugins/
       
       - name: 运行TShock生成Plugins.json
         timeout-minutes: 3
@@ -79,11 +79,23 @@ jobs:
           else
             echo "非UnrealMultiple/TShockPlugin仓库，跳过提交."
           fi
+          
+      - name: 下载MarkdownTranslator
+        run: |
+          wget -q https://github.com/CrazyMayfly/Free-Markdown-Translator/releases/download/1.2/MarkdownTranslator.v1.2.zip
+          unzip -qq -d MarkdownTranslator MarkdownTranslator.v1.2.zip
+          cp ./Config/config.yml ./MarkdownTranslator
 
       - name: 初始化Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+
+      - name: 自动更新英文README
+        run:
+          sudo python Translator.py
+        env:
+          PYTHONIOENCODING: 'utf-8'
 
       - name: 打包
         run: 
