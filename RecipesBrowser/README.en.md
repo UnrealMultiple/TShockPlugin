@@ -24,7 +24,7 @@
 |grammar|Authority|illustrate|
 | -------------- |: --------------------:|: -------:|
 |/fd,/find|Recipesbrowser|/FD <Article ID> Query materials and workstations required for synthetic synthesis|
-|/check|Recipesbrowser|/fd <Article ID> R quering the synthetic item of the material|
+|/check|Recipesbrowser|/fd <Item ID> R quering the synthetic item of the material|
 
 ## Configuration
 

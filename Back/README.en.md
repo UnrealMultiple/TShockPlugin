@@ -16,7 +16,7 @@ v1.0.0.4
 
 ## instruction
 
-|Grammar|Authority|illustrate|
+|grammar|Authority|illustrate|
 | -------------- |: --------------------:|: -------:|
 |/back|back|Return to the place of death|
 

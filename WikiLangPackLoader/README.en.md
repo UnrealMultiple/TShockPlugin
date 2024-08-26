@@ -6,7 +6,7 @@
 - Author: CAI
 - - 仓库: [github](https://github.com/ACaiCat/WikiLangPackLoader) 
 - Set Chinese automatically after starting the server and load **Official wiki Chinese language package** to fix Chinese
-- EG. Crowe (official translation) => Yun (wiki translation)
+- eg. Crowe (official translation) => Yun (wiki translation)
 - Note: Using this plug -in may cause some RPG and other items and BUFF commands to fail
 
 
