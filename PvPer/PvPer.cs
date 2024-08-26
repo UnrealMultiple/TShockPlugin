@@ -61,9 +61,10 @@ namespace PvPer
         }
 
         protected override void Dispose(bool disposing)
-        {     //不确定是否完成卸载标记
+        {
             if (disposing)
             {
+                illegalMeleePrefixes.Clear();
                 GetDataHandlers.PlayerTeam -= OnPlayerChangeTeam;
                 GetDataHandlers.TogglePvp -= OnPlayerTogglePvP;
                 GetDataHandlers.Teleport -= OnPlayerTeleport;

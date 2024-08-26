@@ -2,9 +2,7 @@
 
 - 作者: Stealownz，肝帝熙恩优化1449
 - 出处: [github](https://github.com/Adventure-Terraria-Server-Project/AdditionalPylons-Plugin)
-- 晶塔环境不受限制，数量可提升
-- 所有晶塔都无视环境
-- 所有晶塔都至少可以放一个
+- 自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境
 
 ## 更新日志
 

@@ -28,32 +28,46 @@ public class History : TerrariaPlugin
     private Thread CommandQueueThread;
     public override string Description => "记录图格操作.";
     public override string Name => "History";
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
 
     public History(Main game) : base(game)
     {
         this.Order = 5;
     }
+    public override void Initialize()
+    {
+        Connect();
+        InitBreaks();
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.get", HistoryCmd, "history", "历史"));
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.prune", Prune, "prunehist", "删除历史"));
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.reenact", Reenact, "reenact", "复现"));
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.rollback", Rollback, "rollback", "回溯"));
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.rollback", Undo, "rundo1", "撤销"));
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.admin", ResetCmd, "hreset", "重置历史"));
+        ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
+        ServerApi.Hooks.NetGetData.Register(this, OnGetData, int.MinValue);
+        ServerApi.Hooks.WorldSave.Register(this, OnSaveWorld);
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            ServerApi.Hooks.GameInitialize.Deregister(this, this.OnInitialize);
-            ServerApi.Hooks.NetGetData.Deregister(this, this.OnGetData);
-            ServerApi.Hooks.WorldSave.Deregister(this, this.OnSaveWorld);
+            TShockAPI.Commands.ChatCommands.RemoveAll(
+    x => x.CommandDelegate == HistoryCmd ||
+    x.CommandDelegate == Prune ||
+    x.CommandDelegate == Reenact ||
+    x.CommandDelegate == Rollback ||
+    x.CommandDelegate == Undo ||
+    x.CommandDelegate == ResetCmd
+    );
+            ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
+            ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
+            ServerApi.Hooks.WorldSave.Deregister(this, OnSaveWorld);
 
             this.Cancel.Cancel();
         }
     }
-    public override void Initialize()
-    {
-        Connect();
-        this.InitBreaks();
-        ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);
-        ServerApi.Hooks.NetGetData.Register(this, this.OnGetData, int.MinValue);
-        ServerApi.Hooks.WorldSave.Register(this, this.OnSaveWorld);
-    }
-
     private static void Connect()
     {
         var text = Path.Combine(TShock.SavePath, "HistoryDB.sqlite");
@@ -1390,12 +1404,6 @@ public class History : TerrariaPlugin
     }
     void OnInitialize(EventArgs e)
     {
-        TShockAPI.Commands.ChatCommands.Add(new Command("history.get", this.HistoryCmd, "history", "历史"));
-        TShockAPI.Commands.ChatCommands.Add(new Command("history.prune", this.Prune, "prunehist", "删除历史"));
-        TShockAPI.Commands.ChatCommands.Add(new Command("history.reenact", this.Reenact, "reenact", "复现"));
-        TShockAPI.Commands.ChatCommands.Add(new Command("history.rollback", this.Rollback, "rollback", "回溯"));
-        TShockAPI.Commands.ChatCommands.Add(new Command("history.rollback", this.Undo, "rundo", "撤销"));
-        TShockAPI.Commands.ChatCommands.Add(new Command("history.admin", this.ResetCmd, "hreset", "重置历史"));
         var sqlcreator = new SqlTableCreator(Database, new SqliteQueryCreator());
         sqlcreator.EnsureTableStructure(new SqlTable("History",
             new SqlColumn("Time", MySqlDbType.Int32),

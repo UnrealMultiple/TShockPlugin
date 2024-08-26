@@ -25,6 +25,13 @@ namespace ProgressBag
             Order = 3;
         }
         private GeneralHooks.ReloadEventD _reloadHandler;
+        public override void Initialize()
+        {
+            LoadConfig();
+            _reloadHandler = e => LoadConfig();
+            GeneralHooks.ReloadEvent += _reloadHandler;
+            Commands.ChatCommands.Add(new Command("bag.use", GiftBag, "礼包"));
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -34,14 +41,6 @@ namespace ProgressBag
             }
             base.Dispose(disposing);
         }
-        public override void Initialize()
-        {
-            LoadConfig();
-            _reloadHandler = e => LoadConfig();
-            GeneralHooks.ReloadEvent += _reloadHandler;
-            Commands.ChatCommands.Add(new Command("bag.use", GiftBag, "礼包"));
-        }
-
         public bool ReceiveBag(TSPlayer Player, Bag bag, bool msg = true)
         {
             if (!Player.InProgress(bag.Limit))

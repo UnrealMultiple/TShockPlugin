@@ -12,7 +12,7 @@ namespace InvincibilityPlugin
         public override string Author => "肝帝熙恩";
         public override string Description => "在命令中给予玩家一段时间的无敌状态。";
         public override string Name => "InvincibilityPlugin";
-        public override Version Version => new Version(1, 0, 6);
+        public override Version Version => new Version(1, 0, 7);
         public static Configuration Config;
 
         private readonly Dictionary<TSPlayer, float> invincibleDurations = new();
@@ -39,7 +39,8 @@ namespace InvincibilityPlugin
         public override void Initialize()
         {
             GeneralHooks.ReloadEvent += ReloadConfig;
-            ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
+            Commands.ChatCommands.Add(new Command("Invincibility.god", InvincibleCommand, "tgod", "限时god无敌"));
+            Commands.ChatCommands.Add(new Command("Invincibility.frame", ActivateFrameInvincibility, "tframe", "限时无敌帧无敌"));
             ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
         }
         protected override void Dispose(bool disposing)
@@ -47,16 +48,10 @@ namespace InvincibilityPlugin
             if (disposing)
             {
                 GeneralHooks.ReloadEvent -= ReloadConfig;
-                ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == InvincibleCommand || x.CommandDelegate == ActivateFrameInvincibility);
                 ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
             }
             base.Dispose(disposing);
-        }
-
-        private void OnInitialize(EventArgs args)
-        {
-            Commands.ChatCommands.Add(new Command("Invincibility.god", InvincibleCommand, "tgod", "限时god无敌"));
-            Commands.ChatCommands.Add(new Command("Invincibility.frame", ActivateFrameInvincibility, "tframe", "限时无敌帧无敌"));
         }
 
         private void OnUpdate(EventArgs args)

@@ -18,13 +18,13 @@ namespace MiniGamesAPI
         public MiniGamesAPI(Main game) : base(game) { }
         public override void Initialize()
         {
-            ServerApi.Hooks.GamePostUpdate.Register((TerrariaPlugin)(object)this, OnPostUpdate);
+            ServerApi.Hooks.GamePostUpdate.Register(this, OnPostUpdate);
         }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                ServerApi.Hooks.GamePostUpdate.Deregister((TerrariaPlugin)(object)this, OnPostUpdate);
+                ServerApi.Hooks.GamePostUpdate.Deregister(this, OnPostUpdate);
             }
             base.Dispose(disposing);
         }

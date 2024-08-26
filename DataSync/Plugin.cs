@@ -100,20 +100,27 @@ public class Plugin : TerrariaPlugin
         Config.LoadConfig();
         EnsureTable();
         _reloadHandler = (_) => Reload();
-        ServerApi.Hooks.NpcKilled.Register(this, this.NpcKilled);
-        ServerApi.Hooks.GameUpdate.Register(this, args =>
-        {
-            this._frameCount++;
-            if (this._frameCount % 300 == 0)
+        ServerApi.Hooks.NpcKilled.Register(this, NpcKilled);
+        ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
+        GeneralHooks.ReloadEvent += _reloadHandler;
+        ServerApi.Hooks.GamePostInitialize.Register(this, PostInitualize);
+        Commands.ChatCommands.Add(new Command("DataSync", ClearProgress, "重置进度同步"));
+        TShock.RestApi.Register(new SecureRestCommand("/DataSync", ProgressRest, "DataSync"));
+        Commands.ChatCommands.Add(new Command("DataSync", ProgressCommand, "进度", "progress"));
+    }
+
+    private void OnUpdate(EventArgs args)
+    {
+            _frameCount++;
+            if (_frameCount % 300 == 0)
             {
                 LoadProgress();
             }
-        });
-        GeneralHooks.ReloadEvent += _reloadHandler;
-        ServerApi.Hooks.GamePostInitialize.Register(this, args => LoadProgress());
-        Commands.ChatCommands.Add(new Command("DataSync", this.ClearProgress, "重置进度同步"));
-        TShock.RestApi.Register(new SecureRestCommand("/DataSync", ProgressRest, "DataSync"));
-        Commands.ChatCommands.Add(new Command("DataSync", ProgressCommand, "进度", "progress"));
+    }
+
+    private void PostInitualize(EventArgs args)
+    {
+        LoadProgress();
     }
 
     protected override void Dispose(bool disposing)
@@ -121,17 +128,13 @@ public class Plugin : TerrariaPlugin
         if (disposing)
         {
             ServerApi.Hooks.NpcKilled.Deregister(this, NpcKilled);
-            ServerApi.Hooks.GameUpdate.Deregister(this, args =>
-            {
-                _frameCount++;
-                if (_frameCount % 300 == 0)
-                {
-                    LoadProgress();
-                }
-            });
+            ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
             GeneralHooks.ReloadEvent -= _reloadHandler;
-            ServerApi.Hooks.GamePostInitialize.Deregister(this, args => LoadProgress());
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == ClearProgress || x.CommandDelegate == ProgressCommand);
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, PostInitualize);
+                ((List<RestCommand>)typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+                .GetValue(TShock.RestApi)!)
+                .RemoveAll(x => x.Name == "/DataSync");
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == ClearProgress || x.CommandDelegate == ProgressCommand);
         }
 
         base.Dispose(disposing);

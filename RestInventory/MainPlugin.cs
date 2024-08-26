@@ -11,7 +11,7 @@ namespace RestInventory
 
         public MainPlugin(Main game) : base(game) { }
         public override string Name => "BeanInvsee";
-        public override Version Version => new Version(1, 0, 0, 1);
+        public override Version Version => new Version(1, 0, 0, 2);
         public override string Author => "少司命";
         public override string Description => "rest查询背包";
         public RetObject retObject = new RetObject();
@@ -21,6 +21,13 @@ namespace RestInventory
         }
         protected override void Dispose(bool disposing)
         {
+            if (disposing)
+            {
+                ((List<RestCommand>)typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+                .GetValue(TShock.RestApi)!)
+                .RemoveAll(x => x.Name == "/beanInvsee");
+            }
+            base.Dispose(disposing);
         }
 
         private object BInvSee(RestRequestArgs args)

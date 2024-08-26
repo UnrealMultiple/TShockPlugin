@@ -46,6 +46,9 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
+            ((List<RestCommand>)typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+            .GetValue(TShock.RestApi)!)
+            .RemoveAll(x => x.Name == "/chat");
             ServerApi.Hooks.ServerChat.Deregister(this, OnChat);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreet);
             ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);

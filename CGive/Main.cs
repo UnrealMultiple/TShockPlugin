@@ -13,7 +13,7 @@ public class Main : TerrariaPlugin
 
     public override string Name => "CGive";
 
-    public override Version Version => new Version(1, 0, 0, 1);
+    public override Version Version => new Version(1, 0, 0, 2);
 
     public Main(Terraria.Main game)
         : base(game)
@@ -35,6 +35,9 @@ public class Main : TerrariaPlugin
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == cgive);
             ServerApi.Hooks.GameInitialize.Deregister(this, OnGameInit);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);
+            ((List<RestCommand>)typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+            .GetValue(TShock.RestApi)!)
+            .RemoveAll(x => x.Name == "/getWarehouse");
         }
         base.Dispose(disposing);
     }

@@ -20,7 +20,7 @@ namespace AdditionalPylons
 
         public override string Author => "Stealownz，肝帝熙恩优化1449";
 
-        public override string Description => "晶塔环境不受限制，数量可提升";
+        public override string Description => " 自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境";
 
 
         public AdditionalPylonsPlugin(Main game) : base(game)
