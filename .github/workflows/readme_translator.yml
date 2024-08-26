@@ -15,7 +15,7 @@ jobs:
         run: |
          Invoke-WebRequest -Uri https://github.com/CrazyMayfly/Free-Markdown-Translator/releases/download/1.2/MarkdownTranslator.v1.2.zip -OutFile "MarkdownTranslator.zip" -DisableKeepAlive
          Expand-Archive -Path ./MarkdownTranslator.zip -DestinationPath MarkdownTranslator
-         Copy-Item -Path Config/config.yml -Destination MarkdownTranslator/config.ymal
+         Copy-Item -Path Config/config.ymal -Destination MarkdownTranslator/config.ymal
 
       - name: 初始化Python
         uses: actions/setup-python@v2
