@@ -15,3 +15,11 @@ jobs:
         run: |
          Invoke-WebRequest -Uri https://github.com/CrazyMayfly/Free-Markdown-Translator/releases/download/1.2/MarkdownTranslator.v1.2.zip -OutFile "MarkdownTranslator.zip" -DisableKeepAlive
          Expand-Archive -Path ./MarkdownTranslator.zip -DestinationPath MarkdownTranslator
+
+      - name: 初始化Python
+        uses: actions/setup-python@v2
+        with:
+         python-version: '3.x'
+
+      - name: 自动转换README
+        run: python Translator.py
