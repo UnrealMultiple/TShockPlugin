@@ -2,7 +2,7 @@
 insert_warnings: true
 
 # 源语言，auto表示自动识别
-src_language: auto
+src_language: zh
 
 # 目标语言
 target_langs:
