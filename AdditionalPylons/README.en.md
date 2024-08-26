@@ -15,7 +15,7 @@
 v1.0.1 完善卸载函数
 ```
 
-## instruction
+## Instruction
 
 |grammar|Authority|illustrate|
 | -------------- |: --------------------:|: -------:|

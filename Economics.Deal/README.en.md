@@ -27,7 +27,7 @@
 |/Deal Reset|economics.deal.reset|Reset the transaction|
 
 ## Configuration
-> Configuration file location: TSHOCK/ECONOMICS/Deal.json
+> Configuration file location: TSHOCK/ECONOMICS/DEAL.JSON
 ```json
 {
    "最大显示页": 10,
