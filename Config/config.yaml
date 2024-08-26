@@ -2,7 +2,7 @@
 insert_warnings: true
 
 # 源语言，auto表示自动识别
-src_language: zh
+src_language: auto
 
 # 目标语言
 target_langs:
@@ -77,7 +77,6 @@ front_matter_transparent_keys:
   - 'style:'
   - '    background:'
   - '    color:'
-
 
 # Front Matter中需要以Key-Value形式翻译的部分
 front_matter_key_value_keys:
