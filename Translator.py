@@ -4,6 +4,9 @@ import subprocess
 cmd = ["MarkdownTranslator/MarkdownTranslator.exe", "-f"]
 for file in os.listdir("./"):
     path = f"{file}/README.md"
+    _path = f"{file}/README.en.md"
+    if os.path.exists(_path):
+        os.remove(_path)
     if os.path.exists(path):
       cmd.append(file)
 subprocess.run(cmd)
