@@ -17,6 +17,14 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+        <EmbeddedResource Include="i18n\**\*.mo">
+            <LogicalName>$([System.String]::new('%(RelativeDir)').Replace('\','.'))%(FileName)%(Extension)</LogicalName>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <Import Project="Localizer\Localizer.projitems" Label="Shared" />
+
     <Target Name="githash" BeforeTargets="PreBuildEvent">
         <Exec Command="git log -1 --pretty=&quot;format:%25H&quot;" ContinueOnError="true" ConsoleToMSBuild="true">
             <Output TaskParameter="ConsoleOutput" PropertyName="CommitHashValue"/>
