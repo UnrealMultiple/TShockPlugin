@@ -230,8 +230,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnseenInventory", "UnseenIn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChestRestore", "ChestRestore\ChestRestore.csproj", "{0C2924D3-41E7-417A-990D-46AEFF754662}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalizerTestingPlugin", "LocalizerTestingPlugin\LocalizerTestingPlugin.csproj", "{84435EBE-AF17-42E6-9BB9-C5BA71FD9493}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1128,14 +1126,6 @@ Global
 		{0C2924D3-41E7-417A-990D-46AEFF754662}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0C2924D3-41E7-417A-990D-46AEFF754662}.Release|x64.ActiveCfg = Release|Any CPU
 		{0C2924D3-41E7-417A-990D-46AEFF754662}.Release|x64.Build.0 = Release|Any CPU
-		{84435EBE-AF17-42E6-9BB9-C5BA71FD9493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84435EBE-AF17-42E6-9BB9-C5BA71FD9493}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84435EBE-AF17-42E6-9BB9-C5BA71FD9493}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{84435EBE-AF17-42E6-9BB9-C5BA71FD9493}.Debug|x64.Build.0 = Debug|Any CPU
-		{84435EBE-AF17-42E6-9BB9-C5BA71FD9493}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84435EBE-AF17-42E6-9BB9-C5BA71FD9493}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84435EBE-AF17-42E6-9BB9-C5BA71FD9493}.Release|x64.ActiveCfg = Release|Any CPU
-		{84435EBE-AF17-42E6-9BB9-C5BA71FD9493}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
