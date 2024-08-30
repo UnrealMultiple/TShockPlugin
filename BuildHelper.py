@@ -63,4 +63,21 @@ if __name__ == '__main__':
 
     print("📦 准备打包插件...")
     zip_files_in_folder(f"out/{build_type}", "Plugins.zip")
-    print("🎉 插件打包成功！")
+    print("📦 插件打包成功！")
+    
+    print("✨ 准备更新Gitee插件包...")
+    gitee_token = sys.argv[2]
+    headers = {
+        'Authorization': f'token {gitee_token}'
+    }
+    files = {
+        'file': open('Plugins.zip', 'rb')
+    }
+    response = requests.post("https://gitee.com/api/v5/repos/kksjsj/TShockPlugin/releases/431070/attach_files", headers=headers, files=files)
+    if response.status_code == 201:
+        print('✨Gitee插件包上传成功！')
+        print('下载链接:', response.json()['browser_download_url'])
+    else:
+        print('❓Gitee插件包上传失败:', response.status_code)
+        print(response.json())
+    
