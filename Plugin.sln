@@ -1133,10 +1133,4 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0029F58-63FA-4445-ABC2-C334EB5B99B5}
 	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		I18n\I18n.projitems*{10995e87-ee8a-4af6-98e3-985d971d5c8e}*SharedItemsImports = 5
-		I18n\I18n.projitems*{fa7ae532-4fd4-403f-b18c-4198dbdf92eb}*SharedItemsImports = 13
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-	EndGlobalSection
 EndGlobal

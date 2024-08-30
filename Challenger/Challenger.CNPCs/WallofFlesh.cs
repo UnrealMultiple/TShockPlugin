@@ -84,7 +84,7 @@ namespace Challenger
                     state = 1;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("罪恶血祭召唤远古守卫", new Color(255, 77, 0));
+                        TSPlayer.All.SendMessage(GetString("罪恶血祭召唤远古守卫"), new Color(255, 77, 0));
                     }
                 }
                 return state;
@@ -96,7 +96,7 @@ namespace Challenger
                     state = 2;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("付出代价吧！", new Color(255, 77, 0));
+                        TSPlayer.All.SendMessage(GetString("付出代价吧！"), new Color(255, 77, 0));
                     }
                 }
                 return state;
@@ -106,7 +106,7 @@ namespace Challenger
                 state = 3;
                 if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                 {
-                    TSPlayer.All.SendMessage("速度与激情", new Color(255, 77, 0));
+                    TSPlayer.All.SendMessage(GetString("速度与激情"), new Color(255, 77, 0));
                 }
             }
             return state;
@@ -116,7 +116,7 @@ namespace Challenger
         {
             if (global::Challenger.Challenger.config.EnableConsumptionMode)
             {
-                global::Challenger.Challenger.SendPlayerText("咬碎你", new Color(0, 146, 255), npc.Center);
+                global::Challenger.Challenger.SendPlayerText(GetString("咬碎你"), new Color(0, 146, 255), npc.Center);
             }
         }
     }

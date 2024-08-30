@@ -180,7 +180,7 @@ namespace Challenger
                     state = 1;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("燃烧！无法熄灭的火焰", new Color(200, 200, 200));
+                        TSPlayer.All.SendMessage(GetString("燃烧！无法熄灭的火焰"), new Color(200, 200, 200));
                     }
                 }
                 return 0;
@@ -192,7 +192,7 @@ namespace Challenger
                     state = 2;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("你找到那颗子弹了吗", new Color(200, 200, 200));
+                        TSPlayer.All.SendMessage(GetString("你找到那颗子弹了吗"), new Color(200, 200, 200));
                     }
                 }
                 return 1;
@@ -204,7 +204,7 @@ namespace Challenger
                     state = 3;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("猪突猛进！", new Color(200, 200, 200));
+                        TSPlayer.All.SendMessage(GetString("猪突猛进！"), new Color(200, 200, 200));
                     }
                 }
                 return 2;
@@ -214,7 +214,7 @@ namespace Challenger
                 state = 4;
                 if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                 {
-                    TSPlayer.All.SendMessage("疯狗狂叫！！！", new Color(200, 200, 200));
+                    TSPlayer.All.SendMessage(GetString("疯狗狂叫！！！"), new Color(200, 200, 200));
                 }
             }
             return 3;
@@ -227,11 +227,11 @@ namespace Challenger
                 int num = Main.rand.Next(1, 3);
                 if (num == 1)
                 {
-                    global::Challenger.Challenger.SendPlayerText("就这就这！", new Color(200, 200, 200), npc.Center + new Vector2(0f, -30f));
+                    global::Challenger.Challenger.SendPlayerText(GetString("就这就这！"), new Color(200, 200, 200), npc.Center + new Vector2(0f, -30f));
                 }
                 else
                 {
-                    global::Challenger.Challenger.SendPlayerText("看我创死你", new Color(200, 200, 200), npc.Center + new Vector2(0f, -30f));
+                    global::Challenger.Challenger.SendPlayerText(GetString("看我创死你"), new Color(200, 200, 200), npc.Center + new Vector2(0f, -30f));
                 }
             }
         }
