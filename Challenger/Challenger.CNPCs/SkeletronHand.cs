@@ -60,11 +60,11 @@ namespace Challenger
                 state = 2;
                 if (npc.ai[0] == -1f && global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                 {
-                    TSPlayer.All.SendMessage("你打痛我左手了！！！", new Color(150, 143, 102));
+                    TSPlayer.All.SendMessage(GetString("你打痛我左手了！！！"), new Color(150, 143, 102));
                 }
                 if (npc.ai[0] == 1f && global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                 {
-                    TSPlayer.All.SendMessage("你打痛我右手了！！！", new Color(150, 143, 102));
+                    TSPlayer.All.SendMessage(GetString("你打痛我右手了！！！"), new Color(150, 143, 102));
                 }
             }
             return state;
@@ -97,13 +97,13 @@ namespace Challenger
                 switch (Main.rand.Next(1, 4))
                 {
                     case 1:
-                        global::Challenger.Challenger.SendPlayerText("就这还想打倒我骷髅王爷爷", new Color(150, 143, 102), npc.Center + new Vector2(0f, -30f));
+                        global::Challenger.Challenger.SendPlayerText(GetString("就这还想打倒我骷髅王爷爷"), new Color(150, 143, 102), npc.Center + new Vector2(0f, -30f));
                         break;
                     case 2:
-                        global::Challenger.Challenger.SendPlayerText("看我一记耳光", new Color(150, 143, 102), npc.Center + new Vector2(0f, -30f));
+                        global::Challenger.Challenger.SendPlayerText(GetString("看我一记耳光"), new Color(150, 143, 102), npc.Center + new Vector2(0f, -30f));
                         break;
                     default:
-                        global::Challenger.Challenger.SendPlayerText("离地牢远点！！！", new Color(150, 143, 102), npc.Center + new Vector2(0f, -30f));
+                        global::Challenger.Challenger.SendPlayerText(GetString("离地牢远点！！！"), new Color(150, 143, 102), npc.Center + new Vector2(0f, -30f));
                         break;
                 }
             }

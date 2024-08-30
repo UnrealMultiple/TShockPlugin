@@ -67,7 +67,7 @@ namespace ChalleAnger
                     State = 1;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("邪恶的蠕虫寻找新的受害者", new Color(177, 94, 255));
+                        TSPlayer.All.SendMessage(GetString("邪恶的蠕虫寻找新的受害者"), new Color(177, 94, 255));
                     }
                 }
                 return State;
@@ -79,7 +79,7 @@ namespace ChalleAnger
                     State = 2;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("有毒的鳞甲炸裂开来", new Color(177, 94, 255));
+                        TSPlayer.All.SendMessage(GetString("有毒的鳞甲炸裂开来"), new Color(177, 94, 255));
                     }
                 }
                 return State;
@@ -89,7 +89,7 @@ namespace ChalleAnger
                 State = 3;
                 if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                 {
-                    TSPlayer.All.SendMessage("怒不可遏", new Color(177, 94, 255));
+                    TSPlayer.All.SendMessage(GetString("怒不可遏"), new Color(177, 94, 255));
                 }
             }
             return State;
@@ -116,11 +116,11 @@ namespace ChalleAnger
                 int num = Main.rand.Next(1, 3);
                 if (num == 1)
                 {
-                    global::Challenger.Challenger.SendPlayerText("刺啦", new Color(177, 94, 255), npc.Center + new Vector2(0f, -30f));
+                    global::Challenger.Challenger.SendPlayerText(GetString("刺啦"), new Color(177, 94, 255), npc.Center + new Vector2(0f, -30f));
                 }
                 else
                 {
-                    global::Challenger.Challenger.SendPlayerText("小心我爆炸的鳞甲", new Color(177, 94, 255), npc.Center + new Vector2(0f, -30f));
+                    global::Challenger.Challenger.SendPlayerText(GetString("小心我爆炸的鳞甲"), new Color(177, 94, 255), npc.Center + new Vector2(0f, -30f));
                 }
             }
         }

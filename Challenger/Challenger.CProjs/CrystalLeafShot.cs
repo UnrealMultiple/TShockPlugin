@@ -32,8 +32,8 @@ namespace Challenger
             }
             catch (Exception ex)
             {
-                TShock.Log.Error("CrystalLeafShot -> MyEffect 异常：" + ex.ToString());
-                Console.WriteLine("CrystalLeafShot -> MyEffect 异常：" + ex.ToString());
+                TShock.Log.Error(GetString($"CrystalLeafShot -> MyEffect 异常：{ex}"));
+                Console.WriteLine(GetString($"CrystalLeafShot -> MyEffect 异常：{ex}"));
             }
         }
     }

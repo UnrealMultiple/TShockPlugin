@@ -33,13 +33,13 @@ namespace Challenger
                 switch (Main.rand.Next(1, 4))
                 {
                     case 1:
-                        global::Challenger.Challenger.SendPlayerText("毒牙咬击", new Color(177, 94, 255), npc.Center + new Vector2(0f, -30f));
+                        global::Challenger.Challenger.SendPlayerText(GetString("毒牙咬击"), new Color(177, 94, 255), npc.Center + new Vector2(0f, -30f));
                         break;
                     case 2:
-                        global::Challenger.Challenger.SendPlayerText("创死你", new Color(177, 94, 255), npc.Center + new Vector2(0f, -30f));
+                        global::Challenger.Challenger.SendPlayerText(GetString("创死你"), new Color(177, 94, 255), npc.Center + new Vector2(0f, -30f));
                         break;
                     default:
-                        global::Challenger.Challenger.SendPlayerText("呜哇哇", new Color(177, 94, 255), npc.Center + new Vector2(0f, -30f));
+                        global::Challenger.Challenger.SendPlayerText(GetString("呜哇哇"), new Color(177, 94, 255), npc.Center + new Vector2(0f, -30f));
                         break;
                 }
             }

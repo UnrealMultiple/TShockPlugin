@@ -100,7 +100,7 @@ namespace Challenger
                     obj3.life += healAmount;
                     if (Challenger.config.EnableConsumptionMode)
                     {
-                        Challenger.SendPlayerText($"敌怪治疗 + {(int)ai[4]}", new Color(190, 255, 0), val.Center);
+                        Challenger.SendPlayerText(GetString($"敌怪治疗 + {(int)ai[4]}"), new Color(190, 255, 0), val.Center);
                     }
                     else
                     {
@@ -126,7 +126,7 @@ namespace Challenger
                         if (Challenger.config.EnableConsumptionMode)
                         {
                             Challenger.HealPlayer(Main.player[val3.whoAmI], (int)ai[0], visible: false);
-                            Challenger.SendPlayerText($"血包治疗 + {(int)ai[0]}", new Color(0, 255, 0), val3.Center);
+                            Challenger.SendPlayerText(GetString($"血包治疗 + {(int)ai[0]}"), new Color(0, 255, 0), val3.Center);
                         }
                         else
                         {

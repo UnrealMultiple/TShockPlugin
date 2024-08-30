@@ -13,17 +13,19 @@ public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoPluginManager";
 
-    public override Version Version => new(2, 0, 1, 1);
+    public override Version Version => new(2, 0, 1, 3);
 
     public override string Author => "少司命，Cai";
 
     public override string Description => "自动更新你的插件！";
 
-    private const string ReleaseUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
+    private const string GiteeReleaseUrl = "https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
+    
+    private const string GithubReleaseUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
 
-    private const string PUrl = "https://github.moeyy.xyz/";
-
-    private const string PluginsUrl = "https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/Plugins.json";
+    private const string GiteePluginsUrl = "https://gitee.com/kksjsj/TShockPlugin/raw/master/Plugins.json";
+    
+    private const string GithubPluginsUrl = "https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/Plugins.json";
     
     public static readonly Dictionary<string,Version> HasUpdated = new();
 
@@ -302,7 +304,7 @@ public class Plugin : TerrariaPlugin
     {
         var plugins = GetPlugins();
         HttpClient httpClient = new();
-        var response = httpClient.GetAsync(PUrl + PluginsUrl).Result;
+        var response = httpClient.GetAsync(Config.PluginConfig.UseGithubSource?GithubPluginsUrl:GiteePluginsUrl).Result;
 
         if (!response.IsSuccessStatusCode)
             throw new Exception("无法连接服务器");
@@ -345,7 +347,7 @@ public class Plugin : TerrariaPlugin
         if (!directoryInfo.Exists)
             directoryInfo.Create();
         HttpClient httpClient = new();
-        var zipBytes = httpClient.GetByteArrayAsync(PUrl + ReleaseUrl).Result;
+        var zipBytes = httpClient.GetByteArrayAsync(Config.PluginConfig.UseGithubSource?GithubReleaseUrl:GiteeReleaseUrl).Result;
         File.WriteAllBytes(Path.Combine(directoryInfo.FullName, TempZipName), zipBytes);
     }
 
