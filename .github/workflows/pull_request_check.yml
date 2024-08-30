@@ -24,6 +24,10 @@ jobs:
         with:
           dotnet-version: 6.0.x
           
+      - name: 安装构建依赖
+        run: |
+          sudo apt install -y gettext
+          
       - name: 构建插件
         run: |
           dotnet build Plugin.sln
