@@ -1,3 +1,4 @@
+
 using EconomicsAPI.Extensions;
 using Microsoft.Xna.Framework;
 using System.Collections.Concurrent;
@@ -5,6 +6,7 @@ using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace Economics.Projectile;
 
@@ -17,7 +19,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 4);
+    public override Version Version => new(1, 0, 0, 5);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Projectile.json");
 
@@ -38,12 +40,28 @@ public class Plugin : TerrariaPlugin
     public override void Initialize()
     {
         LoadConfig();
-        TShockAPI.Hooks.GeneralHooks.ReloadEvent += (_) => LoadConfig();
+        GeneralHooks.ReloadEvent += LoadConfig;
         GetDataHandlers.NewProjectile.Register(OnProj);
         GetDataHandlers.PlayerUpdate.Register(OnDate);
         ServerApi.Hooks.GameUpdate.Register(this, Onupdate);
         On.Terraria.Projectile.Minion_FindTargetInRange += Projectile_Minion_FindTargetInRange;
         On.Terraria.Projectile.Update += Projectile_Update;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            GetDataHandlers.NewProjectile.UnRegister(OnProj);
+            GetDataHandlers.PlayerUpdate.UnRegister(OnDate);
+            ServerApi.Hooks.GameUpdate.Deregister(this, Onupdate);
+            On.Terraria.Projectile.Minion_FindTargetInRange -= Projectile_Minion_FindTargetInRange;
+            On.Terraria.Projectile.Update -= Projectile_Update;
+            GeneralHooks.ReloadEvent -= LoadConfig;
+        }
+        base.Dispose(disposing);
     }
 
     private void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Terraria.Projectile self, int i)
@@ -258,7 +276,7 @@ public class Plugin : TerrariaPlugin
 
 
 
-    public void LoadConfig()
+    public void LoadConfig(ReloadEventArgs? args = null)
     {
         if (!File.Exists(PATH))
         {

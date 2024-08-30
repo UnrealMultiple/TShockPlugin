@@ -1,6 +1,7 @@
 ﻿using Economics.RPG.Setting;
 using EconomicsAPI.Configured;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
+using EconomicsAPI.Events;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -18,11 +19,11 @@ public class RPG : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 2);
+    public override Version Version => new(1, 0, 0, 3);
 
     internal static Config Config { get; set; } = new Config();
 
-    public static PlayerLevelManager PlayerLevelManager { get; private set; }
+    public static PlayerLevelManager PlayerLevelManager { get; private set; } = null!;
 
     private static string PATH => Path.Combine(EconomicsAPI.Economics.SaveDirPath, "RPG.json");
 
@@ -32,18 +33,34 @@ public class RPG : TerrariaPlugin
 
     public override void Initialize()
     {
-        Config = ConfigHelper.LoadConfig<Config>(PATH, Config);
-        Config.Init();
+        LoadConfig();
         PlayerLevelManager = new();
         PlayerHooks.PlayerPermission += PlayerHooks_PlayerPermission;
         PlayerHooks.PlayerChat += PlayerHooks_PlayerChat;
-        EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop += OnCounterTop;
-        GeneralHooks.ReloadEvent += (_) =>
-        {
-            Config = ConfigHelper.LoadConfig(PATH, Config);
-            Config.Init();
-        };
+        PlayerHandler.OnPlayerCountertop += OnCounterTop;
+        GeneralHooks.ReloadEvent += LoadConfig;
     }
+
+    private void LoadConfig(ReloadEventArgs? args = null)
+    {
+        Config = ConfigHelper.LoadConfig(PATH, Config);
+        Config.Init();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            PlayerHooks.PlayerPermission -= PlayerHooks_PlayerPermission;
+            PlayerHooks.PlayerChat -= PlayerHooks_PlayerChat;
+            PlayerHandler.OnPlayerCountertop -= OnCounterTop;
+            GeneralHooks.ReloadEvent -= LoadConfig;
+        }
+        base.Dispose(disposing);
+    }
+
 
     public static bool InLevel(string Name, IEnumerable<string> list)
     {

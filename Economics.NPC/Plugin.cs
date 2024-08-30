@@ -17,7 +17,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 1);
+    public override Version Version => new(1, 0, 0, 2);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "NPC.json");
 
@@ -31,10 +31,22 @@ public class Plugin : TerrariaPlugin
     {
         LoadConfig();
         EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += OnPlayerKillNpc;
-        GeneralHooks.ReloadEvent += (_) => LoadConfig();
+        GeneralHooks.ReloadEvent += LoadConfig;
     }
 
-    private void LoadConfig()
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc -= OnPlayerKillNpc;
+            GeneralHooks.ReloadEvent -= LoadConfig;
+        }
+        base.Dispose(disposing);
+    }
+
+    private void LoadConfig(ReloadEventArgs? args = null)
     {
         if (!File.Exists(PATH))
         {

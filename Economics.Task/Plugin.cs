@@ -2,11 +2,13 @@
 using Economics.Task.Model;
 using EconomicsAPI.Configured;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
+using EconomicsAPI.Events;
 using Rests;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace Economics.Task;
 
@@ -19,17 +21,17 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+    public override Version Version => new(1, 0, 0, 1);
 
     internal static Config TaskConfig = new();
 
     private readonly string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Task.json");
 
-    internal static TaskFinishManager TaskFinishManager { get; private set; }
+    internal static TaskFinishManager TaskFinishManager { get; private set; } = null!;
 
-    internal static TaskKillNPCManager KillNPCManager;
+    internal static TaskKillNPCManager KillNPCManager = null!;
 
-    internal static TaskTallkManager TallkManager;
+    internal static TaskTallkManager TallkManager = null!;
 
     public Plugin(Main game) : base(game)
     {
@@ -41,10 +43,23 @@ public class Plugin : TerrariaPlugin
         TaskFinishManager = new();
         KillNPCManager = new();
         TallkManager = new();
-        EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += OnKillNpc;
+        PlayerHandler.OnPlayerKillNpc += OnKillNpc;
         GetDataHandlers.NpcTalk.Register(OnNpcTalk);
-        TShockAPI.Hooks.GeneralHooks.ReloadEvent += (_) => LoadConfig();
+        GeneralHooks.ReloadEvent += LoadConfig;
         TShock.RestApi.Register("/taskFinish", Finish);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            PlayerHandler.OnPlayerKillNpc -= OnKillNpc;
+            GetDataHandlers.NpcTalk.UnRegister(OnNpcTalk);
+            GeneralHooks.ReloadEvent -= LoadConfig;
+        }
+        base.Dispose(disposing);
     }
 
     private object Finish(RestRequestArgs args)
@@ -60,7 +75,7 @@ public class Plugin : TerrariaPlugin
         return new RestObject() { { "response", "查询成功" }, { "code", finish } };
     }
 
-    private void LoadConfig()
+    private void LoadConfig(ReloadEventArgs? args = null)
     {
         if (!File.Exists(PATH))
         {

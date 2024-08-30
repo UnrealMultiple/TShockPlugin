@@ -1135,8 +1135,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		I18n\I18n.projitems*{10995e87-ee8a-4af6-98e3-985d971d5c8e}*SharedItemsImports = 5
-		I18n\I18n.projitems*{fa7ae532-4fd4-403f-b18c-4198dbdf92eb}*SharedItemsImports = 13
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal

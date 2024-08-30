@@ -18,11 +18,11 @@ public class Deal : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(1, 0, 0, 1);
+    public override Version Version => new Version(1, 0, 0, 2);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Deal.json");
 
-    internal static Config Config { get; set; }
+    internal static Config Config { get; set; } = new();
 
     public Deal(Main game) : base(game)
     {
@@ -30,7 +30,21 @@ public class Deal : TerrariaPlugin
 
     public override void Initialize()
     {
-        Config = ConfigHelper.LoadConfig<Config>(PATH);
+        LoadConfig();
         GeneralHooks.ReloadEvent += (e) => Config = ConfigHelper.LoadConfig(PATH, Config);
+    }
+
+    private void LoadConfig(ReloadEventArgs? args = null) => Config = ConfigHelper.LoadConfig(PATH, Config);
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            
+            GeneralHooks.ReloadEvent -= LoadConfig;
+        }
+        base.Dispose(disposing);
     }
 }

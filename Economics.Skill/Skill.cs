@@ -4,6 +4,7 @@ using Economics.Skill.JSInterpreter;
 using Economics.Skill.Setting;
 using EconomicsAPI.Configured;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
+using Jint.Native;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -21,7 +22,7 @@ public class Skill : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 2, 1, 1);
+    public override Version Version => new(1, 2, 1, 2);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
@@ -29,7 +30,7 @@ public class Skill : TerrariaPlugin
 
     internal static Config Config { get; set; } = new();
 
-    internal static PlayerSKillManager PlayerSKillManager { get; set; }
+    internal static PlayerSKillManager PlayerSKillManager { get; set; } = null!;
 
     public Skill(Main game) : base(game)
     {
@@ -66,13 +67,34 @@ public class Skill : TerrariaPlugin
         GetDataHandlers.PlayerDamage.Register(OnPlayerDamage);
         EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += OnKillNpc;
         EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop += OnPlayerCountertop;
-        GeneralHooks.ReloadEvent += e =>
-        {
-            LoadConfig();
-        };
+        GeneralHooks.ReloadEvent += LoadConfig;
         On.Terraria.Projectile.Update += Projectile_Update;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, OnPost);
+            ServerApi.Hooks.NpcStrike.Deregister(this, OnStrike);
+            ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
+            ServerApi.Hooks.ProjectileAIUpdate.Deregister(this, OnAiUpdate);
+            GetDataHandlers.PlayerUpdate.UnRegister(OnPlayerUpdate);
+            GetDataHandlers.PlayerHP.UnRegister(OnHP);
+            GetDataHandlers.PlayerMana.UnRegister(OnMP);
+            GetDataHandlers.KillMe.UnRegister(KillMe);
+            GetDataHandlers.NewProjectile.UnRegister(OnNewProj);
+            GetDataHandlers.PlayerDamage.UnRegister(OnPlayerDamage);
+            EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc -= OnKillNpc;
+            EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop -= OnPlayerCountertop;
+            GeneralHooks.ReloadEvent += LoadConfig;
+            On.Terraria.Projectile.Update -= Projectile_Update;
+            GeneralHooks.ReloadEvent -= LoadConfig;
+        }
+        base.Dispose(disposing);
+    }
     private void OnPost(EventArgs args)
     {
         Interpreter.LoadFunction();
@@ -166,7 +188,7 @@ public class Skill : TerrariaPlugin
         }
     }
 
-    private static void LoadConfig()
+    private static void LoadConfig(ReloadEventArgs? args = null)
     {
         if (File.Exists(PATH))
         {
