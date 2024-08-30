@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\template.targets" />
+
+	<ItemGroup>
+	  <ProjectReference Include="..\CaiLib\CaiLib.csproj" />
+	</ItemGroup>
+
+</Project>
+

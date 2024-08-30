@@ -1,8 +1,8 @@
 <div align = "center">
   
-[![TShockPlugin](https://socialify.git.ci/Controllerdestiny/TShockPlugin/image?description=1&descriptionEditable=A%20TShock%20Chinese%20Plugin%20Collection%20Repository&forks=1&issues=1&language=1&logo=https%3A%2F%2Fgithub.com%2FControllerdestiny%2FTShockPlugin%2Fblob%2Fmaster%2Ficon.png%3Fraw%3Dtrue&name=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Auto)](https://github.com/Controllerdestiny/TShockPlugin)  
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Controllerdestiny/TShockPlugin/.github%2Fworkflows%2Fplugins_publish.yml)](https://github.com/Controllerdestiny/TShockPlugin/actions)
-[![GitHub contributors](https://img.shields.io/github/contributors/Controllerdestiny/TShockPlugin?style=flat)](https://github.com/Controllerdestiny/TShockPlugin/graphs/contributors)
+[![TShockPlugin](https://socialify.git.ci/UnrealMultiple/TShockPlugin/image?description=1&descriptionEditable=A%20TShock%20Chinese%20Plugin%20Collection%20Repository&forks=1&issues=1&language=1&logo=https%3A%2F%2Fgithub.com%2FUnrealMultiple%2FTShockPlugin%2Fblob%2Fmaster%2Ficon.png%3Fraw%3Dtrue&name=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Auto)](https://github.com/UnrealMultiple/TShockPlugin)  
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/UnrealMultiple/TShockPlugin/.github%2Fworkflows%2Fplugins_publish.yml)](https://github.com/UnrealMultiple/TShockPlugin/actions)
+[![GitHub contributors](https://img.shields.io/github/contributors/UnrealMultiple/TShockPlugin?style=flat)](https://github.com/UnrealMultiple/TShockPlugin/graphs/contributors)
 [![NET6](https://img.shields.io/badge/Core-%20.NET_6-blue)](https://dotnet.microsoft.com/zh-cn/)
 [![QQ](https://img.shields.io/badge/QQ-EB1923?logo=tencent-qq&logoColor=white)](https://qm.qq.com/cgi-bin/qm/qr?k=54tOesIU5g13yVBNFIuMBQ6AzjgE6f0m&jump_from=webapi&authKey=6jzafzJEqQGzq7b2mAHBw+Ws5uOdl83iIu7CvFmrfm/Xxbo2kNHKSNXJvDGYxhSW)
 [![TShock](https://img.shields.io/badge/TShock5.2.0-2B579A.svg?&logo=TShock&logoColor=white)](https://github.com/Pryaxis/TShock)
@@ -27,8 +27,8 @@
 
 ## Download
 
-- Chinese mirror: [Plugins.zip](https://github.moeyy.xyz/https://github.com/Controllerdestiny/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
-- This repository: [Plugins.zip](https://github.com/Controllerdestiny/TShockPlugin/releases/tag/V1.0.0.0)
+- Chinese mirror: [Plugins.zip](https://github.moeyy.xyz/https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
+- This repository: [Plugins.zip](https://github.com/UnrealMultiple/TShockPlugin/releases/tag/V1.0.0.0)
 
 ## How to Install TShock
 - If you are a Windows user, you can choose to install it using the following command (run this command in pwsh):
@@ -67,12 +67,12 @@ powershell -ExecutionPolicy ByPass -File ./install.ps1 -verb runas
 | [Economics.RPG](Economics.RPG/README.md)                         |                                        RPG                                         |                                                      [EconomicsAPI](EconomicsAPI/README.md)                                                      |
 | [Economics.WeaponPlus](Economics.WeaponPlus/README.md)           |                                  Enhance weapons                                   |                                                      [EconomicsAPI](EconomicsAPI/README.md)                                                      |
 | [Economics.Deal](Economics.RPG/README.md)                        |                                   Trading plugin                                   |                                                      [EconomicsAPI](EconomicsAPI/README.md)                                                      |
-| [Economics.Shop](Economics.Shop/README.md)                       |                                    Store plugin                                    | [EconomicsAPI](EconomicsAPI/README.md)<br>[Economics.RPG](https://github.com/Controllerdestiny/TShockPlugin/blob/master/Economics.RPG/README.md) |
-| [Economics.Skill](Economics.Skill/README.md)                     |                                    Skill plugin                                    | [EconomicsAPI](EconomicsAPI/README.md)<br>[Economics.RPG](https://github.com/Controllerdestiny/TShockPlugin/blob/master/Economics.RPG/README.md) |
+| [Economics.Shop](Economics.Shop/README.md)                       |                                    Store plugin                                    | [EconomicsAPI](EconomicsAPI/README.md)<br>[Economics.RPG](https://github.com/UnrealMultiple/TShockPlugin/blob/master/Economics.RPG/README.md) |
+| [Economics.Skill](Economics.Skill/README.md)                     |                                    Skill plugin                                    | [EconomicsAPI](EconomicsAPI/README.md)<br>[Economics.RPG](https://github.com/UnrealMultiple/TShockPlugin/blob/master/Economics.RPG/README.md) |
 | [Economics.Regain](Economics.Regain/README.md)                   |                                   Item recycling                                   |                                                      [EconomicsAPI](EconomicsAPI/README.md)                                                      |
 | [Economics.Projectile](Economics.Projectile/README.md)           |                                 Custom projectile                                  |                                [EconomicsAPI](EconomicsAPI/README.md)<br>[Economics.RPG](Economics.RPG/README.md)                                |
 | [Economics.NPC](Economics.NPC/README.md)                         |                                Custom monster loot                                 |                                                      [EconomicsAPI](EconomicsAPI/README.md)                                                      |
-| [Economics.Task](Economics.Task/README.md)                       |                                    Task plugin                                     | [EconomicsAPI](EconomicsAPI/README.md)<br>[Economics.RPG](https://github.com/Controllerdestiny/TShockPlugin/blob/master/Economics.RPG/README.md) |
+| [Economics.Task](Economics.Task/README.md)                       |                                    Task plugin                                     | [EconomicsAPI](EconomicsAPI/README.md)<br>[Economics.RPG](https://github.com/UnrealMultiple/TShockPlugin/blob/master/Economics.RPG/README.md) |
 | [CreateSpawn](CreateSpawn/README.md)                             |                          Spawn point building generation                           |                                                                        No                                                                        |
 | [AutoBroadcast](AutoBroadcast/README.md)                         |                                Automatic broadcast                                 |                                                                        No                                                                        |
 | [AutoTeam](AutoTeam/README.md)                                   |                                      AutoTeam                                      |                                                                        No                                                                        |
@@ -170,7 +170,7 @@ powershell -ExecutionPolicy ByPass -File ./install.ps1 -verb runas
 
 ## Contributors
 
-[![Contributors](https://stats.deeptrain.net/contributor/Controllerdestiny/TShockPlugin)](https://github.com/Controllerdestiny/TShockPlugin/graphs/contributors)
+[![Contributors](https://stats.deeptrain.net/contributor/UnrealMultiple/TShockPlugin)](https://github.com/UnrealMultiple/TShockPlugin/graphs/contributors)
 
 ## Friendly Links
 

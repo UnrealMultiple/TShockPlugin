@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <OutputPath>..\out\$(Configuration)</OutputPath>
+        <OutputPath>..\..\out\$(Configuration)</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
     </PropertyGroup>
@@ -18,17 +18,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="..\Localizer\**\*.cs">
-            <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Compile>
+        <Compile Include="..\Shared\**\*.cs" />
     </ItemGroup>
 
     <Target Name="CheckMsgfmtCallable">
-        <Exec Command="msgfmt --help > NUL" IgnoreExitCode="True" Condition=" '$(OS)' == 'Windows_NT' ">
-            <Output TaskParameter="ExitCode" PropertyName="MsgfmtExitCode" />
-        </Exec>
-        <Exec Command="msgfmt --help 2>/dev/null >/dev/null" IgnoreExitCode="True" Condition=" '$(OS)' != 'Windows_NT' ">
+        <Exec Command="msgfmt --help" StandardOutputImportance="low" StandardErrorImportance="low" IgnoreExitCode="True">
             <Output TaskParameter="ExitCode" PropertyName="MsgfmtExitCode" />
         </Exec>
     </Target>
