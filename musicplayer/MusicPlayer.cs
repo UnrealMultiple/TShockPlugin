@@ -1,5 +1,5 @@
-﻿using System.Text;
-using MusicPlayer.Music;
+﻿using MusicPlayer.Music;
+using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

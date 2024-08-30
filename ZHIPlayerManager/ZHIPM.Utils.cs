@@ -7,7 +7,6 @@ using Terraria.Localization;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ZHIPlayerManager
 {

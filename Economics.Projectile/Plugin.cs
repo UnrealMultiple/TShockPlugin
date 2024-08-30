@@ -171,11 +171,11 @@ public class Plugin : TerrariaPlugin
 
     private void OnDate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
     {
-        if (e.Player.IsLoggedIn 
-            && !e.Player.Dead 
-            && e.Player.TPlayer.controlUseItem 
-            && useCD[e.PlayerId] == 0 
-            && Config.ItemReplace.TryGetValue(e.Player.TPlayer.HeldItem.netID, out ItemSpark? data) 
+        if (e.Player.IsLoggedIn
+            && !e.Player.Dead
+            && e.Player.TPlayer.controlUseItem
+            && useCD[e.PlayerId] == 0
+            && Config.ItemReplace.TryGetValue(e.Player.TPlayer.HeldItem.netID, out ItemSpark? data)
             && data != null)
         {
             if (data.UseAmmo)

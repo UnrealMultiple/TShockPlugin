@@ -8,7 +8,8 @@ public class Config
 
     public static Config config = new();
 
-    [JsonProperty("说明", Order = -1)] public string Description =
+    [JsonProperty("说明", Order = -1)]
+    public string Description =
         "EmojiID可以在wiki(https://terraria.wiki.gg/zh/wiki/%E8%A1%A8%E6%83%85)上查询, 本插件不支持跳过权限检查, 命令需要标识符(/或者.)";
 
     [JsonProperty("命令列表", Order = 0)] public List<EmojiCommand> EmojiCommands = new();

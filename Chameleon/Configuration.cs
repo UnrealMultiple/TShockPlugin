@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
 using TShockAPI;
 
 namespace Chameleon
 {
-	[JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptIn)]
     internal class Configuration
     {
         public static readonly string FilePath = Path.Combine(TShock.SavePath, "Chameleon.json");

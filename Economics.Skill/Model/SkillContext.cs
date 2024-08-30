@@ -63,13 +63,13 @@ public class SkillContext
     public BuffOption BuffOption { get; set; } = new();
 
     [JsonProperty("执行脚本")]
-    public string? ExecuteScript 
+    public string? ExecuteScript
     {
         get { return JsScript?.FilePathOrUri; }
         set
         {
             JsScript = Set(value);
-        } 
+        }
     }
 
     [JsonProperty("弹幕")]

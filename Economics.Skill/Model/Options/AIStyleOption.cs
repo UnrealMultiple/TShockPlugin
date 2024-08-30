@@ -10,10 +10,10 @@ public class AIStyleOption
     [JsonProperty("样式")]
     public AIStyleType Style { get; set; } = AIStyleType.None;
 
-    [JsonProperty("发射弹幕")] 
+    [JsonProperty("发射弹幕")]
     public int ProjID { get; set; }
 
-    [JsonProperty("伤害")] 
+    [JsonProperty("伤害")]
     public int Damage { get; set; }
 
     [JsonProperty("射速")]

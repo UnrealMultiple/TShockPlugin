@@ -1,8 +1,7 @@
-﻿using TerrariaApi.Server;
-using Terraria;
-using Microsoft.Xna.Framework;
-using TShockAPI.Hooks;
+﻿using Terraria;
+using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace Plugin
 {
@@ -51,7 +50,7 @@ namespace Plugin
         #region 切换沙尘暴方法（指令）
         private static void ToggleSandstorm(CommandArgs args)
         {
-            if (!Config.CommdEnabled || args == null || args.Player == null) return; 
+            if (!Config.CommdEnabled || args == null || args.Player == null) return;
 
             if (Terraria.GameContent.Events.Sandstorm.Happening)
             {
@@ -68,8 +67,8 @@ namespace Plugin
                 TSPlayer.All.SendData(PacketTypes.WorldInfo);
 
                 if (Config.SendMessage)
-                        TSPlayer.All.SendMessage("沙尘暴: 已开始", (byte)Config.ColorRGB[0], (byte)Config.ColorRGB[1], (byte)Config.ColorRGB[2]);
-                
+                    TSPlayer.All.SendMessage("沙尘暴: 已开始", (byte)Config.ColorRGB[0], (byte)Config.ColorRGB[1], (byte)Config.ColorRGB[2]);
+
             }
         }
         #endregion

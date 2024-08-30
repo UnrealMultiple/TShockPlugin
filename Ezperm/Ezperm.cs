@@ -33,7 +33,7 @@ namespace Ezperm
         public override void Initialize()
         {
             GeneralHooks.ReloadEvent += ReloadConfig;
-            Commands.ChatCommands.Add(new Command("inperms.admin",Cmd,"inperms","批量改权限"));
+            Commands.ChatCommands.Add(new Command("inperms.admin", Cmd, "inperms", "批量改权限"));
         }
         protected override void Dispose(bool disposing)
         {

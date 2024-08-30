@@ -100,7 +100,7 @@ namespace HouseRegion
             ServerApi.Hooks.ServerLeave.Register(this, OnLeave);//玩家退出服务器
             ServerApi.Hooks.GamePostInitialize.Register(this, PostInitialize);//地图读入后
             _reloadHandler = (_) => RC();
-            GeneralHooks.ReloadEvent += _reloadHandler; 
+            GeneralHooks.ReloadEvent += _reloadHandler;
         }
         protected override void Dispose(bool disposing)// 插件关闭时
         {

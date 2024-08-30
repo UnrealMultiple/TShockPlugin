@@ -19,7 +19,7 @@ namespace ConvertWorld
         public Plugin(Main game) : base(game) { }
         public override void Initialize()
         {
-            LoadConfig();;
+            LoadConfig(); ;
             GeneralHooks.ReloadEvent += LoadConfig;
             ServerApi.Hooks.NpcKilled.Register(this, OnNPCKilled);
         }

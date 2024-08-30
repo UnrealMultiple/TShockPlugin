@@ -75,7 +75,7 @@ namespace Plugin
 
             if (PlayerDoneList.Contains(plr.Name))
                 Main.anglerWhoFinishedToday.Remove(plr.Name);
-                NetMessage.SendAnglerQuest(plr.Index);
+            NetMessage.SendAnglerQuest(plr.Index);
         }
         #endregion
 

@@ -111,11 +111,11 @@ public class Plugin : TerrariaPlugin
 
     private void OnUpdate(EventArgs args)
     {
-            _frameCount++;
-            if (_frameCount % 300 == 0)
-            {
-                LoadProgress();
-            }
+        _frameCount++;
+        if (_frameCount % 300 == 0)
+        {
+            LoadProgress();
+        }
     }
 
     private void PostInitualize(EventArgs args)
@@ -131,10 +131,10 @@ public class Plugin : TerrariaPlugin
             ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
             GeneralHooks.ReloadEvent -= _reloadHandler;
             ServerApi.Hooks.GamePostInitialize.Deregister(this, PostInitualize);
-                ((List<RestCommand>)typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
-                .GetValue(TShock.RestApi)!)
-                .RemoveAll(x => x.Name == "/DataSync");
-                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == ClearProgress || x.CommandDelegate == ProgressCommand);
+            ((List<RestCommand>)typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+            .GetValue(TShock.RestApi)!)
+            .RemoveAll(x => x.Name == "/DataSync");
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == ClearProgress || x.CommandDelegate == ProgressCommand);
         }
 
         base.Dispose(disposing);

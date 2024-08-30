@@ -170,7 +170,7 @@ namespace DeathDrop
                 if (monster.CommonRandomDrops.Count > 0)
                 {
                     int randomIndex = RandomGenerator.Next(monster.CommonRandomDrops.Count);
-                return monster.CommonRandomDrops[randomIndex];
+                    return monster.CommonRandomDrops[randomIndex];
                 }
                 else
                 {

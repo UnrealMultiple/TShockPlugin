@@ -28,11 +28,11 @@ namespace ProxyProtocolSocket.Utils.Net
         public ProxyProtocolParserV1(NetworkStream stream, IPEndPoint remoteEndpoint, byte[] buffer, int bufferSize)
         {
             #region Args checking
-            if (stream == null)                 throw new ArgumentNullException(nameof(stream));
-            if (stream.CanRead != true)         throw new     ArgumentException($"argument 'stream' is unreadable");
-            if (remoteEndpoint == null)         throw new ArgumentNullException(nameof(remoteEndpoint));
-            if (buffer == null)                 throw new ArgumentNullException(nameof(buffer));
-            if (bufferSize > buffer.Length)      throw new     ArgumentException($"argument '{nameof(bufferSize)}' is larger than '{nameof(buffer)}.Length'");
+            if (stream == null) throw new ArgumentNullException(nameof(stream));
+            if (stream.CanRead != true) throw new ArgumentException($"argument 'stream' is unreadable");
+            if (remoteEndpoint == null) throw new ArgumentNullException(nameof(remoteEndpoint));
+            if (buffer == null) throw new ArgumentNullException(nameof(buffer));
+            if (bufferSize > buffer.Length) throw new ArgumentException($"argument '{nameof(bufferSize)}' is larger than '{nameof(buffer)}.Length'");
             #endregion
 
             #region Filling members
@@ -52,18 +52,18 @@ namespace ProxyProtocolSocket.Utils.Net
             Logger.Log($"[{_remoteEndpoint}] parsing header...");
 
             #region Getting full header and do first check
-            
+
             await GetFullHeader();
             if (ProxyProtocolSocketPlugin.Config.Settings.LogLevel == LogLevel.Debug)
                 Logger.Log($"[{_remoteEndpoint}] header content: {Convert.ToHexString(_buffer[.._bufferSize])}");
             var tokens = Encoding.ASCII.GetString(_buffer[..(_bufferSize - 2)]).Split(SEPARATOR);
             if (tokens.Length < 2)
                 throw new Exception("Unable to read AddressFamily and protocol");
-            
+
             #endregion
 
             #region Parse address family
-            
+
             Logger.Log($"[{_remoteEndpoint}] parsing address family...");
             var addressFamily = tokens[1] switch
             {
@@ -76,7 +76,7 @@ namespace ProxyProtocolSocket.Utils.Net
             #endregion
 
             #region Do second check
-            
+
             if (addressFamily == AddressFamily.Unspecified)
             {
                 _protocolCommand = ProxyProtocolCommand.Local;
@@ -84,14 +84,14 @@ namespace ProxyProtocolSocket.Utils.Net
                 _hasParsed = true;
                 return;
             }
-            
+
             if (tokens.Length < 6)
                 throw new Exception("Impossible to read ip addresses and ports as the number of tokens is less than 6");
 
             #endregion
 
             #region Parse source and dest end point
-            
+
             Logger.Log($"[{_remoteEndpoint}] parsing endpoints...");
             IPEndPoint sourceEp;
             IPEndPoint destEp;
@@ -109,13 +109,13 @@ namespace ProxyProtocolSocket.Utils.Net
             {
                 throw new Exception("Unable to parse ip addresses and ports", ex);
             }
-            
+
             #endregion
 
-            _addressFamily      = addressFamily;
-            _protocolCommand    = ProxyProtocolCommand.Proxy;
-            _sourceEndpoint     = sourceEp;
-            _destEndpoint       = destEp;
+            _addressFamily = addressFamily;
+            _protocolCommand = ProxyProtocolCommand.Proxy;
+            _sourceEndpoint = sourceEp;
+            _destEndpoint = destEp;
         }
 
         public async Task<IPEndPoint?> GetSourceEndpoint()
@@ -186,7 +186,7 @@ namespace ProxyProtocolSocket.Utils.Net
             await GetBytesTillBufferSize(position + 1);
             return _buffer[position];
         }
-        
+
         #endregion
     }
 }

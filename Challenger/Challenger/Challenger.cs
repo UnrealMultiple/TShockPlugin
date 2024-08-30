@@ -1,9 +1,7 @@
 ﻿using ChalleAnger;
-using Google.Protobuf.WellKnownTypes;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using OTAPI;
-using System.Configuration;
 using System.Text;
 using Terraria;
 using Terraria.GameContent.Events;
@@ -13,7 +11,6 @@ using TShockAPI;
 using TShockAPI.Hooks;
 using static OTAPI.Hooks.NPC;
 using static TShockAPI.GetDataHandlers;
-using static TShockAPI.Hooks.GeneralHooks;
 
 namespace Challenger
 {
@@ -376,7 +373,7 @@ namespace Challenger
                 var any4 = config.NecroArmor_5;
                 var any5 = config.NecroArmor_6;
                 var any6 = config.NecroArmor_7;
-                var time2 = config.NecroArmor_Time2; 
+                var time2 = config.NecroArmor_Time2;
 
                 if (e != null)
                 {
@@ -1192,7 +1189,8 @@ namespace Challenger
                         player.buffImmune[i] = true;
                     }
                 }
-                if (flag) { TShock.Players[player.whoAmI].SendData((PacketTypes)50, "", player.whoAmI, 0f, 0f, 0f, 0); }            }
+                if (flag) { TShock.Players[player.whoAmI].SendData((PacketTypes)50, "", player.whoAmI, 0f, 0f, 0f, 0); }
+            }
             foreach (var effect in config.WormScarfSetBuff) { TShock.Players[player.whoAmI].SetBuff(effect, 180, false); }
         }
 

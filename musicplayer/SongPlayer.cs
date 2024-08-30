@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using MusicPlayer.Music;
+﻿using MusicPlayer.Music;
+using System.Diagnostics.CodeAnalysis;
 using TShockAPI;
 
 namespace MusicPlayer

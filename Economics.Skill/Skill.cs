@@ -4,7 +4,6 @@ using Economics.Skill.JSInterpreter;
 using Economics.Skill.Setting;
 using EconomicsAPI.Configured;
 using EconomicsAPI.EventArgs.PlayerEventArgs;
-using Jint.Native;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -42,7 +41,7 @@ public class Skill : TerrariaPlugin
         string resourceName = $"{Assembly.GetExecutingAssembly().GetName().Name}.lib.{new AssemblyName(args.Name).Name}.dll";
         using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
         if (stream != null)
-        { 
+        {
             byte[] assemblyData = new byte[stream.Length];
             stream.Read(assemblyData, 0, assemblyData.Length);
             return Assembly.Load(assemblyData);
@@ -53,7 +52,7 @@ public class Skill : TerrariaPlugin
     public override void Initialize()
     {
         LoadConfig();
-        
+
         PlayerSKillManager = new();
         ServerApi.Hooks.GamePostInitialize.Register(this, OnPost);
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
@@ -113,7 +112,7 @@ public class Skill : TerrariaPlugin
 
     private void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Projectile self, int i)
     {
-        if(!string.IsNullOrEmpty(self.miscText) && self.timeLeft > 0 && self.active)
+        if (!string.IsNullOrEmpty(self.miscText) && self.timeLeft > 0 && self.active)
             AIStyle.AI(self);
         if (Main.time % 6 == 0 && self.timeLeft <= 0 && self.active)
             self.Kill();
@@ -134,7 +133,7 @@ public class Skill : TerrariaPlugin
 
     private void OnUpdate(EventArgs args)
     {
-        TimerCount++;     
+        TimerCount++;
         if ((TimerCount % 6) == 0)
         {
             SkillCD.SendGodPacket();

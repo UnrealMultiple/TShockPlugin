@@ -1,10 +1,7 @@
-﻿using EconomicsAPI.Attributes;
-using EconomicsAPI.Configured;
-using Microsoft.Xna.Framework;
+﻿using EconomicsAPI.Configured;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
-using TShockAPI;
 using TShockAPI.Hooks;
 
 namespace Economics.Deal;
@@ -42,7 +39,7 @@ public class Deal : TerrariaPlugin
         {
             EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
-            
+
             GeneralHooks.ReloadEvent -= LoadConfig;
         }
         base.Dispose(disposing);

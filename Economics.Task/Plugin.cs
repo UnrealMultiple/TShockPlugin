@@ -161,7 +161,7 @@ public class Plugin : TerrariaPlugin
 
     private void OnKillNpc(PlayerKillNpcArgs args)
     {
-        if(args.Npc == null) return;
+        if (args.Npc == null) return;
         var task = UserTaskData.GetUserTask(args.Player.Name);
         if (task != null)
         {

@@ -1,12 +1,8 @@
-using System.Security.Permissions;
-using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
-using Mono.Cecil;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
-using Org.BouncyCastle.Asn1.X509;
-using OTAPI;
 using Rests;
+using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
@@ -126,7 +122,7 @@ namespace ServerTools
                     .GetValue(TShock.RestApi)!)
                     .RemoveAll(x => x.Name == "/onlineDuration" || x.Name == "/deathrank");
                 #region 指令
-                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Clear||x.CommandDelegate == WallQ||x.CommandDelegate == RWall||x.CommandDelegate == SelfKill||x.CommandDelegate == SelfKick||x.CommandDelegate == Ghost||x.CommandDelegate == JourneyDiff||x.CommandDelegate == DeathRank||x.CommandDelegate == Online);
+                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Clear || x.CommandDelegate == WallQ || x.CommandDelegate == RWall || x.CommandDelegate == SelfKill || x.CommandDelegate == SelfKick || x.CommandDelegate == Ghost || x.CommandDelegate == JourneyDiff || x.CommandDelegate == DeathRank || x.CommandDelegate == Online);
                 #endregion
                 #region TShcok 钩子
                 GetDataHandlers.NewProjectile.UnRegister(NewProj);
@@ -155,7 +151,7 @@ namespace ServerTools
 
         private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
         {
-            
+
             if (packetId == (byte)PacketTypes.LoadNetModule)
             {
                 using MemoryStream ms = new MemoryStream(instance.readBuffer);
@@ -163,9 +159,9 @@ namespace ServerTools
                 using BinaryReader reader = new BinaryReader(ms);
                 var id = reader.ReadUInt16();
                 if (id == Terraria.Net.NetManager.Instance.GetId<Terraria.GameContent.NetModules.NetTextModule>())
-                { 
+                {
                     var msg = Terraria.Chat.ChatMessage.Deserialize(reader);
-                    if(msg.Text.Length > Config.ChatLength)
+                    if (msg.Text.Length > Config.ChatLength)
                         return false;
                     if (Regex.IsMatch(msg.Text, @"[\uD800-\uDBFF][\uDC00-\uDFFF]"))
                         return false;
@@ -478,7 +474,7 @@ namespace ServerTools
                 args.Handled = true;
                 return;
             }
-           
+
 
             if (Config.KeepOpenChest && args.MsgID == PacketTypes.ChestOpen)
             {

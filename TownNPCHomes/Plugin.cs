@@ -25,7 +25,7 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("tshock.world.movenpc", TeleportNpcToTheirHomesCmd, "npchome" ));
+        Commands.ChatCommands.Add(new Command("tshock.world.movenpc", TeleportNpcToTheirHomesCmd, "npchome"));
         NPCHome += OnNpcHome;
     }
 

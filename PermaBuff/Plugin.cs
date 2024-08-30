@@ -50,7 +50,7 @@ public class Plugin : TerrariaPlugin
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnJoin);
             ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
             ServerApi.Hooks.GameUpdate.Deregister(this, Update);
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == PAbuff||x.CommandDelegate==GPbuff||x.CommandDelegate==Cbuff);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == PAbuff || x.CommandDelegate == GPbuff || x.CommandDelegate == Cbuff);
             GeneralHooks.ReloadEvent -= _reloadHandler;
         }
         base.Dispose(disposing);

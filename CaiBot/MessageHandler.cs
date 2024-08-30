@@ -1,12 +1,12 @@
-﻿using System.IO.Compression;
-using System.Net.WebSockets;
-using System.Runtime.InteropServices;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Rests;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
+using System.IO.Compression;
+using System.Net.WebSockets;
+using System.Runtime.InteropServices;
+using System.Text;
 using Terraria;
 using TShockAPI;
 using TShockAPI.DB;
@@ -51,7 +51,7 @@ public static class MessageHandle
             fsForRead.Close();
         }
     }
-    
+
     public static string CompressBase64(string base64String)
     {
         byte[] base64Bytes = Encoding.UTF8.GetBytes(base64String);

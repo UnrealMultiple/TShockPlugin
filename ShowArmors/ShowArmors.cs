@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -24,7 +23,7 @@ namespace Plugin
         public override void Initialize()
         {
 
-            Commands.ChatCommands.Add(new Command("ShowArmors",ShowMySlots,"装备", "show", "zb")
+            Commands.ChatCommands.Add(new Command("ShowArmors", ShowMySlots, "装备", "show", "zb")
             {
                 HelpText = "发送自己的装备配置到聊天框。别名：show 和 zb "
             });

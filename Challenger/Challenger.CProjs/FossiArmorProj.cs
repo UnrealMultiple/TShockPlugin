@@ -24,7 +24,7 @@ namespace Challenger
             TSPlayer.All.SendData((PacketTypes)27, "", proj.whoAmI, 0f, 0f, 0f, 0);
             if (Main.time % any5 == 0.0)
             {
-                NPC val = Challenger.NearestHostileNPC(proj.Center, any6 *100);
+                NPC val = Challenger.NearestHostileNPC(proj.Center, any6 * 100);
                 if (val != null)
                 {
                     int num = Collect.MyNewProjectile(Projectile.GetNoneSource(), proj.Center, proj.Center.DirectionTo(val.Center) * any2, any, any3, any4, proj.owner);

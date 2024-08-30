@@ -1,5 +1,4 @@
 ﻿using EconomicsAPI.Configured;
-using EconomicsAPI.Events;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -17,7 +16,7 @@ public class Regain : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0,1);
+    public override Version Version => new(1, 0, 0, 1);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Regain.json");
 

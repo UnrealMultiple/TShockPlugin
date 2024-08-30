@@ -62,7 +62,7 @@ namespace DTEntryBlock
                 // 检查骷髅王是否被击败
                 if (!NPC.downedBoss3)
                 {
-                   
+
                     if (Config.TeleportPlayersEnterDungeonForUnkilledSkullKing)
                     {
                         player.SendMessage("因为在没击败骷髅王的时候探索地牢，你被传送到出生点.", orangeColor);

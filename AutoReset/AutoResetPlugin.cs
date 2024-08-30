@@ -49,7 +49,7 @@ public class AutoResetPlugin : TerrariaPlugin
         ServerApi.Hooks.WorldSave.Register(this, OnWorldSave, int.MaxValue);
         ServerApi.Hooks.NpcKilled.Register(this, CountKill);
         GeneralHooks.ReloadEvent += ReloadConfig;
-;
+        ;
     }
 
     protected override void Dispose(bool disposing)
@@ -153,8 +153,8 @@ public class AutoResetPlugin : TerrariaPlugin
 
     private void CountKill(NpcKilledEventArgs args)
     {
-              
-        if (Config.KillToReset.Enable &&args.npc.netID == Config.KillToReset.NpcId)
+
+        if (Config.KillToReset.Enable && args.npc.netID == Config.KillToReset.NpcId)
         {
             Config.KillToReset.KillCount++;
             File.WriteAllText(_configPath, Config.ToJson());
@@ -180,13 +180,13 @@ public class AutoResetPlugin : TerrariaPlugin
                 Thread.Sleep(1000);
             }
 
-            TShock.Players.ForEach(delegate(TSPlayer? p)
+            TShock.Players.ForEach(delegate (TSPlayer? p)
             {
                 if (p != null) p.Kick("[自动重置]服务器已开始重置...", true, true);
             });
 
 
-            Config.PreResetCommands.ForEach(delegate(string c) { Commands.HandleCommand(TSPlayer.Server, c); });
+            Config.PreResetCommands.ForEach(delegate (string c) { Commands.HandleCommand(TSPlayer.Server, c); });
             Main.WorldFileMetadata = null;
             Main.gameMenu = true;
             string seed;
@@ -349,7 +349,7 @@ public class AutoResetPlugin : TerrariaPlugin
 
     private void PostReset()
     {
-        Config.SqLs.ForEach(delegate(string c)
+        Config.SqLs.ForEach(delegate (string c)
         {
             try
             {
@@ -374,7 +374,7 @@ public class AutoResetPlugin : TerrariaPlugin
                 TShock.Log.ConsoleWarn($"[AutoReset]重置文件({keyValuePair.Key})替换失败: {ex.Message}");
             }
 
-        Config.PostResetCommands.ForEach(delegate(string c) { Commands.HandleCommand(TSPlayer.Server, c); });
+        Config.PostResetCommands.ForEach(delegate (string c) { Commands.HandleCommand(TSPlayer.Server, c); });
     }
 
     private string GetProgress()

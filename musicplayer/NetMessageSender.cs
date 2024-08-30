@@ -1,6 +1,6 @@
-﻿using System.Buffers.Binary;
+﻿using Microsoft.Xna.Framework;
+using System.Buffers.Binary;
 using System.Runtime.CompilerServices;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 

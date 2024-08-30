@@ -2,7 +2,6 @@
 using System.Globalization;
 using Terraria;
 using TShockAPI;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace Goodnight
 {

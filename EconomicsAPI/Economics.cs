@@ -6,8 +6,6 @@ using EconomicsAPI.Extensions;
 using EconomicsAPI.Model;
 using EconomicsAPI.Utils;
 using Microsoft.Xna.Framework;
-using NuGet.Protocol;
-using Org.BouncyCastle.Asn1.BC;
 using Rests;
 using System.Collections.Concurrent;
 using System.Reflection;
@@ -56,7 +54,7 @@ public class Economics : TerrariaPlugin
     protected override void Dispose(bool disposing)
     {
         if (disposing)
-        { 
+        {
             RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             RemoveAssemblyRest(Assembly.GetExecutingAssembly());
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreet);
@@ -165,7 +163,7 @@ public class Economics : TerrariaPlugin
             CurrencyManager.UpdataAll();
             foreach (var (npc, _) in Strike.Where(x => x.Key == null || !x.Key.active).ToList())
                 Strike.Remove(npc, out var _);
-           
+
         }
     }
 

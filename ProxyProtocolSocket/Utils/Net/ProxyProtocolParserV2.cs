@@ -86,11 +86,11 @@ namespace ProxyProtocolSocket.Utils.Net
                 AddressFamily.Unix => 216,
                 _ => throw new Exception("Invalid address family")
             };
-            
+
             // TODO: Implement address family UNIX
             if (family == AddressFamily.Unix)
                 throw new NotImplementedException("Address family UNIX haven't been implemented yet");
-            
+
             #endregion
 
             #region Parsing transport protocol
@@ -98,7 +98,7 @@ namespace ProxyProtocolSocket.Utils.Net
             #endregion
 
             #region Parsing and checking address length
-            
+
             var addressLength = GetAddressLength(_buffer);
             Logger.Log($"[{_remoteEndpoint}] Address length is {addressLength}");
             if (addressLength < minAddressLength)
@@ -108,7 +108,7 @@ namespace ProxyProtocolSocket.Utils.Net
             #endregion
 
             #region Getting address data and check if need to parse address data
-            
+
             await GetBytesTillBufferSize(SIGNATURE_LENGNTH + addressLength);
             if (ProxyProtocolSocketPlugin.Config.Settings.LogLevel == LogLevel.Debug)
                 Logger.Log($"[{_remoteEndpoint}] header content: {Convert.ToHexString(_buffer[.._bufferSize])}");
@@ -118,11 +118,11 @@ namespace ProxyProtocolSocket.Utils.Net
                 _addressFamily = family;
                 return;
             }
-            
+
             #endregion
 
             #region Parsing address data
-            
+
             IPEndPoint sourceEp;
             IPEndPoint destEp;
             try
@@ -132,7 +132,7 @@ namespace ProxyProtocolSocket.Utils.Net
                     case AddressFamily.InterNetwork:
                         sourceEp = new IPEndPoint(GetSourceAddressIPv4(_buffer), GetSourcePortIPv4(_buffer));
                         destEp = new IPEndPoint(GetDestinationAddressIPv4(_buffer), GetDestinationPortIPv4(_buffer));
-                    break;
+                        break;
 
                     case AddressFamily.InterNetworkV6:
                         sourceEp = new IPEndPoint(GetSourceAddressIPv6(_buffer), GetSourcePortIPv6(_buffer));
@@ -222,10 +222,10 @@ namespace ProxyProtocolSocket.Utils.Net
             new IPAddress(BufferSegment(header, SIGNATURE_LENGNTH + IPV4_ADDR_LENGTH, IPV4_ADDR_LENGTH));
 
         private static int GetSourcePortIPv4(ReadOnlySpan<byte> header) =>
-            BinaryPrimitives.ReadUInt16BigEndian(BufferSegment(header, SIGNATURE_LENGNTH + 2*IPV4_ADDR_LENGTH, 2));
+            BinaryPrimitives.ReadUInt16BigEndian(BufferSegment(header, SIGNATURE_LENGNTH + 2 * IPV4_ADDR_LENGTH, 2));
 
         private static int GetDestinationPortIPv4(ReadOnlySpan<byte> header) =>
-            BinaryPrimitives.ReadUInt16BigEndian(BufferSegment(header, SIGNATURE_LENGNTH + 2*IPV4_ADDR_LENGTH + 2, 2));
+            BinaryPrimitives.ReadUInt16BigEndian(BufferSegment(header, SIGNATURE_LENGNTH + 2 * IPV4_ADDR_LENGTH + 2, 2));
         #endregion
 
         #region IPv6
@@ -236,10 +236,10 @@ namespace ProxyProtocolSocket.Utils.Net
             new IPAddress(BufferSegment(header, SIGNATURE_LENGNTH + IPV6_ADDR_LENGTH, IPV6_ADDR_LENGTH));
 
         private static int GetSourcePortIPv6(ReadOnlySpan<byte> header) =>
-            BinaryPrimitives.ReadUInt16BigEndian(BufferSegment(header, SIGNATURE_LENGNTH + 2*IPV6_ADDR_LENGTH, 2));
+            BinaryPrimitives.ReadUInt16BigEndian(BufferSegment(header, SIGNATURE_LENGNTH + 2 * IPV6_ADDR_LENGTH, 2));
 
         private static int GetDestinationPortIPv6(ReadOnlySpan<byte> header) =>
-            BinaryPrimitives.ReadUInt16BigEndian(BufferSegment(header, SIGNATURE_LENGNTH + 2*IPV6_ADDR_LENGTH + 2, 2));
+            BinaryPrimitives.ReadUInt16BigEndian(BufferSegment(header, SIGNATURE_LENGNTH + 2 * IPV6_ADDR_LENGTH + 2, 2));
         #endregion
 
         private static ReadOnlySpan<byte> BufferSegment(ReadOnlySpan<byte> bytes, int offset, int length) =>

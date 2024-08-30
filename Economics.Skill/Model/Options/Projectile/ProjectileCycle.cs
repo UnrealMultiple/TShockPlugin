@@ -13,7 +13,7 @@ public class ProjectileCycle
     [JsonProperty("Y递增")]
     public int GrowY { get; set; }
 
-    [JsonProperty("角度递增")] 
+    [JsonProperty("角度递增")]
     public int GrowAngle { get; set; }
 
     [JsonProperty("圆面半径")]

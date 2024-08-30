@@ -54,7 +54,7 @@ public static class GameProgress
             var anti = false;
             var pn = name;
             if (name.StartsWith('!'))
-            { 
+            {
                 anti = true;
                 pn = name[1..];
             }

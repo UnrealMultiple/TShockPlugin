@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using MySql.Data.MySqlClient;
 using System.Collections.Concurrent;
 using System.Data;
-using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -1434,7 +1433,7 @@ public class History : TerrariaPlugin
         }
         this.CommandQueueThread = new Thread(this.QueueCallback!);
         this.CommandQueueThread.Start();
-    }   
+    }
 
     void OnSaveWorld(WorldSaveEventArgs e)
     {
@@ -1497,7 +1496,7 @@ public class History : TerrariaPlugin
         }
         else
         {
-            if(e.Player.Index == -1)
+            if (e.Player.Index == -1)
             {
                 TShock.Log.ConsoleError("单独的/history命令只能在服务器内使用.");
                 TShock.Log.ConsoleError("你也可以在后台使用/history <账号名> <时间> <范围>");
@@ -1584,7 +1583,7 @@ public class History : TerrariaPlugin
     #region 使用指令清理数据库
     private void ResetCmd(CommandArgs e)
     {
-        if (e.Parameters.Count > 0) {e.Player.SendErrorMessage("用法错误! 正确用法: /hreset"); return;}
+        if (e.Parameters.Count > 0) { e.Player.SendErrorMessage("用法错误! 正确用法: /hreset"); return; }
         else
         {
             if (!e.Player.HasPermission("history.admin"))

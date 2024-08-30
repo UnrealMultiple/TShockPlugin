@@ -85,13 +85,13 @@ namespace ConsoleSql
                     Stopwatch stopwatch = Stopwatch.StartNew(); // 开始计时
                     using (var reader = database.QueryReader(string.Join(" ", args.Parameters)))
                     {
-                        
+
                         DataTable dt = new DataTable();
                         dt.Load(reader.Reader);
                         stopwatch.Stop(); // 停止计时
                         TimeSpan ts = stopwatch.Elapsed; // 获取经过的时间
                         StringBuilder sb = new StringBuilder();
-                        if (dt.Columns.Count==0)
+                        if (dt.Columns.Count == 0)
                         {
                             sb.AppendLine($"执行成功!");
                             sb.AppendLine($"影响{reader.Reader.RecordsAffected}行 ({ts.TotalSeconds.ToString("F2")}秒)");
@@ -149,7 +149,7 @@ namespace ConsoleSql
                 }
 
             }
-            
+
         }
     }
 }

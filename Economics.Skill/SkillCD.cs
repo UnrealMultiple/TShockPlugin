@@ -1,6 +1,6 @@
 ﻿
-using System.Collections.Concurrent;
 using Economics.Skill.Events;
+using System.Collections.Concurrent;
 using TShockAPI;
 
 namespace Economics.Skill;
@@ -48,11 +48,11 @@ internal class SkillCD
             if (!player.Active || time <= 0)
                 God.Remove(player, out var _);
             else
-            { 
+            {
                 player.SendData(PacketTypes.PlayerDodge, "", player.Index, 2f);
                 God[player] -= 100;
             }
-                
+
         }
     }
 }

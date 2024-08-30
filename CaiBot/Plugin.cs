@@ -2,12 +2,12 @@
 //恋恋的TShock插件模板，有改动（为了配合章节名）
 //来自棱镜的插件教程
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Net;
 using System.Net.WebSockets;
 using System.Reflection;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Terraria;
 using Terraria.Localization;
 using TerrariaApi.Server;
@@ -33,7 +33,7 @@ public class Plugin : TerrariaPlugin
     public static int InitCode = -1;
 
     public static ClientWebSocket WebSocket = new();
-    
+
     public Task WsTask;
     public Task HeartBeat;
 
@@ -45,7 +45,7 @@ public class Plugin : TerrariaPlugin
             $"{Assembly.GetExecutingAssembly().GetName().Name}.{new AssemblyName(args.Name).Name}.dll";
         using Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
         if (stream != null)
-        { 
+        {
             byte[] assemblyData = new byte[stream.Length];
             stream.Read(assemblyData, 0, assemblyData.Length);
             return Assembly.Load(assemblyData);
@@ -88,7 +88,7 @@ public class Plugin : TerrariaPlugin
                             Config.config.Write();
                             TShock.Log.ConsoleInfo($"[CaiAPI]被动绑定成功!");
                         }
-                        
+
                     }
 
                     if (Terraria.Program.LaunchParameters.ContainsKey("-cailocalbot"))

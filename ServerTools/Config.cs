@@ -66,7 +66,7 @@ public class Config
     public bool NpcProtect = false;
 
     [JsonProperty("NPC保护表", Order = 7)]
-    public List<int> NpcProtectList = new ();
+    public List<int> NpcProtectList = new();
 
     [JsonProperty("禁止多鱼线", Order = 8)]
     public bool MultipleFishingRodsAreProhibited = true;

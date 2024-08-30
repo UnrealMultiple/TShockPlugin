@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using TShockAPI;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using TerrariaApi.Server;
-using System.IO;
-using Microsoft.Xna.Framework;
-using System.Threading.Tasks;
+using TShockAPI;
 
 namespace SmartRegions
 {

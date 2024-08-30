@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using On.OTAPI;
-using System.Reflection;
 using System.Text;
 using Terraria;
 using Terraria.ID;
@@ -146,7 +145,7 @@ namespace AnnouncementBoxPlus
             }
             return false;
         }
-      
+
         public static string FormatBox(string text, int index)
         {
             string online = "";

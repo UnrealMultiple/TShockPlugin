@@ -2,13 +2,13 @@
 
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
+using System.IO.Compression;
 using Terraria;
+using Terraria.ID;
+using Terraria.IO;
 using Terraria.Map;
 using Color = Microsoft.Xna.Framework.Color;
 using Image = SixLabors.ImageSharp.Image;
-using System.IO.Compression;
-using Terraria.IO;
-using Terraria.ID;
 
 namespace CaiBot;
 
@@ -18,14 +18,14 @@ public static class MapGenerator
     {
         Image<Rgba32> image = new(Main.tile.Width, Main.tile.Height);
         MapHelper.Initialize();
-        Main.Map = new (Main.tile.Width, Main.tile.Height);
+        Main.Map = new(Main.tile.Width, Main.tile.Height);
         for (int x = 0; x < Main.maxTilesX; x++)
-        for (int y = 0; y < Main.maxTilesY; y++)
-        {
-            MapTile tile = MapHelper.CreateMapTile(x, y, byte.MaxValue);
-            Color col = MapHelper.GetMapTileXnaColor(ref tile);
-            image[x, y] = new Rgba32(col.R, col.G, col.B, col.A);
-        }
+            for (int y = 0; y < Main.maxTilesY; y++)
+            {
+                MapTile tile = MapHelper.CreateMapTile(x, y, byte.MaxValue);
+                Color col = MapHelper.GetMapTileXnaColor(ref tile);
+                image[x, y] = new Rgba32(col.R, col.G, col.B, col.A);
+            }
 
         return image;
     }
@@ -50,13 +50,13 @@ internal class CreateMapFile
     {
         Status = true;
         WorldMap = new WorldMap(Main.tile.Width, Main.tile.Height);
-        Main.Map = new (Main.tile.Width, Main.tile.Height);
+        Main.Map = new(Main.tile.Width, Main.tile.Height);
         for (int x = 0; x < Main.maxTilesX; x++)
-        for (int y = 0; y < Main.maxTilesY; y++)
-        {
-            MapTile tile = MapHelper.CreateMapTile(x, y, byte.MaxValue);
-            WorldMap.SetTile(x, y, ref tile);
-        }
+            for (int y = 0; y < Main.maxTilesY; y++)
+            {
+                MapTile tile = MapHelper.CreateMapTile(x, y, byte.MaxValue);
+                WorldMap.SetTile(x, y, ref tile);
+            }
         MapInfo res = InternalSaveMap();
         Status = false;
         return res;
@@ -348,7 +348,7 @@ internal class CreateMapFile
             return new MapInfo(text, memoryStream.ToArray());
         }
     }
-    
+
 }
 
 public class MapInfo
@@ -378,10 +378,10 @@ public class WorldMap
         MaxHeight = maxHeight;
         _tiles = new MapTile[MaxWidth, MaxHeight];
     }
-    
+
     public void SetTile(int x, int y, ref MapTile tile) => _tiles[x, y] = tile;
 
-    
 
-    
+
+
 }

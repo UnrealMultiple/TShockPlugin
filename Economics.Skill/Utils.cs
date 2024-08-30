@@ -43,9 +43,9 @@ public class Utils
         skill.EmitGeneralSkill(Player);
     }
 
-   
 
-  
+
+
 
     /// <summary>
     /// 技能触发器
@@ -134,7 +134,7 @@ public class Utils
                             _pos = Player.TPlayer.Center + Player.TPlayer.ItemOffSet() + new Vector2(opt.GrowX * 16, opt.GrowY * 16);
                         else
                             _pos += new Vector2(opt.GrowX * 16, opt.GrowY * 16);
-                        
+
                         #endregion
                         await Task.Delay(opt.Dealy);
                     }

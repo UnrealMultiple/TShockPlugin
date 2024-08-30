@@ -20,7 +20,7 @@
                         throw new TimeoutException();
                     }
                 }
-                
+
             }
             else
                 while (condition()) await Task.Delay(frequency);

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -111,7 +110,7 @@ namespace VeinMiner
                         {
                             e.Item.ForEach(ex => plr.GiveItem(ex.Key, ex.Value));
                             if (e.OnlyGiveItem)
-                                KillTileAndSend(list, true); 
+                                KillTileAndSend(list, true);
                             else
                                 GiveItem();
                             plr.SendMessage($"[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {mineCount} {(item.type == 0 ? "未知" : item.Name)}].", Color.White);
@@ -131,10 +130,10 @@ namespace VeinMiner
                 {
                     if (Config.PutInInventory)
                     {
-                        if (plr.IsSpaceEnough(item.netID, mineCount)) 
+                        if (plr.IsSpaceEnough(item.netID, mineCount))
                         {
-                            plr.GiveItem(item.netID, mineCount); 
-                            KillTileAndSend(list, true); 
+                            plr.GiveItem(item.netID, mineCount);
+                            KillTileAndSend(list, true);
                         }
                         else
                         {
@@ -143,7 +142,7 @@ namespace VeinMiner
                         }
                     }
                     else
-                        KillTileAndSend(list, false); 
+                        KillTileAndSend(list, false);
 
                     if (plr.GetData<VMStatus>("VeinMiner").EnableBroadcast && Config.Broadcast && mineCount > 1)
                         plr.SendMessage($"[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{mineCount} {(item.type == 0 ? "未知" : item.Name)}].", Color.White);

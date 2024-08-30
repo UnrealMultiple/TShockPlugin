@@ -48,7 +48,7 @@ namespace Plugin
         public bool Hand { get; set; } = false;
 
         [JsonProperty("背包持有", Order = 1)]
-        public int[] HoldItems { get; set; } = new int[]{ 87, 346 , 3213, 3813, 4076, 4131, 5325 };
+        public int[] HoldItems { get; set; } = new int[] { 87, 346, 3213, 3813, 4076, 4131, 5325 };
 
         [JsonProperty("装备饰品", Order = 2)]
         public int[] ArmorItem { get; set; } = new int[] { 88, 410, 411, 489, 490, 491, 855, 935, 1301, 2220, 2998, 3034, 3035, 3061, 3068, 4008, 4056, 4989, 5107, 5126 };
@@ -69,8 +69,8 @@ namespace Plugin
                     3338,3339,3347,4050,5306
                 }),
 
-                new ItemData("", 20,new int[] 
-                { 
+                new ItemData("", 20,new int[]
+                {
                     1073,1074,1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,
                     1085,1086,1087,1088,1089,1090,1091,1092,1093,1094,1095,1096,1097,1098,1099,
                     1150,1168,1966,1967,1968,4668,5344
