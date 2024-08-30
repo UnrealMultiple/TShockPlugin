@@ -23,7 +23,12 @@
         </EmbeddedResource>
     </ItemGroup>
 
-    <Import Project="Localizer\Localizer.projitems" Label="Shared" />
+    <ItemGroup>
+        <Compile Include="..\Localizer\**\*.cs">
+            <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Compile>
+    </ItemGroup>
 
     <Target Name="githash" BeforeTargets="PreBuildEvent">
         <Exec Command="git log -1 --pretty=&quot;format:%25H&quot;" ContinueOnError="true" ConsoleToMSBuild="true">

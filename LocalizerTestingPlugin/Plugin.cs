@@ -1,5 +1,4 @@
-﻿using Localizer;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
 
 namespace LocalizerTestingPlugin;
@@ -19,6 +18,6 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        Console.WriteLine(I18n.GetString("No locale"));
+        Console.WriteLine(GetString("No locale"));
     }
 }

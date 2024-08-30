@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿global using static Localizer.I18n;
+
+using System.Globalization;
 using System.Reflection;
 using GetText;
 using TShockAPI;

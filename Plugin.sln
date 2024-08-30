@@ -230,8 +230,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnseenInventory", "UnseenIn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChestRestore", "ChestRestore\ChestRestore.csproj", "{0C2924D3-41E7-417A-990D-46AEFF754662}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Localizer", "Localizer\Localizer.shproj", "{FA7AE532-4FD4-403F-B18C-4198DBDF92EB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalizerTestingPlugin", "LocalizerTestingPlugin\LocalizerTestingPlugin.csproj", "{84435EBE-AF17-42E6-9BB9-C5BA71FD9493}"
 EndProject
 Global
