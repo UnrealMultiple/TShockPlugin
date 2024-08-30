@@ -87,7 +87,7 @@ jobs:
 
       - name: 打包
         run: 
-          sudo python BuildHelper.py Release
+          sudo python BuildHelper.py Release ${{ secrets.CAI_GITEE_TOKEN }}
         env:
           PYTHONIOENCODING: 'utf-8'
       
