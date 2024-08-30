@@ -16,7 +16,7 @@ public class Helper
     private static readonly Regex Regex = new(@"\[(?<type>[^\]]+):(?<id>\d+)\]");
     public static string GetGradientText(string text)
     {
-        string result = "";
+        var result = "";
         //匹配物品消息
         var matchs = Regex.Matches(text);
         var chat = matchs.Select(x => x.Groups).ToDictionary(x => x[1].Index, x => x);
@@ -26,7 +26,7 @@ public class Helper
         var index = 0;
         foreach (var item in info)
         {
-            for (int i = 0; i < item.Text.Length; i++)
+            for (var i = 0; i < item.Text.Length; i++)
             {
                 fullIndex++;
                 if (chat.TryGetValue(fullIndex - 1, out var group) && group != null)
@@ -64,7 +64,7 @@ public class Helper
     {
         var Modules = new Dictionary<MethodInfo, (object?, T)>();
         var flag = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
-        Dictionary<Type, MethodInfo[]> mapping = assembly.GetExportedTypes()
+        var mapping = assembly.GetExportedTypes()
             .Where(x => x.IsDefined(typeof(RegisterSeries)))
             .Select(type => (type, type.GetMethods(flag)
             .Where(m => m.IsDefined(typeof(T)) && m.ParamsMatch(paramType))
@@ -74,7 +74,10 @@ public class Helper
         {
             var instance = Activator.CreateInstance(cls);
             if (instance == null)
+            {
                 continue;
+            }
+
             foreach (var method in methods)
             {
                 var attr = method.GetCustomAttribute<T>()!;
@@ -121,7 +124,7 @@ public class Helper
         var methods = MatchAssemblyMethodByAttribute<CommandMap>(assembly, typeof(void), typeof(CommandArgs));
         foreach (var (method, tuple) in methods)
         {
-            (object? Instance, CommandMap attr) = tuple;
+            (var Instance, var attr) = tuple;
             Commands.ChatCommands.Add(new(attr.Permission, method.CreateDelegate<CommandDelegate>(Instance), attr.Name));
         }
     }
@@ -134,7 +137,7 @@ public class Helper
         var methods = MatchAssemblyMethodByAttribute<RestMap>(assembly, typeof(object), typeof(RestRequestArgs));
         foreach (var (method, tuple) in methods)
         {
-            (object? Instance, RestMap attr) = tuple;
+            (var Instance, var attr) = tuple;
             TShock.RestApi.Register(new(attr.ApiPath, method.CreateDelegate<RestCommandD>(Instance)));
         }
     }

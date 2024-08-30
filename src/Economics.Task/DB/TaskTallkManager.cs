@@ -12,26 +12,29 @@ public class TaskTallkManager
     private static readonly Dictionary<string, HashSet<int>> UserTallks = new();
     public TaskTallkManager()
     {
-        database = TShock.DB;
+        this.database = TShock.DB;
         var Skeleton = new SqlTable("TaskTallk",
             new SqlColumn("NPCID", MySqlDbType.Int32),
             new SqlColumn("Name", MySqlDbType.Text) { Length = 500 }
               );
-        var List = new SqlTableCreator(database, database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
+        var List = new SqlTableCreator(this.database, this.database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
         List.EnsureTableStructure(Skeleton);
-        GetPlayerTallk();
+        this.GetPlayerTallk();
     }
 
     private void GetPlayerTallk()
     {
         UserTallks.Clear();
-        using var read = database.QueryReader("select * from `TaskTallk`");
+        using var read = this.database.QueryReader("select * from `TaskTallk`");
         while (read.Read())
         {
             var NPCID = read.Get<int>("NPCID");
             var Name = read.Get<string>("Name");
             if (!UserTallks.TryGetValue(Name, out var data) || data == null)
+            {
                 UserTallks[Name] = new();
+            }
+
             UserTallks[Name].Add(NPCID);
         }
     }
@@ -41,16 +44,19 @@ public class TaskTallkManager
         if (UserTallks.TryGetValue(Name, out var npcs))
         {
             if (npcs == null)
+            {
                 UserTallks[Name] = new();
+            }
+
             if (!UserTallks[Name].Contains(NPCID))
             {
-                Write(Name, NPCID);
+                this.Write(Name, NPCID);
                 UserTallks[Name].Add(NPCID);
             }
         }
         else
         {
-            Write(Name, NPCID);
+            this.Write(Name, NPCID);
             UserTallks[Name] = new() { NPCID };
         }
     }
@@ -61,7 +67,7 @@ public class TaskTallkManager
         {
             foreach (var info in data)
             {
-                Remove(Name, info);
+                this.Remove(Name, info);
             }
         }
         UserTallks.Remove(Name);
@@ -69,34 +75,30 @@ public class TaskTallkManager
 
     public bool TallkNpcByID(string Name, int npcid)
     {
-        if (UserTallks.TryGetValue(Name, out var npcs) && npcs != null)
-        {
-            return npcs.Contains(npcid);
-        }
-        return false;
+        return UserTallks.TryGetValue(Name, out var npcs) && npcs != null ? npcs.Contains(npcid) : false;
     }
 
     public void RemoveAll()
     {
-        if (database.GetSqlType() == SqlType.Sqlite)
+        if (this.database.GetSqlType() == SqlType.Sqlite)
         {
-            database.Query("delete from TaskTallk");
+            this.database.Query("delete from TaskTallk");
         }
         else
         {
-            database.Query("TRUNCATE Table TaskTallk");
+            this.database.Query("TRUNCATE Table TaskTallk");
         }
         UserTallks.Clear();
     }
 
     public bool Write(string Name, int NPCID)
     {
-        int reader = database.Query("INSERT INTO `TaskTallk` (`Name`, `NPCID`) VALUES (@0, @1)", Name, NPCID);
+        var reader = this.database.Query("INSERT INTO `TaskTallk` (`Name`, `NPCID`) VALUES (@0, @1)", Name, NPCID);
         return reader == 1;
     }
 
     public void Remove(string Name, int NPCID)
     {
-        database.Query("DELETE FROM `TaskTallk` WHERE `Name` = @0 AND `NPCID` = @1", Name, NPCID);
+        this.database.Query("DELETE FROM `TaskTallk` WHERE `Name` = @0 AND `NPCID` = @1", Name, NPCID);
     }
 }

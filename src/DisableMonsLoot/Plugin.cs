@@ -24,9 +24,9 @@ public class Plugin : TerrariaPlugin
     public override void Initialize()
     {
         LoadConfig();
-        _reloadHandler = (_) => LoadConfig();
-        GeneralHooks.ReloadEvent += _reloadHandler;
-        ServerApi.Hooks.NpcKilled.Register(this, KillItem);
+        this._reloadHandler = (_) => LoadConfig();
+        GeneralHooks.ReloadEvent += this._reloadHandler;
+        ServerApi.Hooks.NpcKilled.Register(this, this.KillItem);
         TShockAPI.Commands.ChatCommands.Add(new Command("killitem.admin", kdm, "kdm", "禁掉落"));
     }
 
@@ -34,8 +34,8 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= _reloadHandler;
-            ServerApi.Hooks.NpcKilled.Deregister(this, KillItem);
+            GeneralHooks.ReloadEvent -= this._reloadHandler;
+            ServerApi.Hooks.NpcKilled.Deregister(this, this.KillItem);
             TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == kdm);
         }
 
@@ -61,10 +61,10 @@ public class Plugin : TerrariaPlugin
         {
             var Names = new HashSet<string>(group.Name.Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries));
 
-            foreach (int id in group.ID)
+            foreach (var id in group.ID)
             {
                 string npcName;
-                npcName = (string)Lang.GetNPCName(id);
+                npcName = (string) Lang.GetNPCName(id);
                 if (!Names.Contains(npcName))
                 {
                     Names.Add(npcName);
@@ -83,9 +83,12 @@ public class Plugin : TerrariaPlugin
     public NPC RealNPC { get; set; }
     private void KillItem(NpcKilledEventArgs args)
     {
-        lock (npcLock)
+        lock (this.npcLock)
         {
-            if (args.npc == null || !Config.Enabled) return;
+            if (args.npc == null || !Config.Enabled)
+            {
+                return;
+            }
 
             foreach (var npc in Config.BossList)
             {
@@ -115,8 +118,8 @@ public class Plugin : TerrariaPlugin
 
                 if (npc.Enabled) //控制是否清理
                 {
-                    RealNPC = args.npc;
-                    ClearItems(Config.radius, npc.ItemID);
+                    this.RealNPC = args.npc;
+                    this.ClearItems(Config.radius, npc.ItemID);
                 }
 
             }
@@ -129,14 +132,17 @@ public class Plugin : TerrariaPlugin
     #region 清理物品方法
     private void ClearItems(int radius, int[] ItemIDs)
     {
-        if (!Config.Enabled) return;
+        if (!Config.Enabled)
+        {
+            return;
+        }
 
-        for (int i = 0; i < Terraria.Main.maxItems; i++)
+        for (var i = 0; i < Terraria.Main.maxItems; i++)
         {
             var item = Terraria.Main.item[i];
-            float dx = item.position.X - RealNPC.position.X;
-            float dy = item.position.Y - RealNPC.position.Y;
-            float Distance = dx * dx + dy * dy;
+            var dx = item.position.X - this.RealNPC.position.X;
+            var dy = item.position.Y - this.RealNPC.position.Y;
+            var Distance = (dx * dx) + (dy * dy);
 
             if (item.active && Distance <= radius * radius * 256f)
             {

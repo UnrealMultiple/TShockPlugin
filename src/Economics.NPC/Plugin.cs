@@ -29,9 +29,9 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        LoadConfig();
-        EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += OnPlayerKillNpc;
-        GeneralHooks.ReloadEvent += LoadConfig;
+        this.LoadConfig();
+        EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += this.OnPlayerKillNpc;
+        GeneralHooks.ReloadEvent += this.LoadConfig;
     }
 
     protected override void Dispose(bool disposing)
@@ -40,8 +40,8 @@ public class Plugin : TerrariaPlugin
         {
             EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
-            EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc -= OnPlayerKillNpc;
-            GeneralHooks.ReloadEvent -= LoadConfig;
+            EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc -= this.OnPlayerKillNpc;
+            GeneralHooks.ReloadEvent -= this.LoadConfig;
         }
         base.Dispose(disposing);
     }
@@ -57,13 +57,20 @@ public class Plugin : TerrariaPlugin
 
     private void OnPlayerKillNpc(EconomicsAPI.EventArgs.PlayerEventArgs.PlayerKillNpcArgs args)
     {
-        if (args.Npc == null || args.Player == null) return;
+        if (args.Npc == null || args.Player == null)
+        {
+            return;
+        }
+
         if (Config.AllocationRatio.TryGetValue(args.Npc.netID, out var ra) && ra != null)
         {
             if (!args.Player.InProgress(ra.Progress))
+            {
                 return;
+            }
+
             double rw = args.Damage / args.Npc.lifeMax;
-            long Curr = Convert.ToInt64(rw * ra.AllocationRatio);
+            var Curr = Convert.ToInt64(rw * ra.AllocationRatio);
             EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr);
             args.Player.SendCombatMsg($"+{Curr}$", Color.AliceBlue);
             args.Handler = true;
@@ -75,17 +82,21 @@ public class Plugin : TerrariaPlugin
         {
             if (cfg.DynamicPartition)
             {
-                float rw = args.Damage / args.Npc.lifeMax;
-                long Curr = Convert.ToInt64(Math.Round(rw * cfg.ExtraReward));
+                var rw = args.Damage / args.Npc.lifeMax;
+                var Curr = Convert.ToInt64(Math.Round(rw * cfg.ExtraReward));
                 EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr);
                 if (Config.Prompt)
+                {
                     args.Player.SendInfoMessage(Config.PromptText, args.Npc.GetFullNetName(), EconomicsAPI.Economics.Setting.CurrencyName, Curr);
+                }
             }
             else
             {
                 EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, cfg.ExtraReward);
                 if (Config.Prompt)
+                {
                     args.Player.SendInfoMessage(Config.PromptText, args.Npc.GetFullNetName(), EconomicsAPI.Economics.Setting.CurrencyName, cfg.ExtraReward);
+                }
             }
         }
     }

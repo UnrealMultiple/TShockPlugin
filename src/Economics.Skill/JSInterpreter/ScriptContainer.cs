@@ -20,11 +20,11 @@ public class ScriptContainer
         }
         foreach (Match item in PreprocessorDirectives.requiresRegex.Matches(script.Script))
         {
-            string[] array = item.Groups[2].Value.Split(',');
-            string[] array2 = array;
-            foreach (string text in array2)
+            var array = item.Groups[2].Value.Split(',');
+            var array2 = array;
+            foreach (var text in array2)
             {
-                string text2 = text.Trim().Replace("\"", "");
+                var text2 = text.Trim().Replace("\"", "");
                 if (string.IsNullOrEmpty(text2))
                 {
                     return;

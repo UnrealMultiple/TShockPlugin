@@ -39,17 +39,21 @@ public class Config
 
     public void Reset()
     {
-        foreach (Bag bag in Bag)
+        foreach (var bag in this.Bag)
         {
             bag.Receive.Clear();
         }
-        Write(Plugin.PATH);
+        this.Write(Plugin.PATH);
     }
 
 
     public static Config Read(string Path)//给定文件进行读
     {
-        if (!File.Exists(Path)) return new Config();
+        if (!File.Exists(Path))
+        {
+            return new Config();
+        }
+
         using var fs = new FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read);
         return Read(fs);
     }
@@ -62,7 +66,7 @@ public class Config
     public void Write(string Path)//给定路径进行写
     {
         using var fs = new FileStream(Path, FileMode.Create, FileAccess.Write, FileShare.Write);
-        Write(fs);
+        this.Write(fs);
     }
     public void Write(Stream stream)//给定流文件写
     {

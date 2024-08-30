@@ -1,11 +1,10 @@
-﻿namespace Economics.WeaponPlus
+﻿namespace Economics.WeaponPlus;
+
+public enum PlusType
 {
-    public enum PlusType
-    {
-        damage,
-        scale,
-        knockBack,
-        useSpeed,
-        shootSpeed
-    }
+    damage,
+    scale,
+    knockBack,
+    useSpeed,
+    shootSpeed
 }

@@ -22,7 +22,7 @@ public class InfoCommand : HCommand
     public override void Execute()
     {
         var actions = new List<Action>();
-        var lookupTime = (int)(DateTime.UtcNow - History.Date).TotalSeconds - this.time;
+        var lookupTime = (int) (DateTime.UtcNow - History.Date).TotalSeconds - this.time;
 
         var plrX = this.sender.TileX;
         var plrY = this.sender.TileY;
@@ -40,7 +40,7 @@ public class InfoCommand : HCommand
             {
                 actions.Add(new Action
                 {
-                    action = (byte)reader.Get<int>("Action"),
+                    action = (byte) reader.Get<int>("Action"),
                     x = reader.Get<int>("XY") >> 16,
                     y = reader.Get<int>("XY") & 0xffff,
                 });

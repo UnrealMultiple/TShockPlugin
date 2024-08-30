@@ -15,6 +15,6 @@ public class Item
 
     public override string ToString()
     {
-        return $"[i/s{Stack}:{netID}]";
+        return $"[i/s{this.Stack}:{this.netID}]";
     }
 }

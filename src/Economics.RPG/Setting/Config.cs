@@ -25,19 +25,19 @@ internal class Config
 
     public void Init()
     {
-        foreach (var (name, level) in RPG)
+        foreach (var (name, level) in this.RPG)
         {
             level.Name = name;
-            if (!RPG.TryGetValue(level.Parent?.Name, out var info) || info == null)
+            if (!this.RPG.TryGetValue(level.Parent?.Name, out var info) || info == null)
             {
-                if (level.Parent.Name != DefaultLevel.Name)
+                if (level.Parent.Name != this.DefaultLevel.Name)
                 {
                     TShock.Log.ConsoleError($"等级 {name} 空引用等级 {level.Parent.Name}");
                     level.Parent = null;
                 }
                 else
                 {
-                    level.Parent = DefaultLevel;
+                    level.Parent = this.DefaultLevel;
                 }
             }
             else
@@ -46,19 +46,19 @@ internal class Config
             }
         }
 
-        foreach (var (name, level) in RPG)
+        foreach (var (name, level) in this.RPG)
         {
-            level.AllParentLevels = GetLevelAllParent(name);
-            level.AllPermission = GetLevelAllPerm(name);
-            level.RankLevels = GetRankLevel(name);
+            level.AllParentLevels = this.GetLevelAllParent(name);
+            level.AllPermission = this.GetLevelAllPerm(name);
+            level.RankLevels = this.GetRankLevel(name);
         }
-        DefaultLevel.RankLevels = GetRankLevel(DefaultLevel.Name);
+        this.DefaultLevel.RankLevels = this.GetRankLevel(this.DefaultLevel.Name);
     }
 
     public List<Level> GetRankLevel(string name)
     {
         var result = new List<Level>();
-        foreach (var level in RPG.Values)
+        foreach (var level in this.RPG.Values)
         {
             if (level.Parent?.Name == name)
             {
@@ -71,10 +71,10 @@ internal class Config
     private HashSet<string> GetLevelAllPerm(string name)
     {
         var perms = new List<string>();
-        var level = GetLevel(name);
+        var level = this.GetLevel(name);
         while (level != null)
         {
-            if (level.Parent?.Name == name || level.Parent?.Name == DefaultLevel.Name)
+            if (level.Parent?.Name == name || level.Parent?.Name == this.DefaultLevel.Name)
             {
                 break;
             }
@@ -86,18 +86,16 @@ internal class Config
 
     public Level? GetLevel(string name)
     {
-        if (RPG.TryGetValue(name, out var info))
-            return info;
-        return null;
+        return this.RPG.TryGetValue(name, out var info) ? info : null;
     }
 
     public HashSet<Level> GetLevelAllParent(string name)
     {
         var parents = new HashSet<Level>();
-        var level = GetLevel(name);
+        var level = this.GetLevel(name);
         while (level != null)
         {
-            if (level.Parent?.Name == DefaultLevel.Name)
+            if (level.Parent?.Name == this.DefaultLevel.Name)
             {
                 break;
             }

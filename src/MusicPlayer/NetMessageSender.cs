@@ -9,7 +9,11 @@ namespace MusicPlayer;
 internal static class NetMessageSender
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static bool IsNotActive(int remoteClient) => !Netplay.Clients[remoteClient].IsActive;
+    private static bool IsNotActive(int remoteClient)
+    {
+        return !Netplay.Clients[remoteClient].IsActive;
+    }
+
     private static void SendData(int remoteClient, byte[] data)
     {
         NetMessage.buffer[remoteClient].spamCount++;
@@ -55,14 +59,14 @@ internal static class NetMessageSender
         {
             return;
         }
-        var data = new byte[3 + 1 + Player.maxBuffs * 2];
+        var data = new byte[3 + 1 + (Player.maxBuffs * 2)];
         var dataSpan = data.AsSpan();
-        BinaryPrimitives.WriteUInt16LittleEndian(dataSpan, (ushort)data.Length);
+        BinaryPrimitives.WriteUInt16LittleEndian(dataSpan, (ushort) data.Length);
         data[2] = MessageID.PlayerBuffs;
         data[3] = index;
         var offset = 4;
         var count = Math.Min(Player.maxBuffs, buffTypes.Length);
-        for (int i = 0; i < count; i++)
+        for (var i = 0; i < count; i++)
         {
             BinaryPrimitives.WriteUInt16LittleEndian(dataSpan[offset..], buffTypes[i]);
             offset += sizeof(ushort);

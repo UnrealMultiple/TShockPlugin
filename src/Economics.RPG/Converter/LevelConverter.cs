@@ -5,14 +5,17 @@ namespace Economics.RPG.Converter;
 
 internal class LevelConverter : JsonConverter
 {
-    public override bool CanConvert(Type objectType) => true;
+    public override bool CanConvert(Type objectType)
+    {
+        return true;
+    }
 
     public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
         var level = reader.Value?.ToString();
-        if (level == null)
-            return null;
-        return new Level()
+        return level == null
+            ? null
+            : (object) new Level()
         {
             Name = level
         };
@@ -21,8 +24,12 @@ internal class LevelConverter : JsonConverter
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         if (value is Level level)
+        {
             writer.WriteValue(level.Name);
+        }
         else
+        {
             writer.WriteValue("");
+        }
     }
 }

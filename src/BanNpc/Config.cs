@@ -9,9 +9,7 @@ public class Config
 
     public static Config Read(string PATH)
     {
-        if (!File.Exists(PATH))
-            return new Config();
-        return JsonConvert.DeserializeObject<Config>(File.ReadAllText(PATH)) ?? new();
+        return !File.Exists(PATH) ? new Config() : JsonConvert.DeserializeObject<Config>(File.ReadAllText(PATH)) ?? new();
     }
     public void Write(string Path)//给定路径进行写
     {

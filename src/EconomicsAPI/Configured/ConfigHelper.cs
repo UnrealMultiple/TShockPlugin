@@ -6,8 +6,7 @@ public class ConfigHelper
 {
     public static T Read<T>(string Path) where T : new()
     {
-        if (!File.Exists(Path)) return new T();
-        return JsonConvert.DeserializeObject<T>(File.ReadAllText(Path)) ?? new T();
+        return !File.Exists(Path) ? new T() : JsonConvert.DeserializeObject<T>(File.ReadAllText(Path)) ?? new T();
     }
 
 

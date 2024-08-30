@@ -37,10 +37,7 @@ public static class GameProgress
             });
             field.GetCustomAttributes<ProgressName>().ForEach(x =>
             {
-                x.Names.ForEach(v =>
-                {
-                    progress.Add(v, code);
-                });
+                x.Names.ForEach(v => progress.Add(v, code));
             });
         }
         return progress;
@@ -59,8 +56,12 @@ public static class GameProgress
                 pn = name[1..];
             }
             if (gameProgress.TryGetValue(pn, out var code))
+            {
                 if (code == anti)
+                {
                     return false;
+                }
+            }
         }
         return true;
     }

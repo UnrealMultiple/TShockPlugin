@@ -13,8 +13,10 @@ public class Command
     {
         void Show(List<string> line)
         {
-            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, args.Player, out int pageNumber))
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, args.Player, out var pageNumber))
+            {
                 return;
+            }
 
             PaginationTools.SendPage(
                     args.Player,
@@ -79,7 +81,7 @@ public class Command
                 args.Player.SendErrorMessage($"你的{EconomicsAPI.Economics.Setting.CurrencyName}不足!");
                 return;
             }
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 args.Player.GiveItems(product.Items);
             }

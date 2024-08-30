@@ -23,19 +23,19 @@ public class Respawn : TerrariaPlugin
 
     public override void Initialize()
     {
-        GetDataHandlers.KillMe.Register(OnKillMe);
-        GetDataHandlers.PlayerSpawn.Register(OnSpawn);
+        GetDataHandlers.KillMe.Register(this.OnKillMe);
+        GetDataHandlers.PlayerSpawn.Register(this.OnSpawn);
     }
 
     private void OnSpawn(object? sender, GetDataHandlers.SpawnEventArgs e)
     {
-        if (DeadPos.TryGetValue(e.Player, out var pos))
+        if (this.DeadPos.TryGetValue(e.Player, out var pos))
         {
             Task.Run(async () =>
             {
                 await Task.Delay(100);
                 e.Player.Teleport(pos.X, pos.Y);
-                DeadPos.Remove(e.Player, out var _);
+                this.DeadPos.Remove(e.Player, out var _);
             });
         }
     }
@@ -45,16 +45,20 @@ public class Respawn : TerrariaPlugin
     {
         if (disposing)
         {
-            GetDataHandlers.KillMe.UnRegister(OnKillMe);
-            GetDataHandlers.PlayerSpawn.UnRegister(OnSpawn);
+            GetDataHandlers.KillMe.UnRegister(this.OnKillMe);
+            GetDataHandlers.PlayerSpawn.UnRegister(this.OnSpawn);
         }
         base.Dispose(disposing);
     }
 
     private void OnKillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
     {
-        if (e.Handled) return;
-        DeadPos[e.Player] = e.Player.TPlayer.position;
+        if (e.Handled)
+        {
+            return;
+        }
+
+        this.DeadPos[e.Player] = e.Player.TPlayer.position;
     }
 
 

@@ -3,144 +3,137 @@ using TerrariaApi.Server;
 using TShockAPI;
 using static TShockAPI.GetDataHandlers;
 
-namespace Challenger
+namespace Challenger;
+
+public class CNPC
 {
-    public class CNPC
+    public NPC? npc;
+
+    private readonly int netID;
+
+    private readonly int index;
+
+    public float[] ai;
+
+    public int state;
+
+    public int LifeMax;
+
+    public HashSet<string> AccOfObsidian;
+
+    private bool _isActive;
+
+    public bool isActive
     {
-        public NPC? npc;
+        get => this.npc != null && this.npc.netID == this.netID && this.npc.whoAmI == this.index && this.npc.active && this._isActive;
+        set => this._isActive = value;
+    }
 
-        private readonly int netID;
+    public CNPC()
+    {
+        this.npc = null;
+        this.netID = 0;
+        this.index = 0;
+        this.ai = new float[8];
+        this.state = 0;
+        this.LifeMax = 0;
+        this.AccOfObsidian = new HashSet<string>();
+        this.isActive = false;
+    }
 
-        private readonly int index;
-
-        public float[] ai;
-
-        public int state;
-
-        public int LifeMax;
-
-        public HashSet<string> AccOfObsidian;
-
-        private bool _isActive;
-
-        public bool isActive
+    public CNPC(NPC? npc)
+    {
+        if (npc == null)
         {
-            get
-            {
-                return npc != null && npc.netID == netID && npc.whoAmI == index && npc.active && _isActive;
-            }
-            set
-            {
-                _isActive = value;
-            }
+            this.npc = null;
+            this.netID = 0;
+            this.index = 0;
+            this.ai = new float[8];
+            this.state = 0;
+            this.LifeMax = 0;
+            this.isActive = false;
         }
-
-        public CNPC()
+        else
         {
-            npc = null;
-            netID = 0;
-            index = 0;
+            this.npc = npc;
+            this.netID = npc.netID;
+            this.index = npc.whoAmI;
+            this.ai = new float[8];
+            this.state = 0;
+            this.LifeMax = npc.life;
+            this.isActive = npc.active;
+        }
+        this.AccOfObsidian = new HashSet<string>();
+    }
+
+    public CNPC(NPC? npc, float[] ai, int state)
+    {
+        if (npc == null)
+        {
+            this.npc = null;
+            this.netID = 0;
+            this.index = 0;
             ai = new float[8];
             state = 0;
-            LifeMax = 0;
-            AccOfObsidian = new HashSet<string>();
-            isActive = false;
+            this.LifeMax = 0;
+            this.isActive = false;
         }
-
-        public CNPC(NPC? npc)
+        else
         {
-            if (npc == null)
-            {
-                this.npc = null;
-                netID = 0;
-                index = 0;
-                ai = new float[8];
-                state = 0;
-                LifeMax = 0;
-                isActive = false;
-            }
-            else
-            {
-                this.npc = npc;
-                netID = npc.netID;
-                index = npc.whoAmI;
-                ai = new float[8];
-                state = 0;
-                LifeMax = npc.life;
-                isActive = npc.active;
-            }
-            AccOfObsidian = new HashSet<string>();
+            this.npc = npc;
+            this.netID = npc.netID;
+            this.index = npc.whoAmI;
+            this.ai = ai;
+            this.state = state;
+            this.LifeMax = npc.life;
+            this.isActive = npc.active;
         }
+        this.AccOfObsidian = new HashSet<string>();
+    }
 
-        public CNPC(NPC? npc, float[] ai, int state)
+    public virtual void NPCAI()
+    {
+    }
+
+    public virtual int SetState()
+    {
+        return 0;
+    }
+
+    public virtual void OnHurtPlayers(PlayerDamageEventArgs e)
+    {
+    }
+
+    public virtual void OnKilled()
+    {
+        if (this.AccOfObsidian.Count == 0)
         {
-            if (npc == null)
-            {
-                this.npc = null;
-                netID = 0;
-                index = 0;
-                ai = new float[8];
-                state = 0;
-                LifeMax = 0;
-                isActive = false;
-            }
-            else
-            {
-                this.npc = npc;
-                netID = npc.netID;
-                index = npc.whoAmI;
-                this.ai = ai;
-                this.state = state;
-                LifeMax = npc.life;
-                isActive = npc.active;
-            }
-            AccOfObsidian = new HashSet<string>();
+            return;
         }
-
-        public virtual void NPCAI()
+        try
         {
-        }
-
-        public virtual int SetState()
-        {
-            return 0;
-        }
-
-        public virtual void OnHurtPlayers(PlayerDamageEventArgs e)
-        {
-        }
-
-        public virtual void OnKilled()
-        {
-            if (AccOfObsidian.Count == 0)
+            if (this.npc.boss || this.npc.rarity > 1 || this.npc.lifeMax > 7000)
             {
                 return;
             }
-            try
+            foreach (var item in this.AccOfObsidian)
             {
-                if (npc.boss || npc.rarity > 1 || npc.lifeMax > 7000)
+                var players = TShock.Players;
+                foreach (var val in players)
                 {
-                    return;
-                }
-                foreach (string item in AccOfObsidian)
-                {
-                    TSPlayer[] players = TShock.Players;
-                    foreach (TSPlayer val in players)
+                    if (val != null && val.Active && val.Name == item)
                     {
-                        if (val != null && val.Active && val.Name == item)
-                        {
-                            npc.NPCLoot_DropItems(val.TPlayer);
-                        }
+                        this.npc.NPCLoot_DropItems(val.TPlayer);
                     }
                 }
             }
-            catch
-            {
-            }
         }
-
-        public virtual void WhenHurtByPlayer(NpcStrikeEventArgs args)
+        catch
         {
         }
+    }
+
+    public virtual void WhenHurtByPlayer(NpcStrikeEventArgs args)
+    {
     }
 }

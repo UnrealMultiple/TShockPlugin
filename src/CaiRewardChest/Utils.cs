@@ -8,10 +8,14 @@ public static class Utils
 {
     public static void GiveItem(RewardChest chest, GetDataHandlers.ChestOpenEventArgs args)
     {
-        int chestType = WorldGen.GetChestItemDrop(chest.X, chest.Y, Main.tile[chest.X, chest.Y].type);
+        var chestType = WorldGen.GetChestItemDrop(chest.X, chest.Y, Main.tile[chest.X, chest.Y].type);
 
-        foreach (Item? i in chest.Chest.item) GiveItemByDrop(args.Player, i.netID, i.stack, i.prefix);
-        List<string> itemsReceived = chest.Chest.item
+        foreach (var i in chest.Chest.item)
+        {
+            GiveItemByDrop(args.Player, i.netID, i.stack, i.prefix);
+        }
+
+        var itemsReceived = chest.Chest.item
             .Where(i => i != null && i.netID != 0 && i.stack != 0)
             .Select(i => TShock.Utils.ItemTag(i)).ToList();
         itemsReceived.Add(TShock.Utils.ItemTag(new Item
@@ -27,7 +31,7 @@ public static class Utils
     }
     private static void GiveItemByDrop(TSPlayer plr, int type, int stack, int prefix)
     {
-        int number = Item.NewItem(new EntitySource_DebugCommand(), (int)plr.X, (int)plr.Y, plr.TPlayer.width,
+        var number = Item.NewItem(new EntitySource_DebugCommand(), (int) plr.X, (int) plr.Y, plr.TPlayer.width,
             plr.TPlayer.height, type, stack, true, prefix, true);
         Main.item[number].playerIndexTheItemIsReservedFor = plr.Index;
         plr.SendData(PacketTypes.ItemDrop, number: number, number2: 1f);

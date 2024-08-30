@@ -8,7 +8,7 @@ public static class PlayerExt
 {
     public static void SendCombatMsg(this Player player, string text, Color color)
     {
-        NetMessage.SendData(119, -1, -1, NetworkText.FromLiteral(text), (int)color.packedValue, player.position.X, player.position.Y);
+        NetMessage.SendData(119, -1, -1, NetworkText.FromLiteral(text), (int) color.packedValue, player.position.X, player.position.Y);
     }
 
     public static List<Projectile> GetProjectInRange(this Player Player, int range)
@@ -42,7 +42,10 @@ public static class PlayerExt
     {
         var npcs = Player.GetNpcInRange(range);
         if (npcs.Count == 0)
+        {
             return null;
+        }
+
         var boss = npcs.OrderBy(x => x.life);
         return boss.FirstOrDefault(x => x.boss, boss.First());
     }
@@ -51,7 +54,10 @@ public static class PlayerExt
     {
         var npcs = Player.GetNpcInRange(range);
         if (npcs.Count == 0)
+        {
             return null;
+        }
+
         var boss = npcs.OrderBy(x => Math.Abs(x.position.Distance(Player.position)));
         return boss.FirstOrDefault(x => x.boss, boss.First());
     }

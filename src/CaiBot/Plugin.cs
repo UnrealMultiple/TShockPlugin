@@ -41,12 +41,12 @@ public class Plugin : TerrariaPlugin
 
     private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
     {
-        string resourceName =
+        var resourceName =
             $"{Assembly.GetExecutingAssembly().GetName().Name}.{new AssemblyName(args.Name).Name}.dll";
-        using Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
         if (stream != null)
         {
-            byte[] assemblyData = new byte[stream.Length];
+            var assemblyData = new byte[stream.Length];
             stream.Read(assemblyData, 0, assemblyData.Length);
             return Assembly.Load(assemblyData);
         }
@@ -58,11 +58,11 @@ public class Plugin : TerrariaPlugin
     public override void Initialize()
     {
         Config.Read();
-        AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
-        On.OTAPI.Hooks.MessageBuffer.InvokeGetData += MessageBuffer_InvokeGetData;
+        AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
+        On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
         ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
-        ServerApi.Hooks.GamePostInitialize.Register(this, GenCode);
-        WsTask = Task.Run(async () =>
+        ServerApi.Hooks.GamePostInitialize.Register(this, this.GenCode);
+        this.WsTask = Task.Run(async () =>
         {
             while (true)
             {
@@ -81,9 +81,9 @@ public class Plugin : TerrariaPlugin
                         //TShock.Log.ConsoleInfo($"[CaiAPI]尝试被动绑定,状态码:{response.StatusCode}");
                         if (response.StatusCode == HttpStatusCode.OK && Config.config.Token == "")
                         {
-                            string responseBody = await response.Content.ReadAsStringAsync();
-                            JObject json = JObject.Parse(responseBody);
-                            string token = json["token"]!.ToString();
+                            var responseBody = await response.Content.ReadAsStringAsync();
+                            var json = JObject.Parse(responseBody);
+                            var token = json["token"]!.ToString();
                             Config.config.Token = token;
                             Config.config.Write();
                             TShock.Log.ConsoleInfo($"[CaiAPI]被动绑定成功!");
@@ -92,19 +92,27 @@ public class Plugin : TerrariaPlugin
                     }
 
                     if (Terraria.Program.LaunchParameters.ContainsKey("-cailocalbot"))
+                    {
                         await WebSocket.ConnectAsync(new Uri("ws://127.0.0.1:22334/bot/" + Config.config.Token),
                             CancellationToken.None);
+                    }
                     else
+                    {
                         await WebSocket.ConnectAsync(new Uri("ws://api.terraria.ink:22334/bot/" + Config.config.Token),
                             CancellationToken.None);
+                    }
+
                     while (true)
                     {
-                        byte[] buffer = new byte[1024];
-                        WebSocketReceiveResult result = await WebSocket.ReceiveAsync(new ArraySegment<byte>(buffer),
+                        var buffer = new byte[1024];
+                        var result = await WebSocket.ReceiveAsync(new ArraySegment<byte>(buffer),
                             CancellationToken.None);
-                        string receivedData = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                        var receivedData = Encoding.UTF8.GetString(buffer, 0, result.Count);
                         if (Terraria.Program.LaunchParameters.ContainsKey("-caidebug"))
+                        {
                             TShock.Log.ConsoleInfo($"[CaiAPI]收到BOT数据包: {receivedData}");
+                        }
+
                         MessageHandle.HandleMessageAsync(receivedData);
                     }
                 }
@@ -112,15 +120,19 @@ public class Plugin : TerrariaPlugin
                 {
                     TShock.Log.ConsoleInfo($"[CaiAPI]CaiBot断开连接...");
                     if (Terraria.Program.LaunchParameters.ContainsKey("-caidebug"))
+                    {
                         TShock.Log.ConsoleError(ex.ToString());
+                    }
                     else
+                    {
                         TShock.Log.ConsoleError("链接失败原因: " + ex.Message);
+                    }
                 }
 
                 await Task.Delay(5000);
             }
         });
-        HeartBeat = Task.Run(async () =>
+        this.HeartBeat = Task.Run(async () =>
         {
             while (true)
             {
@@ -146,7 +158,11 @@ public class Plugin : TerrariaPlugin
 
     private void GenCode(EventArgs args)
     {
-        if (!string.IsNullOrEmpty(Config.config.Token)) return;
+        if (!string.IsNullOrEmpty(Config.config.Token))
+        {
+            return;
+        }
+
         InitCode = new Random().Next(10000000, 99999999);
         TShock.Log.ConsoleError($"[CaiBot]您的服务器绑定码为: {InitCode}");
     }
@@ -166,8 +182,8 @@ public class Plugin : TerrariaPlugin
 
             instance.ResetReader();
             instance.reader.BaseStream.Position = start + 1;
-            string data = instance.reader.ReadString();
-            string token = Guid.NewGuid().ToString();
+            var data = instance.reader.ReadString();
+            var token = Guid.NewGuid().ToString();
             if (data == InitCode.ToString())
             {
                 NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable(token));
@@ -190,10 +206,10 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
-            AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
-            On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= MessageBuffer_InvokeGetData;
+            AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
+            On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
             ServerApi.Hooks.NetGetData.Deregister(this, Login.OnGetData);
-            ServerApi.Hooks.GamePostInitialize.Deregister(this, GenCode);
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, this.GenCode);
         }
 
         base.Dispose(disposing);

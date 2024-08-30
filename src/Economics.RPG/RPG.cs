@@ -33,12 +33,12 @@ public class RPG : TerrariaPlugin
 
     public override void Initialize()
     {
-        LoadConfig();
+        this.LoadConfig();
         PlayerLevelManager = new();
-        PlayerHooks.PlayerPermission += PlayerHooks_PlayerPermission;
-        PlayerHooks.PlayerChat += PlayerHooks_PlayerChat;
-        PlayerHandler.OnPlayerCountertop += OnCounterTop;
-        GeneralHooks.ReloadEvent += LoadConfig;
+        PlayerHooks.PlayerPermission += this.PlayerHooks_PlayerPermission;
+        PlayerHooks.PlayerChat += this.PlayerHooks_PlayerChat;
+        PlayerHandler.OnPlayerCountertop += this.OnCounterTop;
+        GeneralHooks.ReloadEvent += this.LoadConfig;
     }
 
     private void LoadConfig(ReloadEventArgs? args = null)
@@ -53,10 +53,10 @@ public class RPG : TerrariaPlugin
         {
             EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
-            PlayerHooks.PlayerPermission -= PlayerHooks_PlayerPermission;
-            PlayerHooks.PlayerChat -= PlayerHooks_PlayerChat;
-            PlayerHandler.OnPlayerCountertop -= OnCounterTop;
-            GeneralHooks.ReloadEvent -= LoadConfig;
+            PlayerHooks.PlayerPermission -= this.PlayerHooks_PlayerPermission;
+            PlayerHooks.PlayerChat -= this.PlayerHooks_PlayerChat;
+            PlayerHandler.OnPlayerCountertop -= this.OnCounterTop;
+            GeneralHooks.ReloadEvent -= this.LoadConfig;
         }
         base.Dispose(disposing);
     }
@@ -66,11 +66,16 @@ public class RPG : TerrariaPlugin
     {
         var level = PlayerLevelManager.GetLevel(Name);
         if (!list.Any() || list.Contains(level.Name))
+        {
             return true;
+        }
+
         foreach (var name in list)
         {
             if (level.AllParentLevels.Any(x => x.Name == name))
+            {
                 return true;
+            }
         }
         return false;
     }
@@ -94,9 +99,9 @@ public class RPG : TerrariaPlugin
                 e.Player.Name,       //{3} 玩家名
                 level.ChatSuffix,    //{4} 聊天后缀
                 e.RawText)),
-                (byte)level.ChatRGB[0],
-                (byte)level.ChatRGB[1],
-                (byte)level.ChatRGB[2]);
+                (byte) level.ChatRGB[0],
+                (byte) level.ChatRGB[1],
+                (byte) level.ChatRGB[2]);
             e.Handled = true;
         }
     }
@@ -105,6 +110,8 @@ public class RPG : TerrariaPlugin
     {
         var level = PlayerLevelManager.GetLevel(e.Player.Name);
         if (level != null && level.AllPermission != null && level.AllPermission.Contains(e.Permission))
+        {
             e.Result = PermissionHookResult.Granted;
+        }
     }
 }

@@ -35,12 +35,12 @@ public class LifemaxExtra : TerrariaPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("lifemaxextra.use", HP, "hp"));
-        Commands.ChatCommands.Add(new Command("lifemaxextra.use", Mana, "mp"));
+        Commands.ChatCommands.Add(new Command("lifemaxextra.use", this.HP, "hp"));
+        Commands.ChatCommands.Add(new Command("lifemaxextra.use", this.Mana, "mp"));
         GeneralHooks.ReloadEvent += ReloadConfig;
-        GetDataHandlers.PlayerUpdate += OnPlayerUpdate;
-        GetDataHandlers.PlayerHP += OnHP;
-        GetDataHandlers.PlayerMana += OnMana;
+        GetDataHandlers.PlayerUpdate += this.OnPlayerUpdate;
+        GetDataHandlers.PlayerHP += this.OnHP;
+        GetDataHandlers.PlayerMana += this.OnMana;
     }
 
 
@@ -48,11 +48,11 @@ public class LifemaxExtra : TerrariaPlugin
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == HP || x.CommandDelegate == Mana);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.HP || x.CommandDelegate == this.Mana);
             GeneralHooks.ReloadEvent -= ReloadConfig;
-            GetDataHandlers.PlayerUpdate -= OnPlayerUpdate;
-            GetDataHandlers.PlayerHP -= OnHP;
-            GetDataHandlers.PlayerMana -= OnMana;
+            GetDataHandlers.PlayerUpdate -= this.OnPlayerUpdate;
+            GetDataHandlers.PlayerHP -= this.OnHP;
+            GetDataHandlers.PlayerMana -= this.OnMana;
         }
         base.Dispose(disposing);
     }
@@ -64,9 +64,9 @@ public class LifemaxExtra : TerrariaPlugin
             var plys = TSPlayer.FindByNameOrID(args.Parameters[1]);
             if (plys.Count > 0)
             {
-                if (int.TryParse(args.Parameters[2], out int hp) && hp >= 0)
+                if (int.TryParse(args.Parameters[2], out var hp) && hp >= 0)
                 {
-                    SetPlayerMana(plys[0], hp, true);
+                    this.SetPlayerMana(plys[0], hp, true);
                     args.Player.SendSuccessMessage($"成功为玩家`{plys[0].Name}`提高{hp}魔法上限!");
                 }
                 else
@@ -84,9 +84,9 @@ public class LifemaxExtra : TerrariaPlugin
             var plys = TSPlayer.FindByNameOrID(args.Parameters[1]);
             if (plys.Count > 0)
             {
-                if (int.TryParse(args.Parameters[2], out int hp) && hp >= 0)
+                if (int.TryParse(args.Parameters[2], out var hp) && hp >= 0)
                 {
-                    SetPlayerMana(plys[0], hp);
+                    this.SetPlayerMana(plys[0], hp);
                     args.Player.SendSuccessMessage($"成功设置玩家`{plys[0].Name}`魔法上限!");
                 }
                 else
@@ -101,9 +101,9 @@ public class LifemaxExtra : TerrariaPlugin
         }
         else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "enh")
         {
-            if (int.TryParse(args.Parameters[1], out int hp) && hp >= 0)
+            if (int.TryParse(args.Parameters[1], out var hp) && hp >= 0)
             {
-                SetPlayerMana(args.Player, hp, true);
+                this.SetPlayerMana(args.Player, hp, true);
                 args.Player.SendSuccessMessage($"成功为玩家`{args.Player.Name}`提高{hp}魔法上限!");
             }
             else
@@ -113,9 +113,9 @@ public class LifemaxExtra : TerrariaPlugin
         }
         else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "set")
         {
-            if (int.TryParse(args.Parameters[1], out int hp) && hp >= 0)
+            if (int.TryParse(args.Parameters[1], out var hp) && hp >= 0)
             {
-                SetPlayerMana(args.Player, hp);
+                this.SetPlayerMana(args.Player, hp);
                 args.Player.SendSuccessMessage($"成功设置玩家`{args.Player.Name}`魔法上限{hp}!");
             }
             else
@@ -226,9 +226,9 @@ public class LifemaxExtra : TerrariaPlugin
             var plys = TSPlayer.FindByNameOrID(args.Parameters[1]);
             if (plys.Count > 0)
             {
-                if (int.TryParse(args.Parameters[2], out int hp) && hp >= 0)
+                if (int.TryParse(args.Parameters[2], out var hp) && hp >= 0)
                 {
-                    SetPlayerHP(plys[0], hp, true);
+                    this.SetPlayerHP(plys[0], hp, true);
                     args.Player.SendSuccessMessage($"成功为玩家`{plys[0].Name}`提高{hp}血量上限!");
                 }
                 else
@@ -246,9 +246,9 @@ public class LifemaxExtra : TerrariaPlugin
             var plys = TSPlayer.FindByNameOrID(args.Parameters[1]);
             if (plys.Count > 0)
             {
-                if (int.TryParse(args.Parameters[2], out int hp) && hp >= 0)
+                if (int.TryParse(args.Parameters[2], out var hp) && hp >= 0)
                 {
-                    SetPlayerHP(plys[0], hp);
+                    this.SetPlayerHP(plys[0], hp);
                     args.Player.SendSuccessMessage($"成功设置玩家`{plys[0].Name}`血量上限!");
                 }
                 else
@@ -263,9 +263,9 @@ public class LifemaxExtra : TerrariaPlugin
         }
         else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "enh")
         {
-            if (int.TryParse(args.Parameters[1], out int hp) && hp >= 0)
+            if (int.TryParse(args.Parameters[1], out var hp) && hp >= 0)
             {
-                SetPlayerHP(args.Player, hp, true);
+                this.SetPlayerHP(args.Player, hp, true);
                 args.Player.SendSuccessMessage($"成功为玩家`{args.Player.Name}`提高{hp}血量上限!");
             }
             else
@@ -275,9 +275,9 @@ public class LifemaxExtra : TerrariaPlugin
         }
         else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "set")
         {
-            if (int.TryParse(args.Parameters[1], out int hp) && hp >= 0)
+            if (int.TryParse(args.Parameters[1], out var hp) && hp >= 0)
             {
-                SetPlayerHP(args.Player, hp);
+                this.SetPlayerHP(args.Player, hp);
                 args.Player.SendSuccessMessage($"成功设置玩家`{args.Player.Name}`血量上限{hp}!");
             }
             else
@@ -300,7 +300,7 @@ public class LifemaxExtra : TerrariaPlugin
     {
         Player.SelectedItem.stack--; // 减少玩家背包中选定物品的堆叠数量
         Player.SendData(PacketTypes.PlayerSlot, "", Player.Index, Player.TPlayer.selectedItem);
-        SetPlayerHP(Player, hp, true);
+        this.SetPlayerHP(Player, hp, true);
         Player.TPlayer.ApplyItemTime(Player.SelectedItem);
     }
 
@@ -308,7 +308,7 @@ public class LifemaxExtra : TerrariaPlugin
     {
         Player.SelectedItem.stack--; // 减少玩家背包中选定物品的堆叠数量
         Player.SendData(PacketTypes.PlayerSlot, "", Player.Index, Player.TPlayer.selectedItem);
-        SetPlayerMana(Player, mp, true);
+        this.SetPlayerMana(Player, mp, true);
         Player.TPlayer.ApplyItemTime(Player.SelectedItem);
     }
 
@@ -325,17 +325,17 @@ public class LifemaxExtra : TerrariaPlugin
                         case ItemID.LifeCrystal:
                             if (args.Player.TPlayer.statLifeMax >= 400)
                             {
-                                UseItemRaiseHP(args.Player, raiseHp.Raise);
+                                this.UseItemRaiseHP(args.Player, raiseHp.Raise);
                             }
                             break;
                         case ItemID.LifeFruit:
                             if (args.Player.TPlayer.statLifeMax >= 500)
                             {
-                                UseItemRaiseHP(args.Player, raiseHp.Raise);
+                                this.UseItemRaiseHP(args.Player, raiseHp.Raise);
                             }
                             break;
                         default:
-                            UseItemRaiseHP(args.Player, raiseHp.Raise);
+                            this.UseItemRaiseHP(args.Player, raiseHp.Raise);
                             break;
                     }
                 }
@@ -350,11 +350,11 @@ public class LifemaxExtra : TerrariaPlugin
                         case ItemID.ManaCrystal:
                             if (args.Player.TPlayer.statManaMax >= 200)
                             {
-                                UseItemRaiseMP(args.Player, raiseMp.Raise);
+                                this.UseItemRaiseMP(args.Player, raiseMp.Raise);
                             }
                             break;
                         default:
-                            UseItemRaiseMP(args.Player, raiseMp.Raise);
+                            this.UseItemRaiseMP(args.Player, raiseMp.Raise);
                             break;
                     }
                 }

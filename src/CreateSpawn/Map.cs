@@ -30,7 +30,7 @@ internal class Map
         reader.ReadString();
         var count = reader.ReadInt32();
         var building = new List<Building>();
-        for (int i = 0; i < count; i++)
+        for (var i = 0; i < count; i++)
         {
             building.Add(new()
             {

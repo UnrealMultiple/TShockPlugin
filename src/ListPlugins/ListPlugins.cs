@@ -18,13 +18,13 @@ public class ListPlugins : TerrariaPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("ListPlugin", ListPluginsCommand, "插件列表", "pllist"));
+        Commands.ChatCommands.Add(new Command("ListPlugin", this.ListPluginsCommand, "插件列表", "pllist"));
     }
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == ListPluginsCommand);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.ListPluginsCommand);
         }
         base.Dispose(disposing);
     }
@@ -35,10 +35,10 @@ public class ListPlugins : TerrariaPlugin
         {
             var pluginInfos = ServerApi.Plugins.Select(p => new
             {
-                Name = p.Plugin.Name,
-                Author = p.Plugin.Author,
-                Version = p.Plugin.Version,
-                Description = p.Plugin.Description
+                p.Plugin.Name,
+                p.Plugin.Author,
+                p.Plugin.Version,
+                p.Plugin.Description
             });
 
             if (!pluginInfos.Any())
@@ -47,11 +47,11 @@ public class ListPlugins : TerrariaPlugin
                 return;
             }
 
-            StringBuilder msgBuilder = new StringBuilder();
+            var msgBuilder = new StringBuilder();
             msgBuilder.AppendLine("插件列表：");
             foreach (var plugin in pluginInfos)
             {
-                msgBuilder.AppendLine(FormatPluginInfo(plugin));
+                msgBuilder.AppendLine(this.FormatPluginInfo(plugin));
             }
 
             args.Player.SendInfoMessage(msgBuilder.ToString());
@@ -65,8 +65,8 @@ public class ListPlugins : TerrariaPlugin
 
     private string FormatPluginInfo(dynamic plugin)
     {
-        Random random = new Random();
-        string colorTag = $"[c/{random.Next(0, 16777216):X}:";
+        var random = new Random();
+        var colorTag = $"[c/{random.Next(0, 16777216):X}:";
         string formattedName = colorTag + plugin.Name.Replace("]", "]" + colorTag + "]") + "]";
         return $"{formattedName} - 版本: {plugin.Version} - 作者: {plugin.Author}" +
                (plugin.Description != null ? $", 描述: {plugin.Description}" : "");

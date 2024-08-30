@@ -25,9 +25,7 @@ public class Config
     /// <returns></returns>
     public static Config Read(string Path)//给定流文件进行读取
     {
-        if (!File.Exists(Path))
-            return new();
-        return JsonConvert.DeserializeObject<Config>(File.ReadAllText(Path)) ?? new();
+        return !File.Exists(Path) ? new() : JsonConvert.DeserializeObject<Config>(File.ReadAllText(Path)) ?? new();
     }
 
     /// <summary>

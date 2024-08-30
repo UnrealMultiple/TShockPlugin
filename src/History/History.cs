@@ -36,16 +36,16 @@ public class History : TerrariaPlugin
     public override void Initialize()
     {
         Connect();
-        InitBreaks();
-        TShockAPI.Commands.ChatCommands.Add(new Command("history.get", HistoryCmd, "history", "历史"));
-        TShockAPI.Commands.ChatCommands.Add(new Command("history.prune", Prune, "prunehist", "删除历史"));
-        TShockAPI.Commands.ChatCommands.Add(new Command("history.reenact", Reenact, "reenact", "复现"));
-        TShockAPI.Commands.ChatCommands.Add(new Command("history.rollback", Rollback, "rollback", "回溯"));
-        TShockAPI.Commands.ChatCommands.Add(new Command("history.rollback", Undo, "rundo1", "撤销"));
-        TShockAPI.Commands.ChatCommands.Add(new Command("history.admin", ResetCmd, "hreset", "重置历史"));
-        ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
-        ServerApi.Hooks.NetGetData.Register(this, OnGetData, int.MinValue);
-        ServerApi.Hooks.WorldSave.Register(this, OnSaveWorld);
+        this.InitBreaks();
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.get", this.HistoryCmd, "history", "历史"));
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.prune", this.Prune, "prunehist", "删除历史"));
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.reenact", this.Reenact, "reenact", "复现"));
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.rollback", this.Rollback, "rollback", "回溯"));
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.rollback", this.Undo, "rundo1", "撤销"));
+        TShockAPI.Commands.ChatCommands.Add(new Command("history.admin", this.ResetCmd, "hreset", "重置历史"));
+        ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);
+        ServerApi.Hooks.NetGetData.Register(this, this.OnGetData, int.MinValue);
+        ServerApi.Hooks.WorldSave.Register(this, this.OnSaveWorld);
     }
 
     protected override void Dispose(bool disposing)
@@ -53,16 +53,16 @@ public class History : TerrariaPlugin
         if (disposing)
         {
             TShockAPI.Commands.ChatCommands.RemoveAll(
-    x => x.CommandDelegate == HistoryCmd ||
-    x.CommandDelegate == Prune ||
-    x.CommandDelegate == Reenact ||
-    x.CommandDelegate == Rollback ||
-    x.CommandDelegate == Undo ||
-    x.CommandDelegate == ResetCmd
+    x => x.CommandDelegate == this.HistoryCmd ||
+    x.CommandDelegate == this.Prune ||
+    x.CommandDelegate == this.Reenact ||
+    x.CommandDelegate == this.Rollback ||
+    x.CommandDelegate == this.Undo ||
+    x.CommandDelegate == this.ResetCmd
     );
-            ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
-            ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
-            ServerApi.Hooks.WorldSave.Deregister(this, OnSaveWorld);
+            ServerApi.Hooks.GameInitialize.Deregister(this, this.OnInitialize);
+            ServerApi.Hooks.NetGetData.Deregister(this, this.OnGetData);
+            ServerApi.Hooks.WorldSave.Deregister(this, this.OnSaveWorld);
 
             this.Cancel.Cancel();
         }
@@ -79,7 +79,7 @@ public class History : TerrariaPlugin
             this.CommandQueue.Add(new SaveCommand(Actions.ToArray()));
             Actions.Clear();
         }
-        Actions.Add(new Action { account = account, action = action, data = data, time = (int)(DateTime.UtcNow - Date).TotalSeconds, x = X, y = Y, paint = paint, style = style, text = text, alt = alternate, direction = direction, random = (sbyte)random });
+        Actions.Add(new Action { account = account, action = action, data = data, time = (int) (DateTime.UtcNow - Date).TotalSeconds, x = X, y = Y, paint = paint, style = style, text = text, alt = alternate, direction = direction, random = (sbyte) random });
     }
     // 334 weapon rack done? weapon styles?
     static void GetPlaceData(ushort type, ref int which, ref int div)
@@ -618,16 +618,16 @@ public class History : TerrariaPlugin
         switch (which)
         {
             case 0:
-                style = (byte)(tile.frameX / div);
+                style = (byte) (tile.frameX / div);
                 break;
             case 1:
-                style = (byte)(tile.frameY / div);
+                style = (byte) (tile.frameY / div);
                 break;
             case 2:
-                style = (byte)((tile.frameY / div * 36) + (tile.frameX / div));
+                style = (byte) ((tile.frameY / div * 36) + (tile.frameX / div));
                 break;
             case 3: //Just statues for now
-                style = (byte)((tile.frameX / 36) + (tile.frameY / 54 * 55));
+                style = (byte) ((tile.frameX / 36) + (tile.frameY / 54 * 55));
                 break;
             default:
                 break;
@@ -654,8 +654,8 @@ public class History : TerrariaPlugin
             dest = new Vector2(0, 0);
         }
 
-        x += (int)(dest.X - relative.X);
-        y += (int)(dest.Y - relative.Y);
+        x += (int) (dest.X - relative.X);
+        y += (int) (dest.Y - relative.Y);
 
     }
     public static void PaintFurniture(ushort type, int x, int y, byte paint)
@@ -749,7 +749,7 @@ public class History : TerrariaPlugin
                             var bodySlot = Main.tile[X, Y - 1].frameX / 100;
                             var legSlot = Main.tile[X, Y].frameX / 100;
                             // The vars 'style' and 'random' cause mannequins to place improperly and can't be used.
-                            this.Queue(account, X, Y, 0, tileType, paint: (short)headSlot, alternate: bodySlot + (legSlot << 10), direction: (Main.tile[X, Y].frameX % 100) > 0);
+                            this.Queue(account, X, Y, 0, tileType, paint: (short) headSlot, alternate: bodySlot + (legSlot << 10), direction: (Main.tile[X, Y].frameX % 100) > 0);
                             return;
                         case 138: //boulder, 2x2
                             for (var i = -1; i <= 0; i++)
@@ -840,7 +840,7 @@ public class History : TerrariaPlugin
                                     this.LogEdit(0, Main.tile[X + 1, topY], X + 1, topY, 0, account, done);
                                 }
 
-                                this.Queue(account, X, topY, 0, 239, pStyle, (short)(Main.tile[X, topY].color() + ((Main.tile[X, topY].halfBrick() ? 1 : 0) << 7)));
+                                this.Queue(account, X, topY, 0, 239, pStyle, (short) (Main.tile[X, topY].color() + ((Main.tile[X, topY].halfBrick() ? 1 : 0) << 7)));
                                 topY++;
                             }
                             return;
@@ -851,7 +851,7 @@ public class History : TerrariaPlugin
                                 {
                                     if (Main.tile[X + i, Y + j].active() && Main.tile[X + i, Y + j].type == 314)
                                     {
-                                        this.Queue(account, X + i, Y + j, 0, 314, (byte)(Main.tile[X + i, Y + j].frameX + 1), (short)(Main.tile[X + i, Y + j].color() + ((Main.tile[X + i, Y + j].frameY + 1) << 8)));
+                                        this.Queue(account, X + i, Y + j, 0, 314, (byte) (Main.tile[X + i, Y + j].frameX + 1), (short) (Main.tile[X + i, Y + j].color() + ((Main.tile[X + i, Y + j].frameY + 1) << 8)));
                                     }
                                 }
                             }
@@ -859,7 +859,7 @@ public class History : TerrariaPlugin
                             return;
                         case 334: //Weapon Racks
                                   //X and Y are already normalized to the center, Center is item prefix, X-1 is NetID
-                            var prefix = (short)(Main.tile[X, Y].frameX % 5000);
+                            var prefix = (short) (Main.tile[X, Y].frameX % 5000);
                             var netID = (Main.tile[X - 1, Y].frameX % 5000) - 100;
                             if (netID < 0)
                             {
@@ -939,7 +939,7 @@ public class History : TerrariaPlugin
                             }
                             break;
                     }
-                    this.Queue(account, X, Y, 0, tileType, pStyle, (short)(Main.tile[X, Y].color() + (Main.tile[X, Y].halfBrick() ? 128 : 0) + (Main.tile[X, Y].slope() << 8)), null!, alt, random, direction);
+                    this.Queue(account, X, Y, 0, tileType, pStyle, (short) (Main.tile[X, Y].color() + (Main.tile[X, Y].halfBrick() ? 128 : 0) + (Main.tile[X, Y].slope() << 8)), null!, alt, random, direction);
                 }
                 break;
             case 1://add tile
@@ -1019,7 +1019,7 @@ public class History : TerrariaPlugin
                 break;
             case 14:
                 //save previous state of slope
-                this.Queue(account, X, Y, 14, type, 0, (short)(((Main.tile[X, Y].halfBrick() ? 1 : 0) << 7) + (Main.tile[X, Y].slope() << 8)));
+                this.Queue(account, X, Y, 14, type, 0, (short) (((Main.tile[X, Y].halfBrick() ? 1 : 0) << 7) + (Main.tile[X, Y].slope() << 8)));
                 break;
             case 15:
                 this.Queue(account, X, Y, 15);
@@ -1043,14 +1043,14 @@ public class History : TerrariaPlugin
                 if (Main.tile[X, Y].active())
                 {
                     var combinedInt = Main.tile[X, Y].type | (type << 16);
-                    this.Queue(account, X, Y, 21, (ushort)combinedInt, style);
+                    this.Queue(account, X, Y, 21, (ushort) combinedInt, style);
                 }
                 break;
             case 22: //ReplaceWall
                 if (Main.tile[X, Y].wall > 0)
                 {
                     var combinedInt = Main.tile[X, Y].wall | (type << 16);
-                    this.Queue(account, X, Y, 22, (ushort)combinedInt);
+                    this.Queue(account, X, Y, 22, (ushort) combinedInt);
                 }
                 break;
             case 23: //SlopePoundTile
@@ -1076,238 +1076,238 @@ public class History : TerrariaPlugin
                     //TSPlayer.All.SendInfoMessage("Updating tile entity!");
                     break;
                 case PacketTypes.Tile:
+                {
+                    var etype = e.Msg.readBuffer[e.Index];
+                    int X = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 1);
+                    int Y = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 3);
+                    var type = BitConverter.ToUInt16(e.Msg.readBuffer, e.Index + 5);
+                    var style = e.Msg.readBuffer[e.Index + 7];
+                    if (type == 1 && (etype == 0 || etype == 4))
                     {
-                        var etype = e.Msg.readBuffer[e.Index];
-                        int X = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 1);
-                        int Y = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 3);
-                        var type = BitConverter.ToUInt16(e.Msg.readBuffer, e.Index + 5);
-                        var style = e.Msg.readBuffer[e.Index + 7];
-                        if (type == 1 && (etype == 0 || etype == 4))
+                        if (Main.tile[X, Y].type == 21 || Main.tile[X, Y].type == 88)
                         {
-                            if (Main.tile[X, Y].type == 21 || Main.tile[X, Y].type == 88)
-                            {
-                                return; //Chests and dressers handled separately
-                            }
-                            //else if (Main.tile[X, Y].type == 2699)
-                            //TSPlayer.All.SendInfoMessage("Weapon rack place");
+                            return; //Chests and dressers handled separately
                         }
+                        //else if (Main.tile[X, Y].type == 2699)
+                        //TSPlayer.All.SendInfoMessage("Weapon rack place");
+                    }
+                    //DEBUG
+                    //TSPlayer.All.SendInfoMessage($"Type: {type}");
+
+                    var ply = TShock.Players[e.Msg.whoAmI];
+                    var logName = ply.Account == null ? "unregistered" : ply.Account.Name;
+                    //Checking history now requires build permission in the area due to load order, if needed this could be fixed by having an alternate function check this packet on a higher order.
+                    if (this.AwaitingHistory[e.Msg.whoAmI])
+                    {
+                        this.AwaitingHistory[e.Msg.whoAmI] = false;
+                        ply.SendTileSquareCentered(X, Y, 5);
                         //DEBUG
-                        //TSPlayer.All.SendInfoMessage($"Type: {type}");
-
-                        var ply = TShock.Players[e.Msg.whoAmI];
-                        var logName = ply.Account == null ? "unregistered" : ply.Account.Name;
-                        //Checking history now requires build permission in the area due to load order, if needed this could be fixed by having an alternate function check this packet on a higher order.
-                        if (this.AwaitingHistory[e.Msg.whoAmI])
+                        //TSPlayer.All.SendInfoMessage($"X: {X}, Y: {Y}, FrameX: {Main.tile[X, Y].frameX}, FrameY: {Main.tile[X, Y].frameY}");
+                        //END DEBUG
+                        if (type == 0 && (etype == 0 || etype == 4))
                         {
-                            this.AwaitingHistory[e.Msg.whoAmI] = false;
-                            ply.SendTileSquareCentered(X, Y, 5);
-                            //DEBUG
-                            //TSPlayer.All.SendInfoMessage($"X: {X}, Y: {Y}, FrameX: {Main.tile[X, Y].frameX}, FrameY: {Main.tile[X, Y].frameY}");
-                            //END DEBUG
-                            if (type == 0 && (etype == 0 || etype == 4))
-                            {
-                                AdjustFurniture(ref X, ref Y, ref style);
-                            }
-
-                            this.CommandQueue.Add(new HistoryCommand(X, Y, ply));
-                            e.Handled = true;
+                            AdjustFurniture(ref X, ref Y, ref style);
                         }
-                        else
-                        {
-                            //effect only
-                            if (type == 1 && (etype == 0 || etype == 2 || etype == 4))
-                            {
-                                return;
-                            }
 
-                            this.LogEdit(etype, Main.tile[X, Y], X, Y, type, logName, new List<Vector2>(), style);
-                        }
+                        this.CommandQueue.Add(new HistoryCommand(X, Y, ply));
+                        e.Handled = true;
                     }
-                    break;
-                case PacketTypes.PlaceObject:
+                    else
                     {
-                        int X = BitConverter.ToInt16(e.Msg.readBuffer, e.Index);
-                        int Y = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 2);
-                        var type = BitConverter.ToUInt16(e.Msg.readBuffer, e.Index + 4);
-                        int style = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 6);
-                        //DEBUG:
-                        //TSPlayer.All.SendInfoMessage($"Style: {style}");
-                        int alt = e.Msg.readBuffer[e.Index + 8];
-                        //TSPlayer.All.SendInfoMessage($"Alternate: {alt}");
-                        int rand = (sbyte)e.Msg.readBuffer[e.Index + 9];
-                        //TSPlayer.All.SendInfoMessage($"Random: {rand}");
-                        var dir = BitConverter.ToBoolean(e.Msg.readBuffer, e.Index + 10);
+                        //effect only
+                        if (type == 1 && (etype == 0 || etype == 2 || etype == 4))
+                        {
+                            return;
+                        }
 
-                        var ply = TShock.Players[e.Msg.whoAmI];
-                        var logName = ply.Account == null ? "unregistered" : ply.Account.Name;
-                        //Checking history now requires build permission in the area due to load order, if needed this could be fixed by having an alternate function check this packet on a higher order.
-                        if (this.AwaitingHistory[e.Msg.whoAmI])
-                        {
-                            this.AwaitingHistory[e.Msg.whoAmI] = false;
-                            ply.SendTileSquareCentered(X, Y, 5);
-                            this.CommandQueue.Add(new HistoryCommand(X, Y, ply));
-                            e.Handled = true;
-                        }
-                        else
-                        {
-                            this.LogEdit(1, Main.tile[X, Y], X, Y, type, logName, new List<Vector2>(), (byte)style, alt, rand, dir);
-                        }
+                        this.LogEdit(etype, Main.tile[X, Y], X, Y, type, logName, new List<Vector2>(), style);
                     }
-                    break;
+                }
+                break;
+                case PacketTypes.PlaceObject:
+                {
+                    int X = BitConverter.ToInt16(e.Msg.readBuffer, e.Index);
+                    int Y = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 2);
+                    var type = BitConverter.ToUInt16(e.Msg.readBuffer, e.Index + 4);
+                    int style = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 6);
+                    //DEBUG:
+                    //TSPlayer.All.SendInfoMessage($"Style: {style}");
+                    int alt = e.Msg.readBuffer[e.Index + 8];
+                    //TSPlayer.All.SendInfoMessage($"Alternate: {alt}");
+                    int rand = (sbyte) e.Msg.readBuffer[e.Index + 9];
+                    //TSPlayer.All.SendInfoMessage($"Random: {rand}");
+                    var dir = BitConverter.ToBoolean(e.Msg.readBuffer, e.Index + 10);
+
+                    var ply = TShock.Players[e.Msg.whoAmI];
+                    var logName = ply.Account == null ? "unregistered" : ply.Account.Name;
+                    //Checking history now requires build permission in the area due to load order, if needed this could be fixed by having an alternate function check this packet on a higher order.
+                    if (this.AwaitingHistory[e.Msg.whoAmI])
+                    {
+                        this.AwaitingHistory[e.Msg.whoAmI] = false;
+                        ply.SendTileSquareCentered(X, Y, 5);
+                        this.CommandQueue.Add(new HistoryCommand(X, Y, ply));
+                        e.Handled = true;
+                    }
+                    else
+                    {
+                        this.LogEdit(1, Main.tile[X, Y], X, Y, type, logName, new List<Vector2>(), (byte) style, alt, rand, dir);
+                    }
+                }
+                break;
                 //chest delete
                 case PacketTypes.PlaceChest:
+                {
+                    var flag = e.Msg.readBuffer[e.Index];
+                    int X = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 1);
+                    int Y = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 3);
+                    int style = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 5);
+                    var style2 = (byte) style;
+                    var ply = TShock.Players[e.Msg.whoAmI];
+                    var logName = ply.Account == null ? "unregistered" : ply.Account.Name;
+                    //PlaceChest
+                    if (flag == 0)
                     {
-                        var flag = e.Msg.readBuffer[e.Index];
-                        int X = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 1);
-                        int Y = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 3);
-                        int style = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 5);
-                        var style2 = (byte)style;
-                        var ply = TShock.Players[e.Msg.whoAmI];
-                        var logName = ply.Account == null ? "unregistered" : ply.Account.Name;
-                        //PlaceChest
-                        if (flag == 0)
+                        if (this.AwaitingHistory[e.Msg.whoAmI])
                         {
-                            if (this.AwaitingHistory[e.Msg.whoAmI])
-                            {
-                                this.AwaitingHistory[e.Msg.whoAmI] = false;
-                                ply.SendTileSquareCentered(X, Y, 5);
-                                this.CommandQueue.Add(new HistoryCommand(X, Y, ply));
-                                e.Handled = true;
-                            }
-                            else
-                            {
-                                this.LogEdit(1, Main.tile[X, Y], X, Y, 21, logName, new List<Vector2>(), style2);
-                            }
-                            return;
+                            this.AwaitingHistory[e.Msg.whoAmI] = false;
+                            ply.SendTileSquareCentered(X, Y, 5);
+                            this.CommandQueue.Add(new HistoryCommand(X, Y, ply));
+                            e.Handled = true;
                         }
-                        //KillChest
-                        if (flag == 1 && Main.tile[X, Y].type == 21)
+                        else
                         {
-                            if (this.AwaitingHistory[e.Msg.whoAmI])
-                            {
-                                this.AwaitingHistory[e.Msg.whoAmI] = false;
-                                ply.SendTileSquareCentered(X, Y, 5);
-                                AdjustFurniture(ref X, ref Y, ref style2);
-                                this.CommandQueue.Add(new HistoryCommand(X, Y, ply));
-                                e.Handled = true;
-                                return;
-                            }
-                            AdjustFurniture(ref X, ref Y, ref style2);
-                            this.Queue(logName, X, Y, 0, Main.tile[X, Y].type, style2, Main.tile[X, Y].color());
-                            return;
+                            this.LogEdit(1, Main.tile[X, Y], X, Y, 21, logName, new List<Vector2>(), style2);
                         }
-                        //PlaceDresser
-                        if (flag == 2)
-                        {
-                            if (this.AwaitingHistory[e.Msg.whoAmI])
-                            {
-                                this.AwaitingHistory[e.Msg.whoAmI] = false;
-                                ply.SendTileSquareCentered(X, Y, 5);
-                                this.CommandQueue.Add(new HistoryCommand(X, Y, ply));
-                                e.Handled = true;
-                            }
-                            else
-                            {
-                                this.LogEdit(1, Main.tile[X, Y], X, Y, 88, logName, new List<Vector2>(), style2);
-                            }
-                            return;
-                        }
-                        //KillDresser
-                        if (flag == 3 && Main.tile[X, Y].type == 88)
-                        {
-                            if (this.AwaitingHistory[e.Msg.whoAmI])
-                            {
-                                this.AwaitingHistory[e.Msg.whoAmI] = false;
-                                ply.SendTileSquareCentered(X, Y, 5);
-                                AdjustFurniture(ref X, ref Y, ref style2);
-                                this.CommandQueue.Add(new HistoryCommand(X, Y, ply));
-                                e.Handled = true;
-                                return;
-                            }
-                            AdjustFurniture(ref X, ref Y, ref style2);
-                            this.Queue(logName, X, Y, 0, Main.tile[X, Y].type, style2, Main.tile[X, Y].color());
-                            return;
-                        }
+                        return;
                     }
-                    break;
+                    //KillChest
+                    if (flag == 1 && Main.tile[X, Y].type == 21)
+                    {
+                        if (this.AwaitingHistory[e.Msg.whoAmI])
+                        {
+                            this.AwaitingHistory[e.Msg.whoAmI] = false;
+                            ply.SendTileSquareCentered(X, Y, 5);
+                            AdjustFurniture(ref X, ref Y, ref style2);
+                            this.CommandQueue.Add(new HistoryCommand(X, Y, ply));
+                            e.Handled = true;
+                            return;
+                        }
+                        AdjustFurniture(ref X, ref Y, ref style2);
+                        this.Queue(logName, X, Y, 0, Main.tile[X, Y].type, style2, Main.tile[X, Y].color());
+                        return;
+                    }
+                    //PlaceDresser
+                    if (flag == 2)
+                    {
+                        if (this.AwaitingHistory[e.Msg.whoAmI])
+                        {
+                            this.AwaitingHistory[e.Msg.whoAmI] = false;
+                            ply.SendTileSquareCentered(X, Y, 5);
+                            this.CommandQueue.Add(new HistoryCommand(X, Y, ply));
+                            e.Handled = true;
+                        }
+                        else
+                        {
+                            this.LogEdit(1, Main.tile[X, Y], X, Y, 88, logName, new List<Vector2>(), style2);
+                        }
+                        return;
+                    }
+                    //KillDresser
+                    if (flag == 3 && Main.tile[X, Y].type == 88)
+                    {
+                        if (this.AwaitingHistory[e.Msg.whoAmI])
+                        {
+                            this.AwaitingHistory[e.Msg.whoAmI] = false;
+                            ply.SendTileSquareCentered(X, Y, 5);
+                            AdjustFurniture(ref X, ref Y, ref style2);
+                            this.CommandQueue.Add(new HistoryCommand(X, Y, ply));
+                            e.Handled = true;
+                            return;
+                        }
+                        AdjustFurniture(ref X, ref Y, ref style2);
+                        this.Queue(logName, X, Y, 0, Main.tile[X, Y].type, style2, Main.tile[X, Y].color());
+                        return;
+                    }
+                }
+                break;
                 case PacketTypes.PaintTile:
-                    {
-                        int X = BitConverter.ToInt16(e.Msg.readBuffer, e.Index);
-                        int Y = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 2);
-                        var color = e.Msg.readBuffer[e.Index + 4];
+                {
+                    int X = BitConverter.ToInt16(e.Msg.readBuffer, e.Index);
+                    int Y = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 2);
+                    var color = e.Msg.readBuffer[e.Index + 4];
 
-                        var logName = TShock.Players[e.Msg.whoAmI].Account == null ? "unregistered" : TShock.Players[e.Msg.whoAmI].Account.Name;
-                        this.Queue(logName, X, Y, 25, color, 0, Main.tile[X, Y].color());
-                    }
-                    break;
+                    var logName = TShock.Players[e.Msg.whoAmI].Account == null ? "unregistered" : TShock.Players[e.Msg.whoAmI].Account.Name;
+                    this.Queue(logName, X, Y, 25, color, 0, Main.tile[X, Y].color());
+                }
+                break;
                 case PacketTypes.PaintWall:
-                    {
-                        int X = BitConverter.ToInt16(e.Msg.readBuffer, e.Index);
-                        int Y = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 2);
-                        var color = e.Msg.readBuffer[e.Index + 4];
+                {
+                    int X = BitConverter.ToInt16(e.Msg.readBuffer, e.Index);
+                    int Y = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 2);
+                    var color = e.Msg.readBuffer[e.Index + 4];
 
-                        var logName = TShock.Players[e.Msg.whoAmI].Account == null ? "unregistered" : TShock.Players[e.Msg.whoAmI].Account.Name;
-                        this.Queue(logName, X, Y, 26, color, 0, Main.tile[X, Y].wallColor());
-                    }
-                    break;
+                    var logName = TShock.Players[e.Msg.whoAmI].Account == null ? "unregistered" : TShock.Players[e.Msg.whoAmI].Account.Name;
+                    this.Queue(logName, X, Y, 26, color, 0, Main.tile[X, Y].wallColor());
+                }
+                break;
                 case PacketTypes.SignNew:
-                    {
-                        var signI = BitConverter.ToUInt16(e.Msg.readBuffer, e.Index);
-                        int X = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 2);
-                        int Y = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 4);
-                        byte s = 0;
-                        AdjustFurniture(ref X, ref Y, ref s); //Adjust coords so history picks it up, readSign() adjusts back to origin anyway
-                        var logName = TShock.Players[e.Msg.whoAmI].Account == null ? "unregistered" : TShock.Players[e.Msg.whoAmI].Account.Name;
-                        this.Queue(logName, X, Y, 27, data: signI, text: Main.sign[signI].text);
-                    }
-                    break;
+                {
+                    var signI = BitConverter.ToUInt16(e.Msg.readBuffer, e.Index);
+                    int X = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 2);
+                    int Y = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 4);
+                    byte s = 0;
+                    AdjustFurniture(ref X, ref Y, ref s); //Adjust coords so history picks it up, readSign() adjusts back to origin anyway
+                    var logName = TShock.Players[e.Msg.whoAmI].Account == null ? "unregistered" : TShock.Players[e.Msg.whoAmI].Account.Name;
+                    this.Queue(logName, X, Y, 27, data: signI, text: Main.sign[signI].text);
+                }
+                break;
                 case PacketTypes.MassWireOperation:
+                {
+                    int X1 = BitConverter.ToInt16(e.Msg.readBuffer, e.Index);
+                    int Y1 = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 2);
+                    int X2 = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 4);
+                    int Y2 = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 6);
+                    var toolMode = e.Msg.readBuffer[e.Index + 8];
+                    //Modes Red=1, Green=2, Blue=4, Yellow=8, Actuator=16, Cutter=32
+
+                    var direction = Main.player[e.Msg.whoAmI].direction == 1;
+                    var ply = TShock.Players[e.Msg.whoAmI];
+                    var logName = ply.Account == null ? "unregistered" : ply.Account.Name;
+                    int minX = X1, maxX = X2, minY = Y1, maxY = Y2;
+                    var drawX = direction ? minX : maxX;
+                    var drawY = direction ? maxY : minY;
+                    if (X2 < X1)
                     {
-                        int X1 = BitConverter.ToInt16(e.Msg.readBuffer, e.Index);
-                        int Y1 = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 2);
-                        int X2 = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 4);
-                        int Y2 = BitConverter.ToInt16(e.Msg.readBuffer, e.Index + 6);
-                        var toolMode = e.Msg.readBuffer[e.Index + 8];
-                        //Modes Red=1, Green=2, Blue=4, Yellow=8, Actuator=16, Cutter=32
-
-                        var direction = Main.player[e.Msg.whoAmI].direction == 1;
-                        var ply = TShock.Players[e.Msg.whoAmI];
-                        var logName = ply.Account == null ? "unregistered" : ply.Account.Name;
-                        int minX = X1, maxX = X2, minY = Y1, maxY = Y2;
-                        var drawX = direction ? minX : maxX;
-                        var drawY = direction ? maxY : minY;
-                        if (X2 < X1)
-                        {
-                            minX = X2;
-                            maxX = X1;
-                        }
-                        if (Y2 < Y1)
-                        {
-                            minY = Y2;
-                            maxY = Y1;
-                        }
-                        int wires = 0, acts = 0;
-                        //We count our own wires since the client may only be able to place a few or even none.
-                        if ((toolMode & 32) == 0)
-                        {
-                            this.CountPlayerWires(Main.player[e.Msg.whoAmI], ref wires, ref acts);
-                        }
-
-                        for (var starty = minY; starty <= maxY; starty++)
-                        {
-                            this.LogAdvancedWire(drawX, starty, toolMode, logName, ref wires, ref acts);
-                        }
-                        for (var startx = minX; startx <= maxX; startx++)
-                        {
-                            if (startx == drawX)
-                            {
-                                continue;
-                            }
-
-                            this.LogAdvancedWire(startx, drawY, toolMode, logName, ref wires, ref acts);
-                        }
+                        minX = X2;
+                        maxX = X1;
                     }
-                    break;
+                    if (Y2 < Y1)
+                    {
+                        minY = Y2;
+                        maxY = Y1;
+                    }
+                    int wires = 0, acts = 0;
+                    //We count our own wires since the client may only be able to place a few or even none.
+                    if ((toolMode & 32) == 0)
+                    {
+                        this.CountPlayerWires(Main.player[e.Msg.whoAmI], ref wires, ref acts);
+                    }
+
+                    for (var starty = minY; starty <= maxY; starty++)
+                    {
+                        this.LogAdvancedWire(drawX, starty, toolMode, logName, ref wires, ref acts);
+                    }
+                    for (var startx = minX; startx <= maxX; startx++)
+                    {
+                        if (startx == drawX)
+                        {
+                            continue;
+                        }
+
+                        this.LogAdvancedWire(startx, drawY, toolMode, logName, ref wires, ref acts);
+                    }
+                }
+                break;
             }
         }
     }
@@ -1342,7 +1342,7 @@ public class History : TerrariaPlugin
                 wires--;
             }
             //5 6
-            this.Queue(account, x, y, (byte)(delete ? 6 : 5));
+            this.Queue(account, x, y, (byte) (delete ? 6 : 5));
         }
         if ((mode & 2) == 2 && Main.tile[x, y].wire3() == delete) // GREEN
         {
@@ -1356,7 +1356,7 @@ public class History : TerrariaPlugin
                 wires--;
             }
             //12 13
-            this.Queue(account, x, y, (byte)(delete ? 13 : 12));
+            this.Queue(account, x, y, (byte) (delete ? 13 : 12));
         }
         if ((mode & 4) == 4 && Main.tile[x, y].wire2() == delete) // BLUE
         {
@@ -1370,7 +1370,7 @@ public class History : TerrariaPlugin
                 wires--;
             }
             //10 11
-            this.Queue(account, x, y, (byte)(delete ? 11 : 10));
+            this.Queue(account, x, y, (byte) (delete ? 11 : 10));
         }
         if ((mode & 8) == 8 && Main.tile[x, y].wire4() == delete) // YELLOW
         {
@@ -1384,7 +1384,7 @@ public class History : TerrariaPlugin
                 wires--;
             }
             //16 and 17
-            this.Queue(account, x, y, (byte)(delete ? 17 : 16));
+            this.Queue(account, x, y, (byte) (delete ? 17 : 16));
         }
         if ((mode & 16) == 16 && Main.tile[x, y].actuator() == delete) // ACTUATOR
         {
@@ -1398,7 +1398,7 @@ public class History : TerrariaPlugin
                 acts--;
             }
             //8 9
-            this.Queue(account, x, y, (byte)(delete ? 9 : 8));
+            this.Queue(account, x, y, (byte) (delete ? 9 : 8));
         }
     }
     void OnInitialize(EventArgs e)

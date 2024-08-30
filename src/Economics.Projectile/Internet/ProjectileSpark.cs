@@ -22,4 +22,3 @@ public class ProjectileSpark
     [JsonProperty("备注")]
     public string Name { get; set; } = string.Empty;
 }
-

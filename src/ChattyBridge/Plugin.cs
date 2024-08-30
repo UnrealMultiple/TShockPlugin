@@ -30,15 +30,15 @@ public class Plugin : TerrariaPlugin
 
     public Plugin(Main game) : base(game)
     {
-        Client = new HttpClient();
+        this.Client = new HttpClient();
     }
     public override void Initialize()
     {
         LoadConfig();
-        TShock.RestApi.Register(RestAPI, Receive);
-        ServerApi.Hooks.ServerChat.Register(this, OnChat);
-        ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreet);
-        ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
+        TShock.RestApi.Register(RestAPI, this.Receive);
+        ServerApi.Hooks.ServerChat.Register(this, this.OnChat);
+        ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreet);
+        ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
         GeneralHooks.ReloadEvent += LoadConfig;
     }
 
@@ -46,12 +46,12 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
-            ((List<RestCommand>)typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+            ((List<RestCommand>) typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
             .GetValue(TShock.RestApi)!)
             .RemoveAll(x => x.Name == "/chat");
-            ServerApi.Hooks.ServerChat.Deregister(this, OnChat);
-            ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreet);
-            ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
+            ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
+            ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreet);
+            ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
             GeneralHooks.ReloadEvent -= LoadConfig;
         }
 
@@ -93,24 +93,24 @@ public class Plugin : TerrariaPlugin
                     switch (type.ToString())
                     {
                         case "player_join":
-                            {
-                                var jobj = json.ToObject<PlayerJoinMessage>()!;
-                                TShock.Utils.Broadcast(string.Join(Config.MessageFormat.JoinFormat, jobj.ServerName, jobj.Name), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
-                                break;
-                            }
+                        {
+                            var jobj = json.ToObject<PlayerJoinMessage>()!;
+                            TShock.Utils.Broadcast(string.Join(Config.MessageFormat.JoinFormat, jobj.ServerName, jobj.Name), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
+                            break;
+                        }
 
                         case "player_leave":
-                            {
-                                var jobj = json.ToObject<PlayerLeaveMessage>()!;
-                                TShock.Utils.Broadcast(string.Join(Config.MessageFormat.LeaveFormat, jobj.ServerName, jobj.Name), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
-                                break;
-                            }
+                        {
+                            var jobj = json.ToObject<PlayerLeaveMessage>()!;
+                            TShock.Utils.Broadcast(string.Join(Config.MessageFormat.LeaveFormat, jobj.ServerName, jobj.Name), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
+                            break;
+                        }
                         case "player_chat":
-                            {
-                                var jobj = json.ToObject<PlayerChatMessage>()!;
-                                TShock.Utils.Broadcast(string.Join(Config.MessageFormat.ChatFormat, jobj.ServerName, jobj.Name, jobj.Text), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
-                                break;
-                            }
+                        {
+                            var jobj = json.ToObject<PlayerChatMessage>()!;
+                            TShock.Utils.Broadcast(string.Join(Config.MessageFormat.ChatFormat, jobj.ServerName, jobj.Name, jobj.Text), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
+                            break;
+                        }
                         default:
                             TShock.Log.ConsoleError($"接收到未知类型:{type}");
                             break;
@@ -136,7 +136,7 @@ public class Plugin : TerrariaPlugin
                 try
                 {
                     var url = $"http://{host}{RestAPI}";
-                    HttpGet(url, new Dictionary<string, string>()
+                    this.HttpGet(url, new Dictionary<string, string>()
                     {
                         { "msg", baseStr },
                         { "verify", Config.Verify }
@@ -155,39 +155,54 @@ public class Plugin : TerrariaPlugin
         var urlBuild = new UriBuilder(url);
         var param = HttpUtility.ParseQueryString(urlBuild.Query);
         foreach (var (key, value) in playload)
+        {
             param[key] = value;
+        }
+
         urlBuild.Query = param.ToString();
-        Client.Send(new HttpRequestMessage(HttpMethod.Get, url));
+        this.Client.Send(new HttpRequestMessage(HttpMethod.Get, url));
     }
 
     private void OnLeave(LeaveEventArgs args)
     {
         var player = TShock.Players[args.Who];
         if (player == null)
+        {
             return;
+        }
+
         var msg = new PlayerLeaveMessage(player).ToJson();
-        SendMessage(msg);
+        this.SendMessage(msg);
     }
 
     private void OnGreet(GreetPlayerEventArgs args)
     {
         var player = TShock.Players[args.Who];
         if (player == null)
+        {
             return;
+        }
+
         var msg = new PlayerJoinMessage(player).ToJson();
-        SendMessage(msg);
+        this.SendMessage(msg);
     }
 
     private void OnChat(ServerChatEventArgs args)
     {
         var player = TShock.Players[args.Who];
         if (player == null)
+        {
             return;
+        }
+
         if (!Config.ForwardCommamd &&
             (args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier)
             || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier)))
+        {
             return;
+        }
+
         var msg = new PlayerChatMessage(player, args.Text).ToJson();
-        SendMessage(msg);
+        this.SendMessage(msg);
     }
 }

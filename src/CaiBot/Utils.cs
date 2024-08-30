@@ -8,19 +8,19 @@ public static class Utils
     {
         try
         {
-            string queryString2 = $"SELECT buffid FROM Permabuff WHERE Name = '{name}'";
+            var queryString2 = $"SELECT buffid FROM Permabuff WHERE Name = '{name}'";
 
-            using IDbCommand command = connection.CreateCommand();
+            using var command = connection.CreateCommand();
             command.CommandText = queryString2;
 
             connection.Open();
 
-            using (IDataReader reader = command.ExecuteReader())
+            using (var reader = command.ExecuteReader())
             {
                 if (reader.Read())
                 {
-                    string activeBuffsString = reader.GetString(0);
-                    List<int> activeBuffsList = activeBuffsString.Split(',').Select(int.Parse).ToList();
+                    var activeBuffsString = reader.GetString(0);
+                    var activeBuffsList = activeBuffsString.Split(',').Select(int.Parse).ToList();
                     return activeBuffsList;
                 }
             }
@@ -31,19 +31,19 @@ public static class Utils
 
         try
         {
-            string queryString = $"SELECT ActiveBuffs FROM Permabuffs WHERE UserID = '{userId}'";
+            var queryString = $"SELECT ActiveBuffs FROM Permabuffs WHERE UserID = '{userId}'";
 
-            using IDbCommand command = connection.CreateCommand();
+            using var command = connection.CreateCommand();
             command.CommandText = queryString;
 
             connection.Open();
 
-            using (IDataReader reader = command.ExecuteReader())
+            using (var reader = command.ExecuteReader())
             {
                 if (reader.Read())
                 {
-                    string activeBuffsString = reader.GetString(0);
-                    List<int> activeBuffsList = activeBuffsString.Split(',').Select(int.Parse).ToList();
+                    var activeBuffsString = reader.GetString(0);
+                    var activeBuffsList = activeBuffsString.Split(',').Select(int.Parse).ToList();
                     return activeBuffsList;
                 }
             }

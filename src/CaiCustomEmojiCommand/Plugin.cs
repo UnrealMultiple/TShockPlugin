@@ -22,29 +22,32 @@ public class CaiCustomEmojiCommand : TerrariaPlugin
 
     public override void Initialize()
     {
-        _config = Config.Read()!;
-        GetDataHandlers.Emoji.Register(OnGetEmoji);
-        GeneralHooks.ReloadEvent += GeneralHooksOnReloadEvent;
+        this._config = Config.Read()!;
+        GetDataHandlers.Emoji.Register(this.OnGetEmoji);
+        GeneralHooks.ReloadEvent += this.GeneralHooksOnReloadEvent;
     }
 
     private void GeneralHooksOnReloadEvent(ReloadEventArgs e)
     {
-        _config = Config.Read()!;
+        this._config = Config.Read()!;
         e.Player.SendSuccessMessage("[CustomEmojiCommand]配置文件已重载!");
     }
 
     private void OnGetEmoji(object? sender, GetDataHandlers.EmojiEventArgs e)
     {
-        IEnumerable<EmojiCommand> emojiCommands = _config.EmojiCommands.Where(i => i.EmojiId == e.EmojiID);
-        foreach (EmojiCommand i in emojiCommands) i.ExecuteCommand(e.Player);
+        var emojiCommands = this._config.EmojiCommands.Where(i => i.EmojiId == e.EmojiID);
+        foreach (var i in emojiCommands)
+        {
+            i.ExecuteCommand(e.Player);
+        }
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            GetDataHandlers.Emoji.UnRegister(OnGetEmoji);
-            GeneralHooks.ReloadEvent -= GeneralHooksOnReloadEvent;
+            GetDataHandlers.Emoji.UnRegister(this.OnGetEmoji);
+            GeneralHooks.ReloadEvent -= this.GeneralHooksOnReloadEvent;
         }
 
         base.Dispose(disposing);

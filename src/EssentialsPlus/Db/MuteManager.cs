@@ -24,22 +24,22 @@ public class MuteManager
 
         public Mute(string name, string uuid, int id, string ip, string time, string exp)
         {
-            Name = name;
-            UUID = uuid;
-            ID = id;
-            IP = ip;
-            Date = DateTime.Parse(time);
-            Expiration = DateTime.Parse(exp);
+            this.Name = name;
+            this.UUID = uuid;
+            this.ID = id;
+            this.IP = ip;
+            this.Date = DateTime.Parse(time);
+            this.Expiration = DateTime.Parse(exp);
         }
 
         public Mute(string name, string uuid, int id, string ip, DateTime time, DateTime exp)
         {
-            Name = name;
-            UUID = uuid;
-            ID = id;
-            IP = ip;
-            Date = time;
-            Expiration = exp;
+            this.Name = name;
+            this.UUID = uuid;
+            this.ID = id;
+            this.IP = ip;
+            this.Date = time;
+            this.Expiration = exp;
         }
     }
     private readonly IDbConnection db;
@@ -62,10 +62,10 @@ public class MuteManager
             new SqlColumn("Date", MySqlDbType.Text),
             new SqlColumn("Expiration", MySqlDbType.Text)));
 
-        using QueryResult result = db.QueryReader("SELECT * FROM Mutes");
+        using var result = db.QueryReader("SELECT * FROM Mutes");
         while (result.Read())
         {
-            Mutes.Add(new Mute(
+            this.Mutes.Add(new Mute(
                 result.Get<string>("Name"),
                 result.Get<string>("UUID"),
                 result.Get<int>("ID"),
@@ -79,7 +79,7 @@ public class MuteManager
     {
         try
         {
-            Mutes.Add(new(
+            this.Mutes.Add(new(
                 player.Name,
                 player.UUID,
                 player.Account.ID,
@@ -87,7 +87,7 @@ public class MuteManager
                 DateTime.Now,
                 expiration
                 ));
-            return db.Query("INSERT INTO Mutes VALUES (@0, @1, @2, @3, @4, @5)",
+            return this.db.Query("INSERT INTO Mutes VALUES (@0, @1, @2, @3, @4, @5)",
                 null,
                 player.Name,
                 player.UUID,
@@ -106,7 +106,7 @@ public class MuteManager
         try
         {
             var ip = JsonConvert.DeserializeObject<List<string>>(user.KnownIps)?[0];
-            Mutes.Add(new(
+            this.Mutes.Add(new(
                 user.Name,
                 user.UUID,
                 user.ID,
@@ -115,7 +115,7 @@ public class MuteManager
                 expiration
                 ));
 
-            return db.Query("INSERT INTO Mutes VALUES (@0, @1, @2, @3, @4, @5)",
+            return this.db.Query("INSERT INTO Mutes VALUES (@0, @1, @2, @3, @4, @5)",
                 null,
                 user.Name,
                 user.UUID,
@@ -132,14 +132,14 @@ public class MuteManager
     }
     public bool DeleteMute(TSPlayer player)
     {
-        string query = db.GetSqlType() == SqlType.Mysql ?
+        var query = this.db.GetSqlType() == SqlType.Mysql ?
             "DELETE FROM Mutes WHERE UUID = @0 OR IP = @1 ORDER BY ID DESC LIMIT 1" :
             "DELETE FROM Mutes WHERE ID IN (SELECT ID FROM Mutes WHERE UUID = @0 OR IP = @1 ORDER BY ID DESC LIMIT 1)";
 
         try
         {
-            Mutes.RemoveAll(r => r.UUID == player.UUID);
-            return db.Query(query, player.UUID, player.IP) > 0;
+            this.Mutes.RemoveAll(r => r.UUID == player.UUID);
+            return this.db.Query(query, player.UUID, player.IP) > 0;
         }
         catch (Exception ex)
         {
@@ -149,14 +149,14 @@ public class MuteManager
     }
     public bool DeleteMute(UserAccount user)
     {
-        string query = db.GetSqlType() == SqlType.Mysql ?
+        var query = this.db.GetSqlType() == SqlType.Mysql ?
             "DELETE FROM Mutes WHERE UUID = @0 OR IP = @1 ORDER BY ID DESC LIMIT 1" :
             "DELETE FROM Mutes WHERE ID IN (SELECT ID FROM Mutes WHERE UUID = @0 OR IP = @1 ORDER BY ID DESC LIMIT 1)";
 
         try
         {
-            Mutes.RemoveAll(r => r.UUID == user.UUID);
-            return db.Query(query, user.UUID, JsonConvert.DeserializeObject<List<string>>(user.KnownIps)?[0]) > 0;
+            this.Mutes.RemoveAll(r => r.UUID == user.UUID);
+            return this.db.Query(query, user.UUID, JsonConvert.DeserializeObject<List<string>>(user.KnownIps)?[0]) > 0;
         }
         catch (Exception ex)
         {
@@ -166,6 +166,6 @@ public class MuteManager
     }
     public DateTime GetExpiration(TSPlayer player)
     {
-        return Mutes.Find(f => f.UUID == player.UUID)?.Expiration ?? DateTime.MinValue;
+        return this.Mutes.Find(f => f.UUID == player.UUID)?.Expiration ?? DateTime.MinValue;
     }
 }

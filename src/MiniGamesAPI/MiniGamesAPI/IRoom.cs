@@ -1,28 +1,26 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace MiniGamesAPI
+namespace MiniGamesAPI;
+
+public interface IRoom
 {
-    public interface IRoom
-    {
-        int GetPlayerCount();
+    int GetPlayerCount();
 
-        void Initialize();
+    void Initialize();
 
-        void Dispose();
+    void Dispose();
 
-        void Conclude();
+    void Conclude();
 
-        void Start();
+    void Start();
 
-        void Stop();
+    void Stop();
 
-        void Restore();
+    void Restore();
 
-        void ShowRoomMemberInfo();
+    void ShowRoomMemberInfo();
 
-        void ShowVictory();
+    void ShowVictory();
 
-        void Broadcast(string msg, Color color);
-    }
-
+    void Broadcast(string msg, Color color);
 }

@@ -4,155 +4,157 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 
-namespace BP
+namespace BP;
+
+[ApiVersion(2, 1)]
+public class BackPlugin : TerrariaPlugin
 {
-    [ApiVersion(2, 1)]
-    public class BackPlugin : TerrariaPlugin
+    private readonly Dictionary<int, DateTime> cooldowns = new Dictionary<int, DateTime>();
+
+    public override string Author => "Megghy,熙恩改";
+    public override string Description => "允许玩家传送回死亡地点";
+    public override string Name => "BackPlugin";
+    public override Version Version => new Version(1, 0, 0, 4);
+    public static Configuration Config;
+    public BackPlugin(Main game) : base(game)
     {
-        private readonly Dictionary<int, DateTime> cooldowns = new Dictionary<int, DateTime>();
+        LoadConfig();
+    }
+    private static void LoadConfig()
+    {
+        Config = Configuration.Read(Configuration.FilePath);
+        Config.Write(Configuration.FilePath);
 
-        public override string Author => "Megghy,熙恩改";
-        public override string Description => "允许玩家传送回死亡地点";
-        public override string Name => "BackPlugin";
-        public override Version Version => new Version(1, 0, 0, 4);
-        public static Configuration Config;
-        public BackPlugin(Main game) : base(game)
-        {
-            LoadConfig();
-        }
-        private static void LoadConfig()
-        {
-            Config = Configuration.Read(Configuration.FilePath);
-            Config.Write(Configuration.FilePath);
+    }
+    private static void ReloadConfig(ReloadEventArgs args)
+    {
+        LoadConfig();
+        args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(BackPlugin).Name);
+    }
+    public override void Initialize()
+    {
+        GeneralHooks.ReloadEvent += ReloadConfig;
+        ServerApi.Hooks.ServerLeave.Register(this, this.ResetPos);
+        ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnPlayerJoin);
+        GetDataHandlers.KillMe += this.OnDead;
 
-        }
-        private static void ReloadConfig(ReloadEventArgs args)
+        Commands.ChatCommands.Add(new Command("back", this.Back, "back")
         {
-            LoadConfig();
-            args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(BackPlugin).Name);
-        }
-        public override void Initialize()
-        {
-            GeneralHooks.ReloadEvent += ReloadConfig;
-            ServerApi.Hooks.ServerLeave.Register(this, ResetPos);
-            ServerApi.Hooks.NetGreetPlayer.Register(this, OnPlayerJoin);
-            GetDataHandlers.KillMe += OnDead;
+            HelpText = "返回最后一次死亡的位置",
+            AllowServer = false
+        });
+    }
 
-            Commands.ChatCommands.Add(new Command("back", Back, "back")
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            GeneralHooks.ReloadEvent -= ReloadConfig;
+            ServerApi.Hooks.ServerLeave.Deregister(this, this.ResetPos);
+            ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnPlayerJoin);
+            GetDataHandlers.KillMe -= this.OnDead;
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.Back);
+        }
+
+        base.Dispose(disposing);
+    }
+
+    private void ResetPos(LeaveEventArgs args)
+    {
+        var list = TSPlayer.FindByNameOrID(Main.player[args.Who].name);
+        if (list.Count > 0)
+        {
+            list[0].RemoveData("DeadPoint");
+        }
+    }
+
+    private void Back(CommandArgs args)
+    {
+        var data = args.Player.GetData<Point>("DeadPoint");
+
+        if (args.Player.TPlayer.dead)
+        {
+            args.Player.SendErrorMessage("你尚未复活，无法传送回死亡地点.");
+        }
+        else if (data != Point.Zero)
+        {
+            if (!this.CanUseCommand(args.Player))
             {
-                HelpText = "返回最后一次死亡的位置",
-                AllowServer = false
-            });
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                GeneralHooks.ReloadEvent -= ReloadConfig;
-                ServerApi.Hooks.ServerLeave.Deregister(this, ResetPos);
-                ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnPlayerJoin);
-                GetDataHandlers.KillMe -= OnDead;
-                Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Back);
+                var remainingCooldown = this.GetRemainingCooldown(args.Player);
+                args.Player.SendErrorMessage($"你还需要等待 {remainingCooldown.TotalSeconds:F} 秒才能再次使用此命令.");
+                return;
             }
 
-            base.Dispose(disposing);
-        }
-
-        private void ResetPos(LeaveEventArgs args)
-        {
-            var list = TSPlayer.FindByNameOrID(Main.player[args.Who].name);
-            if (list.Count > 0)
-                list[0].RemoveData("DeadPoint");
-        }
-
-        private void Back(CommandArgs args)
-        {
-            var data = args.Player.GetData<Point>("DeadPoint");
-
-            if (args.Player.TPlayer.dead)
+            try
             {
-                args.Player.SendErrorMessage("你尚未复活，无法传送回死亡地点.");
+                args.Player.Teleport(data.X, data.Y, 1);
+                args.Player.SendSuccessMessage($"已传送至死亡地点 [c/8DF9D8:<{data.X / 16} - {data.Y / 16}>].");
+
+                this.SetCooldown(args.Player);
             }
-            else if (data != Point.Zero)
+            catch (Exception ex)
             {
-                if (!CanUseCommand(args.Player))
-                {
-                    var remainingCooldown = GetRemainingCooldown(args.Player);
-                    args.Player.SendErrorMessage($"你还需要等待 {remainingCooldown.TotalSeconds:F} 秒才能再次使用此命令.");
-                    return;
-                }
-
-                try
-                {
-                    args.Player.Teleport(data.X, data.Y, 1);
-                    args.Player.SendSuccessMessage($"已传送至死亡地点 [c/8DF9D8:<{data.X / 16} - {data.Y / 16}>].");
-
-                    SetCooldown(args.Player);
-                }
-                catch (Exception ex)
-                {
-                    TShock.Log.Error($"BackPlugin: 传送玩家 {args.Player.Name} 时发生错误: {ex}");
-                }
+                TShock.Log.Error($"BackPlugin: 传送玩家 {args.Player.Name} 时发生错误: {ex}");
             }
-            else
+        }
+        else
+        {
+            args.Player.SendErrorMessage("你还未死亡过");
+        }
+    }
+
+    private void OnDead(object o, GetDataHandlers.KillMeEventArgs args)
+    {
+        args.Player.SetData("DeadPoint", new Point((int) args.Player.X, (int) args.Player.Y));
+    }
+
+    private void OnPlayerJoin(GreetPlayerEventArgs args)
+    {
+        var list = TSPlayer.FindByNameOrID(Main.player[args.Who].name);
+        if (list.Count > 0)
+        {
+            list[0].SetData("DeadPoint", Point.Zero);
+        }
+    }
+
+    private bool CanUseCommand(TSPlayer player)
+    {
+        if (this.cooldowns.ContainsKey(player.Index))
+        {
+            var cooldownEnd = this.cooldowns[player.Index];
+            if (DateTime.Now < cooldownEnd)
             {
-                args.Player.SendErrorMessage("你还未死亡过");
+                return false;
             }
         }
 
-        private void OnDead(object o, GetDataHandlers.KillMeEventArgs args)
+        return true;
+    }
+
+    private TimeSpan GetRemainingCooldown(TSPlayer player)
+    {
+        if (this.cooldowns.ContainsKey(player.Index))
         {
-            args.Player.SetData("DeadPoint", new Point((int)args.Player.X, (int)args.Player.Y));
+            var cooldownEnd = this.cooldowns[player.Index];
+            var remainingTime = cooldownEnd - DateTime.Now;
+            return remainingTime > TimeSpan.Zero ? remainingTime : TimeSpan.Zero;
         }
 
-        private void OnPlayerJoin(GreetPlayerEventArgs args)
+        return TimeSpan.Zero;
+    }
+
+    private void SetCooldown(TSPlayer player)
+    {
+        var cooldownDuration = TimeSpan.FromSeconds(Config.BackCooldown);
+        var cooldownEnd = DateTime.Now.Add(cooldownDuration);
+
+        if (this.cooldowns.ContainsKey(player.Index))
         {
-            var list = TSPlayer.FindByNameOrID(Main.player[args.Who].name);
-            if (list.Count > 0)
-                list[0].SetData("DeadPoint", Point.Zero);
+            this.cooldowns[player.Index] = cooldownEnd;
         }
-
-        private bool CanUseCommand(TSPlayer player)
+        else
         {
-            if (cooldowns.ContainsKey(player.Index))
-            {
-                var cooldownEnd = cooldowns[player.Index];
-                if (DateTime.Now < cooldownEnd)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        private TimeSpan GetRemainingCooldown(TSPlayer player)
-        {
-            if (cooldowns.ContainsKey(player.Index))
-            {
-                var cooldownEnd = cooldowns[player.Index];
-                var remainingTime = cooldownEnd - DateTime.Now;
-                return remainingTime > TimeSpan.Zero ? remainingTime : TimeSpan.Zero;
-            }
-
-            return TimeSpan.Zero;
-        }
-
-        private void SetCooldown(TSPlayer player)
-        {
-            var cooldownDuration = TimeSpan.FromSeconds(Config.BackCooldown);
-            var cooldownEnd = DateTime.Now.Add(cooldownDuration);
-
-            if (cooldowns.ContainsKey(player.Index))
-            {
-                cooldowns[player.Index] = cooldownEnd;
-            }
-            else
-            {
-                cooldowns.Add(player.Index, cooldownEnd);
-            }
+            this.cooldowns.Add(player.Index, cooldownEnd);
         }
     }
 }
-

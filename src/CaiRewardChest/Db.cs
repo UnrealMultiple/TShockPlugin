@@ -26,13 +26,13 @@ public static class Db
 
     public static RewardChest? GetChestByPos(int x, int y)
     {
-        int chestId = Chest.FindChest(x, y);
+        var chestId = Chest.FindChest(x, y);
         return GetChestById(chestId);
     }
 
     public static RewardChest? GetChestById(int chestId)
     {
-        using QueryResult result = DbConnection.QueryReader("SELECT * FROM CaiRewardChest WHERE ChestID=@0;", chestId);
+        using var result = DbConnection.QueryReader("SELECT * FROM CaiRewardChest WHERE ChestID=@0;", chestId);
         if (result.Read())
         {
             RewardChest? chest = new()

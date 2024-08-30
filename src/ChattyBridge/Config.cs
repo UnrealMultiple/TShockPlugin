@@ -24,9 +24,7 @@ public class Config
 
     public static Config Read()
     {
-        if (File.Exists(PATH))
-            return JsonConvert.DeserializeObject<Config>(File.ReadAllText(PATH)) ?? new();
-        return new();
+        return File.Exists(PATH) ? JsonConvert.DeserializeObject<Config>(File.ReadAllText(PATH)) ?? new() : new();
     }
 
     public void Write()

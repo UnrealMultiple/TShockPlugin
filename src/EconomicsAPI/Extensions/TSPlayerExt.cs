@@ -75,7 +75,9 @@ public static class TSPlayerExt
     public static void HealLife(this TSPlayer Player, int life)
     {
         if (life > 0)
-            NetMessage.SendData((int)PacketTypes.PlayerHealOther, -1, -1, NetworkText.Empty, Player.Index, life);
+        {
+            NetMessage.SendData((int) PacketTypes.PlayerHealOther, -1, -1, NetworkText.Empty, Player.Index, life);
+        }
     }
 
     public static void HealMana(this TSPlayer player, int mana)
@@ -88,13 +90,17 @@ public static class TSPlayerExt
     public static void HealAllLife(this TSPlayer Player, int Range, int life)
     {
         if (life > 0)
+        {
             Player.GetPlayerInRange(Range).ForEach(x => x.HealLife(life));
+        }
     }
 
     public static void HealAllMana(this TSPlayer Player, int Range, int mana)
     {
         if (mana > 0)
+        {
             Player.GetPlayerInRange(Range).ForEach(x => x.HealMana(mana));
+        }
     }
 
     public static List<NPC> GetNpcInRange(this TSPlayer Player, int range)
@@ -110,7 +116,10 @@ public static class TSPlayerExt
     public static void ExecRangeCommands(this TSPlayer Player, int Range, IEnumerable<string> cmds)
     {
         if (!cmds.Any() || Range <= 0)
+        {
             return;
+        }
+
         Player.GetPlayerInRange(Range).ForEach(x => x.ExecCommand(cmds));
     }
 
@@ -169,7 +178,9 @@ public static class TSPlayerExt
         Player.GetNpcInRange(Range).ForEach(npc =>
         {
             if (!notNpc.Contains(npc.type))
+            {
                 npc.Teleport(Player.TPlayer.position + new Vector2(x * Player.TPlayer.direction, y));
+            }
         });
     }
 }

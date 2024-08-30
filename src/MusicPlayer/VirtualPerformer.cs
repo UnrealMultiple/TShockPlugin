@@ -12,16 +12,14 @@ internal class VirtualPerformer
     internal static VirtualPerformer TheAxePerformer = new(252, ItemID.TheAxe);
     public VirtualPerformer(byte index, short itemType)
     {
-        Index = index;
-        ItemType = itemType;
+        this.Index = index;
+        this.ItemType = itemType;
     }
     public static VirtualPerformer GetPerformer(string? name = null)
     {
-        if (string.IsNullOrEmpty(name))
-        {
-            return HarpPerformer;
-        }
-        return name.ToLowerInvariant() switch
+        return string.IsNullOrEmpty(name)
+            ? HarpPerformer
+            : name.ToLowerInvariant() switch
         {
             "bell" => BellPerformer,
             "theaxe" => TheAxePerformer,
@@ -30,19 +28,19 @@ internal class VirtualPerformer
     }
     public void Create(int remoteClient)
     {
-        NetMessageSender.PlayerActive(remoteClient, Index, true);
-        NetMessageSender.SyncEquipment(remoteClient, Index, 0, 1, 0, ItemType);
-        NetMessageSender.PlayerBuff(remoteClient, Index, BuffID.Invisibility, BuffID.WitchBroom);
+        NetMessageSender.PlayerActive(remoteClient, this.Index, true);
+        NetMessageSender.SyncEquipment(remoteClient, this.Index, 0, 1, 0, this.ItemType);
+        NetMessageSender.PlayerBuff(remoteClient, this.Index, BuffID.Invisibility, BuffID.WitchBroom);
     }
     public void Destroy(int remoteClient)
     {
-        NetMessageSender.PlayerActive(remoteClient, Index, false);
-        NetMessageSender.SyncEquipment(remoteClient, Index, 0, 0, 0, 0);
-        NetMessageSender.PlayerBuff(remoteClient, Index);
+        NetMessageSender.PlayerActive(remoteClient, this.Index, false);
+        NetMessageSender.SyncEquipment(remoteClient, this.Index, 0, 0, 0, 0);
+        NetMessageSender.PlayerBuff(remoteClient, this.Index);
     }
     public void PlayNote(int remoteClient, float note)
     {
-        NetMessageSender.PlayerControls(remoteClient, Index, Main.player[remoteClient].position);
-        NetMessageSender.InstrumentSound(remoteClient, Index, note);
+        NetMessageSender.PlayerControls(remoteClient, this.Index, Main.player[remoteClient].position);
+        NetMessageSender.InstrumentSound(remoteClient, this.Index, note);
     }
 }

@@ -26,10 +26,10 @@ public class PlayerMessage
 
     public PlayerMessage(TSPlayer player)
     {
-        Name = player.Name;
-        Prefix = player.Group.Prefix;
-        Group = player.Group.Name;
-        RGB = new byte[3]
+        this.Name = player.Name;
+        this.Prefix = player.Group.Prefix;
+        this.Group = player.Group.Name;
+        this.RGB = new byte[3]
         {
             player.Group.R,
             player.Group.G,

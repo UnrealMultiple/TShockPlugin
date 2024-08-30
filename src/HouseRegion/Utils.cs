@@ -12,60 +12,80 @@ class Utils//专属工具包
 {
     public static int MaxCount(TSPlayer ply)//通过正则获取权限中自定义房屋数量最大值
     {
-        for (int i = 0; i < ply.Group.permissions.Count; i++)
+        for (var i = 0; i < ply.Group.permissions.Count; i++)
         {
             var perm = ply.Group.permissions[i];
-            Match Match = Regex.Match(perm, @"^house\.count\.(\d{1,9})$");
-            if (Match.Success) return Convert.ToInt32(Match.Groups[1].Value);
+            var Match = Regex.Match(perm, @"^house\.count\.(\d{1,9})$");
+            if (Match.Success)
+            {
+                return Convert.ToInt32(Match.Groups[1].Value);
+            }
         }
         return HousingPlugin.LConfig.HouseMaxNumber;
     }
     public static int MaxSize(TSPlayer ply)//取最大尺寸
     {
-        for (int i = 0; i < ply.Group.permissions.Count; i++)
+        for (var i = 0; i < ply.Group.permissions.Count; i++)
         {
             var perm = ply.Group.permissions[i];
-            Match Match = Regex.Match(perm, @"^house\.size\.(\d{1,9})$");//正则
-            if (Match.Success) return Convert.ToInt32(Match.Groups[1].Value);
+            var Match = Regex.Match(perm, @"^house\.size\.(\d{1,9})$");//正则
+            if (Match.Success)
+            {
+                return Convert.ToInt32(Match.Groups[1].Value);
+            }
         }
         return HousingPlugin.LConfig.HouseMaxSize;//没有权限指定则返回配置的 内容
     }
     public static House GetHouseByName(string name)//取得指定名字的房子
     {
-        if (string.IsNullOrEmpty(name)) return null;
-        for (int i = 0; i < HousingPlugin.Houses.Count; i++)
+        if (string.IsNullOrEmpty(name))
+        {
+            return null;
+        }
+
+        for (var i = 0; i < HousingPlugin.Houses.Count; i++)
         {
             var house = HousingPlugin.Houses[i];
-            if (house == null) continue;
-            if (house.Name == name) return house;
+            if (house == null)
+            {
+                continue;
+            }
+
+            if (house.Name == name)
+            {
+                return house;
+            }
         }
         return null;
     }
 
     public static bool OwnsHouse(UserAccount U, string housename)//判断是否为房屋的所有者
     {
-        if (U == null) return false;
-        return OwnsHouse(U.ID.ToString(), housename);
+        return U == null ? false : OwnsHouse(U.ID.ToString(), housename);
     }
 
     public static bool OwnsHouse(UserAccount U, House house)//判断是否为房屋的所有者
     {
-        if (U == null) return false;
-        return OwnsHouse(U.ID.ToString(), house);
+        return U == null ? false : OwnsHouse(U.ID.ToString(), house);
     }
 
     public static bool OwnsHouse(string UserID, string housename)//判断是否为房屋的所有者
     {
-        if (string.IsNullOrWhiteSpace(UserID) || UserID == "0" || string.IsNullOrEmpty(housename)) return false;
-        House H = GetHouseByName(housename);//各种排错之后看看这个房子在不在
-        if (H == null) return false;
-        return OwnsHouse(UserID, H);
+        if (string.IsNullOrWhiteSpace(UserID) || UserID == "0" || string.IsNullOrEmpty(housename))
+        {
+            return false;
+        }
+
+        var H = GetHouseByName(housename);//各种排错之后看看这个房子在不在
+        return H == null ? false : OwnsHouse(UserID, H);
     }
     public static bool OwnsHouse(string UserID, House house)//判断是否为房屋的所有者
     {
         if (!string.IsNullOrEmpty(UserID) && UserID != "0" && house != null)
         {
-            try { if (house.Owners.Contains(UserID)) return true; else return false; }
+            try {
+                return house.Owners.Contains(UserID);
+            }
             catch (Exception ex) { TShock.Log.Error("房屋插件错误超标错误:" + ex.ToString()); return false; }
         }
         return false;
@@ -81,25 +101,37 @@ class Utils//专属工具包
     }
     public static string InAreaHouseName(int x, int y)//指定位置的房子名字
     {
-        for (int i = 0; i < HousingPlugin.Houses.Count; i++)
+        for (var i = 0; i < HousingPlugin.Houses.Count; i++)
         {
             var house = HousingPlugin.Houses[i];
-            if (house == null) continue;
+            if (house == null)
+            {
+                continue;
+            }
+
             if (x >= house.HouseArea.Left && x < house.HouseArea.Right &&
                 y >= house.HouseArea.Top && y < house.HouseArea.Bottom)
+            {
                 return house.Name;
+            }
         }
         return null;
     }
     public static House InAreaHouse(int x, int y)//指定位置的房子
     {
-        for (int i = 0; i < HousingPlugin.Houses.Count; i++)
+        for (var i = 0; i < HousingPlugin.Houses.Count; i++)
         {
             var house = HousingPlugin.Houses[i];
-            if (house == null) continue;
+            if (house == null)
+            {
+                continue;
+            }
+
             if (x >= house.HouseArea.Left && x < house.HouseArea.Right &&
                 y >= house.HouseArea.Top && y < house.HouseArea.Bottom)
+            {
                 return house;
+            }
         }
         return null;
     }
@@ -109,8 +141,12 @@ public class HouseManager//房屋管理
     const string cols = "Name, TopX, TopY, BottomX, BottomY, Author, Owners, WorldID, Locked, Users";
     public static bool AddHouse(int tx, int ty, int width, int height, string housename, string author)
     {
-        int locked = 1;
-        if (Utils.GetHouseByName(housename) != null) return false;
+        var locked = 1;
+        if (Utils.GetHouseByName(housename) != null)
+        {
+            return false;
+        }
+
         try
         {
             TShock.DB.Query("INSERT INTO HousingDistrict (" + cols + ") VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9);", housename, tx, ty, width, height, author, "", Main.worldID.ToString(), locked, "");
@@ -122,18 +158,25 @@ public class HouseManager//房屋管理
     public static bool AddNewOwner(string houseName, string id)
     {
         var house = Utils.GetHouseByName(houseName);
-        if (house == null) return false;
-        StringBuilder sb = new StringBuilder();//某些人
-        int count = 0; house.Owners.Add(id);
-        for (int i = 0; i < house.Owners.Count; i++)
+        if (house == null)
+        {
+            return false;
+        }
+
+        var sb = new StringBuilder();//某些人
+        var count = 0; house.Owners.Add(id);
+        for (var i = 0; i < house.Owners.Count; i++)
         {
             var owner = house.Owners[i];
             count++; sb.Append(owner);
-            if (count != house.Owners.Count) sb.Append(",");//添加分隔符
+            if (count != house.Owners.Count)
+            {
+                sb.Append(",");//添加分隔符
+            }
         }
         try
         {
-            string query = "UPDATE HousingDistrict SET Owners=@0 WHERE Name=@1";
+            var query = "UPDATE HousingDistrict SET Owners=@0 WHERE Name=@1";
             TShock.DB.Query(query, sb.ToString(), houseName);
         }
         catch (Exception ex) { TShock.Log.Error("房屋插件错误数据库修改错误:" + ex.ToString()); return false; }
@@ -142,18 +185,25 @@ public class HouseManager//房屋管理
     public static bool AddNewUser(string houseName, string id)//添加使用者
     {
         var house = Utils.GetHouseByName(houseName);
-        if (house == null) return false;
-        StringBuilder sb = new StringBuilder();//某些人
-        int count = 0; house.Users.Add(id);
-        for (int i = 0; i < house.Users.Count; i++)
+        if (house == null)
+        {
+            return false;
+        }
+
+        var sb = new StringBuilder();//某些人
+        var count = 0; house.Users.Add(id);
+        for (var i = 0; i < house.Users.Count; i++)
         {
             var user = house.Users[i];
             count++; sb.Append(user);
-            if (count != house.Users.Count) sb.Append(",");//添加分隔符
+            if (count != house.Users.Count)
+            {
+                sb.Append(",");//添加分隔符
+            }
         }
         try
         {
-            string query = "UPDATE HousingDistrict SET Users=@0 WHERE Name=@1";
+            var query = "UPDATE HousingDistrict SET Users=@0 WHERE Name=@1";
             TShock.DB.Query(query, sb.ToString(), houseName);
         }
         catch (Exception ex) { TShock.Log.Error("房屋插件错误数据库修改错误:" + ex.ToString()); return false; }
@@ -162,18 +212,25 @@ public class HouseManager//房屋管理
     public static bool DeleteOwner(string houseName, string id)//删除所有者
     {
         var house = Utils.GetHouseByName(houseName);
-        if (house == null) return false;
-        StringBuilder sb = new StringBuilder();
-        int count = 0; house.Owners.Remove(id);
-        for (int i = 0; i < house.Owners.Count; i++)
+        if (house == null)
+        {
+            return false;
+        }
+
+        var sb = new StringBuilder();
+        var count = 0; house.Owners.Remove(id);
+        for (var i = 0; i < house.Owners.Count; i++)
         {
             var owner = house.Owners[i];
             count++; sb.Append(owner);
-            if (count != house.Owners.Count) sb.Append(",");
+            if (count != house.Owners.Count)
+            {
+                sb.Append(",");
+            }
         }
         try
         {
-            string query = "UPDATE HousingDistrict SET Owners=@0 WHERE Name=@1";
+            var query = "UPDATE HousingDistrict SET Owners=@0 WHERE Name=@1";
             TShock.DB.Query(query, sb.ToString(), houseName);
         }
         catch (Exception ex) { TShock.Log.Error("房屋插件错误数据库修改错误:" + ex.ToString()); return false; }
@@ -182,18 +239,25 @@ public class HouseManager//房屋管理
     public static bool DeleteUser(string houseName, string id)//删除使用者
     {
         var house = Utils.GetHouseByName(houseName);
-        if (house == null) return false;
-        StringBuilder sb = new StringBuilder();
-        int count = 0; house.Users.Remove(id);
-        for (int i = 0; i < house.Users.Count; i++)
+        if (house == null)
+        {
+            return false;
+        }
+
+        var sb = new StringBuilder();
+        var count = 0; house.Users.Remove(id);
+        for (var i = 0; i < house.Users.Count; i++)
         {
             var users = house.Users[i];
             count++; sb.Append(users);
-            if (count != house.Users.Count) sb.Append(",");
+            if (count != house.Users.Count)
+            {
+                sb.Append(",");
+            }
         }
         try
         {
-            string query = "UPDATE HousingDistrict SET Users=@0 WHERE Name=@1";
+            var query = "UPDATE HousingDistrict SET Users=@0 WHERE Name=@1";
             TShock.DB.Query(query, sb.ToString(), houseName);
         }
         catch (Exception ex) { TShock.Log.Error("房屋插件错误数据库修改错误:" + ex.ToString()); return false; }
@@ -207,7 +271,7 @@ public class HouseManager//房屋管理
             var houseName = house.Name;
             try
             {
-                string query = "UPDATE HousingDistrict SET TopX=@0, TopY=@1, BottomX=@2, BottomY=@3, WorldID=@4 WHERE Name=@5";
+                var query = "UPDATE HousingDistrict SET TopX=@0, TopY=@1, BottomX=@2, BottomY=@3, WorldID=@4 WHERE Name=@5";
                 TShock.DB.Query(query, tx, ty, width, height, Main.worldID.ToString(), house.Name);
             }
             catch (Exception ex) { TShock.Log.Error("房屋插件错误数据库修改错误:" + ex.ToString()); return false; }
@@ -218,10 +282,11 @@ public class HouseManager//房屋管理
     }
     public static bool ChangeLock(House house)
     {
-        if (house.Locked) house.Locked = false; else house.Locked = true;
+        house.Locked = !house.Locked;
+
         try
         {
-            string query = "UPDATE HousingDistrict SET Locked=@0 WHERE Name=@1";
+            var query = "UPDATE HousingDistrict SET Locked=@0 WHERE Name=@1";
             TShock.DB.Query(query, house.Locked ? 1 : 0, house.Name);
         }
         catch (Exception ex) { TShock.Log.Error("房屋插件错误修改锁房屋时出错:" + ex.ToString()); return false; }

@@ -14,4 +14,3 @@ public class ProgressMap : Attribute
         this.value = value;
     }
 }
-

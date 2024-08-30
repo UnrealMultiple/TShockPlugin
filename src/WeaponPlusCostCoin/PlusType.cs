@@ -1,11 +1,10 @@
-﻿namespace WeaponPlus
+﻿namespace WeaponPlus;
+
+public enum PlusType
 {
-    public enum PlusType
-    {
-        damage,
-        scale,
-        knockBack,
-        useSpeed,
-        shootSpeed
-    }
+    damage,
+    scale,
+    knockBack,
+    useSpeed,
+    shootSpeed
 }

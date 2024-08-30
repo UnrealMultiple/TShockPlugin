@@ -7,6 +7,6 @@ public class JavaScriptFunction : Attribute
 
     public JavaScriptFunction(string name)
     {
-        Name = name;
+        this.Name = name;
     }
 }

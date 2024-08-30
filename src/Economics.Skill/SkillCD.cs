@@ -24,7 +24,10 @@ internal class SkillCD
             }
         }
         if (Count % 100 == 0)
+        {
             AIStyle.Remove();
+        }
+
         Count++;
     }
 
@@ -42,11 +45,13 @@ internal class SkillCD
 
     public static void SendGodPacket()
     {
-        for (int i = 0; i < God.Count; i++)
+        for (var i = 0; i < God.Count; i++)
         {
             var (player, time) = God.ElementAt(i);
             if (!player.Active || time <= 0)
+            {
                 God.Remove(player, out var _);
+            }
             else
             {
                 player.SendData(PacketTypes.PlayerDodge, "", player.Index, 2f);

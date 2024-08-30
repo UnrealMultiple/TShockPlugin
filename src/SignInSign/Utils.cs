@@ -2,73 +2,70 @@ using Terraria;
 using Terraria.ID;
 using TShockAPI;
 
-namespace SignInSign
+namespace SignInSign;
+
+public static class Utils
 {
-    public static class Utils
+    public static int GetSignIdByPos(int tileX, int tileY)
     {
-        public static int GetSignIdByPos(int tileX, int tileY)
+        for (var i = 0; i < Main.sign.Length; i++)
         {
-            for (int i = 0; i < Main.sign.Length; i++)
+            if (Main.sign[i] != null && Main.sign[i].x == tileX && Main.sign[i].y == tileY)
             {
-                if (Main.sign[i] != null && Main.sign[i].x == tileX && Main.sign[i].y == tileY)
-                {
-                    return i;
-                }
+                return i;
             }
-            Console.WriteLine($"Î´ÔÚÎ»ÖÃ({tileX}, {tileY})ÕÒµ½¸æÊ¾ÅÆ¡£");
-            return -1;
+        }
+        Console.WriteLine($"Î´ï¿½ï¿½Î»ï¿½ï¿½({tileX}, {tileY})ï¿½Òµï¿½ï¿½ï¿½Ê¾ï¿½Æ¡ï¿½");
+        return -1;
+    }
+
+    public static int SpawnSign(int x, int y)
+    {
+        WorldGen.KillTile(x, y);
+        if (Main.tile[x, y].wall == WallID.None) //ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½Ç·ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç½
+        {
+            Main.tile[Main.spawnTileX, Main.spawnTileY - 3].wall = WallID.EchoWall;
+            Main.tile[Main.spawnTileX, Main.spawnTileY - 2].wall = WallID.EchoWall;
+            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].wall = WallID.EchoWall;
+            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].wall = WallID.EchoWall;
         }
 
-        public static int SpawnSign(int x, int y)
+        Main.tile[Main.spawnTileX, Main.spawnTileY - 3].active(false);
+        Main.tile[Main.spawnTileX, Main.spawnTileY - 2].active(false);
+        Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].active(false);
+        Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].active(false);
+
+        Main.tile[Main.spawnTileX, Main.spawnTileY - 3].UseBlockColors(new TileColorCache() { Invisible = true });
+        Main.tile[Main.spawnTileX, Main.spawnTileY - 2].UseBlockColors(new TileColorCache() { Invisible = true });
+        Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].UseBlockColors(new TileColorCache() { Invisible = true });
+        Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].UseBlockColors(new TileColorCache() { Invisible = true });
+
+        WorldGen.PlaceSign(Main.spawnTileX, Main.spawnTileY - 3, TileID.Signs, 4);
+        WorldGen.PlaceObject(x, y, TileID.Signs, false, 4, -1, -1);
+
+        //ï¿½ï¿½ï¿½Ò¿ÕµÄ±ï¿½Ö¾ID
+        var newSignID = 999;
+        for (var i = 0; i < 1000; i++)
         {
-            WorldGen.KillTile(x, y);
-            if (Main.tile[x, y].wall == WallID.None) //¼ì²éÇ½±ÚÊÇ·ñÎª¿Õ£¬¿ÕÔò·ÅÖÃÒþÐÎÇ½
+            if (Main.sign[i] == null || Main.sign[i].text == "")
             {
-                Main.tile[Main.spawnTileX, Main.spawnTileY - 3].wall = WallID.EchoWall;
-                Main.tile[Main.spawnTileX, Main.spawnTileY - 2].wall = WallID.EchoWall;
-                Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].wall = WallID.EchoWall;
-                Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].wall = WallID.EchoWall;
+                Main.sign[i] = new Sign();
+                newSignID = i;
+                break;
             }
-
-            Main.tile[Main.spawnTileX, Main.spawnTileY - 3].active(false);
-            Main.tile[Main.spawnTileX, Main.spawnTileY - 2].active(false);
-            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].active(false);
-            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].active(false);
-
-            Main.tile[Main.spawnTileX, Main.spawnTileY - 3].UseBlockColors(new TileColorCache() { Invisible = true });
-            Main.tile[Main.spawnTileX, Main.spawnTileY - 2].UseBlockColors(new TileColorCache() { Invisible = true });
-            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].UseBlockColors(new TileColorCache() { Invisible = true });
-            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].UseBlockColors(new TileColorCache() { Invisible = true });
-
-            WorldGen.PlaceSign(Main.spawnTileX, Main.spawnTileY - 3, TileID.Signs, 4);
-            WorldGen.PlaceObject(x, y, TileID.Signs, false, 4, -1, -1);
-
-            //²éÕÒ¿ÕµÄ±êÖ¾ID
-            int newSignID = 999;
-            for (int i = 0; i < 1000; i++)
-            {
-                if (Main.sign[i] == null || Main.sign[i].text == "")
-                {
-                    Main.sign[i] = new Sign();
-                    newSignID = i;
-                    break;
-                }
-            }
-            //·ÅÏÂ±êÖ¾ÐÅÏ¢
-            Main.sign[newSignID].text = SignInSign.Config.SignText;
-            Main.sign[newSignID].x = x;
-            Main.sign[newSignID].y = y;
-            TSPlayer.All.SendTileRect((short)x, (short)y);
-            return newSignID;
         }
+        //ï¿½ï¿½ï¿½Â±ï¿½Ö¾ï¿½ï¿½Ï¢
+        Main.sign[newSignID].text = SignInSign.Config.SignText;
+        Main.sign[newSignID].x = x;
+        Main.sign[newSignID].y = y;
+        TSPlayer.All.SendTileRect((short) x, (short) y);
+        return newSignID;
+    }
 
-        public static string ReadPassword(string text)
-        {
-            if (string.IsNullOrEmpty(text))
-            {
-                throw new ArgumentException("ÊäÈëµÄÃÜÂë²»ÄÜÎª¿Õ");
-            }
-            return text.Substring(SignInSign.Config.SignText.Length).Trim();
-        }
+    public static string ReadPassword(string text)
+    {
+        return string.IsNullOrEmpty(text)
+            ? throw new ArgumentException("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»ï¿½ï¿½Îªï¿½ï¿½")
+            : text[SignInSign.Config.SignText.Length..].Trim();
     }
 }

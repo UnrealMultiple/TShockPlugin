@@ -11,12 +11,12 @@ public class Config
     public void Write(string path = Path)
     {
         using FileStream fileStream = new(path, FileMode.Create, FileAccess.Write, FileShare.Write);
-        Write(fileStream);
+        this.Write(fileStream);
     }
 
     public void Write(Stream stream)
     {
-        string value = JsonConvert.SerializeObject(this, Formatting.Indented);
+        var value = JsonConvert.SerializeObject(this, Formatting.Indented);
         using (StreamWriter streamWriter = new(stream))
         {
             streamWriter.Write(value);
@@ -25,7 +25,7 @@ public class Config
 
     public static Config? Read(string path = Path)
     {
-        bool flag = !File.Exists(path);
+        var flag = !File.Exists(path);
         Config? result;
         if (flag)
         {

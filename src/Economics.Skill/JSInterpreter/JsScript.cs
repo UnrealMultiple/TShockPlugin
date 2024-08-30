@@ -12,6 +12,6 @@ public class JsScript
 
     public JsScript()
     {
-        PackageRequirements = new List<string>();
+        this.PackageRequirements = new List<string>();
     }
 }

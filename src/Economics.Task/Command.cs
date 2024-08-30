@@ -12,8 +12,10 @@ public class Command
     {
         void ShowTask(List<string> line)
         {
-            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, args.Player, out int pageNumber))
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, args.Player, out var pageNumber))
+            {
                 return;
+            }
 
             PaginationTools.SendPage(
                 args.Player,
@@ -35,7 +37,7 @@ public class Command
         }
         else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "info")
         {
-            if (int.TryParse(args.Parameters[1], out int index))
+            if (int.TryParse(args.Parameters[1], out var index))
             {
                 var task = Plugin.TaskConfig.GetTask(index);
                 if (task == null)

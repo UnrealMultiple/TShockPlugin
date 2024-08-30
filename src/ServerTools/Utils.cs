@@ -10,7 +10,7 @@ internal class Utils
     {
         if (!Player.TPlayer.armor[8].IsAir)
         {
-            Item item = Player.TPlayer.armor[8];
+            var item = Player.TPlayer.armor[8];
             Player.GiveItem(item.type, item.stack, item.prefix);
             Player.TPlayer.armor[8].TurnToAir();
             Player.SendData(PacketTypes.PlayerSlot, "", Player.Index, Terraria.ID.PlayerItemSlotID.Armor0 + 8);
@@ -22,9 +22,9 @@ internal class Utils
     #region 清理盔甲组逻辑
     public static void ClearItem(Item[] items, TSPlayer tSPlayer)
     {
-        for (int i = 0; i < 10; i++)
+        for (var i = 0; i < 10; i++)
         {
-            foreach (Item item in items)
+            foreach (var item in items)
             {
                 if (!tSPlayer.TPlayer.armor[i].IsAir && tSPlayer.TPlayer.armor[i].type == item.type)
                 {

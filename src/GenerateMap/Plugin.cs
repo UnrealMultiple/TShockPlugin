@@ -23,19 +23,19 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        TShock.RestApi.Register(new SecureRestCommand("/generatemqp", RestGenerateMap, "generate.map"));
-        Commands.ChatCommands.Add(new("generate.map", CGenerate, "生成地图"));
+        TShock.RestApi.Register(new SecureRestCommand("/generatemqp", this.RestGenerateMap, "generate.map"));
+        Commands.ChatCommands.Add(new("generate.map", this.CGenerate, "生成地图"));
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            ((List<RestCommand>)typeof(Rest)
+            ((List<RestCommand>) typeof(Rest)
                 .GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
                 .GetValue(TShock.RestApi)!)
                 .RemoveAll(x => x.Name == "/generatemqp");
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == CGenerate);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.CGenerate);
         }
         base.Dispose(disposing);
     }

@@ -7,6 +7,6 @@ internal class RestMap : Attribute
 
     public RestMap(string api)
     {
-        ApiPath = api;
+        this.ApiPath = api;
     }
 }

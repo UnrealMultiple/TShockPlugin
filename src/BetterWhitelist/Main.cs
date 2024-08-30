@@ -16,7 +16,7 @@ public class BetterWhitelist : TerrariaPlugin
 
     public BetterWhitelist(Main game) : base(game)
     {
-        Order = -100;
+        this.Order = -100;
     }
 
     public override string Name => "BetterWhitelist";
@@ -29,16 +29,23 @@ public class BetterWhitelist : TerrariaPlugin
 
     public override void Initialize()
     {
-        string path = Path.Combine(TShock.SavePath, "BetterWhitelist");
-        if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+        var path = Path.Combine(TShock.SavePath, "BetterWhitelist");
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
 
-        Load();
+        this.Load();
 
-        Commands.ChatCommands.Add(new Command("bwl.use", BetterWhitelistCommand, "bwl"));
+        Commands.ChatCommands.Add(new Command("bwl.use", this.BetterWhitelistCommand, "bwl"));
     }
     protected override void Dispose(bool disposing)
     {
-        if (disposing) Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == BetterWhitelistCommand);
+        if (disposing)
+        {
+            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.BetterWhitelistCommand);
+        }
+
         base.Dispose(disposing);
     }
 
@@ -50,7 +57,7 @@ public class BetterWhitelist : TerrariaPlugin
             return;
         }
 
-        string command = args.Parameters[0];
+        var command = args.Parameters[0];
 
         switch (command.ToLowerInvariant())
         {
@@ -66,7 +73,11 @@ public class BetterWhitelist : TerrariaPlugin
                 break;
 
             case "list":
-                foreach (string msg in _config.WhitePlayers) args.Player.SendInfoMessage(msg);
+                foreach (var msg in _config.WhitePlayers)
+                {
+                    args.Player.SendInfoMessage(msg);
+                }
+
                 break;
 
             case "false":
@@ -92,9 +103,12 @@ public class BetterWhitelist : TerrariaPlugin
                 {
                     _config.Disabled = false;
                     args.Player.SendSuccessMessage("启用成功!");
-                    foreach (TSPlayer tsPlayer in TShock.Players.Where(p =>
+                    foreach (var tsPlayer in TShock.Players.Where(p =>
                                  p != null && !_config.WhitePlayers.Contains(p.Name)))
+                    {
                         tsPlayer.Disconnect(_config.NotInWhiteList);
+                    }
+
                     File.WriteAllText(ConfigPath, JsonConvert.SerializeObject(_config, Formatting.Indented));
                 }
 
@@ -113,7 +127,7 @@ public class BetterWhitelist : TerrariaPlugin
                         return;
                     }
 
-                    string playerNameToAdd = args.Parameters[1];
+                    var playerNameToAdd = args.Parameters[1];
 
                     if (playerNameToAdd != null && !_config.WhitePlayers.Contains(playerNameToAdd))
                     {
@@ -130,7 +144,7 @@ public class BetterWhitelist : TerrariaPlugin
                 break;
 
             case "reload":
-                Load();
+                this.Load();
                 args.Player.SendSuccessMessage("重载成功!");
                 break;
 
@@ -147,7 +161,7 @@ public class BetterWhitelist : TerrariaPlugin
                         return;
                     }
 
-                    string playerNameToDelete = args.Parameters[1];
+                    var playerNameToDelete = args.Parameters[1];
                     if (playerNameToDelete != null && _config.WhitePlayers.Contains(playerNameToDelete))
                     {
                         _config.WhitePlayers.Remove(playerNameToDelete);

@@ -16,6 +16,6 @@ internal class Config
 
     public TaskContent? GetTask(int id)
     {
-        return Tasks.Find(f => f.TaskID == id);
+        return this.Tasks.Find(f => f.TaskID == id);
     }
 }

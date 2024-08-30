@@ -2,115 +2,116 @@ using Terraria;
 using Terraria.ID;
 using TShockAPI;
 
-namespace SignInSign
+namespace SignInSign;
+
+internal class Command
 {
-    internal class Command
+    internal static void SetupCmd(CommandArgs args)
     {
-        internal static void SetupCmd(CommandArgs args)
+        //ï¿½ï¿½È¡ï¿½ï¿½Òµï¿½Ç°ï¿½ï¿½ï¿½ï¿½
+        var x = args.Player.TileX;
+        var y = args.Player.TileY;
+
+        const string Message = $"[ï¿½ï¿½Ê¾ï¿½Æµï¿½Â¼]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½î£º\nï¿½ï¿½ï¿½Ã¸ï¿½Ê¾ï¿½Æ£ï¿½[c/42B2CE:/gs r]\nï¿½ï¿½ï¿½Ã´ï¿½ï¿½Íµã£º[c/F25E61:/gs s]";
+
+        if (args.Parameters.Count == 0)
         {
-            //»ñÈ¡Íæ¼Òµ±Ç°×ø±ê
-            int x = args.Player.TileX;
-            int y = args.Player.TileY;
-
-            const string Message = $"[¸æÊ¾ÅÆµÇÂ¼]ÇëÊäÈëÒÔÏÂÖ¸Áî£º\nÖØÖÃ¸æÊ¾ÅÆ£º[c/42B2CE:/gs r]\nÉèÖÃ´«ËÍµã£º[c/F25E61:/gs s]";
-
-            if (args.Parameters.Count == 0)
-            {
-                args.Player.SendMessage(Message, Microsoft.Xna.Framework.Color.YellowGreen);
-                return;
-            }
-
-            switch (args.Parameters[0].ToLower())
-            {
-                case "r":
-                case "reset":
-                case "reload":
-                    if (args.Player.HasPermission("signinsign.setup"))
-                    {
-                        ReloadCmd(args);
-                        if (SignInSign.Config.Teleport_X > 0 && SignInSign.Config.Teleport_Y > 0)
-                        {
-                            SignInSign.Config.Teleport_X = 0;
-                            SignInSign.Config.Teleport_Y = 0;
-                            SignInSign.Config.Write(Configuration.ConfigPath);
-                        }
-                    }
-                    return;
-                case "s":
-                case "set":
-                    if (args.Parameters.Count != 1)
-                    {
-                        args.Player.SendMessage("[¸æÊ¾ÅÆµÇÂ¼]ÉèÖÃ´«ËÍµãÃüÁîÎÞÐè¶îÍâ²ÎÊý£¬½«»áÊ¹ÓÃÄãµ±Ç°Î»ÖÃ¡£", Microsoft.Xna.Framework.Color.Yellow);
-                    }
-                    else if (args.Parameters.Count == 1 && (args.Player.HasPermission("signinsign.tp") || args.Player.HasPermission("signinsign.setup"))) //¼Ó¸öÍæ¼ÒÉèÖÃTPµÄÈ¨ÏÞ
-                    {
-                        SignInSign.Config.Teleport_X = x;
-                        SignInSign.Config.Teleport_Y = y;
-                        args.Player.SendMessage($"ÒÑ½«ÄãËùÔÚµÄÎ»ÖÃÉèÖÃÎª[c/9487D6:¸æÊ¾ÅÆ´«ËÍµã]£¬×ø±êÎª({x}, {y})", Microsoft.Xna.Framework.Color.Yellow);
-                        Console.WriteLine($"¡¾¸æÊ¾ÅÆµÇÂ¼¡¿´«ËÍµãÒÑÉèÖÃ£¬×ø±êÎª({x}, {y})", Microsoft.Xna.Framework.Color.Yellow);
-
-                        // È·±£ÅäÖÃ¸ü¸Ä±»±£´æ
-                        SignInSign.Config.Write(Configuration.ConfigPath);
-                    }
-                    break;
-                default:
-                    args.Player.SendMessage(Message, Microsoft.Xna.Framework.Color.YellowGreen);
-                    return;
-            }
+            args.Player.SendMessage(Message, Microsoft.Xna.Framework.Color.YellowGreen);
+            return;
         }
 
-        private static void ReloadCmd(CommandArgs args)
+        switch (args.Parameters[0].ToLower())
         {
-            if (args.Player == null || args == null) { return; }
-            //ÇåµôÔ­ÓÐµÄÍ¼¸ñ
-            WorldGen.KillTile(Main.spawnTileX, Main.spawnTileY - 3);
-
-            //¼ì²éÇ½±ÚÊÇ·ñÎª¿Õ£¬¿ÕÔò·ÅÖÃ»ØÉùÇ½
-            if (Main.tile[Main.spawnTileX, Main.spawnTileY - 3].wall == WallID.None)
-            {
-                Main.tile[Main.spawnTileX, Main.spawnTileY - 3].wall = WallID.EchoWall;
-                Main.tile[Main.spawnTileX, Main.spawnTileY - 2].wall = WallID.EchoWall;
-                Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].wall = WallID.EchoWall;
-                Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].wall = WallID.EchoWall;
-            }
-
-            Main.tile[Main.spawnTileX, Main.spawnTileY - 3].active(false);
-            Main.tile[Main.spawnTileX, Main.spawnTileY - 2].active(false);
-            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].active(false);
-            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].active(false);
-
-            Main.tile[Main.spawnTileX, Main.spawnTileY - 3].UseBlockColors(new TileColorCache() { Invisible = true });
-            Main.tile[Main.spawnTileX, Main.spawnTileY - 2].UseBlockColors(new TileColorCache() { Invisible = true });
-            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].UseBlockColors(new TileColorCache() { Invisible = true });
-            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].UseBlockColors(new TileColorCache() { Invisible = true });
-
-            //·ÅÖÃ
-            WorldGen.PlaceSign(Main.spawnTileX, Main.spawnTileY - 3, TileID.Signs, 4);
-
-            //²éÕÒ¿ÕµÄ±êÖ¾ID
-            int newSignID = -1;
-            for (int i = 0; i < 1000; i++)
-            {
-                if (Main.sign[i] == null || Main.sign[i].text == "")
+            case "r":
+            case "reset":
+            case "reload":
+                if (args.Player.HasPermission("signinsign.setup"))
                 {
-                    Main.sign[i] = new Sign();
-                    newSignID = i;
-                    break;
+                    ReloadCmd(args);
+                    if (SignInSign.Config.Teleport_X > 0 && SignInSign.Config.Teleport_Y > 0)
+                    {
+                        SignInSign.Config.Teleport_X = 0;
+                        SignInSign.Config.Teleport_Y = 0;
+                        SignInSign.Config.Write(Configuration.ConfigPath);
+                    }
                 }
-            }
+                return;
+            case "s":
+            case "set":
+                if (args.Parameters.Count != 1)
+                {
+                    args.Player.SendMessage("[ï¿½ï¿½Ê¾ï¿½Æµï¿½Â¼]ï¿½ï¿½ï¿½Ã´ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ãµ±Ç°Î»ï¿½Ã¡ï¿½", Microsoft.Xna.Framework.Color.Yellow);
+                }
+                else if (args.Parameters.Count == 1 && (args.Player.HasPermission("signinsign.tp") || args.Player.HasPermission("signinsign.setup"))) //ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½TPï¿½ï¿½È¨ï¿½ï¿½
+                {
+                    SignInSign.Config.Teleport_X = x;
+                    SignInSign.Config.Teleport_Y = y;
+                    args.Player.SendMessage($"ï¿½Ñ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª[c/9487D6:ï¿½ï¿½Ê¾ï¿½Æ´ï¿½ï¿½Íµï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª({x}, {y})", Microsoft.Xna.Framework.Color.Yellow);
+                    Console.WriteLine($"ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Æµï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½Îª({x}, {y})", Microsoft.Xna.Framework.Color.Yellow);
 
-            if (newSignID == -1) newSignID = 999;
-
-            //·ÅÏÂ±êÖ¾ÐÅÏ¢
-            Main.sign[newSignID].text = SignInSign.Config.SignText;
-            Main.sign[newSignID].x = Main.spawnTileX;
-            Main.sign[newSignID].y = Main.spawnTileY - 3;
-
-            //ÖØÔØÅäÖÃÎÄ¼þ ±£´æÊÀ½ç²¢·¢ËÍ³öÉúµã×ø±ê
-            TShockAPI.Commands.HandleCommand(TSPlayer.Server, "/save");
-            TSPlayer.All.SendTileRect((short)Main.spawnTileX, (short)(Main.spawnTileY - 3), 2, 2);
-            TShockAPI.Commands.HandleCommand(args.Player, "/reload");
+                    // È·ï¿½ï¿½ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½
+                    SignInSign.Config.Write(Configuration.ConfigPath);
+                }
+                break;
+            default:
+                args.Player.SendMessage(Message, Microsoft.Xna.Framework.Color.YellowGreen);
+                return;
         }
     }
 
+    private static void ReloadCmd(CommandArgs args)
+    {
+        if (args.Player == null || args == null) { return; }
+        //ï¿½ï¿½ï¿½Ô­ï¿½Ðµï¿½Í¼ï¿½ï¿½
+        WorldGen.KillTile(Main.spawnTileX, Main.spawnTileY - 3);
+
+        //ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½Ç·ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ç½
+        if (Main.tile[Main.spawnTileX, Main.spawnTileY - 3].wall == WallID.None)
+        {
+            Main.tile[Main.spawnTileX, Main.spawnTileY - 3].wall = WallID.EchoWall;
+            Main.tile[Main.spawnTileX, Main.spawnTileY - 2].wall = WallID.EchoWall;
+            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].wall = WallID.EchoWall;
+            Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].wall = WallID.EchoWall;
+        }
+
+        Main.tile[Main.spawnTileX, Main.spawnTileY - 3].active(false);
+        Main.tile[Main.spawnTileX, Main.spawnTileY - 2].active(false);
+        Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].active(false);
+        Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].active(false);
+
+        Main.tile[Main.spawnTileX, Main.spawnTileY - 3].UseBlockColors(new TileColorCache() { Invisible = true });
+        Main.tile[Main.spawnTileX, Main.spawnTileY - 2].UseBlockColors(new TileColorCache() { Invisible = true });
+        Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 3].UseBlockColors(new TileColorCache() { Invisible = true });
+        Main.tile[Main.spawnTileX + 1, Main.spawnTileY - 2].UseBlockColors(new TileColorCache() { Invisible = true });
+
+        //ï¿½ï¿½ï¿½ï¿½
+        WorldGen.PlaceSign(Main.spawnTileX, Main.spawnTileY - 3, TileID.Signs, 4);
+
+        //ï¿½ï¿½ï¿½Ò¿ÕµÄ±ï¿½Ö¾ID
+        var newSignID = -1;
+        for (var i = 0; i < 1000; i++)
+        {
+            if (Main.sign[i] == null || Main.sign[i].text == "")
+            {
+                Main.sign[i] = new Sign();
+                newSignID = i;
+                break;
+            }
+        }
+
+        if (newSignID == -1)
+        {
+            newSignID = 999;
+        }
+
+        //ï¿½ï¿½ï¿½Â±ï¿½Ö¾ï¿½ï¿½Ï¢
+        Main.sign[newSignID].text = SignInSign.Config.SignText;
+        Main.sign[newSignID].x = Main.spawnTileX;
+        Main.sign[newSignID].y = Main.spawnTileY - 3;
+
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç²¢ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        TShockAPI.Commands.HandleCommand(TSPlayer.Server, "/save");
+        TSPlayer.All.SendTileRect((short) Main.spawnTileX, (short) (Main.spawnTileY - 3), 2, 2);
+        TShockAPI.Commands.HandleCommand(args.Player, "/reload");
+    }
 }

@@ -11,12 +11,12 @@ public class Config
     public void Write()
     {
         using FileStream fileStream = new(Path, FileMode.Create, FileAccess.Write, FileShare.Write);
-        Write(fileStream);
+        this.Write(fileStream);
     }
 
     private void Write(Stream stream)
     {
-        string value = JsonConvert.SerializeObject(this, Formatting.Indented);
+        var value = JsonConvert.SerializeObject(this, Formatting.Indented);
         using (StreamWriter streamWriter = new(stream))
         {
             streamWriter.Write(value);

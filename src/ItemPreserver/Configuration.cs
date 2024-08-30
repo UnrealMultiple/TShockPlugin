@@ -32,6 +32,3 @@ public class Configuration
         return cf ?? new();
     }
 }
-
-
-

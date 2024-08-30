@@ -13,7 +13,11 @@ public class Config
     /// <returns></returns>
     public static Config Read(string Path)
     {
-        if (!File.Exists(Path)) return new Config();
+        if (!File.Exists(Path))
+        {
+            return new Config();
+        }
+
         using var fs = new FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read);
         return Read(fs);
     }
@@ -27,7 +31,7 @@ public class Config
     {
         using var sr = new StreamReader(stream);
         var cf = JsonConvert.DeserializeObject<Config>(sr.ReadToEnd());
-        return cf == null ? new Config() : cf;
+        return cf ?? new Config();
     }
 
     /// <summary>
@@ -37,7 +41,7 @@ public class Config
     public void Write(string Path)//给定路径进行写
     {
         using (var fs = new FileStream(Path, FileMode.Create, FileAccess.Write, FileShare.Write))
-        { Write(fs); }
+        { this.Write(fs); }
     }
 
     /// <summary>

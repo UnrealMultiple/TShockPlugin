@@ -8,8 +8,10 @@ namespace Economics.Skill.JSInterpreter;
 public class JSFunctions
 {
     [JavaScriptFunction("print")]
-    public static void JSPrint(string message) => Console.WriteLine(message);
-
+    public static void JSPrint(string message)
+    {
+        Console.WriteLine(message);
+    }
 
     [JavaScriptFunction("SpawnProjtile")]
     public static int JSProj(TSPlayer ply, Vector2 pos, Vector2 vel, int type, int Damage, int KnockBack, int Owner, float ai0 = 0, float ai1 = 0, float ai2 = 0, int timeLeft = -1, string uuid = "")

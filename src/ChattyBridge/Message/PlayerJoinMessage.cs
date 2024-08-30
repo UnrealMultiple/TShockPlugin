@@ -6,7 +6,7 @@ internal class PlayerJoinMessage : PlayerMessage
 {
     public PlayerJoinMessage(TSPlayer player) : base(player)
     {
-        Type = MsgType.Join;
+        this.Type = MsgType.Join;
     }
     public PlayerJoinMessage()
     {

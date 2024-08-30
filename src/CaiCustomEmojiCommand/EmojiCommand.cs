@@ -12,12 +12,12 @@ public class EmojiCommand
 
     public EmojiCommand(int emojiId, string command)
     {
-        EmojiId = emojiId;
-        Command = command;
+        this.EmojiId = emojiId;
+        this.Command = command;
     }
 
     public void ExecuteCommand(TSPlayer player)
     {
-        Commands.HandleCommand(player, Command);
+        Commands.HandleCommand(player, this.Command);
     }
 }

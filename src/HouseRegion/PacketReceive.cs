@@ -14,8 +14,8 @@ public class GetDataHandlerArgs : EventArgs//要让这个数据在数据的基�
 {
     public TSPlayer Player { get; private set; }
     public MemoryStream Data { get; private set; }
-    public Player TPlayer { get { return Player.TPlayer; } }
-    public GetDataHandlerArgs(TSPlayer player, MemoryStream data) { Player = player; Data = data; }
+    public Player TPlayer => this.Player.TPlayer;
+    public GetDataHandlerArgs(TSPlayer player, MemoryStream data) { this.Player = player; this.Data = data; }
 }
 public static class GetDataHandlers
 {
@@ -48,8 +48,7 @@ public static class GetDataHandlers
     }
     public static bool HandlerGetData(PacketTypes type, TSPlayer player, MemoryStream data)
     {
-        GetDataHandlerDelegate handler;
-        if (GetDataHandlerDelegates.TryGetValue(type, out handler))
+        if (GetDataHandlerDelegates.TryGetValue(type, out var handler))
         {
             try { return handler(new GetDataHandlerArgs(player, data)); }
             catch (Exception ex) { TShock.Log.Error("房屋插件错误调用事件时出错:" + ex.ToString()); }
@@ -61,15 +60,22 @@ public static class GetDataHandlers
         int action = args.Data.ReadInt8();//类型
         int x = args.Data.ReadInt16();
         int y = args.Data.ReadInt16();
-        ITile tile = Main.tile[x, y];
-        if (Main.tileCut[tile.type]) return false;//如果是草不阻止破坏
+        var tile = Main.tile[x, y];
+        if (Main.tileCut[tile.type])
+        {
+            return false;//如果是草不阻止破坏
+        }
+
         var house = Utils.InAreaHouse(x, y);//直接读出敲的房子
         if (HousingPlugin.LPlayers[args.Player.Index].Look)//敲击砖块确认房屋名
         {
-            if (house == null) args.Player.SendMessage("敲击处不属于任何房子。", Color.Yellow);
+            if (house == null)
+            {
+                args.Player.SendMessage("敲击处不属于任何房子。", Color.Yellow);
+            }
             else
             {
-                string AuthorNames = "";
+                var AuthorNames = "";
                 try { AuthorNames = TShock.UserAccounts.GetUserAccountByID(Convert.ToInt32(house.Author)).Name; }
                 catch (Exception ex) { TShock.Log.Error("房屋插件错误超标错误:" + ex.ToString()); }
                 args.Player.SendMessage("敲击处为 " + AuthorNames + " 的房子: " + house.Name + " 状态: " + (!house.Locked || HousingPlugin.LConfig.LimitLockHouse ? "未上锁" : "已上锁"), Color.Yellow);
@@ -82,15 +88,35 @@ public static class GetDataHandlers
         {
             args.Player.TempPoints[args.Player.AwaitingTempPoint - 1].X = x;
             args.Player.TempPoints[args.Player.AwaitingTempPoint - 1].Y = y;
-            if (args.Player.AwaitingTempPoint == 1) args.Player.SendMessage("保护区左上角已设置!", Color.Yellow);
-            if (args.Player.AwaitingTempPoint == 2) args.Player.SendMessage("保护区右下角已设置!", Color.Yellow);
+            if (args.Player.AwaitingTempPoint == 1)
+            {
+                args.Player.SendMessage("保护区左上角已设置!", Color.Yellow);
+            }
+
+            if (args.Player.AwaitingTempPoint == 2)
+            {
+                args.Player.SendMessage("保护区右下角已设置!", Color.Yellow);
+            }
+
             args.Player.SendTileSquareCentered(x, y);
             args.Player.AwaitingTempPoint = 0;
             return true;
         }
-        if (house == null) return false;
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权修改房子保护!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权修改房子保护!");
+        }
+
         args.Player.SendErrorMessage("你没有权力损坏被房子保护的地区。");
         args.Player.SendTileSquareCentered(x, y);
         return true;//假表示允许修改//真表示禁止修改
@@ -101,10 +127,26 @@ public static class GetDataHandlers
         int x = args.Data.ReadInt16();
         int y = args.Data.ReadInt16();
         var house = Utils.InAreaHouse(x, y);//直接读出房子
-        if (house == null) return false;
-        if (!house.Locked || HousingPlugin.LConfig.LimitLockHouse) return false;//没锁，那随便开
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权修改门!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (!house.Locked || HousingPlugin.LConfig.LimitLockHouse)
+        {
+            return false;//没锁，那随便开
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权修改门!");
+        }
+
         args.Player.SendErrorMessage("你没有权力修改被房子保护的地区的门。");
         args.Player.SendTileSquareCentered(x, y);
         return true;//假表示允许修改//真表示禁止修改
@@ -116,14 +158,34 @@ public static class GetDataHandlers
         int tileX = args.Data.ReadInt16();
         int tileY = args.Data.ReadInt16();
         //Console.WriteLine("地区改变{0} X{1} Y{2}" ,size, tileX, tileY);
-        if (size > 1) return false;//腐化血腥的生成好像都是1
-        ITile tile = Main.tile[tileX, tileY];
-        if (Main.tileCut[tile.type]) return false;//如果是草不阻止破坏
+        if (size > 1)
+        {
+            return false;//腐化血腥的生成好像都是1
+        }
+
+        var tile = Main.tile[tileX, tileY];
+        if (Main.tileCut[tile.type])
+        {
+            return false;//如果是草不阻止破坏
+        }
+
         var newtile = new NetTile(args.Data);//新瓷砖
-        if (Main.tileCut[newtile.Type]) return false;//如果是草不阻止生成
+        if (Main.tileCut[newtile.Type])
+        {
+            return false;//如果是草不阻止生成
+        }
+
         var house = Utils.InAreaHouse(tileX, tileY);//确定是否保护区
-        if (house == null) return false;
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house)) return false;
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
         args.Player.SendTileSquareCentered(tileX, tileY);
         return true;
     }
@@ -132,10 +194,26 @@ public static class GetDataHandlers
         int x = args.Data.ReadInt16();
         int y = args.Data.ReadInt16();
         var house = Utils.InAreaHouse(x, y);//直接读出房子
-        if (house == null) return false;
-        if ((!house.Locked || HousingPlugin.LConfig.LimitLockHouse) && !HousingPlugin.LConfig.ProtectiveChest) return false;//没锁,且不保护箱子，那随便开
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权打开箱子!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if ((!house.Locked || HousingPlugin.LConfig.LimitLockHouse) && !HousingPlugin.LConfig.ProtectiveChest)
+        {
+            return false;//没锁,且不保护箱子，那随便开
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权打开箱子!");
+        }
+
         args.Player.SendErrorMessage("你没有权力打开被房子保护的地区的箱子。");
         return true;//假表示允许修改//真表示禁止修改
     }
@@ -145,10 +223,26 @@ public static class GetDataHandlers
         var x = Main.chest[id].x;
         var y = Main.chest[id].y;
         var house = Utils.InAreaHouse(x, y);//直接读出房子
-        if (house == null) return false;
-        if ((!house.Locked || HousingPlugin.LConfig.LimitLockHouse) && !HousingPlugin.LConfig.ProtectiveChest) return false;//没锁,且不保护箱子，那随便开
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权更新箱子!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if ((!house.Locked || HousingPlugin.LConfig.LimitLockHouse) && !HousingPlugin.LConfig.ProtectiveChest)
+        {
+            return false;//没锁,且不保护箱子，那随便开
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权更新箱子!");
+        }
+
         args.Player.SendErrorMessage("你没有权力更新被房子保护的地区的箱子。");
         return true;//假表示允许修改//真表示禁止修改
     }
@@ -158,10 +252,26 @@ public static class GetDataHandlers
         int x = args.Data.ReadInt16();
         int y = args.Data.ReadInt16();
         var house = Utils.InAreaHouse(x, y);//直接读出房子
-        if (house == null) return false;
-        if ((!house.Locked || HousingPlugin.LConfig.LimitLockHouse) && !HousingPlugin.LConfig.ProtectiveChest) return false;//没锁,且不保护箱子，那随便开
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权修改箱子!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if ((!house.Locked || HousingPlugin.LConfig.LimitLockHouse) && !HousingPlugin.LConfig.ProtectiveChest)
+        {
+            return false;//没锁,且不保护箱子，那随便开
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权修改箱子!");
+        }
+
         args.Player.SendErrorMessage("你没有权力修改被房子保护的地区的箱子。");
         args.Player.SendData(PacketTypes.ChestOpen, "", -1);
         return true;//假表示允许修改//真表示禁止修改
@@ -172,12 +282,20 @@ public static class GetDataHandlers
         int tileX = args.Data.ReadInt16();
         int tileY = args.Data.ReadInt16();
         var rect = new Rectangle(tileX, tileY, 3, 3);//创造个同样大小的范围虽然箱子是2*2但是梳妆台却是3因此就大不就小
-        for (int i = 0; i < HousingPlugin.Houses.Count; i++)
+        for (var i = 0; i < HousingPlugin.Houses.Count; i++)
         {
-            var house = HousingPlugin.Houses[i]; if (house == null) continue;
+            var house = HousingPlugin.Houses[i]; if (house == null)
+            {
+                continue;
+            }
+
             if (house.HouseArea.Intersects(rect) && !(args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house)))
             {
-                if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权放置家具!");
+                if (HousingPlugin.LConfig.WarningSpoiler)
+                {
+                    args.Player.Disable("无权放置家具!");
+                }
+
                 args.Player.SendErrorMessage("你没有权力放置被房子保护的地区的家具。");
                 args.Player.SendTileSquareCentered(tileX, tileY, 3);
                 return true;//假表示允许修改//真表示禁止修改
@@ -195,9 +313,21 @@ public static class GetDataHandlers
         var x = args.Data.ReadInt16();
         var y = args.Data.ReadInt16();
         var house = Utils.InAreaHouse(x, y);//直接读出房子
-        if (house == null) return false;
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权修改标牌!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权修改标牌!");
+        }
+
         args.Player.SendErrorMessage("你没有权力修改被房子保护的地区的标牌。");
         args.Player.SendData(PacketTypes.SignNew, "", id);
         return true;//假表示允许修改//真表示禁止修改
@@ -207,9 +337,21 @@ public static class GetDataHandlers
         int tileX = args.Data.ReadInt16();
         int tileY = args.Data.ReadInt16();
         var house = Utils.InAreaHouse(tileX, tileY);//直接读出房子
-        if (house == null) return false;
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权放水!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权放水!");
+        }
+
         args.Player.SendErrorMessage("你没有权力在被房子保护的地区放水。");
         args.Player.SendTileSquareCentered(tileX, tileY);
         return true;//假表示允许修改//真表示禁止修改
@@ -226,9 +368,21 @@ public static class GetDataHandlers
         var X = args.Data.ReadInt16();
         var Y = args.Data.ReadInt16();
         var house = Utils.InAreaHouse(X, Y);//直接读出房子
-        if (house == null) return false;
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权油漆砖!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权油漆砖!");
+        }
+
         args.Player.SendErrorMessage("你没有权力在被房子保护的地区油漆砖。");
         args.Player.SendData(PacketTypes.PaintTile, "", X, Y, Main.tile[X, Y].color());
         return true;//假表示允许修改//真表示禁止修改
@@ -238,9 +392,21 @@ public static class GetDataHandlers
         var X = args.Data.ReadInt16();
         var Y = args.Data.ReadInt16();
         var house = Utils.InAreaHouse(X, Y);//直接读出房子
-        if (house == null) return false;
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权油漆墙!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权油漆墙!");
+        }
+
         args.Player.SendErrorMessage("你没有权力在被房子保护的地区油漆墙。");
         args.Player.SendData(PacketTypes.PaintWall, "", X, Y, Main.tile[X, Y].wallColor());
         return true;//假表示允许修改//真表示禁止修改
@@ -259,9 +425,21 @@ public static class GetDataHandlers
         int x = args.Data.ReadInt16();
         int y = args.Data.ReadInt16();
         var house = Utils.InAreaHouse(x, y);//直接读出放置房子
-        if (house == null) return false;
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权修改房子保护!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权修改房子保护!");
+        }
+
         args.Player.SendErrorMessage("你没有权力修改被房子保护的地区。");
         args.Player.SendTileSquareCentered(x, y);
         return true;//假表示允许修改//真表示禁止修改
@@ -271,9 +449,21 @@ public static class GetDataHandlers
         var x = args.Data.ReadInt16();
         var y = args.Data.ReadInt16();
         var house = Utils.InAreaHouse(x, y);//直接读出放置房子
-        if (house == null) return false;
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权修改房子保护!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权修改房子保护!");
+        }
+
         args.Player.SendErrorMessage("你没有权力修改被房子保护的地区。");
         args.Player.SendTileSquareCentered(x, y);
         return true;//假表示允许修改//真表示禁止修改
@@ -282,24 +472,52 @@ public static class GetDataHandlers
     {
         var x = args.Data.ReadInt16();
         var y = args.Data.ReadInt16();
-        var itemFrame = (TEItemFrame)TileEntity.ByID[TEItemFrame.Find(x, y)];
+        var itemFrame = (TEItemFrame) TileEntity.ByID[TEItemFrame.Find(x, y)];
         var house = Utils.InAreaHouse(x, y);//直接读出放置房子
-        if (house == null) return false;
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权修改房子保护的物品!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权修改房子保护的物品!");
+        }
+
         args.Player.SendErrorMessage("你没有权力修改被房子保护的物品。");
-        NetMessage.SendData((int)PacketTypes.UpdateTileEntity, -1, -1, NetworkText.Empty, itemFrame.ID, 0, 1);
+        NetMessage.SendData((int) PacketTypes.UpdateTileEntity, -1, -1, NetworkText.Empty, itemFrame.ID, 0, 1);
         return true;
     }
     private static bool HandleGemLockToggle(GetDataHandlerArgs args)//105宝石锁
     {
-        var x = (int)args.Data.ReadInt16();
-        var y = (int)args.Data.ReadInt16();
-        if (!HousingPlugin.LConfig.ProtectiveGemstoneLock) return false;
+        var x = (int) args.Data.ReadInt16();
+        var y = (int) args.Data.ReadInt16();
+        if (!HousingPlugin.LConfig.ProtectiveGemstoneLock)
+        {
+            return false;
+        }
+
         var house = Utils.InAreaHouse(x, y);//直接读出放置房子
-        if (house == null) return false;
-        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house)) return false;
-        if (HousingPlugin.LConfig.WarningSpoiler) args.Player.Disable("无权触发房子保护的宝石锁!");
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权触发房子保护的宝石锁!");
+        }
+
         args.Player.SendErrorMessage("你没有权力触发被房子保护的宝石锁。");
         return true;
     }
@@ -309,14 +527,22 @@ public static class GetDataHandlers
         int y1 = args.Data.ReadInt16();
         int x2 = args.Data.ReadInt16();
         int y2 = args.Data.ReadInt16();
-        Rectangle A = new Rectangle(Math.Min(x1, x2), args.TPlayer.direction != 1 ? y1 : y2, Math.Abs(x2 - x1) + 1, 1);
-        Rectangle B = new Rectangle(args.TPlayer.direction != 1 ? x2 : x1, Math.Min(y1, y2), 1, Math.Abs(y2 - y1) + 1);
-        for (int i = 0; i < HousingPlugin.Houses.Count; i++)
+        var A = new Rectangle(Math.Min(x1, x2), args.TPlayer.direction != 1 ? y1 : y2, Math.Abs(x2 - x1) + 1, 1);
+        var B = new Rectangle(args.TPlayer.direction != 1 ? x2 : x1, Math.Min(y1, y2), 1, Math.Abs(y2 - y1) + 1);
+        for (var i = 0; i < HousingPlugin.Houses.Count; i++)
         {
-            var house = HousingPlugin.Houses[i]; if (house == null) continue;
+            var house = HousingPlugin.Houses[i]; if (house == null)
+            {
+                continue;
+            }
+
             if (house.HouseArea.Intersects(A) || house.HouseArea.Intersects(B))
+            {
                 if (!(args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house)))
+                {
                     return true;
+                }
+            }
         }
         return false;
     }

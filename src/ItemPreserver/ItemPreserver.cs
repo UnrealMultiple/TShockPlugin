@@ -22,8 +22,8 @@ public class ItemPreserver : TerrariaPlugin
 
         public Pitem(int type, int stack)
         {
-            Type = type;
-            Stack = stack;
+            this.Type = type;
+            this.Stack = stack;
         }
     };
 
@@ -47,13 +47,13 @@ public class ItemPreserver : TerrariaPlugin
         {
             if (ply != null && ply.Active)
             {
-                if ((!ItemUse.TryGetValue(ply, out var slot) || slot == null))
+                if (!this.ItemUse.TryGetValue(ply, out var slot) || slot == null)
                 {
-                    ItemUse[ply] = new Dictionary<int, Pitem>();
+                    this.ItemUse[ply] = new Dictionary<int, Pitem>();
                 }
-                for (int i = 0; i < ply.TPlayer.inventory.Length; i++)
+                for (var i = 0; i < ply.TPlayer.inventory.Length; i++)
                 {
-                    ItemUse[ply][i] = new(ply.TPlayer.inventory[i].netID, ply.TPlayer.inventory[i].stack);
+                    this.ItemUse[ply][i] = new(ply.TPlayer.inventory[i].netID, ply.TPlayer.inventory[i].stack);
                 }
             }
         }
@@ -62,13 +62,13 @@ public class ItemPreserver : TerrariaPlugin
 
     public override void Initialize()
     {
-        GeneralHooks.ReloadEvent += ReloadConfig;
-        GetDataHandlers.PlayerSlot.Register(OnSlot);
+        GeneralHooks.ReloadEvent += this.ReloadConfig;
+        GetDataHandlers.PlayerSlot.Register(this.OnSlot);
     }
 
     private void OnSlot(object? sender, GetDataHandlers.PlayerSlotEventArgs e)
     {
-        if (ItemUse.TryGetValue(e.Player, out Dictionary<int, Pitem>? itemUse) && itemUse != null)
+        if (this.ItemUse.TryGetValue(e.Player, out var itemUse) && itemUse != null)
         {
             if (itemUse.TryGetValue(e.Slot, out var slot) && slot != null)
             {
@@ -96,18 +96,18 @@ public class ItemPreserver : TerrariaPlugin
                     }
                     else
                     {
-                        ItemUse[e.Player][e.Slot].Stack = e.Stack;
+                        this.ItemUse[e.Player][e.Slot].Stack = e.Stack;
                     }
                 }
             }
             else
             {
-                ItemUse[e.Player][e.Slot] = new(e.Type, e.Stack);
+                this.ItemUse[e.Player][e.Slot] = new(e.Type, e.Stack);
             }
         }
         else
         {
-            ItemUse[e.Player] = new()
+            this.ItemUse[e.Player] = new()
             {
                 { e.Slot, new(e.Type, e.Stack) }
             };
@@ -118,8 +118,8 @@ public class ItemPreserver : TerrariaPlugin
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= ReloadConfig;
-            GetDataHandlers.PlayerSlot.UnRegister(OnSlot);
+            GeneralHooks.ReloadEvent -= this.ReloadConfig;
+            GetDataHandlers.PlayerSlot.UnRegister(this.OnSlot);
         }
         base.Dispose(disposing);
     }

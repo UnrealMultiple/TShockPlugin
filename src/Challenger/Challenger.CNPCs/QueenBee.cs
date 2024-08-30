@@ -4,180 +4,179 @@ using Terraria.DataStructures;
 using TShockAPI;
 using static TShockAPI.GetDataHandlers;
 
-namespace Challenger
+namespace Challenger;
+
+
+public class QueenBee : CNPC
 {
+    private int timer = 0;
 
-    public class QueenBee : CNPC
+    public QueenBee(NPC npc)
+        : base(npc)
     {
-        private int timer = 0;
+    }
 
-        public QueenBee(NPC npc)
-            : base(npc)
+    public override void NPCAI()
+    {
+        var targetData = this.npc.GetTargetData(true);
+        this.SetState();
+        switch (this.state)
         {
+            case 1:
+                if (this.npc.ai[0] == 0f && (this.npc.ai[1] == 1f || this.npc.ai[1] == 3f || this.npc.ai[1] == 5f) && this.npc.ai[2] == 0f && this.timer < 1)
+                {
+                    this.timer++;
+                    if ((this.npc.direction == 1 && targetData.Position.X > this.npc.position.X) || (this.npc.direction == -1 && targetData.Position.X < this.npc.position.X))
+                    {
+                        var obj5 = this.npc;
+                        obj5.velocity += this.npc.velocity * 0.04f;
+                    }
+                    else
+                    {
+                        var obj6 = this.npc;
+                        obj6.velocity -= this.npc.velocity * 0.04f;
+                    }
+                    this.npc.netUpdate = true;
+                }
+                else
+                {
+                    this.timer = 0;
+                }
+                break;
+            case 2:
+                if (this.npc.ai[0] == 0f && (this.npc.ai[1] == 1f || this.npc.ai[1] == 3f || this.npc.ai[1] == 5f) && this.npc.ai[2] == 0f && this.timer < 1)
+                {
+                    this.timer++;
+                    if ((this.npc.direction == 1 && targetData.Position.X > this.npc.position.X) || (this.npc.direction == -1 && targetData.Position.X < this.npc.position.X))
+                    {
+                        var obj7 = this.npc;
+                        obj7.velocity += this.npc.velocity * 0.07f;
+                    }
+                    else
+                    {
+                        var obj8 = this.npc;
+                        obj8.velocity -= this.npc.velocity * 0.07f;
+                    }
+                    this.npc.netUpdate = true;
+                }
+                else
+                {
+                    this.timer = 0;
+                }
+                break;
+            case 3:
+                if (this.npc.ai[0] == 0f && (this.npc.ai[1] == 1f || this.npc.ai[1] == 3f || this.npc.ai[1] == 5f) && this.npc.ai[2] == 0f && this.timer < 1)
+                {
+                    this.timer++;
+                    if ((this.npc.direction == 1 && targetData.Position.X > this.npc.position.X) || (this.npc.direction == -1 && targetData.Position.X < this.npc.position.X))
+                    {
+                        var obj3 = this.npc;
+                        obj3.velocity += this.npc.velocity * 0.12f;
+                    }
+                    else
+                    {
+                        var obj4 = this.npc;
+                        obj4.velocity -= this.npc.velocity * 0.12f;
+                    }
+                    this.npc.netUpdate = true;
+                }
+                else
+                {
+                    this.timer = 0;
+                }
+                if (Main.rand.Next(6) == 0)
+                {
+                    Projectile.NewProjectile(null, this.npc.Bottom, Terraria.Utils.RotateRandom(Vector2.UnitY, Math.PI / 2.0) * -8f, 719, 12, 1f, -1, 0f, 0f, 0f);
+                }
+                break;
+            case 4:
+                if (this.npc.ai[0] == 0f && (this.npc.ai[1] == 1f || this.npc.ai[1] == 3f || this.npc.ai[1] == 5f) && this.npc.ai[2] == 0f && this.timer < 1)
+                {
+                    this.timer++;
+                    if ((this.npc.direction == 1 && targetData.Position.X > this.npc.position.X) || (this.npc.direction == -1 && targetData.Position.X < this.npc.position.X))
+                    {
+                        var obj = this.npc;
+                        obj.velocity += this.npc.velocity * 0.12f;
+                    }
+                    else
+                    {
+                        var obj2 = this.npc;
+                        obj2.velocity -= this.npc.velocity * 0.12f;
+                    }
+                    this.npc.netUpdate = true;
+                }
+                else
+                {
+                    this.timer = 0;
+                }
+                if (this.npc.ai[1] % 12f == 0f)
+                {
+                    Projectile.NewProjectile(null, this.npc.position - new Vector2(Main.rand.Next(-1024, 1024), 384f), Vector2.UnitY * -3f, 719, 20, 1f, -1, 0f, 0f, 0f);
+                }
+                break;
         }
+    }
 
-        public override void NPCAI()
+    public override int SetState()
+    {
+        if (this.npc.life >= this.LifeMax * 0.7f)
         {
-            NPCAimedTarget targetData = npc.GetTargetData(true);
-            SetState();
-            switch (state)
+            if (this.state == 0)
+            {
+                this.state = 1;
+                if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
+                {
+                    TSPlayer.All.SendMessage(GetString("谁人惊扰了我的蜂巢！"), Color.Yellow);
+                }
+            }
+            return this.state;
+        }
+        if (this.npc.life >= this.LifeMax * 0.4f)
+        {
+            if (this.state == 1)
+            {
+                this.state = 2;
+                if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
+                {
+                    TSPlayer.All.SendMessage(GetString("不许抢我的蜂蜜"), Color.Yellow);
+                }
+            }
+            return this.state;
+        }
+        if (this.npc.life >= this.LifeMax * 0.2f)
+        {
+            if (this.state == 2)
+            {
+                this.state = 3;
+                if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
+                {
+                    TSPlayer.All.SendMessage(GetString("毒刺射你一脸"), Color.Yellow);
+                }
+            }
+            return this.state;
+        }
+        if (this.state == 3)
+        {
+            this.state = 4;
+        }
+        return this.state;
+    }
+
+    public override void OnHurtPlayers(PlayerDamageEventArgs e)
+    {
+        if (global::Challenger.Challenger.config.EnableConsumptionMode)
+        {
+            switch (Main.rand.Next(1, 4))
             {
                 case 1:
-                    if (npc.ai[0] == 0f && (npc.ai[1] == 1f || npc.ai[1] == 3f || npc.ai[1] == 5f) && npc.ai[2] == 0f && timer < 1)
-                    {
-                        timer++;
-                        if ((npc.direction == 1 && targetData.Position.X > npc.position.X) || (npc.direction == -1 && targetData.Position.X < npc.position.X))
-                        {
-                            NPC? obj5 = npc;
-                            obj5.velocity += npc.velocity * 0.04f;
-                        }
-                        else
-                        {
-                            NPC? obj6 = npc;
-                            obj6.velocity -= npc.velocity * 0.04f;
-                        }
-                        npc.netUpdate = true;
-                    }
-                    else
-                    {
-                        timer = 0;
-                    }
+                    global::Challenger.Challenger.SendPlayerText(GetString("嗡嗡"), Color.Yellow, this.npc.Center + new Vector2(0f, -30f));
                     break;
                 case 2:
-                    if (npc.ai[0] == 0f && (npc.ai[1] == 1f || npc.ai[1] == 3f || npc.ai[1] == 5f) && npc.ai[2] == 0f && timer < 1)
-                    {
-                        timer++;
-                        if ((npc.direction == 1 && targetData.Position.X > npc.position.X) || (npc.direction == -1 && targetData.Position.X < npc.position.X))
-                        {
-                            NPC? obj7 = npc;
-                            obj7.velocity += npc.velocity * 0.07f;
-                        }
-                        else
-                        {
-                            NPC? obj8 = npc;
-                            obj8.velocity -= npc.velocity * 0.07f;
-                        }
-                        npc.netUpdate = true;
-                    }
-                    else
-                    {
-                        timer = 0;
-                    }
+                    global::Challenger.Challenger.SendPlayerText(GetString("嗡嗡嗡嗡"), Color.Yellow, this.npc.Center + new Vector2(0f, -30f));
                     break;
-                case 3:
-                    if (npc.ai[0] == 0f && (npc.ai[1] == 1f || npc.ai[1] == 3f || npc.ai[1] == 5f) && npc.ai[2] == 0f && timer < 1)
-                    {
-                        timer++;
-                        if ((npc.direction == 1 && targetData.Position.X > npc.position.X) || (npc.direction == -1 && targetData.Position.X < npc.position.X))
-                        {
-                            NPC? obj3 = npc;
-                            obj3.velocity += npc.velocity * 0.12f;
-                        }
-                        else
-                        {
-                            NPC? obj4 = npc;
-                            obj4.velocity -= npc.velocity * 0.12f;
-                        }
-                        npc.netUpdate = true;
-                    }
-                    else
-                    {
-                        timer = 0;
-                    }
-                    if (Main.rand.Next(6) == 0)
-                    {
-                        Projectile.NewProjectile(null, npc.Bottom, Terraria.Utils.RotateRandom(Vector2.UnitY, Math.PI / 2.0) * -8f, 719, 12, 1f, -1, 0f, 0f, 0f);
-                    }
+                default:
+                    global::Challenger.Challenger.SendPlayerText(GetString("吱嗡"), Color.Yellow, this.npc.Center + new Vector2(0f, -30f));
                     break;
-                case 4:
-                    if (npc.ai[0] == 0f && (npc.ai[1] == 1f || npc.ai[1] == 3f || npc.ai[1] == 5f) && npc.ai[2] == 0f && timer < 1)
-                    {
-                        timer++;
-                        if ((npc.direction == 1 && targetData.Position.X > npc.position.X) || (npc.direction == -1 && targetData.Position.X < npc.position.X))
-                        {
-                            NPC? obj = npc;
-                            obj.velocity += npc.velocity * 0.12f;
-                        }
-                        else
-                        {
-                            NPC? obj2 = npc;
-                            obj2.velocity -= npc.velocity * 0.12f;
-                        }
-                        npc.netUpdate = true;
-                    }
-                    else
-                    {
-                        timer = 0;
-                    }
-                    if (npc.ai[1] % 12f == 0f)
-                    {
-                        Projectile.NewProjectile(null, npc.position - new Vector2(Main.rand.Next(-1024, 1024), 384f), Vector2.UnitY * -3f, 719, 20, 1f, -1, 0f, 0f, 0f);
-                    }
-                    break;
-            }
-        }
-
-        public override int SetState()
-        {
-            if (npc.life >= LifeMax * 0.7f)
-            {
-                if (state == 0)
-                {
-                    state = 1;
-                    if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
-                    {
-                        TSPlayer.All.SendMessage(GetString("谁人惊扰了我的蜂巢！"), Color.Yellow);
-                    }
-                }
-                return state;
-            }
-            if (npc.life >= LifeMax * 0.4f)
-            {
-                if (state == 1)
-                {
-                    state = 2;
-                    if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
-                    {
-                        TSPlayer.All.SendMessage(GetString("不许抢我的蜂蜜"), Color.Yellow);
-                    }
-                }
-                return state;
-            }
-            if (npc.life >= LifeMax * 0.2f)
-            {
-                if (state == 2)
-                {
-                    state = 3;
-                    if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
-                    {
-                        TSPlayer.All.SendMessage(GetString("毒刺射你一脸"), Color.Yellow);
-                    }
-                }
-                return state;
-            }
-            if (state == 3)
-            {
-                state = 4;
-            }
-            return state;
-        }
-
-        public override void OnHurtPlayers(PlayerDamageEventArgs e)
-        {
-            if (global::Challenger.Challenger.config.EnableConsumptionMode)
-            {
-                switch (Main.rand.Next(1, 4))
-                {
-                    case 1:
-                        global::Challenger.Challenger.SendPlayerText(GetString("嗡嗡"), Color.Yellow, npc.Center + new Vector2(0f, -30f));
-                        break;
-                    case 2:
-                        global::Challenger.Challenger.SendPlayerText(GetString("嗡嗡嗡嗡"), Color.Yellow, npc.Center + new Vector2(0f, -30f));
-                        break;
-                    default:
-                        global::Challenger.Challenger.SendPlayerText(GetString("吱嗡"), Color.Yellow, npc.Center + new Vector2(0f, -30f));
-                        break;
-                }
             }
         }
     }

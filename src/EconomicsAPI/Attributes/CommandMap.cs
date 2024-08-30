@@ -9,7 +9,7 @@ public class CommandMap : Attribute
 
     public CommandMap(string name, params string[] perm)
     {
-        Name = name;
-        Permission = perm.ToList();
+        this.Name = name;
+        this.Permission = perm.ToList();
     }
 }

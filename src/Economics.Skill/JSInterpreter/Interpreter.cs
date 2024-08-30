@@ -31,7 +31,9 @@ public class Interpreter
     static Interpreter()
     {
         if (!Directory.Exists(ScriptsDir))
+        {
             Directory.CreateDirectory(ScriptsDir);
+        }
     }
 
     /// <summary>

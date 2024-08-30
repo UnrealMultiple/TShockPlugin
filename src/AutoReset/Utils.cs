@@ -9,6 +9,7 @@ internal class Utils
     public static void CallApi()
     {
         if (AutoResetPlugin.Config.ResetCaution)
+        {
             try
             {
                 HttpClient client = new();
@@ -20,11 +21,14 @@ internal class Utils
                                            $"&seed={(Main.ActiveWorldFileData.SeedText == "" ? Main.ActiveWorldFileData.Seed : Main.ActiveWorldFileData.SeedText)}", null)
                     .Result;
                 if (response.StatusCode != HttpStatusCode.OK)
-                    TShock.Log.ConsoleWarn($"[自动重置]调用API失败! (状态码: {(int)response.StatusCode})");
+                {
+                    TShock.Log.ConsoleWarn($"[自动重置]调用API失败! (状态码: {(int) response.StatusCode})");
+                }
             }
             catch (Exception ex)
             {
                 TShock.Log.Error(ex.Message);
             }
+        }
     }
 }

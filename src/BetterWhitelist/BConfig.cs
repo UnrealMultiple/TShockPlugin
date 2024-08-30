@@ -13,11 +13,9 @@ public class BConfig
 
     public static BConfig Load(string path)
     {
-        BConfig result;
-        if (File.Exists(path))
-            result = JsonConvert.DeserializeObject<BConfig>(File.ReadAllText(path))!;
-        else
-            result = new BConfig
+        var result = File.Exists(path)
+            ? JsonConvert.DeserializeObject<BConfig>(File.ReadAllText(path))
+            : new BConfig
             {
                 Disabled = false
             };

@@ -1,52 +1,60 @@
 ﻿using Terraria;
 using TShockAPI;
 
-namespace EssentialsPlus.Extensions
+namespace EssentialsPlus.Extensions;
+
+public static class TSPlayerExtensions
 {
-    public static class TSPlayerExtensions
+    public static PlayerInfo GetPlayerInfo(this TSPlayer tsplayer)
     {
-        public static PlayerInfo GetPlayerInfo(this TSPlayer tsplayer)
+        if (!tsplayer.ContainsData(PlayerInfo.KEY))
         {
-            if (!tsplayer.ContainsData(PlayerInfo.KEY))
-                tsplayer.SetData(PlayerInfo.KEY, new PlayerInfo());
-            return tsplayer.GetData<PlayerInfo>(PlayerInfo.KEY);
+            tsplayer.SetData(PlayerInfo.KEY, new PlayerInfo());
         }
 
-        /// <summary>
-        /// Finds a TSPlayer based on name or ID
-        /// </summary>
-        /// <param name="plr">Player name or ID</param>
-        /// <returns>A list of matching players</returns>
-        public static List<TSPlayer> FindPlayers(this TSPlayer[] tsplayer, string plr)
-        {
-            var found = new List<TSPlayer>();
-            // Avoid errors caused by null search
-            if (plr == null)
-                return found;
+        return tsplayer.GetData<PlayerInfo>(PlayerInfo.KEY);
+    }
 
-            byte plrID;
-            if (byte.TryParse(plr, out plrID) && plrID < Main.maxPlayers)
+    /// <summary>
+    /// Finds a TSPlayer based on name or ID
+    /// </summary>
+    /// <param name="plr">Player name or ID</param>
+    /// <returns>A list of matching players</returns>
+    public static List<TSPlayer> FindPlayers(this TSPlayer[] tsplayer, string plr)
+    {
+        var found = new List<TSPlayer>();
+        // Avoid errors caused by null search
+        if (plr == null)
+        {
+            return found;
+        }
+
+        if (byte.TryParse(plr, out var plrID) && plrID < Main.maxPlayers)
+        {
+            var player = TShock.Players[plrID];
+            if (player != null && player.Active)
             {
-                TSPlayer player = TShock.Players[plrID];
-                if (player != null && player.Active)
+                return new List<TSPlayer> { player };
+            }
+        }
+
+        var plrLower = plr.ToLower();
+        foreach (var player in TShock.Players)
+        {
+            if (player != null)
+            {
+                // Must be an EXACT match
+                if (player.Name == plr)
                 {
                     return new List<TSPlayer> { player };
                 }
-            }
 
-            string plrLower = plr.ToLower();
-            foreach (TSPlayer player in TShock.Players)
-            {
-                if (player != null)
+                if (player.Name.ToLower().StartsWith(plrLower))
                 {
-                    // Must be an EXACT match
-                    if (player.Name == plr)
-                        return new List<TSPlayer> { player };
-                    if (player.Name.ToLower().StartsWith(plrLower))
-                        found.Add(player);
+                    found.Add(player);
                 }
             }
-            return found;
         }
+        return found;
     }
 }

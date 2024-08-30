@@ -24,8 +24,8 @@ public class DB
         {
             while (reader.Read())
             {
-                string username = reader.Get<string>("Name");
-                int buffid = reader.Get<int>("buffid");
+                var username = reader.Get<string>("Name");
+                var buffid = reader.Get<int>("buffid");
                 Playerbuffs.AddBuff(username, buffid, false);
             }
         }

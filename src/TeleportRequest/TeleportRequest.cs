@@ -11,11 +11,11 @@ public class TeleportRequest : TerrariaPlugin
 {
     private System.Timers.Timer Timer;
 
-    private bool[] TPAllows = new bool[256];
+    private readonly bool[] TPAllows = new bool[256];
 
-    private bool[] TPacpt = new bool[256];
+    private readonly bool[] TPacpt = new bool[256];
 
-    private TPRequest[] TPRequests = new TPRequest[256];
+    private readonly TPRequest[] TPRequests = new TPRequest[256];
 
     public override string Author => "原作者: MarioE, 修改者: Dr.Toxic，肝帝熙恩";
 
@@ -33,9 +33,9 @@ public class TeleportRequest : TerrariaPlugin
         : base(game)
     {
         tpConfig = new Config();
-        for (int i = 0; i < TPRequests.Length; i++)
+        for (var i = 0; i < this.TPRequests.Length; i++)
         {
-            TPRequests[i] = new TPRequest();
+            this.TPRequests[i] = new TPRequest();
         }
     }
 
@@ -43,32 +43,32 @@ public class TeleportRequest : TerrariaPlugin
     {
         if (disposing)
         {
-            ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
-            ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
-            GeneralHooks.ReloadEvent += ReloadTPR;
+            ServerApi.Hooks.GameInitialize.Deregister(this, this.OnInitialize);
+            ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
+            GeneralHooks.ReloadEvent += this.ReloadTPR;
 
-            Timer.Dispose();
+            this.Timer.Dispose();
         }
     }
 
     public override void Initialize()
     {
-        ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
-        ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
-        GeneralHooks.ReloadEvent -= ReloadTPR;
+        ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);
+        ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
+        GeneralHooks.ReloadEvent -= this.ReloadTPR;
     }
 
     private void OnElapsed(object sender, ElapsedEventArgs e)
     {
-        for (int i = 0; i < TPRequests.Length; i++)
+        for (var i = 0; i < this.TPRequests.Length; i++)
         {
-            TPRequest tPRequest = TPRequests[i];
+            var tPRequest = this.TPRequests[i];
             if (tPRequest.timeout <= 0)
             {
                 continue;
             }
-            TSPlayer tSPlayer = TShock.Players[tPRequest.dst];
-            TSPlayer tSPlayer2 = TShock.Players[i];
+            var tSPlayer = TShock.Players[tPRequest.dst];
+            var tSPlayer2 = TShock.Players[i];
             tPRequest.timeout--;
             if (tPRequest.timeout == 0)
             {
@@ -76,7 +76,7 @@ public class TeleportRequest : TerrariaPlugin
                 tSPlayer.SendInfoMessage("玩家[{0}]的传送请求已超时.", tSPlayer2.Name);
                 continue;
             }
-            string format = string.Format("玩家[{{0}}]要求传送到你当前位置. ({0}接受tp ({0}atp) 或 {0}拒绝tp ({0}dtp))", Commands.Specifier);
+            var format = string.Format("玩家[{{0}}]要求传送到你当前位置. ({0}接受tp ({0}atp) 或 {0}拒绝tp ({0}dtp))", Commands.Specifier);
             if (tPRequest.dir)
             {
                 format = string.Format("你被请求传送到玩家[{{0}}]的当前位置. ({0}接受tp ({0}atp) 或 {0}拒绝tp ({0}dtp))", Commands.Specifier);
@@ -87,47 +87,47 @@ public class TeleportRequest : TerrariaPlugin
 
     private void OnInitialize(EventArgs e)
     {
-        Commands.ChatCommands.Add(new Command("tprequest.gettpr", TPAccept, "接受tp", "atp")
+        Commands.ChatCommands.Add(new Command("tprequest.gettpr", this.TPAccept, "接受tp", "atp")
         {
             AllowServer = false,
             HelpText = "接受传送请求."
         });
-        Commands.ChatCommands.Add(new Command("tprequest.tpauto", TPAutoDeny, "自动拒绝tp", "autodeny")
+        Commands.ChatCommands.Add(new Command("tprequest.tpauto", this.TPAutoDeny, "自动拒绝tp", "autodeny")
         {
             AllowServer = false,
             HelpText = "自动拒绝所有人的传送请求."
         });
-        Commands.ChatCommands.Add(new Command("tprequest.tpauto", TPAutoAccept, "自动接受tp", "autoaccept")
+        Commands.ChatCommands.Add(new Command("tprequest.tpauto", this.TPAutoAccept, "自动接受tp", "autoaccept")
         {
             AllowServer = false,
             HelpText = "自动接受所有人的传送请求."
         });
-        Commands.ChatCommands.Add(new Command("tprequest.gettpr", TPDeny, "拒绝tp", "dtp")
+        Commands.ChatCommands.Add(new Command("tprequest.gettpr", this.TPDeny, "拒绝tp", "dtp")
         {
             AllowServer = false,
             HelpText = "拒绝传送请求."
         });
-        Commands.ChatCommands.Add(new Command("tprequest.tpat", TPAHere, "tpahere")
+        Commands.ChatCommands.Add(new Command("tprequest.tpat", this.TPAHere, "tpahere")
         {
             AllowServer = false,
             HelpText = "发出把指定玩家传送到你当前位置的请求."
         });
-        Commands.ChatCommands.Add(new Command("tprequest.tpat", TPA, "tpa")
+        Commands.ChatCommands.Add(new Command("tprequest.tpat", this.TPA, "tpa")
         {
             AllowServer = false,
             HelpText = "发出传送到指定玩家当前位置的请求."
         });
-        SetupConfig();
-        Timer = new System.Timers.Timer(tpConfig.IntervalInSeconds * 1000);
-        Timer.Elapsed += OnElapsed;
-        Timer.Start();
+        this.SetupConfig();
+        this.Timer = new System.Timers.Timer(tpConfig.IntervalInSeconds * 1000);
+        this.Timer.Elapsed += this.OnElapsed;
+        this.Timer.Start();
     }
 
     private void OnLeave(LeaveEventArgs e)
     {
-        TPAllows[e.Who] = false;
-        TPacpt[e.Who] = false;
-        TPRequests[e.Who].timeout = 0;
+        this.TPAllows[e.Who] = false;
+        this.TPacpt[e.Who] = false;
+        this.TPRequests[e.Who].timeout = 0;
     }
 
     private void TPA(CommandArgs e)
@@ -137,8 +137,8 @@ public class TeleportRequest : TerrariaPlugin
             e.Player.SendErrorMessage("格式错误! 正确格式为: {0}tpa <玩家>", Commands.Specifier);
             return;
         }
-        string search = string.Join(" ", e.Parameters.ToArray());
-        List<TSPlayer> list = TSPlayer.FindByNameOrID(search);
+        var search = string.Join(" ", e.Parameters.ToArray());
+        var list = TSPlayer.FindByNameOrID(search);
         if (list.Count == 0)
         {
             e.Player.SendErrorMessage("找不到这位玩家!");
@@ -154,16 +154,16 @@ public class TeleportRequest : TerrariaPlugin
             e.Player.SendErrorMessage("禁止向自己发送传送请求！");
             return;
         }
-        if ((!list[0].TPAllow || TPAllows[list[0].Index]) && !e.Player.Group.HasPermission(Permissions.tpoverride))
+        if ((!list[0].TPAllow || this.TPAllows[list[0].Index]) && !e.Player.Group.HasPermission(Permissions.tpoverride))
         {
             e.Player.SendErrorMessage("你无法传送到玩家[{0}].", list[0].Name);
             return;
         }
-        if ((list[0].TPAllow && TPacpt[list[0].Index]) || e.Player.Group.HasPermission(Permissions.tpoverride))
+        if ((list[0].TPAllow && this.TPacpt[list[0].Index]) || e.Player.Group.HasPermission(Permissions.tpoverride))
         {
-            bool flag = false;
-            TSPlayer tSPlayer = (flag ? TShock.Players[list[0].Index] : e.Player);
-            TSPlayer tSPlayer2 = (flag ? e.Player : TShock.Players[list[0].Index]);
+            var flag = false;
+            var tSPlayer = flag ? TShock.Players[list[0].Index] : e.Player;
+            var tSPlayer2 = flag ? e.Player : TShock.Players[list[0].Index];
             if (tSPlayer.Teleport(tSPlayer2.X, tSPlayer2.Y, 1))
             {
                 tSPlayer.SendSuccessMessage("已经传送到玩家[{0}]的当前位置.", tSPlayer2.Name);
@@ -171,30 +171,30 @@ public class TeleportRequest : TerrariaPlugin
             }
             return;
         }
-        for (int i = 0; i < TPRequests.Length; i++)
+        for (var i = 0; i < this.TPRequests.Length; i++)
         {
-            TPRequest tPRequest = TPRequests[i];
+            var tPRequest = this.TPRequests[i];
             if (tPRequest.timeout > 0 && tPRequest.dst == list[0].Index)
             {
                 e.Player.SendErrorMessage("玩家[{0}]已被其他玩家发出传送请求.", list[0].Name);
                 return;
             }
         }
-        TPRequests[e.Player.Index].dir = false;
-        TPRequests[e.Player.Index].dst = (byte)list[0].Index;
-        TPRequests[e.Player.Index].timeout = tpConfig.TimeoutCount + 1;
+        this.TPRequests[e.Player.Index].dir = false;
+        this.TPRequests[e.Player.Index].dst = (byte) list[0].Index;
+        this.TPRequests[e.Player.Index].timeout = tpConfig.TimeoutCount + 1;
         e.Player.SendSuccessMessage("已成功向玩家[{0}]发出传送请求.", list[0].Name);
     }
 
     private void TPAccept(CommandArgs e)
     {
-        for (int i = 0; i < TPRequests.Length; i++)
+        for (var i = 0; i < this.TPRequests.Length; i++)
         {
-            TPRequest tPRequest = TPRequests[i];
+            var tPRequest = this.TPRequests[i];
             if (tPRequest.timeout > 0 && tPRequest.dst == e.Player.Index)
             {
-                TSPlayer tSPlayer = (tPRequest.dir ? e.Player : TShock.Players[i]);
-                TSPlayer tSPlayer2 = (tPRequest.dir ? TShock.Players[i] : e.Player);
+                var tSPlayer = tPRequest.dir ? e.Player : TShock.Players[i];
+                var tSPlayer2 = tPRequest.dir ? TShock.Players[i] : e.Player;
                 if (tSPlayer.Teleport(tSPlayer2.X, tSPlayer2.Y, 1))
                 {
                     tSPlayer.SendSuccessMessage("已经传送到玩家[{0}]的当前位置.", tSPlayer2.Name);
@@ -214,8 +214,8 @@ public class TeleportRequest : TerrariaPlugin
             e.Player.SendErrorMessage("格式错误! 正确格式为: {0}tpahere <玩家>", Commands.Specifier);
             return;
         }
-        string search = string.Join(" ", e.Parameters.ToArray());
-        List<TSPlayer> list = TSPlayer.FindByNameOrID(search);
+        var search = string.Join(" ", e.Parameters.ToArray());
+        var list = TSPlayer.FindByNameOrID(search);
         if (list.Count == 0)
         {
             e.Player.SendErrorMessage("找不到这位玩家!");
@@ -226,16 +226,16 @@ public class TeleportRequest : TerrariaPlugin
             e.Player.SendErrorMessage("匹对到多于一位玩家!");
             return;
         }
-        if ((!list[0].TPAllow || TPAllows[list[0].Index]) && !e.Player.Group.HasPermission(Permissions.tpoverride))
+        if ((!list[0].TPAllow || this.TPAllows[list[0].Index]) && !e.Player.Group.HasPermission(Permissions.tpoverride))
         {
             e.Player.SendErrorMessage("你无法传送到玩家[{0}].", list[0].Name);
             return;
         }
-        if ((list[0].TPAllow && TPacpt[list[0].Index]) || e.Player.Group.HasPermission(Permissions.tpoverride))
+        if ((list[0].TPAllow && this.TPacpt[list[0].Index]) || e.Player.Group.HasPermission(Permissions.tpoverride))
         {
-            bool flag = true;
-            TSPlayer tSPlayer = (flag ? TShock.Players[list[0].Index] : e.Player);
-            TSPlayer tSPlayer2 = (flag ? e.Player : TShock.Players[list[0].Index]);
+            var flag = true;
+            var tSPlayer = flag ? TShock.Players[list[0].Index] : e.Player;
+            var tSPlayer2 = flag ? e.Player : TShock.Players[list[0].Index];
             if (tSPlayer.Teleport(tSPlayer2.X, tSPlayer2.Y, 1))
             {
                 tSPlayer.SendSuccessMessage("已经传送到玩家[{0}]的当前位置.", tSPlayer2.Name);
@@ -243,37 +243,37 @@ public class TeleportRequest : TerrariaPlugin
             }
             return;
         }
-        for (int i = 0; i < TPRequests.Length; i++)
+        for (var i = 0; i < this.TPRequests.Length; i++)
         {
-            TPRequest tPRequest = TPRequests[i];
+            var tPRequest = this.TPRequests[i];
             if (tPRequest.timeout > 0 && tPRequest.dst == list[0].Index)
             {
                 e.Player.SendErrorMessage("玩家[{0}]已被其他玩家发出传送请求.", list[0].Name);
                 return;
             }
         }
-        TPRequests[e.Player.Index].dir = true;
-        TPRequests[e.Player.Index].dst = (byte)list[0].Index;
-        TPRequests[e.Player.Index].timeout = tpConfig.TimeoutCount + 1;
+        this.TPRequests[e.Player.Index].dir = true;
+        this.TPRequests[e.Player.Index].dst = (byte) list[0].Index;
+        this.TPRequests[e.Player.Index].timeout = tpConfig.TimeoutCount + 1;
         e.Player.SendSuccessMessage("已成功向玩家[{0}]发出传送请求.", list[0].Name);
     }
 
     private void TPAutoDeny(CommandArgs e)
     {
-        if (TPacpt[e.Player.Index])
+        if (this.TPacpt[e.Player.Index])
         {
             e.Player.SendErrorMessage("请先解除自动接受传送");
             return;
         }
-        TPAllows[e.Player.Index] = !TPAllows[e.Player.Index];
-        e.Player.SendInfoMessage("{0}自动拒绝传送请求.", TPAllows[e.Player.Index] ? "启用" : "解除");
+        this.TPAllows[e.Player.Index] = !this.TPAllows[e.Player.Index];
+        e.Player.SendInfoMessage("{0}自动拒绝传送请求.", this.TPAllows[e.Player.Index] ? "启用" : "解除");
     }
 
     private void TPDeny(CommandArgs e)
     {
-        for (int i = 0; i < TPRequests.Length; i++)
+        for (var i = 0; i < this.TPRequests.Length; i++)
         {
-            TPRequest tPRequest = TPRequests[i];
+            var tPRequest = this.TPRequests[i];
             if (tPRequest.timeout > 0 && tPRequest.dst == e.Player.Index)
             {
                 e.Player.SendSuccessMessage("已拒绝玩家[{0}]的传送请求.", TShock.Players[i].Name);
@@ -287,13 +287,13 @@ public class TeleportRequest : TerrariaPlugin
 
     private void TPAutoAccept(CommandArgs e)
     {
-        if (TPAllows[e.Player.Index])
+        if (this.TPAllows[e.Player.Index])
         {
             e.Player.SendErrorMessage("请先解除自动拒绝传送");
             return;
         }
-        TPacpt[e.Player.Index] = !TPacpt[e.Player.Index];
-        e.Player.SendInfoMessage("{0}自动接受传送请求.", TPacpt[e.Player.Index] ? "启用" : "解除");
+        this.TPacpt[e.Player.Index] = !this.TPacpt[e.Player.Index];
+        e.Player.SendInfoMessage("{0}自动接受传送请求.", this.TPacpt[e.Player.Index] ? "启用" : "解除");
     }
 
     private void SetupConfig()
@@ -318,7 +318,7 @@ public class TeleportRequest : TerrariaPlugin
 
     private void ReloadTPR(ReloadEventArgs args)
     {
-        SetupConfig();
+        this.SetupConfig();
         args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(TeleportRequest).Name);
     }
 }

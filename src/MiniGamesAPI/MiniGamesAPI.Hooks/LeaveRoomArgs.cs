@@ -1,7 +1,5 @@
-﻿namespace MiniGamesAPI
-{
-    public class LeaveRoomArgs
-    {
-    }
+﻿namespace MiniGamesAPI;
 
+public class LeaveRoomArgs
+{
 }

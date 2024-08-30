@@ -9,8 +9,8 @@ internal class PlayerChatMessage : PlayerMessage
     public string Text { get; init; }
     public PlayerChatMessage(TSPlayer player, string text) : base(player)
     {
-        Text = text;
-        Type = MsgType.Chat;
+        this.Text = text;
+        this.Type = MsgType.Chat;
     }
     public PlayerChatMessage()
     {

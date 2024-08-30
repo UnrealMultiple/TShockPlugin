@@ -26,9 +26,7 @@ public static class ProgressUtil
         var flag = BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance;
         var value = map?.Target.GetField(map.Filed, flag)?.GetValue(obj)
                     ?? map?.Target.GetProperty(map.Filed, flag)?.GetValue(obj);
-        if (value != null && map != null)
-            return map.Value.Equals(value);
-        return false;
+        return value != null && map != null ? map.Value.Equals(value) : false;
     }
 
     public static Dictionary<string, bool> GetProgress(this TSPlayer Player)
@@ -41,20 +39,16 @@ public static class ProgressUtil
             var progName = field.GetCustomAttribute<ProgressNameAttribute>();
             if (map?.Target == typeof(NPC))
             {
-                state = (ProgressType)field.GetValue(-1)! switch
+                state = (ProgressType) field.GetValue(-1)! switch
                 {
                     ProgressType.EvilBoss => InBestiaryDB(Terraria.ID.NPCID.EaterofWorldsHead) && CompareVlaue(map, null),
                     ProgressType.Brainof => InBestiaryDB(Terraria.ID.NPCID.BrainofCthulhu) && CompareVlaue(map, null),
                     _ => CompareVlaue(map, null),
                 };
             }
-            else if (map?.Target == typeof(Player))
-            {
-                state = CompareVlaue(map, Player.TPlayer);
-            }
             else
             {
-                state = CompareVlaue(map, null);
+                state = map?.Target == typeof(Player) ? CompareVlaue(map, Player.TPlayer) : CompareVlaue(map, null);
             }
             foreach (var name in progName!.Names)
             {
@@ -70,7 +64,9 @@ public static class ProgressUtil
         foreach (var name in names)
         {
             if (!(gameProgress.TryGetValue(name, out var code) && code))
+            {
                 return false;
+            }
         }
         return true;
     }

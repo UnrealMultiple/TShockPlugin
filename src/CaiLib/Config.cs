@@ -1,55 +1,57 @@
 ﻿using Newtonsoft.Json;
 using TShockAPI;
 
-namespace CaiLib
+namespace CaiLib;
+
+public class CaiConfig<TSettings> where TSettings : new()
 {
-    public class CaiConfig<TSettings> where TSettings : new()
-    {
-        /// <summary>
+    /// <summary>
 		/// 设置Config对象
 		/// </summary>
 		/// <param name="name">配置文件的名字</param>
 		/// <param name="settings">配置文件的类模板</param>
-        public CaiConfig(string name, TSettings settings)
-        {
-            FilePath = Path.Combine(TShock.SavePath, name);
-            Settings = settings;
-        }
+    public CaiConfig(string name, TSettings settings)
+    {
+        this.FilePath = Path.Combine(TShock.SavePath, name);
+        this.Settings = settings;
+    }
 
 
-        [JsonIgnore]
-        public string FilePath = Path.Combine(TShock.SavePath, "CaiLib.json");
+    [JsonIgnore]
+    public string FilePath = Path.Combine(TShock.SavePath, "CaiLib.json");
 
-        public virtual TSettings Settings { get; set; } = new TSettings();
+    public virtual TSettings Settings { get; set; } = new TSettings();
 
-        /// <summary>
+    /// <summary>
 		/// 写入Config
 		/// </summary>
-        public void Write()
+    public void Write()
+    {
+        using (var fs = new FileStream(this.FilePath, FileMode.Create, FileAccess.Write, FileShare.Write))
         {
-            using (var fs = new FileStream(FilePath, FileMode.Create, FileAccess.Write, FileShare.Write))
+            var str = JsonConvert.SerializeObject(this, Formatting.Indented);
+            using (var sw = new StreamWriter(fs))
             {
-                var str = JsonConvert.SerializeObject(this, Formatting.Indented);
-                using (var sw = new StreamWriter(fs))
-                {
-                    sw.Write(str);
-                }
+                sw.Write(str);
             }
         }
-        /// <summary>
+    }
+    /// <summary>
 		/// 创造并读取Config
 		/// </summary>
-        public CaiConfig<TSettings> Read()
+    public CaiConfig<TSettings> Read()
+    {
+        if (!File.Exists(this.FilePath))
         {
-            if (!File.Exists(FilePath))
-                return this;
-            using (var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            return this;
+        }
+
+        using (var fs = new FileStream(this.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+        {
+            using (var sr = new StreamReader(fs))
             {
-                using (var sr = new StreamReader(fs))
-                {
-                    var cf = JsonConvert.DeserializeObject<CaiConfig<TSettings>>(sr.ReadToEnd());
-                    return cf;
-                }
+                var cf = JsonConvert.DeserializeObject<CaiConfig<TSettings>>(sr.ReadToEnd());
+                return cf;
             }
         }
     }

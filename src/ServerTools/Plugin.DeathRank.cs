@@ -17,7 +17,10 @@ public partial class Plugin
     private void KillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
     {
         if (e.Player == null)
+        {
             return;
+        }
+
         PlayerDeathRank.Add(e.Player.Name);
         Deads.Add(e.Player);
     }

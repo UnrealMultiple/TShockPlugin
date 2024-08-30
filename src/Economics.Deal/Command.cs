@@ -13,8 +13,10 @@ public class Command
     {
         void Show(List<string> line)
         {
-            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, args.Player, out int pageNumber))
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, args.Player, out var pageNumber))
+            {
                 return;
+            }
 
             PaginationTools.SendPage(
                     args.Player,
@@ -36,7 +38,7 @@ public class Command
                 args.Player.SendErrorMessage("你手持物品为空!");
                 return;
             }
-            if (!long.TryParse(args.Parameters[1], out long cost) || cost < 0)
+            if (!long.TryParse(args.Parameters[1], out var cost) || cost < 0)
             {
                 args.Player.SendErrorMessage("请输入一个正确的价格!");
                 return;

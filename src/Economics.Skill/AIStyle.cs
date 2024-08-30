@@ -14,7 +14,7 @@ public class AIStyle
 
     private delegate void StyleCall(Projectile projectile, AIStyleOption option);
 
-    private static string UUID = Guid.NewGuid().ToString();
+    private static readonly string UUID = Guid.NewGuid().ToString();
 
     private static readonly Dictionary<AIStyleType, StyleCall> TypeCall = new Dictionary<AIStyleType, StyleCall>()
     {
@@ -26,7 +26,10 @@ public class AIStyle
     public static void Set(Projectile projectile, AIStyleOption style, string guid)
     {
         if (style.Style < 0)
+        {
             return;
+        }
+
         projectiles[guid] = (projectile, style);
     }
 
@@ -35,7 +38,9 @@ public class AIStyle
         if (projectiles.TryGetValue(projectile.miscText, out var style))
         {
             if (TypeCall.TryGetValue(style.Item2.Style, out var func))
+            {
                 func(projectile, style.Item2);
+            }
         }
     }
 
@@ -48,14 +53,18 @@ public class AIStyle
             projectile.velocity = speed.ToLenOf(aIStyleOption.Speed);
             TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", projectile.whoAmI);
             if (Math.Abs(target.Distance(projectile.Center)) <= 16f)
+            {
                 projectiles.Remove(projectile.miscText, out var _);
+            }
         }
     }
 
     public static void Remove()
     {
         foreach (var (npc, _) in projectiles.Where(x => x.Value.Item1 == null || !x.Value.Item1.active).ToList())
+        {
             projectiles.Remove(npc, out var _);
+        }
     }
 
     public static void Revolve(Projectile projectile, AIStyleOption aIStyleOption)
@@ -68,7 +77,7 @@ public class AIStyle
         if (Main.time % aIStyleOption.Interval == 0.0 && target != null)
         {
             var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY);
-            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner, aIStyleOption.AI[0], aIStyleOption.AI[1], aIStyleOption.AI[2], -1, UUID);
+            var index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner, aIStyleOption.AI[0], aIStyleOption.AI[1], aIStyleOption.AI[2], -1, UUID);
             TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
         }
     }
@@ -81,7 +90,7 @@ public class AIStyle
         if (Main.time % aIStyleOption.Interval == 0.0 && target != null)
         {
             var speed = projectile.DirectionTo(target.Center).SafeNormalize(-Vector2.UnitY);
-            int index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner, aIStyleOption.AI[0], aIStyleOption.AI[1], aIStyleOption.AI[2], -1, UUID);
+            var index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Projectile.GetNoneSource(), projectile.Center, speed.ToLenOf(aIStyleOption.Speed), aIStyleOption.ProjID, aIStyleOption.Damage, 10, projectile.owner, aIStyleOption.AI[0], aIStyleOption.AI[1], aIStyleOption.AI[2], -1, UUID);
             TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
         }
     }

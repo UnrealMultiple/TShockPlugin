@@ -98,7 +98,9 @@ public class Command
         }
         TShock.Utils.Broadcast(string.Format(RPG.Config.ResetBroadcast, args.Player.Name), Color.Green);
         if (RPG.Config.ResetKick)
+        {
             args.Player.Disconnect("你因重置等级被踢出!");
+        }
     }
 
     [CommandMap("level", "economics.rpg.admin")]

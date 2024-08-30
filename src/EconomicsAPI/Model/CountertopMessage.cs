@@ -8,7 +8,7 @@ public class CountertopMessage
 
     public CountertopMessage(string msg, int order)
     {
-        Message = msg;
-        Order = order;
+        this.Message = msg;
+        this.Order = order;
     }
 }

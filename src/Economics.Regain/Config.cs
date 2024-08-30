@@ -15,8 +15,8 @@ public class Config
 
         public override string ToString()
         {
-            var item = TShock.Utils.GetItemById(ID);
-            return $"[i:{ID}] {item.Name} 价格:{Cost}";
+            var item = TShock.Utils.GetItemById(this.ID);
+            return $"[i:{this.ID}] {item.Name} 价格:{this.Cost}";
         }
     }
 
@@ -28,7 +28,7 @@ public class Config
 
     public bool TryGetRegain(int id, out RegainInfo? value)
     {
-        value = Regains.Find(x => x.ID == id);
+        value = this.Regains.Find(x => x.ID == id);
         return value != null;
     }
 }

@@ -20,10 +20,10 @@ public class SessionSentinel : TerrariaPlugin
 
     public override void Initialize()
     {
-        ServerApi.Hooks.NetGetData.Register(this, OnData);
-        ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
-        ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
-        ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
+        ServerApi.Hooks.NetGetData.Register(this, this.OnData);
+        ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
+        ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
+        ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
 
     }
 
@@ -31,10 +31,10 @@ public class SessionSentinel : TerrariaPlugin
     {
         if (disposing)
         {
-            ServerApi.Hooks.NetGetData.Deregister(this, OnData);
-            ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
-            ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
-            ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
+            ServerApi.Hooks.NetGetData.Deregister(this, this.OnData);
+            ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
+            ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);
+            ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
 
         }
         base.Dispose(disposing);
@@ -42,30 +42,30 @@ public class SessionSentinel : TerrariaPlugin
 
     private void OnLeave(LeaveEventArgs args)
     {
-        _lastActivityTimes.Remove(args.Who);
+        this._lastActivityTimes.Remove(args.Who);
     }
 
     private void OnJoin(JoinEventArgs args)
     {
-        _lastActivityTimes[args.Who] = DateTime.UtcNow;
+        this._lastActivityTimes[args.Who] = DateTime.UtcNow;
     }
 
     private void OnUpdate(EventArgs args)
     {
-        TimerCount++;
-        if (TimerCount % 60 == 0) // 每秒检测一次
+        this.TimerCount++;
+        if (this.TimerCount % 60 == 0) // 每秒检测一次
         {
-            DateTime now = DateTime.UtcNow;
-            foreach (var kvp in _lastActivityTimes.ToList())
+            var now = DateTime.UtcNow;
+            foreach (var kvp in this._lastActivityTimes.ToList())
             {
                 if ((now - kvp.Value).TotalSeconds > TimeoutSeconds)
                 {
-                    TSPlayer player = TShock.Players[kvp.Key];
+                    var player = TShock.Players[kvp.Key];
                     if (player != null && player.Active)
                     {
                         player.Kick("你咋不动了。", true, true, null, false);
                     }
-                    _lastActivityTimes.Remove(kvp.Key);
+                    this._lastActivityTimes.Remove(kvp.Key);
                 }
             }
         }
@@ -75,8 +75,8 @@ public class SessionSentinel : TerrariaPlugin
     {
         if (args.MsgID == PacketTypes.PlayerUpdate)
         {
-            int playerIndex = args.Msg.whoAmI;
-            _lastActivityTimes[playerIndex] = DateTime.UtcNow;
+            var playerIndex = args.Msg.whoAmI;
+            this._lastActivityTimes[playerIndex] = DateTime.UtcNow;
         }
     }
 }

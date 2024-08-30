@@ -22,20 +22,20 @@ public class Main : TerrariaPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("cgive.admin", cgive, "cgive"));
-        ServerApi.Hooks.GameInitialize.Register(this, OnGameInit);
-        ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreetPlayer);
-        TShock.RestApi.Register("/getWarehouse", getWarehouse);
+        Commands.ChatCommands.Add(new Command("cgive.admin", this.cgive, "cgive"));
+        ServerApi.Hooks.GameInitialize.Register(this, this.OnGameInit);
+        ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);
+        TShock.RestApi.Register("/getWarehouse", this.getWarehouse);
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == cgive);
-            ServerApi.Hooks.GameInitialize.Deregister(this, OnGameInit);
-            ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);
-            ((List<RestCommand>)typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.cgive);
+            ServerApi.Hooks.GameInitialize.Deregister(this, this.OnGameInit);
+            ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreetPlayer);
+            ((List<RestCommand>) typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
             .GetValue(TShock.RestApi)!)
             .RemoveAll(x => x.Name == "/getWarehouse");
         }
@@ -158,67 +158,67 @@ public class Main : TerrariaPlugin
                 args.Player.SendSuccessMessage("成功删除所有数据");
                 break;
             case "del":
+            {
+                if (int.TryParse(args.Parameters[1], out var netID))
                 {
-                    if (int.TryParse(args.Parameters[1], out var netID))
+                    var cGive2 = new CGive
                     {
-                        var cGive2 = new CGive
-                        {
-                            id = netID
-                        };
-                        cGive2.Del();
-                        args.Player.SendSuccessMessage("已执行删除");
-                    }
-                    else
-                    {
-                        args.Player.SendErrorMessage("ID输入错误!");
-                    }
-                    break;
+                        id = netID
+                    };
+                    cGive2.Del();
+                    args.Player.SendSuccessMessage("已执行删除");
                 }
+                else
+                {
+                    args.Player.SendErrorMessage("ID输入错误!");
+                }
+                break;
+            }
             case "list":
+            {
+                foreach (var item in CGive.GetCGive())
                 {
-                    foreach (var item in CGive.GetCGive())
-                    {
-                        var player = args.Player;
-                        player.SendInfoMessage($"执行者:{item.Executer} 被执行者:{item.who} 命令:{item.cmd} id:{item.id}");
-                    }
-                    break;
+                    var player = args.Player;
+                    player.SendInfoMessage($"执行者:{item.Executer} 被执行者:{item.who} 命令:{item.cmd} id:{item.id}");
                 }
+                break;
+            }
             case "all":
+            {
+                var executer2 = args.Parameters[1];
+                var cmd2 = args.Parameters[2];
+                var who2 = "-1";
+                var cGive3 = new CGive
                 {
-                    var executer2 = args.Parameters[1];
-                    var cmd2 = args.Parameters[2];
-                    var who2 = "-1";
-                    var cGive3 = new CGive
-                    {
-                        who = who2,
-                        Executer = executer2,
-                        cmd = cmd2
-                    };
-                    cGive3.Execute();
-                    break;
-                }
+                    who = who2,
+                    Executer = executer2,
+                    cmd = cmd2
+                };
+                cGive3.Execute();
+                break;
+            }
             case "personal":
+            {
+                var executer = "Server";
+                var who = args.Parameters[2];
+                var cmd = args.Parameters[1];
+                var cGive = new CGive
                 {
-                    var executer = "Server";
-                    var who = args.Parameters[2];
-                    var cmd = args.Parameters[1];
-                    var cGive = new CGive
-                    {
-                        Executer = executer,
-                        who = who,
-                        cmd = cmd
-                    };
-                    if (!cGive.Execute())
-                    {
-                        args.Player.SendInfoMessage("命令已保存");
-                        cGive.Save();
-                    }
-                    else
-                    {
-                        args.Player.SendInfoMessage("命令执行成功！");
-                    }
-                    break;
+                    Executer = executer,
+                    who = who,
+                    cmd = cmd
+                };
+                if (!cGive.Execute())
+                {
+                    args.Player.SendInfoMessage("命令已保存");
+                    cGive.Save();
                 }
+                else
+                {
+                    args.Player.SendInfoMessage("命令执行成功！");
+                }
+                break;
+            }
         }
     }
 }

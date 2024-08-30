@@ -28,11 +28,14 @@ public class Shop : TerrariaPlugin
 
     public override void Initialize()
     {
-        LoadConfig();
-        GeneralHooks.ReloadEvent += LoadConfig;
+        this.LoadConfig();
+        GeneralHooks.ReloadEvent += this.LoadConfig;
     }
 
-    public void LoadConfig(ReloadEventArgs? args = null) => Config = ConfigHelper.LoadConfig(PATH, Config);
+    public void LoadConfig(ReloadEventArgs? args = null)
+    {
+        Config = ConfigHelper.LoadConfig(this.PATH, Config);
+    }
 
     protected override void Dispose(bool disposing)
     {
@@ -40,7 +43,7 @@ public class Shop : TerrariaPlugin
         {
             EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
-            GeneralHooks.ReloadEvent -= LoadConfig;
+            GeneralHooks.ReloadEvent -= this.LoadConfig;
         }
         base.Dispose(disposing);
     }
@@ -48,13 +51,14 @@ public class Shop : TerrariaPlugin
 
     public static bool HasItem(TSPlayer player, List<ItemTerm> itemTerms)
     {
-        foreach (ItemTerm term in itemTerms)
+        foreach (var term in itemTerms)
         {
             var count = 0;
             CheckBanksForItem(player, term.netID, ref count);
             if (count < term.Stack)
+            {
                 return false;
-
+            }
         }
         ConsumeItem(player, itemTerms);
         return true;
@@ -65,7 +69,7 @@ public class Shop : TerrariaPlugin
         foreach (var term in terms)
         {
             var stack = term.Stack;
-            for (int j = 0; j < player.TPlayer.inventory.Length; j++)
+            for (var j = 0; j < player.TPlayer.inventory.Length; j++)
             {
                 var item = player.TPlayer.inventory[j];
                 if (item.netID == term.netID)
@@ -86,7 +90,7 @@ public class Shop : TerrariaPlugin
 
     private static void CheckBanksForItem(TSPlayer player, int itemId, ref int itemCount)
     {
-        for (int j = 0; j < player.TPlayer.inventory.Length; j++)
+        for (var j = 0; j < player.TPlayer.inventory.Length; j++)
         {
             if (player.TPlayer.inventory[j].type == itemId)// 检查猪猪储钱罐
             {

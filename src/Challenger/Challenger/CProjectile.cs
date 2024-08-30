@@ -1,153 +1,146 @@
 ﻿using Terraria;
 using TShockAPI;
 
-namespace Challenger
+namespace Challenger;
+
+public class CProjectile
 {
-    public class CProjectile
+    public Projectile? proj;
+
+    private readonly int type;
+
+    private readonly int index;
+
+    private readonly int owner;
+
+    public float[] ai;
+
+    public int lable;
+
+    private bool _isActive;
+
+    public bool isActive
     {
-        public Projectile? proj;
+        get => this.proj != null && this.proj.type == this.type && this.proj.whoAmI == this.index && this.proj.owner == this.owner && Main.player[this.owner].active && this.proj.active && this._isActive;
+        set => this._isActive = value;
+    }
 
-        private readonly int type;
+    protected CProjectile()
+    {
+        this.proj = null;
+        this.type = 0;
+        this.index = 0;
+        this.owner = 0;
+        this.ai = new float[8];
+        this.lable = 0;
+        this.isActive = false;
+    }
 
-        private readonly int index;
-
-        private readonly int owner;
-
-        public float[] ai;
-
-        public int lable;
-
-        private bool _isActive;
-
-        public bool isActive
+    protected CProjectile(Projectile? proj)
+    {
+        if (proj == null)
         {
-            get
-            {
-                return proj != null && proj.type == type && proj.whoAmI == index && proj.owner == owner && Main.player[owner].active && proj.active && _isActive;
-            }
-            set
-            {
-                _isActive = value;
-            }
+            this.proj = null;
+            this.type = 0;
+            this.index = 0;
+            this.owner = 0;
+            this.ai = new float[8];
+            this.lable = 0;
+            this.isActive = false;
         }
-
-        protected CProjectile()
+        else
         {
-            proj = null;
-            type = 0;
-            index = 0;
-            owner = 0;
-            ai = new float[8];
-            lable = 0;
-            isActive = false;
+            this.proj = proj;
+            this.type = proj.type;
+            this.index = proj.whoAmI;
+            this.owner = proj.owner;
+            this.ai = new float[8];
+            this.lable = 0;
+            this.isActive = proj.active;
         }
+    }
 
-        protected CProjectile(Projectile? proj)
+    protected CProjectile(Projectile? proj, float[] ai, int lable)
+    {
+        if (proj == null)
         {
-            if (proj == null)
-            {
-                this.proj = null;
-                type = 0;
-                index = 0;
-                owner = 0;
-                ai = new float[8];
-                lable = 0;
-                isActive = false;
-            }
-            else
-            {
-                this.proj = proj;
-                type = proj.type;
-                index = proj.whoAmI;
-                owner = proj.owner;
-                ai = new float[8];
-                lable = 0;
-                isActive = proj.active;
-            }
+            this.proj = null;
+            this.type = 0;
+            this.index = 0;
+            this.owner = 0;
+            this.ai = new float[8];
+            this.lable = 0;
+            this.isActive = false;
         }
-
-        protected CProjectile(Projectile? proj, float[] ai, int lable)
+        else
         {
-            if (proj == null)
+            this.proj = proj;
+            this.type = proj.type;
+            this.index = proj.whoAmI;
+            this.owner = proj.owner;
+            this.ai = ai;
+            this.lable = lable;
+            this.isActive = proj.active;
+        }
+    }
+
+    public static void CKill(int index)
+    {
+        if (Main.projectile[index] != null && Main.projectile[index].active)
+        {
+            Main.projectileIdentity[Main.projectile[index].owner, Main.projectile[index].identity] = -1;
+            Main.projectile[index].timeLeft = 0;
+            if (Main.getGoodWorld && Main.projectile[index].aiStyle == 16)
             {
-                this.proj = null;
-                type = 0;
-                index = 0;
-                owner = 0;
-                this.ai = new float[8];
-                this.lable = 0;
-                isActive = false;
+                Main.projectile[index].TryGettingHitByOtherPlayersExplosives();
             }
-            else
+            Main.projectile[index].active = false;
+            TSPlayer.All.SendData((PacketTypes) 29, "", Main.projectile[index].identity, Main.projectile[index].owner, 0f, 0f, 0);
+            if (Collect.cprojs[index] != null)
             {
-                this.proj = proj;
-                type = proj.type;
-                index = proj.whoAmI;
-                owner = proj.owner;
-                this.ai = ai;
-                this.lable = lable;
-                isActive = proj.active;
+                Collect.cprojs[index].isActive = false;
             }
         }
+    }
 
-        public static void CKill(int index)
+    public void CKill()
+    {
+        if (this.proj != null && this.proj.active)
         {
-            if (Main.projectile[index] != null && Main.projectile[index].active)
+            Main.projectileIdentity[this.proj.owner, this.proj.identity] = -1;
+            this.proj.timeLeft = 0;
+            if (Main.getGoodWorld && this.proj.aiStyle == 16)
             {
-                Main.projectileIdentity[Main.projectile[index].owner, Main.projectile[index].identity] = -1;
-                Main.projectile[index].timeLeft = 0;
-                if (Main.getGoodWorld && Main.projectile[index].aiStyle == 16)
-                {
-                    Main.projectile[index].TryGettingHitByOtherPlayersExplosives();
-                }
-                Main.projectile[index].active = false;
-                TSPlayer.All.SendData((PacketTypes)29, "", Main.projectile[index].identity, Main.projectile[index].owner, 0f, 0f, 0);
-                if (Collect.cprojs[index] != null)
-                {
-                    Collect.cprojs[index].isActive = false;
-                }
+                this.proj.TryGettingHitByOtherPlayersExplosives();
+            }
+            this.proj.active = false;
+            TSPlayer.All.SendData((PacketTypes) 29, "", this.proj.identity, this.proj.owner, 0f, 0f, 0);
+            if (Collect.cprojs[this.proj.whoAmI] != null)
+            {
+                Collect.cprojs[this.proj.whoAmI].isActive = false;
             }
         }
+    }
 
-        public void CKill()
-        {
-            if (proj != null && proj.active)
-            {
-                Main.projectileIdentity[proj.owner, proj.identity] = -1;
-                proj.timeLeft = 0;
-                if (Main.getGoodWorld && proj.aiStyle == 16)
-                {
-                    proj.TryGettingHitByOtherPlayersExplosives();
-                }
-                proj.active = false;
-                TSPlayer.All.SendData((PacketTypes)29, "", proj.identity, proj.owner, 0f, 0f, 0);
-                if (Collect.cprojs[proj.whoAmI] != null)
-                {
-                    Collect.cprojs[proj.whoAmI].isActive = false;
-                }
-            }
-        }
+    public static void Update(int index)
+    {
+        TSPlayer.All.SendData((PacketTypes) 27, null, index, 0f, 0f, 0f, 0);
+    }
 
-        public static void Update(int index)
-        {
-            TSPlayer.All.SendData((PacketTypes)27, null, index, 0f, 0f, 0f, 0);
-        }
+    public void Update()
+    {
+        TSPlayer.All.SendData((PacketTypes) 27, null, this.index, 0f, 0f, 0f, 0);
+    }
 
-        public void Update()
-        {
-            TSPlayer.All.SendData((PacketTypes)27, null, index, 0f, 0f, 0f, 0);
-        }
+    public virtual void ProjectileAI()
+    {
+    }
 
-        public virtual void ProjectileAI()
-        {
-        }
+    public virtual void PreProjectileKilled()
+    {
+    }
 
-        public virtual void PreProjectileKilled()
-        {
-        }
-
-        public virtual void MyEffect()
-        {
-        }
+    public virtual void MyEffect()
+    {
     }
 }

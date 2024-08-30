@@ -29,7 +29,7 @@ public class Command
         if (args.Parameters.Count == 3)
         {
             var name = args.Parameters[1];
-            if (!long.TryParse(args.Parameters[2], out long num))
+            if (!long.TryParse(args.Parameters[2], out var num))
             {
                 args.Player.SendErrorMessage("请输入一个有效数值!");
                 return;
@@ -37,40 +37,40 @@ public class Command
             switch (args.Parameters[0].ToLower())
             {
                 case "add":
+                {
+                    Economics.CurrencyManager.AddUserCurrency(name, num);
+                    args.Player.SendSuccessMessage($"成功为`{name}`添加 {num} 个{Economics.Setting.CurrencyName}");
+                    break;
+                }
+                case "del":
+                {
+                    if (Economics.CurrencyManager.DelUserCurrency(name, num))
+                    {
+                        args.Player.SendSuccessMessage($"成功删除`{name}`的 {num} 个{Economics.Setting.CurrencyName}");
+                        return;
+                    }
+                    args.Player.SendErrorMessage($"用户`{name}`仅有{Economics.CurrencyManager.GetUserCurrency(name)}个{Economics.Setting.CurrencyName}");
+                    break;
+                }
+                case "pay":
+                {
+                    if (!args.Player.HasPermission(EconomicsPerm.PayCurrency))
+                    {
+                        args.Player.SendErrorMessage("你无权执行此命令!");
+                        return;
+                    }
+                    if (Economics.CurrencyManager.DelUserCurrency(args.Player.Name, num))
                     {
                         Economics.CurrencyManager.AddUserCurrency(name, num);
-                        args.Player.SendSuccessMessage($"成功为`{name}`添加 {num} 个{Economics.Setting.CurrencyName}");
-                        break;
+                        args.Player.SendSuccessMessage($"成功转账给`{name}` {num} 个{Economics.Setting.CurrencyName}");
+                        return;
                     }
-                case "del":
+                    else
                     {
-                        if (Economics.CurrencyManager.DelUserCurrency(name, num))
-                        {
-                            args.Player.SendSuccessMessage($"成功删除`{name}`的 {num} 个{Economics.Setting.CurrencyName}");
-                            return;
-                        }
-                        args.Player.SendErrorMessage($"用户`{name}`仅有{Economics.CurrencyManager.GetUserCurrency(name)}个{Economics.Setting.CurrencyName}");
-                        break;
+                        args.Player.SendSuccessMessage($"你的{Economics.Setting.CurrencyName}不足，无法转账!");
+                        return;
                     }
-                case "pay":
-                    {
-                        if (!args.Player.HasPermission(EconomicsPerm.PayCurrency))
-                        {
-                            args.Player.SendErrorMessage("你无权执行此命令!");
-                            return;
-                        }
-                        if (Economics.CurrencyManager.DelUserCurrency(args.Player.Name, num))
-                        {
-                            Economics.CurrencyManager.AddUserCurrency(name, num);
-                            args.Player.SendSuccessMessage($"成功转账给`{name}` {num} 个{Economics.Setting.CurrencyName}");
-                            return;
-                        }
-                        else
-                        {
-                            args.Player.SendSuccessMessage($"你的{Economics.Setting.CurrencyName}不足，无法转账!");
-                            return;
-                        }
-                    }
+                }
 
                 default:
                     args.Player.SendErrorMessage("语法错误，请输入/bank help查看正确语法");

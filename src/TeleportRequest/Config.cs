@@ -11,14 +11,14 @@ public class Config
 
     public void Write(string path)
     {
-        using FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write);
-        Write(stream);
+        using var stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write);
+        this.Write(stream);
     }
 
     public void Write(Stream stream)
     {
-        string value = JsonConvert.SerializeObject((object)this, (Formatting)1);
-        using StreamWriter streamWriter = new StreamWriter(stream);
+        var value = JsonConvert.SerializeObject((object) this, (Formatting) 1);
+        using var streamWriter = new StreamWriter(stream);
         streamWriter.Write(value);
     }
 
@@ -28,13 +28,13 @@ public class Config
         {
             return new Config();
         }
-        using FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+        using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
         return Read(stream);
     }
 
     public static Config Read(Stream stream)
     {
-        using StreamReader streamReader = new StreamReader(stream);
+        using var streamReader = new StreamReader(stream);
         return JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd());
     }
 }

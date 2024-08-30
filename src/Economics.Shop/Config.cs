@@ -14,8 +14,6 @@ public class Config
 
     public Product? GetProduct(int index)
     {
-        if (Products.Count < index || index < 1)
-            return null;
-        return Products[index - 1];
+        return this.Products.Count < index || index < 1 ? null : this.Products[index - 1];
     }
 }

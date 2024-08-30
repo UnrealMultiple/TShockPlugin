@@ -10,7 +10,7 @@ public class PlayerSparkSkillHandler
 
     public static bool IsSpark(TSPlayer Player, PlayerSKillManager.PlayerSkill skill, SkillSparkType skillSparkType)
     {
-        bool enable = false;
+        var enable = false;
         if (skill.Skill!.SkillSpark.SparkMethod.Contains(skillSparkType))
         {
             foreach (var Spark in skill.Skill!.SkillSpark.SparkMethod)
@@ -31,7 +31,9 @@ public class PlayerSparkSkillHandler
                     _ => false
                 };
                 if (!enable)
+                {
                     return false;
+                }
             }
         }
         return enable;

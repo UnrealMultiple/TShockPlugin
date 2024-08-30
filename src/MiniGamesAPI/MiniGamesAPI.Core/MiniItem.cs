@@ -1,28 +1,27 @@
 ﻿using TShockAPI;
 
-namespace MiniGamesAPI
+namespace MiniGamesAPI;
+
+public class MiniItem
 {
-    public class MiniItem
+    public int Slot { get; set; }
+
+    public byte Prefix { get; set; }
+
+    public int NetID { get; set; }
+
+    public int Stack { get; set; }
+
+    public MiniItem(int slot, byte prefix, int netid, int stack)
     {
-        public int Slot { get; set; }
+        this.Slot = slot;
+        this.Prefix = prefix;
+        this.NetID = netid;
+        this.Stack = stack;
+    }
 
-        public byte Prefix { get; set; }
-
-        public int NetID { get; set; }
-
-        public int Stack { get; set; }
-
-        public MiniItem(int slot, byte prefix, int netid, int stack)
-        {
-            Slot = slot;
-            Prefix = prefix;
-            NetID = netid;
-            Stack = stack;
-        }
-
-        public NetItem ToNetItem()
-        {
-            return new NetItem(NetID, Stack, Prefix);
-        }
+    public NetItem ToNetItem()
+    {
+        return new NetItem(this.NetID, this.Stack, this.Prefix);
     }
 }

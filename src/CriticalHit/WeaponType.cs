@@ -22,7 +22,7 @@ public class WeaponTypeDictionaryConverter : JsonConverter
 
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-        var dict = (Dictionary<WeaponType, CritMessage>)value;
+        var dict = (Dictionary<WeaponType, CritMessage>) value;
 
         writer.WriteStartObject();
         foreach (var pair in dict)
@@ -37,11 +37,11 @@ public class WeaponTypeDictionaryConverter : JsonConverter
     {
         var result = new Dictionary<WeaponType, CritMessage>();
 
-        JObject jsonObject = JObject.Load(reader);
+        var jsonObject = JObject.Load(reader);
         foreach (var property in jsonObject.Properties())
         {
-            WeaponType weaponType = DisplayNames.First(x => x.Value == property.Name).Key;
-            CritMessage critMessage = property.Value.ToObject<CritMessage>(serializer);
+            var weaponType = DisplayNames.First(x => x.Value == property.Name).Key;
+            var critMessage = property.Value.ToObject<CritMessage>(serializer);
             result.Add(weaponType, critMessage);
         }
 

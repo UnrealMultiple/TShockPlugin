@@ -7,7 +7,7 @@ public class ProgressNameAttribute : Attribute
 
     public ProgressNameAttribute(params string[] names)
     {
-        Names = names;
+        this.Names = names;
     }
 }
 
@@ -18,7 +18,7 @@ public class ProgressMapID : Attribute
 
     public ProgressMapID(params int[] id)
     {
-        ID = id;
+        this.ID = id;
     }
 }
 
@@ -40,4 +40,3 @@ public class ProgressMapAttribute : Attribute
         this.Value = value;
     }
 }
-

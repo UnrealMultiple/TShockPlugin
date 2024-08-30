@@ -7,6 +7,6 @@ public class ProgressName : Attribute
 
     public ProgressName(params string[] names)
     {
-        Names = names;
+        this.Names = names;
     }
 }

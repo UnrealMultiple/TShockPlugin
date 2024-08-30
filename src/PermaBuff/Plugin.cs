@@ -31,44 +31,44 @@ public class Plugin : TerrariaPlugin
     private GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
-        LoadConfig();
-        _reloadHandler = (_) => LoadConfig();
+        this.LoadConfig();
+        this._reloadHandler = (_) => this.LoadConfig();
         DB.Init();
         DB.ReadAll();
-        ServerApi.Hooks.NetGreetPlayer.Register(this, OnJoin);
-        ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
-        ServerApi.Hooks.GameUpdate.Register(this, Update);
-        Commands.ChatCommands.Add(new Command("permabuff.use", PAbuff, "permabuff"));
-        Commands.ChatCommands.Add(new Command("gpermabuff.use", GPbuff, "gpermabuff"));
-        Commands.ChatCommands.Add(new Command("clearbuffs.use", Cbuff, "clearbuffs"));
-        GeneralHooks.ReloadEvent += _reloadHandler;
+        ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnJoin);
+        ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
+        ServerApi.Hooks.GameUpdate.Register(this, this.Update);
+        Commands.ChatCommands.Add(new Command("permabuff.use", this.PAbuff, "permabuff"));
+        Commands.ChatCommands.Add(new Command("gpermabuff.use", this.GPbuff, "gpermabuff"));
+        Commands.ChatCommands.Add(new Command("clearbuffs.use", this.Cbuff, "clearbuffs"));
+        GeneralHooks.ReloadEvent += this._reloadHandler;
     }
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnJoin);
-            ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
-            ServerApi.Hooks.GameUpdate.Deregister(this, Update);
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == PAbuff || x.CommandDelegate == GPbuff || x.CommandDelegate == Cbuff);
-            GeneralHooks.ReloadEvent -= _reloadHandler;
+            ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnJoin);
+            ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
+            ServerApi.Hooks.GameUpdate.Deregister(this, this.Update);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.PAbuff || x.CommandDelegate == this.GPbuff || x.CommandDelegate == this.Cbuff);
+            GeneralHooks.ReloadEvent -= this._reloadHandler;
         }
         base.Dispose(disposing);
     }
     private void LoadConfig()
     {
-        if (File.Exists(PATH))
+        if (File.Exists(this.PATH))
         {
             try
             {
-                config = Config.Read(PATH);
+                this.config = Config.Read(this.PATH);
             }
             catch (Exception ex)
             {
                 TShock.Log.Error($"permabuff.json 读取错误:{ex}");
             }
         }
-        config.Write(PATH);
+        this.config.Write(this.PATH);
     }
 
     private void Cbuff(CommandArgs args)
@@ -80,10 +80,7 @@ public class Plugin : TerrariaPlugin
         }
         else
         {
-            buffs.ForEach(x =>
-            {
-                Playerbuffs.DelBuff(args.Player.Name, x);
-            });
+            buffs.ForEach(x => Playerbuffs.DelBuff(args.Player.Name, x));
             args.Player.SendSuccessMessage("已清空所有永久buff");
         }
     }
@@ -98,9 +95,9 @@ public class Plugin : TerrariaPlugin
                 args.Player.SendErrorMessage("玩家不存在或玩家不在线!");
                 return;
             }
-            if (int.TryParse(args.Parameters[0], out int buffid))
+            if (int.TryParse(args.Parameters[0], out var buffid))
             {
-                if (config.LimitBuffs.Contains(buffid))
+                if (this.config.LimitBuffs.Contains(buffid))
                 {
                     args.Player.SendErrorMessage("此buff不可被添加!");
                     return;
@@ -134,9 +131,9 @@ public class Plugin : TerrariaPlugin
     {
         if (args.Parameters.Count == 1)
         {
-            if (int.TryParse(args.Parameters[0], out int buffid))
+            if (int.TryParse(args.Parameters[0], out var buffid))
             {
-                if (config.LimitBuffs.Contains(buffid))
+                if (this.config.LimitBuffs.Contains(buffid))
                 {
                     args.Player.SendErrorMessage("此buff不可被添加!");
                     return;
@@ -168,24 +165,25 @@ public class Plugin : TerrariaPlugin
     {
         var ply = TShock.Players[args.Who];
         if (ply != null)
-            players.Remove(ply);
+        {
+            this.players.Remove(ply);
+        }
     }
 
     private void Update(EventArgs args)
     {
-        TimerCount++;
-        if (TimerCount % 300 == 0)
-            UpBuffs();
+        this.TimerCount++;
+        if (this.TimerCount % 300 == 0)
+        {
+            this.UpBuffs();
+        }
     }
 
     private void UpBuffs()
     {
-        players.ForEach(x =>
+        this.players.ForEach(x =>
         {
-            Playerbuffs.GetBuffs(x.Name).ForEach(f =>
-            {
-                x.SetBuff(f, 18000, true);
-            });
+            Playerbuffs.GetBuffs(x.Name).ForEach(f => x.SetBuff(f, 18000, true));
         });
     }
 
@@ -193,6 +191,8 @@ public class Plugin : TerrariaPlugin
     {
         var ply = TShock.Players[args.Who];
         if (ply != null && !args.Handled)
-            players.Add(ply);
+        {
+            this.players.Add(ply);
+        }
     }
 }

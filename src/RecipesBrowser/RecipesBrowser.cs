@@ -22,15 +22,15 @@ public class MainPlugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("", FindRecipe, "查", "find", "fd"));
+        Commands.ChatCommands.Add(new Command("", this.FindRecipe, "查", "find", "fd"));
         MapHelper.Initialize();
         BuildMapAtlas();
     }
 
     public static void BuildMapAtlas()
     {
-        Lang._mapLegendCache = (LocalizedText[])(object)new LocalizedText[MapHelper.LookupCount()];
-        for (int i = 0; i < Lang._mapLegendCache.Length; i++)
+        Lang._mapLegendCache = (LocalizedText[]) (object) new LocalizedText[MapHelper.LookupCount()];
+        for (var i = 0; i < Lang._mapLegendCache.Length; i++)
         {
             Lang._mapLegendCache[i] = LocalizedText.Empty;
         }
@@ -58,7 +58,7 @@ public class MainPlugin : TerrariaPlugin
         Lang._mapLegendCache[MapHelper.TileToLookup(27, 0)] = Lang._itemNameCache[63];
         Lang._mapLegendCache[MapHelper.TileToLookup(407, 0)] = Language.GetText("MapObject.Fossil");
         Lang._mapLegendCache[MapHelper.TileToLookup(412, 0)] = Lang._itemNameCache[3549];
-        for (int j = 0; j < 9; j++)
+        for (var j = 0; j < 9; j++)
         {
             Lang._mapLegendCache[MapHelper.TileToLookup(28, j)] = Language.GetText("MapObject.Pot");
         }
@@ -290,12 +290,12 @@ public class MainPlugin : TerrariaPlugin
             return;
         }
 
-        List<Item> itemByIdOrName = TShock.Utils.GetItemByIdOrName(args.Parameters[0]);
+        var itemByIdOrName = TShock.Utils.GetItemByIdOrName(args.Parameters[0]);
         if (itemByIdOrName.Count > 1)
         {
             args.Player.SendInfoMessage("检索到多个物品匹配");
-            string text = "";
-            for (int i = 0; i < itemByIdOrName.Count; i++)
+            var text = "";
+            for (var i = 0; i < itemByIdOrName.Count; i++)
             {
                 text = text + Lang.GetItemNameValue(itemByIdOrName[i].type) + ",";
                 if ((i + 1) % 5 == 0)
@@ -312,22 +312,22 @@ public class MainPlugin : TerrariaPlugin
             args.Player.SendErrorMessage("未找到物品");
             return;
         }
-        Item item = itemByIdOrName[0];
-        string text2 = ((args.Parameters.Count > 1) ? args.Parameters[1] : "c");
+        var item = itemByIdOrName[0];
+        var text2 = (args.Parameters.Count > 1) ? args.Parameters[1] : "c";
         switch (text2.ToLower())
         {
             case "r":
-                args.Player.SendInfoMessage(GetRecipeStringByRequired(item));
+                args.Player.SendInfoMessage(this.GetRecipeStringByRequired(item));
                 return;
         }
-        List<Recipe> list = Main.recipe.ToList().FindAll((Recipe r) => r.createItem.type == item.type);
-        string text3 = $"物品:{Lang.GetItemNameValue(item.type)}[i:{item.type}]\n";
+        var list = Main.recipe.ToList().FindAll((Recipe r) => r.createItem.type == item.type);
+        var text3 = $"物品:{Lang.GetItemNameValue(item.type)}[i:{item.type}]\n";
         if (list.Count > 1)
         {
-            for (int j = 0; j < list.Count; j++)
+            for (var j = 0; j < list.Count; j++)
             {
                 text3 += $"配方{j + 1}:\n";
-                text3 += GetRecipeStringByResult(list[j]);
+                text3 += this.GetRecipeStringByResult(list[j]);
             }
         }
         else
@@ -337,7 +337,7 @@ public class MainPlugin : TerrariaPlugin
                 args.Player.SendErrorMessage("此物品无配方");
                 return;
             }
-            text3 += GetRecipeStringByResult(list[0]);
+            text3 += this.GetRecipeStringByResult(list[0]);
         }
         args.Player.SendInfoMessage(text3);
     }
@@ -347,7 +347,7 @@ public class MainPlugin : TerrariaPlugin
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == FindRecipe);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.FindRecipe);
             MapHelper.Initialize();
             BuildMapAtlas();
         }
@@ -356,14 +356,14 @@ public class MainPlugin : TerrariaPlugin
 
     private string GetRecipeStringByResult(Recipe recipe)
     {
-        string text = "材料：";
-        foreach (Item item in recipe.requiredItem.Where((Item r) => r.stack > 0))
+        var text = "材料：";
+        foreach (var item in recipe.requiredItem.Where((Item r) => r.stack > 0))
         {
             text += string.Format("{0}{1}[i/s{2}:{3}] ", Lang.GetItemNameValue(item.type), (item.maxStack == 1 || item.stack == 0) ? "" : ("*" + item.stack), item.stack, item.type);
         }
         text += "\n";
         text += "需要的合成站：";
-        foreach (int item2 in recipe.requiredTile.Where((int i) => i >= 0))
+        foreach (var item2 in recipe.requiredTile.Where((int i) => i >= 0))
         {
             text += $"{Lang._mapLegendCache[MapHelper.tileLookup[item2]]} ";
         }
@@ -389,13 +389,13 @@ public class MainPlugin : TerrariaPlugin
 
     private string GetRecipeStringByRequired(Item item)
     {
-        string text = "可合成的物品:\n";
-        IEnumerable<Item> source = from r in Main.recipe
+        var text = "可合成的物品:\n";
+        var source = from r in Main.recipe
                                    where r.requiredItem.Select((Item i) => i.type).Contains(item.type)
                                    select r.createItem;
-        for (int j = 1; j <= source.Count(); j++)
+        for (var j = 1; j <= source.Count(); j++)
         {
-            Item val = source.ElementAt(j - 1);
+            var val = source.ElementAt(j - 1);
             text += string.Format("{0}{1}[i/s{2}:{3}],{4}", Lang.GetItemNameValue(val.type), (val.maxStack > 1) ? ("*" + val.stack) : "", val.stack, val.type, (j % 5 == 0) ? "\n" : "");
         }
         text.Trim(',');

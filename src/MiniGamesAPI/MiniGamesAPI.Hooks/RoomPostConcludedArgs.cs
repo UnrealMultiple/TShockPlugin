@@ -1,6 +1,5 @@
-﻿namespace MiniGamesAPI
+﻿namespace MiniGamesAPI;
+
+internal class RoomPostConcludedArgs
 {
-    internal class RoomPostConcludedArgs
-    {
-    }
 }

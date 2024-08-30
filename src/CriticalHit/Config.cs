@@ -15,14 +15,14 @@ public class Config
 
     public void Write(string path)
     {
-        using FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write);
-        Write(stream);
+        using var stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write);
+        this.Write(stream);
     }
 
     public void Write(Stream stream)
     {
-        string value = JsonConvert.SerializeObject(this, (Formatting)1);
-        using StreamWriter streamWriter = new StreamWriter(stream);
+        var value = JsonConvert.SerializeObject(this, (Formatting) 1);
+        using var streamWriter = new StreamWriter(stream);
         streamWriter.Write(value);
     }
 
@@ -30,17 +30,17 @@ public class Config
     {
         if (File.Exists(path))
         {
-            using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                Read(stream);
+                this.Read(stream);
             }
         }
     }
 
     public void Read(Stream stream)
     {
-        using StreamReader streamReader = new StreamReader(stream);
-        Config deserializedConfig = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd());
+        using var streamReader = new StreamReader(stream);
+        var deserializedConfig = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd());
         this.CopyFrom(deserializedConfig);
     }
 
@@ -52,4 +52,3 @@ public class Config
         this.CritMessages = sourceConfig.CritMessages;
     }
 }
-

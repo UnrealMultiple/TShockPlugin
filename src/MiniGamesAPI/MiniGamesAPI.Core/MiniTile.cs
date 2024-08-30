@@ -1,40 +1,39 @@
 ﻿using Terraria;
 using TShockAPI;
 
-namespace MiniGamesAPI
+namespace MiniGamesAPI;
+
+public class MiniTile
 {
-    public class MiniTile
+    public int X { get; set; }
+
+    public int Y { get; set; }
+
+    public bool Active => this.Tile.active();
+
+    public int Type => this.Tile.type;
+
+    public ITile Tile { get; set; }
+
+    public MiniTile(int x, int y, ITile tile)
     {
-        public int X { get; set; }
+        this.X = x;
+        this.Y = y;
+        this.Tile = new Tile(tile);
+    }
 
-        public int Y { get; set; }
+    public void Place()
+    {
+        Main.tile[this.X, this.Y] = new Tile(this.Tile);
+    }
 
-        public bool Active => Tile.active();
+    public void Kill(bool fail = false, bool effectOnly = false, bool noitem = false)
+    {
+        WorldGen.KillTile(this.X, this.Y, fail, effectOnly, noitem);
+    }
 
-        public int Type => Tile.type;
-
-        public ITile Tile { get; set; }
-
-        public MiniTile(int x, int y, ITile tile)
-        {
-            X = x;
-            Y = y;
-            Tile = new Tile(tile);
-        }
-
-        public void Place()
-        {
-            Main.tile[X, Y] = new Tile(Tile);
-        }
-
-        public void Kill(bool fail = false, bool effectOnly = false, bool noitem = false)
-        {
-            WorldGen.KillTile(X, Y, fail, effectOnly, noitem);
-        }
-
-        public void Update()
-        {
-            TSPlayer.All.SendTileRect((short)X, (short)Y, 1, 1, 0);
-        }
+    public void Update()
+    {
+        TSPlayer.All.SendTileRect((short) this.X, (short) this.Y, 1, 1, 0);
     }
 }

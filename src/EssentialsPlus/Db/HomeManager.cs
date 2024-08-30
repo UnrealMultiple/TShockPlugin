@@ -4,134 +4,133 @@ using Terraria;
 using TShockAPI;
 using TShockAPI.DB;
 
-namespace EssentialsPlus.Db
+namespace EssentialsPlus.Db;
+
+public class HomeManager
 {
-    public class HomeManager
+    private readonly IDbConnection db;
+    private readonly List<Home> homes = new List<Home>();
+    private readonly object syncLock = new object();
+
+    public HomeManager(IDbConnection db)
     {
-        private readonly IDbConnection db;
-        private readonly List<Home> homes = new List<Home>();
-        private readonly object syncLock = new object();
+        this.db = db;
 
-        public HomeManager(IDbConnection db)
+        var sqlCreator = new SqlTableCreator(db,
+            db.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
+        sqlCreator.EnsureTableStructure(new SqlTable("Homes",
+            new SqlColumn("ID", MySqlDbType.Int32) { AutoIncrement = true, Primary = true },
+            new SqlColumn("UserID", MySqlDbType.Int32),
+            new SqlColumn("Name", MySqlDbType.Text),
+            new SqlColumn("X", MySqlDbType.Double),
+            new SqlColumn("Y", MySqlDbType.Double),
+            new SqlColumn("WorldID", MySqlDbType.Int32)));
+
+        using var result = db.QueryReader("SELECT * FROM Homes WHERE WorldID = @0", Main.worldID);
+        while (result.Read())
         {
-            this.db = db;
-
-            var sqlCreator = new SqlTableCreator(db,
-                db.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
-            sqlCreator.EnsureTableStructure(new SqlTable("Homes",
-                new SqlColumn("ID", MySqlDbType.Int32) { AutoIncrement = true, Primary = true },
-                new SqlColumn("UserID", MySqlDbType.Int32),
-                new SqlColumn("Name", MySqlDbType.Text),
-                new SqlColumn("X", MySqlDbType.Double),
-                new SqlColumn("Y", MySqlDbType.Double),
-                new SqlColumn("WorldID", MySqlDbType.Int32)));
-
-            using QueryResult result = db.QueryReader("SELECT * FROM Homes WHERE WorldID = @0", Main.worldID);
-            while (result.Read())
-            {
-                homes.Add(new Home(
-                    result.Get<int>("UserID"),
-                    result.Get<string>("Name"),
-                    result.Get<float>("X"),
-                    result.Get<float>("Y")));
-            }
+            this.homes.Add(new Home(
+                result.Get<int>("UserID"),
+                result.Get<string>("Name"),
+                result.Get<float>("X"),
+                result.Get<float>("Y")));
         }
+    }
 
-        public bool AddHome(TSPlayer player, string name, float x, float y)
+    public bool AddHome(TSPlayer player, string name, float x, float y)
+    {
+        try
         {
-            try
-            {
-                homes.Add(new Home(player.Account.ID, name, x, y));
-                return db.Query("INSERT INTO Homes (UserID, Name, X, Y, WorldID) VALUES (@0, @1, @2, @3, @4)",
-                    player.Account.ID,
-                    name,
-                    x,
-                    y,
-                    Main.worldID) > 0;
-            }
-            catch (Exception ex)
-            {
-                TShock.Log.Error(ex.ToString());
-                return false;
-            }
+            this.homes.Add(new Home(player.Account.ID, name, x, y));
+            return this.db.Query("INSERT INTO Homes (UserID, Name, X, Y, WorldID) VALUES (@0, @1, @2, @3, @4)",
+                player.Account.ID,
+                name,
+                x,
+                y,
+                Main.worldID) > 0;
         }
-
-        public bool DeleteHome(TSPlayer player, string name)
+        catch (Exception ex)
         {
-            string query = db.GetSqlType() == SqlType.Mysql
-                ? "DELETE FROM Homes WHERE UserID = @0 AND Name = @1 AND WorldID = @2"
-                : "DELETE FROM Homes WHERE UserID = @0 AND Name = @1 AND WorldID = @2 COLLATE NOCASE";
-            try
-            {
+            TShock.Log.Error(ex.ToString());
+            return false;
+        }
+    }
 
-                homes.RemoveAll(h => h.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)
-                    && h.UserID == player.Account.ID);
-                return db.Query(query, player.Account.ID, name, Main.worldID) > 0;
+    public bool DeleteHome(TSPlayer player, string name)
+    {
+        var query = this.db.GetSqlType() == SqlType.Mysql
+            ? "DELETE FROM Homes WHERE UserID = @0 AND Name = @1 AND WorldID = @2"
+            : "DELETE FROM Homes WHERE UserID = @0 AND Name = @1 AND WorldID = @2 COLLATE NOCASE";
+        try
+        {
 
-            }
-            catch (Exception ex)
-            {
-                TShock.Log.Error(ex.ToString());
-                return false;
-            }
+            this.homes.RemoveAll(h => h.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)
+                && h.UserID == player.Account.ID);
+            return this.db.Query(query, player.Account.ID, name, Main.worldID) > 0;
 
         }
-
-        public Home? GetHome(TSPlayer player, string name)
+        catch (Exception ex)
         {
-            return
-                homes.Find(h =>
-                    h.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)
-                    && h.UserID == player.Account.ID);
+            TShock.Log.Error(ex.ToString());
+            return false;
         }
 
-        public List<Home> GetAllAsync(TSPlayer player)
-        {
-            return homes.FindAll(h => h.UserID == player.Account.ID);
-        }
+    }
 
-        public bool Reload()
+    public Home? GetHome(TSPlayer player, string name)
+    {
+        return
+            this.homes.Find(h =>
+                h.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)
+                && h.UserID == player.Account.ID);
+    }
+
+    public List<Home> GetAllAsync(TSPlayer player)
+    {
+        return this.homes.FindAll(h => h.UserID == player.Account.ID);
+    }
+
+    public bool Reload()
+    {
+        try
         {
-            try
+            this.homes.Clear();
+            using (var result = this.db.QueryReader("SELECT * FROM Homes WHERE WorldID = @0", Main.worldID))
             {
-                homes.Clear();
-                using (QueryResult result = db.QueryReader("SELECT * FROM Homes WHERE WorldID = @0", Main.worldID))
+                while (result.Read())
                 {
-                    while (result.Read())
-                    {
-                        homes.Add(new Home(
-                            result.Get<int>("UserID"),
-                            result.Get<string>("Name"),
-                            result.Get<float>("X"),
-                            result.Get<float>("Y")));
-                    }
+                    this.homes.Add(new Home(
+                        result.Get<int>("UserID"),
+                        result.Get<string>("Name"),
+                        result.Get<float>("X"),
+                        result.Get<float>("Y")));
                 }
-                return true;
             }
-            catch (Exception ex)
-            {
-                TShock.Log.Error(ex.ToString());
-                return false;
-            }
+            return true;
         }
-
-        public bool UpdateHome(TSPlayer player, string name, float x, float y)
+        catch (Exception ex)
         {
-            string query = db.GetSqlType() == SqlType.Mysql
-                ? "UPDATE Homes SET X = @0, Y = @1 WHERE UserID = @2 AND Name = @3 AND WorldID = @4"
-                : "UPDATE Homes SET X = @0, Y = @1 WHERE UserID = @2 AND Name = @3 AND WorldID = @4 COLLATE NOCASE";
-            try
-            {
-                homes.RemoveAll(h => h.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)
-                    && h.UserID == player.Account.ID);
-                homes.Add(new Home(player.Account.ID, name, x, y));
-                return db.Query(query, x, y, player.Account.ID, name, Main.worldID) > 0;
-            }
-            catch (Exception ex)
-            {
-                TShock.Log.Error(ex.ToString());
-                return false;
-            }
+            TShock.Log.Error(ex.ToString());
+            return false;
+        }
+    }
+
+    public bool UpdateHome(TSPlayer player, string name, float x, float y)
+    {
+        var query = this.db.GetSqlType() == SqlType.Mysql
+            ? "UPDATE Homes SET X = @0, Y = @1 WHERE UserID = @2 AND Name = @3 AND WorldID = @4"
+            : "UPDATE Homes SET X = @0, Y = @1 WHERE UserID = @2 AND Name = @3 AND WorldID = @4 COLLATE NOCASE";
+        try
+        {
+            this.homes.RemoveAll(h => h.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)
+                && h.UserID == player.Account.ID);
+            this.homes.Add(new Home(player.Account.ID, name, x, y));
+            return this.db.Query(query, x, y, player.Account.ID, name, Main.worldID) > 0;
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error(ex.ToString());
+            return false;
         }
     }
 }

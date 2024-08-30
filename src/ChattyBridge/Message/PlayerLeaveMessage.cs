@@ -6,7 +6,7 @@ internal class PlayerLeaveMessage : PlayerMessage
 {
     public PlayerLeaveMessage(TSPlayer player) : base(player)
     {
-        Type = MsgType.Leave;
+        this.Type = MsgType.Leave;
     }
     public PlayerLeaveMessage()
     {

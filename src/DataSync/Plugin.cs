@@ -20,7 +20,7 @@ public class Plugin : TerrariaPlugin
     {
         foreach (var variant in typeof(ProgressType).GetFields().Where(f => f.FieldType == typeof(ProgressType)))
         {
-            var value = (ProgressType)variant.GetValue(null)!;
+            var value = (ProgressType) variant.GetValue(null)!;
             foreach (var match in variant.GetCustomAttributes<MatchAttribute>()!)
             {
                 foreach (var id in match.NPCID)
@@ -99,20 +99,20 @@ public class Plugin : TerrariaPlugin
     {
         Config.LoadConfig();
         EnsureTable();
-        _reloadHandler = (_) => Reload();
-        ServerApi.Hooks.NpcKilled.Register(this, NpcKilled);
-        ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
-        GeneralHooks.ReloadEvent += _reloadHandler;
-        ServerApi.Hooks.GamePostInitialize.Register(this, PostInitualize);
-        Commands.ChatCommands.Add(new Command("DataSync", ClearProgress, "重置进度同步"));
+        this._reloadHandler = (_) => this.Reload();
+        ServerApi.Hooks.NpcKilled.Register(this, this.NpcKilled);
+        ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
+        GeneralHooks.ReloadEvent += this._reloadHandler;
+        ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitualize);
+        Commands.ChatCommands.Add(new Command("DataSync", this.ClearProgress, "重置进度同步"));
         TShock.RestApi.Register(new SecureRestCommand("/DataSync", ProgressRest, "DataSync"));
         Commands.ChatCommands.Add(new Command("DataSync", ProgressCommand, "进度", "progress"));
     }
 
     private void OnUpdate(EventArgs args)
     {
-        _frameCount++;
-        if (_frameCount % 300 == 0)
+        this._frameCount++;
+        if (this._frameCount % 300 == 0)
         {
             LoadProgress();
         }
@@ -127,14 +127,14 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
-            ServerApi.Hooks.NpcKilled.Deregister(this, NpcKilled);
-            ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
-            GeneralHooks.ReloadEvent -= _reloadHandler;
-            ServerApi.Hooks.GamePostInitialize.Deregister(this, PostInitualize);
-            ((List<RestCommand>)typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+            ServerApi.Hooks.NpcKilled.Deregister(this, this.NpcKilled);
+            ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
+            GeneralHooks.ReloadEvent -= this._reloadHandler;
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, this.PostInitualize);
+            ((List<RestCommand>) typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
             .GetValue(TShock.RestApi)!)
             .RemoveAll(x => x.Name == "/DataSync");
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == ClearProgress || x.CommandDelegate == ProgressCommand);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.ClearProgress || x.CommandDelegate == ProgressCommand);
         }
 
         base.Dispose(disposing);
@@ -153,62 +153,36 @@ public class Plugin : TerrariaPlugin
         switch (args.Parameters.Count)
         {
             case 2:
+            {
+                if (!args.Player.HasPermission("DataSync.set"))
                 {
-                    if (!args.Player.HasPermission("DataSync.set"))
-                    {
-                        args.Player.SendErrorMessage("你没有权限设置进度");
-                        return;
-                    }
-                    var type = Config.GetProgressType(args.Parameters[0]);
-                    if (type == null)
-                    {
-                        args.Player.SendErrorMessage($"进度 '{args.Parameters[0]}' 不存在");
-                        return;
-                    }
-                    if (!bool.TryParse(args.Parameters[1], out var result))
-                    {
-                        args.Player.SendErrorMessage($"值 '{args.Parameters[1]}' 应为 true 或 false");
-                        return;
-                    }
-                    if (_flagaccessors.TryGetValue(type.Value, out var accessor))
-                    {
-                        accessor(result);
-                    }
-                    UpdateProgress(type.Value, result, true);
+                    args.Player.SendErrorMessage("你没有权限设置进度");
                     return;
                 }
+                var type = Config.GetProgressType(args.Parameters[0]);
+                if (type == null)
+                {
+                    args.Player.SendErrorMessage($"进度 '{args.Parameters[0]}' 不存在");
+                    return;
+                }
+                if (!bool.TryParse(args.Parameters[1], out var result))
+                {
+                    args.Player.SendErrorMessage($"值 '{args.Parameters[1]}' 应为 true 或 false");
+                    return;
+                }
+                if (_flagaccessors.TryGetValue(type.Value, out var accessor))
+                {
+                    accessor(result);
+                }
+                UpdateProgress(type.Value, result, true);
+                return;
+            }
             case 1 when !string.Equals(args.Parameters[0], "local", StringComparison.OrdinalIgnoreCase):
+            {
+                if (string.Equals(args.Parameters[0], "remote", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (string.Equals(args.Parameters[0], "remote", StringComparison.OrdinalIgnoreCase))
-                    {
-                        args.Player.SendInfoMessage("远程进度:");
-                        var readable = GetReadableProgress(SyncedProgress);
-                        if (readable.ContainsKey(true))
-                        {
-                            args.Player.SendInfoMessage("已完成:");
-                            args.Player.SendSuccessMessage(string.Join(", ", readable[true]));
-                        }
-                        if (readable.ContainsKey(false))
-                        {
-                            args.Player.SendInfoMessage("未完成:");
-                            args.Player.SendErrorMessage(string.Join(", ", readable[false]));
-                        }
-                        return;
-                    }
-                    var type = Config.GetProgressType(args.Parameters[0]);
-                    if (type == null)
-                    {
-                        args.Player.SendErrorMessage($"进度 '{args.Parameters[0]}' 不存在");
-                        return;
-                    }
-                    args.Player.SendInfoMessage($"进度 '{args.Parameters[0]}' 的值为 '{LocalProgress[type.Value]}'");
-                    return;
-                }
-
-            default:
-                {
-                    args.Player.SendInfoMessage("本地进度:");
-                    var readable = GetReadableProgress(LocalProgress);
+                    args.Player.SendInfoMessage("远程进度:");
+                    var readable = GetReadableProgress(SyncedProgress);
                     if (readable.ContainsKey(true))
                     {
                         args.Player.SendInfoMessage("已完成:");
@@ -221,6 +195,32 @@ public class Plugin : TerrariaPlugin
                     }
                     return;
                 }
+                var type = Config.GetProgressType(args.Parameters[0]);
+                if (type == null)
+                {
+                    args.Player.SendErrorMessage($"进度 '{args.Parameters[0]}' 不存在");
+                    return;
+                }
+                args.Player.SendInfoMessage($"进度 '{args.Parameters[0]}' 的值为 '{LocalProgress[type.Value]}'");
+                return;
+            }
+
+            default:
+            {
+                args.Player.SendInfoMessage("本地进度:");
+                var readable = GetReadableProgress(LocalProgress);
+                if (readable.ContainsKey(true))
+                {
+                    args.Player.SendInfoMessage("已完成:");
+                    args.Player.SendSuccessMessage(string.Join(", ", readable[true]));
+                }
+                if (readable.ContainsKey(false))
+                {
+                    args.Player.SendInfoMessage("未完成:");
+                    args.Player.SendErrorMessage(string.Join(", ", readable[false]));
+                }
+                return;
+            }
         }
     }
 

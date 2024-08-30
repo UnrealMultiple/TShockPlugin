@@ -18,9 +18,9 @@ public class Plugin : TerrariaPlugin
 
         public ModifyData(TSPlayer player, PlayerData sourcePlayerData)
         {
-            Player = player;
+            this.Player = player;
             //LastPlayerData = LastData;
-            SourcePlayerData = sourcePlayerData;
+            this.SourcePlayerData = sourcePlayerData;
         }
     }
 
@@ -39,16 +39,16 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
-        Commands.ChatCommands.Add(new Command("tshock.user.rolesmodifying", Roles, "rm", "修改", "查背包"));
+        ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
+        Commands.ChatCommands.Add(new Command("tshock.user.rolesmodifying", this.Roles, "rm", "修改", "查背包"));
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Roles);
+            ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.Roles);
         }
         base.Dispose(disposing);
     }
@@ -57,7 +57,7 @@ public class Plugin : TerrariaPlugin
     {
         if (args.Parameters.Count > 0 && args.Parameters[0].ToLower() == "save")
         {
-            if (TempData.TryGetValue(args.Player, out var modify))
+            if (this.TempData.TryGetValue(args.Player, out var modify))
             {
                 var target = TShock.Players.FirstOrDefault(ply => ply != null && ply.Active && ply.Name == modify.Player.TPlayer.name);
                 if (target != null)
@@ -76,7 +76,7 @@ public class Plugin : TerrariaPlugin
                 args.Player.PlayerData = modify.SourcePlayerData;
                 modify.SourcePlayerData.RestoreCharacter(args.Player);
                 TShock.CharacterDB.InsertPlayerData(args.Player);
-                TempData.Remove(args.Player);
+                this.TempData.Remove(args.Player);
                 args.Player.SendSuccessMessage("修改保存成功！");
             }
             else
@@ -90,8 +90,8 @@ public class Plugin : TerrariaPlugin
             //在线
             if (target != null)
             {
-                var targetPlayerData = CopyCharacter(target);
-                TempData[args.Player] = new(target, CopyCharacter(args.Player));
+                var targetPlayerData = this.CopyCharacter(target);
+                this.TempData[args.Player] = new(target, this.CopyCharacter(args.Player));
                 //保存自己背包物品
                 TShock.CharacterDB.InsertPlayerData(args.Player);
                 //复制
@@ -108,8 +108,8 @@ public class Plugin : TerrariaPlugin
                         Account = account
                     };
                     TempPlayer.PlayerData = TShock.CharacterDB.GetPlayerData(TempPlayer, account.ID);
-                    var targetPlayerData = CopyCharacter(TempPlayer);
-                    TempData[args.Player] = new(TempPlayer, CopyCharacter(args.Player));
+                    var targetPlayerData = this.CopyCharacter(TempPlayer);
+                    this.TempData[args.Player] = new(TempPlayer, this.CopyCharacter(args.Player));
                     //保存自己背包物品
                     TShock.CharacterDB.InsertPlayerData(args.Player);
                     //复制
@@ -128,10 +128,10 @@ public class Plugin : TerrariaPlugin
     private void OnLeave(LeaveEventArgs args)
     {
         var player = TShock.Players[args.Who];
-        if (player != null && TempData.TryGetValue(player, out var modify))
+        if (player != null && this.TempData.TryGetValue(player, out var modify))
         {
             modify.SourcePlayerData.RestoreCharacter(player);
-            TempData.Remove(player);
+            this.TempData.Remove(player);
         }
     }
 
@@ -187,112 +187,112 @@ public class Plugin : TerrariaPlugin
         PlayerData.unlockedSuperCart = player.TPlayer.unlockedSuperCart ? 1 : 0;
         PlayerData.enabledSuperCart = player.TPlayer.enabledSuperCart ? 1 : 0;
 
-        Item[] inventory = player.TPlayer.inventory;
-        Item[] armor = player.TPlayer.armor;
-        Item[] dye = player.TPlayer.dye;
-        Item[] miscEqups = player.TPlayer.miscEquips;
-        Item[] miscDyes = player.TPlayer.miscDyes;
-        Item[] piggy = player.TPlayer.bank.item;
-        Item[] safe = player.TPlayer.bank2.item;
-        Item[] forge = player.TPlayer.bank3.item;
-        Item[] voidVault = player.TPlayer.bank4.item;
-        Item trash = player.TPlayer.trashItem;
-        Item[] loadout1Armor = player.TPlayer.Loadouts[0].Armor;
-        Item[] loadout1Dye = player.TPlayer.Loadouts[0].Dye;
-        Item[] loadout2Armor = player.TPlayer.Loadouts[1].Armor;
-        Item[] loadout2Dye = player.TPlayer.Loadouts[1].Dye;
-        Item[] loadout3Armor = player.TPlayer.Loadouts[2].Armor;
-        Item[] loadout3Dye = player.TPlayer.Loadouts[2].Dye;
+        var inventory = player.TPlayer.inventory;
+        var armor = player.TPlayer.armor;
+        var dye = player.TPlayer.dye;
+        var miscEqups = player.TPlayer.miscEquips;
+        var miscDyes = player.TPlayer.miscDyes;
+        var piggy = player.TPlayer.bank.item;
+        var safe = player.TPlayer.bank2.item;
+        var forge = player.TPlayer.bank3.item;
+        var voidVault = player.TPlayer.bank4.item;
+        var trash = player.TPlayer.trashItem;
+        var loadout1Armor = player.TPlayer.Loadouts[0].Armor;
+        var loadout1Dye = player.TPlayer.Loadouts[0].Dye;
+        var loadout2Armor = player.TPlayer.Loadouts[1].Armor;
+        var loadout2Dye = player.TPlayer.Loadouts[1].Dye;
+        var loadout3Armor = player.TPlayer.Loadouts[2].Armor;
+        var loadout3Dye = player.TPlayer.Loadouts[2].Dye;
 
-        for (int i = 0; i < NetItem.MaxInventory; i++)
+        for (var i = 0; i < NetItem.MaxInventory; i++)
         {
             if (i < NetItem.InventoryIndex.Item2)
             {
                 //0-58
-                PlayerData.inventory[i] = (NetItem)inventory[i];
+                PlayerData.inventory[i] = (NetItem) inventory[i];
             }
             else if (i < NetItem.ArmorIndex.Item2)
             {
                 //59-78
                 var index = i - NetItem.ArmorIndex.Item1;
-                PlayerData.inventory[i] = (NetItem)armor[index];
+                PlayerData.inventory[i] = (NetItem) armor[index];
             }
             else if (i < NetItem.DyeIndex.Item2)
             {
                 //79-88
                 var index = i - NetItem.DyeIndex.Item1;
-                PlayerData.inventory[i] = (NetItem)dye[index];
+                PlayerData.inventory[i] = (NetItem) dye[index];
             }
             else if (i < NetItem.MiscEquipIndex.Item2)
             {
                 //89-93
                 var index = i - NetItem.MiscEquipIndex.Item1;
-                PlayerData.inventory[i] = (NetItem)miscEqups[index];
+                PlayerData.inventory[i] = (NetItem) miscEqups[index];
             }
             else if (i < NetItem.MiscDyeIndex.Item2)
             {
                 //93-98
                 var index = i - NetItem.MiscDyeIndex.Item1;
-                PlayerData.inventory[i] = (NetItem)miscDyes[index];
+                PlayerData.inventory[i] = (NetItem) miscDyes[index];
             }
             else if (i < NetItem.PiggyIndex.Item2)
             {
                 //98-138
                 var index = i - NetItem.PiggyIndex.Item1;
-                PlayerData.inventory[i] = (NetItem)piggy[index];
+                PlayerData.inventory[i] = (NetItem) piggy[index];
             }
             else if (i < NetItem.SafeIndex.Item2)
             {
                 //138-178
                 var index = i - NetItem.SafeIndex.Item1;
-                PlayerData.inventory[i] = (NetItem)safe[index];
+                PlayerData.inventory[i] = (NetItem) safe[index];
             }
             else if (i < NetItem.TrashIndex.Item2)
             {
                 //179-219
-                PlayerData.inventory[i] = (NetItem)trash;
+                PlayerData.inventory[i] = (NetItem) trash;
             }
             else if (i < NetItem.ForgeIndex.Item2)
             {
                 //220
                 var index = i - NetItem.ForgeIndex.Item1;
-                PlayerData.inventory[i] = (NetItem)forge[index];
+                PlayerData.inventory[i] = (NetItem) forge[index];
             }
             else if (i < NetItem.VoidIndex.Item2)
             {
                 //220
                 var index = i - NetItem.VoidIndex.Item1;
-                PlayerData.inventory[i] = (NetItem)voidVault[index];
+                PlayerData.inventory[i] = (NetItem) voidVault[index];
             }
             else if (i < NetItem.Loadout1Armor.Item2)
             {
                 var index = i - NetItem.Loadout1Armor.Item1;
-                PlayerData.inventory[i] = (NetItem)loadout1Armor[index];
+                PlayerData.inventory[i] = (NetItem) loadout1Armor[index];
             }
             else if (i < NetItem.Loadout1Dye.Item2)
             {
                 var index = i - NetItem.Loadout1Dye.Item1;
-                PlayerData.inventory[i] = (NetItem)loadout1Dye[index];
+                PlayerData.inventory[i] = (NetItem) loadout1Dye[index];
             }
             else if (i < NetItem.Loadout2Armor.Item2)
             {
                 var index = i - NetItem.Loadout2Armor.Item1;
-                PlayerData.inventory[i] = (NetItem)loadout2Armor[index];
+                PlayerData.inventory[i] = (NetItem) loadout2Armor[index];
             }
             else if (i < NetItem.Loadout2Dye.Item2)
             {
                 var index = i - NetItem.Loadout2Dye.Item1;
-                PlayerData.inventory[i] = (NetItem)loadout2Dye[index];
+                PlayerData.inventory[i] = (NetItem) loadout2Dye[index];
             }
             else if (i < NetItem.Loadout3Armor.Item2)
             {
                 var index = i - NetItem.Loadout3Armor.Item1;
-                PlayerData.inventory[i] = (NetItem)loadout3Armor[index];
+                PlayerData.inventory[i] = (NetItem) loadout3Armor[index];
             }
             else if (i < NetItem.Loadout3Dye.Item2)
             {
                 var index = i - NetItem.Loadout3Dye.Item1;
-                PlayerData.inventory[i] = (NetItem)loadout3Dye[index];
+                PlayerData.inventory[i] = (NetItem) loadout3Dye[index];
             }
         }
         return PlayerData;

@@ -69,29 +69,38 @@ public class SignInSign : TerrariaPlugin
     #region  游戏初始化后
     private static void OnGamePostInitialize(EventArgs args)
     {
-        if (args == null) return;
+        if (args == null)
+        {
+            return;
+        }
 
         //获取告示牌是否符合坐标
         SignID = Utils.GetSignIdByPos(Main.spawnTileX, Main.spawnTileY - 3);
 
         //当告示牌ID为-1，通过服务器发送：创建告示牌的指令
         if (SignID == -1)
+        {
             SignID = Utils.SpawnSign(Main.spawnTileX, Main.spawnTileY - 3);
+        }
     }
     #endregion
 
     #region 玩家加入事件
     public static void OnNetGreetPlayer(GreetPlayerEventArgs args)
     {
-        TSPlayer player = TShock.Players[args.Who];
+        var player = TShock.Players[args.Who];
 
         //当对象、玩家为空 或告示牌ID小于0 大于999时返回，不做任何处理
         if (args == null || TShock.Players[args.Who] == null || SignID < 0 || SignID >= 999)
+        {
             return;
+        }
 
         //检查玩家是否处于登录状态则发包更新告示牌
         if (!player.IsLoggedIn || Config.SignEnable1 == player.IsLoggedIn)
+        {
             player.SendData(PacketTypes.SignNew, "", SignID, args.Who);
+        }
     }
     #endregion
 
@@ -118,7 +127,7 @@ public class SignInSign : TerrariaPlugin
         int signId = args.Data.ReadInt16();
         int posX = args.Data.ReadInt16();
         int posY = args.Data.ReadInt16();
-        string newText = args.Data.ReadString();
+        var newText = args.Data.ReadString();
 
         if (args.Player == null
             || args == null
@@ -127,10 +136,12 @@ public class SignInSign : TerrariaPlugin
             || signId >= Main.sign.Length
             || Main.sign[signId] == null
             || Config.SignEnable == false)
+        {
             return;
+        }
 
         #region 帮玩家执行登录指令与记录密码
-        string password = Utils.ReadPassword(newText);
+        var password = Utils.ReadPassword(newText);
         if (TShock.UserAccounts.GetUserAccountByName(args.Player.Name) == null)
         {
             TShockAPI.Commands.HandleCommand(args.Player, $"/register {password}");
@@ -143,15 +154,15 @@ public class SignInSign : TerrariaPlugin
         if (Config.PassInfo == true)
         {
             TShock.Log.ConsoleInfo($"玩家【{args.Player.Name}】的密码为：{password}");//写入一份到Tshock自己的Logs文件里
-            string MiMaPath = Path.Combine(TShock.SavePath, "告示牌登录玩家密码", ""); //写入日志的路径
+            var MiMaPath = Path.Combine(TShock.SavePath, "告示牌登录玩家密码", ""); //写入日志的路径
             Directory.CreateDirectory(MiMaPath); // 创建日志文件夹
-            string FileName = $"告示牌登录 {DateTime.Now.ToString("yyyy-MM-dd")}.txt"; //给日志名字加上日期
+            var FileName = $"告示牌登录 {DateTime.Now.ToString("yyyy-MM-dd")}.txt"; //给日志名字加上日期
             File.AppendAllLines(Path.Combine(MiMaPath, FileName), new string[] { DateTime.Now.ToString("u") + $" 玩家【{args.Player.Name}】的密码为：{password}" }); //写入日志log
         }
         #endregion
 
         //检查区域保护,暂时还没有任何作用
-        IEnumerable<TShockAPI.DB.Region> region = TShock.Regions.InAreaRegion(posX, posY);
+        var region = TShock.Regions.InAreaRegion(posX, posY);
         if (region.Any() && !region.First().Owner.Equals(args.Player.Name)) { return; }
 
         Main.sign[signId].text = SignInSign.Config.SignText;
@@ -164,8 +175,10 @@ public class SignInSign : TerrariaPlugin
     public static void OnSignRead(object? sender, GetDataHandlers.SignReadEventArgs args)
     {
         //当是否允许点击告示牌为false，则返回不做任何处理
-        if (args.Player == null || Config.SignEnable2 == false || !args.Player.IsLoggedIn) args.Handled = true;
-
+        if (args.Player == null || Config.SignEnable2 == false || !args.Player.IsLoggedIn)
+        {
+            args.Handled = true;
+        }
         else
         {
             if (Config.SignEnable3 == true)
@@ -194,7 +207,10 @@ public class SignInSign : TerrariaPlugin
                     args.Player!.SendMessage($"[告示牌登录]请使用 [c/F25E61:/gs s] 设置传送坐标，当前坐标为：{Config.Teleport_X},{Config.Teleport_Y} \n" +
                         $"指令 [c/F25E61:/gs s] 的权限名为：signinsign.tp", color: Microsoft.Xna.Framework.Color.Yellow);
                 }
-                else args.Player.Teleport(x: Config.Teleport_X * 16, y: Config.Teleport_Y * 16, style: Config.Style);
+                else
+                {
+                    args.Player.Teleport(x: Config.Teleport_X * 16, y: Config.Teleport_Y * 16, style: Config.Style);
+                }
             }
         }
     }
@@ -203,7 +219,7 @@ public class SignInSign : TerrariaPlugin
     #region 用超管组身份帮玩家执行指令方法
     private static void Cmd(TSPlayer plr)
     {
-        Group group = plr.Group;
+        var group = plr.Group;
         try
         {
             plr.Group = new SuperAdminGroup();

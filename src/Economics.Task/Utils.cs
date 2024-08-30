@@ -12,18 +12,17 @@ public class UserTaskData
     {
         var task = Plugin.TaskConfig.GetTask(TaskId);
         if (task == null)
+        {
             return false;
+        }
+
         UserTask[Name] = task;
         return true;
     }
 
     public static TaskContent? GetUserTask(string Name)
     {
-        if (UserTask.TryGetValue(Name, out var task))
-        {
-            return task;
-        }
-        return null;
+        return UserTask.TryGetValue(Name, out var task) ? task : null;
     }
 
     public static bool Remove(string Name)
@@ -48,7 +47,7 @@ public class UserTaskData
         {
             if (item.Prefix == 0)
             {
-                for (int i = 0; i < player.TPlayer.inventory.Length; i++)
+                for (var i = 0; i < player.TPlayer.inventory.Length; i++)
                 {
                     var bgitem = player.TPlayer.inventory[i];
                     if (bgitem.netID == item.netID)
@@ -59,7 +58,7 @@ public class UserTaskData
             }
             else
             {
-                for (int i = 0; i < player.TPlayer.inventory.Length; i++)
+                for (var i = 0; i < player.TPlayer.inventory.Length; i++)
                 {
                     var bgitem = player.TPlayer.inventory[i];
                     if (bgitem.netID == item.netID && bgitem.prefix == item.Prefix)
@@ -101,10 +100,7 @@ public class UserTaskData
                     var items = ply.TPlayer.inventory.Where(f => f.netID == x.netID);
                     if (items.Any())
                     {
-                        items.ForEach(n =>
-                        {
-                            stack += n.stack;
-                        });
+                        items.ForEach(n => stack += n.stack);
                     }
                     result.Add($"拥有{TShock.Utils.GetItemById(x.netID).Name} ({stack}/{x.Stack})");
                 }
@@ -113,10 +109,7 @@ public class UserTaskData
                     var items = ply.TPlayer.inventory.Where(f => f.netID == x.netID && f.prefix == x.Prefix);
                     if (items.Any())
                     {
-                        items.ForEach(n =>
-                        {
-                            stack += n.stack;
-                        });
+                        items.ForEach(n => stack += n.stack);
 
                     }
                     result.Add($"拥有{TShock.Utils.GetPrefixById(x.Prefix)}{TShock.Utils.GetItemById(x.netID).Name} ({stack}/{x.Stack})");
@@ -137,7 +130,7 @@ public class UserTaskData
             task.TaskInfo.Items.ForEach(x =>
             {
                 var stack = x.Stack;
-                for (int i = 0; i < player.TPlayer.inventory.Length; i++)
+                for (var i = 0; i < player.TPlayer.inventory.Length; i++)
                 {
                     var item = player.TPlayer.inventory[i];
                     if (x.Prefix == 0)
@@ -190,13 +183,17 @@ public class UserTaskData
             foreach (var f in task.TaskInfo.KillNPCS)
             {
                 if (!Plugin.KillNPCManager.KillNpcsByID(player.Name, f.ID, f.Count))
+                {
                     return false;
+                }
             }
 
             foreach (var f in task.TaskInfo.TallkNPC)
             {
                 if (!Plugin.TallkManager.TallkNpcByID(player.Name, f))
+                {
                     return false;
+                }
             }
 
             foreach (var f in task.TaskInfo.Items)
@@ -205,23 +202,21 @@ public class UserTaskData
                 {
                     var items = player.TPlayer.inventory.Where(x => x.netID == f.netID && x.prefix == f.Prefix);
                     var stack = 0;
-                    items.ForEach(x =>
-                    {
-                        stack += x.stack;
-                    });
+                    items.ForEach(x => stack += x.stack);
                     if (stack < f.Stack)
+                    {
                         return false;
+                    }
                 }
                 else
                 {
                     var items = player.TPlayer.inventory.Where(x => x.netID == f.netID);
                     var stack = 0;
-                    items.ForEach(x =>
-                    {
-                        stack += x.stack;
-                    });
+                    items.ForEach(x => stack += x.stack);
                     if (stack < f.Stack)
+                    {
                         return false;
+                    }
                 }
             }
             return true;

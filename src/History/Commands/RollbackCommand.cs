@@ -24,7 +24,7 @@ public class RollbackCommand : HCommand
     public override void Execute()
     {
         var actions = new List<Action>();
-        var rollbackTime = (int)(DateTime.UtcNow - History.Date).TotalSeconds - this.time;
+        var rollbackTime = (int) (DateTime.UtcNow - History.Date).TotalSeconds - this.time;
 
         var plrX = this.sender.TileX;
         var plrY = this.sender.TileY;
@@ -43,10 +43,10 @@ public class RollbackCommand : HCommand
                 actions.Add(new Action
                 {
                     account = reader.Get<string>("Account"),
-                    action = (byte)reader.Get<int>("Action"),
-                    data = (ushort)reader.Get<int>("Data"),
-                    style = (byte)reader.Get<int>("Style"),
-                    paint = (short)reader.Get<int>("Paint"),
+                    action = (byte) reader.Get<int>("Action"),
+                    data = (ushort) reader.Get<int>("Data"),
+                    style = (byte) reader.Get<int>("Style"),
+                    paint = (short) reader.Get<int>("Paint"),
                     time = reader.Get<int>("Time"),
                     x = reader.Get<int>("XY") >> 16,
                     y = reader.Get<int>("XY") & 0xffff,

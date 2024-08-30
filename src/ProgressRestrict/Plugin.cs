@@ -24,40 +24,40 @@ public class Plugin : TerrariaPlugin
 
     public Plugin(Main game) : base(game)
     {
-        config = Config.LoadConfig(path);
+        this.config = Config.LoadConfig(this.path);
     }
     public override void Initialize()
     {
-        config = Config.LoadConfig(path);
-        GetDataHandlers.NewProjectile.Register(OnProjectile);
-        GetDataHandlers.PlayerSlot.Register(OnSlot);
-        GetDataHandlers.PlayerBuff.Register(OnBuff);
-        ServerApi.Hooks.GamePostInitialize.Register(this, UpdateRestricted2);
-        GeneralHooks.ReloadEvent += Reload;
-        DataSync.Plugin.OnProgressChanged += UpdateRestricted;
+        this.config = Config.LoadConfig(this.path);
+        GetDataHandlers.NewProjectile.Register(this.OnProjectile);
+        GetDataHandlers.PlayerSlot.Register(this.OnSlot);
+        GetDataHandlers.PlayerBuff.Register(this.OnBuff);
+        ServerApi.Hooks.GamePostInitialize.Register(this, this.UpdateRestricted2);
+        GeneralHooks.ReloadEvent += this.Reload;
+        DataSync.Plugin.OnProgressChanged += this.UpdateRestricted;
     }
 
     private void UpdateRestricted2(EventArgs args)
     {
-        UpdateRestricted();
+        this.UpdateRestricted();
     }
 
     private void Reload(ReloadEventArgs e)
     {
-        config = Config.LoadConfig(path);
-        UpdateRestricted();
+        this.config = Config.LoadConfig(this.path);
+        this.UpdateRestricted();
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            GetDataHandlers.NewProjectile.UnRegister(OnProjectile);
-            GetDataHandlers.PlayerSlot.UnRegister(OnSlot);
-            GetDataHandlers.PlayerBuff.UnRegister(OnBuff);
-            ServerApi.Hooks.GamePostInitialize.Deregister(this, UpdateRestricted2);
-            GeneralHooks.ReloadEvent -= Reload;
-            DataSync.Plugin.OnProgressChanged -= UpdateRestricted;
+            GetDataHandlers.NewProjectile.UnRegister(this.OnProjectile);
+            GetDataHandlers.PlayerSlot.UnRegister(this.OnSlot);
+            GetDataHandlers.PlayerBuff.UnRegister(this.OnBuff);
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, this.UpdateRestricted2);
+            GeneralHooks.ReloadEvent -= this.Reload;
+            DataSync.Plugin.OnProgressChanged -= this.UpdateRestricted;
         }
         base.Dispose(disposing);
     }
@@ -68,19 +68,19 @@ public class Plugin : TerrariaPlugin
         {
             return;
         }
-        if (RestrictedBuffs[e.Type])
+        if (this.RestrictedBuffs[e.Type])
         {
-            if (config.Broadcast)
+            if (this.config.Broadcast)
             {
                 TShock.Utils.Broadcast($"玩家 {e.Player.Name} 拥有超进度buff {TShock.Utils.GetBuffName(e.Type)} ,已清除!", Microsoft.Xna.Framework.Color.Red);
             }
 
-            if (config.WriteLog)
+            if (this.config.WriteLog)
             {
                 TShock.Log.Info($"[ProgressBuff]: 玩家 {e.Player.Name} 拥有超进度buff {TShock.Utils.GetBuffName(e.Type)} ,已清除!");
             }
 
-            if (config.ClearBuff)
+            if (this.config.ClearBuff)
             {
                 e.Handled = true;
                 e.Player.SendData(PacketTypes.PlayerBuff, "", e.ID);
@@ -90,11 +90,11 @@ public class Plugin : TerrariaPlugin
 
     private void UpdateRestricted()
     {
-        Array.Fill(RestrictedItems, false);
-        Array.Fill(RestrictedProjectiles, false);
-        Array.Fill(RestrictedBuffs, false);
+        Array.Fill(this.RestrictedItems, false);
+        Array.Fill(this.RestrictedProjectiles, false);
+        Array.Fill(this.RestrictedBuffs, false);
 
-        foreach (var f in config.Restrictions)
+        foreach (var f in this.config.Restrictions)
         {
             if (f.AllowRemoteUnlocked && DataSync.Plugin.SyncedProgress.TryGetValue(f.Progress, out var rv) && rv)
             {
@@ -108,15 +108,15 @@ public class Plugin : TerrariaPlugin
 
             foreach (var i in f.RestrictedItems)
             {
-                RestrictedItems[i] = true;
+                this.RestrictedItems[i] = true;
             }
             foreach (var i in f.RestrictedProjectiles)
             {
-                RestrictedProjectiles[i] = true;
+                this.RestrictedProjectiles[i] = true;
             }
             foreach (var i in f.RestrictedBuffs)
             {
-                RestrictedBuffs[i] = true;
+                this.RestrictedBuffs[i] = true;
             }
         }
     }
@@ -128,27 +128,27 @@ public class Plugin : TerrariaPlugin
             return;
         }
 
-        if (RestrictedItems[e.Type])
+        if (this.RestrictedItems[e.Type])
         {
-            if (config.PunishPlayer)
+            if (this.config.PunishPlayer)
             {
-                e.Player.SetBuff(156, 60 * config.PunishTime, false);
+                e.Player.SetBuff(156, 60 * this.config.PunishTime, false);
             }
             e.Player.SendErrorMessage($"检测到超进度物品{TShock.Utils.GetItemById(e.Type).Name}!");
-            if (config.Broadcast)
+            if (this.config.Broadcast)
             {
                 TShock.Utils.Broadcast($"检测到{e.Player.Name}拥有超进度物品{TShock.Utils.GetItemById(e.Type).Name}!", Microsoft.Xna.Framework.Color.DarkRed);
             }
-            if (config.WriteLog)
+            if (this.config.WriteLog)
             {
                 TShock.Log.Write($"[超进度物品限制] 玩家{e.Player.Name} 在背包第{e.Slot}格检测到超进度物品 {TShock.Utils.GetItemById(e.Type).Name} x{e.Stack}", System.Diagnostics.TraceLevel.Info);
             }
-            if (config.ClearItem)
+            if (this.config.ClearItem)
             {
                 e.Stack = 0;
                 TSPlayer.All.SendData(PacketTypes.PlayerSlot, "", e.Player.Index, e.Slot);
             }
-            if (config.KickPlayer)
+            if (this.config.KickPlayer)
             {
                 e.Player.Kick("拥有超进度物品");
             }
@@ -163,29 +163,29 @@ public class Plugin : TerrariaPlugin
             return;
         }
 
-        if (RestrictedProjectiles[e.Type])
+        if (this.RestrictedProjectiles[e.Type])
         {
-            if (config.PunishPlayer)
+            if (this.config.PunishPlayer)
             {
-                e.Player.SetBuff(156, 60 * config.PunishTime, false);
+                e.Player.SetBuff(156, 60 * this.config.PunishTime, false);
             }
             e.Player.SendErrorMessage($"检测到超进度弹幕{Lang.GetProjectileName(e.Type).Value}!");
-            if (config.Broadcast)
+            if (this.config.Broadcast)
             {
                 TShock.Utils.Broadcast($"检测到{e.Player.Name}使用超进度弹幕{Lang.GetProjectileName(e.Type).Value}!", Microsoft.Xna.Framework.Color.DarkRed);
             }
-            if (config.WriteLog)
+            if (this.config.WriteLog)
             {
                 TShock.Log.Write($"[超进度弹幕限制] 玩家{e.Player.Name} 使用超进度弹幕 {Lang.GetProjectileName(e.Type).Value} ID =>{e.Type}", System.Diagnostics.TraceLevel.Info);
             }
-            if (config.ClearItem)
+            if (this.config.ClearItem)
             {
                 Main.projectile[e.Index].active = false;
                 Main.projectile[e.Index].type = 0;
                 TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", e.Index);
             }
 
-            if (config.KickPlayer)
+            if (this.config.KickPlayer)
             {
                 e.Player.Kick("使用超进度弹幕");
             }

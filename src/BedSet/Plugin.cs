@@ -19,33 +19,33 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        Config = Config.Read();
-        GetDataHandlers.PlayerSpawn.Register(OnSpawn);
-        Commands.ChatCommands.Add(new("bed.spawn.set", CBed, "家", "shome"));
+        this.Config = Config.Read();
+        GetDataHandlers.PlayerSpawn.Register(this.OnSpawn);
+        Commands.ChatCommands.Add(new("bed.spawn.set", this.CBed, "家", "shome"));
     }
 
     private void CBed(CommandArgs args)
     {
-        if (Config.SpawnOption.TryGetValue(args.Player.Name, out var spawnOption) && spawnOption != null)
+        if (this.Config.SpawnOption.TryGetValue(args.Player.Name, out var spawnOption) && spawnOption != null)
         {
             spawnOption.X = args.Player.TileX;
             spawnOption.Y = args.Player.TileY;
         }
         else
         {
-            Config.SpawnOption[args.Player.Name] = new()
+            this.Config.SpawnOption[args.Player.Name] = new()
             {
                 X = args.Player.TileX,
                 Y = args.Player.TileY
             };
         }
         args.Player.SendSuccessMessage("出生点位置设置成功!");
-        Config.Write();
+        this.Config.Write();
     }
 
     private void OnSpawn(object? sender, GetDataHandlers.SpawnEventArgs e)
     {
-        if (Config.SpawnOption.TryGetValue(e.Player.Name, out var spawnOption) && spawnOption != null)
+        if (this.Config.SpawnOption.TryGetValue(e.Player.Name, out var spawnOption) && spawnOption != null)
         {
             Task.Run(async () =>
             {
@@ -60,8 +60,8 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == CBed);
-            GetDataHandlers.PlayerSpawn.UnRegister(OnSpawn);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.CBed);
+            GetDataHandlers.PlayerSpawn.UnRegister(this.OnSpawn);
         }
         base.Dispose(disposing);
     }

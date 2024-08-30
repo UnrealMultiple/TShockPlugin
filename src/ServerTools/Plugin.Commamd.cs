@@ -10,8 +10,11 @@ public partial class Plugin
     {
         void ShowOnline(List<string> line)
         {
-            if (!PaginationTools.TryParsePageNumber(args.Parameters, 0, args.Player, out int pageNumber))
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 0, args.Player, out var pageNumber))
+            {
                 return;
+            }
+
             PaginationTools.SendPage(
                     args.Player,
                     pageNumber,
@@ -25,7 +28,7 @@ public partial class Plugin
                     }
                 );
         }
-        IEnumerable<string> OnlineInfo = from online in PlayerOnlines
+        var OnlineInfo = from online in PlayerOnlines
                                          orderby online.Value descending
                                          where online.Value > 0
                                          select $"{online.Key} 在线时长: {Math.Ceiling(Convert.ToDouble(online.Value * 1.0f / 60))}分钟".Color(TShockAPI.Utils.GreenHighlight);
@@ -37,8 +40,10 @@ public partial class Plugin
     {
         void Show(List<string> line)
         {
-            if (!PaginationTools.TryParsePageNumber(args.Parameters, 0, args.Player, out int pageNumber))
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 0, args.Player, out var pageNumber))
+            {
                 return;
+            }
 
             PaginationTools.SendPage(
                 args.Player,
@@ -59,7 +64,7 @@ public partial class Plugin
 
     private void Clear(CommandArgs args)
     {
-        int radius = 50;
+        var radius = 50;
         if (args.Parameters.Count == 1)
         {
             if (!int.TryParse(args.Parameters[0], out radius) || radius <= 0)
@@ -68,11 +73,11 @@ public partial class Plugin
                 return;
             }
         }
-        int cleared = 0;
-        for (int i = 0; i < Main.maxProjectiles; i++)
+        var cleared = 0;
+        for (var i = 0; i < Main.maxProjectiles; i++)
         {
-            float dx = Main.projectile[i].position.X - args.Player.X;
-            float dy = Main.projectile[i].position.Y - args.Player.Y;
+            var dx = Main.projectile[i].position.X - args.Player.X;
+            var dy = Main.projectile[i].position.Y - args.Player.Y;
             if (Main.projectile[i].active && !Main.projectile[i].sentry && !Main.projectile[i].minion && (dx * dx) + (dy * dy) <= radius * radius * 256)
             {
                 Main.projectile[i].active = false;
@@ -93,8 +98,10 @@ public partial class Plugin
                 args.Player.SendErrorMessage("必须在旅途模式下才能设置难度！");
                 return;
             }
-            if (SetJourneyDiff(args.Parameters[0]))
+            if (this.SetJourneyDiff(args.Parameters[0]))
+            {
                 args.Player.SendSuccessMessage("难度成功设置为 {0}!", args.Parameters[0]);
+            }
         }
         else
         {
@@ -122,25 +129,22 @@ public partial class Plugin
 
     private void RWall(CommandArgs args)
     {
-        TShock.Warps.Warps.FindAll(x => x.Name.StartsWith("花苞")).ForEach(n =>
-        {
-            TShock.Warps.Remove(n.Name);
-        });
+        TShock.Warps.Warps.FindAll(x => x.Name.StartsWith("花苞")).ForEach(n => TShock.Warps.Remove(n.Name));
         args.Player.SendSuccessMessage("已移除所以花苞传送点!");
     }
 
     private void WallQ(CommandArgs args)
     {
         var Now = DateTime.Now;
-        var cd = (Now - LastCommandUseTime).TotalSeconds;
+        var cd = (Now - this.LastCommandUseTime).TotalSeconds;
         var count = 0;
         if (cd > 5)
         {
             var n = 1;
             int x = 0, y = 0;
-            for (int i = 0; i < Main.tile.Width; i++)
+            for (var i = 0; i < Main.tile.Width; i++)
             {
-                for (int j = 0; j < Main.tile.Height; j++)
+                for (var j = 0; j < Main.tile.Height; j++)
                 {
                     var tile = Main.tile[i, j];
                     var sync = Math.Abs(i - x) + Math.Abs(j - y) > 2;
@@ -161,7 +165,7 @@ public partial class Plugin
                 }
             }
             args.Player.SendInfoMessage("已为你搜索到{0}个花苞，输入/warp list可以查看结果", count);
-            LastCommandUseTime = Now;
+            this.LastCommandUseTime = Now;
         }
         else
         {

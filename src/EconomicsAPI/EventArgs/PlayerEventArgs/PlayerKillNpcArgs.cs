@@ -11,8 +11,8 @@ public class PlayerKillNpcArgs : BasePlayerEventArgs
 
     internal PlayerKillNpcArgs(Player player, NPC npc, float damage)
     {
-        Player = TShock.Players[player.whoAmI];
-        Npc = npc;
-        Damage = damage;
+        this.Player = TShock.Players[player.whoAmI];
+        this.Npc = npc;
+        this.Damage = damage;
     }
 }

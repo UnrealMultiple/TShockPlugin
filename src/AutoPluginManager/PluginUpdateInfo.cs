@@ -4,12 +4,12 @@ public class PluginUpdateInfo
 {
     public PluginUpdateInfo(string name, string author, Version newVersion, Version oldVersion, string localPath, string remotePath)
     {
-        NewVersion = newVersion;
-        OldVersion = oldVersion;
-        Author = author;
-        Name = name;
-        LocalPath = localPath;
-        RemotePath = remotePath;
+        this.NewVersion = newVersion;
+        this.OldVersion = oldVersion;
+        this.Author = author;
+        this.Name = name;
+        this.LocalPath = localPath;
+        this.RemotePath = remotePath;
     }
     public Version NewVersion { get; set; }
     public Version OldVersion { get; set; }

@@ -19,7 +19,7 @@ public class SkillSparkConverter : JsonConverter
     public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
         var types = new List<SkillSparkType>();
-        foreach (var spark in (JArray)serializer.Deserialize(reader)!)
+        foreach (var spark in (JArray) serializer.Deserialize(reader)!)
         {
             types.Add(GetSparkType(spark.ToString()));
         }
@@ -62,7 +62,7 @@ public class SkillSparkConverter : JsonConverter
             var Des = field.GetCustomAttribute<DescriptionAttribute>();
             if (Des != null && Des.Description == name)
             {
-                return (SkillSparkType)Convert.ChangeType(field.GetValue(-1), typeof(SkillSparkType))!;
+                return (SkillSparkType) Convert.ChangeType(field.GetValue(-1), typeof(SkillSparkType))!;
             }
         }
         return default;

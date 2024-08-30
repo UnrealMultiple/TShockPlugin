@@ -29,8 +29,6 @@ public class Config
 
     public SkillContext? GetSkill(int index)
     {
-        if (index < 1 || index > SkillContexts.Count)
-            return null;
-        return SkillContexts[index - 1];
+        return index < 1 || index > this.SkillContexts.Count ? null : this.SkillContexts[index - 1];
     }
 }

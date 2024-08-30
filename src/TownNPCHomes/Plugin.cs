@@ -25,40 +25,39 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("tshock.world.movenpc", TeleportNpcToTheirHomesCmd, "npchome"));
-        NPCHome += OnNpcHome;
+        Commands.ChatCommands.Add(new Command("tshock.world.movenpc", this.TeleportNpcToTheirHomesCmd, "npchome"));
+        NPCHome += this.OnNpcHome;
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == TeleportNpcToTheirHomesCmd);
-            NPCHome -= OnNpcHome;
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.TeleportNpcToTheirHomesCmd);
+            NPCHome -= this.OnNpcHome;
         }
         base.Dispose(disposing);
     }
 
     private void TeleportNpcToTheirHomesCmd(CommandArgs args)
     {
-        ConcurrentBag<int> npcIdsToUpdate = new ConcurrentBag<int>();
-        NPC[] npc = Main.npc;
-        foreach (NPC val in npc)
+        var npcIdsToUpdate = new ConcurrentBag<int>();
+        var npc = Main.npc;
+        foreach (var val in npc)
         {
             if (val != null && !(!val.active || !val.townNPC) && !val.homeless)
             {
-                Vector2 position = new Vector2(val.homeTileX * 16, val.homeTileY * 16);
-                npcHomePositions.TryAdd(val.whoAmI, position);
+                var position = new Vector2(val.homeTileX * 16, val.homeTileY * 16);
+                this.npcHomePositions.TryAdd(val.whoAmI, position);
                 npcIdsToUpdate.Add(val.whoAmI);
             }
         }
 
-        foreach (int id in npcIdsToUpdate)
+        foreach (var id in npcIdsToUpdate)
         {
-            Vector2 position;
-            if (npcHomePositions.TryGetValue(id, out position))
+            if (this.npcHomePositions.TryGetValue(id, out var position))
             {
-                TrySendNPCHomePosition(id, position);
+                this.TrySendNPCHomePosition(id, position);
             }
         }
 
@@ -69,7 +68,7 @@ public class Plugin : TerrariaPlugin
     {
         try
         {
-            TSPlayer.All.SendData((PacketTypes)23, "", npcId, position.X, position.Y, 0f, 0);
+            TSPlayer.All.SendData((PacketTypes) 23, "", npcId, position.X, position.Y, 0f, 0);
         }
         catch (Exception ex)
         {
@@ -83,7 +82,7 @@ public class Plugin : TerrariaPlugin
     {
         try
         {
-            NPC val = Main.npc[args.ID];
+            var val = Main.npc[args.ID];
 
             if (val == null)
             {
@@ -91,10 +90,10 @@ public class Plugin : TerrariaPlugin
                 return;
             }
 
-            if (!val.homeless && !val.Bottom.Equals(new Vector2((float)args.X * 16, (float)args.Y * 16)))
+            if (!val.homeless && !val.Bottom.Equals(new Vector2((float) args.X * 16, (float) args.Y * 16)))
             {
-                val.Bottom = new Vector2((float)args.X * 16, (float)args.Y * 16);
-                TrySendNPCHomePosition(args.ID, new Vector2((float)args.X * 16, (float)args.Y * 16));
+                val.Bottom = new Vector2((float) args.X * 16, (float) args.Y * 16);
+                this.TrySendNPCHomePosition(args.ID, new Vector2((float) args.X * 16, (float) args.Y * 16));
             }
         }
         catch (Exception ex)

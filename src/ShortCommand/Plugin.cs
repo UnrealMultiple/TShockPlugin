@@ -91,9 +91,9 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);
-        PlayerHooks.PlayerCommand += OnChat;
-        GeneralHooks.ReloadEvent += Reload;
+        ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);
+        PlayerHooks.PlayerCommand += this.OnChat;
+        GeneralHooks.ReloadEvent += this.Reload;
     }
 
     private void Reload(ReloadEventArgs e)
@@ -106,9 +106,9 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
-            ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);
-            PlayerHooks.PlayerCommand -= OnChat;
-            GeneralHooks.ReloadEvent -= Reload;
+            ServerApi.Hooks.GameInitialize.Deregister(this, this.OnInitialize);
+            PlayerHooks.PlayerCommand -= this.OnChat;
+            GeneralHooks.ReloadEvent -= this.Reload;
         }
         base.Dispose(disposing);
     }
@@ -199,7 +199,7 @@ public class Plugin : TerrariaPlugin
             }
             else
             {
-                var num = (int)(DateTime.UtcNow - this.CmdCD[i].LastTime).TotalSeconds;
+                var num = (int) (DateTime.UtcNow - this.CmdCD[i].LastTime).TotalSeconds;
                 num = CD - num;
                 if (num > 0)
                 {

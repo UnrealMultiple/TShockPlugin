@@ -65,11 +65,8 @@ public class SkillContext
     [JsonProperty("执行脚本")]
     public string? ExecuteScript
     {
-        get { return JsScript?.FilePathOrUri; }
-        set
-        {
-            JsScript = Set(value);
-        }
+        get => this.JsScript?.FilePathOrUri;
+        set => this.JsScript = this.Set(value);
     }
 
     [JsonProperty("弹幕")]
@@ -99,17 +96,27 @@ public class SkillContext
 
     public void AddNpcBuff(TSPlayer Player)
     {
-        if (NpcBuff.Enable)
-            foreach (var npc in Player.TPlayer.position.FindRangeNPCs(NpcBuff.Range))
-                foreach (var buff in NpcBuff.BuffOptions.Buffs)
+        if (this.NpcBuff.Enable)
+        {
+            foreach (var npc in Player.TPlayer.position.FindRangeNPCs(this.NpcBuff.Range))
+            {
+                foreach (var buff in this.NpcBuff.BuffOptions.Buffs)
+                {
                     npc.AddBuff(buff.BuffId, buff.Time);
+                }
+            }
+        }
     }
 
     public void AddPlayerBuff(TSPlayer Player)
     {
-        foreach (var ply in Player.GetPlayerInRange(BuffOption.Range))
-            foreach (var buff in BuffOption.Buffs)
+        foreach (var ply in Player.GetPlayerInRange(this.BuffOption.Range))
+        {
+            foreach (var buff in this.BuffOption.Buffs)
+            {
                 ply.SetBuff(buff.BuffId, buff.Time);
+            }
+        }
     }
 
     /// <summary>
@@ -119,20 +126,29 @@ public class SkillContext
     /// <param name="skill"></param>
     public void EmitGeneralSkill(TSPlayer Player)
     {
-        if (!string.IsNullOrEmpty(Broadcast))
-            TShock.Utils.Broadcast(Broadcast, Color.Wheat);
-        Player.StrikeNpc(StrikeNpc.Damage, StrikeNpc.Range * 16, Skill.Config.BanStrikeNpcs);
-        Player.ExecRangeCommands(ExecCommand.Range * 16, ExecCommand.Commands);
-        Player.HealAllLife(HealPlayerHPOption.Range * 16, HealPlayerHPOption.HP);
-        Player.HealAllMana(HealPlayerHPOption.Range * 16, HealPlayerHPOption.MP);
-        Player.ClearProj(ClearProjectile.Range * 16);
-        Player.CollectNPC(PullNpc.Range, Skill.Config.BanPullNpcs, PullNpc.X * 16, PullNpc.Y * 16);
-        if (PlayerTp.Enable)
-            Player.Teleport(Player.X + PlayerTp.X * 16 * (PlayerTp.Incline ? Player.TPlayer.direction : 1), Player.Y + PlayerTp.Y * 16);
-        if (PlayerGod.Enable)
-            SkillCD.GodPlayer(Player, PlayerGod.Time);
-        AddNpcBuff(Player);
-        AddPlayerBuff(Player);
+        if (!string.IsNullOrEmpty(this.Broadcast))
+        {
+            TShock.Utils.Broadcast(this.Broadcast, Color.Wheat);
+        }
+
+        Player.StrikeNpc(this.StrikeNpc.Damage, this.StrikeNpc.Range * 16, Skill.Config.BanStrikeNpcs);
+        Player.ExecRangeCommands(this.ExecCommand.Range * 16, this.ExecCommand.Commands);
+        Player.HealAllLife(this.HealPlayerHPOption.Range * 16, this.HealPlayerHPOption.HP);
+        Player.HealAllMana(this.HealPlayerHPOption.Range * 16, this.HealPlayerHPOption.MP);
+        Player.ClearProj(this.ClearProjectile.Range * 16);
+        Player.CollectNPC(this.PullNpc.Range, Skill.Config.BanPullNpcs, this.PullNpc.X * 16, this.PullNpc.Y * 16);
+        if (this.PlayerTp.Enable)
+        {
+            Player.Teleport(Player.X + (this.PlayerTp.X * 16 * (this.PlayerTp.Incline ? Player.TPlayer.direction : 1)), Player.Y + (this.PlayerTp.Y * 16));
+        }
+
+        if (this.PlayerGod.Enable)
+        {
+            SkillCD.GodPlayer(Player, this.PlayerGod.Time);
+        }
+
+        this.AddNpcBuff(Player);
+        this.AddPlayerBuff(Player);
     }
 
 }

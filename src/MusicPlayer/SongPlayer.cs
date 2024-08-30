@@ -2,49 +2,47 @@
 using System.Diagnostics.CodeAnalysis;
 using TShockAPI;
 
-namespace MusicPlayer
+namespace MusicPlayer;
+
+internal class SongPlayer
 {
-    internal class SongPlayer
+    [MemberNotNullWhen(true, nameof(CurrentSong))]
+    public bool Listening { get; private set; }
+    public TSPlayer Player { get; set; }
+    public PlaySongInfo? CurrentSong { get; private set; }
+
+    public SongPlayer(TSPlayer ply)
     {
-        private bool listening;
-        [MemberNotNullWhen(true, nameof(CurrentSong))]
-        public bool Listening { get => listening; }
-        public TSPlayer Player { get; set; }
-        public PlaySongInfo? CurrentSong { get; private set; }
+        this.Player = ply;
+        this.Listening = false;
+    }
 
-        public SongPlayer(TSPlayer ply)
+    public bool StartSong(PlaySongInfo? playSongInfo = null)
+    {
+        this.Listening = true;
+        if (playSongInfo is null)
         {
-            Player = ply;
-            listening = false;
-        }
-
-        public bool StartSong(PlaySongInfo? playSongInfo = null)
-        {
-            listening = true;
-            if (playSongInfo is null)
-            {
-                if (CurrentSong is null)
-                {
-                    return false;
-                }
-                CurrentSong.Play();
-                return true;
-            }
-            CurrentSong = playSongInfo;
-            playSongInfo.Play();
-            return true;
-        }
-
-        public bool EndSong()
-        {
-            listening = false;
-            if (CurrentSong is null)
+            if (this.CurrentSong is null)
             {
                 return false;
             }
-            CurrentSong.Stop();
-            MusicPlayer.ListeningCheck();
+            this.CurrentSong.Play();
             return true;
         }
+        this.CurrentSong = playSongInfo;
+        playSongInfo.Play();
+        return true;
+    }
+
+    public bool EndSong()
+    {
+        this.Listening = false;
+        if (this.CurrentSong is null)
+        {
+            return false;
+        }
+        this.CurrentSong.Stop();
+        MusicPlayer.ListeningCheck();
+        return true;
     }
 }

@@ -39,14 +39,14 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        LoadConfig();
+        this.LoadConfig();
         TaskFinishManager = new();
         KillNPCManager = new();
         TallkManager = new();
-        PlayerHandler.OnPlayerKillNpc += OnKillNpc;
-        GetDataHandlers.NpcTalk.Register(OnNpcTalk);
-        GeneralHooks.ReloadEvent += LoadConfig;
-        TShock.RestApi.Register("/taskFinish", Finish);
+        PlayerHandler.OnPlayerKillNpc += this.OnKillNpc;
+        GetDataHandlers.NpcTalk.Register(this.OnNpcTalk);
+        GeneralHooks.ReloadEvent += this.LoadConfig;
+        TShock.RestApi.Register("/taskFinish", this.Finish);
     }
 
     protected override void Dispose(bool disposing)
@@ -55,9 +55,9 @@ public class Plugin : TerrariaPlugin
         {
             EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
-            PlayerHandler.OnPlayerKillNpc -= OnKillNpc;
-            GetDataHandlers.NpcTalk.UnRegister(OnNpcTalk);
-            GeneralHooks.ReloadEvent -= LoadConfig;
+            PlayerHandler.OnPlayerKillNpc -= this.OnKillNpc;
+            GetDataHandlers.NpcTalk.UnRegister(this.OnNpcTalk);
+            GeneralHooks.ReloadEvent -= this.LoadConfig;
         }
         base.Dispose(disposing);
     }
@@ -65,11 +65,20 @@ public class Plugin : TerrariaPlugin
     private object Finish(RestRequestArgs args)
     {
         if (args.Parameters["name"] == null)
+        {
             return new RestObject("201") { Response = "没有检测到玩家名称" };
+        }
+
         if (args.Parameters["taskid"] == null)
+        {
             return new RestObject("201") { Response = "没有检测到任务ID" };
-        if (!int.TryParse(args.Parameters["taskid"], out int taskid))
+        }
+
+        if (!int.TryParse(args.Parameters["taskid"], out var taskid))
+        {
             return new RestObject("201") { Response = "非法的任务ID" };
+        }
+
         var task = TaskFinishManager.GetTaksByName(args.Parameters["name"]);
         var finish = task.Any(x => x.TaskID == taskid);
         return new RestObject() { { "response", "查询成功" }, { "code", finish } };
@@ -77,7 +86,7 @@ public class Plugin : TerrariaPlugin
 
     private void LoadConfig(ReloadEventArgs? args = null)
     {
-        if (!File.Exists(PATH))
+        if (!File.Exists(this.PATH))
         {
             TaskConfig.Tasks = new()
             {
@@ -128,20 +137,25 @@ public class Plugin : TerrariaPlugin
                 }
             };
         }
-        TaskConfig = ConfigHelper.LoadConfig(PATH, TaskConfig);
+        TaskConfig = ConfigHelper.LoadConfig(this.PATH, TaskConfig);
     }
 
     public static bool InOfFinishTask(TSPlayer tSPlayer, HashSet<int> tasks)
     {
         if (tasks.Count == 0)
+        {
             return true;
+        }
+
         var successtask = TaskFinishManager.GetTaksByName(tSPlayer.Name, TaskStatus.Success);
         if (successtask != null)
         {
             foreach (var task in tasks)
             {
                 if (!successtask.Any(x => x.TaskID == task))
+                {
                     return false;
+                }
             }
         }
         return true;
@@ -155,13 +169,19 @@ public class Plugin : TerrariaPlugin
         if (task != null && e.NPCTalkTarget != -1)
         {
             if (task.TaskInfo.TallkNPC.Contains(Main.npc[e.NPCTalkTarget].netID))
+            {
                 TallkManager.AddTallkNPC(e.Player.Name, Main.npc[e.NPCTalkTarget].netID);
+            }
         }
     }
 
     private void OnKillNpc(PlayerKillNpcArgs args)
     {
-        if (args.Npc == null) return;
+        if (args.Npc == null)
+        {
+            return;
+        }
+
         var task = UserTaskData.GetUserTask(args.Player.Name);
         if (task != null)
         {

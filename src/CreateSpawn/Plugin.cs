@@ -28,32 +28,36 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        LoadConfig();
-        On.Terraria.WorldBuilding.GenerationProgress.End += GenerationProgress_End;
-        GeneralHooks.ReloadEvent += LoadConfig;
-        Commands.ChatCommands.Add(new Command("create.copy", copy, "cb"));
-        Commands.ChatCommands.Add(new Command("create.copy", CreateBuilding, "create"));
-        ServerApi.Hooks.GamePostInitialize.Register(this, GamePost);
+        this.LoadConfig();
+        On.Terraria.WorldBuilding.GenerationProgress.End += this.GenerationProgress_End;
+        GeneralHooks.ReloadEvent += this.LoadConfig;
+        Commands.ChatCommands.Add(new Command("create.copy", this.copy, "cb"));
+        Commands.ChatCommands.Add(new Command("create.copy", this.CreateBuilding, "create"));
+        ServerApi.Hooks.GamePostInitialize.Register(this, this.GamePost);
     }
 
     private void GamePost(EventArgs args)
     {
-        if (create)
-            SpawnBuilding();
+        if (this.create)
+        {
+            this.SpawnBuilding();
+        }
     }
 
 
-    private void GenerationProgress_End(On.Terraria.WorldBuilding.GenerationProgress.orig_End orig, Terraria.WorldBuilding.GenerationProgress self) => create = true;
-
+    private void GenerationProgress_End(On.Terraria.WorldBuilding.GenerationProgress.orig_End orig, Terraria.WorldBuilding.GenerationProgress self)
+    {
+        this.create = true;
+    }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            On.Terraria.WorldBuilding.GenerationProgress.End -= GenerationProgress_End;
-            GeneralHooks.ReloadEvent -= LoadConfig;
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == copy || x.CommandDelegate == CreateBuilding);
-            ServerApi.Hooks.GamePostInitialize.Deregister(this, GamePost);
+            On.Terraria.WorldBuilding.GenerationProgress.End -= this.GenerationProgress_End;
+            GeneralHooks.ReloadEvent -= this.LoadConfig;
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.copy || x.CommandDelegate == this.CreateBuilding);
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, this.GamePost);
         }
 
         base.Dispose(disposing);
@@ -61,7 +65,7 @@ public class Plugin : TerrariaPlugin
 
     private void CreateBuilding(CommandArgs args)
     {
-        SpawnBuilding();
+        this.SpawnBuilding();
         args.Player.SendInfoMessage("建筑已创建!");
     }
 
@@ -93,7 +97,7 @@ public class Plugin : TerrariaPlugin
             }
             else
             {
-                CopyBuilding(args.Player.TempPoints[0].X, args.Player.TempPoints[0].Y, args.Player.TempPoints[1].X, args.Player.TempPoints[1].Y);
+                this.CopyBuilding(args.Player.TempPoints[0].X, args.Player.TempPoints[0].Y, args.Player.TempPoints[1].X, args.Player.TempPoints[1].Y);
                 args.Player.SendInfoMessage("保存成功!");
             }
         }
@@ -108,11 +112,11 @@ public class Plugin : TerrariaPlugin
     private void CopyBuilding(int x1, int y1, int x2, int y2)
     {
         var Building = new List<Building>();
-        Config.centreX = (x2 - x1) / 2;
-        Config.CountY = y2 - y1;
-        for (int i = x1; i < x2; i++)
+        this.Config.centreX = (x2 - x1) / 2;
+        this.Config.CountY = y2 - y1;
+        for (var i = x1; i < x2; i++)
         {
-            for (int j = y1; j < y2; j++)
+            for (var j = y1; j < y2; j++)
             {
                 var t = Main.tile[i, j];
                 Building.Add(new Building()
@@ -129,7 +133,7 @@ public class Plugin : TerrariaPlugin
                 });
             }
         }
-        Config.Write(SavePath);
+        this.Config.Write(this.SavePath);
         Map.SaveMap(Building);
     }
 
@@ -143,17 +147,17 @@ public class Plugin : TerrariaPlugin
             //出生点Y
             var spwy = Main.spawnTileY;
             //计算左X
-            var x1 = spwx - Config.centreX + Config.AdjustX;
+            var x1 = spwx - this.Config.centreX + this.Config.AdjustX;
             //计算左Y
-            var y1 = spwy - Config.CountY + Config.AdjustY;
+            var y1 = spwy - this.Config.CountY + this.Config.AdjustY;
             //计算右x
-            var x2 = Config.centreX + spwx + Config.AdjustX;
+            var x2 = this.Config.centreX + spwx + this.Config.AdjustX;
             //计算右y
-            var y2 = spwy + Config.AdjustY;
+            var y2 = spwy + this.Config.AdjustY;
             var n = 0;
-            for (int i = x1; i < x2; i++)
+            for (var i = x1; i < x2; i++)
             {
-                for (int j = y1; j < y2; j++)
+                for (var j = y1; j < y2; j++)
                 {
                     var t = Main.tile[i, j];
                     t.bTileHeader = Building[n].bTileHeader;
@@ -174,17 +178,17 @@ public class Plugin : TerrariaPlugin
 
     public void LoadConfig(ReloadEventArgs? args = null)
     {
-        if (File.Exists(SavePath))
+        if (File.Exists(this.SavePath))
         {
             try
             {
-                Config = Config.Read(SavePath);
+                this.Config = Config.Read(this.SavePath);
             }
             catch (Exception e)
             {
                 TShock.Log.ConsoleError("配置文件读取错误:{0}", e.ToString());
             }
         }
-        Config.Write(SavePath);
+        this.Config.Write(this.SavePath);
     }
 }

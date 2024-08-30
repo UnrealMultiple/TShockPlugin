@@ -28,9 +28,9 @@ public class Regain : TerrariaPlugin
 
     public override void Initialize()
     {
-        LoadConfig();
-        GeneralHooks.ReloadEvent += LoadConfig;
-        Commands.ChatCommands.Add(new("economics.regain", CRegain, "回收", "regain"));
+        this.LoadConfig();
+        GeneralHooks.ReloadEvent += this.LoadConfig;
+        Commands.ChatCommands.Add(new("economics.regain", this.CRegain, "回收", "regain"));
     }
 
     protected override void Dispose(bool disposing)
@@ -39,19 +39,24 @@ public class Regain : TerrariaPlugin
         {
             EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
-            GeneralHooks.ReloadEvent -= LoadConfig;
+            GeneralHooks.ReloadEvent -= this.LoadConfig;
         }
         base.Dispose(disposing);
     }
 
-    private void LoadConfig(ReloadEventArgs? args = null) => Config = ConfigHelper.LoadConfig(PATH, Config);
+    private void LoadConfig(ReloadEventArgs? args = null)
+    {
+        Config = ConfigHelper.LoadConfig(PATH, Config);
+    }
 
     private void CRegain(CommandArgs args)
     {
         void Show(List<string> line)
         {
-            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, args.Player, out int pageNumber))
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, args.Player, out var pageNumber))
+            {
                 return;
+            }
 
             PaginationTools.SendPage(
                     args.Player,
@@ -89,39 +94,45 @@ public class Regain : TerrariaPlugin
         switch (args.Parameters.Count)
         {
             case 0:
+            {
+                if (!Verify(out var regain) || regain == null)
                 {
-                    if (!Verify(out var regain) || regain == null)
-                        return;
-                    var num = args.Player.SelectedItem.stack * regain.Cost;
-                    EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num);
-                    args.Player.SelectedItem.stack = 0;
-                    args.Player.SendData(PacketTypes.PlayerSlot, "", args.Player.Index, args.Player.TPlayer.selectedItem);
-                    args.Player.SendSuccessMessage($"成功兑换{num}个{EconomicsAPI.Economics.Setting.CurrencyName}!");
-                    break;
+                    return;
                 }
+
+                var num = args.Player.SelectedItem.stack * regain.Cost;
+                EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num);
+                args.Player.SelectedItem.stack = 0;
+                args.Player.SendData(PacketTypes.PlayerSlot, "", args.Player.Index, args.Player.TPlayer.selectedItem);
+                args.Player.SendSuccessMessage($"成功兑换{num}个{EconomicsAPI.Economics.Setting.CurrencyName}!");
+                break;
+            }
             case 1:
             case 2:
+            {
+                if (args.Parameters[0].ToLower() == "list")
                 {
-                    if (args.Parameters[0].ToLower() == "list")
-                    {
-                        var line = Config.Regains.Select(x => x.ToString()).ToList();
-                        Show(line);
-                        return;
-                    }
-                    if (!int.TryParse(args.Parameters[0], out var count) && count > 0)
-                    {
-                        args.Player.SendErrorMessage($"值{args.Parameters[0]}无效!");
-                        return;
-                    }
-                    if (!Verify(out var regain) || regain == null)
-                        return;
-                    count = count > args.Player.SelectedItem.stack ? args.Player.SelectedItem.stack : count;
-                    EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, count * regain.Cost);
-                    args.Player.SelectedItem.stack -= count;
-                    args.Player.SendData(PacketTypes.PlayerSlot, "", args.Player.Index, args.Player.TPlayer.selectedItem);
-                    args.Player.SendSuccessMessage($"成功兑换{count * regain.Cost}个{EconomicsAPI.Economics.Setting.CurrencyName}!");
-                    break;
+                    var line = Config.Regains.Select(x => x.ToString()).ToList();
+                    Show(line);
+                    return;
                 }
+                if (!int.TryParse(args.Parameters[0], out var count) && count > 0)
+                {
+                    args.Player.SendErrorMessage($"值{args.Parameters[0]}无效!");
+                    return;
+                }
+                if (!Verify(out var regain) || regain == null)
+                {
+                    return;
+                }
+
+                count = count > args.Player.SelectedItem.stack ? args.Player.SelectedItem.stack : count;
+                EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, count * regain.Cost);
+                args.Player.SelectedItem.stack -= count;
+                args.Player.SendData(PacketTypes.PlayerSlot, "", args.Player.Index, args.Player.TPlayer.selectedItem);
+                args.Player.SendSuccessMessage($"成功兑换{count * regain.Cost}个{EconomicsAPI.Economics.Setting.CurrencyName}!");
+                break;
+            }
             default:
                 args.Player.SendInfoMessage("/regain语法");
                 args.Player.SendInfoMessage("/regain");

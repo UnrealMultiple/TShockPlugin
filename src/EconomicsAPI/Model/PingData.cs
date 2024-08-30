@@ -14,6 +14,6 @@ public class PingData
 
     public double GetPing()
     {
-        return (End - Start).TotalMilliseconds;
+        return (this.End - this.Start).TotalMilliseconds;
     }
 }

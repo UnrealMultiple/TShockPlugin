@@ -14,11 +14,13 @@ public static class Login
     public static async void OnGetData(GetDataEventArgs args)
     {
         if (!Config.config.WhiteList)
+        {
             return;
+        }
 
-        PacketTypes type = args.MsgID;
+        var type = args.MsgID;
 
-        TSPlayer? player = TShock.Players[args.Msg.whoAmI];
+        var player = TShock.Players[args.Msg.whoAmI];
         if (player == null || !player.ConnectionAlive)
         {
             args.Handled = true;
@@ -31,9 +33,9 @@ public static class Login
             return;
         }
 
-        if ((player.State < 10 || player.Dead) && (int)type > 12 && (int)type != 16 && (int)type != 42 &&
-            (int)type != 50 &&
-            (int)type != 38 && (int)type != 21 && (int)type != 22)
+        if ((player.State < 10 || player.Dead) && (int) type > 12 && (int) type != 16 && (int) type != 42 &&
+            (int) type != 50 &&
+            (int) type != 38 && (int) type != 21 && (int) type != 22)
         {
             args.Handled = true;
             return;
@@ -53,12 +55,15 @@ public static class Login
             }
             else if (type == PacketTypes.PlayerInfo)
             {
-                if (player.IsLoggedIn) return;
+                if (player.IsLoggedIn)
+                {
+                    return;
+                }
 
                 data.ReadByte();
                 data.ReadByte();
                 data.ReadByte();
-                string name = data.ReadString().Trim().Trim();
+                var name = data.ReadString().Trim().Trim();
                 RestObject re = new()
                 {
                     { "type", "whitelist" },
@@ -83,11 +88,14 @@ public static class Login
 
     public static async Task<bool> CheckWhiteAsync(string name, int code, List<string> uuids)
     {
-        List<TSPlayer>? playerList = TSPlayer.FindByNameOrID("tsn:" + name);
-        long number = Config.config.GroupNumber;
-        if (playerList.Count == 0) return false;
+        var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
+        var number = Config.config.GroupNumber;
+        if (playerList.Count == 0)
+        {
+            return false;
+        }
 
-        TSPlayer plr = playerList[0];
+        var plr = playerList[0];
         //NetMessage.SendData(9, args.Who, -1, Terraria.Localization.NetworkText.FromLiteral($"[Cai白名单]正在校验白名单..."), 1);
         if (string.IsNullOrEmpty(name))
         {
@@ -101,35 +109,35 @@ public static class Login
             switch (code)
             {
                 case 200:
-                    {
-                        TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})已通过白名单验证...");
-                        //NetMessage.SendData(9, args.Who, -1, Terraria.Localization.NetworkText.FromLiteral($"[Cai白名单]白名单校验成功!\n"), 1);
-                        break;
-                    }
+                {
+                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})已通过白名单验证...");
+                    //NetMessage.SendData(9, args.Who, -1, Terraria.Localization.NetworkText.FromLiteral($"[Cai白名单]白名单校验成功!\n"), 1);
+                    break;
+                }
                 case 404:
-                    {
-                        TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})没有添加白名单...");
-                        plr.SilentKickInProgress = true;
-                        plr.Disconnect($"没有添加白名单!\n" +
-                                       $"请在群{number}内发送'添加白名单 角色名字'");
-                        return false;
-                    }
+                {
+                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})没有添加白名单...");
+                    plr.SilentKickInProgress = true;
+                    plr.Disconnect($"没有添加白名单!\n" +
+                                   $"请在群{number}内发送'添加白名单 角色名字'");
+                    return false;
+                }
                 case 403:
-                    {
-                        TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})被屏蔽，处于CaiBot云黑名单中...");
-                        plr.SilentKickInProgress = true;
-                        plr.Disconnect("[Cai白名单]你已被服务器屏蔽,\n" +
-                                       "你处于CaiBot云黑名单中!");
-                        return false;
-                    }
+                {
+                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})被屏蔽，处于CaiBot云黑名单中...");
+                    plr.SilentKickInProgress = true;
+                    plr.Disconnect("[Cai白名单]你已被服务器屏蔽,\n" +
+                                   "你处于CaiBot云黑名单中!");
+                    return false;
+                }
                 case 401:
-                    {
-                        TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})不在本群内...");
-                        plr.SilentKickInProgress = true;
-                        plr.Disconnect($"[Cai白名单]你不在服务器群内!\n" +
-                                       $"请加入服务器群: {number}");
-                        return false;
-                    }
+                {
+                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})不在本群内...");
+                    plr.SilentKickInProgress = true;
+                    plr.Disconnect($"[Cai白名单]你不在服务器群内!\n" +
+                                   $"请加入服务器群: {number}");
+                    return false;
+                }
             }
 
             if (!uuids.Contains(plr.UUID))
@@ -175,17 +183,20 @@ public static class Login
 
     public static bool HandleLogin(TSPlayer player, string password)
     {
-        UserAccount? account = TShock.UserAccounts.GetUserAccountByName(player.Name);
+        var account = TShock.UserAccounts.GetUserAccountByName(player.Name);
         if (account != null)
         {
             player.RequiresPassword = false;
             player.PlayerData = TShock.CharacterDB.GetPlayerData(player, account.ID);
 
             if (player.State == 1)
+            {
                 player.State = 2;
-            NetMessage.SendData((int)PacketTypes.WorldInfo, player.Index);
+            }
 
-            Group? group = TShock.Groups.GetGroupByName(account.Group);
+            NetMessage.SendData((int) PacketTypes.WorldInfo, player.Index);
+
+            var group = TShock.Groups.GetGroupByName(account.Group);
 
             player.Group = group;
             player.tempGroup = null;
@@ -207,11 +218,14 @@ public static class Login
             player.LoginFailsBySsi = false;
 
             if (player.HasPermission(Permissions.ignorestackhackdetection))
+            {
                 player.IsDisabledForStackDetection = false;
+            }
 
             if (player.HasPermission(Permissions.usebanneditem))
+            {
                 player.IsDisabledForBannedWearable = false;
-
+            }
 
             player.SendSuccessMessage($"[CaiBot]已经验证{account.Name}登录完毕。");
             TShock.Log.ConsoleInfo(player.Name + "成功验证登录。");
@@ -247,10 +261,13 @@ public static class Login
             player.PlayerData = TShock.CharacterDB.GetPlayerData(player, account.ID);
 
             if (player.State == 1)
+            {
                 player.State = 2;
-            NetMessage.SendData((int)PacketTypes.WorldInfo, player.Index);
+            }
 
-            Group? group = TShock.Groups.GetGroupByName(account.Group);
+            NetMessage.SendData((int) PacketTypes.WorldInfo, player.Index);
+
+            var group = TShock.Groups.GetGroupByName(account.Group);
 
             player.Group = group;
             player.tempGroup = null;
@@ -272,11 +289,14 @@ public static class Login
             player.LoginFailsBySsi = false;
 
             if (player.HasPermission(Permissions.ignorestackhackdetection))
+            {
                 player.IsDisabledForStackDetection = false;
+            }
 
             if (player.HasPermission(Permissions.usebanneditem))
+            {
                 player.IsDisabledForBannedWearable = false;
-
+            }
 
             player.SendSuccessMessage($"[CaiBot]已经验证{account.Name}登录完毕.");
             TShock.Log.ConsoleInfo(player.Name + "成功验证登录.");

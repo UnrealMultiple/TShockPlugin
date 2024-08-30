@@ -24,7 +24,10 @@ internal class ConfigConverter : JsonConverter
         {
             var field = typeof(Config).GetField(pro.Name)!;
             if (attrs.TryGetValue(pro.Name, out var fieldName))
+            {
                 field = typeof(Config).GetField(fieldName)!;
+            }
+
             field.SetValue(setting, Convert.ChangeType(pro.Value, field.FieldType));
         }
         return setting;

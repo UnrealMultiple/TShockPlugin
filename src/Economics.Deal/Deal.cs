@@ -27,11 +27,14 @@ public class Deal : TerrariaPlugin
 
     public override void Initialize()
     {
-        LoadConfig();
+        this.LoadConfig();
         GeneralHooks.ReloadEvent += (e) => Config = ConfigHelper.LoadConfig(PATH, Config);
     }
 
-    private void LoadConfig(ReloadEventArgs? args = null) => Config = ConfigHelper.LoadConfig(PATH, Config);
+    private void LoadConfig(ReloadEventArgs? args = null)
+    {
+        Config = ConfigHelper.LoadConfig(PATH, Config);
+    }
 
     protected override void Dispose(bool disposing)
     {
@@ -40,7 +43,7 @@ public class Deal : TerrariaPlugin
             EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
 
-            GeneralHooks.ReloadEvent -= LoadConfig;
+            GeneralHooks.ReloadEvent -= this.LoadConfig;
         }
         base.Dispose(disposing);
     }

@@ -2,93 +2,103 @@
 using TShockAPI;
 using TShockAPI.DB;
 
-namespace PersonalPermission
+namespace PersonalPermission;
+
+class DB
 {
-    class DB
+    public static void TryCreateTable()
     {
-        public static void TryCreateTable()
+        try
         {
-            try
+            var sqlTable = new SqlTable("PersonalPermission", new SqlColumn[]
             {
-                SqlTable sqlTable = new SqlTable("PersonalPermission", new SqlColumn[]
-                {
-                    new SqlColumn("UserID", MySql.Data.MySqlClient.MySqlDbType.Int32){ Primary = true },
-                    new SqlColumn("Permissions", MySql.Data.MySqlClient.MySqlDbType.Text)
-                });
-                IDbConnection db = TShock.DB;
-                IQueryBuilder queryBuilder2;
-                if (DbExt.GetSqlType(TShock.DB) != SqlType.Sqlite)
-                {
-                    IQueryBuilder queryBuilder = new MysqlQueryCreator();
-                    queryBuilder2 = queryBuilder;
-                }
-                else
-                {
-                    IQueryBuilder queryBuilder = new SqliteQueryCreator();
-                    queryBuilder2 = queryBuilder;
-                }
-                new SqlTableCreator(db, queryBuilder2).EnsureTableStructure(sqlTable);
+                new SqlColumn("UserID", MySql.Data.MySqlClient.MySqlDbType.Int32){ Primary = true },
+                new SqlColumn("Permissions", MySql.Data.MySqlClient.MySqlDbType.Text)
+            });
+            var db = TShock.DB;
+            IQueryBuilder queryBuilder2;
+            if (DbExt.GetSqlType(TShock.DB) != SqlType.Sqlite)
+            {
+                IQueryBuilder queryBuilder = new MysqlQueryCreator();
+                queryBuilder2 = queryBuilder;
             }
-            catch (Exception ex) { TShock.Log.Error(ex.Message); }
-        }
-        public static bool AddUser(int id)
-        {
-            try { return DbExt.Query(TShock.DB, $"INSERT INTO PersonalPermission (UserID) VALUES ({id});") != -1; }
-            catch (Exception ex) { TShock.Log.ConsoleError($"添加玩家信息失败.\n" + ex); return false; }
-        }
-        public static List<string> GetPermissions(int id)
-        {
-            using (var reader = DbExt.QueryReader(TShock.DB, $"SELECT * FROM PersonalPermission WHERE UserID='{id}';"))
+            else
             {
-                var list = new List<string>();
-                if (reader.Read())
+                IQueryBuilder queryBuilder = new SqliteQueryCreator();
+                queryBuilder2 = queryBuilder;
+            }
+            new SqlTableCreator(db, queryBuilder2).EnsureTableStructure(sqlTable);
+        }
+        catch (Exception ex) { TShock.Log.Error(ex.Message); }
+    }
+    public static bool AddUser(int id)
+    {
+        try { return DbExt.Query(TShock.DB, $"INSERT INTO PersonalPermission (UserID) VALUES ({id});") != -1; }
+        catch (Exception ex) { TShock.Log.ConsoleError($"添加玩家信息失败.\n" + ex); return false; }
+    }
+    public static List<string> GetPermissions(int id)
+    {
+        using (var reader = DbExt.QueryReader(TShock.DB, $"SELECT * FROM PersonalPermission WHERE UserID='{id}';"))
+        {
+            var list = new List<string>();
+            if (reader.Read())
+            {
+                try
                 {
-                    try
+                    var text = reader.Get<string>("Permissions") ?? "";
+                    if (text.Contains(","))
                     {
-                        var text = reader.Get<string>("Permissions") ?? "";
-                        if (text.Contains(","))
-                        {
-                            text.Split(',').ForEach(p => { if (!list.Contains(p)) list.Add(p); });
-                        }
-                        else if (!string.IsNullOrWhiteSpace(text)) list.Add(text);
+                        text.Split(',').ForEach(p => { if (!list.Contains(p)) { list.Add(p); } });
                     }
-                    catch (Exception ex) { TShock.Log.ConsoleError($"[PersonalPermission] 读取数据库时发生错误.\n{ex}"); }
-                }
-                else AddUser(id);
-                return list;
-            }
-        }
-        public static Dictionary<int, List<string>> GetAllPermissions()
-        {
-            using (var reader = DbExt.QueryReader(TShock.DB, $"SELECT * FROM PersonalPermission;"))
-            {
-                var list = new Dictionary<int, List<string>>();
-                while (reader.Read())
-                {
-                    try
+                    else if (!string.IsNullOrWhiteSpace(text))
                     {
-                        var permissions = new List<string>();
-                        var text = reader.Get<string>("Permissions") ?? "";
-                        if (text.Contains(","))
-                        {
-                            text.Split(',').ForEach(p => { if (!permissions.Contains(p)) permissions.Add(p); });
-                        }
-                        else if (!string.IsNullOrWhiteSpace(text)) permissions.Add(text);
-                        list.Add(reader.Get<int>("UserID"), permissions);
+                        list.Add(text);
                     }
-                    catch (Exception ex) { TShock.Log.ConsoleError($"[PersonalPermission] 读取数据库时发生错误.\n{ex}"); }
                 }
-                return list;
+                catch (Exception ex) { TShock.Log.ConsoleError($"[PersonalPermission] 读取数据库时发生错误.\n{ex}"); }
             }
-        }
-        public static bool SetPermissions(int id, List<string> list)
-        {
-            if (DbExt.Query(TShock.DB, $"UPDATE PersonalPermission SET Permissions=@0 WHERE UserID={id};", new object[] { string.Join(",", list) }) != -1)
+            else
             {
-                return true;
+                AddUser(id);
             }
-            TShock.Log.ConsoleError("保存玩家权限失败.");
-            return false;
+
+            return list;
         }
+    }
+    public static Dictionary<int, List<string>> GetAllPermissions()
+    {
+        using (var reader = DbExt.QueryReader(TShock.DB, $"SELECT * FROM PersonalPermission;"))
+        {
+            var list = new Dictionary<int, List<string>>();
+            while (reader.Read())
+            {
+                try
+                {
+                    var permissions = new List<string>();
+                    var text = reader.Get<string>("Permissions") ?? "";
+                    if (text.Contains(","))
+                    {
+                        text.Split(',').ForEach(p => { if (!permissions.Contains(p)) { permissions.Add(p); } });
+                    }
+                    else if (!string.IsNullOrWhiteSpace(text))
+                    {
+                        permissions.Add(text);
+                    }
+
+                    list.Add(reader.Get<int>("UserID"), permissions);
+                }
+                catch (Exception ex) { TShock.Log.ConsoleError($"[PersonalPermission] 读取数据库时发生错误.\n{ex}"); }
+            }
+            return list;
+        }
+    }
+    public static bool SetPermissions(int id, List<string> list)
+    {
+        if (DbExt.Query(TShock.DB, $"UPDATE PersonalPermission SET Permissions=@0 WHERE UserID={id};", new object[] { string.Join(",", list) }) != -1)
+        {
+            return true;
+        }
+        TShock.Log.ConsoleError("保存玩家权限失败.");
+        return false;
     }
 }

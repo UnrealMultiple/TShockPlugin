@@ -48,7 +48,9 @@ public class Economics : TerrariaPlugin
     public Economics(Main game) : base(game)
     {
         if (!Directory.Exists(SaveDirPath))
+        {
             Directory.CreateDirectory(SaveDirPath);
+        }
     }
 
     protected override void Dispose(bool disposing)
@@ -57,40 +59,41 @@ public class Economics : TerrariaPlugin
         {
             RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             RemoveAssemblyRest(Assembly.GetExecutingAssembly());
-            ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreet);
-            ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
-            ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
-            ServerApi.Hooks.NpcKilled.Deregister(this, OnKillNpc);
-            ServerApi.Hooks.NpcSpawn.Deregister(this, OnNpcSpawn);
-            ServerApi.Hooks.NpcStrike.Deregister(this, OnStrike);
-            ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
-            GetDataHandlers.KillMe.UnRegister(OnKillMe);
-            PlayerHandler.OnPlayerCountertop -= PlayerHandler_OnPlayerCountertop;
-            GeneralHooks.ReloadEvent -= LoadConfig;
+            ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreet);
+            ServerApi.Hooks.NetGetData.Deregister(this, this.OnGetData);
+            ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
+            ServerApi.Hooks.NpcKilled.Deregister(this, this.OnKillNpc);
+            ServerApi.Hooks.NpcSpawn.Deregister(this, this.OnNpcSpawn);
+            ServerApi.Hooks.NpcStrike.Deregister(this, this.OnStrike);
+            ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
+            GetDataHandlers.KillMe.UnRegister(this.OnKillMe);
+            PlayerHandler.OnPlayerCountertop -= this.PlayerHandler_OnPlayerCountertop;
+            GeneralHooks.ReloadEvent -= this.LoadConfig;
         }
         base.Dispose(disposing);
     }
 
     public override void Initialize()
     {
-        LoadConfig();
+        this.LoadConfig();
         CurrencyManager = new CurrencyManager();
         Helper.InitPluginAttributes();
-        ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreet);
-        ServerApi.Hooks.NetGetData.Register(this, OnGetData);
-        ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
-        ServerApi.Hooks.NpcKilled.Register(this, OnKillNpc);
-        ServerApi.Hooks.NpcSpawn.Register(this, OnNpcSpawn);
-        ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
-        ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
-        GetDataHandlers.KillMe.Register(OnKillMe);
-        PlayerHandler.OnPlayerCountertop += PlayerHandler_OnPlayerCountertop;
-        GeneralHooks.ReloadEvent += LoadConfig;
+        ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreet);
+        ServerApi.Hooks.NetGetData.Register(this, this.OnGetData);
+        ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
+        ServerApi.Hooks.NpcKilled.Register(this, this.OnKillNpc);
+        ServerApi.Hooks.NpcSpawn.Register(this, this.OnNpcSpawn);
+        ServerApi.Hooks.NpcStrike.Register(this, this.OnStrike);
+        ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
+        GetDataHandlers.KillMe.Register(this.OnKillMe);
+        PlayerHandler.OnPlayerCountertop += this.PlayerHandler_OnPlayerCountertop;
+        GeneralHooks.ReloadEvent += this.LoadConfig;
     }
 
     private void LoadConfig(ReloadEventArgs? args = null)
     {
-        if (!File.Exists(ConfigPATH))
+        if (!File.Exists(this.ConfigPATH))
+        {
             Setting.GradientColor = new List<string>()
             {
                 "[c/00ffbf:{0}]",
@@ -110,7 +113,9 @@ public class Economics : TerrariaPlugin
                 "[c/00ffbf:{0}]",
                 "[c/1aecb8:{0}]"
             };
-        Setting = ConfigHelper.LoadConfig(ConfigPATH, Setting);
+        }
+
+        Setting = ConfigHelper.LoadConfig(this.ConfigPATH, Setting);
     }
 
     private void PlayerHandler_OnPlayerCountertop(PlayerCountertopArgs args)
@@ -136,16 +141,19 @@ public class Economics : TerrariaPlugin
 
     private void OnUpdate(System.EventArgs args)
     {
-        TimerCount++;
-        if (TimerCount % 60 == 0)
+        this.TimerCount++;
+        if (this.TimerCount % 60 == 0)
         {
             lock (ServerPlayers)
             {
                 foreach (var ply in ServerPlayers)
                 {
                     if (ply == null || !ply.Active)
+                    {
                         continue;
-                    Ping(ply, data =>
+                    }
+
+                    this.Ping(ply, data =>
                     {
                         var status = new PlayerCountertopArgs()
                         {
@@ -153,36 +161,39 @@ public class Economics : TerrariaPlugin
                             Player = data.TSPlayer
                         };
                         if (Setting.StatusText && !PlayerHandler.PlayerCountertopUpdate(status))
+                        {
                             Helper.CountertopUpdate(status);
+                        }
                     });
                 }
             }
         }
-        if (TimerCount % (60 * Setting.SaveTime) == 0)
+        if (this.TimerCount % (60 * Setting.SaveTime) == 0)
         {
             CurrencyManager.UpdataAll();
-            foreach (var (npc, _) in Strike.Where(x => x.Key == null || !x.Key.active).ToList())
-                Strike.Remove(npc, out var _);
-
+            foreach (var (npc, _) in this.Strike.Where(x => x.Key == null || !x.Key.active).ToList())
+            {
+                this.Strike.Remove(npc, out var _);
+            }
         }
     }
 
     private void OnStrike(NpcStrikeEventArgs args)
     {
-        if (Strike.TryGetValue(args.Npc, out var data) && data != null)
+        if (this.Strike.TryGetValue(args.Npc, out var data) && data != null)
         {
-            if (data.TryGetValue(args.Player, out float damage))
+            if (data.TryGetValue(args.Player, out var damage))
             {
-                Strike[args.Npc][args.Player] += args.Damage;
+                this.Strike[args.Npc][args.Player] += args.Damage;
             }
             else
             {
-                Strike[args.Npc][args.Player] = args.Damage;
+                this.Strike[args.Npc][args.Player] = args.Damage;
             }
         }
         else
         {
-            Strike[args.Npc] = new()
+            this.Strike[args.Npc] = new()
             {
                 { args.Player, args.Damage }
             };
@@ -193,14 +204,19 @@ public class Economics : TerrariaPlugin
     {
         var npc = Main.npc[args.NpcId];
         if (npc != null)
-            Strike[npc] = new();
+        {
+            this.Strike[npc] = new();
+        }
     }
 
     private void OnKillNpc(NpcKilledEventArgs args)
     {
         if ((args.npc.SpawnedFromStatue && Setting.IgnoreStatue) || args.npc == null)
+        {
             return;
-        if (Strike.TryGetValue(args.npc, out var result) && result != null)
+        }
+
+        if (this.Strike.TryGetValue(args.npc, out var result) && result != null)
         {
             foreach (var (player, damage) in result)
             {
@@ -209,11 +225,13 @@ public class Economics : TerrariaPlugin
                     var num = Convert.ToInt64(damage * Setting.ConversionRate);
                     CurrencyManager.AddUserCurrency(player.name, num);
                     if (Setting.ShowAboveHead)
+                    {
                         player.SendCombatMsg($"+{num}$", Color.AntiqueWhite);
+                    }
                 }
             }
         }
-        Strike.Remove(args.npc, out var _);
+        this.Strike.Remove(args.npc, out var _);
     }
 
     public void Ping(TSPlayer player, Action<PingData> action)
@@ -223,9 +241,9 @@ public class Economics : TerrariaPlugin
             TSPlayer = player,
             action = action
         };
-        PlayerPing[player] = data;
-        int num = -1;
-        for (int i = 0; i < Main.item.Length; i++)
+        this.PlayerPing[player] = data;
+        var num = -1;
+        for (var i = 0; i < Main.item.Length; i++)
         {
             if (Main.item[i] != null && (!Main.item[i].active || Main.item[i].playerIndexTheItemIsReservedFor == 255))
             {
@@ -236,14 +254,19 @@ public class Economics : TerrariaPlugin
         NetMessage.TrySendData(39, player.Index, -1, null, num);
     }
 
-    public static void RemoveAssemblyCommands(Assembly assembly) => Commands.ChatCommands.RemoveAll(cmd => cmd.GetType().Assembly == assembly);
+    public static void RemoveAssemblyCommands(Assembly assembly)
+    {
+        Commands.ChatCommands.RemoveAll(cmd => cmd.GetType().Assembly == assembly);
+    }
 
     public static void RemoveAssemblyRest(Assembly assembly)
     {
         if (typeof(Rest)
             .GetField("commands", BindingFlags.NonPublic | BindingFlags.Instance)
             ?.GetValue(TShock.RestApi) is List<RestCommand> rests)
+        {
             rests.RemoveAll(cmd => cmd.GetType().GetField("callback", BindingFlags.NonPublic)?.GetType().Assembly == assembly);
+        }
     }
 
 
@@ -258,11 +281,11 @@ public class Economics : TerrariaPlugin
         if (binaryReader.ReadByte() == byte.MaxValue)
         {
 
-            if (PlayerPing.TryGetValue(TShock.Players[args.Msg.whoAmI], out var data))
+            if (this.PlayerPing.TryGetValue(TShock.Players[args.Msg.whoAmI], out var data))
             {
                 data.End = DateTime.Now;
                 data.action.Invoke(data);
-                PlayerPing.Remove(TShock.Players[args.Msg.whoAmI]);
+                this.PlayerPing.Remove(TShock.Players[args.Msg.whoAmI]);
             }
         }
     }
@@ -273,7 +296,9 @@ public class Economics : TerrariaPlugin
         lock (ServerPlayers)
         {
             if (player != null)
+            {
                 ServerPlayers.Remove(player);
+            }
         }
 
     }
@@ -284,7 +309,9 @@ public class Economics : TerrariaPlugin
         lock (ServerPlayers)
         {
             if (player != null)
+            {
                 ServerPlayers.Add(player);
+            }
         }
     }
 }

@@ -25,20 +25,18 @@ public class Config
                 Prefix = player.SelectedItem.prefix
             }
         };
-        DealContexts.Add(DealContext);
+        this.DealContexts.Add(DealContext);
         ConfigHelper.Write(Deal.PATH, this);
     }
 
     public void RemoveItem(int index)
     {
-        DealContexts.RemoveAt(index);
+        this.DealContexts.RemoveAt(index);
         ConfigHelper.Write(Deal.PATH, this);
     }
 
     public DealContext? GetDealContext(int index)
     {
-        if (index > DealContexts.Count || index < 1)
-            return null;
-        return DealContexts[index - 1];
+        return index > this.DealContexts.Count || index < 1 ? null : this.DealContexts[index - 1];
     }
 }

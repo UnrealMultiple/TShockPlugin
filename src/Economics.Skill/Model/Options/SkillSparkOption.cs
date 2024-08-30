@@ -38,46 +38,52 @@ public class SkillSparkOption
 
     public bool MeetHP(TSPlayer Player)
     {
-        return (HpRatio ? (((float)Player.TPlayer.statLife / (float)Player.TPlayer.statLifeMax) * 100 <= HP) : Player.TPlayer.statLife <= HP) && !MoreHP;
+        return (this.HpRatio ? ((float) Player.TPlayer.statLife / (float) Player.TPlayer.statLifeMax * 100 <= this.HP) : Player.TPlayer.statLife <= this.HP) && !this.MoreHP;
     }
 
     public bool MeetMP(TSPlayer Player)
     {
-        return (MpRatio ? (((float)Player.TPlayer.statMana / (float)Player.TPlayer.statManaMax) * 100 <= MP) : Player.TPlayer.statMana <= MP) && !MoreMP;
+        return (this.MpRatio ? ((float) Player.TPlayer.statMana / (float) Player.TPlayer.statManaMax * 100 <= this.MP) : Player.TPlayer.statMana <= this.MP) && !this.MoreMP;
     }
 
     public bool HasItem(TSPlayer player)
     {
-        foreach (var item in TermItem)
+        foreach (var item in this.TermItem)
         {
             if (item.Inventory)
             {
                 var inv = player.TPlayer.inventory.Where(x => x.netID == item.netID);
                 if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
+                {
                     return false;
+                }
             }
             if (item.Armory)
             {
                 var inv = player.TPlayer.armor.Where(x => x.netID == item.netID);
                 if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
+                {
                     return false;
+                }
             }
             if (item.HeldItem)
             {
                 if (player.SelectedItem.netID != item.netID)
+                {
                     return false;
+                }
             }
         }
-        ConsumeItem(player);
+        this.ConsumeItem(player);
         return true;
     }
 
     private void ConsumeItem(TSPlayer player)
     {
-        foreach (var term in TermItem)
+        foreach (var term in this.TermItem)
         {
             var stack = term.Stack;
-            for (int j = 0; j < player.TPlayer.inventory.Length; j++)
+            for (var j = 0; j < player.TPlayer.inventory.Length; j++)
             {
                 var item = player.TPlayer.inventory[j];
                 if (item.netID == term.netID && term.Consume)

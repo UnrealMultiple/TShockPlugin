@@ -51,7 +51,10 @@ public class Configuration
     public static Configuration Read(string path)
     {
         if (!File.Exists(path))
+        {
             return new Configuration();
+        }
+
         using var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
         using var sr = new StreamReader(fs);
         return JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd()) ?? new();

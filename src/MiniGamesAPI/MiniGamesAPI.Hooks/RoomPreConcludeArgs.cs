@@ -1,7 +1,6 @@
 ﻿
-namespace MiniGamesAPI
+namespace MiniGamesAPI;
+
+internal class RoomPreConcludeArgs
 {
-    internal class RoomPreConcludeArgs
-    {
-    }
 }

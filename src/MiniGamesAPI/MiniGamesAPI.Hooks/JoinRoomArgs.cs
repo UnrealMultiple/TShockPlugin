@@ -1,8 +1,6 @@
 ﻿
-namespace MiniGamesAPI
-{
-    public class JoinRoomArgs
-    {
-    }
+namespace MiniGamesAPI;
 
+public class JoinRoomArgs
+{
 }
