@@ -3,6 +3,7 @@ import glob
 import shutil
 import sys
 import zipfile
+import requests
 
 def zip_files_in_folder(folder_path, zip_file_path):
     with zipfile.ZipFile(zip_file_path, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zipf:
