@@ -32,13 +32,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-
-      - name: 安装Py模块
-        run: |
-            sudo pip install beautifulsoup4
           
       - name: 打包插件
-        run: python BuildHelper.py Debug
+        run: |
+          sudo pip install requests
+          python BuildHelper.py Debug
         env:
           PYTHONIOENCODING: 'utf-8'
       
