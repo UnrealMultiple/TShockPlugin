@@ -48,7 +48,7 @@
     </Target>
 
     <Target Name="githash" BeforeTargets="PreBuildEvent">
-        <Exec Command="git log -1 --pretty=&quot;format:%25H&quot;" ContinueOnError="true" ConsoleToMSBuild="true">
+        <Exec Command="git log -1 --pretty=&quot;format:%25H&quot;" StandardOutputImportance="low" StandardErrorImportance="low" ContinueOnError="true" ConsoleToMSBuild="true">
             <Output TaskParameter="ConsoleOutput" PropertyName="CommitHashValue"/>
         </Exec>
 

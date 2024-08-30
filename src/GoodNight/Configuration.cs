@@ -2,13 +2,14 @@
 using System.Text;
 using TShockAPI;
 
+namespace Goodnight;
+
 public class TimeRange
 {
     public TimeSpan Start { get; set; }
     public TimeSpan Stop { get; set; }
 }
 
-namespace Goodnight;
 
 internal class Configuration
 {
