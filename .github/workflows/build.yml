@@ -1,0 +1,135 @@
+name: 插件构建发布
+
+on: [push, pull_request]
+    
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    name: 构建插件
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          fetch-depth: 0
+
+      - name: 初始化.NET 6
+        uses: actions/setup-dotnet@v4
+        env:
+          DOTNET_CLI_UI_LANGUAGE: zh-CN
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 安装构建依赖
+        run: |
+          sudo apt install -y gettext
+          wget -q https://github.com/ACaiCat/PluginInfoLoaderr/releases/download/v1.0.0.0/linux-x64.zip
+          unzip -qq linux-x64.zip
+
+      - name: 更新子模块
+        continue-on-error: true
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          if git diff --staged --quiet; then
+            echo "跳过更新：子模块没有变化"
+          else
+            git commit -m "自动更新子模块 [skip ci]"
+            git push
+          fi
+          
+      - name: 构建插件
+        if: github.event_name != 'push' || github.ref != 'refs/heads/master'
+        run: |
+          dotnet build Plugin.sln -c Debug
+          sudo python scripts/BuildHelper.py Debug
+          cp ./out/Debug/*.dll ./linux-x64/ServerPlugins/
+        env:
+          PYTHONIOENCODING: 'utf-8'
+
+      - name: 构建插件
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          dotnet build Plugin.sln -c Release
+          cp ./out/Release/*.dll ./linux-x64/ServerPlugins/
+  
+      - name: 更新Plugins.json 
+        continue-on-error: true
+        run: |
+          cd linux-x64
+          chmod +x TShock.Server
+          timeout 60s ./TShock.Server
+          mv Plugins.json ../
+  
+      - name: 更新Plugins.json 
+        continue-on-error: true
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add Plugins.json
+          if git diff --staged --quiet; then
+            echo "跳过更新：没有插件版本变化"
+          else
+            git commit -m "自动更新Plugins.json [skip ci]"
+            git pull
+            git push
+          fi
+
+      - name: 打包
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          sudo python scripts/BuildHelper.py Release ${{ secrets.CAI_GITEE_TOKEN }}
+        env:
+          PYTHONIOENCODING: 'utf-8'
+      
+      - name: 上传临时插件包
+        uses: actions/upload-artifact@v4
+        with:
+          name: Plugins
+          path: Plugins.zip
+
+      - name: 获取更新日志
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        id: external_changelog_second
+        uses: mikepenz/release-changelog-builder-action@v5
+        with:
+          configuration: "Config/Config_Rep.json"
+
+      - name: 生成更新日志
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        env:
+          CHANGELOG: ${{ steps.external_changelog_second.outputs.changelog }}
+          CHANGELOG_SECOND: ${{ steps.external_changelog_second.outputs.changelog }}
+        run: |
+          echo ${{ steps.external_changelog_collect.outputs.cache }}
+          echo "First:"
+          echo "$CHANGELOG"
+          echo "Second:"
+          echo "$CHANGELOG_SECOND"
+          git tag -f V1.0.0.0
+          git push -f origin V1.0.0.0
+
+      - name: 发布插件包
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: ncipollo/release-action@v1
+        with:
+          tag: V1.0.0.0
+          name: "最新版本"
+          body: |
+            # 插件下载和更新日志
+            ###  📅 每次仓库更新，我们都会在这里发布最新的Release。请注意，这个仓库只有一个Release，所以你总是能在这里找到最新的版本。\n### 📖文档已经以PDF的形式附在插件包中。更推荐你直接在仓库主页中的[插件列表](https://github.com/UnrealMultiple/TShockPlugin?tab=readme-ov-file#%E5%B7%B2%E6%94%B6%E9%9B%86%E6%8F%92%E4%BB%B6)，点击插件名跳转到每个插件的详细文档。
+            ###  📦 你可以在页面的`最底部↓↓↓`找到插件包的下载链接。下载完成后，你需要使用`ZIP压缩工具`进行解压。
+            > [!CAUTION]
+            >**请你`详细`的看`上面的说明`，不要到处问`插件怎么用`、`ZIP如何解压`、`PDF怎么打开`**
+            <details>
+            <summary>更新日志</summary>
+            ${{steps.external_changelog_second.outputs.changelog}}
+            </details>
+          artifacts: |
+            Plugins.zip
+          allowUpdates: true
+          removeArtifacts: true
