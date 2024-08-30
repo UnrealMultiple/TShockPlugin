@@ -40,7 +40,7 @@ namespace Challenger
                             if (Challenger.config.EnableConsumptionMode)
                             {
                                 Challenger.HealPlayer(Main.player[val.whoAmI], num, visible: false);
-                                Challenger.SendPlayerText($"蜂糖罐治疗 + {num}", new Color(232, 229, 74), val.Center);
+                                Challenger.SendPlayerText(GetString($"蜂糖罐治疗 + {num}"), new Color(232, 229, 74), val.Center);
                             }
                             else
                             {

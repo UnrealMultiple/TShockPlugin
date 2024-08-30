@@ -154,7 +154,7 @@ namespace Challenger
                     state = 1;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("史莱姆王习得冰魔法归来", new Color(0, 146, 255));
+                        TSPlayer.All.SendMessage(GetString("史莱姆王习得冰魔法归来"), new Color(0, 146, 255));
                     }
                 }
                 return state;
@@ -166,7 +166,7 @@ namespace Challenger
                     state = 2;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("寒风呼啸", new Color(0, 146, 255));
+                        TSPlayer.All.SendMessage(GetString("寒风呼啸"), new Color(0, 146, 255));
                     }
                 }
                 return state;
@@ -178,7 +178,7 @@ namespace Challenger
                     state = 3;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("你感觉寒冷刺骨", new Color(0, 146, 255));
+                        TSPlayer.All.SendMessage(GetString("你感觉寒冷刺骨"), new Color(0, 146, 255));
                     }
                 }
                 return state;
@@ -188,7 +188,7 @@ namespace Challenger
                 state = 4;
                 if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                 {
-                    TSPlayer.All.SendMessage("史莱姆王发怒了", new Color(0, 146, 255));
+                    TSPlayer.All.SendMessage(GetString("史莱姆王发怒了"), new Color(0, 146, 255));
                 }
             }
             return state;
@@ -201,13 +201,13 @@ namespace Challenger
                 switch (Main.rand.Next(1, 4))
                 {
                     case 1:
-                        global::Challenger.Challenger.SendPlayerText("走位真菜", new Color(0, 146, 255), npc.Center + new Vector2(0f, -30f));
+                        global::Challenger.Challenger.SendPlayerText(GetString("走位真菜"), new Color(0, 146, 255), npc.Center + new Vector2(0f, -30f));
                         break;
                     case 2:
-                        global::Challenger.Challenger.SendPlayerText("连我都打不过，回家喝奶吧你", new Color(0, 146, 255), npc.Center + new Vector2(0f, -30f));
+                        global::Challenger.Challenger.SendPlayerText(GetString("连我都打不过，回家喝奶吧你"), new Color(0, 146, 255), npc.Center + new Vector2(0f, -30f));
                         break;
                     default:
-                        global::Challenger.Challenger.SendPlayerText("小辣鸡", new Color(0, 146, 255), npc.Center + new Vector2(0f, -30f));
+                        global::Challenger.Challenger.SendPlayerText(GetString("小辣鸡"), new Color(0, 146, 255), npc.Center + new Vector2(0f, -30f));
                         break;
                 }
             }

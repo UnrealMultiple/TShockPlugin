@@ -98,7 +98,7 @@ namespace Challenger
         {
             if (global::Challenger.Challenger.config.EnableConsumptionMode)
             {
-                global::Challenger.Challenger.SendPlayerText("这么想看清我的卡姿兰大眼是吧", new Color(0, 146, 255), npc.Center + new Vector2(0f, -30f));
+                global::Challenger.Challenger.SendPlayerText(GetString("这么想看清我的卡姿兰大眼是吧"), new Color(0, 146, 255), npc.Center + new Vector2(0f, -30f));
             }
         }
     }

@@ -112,7 +112,7 @@ namespace Challenger
                     state = 1;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("被封印的骷髅帝王苏醒", new Color(150, 143, 102));
+                        TSPlayer.All.SendMessage(GetString("被封印的骷髅帝王苏醒"), new Color(150, 143, 102));
                     }
                 }
                 return state;
@@ -124,7 +124,7 @@ namespace Challenger
                     state = 2;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("嘎吱作响", new Color(150, 143, 102));
+                        TSPlayer.All.SendMessage(GetString("嘎吱作响"), new Color(150, 143, 102));
                     }
                 }
                 return state;
@@ -136,7 +136,7 @@ namespace Challenger
                     state = 3;
                     if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                     {
-                        TSPlayer.All.SendMessage("诅咒开始应验", new Color(150, 143, 102));
+                        TSPlayer.All.SendMessage(GetString("诅咒开始应验"), new Color(150, 143, 102));
                     }
                 }
                 return state;
@@ -146,7 +146,7 @@ namespace Challenger
                 state = 4;
                 if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
                 {
-                    TSPlayer.All.SendMessage("惨朽不堪", new Color(150, 143, 102));
+                    TSPlayer.All.SendMessage(GetString("惨朽不堪"), new Color(150, 143, 102));
                 }
             }
             return state;
@@ -159,13 +159,13 @@ namespace Challenger
                 switch (Main.rand.Next(1, 4))
                 {
                     case 1:
-                        global::Challenger.Challenger.SendPlayerText("再让我逮到一下你就玩玩", new Color(150, 143, 102), npc.Center + new Vector2(0f, -30f));
+                        global::Challenger.Challenger.SendPlayerText(GetString("再让我逮到一下你就玩玩"), new Color(150, 143, 102), npc.Center + new Vector2(0f, -30f));
                         break;
                     case 2:
-                        global::Challenger.Challenger.SendPlayerText("创死你", new Color(150, 143, 102), npc.Center + new Vector2(0f, -30f));
+                        global::Challenger.Challenger.SendPlayerText(GetString("创死你"), new Color(150, 143, 102), npc.Center + new Vector2(0f, -30f));
                         break;
                     default:
-                        global::Challenger.Challenger.SendPlayerText("想再贴贴吗？", new Color(150, 143, 102), npc.Center + new Vector2(0f, -30f));
+                        global::Challenger.Challenger.SendPlayerText(GetString("想再贴贴吗？"), new Color(150, 143, 102), npc.Center + new Vector2(0f, -30f));
                         break;
                 }
             }
