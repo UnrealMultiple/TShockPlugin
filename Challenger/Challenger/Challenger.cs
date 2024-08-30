@@ -35,7 +35,7 @@ namespace Challenger
 
         public override string Name => "Challenger";
 
-        public override Version Version => new Version(1, 0, 1, 3);
+        public override Version Version => new Version(1, 0, 1, 4);
 
         public Challenger(Main game)
             : base(game)
@@ -1438,6 +1438,7 @@ namespace Challenger
                             Collect.cprojs[i].CKill();
                         }
                     }
+                    Collect.cplayers[args.Who].isActive = false;
                 }
             }
             catch (Exception ex)
@@ -1445,7 +1446,7 @@ namespace Challenger
                 Console.WriteLine("Challenger.OnServerLeave异常3：" + ex.Message);
                 TShock.Log.Error("Challenger.OnServerLeave异常3：" + ex.Message);
             }
-            Collect.cplayers[args.Who].isActive = false;
+            
         }
 
         private void OnGameUpdate(EventArgs args)
