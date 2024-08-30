@@ -66,6 +66,7 @@ if __name__ == '__main__':
     zip_files_in_folder(f"out/{build_type}", "Plugins.zip")
     print("📦 插件打包成功！")
     if build_type == "Release":
+        gitee_token = sys.argv[2]
         owner = 'kksjsj'
         repo = 'TShockPlugin'
         release_id = 431070
