@@ -35,7 +35,6 @@ jobs:
           
       - name: 打包插件
         run: |
-          sudo pip install requests
           python BuildHelper.py Debug
         env:
           PYTHONIOENCODING: 'utf-8'
