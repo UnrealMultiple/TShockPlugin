@@ -19,11 +19,9 @@ public class Plugin : TerrariaPlugin
 
     public override string Description => "自动更新你的插件！";
 
-    private const string ReleaseUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
+    private const string ReleaseUrl = "https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
 
-    private const string PUrl = "https://github.moeyy.xyz/";
-
-    private const string PluginsUrl = "https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/Plugins.json";
+    private const string PluginsUrl = "https://gitee.com/kksjsj/TShockPlugin/raw/master/Plugins.json";
     
     public static readonly Dictionary<string,Version> HasUpdated = new();
 
@@ -302,7 +300,7 @@ public class Plugin : TerrariaPlugin
     {
         var plugins = GetPlugins();
         HttpClient httpClient = new();
-        var response = httpClient.GetAsync(PUrl + PluginsUrl).Result;
+        var response = httpClient.GetAsync(PluginsUrl).Result;
 
         if (!response.IsSuccessStatusCode)
             throw new Exception("无法连接服务器");
@@ -345,7 +343,7 @@ public class Plugin : TerrariaPlugin
         if (!directoryInfo.Exists)
             directoryInfo.Create();
         HttpClient httpClient = new();
-        var zipBytes = httpClient.GetByteArrayAsync(PUrl + ReleaseUrl).Result;
+        var zipBytes = httpClient.GetByteArrayAsync(ReleaseUrl).Result;
         File.WriteAllBytes(Path.Combine(directoryInfo.FullName, TempZipName), zipBytes);
     }
 
