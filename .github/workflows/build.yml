@@ -45,8 +45,8 @@ jobs:
         if: github.event_name != 'push' || github.ref != 'refs/heads/master'
         run: |
           dotnet build Plugin.sln -c Debug
-          sudo python scripts/BuildHelper.py Debug
           cp ./out/Debug/*.dll ./linux-x64/ServerPlugins/
+          sudo python scripts/BuildHelper.py Debug
         env:
           PYTHONIOENCODING: 'utf-8'
 
@@ -55,7 +55,7 @@ jobs:
         run: |
           dotnet build Plugin.sln -c Release
           cp ./out/Release/*.dll ./linux-x64/ServerPlugins/
-  
+
       - name: 更新Plugins.json 
         continue-on-error: true
         run: |
