@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "gettext.net.extractor": {
+      "version": "1.9.14",
+      "commands": [
+        "GetText.Extractor"
+      ],
+      "rollForward": false
+    }
+  }
+}
