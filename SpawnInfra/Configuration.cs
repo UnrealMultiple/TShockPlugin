@@ -258,7 +258,7 @@ namespace SpawnInfra
             public int defaultMaxSpawns { get; set; }
 
 
-            public ItemData3(ushort id, ushort id2, ushort platformID, int platformstyle, int tileX, int tileY, int width, int platformY, int width2, int height, int width3, int center,int deSpawn,int MaxSpawn)
+            public ItemData3(ushort id, ushort id2, ushort platformID, int platformstyle, int tileX, int tileY, int width, int platformY, int width2, int height, int width3, int center, int deSpawn, int MaxSpawn)
             {
                 Hell_BM_TileID = id;
                 Cord_TileID = id2;

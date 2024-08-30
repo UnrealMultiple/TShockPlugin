@@ -16,7 +16,7 @@ public class Regain : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+    public override Version Version => new(1, 0, 0, 1);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Regain.json");
 
@@ -28,10 +28,23 @@ public class Regain : TerrariaPlugin
 
     public override void Initialize()
     {
-        Config = ConfigHelper.LoadConfig<Config>(PATH);
-        GeneralHooks.ReloadEvent += (e) => Config = ConfigHelper.LoadConfig(PATH, Config);
+        LoadConfig();
+        GeneralHooks.ReloadEvent += LoadConfig;
         Commands.ChatCommands.Add(new("economics.regain", CRegain, "回收", "regain"));
     }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            GeneralHooks.ReloadEvent -= LoadConfig;
+        }
+        base.Dispose(disposing);
+    }
+
+    private void LoadConfig(ReloadEventArgs? args = null) => Config = ConfigHelper.LoadConfig(PATH, Config);
 
     private void CRegain(CommandArgs args)
     {

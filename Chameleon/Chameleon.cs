@@ -1,5 +1,4 @@
 ﻿using System.IO.Streams;
-using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

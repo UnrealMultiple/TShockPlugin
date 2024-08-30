@@ -66,8 +66,8 @@ namespace Goodnight
             if (!File.Exists(FilePath))
             {
                 var NewConfig = new Configuration();
-                NewConfig.PlayersList = new HashSet<string>() {"羽学"};
-                NewConfig.Npcs = new HashSet<int>() { 4,13,14,15,35,36,50,113,114,125,126,127,128,129,130,131,134,135,136,222,245,246,247,248,249,262,266,370,396,397,398,400,439,440,422,493,507,517,636,657,668 };
+                NewConfig.PlayersList = new HashSet<string>() { "羽学" };
+                NewConfig.Npcs = new HashSet<int>() { 4, 13, 14, 15, 35, 36, 50, 113, 114, 125, 126, 127, 128, 129, 130, 131, 134, 135, 136, 222, 245, 246, 247, 248, 249, 262, 266, 370, 396, 397, 398, 400, 439, 440, 422, 493, 507, 517, 636, 657, 668 };
                 new Configuration().Write();
                 return NewConfig;
             }

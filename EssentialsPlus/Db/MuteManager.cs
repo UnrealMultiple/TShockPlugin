@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using System.Data;
-using Terraria;
 using TShockAPI;
 using TShockAPI.DB;
 

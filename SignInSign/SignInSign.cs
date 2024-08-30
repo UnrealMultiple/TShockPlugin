@@ -29,7 +29,7 @@ public class SignInSign : TerrariaPlugin
         LoadConfig();
         TShockAPI.Commands.ChatCommands.Add(new TShockAPI.Command(Command.SetupCmd, "setupsign", "gs", "告示"));
         ServerApi.Hooks.NetGreetPlayer.Register(this, OnNetGreetPlayer);
-        ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize,-100); //优先级为倒数100 避免和CreateSpawn、SpawnInfra冲突
+        ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize, -100); //优先级为倒数100 避免和CreateSpawn、SpawnInfra冲突
         GetDataHandlers.TileEdit.Register(OnEdit);
         GetDataHandlers.Sign.Register(OnSignChange);
         GetDataHandlers.SignRead.Register(OnSignRead);
@@ -216,7 +216,7 @@ public class SignInSign : TerrariaPlugin
         {
             plr.Group = group;
         }
-    } 
+    }
     #endregion
 
 }

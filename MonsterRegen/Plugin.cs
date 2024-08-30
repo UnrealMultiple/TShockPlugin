@@ -1,9 +1,9 @@
-﻿using TerrariaApi.Server;
-using Terraria;
-using TShockAPI.Hooks;
-using TShockAPI;
+﻿using Microsoft.Xna.Framework;
 using System.Timers;
-using Microsoft.Xna.Framework;
+using Terraria;
+using TerrariaApi.Server;
+using TShockAPI;
+using TShockAPI.Hooks;
 using Timer = System.Timers.Timer;
 
 namespace Plugin.Configuration

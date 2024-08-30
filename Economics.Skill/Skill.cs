@@ -21,7 +21,7 @@ public class Skill : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 2, 1, 1);
+    public override Version Version => new(1, 2, 1, 2);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
@@ -29,7 +29,7 @@ public class Skill : TerrariaPlugin
 
     internal static Config Config { get; set; } = new();
 
-    internal static PlayerSKillManager PlayerSKillManager { get; set; }
+    internal static PlayerSKillManager PlayerSKillManager { get; set; } = null!;
 
     public Skill(Main game) : base(game)
     {
@@ -41,7 +41,7 @@ public class Skill : TerrariaPlugin
         string resourceName = $"{Assembly.GetExecutingAssembly().GetName().Name}.lib.{new AssemblyName(args.Name).Name}.dll";
         using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
         if (stream != null)
-        { 
+        {
             byte[] assemblyData = new byte[stream.Length];
             stream.Read(assemblyData, 0, assemblyData.Length);
             return Assembly.Load(assemblyData);
@@ -52,7 +52,7 @@ public class Skill : TerrariaPlugin
     public override void Initialize()
     {
         LoadConfig();
-        
+
         PlayerSKillManager = new();
         ServerApi.Hooks.GamePostInitialize.Register(this, OnPost);
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
@@ -66,13 +66,34 @@ public class Skill : TerrariaPlugin
         GetDataHandlers.PlayerDamage.Register(OnPlayerDamage);
         EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += OnKillNpc;
         EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop += OnPlayerCountertop;
-        GeneralHooks.ReloadEvent += e =>
-        {
-            LoadConfig();
-        };
+        GeneralHooks.ReloadEvent += LoadConfig;
         On.Terraria.Projectile.Update += Projectile_Update;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, OnPost);
+            ServerApi.Hooks.NpcStrike.Deregister(this, OnStrike);
+            ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
+            ServerApi.Hooks.ProjectileAIUpdate.Deregister(this, OnAiUpdate);
+            GetDataHandlers.PlayerUpdate.UnRegister(OnPlayerUpdate);
+            GetDataHandlers.PlayerHP.UnRegister(OnHP);
+            GetDataHandlers.PlayerMana.UnRegister(OnMP);
+            GetDataHandlers.KillMe.UnRegister(KillMe);
+            GetDataHandlers.NewProjectile.UnRegister(OnNewProj);
+            GetDataHandlers.PlayerDamage.UnRegister(OnPlayerDamage);
+            EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc -= OnKillNpc;
+            EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop -= OnPlayerCountertop;
+            GeneralHooks.ReloadEvent += LoadConfig;
+            On.Terraria.Projectile.Update -= Projectile_Update;
+            GeneralHooks.ReloadEvent -= LoadConfig;
+        }
+        base.Dispose(disposing);
+    }
     private void OnPost(EventArgs args)
     {
         Interpreter.LoadFunction();
@@ -91,7 +112,7 @@ public class Skill : TerrariaPlugin
 
     private void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Projectile self, int i)
     {
-        if(!string.IsNullOrEmpty(self.miscText) && self.timeLeft > 0 && self.active)
+        if (!string.IsNullOrEmpty(self.miscText) && self.timeLeft > 0 && self.active)
             AIStyle.AI(self);
         if (Main.time % 6 == 0 && self.timeLeft <= 0 && self.active)
             self.Kill();
@@ -112,7 +133,7 @@ public class Skill : TerrariaPlugin
 
     private void OnUpdate(EventArgs args)
     {
-        TimerCount++;     
+        TimerCount++;
         if ((TimerCount % 6) == 0)
         {
             SkillCD.SendGodPacket();
@@ -166,7 +187,7 @@ public class Skill : TerrariaPlugin
         }
     }
 
-    private static void LoadConfig()
+    private static void LoadConfig(ReloadEventArgs? args = null)
     {
         if (File.Exists(PATH))
         {

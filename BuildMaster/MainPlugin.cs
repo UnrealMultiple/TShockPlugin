@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MiniGamesAPI;
 using System.ComponentModel;
-using System.Reflection;
 using System.Text;
 using Terraria;
 using TerrariaApi.Server;
@@ -29,8 +28,8 @@ namespace MainPlugin
         }
         public override void Initialize()
         {
-            Commands.ChatCommands.Add(new Command("bm.user", BM, "bm", "建筑大师" ));
-            Commands.ChatCommands.Add(new Command("bm.admin", BMA, "bma", "建筑大师管理" ));
+            Commands.ChatCommands.Add(new Command("bm.user", BM, "bm", "建筑大师"));
+            Commands.ChatCommands.Add(new Command("bm.admin", BMA, "bma", "建筑大师管理"));
             ServerApi.Hooks.NetGreetPlayer.Register(this, OnJoin);
             ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
             ServerApi.Hooks.ServerChat.Register(this, OnChat);

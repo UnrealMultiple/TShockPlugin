@@ -1,7 +1,7 @@
-﻿using EconomicsAPI.Attributes;
-using TShockAPI;
+﻿using Economics.RPG.Extensions;
+using EconomicsAPI.Attributes;
 using EconomicsAPI.Extensions;
-using Economics.RPG.Extensions;
+using TShockAPI;
 
 namespace Economics.Shop;
 

@@ -1,6 +1,6 @@
-﻿using System.Reflection;
-using OTAPI;
+﻿using OTAPI;
 using ProxyProtocolSocket.Utils;
+using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

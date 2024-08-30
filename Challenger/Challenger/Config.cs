@@ -49,7 +49,7 @@ namespace Challenger
         [JsonProperty("蜜蜂背包弹幕爆炸后的弹幕击退")]
         public float HivePack_6 = 0f;
         [JsonProperty("蜜蜂背包二次弹幕间隔/帧")]
-        public int  HivePack_Time2 = 240;
+        public int HivePack_Time2 = 240;
 
         [JsonProperty("化石套是否出琥珀光球")]
         public bool FossilArmorEffect = true;
@@ -315,7 +315,7 @@ namespace Challenger
         [JsonProperty("蠕虫围巾遍历前几个buff", Order = 7)]
         public int WormScarfImmuneList_2 = 22;
         [JsonProperty("蠕虫围巾免疫DeBuff列表/遇到会清空所有BUFF", Order = 7)]
-        public int[] WormScarfImmuneList { get; set; } = new int[] {};
+        public int[] WormScarfImmuneList { get; set; } = new int[] { };
         [JsonProperty("蠕虫围巾给什么永久BUFF", Order = 7)]
         public int[] WormScarfSetBuff { get; set; } = new int[] { 5, 114, 215 };
 

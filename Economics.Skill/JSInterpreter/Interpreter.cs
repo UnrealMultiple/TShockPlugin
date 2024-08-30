@@ -1,11 +1,11 @@
-﻿using Terraria;
-using Jint;
-using TShockAPI;
-using Economics.Skill.Attributes;
-using System.Reflection;
-using System.Linq.Expressions;
+﻿using Economics.Skill.Attributes;
 using Economics.Skill.Model;
+using Jint;
 using Microsoft.Xna.Framework;
+using System.Linq.Expressions;
+using System.Reflection;
+using Terraria;
+using TShockAPI;
 
 namespace Economics.Skill.JSInterpreter;
 
@@ -13,13 +13,13 @@ public class Interpreter
 {
     private static readonly Engine Engine = new Engine((o) =>
     {
-        o.AllowClr(typeof(EconomicsAPI.Economics).Assembly, 
+        o.AllowClr(typeof(EconomicsAPI.Economics).Assembly,
             typeof(TShock).Assembly,
             typeof(Task).Assembly,
             typeof(List<>).Assembly,
             typeof(Main).Assembly);
-        o.AddExtensionMethods(typeof(EconomicsAPI.Extensions.Vector2Ext), 
-            typeof(EconomicsAPI.Extensions.GameProgress), 
+        o.AddExtensionMethods(typeof(EconomicsAPI.Extensions.Vector2Ext),
+            typeof(EconomicsAPI.Extensions.GameProgress),
             typeof(Terraria.Utils),
             typeof(EconomicsAPI.Extensions.PlayerExt),
             typeof(EconomicsAPI.Extensions.NpcExt),
@@ -30,7 +30,7 @@ public class Interpreter
     public static readonly string ScriptsDir = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "SkillScripts");
     static Interpreter()
     {
-        if(!Directory.Exists(ScriptsDir))
+        if (!Directory.Exists(ScriptsDir))
             Directory.CreateDirectory(ScriptsDir);
     }
 
@@ -50,7 +50,7 @@ public class Interpreter
         }
     }
 
-    public static void ExecuteScript(SkillContext skill,TSPlayer player, Vector2 pos, Vector2 vel)
+    public static void ExecuteScript(SkillContext skill, TSPlayer player, Vector2 pos, Vector2 vel)
     {
         if (skill.JsScript == null || string.IsNullOrEmpty(skill.JsScript.Script))
         {

@@ -4,7 +4,6 @@ using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
-using static TShockAPI.Hooks.GeneralHooks;
 
 namespace RainbowChat
 {
@@ -42,7 +41,7 @@ namespace RainbowChat
         {
             if (disposing)
             {
-                GeneralHooks.ReloadEvent -= LoadConfig; 
+                GeneralHooks.ReloadEvent -= LoadConfig;
                 Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == RainbowChatCallback);
                 ServerApi.Hooks.ServerChat.Deregister(this, OnChat);
                 ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);

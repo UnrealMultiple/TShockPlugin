@@ -17,7 +17,7 @@ internal class Utils
                 response = client.PostAsync($"http://api.terraria.ink:22334/bot/send_reset?" +
                                            $"token={AutoResetPlugin.Config.CaiBotToken}" +
                                            $"&server_name={Main.worldName}" +
-                                           $"&seed={(Main.ActiveWorldFileData.SeedText == "" ? Main.ActiveWorldFileData.Seed : Main.ActiveWorldFileData.SeedText)}",null)
+                                           $"&seed={(Main.ActiveWorldFileData.SeedText == "" ? Main.ActiveWorldFileData.Seed : Main.ActiveWorldFileData.SeedText)}", null)
                     .Result;
                 if (response.StatusCode != HttpStatusCode.OK)
                     TShock.Log.ConsoleWarn($"[自动重置]调用API失败! (状态码: {(int)response.StatusCode})");

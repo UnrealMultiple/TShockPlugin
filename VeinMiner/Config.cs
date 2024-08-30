@@ -23,7 +23,7 @@ namespace VeinMiner
                         }
                     },
                     Tile = new() { 7, 166, 6, 167, 9, 168, 8, 169, 37, 22, 204, 56, 58, 107, 221, 108, 222, 111, 223, 211, 408, 123, 224, 404, 178, 63, 64, 65, 66, 67, 68 },
-                    NotMine = new() { 21 ,26 ,88 }
+                    NotMine = new() { 21, 26, 88 }
                 }, Formatting.Indented));
 
                 VeinMiner.Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Path.Combine(TShock.SavePath, "VeinMiner.json")));

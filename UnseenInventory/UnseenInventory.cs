@@ -1,9 +1,6 @@
-﻿using System;
-using System.Reflection;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using TerrariaApi.Server;
-using TShockAPI;
 using TShockAPI.Hooks;
 
 

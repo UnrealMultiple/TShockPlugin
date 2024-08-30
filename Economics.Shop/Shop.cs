@@ -1,8 +1,5 @@
-﻿using Economics.RPG.Extensions;
-using Economics.Shop.Model;
-using EconomicsAPI.Attributes;
+﻿using Economics.Shop.Model;
 using EconomicsAPI.Configured;
-using EconomicsAPI.Extensions;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -20,20 +17,34 @@ public class Shop : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
+    public override Version Version => new(1, 0, 0, 1);
 
     internal string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Shop.json");
 
-    internal static Config Config { get; set; }
+    internal static Config Config { get; set; } = new();
     public Shop(Main game) : base(game)
     {
     }
 
     public override void Initialize()
     {
-        Config = ConfigHelper.LoadConfig<Config>(PATH);
-        GeneralHooks.ReloadEvent += (_) => Config = ConfigHelper.LoadConfig(PATH, Config);
+        LoadConfig();
+        GeneralHooks.ReloadEvent += LoadConfig;
     }
+
+    public void LoadConfig(ReloadEventArgs? args = null) => Config = ConfigHelper.LoadConfig(PATH, Config);
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            GeneralHooks.ReloadEvent -= LoadConfig;
+        }
+        base.Dispose(disposing);
+    }
+
 
     public static bool HasItem(TSPlayer player, List<ItemTerm> itemTerms)
     {
@@ -84,5 +95,5 @@ public class Shop : TerrariaPlugin
         }
     }
 
-  
+
 }

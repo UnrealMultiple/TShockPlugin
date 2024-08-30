@@ -1,6 +1,6 @@
-﻿using System.Net;
+﻿using ProxyProtocolSocket.Utils.Exts;
+using System.Net;
 using System.Net.Sockets;
-using ProxyProtocolSocket.Utils.Exts;
 using Terraria;
 using Terraria.Localization;
 using Terraria.Net;
@@ -78,14 +78,14 @@ namespace ProxyProtocolSocket.Utils.Net
                         {
                             Logger.Log($"[{client.Client.RemoteEndPoint}] proxy connection accepted!");
                             var ns = client.GetStream();
-                            
+
                             Logger.Log($"[{client.Client.RemoteEndPoint}] waiting for any data from client...");
                             await TaskExt.WaitUntilAsync(() => ns.DataAvailable,
                                 ProxyProtocolSocketPlugin.Config.Settings.TimeOut);
-                            
+
                             Logger.Log($"[{client.Client.RemoteEndPoint}] data received! processing...");
                             var pp = new ProxyProtocol(ns, (IPEndPoint)client.Client.RemoteEndPoint!);
-                            
+
                             Logger.Log($"[{client.Client.RemoteEndPoint}] checking proxy protocol version...");
                             ProxyProtocolVersion version = await pp.GetVersion();
                             if (version == ProxyProtocolVersion.Unknown)
@@ -100,7 +100,7 @@ namespace ProxyProtocolSocket.Utils.Net
                             Logger.Log($"[{client.Client.RemoteEndPoint}] proxy protocol version is {version:G}");
                             Logger.Log($"[{client.Client.RemoteEndPoint}] parsing header...");
                             await pp.Parse();
-                            
+
                             Logger.Log($"[{client.Client.RemoteEndPoint}] getting real client ip");
                             var realClientIp = (await pp.GetSourceEndpoint())!;
                             ISocket ppSocket = new ProxyProtocolSocket(client, realClientIp);

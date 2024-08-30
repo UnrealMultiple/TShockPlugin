@@ -2,14 +2,14 @@
 using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.UI.Chat;
-using TShockAPI.DB;
 using TShockAPI;
+using TShockAPI.DB;
 
 namespace CaiBot;
 
 public class CaiBotPlayer : TSPlayer
 {
-    private readonly List<string>  _commandOutput = new();
+    private readonly List<string> _commandOutput = new();
 
     public CaiBotPlayer()
         : base("CaiBot")

@@ -46,9 +46,9 @@ public class Plugin : TerrariaPlugin
         ServerApi.Hooks.GamePostInitialize.Register(this, AutoCheckUpdate, int.MinValue);
         Config.Read();
         GeneralHooks.ReloadEvent += GeneralHooksOnReloadEvent;
-        
+
     }
-    
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -83,14 +83,14 @@ public class Plugin : TerrariaPlugin
                     if (Config.PluginConfig.AutoUpdate)
                     {
                         TShock.Log.ConsoleInfo("正在自动更新插件...");
-                        UpdateCmd(TSPlayer.Server,Array.Empty<string>());
+                        UpdateCmd(TSPlayer.Server, Array.Empty<string>());
                     }
                     else
                     {
                         TShock.Log.ConsoleInfo("你可以使用命令/apm -u 更新插件哦~");
                     }
-                    
-                    
+
+
                 }
 
             }
@@ -105,18 +105,18 @@ public class Plugin : TerrariaPlugin
 
     private void PluginManager(CommandArgs args)
     {
-        if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-c"||args.Parameters[0].ToLower() == "c"))
+        if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-c" || args.Parameters[0].ToLower() == "c"))
         {
             CheckCmd(args.Player);
         }
-        else if (args.Parameters.Count >= 1 && (args.Parameters[0].ToLower() == "-u"||args.Parameters[0].ToLower() == "u"))
+        else if (args.Parameters.Count >= 1 && (args.Parameters[0].ToLower() == "-u" || args.Parameters[0].ToLower() == "u"))
         {
             var targets = Array.Empty<string>();
             if (args.Parameters.Count > 1)
                 targets = args.Parameters[1].Split(",");
             UpdateCmd(args.Player, targets);
         }
-        else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-i"||args.Parameters[0].ToLower() == "i"))
+        else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-i" || args.Parameters[0].ToLower() == "i"))
         {
             var indexs = args.Parameters[1].Split(",").Select(x =>
             {
@@ -126,7 +126,7 @@ public class Plugin : TerrariaPlugin
             });
             InstallCmd(args.Player, indexs);
         }
-        else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-l"||args.Parameters[0].ToLower() == "l"))
+        else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-l" || args.Parameters[0].ToLower() == "l"))
         {
             var repo = GetRepoPlugin();
             args.Player.SendInfoMessage("可安装插件列表:");
@@ -134,7 +134,7 @@ public class Plugin : TerrariaPlugin
                 args.Player.SendInfoMessage($"{i + 1}.{repo[i].Name} v{repo[i].Version} (by {repo[i].Author}) - {repo[i].Description}");
             args.Player.SendInfoMessage("*使用/apm -i <序号> 即可安装哦~");
         }
-        else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-b"||args.Parameters[0].ToLower() == "b"))
+        else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-b" || args.Parameters[0].ToLower() == "b"))
         {
             var plugins = GetPlugins();
             if (!plugins.Exists(p => p.Name == args.Parameters[1]))
@@ -146,7 +146,7 @@ public class Plugin : TerrariaPlugin
             Config.PluginConfig.Write();
             args.Player.SendSuccessMessage("排除成功, 已跳过此插件的更新检查~");
         }
-        else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-rb"||args.Parameters[0].ToLower() == "rb"))
+        else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-rb" || args.Parameters[0].ToLower() == "rb"))
         {
             if (!Config.PluginConfig.UpdateBlackList.Contains(args.Parameters[1]))
             {
@@ -157,14 +157,14 @@ public class Plugin : TerrariaPlugin
             Config.PluginConfig.Write();
             args.Player.SendSuccessMessage("删除成功, 此插件将会被检查更新~");
         }
-        else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-lb"||args.Parameters[0].ToLower() == "lb"))
+        else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-lb" || args.Parameters[0].ToLower() == "lb"))
         {
-            if (Config.PluginConfig.UpdateBlackList.Count==0)
+            if (Config.PluginConfig.UpdateBlackList.Count == 0)
             {
                 args.Player.SendSuccessMessage("当前没有排除任何一个插件哦~");
                 return;
             }
-            args.Player.SendErrorMessage("插件更新排除列表:\n" + string.Join('\n',Config.PluginConfig.UpdateBlackList));
+            args.Player.SendErrorMessage("插件更新排除列表:\n" + string.Join('\n', Config.PluginConfig.UpdateBlackList));
         }
         else
         {
@@ -296,7 +296,7 @@ public class Plugin : TerrariaPlugin
         foreach (var latestPluginInfo in latestPluginList)
             foreach (var plugin in plugins)
                 if (plugin.Name == latestPluginInfo.Name && plugin.Version < latestPluginInfo.Version)
-                    pluginUpdateList.Add(new PluginUpdateInfo(plugin.Name, plugin.Author,latestPluginInfo.Version, plugin.Version, plugin.Path, latestPluginInfo.Path));
+                    pluginUpdateList.Add(new PluginUpdateInfo(plugin.Name, plugin.Author, latestPluginInfo.Version, plugin.Version, plugin.Path, latestPluginInfo.Path));
         return pluginUpdateList;
     }
 
@@ -389,7 +389,7 @@ public class Plugin : TerrariaPlugin
                 }
                 else
                 {
-                    HasUpdated.Add(currentPluginInfo.Name,currentPluginInfo.NewVersion);
+                    HasUpdated.Add(currentPluginInfo.Name, currentPluginInfo.NewVersion);
                 }
             }
             else

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Terraria.ID;
 using TShockAPI;
 
 namespace UnseenInventory;

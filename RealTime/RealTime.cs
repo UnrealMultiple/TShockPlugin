@@ -1,7 +1,6 @@
-﻿using TShockAPI;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
-using Microsoft.Xna.Framework;
+using TShockAPI;
 
 namespace RealTime
 {

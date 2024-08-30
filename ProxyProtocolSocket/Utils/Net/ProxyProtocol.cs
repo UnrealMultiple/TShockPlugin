@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using ProxyProtocolSocket.Utils.Net;
 
 namespace ProxyProtocolSocket.Utils.Net
 {
@@ -34,21 +33,21 @@ namespace ProxyProtocolSocket.Utils.Net
         private NetworkStream _stream;
         private IPEndPoint _remoteEndpoint;
 
-        private byte[] _buffer                          = new byte[MAX_BUFFER_SIZE];
+        private byte[] _buffer = new byte[MAX_BUFFER_SIZE];
         // i.e. the end of _buffer
         // _buffer[_bufferSize - 1] is the last byte read from the stream
-        private int _bufferSize                         = 0;
+        private int _bufferSize = 0;
 
-        private bool _isParserCached                    = false;
-        private IProxyProtocolParser? _cachedParser     = null;
-        private ProxyProtocolVersion? _protocolVersion  = null;
+        private bool _isParserCached = false;
+        private IProxyProtocolParser? _cachedParser = null;
+        private ProxyProtocolVersion? _protocolVersion = null;
         #endregion
 
         public ProxyProtocol(NetworkStream stream, IPEndPoint remoteEndpoint)
         {
             #region Args checking
-            if (stream == null)         throw new ArgumentNullException(nameof(stream));
-            if (stream.CanRead != true) throw new     ArgumentException("argument 'stream' is unreadable");
+            if (stream == null) throw new ArgumentNullException(nameof(stream));
+            if (stream.CanRead != true) throw new ArgumentException("argument 'stream' is unreadable");
             if (remoteEndpoint == null) throw new ArgumentNullException(nameof(remoteEndpoint));
             #endregion
 
@@ -175,15 +174,15 @@ namespace ProxyProtocolSocket.Utils.Net
         #endregion
 
         #region Public static methods
-        
+
         // ReSharper disable once MemberCanBePrivate.Global
         public static bool IsVersion1(ReadOnlySpan<byte> header) =>
             header[..V1_SIGNATURE.Length].SequenceEqual(V1_SIGNATURE);
-        
+
         // ReSharper disable once MemberCanBePrivate.Global
         public static bool IsVersion2OrAbove(ReadOnlySpan<byte> header) =>
             header[..V2_OR_ABOVE_SIGNATURE.Length].SequenceEqual(V2_OR_ABOVE_SIGNATURE);
-        
+
         // ReSharper disable once MemberCanBePrivate.Global
         public static bool IsVersion2(ReadOnlySpan<byte> header, bool checkSignature = true) =>
             (!checkSignature || IsVersion2OrAbove(header)) &&

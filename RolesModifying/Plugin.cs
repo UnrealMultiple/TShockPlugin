@@ -2,7 +2,6 @@
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 
 namespace RolesModifying;
 

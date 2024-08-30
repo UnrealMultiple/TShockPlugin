@@ -1,5 +1,4 @@
-﻿using NuGet.Protocol.Plugins;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;

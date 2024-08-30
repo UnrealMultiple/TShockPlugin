@@ -6,11 +6,13 @@ using EconomicsAPI.Extensions;
 using EconomicsAPI.Model;
 using EconomicsAPI.Utils;
 using Microsoft.Xna.Framework;
+using Rests;
 using System.Collections.Concurrent;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace EconomicsAPI;
 
@@ -23,7 +25,7 @@ public class Economics : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 9);
+    public override Version Version => new(1, 0, 1, 0);
 
     public readonly static List<TSPlayer> ServerPlayers = new();
 
@@ -35,7 +37,7 @@ public class Economics : TerrariaPlugin
 
     internal readonly string ConfigPATH = Path.Combine(SaveDirPath, "Economics.json");
 
-    public static CurrencyManager CurrencyManager;
+    public static CurrencyManager CurrencyManager { get; private set; } = null!;
 
     private long TimerCount;
 
@@ -47,6 +49,26 @@ public class Economics : TerrariaPlugin
     {
         if (!Directory.Exists(SaveDirPath))
             Directory.CreateDirectory(SaveDirPath);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreet);
+            ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
+            ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
+            ServerApi.Hooks.NpcKilled.Deregister(this, OnKillNpc);
+            ServerApi.Hooks.NpcSpawn.Deregister(this, OnNpcSpawn);
+            ServerApi.Hooks.NpcStrike.Deregister(this, OnStrike);
+            ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
+            GetDataHandlers.KillMe.UnRegister(OnKillMe);
+            PlayerHandler.OnPlayerCountertop -= PlayerHandler_OnPlayerCountertop;
+            GeneralHooks.ReloadEvent -= LoadConfig;
+        }
+        base.Dispose(disposing);
     }
 
     public override void Initialize()
@@ -63,10 +85,10 @@ public class Economics : TerrariaPlugin
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
         GetDataHandlers.KillMe.Register(OnKillMe);
         PlayerHandler.OnPlayerCountertop += PlayerHandler_OnPlayerCountertop;
-        TShockAPI.Hooks.GeneralHooks.ReloadEvent += (_) => LoadConfig();
+        GeneralHooks.ReloadEvent += LoadConfig;
     }
 
-    private void LoadConfig()
+    private void LoadConfig(ReloadEventArgs? args = null)
     {
         if (!File.Exists(ConfigPATH))
             Setting.GradientColor = new List<string>()
@@ -141,7 +163,7 @@ public class Economics : TerrariaPlugin
             CurrencyManager.UpdataAll();
             foreach (var (npc, _) in Strike.Where(x => x.Key == null || !x.Key.active).ToList())
                 Strike.Remove(npc, out var _);
-           
+
         }
     }
 
@@ -213,6 +235,17 @@ public class Economics : TerrariaPlugin
         }
         NetMessage.TrySendData(39, player.Index, -1, null, num);
     }
+
+    public static void RemoveAssemblyCommands(Assembly assembly) => Commands.ChatCommands.RemoveAll(cmd => cmd.GetType().Assembly == assembly);
+
+    public static void RemoveAssemblyRest(Assembly assembly)
+    {
+        if (typeof(Rest)
+            .GetField("commands", BindingFlags.NonPublic | BindingFlags.Instance)
+            ?.GetValue(TShock.RestApi) is List<RestCommand> rests)
+            rests.RemoveAll(cmd => cmd.GetType().GetField("callback", BindingFlags.NonPublic)?.GetType().Assembly == assembly);
+    }
+
 
     private void OnGetData(GetDataEventArgs args)
     {

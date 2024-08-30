@@ -1,6 +1,6 @@
-﻿using Terraria.Map;
+﻿using Terraria;
 using Terraria.ID;
-using Terraria;
+using Terraria.Map;
 using TShockAPI;
 
 namespace SpawnInfra

@@ -2,7 +2,7 @@
 
 public class PluginVersionInfo
 {
-    public Version Version { get; set; } = new ();
+    public Version Version { get; set; } = new();
 
     public string Author { get; set; } = string.Empty;
 

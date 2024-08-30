@@ -1,5 +1,4 @@
 ﻿using Terraria;
-using Terraria.Utilities;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;

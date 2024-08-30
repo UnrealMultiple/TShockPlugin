@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using TShockAPI;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace Plugin
 {
@@ -59,9 +58,9 @@ namespace Plugin
                 return MessageList.Sum(item => item.Rate);
             else
                 TShock.Log.ConsoleInfo("无法计算总概率，因消息表为空。");
-                return 0;
+            return 0;
         }
-        
+
         public void UpdateTotalRate() //更新总概率方法
         {
             TotalRate = Read().CalculateTotalRate();

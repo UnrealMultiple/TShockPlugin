@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Org.BouncyCastle.Asn1.Cms;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

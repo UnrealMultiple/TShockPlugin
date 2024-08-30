@@ -22,7 +22,7 @@ public class MainPlugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("" , FindRecipe, "查", "find", "fd"));
+        Commands.ChatCommands.Add(new Command("", FindRecipe, "查", "find", "fd"));
         MapHelper.Initialize();
         BuildMapAtlas();
     }
