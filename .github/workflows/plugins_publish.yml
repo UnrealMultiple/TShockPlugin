@@ -39,6 +39,10 @@ jobs:
             echo "非UnrealMultiple/TShockPlugin仓库，跳过提交."
           fi
           
+      - name: 安装构建依赖
+        run: |
+          sudo apt install -y gettext
+          
       - name: 构建插件
         run: |
           dotnet build Plugin.sln -c Release
