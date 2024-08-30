@@ -31,11 +31,11 @@ namespace Challenger
 
         public override string Author => "z枳 星夜神花 羽学";
 
-        public override string Description => "增强游戏难度，更好的游戏体验";
+        public override string Description => GetString("增强游戏难度，更好的游戏体验");
 
         public override string Name => "Challenger";
 
-        public override Version Version => new Version(1, 0, 1, 4);
+        public override Version Version => new Version(1, 0, 1, 5);
 
         public Challenger(Main game)
             : base(game)
@@ -60,15 +60,15 @@ namespace Challenger
             ServerApi.Hooks.ServerLeave.Register(this, OnServerLeave);
             Commands.ChatCommands.Add(new Command("challenger.enable", new CommandDelegate(EnableModel), new string[1] { "cenable" })
             {
-                HelpText = "输入 /cenable  来启用挑战模式，再次使用取消"
+                HelpText = GetString("输入 /cenable  来启用挑战模式，再次使用取消")
             });
             Commands.ChatCommands.Add(new Command("challenger.tip", new CommandDelegate(EnableTips), new string[1] { "ctip" })
             {
-                HelpText = "输入 /ctip  来启用内容提示，如各种物品的强化文字提示，再次使用取消"
+                HelpText = GetString("输入 /ctip  来启用内容提示，如各种物品的强化文字提示，再次使用取消")
             });
             Commands.ChatCommands.Add(new Command("challenger.fun", new CommandDelegate(Function), new string[1] { "cf" })
             {
-                HelpText = "输入 /cf  来实现某些技能的或状态的切换"
+                HelpText = GetString("输入 /cf  来实现某些技能的或状态的切换")
             });
         }
 
@@ -107,7 +107,7 @@ namespace Challenger
             config.Write(Config.FilePath);
             if (args != null && args.Player != null)
             {
-                args.Player.SendSuccessMessage("[挑战者模式]重新加载配置完毕。");
+                args.Player.SendSuccessMessage(GetString("[挑战者模式]重新加载配置完毕。"));
             }
         }
         #endregion
@@ -197,7 +197,7 @@ namespace Challenger
                     SendPlayerText(e.Damage, Color.Green, Main.player[e.Player.Index].Center);
                     if (config.EnableConsumptionMode)
                     {
-                        SendPlayerText("闪避锁血成功！", Color.White, Main.player[e.Player.Index].Center + new Vector2(Main.rand.Next(-60, 61), Main.rand.Next(61)));
+                        SendPlayerText(GetString("闪避锁血成功！"), Color.White, Main.player[e.Player.Index].Center + new Vector2(Main.rand.Next(-60, 61), Main.rand.Next(61)));
                     }
                 }
             }
@@ -295,7 +295,7 @@ namespace Challenger
                     if (config.EnableConsumptionMode)
                     {
                         HealPlayerMana(args.Player, 5, visible: false);
-                        SendPlayerText(TShock.Players[args.Player.whoAmI], "陨石回魔 + 3", new Color(6, 0, 255), args.Player.Center);
+                        SendPlayerText(TShock.Players[args.Player.whoAmI], GetString("陨石回魔 + 3"), new Color(6, 0, 255), args.Player.Center);
                     }
                     else
                     {
@@ -529,11 +529,11 @@ namespace Challenger
             {
                 plr.GiveItem(item.netID, count);
                 KillTileAndSend(list, true);
-                plr.SendMessage($"[c/95CFA6:<挑战者:挖矿套>] 连锁挖掘了 [c/95CFA6: {count} {(item.type == 0 ? "未知" : item.Name)}].", Color.White);
+                plr.SendMessage(GetString("[c/95CFA6:<挑战者:挖矿套>] 连锁挖掘了 [c/95CFA6: {0} {1}].", count, (item.type == 0 ? "未知" : item.Name)), Color.White);
             }
             else
             {
-                plr.SendInfoMessage($"[c/95CFA6:<挑战者:挖矿套>] 背包已满，还需空位：[c/95CFA6:{count}] 以放入 [c/95CFA6:{item.Name}] .");
+                plr.SendInfoMessage(GetString("[c/95CFA6:<挑战者:挖矿套>] 背包已满，还需空位：[c/95CFA6:{0}] 以放入 [c/95CFA6:{1}] .", count, item.Name));
                 plr.SendTileSquareCentered(x, y, 1);
             }
         }
@@ -747,7 +747,7 @@ namespace Challenger
                 Collect.cplayers[player.whoAmI].ChlorophyteArmorEffectLife = true;
                 if (config.EnableConsumptionMode)
                 {
-                    SendPlayerText($"生命值上限 + {Any}", new Color(0, 255, 255), player.Center);
+                    SendPlayerText(GetString("生命值上限 + {0}", Any), new Color(0, 255, 255), player.Center);
                 }
             }
             if (!flag && Collect.cplayers[player.whoAmI].ChlorophyteArmorEffectLife)
@@ -758,7 +758,7 @@ namespace Challenger
                 Collect.cplayers[player.whoAmI].ChlorophyteArmorEffectLife = false;
                 if (config.EnableConsumptionMode)
                 {
-                    SendPlayerText($"生命值上限 - {Any}", new Color(255, 0, 156), player.Center);
+                    SendPlayerText(GetString("生命值上限 - {0}", Any), new Color(255, 0, 156), player.Center);
                 }
             }
         }
@@ -794,7 +794,7 @@ namespace Challenger
                 Collect.cplayers[player.whoAmI].TurtleArmorEffectLife = true;
                 if (config.EnableConsumptionMode)
                 {
-                    SendPlayerText($"生命值上限 + {Any}", new Color(0, 255, 255), player.Center);
+                    SendPlayerText(GetString("生命值上限 + {0}", Any), new Color(0, 255, 255), player.Center);
                 }
             }
             if (!flag && Collect.cplayers[player.whoAmI].TurtleArmorEffectLife)
@@ -805,7 +805,7 @@ namespace Challenger
                 Collect.cplayers[player.whoAmI].TurtleArmorEffectLife = false;
                 if (config.EnableConsumptionMode)
                 {
-                    SendPlayerText($"生命值上限 - {Any}", new Color(255, 0, 156), player.Center);
+                    SendPlayerText(GetString("生命值上限 - {0}", Any), new Color(255, 0, 156), player.Center);
                 }
             }
         }
@@ -854,7 +854,7 @@ namespace Challenger
                 Collect.cplayers[pl.whoAmI].TikiArmorEffectLife = true;
                 if (config.EnableConsumptionMode)
                 {
-                    Challenger.SendPlayerText($"生命值上限 + {Any}", new Color(0, 255, 255), pl.Center);
+                    Challenger.SendPlayerText(GetString("生命值上限 + {0}", Any), new Color(0, 255, 255), pl.Center);
                 }
             }
             if (!flag2 && Collect.cplayers[pl.whoAmI].TikiArmorEffectLife)
@@ -865,7 +865,7 @@ namespace Challenger
                 Collect.cplayers[pl.whoAmI].TikiArmorEffectLife = false;
                 if (config.EnableConsumptionMode)
                 {
-                    SendPlayerText($"生命值上限 - {Any}", new Color(255, 0, 156), pl.Center);
+                    SendPlayerText(GetString("生命值上限 - {0}", Any), new Color(255, 0, 156), pl.Center);
                 }
             }
         }
@@ -891,7 +891,7 @@ namespace Challenger
                     Collect.cplayers[player.whoAmI].BeetleArmorEffectLife = true;
                     if (config.EnableConsumptionMode)
                     {
-                        SendPlayerText($"生命值上限 + {any1}", new Color(0, 255, 255), player.Center);
+                        SendPlayerText(GetString("生命值上限 + {0}", any1), new Color(0, 255, 255), player.Center);
                     }
                 }
                 if (!flag && Collect.cplayers[player.whoAmI].BeetleArmorEffectLife)
@@ -902,7 +902,7 @@ namespace Challenger
                     Collect.cplayers[player.whoAmI].BeetleArmorEffectLife = false;
                     if (config.EnableConsumptionMode)
                     {
-                        SendPlayerText($"生命值上限 - {any1}", new Color(255, 0, 156), player.Center);
+                        SendPlayerText(GetString("生命值上限 - {0}", any1), new Color(255, 0, 156), player.Center);
                     }
                 }
                 return;
@@ -1028,7 +1028,7 @@ namespace Challenger
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectLife = true;
                 if (config.EnableConsumptionMode)
                 {
-                    SendPlayerText($"生命值上限 + {any}", new Color(0, 255, 255), player.Center);
+                    SendPlayerText(GetString("生命值上限 + {0}", any), new Color(0, 255, 255), player.Center);
                 }
 
                 if (config.EnableSpectreArmorEffect_1)
@@ -1052,7 +1052,7 @@ namespace Challenger
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectLife = false;
                 if (config.EnableConsumptionMode)
                 {
-                    SendPlayerText($"生命值上限 - {any}", new Color(255, 0, 156), player.Center);
+                    SendPlayerText(GetString("生命值上限 - {0}", any), new Color(255, 0, 156), player.Center);
                 }
                 CProjectile.CKill(Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex);
             }
@@ -1074,7 +1074,7 @@ namespace Challenger
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectMana = true;
                 if (config.EnableConsumptionMode)
                 {
-                    SendPlayerText($"魔力值上限 + {any}", new Color(0, 255, 255), player.Center + new Vector2(0f, 32f));
+                    SendPlayerText(GetString("魔力值上限 + {0}", any), new Color(0, 255, 255), player.Center + new Vector2(0f, 32f));
                 }
 
                 if (config.EnableSpectreArmorEffect_2)
@@ -1095,7 +1095,7 @@ namespace Challenger
                 Collect.cplayers[player.whoAmI].SpectreArmorEffectMana = false;
                 if (config.EnableConsumptionMode)
                 {
-                    SendPlayerText($"魔力值上限 - {any}", new Color(255, 0, 156), player.Center + new Vector2(0f, 32f));
+                    SendPlayerText(GetString("魔力值上限 - {0}", any), new Color(255, 0, 156), player.Center + new Vector2(0f, 32f));
                 }
                 CProjectile.CKill(Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex);
             }
@@ -1170,7 +1170,7 @@ namespace Challenger
             }
             if (Timer - Collect.cplayers[player.whoAmI].CthulhuShieldTime == (time * 60))
             {
-                SendPlayerText(TShock.Players[player.whoAmI], "冲刺类饰品冷却完成", new Color(255, 183, 183), player.Center);
+                SendPlayerText(TShock.Players[player.whoAmI], GetString("冲刺类饰品冷却完成"), new Color(255, 183, 183), player.Center);
             }
         }
 
@@ -1219,27 +1219,27 @@ namespace Challenger
                 case 4008:
                 case 410:
                 case 411:
-                    SendPlayerText(tsplayer, "【挖矿套装】\n挑战模式奖励：给予永久的挖矿、糖果冲刺Buff\n启用连锁挖矿能力", new Color(91, 101, 132), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【挖矿套装】\n挑战模式奖励：给予永久的挖矿、糖果冲刺Buff\n启用连锁挖矿能力"), new Color(91, 101, 132), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 2367:
                 case 2368:
                 case 2369:
-                    SendPlayerText(tsplayer, "【垂钓套装】\n挑战模式奖励：给予永久的声纳、钓鱼、宝匣、镇\n定Buff", new Color(91, 101, 132), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【垂钓套装】\n挑战模式奖励：给予永久的声纳、钓鱼、宝匣、镇\n定Buff"), new Color(91, 101, 132), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 256:
                 case 257:
                 case 258:
-                    SendPlayerText(tsplayer, "【忍者套装】\n挑战模式奖励：有四分之一概率闪避非致命伤害并\n释放烟雾", Color.Black, Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【忍者套装】\n挑战模式奖励：有四分之一概率闪避非致命伤害并\n释放烟雾"), Color.Black, Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 3374:
                 case 3375:
                 case 3376:
-                    SendPlayerText(tsplayer, "【化石套装】\n挑战模式奖励：在头上召唤一个琥珀光球，向敌人\n抛出极快的闪电矢", new Color(232, 205, 119), Main.player[tsplayer.Index].Center + new Vector2(0f, -32f));
+                    SendPlayerText(tsplayer, GetString("【化石套装】\n挑战模式奖励：在头上召唤一个琥珀光球，向敌人\n抛出极快的闪电矢"), new Color(232, 205, 119), Main.player[tsplayer.Index].Center + new Vector2(0f, -32f));
                     break;
                 case 792:
                 case 793:
                 case 794:
-                    SendPlayerText(tsplayer, "【猩红套装】\n挑战模式奖励：暴击时从周围每个敌怪处吸取一定\n血量随着敌怪数目增多吸血量-1，冷却 5秒", new Color(209, 46, 93), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【猩红套装】\n挑战模式奖励：暴击时从周围每个敌怪处吸取一定\n血量随着敌怪数目增多吸血量-1，冷却 5秒"), new Color(209, 46, 93), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 100:
                 case 101:
@@ -1247,12 +1247,12 @@ namespace Challenger
                 case 956:
                 case 957:
                 case 958:
-                    SendPlayerText(tsplayer, "【暗影套装】\n挑战模式奖励：暴击时从玩家周围生成吞噬怪飞弹\n攻击周围敌人，冷却 1秒", new Color(95, 91, 207), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【暗影套装】\n挑战模式奖励：暴击时从玩家周围生成吞噬怪飞弹\n攻击周围敌人，冷却 1秒"), new Color(95, 91, 207), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 123:
                 case 124:
                 case 125:
-                    SendPlayerText(tsplayer, "【陨石套装】\n挑战模式奖励：暴击时恢复些许魔力，间歇地降下\n高伤害落星攻击敌人", new Color(128, 15, 12), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【陨石套装】\n挑战模式奖励：暴击时恢复些许魔力，间歇地降下\n高伤害落星攻击敌人"), new Color(128, 15, 12), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 228:
                 case 229:
@@ -1260,48 +1260,48 @@ namespace Challenger
                 case 960:
                 case 961:
                 case 962:
-                    SendPlayerText(tsplayer, "【丛林套装】\n挑战模式奖励：间歇地从玩家周围生成伤害性的孢子", new Color(101, 151, 8), Main.player[tsplayer.Index].Center + new Vector2(0f, -16f));
+                    SendPlayerText(tsplayer, GetString("【丛林套装】\n挑战模式奖励：间歇地从玩家周围生成伤害性的孢子"), new Color(101, 151, 8), Main.player[tsplayer.Index].Center + new Vector2(0f, -16f));
                     break;
                 case 151:
                 case 152:
                 case 153:
                 case 959:
-                    SendPlayerText(tsplayer, "【死灵套装】\n挑战模式奖励：受到伤害时，向四周飞溅骨头；攻\n击时偶尔发射骨箭", new Color(113, 113, 36), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【死灵套装】\n挑战模式奖励：受到伤害时，向四周飞溅骨头；攻\n击时偶尔发射骨箭"), new Color(113, 113, 36), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 2361:
                 case 2362:
                 case 2363:
-                    SendPlayerText(tsplayer, "【蜜蜂套装】\n挑战模式奖励：给予永久的蜂蜜增益；不间断地向\n四周撒蜂糖罐，玩家接触后回血并给予15秒蜂蜜增\n益；对玩家自身的治疗量略低于对其他玩家", new Color(232, 229, 74), Main.player[tsplayer.Index].Center + new Vector2(0f, -32f));
+                    SendPlayerText(tsplayer, GetString("【蜜蜂套装】\n挑战模式奖励：给予永久的蜂蜜增益；不间断地向\n四周撒蜂糖罐，玩家接触后回血并给予15秒蜂蜜增\n益；对玩家自身的治疗量略低于对其他玩家"), new Color(232, 229, 74), Main.player[tsplayer.Index].Center + new Vector2(0f, -32f));
                     break;
                 case 3266:
                 case 3267:
                 case 3268:
-                    SendPlayerText(tsplayer, "【黑曜石套装】\n挑战模式奖励：因为盗贼的祝福，掉落物会尝试掉落两次\n(仅对非boss生物和非高血量怪物有效)", new Color(90, 83, 160), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【黑曜石套装】\n挑战模式奖励：因为盗贼的祝福，掉落物会尝试掉落两次\n(仅对非boss生物和非高血量怪物有效)"), new Color(90, 83, 160), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 231:
                 case 232:
                 case 233:
-                    SendPlayerText(tsplayer, "【狱炎套装】\n挑战模式奖励：免疫岩浆，给予永久的地狱火增益", new Color(255, 27, 0), Main.player[tsplayer.Index].Center + new Vector2(0f, -16f));
+                    SendPlayerText(tsplayer, GetString("【狱炎套装】\n挑战模式奖励：免疫岩浆，给予永久的地狱火增益"), new Color(255, 27, 0), Main.player[tsplayer.Index].Center + new Vector2(0f, -16f));
                     break;
                 case 2370:
                 case 2371:
                 case 2372:
-                    SendPlayerText(tsplayer, "【蜘蛛套装】\n挑战模式奖励：攻击时，给予敌人中毒和剧毒减益\n，按“up”键生成一个毒牙药水瓶，砸中敌人时爆炸", new Color(184, 79, 29), Main.player[tsplayer.Index].Center + new Vector2(0f, -32f));
+                    SendPlayerText(tsplayer, GetString("【蜘蛛套装】\n挑战模式奖励：攻击时，给予敌人中毒和剧毒减益\n，按“up”键生成一个毒牙药水瓶，砸中敌人时爆炸"), new Color(184, 79, 29), Main.player[tsplayer.Index].Center + new Vector2(0f, -32f));
                     break;
                 case 4982:
                 case 4983:
                 case 4984:
-                    SendPlayerText(tsplayer, "【水晶刺客套装】\n挑战模式奖励：当有敌人在附近时，自身释放出水\n晶碎片；若玩家被击中，释放出更强大的碎片", new Color(221, 83, 146), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【水晶刺客套装】\n挑战模式奖励：当有敌人在附近时，自身释放出水\n晶碎片；若玩家被击中，释放出更强大的碎片"), new Color(221, 83, 146), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 3776:
                 case 3777:
                 case 3778:
-                    SendPlayerText(tsplayer, "【禁戒套装】\n挑战模式奖励：释放自动寻的灵焰魂火攻击附近的\n敌人", new Color(222, 171, 26), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【禁戒套装】\n挑战模式奖励：释放自动寻的灵焰魂火攻击附近的\n敌人"), new Color(222, 171, 26), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 684:
                 case 685:
                 case 686:
-                    SendPlayerText(tsplayer, "【寒霜套装】\n挑战模式奖励：你周围开始下雪", new Color(31, 193, 229), Main.player[tsplayer.Index].Center + new Vector2(0f, -16f));
+                    SendPlayerText(tsplayer, GetString("【寒霜套装】\n挑战模式奖励：你周围开始下雪"), new Color(31, 193, 229), Main.player[tsplayer.Index].Center + new Vector2(0f, -16f));
                     break;
                 case 551:
                 case 552:
@@ -1315,80 +1315,80 @@ namespace Challenger
                 case 4899:
                 case 4900:
                 case 4901:
-                    SendPlayerText(tsplayer, "【神圣套装】\n挑战模式奖励：击中敌人时召唤光与暗剑气，输入\n“/cf”切换剑气类型", new Color(179, 179, 203), Main.player[tsplayer.Index].Center + new Vector2(0f, -16f));
+                    SendPlayerText(tsplayer, GetString("【神圣套装】\n挑战模式奖励：击中敌人时召唤光与暗剑气，输入\n“/cf”切换剑气类型"), new Color(179, 179, 203), Main.player[tsplayer.Index].Center + new Vector2(0f, -16f));
                     break;
                 case 1001:
                 case 1002:
                 case 1003:
                 case 1004:
                 case 1005:
-                    SendPlayerText(tsplayer, "【叶绿套装】\n挑战模式奖励：释放不精确的叶绿水晶矢，丛林之\n力给你更高的生命上限", new Color(103, 209, 0), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【叶绿套装】\n挑战模式奖励：释放不精确的叶绿水晶矢，丛林之\n力给你更高的生命上限"), new Color(103, 209, 0), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 1316:
                 case 1317:
                 case 1318:
-                    SendPlayerText(tsplayer, "【海龟套装】\n挑战模式奖励：增加60血上限，自动在附近释放爆\n炸碎片", new Color(169, 104, 69), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【海龟套装】\n挑战模式奖励：增加60血上限，自动在附近释放爆\n炸碎片"), new Color(169, 104, 69), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 1159:
                 case 1160:
                 case 1161:
-                    SendPlayerText(tsplayer, "【提基套装】\n挑战模式奖励：增加20血上限，在鞭子的轨迹上留\n下孢子", Color.Green, Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【提基套装】\n挑战模式奖励：增加20血上限，在鞭子的轨迹上留\n下孢子"), Color.Green, Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 2199:
                 case 2200:
                 case 2201:
                 case 2202:
-                    SendPlayerText(tsplayer, "【甲虫套装】\n挑战模式奖励：增加60血上限，敌人的伤害的一部\n分会治疗周围的队友并给予buff；当装备帕拉丁盾\n或其上级合成物时，帕拉丁之锤伤害翻倍", new Color(101, 75, 120), Main.player[tsplayer.Index].Center + new Vector2(0f, -32f));
+                    SendPlayerText(tsplayer, GetString("【甲虫套装】\n挑战模式奖励：增加60血上限，敌人的伤害的一部\n分会治疗周围的队友并给予buff；当装备帕拉丁盾\n或其上级合成物时，帕拉丁之锤伤害翻倍"), new Color(101, 75, 120), Main.player[tsplayer.Index].Center + new Vector2(0f, -32f));
                     break;
                 case 1546:
                 case 1547:
                 case 1548:
                 case 1549:
                 case 1550:
-                    SendPlayerText(tsplayer, "【蘑菇套装】\n挑战模式奖励：射弹会不稳定地留下蘑菇", new Color(47, 36, 237), Main.player[tsplayer.Index].Center + new Vector2(0f, -16f));
+                    SendPlayerText(tsplayer, GetString("【蘑菇套装】\n挑战模式奖励：射弹会不稳定地留下蘑菇"), new Color(47, 36, 237), Main.player[tsplayer.Index].Center + new Vector2(0f, -16f));
                     break;
                 case 1503:
                 case 1504:
                 case 1505:
                 case 2189:
-                    SendPlayerText(tsplayer, "【幽魂套装】\n挑战模式奖励：根据头饰选择增加40血上限或80魔\n力上限；召唤 2个幽魂诅咒环绕玩家，向附近敌人攻击", new Color(166, 169, 218), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【幽魂套装】\n挑战模式奖励：根据头饰选择增加40血上限或80魔\n力上限；召唤 2个幽魂诅咒环绕玩家，向附近敌人攻击"), new Color(166, 169, 218), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 1832:
                 case 1833:
                 case 1834:
-                    SendPlayerText(tsplayer, "【阴森套装】\n挑战模式奖励：使用鞭子时，甩出蝙蝠或南\n瓜头", new Color(85, 75, 126), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
+                    SendPlayerText(tsplayer, GetString("【阴森套装】\n挑战模式奖励：使用鞭子时，甩出蝙蝠或南\n瓜头"), new Color(85, 75, 126), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                     break;
                 case 3090:
-                    SendPlayerText(tsplayer, "【皇家凝胶】\n挑战模式奖励：天空开始下凝胶小雨", new Color(0, 189, 238), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
+                    SendPlayerText(tsplayer, GetString("【皇家凝胶】\n挑战模式奖励：天空开始下凝胶小雨"), new Color(0, 189, 238), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
                     break;
                 case 3097:
-                    SendPlayerText(tsplayer, $"【克苏鲁之盾】\n挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n{config.CthulhuShieldTime}秒", new Color(255, 199, 199), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
+                    SendPlayerText(tsplayer, GetString("【克苏鲁之盾】\n挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n{0}秒", config.CthulhuShieldTime), new Color(255, 199, 199), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
                     break;
                 case 977:
-                    SendPlayerText(tsplayer, $"【分趾袜】\n挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n{config.CthulhuShieldTime}秒", new Color(255, 199, 199), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
+                    SendPlayerText(tsplayer, GetString("【分趾袜】\n挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n{0}秒", config.CthulhuShieldTime), new Color(255, 199, 199), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
                     break;
                 case 984:
-                    SendPlayerText(tsplayer, $"【忍者大师装备】\n挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n{config.CthulhuShieldTime}秒", new Color(255, 199, 199), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
+                    SendPlayerText(tsplayer, GetString("【忍者大师装备】\n挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n{0}秒", config.CthulhuShieldTime), new Color(255, 199, 199), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
                     break;
                 case 3223:
-                    SendPlayerText(tsplayer, "【混乱之脑】\n挑战模式奖励：输入“/cf”混乱周围所有敌怪", new Color(241, 108, 108), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
+                    SendPlayerText(tsplayer, GetString("【混乱之脑】\n挑战模式奖励：输入“/cf”混乱周围所有敌怪"), new Color(241, 108, 108), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
                     break;
                 case 3224:
-                    SendPlayerText(tsplayer, "【蠕虫围巾】\n挑战模式奖励：免疫寒冷，霜火，灵液和咒火", new Color(166, 127, 231), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
+                    SendPlayerText(tsplayer, GetString("【蠕虫围巾】\n挑战模式奖励：免疫寒冷，霜火，灵液和咒火"), new Color(166, 127, 231), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
                     break;
                 case 5113:
-                    SendPlayerText(tsplayer, "【收音机零件】\n挑战模式奖励：输入“/cf”收听天气预报，在困难\n模式中可以收听世界先知预报", new Color(167, 218, 251), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
+                    SendPlayerText(tsplayer, GetString("【收音机零件】\n挑战模式奖励：输入“/cf”收听天气预报，在困难\n模式中可以收听世界先知预报"), new Color(167, 218, 251), Main.player[tsplayer.Index].Center + new Vector2(0f, 0f));
                     break;
                 case 3333:
-                    SendPlayerText(tsplayer, "【蜜蜂背包】\n挑战模式奖励：不间断地向四周扔出毒蜂罐，爆炸\n后释放一只蜜蜂", new Color(232, 229, 74), Main.player[tsplayer.Index].Center);
+                    SendPlayerText(tsplayer, GetString("【蜜蜂背包】\n挑战模式奖励：不间断地向四周扔出毒蜂罐，爆炸\n后释放一只蜜蜂"), new Color(232, 229, 74), Main.player[tsplayer.Index].Center);
                     break;
                 case 1321:
                 case 4002:
                 case 4006:
-                    SendPlayerText(tsplayer, "【箭袋】\n挑战模式奖励：无限补充弹药，额外获得BUFF", new Color(232, 229, 74), Main.player[tsplayer.Index].Center);
+                    SendPlayerText(tsplayer, GetString("【箭袋】\n挑战模式奖励：无限补充弹药，额外获得BUFF"), new Color(232, 229, 74), Main.player[tsplayer.Index].Center);
                     break;
                 case 4987:
-                    SendPlayerText(tsplayer, "【挥发明胶】\n挑战模式奖励：击中敌人有概率掉落碎魔晶，珍珠\n石，凝胶等", new Color(232, 229, 74), Main.player[tsplayer.Index].Center);
+                    SendPlayerText(tsplayer, GetString("【挥发明胶】\n挑战模式奖励：击中敌人有概率掉落碎魔晶，珍珠\n石，凝胶等"), new Color(232, 229, 74), Main.player[tsplayer.Index].Center);
                     break;
             }
         }
@@ -1401,11 +1401,11 @@ namespace Challenger
             }
             if (config.enableChallenge)
             {
-                TShock.Players[args.Who].SendMessage("世界已开启挑战模式，祝您好运！", new Color(255, 82, 165));
+                TShock.Players[args.Who].SendMessage(GetString("世界已开启挑战模式，祝您好运！"), new Color(255, 82, 165));
             }
             else
             {
-                TShock.Players[args.Who].SendMessage("世界已关闭挑战模式，快乐游玩吧", new Color(82, 155, 119));
+                TShock.Players[args.Who].SendMessage(GetString("世界已关闭挑战模式，快乐游玩吧"), new Color(82, 155, 119));
             }
         }
 
@@ -1443,8 +1443,8 @@ namespace Challenger
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Challenger.OnServerLeave异常3：" + ex.Message);
-                TShock.Log.Error("Challenger.OnServerLeave异常3：" + ex.Message);
+                Console.WriteLine(GetString("Challenger.OnServerLeave异常3：") + ex.Message);
+                TShock.Log.Error(GetString("Challenger.OnServerLeave异常3：") + ex.Message);
             }
             
         }
@@ -1869,21 +1869,21 @@ namespace Challenger
         {
             if (args.Parameters.Any())
             {
-                args.Player.SendInfoMessage("输入 /ctip 来启用内容提示，如各种物品装备的修改文字提示，再次使用取消");
+                args.Player.SendInfoMessage(GetString("输入 /ctip 来启用内容提示，如各种物品装备的修改文字提示，再次使用取消"));
             }
             else if (!config.enableChallenge)
             {
-                args.Player.SendInfoMessage("挑战模式已关闭，无法开启文字提示");
+                args.Player.SendInfoMessage(GetString("挑战模式已关闭，无法开启文字提示"));
             }
             else if (Collect.cplayers[args.Player.Index] != null && Collect.cplayers[args.Player.Index].isActive && Collect.cplayers[args.Player.Index].tips)
             {
                 Collect.cplayers[args.Player.Index].tips = false;
-                args.Player.SendMessage("文字提示已取消", new Color(45, 187, 45));
+                args.Player.SendMessage(GetString("文字提示已取消"), new Color(45, 187, 45));
             }
             else if (Collect.cplayers[args.Player.Index] != null && Collect.cplayers[args.Player.Index].isActive && !Collect.cplayers[args.Player.Index].tips)
             {
                 Collect.cplayers[args.Player.Index].tips = true;
-                args.Player.SendMessage("文字提示已启用", new Color(45, 187, 45));
+                args.Player.SendMessage(GetString("文字提示已启用"), new Color(45, 187, 45));
             }
         }
 
@@ -1891,7 +1891,7 @@ namespace Challenger
         {
             if (args.Parameters.Any())
             {
-                args.Player.SendInfoMessage("输入 /cenable 来启用挑战模式，再次使用取消");
+                args.Player.SendInfoMessage(GetString("输入 /cenable 来启用挑战模式，再次使用取消"));
                 return;
             }
             if (config.enableChallenge)
@@ -1926,7 +1926,7 @@ namespace Challenger
                     }
                 });
                 File.WriteAllText(configPath, JsonConvert.SerializeObject(config, (Formatting)1));
-                TSPlayer.All.SendMessage("挑战模式已取消，您觉得太难了？[操作来自：" + args.Player.Name + "]", new Color(82, 155, 119));
+                TSPlayer.All.SendMessage(GetString("挑战模式已取消，您觉得太难了？[操作来自：{0}]", args.Player.Name), new Color(82, 155, 119));
                 return;
             }
             config.enableChallenge = true;
@@ -1939,19 +1939,19 @@ namespace Challenger
                     Collect.cplayers[val.whoAmI] = new CPlayer(TShock.Players[val.whoAmI], tips: true);
                 }
             }
-            TSPlayer.All.SendMessage("挑战模式启用，祝您愉快。[操作来自：" + args.Player.Name + "]", new Color(255, 82, 165));
+            TSPlayer.All.SendMessage(GetString("挑战模式启用，祝您愉快。[操作来自：{0}]", args.Player.Name), new Color(255, 82, 165));
         }
 
         private void Function(CommandArgs args)
         {
             if (!config.enableChallenge)
             {
-                args.Player.SendInfoMessage("未启用挑战模式！");
+                args.Player.SendInfoMessage(GetString("未启用挑战模式！"));
                 return;
             }
             if (!args.Player.Active)
             {
-                args.Player.SendInfoMessage("请在游戏里使用该指令");
+                args.Player.SendInfoMessage(GetString("请在游戏里使用该指令"));
                 return;
             }
             try
@@ -1962,13 +1962,13 @@ namespace Challenger
                     Collect.cplayers[args.Player.Index].HallowedArmorState = !Collect.cplayers[args.Player.Index].HallowedArmorState;
                     if (Collect.cplayers[args.Player.Index].HallowedArmorState)
                     {
-                        SendPlayerText(args.Player, "神圣剑辉已启用", new Color(255, 255, 0), args.Player.TPlayer.Center);
-                        args.Player.SendMessage("神圣剑辉已启用", new Color(255, 255, 0));
+                        SendPlayerText(args.Player, GetString("神圣剑辉已启用"), new Color(255, 255, 0), args.Player.TPlayer.Center);
+                        args.Player.SendMessage(GetString("神圣剑辉已启用"), new Color(255, 255, 0));
                     }
                     else
                     {
-                        SendPlayerText(args.Player, "永夜剑辉已启用", new Color(255, 0, 255), args.Player.TPlayer.Center);
-                        args.Player.SendMessage("永夜剑辉已启用", new Color(255, 0, 255));
+                        SendPlayerText(args.Player, GetString("永夜剑辉已启用"), new Color(255, 0, 255), args.Player.TPlayer.Center);
+                        args.Player.SendMessage(GetString("永夜剑辉已启用"), new Color(255, 0, 255));
                     }
                     return;
                 }
@@ -1989,7 +1989,7 @@ namespace Challenger
                                         NetMessage.SendData(53, -1, -1, null, val.whoAmI, 31f, 300f, 0f, 0, 0, 0);
                                     }
                                 }
-                                TSPlayer.All.SendMessage(args.Player.Name + " 发动了混乱之脑迷惑，成功迷惑了附近 " + num2 + "个敌人", new Color(241, 108, 108));
+                                TSPlayer.All.SendMessage(GetString("{0} 发动了混乱之脑迷惑，成功迷惑了附近 {1}个敌人", args.Player.Name, num2), new Color(241, 108, 108));
                                 return;
                             }
                         case 5113:
@@ -2004,81 +2004,81 @@ namespace Challenger
                                     case 0:
                                     case 11:
                                         Main.StartRain();
-                                        TSPlayer.All.SendMessage(args.Player.Name + " 收听了 " + Main.worldName + " 天气预报收音广播：即将下雨", new Color(167, 218, 251));
+                                        TSPlayer.All.SendMessage(GetString("{0} 收听了 {1} 天气预报收音广播：即将下雨", args.Player.Name, Main.worldName), new Color(167, 218, 251));
                                         TSPlayer.All.SendData((PacketTypes)7, "", 0, 0f, 0f, 0f, 0);
                                         break;
                                     case 1:
                                     case 12:
                                         Main.StopRain();
-                                        TSPlayer.All.SendMessage(args.Player.Name + " 收听了 " + Main.worldName + " 天气预报收音广播：不会下雨", new Color(167, 218, 251));
+                                        TSPlayer.All.SendMessage(GetString("{0} 收听了 {1} 天气预报收音广播：不会下雨", args.Player.Name, Main.worldName), new Color(167, 218, 251));
                                         TSPlayer.All.SendData((PacketTypes)7, "", 0, 0f, 0f, 0f, 0);
                                         break;
                                     case 2:
                                     case 13:
                                         Main.windSpeedTarget = 0f;
                                         Main.windSpeedCurrent = 0f;
-                                        TSPlayer.All.SendMessage(args.Player.Name + " 收听了 " + Main.worldName + " 天气预报收音广播：不会有风", new Color(167, 218, 251));
+                                        TSPlayer.All.SendMessage(GetString("{0} 收听了 {1} 天气预报收音广播：不会有风", args.Player.Name, Main.worldName), new Color(167, 218, 251));
                                         TSPlayer.All.SendData((PacketTypes)7, "", 0, 0f, 0f, 0f, 0);
                                         break;
                                     case 3:
                                     case 14:
                                         Main.windSpeedTarget = 1f;
                                         Main.windSpeedCurrent = 1f;
-                                        TSPlayer.All.SendMessage(args.Player.Name + " 收听了 " + Main.worldName + " 天气预报收音广播：即将挂起风", new Color(167, 218, 251));
+                                        TSPlayer.All.SendMessage(GetString($"{args.Player.Name} 收听了 {Main.worldName} 天气预报收音广播：即将挂起风"), new Color(167, 218, 251));
                                         TSPlayer.All.SendData((PacketTypes)7, "", 0, 0f, 0f, 0f, 0);
                                         break;
                                     case 4:
                                         Main.windSpeedTarget = 2f;
                                         Main.windSpeedCurrent = 2f;
-                                        TSPlayer.All.SendMessage(args.Player.Name + " 收听了 " + Main.worldName + " 天气预报收音广播：即将挂起狂风", new Color(167, 218, 251));
+                                        TSPlayer.All.SendMessage(GetString($"{args.Player.Name} 收听了 {Main.worldName} 天气预报收音广播：即将挂起狂风"), new Color(167, 218, 251));
                                         TSPlayer.All.SendData((PacketTypes)7, "", 0, 0f, 0f, 0f, 0);
                                         break;
                                     case 5:
                                         if (Sandstorm.Happening)
                                         {
                                             Sandstorm.StopSandstorm();
-                                            TSPlayer.All.SendMessage(args.Player.Name + " 收听了 " + Main.worldName + " 天气预报收音广播：不会有沙尘暴", new Color(167, 218, 251));
+                                            TSPlayer.All.SendMessage(GetString($"{args.Player.Name} 收听了 {Main.worldName} 天气预报收音广播：不会有沙尘暴"), new Color(167, 218, 251));
                                         }
                                         else
                                         {
                                             Sandstorm.StartSandstorm();
-                                            TSPlayer.All.SendMessage(args.Player.Name + " 收听了 " + Main.worldName + " 天气预报收音广播：即将刮起沙尘暴", new Color(167, 218, 251));
+                                            TSPlayer.All.SendMessage(GetString($"{args.Player.Name} 收听了 {Main.worldName} 天气预报收音广播：即将刮起沙尘暴"), new Color(167, 218, 251));
                                         }
                                         break;
                                     case 6:
                                         Collect.worldevent = 1;
-                                        TSPlayer.All.SendMessage($"{args.Player.Name} 收听了 {Main.worldName} 世界先知广播：{(Main.dayTime ? "今晚" : "明晚")}满月", new Color(72, 182, 252));
+                                        TSPlayer.All.SendMessage(GetString($"{args.Player.Name} 收听了 {Main.worldName} 世界先知广播：{(Main.dayTime ? "今晚" : "明晚")}满月"), new Color(72, 182, 252));
                                         break;
                                     case 7:
                                         Collect.worldevent = 2;
-                                        TSPlayer.All.SendMessage($"{args.Player.Name} 收听了 {Main.worldName} 世界先知广播：{(Main.dayTime ? "今晚" : "明晚")}血月", new Color(72, 182, 252));
+                                        TSPlayer.All.SendMessage(GetString($"{args.Player.Name} 收听了 {Main.worldName} 世界先知广播：{(Main.dayTime ? "今晚" : "明晚")}血月"), new Color(72, 182, 252));
                                         break;
                                     case 8:
                                         Collect.worldevent = 3;
-                                        TSPlayer.All.SendMessage(args.Player.Name + " 收听了 " + Main.worldName + " 世界先知广播：明天日食", new Color(72, 182, 252));
+                                        TSPlayer.All.SendMessage(GetString($"{args.Player.Name} 收听了 {Main.worldName} 世界先知广播：明天日食"), new Color(72, 182, 252));
                                         break;
                                     case 9:
                                         Collect.worldevent = 4;
-                                        TSPlayer.All.SendMessage($"{args.Player.Name} 收听了 {Main.worldName} 世界先知广播：{(Main.dayTime ? "今晚" : "明晚")}灯笼夜", new Color(72, 182, 252));
+                                        TSPlayer.All.SendMessage(GetString($"{args.Player.Name} 收听了 {Main.worldName} 世界先知广播：{(Main.dayTime ? "今晚" : "明晚")}灯笼夜"), new Color(72, 182, 252));
                                         break;
                                     case 10:
                                         Collect.worldevent = 5;
-                                        TSPlayer.All.SendMessage($"{args.Player.Name} 收听了 {Main.worldName} 世界先知广播：{(Main.dayTime ? "今晚" : "明晚")}有流星", new Color(72, 182, 252));
+                                        TSPlayer.All.SendMessage(GetString($"{args.Player.Name} 收听了 {Main.worldName} 世界先知广播：{(Main.dayTime ? "今晚" : "明晚")}有流星"), new Color(72, 182, 252));
                                         break;
                                     default:
                                         Collect.worldevent = 0;
-                                        TSPlayer.All.SendMessage(args.Player.Name + " 收听了 " + Main.worldName + " 天气预报收音广播：顺其自然，不会发生任何事件", new Color(167, 218, 251));
+                                        TSPlayer.All.SendMessage(GetString($"{args.Player.Name} 收听了 {Main.worldName} 天气预报收音广播：顺其自然，不会发生任何事件"), new Color(167, 218, 251));
                                         break;
                                 }
                                 return;
                             }
                     }
                 }
-                args.Player.SendInfoMessage("没有套装效果启用");
+                args.Player.SendInfoMessage(GetString("没有套装效果启用"));
             }
             catch (Exception ex)
             {
-                args.Player.SendInfoMessage("状态异常，使用失败: " + ex.ToString());
+                args.Player.SendInfoMessage(GetString($"状态异常，使用失败: {ex}"));
                 Console.WriteLine(ex.ToString());
                 TShock.Log.Error(ex.ToString());
             }
