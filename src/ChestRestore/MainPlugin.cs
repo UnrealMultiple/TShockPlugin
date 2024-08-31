@@ -82,7 +82,7 @@ public class MainPlugin : TerrariaPlugin
                         item.netDefaults(list[i].NetId);
                         item.stack = list[i].Stack;
                         item.prefix = list[i].PrefixId;
-                        TSPlayer.All.SendData(PacketTypes.ChestItem, "", num2, (float) i, 0f, 0f, 0);
+                        TSPlayer.All.SendData(PacketTypes.ChestItem, "", num2, i, 0f, 0f, 0);
                     }
                     tsplayer.SetData("chestrestore", "");
                     tsplayer.SetData("chestx", 0);
