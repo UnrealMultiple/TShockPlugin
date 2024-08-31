@@ -3,10 +3,13 @@
 - 作者: Olink，Cjx适配，肝帝熙恩修改, yu大改
 - 出处: [github](https://github.com/Olink/SongPlayer) 远古仓库
 - 装上插件会在Tshock文件夹下生成一个Songs文件夹，里面放音乐文件
-- 通过读取音高文件，使用竖琴/铃铛/吉他模拟播放音乐
-- 提供了[简易转换脚本](https://github.com/THEXN/TShockPlugin/blob/master/musicplayer/sample_converter.py)，你也可以自己手搓,和[示范音乐转换文件（mid），和成品文件](https://github.com/THEXN/TShockPlugin/tree/master/musicplayer/%E7%A4%BA%E4%BE%8B%E6%AD%8C%E6%9B%B2)
-- 不推荐过高音和过低音，泰拉本身不支持，音高范围为C4-C6
-- 
+- 通过读取音高文件，使用竖琴/铃铛/吉他模拟播放音乐，也就是参数：harp，bell，theaxe
+- 提供了[简易转换脚本](https://github.com/THEXN/TShockPlugin/blob/master/musicplayer/sample_converter.py)
+- 和[便捷exe工具](https://github.com/THEXN/TShockPlugin/blob/master/musicplayer/sample_converter.exe)，将mid文件拖动到便捷exe上即可转换
+- 你也可以自己手搓,这里有[示范音乐转换文件（mid），和成品文件](https://github.com/THEXN/TShockPlugin/tree/master/musicplayer/%E7%A4%BA%E4%BE%8B%E6%AD%8C%E6%9B%B2)
+- 不推荐过高音和过低音，泰拉本身不支持，音高范围为C4-C6，转换的时候并不会对该范围内的音高进行改动，保留且使用时不播放外围的音高
+- 只能播放非常简单的音乐，音轨越少越好，起伏越好，将常规mp3转换成mid再转换成本插件可用格式基本不可行，建议寻找专用的midi网站获取midi，或者自己扒谱
+
 ## 更新日志
 
 ```
@@ -17,9 +20,9 @@
 
 | 语法           |        权限         |   说明   |
 | -------------- | :-----------------: | :------: |
-| /song [歌曲名字] | song  | 为自己播放/停止播放歌曲 |
-| /songall [歌曲名字] | songall   | 为所有人播放/停止播放歌曲 |
-| /songlist [歌曲名字] | songlist   | 查看歌曲文件列表 |
+| /song [歌曲名字] [harp/bell/theaxe] | song  | 为自己播放/停止播放歌曲，默认参数为harp |
+| /songall [歌曲名字] [harp/bell/theaxe] | songall   | 为所有人播放/停止播放歌曲，默认参数为harp |
+| /songlist | songlist   | 查看歌曲文件列表 |
 
 ## 配置
 > tshock/Song文件夹内放音乐文件
