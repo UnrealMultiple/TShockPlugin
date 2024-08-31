@@ -12,14 +12,14 @@ public class MainPlugin : TerrariaPlugin
     {
     }
     public override string Name => "ChestRestore";
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
     public override string Author => "Cjx修改，肝帝熙恩简单修改";
     public override string Description => "无限宝箱插件";
 
     public override void Initialize()
     {
-        ServerApi.Hooks.NetGetData.Register(this, this.OnGetData);
-        GetDataHandlers.ChestOpen += this.OnChestOpen;
+        ServerApi.Hooks.NetGetData.Register(this, OnGetData);
+        GetDataHandlers.ChestOpen += OnChestOpen;
     }
     private void OnChestOpen(object sender, GetDataHandlers.ChestOpenEventArgs args)
     {
@@ -54,9 +54,18 @@ public class MainPlugin : TerrariaPlugin
     {
         if (args.MsgID == PacketTypes.ChestOpen)
         {
+            // 获取当前玩家对象
+            TSPlayer tsplayer = TShock.Players[args.Msg.whoAmI];
+
+            // 检查消息长度是否大于7，并且玩家是否没有打开箱子的权限
+            if (args.Length > 7 && !tsplayer.HasPermission("chestopen.name"))
+            {
+                // 修改消息的readBuffer，阻止玩家打开箱子
+                args.Msg.readBuffer[args.Index + 6] = 0;
+            }
+
             using (var binaryReader = new BinaryReader(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length)))
             {
-                var tsplayer = TShock.Players[args.Msg.whoAmI];
                 int num = binaryReader.ReadInt16();
                 var num2 = Chest.FindChest(tsplayer.GetData<int>("chestx"), tsplayer.GetData<int>("chesty"));
                 Chest chest = null;
@@ -82,12 +91,13 @@ public class MainPlugin : TerrariaPlugin
             }
         }
     }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            ServerApi.Hooks.NetGetData.Deregister(this, this.OnGetData);
-            GetDataHandlers.ChestOpen -= this.OnChestOpen;
+            ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
+            GetDataHandlers.ChestOpen -= OnChestOpen;
         }
         base.Dispose(disposing);
     }
