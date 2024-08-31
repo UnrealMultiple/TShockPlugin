@@ -13,7 +13,7 @@ if __name__ == '__main__':
             else:
                 continue
 
-        subprocess.run("dotnet + tool run GetText.Extractor -s " + str(csproj) + " -t " + str(i18n_dir / "template.pot"))
+        subprocess.run("dotnet tool run GetText.Extractor -s " + str(csproj) + " -t " + str(i18n_dir / "template.pot"))
 
 
         for po_file in [Path(x) for x in glob.glob(i18n_dir.as_posix() + '/*.po')]:
