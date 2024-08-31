@@ -361,3 +361,14 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Rider
+.idea
+
+# Localization
+template.pot.bak
+*.mo
+
+# CI
+linux-x64/
+linux-x64.zip

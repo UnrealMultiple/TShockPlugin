@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Authors>LaoSparrow</Authors>
+		<Version>2.1</Version>
+		<AssemblyVersion>2.1</AssemblyVersion>
+		<FileVersion>2.1</FileVersion>
+	</PropertyGroup>
+	
+	<Import Project="..\..\template.targets" />
+
+</Project>

@@ -3,6 +3,7 @@ name: 自动更新子模块
 on:
   schedule:
     - cron: '0 0 * * *'  # 每天UTC时间0:00执行
+  workflow_dispatch:
 
 jobs:
   update-submodules:
@@ -11,6 +12,8 @@ jobs:
     steps:
       - name: 签出仓库
         uses: actions/checkout@v2
+        with:
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
 
       - name: 更新子模块
         continue-on-error: true

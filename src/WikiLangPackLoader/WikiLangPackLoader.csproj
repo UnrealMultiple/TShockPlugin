@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\..\template.targets" />
+	<ItemGroup>
+	  <None Remove="ResourcePack.zip" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="ResourcePack.zip" />
+	</ItemGroup>
+</Project>

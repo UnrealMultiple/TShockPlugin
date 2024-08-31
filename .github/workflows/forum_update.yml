@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
     steps:
     - name: 签出代码
       uses: actions/checkout@v4
@@ -25,11 +26,11 @@ jobs:
       env:
         PYTHONIOENCODING: 'utf-8'
       run: 
-       sudo python ForumUpdate.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
+       sudo python scripts/ForumUpdate.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
      
     - name: 更新论坛主文档
       continue-on-error: true
       env:
           PYTHONIOENCODING: 'utf-8'
       run: 
-         sudo python ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
+         sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
