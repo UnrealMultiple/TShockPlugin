@@ -31,7 +31,7 @@ jobs:
       
       - name: 生成POT
         continue-on-error: true
-        # if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
         run: |
           python scripts/POFileUpdater.py auto debug
           git config --local user.email "action@github.com"
