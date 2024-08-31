@@ -50,7 +50,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.1.1",
+    "Version": "2.0.1.3",
     "Author": "少司命，Cai",
     "Description": "自动更新你的插件！",
     "Path": "AutoPluginManager.dll"
@@ -148,7 +148,7 @@
   },
   {
     "Name": "Challenger",
-    "Version": "1.0.1.3",
+    "Version": "1.0.1.5",
     "Author": "z枳 星夜神花 羽学",
     "Description": "增强游戏难度，更好的游戏体验",
     "Path": "Challenger.dll"
@@ -225,49 +225,49 @@
   },
   {
     "Name": "Economics.Deal",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命",
     "Description": "Economics.Deal",
     "Path": "Economics.Deal.dll"
   },
   {
     "Name": "Economics.NPC",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命",
     "Description": "Economics.NPC",
     "Path": "Economics.NPC.dll"
   },
   {
     "Name": "Economics.Regain",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": "Economics.Regain",
     "Path": "Economics.Regain.dll"
   },
   {
     "Name": "Economics.RPG",
-    "Version": "1.0.0.2",
+    "Version": "1.0.0.3",
     "Author": "少司命",
     "Description": "Economics.RPG",
     "Path": "Economics.RPG.dll"
   },
   {
     "Name": "Economics.Shop",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": "Economics.Shop",
     "Path": "Economics.Shop.dll"
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.2.1.1",
+    "Version": "1.2.1.2",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"
   },
   {
     "Name": "Economics.Task",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": "Economics.Task",
     "Path": "Economics.Task.dll"
@@ -288,7 +288,7 @@
   },
   {
     "Name": "EconomicsAPI",
-    "Version": "1.0.0.9",
+    "Version": "1.0.1.0",
     "Author": "少司命",
     "Description": "EconomicsAPI",
     "Path": "EconomicsAPI.dll"
@@ -571,7 +571,7 @@
     "Version": "2.7.3",
     "Author": "Jonesn 羽学 少司命",
     "Description": "设置服务器无法进入或禁止生成怪物的时段",
-    "Path": "Goodnight.dll"
+    "Path": "GoodNight.dll"
   },
   {
     "Name": "怪物进度回血",
@@ -715,7 +715,7 @@
   },
   {
     "Name": "Economics.Projectile",
-    "Version": "1.0.0.4",
+    "Version": "1.0.0.5",
     "Author": "少司命",
     "Description": "Economics.Projectile",
     "Path": "Economics.Projectile.dll"
