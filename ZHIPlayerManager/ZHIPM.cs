@@ -85,11 +85,11 @@ namespace ZHIPlayerManager
 
         public override void Initialize()
         {
-            if (!TShock.ServerSideCharacterConfig.Settings.Enabled)
+            /*if (!TShock.ServerSideCharacterConfig.Settings.Enabled)
             {
                 Console.WriteLine("该插件需要开启SSC才能使用");
                 return;
-            }
+            }*/
             Timer = 0L;
             config = ZhipmConfig.LoadConfigFile();
             ZPDataBase = new ZplayerDB(TShock.DB);
