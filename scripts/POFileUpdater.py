@@ -23,7 +23,7 @@ if __name__ == '__main__':
                 i18n_dir.mkdir()
             else:
                 continue
-
+                
         if "debug" in args:
             print(f"[{csproj}] generating template.pot...")
 
