@@ -56,6 +56,11 @@ public class MainPlugin : TerrariaPlugin
         {
             TSPlayer tsplayer = TShock.Players[args.Msg.whoAmI];
 
+            if (tsplayer == null)
+            {
+                return; 
+            }
+
             if (args.Length > 7 && !tsplayer.HasPermission("chestopen.name"))
             {
                 args.Msg.readBuffer[args.Index + 6] = 0;
