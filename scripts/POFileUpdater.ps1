@@ -1,8 +1,17 @@
 #!/usr/bin/env pwsh
 
+param(
+    [Parameter(Mandatory = $false)]
+    [string]$Model
+)
+
 foreach ($p in @(ls $PSScriptRoot/../src/*/*.csproj))  {
     if (-not (Test-Path -Path "$($p.DirectoryName)/i18n" -PathType Container)) {
-        continue
+        if($Model -eq "auto"){
+            New-Item -ItemType Directory -Path "$($p.DirectoryName)/i18n"
+        }else{
+            continue
+        }
     }
     
     $pot = "$([System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot"))"

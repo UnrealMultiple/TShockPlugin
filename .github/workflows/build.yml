@@ -27,6 +27,22 @@ jobs:
           sudo apt install -y gettext
           wget -q https://github.com/ACaiCat/PluginInfoLoaderr/releases/download/v1.0.0.0/linux-x64.zip
           unzip -qq linux-x64.zip
+      
+      - name: 生成POT
+        continue-on-error: true
+        shell: pwsh
+        # if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        run: |
+          src/scripts/POFileUpdater.ps1 -Model auto
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          if git diff --staged --quiet; then
+            echo "跳过更新：POT无变化"
+          else
+            git commit -m "自动更新POT文件 [skip ci]"
+            git push
+          fi
 
       - name: 更新子模块
         continue-on-error: true
@@ -98,7 +114,7 @@ jobs:
         id: external_changelog_second
         uses: mikepenz/release-changelog-builder-action@v5
         with:
-          configuration: "Config/Config_Rep.json"
+          configuration: ".config/log_config.json"
 
       - name: 生成更新日志
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
