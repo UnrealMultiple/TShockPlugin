@@ -1,11 +1,12 @@
 #!/bin/bash
 
-for proj in ./*/*.csproj; do
+shopt -s nullglob
+for proj in $(dirname $0)/../src/*/*.csproj; do
   if [ ! -d "$(dirname $proj)/i18n" ]; then
     continue
   fi
 
-  pushd $(dirname $proj)
+  pushd $(dirname $proj) > /dev/null
 
   GetText.Extractor -s ./ -t i18n/template.pot
   
@@ -13,5 +14,5 @@ for proj in ./*/*.csproj; do
     msgmerge --previous --update $pofile i18n/template.pot
   done
 
-  popd
+  popd > /dev/null
 done
