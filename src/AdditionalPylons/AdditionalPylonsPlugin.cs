@@ -11,8 +11,6 @@ namespace AdditionalPylons;
 [ApiVersion(2, 1)]
 public class AdditionalPylonsPlugin : TerrariaPlugin
 {
-
-
     #region Plugin Properties
     public override string Name => "[放置更多晶塔] AdditionalPylons";
 
@@ -20,7 +18,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
 
     public override string Author => "Stealownz，肝帝熙恩优化1449";
 
-    public override string Description => " 自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境";
+    public override string Description => GetString("自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境");
 
 
     public AdditionalPylonsPlugin(Main game) : base(game)
@@ -44,7 +42,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player?.SendSuccessMessage("[{0}]重新加载配置完毕。", typeof(AdditionalPylonsPlugin).Name);
+        args.Player?.SendSuccessMessage(GetString("[无限晶塔]重新加载配置完毕."));
     }
 
     #region Plugin Overrides
@@ -218,7 +216,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
                 case 4875:
                     if (count >= Config.JungleTowerLimit)
                     {
-                        TShock.Players[playerId].SendErrorMessage("丛林晶塔数量已达到上限。");
+                        TShock.Players[playerId].SendErrorMessage(GetString("丛林晶塔数量已达到上限。"));
                         return;
                     }
                     break;
@@ -226,56 +224,63 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
                 case 4876:
                     if (count >= Config.ForestTowerLimit)
                     {
-                        TShock.Players[playerId].SendErrorMessage("森林晶塔数量已达到上限。");
+                        TShock.Players[playerId].SendErrorMessage(GetString("森林晶塔数量已达到上限。"));
                         return;
                     }
                     break;
+
                 case 4916:
                     if (count >= Config.HolyTowerLimit)
                     {
-                        TShock.Players[playerId].SendErrorMessage("神圣晶塔数量已达到上限。");
+                        TShock.Players[playerId].SendErrorMessage(GetString("神圣晶塔数量已达到上限。"));
                         return;
                     }
                     break;
+
                 case 4917:
                     if (count >= Config.CaveTowerLimit)
                     {
-                        TShock.Players[playerId].SendErrorMessage("洞穴晶塔数量已达到上限。");
+                        TShock.Players[playerId].SendErrorMessage(GetString("洞穴晶塔数量已达到上限。"));
                         return;
                     }
                     break;
+
                 case 4918:
                     if (count >= Config.OceanTowerLimit)
                     {
-                        TShock.Players[playerId].SendErrorMessage("海洋晶塔数量已达到上限。");
+                        TShock.Players[playerId].SendErrorMessage(GetString("海洋晶塔数量已达到上限。"));
                         return;
                     }
                     break;
+
                 case 4919:
                     if (count >= Config.DesertTowerLimit)
                     {
-                        TShock.Players[playerId].SendErrorMessage("沙漠晶塔数量已达到上限。");
+                        TShock.Players[playerId].SendErrorMessage(GetString("沙漠晶塔数量已达到上限。"));
                         return;
                     }
                     break;
+
                 case 4920:
                     if (count >= Config.SnowTowerLimit)
                     {
-                        TShock.Players[playerId].SendErrorMessage("雪原晶塔数量已达到上限。");
+                        TShock.Players[playerId].SendErrorMessage(GetString("雪原晶塔数量已达到上限。"));
                         return;
                     }
                     break;
+
                 case 4921:
                     if (count >= Config.MushroomTowerLimit)
                     {
-                        TShock.Players[playerId].SendErrorMessage("蘑菇晶塔数量已达到上限。");
+                        TShock.Players[playerId].SendErrorMessage(GetString("蘑菇晶塔数量已达到上限。"));
                         return;
                     }
                     break;
+
                 case 4951:
                     if (count >= Config.UniversalTowerLimit)
                     {
-                        TShock.Players[playerId].SendErrorMessage("万能晶塔数量已达到上限。");
+                        TShock.Players[playerId].SendErrorMessage(GetString("万能晶塔数量已达到上限。"));
                         return;
                     }
                     break;
