@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\template.targets" />
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Yaaiomni\Core\Plugin.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -3,232 +3,232 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChattyBridge", "ChattyBridge\ChattyBridge.csproj", "{8281F41F-6AEE-4A08-B1FD-7BDC126BD06A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChattyBridge", "src\ChattyBridge\ChattyBridge.csproj", "{8281F41F-6AEE-4A08-B1FD-7BDC126BD06A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{C3AAED6E-4685-4D70-9064-3A39A7EA485F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{C3AAED6E-4685-4D70-9064-3A39A7EA485F}"
 	ProjectSection(SolutionItems) = preProject
 		template.targets = template.targets
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EconomicsAPI", "EconomicsAPI\EconomicsAPI.csproj", "{CB210D18-3DA3-46EC-9E49-72296871E2DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EconomicsAPI", "src\EconomicsAPI\EconomicsAPI.csproj", "{CB210D18-3DA3-46EC-9E49-72296871E2DD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.RPG", "Economics.RPG\Economics.RPG.csproj", "{F183C64E-9FC4-4938-8962-74A58B1E9232}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.RPG", "src\Economics.RPG\Economics.RPG.csproj", "{F183C64E-9FC4-4938-8962-74A58B1E9232}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Deal", "Economics.Deal\Economics.Deal.csproj", "{12E74D48-5F05-42EB-B434-9C6DAF159289}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Deal", "src\Economics.Deal\Economics.Deal.csproj", "{12E74D48-5F05-42EB-B434-9C6DAF159289}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Shop", "Economics.Shop\Economics.Shop.csproj", "{BB97FC98-BA7C-4308-B1B5-1C748EE31F95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Shop", "src\Economics.Shop\Economics.Shop.csproj", "{BB97FC98-BA7C-4308-B1B5-1C748EE31F95}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Skill", "Economics.Skill\Economics.Skill.csproj", "{B94BB79F-53DB-4C3E-8E9D-53194CB20577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Skill", "src\Economics.Skill\Economics.Skill.csproj", "{B94BB79F-53DB-4C3E-8E9D-53194CB20577}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateSpawn", "CreateSpawn\CreateSpawn.csproj", "{36BD8152-E8E7-45BE-906E-0FC048F9794E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateSpawn", "src\CreateSpawn\CreateSpawn.csproj", "{36BD8152-E8E7-45BE-906E-0FC048F9794E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoBroadcast", "AutoBroadcast\AutoBroadcast.csproj", "{2ECD2226-ABB7-43D8-BB04-89B0F567002A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoBroadcast", "src\AutoBroadcast\AutoBroadcast.csproj", "{2ECD2226-ABB7-43D8-BB04-89B0F567002A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTeam", "AutoTeam\AutoTeam.csproj", "{2555CB6C-2DDB-4C21-A610-EC056B885939}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTeam", "src\AutoTeam\AutoTeam.csproj", "{2555CB6C-2DDB-4C21-A610-EC056B885939}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifemaxExtra", "LifemaxExtra\LifemaxExtra.csproj", "{F4D43E91-626F-4B28-A20F-50BC034DC808}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifemaxExtra", "src\LifemaxExtra\LifemaxExtra.csproj", "{F4D43E91-626F-4B28-A20F-50BC034DC808}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BridgeBuilder", "BridgeBuilder\BridgeBuilder.csproj", "{A4C401CD-9D9B-4A63-9696-45B990194077}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BridgeBuilder", "src\BridgeBuilder\BridgeBuilder.csproj", "{A4C401CD-9D9B-4A63-9696-45B990194077}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Back", "Back\Back.csproj", "{A93C4B1F-F36A-49BB-BFF4-544702A3AD59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Back", "src\Back\Back.csproj", "{A93C4B1F-F36A-49BB-BFF4-544702A3AD59}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BanNpc", "BanNpc\BanNpc.csproj", "{A0CD7941-8248-4DEE-B6C1-972995A9D511}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BanNpc", "src\BanNpc\BanNpc.csproj", "{A0CD7941-8248-4DEE-B6C1-972995A9D511}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapTp", "MapTp\MapTp.csproj", "{E3F0A3C7-2B10-48AB-B280-722F2039944C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapTp", "src\MapTp\MapTp.csproj", "{E3F0A3C7-2B10-48AB-B280-722F2039944C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandRespawn", "RandRespawn\RandRespawn.csproj", "{44DF105C-3615-4B15-AE72-7835C44A3864}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandRespawn", "src\RandRespawn\RandRespawn.csproj", "{44DF105C-3615-4B15-AE72-7835C44A3864}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RainbowChat", "RainbowChat\RainbowChat.csproj", "{C62A01BB-F454-40D9-AC45-5CBA14B5E5A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RainbowChat", "src\RainbowChat\RainbowChat.csproj", "{C62A01BB-F454-40D9-AC45-5CBA14B5E5A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGive", "CGive\CGive.csproj", "{7A15E6B2-F299-4F07-8429-129119F4553C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGive", "src\CGive\CGive.csproj", "{7A15E6B2-F299-4F07-8429-129119F4553C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableGodMod", "DisableGodMod\DisableGodMod.csproj", "{5C7C65FD-E104-4BDA-B7E5-4FC1BF0D2F16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableGodMod", "src\DisableGodMod\DisableGodMod.csproj", "{5C7C65FD-E104-4BDA-B7E5-4FC1BF0D2F16}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableSurfaceProjectiles", "DisableSurfaceProjectiles\DisableSurfaceProjectiles.csproj", "{CD5A7945-D416-4DEE-8079-DF0B9B3652ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableSurfaceProjectiles", "src\DisableSurfaceProjectiles\DisableSurfaceProjectiles.csproj", "{CD5A7945-D416-4DEE-8079-DF0B9B3652ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NormalDropsBags", "NormalDropsBags\NormalDropsBags.csproj", "{D169A104-9372-4DB4-AF39-B511087885A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NormalDropsBags", "src\NormalDropsBags\NormalDropsBags.csproj", "{D169A104-9372-4DB4-AF39-B511087885A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineGiftPackage", "OnlineGiftPackage\OnlineGiftPackage.csproj", "{4348C222-7ADC-443D-BF67-CA86C5880A67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineGiftPackage", "src\OnlineGiftPackage\OnlineGiftPackage.csproj", "{4348C222-7ADC-443D-BF67-CA86C5880A67}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesBrowser", "RecipesBrowser\RecipesBrowser.csproj", "{EE9F711D-7F07-4B0A-BE1B-9331D6DF2CB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipesBrowser", "src\RecipesBrowser\RecipesBrowser.csproj", "{EE9F711D-7F07-4B0A-BE1B-9331D6DF2CB0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TownNPCHomes", "TownNPCHomes\TownNPCHomes.csproj", "{6FAF2ED2-38B1-46C7-83F1-B909D260D70E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TownNPCHomes", "src\TownNPCHomes\TownNPCHomes.csproj", "{6FAF2ED2-38B1-46C7-83F1-B909D260D70E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegionView", "RegionView\RegionView.csproj", "{41B3DE8D-F7B2-44E0-AD35-971140F49E81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegionView", "src\RegionView\RegionView.csproj", "{41B3DE8D-F7B2-44E0-AD35-971140F49E81}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noagent", "Noagent\Noagent.csproj", "{AFB08FA2-C6C6-4759-8117-E1CD44E1BCD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noagent", "src\Noagent\Noagent.csproj", "{AFB08FA2-C6C6-4759-8117-E1CD44E1BCD9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchCommands", "SwitchCommands\SwitchCommands.csproj", "{572F74CB-7DE5-45DE-AF20-71858721C9DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchCommands", "src\SwitchCommands\SwitchCommands.csproj", "{572F74CB-7DE5-45DE-AF20-71858721C9DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GolfRewards", "GolfRewards\GolfRewards.csproj", "{F291429A-188A-4245-8504-9ABA25C7EDC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GolfRewards", "src\GolfRewards\GolfRewards.csproj", "{F291429A-188A-4245-8504-9ABA25C7EDC3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressBag", "ProgressBag\ProgressBag.csproj", "{EBE99671-0F0C-4024-8761-15905EBBF786}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressBag", "src\ProgressBag\ProgressBag.csproj", "{EBE99671-0F0C-4024-8761-15905EBBF786}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermaBuff", "PermaBuff\PermaBuff.csproj", "{6008820E-E19A-4011-8314-CAEABB994834}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermaBuff", "src\PermaBuff\PermaBuff.csproj", "{6008820E-E19A-4011-8314-CAEABB994834}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataSync", "DataSync\DataSync.csproj", "{2A814EA3-5BCB-448E-85B2-936B4B6E2E4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataSync", "src\DataSync\DataSync.csproj", "{2A814EA3-5BCB-448E-85B2-936B4B6E2E4A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressRestrict", "ProgressRestrict\ProgressRestrict.csproj", "{8E0311DE-1766-4588-A790-8A21BE1769FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressRestrict", "src\ProgressRestrict\ProgressRestrict.csproj", "{8E0311DE-1766-4588-A790-8A21BE1769FB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CriticalHit", "CriticalHit\CriticalHit.csproj", "{FB53565D-8A75-4A8D-9DBA-F3F260D714CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CriticalHit", "src\CriticalHit\CriticalHit.csproj", "{FB53565D-8A75-4A8D-9DBA-F3F260D714CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacketsStop", "PacketsStop\PacketsStop.csproj", "{852705B7-607D-4591-8359-860D3DD2B6A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacketsStop", "src\PacketsStop\PacketsStop.csproj", "{852705B7-607D-4591-8359-860D3DD2B6A9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeathDrop", "DeathDrop\DeathDrop.csproj", "{7901BF97-3A58-4D80-B99F-FE9D41AB4729}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeathDrop", "src\DeathDrop\DeathDrop.csproj", "{7901BF97-3A58-4D80-B99F-FE9D41AB4729}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerPlayerLoot", "PerPlayerLoot\PerPlayerLoot.csproj", "{E1E2954F-20ED-4AA1-9922-3120D543270A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerPlayerLoot", "src\PerPlayerLoot\PerPlayerLoot.csproj", "{E1E2954F-20ED-4AA1-9922-3120D543270A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PvPer", "PvPer\PvPer.csproj", "{757ACBB0-6CDC-40C8-9A79-4C52B3479939}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PvPer", "src\PvPer\PvPer.csproj", "{757ACBB0-6CDC-40C8-9A79-4C52B3479939}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DamageStatistic", "DamageStatistic\DamageStatistic.csproj", "{386DBCE3-3B33-4CA1-97B2-B829836969A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DamageStatistic", "src\DamageStatistic\DamageStatistic.csproj", "{386DBCE3-3B33-4CA1-97B2-B829836969A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DumpTerrariaID", "DumpTerrariaID\DumpTerrariaID.csproj", "{11865290-2C16-44F3-885B-35C01F8EB7B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DumpTerrariaID", "src\DumpTerrariaID\DumpTerrariaID.csproj", "{11865290-2C16-44F3-885B-35C01F8EB7B6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdditionalPylons", "AdditionalPylons\AdditionalPylons.csproj", "{A86130C5-D9DD-4B60-9D60-666B7E8593D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdditionalPylons", "src\AdditionalPylons\AdditionalPylons.csproj", "{A86130C5-D9DD-4B60-9D60-666B7E8593D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "History", "History\History.csproj", "{8A851EF7-2B1D-4A82-A5B9-EF1A96BFE693}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "History", "src\History\History.csproj", "{8A851EF7-2B1D-4A82-A5B9-EF1A96BFE693}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invincibility", "Invincibility\Invincibility.csproj", "{17819CBB-E56C-4DD8-A762-2037F2C2C388}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invincibility", "src\Invincibility\Invincibility.csproj", "{17819CBB-E56C-4DD8-A762-2037F2C2C388}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ezperm", "Ezperm\Ezperm.csproj", "{4AB96380-C0D3-4746-87FF-D5FF0AFF1AE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ezperm", "src\Ezperm\Ezperm.csproj", "{4AB96380-C0D3-4746-87FF-D5FF0AFF1AE3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autoclear", "Autoclear\Autoclear.csproj", "{75442E3B-E8FD-4B36-BA0B-7113005E5D11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autoclear", "src\Autoclear\Autoclear.csproj", "{75442E3B-E8FD-4B36-BA0B-7113005E5D11}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EssentialsPlus", "EssentialsPlus\EssentialsPlus.csproj", "{F1D3C3A7-247D-4537-A9DE-C5988AF7EAFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EssentialsPlus", "src\EssentialsPlus\EssentialsPlus.csproj", "{F1D3C3A7-247D-4537-A9DE-C5988AF7EAFD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShowArmors", "ShowArmors\ShowArmors.csproj", "{32AA74DF-D75A-44B7-9BFD-F48BE66247CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShowArmors", "src\ShowArmors\ShowArmors.csproj", "{32AA74DF-D75A-44B7-9BFD-F48BE66247CB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VeinMiner", "VeinMiner\VeinMiner.csproj", "{BC20D582-EBEF-4FC4-832C-49EC814CF9A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VeinMiner", "src\VeinMiner\VeinMiner.csproj", "{BC20D582-EBEF-4FC4-832C-49EC814CF9A9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalPermission", "PersonalPermission\PersonalPermission.csproj", "{673A34A5-8C67-4909-885F-BD47AF0F58A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalPermission", "src\PersonalPermission\PersonalPermission.csproj", "{673A34A5-8C67-4909-885F-BD47AF0F58A4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemPreserver", "ItemPreserver\ItemPreserver.csproj", "{403509B6-B74A-4E42-A044-EDC8F31DDF6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemPreserver", "src\ItemPreserver\ItemPreserver.csproj", "{403509B6-B74A-4E42-A044-EDC8F31DDF6D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Regain", "Economics.Regain\Economics.Regain.csproj", "{A0146C0E-B33C-49F6-A8FC-94EC67193A03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Regain", "src\Economics.Regain\Economics.Regain.csproj", "{A0146C0E-B33C-49F6-A8FC-94EC67193A03}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimultaneousUseFix", "SimultaneousUseFix\SimultaneousUseFix.csproj", "{32A38583-1944-4542-8424-4427D16491FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimultaneousUseFix", "src\SimultaneousUseFix\SimultaneousUseFix.csproj", "{32A38583-1944-4542-8424-4427D16491FE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Challenger", "Challenger\Challenger.csproj", "{CAE3975F-26E7-4F0B-A5F3-DD070BA37142}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Challenger", "src\Challenger\Challenger.csproj", "{CAE3975F-26E7-4F0B-A5F3-DD070BA37142}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniGamesAPI", "MiniGamesAPI\MiniGamesAPI.csproj", "{9AFC0B04-B4DC-4BAE-9C75-F6A2D9112DA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniGamesAPI", "src\MiniGamesAPI\MiniGamesAPI.csproj", "{9AFC0B04-B4DC-4BAE-9C75-F6A2D9112DA8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildMaster", "BuildMaster\BuildMaster.csproj", "{B0BE2A00-4B6C-4170-B159-EFE5EAA175DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildMaster", "src\BuildMaster\BuildMaster.csproj", "{B0BE2A00-4B6C-4170-B159-EFE5EAA175DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "journeyUnlock", "journeyUnlock\journeyUnlock.csproj", "{5F1AE666-CFDD-4BE7-9C24-1D505BC56BAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "journeyUnlock", "src\journeyUnlock\journeyUnlock.csproj", "{5F1AE666-CFDD-4BE7-9C24-1D505BC56BAE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WikiLangPackLoader", "WikiLangPackLoader\WikiLangPackLoader.csproj", "{37CB1619-7451-41CB-91E1-8F473839631B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WikiLangPackLoader", "src\WikiLangPackLoader\WikiLangPackLoader.csproj", "{37CB1619-7451-41CB-91E1-8F473839631B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListPlugins", "ListPlugins\ListPlugins.csproj", "{9738B985-8435-4D15-ADCE-817DFDD44D0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListPlugins", "src\ListPlugins\ListPlugins.csproj", "{9738B985-8435-4D15-ADCE-817DFDD44D0C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BagPing", "BagPing\BagPing.csproj", "{F079DF85-5F24-4159-915F-01302A9F3243}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BagPing", "src\BagPing\BagPing.csproj", "{F079DF85-5F24-4159-915F-01302A9F3243}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerTools", "ServerTools\ServerTools.csproj", "{0B3404AE-F96A-4F5E-9798-1F9E77D030D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerTools", "src\ServerTools\ServerTools.csproj", "{0B3404AE-F96A-4F5E-9798-1F9E77D030D2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform", "Platform\Platform.csproj", "{3F528630-8E37-4001-BCB9-71148D841127}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform", "src\Platform\Platform.csproj", "{3F528630-8E37-4001-BCB9-71148D841127}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaiLib", "CaiLib\CaiLib.csproj", "{3B98CF6B-A295-485C-8ABC-64388BA995BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaiLib", "src\CaiLib\CaiLib.csproj", "{3B98CF6B-A295-485C-8ABC-64388BA995BE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenerateMap", "GenerateMap\GenerateMap.csproj", "{70B2E6F1-D38D-406F-BFBD-98301AE327CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenerateMap", "src\GenerateMap\GenerateMap.csproj", "{70B2E6F1-D38D-406F-BFBD-98301AE327CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestInventory", "RestInventory\RestInventory.csproj", "{C7CD581C-8521-480A-BF30-034D7537C4AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestInventory", "src\RestInventory\RestInventory.csproj", "{C7CD581C-8521-480A-BF30-034D7537C4AE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelpPlus", "HelpPlus\HelpPlus.csproj", "{B744AA76-F785-4E85-8C68-450758FD55D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelpPlus", "src\HelpPlus\HelpPlus.csproj", "{B744AA76-F785-4E85-8C68-450758FD55D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortCommand", "ShortCommand\ShortCommand.csproj", "{BA90E5D8-66F8-4340-8D03-FB8A8CC907AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortCommand", "src\ShortCommand\ShortCommand.csproj", "{BA90E5D8-66F8-4340-8D03-FB8A8CC907AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTEntryBlock", "DTEntryBlock\DTEntryBlock.csproj", "{1486C0F5-9A7D-4530-B73F-4D1938F0B083}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTEntryBlock", "src\DTEntryBlock\DTEntryBlock.csproj", "{1486C0F5-9A7D-4530-B73F-4D1938F0B083}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaiBot", "CaiBot\CaiBot.csproj", "{78EA1806-A757-47F3-A1C5-DF2FC3B8288B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaiBot", "src\CaiBot\CaiBot.csproj", "{78EA1806-A757-47F3-A1C5-DF2FC3B8288B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseRegion", "HouseRegion\HouseRegion.csproj", "{4FEDE121-FE96-4B51-B598-0CDD3C5AA078}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseRegion", "src\HouseRegion\HouseRegion.csproj", "{4FEDE121-FE96-4B51-B598-0CDD3C5AA078}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignInSign", "SignInSign\SignInSign.csproj", "{9B4C08E6-144E-40D5-9B3D-344011BA7DF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignInSign", "src\SignInSign\SignInSign.csproj", "{9B4C08E6-144E-40D5-9B3D-344011BA7DF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeaponPlus", "WeaponPlusCostCoin\WeaponPlus.csproj", "{D860EB42-E6F5-4991-8F2D-DB84FBD6BA1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeaponPlus", "src\WeaponPlusCostCoin\WeaponPlus.csproj", "{D860EB42-E6F5-4991-8F2D-DB84FBD6BA1D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Projectile", "Economics.Projectile\Economics.Projectile.csproj", "{1F11D206-B4CE-430B-A8BD-6D7C93BC4C8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Projectile", "src\Economics.Projectile\Economics.Projectile.csproj", "{1F11D206-B4CE-430B-A8BD-6D7C93BC4C8F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.NPC", "Economics.NPC\Economics.NPC.csproj", "{40542E99-97E7-4A2F-A7FA-4405CAAF0967}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.NPC", "src\Economics.NPC\Economics.NPC.csproj", "{40542E99-97E7-4A2F-A7FA-4405CAAF0967}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Task", "Economics.Task\Economics.Task.csproj", "{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Task", "src\Economics.Task\Economics.Task.csproj", "{6ECBE2E4-E080-4701-BE0A-BC1094D3E7D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RolesModifying", "RolesModifying\RolesModifying.csproj", "{12D5F858-3716-4BD7-ACD0-141D926E7E63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RolesModifying", "src\RolesModifying\RolesModifying.csproj", "{12D5F858-3716-4BD7-ACD0-141D926E7E63}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.WeaponPlus", "Economics.WeaponPlus\Economics.WeaponPlus.csproj", "{AEAC4C0B-7400-4E04-BCBD-D5357FAF0D5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.WeaponPlus", "src\Economics.WeaponPlus\Economics.WeaponPlus.csproj", "{AEAC4C0B-7400-4E04-BCBD-D5357FAF0D5C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Respawn", "Respawn\Respawn.csproj", "{E4792205-8095-4333-AFE7-79B64CD02935}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Respawn", "src\Respawn\Respawn.csproj", "{E4792205-8095-4333-AFE7-79B64CD02935}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndureBoost", "EndureBoost\EndureBoost.csproj", "{B7ED7F50-82BB-4865-B338-041871A33E42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndureBoost", "src\EndureBoost\EndureBoost.csproj", "{B7ED7F50-82BB-4865-B338-041871A33E42}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnouncementBoxPlus", "AnnouncementBoxPlus\AnnouncementBoxPlus.csproj", "{BD2B4C70-4026-4355-AAB2-1622F7ACA0D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnouncementBoxPlus", "src\AnnouncementBoxPlus\AnnouncementBoxPlus.csproj", "{BD2B4C70-4026-4355-AAB2-1622F7ACA0D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleSql", "ConsoleSql\ConsoleSql.csproj", "{E256745D-5ADA-4F89-886D-7FE3DAAAF6F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleSql", "src\ConsoleSql\ConsoleSql.csproj", "{E256745D-5ADA-4F89-886D-7FE3DAAAF6F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressControls", "ProgressControls\ProgressControls.csproj", "{34DCF4B3-6541-4CD8-81C5-3364E676BC86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressControls", "src\ProgressControls\ProgressControls.csproj", "{34DCF4B3-6541-4CD8-81C5-3364E676BC86}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTime", "RealTime\RealTime.csproj", "{D76BDE0A-9491-468C-99E6-B5FC82927F01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTime", "src\RealTime\RealTime.csproj", "{D76BDE0A-9491-468C-99E6-B5FC82927F01}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goodnight", "GoodNight\Goodnight.csproj", "{520927A7-8935-4D71-B6BF-E23F714DE7BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodNight", "src\GoodNight\GoodNight.csproj", "{520927A7-8935-4D71-B6BF-E23F714DE7BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicPlayer", "musicplayer\MusicPlayer.csproj", "{57C04DD8-4DAE-42AE-BC48-E1D41152321E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicPlayer", "src\MusicPlayer\MusicPlayer.csproj", "{57C04DD8-4DAE-42AE-BC48-E1D41152321E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimerKeeper", "TimerKeeper\TimerKeeper.csproj", "{5F5D175C-F0EF-44E0-B5C4-7C9CA89E01D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimerKeeper", "src\TimerKeeper\TimerKeeper.csproj", "{5F5D175C-F0EF-44E0-B5C4-7C9CA89E01D1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chameleon", "Chameleon\Chameleon.csproj", "{53CD6498-27DE-4C8C-A706-3CD2BD106D9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chameleon", "src\Chameleon\Chameleon.csproj", "{53CD6498-27DE-4C8C-A706-3CD2BD106D9E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoPluginManager", "AutoPluginManager\AutoPluginManager.csproj", "{9A3AB28D-42A7-427F-9F76-2F8398570540}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoPluginManager", "src\AutoPluginManager\AutoPluginManager.csproj", "{9A3AB28D-42A7-427F-9F76-2F8398570540}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpclPerm", "SpclPerm\SpclPerm.csproj", "{22884C3E-3B30-43ED-A98A-CB887EF53649}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpclPerm", "src\SpclPerm\SpclPerm.csproj", "{22884C3E-3B30-43ED-A98A-CB887EF53649}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonsterRegen", "MonsterRegen\MonsterRegen.csproj", "{9C2892C6-0F71-443D-9DF8-6FBF3BDCBE9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonsterRegen", "src\MonsterRegen\MonsterRegen.csproj", "{9C2892C6-0F71-443D-9DF8-6FBF3BDCBE9D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableMonsLoot", "DisableMonsLoot\DisableMonsLoot.csproj", "{98A03E00-1A75-426C-8172-3C954130EEA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableMonsLoot", "src\DisableMonsLoot\DisableMonsLoot.csproj", "{98A03E00-1A75-426C-8172-3C954130EEA1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HardPlayerDrop", "HardPlayerDrop\HardPlayerDrop.csproj", "{3FF83199-51E7-4EB9-8E76-FBB88F56E2FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HardPlayerDrop", "src\HardPlayerDrop\HardPlayerDrop.csproj", "{3FF83199-51E7-4EB9-8E76-FBB88F56E2FB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReFishTask", "ReFishTask\ReFishTask.csproj", "{BED1D24E-96FA-4EB2-9797-B65DFE79286B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReFishTask", "src\ReFishTask\ReFishTask.csproj", "{BED1D24E-96FA-4EB2-9797-B65DFE79286B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandstorm", "Sandstorm\Sandstorm.csproj", "{D037AA16-B7C0-4786-A13C-FA72851AD8E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandstorm", "src\Sandstorm\Sandstorm.csproj", "{D037AA16-B7C0-4786-A13C-FA72851AD8E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomBroadcast", "RandomBroadcast\RandomBroadcast.csproj", "{15CBEE46-0107-4C80-8CFE-97E3B4CDAC0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomBroadcast", "src\RandomBroadcast\RandomBroadcast.csproj", "{15CBEE46-0107-4C80-8CFE-97E3B4CDAC0D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BedSet", "BedSet\BedSet.csproj", "{09973E86-440F-4545-AE4C-2202958558EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BedSet", "src\BedSet\BedSet.csproj", "{09973E86-440F-4545-AE4C-2202958558EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConvertWorld", "ConvertWorld\ConvertWorld.csproj", "{D748F74C-6AD1-48EF-A180-B48B7155DF50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConvertWorld", "src\ConvertWorld\ConvertWorld.csproj", "{D748F74C-6AD1-48EF-A180-B48B7155DF50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoStoreItems", "AutoStoreItems\AutoStoreItems.csproj", "{40AED1FF-94C6-493E-87E9-80CCA39F5B9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoStoreItems", "src\AutoStoreItems\AutoStoreItems.csproj", "{40AED1FF-94C6-493E-87E9-80CCA39F5B9C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZHIPlayerManager", "ZHIPlayerManager\ZHIPlayerManager.csproj", "{10995E87-EE8A-4AF6-98E3-985D971D5C8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZHIPlayerManager", "src\ZHIPlayerManager\ZHIPlayerManager.csproj", "{10995E87-EE8A-4AF6-98E3-985D971D5C8E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpawnInfra", "SpawnInfra\SpawnInfra.csproj", "{723DB1E5-AB0B-495F-AD1C-D67142E41441}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpawnInfra", "src\SpawnInfra\SpawnInfra.csproj", "{723DB1E5-AB0B-495F-AD1C-D67142E41441}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaiRewardChest", "CaiRewardChest\CaiRewardChest.csproj", "{77E718D8-82FA-43E9-A396-04A5A9717051}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaiRewardChest", "src\CaiRewardChest\CaiRewardChest.csproj", "{77E718D8-82FA-43E9-A396-04A5A9717051}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CNPCShop", "CNPCShop\CNPCShop.csproj", "{8A6FA1CC-8299-41D0-A060-676D26594215}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CNPCShop", "src\CNPCShop\CNPCShop.csproj", "{8A6FA1CC-8299-41D0-A060-676D26594215}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SessionSentinel", "SessionSentinel\SessionSentinel.csproj", "{F863132D-5ED4-4C74-A752-342D67CEF597}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SessionSentinel", "src\SessionSentinel\SessionSentinel.csproj", "{F863132D-5ED4-4C74-A752-342D67CEF597}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeleportRequest", "TeleportRequest\TeleportRequest.csproj", "{55299CAE-C066-4768-ADF7-F9ADB34DBCD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeleportRequest", "src\TeleportRequest\TeleportRequest.csproj", "{55299CAE-C066-4768-ADF7-F9ADB34DBCD3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaiCustomEmojiCommand", "CaiCustomEmojiCommand\CaiCustomEmojiCommand.csproj", "{6F089D9D-01B1-4212-BDC6-71A1C7FFEC69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaiCustomEmojiCommand", "src\CaiCustomEmojiCommand\CaiCustomEmojiCommand.csproj", "{6F089D9D-01B1-4212-BDC6-71A1C7FFEC69}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterWhitelist", "BetterWhitelist\BetterWhitelist.csproj", "{5A3A8B24-9E4D-400C-B4DD-A1EB3EE756AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterWhitelist", "src\BetterWhitelist\BetterWhitelist.csproj", "{5A3A8B24-9E4D-400C-B4DD-A1EB3EE756AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoReset", "AutoReset\AutoReset.csproj", "{023244CF-F536-4621-9C89-6BCD0D242878}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoReset", "src\AutoReset\AutoReset.csproj", "{023244CF-F536-4621-9C89-6BCD0D242878}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin", "Yaaiomni\Core\Plugin.csproj", "{951F0545-1630-4E9B-B365-535D7FE9A845}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniPlugin", "src\Yaaiomni\Core\Plugin.csproj", "{951F0545-1630-4E9B-B365-535D7FE9A845}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Misc", "Yaaiomni\Misc\Misc.csproj", "{44B035E4-3049-4AB1-A8C1-212A427371A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniMisc", "src\Yaaiomni\Misc\Misc.csproj", "{44B035E4-3049-4AB1-A8C1-212A427371A3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourceGen", "Yaaiomni\SourceGen\SourceGen.csproj", "{0CD78DBF-DC60-4B91-B5EF-4910172547CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmniSourceGen", "src\Yaaiomni\SourceGen\SourceGen.csproj", "{0CD78DBF-DC60-4B91-B5EF-4910172547CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartRegions", "SmartRegions\SmartRegions.csproj", "{CBB56AB5-84D6-460A-8D0C-DA85A03BA811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartRegions", "src\SmartRegions\SmartRegions.csproj", "{CBB56AB5-84D6-460A-8D0C-DA85A03BA811}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxyProtocolSocket", "ProxyProtocolSocket\ProxyProtocolSocket.csproj", "{CBCF3F14-A506-435D-BC55-A06FFEB095B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxyProtocolSocket", "src\ProxyProtocolSocket\ProxyProtocolSocket.csproj", "{CBCF3F14-A506-435D-BC55-A06FFEB095B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnseenInventory", "UnseenInventory\UnseenInventory.csproj", "{5ECADACA-6DD4-47CC-BC23-A1F2A81186DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnseenInventory", "src\UnseenInventory\UnseenInventory.csproj", "{5ECADACA-6DD4-47CC-BC23-A1F2A81186DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChestRestore", "ChestRestore\ChestRestore.csproj", "{0C2924D3-41E7-417A-990D-46AEFF754662}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChestRestore", "src\ChestRestore\ChestRestore.csproj", "{0C2924D3-41E7-417A-990D-46AEFF754662}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
