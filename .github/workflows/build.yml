@@ -13,6 +13,7 @@ jobs:
         with:
           submodules: 'recursive'
           fetch-depth: 0
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
 
       - name: 初始化.NET 6
         uses: actions/setup-dotnet@v4
