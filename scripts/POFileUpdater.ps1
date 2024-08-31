@@ -6,7 +6,7 @@ foreach ($p in @(ls $PSScriptRoot/../src/*/*.csproj))  {
     }
     
     $pot = "$([System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot"))"
-    GetText.Extractor -s $p.FullName -t $pot
+    dotnet tool run GetText.Extractor -s $p.FullName -t $pot
     
     foreach ($t in @(ls "$($p.DirectoryName)/i18n/*.po"))  {
         msgmerge --previous --update $t $pot
