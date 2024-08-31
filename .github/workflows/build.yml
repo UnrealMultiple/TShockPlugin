@@ -30,20 +30,18 @@ jobs:
       
       - name: 生成POT
         continue-on-error: true
-        shell: pwsh
         # if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
         run: |
-          icacls "scripts/POFileUpdater.ps1" /grant "%username%:(OI)(CI)F"
-          scripts/POFileUpdater.ps1 -Model auto
+          sudo scripts/POFileUpdater.ps1 -Model auto
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          if(git diff --staged --quiet){
-              echo "跳过更新：POT无变化"
-          }else{
-              git commit -m "自动更新POT文件 [skip ci]"
+          if git diff --staged --quiet; then
+            echo "跳过更新：POT没有变化"
+          else
+            git commit -m "自动更新POT文件 [skip ci]"
             git push
-          }
+          fi
 
       - name: 更新子模块
         continue-on-error: true
@@ -52,12 +50,13 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          if git diff --staged --quiet; then
-            echo "跳过更新：子模块没有变化"
-          else
-            git commit -m "自动更新子模块 [skip ci]"
-            git push
-          fi
+            if git diff --staged --quiet; then
+              echo "跳过更新：子模块没有变化"
+            else
+              git commit -m "自动更新子模块 [skip ci]"
+              git push
+            fi
+
           
       - name: 构建插件
         if: github.event_name != 'push' || github.ref != 'refs/heads/master'
