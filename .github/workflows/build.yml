@@ -13,6 +13,7 @@ jobs:
         with:
           submodules: 'recursive'
           fetch-depth: 0
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
 
       - name: 初始化.NET 6
         uses: actions/setup-dotnet@v4
@@ -121,7 +122,8 @@ jobs:
           name: "最新版本"
           body: |
             # 插件下载和更新日志
-            ###  📅 每次仓库更新，我们都会在这里发布最新的Release。请注意，这个仓库只有一个Release，所以你总是能在这里找到最新的版本。\n### 📖文档已经以PDF的形式附在插件包中。更推荐你直接在仓库主页中的[插件列表](https://github.com/UnrealMultiple/TShockPlugin?tab=readme-ov-file#%E5%B7%B2%E6%94%B6%E9%9B%86%E6%8F%92%E4%BB%B6)，点击插件名跳转到每个插件的详细文档。
+            ###  📅 每次仓库更新，我们都会在这里发布最新的Release。请注意，这个仓库只有一个Release，所以你总是能在这里找到最新的版本。
+            ###  📖文档已经以PDF的形式附在插件包中。更推荐你直接在仓库主页中的[插件列表](https://github.com/UnrealMultiple/TShockPlugin?tab=readme-ov-file#%E5%B7%B2%E6%94%B6%E9%9B%86%E6%8F%92%E4%BB%B6)，点击插件名跳转到每个插件的详细文档。
             ###  📦 你可以在页面的`最底部↓↓↓`找到插件包的下载链接。下载完成后，你需要使用`ZIP压缩工具`进行解压。
             > [!CAUTION]
             >**请你`详细`的看`上面的说明`，不要到处问`插件怎么用`、`ZIP如何解压`、`PDF怎么打开`**
