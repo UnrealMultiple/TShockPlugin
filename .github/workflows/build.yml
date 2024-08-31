@@ -33,7 +33,7 @@ jobs:
         continue-on-error: true
         # if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
         run: |
-          sudo python scripts/POFileUpdater.py model auto
+          sudo python scripts/POFileUpdater.py auto
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
