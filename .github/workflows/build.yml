@@ -33,16 +33,16 @@ jobs:
         shell: pwsh
         # if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
         run: |
-          src/scripts/POFileUpdater.ps1 -Model auto
+          scripts/POFileUpdater.ps1 -Model auto
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          if git diff --staged --quiet; then
-            echo "跳过更新：POT无变化"
-          else
-            git commit -m "自动更新POT文件 [skip ci]"
+          if(git diff --staged --quiet){
+              echo "跳过更新：POT无变化"
+          }else{
+              git commit -m "自动更新POT文件 [skip ci]"
             git push
-          fi
+          }
 
       - name: 更新子模块
         continue-on-error: true
