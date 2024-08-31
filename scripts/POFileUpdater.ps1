@@ -6,8 +6,11 @@ param(
 )
 
 foreach ($p in @(ls $PSScriptRoot/../src/*/*.csproj))  {
-    if (-not (Test-Path -Path "$($p.DirectoryName)/i18n" -PathType Container)) {
-        continue
+    $I18nPath = "$($p.DirectoryName)/i18n"
+    if (-not (Test-Path -Path $I18nPath -PathType Container)) {
+        if($Model -eq "auto"){
+            New-Item -ItemType Directory -Path $I18nPath
+        }
     }
     
     $pot = "$([System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot"))"
