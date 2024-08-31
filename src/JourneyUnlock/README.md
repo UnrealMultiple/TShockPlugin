@@ -1,4 +1,4 @@
-# journeyUnlock 解锁旅途物品
+# JourneyUnlock 解锁旅途物品
 
 - 作者: Maxthegreat99，肝帝熙恩汉化
 - 出处: [github](https://github.com/Maxthegreat99/journeyUnlock)
@@ -7,6 +7,8 @@
 ## 更新日志
 
 ```
+v1.0.0.2
+只是改大写名字而已
 v1.0.1.1
 补全卸载函数
 ```
