@@ -4,9 +4,9 @@
 - 出处: [github](https://github.com/Olink/SongPlayer) 远古仓库
 - 装上插件会在Tshock文件夹下生成一个Songs文件夹，里面放音乐文件
 - 通过读取音高文件，使用竖琴/铃铛/吉他模拟播放音乐，也就是参数：harp，bell，theaxe
-- 提供了[简易转换脚本](https://github.com/THEXN/TShockPlugin/blob/master/musicplayer/sample_converter.py)
-- 和[便捷exe工具](https://github.com/THEXN/TShockPlugin/blob/master/musicplayer/sample_converter.exe)，将mid文件拖动到便捷exe上即可转换
-- 你也可以自己手搓,这里有[示范音乐转换文件（mid），和成品文件](https://github.com/THEXN/TShockPlugin/tree/master/musicplayer/%E7%A4%BA%E4%BE%8B%E6%AD%8C%E6%9B%B2)
+- 提供了[简易转换脚本](https://github.com/UnrealMultiple/TShockPlugin/blob/master/src/MusicPlayer/sample_converter.py)
+- 和[便捷exe工具](https://github.com/UnrealMultiple/TShockPlugin/blob/master/src/MusicPlayer/sample_converter.exe)，将mid文件拖动到便捷exe上即可转换
+- 你也可以自己手搓,这里有[示范音乐转换文件（mid），和成品文件](https://github.com/UnrealMultiple/TShockPlugin/tree/master/src/MusicPlayer/demo)
 - 不推荐过高音和过低音，泰拉本身不支持，音高范围为C4-C6，转换的时候并不会对该范围内的音高进行改动，保留且使用时不播放外围的音高
 - 只能播放非常简单的音乐，音轨越少越好，起伏越好，将常规mp3转换成mid再转换成本插件可用格式基本不可行，建议寻找专用的midi网站获取midi，或者自己扒谱
 
