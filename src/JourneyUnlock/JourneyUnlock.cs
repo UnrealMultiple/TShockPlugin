@@ -5,7 +5,7 @@ using Terraria.Net;
 using TerrariaApi.Server;
 using TShockAPI;
 
-namespace journeyUnlock;
+namespace JourneyUnlock;
 
 [ApiVersion(2, 1)]
 public class journeyUnlock : TerrariaPlugin
