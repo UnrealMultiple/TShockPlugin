@@ -5,20 +5,20 @@ using Terraria.Net;
 using TerrariaApi.Server;
 using TShockAPI;
 
-namespace journeyUnlock;
+namespace JourneyUnlock;
 
 [ApiVersion(2, 1)]
-public class journeyUnlock : TerrariaPlugin
+public class JourneyUnlock : TerrariaPlugin
 {
     public override string Author => "Maxthegreat99，肝帝熙恩汉化";
 
     public override string Description => "允许您为旅途中的角色解锁所有或特定物品";
 
-    public override string Name => "journeyUnlock";
+    public override string Name => "JourneyUnlock";
 
-    public override Version Version => new(1, 0, 1, 1);
+    public override Version Version => new(1, 0, 1, 2);
 
-    public journeyUnlock(Main game) : base(game)
+    public JourneyUnlock(Main game) : base(game)
     {
     }
 
