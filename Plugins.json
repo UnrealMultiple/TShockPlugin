@@ -169,7 +169,7 @@
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "Cjx修改，肝帝熙恩简单修改",
     "Description": "无限宝箱插件",
     "Path": "ChestRestore.dll"
@@ -336,11 +336,11 @@
     "Path": "ItemPreserver.dll"
   },
   {
-    "Name": "journeyUnlock",
-    "Version": "1.0.1.1",
+    "Name": "JourneyUnlock",
+    "Version": "1.0.1.2",
     "Author": "Maxthegreat99，肝帝熙恩汉化",
     "Description": "允许您为旅途中的角色解锁所有或特定物品",
-    "Path": "journeyUnlock.dll"
+    "Path": "JourneyUnlock.dll"
   },
   {
     "Name": "LifemaxExtra",
