@@ -9,14 +9,14 @@ namespace VeinMiner;
 public class VeinMiner : TerrariaPlugin
 {
     public override string Name => "VeinMiner";
-    public override Version Version => new Version(1, 6, 0, 4);
+    public override Version Version => new Version(1, 6, 0, 5);
     public override string Author => "Megghy|YSpoof|Maxthegreat99|肝帝熙恩";
     public override string Description => "VeinMiner by Megghy 适用于 TShock 5.2 支持！";
 
-    internal static Config Config = new();
+    internal static Config Config = new ();
+
     public VeinMiner(Main game) : base(game)
     {
-
     }
 
     public override void Initialize()
@@ -24,19 +24,19 @@ public class VeinMiner : TerrariaPlugin
         Config.Load();
         Commands.ChatCommands.Add(new Command(
             permissions: "veinminer",
-            cmd: delegate (CommandArgs args)
+            cmd: delegate(CommandArgs args)
             {
                 var tsp = args.Player;
                 var result = tsp.GetData<VMStatus>("VeinMiner");
                 if (args.Parameters.Count >= 1)
                 {
                     result.EnableBroadcast = !result.EnableBroadcast;
-                    tsp.SendMessage($"[c/95CFA6:<VeinMiner> 挖矿消息已{(result.EnableBroadcast ? "开启" : "关闭")}].", Color.White);
+                    tsp.SendMessage(GetString($"[c/95CFA6:<VeinMiner> 挖矿消息已{(result.EnableBroadcast ? GetString("开启") : GetString("关闭"))}]."), Color.White);
                 }
                 else
                 {
                     result.Enable = !result.Enable;
-                    tsp.SendMessage($"[c/95CFA6:<VeinMiner> 已{(result.Enable ? "开启" : "关闭! | 要仅关闭挖矿消息提示请输入：/vm {任意参数}")}.]", Color.White);
+                    tsp.SendMessage(GetString($"[c/95CFA6:<VeinMiner> 已{(result.Enable ? GetString("开启") : GetString("关闭! | 要仅关闭挖矿消息提示请输入：/vm {任意参数}"))}.]"), Color.White);
                 }
             },
             "veinminer", "chain mining", "vm"));
@@ -54,6 +54,7 @@ public class VeinMiner : TerrariaPlugin
             TShockAPI.Hooks.GeneralHooks.ReloadEvent -= Config.Load;
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnPlayerJoin);
         }
+
         base.Dispose(disposing);
     }
 
@@ -71,18 +72,20 @@ public class VeinMiner : TerrariaPlugin
         }
     }
 
-    void OnTileEdit(object o, GetDataHandlers.TileEditEventArgs args)
+    void OnTileEdit(object? sender, GetDataHandlers.TileEditEventArgs args)
     {
-        if (Main.tile[args.X, args.Y] is { } tile && args.Player.HasPermission("veinminer") && Config.Enable && args.Player.GetData<VMStatus>("VeinMiner").Enable && Config.Tile.Contains(tile.type) && args.Action == GetDataHandlers.EditAction.KillTile && args.EditData == 0)
+        if (Main.tile[args.X, args.Y] is not { } tile || !args.Player.HasPermission("veinminer") || !Config.Enable || !args.Player.GetData<VMStatus>("VeinMiner").Enable || !Config.Tile.Contains(tile.type) || args.Action != GetDataHandlers.EditAction.KillTile || args.EditData != 0)
         {
-            args.Handled = true;
-            this.Mine(args.Player, args.X, args.Y, tile.type);
+            return;
         }
+
+        args.Handled = true;
+        this.Mine(args.Player, args.X, args.Y, tile.type);
     }
 
     void Mine(TSPlayer plr, int x, int y, int type)
     {
-        var list = GetVein(new(), x, y, type).Result;
+        var list = GetVein(new (), x, y, type);
         var count = list.Count;
         var item = Utils.GetItemFromTile(x, y);
         var mineableList = new List<Point>();
@@ -112,22 +115,19 @@ public class VeinMiner : TerrariaPlugin
                         e.Item.ForEach(ex => plr.GiveItem(ex.Key, ex.Value));
                         if (e.OnlyGiveItem)
                         {
-                            KillTileAndSend(list, true);
+                            mineCount = KillTileAndSend(list, true);
                         }
                         else
                         {
                             GiveItem();
                         }
 
-                        plr.SendMessage($"[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {mineCount} {(item.type == 0 ? "未知" : item.Name)}].", Color.White);
+                        plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {mineCount} {(item.type == 0 ? GetString("未知") : item.Name)}]."), Color.White);
                         return;
                     }
-                    else
-                    {
-                        plr.SendInfoMessage($"[c/95CFA6:<VeinMiner>] 背包已满，还需空位：[c/95CFA6:{e.Item.Count}] .");
-                        plr.SendTileSquareCentered(x, y, 1);
-                        return;
-                    }
+
+                    plr.SendInfoMessage(GetString($"[c/95CFA6:<VeinMiner>] 背包已满，还需空位：[c/95CFA6:{e.Item.Count}] ."));
+                    plr.SendTileSquareCentered(x, y, 1);
                 });
             }
             else
@@ -141,71 +141,80 @@ public class VeinMiner : TerrariaPlugin
                 {
                     if (plr.IsSpaceEnough(item.netID, mineCount))
                     {
+                        mineCount = KillTileAndSend(list, true);
                         plr.GiveItem(item.netID, mineCount);
-                        KillTileAndSend(list, true);
+
                     }
                     else
                     {
                         WorldGen.KillTile(x, y);
-                        plr.SendInfoMessage($"[c/95CFA6:<VeinMiner>] 背包已满，需额外空位：[c/95CFA6:{mineCount}] 以放入 [c/95CFA6:{item.Name}] .");
+                        plr.SendInfoMessage(GetString($"[c/95CFA6:<VeinMiner>] 背包已满，需额外空位：[c/95CFA6:{mineCount}] 以放入 [c/95CFA6:{item.Name}] ."));
                     }
                 }
                 else
                 {
-                    KillTileAndSend(list, false);
+                    mineCount = KillTileAndSend(list, false);
                 }
 
                 if (plr.GetData<VMStatus>("VeinMiner").EnableBroadcast && Config.Broadcast && mineCount > 1)
                 {
-                    plr.SendMessage($"[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{mineCount} {(item.type == 0 ? "未知" : item.Name)}].", Color.White);
+                    plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{mineCount} {(item.type == 0 ? "未知" : item.Name)}]."), Color.White);
                 }
             }
         }
         else if (count > 0)
         {
-            plr.SendMessage($"[c/95CFA6:<VeinMiner>] 无法挖取矿石，可能是因为矿石上方有不可破坏的物体.", Color.White);
+            plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 无法挖取矿石，可能是因为矿石上方有不可破坏的物体."), Color.White);
         }
     }
 
-    public static void KillTileAndSend(List<Point> list, bool noItem)
+    public static int KillTileAndSend(List<Point> list, bool noItem)
     {
-        Task.Run(() =>
+        if (!list.Any())
         {
-            if (!list.Any())
+            return 0;
+        }
+
+        int killCount = 0;
+        list.ForEach(p =>
+        {
+            WorldGen.KillTile(p.X, p.Y, false, false, noItem);
+            NetMessage.SendData(17, -1, -1, null, 4, p.X, p.Y, false.GetHashCode());
+        });
+        list.ForEach(p =>
+        {
+
+            ITile tile = Main.tile[p.X, p.Y];
+            if (tile == null || !tile.active())
             {
-                return;
+                killCount++;
             }
 
-            list.ForEach(p =>
-            {
-                WorldGen.KillTile(p.X, p.Y, false, false, noItem);
-                NetMessage.SendData(17, -1, -1, null, 4, p.X, p.Y, false.GetHashCode());
-            });
         });
+        return killCount;
     }
 
-    public static Task<List<Point>> GetVein(List<Point> list, int x, int y, int type)
+    public static List<Point> GetVein(List<Point> list, int x, int y, int type)
     {
-        return Task.Run(() =>
-        {
-            if (!list.Any(p => p.Equals(new Point(x, y))) && Main.tile[x, y] is { } tile && tile.active() && tile.type == type)
-            {
-                if (list.Count > 5000)
-                {
-                    return list;
-                }
 
-                list.Add(new(x, y));
-                list = GetVein(list, x + 1, y, type).Result;
-                list = GetVein(list, x - 1, y, type).Result;
-                list = GetVein(list, x, y + 1, type).Result;
-                list = GetVein(list, x, y - 1, type).Result;
-                list = GetVein(list, x + 1, y + 1, type).Result;
-                list = GetVein(list, x + 1, y - 1, type).Result;
-                list = GetVein(list, x - 1, y + 1, type).Result;
-                list = GetVein(list, x - 1, y - 1, type).Result;
+        if (!list.Any(p => p.Equals(new Point(x, y))) && Main.tile[x, y] is { } tile && tile.active() && tile.type == type)
+        {
+            if (list.Count > 5000)
+            {
+                return list;
             }
-            return list;
-        });
+
+            list.Add(new (x, y));
+            list = GetVein(list, x + 1, y, type);
+            list = GetVein(list, x - 1, y, type);
+            list = GetVein(list, x, y + 1, type);
+            list = GetVein(list, x, y - 1, type);
+            list = GetVein(list, x + 1, y + 1, type);
+            list = GetVein(list, x + 1, y - 1, type);
+            list = GetVein(list, x - 1, y + 1, type);
+            list = GetVein(list, x - 1, y - 1, type);
+        }
+
+        return list;
     }
 }

@@ -29,13 +29,13 @@ public class Config
             VeinMiner.Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Path.Combine(TShock.SavePath, "VeinMiner.json")));
             if (args != null)
             {
-                TShock.Log.ConsoleInfo($"<VeinMiner> 配置已重新加载。");
+                TShock.Log.ConsoleInfo(GetString("<VeinMiner> 配置已重新加载。"));
             }
         }
         catch (Exception ex)
         {
             TShock.Log.Error(ex.Message);
-            TShock.Log.ConsoleError("<VeinMiner> 读取配置文件失败。");
+            TShock.Log.ConsoleError(GetString("<VeinMiner> 读取配置文件失败。"));
         }
     }
 
