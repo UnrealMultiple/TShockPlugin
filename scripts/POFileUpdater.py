@@ -9,6 +9,7 @@ if __name__ == '__main__':
         i18n_dir = csproj.parent / 'i18n'
         if not i18n_dir.is_dir():
             if model == "auto":
+                print(f"创建{i18n_dir.name}")
                 i18n_dir.mkdir()
             else:
                 continue
