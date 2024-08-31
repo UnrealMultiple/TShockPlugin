@@ -10,6 +10,8 @@ foreach ($p in @(ls $PSScriptRoot/../src/*/*.csproj))  {
     if (-not (Test-Path -Path $I18nPath -PathType Container)) {
         if($Model -eq "auto"){
             New-Item -ItemType Directory -Path $I18nPath
+        }else{
+            continue
         }
     }
     
