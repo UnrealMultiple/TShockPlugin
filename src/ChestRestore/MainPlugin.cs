@@ -12,14 +12,14 @@ public class MainPlugin : TerrariaPlugin
     {
     }
     public override string Name => "ChestRestore";
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
     public override string Author => "Cjx修改，肝帝熙恩简单修改";
     public override string Description => "无限宝箱插件";
 
     public override void Initialize()
     {
-        ServerApi.Hooks.NetGetData.Register(this, this.OnGetData);
-        GetDataHandlers.ChestOpen += this.OnChestOpen;
+        ServerApi.Hooks.NetGetData.Register(this, OnGetData);
+        GetDataHandlers.ChestOpen += OnChestOpen;
     }
     private void OnChestOpen(object sender, GetDataHandlers.ChestOpenEventArgs args)
     {
@@ -54,17 +54,28 @@ public class MainPlugin : TerrariaPlugin
     {
         if (args.MsgID == PacketTypes.ChestOpen)
         {
+            TSPlayer tsplayer = TShock.Players[args.Msg.whoAmI];
+
+            if (tsplayer == null)
+            {
+                return; 
+            }
+
+            if (args.Length > 7 && !tsplayer.HasPermission("chestopen.name"))
+            {
+                args.Msg.readBuffer[args.Index + 6] = 0;
+            }
+
             using (var binaryReader = new BinaryReader(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length)))
             {
-                var tsplayer = TShock.Players[args.Msg.whoAmI];
-                int num = binaryReader.ReadInt16();
-                var num2 = Chest.FindChest(tsplayer.GetData<int>("chestx"), tsplayer.GetData<int>("chesty"));
+                int chestId = binaryReader.ReadInt16();
+                var chestIndex = Chest.FindChest(tsplayer.GetData<int>("chestx"), tsplayer.GetData<int>("chesty"));
                 Chest chest = null;
-                if (num2 != -1)
+                if (chestIndex != -1)
                 {
-                    chest = Main.chest[num2];
+                    chest = Main.chest[chestIndex];
                 }
-                if (num == -1 && chest != null)
+                if (chestId == -1 && chest != null)
                 {
                     var list = JsonConvert.DeserializeObject<List<NetItem>>(tsplayer.GetData<string>("chestrestore"));
                     for (var i = 0; i < chest.item.Length; i++)
@@ -73,7 +84,7 @@ public class MainPlugin : TerrariaPlugin
                         item.netDefaults(list[i].NetId);
                         item.stack = list[i].Stack;
                         item.prefix = list[i].PrefixId;
-                        TSPlayer.All.SendData(PacketTypes.ChestItem, "", num2, (float) i, 0f, 0f, 0);
+                        TSPlayer.All.SendData(PacketTypes.ChestItem, "", chestIndex, i, 0f, 0f, 0);
                     }
                     tsplayer.SetData("chestrestore", "");
                     tsplayer.SetData("chestx", 0);
@@ -82,12 +93,13 @@ public class MainPlugin : TerrariaPlugin
             }
         }
     }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            ServerApi.Hooks.NetGetData.Deregister(this, this.OnGetData);
-            GetDataHandlers.ChestOpen -= this.OnChestOpen;
+            ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
+            GetDataHandlers.ChestOpen -= OnChestOpen;
         }
         base.Dispose(disposing);
     }

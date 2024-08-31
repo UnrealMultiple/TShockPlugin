@@ -540,7 +540,7 @@ After:
         return asm.GetManifestResourceInfo(moFilePath) == null ? new Catalog() : new Catalog(asm.GetManifestResourceStream(moFilePath));
 */
 
-/* Unmerged change from project 'journeyUnlock'
+/* Unmerged change from project 'JourneyUnlock'
 Before:
         if (asm.GetManifestResourceInfo(moFilePath) == null)
             return new Catalog();
