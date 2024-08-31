@@ -8,7 +8,7 @@ for proj in $(dirname $0)/../src/*/*.csproj; do
 
   pushd $(dirname $proj) > /dev/null
 
-  GetText.Extractor -s ./ -t i18n/template.pot
+  dotnet tool run GetText.Extractor -s ./ -t i18n/template.pot
   
   for pofile in ./i18n/*.po; do
     msgmerge --previous --update $pofile i18n/template.pot
