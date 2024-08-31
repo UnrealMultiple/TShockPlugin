@@ -54,26 +54,23 @@ public class MainPlugin : TerrariaPlugin
     {
         if (args.MsgID == PacketTypes.ChestOpen)
         {
-            // 获取当前玩家对象
             TSPlayer tsplayer = TShock.Players[args.Msg.whoAmI];
 
-            // 检查消息长度是否大于7，并且玩家是否没有打开箱子的权限
             if (args.Length > 7 && !tsplayer.HasPermission("chestopen.name"))
             {
-                // 修改消息的readBuffer，阻止玩家打开箱子
                 args.Msg.readBuffer[args.Index + 6] = 0;
             }
 
             using (var binaryReader = new BinaryReader(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length)))
             {
-                int num = binaryReader.ReadInt16();
-                var num2 = Chest.FindChest(tsplayer.GetData<int>("chestx"), tsplayer.GetData<int>("chesty"));
+                int chestId = binaryReader.ReadInt16();
+                var chestIndex = Chest.FindChest(tsplayer.GetData<int>("chestx"), tsplayer.GetData<int>("chesty"));
                 Chest chest = null;
-                if (num2 != -1)
+                if (chestIndex != -1)
                 {
-                    chest = Main.chest[num2];
+                    chest = Main.chest[chestIndex];
                 }
-                if (num == -1 && chest != null)
+                if (chestId == -1 && chest != null)
                 {
                     var list = JsonConvert.DeserializeObject<List<NetItem>>(tsplayer.GetData<string>("chestrestore"));
                     for (var i = 0; i < chest.item.Length; i++)
@@ -82,7 +79,7 @@ public class MainPlugin : TerrariaPlugin
                         item.netDefaults(list[i].NetId);
                         item.stack = list[i].Stack;
                         item.prefix = list[i].PrefixId;
-                        TSPlayer.All.SendData(PacketTypes.ChestItem, "", num2, i, 0f, 0f, 0);
+                        TSPlayer.All.SendData(PacketTypes.ChestItem, "", chestIndex, i, 0f, 0f, 0);
                     }
                     tsplayer.SetData("chestrestore", "");
                     tsplayer.SetData("chestx", 0);
