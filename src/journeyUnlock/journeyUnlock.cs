@@ -14,9 +14,9 @@ public class JourneyUnlock : TerrariaPlugin
 
     public override string Description => "允许您为旅途中的角色解锁所有或特定物品";
 
-    public override string Name => "journeyUnlock";
+    public override string Name => "JourneyUnlock";
 
-    public override Version Version => new(1, 0, 1, 1);
+    public override Version Version => new(1, 0, 1, 2);
 
     public JourneyUnlock(Main game) : base(game)
     {
