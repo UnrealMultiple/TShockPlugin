@@ -4,7 +4,7 @@ import subprocess
 import sys
 
 if __name__ == '__main__':
-    model = sys.argv[0]
+    model = sys.argv[1]
     for csproj in [Path(x) for x in glob.glob(str(Path(sys.argv[0]).parent.parent) + '/src/*/*.csproj')]:
         i18n_dir = csproj.parent / 'i18n'
         if not i18n_dir.is_dir():
