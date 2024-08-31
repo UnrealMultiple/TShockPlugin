@@ -8,7 +8,7 @@ using TShockAPI;
 namespace journeyUnlock;
 
 [ApiVersion(2, 1)]
-public class journeyUnlock : TerrariaPlugin
+public class JourneyUnlock : TerrariaPlugin
 {
     public override string Author => "Maxthegreat99，肝帝熙恩汉化";
 
@@ -18,7 +18,7 @@ public class journeyUnlock : TerrariaPlugin
 
     public override Version Version => new(1, 0, 1, 1);
 
-    public journeyUnlock(Main game) : base(game)
+    public JourneyUnlock(Main game) : base(game)
     {
     }
 

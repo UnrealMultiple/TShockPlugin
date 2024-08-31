@@ -114,7 +114,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniGamesAPI", "src\MiniGam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildMaster", "src\BuildMaster\BuildMaster.csproj", "{B0BE2A00-4B6C-4170-B159-EFE5EAA175DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "journeyUnlock", "src\journeyUnlock\journeyUnlock.csproj", "{5F1AE666-CFDD-4BE7-9C24-1D505BC56BAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JourneyUnlock", "src\journeyUnlock\JourneyUnlock.csproj", "{5F1AE666-CFDD-4BE7-9C24-1D505BC56BAE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WikiLangPackLoader", "src\WikiLangPackLoader\WikiLangPackLoader.csproj", "{37CB1619-7451-41CB-91E1-8F473839631B}"
 EndProject
