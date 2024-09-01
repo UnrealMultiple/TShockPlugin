@@ -9,8 +9,8 @@ namespace Autoclear;
 public class Autoclear : TerrariaPlugin
 {
     public override string Author => "大豆子[Mute适配1447]，肝帝熙恩更新";
-    public override string Description => GetString("智能扫地机");
-    public override string Name => GetString("智能自动扫地");
+    public override string Description => "智能扫地机";
+    public override string Name => "智能自动扫地";
     public override Version Version => new Version(1, 0, 3);
     public static Configuration Config;
     private bool _sweepScheduled = false;

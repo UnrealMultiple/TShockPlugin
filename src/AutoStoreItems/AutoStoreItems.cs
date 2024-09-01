@@ -11,7 +11,7 @@ public class AutoStoreItems : TerrariaPlugin
 {
 
     #region 插件信息
-    public override string Name => GetString("自动存储");
+    public override string Name => "自动存储";
     public override string Author => "羽学 cmgy雱";
     public override Version Version => new Version(1, 2, 4);
     public override string Description => "涡轮增压不蒸鸭";

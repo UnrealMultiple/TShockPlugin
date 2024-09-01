@@ -11,13 +11,13 @@ namespace AutoPluginManager;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public override string Name => GetString("AutoPluginManager");
+    public override string Name => "AutoPluginManager";
 
     public override Version Version => new(2, 0, 1, 3);
 
     public override string Author => "少司命，Cai";
 
-    public override string Description => GetString("自动更新你的插件！");
+    public override string Description => "自动更新你的插件！";
 
     private const string GiteeReleaseUrl = "https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
 
