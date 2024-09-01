@@ -107,7 +107,7 @@ jobs:
           allowUpdates: true
           removeArtifacts: true
 
-      - name: 更新
+      - name: 更新相关文件
         continue-on-error: true
         shell: pwsh
         if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
@@ -143,3 +143,10 @@ jobs:
             git commit -m "自动更新$($Changed -Join ", ") [skip ci]"
             git push
           }
+
+      - name: 同步Gitee
+        continue-on-error: true
+        shell: pwsh
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        run: |
+          python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}

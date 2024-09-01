@@ -20,17 +20,17 @@ jobs:
     - name: 安装beautifulsoup4
       run: |
         sudo pip install beautifulsoup4
-        
+
     - name: 更新论坛
       continue-on-error: true
       env:
         PYTHONIOENCODING: 'utf-8'
       run: 
-       sudo python scripts/ForumUpdate.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
-     
+        sudo python scripts/ForumUpdate.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
+
     - name: 更新论坛主文档
       continue-on-error: true
       env:
-          PYTHONIOENCODING: 'utf-8'
+        PYTHONIOENCODING: 'utf-8'
       run: 
-         sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
+        sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
