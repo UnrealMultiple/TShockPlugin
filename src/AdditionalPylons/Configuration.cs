@@ -10,21 +10,21 @@ internal class Configuration
     [JsonProperty("丛林晶塔数量上限")]
     public int JungleTowerLimit = 2;
     [JsonProperty("森林晶塔数量上限")]
-    public int ForestTowerLimit = 2;
+    public int SurfacePurityTowerLimit = 2;
     [JsonProperty("神圣晶塔数量上限")]
-    public int HolyTowerLimit = 2;
+    public int HallowTowerLimit = 2;
     [JsonProperty("洞穴晶塔数量上限")]
-    public int CaveTowerLimit = 2;
+    public int UndergroundTowerLimit = 2;
     [JsonProperty("海洋晶塔数量上限")]
-    public int OceanTowerLimit = 2;
+    public int BeachTowerLimit = 2;
     [JsonProperty("沙漠晶塔数量上限")]
     public int DesertTowerLimit = 2;
     [JsonProperty("雪原晶塔数量上限")]
     public int SnowTowerLimit = 2;
     [JsonProperty("蘑菇晶塔数量上限")]
-    public int MushroomTowerLimit = 2;
+    public int GlowingMushroomTowerLimit = 2;
     [JsonProperty("万能晶塔数量上限")]
-    public int UniversalTowerLimit = 2;
+    public int VictoryTowerLimit = 2;
 
 
     public void Write(string path)
