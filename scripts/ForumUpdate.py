@@ -7,19 +7,12 @@ import requests as rq
 result = rq.get("https://api.github.com/repos/UnrealMultiple/TShockPlugin/pulls?state=closed&per_page=1&page=1").json()
 
 
-if result[0]['merged_at'] is None:
-    print("未合并,跳过发送")
-    exit(0)
-
-        
-
 html = f'<font size="6">✅ <a href="{result[0]["html_url"]}">{result[0]["title"]}</a> ({datetime.datetime.strptime(result[0]["closed_at"], "%Y-%m-%dT%H:%M:%SZ").date()})</font>'
 # 读取用户名 密码
 name = sys.argv[1] 
 password = sys.argv[2]
 print(f"论坛自动更新脚本 (by Cai😘)")
 print(f"登录名: {name}")
-print(f"密码: {password}")
 
 
 # tr.monika.love
