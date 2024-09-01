@@ -14,7 +14,7 @@ public class BackPlugin : TerrariaPlugin
     public override string Author => "Megghy,熙恩改";
     public override string Description => "允许玩家传送回死亡地点";
     public override string Name => "BackPlugin";
-    public override Version Version => new Version(1, 0, 0, 4);
+    public override Version Version => new Version(1, 0, 0, 5);
     public static Configuration Config;
     public BackPlugin(Main game) : base(game)
     {
@@ -29,7 +29,7 @@ public class BackPlugin : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(BackPlugin).Name);
+        args.Player?.SendSuccessMessage(GetString("[Back] 重新加载配置完毕。"));
     }
     public override void Initialize()
     {
@@ -40,7 +40,7 @@ public class BackPlugin : TerrariaPlugin
 
         Commands.ChatCommands.Add(new Command("back", this.Back, "back")
         {
-            HelpText = "返回最后一次死亡的位置",
+            HelpText = GetString("返回最后一次死亡的位置"),
             AllowServer = false
         });
     }
@@ -74,32 +74,32 @@ public class BackPlugin : TerrariaPlugin
 
         if (args.Player.TPlayer.dead)
         {
-            args.Player.SendErrorMessage("你尚未复活，无法传送回死亡地点.");
+            args.Player.SendErrorMessage(GetString("你尚未复活，无法传送回死亡地点."));
         }
         else if (data != Point.Zero)
         {
             if (!this.CanUseCommand(args.Player))
             {
                 var remainingCooldown = this.GetRemainingCooldown(args.Player);
-                args.Player.SendErrorMessage($"你还需要等待 {remainingCooldown.TotalSeconds:F} 秒才能再次使用此命令.");
+                args.Player.SendErrorMessage(GetString($"你还需要等待 {remainingCooldown.TotalSeconds:F} 秒才能再次使用此命令."));
                 return;
             }
 
             try
             {
                 args.Player.Teleport(data.X, data.Y, 1);
-                args.Player.SendSuccessMessage($"已传送至死亡地点 [c/8DF9D8:<{data.X / 16} - {data.Y / 16}>].");
+                args.Player.SendSuccessMessage(GetString($"已传送至死亡地点 [c/8DF9D8:<{data.X / 16} - {data.Y / 16}>]."));
 
                 this.SetCooldown(args.Player);
             }
             catch (Exception ex)
             {
-                TShock.Log.Error($"BackPlugin: 传送玩家 {args.Player.Name} 时发生错误: {ex}");
+                TShock.Log.Error(GetString($"BackPlugin: 传送玩家 {args.Player.Name} 时发生错误: {ex}"));
             }
         }
         else
         {
-            args.Player.SendErrorMessage("你还未死亡过");
+            args.Player.SendErrorMessage(GetString("你还未死亡过"));
         }
     }
 
