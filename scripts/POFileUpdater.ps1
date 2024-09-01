@@ -9,7 +9,7 @@ foreach ($p in @(ls $PSScriptRoot/../src/*/*.csproj))  {
     $pot = "$([System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot"))"
     dotnet tool run GetText.Extractor -u -o -s $p.FullName -t $pot
     
-    $pot_diff = $(git diff --numstat $pot) -split '\t'
+    $pot_diff = $(git diff --numstat HEAD -- $pot) -split '\t'
     if ($pot_diff[0] -eq '2' -and $pot_diff[1] -eq '2') {
         echo "[$p] template.pot no diff except date changes, restoring..."
         git restore $pot

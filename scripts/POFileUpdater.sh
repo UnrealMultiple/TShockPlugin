@@ -15,7 +15,7 @@ for proj in $(dirname $0)/../src/*/*.csproj; do
     continue 
   fi
   
-  pot_diff=($(git diff --numstat i18n/template.pot))
+  pot_diff=($(git diff --numstat HEAD -- i18n/template.pot))
   if [[ ${pot_diff[0]} == '2' ]] && [[ ${pot_diff[1]} == '2' ]]; then
     echo "[$proj] template.pot no diff except date changes, restoring..."
     git restore i18n/template.pot

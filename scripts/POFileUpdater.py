@@ -24,7 +24,7 @@ if __name__ == '__main__':
         pot_file = i18n_dir / "template.pot"
         run_cmd(["dotnet", "tool", "run", "GetText.Extractor", "-u", "-o", "-s", str(csproj), "-t", str(pot_file)])
 
-        pot_diff = [x for x in run_cmd(["git", "diff", "--numstat", str(pot_file)], True).split('\t') if x != ""]
+        pot_diff = [x for x in run_cmd(["git", "diff", "--numstat", "HEAD", "--", str(pot_file)], True).split('\t') if x != ""]
         if pot_diff[0] == "2" and pot_diff[1] == "2":
             print(f"[{str(csproj)}] template.pot no diff except date changes, restoring...")
             run_cmd(["git", "restore", str(pot_file)])
