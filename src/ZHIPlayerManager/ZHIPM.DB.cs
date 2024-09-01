@@ -143,9 +143,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                TShock.Log.Error("错误：ReadZPlayerDB " + ex.ToString());
-                TSPlayer.All.SendErrorMessage("错误：ReadZPlayerDB " + ex.ToString());
-                Console.WriteLine("错误：ReadZPlayerDB " + ex.ToString());
+                TShock.Log.ConsoleError(GetString("错误：ReadZPlayerDB ") + ex);
                 return playerData;
             }
         }
@@ -217,9 +215,7 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 catch (Exception ex)
                 {
-                    TShock.Log.Error("错误：WriteZPlayerDB " + ex.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：WriteZPlayerDB " + ex.ToString());
-                    Console.WriteLine("错误：WriteZPlayerDB " + ex.ToString());
+                    TShock.Log.ConsoleError(GetString("错误：WriteZPlayerDB ") + ex);
                     return false;
                 }
             }
@@ -269,9 +265,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
             catch (Exception ex2)
             {
-                TShock.Log.Error("错误：WriteZPlayerDB 2 " + ex2.ToString());
-                TSPlayer.All.SendErrorMessage("错误：WriteZPlayerDB 2 " + ex2.ToString());
-                Console.WriteLine("错误：WriteZPlayerDB 2 " + ex2.ToString());
+                TShock.Log.ConsoleError(GetString("错误：WriteZPlayerDB 2 ") + ex2);
                 return false;
             }
         }
@@ -304,9 +298,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                TShock.Log.Error("错误：getZPlayerDBMaxSlot " + ex.ToString());
-                TSPlayer.All.SendErrorMessage("错误：getZPlayerDBMaxSlot " + ex.ToString());
-                Console.WriteLine("错误：getZPlayerDBMaxSlot " + ex.ToString());
+                TShock.Log.ConsoleError(GetString("错误：getZPlayerDBMaxSlot ") + ex);
             }
             return num;
         }
@@ -332,16 +324,14 @@ public partial class ZHIPM : TerrariaPlugin
                     {
                         this.database.Query("UPDATE " + this.tableName + " SET AccAndSlot = @0 WHERE AccAndSlot = @1;", new object[]
                         {
-                                player.Account.ID.ToString() + "-" + i.ToString(),
-                                player.Account.ID.ToString() + "-" + (i - 1).ToString()
+                                player.Account.ID + "-" + i,
+                                player.Account.ID + "-" + (i - 1)
                         });
                     }
                 }
                 catch (Exception ex)
                 {
-                    TShock.Log.Error("错误：AddZPlayerDB " + ex.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：AddZPlayerDB " + ex.ToString());
-                    Console.WriteLine("错误：AddZPlayerDB " + ex.ToString());
+                    TShock.Log.ConsoleError(GetString("错误：AddZPlayerDB ") + ex);
                     return false;
                 }
                 return this.WriteZPlayerDB(player, 1);
@@ -362,9 +352,7 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 catch (Exception ex2)
                 {
-                    TShock.Log.Error("错误：AddZPlayerDB 1 " + ex2.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：AddZPlayerDB 1 " + ex2.ToString());
-                    Console.WriteLine("错误：AddZPlayerDB 1 " + ex2.ToString());
+                    TShock.Log.ConsoleError(GetString("错误：AddZPlayerDB 1 ") + ex2.ToString());
                     return false;
                 }
                 return this.AddZPlayerDB(player);
@@ -387,9 +375,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                TShock.Log.Error("错误：ClearALLZPlayerDB " + ex.ToString());
-                TSPlayer.All.SendErrorMessage("错误：ClearALLZPlayerDB " + ex.ToString());
-                Console.WriteLine("错误：ClearALLZPlayerDB " + ex.ToString());
+                TShock.Log.Error(GetString("错误：ClearALLZPlayerDB ") + ex);
                 return false;
             }
         }
@@ -412,9 +398,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                TShock.Log.Error("错误：ClearZPlayerDB " + ex.ToString());
-                TSPlayer.All.SendErrorMessage("错误：ClearZPlayerDB " + ex.ToString());
-                Console.WriteLine("错误：ClearZPlayerDB " + ex.ToString());
+                TShock.Log.ConsoleError(GetString("错误：ClearZPlayerDB ") + ex);
                 return false;
             }
         }
@@ -498,9 +482,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                TShock.Log.Error("错误：ReadExtraDB " + ex.ToString());
-                TSPlayer.All.SendErrorMessage("错误：ReadExtraDB " + ex.ToString());
-                Console.WriteLine("错误：ReadExtraDB " + ex.ToString());
+                TShock.Log.ConsoleError(GetString("错误：ReadExtraDB ") + ex.ToString());
                 return null;
             }
         }
@@ -549,9 +531,7 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 catch (Exception ex)
                 {
-                    TShock.Log.Error("错误：WriteExtraDB " + ex.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：WriteExtraDB " + ex.ToString());
-                    Console.WriteLine("错误：WriteExtraDB " + ex.ToString());
+                    TShock.Log.Error(GetString("错误：WriteExtraDB ") + ex);
                     return false;
                 }
             }
@@ -576,9 +556,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
             catch (Exception ex2)
             {
-                TShock.Log.Error("错误：WriteExtraDB 2 " + ex2.ToString());
-                TSPlayer.All.SendErrorMessage("错误：WriteExtraDB 2 " + ex2.ToString());
-                Console.WriteLine("错误：WriteExtraDB 2 " + ex2.ToString());
+                TShock.Log.ConsoleError(GetString("错误：WriteExtraDB 2 ") + ex2);
                 return false;
             }
         }
@@ -599,9 +577,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                TShock.Log.Error("错误：ClearALLZPlayerExtraDB " + ex.ToString());
-                TSPlayer.All.SendErrorMessage("错误：ClearALLZPlayerExtraDB " + ex.ToString());
-                Console.WriteLine("错误：ClearALLZPlayerExtraDB " + ex.ToString());
+                TShock.Log.ConsoleError(GetString("错误：ClearALLZPlayerExtraDB ") + ex.ToString());
                 return false;
             }
         }
@@ -624,9 +600,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                TShock.Log.Error("错误：ClearZPlayerExtraDB " + ex.ToString());
-                TSPlayer.All.SendErrorMessage("错误：ClearZPlayerExtraDB " + ex.ToString());
-                Console.WriteLine("错误：ClearZPlayerExtraDB " + ex.ToString());
+                TShock.Log.ConsoleError(GetString("错误：ClearZPlayerExtraDB ") + ex);
                 return false;
             }
         }
@@ -700,9 +674,8 @@ public partial class ZHIPM : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                TShock.Log.Error("错误：ListAllExtraDB " + ex.ToString());
-                TSPlayer.All.SendErrorMessage("错误：ListAllExtraDB " + ex.ToString());
-                Console.WriteLine("错误：ListAllExtraDB " + ex.ToString());
+                TShock.Log.ConsoleError(GetString("错误：ListAllExtraDB ") + ex.ToString());
+                
                 return list;
             }
         }
