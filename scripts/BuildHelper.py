@@ -28,7 +28,7 @@ if __name__ == '__main__':
     print("📝 开始移动README.md...")
     cwd = os.getcwd()
     for dir_name in os.listdir(os.path.join(cwd,"src")):
-        dir_path = os.path.join(cwd, dir_name)
+        dir_path = os.path.join(cwd,'src', dir_name)
         if os.path.isdir(dir_path):
             for file_name in os.listdir(dir_path):
                 try:
