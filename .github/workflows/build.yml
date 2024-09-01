@@ -118,6 +118,7 @@ jobs:
           $Changed = [System.Object[]]::new(0)
           foreach ($p in @(Get-ChildItem src/**/*.csproj))  {
               $pot = [System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot")
+              New-Item -Path $p.DirectoryName -Name i18n -ItemType Directory
               GetText.Extractor -u -o -s $p.FullName -t $pot
               $d = $(git diff --numstat $pot).Split()
               if ($d[0] -le 2 -and $d[1] -le 2) {
