@@ -1,3 +1,4 @@
+简体中文:
 [使用说明]
 1. 本仓库所有插件都开源免费，按GNU General Public License v3.0许可授权使用。
 2. 使用插件前请详细阅读每个插件的文档(md，或在 https://tr.monika.love/resources/104/ 查看)
@@ -9,3 +10,16 @@ md: 仓库插件的READEME文件，如果没有md查看器，可以在 https://t
 LICENSE: 插件仓库的开源协议(GNU General Public License v3.0)
 Plugins.json: 插件仓库插件的版本信息，一般用于自动更新
 TShockPlugin.md: 插件仓库的文档文件，有插件列表和一些说明
+
+English:
+[Instructions]
+1. All plugins in this repository are open-source and free to use under the GNU General Public License v3.0.
+2. Please read the documentation for each plugin (md files, or view at https://tr.monika.love/resources/104/) before using the plugins.
+3. If you encounter any issues while using the latest version of the plugins from this repository, you can ask questions on GitHub through Issues.
+[File Functions]
+dll: The main plugin file, to be placed in the ServerPlugins folder.
+pdb: The plugin’s debug file, to be placed together with the dll. It provides more detailed error messages to help developers quickly locate errors.
+md: The README file for the repository plugins. If you don’t have an md viewer, you can view the documentation for each plugin in the plugin list at https://tr.monika.love/resources/104/.
+LICENSE: The open-source license for the plugin repository (GNU General Public License v3.0).
+Plugins.json: The version information for the repository plugins, generally used for automatic updates.
+TShockPlugin.md: The documentation file for the plugin repository, containing the plugin list and some instructions.
