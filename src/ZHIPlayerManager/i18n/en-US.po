@@ -1,0 +1,169 @@
+#: ..\..\ZHIPM.Initialize.cs:177
+#, csharp-format
+msgid ""
+"修改成功，你的存档将每隔{0}分钟自动备份一次，请注意存档覆盖情况，这可能会覆盖"
+"你手动备份的部分"
+msgstr ""
+"Modification successful, your save file will be automatically backed up every {0} minutes. Please pay attention to the save file overwrite situation, as this may overwrite the parts you manually backed up."
+
+#: ..\..\ZHIPM.Initialize.cs:2782 ..\..\ZHIPM.Initialize.cs:2786
+#: ..\..\ZHIPM.Initialize.cs:2790
+#, csharp-format
+msgid "用户 [{0}] 因数据错误导出失败"
+msgstr "User [{0}] failed to export due to data error."
+
+#: ..\..\ZHIPM.Initialize.cs:3255
+msgid ""
+"输入 /zsort kill [num]  来查看当前[num]个人物击杀生物数排行榜\n"
+"输入 /zsort kill  来查看人物击杀生物数排行榜前十名\n"
+"输入 /zsort kill all  来查看所有玩家击杀生物数排行榜"
+msgstr ""
+"Enter /zsort kill [num] to view the current [num] character creature kill leaderboard\n"
+"Enter /zsort kill to view the top ten character creature kill leaderboard\n"
+"Enter /zsort kill all to view the creature kill leaderboard for all players"
+
+#: ..\..\ZHIPM.Initialize.cs:2617
+msgid "你的名字含有指令关键字: ip ，请更换"
+msgstr "Your name contains the command keyword: ip, please change it."
+
+#: ..\..\ZHIPM.Initialize.cs:1293
+msgid "背包:"
+msgstr "Backpack:"
+
+#: ..\..\ZHIPM.Initialize.cs:2893
+msgid "输入 /zsort time all  来查看所有玩家在线时常排行榜"
+msgstr "Enter /zsort time all to view the online time leaderboard for all players."
+
+#: ..\..\ZHIPM.Initialize.cs:2304 ..\..\ZHIPM.Initialize.cs:2351
+msgid ""
+"输入 /zclear useless  来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n"
+"输入 /zclear buff <name>  来清理该玩家的所有Buff\n"
+"输入 /zclear buff all  来清理所有玩家所有Buff"
+msgstr ""
+"Enter /zclear useless to clean up the world's dropped items, non-town or Boss NPCs, and useless projectiles\n"
+"Enter /zclear buff <name> to clear all buffs for the player\n"
+"Enter /zclear buff all to clear all buffs for all players"
+
+#: ..\..\ZHIPM.Initialize.cs:2907
+msgid ""
+"\n"
+"输入 /zsort point [num]  来查看当前[num]个人物点数排行榜\n"
+msgstr ""
+"\n"
+"Enter /zsort point [num] to view the current [num] character point leaderboard\n"
+
+#: ..\..\ZHIPM.Initialize.cs:632
+msgid "输入 /zmodify [name] all [0或1]  来关闭或开启所有玩家增益"
+msgstr "Enter /zmodify [name] all [0 or 1] to turn off or on all player buffs."
+
+#: ..\..\ZHIPM.Initialize.cs:474 ..\..\ZHIPM.Initialize.cs:556
+msgid "玩家1不存在"
+msgstr "Player 1 does not exist."
+
+#: ..\..\ZHIPM.Initialize.cs:3960 ..\..\ZHIPM.Initialize.cs:3986
+#: ..\..\ZHIPM.Initialize.cs:4004
+#, csharp-format
+msgid "玩家 [{0}] 已解冻"
+msgstr "Player [{0}] has been unfrozen."
+
+#: ..\..\ZHIPM.Initialize.cs:621
+msgid "输入 /zmodify [name] manamax [num]  来修改玩家的魔力上限"
+msgstr "Enter /zmodify [name] manamax [num] to modify the player's mana limit."
+
+#: ..\..\ZHIPM.Initialize.cs:1101
+msgid "输入 /zresetex all  来清理所有玩家的额外数据"
+msgstr "Enter /zresetex all to clear the extra data for all players."
+
+#: ..\..\ZHIPM.Initialize.cs:53
+msgid ""
+"输入 /zclear useless  来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n"
+msgstr ""
+"Enter /zclear useless to clean up the world's dropped items, non-town or Boss NPCs, and useless projectiles\n"
+
+#: ..\..\ZHIPM.Initialize.cs:517 ..\..\ZHIPM.Initialize.cs:573
+msgid "玩家2不存在"
+msgstr "Player 2 does not exist."
+
+#: ..\..\ZHIPM.Initialize.cs:951 ..\..\ZHIPM.Initialize.cs:972
+#: ..\..\ZHIPM.Initialize.cs:994 ..\..\ZHIPM.Initialize.cs:1031
+#: ..\..\ZHIPM.Initialize.cs:1054 ..\..\ZHIPM.Initialize.cs:1076
+#: ..\..\ZHIPM.Initialize.cs:1176
+msgid "重置失败"
+msgstr "Reset failed."
+
+#: ..\..\ZHIPM.Initialize.cs:2892
+msgid "输入 /zsort time [num]  来查看当前[num]个人物在线时间排行榜"
+msgstr "Enter /zsort time [num] to view the current [num] character online time leaderboard."
+
+#: ..\..\ZHIPM.Initialize.cs:40
+msgid "输入 /vid <name>    来查看该玩家的库存，不分类\n"
+msgstr "Enter /vid <name> to view the player's inventory, unclassified\n"
+
+#: ..\..\ZHIPM.Initialize.cs:740
+msgid "您的埃癸斯果增益开启状态："
+msgstr "Your Ambrosia Fruit buff status:"
+
+#: ..\..\ZHIPM.Initialize.cs:626
+msgid "输入 /zmodify [name] heart [0或1]  来关闭或开启埃癸斯水晶增益\n"
+msgstr "Enter /zmodify [name] heart [0 or 1] to turn off or on the Ambrosia Crystal buff\n"
+
+#: ..\..\ZHIPM.Initialize.cs:1211 ..\..\ZHIPM.Initialize.cs:1212
+msgid "清理失败 ZResetPlayerAll :"
+msgstr "Cleanup failed ZResetPlayerAll:"
+
+#: ..\..\ZHIPM.Initialize.cs:787
+msgid "您的所有永久增益均开启"
+msgstr "All your permanent buffs are enabled."
+
+#: ..\..\ZHIPM.Initialize.cs:1804 ..\..\ZHIPM.Initialize.cs:1970
+msgid "在线时长[i:3099]："
+msgstr "Online duration[i:3099]:"
+
+#: ..\..\ZHIPM.Initialize.cs:1072
+#, csharp-format
+msgid "已重置离线玩家 [ {0} ] 的额外数据"
+msgstr "The extra data of the offline player [ {0} ] has been reset."
+
+#: ..\..\ZHIPM.Initialize.cs:1814 ..\..\ZHIPM.Initialize.cs:1980
+#, csharp-format
+msgid "已击杀生物数[i:3095]：{0} 个"
+msgstr "Number of creatures killed[i:3095]: {0}"
+
+#: ..\..\ZHIPM.Initialize.cs:1345
+msgid "染料2:"
+msgstr "Dye 2:"
+
+#: ..\..\ZHIPM.Initialize.cs:1172
+msgid "您的人物数据已被重置"
+msgstr "Your character data has been reset."
+
+#: ..\..\ZHIPM.Initialize.cs:2714
+msgid "未启用点数统计，该功能不可用"
+msgstr "Point statistics not enabled, this feature is not available."
+
+#: ..\..\ZHIPM.Initialize.cs:5083
+#, csharp-format
+msgid "，消耗点数 {0}"
+msgstr ", consumed points {0}"
+
+#: ..\..\ZHIPM.Initialize.cs:1049
+#, csharp-format
+msgid "已重置玩家 [ {0} ] 的额外数据"
+msgstr "The extra data of player [ {0} ] has been reset."
+
+#: ..\..\ZHIPM.Initialize.cs:36
+msgid "输入 /zclone <name1> <name2>    将玩家1的人物数据复制给玩家2\n"
+msgstr "Enter /zclone <name1> <name2> to copy player 1's character data to player 2\n"
+
+#: ..\..\ZHIPM.Initialize.cs:2913
+msgid "输入 /zsort death  来查看人物死亡次数排行榜前十名\n"
+msgstr "Enter /zsort death to view the top ten character death leaderboard\n"
+
+#: ..\..\ZHIPM.Initialize.cs:1050
+msgid "您的额外数据已重置"
+msgstr "Your extra data has been reset."
+
+#: ..\..\ZHIPM.Initialize.cs:1126 ..\..\ZHIPM.Initialize.cs:1127
+#: ..\..\ZHIPM.Initialize.cs:1131
+msgid "所有玩家的人物数据均已重置"
+msgstr "The
