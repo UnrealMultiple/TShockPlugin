@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Challenger\n"
-"POT-Creation-Date: 2024-08-31 12:08:39+0000\n"
-"PO-Revision-Date: 2024-08-31 12:08:39+0000\n"
+"POT-Creation-Date: 2024-09-01 13:49:03+0800\n"
+"PO-Revision-Date: 2024-09-01 13:49:03+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,105 +10,111 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Challenger/Challenger.cs:533
+#: ..\..\Challenger\Challenger.cs:107
+msgid "[挑战者模式]重新加载配置完毕。"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:533
 #, csharp-format
 msgid "[c/95CFA6:<挑战者:挖矿套>] 背包已满，还需空位：[c/95CFA6:{0}] 以放入 [c/95CFA6:{1}] ."
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:529
+#: ..\..\Challenger\Challenger.cs:529
 #, csharp-format
 msgid "[c/95CFA6:<挑战者:挖矿套>] 连锁挖掘了 [c/95CFA6: {0} {1}]."
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:107
-msgid "[挑战者模式]重新加载配置完毕。"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1978
+#: ..\..\Challenger\Challenger.cs:1978
 #, csharp-format
 msgid "{0} 发动了混乱之脑迷惑，成功迷惑了附近 {1}个敌人"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2052
-#, csharp-format
-msgid "{0} 收听了 {1} 世界先知广播：{2}有流星"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:2036
-#, csharp-format
-msgid "{0} 收听了 {1} 世界先知广播：{2}满月"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:2048
+#: ..\..\Challenger\Challenger.cs:2048
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}灯笼夜"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2040
+#: ..\..\Challenger\Challenger.cs:2036
+#, csharp-format
+msgid "{0} 收听了 {1} 世界先知广播：{2}满月"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:2040
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}血月"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2044
+#: ..\..\Challenger\Challenger.cs:2052
+#, csharp-format
+msgid "{0} 收听了 {1} 世界先知广播：{2}有流星"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:2044
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：明天日食"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1999
+#: ..\..\Challenger\Challenger.cs:1999
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会下雨"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2026
-#, csharp-format
-msgid "{0} 收听了 {1} 天气预报收音广播：不会有沙尘暴"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:2006
+#: ..\..\Challenger\Challenger.cs:2006
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会有风"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1993
+#: ..\..\Challenger\Challenger.cs:2026
 #, csharp-format
-msgid "{0} 收听了 {1} 天气预报收音广播：即将下雨"
+msgid "{0} 收听了 {1} 天气预报收音广播：不会有沙尘暴"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2031
+#: ..\..\Challenger\Challenger.cs:2031
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将刮起沙尘暴"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2019
-#, csharp-format
-msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起狂风"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:2013
+#: ..\..\Challenger\Challenger.cs:2013
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起风"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2056
+#: ..\..\Challenger\Challenger.cs:2019
+#, csharp-format
+msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起狂风"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1993
+#, csharp-format
+msgid "{0} 收听了 {1} 天气预报收音广播：即将下雨"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:2056
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：顺其自然，不会发生任何事件"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1284
+#: ..\..\Challenger\Challenger.cs:1271
+msgid ""
+"【暗影套装】\n"
+"挑战模式奖励：暴击时从玩家周围生成吞噬怪飞弹\n"
+"攻击周围敌人，冷却 1秒"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1248
+msgid ""
+"【垂钓套装】\n"
+"挑战模式奖励：给予永久的声纳、钓鱼、宝匣、镇\n"
+"定Buff"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1284
 msgid ""
 "【丛林套装】\n"
 "挑战模式奖励：间歇地从玩家周围生成伤害性的孢子"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1386
-#, csharp-format
-msgid ""
-"【克苏鲁之盾】\n"
-"挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n"
-"{0}秒"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1389
+#: ..\..\Challenger\Challenger.cs:1389
 #, csharp-format
 msgid ""
 "【分趾袜】\n"
@@ -116,131 +122,53 @@ msgid ""
 "{0}秒"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1258
-msgid ""
-"【化石套装】\n"
-"挑战模式奖励：在头上召唤一个琥珀光球，向敌人\n"
-"抛出极快的闪电矢"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1346
-msgid ""
-"【叶绿套装】\n"
-"挑战模式奖励：释放不精确的叶绿水晶矢，丛林之\n"
-"力给你更高的生命上限"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1248
-msgid ""
-"【垂钓套装】\n"
-"挑战模式奖励：给予永久的声纳、钓鱼、宝匣、镇\n"
-"定Buff"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1325
-msgid ""
-"【寒霜套装】\n"
-"挑战模式奖励：你周围开始下雪"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1375
-msgid ""
-"【幽魂套装】\n"
-"挑战模式奖励：根据头饰选择增加40血上限或80魔\n"
-"力上限；召唤 2个幽魂诅咒环绕玩家，向附近敌人攻击"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1392
-#, csharp-format
-msgid ""
-"【忍者大师装备】\n"
-"挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n"
-"{0}秒"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1253
-msgid ""
-"【忍者套装】\n"
-"挑战模式奖励：有四分之一概率闪避非致命伤害并\n"
-"释放烟雾"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1243
-msgid ""
-"【挖矿套装】\n"
-"挑战模式奖励：给予永久的挖矿、糖果冲刺Buff\n"
-"启用连锁挖矿能力"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1412
-msgid ""
-"【挥发明胶】\n"
-"挑战模式奖励：击中敌人有概率掉落碎魔晶，珍珠\n"
-"石，凝胶等"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1356
-msgid ""
-"【提基套装】\n"
-"挑战模式奖励：增加20血上限，在鞭子的轨迹上留\n"
-"下孢子"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1401
-msgid ""
-"【收音机零件】\n"
-"挑战模式奖励：输入“/cf”收听天气预报，在困难\n"
-"模式中可以收听世界先知预报"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1271
-msgid ""
-"【暗影套装】\n"
-"挑战模式奖励：暴击时从玩家周围生成吞噬怪飞弹\n"
-"攻击周围敌人，冷却 1秒"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1290
-msgid ""
-"【死灵套装】\n"
-"挑战模式奖励：受到伤害时，向四周飞溅骨头；攻\n"
-"击时偶尔发射骨箭"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1315
-msgid ""
-"【水晶刺客套装】\n"
-"挑战模式奖励：当有敌人在附近时，自身释放出水\n"
-"晶碎片；若玩家被击中，释放出更强大的碎片"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1351
+#: ..\..\Challenger\Challenger.cs:1351
 msgid ""
 "【海龟套装】\n"
 "挑战模式奖励：增加60血上限，自动在附近释放爆\n"
 "炸碎片"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1395
+#: ..\..\Challenger\Challenger.cs:1325
+msgid ""
+"【寒霜套装】\n"
+"挑战模式奖励：你周围开始下雪"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1300
+msgid ""
+"【黑曜石套装】\n"
+"挑战模式奖励：因为盗贼的祝福，掉落物会尝试掉落两次\n"
+"(仅对非boss生物和非高血量怪物有效)"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1258
+msgid ""
+"【化石套装】\n"
+"挑战模式奖励：在头上召唤一个琥珀光球，向敌人\n"
+"抛出极快的闪电矢"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1383
+msgid ""
+"【皇家凝胶】\n"
+"挑战模式奖励：天空开始下凝胶小雨"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1412
+msgid ""
+"【挥发明胶】\n"
+"挑战模式奖励：击中敌人有概率掉落碎魔晶，珍珠\n"
+"石，凝胶等"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1395
 msgid ""
 "【混乱之脑】\n"
 "挑战模式奖励：输入“/cf”混乱周围所有敌怪"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1305
-msgid ""
-"【狱炎套装】\n"
-"挑战模式奖励：免疫岩浆，给予永久的地狱火增益"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1263
-msgid ""
-"【猩红套装】\n"
-"挑战模式奖励：暴击时从周围每个敌怪处吸取一定\n"
-"血量随着敌怪数目增多吸血量-1，冷却 5秒"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1362
+#: ..\..\Challenger\Challenger.cs:1362
 msgid ""
 "【甲虫套装】\n"
 "挑战模式奖励：增加60血上限，敌人的伤害的一部\n"
@@ -248,46 +176,35 @@ msgid ""
 "或其上级合成物时，帕拉丁之锤伤害翻倍"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1383
+#: ..\..\Challenger\Challenger.cs:1409
 msgid ""
-"【皇家凝胶】\n"
-"挑战模式奖励：天空开始下凝胶小雨"
+"【箭袋】\n"
+"挑战模式奖励：无限补充弹药，额外获得BUFF"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1339
-msgid ""
-"【神圣套装】\n"
-"挑战模式奖励：击中敌人时召唤光与暗剑气，输入\n"
-"“/cf”切换剑气类型"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1320
+#: ..\..\Challenger\Challenger.cs:1320
 msgid ""
 "【禁戒套装】\n"
 "挑战模式奖励：释放自动寻的灵焰魂火攻击附近的\n"
 "敌人"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1409
+#: ..\..\Challenger\Challenger.cs:1386
+#, csharp-format
 msgid ""
-"【箭袋】\n"
-"挑战模式奖励：无限补充弹药，额外获得BUFF"
+"【克苏鲁之盾】\n"
+"挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n"
+"{0}秒"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1369
+#: ..\..\Challenger\Challenger.cs:1404
 msgid ""
-"【蘑菇套装】\n"
-"挑战模式奖励：射弹会不稳定地留下蘑菇"
+"【蜜蜂背包】\n"
+"挑战模式奖励：不间断地向四周扔出毒蜂罐，爆炸\n"
+"后释放一只蜜蜂"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1310
-msgid ""
-"【蜘蛛套装】\n"
-"挑战模式奖励：攻击时，给予敌人中毒和剧毒减益\n"
-"，按“up”键生成一个毒牙药水瓶，砸中敌人时爆炸"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1295
+#: ..\..\Challenger\Challenger.cs:1295
 msgid ""
 "【蜜蜂套装】\n"
 "挑战模式奖励：给予永久的蜂蜜增益；不间断地向\n"
@@ -295,413 +212,496 @@ msgid ""
 "益；对玩家自身的治疗量略低于对其他玩家"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1404
+#: ..\..\Challenger\Challenger.cs:1369
 msgid ""
-"【蜜蜂背包】\n"
-"挑战模式奖励：不间断地向四周扔出毒蜂罐，爆炸\n"
-"后释放一只蜜蜂"
+"【蘑菇套装】\n"
+"挑战模式奖励：射弹会不稳定地留下蘑菇"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1398
+#: ..\..\Challenger\Challenger.cs:1392
+#, csharp-format
+msgid ""
+"【忍者大师装备】\n"
+"挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n"
+"{0}秒"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1253
+msgid ""
+"【忍者套装】\n"
+"挑战模式奖励：有四分之一概率闪避非致命伤害并\n"
+"释放烟雾"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1398
 msgid ""
 "【蠕虫围巾】\n"
 "挑战模式奖励：免疫寒冷，霜火，灵液和咒火"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1380
+#: ..\..\Challenger\Challenger.cs:1339
+msgid ""
+"【神圣套装】\n"
+"挑战模式奖励：击中敌人时召唤光与暗剑气，输入\n"
+"“/cf”切换剑气类型"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1401
+msgid ""
+"【收音机零件】\n"
+"挑战模式奖励：输入“/cf”收听天气预报，在困难\n"
+"模式中可以收听世界先知预报"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1315
+msgid ""
+"【水晶刺客套装】\n"
+"挑战模式奖励：当有敌人在附近时，自身释放出水\n"
+"晶碎片；若玩家被击中，释放出更强大的碎片"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1290
+msgid ""
+"【死灵套装】\n"
+"挑战模式奖励：受到伤害时，向四周飞溅骨头；攻\n"
+"击时偶尔发射骨箭"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1356
+msgid ""
+"【提基套装】\n"
+"挑战模式奖励：增加20血上限，在鞭子的轨迹上留\n"
+"下孢子"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1243
+msgid ""
+"【挖矿套装】\n"
+"挑战模式奖励：给予永久的挖矿、糖果冲刺Buff\n"
+"启用连锁挖矿能力"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1263
+msgid ""
+"【猩红套装】\n"
+"挑战模式奖励：暴击时从周围每个敌怪处吸取一定\n"
+"血量随着敌怪数目增多吸血量-1，冷却 5秒"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1346
+msgid ""
+"【叶绿套装】\n"
+"挑战模式奖励：释放不精确的叶绿水晶矢，丛林之\n"
+"力给你更高的生命上限"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1380
 msgid ""
 "【阴森套装】\n"
 "挑战模式奖励：使用鞭子时，甩出蝙蝠或南\n"
 "瓜头"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1276
+#: ..\..\Challenger\Challenger.cs:1375
+msgid ""
+"【幽魂套装】\n"
+"挑战模式奖励：根据头饰选择增加40血上限或80魔\n"
+"力上限；召唤 2个幽魂诅咒环绕玩家，向附近敌人攻击"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1305
+msgid ""
+"【狱炎套装】\n"
+"挑战模式奖励：免疫岩浆，给予永久的地狱火增益"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1276
 msgid ""
 "【陨石套装】\n"
 "挑战模式奖励：暴击时恢复些许魔力，间歇地降下\n"
 "高伤害落星攻击敌人"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1300
+#: ..\..\Challenger\Challenger.cs:1310
 msgid ""
-"【黑曜石套装】\n"
-"挑战模式奖励：因为盗贼的祝福，掉落物会尝试掉落两次\n"
-"(仅对非boss生物和非高血量怪物有效)"
+"【蜘蛛套装】\n"
+"挑战模式奖励：攻击时，给予敌人中毒和剧毒减益\n"
+"，按“up”键生成一个毒牙药水瓶，砸中敌人时爆炸"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1467
-#: ../../Challenger/Challenger.cs:1468
-msgid "Challenger.OnServerLeave异常3："
+#: ..\..\Challenger.CNPCs\Deerclops.cs:162
+msgid "嗷嗷"
 msgstr ""
 
-#: ../../Challenger.CProjs/CrystalLeafShot.cs:35
-#: ../../Challenger.CProjs/CrystalLeafShot.cs:36
-#, csharp-format
-msgid "CrystalLeafShot -> MyEffect 异常：{0}"
+#: ..\..\Challenger.CNPCs\Skeletron.cs:115
+msgid "被封印的骷髅帝王苏醒"
 msgstr ""
 
-#: ../../Challenger.CNPCs/QueenBee.cs:141
+#: ..\..\Challenger.CNPCs\Deerclops.cs:135
+msgid "冰雪从天而降"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\QueenBee.cs:141
 msgid "不许抢我的蜂蜜"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1429
-msgid "世界已关闭挑战模式，快乐游玩吧"
+#: ..\..\Challenger.CNPCs\Skeletron.cs:149
+msgid "惨朽不堪"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1425
-msgid "世界已开启挑战模式，祝您好运！"
+#: ..\..\Challenger.CNPCs\Deerclops.cs:158
+msgid "拆掉拆掉！"
 msgstr ""
 
-#: ../../Challenger.CNPCs/WallofFlesh.cs:99
-msgid "付出代价吧！"
+#: ..\..\Challenger\Challenger.cs:1189
+msgid "冲刺类饰品冷却完成"
 msgstr ""
 
-#: ../../Challenger.CProjs/BeetleHeal.cs:66
-#: ../../Challenger.CProjs/BeetleHeal.cs:67
+#: ..\..\Challenger.CNPCs\EaterofWorldsHead.cs:39
+#: ..\..\Challenger.CNPCs\Skeletron.cs:165
+msgid "创死你"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\EaterofWorldsBody.cs:119
+msgid "刺啦"
+msgstr ""
+
+#: ..\..\Challenger.CProjs\BeetleHeal.cs:66
+#: ..\..\Challenger.CProjs\BeetleHeal.cs:67
 #, csharp-format
 msgid "代码异常4：{0}"
 msgstr ""
 
-#: ../../Challenger.CNPCs/Deerclops.cs:145
-msgid "你将受到灭顶之灾"
-msgstr ""
-
-#: ../../Challenger.CNPCs/SlimeKing.cs:181
-msgid "你感觉寒冷刺骨"
-msgstr ""
-
-#: ../../Challenger.CNPCs/SkeletronHand.cs:67
-msgid "你打痛我右手了！！！"
-msgstr ""
-
-#: ../../Challenger.CNPCs/SkeletronHand.cs:63
-msgid "你打痛我左手了！！！"
-msgstr ""
-
-#: ../../Challenger.CNPCs/EyeofCthulhu.cs:195
-msgid "你找到那颗子弹了吗"
-msgstr ""
-
-#: ../../Challenger.CNPCs/BrainofCthulhu.cs:80
-msgid "你真的能分清真假血弹吗"
-msgstr ""
-
-#: ../../Challenger.CProjs/BeetleHeal.cs:53
-#, csharp-format
-msgid "你被 {0} 治疗了 {1} 点生命值"
-msgstr ""
-
-#: ../../Challenger.CNPCs/Skeletron.cs:162
-msgid "再让我逮到一下你就玩玩"
-msgstr ""
-
-#: ../../Challenger.CNPCs/Deerclops.cs:135
-msgid "冰雪从天而降"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1189
-msgid "冲刺类饰品冷却完成"
-msgstr ""
-
-#: ../../Challenger.CNPCs/EaterofWorldsHead.cs:39
-#: ../../Challenger.CNPCs/Skeletron.cs:165
-msgid "创死你"
-msgstr ""
-
-#: ../../Challenger.CNPCs/EaterofWorldsBody.cs:119
-msgid "刺啦"
-msgstr ""
-
-#: ../../Challenger.CNPCs/SlimeKing.cs:157
-msgid "史莱姆王习得冰魔法归来"
-msgstr ""
-
-#: ../../Challenger.CNPCs/SlimeKing.cs:191
-msgid "史莱姆王发怒了"
-msgstr ""
-
-#: ../../Challenger.CNPCs/QueenBee.cs:178
-msgid "吱嗡"
-msgstr ""
-
-#: ../../Challenger.CNPCs/EaterofWorldsHead.cs:42
-msgid "呜哇哇"
-msgstr ""
-
-#: ../../Challenger.CNPCs/WallofFlesh.cs:119
-msgid "咬碎你"
-msgstr ""
-
-#: ../../Challenger.CNPCs/BrainofCthulhu.cs:107
-msgid "哇哇嗷"
-msgstr ""
-
-#: ../../Challenger.CNPCs/QueenBee.cs:172
-msgid "嗡嗡"
-msgstr ""
-
-#: ../../Challenger.CNPCs/QueenBee.cs:175
-msgid "嗡嗡嗡嗡"
-msgstr ""
-
-#: ../../Challenger.CNPCs/Deerclops.cs:162
-msgid "嗷嗷"
-msgstr ""
-
-#: ../../Challenger.CNPCs/Skeletron.cs:127
-msgid "嘎吱作响"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:31
-msgid "增强游戏难度，更好的游戏体验"
-msgstr ""
-
-#: ../../Challenger.CNPCs/SlimeKing.cs:169
-msgid "寒风呼啸"
-msgstr ""
-
-#: ../../Challenger.CNPCs/EaterofWorldsBody.cs:123
-msgid "小心我爆炸的鳞甲"
-msgstr ""
-
-#: ../../Challenger.CNPCs/SlimeKing.cs:210
-msgid "小辣鸡"
-msgstr ""
-
-#: ../../Challenger.CNPCs/EyeofCthulhu.cs:230
-msgid "就这就这！"
-msgstr ""
-
-#: ../../Challenger.CNPCs/SkeletronHand.cs:100
-msgid "就这还想打倒我骷髅王爷爷"
-msgstr ""
-
-#: ../../Challenger.CNPCs/EaterofWorldsBody.cs:92
-msgid "怒不可遏"
-msgstr ""
-
-#: ../../Challenger.CNPCs/Skeletron.cs:149
-msgid "惨朽不堪"
-msgstr ""
-
-#: ../../Challenger.CNPCs/Skeletron.cs:168
-msgid "想再贴贴吗？"
-msgstr ""
-
-#: ../../Challenger.CNPCs/Deerclops.cs:158
-msgid "拆掉拆掉！"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1928
-#, csharp-format
-msgid "挑战模式启用，祝您愉快。[操作来自：{0}]"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1862
-msgid "挑战模式已关闭，无法开启文字提示"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1915
-#, csharp-format
-msgid "挑战模式已取消，您觉得太难了？[操作来自：{0}]"
-msgstr ""
-
-#: ../../Challenger.CProjs/BloodBagProj.cs:99
+#: ..\..\Challenger.CProjs\BloodBagProj.cs:99
 #, csharp-format
 msgid "敌怪治疗 + {0}"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1867
-msgid "文字提示已取消"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1872
-msgid "文字提示已启用"
-msgstr ""
-
-#: ../../Challenger.CNPCs/EaterofWorldsBody.cs:82
-msgid "有毒的鳞甲炸裂开来"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1935
-msgid "未启用挑战模式！"
-msgstr ""
-
-#: ../../Challenger.CNPCs/QueenBee.cs:153
+#: ..\..\Challenger.CNPCs\QueenBee.cs:153
 msgid "毒刺射你一脸"
 msgstr ""
 
-#: ../../Challenger.CNPCs/EaterofWorldsHead.cs:36
+#: ..\..\Challenger.CNPCs\EaterofWorldsHead.cs:36
 msgid "毒牙咬击"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1956
-#: ../../Challenger/Challenger.cs:1957
-msgid "永夜剑辉已启用"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:2063
-msgid "没有套装效果启用"
-msgstr ""
-
-#: ../../Challenger.CNPCs/EyeofCthulhu.cs:183
-msgid "燃烧！无法熄灭的火焰"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:2067
-#, csharp-format
-msgid "状态异常，使用失败: {0}"
-msgstr ""
-
-#: ../../Challenger.CNPCs/EyeofCthulhu.cs:207
-msgid "猪突猛进！"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:777
-#: ../../Challenger/Challenger.cs:824
-#: ../../Challenger/Challenger.cs:884
-#: ../../Challenger/Challenger.cs:921
-#: ../../Challenger/Challenger.cs:1071
-#, csharp-format
-msgid "生命值上限 - {0}"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:766
-#: ../../Challenger/Challenger.cs:813
-#: ../../Challenger/Challenger.cs:873
-#: ../../Challenger/Challenger.cs:910
-#: ../../Challenger/Challenger.cs:1047
-#, csharp-format
-msgid "生命值上限 + {0}"
-msgstr ""
-
-#: ../../Challenger.CProjs/BeetleHeal.cs:52
-#, csharp-format
-msgid "甲虫治疗 + {0} 治疗者:{1}"
-msgstr ""
-
-#: ../../Challenger.CNPCs/BrainofCthulhu.cs:68
-msgid "畸形怪脑发现了新鲜的脑子"
-msgstr ""
-
-#: ../../Challenger.CNPCs/EyeofCthulhu.cs:217
+#: ..\..\Challenger.CNPCs\EyeofCthulhu.cs:217
 msgid "疯狗狂叫！！！"
 msgstr ""
 
-#: ../../Challenger.CNPCs/SkeletronHand.cs:103
-msgid "看我一记耳光"
-msgstr ""
-
-#: ../../Challenger.CNPCs/EyeofCthulhu.cs:234
-msgid "看我创死你"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1951
-#: ../../Challenger/Challenger.cs:1952
-msgid "神圣剑辉已启用"
-msgstr ""
-
-#: ../../Challenger.CNPCs/SkeletronHand.cs:106
-msgid "离地牢远点！！！"
-msgstr ""
-
-#: ../../Challenger.CNPCs/BrainofCthulhu.cs:103
-msgid "糊你一脸"
-msgstr ""
-
-#: ../../Challenger.CNPCs/WallofFlesh.cs:87
-msgid "罪恶血祭召唤远古守卫"
-msgstr ""
-
-#: ../../Challenger.CNPCs/BrainofCthulhu.cs:90
-msgid "虚虚实实，实实虚虚"
-msgstr ""
-
-#: ../../Challenger.CProjs/Honey.cs:43
+#: ..\..\Challenger.CProjs\Honey.cs:43
 #, csharp-format
 msgid "蜂糖罐治疗 + {0}"
 msgstr ""
 
-#: ../../Challenger.CProjs/BloodBagProj.cs:125
+#: ..\..\Challenger.CNPCs\WallofFlesh.cs:99
+msgid "付出代价吧！"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\Skeletron.cs:127
+msgid "嘎吱作响"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\SlimeKing.cs:169
+msgid "寒风呼啸"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\BrainofCthulhu.cs:103
+msgid "糊你一脸"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\BrainofCthulhu.cs:68
+msgid "畸形怪脑发现了新鲜的脑子"
+msgstr ""
+
+#: ..\..\Challenger.CProjs\BeetleHeal.cs:52
 #, csharp-format
-msgid "血包治疗 + {0}"
+msgid "甲虫治疗 + {0} 治疗者:{1}"
 msgstr ""
 
-#: ../../Challenger.CNPCs/Skeletron.cs:115
-msgid "被封印的骷髅帝王苏醒"
+#: ..\..\Challenger.CNPCs\SkeletronHand.cs:100
+msgid "就这还想打倒我骷髅王爷爷"
 msgstr ""
 
-#: ../../Challenger.CNPCs/Skeletron.cs:139
-msgid "诅咒开始应验"
+#: ..\..\Challenger.CNPCs\EyeofCthulhu.cs:230
+msgid "就这就这！"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1940
-msgid "请在游戏里使用该指令"
+#: ..\..\Challenger.CNPCs\EyeofCthulhu.cs:234
+msgid "看我创死你"
 msgstr ""
 
-#: ../../Challenger.CNPCs/QueenBee.cs:129
-msgid "谁人惊扰了我的蜂巢！"
+#: ..\..\Challenger.CNPCs\SkeletronHand.cs:103
+msgid "看我一记耳光"
 msgstr ""
 
-#: ../../Challenger.CNPCs/SlimeKing.cs:204
-msgid "走位真菜"
+#: ..\..\Challenger.CNPCs\SkeletronHand.cs:106
+msgid "离地牢远点！！！"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:60
-msgid "输入 /cenable  来启用挑战模式，再次使用取消"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1880
-msgid "输入 /cenable 来启用挑战模式，再次使用取消"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:68
-msgid "输入 /cf  来实现某些技能的或状态的切换"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:64
-msgid "输入 /ctip  来启用内容提示，如各种物品的强化文字提示，再次使用取消"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1858
-msgid "输入 /ctip 来启用内容提示，如各种物品装备的修改文字提示，再次使用取消"
-msgstr ""
-
-#: ../../Challenger.CNPCs/WallofFleshEye.cs:101
-msgid "这么想看清我的卡姿兰大眼是吧"
-msgstr ""
-
-#: ../../Challenger.CNPCs/Deerclops.cs:123
-msgid "远方的巨兽将会摧毁你所拥有的一切"
-msgstr ""
-
-#: ../../Challenger.CNPCs/SlimeKing.cs:207
+#: ..\..\Challenger.CNPCs\SlimeKing.cs:207
 msgid "连我都打不过，回家喝奶吧你"
 msgstr ""
 
-#: ../../Challenger.CNPCs/WallofFlesh.cs:109
-msgid "速度与激情"
+#: ..\..\Challenger\Challenger.cs:2063
+msgid "没有套装效果启用"
 msgstr ""
 
-#: ../../Challenger.CNPCs/EaterofWorldsBody.cs:70
-msgid "邪恶的蠕虫寻找新的受害者"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:197
-msgid "闪避锁血成功！"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:295
-msgid "陨石回魔 + 3"
-msgstr ""
-
-#: ../../Challenger/Challenger.cs:1114
+#: ..\..\Challenger\Challenger.cs:1114
 #, csharp-format
 msgid "魔力值上限 - {0}"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1093
+#: ..\..\Challenger\Challenger.cs:1093
 #, csharp-format
 msgid "魔力值上限 + {0}"
+msgstr ""
+
+#: ..\..\Challenger.CProjs\BeetleHeal.cs:53
+#, csharp-format
+msgid "你被 {0} 治疗了 {1} 点生命值"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\SkeletronHand.cs:67
+msgid "你打痛我右手了！！！"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\SkeletronHand.cs:63
+msgid "你打痛我左手了！！！"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\SlimeKing.cs:181
+msgid "你感觉寒冷刺骨"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\Deerclops.cs:145
+msgid "你将受到灭顶之灾"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\EyeofCthulhu.cs:195
+msgid "你找到那颗子弹了吗"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\BrainofCthulhu.cs:80
+msgid "你真的能分清真假血弹吗"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\EaterofWorldsBody.cs:92
+msgid "怒不可遏"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1940
+msgid "请在游戏里使用该指令"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\EyeofCthulhu.cs:183
+msgid "燃烧！无法熄灭的火焰"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:197
+msgid "闪避锁血成功！"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\QueenBee.cs:129
+msgid "谁人惊扰了我的蜂巢！"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1951
+#: ..\..\Challenger\Challenger.cs:1952
+msgid "神圣剑辉已启用"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:777
+#: ..\..\Challenger\Challenger.cs:824
+#: ..\..\Challenger\Challenger.cs:884
+#: ..\..\Challenger\Challenger.cs:921
+#: ..\..\Challenger\Challenger.cs:1071
+#, csharp-format
+msgid "生命值上限 - {0}"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:766
+#: ..\..\Challenger\Challenger.cs:813
+#: ..\..\Challenger\Challenger.cs:873
+#: ..\..\Challenger\Challenger.cs:910
+#: ..\..\Challenger\Challenger.cs:1047
+#, csharp-format
+msgid "生命值上限 + {0}"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\SlimeKing.cs:191
+msgid "史莱姆王发怒了"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\SlimeKing.cs:157
+msgid "史莱姆王习得冰魔法归来"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1429
+msgid "世界已关闭挑战模式，快乐游玩吧"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1425
+msgid "世界已开启挑战模式，祝您好运！"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:60
+msgid "输入 /cenable  来启用挑战模式，再次使用取消"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1880
+msgid "输入 /cenable 来启用挑战模式，再次使用取消"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:68
+msgid "输入 /cf  来实现某些技能的或状态的切换"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:64
+msgid "输入 /ctip  来启用内容提示，如各种物品的强化文字提示，再次使用取消"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1858
+msgid "输入 /ctip 来启用内容提示，如各种物品装备的修改文字提示，再次使用取消"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\WallofFlesh.cs:109
+msgid "速度与激情"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1928
+#, csharp-format
+msgid "挑战模式启用，祝您愉快。[操作来自：{0}]"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1862
+msgid "挑战模式已关闭，无法开启文字提示"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1915
+#, csharp-format
+msgid "挑战模式已取消，您觉得太难了？[操作来自：{0}]"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\BrainofCthulhu.cs:107
+msgid "哇哇嗷"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1935
+msgid "未启用挑战模式！"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1872
+msgid "文字提示已启用"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1867
+msgid "文字提示已取消"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\QueenBee.cs:172
+msgid "嗡嗡"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\QueenBee.cs:175
+msgid "嗡嗡嗡嗡"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\EaterofWorldsHead.cs:42
+msgid "呜哇哇"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\Skeletron.cs:168
+msgid "想再贴贴吗？"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\SlimeKing.cs:210
+msgid "小辣鸡"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\EaterofWorldsBody.cs:123
+msgid "小心我爆炸的鳞甲"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\EaterofWorldsBody.cs:70
+msgid "邪恶的蠕虫寻找新的受害者"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\BrainofCthulhu.cs:90
+msgid "虚虚实实，实实虚虚"
+msgstr ""
+
+#: ..\..\Challenger.CProjs\BloodBagProj.cs:125
+#, csharp-format
+msgid "血包治疗 + {0}"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\WallofFlesh.cs:119
+msgid "咬碎你"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1956
+#: ..\..\Challenger\Challenger.cs:1957
+msgid "永夜剑辉已启用"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\EaterofWorldsBody.cs:82
+msgid "有毒的鳞甲炸裂开来"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\Deerclops.cs:123
+msgid "远方的巨兽将会摧毁你所拥有的一切"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:295
+msgid "陨石回魔 + 3"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\Skeletron.cs:162
+msgid "再让我逮到一下你就玩玩"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:31
+msgid "增强游戏难度，更好的游戏体验"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\WallofFleshEye.cs:101
+msgid "这么想看清我的卡姿兰大眼是吧"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\QueenBee.cs:178
+msgid "吱嗡"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\EyeofCthulhu.cs:207
+msgid "猪突猛进！"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:2067
+#, csharp-format
+msgid "状态异常，使用失败: {0}"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\SlimeKing.cs:204
+msgid "走位真菜"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\Skeletron.cs:139
+msgid "诅咒开始应验"
+msgstr ""
+
+#: ..\..\Challenger.CNPCs\WallofFlesh.cs:87
+msgid "罪恶血祭召唤远古守卫"
+msgstr ""
+
+#: ..\..\Challenger\Challenger.cs:1467
+#: ..\..\Challenger\Challenger.cs:1468
+msgid "Challenger.OnServerLeave异常3："
+msgstr ""
+
+#: ..\..\Challenger.CProjs\CrystalLeafShot.cs:35
+#: ..\..\Challenger.CProjs\CrystalLeafShot.cs:36
+#, csharp-format
+msgid "CrystalLeafShot -> MyEffect 异常：{0}"
 msgstr ""
 

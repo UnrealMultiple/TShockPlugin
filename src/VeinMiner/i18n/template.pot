@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VeinMiner\n"
-"POT-Creation-Date: 2024-08-31 12:08:35+0000\n"
-"PO-Revision-Date: 2024-08-31 12:08:35+0000\n"
+"POT-Creation-Date: 2024-09-01 13:49:04+0800\n"
+"PO-Revision-Date: 2024-09-01 13:49:04+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,62 +10,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../VeinMiner.cs:39
-#, csharp-format
-msgid "[c/95CFA6:<VeinMiner> 已{0}.]"
-msgstr ""
-
-#: ../../VeinMiner.cs:34
+#: ..\..\VeinMiner.cs:34
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner> 挖矿消息已{0}]."
 msgstr ""
 
-#: ../../VeinMiner.cs:125
+#: ..\..\VeinMiner.cs:39
 #, csharp-format
-msgid "[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {0} {1}]."
+msgid "[c/95CFA6:<VeinMiner> 已{0}.]"
 msgstr ""
 
-#: ../../VeinMiner.cs:167
-msgid "[c/95CFA6:<VeinMiner>] 无法挖取矿石，可能是因为矿石上方有不可破坏的物体."
-msgstr ""
-
-#: ../../VeinMiner.cs:161
-#, csharp-format
-msgid "[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{0} {1}]."
-msgstr ""
-
-#: ../../VeinMiner.cs:129
+#: ..\..\VeinMiner.cs:129
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner>] 背包已满，还需空位：[c/95CFA6:{0}] ."
 msgstr ""
 
-#: ../../VeinMiner.cs:151
+#: ..\..\VeinMiner.cs:151
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner>] 背包已满，需额外空位：[c/95CFA6:{0}] 以放入 [c/95CFA6:{1}] ."
 msgstr ""
 
-#: ../../Config.cs:38
+#: ..\..\VeinMiner.cs:125
+#, csharp-format
+msgid "[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {0} {1}]."
+msgstr ""
+
+#: ..\..\VeinMiner.cs:167
+msgid "[c/95CFA6:<VeinMiner>] 无法挖取矿石，可能是因为矿石上方有不可破坏的物体."
+msgstr ""
+
+#: ..\..\VeinMiner.cs:161
+#, csharp-format
+msgid "[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{0} {1}]."
+msgstr ""
+
+#: ..\..\Config.cs:38
 msgid "<VeinMiner> 读取配置文件失败。"
 msgstr ""
 
-#: ../../Config.cs:32
+#: ..\..\Config.cs:32
 msgid "<VeinMiner> 配置已重新加载。"
 msgstr ""
 
-#: ../../VeinMiner.cs:34
+#: ..\..\VeinMiner.cs:34
 msgid "关闭"
 msgstr ""
 
-#: ../../VeinMiner.cs:39
+#: ..\..\VeinMiner.cs:39
 msgid "关闭! | 要仅关闭挖矿消息提示请输入：/vm {任意参数}"
 msgstr ""
 
-#: ../../VeinMiner.cs:34
-#: ../../VeinMiner.cs:39
+#: ..\..\VeinMiner.cs:34
+#: ..\..\VeinMiner.cs:39
 msgid "开启"
 msgstr ""
 
-#: ../../VeinMiner.cs:125
+#: ..\..\VeinMiner.cs:125
 msgid "未知"
 msgstr ""
 
