@@ -30,6 +30,11 @@
 - Gitee发布(国内推荐): [Plugins.zip](https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
 - Github发布: [Plugins.zip](https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
 
+#### AutoPluginManager插件 (本仓库推出的插件管理器)  
+     /apm l 列出所有插件  
+     /apm i <插件名> 一键安装插件  
+     /apm u [插件名] 检查并且更新插件  
+
 ## 开发者注意事项
 
 > 代码规范

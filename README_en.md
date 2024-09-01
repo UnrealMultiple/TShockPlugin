@@ -29,7 +29,10 @@
 
 - Github Release: [Plugins.zip](https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
 - Gitee Release: [Plugins.zip](https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
-
+#### AutoPluginManager
+    /apm l List all plugins
+    /apm i <plugin name> One-click install plugin
+    /apm u [plugin name] Check and update plugin
 ## Developer Notes
 
 > Coding Standards
