@@ -22,7 +22,6 @@ public class InvincibilityPlugin : TerrariaPlugin
 
     public InvincibilityPlugin(Main game) : base(game)
     {
-        LoadConfig();
     }
 
     private static void LoadConfig()
@@ -42,6 +41,7 @@ public class InvincibilityPlugin : TerrariaPlugin
         Commands.ChatCommands.Add(new Command("Invincibility.god", this.InvincibleCommand, "tgod", "限时god无敌"));
         Commands.ChatCommands.Add(new Command("Invincibility.frame", this.ActivateFrameInvincibility, "tframe", "限时无敌帧无敌"));
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
+        LoadConfig();
     }
     protected override void Dispose(bool disposing)
     {

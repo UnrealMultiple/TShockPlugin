@@ -15,7 +15,6 @@ public class Ezperm : TerrariaPlugin
     internal static Configuration Config;
     public Ezperm(Main game) : base(game)
     {
-        LoadConfig();
 
     }
     private static void LoadConfig()
@@ -34,6 +33,7 @@ public class Ezperm : TerrariaPlugin
     {
         GeneralHooks.ReloadEvent += ReloadConfig;
         Commands.ChatCommands.Add(new Command("inperms.admin", this.Cmd, "inperms", "批量改权限"));
+        LoadConfig();
     }
     protected override void Dispose(bool disposing)
     {

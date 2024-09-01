@@ -18,7 +18,6 @@ public class SimultaneousUseFix : TerrariaPlugin
 
     public SimultaneousUseFix(Main game) : base(game)
     {
-        LoadConfig();
     }
 
     private static void LoadConfig()
@@ -38,6 +37,7 @@ public class SimultaneousUseFix : TerrariaPlugin
     {
         GeneralHooks.ReloadEvent += ReloadConfig;
         ServerApi.Plugins.Get<Chireiden.TShock.Omni.Plugin>().Detections.SwapWhileUse += this.OnSwapWhileUse;
+        LoadConfig();
     }
     protected override void Dispose(bool disposing)
     {

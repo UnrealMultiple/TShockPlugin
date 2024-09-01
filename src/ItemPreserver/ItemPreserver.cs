@@ -31,7 +31,6 @@ public class ItemPreserver : TerrariaPlugin
 
     public ItemPreserver(Main game) : base(game)
     {
-        LoadConfig();
     }
 
     private static void LoadConfig()
@@ -64,6 +63,7 @@ public class ItemPreserver : TerrariaPlugin
     {
         GeneralHooks.ReloadEvent += this.ReloadConfig;
         GetDataHandlers.PlayerSlot.Register(this.OnSlot);
+        LoadConfig();
     }
 
     private void OnSlot(object? sender, GetDataHandlers.PlayerSlotEventArgs e)

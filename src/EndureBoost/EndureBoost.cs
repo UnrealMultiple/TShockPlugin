@@ -20,7 +20,6 @@ public class EndureBoost : TerrariaPlugin
 
     public EndureBoost(Main game) : base(game)
     {
-        LoadConfig();
     }
 
     public override void Initialize()
@@ -29,6 +28,7 @@ public class EndureBoost : TerrariaPlugin
         ServerApi.Hooks.ServerJoin.Register(this, this.OnServerJoin);
         GetDataHandlers.PlayerSpawn += this.Rebirth;
         Commands.ChatCommands.Add(new Command("EndureBoost", this.SetPlayerBuffcmd, "ebbuff", "ldbuff", "loadbuff"));
+        LoadConfig();
     }
 
     private void SetPlayerBuffcmd(CommandArgs args)
