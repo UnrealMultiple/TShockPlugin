@@ -42,7 +42,7 @@ if __name__ == '__main__':
                 try:
                     if file_name.endswith('.csproj'):
                         source_path = os.path.join(dir_path, 'README_EN.md')
-                        destination_path = os.path.join(cwd, 'out', f'{build_type}', file_name.replace('.csproj', '.md'))
+                        destination_path = os.path.join(cwd, 'out', f'{build_type}', file_name.replace('.csproj', '_EN.md'))
                         shutil.copyfile(source_path, destination_path)
                         print(f"🔍 找到README_EN.md({destination_path})")
                 except:
