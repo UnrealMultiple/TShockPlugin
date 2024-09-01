@@ -1,0 +1,74 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: HelpPlus\n"
+"POT-Creation-Date: 2024-09-01 11:28:06+0800\n"
+"PO-Revision-Date: 2024-09-01 11:52+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: ..\..\Help.cs:46
+msgid "[HelpPlus]插件配置已重载！"
+msgstr "[HelpPlus] Plugin configuration reloaded!"
+
+#: ..\..\Help.cs:257
+msgid "*此命令不记录命令参数"
+msgstr "*This command does not log command parameters"
+
+#: ..\..\Help.cs:185
+#, csharp-format
+msgid "无效用法.正确用法: {0}help <命令/页码>"
+msgstr "Invalid usage. Correct usage: {0}help <command/page number>"
+
+#: ..\..\Help.cs:203
+msgid "命令列表 ({0}/{1}):"
+msgstr "Command list ({0}/{1}):"
+
+#: ..\..\Help.cs:218
+msgid "无效命令."
+msgstr "Invalid command."
+
+#: ..\..\Help.cs:247
+#, csharp-format
+msgid "权限: {0}"
+msgstr "Permission: {0}"
+
+#: ..\..\Help.cs:252
+msgid "*此命令只能游戏内执行"
+msgstr "*This command can only be executed in-game"
+
+#: ..\..\Help.cs:243
+#, csharp-format
+msgid "别名: [c/00ffff:{0}]"
+msgstr "Alias: [c/00ffff:{0}]"
+
+#: ..\..\Help.cs:249
+#, csharp-format
+msgid "来源插件: [c/8500ff:{0}]"
+msgstr "Source plugin: [c/8500ff:{0}]"
+
+#: ..\..\Help.cs:247
+msgid "[c/c2ff39:无权限限制]"
+msgstr "[c/c2ff39:No permission restrictions]"
+
+#: ..\..\Help.cs:228
+#, csharp-format
+msgid "{0}{1}的帮助:"
+msgstr "Help for {0}{1}:"
+
+#: ..\..\Help.cs:224
+msgid "你没有权限查询此命令."
+msgstr "You do not have permission to query this command."
+
+#: ..\..\Help.cs:204
+#, csharp-format
+msgid "输入 {0}help {{0}} 翻页."
+msgstr "Type {0}help {{0}} to turn the page."
+
+#: ..\..\Help.cs:260
+msgid "*本插件只能查询主命令权限，详细权限请使用/whynot查看!"
+msgstr "*This plugin can only query main command permissions, for detailed permissions please use /whynot!"
