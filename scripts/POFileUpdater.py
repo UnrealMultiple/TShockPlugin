@@ -24,11 +24,11 @@ if __name__ == '__main__':
         pot_file = i18n_dir / "template.pot"
         run_cmd(["dotnet", "tool", "run", "GetText.Extractor", "-u", "-o", "-s", str(csproj), "-t", str(pot_file)])
 
-        pot_diff = [x for x in run_cmd(["git", "diff", "--numstat", str(pot_file)], True).split(' ') if x != ""]
+        pot_diff = [x for x in run_cmd(["git", "diff", "--numstat", str(pot_file)], True).split('\t') if x != ""]
         if pot_diff[0] == "2" and pot_diff[1] == "2":
-            f"[{str(csproj)}] template.pot no diff except date changes, restoring..."
+            print(f"[{str(csproj)}] template.pot no diff except date changes, restoring...")
             run_cmd(["git", "restore", str(pot_file)])
-            continue
+#             continue
 
         for po_file in [Path(x) for x in glob.glob(i18n_dir.as_posix() + '/*.po')]:
             print(f"[{po_file}] merging...")
