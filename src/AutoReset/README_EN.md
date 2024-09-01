@@ -5,11 +5,11 @@
 
 ## Commands
 
-| Command     | permission |            Details            |
-|-------------| :-----------------: |:-----------------------------:|
-| /reset	     | reset.admin      | Generating map and reset data |
-| /resetdata	 | reset.admin      |        Only reset data        |
-| /rs	        | reset.admin      |         Reset Setting         |
+| Command     | Permission  |            Details            |
+|-------------|:-----------:|:-----------------------------:|
+| /reset	     | reset.admin | Generating map and reset data |
+| /resetdata	 | reset.admin |        Only reset data        |
+| /rs	        | reset.admin |         Reset Setting         |
 
 
 ## Config

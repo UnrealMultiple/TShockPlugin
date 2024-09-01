@@ -10,7 +10,7 @@
 
 ## Commands
 
-| Command        | permission |                 Details                 |
+| Command        | Permission |                 Details                 |
 |----------------|:----------:|:---------------------------------------:|
 | /vm            | veinminer  |           Toggle vein mining            |
 | /vm [Any agrs] | veinminer  | Toggle vein mining notification message |

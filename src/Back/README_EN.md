@@ -6,9 +6,9 @@
 
 ## Commands
 
-| Command     | permission |          Details          |
-| -------------- | :-----------------: |:-------------------------:|
-| /back | back   | Return to Death Location  |
+| Command     | Permission |          Details          |
+| -------------- |:----------:|:-------------------------:|
+| /back |    back    | Return to Death Location  |
 
 ## Config
 > Configuration file location：tshock/Back.json

@@ -9,7 +9,7 @@
 
 ## Commands
 
-| Command         | permission |          Details          |
+| Command         | Permission |          Details          |
 |-----------------|:----------:| :------: |
 | help <page>     |     no     |   view the list of commands   |
 | /help <command> |     no     |    view detailed help for the command   |

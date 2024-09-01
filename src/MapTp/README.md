@@ -8,23 +8,25 @@
 ## 更新日志
 
 ```
+v1.0.2
+添加英文翻译
 v1.0.1
 完善卸载函数
 ```
 
 ## 指令
 
-| 语法           |        权限         |   说明   |
-| -------------- | :-----------------: | :------: |
-| 无 | maptp.noclip   | 允许双击传送(不包括实心方块)|
-| 无 | maptp   | 允许双击传送(包括实心方块)|
+| Command |  Perminsion  |   说明   |
+|---------|:------------:| :------: |
+| None    | maptp.noclip | 	Allows double-click teleportation (excluding solid blocks)|
+| None    |    maptp     | Allows double-click teleportation (including solid blocks)|
 
 ## 配置
 
 ```
 暂无
 ```
-## 反馈
-- 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
-- 次优先：TShock官方群：816771079
-- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
+## FeedBack
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love

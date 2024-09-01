@@ -6,10 +6,10 @@
 
 ## Commands
 
-| Command          | permission |          Details          |
-|------------------| :-----------------: | :------: |
-| /autoteam or /at | autoteam.toggle  |   Toggle the automatic team assignment feature.   |
-| No               | noautoteam  |   Having this permission will not automatically assign you to a team.   |
+| Command          |   Permission    |          Details          |
+|------------------|:---------------:| :------: |
+| /autoteam or /at | autoteam.toggle |   Toggle the automatic team assignment feature.   |
+| No               |   noautoteam    |   Having this permission will not automatically assign you to a team.   |
 
 ## Config
 > Configuration file location：tshock/AutoTeamPlus.json
