@@ -10,7 +10,7 @@
 
 ## Commands
 
-| Command        | permission |                   说明                    |
+| Command        | permission |                 Details                 |
 |----------------|:----------:|:---------------------------------------:|
 | /vm            | veinminer  |           Toggle vein mining            |
 | /vm [Any agrs] | veinminer  | Toggle vein mining notification message |
@@ -78,8 +78,7 @@
 }
 ```
 
-
 ## FeedBack
-- Github Issue -> TShockPlugin Repo：https://github.com/UnrealMultiple/TShockPlugin
-- TShock QQ Group：816771079
-- China Terraria Forum:trhub.cn ，bbstr.net , tr.monika.love
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
