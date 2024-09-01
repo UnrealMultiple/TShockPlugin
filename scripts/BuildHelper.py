@@ -39,6 +39,14 @@ if __name__ == '__main__':
                         print(f"🔍 找到README.md({destination_path})")
                 except:
                     print(f"⚠️ README移动失败({file_name})")
+                try:
+                    if file_name.endswith('.csproj'):
+                        source_path = os.path.join(dir_path, 'README_EN.md')
+                        destination_path = os.path.join(cwd, 'out', f'{build_type}', file_name.replace('.csproj', '.md'))
+                        shutil.copyfile(source_path, destination_path)
+                        print(f"🔍 找到README_EN.md({destination_path})")
+                except:
+                    pass
 
 
     os.makedirs(f'out/{build_type}/Plugins', exist_ok=True)
@@ -88,4 +96,6 @@ if __name__ == '__main__':
         else:
             print('❓Gitee插件包上传失败:', response.status_code)
             print(response.json())
+            
+    print("📦 插件打包结束！")
     
