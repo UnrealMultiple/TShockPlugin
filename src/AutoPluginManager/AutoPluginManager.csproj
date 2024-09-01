@@ -2,4 +2,8 @@
 
 	<Import Project="..\..\template.targets" />
 
+	<ItemGroup>
+	  <Folder Include="i18n\" />
+	</ItemGroup>
+
 </Project>
