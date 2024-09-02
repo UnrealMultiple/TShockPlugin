@@ -15,7 +15,7 @@ public partial class ZHIPM : TerrariaPlugin
 
     public override string Name => "ZHIPlayerManager";
 
-    public override Version Version => new Version(1, 0, 0, 6);
+    public override Version Version => new Version(1, 0, 0, 7);
 
     #region 字段或属性
     /// <summary>
@@ -59,9 +59,9 @@ public partial class ZHIPM : TerrariaPlugin
     /// </summary>
     public static List<StrikeNPC> strikeNPC = new List<StrikeNPC>();
 
-    public readonly string noplayer = "该玩家不存在，请重新输入";
-    public readonly string manyplayer = "该玩家不唯一，请重新输入";
-    public readonly string offlineplayer = "该玩家不在线，正在查询离线数据";
+    public readonly string noplayer = GetString("该玩家不存在，请重新输入");
+    public readonly string manyplayer = GetString("该玩家不唯一，请重新输入");
+    public readonly string offlineplayer = GetString("该玩家不在线，正在查询离线数据");
 
     public static ZhipmConfig config = new ZhipmConfig();
 
@@ -86,7 +86,7 @@ public partial class ZHIPM : TerrariaPlugin
     {
         if (!TShock.ServerSideCharacterConfig.Settings.Enabled)
         {
-            Console.WriteLine("该插件需要开启SSC才能使用");
+            Console.WriteLine(GetString("该插件需要开启SSC才能使用"));
             return;
         }
         Timer = 0L;

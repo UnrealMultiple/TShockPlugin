@@ -248,6 +248,7 @@ msgid ""
 "或其上级合成物时，帕拉丁之锤伤害翻倍"
 msgstr ""
 
+
 #: ../../Challenger/Challenger.cs:1383
 msgid ""
 "【皇家凝胶】\n"

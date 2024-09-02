@@ -494,8 +494,7 @@ public partial class ZHIPM : TerrariaPlugin
         }
         catch (Exception ex)
         {
-            TShock.Log.Error("错误：UpdateTshockDBCharac " + ex.ToString());
-            Console.WriteLine("错误：UpdateTshockDBCharac " + ex.ToString());
+            TShock.Log.ConsoleError(GetString("错误：UpdateTshockDBCharac ") + ex);
             return false;
         }
     }
@@ -633,8 +632,7 @@ public partial class ZHIPM : TerrariaPlugin
         }
         catch (Exception ex)
         {
-            TShock.Log.Error("错误 ResetPlayer ：" + ex.ToString());
-            Console.WriteLine("错误 ResetPlayer ：" + ex.ToString());
+            TShock.Log.ConsoleError(GetString("错误 ResetPlayer ：" )+ ex.ToString());
             return false;
         }
     }
@@ -801,7 +799,7 @@ public partial class ZHIPM : TerrariaPlugin
         var list = this.BestFindPlayerByNameOrIndex(args.Parameters[0]);
         if (list.Count > 1)
         {
-            var names = "检测到符合该条件的玩家数目不唯一，请重新输入\n包含：";
+            var names = GetString("检测到符合该条件的玩家数目不唯一，请重新输入\n包含：");
             foreach (var v in list)
             {
                 names += v.Name + ", ";
@@ -824,7 +822,7 @@ public partial class ZHIPM : TerrariaPlugin
                 var playerData = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), user.ID);
                 if (playerData == null || !playerData.exists)
                 {
-                    args.Player.SendInfoMessage("未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入");
+                    args.Player.SendInfoMessage(GetString("未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"));
                 }
                 else
                 {
@@ -833,25 +831,23 @@ public partial class ZHIPM : TerrariaPlugin
                         var playerData2 = ZPDataBase.ReadZPlayerDB(new TSPlayer(-1), user.ID, slot);
                         if (playerData2 == null || !playerData2.exists)
                         {
-                            args.Player.SendMessage("回档失败！未找到 [" + user.ID + "-" + slot + "] 号该备份", new Color(255, 0, 0));
+                            args.Player.SendMessage(GetString($"回档失败！未找到 [{user.ID} - {slot}] 号该备份"), new Color(255, 0, 0));
                         }
                         else
                         {
                             if (this.UpdateTshockDBCharac(user.ID, playerData2))
                             {
-                                args.Player.SendMessage($"玩家 [{user.Name}] 回档成功！启用备份 [ {user.ID.ToString() + "-" + slot} ]", new Color(0, 255, 0));
+                                args.Player.SendMessage(GetString($"玩家 [{user.Name}] 回档成功！启用备份 [ {user.ID.ToString() + "-" + slot} ]"), new Color(0, 255, 0));
                             }
                             else
                             {
-                                args.Player.SendMessage("回档失败！", new Color(255, 0, 0));
+                                args.Player.SendMessage(GetString("回档失败！"), new Color(255, 0, 0));
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        TShock.Log.Error("错误：BackUp " + ex.ToString());
-                        args.Player.SendErrorMessage("错误：BackUp " + ex.ToString());
-                        Console.WriteLine("错误：BackUp " + ex.ToString());
+                        TShock.Log.ConsoleError(GetString("错误：BackUp ") + ex);
                     }
                 }
             }
@@ -865,12 +861,12 @@ public partial class ZHIPM : TerrariaPlugin
             {
                 if (args.Player.Index != list[0].Index)
                 {
-                    args.Player.SendMessage($"玩家 [{list[0].Name}] 回档成功！启用备份 [ {list[0].Account.ID + "-" + slot} ]", new Color(0, 255, 0));
-                    list[0].SendMessage("您已回档成功！", new Color(0, 255, 0));
+                    args.Player.SendMessage(GetString($"玩家 [{list[0].Name}] 回档成功！启用备份 [ {list[0].Account.ID + "-" + slot} ]"), new Color(0, 255, 0));
+                    list[0].SendMessage(GetString("您已回档成功！"), new Color(0, 255, 0));
                 }
                 else
                 {
-                    args.Player.SendMessage($"玩家 [{list[0].Name}] 回档成功！启用备份 [ {list[0].Account.ID + "-" + slot} ]", new Color(0, 255, 0));
+                    args.Player.SendMessage(GetString($"玩家 [{list[0].Name}] 回档成功！启用备份 [ {list[0].Account.ID + "-" + slot} ]"), new Color(0, 255, 0));
                 }
             }
             //如果他是管理，那就不用向原版数据写入了
@@ -878,17 +874,17 @@ public partial class ZHIPM : TerrariaPlugin
             {
                 if (args.Player.Index != list[0].Index)
                 {
-                    args.Player.SendMessage($"玩家 [{list[0].Name}] 回档成功！启用备份 [ {list[0].Account.ID + "-" + slot} ]", new Color(0, 255, 0));
-                    list[0].SendMessage("您已回档成功！", new Color(0, 255, 0));
+                    args.Player.SendMessage(GetString($"玩家 [{list[0].Name}] 回档成功！启用备份 [ {list[0].Account.ID + "-" + slot} ]"), new Color(0, 255, 0));
+                    list[0].SendMessage(GetString("您已回档成功！"), new Color(0, 255, 0));
                 }
                 else
                 {
-                    args.Player.SendMessage($"玩家 [{list[0].Name}] 回档成功！启用备份 [ {list[0].Account.ID + "-" + slot} ]", new Color(0, 255, 0));
+                    args.Player.SendMessage(GetString($"玩家 [{list[0].Name}] 回档成功！启用备份 [ {list[0].Account.ID + "-" + slot} ]"), new Color(0, 255, 0));
                 }
             }
             else
             {
-                args.Player.SendMessage("回档失败！未备份数据或该玩家未登录", new Color(255, 0, 0));
+                args.Player.SendMessage(GetString("回档失败！未备份数据或该玩家未登录"), new Color(255, 0, 0));
             }
         }
     }
@@ -909,7 +905,7 @@ public partial class ZHIPM : TerrariaPlugin
             h = min / 60L;
             min %= 60L;
         }
-        return $"{h}小时 {min}分钟 {s}秒";
+        return GetString($"{h}小时 {min}分钟 {s}秒");
     }
 
 
@@ -929,8 +925,8 @@ public partial class ZHIPM : TerrariaPlugin
         coin /= 100;
         var platinum = coin; //74
         return Model == 0
-            ? $"{platinum}[i:74] {gold}[i:73] {silver}[i:72] {copper}[i:71]"
-            : $"{platinum}铂金币  {gold}金币  {silver}银币  {copper}铜币";
+            ? GetString($"{platinum}[i:74] {gold}[i:73] {silver}[i:72] {copper}[i:71]")
+            : GetString($"{platinum}铂金币  {gold}金币  {silver}银币  {copper}铜币");
     }
 
 
@@ -998,10 +994,10 @@ public partial class ZHIPM : TerrariaPlugin
             switch (v.Key)//处理一下特殊npc
             {
                 case 592:
-                    sb.Append($"蹦跶{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
+                    sb.Append(GetString($"蹦跶{Lang.GetNPCNameValue(v.Key)}({v.Value})，"));
                     break;
                 case 593:
-                    sb.Append($"游雨{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
+                    sb.Append(GetString($"游雨{Lang.GetNPCNameValue(v.Key)}({v.Value})，"));
                     break;
                 case 564:
                     sb.Append($"T1{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
@@ -1016,7 +1012,7 @@ public partial class ZHIPM : TerrariaPlugin
                     sb.Append($"T3{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
                     break;
                 case 398:
-                    sb.Append("月亮领主(" + v.Value + ")");
+                    sb.Append(GetString("月亮领主(" + v.Value + ")"));
                     break;
                 default:
                     sb.Append($"{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
@@ -1112,10 +1108,8 @@ public partial class ZHIPM : TerrariaPlugin
         }
         catch (Exception ex)
         {
-            TShock.Log.Error("错误：ExportPlayer " + ex.ToString());
-            TShock.Log.Error("路径：" + playerFileData.Path + " 名字：" + text);
-            Console.WriteLine("错误：ExportPlayer " + ex.ToString());
-            Console.WriteLine("路径：" + playerFileData.Path + " 名字：" + text);
+            TShock.Log.ConsoleError(GetString("错误：ExportPlayer ") + ex.ToString());
+            TShock.Log.ConsoleError(GetString("路径：") + playerFileData.Path + GetString(" 名字：") + text);
             return false;
         }
     }
@@ -1534,8 +1528,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                TShock.Log.Info("正常的意外因玩家 [ " + name + " ] 数据残缺而导出人物失败 CreateAPlayer");
-                Console.WriteLine("正常的意外因玩家 [ " + name + " ] 数据残缺而导出人物失败 CreateAPlayer");
+                TShock.Log.ConsoleError(GetString($"正常的意外因玩家 [ {name} ] 数据残缺而导出人物失败 CreateAPlayer"));
                 return null;
             }
         }
@@ -1714,7 +1707,7 @@ public partial class ZHIPM : TerrariaPlugin
         var sb = new StringBuilder();
         var sortpairs = new Dictionary<int, int>();
 
-        sb.AppendLine($"共有 [c/74F3C9:{playerAndDamage.Count}] 位玩家击败了 [c/74F3C9:{BossName}]");
+        sb.AppendLine(GetString($"共有 [c/74F3C9:{playerAndDamage.Count}] 位玩家击败了 [c/74F3C9:{BossName}]"));
         //简单的排个序
         while (playerAndDamage.Count > 0)
         {
@@ -1737,7 +1730,7 @@ public partial class ZHIPM : TerrariaPlugin
 
         foreach (var v in sortpairs)
         {
-            sb.AppendLine($"{TShock.UserAccounts.GetUserAccountByID(v.Key).Name}    伤害: [c/74F3C9:{v.Value}]    比重: {v.Value * 1.0f / alldamage:0.00%} ");
+            sb.AppendLine(GetString($"{TShock.UserAccounts.GetUserAccountByID(v.Key).Name}    伤害: [c/74F3C9:{v.Value}]    比重: {v.Value * 1.0f / alldamage:0.00%} "));
         }
         TSPlayer.All.SendMessage(sb.ToString(), Color.Bisque);
     }

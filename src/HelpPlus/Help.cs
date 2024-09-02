@@ -43,7 +43,7 @@ public class HelpPlus : TerrariaPlugin
     private void GeneralHooks_ReloadEvent(ReloadEventArgs e)
     {
         Config.Read();
-        e.Player.SendSuccessMessage("[HelpPlus]插件配置已重载！");
+        e.Player.SendSuccessMessage(GetString("[HelpPlus]插件配置已重载！"));
     }
 
     private static bool IsWhiteSpace(char c)
@@ -182,7 +182,7 @@ public class HelpPlus : TerrariaPlugin
         var Specifier = TShock.Config.Settings.CommandSpecifier;
         if (args.Parameters.Count > 1)
         {
-            args.Player.SendErrorMessage(string.Format("无效用法.正确用法: {0}help <命令/页码>", Specifier));
+            args.Player.SendErrorMessage(GetString( "无效用法.正确用法: {0}help <命令/页码>", Specifier));
             return;
         }
 
@@ -200,8 +200,8 @@ public class HelpPlus : TerrariaPlugin
             PaginationTools.SendPage(args.Player, pageNumber, PaginationTools.BuildLinesFromTerms(cmdNames),
                 new PaginationTools.Settings
                 {
-                    HeaderFormat = "命令列表 ({0}/{1}):",
-                    FooterFormat = string.Format("输入 {0}help {{0}} 翻页.", Specifier)
+                    HeaderFormat = GetString("命令列表 ({0}/{1}):"),
+                    FooterFormat = GetString("输入 {0}help {{0}} 翻页.", Specifier)
                 });
         }
         else
@@ -215,17 +215,17 @@ public class HelpPlus : TerrariaPlugin
             var command = Commands.ChatCommands.Find(c => c.Names.Contains(commandName));
             if (command == null)
             {
-                args.Player.SendErrorMessage("无效命令.");
+                args.Player.SendErrorMessage(GetString("无效命令."));
                 return;
             }
 
             if (!command.CanRun(args.Player))
             {
-                args.Player.SendErrorMessage("你没有权限查询此命令.");
+                args.Player.SendErrorMessage(GetString("你没有权限查询此命令."));
                 return;
             }
 
-            args.Player.SendSuccessMessage(string.Format("{0}{1}的帮助:", Specifier, command.Name));
+            args.Player.SendSuccessMessage(GetString("{0}{1}的帮助:", Specifier, command.Name));
             if (command.HelpDesc == null)
             {
                 args.Player.SendWarningMessage(command.HelpText);
@@ -240,24 +240,24 @@ public class HelpPlus : TerrariaPlugin
 
             if (command.Names.Count > 1)
             {
-                args.Player.SendInfoMessage($"别名: [c/00ffff:{string.Join(',', command.Names)}]");
+                args.Player.SendInfoMessage(GetString($"别名: [c/00ffff:{string.Join(',', command.Names)}]"));
             }
 
             args.Player.SendInfoMessage(
-                $"权限: {(command.Permissions.Count == 0 || command.Permissions.Count(i => i == "") == command.Permissions.Count ? "[c/c2ff39:无权限限制]" : "[c/bf0705:" + string.Join(',', command.Permissions) + "]")}");
+                GetString($"权限: {(command.Permissions.Count == 0 || command.Permissions.Count(i => i == "") == command.Permissions.Count ? GetString("[c/c2ff39:无权限限制]") : "[c/bf0705:" + string.Join(',', command.Permissions) + "]")}"));
             args.Player.SendInfoMessage(
-                $"来源插件: [c/8500ff:{command.CommandDelegate.Method.DeclaringType.Assembly.FullName.Split(',').First()}]");
+                GetString($"来源插件: [c/8500ff:{command.CommandDelegate.Method.DeclaringType.Assembly.FullName.Split(',').First()}]"));
             if (!command.AllowServer)
             {
-                args.Player.SendInfoMessage("*此命令只能游戏内执行");
+                args.Player.SendInfoMessage(GetString("*此命令只能游戏内执行"));
             }
 
             if (!command.DoLog)
             {
-                args.Player.SendInfoMessage("*此命令不记录命令参数");
+                args.Player.SendInfoMessage(GetString("*此命令不记录命令参数"));
             }
 
-            args.Player.SendInfoMessage("*本插件只能查询主命令权限，详细权限请使用/whynot查看!");
+            args.Player.SendInfoMessage(GetString("*本插件只能查询主命令权限，详细权限请使用/whynot查看!"));
         }
     }
 

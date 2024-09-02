@@ -10,7 +10,7 @@ namespace autoteam;
 public class Autoteam : TerrariaPlugin
 {
     public override string Author => "十七改，肝帝熙恩改";
-    public override Version Version => new Version(2, 4, 1);
+    public override Version Version => new Version(2, 4, 2);
     public override string Description => "自动队伍";
     public override string Name => "AutoTeamPlus";
     public static Configuration Config;
@@ -28,7 +28,7 @@ public class Autoteam : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(Autoteam).Name);
+        args.Player?.SendSuccessMessage(GetString("[AutoTeam] 重新加载配置完毕。"));
     }
 
     public override void Initialize()
@@ -61,7 +61,7 @@ public class Autoteam : TerrariaPlugin
 
         if (parameters.Count < 1)
         {
-            player.SendErrorMessage("用法: /autoteam <on|off>");
+            player.SendErrorMessage(GetString("用法: /autoteam <on|off>"));
             return;
         }
 
@@ -70,14 +70,14 @@ public class Autoteam : TerrariaPlugin
         {
             case "on":
                 Config.Enabled = true;
-                player.SendSuccessMessage("AutoTeamPlus 插件已启用.");
+                player.SendSuccessMessage(GetString("AutoTeamPlus 插件已启用."));
                 break;
             case "off":
                 Config.Enabled = false;
-                player.SendSuccessMessage("AutoTeamPlus 插件已禁用.");
+                player.SendSuccessMessage(GetString("AutoTeamPlus 插件已禁用."));
                 break;
             default:
-                player.SendErrorMessage("无效的操作。请使用 'on' 或 'off'。");
+                player.SendErrorMessage(GetString("无效的操作。请使用 'on' 或 'off'。"));
                 break;
         }
     }
@@ -127,11 +127,11 @@ public class Autoteam : TerrariaPlugin
         if (teamIndex != -1)
         {
             player.SetTeam(teamIndex);
-            player.SendInfoMessage($"你的队伍已切换为 {teamName}.");
+            player.SendInfoMessage(GetString($"你的队伍已切换为 {teamName}."));
         }
         else
         {
-            player.SendInfoMessage("未配置，可随意切换.");
+            player.SendInfoMessage(GetString("未配置，可随意切换."));
         }
     }
 

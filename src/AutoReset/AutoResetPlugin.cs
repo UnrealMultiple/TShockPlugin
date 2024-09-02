@@ -32,7 +32,7 @@ public class AutoResetPlugin : TerrariaPlugin
 
     public override string Name => "AutoReset";
 
-    public override Version Version => new(2024, 8, 25);
+    public override Version Version => new(2024, 9, 1);
 
     public override string Author => "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩";
 
@@ -42,14 +42,20 @@ public class AutoResetPlugin : TerrariaPlugin
     {
         this.LoadConfig();
         Commands.ChatCommands.Add(new Command("reset.admin", this.ResetCmd, "reset", "重置世界"));
+        Commands.ChatCommands.Add(new Command("reset.admin", this.ResetDataCmd, "resetdata", "重置数据"));
         Commands.ChatCommands.Add(new Command("", this.OnWho, "who", "playing", "online"));
-
         Commands.ChatCommands.Add(new Command("reset.admin", this.ResetSetting, "rs", "重置设置"));
         ServerApi.Hooks.ServerJoin.Register(this, this.OnServerJoin, int.MaxValue);
         ServerApi.Hooks.WorldSave.Register(this, this.OnWorldSave, int.MaxValue);
         ServerApi.Hooks.NpcKilled.Register(this, this.CountKill);
         GeneralHooks.ReloadEvent += this.ReloadConfig;
         ;
+    }
+
+    private void ResetDataCmd(CommandArgs args)
+    {
+        this.PostReset();
+        TSPlayer.All.SendSuccessMessage(GetString("[AutoReset]服务器数据重置成功~"));
     }
 
     protected override void Dispose(bool disposing)
@@ -89,7 +95,7 @@ public class AutoResetPlugin : TerrariaPlugin
             File.WriteAllText(this._configPath, Config.ToJson());
         }
 
-        e.Player.SendSuccessMessage("[AutoReset]自动重置插件配置已重载");
+        e.Player.SendSuccessMessage(GetString("[AutoReset]自动重置插件配置已重载"));
     }
 
     private void LoadConfig()
@@ -138,12 +144,12 @@ public class AutoResetPlugin : TerrariaPlugin
             if (args.Player.RealPlayer)
             {
                 args.Player.SendInfoMessage(
-                    $"[i:3611]击杀自动重置:{Lang.GetNPCName(Config.KillToReset.NpcId)}({Config.KillToReset.KillCount}/{Config.KillToReset.NeedKillCount})");
+                    GetString($"[i:3611]击杀自动重置:{Lang.GetNPCName(Config.KillToReset.NpcId)}({Config.KillToReset.KillCount}/{Config.KillToReset.NeedKillCount})"));
             }
             else
             {
                 args.Player.SendInfoMessage(
-                    $"📝击杀自动重置:{Lang.GetNPCName(Config.KillToReset.NpcId)}({Config.KillToReset.KillCount}/{Config.KillToReset.NeedKillCount})");
+                    GetString($"📝击杀自动重置:{Lang.GetNPCName(Config.KillToReset.NpcId)}({Config.KillToReset.KillCount}/{Config.KillToReset.NeedKillCount})"));
             }
         }
 
@@ -151,10 +157,10 @@ public class AutoResetPlugin : TerrariaPlugin
         switch (status)
         {
             case Status.Cleaning:
-                args.Player.SendInfoMessage("重置数据中, 请稍后...");
+                args.Player.SendInfoMessage(GetString("重置数据中, 请稍后..."));
                 break;
             case Status.Generating:
-                args.Player.SendInfoMessage("生成地图中: " + this.GetProgress());
+                args.Player.SendInfoMessage(GetString("生成地图中: ") + this.GetProgress());
                 break;
             case Status.Available:
                 break;
@@ -170,7 +176,7 @@ public class AutoResetPlugin : TerrariaPlugin
             File.WriteAllText(this._configPath, Config.ToJson());
             TShock.Utils.Broadcast(
                 string.Format(
-                    $"[自动重置]服务器中已经击杀{Lang.GetNPCName(Config.KillToReset.NpcId)}{Config.KillToReset.KillCount}/{Config.KillToReset.NeedKillCount}"),
+                    GetString($"[AutoReset]服务器中已经击杀{Lang.GetNPCName(Config.KillToReset.NpcId)}{Config.KillToReset.KillCount}/{Config.KillToReset.NeedKillCount}")),
                 Color.Orange);
             if (Config.KillToReset.NeedKillCount <= Config.KillToReset.KillCount)
             {
@@ -189,16 +195,16 @@ public class AutoResetPlugin : TerrariaPlugin
         Task.Run(delegate
         {
             this._status = Status.Cleaning;
-            TShock.Utils.Broadcast("[自动重置]服务器即将开始重置...", Color.Orange);
+            TShock.Utils.Broadcast(GetString("[AutoReset]服务器即将开始重置..."), Color.Orange);
             for (var i = 60; i >= 0; i--)
             {
-                TShock.Utils.Broadcast(string.Format("[自动重置]{0}s后关闭服务器...", i), Color.Orange);
+                TShock.Utils.Broadcast(string.Format(GetString("[AutoReset]{0}s后关闭服务器..."), i), Color.Orange);
                 Thread.Sleep(1000);
             }
 
             TShock.Players.ForEach(delegate (TSPlayer? p)
             {
-                p?.Kick("[自动重置]服务器已开始重置...", true, true);
+                p?.Kick(GetString("[AutoReset]服务器已开始重置..."), true, true);
             });
 
 
@@ -280,20 +286,16 @@ public class AutoResetPlugin : TerrariaPlugin
             List<string> lines = new()
             {
                 "/rs info",
-                "/rs name <地图名>",
-                "/rs seed <种子>",
-                "或",
-                "/rs 信息",
-                "/rs 名字 <地图名>",
-                "/rs 种子 <种子>"
+                GetString("/rs name <地图名>"),
+                    GetString("/rs seed <种子>"),
             };
 
             PaginationTools.SendPage(
                 op, pageNumber, lines,
                 new PaginationTools.Settings
                 {
-                    HeaderFormat = "帮助 ({0}/{1})：",
-                    FooterFormat = "输入 {0}rs help {{0}} 查看更多".SFormat(Commands.Specifier)
+                    HeaderFormat = GetString("帮助 ({0}/{1})："),
+                    FooterFormat = GetString("输入 {0}rs help {{0}} 查看更多").SFormat(Commands.Specifier)
                 }
             );
         }
@@ -319,8 +321,8 @@ public class AutoResetPlugin : TerrariaPlugin
             // 世界信息
             case "信息":
             case "info":
-                op.SendInfoMessage($"地图名: {(Config.SetWorld.Name ?? Main.worldName)}\n" +
-                                   $"种子: {(Config.SetWorld.Seed ?? "随机")}");
+                op.SendInfoMessage(GetString($"地图名: {(Config.SetWorld.Name ?? Main.worldName)}\n") +
+                                   GetString($"种子: {(Config.SetWorld.Seed ?? GetString("随机"))}"));
                 break;
             case "名字":
             case "name":
@@ -328,13 +330,13 @@ public class AutoResetPlugin : TerrariaPlugin
                 {
                     Config.SetWorld.Name = null;
                     File.WriteAllText(this._configPath, Config.ToJson());
-                    op.SendSuccessMessage("世界名字已设置为跟随原世界");
+                    op.SendSuccessMessage(GetString("世界名字已设置为跟随原世界"));
                 }
                 else
                 {
                     Config.SetWorld.Name = args.Parameters[1];
                     File.WriteAllText(this._configPath, Config.ToJson());
-                    op.SendSuccessMessage("世界名字已设置为 " + args.Parameters[1]);
+                    op.SendSuccessMessage(GetString("世界名字已设置为 ") + args.Parameters[1]);
                 }
 
                 break;
@@ -344,7 +346,7 @@ public class AutoResetPlugin : TerrariaPlugin
                 {
                     Config.SetWorld.Seed = null;
                     File.WriteAllText(this._configPath, Config.ToJson());
-                    op.SendSuccessMessage("世界种子已设为随机");
+                    op.SendSuccessMessage(GetString("世界种子已设为随机"));
                 }
                 else
                 {
@@ -363,7 +365,7 @@ public class AutoResetPlugin : TerrariaPlugin
 
                     Config.SetWorld.Seed = string.Join(" ", seedParts);
                     File.WriteAllText(this._configPath, Config.ToJson());
-                    op.SendSuccessMessage("世界种子已设置为:" + Config.SetWorld.Seed);
+                    op.SendSuccessMessage(GetString("世界种子已设置为:") + Config.SetWorld.Seed);
                 }
 
                 break;
@@ -380,7 +382,7 @@ public class AutoResetPlugin : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                TShock.Log.ConsoleWarn($"[AutoReset]重置SQL({c})执行失败: {ex.Message}");
+                TShock.Log.ConsoleWarn(GetString($"[AutoReset]重置SQL({c})执行失败: {ex.Message}"));
             }
         });
         foreach (var keyValuePair in Config.Files!)
@@ -399,7 +401,7 @@ public class AutoResetPlugin : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                TShock.Log.ConsoleWarn($"[AutoReset]重置文件({keyValuePair.Key})替换失败: {ex.Message}");
+                TShock.Log.ConsoleWarn(GetString($"[AutoReset]重置文件({keyValuePair.Key})替换失败: {ex.Message}"));
             }
         }
 
@@ -420,11 +422,11 @@ public class AutoResetPlugin : TerrariaPlugin
         switch (status)
         {
             case Status.Cleaning:
-                plr.Disconnect("[AutoReset]重置数据中，请稍后...");
+                plr.Disconnect(GetString("[AutoReset]重置数据中，请稍后..."));
                 args.Handled = true;
                 break;
             case Status.Generating:
-                plr.Disconnect("[AutoReset]生成地图中:\n" + this.GetProgress());
+                plr.Disconnect(GetString("[AutoReset]生成地图中:\n") + this.GetProgress());
                 args.Handled = true;
                 break;
             case Status.Available:

@@ -1,0 +1,124 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AutoReset\n"
+"POT-Creation-Date: 2024-09-01 11:28:02+0800\n"
+"PO-Revision-Date: 2024-09-01 10:15+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: ..\..\Utils.cs:25
+#, csharp-format
+msgid "[自动重置]调用API失败! (状态码: {0})"
+msgstr "[AutoReset] API call failed! (Status code: {0})"
+
+#: ..\..\AutoResetPlugin.cs:325
+#, csharp-format
+msgid "种子: {0}"
+msgstr "Seed: {0}"
+
+#: ..\..\AutoResetPlugin.cs:290
+msgid "/rs seed <种子>"
+msgstr "/rs seed <seed>"
+
+#: ..\..\AutoResetPlugin.cs:349
+msgid "世界种子已设为随机"
+msgstr "The world seed has been set to random"
+
+#: ..\..\AutoResetPlugin.cs:324
+#, csharp-format
+msgid "地图名: {0}\n"
+msgstr "Map name: {0}\n"
+
+#: ..\..\AutoResetPlugin.cs:198
+msgid "[AutoReset]服务器即将开始重置..."
+msgstr "[AutoReset] The server is about to reset…"
+
+#: ..\..\AutoResetPlugin.cs:385
+#, csharp-format
+msgid "[AutoReset]重置SQL({0})执行失败: {1}"
+msgstr "[AutoReset] Resetting SQL ({0}) failed: {1}"
+
+#: ..\..\AutoResetPlugin.cs:160
+msgid "重置数据中, 请稍后..."
+msgstr "Resetting data, please wait…"
+
+#: ..\..\AutoResetPlugin.cs:333
+msgid "世界名字已设置为跟随原世界"
+msgstr "The world name has been set to follow the original world"
+
+#: ..\..\AutoResetPlugin.cs:368
+msgid "世界种子已设置为:"
+msgstr "The world seed has been set to:"
+
+#: ..\..\AutoResetPlugin.cs:163
+msgid "生成地图中: "
+msgstr "Generating map… "
+
+#: ..\..\AutoResetPlugin.cs:404
+#, csharp-format
+msgid "[AutoReset]重置文件({0})替换失败: {1}"
+msgstr "[AutoReset] Resetting file ({0}) failed: {1}"
+
+#: ..\..\AutoResetPlugin.cs:298
+msgid "输入 {0}rs help {{0}} 查看更多"
+msgstr "Type {0}rs help {{0}} for more information"
+
+#: ..\..\AutoResetPlugin.cs:98
+msgid "[AutoReset]自动重置插件配置已重载"
+msgstr "[AutoReset] Auto-reset plugin configuration reloaded"
+
+#: ..\..\AutoResetPlugin.cs:58
+msgid "[AutoReset]服务器数据重置成功~"
+msgstr "[AutoReset] Server data reset successfully~"
+
+#: ..\..\AutoResetPlugin.cs:425
+msgid "[AutoReset]重置数据中，请稍后..."
+msgstr "[AutoReset] Resetting data, please wait…"
+
+#: ..\..\AutoResetPlugin.cs:147
+#, csharp-format
+msgid "[i:3611]击杀自动重置:{0}({1}/{2})"
+msgstr "[i:3611] Auto-reset on kill: {0} ({1}/{2})"
+
+#: ..\..\AutoResetPlugin.cs:339
+msgid "世界名字已设置为 "
+msgstr "[AutoReset] The world name has been set to "
+
+#: ..\..\AutoResetPlugin.cs:429
+msgid "[AutoReset]生成地图中:\n"
+msgstr "[AutoReset] Generating map…\n"
+
+#: ..\..\AutoResetPlugin.cs:297
+msgid "帮助 ({0}/{1})："
+msgstr "Help ({0}/{1})："
+
+#: ..\..\AutoResetPlugin.cs:289
+msgid "/rs name <地图名>"
+msgstr "/rs name <map name>"
+
+#: ..\..\AutoResetPlugin.cs:325
+msgid "随机"
+msgstr "Random"
+
+#: ..\..\AutoResetPlugin.cs:179
+#, csharp-format
+msgid "[AutoReset]服务器中已经击杀{0}{1}/{2}"
+msgstr "[AutoReset] {0}{1}/{2} have been killed in the server."
+
+#: ..\..\AutoResetPlugin.cs:152
+#, csharp-format
+msgid "📝击杀自动重置:{0}({1}/{2})"
+msgstr "📝 Auto-reset on kill: {0} ({1}/{2})"
+
+#: ..\..\AutoResetPlugin.cs:201
+msgid "[AutoReset]{0}s后关闭服务器..."
+msgstr "[AutoReset] The server will shut down in {0}s..."
+
+#: ..\..\AutoResetPlugin.cs:207
+msgid "[AutoReset]服务器已开始重置..."
+msgstr "[AutoReset] The server has started resetting."
