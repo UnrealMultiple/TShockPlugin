@@ -18,7 +18,6 @@ public class BackPlugin : TerrariaPlugin
     public static Configuration Config;
     public BackPlugin(Main game) : base(game)
     {
-        LoadConfig();
     }
     private static void LoadConfig()
     {
@@ -43,6 +42,7 @@ public class BackPlugin : TerrariaPlugin
             HelpText = "返回最后一次死亡的位置",
             AllowServer = false
         });
+        LoadConfig();
     }
 
     protected override void Dispose(bool disposing)

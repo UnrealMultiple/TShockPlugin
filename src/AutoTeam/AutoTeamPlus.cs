@@ -17,7 +17,6 @@ public class Autoteam : TerrariaPlugin
 
     public Autoteam(Main game) : base(game)
     {
-        LoadConfig();
     }
 
     private static void LoadConfig()
@@ -39,6 +38,7 @@ public class Autoteam : TerrariaPlugin
         PlayerHooks.PlayerPostLogin += this.OnLogin;
         GetDataHandlers.PlayerTeam += this.Team;
         Commands.ChatCommands.Add(new Command("autoteam.toggle", this.TogglePlugin, "autoteam", "at"));
+        LoadConfig();
     }
 
     protected override void Dispose(bool disposing)

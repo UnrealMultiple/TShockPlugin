@@ -19,13 +19,13 @@ public class DeathDrop : TerrariaPlugin
 
     public DeathDrop(Main game) : base(game)
     {
-        LoadConfig();
     }
 
     public override void Initialize()
     {
         GeneralHooks.ReloadEvent += ReloadConfig;
         ServerApi.Hooks.NpcKilled.Register(this, this.NPCDead);
+        LoadConfig();
     }
 
     protected override void Dispose(bool disposing)

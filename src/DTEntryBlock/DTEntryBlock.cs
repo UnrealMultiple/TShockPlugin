@@ -18,7 +18,6 @@ public class DTEntryBlock : TerrariaPlugin
 
     public DTEntryBlock(Main game) : base(game)
     {
-        LoadConfig();
     }
     private static void LoadConfig()
     {
@@ -35,6 +34,7 @@ public class DTEntryBlock : TerrariaPlugin
     {
         GeneralHooks.ReloadEvent += ReloadConfig;
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdatePhysics);
+        LoadConfig();
     }
 
     protected override void Dispose(bool disposing)

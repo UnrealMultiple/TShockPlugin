@@ -23,92 +23,59 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 安装构建依赖
+        shell: pwsh
         run: |
-          dotnet tool restore
           sudo apt install -y gettext
-          wget -q https://github.com/ACaiCat/PluginInfoLoaderr/releases/download/v1.0.0.0/linux-x64.zip
-          unzip -qq linux-x64.zip
-      
-      - name: 生成POT
-        continue-on-error: true
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
-        run: |
-          python scripts/POFileUpdater.py auto debug
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          if git diff --staged --quiet; then
-            echo "跳过更新：POT没有变化"
-          else
-            git commit -m "自动更新POT文件 [skip ci]"
-            git push
-          fi
+          foreach ($p in @(Get-ChildItem src/**/i18n/*.po))  {
+            Start-Process -FilePath msgfmt -WorkingDirectory $p.Directory.FullName -ArgumentList "-o $([System.IO.Path]::ChangeExtension($p.Name, ".mo")) $($p.Name)"
+          }
 
-      - name: 更新子模块
-        continue-on-error: true
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-            if git diff --staged --quiet; then
-              echo "跳过更新：子模块没有变化"
-            else
-              git commit -m "自动更新子模块 [skip ci]"
-              git push
-            fi
-
-          
       - name: 构建插件
         if: github.event_name != 'push' || github.ref != 'refs/heads/master'
         run: |
           dotnet build Plugin.sln -c Debug
-          cp ./out/Debug/*.dll ./linux-x64/ServerPlugins/
-          sudo python scripts/BuildHelper.py Debug
-        env:
-          PYTHONIOENCODING: 'utf-8'
 
       - name: 构建插件
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           dotnet build Plugin.sln -c Release
-          cp ./out/Release/*.dll ./linux-x64/ServerPlugins/
-
-      - name: 更新Plugins.json 
-        continue-on-error: true
-        run: |
-          cd linux-x64
-          chmod +x TShock.Server
-          timeout 60s ./TShock.Server
-          mv Plugins.json ../
-  
-      - name: 更新Plugins.json 
-        continue-on-error: true
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add Plugins.json
-          if git diff --staged --quiet; then
-            echo "跳过更新：没有插件版本变化"
-          else
-            git commit -m "自动更新Plugins.json [skip ci]"
-            git pull
-            git push
-          fi
 
       - name: 打包
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        shell: pwsh
         run: |
-          sudo python scripts/BuildHelper.py Release ${{ secrets.CAI_GITEE_TOKEN }}
-        env:
-          PYTHONIOENCODING: 'utf-8'
-      
+          New-Item -Name bin -ItemType Directory
+          $rid = if ([System.Environment]::OSVersion.Platform -Match "Unix") { "linux-x64" } else { "win-x64" }
+          Invoke-WebRequest (Invoke-WebRequest 'https://api.github.com/repos/Pryaxis/TShock/releases' | ConvertFrom-Json | Select-Object -First 1 -ExpandProperty assets | Where-Object browser_download_url -Match $rid | Select-Object -ExpandProperty browser_download_url) -OutFile bin/TShock.zip
+          Expand-Archive bin/TShock.zip -DestinationPath bin
+          if ([System.Environment]::OSVersion.Platform -Match "Unix") {
+            tar xvf bin/TShock-Beta-linux-x64-Release.tar --directory bin
+          }
+          Copy-Item out/**/*.dll bin/ServerPlugins/
+          Set-Location bin
+          ./TShock.Server -dump-plugins-list-only
+          Set-Location ../
+          New-Item -Path out/Target -Name Plugins -ItemType Directory
+          $ErrorActionPreference = "SilentlyContinue"
+          foreach ($p in @(Get-ChildItem src/**/*.csproj))  {
+            Copy-Item "$($p.DirectoryName)/README.md" "out/Target/Plugins/$($p.Directory.Name).md"
+            Copy-Item "$($p.DirectoryName)/README_EN.md" "out/Target/Plugins/$($p.Directory.Name)_EN.md"
+          }
+          $ErrorActionPreference = "Continue"
+          Copy-Item out/**/*.dll,out/**/*.pdb out/Target/Plugins/
+          Copy-Item bin/Plugins.json,README.md,Usage.txt,LICENSE out/Target/
+          python scripts/zip.py
+
       - name: 上传临时插件包
         uses: actions/upload-artifact@v4
         with:
           name: Plugins
-          path: Plugins.zip
+          path: out/Plugins.zip
+
+      - name: 更新tag
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          git tag -f V1.0.0.0
+          git push -f origin V1.0.0.0
 
       - name: 获取更新日志
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -116,20 +83,6 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v5
         with:
           configuration: ".config/log_config.json"
-
-      - name: 生成更新日志
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        env:
-          CHANGELOG: ${{ steps.external_changelog_second.outputs.changelog }}
-          CHANGELOG_SECOND: ${{ steps.external_changelog_second.outputs.changelog }}
-        run: |
-          echo ${{ steps.external_changelog_collect.outputs.cache }}
-          echo "First:"
-          echo "$CHANGELOG"
-          echo "Second:"
-          echo "$CHANGELOG_SECOND"
-          git tag -f V1.0.0.0
-          git push -f origin V1.0.0.0
 
       - name: 发布插件包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -146,9 +99,55 @@ jobs:
             >**请你`详细`的看`上面的说明`，不要到处问`插件怎么用`、`ZIP如何解压`、`PDF怎么打开`**
             <details>
             <summary>更新日志</summary>
+            
             ${{steps.external_changelog_second.outputs.changelog}}
             </details>
           artifacts: |
-            Plugins.zip
+            out/Plugins.zip
           allowUpdates: true
           removeArtifacts: true
+
+      - name: 更新相关文件
+        continue-on-error: true
+        shell: pwsh
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        run: |
+          dotnet tool restore
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          $Changed = [System.Object[]]::new(0)
+          foreach ($p in @(Get-ChildItem src/**/*.csproj))  {
+              $pot = [System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot")
+              New-Item -Path $p.DirectoryName -Name i18n -ItemType Directory
+              GetText.Extractor -u -o -s $p.FullName -t $pot
+              $d = $(git diff --numstat $pot).Split()
+              if ($d[0] -le 2 -and $d[1] -le 2) {
+                git checkout $pot
+              } else {
+                foreach ($t in @(Get-ChildItem $($p.DirectoryName)i18n/*.po)) {
+                  msgmerge --previous --update $t $pot
+                }
+              }
+          }
+          git diff --quiet
+          if ($LastExitCode -ne 0) {
+            $Changed += "译文模板"
+            git add .
+          }
+          Copy-Item out/Target/Plugins.json Plugins.json -Force
+          git diff --quiet
+          if ($LastExitCode -ne 0) {
+            $Changed += "插件列表"
+            git add .
+          }
+          if ($Changed.Length -gt 0) {
+            git commit -m "自动更新$($Changed -Join ", ") [skip ci]"
+            git push
+          }
+
+      - name: 同步Gitee
+        continue-on-error: true
+        shell: pwsh
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        run: |
+          python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}

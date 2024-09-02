@@ -368,7 +368,3 @@ FodyWeavers.xsd
 # Localization
 template.pot.bak
 *.mo
-
-# CI
-linux-x64/
-linux-x64.zip

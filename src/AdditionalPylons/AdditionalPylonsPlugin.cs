@@ -25,7 +25,6 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
 
     public AdditionalPylonsPlugin(Main game) : base(game)
     {
-        LoadConfig();
     }
     #endregion // Plugin Properties
 
@@ -50,6 +49,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
     #region Plugin Overrides
     public override void Initialize()
     {
+        LoadConfig();
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
         GetDataHandlers.PlaceTileEntity.Register(this.OnPlaceTileEntity, HandlerPriority.High);
         GetDataHandlers.SendTileRect.Register(this.OnSendTileRect, HandlerPriority.High);
