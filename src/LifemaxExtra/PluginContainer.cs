@@ -18,7 +18,6 @@ public class LifemaxExtra : TerrariaPlugin
 
     public LifemaxExtra(Main game) : base(game)
     {
-        LoadConfig();
     }
 
     private static void LoadConfig()
@@ -41,6 +40,7 @@ public class LifemaxExtra : TerrariaPlugin
         GetDataHandlers.PlayerUpdate += this.OnPlayerUpdate;
         GetDataHandlers.PlayerHP += this.OnHP;
         GetDataHandlers.PlayerMana += this.OnMana;
+        LoadConfig();
     }
 
 

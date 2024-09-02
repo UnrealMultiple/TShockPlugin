@@ -16,7 +16,6 @@ public class BridgeBuilder : TerrariaPlugin
     public static Configuration Config;
     public BridgeBuilder(Main game) : base(game)
     {
-        LoadConfig();
     }
 
     private static void LoadConfig()
@@ -39,6 +38,7 @@ public class BridgeBuilder : TerrariaPlugin
             AllowServer = false,
             HelpText = "朝着你看的方向建造桥梁。（你需要持有一定数量的平台或团队块或种植盆。）"
         });
+        LoadConfig();
     }
 
     protected override void Dispose(bool disposing)

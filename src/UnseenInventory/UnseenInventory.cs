@@ -18,7 +18,6 @@ public class UnseenInventory : TerrariaPlugin
 
     public UnseenInventory(Main game) : base(game)
     {
-        LoadConfig();
     }
 
     private static void LoadConfig()
@@ -36,6 +35,7 @@ public class UnseenInventory : TerrariaPlugin
 
     public override void Initialize()
     {
+        LoadConfig();
         GeneralHooks.ReloadEvent += ReloadConfig;
         OnUpdate();
     }

@@ -19,7 +19,6 @@ public class Autoclear : TerrariaPlugin
 
     public Autoclear(Main game) : base(game)
     {
-        LoadConfig();
     }
 
     private static void LoadConfig()
@@ -38,6 +37,7 @@ public class Autoclear : TerrariaPlugin
     {
         GeneralHooks.ReloadEvent += ReloadConfig;
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
+        LoadConfig();
     }
 
     protected override void Dispose(bool disposing)

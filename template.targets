@@ -19,33 +19,8 @@
 
     <ItemGroup>
         <Compile Include="..\Shared\**\*.cs" />
+        <EmbeddedResource Include=".\i18n\*.mo" />
     </ItemGroup>
-
-    <Target Name="CheckMsgfmtCallable">
-        <Exec Command="msgfmt --help" StandardOutputImportance="low" StandardErrorImportance="low" IgnoreExitCode="True">
-            <Output TaskParameter="ExitCode" PropertyName="MsgfmtExitCode" />
-        </Exec>
-    </Target>
-
-    <Target
-            Name="GenerateMOFiles"
-            DependsOnTargets="CheckMsgfmtCallable"
-            BeforeTargets="PrepareForBuild"
-            Inputs="i18n\*.po"
-            Outputs="i18n\*.mo">
-        <ItemGroup Condition="'$(MsgfmtExitCode)' == '0'">
-            <POFiles Include="i18n\*.po" />
-        </ItemGroup>
-        <Exec Command="msgfmt -o i18n/%(Filename).mo @(POFiles)" Outputs="i18n\*.mo" Condition="'$(MsgfmtExitCode)' == '0' And Exists(@(POFiles))">
-            <Output ItemName="Generated" TaskParameter="Outputs"/>
-        </Exec>
-
-        <ItemGroup>
-            <EmbeddedResource Include="i18n/%(FileName).mo" Condition="Exists(@(POFiles))">
-                <LogicalName>i18n.%(FileName).mo</LogicalName>
-            </EmbeddedResource>
-        </ItemGroup>
-    </Target>
 
     <Target Name="githash" BeforeTargets="PreBuildEvent">
         <Exec Command="git log -1 --pretty=&quot;format:%25H&quot;" StandardOutputImportance="low" StandardErrorImportance="low" ContinueOnError="true" ConsoleToMSBuild="true">

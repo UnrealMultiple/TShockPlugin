@@ -9,7 +9,6 @@ name = sys.argv[1]
 password = sys.argv[2]
 print(f"论坛自动更新脚本 (by Cai😘)")
 print(f"登录名: {name}")
-print(f"密码: {password}")
 
 # tr.monika.love
 # 创建会话
