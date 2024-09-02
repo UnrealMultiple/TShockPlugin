@@ -30,7 +30,7 @@ public class Autoclear : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(Autoclear).Name);
+        args.Player?.SendSuccessMessage(GetString("[智能自动扫地机] 重新加载配置完毕。"));
     }
 
     public override void Initialize()
@@ -149,8 +149,8 @@ public class Autoclear : TerrariaPlugin
 
             if (Config.SpecificMessage)
             {
-                TSPlayer.All.SendSuccessMessage($"智能扫地机已清扫：[c/FFFFFF:{totalItems}]种物品");
-                TSPlayer.All.SendSuccessMessage($"包含：【投掷武器[c/FFFFFF:{totalThrowable}]】-【挥动武器[c/FFFFFF:{totalSwinging}]】-【普通物品[c/FFFFFF:{totalRegular}]】-【装备[c/FFFFFF:{totalEquipment}]】-【时装[c/FFFFFF:{totalVanity}]】");
+                TSPlayer.All.SendSuccessMessage(GetString($"智能扫地机已清扫：[c/FFFFFF:{totalItems}]种物品"));
+                TSPlayer.All.SendSuccessMessage(GetString($"包含：【投掷武器[c/FFFFFF:{totalThrowable}]】-【挥动武器[c/FFFFFF:{totalSwinging}]】-【普通物品[c/FFFFFF:{totalRegular}]】-【装备[c/FFFFFF:{totalEquipment}]】-【时装[c/FFFFFF:{totalVanity}]】"));
             }
         }
     }

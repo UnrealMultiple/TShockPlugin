@@ -48,7 +48,7 @@ public class AutoStoreItems : TerrariaPlugin
         Config = Configuration.Read();
         WriteName();
         Config.Write();
-        TShock.Log.ConsoleInfo("[自动存储]重新加载配置完毕。");
+        TShock.Log.ConsoleInfo(GetString("[自动存储]重新加载配置完毕。"));
     }
     #endregion
 
@@ -137,10 +137,10 @@ public class AutoStoreItems : TerrariaPlugin
                     CoinToBank(plr, i);
                 }
 
-                stored |= AutoStoredItem(plr, plr.TPlayer.bank.item, PlayerItemSlotID.Bank1_0, "存钱罐") && Config.bank1;
-                stored |= AutoStoredItem(plr, plr.TPlayer.bank2.item, PlayerItemSlotID.Bank2_0, "保险箱") && Config.bank2;
-                stored |= AutoStoredItem(plr, plr.TPlayer.bank3.item, PlayerItemSlotID.Bank3_0, "护卫熔炉") && Config.bank3;
-                stored |= AutoStoredItem(plr, plr.TPlayer.bank4.item, PlayerItemSlotID.Bank4_0, "虚空袋") && Config.bank4;
+                stored |= AutoStoredItem(plr, plr.TPlayer.bank.item, PlayerItemSlotID.Bank1_0, GetString("存钱罐")) && Config.bank1;
+                stored |= AutoStoredItem(plr, plr.TPlayer.bank2.item, PlayerItemSlotID.Bank2_0, GetString("保险箱")) && Config.bank2;
+                stored |= AutoStoredItem(plr, plr.TPlayer.bank3.item, PlayerItemSlotID.Bank3_0, GetString("护卫熔炉")) && Config.bank3;
+                stored |= AutoStoredItem(plr, plr.TPlayer.bank4.item, PlayerItemSlotID.Bank4_0, GetString("虚空袋")) && Config.bank4;
 
                 if (stored)
                 {
@@ -189,7 +189,7 @@ public class AutoStoreItems : TerrariaPlugin
 
                     if (Config.Mess)
                     {
-                        tplr.SendMessage($"【自动储存】已将'[c/92C5EC:{bank.Name}]'存入您的{bankName} 当前数量: {bank.stack}", 255, 246, 158);
+                        tplr.SendMessage(GetString($"【自动储存】已将'[c/92C5EC:{bank.Name}]'存入您的{bankName} 当前数量: {bank.stack}"), 255, 246, 158);
                     }
 
                     return true;

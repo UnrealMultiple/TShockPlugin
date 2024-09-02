@@ -1,0 +1,57 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2024-09-01 10:36:56+0800\n"
+"PO-Revision-Date: 2024-09-01 12:44+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: .\n"
+
+#: ..\..\AdditionalPylonsPlugin.cs:45
+msgid "[无限晶塔]重新加载配置完毕."
+msgstr "[AdditionalPylons] Config reloaded."
+
+#: ..\..\AdditionalPylonsPlugin.cs:219
+msgid "丛林晶塔数量已达到上限。"
+msgstr "The number of Jungle Pylon has reached its maximum."
+
+#: ..\..\AdditionalPylonsPlugin.cs:243
+msgid "洞穴晶塔数量已达到上限。"
+msgstr "The number of Underground Pylon has reached its maximum."
+
+#: ..\..\AdditionalPylonsPlugin.cs:251
+msgid "海洋晶塔数量已达到上限。"
+msgstr "The number of Beach Pylon has reached its maximum."
+
+#: ..\..\AdditionalPylonsPlugin.cs:275
+msgid "蘑菇晶塔数量已达到上限。"
+msgstr "The number of Glowing Mushroom Pylon has reached its maximum."
+
+#: ..\..\AdditionalPylonsPlugin.cs:227
+msgid "森林晶塔数量已达到上限。"
+msgstr "The number of Surface Purity Pylon has reached its maximum."
+
+#: ..\..\AdditionalPylonsPlugin.cs:259
+msgid "沙漠晶塔数量已达到上限。"
+msgstr "The number of Desert Pylon has reached its maximum."
+
+#: ..\..\AdditionalPylonsPlugin.cs:235
+msgid "神圣晶塔数量已达到上限。"
+msgstr "The number of Hallow Pylon has reached its maximum."
+
+#: ..\..\AdditionalPylonsPlugin.cs:283
+msgid "万能晶塔数量已达到上限。"
+msgstr "The number of Victory Pylon has reached its maximum."
+
+#: ..\..\AdditionalPylonsPlugin.cs:267
+msgid "雪原晶塔数量已达到上限。"
+msgstr "The number of Snow Pylon has reached its maximum."
+
+#: ..\..\AdditionalPylonsPlugin.cs:21
+msgid "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境"
+msgstr "Customize the number of crystal towers that can be placed, at least one, and all of them ignore the environment"
