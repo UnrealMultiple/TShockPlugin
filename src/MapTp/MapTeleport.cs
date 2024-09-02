@@ -12,7 +12,7 @@ public class MapTeleport : TerrariaPlugin
     {
         this.Order = 1;
     }
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
     public override string Author => "Nova4334，肝帝熙恩汉化适配1449";
     public override string Name => "MapTeleport";
     public override string Description => "允许玩家传送到地图上的选定位置.";
@@ -49,7 +49,7 @@ public class MapTeleport : TerrariaPlugin
                     }
                     else
                     {
-                        args.Player.SendErrorMessage("您正在尝试传送到实心方块中。请在地图上选择一个不包含实心方块的地方，然后重试.");
+                        args.Player.SendErrorMessage(GetString("您正在尝试传送到实心方块中。请在地图上选择一个不包含实心方块的地方，然后重试."));
                     }
 
                     return;

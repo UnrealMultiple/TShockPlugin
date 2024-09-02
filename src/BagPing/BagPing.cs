@@ -17,7 +17,7 @@ public class BagPing : TerrariaPlugin
 
     public override string Name => "BagPing";
 
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 3);
 
     public BagPing(Main game)
     : base(game)
@@ -47,7 +47,7 @@ public class BagPing : TerrariaPlugin
         if (e.npc.boss)
         {
             TSPlayer.All.SendSuccessMessage(TShock.Utils.ItemTag(new Item() { netID = 3318, stack = 1, prefix = 0 })
-                + $"宝藏袋掉落在坐标({(int) e.npc.position.X / 16},{(int) e.npc.position.Y / 16}),已在小地图上标记!");
+                +GetString( $"宝藏袋掉落在坐标({(int) e.npc.position.X / 16},{(int) e.npc.position.Y / 16}),已在小地图上标记!"));
             Task.Run(() =>
             {
                 for (var i = 0; i < 4; i++)

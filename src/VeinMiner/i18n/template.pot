@@ -36,13 +36,18 @@ msgstr ""
 
 #: ../../VeinMiner.cs:129
 #, csharp-format
-msgid "[c/95CFA6:<VeinMiner>] 背包已满，还需空位：[c/95CFA6:{0}] ."
+msgid "[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{0} {1}]."
+msgstr ""
+
+#: ..\..\Config.cs:32
+msgid "<VeinMiner> 配置已重新加载。"
 msgstr ""
 
 #: ../../VeinMiner.cs:151
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner>] 背包已满，需额外空位：[c/95CFA6:{0}] 以放入 [c/95CFA6:{1}] ."
 msgstr ""
+
 
 #: ../../Config.cs:38
 msgid "<VeinMiner> 读取配置文件失败。"

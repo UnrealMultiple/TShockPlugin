@@ -22,7 +22,7 @@ internal class Utils
                     .Result;
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    TShock.Log.ConsoleWarn($"[自动重置]调用API失败! (状态码: {(int) response.StatusCode})");
+                    TShock.Log.ConsoleWarn(GetString($"[自动重置]调用API失败! (状态码: {(int) response.StatusCode})"));
                 }
             }
             catch (Exception ex)
