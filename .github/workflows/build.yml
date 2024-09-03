@@ -117,17 +117,20 @@ jobs:
           git config --local user.name "GitHub Action"
           $Changed = [System.Object[]]::new(0)
           foreach ($p in @(Get-ChildItem src/**/*.csproj))  {
-              $pot = [System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot")
-              New-Item -Path $p.DirectoryName -Name i18n -ItemType Directory
-              dotnet tool run GetText.Extractor -u -o -s $p.FullName -t $pot
-              $d = $(git diff --numstat $pot).Split()
-              if ($d[0] -le 2 -and $d[1] -le 2) {
-                git checkout $pot
-              } else {
-                foreach ($t in @(Get-ChildItem $($p.DirectoryName)i18n/*.po)) {
-                  msgmerge --previous --update $t $pot
-                }
-              }
+            $pot = Join-Path $p.DirectoryName "i18n" "template.pot"
+            New-Item -Path $p.DirectoryName -Name i18n -ItemType Directory -Force | Out-Null
+            dotnet tool run GetText.Extractor -u -o -s $p.FullName -t $pot
+            if (!(Test-Path -Path $pot -PathType Leaf)) {
+              continue
+            }
+            $d = $(git diff --numstat $pot) -split "\s+"
+            if (($d.Length -ge 2) -and ($d[0] -le 2 -and $d[1] -le 2)) {
+              git checkout $pot
+              continue
+            }
+            foreach ($t in @(Get-ChildItem $($p.DirectoryName)i18n/*.po)) {
+              msgmerge --previous --update $t.FullName $pot
+            }
           }
           git diff --quiet
           if ($LastExitCode -ne 0) {
