@@ -2,8 +2,10 @@ name: 插件构建发布
 
 on: 
   push:
+    branches:
+      - "**"
     tags-ignore:
-      - V1.0.0.0
+      - "V1.0.0.0"
   pull_request:
 
 jobs:
