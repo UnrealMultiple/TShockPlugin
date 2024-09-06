@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MapTp\n"
-"POT-Creation-Date: 2024-09-01 11:20:45+0800\n"
+"POT-Creation-Date: 2024-09-06 16:13:29+0000\n"
 "PO-Revision-Date: 2024-09-01 11:27+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,6 +11,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ..\..\MapTeleport.cs:52
-msgid "您正在尝试传送到实心方块中。请在地图上选择一个不包含实心方块的地方，然后重试."
-msgstr "You are attempting to teleport into a solid block. Please select a location on the map that does not contain solid blocks and try again."
+#: ../../MapTeleport.cs:52
+msgid ""
+"您正在尝试传送到实心方块中。请在地图上选择一个不包含实心方块的地方，然后重试."
+msgstr ""
+"You are attempting to teleport into a solid block. Please select a location "
+"on the map that does not contain solid blocks and try again."

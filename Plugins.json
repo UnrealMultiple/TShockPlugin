@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "Name": "Platform(判断玩家设备)",
     "Version": "1.1.0.1",
@@ -22,9 +22,9 @@
   },
   {
     "Name": "[放置更多晶塔] AdditionalPylons",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "Stealownz，肝帝熙恩优化1449",
-    "Description": " 自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
+    "Description": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
     "Path": "AdditionalPylons.dll"
   },
   {
@@ -33,6 +33,181 @@
     "Author": "[星迹]Jonesn，肝帝熙恩更新适配1449",
     "Description": "禁止代理登录",
     "Path": "Noagent.dll"
+  },
+  {
+    "Name": "查已装插件",
+    "Version": "1.0.5",
+    "Author": "iheart 修改：羽学，肝帝熙恩",
+    "Description": "用指令查已装插件",
+    "Path": "ListPlugins.dll"
+  },
+  {
+    "Name": "超进度限制",
+    "Version": "1.0.0.1",
+    "Author": "少司命 & 恋恋魔改三合一",
+    "Description": "根据进度限制",
+    "Path": "ProgressRestrict.dll"
+  },
+  {
+    "Name": "传送请求",
+    "Version": "1.0.2",
+    "Author": "原作者: MarioE, 修改者: Dr.Toxic，肝帝熙恩",
+    "Description": "传送前需要被传送者接受或拒绝请求",
+    "Path": "TeleportRequest.dll"
+  },
+  {
+    "Name": "服主特权",
+    "Version": "1.8.1",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "SpclPerm.dll"
+  },
+  {
+    "Name": "告示牌登录 SignInSign",
+    "Version": "1.0.5",
+    "Author": "Soofa 羽学 少司命",
+    "Description": "告示牌登录交互插件 支持进服弹窗！",
+    "Path": "SignInSign.dll"
+  },
+  {
+    "Name": "更好的自动队伍",
+    "Version": "2.4.2",
+    "Author": "十七改，肝帝熙恩改",
+    "Description": "自动队伍",
+    "Path": "AutoTeam.dll"
+  },
+  {
+    "Name": "怪物进度回血",
+    "Version": "1.7.1",
+    "Author": "途逗 羽学",
+    "Description": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+    "Path": "MonsterRegen.dll"
+  },
+  {
+    "Name": "击败怪物替换世界物品",
+    "Version": "1.0.0",
+    "Author": "onusai 羽学",
+    "Description": "击败指定怪物替换世界指定图格与所有箱子内物品",
+    "Path": "ConvertWorld.dll"
+  },
+  {
+    "Name": "禁怪物掉落",
+    "Version": "1.2.1",
+    "Author": "羽学",
+    "Description": "清理怪物身边掉落物",
+    "Path": "DisableMonsLoot.dll"
+  },
+  {
+    "Name": "禁止怪物",
+    "Version": "1.0.0.1",
+    "Author": "Patrikk,GK 改良",
+    "Description": "禁止指定怪物的出没",
+    "Path": "BanNpc.dll"
+  },
+  {
+    "Name": "决斗系统",
+    "Version": "1.1.3",
+    "Author": "Soofa 羽学修改",
+    "Description": "不是你死就是我活系列",
+    "Path": "PvPer.dll"
+  },
+  {
+    "Name": "普通难度宝藏袋",
+    "Version": "1.1.3.0",
+    "Author": "Quinci 羽学适配",
+    "Description": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+    "Path": "NormalDropsBags.dll"
+  },
+  {
+    "Name": "区域显示",
+    "Version": "1.1.1",
+    "Author": "TBC开发者团队,肝帝熙恩汉化",
+    "Description": "为地区添加区域边界视图。",
+    "Path": "RegionView.dll"
+  },
+  {
+    "Name": "生成基础建设",
+    "Version": "1.5.5",
+    "Author": "羽学",
+    "Description": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+    "Path": "SpawnInfra.dll"
+  },
+  {
+    "Name": "数据包拦截 PacketsStop",
+    "Version": "1.0.1",
+    "Author": "羽学 感谢少司命",
+    "Description": "拦截没有指定权限的用户组数据包",
+    "Path": "PacketsStop.dll"
+  },
+  {
+    "Name": "刷新渔夫任务",
+    "Version": "1.4.1",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "ReFishTask.dll"
+  },
+  {
+    "Name": "死亡掉落",
+    "Version": "1.0.3",
+    "Author": "大豆子，肝帝熙恩更新优化",
+    "Description": "怪物死亡随机和自定义掉落物品",
+    "Path": "DeathDrop.dll"
+  },
+  {
+    "Name": "随机广播",
+    "Version": "1.0.3",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "RandomBroadcast.dll"
+  },
+  {
+    "Name": "宵禁",
+    "Version": "2.7.3",
+    "Author": "Jonesn 羽学 少司命",
+    "Description": "设置服务器无法进入或禁止生成怪物的时段",
+    "Path": "GoodNight.dll"
+  },
+  {
+    "Name": "音乐播放器",
+    "Version": "1.0.2",
+    "Author": "Olink，Cjx适配，肝帝熙恩修改, yu大改",
+    "Description": "一个简单的音乐播放插件.",
+    "Path": "MusicPlayer.dll"
+  },
+  {
+    "Name": "硬核死亡掉生命水晶",
+    "Version": "1.0.0",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "HardPlayerDrop.dll"
+  },
+  {
+    "Name": "在线礼包",
+    "Version": "1.0.1.2",
+    "Author": "星夜神花 羽学适配",
+    "Description": "在线礼包插件 ",
+    "Path": "OnlineGiftPackage.dll"
+  },
+  {
+    "Name": "智能自动扫地",
+    "Version": "1.0.3",
+    "Author": "大豆子[Mute适配1447]，肝帝熙恩更新",
+    "Description": "智能扫地机",
+    "Path": "Autoclear.dll"
+  },
+  {
+    "Name": "自动存储",
+    "Version": "1.2.4",
+    "Author": "羽学 cmgy雱",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "AutoStoreItems.dll"
+  },
+  {
+    "Name": "阻止进入地牢或神庙",
+    "Version": "1.1.5",
+    "Author": "肝帝熙恩",
+    "Description": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+    "Path": "DTEntryBlock.dll"
   },
   {
     "Name": "AnnouncementBoxPlus",
@@ -57,28 +232,21 @@
   },
   {
     "Name": "AutoReset",
-    "Version": "2024.8.25",
+    "Version": "2024.9.1",
     "Author": "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩",
     "Description": "完全自动重置插件",
     "Path": "AutoReset.dll"
   },
   {
-    "Name": "AutoTeamPlus",
-    "Version": "2.4.1",
-    "Author": "十七改，肝帝熙恩改",
-    "Description": "自动队伍",
-    "Path": "AutoTeam.dll"
-  },
-  {
     "Name": "BackPlugin",
-    "Version": "1.0.0.4",
+    "Version": "1.0.0.5",
     "Author": "Megghy,熙恩改",
     "Description": "允许玩家传送回死亡地点",
     "Path": "Back.dll"
   },
   {
     "Name": "BagPing",
-    "Version": "1.0.1",
+    "Version": "1.0.3",
     "Author": "Cai",
     "Description": "在小地图上标记掉落的宝藏袋",
     "Path": "BagPing.dll"
@@ -217,6 +385,13 @@
     "Path": "DataSync.dll"
   },
   {
+    "Name": "DumpPluginsList",
+    "Version": "1.0.1.2",
+    "Author": "SGKoishi",
+    "Description": "Dump plugin list and exit",
+    "Path": "DumpPluginsList.dll"
+  },
+  {
     "Name": "DumpTerrariaID",
     "Version": "1.0.0.1",
     "Author": "少司命",
@@ -351,7 +526,7 @@
   },
   {
     "Name": "MapTeleport",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "Nova4334，肝帝熙恩汉化适配1449",
     "Description": "允许玩家传送到地图上的选定位置.",
     "Path": "MapTp.dll"
@@ -512,178 +687,10 @@
   },
   {
     "Name": "ZHIPlayerManager",
-    "Version": "1.0.0.6",
+    "Version": "1.0.0.7",
     "Author": "z枳",
     "Description": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
     "Path": "ZHIPlayerManager.dll"
-  },
-  {
-    "Name": "传送请求",
-    "Version": "1.0.1",
-    "Author": "原作者: MarioE, 修改者: Dr.Toxic，肝帝熙恩",
-    "Description": "传送前需要被传送者接受或拒绝请求",
-    "Path": "TeleportRequest.dll"
-  },
-  {
-    "Name": "决斗系统",
-    "Version": "1.1.3",
-    "Author": "Soofa 羽学修改",
-    "Description": "不是你死就是我活系列",
-    "Path": "PvPer.dll"
-  },
-  {
-    "Name": "击败怪物替换世界物品",
-    "Version": "1.0.0",
-    "Author": "onusai 羽学",
-    "Description": "击败指定怪物替换世界指定图格与所有箱子内物品",
-    "Path": "ConvertWorld.dll"
-  },
-  {
-    "Name": "刷新渔夫任务",
-    "Version": "1.4.1",
-    "Author": "羽学",
-    "Description": "涡轮增压不蒸鸭",
-    "Path": "ReFishTask.dll"
-  },
-  {
-    "Name": "区域显示",
-    "Version": "1.1.1",
-    "Author": "TBC开发者团队,肝帝熙恩汉化",
-    "Description": "为地区添加区域边界视图。",
-    "Path": "RegionView.dll"
-  },
-  {
-    "Name": "告示牌登录 SignInSign",
-    "Version": "1.0.5",
-    "Author": "Soofa 羽学 少司命",
-    "Description": "告示牌登录交互插件 支持进服弹窗！",
-    "Path": "SignInSign.dll"
-  },
-  {
-    "Name": "在线礼包",
-    "Version": "1.0.1.2",
-    "Author": "星夜神花 羽学适配",
-    "Description": "在线礼包插件 ",
-    "Path": "OnlineGiftPackage.dll"
-  },
-  {
-    "Name": "宵禁",
-    "Version": "2.7.3",
-    "Author": "Jonesn 羽学 少司命",
-    "Description": "设置服务器无法进入或禁止生成怪物的时段",
-    "Path": "GoodNight.dll"
-  },
-  {
-    "Name": "怪物进度回血",
-    "Version": "1.7.1",
-    "Author": "途逗 羽学",
-    "Description": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
-    "Path": "MonsterRegen.dll"
-  },
-  {
-    "Name": "数据包拦截 PacketsStop",
-    "Version": "1.0.1",
-    "Author": "羽学 感谢少司命",
-    "Description": "拦截没有指定权限的用户组数据包",
-    "Path": "PacketsStop.dll"
-  },
-  {
-    "Name": "普通难度宝藏袋",
-    "Version": "1.1.3.0",
-    "Author": "Quinci 羽学适配",
-    "Description": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
-    "Path": "NormalDropsBags.dll"
-  },
-  {
-    "Name": "智能自动扫地",
-    "Version": "1.0.3",
-    "Author": "大豆子[Mute适配1447]，肝帝熙恩更新",
-    "Description": "智能扫地机",
-    "Path": "Autoclear.dll"
-  },
-  {
-    "Name": "服主特权",
-    "Version": "1.8.1",
-    "Author": "羽学",
-    "Description": "涡轮增压不蒸鸭",
-    "Path": "SpclPerm.dll"
-  },
-  {
-    "Name": "查已装插件",
-    "Version": "1.0.5",
-    "Author": "iheart 修改：羽学，肝帝熙恩",
-    "Description": "用指令查已装插件",
-    "Path": "ListPlugins.dll"
-  },
-  {
-    "Name": "死亡掉落",
-    "Version": "1.0.3",
-    "Author": "大豆子，肝帝熙恩更新优化",
-    "Description": "怪物死亡随机和自定义掉落物品",
-    "Path": "DeathDrop.dll"
-  },
-  {
-    "Name": "生成基础建设",
-    "Version": "1.5.5",
-    "Author": "羽学",
-    "Description": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
-    "Path": "SpawnInfra.dll"
-  },
-  {
-    "Name": "硬核死亡掉生命水晶",
-    "Version": "1.0.0",
-    "Author": "羽学",
-    "Description": "涡轮增压不蒸鸭",
-    "Path": "HardPlayerDrop.dll"
-  },
-  {
-    "Name": "禁怪物掉落",
-    "Version": "1.2.1",
-    "Author": "羽学",
-    "Description": "清理怪物身边掉落物",
-    "Path": "DisableMonsLoot.dll"
-  },
-  {
-    "Name": "禁止怪物",
-    "Version": "1.0.0.1",
-    "Author": "Patrikk,GK 改良",
-    "Description": "禁止指定怪物的出没",
-    "Path": "BanNpc.dll"
-  },
-  {
-    "Name": "自动存储",
-    "Version": "1.2.4",
-    "Author": "羽学 cmgy雱",
-    "Description": "涡轮增压不蒸鸭",
-    "Path": "AutoStoreItems.dll"
-  },
-  {
-    "Name": "超进度限制",
-    "Version": "1.0.0.1",
-    "Author": "少司命 & 恋恋魔改三合一",
-    "Description": "根据进度限制",
-    "Path": "ProgressRestrict.dll"
-  },
-  {
-    "Name": "阻止进入地牢或神庙",
-    "Version": "1.1.5",
-    "Author": "肝帝熙恩",
-    "Description": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
-    "Path": "DTEntryBlock.dll"
-  },
-  {
-    "Name": "随机广播",
-    "Version": "1.0.3",
-    "Author": "羽学",
-    "Description": "涡轮增压不蒸鸭",
-    "Path": "RandomBroadcast.dll"
-  },
-  {
-    "Name": "音乐播放器",
-    "Version": "1.0.2",
-    "Author": "Olink，Cjx适配，肝帝熙恩修改, yu大改",
-    "Description": "一个简单的音乐播放插件.",
-    "Path": "MusicPlayer.dll"
   },
   {
     "Name": "进度礼包",
@@ -691,6 +698,13 @@
     "Author": "少司命",
     "Description": "进度礼包",
     "Path": "ProgressBag.dll"
+  },
+  {
+    "Name": "高尔夫奖励",
+    "Version": "1.0.7",
+    "Author": "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449",
+    "Description": "将高尔夫打入球洞会得到奖励.",
+    "Path": "GolfRewards.dll"
   },
   {
     "Name": "History",
@@ -707,13 +721,6 @@
     "Path": "HouseRegion.dll"
   },
   {
-    "Name": "高尔夫奖励",
-    "Version": "1.0.7",
-    "Author": "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449",
-    "Description": "将高尔夫打入球洞会得到奖励.",
-    "Path": "GolfRewards.dll"
-  },
-  {
     "Name": "Economics.Projectile",
     "Version": "1.0.0.5",
     "Author": "少司命",
@@ -728,18 +735,18 @@
     "Path": "DisableSurfaceProjectiles.dll"
   },
   {
-    "Name": "ProxyProtocolSocket",
-    "Version": "2.1.0.0",
-    "Author": "LaoSparrow",
-    "Description": "Proxy Protocol on TShock",
-    "Path": "ProxyProtocolSocket.dll"
-  },
-  {
     "Name": "阻止玩家无敌",
     "Version": "1.0.2.1",
     "Author": "GK 修改：羽学",
     "Description": "如果玩家无敌那么就断开它！",
     "Path": "DisableGodMod.dll"
+  },
+  {
+    "Name": "ProxyProtocolSocket",
+    "Version": "2.1.0.0",
+    "Author": "LaoSparrow",
+    "Description": "Proxy Protocol on TShock",
+    "Path": "ProxyProtocolSocket.dll"
   },
   {
     "Name": "简短指令改良版",
@@ -749,17 +756,17 @@
     "Path": "ShortCommand.dll"
   },
   {
-    "Name": "Help+(更好的Help)",
-    "Version": "2024.7.28.1",
-    "Author": "Cai",
-    "Description": "更好的Help",
-    "Path": "HelpPlus.dll"
-  },
-  {
     "Name": "中文Wiki语言包加载器",
     "Version": "1.2.0.0",
     "Author": "Cai",
     "Description": "加载Wiki语言包",
     "Path": "WikiLangPackLoader.dll"
+  },
+  {
+    "Name": "Help+(更好的Help)",
+    "Version": "2024.7.28.1",
+    "Author": "Cai",
+    "Description": "更好的Help",
+    "Path": "HelpPlus.dll"
   }
 ]
