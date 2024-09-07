@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoTeam\n"
-"POT-Creation-Date: 2024-09-01 11:28:03+0800\n"
-"PO-Revision-Date: 2024-09-01 11:28:03+0800\n"
+"POT-Creation-Date: 2024-09-07 23:45:12+0800\n"
+"PO-Revision-Date: 2024-09-07 23:45:12+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,13 +10,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ..\..\AutoTeamPlus.cs:134
-msgid "未配置，可随意切换."
+#: ..\..\AutoTeamPlus.cs:31
+msgid "[自动队伍] 重新加载配置完毕。"
 msgstr ""
 
 #: ..\..\AutoTeamPlus.cs:130
 #, csharp-format
 msgid "你的队伍已切换为 {0}."
+msgstr ""
+
+#: ..\..\AutoTeamPlus.cs:134
+msgid "未配置，可随意切换."
+msgstr ""
+
+#: ..\..\AutoTeamPlus.cs:80
+msgid "无效的操作。请使用 'on' 或 'off'。"
 msgstr ""
 
 #: ..\..\AutoTeamPlus.cs:64
@@ -29,13 +37,5 @@ msgstr ""
 
 #: ..\..\AutoTeamPlus.cs:73
 msgid "AutoTeamPlus 插件已启用."
-msgstr ""
-
-#: ..\..\AutoTeamPlus.cs:32
-msgid "[AutoTeam] 重新加载配置完毕。"
-msgstr ""
-
-#: ..\..\AutoTeamPlus.cs:80
-msgid "无效的操作。请使用 'on' 或 'off'。"
 msgstr ""
 

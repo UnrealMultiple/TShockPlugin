@@ -18,19 +18,19 @@ internal class Configuration
     public float CoinTime { get; set; } = 20f;
 
     [JsonProperty("使用说明1", Order = -10)]
-    public static string Text { get; set; } = "[是否手持] 需要选中 [持有物品] 其中1个才会启动存储功能，关闭则背包含有 其中1个就会启动";
+    public static string Text { get; set; } = GetString("[是否手持] 需要选中 [持有物品] 其中1个才会启动存储功能，关闭则背包含有 其中1个就会启动");
 
     [JsonProperty("使用说明2", Order = -10)]
-    public static string Text2 { get; set; } = "[存物速度] 不要低于60帧(推荐120)，否则手动 [连续] 快速放入 [同样物品到存储空间格子] 会导致物品数量翻倍";
+    public static string Text2 { get; set; } = GetString("[存物速度] 不要低于60帧(推荐120)，否则手动 [连续] 快速放入 [同样物品到存储空间格子] 会导致物品数量翻倍");
 
     [JsonProperty("使用说明3", Order = -10)]
-    public static string Text3 { get; set; } = "[物品名] 会在使用 [/Reload] 指令时根据 [物品ID] 自动写入，[物品数量] 为储存最低数量要求 ";
+    public static string Text3 { get; set; } = GetString("[物品名] 会在使用 [/Reload] 指令时根据 [物品ID] 自动写入，[物品数量] 为储存最低数量要求 ");
 
     [JsonProperty("使用说明4", Order = -10)]
-    public static string Text4 { get; set; } = "[装备饰品] 只会检测装备3格+饰品7格，与[存物速度]等无关，装备指定饰品(盔甲)玩家只要移动或攻击就会触发自存 ";
+    public static string Text4 { get; set; } = GetString("[装备饰品] 只会检测装备3格+饰品7格，与[存物速度]等无关，装备指定饰品(盔甲)玩家只要移动或攻击就会触发自存 ");
 
     [JsonProperty("使用说明5", Order = -10)]
-    public static string Text5 { get; set; } = "[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险) ";
+    public static string Text5 { get; set; } = GetString("[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险)");
 
     [JsonProperty("存钱罐", Order = -9)]
     public bool bank1 { get; set; } = true;

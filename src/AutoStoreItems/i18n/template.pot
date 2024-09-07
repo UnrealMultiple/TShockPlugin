@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoStoreItems\n"
-"POT-Creation-Date: 2024-09-06 16:12:56+0000\n"
-"PO-Revision-Date: 2024-09-06 16:12:56+0000\n"
+"POT-Creation-Date: 2024-09-07 23:45:11+0800\n"
+"PO-Revision-Date: 2024-09-07 23:45:11+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,28 +10,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../AutoStoreItems.cs:51
+#: ..\..\Configuration.cs:24
+msgid "[存物速度] 不要低于60帧(推荐120)，否则手动 [连续] 快速放入 [同样物品到存储空间格子] 会导致物品数量翻倍"
+msgstr ""
+
+#: ..\..\Configuration.cs:33
+msgid "[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险)"
+msgstr ""
+
+#: ..\..\Configuration.cs:21
+msgid "[是否手持] 需要选中 [持有物品] 其中1个才会启动存储功能，关闭则背包含有 其中1个就会启动"
+msgstr ""
+
+#: ..\..\Configuration.cs:27
+msgid "[物品名] 会在使用 [/Reload] 指令时根据 [物品ID] 自动写入，[物品数量] 为储存最低数量要求 "
+msgstr ""
+
+#: ..\..\Configuration.cs:30
+msgid "[装备饰品] 只会检测装备3格+饰品7格，与[存物速度]等无关，装备指定饰品(盔甲)玩家只要移动或攻击就会触发自存 "
+msgstr ""
+
+#: ..\..\AutoStoreItems.cs:51
 msgid "[自动存储]重新加载配置完毕。"
 msgstr ""
 
-#: ../../AutoStoreItems.cs:192
+#: ..\..\AutoStoreItems.cs:192
 #, csharp-format
 msgid "【自动储存】已将'[c/92C5EC:{0}]'存入您的{1} 当前数量: {2}"
 msgstr ""
 
-#: ../../AutoStoreItems.cs:141
+#: ..\..\AutoStoreItems.cs:141
 msgid "保险箱"
 msgstr ""
 
-#: ../../AutoStoreItems.cs:140
+#: ..\..\AutoStoreItems.cs:140
 msgid "存钱罐"
 msgstr ""
 
-#: ../../AutoStoreItems.cs:142
+#: ..\..\AutoStoreItems.cs:142
 msgid "护卫熔炉"
 msgstr ""
 
-#: ../../AutoStoreItems.cs:143
+#: ..\..\AutoStoreItems.cs:143
 msgid "虚空袋"
 msgstr ""
 

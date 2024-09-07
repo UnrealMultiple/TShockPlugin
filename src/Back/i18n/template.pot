@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Back\n"
-"POT-Creation-Date: 2024-09-01 11:28:03+0800\n"
-"PO-Revision-Date: 2024-09-01 11:28:04+0800\n"
+"POT-Creation-Date: 2024-09-07 23:45:12+0800\n"
+"PO-Revision-Date: 2024-09-07 23:45:13+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,22 +10,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ..\..\BackPlugin.cs:43
+#: ..\..\BackPlugin.cs:31
+msgid "[Back] 重新加载配置完毕。"
+msgstr ""
+
+#: ..\..\BackPlugin.cs:42
 msgid "返回最后一次死亡的位置"
 msgstr ""
 
 #: ..\..\BackPlugin.cs:102
 msgid "你还未死亡过"
-msgstr ""
-
-#: ..\..\BackPlugin.cs:97
-#, csharp-format
-msgid "BackPlugin: 传送玩家 {0} 时发生错误: {1}"
-msgstr ""
-
-#: ..\..\BackPlugin.cs:91
-#, csharp-format
-msgid "已传送至死亡地点 [c/8DF9D8:<{0} - {1}>]."
 msgstr ""
 
 #: ..\..\BackPlugin.cs:84
@@ -37,7 +31,13 @@ msgstr ""
 msgid "你尚未复活，无法传送回死亡地点."
 msgstr ""
 
-#: ..\..\BackPlugin.cs:32
-msgid "[Back] 重新加载配置完毕。"
+#: ..\..\BackPlugin.cs:91
+#, csharp-format
+msgid "已传送至死亡地点 [c/8DF9D8:<{0} - {1}>]."
+msgstr ""
+
+#: ..\..\BackPlugin.cs:97
+#, csharp-format
+msgid "BackPlugin: 传送玩家 {0} 时发生错误: {1}"
 msgstr ""
 

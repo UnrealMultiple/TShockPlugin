@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2024-09-01 10:36:56+0800\n"
+"POT-Creation-Date: 2024-09-07 23:45:07+0800\n"
 "PO-Revision-Date: 2024-09-01 12:44+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: .\n"
 
-#: ..\..\AdditionalPylonsPlugin.cs:45
+#: ..\..\AdditionalPylonsPlugin.cs:44
 msgid "[无限晶塔]重新加载配置完毕."
 msgstr "[AdditionalPylons] Config reloaded."
 
@@ -52,6 +52,7 @@ msgstr "The number of Universal Pylon has reached its maximum."
 msgid "雪原晶塔数量已达到上限。"
 msgstr "The number of Snow Pylon has reached its maximum."
 
-#: ..\..\AdditionalPylonsPlugin.cs:21
-msgid "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境"
-msgstr "Customize the number of crystal towers that can be placed, at least one, and all of them ignore the environment"
+#~ msgid "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境"
+#~ msgstr ""
+#~ "Customize the number of crystal towers that can be placed, at least one, "
+#~ "and all of them ignore the environment"
