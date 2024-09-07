@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ReFishTask\n"
+"POT-Creation-Date: 2024-09-08 00:35:15+0800\n"
+"PO-Revision-Date: 2024-09-08 00:36+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: ..\..\ReFishTask.cs:48
+msgid "[刷新渔夫任务]重新加载配置完毕。"
+msgstr "[ReFishTask] Configuration reloaded successfully."
