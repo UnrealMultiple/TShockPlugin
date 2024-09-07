@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TimerKeeper\n"
-"POT-Creation-Date: 2024-09-08 01:40:12+0800\n"
+"POT-Creation-Date: 2024-09-07 18:09:13+0000\n"
 "PO-Revision-Date: 2024-09-08 01:40+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,6 +11,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ..\..\MainPlugin.cs:57
+#: ../../MainPlugin.cs:57
 msgid "[TimerKeeper]计时器已经加载!"
 msgstr "[TimerKeeper] Timer has been loaded!"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CaiCustomEmojiCommand\n"
-"POT-Creation-Date: 2024-09-08 01:19:39+0800\n"
+"POT-Creation-Date: 2024-09-07 18:08:22+0000\n"
 "PO-Revision-Date: 2024-09-08 01:21+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,17 +11,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ..\..\Plugin.cs:33
+#: ../../Plugin.cs:33
 msgid "[CustomEmojiCommand]配置文件已重载!"
 msgstr "[CustomEmojiCommand] Configuration file reloaded!"
 
-#: ..\..\Config.cs:12
+#: ../../Config.cs:12
 msgid ""
-"EmojiID可以在wiki(https://terraria.wiki.gg/zh/wiki/"
-"%E8%A1%A8%E6%83%85)上查询, 本插件不支持跳过权限检查, 命"
-"令需要标识符(/或者.)"
+"EmojiID可以在wiki(https://terraria.wiki.gg/zh/wiki/%E8%A1%A8%E6%83%85)上查"
+"询, 本插件不支持跳过权限检查, 命令需要标识符(/或者.)"
 msgstr ""
-"Emoji IDs can be found on the wiki (https://terraria."
-"wiki.gg/wiki/Emotes). This plugin does not support "
-"bypassing permission checks, and commands require an "
-"identifier (/ or .)."
+"Emoji IDs can be found on the wiki (https://terraria.wiki.gg/wiki/Emotes). "
+"This plugin does not support bypassing permission checks, and commands "
+"require an identifier (/ or .)."

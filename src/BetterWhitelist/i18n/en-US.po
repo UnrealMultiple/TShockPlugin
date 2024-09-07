@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BetterWhitelist\n"
-"POT-Creation-Date: 2024-09-08 00:45:23+0800\n"
+"POT-Creation-Date: 2024-09-07 18:08:20+0000\n"
 "PO-Revision-Date: 2024-09-08 00:52+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,86 +11,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ..\..\Main.cs:64
+#: ../../Main.cs:64
 msgid "-------[BetterWhitelist]-------"
 msgstr "-------[BetterWhitelist]-------"
 
-#: ..\..\Main.cs:147
+#: ../../Main.cs:147
 msgid "[BetterWhitelist]重载成功!"
 msgstr "[BetterWhitelist] Reload successful!"
 
-#: ..\..\Main.cs:66
+#: ../../Main.cs:66
 msgid "/bwl add {name}, 添加玩家名到白名单中\n"
 msgstr "/bwl add {name}, Add player name to the whitelist\n"
 
-#: ..\..\Main.cs:67
+#: ../../Main.cs:67
 msgid "/bwl del {name}, 将玩家移出白名单\n"
 msgstr "/bwl del {name}, Remove player from the whitelist\n"
 
-#: ..\..\Main.cs:70
+#: ../../Main.cs:70
 msgid "/bwl false, 关闭插件\n"
 msgstr "/bwl false, Disable the plugin\n"
 
-#: ..\..\Main.cs:65
+#: ../../Main.cs:65
 msgid "/bwl help, 显示帮助信息\n"
 msgstr "/bwl help, Show help information\n"
 
-#: ..\..\Main.cs:68
+#: ../../Main.cs:68
 msgid "/bwl list, 显示白名单上的全部玩家\n"
 msgstr "/bwl list, Show all players on the whitelist\n"
 
-#: ..\..\Main.cs:71
+#: ../../Main.cs:71
 msgid "/bwl reload, 重载插件"
 msgstr "/bwl reload, Reload the plugin"
 
-#: ..\..\Main.cs:69
+#: ../../Main.cs:69
 msgid "/bwl true, 启用插件\n"
 msgstr "/bwl true, Enable the plugin\n"
 
-#: ..\..\Main.cs:119 ..\..\Main.cs:153
-msgid "插件开关已被禁用，请检查配置文件!"
-msgstr "The plugin switch has been disabled, please check the configuration file!"
-
-#: ..\..\Main.cs:90
-msgid "禁用成功!"
-msgstr "Disabled successfully!"
-
-#: ..\..\Main.cs:85
-msgid "禁用失败! 插件已是关闭状态"
-msgstr "Disable failed! The plugin is already disabled"
-
-#: ..\..\BConfig.cs:12
+#: ../../BConfig.cs:12
 msgid "你不在服务器白名单中！"
 msgstr "You are not on the server whitelist!"
 
-#: ..\..\Main.cs:104
-msgid "启用成功!"
-msgstr "Enabled successfully!"
-
-#: ..\..\Main.cs:99
-msgid "启用失败! 插件已是打开状态"
-msgstr "Enable failed! The plugin is already enabled"
-
-#: ..\..\Main.cs:167
+#: ../../Main.cs:167
 msgid "删除成功!"
 msgstr "Deleted successfully!"
 
-#: ..\..\Main.cs:134
-msgid "添加成功!"
-msgstr "Added successfully!"
+#: ../../Main.cs:99
+msgid "启用失败! 插件已是打开状态"
+msgstr "Enable failed! The plugin is already enabled"
 
-#: ..\..\Main.cs:139
+#: ../../Main.cs:104
+msgid "启用成功!"
+msgstr "Enabled successfully!"
+
+#: ../../Main.cs:119 ../../Main.cs:153
+msgid "插件开关已被禁用，请检查配置文件!"
+msgstr ""
+"The plugin switch has been disabled, please check the configuration file!"
+
+#: ../../Main.cs:139
 msgid "添加失败! 该玩家已经在白名单中"
 msgstr "Add failed! The player is already on the whitelist"
 
-#: ..\..\Main.cs:55
+#: ../../Main.cs:134
+msgid "添加成功!"
+msgstr "Added successfully!"
+
+#: ../../Main.cs:55
 msgid "用法: 输入 /bwl help 显示帮助信息."
 msgstr "Usage: Enter /bwl help to show help information."
 
-#: ..\..\Main.cs:125
+#: ../../Main.cs:125
 msgid "用法错误!正确用法: /bwl add <玩家名>"
 msgstr "Usage error! Correct usage: /bwl add <player name>"
 
-#: ..\..\Main.cs:159
+#: ../../Main.cs:159
 msgid "用法错误!正确用法: /bwl del <玩家名>"
 msgstr "Usage error! Correct usage: /bwl del <player name>"
+
+#: ../../Main.cs:85
+msgid "禁用失败! 插件已是关闭状态"
+msgstr "Disable failed! The plugin is already disabled"
+
+#: ../../Main.cs:90
+msgid "禁用成功!"
+msgstr "Disabled successfully!"
