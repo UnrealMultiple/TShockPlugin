@@ -3,14 +3,14 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 
-namespace Plugin;
+namespace ReFishTask;
 
 [ApiVersion(2, 1)]
 public class ReFishTask : TerrariaPlugin
 {
 
     #region 插件信息
-    public override string Name => "刷新渔夫任务";
+    public override string Name => "ReFishTask 刷新渔夫任务";
     public override string Author => "羽学";
     public override Version Version => new Version(1, 4, 1);
     public override string Description => "涡轮增压不蒸鸭";
@@ -45,7 +45,7 @@ public class ReFishTask : TerrariaPlugin
     {
         Config = Configuration.Read();
         Config.Write();
-        TShock.Log.ConsoleInfo("[刷新渔夫任务]重新加载配置完毕。");
+        TShock.Log.ConsoleInfo(GetString("[ReFishTask]重新加载配置完毕。"));
     }
     #endregion
 
@@ -54,7 +54,7 @@ public class ReFishTask : TerrariaPlugin
     private static void OnGetData(GetDataEventArgs args)
     {
         var plr = TShock.Players[args.Msg.whoAmI];
-        if (args == null || plr == null || !plr.IsLoggedIn)
+        if (plr == null || !plr.IsLoggedIn)
         {
             return;
         }
@@ -74,7 +74,7 @@ public class ReFishTask : TerrariaPlugin
     private void OnJoin(JoinEventArgs args)
     {
         var plr = TShock.Players[args.Who];
-        if (plr == null || args == null)
+        if (plr == null)
         {
             return;
         }
@@ -91,11 +91,6 @@ public class ReFishTask : TerrariaPlugin
     #region 更换任务鱼并判断进度方法 改了：Terraria.Main.AnglerQuestSwap();
     public static void AnglerQuestSwap(TSPlayer plr)
     {
-        if (Main.netMode == 1)
-        {
-            return;
-        }
-
         //我只想移除个人名单所以改成Remove
         Main.anglerWhoFinishedToday.Remove(plr.Name);
         Main.anglerQuestFinished = false;
