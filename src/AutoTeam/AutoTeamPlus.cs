@@ -10,8 +10,8 @@ namespace autoteam;
 public class Autoteam : TerrariaPlugin
 {
     public override string Author => "十七改，肝帝熙恩改";
-    public override Version Version => new Version(2, 4, 2);
-    public override string Description => "自动队伍";
+    public override Version Version => new Version(2, 4, 3);
+    public override string Description => "AutoTeamPlus";
     public override string Name => "更好的自动队伍";
     public static Configuration Config;
 

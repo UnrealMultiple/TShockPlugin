@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MapTp\n"
-"POT-Creation-Date: 2024-09-06 16:13:29+0000\n"
-"PO-Revision-Date: 2024-09-06 16:13:30+0000\n"
+"POT-Creation-Date: 2024-09-08 01:40:09+0800\n"
+"PO-Revision-Date: 2024-09-08 01:40:10+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../MapTeleport.cs:52
+#: ..\..\MapTeleport.cs:52
 msgid "您正在尝试传送到实心方块中。请在地图上选择一个不包含实心方块的地方，然后重试."
 msgstr ""
 

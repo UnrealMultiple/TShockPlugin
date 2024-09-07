@@ -1,0 +1,81 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AutoStoreItems\n"
+"POT-Creation-Date: 2024-09-07 23:45:11+0800\n"
+"PO-Revision-Date: 2024-09-07 23:48+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: ..\..\Configuration.cs:24
+msgid ""
+"[存物速度] 不要低于60帧(推荐120)，否则手动 [连续] 快速放入 [同样物品到存储空"
+"间格子] 会导致物品数量翻倍"
+msgstr ""
+"[Storage speed (存物速度)] should not be lower than 60 (recommended 120), "
+"otherwise manually continuously quickly placing the same item into the "
+"storage space slot will cause the item stack to double"
+
+#: ..\..\Configuration.cs:33
+msgid "[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险)"
+msgstr ""
+"[Existing BUG] collected items will be Unfavorite (referring to the Void Bag "
+"potions having the risk of stacking into the chest)"
+
+#: ..\..\Configuration.cs:21
+msgid ""
+"[是否手持] 需要选中 [持有物品] 其中1个才会启动存储功能，关闭则背包含有 其中1"
+"个就会启动"
+msgstr ""
+"[Whether to hold (是否手持)] needs to select one of the held items (持有物"
+"品) to activate the storage function. If disabled: the backpack contains one "
+"of them (含有其中1个) to activate"
+
+#: ..\..\Configuration.cs:27
+msgid ""
+"[物品名] 会在使用 [/Reload] 指令时根据 [物品ID] 自动写入，[物品数量] 为储存最"
+"低数量要求 "
+msgstr ""
+"[Item names (物品名)] will be automatically written based on item IDs (物品"
+"ID) when using the /Reload command. Item stack (物品数量) is the minimum "
+"storage requirement."
+
+#: ..\..\Configuration.cs:30
+msgid ""
+"[装备饰品] 只会检测装备3格+饰品7格，与[存物速度]等无关，装备指定饰品(盔甲)玩"
+"家只要移动或攻击就会触发自存 "
+msgstr ""
+"[Armor accessories (装备饰品)] will only detect 3 Armor slots + 7 accessory "
+"slots, unrelated to storage speed (存物速度)，Equipping specified "
+"accessories/armor (饰品/盔甲) will trigger auto-storage when the player "
+"moves or attacks."
+
+#: ..\..\AutoStoreItems.cs:51
+msgid "[自动存储]重新加载配置完毕。"
+msgstr "[Auto Storage] Configuration reloaded successfully."
+
+#: ..\..\AutoStoreItems.cs:192
+#, csharp-format
+msgid "【自动储存】已将'[c/92C5EC:{0}]'存入您的{1} 当前数量: {2}"
+msgstr ""
+"[Auto Storage] has stored ‘[c/92C5EC:{0}]’ into your {1}. Current stacks: {2}"
+
+#: ..\..\AutoStoreItems.cs:141
+msgid "保险箱"
+msgstr "Safe"
+
+#: ..\..\AutoStoreItems.cs:140
+msgid "存钱罐"
+msgstr "Piggy Bank"
+
+#: ..\..\AutoStoreItems.cs:142
+msgid "护卫熔炉"
+msgstr "Defender's Forge"
+
+#: ..\..\AutoStoreItems.cs:143
+msgid "虚空袋"
+msgstr "Void Vault"

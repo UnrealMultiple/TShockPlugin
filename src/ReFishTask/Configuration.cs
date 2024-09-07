@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using TShockAPI;
 
-namespace Plugin;
+namespace ReFishTask;
 
 internal class Configuration
 {

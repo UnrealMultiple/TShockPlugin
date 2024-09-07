@@ -16,12 +16,11 @@ public class BetterWhitelist : TerrariaPlugin
 
     public BetterWhitelist(Main game) : base(game)
     {
-        this.Order = -100;
     }
 
     public override string Name => "BetterWhitelist";
 
-    public override Version Version => new(2, 5);
+    public override Version Version => new(2, 6);
 
     public override string Author => "豆沙，肝帝熙恩、Cai修改";
 
@@ -53,7 +52,7 @@ public class BetterWhitelist : TerrariaPlugin
     {
         if (args.Parameters.Count < 1)
         {
-            args.Player.SendErrorMessage("用法: 输入 /bwl help 显示帮助信息.");
+            args.Player.SendErrorMessage(GetString("用法: 输入 /bwl help 显示帮助信息."));
             return;
         }
 
@@ -62,14 +61,14 @@ public class BetterWhitelist : TerrariaPlugin
         switch (command.ToLowerInvariant())
         {
             case "help":
-                args.Player.SendInfoMessage("-------[BetterWhitelist]-------");
-                args.Player.SendInfoMessage("/bwl help, 显示帮助信息\n" +
-                                            "/bwl add {name}, 添加玩家名到白名单中\n" +
-                                            "/bwl del {name}, 将玩家移出白名单\n" +
-                                            "/bwl list, 显示白名单上的全部玩家\n" +
-                                            "/bwl true, 启用插件\n" +
-                                            "/bwl false, 关闭插件\n" +
-                                            "/bwl reload, 重载插件");
+                args.Player.SendInfoMessage(GetString("-------[BetterWhitelist]-------"));
+                args.Player.SendInfoMessage(GetString("/bwl help, 显示帮助信息\n") +
+                                            GetString("/bwl add {name}, 添加玩家名到白名单中\n") +
+                                            GetString("/bwl del {name}, 将玩家移出白名单\n")+
+                                            GetString("/bwl list, 显示白名单上的全部玩家\n") +
+                                            GetString( "/bwl true, 启用插件\n") +
+                                            GetString("/bwl false, 关闭插件\n") +
+                                            GetString("/bwl reload, 重载插件"));
                 break;
 
             case "list":
@@ -83,12 +82,12 @@ public class BetterWhitelist : TerrariaPlugin
             case "false":
                 if (_config.Disabled)
                 {
-                    args.Player.SendErrorMessage("禁用失败! 插件已是关闭状态");
+                    args.Player.SendErrorMessage(GetString("禁用失败! 插件已是关闭状态"));
                 }
                 else
                 {
                     _config.Disabled = true;
-                    args.Player.SendSuccessMessage("禁用成功!");
+                    args.Player.SendSuccessMessage(GetString("禁用成功!"));
                     File.WriteAllText(ConfigPath, JsonConvert.SerializeObject(_config, Formatting.Indented));
                 }
 
@@ -97,12 +96,12 @@ public class BetterWhitelist : TerrariaPlugin
             case "true":
                 if (!_config.Disabled)
                 {
-                    args.Player.SendErrorMessage("启用失败! 插件已是打开状态");
+                    args.Player.SendErrorMessage(GetString("启用失败! 插件已是打开状态"));
                 }
                 else
                 {
                     _config.Disabled = false;
-                    args.Player.SendSuccessMessage("启用成功!");
+                    args.Player.SendSuccessMessage(GetString("启用成功!"));
                     foreach (var tsPlayer in TShock.Players.Where(p =>
                                  p != null && !_config.WhitePlayers.Contains(p.Name)))
                     {
@@ -117,13 +116,13 @@ public class BetterWhitelist : TerrariaPlugin
             case "add":
                 if (_config.Disabled)
                 {
-                    args.Player.SendErrorMessage("插件开关已被禁用，请检查配置文件!");
+                    args.Player.SendErrorMessage(GetString("插件开关已被禁用，请检查配置文件!"));
                 }
                 else
                 {
                     if (args.Parameters.Count == 1)
                     {
-                        args.Player.SendSuccessMessage("用法错误!正确用法: /bwl add <玩家名>");
+                        args.Player.SendSuccessMessage(GetString("用法错误!正确用法: /bwl add <玩家名>"));
                         return;
                     }
 
@@ -132,12 +131,12 @@ public class BetterWhitelist : TerrariaPlugin
                     if (playerNameToAdd != null && !_config.WhitePlayers.Contains(playerNameToAdd))
                     {
                         _config.WhitePlayers.Add(playerNameToAdd);
-                        args.Player.SendSuccessMessage("添加成功!");
+                        args.Player.SendSuccessMessage(GetString("添加成功!"));
                         File.WriteAllText(ConfigPath, JsonConvert.SerializeObject(_config, Formatting.Indented));
                     }
                     else
                     {
-                        args.Player.SendSuccessMessage("添加失败! 该玩家已经在白名单中");
+                        args.Player.SendSuccessMessage(GetString("添加失败! 该玩家已经在白名单中"));
                     }
                 }
 
@@ -145,19 +144,19 @@ public class BetterWhitelist : TerrariaPlugin
 
             case "reload":
                 this.Load();
-                args.Player.SendSuccessMessage("重载成功!");
+                args.Player.SendSuccessMessage(GetString("[BetterWhitelist]重载成功!"));
                 break;
 
             case "del":
                 if (_config.Disabled)
                 {
-                    args.Player.SendErrorMessage("插件开关已被禁用，请检查配置文件!");
+                    args.Player.SendErrorMessage(GetString("插件开关已被禁用，请检查配置文件!"));
                 }
                 else
                 {
                     if (args.Parameters.Count == 1)
                     {
-                        args.Player.SendSuccessMessage("用法错误!正确用法: /bwl del <玩家名>");
+                        args.Player.SendSuccessMessage(GetString("用法错误!正确用法: /bwl del <玩家名>"));
                         return;
                     }
 
@@ -165,7 +164,7 @@ public class BetterWhitelist : TerrariaPlugin
                     if (playerNameToDelete != null && _config.WhitePlayers.Contains(playerNameToDelete))
                     {
                         _config.WhitePlayers.Remove(playerNameToDelete);
-                        args.Player.SendSuccessMessage("删除成功!");
+                        args.Player.SendSuccessMessage(GetString("删除成功!"));
                         File.WriteAllText(ConfigPath, JsonConvert.SerializeObject(_config, Formatting.Indented));
                         TShock.Players
                             .Where(p => p != null && p.Name == playerNameToDelete)

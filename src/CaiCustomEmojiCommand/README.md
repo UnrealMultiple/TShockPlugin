@@ -7,13 +7,14 @@
 ## 更新日志
 
 ```
+2024.9.8.1 添加英文翻译
 2024.7.28.1 添加插件
 ```
 
 ## 指令
 无
 ## 配置
-
+> 配置文件位置：tshock/CaiCustomEmojiCommand.json
 ```json    
 {
   "说明": "EmojiID可以在wiki(https://terraria.wiki.gg/zh/wiki/%E8%A1%A8%E6%83%85)上查询, 本插件不支持跳过权限检查, 命令需要标识符(/或者.)",

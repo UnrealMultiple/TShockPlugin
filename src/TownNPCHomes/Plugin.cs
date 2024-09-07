@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "TownNPCHomes";
 
-    public override Version Version => new Version(1, 1, 1);
+    public override Version Version => new Version(1, 1, 2);
 
     private readonly ConcurrentDictionary<int, Vector2> npcHomePositions = new ConcurrentDictionary<int, Vector2>();
 
@@ -61,7 +61,7 @@ public class Plugin : TerrariaPlugin
             }
         }
 
-        args.Player.SendSuccessMessage("已将所有城镇npc传送回家!");
+        args.Player.SendSuccessMessage(GetString("已将所有城镇npc传送回家!"));
     }
 
     private void TrySendNPCHomePosition(int npcId, Vector2 position)
@@ -73,7 +73,7 @@ public class Plugin : TerrariaPlugin
         catch (Exception ex)
         {
             TShock.Log.ConsoleError(ex.Message);
-            Console.WriteLine($"发送NPC ({npcId}) 回家位置数据包时发生错误: {ex.Message}");
+            TShock.Log.ConsoleError(GetString($"发送NPC ({npcId}) 回家位置数据包时发生错误: {ex.Message}"));
 
         }
     }
@@ -86,7 +86,7 @@ public class Plugin : TerrariaPlugin
 
             if (val == null)
             {
-                args.Player.SendSuccessMessage($"无法找到ID为{args.ID}的NPC，无法为其设置家的位置。");
+                args.Player.SendWarningMessage(GetString($"无法找到ID为{args.ID}的NPC，无法为其设置家的位置。"));
                 return;
             }
 
@@ -99,7 +99,7 @@ public class Plugin : TerrariaPlugin
         catch (Exception ex)
         {
             TShock.Log.ConsoleError(ex.Message);
-            args.Player.SendSuccessMessage($"处理NPC回家事件时发生错误: {ex.Message}");
+            args.Player.SendErrorMessage(GetString($"处理NPC回家事件时发生错误: {ex.Message}"));
         }
     }
 }

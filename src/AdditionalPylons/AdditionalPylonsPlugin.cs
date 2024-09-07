@@ -14,9 +14,9 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
     #region Plugin Properties
     public override string Name => "[放置更多晶塔] AdditionalPylons";
 
-    public override Version Version => new Version(1, 0, 2);
+    public override Version Version => new Version(1, 0, 3);
 
-    public override string Author => "Stealownz，肝帝熙恩优化1449";
+    public override string Author => "Stealownz,肝帝熙恩优化1449";
 
     public override string Description => "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境";
 

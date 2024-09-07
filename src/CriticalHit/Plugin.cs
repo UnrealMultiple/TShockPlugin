@@ -24,7 +24,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "CriticalHit!";
 
-    public override Version Version => new Version(1, 2, 0);
+    public override Version Version => new Version(1, 2, 1);
 
     public Plugin(Main game)
         : base(game)
@@ -84,22 +84,27 @@ public class Plugin : TerrariaPlugin
     private void AddDefaultsToConfig()
     {
         var critMessage = new CritMessage();
-        critMessage.Messages.Add("砰!", new int[3] { 255, 120, 0 });
-        critMessage.Messages.Add("嘭!", new int[3] { 255, 40, 50 });
-        critMessage.Messages.Add("啪!", new int[3] { 255, 255, 0 });
-        critMessage.Messages.Add("噗通!", new int[3] { 255, 0, 0 });
+        critMessage.Messages.Add("Boom!", new int[3] { 255, 0, 0 }); 
+        critMessage.Messages.Add("Plop!", new int[3] { 255, 0, 0 }); 
+        critMessage.Messages.Add("Pop!", new int[3] { 255, 0, 0 }); 
+        //中文在PE中无法正常显示
+        //critMessage.Messages.Add("砰!", new int[3] { 255, 120, 0 });
+        //critMessage.Messages.Add("嘭!", new int[3] { 255, 40, 50 });
+        // critMessage.Messages.Add("啪!", new int[3] { 255, 255, 0 });
+        //critMessage.Messages.Add("噗通!", new int[3] { 255, 0, 0 });
         this.config.CritMessages.Add(WeaponType.Melee, critMessage);
         critMessage = new CritMessage();
         critMessage.Messages.Add("Boom!", new int[3] { 255, 0, 0 });
-        critMessage.Messages.Add("轰隆!", new int[3] { 255, 0, 0 });
+        //critMessage.Messages.Add("轰隆!", new int[3] { 255, 0, 0 });
         this.config.CritMessages.Add(WeaponType.Explosive, critMessage);
         critMessage = new CritMessage();
         critMessage.Messages.Add("Biu biu!", new int[3] { 50, 255, 10 });
         this.config.CritMessages.Add(WeaponType.Ranged, critMessage);
         critMessage = new CritMessage();
-        critMessage.Messages.Add("啪嗒!", new int[3] { 10, 50, 255 });
-        critMessage.Messages.Add("嗖!", new int[3] { 0, 150, 255 });
+        //critMessage.Messages.Add("啪嗒!", new int[3] { 10, 50, 255 });
+        //critMessage.Messages.Add("嗖!", new int[3] { 0, 150, 255 });
         critMessage.Messages.Add("Whoomph!", new int[3] { 0, 200, 255 });
+        critMessage.Messages.Add("Crackle!", new int[3] { 0, 200, 255 });
         this.config.CritMessages.Add(WeaponType.Magic, critMessage);
         this.config.Write(this.path);
     }

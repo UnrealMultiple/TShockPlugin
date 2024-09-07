@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: HelpPlus\n"
-"POT-Creation-Date: 2024-09-06 16:13:25+0000\n"
-"PO-Revision-Date: 2024-09-06 16:13:25+0000\n"
+"POT-Creation-Date: 2024-09-08 01:40:08+0800\n"
+"PO-Revision-Date: 2024-09-08 01:40:09+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,65 +10,65 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Help.cs:247
+#: ..\..\Help.cs:247
 msgid "[c/c2ff39:无权限限制]"
 msgstr ""
 
-#: ../../Help.cs:46
+#: ..\..\Help.cs:46
 msgid "[HelpPlus]插件配置已重载！"
 msgstr ""
 
-#: ../../Help.cs:228
+#: ..\..\Help.cs:228
 #, csharp-format
 msgid "{0}{1}的帮助:"
 msgstr ""
 
-#: ../../Help.cs:260
+#: ..\..\Help.cs:260
 msgid "*本插件只能查询主命令权限，详细权限请使用/whynot查看!"
 msgstr ""
 
-#: ../../Help.cs:257
+#: ..\..\Help.cs:257
 msgid "*此命令不记录命令参数"
 msgstr ""
 
-#: ../../Help.cs:252
+#: ..\..\Help.cs:252
 msgid "*此命令只能游戏内执行"
 msgstr ""
 
-#: ../../Help.cs:224
-msgid "你没有权限查询此命令."
-msgstr ""
-
-#: ../../Help.cs:243
+#: ..\..\Help.cs:243
 #, csharp-format
 msgid "别名: [c/00ffff:{0}]"
 msgstr ""
 
-#: ../../Help.cs:203
-msgid "命令列表 ({0}/{1}):"
-msgstr ""
-
-#: ../../Help.cs:218
-msgid "无效命令."
-msgstr ""
-
-#: ../../Help.cs:185
-#, csharp-format
-msgid "无效用法.正确用法: {0}help <命令/页码>"
-msgstr ""
-
-#: ../../Help.cs:247
-#, csharp-format
-msgid "权限: {0}"
-msgstr ""
-
-#: ../../Help.cs:249
+#: ..\..\Help.cs:249
 #, csharp-format
 msgid "来源插件: [c/8500ff:{0}]"
 msgstr ""
 
-#: ../../Help.cs:204
+#: ..\..\Help.cs:203
+msgid "命令列表 ({0}/{1}):"
+msgstr ""
+
+#: ..\..\Help.cs:224
+msgid "你没有权限查询此命令."
+msgstr ""
+
+#: ..\..\Help.cs:247
+#, csharp-format
+msgid "权限: {0}"
+msgstr ""
+
+#: ..\..\Help.cs:204
 #, csharp-format
 msgid "输入 {0}help {{0}} 翻页."
+msgstr ""
+
+#: ..\..\Help.cs:218
+msgid "无效命令."
+msgstr ""
+
+#: ..\..\Help.cs:185
+#, csharp-format
+msgid "无效用法.正确用法: {0}help <命令/页码>"
 msgstr ""
 
