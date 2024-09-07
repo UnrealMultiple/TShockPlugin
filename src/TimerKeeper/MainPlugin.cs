@@ -15,7 +15,7 @@ public class TimerKeeper : TerrariaPlugin
 
     public override string Name => "TimerKeeper";
 
-    public override Version Version => new Version(1, 0, 0, 0);
+    public override Version Version => new Version(2024, 9, 8, 1);
     public static PlayerData data { get; set; }
     public TimerKeeper(Main game)
     : base(game)
@@ -54,7 +54,7 @@ public class TimerKeeper : TerrariaPlugin
                 Wiring.CheckMech(i.X, i.Y, 18000);
             }
         }
-        TShock.Log.ConsoleWarn("[TimerKeeper]计时器已经加载!");
+        TShock.Log.ConsoleWarn(GetString("[TimerKeeper]计时器已经加载!"));
     }
 
     private void OnGetData(GetDataEventArgs args)

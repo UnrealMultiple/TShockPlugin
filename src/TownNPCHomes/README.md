@@ -1,4 +1,4 @@
-# TownNPCHomes NPC快速回家
+[# TownNPCHomes]() NPC快速回家
 
 - 作者: 棱镜、羽学
 - 出处: [github](https://www.bbstr.net/r/72/)
@@ -8,6 +8,8 @@
 ## 更新日志
 
 ```
+- 1.1.2
+- 添加英文翻译
 - 1.1.1
 - 完善卸载函数
 - 1.1.0

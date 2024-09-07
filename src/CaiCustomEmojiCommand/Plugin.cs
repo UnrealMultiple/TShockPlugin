@@ -17,7 +17,7 @@ public class CaiCustomEmojiCommand : TerrariaPlugin
     public override string Author => "Cai";
     public override string Description => "自定义Emoji表情执行命令";
     public override string Name => "CaiCustomEmojiCommand";
-    public override Version Version => new(2024, 7, 28, 1);
+    public override Version Version => new(2024, 9, 8, 1);
 
 
     public override void Initialize()
@@ -30,7 +30,7 @@ public class CaiCustomEmojiCommand : TerrariaPlugin
     private void GeneralHooksOnReloadEvent(ReloadEventArgs e)
     {
         this._config = Config.Read()!;
-        e.Player.SendSuccessMessage("[CustomEmojiCommand]配置文件已重载!");
+        e.Player.SendSuccessMessage(GetString("[CustomEmojiCommand]配置文件已重载!"));
     }
 
     private void OnGetEmoji(object? sender, GetDataHandlers.EmojiEventArgs e)
