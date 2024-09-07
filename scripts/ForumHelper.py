@@ -29,7 +29,7 @@ rendered = rq.post("https://api.github.com/markdown", headers = {
     "text": md
 })).text
 
-def login(session: Session, url: str):
+def login(session: rq.Session, url: str):
     resp = session.get(url) 
     soup = BeautifulSoup(resp.text, 'html.parser')
     data_csrf = soup.html['data-csrf']
