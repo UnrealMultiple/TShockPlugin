@@ -39,7 +39,11 @@ V2.0.0.0
 ## 配置
 
 ```json
-暂无
+{
+  "允许自动更新插件": false,
+  "使用Github源": true,
+  "插件排除列表": []
+}
 ```
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

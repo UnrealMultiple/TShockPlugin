@@ -1,0 +1,157 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AutoPluginManager\n"
+"POT-Creation-Date: 2024-09-07 23:45:09+0800\n"
+"PO-Revision-Date: 2024-09-08 00:05+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: ..\..\Plugin.cs:214
+msgid "[安装完成]\n"
+msgstr "[Installation complete]\n"
+
+#: ..\..\Plugin.cs:253
+msgid "[更新完成]\n"
+msgstr "[Update complete]\n"
+
+#: ..\..\Plugin.cs:432
+#, csharp-format
+msgid "[跳过更新]无法在本地找到插件{0}({1}),可能是云加载或使用-additionalplugins加载"
+msgstr "[Skip update] Unable to find plugin {0} ({1}) locally, it may be cloud-loaded or loaded using -additionalplugins"
+
+#: ..\..\Plugin.cs:82 ..\..\Plugin.cs:273
+msgid "[以下插件有新的版本更新]\n"
+msgstr "[The following plugins have new version updates]\n"
+
+#: ..\..\Plugin.cs:99
+msgid "[AutoUpdate]无法获取更新:"
+msgstr "[AutoUpdate] Unable to get updates:"
+
+#: ..\..\Plugin.cs:68
+msgid "[AutoUpdatePlugin]插件配置已重载~"
+msgstr "[AutoUpdatePlugin] Plugin configuration reloaded~"
+
+#: ..\..\Plugin.cs:139
+msgid "*使用/apm -i <序号> 即可安装哦~"
+msgstr "*Use /apm -i <number> to install~"
+
+#: ..\..\Plugin.cs:219
+msgid "安装插件出现错误:"
+msgstr "Error installing plugin:"
+
+#: ..\..\Plugin.cs:171
+msgid "插件更新排除列表:\n"
+msgstr "Plugin update exclusion list:\n"
+
+#: ..\..\Plugin.cs:168
+msgid "当前没有排除任何一个插件哦~"
+msgstr "No plugins are currently excluded~"
+
+#: ..\..\Plugin.cs:250
+msgid "更新了个寂寞~"
+msgstr "No updates were found~"
+
+#: ..\..\Plugin.cs:133
+msgid "可安装插件列表:"
+msgstr "List of installable plugins:"
+
+#: ..\..\Plugin.cs:230 ..\..\Plugin.cs:270
+msgid "你的插件全是最新版本，无需更新哦~"
+msgstr "All your plugins are up to date, no updates needed~"
+
+#: ..\..\Plugin.cs:90
+msgid "你可以使用命令/apm -u 更新插件哦~"
+msgstr "You can use the command /apm -u to update plugins~"
+
+#: ..\..\Plugin.cs:151
+msgid "排除成功, 已跳过此插件的更新检查~"
+msgstr "Exclusion successful, this plugin's update check has been skipped~"
+
+#: ..\..\Plugin.cs:146
+msgid "排除失败, 没有在你的插件列表里找到这个插件呢~"
+msgstr "Exclusion failed, this plugin was not found in your plugin list~"
+
+#: ..\..\Plugin.cs:162
+msgid "删除成功, 此插件将会被检查更新~"
+msgstr "Deletion successful, this plugin will be checked for updates~"
+
+#: ..\..\Plugin.cs:157
+msgid "删除失败, 没有在你的插件列表里找到这个插件呢~"
+msgstr "Deletion failed, this plugin was not found in your plugin list~"
+
+#: ..\..\Plugin.cs:277
+msgid "无法获取更新:"
+msgstr "Unable to get updates:"
+
+#: ..\..\Plugin.cs:329
+msgid "无法连接服务器"
+msgstr "Unable to connect to server"
+
+#: ..\..\Plugin.cs:189
+msgid "无效参数，请附带需要安装插件的选择项!"
+msgstr "Invalid parameter, please include the plugin selection to install!"
+
+#: ..\..\Plugin.cs:205
+msgid "序号无效，请附带需要安装插件的选择项!"
+msgstr "Invalid number, please include the plugin selection to install!"
+
+#: ..\..\Plugin.cs:212
+msgid "正在安装插件..."
+msgstr "Installing plugin..."
+
+#: ..\..\Plugin.cs:210 ..\..\Plugin.cs:244
+msgid "正在解压插件包..."
+msgstr "Unpacking plugin package..."
+
+#: ..\..\Plugin.cs:246
+msgid "正在升级插件..."
+msgstr "Upgrading plugin..."
+
+#: ..\..\Plugin.cs:208 ..\..\Plugin.cs:242
+msgid "正在下载最新插件包..."
+msgstr "Downloading latest plugin package..."
+
+#: ..\..\Plugin.cs:85
+msgid "正在自动更新插件..."
+msgstr "Automatically updating plugins..."
+
+#: ..\..\Plugin.cs:215 ..\..\Plugin.cs:254
+msgid "重启服务器后插件生效!"
+msgstr "Plugins will take effect after restarting the server!"
+
+#: ..\..\Plugin.cs:258
+msgid "自动更新出现错误:"
+msgstr "Error during automatic update:"
+
+#: ..\..\Plugin.cs:179
+msgid "apm b [插件名字] 更新时跳过指定插件"
+msgstr "apm b [plugin name] Skip specified plugin during update"
+
+#: ..\..\Plugin.cs:175
+msgid "apm c 检测已安装插件更新"
+msgstr "apm c Check for updates of installed plugins"
+
+#: ..\..\Plugin.cs:177
+msgid "apm i [序号] 安装指定插件"
+msgstr "apm i [number] Install specified plugin"
+
+#: ..\..\Plugin.cs:178
+msgid "apm l 查看可安装插件表"
+msgstr "apm l View list of installable plugins"
+
+#: ..\..\Plugin.cs:181
+msgid "apm lb 查看更新排除列表"
+msgstr "apm lb View update exclusion list"
+
+#: ..\..\Plugin.cs:180
+msgid "apm rb [插件名字] 取消更新排除"
+msgstr "apm rb [plugin name] Remove update exclusion"
+
+#: ..\..\Plugin.cs:176
+msgid "apm u [插件名] 更新所有插件或指定插件"
+msgstr "apm u [plugin name] Update all plugins or specified plugin"
