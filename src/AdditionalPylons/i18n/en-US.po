@@ -22,19 +22,19 @@ msgstr "The number of Jungle Pylon has reached its maximum."
 
 #: ..\..\AdditionalPylonsPlugin.cs:243
 msgid "洞穴晶塔数量已达到上限。"
-msgstr "The number of Underground Pylon has reached its maximum."
+msgstr "The number of Cavern Pylon has reached its maximum."
 
 #: ..\..\AdditionalPylonsPlugin.cs:251
 msgid "海洋晶塔数量已达到上限。"
-msgstr "The number of Beach Pylon has reached its maximum."
+msgstr "The number of Ocean Pylon has reached its maximum."
 
 #: ..\..\AdditionalPylonsPlugin.cs:275
 msgid "蘑菇晶塔数量已达到上限。"
-msgstr "The number of Glowing Mushroom Pylon has reached its maximum."
+msgstr "The number of Mushroom Pylon has reached its maximum."
 
 #: ..\..\AdditionalPylonsPlugin.cs:227
 msgid "森林晶塔数量已达到上限。"
-msgstr "The number of Surface Purity Pylon has reached its maximum."
+msgstr "The number of Forest Pylon has reached its maximum."
 
 #: ..\..\AdditionalPylonsPlugin.cs:259
 msgid "沙漠晶塔数量已达到上限。"
@@ -46,7 +46,7 @@ msgstr "The number of Hallow Pylon has reached its maximum."
 
 #: ..\..\AdditionalPylonsPlugin.cs:283
 msgid "万能晶塔数量已达到上限。"
-msgstr "The number of Victory Pylon has reached its maximum."
+msgstr "The number of Universal Pylon has reached its maximum."
 
 #: ..\..\AdditionalPylonsPlugin.cs:267
 msgid "雪原晶塔数量已达到上限。"
