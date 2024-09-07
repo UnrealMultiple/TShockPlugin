@@ -19,7 +19,9 @@
 
     <ItemGroup>
         <Compile Include="..\Shared\**\*.cs" />
-        <EmbeddedResource Include=".\i18n\*.mo" />
+        <EmbeddedResource Include=".\i18n\*.mo">
+            <LogicalName>i18n.%(FileName).mo</LogicalName>
+        </EmbeddedResource>
     </ItemGroup>
 
     <Target Name="githash" BeforeTargets="PreBuildEvent">
