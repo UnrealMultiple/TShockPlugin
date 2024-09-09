@@ -8,8 +8,10 @@ using System.Net.WebSockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using Terraria;
+using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
+using Program = Terraria.Program;
 
 namespace CaiBot;
 
@@ -640,7 +642,6 @@ public static class MessageHandle
                     };
                     await SendDateAsync(JsonConvert.SerializeObject(result));
                 }
-
                 break;
             case "mapfile":
                 CreateMapFile.Instance.Init();
@@ -661,6 +662,17 @@ public static class MessageHandle
                     { "type", "worldfileV2" },
                     { "name", Main.worldPathName },
                     { "base64",CompressBase64(FileToBase64String(Main.worldPathName)) },
+                    { "group", (long)jsonObject["group"]! }
+                };
+                await SendDateAsync(JsonConvert.SerializeObject(result));
+                break;
+            case "pluginlist":
+                var pluginList = ServerApi.Plugins.Select(p=> new PluginInfo(p.Plugin.Name,p.Plugin.Description,p.Plugin.Author,p.Plugin.Version)).ToList();
+                
+                result = new RestObject
+                {
+                    { "type", "pluginlist" },
+                    { "plugins", pluginList },
                     { "group", (long)jsonObject["group"]! }
                 };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
