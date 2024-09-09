@@ -39,6 +39,7 @@ jobs:
       - name: 构建插件
         if: github.event_name != 'push' || github.ref != 'refs/heads/master'
         run: |
+          Get-ChildItem -Path src/Submodules/ -Filter "*.sln" -Recurse | ForEach-Object {dotnet build $_.FullName -c Debug}
           dotnet build Plugin.sln -c Debug
 
       - name: 构建插件
