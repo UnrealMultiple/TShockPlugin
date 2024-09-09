@@ -10,8 +10,6 @@ internal class SkillCD
 
     private static long Count = 0;
 
-    private readonly static List<Scheduler> _schedulers = new();
-
     public static void Updata()
     {
 
