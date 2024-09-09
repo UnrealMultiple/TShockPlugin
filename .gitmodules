@@ -1,3 +1,3 @@
-[submodule "src/Yaaiomni"]
+[submodule "src/Submodules/Yaaiomni"]
 	path = src/Submodules/Yaaiomni
 	url = https://github.com/sgkoishi/yaaiomni.git
