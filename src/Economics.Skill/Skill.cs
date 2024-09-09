@@ -1,5 +1,6 @@
 ﻿using Economics.Skill.DB;
 using Economics.Skill.Events;
+using Economics.Skill.Internal;
 using Economics.Skill.JSInterpreter;
 using Economics.Skill.Setting;
 using EconomicsAPI.Configured;
@@ -142,6 +143,7 @@ public class Skill : TerrariaPlugin
     private void OnUpdate(EventArgs args)
     {
         this.TimerCount++;
+        JobjManager.FrameUpdate();
         if ((this.TimerCount % 6) == 0)
         {
             SkillCD.SendGodPacket();

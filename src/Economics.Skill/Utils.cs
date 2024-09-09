@@ -1,6 +1,8 @@
 ﻿using Economics.Skill.Enumerates;
+using Economics.Skill.Internal;
 using Economics.Skill.JSInterpreter;
 using Economics.Skill.Model;
+using Economics.Skill.Model.Options.Projectile;
 using EconomicsAPI.Extensions;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -65,7 +67,82 @@ public class Utils
     }
 
 
+    internal static void CycleAdapr(TSPlayer ply, Vector2 vel, Vector2 pos, ProjectileOption option, NPC? lockNpc = null)
+    {
+        foreach (var opt in option.ProjectileCycle.ProjectileCycles)
+        {
+            Vector2 _vel;
+            #region 锁定敌怪
+            if (option.LockNpcOption.Enable && option.LockNpcOption.Lock && lockNpc != null)
+            {
+                pos.Distance(lockNpc.Center);
+                _vel = (pos.DirectionTo(lockNpc.Center).SafeNormalize(-Vector2.UnitY) * lockNpc.velocity.Length()).ToLenOf(option.Speed);
+            }
+            else
+            {
+                _vel = vel.RotationAngle(option.StartAngle).ToLenOf(option.Speed);
+            }
+            #endregion
 
+            var _pos = pos + new Vector2(option.X * 16, option.Y * 16);
+            var oldpos = _pos;
+            var cpos = _pos.GetPointsOnCircle(opt.Radius * 16, option.StartAngle, opt.GrowAngle, opt.Count);
+
+            foreach (var i in Enumerable.Range(0, opt.Count))
+            {
+                JobjManager.Add(() =>
+                {
+                    if (opt.NewPos)
+                    {
+                        _vel = oldpos.DirectionTo(cpos[i]).SafeNormalize(-Vector2.UnitY).ToLenOf(option.Speed);
+                        _pos = cpos[i];
+                    }
+                    //判断锁定敌怪
+                    if (option.LockNpcOption.Enable && option.LockNpcOption.Lock && lockNpc != null)
+                    {
+                        _vel = _pos.DirectionTo(lockNpc.Center).SafeNormalize(-Vector2.UnitY).ToLenOf(option.Speed);
+                    }
+                    #region 生成弹幕
+                    var guid = Guid.NewGuid().ToString();
+                    var index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(
+                        //发射原无期
+                        ply.TPlayer.GetProjectileSource_Item(ply.TPlayer.HeldItem),
+                        //发射位置
+                        _pos,
+                        _vel * (opt.Reverse ? -1 : 1),
+                        option.ID,
+                        option.Damage,
+                        option.Knockback,
+                        ply.Index,
+                        option.AI[0],
+                        option.AI[1],
+                        option.AI[2],
+                        option.TimeLeft,
+                        guid);
+                    TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
+                    #endregion
+                    AIStyle.Set(Main.projectile[index], option.AISytle, guid);
+                    #region 数值重置
+
+                    if (!opt.NewPos)
+                    {
+                        _vel = _vel.RotationAngle(opt.GrowAngle).ToLenOf(option.Speed);
+                    }
+
+                    if (opt.FollowPlayer)
+                    {
+                        _pos = ply.TPlayer.Center + ply.TPlayer.ItemOffSet() + new Vector2(opt.GrowX * 16, opt.GrowY * 16);
+                    }
+                    else
+                    {
+                        _pos += new Vector2(opt.GrowX * 16, opt.GrowY * 16);
+                    }
+
+                    #endregion
+                }).AddMilliSeconds(i * opt.Dealy);
+            }
+        }
+    }
 
 
     /// <summary>
@@ -78,9 +155,10 @@ public class Utils
     public static void SpawnSkillProjectile(TSPlayer Player, SkillContext skill, Vector2 vel, Vector2 pos)
     {
         EmitGeneralSkill(Player, skill);
-        Task.Run(async () =>
+        foreach (var i in Enumerable.Range(0, skill.Projectiles.Count))
         {
-            foreach (var proj in skill.Projectiles)
+            var proj = skill.Projectiles[i];
+            JobjManager.Add(() =>
             {
                 if (!proj.AutoDirection)
                 {
@@ -99,82 +177,9 @@ public class Utils
                         }
                     }
                 }
-
-                foreach (var opt in proj.ProjectileCycle.ProjectileCycles)
-                {
-                    Vector2 _vel;
-                    #region 锁定敌怪
-                    if (proj.LockNpcOption.Enable && proj.LockNpcOption.Lock && lockNpc != null)
-                    {
-                        pos.Distance(lockNpc.Center);
-                        _vel = (pos.DirectionTo(lockNpc.Center).SafeNormalize(-Vector2.UnitY) * lockNpc.velocity.Length()).ToLenOf(proj.Speed);
-                    }
-                    else
-                    {
-                        _vel = vel.RotationAngle(proj.StartAngle).ToLenOf(proj.Speed);
-                    }
-                    #endregion
-
-                    var _pos = pos + new Vector2(proj.X * 16, proj.Y * 16);
-                    var oldpos = _pos;
-                    var cpos = _pos.GetPointsOnCircle(opt.Radius * 16, proj.StartAngle, opt.GrowAngle, opt.Count);
-
-                    for (var i = 0; i < opt.Count; i++)
-                    {
-
-                        if (opt.NewPos)
-                        {
-                            _vel = oldpos.DirectionTo(cpos[i]).SafeNormalize(-Vector2.UnitY).ToLenOf(proj.Speed);
-                            _pos = cpos[i];
-                        }
-                        //判断锁定敌怪
-                        if (proj.LockNpcOption.Enable && proj.LockNpcOption.Lock && lockNpc != null)
-                        {
-                            _vel = _pos.DirectionTo(lockNpc.Center).SafeNormalize(-Vector2.UnitY).ToLenOf(proj.Speed);
-                        }
-                        #region 生成弹幕
-                        var guid = Guid.NewGuid().ToString();
-                        var index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(
-                            //发射原无期
-                            Player.TPlayer.GetProjectileSource_Item(Player.TPlayer.HeldItem),
-                            //发射位置
-                            _pos,
-                            _vel * (opt.Reverse ? -1 : 1),
-                            proj.ID,
-                            proj.Damage,
-                            proj.Knockback,
-                            Player.Index,
-                            proj.AI[0],
-                            proj.AI[1],
-                            proj.AI[2],
-                            proj.TimeLeft,
-                            guid);
-                        TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
-                        #endregion
-                        AIStyle.Set(Main.projectile[index], proj.AISytle, guid);
-                        #region 数值重置
-
-                        if (!opt.NewPos)
-                        {
-                            _vel = _vel.RotationAngle(opt.GrowAngle).ToLenOf(proj.Speed);
-                        }
-
-                        if (opt.FollowPlayer)
-                        {
-                            _pos = Player.TPlayer.Center + Player.TPlayer.ItemOffSet() + new Vector2(opt.GrowX * 16, opt.GrowY * 16);
-                        }
-                        else
-                        {
-                            _pos += new Vector2(opt.GrowX * 16, opt.GrowY * 16);
-                        }
-
-                        #endregion
-                        await Task.Delay(opt.Dealy);
-                    }
-                }
-                await Task.Delay(proj.Dealy);
-            }
-        });
+                CycleAdapr(Player, vel, pos, proj, lockNpc);
+            }).AddMilliSeconds(proj.Dealy * i);
+        }
     }
     /// <summary>
     /// 释放技能
