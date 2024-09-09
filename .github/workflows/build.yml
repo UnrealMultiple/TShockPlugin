@@ -1,7 +1,13 @@
 name: 插件构建发布
 
-on: [push, pull_request]
-    
+on: 
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - 'V1.0.0.0'
+  pull_request:
+
 jobs:
   Build:
     runs-on: ubuntu-latest
@@ -93,10 +99,10 @@ jobs:
           body: |
             # 插件下载和更新日志
             ###  📅 每次仓库更新，我们都会在这里发布最新的Release。请注意，这个仓库只有一个Release，所以你总是能在这里找到最新的版本。
-            ###  📖文档已经以PDF的形式附在插件包中。更推荐你直接在仓库主页中的[插件列表](https://github.com/UnrealMultiple/TShockPlugin?tab=readme-ov-file#%E5%B7%B2%E6%94%B6%E9%9B%86%E6%8F%92%E4%BB%B6)，点击插件名跳转到每个插件的详细文档。
+            ###  📖介绍已经以MD的形式附在插件包中，可以使用文本编辑器打开。更推荐你直接在仓库主页中的[插件列表](https://github.com/UnrealMultiple/TShockPlugin?tab=readme-ov-file#%E5%B7%B2%E6%94%B6%E9%9B%86%E6%8F%92%E4%BB%B6)，点击插件名跳转。
             ###  📦 你可以在页面的`最底部↓↓↓`找到插件包的下载链接。下载完成后，你需要使用`ZIP压缩工具`进行解压。
             > [!CAUTION]
-            >**请你`详细`的看`上面的说明`，不要到处问`插件怎么用`、`ZIP如何解压`、`PDF怎么打开`**
+            >**请你`仔细`地阅读`上面的说明`，不要到处问`插件怎么用`、`ZIP如何解压`**
             <details>
             <summary>更新日志</summary>
             
@@ -117,17 +123,21 @@ jobs:
           git config --local user.name "GitHub Action"
           $Changed = [System.Object[]]::new(0)
           foreach ($p in @(Get-ChildItem src/**/*.csproj))  {
-              $pot = [System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot")
-              New-Item -Path $p.DirectoryName -Name i18n -ItemType Directory
-              GetText.Extractor -u -o -s $p.FullName -t $pot
-              $d = $(git diff --numstat $pot).Split()
-              if ($d[0] -le 2 -and $d[1] -le 2) {
-                git checkout $pot
-              } else {
-                foreach ($t in @(Get-ChildItem $($p.DirectoryName)i18n/*.po)) {
-                  msgmerge --previous --update $t $pot
-                }
+            $pot = [System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot")
+            New-Item -Path $p.DirectoryName -Name i18n -ItemType Directory -Force
+            dotnet tool run GetText.Extractor -u -o -s $p.FullName -t $pot
+          }
+          git add -N src/**/i18n/*.pot
+          foreach ($p in @((git diff --numstat).Split([System.Environment]::NewLine)))  {
+            if (!$p.EndsWith(".pot")) { continue }
+            $d = $p.Split("`t")
+            if ($d[0] -le 2 -and $d[1] -le 2) {
+              git checkout $d[2]
+            } else {
+              foreach ($t in @(Get-ChildItem $([System.IO.Path]::GetDirectoryName($d[2]))*.po)) {
+                msgmerge --previous --update $t $d[2]
               }
+            }
           }
           git diff --quiet
           if ($LastExitCode -ne 0) {
@@ -145,9 +155,11 @@ jobs:
             git push
           }
 
-      - name: 同步Gitee
+      - name: 同步其他平台
         continue-on-error: true
         shell: pwsh
         if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
         run: |
+          sudo pip install beautifulsoup4
           python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}
+          sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}

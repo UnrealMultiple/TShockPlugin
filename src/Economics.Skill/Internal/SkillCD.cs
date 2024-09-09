@@ -1,17 +1,20 @@
-﻿
-using Economics.Skill.Events;
+﻿using Economics.Skill.Events;
 using System.Collections.Concurrent;
 using TShockAPI;
 
-namespace Economics.Skill;
+namespace Economics.Skill.Internal;
 
 internal class SkillCD
 {
     private readonly static ConcurrentDictionary<TSPlayer, int> God = new();
 
     private static long Count = 0;
+
+    private readonly static List<Scheduler> _schedulers = new();
+
     public static void Updata()
     {
+
         foreach (var player in Skill.PlayerSKillManager.PlayerSkills)
         {
             if (player.Player != null && player.Player.Active)

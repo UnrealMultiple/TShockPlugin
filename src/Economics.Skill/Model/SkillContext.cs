@@ -1,4 +1,5 @@
-﻿using Economics.Skill.JSInterpreter;
+﻿using Economics.Skill.Internal;
+using Economics.Skill.JSInterpreter;
 using Economics.Skill.Model.Options;
 using Economics.Skill.Model.Options.Projectile;
 using Economics.Skill.Model.Options.Range;

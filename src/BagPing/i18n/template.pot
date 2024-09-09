@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BagPing\n"
-"POT-Creation-Date: 2024-09-01 11:28:04+0800\n"
-"PO-Revision-Date: 2024-09-01 11:28:05+0800\n"
+"POT-Creation-Date: 2024-09-06 16:12:58+0000\n"
+"PO-Revision-Date: 2024-09-06 16:12:58+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ..\..\BagPing.cs:50
+#: ../../BagPing.cs:50
 #, csharp-format
 msgid "宝藏袋掉落在坐标({0},{1}),已在小地图上标记!"
 msgstr ""
