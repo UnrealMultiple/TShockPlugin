@@ -1,7 +1,7 @@
 {
     "submodules": [
         {
-            "name": "Yaaiomni",
+            "name": "Chireiden.TShock.Omni",
             "project_path": "src/Submodules/Yaaiomni/Core/Plugin.csproj",
             "assembly_path": "src/Submodules/Yaaiomni/Core/bin/{BuildType}/{TargetFramework}/Chireiden.TShock.Omni.dll",
             "readme": "src/Submodules/Yaaiomni/README.md"
