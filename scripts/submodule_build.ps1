@@ -10,7 +10,6 @@ $jsonContent = Get-Content -Path ".config/submodule_build.json" -Raw  | ConvertF
 
 foreach($submodule in $jsonContent.submodules)
 {
-    Write-Host "编译生成子模块: {0}" -f $submodule.name
     $command = "dotnet build {0} -c {1}" -f $submodule.project_path, $BuildType
     $assembly_path = $submodule.assembly_path -replace "{BuildType}", $BuildType -replace "{TargetFramework}" , $TargetFramework
     $pdb = $assembly_path -replace ".dll", ".pdb"
