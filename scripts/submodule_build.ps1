@@ -8,7 +8,7 @@ param(
     [string]$TargetFramework
 )
 
-$jsonContent = Get-Content -Path ".config/submodule_build.json" -Raw  | ConvertFrom-Json
+$jsonContent = Get-Content -Path "$PSScriptRoot/../.config/submodule_build.json" -Raw  | ConvertFrom-Json
 New-Item -Path SubmoduleAssembly -ItemType Directory
 foreach($submodule in $jsonContent.submodules)
 {
