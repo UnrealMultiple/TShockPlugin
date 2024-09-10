@@ -3,12 +3,14 @@
         {
             "name": "Yaaiomni",
             "project_path": "src/Submodules/Yaaiomni/Core/Plugin.csproj",
-            "assembly_path": "src/Submodules/Yaaiomni/Core/bin/{BuildType}/{TargetFramework}/Chireiden.TShock.Omni.dll"
+            "assembly_path": "src/Submodules/Yaaiomni/Core/bin/{BuildType}/{TargetFramework}/Chireiden.TShock.Omni.dll",
+            "readme": "src/Submodules/Yaaiomni/README.md"
         },
         {
             "name": "Crossplay",
             "project_path": "src/Submodules/Crossplay/Crossplay/Crossplay.csproj",
-            "assembly_path": "src/Submodules/Crossplay/Crossplay/bin/{BuildType}/{TargetFramework}/Crossplay.dll"
+            "assembly_path": "src/Submodules/Crossplay/Crossplay/bin/{BuildType}/{TargetFramework}/Crossplay.dll",
+            "readme": "src/Submodules/Crossplay/README.md"
         }
     ]
 }

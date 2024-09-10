@@ -72,7 +72,7 @@ jobs:
           }
           $ErrorActionPreference = "Continue"
           Copy-Item out/**/*.dll,out/**/*.pdb out/Target/Plugins/
-          Copy-Item SubmoduleAssembly/*.dll,SubmoduleAssembly/*.pdb out/Target/Plugins/
+          Copy-Item SubmoduleAssembly/* out/Target/Plugins/
           Copy-Item bin/Plugins.json,README.md,Usage.txt,LICENSE out/Target/
           python scripts/zip.py
 
