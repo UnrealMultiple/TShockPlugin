@@ -16,5 +16,5 @@ foreach($submodule in $jsonContent.submodules)
     $pdb = $assembly_path -replace ".dll", ".pdb"
     Copy-Item -Path $assembly_path -Destination SubmoduleAssembly
     Copy-Item -Path $pdb -Destination SubmoduleAssembly
-    Copy-Item -Path $submodule.readme -Destination (Join-Path -Path SubmoduleAssembly -ChildPath $submodule.name + ".md")
+    Copy-Item -Path $submodule.readme -Destination (Join-Path -Path SubmoduleAssembly -ChildPath ($submodule.name + ".md"))
 }
