@@ -13,7 +13,7 @@ internal class JobjManager
             scheduler.Update().CanRun();
             if (scheduler.Running == ScheduleState.Success)
             {
-                _schedulers.Remove(scheduler);
+                _schedulers.RemoveAt(i);
             }
         }
     }
