@@ -38,12 +38,16 @@ jobs:
 
       - name: 构建插件
         if: github.event_name != 'push' || github.ref != 'refs/heads/master'
+        shell: pwsh
         run: |
+          ./scripts/submodule_build.ps1 -BuildType Debug -TargetFramework net6.0
           dotnet build Plugin.sln -c Debug
 
       - name: 构建插件
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        shell: pwsh
         run: |
+          ./scripts/submodule_build.ps1 -BuildType Release -TargetFramework net6.0
           dotnet build Plugin.sln -c Release
 
       - name: 打包
@@ -68,6 +72,7 @@ jobs:
           }
           $ErrorActionPreference = "Continue"
           Copy-Item out/**/*.dll,out/**/*.pdb out/Target/Plugins/
+          Copy-Item SubmoduleAssembly/* out/Target/Plugins/
           Copy-Item bin/Plugins.json,README.md,Usage.txt,LICENSE out/Target/
           python scripts/zip.py
 
