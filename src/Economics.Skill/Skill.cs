@@ -1,5 +1,6 @@
 ﻿using Economics.Skill.DB;
 using Economics.Skill.Events;
+using Economics.Skill.Internal;
 using Economics.Skill.JSInterpreter;
 using Economics.Skill.Setting;
 using EconomicsAPI.Configured;
@@ -21,7 +22,7 @@ public class Skill : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 2, 1, 2);
+    public override Version Version => new(1, 2, 1, 3);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
@@ -142,6 +143,7 @@ public class Skill : TerrariaPlugin
     private void OnUpdate(EventArgs args)
     {
         this.TimerCount++;
+        JobjManager.FrameUpdate();
         if ((this.TimerCount % 6) == 0)
         {
             SkillCD.SendGodPacket();

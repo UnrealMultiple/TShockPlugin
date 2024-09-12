@@ -6,9 +6,9 @@ using System.Collections.Concurrent;
 using Terraria;
 using TShockAPI;
 
-namespace Economics.Skill;
+namespace Economics.Skill.Internal;
 
-public class AIStyle
+internal class AIStyle
 {
     private static readonly ConcurrentDictionary<string, (Projectile, AIStyleOption)> projectiles = new();
 
