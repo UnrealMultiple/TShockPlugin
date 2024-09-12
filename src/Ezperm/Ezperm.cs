@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.DB;
 using TShockAPI.Hooks;
 
 namespace Ezperm;
@@ -11,7 +12,7 @@ public class Ezperm : TerrariaPlugin
     public override string Name => "Ezperm";
     public override string Author => "大豆子,肝帝熙恩优化1449";
     public override string Description => "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限";
-    public override Version Version => new Version(1, 2, 2);
+    public override Version Version => new Version(1, 2, 3);
     internal static Configuration Config;
     public Ezperm(Main game) : base(game)
     {
@@ -44,31 +45,57 @@ public class Ezperm : TerrariaPlugin
         }
         base.Dispose(disposing);
     }
+
     private void Cmd(CommandArgs args)
     {
-        var config = Configuration.Read(Configuration.FilePath);
-
-        foreach (var groupInfo in config.Groups)
+        foreach (var groupInfo in Config.Groups)
         {
-            var group = groupInfo.Name;
-
-            // 添加权限
-            foreach (var addPermission in groupInfo.AddPermissions)
+            var groupName = groupInfo.Name;
+            if (TShock.Groups.GetGroupByName(groupName) == null)
             {
-                var addCommand = $"/group addperm {group} {addPermission}";
-                Commands.HandleCommand(TSPlayer.Server, addCommand);
+                try
+                {
+                    TShock.Groups.AddGroup(groupName, null, "", Group.defaultChatColor);
+                    args.Player.SendSuccessMessage($"组 {groupName} 不存在，已创建该组。\r\n");
+                }
+                catch (GroupManagerException ex)
+                {
+                    args.Player.SendErrorMessage(ex.ToString());
+                }
+            }
+            // 添加权限
+            if (groupInfo.AddPermissions.Count > 0)
+            {
+                try
+                {
+                    var response = TShock.Groups.AddPermissions(groupName, groupInfo.AddPermissions);
+                    if (response.Length > 0)
+                    {
+                        args.Player.SendSuccessMessage($"成功为组 {groupName} 添加权限: {string.Join(", ", groupInfo.AddPermissions)}\r\n");
+                    }
+                }
+                catch (GroupManagerException ex)
+                {
+                    args.Player.SendErrorMessage(ex.ToString());
+                }
             }
 
             // 删除权限
-            foreach (var delPermission in groupInfo.DelPermissions)
+            if (groupInfo.DelPermissions.Count > 0)
             {
-                var delCommand = $"/group delperm {group} {delPermission}";
-                Commands.HandleCommand(TSPlayer.Server, delCommand);
+                try
+                {
+                    var response = TShock.Groups.DeletePermissions(groupName, groupInfo.DelPermissions);
+                    if (response.Length > 0)
+                    {
+                        args.Player.SendSuccessMessage($"成功为组 {groupName} 删除权限: {string.Join(", ", groupInfo.DelPermissions)}\r\n\r\n");
+                    }
+                }
+                catch (GroupManagerException ex)
+                {
+                    args.Player.SendErrorMessage(ex.Message);
+                }
             }
-
-            // 修改这行，显示具体的组和权限信息
-            args.Player.SendSuccessMessage($"成功为组 {group} 添加权限: {string.Join(", ", groupInfo.AddPermissions)}");
-            args.Player.SendSuccessMessage($"成功为组 {group} 删除权限: {string.Join(", ", groupInfo.DelPermissions)}");
         }
     }
 }
