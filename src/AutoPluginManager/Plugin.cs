@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO.Compression;
 using System.Reflection;
+using System.Reflection.Metadata;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -121,10 +124,7 @@ public class Plugin : TerrariaPlugin
         }
         else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-i" || args.Parameters[0].ToLower() == "i"))
         {
-            var indexs = args.Parameters[1].Split(",").Select(x =>
-            {
-                return int.TryParse(x, out var index) ? index : -1;
-            });
+            var indexs = args.Parameters[1].Split(",").Select(x => int.TryParse(x, out var index) ? index : -1);
             this.InstallCmd(args.Player, indexs);
         }
         else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-l" || args.Parameters[0].ToLower() == "l"))
@@ -212,7 +212,8 @@ public class Plugin : TerrariaPlugin
             Player.SendInfoMessage(GetString("正在安装插件..."));
             InstallPlugin(installs);
             Player.SendSuccessMessage(GetString("[安装完成]\n") + string.Join("\n", installs.Select(i => $"[{i.Name}] V{i.Version}")));
-            Player.SendSuccessMessage(GetString("重启服务器后插件生效!"));
+            //Player.SendSuccessMessage(GetString("重启服务器后插件生效!"));
+            this.LoadPlugins(installs.Select(i => i.Path));
         }
         catch (Exception ex)
         {
@@ -276,6 +277,72 @@ public class Plugin : TerrariaPlugin
         {
             Player.SendErrorMessage(GetString("无法获取更新:") + ex.Message);
             return;
+        }
+    }
+
+    public void LoadPlugins(IEnumerable<string> PluginNames)
+    {
+        foreach(var PluginName in PluginNames)
+        {
+            var flag = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+            var loadedAssemblies = (Dictionary<string, Assembly>) typeof(ServerApi).GetField("loadedAssemblies", flag)?.GetValue(null)!;
+            var game = (Main) typeof(ServerApi).GetField("game", flag)?.GetValue(null)!;
+            var plugins = (List<PluginContainer>) typeof(ServerApi).GetField("plugins", flag)?.GetValue(null)!;
+            var tsPluginPath = Path.Combine(AppContext.BaseDirectory, ServerApi.PluginsPath, PluginName);
+            if (File.Exists(tsPluginPath))
+            {
+                var pdb = Path.ChangeExtension(tsPluginPath, ".pdb");
+                var symbols = File.Exists(pdb) ? File.ReadAllBytes(pdb) : null;
+                var ass = Assembly.Load(File.ReadAllBytes(tsPluginPath), symbols);
+                loadedAssemblies?.Add(PluginName, ass);
+                foreach (var type in ass.GetExportedTypes())
+                {
+                    if (!type.IsSubclassOf(typeof(TerrariaPlugin)) || !type.IsPublic || type.IsAbstract)
+                    {
+                        continue;
+                    }
+                    var customAttributes = type.GetCustomAttributes(typeof(ApiVersionAttribute), false);
+                    if (customAttributes.Length == 0)
+                    {
+                        continue;
+                    }
+
+                    if (!ServerApi.IgnoreVersion)
+                    {
+                        var apiVersionAttribute = (ApiVersionAttribute) customAttributes[0];
+                        var apiVersion = apiVersionAttribute.ApiVersion;
+                        if (apiVersion.Major != ServerApi.ApiVersion.Major || apiVersion.Minor != ServerApi.ApiVersion.Minor)
+                        {
+                            TShock.Log.ConsoleError(
+                                string.Format("Plugin \"{0}\" is designed for a different Server API version ({1}) and was ignored.",
+                                type.FullName, apiVersion.ToString(2)), TraceLevel.Warning);
+
+                            return;
+                        }
+                    }
+
+                    try
+                    {
+
+                        if (Activator.CreateInstance(type, game) is TerrariaPlugin pluginInstance)
+                        {
+                            var pc = new PluginContainer(pluginInstance);
+                            plugins.Add(pc);
+                            pc.Initialize();
+                            TShock.Log.ConsoleInfo(string.Format(
+                           "Plugin {0} v{1} (by {2}) initiated.", pc.Plugin.Name, pc.Plugin.Version, pc.Plugin.Author),
+                           TraceLevel.Info);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Broken plugins better stop the entire server init.
+                        throw new InvalidOperationException(
+                            string.Format("Could not create an instance of plugin class \"{0}\".", type.FullName), ex);
+                    }
+                }
+            }
+            
         }
     }
 
