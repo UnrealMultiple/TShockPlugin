@@ -74,7 +74,6 @@ jobs:
           Copy-Item out/**/*.dll,out/**/*.pdb out/Target/Plugins/
           Copy-Item SubmoduleAssembly/* out/Target/Plugins/
           Copy-Item bin/Plugins.json,README.md,Usage.txt,LICENSE out/Target/
-          Remove-Item -Path SubmoduleAssembly -Recurse -Force
           python scripts/zip.py
 
       - name: 上传临时插件包

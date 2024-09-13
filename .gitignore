@@ -368,3 +368,6 @@ FodyWeavers.xsd
 # Localization
 template.pot.bak
 *.mo
+
+#Submodule compile temp file
+/SubmoduleAssembly/
