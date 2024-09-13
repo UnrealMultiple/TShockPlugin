@@ -16,7 +16,7 @@ public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoPluginManager";
 
-    public override Version Version => new(2, 0, 1, 4);
+    public override Version Version => new(2, 0, 1, 5);
 
     public override string Author => "少司命，Cai";
 
@@ -213,7 +213,7 @@ public class Plugin : TerrariaPlugin
             InstallPlugin(installs);
             Player.SendSuccessMessage(GetString("[安装完成]\n") + string.Join("\n", installs.Select(i => $"[{i.Name}] V{i.Version}")));
             //Player.SendSuccessMessage(GetString("重启服务器后插件生效!"));
-            this.LoadPlugins(installs.Select(i => i.Path));
+            this.LoadPlugins(installs);
         }
         catch (Exception ex)
         {
@@ -280,21 +280,28 @@ public class Plugin : TerrariaPlugin
         }
     }
 
-    public void LoadPlugins(IEnumerable<string> PluginNames)
+    public void LoadPlugins(IEnumerable<PluginVersionInfo> Plugins)
     {
-        foreach(var PluginName in PluginNames)
+        var flag = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+        var loadedAssemblies = (Dictionary<string, Assembly>) typeof(ServerApi).GetField("loadedAssemblies", flag)?.GetValue(null)!;
+        var game = (Main) typeof(ServerApi).GetField("game", flag)?.GetValue(null)!;
+        var plugins = (List<PluginContainer>) typeof(ServerApi).GetField("plugins", flag)?.GetValue(null)!;
+        foreach (var current in Plugins)
         {
-            var flag = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
-            var loadedAssemblies = (Dictionary<string, Assembly>) typeof(ServerApi).GetField("loadedAssemblies", flag)?.GetValue(null)!;
-            var game = (Main) typeof(ServerApi).GetField("game", flag)?.GetValue(null)!;
-            var plugins = (List<PluginContainer>) typeof(ServerApi).GetField("plugins", flag)?.GetValue(null)!;
-            var tsPluginPath = Path.Combine(AppContext.BaseDirectory, ServerApi.PluginsPath, PluginName);
+            var tsPluginPath = Path.Combine(AppContext.BaseDirectory, ServerApi.PluginsPath, current.Path);
+            if (loadedAssemblies!.TryGetValue(current.Path, out var assemblies))
+            {
+                if (assemblies.GetName().Equals(AssemblyName.GetAssemblyName(tsPluginPath)))
+                {
+                    continue;
+                }
+            }
             if (File.Exists(tsPluginPath))
             {
                 var pdb = Path.ChangeExtension(tsPluginPath, ".pdb");
                 var symbols = File.Exists(pdb) ? File.ReadAllBytes(pdb) : null;
                 var ass = Assembly.Load(File.ReadAllBytes(tsPluginPath), symbols);
-                loadedAssemblies?.Add(PluginName, ass);
+                loadedAssemblies?.Add(current.Path, ass);
                 foreach (var type in ass.GetExportedTypes())
                 {
                     if (!type.IsSubclassOf(typeof(TerrariaPlugin)) || !type.IsPublic || type.IsAbstract)
