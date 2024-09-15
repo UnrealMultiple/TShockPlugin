@@ -13,6 +13,7 @@
 | /apm -l                 | AutoUpdatePlugin   |                                                 	View the list of repository plugins                                                 |
 | /apm -i [plugin number] | AutoUpdatePlugin   | 	Install plugins, requires server restart. Multiple plugin numbers can be separated by `commas` and used with the `/apm -i` command  |
 | /apm -b [plugin name]   | AutoUpdatePlugin   |                                                     	Exclude plugin from updates                                                     |
+| /apm -r                 | AutoUpdatePlugin   |                                                     	Check for duplicate installed plugins                                           |
 | /apm -rb [plugin name]  | AutoUpdatePlugin   |                                                       Remove update exclusion                                                        |
 | /apm -lb                | AutoUpdatePlugin   |                                                  List plugins excluded from updates                                                  |
 
