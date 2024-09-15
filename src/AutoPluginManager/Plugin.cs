@@ -77,6 +77,7 @@ public class Plugin : TerrariaPlugin
             try
             {
                 var updates = GetUpdates();
+                PluginRepeat(TSPlayer.Server);
                 if (updates.Any())
                 {
                     TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", updates.Select(i => $"[{i.Name}] V{i.OldVersion} >>> V{i.NewVersion}"))));
@@ -103,6 +104,20 @@ public class Plugin : TerrariaPlugin
         this._timer.Start();
     }
 
+    private static void PluginRepeat(TSPlayer ply)
+    {
+        if (typeof(ServerApi)
+            .GetField("loadedAssemblies", BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance)
+            !.GetValue(null) is Dictionary<string, Assembly> loadassemblys)
+        {
+            var mutexs = loadassemblys
+                .GroupBy(x => x.Value.GetName().FullName)
+                .Where(x => x.Count() > 1)
+                .SelectMany(x => x);
+            ply.SendErrorMessage("[插件重复安装]" + string.Join(" >>> ", mutexs.Select(x => x.Key + ".dll")));
+        }
+    }
+
     private void PluginManager(CommandArgs args)
     {
         if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-c" || args.Parameters[0].ToLower() == "c"))
@@ -121,10 +136,7 @@ public class Plugin : TerrariaPlugin
         }
         else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-i" || args.Parameters[0].ToLower() == "i"))
         {
-            var indexs = args.Parameters[1].Split(",").Select(x =>
-            {
-                return int.TryParse(x, out var index) ? index : -1;
-            });
+            var indexs = args.Parameters[1].Split(",").Select(x => int.TryParse(x, out var index) ? index : -1);
             this.InstallCmd(args.Player, indexs);
         }
         else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-l" || args.Parameters[0].ToLower() == "l"))
@@ -149,6 +161,10 @@ public class Plugin : TerrariaPlugin
             Config.PluginConfig.UpdateBlackList.Add(args.Parameters[1]);
             Config.PluginConfig.Write();
             args.Player.SendSuccessMessage(GetString("排除成功, 已跳过此插件的更新检查~"));
+        }
+        else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-r" || args.Parameters[0].ToLower() == "r"))
+        {
+            PluginRepeat(args.Player);
         }
         else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-rb" || args.Parameters[0].ToLower() == "rb"))
         {
