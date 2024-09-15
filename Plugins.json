@@ -211,7 +211,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.1.4",
+    "Version": "2.0.1.5",
     "Author": "少司命，Cai",
     "Description": "自动更新你的插件！",
     "Path": "AutoPluginManager.dll"
@@ -568,7 +568,7 @@
   },
   {
     "Name": "RandRespawn",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "1413,肝帝熙恩适配1449",
     "Description": "随机出生点，任何回到出生点的操作都会被随机传送",
     "Path": "RandRespawn.dll"
