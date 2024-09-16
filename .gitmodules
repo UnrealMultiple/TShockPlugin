@@ -4,3 +4,12 @@
 [submodule "src/Submodules/Crossplay"]
 	path = src/Submodules/Crossplay
 	url = https://github.com/UnrealMultiple/Crossplay.git
+[submodule "src/Submodules/TShockPlayerManager"]
+	path = src/Submodules/TShockPlayerManager
+	url = https://github.com/UnrealMultiple/TShockPlayerManager.git
+[submodule "src/Submodules/TShockWorldModify"]
+	path = src/Submodules/TShockWorldModify
+	url = https://github.com/UnrealMultiple/TShockWorldModify.git
+[submodule "src/Submodules/TShockFishShop"]
+	path = src/Submodules/TShockFishShop
+	url = https://github.com/UnrealMultiple/TShockFishShop.git
