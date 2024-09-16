@@ -13,6 +13,24 @@
             "readme": "src/Submodules/Yaaiomni/README.md"
         },
         {
+            "name": "FishShop",
+            "project_path": "src/Submodules/TShockFishShop/TShockFishShop/FishShop.csproj",
+            "assembly_path": "src/Submodules/TShockFishShop/TShockFishShop/bin/{BuildType}/{TargetFramework}/FishShop.dll",
+            "readme": "src/Submodules/TShockFishShop/README.md"
+        },
+        {
+            "name": "PlayerManager",
+            "project_path": "src/Submodules/TShockPlayerManager/PlayerManager/PlayerManager.csproj",
+            "assembly_path": "src/Submodules/TShockPlayerManager/PlayerManager/bin/{BuildType}/{TargetFramework}/PlayerManager.dll",
+            "readme": "src/Submodules/TShockPlayerManager/README.md"
+        },
+        {
+            "name": "WorldModify",
+            "project_path": "src/Submodules/TShockWorldModify/WorldModify/WorldModify.csproj",
+            "assembly_path": "src/Submodules/TShockWorldModify/WorldModify/bin/{BuildType}/{TargetFramework}/WorldModify.dll",
+            "readme": "src/Submodules/TShockWorldModify/README.md"
+        },
+        {
             "name": "Crossplay",
             "project_path": "src/Submodules/Crossplay/Crossplay/Crossplay.csproj",
             "assembly_path": "src/Submodules/Crossplay/Crossplay/bin/{BuildType}/{TargetFramework}/Crossplay.dll",
