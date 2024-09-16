@@ -6,10 +6,10 @@
 	url = https://github.com/UnrealMultiple/Crossplay.git
 [submodule "src/Submodules/TShockFishShop"]
 	path = src/Submodules/TShockFishShop
-	url = https://gitee.com/hufang360/TShockFishShop.git
+	url = https://github.com/UnrealMultiple/TShockFishShop.git
 [submodule "src/Submodules/TShockPlayerManager"]
 	path = src/Submodules/TShockPlayerManager
-	url = https://gitee.com/hufang360/TShockPlayerManager.git
+	url = https://github.com/UnrealMultiple/TShockPlayerManager.git
 [submodule "src/Submodules/TShockWorldModify"]
 	path = src/Submodules/TShockWorldModify
-	url = https://gitee.com/hufang360/TShockWorldModify.git
+	url = https://github.com/UnrealMultiple/TShockWorldModify.git
