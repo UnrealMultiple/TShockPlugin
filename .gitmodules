@@ -10,6 +10,3 @@
 [submodule "src/Submodules/TShockWorldModify"]
 	path = src/Submodules/TShockWorldModify
 	url = https://github.com/UnrealMultiple/TShockWorldModify.git
-[submodule "src/Submodules/TShockFishShop"]
-	path = src/Submodules/TShockFishShop
-	url = https://github.com/UnrealMultiple/TShockFishShop.git
