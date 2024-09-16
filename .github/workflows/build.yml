@@ -61,6 +61,7 @@ jobs:
             tar xvf bin/TShock-Beta-linux-x64-Release.tar --directory bin
           }
           Copy-Item out/**/*.dll bin/ServerPlugins/
+          Copy-Item SubmoduleAssembly/*.dll bin/ServerPlugins/
           Set-Location bin
           ./TShock.Server -dump-plugins-list-only
           Set-Location ../
