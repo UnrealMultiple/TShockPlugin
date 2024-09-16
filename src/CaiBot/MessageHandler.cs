@@ -121,7 +121,7 @@ public static class MessageHandle
                 var cmd = (string) jsonObject["cmd"]!;
                 CaiBotPlayer tr = new();
                 Commands.HandleCommand(tr, cmd);
-                TShock.Log.ConsoleInfo($"[CaiBot][{(string)jsonObject["at"]!}]在群[{(long)jsonObject["group"]}]执行了远程命令: {(string) jsonObject["cmd"]!}");
+                TShock.Log.ConsoleInfo($"[CaiBot]@{(string)jsonObject["at"]!}在群\"{(long)jsonObject["group"]}\"执行了远程命令: {(string) jsonObject["cmd"]!}");
                 result = new RestObject
                 {
                     { "type", "cmd" },
