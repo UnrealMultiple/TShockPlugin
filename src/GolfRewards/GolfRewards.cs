@@ -21,7 +21,7 @@ public class GolfRewards : TerrariaPlugin
 
     public override void Initialize()
     {
-
+        LC.RI();
         LC.RC();
         GeneralHooks.ReloadEvent += this.CMD;
         Commands.ChatCommands.Add(new Command("物块坐标", this.CMD2, "物块坐标")
