@@ -27,13 +27,6 @@ public class MusicPlayer : TerrariaPlugin
 
     public MusicPlayer(Main game) : base(game)
     {
-        this.songPath = Path.Combine(TShock.SavePath, "Songs");
-
-        if (!Directory.Exists(this.songPath))
-        {
-            Directory.CreateDirectory(this.songPath);
-        }
-
         this.addCommands = new Command[]
         {
             new ("song", this.PlaySong, "song"),
@@ -44,8 +37,13 @@ public class MusicPlayer : TerrariaPlugin
 
     public override void Initialize()
     {
-        Array.ForEach(this.addCommands, command => Commands.ChatCommands.Add(command));
+        this.songPath = Path.Combine(TShock.SavePath, "Songs");
 
+        if (!Directory.Exists(this.songPath))
+        {
+            Directory.CreateDirectory(this.songPath);
+        }
+        Array.ForEach(this.addCommands, command => Commands.ChatCommands.Add(command));
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnJoin);
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
