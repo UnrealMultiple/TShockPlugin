@@ -26,6 +26,14 @@ public class MainPlugin : TerrariaPlugin
         {
             args.Handled = true;
         }
+        if(args.MsgID == PacketTypes.ChestName)
+        {
+            var tsplayer = TShock.Players[args.Msg.whoAmI];
+            if (!tsplayer.HasPermission("chestopen.name"))
+            {
+                args.Handled = true;
+            }
+        }
     }
     protected override void Dispose(bool disposing)
     {
