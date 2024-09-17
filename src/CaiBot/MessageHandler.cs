@@ -585,7 +585,7 @@ public static class MessageHandle
                     result = new RestObject
                     {
                         { "type", "lookbag" },
-                        { "name", name },
+                        { "name", plr.name },
                         { "exist", 1 },
                         { "inventory", itemList },
                         { "buffs", buffs },
@@ -636,7 +636,7 @@ public static class MessageHandle
                     {
                         { "type", "lookbag" },
                         { "exist", 1 },
-                        { "name", name },
+                        { "name", acc.Name },
                         { "inventory", itemList },
                         { "buffs", buffs },
                         { "group", (long)jsonObject["group"]! }
