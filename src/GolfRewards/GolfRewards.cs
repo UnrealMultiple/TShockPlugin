@@ -16,7 +16,6 @@ public class GolfRewards : TerrariaPlugin
     public GolfRewards(Main game) : base(game)
     {
         base.Order = 5;
-        LC.RI();
     }
 
 
