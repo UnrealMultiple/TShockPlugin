@@ -43,7 +43,7 @@
   },
   {
     "Name": "超进度限制",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命 & 恋恋魔改三合一",
     "Description": "根据进度限制",
     "Path": "ProgressRestrict.dll"
@@ -162,7 +162,7 @@
   },
   {
     "Name": "音乐播放器",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "Olink，Cjx适配，肝帝熙恩修改, yu大改",
     "Description": "一个简单的音乐播放插件.",
     "Path": "MusicPlayer.dll"
@@ -736,7 +736,7 @@
   },
   {
     "Name": "高尔夫奖励",
-    "Version": "1.0.7",
+    "Version": "1.0.8",
     "Author": "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449",
     "Description": "将高尔夫打入球洞会得到奖励.",
     "Path": "GolfRewards.dll"
