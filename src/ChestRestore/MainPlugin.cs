@@ -93,7 +93,9 @@ public class MainPlugin : TerrariaPlugin
     {
         if (disposing)
         {
-            ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
+            ServerApi.Hooks.NetGetData.Deregister(this, this.OnGetData);
+            ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
+            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.ToggleEditMode);
         }
         base.Dispose(disposing);
     }
