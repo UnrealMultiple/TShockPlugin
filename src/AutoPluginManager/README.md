@@ -36,6 +36,7 @@ V2.0.0.0
 | /apm -l | AutoUpdatePlugin   | 查看仓库插件列表 |
 | /apm -i [插件序号] | AutoUpdatePlugin   | 安装插件，需重启服务器，插件序号多选`英文逗号隔开`配合`/apm -i`指令使用 |
 | /apm -b [插件名] | AutoUpdatePlugin   | 将插件排除更新 |
+| /apm -r | AutoUpdatePlugin   | 检查重复安装的插件 |
 | /apm -rb [插件名] | AutoUpdatePlugin   | 移除排除更新 |
 | /apm -lb | AutoUpdatePlugin   | 列出排除更新的插件 |
 ## 配置
