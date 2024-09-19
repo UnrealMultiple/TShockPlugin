@@ -124,7 +124,7 @@ public class WeaponPlusDB
     {
         try
         {
-            this.database.Query(ID == 0 ? "SELECT * FROM WeaponPlusDBBasedOnEconomics WHERE owner = @0" : "SELECT * FROM WeaponPlusDBBasedOnEconomics WHERE owner = @0 And itemID = @1", owner, ID);
+            this.database.Query(ID == 0 ? "DELETE * FROM WeaponPlusDBBasedOnEconomics WHERE owner = @0" : "DELETE * FROM WeaponPlusDBBasedOnEconomics WHERE owner = @0 And itemID = @1", owner, ID);
             return true;
         }
         catch (Exception ex)
