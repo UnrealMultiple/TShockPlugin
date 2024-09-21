@@ -14,6 +14,13 @@
     "Path": "Chireiden.TShock.Omni.dll"
   },
   {
+    "Name": "Crossplay",
+    "Version": "2.2",
+    "Author": "Moneylover3246",
+    "Description": "Enables crossplay for terraria",
+    "Path": "Crossplay.dll"
+  },
+  {
     "Name": "[放置更多晶塔] AdditionalPylons",
     "Version": "1.0.3",
     "Author": "Stealownz,肝帝熙恩优化1449",
@@ -36,7 +43,7 @@
   },
   {
     "Name": "超进度限制",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命 & 恋恋魔改三合一",
     "Description": "根据进度限制",
     "Path": "ProgressRestrict.dll"
@@ -155,7 +162,7 @@
   },
   {
     "Name": "音乐播放器",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "Olink，Cjx适配，肝帝熙恩修改, yu大改",
     "Description": "一个简单的音乐播放插件.",
     "Path": "MusicPlayer.dll"
@@ -211,7 +218,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.1.5",
+    "Version": "2.0.1.6",
     "Author": "少司命，Cai",
     "Description": "自动更新你的插件！",
     "Path": "AutoPluginManager.dll"
@@ -274,7 +281,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2024.9.8.1",
+    "Version": "2024.9.17.1",
     "Author": "Cai,羽学",
     "Description": "CaiBot机器人的适配插件",
     "Path": "CaiBot.dll"
@@ -330,10 +337,17 @@
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.0.2",
-    "Author": "Cjx修改，肝帝熙恩简单修改",
+    "Version": "1.0.3",
+    "Author": "Cjx重构 | 肝帝熙恩简单修改",
     "Description": "无限宝箱插件",
     "Path": "ChestRestore.dll"
+  },
+  {
+    "Name": "Chireiden.TShock.Omni.Misc 3c758322fb",
+    "Version": "0.0.186.0",
+    "Author": "SGKoishi",
+    "Description": "Yet another misc plugin for TShock - the miscellaneous part",
+    "Path": "Chireiden.TShock.Omni.Misc.dll"
   },
   {
     "Name": "CNPCShop",
@@ -483,6 +497,13 @@
     "Path": "Ezperm.dll"
   },
   {
+    "Name": "FishShop",
+    "Version": "1.4.4.0",
+    "Author": "hufang360",
+    "Description": "鱼店",
+    "Path": "FishShop.dll"
+  },
+  {
     "Name": "GenerateMap",
     "Version": "1.0.1",
     "Author": "少司命",
@@ -551,6 +572,13 @@
     "Author": "Megghy，肝帝熙恩更新1449",
     "Description": "允许为玩家单独设置权限.",
     "Path": "PersonalPermission.dll"
+  },
+  {
+    "Name": "PlayerManager",
+    "Version": "1.3.4.0",
+    "Author": "hufang360",
+    "Description": "玩家管理",
+    "Path": "PlayerManager.dll"
   },
   {
     "Name": "ProgressControl",
@@ -686,6 +714,13 @@
     "Path": "VeinMiner.dll"
   },
   {
+    "Name": "WorldModify",
+    "Version": "1.0.0.0",
+    "Author": "hufang360",
+    "Description": "简易的世界修改器",
+    "Path": "WorldModify.dll"
+  },
+  {
     "Name": "ZHIPlayerManager",
     "Version": "1.0.0.7",
     "Author": "z枳",
@@ -701,7 +736,7 @@
   },
   {
     "Name": "高尔夫奖励",
-    "Version": "1.0.7",
+    "Version": "1.0.8",
     "Author": "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449",
     "Description": "将高尔夫打入球洞会得到奖励.",
     "Path": "GolfRewards.dll"
@@ -757,7 +792,7 @@
   },
   {
     "Name": "中文Wiki语言包加载器",
-    "Version": "1.2.0.0",
+    "Version": "2024.9.16.1",
     "Author": "Cai",
     "Description": "加载Wiki语言包",
     "Path": "WikiLangPackLoader.dll"

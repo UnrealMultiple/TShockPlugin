@@ -1,8 +1,4 @@
-﻿//代码来源：https://github.com/chi-rei-den/PluginTemplate/blob/master/src/PluginTemplate/Program.cs
-//恋恋的TShock插件模板，有改动（为了配合章节名）
-//来自棱镜的插件教程
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using System.Net.WebSockets;
@@ -22,7 +18,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "Cai,羽学";
     public override string Description => "CaiBot机器人的适配插件";
     public override string Name => "CaiBotPlugin";
-    public static readonly Version VersionNum = new(2024, 9, 8, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new(2024, 9, 17, 1); //日期+版本号(0,1,2...)
     public override Version Version => VersionNum;
 
     //插件的构造器
