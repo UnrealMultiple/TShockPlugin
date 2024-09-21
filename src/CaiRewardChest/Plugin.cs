@@ -19,7 +19,7 @@ public class CaiRewardChest : TerrariaPlugin
 
     public override string Name => "CaiRewardChest";
 
-    public override Version Version => new(2024, 7, 29, 1);
+    public override Version Version => new(2024, 9, 22, 1);
 
 
     public override void Initialize()
