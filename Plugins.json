@@ -463,7 +463,7 @@
   },
   {
     "Name": "Economics.WeaponPlus",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "z枳 少司命",
     "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
     "Path": "Economics.WeaponPlus.dll"
