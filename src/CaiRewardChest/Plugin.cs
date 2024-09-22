@@ -19,7 +19,7 @@ public class CaiRewardChest : TerrariaPlugin
 
     public override string Name => "CaiRewardChest";
 
-    public override Version Version => new(2024, 7, 29, 1);
+    public override Version Version => new(2024, 9, 22, 1);
 
 
     public override void Initialize()
@@ -27,11 +27,11 @@ public class CaiRewardChest : TerrariaPlugin
         Db.Init();
         GetDataHandlers.ChestOpen.Register(this.OnChestOpen);
         Hooks.Chest.InvokeQuickStack += this.ChestOnInvokeQuickStack;
-        Commands.ChatCommands.Add(new Command("CaiRewardChest.Admin", this.InitChest, "初始化奖励箱"));
-        Commands.ChatCommands.Add(new Command("CaiRewardChest.Admin", this.ClearChest, "清空奖励箱"));
-        Commands.ChatCommands.Add(new Command("CaiRewardChest.Admin", this.DeleteChest, "删除奖励箱"));
-        Commands.ChatCommands.Add(new Command("CaiRewardChest.Admin", this.AddChest, "添加奖励箱"));
-        Commands.ChatCommands.Add(new Command("CaiRewardChest.Admin", this.EditChest, "编辑奖励箱"));
+        Commands.ChatCommands.Add(new Command("CaiRewardChest.Init", this.InitChest, "初始化奖励箱"));
+        Commands.ChatCommands.Add(new Command("CaiRewardChest.Clear", this.ClearChest, "清空奖励箱"));
+        Commands.ChatCommands.Add(new Command("CaiRewardChest.Delete", this.DeleteChest, "删除奖励箱"));
+        Commands.ChatCommands.Add(new Command("CaiRewardChest.Add", this.AddChest, "添加奖励箱"));
+        Commands.ChatCommands.Add(new Command("CaiRewardChest.Edit", this.EditChest, "编辑奖励箱"));
     }
 
     protected override void Dispose(bool disposing)
@@ -167,7 +167,7 @@ public class CaiRewardChest : TerrariaPlugin
         var count = 0;
         foreach (var chest in Main.chest)
         {
-            if (chest != null)
+            if (chest != null && chest.item.Count(i=>i!=null && i.type != 0)>0)
             {
                 Db.AddChest(Chest.FindChest(chest.x, chest.y), chest.x, chest.y);
                 count++;
