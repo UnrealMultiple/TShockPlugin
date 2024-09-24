@@ -88,6 +88,18 @@ jobs:
           name: Plugins_${{ matrix.runtimeIdentifier }}.zip
           path: out/Plugins_${{ matrix.runtimeIdentifier }}.zip
 
+      
+  LatestRelease:
+    name: 发布
+    runs-on: ubuntu-latest
+    needs: Build
+    permissions:
+         contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: 更新相关文件
         continue-on-error: true
         shell: pwsh
@@ -129,27 +141,7 @@ jobs:
             git commit -m "自动更新$($Changed -Join ", ") [skip ci]"
             git push
           }
-
-      - name: 同步其他平台
-        continue-on-error: true
-        shell: pwsh
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
-        run: |
-          sudo pip install beautifulsoup4
-          python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}
-          sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
-
   
-  LatestRelease:
-    name: 发布
-    runs-on: ubuntu-latest
-    needs: Build
-    permissions:
-         contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: 更新tag
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
@@ -164,12 +156,22 @@ jobs:
           configuration: ".config/log_config.json"
           
       - name: 下载临时插文件
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
         uses: actions/download-artifact@v4
         with:
           path: ./bin
       - name: 结构
        run: ls -R ./bin
-          
+
+      - name: 同步其他平台
+       continue-on-error: true
+       shell: pwsh
+       if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+       run: |
+         sudo pip install beautifulsoup4
+         python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}
+         sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
+         
       - name: 发布插件包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: ncipollo/release-action@v1
