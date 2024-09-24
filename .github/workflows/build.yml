@@ -85,7 +85,7 @@ jobs:
       - name: 上传临时插件包
         uses: actions/upload-artifact@v4
         with:
-          name: Plugins
+          name: Artifacts
           path: out/Plugins_${{ matrix.runtimeIdentifier }}.zip
 
       - name: 更新相关文件
@@ -151,13 +151,6 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v5
         with:
           configuration: ".config/log_config.json"
-          
-      - name: 下载临时插文件
-        uses: actions/download-artifact@v3
-        with:
-          name: Plugins
-          path: ./bin
-
 
   LatestRelease:
     name: 发布
@@ -169,6 +162,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: 下载临时插文件
+        uses: actions/download-artifact@v3
+        with:
+          name: Artifacts
+          path: ./bin          
       - name: 发布插件包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: ncipollo/release-action@v1
