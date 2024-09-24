@@ -139,6 +139,16 @@ jobs:
           python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}
           sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
 
+  LatestRelease:
+    name: 发布
+    runs-on: ubuntu-latest
+    needs: Build
+    permissions:
+         contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: 更新tag
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
@@ -151,22 +161,13 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v5
         with:
           configuration: ".config/log_config.json"
-
-  LatestRelease:
-    name: 发布
-    runs-on: ubuntu-latest
-    needs: Build
-    permissions:
-         contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+          
       - name: 下载临时插文件
         uses: actions/download-artifact@v3
         with:
           name: Artifacts
-          path: ./bin          
+          path: ./bin
+          
       - name: 发布插件包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: ncipollo/release-action@v1
