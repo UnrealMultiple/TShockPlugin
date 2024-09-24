@@ -139,6 +139,7 @@ jobs:
           python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}
           sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
 
+  
   LatestRelease:
     name: 发布
     runs-on: ubuntu-latest
@@ -190,3 +191,19 @@ jobs:
             ./bin/*
           allowUpdates: true
           removeArtifacts: true
+          
+  ClearTempArtifacts:
+    name: 清理临时文件
+    if: always()
+    runs-on: ubuntu-latest
+    needs:
+      - LatestRelease
+    permissions:
+      actions: write
+    steps:
+      - uses: geekyeggo/delete-artifact@v5
+        with:
+          name: |
+            Artifacts
+    
+        
