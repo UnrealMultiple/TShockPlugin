@@ -168,7 +168,7 @@ jobs:
         with:
           path: ./bin
       - name: 结构
-       run: ls -R ./bin
+        run: ls -R ./bin
           
       - name: 发布插件包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
