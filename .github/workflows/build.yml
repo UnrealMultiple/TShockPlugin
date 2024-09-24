@@ -85,7 +85,7 @@ jobs:
       - name: 上传临时插件包
         uses: actions/upload-artifact@v3
         with:
-          name: Plugins
+          name: Artifacts
           path: out/Plugins_${{ matrix.runtimeIdentifier }}.zip
 
       - name: 更新相关文件
@@ -165,7 +165,7 @@ jobs:
       - name: 下载临时插文件
         uses: actions/download-artifact@v3
         with:
-          name: Plugins
+          name: Artifacts
           path: ./bin
           
       - name: 发布插件包
