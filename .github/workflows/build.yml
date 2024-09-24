@@ -188,6 +188,6 @@ jobs:
             ${{steps.external_changelog_second.outputs.changelog}}
             </details>
           artifacts: |
-            ./bin/*
+            ./bin
           allowUpdates: true
           removeArtifacts: true 
