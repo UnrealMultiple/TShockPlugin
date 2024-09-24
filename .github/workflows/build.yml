@@ -143,13 +143,13 @@ jobs:
           }
   
       - name: 更新tag
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        #if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           git tag -f V1.0.0.0
           git push -f origin V1.0.0.0
 
       - name: 获取更新日志
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        #if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         id: external_changelog_second
         uses: mikepenz/release-changelog-builder-action@v5
         with:
@@ -165,14 +165,14 @@ jobs:
       - name: 同步其他平台
         continue-on-error: true
         shell: pwsh
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        #if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
         run: |
           sudo pip install beautifulsoup4
           python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}
           sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
          
       - name: 发布插件包
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        #if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: ncipollo/release-action@v1
         with:
           tag: V1.0.0.0
