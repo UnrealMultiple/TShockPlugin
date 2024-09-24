@@ -156,21 +156,21 @@ jobs:
           configuration: ".config/log_config.json"
           
       - name: 下载临时插文件
-      if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
         uses: actions/download-artifact@v4
         with:
           path: ./bin
       - name: 结构
-       run: ls -R ./bin
+        run: ls -R ./bin
 
       - name: 同步其他平台
-       continue-on-error: true
-       shell: pwsh
-       if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
-       run: |
-         sudo pip install beautifulsoup4
-         python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}
-         sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
+        continue-on-error: true
+        shell: pwsh
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        run: |
+          sudo pip install beautifulsoup4
+          python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}
+          sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
          
       - name: 发布插件包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
