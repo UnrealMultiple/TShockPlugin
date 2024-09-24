@@ -1,8 +1,11 @@
 import os
 import zipfile
+import sys
 
+platform = sys.argv[1]
 folder_path = "out/Target"
-zip_file_path = "out/Plugins.zip"
+zip_file_path = f"out/Plugins_{platform}.zip"
+
 with zipfile.ZipFile(zip_file_path, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zipf:
     for foldername, subfolders, filenames in os.walk(folder_path):
         for filename in filenames:
