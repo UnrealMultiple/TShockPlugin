@@ -157,7 +157,9 @@ jobs:
         with:
           name: Plugins
           path: ./bin
-          
+
+
+    LatestRelease: 
       - name: 发布插件包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: ncipollo/release-action@v1
