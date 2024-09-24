@@ -156,7 +156,6 @@ jobs:
           configuration: ".config/log_config.json"
           
       - name: 下载临时插文件
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
         uses: actions/download-artifact@v4
         with:
           path: ./bin
