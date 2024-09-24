@@ -86,7 +86,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Plugins
-          path: out/Plugins_${{ matrix.runtimeIdentifier }}_6.0.zip
+          path: out/Plugins_${{ matrix.runtimeIdentifier }}.zip
 
       - name: 更新相关文件
         continue-on-error: true
