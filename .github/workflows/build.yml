@@ -83,10 +83,10 @@ jobs:
           python scripts/zip.py ${{ matrix.runtimeIdentifier }}
 
       - name: 上传临时插件包
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: Artifacts
-          path: out/Plugins_${{ matrix.runtimeIdentifier }}.zip
+          path: out/Plugins_${{ matrix.runtimeIdentifier }}_6.0.zip
 
       - name: 更新相关文件
         continue-on-error: true
