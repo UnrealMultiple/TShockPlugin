@@ -67,11 +67,11 @@ namespace PerPlayerLoot
             enablePpl = !enablePpl;
             if (enablePpl)
             {
-                args.Player.SendSuccessMessage(GetString("现在启用了每个玩家单独的宝箱!"));
+                args.Player.SendSuccessMessage("现在启用了每个玩家单独的宝箱!");
             }
             else
             {
-                args.Player.SendSuccessMessage(GetString("每个玩家单独的宝箱现在被禁用！您现在可以修改宝箱，它们将被视为普通宝箱."));
+                args.Player.SendSuccessMessage("每个玩家单独的宝箱现在被禁用！您现在可以修改宝箱，它们将被视为普通宝箱.");
             }
         }
 
@@ -196,7 +196,7 @@ namespace PerPlayerLoot
             var fakeChest = fakeChestDb.GetOrCreateFakeChest(chestId, e.Player.UUID);
 
             // 发送消息给玩家
-            e.Player.SendInfoMessage(GetString("这个箱子里的战利品是每个玩家单独的!"));
+            e.Player.SendInfoMessage("这个箱子里的战利品是每个玩家单独的!");
 
             // 伪造宝箱槽位
             for (var slot = 0; slot < Chest.maxItems; slot++)
