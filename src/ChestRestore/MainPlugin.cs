@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using System.Collections.Generic;
 
 namespace ChestRestore;
 
@@ -51,42 +49,29 @@ public class MainPlugin : TerrariaPlugin
     private bool IsPlayerInEditMode(TSPlayer player)
     {
         // 检查玩家是否在修改模式中
-        return this.playersInEditMode.ContainsKey(player.Index) && this.playersInEditMode[player.Index];
+        return this.playersInEditMode.TryGetValue(player.Index, out var mode) && mode;
     }
 
     private void ToggleEditMode(CommandArgs args)
     {
         var player = args.Player;
 
-        // 切换玩家的修改模式状态
-        if (!this.playersInEditMode.ContainsKey(player.Index))
+        if (this.playersInEditMode.TryGetValue(player.Index, out var mode))
         {
-            this.playersInEditMode[player.Index] = true;
-            player.SendSuccessMessage("你已进入箱子修改模式。");
+            this.playersInEditMode[player.Index] = !mode;
+            player.SendSuccessMessage(!mode ? "你已进入箱子修改模式。" : "你已退出箱子修改模式。");
         }
         else
         {
-            var isInEditMode = this.playersInEditMode[player.Index];
-            this.playersInEditMode[player.Index] = !isInEditMode;
-
-            if (isInEditMode)
-            {
-                player.SendSuccessMessage("你已退出箱子修改模式。");
-            }
-            else
-            {
-                player.SendSuccessMessage("你已进入箱子修改模式。");
-            }
+            this.playersInEditMode[player.Index] = true;
+            player.SendSuccessMessage("你已进入箱子修改模式。");
         }
     }
 
     // 玩家离开时移除其修改模式
     private void OnLeave(LeaveEventArgs args)
     {
-        if (this.playersInEditMode.ContainsKey(args.Who))
-        {
-            this.playersInEditMode.Remove(args.Who);
-        }
+        this.playersInEditMode.Remove(args.Who);
     }
 
     protected override void Dispose(bool disposing)
