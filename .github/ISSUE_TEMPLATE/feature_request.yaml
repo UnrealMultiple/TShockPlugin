@@ -1,0 +1,47 @@
+name: 请求新功能 | Request New Feature
+description: 提交一个本仓库插件BUG | Submit a bug for this repository plugin
+title: '[建议|Suggestion] '
+labels: suggest
+body:
+  - type: markdown
+    attributes:
+      value: |
+        很高兴你能提交新的功能，为了能够更好的描述功能，请你填写下面的表格捏 | We are glad you are submitting a new feature. To better describe the feature, please fill out the form below.
+  - type: checkboxes
+    id: read-first-issue
+    attributes:
+      label: 已阅须知 | Read the guidelines
+      description: 我已经阅读发ISSUE必看 | I have read the guidelines for submitting an issue
+      options:
+        - label: 是 | Yes
+          required: true
+  - type: checkboxes
+    id: read2
+    attributes:
+      label: 功能有益 | Feature is beneficial
+      description: 我已确我提交的功能对大部分服主有益 | I confirm that the feature I am submitting is beneficial to most server owners
+      options:
+        - label: 是 | Yes
+          required: true
+
+  - type: input
+    id: plugin-name
+    attributes:
+      label: 插件名字 | Plugin Name
+      description: 建议的插件 | Suggested plugin
+      placeholder: CaiBotPlugin
+    validations:
+      required: true
+
+
+  - type: textarea
+    id: how-reproduce
+    attributes:
+      label: 需要什么功能? | What feature do you need?
+      description: 详细的说说你的功能 | Describe your feature in detail
+      placeholder: |
+        1. 新命令: /slap Cai 给Cai来一巴掌 | New command: /slap Cai to slap Cai
+        2. 导出人物存档的功能 | Function to export character saves
+        3. 给玩家加一个聊天前缀用来显示金币数,比如:[114514] | Add a chat prefix for players to display the number of coins, e.g., [114514]
+    validations:
+      required: true
