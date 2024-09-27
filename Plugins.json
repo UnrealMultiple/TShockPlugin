@@ -302,7 +302,7 @@
   },
   {
     "Name": "CaiRewardChest",
-    "Version": "2024.7.29.1",
+    "Version": "2024.9.22.1",
     "Author": "Cai",
     "Description": "奖励箱！！",
     "Path": "CaiRewardChest.dll"
@@ -337,7 +337,7 @@
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "Cjx重构 | 肝帝熙恩简单修改",
     "Description": "无限宝箱插件",
     "Path": "ChestRestore.dll"
@@ -457,16 +457,16 @@
   {
     "Name": "Economics.WeaponPlus",
     "Version": "1.0.0.3",
-    "Author": "z枳 少司命",
-    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
-    "Path": "Economics.WeaponPlus.dll"
-  },
-  {
-    "Name": "Economics.WeaponPlus",
-    "Version": "1.0.0.3",
     "Author": "z枳",
     "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
     "Path": "WeaponPlus.dll"
+  },
+  {
+    "Name": "Economics.WeaponPlus",
+    "Version": "1.0.0.4",
+    "Author": "z枳 少司命",
+    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+    "Path": "Economics.WeaponPlus.dll"
   },
   {
     "Name": "EconomicsAPI",
