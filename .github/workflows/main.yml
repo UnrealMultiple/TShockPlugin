@@ -1,0 +1,164 @@
+name: 插件构建发布
+
+on: 
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - 'V1.0.0.0'
+  pull_request:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    name: 构建插件
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          fetch-depth: 0
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: 初始化.NET 6
+        uses: actions/setup-dotnet@v4
+        env:
+          DOTNET_CLI_UI_LANGUAGE: zh-CN
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 安装构建依赖
+        shell: pwsh
+        run: |
+          sudo apt install -y gettext
+          foreach ($p in @(Get-ChildItem src/**/i18n/*.po))  {
+            Start-Process -FilePath msgfmt -WorkingDirectory $p.Directory.FullName -ArgumentList "-o $([System.IO.Path]::ChangeExtension($p.Name, ".mo")) $($p.Name)"
+          }
+      - name: 构建插件
+        if: github.event_name != 'push' || github.ref != 'refs/heads/master'
+        shell: pwsh
+        run: |
+          ./scripts/submodule_build.ps1 -BuildType Debug -TargetFramework net6.0
+          dotnet build Plugin.sln -c Debug
+      - name: 构建插件
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        shell: pwsh
+        run: |
+          ./scripts/submodule_build.ps1 -BuildType Release -TargetFramework net6.0
+          dotnet build Plugin.sln -c Release
+      - name: 打包
+        shell: pwsh
+        run: |
+          New-Item -Name bin -ItemType Directory
+          $rid = if ([System.Environment]::OSVersion.Platform -Match "Unix") { "linux-x64" } else { "win-x64" }
+          Invoke-WebRequest (Invoke-WebRequest 'https://api.github.com/repos/Pryaxis/TShock/releases' | ConvertFrom-Json | Select-Object -First 1 -ExpandProperty assets | Where-Object browser_download_url -Match $rid | Select-Object -ExpandProperty browser_download_url) -OutFile bin/TShock.zip
+          Expand-Archive bin/TShock.zip -DestinationPath bin
+          if ([System.Environment]::OSVersion.Platform -Match "Unix") {
+            tar xvf bin/TShock-Beta-linux-x64-Release.tar --directory bin
+          }
+          Copy-Item out/**/*.dll bin/ServerPlugins/
+          Copy-Item SubmoduleAssembly/*.dll bin/ServerPlugins/
+          Set-Location bin
+          ./TShock.Server -dump-plugins-list-only
+          Set-Location ../
+          New-Item -Path out/Target -Name Plugins -ItemType Directory
+          $ErrorActionPreference = "SilentlyContinue"
+          foreach ($p in @(Get-ChildItem src/**/*.csproj))  {
+            Copy-Item "$($p.DirectoryName)/README.md" "out/Target/Plugins/$($p.Directory.Name).md"
+            Copy-Item "$($p.DirectoryName)/README_EN.md" "out/Target/Plugins/$($p.Directory.Name)_EN.md"
+          }
+          $ErrorActionPreference = "Continue"
+          Copy-Item out/**/*.dll,out/**/*.pdb out/Target/Plugins/
+          Copy-Item SubmoduleAssembly/* out/Target/Plugins/
+          Copy-Item bin/Plugins.json,README.md,Usage.txt,LICENSE out/Target/
+          python scripts/zip.py
+      - name: 上传临时插件包
+        uses: actions/upload-artifact@v4
+        with:
+          name: Plugins
+          path: out/Plugins.zip
+
+      - name: 更新相关文件
+        continue-on-error: true
+        shell: pwsh
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        run: |
+          dotnet tool restore
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          $Changed = [System.Object[]]::new(0)
+          foreach ($p in @(Get-ChildItem src/**/*.csproj))  {
+            $pot = [System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot")
+            New-Item -Path $p.DirectoryName -Name i18n -ItemType Directory -Force
+            dotnet tool run GetText.Extractor -u -o -s $p.FullName -t $pot
+          }
+          git add -N src/**/i18n/*.pot
+          foreach ($p in @((git diff --numstat).Split([System.Environment]::NewLine)))  {
+            if (!$p.EndsWith(".pot")) { continue }
+            $d = $p.Split("`t")
+            if ($d[0] -le 2 -and $d[1] -le 2) {
+              git checkout $d[2]
+            } else {
+              foreach ($t in @(Get-ChildItem $([System.IO.Path]::GetDirectoryName($d[2]))*.po)) {
+                msgmerge --previous --update $t $d[2]
+              }
+            }
+          }
+          git diff --quiet
+          if ($LastExitCode -ne 0) {
+            $Changed += "译文模板"
+            git add .
+          }
+          Copy-Item out/Target/Plugins.json Plugins.json -Force
+          git diff --quiet
+          if ($LastExitCode -ne 0) {
+            $Changed += "插件列表"
+            git add .
+          }
+          if ($Changed.Length -gt 0) {
+            git commit -m "自动更新$($Changed -Join ", ") [skip ci]"
+            git push
+          }
+      - name: 同步其他平台
+        continue-on-error: true
+        shell: pwsh
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        run: |
+          sudo pip install beautifulsoup4
+          python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}
+          sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
+      - name: 更新tag
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          git tag -f V1.0.0.0
+          git push -f origin V1.0.0.0
+      - name: 获取更新日志
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        id: external_changelog_second
+        uses: mikepenz/release-changelog-builder-action@v5
+        with:
+          configuration: ".config/log_config.json"
+
+      - name: 发布插件包
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: ncipollo/release-action@v1
+        with:
+          tag: V1.0.0.0
+          name: "最新版本"
+          body: |
+            # 插件下载和更新日志
+            ###  📅 每次仓库更新，我们都会在这里发布最新的Release。请注意，这个仓库只有一个Release，所以你总是能在这里找到最新的版本。
+            ###  📖介绍已经以MD的形式附在插件包中，可以使用文本编辑器打开。更推荐你直接在仓库主页中的[插件列表](https://github.com/UnrealMultiple/TShockPlugin?tab=readme-ov-file#%E5%B7%B2%E6%94%B6%E9%9B%86%E6%8F%92%E4%BB%B6)，点击插件名跳转。
+            ###  📦 你可以在页面的`最底部↓↓↓`找到插件包的下载链接。下载完成后，你需要使用`ZIP压缩工具`进行解压。
+            > [!CAUTION]
+            >**请你`仔细`地阅读`上面的说明`，不要到处问`插件怎么用`、`ZIP如何解压`**
+            <details>
+            <summary>更新日志</summary>
+            
+            ${{steps.external_changelog_second.outputs.changelog}}
+            </details>
+          artifacts: |
+            out/Plugins.zip
+          allowUpdates: true
+          removeArtifacts: true
