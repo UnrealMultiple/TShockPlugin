@@ -33,7 +33,7 @@ public class FakeChestDatabase
 
     public void CreateTables()
     {
-        TSPlayer.Server.SendInfoMessage("设置每个玩家的宝箱数据库...");
+        TSPlayer.Server.SendInfoMessage(GetString("设置每个玩家的宝箱数据库..."));
         using (var conn = new SqliteConnection(connString))
         {
             conn.Open();
@@ -64,7 +64,7 @@ public class FakeChestDatabase
 
     public void LoadFakeChests()
     {
-        TSPlayer.Server.SendInfoMessage("加载每个玩家的战利品宝箱库存...");
+        TSPlayer.Server.SendInfoMessage(GetString("加载每个玩家的战利品宝箱库存..."));
         var count = 0;
 
         using (var conn = new SqliteConnection(connString))
@@ -227,7 +227,7 @@ public class FakeChestDatabase
             }
         }
 
-        TSPlayer.Server.SendSuccessMessage($"保存了 {count} 个战利品宝箱库存, {playerPlacedChests.Count} 玩家放置的宝箱.");
+        TSPlayer.Server.SendSuccessMessage(GetString($"保存了 {count} 个战利品宝箱库存, {playerPlacedChests.Count} 玩家放置的宝箱."));
     }
 
     // 获取或创建指定玩家的假宝箱
