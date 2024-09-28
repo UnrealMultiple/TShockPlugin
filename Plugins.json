@@ -85,7 +85,7 @@
   },
   {
     "Name": "击败怪物替换世界物品",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "onusai 羽学",
     "Description": "击败指定怪物替换世界指定图格与所有箱子内物品",
     "Path": "ConvertWorld.dll"
@@ -99,7 +99,7 @@
   },
   {
     "Name": "禁止怪物",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "Patrikk,GK 改良",
     "Description": "禁止指定怪物的出没",
     "Path": "BanNpc.dll"
@@ -211,7 +211,7 @@
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "Scavenger",
     "Description": "自动广播插件",
     "Path": "AutoBroadcast.dll"
@@ -253,7 +253,7 @@
   },
   {
     "Name": "BedSet 床设置",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "cmgy",
     "Description": "",
     "Path": "BedSet.dll"
@@ -267,14 +267,14 @@
   },
   {
     "Name": "BridgeBuilder",
-    "Version": "1.0.8",
+    "Version": "1.0.9",
     "Author": "Soofa，肝帝熙恩汉化1449",
     "Description": "铺桥!",
     "Path": "BridgeBuilder.dll"
   },
   {
     "Name": "BuildMaster",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "豆沙 羽学，肝帝熙恩适配",
     "Description": "A minigame that is named BuildMaster",
     "Path": "BuildMaster.dll"
@@ -302,14 +302,14 @@
   },
   {
     "Name": "CaiRewardChest",
-    "Version": "2024.9.22.1",
+    "Version": "2024.9.28.1",
     "Author": "Cai",
     "Description": "奖励箱！！",
     "Path": "CaiRewardChest.dll"
   },
   {
     "Name": "CGive",
-    "Version": "1.0.0.2",
+    "Version": "1.0.0.3",
     "Author": "Leader",
     "Description": "离线give",
     "Path": "CGive.dll"
@@ -323,7 +323,7 @@
   },
   {
     "Name": "Chameleon",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "mistzzt，肝帝熙恩修复1449",
     "Description": "账户系统交互替换方案",
     "Path": "Chameleon.dll"
@@ -337,7 +337,7 @@
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.0.4",
+    "Version": "1.0.5",
     "Author": "Cjx重构 | 肝帝熙恩简单修改",
     "Description": "无限宝箱插件",
     "Path": "ChestRestore.dll"
@@ -351,7 +351,7 @@
   },
   {
     "Name": "CNPCShop",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "Megghy，肝帝熙恩更新1449",
     "Description": "自定义NPC商店出售的物品",
     "Path": "CNPCShop.dll"
@@ -365,7 +365,7 @@
   },
   {
     "Name": "CreateSpawn",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命",
     "Description": "出生建筑",
     "Path": "CreateSpawn.dll"
@@ -561,8 +561,8 @@
   },
   {
     "Name": "PerPlayerLoot",
-    "Version": "2.0.1",
-    "Author": "Codian,肝帝熙恩汉化1449",
+    "Version": "2.0.2",
+    "Author": "Codian, 肝帝熙恩汉化1449",
     "Description": "玩家战利品单独箱子.",
     "Path": "PerPlayerLoot.dll"
   },
@@ -677,6 +677,13 @@
     "Author": "GameRoom，肝帝熙恩汉化修复",
     "Description": "当玩家进入区域时运行命令。",
     "Path": "SmartRegions.dll"
+  },
+  {
+    "Name": "Status Text Manager",
+    "Version": "1.0.0",
+    "Author": "LaoSparrow",
+    "Description": "Manage status text of different plugins",
+    "Path": "StatusTextManager.dll"
   },
   {
     "Name": "SwitchCommands",
