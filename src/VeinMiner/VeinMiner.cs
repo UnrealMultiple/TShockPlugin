@@ -13,7 +13,7 @@ public class VeinMiner : TerrariaPlugin
     public override string Author => "Megghy|YSpoof|Maxthegreat99|肝帝熙恩";
     public override string Description => "VeinMiner by Megghy 适用于 TShock 5.2 支持！";
 
-    internal static Config Config = new ();
+    internal static Config Config = new();
 
     public VeinMiner(Main game) : base(game)
     {
@@ -24,7 +24,7 @@ public class VeinMiner : TerrariaPlugin
         Config.Load();
         Commands.ChatCommands.Add(new Command(
             permissions: "veinminer",
-            cmd: delegate(CommandArgs args)
+            cmd: delegate (CommandArgs args)
             {
                 var tsp = args.Player;
                 var result = tsp.GetData<VMStatus>("VeinMiner");
@@ -85,7 +85,7 @@ public class VeinMiner : TerrariaPlugin
 
     void Mine(TSPlayer plr, int x, int y, int type)
     {
-        var list = GetVein(new (), x, y, type);
+        var list = GetVein(new(), x, y, type);
         var count = list.Count;
         var item = Utils.GetItemFromTile(x, y);
         var mineableList = new List<Point>();
@@ -175,7 +175,7 @@ public class VeinMiner : TerrariaPlugin
             return 0;
         }
 
-        int killCount = 0;
+        var killCount = 0;
         list.ForEach(p =>
         {
             WorldGen.KillTile(p.X, p.Y, false, false, noItem);
@@ -184,7 +184,7 @@ public class VeinMiner : TerrariaPlugin
         list.ForEach(p =>
         {
 
-            ITile tile = Main.tile[p.X, p.Y];
+            var tile = Main.tile[p.X, p.Y];
             if (tile == null || !tile.active())
             {
                 killCount++;
@@ -204,7 +204,7 @@ public class VeinMiner : TerrariaPlugin
                 return list;
             }
 
-            list.Add(new (x, y));
+            list.Add(new(x, y));
             list = GetVein(list, x + 1, y, type);
             list = GetVein(list, x - 1, y, type);
             list = GetVein(list, x, y + 1, type);

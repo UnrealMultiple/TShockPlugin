@@ -35,10 +35,7 @@ public static class GameProgress
                 typeof(Player).GetProperty(x.Filed, BindingFlags.Public | BindingFlags.Instance)?.GetValue(Player.TPlayer)!;
                 code = targetValue.Equals(x.value);
             });
-            field.GetCustomAttributes<ProgressName>().ForEach(x =>
-            {
-                x.Names.ForEach(v => progress.Add(v, code));
-            });
+            field.GetCustomAttributes<ProgressName>().ForEach(x => x.Names.ForEach(v => progress.Add(v, code)));
         }
         return progress;
     }

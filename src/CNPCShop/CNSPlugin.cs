@@ -11,7 +11,7 @@ public class CNSPlugin : TerrariaPlugin
 {
     public override string Name => "CNPCShop";
     public override string Author => "Megghy，肝帝熙恩更新1449";
-    public override Version Version => new Version(1, 0, 0);
+    public override Version Version => new Version(1, 0, 1);
     public override string Description => "自定义NPC商店出售的物品";
     public CNSPlugin(Main game) : base(game) { }
     public static List<CNSConfig.Shop> AviliableShops { get; internal set; } = new List<CNSConfig.Shop>();
@@ -41,7 +41,7 @@ public class CNSPlugin : TerrariaPlugin
     private void OnReload(ReloadEventArgs args)
     {
         CNSConfig.Load();
-        TShock.Log.ConsoleInfo("<CNPCShop> 成功读取配置文件");
+        TShock.Log.ConsoleInfo(GetString("<CNPCShop> 成功读取配置文件"));
     }
     private void OnGetData(GetDataEventArgs args)
     {

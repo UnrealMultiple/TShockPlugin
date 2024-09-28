@@ -8,9 +8,9 @@ namespace PerPlayerLoot;
 
 public class JItem
 {
-    public int id { get; set; } 
-    public int stack { get; set; } 
-    public byte prefix { get; set; } 
+    public int id { get; set; }
+    public int stack { get; set; }
+    public byte prefix { get; set; }
 }
 
 public class FakeChestDatabase
@@ -27,7 +27,7 @@ public class FakeChestDatabase
 
     public void Initialize()
     {
-        this.CreateTables(); 
+        this.CreateTables();
         this.LoadFakeChests();
     }
 
@@ -101,8 +101,8 @@ public class FakeChestDatabase
                             }
 
                             var item = new Item();
-                            item.netDefaults(jItem.id); 
-                            item.stack = jItem.stack; 
+                            item.netDefaults(jItem.id);
+                            item.stack = jItem.stack;
                             item.prefix = jItem.prefix;
 
                             items.Add(item);
@@ -179,13 +179,13 @@ public class FakeChestDatabase
 
                     foreach (var item in chest.item)
                     {
-                            var jItem = new JItem
-                            {
-                                id = item.type,
-                                stack = item.stack,
-                                prefix = item.prefix
-                            };
-                            jItems.Add(jItem);
+                        var jItem = new JItem
+                        {
+                            id = item.type,
+                            stack = item.stack,
+                            prefix = item.prefix
+                        };
+                        jItems.Add(jItem);
                     }
 
                     var itemsMs = new MemoryStream();

@@ -121,7 +121,7 @@ public static class MessageHandle
                 var cmd = (string) jsonObject["cmd"]!;
                 CaiBotPlayer tr = new();
                 Commands.HandleCommand(tr, cmd);
-                TShock.Utils.SendLogs($"[CaiBot] `{(string)jsonObject["at"]!}`来自群`{(long)jsonObject["group"]}`执行了: {(string) jsonObject["cmd"]!}",Microsoft.Xna.Framework.Color.PaleVioletRed);
+                TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(long) jsonObject["group"]}`执行了: {(string) jsonObject["cmd"]!}", Microsoft.Xna.Framework.Color.PaleVioletRed);
                 result = new RestObject
                 {
                     { "type", "cmd" },
@@ -668,8 +668,8 @@ public static class MessageHandle
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "pluginlist":
-                var pluginList = ServerApi.Plugins.Select(p=> new PluginInfo(p.Plugin.Name,p.Plugin.Description,p.Plugin.Author,p.Plugin.Version)).ToList();
-                
+                var pluginList = ServerApi.Plugins.Select(p => new PluginInfo(p.Plugin.Name, p.Plugin.Description, p.Plugin.Author, p.Plugin.Version)).ToList();
+
                 result = new RestObject
                 {
                     { "type", "pluginlist" },

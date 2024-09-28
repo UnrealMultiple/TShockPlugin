@@ -632,7 +632,7 @@ public partial class ZHIPM : TerrariaPlugin
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError(GetString("错误 ResetPlayer ：" )+ ex.ToString());
+            TShock.Log.ConsoleError(GetString("错误 ResetPlayer ：") + ex.ToString());
             return false;
         }
     }

@@ -527,13 +527,9 @@ public partial class PControl : TerrariaPlugin
                     {
                         size = "小";
                     }
-                    else if (config.MapSizeForAfterReset == 2)
-                    {
-                        size = "中";
-                    }
                     else
                     {
-                        size = config.MapSizeForAfterReset == 3 ? "大" : "错误，请检查数据填写是否有误";
+                        size = config.MapSizeForAfterReset == 2 ? "中" : config.MapSizeForAfterReset == 3 ? "大" : "错误，请检查数据填写是否有误";
                     }
 
                     string mode;
@@ -545,13 +541,9 @@ public partial class PControl : TerrariaPlugin
                     {
                         mode = "专家";
                     }
-                    else if (config.MapDifficultyForAfterReset == 2)
-                    {
-                        mode = "大师";
-                    }
                     else
                     {
-                        mode = config.MapDifficultyForAfterReset == 3 ? "旅途" : "错误，请检查数据填写是否有误";
+                        mode = config.MapDifficultyForAfterReset == 2 ? "大师" : config.MapDifficultyForAfterReset == 3 ? "旅途" : "错误，请检查数据填写是否有误";
                     }
 
                     //自动生成地图还是挑选备用地图
@@ -561,19 +553,13 @@ public partial class PControl : TerrariaPlugin
                     }
                     else
                     {
-                        string temp;
-                        if (config.ExpectedUsageWorldFileNameForAotuReset.Count > 0)
-                        {
-                            temp = !config.DeleteWorldForReset
+                        var temp = config.ExpectedUsageWorldFileNameForAotuReset.Count > 0
+                            ? !config.DeleteWorldForReset
                                 ? config.AddNumberFile(CorrectFileName(config.ExpectedUsageWorldFileNameForAotuReset.First()))
-                                : config.AddNumberFile(CorrectFileName(config.ExpectedUsageWorldFileNameForAotuReset.First()), Main.worldName);
-                        }
-                        else
-                        {
-                            temp = !config.DeleteWorldForReset
+                                : config.AddNumberFile(CorrectFileName(config.ExpectedUsageWorldFileNameForAotuReset.First()), Main.worldName)
+                            : !config.DeleteWorldForReset
                                 ? config.AddNumberFile(CorrectFileName(config.WorldNameForAfterReset))
                                 : config.AddNumberFile(CorrectFileName(config.WorldNameForAfterReset), Main.worldName);
-                        }
                         mess_reset +=
                         $"生成地图名称：{temp}，地图大小：{size}，模式：{mode}，种子：{(string.IsNullOrWhiteSpace(config.WorldSeedForAfterReset) ? "随机" : config.WorldSeedForAfterReset)}，最多在线人数：{config.AfterResetPeople}" +
                         $"，端口：{config.AfterResetPort}，服务器密码：{(string.IsNullOrWhiteSpace(config.AfterResetServerPassword) ? "无" : config.AfterResetServerPassword)}，是否重置玩家数据：{config.ResetTSCharacter}，自动删图：{config.DeleteWorldForReset}";
@@ -784,16 +770,9 @@ public partial class PControl : TerrariaPlugin
                             config.CustomNPCIDLockTimeForStartServerDate[x] += addtime;
                         }
                         config.SaveConfigFile();
-                        string st;
-                        if (addtime > 0)
-                        {
-                            st = "推迟" + (args.Player.IsLoggedIn ? HoursToM(addtime, "28FFB8") : HoursToM(addtime));
-                        }
-                        else
-                        {
-                            st = addtime < 0 ? "提前" + (args.Player.IsLoggedIn ? HoursToM(-1 * addtime, "28FFB8") : HoursToM(-1 * addtime)) : "正常";
-                        }
-
+                        var st = addtime > 0
+                            ? "推迟" + (args.Player.IsLoggedIn ? HoursToM(addtime, "28FFB8") : HoursToM(addtime))
+                            : addtime < 0 ? "提前" + (args.Player.IsLoggedIn ? HoursToM(-1 * addtime, "28FFB8") : HoursToM(-1 * addtime)) : "正常";
                         if (!config.OpenAutoControlProgressLock)
                         {
                             args.Player.SendWarningMessage("警告，未开启自动控制NPC进度计划，你的修改不会有任何效果");
@@ -825,16 +804,9 @@ public partial class PControl : TerrariaPlugin
                             {
                                 config.CustomNPCIDLockTimeForStartServerDate[id] += addtime;
                                 config.SaveConfigFile();
-                                string st;
-                                if (addtime > 0)
-                                {
-                                    st = "推迟" + (args.Player.IsLoggedIn ? HoursToM(addtime, "28FFB8") : HoursToM(addtime));
-                                }
-                                else
-                                {
-                                    st = addtime < 0 ? "提前" + (args.Player.IsLoggedIn ? HoursToM(-1 * addtime, "28FFB8") : HoursToM(-1 * addtime)) : "正常";
-                                }
-
+                                var st = addtime > 0
+                                    ? "推迟" + (args.Player.IsLoggedIn ? HoursToM(addtime, "28FFB8") : HoursToM(addtime))
+                                    : addtime < 0 ? "提前" + (args.Player.IsLoggedIn ? HoursToM(-1 * addtime, "28FFB8") : HoursToM(-1 * addtime)) : "正常";
                                 if (!config.OpenAutoControlProgressLock)
                                 {
                                     args.Player.SendWarningMessage("警告，未开启自动控制NPC进度计划，你的修改不会有任何效果");
@@ -1314,16 +1286,9 @@ public partial class PControl : TerrariaPlugin
                     }
 
                     config.SaveConfigFile();
-                    string st;
-                    if (addtime > 0)
-                    {
-                        st = "推迟" + (args.Player.IsLoggedIn ? HoursToM(addtime, "00A8FF") : HoursToM(addtime));
-                    }
-                    else
-                    {
-                        st = addtime < 0 ? "提前" + (args.Player.IsLoggedIn ? HoursToM(-1 * addtime, "00A8FF") : HoursToM(-1 * addtime)) : "时间不变";
-                    }
-
+                    var st = addtime > 0
+                        ? "推迟" + (args.Player.IsLoggedIn ? HoursToM(addtime, "00A8FF") : HoursToM(addtime))
+                        : addtime < 0 ? "提前" + (args.Player.IsLoggedIn ? HoursToM(-1 * addtime, "00A8FF") : HoursToM(-1 * addtime)) : "时间不变";
                     var h = (config.LasetAutoCommandDate.AddHours(config.HowLongTimeOfAutoCommand) - DateTime.Now).TotalHours;
                     if (!config.OpenAutoCommand)
                     {

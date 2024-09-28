@@ -46,12 +46,9 @@ public class Utils
             throw new Exception("技能已超过规定的最大绑定数量!");
         }
 
-        if (bind.Where(x => x.Skill != null && x.Skill.SkillSpark.SparkMethod.Contains(SkillSparkType.Take)).Count() >= Skill.Config.WeapoeBindMaxCount)
-        {
-            throw new Exception("此武器已超过规定的最大绑定数量!");
-        }
-
-        return bind.Where(x => x.Skill != null && x.Skill.SkillSpark.SparkMethod.Contains(SkillSparkType.Take)).Count() >= Skill.Config.PSkillMaxCount
+        return bind.Where(x => x.Skill != null && x.Skill.SkillSpark.SparkMethod.Contains(SkillSparkType.Take)).Count() >= Skill.Config.WeapoeBindMaxCount
+            ? throw new Exception("此武器已超过规定的最大绑定数量!")
+            : bind.Where(x => x.Skill != null && x.Skill.SkillSpark.SparkMethod.Contains(SkillSparkType.Take)).Count() >= Skill.Config.PSkillMaxCount
             ? throw new Exception("被动类型技能已超过最大绑定数量!")
             : context;
     }

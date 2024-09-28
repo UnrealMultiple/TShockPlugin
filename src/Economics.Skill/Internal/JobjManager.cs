@@ -7,7 +7,7 @@ internal class JobjManager
 
     internal static void FrameUpdate()
     {
-        for (var i = _schedulers.Count - 1 ; i >= 0; i--)
+        for (var i = _schedulers.Count - 1; i >= 0; i--)
         {
             var scheduler = _schedulers[i];
             scheduler.Update().CanRun();

@@ -83,7 +83,8 @@ class Utils//专属工具包
     {
         if (!string.IsNullOrEmpty(UserID) && UserID != "0" && house != null)
         {
-            try {
+            try
+            {
                 return house.Owners.Contains(UserID);
             }
             catch (Exception ex) { TShock.Log.Error("房屋插件错误超标错误:" + ex.ToString()); return false; }

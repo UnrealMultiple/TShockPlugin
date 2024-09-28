@@ -603,7 +603,7 @@ public class Plugin : TerrariaPlugin
                 {
                     val.wall = wall;
                 }
-                if (i == num && j > posY - 5 || i == num + num2 - 1 && j > posY - 5 || j == posY - 1)
+                if ((i == num && j > posY - 5) || (i == num + num2 - 1 && j > posY - 5) || j == posY - 1)
                 {
                     WorldGen.PlaceTile(i, j, platform.id, false, true, -1, platform.style);
                 }

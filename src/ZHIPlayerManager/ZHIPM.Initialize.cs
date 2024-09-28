@@ -412,7 +412,7 @@ public partial class ZHIPM : TerrariaPlugin
                 playerData.exists = true;
                 if (this.UpdatePlayerAll(args.Player, playerData))
                 {
-                    args.Player.SendMessage(GetString($"克隆成功！您已将玩家[{ list[0].Name}]的数据克隆到你身上"), new Color(0, 255, 0));
+                    args.Player.SendMessage(GetString($"克隆成功！您已将玩家[{list[0].Name}]的数据克隆到你身上"), new Color(0, 255, 0));
                 }
                 else
                 {
@@ -731,7 +731,7 @@ public partial class ZHIPM : TerrariaPlugin
                 {
                     players[0].TPlayer.usedAegisCrystal = num != 0;
                     players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的埃癸斯水晶增益开启状态：" )+ players[0].TPlayer.usedAegisCrystal, new Color(0, 255, 0));
+                    players[0].SendMessage(GetString("您的埃癸斯水晶增益开启状态：") + players[0].TPlayer.usedAegisCrystal, new Color(0, 255, 0));
                 }
                 else if (args.Parameters[1].Equals("fruit", StringComparison.OrdinalIgnoreCase))
                 {
@@ -1703,7 +1703,7 @@ public partial class ZHIPM : TerrariaPlugin
                 var sb = new StringBuilder();
                 var ex = edPlayers.Find(x => x.Name == list[0].Name);
                 sb.AppendLine(GetString($"玩家 【{list[0].Name}】 的状态如下:"));
-                sb.AppendLine(GetString("最大生命值[i:29]：") + list[0].TPlayer.statLifeMax +GetString("   当前生命值[i:58]：") + list[0].TPlayer.statLife);
+                sb.AppendLine(GetString("最大生命值[i:29]：") + list[0].TPlayer.statLifeMax + GetString("   当前生命值[i:58]：") + list[0].TPlayer.statLife);
                 sb.AppendLine(GetString("最大魔力值[i:109]：") + list[0].TPlayer.statManaMax2 + GetString("   当前魔力值[i:184]：") + list[0].TPlayer.statMana);
                 sb.AppendLine(GetString("完成渔夫任务数[i:3120]：") + list[0].TPlayer.anglerQuestsFinished);
                 sb.AppendLine(GetString("库存硬币数[i:855]：") + this.cointostring(this.getPlayerCoin(list[0].Name)));
@@ -2895,8 +2895,8 @@ public partial class ZHIPM : TerrariaPlugin
             var temp2 = config.EnableNpcKillTracking
                 ? GetString("\n输入 /zsort kill [num]  来查看当前[num]个人物击杀生物数排行榜\n") +
                             GetString("输入 /zsort kill  来查看人物击杀生物数排行榜前十名\n") +
-                            GetString("输入 /zsort kill all  来查看所有玩家击杀生物数排行榜\n" )+
-                            GetString("输入 /zsort boss [num]  来查看当前[num]个人物击杀Boss总数排行榜\n" )+
+                            GetString("输入 /zsort kill all  来查看所有玩家击杀生物数排行榜\n") +
+                            GetString("输入 /zsort boss [num]  来查看当前[num]个人物击杀Boss总数排行榜\n") +
                             GetString("输入 /zsort boss  来查看人物击杀Boss总数排行榜前十名\n") +
                             GetString("输入 /zsort boss all  来查看所有玩家击杀Boss总数排行榜\n") +
                             GetString("输入 /zsort rarenpc [num]  来查看当前[num]个人物击杀罕见生物总数排行榜\n") +
@@ -4415,7 +4415,7 @@ public partial class ZHIPM : TerrariaPlugin
                             return;
                         }
                     }
-                        break;
+                    break;
                     case 492: //荷兰飞船的处理，特殊点：本体不可被击中，在其他炮塔全死亡后计入击杀
                     {
                         var flag = true;
@@ -4520,7 +4520,7 @@ public partial class ZHIPM : TerrariaPlugin
                             return;
                         }
                     }
-                        break;
+                    break;
                     case 398: //月球领主的处理，特殊点，本体可被击中，但肢体会假死，击中肢体也应该算入本体中
                     {
                         var strikenpcs = strikeNPC.FindAll(x => x.id == 397 || x.id == 396);
@@ -4695,7 +4695,7 @@ public partial class ZHIPM : TerrariaPlugin
                             return;
                         }
                     }
-                        break;
+                    break;
                     case 245: //石巨人的特殊处理
                     case 246:
                     case 247:
@@ -4794,7 +4794,7 @@ public partial class ZHIPM : TerrariaPlugin
                             return;
                         }
                     }
-                        break;
+                    break;
                     case 266: //克苏鲁之脑的特殊处理
                     case 267:
                     {
@@ -4891,7 +4891,7 @@ public partial class ZHIPM : TerrariaPlugin
                             return;
                         }
                     }
-                        break;
+                    break;
                     default:
                     {
                         foreach (var x in edPlayers)

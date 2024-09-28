@@ -175,8 +175,8 @@ public class Plugin : TerrariaPlugin
                     {
                         args.Player.SendErrorMessage("区域 {0} 不存在！", args.Parameters[1]);
                         var regionNames = from region_ in TShock.Regions.Regions
-                                                          where region_.WorldID == Main.worldID.ToString()
-                                                          select region_.Name;
+                                          where region_.WorldID == Main.worldID.ToString()
+                                          select region_.Name;
                         PaginationTools.SendPage(args.Player, 1, PaginationTools.BuildLinesFromTerms(regionNames),
                             new PaginationTools.Settings
                             {

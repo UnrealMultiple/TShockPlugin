@@ -173,7 +173,7 @@ public class MiniPack
         {
             player.TPlayer.eyeColor = this.EyeColor.Value;
         }
-        player.TPlayer.hideVisibleAccessory = this.HideVisuals != null ? this.HideVisuals : (new bool[player.TPlayer.hideVisibleAccessory.Length]);
+        player.TPlayer.hideVisibleAccessory = this.HideVisuals ?? (new bool[player.TPlayer.hideVisibleAccessory.Length]);
         for (var i = 0; i < NetItem.MaxInventory; i++)
         {
             if (i < 59)

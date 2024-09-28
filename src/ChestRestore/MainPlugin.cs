@@ -12,7 +12,7 @@ public class MainPlugin : TerrariaPlugin
     public MainPlugin(Main game) : base(game) { }
 
     public override string Name => "ChestRestore";
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
     public override string Author => "Cjx重构 | 肝帝熙恩简单修改";
     public override string Description => "无限宝箱插件";
 
@@ -22,7 +22,7 @@ public class MainPlugin : TerrariaPlugin
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
         Commands.ChatCommands.Add(new Command("chest.edit", this.ToggleEditMode, "chestedit", "ce", "修改箱子")
         {
-            HelpText = "切换个人修改箱子名字和内容的模式"
+            HelpText = GetString("切换个人修改箱子名字和内容的模式")
         });
     }
 
@@ -59,12 +59,12 @@ public class MainPlugin : TerrariaPlugin
         if (this.playersInEditMode.TryGetValue(player.Index, out var mode))
         {
             this.playersInEditMode[player.Index] = !mode;
-            player.SendSuccessMessage(!mode ? "你已进入箱子修改模式。" : "你已退出箱子修改模式。");
+            player.SendSuccessMessage(!mode ? GetString("你已进入箱子修改模式。") : GetString("你已退出箱子修改模式。"));
         }
         else
         {
             this.playersInEditMode[player.Index] = true;
-            player.SendSuccessMessage("你已进入箱子修改模式。");
+            player.SendSuccessMessage(GetString("你已进入箱子修改模式。"));
         }
     }
 

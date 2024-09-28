@@ -16,9 +16,9 @@ internal class LevelConverter : JsonConverter
         return level == null
             ? null
             : (object) new Level()
-        {
-            Name = level
-        };
+            {
+                Name = level
+            };
     }
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
