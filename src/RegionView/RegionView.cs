@@ -677,7 +677,7 @@ public class RegionView : TerrariaPlugin
 
         // Check if this tile is next to a region boundary.
         return x < region.ShowArea.Left - 1 || x > region.ShowArea.Right + 1 || y < region.ShowArea.Top - 1 || y > region.ShowArea.Bottom + 1 ||
-            x >= region.ShowArea.Left + 2 && x <= region.ShowArea.Right - 2 && y >= region.ShowArea.Top + 2 && y <= region.ShowArea.Bottom - 2;
+            (x >= region.ShowArea.Left + 2 && x <= region.ShowArea.Right - 2 && y >= region.ShowArea.Top + 2 && y <= region.ShowArea.Bottom - 2);
     }
 
     public static void GiveTile(RegionPlayer player, GetDataHandlers.TileEditEventArgs e)

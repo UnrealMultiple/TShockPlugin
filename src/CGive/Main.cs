@@ -13,7 +13,7 @@ public class Main : TerrariaPlugin
 
     public override string Name => "CGive";
 
-    public override Version Version => new Version(1, 0, 0, 2);
+    public override Version Version => new Version(1, 0, 0, 3);
 
     public Main(Terraria.Main game)
         : base(game)
@@ -50,7 +50,7 @@ public class Main : TerrariaPlugin
         {
             return new RestObject()
             {
-                Error = "没有找到注册名为" + text + "的账户"
+                Error = GetString("没有找到注册名为") + text + GetString("的账户")
             };
         }
         var list = new List<Warehouse>();
@@ -99,7 +99,7 @@ public class Main : TerrariaPlugin
         return list.Count == 0
             ? new RestObject()
             {
-                Error = "该玩家没有仓库"
+                Error = GetString("该玩家没有仓库")
             }
             : new RestObject("200")
             {
@@ -144,18 +144,18 @@ public class Main : TerrariaPlugin
     {
         if (args.Parameters.Count == 0)
         {
-            args.Player.SendInfoMessage("/cgive personal 命令 被执行者");
-            args.Player.SendInfoMessage("/cgive all 执行者 命令");
-            args.Player.SendInfoMessage("/cgive list,列出所有离线命令");
-            args.Player.SendInfoMessage("/cgive del id,删除指定id的离线命令");
-            args.Player.SendInfoMessage("/cgive reset,重置所有数据");
+            args.Player.SendInfoMessage(GetString("/cgive personal 命令 被执行者"));
+            args.Player.SendInfoMessage(GetString("/cgive all 执行者 命令"));
+            args.Player.SendInfoMessage(GetString("/cgive list,列出所有离线命令"));
+            args.Player.SendInfoMessage(GetString("/cgive del id,删除指定id的离线命令"));
+            args.Player.SendInfoMessage(GetString("/cgive reset,重置所有数据"));
             return;
         }
         switch (args.Parameters[0])
         {
             case "reset":
                 Data.Command("delete from CGive,Given");
-                args.Player.SendSuccessMessage("成功删除所有数据");
+                args.Player.SendSuccessMessage(GetString("成功删除所有数据"));
                 break;
             case "del":
             {
@@ -166,11 +166,11 @@ public class Main : TerrariaPlugin
                         id = netID
                     };
                     cGive2.Del();
-                    args.Player.SendSuccessMessage("已执行删除");
+                    args.Player.SendSuccessMessage(GetString("已执行删除"));
                 }
                 else
                 {
-                    args.Player.SendErrorMessage("ID输入错误!");
+                    args.Player.SendErrorMessage(GetString("ID输入错误!"));
                 }
                 break;
             }
@@ -179,7 +179,7 @@ public class Main : TerrariaPlugin
                 foreach (var item in CGive.GetCGive())
                 {
                     var player = args.Player;
-                    player.SendInfoMessage($"执行者:{item.Executer} 被执行者:{item.who} 命令:{item.cmd} id:{item.id}");
+                    player.SendInfoMessage(GetString($"执行者:{item.Executer} 被执行者:{item.who} 命令:{item.cmd} id:{item.id}"));
                 }
                 break;
             }
@@ -210,12 +210,12 @@ public class Main : TerrariaPlugin
                 };
                 if (!cGive.Execute())
                 {
-                    args.Player.SendInfoMessage("命令已保存");
+                    args.Player.SendInfoMessage(GetString("命令已保存"));
                     cGive.Save();
                 }
                 else
                 {
-                    args.Player.SendInfoMessage("命令执行成功！");
+                    args.Player.SendInfoMessage(GetString("命令执行成功！"));
                 }
                 break;
             }

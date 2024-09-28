@@ -64,9 +64,9 @@ public class BetterWhitelist : TerrariaPlugin
                 args.Player.SendInfoMessage(GetString("-------[BetterWhitelist]-------"));
                 args.Player.SendInfoMessage(GetString("/bwl help, 显示帮助信息\n") +
                                             GetString("/bwl add {name}, 添加玩家名到白名单中\n") +
-                                            GetString("/bwl del {name}, 将玩家移出白名单\n")+
+                                            GetString("/bwl del {name}, 将玩家移出白名单\n") +
                                             GetString("/bwl list, 显示白名单上的全部玩家\n") +
-                                            GetString( "/bwl true, 启用插件\n") +
+                                            GetString("/bwl true, 启用插件\n") +
                                             GetString("/bwl false, 关闭插件\n") +
                                             GetString("/bwl reload, 重载插件"));
                 break;

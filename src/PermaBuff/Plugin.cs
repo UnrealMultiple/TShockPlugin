@@ -181,10 +181,7 @@ public class Plugin : TerrariaPlugin
 
     private void UpBuffs()
     {
-        this.players.ForEach(x =>
-        {
-            Playerbuffs.GetBuffs(x.Name).ForEach(f => x.SetBuff(f, 18000, true));
-        });
+        this.players.ForEach(x => Playerbuffs.GetBuffs(x.Name).ForEach(f => x.SetBuff(f, 18000, true)));
     }
 
     private void OnJoin(GreetPlayerEventArgs args)

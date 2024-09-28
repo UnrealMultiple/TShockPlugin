@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "CreateSpawn";
 
-    public override Version Version => new(1, 0, 0, 1);
+    public override Version Version => new(1, 0, 0, 2);
 
 
     private readonly string SavePath = Path.Combine(TShock.SavePath, "Create.json");
@@ -66,7 +66,7 @@ public class Plugin : TerrariaPlugin
     private void CreateBuilding(CommandArgs args)
     {
         this.SpawnBuilding();
-        args.Player.SendInfoMessage("建筑已创建!");
+        args.Player.SendInfoMessage(GetString("建筑已创建!"));
     }
 
     private void copy(CommandArgs args)
@@ -77,14 +77,14 @@ public class Plugin : TerrariaPlugin
             {
                 case "1":
                     args.Player.AwaitingTempPoint = 1;
-                    args.Player.SendInfoMessage("请选择复制区域的左上角");
+                    args.Player.SendInfoMessage(GetString("请选择复制区域的左上角"));
                     break;
                 case "2":
                     args.Player.AwaitingTempPoint = 2;
-                    args.Player.SendInfoMessage("请选择复制区域的右下角");
+                    args.Player.SendInfoMessage(GetString("请选择复制区域的右下角"));
                     break;
                 default:
-                    args.Player.SendInfoMessage($"正确指令：/cb set <1/2> --选择复制的区域");
+                    args.Player.SendInfoMessage(GetString($"正确指令：/cb set <1/2> --选择复制的区域"));
                     args.Player.SendInfoMessage("/cb save");
                     break;
             }
@@ -93,17 +93,17 @@ public class Plugin : TerrariaPlugin
         {
             if (args.Player.TempPoints[0].X == 0 || args.Player.TempPoints[1].X == 0)
             {
-                args.Player.SendInfoMessage("您还没有选择复制的区域！");
+                args.Player.SendInfoMessage(GetString("您还没有选择复制的区域！"));
             }
             else
             {
                 this.CopyBuilding(args.Player.TempPoints[0].X, args.Player.TempPoints[0].Y, args.Player.TempPoints[1].X, args.Player.TempPoints[1].Y);
-                args.Player.SendInfoMessage("保存成功!");
+                args.Player.SendInfoMessage(GetString("保存成功!"));
             }
         }
         else
         {
-            args.Player.SendInfoMessage($"/cb set <1/2> --选择复制的区域");
+            args.Player.SendInfoMessage(GetString($"/cb set <1/2> --选择复制的区域"));
             args.Player.SendInfoMessage("/cb save");
         }
     }
@@ -186,7 +186,7 @@ public class Plugin : TerrariaPlugin
             }
             catch (Exception e)
             {
-                TShock.Log.ConsoleError("配置文件读取错误:{0}", e.ToString());
+                TShock.Log.ConsoleError(GetString("配置文件读取错误:{0}"), e.ToString());
             }
         }
         this.Config.Write(this.SavePath);

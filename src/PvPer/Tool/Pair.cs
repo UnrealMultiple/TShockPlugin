@@ -25,7 +25,7 @@ public class Pair
 
         var other = (Pair) obj;
 
-        return this.Player1 == other.Player1 && this.Player2 == other.Player2 || this.Player1 == other.Player2 && this.Player2 == other.Player1;
+        return (this.Player1 == other.Player1 && this.Player2 == other.Player2) || (this.Player1 == other.Player2 && this.Player2 == other.Player1);
     }
 
     public override int GetHashCode()

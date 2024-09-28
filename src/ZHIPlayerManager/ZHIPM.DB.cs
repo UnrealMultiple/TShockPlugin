@@ -675,7 +675,7 @@ public partial class ZHIPM : TerrariaPlugin
             catch (Exception ex)
             {
                 TShock.Log.ConsoleError(GetString("错误：ListAllExtraDB ") + ex.ToString());
-                
+
                 return list;
             }
         }

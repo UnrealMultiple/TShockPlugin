@@ -20,11 +20,11 @@ internal class VirtualPerformer
         return string.IsNullOrEmpty(name)
             ? HarpPerformer
             : name.ToLowerInvariant() switch
-        {
-            "bell" => BellPerformer,
-            "theaxe" => TheAxePerformer,
-            _ => HarpPerformer,
-        };
+            {
+                "bell" => BellPerformer,
+                "theaxe" => TheAxePerformer,
+                _ => HarpPerformer,
+            };
     }
     public void Create(int remoteClient)
     {

@@ -368,7 +368,7 @@ public class Plugin : TerrariaPlugin
                     }
                 }
             }
-            
+
         }
     }
 

@@ -193,7 +193,8 @@ public class HousingPlugin : TerrariaPlugin
                 {
                     var maxHouses = Utils.MaxCount(args.Player); var authorHouses = 0;
                     for (var i = 0; i < Houses.Count; i++)
-                    { if (Houses[i].Author == args.Player.Account.ID.ToString())
+                    {
+                        if (Houses[i].Author == args.Player.Account.ID.ToString())
                         {
                             authorHouses++;
                         }
@@ -209,7 +210,7 @@ public class HousingPlugin : TerrariaPlugin
                             var width = Math.Abs(args.Player.TempPoints[0].X - args.Player.TempPoints[1].X) + 1;
                             var height = Math.Abs(args.Player.TempPoints[0].Y - args.Player.TempPoints[1].Y) + 1;
                             var maxSize = Utils.MaxSize(args.Player);
-                            if (width * height <= maxSize && width >= LConfig.MinWidth && height >= LConfig.MinHeight || args.Player.Group.HasPermission("house.bypasssize"))
+                            if ((width * height <= maxSize && width >= LConfig.MinWidth && height >= LConfig.MinHeight) || args.Player.Group.HasPermission("house.bypasssize"))
                             {
                                 var newHouseR = new Rectangle(x, y, width, height);
                                 for (var i = 0; i < Houses.Count; i++)
@@ -557,7 +558,7 @@ public class HousingPlugin : TerrariaPlugin
                             var width = Math.Abs(args.Player.TempPoints[0].X - args.Player.TempPoints[1].X) + 1;
                             var height = Math.Abs(args.Player.TempPoints[0].Y - args.Player.TempPoints[1].Y) + 1;
                             var maxSize = Utils.MaxSize(args.Player);
-                            if (width * height <= maxSize && width >= LConfig.MinWidth && height >= LConfig.MinHeight || args.Player.Group.HasPermission("house.bypasssize"))
+                            if ((width * height <= maxSize && width >= LConfig.MinWidth && height >= LConfig.MinHeight) || args.Player.Group.HasPermission("house.bypasssize"))
                             {
                                 var newHouseR = new Rectangle(x, y, width, height);
                                 for (var i = 0; i < Houses.Count; i++)
@@ -728,7 +729,9 @@ public class HousingPlugin : TerrariaPlugin
         if (!user.ConnectionAlive) { args.Handled = true; return; }//若已丢失连接直接返回
         using (var data = new MemoryStream(args.Msg.readBuffer, args.Index, args.Length))
         {
-            try { if (GetDataHandlers.HandlerGetData(args.MsgID, user, data))
+            try
+            {
+                if (GetDataHandlers.HandlerGetData(args.MsgID, user, data))
                 {
                     args.Handled = true;
                 }

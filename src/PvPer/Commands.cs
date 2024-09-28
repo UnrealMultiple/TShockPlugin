@@ -339,10 +339,7 @@ public class Commands
             var message = "";
             var list = PvPer.DbManager.GetAllDPlayers();
 
-            list.Sort((p1, p2) =>
-            {
-                return p1.GetKillDeathRatio() >= p2.GetKillDeathRatio() ? -1 : 1;
-            });
+            list.Sort((p1, p2) => p1.GetKillDeathRatio() >= p2.GetKillDeathRatio() ? -1 : 1);
 
 
             if (list.TryGetValue(0, out var p))

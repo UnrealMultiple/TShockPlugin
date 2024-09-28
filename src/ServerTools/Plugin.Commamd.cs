@@ -29,9 +29,9 @@ public partial class Plugin
                 );
         }
         var OnlineInfo = from online in PlayerOnlines
-                                         orderby online.Value descending
-                                         where online.Value > 0
-                                         select $"{online.Key} 在线时长: {Math.Ceiling(Convert.ToDouble(online.Value * 1.0f / 60))}分钟".Color(TShockAPI.Utils.GreenHighlight);
+                         orderby online.Value descending
+                         where online.Value > 0
+                         select $"{online.Key} 在线时长: {Math.Ceiling(Convert.ToDouble(online.Value * 1.0f / 60))}分钟".Color(TShockAPI.Utils.GreenHighlight);
         ShowOnline(OnlineInfo.ToList());
     }
 

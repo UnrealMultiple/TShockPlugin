@@ -84,9 +84,9 @@ public class Plugin : TerrariaPlugin
     private void AddDefaultsToConfig()
     {
         var critMessage = new CritMessage();
-        critMessage.Messages.Add("Boom!", new int[3] { 255, 0, 0 }); 
-        critMessage.Messages.Add("Plop!", new int[3] { 255, 0, 0 }); 
-        critMessage.Messages.Add("Pop!", new int[3] { 255, 0, 0 }); 
+        critMessage.Messages.Add("Boom!", new int[3] { 255, 0, 0 });
+        critMessage.Messages.Add("Plop!", new int[3] { 255, 0, 0 });
+        critMessage.Messages.Add("Pop!", new int[3] { 255, 0, 0 });
         //中文在PE中无法正常显示
         //critMessage.Messages.Add("砰!", new int[3] { 255, 120, 0 });
         //critMessage.Messages.Add("嘭!", new int[3] { 255, 40, 50 });

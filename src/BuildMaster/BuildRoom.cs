@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MiniGamesAPI;
 using Newtonsoft.Json;
+using Steamworks;
 using System.Text;
 using System.Timers;
 using Terraria;
@@ -91,7 +92,7 @@ public class BuildRoom : MiniRoom, IRoom
                 buildPlayer.Locked = true;
                 buildPlayer.UnCreative();
                 buildPlayer.Teleport(this.Players[this.PlayerIndex].CurrentRegion.Center);
-                buildPlayer.SendInfoMessage("已来到 " + this.Players[this.PlayerIndex].Name + " 的作品");
+                buildPlayer.SendInfoMessage(GetString("已来到 ") + this.Players[this.PlayerIndex].Name + GetString(" 的作品"));
             }
             this.Scoring_Timer.Start();
             this.Status = (RoomStatus) 1;
@@ -100,7 +101,7 @@ public class BuildRoom : MiniRoom, IRoom
         {
             if (this.GamingTime <= 5)
             {
-                this.Broadcast($"还有 {this.GamingTime} 秒进入评分环节...", Color.MediumAquamarine);
+                this.Broadcast(GetString($"还有 {this.GamingTime} 秒进入评分环节..."), Color.MediumAquamarine);
             }
             this.GamingTime--;
         }
@@ -132,7 +133,7 @@ public class BuildRoom : MiniRoom, IRoom
         }
         else
         {
-            this.Broadcast($"游戏还有 {this.WaitingTime} 秒开始....", Color.DarkTurquoise);
+            this.Broadcast(GetString($"游戏还有 {this.WaitingTime} 秒开始...."), Color.DarkTurquoise);
             this.WaitingTime--;
         }
     }
@@ -175,11 +176,11 @@ public class BuildRoom : MiniRoom, IRoom
         {
             if (this.PlayerIndex + 1 < this.Players.Count)
             {
-                this.Broadcast($"还有 {this.SeletingTime} 秒进入下一个玩家的建筑区域评分,下一个玩家为{this.Players[this.PlayerIndex + 1].Name}", Color.MediumAquamarine);
+                this.Broadcast(GetString($"还有 {this.SeletingTime} 秒进入下一个玩家的建筑区域评分,下一个玩家为{this.Players[this.PlayerIndex + 1].Name}"), Color.MediumAquamarine);
             }
             else
             {
-                this.Broadcast($"还有 {this.SeletingTime} 秒结束游戏", Color.MediumAquamarine);
+                this.Broadcast(GetString($"还有 {this.SeletingTime} 秒结束游戏"), Color.MediumAquamarine);
             }
         }
         this.SeletingTime--;
@@ -192,7 +193,7 @@ public class BuildRoom : MiniRoom, IRoom
         {
             var buildPlayer = this.Players[num];
             buildPlayer.Teleport(Main.spawnTileX, Main.spawnTileY);
-            buildPlayer.SendInfoMessage("游戏被强制停止！");
+            buildPlayer.SendInfoMessage(GetString("游戏被强制停止！"));
             buildPlayer.BackUp.RestoreCharacter((MiniPlayer) (object) buildPlayer);
             buildPlayer.BackUp = null;
             buildPlayer.CurrentRoomID = 0;
@@ -218,7 +219,7 @@ public class BuildRoom : MiniRoom, IRoom
         {
             var buildPlayer = this.Players[num];
             buildPlayer.Teleport(this.WaitingPoint);
-            buildPlayer.SendInfoMessage("游戏结束！");
+            buildPlayer.SendInfoMessage(GetString("游戏结束！"));
             buildPlayer.BackUp.RestoreCharacter((MiniPlayer) (object) buildPlayer);
             buildPlayer.CurrentRegion = null;
             buildPlayer.AquiredMarks = 0;
@@ -247,7 +248,7 @@ public class BuildRoom : MiniRoom, IRoom
                 num += buildPlayer.GiveMarks;
                 buildPlayer.GiveMarks = 0;
                 buildPlayer.Teleport(this.Players[this.PlayerIndex].CurrentRegion.Center);
-                buildPlayer.SendInfoMessage("已来到 " + this.Players[this.PlayerIndex].Name + " 的建筑区域");
+                buildPlayer.SendInfoMessage(GetString(GetString("已来到 ") + this.Players[this.PlayerIndex].Name + GetString(" 的建筑区域")));
                 buildPlayer.Marked = false;
             }
         }
@@ -294,7 +295,7 @@ public class BuildRoom : MiniRoom, IRoom
     {
         var stringBuilder = new StringBuilder();
         stringBuilder.AppendLine(MiniGamesAPI.Utils.EndLine_10);
-        stringBuilder.AppendLine("————房内信息————");
+        stringBuilder.AppendLine(GetString("————房内信息————"));
         var status = this.Status;
         switch ((int) status)
         {
@@ -302,36 +303,36 @@ public class BuildRoom : MiniRoom, IRoom
             {
                 var num = this.WaitingTime / 60;
                 var num2 = this.WaitingTime % 60;
-                stringBuilder.AppendLine($"倒计时[{num}:{num2}]");
-                stringBuilder.AppendLine("主题:" + (string.IsNullOrEmpty(this.Topic) ? "无" : this.Topic));
+                stringBuilder.AppendLine(GetString($"倒计时[{num}:{num2}]"));
+                stringBuilder.AppendLine(GetString("主题:") + (string.IsNullOrEmpty(this.Topic) ? GetString("无") : this.Topic));
                 for (var num3 = this.Players.Count - 1; num3 >= 0; num3--)
                 {
                     var buildPlayer = this.Players[num3];
-                    stringBuilder.AppendLine("[" + buildPlayer.Name + "][" + (buildPlayer.IsReady ? "已准备" : "未准备") + "]");
+                    stringBuilder.AppendLine("[" + buildPlayer.Name + "][" + (buildPlayer.IsReady ? GetString("已准备") : GetString("未准备")) + "]");
                 }
-                stringBuilder.AppendLine($"当前人数:{this.GetPlayerCount()}/{this.MaxPlayer}");
-                stringBuilder.AppendLine("输入/bm ready 准备/未准备");
-                stringBuilder.AppendLine("输入/bm leave 离开房间");
-                stringBuilder.AppendLine("输入/bm tl 查看主题列表");
-                stringBuilder.AppendLine("输入/bm vote [主题] 进行主题投票");
+                stringBuilder.AppendLine(GetString($"当前人数:{this.GetPlayerCount()}/{this.MaxPlayer}"));
+                stringBuilder.AppendLine(GetString("输入/bm ready 准备/未准备"));
+                stringBuilder.AppendLine(GetString("输入/bm leave 离开房间"));
+                stringBuilder.AppendLine(GetString("输入/bm tl 查看主题列表"));
+                stringBuilder.AppendLine(GetString("输入/bm vote [主题] 进行主题投票"));
                 break;
             }
             case 2:
             {
                 var num = this.GamingTime / 60;
                 var num2 = this.GamingTime % 60;
-                stringBuilder.AppendLine($"倒计时[{num}:{num2}]");
-                stringBuilder.AppendLine("主题:" + (string.IsNullOrEmpty(this.Topic) ? "无" : this.Topic));
-                stringBuilder.AppendLine($"当前人数:{this.GetPlayerCount()}/{this.MaxPlayer}");
+                stringBuilder.AppendLine(GetString($"倒计时[{num}:{num2}]"));
+                stringBuilder.AppendLine(GetString("主题:") + (string.IsNullOrEmpty(this.Topic) ? GetString("无") : this.Topic));
+                stringBuilder.AppendLine(GetString($"当前人数:{this.GetPlayerCount()}/{this.MaxPlayer}"));
                 break;
             }
             case 1:
             {
                 var num = this.SeletingTime / 60;
                 var num2 = this.SeletingTime % 60;
-                stringBuilder.AppendLine($"倒计时[{num}:{num2}]");
-                stringBuilder.AppendLine("主题:" + (string.IsNullOrEmpty(this.Topic) ? "无" : this.Topic));
-                stringBuilder.AppendLine($"当前人数:{this.GetPlayerCount()}/{this.MaxPlayer}");
+                stringBuilder.AppendLine(GetString($"倒计时[{num}:{num2}]"));
+                stringBuilder.AppendLine(GetString("主题:") + (string.IsNullOrEmpty(this.Topic) ? GetString("无") : this.Topic));
+                stringBuilder.AppendLine(GetString($"当前人数:{this.GetPlayerCount()}/{this.MaxPlayer}"));
                 break;
             }
         }
@@ -349,7 +350,7 @@ public class BuildRoom : MiniRoom, IRoom
         var num = 1;
         foreach (var player in this.Players)
         {
-            stringBuilder.AppendLine($"[{num}] {player.Name} 得分:{player.AquiredMarks}");
+            stringBuilder.AppendLine(GetString($"[{num}] {player.Name} 得分:{player.AquiredMarks}"));
             num++;
         }
         this.Broadcast(stringBuilder.ToString(), Color.MediumAquamarine);
@@ -383,7 +384,7 @@ public class BuildRoom : MiniRoom, IRoom
             val.Owners.Add(this.Players[i].Name);
             buildPlayer.CurrentRegion = val;
             buildPlayer.Teleport(val.Center);
-            buildPlayer.SendInfoMessage("已将你传送到建筑区域");
+            buildPlayer.SendInfoMessage(GetString("已将你传送到建筑区域"));
         }
         return true;
     }
@@ -406,8 +407,8 @@ public class BuildRoom : MiniRoom, IRoom
             }
         }
         var list = (from p in this.Topics
-                             where p.Value == max
-                             select p.Key).ToList();
+                    where p.Value == max
+                    select p.Key).ToList();
         if (list.Count() == 1)
         {
             this.Topic = list[0];
@@ -417,6 +418,6 @@ public class BuildRoom : MiniRoom, IRoom
             var val = new UnifiedRandom();
             this.Topic = list[val.Next(0, list.Count - 1)];
         }
-        this.Broadcast("本次建筑的主题是 " + this.Topic, Color.MediumAquamarine);
+        this.Broadcast(GetString("本次建筑的主题是 ") + this.Topic, Color.MediumAquamarine);
     }
 }

@@ -24,7 +24,7 @@ public class Chameleon : TerrariaPlugin
 
     public override string Description => "账户系统交互替换方案";
 
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
 
     private readonly string _clientWasBooted;
 
@@ -65,18 +65,18 @@ public class Chameleon : TerrariaPlugin
     {
         if (!string.IsNullOrEmpty(TShock.Config.Settings.ServerPassword) || !string.IsNullOrEmpty(Netplay.ServerPassword))
         {
-            TShock.Log.ConsoleError("[Chameleon] 在启用本插件的情况下，服务器密码功能将失效。");
+            TShock.Log.ConsoleError(GetString("[Chameleon] 在启用本插件的情况下，服务器密码功能将失效。"));
         }
 
         if (TShock.Config.Settings.DisableLoginBeforeJoin)
         {
-            TShock.Log.ConsoleError("[Chameleon] 在启用本插件的情况下，入服前登录将被强制开启。");
+            TShock.Log.ConsoleError(GetString("[Chameleon] 在启用本插件的情况下，入服前登录将被强制开启。"));
             TShock.Config.Settings.DisableLoginBeforeJoin = true;
         }
 
         if (!TShock.Config.Settings.RequireLogin && !TShock.ServerSideCharacterConfig.Settings.Enabled)
         {
-            TShock.Log.ConsoleError("[Chameleon] 在启用本插件的情况下，注册登录将被强制开启。");
+            TShock.Log.ConsoleError(GetString("[Chameleon] 在启用本插件的情况下，注册登录将被强制开启。"));
             TShock.Config.Settings.RequireLogin = true;
         }
     }
@@ -167,8 +167,8 @@ public class Chameleon : TerrariaPlugin
                     player.IsDisabledForBannedWearable = false;
                 }
 
-                player.SendSuccessMessage($"已经验证{account.Name}登录完毕.");
-                TShock.Log.ConsoleInfo(player.Name + "成功验证登录.");
+                player.SendSuccessMessage(GetString($"已经验证{account.Name}登录完毕."));
+                TShock.Log.ConsoleInfo(player.Name + GetString("成功验证登录."));
                 PlayerHooks.OnPlayerPostLogin(player);
                 return true;
             }
@@ -250,13 +250,13 @@ public class Chameleon : TerrariaPlugin
                     player.IsDisabledForBannedWearable = false;
                 }
 
-                player.SendSuccessMessage($"已经验证{account.Name}登录完毕。");
-                TShock.Log.ConsoleInfo(player.Name + "成功验证登录。");
+                player.SendSuccessMessage(GetString($"已经验证{account.Name}登录完毕。"));
+                TShock.Log.ConsoleInfo(player.Name + GetString("成功验证登录。"));
                 TShock.UserAccounts.SetUserAccountUUID(account, player.UUID);
                 PlayerHooks.OnPlayerPostLogin(player);
                 return true;
             }
-            Kick(player, Config.VerficationFailedMessage, "验证失败");
+            Kick(player, Config.VerficationFailedMessage, GetString("验证失败"));
             return true;
         }
         if (player.Name != TSServerPlayer.AccountName)
@@ -273,13 +273,13 @@ public class Chameleon : TerrariaPlugin
             }
             catch (ArgumentOutOfRangeException)
             {
-                Kick(player, "密码位数不能少于" + TShock.Config.Settings.MinimumPasswordLength + "个字符。", "注册失败");
+                Kick(player, GetString("密码位数不能少于") + TShock.Config.Settings.MinimumPasswordLength + GetString("个字符。"), GetString("注册失败"));
                 return true;
             }
-            player.SendSuccessMessage("账户{0}注册成功。", account.Name);
-            player.SendSuccessMessage("你的密码是{0}", password);
+            player.SendSuccessMessage(GetString("账户{0}注册成功。"), account.Name);
+            player.SendSuccessMessage(GetString("你的密码是{0}"), password);
             TShock.UserAccounts.AddUserAccount(account);
-            TShock.Log.ConsoleInfo("玩家{0}注册了新账户：{1}", player.Name, account.Name);
+            TShock.Log.ConsoleInfo(GetString("玩家{0}注册了新账户：{1}"), player.Name, account.Name);
 
             player.RequiresPassword = false;
             player.SetData(WaitPwd4Reg, false);
@@ -321,15 +321,15 @@ public class Chameleon : TerrariaPlugin
                 player.IsDisabledForBannedWearable = false;
             }
 
-            player.SendSuccessMessage($"已经验证{account.Name}登录完毕.");
-            TShock.Log.ConsoleInfo(player.Name + "成功验证登录.");
+            player.SendSuccessMessage(GetString($"已经验证{account.Name}登录完毕."));
+            TShock.Log.ConsoleInfo(player.Name + GetString("成功验证登录."));
             TShock.UserAccounts.SetUserAccountUUID(account, player.UUID);
             PlayerHooks.OnPlayerPostLogin(player);
             return true;
         }
 
         // 系统预留账户名
-        Kick(player, "该用户名已被占用。", "请更换人物名");
+        Kick(player, GetString("该用户名已被占用。"), GetString("请更换人物名"));
         return true;
     }
 
@@ -353,7 +353,7 @@ public class Chameleon : TerrariaPlugin
 
         player.SilentKickInProgress = true;
         player.Disconnect($"{custom}：{msg}");
-        TShock.Log.ConsoleInfo($"向{player.Name}发送通知完毕.");
+        TShock.Log.ConsoleInfo(GetString($"向{player.Name}发送通知完毕."));
     }
 
     private static void LoadConfig()
@@ -377,6 +377,6 @@ public class Chameleon : TerrariaPlugin
     {
         LoadConfig();
 
-        args.Player?.SendSuccessMessage("重新加载{0}配置完毕。", typeof(Chameleon).Name);
+        args.Player?.SendSuccessMessage(GetString("重新加载{0}配置完毕。"), typeof(Chameleon).Name);
     }
 }

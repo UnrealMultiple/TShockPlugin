@@ -25,7 +25,7 @@ public class WikiLangPackLoader : TerrariaPlugin
     public override string Description => "加载Wiki语言包";
 
     public override string Name => "中文Wiki语言包加载器";
-    public override Version Version => new (2024, 9, 16, 1);
+    public override Version Version => new(2024, 9, 16, 1);
 
     public override void Initialize()
     {

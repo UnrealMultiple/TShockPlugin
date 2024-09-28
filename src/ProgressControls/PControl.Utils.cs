@@ -355,16 +355,9 @@ public partial class PControl : TerrariaPlugin
     {
         config.ProgressLockTimeForStartServerDate[bossname] += addtime;
         config.SaveConfigFile();
-        string st;
-        if (addtime > 0)
-        {
-            st = "推迟" + (player.IsLoggedIn ? HoursToM(addtime, "28FFB8") : HoursToM(addtime));
-        }
-        else
-        {
-            st = addtime < 0 ? "提前" + (player.IsLoggedIn ? HoursToM(-1 * addtime, "28FFB8") : HoursToM(-1 * addtime)) : "正常";
-        }
-
+        var st = addtime > 0
+            ? "推迟" + (player.IsLoggedIn ? HoursToM(addtime, "28FFB8") : HoursToM(addtime))
+            : addtime < 0 ? "提前" + (player.IsLoggedIn ? HoursToM(-1 * addtime, "28FFB8") : HoursToM(-1 * addtime)) : "正常";
         if (!config.OpenAutoControlProgressLock)
         {
             player.SendWarningMessage("警告，未开启自动控制NPC进度计划，你的修改不会有任何效果");
@@ -485,7 +478,7 @@ public partial class PControl : TerrariaPlugin
                     mess += $" [c/{color}:{m}] 分";
                 }
 
-                if (s > 0 || h == 0 && m == 0 && s == 0)
+                if (s > 0 || (h == 0 && m == 0 && s == 0))
                 {
                     mess += $" [c/{color}:{s}] 秒";
                 }
@@ -502,7 +495,7 @@ public partial class PControl : TerrariaPlugin
                     mess += $" {m} 分";
                 }
 
-                if (s > 0 || h == 0 && m == 0 && s == 0)
+                if (s > 0 || (h == 0 && m == 0 && s == 0))
                 {
                     mess += $" {s} 秒";
                 }
