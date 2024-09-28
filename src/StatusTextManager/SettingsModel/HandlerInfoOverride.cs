@@ -6,7 +6,7 @@ public class HandlerInfoOverride : IStatusTextSetting
 {
     [JsonProperty] public static string TypeName => nameof(HandlerInfoOverride);
 
-        public string PluginName { get; set; }
+    public string PluginName { get; set; }
     public bool Enabled { get; set; }
     public bool OverrideInterval { get; set; }
     public ulong UpdateInterval { get; set; }

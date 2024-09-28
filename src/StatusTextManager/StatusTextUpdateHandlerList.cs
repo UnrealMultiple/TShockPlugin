@@ -10,7 +10,7 @@ public class StatusTextUpdateHandlerList
 
     private List<StatusTextUpdateHandlerItem> Handlers { get; } = new ();
     private List<IStatusTextUpdateHandler> ProcessedHandlers { get; } = new ();
-    
+
     // ReSharper disable once UnusedMember.Global
     /// <summary>
     /// Handlers registered to this list will be invoked for retrieving status text
@@ -33,6 +33,7 @@ public class StatusTextUpdateHandlerList
             this.LoadSettings();
         }
     }
+
     // ReSharper disable once UnusedMember.Global
     public void Deregister(StatusTextUpdateDelegate handler)
 
