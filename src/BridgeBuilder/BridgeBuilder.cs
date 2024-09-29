@@ -10,7 +10,7 @@ namespace BridgeBuilder;
 public class BridgeBuilder : TerrariaPlugin
 {
     public override string Name => "BridgeBuilder";
-    public override Version Version => new Version(1, 0, 9);
+    public override Version Version => new Version(1, 1, 0);
     public override string Author => "Soofa，肝帝熙恩汉化1449";
     public override string Description => "铺桥!";
     public static Configuration Config;

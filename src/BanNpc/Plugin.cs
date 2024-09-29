@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "禁止怪物";
 
-    public override Version Version => new(1, 0, 0, 2);
+    public override Version Version => new(1, 0, 0, 3);
 
     private static Config Config { get; set; } = new();
 
@@ -131,7 +131,7 @@ public class Plugin : TerrariaPlugin
                 }
                 default:
                 {
-                    args.Player.SendErrorMessage(GetString("语法错误: /bm <add/del> [name or ID]"));
+                    args.Player.SendErrorMessage(GetString("语法错误: /bm <add/del> [名称 或 ID]"));
                     break;
                 }
             }
@@ -140,8 +140,8 @@ public class Plugin : TerrariaPlugin
         {
             args.Player.SendInfoMessage("/bm");
             args.Player.SendInfoMessage("/bm list");
-            args.Player.SendInfoMessage(GetString("/bm add [name or ID]"));
-            args.Player.SendInfoMessage(GetString("/bm del [name or ID]"));
+            args.Player.SendInfoMessage(GetString("/bm add [名称 或 ID]"));
+            args.Player.SendInfoMessage(GetString("/bm del [名称 或 ID]"));
             return;
         }
     }
