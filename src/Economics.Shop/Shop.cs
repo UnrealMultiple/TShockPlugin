@@ -17,7 +17,7 @@ public class Shop : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 1);
+    public override Version Version => new(1, 0, 0, 2);
 
     internal string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Shop.json");
 

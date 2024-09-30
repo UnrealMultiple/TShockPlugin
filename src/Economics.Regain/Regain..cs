@@ -16,7 +16,7 @@ public class Regain : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 1);
+    public override Version Version => new(1, 0, 0, 2);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Regain.json");
 
