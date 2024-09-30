@@ -75,7 +75,6 @@ jobs:
           Copy-Item out/**/*.dll,out/**/*.pdb out/Target/Plugins/
           Copy-Item SubmoduleAssembly/* out/Target/Plugins/
           Copy-Item bin/Plugins.json,README.md,Usage.txt,LICENSE out/Target/
-          python scripts/zip.py
 
       - name: 上传临时插件包
         uses: actions/upload-artifact@v4
@@ -147,8 +146,8 @@ jobs:
         with:
           configuration: ".config/log_config.json"
           
-      - name: Download File
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      - name: 下载临时插件包
+        #if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: dawidd6/action-download-artifact@v6
         with:
           name: Plugins
@@ -156,7 +155,7 @@ jobs:
           skip_unpack: true
 
       - name: 发布插件包
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        #if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: ncipollo/release-action@v1
         with:
           tag: V1.0.0.0
