@@ -74,10 +74,12 @@
 | [BanNpc](src/BanNpc/README.md) | 阻止怪物生成 | 无 |
 | [BedSet](src/BedSet/README.md) | 设置并记录重生点 | 无 |
 | [BridgeBuilder](src/BridgeBuilder/README.md) | 快速铺桥 | 无 |
+| [BuildMaster](src/BuildMaster/README.md) | 豆沙小游戏·建筑大师模式 | [MiniGamesAPI](src/MiniGamesAPI/README.md) |
 | [CaiBot](src/CaiBot/README.md) | CaiBot 适配插件 | 自带前置 |
 | [CaiCustomEmojiCommand](src/CaiCustomEmojiCommand/README.md) | 自定义表情命令 | 无 |
 | [CaiLib](src/CaiLib/README.md) | Cai 的前置库 | 无 |
 | [CaiRewardChest](src/CaiRewardChest/README.md) | 将自然生成的箱子变为所有人都可以领一次的奖励箱 | 无 |
+| [CGive](src/CGive/README.md) | 离线命令 | 无 |
 | [Challenger](src/Challenger/README.md) | 挑战者模式 | 无 |
 | [Chameleon](src/Chameleon/README.md) | 进服前登录 | 无 |
 | [ChattyBridge](src/ChattyBridge/README.md) | 用于跨服聊天 | 无 |
@@ -94,27 +96,35 @@
 | [DisableMonsLoot](src/DisableMonsLoot/README.md) | 禁怪物掉落 | 无 |
 | [DisableSurfaceProjectiles](src/DisableSurfaceProjectiles/README.md) | 禁地表弹幕 | 无 |
 | [Don't Fuck](src/DonotFuck/README.md) | 禁止脏话 | 无 |
+| [DTEntryBlock](src/DTEntryBlock/README.md) | 阻止进入地牢或神庙 | 无 |
 | [DumpTerrariaID](src/DumpTerrariaID/README.md) | 输出 ID | 无 |
 | [Economics.Deal](src/Economics.RPG/README.md) | 交易插件 | [EconomicsAPI](src/EconomicsAPI/README.md) |
 | [Economics.NPC](src/Economics.NPC/README.md) | 自定义怪物奖励 | [EconomicsAPI](src/EconomicsAPI/README.md) |
-| [Economics.Projectile](src/Economics.Projectile/README.md) | 自定义弹幕 | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
+| [Economics.Projectile](src/Economics.Projectile/README.md) | 自定义弹幕 | [EconomicsAPI](src/EconomicsAPI/README.md)<br>[Economics.RPG](src/Economics.RPG/README.md) |
+| [Economics.Regain](src/Economics.Regain/README.md) | 物品回收 | [EconomicsAPI](src/EconomicsAPI/README.md) |
 | [Economics.RPG](src/Economics.RPG/README.md) | RPG | [EconomicsAPI](src/EconomicsAPI/README.md) |
-| [Economics.Shop](src/Economics.Shop/README.md) | 商店插件 | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
-| [Economics.Skill](src/Economics.Skill/README.md) | 技能插件 | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
+| [Economics.Shop](src/Economics.Shop/README.md) | 商店插件 | [EconomicsAPI](src/EconomicsAPI/README.md)<br>[Economics.RPG](src/Economics.RPG/README.md) |
+| [Economics.Task](src/Economics.Task/README.md) | 任务插件 | [EconomicsAPI](src/EconomicsAPI/README.md)<br>[Economics.RPG](src/Economics.RPG/README.md) |
+| [Economics.Skill](src/Economics.Skill/README.md) | 技能插件 | [EconomicsAPI](src/EconomicsAPI/README.md)<br>[Economics.RPG](src/Economics.RPG/README.md) |
 | [Economics.WeaponPlus](src/Economics.WeaponPlus/README.md) | 强化武器 | [EconomicsAPI](src/EconomicsAPI/README.md) |
 | [EconomicsAPI](src/EconomicsAPI/README.md) | 经济插件前置 | 无 |
 | [EndureBoost](src/EndureBoost/README.md) | 物品一定数量后长时间buff | 无 |
 | [EssentialsPlus](src/EssentialsPlus/README.md) | 更多管理指令 | 无 |
+| [Ezperm](src/Ezperm/README.md) | 批量改权限 | 无 |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 鱼店 | 无 |
+| [GenerateMap](src/GenerateMap/README.md) | 生成地图图片 | [CaiLib](src/CaiLib/README.md) |
 | [GolfRewards](src/GolfRewards/README.md) | 高尔夫奖励 | 无 |
 | [GoodNight](src/GoodNight/README.md) | 宵禁 | 无 |
 | [HardPlayerDrop](src/HardPlayerDrop/README.md) | 硬核死亡掉生命水晶 | 无 |
+| [HelpPlus](src/HelpPlus/README.md) | 修复和增强 Help 命令 | 无 |
 | [History](src/History/README.md) | 历史图格记录 | 无 |
 | [HouseRegion](src/HouseRegion/README.md) | 圈地插件 | 无 |
 | [Invincibility](src/Invincibility/README.md) | 限时无敌 | 无 |
+| [ItemPreserver](src/ItemPreserver/README.md) | 指定物品不消耗 | 无 |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | 解锁旅途物品 | 无 |
 | [LifemaxExtra](src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | 无 |
 | [ListPlugins](src/ListPlugins/README.md) | 查已装插件 | 无 |
+| [MapTeleport](src/MapTp/README.md) | 双击大地图传送 | 无 |
 | [MiniGamesAPI](src/MiniGamesAPI/README.md) | 豆沙小游戏 API | 无 |
 | [MonsterRegen](src/MonsterRegen/README.md) | 怪物进度回血 | 无 |
 | [Musicplayer](src/MusicPlayer/README.md) | 简易音乐播放器 | 无 |
@@ -129,12 +139,13 @@
 | [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | Hufang的玩家管理器 | 无 |
 | [PvPer](src/PvPer/README.md) | 决斗系统 | 无 |
 | [ProgressBag](src/ProgressBag/README.md) | 进度礼包 | 无 |
-| [ProgressControl](src/ProgressControls/README.md) | 计划书（自动化控制服务器） | 无 |
+| [ProgressControls](src/ProgressControls/README.md) | 计划书（自动化控制服务器） | 无 |
 | [ProgressRestrict](src/ProgressRestrict/README.md) | 超进度检测 | [DataSync](src/DataSync/README.md) |
 | [ProxyProtocolSocket](src/ProxyProtocolSocket/README.md) | 接受 proxy protocol 协议 | 无 |
 | [RainbowChat](src/RainbowChat/README.md) | 每次说话颜色不一样 | 无 |
 | [RandomBroadcast](src/RandomBroadcast/README.md) | 随机广播 | 无 |
 | [RandReSpawn](src/RandRespawn/README.md) | 随机出生点 | 无 |
+| [RealTime](src/RealTime/README.md) | 使服务器内时间同步现实时间 | 无 |
 | [RecipesBrowser](src/RecipesBrowser/README.md) | 合成表 | 无 |
 | [RegionView](src/RegionView/README.md) | 显示区域边界 | 无 |
 | [ReFishTask](src/ReFishTask/README.md) | 自动刷新渔夫任务 | 无 |
@@ -144,7 +155,11 @@
 | [ServerTools](src/ServerTools/README.md) | 服务器管理工具 | 无 |
 | [SessionSentinel](src/SessionSentinel/README.md) | 处理长时间不发送数据包的玩家 | 无 |
 | [ShortCommand](src/ShortCommand/README.md) | 简短指令 | 无 |
+| [ShowArmors](src/ShowArmors/README.md) | 展示装备栏 | 无 |
+| [SignInSign](src/SignInSign/README.md) | 告示牌登录插件 | 无 |
 | [SimultaneousUseFix](src/SimultaneousUseFix/README.md) | 解决卡双锤卡星旋机枪之类的问题 | [Chireiden.TShock.Omni](src/https://github.com/sgkoishi/yaaiomni/releases) |
+| [SmartRegions](src/SmartRegions/README.md) | 智能区域 | 无 |
+| [SpawnInfra](src/SpawnInfra/README.md) | 生成基础建设 | 无 |
 | [SpclPerm](src/SpclPerm/README.md) | 服主特权 | 无 |
 | [StatusTextManager](src/StatusTextManager/README.md) | PC端模板文本管理插件 | 无 |
 | [SwitchCommands](src/SwitchCommands/README.md) | 区域执行指令 | 无 |
