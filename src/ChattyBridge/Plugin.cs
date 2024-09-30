@@ -112,7 +112,7 @@ public class Plugin : TerrariaPlugin
                             break;
                         }
                         default:
-                            TShock.Log.ConsoleError($"接收到未知类型:{type}");
+                            TShock.Log.ConsoleError(GetString($"接收到未知类型:{type}"));
                             break;
                     }
                 }
@@ -144,7 +144,7 @@ public class Plugin : TerrariaPlugin
                 }
                 catch
                 {
-                    TShock.Log.ConsoleError($"[聊天桥] 信息发送失败，目标地址:{host}");
+                    TShock.Log.ConsoleError(GetString($"[聊天桥] 信息发送失败，目标地址:{host}"));
                 }
             }
         });
