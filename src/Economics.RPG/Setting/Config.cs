@@ -32,7 +32,7 @@ internal class Config
             {
                 if (level.Parent.Name != this.DefaultLevel.Name)
                 {
-                    TShock.Log.ConsoleError($"等级 {name} 空引用等级 {level.Parent.Name}");
+                    TShock.Log.ConsoleError(GetString($"等级 {name} 空引用等级 {level.Parent.Name}"));
                     level.Parent = null;
                 }
                 else
@@ -101,7 +101,7 @@ internal class Config
             }
             if (level.Parent?.Name == name)
             {
-                TShock.Log.ConsoleError($"{level.Name} 与 {name} 之间循环引用");
+                TShock.Log.ConsoleError(GetString($"{level.Name} 与 {name} 之间循环引用"));
                 break;
             }
             parents.Add(level);

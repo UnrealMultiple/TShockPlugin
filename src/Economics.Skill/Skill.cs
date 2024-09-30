@@ -22,7 +22,7 @@ public class Skill : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 2, 1, 3);
+    public override Version Version => new(1, 2, 1, 4);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
@@ -137,7 +137,7 @@ public class Skill : TerrariaPlugin
     {
         var skill = PlayerSKillManager.QuerySkill(args.Player.Name);
         var msg = skill.Any() ? string.Join(",", skill.Select(x => x.Skill == null ? "无效技能" : x.Skill.Name)) : "无";
-        args.Messages.Add(new($"绑定技能: {msg}", 12));
+        args.Messages.Add(new(GetString($"绑定技能: {msg}"), 12));
     }
 
     private void OnUpdate(EventArgs args)

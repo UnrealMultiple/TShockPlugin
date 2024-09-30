@@ -16,7 +16,7 @@ public class Regain : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 1);
+    public override Version Version => new(1, 0, 0, 2);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Regain.json");
 
@@ -65,9 +65,9 @@ public class Regain : TerrariaPlugin
                     new PaginationTools.Settings
                     {
                         MaxLinesPerPage = Config.PageMax,
-                        NothingToDisplayString = "当前可回收物品",
-                        HeaderFormat = "回收物品列表 ({0}/{1})：",
-                        FooterFormat = "输入 {0}regain list {{0}} 查看更多".SFormat(Commands.Specifier)
+                        NothingToDisplayString = GetString("当前可回收物品"),
+                        HeaderFormat = GetString("回收物品列表 ({0}/{1})："),
+                        FooterFormat = GetString("输入 {0}regain list {{0}} 查看更多").SFormat(Commands.Specifier)
                     }
                 );
         }
@@ -75,19 +75,19 @@ public class Regain : TerrariaPlugin
         {
             if (!Config.TryGetRegain(args.Player.SelectedItem.netID, out regain) || regain == null)
             {
-                args.Player.SendErrorMessage("该物品暂时无法回收!");
+                args.Player.SendErrorMessage(GetString("该物品暂时无法回收!"));
                 return false;
             }
             if (args.Player.SelectedItem.stack == 0 || args.Player.SelectedItem.netID == 0)
             {
-                args.Player.SendErrorMessage("请手持一个有效物品!");
+                args.Player.SendErrorMessage(GetString("请手持一个有效物品!"));
                 return false;
             }
             return true;
         }
         if (!args.Player.RealPlayer || !args.Player.IsLoggedIn)
         {
-            args.Player.SendErrorMessage("你必须登录游戏使用此命令!");
+            args.Player.SendErrorMessage(GetString("你必须登录游戏使用此命令!"));
             return;
         }
 
@@ -118,7 +118,7 @@ public class Regain : TerrariaPlugin
                 }
                 if (!int.TryParse(args.Parameters[0], out var count) && count > 0)
                 {
-                    args.Player.SendErrorMessage($"值{args.Parameters[0]}无效!");
+                    args.Player.SendErrorMessage(GetString($"值{args.Parameters[0]}无效!"));
                     return;
                 }
                 if (!Verify(out var regain) || regain == null)
@@ -130,14 +130,14 @@ public class Regain : TerrariaPlugin
                 EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, count * regain.Cost);
                 args.Player.SelectedItem.stack -= count;
                 args.Player.SendData(PacketTypes.PlayerSlot, "", args.Player.Index, args.Player.TPlayer.selectedItem);
-                args.Player.SendSuccessMessage($"成功兑换{count * regain.Cost}个{EconomicsAPI.Economics.Setting.CurrencyName}!");
+                args.Player.SendSuccessMessage(GetString($"成功兑换{count * regain.Cost}个{EconomicsAPI.Economics.Setting.CurrencyName}!"));
                 break;
             }
             default:
-                args.Player.SendInfoMessage("/regain语法");
-                args.Player.SendInfoMessage("/regain");
-                args.Player.SendInfoMessage("/regain [数量]");
-                args.Player.SendInfoMessage("/regain list");
+                args.Player.SendInfoMessage(GetString("/regain语法"));
+                args.Player.SendInfoMessage(GetString("/regain"));
+                args.Player.SendInfoMessage(GetString("/regain [数量]"));
+                args.Player.SendInfoMessage(GetString("/regain list"));
                 break;
 
         }
