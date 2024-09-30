@@ -60,11 +60,12 @@
 
 |                                              名称                                              |             插件说明              |                                                                          前置                                                                           |
 |:--------------------------------------------------------------------------------------------:|:-----------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+
+| [AutoPluginManager](src/AutoPluginManager/README.md) | 一键自动更新插件 | 无 |
 | [AdditionalPylons](src/AdditionalPylons/README.md) | 放置更多晶塔 | 无 |
 | [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | 广播盒功能强化 | 无 |
 | [AutoBroadcast](src/AutoBroadcast/README.md) | 自动广播 | 无 |
 | [AutoClear](src/Autoclear/README.md) | 智能自动扫地 | 无 |
-| [AutoPluginManager](src/AutoPluginManager/README.md) | 一键自动更新插件 | 无 |
 | [AutoReset](src/AutoReset/README.md) | 完全自动重置 | 无 |
 | [AutoStoreItems](src/AutoStoreItems/README.md) | 自动储存 | 无 |
 | [AutoTeam](src/AutoTeam/README.md) | 自动队伍 | 无 |
