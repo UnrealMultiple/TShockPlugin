@@ -71,13 +71,14 @@
 | [BuildMaster](src/BuildMaster/README.md) | No | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](src/MiniGamesAPI/README.md) |
 | [CaiBot](src/CaiBot/README.md) | No | CaiBot(QQ) Adapter Plugin | Built-in Precondition |
 | [CaiLib](src/CaiLib/README.md) | No | Cai’s Preload Library | No |
-| [CaiRewardChest](src/CaiRewardChest/README.md) | No | Convert Naturally Generated Chests into Reward Chests that Everyone Can Claim Once | No |
+| [CaiRewardChest](src/CaiRewardChest/README_EN.md) | Yes | Convert Naturally Generated Chests into Reward Chests that Everyone Can Claim Once | No |
 | [Challenger](src/Challenger/README.md) | Yes | Challenger mode | No |
-| [Chameleon](src/Chameleon/README.md) | No | Login Before Entering the Server | No |
-| [ChattyBridge](src/ChattyBridge/README.md) | No | Used for cross-server chat. | No |
+| [Chameleon](src/Chameleon/README_EN.md) | Yes | Login Before Entering the Server | No |
+| [ChattyBridge](src/ChattyBridge/README_EN.md) | Yes | Used for cross-server chat. | No |
 | [ChestRestore](src/ChestRestore/README.md) | No | Infinite chest items | No |
-| [CGive](src/CGive/README.md) | No | Offline commands | No |
+| [CGive](src/CGive/README_EN.md) | Yes | Offline commands | No |
 | [CriticalHit](src/CriticalHit/README_EN.md) | Yes | Hit prompt | No |
+| [DamageStatistic](src/DamageStatistic/README.md) | No |Display the damage caused by each player after each Boss fight | No |
 | [DataSync](src/DataSync/README.md) | No | Progress synchronization | No |
 | [DeathDrop](src/DeathDrop/README.md) | No | Random and custom loot for monster death | No |
 | [DisableGodMod](src/DisableGodMod/README.md) | No | Prevent player from being invincible | No |
