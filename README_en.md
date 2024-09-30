@@ -56,97 +56,121 @@
 <Details>
 <Summary>Plugin List</Summary>
 
-
 | Plugin Name | English Available | Plugin Description | Precondition |
 |-------------|-------------------|-------------------|---------------|
+| [AdditionalPylons](src/AdditionalPylons/README_EN.md) | Yes | Place more Pylons | No |
 | [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | No | Enhance Broadcast Box Functionality | No |
-| [AutoBroadcast](src/AutoBroadcast/README_EN.md) | Yes | Automatic broadcast | No |
-| [AutoClear](src/Autoclear/README_EN.md) | Yes | Intelligent automatic cleaning | No |
-| [AutoPluginManager](src/AutoPluginManager/README_EN.md) | Yes | One-Click Automatic Plugin Update | No |
-| [AutoTeam](src/AutoTeam/README_EN.md) | Yes | AutoTeam | No |
-| [Back](src/Back/README_EN.md) | Yes | Return to the point of death | No |
-| [BagPing](src/BagPing/README_EN.md) | Yes | Mark Treasure Bag on Map | No |
-| [BetterWhitelist](src/BetterWhitelist/README_EN.md) | Yes | Player whitelist plugin | No |
-| [BridgeBuilder](src/BridgeBuilder/README_EN.md) | Yes | Quick bridge laying | No |
+| [AutoBroadcast](src/AutoBroadcast/README.md) | Yes | Automatic broadcast | No |
+| [AutoClear](src/Autoclear/README.md) | Yes | Intelligent automatic cleaning | No |
+| [AutoReset](src/AutoReset/README_EN.md) | Yes | Fully automatic reset | No |
+| [AutoStoreItems](src/AutoStoreItems/README.md) | Yes | Automatic storage | No |
+| [AutoTeam](src/AutoTeam/README.md) | Yes | Automatic team formation | No |
+| [Back](src/Back/README.md) | Yes | Return to the point of death | No |
+| [BagPing](src/BagPing/README.md) | Yes | Mark treasure bags on the map | No |
+| [BetterWhitelist](src/BetterWhitelist/README_EN.md) | Yes | Whitelist plugin | No |
+| [BanNpc](src/BanNpc/README_EN.md) | Yes | Prevent monster generation | No |
+| [BedSet](src/BedSet/README.md) | No | Set and record respawn points | No |
+| [BridgeBuilder](src/BridgeBuilder/README_EN.md) | Yes | Quick bridge building | No |
 | [BuildMaster](src/BuildMaster/README.md) | No | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](src/MiniGamesAPI/README.md) |
-| [CaiBot](src/CaiBot/README.md) | No | CaiBot(QQ) Adapter Plugin | Built-in Precondition |
-| [CaiLib](src/CaiLib/README.md) | No | Cai’s Preload Library | No |
-| [CaiRewardChest](src/CaiRewardChest/README_EN.md) | Yes | Convert Naturally Generated Chests into Reward Chests that Everyone Can Claim Once | No |
-| [Challenger](src/Challenger/README.md) | Yes | Challenger mode | No |
-| [Chameleon](src/Chameleon/README_EN.md) | Yes | Login Before Entering the Server | No |
-| [ChattyBridge](src/ChattyBridge/README_EN.md) | Yes | Used for cross-server chat. | No |
-| [ChestRestore](src/ChestRestore/README.md) | No | Infinite chest items | No |
+| [CaiBot](src/CaiBot/README.md) | No | CaiBot adapter plugin | Built-in precondition |
+| [CaiCustomEmojiCommand](src/CaiCustomEmojiCommand/README.md) | No | Custom emoji command | No |
+| [CaiLib](src/CaiLib/README.md) | No | Cai's preload library | No |
+| [CaiRewardChest](src/CaiRewardChest/README_EN.md) | Yes | Convert naturally generated chests into reward chests that everyone can claim once | No |
 | [CGive](src/CGive/README_EN.md) | Yes | Offline commands | No |
-| [CriticalHit](src/CriticalHit/README_EN.md) | Yes | Hit prompt | No |
-| [DamageStatistic](src/DamageStatistic/README.md) | No |Display the damage caused by each player after each Boss fight | No |
+| [Challenger](src/Challenger/README.md) | Yes | Challenger mode | No |
+| [Chameleon](src/Chameleon/README_EN.md) | Yes | Login before entering the server | No |
+| [ChattyBridge](src/ChattyBridge/README.md) | No | Used for cross-server chat | No |
+| [ChestRestore](src/ChestRestore/README_EN.md) | Yes | Infinite items in resource servers | No |
+| [CNPCShop](src/CNPCShop/README.md) | No | Custom NPC shop | No |
+| [ConsoleSql](src/ConsoleSql/README.md) | No | Execute SQL statements in the console | No |
+| [ConvertWorld](src/ConvertWorld/README.md) | No | Convert world items by defeating monsters | No |
+| [CreateSpawn](src/CreateSpawn/README.md) | No | Spawn point building generation | No |
+| [CriticalHit](src/CriticalHit/README.md) | No | Critical hit prompt | No |
+| [DamageStatistic](src/DamageStatistic/README.md) | No | Display damage caused by each player after each boss fight | No |
 | [DataSync](src/DataSync/README.md) | No | Progress synchronization | No |
-| [DeathDrop](src/DeathDrop/README.md) | No | Random and custom loot for monster death | No |
-| [DisableGodMod](src/DisableGodMod/README.md) | No | Prevent player from being invincible | No |
-| [DisableMonsLoot](src/DisableMonsLoot/README.md) | No | Prohibit monster drop rewards | No |
+| [DeathDrop](src/DeathDrop/README.md) | No | Random and custom loot upon monster death | No |
+| [DisableGodMod](src/DisableGodMod/README.md) | No | Prevent players from being invincible | No |
+| [DisableMonsLoot](src/DisableMonsLoot/README.md) | No | Prohibit monster loot | No |
 | [DisableSurfaceProjectiles](src/DisableSurfaceProjectiles/README.md) | No | Prohibit surface projectiles | No |
-| [Don't Fuck](src/DonotFuck/README.md) | No | Don't Fuck | No |
-| [DumpTerrariaID](src/DumpTerrariaID/README.md) | No | Query Terraria ID | No |
+| [Don't Fuck](src/DonotFuck/README.md) | No | Prevent swearing | No |
+| [DTEntryBlock](src/DTEntryBlock/README.md) | No | Prevent entry into dungeons or temples | No |
+| [DumpTerrariaID](src/DumpTerrariaID/README.md) | No | Dump Terraria IDs | No |
 | [Economics.Deal](src/Economics.RPG/README.md) | No | Trading plugin | [EconomicsAPI](src/EconomicsAPI/README.md) |
-| [Economics.NPC](src/Economics.NPC/README.md) | No | Custom monster loot | [EconomicsAPI](src/EconomicsAPI/README.md) |
-| [Economics.RPG](src/Economics.RPG/README.md) | No | RPG | [EconomicsAPI](src/EconomicsAPI/README.md) |
-| [Economics.Shop](src/Economics.Shop/README.md) | No | Store plugin | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/https://github.com/UnrealMultiple/TShockPlugin/blob/master/Economics.RPG/README.md) |
-| [Economics.Skill](src/Economics.Skill/README.md) | No | Skill plugin | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/https://github.com/UnrealMultiple/TShockPlugin/blob/master/Economics.RPG/README.md) |
-| [Economics.WeaponPlus](src/Economics.WeaponPlus/README.md) | No | Enhance weapons | [EconomicsAPI](src/EconomicsAPI/README.md) |
+| [Economics.NPC](src/Economics.NPC/README.md) | No | Custom monster rewards | [EconomicsAPI](src/EconomicsAPI/README.md) |
+| [Economics.Projectile](src/Economics.Projectile/README.md) | No | Custom projectiles | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
+| [Economics.Regain](src/Economics.Regain/README.md) | No | Item recycling | [EconomicsAPI](src/EconomicsAPI/README.md) |
+| [Economics.RPG](src/Economics.RPG/README.md) | No | RPG plugin | [EconomicsAPI](src/EconomicsAPI/README.md) |
+| [Economics.Shop](src/Economics.Shop/README.md) | No | Shop plugin | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
+| [Economics.Task](src/Economics.Task/README.md) | No | Task plugin | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
+| [Economics.Skill](src/Economics.Skill/README.md) | No | Skill plugin | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
+| [Economics.WeaponPlus](src/Economics.WeaponPlus/README.md) | No | Weapon enhancement | [EconomicsAPI](src/EconomicsAPI/README.md) |
 | [EconomicsAPI](src/EconomicsAPI/README.md) | No | Economic plugin prerequisite | No |
-| [Economics.Task](src/Economics.Task/README.md) | No | Task plugin | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/https://github.com/UnrealMultiple/TShockPlugin/blob/master/Economics.RPG/README.md) |
-| [EndureBoost](src/EndureBoost/README.md) | No | Long Duration Buff After Certain Amount of Items | No |
-| [EssentialsPlus](src/EssentialsPlus/README.md) | No | More management commands | No |
-| [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | No | Fish Shop | No |
-| [GolfRewards](src/GolfRewards/README.md) | No | Golf Rewards | No |
+| [EndureBoost](src/EndureBoost/README.md) | No | Long-lasting buff after a certain number of items | No |
+| [EssentialsPlus](src/EssentialsPlus/README.md) | No | Additional management commands | No |
+| [Ezperm](src/Ezperm/README.md) | No | Batch change permissions | No |
+| [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | No | Fish shop | No |
+| [GenerateMap](src/GenerateMap/README.md) | No | Generate map images | [CaiLib](src/CaiLib/README.md) |
+| [GolfRewards](src/GolfRewards/README.md) | No | Golf rewards | No |
 | [GoodNight](src/GoodNight/README.md) | No | Curfew | No |
-| [HardPlayerDrop](src/HardPlayerDrop/README.md) | No | Hardcore Death Drops Life Crystals | No |
+| [HardPlayerDrop](src/HardPlayerDrop/README.md) | No | Hardcore death drops life crystals | No |
+| [HelpPlus](src/HelpPlus/README.md) | No | Fix and enhance the Help command | No |
 | [History](src/History/README.md) | No | History grid record | No |
-| [HouseRegion](src/HouseRegion/README.md) | No | Land Claiming Plugin | No |
+| [HouseRegion](src/HouseRegion/README.md) | No | Land claiming plugin | No |
 | [Invincibility](src/Invincibility/README.md) | No | Time-limited invincibility | No |
-| [JourneyUnlock](src/JourneyUnlock/README.md) | No | Unlock Journey Items | No |
-| [ListPlugins](src/ListPlugins/README.md) | No | List Installed Plugins | No |
-| [MapTeleport](src/MapTp/README_EN.md) | Yes | Double-click the map to teleport. | No |
-| [MiniGamesAPI](src/MiniGamesAPI/README.md) | No | Bean paste mini game API | No |
-| [MonsterRegen](src/MonsterRegen/README.md) | No | Monster Progress Regeneration | No |
-| [Musicplayer](src/MusicPlayer/README.md) | No | Simple Music Player | No |
+| [ItemPreserver](src/ItemPreserver/README.md) | No | Preserve specified items from consumption | No |
+| [JourneyUnlock](src/JourneyUnlock/README.md) | No | Unlock journey items | No |
+| [LifemaxExtra](src/LifemaxExtra/README.md) | No | Eat more life fruits/crystals | No |
+| [ListPlugins](src/ListPlugins/README.md) | No | List installed plugins | No |
+| [MapTeleport](src/MapTp/README.md) | No | Double-click on the map to teleport | No |
+| [MiniGamesAPI](src/MiniGamesAPI/README.md) | No | Bean paste mini-game API | No |
+| [MonsterRegen](src/MonsterRegen/README.md) | No | Monster progress regeneration | No |
+| [Musicplayer](src/MusicPlayer/README.md) | No | Simple music player | No |
 | [Noagent](src/Noagent/README.md) | No | Prohibit proxy IP from entering | No |
-| [NormalDropsBags](src/NormalDropsBags/README.md) | No | Drop Treasure Bags at normal difficulty. | No |
-| [OnlineGiftPackage](src/OnlineGiftPackage/README.md) | No | Online gift pack | No |
+| [NormalDropsBags](src/NormalDropsBags/README.md) | No | Drop treasure bags at normal difficulty | No |
+| [OnlineGiftPackage](src/OnlineGiftPackage/README.md) | No | Online gift package | No |
 | [PacketsStop](src/PacketsStop/README.md) | No | Packet interception | No |
-| [PermaBuff](src/PermaBuff/README.md) | No | Permanent Buff | No |
+| [PermaBuff](src/PermaBuff/README.md) | No | Permanent buff | No |
 | [PerPlayerLoot](src/PerPlayerLoot/README.md) | No | Separate chest for player loot | No |
 | [PersonalPermission](src/PersonalPermission/README.md) | No | Set permissions individually for players | No |
-| [Platform](src/Platform/README.md) | No | Determine Player Device | No |
-| [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | No | Hufang's Plyaer Manager | No |
-| [ProgressBag](src/ProgressBag/README.md) | No | Progress gift pack | No |
-| [ProgressControl](src/ProgressControls/README.md) | No | Planbook (Automate Server Control) | No |
-| [ProgressRestrict](src/ProgressRestrict/README.md) | No | Super progress detection | [DataSync](src/DataSync/README.md) |
+| [Platform](src/Platform/README.md) | No | Determine player device | No |
+| [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | No | Hufang's player manager | No |
 | [PvPer](src/PvPer/README.md) | No | Duel system | No |
-| [RandReSpawn](src/RandRespawn/README_EN.md) | Yes | Random spawn point | No |
-| [RandomBroadcast](src/RandomBroadcast/README.md) | No | Random Broadcast | No |
-| [RecipesBrowser](src/RecipesBrowser/README.md) | No | Crafting Table | No |
+| [ProgressBag](src/ProgressBag/README.md) | No | Progress gift pack | No |
+| [ProgressControls](src/ProgressControls/README.md) | No | Planbook (Automate server control) | No |
+| [ProgressRestrict](src/ProgressRestrict/README.md) | No | Super progress detection | [DataSync](src/DataSync/README.md) |
+| [ProxyProtocolSocket](src/ProxyProtocolSocket/README.md) | No | Accept proxy protocol connections | No |
+| [RainbowChat](src/RainbowChat/README.md) | No | Random chat color | No |
+| [RandomBroadcast](src/RandomBroadcast/README.md) | No | Random broadcast | No |
+| [RandReSpawn](src/RandRespawn/README.md) | Yes | Random spawn point | No |
+| [RealTime](src/RealTime/README.md) | No | Synchronize server time with real time | No |
+| [RecipesBrowser](src/RecipesBrowser/README.md) | No | Crafting table | No |
 | [RegionView](src/RegionView/README.md) | No | Display area boundaries | No |
-| [ReFishTask](src/ReFishTask/README_EN.md) | Yes | Automatically Refresh Fisherman Tasks | No |
-| [Respawn](src/Respawn/README.md) | No | Respawn at the Deadth Place | No |
-| [RestInventory](src/RestInventory/README.md) | No | Provide REST Query Backpack Interface | No |
-| [Sandstorm](src/Sandstorm/README.md) | No | Toggle Sandstorm | No |
-| [ServerTools](src/ServerTools/README.md) | No | Server Management Tools | No |
-| [SessionSentinel](src/SessionSentinel/README.md) | No | Handle Players Not Sending Data Packets for a Long Time | No |
-| [ShortCommand](src/ShortCommand/README.md) | No | Short Command | No |
+| [ReFishTask](src/ReFishTask/README.md) | No | Automatically refresh fisherman tasks | No |
+| [Respawn](src/Respawn/README.md) | No | Respawn at the death place | No |
+| [RestInventory](src/RestInventory/README.md) | No | Provide REST query backpack interface | No |
+| [Sandstorm](src/Sandstorm/README.md) | No | Toggle sandstorm | No |
+| [ServerTools](src/ServerTools/README.md) | No | Server management tools | No |
+| [SessionSentinel](src/SessionSentinel/README.md) | No | Handle players not sending data packets for a long time | No |
+| [ShortCommand](src/ShortCommand/README.md) | No | Short command | No |
 | [ShowArmors](src/ShowArmors/README.md) | No | Display equipment bar | No |
+| [SignInSign](src/SignInSign/README.md) | No | Signboard login plugin | No |
 | [SimultaneousUseFix](src/SimultaneousUseFix/README.md) | No | Solve problems like stuck double hammer and star spin machine gun | [Chireiden.TShock.Omni](src/https://github.com/sgkoishi/yaaiomni/releases) |
-| [SpclPerm](src/SpclPerm/README.md) | No | Server Owner Privileges | No |
-| [StatusTextManager](src/StatusTextManager/README.md) | No | PC Status Text Management Plugin | No |
+| [SmartRegions](src/SmartRegions/README.md) | No | Smart regions | No |
+| [SpawnInfra](src/SpawnInfra/README.md) | No | Generate basic infrastructure | No |
+| [SpclPerm](src/SpclPerm/README.md) | No | Server owner privileges | No |
+| [StatusTextManager](src/StatusTextManager/README.md) | No | PC status text management plugin | No |
 | [SwitchCommands](src/SwitchCommands/README.md) | No | Execute commands in region | No |
-| [TeleportRequest](src/TeleportRequest/README_EN.md) | Yes | Teleport Request | No |
-| [TimerKeeper](src/TimerKeeper/README_EN.md) | Yes | Save Timer State | No |
-| [TownNPCHomes](src/TownNPCHomes/README_EN.md) | Yes | NPC quick home | No |
-| [UnseenInventory](src/UnseenInventory/README.md) | No | Allows the server to generate items that are normally 'unobtainable'. | No |
-| [VeinMiner](src/VeinMiner/README_EN.md) | Yes | Chain mining | No |
-| [WeaponPlusCostCoin](src/WeaponPlusCostCoin/README.md) | No | Weapon Enhancement Coin Version | No |
-| [WikiLangPackLoader](src/WikiLangPackLoader/README.md) | No | Load Chinese Wiki Language Pack for Server | No |
-| [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | No | World Modify | No |
-| [ZHIPlayerManager](src/ZHIPlayerManager/README.md) | No | zZhi's Player Management Plugin | No |
+| [TeleportRequest](src/TeleportRequest/README.md) | Yes | Teleport request | No |
+| [TimerKeeper](src/TimerKeeper/README.md) | Yes | Save timer state | No |
+| [TownNPCHomes](src/TownNPCHomes/README.md) | No | NPC quick home | No |
+| [UnseenInventory](src/UnseenInventory/README.md) | No | Allows the server to generate items that are normally 'unobtainable' | No |
+| [VeinMiner](src/VeinMiner/README.md) | Yes | Chain mining | No |
+| [WeaponPlusCostCoin](src/WeaponPlusCostCoin/README.md) | No | Weapon enhancement coin version | No |
+| [WikiLangPackLoader](src/WikiLangPackLoader/README.md) | No | Load Chinese Wiki language pack for server | No |
+| [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | No | World editor, can modify most of the world parameters | No |
+| [ZHIPlayerManager](src/ZHIPlayerManager/README.md) | No | zZhi's player management plugin | No |
+
+
 
 </Details>
 
