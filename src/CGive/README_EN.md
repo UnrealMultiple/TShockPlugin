@@ -9,7 +9,7 @@
 
 | Command     | Permission |          Details          |
 | ------------- | :--: | :----------: |
-| /getWarehouse |  无  | Get detailed information about the /give command |
+| /getWarehouse |  None  | Get detailed information about the /give command |
 
 ## Commands
 
