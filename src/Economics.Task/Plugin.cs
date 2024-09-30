@@ -66,22 +66,22 @@ public class Plugin : TerrariaPlugin
     {
         if (args.Parameters["name"] == null)
         {
-            return new RestObject("201") { Response = "没有检测到玩家名称" };
+            return new RestObject("201") { Response = GetString("没有检测到玩家名称") };
         }
 
         if (args.Parameters["taskid"] == null)
         {
-            return new RestObject("201") { Response = "没有检测到任务ID" };
+            return new RestObject("201") { Response = GetString("没有检测到任务ID") };
         }
 
         if (!int.TryParse(args.Parameters["taskid"], out var taskid))
         {
-            return new RestObject("201") { Response = "非法的任务ID" };
+            return new RestObject("201") { Response = GetString("非法的任务ID") };
         }
 
         var task = TaskFinishManager.GetTaksByName(args.Parameters["name"]);
         var finish = task.Any(x => x.TaskID == taskid);
-        return new RestObject() { { "response", "查询成功" }, { "code", finish } };
+        return new RestObject() { { "response", GetString("查询成功") }, { "code", finish } };
     }
 
     private void LoadConfig(ReloadEventArgs? args = null)
