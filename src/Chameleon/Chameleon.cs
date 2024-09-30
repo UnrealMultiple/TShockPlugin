@@ -24,7 +24,7 @@ public class Chameleon : TerrariaPlugin
 
     public override string Description => "账户系统交互替换方案";
 
-    public override Version Version => new Version(1, 0, 2);
+    public override Version Version => new Version(1, 0, 3);
 
     private readonly string _clientWasBooted;
 
@@ -167,8 +167,8 @@ public class Chameleon : TerrariaPlugin
                     player.IsDisabledForBannedWearable = false;
                 }
 
-                player.SendSuccessMessage(GetString($"已经验证{account.Name}登录完毕."));
-                TShock.Log.ConsoleInfo(player.Name + GetString("成功验证登录."));
+                player.SendSuccessMessage(GetString($"已经验证{account.Name}登录完毕。"));
+                TShock.Log.ConsoleInfo(player.Name + GetString("成功验证登录。"));
                 PlayerHooks.OnPlayerPostLogin(player);
                 return true;
             }
@@ -321,8 +321,8 @@ public class Chameleon : TerrariaPlugin
                 player.IsDisabledForBannedWearable = false;
             }
 
-            player.SendSuccessMessage(GetString($"已经验证{account.Name}登录完毕."));
-            TShock.Log.ConsoleInfo(player.Name + GetString("成功验证登录."));
+            player.SendSuccessMessage(GetString($"已经验证{account.Name}登录完毕。"));
+            TShock.Log.ConsoleInfo(player.Name + GetString("成功验证登录。"));
             TShock.UserAccounts.SetUserAccountUUID(account, player.UUID);
             PlayerHooks.OnPlayerPostLogin(player);
             return true;
@@ -377,6 +377,6 @@ public class Chameleon : TerrariaPlugin
     {
         LoadConfig();
 
-        args.Player?.SendSuccessMessage(GetString("重新加载{0}配置完毕。"), typeof(Chameleon).Name);
+        args.Player?.SendSuccessMessage(GetString("[Chameleon] 重新加载配置完毕。"));
     }
 }

@@ -10,9 +10,9 @@ namespace DamageStatistic;
 public class DamageStatistic : TerrariaPlugin
 {
     public override string Name => "DamageStatistic-伤害统计";
-    public override Version Version => new Version(1, 0, 0);
+    public override Version Version => new Version(1, 0, 1);
     public override string Author => "Megghy";
-    public override string Description => "Show the damage caused by each player after each boss battle";
+    public override string Description => "在每次 Boss 战后显示每个玩家造成的伤害。";
     public DamageStatistic(Main game) : base(game)
     {
 
@@ -68,7 +68,7 @@ public class DamageStatistic : TerrariaPlugin
             data.ForEach(p => npcLifeMax += data[p.Key]);
             var text = new StringBuilder();
             data.Keys.ForEach(p => text.AppendLine($"{p}: [c/74F3C9:{data[p]}] <{data[p] / npcLifeMax:0.00%}>, "));
-            TShock.Utils.Broadcast($"[c/74F3C9:{data.Count}] 位玩家击败了 [c/74F3C9:{args.npc.FullName}]\n{text}", new Color(247, 244, 150));
+            TShock.Utils.Broadcast(GetString($"[c/74F3C9:{data.Count}] 位玩家击败了 [c/74F3C9:{args.npc.FullName}]\n{text}"), new Color(247, 244, 150));
             this.DamageList.Remove(args.npc);
         }
     }

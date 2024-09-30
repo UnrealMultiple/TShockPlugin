@@ -10,7 +10,7 @@ public class AutoBroadcast : TerrariaPlugin
     public override string Name => "AutoBroadcast";
     public override string Author => "Scavenger";
     public override string Description => "自动广播插件";
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
     public string ConfigPath => Path.Combine(TShock.SavePath, "AutoBroadcastConfig.json");
     public ABConfig Config = new ABConfig();
     public DateTime LastCheck = DateTime.UtcNow;
@@ -40,7 +40,7 @@ public class AutoBroadcast : TerrariaPlugin
         this.autobc();
         TShockAPI.Hooks.GeneralHooks.ReloadEvent += (_) =>
         {
-            TSPlayer.Server.SendSuccessMessage(GetString("自定广播配置已重读!"));
+            TSPlayer.Server.SendSuccessMessage(GetString("自定义广播配置已重读!"));
             this.autobc();
         };
     }

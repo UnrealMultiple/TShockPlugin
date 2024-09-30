@@ -13,7 +13,7 @@ public class Main : TerrariaPlugin
 
     public override string Name => "CGive";
 
-    public override Version Version => new Version(1, 0, 0, 3);
+    public override Version Version => new Version(1, 0, 0, 4);
 
     public Main(Terraria.Main game)
         : base(game)
@@ -144,10 +144,10 @@ public class Main : TerrariaPlugin
     {
         if (args.Parameters.Count == 0)
         {
-            args.Player.SendInfoMessage(GetString("/cgive personal 命令 被执行者"));
-            args.Player.SendInfoMessage(GetString("/cgive all 执行者 命令"));
+            args.Player.SendInfoMessage(GetString("/cgive personal [命令] [被执行者]"));
+            args.Player.SendInfoMessage(GetString("/cgive all [执行者] [命令]"));
             args.Player.SendInfoMessage(GetString("/cgive list,列出所有离线命令"));
-            args.Player.SendInfoMessage(GetString("/cgive del id,删除指定id的离线命令"));
+            args.Player.SendInfoMessage(GetString("/cgive del [id],删除指定id的离线命令"));
             args.Player.SendInfoMessage(GetString("/cgive reset,重置所有数据"));
             return;
         }

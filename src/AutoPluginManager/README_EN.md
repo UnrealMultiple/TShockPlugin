@@ -4,7 +4,7 @@
 - Source: Here
 - Use the command to automatically update the server’s plugins (only from this repository).
 
-## 指令
+## Commands
 
 | Command                 |        Permission         |                                                               Details                                                                |
 |-------------------------| :-----------------: |:------------------------------------------------------------------------------------------------------------------------------------:|
