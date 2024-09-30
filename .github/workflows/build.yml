@@ -146,6 +146,14 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v5
         with:
           configuration: ".config/log_config.json"
+          
+      - name: Download File
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          name: Plugins
+          path: bin
+          skip_unpack: true
 
       - name: 发布插件包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -166,6 +174,6 @@ jobs:
             ${{steps.external_changelog_second.outputs.changelog}}
             </details>
           artifacts: |
-            out/Plugins.zip
+            bin/Plugins.zip
           allowUpdates: true
           removeArtifacts: true
