@@ -85,6 +85,7 @@
 | [ConvertWorld](src/ConvertWorld/README.md) | 击败怪物转换世界物品 | 无 |
 | [CreateSpawn](src/CreateSpawn/README.md) | 出生点建筑生成 | 无 |
 | [CriticalHit](src/CriticalHit/README.md) | 击打提示 | 无 |
+| [DamageStatistic](src/DamageStatistic/README.md) | 在每次 Boss 战后显示每个玩家造成的伤害 | 无 |
 | [DataSync](src/DataSync/README.md) | 进度同步 | 无 |
 | [DeathDrop](src/DeathDrop/README.md) | 怪物死亡随机和自定义掉落物品 | 无 |
 | [DisableGodMod](src/DisableGodMod/README.md) | 阻止玩家无敌 | 无 |
