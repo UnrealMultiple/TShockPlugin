@@ -82,6 +82,7 @@ jobs:
         with:
           name: Plugins
           path: out/Target/*
+          compression-level: 9
 
       - name: 更新相关文件
         continue-on-error: true
@@ -146,9 +147,18 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v5
         with:
           configuration: ".config/log_config.json"
-
+          
+      - name: 下载临时插件包
+        uses: actions/download-artifact@v4
+        with:
+          name: Plugins
+          path: out
+          merge-multiple: true
+      - name: 释放
+        run: ls -R out
+        
       - name: 发布插件包
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        #if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: ncipollo/release-action@v1
         with:
           tag: V1.0.0.0
