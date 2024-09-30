@@ -167,6 +167,8 @@
 |         [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md)          |        No         | Fish Shop                                                                          | No                                                                                 |
 |    [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md)     |        No         | Hufang's Plyaer Manager                                                            | No                                                                                 |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md)|        No         | World Modify                                                                       | No                                                                                 |
+|                     [StatusTextManager](src/StatusTextManager/README.md)                     |         PC Status Text Management Plugin          |                                                                           No                                                                           |
+|                     [Don't Fuck](src/DonotFuck/README.md)                                    |          Don't Fuck          |                                                                           No                                                                           |
 </Details>
 
 ## Contributors
