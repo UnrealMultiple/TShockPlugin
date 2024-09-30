@@ -173,6 +173,7 @@
 | [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) |         Hufang的玩家管理器          |                                                                           无                                                                           |
 |   [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md)   |      世界编辑器,可以修改大部分的世界参数       |                                                                           无                                                                           |
 |                     [StatusTextManager](src/StatusTextManager/README.md)                     |          PC端模板文本管理插件          |                                                                           无                                                                           |
+|                     [Don't Fuck](src/DonotFuck/README.md)                                    |          禁止脏话          |                                                                           无                                                                           |
 
 </Details>
 
