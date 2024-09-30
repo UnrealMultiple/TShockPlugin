@@ -81,7 +81,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Plugins
-          path: out/Plugins.zip
+          path: out/Target/*
 
       - name: 更新相关文件
         continue-on-error: true
