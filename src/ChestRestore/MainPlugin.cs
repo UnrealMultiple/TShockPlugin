@@ -12,7 +12,7 @@ public class MainPlugin : TerrariaPlugin
     public MainPlugin(Main game) : base(game) { }
 
     public override string Name => "ChestRestore";
-    public override Version Version => new Version(1, 0, 5);
+    public override Version Version => new Version(1, 0, 6);
     public override string Author => "Cjx重构 | 肝帝熙恩简单修改";
     public override string Description => "无限宝箱插件";
 
