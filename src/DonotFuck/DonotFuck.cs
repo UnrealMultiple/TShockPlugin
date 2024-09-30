@@ -16,12 +16,10 @@ namespace DonotFuck
         //插件的名称
         public override string Name => "Don't Fuck";
         //插件的版本
-        public override Version Version => new Version(2, 0, 0);
+        public override Version Version => new Version(2, 0, 1);
 
         internal static Configuration Config; //将Config初始化
 
-        //建个“禁止脏话”文件夹，方便Configuration里写入配置文件
-        string FilePath = Path.Combine(TShock.SavePath, "禁止脏话");
 
         //插件的构造器
         public Plugin(Main game) : base(game)
@@ -40,12 +38,6 @@ namespace DonotFuck
         //插件加载时执行的代码
         public override void Initialize()
         {
-            // 检查配置文件夹是否存在，不存在则根据FilePath路径创建。
-            if (!Directory.Exists(FilePath))
-            {
-                Directory.CreateDirectory(FilePath); // 自动创建缺失的文件夹。
-            }
-            // 首次加载配置文件。
             LoadConfig();
             ServerApi.Hooks.ServerChat.Register(this, OnChat); //注册聊天钩子
 
@@ -125,7 +117,6 @@ namespace DonotFuck
                 }
 
                 var Count = Ban.Trigger(player.Name);
-                /group addperm default nanami.pvp.allow
                 // 只有累计违规次数达到上限才发送提醒信息并执行封禁逻辑
                 if (Count > Config.InspectedQuantity)
                 {
