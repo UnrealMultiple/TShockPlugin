@@ -66,6 +66,7 @@
 | [AutoClear](src/Autoclear/README.md) | 智能自动扫地 | 无 |
 | [AutoPluginManager](src/AutoPluginManager/README.md) | 一键自动更新插件 | 无 |
 | [AutoReset](src/AutoReset/README.md) | 完全自动重置 | 无 |
+| [AutoStoreItems](src/AutoStoreItems/README.md) | 自动储存 | 无 |
 | [AutoTeam](src/AutoTeam/README.md) | 自动队伍 | 无 |
 | [Back](src/Back/README.md) | 死亡回溯 | 无 |
 | [BagPing](src/BagPing/README.md) | 地图上标记宝藏袋 | 无 |
