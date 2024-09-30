@@ -1,4 +1,4 @@
-## DonotFuck 脏话
+## DonotFuck 禁止脏话
 
 - 作者: Cai 羽学修改
 - 出处: TShock官方群
