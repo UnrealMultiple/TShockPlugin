@@ -92,14 +92,14 @@
   },
   {
     "Name": "禁怪物掉落",
-    "Version": "1.2.1",
+    "Version": "1.3.1",
     "Author": "羽学",
     "Description": "清理怪物身边掉落物",
     "Path": "DisableMonsLoot.dll"
   },
   {
     "Name": "禁止怪物",
-    "Version": "1.0.0.2",
+    "Version": "1.0.0.3",
     "Author": "Patrikk,GK 改良",
     "Description": "禁止指定怪物的出没",
     "Path": "BanNpc.dll"
@@ -211,7 +211,7 @@
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.0.4",
+    "Version": "1.0.5",
     "Author": "Scavenger",
     "Description": "自动广播插件",
     "Path": "AutoBroadcast.dll"
@@ -267,7 +267,7 @@
   },
   {
     "Name": "BridgeBuilder",
-    "Version": "1.0.9",
+    "Version": "1.1.0",
     "Author": "Soofa，肝帝熙恩汉化1449",
     "Description": "铺桥!",
     "Path": "BridgeBuilder.dll"
@@ -302,14 +302,14 @@
   },
   {
     "Name": "CaiRewardChest",
-    "Version": "2024.9.28.1",
+    "Version": "2024.9.29.1",
     "Author": "Cai",
     "Description": "奖励箱！！",
     "Path": "CaiRewardChest.dll"
   },
   {
     "Name": "CGive",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "Leader",
     "Description": "离线give",
     "Path": "CGive.dll"
@@ -323,7 +323,7 @@
   },
   {
     "Name": "Chameleon",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "mistzzt，肝帝熙恩修复1449",
     "Description": "账户系统交互替换方案",
     "Path": "Chameleon.dll"
@@ -379,9 +379,9 @@
   },
   {
     "Name": "DamageStatistic-伤害统计",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "Megghy",
-    "Description": "Show the damage caused by each player after each boss battle",
+    "Description": "在每次 Boss 战后显示每个玩家造成的伤害。",
     "Path": "DamageStatistic.dll"
   },
   {
@@ -561,7 +561,7 @@
   },
   {
     "Name": "PerPlayerLoot",
-    "Version": "2.0.2",
+    "Version": "2.0.3",
     "Author": "Codian, 肝帝熙恩汉化1449",
     "Description": "玩家战利品单独箱子.",
     "Path": "PerPlayerLoot.dll"

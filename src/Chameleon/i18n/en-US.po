@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chameleon\n"
-"POT-Creation-Date: 2024-09-28 12:12:07+0000\n"
+"POT-Creation-Date: 2024-09-30 03:22:25+0000\n"
 "PO-Revision-Date: 2024-09-29 21:43+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,15 +13,27 @@ msgstr ""
 
 #: ../../Chameleon.cs:73
 msgid "[Chameleon] 在启用本插件的情况下，入服前登录将被强制开启。"
-msgstr "[Chameleon] When this plugin is enabled, DisableLoginBeforeJoin will be forcibly set to true."
+msgstr ""
+"[Chameleon] When this plugin is enabled, DisableLoginBeforeJoin will be "
+"forcibly set to true."
 
 #: ../../Chameleon.cs:68
 msgid "[Chameleon] 在启用本插件的情况下，服务器密码功能将失效。"
-msgstr "[Chameleon] When this plugin is enabled, the server password feature will be disabled"
+msgstr ""
+"[Chameleon] When this plugin is enabled, the server password feature will be "
+"disabled"
 
 #: ../../Chameleon.cs:79
 msgid "[Chameleon] 在启用本插件的情况下，注册登录将被强制开启。"
-msgstr "[Chameleon] When this plugin is enabled, RequireLogin will be forcibly set to true."
+msgstr ""
+"[Chameleon] When this plugin is enabled, RequireLogin will be forcibly set "
+"to true."
+
+#: ../../Chameleon.cs:380
+#, fuzzy
+#| msgid "[Chameleon] 重新加载配置完毕。。"
+msgid "[Chameleon] 重新加载配置完毕。"
+msgstr "[Chameleon] Configuration reloaded successfully."
 
 #: ../../Chameleon.cs:276
 msgid "个字符。"
@@ -68,10 +80,6 @@ msgstr "Please choose a different username."
 #: ../../Chameleon.cs:279
 msgid "账户{0}注册成功。"
 msgstr "Account {0} registered successfully."
-
-#: ../../Chameleon.cs:380
-msgid "[Chameleon] 重新加载配置完毕。。"
-msgstr "[Chameleon] Configuration reloaded successfully."
 
 #: ../../Chameleon.cs:259
 msgid "验证失败"
