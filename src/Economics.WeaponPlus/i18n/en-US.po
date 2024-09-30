@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.WeaponPlus\n"
-"POT-Creation-Date: 2024-09-30 17:35:21+0800\n"
-"PO-Revision-Date: 2024-09-30 17:35:22+0800\n"
+"POT-Creation-Date: 2024-09-30 18:24:33+0800\n"
+"PO-Revision-Date: 2024-09-30 18:24:34+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,7 +11,7 @@ msgstr ""
 "X-Generator: GetText.NET Extractor\n"
 #: ..\..\WeaponPlus.cs:76
 msgid "[武器强化EC版]重新加载配置完毕。"
-msgstr "[Weapon Enhancement EC Edition] Configuration reloaded."
+msgstr "[Weapon Enhancement EC Version] Configuration reloaded."
 
 #: ..\..\WeaponPlus.cs:246
 #: ..\..\WeaponPlus.cs:277
@@ -20,7 +20,7 @@ msgstr "[Weapon Enhancement EC Edition] Configuration reloaded."
 #: ..\..\WeaponPlus.cs:370
 #, csharp-format
 msgid "[i:{0}] 降级成功 共计消耗：{1}\n{2}"
-msgstr "[i:{0}] Downgrade successful, total consumed: {1}\n{2}"
+msgstr "[i:{0}] Downgrade successful, total cost: {1}\n{2}"
 
 #: ..\..\WeaponPlus.cs:233
 #: ..\..\WeaponPlus.cs:264
@@ -29,7 +29,7 @@ msgstr "[i:{0}] Downgrade successful, total consumed: {1}\n{2}"
 #: ..\..\WeaponPlus.cs:357
 #, csharp-format
 msgid "[i:{0}] 升级成功 共计消耗：{1}\n{2}"
-msgstr "[i:{0}] Upgrade successful, total consumed: {1}\n{2}"
+msgstr "[i:{0}] Upgrade successful, total cost: {1}\n{2}"
 
 #: ..\..\WeaponPlus.cs:159
 #, csharp-format
@@ -54,7 +54,7 @@ msgstr "Size Level:"
 
 #: ..\..\WItem.cs:183
 msgid "大小升至下一级需："
-msgstr "To upgrade to the next size level, you need:"
+msgstr "Required to upgrade size to the next level:"
 
 #: ..\..\WeaponPlus.cs:573
 msgid "当前该类型升级已达到上限，无法升级"
@@ -66,7 +66,7 @@ msgstr "Remaining:"
 
 #: ..\..\WeaponPlus.cs:175
 msgid "当前武器没有任何等级，不用回炉重做"
-msgstr "The current weapon has no levels and does not need to be reworked."
+msgstr "The current weapon has no levels and does not need to be remade."
 
 #: ..\..\WItem.cs:178
 #: ..\..\WItem.cs:184
@@ -74,7 +74,7 @@ msgstr "The current weapon has no levels and does not need to be reworked."
 #: ..\..\WItem.cs:196
 #: ..\..\WItem.cs:202
 msgid "当前已满级"
-msgstr "Currently at maximum level."
+msgstr "Already at max level"
 
 #: ..\..\WItem.cs:146
 msgid "当前状态："
@@ -94,7 +94,7 @@ msgstr "Level too low"
 
 #: ..\..\WeaponPlus.cs:141
 msgid "该指令必须在游戏内使用"
-msgstr "This command must be used in-game."
+msgstr "This command must be used in-game"
 
 #: ..\..\WItem.cs:164
 msgid "攻速"
@@ -106,7 +106,7 @@ msgstr "Attack Speed Level:"
 
 #: ..\..\WItem.cs:195
 msgid "攻速升至下一级需："
-msgstr "To upgrade to the next attack speed level, you need:"
+msgstr "Required to upgrade attack speed to the next level:"
 
 #: ..\..\WItem.cs:155
 msgid "击退"
@@ -118,7 +118,7 @@ msgstr "Knockback Level:"
 
 #: ..\..\WItem.cs:189
 msgid "击退升至下一级需："
-msgstr "To upgrade to the next knockback level, you need:"
+msgstr "Required to upgrade knockback to the next level:"
 
 #: ..\..\WeaponPlus.cs:126
 msgid ""
@@ -128,11 +128,11 @@ msgid ""
 "重新获取时重给的物品是单独给予，不会被其他玩家捡走，每次进入服务器时会默认强制重新获取。\n"
 "第一个物品栏是强化栏，指令只对该物品栏内的物品起效，强化完即可将武器拿走换至其他栏位，功能类似于哥布林的重铸槽。"
 msgstr ""
-"Almost all weapons and ammunition can be enhanced, but the enhancement will invalidate affixes. As compensation, the cost of the first three enhancements is reduced by 80%.\n"
-"Enhancement is bound to a type of weapon, i.e., weapons with the same ID, not individual items. Enhancements are character-bound, non-transferable, and become invalid if thrown out. They only work within personal inventories such as the backpack or piggy bank.\n"
-"If you accidentally throw out an item or for other reasons the enhancement becomes invalid, use the command /plus load to retrieve it. Each retrieval will forcibly take the item from your current inventory, so please pick it up to avoid losing it.\n"
-"When retrieving, the item is given separately and cannot be picked up by other players. The system will force a retrieval every time you enter the server.\n"
-"The first slot in the inventory is the enhancement slot, and commands only apply to items in this slot. Once enhanced, the weapon can be moved to another slot, similar to the Goblin Tinkerer's reforging function."
+"Almost all weapons and ammunition can be enhanced, but the enhancement will invalidate any modifiers. As compensation, the cost of the first three enhancements is reduced by 80%.\n"
+"Enhancement is bound to a category of weapons with the same ID, not just a single item. Enhancements are character-bound, non-transferable, and become invalid if thrown out. They only work in personal inventories like your backpack or piggy bank.\n"
+"If you accidentally throw out an enhanced item or for other reasons it becomes invalid, use the command /plus load to retrieve it. Each retrieval will force the item from your current inventory, so make sure to pick it up to avoid losing it.\n"
+"The retrieved item is given individually and cannot be picked up by other players. It is automatically retrieved each time you enter the server.\n"
+"The first inventory slot is the enhancement slot, and commands only affect items within that slot. Once enhanced, the weapon can be moved to another slot, similar to the goblin's reforging slot."
 
 #: ..\..\WeaponPlus.cs:579
 msgid "扣除："
@@ -140,19 +140,19 @@ msgstr "Deducted:"
 
 #: ..\..\WeaponPlus.cs:169
 msgid "您当前的升级武器已重新读取"
-msgstr "Your currently upgraded weapon has been reloaded."
+msgstr "Your currently upgraded weapon has been reloaded"
 
 #: ..\..\WeaponPlus.cs:410
 msgid "强化数据清理失败！！!"
-msgstr "Enhancement data cleanup failed!!!"
+msgstr "Failed to clear enhancement data!!!"
 
 #: ..\..\WeaponPlus.cs:202
 msgid "请输入正整数"
-msgstr "Please enter a positive integer."
+msgstr "Please enter a positive integer"
 
 #: ..\..\WeaponPlus.cs:155
 msgid "请在第一个物品栏内放入武器而不是其他什么东西或空"
-msgstr "Please place a weapon in the first inventory slot, not something else or leave it empty."
+msgstr "Please place a weapon in the first inventory slot, not something else or leave it empty"
 
 #: ..\..\WItem.cs:147
 msgid "伤害"
@@ -164,7 +164,7 @@ msgstr "Damage Level:"
 
 #: ..\..\WItem.cs:177
 msgid "伤害升至下一级需："
-msgstr "To upgrade to the next damage level, you need:"
+msgstr "Required to upgrade damage to the next level:"
 
 #: ..\..\WItem.cs:168
 msgid "射弹飞速"
@@ -172,7 +172,7 @@ msgstr "Projectile Speed"
 
 #: ..\..\WItem.cs:201
 msgid "射弹飞速升至下一级需："
-msgstr "To upgrade to the next projectile speed level, you need:"
+msgstr "Required to upgrade projectile speed to the next level:"
 
 #: ..\..\WItem.cs:129
 msgid "射弹飞行速度等级："
@@ -184,15 +184,15 @@ msgstr "Remaining Enhancement Times:"
 
 #: ..\..\WeaponPlus.cs:53
 msgid "输入 /clearallplayersplus 将数据库中所有玩家的所有强化物品全部清理，管理员专属"
-msgstr "Enter /clearallplayersplus to clear all enhanced items for all players in the database. Admin only."
+msgstr "Enter /clearallplayersplus to clear all enhanced items for all players in the database. Admin only"
 
 #: ..\..\WeaponPlus.cs:415
 msgid "输入 /clearallplayersplus 将数据库中强化物品全部清理"
-msgstr "Enter /clearallplayersplus to clear all enhanced items in the database."
+msgstr "Enter /clearallplayersplus to clear all enhanced items in the database"
 
 #: ..\..\WeaponPlus.cs:49
 msgid "输入 /plus 查看当前该武器的等级状态和升至下一级需要多少材料"
-msgstr "Enter /plus to view the current weapon's level status and the materials needed to reach the next level."
+msgstr "Enter /plus to check the current level status of the weapon and how many materials are needed to upgrade to the next level"
 
 #: ..\..\WeaponPlus.cs:127
 msgid ""
@@ -206,15 +206,15 @@ msgid ""
 "输入 /plus clear 清理当前武器的所有等级，可以回收一点消耗物\n"
 "输入 /clearallplayersplus 将数据库中所有玩家的所有强化物品全部清理，管理员专属"
 msgstr ""
-"Enter /plus to view the current weapon's level status and the materials needed to reach the next level.\n"
-"Enter /plus load to re-obtain all currently upgraded weapons on your person.\n"
-"Enter /plus <damage/da/damage> <up/down> <num> to upgrade/downgrade the current weapon's damage level.\n"
-"Enter /plus <scale/sc/size> <up/down> <num> to upgrade/downgrade the current weapon or projectile's size level by ±5%.\n"
-"Enter /plus <knockback/kn/knockback> <up/down> <num> to upgrade/downgrade the current weapon's knockback level by ±5%.\n"
-"Enter /plus <usespeed/us/use speed> <up/down> <num> to upgrade/downgrade the current weapon's use speed level.\n"
-"Enter /plus <shootspeed/sh/projectile speed> <up/down> <num> to upgrade/downgrade the current weapon's projectile speed level, affecting the range of whip-like weapons by ±5%.\n"
-"Enter /plus clear to clear all levels of the current weapon, allowing for some material recovery.\n"
-"Enter /clearallplayersplus to clear all enhanced items for all players in the database. Admin only."
+"Enter /plus to check the current level status of the weapon and how many materials are needed to upgrade to the next level\n"
+"Enter /plus load to reacquire all currently upgraded weapons\n"
+"Enter /plus <damage/da/damage> <up/down> <num> to upgrade/downgrade the damage level of the current weapon\n"
+"Enter /plus <scale/sc/size> <up/down> <num> to upgrade/downgrade the size level of the current weapon or projectile by ±5%\n"
+"Enter /plus <knockback/kn/knockback> <up/down> <num> to upgrade/downgrade the knockback level of the current weapon by ±5%\n"
+"Enter /plus <usespeed/us/use speed> <up/down> <num> to upgrade/downgrade the use speed level of the current weapon\n"
+"Enter /plus <shootspeed/sh/projectile speed> <up/down> <num> to upgrade/downgrade the projectile speed level of the current weapon, affecting whip range by ±5%\n"
+"Enter /plus clear to clear all levels of the current weapon, allowing some material recovery\n"
+"Enter /clearallplayersplus to clear all enhanced items for all players in the database. Admin only"
 
 #: ..\..\WeaponPlus.cs:187
 #: ..\..\WeaponPlus.cs:197
@@ -222,11 +222,11 @@ msgstr ""
 #: ..\..\WeaponPlus.cs:376
 #: ..\..\WeaponPlus.cs:381
 msgid "输入 /plus help 查看 plus 系列指令帮助"
-msgstr "Enter /plus help to view the help for the plus series of commands."
+msgstr "Enter /plus help to view help for the plus series of commands"
 
 #: ..\..\WeaponPlus.cs:406
 msgid "所有玩家的所有强化数据全部清理成功！"
-msgstr "All enhancement data for all players has been successfully cleared!"
+msgstr "All enhancement data for all players successfully cleared!"
 
 #: ..\..\WeaponPlus.cs:183
 msgid "完全重置成功！回收："
@@ -234,12 +234,12 @@ msgstr "Complete reset successful! Recovered:"
 
 #: ..\..\WItem.cs:135
 msgid "未升级过，无任何加成"
-msgstr "Not upgraded, no bonuses."
+msgstr "Not upgraded, no bonuses"
 
 #: ..\..\WItem.cs:207
 msgid "已达到最大武器总等级"
-msgstr "Maximum total weapon level reached."
+msgstr "Reached maximum total weapon level"
 
 #: ..\..\WeaponPlus.cs:146
 msgid "SSC 未开启"
-msgstr "SSC is not enabled."
+msgstr "SSC not enabled"
