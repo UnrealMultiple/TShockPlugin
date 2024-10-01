@@ -77,16 +77,16 @@ public class UserTaskData
         var task = GetUserTask(ply.Name);
         if (task != null)
         {
-            result.Add($"{task.TaskName}完成进度");
+            result.Add(GetString($"{task.TaskName}完成进度"));
             task.TaskInfo.TallkNPC.ForEach(x =>
             {
-                var talk = Plugin.TallkManager.TallkNpcByID(ply.Name, x) ? "(已完成)".Color(TShockAPI.Utils.GreenHighlight) : "(未完成)".Color(TShockAPI.Utils.RedHighlight);
-                result.Add($"与{TShock.Utils.GetNPCById(x).FullName}进行对话{talk}");
+                var talk = Plugin.TallkManager.TallkNpcByID(ply.Name, x) ? GetString("(已完成)").Color(TShockAPI.Utils.GreenHighlight) : GetString("(未完成)").Color(TShockAPI.Utils.RedHighlight);
+                result.Add(GetString($"与{TShock.Utils.GetNPCById(x).FullName}进行对话{talk}"));
             });
 
             task.TaskInfo.KillNPCS.ForEach(x =>
             {
-                var str = $"击杀怪物 {TShock.Utils.GetNPCById(x.ID).FullName} ({Plugin.KillNPCManager.GetKillNpcsCountByID(ply.Name, x.ID)}/{x.Count})";
+                var str = GetString($"击杀怪物 {TShock.Utils.GetNPCById(x.ID).FullName} ({Plugin.KillNPCManager.GetKillNpcsCountByID(ply.Name, x.ID)}/{x.Count})");
                 result.Add(str);
             });
 
@@ -102,7 +102,7 @@ public class UserTaskData
                     {
                         items.ForEach(n => stack += n.stack);
                     }
-                    result.Add($"拥有{TShock.Utils.GetItemById(x.netID).Name} ({stack}/{x.Stack})");
+                    result.Add(GetString($"拥有{TShock.Utils.GetItemById(x.netID).Name} ({stack}/{x.Stack})"));
                 }
                 else
                 {
@@ -112,7 +112,7 @@ public class UserTaskData
                         items.ForEach(n => stack += n.stack);
 
                     }
-                    result.Add($"拥有{TShock.Utils.GetPrefixById(x.Prefix)}{TShock.Utils.GetItemById(x.netID).Name} ({stack}/{x.Stack})");
+                    result.Add(GetString($"拥有{TShock.Utils.GetPrefixById(x.Prefix)}{TShock.Utils.GetItemById(x.netID).Name} ({stack}/{x.Stack})"));
                 }
             });
         }

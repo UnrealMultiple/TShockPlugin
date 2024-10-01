@@ -1,0 +1,62 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Economics.Regain\n"
+"POT-Creation-Date: 2024-09-30 12:32:32+0000\n"
+"PO-Revision-Date: 2024-09-30 15:29:52+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+
+#: ../../Regain..cs:138
+msgid "/regain"
+msgstr "/regain"
+
+#: ../../Regain..cs:139
+msgid "/regain [数量]"
+msgstr "/regain [num]"
+
+#: ../../Regain..cs:140
+msgid "/regain list"
+msgstr "/regain list"
+
+#: ../../Regain..cs:137
+msgid "/regain语法"
+msgstr "/regain Grammar"
+
+#: ../../Regain..cs:90
+msgid "你必须登录游戏使用此命令!"
+msgstr "You must be logged into the game to use this command!"
+
+#: ../../Regain..cs:121
+#, csharp-format
+msgid "值{0}无效!"
+msgstr "Value {0} is invalid!"
+
+#: ../../Regain..cs:69
+msgid "回收物品列表 ({0}/{1})："
+msgstr "Recyclable Item List ({0}/{1}):"
+
+#: ../../Regain..cs:68
+msgid "当前可回收物品"
+msgstr "Current recyclable items"
+
+#: ../../Regain..cs:133
+#, csharp-format
+msgid "成功兑换{0}个{1}!"
+msgstr "Successfully exchanged {0} {1}s!"
+
+#: ../../Regain..cs:78
+msgid "该物品暂时无法回收!"
+msgstr "This item is temporarily not recyclable!"
+
+#: ../../Regain..cs:83
+msgid "请手持一个有效物品!"
+msgstr "Please hold a valid item!"
+
+#: ../../Regain..cs:70
+msgid "输入 {0}regain list {{0}} 查看更多"
+msgstr "Type {0}regain list to view more"

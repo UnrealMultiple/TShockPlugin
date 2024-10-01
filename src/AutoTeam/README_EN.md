@@ -1,26 +1,40 @@
 # AutoTeamPlus
 
 - Authors: 十七，肝帝熙恩
-- Source: No
-- 自动分配一个组的玩家到特定队伍
+- Source: None
+- Automatically assign players from a group to a specific team
 
 ## Commands
 
 | Command          |   Permission    |          Details          |
 |------------------|:---------------:| :------: |
 | /autoteam or /at | autoteam.toggle |   Toggle the automatic team assignment feature.   |
-| No               |   noautoteam    |   Having this permission will not automatically assign you to a team.   |
+| None               |   noautoteam    |   Having this permission will not automatically assign you to a team.   |
 
 ## Config
 > Configuration file location：tshock/AutoTeamPlus.json
+- Team Name Reference：
+
+| 中文  | English |
+|-------|---------|
+| 无队伍 | none    |
+| 红队   | red     |
+| 绿队   | green   |
+| 蓝队   | blue    |
+| 黄队   | yellow  |
+| 粉队   | pink    |
+
+- Configuration Example
 ```json
 {
-  "组的队伍": { //Group -> Team
-    "组名字": "队伍名称中文或English",//本行和下面两行均可改
-    "default": "red",
-    "admin": "green"
-  },
-  "开启插件": true //Enable
+    "开启插件": true, // Enable Plugin
+    "组对应的队伍": { ////Group -> Team
+    "guest": "pink",
+    "default": "蓝队",
+    "owner": "红队",
+    "admin": "green",
+    "vip": "none"
+  }
 }
 ```
 ## FeedBack
