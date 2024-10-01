@@ -12,6 +12,7 @@
 ## 更新日志
 
 ```
+2024.10.1.1 修复英文指令不能用的问题
 2024.9.29.1 i18n和README_EN.md
 2024.9.28.1 i18n预备
 2024.9.22.1 细分命令权限，初始化奖励箱时绕过空箱子(梳妆台)
@@ -25,11 +26,11 @@
 
 | 语法      |          权限           |         说明         |
 |---------|:---------------------:|:------------------:|
-| /初始化奖励箱 或 CaiRCInit |  CaiRewardChest.Init  | 将全图箱子设为奖励箱(仅刚开服适用) |
-| /添加奖励箱 或 CaiRCAdd    |  CaiRewardChest.Add   |      添加一个奖励箱       |
-| /编辑奖励箱 或 CaiRCEdit   |  CaiRewardChest.Edit  |      编辑一个奖励箱       |
-| /删除奖励箱 或 CaiRCDelete | CaiRewardChest.Delete |      删除一个奖励箱       |
-| /清空奖励箱 或 CaiRCClear  | CaiRewardChest.Clear  |      移除所有奖励箱       |
+| /初始化奖励箱 或 /caircinit |  CaiRewardChest.Init  | 将全图箱子设为奖励箱(仅刚开服适用) |
+| /添加奖励箱 或 /caircadd    |  CaiRewardChest.Add   |      添加一个奖励箱       |
+| /编辑奖励箱 或 /caircedit   |  CaiRewardChest.Edit  |      编辑一个奖励箱       |
+| /删除奖励箱 或 /caircdelete 或 /caircdel | CaiRewardChest.Delete |      删除一个奖励箱       |
+| /清空奖励箱 或 /caircclear  | CaiRewardChest.Clear  |      移除所有奖励箱       |
 ## 配置
 
 ```json    
