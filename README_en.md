@@ -60,26 +60,26 @@
 |-------------|-------------------|-------------------|---------------|
 | [AdditionalPylons](src/AdditionalPylons/README_EN.md) | Yes | Place more Pylons | No |
 | [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | No | Enhance Broadcast Box Functionality | No |
-| [AutoBroadcast](src/AutoBroadcast/README.md) | Yes | Automatic broadcast | No |
-| [AutoClear](src/Autoclear/README.md) | Yes | Intelligent automatic cleaning | No |
+| [AutoBroadcast](src/AutoBroadcast/README_EN.md) | Yes | Automatic broadcast | No |
+| [AutoClear](src/Autoclear/README_EN.md) | Yes | Intelligent automatic cleaning | No |
 | [AutoReset](src/AutoReset/README_EN.md) | Yes | Fully automatic reset | No |
-| [AutoStoreItems](src/AutoStoreItems/README.md) | Yes | Automatic storage | No |
-| [AutoTeam](src/AutoTeam/README.md) | Yes | Automatic team formation | No |
-| [Back](src/Back/README.md) | Yes | Return to the point of death | No |
-| [BagPing](src/BagPing/README.md) | Yes | Mark treasure bags on the map | No |
+| [AutoStoreItems](src/AutoStoreItems/README_EN.md) | Yes | Automatic storage | No |
+| [AutoTeam](src/AutoTeam/README_EN.md) | Yes | Automatic team formation | No |
+| [Back](src/Back/README_EN.md) | Yes | Return to the point of death | No |
+| [BagPing](src/BagPing/README_EN.md) | Yes | Mark treasure bags on the map | No |
 | [BetterWhitelist](src/BetterWhitelist/README_EN.md) | Yes | Whitelist plugin | No |
 | [BanNpc](src/BanNpc/README_EN.md) | Yes | Prevent monster generation | No |
-| [BedSet](src/BedSet/README.md) | No | Set and record respawn points | No |
+| [BedSet](src/BedSet/README_EN.md) | Yes | Set and record respawn points | No |
 | [BridgeBuilder](src/BridgeBuilder/README_EN.md) | Yes | Quick bridge building | No |
 | [BuildMaster](src/BuildMaster/README.md) | No | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](src/MiniGamesAPI/README.md) |
 | [CaiBot](src/CaiBot/README.md) | No | CaiBot adapter plugin | Built-in precondition |
-| [CaiCustomEmojiCommand](src/CaiCustomEmojiCommand/README.md) | No | Custom emoji command | No |
+| [CaiCustomEmojiCommand](src/CaiCustomEmojiCommand/README_EN.md) | Yes | Custom emoji command | No |
 | [CaiLib](src/CaiLib/README.md) | No | Cai's preload library | No |
 | [CaiRewardChest](src/CaiRewardChest/README_EN.md) | Yes | Convert naturally generated chests into reward chests that everyone can claim once | No |
 | [CGive](src/CGive/README_EN.md) | Yes | Offline commands | No |
 | [Challenger](src/Challenger/README.md) | Yes | Challenger mode | No |
 | [Chameleon](src/Chameleon/README_EN.md) | Yes | Login before entering the server | No |
-| [ChattyBridge](src/ChattyBridge/README.md) | No | Used for cross-server chat | No |
+| [ChattyBridge](src/ChattyBridge/README_EN.md) | Yes | Used for cross-server chat | No |
 | [ChestRestore](src/ChestRestore/README_EN.md) | Yes | Infinite items in resource servers | No |
 | [CNPCShop](src/CNPCShop/README.md) | No | Custom NPC shop | No |
 | [ConsoleSql](src/ConsoleSql/README.md) | No | Execute SQL statements in the console | No |
