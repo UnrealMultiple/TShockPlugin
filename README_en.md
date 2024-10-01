@@ -105,7 +105,7 @@
 | [Economics.Skill](src/Economics.Skill/README.md) | No | Skill plugin | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
 | [Economics.WeaponPlus](src/Economics.WeaponPlus/README.md) | No | Weapon enhancement | [EconomicsAPI](src/EconomicsAPI/README.md) |
 | [EconomicsAPI](src/EconomicsAPI/README.md) | No | Economic plugin prerequisite | No |
-| [EndureBoost](src/EndureBoost/README.md) | No | Long-lasting buff after a certain number of items | No |
+| [EndureBoost](src/EndureBoost/README_EN.md) | Yes | Grant specified buff when the player has a certain number of items | No |
 | [EssentialsPlus](src/EssentialsPlus/README.md) | No | Additional management commands | No |
 | [Ezperm](src/Ezperm/README.md) | No | Batch change permissions | No |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | No | Fish shop | No |
