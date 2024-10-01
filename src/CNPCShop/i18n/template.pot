@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CNPCShop\n"
-"POT-Creation-Date: 2024-10-01 00:06:41+0800\n"
-"PO-Revision-Date: 2024-10-01 00:06:42+0800\n"
+"POT-Creation-Date: 2024-10-01 00:06:43+0000\n"
+"PO-Revision-Date: 2024-10-01 00:06:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ..\..\CNSPlugin.cs:44
+#: ../../CNSPlugin.cs:44
 msgid "<CNPCShop> 成功读取配置文件"
 msgstr ""
 

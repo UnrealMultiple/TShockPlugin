@@ -71,7 +71,7 @@
   },
   {
     "Name": "更好的自动队伍",
-    "Version": "2.4.3",
+    "Version": "2.4.4",
     "Author": "十七改，肝帝熙恩改",
     "Description": "AutoTeamPlus",
     "Path": "AutoTeam.dll"
@@ -85,7 +85,7 @@
   },
   {
     "Name": "击败怪物替换世界物品",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "onusai 羽学",
     "Description": "击败指定怪物替换世界指定图格与所有箱子内物品",
     "Path": "ConvertWorld.dll"
@@ -337,7 +337,7 @@
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.0.5",
+    "Version": "1.0.6",
     "Author": "Cjx重构 | 肝帝熙恩简单修改",
     "Description": "无限宝箱插件",
     "Path": "ChestRestore.dll"
@@ -351,7 +351,7 @@
   },
   {
     "Name": "CNPCShop",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "Megghy，肝帝熙恩更新1449",
     "Description": "自定义NPC商店出售的物品",
     "Path": "CNPCShop.dll"
@@ -390,6 +390,13 @@
     "Author": "None",
     "Description": "None",
     "Path": "DataSync.dll"
+  },
+  {
+    "Name": "Don't Fuck",
+    "Version": "2.0.1",
+    "Author": "Cai 羽学修改",
+    "Description": "禁止脏话",
+    "Path": "DonotFuck.dll"
   },
   {
     "Name": "DumpPluginsList",
