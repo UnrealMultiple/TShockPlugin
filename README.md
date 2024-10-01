@@ -75,6 +75,8 @@
 | [BedSet](src/BedSet/README.md) | 设置并记录重生点 | 无 |
 | [BridgeBuilder](src/BridgeBuilder/README.md) | 快速铺桥 | 无 |
 | [BuildMaster](src/BuildMaster/README.md) | 豆沙小游戏·建筑大师模式 | [MiniGamesAPI](src/MiniGamesAPI/README.md) |
+| [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md)         | 恋恋工具箱核心,用于修复各种TShock问题 (建议安装) |        无                       |
+| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md)       |            恋恋工具箱扩展            |         [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md)                         
 | [CaiBot](src/CaiBot/README.md) | CaiBot 适配插件 | 自带前置 |
 | [CaiCustomEmojiCommand](src/CaiCustomEmojiCommand/README.md) | 自定义表情命令 | 无 |
 | [CaiLib](src/CaiLib/README.md) | Cai 的前置库 | 无 |
@@ -157,7 +159,7 @@
 | [ShortCommand](src/ShortCommand/README.md) | 简短指令 | 无 |
 | [ShowArmors](src/ShowArmors/README.md) | 展示装备栏 | 无 |
 | [SignInSign](src/SignInSign/README.md) | 告示牌登录插件 | 无 |
-| [SimultaneousUseFix](src/SimultaneousUseFix/README.md) | 解决卡双锤卡星旋机枪之类的问题 | [Chireiden.TShock.Omni](src/https://github.com/sgkoishi/yaaiomni/releases) |
+| [SimultaneousUseFix](src/SimultaneousUseFix/README.md) | 解决卡双锤卡星旋机枪之类的问题 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [SmartRegions](src/SmartRegions/README.md) | 智能区域 | 无 |
 | [SpawnInfra](src/SpawnInfra/README.md) | 生成基础建设 | 无 |
 | [SpclPerm](src/SpclPerm/README.md) | 服主特权 | 无 |
