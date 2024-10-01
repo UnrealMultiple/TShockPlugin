@@ -4,10 +4,10 @@ using TShockAPI;
 using TShockAPI.Hooks;
 using static TShockAPI.GetDataHandlers;
 
-namespace autoteam;
+namespace AutoTeam;
 
 [ApiVersion(2, 1)]
-public class Autoteam : TerrariaPlugin
+public class AutoTeam : TerrariaPlugin
 {
     public override string Author => "十七改，肝帝熙恩改";
     public override Version Version => new Version(2, 4, 4);
@@ -15,7 +15,7 @@ public class Autoteam : TerrariaPlugin
     public override string Name => "更好的自动队伍";
     public static Configuration Config;
 
-    public Autoteam(Main game) : base(game)
+    public AutoTeam(Main game) : base(game)
     {
     }
 
