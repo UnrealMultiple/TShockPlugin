@@ -1,4 +1,4 @@
-# PluginManager 自动更新插件
+# AutoPluginManager 自动更新插件
 
 - 作者: 少司命，Cai
 - 出处: 本仓库
