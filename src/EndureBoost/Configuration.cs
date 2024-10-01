@@ -30,7 +30,7 @@ public class Configuration
         [JsonProperty("物品数量")]
         public int RequiredStack { get; set; }
         [JsonProperty("给buff的id")]
-        public int BuffType { get; set; }
+        public int[] BuffType { get; set; }
     }
     [JsonProperty("药水")]
     public List<Potion> Potions { get; set; } = new List<Potion>();
