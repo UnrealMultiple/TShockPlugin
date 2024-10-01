@@ -218,7 +218,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.1.6",
+    "Version": "2.0.1.7",
     "Author": "少司命，Cai",
     "Description": "自动更新你的插件！",
     "Path": "AutoPluginManager.dll"
@@ -253,7 +253,7 @@
   },
   {
     "Name": "BedSet 床设置",
-    "Version": "1.0.0.2",
+    "Version": "1.0.0.3",
     "Author": "cmgy",
     "Description": "",
     "Path": "BedSet.dll"
@@ -484,9 +484,9 @@
   },
   {
     "Name": "EndureBoost",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "肝帝熙恩",
-    "Description": "一定数量后长时间buff",
+    "Description": "拥有指定数量物品给指定buff",
     "Path": "EndureBoost.dll"
   },
   {
