@@ -108,7 +108,7 @@
 | [Economics.Skill](src/Economics.Skill/README.md) | 技能插件 | [EconomicsAPI](src/EconomicsAPI/README.md)<br>[Economics.RPG](src/Economics.RPG/README.md) |
 | [Economics.WeaponPlus](src/Economics.WeaponPlus/README.md) | 强化武器 | [EconomicsAPI](src/EconomicsAPI/README.md) |
 | [EconomicsAPI](src/EconomicsAPI/README.md) | 经济插件前置 | 无 |
-| [EndureBoost](src/EndureBoost/README.md) | 物品一定数量后长时间buff | 无 |
+| [EndureBoost](src/EndureBoost/README.md) | 拥有指定数量物品给指定buff | 无 |
 | [EssentialsPlus](src/EssentialsPlus/README.md) | 更多管理指令 | 无 |
 | [Ezperm](src/Ezperm/README.md) | 批量改权限 | 无 |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 鱼店 | 无 |
