@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "cmgy";
     public override string Description => "";
     public override string Name => "BedSet 床设置";
-    public override Version Version => new(1, 0, 0, 2);
+    public override Version Version => new(1, 0, 0, 3);
 
     private Config Config { get; set; } = new();
     public Plugin(Main game) : base(game) { }
