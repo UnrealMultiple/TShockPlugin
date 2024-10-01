@@ -72,6 +72,8 @@
 | [BedSet](src/BedSet/README_EN.md) | No | Set and record respawn points | No |
 | [BridgeBuilder](src/BridgeBuilder/README_EN.md) | Yes | Quick bridge building | No |
 | [BuildMaster](src/BuildMaster/README.md) | No | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](src/MiniGamesAPI/README.md) |
+| [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | Yes | Yet another misc plugin for TShock - the core part                                 |            No  |
+| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md)  |  Yes  | Yet another misc plugin for TShock - the miscellaneous part          |           [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [CaiBot](src/CaiBot/README.md) | No | CaiBot adapter plugin | Built-in precondition |
 | [CaiCustomEmojiCommand](src/CaiCustomEmojiCommand/README.md) | No | Custom emoji command | No |
 | [CaiLib](src/CaiLib/README.md) | No | Cai's preload library | No |
