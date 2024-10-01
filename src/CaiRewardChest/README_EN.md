@@ -14,11 +14,11 @@
 
 | Command     | Permission |          Details          |
 |---------|:---------------------:|:------------------:|
-| /初始化奖励箱 或 /CaiRCInit |  CaiRewardChest.Init  | Set all chests on the map as reward chests (only applicable when the server is first started) |
-| /添加奖励箱 或 /CaiRCAdd    |  CaiRewardChest.Add   |      Add a reward chest        |
-| /编辑奖励箱 或 /CaiRCEdit   |  CaiRewardChest.Edit  |      Edit a reward chest       |
-| /删除奖励箱 或 /CaiRCDelete | CaiRewardChest.Delete |      Delete a reward chest     |
-| /清空奖励箱 或 /CaiRCClear  | CaiRewardChest.Clear  |      Remove all reward chests  |
+| /rcinit |  CaiRewardChest.Init  | Set all chests on the map as reward chests (only applicable when the server is first started) |
+| /rcadd    |  CaiRewardChest.Add   |      Add a reward chest        |
+| /rcedit   |  CaiRewardChest.Edit  |      Edit a reward chest       |
+| /rcdelete or /rcdel | CaiRewardChest.Delete |      Delete a reward chest     |
+| /rcclear  | CaiRewardChest.Clear  |      Remove all reward chests  |
 
 ## Config
 
