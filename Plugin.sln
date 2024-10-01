@@ -226,7 +226,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JourneyUnlock", "src\Journe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DumpPluginsList", "src\DumpPluginsList\DumpPluginsList.csproj", "{A29A93FC-6BAA-4533-BDFC-2AFD62F15756}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatusTextManager", "src\StatusTextManager\StatusTextManager.csproj", "{139C13CE-6E45-44E4-AD7B-B28B3CE51D55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatusTextManager", "src\StatusTextManager\StatusTextManager.csproj", "{139C13CE-6E45-44E4-AD7B-B28B3CE51D55}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DonotFuck", "src\DonotFuck\DonotFuck.csproj", "{C8B882AE-D82E-4AA6-BAFF-17E9E1A04100}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1116,6 +1118,14 @@ Global
 		{139C13CE-6E45-44E4-AD7B-B28B3CE51D55}.Release|Any CPU.Build.0 = Release|Any CPU
 		{139C13CE-6E45-44E4-AD7B-B28B3CE51D55}.Release|x64.ActiveCfg = Release|Any CPU
 		{139C13CE-6E45-44E4-AD7B-B28B3CE51D55}.Release|x64.Build.0 = Release|Any CPU
+		{C8B882AE-D82E-4AA6-BAFF-17E9E1A04100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8B882AE-D82E-4AA6-BAFF-17E9E1A04100}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8B882AE-D82E-4AA6-BAFF-17E9E1A04100}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C8B882AE-D82E-4AA6-BAFF-17E9E1A04100}.Debug|x64.Build.0 = Debug|Any CPU
+		{C8B882AE-D82E-4AA6-BAFF-17E9E1A04100}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8B882AE-D82E-4AA6-BAFF-17E9E1A04100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8B882AE-D82E-4AA6-BAFF-17E9E1A04100}.Release|x64.ActiveCfg = Release|Any CPU
+		{C8B882AE-D82E-4AA6-BAFF-17E9E1A04100}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

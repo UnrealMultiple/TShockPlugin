@@ -9,6 +9,9 @@
 
 ## 示例
 ```
+v1.0.0
+i18n预备
+
 列出Tshock的数据表名：  
 sql select name from sqlite_master where type='table'  
 查询“用户数据表”有什么：  
@@ -25,8 +28,8 @@ sql update users set username='熙恩' where id=2
 ## 命令
 
 | 命令名           |        权限         |        说明         |
-| -------------- | :----------------- | :-----------------: 
-| /sql <SQL语句>|ConsoleSql.Use |执行SQL
+| -------------- | :----------------- | :-----------------: |
+| /sql <SQL语句>|ConsoleSql.Use |执行SQL|
 
 
 ## 更新日志
