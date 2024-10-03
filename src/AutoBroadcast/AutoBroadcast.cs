@@ -10,7 +10,7 @@ public class AutoBroadcast : TerrariaPlugin
     public override string Name => "AutoBroadcast";
     public override string Author => "Scavenger";
     public override string Description => "自动广播插件";
-    public override Version Version => new Version(1, 0, 5);
+    public override Version Version => new Version(1, 0, 6);
     public string ConfigPath => Path.Combine(TShock.SavePath, "AutoBroadcastConfig.json");
     public ABConfig Config = new ABConfig();
     public DateTime LastCheck = DateTime.UtcNow;
