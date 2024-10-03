@@ -211,7 +211,7 @@
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.0.5",
+    "Version": "1.0.6",
     "Author": "Scavenger",
     "Description": "自动广播插件",
     "Path": "AutoBroadcast.dll"
