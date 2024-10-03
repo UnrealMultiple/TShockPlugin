@@ -230,8 +230,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatusTextManager", "src\St
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DonotFuck", "src\DonotFuck\DonotFuck.csproj", "{C8B882AE-D82E-4AA6-BAFF-17E9E1A04100}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{82448095-7DAE-4230-89B4-DA38AD1A8919}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBox", "src\ItemBox\ItemBox.csproj", "{F1C47139-1211-4951-B922-BBF4BCEE36FE}"
 EndProject
 Global
@@ -1144,8 +1142,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0029F58-63FA-4445-ABC2-C334EB5B99B5}
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{F1C47139-1211-4951-B922-BBF4BCEE36FE} = {82448095-7DAE-4230-89B4-DA38AD1A8919}
 	EndGlobalSection
 EndGlobal
