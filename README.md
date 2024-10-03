@@ -123,6 +123,7 @@
 | [HouseRegion](src/HouseRegion/README.md) | 圈地插件 | 无 |
 | [Invincibility](src/Invincibility/README.md) | 限时无敌 | 无 |
 | [ItemPreserver](src/ItemPreserver/README.md) | 指定物品不消耗 | 无 |
+| [ItemBox](src/ItemBox/README.md) | 离线背包系统，物品盒子 | 无 |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | 解锁旅途物品 | 无 |
 | [LifemaxExtra](src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | 无 |
 | [ListPlugins](src/ListPlugins/README.md) | 查已装插件 | 无 |
@@ -174,7 +175,6 @@
 | [WikiLangPackLoader](src/WikiLangPackLoader/README.md) | 为服务器加载 Wiki 语言包 | 无 |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 世界编辑器,可以修改大部分的世界参数 | 无 |
 | [ZHIPlayerManager](src/ZHIPlayerManager/README.md) | zhi的玩家管理插件 | 无 |
-| [itemBox](src/itemBox/README.md) | 物品盒子 | 无 |
 
 </Details>
 

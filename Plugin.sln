@@ -232,7 +232,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DonotFuck", "src\DonotFuck\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{82448095-7DAE-4230-89B4-DA38AD1A8919}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "itemBox", "src\itemBox\itemBox.csproj", "{F1C47139-1211-4951-B922-BBF4BCEE36FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBox", "src\ItemBox\ItemBox.csproj", "{F1C47139-1211-4951-B922-BBF4BCEE36FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

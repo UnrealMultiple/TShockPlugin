@@ -120,6 +120,7 @@
 | [HouseRegion](src/HouseRegion/README.md) | No | Land claiming plugin | No |
 | [Invincibility](src/Invincibility/README.md) | No | Time-limited invincibility | No |
 | [ItemPreserver](src/ItemPreserver/README.md) | No | Preserve specified items from consumption | No |
+| [ItemBox](src/itemBox/README.md) | Off-line inventory | No | No |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | No | Unlock journey items | No |
 | [LifemaxExtra](src/LifemaxExtra/README.md) | No | Eat more life fruits/crystals | No |
 | [ListPlugins](src/ListPlugins/README.md) | No | List installed plugins | No |
