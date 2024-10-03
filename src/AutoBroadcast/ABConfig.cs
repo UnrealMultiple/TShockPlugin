@@ -40,7 +40,7 @@ public class ABConfig
             }
         };
 
-        File.WriteAllText(file, JsonConvert.SerializeObject(exampleConfig, Formatting.Indented));
+        exampleConfig.Write(file);
     }
 }
 
