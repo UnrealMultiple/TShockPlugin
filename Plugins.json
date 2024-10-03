@@ -7,8 +7,8 @@
     "Path": "Platform.dll"
   },
   {
-    "Name": "Chireiden.TShock.Omni 3c758322fb",
-    "Version": "0.0.186.0",
+    "Name": "Chireiden.TShock.Omni ad2829677d",
+    "Version": "0.0.187.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
     "Path": "Chireiden.TShock.Omni.dll"
@@ -302,7 +302,7 @@
   },
   {
     "Name": "CaiRewardChest",
-    "Version": "2024.9.29.1",
+    "Version": "2024.10.1.2",
     "Author": "Cai",
     "Description": "奖励箱！！",
     "Path": "CaiRewardChest.dll"
@@ -343,8 +343,8 @@
     "Path": "ChestRestore.dll"
   },
   {
-    "Name": "Chireiden.TShock.Omni.Misc 3c758322fb",
-    "Version": "0.0.186.0",
+    "Name": "Chireiden.TShock.Omni.Misc ad2829677d",
+    "Version": "0.0.187.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock - the miscellaneous part",
     "Path": "Chireiden.TShock.Omni.Misc.dll"
@@ -523,6 +523,13 @@
     "Author": "肝帝熙恩",
     "Description": "在命令中给予玩家一段时间的无敌状态。",
     "Path": "Invincibility.dll"
+  },
+  {
+    "Name": "itemBox",
+    "Version": "2024.10.3.0",
+    "Author": "Cai & 2409",
+    "Description": "离线物品盒子系统.",
+    "Path": "ItemBox.dll"
   },
   {
     "Name": "ItemPreserver",
