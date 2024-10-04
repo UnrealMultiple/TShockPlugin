@@ -12,11 +12,11 @@ public class EndureBoost : TerrariaPlugin
 
     public override string Author => "肝帝熙恩";
 
-    public override string Description => "一定数量后长时间buff";
+    public override string Description => "拥有指定数量物品给指定buff";
 
     public override string Name => "EndureBoost";
 
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
 
     public EndureBoost(Main game) : base(game)
     {
@@ -26,52 +26,25 @@ public class EndureBoost : TerrariaPlugin
     {
         GeneralHooks.ReloadEvent += ReloadConfig;
         ServerApi.Hooks.ServerJoin.Register(this, this.OnServerJoin);
-        GetDataHandlers.PlayerSpawn += this.Rebirth;
-        Commands.ChatCommands.Add(new Command("EndureBoost", this.SetPlayerBuffcmd, "ebbuff", "ldbuff", "loadbuff"));
+        GetDataHandlers.PlayerSpawn.Register(this.Rebirth);
+        Commands.ChatCommands.Add(new Command("EndureBoost", this.SetPlayerBuffcmd, "ebbuff", "ldbuff", "loadbuff","刷新buff"));
         LoadConfig();
-    }
-
-    private void SetPlayerBuffcmd(CommandArgs args)
-    {
-        var player = args.Player;
-        this.SetPlayerBuff(player);
-    }
-
-    private static void LoadConfig()
-    {
-        Config = Configuration.Read(Configuration.FilePath);
-        Config.Write(Configuration.FilePath);
-    }
-
-    private static void ReloadConfig(ReloadEventArgs args)
-    {
-        LoadConfig();
-        args.Player.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(EndureBoost).Name);
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.SetPlayerBuffcmd);
+
             GeneralHooks.ReloadEvent -= ReloadConfig;
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnServerJoin);
-            GetDataHandlers.PlayerSpawn -= this.Rebirth;
+            GetDataHandlers.PlayerSpawn.UnRegister(this.Rebirth);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.SetPlayerBuffcmd);
         }
         base.Dispose(disposing);
     }
 
-    private void OnServerJoin(JoinEventArgs args)
-    {
-        var playerBuff = TShock.Players[args.Who];
-        if (playerBuff == null)
-        {
-            return;
-        }
-        this.SetPlayerBuff(playerBuff);
-    }
-
-    private void Rebirth(object o, GetDataHandlers.SpawnEventArgs args)
+    private void Rebirth(object? sender, GetDataHandlers.SpawnEventArgs args)// 重生后刷新buff
     {
         if (args.Player == null)
         {
@@ -81,10 +54,41 @@ public class EndureBoost : TerrariaPlugin
         this.SetPlayerBuff(player);
     }
 
+    private void SetPlayerBuffcmd(CommandArgs args)// 通过指令立即刷新buff
+    {
+        var player = args.Player;
+        player.SendSuccessMessage(GetString("[拥有指定数量物品给指定buff] 刷新buff完毕。"));
+        this.SetPlayerBuff(player);
+    }
+
+    #region 配置
+    private static void LoadConfig()
+    {
+        Config = Configuration.Read(Configuration.FilePath);
+        Config.Write(Configuration.FilePath);
+    }
+
+    private static void ReloadConfig(ReloadEventArgs args)
+    {
+        LoadConfig();
+        args.Player.SendSuccessMessage(GetString("[拥有指定数量物品给指定buff] 重新加载配置完毕。"));
+    }
+    #endregion
+
+    private void OnServerJoin(JoinEventArgs args)
+    {
+        var player = TShock.Players[args.Who];
+        if (player == null)
+        {
+            return;
+        }
+        this.SetPlayerBuff(player);
+    }
+
     private void SetPlayerBuff(TSPlayer player)
     {
 
-        // 处理 potions
+        // 处理 potions(药水)
         foreach (var potion in Config.Potions)
         {
             foreach (var itemId in potion.ItemID)
@@ -114,7 +118,7 @@ public class EndureBoost : TerrariaPlugin
             }
         }
 
-        // 处理 stations
+        // 处理 stations（其他物品）
         foreach (var station in Config.Stations)
         {
             foreach (var itemId in station.Type)
@@ -135,7 +139,14 @@ public class EndureBoost : TerrariaPlugin
 
                 if (itemCount >= station.RequiredStack)
                 {
-                    player.SetBuff(station.BuffType, Config.duration * 60);
+                    // 如果 BuffType 是数组，则需要遍历并设置每个Buff
+                    if (station.BuffType != null)
+                    {
+                        foreach (var buffId in station.BuffType)
+                        {
+                            player.SetBuff(buffId, Config.duration * 60);
+                        }
+                    }
                 }
             }
         }

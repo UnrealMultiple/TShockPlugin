@@ -232,6 +232,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DonotFuck", "src\DonotFuck\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lagrange.XocMat.Adapter", "src\Lagrange.XocMat.Adapter\Lagrange.XocMat.Adapter.csproj", "{AF5C3B5E-D8CD-4292-8047-EF129C839BB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBox", "src\ItemBox\ItemBox.csproj", "{F1C47139-1211-4951-B922-BBF4BCEE36FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1136,6 +1138,14 @@ Global
 		{AF5C3B5E-D8CD-4292-8047-EF129C839BB2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF5C3B5E-D8CD-4292-8047-EF129C839BB2}.Release|x64.ActiveCfg = Release|Any CPU
 		{AF5C3B5E-D8CD-4292-8047-EF129C839BB2}.Release|x64.Build.0 = Release|Any CPU
+		{F1C47139-1211-4951-B922-BBF4BCEE36FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1C47139-1211-4951-B922-BBF4BCEE36FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1C47139-1211-4951-B922-BBF4BCEE36FE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F1C47139-1211-4951-B922-BBF4BCEE36FE}.Debug|x64.Build.0 = Debug|Any CPU
+		{F1C47139-1211-4951-B922-BBF4BCEE36FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1C47139-1211-4951-B922-BBF4BCEE36FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1C47139-1211-4951-B922-BBF4BCEE36FE}.Release|x64.ActiveCfg = Release|Any CPU
+		{F1C47139-1211-4951-B922-BBF4BCEE36FE}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

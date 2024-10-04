@@ -75,6 +75,8 @@
 | [BedSet](src/BedSet/README.md) | 设置并记录重生点 | 无 |
 | [BridgeBuilder](src/BridgeBuilder/README.md) | 快速铺桥 | 无 |
 | [BuildMaster](src/BuildMaster/README.md) | 豆沙小游戏·建筑大师模式 | [MiniGamesAPI](src/MiniGamesAPI/README.md) |
+| [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md)         | 恋恋工具箱核心,用于修复各种TShock问题 (建议安装) |        无                       |
+| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md)       |            恋恋工具箱扩展            |         [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md)                         
 | [CaiBot](src/CaiBot/README.md) | CaiBot 适配插件 | 自带前置 |
 | [CaiCustomEmojiCommand](src/CaiCustomEmojiCommand/README.md) | 自定义表情命令 | 无 |
 | [CaiLib](src/CaiLib/README.md) | Cai 的前置库 | 无 |
@@ -108,7 +110,7 @@
 | [Economics.Skill](src/Economics.Skill/README.md) | 技能插件 | [EconomicsAPI](src/EconomicsAPI/README.md)<br>[Economics.RPG](src/Economics.RPG/README.md) |
 | [Economics.WeaponPlus](src/Economics.WeaponPlus/README.md) | 强化武器 | [EconomicsAPI](src/EconomicsAPI/README.md) |
 | [EconomicsAPI](src/EconomicsAPI/README.md) | 经济插件前置 | 无 |
-| [EndureBoost](src/EndureBoost/README.md) | 物品一定数量后长时间buff | 无 |
+| [EndureBoost](src/EndureBoost/README.md) | 拥有指定数量物品给指定buff | 无 |
 | [EssentialsPlus](src/EssentialsPlus/README.md) | 更多管理指令 | 无 |
 | [Ezperm](src/Ezperm/README.md) | 批量改权限 | 无 |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 鱼店 | 无 |
@@ -121,6 +123,7 @@
 | [HouseRegion](src/HouseRegion/README.md) | 圈地插件 | 无 |
 | [Invincibility](src/Invincibility/README.md) | 限时无敌 | 无 |
 | [ItemPreserver](src/ItemPreserver/README.md) | 指定物品不消耗 | 无 |
+| [ItemBox](src/ItemBox/README.md) | 离线背包系统，物品盒子 | 无 |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | 解锁旅途物品 | 无 |
 | [Lagrange.XocMat.Adapter](src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 | 无 |
 | [LifemaxExtra](src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | 无 |
@@ -158,7 +161,7 @@
 | [ShortCommand](src/ShortCommand/README.md) | 简短指令 | 无 |
 | [ShowArmors](src/ShowArmors/README.md) | 展示装备栏 | 无 |
 | [SignInSign](src/SignInSign/README.md) | 告示牌登录插件 | 无 |
-| [SimultaneousUseFix](src/SimultaneousUseFix/README.md) | 解决卡双锤卡星旋机枪之类的问题 | [Chireiden.TShock.Omni](src/https://github.com/sgkoishi/yaaiomni/releases) |
+| [SimultaneousUseFix](src/SimultaneousUseFix/README.md) | 解决卡双锤卡星旋机枪之类的问题 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [SmartRegions](src/SmartRegions/README.md) | 智能区域 | 无 |
 | [SpawnInfra](src/SpawnInfra/README.md) | 生成基础建设 | 无 |
 | [SpclPerm](src/SpclPerm/README.md) | 服主特权 | 无 |
