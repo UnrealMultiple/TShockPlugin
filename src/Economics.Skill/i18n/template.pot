@@ -1,0 +1,156 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Economics.Skill\n"
+"POT-Creation-Date: 2024-09-30 12:32:34+0000\n"
+"PO-Revision-Date: 2024-09-30 12:32:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+
+#: ../../Command.cs:43
+#, csharp-format
+msgid "{0}. {1}  价格 {2}"
+msgstr ""
+
+#: ../../Command.cs:161
+msgid "/skill buy [技能ID]"
+msgstr ""
+
+#: ../../Command.cs:165
+msgid "/skill clear"
+msgstr ""
+
+#: ../../Command.cs:162
+msgid "/skill del [技能ID]"
+msgstr ""
+
+#: ../../Command.cs:164
+msgid "/skill delall"
+msgstr ""
+
+#: ../../Command.cs:163
+msgid "/skill list [页码]"
+msgstr ""
+
+#: ../../Command.cs:166
+msgid "/skill reset"
+msgstr ""
+
+#: ../../Command.cs:98
+#: ../../Command.cs:137
+msgid "你并未绑定技能!"
+msgstr ""
+
+#: ../../Utils.cs:25
+#, csharp-format
+msgid "你当前等级无法购买此技能，限制等级:{0}"
+msgstr ""
+
+#: ../../Command.cs:34
+msgid "你必须登陆游戏才能购买技能!"
+msgstr ""
+
+#: ../../Command.cs:82
+msgid "你未绑定此技能，无需删除！"
+msgstr ""
+
+#: ../../Command.cs:151
+msgid "你没有权限执行此命令!"
+msgstr ""
+
+#: ../../Command.cs:64
+#, csharp-format
+msgid "你的{0} 不足购买此技能!"
+msgstr ""
+
+#: ../../Command.cs:26
+msgid "当前技能列表空空如也"
+msgstr ""
+
+#: ../../Utils.cs:30
+#, csharp-format
+msgid "当前进度无法购买此技能，限制进度:{0}"
+msgstr ""
+
+#: ../../Command.cs:129
+msgid "成功移除了手持武器的所有技能!"
+msgstr ""
+
+#: ../../Command.cs:144
+msgid "成功移除了绑定的所有技能!"
+msgstr ""
+
+#: ../../Command.cs:122
+msgid "手持物品并未绑定技能!"
+msgstr ""
+
+#: ../../Command.cs:27
+msgid "技能列表 ({0}/{1})："
+msgstr ""
+
+#: ../../Utils.cs:46
+msgid "技能已超过规定的最大绑定数量!"
+msgstr ""
+
+#: ../../Utils.cs:17
+#, csharp-format
+msgid "技能序号{0} 不存在！"
+msgstr ""
+
+#: ../../Command.cs:86
+msgid "技能移除成功!"
+msgstr ""
+
+#: ../../Command.cs:155
+msgid "技能重置成功!"
+msgstr ""
+
+#: ../../Command.cs:110
+#, csharp-format
+msgid "无法溯源的技能序号: {0}"
+msgstr ""
+
+#: ../../Command.cs:101
+msgid "查询成功!"
+msgstr ""
+
+#: ../../Utils.cs:41
+msgid "此技能全服唯一已经有其他人绑定了此技能!"
+msgstr ""
+
+#: ../../Utils.cs:36
+msgid "此技能是唯一的不能重复绑定!"
+msgstr ""
+
+#: ../../Utils.cs:50
+msgid "此武器已超过规定的最大绑定数量!"
+msgstr ""
+
+#: ../../Skill.cs:140
+#, csharp-format
+msgid "绑定技能: {0}"
+msgstr ""
+
+#: ../../Utils.cs:52
+msgid "被动类型技能已超过最大绑定数量!"
+msgstr ""
+
+#: ../../Command.cs:54
+msgid "请输入一个正确的序号!"
+msgstr ""
+
+#: ../../Command.cs:68
+msgid "购买成功，技能已绑定!"
+msgstr ""
+
+#: ../../Command.cs:28
+msgid "输入 {0}skill list {{0}} 查看更多"
+msgstr ""
+
+#: ../../Utils.cs:20
+msgid "这是一个主动技能，请手持一个有效武器!"
+msgstr ""
+

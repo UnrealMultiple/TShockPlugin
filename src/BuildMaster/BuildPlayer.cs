@@ -37,12 +37,12 @@ public class BuildPlayer : MiniPlayer, IComparable<BuildPlayer>
     {
         if (room.GetPlayerCount() >= room.MaxPlayer)
         {
-            this.SendInfoMessage("此房间满人了");
+            this.SendInfoMessage(GetString("此房间满人了"));
             return;
         }
         if (room.Status != 0)
         {
-            this.SendInfoMessage("该房间状态无法加入游戏");
+            this.SendInfoMessage(GetString("该房间状态无法加入游戏"));
             return;
         }
         if (ConfigUtils.GetRoomByID(this.CurrentRoomID) != null)
@@ -51,7 +51,7 @@ public class BuildPlayer : MiniPlayer, IComparable<BuildPlayer>
         }
         this.Join(room.ID);
         room.Players.Add(this);
-        room.Broadcast("玩家 " + this.Name + " 加入了房间", Color.MediumAquamarine);
+        room.Broadcast(GetString("玩家 ") + this.Name + GetString(" 加入了房间"), Color.MediumAquamarine);
         this.Teleport(room.WaitingPoint);
         if (!room.Loaded)
         {
@@ -64,16 +64,16 @@ public class BuildPlayer : MiniPlayer, IComparable<BuildPlayer>
         var roomByID = ConfigUtils.GetRoomByID(this.CurrentRoomID);
         if (roomByID == null)
         {
-            this.SendInfoMessage("房间不存在");
+            this.SendInfoMessage(GetString("房间不存在"));
             return;
         }
         if (roomByID.Status != 0)
         {
-            this.SendInfoMessage("该房间状态无法离开游戏");
+            this.SendInfoMessage(GetString("该房间状态无法离开游戏"));
             return;
         }
         roomByID.Players.Remove(this);
-        roomByID.Broadcast("玩家 " + this.Name + " 离开了房间", Color.Crimson);
+        roomByID.Broadcast(GetString("玩家 ") + this.Name + GetString(" 离开了房间"), Color.Crimson);
         this.Teleport(Main.spawnTileX, Main.spawnTileY);
         ((MiniPlayer) this).Leave();
     }

@@ -6,7 +6,6 @@ using TShockAPI;
 
 namespace PerPlayerLoot;
 
-// 表示可以从 JSON 反序列化的 Item Data 的准系统类
 public class JItem
 {
     public int id { get; set; }
@@ -14,14 +13,13 @@ public class JItem
     public byte prefix { get; set; }
 }
 
-
-// database of FakeChest's
 public class FakeChestDatabase
 {
-    // Map { UUID: { ChestID: Chest } }
+    // 映射：{ 玩家 UUID: { 宝箱 ID: 宝箱对象 } }
     public static Dictionary<string, Dictionary<int, Chest>> fakeChestsMap = new Dictionary<string, Dictionary<int, Chest>> { };
 
-    public static HashSet<(int, int)> playerPlacedChests = new HashSet<(int, int)>(); // tile x, y of player placed chests
+    // 玩家放置的宝箱位置集合 (x, y)
+    public static HashSet<(int, int)> playerPlacedChests = new HashSet<(int, int)>();
 
     private static readonly string connString = "Data Source=tshock/perplayerloot.sqlite";
 
@@ -35,7 +33,7 @@ public class FakeChestDatabase
 
     public void CreateTables()
     {
-        TSPlayer.Server.SendInfoMessage("设置每个玩家的宝箱数据库...");
+        TSPlayer.Server.SendInfoMessage(GetString("设置每个玩家的宝箱数据库..."));
         using (var conn = new SqliteConnection(connString))
         {
             conn.Open();
@@ -66,14 +64,13 @@ public class FakeChestDatabase
 
     public void LoadFakeChests()
     {
-        TSPlayer.Server.SendInfoMessage("加载每个玩家的战利品宝箱库存...");
+        TSPlayer.Server.SendInfoMessage(GetString("加载每个玩家的战利品宝箱库存..."));
         var count = 0;
 
         using (var conn = new SqliteConnection(connString))
         {
             conn.Open();
 
-            // load loot chests
             using (var cmd = new SqliteCommand("SELECT id, playerUuid, x, y, items FROM chests;", conn))
             {
                 var reader = cmd.ExecuteReader();
@@ -83,20 +80,18 @@ public class FakeChestDatabase
                     var playerUuid = Convert.ToString(reader["playerUuid"]);
                     var chestId = Convert.ToInt32(reader["id"]);
 
-                    // get the items list
+                    // 获取物品列表
                     var items = new List<Item>();
 
-                    // read blob from column
                     var itemsRaw = new MemoryStream((byte[]) reader["items"]);
-                    // deserialize with bson
+
                     using (var br = new BsonReader(itemsRaw))
                     {
                         br.ReadRootValueAsArray = true;
 
-                        // do the actual deserialization
                         var jItems = new JsonSerializer().Deserialize<IList<JItem>>(br);
 
-                        // convert each JItem to a real Item
+                        // 将每个 JItem 转换为真实的 Item
                         foreach (var jItem in jItems)
                         {
                             if (jItem == null)
@@ -114,14 +109,15 @@ public class FakeChestDatabase
                         }
                     }
 
+                    // 构建一个宝箱
                     var chest = new Chest
                     {
                         x = Convert.ToInt32(reader["x"]),
                         y = Convert.ToInt32(reader["y"]),
                         item = items.ToArray()
-                    }; // construct a terraria chest
+                    };
 
-                    // save it in the fake chest map
+                    // 保存到假宝箱映射中
                     var playerChests = fakeChestsMap.GetValueOrDefault(playerUuid, new Dictionary<int, Chest>());
                     fakeChestsMap[playerUuid] = playerChests;
 
@@ -131,7 +127,7 @@ public class FakeChestDatabase
                 }
             }
 
-            // load tile exclusions
+            // 加载被排除的物块位置
             using (var cmd = new SqliteCommand("SELECT x, y FROM placed;", conn))
             {
                 var reader = cmd.ExecuteReader();
@@ -149,9 +145,9 @@ public class FakeChestDatabase
         }
     }
 
-    public void SaveFakeChests()
+    // 保存假宝箱到数据库
+    public void SaveFakeChests(string? PlayerUuid = null, int? ChestId = null)
     {
-        TSPlayer.Server.SendInfoMessage("保存每个玩家的战利品宝箱库存...");
         var count = 0;
 
         using (var conn = new SqliteConnection(connString))
@@ -161,13 +157,24 @@ public class FakeChestDatabase
             foreach (var playerEntry in fakeChestsMap)
             {
                 var playerUuid = playerEntry.Key;
+                // 如果指定了玩家UUID，并且当前玩家不符合，就跳过
+                if (PlayerUuid != null && playerUuid != PlayerUuid)
+                {
+                    continue;
+                }
+
                 var playerChests = playerEntry.Value;
 
                 foreach (var chestEntry in playerChests)
                 {
                     var chestId = chestEntry.Key;
-                    var chest = chestEntry.Value;
+                    // 如果指定了宝箱ID，并且当前宝箱不符合，就跳过
+                    if (ChestId != null && chestId != ChestId)
+                    {
+                        continue;
+                    }
 
+                    var chest = chestEntry.Value;
                     var jItems = new List<JItem>(chest.item.Length);
 
                     foreach (var item in chest.item)
@@ -178,7 +185,6 @@ public class FakeChestDatabase
                             stack = item.stack,
                             prefix = item.prefix
                         };
-
                         jItems.Add(jItem);
                     }
 
@@ -189,6 +195,7 @@ public class FakeChestDatabase
                         serializer.Serialize(writer, jItems);
                     }
 
+                    // 插入或替换宝箱数据到数据库
                     var sql = @"REPLACE INTO chests (id, playerUuid, x, y, items) VALUES (@id, @playerUuid, @x, @y, @items);";
 
                     using (var cmd = new SqliteCommand(sql, conn))
@@ -206,7 +213,7 @@ public class FakeChestDatabase
                 }
             }
 
-            foreach ((var x, var y) in playerPlacedChests)
+            foreach ((var x, var y) in playerPlacedChests)//没看懂啊这里怎么还有个循环
             {
                 var sql = @"REPLACE INTO placed (x, y) VALUES (@x, @y);";
 
@@ -220,9 +227,10 @@ public class FakeChestDatabase
             }
         }
 
-        TSPlayer.Server.SendSuccessMessage($"保存 {count} 战利品宝箱库存, {playerPlacedChests.Count} 玩家放置的宝箱.");
+        TSPlayer.Server.SendSuccessMessage(GetString($"保存了 {count} 个战利品宝箱库存, {playerPlacedChests.Count} 玩家放置的宝箱."));
     }
 
+    // 获取或创建指定玩家的假宝箱
     public Chest GetOrCreateFakeChest(int chestId, string playerUuid)
     {
         var playerChests = fakeChestsMap.GetValueOrDefault(playerUuid, new Dictionary<int, Chest>());
@@ -230,10 +238,9 @@ public class FakeChestDatabase
 
         if (!playerChests.ContainsKey(chestId))
         {
-
             var realChest = Main.chest[chestId];
 
-            // copy the chest data from the real untouched chest
+            // 从真实宝箱复制数据
             var fakeChest = new Chest
             {
                 x = realChest.x,
@@ -241,11 +248,11 @@ public class FakeChestDatabase
             };
             realChest.item.CopyTo(fakeChest.item, 0);
 
-            // save it in the fake chest list
+            // 保存到假宝箱列表中
             fakeChestsMap[playerUuid][chestId] = fakeChest;
 
-            // save the fake chests list to disk
-            this.SaveFakeChests();
+            // 保存当前玩家的该宝箱
+            this.SaveFakeChests(playerUuid, chestId);
 
             return fakeChest;
         }
@@ -253,11 +260,14 @@ public class FakeChestDatabase
         return playerChests[chestId];
     }
 
+
+    // 标记某个位置为玩家放置的宝箱
     public void SetChestPlayerPlaced(int tileX, int tileY)
     {
         playerPlacedChests.Add((tileX, tileY));
     }
 
+    // 检查某个位置是否被标记为玩家放置的宝箱
     public bool IsChestPlayerPlaced(int tileX, int tileY)
     {
         return playerPlacedChests.Contains((tileX, tileY));

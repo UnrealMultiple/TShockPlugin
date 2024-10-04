@@ -111,14 +111,9 @@ public class Region
         }
 
         // Initialise the temporary tile array.
-        if (this.ShowArea.Width == 0)
-        {
-            this.RealTiles = new Tile[this.ShowArea.Height + 1];
-        }
-        else
-        {
-            this.RealTiles = this.ShowArea.Height == 0 ? (new Tile[this.ShowArea.Width + 1]) : (new Tile[(this.ShowArea.Width + this.ShowArea.Height) * 2]);
-        }
+        this.RealTiles = this.ShowArea.Width == 0
+            ? (new Tile[this.ShowArea.Height + 1])
+            : this.ShowArea.Height == 0 ? (new Tile[this.ShowArea.Width + 1]) : (new Tile[(this.ShowArea.Width + this.ShowArea.Height) * 2]);
 
         // Top boundary
         if (this.ShowArea.Top == this.Area.Top)

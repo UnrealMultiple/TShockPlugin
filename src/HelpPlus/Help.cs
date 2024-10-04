@@ -182,7 +182,7 @@ public class HelpPlus : TerrariaPlugin
         var Specifier = TShock.Config.Settings.CommandSpecifier;
         if (args.Parameters.Count > 1)
         {
-            args.Player.SendErrorMessage(GetString( "无效用法.正确用法: {0}help <命令/页码>", Specifier));
+            args.Player.SendErrorMessage(GetString("无效用法.正确用法: {0}help <命令/页码>", Specifier));
             return;
         }
 

@@ -46,7 +46,7 @@ public class DeathDrop : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player?.SendSuccessMessage("[死亡掉落] 重新加载配置完毕。");
+        args.Player?.SendSuccessMessage(GetString("[死亡掉落] 重新加载配置完毕。"));
     }
 
     private void NPCDead(NpcKilledEventArgs args)

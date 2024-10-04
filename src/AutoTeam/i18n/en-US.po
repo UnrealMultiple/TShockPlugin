@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoTeam\n"
-"POT-Creation-Date: 2024-09-07 23:45:12+0800\n"
-"PO-Revision-Date: 2024-09-01 11:23+0800\n"
+"POT-Creation-Date: 2024-10-01 00:21:20+0800\n"
+"PO-Revision-Date: 2024-10-01 00:28+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -11,33 +11,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
+#: ..\..\AutoTeamPlus.cs:62
+msgid "。"
+msgstr "."
+
 #: ..\..\AutoTeamPlus.cs:31
 #, fuzzy
 #| msgid "[AutoTeam] 重新加载配置完毕。"
 msgid "[自动队伍] 重新加载配置完毕。"
 msgstr "[AutoTeam] Configuration reloaded successfully."
 
-#: ..\..\AutoTeamPlus.cs:130
+#: ..\..\AutoTeamPlus.cs:61
+msgid "禁用"
+msgstr "disabled"
+
+#: ..\..\AutoTeamPlus.cs:110
 #, csharp-format
 msgid "你的队伍已切换为 {0}."
 msgstr "Your team has been switched to {0}."
 
-#: ..\..\AutoTeamPlus.cs:134
+#: ..\..\AutoTeamPlus.cs:61
+msgid "启用"
+msgstr "enabled"
+
+#: ..\..\AutoTeamPlus.cs:114
 msgid "未配置，可随意切换."
 msgstr "Not configured, can freely switch teams."
 
-#: ..\..\AutoTeamPlus.cs:80
-msgid "无效的操作。请使用 'on' 或 'off'。"
-msgstr "Invalid operation. Please use ‘on’ or ‘off’."
+#: ..\..\Configuration.cs:21
+msgid "无队伍"
+msgstr "None"
 
-#: ..\..\AutoTeamPlus.cs:64
-msgid "用法: /autoteam <on|off>"
-msgstr "Usage: /autoteam <on|off>"
-
-#: ..\..\AutoTeamPlus.cs:77
-msgid "AutoTeamPlus 插件已禁用."
-msgstr "The AutoTeamPlus plugin has been disabled."
-
-#: ..\..\AutoTeamPlus.cs:73
-msgid "AutoTeamPlus 插件已启用."
-msgstr "The AutoTeamPlus plugin has been enabled."
+#: ..\..\AutoTeamPlus.cs:62
+msgid "AutoTeamPlus 插件已"
+msgstr "AutoTeamPlus plugin is now"

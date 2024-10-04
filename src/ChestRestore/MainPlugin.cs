@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -8,98 +7,80 @@ namespace ChestRestore;
 [ApiVersion(2, 1)]
 public class MainPlugin : TerrariaPlugin
 {
-    public MainPlugin(Main game) : base(game)
-    {
-    }
+    private readonly Dictionary<int, bool> playersInEditMode = new Dictionary<int, bool>();
+
+    public MainPlugin(Main game) : base(game) { }
+
     public override string Name => "ChestRestore";
-    public override Version Version => new Version(1, 0, 2);
-    public override string Author => "Cjx修改，肝帝熙恩简单修改";
+    public override Version Version => new Version(1, 0, 6);
+    public override string Author => "Cjx重构 | 肝帝熙恩简单修改";
     public override string Description => "无限宝箱插件";
 
     public override void Initialize()
     {
-        ServerApi.Hooks.NetGetData.Register(this, OnGetData);
-        GetDataHandlers.ChestOpen += OnChestOpen;
-    }
-    private void OnChestOpen(object sender, GetDataHandlers.ChestOpenEventArgs args)
-    {
-        var num = Chest.FindChest(args.X, args.Y);
-        var chest = Main.chest[num];
-        if (chest != null)
+        ServerApi.Hooks.NetGetData.Register(this, this.OnGetData);
+        ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
+        Commands.ChatCommands.Add(new Command("chest.edit", this.ToggleEditMode, "chestedit", "ce", "修改箱子")
         {
-            var hasItems = false;
-            foreach (var item in chest.item)
-            {
-                if (item.stack != 0)
-                {
-                    hasItems = true;
-                    break;
-                }
-            }
-            if (hasItems)
-            {
-                var list = new List<NetItem>();
-                for (var j = 0; j < chest.item.Length; j++)
-                {
-                    var item = chest.item[j];
-                    list.Add(new NetItem(item.netID, item.stack, item.prefix));
-                }
-                args.Player.SetData("chestrestore", JsonConvert.SerializeObject(list));
-                args.Player.SetData("chestx", args.X);
-                args.Player.SetData("chesty", args.Y);
-            }
-        }
+            HelpText = GetString("切换个人修改箱子名字和内容的模式")
+        });
     }
+
     private void OnGetData(GetDataEventArgs args)
     {
-        if (args.MsgID == PacketTypes.ChestOpen)
+        var tsplayer = TShock.Players[args.Msg.whoAmI];
+        if (args.MsgID == PacketTypes.ChestItem)
         {
-            TSPlayer tsplayer = TShock.Players[args.Msg.whoAmI];
-
-            if (tsplayer == null)
+            if (!this.IsPlayerInEditMode(tsplayer))
             {
-                return; 
-            }
-
-            if (args.Length > 7 && !tsplayer.HasPermission("chestopen.name"))
-            {
-                args.Msg.readBuffer[args.Index + 6] = 0;
-            }
-
-            using (var binaryReader = new BinaryReader(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length)))
-            {
-                int chestId = binaryReader.ReadInt16();
-                var chestIndex = Chest.FindChest(tsplayer.GetData<int>("chestx"), tsplayer.GetData<int>("chesty"));
-                Chest chest = null;
-                if (chestIndex != -1)
-                {
-                    chest = Main.chest[chestIndex];
-                }
-                if (chestId == -1 && chest != null)
-                {
-                    var list = JsonConvert.DeserializeObject<List<NetItem>>(tsplayer.GetData<string>("chestrestore"));
-                    for (var i = 0; i < chest.item.Length; i++)
-                    {
-                        var item = chest.item[i];
-                        item.netDefaults(list[i].NetId);
-                        item.stack = list[i].Stack;
-                        item.prefix = list[i].PrefixId;
-                        TSPlayer.All.SendData(PacketTypes.ChestItem, "", chestIndex, i, 0f, 0f, 0);
-                    }
-                    tsplayer.SetData("chestrestore", "");
-                    tsplayer.SetData("chestx", 0);
-                    tsplayer.SetData("chesty", 0);
-                }
+                args.Handled = true;
             }
         }
+
+        if (args.MsgID == PacketTypes.ChestName)
+        {
+            if (!this.IsPlayerInEditMode(tsplayer) || !tsplayer.HasPermission("chest.name"))
+            {
+                args.Handled = true;
+            }
+        }
+    }
+
+    private bool IsPlayerInEditMode(TSPlayer player)
+    {
+        // 检查玩家是否在修改模式中
+        return this.playersInEditMode.TryGetValue(player.Index, out var mode) && mode;
+    }
+
+    private void ToggleEditMode(CommandArgs args)
+    {
+        var player = args.Player;
+
+        if (this.playersInEditMode.TryGetValue(player.Index, out var mode))
+        {
+            this.playersInEditMode[player.Index] = !mode;
+            player.SendSuccessMessage(!mode ? GetString("你已进入箱子修改模式。") : GetString("你已退出箱子修改模式。"));
+        }
+        else
+        {
+            this.playersInEditMode[player.Index] = true;
+            player.SendSuccessMessage(GetString("你已进入箱子修改模式。"));
+        }
+    }
+
+    // 玩家离开时移除其修改模式
+    private void OnLeave(LeaveEventArgs args)
+    {
+        this.playersInEditMode.Remove(args.Who);
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
-            GetDataHandlers.ChestOpen -= OnChestOpen;
+            ServerApi.Hooks.NetGetData.Deregister(this, this.OnGetData);
+            ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
+            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.ToggleEditMode);
         }
         base.Dispose(disposing);
     }

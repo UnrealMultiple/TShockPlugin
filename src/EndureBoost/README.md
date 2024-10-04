@@ -1,21 +1,22 @@
-# EndureBoost 物品一定数量后长时间buff
+# EndureBoost 拥有指定数量物品给指定buff
 
 - 作者: 肝帝熙恩
-- 出处: 无
-- 当玩家背包某些物品到达一定数量后，给与指定buff
+- 出处: 本仓库
+- 当玩家背包药水或某些物品到达一定数量后，给与指定buff
 - 进入服务器刷新，指令刷新，死亡刷新，回城刷新
 
 ## 更新日志
 
 ```
-暂无
+v1.0.2
+其他物品类型内支持多个buff，完成i18n
 ```
 
 ## 指令
 
 | 语法           |        权限         |   说明   |
 | -------------- | :-----------------: | :------: |
-| /ebbuff，/ldbuff，/loadbuff | EndureBoost| 立即刷新长时间buff状态|
+| /ebbuff 或 /ldbuff 或 /loadbuff 或 /刷新buff| EndureBoost| 立即刷新本插件buff状态|
 
 ## 配置
 > 配置文件路径：tshock/EndureBoost.json

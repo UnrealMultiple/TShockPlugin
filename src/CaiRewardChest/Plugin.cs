@@ -19,7 +19,7 @@ public class CaiRewardChest : TerrariaPlugin
 
     public override string Name => "CaiRewardChest";
 
-    public override Version Version => new(2024, 9, 22, 1);
+    public override Version Version => new(2024, 10, 1, 2);
 
 
     public override void Initialize()
@@ -27,11 +27,11 @@ public class CaiRewardChest : TerrariaPlugin
         Db.Init();
         GetDataHandlers.ChestOpen.Register(this.OnChestOpen);
         Hooks.Chest.InvokeQuickStack += this.ChestOnInvokeQuickStack;
-        Commands.ChatCommands.Add(new Command("CaiRewardChest.Init", this.InitChest, "初始化奖励箱"));
-        Commands.ChatCommands.Add(new Command("CaiRewardChest.Clear", this.ClearChest, "清空奖励箱"));
-        Commands.ChatCommands.Add(new Command("CaiRewardChest.Delete", this.DeleteChest, "删除奖励箱"));
-        Commands.ChatCommands.Add(new Command("CaiRewardChest.Add", this.AddChest, "添加奖励箱"));
-        Commands.ChatCommands.Add(new Command("CaiRewardChest.Edit", this.EditChest, "编辑奖励箱"));
+        Commands.ChatCommands.Add(new Command("CaiRewardChest.Init", this.InitChest, "初始化奖励箱", "rcinit"));
+        Commands.ChatCommands.Add(new Command("CaiRewardChest.Clear", this.ClearChest, "清空奖励箱", "rcclear"));
+        Commands.ChatCommands.Add(new Command("CaiRewardChest.Delete", this.DeleteChest, "删除奖励箱", "rcdelete", "rcdel"));
+        Commands.ChatCommands.Add(new Command("CaiRewardChest.Add", this.AddChest, "添加奖励箱", "rcadd"));
+        Commands.ChatCommands.Add(new Command("CaiRewardChest.Edit", this.EditChest, "编辑奖励箱", "rcedit"));
     }
 
     protected override void Dispose(bool disposing)
@@ -59,19 +59,19 @@ public class CaiRewardChest : TerrariaPlugin
 
     private void EditChest(CommandArgs args)
     {
-        args.Player.SendInfoMessage("[i:48]请打开需要编辑的奖励箱~");
+        args.Player.SendInfoMessage(GetString("[i:48]请打开需要编辑的奖励箱~"));
         args.Player.SetData("WaitChestSetting", "Edit");
     }
 
     private void AddChest(CommandArgs args)
     {
-        args.Player.SendInfoMessage("[i:48]请打开需要添加的奖励箱~");
+        args.Player.SendInfoMessage(GetString("[i:48]请打开需要添加的奖励箱~"));
         args.Player.SetData("WaitChestSetting", "Add");
     }
 
     private void DeleteChest(CommandArgs args)
     {
-        args.Player.SendInfoMessage("[i:48]请打开需要删除的奖励箱~");
+        args.Player.SendInfoMessage(GetString("[i:48]请打开需要删除的奖励箱~"));
         args.Player.SetData("WaitChestSetting", "Del");
     }
 
@@ -89,13 +89,13 @@ public class CaiRewardChest : TerrariaPlugin
                     e.Player.RemoveData("WaitChestSetting");
                     if (chest == null)
                     {
-                        e.Player.SendWarningMessage("[i:48]这个箱子好像不是奖励箱捏~");
+                        e.Player.SendWarningMessage(GetString("[i:48]这个箱子好像不是奖励箱捏~"));
                         e.Handled = true;
                         return;
                     }
 
                     Db.DelChest(chest.ChestId);
-                    e.Player.SendSuccessMessage("[i:48]你删除了这个奖励箱~");
+                    e.Player.SendSuccessMessage(GetString("[i:48]你删除了这个奖励箱~"));
                     e.Handled = true;
                     return;
                 }
@@ -105,13 +105,13 @@ public class CaiRewardChest : TerrariaPlugin
                     e.Player.RemoveData("WaitChestSetting");
                     if (chest != null)
                     {
-                        e.Player.SendWarningMessage("[i:48]这个箱子好像是奖励箱捏~");
+                        e.Player.SendWarningMessage(GetString("[i:48]这个箱子好像是奖励箱捏~"));
                         e.Handled = true;
                         return;
                     }
 
                     Db.AddChest(Chest.FindChest(e.X, e.Y), e.X, e.Y);
-                    e.Player.SendSuccessMessage("[i:48]你添加了一个奖励箱~");
+                    e.Player.SendSuccessMessage(GetString("[i:48]你添加了一个奖励箱~"));
                     e.Handled = true;
                     return;
                 }
@@ -124,7 +124,7 @@ public class CaiRewardChest : TerrariaPlugin
                         return;
                     }
 
-                    e.Player.SendWarningMessage("[i:48]这个箱子好像不是奖励箱捏~");
+                    e.Player.SendWarningMessage(GetString("[i:48]这个箱子好像不是奖励箱捏~"));
                     e.Handled = true;
                     return;
                 }
@@ -141,7 +141,7 @@ public class CaiRewardChest : TerrariaPlugin
             if (chest.HasOpenPlayer.Contains(e.Player.Account.ID))
             {
                 e.Player.SendWarningMessage(
-                    $"[i:{WorldGen.GetChestItemDrop(chest.X, chest.Y, Main.tile[chest.X, chest.Y].type)}]你已经领取过这个奖励箱啦!");
+                    GetString($"[i:{WorldGen.GetChestItemDrop(chest.X, chest.Y, Main.tile[chest.X, chest.Y].type)}]你已经领取过这个奖励箱啦!"));
                 return;
             }
 
@@ -158,7 +158,7 @@ public class CaiRewardChest : TerrariaPlugin
     private void ClearChest(CommandArgs args)
     {
         Db.ClearDb();
-        args.Player.SendSuccessMessage("[i:48]奖励箱已全部清除~");
+        args.Player.SendSuccessMessage(GetString("[i:48]奖励箱已全部清除~"));
     }
 
     private void InitChest(CommandArgs args)
@@ -174,7 +174,7 @@ public class CaiRewardChest : TerrariaPlugin
             }
         }
 
-        args.Player.SendSuccessMessage($"[i:48]奖励箱初始化完成,共添加{count}个奖励箱~");
+        args.Player.SendSuccessMessage(GetString($"[i:48]奖励箱初始化完成,共添加{count}个奖励箱~"));
     }
 
 }

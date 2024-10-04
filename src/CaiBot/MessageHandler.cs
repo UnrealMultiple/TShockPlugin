@@ -119,8 +119,14 @@ public static class MessageHandle
                 var cmd = (string) jsonObject["cmd"]!;
                 CaiBotPlayer tr = new ();
                 Commands.HandleCommand(tr, cmd);
-                TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(long) jsonObject["group"]!}`执行了: {(string) jsonObject["cmd"]!}", Color.PaleVioletRed);
-                result = new RestObject { { "type", "cmd" }, { "result", string.Join('\n', tr.GetCommandOutput()) }, { "at", (string) jsonObject["at"]! }, { "group", (long) jsonObject["group"]! } };
+                TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(long) jsonObject["group"]}`执行了: {(string) jsonObject["cmd"]!}", Microsoft.Xna.Framework.Color.PaleVioletRed);
+                result = new RestObject
+                {
+                    { "type", "cmd" },
+                    { "result", string.Join('\n', tr.GetCommandOutput()) },
+                    { "at", (string)jsonObject["at"]! },
+                    { "group", (long)jsonObject["group"]! }
+                };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "online":
@@ -591,7 +597,13 @@ public static class MessageHandle
                 break;
             case "pluginlist":
                 var pluginList = ServerApi.Plugins.Select(p => new PluginInfo(p.Plugin.Name, p.Plugin.Description, p.Plugin.Author, p.Plugin.Version)).ToList();
-                result = new RestObject { { "type", "pluginlist" }, { "plugins", pluginList }, { "group", (long) jsonObject["group"]! } };
+
+                result = new RestObject
+                {
+                    { "type", "pluginlist" },
+                    { "plugins", pluginList },
+                    { "group", (long)jsonObject["group"]! }
+                };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
         }

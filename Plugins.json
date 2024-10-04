@@ -7,8 +7,8 @@
     "Path": "Platform.dll"
   },
   {
-    "Name": "Chireiden.TShock.Omni 3c758322fb",
-    "Version": "0.0.186.0",
+    "Name": "Chireiden.TShock.Omni ad2829677d",
+    "Version": "0.0.187.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
     "Path": "Chireiden.TShock.Omni.dll"
@@ -43,7 +43,7 @@
   },
   {
     "Name": "超进度限制",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命 & 恋恋魔改三合一",
     "Description": "根据进度限制",
     "Path": "ProgressRestrict.dll"
@@ -71,7 +71,7 @@
   },
   {
     "Name": "更好的自动队伍",
-    "Version": "2.4.3",
+    "Version": "2.4.4",
     "Author": "十七改，肝帝熙恩改",
     "Description": "AutoTeamPlus",
     "Path": "AutoTeam.dll"
@@ -85,21 +85,21 @@
   },
   {
     "Name": "击败怪物替换世界物品",
-    "Version": "1.0.0",
+    "Version": "1.0.2",
     "Author": "onusai 羽学",
     "Description": "击败指定怪物替换世界指定图格与所有箱子内物品",
     "Path": "ConvertWorld.dll"
   },
   {
     "Name": "禁怪物掉落",
-    "Version": "1.2.1",
+    "Version": "1.3.1",
     "Author": "羽学",
     "Description": "清理怪物身边掉落物",
     "Path": "DisableMonsLoot.dll"
   },
   {
     "Name": "禁止怪物",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.3",
     "Author": "Patrikk,GK 改良",
     "Description": "禁止指定怪物的出没",
     "Path": "BanNpc.dll"
@@ -162,7 +162,7 @@
   },
   {
     "Name": "音乐播放器",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "Olink，Cjx适配，肝帝熙恩修改, yu大改",
     "Description": "一个简单的音乐播放插件.",
     "Path": "MusicPlayer.dll"
@@ -211,14 +211,14 @@
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.0.3",
+    "Version": "1.0.6",
     "Author": "Scavenger",
     "Description": "自动广播插件",
     "Path": "AutoBroadcast.dll"
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.1.6",
+    "Version": "2.0.1.7",
     "Author": "少司命，Cai",
     "Description": "自动更新你的插件！",
     "Path": "AutoPluginManager.dll"
@@ -253,7 +253,7 @@
   },
   {
     "Name": "BedSet 床设置",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.3",
     "Author": "cmgy",
     "Description": "",
     "Path": "BedSet.dll"
@@ -267,21 +267,21 @@
   },
   {
     "Name": "BridgeBuilder",
-    "Version": "1.0.8",
+    "Version": "1.1.0",
     "Author": "Soofa，肝帝熙恩汉化1449",
     "Description": "铺桥!",
     "Path": "BridgeBuilder.dll"
   },
   {
     "Name": "BuildMaster",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "豆沙 羽学，肝帝熙恩适配",
     "Description": "A minigame that is named BuildMaster",
     "Path": "BuildMaster.dll"
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2024.9.8.1",
+    "Version": "2024.9.17.1",
     "Author": "Cai,羽学",
     "Description": "CaiBot机器人的适配插件",
     "Path": "CaiBot.dll"
@@ -302,14 +302,14 @@
   },
   {
     "Name": "CaiRewardChest",
-    "Version": "2024.7.29.1",
+    "Version": "2024.10.1.2",
     "Author": "Cai",
     "Description": "奖励箱！！",
     "Path": "CaiRewardChest.dll"
   },
   {
     "Name": "CGive",
-    "Version": "1.0.0.2",
+    "Version": "1.0.0.4",
     "Author": "Leader",
     "Description": "离线give",
     "Path": "CGive.dll"
@@ -323,7 +323,7 @@
   },
   {
     "Name": "Chameleon",
-    "Version": "1.0.1",
+    "Version": "1.0.3",
     "Author": "mistzzt，肝帝熙恩修复1449",
     "Description": "账户系统交互替换方案",
     "Path": "Chameleon.dll"
@@ -337,21 +337,21 @@
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.0.2",
-    "Author": "Cjx修改，肝帝熙恩简单修改",
+    "Version": "1.0.6",
+    "Author": "Cjx重构 | 肝帝熙恩简单修改",
     "Description": "无限宝箱插件",
     "Path": "ChestRestore.dll"
   },
   {
-    "Name": "Chireiden.TShock.Omni.Misc 3c758322fb",
-    "Version": "0.0.186.0",
+    "Name": "Chireiden.TShock.Omni.Misc ad2829677d",
+    "Version": "0.0.187.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock - the miscellaneous part",
     "Path": "Chireiden.TShock.Omni.Misc.dll"
   },
   {
     "Name": "CNPCShop",
-    "Version": "1.0.0",
+    "Version": "1.0.2",
     "Author": "Megghy，肝帝熙恩更新1449",
     "Description": "自定义NPC商店出售的物品",
     "Path": "CNPCShop.dll"
@@ -365,7 +365,7 @@
   },
   {
     "Name": "CreateSpawn",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命",
     "Description": "出生建筑",
     "Path": "CreateSpawn.dll"
@@ -379,9 +379,9 @@
   },
   {
     "Name": "DamageStatistic-伤害统计",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "Megghy",
-    "Description": "Show the damage caused by each player after each boss battle",
+    "Description": "在每次 Boss 战后显示每个玩家造成的伤害。",
     "Path": "DamageStatistic.dll"
   },
   {
@@ -390,6 +390,13 @@
     "Author": "None",
     "Description": "None",
     "Path": "DataSync.dll"
+  },
+  {
+    "Name": "Don't Fuck",
+    "Version": "2.0.1",
+    "Author": "Cai 羽学修改",
+    "Description": "禁止脏话",
+    "Path": "DonotFuck.dll"
   },
   {
     "Name": "DumpPluginsList",
@@ -421,45 +428,38 @@
   },
   {
     "Name": "Economics.Regain",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命",
     "Description": "Economics.Regain",
     "Path": "Economics.Regain.dll"
   },
   {
     "Name": "Economics.RPG",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "少司命",
     "Description": "Economics.RPG",
     "Path": "Economics.RPG.dll"
   },
   {
     "Name": "Economics.Shop",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命",
     "Description": "Economics.Shop",
     "Path": "Economics.Shop.dll"
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.2.1.3",
+    "Version": "1.2.1.4",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"
   },
   {
     "Name": "Economics.Task",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命",
     "Description": "Economics.Task",
     "Path": "Economics.Task.dll"
-  },
-  {
-    "Name": "Economics.WeaponPlus",
-    "Version": "1.0.0.3",
-    "Author": "z枳 少司命",
-    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
-    "Path": "Economics.WeaponPlus.dll"
   },
   {
     "Name": "Economics.WeaponPlus",
@@ -469,17 +469,24 @@
     "Path": "WeaponPlus.dll"
   },
   {
+    "Name": "Economics.WeaponPlus",
+    "Version": "1.0.0.4",
+    "Author": "z枳 少司命",
+    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+    "Path": "Economics.WeaponPlus.dll"
+  },
+  {
     "Name": "EconomicsAPI",
-    "Version": "1.0.1.0",
+    "Version": "1.0.1.1",
     "Author": "少司命",
     "Description": "EconomicsAPI",
     "Path": "EconomicsAPI.dll"
   },
   {
     "Name": "EndureBoost",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "肝帝熙恩",
-    "Description": "一定数量后长时间buff",
+    "Description": "拥有指定数量物品给指定buff",
     "Path": "EndureBoost.dll"
   },
   {
@@ -516,6 +523,13 @@
     "Author": "肝帝熙恩",
     "Description": "在命令中给予玩家一段时间的无敌状态。",
     "Path": "Invincibility.dll"
+  },
+  {
+    "Name": "itemBox",
+    "Version": "2024.10.3.0",
+    "Author": "Cai & 2409",
+    "Description": "离线物品盒子系统.",
+    "Path": "ItemBox.dll"
   },
   {
     "Name": "ItemPreserver",
@@ -561,8 +575,8 @@
   },
   {
     "Name": "PerPlayerLoot",
-    "Version": "2.0.1",
-    "Author": "Codian,肝帝熙恩汉化1449",
+    "Version": "2.0.3",
+    "Author": "Codian, 肝帝熙恩汉化1449",
     "Description": "玩家战利品单独箱子.",
     "Path": "PerPlayerLoot.dll"
   },
@@ -679,6 +693,13 @@
     "Path": "SmartRegions.dll"
   },
   {
+    "Name": "Status Text Manager",
+    "Version": "1.0.0",
+    "Author": "LaoSparrow",
+    "Description": "Manage status text of different plugins",
+    "Path": "StatusTextManager.dll"
+  },
+  {
     "Name": "SwitchCommands",
     "Version": "1.2.3",
     "Author": "Johuan Cjx适配 羽学，肝帝熙恩优化",
@@ -736,7 +757,7 @@
   },
   {
     "Name": "高尔夫奖励",
-    "Version": "1.0.7",
+    "Version": "1.0.8",
     "Author": "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449",
     "Description": "将高尔夫打入球洞会得到奖励.",
     "Path": "GolfRewards.dll"

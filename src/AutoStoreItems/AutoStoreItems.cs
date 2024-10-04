@@ -90,10 +90,10 @@ public class AutoStoreItems : TerrariaPlugin
                     if (Timer % Config.ItemTime == 0)
                     {
                         if ((Config.Hand ? inv.type == plr.TPlayer.inventory[plr.TPlayer.selectedItem].type : inv.type == item) &&
-                            (Config.bank1 && !Stored && (Stored = AutoStoredItem(plr, plr.TPlayer.bank.item, PlayerItemSlotID.Bank1_0, "存钱罐")) ||
-                             Config.bank2 && !Stored && (Stored = AutoStoredItem(plr, plr.TPlayer.bank2.item, PlayerItemSlotID.Bank2_0, "保险箱")) ||
-                             Config.bank3 && !Stored && (Stored = AutoStoredItem(plr, plr.TPlayer.bank3.item, PlayerItemSlotID.Bank3_0, "护卫熔炉")) ||
-                             Config.bank4 && !Stored && (Stored = AutoStoredItem(plr, plr.TPlayer.bank4.item, PlayerItemSlotID.Bank4_0, "虚空袋"))))
+                            ((Config.bank1 && !Stored && (Stored = AutoStoredItem(plr, plr.TPlayer.bank.item, PlayerItemSlotID.Bank1_0, "存钱罐"))) ||
+                             (Config.bank2 && !Stored && (Stored = AutoStoredItem(plr, plr.TPlayer.bank2.item, PlayerItemSlotID.Bank2_0, "保险箱"))) ||
+                             (Config.bank3 && !Stored && (Stored = AutoStoredItem(plr, plr.TPlayer.bank3.item, PlayerItemSlotID.Bank3_0, "护卫熔炉"))) ||
+                             (Config.bank4 && !Stored && (Stored = AutoStoredItem(plr, plr.TPlayer.bank4.item, PlayerItemSlotID.Bank4_0, "虚空袋")))))
                         {
                             break;
                         }
