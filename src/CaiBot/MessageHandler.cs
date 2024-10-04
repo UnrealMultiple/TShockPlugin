@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Rests;
-using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
 using System.IO.Compression;
 using System.Net.WebSockets;
@@ -10,7 +9,6 @@ using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.DB;
 using Program = Terraria.Program;
 
 namespace CaiBot;
@@ -41,6 +39,7 @@ public static class MessageHandle
             fsForRead.Seek(0, SeekOrigin.Begin);
             var bs = new byte[fsForRead.Length];
             var log = Convert.ToInt32(fsForRead.Length);
+            // ReSharper disable once MustUseReturnValue
             fsForRead.Read(bs, 0, log);
             base64Str = Convert.ToBase64String(bs);
             return base64Str;
@@ -121,7 +120,7 @@ public static class MessageHandle
                 var cmd = (string) jsonObject["cmd"]!;
                 CaiBotPlayer tr = new();
                 Commands.HandleCommand(tr, cmd);
-                TShock.Utils.SendLogs($"[CaiBot] `{(string)jsonObject["at"]!}`来自群`{(long)jsonObject["group"]}`执行了: {(string) jsonObject["cmd"]!}",Microsoft.Xna.Framework.Color.PaleVioletRed);
+                TShock.Utils.SendLogs($"[CaiBot] `{(string)jsonObject["at"]!}`来自群`{(long)jsonObject["group"]!}`执行了: {(string) jsonObject["cmd"]!}",Microsoft.Xna.Framework.Color.PaleVioletRed);
                 result = new RestObject
                 {
                     { "type", "cmd" },
