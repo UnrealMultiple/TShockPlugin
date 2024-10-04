@@ -18,7 +18,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "Cai,羽学";
     public override string Description => "CaiBot机器人的适配插件";
     public override string Name => "CaiBotPlugin";
-    public static readonly Version VersionNum = new(2024, 9, 17, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new(2024, 10, 4, 0); //日期+版本号(0,1,2...)
     public override Version Version => VersionNum;
 
     //插件的构造器
