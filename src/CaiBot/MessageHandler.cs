@@ -482,6 +482,7 @@ public static class MessageHandle
                         { "inventory", itemList },
                         { "buffs", buffs },
                         { "enhances", enhance },
+                        { "economic", EconomicData.GetEconomicData(plr.name) },
                         { "group", (long) jsonObject["group"]! }
                     };
                     await SendDateAsync(JsonConvert.SerializeObject(result));
@@ -578,6 +579,7 @@ public static class MessageHandle
                         { "inventory", itemList },
                         { "buffs", buffs },
                         { "enhances", enhance },
+                        { "economic", EconomicData.GetEconomicData(acc.Name) },
                         { "group", (long) jsonObject["group"]! }
                     };
                     await SendDateAsync(JsonConvert.SerializeObject(result));
