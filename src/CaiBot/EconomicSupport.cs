@@ -1,4 +1,5 @@
-﻿using System.Reflection.Emit;
+﻿using System.Reflection;
+using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -106,21 +107,21 @@ public static class EconomicSupport
             do
             {
                 var economicsSkillType = pluginContainer.Plugin.GetType();
-
-                var playerSKillManagerProperty = economicsSkillType.GetProperty(nameof(Economics.Skill.Skill.PlayerSKillManager));
-                if (playerSKillManagerProperty is null)
+                var playerSkillManagerProperty = economicsSkillType.GetProperty("PlayerSKillManager", BindingFlags.NonPublic | BindingFlags.Instance);
+                if (playerSkillManagerProperty is null)
                 {
                     break;
                 }
-                var paramTypes = new Type[] { typeof(string) };
-                var getLevelMethod = playerSKillManagerProperty.PropertyType.GetMethod(nameof(Economics.Skill.Skill.PlayerSKillManager.QuerySkill), paramTypes);
+                var playerSkillManager = playerSkillManagerProperty.GetValue(pluginContainer.Plugin);
+                var paramTypes = new [] { typeof(string) };
+                var getLevelMethod = playerSkillManager!.GetType().GetMethod("QuerySkill", BindingFlags.NonPublic | BindingFlags.Instance, null, paramTypes, null);
                 if (getLevelMethod is null)
                 {
                     break;
                 }
                 var func = new DynamicMethod("QuerySkill", typeof(object), paramTypes);
                 var iL = func.GetILGenerator();
-                iL.Emit(OpCodes.Call, playerSKillManagerProperty.GetMethod!);
+                iL.Emit(OpCodes.Call, playerSkillManagerProperty.GetMethod!);
                 iL.Emit(OpCodes.Ldarg_0);
                 iL.Emit(OpCodes.Callvirt, getLevelMethod);
                 iL.Emit(OpCodes.Ret);
