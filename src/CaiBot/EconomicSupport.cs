@@ -86,7 +86,7 @@ public static class EconomicSupport
                 {
                     break;
                 }
-                var func = new DynamicMethod("GetLevelName", typeof(long), paramTypes);
+                var func = new DynamicMethod("GetLevelName", typeof(string), paramTypes);
                 var iL = func.GetILGenerator();
                 iL.Emit(OpCodes.Call, playerLevelManagerProperty.GetMethod!);
                 iL.Emit(OpCodes.Ldarg_0);
@@ -146,13 +146,13 @@ public static class EconomicSupport
     public static string GetCoins(TSPlayer player)
     {
         ThrowIfNotSupported();
-        return $"拥有{EconomicsAPI.Economics.Setting.CurrencyName}:{EconomicsAPI.Economics.CurrencyManager.GetUserCurrency(player.Name)}";
+        return $"拥有{GetCurrencyNameFunc()}:{GetUserCurrencyFunc(player.Name)}";
     }
     
     public static string GetLevelName(TSPlayer player)
     {
         ThrowIfNotSupported();
-        return $"当前职业: {Economics.RPG.RPG.PlayerLevelManager.GetLevel(player.Name).Name}";
+        return $"当前职业: {GetLevelNameFunc(player.Name)}";
     }
     
     public static string GetSkill(TSPlayer player)
