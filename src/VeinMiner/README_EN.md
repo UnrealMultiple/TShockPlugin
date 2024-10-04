@@ -31,6 +31,11 @@
     168,
     8
   ],
+  "当矿石上方有这些物品时，该处矿石不被挖掘": [
+    21,
+    26,
+    88
+  ],
   "兑换规则": [ //Exchange rules
     {
       "仅给予物品": false, //Only give item
@@ -54,6 +59,11 @@
     167,
     9,
     168
+  ],
+  "当矿石上方有这些物品时，该处矿石不被挖掘": [  //When these items are above the ore, the ore will not be mined.
+    21,
+    26,
+    88
   ],
   "兑换规则": [ //Exchange rules
     {
