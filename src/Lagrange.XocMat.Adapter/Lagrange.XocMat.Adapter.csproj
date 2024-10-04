@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\template.targets" />
+
+  <ItemGroup>
+    <None Remove="protobuf-net.Core.dll" />
+    <None Remove="protobuf-net.dll" />
+    <None Remove="SixLabors.ImageSharp.dll" />
+    <None Remove="System.Collections.Immutable.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="lib\protobuf-net.Core.dll" />
+    <EmbeddedResource Include="lib\protobuf-net.dll" />
+    <EmbeddedResource Include="lib\SixLabors.ImageSharp.dll" />
+    <EmbeddedResource Include="lib\System.Collections.Immutable.dll" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Reference Include="protobuf-net">
+      <HintPath>lib\protobuf-net.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="protobuf-net.Core">
+      <HintPath>lib\protobuf-net.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SixLabors.ImageSharp">
+      <HintPath>lib\SixLabors.ImageSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>lib\System.Collections.Immutable.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
