@@ -150,6 +150,7 @@ public class Plugin : TerrariaPlugin
                 }
             }
         });
+        EconomicSupport.Init();
     }
 
     private void GenCode(EventArgs args)
