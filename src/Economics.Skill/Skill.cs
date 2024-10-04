@@ -30,7 +30,7 @@ public class Skill : TerrariaPlugin
 
     internal static Config Config { get; set; } = new();
 
-    internal static PlayerSKillManager PlayerSKillManager { get; set; } = null!;
+    public static PlayerSKillManager PlayerSKillManager { get; set; } = null!;
 
     public Skill(Main game) : base(game)
     {
