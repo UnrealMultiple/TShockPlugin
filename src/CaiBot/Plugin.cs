@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Rests;
 using System.Net;
 using System.Net.WebSockets;
 using System.Reflection;
@@ -15,10 +16,10 @@ namespace CaiBot;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public override string Author => "Cai,羽学";
+    public override string Author => "Cai,羽学,西江";
     public override string Description => "CaiBot机器人的适配插件";
     public override string Name => "CaiBotPlugin";
-    public static readonly Version VersionNum = new(2024, 10, 4, 0); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new(2024, 10, 4, 1); //日期+版本号(0,1,2...)
     public override Version Version => VersionNum;
 
     //插件的构造器
@@ -29,7 +30,8 @@ public class Plugin : TerrariaPlugin
     public static int InitCode = -1;
 
     public static ClientWebSocket WebSocket = new();
-
+    public static Task WebSocketTask = Task.CompletedTask;
+    public static readonly CancellationTokenSource TokenSource = new ();
     public Task WsTask;
     public Task HeartBeat;
 
@@ -53,6 +55,7 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
+        // Commands.ChatCommands.Add(new Command( TestCommand,"test"));
         Config.Read();
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
         On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
@@ -127,7 +130,7 @@ public class Plugin : TerrariaPlugin
 
                 await Task.Delay(5000);
             }
-        });
+        },TokenSource.Token);
         this.HeartBeat = Task.Run(async () =>
         {
             while (true)
@@ -149,9 +152,26 @@ public class Plugin : TerrariaPlugin
                     TShock.Log.ConsoleInfo("[CaiBot]心跳包发送失败!");
                 }
             }
-        });
+        },TokenSource.Token);
+        EconomicSupport.Init();
     }
-
+    
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
+            On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
+            ServerApi.Hooks.NetGetData.Deregister(this, Login.OnGetData);
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, this.GenCode);
+            if (!WebSocketTask.IsCompleted)
+            {
+                TokenSource.Cancel();
+                TokenSource.Dispose();
+            }
+        }
+        base.Dispose(disposing);
+    }
     private void GenCode(EventArgs args)
     {
         if (!string.IsNullOrEmpty(Config.config.Token))
@@ -198,16 +218,5 @@ public class Plugin : TerrariaPlugin
         return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
-            On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
-            ServerApi.Hooks.NetGetData.Deregister(this, Login.OnGetData);
-            ServerApi.Hooks.GamePostInitialize.Deregister(this, this.GenCode);
-        }
-
-        base.Dispose(disposing);
-    }
+    
 }
