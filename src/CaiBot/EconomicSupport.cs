@@ -7,13 +7,13 @@ namespace CaiBot;
 
 public static class EconomicSupport
 {
-    private static bool GetCoinsSupport = false;
-    private static bool GetLevelNameSupport = false;
-    private static bool GetSkillSupport = false;
-    private static Func<string> GetCurrencyNameFunc = null!;
-    private static Func<string, long> GetUserCurrencyFunc = null!;
-    private static Func<string, string> GetLevelNameFunc = null!;
-    private static Func<string, dynamic> QuerySkillFunc = null!;
+    public static bool GetCoinsSupport = false;
+    public static bool GetLevelNameSupport = false;
+    public static bool GetSkillSupport = false;
+    private static Func<string> _getCurrencyNameFunc = null!;
+    private static Func<string, long> _getUserCurrencyFunc = null!;
+    private static Func<string, string> _getLevelNameFunc = null!;
+    private static Func<string, dynamic> _querySkillFunc = null!;
     public static void Init()
     {
         var pluginContainer = ServerApi.Plugins.Where(x => x.Plugin.Name == "EconomicsAPI").FirstOrDefault();
@@ -39,7 +39,7 @@ public static class EconomicSupport
                 iL.Emit(OpCodes.Call, settingProperty.GetMethod!);
                 iL.Emit(OpCodes.Ldfld, currencyNameField);
                 iL.Emit(OpCodes.Ret);
-                GetCurrencyNameFunc = func.CreateDelegate<Func<string>>();
+                _getCurrencyNameFunc = func.CreateDelegate<Func<string>>();
                 var currencyManagerProperty = economicsType.GetProperty(nameof(EconomicsAPI.Economics.CurrencyManager));
                 if (currencyManagerProperty is null)
                 {
@@ -57,7 +57,7 @@ public static class EconomicSupport
                 iL.Emit(OpCodes.Ldarg_0);
                 iL.Emit(OpCodes.Callvirt, getUserCurrencyMethod);
                 iL.Emit(OpCodes.Ret);
-                GetUserCurrencyFunc = func.CreateDelegate<Func<string, long>>();
+                _getUserCurrencyFunc = func.CreateDelegate<Func<string, long>>();
 
                 GetCoinsSupport = true;
             } while (false);
@@ -93,7 +93,7 @@ public static class EconomicSupport
                 iL.Emit(OpCodes.Callvirt, getLevelMethod);
                 iL.Emit(OpCodes.Callvirt, nameProperty.GetMethod!);
                 iL.Emit(OpCodes.Ret);
-                GetLevelNameFunc = func.CreateDelegate<Func<string, string>>();
+                _getLevelNameFunc = func.CreateDelegate<Func<string, string>>();
 
                 GetLevelNameSupport = true;
             }
@@ -124,7 +124,7 @@ public static class EconomicSupport
                 iL.Emit(OpCodes.Ldarg_0);
                 iL.Emit(OpCodes.Callvirt, getLevelMethod);
                 iL.Emit(OpCodes.Ret);
-                QuerySkillFunc = func.CreateDelegate<Func<string, dynamic>>();
+                _querySkillFunc = func.CreateDelegate<Func<string, dynamic>>();
 
                 GetSkillSupport = true;
             }
@@ -143,25 +143,26 @@ public static class EconomicSupport
         };
     }
 
-    public static string GetCoins(TSPlayer player)
+    public static string GetCoins(string name)
     {
         ThrowIfNotSupported();
-        return $"拥有{GetCurrencyNameFunc()}:{GetUserCurrencyFunc(player.Name)}";
+        return $"{_getCurrencyNameFunc()}:{_getUserCurrencyFunc(name)}";
     }
     
-    public static string GetLevelName(TSPlayer player)
+    public static string GetLevelName(string name)
     {
         ThrowIfNotSupported();
-        return $"当前职业: {GetLevelNameFunc(player.Name)}";
+        var levelName = _getLevelNameFunc(name);
+        return $"职业:{(string.IsNullOrEmpty(levelName)?"无":levelName)}";
     }
     
-    public static string GetSkill(TSPlayer player)
+    public static string GetSkill(string name)
     {
         ThrowIfNotSupported();
-        dynamic obj = QuerySkillFunc(player.Name);
+        var obj = _querySkillFunc(name);
         IEnumerable<dynamic> skill = Enumerable.Cast<dynamic>(obj);
-        var msg = skill.Any() ? string.Join(',', Enumerable.Select(skill, new Func<dynamic, string>(obj => obj.Skill is null ? "无效技能" : (string)obj.Skill.Name))) : "无";
-        return $"绑定技能:{msg}";
+        var msg = skill.Any() ? string.Join(',', Enumerable.Select(skill, obj => obj.Skill is null ? "无效技能" : (string)obj.Skill.Name)) : "无";
+        return $"技能:{msg}";
     }
 
     private static void ThrowIfNotSupported([CallerMemberName] string memberName = "")
