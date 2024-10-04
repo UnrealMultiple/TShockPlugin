@@ -11,6 +11,8 @@ public class WebSocketReceive
 
     public static event Action OnConnect;
 
+    public static bool CanRun = true;
+
     public static async void SendMessage(MemoryStream stream)
     {
         await SendMessage(stream.ToArray());
@@ -32,13 +34,13 @@ public class WebSocketReceive
 
 
 
-    public static async Task Start(string Host, int Port)
+    public static void Start(string Host, int Port)
     {
 
-        var task = Task.Run(async () =>
+        Task.Run(async () =>
         {
             var count = 1;
-            while (true)
+            while (CanRun)
             {
                 try
                 {
@@ -47,16 +49,16 @@ public class WebSocketReceive
                     OnConnect.Invoke();
                     while (true)
                     {
-                        ArraySegment<byte> buffer = new ArraySegment<byte>(new byte[1024]);
+                        var buffer = new ArraySegment<byte>(new byte[1024]);
                         WebSocketReceiveResult result = new(0, WebSocketMessageType.Binary, false);
-                        List<byte[]> Message = new List<byte[]>();
+                        var Message = new List<byte[]>();
                         while (!result.EndOfMessage)
                         {
                             //接收消息
                             result = await ClientWebSocket.ReceiveAsync(buffer, CancellationToken.None);
                             Message.Add(buffer.Take(result.Count).ToArray());
                         }
-                        byte[] temp = new byte[0];
+                        var temp = new byte[0];
                         Message.ForEach(u => temp = temp.Concat(u).ToArray());
                         buffer = new ArraySegment<byte>(temp);
                         OnMessage(buffer.ToArray());
@@ -66,7 +68,7 @@ public class WebSocketReceive
                 catch
                 {
                     ClientWebSocket.Dispose();
-                    TShock.Log.ConsoleError($"[MorMorAdapter]({count}) 未连接至MorMor机器人，正在进行连接..");
+                    TShock.Log.ConsoleError($"[Lagrange.XocMat.Adapter]({count}) 未连接至MorMor机器人，正在进行连接..");
 
                 }
                 count++;

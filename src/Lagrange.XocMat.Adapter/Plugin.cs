@@ -82,7 +82,8 @@ public class Plugin : TerrariaPlugin
         this.Timer.Enabled = true;
         this.Timer.Interval = Config.SocketConfig.HeartBeatTimer;
         this.Timer.Elapsed += this.TimerUpdate;
-        Task.Run(async () => await WebSocketReceive.Start(Config.SocketConfig.IP, Config.SocketConfig.Port));
+        WebSocketReceive.CanRun = true;
+        WebSocketReceive.Start(Config.SocketConfig.IP, Config.SocketConfig.Port);
     }
 
     protected override void Dispose(bool disposing)
@@ -106,6 +107,9 @@ public class Plugin : TerrariaPlugin
             this.Timer.Dispose();
             this.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             this.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            WebSocketReceive.CanRun = false;
+            WebSocketReceive.ClientWebSocket.CloseAsync(System.Net.WebSockets.WebSocketCloseStatus.EndpointUnavailable, "UnLoad", default);
+            WebSocketReceive.ClientWebSocket.Dispose();
         }
         base.Dispose(disposing);
     }
