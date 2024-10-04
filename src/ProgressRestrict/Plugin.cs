@@ -24,7 +24,6 @@ public class Plugin : TerrariaPlugin
 
     public Plugin(Main game) : base(game)
     {
-        this.config = Config.LoadConfig(this.path);
     }
     public override void Initialize()
     {
