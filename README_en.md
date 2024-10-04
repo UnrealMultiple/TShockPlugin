@@ -60,18 +60,20 @@
 |-------------|-------------------|-------------------|---------------|
 | [AdditionalPylons](src/AdditionalPylons/README_EN.md) | Yes | Place more Pylons | No |
 | [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | No | Enhance Broadcast Box Functionality | No |
-| [AutoBroadcast](src/AutoBroadcast/README.md) | Yes | Automatic broadcast | No |
-| [AutoClear](src/Autoclear/README.md) | Yes | Intelligent automatic cleaning | No |
+| [AutoBroadcast](src/AutoBroadcast/README_EN.md) | Yes | Automatic broadcast | No |
+| [AutoClear](src/Autoclear/README_EN.md) | Yes | Intelligent automatic cleaning | No |
 | [AutoReset](src/AutoReset/README_EN.md) | Yes | Fully automatic reset | No |
-| [AutoStoreItems](src/AutoStoreItems/README.md) | Yes | Automatic storage | No |
-| [AutoTeam](src/AutoTeam/README.md) | Yes | Automatic team formation | No |
-| [Back](src/Back/README.md) | Yes | Return to the point of death | No |
-| [BagPing](src/BagPing/README.md) | Yes | Mark treasure bags on the map | No |
+| [AutoStoreItems](src/AutoStoreItems/README_EN.md) | Yes | Automatic storage | No |
+| [AutoTeam](src/AutoTeam/README_EN.md) | Yes | Automatic team formation | No |
+| [Back](src/Back/README_EN.md) | Yes | Return to the point of death | No |
+| [BagPing](src/BagPing/README_EN.md) | Yes | Mark treasure bags on the map | No |
 | [BetterWhitelist](src/BetterWhitelist/README_EN.md) | Yes | Whitelist plugin | No |
 | [BanNpc](src/BanNpc/README_EN.md) | Yes | Prevent monster generation | No |
-| [BedSet](src/BedSet/README.md) | No | Set and record respawn points | No |
+| [BedSet](src/BedSet/README_EN.md) | No | Set and record respawn points | No |
 | [BridgeBuilder](src/BridgeBuilder/README_EN.md) | Yes | Quick bridge building | No |
 | [BuildMaster](src/BuildMaster/README.md) | No | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](src/MiniGamesAPI/README.md) |
+| [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | Yes | Yet another misc plugin for TShock - the core part                                 |            No  |
+| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md)  |  Yes  | Yet another misc plugin for TShock - the miscellaneous part          |           [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [CaiBot](src/CaiBot/README.md) | No | CaiBot adapter plugin | Built-in precondition |
 | [CaiCustomEmojiCommand](src/CaiCustomEmojiCommand/README.md) | No | Custom emoji command | No |
 | [CaiLib](src/CaiLib/README.md) | No | Cai's preload library | No |
@@ -105,7 +107,7 @@
 | [Economics.Skill](src/Economics.Skill/README.md) | No | Skill plugin | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
 | [Economics.WeaponPlus](src/Economics.WeaponPlus/README.md) | No | Weapon enhancement | [EconomicsAPI](src/EconomicsAPI/README.md) |
 | [EconomicsAPI](src/EconomicsAPI/README.md) | No | Economic plugin prerequisite | No |
-| [EndureBoost](src/EndureBoost/README.md) | No | Long-lasting buff after a certain number of items | No |
+| [EndureBoost](src/EndureBoost/README_EN.md) | Yes | Grant specified buff when the player has a certain number of items | No |
 | [EssentialsPlus](src/EssentialsPlus/README.md) | No | Additional management commands | No |
 | [Ezperm](src/Ezperm/README.md) | No | Batch change permissions | No |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | No | Fish shop | No |
@@ -118,6 +120,7 @@
 | [HouseRegion](src/HouseRegion/README.md) | No | Land claiming plugin | No |
 | [Invincibility](src/Invincibility/README.md) | No | Time-limited invincibility | No |
 | [ItemPreserver](src/ItemPreserver/README.md) | No | Preserve specified items from consumption | No |
+| [ItemBox](src/itemBox/README.md) | Off-line inventory | No | No |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | No | Unlock journey items | No |
 | [LifemaxExtra](src/LifemaxExtra/README.md) | No | Eat more life fruits/crystals | No |
 | [ListPlugins](src/ListPlugins/README.md) | No | List installed plugins | No |
