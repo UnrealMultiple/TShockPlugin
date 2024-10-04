@@ -172,6 +172,7 @@
 | [WikiLangPackLoader](src/WikiLangPackLoader/README.md) | No | Load Chinese Wiki language pack for server | No |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | No | World editor, can modify most of the world parameters | No |
 | [ZHIPlayerManager](src/ZHIPlayerManager/README.md) | No | zZhi's player management plugin | No |
+| [Lagrange.XocMat.Adapter](src/Lagrange.XocMat.Adapter/README.md) | No | Lagrange.XocMat Bot Adapter Plugin | No |
 
 
 

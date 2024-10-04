@@ -125,6 +125,7 @@
 | [ItemPreserver](src/ItemPreserver/README.md) | 指定物品不消耗 | 无 |
 | [ItemBox](src/ItemBox/README.md) | 离线背包系统，物品盒子 | 无 |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | 解锁旅途物品 | 无 |
+| [Lagrange.XocMat.Adapter](src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 | 无 |
 | [LifemaxExtra](src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | 无 |
 | [ListPlugins](src/ListPlugins/README.md) | 查已装插件 | 无 |
 | [MapTeleport](src/MapTp/README.md) | 双击大地图传送 | 无 |
