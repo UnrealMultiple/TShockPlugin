@@ -91,6 +91,13 @@
     "Path": "ConvertWorld.dll"
   },
   {
+    "Name": "机器人适配插件",
+    "Version": "1.0.0.0",
+    "Author": "少司命",
+    "Description": "适配插件",
+    "Path": "Lagrange.XocMat.Adapter.dll"
+  },
+  {
     "Name": "禁怪物掉落",
     "Version": "1.3.1",
     "Author": "羽学",
