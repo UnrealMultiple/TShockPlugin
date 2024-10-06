@@ -16,19 +16,19 @@ namespace Plugin;
         public bool AutoCoin { get; set; } = false;
 
         [JsonProperty("使用说明1", Order = -10)]
-        public static string Text { get; set; } = "[手持存储模式] 需要选中 [触发存储的物品] 其中1个才会启动存储功能(2024年10月6日已修复)，关闭则背包含有[存储道具]就会自存[储存物品表]的物品";
+        public static string Text { get; set; } = GetString("[手持存储模式] 需要选中 [触发存储的物品] 其中1个才会启动存储功能(2024年10月6日已修复)，关闭则背包含有[存储道具]就会自存[储存物品表]的物品");
 
         [JsonProperty("使用说明2", Order = -10)]
-        public static string Text2 { get; set; } = "[储物速度] 不要在 [手持存储模式] 关闭的情况下: 低于60帧(推荐120)，[自动存钱] 与 [装备饰品] 不受 [储物速度]影响";
+        public static string Text2 { get; set; } = GetString("[储物速度] 不要在 [手持存储模式] 关闭的情况下: 低于60帧(推荐120)，[自动存钱] 与 [装备饰品] 不受 [储物速度]影响");
 
         [JsonProperty("使用说明3", Order = -10)]
-        public static string Text3 { get; set; } = "[物品名] 会在使用 /reload 指令时根据 物品ID 自动写入，[物品数量] 为触发储存机制的最低数量要求 ";
+        public static string Text3 { get; set; } = GetString("[物品名] 会在使用 /reload 指令时根据 物品ID 自动写入，[物品数量] 为触发储存机制的最低数量要求 ");
 
         [JsonProperty("使用说明4", Order = -10)]
-        public static string Text4 { get; set; } = "[装备饰品存储模式] 只会检测装备3格+饰品7格，装备指定饰品(盔甲)玩家只要移动或攻击就会触发存储机制，CPU主频没3Ghz以上的别开 ";
+        public static string Text4 { get; set; } = GetString("[装备饰品存储模式] 只会检测装备3格+饰品7格，装备指定饰品(盔甲)玩家只要移动或攻击就会触发存储机制，CPU主频没3Ghz以上的别开 ");
 
         [JsonProperty("使用说明5", Order = -10)]
-        public static string Text5 { get; set; } = "[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险) ,物品如果没放到【存钱罐】等储存空间内是不会触发自动存储的";
+        public static string Text5 { get; set; } = GetString("[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险) ,物品如果没放到【存钱罐】等储存空间内是不会触发自动存储的");
 
         [JsonProperty("存钱罐", Order = -9)]
         public bool bank1 { get; set; } = true;
