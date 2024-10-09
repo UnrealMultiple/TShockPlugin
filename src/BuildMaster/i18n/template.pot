@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuildMaster\n"
-"POT-Creation-Date: 2024-09-28 12:12:03+0000\n"
-"PO-Revision-Date: 2024-09-28 12:12:03+0000\n"
+"POT-Creation-Date: 2024-10-09 13:06:13+0000\n"
+"PO-Revision-Date: 2024-10-09 13:06:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -193,8 +193,8 @@ msgstr ""
 msgid "倒计时[{0}:{1}]"
 msgstr ""
 
-#: ../../MainPlugin.cs:776
 #: ../../BuildRoom.cs:311
+#: ../../MainPlugin.cs:776
 msgid "已准备"
 msgstr ""
 
@@ -318,6 +318,7 @@ msgstr ""
 msgid "成功设置房间(id:{0}) 的评分时间为{1}秒"
 msgstr ""
 
+#: ../../BuildPlayer.cs:67
 #: ../../MainPlugin.cs:355
 #: ../../MainPlugin.cs:380
 #: ../../MainPlugin.cs:405
@@ -333,7 +334,6 @@ msgstr ""
 #: ../../MainPlugin.cs:670
 #: ../../MainPlugin.cs:694
 #: ../../MainPlugin.cs:758
-#: ../../BuildPlayer.cs:67
 msgid "房间不存在"
 msgstr ""
 
@@ -447,12 +447,12 @@ msgstr ""
 msgid "点未选取完毕"
 msgstr ""
 
+#: ../../BuildPlayer.cs:54
+#: ../../BuildPlayer.cs:76
 #: ../../MainPlugin.cs:776
 #: ../../MainPlugin.cs:802
 #: ../../MainPlugin.cs:807
 #: ../../MainPlugin.cs:863
-#: ../../BuildPlayer.cs:54
-#: ../../BuildPlayer.cs:76
 msgid "玩家 "
 msgstr ""
 
