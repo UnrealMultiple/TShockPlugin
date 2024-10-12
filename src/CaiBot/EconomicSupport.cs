@@ -107,15 +107,14 @@ public static class EconomicSupport
             do
             {
                 var economicsSkillType = pluginContainer.Plugin.GetType();
-                var playerSkillManagerProperty = economicsSkillType.GetProperty("PlayerSKillManager", BindingFlags.NonPublic | BindingFlags.Instance);
+                var playerSkillManagerProperty = economicsSkillType.GetProperty("PlayerSKillManager", BindingFlags.NonPublic | BindingFlags.Static);
                 if (playerSkillManagerProperty is null)
                 {
                     break;
                 }
-                var playerSkillManager = playerSkillManagerProperty.GetValue(pluginContainer.Plugin);
-                var paramTypes = new [] { typeof(string) };
-                var getLevelMethod = playerSkillManager!.GetType().GetMethod("QuerySkill", BindingFlags.NonPublic | BindingFlags.Instance, null, paramTypes, null);
-                if (getLevelMethod is null)
+                var paramTypes = new Type[] { typeof(string) };
+                var querySkillMethod = playerSkillManagerProperty.PropertyType.GetMethod("QuerySkill", paramTypes);
+                if (querySkillMethod is null)
                 {
                     break;
                 }
@@ -123,7 +122,7 @@ public static class EconomicSupport
                 var iL = func.GetILGenerator();
                 iL.Emit(OpCodes.Call, playerSkillManagerProperty.GetMethod!);
                 iL.Emit(OpCodes.Ldarg_0);
-                iL.Emit(OpCodes.Callvirt, getLevelMethod);
+                iL.Emit(OpCodes.Callvirt, querySkillMethod);
                 iL.Emit(OpCodes.Ret);
                 _querySkillFunc = func.CreateDelegate<Func<string, dynamic>>();
 
