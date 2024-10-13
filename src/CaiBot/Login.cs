@@ -50,6 +50,10 @@ public static class Login
                 player.DataWhenJoined.CopyCharacter(player);
                 args.Handled = true;
             }
+            else if (type == PacketTypes.ConnectRequest)
+            {
+                Netplay.Clients[player.Index].ClientUUID = null;
+            }
             else if (type == PacketTypes.PlayerInfo)
             {
                 if (player.IsLoggedIn)
@@ -66,11 +70,13 @@ public static class Login
                     {
                         await Task.Delay(10);
                     }
-                    if (timeout.IsCompleted)
-                    {
-                        player?.Kick("[CaiBot]UUID等待超时。");
-                    }
+                    
                 });
+                if (timeout.IsCompleted)
+                {
+                    player?.Kick("[CaiBot]UUID等待超时。");
+                    return;
+                }
                 var name = data.ReadString().Trim();
                 RestObject re = new()
                 {
