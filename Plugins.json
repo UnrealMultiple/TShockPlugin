@@ -288,7 +288,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2024.10.12.1",
+    "Version": "2024.10.13.1",
     "Author": "Cai,羽学,西江",
     "Description": "CaiBot机器人的适配插件",
     "Path": "CaiBot.dll"
