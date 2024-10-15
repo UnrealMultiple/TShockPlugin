@@ -257,8 +257,7 @@ public static class MessageHandle
             case "whitelist":
                 var name = (string) jsonObject["name"]!;
                 var code = (int) jsonObject["code"]!;
-                var uuids = jsonObject["uuids"]!.ToObject<List<string>>()!;
-                if (await Login.CheckWhiteAsync(name, code, uuids))
+                if (await Login.CheckWhiteAsync(name, code))
                 {
                     var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
                     if (playerList.Count == 0)

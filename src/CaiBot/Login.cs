@@ -44,14 +44,15 @@ public static class Login
         try
         {
             using MemoryStream data = new(args.Msg.readBuffer, args.Index, args.Length - 1);
-            // ReSharper disable once ConvertIfStatementToSwitchStatement
             if (type == PacketTypes.ContinueConnecting2)
             {
-                //UserAccount account = TShock.UserAccounts.GetUserAccountByName(player.Name);
                 player.DataWhenJoined = new PlayerData(player);
                 player.DataWhenJoined.CopyCharacter(player);
-                //NetMessage.TrySendData(68, -1, -1, null, args.Index);
                 args.Handled = true;
+            }
+            else if (type == PacketTypes.ConnectRequest)
+            {
+                Netplay.Clients[player.Index].ClientUUID = null;
             }
             else if (type == PacketTypes.PlayerInfo)
             {
@@ -59,20 +60,36 @@ public static class Login
                 {
                     return;
                 }
-
                 data.ReadByte();
                 data.ReadByte();
                 data.ReadByte();
-                var name = data.ReadString().Trim().Trim();
+                var timeout = Task.Delay(1000); //貌似不是很优雅捏
+                await Task.Run(async () =>
+                {
+                    while (player?.UUID == null && timeout.IsCompleted == false)
+                    {
+                        await Task.Delay(10);
+                    }
+                    
+                });
+                if (timeout.IsCompleted)
+                {
+                    player?.Kick("[CaiBot]UUID等待超时。");
+                    return;
+                }
+                var name = data.ReadString().Trim();
                 RestObject re = new()
                 {
-                    { "type", "whitelist" },
-                    { "name", name }
+                    { "type", "whitelistV2" },
+                    { "name", name },
+                    { "uuid", player.UUID },
+                    { "ip", player.IP },
                 };
                 if (!MessageHandle.IsWebsocketConnected)
                 {
                     TShock.Log.ConsoleError("[CaiBot]机器人处于未连接状态, 玩家无法加入。\n" +
                                             "如果你不想使用Cai白名单，可以在tshock/CaiBot.json中将其关闭。");
+                    player.Kick("[CaiBot]机器人处于未连接状态, 玩家无法加入。");
 
                     return;
                 }
@@ -86,7 +103,7 @@ public static class Login
         }
     }
 
-    public static async Task<bool> CheckWhiteAsync(string name, int code, List<string> uuids)
+    public static async Task<bool> CheckWhiteAsync(string name, int code)
     {
         var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
         var number = Config.config.GroupNumber;
@@ -138,34 +155,15 @@ public static class Login
                                    $"请加入服务器群: {number}");
                     return false;
                 }
-            }
-
-            if (!uuids.Contains(plr.UUID))
-            {
-                if (string.IsNullOrEmpty(plr.UUID))
-
+                case 405:
                 {
+                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})使用未授权的设备...");
                     plr.SilentKickInProgress = true;
-                    plr.Disconnect("[Cai白名单]UUID获取失败!\n" +
-                                   "请尝试重新加入游戏或者联系服务器管理员");
+                    plr.Disconnect($"[Cai白名单]在群{number}内发送'登录',\n" +
+                                   $"以批准此设备登录");
+                    
                     return false;
                 }
-
-                TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})使用未授权的设备...");
-                plr.SilentKickInProgress = true;
-                plr.Disconnect($"[Cai白名单]在群{number}内发送'登录',\n" +
-                               $"以批准此设备登录");
-
-                RestObject re = new()
-                {
-                    { "type", "device" },
-                    { "uuid", plr.UUID },
-                    { "ip", plr.IP },
-                    { "name", name }
-                };
-                await MessageHandle.SendDateAsync(re.ToJson());
-
-                return false;
             }
         }
         catch (Exception ex)
