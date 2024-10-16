@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ezperm\n"
-"POT-Creation-Date: 2024-10-09 15:08:27+0800\n"
-"PO-Revision-Date: 2024-10-09 15:08:27+0800\n"
+"POT-Creation-Date: 2024-10-16 17:51:16+0000\n"
+"PO-Revision-Date: 2024-10-16 17:51:16+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,17 +10,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ..\..\Ezperm.cs:91
+#: ../../Ezperm.cs:91
 #, csharp-format
 msgid "成功为组 {0} 删除权限: {1}"
 msgstr ""
 
-#: ..\..\Ezperm.cs:74
+#: ../../Ezperm.cs:74
 #, csharp-format
 msgid "成功为组 {0} 添加权限: {1}"
 msgstr ""
 
-#: ..\..\Ezperm.cs:59
+#: ../../Ezperm.cs:59
 #, csharp-format
 msgid "组 {0} 不存在，已创建该组。"
 msgstr ""
