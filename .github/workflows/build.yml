@@ -26,7 +26,7 @@ jobs:
         env:
           DOTNET_CLI_UI_LANGUAGE: zh-CN
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 6.0.100
 
       - name: 安装构建依赖
         shell: pwsh
