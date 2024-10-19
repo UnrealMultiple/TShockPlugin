@@ -25,28 +25,28 @@ v1.0.0
 
 | 插值                      | 插值内容                        |
 | ------------------------- | ------------------------------- |
-| %PlayerName%              | 玩家名称                        |
-| %PlayerGroupName%         | 玩家所在组名称                  |
-| %PlayerLife%              | 玩家生命值                      |
-| %PlayerMana%              | 玩家魔力值                      |
-| %PlayerLifeMax%           | 玩家最大生命值                  |
-| %PlayerManaMax%           | 玩家最大魔力值                  |
-| %PlayerLuck%              | 玩家幸运值                      |
-| %PlayerCoordinateX%       | 玩家X坐标                       |
-| %PlayerCoordinateY%       | 玩家Y坐标                       |
-| %PlayerCurrentRegion%     | 玩家所在的 TShock 区域          |
-| %IsPlayerAlive%           | 玩家是否存活                    |
-| %RespawnTimer%            | 玩家重生倒计时 (未知原因不生效) |
-| %OnlinePlayersCount%      | 在线玩家数量                    |
-| %OnlinePlayersList%       | 在线玩家列表                    |
-| %AnglerQuestFishName%     | 渔夫任务鱼名称                  |
-| %AnglerQuestFishID%       | 渔夫任务鱼ID                    |
-| %AnglerQuestFishingBiome% | 渔夫任务鱼钓鱼点                |
-| %AnglerQuestCompleted%    | 渔夫任务是否已完成              |
-| %CurrentTime%             | 游戏内时间                      |
-| %RealWorldTime%           | 现实世界时间                    |
-| %WorldName%               | 世界名称                        |
-| %CurrentBiomes%           | 玩家当前所处群系                |
+| {PlayerName}              | 玩家名称                        |
+| {PlayerGroupName}         | 玩家所在组名称                  |
+| {PlayerLife}              | 玩家生命值                      |
+| {PlayerMana}              | 玩家魔力值                      |
+| {PlayerLifeMax}           | 玩家最大生命值                  |
+| {PlayerManaMax}           | 玩家最大魔力值                  |
+| {PlayerLuck}              | 玩家幸运值                      |
+| {PlayerCoordinateX}       | 玩家X坐标                       |
+| {PlayerCoordinateY}       | 玩家Y坐标                       |
+| {PlayerCurrentRegion}     | 玩家所在的 TShock 区域          |
+| {IsPlayerAlive}           | 玩家是否存活                    |
+| {RespawnTimer}            | 玩家重生倒计时 (未知原因不生效) |
+| {OnlinePlayersCount}      | 在线玩家数量                    |
+| {OnlinePlayersList}       | 在线玩家列表                    |
+| {AnglerQuestFishName}     | 渔夫任务鱼名称                  |
+| {AnglerQuestFishID}       | 渔夫任务鱼ID                    |
+| {AnglerQuestFishingBiome} | 渔夫任务鱼钓鱼点                |
+| {AnglerQuestCompleted}    | 渔夫任务是否已完成              |
+| {CurrentTime}             | 游戏内时间                      |
+| {RealWorldTime}           | 现实世界时间                    |
+| {WorldName}               | 世界名称                        |
+| {CurrentBiomes}           | 玩家当前所处群系                |
 
 ## 配置
 > 配置文件位置：tshock/StatusTextManager.json
@@ -68,7 +68,8 @@ v1.0.0
       },
       {
         "TypeName": "DynamicText", //动态文本类型
-        "Text": "\nWorld Name: %WorldName%, Player Name: %PlayerName%\n", //动态文本内容， 被百分号(%)包裹的插值会被动态替换成对应的插值内容
+        "Text": "\nWorld Name: {WorldName}, {Player Name: {PlayerName}}, Field: {{PlayerName}}\n", //动态文本内容， 被花括号{}包裹的插值会被动态替换成对应的插值内容, 用双花括号跳过插值
+        // 如果想要做到 Player Name: {Sparrow} 还是用两个 StaticText 包裹吧。。
         "UpdateInterval": 60 //更新间隔, 大同小异
       },
       {
@@ -86,7 +87,7 @@ v1.0.0
 ```
 Helloooooooooooooooooooooooooo
 Sparrow Hello from STMTest2 9
-World Name: 1449World, Player Name: Sparrow
+World Name: 1449World, {Player Name: Sparrow}, Field: {PlayerName}
 Sparrow Hello from STMTest1 16
 ```
 
