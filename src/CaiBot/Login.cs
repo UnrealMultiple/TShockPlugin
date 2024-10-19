@@ -29,8 +29,6 @@ public static class Login
                 instance.ResetReader();
                 instance.reader.BaseStream.Position = readOffset;
                 var uuid = instance.reader.ReadString();
-                Console.WriteLine(uuid);
-
                 if (string.IsNullOrEmpty(player.Name))
                 {
                     player.Kick("[Cai白名单]玩家名获取失败!");
@@ -39,7 +37,7 @@ public static class Login
 
                 RestObject re = new ()
                 {
-                    { "type", "whitelistV2" }, { "name", player.Name }, { "uuid", player.UUID }, { "ip", player.IP },
+                    { "type", "whitelistV2" }, { "name", player.Name }, { "uuid", uuid }, { "ip", player.IP },
                 };
                 if (!MessageHandle.IsWebsocketConnected)
                 {

@@ -21,8 +21,7 @@ public class Plugin : TerrariaPlugin
     public override string Name => "CaiBotPlugin";
     public static readonly Version VersionNum = new(2024, 10, 19 , 1); //日期+版本号(0,1,2...)
     public override Version Version => VersionNum;
-
-    //插件的构造器
+    
     public Plugin(Main game) : base(game)
     {
     }
