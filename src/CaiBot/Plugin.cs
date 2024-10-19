@@ -19,7 +19,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "Cai,羽学,西江";
     public override string Description => "CaiBot机器人的适配插件";
     public override string Name => "CaiBotPlugin";
-    public static readonly Version VersionNum = new(2024, 10, 13 , 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new(2024, 10, 19 , 1); //日期+版本号(0,1,2...)
     public override Version Version => VersionNum;
 
     //插件的构造器
@@ -59,6 +59,7 @@ public class Plugin : TerrariaPlugin
         Config.Read();
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
         On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
+        On.OTAPI.Hooks.MessageBuffer.InvokeGetData += Login.MessageBuffer_InvokeGetData;
         ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
         ServerApi.Hooks.GamePostInitialize.Register(this, this.GenCode);
         this.WsTask = Task.Run(async () =>
@@ -162,6 +163,7 @@ public class Plugin : TerrariaPlugin
         {
             AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
             On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
+            On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= Login.MessageBuffer_InvokeGetData;
             ServerApi.Hooks.NetGetData.Deregister(this, Login.OnGetData);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.GenCode);
             if (!WebSocketTask.IsCompleted)
@@ -214,8 +216,8 @@ public class Plugin : TerrariaPlugin
             }
         }
 
-
-        return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+        
+        return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);;
     }
 
     
