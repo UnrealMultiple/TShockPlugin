@@ -701,7 +701,7 @@
   },
   {
     "Name": "Status Text Manager",
-    "Version": "1.0.0",
+    "Version": "1.1.0",
     "Author": "LaoSparrow",
     "Description": "Manage status text of different plugins",
     "Path": "StatusTextManager.dll"
