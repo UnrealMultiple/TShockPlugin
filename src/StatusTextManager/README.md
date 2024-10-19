@@ -90,6 +90,22 @@ Sparrow Hello from STMTest2 9
 World Name: 1449World, {Player Name: Sparrow}, Field: {PlayerName}
 Sparrow Hello from STMTest1 16
 ```
+示例配置文件
+```json5
+{
+  "Settings": {
+    "LogLevel": "INFO",
+    "StatusTextSettings": [
+      {
+        "TypeName": "DynamicText",
+        "Text": "\n\n\n\n\n\n\n\n\n\n--[提[i:29]瓦[i:29]特]--\n[i:1503]玩家名称: {PlayerName}\n[i:346]当前组别: {PlayerGroupName}\n[i:893]当前世界: {WorldName}\n[i:855]幸运值: {PlayerLuck}\n[i:889]游戏时间: {CurrentTime}\n[i:{AnglerQuestFishID}]渔夫任务鱼: {AnglerQuestFishName}\n[i:3036]任务鱼钓鱼点: {AnglerQuestFishingBiome}[i:1307]\n[i:267]在线玩家: {OnlinePlayersList}\n[i:3122]当前群系: {CurrentBiomes}",
+        "UpdateInterval": 60
+      }
+    ]
+  }
+}
+
+```
 
 ## 适配示例代码
 
