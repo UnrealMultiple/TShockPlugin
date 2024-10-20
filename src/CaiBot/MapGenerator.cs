@@ -1,5 +1,3 @@
-// 来自：https://github.com/UnrealMultiple/MorMor/blob/master/MorMor/TShock/Map/
-
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using System.IO.Compression;
@@ -7,7 +5,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.IO;
 using Terraria.Map;
-using Color = Microsoft.Xna.Framework.Color;
 using Image = SixLabors.ImageSharp.Image;
 
 namespace CaiBot;
@@ -16,9 +13,9 @@ public static class MapGenerator
 {
     public static Image Create()
     {
-        Image<Rgba32> image = new(Main.tile.Width, Main.tile.Height);
+        Image<Rgba32> image = new(Main.maxTilesX, Main.maxTilesY);
         MapHelper.Initialize();
-        Main.Map = new(Main.tile.Width, Main.tile.Height);
+        Main.Map = new(Main.maxTilesX, Main.maxTilesY);
         for (var x = 0; x < Main.maxTilesX; x++)
         {
             for (var y = 0; y < Main.maxTilesY; y++)
