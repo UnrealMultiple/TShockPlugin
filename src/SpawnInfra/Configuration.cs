@@ -16,12 +16,15 @@ internal class Configuration
     [JsonProperty("使用说明5", Order = -11)]
     public string Text5 { get; set; } = "每次重置服务器前使用一遍：/rm 重置，或者直接把这个指令写进重置插件里";
     [JsonProperty("使用说明6", Order = -11)]
-    public string Text6 { get; set; } = "以下参数仅适用于大地图，小地图需自己调试适配";
+    public string Text6 { get; set; } = "以下参数仅适用于大地图，中地图需自己调试适配";
     [JsonProperty("使用说明7", Order = -11)]
     public string Text7 { get; set; } = "[设置刷怪率]需所有在线玩家在刷怪场中心且击败[肉山]后生效";
 
     [JsonProperty("开服自动基建", Order = -10)]
     public bool Enabled { get; set; } = true;
+
+    [JsonProperty("开服指令表", Order = -1)]
+    public string[] CommandList { get; set; } = new string[] { };
 
     [JsonProperty("自建微光湖", Order = 0)]
     public List<ItemData4> SpawnShimmerBiome { get; set; } = new List<ItemData4>();
@@ -178,9 +181,7 @@ internal class Configuration
 
         [JsonProperty("实体块包围左海平台(天顶必开)", Order = 11)]
         public bool Enclose { get; set; } = true;
-        [JsonProperty("左右实体块是否对齐上下(加载很慢)", Order = 11)]
-        public bool AccordantY { get; set; } = false;
-        [JsonProperty("左海平台产生液(非空岛不需要开)", Order = 13)]
+        [JsonProperty("左海平台产生液体(非空岛不需要开)", Order = 12)]
         public bool PlaceLiquid { get; set; } = false;
 
         public ItemData2(int id, int style, int tileY, int height, int limit, int limit2, int wide, int height2, int interval)
@@ -314,7 +315,7 @@ internal class Configuration
 
         this.WorldPlatform = new List<ItemData2>
         {
-            new ItemData2(19, 43, -200 ,35,150,50,270,200,30),
+            new ItemData2(19, 43, -100 ,35,150,50,270,200,30),
         };
 
         this.HellTunnel = new List<ItemData3>
@@ -354,5 +355,4 @@ internal class Configuration
         }
     }
     #endregion
-
 }
