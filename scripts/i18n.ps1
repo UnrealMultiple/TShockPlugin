@@ -4,7 +4,6 @@
 )
 
 $ext = [System.IO.Path]::GetExtension($t)
-Write-Host $ext
 if($t -eq "*"){
     foreach ($p in @(Get-ChildItem src/**/*.csproj))  {
         $pot = [System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot")
