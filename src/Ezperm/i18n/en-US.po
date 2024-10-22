@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ezperm\n"
-"POT-Creation-Date: 2024-10-09 15:08:27+0800\n"
+"POT-Creation-Date: 2024-10-16 17:51:16+0000\n"
 "PO-Revision-Date: 2024-10-09 15:09+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,17 +11,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ..\..\Ezperm.cs:91
+#: ../../Ezperm.cs:91
 #, csharp-format
 msgid "成功为组 {0} 删除权限: {1}"
 msgstr "Success as group {0} Deleter permissions: {1}"
 
-#: ..\..\Ezperm.cs:74
+#: ../../Ezperm.cs:74
 #, csharp-format
 msgid "成功为组 {0} 添加权限: {1}"
 msgstr "Successfully added permissions for group {0}: {1}"
 
-#: ..\..\Ezperm.cs:59
+#: ../../Ezperm.cs:59
 #, csharp-format
 msgid "组 {0} 不存在，已创建该组。"
 msgstr "Group {0} does not exist and has been created."

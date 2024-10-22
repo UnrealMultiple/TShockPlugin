@@ -288,7 +288,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2024.10.13.1",
+    "Version": "2024.10.20.1",
     "Author": "Cai,羽学,西江",
     "Description": "CaiBot机器人的适配插件",
     "Path": "CaiBot.dll"
@@ -505,7 +505,7 @@
   },
   {
     "Name": "Ezperm",
-    "Version": "1.2.3",
+    "Version": "1.2.4",
     "Author": "大豆子,肝帝熙恩优化1449",
     "Description": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
     "Path": "Ezperm.dll"
@@ -519,9 +519,9 @@
   },
   {
     "Name": "GenerateMap",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "少司命",
-    "Description": "GenerateMap",
+    "Description": "生成地图图片",
     "Path": "GenerateMap.dll"
   },
   {
@@ -701,7 +701,7 @@
   },
   {
     "Name": "Status Text Manager",
-    "Version": "1.0.0",
+    "Version": "1.1.0",
     "Author": "LaoSparrow",
     "Description": "Manage status text of different plugins",
     "Path": "StatusTextManager.dll"
