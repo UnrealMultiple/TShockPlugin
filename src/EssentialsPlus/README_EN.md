@@ -24,11 +24,11 @@
     - **add** `<name> <time>` -> Mutes the player `<name>` for the duration `<time>`.
     - **delete** `<name>` -> Removes the mute for the player `<name>`.
     - **help** -> Displays command info.
-- **/pvp** -> Enables or disables your PvP status.
+- **/pvpget2** -> Enables or disables your PvP status.
 - **/ruler** `[1|2]` -> Measures the distance between points 1 and 2.
 - **/sudo** `[flag] <player> <command>` -> Makes `<player>` execute `<command>`. Valid flag: `-force` -> Forces the player to run the command, ignoring permission checks. Players with the `essentials.sudo.super` permission can use /sudo on anyone.
 - **/timecmd** `[flag] <time> <command>` -> Executes `<command>` after `<time>`. Valid flag: `-repeat` -> Repeats `<command>` every `<time>`.
-- **/back** `[steps]` -> Returns you to a previous location. If `[steps]` is provided, it takes you back to your position `[steps]` steps ago.
+- **/eback** `[steps]` -> Returns you to a previous location. If `[steps]` is provided, it takes you back to your position `[steps]` steps ago.
 - **/down** `[levels]` -> Moves you down on the map. If `[levels]` is specified, it attempts to move you down `[levels]` levels.
 - **/left** `[levels]` -> Similar to `/down [levels]`, but moves left.
 - **/right** `[levels]` -> Similar to `/down [levels]`, but moves right.
