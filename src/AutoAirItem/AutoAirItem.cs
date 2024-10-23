@@ -19,14 +19,12 @@ public class AutoAirItem : TerrariaPlugin
 
     #region 注册与释放
     public AutoAirItem(Main game) : base(game) { }
-    private GeneralHooks.ReloadEventD _reloadHandler;
     internal static Configuration Config = new();
     internal static MyData data = new();
     public override void Initialize()
     {
         LoadConfig();
-        this._reloadHandler = (_) => LoadConfig();
-        GeneralHooks.ReloadEvent += this._reloadHandler;
+        GeneralHooks.ReloadEvent += LoadConfig;
         ServerApi.Hooks.GameUpdate.Register(this, this.OnGameUpdate);
         ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
         ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
@@ -37,7 +35,7 @@ public class AutoAirItem : TerrariaPlugin
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= this._reloadHandler;
+            GeneralHooks.ReloadEvent -= LoadConfig;
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnGameUpdate);
             ServerApi.Hooks.ServerJoin.Deregister(this, OnJoin);
             ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);
@@ -48,11 +46,11 @@ public class AutoAirItem : TerrariaPlugin
     #endregion
 
     #region 配置重载读取与写入方法
-    private static void LoadConfig()
+    private static void LoadConfig(ReloadEventArgs args = null!)
     {
         Config = Configuration.Read();
         Config.Write();
-        TShock.Log.ConsoleInfo("[自动垃圾桶]重新加载配置完毕。");
+        TShock.Log.ConsoleInfo(GetString("[自动垃圾桶]重新加载配置完毕。"));
     }
     #endregion
 
@@ -115,9 +113,9 @@ public class AutoAirItem : TerrariaPlugin
 
             //数据清理的播报内容
             var mess = new StringBuilder();
-            mess.AppendLine($"[i:3455][c/AD89D5:自][c/D68ACA:动][c/DF909A:垃][c/E5A894:圾][c/E5BE94:桶][i:3454]");
-            mess.AppendLine($"以下玩家 与 [c/ABD6C7:{plr.Name}] 离开时间\n【[c/A1D4C2:{DateTime.Now}]】\n" +
-                $"超过 [c/E17D8C:{Config.timer}] 小时 已清理 [c/76D5B4:自动垃圾桶] 数据：");
+            mess.AppendLine(GetString($"[i:3455][c/AD89D5:自][c/D68ACA:动][c/DF909A:垃][c/E5A894:圾][c/E5BE94:桶][i:3454]"));
+            mess.AppendLine(GetString($"以下玩家 与 [c/ABD6C7:{plr.Name}] 离开时间\n【[c/A1D4C2:{DateTime.Now}]】\n") +
+                GetString($"超过 [c/E17D8C:{Config.timer}] 小时 已清理 [c/76D5B4:自动垃圾桶] 数据："));
 
             foreach (var plr2 in Remove)
             {
@@ -129,7 +127,7 @@ public class AutoAirItem : TerrariaPlugin
                 if (hours >= Config.timer && !plr2.IsActive)
                 {
                     ClearCount++;
-                    mess.AppendFormat("[c/A7DDF0:{0}]:[c/74F3C9:{1}小时], ", plr2.Name, Hours);
+                    mess.AppendFormat(GetString("[c/A7DDF0:{0}]:[c/74F3C9:{1}小时], "), plr2.Name, Hours);
                     data.Items.Remove(plr2);
                 }
             }
@@ -188,7 +186,7 @@ public class AutoAirItem : TerrariaPlugin
                 if (!plr.trashItem.IsAir && !List.Contains(plr.trashItem.Name))
                 {
                     List.Add(plr.trashItem.Name);
-                    player.SendMessage($"已将 '[c/92C5EC:{plr.trashItem.Name}]'添加到自动垃圾桶|指令菜单:[c/A1D4C2:/air]", 255, 246, 158);
+                    player.SendMessage(GetString($"已将 '[c/92C5EC:{plr.trashItem.Name}]'添加到自动垃圾桶|指令菜单:[c/A1D4C2:/air]"), 255, 246, 158);
                 }
             }
 
@@ -200,7 +198,7 @@ public class AutoAirItem : TerrariaPlugin
                 if (mess)
                 {
                     var itemName = Lang.GetItemNameValue(id);
-                    player.SendMessage($"【自动垃圾桶】已将 '[c/92C5EC:{itemName}]'从您的背包中移除", 255, 246, 158);
+                    player.SendMessage(GetString($"【自动垃圾桶】已将 '[c/92C5EC:{itemName}]'从您的背包中移除"), 255, 246, 158);
                 }
                 return true;
             }
