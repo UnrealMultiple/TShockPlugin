@@ -2,17 +2,19 @@
 
 - 作者: WhiteX等人，Average,Cjx，肝帝熙恩适配与修改,Cai更新
 - 出处: [github](https://github.com/QuiCM/EssentialsPlus)
-- 提供一些管理指令
+- Essentials+ 是一种组合，用于改进和优化 Essentials 和 MoreAdminCommands 中的某些功能。所有命令都是异步执行的。不包括 Flag 命令。
 
 ## 更新日志
 ```
+1.0.3
+i18n完成，且预置es-EN
 1.0.2
 修复数据库错误
 1.0.1 
 修复重启无法获取禁言的BUG, 重命名一些方法
 ```
 
-## 指令 ##
+## 指令
 
 - **/find** 或 **/查找** -> 包含多个子命令：
     - **-command** 或 **-命令** -> 根据输入搜索特定命令，返回匹配的命令及其权限。
@@ -46,7 +48,7 @@
 
 
 
-## 权限 ##
+## 权限
 
 - essentials.find -> 允许使用 /find 命令。
 - essentials.freezetime -> 允许使用 /freezetime 命令。

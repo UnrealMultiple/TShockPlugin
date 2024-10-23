@@ -6,7 +6,7 @@
 
 ## Command
 
-| 语法           |        权限         |   说明   |
+| Command     | Permission |          Details          |
 | -------------- | :-----------------: | :------: |
 | /shome	     | bed.spawn.set       |  set spawn point|
 
