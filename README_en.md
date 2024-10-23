@@ -61,7 +61,7 @@
 | [AdditionalPylons](src/AdditionalPylons/README_EN.md) | Yes | Place more Pylons | No |
 | [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | No | Enhance Broadcast Box Functionality | No |
 | [AutoBroadcast](src/AutoBroadcast/README_EN.md) | Yes | Automatic broadcast | No |
-| [AutoAirItem](src/AutoAirItem/README.md) | Automatic trash cans | No |
+| [AutoAirItem](src/AutoAirItem/README.md) | Yes | Automatic trash cans | No |
 | [AutoClear](src/Autoclear/README_EN.md) | Yes | Intelligent automatic cleaning | No |
 | [AutoReset](src/AutoReset/README_EN.md) | Yes | Fully automatic reset | No |
 | [AutoStoreItems](src/AutoStoreItems/README_EN.md) | Yes | Automatic storage | No |
@@ -109,7 +109,7 @@
 | [Economics.WeaponPlus](src/Economics.WeaponPlus/README.md) | No | Weapon enhancement | [EconomicsAPI](src/EconomicsAPI/README.md) |
 | [EconomicsAPI](src/EconomicsAPI/README.md) | No | Economic plugin prerequisite | No |
 | [EndureBoost](src/EndureBoost/README_EN.md) | Yes | Grant specified buff when the player has a certain number of items | No |
-| [EssentialsPlus](src/EssentialsPlus/README.md) | No | Additional management commands | No |
+| [EssentialsPlus](src/EssentialsPlus/README.md) | Yes | Additional management commands | No |
 | [Ezperm](src/Ezperm/README.md) | No | Batch change permissions | No |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | No | Fish shop | No |
 | [GenerateMap](src/GenerateMap/README.md) | No | Generate map images | [CaiLib](src/CaiLib/README.md) |
