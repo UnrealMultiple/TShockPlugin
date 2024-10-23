@@ -61,6 +61,7 @@
 | [AdditionalPylons](src/AdditionalPylons/README_EN.md) | Yes | Place more Pylons | No |
 | [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | No | Enhance Broadcast Box Functionality | No |
 | [AutoBroadcast](src/AutoBroadcast/README_EN.md) | Yes | Automatic broadcast | No |
+| [AutoAirItem](src/AutoAirItem/README.md) | Automatic trash cans | No |
 | [AutoClear](src/Autoclear/README_EN.md) | Yes | Intelligent automatic cleaning | No |
 | [AutoReset](src/AutoReset/README_EN.md) | Yes | Fully automatic reset | No |
 | [AutoStoreItems](src/AutoStoreItems/README_EN.md) | Yes | Automatic storage | No |
