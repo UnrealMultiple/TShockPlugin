@@ -47,7 +47,7 @@ public class Commands
         {
             var isEnabled = data.Enabled;
             data.Enabled = !isEnabled;
-            var Mess = isEnabled ? "禁用" : "启用";
+            var Mess = isEnabled ? GetString("禁用") : GetString("启用");
             args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{Mess}]自动垃圾桶功能。"));
             return;
         }
@@ -70,7 +70,7 @@ public class Commands
         {
             var isEnabled = data.Auto;
             data.Auto = !isEnabled;
-            var Mess = isEnabled ? "禁用" : "启用";
+            var Mess = isEnabled ? GetString("禁用") : GetString("启用");
             args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 的垃圾桶位格监听功能已[c/92C5EC:{Mess}]"));
             return;
         }
