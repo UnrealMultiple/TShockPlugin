@@ -50,24 +50,27 @@ i18n完成，且预置es-EN
 
 ## 权限
 
-- essentials.find -> 允许使用 /find 命令。
-- essentials.freezetime -> 允许使用 /freezetime 命令。
-- essentials.home.delete -> 允许使用 /delhome 和 /sethome 命令。
-- essentials.home.tp -> 允许使用 /myhome 命令。
-- essentials.kickall -> 允许使用 /kickall 命令。
-- essentials.lastcommand -> 允许使用 /= 命令。
-- essentials.more -> 允许使用 /more 命令。
-- essentials.mute -> 允许使用 /mute 命令。
-- essentials.pvp -> 允许使用 /pvpget2 命令。
-- essentials.ruler -> 允许使用 /ruler 命令。
-- essentials.send -> 允许使用 /send 命令。
-- essentials.sudo -> 允许使用 /sudo 命令。
-- essentials.timecmd -> 允许使用 /timecmd 命令。
-- essentials.tp.eback -> 允许使用 /eback 命令。
-- essentials.tp.down -> 允许使用 /down 命令。
-- essentials.tp.left -> 允许使用 /left 命令。
-- essentials.tp.right -> 允许使用 /right 命令。
-- essentials.tp.up -> 允许使用 /up 命令。
+- `essentials.find` -> 授予访问 `/find` 命令的权限。
+- `essentials.freezetime` -> 授予访问 `/freezetime` 命令的权限。
+- `essentials.home.delete` -> 授予访问 `/delhome` 和 `/sethome` 命令的权限。
+- `essentials.home.tp` -> 授予访问 `/myhome` 命令的权限。
+- `essentials.kickall` -> 授予访问 `/kickall` 命令的权限。
+- `essentials.lastcommand` -> 授予访问 `/=` 命令的权限。
+- `essentials.more` -> 授予访问 `/more` 命令的权限。
+- `essentials.mute` -> 授予访问改进后的 `/mute` 命令的权限。
+- `essentials.pvp` -> 授予访问 `/pvp` 命令的权限。
+- `essentials.ruler` -> 授予访问 `/ruler` 命令的权限。
+- `essentials.send` -> 授予访问 `/send` 命令的权限。
+- `essentials.sudo` -> 授予访问 `/sudo` 命令的权限。
+- `essentials.sudo.force` -> 扩展 `sudo` 的功能。
+- `essentials.sudo.super` -> 允许对任何人使用 `sudo`。
+- `essentials.sudo.invisible` -> 使通过 `sudo` 执行的命令不可见。
+- `essentials.timecmd` -> 授予访问 `/timecmd` 命令的权限。
+- `essentials.tp.back` -> 授予访问 `/back` 命令的权限。
+- `essentials.tp.down` -> 授予访问 `/down` 命令的权限。
+- `essentials.tp.left` -> 授予访问 `/left` 命令的权限。
+- `essentials.tp.right` -> 授予访问 `/right` 命令的权限。
+- `essentials.tp.up` -> 授予访问 `/up` 命令的权限。
 
 ## 配置
 > 配置文件位置：tshock/EssentialsPlus.json
