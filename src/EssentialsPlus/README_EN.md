@@ -7,37 +7,32 @@
 
 ## Commands
 
-- **/find** -> Includes several subcommands:
-    - **-command** -> Searches for specific commands based on input and returns matching commands and their permissions.
-    - **-item** -> Searches for specific items based on input and returns matching items and their IDs.
-    - **-tile** -> Searches for specific tiles based on input and returns matching tiles and their IDs.
-    - **-wall** -> Searches for specific walls based on input and returns matching walls and their IDs.
-- **/freezetime** -> Freezes or unfreezes time.
-- **/delhome** <home name> -> Deletes one of your home points.
-- **/sethome** <home name> -> Sets one of your home points.
-- **/myhome** <home name> -> Teleports you to one of your home points.
-- **/kickall** <reason> -> Kicks all players from the server.
-- **/=** -> Repeats the last command you entered (does not include other iterations of /=).
-- **/more** -> Maximizes the stack of the item in your hand. Subcommand:
+- **/find** -> Takes a variety of subcommands:
+    - **-command** -> Searches for a specific command based on input, returning matching commands and their permissions.
+    - **-item** -> Searches for a specific item based on input, returning matching items and their IDs.
+    - **-tile** -> Searches for a specific tile based on input, returning matching tiles and their IDs.
+    - **-wall** -> Searches for a specific wall based on input, returning matching walls and their IDs.
+- **/freezetime** -> Freezes and unfreezes time.
+- **/delhome** `<home name>` -> Deletes a home specified by `<home name>`.
+- **/sethome** `<home name>` -> Sets a home named `<home name>`.
+- **/myhome** `<home name>` -> Teleports you to your home named `<home name>`.
+- **/kickall** `<flag> <reason>` -> Kicks every player for `<reason>`. Valid flag: `-nosave` -> The kick doesn't save SSC inventory.
+- **/=** -> Repeats your last entered command (not including other instances of /=).
+- **/more** -> Maximizes the item stack of the held item. Includes subcommands:
     - **-all** -> Maximizes all stackable items in the player's inventory.
-- **/mute** -> Overrides TShock's /mute command. Includes subcommands:
-    - **add** <name> <time> -> Adds a mute for the user named <name>, for a time of <time>.
-    - **delete** <name> -> Removes the mute for the user named <name>.
-    - **help** -> Shows command information.
-- **/pvpget2** -> Toggles your PvP status.
-- **/ruler** [1|2] -> Measures the distance between point 1 and point 2.
-- **/send** -> Broadcasts a message with a custom color.
-- **/sudo** -> Attempts to make <player> execute <command>. Includes subcommands:
-    - **-force** -> Executes the command forcibly, without the <player>'s permission restrictions.
-- **/timecmd** -> Executes a command after a given time interval. Includes subcommands:
-    - **-repeat** -> Repeats the execution of <command> every <time>.
-- **/eback** [steps] -> Takes you back to the previous location. If [steps] is provided, tries to take you back to the position [steps] before.
-- **/down** [levels] -> Attempts to move your position on the map downward. If [levels] is specified, tries to move downward [levels] times.
-- **/left** [levels] -> Similar to /down [levels], but moves left.
-- **/right** [levels] -> Similar to /down [levels], but moves right.
-- **/up** [levels] -> Similar to /down [levels], but moves upward.
-
-
+- **/mute** -> Overwrites TShock's /mute. Includes subcommands:
+    - **add** `<name> <time>` -> Mutes the player `<name>` for the duration `<time>`.
+    - **delete** `<name>` -> Removes the mute for the player `<name>`.
+    - **help** -> Displays command info.
+- **/pvp** -> Enables or disables your PvP status.
+- **/ruler** `[1|2]` -> Measures the distance between points 1 and 2.
+- **/sudo** `[flag] <player> <command>` -> Makes `<player>` execute `<command>`. Valid flag: `-force` -> Forces the player to run the command, ignoring permission checks. Players with the `essentials.sudo.super` permission can use /sudo on anyone.
+- **/timecmd** `[flag] <time> <command>` -> Executes `<command>` after `<time>`. Valid flag: `-repeat` -> Repeats `<command>` every `<time>`.
+- **/back** `[steps]` -> Returns you to a previous location. If `[steps]` is provided, it takes you back to your position `[steps]` steps ago.
+- **/down** `[levels]` -> Moves you down on the map. If `[levels]` is specified, it attempts to move you down `[levels]` levels.
+- **/left** `[levels]` -> Similar to `/down [levels]`, but moves left.
+- **/right** `[levels]` -> Similar to `/down [levels]`, but moves right.
+- **/up** `[levels]` -> Similar to `/down [levels]`, but moves upwards.
 
 ## Permissions
 
