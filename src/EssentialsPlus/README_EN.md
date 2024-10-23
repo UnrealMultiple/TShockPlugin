@@ -41,24 +41,27 @@
 
 ## Permissions
 
-- essentials.find -> Allows use of the /find command.
-- essentials.freezetime -> Allows use of the /freezetime command.
-- essentials.home.delete -> Allows use of the /delhome and /sethome commands.
-- essentials.home.tp -> Allows use of the /myhome command.
-- essentials.kickall -> Allows use of the /kickall command.
-- essentials.lastcommand -> Allows use of the /= command.
-- essentials.more -> Allows use of the /more command.
-- essentials.mute -> Allows use of the /mute command.
-- essentials.pvp -> Allows use of the /pvpget2 command.
-- essentials.ruler -> Allows use of the /ruler command.
-- essentials.send -> Allows use of the /send command.
-- essentials.sudo -> Allows use of the /sudo command.
-- essentials.timecmd -> Allows use of the /timecmd command.
-- essentials.tp.eback -> Allows use of the /eback command.
-- essentials.tp.down -> Allows use of the /down command.
-- essentials.tp.left -> Allows use of the /left command.
-- essentials.tp.right -> Allows use of the /right command.
-- essentials.tp.up -> Allows use of the /up command.
+- `essentials.find` -> Grants access to the `/find` command.
+- `essentials.freezetime` -> Grants access to the `/freezetime` command.
+- `essentials.home.delete` -> Grants access to the `/delhome` and `/sethome` commands.
+- `essentials.home.tp` -> Grants access to the `/myhome` command.
+- `essentials.kickall` -> Grants access to the `/kickall` command.
+- `essentials.lastcommand` -> Grants access to the `/=` command.
+- `essentials.more` -> Grants access to the `/more` command.
+- `essentials.mute` -> Grants access to the improved `/mute` command.
+- `essentials.pvp` -> Grants access to the `/pvp` command.
+- `essentials.ruler` -> Grants access to the `/ruler` command.
+- `essentials.send` -> Grants access to the `/send` command.
+- `essentials.sudo` -> Grants access to the `/sudo` command.
+- `essentials.sudo.force` -> Extends the capabilities of `sudo`.
+- `essentials.sudo.super` -> Allows `sudo` to be used on anyone.
+- `essentials.sudo.invisible` -> Causes `sudo`'d commands to be executed invisibly.
+- `essentials.timecmd` -> Grants access to the `/timecmd` command.
+- `essentials.tp.back` -> Grants access to the `/back` command.
+- `essentials.tp.down` -> Grants access to the `/down` command.
+- `essentials.tp.left` -> Grants access to the `/left` command.
+- `essentials.tp.right` -> Grants access to the `/right` command.
+- `essentials.tp.up` -> Grants access to the `/up` command.
 
 ## Config
 > Configuration file location：tshock/EssentialsPlus.json
