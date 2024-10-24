@@ -52,7 +52,7 @@ public class DamageRuleLoot : TerrariaPlugin
         Config = Configuration.Read();
         WriteName();
         Config.Write();
-        args.Player.SendInfoMessage(GetString("[伤害规则掉落]重新加载配置完毕。"));
+        TShock.Log.ConsoleInfo(GetString("[伤害规则掉落]重新加载配置完毕。"));
     }
     #endregion
 
