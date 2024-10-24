@@ -63,6 +63,7 @@
 | [AutoPluginManager](src/AutoPluginManager/README.md) | 一键自动更新插件 | 无 |
 | [AdditionalPylons](src/AdditionalPylons/README.md) | 放置更多晶塔 | 无 |
 | [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | 广播盒功能强化 | 无 |
+| [AutoAirItem](src/AutoAirItem/README.md) | 自动垃圾桶插件 | 无 |
 | [AutoBroadcast](src/AutoBroadcast/README.md) | 自动广播 | 无 |
 | [AutoClear](src/Autoclear/README.md) | 智能自动扫地 | 无 |
 | [AutoReset](src/AutoReset/README.md) | 完全自动重置 | 无 |

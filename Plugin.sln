@@ -232,7 +232,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DonotFuck", "src\DonotFuck\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lagrange.XocMat.Adapter", "src\Lagrange.XocMat.Adapter\Lagrange.XocMat.Adapter.csproj", "{AF5C3B5E-D8CD-4292-8047-EF129C839BB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBox", "src\ItemBox\ItemBox.csproj", "{F1C47139-1211-4951-B922-BBF4BCEE36FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBox", "src\ItemBox\ItemBox.csproj", "{F1C47139-1211-4951-B922-BBF4BCEE36FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoAirItem", "src\AutoAirItem\AutoAirItem.csproj", "{E08099EC-478F-4B1A-9EBF-9EA8A27C52C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1146,6 +1148,14 @@ Global
 		{F1C47139-1211-4951-B922-BBF4BCEE36FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1C47139-1211-4951-B922-BBF4BCEE36FE}.Release|x64.ActiveCfg = Release|Any CPU
 		{F1C47139-1211-4951-B922-BBF4BCEE36FE}.Release|x64.Build.0 = Release|Any CPU
+		{E08099EC-478F-4B1A-9EBF-9EA8A27C52C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E08099EC-478F-4B1A-9EBF-9EA8A27C52C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E08099EC-478F-4B1A-9EBF-9EA8A27C52C9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E08099EC-478F-4B1A-9EBF-9EA8A27C52C9}.Debug|x64.Build.0 = Debug|Any CPU
+		{E08099EC-478F-4B1A-9EBF-9EA8A27C52C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E08099EC-478F-4B1A-9EBF-9EA8A27C52C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E08099EC-478F-4B1A-9EBF-9EA8A27C52C9}.Release|x64.ActiveCfg = Release|Any CPU
+		{E08099EC-478F-4B1A-9EBF-9EA8A27C52C9}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
