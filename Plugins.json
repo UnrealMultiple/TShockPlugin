@@ -203,6 +203,13 @@
     "Path": "AutoStoreItems.dll"
   },
   {
+    "Name": "自动垃圾桶",
+    "Version": "1.1.0",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "Path": "AutoAirItem.dll"
+  },
+  {
     "Name": "阻止进入地牢或神庙",
     "Version": "1.1.5",
     "Author": "肝帝熙恩",
@@ -498,7 +505,7 @@
   },
   {
     "Name": "EssentialsPlus",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "WhiteX等人，Average,Cjx,肝帝熙恩翻译,Cai更新",
     "Description": "增强版Essentials",
     "Path": "EssentialsPlus.dll"
