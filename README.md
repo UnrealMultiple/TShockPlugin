@@ -169,6 +169,7 @@
 | [SpclPerm](src/SpclPerm/README.md) | 服主特权 | 无 |
 | [StatusTextManager](src/StatusTextManager/README.md) | PC端模板文本管理插件 | 无 |
 | [SwitchCommands](src/SwitchCommands/README.md) | 区域执行指令 | 无 |
+| [TimeRate](src/TimeRate/README.md) | 时间加速插件 | 无 |
 | [TeleportRequest](src/TeleportRequest/README.md) | 传送请求 | 无 |
 | [TimerKeeper](src/TimerKeeper/README.md) | 保存计时器状态 | 无 |
 | [TownNPCHomes](src/TownNPCHomes/README.md) | NPC 快速回家 | 无 |
