@@ -89,6 +89,7 @@
 | [ConvertWorld](src/ConvertWorld/README.md) | No | Convert world items by defeating monsters | No |
 | [CreateSpawn](src/CreateSpawn/README.md) | No | Spawn point building generation | No |
 | [CriticalHit](src/CriticalHit/README.md) | No | Critical hit prompt | No |
+| [DamageRuleLoot](src/DamageRuleLoot/README_EN.md) | Yes | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation | No |
 | [DamageStatistic](src/DamageStatistic/README.md) | No | Display damage caused by each player after each boss fight | No |
 | [DataSync](src/DataSync/README.md) | No | Progress synchronization | No |
 | [DeathDrop](src/DeathDrop/README.md) | No | Random and custom loot upon monster death | No |
