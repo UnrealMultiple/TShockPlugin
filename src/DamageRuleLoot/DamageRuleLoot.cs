@@ -52,7 +52,7 @@ public class DamageRuleLoot : TerrariaPlugin
         Config = Configuration.Read();
         WriteName();
         Config.Write();
-        TShock.Log.ConsoleInfo(GetString("[伤害规则掉落]重新加载配置完毕。"));
+        args.Player.SendInfoMessage(GetString("[伤害规则掉落]重新加载配置完毕。"));
     }
     #endregion
 
@@ -75,10 +75,10 @@ public class DamageRuleLoot : TerrariaPlugin
 
                         if (Config.CritInfo)
                         {
-                            TShock.Log.ConsoleInfo(GetString($"[c/FBF069:【暴击】] 玩家:[c/F06576:{plr.name}] " +
-                                $"对象:[c/AEA3E4:{self.FullName}] 满血:[c/FBF069:{self.lifeMax}] " +
-                                $"血量:[c/6DDA6D:{self.life}] 伤害:[c/F06576:{damage}] " +
-                                $"暴击数:[c/FBF069:{CritTracker.GetCritCount(plr.name)}]", 202, 221, 222));
+                            TShock.Utils.Broadcast(GetString($"[c/FBF069:【暴击】] 玩家:[c/F06576:{plr.name}] ") +
+                                GetString($"对象:[c/AEA3E4:{self.FullName}] 满血:[c/FBF069:{self.lifeMax}] ") +
+                                GetString($"血量:[c/6DDA6D:{self.life}] 伤害:[c/F06576:{damage}] ") +
+                                GetString($"暴击数:[c/FBF069:{CritTracker.GetCritCount(plr.name)}]"), 202, 221, 222);
                         }
 
                         CritTracker.UpdateCritCount(plr.name);

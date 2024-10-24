@@ -255,17 +255,17 @@ public static class Tool
             {
                 if (Main.npc[strike.npcIndex].life > life)
                 {
-                    TShock.Log.ConsoleInfo(GetString($"[c/FBF069:【转移】] 玩家:[c/F06576:{plr.name}] " +
-                        $"攻击对象:[c/AEA3E4:{npc.FullName}] | " +
-                        $"转移:[c/6DDA6D:{strike.npcName}] 伤害:[c/F06576:{Damage}] " +
-                        $"生命:[c/FBF069:{Main.npc[strike.npcIndex].life}]", 202, 221, 222));
+                    TShock.Utils.Broadcast(GetString($"[c/FBF069:【转移】] 玩家:[c/F06576:{plr.name}] ") +
+                        GetString($"攻击对象:[c/AEA3E4:{npc.FullName}] | ") +
+                        GetString($"转移:[c/6DDA6D:{strike.npcName}] 伤害:[c/F06576:{Damage}] ") +
+                        GetString($"生命:[c/FBF069:{Main.npc[strike.npcIndex].life}]"), 202, 221, 222);
                 }
 
                 if (Main.npc[strike.npcIndex].life <= life)
                 {
-                    TShock.Log.ConsoleInfo(GetString($"[c/F06576:【停转】] 玩家:[c/F06576:{plr.name}] " +
-                        $"转伤对象:[c/AEA3E4:{strike.npcName}] | 生命值:[c/6DDA6D:{Main.npc[strike.npcIndex].life}] < " +
-                        $"[c/F06576:{life}]", 202, 221, 222));
+                    TShock.Utils.Broadcast(GetString($"[c/F06576:【停转】] 玩家:[c/F06576:{plr.name}] ") +
+                        GetString($"转伤对象:[c/AEA3E4:{strike.npcName}] | 生命值:[c/6DDA6D:{Main.npc[strike.npcIndex].life}] < ") +
+                        GetString($"[c/F06576:{life}]"), 202, 221, 222);
                 }
             }
         }
@@ -291,17 +291,17 @@ public static class Tool
         {
             if (Main.npc[strike.npcIndex].life > Custom.LifeLimit)
             {
-                TShock.Log.ConsoleInfo(GetString($"[c/FBF069:【转伤】] 玩家:[c/F06576:{plr.name}] " +
-                    $"攻击对象:[c/AEA3E4:{npc.FullName}] | " +
-                    $"转移:[c/6DDA6D:{strike.npcName}] 伤害:[c/F06576:{Damage}] " +
-                    $"生命:[c/FBF069:{Main.npc[strike.npcIndex].life}]", 202, 221, 222));
+                TShock.Utils.Broadcast(GetString($"[c/FBF069:【转伤】] 玩家:[c/F06576:{plr.name}] ") +
+                    GetString($"攻击对象:[c/AEA3E4:{npc.FullName}] | ") +
+                    GetString($"转移:[c/6DDA6D:{strike.npcName}] 伤害:[c/F06576:{Damage}] ") +
+                    GetString($"生命:[c/FBF069:{Main.npc[strike.npcIndex].life}]"), 202, 221, 222);
             }
 
             if (Main.npc[strike.npcIndex].life <= Custom.LifeLimit)
             {
-                TShock.Log.ConsoleInfo(GetString($"[c/F06576:【停转】] 玩家:[c/F06576:{plr.name}] " +
-                    $"转伤对象:[c/AEA3E4:{strike.npcName}] | 生命值:[c/6DDA6D:{Main.npc[strike.npcIndex].life}] < " +
-                    $"[c/F06576:{Custom.LifeLimit}] ", 202, 221, 222));
+                TShock.Utils.Broadcast(GetString($"[c/F06576:【停转】] 玩家:[c/F06576:{plr.name}] ") +
+                    GetString($"转伤对象:[c/AEA3E4:{strike.npcName}] | 生命值:[c/6DDA6D:{Main.npc[strike.npcIndex].life}] < ") +
+                    GetString($"[c/F06576:{Custom.LifeLimit}] "), 202, 221, 222);
             }
         }
     }
@@ -340,10 +340,10 @@ public static class Tool
 
         foreach (var data in sortpairs)
         {
-            mess.AppendLine(GetString($" [c/A7DDF0:{TShock.UserAccounts.GetUserAccountByName(data.Key).Name}]" +
-                $"   伤害:[c/74F3C9:{data.Value}]" +
-                $"   暴击:[c/74F3C9:{CritTracker.GetCritCount(TShock.UserAccounts.GetUserAccountByName(data.Key).Name)}]" +
-                $"   比例:[c/74F3C9:{data.Value * 1.0f / allDamage:0.00%}]"));
+            mess.AppendLine(GetString($" [c/A7DDF0:{TShock.UserAccounts.GetUserAccountByName(data.Key).Name}]") +
+                GetString($"   伤害:[c/74F3C9:{data.Value}]") +
+                GetString($"   暴击:[c/74F3C9:{CritTracker.GetCritCount(TShock.UserAccounts.GetUserAccountByName(data.Key).Name)}]") +
+                GetString($"   比例:[c/74F3C9:{data.Value * 1.0f / allDamage:0.00%}]"));
 
             CritTracker.CritCounts[data.Key] = 0;
 
@@ -380,7 +380,7 @@ public static class Tool
         {
             if (DamageRuleLoot.Config.Enabled3)
             {
-                mess.AppendLine(GetString(DamageRuleLoot.Config.Advertisement));
+                mess.AppendLine(DamageRuleLoot.Config.Advertisement);
             }
 
             TSPlayer.All.SendMessage(mess.ToString(), 247, 244, 150);

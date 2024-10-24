@@ -44,7 +44,7 @@ public class TimeRate : TerrariaPlugin
     {
         Config = Configuration.Read();
         Config.Write();
-        TShock.Log.ConsoleInfo(GetString("[时间加速插件]重新加载配置完毕。"));
+        args.Player.SendInfoMessage(GetString("[时间加速插件]重新加载配置完毕。"));
     }
     #endregion
 

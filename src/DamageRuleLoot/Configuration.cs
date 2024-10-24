@@ -17,7 +17,7 @@ public class Configuration
     public bool Enabled3 { get; set; } = true;
 
     [JsonProperty("广告内容", Order = 2)]
-    public string Advertisement { get; set; } = GetString($"[i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by]  羽学 [C/E7A5CC:|] [c/00FFFF:西江小子][i:3459]");
+    public string Advertisement { get; set; } = $"[i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by]  羽学 [C/E7A5CC:|] [c/00FFFF:西江小子][i:3459]";
 
     [JsonProperty("伤害榜播报", Order = 4)]
     public bool Broadcast { get; set; } = true;
@@ -146,7 +146,7 @@ public class Configuration
     #endregion
 
     #region 读取与创建配置文件方法
-    public static readonly string FilePath = Path.Combine(GetString(TShock.SavePath, "伤害规则掉落.json"));
+    public static readonly string FilePath = Path.Combine(TShock.SavePath, "伤害规则掉落.json");
 
     public void Write()
     {
