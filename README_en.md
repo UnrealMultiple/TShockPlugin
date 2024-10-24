@@ -168,6 +168,7 @@
 | [TeleportRequest](src/TeleportRequest/README.md) | Yes | Teleport request | No |
 | [TimerKeeper](src/TimerKeeper/README.md) | Yes | Save timer state | No |
 | [TownNPCHomes](src/TownNPCHomes/README.md) | No | NPC quick home | No |
+| [TimeRate](src/TimeRate/README_EN.md) | No | modifying time acceleration using commands, and supporting player sleep to trigger events. | No |
 | [UnseenInventory](src/UnseenInventory/README.md) | No | Allows the server to generate items that are normally 'unobtainable' | No |
 | [VeinMiner](src/VeinMiner/README.md) | Yes | Chain mining | No |
 | [WeaponPlusCostCoin](src/WeaponPlusCostCoin/README.md) | No | Weapon enhancement coin version | No |
