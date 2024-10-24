@@ -24,7 +24,7 @@ public class DamageRuleLoot : TerrariaPlugin
     public override void Initialize()
     {
         LoadConfig();
-        GeneralHooks.ReloadEvent += LoadConfig;
+        GeneralHooks.ReloadEvent += ReloadConfig;
         ServerApi.Hooks.NpcKilled.Register(this, this.OnNpcKill);
         ServerApi.Hooks.NpcKilled.Register(this, this.OnMechQueen);
         On.Terraria.NPC.StrikeNPC += this.OnStrikeNPC;
@@ -35,7 +35,7 @@ public class DamageRuleLoot : TerrariaPlugin
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= LoadConfig;
+            GeneralHooks.ReloadEvent -= ReloadConfig;
             ServerApi.Hooks.NpcKilled.Deregister(this, this.OnNpcKill);
             ServerApi.Hooks.NpcKilled.Deregister(this, this.OnMechQueen);
             On.Terraria.NPC.StrikeNPC -= this.OnStrikeNPC;
@@ -47,12 +47,16 @@ public class DamageRuleLoot : TerrariaPlugin
 
     #region 配置重载读取与写入方法
     internal static Configuration Config = new();
-    private static void LoadConfig(ReloadEventArgs args = null!)
+    private static void ReloadConfig(ReloadEventArgs args = null!)
+    {
+        LoadConfig();
+        args.Player.SendInfoMessage(GetString("[伤害规则掉落]重新加载配置完毕。"));
+    }
+    private static void LoadConfig()
     {
         Config = Configuration.Read();
         WriteName();
         Config.Write();
-        TShock.Log.ConsoleInfo(GetString("[伤害规则掉落]重新加载配置完毕。"));
     }
     #endregion
 

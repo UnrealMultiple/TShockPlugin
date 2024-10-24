@@ -21,7 +21,7 @@ public class TimeRate : TerrariaPlugin
     public override void Initialize()
     {
         LoadConfig();
-        GeneralHooks.ReloadEvent += LoadConfig;
+        GeneralHooks.ReloadEvent += ReloadConfig;
         On.Terraria.Main.UpdateTimeRate += this.UpdateTimeRate;
         TShockAPI.Commands.ChatCommands.Add(new Command("times.admin", Commands.times, "times", "时间加速"));
     }
@@ -30,7 +30,7 @@ public class TimeRate : TerrariaPlugin
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= LoadConfig;
+            GeneralHooks.ReloadEvent -= ReloadConfig;
             On.Terraria.Main.UpdateTimeRate -= this.UpdateTimeRate;
             TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.times);
         }
@@ -40,11 +40,16 @@ public class TimeRate : TerrariaPlugin
 
     #region 配置重载读取与写入方法
     internal static Configuration Config = new();
-    private static void LoadConfig(ReloadEventArgs args = null!)
+    private static void ReloadConfig(ReloadEventArgs args = null!)
+    {
+        LoadConfig();
+        args.Player.SendInfoMessage(GetString("[时间加速插件]重新加载配置完毕。"));
+    }
+
+    private static void LoadConfig()
     {
         Config = Configuration.Read();
         Config.Write();
-        TShock.Log.ConsoleInfo(GetString("[时间加速插件]重新加载配置完毕。"));
     }
     #endregion
 
