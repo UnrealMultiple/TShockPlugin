@@ -92,6 +92,7 @@
 | [ConvertWorld](src/ConvertWorld/README.md) | 击败怪物转换世界物品 | 无 |
 | [CreateSpawn](src/CreateSpawn/README.md) | 出生点建筑生成 | 无 |
 | [CriticalHit](src/CriticalHit/README.md) | 击打提示 | 无 |
+| [DamageRuleLoot](src/DamageRuleLoot/README.md) | 伤害规则掉落 | 无 |
 | [DamageStatistic](src/DamageStatistic/README.md) | 在每次 Boss 战后显示每个玩家造成的伤害 | 无 |
 | [DataSync](src/DataSync/README.md) | 进度同步 | 无 |
 | [DeathDrop](src/DeathDrop/README.md) | 怪物死亡随机和自定义掉落物品 | 无 |
@@ -168,6 +169,7 @@
 | [SpclPerm](src/SpclPerm/README.md) | 服主特权 | 无 |
 | [StatusTextManager](src/StatusTextManager/README.md) | PC端模板文本管理插件 | 无 |
 | [SwitchCommands](src/SwitchCommands/README.md) | 区域执行指令 | 无 |
+| [TimeRate](src/TimeRate/README.md) | 时间加速插件 | 无 |
 | [TeleportRequest](src/TeleportRequest/README.md) | 传送请求 | 无 |
 | [TimerKeeper](src/TimerKeeper/README.md) | 保存计时器状态 | 无 |
 | [TownNPCHomes](src/TownNPCHomes/README.md) | NPC 快速回家 | 无 |
