@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Microsoft.Xna.Framework.Input;
+using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -255,7 +256,7 @@ public static class Tool
             {
                 if (Main.npc[strike.npcIndex].life > life)
                 {
-                    TShock.Utils.Broadcast(GetString($"[c/FBF069:【转移】] 玩家:[c/F06576:{plr.name}] ") +
+                    TSPlayer.All.SendInfoMessage(GetString($"[c/FBF069:【转移】] 玩家:[c/F06576:{plr.name}] ") +
                         GetString($"攻击对象:[c/AEA3E4:{npc.FullName}] | ") +
                         GetString($"转移:[c/6DDA6D:{strike.npcName}] 伤害:[c/F06576:{Damage}] ") +
                         GetString($"生命:[c/FBF069:{Main.npc[strike.npcIndex].life}]"), 202, 221, 222);
@@ -263,7 +264,7 @@ public static class Tool
 
                 if (Main.npc[strike.npcIndex].life <= life)
                 {
-                    TShock.Utils.Broadcast(GetString($"[c/F06576:【停转】] 玩家:[c/F06576:{plr.name}] ") +
+                    TSPlayer.All.SendInfoMessage(GetString($"[c/F06576:【停转】] 玩家:[c/F06576:{plr.name}] ") +
                         GetString($"转伤对象:[c/AEA3E4:{strike.npcName}] | 生命值:[c/6DDA6D:{Main.npc[strike.npcIndex].life}] < ") +
                         GetString($"[c/F06576:{life}]"), 202, 221, 222);
                 }
@@ -291,7 +292,7 @@ public static class Tool
         {
             if (Main.npc[strike.npcIndex].life > Custom.LifeLimit)
             {
-                TShock.Utils.Broadcast(GetString($"[c/FBF069:【转伤】] 玩家:[c/F06576:{plr.name}] ") +
+                TSPlayer.All.SendInfoMessage(GetString($"[c/FBF069:【转伤】] 玩家:[c/F06576:{plr.name}] ") +
                     GetString($"攻击对象:[c/AEA3E4:{npc.FullName}] | ") +
                     GetString($"转移:[c/6DDA6D:{strike.npcName}] 伤害:[c/F06576:{Damage}] ") +
                     GetString($"生命:[c/FBF069:{Main.npc[strike.npcIndex].life}]"), 202, 221, 222);
@@ -299,7 +300,7 @@ public static class Tool
 
             if (Main.npc[strike.npcIndex].life <= Custom.LifeLimit)
             {
-                TShock.Utils.Broadcast(GetString($"[c/F06576:【停转】] 玩家:[c/F06576:{plr.name}] ") +
+                TSPlayer.All.SendInfoMessage(GetString($"[c/F06576:【停转】] 玩家:[c/F06576:{plr.name}] ") +
                     GetString($"转伤对象:[c/AEA3E4:{strike.npcName}] | 生命值:[c/6DDA6D:{Main.npc[strike.npcIndex].life}] < ") +
                     GetString($"[c/F06576:{Custom.LifeLimit}] "), 202, 221, 222);
             }
@@ -349,7 +350,9 @@ public static class Tool
 
             if (DamageRuleLoot.Config.Enabled2)
             {
-                if (((data.Value / allDamage) < DamageRuleLoot.Config.Damages) && !DamageRuleLoot.Config.Expand.Contains(BossName))
+                var npc = Terraria.Main.npc.Any(npc => DamageRuleLoot.Config.Expand.Contains(npc.netID));
+
+                if (((data.Value / allDamage) < DamageRuleLoot.Config.Damages) && !npc)
                 {
                     LowDamager.AppendFormat(GetString(" [c/A7DDF0:{0}]([c/74F3C9:{1:0.00%}])", TShock.UserAccounts.GetUserAccountByName(data.Key).Name, data.Value / allDamage));
 

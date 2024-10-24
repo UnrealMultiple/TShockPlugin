@@ -79,7 +79,7 @@ public class DamageRuleLoot : TerrariaPlugin
 
                         if (Config.CritInfo)
                         {
-                            TShock.Utils.Broadcast(GetString($"[c/FBF069:【暴击】] 玩家:[c/F06576:{plr.name}] ") +
+                            TSPlayer.All.SendInfoMessage(GetString($"[c/FBF069:【暴击】] 玩家:[c/F06576:{plr.name}] ") +
                                 GetString($"对象:[c/AEA3E4:{self.FullName}] 满血:[c/FBF069:{self.lifeMax}] ") +
                                 GetString($"血量:[c/6DDA6D:{self.life}] 伤害:[c/F06576:{damage}] ") +
                                 GetString($"暴击数:[c/FBF069:{CritTracker.GetCritCount(plr.name)}]"), 202, 221, 222);
@@ -581,7 +581,7 @@ public class DamageRuleLoot : TerrariaPlugin
                             }
                         }
 
-                        if (args.npc.boss || args.npc.netID == 551 || args.npc.netID == 668 || Config.Expand.Contains(args.npc.FullName))
+                        if (args.npc.boss || args.npc.netID == 551 || args.npc.netID == 668 || Config.Expand.Contains(args.npc.netID))
                         {
                             SendKillMessage(args.npc.FullName, strikeNPC[i].PlayerOrDamage, strikeNPC[i].AllDamage);
                         }

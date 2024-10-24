@@ -40,23 +40,23 @@ public class Configuration
     [JsonProperty("攻击小鬼与饿鬼给肉山造成真伤(仅FTW与天顶)", Order = 9)]
     public bool FireImp { get; set; } = true;
 
-    [JsonProperty("参与伤害榜的非BOSS怪名称", Order = 10)]
-    public string[] Expand { get; set; } = new string[] 
+    [JsonProperty("参与伤害榜的非BOSS怪ID", Order = 10)]
+    public int[] Expand { get; set; } = new int[] 
     {
-        GetString("冰雪巨人"),
-        GetString("沙尘精"),
-        GetString("腐化宝箱怪"),
-        GetString("猩红宝箱怪"),
-        GetString("神圣宝箱怪"),
-        GetString("黑暗魔法师"),
-        GetString("食人魔"),
-        GetString("哥布林术士"), 
-        GetString("荷兰飞盗船"), 
-        GetString("恐惧鹦鹉螺"), 
-        GetString("血浆哥布林鲨鱼"), 
-        GetString("血鳗鱼"), 
-        GetString("海盗船长"),
-        GetString("火星飞碟") 
+        243,
+        541,
+        473,
+        474,
+        475,
+        564,565,
+        576,577,
+        471,
+        491,
+        618,
+        620,
+        621, 622, 623,
+        216,
+        392
     };
 
     [JsonProperty("监控暴击次数", Order = 11)]
