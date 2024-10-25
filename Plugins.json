@@ -148,7 +148,7 @@
   },
   {
     "Name": "时间加速",
-    "Version": "1.1.0",
+    "Version": "1.2.0",
     "Author": "羽学",
     "Description": "涡轮增压不蒸鸭",
     "Path": "TimeRate.dll"
