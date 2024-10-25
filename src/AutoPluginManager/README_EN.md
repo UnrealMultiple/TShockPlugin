@@ -23,7 +23,9 @@
 {
   "允许自动更新插件": false, // Allow automatic plugin updates
   "使用Github源": true, // Use Github source
-  "插件排除列表": [] // Plugin exclusion list
+  "插件排除列表": [], // Plugin exclusion list
+  "热重载升级插件": true //Hot reload upgrade plugin
+}
 }
 ```
 
