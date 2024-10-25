@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EconomicsAPI\n"
-"POT-Creation-Date: 2024-09-30 12:32:36+0000\n"
-"PO-Revision-Date: 2024-09-30 12:32:36+0000\n"
+"POT-Creation-Date: 2024-10-25 21:26:07+0800\n"
+"PO-Revision-Date: 2024-10-25 21:26:07+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,31 +15,35 @@ msgstr ""
 msgid "{0}数量: {1}"
 msgstr ""
 
-#: ../../Command.cs:93
-msgid "/bank add [用户] [数量]"
+#: ../../Command.cs:55
+msgid "/bank add <用户> <数量>"
 msgstr ""
 
-#: ../../Command.cs:96
-msgid "/bank clear [用户]"
+#: ../../Command.cs:59
+msgid "/bank clear <用户>"
 msgstr ""
 
-#: ../../Command.cs:94
-msgid "/bank del [用户] [数量]"
+#: ../../Command.cs:56
+msgid "/bank deduct <用户> <数量>"
 msgstr ""
 
-#: ../../Command.cs:95
-msgid "/bank pay [用户] [数量]"
+#: ../../Command.cs:57
+msgid "/bank pay <用户> <数量>"
 msgstr ""
 
-#: ../../Command.cs:97
+#: ../../Command.cs:58
+msgid "/bank query [用户]"
+msgstr ""
+
+#: ../../Command.cs:60
 msgid "/bank reset"
 msgstr ""
 
-#: ../../Command.cs:92
+#: ../../Command.cs:54
 msgid "bank 指令"
 msgstr ""
 
-#: ../../Command.cs:88
+#: ../../Command.cs:70
 msgid "Economics 已重置"
 msgstr ""
 
@@ -48,20 +52,21 @@ msgstr ""
 msgid "世界名称: {0}"
 msgstr ""
 
+#: ../../Command.cs:18
+#: ../../Command.cs:86
+msgid "你"
+msgstr ""
+
 #: ../../Economics.cs:138
 #, csharp-format
 msgid "你因死亡掉落{0:F0}个{1}!"
 msgstr ""
 
-#: ../../Command.cs:59
-msgid "你无权执行此命令!"
-msgstr ""
-
-#: ../../Command.cs:26
+#: ../../Command.cs:40
 msgid "你没有权限执行此命令!"
 msgstr ""
 
-#: ../../Command.cs:70
+#: ../../Command.cs:180
 #, csharp-format
 msgid "你的{0}不足，无法转账!"
 msgstr ""
@@ -71,7 +76,7 @@ msgstr ""
 msgid "在线人数: {0}/{1}"
 msgstr ""
 
-#: ../../Command.cs:83
+#: ../../Command.cs:107
 #, csharp-format
 msgid "已清空`{0}`的所有{1}"
 msgstr ""
@@ -91,17 +96,17 @@ msgstr ""
 msgid "当前魔力: {0}/{1}"
 msgstr ""
 
-#: ../../Command.cs:42
+#: ../../Command.cs:147
 #, csharp-format
 msgid "成功为`{0}`添加 {1} 个{2}"
 msgstr ""
 
-#: ../../Command.cs:49
+#: ../../Command.cs:160
 #, csharp-format
-msgid "成功删除`{0}`的 {1} 个{2}"
+msgid "成功减去`{0}`的 {1} 个{2}"
 msgstr ""
 
-#: ../../Command.cs:65
+#: ../../Command.cs:175
 #, csharp-format
 msgid "成功转账给`{0}` {1} 个{2}"
 msgstr ""
@@ -111,17 +116,17 @@ msgstr ""
 msgid "玩家名称: {0}"
 msgstr ""
 
-#: ../../Command.cs:52
+#: ../../Command.cs:163
 #, csharp-format
 msgid "用户`{0}`仅有{1}个{2}"
 msgstr ""
 
-#: ../../Command.cs:76
-#: ../../Command.cs:101
+#: ../../Command.cs:30
+#: ../../Command.cs:189
 msgid "语法错误，请输入/bank help查看正确语法"
 msgstr ""
 
-#: ../../Command.cs:34
+#: ../../Command.cs:135
 msgid "请输入一个有效数值!"
 msgstr ""
 
