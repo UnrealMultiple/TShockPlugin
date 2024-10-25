@@ -1,46 +1,50 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EconomicsAPI\n"
-"POT-Creation-Date: 2024-09-30 12:32:36+0000\n"
-"PO-Revision-Date: 2024-09-30 15:30:05+0800\n"
+"POT-Creation-Date: 2024-10-25 21:26:07+0800\n"
+"PO-Revision-Date: 2024-10-25 21:36+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: \n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: GetText.NET Extractor\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: ../../Economics.cs:125
 #, csharp-format
 msgid "{0}数量: {1}"
 msgstr "{0} quantity: {1}"
 
-#: ../../Command.cs:93
-msgid "/bank add [用户] [数量]"
-msgstr "/bank add [user] [amount]"
+#: ../../Command.cs:55
+msgid "/bank add <用户> <数量>"
+msgstr "/bank add <user> <amount>"
 
-#: ../../Command.cs:96
-msgid "/bank clear [用户]"
-msgstr "/bank clear [user]"
+#: ../../Command.cs:59
+msgid "/bank clear <用户>"
+msgstr "/bank clear <user>"
 
-#: ../../Command.cs:94
-msgid "/bank del [用户] [数量]"
-msgstr "/bank del [user] [amount]"
+#: ../../Command.cs:56
+msgid "/bank deduct <用户> <数量>"
+msgstr "/bank deduct <user> <amount>"
 
-#: ../../Command.cs:95
-msgid "/bank pay [用户] [数量]"
-msgstr "/bank pay [user] [amount]"
+#: ../../Command.cs:57
+msgid "/bank pay <用户> <数量>"
+msgstr "/bank pay <user> <amount>"
 
-#: ../../Command.cs:97
+#: ../../Command.cs:58
+msgid "/bank query [用户]"
+msgstr "/bank query [user]"
+
+#: ../../Command.cs:60
 msgid "/bank reset"
 msgstr "/bank reset"
 
-#: ../../Command.cs:92
+#: ../../Command.cs:54
 msgid "bank 指令"
 msgstr "bank command"
 
-#: ../../Command.cs:88
+#: ../../Command.cs:70
 msgid "Economics 已重置"
 msgstr "Economics has been reset"
 
@@ -49,20 +53,20 @@ msgstr "Economics has been reset"
 msgid "世界名称: {0}"
 msgstr "World name: {0}"
 
+#: ../../Command.cs:18 ../../Command.cs:86
+msgid "你"
+msgstr "You"
+
 #: ../../Economics.cs:138
 #, csharp-format
 msgid "你因死亡掉落{0:F0}个{1}!"
 msgstr "You dropped {0:F0} {1} upon death!"
 
-#: ../../Command.cs:59
-msgid "你无权执行此命令!"
-msgstr "You are not authorized to execute this command!"
-
-#: ../../Command.cs:26
+#: ../../Command.cs:40
 msgid "你没有权限执行此命令!"
 msgstr "You do not have permission to execute this command!"
 
-#: ../../Command.cs:70
+#: ../../Command.cs:180
 #, csharp-format
 msgid "你的{0}不足，无法转账!"
 msgstr "You do not have enough {0} to transfer!"
@@ -72,7 +76,7 @@ msgstr "You do not have enough {0} to transfer!"
 msgid "在线人数: {0}/{1}"
 msgstr "Online users: {0}/{1}"
 
-#: ../../Command.cs:83
+#: ../../Command.cs:107
 #, csharp-format
 msgid "已清空`{0}`的所有{1}"
 msgstr "All {1} of `{0}` have been cleared"
@@ -92,17 +96,17 @@ msgstr "Current health: {0}/{1}"
 msgid "当前魔力: {0}/{1}"
 msgstr "Current mana: {0}/{1}"
 
-#: ../../Command.cs:42
+#: ../../Command.cs:147
 #, csharp-format
 msgid "成功为`{0}`添加 {1} 个{2}"
 msgstr "Successfully added {1} {2} to `{0}`"
 
-#: ../../Command.cs:49
+#: ../../Command.cs:160
 #, csharp-format
-msgid "成功删除`{0}`的 {1} 个{2}"
+msgid "成功减去`{0}`的 {1} 个{2}"
 msgstr "Successfully deleted {1} {2} from `{0}`"
 
-#: ../../Command.cs:65
+#: ../../Command.cs:175
 #, csharp-format
 msgid "成功转账给`{0}` {1} 个{2}"
 msgstr "Successfully transferred {1} {2} to `{0}`"
@@ -112,15 +116,18 @@ msgstr "Successfully transferred {1} {2} to `{0}`"
 msgid "玩家名称: {0}"
 msgstr "Player name: {0}"
 
-#: ../../Command.cs:52
+#: ../../Command.cs:163
 #, csharp-format
 msgid "用户`{0}`仅有{1}个{2}"
 msgstr "User `{0}` only has {1} {2}"
 
-#: ../../Command.cs:76 ../../Command.cs:101
+#: ../../Command.cs:30 ../../Command.cs:189
 msgid "语法错误，请输入/bank help查看正确语法"
 msgstr "Syntax error, please enter /bank help to view the correct syntax"
 
-#: ../../Command.cs:34
+#: ../../Command.cs:135
 msgid "请输入一个有效数值!"
 msgstr "Please enter a valid number!"
+
+#~ msgid "你无权执行此命令!"
+#~ msgstr "You are not authorized to execute this command!"

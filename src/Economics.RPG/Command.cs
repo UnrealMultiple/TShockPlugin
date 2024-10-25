@@ -33,7 +33,7 @@ public class Command
                     args.Player.SendErrorMessage(GetString($"必须满足进度限制:{string.Join(",", ranklevel.Limit)}"));
                     return;
                 }
-                if (EconomicsAPI.Economics.CurrencyManager.DelUserCurrency(args.Player.Name, ranklevel.Cost))
+                if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, ranklevel.Cost))
                 {
                     args.Player.SendSuccessMessage(GetString($"成功升级至 {ranklevel.Name}!"));
                     TShock.Utils.Broadcast(string.Format(ranklevel.RankBroadcast, args.Player.Name, ranklevel.Name), Color.Green);
@@ -63,7 +63,7 @@ public class Command
                 args.Player.SendErrorMessage(GetString($"必须满足进度限制:{string.Join(",", ranklevel.Limit)}"));
                 return;
             }
-            if (EconomicsAPI.Economics.CurrencyManager.DelUserCurrency(args.Player.Name, ranklevel.Cost))
+            if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, ranklevel.Cost))
             {
                 args.Player.SendSuccessMessage(GetString($"成功升级至 {ranklevel.Name}!"));
                 TShock.Utils.Broadcast(string.Format(ranklevel.RankBroadcast, args.Player.Name, ranklevel.Name), Color.Green);

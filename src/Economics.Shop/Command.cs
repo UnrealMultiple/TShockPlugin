@@ -76,7 +76,7 @@ public class Command
                 args.Player.SendErrorMessage(GetString($"请满足物品条件: {string.Join(",", product.ItemTerm.Select(x => x.ToString()))}"));
                 return;
             }
-            if (!EconomicsAPI.Economics.CurrencyManager.DelUserCurrency(args.Player.Name, product.Cost * count))
+            if (!EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, product.Cost * count))
             {
                 args.Player.SendErrorMessage(GetString($"你的{EconomicsAPI.Economics.Setting.CurrencyName}不足!"));
                 return;
