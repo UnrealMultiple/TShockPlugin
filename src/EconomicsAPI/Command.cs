@@ -155,7 +155,7 @@ public class Command
                     return;
                 }
                 var name = args.Parameters[1];
-                if (Economics.CurrencyManager.DelUserCurrency(name, num))
+                if (Economics.CurrencyManager.DeductUserCurrency(name, num))
                 {
                     args.Player.SendSuccessMessage(GetString($"成功减去`{name}`的 {num} 个{Economics.Setting.CurrencyName}"));
                     return;
@@ -169,7 +169,7 @@ public class Command
                     return;
                 }
                 var name = args.Parameters[1];
-                if (Economics.CurrencyManager.DelUserCurrency(args.Player.Name, num))
+                if (Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, num))
                 {
                     Economics.CurrencyManager.AddUserCurrency(name, num);
                     args.Player.SendSuccessMessage(GetString($"成功转账给`{name}` {num} 个{Economics.Setting.CurrencyName}"));

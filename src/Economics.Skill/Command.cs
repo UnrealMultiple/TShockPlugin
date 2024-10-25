@@ -59,7 +59,7 @@ public class Command
                     try
                     {
                         var skill = Utils.VerifyBindSkill(args.Player, index);
-                        if (!EconomicsAPI.Economics.CurrencyManager.DelUserCurrency(args.Player.Name, skill.Cost))
+                        if (!EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, skill.Cost))
                         {
                             args.Player.SendErrorMessage(GetString($"你的{EconomicsAPI.Economics.Setting.CurrencyName} 不足购买此技能!"));
                             return;
