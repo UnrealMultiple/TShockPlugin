@@ -1,0 +1,157 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: DamageRuleLoot\n"
+"POT-Creation-Date: 2024-10-25 01:25+0800\n"
+"PO-Revision-Date: 2024-10-25 01:23:41+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#: ..\..\Tool.cs:319
+msgid ""
+"            [i:3455][c/AD89D5:伤][c/D68ACA:害][c/"
+"DF909A:排][c/E5A894:行][c/E5BE94:榜][i:3454]"
+msgstr ""
+
+#: ..\..\Tool.cs:346
+#, csharp-format
+msgid "   暴击:[c/74F3C9:{0}]"
+msgstr ""
+
+#: ..\..\Tool.cs:347
+#, csharp-format
+msgid "   比例:[c/74F3C9:{0:0.00%}]"
+msgstr ""
+
+#: ..\..\Tool.cs:345
+#, csharp-format
+msgid "   伤害:[c/74F3C9:{0}]"
+msgstr ""
+
+#: ..\..\Tool.cs:344
+#, csharp-format
+msgid " [c/A7DDF0:{0}]"
+msgstr ""
+
+#: ..\..\Tool.cs:357
+#, csharp-format
+msgid " [c/A7DDF0:{0}]([c/74F3C9:{1:0.00%}])"
+msgstr ""
+
+#: ..\..\Tool.cs:320
+#, csharp-format
+msgid ""
+" 当前服务器有 [c/74F3C9:{0}位] 玩家 | 未参战: [c/"
+"A7DDF0:{1}位]"
+msgstr ""
+
+#: ..\..\Tool.cs:321
+#, csharp-format
+msgid ""
+" 恭喜以下 [c/74F3C9:{0}位] 玩家击败了 [c/F7686D:{1}]"
+msgstr ""
+
+#: ..\..\DamageRuleLoot.cs:53
+msgid "[伤害规则掉落]重新加载配置完毕。"
+msgstr ""
+
+#: ..\..\Tool.cs:269
+#, csharp-format
+msgid "[c/F06576:{0}]"
+msgstr ""
+
+#: ..\..\Tool.cs:305
+#, csharp-format
+msgid "[c/F06576:{0}] "
+msgstr ""
+
+#: ..\..\Tool.cs:267 ..\..\Tool.cs:303
+#, csharp-format
+msgid "[c/F06576:【停转】] 玩家:[c/F06576:{0}] "
+msgstr ""
+
+#: ..\..\Tool.cs:397
+#, csharp-format
+msgid ""
+"[c/F06576:【注意】]输出少于 [c/A7DDF0:{0:0.00%}] 禁止掉"
+"落宝藏袋:\n"
+msgstr ""
+
+#: ..\..\DamageRuleLoot.cs:82
+#, csharp-format
+msgid "[c/FBF069:【暴击】] 玩家:[c/F06576:{0}] "
+msgstr ""
+
+#: ..\..\Tool.cs:295
+#, csharp-format
+msgid "[c/FBF069:【转伤】] 玩家:[c/F06576:{0}] "
+msgstr ""
+
+#: ..\..\Tool.cs:259
+#, csharp-format
+msgid "[c/FBF069:【转移】] 玩家:[c/F06576:{0}] "
+msgstr ""
+
+#: ..\..\DamageRuleLoot.cs:85
+#, csharp-format
+msgid "暴击数:[c/FBF069:{0}]"
+msgstr ""
+
+#: ..\..\DamageRuleLoot.cs:83
+#, csharp-format
+msgid "对象:[c/AEA3E4:{0}] 满血:[c/FBF069:{1}] "
+msgstr ""
+
+#: ..\..\Tool.cs:260 ..\..\Tool.cs:296
+#, csharp-format
+msgid "攻击对象:[c/AEA3E4:{0}] | "
+msgstr ""
+
+#: ..\..\DamageRuleLoot.cs:431
+msgid "火星飞碟"
+msgstr ""
+
+#: ..\..\DamageRuleLoot.cs:660
+msgid "美杜莎"
+msgstr ""
+
+#: ..\..\Tool.cs:262 ..\..\Tool.cs:298
+#, csharp-format
+msgid "生命:[c/FBF069:{0}]"
+msgstr ""
+
+#: ..\..\DamageRuleLoot.cs:349
+msgid "双子魔眼"
+msgstr ""
+
+#: ..\..\DamageRuleLoot.cs:84
+#, csharp-format
+msgid "血量:[c/6DDA6D:{0}] 伤害:[c/F06576:{1}] "
+msgstr ""
+
+#: ..\..\DamageRuleLoot.cs:312
+msgid "血肉墙"
+msgstr ""
+
+#: ..\..\DamageRuleLoot.cs:484
+msgid "月亮领主"
+msgstr ""
+
+#: ..\..\DamageRuleLoot.cs:453
+msgid "猪龙鱼公爵"
+msgstr ""
+
+#: ..\..\Tool.cs:268 ..\..\Tool.cs:304
+#, csharp-format
+msgid ""
+"转伤对象:[c/AEA3E4:{0}] | 生命值:[c/6DDA6D:{1}] < "
+msgstr ""
+
+#: ..\..\Tool.cs:261 ..\..\Tool.cs:297
+#, csharp-format
+msgid "转移:[c/6DDA6D:{0}] 伤害:[c/F06576:{1}] "
+msgstr ""

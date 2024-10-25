@@ -89,6 +89,7 @@
 | [ConvertWorld](src/ConvertWorld/README.md) | No | Convert world items by defeating monsters | No |
 | [CreateSpawn](src/CreateSpawn/README.md) | No | Spawn point building generation | No |
 | [CriticalHit](src/CriticalHit/README.md) | No | Critical hit prompt | No |
+| [DamageRuleLoot](src/DamageRuleLoot/README_EN.md) | Yes | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation | No |
 | [DamageStatistic](src/DamageStatistic/README.md) | No | Display damage caused by each player after each boss fight | No |
 | [DataSync](src/DataSync/README.md) | No | Progress synchronization | No |
 | [DeathDrop](src/DeathDrop/README.md) | No | Random and custom loot upon monster death | No |
@@ -167,6 +168,7 @@
 | [TeleportRequest](src/TeleportRequest/README.md) | Yes | Teleport request | No |
 | [TimerKeeper](src/TimerKeeper/README.md) | Yes | Save timer state | No |
 | [TownNPCHomes](src/TownNPCHomes/README.md) | No | NPC quick home | No |
+| [TimeRate](src/TimeRate/README_EN.md) | No | modifying time acceleration using commands, and supporting player sleep to trigger events. | No |
 | [UnseenInventory](src/UnseenInventory/README.md) | No | Allows the server to generate items that are normally 'unobtainable' | No |
 | [VeinMiner](src/VeinMiner/README.md) | Yes | Chain mining | No |
 | [WeaponPlusCostCoin](src/WeaponPlusCostCoin/README.md) | No | Weapon enhancement coin version | No |
