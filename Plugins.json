@@ -442,7 +442,7 @@
   },
   {
     "Name": "Economics.Deal",
-    "Version": "1.0.0.2",
+    "Version": "1.0.0.3",
     "Author": "少司命",
     "Description": "Economics.Deal",
     "Path": "Economics.Deal.dll"
@@ -463,21 +463,21 @@
   },
   {
     "Name": "Economics.RPG",
-    "Version": "1.0.0.4",
+    "Version": "1.0.0.5",
     "Author": "少司命",
     "Description": "Economics.RPG",
     "Path": "Economics.RPG.dll"
   },
   {
     "Name": "Economics.Shop",
-    "Version": "1.0.0.2",
+    "Version": "1.0.0.3",
     "Author": "少司命",
     "Description": "Economics.Shop",
     "Path": "Economics.Shop.dll"
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.2.1.4",
+    "Version": "1.2.1.5",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"
@@ -498,14 +498,14 @@
   },
   {
     "Name": "Economics.WeaponPlus",
-    "Version": "1.0.0.4",
+    "Version": "1.0.0.5",
     "Author": "z枳 少司命",
     "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
     "Path": "Economics.WeaponPlus.dll"
   },
   {
     "Name": "EconomicsAPI",
-    "Version": "1.0.1.1",
+    "Version": "1.0.2.0",
     "Author": "少司命",
     "Description": "EconomicsAPI",
     "Path": "EconomicsAPI.dll"
