@@ -24,13 +24,12 @@ public class EndureBoost : TerrariaPlugin
 
     public override void Initialize()
     {
+        LoadConfig();
         GeneralHooks.ReloadEvent += ReloadConfig;
         ServerApi.Hooks.ServerJoin.Register(this, this.OnServerJoin);
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
-        GetDataHandlers.PlayerSpawn.Register(this.Rebirth);
-        
+        GetDataHandlers.PlayerSpawn.Register(this.Rebirth);   
         Commands.ChatCommands.Add(new Command("EndureBoost", this.SetPlayerBuffcmd, "ebbuff", "ldbuff", "loadbuff","刷新buff"));
-        LoadConfig();
     }
 
     protected override void Dispose(bool disposing)
