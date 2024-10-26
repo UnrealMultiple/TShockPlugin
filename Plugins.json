@@ -512,7 +512,7 @@
   },
   {
     "Name": "EndureBoost",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "肝帝熙恩",
     "Description": "拥有指定数量物品给指定buff",
     "Path": "EndureBoost.dll"
