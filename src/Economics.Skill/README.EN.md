@@ -12,6 +12,13 @@
 
 
 ```
+V1.2.1.6
+Added hidden skills, hidden skills cannot be actively purchased.
+Add Command:
+/skill give is not a safe command to add a skill to the player, it does not check the player's skill status.
+/skill del This command deletes the target player's ability
+/skill clearh Removes hidden abilities from target players
+
 V1.2.1.5
 适配新 EconomicsAPI
 

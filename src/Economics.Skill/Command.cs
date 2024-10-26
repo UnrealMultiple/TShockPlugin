@@ -1,4 +1,7 @@
-﻿using EconomicsAPI.Attributes;
+﻿using Economics.Skill.Internal;
+using Economics.Skill.Model;
+using EconomicsAPI.Attributes;
+using Steamworks;
 using TShockAPI;
 
 namespace Economics.Skill;
@@ -7,7 +10,7 @@ namespace Economics.Skill;
 public class Command
 {
     [CommandMap("skill", Permission.SkillUse)]
-    public void CSkill(CommandArgs args)
+    public static void CSkill(CommandArgs args)
     {
         void Show(List<string> line)
         {
@@ -86,6 +89,19 @@ public class Command
                     args.Player.SendSuccessMessage(GetString("技能移除成功!"));
                     return;
                 }
+                else if (args.Parameters[0].ToLower() == "clearh")
+                { 
+                    var playerName = args.Parameters[1];
+                    var skills = Skill.PlayerSKillManager.QuerySkill(playerName);
+                    foreach (var skill in skills)
+                    {
+                        if (skill.Skill != null && skill.Skill.Hidden)
+                        {
+                            Skill.PlayerSKillManager.Remove(playerName, skill.ID);
+                        }
+                    }
+                    args.Player.SendSuccessMessage(GetString("已清除目标玩家绑定的隐藏技能!"));
+                }
                 break;
             }
             case 1:
@@ -124,7 +140,10 @@ public class Command
                     }
                     foreach (var skill in skills)
                     {
-                        Skill.PlayerSKillManager.Remove(args.Player.Name, skill.ID);
+                        if (skill.Skill != null && !skill.Skill.Hidden)
+                        { 
+                            Skill.PlayerSKillManager.Remove(args.Player.Name, skill.ID);
+                        }
                     }
                     args.Player.SendSuccessMessage(GetString("成功移除了手持武器的所有技能!"));
                     return;
@@ -139,7 +158,11 @@ public class Command
                     }
                     foreach (var skill in skills)
                     {
-                        Skill.PlayerSKillManager.Remove(args.Player.Name, skill.ID);
+                        if (skill.Skill != null && !skill.Skill.Hidden)
+                        {
+                            Skill.PlayerSKillManager.Remove(args.Player.Name, skill.ID);
+                        }
+
                     }
                     args.Player.SendSuccessMessage(GetString("成功移除了绑定的所有技能!"));
                     return;
@@ -156,11 +179,49 @@ public class Command
                     return;
                 }
                 break;
+               
+            }
+            case 3:
+            {
+                var player = TShock.Players.FirstOrDefault(x => x.Name == args.Parameters[1]);
+                if (player == null)
+                {
+                    args.Player.SendErrorMessage(GetString("目标玩家不存在或不在线!"));
+                    return;
+                }
+                if (args.Parameters[0].ToLower() == "give" && args.Player.HasPermission(Permission.SkillAdmin))
+                {
+                    SkillContext? skill;
+                    if (!int.TryParse(args.Parameters[2], out var index) || (skill = Skill.Config.GetSkill(index)) == null)
+                    {
+                        args.Player.SendErrorMessage(GetString("无效得技能序号!"));
+                        return;
+                    }
+                    Skill.PlayerSKillManager.Add(player.Name, player.SelectedItem.netID, index);
+                    args.Player.SendSuccessMessage(GetString($"成功为 {player.Name} 添加了一个技能 {skill.Name}"));
+                    player.SendSuccessMessage(GetString($"{args.Player.Name} 为你添加了一个技能 {skill.Name}"));
+                }
+                else if (args.Parameters[0].ToLower() == "del" && args.Player.HasPermission(Permission.SkillAdmin))
+                {
+                    var playerSkills = Skill.PlayerSKillManager.QuerySkill(player.Name);
+                    if (!int.TryParse(args.Parameters[2], out var index) || !playerSkills.Any(x=>x.ID == index))
+                    {
+                        args.Player.SendErrorMessage(GetString("无效得技能序号!"));
+                        return;
+                    }
+                    Skill.PlayerSKillManager.Remove(player.Name, index);
+                    args.Player.SendSuccessMessage(GetString($"成功删除 {player.Name} 的一个技能"));
+                    player.SendSuccessMessage(GetString($"{args.Player.Name} 删除了你的一个技能 "));
+                }
+                break;
             }
             default:
                 args.Player.SendInfoMessage(GetString("/skill buy [技能ID]"));
                 args.Player.SendInfoMessage(GetString("/skill del [技能ID]"));
                 args.Player.SendInfoMessage(GetString("/skill list [页码]"));
+                args.Player.SendInfoMessage(GetString("/skill give [玩家] [技能序号]"));
+                args.Player.SendInfoMessage(GetString("/skill clearh [玩家]"));
+                args.Player.SendInfoMessage(GetString("/skill del [玩家] [序号]"));
                 args.Player.SendInfoMessage(GetString("/skill delall"));
                 args.Player.SendInfoMessage(GetString("/skill clear"));
                 args.Player.SendInfoMessage(GetString("/skill reset"));
