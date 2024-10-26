@@ -31,7 +31,7 @@ V2.0.0.0
 ```
 
 ## 指令
-
+> 配置文件位置：tshock/AutoPluginManager.json
 | 语法           |        权限         |   说明   |
 | -------------- | :-----------------: | :------: |
 | /apm -c | AutoUpdatePlugin   | 检查插件更新|
