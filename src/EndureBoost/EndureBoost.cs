@@ -45,7 +45,7 @@ public class EndureBoost : TerrariaPlugin
         base.Dispose(disposing);
     }
 
-    private int _updateCounter = 0;
+    private int Timer = 0;
 
     private void OnUpdate(EventArgs args)
     {
@@ -57,7 +57,7 @@ public class EndureBoost : TerrariaPlugin
         var updateInterval = 60 * updateFrequencyInSeconds;
 
         // 当计数器达到更新间隔时更新玩家状态
-        if (this._updateCounter % updateInterval == 0)
+        if (this.Timer % updateInterval == 0)
         {
             foreach (var player in TShock.Players)
             {
@@ -67,7 +67,7 @@ public class EndureBoost : TerrariaPlugin
                 }
             }
         }
-        this._updateCounter++;
+        this.Timer++;
     }
     private void Rebirth(object? sender, GetDataHandlers.SpawnEventArgs args)// 重生后刷新buff
     {
