@@ -25,7 +25,7 @@ public class Economics : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 1, 1);
+    public override Version Version => new(1, 0, 2, 0);
 
     public readonly static List<TSPlayer> ServerPlayers = new();
 
@@ -134,7 +134,7 @@ public class Economics : TerrariaPlugin
         if (Setting.DeathDropRate >= 0)
         {
             var drop = CurrencyManager.GetUserCurrency(e.Player.Name) * Setting.DeathDropRate;
-            CurrencyManager.DelUserCurrency(e.Player.Name, Convert.ToInt64(drop));
+            CurrencyManager.DeductUserCurrency(e.Player.Name, Convert.ToInt64(drop));
             e.Player.SendErrorMessage(GetString($"你因死亡掉落{drop:F0}个{Setting.CurrencyName}!"));
         }
     }

@@ -7,6 +7,10 @@
 ## Changelog
 
 ```
+v1.2.0
+Fixed a bug that when the server is empty and the command '/times all' is enabled,
+the game time fast-forwards by 1 to 2 minutes when the first player joins the server."
+
 v1.1.0
 Improved the menu aesthetics.
 Optimized performance (no longer sends WorldInfo packets).
