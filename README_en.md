@@ -99,16 +99,16 @@
 | [Don't Fuck](src/DonotFuck/README.md) | No | Prevent swearing | No |
 | [DTEntryBlock](src/DTEntryBlock/README.md) | No | Prevent entry into dungeons or temples | No |
 | [DumpTerrariaID](src/DumpTerrariaID/README.md) | No | Dump Terraria IDs | No |
-| [Economics.Deal](src/Economics.RPG/README.md) | No | Trading plugin | [EconomicsAPI](src/EconomicsAPI/README.md) |
-| [Economics.NPC](src/Economics.NPC/README.md) | No | Custom monster rewards | [EconomicsAPI](src/EconomicsAPI/README.md) |
-| [Economics.Projectile](src/Economics.Projectile/README.md) | No | Custom projectiles | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
-| [Economics.Regain](src/Economics.Regain/README.md) | No | Item recycling | [EconomicsAPI](src/EconomicsAPI/README.md) |
-| [Economics.RPG](src/Economics.RPG/README.md) | No | RPG plugin | [EconomicsAPI](src/EconomicsAPI/README.md) |
-| [Economics.Shop](src/Economics.Shop/README.md) | No | Shop plugin | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
-| [Economics.Task](src/Economics.Task/README.md) | No | Task plugin | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
-| [Economics.Skill](src/Economics.Skill/README.md) | No | Skill plugin | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README.md) |
-| [Economics.WeaponPlus](src/Economics.WeaponPlus/README.md) | No | Weapon enhancement | [EconomicsAPI](src/EconomicsAPI/README.md) |
-| [EconomicsAPI](src/EconomicsAPI/README.md) | No | Economic plugin prerequisite | No |
+| [Economics.Deal](src/Economics.RPG/README_EN.md) | Yes | Trading plugin | [EconomicsAPI](src/EconomicsAPI/README_EN.md) |
+| [Economics.NPC](src/Economics.NPC/README_EN.md) | Yes | Custom monster rewards | [EconomicsAPI](src/EconomicsAPI/README_EN.md) |
+| [Economics.Projectile](src/Economics.Projectile/README_EN.md) | Yes | Custom projectiles | [EconomicsAPI](src/EconomicsAPI/README_EN.md) [Economics.RPG](src/Economics.RPG/README_EN.md) |
+| [Economics.Regain](src/Economics.Regain/README_EN.md) | Yes | Item recycling | [EconomicsAPI](src/EconomicsAPI/README_EN.md) |
+| [Economics.RPG](src/Economics.RPG/README_EN.md) | Yes | RPG plugin | [EconomicsAPI](src/EconomicsAPI/README_EN.md) |
+| [Economics.Shop](src/Economics.Shop/README_EN.md) | Yes | Shop plugin | [EconomicsAPI](src/EconomicsAPI/README_EN.md) [Economics.RPG](src/Economics.RPG/README_EN.md) |
+| [Economics.Task](src/Economics.Task/README_EN.md) | Yes | Task plugin | [EconomicsAPI](src/EconomicsAPI/README_EN.md) [Economics.RPG](src/Economics.RPG/README_EN.md) |
+| [Economics.Skill](src/Economics.Skill/README_EN.md) | Yes | Skill plugin | [EconomicsAPI](src/EconomicsAPI/README.md) [Economics.RPG](src/Economics.RPG/README_EN.md) |
+| [Economics.WeaponPlus](src/Economics.WeaponPlus/README_EN.md) | Yes | Weapon enhancement | [EconomicsAPI](src/EconomicsAPI/README_EN.md) |
+| [EconomicsAPI](src/EconomicsAPI/README_EN.md) | Yes | Economic plugin prerequisite | Yes |
 | [EndureBoost](src/EndureBoost/README_EN.md) | Yes | Grant specified buff when the player has a certain number of items | No |
 | [EssentialsPlus](src/EssentialsPlus/README_EN.md) | Yes | Additional management commands | No |
 | [Ezperm](src/Ezperm/README.md) | No | Batch change permissions | No |
