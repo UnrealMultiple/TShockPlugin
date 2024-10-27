@@ -463,7 +463,7 @@
   },
   {
     "Name": "Economics.RPG",
-    "Version": "1.0.0.5",
+    "Version": "1.0.0.6",
     "Author": "少司命",
     "Description": "Economics.RPG",
     "Path": "Economics.RPG.dll"
@@ -477,7 +477,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.2.1.5",
+    "Version": "1.2.1.6",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "Path": "Economics.Skill.dll"
