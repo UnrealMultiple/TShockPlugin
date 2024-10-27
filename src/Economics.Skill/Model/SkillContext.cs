@@ -24,6 +24,9 @@ public class SkillContext
     [JsonProperty("全服唯一")]
     public bool SkillUniqueAll { get; set; }
 
+    [JsonProperty("隐藏")]
+    public bool Hidden { get; set; }
+
     [JsonProperty("技能价格")]
     public long Cost { get; set; }
 

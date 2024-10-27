@@ -10,6 +10,9 @@
 ##  changelog
 
 ```
+V1.0.0.6
+Add Configuration: After filling in "手持武器", the player must level up and must hold the specified weapon
+
 V1.0.0.5
 适配新 EconomicsAPI
 
