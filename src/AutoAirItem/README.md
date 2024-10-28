@@ -75,7 +75,7 @@ v1.0.0
 7.`监听垃圾桶`使用指令`/air auto`开启，当垃圾桶位格放入物品时自动添加垃圾桶表内
 
 ## 配置
-
+> 配置文件位置：tshock/自动垃圾桶.json
 ```json
 {
   "插件指令权限": "指令菜单：/air 或 /垃圾，权限名【AutoAir.use】，给玩家权限：/group addperm default AutoAir.use",

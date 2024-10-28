@@ -175,6 +175,7 @@
 | [TownNPCHomes](src/TownNPCHomes/README.md) | NPC 快速回家 | 无 |
 | [UnseenInventory](src/UnseenInventory/README.md) | 允许服务器端生成“无法获取”的物品 | 无 |
 | [VeinMiner](src/VeinMiner/README.md) | 连锁挖矿 | 无 |
+| [VotePlus](src/VotePlus/README.md) | 多功能投票 | 无 |
 | [WeaponPlusCostCoin](src/WeaponPlusCostCoin/README.md) | 武器强化钱币版 | 无 |
 | [WikiLangPackLoader](src/WikiLangPackLoader/README.md) | 为服务器加载 Wiki 语言包 | 无 |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 世界编辑器,可以修改大部分的世界参数 | 无 |
