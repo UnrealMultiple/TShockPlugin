@@ -16,7 +16,7 @@ public class EndureBoost : TerrariaPlugin
 
     public override string Name => "EndureBoost";
 
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
 
     public EndureBoost(Main game) : base(game)
     {
@@ -365,7 +365,7 @@ public class EndureBoost : TerrariaPlugin
                         }
                     }
                     // 装备栏 (59-68: 盔甲 ; 69-78: 时装)
-                    else if (i >= 59 && i < 69)
+                    else if (i >= 59 && i < 79)
                     {
                         if (plr.armor[i - 59].type == itemId)
                         {
@@ -427,8 +427,8 @@ public class EndureBoost : TerrariaPlugin
                             itemCount += plr.bank4.item[i - 220].stack;
                         }
                     }
-                    // 第一套装备栏的盔甲 (260-269) 和染料 (280-289)
-                    else if (i >= 260 && i < 270)
+                    // 第一套装备栏的盔甲和社交栏 (260-279) 和染料 (280-289)
+                    else if (i >= 260 && i < 280)
                     {
                         if (plr.Loadouts[0].Armor[i - 260].type == itemId)
                         {
@@ -442,8 +442,8 @@ public class EndureBoost : TerrariaPlugin
                             itemCount += plr.Loadouts[0].Dye[i - 280].stack;
                         }
                     }
-                    // 第二套装备栏的盔甲 (290-299) 和染料 (310-319)
-                    else if (i >= 290 && i < 300)
+                    // 第二套装备栏的盔甲和社交栏 (290-309) 和染料 (310-319)
+                    else if (i >= 290 && i < 310)
                     {
                         if (plr.Loadouts[1].Armor[i - 290].type == itemId)
                         {
@@ -457,8 +457,8 @@ public class EndureBoost : TerrariaPlugin
                             itemCount += plr.Loadouts[1].Dye[i - 310].stack;
                         }
                     }
-                    // 第三套装备栏的盔甲 (320-329) 和染料 (340-349)
-                    else if (i >= 320 && i < 330)
+                    // 第三套装备栏的盔甲和社交栏 (320-339) 和染料 (340-349)
+                    else if (i >= 320 && i < 340)
                     {
                         if (plr.Loadouts[2].Armor[i - 320].type == itemId)
                         {
