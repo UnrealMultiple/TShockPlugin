@@ -171,6 +171,7 @@
 | [TimeRate](src/TimeRate/README_EN.md) | No | modifying time acceleration using commands, and supporting player sleep to trigger events. | No |
 | [UnseenInventory](src/UnseenInventory/README.md) | No | Allows the server to generate items that are normally 'unobtainable' | No |
 | [VeinMiner](src/VeinMiner/README.md) | Yes | Chain mining | No |
+| [VotePlus](src/VotePlus/README_EN.md) | Yes | Multi-function voting | No |
 | [WeaponPlusCostCoin](src/WeaponPlusCostCoin/README.md) | No | Weapon enhancement coin version | No |
 | [WikiLangPackLoader](src/WikiLangPackLoader/README.md) | No | Load Chinese Wiki language pack for server | No |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | No | World editor, can modify most of the world parameters | No |

@@ -240,6 +240,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DamageRuleLoot", "src\Damag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeRate", "src\TimeRate\TimeRate.csproj", "{6F8D4133-9A1B-42DD-A32E-DD6A77A07AC0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VotePlus", "src\VotePlus\VotePlus.csproj", "{CBCF4EE6-5634-44DC-ADA4-0941293104C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1176,6 +1178,14 @@ Global
 		{6F8D4133-9A1B-42DD-A32E-DD6A77A07AC0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6F8D4133-9A1B-42DD-A32E-DD6A77A07AC0}.Release|x64.ActiveCfg = Release|Any CPU
 		{6F8D4133-9A1B-42DD-A32E-DD6A77A07AC0}.Release|x64.Build.0 = Release|Any CPU
+		{CBCF4EE6-5634-44DC-ADA4-0941293104C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBCF4EE6-5634-44DC-ADA4-0941293104C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBCF4EE6-5634-44DC-ADA4-0941293104C9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CBCF4EE6-5634-44DC-ADA4-0941293104C9}.Debug|x64.Build.0 = Debug|Any CPU
+		{CBCF4EE6-5634-44DC-ADA4-0941293104C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBCF4EE6-5634-44DC-ADA4-0941293104C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBCF4EE6-5634-44DC-ADA4-0941293104C9}.Release|x64.ActiveCfg = Release|Any CPU
+		{CBCF4EE6-5634-44DC-ADA4-0941293104C9}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
