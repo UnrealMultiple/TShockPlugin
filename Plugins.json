@@ -512,7 +512,7 @@
   },
   {
     "Name": "EndureBoost",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "肝帝熙恩",
     "Description": "拥有指定数量物品给指定buff",
     "Path": "EndureBoost.dll"
@@ -761,6 +761,13 @@
     "Author": "Megghy|YSpoof|Maxthegreat99|肝帝熙恩",
     "Description": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
     "Path": "VeinMiner.dll"
+  },
+  {
+    "Name": "VotePlus",
+    "Version": "1.0.0.0",
+    "Author": "Cai",
+    "Description": "投票插件",
+    "Path": "VotePlus.dll"
   },
   {
     "Name": "WorldModify",
