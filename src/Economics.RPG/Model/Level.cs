@@ -21,6 +21,9 @@ public class Level
     [JsonProperty("升级广播")]
     public string RankBroadcast { get; set; } = string.Empty;
 
+    [JsonProperty("手持武器")]
+    public HashSet<int> SelectedWeapon { get; set; } = new();
+
     [JsonProperty("进度限制")]
     public HashSet<string> Limit { get; set; } = new();
 
