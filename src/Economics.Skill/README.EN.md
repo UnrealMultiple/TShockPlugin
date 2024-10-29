@@ -1,23 +1,23 @@
-# Economics.Skill 技能插件
+# Economics.Skill Skill Plugin
 
-- 作者: 少司命
-- 出处: 无
-- 一个可以释放技能的插件
+- Author: Shaosiming
+- Source: None
+- A plugin that allows you to release skills.
 
-> [!NOTE]  
-> 需要安装前置插件：EconomicsAPI、Economics.RPG (本仓库) 
-> 使用AI样式功能可能会造成占用大量带宽量力而为
- 
-## 更新日志
+> [!NOTE]
+>  requires pre-installed plugins: EconomicsAPI, Economics.RPG (this repository)
+>  using the AI style function may cause a large amount of bandwidth usage.
+
+##  changelog
 
 
 ```
 V1.2.1.6
-添加隐藏技能，隐藏技能无法被主动购买。
-添加新指令:
-/skill give 给玩家添加技能，此指令不是一个安全的指令，它不会检查玩家技能状态。
-/skill del 这个指令可以删除目标玩家技能
-/skill clearh 移除目标玩家身上的隐藏技能
+Added hidden skills, hidden skills cannot be actively purchased.
+Add Command:
+/skill give is not a safe command to add a skill to the player, it does not check the player's skill status.
+/skill del This command deletes the target player's ability
+/skill clearh Removes hidden abilities from target players
 
 V1.2.1.5
 适配新 EconomicsAPI
@@ -30,26 +30,23 @@ V1.0.0.1
 修复:物品消耗
 ```
 
-## 配置注意事项
+##  Configuration Notes
 
-- 触发模式中 `击杀` `击打` `主动` 三个模式，其中任意两个都无法组合，击杀 击打 本身就是主动的体现。
+- In the trigger mode `击杀` `击打` `主动` three modes, any two of which can not be combined, hit Hit Hit itself is the embodiment of the initiative.
 
-## 指令
+##  Command
 
-| 语法                  |         权限          |          说明          |
+| Syntax | Privileges | Description |  | :::
 | --------------------- | :-------------------: | :--------------------: |
-| /skill buy [技能索引] |  economics.skill.use  |        购买技能        |
-| /skill del [技能索引] |  economics.skill.use  |        解绑技能        |
-| /skill ms             |  economics.skill.use  |     查看已绑定技能     |
-| /skill delall         |  economics.skill.use  | 解绑手持武器的所有技能 |
-| /skill clear          |  economics.skill.use  |      解绑所有技能      |
-| /skill reset          | economics.skill.admin |        重置技能        |
-| /skill give [玩家] [技能索引] | economics.skill.admin |    给予玩家技能(不安全的，此指令不会检查玩家技能情况)       |
-| /skill del [玩家] [技能索引]     | economics.skill.admin |      移除目标玩家技能       |
-| /skill clearh [玩家]    | economics.skill.admin |      移除玩家所有隐藏技能       |
+| /skill buy [skill index] | economics.skill.use | buy skill |
+| /skill del [skill index] | economics.skill.use | unbind skill |
+| /skill ms | economics.skill.use | View Bound Skills |
+| /skill delall | economics.skill.use | Unbind all skills for handheld weapons |
+| /skill clear | economics.skill.use | unbind all skills |
+| /skill reset | economics.skill.admin | reset skills |
 
-## 配置
-> 配置文件位置：tshock/Economics/Skill.json
+##  configuration
+>  configuration file location: tshock/Economics/Skill.json
 ```json
 {
   "购买主动技能最大数量": 1,
@@ -63,7 +60,6 @@ V1.0.0.1
       "喊话": "",
       "技能唯一": false,
       "全服唯一": false,
-      "隐藏": false, //开启后无法被主动购买
       "技能价格": 0,
       "限制等级": [],
       "限制进度": [],
@@ -145,11 +141,11 @@ V1.0.0.1
                 "X递增": 0,
                 "Y递增": 0,
                 "角度递增": 20,
-                "圆面半径": 20, 把老版本画圆挪过来了
+                "圆面半径": 20, //把老版本画圆挪过来了
                 "反向发射": false,
                 "延迟": 100,
                 "跟随玩家位置": false,
-                "根据角度计算新的点": true 配合画圆使用
+                "根据角度计算新的点": true //配合画圆使用
               }
             ]
           }
@@ -160,7 +156,7 @@ V1.0.0.1
 }
 ```
 
-## 反馈
+Feedback for ## 
 
-- 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
-- 国内社区 trhub.cn 或 TShock 官方群等
+- Co-maintained plugin repository: https://github.com/UnrealMultiple/TShockPlugin
+- Domestic community trhub.cn or TShock official group, etc.

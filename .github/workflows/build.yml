@@ -98,10 +98,10 @@ jobs:
             dotnet tool run GetText.Extractor -u -o -s $p.FullName -t $pot
           }
           git add -N src/**/i18n/*.pot
-          foreach ($p in @((git diff --numstat).Split([System.Environment]::NewLine)))  {
+          foreach ($p in @(git diff --numstat))  {
             if (!$p.EndsWith(".pot")) { continue }
-            $d = $p.Split("`t")
-            if ($d[0] -le 2 -and $d[1] -le 2) {
+            $d = -split $p
+            if ([int]$d[0] -le 2 -and [int]$d[1] -le 2) {
               git checkout $d[2]
             } else {
               foreach ($t in @(Get-ChildItem $([System.IO.Path]::GetDirectoryName($d[2]))*.po)) {

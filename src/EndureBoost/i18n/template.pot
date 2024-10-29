@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EndureBoost\n"
-"POT-Creation-Date: 2024-10-01 07:03:08+0000\n"
-"PO-Revision-Date: 2024-10-01 07:03:08+0000\n"
+"POT-Creation-Date: 2024-10-26 15:49:41+0000\n"
+"PO-Revision-Date: 2024-10-26 15:49:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,11 +10,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../EndureBoost.cs:60
+#: ../../EndureBoost.cs:85
 msgid "[拥有指定数量物品给指定buff] 刷新buff完毕。"
 msgstr ""
 
-#: ../../EndureBoost.cs:74
+#: ../../EndureBoost.cs:99
 msgid "[拥有指定数量物品给指定buff] 重新加载配置完毕。"
 msgstr ""
 

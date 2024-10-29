@@ -1,17 +1,17 @@
-# Economics.RPG 升级职业插件
+# Economics.RPG Upgrade Career Plugin
 
-- 作者: 少司命
-- 出处: 无
-- RPG 升级插件  
+- Author: Shao Shi Ming
+- Source: None
+- RPG Upgrade Plugin
 
-> [!NOTE]  
-> 需要安装前置插件：EconomicsAPI (本仓库)  
+> [!NOTE]
+>  requires the pre-installed plugin: EconomicsAPI (this repository).
 
-## 更新日志
+##  changelog
 
 ```
 V1.0.0.6
-添加配置 "手持武器"填写后玩家升级必须手持指定的武器
+Add Configuration: After filling in "手持武器", the player must level up and must hold the specified weapon
 
 V1.0.0.5
 适配新 EconomicsAPI
@@ -29,16 +29,16 @@ V1.0.0.1
 - 添加RPG聊天渐变色
 ```
 
-## 指令
+##  directive
 
-| 语法           |        权限         |   说明   |
+| Syntax | Privileges | Description |
 | -------------- | :-----------------: | :------: |
-| /rank [职业名] | economics.rpg.rank  |   升级   |
-| /重置等级      | economics.rpg.reset | 重置职业 |
-| /level reset   | economics.rpg.admin | 重置     |
+| /rank [profession name] | economics.rpg.rank | upgrade |
+| /reset level | economics.rpg.reset | reset career |
+| /level reset | economics.rpg.admin | reset |
 
-## 配置
-> 配置文件位置：tshock/Economics/RPG.json
+##  configuration
+>  configuration file location: tshock/Economics/RPG.json
 ```json
 {
   "RPG信息": {
@@ -75,7 +75,7 @@ V1.0.0.1
   }
 }
 ```
-## 反馈
-- 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
-- 次优先：TShock官方群：816771079
-- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
+Feedback for ## 
+- Priority sends ISSUED -> co-maintained plugin repository: https://github.com/UnrealMultiple/TShockPlugin
+- Sub-priority: TShock official group: 816771079
+- Most likely not visible but possible: domestic community trhub.cn , bbstr.net , tr.monika.love

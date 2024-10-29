@@ -78,7 +78,7 @@ public class Command
                 args.Player.SendErrorMessage(GetString("不存在此交易!"));
                 return;
             }
-            if (!EconomicsAPI.Economics.CurrencyManager.DelUserCurrency(args.Player.Name, context.Cost))
+            if (!EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, context.Cost))
             {
                 args.Player.SendErrorMessage(GetString($"你的{EconomicsAPI.Economics.Setting.CurrencyName}不足，无法购买!"));
                 return;
