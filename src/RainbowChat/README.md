@@ -7,6 +7,14 @@
 ## 更新日志
 
 ```
+v1.0.7
+修复了指令屏蔽问题
+加入了全局控制开关的指令与对应配置项
+修复了渐变色聊天时的物品图标显示
+加入了当玩家使用指令开启渐变时默认会关闭随机色的逻辑
+关于随机色的图标修复工作：
+羽学表示放弃，甚至对这个功能是否有存在的必要性，都持有怀疑态度。
+
 1.0.6
 完善卸载函数
 
@@ -27,13 +35,16 @@
 
 ## 指令
 
-| 语法           |        权限         |   说明   |
-| -------------- | :-----------------: | :------: |
-| /rainbowchat 或 /rc | rainbowchat.use  |   查看菜单   |
-| /rainbowchat 或 /rc 渐变| rainbowchat.use  |   开关彩虹聊天【渐变色】功能   |
-| /rainbowchat 或 /rc 随机| rainbowchat.use  |   开关彩虹聊天【随机色】功能   |
-| /rc 渐变 开始 xxx,xxx,xxx| rainbowchat.use  |   更改渐变色开始值   |
-| /rc 渐变 结束 xxx,xxx,xxx| rainbowchat.use  |   更改渐变色结束值   |
+| 语法                             | 别名  |       权限       |                   说明                   |
+| -------------------------------- | :---: | :--------------: | :--------------------------------------: |
+| /rc |  /rainbowchat  |rainbowchat.use  |   查看菜单   |
+| /rc gradient |  /rainbowchat 渐变  |  rainbowchat.use  |   玩家自己的开关彩虹聊天【渐变色】功能开关   |
+| /rc random |  /rainbowchat 随机  |  rainbowchat.use  |   玩家自己的彩虹聊天【随机色】功能开关   |
+| /rc gradient start xxx,xxx,xxx|  /rainbowchat 渐变 开始 RRR,GGG,BBB  | rainbowchat.use  |   更改渐变色开始值   |
+| /rc gradient stop xxx,xxx,xxx|  /rainbowchat 渐变 结束 RRR,GGG,BBB  | rainbowchat.use  |   更改渐变色结束值   |
+| /rc on 或 off |  /rainbowchat 开启 或 关闭 | rainbowchat.admin  |   更改插件的全局开关   |
+| /rc rswitch |  /rainbowchat 随机开关 | rainbowchat.admin  |   更改插件的随机色全局开关   |
+| /rc gswitch |  /rainbowchat 渐变开关 | rainbowchat.admin  |   更改插件的渐变色全局开关   |
 
 
 
@@ -41,8 +52,12 @@
 > 配置文件位置：tshock/RainbowChat.json
 ```json
 {
-  "使用说明": "权限名（rainbowchat.use） /rc 渐变 用指令修改的颜色不会写进配置文件，这里改的是全体默认渐变色，开启【随机】渐变会默认失效",
-  "进服自动开启渐变色": false,
+  "使用说明": "权限名（rainbowchat.use） /rc 渐变 用指令修改的颜色不会写进配置文件，这里改的是全体默认渐变色，开启【随机色】渐变会默认失效",
+  "插件开关": true,
+  "错误提醒": true,
+  "进服自动开启渐变色": true,
+  "全局随机色开关": true,
+  "全局渐变色开关": true,
   "修改渐变开始颜色": {
     "R": 166,
     "G": 213,

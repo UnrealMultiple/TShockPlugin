@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Globalization;
-using System.Text;
 using TShockAPI;
 
 namespace RainbowChat;
@@ -14,8 +13,20 @@ internal class Configuration
     [JsonProperty("使用说明")]
     public string Text = "权限名（rainbowchat.use） /rc 渐变 用指令修改的颜色不会写进配置文件，这里改的是全体默认渐变色，开启【随机色】渐变会默认失效";
 
+    [JsonProperty("插件开关")]
+    public bool Enabled { get; set; } = true;
+
+    [JsonProperty("错误提醒")]
+    public bool ErrorMess { get; set; } = true;
+
     [JsonProperty("进服自动开启渐变色")]
-    public bool Enable;
+    public bool OpenGradientForJoinServer { get; set; } = true;
+
+    [JsonProperty("全局随机色开关")]
+    public bool Random { get; set; } = true;
+
+    [JsonProperty("全局渐变色开关")]
+    public bool Gradient { get; set; } = true;
 
     [JsonProperty("修改渐变开始颜色")]
     [JsonConverter(typeof(ColorJsonConverter))]
@@ -32,7 +43,6 @@ internal class Configuration
     }
 
     #region 色彩辅助方法
-
     // 将十六进制颜色字符串转换为Microsoft.Xna.Framework.Color
     private static Microsoft.Xna.Framework.Color HexToXnaColor(string hexColor)
     {
@@ -63,25 +73,18 @@ internal class Configuration
     #endregion
 
     #region 读取与创建配置文件方法
-
-    //创建 写入你 👆 上面的参数
-    public void Write(string path)
+    public void Write()
     {
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
-        using (var sw = new StreamWriter(fs, new UTF8Encoding(false)))
-        {
-            var str = JsonConvert.SerializeObject(this, Formatting.Indented);
-            sw.Write(str);
-        }
+        string json = JsonConvert.SerializeObject(this, Formatting.Indented);
+        File.WriteAllText(FilePath, json);
     }
 
-    // 从文件读取配置
     public static Configuration Read(string path)
     {
         if (!File.Exists(path))
         {
             var c = new Configuration();
-            c.Write(path);
+            c.Write();
             return c;
         }
         else
@@ -97,8 +100,7 @@ internal class Configuration
     }
     #endregion
 
-    #region 用于反序列化的JsonConverter 使Config看得简洁
-
+    #region 用于反序列化的JsonConverter 使Config看得简洁(转换器
     internal class ColorJsonConverter : JsonConverter<Color>
     {
         public override void WriteJson(JsonWriter writer, Color value, JsonSerializer serializer)
