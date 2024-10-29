@@ -4,7 +4,7 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 
-namespace Plugin;
+namespace AutoStoreItems;
 
 [ApiVersion(2, 1)]
 public class AutoStoreItems : TerrariaPlugin
@@ -13,29 +13,33 @@ public class AutoStoreItems : TerrariaPlugin
     #region 插件信息
     public override string Name => "自动存储";
     public override string Author => "羽学 cmgy雱";
-    public override Version Version => new Version(1, 2, 6);
+    public override Version Version => new Version(1, 2, 8);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 
     #region 注册与释放
-    private GeneralHooks.ReloadEventD _reloadHandler;
     public AutoStoreItems(Main game) : base(game) { }
     public override void Initialize()
     {
         LoadConfig();
-        this._reloadHandler = (_) => LoadConfig();
-        GeneralHooks.ReloadEvent += this._reloadHandler;
+        GeneralHooks.ReloadEvent += this.ReloadConfig;
+        ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         GetDataHandlers.PlayerUpdate.Register(this.PlayerUpdate);
         ServerApi.Hooks.GameUpdate.Register(this, this.OnGameUpdate);
+        TShockAPI.Commands.ChatCommands.Add(new Command("AutoStore.use", Commands.Ast, "ast", "自存"));
+        TShockAPI.Commands.ChatCommands.Add(new Command("AutoStore.admin", Commands.Reset, "astreset", "重置自存"));
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= this._reloadHandler;
+            GeneralHooks.ReloadEvent -= this.ReloadConfig;
+            ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);
             GetDataHandlers.PlayerUpdate.UnRegister(this.PlayerUpdate);
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnGameUpdate);
+            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Ast);
+            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Reset);
         }
         base.Dispose(disposing);
     }
@@ -43,31 +47,49 @@ public class AutoStoreItems : TerrariaPlugin
 
     #region 配置重载读取与写入方法
     internal static Configuration Config = new();
+    internal static MyData Data = new();
+    private void ReloadConfig(ReloadEventArgs args)
+    {
+        LoadConfig();
+        args.Player.SendInfoMessage(GetString("[自动存储]重新加载配置完毕。"));
+    }
     private static void LoadConfig()
     {
         Config = Configuration.Read();
-        WriteName();
         Config.Write();
-        TShock.Log.ConsoleInfo(GetString("[自动存储]重新加载配置完毕。"));
     }
     #endregion
 
-    #region 获取物品ID的中文名
-    private static void WriteName()
+    #region 玩家更新配置方法（创建配置结构）
+    private void OnJoin(JoinEventArgs args)
     {
-        foreach (var item in Config.Items)
+        if (args == null || !Config.open)
         {
-            var Names = new HashSet<string>(item.Name.Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries));
-            foreach (var id in item.ID)
+            return;
+        }
+
+        var plr = TShock.Players[args.Who];
+
+        if (plr == null)
+        {
+            return;
+        }
+
+        // 查找玩家数据
+        var data = Data.Items.FirstOrDefault(x => x.Name == plr.Name);
+
+        // 如果玩家不在数据表中，则创建新的数据条目
+        if (data == null || plr.Name != data.Name)
+        {
+            Data.Items.Add(new MyData.ItemData()
             {
-                string ItemName;
-                ItemName = (string) Lang.GetItemName(id);
-                if (!Names.Contains(ItemName))
-                {
-                    Names.Add(ItemName);
-                }
-            }
-            item.Name = string.Join(", ", Names);
+                Name = plr.Name,
+                AutoMode = true,
+                Bank = true,
+                Mess = true,
+                UpdateRate = 10,
+                ItemName = new List<string>()
+            });
         }
     }
     #endregion
@@ -78,74 +100,55 @@ public class AutoStoreItems : TerrariaPlugin
     {
         Timer++;
 
-        foreach (var plr in TShock.Players.Where(plr => plr != null && plr.Active && plr.IsLoggedIn && Config.Enable))
+        if (!Config.open)
         {
-            for (int i = 0; i < plr.TPlayer.inventory.Length; i++)
+            return;
+        }
+
+        foreach (var plr in TShock.Players.Where(plr => plr != null && plr.Active && plr.IsLoggedIn && Config.open))
+        {
+            var list = Data.Items.FirstOrDefault(x => x.Name == plr.Name);
+
+            if (list == null)
             {
-                Item inv = plr.TPlayer.inventory[i];
+                continue;
+            }
+
+            for (var i = 0; i < plr.TPlayer.inventory.Length; i++)
+            {
+                var inv = plr.TPlayer.inventory[i];
 
                 //自动存物品
-                if (Timer % Config.ItemTime == 0)
+                if (list.AutoMode && !list.HandMode && !list.ArmorMode)
                 {
-                    if (Config.Hand)
+                    if (Config.BankItems.Contains(inv.type) && Timer % list.UpdateRate == 0)
                     {
-                        if (ShouldStoreItem(plr, inv, i))
-                            break;
-                    }
-                    else
-                    {
-                        StoreItemInBanks(plr, inv);
+                        Tool.StoreItemInBanks(plr, inv, list.Bank, list.Mess, list.ItemName);
+
+                        for (var i2 = 71; i2 <= 74; i2++)
+                        {
+                            Tool.CoinToBank(plr, i2);
+                        }
                         break;
                     }
                 }
-
-                // 自动存钱
-                if (Config.AutoCoin)
+                //手持储存
+                else if(list.HandMode && !list.AutoMode && !list.ArmorMode)
                 {
-                    if (IsCoinType(inv.type))
-                        CoinToBank(plr, inv.type);
-                }
+                    if (Config.BankItems.Contains(plr.TPlayer.inventory[plr.TPlayer.selectedItem].type))
+                    {
+                        Tool.StoreItemInBanks(plr, inv, list.Bank, list.Mess, list.ItemName);
 
-                // 手持存储道具时存钱
-                else if (Config.Hand && inv.type == plr.TPlayer.inventory[plr.TPlayer.selectedItem].type)
-                {
-                    if (Config.HoldItems.Contains(inv.type))
-                        for (int i2 = 71; i2 <= 74; i2++)
+                        for (var i2 = 71; i2 <= 74; i2++)
                         {
-                            CoinToBank(plr, i2);
+                            Tool.CoinToBank(plr, i2);
                         }
+
+                        break;
+                    }
                 }
             }
         }
-    }
-    #endregion
-
-    #region 手持存储道具时的存储逻辑
-    private bool ShouldStoreItem(TSPlayer plr, Item inv, int index)
-    {
-        if (inv.type == plr.TPlayer.inventory[plr.TPlayer.selectedItem].type)
-            if (Config.HoldItems.Contains(inv.type))
-                return StoreItemInBanks(plr, inv);
-        return false;
-    }
-    #endregion
-
-    #region 判断物品存到哪个空间的方法
-    private bool StoreItemInBanks(TSPlayer plr, Item inv)
-    {
-        bool Stored = false;
-        Stored |= Config.bank1 && AutoStoredItem(plr, plr.TPlayer.bank.item, PlayerItemSlotID.Bank1_0, GetString("存钱罐"));
-        Stored |= Config.bank2 && AutoStoredItem(plr, plr.TPlayer.bank2.item, PlayerItemSlotID.Bank2_0, GetString("保险箱"));
-        Stored |= Config.bank3 && AutoStoredItem(plr, plr.TPlayer.bank3.item, PlayerItemSlotID.Bank3_0, GetString("护卫熔炉"));
-        Stored |= Config.bank4 && AutoStoredItem(plr, plr.TPlayer.bank4.item, PlayerItemSlotID.Bank4_0, GetString("虚空袋"));
-        return Stored;
-    }
-    #endregion
-
-    #region 钱币类型
-    private bool IsCoinType(int type)
-    {
-        return type == 71 || type == 72 || type == 73 || type == 74;
     }
     #endregion
 
@@ -153,119 +156,38 @@ public class AutoStoreItems : TerrariaPlugin
     private void PlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
     {
         var plr = e.Player;
-        if (plr == null || !Config.Enable2) return;
+        if (plr == null)
+        {
+            return;
+        }
 
-        bool Stored = false;
+        var list = Data.Items.FirstOrDefault(x => x.Name == plr.Name);
+
+        if (list == null || !list.ArmorMode || list.AutoMode || list.HandMode)
+        {
+            return;
+        }
+
+        var Stored = false;
         foreach (var item in Config.ArmorItem)
         {
             var armor = plr.TPlayer.armor.Take(10).Where(x => x.netID == item).ToList();
-            bool hasArmor = armor.Any();
+            var hasArmor = armor.Any();
 
             if (hasArmor)
             {
-                if (Config.AutoCoin)
+                for (var i = 71; i <= 74; i++)
                 {
-                    for (int i = 71; i <= 74; i++)
-                    {
-                        CoinToBank(plr, i);
-                    }
+                    Tool.CoinToBank(plr, i);
                 }
 
-                Stored |= Config.bank1 && AutoStoredItem(plr, plr.TPlayer.bank.item, PlayerItemSlotID.Bank1_0, GetString("存钱罐"));
-                Stored |= Config.bank2 && AutoStoredItem(plr, plr.TPlayer.bank2.item, PlayerItemSlotID.Bank2_0, GetString("保险箱"));
-                Stored |= Config.bank3 && AutoStoredItem(plr, plr.TPlayer.bank3.item, PlayerItemSlotID.Bank3_0, GetString("护卫熔炉"));
-                Stored |= Config.bank4 && AutoStoredItem(plr, plr.TPlayer.bank4.item, PlayerItemSlotID.Bank4_0, GetString("虚空袋"));
+                Stored |= Config.bank1 && Tool.AutoStoredItem(plr, plr.TPlayer.bank.item, PlayerItemSlotID.Bank1_0, GetString("存钱罐"), list.Bank, list.Mess, list.ItemName);
+                Stored |= Config.bank2 && Tool.AutoStoredItem(plr, plr.TPlayer.bank2.item, PlayerItemSlotID.Bank2_0, GetString("保险箱"), list.Bank, list.Mess, list.ItemName);
+                Stored |= Config.bank3 && Tool.AutoStoredItem(plr, plr.TPlayer.bank3.item, PlayerItemSlotID.Bank3_0, GetString("护卫熔炉"), list.Bank, list.Mess, list.ItemName);
+                Stored |= Config.bank4 && Tool.AutoStoredItem(plr, plr.TPlayer.bank4.item, PlayerItemSlotID.Bank4_0, GetString("虚空袋"), list.Bank, list.Mess, list.ItemName);
 
-                if (Stored) break;
-            }
-        }
-    }
-    #endregion
-
-    #region 自动储存物品方法
-    public static bool AutoStoredItem(TSPlayer tplr, Item[] bankItems, int bankSlot, string bankName)
-    {
-        if (!tplr.IsLoggedIn || tplr == null) return false;
-
-        Player plr = tplr.TPlayer;
-        HashSet<int> itemID = new HashSet<int>(Config.Items.SelectMany(x => x.ID));
-
-        foreach (var bank in bankItems)
-        {
-            for (int i = 0; i < plr.inventory.Length; i++)
-            {
-                var inv = plr.inventory[i];
-                var items = Config.Items.FirstOrDefault(x => x.ID.Contains(inv.type));
-
-                if (items != null
-                    && inv.stack >= items.Stack
-                    && itemID.Contains(inv.type)
-                    && inv.type == bank.type
-                    && inv.type != plr.inventory[plr.selectedItem].type)
+                if (Stored)
                 {
-
-                    bank.stack += inv.stack;
-                    inv.TurnToAir();
-
-                    if (bank.stack >= Item.CommonMaxStack) bank.stack = Item.CommonMaxStack;
-
-                    tplr.SendData(PacketTypes.PlayerSlot, null, tplr.Index, PlayerItemSlotID.Inventory0 + i);
-                    tplr.SendData(PacketTypes.PlayerSlot, null, tplr.Index, bankSlot + Array.IndexOf(bankItems, bank));
-
-                    if (Config.Mess)
-                        tplr.SendMessage(GetString($"【自动储存】已将'[c/92C5EC:{bank.Name}]'存入您的{bankName} 当前数量: {bank.stack}"), 255, 246, 158);
-
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    #endregion
-
-    #region 自动存钱到存钱罐方法
-    private static void CoinToBank(TSPlayer tplr, int coin)
-    {
-        Player plr = tplr.TPlayer;
-        Item bankItem = new Item();
-        int bankSolt = -1;
-
-        for (int i2 = 0; i2 < 40; i2++)
-        {
-            bankItem = plr.bank.item[i2];
-            if (bankItem.IsAir || bankItem.netID == coin)
-            {
-                bankSolt = i2;
-                break;
-            }
-        }
-
-        if (bankSolt != -1)
-        {
-            for (int i = 50; i < 54; i++)
-            {
-                Item invItem = plr.inventory[i];
-                if (invItem.netID == coin)
-                {
-                    invItem.netID = 0;
-                    tplr.SendData(PacketTypes.PlayerSlot, "", tplr.Index, i);
-
-                    bankItem.netID = coin;
-                    bankItem.type = invItem.type;
-                    bankItem.stack += invItem.stack;
-
-                    if (bankItem.stack >= 100 && coin != 74)
-                    {
-                        bankItem.stack %= 100;
-                        tplr.GiveItem(coin + 1, 1);
-                    }
-
-                    else if (bankItem.stack >= Item.CommonMaxStack && coin == 74)
-                    {
-                        bankItem.stack = Item.CommonMaxStack;
-                    }
-
-                    tplr.SendData(PacketTypes.PlayerSlot, "", tplr.Index, PlayerItemSlotID.Bank1_0 + bankSolt);
                     break;
                 }
             }
