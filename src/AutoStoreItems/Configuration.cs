@@ -35,10 +35,10 @@ internal class Configuration
     public bool bank4 { get; set; } = true;
 
     [JsonProperty("触发存储的物品ID", Order = 3)]
-    public int[] BankItems { get; set; } = new int[] { 87, 346, 3213, 3813, 4076, 4131, 5325 };
+    public int[] BankItems { get; set; } = new int[] { 87, 346, 3213, 3813, 4076, 4131, 5098, 5325 };
 
     [JsonProperty("装备饰品的物品ID", Order = 4)]
-    public int[] ArmorItem { get; set; } = new int[] { 88, 410, 411, 489, 490, 491, 855, 935, 1301, 2220, 2998, 3034, 3035, 3061, 3068, 4008, 4056, 4989, 5107, 5126 };
+    public int[] ArmorItem { get; set; } = new int[] { 88, 410, 411, 489, 490, 491, 855, 935, 1301, 2220, 2998, 3034, 3035, 3061, 3068, 4008, 4056, 4989, 5098, 5107, 5126 };
 
 
     #region 读取与创建配置文件方法

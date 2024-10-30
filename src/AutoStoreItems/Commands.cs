@@ -24,7 +24,6 @@ public class Commands
              GetString("/ast clear —— [c/E488C1:清理]自动储存表\n") +
              GetString("/ast bank —— 监听[c/F3B691:储存空间位格]开关\n") +
              GetString("/ast mess —— 开启|关闭物品[c/F2F292:自存消息]\n") +
-             GetString("/ast sd 数字 —— 设置[c/85CFDE:储存速度](越小越快)\n") +
              GetString("/ast add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:删除]自存物品"), 193, 223, 186);
         }
     }
@@ -62,8 +61,7 @@ public class Commands
         {
             HelpCmd(args.Player);
 
-            args.Player.SendSuccessMessage(GetString($"您的自存[c/B7E3E8:速度]为：[c/F3F292:{data.UpdateRate}]"));
-            args.Player.SendSuccessMessage(GetString($"您的自存[c/BBE9B7:监听]为：[c/E489C0:{data.Bank}]"));
+            args.Player.SendSuccessMessage(GetString($"您的自存[c/BBE9B7:监听]为：[c/E489C0:{data.listen}]"));
             args.Player.SendSuccessMessage(GetString($"您的[c/F2BEC0:自动识别]为：[c/87DF86:{data.AutoMode}]"));
             args.Player.SendSuccessMessage(GetString($"您的[c/BCB7E9:装备识别]为：[c/F29192:{data.ArmorMode}]"));
             args.Player.SendSuccessMessage(GetString($"您的[c/E4EFBC:手持储存]为：[c/C086DF:{data.HandMode}]"));
@@ -73,7 +71,7 @@ public class Commands
         {
             if (args.Parameters[0].ToLower() == "list")
             {
-                args.Player.SendInfoMessage(GetString($"[{data.Name}的自动储存表]\n" + string.Join(", ", data.ItemName.Select(x => "[c/92C5EC:{0}]".SFormat(x)))));
+                args.Player.SendInfoMessage(GetString($"[{data.Name}的自动储存表]\n" + string.Join(", ", data.ItemType.Select(x => "[c/92C5EC:{0}]".SFormat(x)))));
                 return;
             }
 
@@ -112,15 +110,15 @@ public class Commands
 
             if (args.Parameters[0].ToLower() == "clear")
             {
-                data.ItemName.Clear();
+                data.ItemType.Clear();
                 args.Player.SendSuccessMessage(GetString($"已清理[c/92C5EC: {args.Player.Name} ]的自动储存表"));
                 return;
             }
 
             if (args.Parameters[0].ToLower() == "bank")
             {
-                var isEnabled = data.Bank;
-                data.Bank = !isEnabled;
+                var isEnabled = data.listen;
+                data.listen = !isEnabled;
                 var Mess = isEnabled ? GetString("禁用") : GetString("启用");
                 args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 的储物空间位格监听功能已[c/92C5EC:{Mess}]"));
                 return;
@@ -163,12 +161,12 @@ public class Commands
             {
                 case "add":
                     {
-                        if (data.ItemName.Contains(item.Name))
+                        if (data.ItemType.Contains(item.type))
                         {
                             args.Player.SendErrorMessage(GetString("物品 [c/92C5EC:{0}] 已在自动储存中!"), item.Name);
                             return;
                         }
-                        data.ItemName.Add(item.Name);
+                        data.ItemType.Add(item.type);
                         args.Player.SendSuccessMessage(GetString("已成功将物品添加到自动储存: [c/92C5EC:{0}]!"), item.Name);
                         break;
                     }
@@ -177,25 +175,13 @@ public class Commands
                 case "delete":
                 case "remove":
                     {
-                        if (!data.ItemName.Contains(item.Name))
+                        if (!data.ItemType.Contains(item.type))
                         {
                             args.Player.SendErrorMessage(GetString("物品 {0} 不在自动储存中!"), item.Name);
                             return;
                         }
-                        data.ItemName.Remove(item.Name);
+                        data.ItemType.Remove(item.type);
                         args.Player.SendSuccessMessage(GetString("已成功从自动储存删除物品: [c/92C5EC:{0}]!"), item.Name);
-                        break;
-                    }
-
-                case "s":
-                case "sd":
-                case "speed":
-                    {
-                        if (int.TryParse(args.Parameters[1], out var num))
-                        {
-                            data.UpdateRate = num;
-                            args.Player.SendSuccessMessage(GetString("已成功将储存速度设置为: [c/C9C7F5:{0}] !"), num);
-                        }
                         break;
                     }
 

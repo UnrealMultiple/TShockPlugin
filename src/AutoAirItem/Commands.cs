@@ -23,7 +23,6 @@ public class Commands
              GetString("/air yes —— 将[c/E488C1:手持物品]加入垃圾桶\n") +
              GetString("/air auto —— 监听[c/F3B691:垃圾桶位格]开关\n") +
              GetString("/air mess —— 开启|关闭[c/F2F292:清理消息]\n") +
-             GetString("/air sd 数字 —— 设置[c/85CFDE:清理速度](越小越快)\n") +
              GetString("/air add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:删除]垃圾桶物品", 193, 223, 186));
         }
     }
@@ -66,7 +65,6 @@ public class Commands
             }
             else
             {
-                args.Player.SendSuccessMessage(GetString($"您的垃圾桶[c/B7E3E8:清理速度]为：[c/E489C0:{data.UpdateRate}]"));
                 args.Player.SendSuccessMessage(GetString($"您的垃圾桶[c/F2BEC0:监听状态]为：[c/F3F292:{data.Auto}]"));
                 args.Player.SendSuccessMessage(GetString($"输入指令[c/E4EFBC:切换]自动模式：[c/C086DF:/air auto]"));
             }
@@ -76,7 +74,7 @@ public class Commands
         {
             if (args.Parameters[0].ToLower() == "list")
             {
-                args.Player.SendInfoMessage(GetString($"[{data.Name}的垃圾桶]\n") + string.Join(", ", data.ItemName.Select(x => "[c/92C5EC:{0}]".SFormat(x))));
+                args.Player.SendInfoMessage(GetString($"[{data.Name}的垃圾桶]\n") + string.Join(", ", data.ItemType.Select(x => "[c/92C5EC:{0}]".SFormat(x))));
                 return;
             }
 
@@ -91,14 +89,14 @@ public class Commands
 
             if (args.Parameters[0].ToLower() == "clear")
             {
-                data.ItemName.Clear();
+                data.ItemType.Clear();
                 args.Player.SendSuccessMessage(GetString($"已清理[c/92C5EC: {args.Player.Name} ]的自动垃圾桶表"));
                 return;
             }
 
             if (args.Parameters[0].ToLower() == "yes")
             {
-                data.ItemName.Add(args.TPlayer.inventory[args.TPlayer.selectedItem].Name);
+                data.ItemType.Add(args.TPlayer.inventory[args.TPlayer.selectedItem].type);
                 args.Player.SendSuccessMessage(GetString("手选物品 [c/92C5EC:{0}] 已加入自动垃圾桶中! 脱手即清!"), args.TPlayer.inventory[args.TPlayer.selectedItem].Name);
                 return;
             }
@@ -147,12 +145,12 @@ public class Commands
             {
                 case "add":
                     {
-                        if (data.ItemName.Contains(item.Name))
+                        if (data.ItemType.Contains(item.type))
                         {
                             args.Player.SendErrorMessage(GetString("物品 [c/92C5EC:{0}] 已在垃圾桶中!"), item.Name);
                             return;
                         }
-                        data.ItemName.Add(item.Name);
+                        data.ItemType.Add(item.type);
                         args.Player.SendSuccessMessage(GetString("已成功将物品添加到垃圾桶: [c/92C5EC:{0}]!"), item.Name);
                         break;
                     }
@@ -161,28 +159,15 @@ public class Commands
                 case "delete":
                 case "remove":
                     {
-                        if (!data.ItemName.Contains(item.Name))
+                        if (!data.ItemType.Contains(item.type))
                         {
                             args.Player.SendErrorMessage(GetString("物品 {0} 不在垃圾桶中!"), item.Name);
                             return;
                         }
-                        data.ItemName.Remove(item.Name);
+                        data.ItemType.Remove(item.type);
                         args.Player.SendSuccessMessage(GetString("已成功从垃圾桶删除物品: [c/92C5EC:{0}]!"), item.Name);
                         break;
                     }
-
-                case "s":
-                case "sd":
-                case "speed":
-                    {
-                        if (int.TryParse(args.Parameters[1], out var num))
-                        {
-                            data.UpdateRate = num;
-                            args.Player.SendSuccessMessage(GetString("已成功将清理速度设置为: [c/C9C7F5:{0}] !"), num);
-                        }
-                        break;
-                    }
-
                 default:
                     {
                         HelpCmd(args.Player);

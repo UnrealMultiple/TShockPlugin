@@ -26,7 +26,7 @@ public class RainbowChat : TerrariaPlugin
     public override void Initialize()
     {
         LoadConfig();
-        GeneralHooks.ReloadEvent += LoadConfig;
+        GeneralHooks.ReloadEvent += ReloadConfig;
         TShockAPI.Commands.ChatCommands.Add(new Command("rainbowchat.use", Commands.RainbowChatCallback, "rainbowchat", "rc"));
         ServerApi.Hooks.ServerChat.Register(this, this.OnChat);
         ServerApi.Hooks.ServerJoin.Register(this, this.OnServerJoin);
@@ -36,7 +36,7 @@ public class RainbowChat : TerrariaPlugin
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= LoadConfig;
+            GeneralHooks.ReloadEvent -= ReloadConfig;
             TShockAPI.Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == Commands.RainbowChatCallback);
             ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnServerJoin);
@@ -46,14 +46,15 @@ public class RainbowChat : TerrariaPlugin
     #endregion
 
     #region 配置文件创建与重读加载方法
-    private static void LoadConfig(ReloadEventArgs args = null!)
+    private static void ReloadConfig(ReloadEventArgs args)
+    {
+        LoadConfig();
+        args.Player.SendSuccessMessage("[彩色聊天]重新加载配置完毕。");
+    }
+    private static void LoadConfig()
     {
         Config = Configuration.Read(Configuration.FilePath);
         Config.Write();
-        if (args != null && args.Player != null)
-        {
-            args.Player.SendSuccessMessage("[彩色聊天]重新加载配置完毕。");
-        }
     }
     #endregion
 

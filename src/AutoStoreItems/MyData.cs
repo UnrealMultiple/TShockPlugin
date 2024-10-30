@@ -21,27 +21,21 @@ public class MyData
         public bool HandMode { get; set; } = false;
 
         //监听储物空间位格开关
-        public bool Bank { get; set; } = false;
+        public bool listen { get; set; } = false;
 
         //自动储存提示
         public bool Mess { get; set; } = true;
 
-        //清理速度
-        public long UpdateRate { get; set; } = 10;
-
-        public int Stack { get; set; }
-
         //自动储存表
-        public List<string> ItemName { get; set; }
+        public List<int> ItemType { get; set; }
 
-        public ItemData(string name = "", bool enabled = true, bool auto = true, bool mess = true, long up = 10, List<string> item = null!)
+        public ItemData(string name = "", bool enabled = true, bool auto = true, bool mess = true, List<int> item = null!)
         {
             this.Name = name ?? "";
             this.AutoMode = enabled;
-            this.Bank = auto;
+            this.listen = auto;
             this.Mess = mess;
-            this.UpdateRate = up;
-            this.ItemName = item ?? new List<string>();
+            this.ItemType = item;
         }
     }
 
