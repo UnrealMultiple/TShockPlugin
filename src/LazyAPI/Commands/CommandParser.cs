@@ -1,10 +1,11 @@
-﻿using TShockAPI;
+﻿using System.Diagnostics.CodeAnalysis;
+using TShockAPI;
 
 namespace LazyAPI.Commands;
 
 internal static class CommandParser
 {
-    public delegate bool Parser(string arg, out object obj);
+    public delegate bool Parser(string arg, [MaybeNullWhen(false)] out object obj);
 
     private static bool TryParseBool(string arg, out object obj)
     {
@@ -37,11 +38,10 @@ internal static class CommandParser
     {
         var result = DateTime.TryParse(arg, out var t);
         obj = t;
-        var a = TryParseDateTime;
         return result;
     }
 
-    private static bool TryParseTSPlayer(string arg, out object obj)
+    private static bool TryParseTSPlayer(string arg, [MaybeNullWhen(false)] out object obj)
     {
         var plr = TSPlayer.FindByNameOrID(arg);
         if (plr.Count == 1)
@@ -74,6 +74,13 @@ internal static class CommandParser
         [typeof(TSPlayer)] = "player"
     };
 
-    public static Parser GetParser(Type type) => parsers[type];
-    public static string GetFriendlyName(Type type) => friendlyName[type];
+    public static Parser GetParser(Type type)
+    {
+        return parsers[type];
+    }
+
+    public static string GetFriendlyName(Type type)
+    {
+        return friendlyName[type];
+    }
 }

@@ -37,7 +37,7 @@ internal partial class SingleCommand : CommandBase
             return this.GetResult(Math.Abs(n + current - p.Count));
         }
 
-        var a = new object[n + 1];
+        var a = new object?[n + 1];
         a[0] = args;
         var unmatched = this.argParsers.Where((t, i) => !t(p[current + i], out a[i + 1])).Count();
         if (unmatched != 0)

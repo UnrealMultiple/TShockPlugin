@@ -54,7 +54,7 @@ public static class Utils
         player.SendData(PacketTypes.PlayerSlot, "", slot);
     }
 
-    private static Tuple<int, int> FindItemRef(object item)
+    private static Tuple<int, int>? FindItemRef(object item)
     {
         for (var i = 0; i < Main.maxPlayers; ++i)
         {

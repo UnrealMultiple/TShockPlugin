@@ -20,7 +20,7 @@ internal partial class Command : CommandBase
         this._main.Add(new HelpCommand(this, this._infoPrefix));
     }
 
-    public void Add(string cmd, CommandBase sub)
+    public void Add(string? cmd, CommandBase sub)
     {
         if (string.IsNullOrEmpty(cmd))
         {

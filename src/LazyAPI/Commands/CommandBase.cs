@@ -22,10 +22,10 @@ internal abstract class CommandBase
 
     protected string[] permissions;
     private readonly bool _realPlayer;
-    protected string info;
+    protected string? info;
 
     public abstract ParseResult TryParse(CommandArgs args, int current);
-    public override string ToString()
+    public override string? ToString()
     {
         return this.info;
     }
@@ -42,7 +42,7 @@ internal abstract class CommandBase
 
     protected CommandBase()
     {
-
+        this.permissions = Array.Empty<string>();
     }
 
     public bool CanExec(TSPlayer plr)

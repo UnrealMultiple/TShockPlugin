@@ -36,5 +36,5 @@ public abstract class PlayerRecordBase<T> : RecordBase<T> where T : PlayerRecord
 
     [PrimaryKey, NotNull]
     [Column("name")]
-    public string Name { get; set; }
+    public string Name { get; set; } = "";
 }

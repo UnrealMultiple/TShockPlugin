@@ -27,11 +27,16 @@ public static class RestHelper
 
         return arg =>
         {
-            var args = new object[n];
+            var args = new object?[n];
             args[0] = arg;
             for (var i = 1; i < n; ++i)
+            {
                 if (!parsers[i - 1](arg.Parameters[names[i - 1]], out args[i]))
+                {
                     return errors[i - 1];
+                }
+            }
+
             return @delegate(null, args);
         };
     }
@@ -40,8 +45,11 @@ public static class RestHelper
     {
         foreach (var method in type.GetMethods(BindingFlags.Static | BindingFlags.Public))
         {
-            RestCommandD parser = ParseCommand(method);
-            if (parser == null) continue;
+            var parser = ParseCommand(method);
+            if (parser == null)
+            {
+                continue;
+            }
             TShock.RestApi.Register(new SecureRestCommand($"/{name}/{method.Name}", parser,
                 method.GetCustomAttributes<Permission>().Select(p => p.Name)
                     .Concat(method.GetCustomAttributes<PermissionsAttribute>().Select(p => p.perm)).ToArray()));

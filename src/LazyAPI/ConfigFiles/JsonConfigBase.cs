@@ -6,8 +6,8 @@ namespace LazyAPI.ConfigFiles;
 
 public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
 {
-    private static T _instance;
-    protected virtual string Filename => typeof(T).Namespace;
+    private static T? _instance;
+    protected virtual string Filename => typeof(T).Namespace ?? typeof(T).Name;
     private string FullFilename => Path.Combine(TShock.SavePath, this.Filename + ".json");
 
     private static T GetConfig()
