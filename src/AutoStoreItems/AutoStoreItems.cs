@@ -80,7 +80,7 @@ public class AutoStoreItems : TerrariaPlugin
             {
                 Name = plr.Name,
                 AutoMode = true,
-                listen = true,
+                Listen = true,
                 Mess = true,
                 ItemType = new List<int>()
             });
@@ -118,7 +118,7 @@ public class AutoStoreItems : TerrariaPlugin
             if (inv || miscEquips)
             {
                 //存物品
-                Tool.StoreItemInBanks(plr, list.listen, list.Mess, list.ItemType);
+                Tool.StoreItemInBanks(plr, list.Listen, list.Mess, list.ItemType);
 
                 //存钱逻辑，71-74 铜币-铂金币
                 for (var i2 = 71; i2 <= 74; i2++)
@@ -135,7 +135,7 @@ public class AutoStoreItems : TerrariaPlugin
             if (Config.BankItems.Contains(plr.TPlayer.inventory[plr.TPlayer.selectedItem].type))
             {
                 //存物品
-                Tool.StoreItemInBanks(plr, list.listen, list.Mess, list.ItemType);
+                Tool.StoreItemInBanks(plr, list.Listen, list.Mess, list.ItemType);
 
                 //存钱
                 for (var i2 = 71; i2 <= 74; i2++)
@@ -157,7 +157,7 @@ public class AutoStoreItems : TerrariaPlugin
             if (armor || miscEquips)
             {
                 //存物品
-                Tool.StoreItemInBanks(plr, list.listen, list.Mess, list.ItemType);
+                Tool.StoreItemInBanks(plr, list.Listen, list.Mess, list.ItemType);
 
                 //存钱
                 for (var i2 = 71; i2 <= 74; i2++)

@@ -61,7 +61,7 @@ public class Commands
         {
             HelpCmd(args.Player);
 
-            args.Player.SendSuccessMessage(GetString($"您的自存[c/BBE9B7:监听]为：[c/E489C0:{data.listen}]"));
+            args.Player.SendSuccessMessage(GetString($"您的自存[c/BBE9B7:监听]为：[c/E489C0:{data.Listen}]"));
             args.Player.SendSuccessMessage(GetString($"您的[c/F2BEC0:自动识别]为：[c/87DF86:{data.AutoMode}]"));
             args.Player.SendSuccessMessage(GetString($"您的[c/BCB7E9:装备识别]为：[c/F29192:{data.ArmorMode}]"));
             args.Player.SendSuccessMessage(GetString($"您的[c/E4EFBC:手持储存]为：[c/C086DF:{data.HandMode}]"));
@@ -71,7 +71,7 @@ public class Commands
         {
             if (args.Parameters[0].ToLower() == "list")
             {
-                args.Player.SendInfoMessage(GetString($"[{data.Name}的自动储存表]\n" + string.Join(", ", data.ItemType.Select(x => "[c/92C5EC:{0}]".SFormat(x)))));
+                args.Player.SendInfoMessage(GetString($"[{data.Name}的自动储存表]\n" + string.Join(", ", data.ItemType.Select(x => TShock.Utils.GetItemById(x).Name + "({0})".SFormat(x)))));
                 return;
             }
 
@@ -117,8 +117,8 @@ public class Commands
 
             if (args.Parameters[0].ToLower() == "bank")
             {
-                var isEnabled = data.listen;
-                data.listen = !isEnabled;
+                var isEnabled = data.Listen;
+                data.Listen = !isEnabled;
                 var Mess = isEnabled ? GetString("禁用") : GetString("启用");
                 args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 的储物空间位格监听功能已[c/92C5EC:{Mess}]"));
                 return;

@@ -80,7 +80,8 @@ public class AutoAirItem : TerrariaPlugin
                 Enabled = true,
                 Auto = true,
                 Mess = true,
-                ItemType = new List<int>()
+                ItemType = new List<int>(),
+                DelItem = new Dictionary<int, int> { { 0, 0 }, }
             });
         }
     }
@@ -123,6 +124,9 @@ public class AutoAirItem : TerrariaPlugin
             //是垃圾桶表的物品 移除
             if (list.ItemType.Contains(e.Type))
             {
+                //将要移除的物品更新到字典，使用/air del指令能方便还回
+                UpDict(list.DelItem, e.Type, e.Stack);
+
                 //物品数量设为0
                 e.Stack = 0;
                 plr.SendData(PacketTypes.PlayerSlot, "", plr.Index, e.Slot);
@@ -135,5 +139,19 @@ public class AutoAirItem : TerrariaPlugin
             }
         }
     }
+    #endregion
+
+    #region 更新字典方法
+    public static void UpDict(Dictionary<int, int> delItem, int type, int stack)
+    {
+        if (delItem.ContainsKey(type))
+        {
+            delItem[type] += stack;
+        }
+        else
+        {
+            delItem.Add(type, stack);
+        }
+    } 
     #endregion
 }

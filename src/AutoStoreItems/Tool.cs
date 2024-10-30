@@ -28,6 +28,12 @@ internal class Tool
             //遍历背包58格
             for (var i = 0; i < plr.inventory.Length; i++)
             {
+                // 跳过钱币栏格子
+                if (i > 50 && i < 54)
+                {
+                    continue;
+                }
+
                 //当前背包的格子
                 var inv = plr.inventory[i];
 
@@ -71,7 +77,7 @@ internal class Tool
 
                     if (mess)
                     {
-                        tplr.SendMessage(GetString($"【自动储存】已将'[c/92C5EC:{bank.Name}]'存入您的{bankName} 当前数量: {bank.stack}"), 255, 246, 158);
+                        tplr.SendMessage(GetString($"已将'[c/92C5EC:{bank.Name}]'存入您的{bankName} 当前数量: {bank.stack}"), 255, 246, 158);
                     }
                     return true;
                 }

@@ -74,7 +74,7 @@ public class Commands
         {
             if (args.Parameters[0].ToLower() == "list")
             {
-                args.Player.SendInfoMessage(GetString($"[{data.Name}的垃圾桶]\n") + string.Join(", ", data.ItemType.Select(x => "[c/92C5EC:{0}]".SFormat(x))));
+                args.Player.SendInfoMessage(GetString($"[{data.Name}的垃圾桶]\n" + string.Join(", ", data.ItemType.Select(x => TShock.Utils.GetItemById(x).Name + "([c/92C5EC:{0}])".SFormat(x)))));
                 return;
             }
 
@@ -144,35 +144,42 @@ public class Commands
             switch (args.Parameters[0].ToLower())
             {
                 case "add":
+                {
+                    if (data.ItemType.Contains(item.type))
                     {
-                        if (data.ItemType.Contains(item.type))
-                        {
-                            args.Player.SendErrorMessage(GetString("物品 [c/92C5EC:{0}] 已在垃圾桶中!"), item.Name);
-                            return;
-                        }
-                        data.ItemType.Add(item.type);
-                        args.Player.SendSuccessMessage(GetString("已成功将物品添加到垃圾桶: [c/92C5EC:{0}]!"), item.Name);
-                        break;
+                        args.Player.SendErrorMessage(GetString("物品 [c/92C5EC:{0}] 已在垃圾桶中!"), item.Name);
+                        return;
                     }
+                    data.ItemType.Add(item.type);
+                    args.Player.SendSuccessMessage(GetString("已成功将物品添加到垃圾桶: [c/92C5EC:{0}]!"), item.Name);
+                    break;
+                }
 
                 case "del":
                 case "delete":
                 case "remove":
+                {
+                    if (!data.ItemType.Contains(item.type))
                     {
-                        if (!data.ItemType.Contains(item.type))
-                        {
-                            args.Player.SendErrorMessage(GetString("物品 {0} 不在垃圾桶中!"), item.Name);
-                            return;
-                        }
-                        data.ItemType.Remove(item.type);
-                        args.Player.SendSuccessMessage(GetString("已成功从垃圾桶删除物品: [c/92C5EC:{0}]!"), item.Name);
-                        break;
+                        args.Player.SendErrorMessage(GetString("物品 {0} 不在垃圾桶中!"), item.Name);
+                        return;
                     }
+
+                    data.ItemType.Remove(item.type);
+                    foreach (var Del in data.DelItem)
+                    {
+                        args.Player.GiveItem(Del.Key, Del.Value, 0);
+                    }
+                    data.DelItem.Clear();
+                    args.Player.SendSuccessMessage(GetString("已成功从垃圾桶删除物品: [c/92C5EC:{0}]!"), item.Name);
+                    break;
+                }
+
                 default:
-                    {
-                        HelpCmd(args.Player);
-                        break;
-                    }
+                {
+                    HelpCmd(args.Player);
+                    break;
+                }
             }
         }
     }

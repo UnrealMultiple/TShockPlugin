@@ -23,13 +23,17 @@ public class MyData
         //自动垃圾桶表
         public List<int> ItemType { get; set; }
 
-        public ItemData(string name = "", bool enabled = true, bool auto = true, bool mess = true, List<int> item = null!)
+        //移除物品的字典
+        public Dictionary<int, int> DelItem { get; set; } = new Dictionary<int, int>();
+
+        public ItemData(string name = "", bool enabled = true, bool auto = true, bool mess = true, List<int> item = null!, Dictionary<int, int> DelItem = null!)
         {
             this.Name = name ?? "";
             this.Enabled = enabled;
             this.Auto = auto;
             this.Mess = mess;
             this.ItemType = item;
+            this.DelItem = DelItem;
         }
     }
 
