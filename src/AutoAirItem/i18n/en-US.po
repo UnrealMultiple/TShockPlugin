@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoAirItem\n"
-"POT-Creation-Date: 2024-11-01 01:25:08+0800\n"
+"POT-Creation-Date: 2024-10-31 19:21:38+0000\n"
 "PO-Revision-Date: 2024-11-01 01:37+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,14 +11,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: ../../Commands.cs:77
+#: ../../Commands.cs:119
 #, csharp-format
 msgid "[{0}的垃圾桶]\n"
 msgstr "[{0}'s Trash Bin]\n"
 
-#: ../../AutoAirItem.cs:50
+#: ../../Commands.cs:75
+#, csharp-format
+msgid "[c/32CEB7:{0}.][c/F3E83B:{1}:] {2}"
+msgstr ""
+
+#: ../../AutoAirItem.cs:51
 msgid "[自动垃圾桶]重新加载配置完毕。"
 msgstr "[Auto Air Item] Reload configuration completed。"
+
+#: ../../Commands.cs:53
+#, csharp-format
+msgid "【以下垃圾桶数量超过[c/92C5EC:{0}]的玩家】"
+msgstr ""
 
 #: ../../Commands.cs:17
 msgid ""
@@ -30,10 +40,10 @@ msgstr ""
 msgid "/air —— 查看垃圾桶菜单\n"
 msgstr "/air —— AutoAirItem Help\n"
 
-#: ../../Commands.cs:26
-#, fuzzy
+#: ../../Commands.cs:27
+#, fuzzy, csharp-format
 #| msgid "/air add 或 del 物品名字 —— 添加|删除《自动垃圾桶》的物品"
-msgid "/air add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:删除]垃圾桶物品"
+msgid "/air add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:移出]垃圾桶物品"
 msgstr "/air add or del item name —— Add|Remove items from the Auto Trash List"
 
 #: ../../Commands.cs:24
@@ -41,6 +51,10 @@ msgstr "/air add or del item name —— Add|Remove items from the Auto Trash Li
 #| msgid "/air auto —— 监听垃圾桶位格开关\n"
 msgid "/air auto —— 监听[c/F3B691:垃圾桶位格]开关\n"
 msgstr "/air auto —— Toggle Auto Trash Bin listening\n"
+
+#: ../../Commands.cs:26
+msgid "/air ck 数量—— 筛选出物品超过此数量的玩家\n"
+msgstr ""
 
 #: ../../Commands.cs:22
 #, fuzzy
@@ -76,7 +90,7 @@ msgstr "/air yes —— Add held item to the Trash\n"
 msgid "/airreset —— 清空[c/85CFDE:所有玩家]数据\n"
 msgstr ""
 
-#: ../../Commands.cs:135
+#: ../../Commands.cs:178
 msgid ""
 "不存在该物品，\"物品查询\": \"[c/92C5EC:https://terraria.wiki.gg/zh/wiki/"
 "Item_IDs]\""
@@ -84,91 +98,101 @@ msgstr ""
 "The item does not exist, \"item lookup\": \"[c/92C5EC:https://terraria.wiki."
 "gg/wiki/Item_IDs]\""
 
-#: ../../Commands.cs:37
+#: ../../Commands.cs:38
 msgid "已[c/92C5EC:清空]所有玩家《自动垃圾桶》数据！"
 msgstr ""
 
-#: ../../AutoAirItem.cs:137
-#, csharp-format
+#: ../../AutoAirItem.cs:147
+#, fuzzy, csharp-format
+#| msgid ""
+#| "已将 '[c/92C5EC:{0}]'从您的背包中移除|移出垃圾桶: [c/A1D4C2:/air del {1}]"
 msgid ""
-"已将 '[c/92C5EC:{0}]'从您的背包中移除|移出垃圾桶: [c/A1D4C2:/air del {1}]"
+"已将 '[c/92C5EC:{0}]'从您的背包中移除|[c/92C5EC:返还物品]: [c/A1D4C2:/air "
+"del {1}]"
 msgstr ""
 "Item [c/92C5EC:{0}] has been removed from your backpack | To Retrieve from "
 "Trash: [c/A1D4C2:/air del {1}]"
 
-#: ../../AutoAirItem.cs:119
+#: ../../AutoAirItem.cs:132
 #, csharp-format
 msgid "已将 '[c/92C5EC:{0}]'添加到自动垃圾桶|指令菜单: [c/A1D4C2:/air]"
 msgstr ""
 "Item [c/92C5EC:{0}] has been added to the Auto Trash | Command Help: [c/"
 "A1D4C2:/air]"
 
-#: ../../Commands.cs:174
-msgid "已成功从垃圾桶删除物品: [c/92C5EC:{0}]!"
+#: ../../Commands.cs:249
+#, fuzzy
+#| msgid "已成功从垃圾桶删除物品: [c/92C5EC:{0}]!"
+msgid "已成功从垃圾桶移出物品: [c/92C5EC:{0}]!"
 msgstr "Item [c/92C5EC:{0}] has been successfully deleted from the Trash!"
 
-#: ../../Commands.cs:154
+#: ../../Commands.cs:197
 msgid "已成功将物品添加到垃圾桶: [c/92C5EC:{0}]!"
 msgstr "Item [c/92C5EC:{0}] has been successfully added to the Trash!"
 
-#: ../../Commands.cs:93
+#: ../../Commands.cs:136
 #, csharp-format
 msgid "已清理[c/92C5EC: {0} ]的自动垃圾桶表"
 msgstr "The Auto Trash list for [c/92C5EC: {0}] has been cleaned"
 
-#: ../../Commands.cs:68
+#: ../../Commands.cs:110
 #, fuzzy, csharp-format
 #| msgid "您的垃圾桶监听状态为：[c/92C5EC:{0}]"
 msgid "您的垃圾桶[c/F2BEC0:监听状态]为：[c/F3F292:{0}]"
 msgstr "Your trash bin listening status is: [c/92C5EC:{0}]"
 
-#: ../../Commands.cs:100
+#: ../../Commands.cs:143
 msgid "手选物品 [c/92C5EC:{0}] 已加入自动垃圾桶中! 脱手即清!"
 msgstr ""
 "The manually selected item [c/92C5EC:{0}] has been added to the Auto Trash "
 "Bin! It will be cleared upon release!"
 
-#: ../../Commands.cs:150
+#: ../../Commands.cs:80
+#, csharp-format
+msgid "没有找到垃圾桶数量超过[c/92C5EC:{0}]的玩家"
+msgstr ""
+
+#: ../../Commands.cs:193
 msgid "物品 [c/92C5EC:{0}] 已在垃圾桶中!"
 msgstr "Item [c/92C5EC:{0}] is now in the trash bin!"
 
-#: ../../Commands.cs:164
+#: ../../Commands.cs:207
 msgid "物品 {0} 不在垃圾桶中!"
 msgstr "Item {0} is not in the trash bin!"
 
-#: ../../Commands.cs:85
+#: ../../Commands.cs:127
 #, csharp-format
 msgid "玩家 [{0}] 已[c/92C5EC:启用]自动垃圾桶功能。"
 msgstr "Player [{0}] has [c/92C5EC:enabled] the Auto Trash Bin function。"
 
-#: ../../Commands.cs:86
+#: ../../Commands.cs:128
 #, csharp-format
 msgid "玩家 [{0}] 已[c/92C5EC:禁用]自动垃圾桶功能。"
 msgstr "Player [{0}] has [c/92C5EC:disabled] the Auto Trash Bin function。"
 
-#: ../../Commands.cs:108
+#: ../../Commands.cs:151
 #, csharp-format
 msgid "玩家 [{0}] 的垃圾桶位格监听功能已[c/92C5EC:启用]"
 msgstr ""
 "Player [{0}]'s trash bin slot listening function has been [c/92C5EC:enabled]"
 
-#: ../../Commands.cs:109
+#: ../../Commands.cs:152
 #, csharp-format
 msgid "玩家 [{0}] 的垃圾桶位格监听功能已[c/92C5EC:禁用]"
 msgstr ""
 "Player [{0}]'s trash bin slot listening function has been [c/92C5EC:disabled]"
 
-#: ../../Commands.cs:117
+#: ../../Commands.cs:160
 #, csharp-format
 msgid "玩家 [{0}] 的自动清理消息已[c/92C5EC:启用]"
 msgstr "Player [{0}]'s auto cleanup messages have been [c/92C5EC:enabled]"
 
-#: ../../Commands.cs:118
+#: ../../Commands.cs:161
 #, csharp-format
 msgid "玩家 [{0}] 的自动清理消息已[c/92C5EC:禁用]"
 msgstr "Player [{0}]'s auto cleanup messages have been [c/92C5EC:disabled]"
 
-#: ../../Commands.cs:55
+#: ../../Commands.cs:97
 msgid ""
 "请用角色[c/D95065:重进服务器]后输入：/air 指令查看菜单\n"
 "羽学声明：本插件纯属[c/7E93DE:免费]请勿上当受骗"
@@ -177,11 +201,11 @@ msgstr ""
 "to view the menu.\n"
 "Yu Xue statement: This plugin is purely [c/7E93DE:free]; do not be deceived"
 
-#: ../../Commands.cs:64
+#: ../../Commands.cs:106
 msgid "请输入该指令开启→: [c/92C5EC:/air on] "
 msgstr "Please enter the command to enable →: [c/92C5EC:/air on] "
 
-#: ../../Commands.cs:69
+#: ../../Commands.cs:111
 #, fuzzy
 #| msgid "输入指令切换自动模式：[c/92C5EC:/air auto]"
 msgid "输入指令[c/E4EFBC:切换]自动模式：[c/C086DF:/air auto]"

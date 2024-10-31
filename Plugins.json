@@ -211,14 +211,14 @@
   },
   {
     "Name": "自动存储",
-    "Version": "1.2.6",
+    "Version": "1.3.0",
     "Author": "羽学 cmgy雱",
     "Description": "涡轮增压不蒸鸭",
     "Path": "AutoStoreItems.dll"
   },
   {
     "Name": "自动垃圾桶",
-    "Version": "1.1.1",
+    "Version": "1.1.6",
     "Author": "羽学",
     "Description": "涡轮增压不蒸鸭",
     "Path": "AutoAirItem.dll"
@@ -638,7 +638,7 @@
   },
   {
     "Name": "Rainbow Chat",
-    "Version": "1.0.6",
+    "Version": "1.0.7",
     "Author": "Professor X 熙恩 羽学",
     "Description": "使玩家每次说话的颜色不一样.",
     "Path": "RainbowChat.dll"

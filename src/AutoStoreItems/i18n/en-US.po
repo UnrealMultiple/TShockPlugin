@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoStoreItems\n"
-"POT-Creation-Date: 2024-11-01 01:25:11+0800\n"
+"POT-Creation-Date: 2024-10-31 19:21:41+0000\n"
 "PO-Revision-Date: 2024-11-01 01:40+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,12 +11,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: ../../Commands.cs:74
+#: ../../Commands.cs:76
 #, csharp-format
 msgid "[{0}的自动储存表]\n"
 msgstr ""
 
-#: ../../Configuration.cs:25
+#: ../../Tool.cs:14
+msgid "[c/32CEB7:保险箱]"
+msgstr ""
+
+#: ../../Tool.cs:13
+msgid "[c/32CEB7:存钱罐]"
+msgstr ""
+
+#: ../../Tool.cs:15
+#, fuzzy
+#| msgid "护卫熔炉"
+msgid "[c/32CEB7:护卫熔炉]"
+msgstr "Defender's Forge"
+
+#: ../../Tool.cs:16
+msgid "[c/32CEB7:虚空袋]"
+msgstr ""
+
+#: ../../Configuration.cs:16
 #, fuzzy
 #| msgid "[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险)"
 msgid ""
@@ -27,39 +45,20 @@ msgstr ""
 "potions having the risk of stacking into the chest)"
 
 #: ../../Configuration.cs:13
-#, fuzzy
-#| msgid ""
-#| "[是否手持] 需要选中 [持有物品] 其中1个才会启动存储功能，关闭则背包含有 其"
-#| "中1个就会启动"
 msgid ""
-"[手持存储模式] 需要选中 [触发存储的物品] 其中1个才会启动存储功能(2024年10月6"
-"日已修复)，关闭则背包含有[存储道具]就会自存[储存物品表]的物品"
+"[性能模式] 堆叠达到单格上限物品不进行分堆累积（人多推荐,发2次包）,关闭会为超"
+"出上限物品寻找空槽继续累积(最多发4次包)"
 msgstr ""
-"[Whether to hold (是否手持)] needs to select one of the held items (持有物"
-"品) to activate the storage function. If disabled: the backpack contains one "
-"of them (含有其中1个) to activate"
 
-#: ../../Configuration.cs:19
-msgid "[物品数量] 为触发储存机制的最低数量要求 "
+#: ../../Configuration.cs:10
+msgid ""
+"[自动] [手持] [装备] 当开启3种模式任意一个时其他2个模式会默认关闭，不论哪种模"
+"式都需要玩家移动和攻击才会触发储存"
 msgstr ""
 
 #: ../../AutoStoreItems.cs:52
 msgid "[自动存储]重新加载配置完毕。"
 msgstr "[Auto Storage] Configuration reloaded successfully."
-
-#: ../../Configuration.cs:22
-#, fuzzy
-#| msgid ""
-#| "[装备饰品] 只会检测装备3格+饰品7格，与[存物速度]等无关，装备指定饰品(盔甲)"
-#| "玩家只要移动或攻击就会触发自存 "
-msgid ""
-"[装备饰品存储模式] 只会检测装备3格+饰品7格，装备指定饰品(盔甲)玩家只要移动或"
-"攻击就会触发存储机制，CPU主频没3Ghz以上的别开 "
-msgstr ""
-"[Armor accessories (装备饰品)] will only detect 3 Armor slots + 7 accessory "
-"slots, unrelated to storage speed (存物速度)，Equipping specified "
-"accessories/armor (饰品/盔甲) will trigger auto-storage when the player "
-"moves or attacks."
 
 #: ../../Commands.cs:17
 msgid ""
@@ -71,7 +70,7 @@ msgstr ""
 msgid "/ast —— 查看自动储存菜单\n"
 msgstr ""
 
-#: ../../Commands.cs:27
+#: ../../Commands.cs:28
 msgid "/ast add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:删除]自存物品"
 msgstr ""
 
@@ -103,148 +102,196 @@ msgstr ""
 msgid "/ast mess —— 开启|关闭物品[c/F2F292:自存消息]\n"
 msgstr ""
 
+#: ../../Commands.cs:27
+msgid "/ast pm —— 开启|关闭[c/85CFDE:性能模式]\n"
+msgstr ""
+
 #: ../../Commands.cs:19
 msgid "/astreset —— 清空[c/85CFDE:所有玩家]数据\n"
 msgstr ""
 
-#: ../../Commands.cs:151
+#: ../../Commands.cs:162
 msgid ""
 "不存在该物品，\"物品查询\": \"[c/92C5EC:https://terraria.wiki.gg/zh/wiki/"
 "Item_IDs]\""
 msgstr ""
 
-#: ../../Tool.cs:14
-msgid "保险箱"
-msgstr "Safe"
+#: ../../Commands.cs:69
+msgid "只有玩家[c/E4EFBC:移动|攻击]才会执行[c/87DF86:自存]"
+msgstr ""
 
-#: ../../Tool.cs:13
-msgid "存钱罐"
-msgstr "Piggy Bank"
+#: ../../Commands.cs:85 ../../Commands.cs:135
+msgid "启用"
+msgstr ""
 
-#: ../../Commands.cs:38
+#: ../../Commands.cs:39
 msgid "已[c/92C5EC:清空]所有玩家《自动储存》数据！"
 msgstr ""
+
+#: ../../Tool.cs:124 ../../Tool.cs:152 ../../Tool.cs:203
+#, fuzzy, csharp-format
+#| msgid "已将'[c/92C5EC:{0}]'存入您的{1} 当前数量: {2}"
+msgid "已将 '[c/92C5EC:{0}]' 存入您的 {1} 当前数量: {2}"
+msgstr "has stored ‘[c/92C5EC:{0}]’ into your {1}. Current stacks: {2}"
 
 #: ../../Tool.cs:51
 #, csharp-format
 msgid "已将 '[c/92C5EC:{0}]'添加到自动储存表|指令菜单:[c/A1D4C2:/ast]"
 msgstr ""
 
-#: ../../Tool.cs:80
+#: ../../Tool.cs:100
 #, csharp-format
 msgid "已将'[c/92C5EC:{0}]'存入您的{1} 当前数量: {2}"
 msgstr "has stored ‘[c/92C5EC:{0}]’ into your {1}. Current stacks: {2}"
 
-#: ../../Commands.cs:184
+#: ../../Commands.cs:195
 msgid "已成功从自动储存删除物品: [c/92C5EC:{0}]!"
 msgstr ""
 
-#: ../../Commands.cs:170
+#: ../../Commands.cs:181
 msgid "已成功将物品添加到自动储存: [c/92C5EC:{0}]!"
 msgstr ""
 
-#: ../../Commands.cs:114
+#: ../../Commands.cs:127
 #, csharp-format
 msgid "已清理[c/92C5EC: {0} ]的自动储存表"
 msgstr ""
 
-#: ../../Configuration.cs:16
-msgid ""
-"当开启3种模式任意一个时其他2个模式会默认关闭，[自动存钱] 与 [装备饰品] 不受 "
-"[储物速度]影响"
+#: ../../Commands.cs:87
+msgid "性能模式:不为[c/C086DF:堆叠达到单格上限]物品进行分堆累积"
 msgstr ""
 
-#: ../../Commands.cs:66
+#: ../../Tool.cs:221
 #, csharp-format
-msgid "您的[c/BCB7E9:装备识别]为：[c/F29192:{0}]"
+msgid "您的 {0} 已经满了，无法继续存入物品。"
 msgstr ""
 
 #: ../../Commands.cs:67
 #, csharp-format
+msgid "您的[c/BCB7E9:装备识别]为：[c/F29192:{0}]"
+msgstr ""
+
+#: ../../Commands.cs:68
+#, csharp-format
 msgid "您的[c/E4EFBC:手持储存]为：[c/C086DF:{0}]"
 msgstr ""
 
-#: ../../Commands.cs:65
+#: ../../Commands.cs:66
 #, csharp-format
 msgid "您的[c/F2BEC0:自动识别]为：[c/87DF86:{0}]"
 msgstr ""
 
-#: ../../Commands.cs:64
+#: ../../Commands.cs:65
 #, csharp-format
 msgid "您的自存[c/BBE9B7:监听]为：[c/E489C0:{0}]"
 msgstr ""
 
-#: ../../Tool.cs:15
-msgid "护卫熔炉"
-msgstr "Defender's Forge"
+#: ../../Commands.cs:64
+#, csharp-format
+msgid "服务器[c/87DF86:性能模式]：[c/C086DF:{0}]"
+msgstr ""
 
-#: ../../Commands.cs:166
+#: ../../Commands.cs:177
 msgid "物品 [c/92C5EC:{0}] 已在自动储存中!"
 msgstr ""
 
-#: ../../Commands.cs:180
+#: ../../Commands.cs:191
 msgid "物品 {0} 不在自动储存中!"
 msgstr ""
 
-#: ../../Commands.cs:82
+#: ../../Commands.cs:86
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:{1}]服务器性能模式。"
+msgstr ""
+
+#: ../../Commands.cs:95
 #, csharp-format
 msgid "玩家 [{0}] 已[c/92C5EC:启用]自动识别模式。"
 msgstr ""
 
-#: ../../Commands.cs:93
+#: ../../Commands.cs:106
 #, csharp-format
 msgid "玩家 [{0}] 已[c/92C5EC:启用]装备识别储存模式。"
 msgstr ""
 
-#: ../../Commands.cs:83
+#: ../../Commands.cs:96
 #, csharp-format
 msgid "玩家 [{0}] 已[c/92C5EC:禁用]自动识别模式。"
 msgstr ""
 
-#: ../../Commands.cs:94
+#: ../../Commands.cs:107
 #, csharp-format
 msgid "玩家 [{0}] 已[c/92C5EC:禁用]装备识别储存模式。"
 msgstr ""
 
-#: ../../Commands.cs:122
+#: ../../Commands.cs:136
 #, csharp-format
-msgid "玩家 [{0}] 的储物空间位格监听功能已[c/92C5EC:启用]"
+msgid "玩家 [{0}] 的储物空间位格监听功能已[c/92C5EC:{1}]"
 msgstr ""
 
-#: ../../Commands.cs:123
-#, csharp-format
-msgid "玩家 [{0}] 的储物空间位格监听功能已[c/92C5EC:禁用]"
-msgstr ""
-
-#: ../../Commands.cs:104
+#: ../../Commands.cs:117
 #, csharp-format
 msgid "玩家 [{0}] 的手持识别模式已[c/92C5EC:启用]"
 msgstr ""
 
-#: ../../Commands.cs:105
+#: ../../Commands.cs:118
 #, csharp-format
 msgid "玩家 [{0}] 的手持识别模式已[c/92C5EC:禁用]"
 msgstr ""
 
-#: ../../Commands.cs:131
+#: ../../Commands.cs:144
 #, csharp-format
 msgid "玩家 [{0}] 的自动储存消息已[c/92C5EC:启用]"
 msgstr ""
 
-#: ../../Commands.cs:132
+#: ../../Commands.cs:145
 #, csharp-format
 msgid "玩家 [{0}] 的自动储存消息已[c/92C5EC:禁用]"
 msgstr ""
 
-#: ../../Tool.cs:16
-msgid "虚空袋"
-msgstr "Void Vault"
+#: ../../Commands.cs:85 ../../Commands.cs:135
+msgid "禁用"
+msgstr ""
 
-#: ../../Commands.cs:56
+#: ../../Commands.cs:57
 msgid ""
 "请用角色[c/D95065:重进服务器]后输入：/ast 指令查看菜单\n"
 "羽学声明：本插件纯属[c/7E93DE:免费]请勿上当受骗"
 msgstr ""
+
+#, fuzzy
+#~| msgid ""
+#~| "[是否手持] 需要选中 [持有物品] 其中1个才会启动存储功能，关闭则背包含有 其"
+#~| "中1个就会启动"
+#~ msgid ""
+#~ "[手持存储模式] 需要选中 [触发存储的物品] 其中1个才会启动存储功能(2024年10"
+#~ "月6日已修复)，关闭则背包含有[存储道具]就会自存[储存物品表]的物品"
+#~ msgstr ""
+#~ "[Whether to hold (是否手持)] needs to select one of the held items (持有物"
+#~ "品) to activate the storage function. If disabled: the backpack contains "
+#~ "one of them (含有其中1个) to activate"
+
+#, fuzzy
+#~| msgid ""
+#~| "[装备饰品] 只会检测装备3格+饰品7格，与[存物速度]等无关，装备指定饰品(盔"
+#~| "甲)玩家只要移动或攻击就会触发自存 "
+#~ msgid ""
+#~ "[装备饰品存储模式] 只会检测装备3格+饰品7格，装备指定饰品(盔甲)玩家只要移动"
+#~ "或攻击就会触发存储机制，CPU主频没3Ghz以上的别开 "
+#~ msgstr ""
+#~ "[Armor accessories (装备饰品)] will only detect 3 Armor slots + 7 "
+#~ "accessory slots, unrelated to storage speed (存物速度)，Equipping "
+#~ "specified accessories/armor (饰品/盔甲) will trigger auto-storage when "
+#~ "the player moves or attacks."
+
+#~ msgid "保险箱"
+#~ msgstr "Safe"
+
+#~ msgid "存钱罐"
+#~ msgstr "Piggy Bank"
+
+#~ msgid "虚空袋"
+#~ msgstr "Void Vault"
 
 #~ msgid ""
 #~ "[存物速度] 不要低于60帧(推荐120)，否则手动 [连续] 快速放入 [同样物品到存储"
