@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LazyAPI\n"
-"POT-Creation-Date: 2024-10-30 20:53:41+0800\n"
-"PO-Revision-Date: 2024-10-30 20:53:41+0800\n"
+"POT-Creation-Date: 2024-10-31 15:29:33+0000\n"
+"PO-Revision-Date: 2024-10-31 15:29:34+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,17 +10,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../LazyPlugin.cs:46
+#: ../../LazyPlugin.cs:56
 #, csharp-format
 msgid "[{0}] command registered: {1}"
 msgstr ""
 
-#: ../../LazyPlugin.cs:41
+#: ../../LazyPlugin.cs:51
 #, csharp-format
 msgid "[{0}] config registered: {1}"
 msgstr ""
 
-#: ../../RestHelper.cs:48
+#: ../../RestHelper.cs:56
 #, csharp-format
 msgid "[{0}] rest endpoint registered: /{1}/{2}"
 msgstr ""

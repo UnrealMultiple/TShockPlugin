@@ -574,6 +574,13 @@
     "Path": "JourneyUnlock.dll"
   },
   {
+    "Name": "LazyAPI",
+    "Version": "1.0.0.0",
+    "Author": "cc004 & members of UnrealMultiple",
+    "Description": "None",
+    "Path": "LazyAPI.dll"
+  },
+  {
     "Name": "LifemaxExtra",
     "Version": "1.0.0.7",
     "Author": "佚名 & 肝帝熙恩 & 少司命",
