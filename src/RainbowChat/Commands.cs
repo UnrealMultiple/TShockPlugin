@@ -22,7 +22,7 @@ public class Commands
             {
                 RainbowChat.Config.Enabled = true;
                 RainbowChat.Config.Write();
-                e.Player.SendSuccessMessage($"{plr.Name} 的彩虹聊天插件已启用.");
+                e.Player.SendSuccessMessage(GetString($"{plr.Name} 的彩虹聊天插件已启用."));
                 return;
             }
 
@@ -30,27 +30,27 @@ public class Commands
             {
                 RainbowChat.Config.Enabled = false;
                 RainbowChat.Config.Write();
-                e.Player.SendSuccessMessage($"{plr.Name} 的彩虹聊天插件已关闭.");
+                e.Player.SendSuccessMessage(GetString($"{plr.Name} 的彩虹聊天插件已关闭."));
                 return;
             }
 
             if (e.Parameters[0].ToLower() == "随机开关" || e.Parameters[0].ToLower() == "rswitch")
             {
-                var rswitch = RainbowChat.Config.Random;
-                RainbowChat.Config.Random = !rswitch;
+                RainbowChat.Config.Random = !RainbowChat.Config.Random;
                 RainbowChat.Config.Write();
-                var mess = rswitch ? "启用" : "禁用";
-                e.Player.SendSuccessMessage($"全局的随机色聊天已 {mess}.");
+                e.Player.SendSuccessMessage(RainbowChat.Config.Random ?
+                    GetString($"全局的随机色聊天已 启用.") :
+                    GetString($"全局的随机色聊天已 禁用."));
                 return;
             }
 
             if (e.Parameters[0].ToLower() == "渐变开关" || e.Parameters[0].ToLower() == "gswitch")
             {
-                var gswitch = RainbowChat.Config.Gradient;
-                RainbowChat.Config.Gradient = !gswitch;
+                RainbowChat.Config.Gradient = !RainbowChat.Config.Gradient;
                 RainbowChat.Config.Write();
-                var mess = gswitch ? "启用" : "禁用";
-                e.Player.SendSuccessMessage($"全局的渐变色聊天已 {mess}.");
+                e.Player.SendSuccessMessage(RainbowChat.Config.Gradient ?
+                    GetString($"全局的渐变色聊天已 启用.") :
+                    GetString($"全局的渐变色聊天已 禁用."));
                 return;
             }
         }
@@ -81,16 +81,16 @@ public class Commands
                                 {
                                     RainbowChat.Config.GradientStartColor = new Color(result4, result5, result6);
                                     RainbowChat.Config.Write();
-                                    plr.SendSuccessMessage($"渐变开始颜色已设置为 R:{result4}, G:{result5}, B:{result6}");
+                                    plr.SendSuccessMessage(GetString($"渐变开始颜色已设置为 R:{result4}, G:{result5}, B:{result6}"));
                                 }
                                 else
                                 {
-                                    plr.SendErrorMessage("无效的起始颜色值。请使用格式如 'R,G,B'（逗号分隔）的颜色表示法。");
+                                    plr.SendErrorMessage(GetString("无效的起始颜色值。请使用格式如 'R,G,B'（逗号分隔）的颜色表示法。"));
                                 }
                             }
                             else
                             {
-                                plr.SendErrorMessage("起始颜色值缺失。请使用如 '/rc 渐变 开始 255,0,0' 的格式。");
+                                plr.SendErrorMessage(GetString("起始颜色值缺失。请使用如 '/rc 渐变 开始 255,0,0' 的格式。"));
                             }
                             break;
                         case "结束":
@@ -103,16 +103,16 @@ public class Commands
                                 {
                                     RainbowChat.Config.GradientEndColor = new Color(result, result2, result3);
                                     RainbowChat.Config.Write();
-                                    plr.SendSuccessMessage($"渐变结束颜色已设置为 R:{result}, G:{result2}, B:{result3}");
+                                    plr.SendSuccessMessage(GetString($"渐变结束颜色已设置为 R:{result}, G:{result2}, B:{result3}"));
                                 }
                                 else
                                 {
-                                    plr.SendErrorMessage("无效的结束颜色值。请使用格式如 'R,G,B'（逗号分隔）的颜色表示法。");
+                                    plr.SendErrorMessage(GetString("无效的结束颜色值。请使用格式如 'R,G,B'（逗号分隔）的颜色表示法。"));
                                 }
                             }
                             else
                             {
-                                plr.SendErrorMessage("结束颜色值缺失。请使用如 '/rc 渐变 结束 0,255,0' 的格式。");
+                                plr.SendErrorMessage(GetString("结束颜色值缺失。请使用如 '/rc 渐变 结束 0,255,0' 的格式。"));
                             }
                             break;
                         default:
@@ -138,21 +138,21 @@ public class Commands
 
         var plr = e.Player;
 
-        mess.AppendLine("《彩虹聊天》 菜单指令\n" +
-                "/rc 开启 或 关闭 - 开启|关闭插件功能\n" +
-                "/rc 随机开关 - 全局开启|关闭随机色功能\n" +
-                "/rc 渐变开关 - 全局开启|关闭渐变色功能\n" +
-                "/rc 随机 - 开启或关闭自己的随机单色整句\n" +
-                "/rc 渐变 - 开启或关闭自己的渐变聊天\n" +
-                "/rc 渐变 开始 R,G,B - 设置渐变聊天起始颜色\n" +
-                "/rc 渐变 结束 R,G,B - 设置渐变聊天结束颜色");
+        mess.AppendLine(GetString("《彩虹聊天》 菜单指令\n") +
+                GetString("/rc 开启 或 关闭 - 开启|关闭插件功能\n") +
+                GetString("/rc 随机开关 - 全局开启|关闭随机色功能\n") +
+                GetString("/rc 渐变开关 - 全局开启|关闭渐变色功能\n") +
+                GetString("/rc 随机 - 开启或关闭自己的随机单色整句\n") +
+                GetString("/rc 渐变 - 开启或关闭自己的渐变聊天\n") +
+                GetString("/rc 渐变 开始 R,G,B - 设置渐变聊天起始颜色\n") +
+                GetString("/rc 渐变 结束 R,G,B - 设置渐变聊天结束颜色"));
 
         if (RainbowChat.Config.ErrorMess)
         {
-            mess.Append("[i:3454][c/E83849:注意][i:3454]\n");
-            mess.Append("使用[c/B0B2D1:非正版客户端]或[c/B0B2D1:语言资源包]导致TS指令异常\n" +
-                "请服主安装[c/B0B2D1:Chireiden.TShock.Omni]插件修复\n" +
-                "或者请玩家使用 [c/B0B2D1:．help] 代替 [c/B0B2D1:/help]");
+            mess.Append(GetString("[i:3454][c/E83849:注意][i:3454]\n"));
+            mess.Append(GetString("使用[c/B0B2D1:非正版客户端]或[c/B0B2D1:语言资源包]导致TS指令异常\n") +
+                GetString("请服主安装[c/B0B2D1:Chireiden.TShock.Omni]插件修复\n") +
+                GetString("或者请玩家使用 [c/B0B2D1:．help] 代替 [c/B0B2D1:/help]"));
         }
 
         plr.SendInfoMessage(string.Format($"{mess}", Color.Yellow));
@@ -175,8 +175,9 @@ public class Commands
         }
 
         RainbowChat.RandomChat[plr.Index] = !RainbowChat.RandomChat[plr.Index];
-        var arg = RainbowChat.RandomChat[plr.Index] ? "启用" : "禁用";
-        e.Player.SendSuccessMessage($"{plr.Name} 的彩虹聊天已 {arg}.");
+        e.Player.SendSuccessMessage(RainbowChat.RandomChat[plr.Index] ?
+            GetString($"{plr.Name} 的彩虹聊天已 启用.") :
+            GetString($"{plr.Name} 的彩虹聊天已 禁用."));
 
         if(RainbowChat.Gradient[plr.Index] && RainbowChat.Gradient[plr.Index])
         {
@@ -201,8 +202,9 @@ public class Commands
         }
 
         RainbowChat.Gradient[plr.Index] = !RainbowChat.Gradient[plr.Index];
-        var arg = RainbowChat.Gradient[plr.Index] ? "启用" : "禁用";
-        e.Player.SendSuccessMessage($"{plr.Name} 的渐变聊天已 {arg}.");
+        e.Player.SendSuccessMessage(RainbowChat.Gradient[plr.Index] ?
+            GetString($"{plr.Name} 的渐变聊天已 启用.") :
+            GetString($"{plr.Name} 的渐变聊天已 禁用."));
 
         if (RainbowChat.Gradient[plr.Index] && RainbowChat.RandomChat[plr.Index])
         {
@@ -212,7 +214,7 @@ public class Commands
     #endregion
 
     #region 获取转换颜色聊天的玩家目标方法（也就是自己）
-    public static TSPlayer GetTargetPlayer(CommandArgs e)
+    public static TSPlayer? GetTargetPlayer(CommandArgs e)
     {
         if (e.Parameters.Count <= 1)
         {
@@ -221,7 +223,7 @@ public class Commands
         var list = TSPlayer.FindByNameOrID(e.Parameters[1]);
         if (list.Count == 0)
         {
-            e.Player.SendErrorMessage("错误的玩家!");
+            e.Player.SendErrorMessage(GetString("错误的玩家!"));
             return null;
         }
         if (list.Count > 1)

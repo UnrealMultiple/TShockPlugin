@@ -94,7 +94,7 @@ public class Commands
 
         if (data == null)
         {
-            args.Player.SendInfoMessage(GetString("请用角色[c/D95065:重进服务器]后输入：/air 指令查看菜单\n羽学声明：本插件纯属[c/7E93DE:免费]请勿上当受骗"), 217, 217, 217);
+            args.Player.SendMessage(GetString("请用角色[c/D95065:重进服务器]后输入：/air 指令查看菜单\n羽学声明：本插件纯属[c/7E93DE:免费]请勿上当受骗"), 217, 217, 217);
             return;
         }
 
@@ -116,16 +116,16 @@ public class Commands
         {
             if (args.Parameters[0].ToLower() == "list")
             {
-                args.Player.SendInfoMessage(GetString($"[{data.Name}的垃圾桶]\n" + string.Join(", ", data.ItemType.Select(x => TShock.Utils.GetItemById(x).Name + "([c/92C5EC:{0}])".SFormat(x)))));
+                args.Player.SendInfoMessage(GetString($"[{data.Name}的垃圾桶]\n") + string.Join(", ", data.ItemType.Select(x => TShock.Utils.GetItemById(x).Name + "([c/92C5EC:{0}])".SFormat(x))));
                 return;
             }
 
             if (args.Parameters[0].ToLower() == "on")
             {
-                var isEnabled = data.Enabled;
-                data.Enabled = !isEnabled;
-                var Mess = isEnabled ? "禁用" : "启用";
-                args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{Mess}]自动垃圾桶功能。"));
+                data.Enabled = !data.Enabled;
+                args.Player.SendSuccessMessage(data.Enabled ?
+                    GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:启用]自动垃圾桶功能。") :
+                    GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:禁用]自动垃圾桶功能。"));
                 return;
             }
 
@@ -146,19 +146,19 @@ public class Commands
 
             if (args.Parameters[0].ToLower() == "auto")
             {
-                var isEnabled = data.Auto;
-                data.Auto = !isEnabled;
-                var Mess = isEnabled ? "禁用" : "启用";
-                args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 的垃圾桶位格监听功能已[c/92C5EC:{Mess}]"));
+                data.Auto = !data.Auto;
+                args.Player.SendSuccessMessage(data.Auto ?
+                    GetString($"玩家 [{args.Player.Name}] 的垃圾桶位格监听功能已[c/92C5EC:启用]") :
+                    GetString($"玩家 [{args.Player.Name}] 的垃圾桶位格监听功能已[c/92C5EC:禁用]"));
                 return;
             }
 
             if (args.Parameters[0].ToLower() == "mess")
             {
-                var isEnabled = data.Mess;
-                data.Mess = !isEnabled;
-                var Mess = isEnabled ? "禁用" : "启用";
-                args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 的自动清理消息已[c/92C5EC:{Mess}]"));
+                data.Mess = !data.Mess;
+                args.Player.SendSuccessMessage(data.Mess ?
+                    GetString($"玩家 [{args.Player.Name}] 的自动清理消息已[c/92C5EC:启用]") :
+                    GetString($"玩家 [{args.Player.Name}] 的自动清理消息已[c/92C5EC:禁用]"));
                 return;
             }
         }
