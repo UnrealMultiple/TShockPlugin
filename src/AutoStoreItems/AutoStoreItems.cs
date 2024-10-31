@@ -12,7 +12,7 @@ public class AutoStoreItems : TerrariaPlugin
     #region 插件信息
     public override string Name => "自动存储";
     public override string Author => "羽学 cmgy雱";
-    public override Version Version => new Version(1, 2, 9);
+    public override Version Version => new Version(1, 3, 0);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 
@@ -80,7 +80,7 @@ public class AutoStoreItems : TerrariaPlugin
             {
                 Name = plr.Name,
                 AutoMode = true,
-                Listen = true,
+                listen = true,
                 Mess = true,
                 ItemType = new List<int>()
             });
@@ -110,15 +110,15 @@ public class AutoStoreItems : TerrariaPlugin
         if (list.AutoMode && !list.HandMode && !list.ArmorMode)
         {
             //遍历背包前50格内是否存在储物类的道具
-            var inv = plr.TPlayer.inventory.Take(50).Where(x => Config.BankItems.Contains(x.netID)).ToList().Any();
+            var inv = plr.TPlayer.inventory.Take(50).Any(x => Config.BankItems.Contains(x.netID));
             //遍历工具栏第一格是否存在储物类道具（纯粹是为了方便装备上 眼骨）
-            var miscEquips = plr.TPlayer.miscEquips.Take(1).Where(x => Config.BankItems.Contains(x.netID)).ToList().Any();
+            var miscEquips = plr.TPlayer.miscEquips.Take(1).Any(x => Config.BankItems.Contains(x.netID));
 
             //如果存在则触发自动存储逻辑
             if (inv || miscEquips)
             {
                 //存物品
-                Tool.StoreItemInBanks(plr, list.Listen, list.Mess, list.ItemType);
+                Tool.StoreItemInBanks(plr, list.listen, list.Mess, list.ItemType);
 
                 //存钱逻辑，71-74 铜币-铂金币
                 for (var i2 = 71; i2 <= 74; i2++)
@@ -135,7 +135,7 @@ public class AutoStoreItems : TerrariaPlugin
             if (Config.BankItems.Contains(plr.TPlayer.inventory[plr.TPlayer.selectedItem].type))
             {
                 //存物品
-                Tool.StoreItemInBanks(plr, list.Listen, list.Mess, list.ItemType);
+                Tool.StoreItemInBanks(plr, list.listen, list.Mess, list.ItemType);
 
                 //存钱
                 for (var i2 = 71; i2 <= 74; i2++)
@@ -149,15 +149,15 @@ public class AutoStoreItems : TerrariaPlugin
         if (list.ArmorMode && !list.HandMode && !list.AutoMode)
         {
             //遍历盔甲3格+饰品7格，是否存在储物类的道具
-            var armor = plr.TPlayer.armor.Take(10).Where(x => Config.ArmorItem.Contains(x.netID)).ToList().Any();
+            var armor = plr.TPlayer.armor.Take(10).Any(x => Config.ArmorItem.Contains(x.netID));
 
             //遍历宠物栏（方便眼骨）
-            var miscEquips = plr.TPlayer.miscEquips.Take(1).Where(x => Config.ArmorItem.Contains(x.netID)).ToList().Any();
+            var miscEquips = plr.TPlayer.miscEquips.Take(1).Any(x => Config.ArmorItem.Contains(x.netID));
 
             if (armor || miscEquips)
             {
                 //存物品
-                Tool.StoreItemInBanks(plr, list.Listen, list.Mess, list.ItemType);
+                Tool.StoreItemInBanks(plr, list.listen, list.Mess, list.ItemType);
 
                 //存钱
                 for (var i2 = 71; i2 <= 74; i2++)

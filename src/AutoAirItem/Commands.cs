@@ -23,7 +23,8 @@ public class Commands
              GetString("/air yes —— 将[c/E488C1:手持物品]加入垃圾桶\n") +
              GetString("/air auto —— 监听[c/F3B691:垃圾桶位格]开关\n") +
              GetString("/air mess —— 开启|关闭[c/F2F292:清理消息]\n") +
-             GetString("/air add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:删除]垃圾桶物品", 193, 223, 186));
+             GetString("/air ck 数量—— 筛选出物品超过此数量的玩家\n") +
+             GetString("/air add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:移出]垃圾桶物品", 193, 223, 186));
         }
     }
     #endregion
@@ -36,6 +37,47 @@ public class Commands
             AutoAirItem.Data.Items.Clear();
             args.Player.SendSuccessMessage(GetString($"已[c/92C5EC:清空]所有玩家《自动垃圾桶》数据！"));
             return;
+        }
+    }
+    #endregion
+
+    #region 检查物品数量方法
+    public static void CheckCmd(CommandArgs args, int num)
+    {
+        if (!AutoAirItem.Config.Open)
+        {
+            return;
+        }
+
+        var flag = false;
+        args.Player.SendInfoMessage(GetString($"【以下垃圾桶数量超过[c/92C5EC:{num}]的玩家】"));
+
+        var plrs = new List<(int Index, string Name, List<(string ItemName, int Count)> ExcessItems)>();
+
+        var index = 1;
+
+        foreach (var data in AutoAirItem.Data.Items)
+        {
+            var Items = data.DelItem.Where(pair => pair.Value > num).Select(pair =>
+                (ItemName: TShock.Utils.GetItemById(pair.Key).Name, Count: pair.Value)).ToList();
+
+            if (Items.Any())
+            {
+                flag = true;
+                plrs.Add((index++, data.Name, Items.ToList()));
+            }
+        }
+
+        if (flag)
+        {
+            foreach (var plr in plrs)
+            {
+                args.Player.SendMessage(GetString($"[c/32CEB7:{plr.Index}.][c/F3E83B:{plr.Name}:] {string.Join(", ", plr.ExcessItems.Select(item => $"{item.ItemName}([c/92C5EC:{item.Count}])"))}"), 193, 223, 186);
+            }
+        }
+        else
+        {
+            args.Player.SendMessage(GetString($"没有找到垃圾桶数量超过[c/92C5EC:{num}]的玩家"), 193, 223, 186);
         }
     }
     #endregion
@@ -90,6 +132,7 @@ public class Commands
             if (args.Parameters[0].ToLower() == "clear")
             {
                 data.ItemType.Clear();
+                data.DelItem.Clear();
                 args.Player.SendSuccessMessage(GetString($"已清理[c/92C5EC: {args.Player.Name} ]的自动垃圾桶表"));
                 return;
             }
@@ -165,13 +208,54 @@ public class Commands
                         return;
                     }
 
-                    data.ItemType.Remove(item.type);
-                    foreach (var Del in data.DelItem)
+                    // 返还被清理的物品（字典存在玩家自己的数据里，键=物品ID，值则是在这个ID下的物品数量）
+                    var del = data.DelItem.FirstOrDefault(x => x.Key == item.type);
+
+                    //从找到的ID里判断:值大于堆叠数
+                    if (del.Value > item.maxStack)
                     {
-                        args.Player.GiveItem(Del.Key, Del.Value, 0);
+                        //最大堆叠数为1的物品
+                        if (item.maxStack != 9999)
+                        {
+                            // 分批发放，每次发一个
+                            for (var i = 0; i < del.Value; i += item.maxStack)
+                            {
+                                // 计算本次应发放的数量
+                                var toGive = Math.Min(item.maxStack, del.Value - i);
+                                args.Player.GiveItem(del.Key, toGive, 0);
+                            }
+                        }
+                        // 堆叠上限为9999的物品
+                        else
+                        {
+                            //分批发放，每次发9999个
+                            for (var i = 0; i < del.Value; i += 9999)
+                            {
+                                // 计算本次应发放的数量
+                                var toGive = Math.Min(9999, del.Value - i);
+                                args.Player.GiveItem(del.Key, toGive, 0);
+                            }
+                        }
                     }
-                    data.DelItem.Clear();
-                    args.Player.SendSuccessMessage(GetString("已成功从垃圾桶删除物品: [c/92C5EC:{0}]!"), item.Name);
+
+                    //不超上限直接给（发完堆叠上限的次数后 再轮到它就是补零头用的了）
+                    else
+                    {
+                        args.Player.GiveItem(del.Key, del.Value, 0);
+                    }
+
+                    data.DelItem.Remove(del.Key);
+                    data.ItemType.Remove(item.type);
+                    args.Player.SendSuccessMessage(GetString("已成功从垃圾桶移出物品: [c/92C5EC:{0}]!"), item.Name);
+                    break;
+                }
+
+                case "ck":
+                {
+                    if (int.TryParse(args.Parameters[1], out var num))
+                    {
+                        CheckCmd(args, num);
+                    }
                     break;
                 }
 

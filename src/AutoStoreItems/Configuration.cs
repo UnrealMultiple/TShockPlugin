@@ -6,24 +6,20 @@ namespace AutoStoreItems;
 
 internal class Configuration
 {
-    [JsonProperty("插件开关", Order = -18)]
-    public bool open { get; set; } = true;
+    [JsonProperty("使用说明", Order = -16)]
+    public static string Text2 { get; set; } = GetString("[自动] [手持] [装备] 当开启3种模式任意一个时其他2个模式会默认关闭，不论哪种模式都需要玩家移动和攻击才会触发储存");
 
-    [JsonProperty("使用说明1", Order = -17)]
-    public static string Text { get; set; } = GetString("[手持存储模式] 需要选中 [触发存储的物品] 其中1个才会启动存储功能(2024年10月6日已修复)，关闭则背包含有[存储道具]就会自存[储存物品表]的物品");
+    [JsonProperty("使用说明2", Order = -15)]
+    public static string Text3 { get; set; } = GetString("[性能模式] 堆叠达到单格上限物品不进行分堆累积（人多推荐,发2次包）,关闭会为超出上限物品寻找空槽继续累积(最多发4次包)");
 
-    [JsonProperty("使用说明2", Order = -16)]
-    public static string Text2 { get; set; } = GetString("当开启3种模式任意一个时其他2个模式会默认关闭，[自动存钱] 与 [装备饰品] 不受 [储物速度]影响");
-
-    [JsonProperty("使用说明3", Order = -15)]
-    public static string Text3 { get; set; } = GetString("[物品数量] 为触发储存机制的最低数量要求 ");
-
-    [JsonProperty("使用说明4", Order = -14)]
-    public static string Text4 { get; set; } = GetString("[装备饰品存储模式] 只会检测装备3格+饰品7格，装备指定饰品(盔甲)玩家只要移动或攻击就会触发存储机制，CPU主频没3Ghz以上的别开 ");
-
-    [JsonProperty("使用说明5", Order = -13)]
+    [JsonProperty("使用说明3", Order = -14)]
     public static string Text5 { get; set; } = GetString("[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险) ,物品如果没放到【存钱罐】等储存空间内是不会触发自动存储的");
 
+    [JsonProperty("插件开关", Order = -11)]
+    public bool open { get; set; } = true;
+
+    [JsonProperty("性能模式", Order = -10)]
+    public bool PM { get; set; } = true;
 
     [JsonProperty("存钱罐", Order = -9)]
     public bool bank1 { get; set; } = true;

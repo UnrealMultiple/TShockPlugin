@@ -9,10 +9,15 @@
 
 ## 更新日志
 ```
+v1.1.6
+加入了/air ck 数量指令
+筛选出物品超过此数量的玩家
+修复返还物品超出物品叠堆上限的BUG
+
 v1.1.5
-把移除逻辑改为监听位格（优化性能）
+把移除逻辑改为玩家移动触发（优化性能）
 移除/air sd 修改清理速度指令
-加入了/air del 的还回物品逻辑
+加入了/air del 的返还物品逻辑
 
 v1.1.4
 移除了自动清理玩家数据的逻辑与其相关配置项
@@ -75,7 +80,8 @@ v1.0.0
 | /air yes | /垃圾 yes |   AutoAir.use    |    手持物品加入垃圾桶表   |
 | /air auto | /垃圾 auto |   AutoAir.use    |    将物品放入垃圾桶位格时自动添加垃圾桶表   |
 | /air mess  | /垃圾 mess |   AutoAir.use    |    开启或关闭清理消息    |
-| /air add 或 del id  | /垃圾 add 或 del 物品名|   AutoAir.use    |    添加或移除自己的垃圾桶物品    |
+| /air ck 数量 | /垃圾 ck 数量 |   AutoAir.use    |    筛选出物品超过此数量的玩家    |
+| /air add 或 del id  | /垃圾 add 或 del 物品名|   AutoAir.use    |    添加或移出自己的垃圾桶物品    |
 | /airreset | /重置垃圾桶|   AutoAir.admin    |    清空玩家数据表（重置服务器用）    |
 | /reload  | 无 |   tshock.cfg.reload    |    重载配置文件    |
 

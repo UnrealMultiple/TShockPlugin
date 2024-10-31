@@ -21,7 +21,7 @@ public class MyData
         public bool HandMode { get; set; } = false;
 
         //监听储物空间位格开关
-        public bool Listen { get; set; } = false;
+        public bool listen { get; set; } = false;
 
         //自动储存提示
         public bool Mess { get; set; } = true;
@@ -29,11 +29,11 @@ public class MyData
         //自动储存表
         public List<int> ItemType { get; set; }
 
-        public ItemData(string name = "", bool enabled = true, bool listen = true, bool mess = true, List<int> item = null!)
+        public ItemData(string name = "", bool enabled = true, bool auto = true, bool mess = true, List<int> item = null!)
         {
             this.Name = name ?? "";
             this.AutoMode = enabled;
-            this.Listen = listen;
+            this.listen = auto;
             this.Mess = mess;
             this.ItemType = item;
         }

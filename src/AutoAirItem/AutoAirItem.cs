@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ID;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
@@ -11,7 +12,7 @@ public class AutoAirItem : TerrariaPlugin
     #region 插件信息
     public override string Name => "自动垃圾桶";
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 1, 5);
+    public override Version Version => new Version(1, 1, 6);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 
@@ -23,7 +24,7 @@ public class AutoAirItem : TerrariaPlugin
     {
         LoadConfig();
         GeneralHooks.ReloadEvent += ReloadConfig;
-        GetDataHandlers.PlayerSlot.Register(this.OnPlayerSlot);
+        GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         TShockAPI.Commands.ChatCommands.Add(new Command("AutoAir.use", Commands.AirCmd, "air", "垃圾"));
         TShockAPI.Commands.ChatCommands.Add(new Command("AutoAir.admin", Commands.Reset, "airreset", "重置垃圾桶"));
@@ -34,7 +35,7 @@ public class AutoAirItem : TerrariaPlugin
         if (disposing)
         {
             GeneralHooks.ReloadEvent -= ReloadConfig;
-            GetDataHandlers.PlayerSlot.UnRegister(this.OnPlayerSlot);
+            GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);
             TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.AirCmd);
             TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Reset);
@@ -88,7 +89,7 @@ public class AutoAirItem : TerrariaPlugin
     #endregion
 
     #region 触发自动垃圾桶
-    private void OnPlayerSlot(object? sender, GetDataHandlers.PlayerSlotEventArgs e)
+    private void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
     {
         var plr = e.Player;
         if (!Config.Open || e == null || plr == null || !plr.IsLoggedIn || !plr.Active || !plr.HasPermission("AutoAir.use"))
@@ -105,53 +106,72 @@ public class AutoAirItem : TerrariaPlugin
         //玩家自己的垃圾桶开关
         if (list.Enabled)
         {
-            //读取垃圾桶位格的物品 写入到玩家自己的垃圾桶表里
-            if (list.Auto)
+            //遍历背包58格
+            for (var i = 0; i < plr.TPlayer.inventory.Length; i++)
             {
-                //放进垃圾桶就视为垃圾
-                if (!plr.TPlayer.trashItem.IsAir && !list.ItemType.Contains(plr.TPlayer.trashItem.type))
+                // 跳过钱币栏格子
+                if (i > 50 && i < 54)
                 {
-                    list.ItemType.Add(plr.TPlayer.trashItem.type);
+                    continue;
+                }
 
-                    //触发回馈信息
-                    if (list.Mess)
+                //当前背包的格子
+                var inv = plr.TPlayer.inventory[i];
+
+                //读取垃圾桶位格的物品 写入到玩家自己的垃圾桶表里
+                if (list.Auto)
+                {
+                    //放进垃圾桶就视为垃圾
+                    if (!plr.TPlayer.trashItem.IsAir && !list.ItemType.Contains(plr.TPlayer.trashItem.type))
                     {
-                        plr.SendMessage(GetString($"已将 '[c/92C5EC:{plr.TPlayer.trashItem.Name}]'添加到自动垃圾桶|指令菜单: [c/A1D4C2:/air]"), 255, 246, 158);
+                        list.ItemType.Add(plr.TPlayer.trashItem.type);
+
+                        //触发回馈信息
+                        if (list.Mess)
+                        {
+                            plr.SendMessage(GetString($"已将 '[c/92C5EC:{plr.TPlayer.trashItem.Name}]'添加到自动垃圾桶|指令菜单: [c/A1D4C2:/air]"), 255, 246, 158);
+                        }
                     }
                 }
-            }
 
-            //是垃圾桶表的物品 移除
-            if (list.ItemType.Contains(e.Type))
-            {
-                //将要移除的物品更新到字典，使用/air del指令能方便还回
-                UpDict(list.DelItem, e.Type, e.Stack);
-
-                //物品数量设为0
-                e.Stack = 0;
-                plr.SendData(PacketTypes.PlayerSlot, "", plr.Index, e.Slot);
-
-                if (list.Mess)
+                //是垃圾桶表的物品,不是手上的物品 进行移除
+                if (list.ItemType.Contains(inv.type) && inv.type != plr.TPlayer.inventory[plr.TPlayer.selectedItem].type)
                 {
-                    var name = Lang.GetItemNameValue(e.Type);
-                    plr.SendMessage(GetString($"已将 '[c/92C5EC:{name}]'从您的背包中移除|移出垃圾桶: [c/A1D4C2:/air del {e.Type}]"), 255, 246, 158);
+                    //将已经移除的物品更新到字典，使用/air del指令能方便返还
+                    UpDict(list.DelItem, inv.type, inv.stack);
+
+                    if (list.Mess)
+                    {
+                        var name = Lang.GetItemName(inv.type);
+
+                        plr.SendMessage(GetString($"已将 '[c/92C5EC:{name}]'从您的背包中移除|[c/92C5EC:返还物品]: [c/A1D4C2:/air del {inv.type}]"), 255, 246, 158);
+                    }
+
+                    //将背包指定物品清空并发包
+                    inv.TurnToAir();
+                    plr.SendData(PacketTypes.PlayerSlot, "", plr.Index, PlayerItemSlotID.Inventory0 + i);
                 }
             }
         }
     }
     #endregion
 
-    #region 更新字典方法
+    #region 更新字典:把清理掉的物品和数量记录下来
     public static void UpDict(Dictionary<int, int> delItem, int type, int stack)
     {
+        //如果ID已经在字典里
         if (delItem.ContainsKey(type))
         {
+            // 给这个ID加数量
             delItem[type] += stack;
         }
+
+        // ID不在字典里
         else
         {
+            // 直接添加新ID和它的数量
             delItem.Add(type, stack);
         }
-    } 
+    }
     #endregion
 }

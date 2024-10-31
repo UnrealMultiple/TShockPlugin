@@ -24,6 +24,7 @@ public class Commands
              GetString("/ast clear —— [c/E488C1:清理]自动储存表\n") +
              GetString("/ast bank —— 监听[c/F3B691:储存空间位格]开关\n") +
              GetString("/ast mess —— 开启|关闭物品[c/F2F292:自存消息]\n") +
+             GetString("/ast pm —— 开启|关闭[c/85CFDE:性能模式]\n") +
              GetString("/ast add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:删除]自存物品"), 193, 223, 186);
         }
     }
@@ -60,11 +61,12 @@ public class Commands
         if (args.Parameters.Count == 0)
         {
             HelpCmd(args.Player);
-
-            args.Player.SendSuccessMessage(GetString($"您的自存[c/BBE9B7:监听]为：[c/E489C0:{data.Listen}]"));
+            args.Player.SendSuccessMessage(GetString($"服务器[c/87DF86:性能模式]：[c/C086DF:{AutoStoreItems.Config.PM}]"));
+            args.Player.SendSuccessMessage(GetString($"您的自存[c/BBE9B7:监听]为：[c/E489C0:{data.listen}]"));
             args.Player.SendSuccessMessage(GetString($"您的[c/F2BEC0:自动识别]为：[c/87DF86:{data.AutoMode}]"));
             args.Player.SendSuccessMessage(GetString($"您的[c/BCB7E9:装备识别]为：[c/F29192:{data.ArmorMode}]"));
             args.Player.SendSuccessMessage(GetString($"您的[c/E4EFBC:手持储存]为：[c/C086DF:{data.HandMode}]"));
+            args.Player.SendSuccessMessage(GetString($"只有玩家[c/E4EFBC:移动|攻击]才会执行[c/87DF86:自存]"));
             return;
         }
         if (args.Parameters.Count == 1)
@@ -72,6 +74,17 @@ public class Commands
             if (args.Parameters[0].ToLower() == "list")
             {
                 args.Player.SendInfoMessage(GetString($"[{data.Name}的自动储存表]\n" + string.Join(", ", data.ItemType.Select(x => TShock.Utils.GetItemById(x).Name + "({0})".SFormat(x)))));
+                return;
+            }
+
+            if (args.Parameters[0].ToLower() == "pm" && args.Player.HasPermission("AutoStore.admin"))
+            {
+                var isEnabled = AutoStoreItems.Config.PM;
+                AutoStoreItems.Config.PM = !isEnabled;
+                AutoStoreItems.Config.Write();
+                var Mess = isEnabled ? GetString("禁用") : GetString("启用");
+                args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{Mess}]服务器性能模式。"));
+                args.Player.SendInfoMessage(GetString($"性能模式:不为[c/C086DF:堆叠达到单格上限]物品进行分堆累积"));
                 return;
             }
 
@@ -117,8 +130,8 @@ public class Commands
 
             if (args.Parameters[0].ToLower() == "bank")
             {
-                var isEnabled = data.Listen;
-                data.Listen = !isEnabled;
+                var isEnabled = data.listen;
+                data.listen = !isEnabled;
                 var Mess = isEnabled ? GetString("禁用") : GetString("启用");
                 args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 的储物空间位格监听功能已[c/92C5EC:{Mess}]"));
                 return;
@@ -132,8 +145,6 @@ public class Commands
                 args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 的自动储存消息已[c/92C5EC:{Mess}]"));
                 return;
             }
-
-
         }
 
         if (args.Parameters.Count == 2)
