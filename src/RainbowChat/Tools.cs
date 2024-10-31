@@ -141,7 +141,7 @@ public static class Tools
         {
             if (propertyInfo.PropertyType == typeof(Color) && propertyInfo.CanRead)
             {
-                list.Add((Color) propertyInfo.GetValue(null));
+                list.Add((Color) propertyInfo.GetValue(null)!);
             }
         }
         return list;

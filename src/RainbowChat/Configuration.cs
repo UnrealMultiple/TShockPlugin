@@ -75,7 +75,7 @@ internal class Configuration
     #region 读取与创建配置文件方法
     public void Write()
     {
-        string json = JsonConvert.SerializeObject(this, Formatting.Indented);
+        var json = JsonConvert.SerializeObject(this, Formatting.Indented);
         File.WriteAllText(FilePath, json);
     }
 
@@ -119,9 +119,9 @@ internal class Configuration
         {
             var colorObject = JObject.Load(reader);
 
-            var r = colorObject["R"].Value<byte>();
-            var g = colorObject["G"].Value<byte>();
-            var b = colorObject["B"].Value<byte>();
+            var r = colorObject["R"]?.Value<byte>() ?? throw new KeyNotFoundException("key 'R' is missing inside a 'Color' object");
+            var g = colorObject["G"]?.Value<byte>() ?? throw new KeyNotFoundException("key 'G' is missing inside a 'Color' object");
+            var b = colorObject["B"]?.Value<byte>() ?? throw new KeyNotFoundException("key 'B' is missing inside a 'Color' object");
 
             return new Color(r, g, b);
         }

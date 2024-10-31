@@ -15,16 +15,16 @@ public class Commands
         else
         {
             player.SendMessage(GetString("【自动储存】指令菜单 [i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by] [c/00FFFF:羽学][i:3459]\n") +
-             GetString("/ast —— 查看自动储存菜单\n") +
-             GetString("/astreset —— 清空[c/85CFDE:所有玩家]数据\n") +
-             GetString("/ast auto —— 开启|关闭[c/89DF85:自动识别]模式\n") +
-             GetString("/ast hand —— 开启|关闭[c/F19092:手持识别]模式\n") +
-             GetString("/ast armor —— 开启|关闭[c/F2F191:装备识别]模式\n") +
-             GetString("/ast list —— [c/85CEDF:列出]自己的[c/85CEDF:自动储存表]\n") +
-             GetString("/ast clear —— [c/E488C1:清理]自动储存表\n") +
-             GetString("/ast bank —— 监听[c/F3B691:储存空间位格]开关\n") +
-             GetString("/ast mess —— 开启|关闭物品[c/F2F292:自存消息]\n") +
-             GetString("/ast add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:删除]自存物品"), 193, 223, 186);
+                GetString("/ast —— 查看自动储存菜单\n") +
+                GetString("/astreset —— 清空[c/85CFDE:所有玩家]数据\n") +
+                GetString("/ast auto —— 开启|关闭[c/89DF85:自动识别]模式\n") +
+                GetString("/ast hand —— 开启|关闭[c/F19092:手持识别]模式\n") +
+                GetString("/ast armor —— 开启|关闭[c/F2F191:装备识别]模式\n") +
+                GetString("/ast list —— [c/85CEDF:列出]自己的[c/85CEDF:自动储存表]\n") +
+                GetString("/ast clear —— [c/E488C1:清理]自动储存表\n") +
+                GetString("/ast bank —— 监听[c/F3B691:储存空间位格]开关\n") +
+                GetString("/ast mess —— 开启|关闭物品[c/F2F292:自存消息]\n") +
+                GetString("/ast add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:删除]自存物品"), 193, 223, 186);
         }
     }
     #endregion
@@ -53,7 +53,7 @@ public class Commands
 
         if (data == null)
         {
-            args.Player.SendInfoMessage(GetString("请用角色[c/D95065:重进服务器]后输入：/ast 指令查看菜单\n羽学声明：本插件纯属[c/7E93DE:免费]请勿上当受骗", 217, 217, 217));
+            args.Player.SendMessage(GetString("请用角色[c/D95065:重进服务器]后输入：/ast 指令查看菜单\n羽学声明：本插件纯属[c/7E93DE:免费]请勿上当受骗"), 217, 217, 217);
             return;
         }
 
@@ -71,16 +71,16 @@ public class Commands
         {
             if (args.Parameters[0].ToLower() == "list")
             {
-                args.Player.SendInfoMessage(GetString($"[{data.Name}的自动储存表]\n" + string.Join(", ", data.ItemType.Select(x => TShock.Utils.GetItemById(x).Name + "({0})".SFormat(x)))));
+                args.Player.SendInfoMessage(GetString($"[{data.Name}的自动储存表]\n") + string.Join(", ", data.ItemType.Select(x => TShock.Utils.GetItemById(x).Name + "({0})".SFormat(x))));
                 return;
             }
 
             if (args.Parameters[0].ToLower() == "auto")
             {
-                var isEnabled = data.AutoMode;
-                data.AutoMode = !isEnabled;
-                var Mess = isEnabled ? GetString("禁用") : GetString("启用");
-                args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{Mess}]自动识别模式。"));
+                data.AutoMode = !data.AutoMode;
+                args.Player.SendSuccessMessage(data.AutoMode ?
+                    GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:启用]自动识别模式。") :
+                    GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:禁用]自动识别模式。"));
                 data.HandMode = false;
                 data.ArmorMode = false;
                 return;
@@ -88,10 +88,10 @@ public class Commands
 
             if (args.Parameters[0].ToLower() == "armor")
             {
-                var isEnabled = data.ArmorMode;
-                data.ArmorMode = !isEnabled;
-                var Mess = isEnabled ? GetString("禁用") : GetString("启用");
-                args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{Mess}]装备识别储存模式。"));
+                data.ArmorMode = !data.ArmorMode;
+                args.Player.SendSuccessMessage(data.ArmorMode ?
+                    GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:启用]装备识别储存模式。") :
+                    GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:禁用]装备识别储存模式。"));
                 data.AutoMode = false;
                 data.HandMode = false;
                 return;
@@ -99,10 +99,10 @@ public class Commands
 
             if (args.Parameters[0].ToLower() == "hand")
             {
-                var isEnabled = data.HandMode;
-                data.HandMode = !isEnabled;
-                var Mess = isEnabled ? GetString("禁用") : GetString("启用");
-                args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 的手持识别模式已[c/92C5EC:{Mess}]"));
+                data.HandMode = !data.HandMode;
+                args.Player.SendSuccessMessage(data.HandMode ?
+                    GetString($"玩家 [{args.Player.Name}] 的手持识别模式已[c/92C5EC:启用]") :
+                    GetString($"玩家 [{args.Player.Name}] 的手持识别模式已[c/92C5EC:禁用]"));
                 data.AutoMode = false;
                 data.ArmorMode = false;
                 return;
@@ -117,19 +117,19 @@ public class Commands
 
             if (args.Parameters[0].ToLower() == "bank")
             {
-                var isEnabled = data.Listen;
-                data.Listen = !isEnabled;
-                var Mess = isEnabled ? GetString("禁用") : GetString("启用");
-                args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 的储物空间位格监听功能已[c/92C5EC:{Mess}]"));
+                data.Listen = !data.Listen;
+                args.Player.SendSuccessMessage(data.Listen ?
+                    GetString($"玩家 [{args.Player.Name}] 的储物空间位格监听功能已[c/92C5EC:启用]") :
+                    GetString($"玩家 [{args.Player.Name}] 的储物空间位格监听功能已[c/92C5EC:禁用]"));
                 return;
             }
 
             if (args.Parameters[0].ToLower() == "mess")
             {
-                var isEnabled = data.Mess;
-                data.Mess = !isEnabled;
-                var Mess = isEnabled ? GetString("禁用") : GetString("启用");
-                args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 的自动储存消息已[c/92C5EC:{Mess}]"));
+                data.Mess = !data.Mess;
+                args.Player.SendSuccessMessage(data.Mess ?
+                    GetString($"玩家 [{args.Player.Name}] 的自动储存消息已[c/92C5EC:启用]") :
+                    GetString($"玩家 [{args.Player.Name}] 的自动储存消息已[c/92C5EC:禁用]"));
                 return;
             }
 

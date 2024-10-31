@@ -49,7 +49,7 @@ public class RainbowChat : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player.SendSuccessMessage("[彩色聊天]重新加载配置完毕。");
+        args.Player.SendSuccessMessage(GetString("[彩色聊天]重新加载配置完毕。"));
     }
     private static void LoadConfig()
     {
@@ -73,7 +73,7 @@ public class RainbowChat : TerrariaPlugin
             Config.Gradient = true;
             Gradient[plr.Index] = true;
             Config.Write();
-            plr.SendSuccessMessage("您的渐变聊天功能已自动开启.");
+            plr.SendSuccessMessage(GetString("您的渐变聊天功能已自动开启."));
         }
     }
     #endregion
@@ -110,10 +110,10 @@ public class RainbowChat : TerrariaPlugin
             Command = true;
             if (RainbowChat.Config.ErrorMess)
             {
-                ErrorMess.Append("[i:3454][c/E83849:注意][i:3454]\n");
-                ErrorMess.Append("使用[c/B0B2D1:非正版客户端]或[c/B0B2D1:语言资源包]导致TS指令异常\n" +
-                    "请服主安装[c/B0B2D1:Chireiden.TShock.Omni]插件修复\n" +
-                    "或者请玩家使用 [c/B0B2D1:．help] 代替 [c/B0B2D1:/help]");
+                ErrorMess.Append(GetString("[i:3454][c/E83849:注意][i:3454]\n"));
+                ErrorMess.Append(GetString("使用[c/B0B2D1:非正版客户端]或[c/B0B2D1:语言资源包]导致TS指令异常\n") +
+                    GetString("请服主安装[c/B0B2D1:Chireiden.TShock.Omni]插件修复\n") +
+                    GetString("或者请玩家使用 [c/B0B2D1:.help] 代替 [c/B0B2D1:/help]"));
                 plr.SendInfoMessage(string.Format($"{ErrorMess}", Color.Yellow));
             }
         }
