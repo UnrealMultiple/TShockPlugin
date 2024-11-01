@@ -19,7 +19,7 @@ public class RPG : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 6);
+    public override Version Version => new(1, 0, 0, 7);
 
     internal static Config Config { get; set; } = new Config();
 
