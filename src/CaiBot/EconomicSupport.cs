@@ -2,7 +2,6 @@
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using TerrariaApi.Server;
-using TShockAPI;
 
 namespace CaiBot;
 
