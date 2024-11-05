@@ -198,7 +198,7 @@ public class AutoFish : TerrariaPlugin
                 if (Config.DoorItems.Any())
                 {
                     //确保浮漂正在运动，没有鱼上钩（即ai[1]小于等于0）
-                    if (args.Projectile.ai[1] <= 0)
+                    if (args.Projectile.ai[1] < 0)
                     {
                         // 从DoorItems中随机选择一个物品，并将其ID赋值给ai[1]，模拟有新鱼上钩的情况
                         args.Projectile.ai[1] = Convert.ToSingle(Config.DoorItems.OrderByDescending(x => Guid.NewGuid()).First());
