@@ -158,6 +158,7 @@
 | [RegionView](src/RegionView/README.md) | 显示区域边界 | 无 |
 | [ReFishTask](src/ReFishTask/README.md) | 自动刷新渔夫任务 | 无 |
 | [Respawn](src/Respawn/README.md) | 原地复活 | 无 |
+| [RebirthCoin](src/RebirthCoin/README.md) | 复活币 | 无 |
 | [RestInventory](src/RestInventory/README.md) | 提供 REST 查询背包接口 | 无 |
 | [Sandstorm](src/Sandstorm/README.md) | 切换沙尘暴 | 无 |
 | [ServerTools](src/ServerTools/README.md) | 服务器管理工具 | 无 |

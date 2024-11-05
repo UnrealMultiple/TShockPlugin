@@ -154,6 +154,7 @@
 | [RegionView](src/RegionView/README.md) | No | Display area boundaries | No |
 | [ReFishTask](src/ReFishTask/README.md) | No | Automatically refresh fisherman tasks | No |
 | [Respawn](src/Respawn/README.md) | No | Respawn at the death place | No |
+| [RebirthCoin](src/RebirthCoin/README_EN.md) | Yes | Consume designated items to revive player | No |
 | [RestInventory](src/RestInventory/README.md) | No | Provide REST query backpack interface | No |
 | [Sandstorm](src/Sandstorm/README.md) | No | Toggle sandstorm | No |
 | [ServerTools](src/ServerTools/README.md) | No | Server management tools | No |

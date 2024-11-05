@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AutoAirItem\n"
 "POT-Creation-Date: 2024-11-05 23:19:09+0800\n"
-"PO-Revision-Date: 2024-11-05 23:24+0800\n"
+"PO-Revision-Date: 2024-11-06 00:56+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -46,7 +46,7 @@ msgstr "/air —— AutoAirItem Help\n"
 #, csharp-format
 msgid "/air add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:移出]垃圾桶物品"
 msgstr ""
-"/air add 或 del name — [c/87DF86:Add] | [c/F19092:Remove] trash bin items"
+"/air <add> or <del> name — [c/87DF86:Add] | [c/F19092:Remove] trash bin items"
 
 #: ..\..\Commands.cs:24
 msgid "/air auto —— 监听[c/F3B691:垃圾桶位格]开关\n"

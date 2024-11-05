@@ -246,6 +246,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyAPI", "src\LazyAPI\Lazy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoFish", "src\AutoFish\AutoFish.csproj", "{1225C358-E037-41BF-A249-C2AB071D80FF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RebirthCoin", "src\RebirthCoin\RebirthCoin.csproj", "{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1206,6 +1208,14 @@ Global
 		{1225C358-E037-41BF-A249-C2AB071D80FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1225C358-E037-41BF-A249-C2AB071D80FF}.Release|x64.ActiveCfg = Release|Any CPU
 		{1225C358-E037-41BF-A249-C2AB071D80FF}.Release|x64.Build.0 = Release|Any CPU
+		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Debug|x64.Build.0 = Debug|Any CPU
+		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Release|x64.ActiveCfg = Release|Any CPU
+		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
