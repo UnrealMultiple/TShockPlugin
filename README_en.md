@@ -61,11 +61,12 @@
 | [AdditionalPylons](src/AdditionalPylons/README_EN.md) | Yes | Place more Pylons | No |
 | [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | No | Enhance Broadcast Box Functionality | No |
 | [AutoBroadcast](src/AutoBroadcast/README_EN.md) | Yes | Automatic broadcast | No |
-| [AutoAirItem](src/AutoAirItem/README_EN.md) | Yes | Automatic trash cans | No |
+| [AutoAirItem](src/AutoAirItem/README_EN.md) | No | Automatic trash cans | No |
 | [AutoClear](src/Autoclear/README_EN.md) | Yes | Intelligent automatic cleaning | No |
 | [AutoReset](src/AutoReset/README_EN.md) | Yes | Fully automatic reset | No |
-| [AutoStoreItems](src/AutoStoreItems/README_EN.md) | Yes | Automatic storage | No |
+| [AutoStoreItems](src/AutoStoreItems/README_EN.md) | No | Automatic storage | No |
 | [AutoTeam](src/AutoTeam/README_EN.md) | Yes | Automatic team formation | No |
+| [AutoFish](src/AutoFish/README_EN.md) | No | Automatic fishing | No |
 | [Back](src/Back/README_EN.md) | Yes | Return to the point of death | No |
 | [BagPing](src/BagPing/README_EN.md) | Yes | Mark treasure bags on the map | No |
 | [BetterWhitelist](src/BetterWhitelist/README_EN.md) | Yes | Whitelist plugin | No |
