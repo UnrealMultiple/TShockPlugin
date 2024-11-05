@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AutoFish\n"
 "POT-Creation-Date: 2024-11-05 23:00:31+0800\n"
-"PO-Revision-Date: 2024-11-05 23:18+0800\n"
+"PO-Revision-Date: 2024-11-06 01:13+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -67,7 +67,7 @@ msgstr "/af duo <Number> -- Set the [c/4686D4:hook count]\n"
 
 #: ..\..\Commands.cs:62
 msgid "/af mod -- 开启丨关闭[c/50D647:消耗模式]"
-msgstr "`/af mod -- Enable | Disable [c/50D647:Consumption Mode]"
+msgstr "/af mod -- Enable | Disable [c/50D647:Consumption Mode]"
 
 #: ..\..\Commands.cs:60
 msgid "/af more -- 开启丨关闭[c/DB48A7:多线模式]\n"
