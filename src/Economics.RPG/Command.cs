@@ -29,7 +29,7 @@ public class Command
                     args.Player.SendErrorMessage(GetString($"等级 {args.Parameters[0]} 不存在！ "));
                     return;
                 }
-                if (ranklevel.SelectedWeapon.Count >= 0 && !ranklevel.SelectedWeapon.Contains(args.Player.SelectedItem.netID))
+                if (ranklevel.SelectedWeapon.Count > 0 && !ranklevel.SelectedWeapon.Contains(args.Player.SelectedItem.netID))
                 {
                     args.Player.SendErrorMessage(GetString($"升级至 {args.Parameters[0]} 需要手持武器{string.Join(",", ranklevel.SelectedWeapon.Select(i => TShock.Utils.GetItemById(i).Name))}！ "));
                     return;
