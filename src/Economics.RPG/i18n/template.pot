@@ -34,17 +34,17 @@ msgstr ""
 
 #: ../../RPG.cs:86
 #, csharp-format
-msgid "当前职业: {0}"
+msgid "升级所需 {0}，你当前{1}仅有{2}!"
 msgstr ""
 
 #: ../../Command.cs:29
 #, csharp-format
-msgid "等级 {0} 不存在！ "
+msgid "升级职业: {0}"
 msgstr ""
 
 #: ../../Setting/Config.cs:35
 #, csharp-format
-msgid "等级 {0} 空引用等级 {1}"
+msgid "升级至 {0} 需要手持武器{1}！ "
 msgstr ""
 
 #: ../../Command.cs:17
@@ -81,8 +81,9 @@ msgstr ""
 
 #: ../../Command.cs:34
 #: ../../Command.cs:69
+
 #, csharp-format
-msgid "升级至 {0} 需要手持武器{1}！ "
+msgid "等级 {0} 不存在！ "
 msgstr ""
 
 #: ../../Command.cs:123

@@ -21,7 +21,7 @@ public static class MessageHandle
 
     public static async Task SendDateAsync(string message)
     {
-        if (Program.LaunchParameters.ContainsKey("-caidebug"))
+        if (Plugin.DebugMode)
         {
             TShock.Log.ConsoleInfo($"[CaiAPI]发送BOT数据包：{message}");
         }
@@ -85,6 +85,7 @@ public static class MessageHandle
                 Random rnd = new ();
                 Plugin.InitCode = rnd.Next(10000000, 99999999);
                 TShock.Log.ConsoleError($"[CaiBot]您的服务器绑定码为: {Plugin.InitCode}");
+                await Plugin.WebSocket.CloseAsync(WebSocketCloseStatus.Empty,"", new CancellationToken());
                 break;
             case "hello":
                 TShock.Log.ConsoleInfo("[CaiAPI]CaiBOT连接成功...");

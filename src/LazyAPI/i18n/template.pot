@@ -1,0 +1,48 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: LazyAPI\n"
+"POT-Creation-Date: 2024-10-31 15:29:33+0000\n"
+"PO-Revision-Date: 2024-10-31 15:29:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+
+#: ../../LazyPlugin.cs:56
+#, csharp-format
+msgid "[{0}] command registered: {1}"
+msgstr ""
+
+#: ../../LazyPlugin.cs:51
+#, csharp-format
+msgid "[{0}] config registered: {1}"
+msgstr ""
+
+#: ../../RestHelper.cs:56
+#, csharp-format
+msgid "[{0}] rest endpoint registered: /{1}/{2}"
+msgstr ""
+
+#: ../../Commands/Command.HelpCommand.cs:29
+msgid "available usage:"
+msgstr ""
+
+#: ../../Commands/CommandHelper.cs:75
+#, csharp-format
+msgid "most match: {0}"
+msgstr ""
+
+#: ../../Commands/CommandHelper.cs:76
+msgid "use subcommand `help` for more usage"
+msgstr ""
+
+#: ../../Commands/CommandBase.cs:20
+msgid "You do not have access to this command."
+msgstr ""
+
+#: ../../Commands/CommandBase.cs:21
+msgid "You must use this command in-game."
+msgstr ""
+

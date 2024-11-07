@@ -128,6 +128,7 @@
 | [ItemBox](src/ItemBox/README.md) | 离线背包系统，物品盒子 | 无 |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | 解锁旅途物品 | 无 |
 | [Lagrange.XocMat.Adapter](src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 | 无 |
+| [LazyAPI](src/LazyAPI/README.md) | 插件基础库 | linq2db |
 | [LifemaxExtra](src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | 无 |
 | [ListPlugins](src/ListPlugins/README.md) | 查已装插件 | 无 |
 | [MapTeleport](src/MapTp/README.md) | 双击大地图传送 | 无 |
@@ -175,6 +176,7 @@
 | [TownNPCHomes](src/TownNPCHomes/README.md) | NPC 快速回家 | 无 |
 | [UnseenInventory](src/UnseenInventory/README.md) | 允许服务器端生成“无法获取”的物品 | 无 |
 | [VeinMiner](src/VeinMiner/README.md) | 连锁挖矿 | 无 |
+| [VotePlus](src/VotePlus/README.md) | 多功能投票 | 无 |
 | [WeaponPlusCostCoin](src/WeaponPlusCostCoin/README.md) | 武器强化钱币版 | 无 |
 | [WikiLangPackLoader](src/WikiLangPackLoader/README.md) | 为服务器加载 Wiki 语言包 | 无 |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 世界编辑器,可以修改大部分的世界参数 | 无 |
