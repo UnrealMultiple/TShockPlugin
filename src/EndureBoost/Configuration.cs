@@ -1,9 +1,14 @@
 ﻿using Newtonsoft.Json;
+using Org.BouncyCastle.Asn1.X509;
+using System.Text.Json.Serialization;
 using TShockAPI;
 
 public class Configuration
 {
     public static readonly string FilePath = Path.Combine(TShock.SavePath, "EndureBoost.json");
+
+    [JsonProperty("自动更新频率(s)")]
+    public int UpdateFrequency { get; set; } = -1;
     [JsonProperty("猪猪储钱罐")]
     public bool bank = true;
     [JsonProperty("保险箱")]
@@ -18,24 +23,81 @@ public class Configuration
     public class Potion
     {
         [JsonProperty("药水id")]
-        public int[] ItemID { get; set; }
+        public int[] PotionID { get; set; }
         [JsonProperty("药水数量")]
         public int RequiredStack { get; set; }
     }
 
-    public class Station
+    public class Inventory
     {
+        [JsonProperty("同时拥有时触发")]
+        public bool Trigger { get; set; }
         [JsonProperty("物品id")]
-        public int[] Type { get; set; }
+        public int[] ItemID { get; set; }
         [JsonProperty("物品数量")]
         public int RequiredStack { get; set; }
         [JsonProperty("给buff的id")]
-        public int BuffType { get; set; }
+        public int[] BuffType { get; set; }
     }
+
+    public class Accessorie
+    {
+        [JsonProperty("同时拥有时触发")]
+        public bool Trigger { get; set; }
+
+        [JsonProperty("配饰id")]
+        public int[] AccessorieID { get; set; }
+
+        [JsonProperty("物品数量")]
+        public int RequiredStack { get; set; }
+
+        [JsonProperty("给buff的id")]
+        public int[] BuffType { get; set; }
+
+        [JsonProperty("非本装备栏也触发")]
+        public bool AllowOtherLoadouts { get; set; }
+
+        [JsonProperty("社交栏也触发")]
+        public bool AllowSocialSlot { get; set; }
+    }
+
+
+    public class Dye
+    {
+        [JsonProperty("同时拥有时触发")]
+        public bool Trigger { get; set; }
+        [JsonProperty("染料id")]
+        public int[] DyeID { get; set; } // 包含染料的ID
+        [JsonProperty("物品数量")]
+        public int RequiredStack { get; set; }
+        [JsonProperty("给buff的id")]
+        public int[] BuffType { get; set; }
+        [JsonProperty("非本装备栏也触发")]
+        public bool AllowOtherLoadouts { get; set; }
+    }
+
+    public class Custom
+    {
+        [JsonProperty("同时拥有时触发")]
+        public bool Trigger { get; set; }
+        [JsonProperty("物品id")]
+        public int[] CustomItemID { get; set; }
+        [JsonProperty("物品数量")]
+        public int RequiredStack { get; set; }
+        [JsonProperty("给buff的id")]
+        public int[] BuffType { get; set; }
+    }
+
     [JsonProperty("药水")]
     public List<Potion> Potions { get; set; } = new List<Potion>();
-    [JsonProperty("其他物品")]
-    public List<Station> Stations { get; set; } = new List<Station>();
+    [JsonProperty("背包")]
+    public List<Inventory> Inventorys { get; set; } = new List<Inventory>();
+    [JsonProperty("配饰")]
+    public List<Accessorie> Accessories { get; set; } = new List<Accessorie>();
+    [JsonProperty("染料")]
+    public List<Dye> Dyes { get; set; } = new List<Dye>();
+    [JsonProperty("全部物品")]
+    public List<Custom> Customs { get; set; } = new List<Custom>();
 
     public void Write(string path)
     {

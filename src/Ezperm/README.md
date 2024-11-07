@@ -8,6 +8,8 @@
 ## 更新日志
 
 ```
+v1.2.4
+默认数据添加召唤城镇宠物的权限
 v1.2.3
 把这个抽象代码改了，支持没有该组自动创建
 v1.2.2
@@ -40,6 +42,7 @@ v1.2.1
         "tshock.tp.wormhole",
         "tshock.npc.summonboss",
         "tshock.npc.startinvasion",
+        "tshock.npc.spawnpets",
         "tshock.world.time.usesundial"
       ],
       "删除的权限": [

@@ -9,7 +9,7 @@ namespace VeinMiner;
 public class VeinMiner : TerrariaPlugin
 {
     public override string Name => "VeinMiner";
-    public override Version Version => new Version(1, 6, 0, 5);
+    public override Version Version => new Version(1, 6, 0, 6);
     public override string Author => "Megghy|YSpoof|Maxthegreat99|肝帝熙恩";
     public override string Description => "VeinMiner by Megghy 适用于 TShock 5.2 支持！";
 
@@ -112,17 +112,24 @@ public class VeinMiner : TerrariaPlugin
                 {
                     if (e.Item.Count <= plr.GetBlankSlot())
                     {
-                        e.Item.ForEach(ex => plr.GiveItem(ex.Key, ex.Value));
-                        if (e.OnlyGiveItem)
+                        if (plr.IsSpaceEnough(item.netID, mineCount))
                         {
-                            mineCount = KillTileAndSend(list, true);
+                            e.Item.ForEach(ex => plr.GiveItem(ex.Key, ex.Value));
+                            if (e.OnlyGiveItem)
+                            {
+                                mineCount = KillTileAndSend(list, true);
+                                plr.SendInfoMessage(GetString($"[c/95CFA6:<VeinMiner>] 已给予奖励物品"));
+                            }
+                            else
+                            {
+                                GiveItem();
+                                plr.SendInfoMessage(GetString($"[c/95CFA6:<VeinMiner>] 已给予奖励物品"));
+                            }
                         }
                         else
                         {
-                            GiveItem();
+                                GiveItem();
                         }
-
-                        plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {mineCount} {(item.type == 0 ? GetString("未知") : item.Name)}]."), Color.White);
                         return;
                     }
 
@@ -134,15 +141,19 @@ public class VeinMiner : TerrariaPlugin
             {
                 GiveItem();
             }
-
             void GiveItem()
             {
+                if (plr.GetData<VMStatus>("VeinMiner").EnableBroadcast && Config.Broadcast && mineCount > 1)
+                {
+                    plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{mineCount} {(item.type == 0 ? "未知" : item.Name)}]."), Color.White);
+                }
                 if (Config.PutInInventory)
                 {
                     if (plr.IsSpaceEnough(item.netID, mineCount))
                     {
                         mineCount = KillTileAndSend(list, true);
                         plr.GiveItem(item.netID, mineCount);
+                        plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {mineCount} {(item.type == 0 ? GetString("未知") : item.Name)}]."), Color.White);
 
                     }
                     else
@@ -154,11 +165,6 @@ public class VeinMiner : TerrariaPlugin
                 else
                 {
                     mineCount = KillTileAndSend(list, false);
-                }
-
-                if (plr.GetData<VMStatus>("VeinMiner").EnableBroadcast && Config.Broadcast && mineCount > 1)
-                {
-                    plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{mineCount} {(item.type == 0 ? "未知" : item.Name)}]."), Color.White);
                 }
             }
         }

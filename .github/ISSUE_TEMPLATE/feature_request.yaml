@@ -1,7 +1,7 @@
-name: 请求新功能 | Request New Feature
-description: 提交一个本仓库插件BUG | Submit a bug for this repository plugin
+name: 请求新功能(建议) | Request New Feature(Suggestion)
+description: 请求一个插件的新功能(建议) | Request a new plugin feature (or suggestion)
 title: '[建议|Suggestion] '
-labels: suggest
+labels: enhancement
 body:
   - type: markdown
     attributes:

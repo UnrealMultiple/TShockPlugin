@@ -21,7 +21,7 @@ public class WeaponPlus : TerrariaPlugin
 
     public override string Description => "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes";
 
-    public override Version Version => new Version(1, 0, 0, 4);
+    public override Version Version => new Version(1, 0, 0, 5);
     #endregion
 
     #region 实例变量
@@ -573,7 +573,7 @@ public class WeaponPlus : TerrariaPlugin
             TShock.Players[whoAMI].SendMessage(GetString("当前该类型升级已达到上限，无法升级"), Color.Red);
             return false;
         }
-        if (EconomicsAPI.Economics.CurrencyManager.DelUserCurrency(name, price))
+        if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(name, price))
         {
             WItem.allCost += price;
             TShock.Players[whoAMI].SendMessage(GetString("扣除" + EconomicsAPI.Economics.Setting.CurrencyName + "：") + price + "，" + GetString("当前剩余：") + EconomicsAPI.Economics.CurrencyManager.GetUserCurrency(name), new Color(99, 106, 255));

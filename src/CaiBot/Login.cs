@@ -11,7 +11,54 @@ namespace CaiBot;
 
 public static class Login
 {
-    public static async void OnGetData(GetDataEventArgs args)
+
+    public static bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig,
+        MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length,
+        ref int messageType, int maxPackets)
+    {
+        if (!Config.config.WhiteList)
+        {
+            return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+        }
+
+        try
+        {
+            if (packetId == (byte) PacketTypes.ClientUUID)
+            {
+                var player = TShock.Players[instance.whoAmI];
+                instance.ResetReader();
+                instance.reader.BaseStream.Position = readOffset;
+                var uuid = instance.reader.ReadString();
+                if (string.IsNullOrEmpty(player.Name))
+                {
+                    player.Kick("[Cai白名单]玩家名获取失败!");
+                    return false;
+                }
+
+                RestObject re = new ()
+                {
+                    { "type", "whitelistV2" }, { "name", player.Name }, { "uuid", uuid }, { "ip", player.IP },
+                };
+                if (!MessageHandle.IsWebsocketConnected)
+                {
+                    TShock.Log.ConsoleError("[CaiBot]机器人处于未连接状态, 玩家无法加入。\n" +
+                                            "如果你不想使用Cai白名单，可以在tshock/CaiBot.json中将其关闭。");
+                    player.Kick("[CaiBot]机器人处于未连接状态, 玩家无法加入。");
+
+                    return false;
+                }
+
+                MessageHandle.SendDateAsync(re.ToJson());
+            }
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.ConsoleError(ex.ToString());
+        }
+        return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+    }
+
+    public static void OnGetData(GetDataEventArgs args)
     {
         if (!Config.config.WhiteList)
         {
@@ -26,13 +73,7 @@ public static class Login
             args.Handled = true;
             return;
         }
-
-        if (player.RequiresPassword && type != PacketTypes.PasswordSend)
-        {
-            args.Handled = true;
-            return;
-        }
-
+        
         if ((player.State < 10 || player.Dead) && (int) type > 12 && (int) type != 16 && (int) type != 42 &&
             (int) type != 50 &&
             (int) type != 38 && (int) type != 21 && (int) type != 22)
@@ -43,42 +84,13 @@ public static class Login
 
         try
         {
-            using MemoryStream data = new(args.Msg.readBuffer, args.Index, args.Length - 1);
-            // ReSharper disable once ConvertIfStatementToSwitchStatement
             if (type == PacketTypes.ContinueConnecting2)
             {
-                //UserAccount account = TShock.UserAccounts.GetUserAccountByName(player.Name);
                 player.DataWhenJoined = new PlayerData(player);
                 player.DataWhenJoined.CopyCharacter(player);
-                //NetMessage.TrySendData(68, -1, -1, null, args.Index);
                 args.Handled = true;
             }
-            else if (type == PacketTypes.PlayerInfo)
-            {
-                if (player.IsLoggedIn)
-                {
-                    return;
-                }
-
-                data.ReadByte();
-                data.ReadByte();
-                data.ReadByte();
-                var name = data.ReadString().Trim().Trim();
-                RestObject re = new()
-                {
-                    { "type", "whitelist" },
-                    { "name", name }
-                };
-                if (!MessageHandle.IsWebsocketConnected)
-                {
-                    TShock.Log.ConsoleError("[CaiBot]机器人处于未连接状态, 玩家无法加入。\n" +
-                                            "如果你不想使用Cai白名单，可以在tshock/CaiBot.json中将其关闭。");
-
-                    return;
-                }
-
-                await MessageHandle.SendDateAsync(re.ToJson());
-            }
+            
         }
         catch (Exception e)
         {
@@ -86,7 +98,7 @@ public static class Login
         }
     }
 
-    public static async Task<bool> CheckWhiteAsync(string name, int code, List<string> uuids)
+    public static async Task<bool> CheckWhiteAsync(string name, int code)
     {
         var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
         var number = Config.config.GroupNumber;
@@ -118,7 +130,7 @@ public static class Login
                 {
                     TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})没有添加白名单...");
                     plr.SilentKickInProgress = true;
-                    plr.Disconnect($"没有添加白名单!\n" +
+                    plr.Disconnect($"[Cai白名单]没有添加白名单!\n" +
                                    $"请在群{number}内发送'添加白名单 角色名字'");
                     return false;
                 }
@@ -138,34 +150,15 @@ public static class Login
                                    $"请加入服务器群: {number}");
                     return false;
                 }
-            }
-
-            if (!uuids.Contains(plr.UUID))
-            {
-                if (string.IsNullOrEmpty(plr.UUID))
-
+                case 405:
                 {
+                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})使用未授权的设备...");
                     plr.SilentKickInProgress = true;
-                    plr.Disconnect("[Cai白名单]UUID获取失败!\n" +
-                                   "请尝试重新加入游戏或者联系服务器管理员");
+                    plr.Disconnect($"[Cai白名单]在群{number}内发送'登录',\n" +
+                                   $"以批准此设备登录");
+                    
                     return false;
                 }
-
-                TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})使用未授权的设备...");
-                plr.SilentKickInProgress = true;
-                plr.Disconnect($"[Cai白名单]在群{number}内发送'登录',\n" +
-                               $"以批准此设备登录");
-
-                RestObject re = new()
-                {
-                    { "type", "device" },
-                    { "uuid", plr.UUID },
-                    { "ip", plr.IP },
-                    { "name", name }
-                };
-                await MessageHandle.SendDateAsync(re.ToJson());
-
-                return false;
             }
         }
         catch (Exception ex)

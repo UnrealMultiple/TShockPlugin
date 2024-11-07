@@ -23,9 +23,15 @@ public class Command
             if (args.Parameters.Count > 0)
             {
                 var ranklevel = level.RankLevels.Find(x => x.Name == args.Parameters[0]);
+
                 if (ranklevel == null)
                 {
                     args.Player.SendErrorMessage(GetString($"等级 {args.Parameters[0]} 不存在！ "));
+                    return;
+                }
+                if (ranklevel.SelectedWeapon.Count > 0 && !ranklevel.SelectedWeapon.Contains(args.Player.SelectedItem.netID))
+                {
+                    args.Player.SendErrorMessage(GetString($"升级至 {args.Parameters[0]} 需要手持武器{string.Join(",", ranklevel.SelectedWeapon.Select(i => TShock.Utils.GetItemById(i).Name))}！ "));
                     return;
                 }
                 if (!args.Player.InProgress(ranklevel.Limit))
@@ -33,7 +39,7 @@ public class Command
                     args.Player.SendErrorMessage(GetString($"必须满足进度限制:{string.Join(",", ranklevel.Limit)}"));
                     return;
                 }
-                if (EconomicsAPI.Economics.CurrencyManager.DelUserCurrency(args.Player.Name, ranklevel.Cost))
+                if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, ranklevel.Cost))
                 {
                     args.Player.SendSuccessMessage(GetString($"成功升级至 {ranklevel.Name}!"));
                     TShock.Utils.Broadcast(string.Format(ranklevel.RankBroadcast, args.Player.Name, ranklevel.Name), Color.Green);
@@ -58,12 +64,17 @@ public class Command
         else if (level.RankLevels.Count == 1)
         {
             var ranklevel = level.RankLevels[0];
+            if (ranklevel.SelectedWeapon.Count > 0 && !ranklevel.SelectedWeapon.Contains(args.Player.SelectedItem.netID))
+            {
+                args.Player.SendErrorMessage(GetString($"升级至 {args.Parameters[0]} 需要手持武器{string.Join(",", ranklevel.SelectedWeapon.Select(i => TShock.Utils.GetItemById(i).Name))}！ "));
+                return;
+            }
             if (!args.Player.InProgress(ranklevel.Limit))
             {
                 args.Player.SendErrorMessage(GetString($"必须满足进度限制:{string.Join(",", ranklevel.Limit)}"));
                 return;
             }
-            if (EconomicsAPI.Economics.CurrencyManager.DelUserCurrency(args.Player.Name, ranklevel.Cost))
+            if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, ranklevel.Cost))
             {
                 args.Player.SendSuccessMessage(GetString($"成功升级至 {ranklevel.Name}!"));
                 TShock.Utils.Broadcast(string.Format(ranklevel.RankBroadcast, args.Player.Name, ranklevel.Name), Color.Green);
@@ -83,7 +94,7 @@ public class Command
     }
 
     [CommandMap("重置等级", "economics.rpg.reset")]
-    public void ResetLevel(CommandArgs args)
+    public static void ResetLevel(CommandArgs args)
     {
         if (!args.Player.IsLoggedIn)
         {
@@ -104,7 +115,7 @@ public class Command
     }
 
     [CommandMap("level", "economics.rpg.admin")]
-    public void Level(CommandArgs args)
+    public static void Level(CommandArgs args)
     {
         if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "reset")
         {
