@@ -66,6 +66,7 @@
 | [AutoReset](src/AutoReset/README_EN.md) | Yes | Fully automatic reset | No |
 | [AutoStoreItems](src/AutoStoreItems/README_EN.md) | Yes | Automatic storage | No |
 | [AutoTeam](src/AutoTeam/README_EN.md) | Yes | Automatic team formation | No |
+| [AutoFish](src/AutoFish/README_EN.md) | Yes | Automatic fishing | No |
 | [Back](src/Back/README_EN.md) | Yes | Return to the point of death | No |
 | [BagPing](src/BagPing/README_EN.md) | Yes | Mark treasure bags on the map | No |
 | [BetterWhitelist](src/BetterWhitelist/README_EN.md) | Yes | Whitelist plugin | No |
@@ -86,7 +87,7 @@
 | [ChestRestore](src/ChestRestore/README_EN.md) | Yes | Infinite items in resource servers | No |
 | [CNPCShop](src/CNPCShop/README.md) | No | Custom NPC shop | No |
 | [ConsoleSql](src/ConsoleSql/README.md) | No | Execute SQL statements in the console | No |
-| [ConvertWorld](src/ConvertWorld/README.md) | No | Convert world items by defeating monsters | No |
+| [ConvertWorld](src/ConvertWorld/README_EN.md) | Yes | Convert world items by defeating monsters | No |
 | [CreateSpawn](src/CreateSpawn/README.md) | No | Spawn point building generation | No |
 | [CriticalHit](src/CriticalHit/README.md) | No | Critical hit prompt | No |
 | [DamageRuleLoot](src/DamageRuleLoot/README_EN.md) | Yes | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation | No |
@@ -145,7 +146,7 @@
 | [ProgressControls](src/ProgressControls/README.md) | No | Planbook (Automate server control) | No |
 | [ProgressRestrict](src/ProgressRestrict/README.md) | No | Super progress detection | [DataSync](src/DataSync/README.md) |
 | [ProxyProtocolSocket](src/ProxyProtocolSocket/README.md) | No | Accept proxy protocol connections | No |
-| [RainbowChat](src/RainbowChat/README.md) | No | Random chat color | No |
+| [RainbowChat](src/RainbowChat/README.md) | Yes | Random chat color | No |
 | [RandomBroadcast](src/RandomBroadcast/README.md) | No | Random broadcast | No |
 | [RandReSpawn](src/RandRespawn/README.md) | Yes | Random spawn point | No |
 | [RealTime](src/RealTime/README.md) | No | Synchronize server time with real time | No |
@@ -153,6 +154,7 @@
 | [RegionView](src/RegionView/README.md) | No | Display area boundaries | No |
 | [ReFishTask](src/ReFishTask/README.md) | No | Automatically refresh fisherman tasks | No |
 | [Respawn](src/Respawn/README.md) | No | Respawn at the death place | No |
+| [RebirthCoin](src/RebirthCoin/README_EN.md) | Yes | Consume designated items to revive player | No |
 | [RestInventory](src/RestInventory/README.md) | No | Provide REST query backpack interface | No |
 | [Sandstorm](src/Sandstorm/README.md) | No | Toggle sandstorm | No |
 | [ServerTools](src/ServerTools/README.md) | No | Server management tools | No |

@@ -70,7 +70,7 @@ public class TimeRate : TerrariaPlugin
         //用标识决定是否发包优化时间流逝视觉
         var Update = false;
 
-        if (plrCount > 0 && (Config.Enabled || (all && Config.All) || (one && Config.One)) || plrCount == 0)
+        if ((plrCount > 0 && (Config.Enabled || (all && Config.All) || (one && Config.One))) || plrCount == 0)
         {
             var Rate = plrCount > 0 && (Config.Enabled || (all && Config.All) || (one && Config.One)) ? Config.UpdateRate : 1;
 
