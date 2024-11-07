@@ -387,7 +387,7 @@ public partial class Plugin : TerrariaPlugin
     {
         if (Main.projectile[e.Index].sentry)
         {
-            if (Main.projectile.Where(x => x.owner == e.Owner).Count() > Config.sentryLimit)
+            if (Main.projectile.Where(x => x != null && x.owner == e.Owner && x.sentry && x.active).Count() > Config.sentryLimit)
             {
                 Main.projectile[e.Index].active = false;
                 e.Handled = true;
@@ -397,7 +397,7 @@ public partial class Plugin : TerrariaPlugin
         }
         if (Main.projectile[e.Index].minion)
         {
-            if (Main.projectile.Where(x => x.owner == e.Owner).Count() > Config.summonLimit)
+            if (Main.projectile.Where(x => x != null && x.owner == e.Owner && x.minion && x.active).Count() > Config.summonLimit)
             {
                 Main.projectile[e.Index].active = false;
                 e.Handled = true;
