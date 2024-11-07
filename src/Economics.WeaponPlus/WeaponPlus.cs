@@ -21,7 +21,7 @@ public class WeaponPlus : TerrariaPlugin
 
     public override string Description => "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes";
 
-    public override Version Version => new Version(1, 0, 0, 5);
+    public override Version Version => new Version(2, 0, 0, 0);
     #endregion
 
     #region 实例变量
@@ -176,11 +176,11 @@ public class WeaponPlus : TerrariaPlugin
                     return;
                 }
                 var num = (long) (select.allCost * config.ResetTheWeaponReturnMultiple);
-                EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num);
+                EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num, config.Currency);
                 wPlayer.hasItems.RemoveAll((x) => x.id == firstItem.netID);
                 DB.DeleteDB(args.Player.Name, firstItem.netID);
                 ReplaceWeaponsInBackpack(args.Player.TPlayer, select, 1);
-                args.Player.SendMessage(GetString("完全重置成功！" + EconomicsAPI.Economics.Setting.CurrencyName + "回收：") + num, new Color(0, 255, 0));
+                args.Player.SendMessage(GetString("完全重置成功！" + config.Currency + "回收：") + num, new Color(0, 255, 0));
             }
             else
             {
@@ -573,13 +573,13 @@ public class WeaponPlus : TerrariaPlugin
             TShock.Players[whoAMI].SendMessage(GetString("当前该类型升级已达到上限，无法升级"), Color.Red);
             return false;
         }
-        if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(name, price))
+        if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(name, price, config.Currency))
         {
             WItem.allCost += price;
-            TShock.Players[whoAMI].SendMessage(GetString("扣除" + EconomicsAPI.Economics.Setting.CurrencyName + "：") + price + "，" + GetString("当前剩余：") + EconomicsAPI.Economics.CurrencyManager.GetUserCurrency(name), new Color(99, 106, 255));
+            TShock.Players[whoAMI].SendMessage(GetString("扣除" + config.Currency + "：") + price + "，" + GetString("当前剩余：") + EconomicsAPI.Economics.CurrencyManager.GetUserCurrency(name, config.Currency).Number, new Color(99, 106, 255));
             return true;
         }
-        TShock.Players[whoAMI].SendInfoMessage(GetString(EconomicsAPI.Economics.Setting.CurrencyName + "不足！"));
+        TShock.Players[whoAMI].SendInfoMessage(GetString(config.Currency + "不足！"));
         return false;
     }
     #endregion

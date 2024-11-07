@@ -43,7 +43,7 @@ public class Command
             var line = new List<string>();
             for (var i = 0; i < Skill.Config.SkillContexts.Count; i++)
             {
-                line.Add(GetString($"{i + 1}. {Skill.Config.SkillContexts[i].Name}  价格 {Skill.Config.SkillContexts[i].Cost}"));
+                line.Add(GetString($"{i + 1}. {Skill.Config.SkillContexts[i].Name}  价格 {string.Join(" ", Skill.Config.SkillContexts[i].RedemptionRelationshipsOption.Select(x => $"{x.CurrencyType}x{x.Number}"))})"));
             }
 
             Show(line);
@@ -62,9 +62,9 @@ public class Command
                     try
                     {
                         var skill = Utils.VerifyBindSkill(args.Player, index);
-                        if (!EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, skill.Cost))
+                        if (!EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, skill.RedemptionRelationshipsOption))
                         {
-                            args.Player.SendErrorMessage(GetString($"你的{EconomicsAPI.Economics.Setting.CurrencyName} 不足购买此技能!"));
+                            args.Player.SendErrorMessage(GetString($"你的货币不足购买此技能!"));
                             return;
                         }
                         Skill.PlayerSKillManager.Add(args.Player.Name, args.Player.SelectedItem.netID, index);

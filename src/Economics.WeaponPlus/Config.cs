@@ -1,3 +1,4 @@
+using EconomicsAPI.Configured;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -56,6 +57,9 @@ public class Config
     public float MaximumDamageMultipleOfOtherWeapons = 2f;
     [JsonProperty("其他武器升级攻速上限", Order = 2)]
     public int MaximumAttackSpeedOfOtherWeaponUpgrade = 8;
+
+    [JsonProperty("花费货币")]
+    public string Currency = "魂力";
 
     #region 读取与创建配置文件方法
     public void Write(string path)

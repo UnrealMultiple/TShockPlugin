@@ -22,7 +22,7 @@ public class Skill : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 2, 1, 6);
+    public override Version Version => new(2, 0, 0, 6);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
@@ -53,7 +53,6 @@ public class Skill : TerrariaPlugin
     public override void Initialize()
     {
         LoadConfig();
-
         PlayerSKillManager = new();
         ServerApi.Hooks.GamePostInitialize.Register(this, this.OnPost);
         ServerApi.Hooks.NpcStrike.Register(this, this.OnStrike);

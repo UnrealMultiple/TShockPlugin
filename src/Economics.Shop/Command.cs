@@ -37,7 +37,7 @@ public class Command
             var index = 1;
             foreach (var product in Shop.Config.Products)
             {
-                lines.Add(GetString($"{index}:[{product.Name}]  {string.Join(" ", product.Items.Select(x => x.ToString()))} 价格:{product.Cost}"));
+                lines.Add(GetString($"{index}:[{product.Name}]  {string.Join(" ", product.Items.Select(x => x.ToString()))} 价格:{string.Join(" ", product.RedemptionRelationshipsOption.Select(x => $"{x.CurrencyType}x{x.Number}"))})"));
                 index++;
             }
             Show(lines);
@@ -76,9 +76,9 @@ public class Command
                 args.Player.SendErrorMessage(GetString($"请满足物品条件: {string.Join(",", product.ItemTerm.Select(x => x.ToString()))}"));
                 return;
             }
-            if (!EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, product.Cost * count))
+            if (!EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, product.RedemptionRelationshipsOption, count))
             {
-                args.Player.SendErrorMessage(GetString($"你的{EconomicsAPI.Economics.Setting.CurrencyName}不足!"));
+                args.Player.SendErrorMessage(GetString($"你的货币不足!"));
                 return;
             }
             for (var i = 0; i < count; i++)

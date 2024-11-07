@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Skill\n"
-"POT-Creation-Date: 2024-10-27 04:47:32+0800\n"
-"PO-Revision-Date: 2024-10-27 04:47:33+0800\n"
+"POT-Creation-Date: 2024-11-07 17:08:16+0800\n"
+"PO-Revision-Date: 2024-11-07 17:08:17+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../../Command.cs:46
 #, csharp-format
-msgid "{0}. {1}  价格 {2}"
+msgid "{0}. {1}  价格 {2})"
 msgstr ""
 
 #: ../../Command.cs:219
@@ -65,7 +65,7 @@ msgstr ""
 msgid "绑定此技能需要手持一个武器!"
 msgstr ""
 
-#: ../../Skill.cs:140
+#: ../../Skill.cs:139
 #, csharp-format
 msgid "绑定技能: {0}"
 msgstr ""
@@ -161,8 +161,7 @@ msgid "你当前等级无法购买此技能，限制等级:{0}"
 msgstr ""
 
 #: ../../Command.cs:67
-#, csharp-format
-msgid "你的{0} 不足购买此技能!"
+msgid "你的货币不足购买此技能!"
 msgstr ""
 
 #: ../../Command.cs:174
