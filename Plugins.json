@@ -701,7 +701,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.7.4",
+    "Version": "1.1.7.5",
     "Author": "少司命",
     "Description": "服务器工具",
     "Path": "ServerTools.dll"
