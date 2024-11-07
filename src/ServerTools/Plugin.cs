@@ -391,6 +391,17 @@ public partial class Plugin : TerrariaPlugin
             {
                 Main.projectile[e.Index].active = false;
                 e.Handled = true;
+                TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", e.Index);
+                return;
+            }
+        }
+        if (Main.projectile[e.Index].minion)
+        {
+            if (Main.projectile.Where(x => x.owner == e.Owner).Count() > Config.summonLimit)
+            {
+                Main.projectile[e.Index].active = false;
+                e.Handled = true;
+                TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", e.Index);
                 return;
             }
         }
