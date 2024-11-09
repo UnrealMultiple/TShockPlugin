@@ -19,12 +19,15 @@
 
 ## Config
 > Configuration file location：tshock/AutoPluginManager.json
-```json
+```json5
 {
   "允许自动更新插件": false, // Allow automatic plugin updates
-  "使用Github源": true, // Use Github source
+  "使用Github源": true, // Use GitHub source
+  "使用自定义源": false, // Use custom source
+  "自定义源清单地址": "", // Custom source plugin manifest url
+  "自定义源压缩文件地址": "", // Custom source plugin archive url
   "插件排除列表": [], // Plugin exclusion list
-  "热重载升级插件": true //Hot reload upgrade plugin
+  "热重载升级插件": true // Hot reload upgrade plugin
 }
 ```
 
