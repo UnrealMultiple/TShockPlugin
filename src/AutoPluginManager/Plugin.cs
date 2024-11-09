@@ -1,9 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO.Compression;
-using System.Reflection;
-using System.Reflection.Metadata;
+﻿using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -12,31 +7,30 @@ using TShockAPI.Hooks;
 namespace AutoPluginManager;
 
 [ApiVersion(2, 1)]
+// ReSharper disable once UnusedType.Global
 public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoPluginManager";
 
-    public override Version Version => new(2, 0, 1, 7);
+    public override Version Version => new (2, 0, 2, 0);
 
-    public override string Author => "少司命，Cai";
+    public override string Author => "少司命，Cai，LaoSparrow";
 
     public override string Description => "自动更新你的插件！";
 
-    
-    private readonly System.Timers.Timer _timer = new();
+
+    private readonly System.Timers.Timer _timer = new ();
 
     public Plugin(Main game) : base(game)
     {
-
     }
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new("AutoUpdatePlugin", this.PluginManager, "apm"));
+        Commands.ChatCommands.Add(new ("AutoUpdatePlugin", this.PluginManager, "apm"));
         ServerApi.Hooks.GamePostInitialize.Register(this, this.AutoCheckUpdate, int.MinValue);
         Config.Read();
         GeneralHooks.ReloadEvent += this.GeneralHooksOnReloadEvent;
-
     }
 
     protected override void Dispose(bool disposing)
@@ -52,11 +46,13 @@ public class Plugin : TerrariaPlugin
 
         base.Dispose(disposing);
     }
+
     private void GeneralHooksOnReloadEvent(ReloadEventArgs e)
     {
         Config.Read();
         e.Player.SendSuccessMessage(GetString("[AutoUpdatePlugin]插件配置已重载~"));
     }
+
     private void AutoCheckUpdate(EventArgs args)
     {
         this._timer.AutoReset = true;
@@ -66,48 +62,52 @@ public class Plugin : TerrariaPlugin
         {
             try
             {
-                var updates = Utils.GetUpdates();
-                PluginRepeat(TSPlayer.Server);
-                if (updates.Any())
+                using var context = PluginManagementContext.CreateDefault();
+                var availableUpdates = context.GetAvailableUpdates();
+                CheckDuplicatePlugins(TSPlayer.Server);
+                if (!availableUpdates.Any())
                 {
-                    TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", updates.Select(i => $"[{i.Name}] V{i.OldVersion} >>> V{i.NewVersion}"))));
-                    if (Config.PluginConfig.AutoUpdate)
-                    {
-                        TShock.Log.ConsoleInfo(GetString("正在自动更新插件..."));
-                        UpdateCmd(TSPlayer.Server, Array.Empty<string>());
-                    }
-                    else
-                    {
-                        TShock.Log.ConsoleInfo(GetString("你可以使用命令/apm -u 更新插件哦~"));
-                    }
-
-
+                    return;
                 }
 
+                TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", availableUpdates.Select(i => $"[{i.Current.Name}] V{i.Current.Version} >>> V{i.Latest.Version}"))));
+                if (Config.PluginConfig.AutoUpdate)
+                {
+                    TShock.Log.ConsoleInfo(GetString("正在自动更新插件..."));
+                    UpdateCmd(TSPlayer.Server, Array.Empty<string>());
+                }
+                else
+                {
+                    TShock.Log.ConsoleInfo(GetString("你可以使用命令/apm -u 更新插件哦~"));
+                }
             }
             catch (Exception ex)
             {
-                TShock.Log.ConsoleInfo(GetString("[AutoUpdate]无法获取更新:") + ex.Message);
-                return;
+                TShock.Log.ConsoleInfo(GetString("[AutoUpdate]无法获取更新:") + ex);
             }
         };
         this._timer.Start();
     }
 
-    private static void PluginRepeat(TSPlayer ply)
+    private static void CheckDuplicatePlugins(TSPlayer ply)
     {
         if (typeof(ServerApi)
-            .GetField("loadedAssemblies", BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance)
-            !.GetValue(null) is Dictionary<string, Assembly> loadassemblys)
+                .GetField(
+                    "loadedAssemblies",
+                    BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance)
+                !.GetValue(null) is not Dictionary<string, Assembly> loadedAssemblies)
         {
-            var mutexs = loadassemblys
-                .GroupBy(x => x.Value.GetName().FullName)
-                .Where(x => x.Count() > 1)
-                .SelectMany(x => x);
-            if (mutexs.Any())
-            {
-                ply.SendErrorMessage(GetString("[插件重复安装]") + string.Join(" >>> ", mutexs.Select(x => x.Key + ".dll")));
-            }
+            return;
+        }
+
+        var duplicates = loadedAssemblies
+            .GroupBy(x => x.Value.GetName().FullName)
+            .Where(x => x.Count() > 1)
+            .SelectMany(x => x)
+            .ToArray();
+        if (duplicates.Any())
+        {
+            ply.SendErrorMessage(GetString("[插件重复安装]") + string.Join(" >>> ", duplicates.Select(x => x.Key + ".dll")));
         }
     }
 
@@ -129,35 +129,46 @@ public class Plugin : TerrariaPlugin
         }
         else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-i" || args.Parameters[0].ToLower() == "i"))
         {
-            var indexs = args.Parameters[1].Split(",").Select(x => int.TryParse(x, out var index) ? index : -1);
-            this.InstallCmd(args.Player, indexs);
+            var indices = args.Parameters[1]
+                .Split(",")
+                .Select(x => int.TryParse(x, out var index) ? index : -1)
+                .ToArray();
+            this.InstallCmd(args.Player, indices);
         }
         else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-l" || args.Parameters[0].ToLower() == "l"))
         {
-            var repo = Utils.GetRepoPlugin();
+            using var context = PluginManagementContext.CreateDefault();
+            var manifest = context.Manifest;
             args.Player.SendInfoMessage(GetString("可安装插件列表:"));
-            for (var i = 0; i < repo.Count; i++)
+            for (var i = 0; i < manifest.Length; i++)
             {
-                args.Player.SendInfoMessage($"{i + 1}.{repo[i].Name} v{repo[i].Version} (by {repo[i].Author}) - {repo[i].Description}");
+                args.Player.SendInfoMessage($"{i + 1}.{manifest[i].Name} v{manifest[i].Version} (by {manifest[i].Author}) - {manifest[i].Description}");
             }
 
             args.Player.SendInfoMessage(GetString("*使用/apm -i <序号> 即可安装哦~"));
         }
         else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-b" || args.Parameters[0].ToLower() == "b"))
         {
-            var plugins = Utils.GetPlugins();
-            if (!plugins.Exists(p => p.Name == args.Parameters[1]))
+            var plugins = Utils.InstalledPluginsManifestCache.Values;
+            if (plugins.All(p => p.Name != args.Parameters[1]))
             {
                 args.Player.SendErrorMessage(GetString("排除失败, 没有在你的插件列表里找到这个插件呢~"));
                 return;
             }
+
+            if (Config.PluginConfig.UpdateBlackList.Contains(args.Parameters[1]))
+            {
+                args.Player.SendErrorMessage(GetString("排除失败, 已经排除过这个插件了呢~"));
+                return;
+            }
+
             Config.PluginConfig.UpdateBlackList.Add(args.Parameters[1]);
             Config.PluginConfig.Write();
             args.Player.SendSuccessMessage(GetString("排除成功, 已跳过此插件的更新检查~"));
         }
         else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-r" || args.Parameters[0].ToLower() == "r"))
         {
-            PluginRepeat(args.Player);
+            CheckDuplicatePlugins(args.Player);
         }
         else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-rb" || args.Parameters[0].ToLower() == "rb"))
         {
@@ -166,17 +177,19 @@ public class Plugin : TerrariaPlugin
                 args.Player.SendErrorMessage(GetString("删除失败, 没有在你的插件列表里找到这个插件呢~"));
                 return;
             }
+
             Config.PluginConfig.UpdateBlackList.Remove(args.Parameters[1]);
             Config.PluginConfig.Write();
             args.Player.SendSuccessMessage(GetString("删除成功, 此插件将会被检查更新~"));
         }
         else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-lb" || args.Parameters[0].ToLower() == "lb"))
         {
-            if (Config.PluginConfig.UpdateBlackList.Count == 0)
+            if (!Config.PluginConfig.UpdateBlackList.Any())
             {
                 args.Player.SendSuccessMessage(GetString("当前没有排除任何一个插件哦~"));
                 return;
             }
+
             args.Player.SendErrorMessage(GetString("插件更新排除列表:\n") + string.Join('\n', Config.PluginConfig.UpdateBlackList));
         }
         else
@@ -191,87 +204,112 @@ public class Plugin : TerrariaPlugin
         }
     }
 
-    private void InstallCmd(TSPlayer Player, IEnumerable<int> target)
+    private void InstallCmd(TSPlayer player, params int[] targets)
     {
-        if (!target.Any())
+        if (!targets.Any())
         {
-            Player.SendErrorMessage(GetString("无效参数，请附带需要安装插件的选择项!"));
+            player.SendErrorMessage(GetString("无效参数，请附带需要安装插件的选择项!"));
             return;
         }
+
         try
         {
-            var plugins = Utils.GetRepoPlugin();
-            var installs = new List<PluginVersionInfo>();
-            foreach (var index in target)
+            using var context = PluginManagementContext.CreateDefault();
+            var availablePlugins = context.Manifest;
+            var pendingPlugins = targets
+                .Where(i => i > 0 && i <= availablePlugins.Length)
+                .Select(i => availablePlugins[i - 1])
+                .ToList();
+            if (!pendingPlugins.Any())
             {
-                if (index > 0 && index <= plugins.Count)
-                {
-                    installs.Add(plugins[index - 1]);
-                }
-            }
-            if (installs.Count == 0)
-            {
-                Player.SendErrorMessage(GetString("序号无效，请附带需要安装插件的选择项!"));
+                player.SendErrorMessage(GetString("序号无效，请附带需要安装插件的选择项!"));
                 return;
             }
-            Player.SendInfoMessage(GetString("正在下载最新插件包..."));
-            Utils.DownLoadPlugin();
-            Player.SendInfoMessage(GetString("正在解压插件包..."));
-            Utils.ExtractDirectoryZip();
-            Player.SendInfoMessage(GetString("正在安装插件..."));
-            Utils.InstallPlugin(installs);
-            Player.SendSuccessMessage(GetString("[安装完成]\n") + string.Join("\n", installs.Select(i => $"[{i.Name}] V{i.Version}")));
-            Utils.LoadPlugins(installs.Select(x => x.Path));
+
+            player.SendInfoMessage(GetString("正在下载最新插件包..."));
+            context.EnsurePluginArchiveDownloaded();
+            player.SendInfoMessage(GetString("正在解压插件包..."));
+            context.EnsurePluginArchiveExtracted();
+            player.SendInfoMessage(GetString("正在安装插件..."));
+            var success = context.InstallOrUpdatePlugins(pendingPlugins.Select(x => x.AssemblyName));
+
+            if (!success.plugins.Any())
+            {
+                player.SendSuccessMessage(GetString("安装了个寂寞~"));
+                return;
+            }
+
+            if (Config.PluginConfig.AutoReloadPlugin)
+            {
+                Utils.UnLoadPlugins(success.plugins
+                    .Where(s => s.Current is not null)
+                    .Select(s => s.Current!.Path));
+                Utils.LoadPlugins(success.plugins
+                    .Select(s => s.Current is not null ? s.Current.Path : s.Latest.Path));
+            }
+
+            player.SendFormattedServerPluginsModifications(success);
+
+            player.SendSuccessMessage(GetString("重启服务器后插件生效!"));
         }
         catch (Exception ex)
         {
-            Player.SendErrorMessage(GetString("安装插件出现错误:") + ex.Message);
+            player.SendErrorMessage(GetString("安装插件出现错误:") + ex);
         }
     }
 
-    private static void UpdateCmd(TSPlayer Player, string[] target)
+    private static void UpdateCmd(TSPlayer player, params string[] targets)
     {
         try
         {
-            var updates = Utils.GetUpdates();
-            if (updates.Count == 0)
+            using var context = PluginManagementContext.CreateDefault();
+            var updates = context.GetAvailableUpdates();
+            if (!updates.Any())
             {
-                Player.SendSuccessMessage(GetString("你的插件全是最新版本，无需更新哦~"));
+                player.SendSuccessMessage(GetString("你的插件全是最新版本，无需更新哦~"));
                 return;
             }
-            if (target.Length != 0)
+
+            if (targets.Any())
             {
-                updates = updates.Where(i => target.Contains(i.Name)).ToList();
+                updates = updates
+                    .Where(i => targets.Contains(i.Current!.Name))
+                    .ToArray();
                 if (!updates.Any())
                 {
-                    Player.SendErrorMessage($"{string.Join(",", target)} 无需更新!");
+                    player.SendErrorMessage($"{string.Join(",", targets)} 无需更新!");
                     return;
                 }
             }
-            Player.SendInfoMessage(GetString("正在下载最新插件包..."));
-            Utils.DownLoadPlugin();
-            Player.SendInfoMessage(GetString("正在解压插件包..."));
-            Utils.ExtractDirectoryZip();
-            Player.SendInfoMessage(GetString("正在升级插件..."));
-            var success =  Utils.UpdatePlugin(updates);
-            if (success.Count == 0)
+
+            player.SendInfoMessage(GetString("正在下载最新插件包..."));
+            context.EnsurePluginArchiveDownloaded();
+            player.SendInfoMessage(GetString("正在解压插件包..."));
+            context.EnsurePluginArchiveExtracted();
+            player.SendInfoMessage(GetString("正在升级插件..."));
+            var success = context.InstallOrUpdatePlugins(updates.Select(x => x.Latest.AssemblyName));
+            if (!success.plugins.Any())
             {
-                Player.SendSuccessMessage(GetString("更新了个寂寞~"));
+                player.SendSuccessMessage(GetString("更新了个寂寞~"));
                 return;
             }
+
             if (Config.PluginConfig.AutoReloadPlugin)
             {
-                Utils.UnLoadPlugins(success.Select(x => x.Name));
-                Utils.LoadPlugins(success.Select(x => x.LocalPath));
+                Utils.UnLoadPlugins(success.plugins
+                    .Where(s => s.Current is not null)
+                    .Select(s => s.Current!.Path));
+                Utils.LoadPlugins(success.plugins
+                    .Select(s => s.Current is not null ? s.Current.Path : s.Latest.Path));
             }
 
-            Player.SendSuccessMessage(GetString("[更新完成]\n") + string.Join("\n", success.Select(i => $"[{i.Name}] V{i.OldVersion} >>> V{i.NewVersion}")));
-            Player.SendSuccessMessage(GetString("重启服务器后插件生效!"));
+            player.SendFormattedServerPluginsModifications(success);
+
+            player.SendSuccessMessage(GetString("重启服务器后插件生效!"));
         }
         catch (Exception ex)
         {
-            Player.SendErrorMessage(GetString("自动更新出现错误:") + ex.Message);
-            return;
+            player.SendErrorMessage(GetString("自动更新出现错误:") + ex);
         }
     }
 
@@ -279,20 +317,19 @@ public class Plugin : TerrariaPlugin
     {
         try
         {
-            var updates = Utils.GetUpdates();
-            if (updates.Count == 0)
+            using var context = PluginManagementContext.CreateDefault();
+            var updates = context.GetAvailableUpdates();
+            if (updates.Length == 0)
             {
                 Player.SendSuccessMessage(GetString("你的插件全是最新版本，无需更新哦~"));
                 return;
             }
-            Player.SendInfoMessage(GetString("[以下插件有新的版本更新]\n") + string.Join("\n", updates.Select(i => $"[{i.Name}] V{i.OldVersion} >>> V{i.NewVersion}")));
+
+            Player.SendInfoMessage(GetString("[以下插件有新的版本更新]\n") + string.Join("\n", updates.Select(i => $"[{i.Current?.Name ?? i.Latest.Name}] V{i.Current?.Version} >>> V{i.Latest.Version}")));
         }
         catch (Exception ex)
         {
-            Player.SendErrorMessage(GetString("无法获取更新:") + ex.Message);
-            return;
+            Player.SendErrorMessage(GetString("无法获取更新:") + ex);
         }
     }
-
-   
 }

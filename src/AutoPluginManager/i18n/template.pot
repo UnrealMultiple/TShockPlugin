@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoPluginManager\n"
-"POT-Creation-Date: 2024-10-01 06:56:05+0000\n"
-"PO-Revision-Date: 2024-10-01 06:56:05+0000\n"
+"POT-Creation-Date: 2024-11-09 18:20:03+0800\n"
+"PO-Revision-Date: 2024-11-09 18:20:03+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,68 +10,80 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:90
+#: ../../Plugin.cs:86
 msgid "[AutoUpdate]无法获取更新:"
 msgstr ""
 
-#: ../../Plugin.cs:58
+#: ../../Plugin.cs:53
 msgid "[AutoUpdatePlugin]插件配置已重载~"
 msgstr ""
 
 #: ../../Plugin.cs:73
-#: ../../Plugin.cs:288
+#: ../../Plugin.cs:328
 msgid ""
 "[以下插件有新的版本更新]\n"
 msgstr ""
 
-#: ../../Plugin.cs:223
+#: ../../Utils.cs:170
+msgid ""
+"[外部库安装完成]\n"
+msgstr ""
+
+#: ../../Utils.cs:152
 msgid ""
 "[安装完成]\n"
 msgstr ""
 
-#: ../../Plugin.cs:109
+#: ../../Plugin.cs:110
 msgid "[插件重复安装]"
 msgstr ""
 
-#: ../../Plugin.cs:268
+#: ../../Utils.cs:161
 msgid ""
 "[更新完成]\n"
 msgstr ""
 
-#: ../../Utils.cs:259
+#: ../../PluginManagementContext.cs:153
 #, csharp-format
-msgid "[跳过更新]无法在本地找到插件{0}({1}),可能是云加载或使用-additionalplugins加载"
+msgid ""
+"[跳过安装或更新] 插件{0}({1})的其中一项依赖被禁止安装或更新\n"
 msgstr ""
 
-#: ../../Plugin.cs:144
+#: ../../PluginManagementContext.cs:167
+#, csharp-format
+msgid ""
+"[跳过安装或更新] 无法在本地找到插件{0}({1})或其其中一项依赖,可能是云加载或使用-additionalplugins加载\n"
+msgstr ""
+
+#: ../../Plugin.cs:148
 msgid "*使用/apm -i <序号> 即可安装哦~"
 msgstr ""
 
-#: ../../Plugin.cs:188
+#: ../../Plugin.cs:201
 msgid "apm b [插件名字] 更新时跳过指定插件"
 msgstr ""
 
-#: ../../Plugin.cs:184
+#: ../../Plugin.cs:197
 msgid "apm c 检测已安装插件更新"
 msgstr ""
 
-#: ../../Plugin.cs:186
+#: ../../Plugin.cs:199
 msgid "apm i [序号] 安装指定插件"
 msgstr ""
 
-#: ../../Plugin.cs:187
+#: ../../Plugin.cs:200
 msgid "apm l 查看可安装插件表"
 msgstr ""
 
-#: ../../Plugin.cs:190
+#: ../../Plugin.cs:203
 msgid "apm lb 查看更新排除列表"
 msgstr ""
 
-#: ../../Plugin.cs:189
+#: ../../Plugin.cs:202
 msgid "apm rb [插件名字] 取消更新排除"
 msgstr ""
 
-#: ../../Plugin.cs:185
+#: ../../Plugin.cs:198
 msgid "apm u [插件名] 更新所有插件或指定插件"
 msgstr ""
 
@@ -79,74 +91,82 @@ msgstr ""
 msgid "你可以使用命令/apm -u 更新插件哦~"
 msgstr ""
 
-#: ../../Plugin.cs:239
-#: ../../Plugin.cs:285
+#: ../../Plugin.cs:269
+#: ../../Plugin.cs:324
 msgid "你的插件全是最新版本，无需更新哦~"
 msgstr ""
 
-#: ../../Plugin.cs:166
+#: ../../Plugin.cs:177
 msgid "删除失败, 没有在你的插件列表里找到这个插件呢~"
 msgstr ""
 
-#: ../../Plugin.cs:171
+#: ../../Plugin.cs:183
 msgid "删除成功, 此插件将会被检查更新~"
 msgstr ""
 
-#: ../../Plugin.cs:138
+#: ../../Plugin.cs:142
 msgid "可安装插件列表:"
 msgstr ""
 
-#: ../../Plugin.cs:228
+#: ../../Plugin.cs:238
+msgid "安装了个寂寞~"
+msgstr ""
+
+#: ../../Plugin.cs:257
 msgid "安装插件出现错误:"
 msgstr ""
 
-#: ../../Plugin.cs:214
+#: ../../Plugin.cs:225
 msgid "序号无效，请附带需要安装插件的选择项!"
 msgstr ""
 
-#: ../../Plugin.cs:177
+#: ../../Plugin.cs:189
 msgid "当前没有排除任何一个插件哦~"
 msgstr ""
 
-#: ../../Plugin.cs:151
+#: ../../Plugin.cs:161
+msgid "排除失败, 已经排除过这个插件了呢~"
+msgstr ""
+
+#: ../../Plugin.cs:155
 msgid "排除失败, 没有在你的插件列表里找到这个插件呢~"
 msgstr ""
 
-#: ../../Plugin.cs:156
+#: ../../Plugin.cs:167
 msgid "排除成功, 已跳过此插件的更新检查~"
 msgstr ""
 
-#: ../../Plugin.cs:180
+#: ../../Plugin.cs:193
 msgid ""
 "插件更新排除列表:\n"
 msgstr ""
 
-#: ../../Plugin.cs:198
+#: ../../Plugin.cs:211
 msgid "无效参数，请附带需要安装插件的选择项!"
 msgstr ""
 
-#: ../../Plugin.cs:292
+#: ../../Plugin.cs:332
 msgid "无法获取更新:"
 msgstr ""
 
-#: ../../Utils.cs:156
+#: ../../PluginManagementContext.cs:39
 msgid "无法连接服务器"
 msgstr ""
 
-#: ../../Plugin.cs:259
+#: ../../Plugin.cs:293
 msgid "更新了个寂寞~"
 msgstr ""
 
-#: ../../Plugin.cs:217
-#: ../../Plugin.cs:251
+#: ../../Plugin.cs:229
+#: ../../Plugin.cs:285
 msgid "正在下载最新插件包..."
 msgstr ""
 
-#: ../../Plugin.cs:255
+#: ../../Plugin.cs:289
 msgid "正在升级插件..."
 msgstr ""
 
-#: ../../Plugin.cs:221
+#: ../../Plugin.cs:233
 msgid "正在安装插件..."
 msgstr ""
 
@@ -154,16 +174,17 @@ msgstr ""
 msgid "正在自动更新插件..."
 msgstr ""
 
-#: ../../Plugin.cs:219
-#: ../../Plugin.cs:253
+#: ../../Plugin.cs:231
+#: ../../Plugin.cs:287
 msgid "正在解压插件包..."
 msgstr ""
 
-#: ../../Plugin.cs:273
+#: ../../Plugin.cs:312
 msgid "自动更新出现错误:"
 msgstr ""
 
-#: ../../Plugin.cs:269
+#: ../../Plugin.cs:253
+#: ../../Plugin.cs:308
 msgid "重启服务器后插件生效!"
 msgstr ""
 
