@@ -3,44 +3,43 @@ using System.Diagnostics;
 using System.Reflection;
 using TerrariaApi.Server;
 using TShockAPI;
-using Newtonsoft.Json;
-using System.IO.Compression;
 
 namespace AutoPluginManager;
-internal class Utils
+internal static class Utils
 {
-    private const string GiteeReleaseUrl = "https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
+    public const string GiteePluginArchiveUrl = "https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
+    public const string GiteePluginManifestUrl = "https://gitee.com/kksjsj/TShockPlugin/raw/master/Plugins.json";
 
-    private const string GithubReleaseUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
+    public const string GithubPluginArchiveUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
+    public const string GithubPluginManifestUrl = "https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/Plugins.json";
 
-    private const string GiteePluginsUrl = "https://gitee.com/kksjsj/TShockPlugin/raw/master/Plugins.json";
-
-    private const string GithubPluginsUrl = "https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/Plugins.json";
-
-    public static readonly Dictionary<string, Version> HasUpdated = new();
-
-    private const string TempSaveDir = "TempFile";
-
-    private const string TempZipName = "Plugins.zip";
-
-    public static void UnLoadPlugins(IEnumerable<string> Plugins)
+    public static readonly Dictionary<string, Version> PluginVersionOverrides = new(); // Plugin Assembly Name to Version
+    
+    public static void UnLoadPlugins(IEnumerable<string> targets)
     {
-        foreach (var plugin in ServerApi.Plugins)
+        var plugins = (List<PluginContainer>) typeof(ServerApi)
+            .GetField("plugins", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)?
+            .GetValue(null)!;
+
+        var targetsArray = targets.ToArray();
+        var disposingPluginContainers = plugins
+            .Where(c => targetsArray.Contains(c.Plugin.GetType().Assembly.GetName().Name))
+            .ToArray();
+        foreach (var c in disposingPluginContainers)
         {
-            if (Plugins.Contains(plugin.Plugin.Name))
-            { 
-                plugin.Plugin.Dispose();
-            }
+            c.Plugin.Dispose();
+            plugins.Remove(c);
+            TShock.Log.ConsoleInfo($"Plugin {c.Plugin.Name} v{c.Plugin.Version} (by {c.Plugin.Author}) disposed.");
         }
     }
 
-    public static void LoadPlugins(IEnumerable<string> Plugins)
+    public static void LoadPlugins(IEnumerable<string> targets) // TODO: change to use plugin assembly name instead of path
     {
         var flag = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
         var loadedAssemblies = (Dictionary<string, Assembly>) typeof(ServerApi).GetField("loadedAssemblies", flag)?.GetValue(null)!;
         var game = (Main) typeof(ServerApi).GetField("game", flag)?.GetValue(null)!;
         var plugins = (List<PluginContainer>) typeof(ServerApi).GetField("plugins", flag)?.GetValue(null)!;
-        foreach (var current in Plugins)
+        foreach (var current in targets)
         {
             var tsPluginPath = Path.Combine(AppContext.BaseDirectory, ServerApi.PluginsPath, current);
             if (loadedAssemblies!.TryGetValue(current, out var assemblies))
@@ -55,7 +54,7 @@ internal class Utils
                 var pdb = Path.ChangeExtension(tsPluginPath, ".pdb");
                 var symbols = File.Exists(pdb) ? File.ReadAllBytes(pdb) : null;
                 var ass = Assembly.Load(File.ReadAllBytes(tsPluginPath), symbols);
-                loadedAssemblies?.Add(current, ass);
+                loadedAssemblies[Path.GetFileNameWithoutExtension(current)] = ass;
                 foreach (var type in ass.GetExportedTypes())
                 {
                     if (!type.IsSubclassOf(typeof(TerrariaPlugin)) || !type.IsPublic || type.IsAbstract)
@@ -90,8 +89,7 @@ internal class Utils
                             var pc = new PluginContainer(pluginInstance);
                             plugins.Add(pc);
                             pc.Initialize();
-                            TShock.Log.ConsoleInfo(string.Format(
-                           "Plugin {0} v{1} (by {2}) initiated.", pc.Plugin.Name, pc.Plugin.Version, pc.Plugin.Author),
+                            TShock.Log.ConsoleInfo($"Plugin {pc.Plugin.Name} v{pc.Plugin.Version} (by {pc.Plugin.Author}) initiated.",
                            TraceLevel.Info);
                         }
                     }
@@ -107,164 +105,53 @@ internal class Utils
         }
     }
 
-    public static List<PluginUpdateInfo> GetUpdates()
+    public static PluginVersionInfo[] GetInstalledPlugins()
     {
-        var plugins = GetPlugins();
-        var latestPluginList = GetRepoPlugin();
-        List<PluginUpdateInfo> pluginUpdateList = new();
-        foreach (var latestPluginInfo in latestPluginList)
-        {
-            foreach (var plugin in plugins)
+        var pluginAssemblyToFileNameMap = ((Dictionary<string, Assembly>?)typeof(ServerApi)
+            .GetField("loadedAssemblies", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)?
+            .GetValue(null))!
+            .ToDictionary(kvp => kvp.Value, kvp => kvp.Key);
+        var installedPlugins = ServerApi.Plugins
+            .Select(c => new PluginVersionInfo // c: container
             {
-                if (plugin.Name == latestPluginInfo.Name && plugin.Version < latestPluginInfo.Version)
-                {
-                    pluginUpdateList.Add(new PluginUpdateInfo(plugin.Name, plugin.Author, latestPluginInfo.Version, plugin.Version, plugin.Path, latestPluginInfo.Path));
-                }
-            }
-        }
+                AssemblyName = c.Plugin.GetType().Assembly.GetName().Name!,
+                Author = c.Plugin.Author,
+                Name = c.Plugin.Name,
+                Description = c.Plugin.Description,
+                Path = pluginAssemblyToFileNameMap
+                    .TryGetValue(c.Plugin.GetType().Assembly, out var fileName) ? fileName + ".dll" : "",
+                Version = PluginVersionOverrides.GetValueOrDefault(c.Plugin.GetType().Assembly.GetName().Name!, c.Plugin.Version)
+            })
+            // .DistinctBy(i => i.AssemblyName)
+            .ToArray();
 
-        pluginUpdateList.RemoveAll(x => Config.PluginConfig.UpdateBlackList.Contains(x.Name));
-        return pluginUpdateList;
+        return installedPlugins;
     }
 
-    private static List<PluginUpdateInfo> GetUpdates(List<PluginVersionInfo> latestPluginList)
+    public static void SendFormattedServerPluginsModifications(this TSPlayer player, (PluginUpdateInfo[] plugins, string[] externalDlls) success)
     {
-        List<PluginUpdateInfo> pluginUpdateList = new();
-        var plugins = GetPlugins();
-        foreach (var latestPluginInfo in latestPluginList)
+        if (success.plugins.Any(p => p.Current is null))
         {
-            foreach (var plugin in plugins)
-            {
-                if (plugin.Name == latestPluginInfo.Name && plugin.Version < latestPluginInfo.Version)
-                {
-                    pluginUpdateList.Add(new PluginUpdateInfo(plugin.Name, plugin.Author, latestPluginInfo.Version, plugin.Version, plugin.Path, latestPluginInfo.Path));
-                }
-            }
+            player.SendSuccessMessage(
+                GetString("[安装完成]\n") +
+                string.Join('\n', success.plugins
+                    .Where(p => p.Current is null)
+                    .Select(p => $"[{p.Latest.Name}] V{p.Latest.Version}")));
         }
-
-        return pluginUpdateList;
-    }
-
-    public static List<PluginVersionInfo> GetRepoPlugin()
-    {
-        var plugins = GetPlugins();
-        HttpClient httpClient = new();
-        var response = httpClient.GetAsync(Config.PluginConfig.UseGithubSource ? GithubPluginsUrl : GiteePluginsUrl).Result;
-
-        if (!response.IsSuccessStatusCode)
+        if (success.plugins.Any(p => p.Current is not null))
         {
-            throw new Exception(GetString("无法连接服务器"));
+            player.SendSuccessMessage(
+                GetString("[更新完成]\n") +
+                string.Join('\n', success.plugins
+                    .Where(p => p.Current is not null)
+                    .Select(p => $"[{p.Current?.Name ?? p.Latest.Name}] V{p.Current?.Version} >>> V{p.Latest.Version}")));
         }
-
-        var json = response.Content.ReadAsStringAsync().Result;
-        return JsonConvert.DeserializeObject<List<PluginVersionInfo>>(json) ?? new();
-    }
-
-    public static List<PluginVersionInfo> GetPlugins()
-    {
-        List<PluginVersionInfo> plugins = new();
-        //获取已安装的插件，并且读取插件信息和AssemblyName
-        foreach (var plugin in ServerApi.Plugins)
+        if (success.externalDlls.Any())
         {
-            var version = HasUpdated.ContainsKey(plugin.Plugin.Name) //将插件版本设为上次更新的新版本
-                ? HasUpdated[plugin.Plugin.Name]
-                : plugin.Plugin.Version;
-            plugins.Add(new PluginVersionInfo()
-            {
-                AssemblyName = plugin.Plugin.GetType().Assembly.GetName().Name!,
-                Author = plugin.Plugin.Author,
-                Name = plugin.Plugin.Name,
-                Description = plugin.Plugin.Description,
-                Version = version
-            });
+            player.SendSuccessMessage(
+                GetString("[外部库安装完成]\n") +
+                string.Join('\n', success.externalDlls
+                    .Select(d => $"[{d}]")));
         }
-        var type = typeof(ServerApi);
-        var field = type.GetField("loadedAssemblies", BindingFlags.NonPublic | BindingFlags.Static)!;
-        if (field.GetValue(null) is Dictionary<string, Assembly> loadedAssemblies)
-        {
-            foreach (var (fileName, assembly) in loadedAssemblies)
-            {
-                for (var i = 0; i < plugins.Count; i++)
-                {
-                    if (plugins[i].AssemblyName == assembly.GetName().Name)
-                    {
-                        plugins[i].Path = fileName + ".dll";
-                    }
-                }
-            }
-        }
-
-        return plugins;
-    }
-
-
-    public static void DownLoadPlugin()
-    {
-        DirectoryInfo directoryInfo = new(TempSaveDir);
-        if (!directoryInfo.Exists)
-        {
-            directoryInfo.Create();
-        }
-
-        HttpClient httpClient = new();
-        var zipBytes = httpClient.GetByteArrayAsync(Config.PluginConfig.UseGithubSource ? GithubReleaseUrl : GiteeReleaseUrl).Result;
-        File.WriteAllBytes(Path.Combine(directoryInfo.FullName, TempZipName), zipBytes);
-    }
-
-    public static void ExtractDirectoryZip()
-    {
-        DirectoryInfo directoryInfo = new(TempSaveDir);
-        ZipFile.ExtractToDirectory(Path.Combine(directoryInfo.FullName, TempZipName), Path.Combine(directoryInfo.FullName, "Plugins"), true);
-    }
-
-    public static void InstallPlugin(List<PluginVersionInfo> plugininfos)
-    {
-        foreach (var info in plugininfos)
-        {
-            var sourcePath = Path.Combine(TempSaveDir, "Plugins", "Plugins", info.Path);
-            var destinationPath = Path.Combine(ServerApi.ServerPluginsDirectoryPath, info.Path);
-            File.Copy(sourcePath, destinationPath, true);
-            //热添加插件emmm
-            //var ass = Assembly.Load(File.ReadAllBytes(destinationPath));
-        }
-        if (Directory.Exists(TempSaveDir))
-        {
-            Directory.Delete(TempSaveDir, true);
-        }
-    }
-
-    public static List<PluginUpdateInfo> UpdatePlugin(List<PluginUpdateInfo> pluginUpdateInfos)
-    {
-        for (var i = pluginUpdateInfos.Count - 1; i >= 0; i--)
-        {
-            var currentPluginInfo = pluginUpdateInfos[i];
-            var sourcePath = Path.Combine(TempSaveDir, "Plugins", "Plugins", currentPluginInfo.RemotePath);
-            var destinationPath = Path.Combine(ServerApi.ServerPluginsDirectoryPath, currentPluginInfo.LocalPath);
-            // 确保目标目录存在
-            var destinationDirectory = Path.GetDirectoryName(destinationPath)!;
-            if (File.Exists(destinationPath))
-            {
-                File.Copy(sourcePath, destinationPath, true);
-                if (HasUpdated.ContainsKey(currentPluginInfo.Name))
-                {
-                    HasUpdated[currentPluginInfo.Name] = currentPluginInfo.NewVersion;
-                }
-                else
-                {
-                    HasUpdated.Add(currentPluginInfo.Name, currentPluginInfo.NewVersion);
-                }
-            }
-            else
-            {
-                TShock.Log.ConsoleWarn(GetString($"[跳过更新]无法在本地找到插件{currentPluginInfo.Name}({destinationPath}),可能是云加载或使用-additionalplugins加载"));
-                pluginUpdateInfos.RemoveAt(i);  // 移除元素
-            }
-        }
-        if (Directory.Exists(TempSaveDir))
-        {
-            Directory.Delete(TempSaveDir, true);
-        }
-
-        return pluginUpdateInfos;
     }
 }
