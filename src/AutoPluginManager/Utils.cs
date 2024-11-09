@@ -5,6 +5,7 @@ using TerrariaApi.Server;
 using TShockAPI;
 
 namespace AutoPluginManager;
+
 internal static class Utils
 {
     public const string GiteePluginArchiveUrl = "https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
@@ -12,10 +13,10 @@ internal static class Utils
 
     public const string GithubPluginArchiveUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
     public const string GithubPluginManifestUrl = "https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/Plugins.json";
-    
+
     private static Dictionary<string, PluginVersionInfo>? _installedPluginsManifestCache;
     public static Dictionary<string, PluginVersionInfo> InstalledPluginsManifestCache => _installedPluginsManifestCache ??= GetInstalledPlugins().ToDictionary(i => i.AssemblyName);
-    
+
     public static void UnLoadPlugins(IEnumerable<string> targetPaths)
     {
         _installedPluginsManifestCache = null;
@@ -39,6 +40,7 @@ internal static class Utils
                 plugins.Remove(c);
                 TShock.Log.ConsoleInfo($"Plugin {c.Plugin.Name} v{c.Plugin.Version} (by {c.Plugin.Author}) disposed.");
             }
+
             loadedAssemblies.Remove(p);
         }
     }
@@ -60,6 +62,7 @@ internal static class Utils
                     continue;
                 }
             }
+
             if (File.Exists(tsPluginPath))
             {
                 var pdb = Path.ChangeExtension(tsPluginPath, ".pdb");
@@ -72,6 +75,7 @@ internal static class Utils
                     {
                         continue;
                     }
+
                     var customAttributes = type.GetCustomAttributes(typeof(ApiVersionAttribute), false);
                     if (customAttributes.Length == 0)
                     {
@@ -86,7 +90,7 @@ internal static class Utils
                         {
                             TShock.Log.ConsoleError(
                                 string.Format("Plugin \"{0}\" is designed for a different Server API version ({1}) and was ignored.",
-                                type.FullName, apiVersion.ToString(2)), TraceLevel.Warning);
+                                    type.FullName, apiVersion.ToString(2)), TraceLevel.Warning);
 
                             return;
                         }
@@ -94,14 +98,13 @@ internal static class Utils
 
                     try
                     {
-
                         if (Activator.CreateInstance(type, game) is TerrariaPlugin pluginInstance)
                         {
                             var pc = new PluginContainer(pluginInstance);
                             plugins.Add(pc);
                             pc.Initialize();
                             TShock.Log.ConsoleInfo($"Plugin {pc.Plugin.Name} v{pc.Plugin.Version} (by {pc.Plugin.Author}) initiated.",
-                           TraceLevel.Info);
+                                TraceLevel.Info);
                         }
                     }
                     catch (Exception ex)
@@ -112,15 +115,14 @@ internal static class Utils
                     }
                 }
             }
-
         }
     }
 
     public static PluginVersionInfo[] GetInstalledPlugins()
     {
-        var pluginAssemblyToFileNameMap = ((Dictionary<string, Assembly>?)typeof(ServerApi)
-            .GetField("loadedAssemblies", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)?
-            .GetValue(null))!
+        var pluginAssemblyToFileNameMap = ((Dictionary<string, Assembly>?) typeof(ServerApi)
+                .GetField("loadedAssemblies", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)?
+                .GetValue(null))!
             .ToDictionary(kvp => kvp.Value, kvp => kvp.Key);
         var installedPlugins = ServerApi.Plugins
             .Select(c => new PluginVersionInfo // c: container
@@ -130,7 +132,9 @@ internal static class Utils
                 Name = c.Plugin.Name,
                 Description = c.Plugin.Description,
                 Path = pluginAssemblyToFileNameMap
-                    .TryGetValue(c.Plugin.GetType().Assembly, out var fileName) ? fileName + ".dll" : "",
+                    .TryGetValue(c.Plugin.GetType().Assembly, out var fileName)
+                    ? fileName + ".dll"
+                    : "",
                 // Version = PluginVersionOverrides.GetValueOrDefault(c.Plugin.GetType().Assembly.GetName().Name!, c.Plugin.Version)
                 Version = c.Plugin.Version
             })
@@ -150,6 +154,7 @@ internal static class Utils
                     .Where(p => p.Current is null)
                     .Select(p => $"[{p.Latest.Name}] V{p.Latest.Version}")));
         }
+
         if (success.plugins.Any(p => p.Current is not null))
         {
             player.SendSuccessMessage(
@@ -158,6 +163,7 @@ internal static class Utils
                     .Where(p => p.Current is not null)
                     .Select(p => $"[{p.Current?.Name ?? p.Latest.Name}] V{p.Current?.Version} >>> V{p.Latest.Version}")));
         }
+
         if (success.externalDlls.Any())
         {
             player.SendSuccessMessage(
