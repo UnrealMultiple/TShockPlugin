@@ -12,39 +12,50 @@ internal static class Utils
 
     public const string GithubPluginArchiveUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
     public const string GithubPluginManifestUrl = "https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/Plugins.json";
-
-    public static readonly Dictionary<string, Version> PluginVersionOverrides = new(); // Plugin Assembly Name to Version
     
-    public static void UnLoadPlugins(IEnumerable<string> targets)
+    private static Dictionary<string, PluginVersionInfo>? _installedPluginsManifestCache;
+    public static Dictionary<string, PluginVersionInfo> InstalledPluginsManifestCache => _installedPluginsManifestCache ??= GetInstalledPlugins().ToDictionary(i => i.AssemblyName);
+    
+    public static void UnLoadPlugins(IEnumerable<string> targetPaths)
     {
+        _installedPluginsManifestCache = null;
+        var loadedAssemblies = (Dictionary<string, Assembly>) typeof(ServerApi)
+            .GetField("loadedAssemblies", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)?
+            .GetValue(null)!;
         var plugins = (List<PluginContainer>) typeof(ServerApi)
             .GetField("plugins", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)?
             .GetValue(null)!;
 
-        var targetsArray = targets.ToArray();
-        var disposingPluginContainers = plugins
-            .Where(c => targetsArray.Contains(c.Plugin.GetType().Assembly.GetName().Name))
-            .ToArray();
-        foreach (var c in disposingPluginContainers)
+        string[] targetPathsArray = targetPaths
+            .Select(Path.GetFileNameWithoutExtension)
+            .ToArray()!;
+        foreach (var p in targetPathsArray)
         {
-            c.Plugin.Dispose();
-            plugins.Remove(c);
-            TShock.Log.ConsoleInfo($"Plugin {c.Plugin.Name} v{c.Plugin.Version} (by {c.Plugin.Author}) disposed.");
+            foreach (var c in plugins
+                         .Where(c => c.Plugin.GetType().Assembly == loadedAssemblies[p])
+                         .ToArray())
+            {
+                c.Plugin.Dispose();
+                plugins.Remove(c);
+                TShock.Log.ConsoleInfo($"Plugin {c.Plugin.Name} v{c.Plugin.Version} (by {c.Plugin.Author}) disposed.");
+            }
+            loadedAssemblies.Remove(p);
         }
     }
 
-    public static void LoadPlugins(IEnumerable<string> targets) // TODO: change to use plugin assembly name instead of path
+    public static void LoadPlugins(IEnumerable<string> targetPaths)
     {
+        _installedPluginsManifestCache = null;
         var flag = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
         var loadedAssemblies = (Dictionary<string, Assembly>) typeof(ServerApi).GetField("loadedAssemblies", flag)?.GetValue(null)!;
         var game = (Main) typeof(ServerApi).GetField("game", flag)?.GetValue(null)!;
         var plugins = (List<PluginContainer>) typeof(ServerApi).GetField("plugins", flag)?.GetValue(null)!;
-        foreach (var current in targets)
+        foreach (var current in targetPaths)
         {
             var tsPluginPath = Path.Combine(AppContext.BaseDirectory, ServerApi.PluginsPath, current);
-            if (loadedAssemblies!.TryGetValue(current, out var assemblies))
+            if (loadedAssemblies.TryGetValue(current, out var asm))
             {
-                if (assemblies.GetName().Equals(AssemblyName.GetAssemblyName(tsPluginPath)))
+                if (asm.GetName().Equals(AssemblyName.GetAssemblyName(tsPluginPath)))
                 {
                     continue;
                 }
@@ -120,9 +131,10 @@ internal static class Utils
                 Description = c.Plugin.Description,
                 Path = pluginAssemblyToFileNameMap
                     .TryGetValue(c.Plugin.GetType().Assembly, out var fileName) ? fileName + ".dll" : "",
-                Version = PluginVersionOverrides.GetValueOrDefault(c.Plugin.GetType().Assembly.GetName().Name!, c.Plugin.Version)
+                // Version = PluginVersionOverrides.GetValueOrDefault(c.Plugin.GetType().Assembly.GetName().Name!, c.Plugin.Version)
+                Version = c.Plugin.Version
             })
-            // .DistinctBy(i => i.AssemblyName)
+            .DistinctBy(i => i.AssemblyName) // to prevent from being crashed by some ClassLibrary1 ...
             .ToArray();
 
         return installedPlugins;

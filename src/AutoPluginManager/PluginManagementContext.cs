@@ -26,9 +26,6 @@ public class PluginManagementContext : IDisposable
 
     private Dictionary<string, PluginVersionInfo>? _manifestCache;
     public Dictionary<string, PluginVersionInfo> ManifestCache => this._manifestCache ??= this.Manifest.ToDictionary(i => i.AssemblyName);
-
-    private Dictionary<string, PluginVersionInfo>? _installedPluginsManifestCache;
-    public Dictionary<string, PluginVersionInfo> InstalledPluginsManifestCache => this._installedPluginsManifestCache ??= Utils.GetInstalledPlugins().ToDictionary(i => i.AssemblyName);
     
     public States State { get; private set; } = States.Clean;
 
@@ -82,13 +79,13 @@ public class PluginManagementContext : IDisposable
     
     public PluginUpdateInfo[] GetAvailableUpdates()
     {
-        return this.InstalledPluginsManifestCache.Values
+        return Utils.InstalledPluginsManifestCache.Values
             .Join(this.ManifestCache.Values,
                 c => c.AssemblyName, l => l.AssemblyName, // c: current, l: latest
                 (c, l) => new PluginUpdateInfo(c, l))
             .Where(i =>
                 i.Current!.Version < i.Latest.Version &&
-                !Config.PluginConfig.UpdateBlackList.Contains(i.Current.AssemblyName))
+                !Config.PluginConfig.UpdateBlackList.Contains(i.Current.Name)) // use plugin name instead of assembly name for compatibility
             .ToArray();
     }
     
@@ -103,7 +100,7 @@ public class PluginManagementContext : IDisposable
             throw new Exception($"Plugin with assembly name {pluginAssemblyName} not found in the manifest.");
         }
         stack.Push(new PluginUpdateInfo(
-            this.InstalledPluginsManifestCache.GetValueOrDefault(pluginAssemblyName, null!),
+            Utils.InstalledPluginsManifestCache.GetValueOrDefault(pluginAssemblyName, null!),
             latestPluginInfo));
         while (stack.Count > 0)
         {
@@ -114,7 +111,7 @@ public class PluginManagementContext : IDisposable
                 if (this.ManifestCache.TryGetValue(d, out var info))
                 {
                     stack.Push(new PluginUpdateInfo(
-                        this.InstalledPluginsManifestCache.GetValueOrDefault(d, null!),
+                        Utils.InstalledPluginsManifestCache.GetValueOrDefault(d, null!),
                         info));
                 }
                 else
@@ -135,16 +132,21 @@ public class PluginManagementContext : IDisposable
         foreach (var n in targetPlugins)
         {
             var pending = this.ResolvePluginDependencies(n);
-            var currentPlugin = this.InstalledPluginsManifestCache.GetValueOrDefault(n, this.ManifestCache[n]);
+            var currentPlugin = Utils.InstalledPluginsManifestCache.GetValueOrDefault(n, this.ManifestCache[n]);
+            
+            // filter out those plugins which doesn't need update
+            pending.updates = pending.updates
+                .Where(u => u.Current is null || u.Current.Version < u.Latest.Version)
+                .ToArray();
             
             var bannedDependencies = pending.updates
-                .Where(u => Config.PluginConfig.UpdateBlackList.Contains(u.Latest.AssemblyName))
+                .Where(u => Config.PluginConfig.UpdateBlackList.Contains(u.Current?.Name ?? u.Latest.Name))
                 .Select(u => u.Current?.Name ?? u.Latest.Name)
                 .ToArray();
             if (bannedDependencies.Any())
             {
                 TShock.Log.ConsoleWarn(
-                    GetString($"[跳过更新] 插件{currentPlugin.Name}({currentPlugin.Path})的其中一项依赖被禁止更新\n") +
+                    GetString($"[跳过安装或更新] 插件{currentPlugin.Name}({currentPlugin.Path})的其中一项依赖被禁止安装或更新\n") +
                     string.Join('\n', bannedDependencies));
                 continue;
             }
@@ -158,7 +160,7 @@ public class PluginManagementContext : IDisposable
             if (installedPluginsWhichDontExistLocally.Any())
             {
                 TShock.Log.ConsoleWarn(
-                    GetString($"[跳过更新] 无法在本地找到插件{currentPlugin.Name}({currentPlugin.Path})或其其中一项依赖,可能是云加载或使用-additionalplugins加载\n") +
+                    GetString($"[跳过安装或更新] 无法在本地找到插件{currentPlugin.Name}({currentPlugin.Path})或其其中一项依赖,可能是云加载或使用-additionalplugins加载\n") +
                     string.Join('\n', installedPluginsWhichDontExistLocally));
                 continue;
             }
@@ -173,7 +175,6 @@ public class PluginManagementContext : IDisposable
         foreach (var u in successfullyUpdatedPlugins)
         {
             CopyPluginFile(u.Latest.Path, u.Current?.Path ?? u.Latest.Path);
-            Utils.PluginVersionOverrides[u.Latest.AssemblyName] = u.Latest.Version;
         }
 
         var successfullyUpdatedExternalDlls = pluginsPassedCheck

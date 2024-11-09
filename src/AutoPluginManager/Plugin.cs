@@ -150,10 +150,15 @@ public class Plugin : TerrariaPlugin
         }
         else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-b" || args.Parameters[0].ToLower() == "b"))
         {
-            var plugins = Utils.GetInstalledPlugins();
+            var plugins = Utils.InstalledPluginsManifestCache.Values;
             if (plugins.All(p => p.Name != args.Parameters[1]))
             {
                 args.Player.SendErrorMessage(GetString("排除失败, 没有在你的插件列表里找到这个插件呢~"));
+                return;
+            }
+            if (Config.PluginConfig.UpdateBlackList.Contains(args.Parameters[1]))
+            {
+                args.Player.SendErrorMessage(GetString("排除失败, 已经排除过这个插件了呢~"));
                 return;
             }
             Config.PluginConfig.UpdateBlackList.Add(args.Parameters[1]);
@@ -177,7 +182,7 @@ public class Plugin : TerrariaPlugin
         }
         else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-lb" || args.Parameters[0].ToLower() == "lb"))
         {
-            if (Config.PluginConfig.UpdateBlackList.Count == 0)
+            if (!Config.PluginConfig.UpdateBlackList.Any())
             {
                 args.Player.SendSuccessMessage(GetString("当前没有排除任何一个插件哦~"));
                 return;
@@ -232,11 +237,13 @@ public class Plugin : TerrariaPlugin
             {
                 Utils.UnLoadPlugins(success.plugins
                     .Where(s => s.Current is not null)
-                    .Select(s => s.Current!.AssemblyName));
+                    .Select(s => s.Current!.Path));
                 Utils.LoadPlugins(success.plugins
                     .Select(s => s.Current is not null ? s.Current.Path : s.Latest.Path));
             }
             player.SendFormattedServerPluginsModifications(success);
+            
+            player.SendSuccessMessage(GetString("重启服务器后插件生效!"));
         }
         catch (Exception ex)
         {
@@ -282,7 +289,7 @@ public class Plugin : TerrariaPlugin
             {
                 Utils.UnLoadPlugins(success.plugins
                     .Where(s => s.Current is not null)
-                    .Select(s => s.Current!.AssemblyName));
+                    .Select(s => s.Current!.Path));
                 Utils.LoadPlugins(success.plugins
                     .Select(s => s.Current is not null ? s.Current.Path : s.Latest.Path));
             }

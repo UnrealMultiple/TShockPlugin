@@ -1,16 +1,7 @@
 ﻿namespace AutoPluginManager;
 
-public class PluginUpdateInfo
+public record PluginUpdateInfo(PluginVersionInfo? Current, PluginVersionInfo Latest)
 {
-    public PluginVersionInfo? Current { get; }
-    public PluginVersionInfo Latest { get; }
-
-    public PluginUpdateInfo(PluginVersionInfo? current, PluginVersionInfo latest)
-    {
-        this.Current = current;
-        this.Latest = latest;
-    }
-    
     public class AssemblyNameEqualityComparer : IEqualityComparer<PluginUpdateInfo>
     {
         public bool Equals(PluginUpdateInfo? x, PluginUpdateInfo? y)
