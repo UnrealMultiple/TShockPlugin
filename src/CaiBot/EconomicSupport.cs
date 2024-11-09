@@ -21,14 +21,15 @@ public static class EconomicSupport
         {
             do
             {
+                break;
                 var economicsType = pluginContainer.Plugin.GetType();
-
                 var settingProperty = economicsType.GetProperty(nameof(EconomicsAPI.Economics.Setting));
                 if (settingProperty is null)
                 {
                     break;
                 }
-                var currencyNameField = settingProperty.PropertyType.GetField(nameof(EconomicsAPI.Economics.Setting.CurrencyName));
+                //var currencyNameField = settingProperty.PropertyType.GetField(nameof(EconomicsAPI.Economics.Setting.CurrencyName));
+                FieldInfo? currencyNameField = null;
                 if (currencyNameField is null)
                 {
                     break;
@@ -145,7 +146,8 @@ public static class EconomicSupport
     public static string GetCoins(string name)
     {
         ThrowIfNotSupported();
-        return $"{_getCurrencyNameFunc()}:{_getUserCurrencyFunc(name)}";
+        // return $"{_getCurrencyNameFunc()}:{_getUserCurrencyFunc(name)}";
+        return $"暂不支持";
     }
     
     public static string GetLevelName(string name)
