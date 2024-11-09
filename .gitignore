@@ -371,3 +371,4 @@ template.pot.bak
 
 #Submodule compile temp file
 /SubmoduleAssembly/
+/src/DisableGodMod/LPlayer.cs

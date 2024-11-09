@@ -15,7 +15,7 @@ public class AutoFish : TerrariaPlugin
     #region 插件信息
     public override string Name => "自动钓鱼";
     public override string Author => "羽学 少司命";
-    public override Version Version => new Version(1, 3, 0);
+    public override Version Version => new Version(1, 3, 1);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 
@@ -190,6 +190,14 @@ public class AutoFish : TerrariaPlugin
             {
                 // 执行钓鱼检查
                 args.Projectile.FishingCheck();
+
+                //随机物品
+                if (Config.Random)
+                {
+                    var rm = new Random();
+                    var id = rm.Next(1, 5455);
+                    args.Projectile.localAI[1] = id;
+                }
 
                 // 将localAI[1]的值复制到ai[1]
                 args.Projectile.ai[1] = args.Projectile.localAI[1];
