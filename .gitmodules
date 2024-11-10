@@ -13,3 +13,6 @@
 [submodule "src/Submodules/TShockPlayerManager"]
 	path = src/Submodules/TShockPlayerManager
 	url = https://github.com/UnrealMultiple/TShockPlayerManager.git
+[submodule "src/Submodules/TrProtocol"]
+	path = src/Submodules/TrProtocol
+	url = https://github.com/UnrealMultiple/TrProtocol.git
