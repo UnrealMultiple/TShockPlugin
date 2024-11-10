@@ -11,6 +11,9 @@ public class Config
     [JsonProperty("限制哨兵数量")]
     public int sentryLimit = 10;
 
+    [JsonProperty("限制召唤物数量")]
+    public int summonLimit = 10;
+
     [JsonProperty("仅允许软核进入")]
     public bool OnlySoftCoresAreAllowed = false;
 
