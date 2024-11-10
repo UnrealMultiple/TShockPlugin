@@ -14,7 +14,7 @@ public class DumpPluginsList : TerrariaPlugin
 
     public override string Name => "DumpPluginsList";
 
-    public override Version Version => new(1, 0, 1, 2);
+    public override Version Version => new(1, 0, 1, 3);
 
     public DumpPluginsList(Main game) : base(game)
     {
@@ -43,7 +43,12 @@ public class DumpPluginsList : TerrariaPlugin
                 p.Plugin.Version,
                 p.Plugin.Author,
                 p.Plugin.Description,
-                Path = dict.TryGetValue(p.Plugin.GetType().Assembly, out var name) ? name + ".dll" : null
+                AssemblyName = p.Plugin.GetType().Assembly.GetName().Name,
+                Path = dict.TryGetValue(p.Plugin.GetType().Assembly, out var name) ? name + ".dll" : null,
+                Dependencies = p.Plugin.GetType().Assembly.GetReferencedAssemblies()
+                    .IntersectBy(dict.Values, n => n.Name)
+                    .Where(n => n.Name != "TShockAPI")
+                    .Select(n => n.Name)
             }), Formatting.Indented));
         Environment.Exit(0);
     }

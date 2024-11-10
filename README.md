@@ -63,11 +63,13 @@
 | [AutoPluginManager](src/AutoPluginManager/README.md) | 一键自动更新插件 | 无 |
 | [AdditionalPylons](src/AdditionalPylons/README.md) | 放置更多晶塔 | 无 |
 | [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | 广播盒功能强化 | 无 |
+| [AutoAirItem](src/AutoAirItem/README.md) | 自动垃圾桶插件 | 无 |
 | [AutoBroadcast](src/AutoBroadcast/README.md) | 自动广播 | 无 |
 | [AutoClear](src/Autoclear/README.md) | 智能自动扫地 | 无 |
 | [AutoReset](src/AutoReset/README.md) | 完全自动重置 | 无 |
 | [AutoStoreItems](src/AutoStoreItems/README.md) | 自动储存 | 无 |
 | [AutoTeam](src/AutoTeam/README.md) | 自动队伍 | 无 |
+| [AutoFish](src/AutoFish/README.md) | 自动钓鱼 | 无 |
 | [Back](src/Back/README.md) | 死亡回溯 | 无 |
 | [BagPing](src/BagPing/README.md) | 地图上标记宝藏袋 | 无 |
 | [BetterWhitelist](src/BetterWhitelist/README.md) | 白名单插件 | 无 |
@@ -91,6 +93,7 @@
 | [ConvertWorld](src/ConvertWorld/README.md) | 击败怪物转换世界物品 | 无 |
 | [CreateSpawn](src/CreateSpawn/README.md) | 出生点建筑生成 | 无 |
 | [CriticalHit](src/CriticalHit/README.md) | 击打提示 | 无 |
+| [DamageRuleLoot](src/DamageRuleLoot/README.md) | 伤害规则掉落 | 无 |
 | [DamageStatistic](src/DamageStatistic/README.md) | 在每次 Boss 战后显示每个玩家造成的伤害 | 无 |
 | [DataSync](src/DataSync/README.md) | 进度同步 | 无 |
 | [DeathDrop](src/DeathDrop/README.md) | 怪物死亡随机和自定义掉落物品 | 无 |
@@ -125,6 +128,8 @@
 | [ItemPreserver](src/ItemPreserver/README.md) | 指定物品不消耗 | 无 |
 | [ItemBox](src/ItemBox/README.md) | 离线背包系统，物品盒子 | 无 |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | 解锁旅途物品 | 无 |
+| [Lagrange.XocMat.Adapter](src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 | 无 |
+| [LazyAPI](src/LazyAPI/README.md) | 插件基础库 | linq2db |
 | [LifemaxExtra](src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | 无 |
 | [ListPlugins](src/ListPlugins/README.md) | 查已装插件 | 无 |
 | [MapTeleport](src/MapTp/README.md) | 双击大地图传送 | 无 |
@@ -153,6 +158,7 @@
 | [RegionView](src/RegionView/README.md) | 显示区域边界 | 无 |
 | [ReFishTask](src/ReFishTask/README.md) | 自动刷新渔夫任务 | 无 |
 | [Respawn](src/Respawn/README.md) | 原地复活 | 无 |
+| [RebirthCoin](src/RebirthCoin/README.md) | 复活币 | 无 |
 | [RestInventory](src/RestInventory/README.md) | 提供 REST 查询背包接口 | 无 |
 | [Sandstorm](src/Sandstorm/README.md) | 切换沙尘暴 | 无 |
 | [ServerTools](src/ServerTools/README.md) | 服务器管理工具 | 无 |
@@ -166,11 +172,13 @@
 | [SpclPerm](src/SpclPerm/README.md) | 服主特权 | 无 |
 | [StatusTextManager](src/StatusTextManager/README.md) | PC端模板文本管理插件 | 无 |
 | [SwitchCommands](src/SwitchCommands/README.md) | 区域执行指令 | 无 |
+| [TimeRate](src/TimeRate/README.md) | 时间加速插件 | 无 |
 | [TeleportRequest](src/TeleportRequest/README.md) | 传送请求 | 无 |
 | [TimerKeeper](src/TimerKeeper/README.md) | 保存计时器状态 | 无 |
 | [TownNPCHomes](src/TownNPCHomes/README.md) | NPC 快速回家 | 无 |
 | [UnseenInventory](src/UnseenInventory/README.md) | 允许服务器端生成“无法获取”的物品 | 无 |
 | [VeinMiner](src/VeinMiner/README.md) | 连锁挖矿 | 无 |
+| [VotePlus](src/VotePlus/README.md) | 多功能投票 | 无 |
 | [WeaponPlusCostCoin](src/WeaponPlusCostCoin/README.md) | 武器强化钱币版 | 无 |
 | [WikiLangPackLoader](src/WikiLangPackLoader/README.md) | 为服务器加载 Wiki 语言包 | 无 |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 世界编辑器,可以修改大部分的世界参数 | 无 |

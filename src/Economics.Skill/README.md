@@ -12,6 +12,16 @@
 
 
 ```
+V1.2.1.6
+添加隐藏技能，隐藏技能无法被主动购买。
+添加新指令:
+/skill give 给玩家添加技能，此指令不是一个安全的指令，它不会检查玩家技能状态。
+/skill del 这个指令可以删除目标玩家技能
+/skill clearh 移除目标玩家身上的隐藏技能
+
+V1.2.1.5
+适配新 EconomicsAPI
+
 V1.1.0.1
 添加 无敌帧，锁定怪物，AI样式，传送玩家，移除画圆配置，改用循环实现
 修复: 弹幕AI无法生效，持续时间无法生效
@@ -34,6 +44,9 @@ V1.0.0.1
 | /skill delall         |  economics.skill.use  | 解绑手持武器的所有技能 |
 | /skill clear          |  economics.skill.use  |      解绑所有技能      |
 | /skill reset          | economics.skill.admin |        重置技能        |
+| /skill give [玩家] [技能索引] | economics.skill.admin |    给予玩家技能(不安全的，此指令不会检查玩家技能情况)       |
+| /skill del [玩家] [技能索引]     | economics.skill.admin |      移除目标玩家技能       |
+| /skill clearh [玩家]    | economics.skill.admin |      移除玩家所有隐藏技能       |
 
 ## 配置
 > 配置文件位置：tshock/Economics/Skill.json
@@ -50,6 +63,7 @@ V1.0.0.1
       "喊话": "",
       "技能唯一": false,
       "全服唯一": false,
+      "隐藏": false, //开启后无法被主动购买
       "技能价格": 0,
       "限制等级": [],
       "限制进度": [],

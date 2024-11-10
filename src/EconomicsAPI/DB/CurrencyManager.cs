@@ -20,8 +20,7 @@ public class CurrencyManager
         var Skeleton = new SqlTable("Economics",
             new SqlColumn("ID", MySqlDbType.Int32) { Length = 8, Primary = true, Unique = true, AutoIncrement = true },
             new SqlColumn("UserName", MySqlDbType.Text) { Length = 500 },
-            new SqlColumn("Currency", MySqlDbType.Int64) { Length = 255 }
-              );
+            new SqlColumn("Currency", MySqlDbType.Int64) { Length = 255 });
         var List = new SqlTableCreator(this.database, this.database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
         List.EnsureTableStructure(Skeleton);
         using (var reader = this.database.QueryReader("SELECT * FROM Economics"))
@@ -60,14 +59,14 @@ public class CurrencyManager
         return this.Currency.TryGetValue(name, out var currency) ? currency : 0;
     }
 
-    public void AddUserCurrency(string name, long num)
+    public void AddUserCurrency(string name, long amount)
     {
         var player = Economics.ServerPlayers.Find(x => x.Name == name && x.Active);
         if (player != null)
         {
             var args = new PlayerCurrencyUpdateArgs()
             {
-                Change = num,
+                Change = amount,
                 CurrentType = CurrencyUpdateType.Added,
                 Player = player,
                 Current = this.Currency.TryGetValue(name, out var cur) ? cur : 0
@@ -77,20 +76,20 @@ public class CurrencyManager
                 return;
             }
 
-            num = args.Change;
+            amount = args.Change;
         }
-        this.Add(name, num);
+        this.Add(name, amount);
     }
 
-    private void Add(string name, long num)
+    private void Add(string name, long amount)
     {
         if (this.Currency.ContainsKey(name))
         {
-            this.Currency[name] += num;
+            this.Currency[name] += amount;
         }
         else
         {
-            this.Currency[name] = num;
+            this.Currency[name] = amount;
         }
     }
 
@@ -99,29 +98,35 @@ public class CurrencyManager
         this.Currency[name] = 0;
     }
 
-    private bool Del(string name, long num)
+    private bool Deduct(string name, long amount)
     {
-        if (num == 0)
+        if (amount == 0)
         {
             return true;
         }
 
-        if (this.GetUserCurrency(name) >= num)
+        if (this.GetUserCurrency(name) >= amount)
         {
-            this.Currency[name] -= num;
+            this.Currency[name] -= amount;
             return true;
         }
         return false;
     }
 
-    public bool DelUserCurrency(string name, long num)
+    [Obsolete("use DeductUserCurrency instead")]
+    public bool DelUserCurrency(string name, long amount)
+    {
+        return this.DeductUserCurrency(name, amount);
+    }
+
+    public bool DeductUserCurrency(string name, long amount)
     {
         var player = Economics.ServerPlayers.Find(x => x.Name == name && x.Active);
         if (player != null)
         {
             var args = new PlayerCurrencyUpdateArgs()
             {
-                Change = num,
+                Change = amount,
                 CurrentType = CurrencyUpdateType.Delete,
                 Player = player,
                 Current = this.Currency.TryGetValue(name, out var cur) ? cur : 0
@@ -131,9 +136,9 @@ public class CurrencyManager
                 return true;
             }
 
-            num = args.Change;
+            amount = args.Change;
         }
-        return this.Del(name, num);
+        return this.Deduct(name, amount);
     }
 
     public void Reset()
