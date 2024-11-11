@@ -34,7 +34,7 @@ public static class EconomicSupport
                 {
                     break;
                 }
-                if (pluginContainer.Plugin.Version < new Version(1, 0, 2, 0))
+                if (pluginContainer.Plugin.Version < new Version(2, 0, 0, 0))
                 {
                     var currencyNameField = settingProperty.PropertyType.GetField("CurrencyName");
                     if (currencyNameField is null)
