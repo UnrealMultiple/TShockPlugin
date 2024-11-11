@@ -195,7 +195,7 @@ public class AutoFish : TerrariaPlugin
                 if (Config.Random)
                 {
                     var rm = new Random();
-                    var id = rm.Next(1, 5455);
+                    var id = rm.Next(1, ItemID.Count - 1);
                     args.Projectile.localAI[1] = id;
                 }
 
