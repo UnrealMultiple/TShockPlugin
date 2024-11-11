@@ -118,7 +118,7 @@ public static class EconomicSupport
                 {
                     break;
                 }
-                var func = new DynamicMethod(nameof(_getPlayerSKillManagerFunc), typeof(void), Type.EmptyTypes);
+                var func = new DynamicMethod(nameof(_getPlayerSKillManagerFunc), typeof(object), Type.EmptyTypes);
                 var iL = func.GetILGenerator();
                 iL.Emit(OpCodes.Call, playerSkillManagerProperty.GetMethod!);
                 iL.Emit(OpCodes.Ret);
