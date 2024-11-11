@@ -1141,15 +1141,6 @@
     "Dependencies": []
   },
   {
-    "Name": "阻止玩家无敌",
-    "Version": "1.0.2.1",
-    "Author": "GK 修改：羽学",
-    "Description": "如果玩家无敌那么就断开它！",
-    "AssemblyName": "DisableGodMod",
-    "Path": "DisableGodMod.dll",
-    "Dependencies": []
-  },
-  {
     "Name": "ProxyProtocolSocket",
     "Version": "2.1.0.0",
     "Author": "LaoSparrow",
