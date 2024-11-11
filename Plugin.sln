@@ -42,8 +42,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RainbowChat", "src\RainbowC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGive", "src\CGive\CGive.csproj", "{7A15E6B2-F299-4F07-8429-129119F4553C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableGodMod", "src\DisableGodMod\DisableGodMod.csproj", "{5C7C65FD-E104-4BDA-B7E5-4FC1BF0D2F16}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisableSurfaceProjectiles", "src\DisableSurfaceProjectiles\DisableSurfaceProjectiles.csproj", "{CD5A7945-D416-4DEE-8079-DF0B9B3652ED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NormalDropsBags", "src\NormalDropsBags\NormalDropsBags.csproj", "{D169A104-9372-4DB4-AF39-B511087885A0}"
@@ -396,14 +394,6 @@ Global
 		{7A15E6B2-F299-4F07-8429-129119F4553C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7A15E6B2-F299-4F07-8429-129119F4553C}.Release|x64.ActiveCfg = Release|Any CPU
 		{7A15E6B2-F299-4F07-8429-129119F4553C}.Release|x64.Build.0 = Release|Any CPU
-		{5C7C65FD-E104-4BDA-B7E5-4FC1BF0D2F16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C7C65FD-E104-4BDA-B7E5-4FC1BF0D2F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C7C65FD-E104-4BDA-B7E5-4FC1BF0D2F16}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5C7C65FD-E104-4BDA-B7E5-4FC1BF0D2F16}.Debug|x64.Build.0 = Debug|Any CPU
-		{5C7C65FD-E104-4BDA-B7E5-4FC1BF0D2F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C7C65FD-E104-4BDA-B7E5-4FC1BF0D2F16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C7C65FD-E104-4BDA-B7E5-4FC1BF0D2F16}.Release|x64.ActiveCfg = Release|Any CPU
-		{5C7C65FD-E104-4BDA-B7E5-4FC1BF0D2F16}.Release|x64.Build.0 = Release|Any CPU
 		{CD5A7945-D416-4DEE-8079-DF0B9B3652ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD5A7945-D416-4DEE-8079-DF0B9B3652ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD5A7945-D416-4DEE-8079-DF0B9B3652ED}.Debug|x64.ActiveCfg = Debug|Any CPU
