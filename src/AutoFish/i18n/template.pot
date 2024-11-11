@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoFish\n"
-"POT-Creation-Date: 2024-11-07 09:31:16+0000\n"
-"PO-Revision-Date: 2024-11-07 09:31:17+0000\n"
+"POT-Creation-Date: 2024-11-11 12:16:51+0000\n"
+"PO-Revision-Date: 2024-11-11 12:16:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,11 +16,11 @@ msgid ""
 "          [i:3455][c/AD89D5:自][c/D68ACA:动][c/DF909A:钓][c/E5A894:鱼][i:3454]"
 msgstr ""
 
-#: ../../AutoFish.cs:415
+#: ../../AutoFish.cs:423
 msgid "[c/A7DDF0:{0}]:[c/74F3C9:{1}分钟]"
 msgstr ""
 
-#: ../../AutoFish.cs:403
+#: ../../AutoFish.cs:411
 msgid "[i:3455][c/AD89D5:自][c/D68ACA:动][c/DF909A:钓][c/E5A894:鱼][i:3454]"
 msgstr ""
 
@@ -89,7 +89,7 @@ msgid ""
 "/af time 数字 -- 设置消耗[c/F6B152:自动时长]\n"
 msgstr ""
 
-#: ../../Configuration.cs:22
+#: ../../Configuration.cs:25
 msgid ""
 "\n"
 "[i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by] [c/00FFFF:羽学] | [c/7CAEDD:少司命][i:3459]"
@@ -136,7 +136,7 @@ msgid ""
 "不存在该物品，\"物品查询\": \"[c/92C5EC:https://terraria.wiki.gg/zh/wiki/Item_IDs]\""
 msgstr ""
 
-#: ../../AutoFish.cs:404
+#: ../../AutoFish.cs:412
 #, csharp-format
 msgid "以下玩家超过 [c/E17D8C:{0}] 分钟 已关闭[c/76D5B4:自动钓鱼]权限："
 msgstr ""
@@ -225,7 +225,7 @@ msgstr ""
 msgid "玩家 [{0}] 已[c/92C5EC:禁用]自动钓鱼功能。"
 msgstr ""
 
-#: ../../AutoFish.cs:385
+#: ../../AutoFish.cs:393
 #, csharp-format
 msgid "玩家 [c/46C2D4:{0}] 已开启[c/F5F251:自动钓鱼] 消耗物品为:{1}"
 msgstr ""
