@@ -6,11 +6,14 @@ namespace AutoFish;
 internal class Configuration
 {
     #region 实例变量
-    [JsonProperty("插件开关", Order = -12)]
+    [JsonProperty("插件开关", Order = -13)]
     public bool Enabled { get; set; } = true;
 
-    [JsonProperty("多钩钓鱼", Order = -11)]
+    [JsonProperty("多钩钓鱼", Order = -12)]
     public bool MoreHook { get; set; } = true;
+
+    [JsonProperty("随机物品", Order = -11)]
+    public bool Random { get; set; } = false;
 
     [JsonProperty("多钩上限", Order = -10)]
     public int HookMax { get; set; } = 5;
@@ -38,6 +41,9 @@ internal class Configuration
 
     [JsonProperty("额外渔获", Order = -1)]
     public List<int> DoorItems = new();
+
+    [JsonProperty("禁止衍生弹幕", Order = 10)]
+    public int[] DisableProjectile { get; set; } = new int[] { 623, 625, 626, 627, 628, 831, 832, 833, 834, 835, 963, 970 };
     #endregion
 
     #region 预设参数方法
