@@ -1,4 +1,5 @@
-﻿using EconomicsAPI.Model;
+﻿using EconomicsAPI.Configured;
+using EconomicsAPI.Model;
 using Newtonsoft.Json;
 
 namespace Economics.Shop.Model;
@@ -6,10 +7,10 @@ namespace Economics.Shop.Model;
 public class Product
 {
     [JsonProperty("商品名称")]
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
     [JsonProperty("商品价格")]
-    public long Cost { get; set; }
+    public List<RedemptionRelationshipsOption> RedemptionRelationshipsOption { get; set; } = new();
 
     [JsonProperty("等级限制")]
     public List<string> LevelLimit { get; set; } = new();

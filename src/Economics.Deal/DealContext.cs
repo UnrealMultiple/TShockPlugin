@@ -1,4 +1,5 @@
-﻿using EconomicsAPI.Model;
+﻿using EconomicsAPI.Configured;
+using EconomicsAPI.Model;
 using Newtonsoft.Json;
 
 namespace Economics.Deal;
@@ -6,11 +7,11 @@ namespace Economics.Deal;
 public class DealContext
 {
     [JsonProperty("发布者")]
-    public string Publisher { get; set; }
+    public string Publisher { get; set; } = string.Empty;
 
-    [JsonProperty("价格")]
-    public long Cost { get; set; }
+    [JsonProperty("货币")]
+    public RedemptionRelationshipsOption RedemptionRelationships { get; set; } = new();
 
     [JsonProperty("物品")]
-    public Item Item { get; set; }
+    public Item Item { get; set; } = new();
 }

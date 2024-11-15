@@ -17,7 +17,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 2);
+    public override Version Version => new(2, 0, 0, 0);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "NPC.json");
 
@@ -70,9 +70,15 @@ public class Plugin : TerrariaPlugin
             }
 
             double rw = args.Damage / args.Npc.lifeMax;
-            var Curr = Convert.ToInt64(rw * ra.AllocationRatio);
-            EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr);
-            args.Player.SendCombatMsg($"+{Curr}$", Color.AliceBlue);
+            foreach (var option in EconomicsAPI.Economics.Setting.CustomizeCurrencys)
+            {
+                if (option.CurrencyObtain.CurrencyObtainType == EconomicsAPI.Enumerates.CurrencyObtainType.KillNpc)
+                { 
+                     var Curr = Convert.ToInt64(rw * ra.AllocationRatio);
+                    EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr, option.Name);
+                    args.Player.SendCombatMsg($"+{Curr}$", new Color(option.CombatMsgOption.Color[0], option.CombatMsgOption.Color[1], option.CombatMsgOption.Color[2]));
+                }
+            }  
             args.Handler = true;
             return;
         }
@@ -83,20 +89,27 @@ public class Plugin : TerrariaPlugin
             if (cfg.DynamicPartition)
             {
                 var rw = args.Damage / args.Npc.lifeMax;
-                var Curr = Convert.ToInt64(Math.Round(rw * cfg.ExtraReward));
-                EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr);
-                if (Config.Prompt)
+                foreach (var option in cfg.ExtraReward)
                 {
-                    args.Player.SendInfoMessage(Config.PromptText, args.Npc.GetFullNetName(), EconomicsAPI.Economics.Setting.CurrencyName, Curr);
+                    var Curr = Convert.ToInt64(Math.Round(rw * option.Number));
+                    EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr, option.CurrencyType);
+                    if (Config.Prompt)
+                    {
+                        args.Player.SendInfoMessage(Config.PromptText, args.Npc.GetFullNetName(), option.CurrencyType, Curr);
+                    }
                 }
             }
             else
             {
-                EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, cfg.ExtraReward);
-                if (Config.Prompt)
+                foreach (var option in cfg.ExtraReward)
                 {
-                    args.Player.SendInfoMessage(Config.PromptText, args.Npc.GetFullNetName(), EconomicsAPI.Economics.Setting.CurrencyName, cfg.ExtraReward);
+                    EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, option);
+                    if (Config.Prompt)
+                    {
+                        args.Player.SendInfoMessage(Config.PromptText, args.Npc.GetFullNetName(), option.CurrencyType, option.Number);
+                    }
                 }
+                    
             }
         }
     }

@@ -20,7 +20,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "Cai,羽学,西江";
     public override string Description => "CaiBot机器人的适配插件";
     public override string Name => "CaiBotPlugin";
-    public static readonly Version VersionNum = new(2024, 11, 3 , 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new(2024, 11, 9 , 1); //日期+版本号(0,1,2...)
     public override Version Version => VersionNum;
     
     public Plugin(Main game) : base(game)
@@ -159,7 +159,6 @@ public class Plugin : TerrariaPlugin
                 }
             }
         },TokenSource.Token);
-        EconomicSupport.Init();
     }
     
     protected override void Dispose(bool disposing)
@@ -255,7 +254,7 @@ public class Plugin : TerrariaPlugin
                     plr.SendInfoMessage($"[CaiBot]服务器已绑定无法生成验证码!");
                     return;
                 }
-                this.GenCode(null);
+                this.GenCode(EventArgs.Empty);
                 plr.SendInfoMessage($"[CaiBot]验证码已生成,请在后台查看喵~");
                 break;
         }
@@ -284,6 +283,7 @@ public class Plugin : TerrariaPlugin
     
     private void GenCode(EventArgs args)
     {
+        EconomicSupport.Init();
         if (!string.IsNullOrEmpty(Config.config.Token))
         {
             return;

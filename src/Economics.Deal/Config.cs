@@ -1,4 +1,5 @@
 ﻿using EconomicsAPI.Configured;
+using IL.Terraria.GameContent.Creative;
 using Newtonsoft.Json;
 using TShockAPI;
 
@@ -12,12 +13,12 @@ public class Config
     [JsonProperty("交易列表")]
     public List<DealContext> DealContexts { get; set; } = new();
 
-    public void PushItem(TSPlayer player, long Cost)
+    public void PushItem(TSPlayer player, long Cost, string type)
     {
         var DealContext = new DealContext()
         {
             Publisher = player.Name,
-            Cost = Cost,
+            RedemptionRelationships = new() { CurrencyType = type, Number = Cost},
             Item = new()
             {
                 netID = player.SelectedItem.netID,

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using EconomicsAPI.Configured;
+using Newtonsoft.Json;
 
 namespace Economics.NPC;
 
@@ -11,7 +12,7 @@ public class NpcOption
     public string Name { get; set; } = string.Empty;
 
     [JsonProperty("奖励货币")]
-    public long ExtraReward { get; set; }
+    public List<RedemptionRelationshipsOption> ExtraReward { get; set; } = new();
 
     [JsonProperty("按输出瓜分")]
     public bool DynamicPartition { get; set; } = true;

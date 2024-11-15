@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using EconomicsAPI.Configured;
+using Newtonsoft.Json;
 using TShockAPI;
 
 namespace Economics.Regain;
@@ -11,12 +12,12 @@ public class Config
         public int ID { get; set; }
 
         [JsonProperty("回收价格")]
-        public int Cost { get; set; }
+        public List<RedemptionRelationshipsOption> RedemptionRelationshipsOption { get; set; } = new();
 
         public override string ToString()
         {
             var item = TShock.Utils.GetItemById(this.ID);
-            return $"[i:{this.ID}] {item.Name} 价格:{this.Cost}";
+            return GetString($"[i:{this.ID}] {item.Name} 价格:{string.Join(" ", this.RedemptionRelationshipsOption.Select(r=>$"{r.CurrencyType}=>{r.Number}"))}");
         }
     }
 

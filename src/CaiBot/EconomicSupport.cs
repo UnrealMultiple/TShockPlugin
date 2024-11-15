@@ -1,4 +1,7 @@
-﻿using System.Reflection;
+﻿using Economics.RPG;
+using Economics.RPG.Model;
+using Economics.Skill.DB;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using TerrariaApi.Server;
@@ -7,13 +10,16 @@ namespace CaiBot;
 
 public static class EconomicSupport
 {
-    public static bool GetCoinsSupport = false;
-    public static bool GetLevelNameSupport = false;
-    public static bool GetSkillSupport = false;
+    private static bool IsOldCoinsSupport = false;
+    public static bool GetCoinsSupport { get; private set; }
+    public static bool GetLevelNameSupport { get; private set; }
+    public static bool GetSkillSupport { get; private set; }
+
+    private static Func<object> _getPlayerSKillManagerFunc = null!;
+
     private static Func<string> _getCurrencyNameFunc = null!;
     private static Func<string, long> _getUserCurrencyFunc = null!;
-    private static Func<string, string> _getLevelNameFunc = null!;
-    private static Func<string, dynamic> _querySkillFunc = null!;
+
     public static void Init()
     {
         var pluginContainer = ServerApi.Plugins.Where(x => x.Plugin.Name == "EconomicsAPI").FirstOrDefault();
@@ -28,38 +34,46 @@ public static class EconomicSupport
                 {
                     break;
                 }
-                var currencyNameField = settingProperty.PropertyType.GetField(nameof(EconomicsAPI.Economics.Setting.CurrencyName));
-                if (currencyNameField is null)
+                if (pluginContainer.Plugin.Version < new Version(2, 0, 0, 0))
                 {
-                    break;
-                }
+                    var currencyNameField = settingProperty.PropertyType.GetField("CurrencyName");
+                    if (currencyNameField is null)
+                    {
+                        break;
+                    }
 
-                var func = new DynamicMethod("GetCurrencyName", typeof(string), Type.EmptyTypes);
-                var iL = func.GetILGenerator();
-                iL.Emit(OpCodes.Call, settingProperty.GetMethod!);
-                iL.Emit(OpCodes.Ldfld, currencyNameField);
-                iL.Emit(OpCodes.Ret);
-                _getCurrencyNameFunc = func.CreateDelegate<Func<string>>();
-                var currencyManagerProperty = economicsType.GetProperty(nameof(EconomicsAPI.Economics.CurrencyManager));
-                if (currencyManagerProperty is null)
-                {
-                    break;
-                }
-                var paramTypes = new Type[] { typeof(string) };
-                var getUserCurrencyMethod = currencyManagerProperty.PropertyType.GetMethod(nameof(EconomicsAPI.Economics.CurrencyManager.GetUserCurrency), paramTypes);
-                if (getUserCurrencyMethod is null)
-                {
-                    break;
-                }
-                func = new DynamicMethod("GetUserCurrency", typeof(long), paramTypes);
-                iL = func.GetILGenerator();
-                iL.Emit(OpCodes.Call, currencyManagerProperty.GetMethod!);
-                iL.Emit(OpCodes.Ldarg_0);
-                iL.Emit(OpCodes.Callvirt, getUserCurrencyMethod);
-                iL.Emit(OpCodes.Ret);
-                _getUserCurrencyFunc = func.CreateDelegate<Func<string, long>>();
+                    var func = new DynamicMethod("GetCurrencyName", typeof(string), Type.EmptyTypes);
+                    var iL = func.GetILGenerator();
+                    iL.Emit(OpCodes.Call, settingProperty.GetMethod!);
+                    iL.Emit(OpCodes.Ldfld, currencyNameField);
+                    iL.Emit(OpCodes.Ret);
+                    _getCurrencyNameFunc = func.CreateDelegate<Func<string>>();
+                    var currencyManagerProperty = economicsType.GetProperty(nameof(EconomicsAPI.Economics.CurrencyManager));
+                    if (currencyManagerProperty is null)
+                    {
+                        break;
+                    }
+                    var paramTypes = new Type[] { typeof(string) };
+                    var getUserCurrencyMethod = currencyManagerProperty.PropertyType.GetMethod(nameof(EconomicsAPI.Economics.CurrencyManager.GetUserCurrency), paramTypes);
+                    if (getUserCurrencyMethod is null)
+                    {
+                        break;
+                    }
+                    func = new DynamicMethod("GetUserCurrency", typeof(long), paramTypes);
+                    iL = func.GetILGenerator();
+                    iL.Emit(OpCodes.Call, currencyManagerProperty.GetMethod!);
+                    iL.Emit(OpCodes.Ldarg_0);
+                    iL.Emit(OpCodes.Callvirt, getUserCurrencyMethod);
+                    iL.Emit(OpCodes.Ret);
+                    _getUserCurrencyFunc = func.CreateDelegate<Func<string, long>>();
 
-                GetCoinsSupport = true;
+                    IsOldCoinsSupport = true;
+                    GetCoinsSupport = true;
+                }
+                else
+                {
+                    GetCoinsSupport = true;
+                }
             } while (false);
         }
 
@@ -70,34 +84,27 @@ public static class EconomicSupport
             {
                 var economicsRPGType = pluginContainer.Plugin.GetType();
 
-                var playerLevelManagerProperty = economicsRPGType.GetProperty(nameof(Economics.RPG.RPG.PlayerLevelManager));
+                var playerLevelManagerProperty = economicsRPGType.GetProperty(nameof(RPG.PlayerLevelManager));
                 if (playerLevelManagerProperty is null)
                 {
                     break;
                 }
-                var paramTypes = new Type[] { typeof(string) };
-                var getLevelMethod = playerLevelManagerProperty.PropertyType.GetMethod(nameof(Economics.RPG.RPG.PlayerLevelManager.GetLevel), paramTypes);
+
+                var paramTypes = new[] { typeof(string) };
+                var getLevelMethod = playerLevelManagerProperty.PropertyType.GetMethod(nameof(RPG.PlayerLevelManager.GetLevel), paramTypes);
                 if (getLevelMethod is null)
                 {
                     break;
                 }
-                var nameProperty = getLevelMethod.ReturnType.GetProperty(nameof(Economics.RPG.Model.Level.Name));
+
+                var nameProperty = getLevelMethod.ReturnType.GetProperty(nameof(Level.Name));
                 if (nameProperty is null)
                 {
                     break;
                 }
-                var func = new DynamicMethod("GetLevelName", typeof(string), paramTypes);
-                var iL = func.GetILGenerator();
-                iL.Emit(OpCodes.Call, playerLevelManagerProperty.GetMethod!);
-                iL.Emit(OpCodes.Ldarg_0);
-                iL.Emit(OpCodes.Callvirt, getLevelMethod);
-                iL.Emit(OpCodes.Callvirt, nameProperty.GetMethod!);
-                iL.Emit(OpCodes.Ret);
-                _getLevelNameFunc = func.CreateDelegate<Func<string, string>>();
 
                 GetLevelNameSupport = true;
-            }
-            while (false);
+            } while (false);
         }
 
         pluginContainer = ServerApi.Plugins.Where(x => x.Plugin.Name == "Economics.Skill").FirstOrDefault();
@@ -111,23 +118,14 @@ public static class EconomicSupport
                 {
                     break;
                 }
-                var paramTypes = new Type[] { typeof(string) };
-                var querySkillMethod = playerSkillManagerProperty.PropertyType.GetMethod("QuerySkill", paramTypes);
-                if (querySkillMethod is null)
-                {
-                    break;
-                }
-                var func = new DynamicMethod("QuerySkill", typeof(object), paramTypes);
+                var func = new DynamicMethod(nameof(_getPlayerSKillManagerFunc), typeof(object), Type.EmptyTypes);
                 var iL = func.GetILGenerator();
                 iL.Emit(OpCodes.Call, playerSkillManagerProperty.GetMethod!);
-                iL.Emit(OpCodes.Ldarg_0);
-                iL.Emit(OpCodes.Callvirt, querySkillMethod);
                 iL.Emit(OpCodes.Ret);
-                _querySkillFunc = func.CreateDelegate<Func<string, dynamic>>();
+                _getPlayerSKillManagerFunc = func.CreateDelegate<Func<object>>();
 
                 GetSkillSupport = true;
-            }
-            while (false);
+            } while (false);
         }
     }
 
@@ -138,30 +136,39 @@ public static class EconomicSupport
             nameof(GetCoins) => GetCoinsSupport,
             nameof(GetLevelName) => GetLevelNameSupport,
             nameof(GetSkill) => GetSkillSupport,
-            _ => false,
+            _ => false
         };
     }
 
     public static string GetCoins(string name)
     {
         ThrowIfNotSupported();
-        return $"{_getCurrencyNameFunc()}:{_getUserCurrencyFunc(name)}";
+        if (IsOldCoinsSupport)
+        {
+            return $"{_getCurrencyNameFunc()}:{_getUserCurrencyFunc(name)}";
+        }
+        // 新方法是必要的，防止解析报错
+        return GetNewCoins(name);
     }
-    
+
+    private static string GetNewCoins(string name)
+    {
+        return string.Join('\n', EconomicsAPI.Economics.Setting.CustomizeCurrencys.Select(x => EconomicsAPI.Economics.CurrencyManager.GetUserCurrency(name, x.Name)).Select(static x => $"{x.CurrencyType}x{x.Number}"));
+    }
+
     public static string GetLevelName(string name)
     {
         ThrowIfNotSupported();
-        var levelName = _getLevelNameFunc(name);
-        return $"职业:{(string.IsNullOrEmpty(levelName)?"无":levelName)}";
+        var levelName = RPG.PlayerLevelManager.GetLevel(name).Name;
+        return $"职业:{(string.IsNullOrEmpty(levelName) ? "无" : levelName)}";
     }
-    
+
     public static string GetSkill(string name)
     {
         ThrowIfNotSupported();
-        var obj = _querySkillFunc(name);
-        IEnumerable<dynamic> skill = Enumerable.Cast<dynamic>(obj);
-        var msg = skill.Any() ? string.Join(',', Enumerable.Select(skill, obj => obj.Skill is null ? "无效技能" : (string)obj.Skill.Name)) : "无";
-        return $"技能:{msg}";
+        var manager = (PlayerSKillManager)_getPlayerSKillManagerFunc.Invoke();
+        var skills = manager.QuerySkill(name);
+        return !skills.Any() ? "技能:无" : string.Join(',', skills.Select(obj => obj.Skill is null ? "无效技能" : obj.Skill.Name));
     }
 
     private static void ThrowIfNotSupported([CallerMemberName] string memberName = "")
