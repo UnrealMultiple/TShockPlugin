@@ -53,7 +53,7 @@ public class Plugin : TerrariaPlugin
         LoadConfig();
     }
 
-    private static void ReloadConfig(ReloadEventArgs args = null)
+    private static void ReloadConfig(ReloadEventArgs? args = null)
     {
         LoadConfig();
         // 如果 args 不为空，则发送重载成功的消息
@@ -194,7 +194,7 @@ public class Plugin : TerrariaPlugin
         }
     }
 
-    private void OnProjectileNew(object sender, GetDataHandlers.NewProjectileEventArgs e)
+    private void OnProjectileNew(object? sender, GetDataHandlers.NewProjectileEventArgs e)
     {
         if (e.Player.HasPermission("免检地表弹幕") || e.Player.HasPermission("IgnoreDSproj"))
         {

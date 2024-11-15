@@ -385,10 +385,7 @@ public partial class PControl : TerrariaPlugin
     private void OnReload(ReloadEventArgs e)
     {
         var config = Config.LoadConfigFile();
-        if (e != null && e.Player != null)
-        {
-            e.Player.SendSuccessMessage("[计划书]重新加载配置完毕。");
-        }
+        e.Player.SendSuccessMessage("[计划书]重新加载配置完毕。");
 
         if (config.HowLongTimeOfAotuResetServer < 0)
         {

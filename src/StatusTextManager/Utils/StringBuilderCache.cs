@@ -7,7 +7,7 @@ internal static class StringBuilderCache
 {
     internal const int MAX_BUILDER_SIZE = 360;
 
-    [ThreadStatic] private static StringBuilder CachedInstance;
+    [ThreadStatic] private static StringBuilder? CachedInstance;
 
     public static StringBuilder Acquire(int capacity = 16)
     {

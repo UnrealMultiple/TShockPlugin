@@ -66,7 +66,7 @@ internal class Configuration
         }
     }
 
-    public static Configuration Read(string path)
+    public static Configuration? Read(string path)
     {
         if (!File.Exists(path))
         {

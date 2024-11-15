@@ -5,7 +5,7 @@ namespace Challenger;
 
 public class CProjectile
 {
-    public Projectile? proj;
+    public Projectile proj;
 
     private readonly int type;
 

@@ -37,7 +37,7 @@ public class Configuration
         [JsonProperty("物品数量")]
         public int RequiredStack { get; set; }
         [JsonProperty("给buff的id")]
-        public int[] BuffType { get; set; }
+        public int[]? BuffType { get; set; }
     }
 
     public class Accessorie
@@ -52,7 +52,7 @@ public class Configuration
         public int RequiredStack { get; set; }
 
         [JsonProperty("给buff的id")]
-        public int[] BuffType { get; set; }
+        public int[]? BuffType { get; set; }
 
         [JsonProperty("非本装备栏也触发")]
         public bool AllowOtherLoadouts { get; set; }
@@ -71,7 +71,7 @@ public class Configuration
         [JsonProperty("物品数量")]
         public int RequiredStack { get; set; }
         [JsonProperty("给buff的id")]
-        public int[] BuffType { get; set; }
+        public int[]? BuffType { get; set; }
         [JsonProperty("非本装备栏也触发")]
         public bool AllowOtherLoadouts { get; set; }
     }
@@ -85,7 +85,7 @@ public class Configuration
         [JsonProperty("物品数量")]
         public int RequiredStack { get; set; }
         [JsonProperty("给buff的id")]
-        public int[] BuffType { get; set; }
+        public int[]? BuffType { get; set; }
     }
 
     [JsonProperty("药水")]

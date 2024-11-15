@@ -81,7 +81,7 @@ public class FakeChestDatabase
                     var chestId = Convert.ToInt32(reader["id"]);
 
                     // 获取物品列表
-                    var items = new List<Item>();
+                    var items = new List<Item?>();
 
                     var itemsRaw = new MemoryStream((byte[]) reader["items"]);
 

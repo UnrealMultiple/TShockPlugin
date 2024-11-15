@@ -28,27 +28,27 @@ namespace VotePlus
 
         //public static Dictionary<string, DateTime> VoteMutes = new Dictionary<string, DateTime>();
 
-        public Vote Votes = null;
+        public Vote? Votes = null;
 
         public static short Timer = 0;
 
         public override void Initialize()
         {
             Config.GetConfig();
-            ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
-            Commands.ChatCommands.Add(new Command("vote.use", VoteHandler, "vote"));
-            Commands.ChatCommands.Add(new Command("vote.use", VoteAgree, "agree", "同意"));
-            Commands.ChatCommands.Add(new Command("vote.use", VoteDisagree, "disagree", "反对"));
-            TShockAPI.Hooks.PlayerHooks.PlayerPostLogin += PlayerHooks_PlayerPostLogin;
+            ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
+            Commands.ChatCommands.Add(new Command("vote.use", this.VoteHandler, "vote"));
+            Commands.ChatCommands.Add(new Command("vote.use", this.VoteAgree, "agree", "同意"));
+            Commands.ChatCommands.Add(new Command("vote.use", this.VoteDisagree, "disagree", "反对"));
+            TShockAPI.Hooks.PlayerHooks.PlayerPostLogin += this.PlayerHooks_PlayerPostLogin;
 
         }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
-                Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == VoteHandler || c.CommandDelegate == VoteAgree || c.CommandDelegate == VoteDisagree);
-                TShockAPI.Hooks.PlayerHooks.PlayerPostLogin -= PlayerHooks_PlayerPostLogin;
+                ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
+                Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.VoteHandler || c.CommandDelegate == this.VoteAgree || c.CommandDelegate == this.VoteDisagree);
+                TShockAPI.Hooks.PlayerHooks.PlayerPostLogin -= this.PlayerHooks_PlayerPostLogin;
 
             }
             base.Dispose(disposing);
@@ -71,35 +71,35 @@ namespace VotePlus
 
         private void VoteDisagree(CommandArgs args)
         {
-            if (Votes == null)
+            if (this.Votes == null)
             {
                 args.Player.SendErrorMessage(GetString("[i:4344]当前没有正在进行的投票!"));
                 return;
             }
-            if (Votes.Argeement.Contains(args.Player.Account.Name) || Votes.Disargeement.Contains(args.Player.Account.Name))
+            if (this.Votes.Argeement.Contains(args.Player.Account.Name) || this.Votes.Disargeement.Contains(args.Player.Account.Name))
             {
                 args.Player.SendWarningMessage(GetString("[i:4344]你已经投过票了!"));
                 return;
             }
-            Votes.Disargeement.Add(args.Player.Account.Name);
-            TSPlayer.All.SendInfoMessage(Votes.ReminderBuild((int)Votes.RemainTime.TotalSeconds));
+            this.Votes.Disargeement.Add(args.Player.Account.Name);
+            TSPlayer.All.SendInfoMessage(this.Votes.ReminderBuild((int) this.Votes.RemainTime.TotalSeconds));
         }
 
         private void VoteAgree(CommandArgs args)
         {
-            if (Votes == null)
+            if (this.Votes == null)
             {
                 args.Player.SendErrorMessage(GetString("[i:4344]当前没有正在进行的投票!"));
                 return;
             }
-            if (Votes.Argeement.Contains(args.Player.Account.Name) || Votes.Disargeement.Contains(args.Player.Account.Name))
+            if (this.Votes.Argeement.Contains(args.Player.Account.Name) || this.Votes.Disargeement.Contains(args.Player.Account.Name))
             {
                 args.Player.SendWarningMessage(GetString("[i:4344]你已经投过票了!"));
                 return;
             }
-            Votes.Argeement.Add(args.Player.Account.Name);
+            this.Votes.Argeement.Add(args.Player.Account.Name);
             //发送投票结果
-            TSPlayer.All.SendInfoMessage(Votes.ReminderBuild((int)Votes.RemainTime.TotalSeconds));
+            TSPlayer.All.SendInfoMessage(this.Votes.ReminderBuild((int) this.Votes.RemainTime.TotalSeconds));
         }
 
         private void VoteHandler(CommandArgs args)
@@ -133,7 +133,7 @@ namespace VotePlus
                         args.Player.SendErrorMessage(GetString("[i:4344]用法: /vote kick <玩家>"));
                         return;
                     }
-                    if (Votes != null)
+                    if (this.Votes != null)
                     {
                         args.Player.SendErrorMessage(GetString("[i:4344]当前有正在进行的投票!"));
                         return;
@@ -145,7 +145,7 @@ namespace VotePlus
                         return;
                     }
 
-                    Votes = new Vote(args.Player.Account, Vote.VoteType.PlayerKick, TShock.UserAccounts.GetUserAccountByName(args.Parameters[1]));
+                    this.Votes = new Vote(args.Player.Account, Vote.VoteType.PlayerKick, TShock.UserAccounts.GetUserAccountByName(args.Parameters[1]));
                     break;
                 case "ban":
                     if (!Config.config.EnableBan)
@@ -158,7 +158,7 @@ namespace VotePlus
                         args.Player.SendErrorMessage(GetString("[i:4344]用法: /vote ban <玩家>"));
                         return;
                     }
-                    if (Votes != null)
+                    if (this.Votes != null)
                     {
                         args.Player.SendErrorMessage(GetString("[i:4344]当前有正在进行的投票!"));
                         return;
@@ -169,7 +169,7 @@ namespace VotePlus
                         args.Player.SendErrorMessage(GetString("[i:4344]目标账号不存在!"));
                         return;
                     }
-                    Votes = new Vote(args.Player.Account, Vote.VoteType.PlayerBan, TShock.UserAccounts.GetUserAccountByName(args.Parameters[1]));
+                    this.Votes = new Vote(args.Player.Account, Vote.VoteType.PlayerBan, TShock.UserAccounts.GetUserAccountByName(args.Parameters[1]));
                     break;
                 case "mute":
                     if (!Config.config.EnableMute)
@@ -182,7 +182,7 @@ namespace VotePlus
                         args.Player.SendErrorMessage(GetString("[i:4344]用法: /vote mute <玩家>"));
                         return;
                     }
-                    if (Votes != null)
+                    if (this.Votes != null)
                     {
                         args.Player.SendErrorMessage(GetString("[i:4344]当前有正在进行的投票!"));
                         return;
@@ -193,7 +193,7 @@ namespace VotePlus
                         args.Player.SendErrorMessage(GetString("[i:4344]目标账号不存在!"));
                         return;
                     }
-                    Votes = new Vote(args.Player.Account, Vote.VoteType.PlayerMute, TShock.UserAccounts.GetUserAccountByName(args.Parameters[1]));
+                    this.Votes = new Vote(args.Player.Account, Vote.VoteType.PlayerMute, TShock.UserAccounts.GetUserAccountByName(args.Parameters[1]));
                     break;
                 case "clearboss":
                     if (!Config.config.EnableBossClear)
@@ -206,7 +206,7 @@ namespace VotePlus
                         args.Player.SendErrorMessage(GetString("[i:4344]用法: /vote clearboss <BOSS名称>"));
                         return;
                     }
-                    if (Votes != null)
+                    if (this.Votes != null)
                     {
                         args.Player.SendErrorMessage(GetString("[i:4344]当前有正在进行的投票!"));
                         return;
@@ -227,7 +227,7 @@ namespace VotePlus
                     {
                         args.Player.SendErrorMessage(GetString("[i:4344]目标不是BOSS!"));
                     }
-                    Votes = new Vote(args.Player.Account, Vote.VoteType.BossClear, bosses[0].netID);
+                    this.Votes = new Vote(args.Player.Account, Vote.VoteType.BossClear, bosses[0].netID);
                     break;
                 case "clearevent":
                     if (!Config.config.EnableEventClear)
@@ -235,13 +235,13 @@ namespace VotePlus
                         args.Player.SendErrorMessage(GetString("[i:4344]投票清除事件功能已被禁用!"));
                         return;
                     }
-                    if (Votes != null)
+                    if (this.Votes != null)
                     {
                         args.Player.SendErrorMessage(GetString("[i:4344]当前有正在进行的投票!"));
                         return;
 
                     }
-                    Votes = new Vote(args.Player.Account, Vote.VoteType.EventClear);
+                    this.Votes = new Vote(args.Player.Account, Vote.VoteType.EventClear);
                     break;
                 case "day":
                     if (!Config.config.EnableTimeChange)
@@ -249,13 +249,13 @@ namespace VotePlus
                         args.Player.SendErrorMessage(GetString("[i:4344]投票修改时间功能已被禁用!"));
                         return;
                     }
-                    if (Votes != null)
+                    if (this.Votes != null)
                     {
                         args.Player.SendErrorMessage(GetString("[i:4344]当前有正在进行的投票!"));
                         return;
 
                     }
-                    Votes = new Vote(args.Player.Account, Vote.VoteType.DayRequest);
+                    this.Votes = new Vote(args.Player.Account, Vote.VoteType.DayRequest);
                     break;
                 case "night":
                     if (!Config.config.EnableTimeChange)
@@ -263,13 +263,13 @@ namespace VotePlus
                         args.Player.SendErrorMessage(GetString("[i:4344]投票修改时间功能已被禁用!"));
                         return;
                     }
-                    if (Votes != null)
+                    if (this.Votes != null)
                     {
                         args.Player.SendErrorMessage(GetString("[i:4344]当前有正在进行的投票!"));
                         return;
 
                     }
-                    Votes = new Vote(args.Player.Account, Vote.VoteType.NightRequest);
+                    this.Votes = new Vote(args.Player.Account, Vote.VoteType.NightRequest);
                     break;
                 case "rain":
                     if (!Config.config.EnableWeatherChange)
@@ -277,13 +277,13 @@ namespace VotePlus
                         args.Player.SendErrorMessage(GetString("[i:4344]投票修改天气功能已被禁用!"));
                         return;
                     }
-                    if (Votes != null)
+                    if (this.Votes != null)
                     {
                         args.Player.SendErrorMessage(GetString("[i:4344]当前有正在进行的投票!"));
                         return;
 
                     }
-                    Votes = new Vote(args.Player.Account, Vote.VoteType.RainRequest);
+                    this.Votes = new Vote(args.Player.Account, Vote.VoteType.RainRequest);
                     break;
                 case "topic":
                     if (!Config.config.EnableFreeVote)
@@ -296,19 +296,19 @@ namespace VotePlus
                         args.Player.SendErrorMessage(GetString("[i:4344]用法: /vote topic <投票主题>"));
                         return;
                     }
-                    if (Votes != null)
+                    if (this.Votes != null)
                     {
                         args.Player.SendErrorMessage(GetString("[i:4344]当前有正在进行的投票!"));
                         return;
 
                     }
-                    Votes = new Vote(args.Player.Account, Vote.VoteType.FreeVote)
+                    this.Votes = new Vote(args.Player.Account, Vote.VoteType.FreeVote)
                     {
                         Project = args.Parameters[1]
                     };
                     break;
                 case "kicklist":
-                    StringBuilder stringBuilder = new StringBuilder();
+                    var stringBuilder = new StringBuilder();
                     stringBuilder.AppendLine(GetString("[i:4344]当前投票踢出列表:"));
                     var kickList = VoteKicks.Where(v => v.Value > DateTime.Now);
                     foreach (var kick in kickList)
@@ -361,31 +361,31 @@ namespace VotePlus
             if (Timer == 60)
             {
                 Timer = 0;
-                if (Votes != null)
+                if (this.Votes != null)
                 {
-                    Votes.CheckReminder();
-                    if (Votes.IsEnd)
+                    this.Votes.CheckReminder();
+                    if (this.Votes.IsEnd)
                     {
-                        if (Votes.Argeement.Count + Votes.Disargeement.Count < Config.config.MinVote)
+                        if (this.Votes.Argeement.Count + this.Votes.Disargeement.Count < Config.config.MinVote)
                         {
                             TSPlayer.All.SendErrorMessage(GetString("[i:4344]投票未通过!\n") +
                                 GetString($"*投票人数少于{Config.config.MinVote}人"));
-                            Votes = null;
+                            this.Votes = null;
                             return;
                         }
-                        if (Votes.AgreePercent < Config.config.VotePass)
+                        if (this.Votes.AgreePercent < Config.config.VotePass)
                         {
                             TSPlayer.All.SendWarningMessage(GetString("[i:4344]投票未通过!\n") +
-                                GetString($"*赞成:[c/32FF82:{Votes.Argeement.Count()}票],反对:[c/E11919:{Votes.Disargeement.Count()}票],通过率:{Votes.AgreePercent}%({Config.config.VotePass}%)"));
+                                GetString($"*赞成:[c/32FF82:{this.Votes.Argeement.Count}票],反对:[c/E11919:{this.Votes.Disargeement.Count}票],通过率:{this.Votes.AgreePercent}%({Config.config.VotePass}%)"));
 
-                            Votes = null;
+                            this.Votes = null;
                             return;
                         }
-                        if (Votes.AgreePercent >= Config.config.VotePass)
+                        if (this.Votes.AgreePercent >= Config.config.VotePass)
                         {
-                            Votes.VotePass();
-                            TSPlayer.All.SendSuccessMessage(GetString($"*赞成:[c/32FF82:{Votes.Argeement.Count()}票],反对:[c/E11919:{Votes.Disargeement.Count()}票],通过率:{Votes.AgreePercent}%({Config.config.VotePass}%)"));
-                            Votes = null;
+                            this.Votes.VotePass();
+                            TSPlayer.All.SendSuccessMessage(GetString($"*赞成:[c/32FF82:{this.Votes.Argeement.Count}票],反对:[c/E11919:{this.Votes.Disargeement.Count}票],通过率:{this.Votes.AgreePercent}%({Config.config.VotePass}%)"));
+                            this.Votes = null;
                             return;
 
                         }

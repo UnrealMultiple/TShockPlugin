@@ -78,7 +78,7 @@ public class Plugin : TerrariaPlugin
         }
     }
 
-    private void OnNpcHome(object sender, NPCHomeChangeEventArgs args)
+    private void OnNpcHome(object? sender, NPCHomeChangeEventArgs args)
     {
         try
         {

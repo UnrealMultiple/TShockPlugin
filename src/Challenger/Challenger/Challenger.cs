@@ -209,13 +209,13 @@ public class Challenger : TerrariaPlugin
             var flag = armor[0].type == 3374 && armor[1].type == 3375 && armor[2].type == 3376;
             if (flag && !Collect.cplayers[player.whoAmI].FossilArmorEffectProj)
             {
-                var fossiArmorProj = FossiArmorProj.NewCProjectile(player.Center, Vector2.Zero, player.whoAmI, new float[0], 0);
+                var fossiArmorProj = FossiArmorProj.NewCProjectile(player.Center, Vector2.Zero, player.whoAmI, Array.Empty<float>(), 0);
                 Collect.cplayers[player.whoAmI].FossilArmorEffectProjIndex = fossiArmorProj.proj.whoAmI;
                 Collect.cplayers[player.whoAmI].FossilArmorEffectProj = true;
             }
             else if (flag && Collect.cplayers[player.whoAmI].FossilArmorEffectProj && !Collect.cprojs[Collect.cplayers[player.whoAmI].FossilArmorEffectProjIndex].isActive)
             {
-                var fossiArmorProj2 = FossiArmorProj.NewCProjectile(player.Center, Vector2.Zero, player.whoAmI, new float[0], 0);
+                var fossiArmorProj2 = FossiArmorProj.NewCProjectile(player.Center, Vector2.Zero, player.whoAmI, Array.Empty<float>(), 0);
                 Collect.cplayers[player.whoAmI].FossilArmorEffectProjIndex = fossiArmorProj2.proj.whoAmI;
             }
             else if (!flag && Collect.cplayers[player.whoAmI].FossilArmorEffectProj)
@@ -629,11 +629,11 @@ public class Challenger : TerrariaPlugin
             var val = NearestHostileNPC(player.Center, 360000f);
             if (val != null)
             {
-                SpiderArmorProj.NewCProjectile(player.Center, Terraria.Utils.SafeNormalize(val.Center - player.Center, Vector2.Zero) * 17f, 0, player.whoAmI, new float[0]);
+                SpiderArmorProj.NewCProjectile(player.Center, Terraria.Utils.SafeNormalize(val.Center - player.Center, Vector2.Zero) * 17f, 0, player.whoAmI, Array.Empty<float>());
             }
             else
             {
-                SpiderArmorProj.NewCProjectile(player.Center, Vector2.Zero, 0, player.whoAmI, new float[0]);
+                SpiderArmorProj.NewCProjectile(player.Center, Vector2.Zero, 0, player.whoAmI, Array.Empty<float>());
             }
             Collect.cplayers[player.whoAmI].SpiderArmorEffectTimer = (int) Timer;
         }
@@ -1049,14 +1049,14 @@ public class Challenger : TerrariaPlugin
 
             if (config.EnableSpectreArmorEffect_1)
             {
-                Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + (Vector2.UnitY * 100f), Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
+                Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + (Vector2.UnitY * 100f), Vector2.Zero, player.whoAmI, Array.Empty<float>(), 1).proj.whoAmI;
             }
         }
 
         else if (flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectLife && !Collect.cprojs[Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex].isActive)
         {
 
-            Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + (Vector2.UnitY * 100f), Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
+            Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + (Vector2.UnitY * 100f), Vector2.Zero, player.whoAmI, Array.Empty<float>(), 1).proj.whoAmI;
         }
 
         else if (!flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectLife)
@@ -1095,13 +1095,13 @@ public class Challenger : TerrariaPlugin
 
             if (config.EnableSpectreArmorEffect_2)
             {
-                Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + (Vector2.UnitY * 100f), Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
+                Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + (Vector2.UnitY * 100f), Vector2.Zero, player.whoAmI, Array.Empty<float>(), 1).proj.whoAmI;
             }
         }
         else if (flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectMana && !Collect.cprojs[Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex].isActive)
         {
 
-            Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + (Vector2.UnitY * 100f), Vector2.Zero, player.whoAmI, new float[0], 1).proj.whoAmI;
+            Collect.cplayers[player.whoAmI].SpectreArmorEffectProjIndex = SpectreArmorProj.NewCProjectile(player.Center + (Vector2.UnitY * 100f), Vector2.Zero, player.whoAmI, Array.Empty<float>(), 1).proj.whoAmI;
         }
         if (!flag && Collect.cplayers[player.whoAmI].SpectreArmorEffectMana)
         {
@@ -2072,7 +2072,7 @@ public class Challenger : TerrariaPlugin
 
     public static NPC? NearestHostileNPC(Vector2 pos, float distanceSquared)
     {
-        NPC result = null;
+        NPC? result = null;
         var npc = Main.npc;
         foreach (var val in npc)
         {
@@ -2093,7 +2093,7 @@ public class Challenger : TerrariaPlugin
 
     public static NPC? NearestWeakestNPC(Vector2 pos, float distanceSquared)
     {
-        NPC val = null;
+        NPC? val = null;
         var flag = false;
         var num = 0f;
         var num2 = 1000f;
@@ -2151,7 +2151,7 @@ public class Challenger : TerrariaPlugin
 
     public static Player? NearWeakestPlayer(Vector2 pos, float distanceSquared, Player? dontHealPlayer = null)
     {
-        Player result = null;
+        Player? result = null;
         var num = 0;
         var player = Main.player;
         foreach (var val in player)

@@ -11,7 +11,7 @@ public class BuildPlayer : MiniPlayer, IComparable<BuildPlayer>
 {
     public int AquiredMarks { get; set; }
 
-    public MiniRegion CurrentRegion { get; set; }
+    public MiniRegion? CurrentRegion { get; set; }
 
     public int GiveMarks { get; set; }
 
@@ -78,7 +78,7 @@ public class BuildPlayer : MiniPlayer, IComparable<BuildPlayer>
         ((MiniPlayer) this).Leave();
     }
 
-    public int CompareTo(BuildPlayer other)
+    public int CompareTo(BuildPlayer? other)
     {
         return other.AquiredMarks.CompareTo(this.AquiredMarks);
     }

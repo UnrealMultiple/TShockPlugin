@@ -185,7 +185,7 @@ public class AutoResetPlugin : TerrariaPlugin
         }
     }
 
-    private void ResetCmd(CommandArgs e)
+    private void ResetCmd(CommandArgs? e)
     {
         if (this._status != Status.Available)
         {

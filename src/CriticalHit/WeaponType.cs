@@ -20,9 +20,9 @@ public class WeaponTypeDictionaryConverter : JsonConverter
         { WeaponType.Explosive, "爆炸" },
     };
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
-        var dict = (Dictionary<WeaponType, CritMessage>) value;
+        var dict = (Dictionary<WeaponType, CritMessage>) value!;
 
         writer.WriteStartObject();
         foreach (var pair in dict)
@@ -33,7 +33,7 @@ public class WeaponTypeDictionaryConverter : JsonConverter
         writer.WriteEndObject();
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
         var result = new Dictionary<WeaponType, CritMessage>();
 

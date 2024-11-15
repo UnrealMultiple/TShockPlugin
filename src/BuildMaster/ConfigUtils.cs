@@ -95,17 +95,17 @@ public static class ConfigUtils
         File.WriteAllText(roomsPath, JsonConvert.SerializeObject(rooms, (Formatting) 1));
     }
 
-    public static BuildRoom GetRoomByID(int id)
+    public static BuildRoom? GetRoomByID(int id)
     {
         return rooms.Find((BuildRoom r) => r.ID == id);
     }
 
-    public static BuildRoom GetRoomByIDFromLocal(int id)
+    public static BuildRoom? GetRoomByIDFromLocal(int id)
     {
         return JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath)).Find((BuildRoom r) => r.ID == id);
     }
 
-    public static BuildPlayer GetPlayerByName(string name)
+    public static BuildPlayer? GetPlayerByName(string name)
     {
         return players.Find((BuildPlayer p) => p.Name == name);
     }

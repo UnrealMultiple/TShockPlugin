@@ -6,7 +6,7 @@ namespace VeinMiner;
 
 public class Config
 {
-    public static void Load(ReloadEventArgs args = null)
+    public static void Load(ReloadEventArgs? args = null)
     {
         try
         {

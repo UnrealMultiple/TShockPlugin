@@ -170,7 +170,7 @@ public static class Commands
                         {
                             if (char.IsUpper(fi.Name[i]) && i > 0)
                             {
-                                sb.Append(" ").Append(fi.Name[i]);
+                                sb.Append(' ').Append(fi.Name[i]);
                             }
                             else
                             {
@@ -215,7 +215,7 @@ public static class Commands
                         {
                             if (char.IsUpper(fi.Name[i]) && i > 0)
                             {
-                                sb.Append(" ").Append(fi.Name[i]);
+                                sb.Append(' ').Append(fi.Name[i]);
                             }
                             else
                             {

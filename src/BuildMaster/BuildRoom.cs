@@ -70,7 +70,7 @@ public class BuildRoom : MiniRoom, IRoom
         this.Start();
     }
 
-    private void OnGaming(object sender, ElapsedEventArgs e)
+    private void OnGaming(object? sender, ElapsedEventArgs e)
     {
         if (this.Players.Count == 0)
         {
@@ -107,7 +107,7 @@ public class BuildRoom : MiniRoom, IRoom
         }
     }
 
-    private void OnWaiting(object sender, ElapsedEventArgs e)
+    private void OnWaiting(object? sender, ElapsedEventArgs e)
     {
         this.ShowRoomMemberInfo();
         if (this.Players.Count == 0 || this.Players.Where((BuildPlayer p) => p.IsReady).Count() < this.MinPlayer)
@@ -154,7 +154,7 @@ public class BuildRoom : MiniRoom, IRoom
         this.Start();
     }
 
-    private void OnScoring(object sender, ElapsedEventArgs e)
+    private void OnScoring(object? sender, ElapsedEventArgs e)
     {
         if (this.Players.Count == 0)
         {
@@ -409,7 +409,7 @@ public class BuildRoom : MiniRoom, IRoom
         var list = (from p in this.Topics
                     where p.Value == max
                     select p.Key).ToList();
-        if (list.Count() == 1)
+        if (list.Count == 1)
         {
             this.Topic = list[0];
         }

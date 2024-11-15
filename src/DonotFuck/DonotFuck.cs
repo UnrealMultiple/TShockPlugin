@@ -31,7 +31,9 @@ namespace DonotFuck
             // 如果任一条件未满足（即Config为null或者Config.DirtyWords为null），说明配置未正确完成，
             // 这时抛出InvalidOperationException异常，提示开发者或系统管理员检查配置初始化逻辑。
             if (Config == null || Config.DirtyWords == null)
+            {
                 throw new InvalidOperationException("\n配置未正确初始化。");
+            }
         }
 
 
@@ -39,14 +41,14 @@ namespace DonotFuck
         public override void Initialize()
         {
             LoadConfig();
-            ServerApi.Hooks.ServerChat.Register(this, OnChat); //注册聊天钩子
+            ServerApi.Hooks.ServerChat.Register(this, this.OnChat); //注册聊天钩子
 
             // 注册重新加载事件的监听器，当接收到重新加载信号时重新加载配置。
             GeneralHooks.ReloadEvent += LoadConfig;
         }
 
         // 重新加载配置文件的方法，支持在接收到重新加载事件或直接调用时更新配置。
-        private static void LoadConfig(ReloadEventArgs args = null)
+        private static void LoadConfig(ReloadEventArgs? args = null)
         {
             // 使用Read方法加载配置文件，若文件不存在则自动创建。
             Config = Configuration.Read(Configuration.FilePath);
@@ -64,13 +66,13 @@ namespace DonotFuck
         // 检查玩家聊天行为
         private void OnChat(ServerChatEventArgs args)
         {
-            TSPlayer player = TShock.Players[args.Who];
+            var player = TShock.Players[args.Who];
 
-            if (player == null || args.Who == null || player.HasPermission("Civilized") || player.Group.Name.Equals("owner", StringComparison.OrdinalIgnoreCase))
+            if (player == null || player.HasPermission("Civilized") || player.Group.Name.Equals("owner", StringComparison.OrdinalIgnoreCase))
             {
                 return;
             }
-            int WordsCount = 0;
+            var WordsCount = 0;
 
             // 遍历脏话列表，计算本次聊天触发的脏话数量
             foreach (var badWord in Config.DirtyWords)
@@ -84,8 +86,8 @@ namespace DonotFuck
             // 如果触发了脏话，提醒玩家并更新累计违规次数
             if (WordsCount > 0)
             {
-                string Text = args.Text; // 原始发言内容
-                List<string> BadWordList = new List<string>(); // 存储玩家准确的脏话词语
+                var Text = args.Text; // 原始发言内容
+                var BadWordList = new List<string>(); // 存储玩家准确的脏话词语
 
                 // 遍历脏话表检查是否有匹配项
                 foreach (var badWord in Config.DirtyWords)
@@ -99,8 +101,8 @@ namespace DonotFuck
                 // 如果有触发脏话，显示给玩家的信息
                 if (BadWordList.Any())
                 {
-                    string ShowBadWords = "";
-                    foreach (string badWord in BadWordList)
+                    var ShowBadWords = "";
+                    foreach (var badWord in BadWordList)
                     {
                         ShowBadWords += $"- {badWord}\n";
                     }
@@ -109,7 +111,7 @@ namespace DonotFuck
                     TSPlayer.All.SendInfoMessage($"玩家[c/FFCCFF:{player.Name}]触发了以下敏感词：\n{ShowBadWords.TrimEnd('\n')}");
 
 
-                    foreach (string badWord in BadWordList)
+                    foreach (var badWord in BadWordList)
                     {
                         // 输出准确的脏话词语到控制台
                         TShock.Log.ConsoleInfo($"玩家 [{player.Name}] 发言中的脏话：{badWord}");
@@ -145,7 +147,7 @@ namespace DonotFuck
         // 定义获取原始文本中精确匹配脏话的辅助函数
         private static IEnumerable<string> GetExactMatches(string text, string badWord)
         {
-            int index = 0;
+            var index = 0;
             while ((index = text.IndexOf(badWord, index, StringComparison.OrdinalIgnoreCase)) != -1)
             {
                 yield return text.Substring(index, badWord.Length);
@@ -159,7 +161,7 @@ namespace DonotFuck
             // 当disposing为true，表示是通过代码显式调用Dispose()，此时应执行额外的清理工作。
             if (disposing)
             {
-                ServerApi.Hooks.ServerChat.Deregister(this, OnChat); //卸载聊天钩子
+                ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat); //卸载聊天钩子
             }
             // 调用基类的Dispose方法，以确保基类中可能存在的资源也得到正确释放。
             base.Dispose(disposing);

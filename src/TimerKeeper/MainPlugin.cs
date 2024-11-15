@@ -30,7 +30,7 @@ public class TimerKeeper : TerrariaPlugin
         ServerApi.Hooks.GamePostInitialize.Register(this, this.OnPostInitialize);
     }
 
-    private void OnTileEdit(object sender, GetDataHandlers.TileEditEventArgs e)
+    private void OnTileEdit(object? sender, GetDataHandlers.TileEditEventArgs e)
     {
         if (Main.tile[e.X, e.Y].type == 144)
         {

@@ -7,7 +7,7 @@ namespace Challenger;
 
 public class CNPC
 {
-    public NPC? npc;
+    public NPC npc;
 
     private readonly int netID;
 

@@ -351,7 +351,7 @@ public class Commands
             {
                 if (list.TryGetValue(i, out p))
                 {
-                    message += $"\n{i + 1}. {TShock.UserAccounts.GetUserAccountByID(p.AccountID).Name} : {p.GetKillDeathRatio():F2}";
+                    message += $"\n{i + 1}. {TShock.UserAccounts.GetUserAccountByID(p!.AccountID).Name} : {p.GetKillDeathRatio():F2}";
                 }
             }
             args.Player.SendInfoMessage(message);

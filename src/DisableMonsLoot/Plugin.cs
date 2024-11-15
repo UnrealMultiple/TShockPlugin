@@ -20,11 +20,13 @@ public class Plugin : TerrariaPlugin
 
     #region 注册释放钩子
     private GeneralHooks.ReloadEventD _reloadHandler;
-    public Plugin(Main game) : base(game) { }
+    public Plugin(Main game) : base(game)
+    {
+        this._reloadHandler = (_) => LoadConfig();
+    }
     public override void Initialize()
     {
         LoadConfig();
-        this._reloadHandler = (_) => LoadConfig();
         GeneralHooks.ReloadEvent += this._reloadHandler;
         ServerApi.Hooks.NpcKilled.Register(this, this.KillItem);
         TShockAPI.Commands.ChatCommands.Add(new Command("killitem.admin", kdm, "kdm", "禁掉落"));

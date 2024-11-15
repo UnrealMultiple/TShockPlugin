@@ -67,7 +67,7 @@ public static class GetDataHandlers
         }
 
         var house = Utils.InAreaHouse(x, y);//直接读出敲的房子
-        if (HousingPlugin.LPlayers[args.Player.Index].Look)//敲击砖块确认房屋名
+        if (HousingPlugin.LPlayers[args.Player.Index]!.Look)//敲击砖块确认房屋名
         {
             if (house == null)
             {
@@ -81,7 +81,7 @@ public static class GetDataHandlers
                 args.Player.SendMessage("敲击处为 " + AuthorNames + " 的房子: " + house.Name + " 状态: " + (!house.Locked || HousingPlugin.LConfig.LimitLockHouse ? "未上锁" : "已上锁"), Color.Yellow);
             }
             args.Player.SendTileSquareCentered(x, y);
-            HousingPlugin.LPlayers[args.Player.Index].Look = false;
+            HousingPlugin.LPlayers[args.Player.Index]!.Look = false;
             return true;
         }
         if (args.Player.AwaitingTempPoint > 0)//设置点位

@@ -71,7 +71,7 @@ public class SkillContext
     public string? ExecuteScript
     {
         get => this.JsScript?.FilePathOrUri;
-        set => this.JsScript = this.Set(value);
+        set => this.JsScript = this.Set(value!);
     }
 
     [JsonProperty("弹幕")]
@@ -80,7 +80,7 @@ public class SkillContext
     [JsonIgnore]
     public JsScript? JsScript { get; set; }
 
-    public JsScript? Set(string? path)
+    public JsScript? Set(string path)
     {
         var jistScript = new JsScript
         {

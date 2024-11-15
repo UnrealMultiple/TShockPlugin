@@ -103,7 +103,7 @@ public class BackPlugin : TerrariaPlugin
         }
     }
 
-    private void OnDead(object o, GetDataHandlers.KillMeEventArgs args)
+    private void OnDead(object? o, GetDataHandlers.KillMeEventArgs args)
     {
         args.Player.SetData("DeadPoint", new Point((int) args.Player.X, (int) args.Player.Y));
     }

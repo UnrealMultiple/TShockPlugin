@@ -33,7 +33,7 @@ public class RealTime : TerrariaPlugin
         base.Dispose(disposing);
     }
 
-    private void Team(object o, GetDataHandlers.PlayerTeamEventArgs args)//队伍判断
+    private void Team(object? o, GetDataHandlers.PlayerTeamEventArgs args)//队伍判断
     {
         if (Main.bloodMoon == true || Main.eclipse == true || Main.pumpkinMoon == true || Main.snowMoon == true)
         {

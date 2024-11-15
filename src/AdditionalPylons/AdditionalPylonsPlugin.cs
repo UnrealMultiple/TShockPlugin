@@ -79,7 +79,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
     #endregion // [IDisposable Implementation]
 
     #region Plugin Hooks
-    private void OnSendTileRect(object sender, GetDataHandlers.SendTileRectEventArgs e)
+    private void OnSendTileRect(object? sender, GetDataHandlers.SendTileRectEventArgs e)
     {
         // 如果有更高优先级的插件需要处理，就尊重它们的决定...
         if (this.IsDisposed || e.Handled)
@@ -125,7 +125,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
         Main.PylonSystem._pylons.Clear();
     }
 
-    private void OnPlayerUpdate(object sender, TShockAPI.GetDataHandlers.PlayerUpdateEventArgs e)
+    private void OnPlayerUpdate(object? sender, TShockAPI.GetDataHandlers.PlayerUpdateEventArgs e)
     {
         if (this.IsDisposed || e.Handled)
         {
@@ -165,7 +165,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
         }
     }
 
-    private void OnPlaceTileEntity(object sender, TShockAPI.GetDataHandlers.PlaceTileEntityEventArgs e)
+    private void OnPlaceTileEntity(object? sender, TShockAPI.GetDataHandlers.PlaceTileEntityEventArgs e)
     {
         // 如果插件已被销毁或事件已被处理，则返回
         if (this.IsDisposed || e.Handled)

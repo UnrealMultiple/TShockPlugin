@@ -103,13 +103,13 @@ internal class Configuration
     #region Buff数据
     public class BuffListConverter : JsonConverter<List<BuffData>>
     {
-        public override void WriteJson(JsonWriter writer, List<BuffData> value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, List<BuffData>? value, JsonSerializer serializer)
         {
-            var BuffDict = value.ToDictionary(Buff => Buff.ID, Buff => Buff.Min);
+            var BuffDict = value!.ToDictionary(Buff => Buff.ID, Buff => Buff.Min);
             serializer.Serialize(writer, BuffDict);
         }
 
-        public override List<BuffData> ReadJson(JsonReader reader, Type objectType, List<BuffData> existingValue, bool hasExistingValue, JsonSerializer serializer)
+        public override List<BuffData> ReadJson(JsonReader reader, Type objectType, List<BuffData>? existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             var buffDict = serializer.Deserialize<Dictionary<int, int>>(reader);
             return buffDict?.Select(kv => new BuffData(kv.Key, kv.Value)).ToList() ?? new List<BuffData>();
@@ -132,13 +132,13 @@ internal class Configuration
     #region 物品数据
     public class ItemListConverter : JsonConverter<List<ItemData>>
     {
-        public override void WriteJson(JsonWriter writer, List<ItemData> value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, List<ItemData>? value, JsonSerializer serializer)
         {
-            var itemDict = value.ToDictionary(item => item.ID, item => item.Stack);
+            var itemDict = value!.ToDictionary(item => item.ID, item => item.Stack);
             serializer.Serialize(writer, itemDict);
         }
 
-        public override List<ItemData> ReadJson(JsonReader reader, Type objectType, List<ItemData> existingValue, bool hasExistingValue, JsonSerializer serializer)
+        public override List<ItemData> ReadJson(JsonReader reader, Type objectType, List<ItemData>? existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             var itemDict = serializer.Deserialize<Dictionary<int, int>>(reader);
             return itemDict?.Select(kv => new ItemData(kv.Key, kv.Value)).ToList() ?? new List<ItemData>();

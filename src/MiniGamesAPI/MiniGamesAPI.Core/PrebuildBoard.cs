@@ -10,7 +10,7 @@ public class PrebuildBoard
 
     public int ID { get; set; }
 
-    public MiniRegion Region { get; private set; }
+    public MiniRegion? Region { get; private set; }
 
     public Point TestPoint_1 { get; set; }
 

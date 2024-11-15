@@ -85,7 +85,7 @@ public class GolfRewards : TerrariaPlugin
         LC.LPlayers.TryRemove(e.Who, out _);
     }
 
-    private void TileEdit(object sender, GetDataHandlers.TileEditEventArgs args)
+    private void TileEdit(object? sender, GetDataHandlers.TileEditEventArgs args)
     {
         if (args.Handled)
         {
@@ -106,7 +106,7 @@ public class GolfRewards : TerrariaPlugin
     }
 
 
-    public void Golf(object sender, GetDataHandlers.LandGolfBallInCupEventArgs args)
+    public void Golf(object? sender, GetDataHandlers.LandGolfBallInCupEventArgs args)
     {
         if (args.Handled)
         {

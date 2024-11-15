@@ -41,8 +41,8 @@ public class ShowArmors : TerrariaPlugin
 
     private void ShowMySlots(CommandArgs args)
     {
-        TSPlayer target = null;
-        Item[] armors = null;
+        TSPlayer? target = null;
+        Item[]? armors = null;
         var str = "";
         const int MAX_SLOTS_NUMBER = 10;
         var argsCount = args.Parameters.Count;

@@ -74,10 +74,10 @@ public class MainPlugin : TerrariaPlugin
         }
     }
 
-    private void OnTeam(object sender, PlayerTeamEventArgs args)
+    private void OnTeam(object? sender, PlayerTeamEventArgs args)
     {
         var playerByName = ConfigUtils.GetPlayerByName(args.Player.Name);
-        BuildRoom buildRoom = null;
+        BuildRoom? buildRoom = null;
         if (playerByName != null)
         {
             buildRoom = ConfigUtils.GetRoomByID(playerByName.CurrentRoomID);
@@ -90,11 +90,11 @@ public class MainPlugin : TerrariaPlugin
         }
     }
 
-    private void OnPlayerSlot(object sender, PlayerSlotEventArgs args)
+    private void OnPlayerSlot(object? sender, PlayerSlotEventArgs args)
     {
         var playerByName = ConfigUtils.GetPlayerByName(args.Player.Name);
         _ = args.Player;
-        BuildRoom buildRoom = null;
+        BuildRoom? buildRoom = null;
         if (playerByName != null)
         {
             buildRoom = ConfigUtils.GetRoomByID(playerByName.CurrentRoomID);
@@ -105,10 +105,10 @@ public class MainPlugin : TerrariaPlugin
         }
     }
 
-    private void OnTogglePVP(object sender, TogglePvpEventArgs args)
+    private void OnTogglePVP(object? sender, TogglePvpEventArgs args)
     {
         var playerByName = ConfigUtils.GetPlayerByName(args.Player.Name);
-        BuildRoom buildRoom = null;
+        BuildRoom? buildRoom = null;
         if (playerByName != null)
         {
             buildRoom = ConfigUtils.GetRoomByID(playerByName.CurrentRoomID);
@@ -121,10 +121,10 @@ public class MainPlugin : TerrariaPlugin
         }
     }
 
-    private void OnSetLiquid(object sender, LiquidSetEventArgs args)
+    private void OnSetLiquid(object? sender, LiquidSetEventArgs args)
     {
         var playerByName = ConfigUtils.GetPlayerByName(args.Player.Name);
-        BuildRoom buildRoom = null;
+        BuildRoom? buildRoom = null;
         if (playerByName == null)
         {
             return;
@@ -150,10 +150,10 @@ public class MainPlugin : TerrariaPlugin
         }
     }
 
-    private void OnTileEdit(object sender, TileEditEventArgs args)
+    private void OnTileEdit(object? sender, TileEditEventArgs args)
     {
         var playerByName = ConfigUtils.GetPlayerByName(args.Player.Name);
-        BuildRoom buildRoom = null;
+        BuildRoom? buildRoom = null;
         if (playerByName == null)
         {
             return;
@@ -183,11 +183,11 @@ public class MainPlugin : TerrariaPlugin
         }
     }
 
-    private void OnPlayerUpdate(object sender, PlayerUpdateEventArgs args)
+    private void OnPlayerUpdate(object? sender, PlayerUpdateEventArgs args)
     {
         var playerByName = ConfigUtils.GetPlayerByName(args.Player.Name);
         var player = args.Player;
-        BuildRoom buildRoom = null;
+        BuildRoom? buildRoom = null;
         if (playerByName == null)
         {
             return;
@@ -261,7 +261,7 @@ public class MainPlugin : TerrariaPlugin
             return;
         }
         var stringBuilder = new StringBuilder();
-        BuildRoom buildRoom = null;
+        BuildRoom? buildRoom = null;
         int result;
         int result2;
         switch (args.Parameters[0])
@@ -303,7 +303,7 @@ public class MainPlugin : TerrariaPlugin
                     break;
                 }
                 var list = TSPlayer.FindByNameOrID(args.Parameters[1]);
-                TSPlayer val = null;
+                TSPlayer? val = null;
                 if (list.Count != 0)
                 {
                     val = list[0];
@@ -868,9 +868,9 @@ public class MainPlugin : TerrariaPlugin
                 buildPlayer.GiveMarks = 0;
                 buildPlayer.AquiredMarks = 0;
                 buildPlayer.SelectedTopic = "";
-                buildPlayer.BackUp?.RestoreCharacter((MiniPlayer) (object) buildPlayer);
+                buildPlayer.BackUp.RestoreCharacter((MiniPlayer) (object) buildPlayer);
                 buildPlayer.CurrentRegion = null;
-                buildPlayer.Player = null;
+                buildPlayer.Player = null!;
                 buildPlayer.BackUp = null;
                 buildPlayer.Status = 0;
                 buildPlayer.Locked = false;

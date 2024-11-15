@@ -58,7 +58,7 @@ public class TeleportRequest : TerrariaPlugin
         GeneralHooks.ReloadEvent -= this.ReloadTPR;
     }
 
-    private void OnElapsed(object sender, ElapsedEventArgs e)
+    private void OnElapsed(object? sender, ElapsedEventArgs e)
     {
         for (var i = 0; i < this.TPRequests.Length; i++)
         {

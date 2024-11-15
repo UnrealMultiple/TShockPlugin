@@ -358,7 +358,7 @@ public class Chameleon : TerrariaPlugin
 
     private static void LoadConfig()
     {
-        Config = Configuration.Read(Configuration.FilePath);
+        Config = Configuration.Read(Configuration.FilePath)!;
 
         if (Config == null)
         {

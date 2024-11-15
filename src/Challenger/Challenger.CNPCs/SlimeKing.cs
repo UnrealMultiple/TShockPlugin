@@ -196,6 +196,10 @@ public class SlimeKing : CNPC
 
     public override void OnHurtPlayers(GetDataHandlers.PlayerDamageEventArgs e)
     {
+        if (this.npc is null)
+        {
+            return;
+        }
         if (global::Challenger.Challenger.config.EnableConsumptionMode)
         {
             switch (Main.rand.Next(1, 4))

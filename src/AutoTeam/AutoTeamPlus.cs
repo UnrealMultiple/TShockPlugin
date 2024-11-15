@@ -63,7 +63,7 @@ public class AutoTeam : TerrariaPlugin
     }
 
 
-    private void Team(object sender, PlayerTeamEventArgs args)
+    private void Team(object? sender, PlayerTeamEventArgs args)
     {
         this.SetTeam(args.Player);
         args.Handled = true;
