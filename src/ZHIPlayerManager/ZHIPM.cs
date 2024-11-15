@@ -15,7 +15,7 @@ public partial class ZHIPM : TerrariaPlugin
 
     public override string Name => "ZHIPlayerManager";
 
-    public override Version Version => new Version(1, 0, 0, 7);
+    public override Version Version => new Version(1, 0, 0, 8);
 
     #region 字段或属性
     /// <summary>
@@ -84,11 +84,13 @@ public partial class ZHIPM : TerrariaPlugin
 
     public override void Initialize()
     {
+        /*
         if (!TShock.ServerSideCharacterConfig.Settings.Enabled)
         {
             Console.WriteLine(GetString("该插件需要开启SSC才能使用"));
             return;
         }
+        */
         Timer = 0L;
         config = ZhipmConfig.LoadConfigFile();
         ZPDataBase = new ZplayerDB(TShock.DB);
