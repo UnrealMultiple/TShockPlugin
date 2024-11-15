@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ZHIPlayerManager\n"
-"POT-Creation-Date: 2024-10-25 14:11:10+0000\n"
-"PO-Revision-Date: 2024-10-25 14:11:10+0000\n"
+"POT-Creation-Date: 2024-11-15 15:53:48+0000\n"
+"PO-Revision-Date: 2024-11-15 15:53:48+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1088,10 +1088,6 @@ msgstr ""
 
 #: ../../ZHIPM.Initialize.cs:1326
 msgid "装备栏3："
-msgstr ""
-
-#: ../../ZHIPM.cs:89
-msgid "该插件需要开启SSC才能使用"
 msgstr ""
 
 #: ../../ZHIPM.cs:63
