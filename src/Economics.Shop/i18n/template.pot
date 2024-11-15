@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Shop\n"
-"POT-Creation-Date: 2024-09-30 12:32:34+0000\n"
-"PO-Revision-Date: 2024-09-30 12:32:34+0000\n"
+"POT-Creation-Date: 2024-11-15 03:22:39+0000\n"
+"PO-Revision-Date: 2024-11-15 03:22:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 
 #: ../../Command.cs:40
 #, csharp-format
-msgid "{0}:[{1}]  {2} 价格:{3}"
+msgid "{0}:[{1}]  {2} 价格:{3})"
 msgstr ""
 
 #: ../../Command.cs:94
@@ -24,8 +24,7 @@ msgid "/shop list [序号]"
 msgstr ""
 
 #: ../../Command.cs:81
-#, csharp-format
-msgid "你的{0}不足!"
+msgid "你的货币不足!"
 msgstr ""
 
 #: ../../Command.cs:55

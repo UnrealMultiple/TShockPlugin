@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Skill\n"
-"POT-Creation-Date: 2024-11-07 17:08:16+0800\n"
-"PO-Revision-Date: 2024-11-07 17:08:17+0800\n"
+"POT-Creation-Date: 2024-11-15 03:22:39+0000\n"
+"PO-Revision-Date: 2024-11-15 03:22:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr ""
 msgid "你并未绑定技能!"
 msgstr ""
 
-#: ../../Skill.cs:139
+#: ../../Utils.cs:28
 #, csharp-format
 msgid "你当前等级无法购买此技能，限制等级:{0}"
 msgstr ""
@@ -84,8 +84,7 @@ msgid "你没有权限执行此命令!"
 msgstr ""
 
 #: ../../Command.cs:67
-#, csharp-format
-msgid "你的{0} 不足购买此技能!"
+msgid "你的货币不足购买此技能!"
 msgstr ""
 
 #: ../../Command.cs:103
@@ -162,8 +161,8 @@ msgstr ""
 msgid "此技能全服唯一已经有其他人绑定了此技能!"
 msgstr ""
 
-#: ../../Command.cs:67
-msgid "你的货币不足购买此技能!"
+#: ../../Utils.cs:24
+msgid "此技能无法被购买!"
 msgstr ""
 
 #: ../../Utils.cs:38
@@ -178,7 +177,7 @@ msgstr ""
 msgid "目标玩家不存在或不在线!"
 msgstr ""
 
-#: ../../Skill.cs:140
+#: ../../Skill.cs:139
 #, csharp-format
 msgid "绑定技能: {0}"
 msgstr ""

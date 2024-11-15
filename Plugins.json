@@ -9,8 +9,8 @@
     "Dependencies": []
   },
   {
-    "Name": "Chireiden.TShock.Omni debf82951d",
-    "Version": "0.0.189.0",
+    "Name": "Chireiden.TShock.Omni 451424f0c2",
+    "Version": "0.0.190.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
     "AssemblyName": "Chireiden.TShock.Omni",
@@ -412,13 +412,16 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2024.11.3.1",
+    "Version": "2024.11.9.1",
     "Author": "Cai,羽学,西江",
     "Description": "CaiBot机器人的适配插件",
     "AssemblyName": "CaiBot",
     "Path": "CaiBot.dll",
     "Dependencies": [
-      "SixLabors.ImageSharp"
+      "Economics.Skill",
+      "EconomicsAPI",
+      "SixLabors.ImageSharp",
+      "Economics.RPG"
     ]
   },
   {
@@ -507,8 +510,8 @@
     "Dependencies": []
   },
   {
-    "Name": "Chireiden.TShock.Omni.Misc debf82951d",
-    "Version": "0.0.189.0",
+    "Name": "Chireiden.TShock.Omni.Misc 451424f0c2",
+    "Version": "0.0.190.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock - the miscellaneous part",
     "AssemblyName": "Chireiden.TShock.Omni.Misc",
@@ -600,7 +603,7 @@
   },
   {
     "Name": "Economics.Deal",
-    "Version": "1.0.0.3",
+    "Version": "2.0.0.0",
     "Author": "少司命",
     "Description": "Economics.Deal",
     "AssemblyName": "Economics.Deal",
@@ -611,7 +614,7 @@
   },
   {
     "Name": "Economics.NPC",
-    "Version": "1.0.0.2",
+    "Version": "2.0.0.0",
     "Author": "少司命",
     "Description": "Economics.NPC",
     "AssemblyName": "Economics.NPC",
@@ -622,7 +625,7 @@
   },
   {
     "Name": "Economics.Regain",
-    "Version": "1.0.0.2",
+    "Version": "2.0.0.0",
     "Author": "少司命",
     "Description": "Economics.Regain",
     "AssemblyName": "Economics.Regain",
@@ -633,7 +636,7 @@
   },
   {
     "Name": "Economics.RPG",
-    "Version": "1.0.0.7",
+    "Version": "2.0.0.0",
     "Author": "少司命",
     "Description": "Economics.RPG",
     "AssemblyName": "Economics.RPG",
@@ -644,7 +647,7 @@
   },
   {
     "Name": "Economics.Shop",
-    "Version": "1.0.0.3",
+    "Version": "2.0.0.0",
     "Author": "少司命",
     "Description": "Economics.Shop",
     "AssemblyName": "Economics.Shop",
@@ -656,7 +659,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "1.2.1.6",
+    "Version": "2.0.0.6",
     "Author": "少司命",
     "Description": "Economics.Skill",
     "AssemblyName": "Economics.Skill",
@@ -669,7 +672,7 @@
   },
   {
     "Name": "Economics.Task",
-    "Version": "1.0.0.2",
+    "Version": "2.0.0.0",
     "Author": "少司命",
     "Description": "Economics.Task",
     "AssemblyName": "Economics.Task",
@@ -690,7 +693,7 @@
   },
   {
     "Name": "Economics.WeaponPlus",
-    "Version": "1.0.0.5",
+    "Version": "2.0.0.0",
     "Author": "z枳 少司命",
     "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
     "AssemblyName": "Economics.WeaponPlus",
@@ -701,7 +704,7 @@
   },
   {
     "Name": "EconomicsAPI",
-    "Version": "1.0.2.0",
+    "Version": "2.0.0.0",
     "Author": "少司命",
     "Description": "EconomicsAPI",
     "AssemblyName": "EconomicsAPI",

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Deal\n"
-"POT-Creation-Date: 2024-11-07 17:09:23+0800\n"
-"PO-Revision-Date: 2024-11-07 17:09:23+0800\n"
+"POT-Creation-Date: 2024-11-15 03:22:36+0000\n"
+"PO-Revision-Date: 2024-11-15 03:22:36+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -35,31 +35,6 @@ msgstr ""
 msgid "不存在此交易!"
 msgstr ""
 
-#: ../../Command.cs:115
-msgid "撤回成功!"
-msgstr ""
-
-#: ../../Command.cs:28
-msgid "当前没有交易物品"
-msgstr ""
-
-#: ../../Command.cs:52
-msgid "发布成功"
-msgstr ""
-
-#: ../../Command.cs:112
-msgid "该交易不是你发布的无法撤回!"
-msgstr ""
-
-#: ../../Command.cs:48
-#, csharp-format
-msgid "货币类型{0}不存在!"
-msgstr ""
-
-#: ../../Command.cs:93
-msgid "交易成功!"
-msgstr ""
-
 #: ../../Command.cs:29
 msgid "交易列表 ({0}/{1})："
 msgstr ""
@@ -68,9 +43,8 @@ msgstr ""
 msgid "交易已重置!"
 msgstr ""
 
-#: ../../Command.cs:88
-#, csharp-format
-msgid "你的{0}不足，无法购买!"
+#: ../../Command.cs:93
+msgid "交易成功!"
 msgstr ""
 
 #: ../../Command.cs:38
@@ -81,21 +55,21 @@ msgstr ""
 msgid "你无权使用此命令!"
 msgstr ""
 
-#: ../../Command.cs:43
-msgid "请输入一个正确的价格!"
+#: ../../Command.cs:88
+#, csharp-format
+msgid "你的{0}不足，无法购买!"
 msgstr ""
 
-#: ../../Command.cs:77
-#: ../../Command.cs:101
-msgid "请输入一个正确的ID"
+#: ../../Command.cs:52
+msgid "发布成功"
 msgstr ""
 
-#: ../../Command.cs:30
-msgid "输入 {0}deal list {{0}} 查看更多"
+#: ../../Command.cs:28
+msgid "当前没有交易物品"
 msgstr ""
 
-#: ../../Command.cs:140
-msgid "输入/deal help 查看命令使用方法"
+#: ../../Command.cs:115
+msgid "撤回成功!"
 msgstr ""
 
 #: ../../Command.cs:116
@@ -109,5 +83,31 @@ msgstr ""
 #: ../../Command.cs:53
 #, csharp-format
 msgid "玩家`{0}`发布了一个交易物品: [i/s{1}:{2}] 价格: {3}x{4}"
+msgstr ""
+
+#: ../../Command.cs:112
+msgid "该交易不是你发布的无法撤回!"
+msgstr ""
+
+#: ../../Command.cs:77
+#: ../../Command.cs:101
+msgid "请输入一个正确的ID"
+msgstr ""
+
+#: ../../Command.cs:43
+msgid "请输入一个正确的价格!"
+msgstr ""
+
+#: ../../Command.cs:48
+#, csharp-format
+msgid "货币类型{0}不存在!"
+msgstr ""
+
+#: ../../Command.cs:30
+msgid "输入 {0}deal list {{0}} 查看更多"
+msgstr ""
+
+#: ../../Command.cs:140
+msgid "输入/deal help 查看命令使用方法"
 msgstr ""
 
