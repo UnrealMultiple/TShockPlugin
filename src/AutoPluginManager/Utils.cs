@@ -16,6 +16,7 @@ internal static class Utils
 
     private static Dictionary<string, PluginVersionInfo>? _installedPluginsManifestCache;
     public static Dictionary<string, PluginVersionInfo> InstalledPluginsManifestCache => _installedPluginsManifestCache ??= GetInstalledPlugins().ToDictionary(i => i.AssemblyName);
+    public static readonly Dictionary<string, Version> PluginVersionOverrides = new ();
 
     public static void UnLoadPlugins(IEnumerable<string> targetPaths)
     {
@@ -135,13 +136,17 @@ internal static class Utils
                     .TryGetValue(c.Plugin.GetType().Assembly, out var fileName)
                     ? fileName + ".dll"
                     : "",
-                // Version = PluginVersionOverrides.GetValueOrDefault(c.Plugin.GetType().Assembly.GetName().Name!, c.Plugin.Version)
-                Version = c.Plugin.Version
+                Version = PluginVersionOverrides.GetValueOrDefault(c.Plugin.GetType().Assembly.GetName().Name!, c.Plugin.Version)
             })
             .DistinctBy(i => i.AssemblyName) // to prevent from being crashed by some ClassLibrary1 ...
             .ToArray();
 
         return installedPlugins;
+    }
+    
+    public static void ClearCache()
+    {
+        _installedPluginsManifestCache = null;
     }
 
     public static void SendFormattedServerPluginsModifications(this TSPlayer player, (PluginUpdateInfo[] plugins, string[] externalDlls) success)

@@ -179,7 +179,9 @@ public class PluginManagementContext : IDisposable
         foreach (var u in successfullyUpdatedPlugins)
         {
             CopyPluginFile(u.Latest.Path, u.Current?.Path ?? u.Latest.Path);
+            Utils.PluginVersionOverrides[u.Current?.AssemblyName ?? u.Latest.AssemblyName] = u.Latest.Version;
         }
+        Utils.ClearCache();
 
         var successfullyUpdatedExternalDlls = pluginsPassedCheck
             .SelectMany(x => x.externalDlls)
