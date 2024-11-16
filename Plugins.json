@@ -502,7 +502,7 @@
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.0.6",
+    "Version": "1.0.7",
     "Author": "Cjx重构 | 肝帝熙恩简单修改",
     "Description": "无限宝箱插件",
     "AssemblyName": "ChestRestore",
