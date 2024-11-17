@@ -704,7 +704,7 @@
   },
   {
     "Name": "EconomicsAPI",
-    "Version": "2.0.0.0",
+    "Version": "2.0.0.1",
     "Author": "少司命",
     "Description": "EconomicsAPI",
     "AssemblyName": "EconomicsAPI",
