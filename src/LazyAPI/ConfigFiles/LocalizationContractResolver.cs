@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System.Globalization;
 using System.Reflection;
-using TShockAPI;
 
 namespace LazyAPI.ConfigFiles;
 public class LocalizationContractResolver : DefaultContractResolver
@@ -25,7 +23,6 @@ public class LocalizationContractResolver : DefaultContractResolver
                 property.PropertyName = language.Text;
             }
         }
-        Console.WriteLine(property.PropertyName);
         return property;
     }
 }
