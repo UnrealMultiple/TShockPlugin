@@ -4,19 +4,24 @@ namespace ChattyBridge;
 
 public class Config : JsonConfigBase<Config>
 {
-    [LocalizationProperty("转发指令", "forward_command")]
+    [LocalizationProperty("forward_command", LocalizationType.EN_US)]
+    [LocalizationProperty("转发指令", LocalizationType.ZH_CN)]
     public bool ForwardCommamd { get; set; } = false;
 
-    [LocalizationProperty("Rest地址", "rest_address")]
+    [LocalizationProperty("rest_address", LocalizationType.EN_US)]
+    [LocalizationProperty("Rest地址", LocalizationType.ZH_CN)]
     public List<string> RestHost { get; set; } = new();
 
-    [LocalizationProperty("服务器名称", "server_name")]
+    [LocalizationProperty("server_name", LocalizationType.EN_US)]
+    [LocalizationProperty("服务器名称", LocalizationType.ZH_CN)]
     public string ServerName { get; set; } = string.Empty;
 
-    [LocalizationProperty("验证令牌","token")]
+    [LocalizationProperty("token", LocalizationType.EN_US)]
+    [LocalizationProperty("验证令牌",LocalizationType.ZH_CN)]
     public string Verify { get; set; } = string.Empty;
 
-    [LocalizationProperty("消息设置", "message_option")]
+    [LocalizationProperty("message_option", LocalizationType.EN_US)]
+    [LocalizationProperty("消息设置", LocalizationType.ZH_CN)]
     public MessageFormat MessageFormat { get; set; } = new();
 
     protected override string Filename => "ChattyBridge";

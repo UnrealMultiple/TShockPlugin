@@ -16,12 +16,13 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         Formatting = Formatting.Indented,
     };
 
-    protected virtual string Filename => typeof(T).Namespace ?? typeof(T).Name;
-    private string FullFilename => Path.Combine(TShock.SavePath, $"{this.Filename}.{this.cultureInfo.Name}.json");
-
     private readonly CultureInfo cultureInfo = (CultureInfo) typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
             "TranslationCultureInfo",
             BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
+
+    protected virtual string Filename => typeof(T).Namespace ?? typeof(T).Name;
+
+    private string FullFilename => Path.Combine(TShock.SavePath, $"{this.Filename}.{this.cultureInfo.Name}.json");
 
     private static T GetConfig()
     {
@@ -31,7 +32,7 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         {
             return JsonConvert.DeserializeObject<T>(File.ReadAllText(file), _settings) ?? new();
         }
-
+        
         File.WriteAllText(file, JsonConvert.SerializeObject(t, _settings));
         return t;
     }

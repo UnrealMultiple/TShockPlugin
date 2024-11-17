@@ -2,16 +2,16 @@
 
 namespace LazyAPI.ConfigFiles;
 
-[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
 public class LocalizationPropertyAttribute : Attribute
 {
-    public string Chinese { get;}
+    public string Text { get;}
 
-    public string? English { get;}
+    public LocalizationType Type { get;}
 
-    public LocalizationPropertyAttribute(string chinese, string? english = null)
+    public LocalizationPropertyAttribute(string chinese, LocalizationType type)
     {
-        this.Chinese = chinese;
-        this.English = english;
+        this.Text = chinese;
+        this.Type = type;
     }
 }

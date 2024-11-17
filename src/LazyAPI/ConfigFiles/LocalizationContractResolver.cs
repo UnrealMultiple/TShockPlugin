@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Globalization;
 using System.Reflection;
+using TShockAPI;
 
 namespace LazyAPI.ConfigFiles;
 public class LocalizationContractResolver : DefaultContractResolver
@@ -8,16 +10,22 @@ public class LocalizationContractResolver : DefaultContractResolver
     protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
     {
         var property = base.CreateProperty(member, memberSerialization);
-        var language = member.GetCustomAttribute<LocalizationPropertyAttribute>();
-        if (language != null)
+        var languages = member.GetCustomAttributes<LocalizationPropertyAttribute>();
+        if (languages.Any())
         {
-            property.PropertyName = Terraria.Localization.Language.ActiveCulture.LegacyId switch
+            Console.WriteLine(Terraria.Localization.Language.ActiveCulture.CultureInfo.LCID);
+            var language = Terraria.Localization.Language.ActiveCulture.CultureInfo.LCID switch
             {
-                1 => language.English,
-                7 => language.Chinese,
-                _ => language.Chinese
+                (int) LocalizationType.ZH_CN => languages.FirstOrDefault(x => x.Type == LocalizationType.ZH_CN),
+                (int) LocalizationType.EN_US => languages.FirstOrDefault(x => x.Type == LocalizationType.EN_US),
+                _ => languages.FirstOrDefault(x => x.Type == LocalizationType.ZH_CN),
             };
+            if (language != null)
+            { 
+                property.PropertyName = language.Text;
+            }
         }
+        Console.WriteLine(property.PropertyName);
         return property;
     }
 }
