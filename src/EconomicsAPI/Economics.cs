@@ -25,7 +25,7 @@ public class Economics : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(2, 0, 0, 0);
+    public override Version Version => new(2, 0, 0, 1);
 
     public readonly static List<TSPlayer> ServerPlayers = new();
 
