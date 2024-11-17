@@ -2,12 +2,13 @@ using LazyAPI.Commands;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
-using System.Linq;
 
 namespace LazyAPI;
 
 public abstract class LazyPlugin : TerrariaPlugin
 {
+    public override Version Version => new Version(0, 0, 1);
+
     public override string Name
     {
         get

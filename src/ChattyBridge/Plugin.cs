@@ -20,11 +20,9 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 3);
+    public override Version Version => new(1, 0, 0, 4);
 
     private HttpClient Client { get; set; }
-
-    internal static Config Config { get; set; } = new();
 
     public const string RestAPI = "/chat";
 
@@ -34,12 +32,11 @@ public class Plugin : TerrariaPlugin
     }
     public override void Initialize()
     {
-        LoadConfig();
+        Config.Load();
         TShock.RestApi.Register(RestAPI, this.Receive);
         ServerApi.Hooks.ServerChat.Register(this, this.OnChat);
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreet);
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
-        GeneralHooks.ReloadEvent += LoadConfig;
     }
 
     protected override void Dispose(bool disposing)
@@ -52,36 +49,16 @@ public class Plugin : TerrariaPlugin
             ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreet);
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
-            GeneralHooks.ReloadEvent -= LoadConfig;
         }
 
         base.Dispose(disposing);
     }
 
-    public static void LoadConfig(ReloadEventArgs? args = null)
-    {
-        if (File.Exists(Config.PATH))
-        {
-            try
-            {
-                Config = Config.Read();
-                Config.Write();
-            }
-            catch (Exception ex)
-            {
-                TShock.Log.ConsoleError(ex.Message);
-            }
-        }
-        else
-        {
-            Config.Write();
-        }
-    }
 
     private object Receive(RestRequestArgs args)
     {
         var msg = args.Parameters["msg"];
-        var isVer = args.Parameters["verify"] == Config.Verify;
+        var isVer = args.Parameters["verify"] == Config.Instance.Verify;
         if (!string.IsNullOrEmpty(msg) && isVer)
         {
             try
@@ -95,20 +72,20 @@ public class Plugin : TerrariaPlugin
                         case "player_join":
                         {
                             var jobj = json.ToObject<PlayerJoinMessage>()!;
-                            TShock.Utils.Broadcast(string.Join(Config.MessageFormat.JoinFormat, jobj.ServerName, jobj.Name), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
+                            TShock.Utils.Broadcast(string.Join(Config.Instance.MessageFormat.JoinFormat, jobj.ServerName, jobj.Name), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
                             break;
                         }
 
                         case "player_leave":
                         {
                             var jobj = json.ToObject<PlayerLeaveMessage>()!;
-                            TShock.Utils.Broadcast(string.Join(Config.MessageFormat.LeaveFormat, jobj.ServerName, jobj.Name), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
+                            TShock.Utils.Broadcast(string.Join(Config.Instance.MessageFormat.LeaveFormat, jobj.ServerName, jobj.Name), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
                             break;
                         }
                         case "player_chat":
                         {
                             var jobj = json.ToObject<PlayerChatMessage>()!;
-                            TShock.Utils.Broadcast(string.Join(Config.MessageFormat.ChatFormat, jobj.ServerName, jobj.Name, jobj.Text), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
+                            TShock.Utils.Broadcast(string.Join(Config.Instance.MessageFormat.ChatFormat, jobj.ServerName, jobj.Name, jobj.Text), jobj.RGB[0], jobj.RGB[1], jobj.RGB[2]);
                             break;
                         }
                         default:
@@ -131,7 +108,7 @@ public class Plugin : TerrariaPlugin
         Task.Run(() =>
         {
             var baseStr = Convert.ToBase64String(Encoding.UTF8.GetBytes(msg));
-            foreach (var host in Config.RestHost)
+            foreach (var host in Config.Instance.RestHost)
             {
                 try
                 {
@@ -139,7 +116,7 @@ public class Plugin : TerrariaPlugin
                     this.HttpGet(url, new Dictionary<string, string>()
                     {
                         { "msg", baseStr },
-                        { "verify", Config.Verify }
+                        { "verify", Config.Instance.Verify }
                     });
                 }
                 catch
@@ -195,7 +172,7 @@ public class Plugin : TerrariaPlugin
             return;
         }
 
-        if (!Config.ForwardCommamd &&
+        if (!Config.Instance.ForwardCommamd &&
             (args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier)
             || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier)))
         {

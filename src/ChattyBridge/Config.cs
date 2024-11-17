@@ -1,35 +1,23 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI.ConfigFiles;
 
 namespace ChattyBridge;
 
-public class Config
+public class Config : JsonConfigBase<Config>
 {
-    [JsonProperty("是否转发指令")]
+    [LocalizationProperty("转发指令", "forward_command")]
     public bool ForwardCommamd { get; set; } = false;
 
-    [JsonProperty("Rest地址")]
+    [LocalizationProperty("Rest地址", "rest_address")]
     public List<string> RestHost { get; set; } = new();
 
-    [JsonProperty("服务器名称")]
+    [LocalizationProperty("服务器名称", "server_name")]
     public string ServerName { get; set; } = string.Empty;
 
-    [JsonProperty("验证令牌")]
+    [LocalizationProperty("验证令牌","token")]
     public string Verify { get; set; } = string.Empty;
 
-    [JsonProperty("消息设置")]
+    [LocalizationProperty("消息设置", "message_option")]
     public MessageFormat MessageFormat { get; set; } = new();
 
-    [JsonIgnore]
-    public static string PATH => Path.Combine(TShockAPI.TShock.SavePath, "ChattyBridge.json");
-
-    public static Config Read()
-    {
-        return File.Exists(PATH) ? JsonConvert.DeserializeObject<Config>(File.ReadAllText(PATH)) ?? new() : new();
-    }
-
-    public void Write()
-    {
-        File.WriteAllText(PATH, JsonConvert.SerializeObject(this, Formatting.Indented));
-    }
-
+    protected override string Filename => "ChattyBridge";
 }
