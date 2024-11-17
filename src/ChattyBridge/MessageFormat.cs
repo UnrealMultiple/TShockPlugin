@@ -4,15 +4,15 @@ namespace ChattyBridge;
 
 public class MessageFormat
 {
-    [LocalizationProperty("message_format", LocalizationType.EN_US)]
-    [LocalizationProperty("聊天格式",LocalizationType.ZH_CN)]
+    [CultureProperty(CultureType.EN_US, "message_format")]
+    [CultureProperty(CultureType.ZH_CN, "聊天格式")]
     public string ChatFormat { get; set; } = "[{0}]{1}: {2}";
 
-    [LocalizationProperty("leave_format", LocalizationType.EN_US)]
-    [LocalizationProperty("离开格式",LocalizationType.ZH_CN)]
+    [CultureProperty(CultureType.EN_US, "leave_format")]
+    [CultureProperty(CultureType.ZH_CN, "离开格式")]
     public string LeaveFormat { get; set; } = "[{0}]{1}离开服务器";
 
-    [LocalizationProperty("join_format", LocalizationType.EN_US)]
-    [LocalizationProperty("加入格式", LocalizationType.ZH_CN)]
+    [CultureProperty(CultureType.EN_US, "join_format")]
+    [CultureProperty(CultureType.ZH_CN, "加入格式")]
     public string JoinFormat { get; set; } = "[{0}]{1}加入服务器";
 }

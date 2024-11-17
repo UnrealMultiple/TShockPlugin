@@ -10,19 +10,35 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
 {
     private static T? _instance;
 
-    private static readonly JsonSerializerSettings _settings = new JsonSerializerSettings()
-    { 
-        ContractResolver = new LocalizationContractResolver(),
-        Formatting = Formatting.Indented,
-    };
+    private static JsonSerializerSettings _settings = null!;
 
-    private readonly CultureInfo cultureInfo = (CultureInfo) typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
-            "TranslationCultureInfo",
-            BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
+    internal static CultureInfo cultureInfo = null!;
 
     protected virtual string Filename => typeof(T).Namespace ?? typeof(T).Name;
 
-    private string FullFilename => Path.Combine(TShock.SavePath, $"{this.Filename}.{this.cultureInfo.Name}.json");
+    private string FullFilename => Path.Combine(TShock.SavePath, $"{this.Filename}.{cultureInfo.Name}.json");
+
+    protected JsonConfigBase()
+    {
+        cultureInfo = Terraria.Program.LaunchParameters.TryGetValue("-culture", out var type)
+            ? type.ToLower() switch
+            {
+                "zh" or "zh-cn" => new CultureInfo("zh-CN"),
+                "en" or "en-us" => new CultureInfo("en-US"),
+                _ => (CultureInfo) typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
+                            "TranslationCultureInfo",
+                            BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!,
+            }
+            : (CultureInfo) typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
+            "TranslationCultureInfo",
+            BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
+
+        _settings = new JsonSerializerSettings()
+        {
+            ContractResolver = new CultureContractResolver(cultureInfo),
+            Formatting = Formatting.Indented,
+        };
+    }
 
     private static T GetConfig()
     {

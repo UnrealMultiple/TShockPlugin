@@ -1,6 +1,6 @@
 ﻿namespace LazyAPI.ConfigFiles;
 
-public enum LocalizationType
+public enum CultureType
 {
     ZH_CN = 4,
 
