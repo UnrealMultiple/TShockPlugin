@@ -1,4 +1,5 @@
 ﻿using ChattyBridge.Message;
+using LazyAPI;
 using Newtonsoft.Json.Linq;
 using Rests;
 using System.Reflection;
@@ -11,7 +12,7 @@ using TShockAPI;
 namespace ChattyBridge;
 
 [ApiVersion(2, 1)]
-public class Plugin : TerrariaPlugin
+public class Plugin : LazyPlugin
 {
     public override string Author => "少司命";
 

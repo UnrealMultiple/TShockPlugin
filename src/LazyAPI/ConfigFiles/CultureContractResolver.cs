@@ -16,20 +16,10 @@ public class CultureContractResolver : DefaultContractResolver
     protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
     {
         var property = base.CreateProperty(member, memberSerialization);
-        var languages = member.GetCustomAttributes<CulturePropertyAttribute>();
-        if (languages.Any())
-        {
-            var language = this._culture.Name switch
-            {
-                CultureType.Chinese => languages.FirstOrDefault(x => x.Type == CultureType.Chinese),
-                CultureType.English => languages.FirstOrDefault(x => x.Type == CultureType.English),
-                _ => languages.FirstOrDefault(x => x.Type == CultureType.Chinese),
-            };
-            if (language != null)
-            { 
-                property.PropertyName = language.Text;
-            }
-        }
+        var languages = member.GetCustomAttributes<LocalizedPropertyNameAttribute>();
+        property.PropertyName = languages.FirstOrDefault(x => x.Type == this._culture.Name)?.Text
+            ?? languages.FirstOrDefault(x => x.Type == CultureType.Chinese)?.Text 
+            ?? property.PropertyName;
         return property;
     }
 }
