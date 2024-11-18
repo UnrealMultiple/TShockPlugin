@@ -2,7 +2,6 @@ using LazyAPI.Commands;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
-using System.Linq;
 
 namespace LazyAPI;
 
