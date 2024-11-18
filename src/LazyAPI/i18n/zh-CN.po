@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LazyAPI\n"
-"POT-Creation-Date: 2024-10-31 15:29:33+0000\n"
+"POT-Creation-Date: 2024-11-18 10:20:28+0000\n"
 "PO-Revision-Date: 2024-10-30 21:14+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,12 +11,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: ../../LazyPlugin.cs:56
+#: ../../LazyPlugin.cs:55
 #, csharp-format
 msgid "[{0}] command registered: {1}"
 msgstr "[{0}] 已注册指令: {1}"
 
-#: ../../LazyPlugin.cs:51
+#: ../../LazyPlugin.cs:50
 #, csharp-format
 msgid "[{0}] config registered: {1}"
 msgstr "[{0}] 已注册配置文件: {1}"

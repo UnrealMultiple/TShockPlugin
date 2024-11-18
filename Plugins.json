@@ -493,12 +493,14 @@
   },
   {
     "Name": "ChattyBridge",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "少司命",
     "Description": "ChattyBridge",
     "AssemblyName": "ChattyBridge",
     "Path": "ChattyBridge.dll",
-    "Dependencies": []
+    "Dependencies": [
+      "LazyAPI"
+    ]
   },
   {
     "Name": "ChestRestore",
@@ -796,7 +798,7 @@
   },
   {
     "Name": "LazyAPI",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "cc004 & members of UnrealMultiple",
     "Description": "None",
     "AssemblyName": "LazyAPI",
