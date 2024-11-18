@@ -19,7 +19,7 @@ public class CultureContractResolver : DefaultContractResolver
         var languages = member.GetCustomAttributes<CulturePropertyAttribute>();
         if (languages.Any())
         {
-            var language = (CultureType)this._culture.LCID switch
+            var language = this._culture.Name switch
             {
                 CultureType.Chinese => languages.FirstOrDefault(x => x.Type == CultureType.Chinese),
                 CultureType.English => languages.FirstOrDefault(x => x.Type == CultureType.English),

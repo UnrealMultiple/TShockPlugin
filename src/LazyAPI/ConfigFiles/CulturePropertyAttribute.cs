@@ -7,11 +7,11 @@ public class CulturePropertyAttribute : Attribute
 {
     public string Text { get;}
 
-    public CultureType Type { get;}
+    public string Type { get;}
 
-    public CulturePropertyAttribute(CultureType type, string chinese)
+    public CulturePropertyAttribute(string type, string text)
     {
-        this.Text = chinese;
+        this.Text = text;
         this.Type = type;
     }
 }

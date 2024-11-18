@@ -1,8 +1,8 @@
 ﻿namespace LazyAPI.ConfigFiles;
 
-public enum CultureType
+public class CultureType
 {
-    Chinese = 4,
+    public const string Chinese = "zh-CN";
 
-    English = 1033
+    public const string English = "en-US";
 }
