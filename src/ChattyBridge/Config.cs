@@ -1,7 +1,9 @@
-﻿using LazyAPI.ConfigFiles;
+﻿using LazyAPI;
+using LazyAPI.ConfigFiles;
 
 namespace ChattyBridge;
 
+[Config]
 public class Config : JsonConfigBase<Config>
 {
     [LocalizedPropertyName( CultureType.English, "forward_command")]

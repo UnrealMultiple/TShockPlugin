@@ -30,9 +30,9 @@ public class Plugin : LazyPlugin
     {
         this.Client = new HttpClient();
     }
+
     public override void Initialize()
     {
-        Config.Load();
         TShock.RestApi.Register(RestAPI, this.Receive);
         ServerApi.Hooks.ServerChat.Register(this, this.OnChat);
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreet);
