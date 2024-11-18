@@ -7,7 +7,6 @@ using System.Web;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 
 namespace ChattyBridge;
 

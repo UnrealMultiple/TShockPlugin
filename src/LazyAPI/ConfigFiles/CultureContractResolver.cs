@@ -19,11 +19,11 @@ public class CultureContractResolver : DefaultContractResolver
         var languages = member.GetCustomAttributes<CulturePropertyAttribute>();
         if (languages.Any())
         {
-            var language = this._culture.LCID switch
+            var language = (CultureType)this._culture.LCID switch
             {
-                (int) CultureType.ZH_CN => languages.FirstOrDefault(x => x.Type == CultureType.ZH_CN),
-                (int) CultureType.EN_US => languages.FirstOrDefault(x => x.Type == CultureType.EN_US),
-                _ => languages.FirstOrDefault(x => x.Type == CultureType.ZH_CN),
+                CultureType.Chinese => languages.FirstOrDefault(x => x.Type == CultureType.Chinese),
+                CultureType.English => languages.FirstOrDefault(x => x.Type == CultureType.English),
+                _ => languages.FirstOrDefault(x => x.Type == CultureType.Chinese),
             };
             if (language != null)
             { 

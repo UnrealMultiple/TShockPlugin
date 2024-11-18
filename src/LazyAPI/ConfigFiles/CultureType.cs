@@ -2,7 +2,7 @@
 
 public enum CultureType
 {
-    ZH_CN = 4,
+    Chinese = 4,
 
-    EN_US = 1033
+    English = 1033
 }
