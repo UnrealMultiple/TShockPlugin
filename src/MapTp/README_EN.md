@@ -7,10 +7,10 @@
 
 ## Commands
 
-| Command         | Permission |          Details          |
-| -------------- | :-----------------: | :------: |
-| 无 | maptp.noclip   | 允许双击传送(不包括实心方块)|
-| 无 | maptp   | 允许双击传送(包括实心方块)|
+| Command |  Permission  |                          Details                           |
+| ------- | :----------: | :--------------------------------------------------------: |
+| None    | maptp.noclip | Allows double-click teleportation (excluding solid blocks) |
+| None    |    maptp     | Allows double-click teleportation (including solid blocks) |
 
 ## FeedBack
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
