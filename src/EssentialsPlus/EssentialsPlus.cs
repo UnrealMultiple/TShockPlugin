@@ -24,7 +24,7 @@ public class EssentialsPlus : TerrariaPlugin
 
     public override string Name => "EssentialsPlus";
 
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
 
 
     public EssentialsPlus(Main game)
@@ -229,7 +229,7 @@ public class EssentialsPlus : TerrariaPlugin
             HelpText = GetString("管理禁言。")
         });
 
-        Add(new Command(Permissions.PvP, Commands.PvP, "pvpget2", "切换PvP状态")
+        Add(new Command(Permissions.PvP, Commands.PvP, "pvpget", "切换PvP状态")
         {
             AllowServer = false,
             HelpText = GetString("切换您的PvP状态。")
