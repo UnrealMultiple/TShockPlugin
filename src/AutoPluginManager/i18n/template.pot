@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoPluginManager\n"
-"POT-Creation-Date: 2024-11-09 18:20:03+0800\n"
-"PO-Revision-Date: 2024-11-09 18:20:03+0800\n"
+"POT-Creation-Date: 2024-11-19 10:27:34+0000\n"
+"PO-Revision-Date: 2024-11-19 10:27:34+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,12 +24,12 @@ msgid ""
 "[以下插件有新的版本更新]\n"
 msgstr ""
 
-#: ../../Utils.cs:170
+#: ../../Utils.cs:175
 msgid ""
 "[外部库安装完成]\n"
 msgstr ""
 
-#: ../../Utils.cs:152
+#: ../../Utils.cs:157
 msgid ""
 "[安装完成]\n"
 msgstr ""
@@ -38,7 +38,7 @@ msgstr ""
 msgid "[插件重复安装]"
 msgstr ""
 
-#: ../../Utils.cs:161
+#: ../../Utils.cs:166
 msgid ""
 "[更新完成]\n"
 msgstr ""
