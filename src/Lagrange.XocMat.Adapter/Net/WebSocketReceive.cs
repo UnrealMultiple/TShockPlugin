@@ -5,11 +5,11 @@ namespace MorMorAdapter.Net;
 
 public class WebSocketReceive
 {
-    public static ClientWebSocket ClientWebSocket { get; private set; }
+    public static ClientWebSocket ClientWebSocket { get; private set; } = null!;
 
-    public static event Action<byte[]> OnMessage;
+    public static event Action<byte[]>? OnMessage;
 
-    public static event Action OnConnect;
+    public static event Action? OnConnect;
 
     public static bool CanRun = true;
 
@@ -46,7 +46,7 @@ public class WebSocketReceive
                 {
                     ClientWebSocket = new();
                     ClientWebSocket.ConnectAsync(new Uri($"ws://{Host}:{Port}/momo?name={Plugin.Config.SocketConfig.ServerName}"), CancellationToken.None).Wait();
-                    OnConnect.Invoke();
+                    OnConnect?.Invoke();
                     while (true)
                     {
                         var buffer = new ArraySegment<byte>(new byte[1024]);
@@ -61,7 +61,7 @@ public class WebSocketReceive
                         var temp = new byte[0];
                         Message.ForEach(u => temp = temp.Concat(u).ToArray());
                         buffer = new ArraySegment<byte>(temp);
-                        OnMessage(buffer.ToArray());
+                        OnMessage?.Invoke(buffer.ToArray());
                     }
 
                 }

@@ -22,7 +22,7 @@ public class Plugin : TerrariaPlugin
 
     public Plugin(Main game) : base(game)
     {
-
+        this._reloadHandler = (_) => this.LoadConfig();
     }
     private void LoadConfig()
     {
@@ -43,11 +43,10 @@ public class Plugin : TerrariaPlugin
             TShock.Log.ConsoleError(GetString("禁止怪物表读取错误:") + ex.ToString());
         }
     }
-    private GeneralHooks.ReloadEventD _reloadHandler;
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
         this.LoadConfig();
-        this._reloadHandler = (_) => this.LoadConfig();
         Commands.ChatCommands.Add(new Command("bannpc.use", this.BanCommand, "bm"));
         ServerApi.Hooks.NpcSpawn.Register(this, this.OnSpawn);
         ServerApi.Hooks.NpcTransform.Register(this, this.OnTransform);

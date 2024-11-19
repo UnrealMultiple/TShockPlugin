@@ -13,7 +13,7 @@ public class SimultaneousUseFix : TerrariaPlugin
     public override string Description => "解决卡双锤，卡星旋机枪之类的问题";
     public override string Name => "SimultaneousUseFix";
     public override Version Version => new Version(1, 0, 6);
-    public static Configuration Config;
+    public static Configuration Config = null!;
     public bool otherPluginExists = false;
 
     public SimultaneousUseFix(Main game) : base(game)
@@ -36,7 +36,7 @@ public class SimultaneousUseFix : TerrariaPlugin
     public override void Initialize()
     {
         GeneralHooks.ReloadEvent += ReloadConfig;
-        ServerApi.Plugins.Get<Chireiden.TShock.Omni.Plugin>().Detections.SwapWhileUse += this.OnSwapWhileUse;
+        ServerApi.Plugins.Get<Chireiden.TShock.Omni.Plugin>()!.Detections.SwapWhileUse += this.OnSwapWhileUse;
         LoadConfig();
     }
     protected override void Dispose(bool disposing)
@@ -44,7 +44,7 @@ public class SimultaneousUseFix : TerrariaPlugin
         if (disposing)
         {
             GeneralHooks.ReloadEvent -= ReloadConfig;
-            ServerApi.Plugins.Get<Chireiden.TShock.Omni.Plugin>().Detections.SwapWhileUse -= this.OnSwapWhileUse;
+            ServerApi.Plugins.Get<Chireiden.TShock.Omni.Plugin>()!.Detections.SwapWhileUse -= this.OnSwapWhileUse;
         }
 
         base.Dispose(disposing);

@@ -25,7 +25,7 @@ public class WeaponPlus : TerrariaPlugin
     #endregion
 
     #region 实例变量
-    public static WeaponPlusDB DB { get; set; }
+    public static WeaponPlusDB DB { get; set; } = null!;
 
     public string configPath = Path.Combine(TShock.SavePath, "WeaponPlus.json");
 
@@ -156,7 +156,7 @@ public class WeaponPlus : TerrariaPlugin
         }
         else if (args.Parameters.Count == 0)
         {
-            args.Player.SendMessage(GetString($"{"当前物品："}[i:{firstItem.netID}]   {"共计消耗："}{select.allCost}\n{select.ItemMess()}"), this.getRandColor());
+            args.Player.SendMessage(GetString($"{"当前物品："}[i:{firstItem!.netID}]   {"共计消耗："}{select.allCost}\n{select.ItemMess()}"), this.getRandColor());
         }
         else if (args.Parameters.Count == 1)
         {
@@ -177,8 +177,8 @@ public class WeaponPlus : TerrariaPlugin
                 }
                 var num = (long) (select.allCost * config.ResetTheWeaponReturnMultiple);
                 EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num, config.Currency);
-                wPlayer.hasItems.RemoveAll((x) => x.id == firstItem.netID);
-                DB.DeleteDB(args.Player.Name, firstItem.netID);
+                wPlayer.hasItems.RemoveAll((x) => x.id == firstItem!.netID);
+                DB.DeleteDB(args.Player.Name, firstItem!.netID);
                 ReplaceWeaponsInBackpack(args.Player.TPlayer, select, 1);
                 args.Player.SendMessage(GetString("完全重置成功！" + config.Currency + "回收：") + num, new Color(0, 255, 0));
             }

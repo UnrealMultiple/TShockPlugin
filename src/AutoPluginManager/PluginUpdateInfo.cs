@@ -1,6 +1,6 @@
 ﻿namespace AutoPluginManager;
 
-public record PluginUpdateInfo(PluginVersionInfo? Current, PluginVersionInfo Latest)
+public record PluginUpdateInfo(PluginVersionInfo Current, PluginVersionInfo Latest)
 {
     public class AssemblyNameEqualityComparer : IEqualityComparer<PluginUpdateInfo>
     {

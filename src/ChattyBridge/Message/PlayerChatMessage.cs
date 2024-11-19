@@ -14,6 +14,6 @@ internal class PlayerChatMessage : PlayerMessage
     }
     public PlayerChatMessage()
     {
-
+        this.Text = "";
     }
 }

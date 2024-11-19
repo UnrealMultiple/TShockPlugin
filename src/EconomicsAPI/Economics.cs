@@ -119,7 +119,7 @@ public class Economics : TerrariaPlugin
     private void PlayerHandler_OnPlayerCountertop(PlayerCountertopArgs args)
     {
         args.Messages.Add(new(GetString($"当前延迟: {args.Ping.GetPing():F1}ms"), 7));
-        args.Messages.Add(new(GetString($"玩家名称: {args.Player.Name}"), 1));
+        args.Messages.Add(new(GetString($"玩家名称: {args.Player!.Name}"), 1));
         foreach (var currency in Setting.CustomizeCurrencys)
         {
             args.Messages.Add(new(GetString($"{currency.Name}数量: {CurrencyManager.GetUserCurrency(args.Player.Name, currency.Name)}"), 3));

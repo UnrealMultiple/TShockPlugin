@@ -29,7 +29,7 @@ public class BuildRoom : MiniRoom, IRoom
     public PrebuildBoard GameBoard { get; set; }
 
     [JsonIgnore]
-    public List<MiniRegion> PlayerAreas { get; set; }
+    public List<MiniRegion>? PlayerAreas { get; set; }
 
     [JsonIgnore]
     public List<BuildPlayer> Players { get; set; }
@@ -59,6 +59,11 @@ public class BuildRoom : MiniRoom, IRoom
 
     public BuildRoom(string name, int id) : base(id, name)
     {
+        this.GamingArea = null!;
+        this.GameBoard = null!;
+        this.Topic = null!;
+        this.Topics = null!;
+
         this.Loaded = false;
         this.Initialize();
 
@@ -70,7 +75,7 @@ public class BuildRoom : MiniRoom, IRoom
         this.Start();
     }
 
-    private void OnGaming(object sender, ElapsedEventArgs e)
+    private void OnGaming(object? sender, ElapsedEventArgs e)
     {
         if (this.Players.Count == 0)
         {
@@ -91,7 +96,7 @@ public class BuildRoom : MiniRoom, IRoom
                 ConfigUtils.evaluatePack.RestoreCharacter((MiniPlayer) (object) buildPlayer);
                 buildPlayer.Locked = true;
                 buildPlayer.UnCreative();
-                buildPlayer.Teleport(this.Players[this.PlayerIndex].CurrentRegion.Center);
+                buildPlayer.Teleport(this.Players[this.PlayerIndex].CurrentRegion!.Center);
                 buildPlayer.SendInfoMessage(GetString("已来到 ") + this.Players[this.PlayerIndex].Name + GetString(" 的作品"));
             }
             this.Scoring_Timer.Start();
@@ -107,7 +112,7 @@ public class BuildRoom : MiniRoom, IRoom
         }
     }
 
-    private void OnWaiting(object sender, ElapsedEventArgs e)
+    private void OnWaiting(object? sender, ElapsedEventArgs e)
     {
         this.ShowRoomMemberInfo();
         if (this.Players.Count == 0 || this.Players.Where((BuildPlayer p) => p.IsReady).Count() < this.MinPlayer)
@@ -154,7 +159,7 @@ public class BuildRoom : MiniRoom, IRoom
         this.Start();
     }
 
-    private void OnScoring(object sender, ElapsedEventArgs e)
+    private void OnScoring(object? sender, ElapsedEventArgs e)
     {
         if (this.Players.Count == 0)
         {
@@ -195,7 +200,7 @@ public class BuildRoom : MiniRoom, IRoom
             buildPlayer.Teleport(Main.spawnTileX, Main.spawnTileY);
             buildPlayer.SendInfoMessage(GetString("游戏被强制停止！"));
             buildPlayer.BackUp.RestoreCharacter((MiniPlayer) (object) buildPlayer);
-            buildPlayer.BackUp = null;
+            buildPlayer.BackUp = null!;
             buildPlayer.CurrentRoomID = 0;
             buildPlayer.CurrentRegion = null;
             buildPlayer.AquiredMarks = 0;
@@ -236,7 +241,7 @@ public class BuildRoom : MiniRoom, IRoom
     public void RoundClude()
     {
         var num = 0;
-        var roomByIDFromLocal = ConfigUtils.GetRoomByIDFromLocal(this.ID);
+        var roomByIDFromLocal = ConfigUtils.GetRoomByIDFromLocal(this.ID)!;
         this.SeletingTime = roomByIDFromLocal.SeletingTime;
         this.PlayerIndex++;
         if (this.PlayerIndex < this.Players.Count)
@@ -247,7 +252,7 @@ public class BuildRoom : MiniRoom, IRoom
                 buildPlayer.Marked = true;
                 num += buildPlayer.GiveMarks;
                 buildPlayer.GiveMarks = 0;
-                buildPlayer.Teleport(this.Players[this.PlayerIndex].CurrentRegion.Center);
+                buildPlayer.Teleport(this.Players[this.PlayerIndex].CurrentRegion!.Center);
                 buildPlayer.SendInfoMessage(GetString(GetString("已来到 ") + this.Players[this.PlayerIndex].Name + GetString(" 的建筑区域")));
                 buildPlayer.Marked = false;
             }
@@ -275,7 +280,7 @@ public class BuildRoom : MiniRoom, IRoom
     public void Restore()
     {
         this.Status = (RoomStatus) 4;
-        var roomByIDFromLocal = ConfigUtils.GetRoomByIDFromLocal(this.ID);
+        var roomByIDFromLocal = ConfigUtils.GetRoomByIDFromLocal(this.ID)!;
         this.WaitingTime = roomByIDFromLocal.WaitingTime;
         this.GamingTime = roomByIDFromLocal.GamingTime;
         this.SeletingTime = roomByIDFromLocal.SeletingTime;
@@ -285,7 +290,7 @@ public class BuildRoom : MiniRoom, IRoom
         this.PerHeight = roomByIDFromLocal.PerHeight;
         this.PerWidth = roomByIDFromLocal.PerWidth;
         this.Gap = roomByIDFromLocal.Gap;
-        this.PlayerAreas.Clear();
+        this.PlayerAreas!.Clear();
         this.GameBoard.ReBuild(true);
         this.Status = 0;
         this.Start();
@@ -409,7 +414,7 @@ public class BuildRoom : MiniRoom, IRoom
         var list = (from p in this.Topics
                     where p.Value == max
                     select p.Key).ToList();
-        if (list.Count() == 1)
+        if (list.Count == 1)
         {
             this.Topic = list[0];
         }

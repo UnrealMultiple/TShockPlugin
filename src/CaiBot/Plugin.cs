@@ -33,8 +33,8 @@ public class Plugin : TerrariaPlugin
     public static ClientWebSocket WebSocket = new();
     public static Task WebSocketTask = Task.CompletedTask;
     public static readonly CancellationTokenSource TokenSource = new ();
-    public Task WsTask;
-    public Task HeartBeat;
+    public Task? WsTask;
+    public Task? HeartBeat;
 
     #region 加载前置
 
@@ -118,7 +118,7 @@ public class Plugin : TerrariaPlugin
                             TShock.Log.ConsoleInfo($"[CaiAPI]收到BOT数据包: {receivedData}");
                         }
 
-                        MessageHandle.HandleMessageAsync(receivedData);
+                        _ = MessageHandle.HandleMessageAsync(receivedData);
                     }
                 }
                 catch (Exception ex)

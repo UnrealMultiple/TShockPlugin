@@ -34,21 +34,20 @@ public partial class Plugin : TerrariaPlugin
 
     public event Action<EventArgs>? Timer;
 
-    public static Hook CmdHook;
+    public static Hook CmdHook = null!;
 
-    public static Hook AccountInfoHook;
+    public static Hook AccountInfoHook = null!;
 
     public Plugin(Main game) : base(game)
     {
-
+        this._reloadHandler = (_) => this.LoadConfig();
     }
-    private GeneralHooks.ReloadEventD _reloadHandler;
-    private RestCommand[] addRestCommands;
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
+    private RestCommand[] addRestCommands = null!;
     public override void Initialize()
     {
 
         this.LoadConfig();
-        this._reloadHandler = (_) => this.LoadConfig();
         #region 钩子
         ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitialize);
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
@@ -257,7 +256,8 @@ public partial class Plugin : TerrariaPlugin
             var account = TShock.UserAccounts.GetUserAccountByName(username);
             if (account != null)
             {
-                var Timezone = TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now).Hours.ToString("+#;-#");
+                var Timezone = TimeZoneInfo.Local.GetUtcOffset(DateTime.Now).Hours.ToString("+#;-#");
+                
 
                 if (DateTime.TryParse(account.LastAccessed, out var LastSeen))
                 {

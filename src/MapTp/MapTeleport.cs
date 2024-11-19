@@ -34,7 +34,7 @@ public class MapTeleport : TerrariaPlugin
 
     public const string ALLOWEDSOLIDS = "maptp";
 
-    private void teleport(object unused, GetDataHandlers.ReadNetModuleEventArgs args)
+    private void teleport(object? unused, GetDataHandlers.ReadNetModuleEventArgs args)
     {
         if (args.Player.HasPermission(ALLOWED) || args.Player.HasPermission(ALLOWEDSOLIDS))
         {

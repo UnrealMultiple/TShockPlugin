@@ -278,7 +278,7 @@ public partial class ZHIPM : TerrariaPlugin
                     }
                     else
                     {
-                        var temp = users.Find(x => x.Name == args.Parameters[0]);
+                        var temp = users.Find(x => x.Name == args.Parameters[0])!;
                         ID = temp.ID;
                         playerfullname = temp.Name;
                     }
@@ -1450,7 +1450,7 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    var u = temp.Find(x => x.Name == name);
+                    var u = temp.Find(x => x.Name == name)!;
                     var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), u.ID);
                     if (temp2 != null && temp2.exists)
                     {
@@ -1609,7 +1609,7 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    var u = temp.Find(x => x.Name == name);
+                    var u = temp.Find(x => x.Name == name)!;
                     var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), u.ID);
                     if (temp2 != null && temp2.exists)
                     {
@@ -1841,7 +1841,7 @@ public partial class ZHIPM : TerrariaPlugin
                     }
                     else
                     {
-                        var u = temp.Find(x => x.Name == name);
+                        var u = temp.Find(x => x.Name == name)!;
                         var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), u.ID);
                         if (temp2 != null && temp2.exists)
                         {
@@ -2134,7 +2134,7 @@ public partial class ZHIPM : TerrariaPlugin
                     }
                     else
                     {
-                        var u = temp.Find(x => x.Name == name);
+                        var u = temp.Find(x => x.Name == name)!;
                         var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), u.ID);
                         if (temp2 != null && temp2.exists)
                         {
@@ -3863,7 +3863,7 @@ public partial class ZHIPM : TerrariaPlugin
             var user = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
             if (user != null)
             {
-                if (frePlayers.Exists(x => x.name == user.Name && x.uuid == user.UUID && (x.IPs == null ? true : x.IPs.Equals(user.KnownIps))))
+                if (frePlayers.Exists(x => x.name == user.Name && x.uuid == user.UUID && (x.IPs == null || x.IPs.Equals(user.KnownIps))))
                 {
                     args.Player.SendMessage(GetString($"玩家 [{user.Name}] 已冻结过!"), new Color(0, 255, 0));
                 }
@@ -3879,7 +3879,7 @@ public partial class ZHIPM : TerrariaPlugin
                 var users = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[0], true);
                 if (users.Count == 1)
                 {
-                    if (frePlayers.Exists(x => x.name == users[0].Name && x.uuid == users[0].UUID && (x.IPs == null ? true : x.IPs.Equals(users[0].KnownIps))))
+                    if (frePlayers.Exists(x => x.name == users[0].Name && x.uuid == users[0].UUID && (x.IPs == null || x.IPs.Equals(users[0].KnownIps))))
                     {
                         args.Player.SendMessage(GetString($"玩家 [{users[0].Name}] 已冻结过!"), new Color(0, 255, 0));
                     }

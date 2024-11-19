@@ -24,7 +24,7 @@ public class ZhipmConfig
                 ), Formatting.Indented));
         }
 
-        return JsonConvert.DeserializeObject<ZhipmConfig>(File.ReadAllText(configPath));
+        return JsonConvert.DeserializeObject<ZhipmConfig>(File.ReadAllText(configPath))!;
     }
 
     public void SaveConfigFile()
@@ -32,7 +32,11 @@ public class ZhipmConfig
         File.WriteAllText(configPath, JsonConvert.SerializeObject(this, Formatting.Indented));
     }
 
-    public ZhipmConfig() { }
+    public ZhipmConfig()
+    {
+        this.AdditionalCreaturesForDamageLeaderboard = new();
+        this.CreaturesTreatedAsRareForKills = new();
+    }
 
     public ZhipmConfig(
         bool enableOnlineTimeTracking,

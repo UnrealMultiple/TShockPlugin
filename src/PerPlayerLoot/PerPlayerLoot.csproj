@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\template.targets" />
-
+    <PropertyGroup>
+        <NoWarn>CS0618</NoWarn>
+    </PropertyGroup>
 </Project>

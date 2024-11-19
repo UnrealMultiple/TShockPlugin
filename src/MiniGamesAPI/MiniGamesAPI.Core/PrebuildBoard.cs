@@ -10,7 +10,7 @@ public class PrebuildBoard
 
     public int ID { get; set; }
 
-    public MiniRegion Region { get; private set; }
+    public MiniRegion? Region { get; private set; }
 
     public Point TestPoint_1 { get; set; }
 
@@ -57,7 +57,7 @@ public class PrebuildBoard
             tile.Kill(noItem);
             tile.Place();
         }
-        TSPlayer.All.SendTileRect((short) this.Region.TopLeft.X, (short) this.Region.TopLeft.Y, (byte) this.Region.Area.Width, (byte) this.Region.Area.Height, 0);
+        TSPlayer.All.SendTileRect((short) this.Region!.TopLeft.X, (short) this.Region.TopLeft.Y, (byte) this.Region.Area.Width, (byte) this.Region.Area.Height, 0);
     }
 
     public string ShowInfo()

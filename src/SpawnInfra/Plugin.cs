@@ -16,12 +16,14 @@ public class Plugin : TerrariaPlugin
     #endregion
 
     #region 注册与释放
-    public Plugin(Main game) : base(game) { }
-    private GeneralHooks.ReloadEventD _reloadHandler;
+    public Plugin(Main game) : base(game)
+    {
+        this._reloadHandler = (_) => LoadConfig();
+    }
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
         LoadConfig();
-        this._reloadHandler = (_) => LoadConfig();
         GeneralHooks.ReloadEvent += this._reloadHandler;
         //提高优先级避免覆盖CreateSpawn插件
         ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize, 20);

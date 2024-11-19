@@ -18,8 +18,8 @@ public class PacketsStop : TerrariaPlugin
     private readonly Dictionary<string, Dictionary<PacketTypes, DateTime>> countDictionary = new Dictionary<string, Dictionary<PacketTypes, DateTime>>();
     private const double PacketInterval = 1000.0;
     private bool _Enabled = false;
-    internal static Configuration Config;
-    private HashSet<PacketTypes> Packets;
+    internal static Configuration Config = null!;
+    private HashSet<PacketTypes> Packets = null!;
     #endregion
 
     public PacketsStop(Main game) : base(game)
@@ -48,7 +48,7 @@ public class PacketsStop : TerrariaPlugin
     }
 
     #region 配置文件创建与重读加载方法
-    private static void LoadConfig(ReloadEventArgs args = null)
+    private static void LoadConfig(ReloadEventArgs? args = null)
     {
         if (!File.Exists(Configuration.FilePath))
         {
@@ -72,7 +72,7 @@ public class PacketsStop : TerrariaPlugin
 
     private void Command(CommandArgs args)
     {
-        if (args.Player != null && !args.Player.HasPermission("拦截"))
+        if (!args.Player.HasPermission("拦截"))
         {
             args.Player.SendErrorMessage("你没有使用数据包拦截的权限");
             return;

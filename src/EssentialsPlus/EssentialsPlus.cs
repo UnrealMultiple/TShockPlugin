@@ -13,10 +13,10 @@ namespace EssentialsPlus;
 [ApiVersion(2, 1)]
 public class EssentialsPlus : TerrariaPlugin
 {
-    public static Config Config { get; private set; }
-    public static IDbConnection Db { get; private set; }
-    public static HomeManager Homes { get; private set; }
-    public static MuteManager Mutes { get; private set; }
+    public static Config Config { get; private set; } = null!;
+    public static IDbConnection Db { get; private set; } = null!;
+    public static HomeManager Homes { get; private set; } = null!;
+    public static MuteManager Mutes { get; private set; } = null!;
 
     public override string Author => "WhiteX等人，Average,Cjx,肝帝熙恩翻译,Cai更新";
 

@@ -13,7 +13,7 @@ public class AutoTeam : TerrariaPlugin
     public override Version Version => new Version(2, 4, 4);
     public override string Description => "AutoTeamPlus";
     public override string Name => "更好的自动队伍";
-    public static Configuration Config;
+    public static Configuration Config = null!;
 
     public AutoTeam(Main game) : base(game)
     {
@@ -58,12 +58,12 @@ public class AutoTeam : TerrariaPlugin
     {
         // 切换插件的状态
         Config.Enabled = !Config.Enabled;
-        string status = Config.Enabled ? GetString("启用") : GetString("禁用");
+        var status = Config.Enabled ? GetString("启用") : GetString("禁用");
         args.Player.SendSuccessMessage(GetString("AutoTeamPlus 插件已") + status + GetString("。"));
     }
 
 
-    private void Team(object sender, PlayerTeamEventArgs args)
+    private void Team(object? sender, PlayerTeamEventArgs args)
     {
         this.SetTeam(args.Player);
         args.Handled = true;

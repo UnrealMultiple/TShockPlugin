@@ -64,7 +64,7 @@ public class Configuration
             using (var sr = new StreamReader(fs))
             {
                 var json = sr.ReadToEnd();
-                var cf = JsonConvert.DeserializeObject<Configuration>(json);
+                var cf = JsonConvert.DeserializeObject<Configuration>(json)!;
                 return cf;
             }
         }

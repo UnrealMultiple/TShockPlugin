@@ -14,7 +14,7 @@ public class Chameleon : TerrariaPlugin
 
     public const ushort Size = 10;
 
-    internal static Configuration Config;
+    internal static Configuration Config = null!;
 
     public static string[] PrepareList = new string[Size];
 
@@ -26,12 +26,12 @@ public class Chameleon : TerrariaPlugin
 
     public override Version Version => new Version(1, 0, 3);
 
-    private readonly string _clientWasBooted;
+    //private readonly string _clientWasBooted;
 
     public Chameleon(Main game) : base(game)
     {
         this.Order = 1;
-        this._clientWasBooted = Terraria.Localization.Language.GetTextValue("CLI.ClientWasBooted", "", "").Trim();
+        //this._clientWasBooted = Terraria.Localization.Language.GetTextValue("CLI.ClientWasBooted", "", "").Trim();
     }
 
     public override void Initialize()
@@ -91,12 +91,16 @@ public class Chameleon : TerrariaPlugin
         var type = args.MsgID;
 
         var player = TShock.Players[args.Msg.whoAmI];
-        if (player?.IsLoggedIn == true)
+        if(player == null)
+        {
+            return;
+        }
+        if (player.IsLoggedIn == true)
         {
             return;
         }
 
-        if (player?.RequiresPassword == true && type != PacketTypes.PasswordSend)
+        if (player.RequiresPassword == true && type != PacketTypes.PasswordSend)
         {
             args.Handled = true;
             return;
@@ -358,7 +362,7 @@ public class Chameleon : TerrariaPlugin
 
     private static void LoadConfig()
     {
-        Config = Configuration.Read(Configuration.FilePath);
+        Config = Configuration.Read(Configuration.FilePath)!;
 
         if (Config == null)
         {

@@ -134,7 +134,7 @@ public class Skill : TerrariaPlugin
 
     private void OnPlayerCountertop(PlayerCountertopArgs args)
     {
-        var skill = PlayerSKillManager.QuerySkill(args.Player.Name);
+        var skill = PlayerSKillManager.QuerySkill(args.Player!.Name);
         var msg = skill.Any() ? string.Join(",", skill.Select(x => x.Skill == null ? "无效技能" : x.Skill.Name)) : "无";
         args.Messages.Add(new(GetString($"绑定技能: {msg}"), 12));
     }

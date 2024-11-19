@@ -182,7 +182,7 @@ public class Plugin : TerrariaPlugin
             return;
         }
 
-        var task = UserTaskData.GetUserTask(args.Player.Name);
+        var task = UserTaskData.GetUserTask(args.Player!.Name);
         if (task != null)
         {
             var kill = task.TaskInfo.KillNPCS.Find(x => x.ID == args.Npc.netID);

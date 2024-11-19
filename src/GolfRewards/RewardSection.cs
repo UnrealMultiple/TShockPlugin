@@ -36,7 +36,7 @@ public class RewardSection
         this.OnlyClaimRewardAtThisLocation = false;
     }
 
-    public ItemSections GetRandomItems()
+    public ItemSections? GetRandomItems()
     {
         if (this.ItemSections.Count == 0)
         {
@@ -57,7 +57,7 @@ public class RewardSection
         return null;
     }
 
-    public string GetRandomCMD()
+    public string? GetRandomCMD()
     {
         if (this.CommandSections.Count == 0)
         {

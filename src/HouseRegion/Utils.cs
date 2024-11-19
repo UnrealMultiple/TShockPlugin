@@ -36,7 +36,7 @@ class Utils//专属工具包
         }
         return HousingPlugin.LConfig.HouseMaxSize;//没有权限指定则返回配置的 内容
     }
-    public static House GetHouseByName(string name)//取得指定名字的房子
+    public static House? GetHouseByName(string name)//取得指定名字的房子
     {
         if (string.IsNullOrEmpty(name))
         {
@@ -61,12 +61,12 @@ class Utils//专属工具包
 
     public static bool OwnsHouse(UserAccount U, string housename)//判断是否为房屋的所有者
     {
-        return U == null ? false : OwnsHouse(U.ID.ToString(), housename);
+        return U != null && OwnsHouse(U.ID.ToString(), housename);
     }
 
     public static bool OwnsHouse(UserAccount U, House house)//判断是否为房屋的所有者
     {
-        return U == null ? false : OwnsHouse(U.ID.ToString(), house);
+        return U != null && OwnsHouse(U.ID.ToString(), house);
     }
 
     public static bool OwnsHouse(string UserID, string housename)//判断是否为房屋的所有者
@@ -77,7 +77,7 @@ class Utils//专属工具包
         }
 
         var H = GetHouseByName(housename);//各种排错之后看看这个房子在不在
-        return H == null ? false : OwnsHouse(UserID, H);
+        return H != null && OwnsHouse(UserID, H);
     }
     public static bool OwnsHouse(string UserID, House house)//判断是否为房屋的所有者
     {
@@ -100,7 +100,7 @@ class Utils//专属工具包
     {
         return U != null && U.ID != 0 && house.Users.Contains(U.ID.ToString());
     }
-    public static string InAreaHouseName(int x, int y)//指定位置的房子名字
+    public static string? InAreaHouseName(int x, int y)//指定位置的房子名字
     {
         for (var i = 0; i < HousingPlugin.Houses.Count; i++)
         {
@@ -118,7 +118,7 @@ class Utils//专属工具包
         }
         return null;
     }
-    public static House InAreaHouse(int x, int y)//指定位置的房子
+    public static House? InAreaHouse(int x, int y)//指定位置的房子
     {
         for (var i = 0; i < HousingPlugin.Houses.Count; i++)
         {
@@ -172,7 +172,7 @@ public class HouseManager//房屋管理
             count++; sb.Append(owner);
             if (count != house.Owners.Count)
             {
-                sb.Append(",");//添加分隔符
+                sb.Append(',');//添加分隔符
             }
         }
         try
@@ -199,7 +199,7 @@ public class HouseManager//房屋管理
             count++; sb.Append(user);
             if (count != house.Users.Count)
             {
-                sb.Append(",");//添加分隔符
+                sb.Append(',');//添加分隔符
             }
         }
         try
@@ -226,7 +226,7 @@ public class HouseManager//房屋管理
             count++; sb.Append(owner);
             if (count != house.Owners.Count)
             {
-                sb.Append(",");
+                sb.Append(',');
             }
         }
         try
@@ -253,7 +253,7 @@ public class HouseManager//房屋管理
             count++; sb.Append(users);
             if (count != house.Users.Count)
             {
-                sb.Append(",");
+                sb.Append(',');
             }
         }
         try
@@ -269,7 +269,7 @@ public class HouseManager//房屋管理
         try
         {
             var house = Utils.GetHouseByName(housename);
-            var houseName = house.Name;
+            var houseName = house!.Name;
             try
             {
                 var query = "UPDATE HousingDistrict SET TopX=@0, TopY=@1, BottomX=@2, BottomY=@3, WorldID=@4 WHERE Name=@5";

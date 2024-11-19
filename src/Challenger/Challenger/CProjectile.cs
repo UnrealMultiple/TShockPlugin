@@ -5,7 +5,7 @@ namespace Challenger;
 
 public class CProjectile
 {
-    public Projectile? proj;
+    public Projectile proj;
 
     private readonly int type;
 
@@ -27,7 +27,7 @@ public class CProjectile
 
     protected CProjectile()
     {
-        this.proj = null;
+        this.proj = null!;
         this.type = 0;
         this.index = 0;
         this.owner = 0;
@@ -40,7 +40,7 @@ public class CProjectile
     {
         if (proj == null)
         {
-            this.proj = null;
+            this.proj = null!;
             this.type = 0;
             this.index = 0;
             this.owner = 0;
@@ -64,7 +64,7 @@ public class CProjectile
     {
         if (proj == null)
         {
-            this.proj = null;
+            this.proj = null!;
             this.type = 0;
             this.index = 0;
             this.owner = 0;
