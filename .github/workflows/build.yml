@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 0
           ssh-key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: 初始化.NET 6
+      - name: 初始化.NET 8
         uses: actions/setup-dotnet@v4
         env:
           DOTNET_CLI_UI_LANGUAGE: zh-CN
