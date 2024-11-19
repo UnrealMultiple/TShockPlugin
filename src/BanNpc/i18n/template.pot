@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BanNpc\n"
-"POT-Creation-Date: 2024-09-28 12:12:00+0000\n"
-"PO-Revision-Date: 2024-09-28 12:12:00+0000\n"
+"POT-Creation-Date: 2024-11-19 17:21:37+0000\n"
+"PO-Revision-Date: 2024-11-19 17:21:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,35 +10,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:143
+#: ../../Plugin.cs:142
 msgid "/bm add [名称 或 ID]"
 msgstr ""
 
-#: ../../Plugin.cs:144
+#: ../../Plugin.cs:143
 msgid "/bm del [名称 或 ID]"
 msgstr ""
 
-#: ../../Plugin.cs:124
+#: ../../Plugin.cs:123
 msgid "NPC ID {0} 不在筛选列表中!"
 msgstr ""
 
-#: ../../Plugin.cs:110
+#: ../../Plugin.cs:109
 msgid "NPC ID {0} 已在阻止列表中!"
 msgstr ""
 
-#: ../../Plugin.cs:129
+#: ../../Plugin.cs:128
 msgid "已成功从阻止列表中删除NPC ID: {0}!"
 msgstr ""
 
-#: ../../Plugin.cs:115
+#: ../../Plugin.cs:114
 msgid "已成功将NPC ID添加到阻止列表: {0}!"
 msgstr ""
 
-#: ../../Plugin.cs:77
+#: ../../Plugin.cs:76
 msgid "当前阻止表为空."
 msgstr ""
 
-#: ../../Plugin.cs:92
+#: ../../Plugin.cs:91
 msgid "无效NPC: {0} !"
 msgstr ""
 
@@ -52,11 +52,11 @@ msgstr ""
 msgid "禁止怪物表读取错误:"
 msgstr ""
 
-#: ../../Plugin.cs:134
+#: ../../Plugin.cs:133
 msgid "语法错误: /bm <add/del> [名称 或 ID]"
 msgstr ""
 
-#: ../../Plugin.cs:81
+#: ../../Plugin.cs:80
 msgid "阻止怪物表: "
 msgstr ""
 

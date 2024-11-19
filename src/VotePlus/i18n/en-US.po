@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VotePlus\n"
-"POT-Creation-Date: 2024-10-28 14:05:55+0000\n"
+"POT-Creation-Date: 2024-11-19 17:22:42+0000\n"
 "PO-Revision-Date: 2024-10-28 21:20+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,54 +11,54 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ../../Vote.cs:164
+#: ../../Vote.cs:132
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了关闭目前事件投票!\n"
 msgstr "[i:4344]\"{0}\" has initiated a vote to clear the current event!\n"
 
-#: ../../Vote.cs:158
+#: ../../Vote.cs:129
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了封禁玩家\"{1}\"投票!\n"
 msgstr "[i:4344] \"{0}\" has initiated a vote to ban player \"{1}\"!\n"
 
-#: ../../Vote.cs:162
+#: ../../Vote.cs:131
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了清除BOSS\"{1}\"投票!\n"
 msgstr "[i:4344]\"{0}\" has initiated a vote to clear BOSS \"{1}\"!\n"
 
-#: ../../Vote.cs:160
+#: ../../Vote.cs:130
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了禁言玩家\"{1}\"投票!\n"
 msgstr "[i:4344]\"{0}\" has initiated a vote to mute player \"{1}\"!\n"
 
-#: ../../Vote.cs:172
+#: ../../Vote.cs:136
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了请求{1}下雨投票!\n"
 msgstr "[i:4344]\"{0}\" has initiated a vote to start rain {1}!\n"
 
-#: ../../Vote.cs:166
+#: ../../Vote.cs:133
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了请求修改为夜晚投票!\n"
 msgstr ""
 "[i:4344]\"{0}\" has initiated a vote to change the time to nighttime!\n"
 
-#: ../../Vote.cs:168
+#: ../../Vote.cs:134
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了请求修改为白天投票!\n"
 msgstr "[i:4344]\"{0}\" has initiated a vote to change the time to daytime!\n"
 
-#: ../../Vote.cs:170
+#: ../../Vote.cs:135
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了赞成关于\"{1}\"投票!\n"
 msgstr "[i:4344]\"{0}\" has initiated a vote to agree on \"{1}\"!\n"
 
-#: ../../Vote.cs:156
+#: ../../Vote.cs:128
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了踢出玩家\"{1}\"(持续{2})投票!\n"
 msgstr ""
 "[i:4344]\"{0}\" has initiated a vote to kick player \"{1}\" (for {2})!\n"
 
-#: ../../Vote.cs:219
+#: ../../Vote.cs:174
 #, csharp-format
 msgid "[i:4344]BOSS\"{0}\"已被投票清除!"
 msgstr "[i:4344] BOSS \"{0}\" has been cleared by vote!"
@@ -75,24 +75,24 @@ msgstr "[i:4344]You have already voted!"
 msgid "[i:4344]你没有权限这么做!"
 msgstr "[i:4344]You do not have the permission to do this!"
 
-#: ../../Vote.cs:243
+#: ../../Vote.cs:198
 #, csharp-format
 msgid "[i:4344]关于\"{0}\"的投票已被通过!"
 msgstr "[i:4344]The vote on \"{0}\" has been passed!"
 
-#: ../../Vote.cs:254
+#: ../../Vote.cs:209
 #, csharp-format
 msgid "[i:4344]关于{0}下雨的投票已被通过!"
 msgstr "[i:4344]The vote for rain {0} has been passed!"
 
-#: ../../Vote.cs:102
+#: ../../Vote.cs:79
 #, csharp-format
 msgid "[i:4344]关闭目前入侵事件投票还有{0}秒结束!\n"
 msgstr ""
 "[i:4344]The vote to clear the current invasion event will end in {0} "
 "seconds!\n"
 
-#: ../../Vote.cs:96
+#: ../../Vote.cs:76
 #, csharp-format
 msgid "[i:4344]封禁玩家\"{0}\"投票还有{1}秒结束!\n"
 msgstr "[i:4344]The vote to ban player \"{0}\" will end in {1} seconds!\n"
@@ -147,30 +147,30 @@ msgstr "[i:4344]The vote to mute feature has been disabled!"
 msgid "[i:4344]投票踢出功能已被禁用!"
 msgstr "[i:4344]The vote to kick feature has been disabled!"
 
-#: ../../Vote.cs:236
+#: ../../Vote.cs:191
 msgid "[i:4344]时间已被投票修改为夜晚!"
 msgstr "[i:4344]The time has been voted to change to nighttime!"
 
-#: ../../Vote.cs:240
+#: ../../Vote.cs:195
 msgid "[i:4344]时间已被投票修改为白天!"
 msgstr "[i:4344]The time has been voted to change to daytime!"
 
-#: ../../Vote.cs:100
+#: ../../Vote.cs:78
 #, csharp-format
 msgid "[i:4344]清除BOSS\"{0}\"投票还有{1}秒结束!\n"
 msgstr "[i:4344]The vote to clear BOSS \"{0}\" will end in {1} seconds!\n"
 
-#: ../../Vote.cs:202
+#: ../../Vote.cs:160
 #, csharp-format
 msgid "[i:4344]玩家\"{0}\"已被投票永久封禁!"
 msgstr "[i:4344] Player \"{0}\" has been permanently banned by vote!"
 
-#: ../../Vote.cs:210
+#: ../../Vote.cs:165
 #, csharp-format
 msgid "[i:4344]玩家\"{0}\"已被投票禁言!"
 msgstr "[i:4344] Player \"{0}\" has been muted by vote!"
 
-#: ../../Vote.cs:193
+#: ../../Vote.cs:154
 #, csharp-format
 msgid "[i:4344]玩家\"{0}\"被踢出游戏,持续{1}秒!"
 msgstr "The player \"{0}\" has been kicked out of the game for {1} seconds!"
@@ -199,7 +199,7 @@ msgstr "[i:4344] Usage: /vote mute <player>"
 msgid "[i:4344]用法: /vote topic <投票主题>"
 msgstr "[i:4344] Usage: /vote topic <voting topic>"
 
-#: ../../Vote.cs:232
+#: ../../Vote.cs:187
 msgid "[i:4344]目前事件已被投票关闭!"
 msgstr "[i:4344]The current event has been voted to be closed!"
 
@@ -219,7 +219,7 @@ msgstr "[i:4344]The target player is not in the kick vote list!"
 msgid "[i:4344]目标账号不存在!"
 msgstr "[i:4344]The target account does not exist!"
 
-#: ../../Vote.cs:98
+#: ../../Vote.cs:77
 #, csharp-format
 msgid "[i:4344]禁言玩家\"{0}\"投票还有{1}秒结束!\n"
 msgstr "[i:4344]The vote to mute player \"{0}\" will end in {1} seconds!\n"
@@ -228,29 +228,29 @@ msgstr "[i:4344]The vote to mute player \"{0}\" will end in {1} seconds!\n"
 msgid "[i:4344]自由主题投票功能已被禁用!"
 msgstr "[i:4344] The free topic voting feature has been disabled!"
 
-#: ../../Vote.cs:110
+#: ../../Vote.cs:83
 #, csharp-format
 msgid "[i:4344]请求{0}下雨投票还有{1}秒结束!\n"
 msgstr "[i:4344]The vote to start rain {0} will end in {1} seconds!\n"
 
-#: ../../Vote.cs:104
+#: ../../Vote.cs:80
 #, csharp-format
 msgid "[i:4344]请求修改为夜晚投票还有{0}秒结束!\n"
 msgstr ""
 "[i:4344]The vote to change the time to nighttime will end in {0} seconds!\n"
 
-#: ../../Vote.cs:106
+#: ../../Vote.cs:81
 #, csharp-format
 msgid "[i:4344]请求修改为白天投票还有{0}秒结束!\n"
 msgstr ""
 "[i:4344]The vote to change the time to daytime will end in {0} seconds!\n"
 
-#: ../../Vote.cs:108
+#: ../../Vote.cs:82
 #, csharp-format
 msgid "[i:4344]赞成关于\"{0}\"投票还有{1}秒结束!\n"
 msgstr "[i:4344] The vote in favor of \"{0}\" will end in {1} seconds!\n"
 
-#: ../../Vote.cs:94
+#: ../../Vote.cs:75
 #, csharp-format
 msgid "[i:4344]踢出玩家\"{0}\"(持续{1})投票还有{2}秒结束!\n"
 msgstr ""
@@ -261,7 +261,7 @@ msgstr ""
 msgid "{0}:剩余{1}秒"
 msgstr "{0}: {1} seconds remaining"
 
-#: ../../Vote.cs:118
+#: ../../Vote.cs:91
 msgid ""
 "*使用\"[c/32FF82:/agree(/同意)]\"或\"[c/E11919:/disagree(/反对)]\"进行投票"
 msgstr ""
@@ -279,7 +279,7 @@ msgstr ""
 "*In favor: [c/32FF82:{0} votes], against: [c/E11919:{1} votes], pass rate: "
 "{2}% ({3}%)"
 
-#: ../../Vote.cs:117
+#: ../../Vote.cs:90
 #, csharp-format
 msgid "*赞成:[c/32FF82:{0}票],反对:[c/E11919:{1}票],通过率:{2}%({3}%)\n"
 msgstr ""
@@ -331,11 +331,11 @@ msgstr "/vote rain Vote to start or stop the rain\n"
 msgid "/vote topic <主题> 自由主题投票\n"
 msgstr "/vote topic <topic> Free topic voting\n"
 
-#: ../../Vote.cs:197
+#: ../../Vote.cs:158
 msgid "你已被投票永久封禁"
 msgstr "You have been permanently banned by vote"
 
-#: ../../Vote.cs:200
+#: ../../Vote.cs:159
 msgid "你被投票永久封禁!"
 msgstr "You have been permanently banned by vote!"
 
@@ -346,7 +346,7 @@ msgstr ""
 "You have been voted to be kicked from the server! Time remaining until "
 "release: {0} seconds"
 
-#: ../../Vote.cs:191
+#: ../../Vote.cs:153
 #, csharp-format
 msgid "你被投票踢出游戏,持续{0}秒!"
 msgstr "You have been voted to be kicked from the game for {0} seconds!"
