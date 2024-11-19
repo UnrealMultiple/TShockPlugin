@@ -23,7 +23,7 @@ public class Configuration
     public class Potion
     {
         [JsonProperty("药水id")]
-        public int[] PotionID { get; set; }
+        public int[] PotionID { get; set; } = Array.Empty<int>();
         [JsonProperty("药水数量")]
         public int RequiredStack { get; set; }
     }
@@ -33,7 +33,7 @@ public class Configuration
         [JsonProperty("同时拥有时触发")]
         public bool Trigger { get; set; }
         [JsonProperty("物品id")]
-        public int[] ItemID { get; set; }
+        public int[] ItemID { get; set; } = Array.Empty<int>();
         [JsonProperty("物品数量")]
         public int RequiredStack { get; set; }
         [JsonProperty("给buff的id")]
@@ -46,7 +46,7 @@ public class Configuration
         public bool Trigger { get; set; }
 
         [JsonProperty("配饰id")]
-        public int[] AccessorieID { get; set; }
+        public int[] AccessorieID { get; set; } = Array.Empty<int>();
 
         [JsonProperty("物品数量")]
         public int RequiredStack { get; set; }
@@ -67,7 +67,7 @@ public class Configuration
         [JsonProperty("同时拥有时触发")]
         public bool Trigger { get; set; }
         [JsonProperty("染料id")]
-        public int[] DyeID { get; set; } // 包含染料的ID
+        public int[] DyeID { get; set; } = Array.Empty<int>(); // 包含染料的ID
         [JsonProperty("物品数量")]
         public int RequiredStack { get; set; }
         [JsonProperty("给buff的id")]
@@ -81,7 +81,7 @@ public class Configuration
         [JsonProperty("同时拥有时触发")]
         public bool Trigger { get; set; }
         [JsonProperty("物品id")]
-        public int[] CustomItemID { get; set; }
+        public int[] CustomItemID { get; set; } = Array.Empty<int>();
         [JsonProperty("物品数量")]
         public int RequiredStack { get; set; }
         [JsonProperty("给buff的id")]

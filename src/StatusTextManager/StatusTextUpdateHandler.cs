@@ -15,8 +15,8 @@ public delegate void StatusTextUpdateDelegate(StatusTextUpdateEventArgs args);
 
 public class StatusTextUpdateEventArgs
 {
-    public TSPlayer TSPlayer { get; set; }
-    public StringBuilder StatusTextBuilder { get; set; }
+    public required TSPlayer TSPlayer { get; set; }
+    public required StringBuilder StatusTextBuilder { get; set; }
 }
 
 public class StatusTextUpdateHandlerItem : IStatusTextUpdateHandler

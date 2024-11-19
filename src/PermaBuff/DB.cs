@@ -6,7 +6,7 @@ using TShockAPI.DB;
 namespace PermaBuff;
 public class DB
 {
-    private static IDbConnection database;
+    private static IDbConnection database = null!;
     public static void Init()
     {
         database = TShock.DB;

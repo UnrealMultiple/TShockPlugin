@@ -76,6 +76,10 @@ public class ShowArmors : TerrariaPlugin
                 str = $"{target.Name}" + " : " + "拿着 " + $"[i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]" + $"{(ItemPrefix) target.SelectedItem.prefix}";
             }
         }
+        if (target is null || armors is null)
+        {
+            return;
+        }
         for (var i = 0; i < MAX_SLOTS_NUMBER; i++)
         {
             var isArmor = i < 3;

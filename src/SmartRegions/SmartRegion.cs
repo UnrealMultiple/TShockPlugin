@@ -7,8 +7,8 @@ public class SmartRegion
 {
     private Region? _region = null;
 
-    public string name;
-    public string command;
+    public string name = "";
+    public string command = "";
     public double cooldown;
     public Region region
     {

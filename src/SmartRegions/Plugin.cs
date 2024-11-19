@@ -8,8 +8,8 @@ namespace SmartRegions;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    private DBConnection DBConnection;
-    List<SmartRegion> regions;
+    private DBConnection DBConnection = null!;
+    List<SmartRegion> regions = null!;
     readonly PlayerData[] players = new PlayerData[255];
     struct PlayerData
     {
@@ -72,12 +72,12 @@ public class Plugin : TerrariaPlugin
         this.players[args.Who].Reset();
     }
 
-    public static event EventHandler<PlayerInRegionEventArgs> PlayerInRegion;
+    public static event EventHandler<PlayerInRegionEventArgs>? PlayerInRegion;
 
     public class PlayerInRegionEventArgs : EventArgs
     {
-        public TSPlayer Player { get; set; }
-        public SmartRegion Region { get; set; }
+        public required TSPlayer Player { get; set; }
+        public required SmartRegion Region { get; set; }
         public bool IgnoreRegion { get; set; }
     }
 

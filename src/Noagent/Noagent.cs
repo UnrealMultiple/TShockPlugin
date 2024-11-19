@@ -35,8 +35,8 @@ public class Noagent : TerrariaPlugin
 
     public class Message
     {
-        public TSPlayer Player { get; set; }
-        public TaskCompletionSource<string> Result { get; set; }
+        public required TSPlayer Player { get; set; }
+        public required TaskCompletionSource<string> Result { get; set; }
 
         public async void ThreadMain()
         {

@@ -15,7 +15,7 @@ namespace AutoReset.MainPlugin;
 [ApiVersion(2, 1)]
 public class AutoResetPlugin : TerrariaPlugin
 {
-    public static ResetConfig Config;
+    public static ResetConfig Config = null!;
 
     private static readonly string AllPath = Path.Combine(TShock.SavePath, "AutoReset");
 

@@ -15,7 +15,7 @@ public class Goodnight : TerrariaPlugin
     public override string Author => "Jonesn 羽学 少司命";
     public override Version Version => new Version(2, 7, 3);
     public override string Description => "设置服务器无法进入或禁止生成怪物的时段";
-    internal static Configuration Config;
+    internal static Configuration Config = null!;
     #endregion
 
     #region 构造注册卸载

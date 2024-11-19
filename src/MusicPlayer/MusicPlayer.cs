@@ -17,7 +17,7 @@ public class MusicPlayer : TerrariaPlugin
 
     public override Version Version => new Version(1, 0, 3);
 
-    public string songPath;
+    public string songPath = Path.Combine(TShock.SavePath, "Songs");
 
     internal static SongPlayer?[] SongPlayers = new SongPlayer[255];
 
@@ -37,8 +37,6 @@ public class MusicPlayer : TerrariaPlugin
 
     public override void Initialize()
     {
-        this.songPath = Path.Combine(TShock.SavePath, "Songs");
-
         if (!Directory.Exists(this.songPath))
         {
             Directory.CreateDirectory(this.songPath);

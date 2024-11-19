@@ -183,7 +183,7 @@ public class PPMain : TerrariaPlugin
                 data.Add(perm);
                 if (DB.SetPermissions(account.ID, data))
                 {
-                    TShock.Players.FirstOrDefault(p => p?.Name == account.Name).GetData<Group>("PersonalPermission")?.AddPermission(perm);
+                    TShock.Players.FirstOrDefault(p => p?.Name == account.Name)?.GetData<Group>("PersonalPermission")?.AddPermission(perm);
                     plr.SendSuccessMessage($"已为玩家 {account.Name} 添加权限 {perm}.");
                 }
                 else
@@ -204,7 +204,7 @@ public class PPMain : TerrariaPlugin
                 data.Remove(perm);
                 if (DB.SetPermissions(account.ID, data))
                 {
-                    TShock.Players.FirstOrDefault(p => p?.Name == account.Name).GetData<Group>("PersonalPermission")?.RemovePermission(perm);
+                    TShock.Players.FirstOrDefault(p => p?.Name == account.Name)?.GetData<Group>("PersonalPermission")?.RemovePermission(perm);
                     plr.SendSuccessMessage($"已为玩家 {account.Name} 移除权限 {perm}.");
                 }
                 else

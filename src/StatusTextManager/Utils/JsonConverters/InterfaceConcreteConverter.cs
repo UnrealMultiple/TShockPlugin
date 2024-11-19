@@ -23,7 +23,7 @@ public class InterfaceConcreteConverter : JsonConverter
             object? target = null;
             if (jsonObj.TryGetValue("TypeName", out var jsonTypeName) && jsonTypeName is JValue)
             {
-                foreach (var t in objectType.GetCustomAttribute<ImplementsAttribute>()?.ImplementsTypes)
+                foreach (var t in objectType.GetCustomAttribute<ImplementsAttribute>()!.ImplementsTypes)
                 {
                     var propInfo = t.GetProperty("TypeName", BindingFlags.Public | BindingFlags.Static);
                     if (propInfo == null || propInfo.PropertyType != typeof(string))

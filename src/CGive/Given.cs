@@ -5,7 +5,7 @@ namespace CGive;
 
 public class Given
 {
-    public string Name { get; set; }
+    public string Name { get; set; } = "";
 
     public int id { get; set; }
 

@@ -38,7 +38,9 @@ public class PlayerMessage
     }
     public PlayerMessage()
     {
-
+        this.Name = "";
+        this.Prefix = "";
+        this.Group = "";
     }
 
     public string ToJson()
