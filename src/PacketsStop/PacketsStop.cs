@@ -18,8 +18,8 @@ public class PacketsStop : TerrariaPlugin
     private readonly Dictionary<string, Dictionary<PacketTypes, DateTime>> countDictionary = new Dictionary<string, Dictionary<PacketTypes, DateTime>>();
     private const double PacketInterval = 1000.0;
     private bool _Enabled = false;
-    internal static Configuration Config;
-    private HashSet<PacketTypes> Packets;
+    internal static Configuration Config = null!;
+    private HashSet<PacketTypes> Packets = null!;
     #endregion
 
     public PacketsStop(Main game) : base(game)

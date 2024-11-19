@@ -767,7 +767,7 @@ internal class Utils
             File.Delete(Main.worldPathName);
         }
 
-        var dir = Path.GetDirectoryName(Main.worldPathName);
+        var dir = Path.GetDirectoryName(Main.worldPathName)!;
         if (args.UseFile)
         {
             File.WriteAllBytes(Path.Combine(dir, args.FileName), args.FileBuffer);

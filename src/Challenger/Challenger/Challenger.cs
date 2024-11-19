@@ -623,7 +623,7 @@ public class Challenger : TerrariaPlugin
             }
             return;
         }
-        var armor2 = player.armor;
+        var armor2 = player!.armor;
         if (armor2[0].type == 2370 && armor2[1].type == 2371 && armor2[2].type == 2372 && Timer - Collect.cplayers[player.whoAmI].SpiderArmorEffectTimer >= 60 && player.controlUp)
         {
             var val = NearestHostileNPC(player.Center, 360000f);
@@ -658,7 +658,7 @@ public class Challenger : TerrariaPlugin
             }
             else
             {
-                armor = Main.player[e.Player.Index].armor;
+                armor = Main.player[e!.Player.Index].armor;
                 center = Main.player[e.Player.Index].Center;
                 num = config.CrystalAssassinArmorEffect_3;//自定义弹幕ID
                 num2 = e.Player.Index;
@@ -860,7 +860,7 @@ public class Challenger : TerrariaPlugin
             }
             return;
         }
-        var armor2 = pl.armor;
+        var armor2 = pl!.armor;
         var flag2 = armor2[0].type == 1159 && armor2[1].type == 1160 && armor2[2].type == 1161;
         if (flag2 && !Collect.cplayers[pl.whoAmI].TikiArmorEffectLife)
         {
@@ -934,7 +934,7 @@ public class Challenger : TerrariaPlugin
             }
             return;
         }
-        var armor3 = args.Player.armor;
+        var armor3 = args!.Player.armor;
         var flag2 = armor3[0].type == 2199 && (armor3[1].type == 2200 || armor3[1].type == 2201) && armor3[2].type == 2202;
         var flag3 = false;
         for (var i = 3; i < 10; i++)
@@ -998,7 +998,7 @@ public class Challenger : TerrariaPlugin
                 }
                 else
                 {
-                    if (args.Player.ownedProjectileCounts[any] >= 100 || args.KnockBack == any3)
+                    if (args!.Player.ownedProjectileCounts[any] >= 100 || args.KnockBack == any3)
                     {
                         return;
                     }

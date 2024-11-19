@@ -44,7 +44,10 @@ public class ActionHandler
     {
         var data = Serializer.Deserialize<ExportPlayerArgs>(stream);
         if (data.Names == null || !data.Names.Any())
+        {
             data.Names = TShock.UserAccounts.GetUserAccounts().Select(x => x.Name).ToList();
+        }
+
         var res = new ExportPlayer()
         {
             Status = true,
@@ -213,7 +216,9 @@ public class ActionHandler
     {
         stream.Position = 0;
         if (_action.TryGetValue(action.ActionType, out var Handler))
+        {
             Handler(action, stream);
+        }
     }
 
     private static void ResponseAction<T>(T obj) where T : BaseAction
@@ -242,7 +247,7 @@ public class ActionHandler
             WorldHeight = Main.maxTilesY,
             WorldWidth = Main.maxTilesX,
             TShockPath = Environment.CurrentDirectory,
-            RunTime = (DateTime.Now - System.Diagnostics.Process.GetCurrentProcess().StartTime)
+            RunTime = DateTime.Now - System.Diagnostics.Process.GetCurrentProcess().StartTime
         };
         ResponseAction(res);
     }

@@ -41,7 +41,7 @@ public class WeaponTypeDictionaryConverter : JsonConverter
         foreach (var property in jsonObject.Properties())
         {
             var weaponType = DisplayNames.First(x => x.Value == property.Name).Key;
-            var critMessage = property.Value.ToObject<CritMessage>(serializer);
+            var critMessage = property.Value.ToObject<CritMessage>(serializer)!;
             result.Add(weaponType, critMessage);
         }
 

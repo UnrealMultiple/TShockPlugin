@@ -77,7 +77,7 @@ public class FakeChestDatabase
 
                 while (reader.Read())
                 {
-                    var playerUuid = Convert.ToString(reader["playerUuid"]);
+                    var playerUuid = Convert.ToString(reader["playerUuid"])!;
                     var chestId = Convert.ToInt32(reader["id"]);
 
                     // 获取物品列表
@@ -89,7 +89,7 @@ public class FakeChestDatabase
                     {
                         br.ReadRootValueAsArray = true;
 
-                        var jItems = new JsonSerializer().Deserialize<IList<JItem>>(br);
+                        var jItems = new JsonSerializer().Deserialize<IList<JItem>>(br)!;
 
                         // 将每个 JItem 转换为真实的 Item
                         foreach (var jItem in jItems)
@@ -118,7 +118,7 @@ public class FakeChestDatabase
                     };
 
                     // 保存到假宝箱映射中
-                    var playerChests = fakeChestsMap.GetValueOrDefault(playerUuid, new Dictionary<int, Chest>());
+                    var playerChests = fakeChestsMap!.GetValueOrDefault(playerUuid, new Dictionary<int, Chest>());
                     fakeChestsMap[playerUuid] = playerChests;
 
                     fakeChestsMap[playerUuid][chestId] = chest;

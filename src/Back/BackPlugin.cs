@@ -15,13 +15,13 @@ public class BackPlugin : TerrariaPlugin
     public override string Description => "允许玩家传送回死亡地点";
     public override string Name => "BackPlugin";
     public override Version Version => new Version(1, 0, 0, 5);
-    public static Configuration Config;
+    public static Configuration Config = null!;
     public BackPlugin(Main game) : base(game)
     {
     }
     private static void LoadConfig()
     {
-        Config = Configuration.Read(Configuration.FilePath);
+        Config = Configuration.Read(Configuration.FilePath)!;
         Config.Write(Configuration.FilePath);
 
     }

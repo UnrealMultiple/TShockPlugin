@@ -23,6 +23,8 @@ public class BuildPlayer : MiniPlayer, IComparable<BuildPlayer>
 
     public BuildPlayer(int id, string name, TSPlayer player)
     {
+        this.SelectedTopic = null!;
+
         this.ID = id;
         this.Name = name;
         this.Player = player;
@@ -59,7 +61,7 @@ public class BuildPlayer : MiniPlayer, IComparable<BuildPlayer>
         }
     }
 
-    public void Leave()
+    public new void Leave()
     {
         var roomByID = ConfigUtils.GetRoomByID(this.CurrentRoomID);
         if (roomByID == null)
@@ -80,7 +82,7 @@ public class BuildPlayer : MiniPlayer, IComparable<BuildPlayer>
 
     public int CompareTo(BuildPlayer? other)
     {
-        return other.AquiredMarks.CompareTo(this.AquiredMarks);
+        return this.AquiredMarks.CompareTo(other?.AquiredMarks ?? 0);
     }
 
     public void Creative()

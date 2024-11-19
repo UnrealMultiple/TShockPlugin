@@ -20,13 +20,13 @@ public class GetDataHandlerArgs : EventArgs//要让这个数据在数据的基�
 public static class GetDataHandlers
 {
     static readonly string EditHouse = "house.edit";
-    private static Dictionary<PacketTypes, GetDataHandlerDelegate> GetDataHandlerDelegates;//创建词典
+    private static Dictionary<PacketTypes, GetDataHandlerDelegate> GetDataHandlerDelegates = null!;//创建词典
     public static void InitGetDataHandler()
     {
         GetDataHandlerDelegates = new Dictionary<PacketTypes, GetDataHandlerDelegate>
         {   {PacketTypes.Tile, HandleTile},//修改砖放或敲
 		    {PacketTypes.DoorUse,HandleDoorUse},//使用门
-			{PacketTypes.TileSendSquare, HandleSendTileSquareCentered},//地区改变
+			//{PacketTypes.TileSendSquare, HandleSendTileSquareCentered},//地区改变
 			{PacketTypes.ChestGetContents, HandleChestOpen },//打开箱子
 			{PacketTypes.ChestItem, HandleChestItem },//更新箱子物品
 			{PacketTypes.ChestOpen, HandleChestActive },//修改箱子
@@ -34,10 +34,10 @@ public static class GetDataHandlers
 			{PacketTypes.SignRead, HandleSignRead },//读标牌
 			{PacketTypes.SignNew, HandleSign },//修改标牌
 			{PacketTypes.LiquidSet, HandleLiquidSet},//放水//PacketTypes.ChestUnlock解锁箱子
-			{PacketTypes.HitSwitch,HandleHitSwitch},//点击开关
+			//{PacketTypes.HitSwitch,HandleHitSwitch},//点击开关
 			{PacketTypes.PaintTile, HandlePaintTile},//油漆块
 			{PacketTypes.PaintWall, HandlePaintWall},//油漆墙体
-			{PacketTypes.Teleport, HandleTeleport},//NPC或玩家传送处理//仿佛没有必要
+			//{PacketTypes.Teleport, HandleTeleport},//NPC或玩家传送处理//仿佛没有必要
 			{PacketTypes.PlaceObject, HandlePlaceObject },//放置物体//PacketTypes.ForceItemIntoNearestChest堆物品
 			{PacketTypes.PlaceTileEntity, HandlePlaceTileEntity },//放置实体
 			{PacketTypes.PlaceItemFrame, HandlePlaceItemFrame },//放置物品框//PacketTypes.KillPortal杀传送门
@@ -153,7 +153,7 @@ public static class GetDataHandlers
     }
     private static bool HandleSendTileSquareCentered(GetDataHandlerArgs args)//20地区改变，比如腐化血腥花草什么的
     {
-        return false;//此处虽然可以阻止地形改变但是由于资源耗费巨大不建议使用
+        //return false;//此处虽然可以阻止地形改变但是由于资源耗费巨大不建议使用
         var size = args.Data.ReadInt16();
         int tileX = args.Data.ReadInt16();
         int tileY = args.Data.ReadInt16();
@@ -356,13 +356,13 @@ public static class GetDataHandlers
         args.Player.SendTileSquareCentered(tileX, tileY);
         return true;//假表示允许修改//真表示禁止修改
     }
-    private static bool HandleHitSwitch(GetDataHandlerArgs args)//59点击开关，暂时无意义
-    {
-        return false;
-        int tileX = args.Data.ReadInt16();
-        int tileY = args.Data.ReadInt16();
-        //Console.WriteLine("点开关X{0} Y{1}}" , tileX, tileY);
-    }
+    //private static bool HandleHitSwitch(GetDataHandlerArgs args)//59点击开关，暂时无意义
+    //{
+    //    return false;
+    //    int tileX = args.Data.ReadInt16();
+    //    int tileY = args.Data.ReadInt16();
+    //    //Console.WriteLine("点开关X{0} Y{1}}" , tileX, tileY);
+    //}
     private static bool HandlePaintTile(GetDataHandlerArgs args)//63油漆块
     {
         var X = args.Data.ReadInt16();
@@ -411,15 +411,15 @@ public static class GetDataHandlers
         args.Player.SendData(PacketTypes.PaintWall, "", X, Y, Main.tile[X, Y].wallColor());
         return true;//假表示允许修改//真表示禁止修改
     }
-    private static bool HandleTeleport(GetDataHandlerArgs args)//65处理玩家传送,暂时无意义
-    {
-        return false;
-        //if (HousingPlugin.LConfig.禁止传送进房子)
-        var Flags = args.Data.ReadInt8();
-        var ID = args.Data.ReadInt16();
-        var X = args.Data.ReadSingle();
-        var Y = args.Data.ReadSingle();
-    }
+    //private static bool HandleTeleport(GetDataHandlerArgs args)//65处理玩家传送,暂时无意义
+    //{
+    //    return false;
+    //    //if (HousingPlugin.LConfig.禁止传送进房子)
+    //    var Flags = args.Data.ReadInt8();
+    //    var ID = args.Data.ReadInt16();
+    //    var X = args.Data.ReadSingle();
+    //    var Y = args.Data.ReadSingle();
+    //}
     private static bool HandlePlaceObject(GetDataHandlerArgs args)//79放置物块
     {
         int x = args.Data.ReadInt16();

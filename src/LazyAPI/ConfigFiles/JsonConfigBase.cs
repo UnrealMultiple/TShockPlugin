@@ -16,7 +16,7 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         var file = t.FullFilename;
         if (File.Exists(file))
         {
-            return JsonConvert.DeserializeObject<T>(File.ReadAllText(file));
+            return JsonConvert.DeserializeObject<T>(File.ReadAllText(file))!;
         }
 
         File.WriteAllText(file, JsonConvert.SerializeObject(t, Formatting.Indented));

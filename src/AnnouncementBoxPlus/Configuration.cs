@@ -48,7 +48,7 @@ public class Config
         {
             using (var sr = new StreamReader(fs))
             {
-                var cf = JsonConvert.DeserializeObject<Config>(sr.ReadToEnd());
+                var cf = JsonConvert.DeserializeObject<Config>(sr.ReadToEnd())!;
                 config = cf;
                 return cf;
             }

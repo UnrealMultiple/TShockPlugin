@@ -25,7 +25,7 @@ public class WeaponPlus : TerrariaPlugin
     #endregion
 
     #region 实例变量
-    public static WeaponPlusDB DB { get; set; }
+    public static WeaponPlusDB DB { get; set; } = null!;
 
     public string configPath = Path.Combine(TShock.SavePath, "WeaponPlus.json");
 

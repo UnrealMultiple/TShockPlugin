@@ -30,7 +30,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
 
     private readonly HashSet<int> pylonItemIDList = new HashSet<int>() { 4875, 4876, 4916, 4917, 4918, 4919, 4920, 4921, 4951 };
     private readonly HashSet<int> playersHoldingPylon = new HashSet<int>();
-    internal static Configuration Config;
+    internal static Configuration Config = null!;
     private static void LoadConfig()
     {
 

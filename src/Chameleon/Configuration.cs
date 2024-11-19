@@ -35,10 +35,10 @@ internal class Configuration
     public class RESTser
     {
         [JsonProperty("名称")]
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
         [JsonProperty("地址")]
-        public string IPAddress { get; set; }
-        public string Token { get; set; }
+        public string IPAddress { get; set; } = "";
+        public string Token { get; set; } = "";
     }
 
     public Configuration()

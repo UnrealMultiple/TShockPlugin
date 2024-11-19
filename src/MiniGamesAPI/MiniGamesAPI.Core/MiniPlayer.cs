@@ -14,7 +14,7 @@ public class MiniPlayer
     public TSPlayer Player { get; set; }
 
     [JsonIgnore]
-    public MiniCircle Circle { get; set; }
+    public MiniCircle? Circle { get; set; }
 
     public int Kills { get; set; }
 
@@ -52,7 +52,7 @@ public class MiniPlayer
         this.ID = id;
         this.Name = player.Name;
         this.Player = player;
-        this.BackUp = null;
+        this.BackUp = null!;
         this.IsReady = false;
         this.Status = global::MiniGamesAPI.Enum.PlayerStatus.Waiting;
         this.Kills = 0;
@@ -64,6 +64,10 @@ public class MiniPlayer
 
     public MiniPlayer()
     {
+        this.Name =  null!;
+        this.Player = null!;
+        this.BackUp = null!;
+
         this.Kills = 0;
         this.Deaths = 0;
         this.Assistances = 0;
@@ -257,7 +261,7 @@ public class MiniPlayer
     {
         this.CurrentRoomID = 0;
         this.BackUp.RestoreCharacter(this.Player);
-        this.BackUp = null;
+        this.BackUp = null!;
         this.Player.SaveServerCharacter();
         this.SelectPackID = 0;
         this.IsReady = false;

@@ -23,12 +23,12 @@ public class Plugin : TerrariaPlugin
     public Plugin(Main game) : base(game)
     {
         this.Order = 3;
+        this._reloadHandler = e => this.LoadConfig();
     }
-    private GeneralHooks.ReloadEventD _reloadHandler;
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
         this.LoadConfig();
-        this._reloadHandler = e => this.LoadConfig();
         GeneralHooks.ReloadEvent += this._reloadHandler;
         Commands.ChatCommands.Add(new Command("bag.use", this.GiftBag, "礼包"));
     }

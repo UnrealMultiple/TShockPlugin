@@ -310,7 +310,7 @@ public static class Commands
         }
     }
 
-    public static async void MyHome(CommandArgs e)
+    public static void MyHome(CommandArgs e)
     {
         if (e.Parameters.Count > 1)
         {
@@ -339,7 +339,7 @@ public static class Commands
         }
     }
 
-    public static async void SetHome(CommandArgs e)
+    public static void SetHome(CommandArgs e)
     {
         if (e.Parameters.Count > 1)
         {

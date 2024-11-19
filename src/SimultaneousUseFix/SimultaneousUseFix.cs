@@ -13,7 +13,7 @@ public class SimultaneousUseFix : TerrariaPlugin
     public override string Description => "解决卡双锤，卡星旋机枪之类的问题";
     public override string Name => "SimultaneousUseFix";
     public override Version Version => new Version(1, 0, 6);
-    public static Configuration Config;
+    public static Configuration Config = null!;
     public bool otherPluginExists = false;
 
     public SimultaneousUseFix(Main game) : base(game)

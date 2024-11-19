@@ -50,7 +50,7 @@ public class CaiConfig<TSettings> where TSettings : new()
         {
             using (var sr = new StreamReader(fs))
             {
-                var cf = JsonConvert.DeserializeObject<CaiConfig<TSettings>>(sr.ReadToEnd());
+                var cf = JsonConvert.DeserializeObject<CaiConfig<TSettings>>(sr.ReadToEnd())!;
                 return cf;
             }
         }

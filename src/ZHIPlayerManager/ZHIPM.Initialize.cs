@@ -278,7 +278,7 @@ public partial class ZHIPM : TerrariaPlugin
                     }
                     else
                     {
-                        var temp = users.Find(x => x.Name == args.Parameters[0]);
+                        var temp = users.Find(x => x.Name == args.Parameters[0])!;
                         ID = temp.ID;
                         playerfullname = temp.Name;
                     }
@@ -1450,7 +1450,7 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    var u = temp.Find(x => x.Name == name);
+                    var u = temp.Find(x => x.Name == name)!;
                     var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), u.ID);
                     if (temp2 != null && temp2.exists)
                     {
@@ -1609,7 +1609,7 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    var u = temp.Find(x => x.Name == name);
+                    var u = temp.Find(x => x.Name == name)!;
                     var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), u.ID);
                     if (temp2 != null && temp2.exists)
                     {
@@ -1841,7 +1841,7 @@ public partial class ZHIPM : TerrariaPlugin
                     }
                     else
                     {
-                        var u = temp.Find(x => x.Name == name);
+                        var u = temp.Find(x => x.Name == name)!;
                         var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), u.ID);
                         if (temp2 != null && temp2.exists)
                         {
@@ -2134,7 +2134,7 @@ public partial class ZHIPM : TerrariaPlugin
                     }
                     else
                     {
-                        var u = temp.Find(x => x.Name == name);
+                        var u = temp.Find(x => x.Name == name)!;
                         var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), u.ID);
                         if (temp2 != null && temp2.exists)
                         {

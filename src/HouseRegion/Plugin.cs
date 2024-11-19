@@ -23,7 +23,7 @@ public class HousingPlugin : TerrariaPlugin
         LConfig = new Config();
         this._reloadHandler = (_) => this.RC();
     }
-    public static Config LConfig { get; set; }
+    public static Config LConfig { get; set; } = null!;
     internal static string LConfigPath => Path.Combine(TShock.SavePath, "HouseRegion.json");
     public static LPlayer?[] LPlayers { get; set; } = new LPlayer[256];//L表示local本地的意思
     public static List<House> Houses = new();
@@ -97,7 +97,7 @@ public class HousingPlugin : TerrariaPlugin
     #endregion
 
     #region 插件的各种初始化
-    private GeneralHooks.ReloadEventD _reloadHandler;
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()// 插件启动时，用于初始化各种狗子
     {
         this.RC();
@@ -164,7 +164,7 @@ public class HousingPlugin : TerrariaPlugin
             case "name"://确认房子名字
             {
                 args.Player.SendMessage("请敲击一个块查看它属于哪个房子。", Color.Yellow);
-                LPlayers[args.Player.Index].Look = true; break;
+                LPlayers[args.Player.Index]!.Look = true; break;
             }
             case "set"://设置点
             {

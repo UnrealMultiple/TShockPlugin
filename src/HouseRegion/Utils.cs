@@ -269,7 +269,7 @@ public class HouseManager//房屋管理
         try
         {
             var house = Utils.GetHouseByName(housename);
-            var houseName = house.Name;
+            var houseName = house!.Name;
             try
             {
                 var query = "UPDATE HousingDistrict SET TopX=@0, TopY=@1, BottomX=@2, BottomY=@3, WorldID=@4 WHERE Name=@5";

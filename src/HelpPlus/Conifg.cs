@@ -244,7 +244,7 @@ public class Config
         Config result;
         using (StreamReader streamReader = new(stream))
         {
-            result = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd());
+            result = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd())!;
         }
 
         return result;

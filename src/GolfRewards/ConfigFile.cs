@@ -21,7 +21,7 @@ public class ConfigFile
         using (var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
         using (var streamReader = new StreamReader(fileStream))
         {
-            var configFile = JsonConvert.DeserializeObject<ConfigFile>(streamReader.ReadToEnd());
+            var configFile = JsonConvert.DeserializeObject<ConfigFile>(streamReader.ReadToEnd())!;
             ConfigR?.Invoke(configFile);
             return configFile;
         }
@@ -31,7 +31,7 @@ public class ConfigFile
     {
         using (var streamReader = new StreamReader(stream))
         {
-            var configFile = JsonConvert.DeserializeObject<ConfigFile>(streamReader.ReadToEnd());
+            var configFile = JsonConvert.DeserializeObject<ConfigFile>(streamReader.ReadToEnd())!;
             ConfigR?.Invoke(configFile);
             return configFile;
         }
@@ -57,5 +57,5 @@ public class ConfigFile
     [JsonProperty("奖励表")]
     public List<RewardSection> RewardTable { get; set; } = new List<RewardSection>();
 
-    public static Action<ConfigFile> ConfigR;
+    public static Action<ConfigFile>? ConfigR;
 }

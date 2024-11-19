@@ -78,7 +78,7 @@ public class Configuration
         else
         {
             // 读取配置文件并返回一个Configuration实例
-            config = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(filePath));
+            config = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(filePath))!;
         }
         return config; // 确保返回一个Configuration实例
     }

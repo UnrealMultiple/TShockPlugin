@@ -34,7 +34,7 @@ public static class ConfigUtils
         {
             if (File.Exists(roomsPath))
             {
-                rooms = JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath));
+                rooms = JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath))!;
             }
             else
             {
@@ -42,7 +42,7 @@ public static class ConfigUtils
             }
             if (File.Exists(evaluatePath))
             {
-                evaluatePack = JsonConvert.DeserializeObject<MiniPack>(File.ReadAllText(evaluatePath));
+                evaluatePack = JsonConvert.DeserializeObject<MiniPack>(File.ReadAllText(evaluatePath))!;
             }
             else
             {
@@ -50,7 +50,7 @@ public static class ConfigUtils
             }
             if (File.Exists(defaultPath))
             {
-                defaultPack = JsonConvert.DeserializeObject<MiniPack>(File.ReadAllText(defaultPath));
+                defaultPack = JsonConvert.DeserializeObject<MiniPack>(File.ReadAllText(defaultPath))!;
             }
             else
             {
@@ -58,7 +58,7 @@ public static class ConfigUtils
             }
             if (File.Exists(configPath))
             {
-                config = JsonConvert.DeserializeObject<BuildConfig>(File.ReadAllText(configPath));
+                config = JsonConvert.DeserializeObject<BuildConfig>(File.ReadAllText(configPath))!;
             }
             else
             {
@@ -77,21 +77,19 @@ public static class ConfigUtils
 
     public static void UpdateRooms(int id)
     {
-        var list = JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath));
+        var list = JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath))!;
         var index = list.FindIndex((BuildRoom r) => r.ID == id);
-        list[index] = rooms.Find((BuildRoom r) => r.ID == id);
+        list[index] = rooms.Find((BuildRoom r) => r.ID == id)!;
         File.WriteAllText(roomsPath, JsonConvert.SerializeObject(rooms, (Formatting) 1));
     }
 
     public static void AddRoom(BuildRoom room)
     {
-        JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath)).Add(room);
         File.WriteAllText(roomsPath, JsonConvert.SerializeObject(rooms, (Formatting) 1));
     }
 
     public static void RemoveRoom(int id)
     {
-        JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath)).RemoveAll((BuildRoom r) => r.ID == id);
         File.WriteAllText(roomsPath, JsonConvert.SerializeObject(rooms, (Formatting) 1));
     }
 
@@ -102,7 +100,7 @@ public static class ConfigUtils
 
     public static BuildRoom? GetRoomByIDFromLocal(int id)
     {
-        return JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath)).Find((BuildRoom r) => r.ID == id);
+        return JsonConvert.DeserializeObject<List<BuildRoom>>(File.ReadAllText(roomsPath))!.Find((BuildRoom r) => r.ID == id);
     }
 
     public static BuildPlayer? GetPlayerByName(string name)
@@ -118,6 +116,6 @@ public static class ConfigUtils
 
     public static void ReloadConfig()
     {
-        config = JsonConvert.DeserializeObject<BuildConfig>(File.ReadAllText(configPath));
+        config = JsonConvert.DeserializeObject<BuildConfig>(File.ReadAllText(configPath))!;
     }
 }

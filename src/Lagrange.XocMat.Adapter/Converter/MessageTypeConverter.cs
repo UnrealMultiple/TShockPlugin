@@ -29,7 +29,7 @@ internal class MessageTypeConverter : JsonConverter
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
 
-        var field = value.GetType().GetField(value.ToString());
+        var field = value!.GetType().GetField(value.ToString()!)!;
         var des = field.GetCustomAttribute<DescriptionAttribute>();
         if (des != null)
         {

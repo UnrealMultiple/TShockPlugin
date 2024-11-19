@@ -18,7 +18,7 @@ namespace MorMorAdapter.Model.Action.Response;
 [ProtoInclude(412, typeof(ExportPlayer))]
 public class BaseActionResponse : BaseAction
 {
-    [ProtoMember(6)] public string Message { get; set; }
+    [ProtoMember(6)] public string Message { get; set; } = "";
 
     [ProtoMember(7)] public bool Status { get; set; }
 }

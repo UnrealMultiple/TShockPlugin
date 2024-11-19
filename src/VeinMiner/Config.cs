@@ -26,7 +26,7 @@ public class Config
                 NotMine = new() { 21, 26, 88 }
             }, Formatting.Indented));
 
-            VeinMiner.Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Path.Combine(TShock.SavePath, "VeinMiner.json")));
+            VeinMiner.Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Path.Combine(TShock.SavePath, "VeinMiner.json")))!;
             if (args != null)
             {
                 TShock.Log.ConsoleInfo(GetString("<VeinMiner> 配置已重新加载。"));

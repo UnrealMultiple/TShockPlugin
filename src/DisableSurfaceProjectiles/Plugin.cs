@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => "禁止特定弹幕在地表产生";
     public override string Name => "禁地表弹幕";
     public override Version Version => new(1, 0, 0, 6);
-    internal static Configuration Config;
+    internal static Configuration Config = null!;
     public static bool _isEnabled; // 存储插件是否启用的状态，默认为false
     public Plugin(Main game) : base(game)
     {

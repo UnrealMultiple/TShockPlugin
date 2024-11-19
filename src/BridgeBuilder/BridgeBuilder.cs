@@ -13,7 +13,7 @@ public class BridgeBuilder : TerrariaPlugin
     public override Version Version => new Version(1, 1, 0);
     public override string Author => "Soofa，肝帝熙恩汉化1449";
     public override string Description => "铺桥!";
-    public static Configuration Config;
+    public static Configuration Config = null!;
     public BridgeBuilder(Main game) : base(game)
     {
     }

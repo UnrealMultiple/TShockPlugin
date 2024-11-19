@@ -60,7 +60,7 @@ public class Config
     public static Config Read(Stream stream)//给定流文件进行读取
     {
         using var sr = new StreamReader(stream);
-        var cf = JsonConvert.DeserializeObject<Config>(sr.ReadToEnd());
+        var cf = JsonConvert.DeserializeObject<Config>(sr.ReadToEnd())!;
         return cf;
     }
     public void Write(string Path)//给定路径进行写

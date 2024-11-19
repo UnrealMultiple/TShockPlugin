@@ -75,7 +75,7 @@ namespace DonotFuck
             {
                 // 读取文件的全部内容，然后使用JsonConvert反序列化为Configuration对象。
                 var jsonContent = sr.ReadToEnd();
-                var cf = JsonConvert.DeserializeObject<Configuration>(jsonContent);
+                var cf = JsonConvert.DeserializeObject<Configuration>(jsonContent)!;
 
                 // 返回反序列化得到的Configuration对象。
                 return cf;

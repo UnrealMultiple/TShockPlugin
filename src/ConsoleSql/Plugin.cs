@@ -145,7 +145,7 @@ public class ConsoleSql : TerrariaPlugin
             catch (Exception ex)
             {
                 args.Player.SendErrorMessage(GetString("SQL执行失败!\n") +
-                    GetString("原因:{ex.Message}"));
+                    GetString($"原因:{ex.Message}"));
             }
 
         }

@@ -65,7 +65,7 @@ public class MainPlugin : TerrariaPlugin
 
     private void OnChat(ServerChatEventArgs args)
     {
-        var playerByName = ConfigUtils.GetPlayerByName(TShock.Players[args.Who].Name);
+        var playerByName = ConfigUtils.GetPlayerByName(TShock.Players[args.Who].Name)!;
         var roomByID = ConfigUtils.GetRoomByID(playerByName.CurrentRoomID);
         if (!args.Text.StartsWith(((ConfigFile<TShockSettings>) (object) TShock.Config).Settings.CommandSilentSpecifier) && !args.Text.StartsWith(((ConfigFile<TShockSettings>) (object) TShock.Config).Settings.CommandSpecifier) && playerByName != null && roomByID != null)
         {
@@ -871,7 +871,7 @@ public class MainPlugin : TerrariaPlugin
                 buildPlayer.BackUp.RestoreCharacter((MiniPlayer) (object) buildPlayer);
                 buildPlayer.CurrentRegion = null;
                 buildPlayer.Player = null!;
-                buildPlayer.BackUp = null;
+                buildPlayer.BackUp = null!;
                 buildPlayer.Status = 0;
                 buildPlayer.Locked = false;
             }
