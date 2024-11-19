@@ -74,7 +74,7 @@ jobs:
           $ErrorActionPreference = "Continue"
           Copy-Item out/**/*.dll,out/**/*.pdb out/Target/Plugins/
           Copy-Item SubmoduleAssembly/* out/Target/Plugins/
-          Copy-Item bin/Plugins.json,README.md,Usage.txt,LICENSE out/Target/
+          Copy-Item bin/Plugins.json,README.md,README_EN.md,Usage.txt,LICENSE out/Target/
 
       - name: 上传临时插件包
         uses: actions/upload-artifact@v4
