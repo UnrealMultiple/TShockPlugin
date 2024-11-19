@@ -3,8 +3,8 @@
 - 作者: [LaoSparrow](https://github.com/LaoSparrow)
 - 出处: https://github.com/LaoSparrow/ProxyProtocolSocket
 - 让 TShock 支持 proxy protocol, 获取用户真实IP
-- 需要搭配开启了 proxy protocol 功能的 frp, nginx 等代理软件使用
-- 安装此插件后游戏客户端只能通过代理软件连接 TShock, 直接连接 TShock 会被拒绝接入 
+- 需要搭配开启了 proxy protocol 功能的 frp, nginx 等反代软件使用
+- 安装此插件后游戏客户端只能通过反代连接 TShock, 直接连接 TShock 会被拒绝接入 
 
 ## 更新日志
 

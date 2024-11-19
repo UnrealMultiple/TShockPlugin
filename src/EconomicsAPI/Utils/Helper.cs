@@ -98,7 +98,7 @@ public class Helper
         var obj = typeof(ServerApi).GetField("loadedAssemblies", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null);
         if (obj is Dictionary<string, Assembly> assemblys)
         {
-            foreach (var assembly in assemblys.Values)
+            foreach (var assembly in assemblys.Values.ToArray())
             {
                 MapingCommand(assembly);
                 MapingRest(assembly);

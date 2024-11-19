@@ -7,9 +7,15 @@
 ## 更新日志
 
 ```
+v1.0.0.1
+初步支持多语言配置文件
+
 v1.0.0.0
 初始上传
 ```
+
+## 命令行参数
+- -culture zh|en 此命令行参数用于切换生成配置文件的语言，默认跟随ts语言。
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

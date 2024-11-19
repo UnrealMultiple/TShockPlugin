@@ -329,7 +329,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.2.0",
+    "Version": "2.0.2.1",
     "Author": "少司命，Cai，LaoSparrow",
     "Description": "自动更新你的插件！",
     "AssemblyName": "AutoPluginManager",
@@ -493,16 +493,18 @@
   },
   {
     "Name": "ChattyBridge",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "少司命",
     "Description": "ChattyBridge",
     "AssemblyName": "ChattyBridge",
     "Path": "ChattyBridge.dll",
-    "Dependencies": []
+    "Dependencies": [
+      "LazyAPI"
+    ]
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.0.6",
+    "Version": "1.0.7",
     "Author": "Cjx重构 | 肝帝熙恩简单修改",
     "Description": "无限宝箱插件",
     "AssemblyName": "ChestRestore",
@@ -704,7 +706,7 @@
   },
   {
     "Name": "EconomicsAPI",
-    "Version": "2.0.0.0",
+    "Version": "2.0.0.1",
     "Author": "少司命",
     "Description": "EconomicsAPI",
     "AssemblyName": "EconomicsAPI",
@@ -796,7 +798,7 @@
   },
   {
     "Name": "LazyAPI",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "cc004 & members of UnrealMultiple",
     "Description": "None",
     "AssemblyName": "LazyAPI",

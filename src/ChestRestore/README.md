@@ -8,6 +8,8 @@
 ## 更新日志
 
 ```
+v1.0.7
+箱子名字更改实际在ChestOpen
 v1.0.6
 i18n和README_EN.md_
 v1.0.5
