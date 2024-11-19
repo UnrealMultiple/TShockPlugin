@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AutoPluginManager\n"
 "POT-Creation-Date: 2024-11-09 18:20:03+0800\n"
-"PO-Revision-Date: 2024-11-09 18:25+0800\n"
+"PO-Revision-Date: 2024-11-16 21:58+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -25,7 +25,7 @@ msgstr "[The following plugins have new version updates]\n"
 
 #: ../../Utils.cs:170
 msgid "[外部库安装完成]\n"
-msgstr "[Installation Complete]\n"
+msgstr "[External Libraries Installation Complete]\n"
 
 #: ../../Utils.cs:152
 msgid "[安装完成]\n"
