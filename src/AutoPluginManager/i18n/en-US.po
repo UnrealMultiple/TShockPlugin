@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoPluginManager\n"
-"POT-Creation-Date: 2024-11-09 18:20:03+0800\n"
+"POT-Creation-Date: 2024-11-19 10:27:34+0000\n"
 "PO-Revision-Date: 2024-11-16 21:58+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,11 +23,11 @@ msgstr "[AutoUpdatePlugin] Plugin configuration has been reloaded~"
 msgid "[以下插件有新的版本更新]\n"
 msgstr "[The following plugins have new version updates]\n"
 
-#: ../../Utils.cs:170
+#: ../../Utils.cs:175
 msgid "[外部库安装完成]\n"
 msgstr "[External Libraries Installation Complete]\n"
 
-#: ../../Utils.cs:152
+#: ../../Utils.cs:157
 msgid "[安装完成]\n"
 msgstr "[Installation Complete]\n"
 
@@ -35,7 +35,7 @@ msgstr "[Installation Complete]\n"
 msgid "[插件重复安装]"
 msgstr "[Duplicate Plugin Installation]"
 
-#: ../../Utils.cs:161
+#: ../../Utils.cs:166
 msgid "[更新完成]\n"
 msgstr "[Update Complete]\n"
 
