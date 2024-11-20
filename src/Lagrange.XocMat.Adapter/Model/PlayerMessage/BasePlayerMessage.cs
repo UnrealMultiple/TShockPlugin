@@ -1,6 +1,6 @@
 ﻿using ProtoBuf;
 
-namespace MorMorAdapter.Model.PlayerMessage;
+namespace Lagrange.XocMat.Adapter.Model.PlayerMessage;
 
 [ProtoContract]
 [ProtoInclude(201, typeof(PlayerChatMessage))]

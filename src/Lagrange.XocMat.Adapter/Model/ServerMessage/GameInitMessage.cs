@@ -1,7 +1,7 @@
-﻿using MorMorAdapter.Enumerates;
+﻿using Lagrange.XocMat.Adapter.Enumerates;
 using ProtoBuf;
 
-namespace MorMorAdapter.Model.ServerMessage;
+namespace Lagrange.XocMat.Adapter.Model.ServerMessage;
 
 [ProtoContract]
 public class GameInitMessage : BaseMessage

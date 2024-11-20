@@ -1,4 +1,4 @@
-﻿namespace MorMorAdapter.Enumerates
+﻿namespace Lagrange.XocMat.Adapter.Enumerates
 {
     internal enum Status
     {

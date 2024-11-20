@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using TShockAPI;
 
-namespace MorMorAdapter;
+namespace Lagrange.XocMat.Adapter;
 
 public class OneBotPlayer : TSPlayer
 {

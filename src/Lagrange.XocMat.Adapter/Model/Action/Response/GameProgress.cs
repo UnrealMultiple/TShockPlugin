@@ -1,6 +1,6 @@
 ﻿using ProtoBuf;
 
-namespace MorMorAdapter.Model.Action.Response;
+namespace Lagrange.XocMat.Adapter.Model.Action.Response;
 
 [ProtoContract]
 public class GameProgress : BaseActionResponse

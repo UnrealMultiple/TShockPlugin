@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace MorMorAdapter.Extension;
+namespace Lagrange.XocMat.Adapter.Extension;
 
 internal static class MethodExt
 {

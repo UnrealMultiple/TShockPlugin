@@ -1,8 +1,8 @@
-﻿using MorMorAdapter.Attributes;
-using MorMorAdapter.Enumerates;
-using MorMorAdapter.Extension;
-using MorMorAdapter.Model.Action.Receive;
-using MorMorAdapter.Model.Internet;
+﻿using Lagrange.XocMat.Adapter.Attributes;
+using Lagrange.XocMat.Adapter.Enumerates;
+using Lagrange.XocMat.Adapter.Extension;
+using Lagrange.XocMat.Adapter.Model.Action.Receive;
+using Lagrange.XocMat.Adapter.Model.Internet;
 using ProtoBuf;
 using Rests;
 using SixLabors.ImageSharp;
@@ -20,7 +20,7 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
 
-namespace MorMorAdapter;
+namespace Lagrange.XocMat.Adapter;
 
 internal class Utils
 {
@@ -42,7 +42,6 @@ internal class Utils
         Player.Serialize(playerFileData, player, binaryWriter);
         binaryWriter.Flush();
         cryptoStream.FlushFinalBlock();
-        //stream.Flush();
         return stream.ToArray();
     }
 

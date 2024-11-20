@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MorMorAdapter.Setting.Configs;
+namespace Lagrange.XocMat.Adapter.Setting.Configs;
 
 public class ResetConfig
 {

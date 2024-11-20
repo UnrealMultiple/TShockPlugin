@@ -1,9 +1,9 @@
-﻿using MorMorAdapter.Enumerates;
-using MorMorAdapter.Model.Action;
-using MorMorAdapter.Model.Action.Receive;
-using MorMorAdapter.Model.Action.Response;
-using MorMorAdapter.Model.Internet;
-using MorMorAdapter.Net;
+﻿using Lagrange.XocMat.Adapter.Enumerates;
+using Lagrange.XocMat.Adapter.Model.Action;
+using Lagrange.XocMat.Adapter.Model.Action.Receive;
+using Lagrange.XocMat.Adapter.Model.Action.Response;
+using Lagrange.XocMat.Adapter.Model.Internet;
+using Lagrange.XocMat.Adapter.Net;
 using ProtoBuf;
 using Terraria;
 using Terraria.IO;
@@ -11,7 +11,7 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
 
-namespace MorMorAdapter;
+namespace Lagrange.XocMat.Adapter;
 
 public class ActionHandler
 {
@@ -157,16 +157,16 @@ public class ActionHandler
         switch (data.Status)
         {
             case SocketConnentType.Success:
-                TShock.Log.ConsoleInfo($"[MorMorAdapter] 与({data.ServerName})服务器验证成功，成功连接到MorMor机器人...");
+                TShock.Log.ConsoleInfo($"[Lagrange.XocMat.Adapter] 与({data.ServerName})服务器验证成功，成功连接到MorMor机器人...");
                 break;
             case SocketConnentType.VerifyError:
-                TShock.Log.ConsoleError($"[MorMorAdapter] 与({data.ServerName})服务器的通信令牌验证失败...");
+                TShock.Log.ConsoleError($"[Lagrange.XocMat.Adapter] 与({data.ServerName})服务器的通信令牌验证失败...");
                 break;
             case SocketConnentType.ServerNull:
-                TShock.Log.ConsoleError($"[MorMorAdapter] 无法在MorMor机器人上找到({data.ServerName})服务器...");
+                TShock.Log.ConsoleError($"[Lagrange.XocMat.Adapter] 无法在MorMor机器人上找到({data.ServerName})服务器...");
                 break;
             default:
-                TShock.Log.ConsoleError("[MorMorAdapter] 因未知错误无验证通信令牌...");
+                TShock.Log.ConsoleError("[Lagrange.XocMat.Adapter] 因未知错误无验证通信令牌...");
                 break;
         }
         ResponseAction(new BaseActionResponse()

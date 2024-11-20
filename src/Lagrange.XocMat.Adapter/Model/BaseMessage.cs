@@ -1,10 +1,10 @@
-﻿using MorMorAdapter.Enumerates;
-using MorMorAdapter.Model.Action;
-using MorMorAdapter.Model.PlayerMessage;
-using MorMorAdapter.Model.ServerMessage;
+﻿using Lagrange.XocMat.Adapter.Enumerates;
+using Lagrange.XocMat.Adapter.Model.Action;
+using Lagrange.XocMat.Adapter.Model.PlayerMessage;
+using Lagrange.XocMat.Adapter.Model.ServerMessage;
 using ProtoBuf;
 
-namespace MorMorAdapter.Model;
+namespace Lagrange.XocMat.Adapter.Model;
 
 [ProtoContract]
 [ProtoInclude(101, typeof(BasePlayerMessage))]

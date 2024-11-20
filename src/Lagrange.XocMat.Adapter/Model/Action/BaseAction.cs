@@ -1,9 +1,9 @@
-﻿using MorMorAdapter.Enumerates;
-using MorMorAdapter.Model.Action.Receive;
-using MorMorAdapter.Model.Action.Response;
+﻿using Lagrange.XocMat.Adapter.Enumerates;
+using Lagrange.XocMat.Adapter.Model.Action.Receive;
+using Lagrange.XocMat.Adapter.Model.Action.Response;
 using ProtoBuf;
 
-namespace MorMorAdapter.Model.Action;
+namespace Lagrange.XocMat.Adapter.Model.Action;
 
 [ProtoContract]
 [ProtoInclude(301, typeof(BroadcastArgs))]

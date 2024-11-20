@@ -1,6 +1,6 @@
 ﻿using ProtoBuf;
 
-namespace MorMorAdapter.Model.Internet;
+namespace Lagrange.XocMat.Adapter.Model.Internet;
 
 [ProtoContract]
 public class KillNpc

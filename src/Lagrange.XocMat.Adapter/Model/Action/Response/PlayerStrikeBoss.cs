@@ -1,7 +1,7 @@
-﻿using MorMorAdapter.Model.Internet;
+﻿using Lagrange.XocMat.Adapter.Model.Internet;
 using ProtoBuf;
 
-namespace MorMorAdapter.Model.Action.Response;
+namespace Lagrange.XocMat.Adapter.Model.Action.Response;
 
 [ProtoContract]
 public class PlayerStrikeBoss : BaseActionResponse

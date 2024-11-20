@@ -1,7 +1,7 @@
-﻿using MorMorAdapter.Enumerates;
+﻿using Lagrange.XocMat.Adapter.Enumerates;
 using ProtoBuf;
 
-namespace MorMorAdapter.Model.Action.Receive;
+namespace Lagrange.XocMat.Adapter.Model.Action.Receive;
 
 [ProtoContract]
 public class SocketConnectStatusArgs : BaseAction
