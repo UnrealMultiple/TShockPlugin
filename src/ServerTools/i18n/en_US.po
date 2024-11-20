@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ServerTools\n"
-"POT-Creation-Date: 2024-11-21 02:50:32+0800\n"
-"PO-Revision-Date: 2024-11-21 03:16+0800\n"
+"POT-Creation-Date: 2024-11-21 03:50:30+0800\n"
+"PO-Revision-Date: 2024-11-21 03:52+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -22,8 +22,12 @@ msgstr "[{0}] => Died {1} times"
 
 #: ..\..\Plugin.cs:199
 #, csharp-format
-msgid "[ServerTools] 玩家 [{0}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{1}]"
-msgstr "[ServerTools] Player [{0}] has been frozen for 3 seconds due to multiple accessories, and the system automatically performed a cleanup of the excessive accessory equipment [i:{1}]"
+msgid ""
+"[ServerTools] 玩家 [{0}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{1}]"
+msgstr ""
+"[ServerTools] Player [{0}] has been frozen for 3 seconds due to multiple "
+"accessories, and the system automatically performed a cleanup of the "
+"excessive accessory equipment [i:{1}]"
 
 #: ..\..\Plugin.cs:275
 msgid "{0} 权限组为 {1}."
@@ -71,11 +75,11 @@ msgstr "There is no player online data currently."
 msgid "花苞"
 msgstr "Plantera's Bulb"
 
-#: ..\..\Plugin.cs:562
+#: ..\..\Plugin.cs:561
 msgid "仅允许软核进入!"
 msgstr "Only softcore players are allowed to enter!"
 
-#: ..\..\Plugin.cs:522 ..\..\Plugin.cs:533
+#: ..\..\Plugin.cs:521 ..\..\Plugin.cs:532
 msgid "禁止双箱!"
 msgstr "Double chests are prohibited!"
 
@@ -100,13 +104,24 @@ msgstr "You will be kicked out after {0} seconds!"
 msgid "你要求被踢出！"
 msgstr "You requested to be kicked out!"
 
-#: ..\..\Plugin.cs:405
+#: ..\..\Plugin.cs:404
 msgid "你因多鱼线被石化3秒钟!"
 msgstr "You have been petrified for 3 seconds due to multiple fishing lines!"
 
+#: ..\..\Plugin.cs:390
+#, csharp-format
+msgid "你因哨兵数量超过{0}被踢出"
+msgstr "You have been kicked out for exceeding the limit of {0} sentries."
+
+#: ..\..\Plugin.cs:396
+#, csharp-format
+msgid "你因召唤物数量超过{0}被踢出"
+msgstr "You have been kicked out for exceeding the limit of {0} summons."
+
 #: ..\..\Plugin.cs:338 ..\..\Plugin.cs:346
 msgid "请在单人模式中结束死亡状态重新进入服务器!"
-msgstr "Please end your death state in single-player mode and rejoin the server!"
+msgstr ""
+"Please end your death state in single-player mode and rejoin the server!"
 
 #: ..\..\Plugin.Commamd.cs:57
 msgid "输入 {0}死亡排行 {{0}} 查看更多"
@@ -120,7 +135,7 @@ msgstr "Enter {0}online leaderboard {{0}} to see more."
 msgid "死亡排行 ({0}/{1})："
 msgstr "Death leaderboard ({0}/{1}):"
 
-#: ..\..\Plugin.cs:580
+#: ..\..\Plugin.cs:579
 #, csharp-format
 msgid ""
 "退出服务器时处于死亡状态！\n"
@@ -131,7 +146,9 @@ msgstr ""
 
 #: ..\..\Plugin.Commamd.cs:167
 msgid "已为你搜索到{0}个花苞，输入/warp list可以查看结果"
-msgstr "{0} Plantera's Bulbs have been found for you. Enter **/warp list** to view the results."
+msgstr ""
+"{0} Plantera's Bulbs have been found for you. Enter **/warp list** to view "
+"the results."
 
 #: ..\..\Plugin.Commamd.cs:133
 msgid "已移除所有花苞传送点!"
@@ -157,6 +174,6 @@ msgstr "Online Rankings ({0}/{1}):"
 msgid "正确语法: /旅途难度 <难度模式>"
 msgstr "Correct syntax: **/journeydiff <difficulty mode>**."
 
-#: ..\..\Plugin.cs:436
+#: ..\..\Plugin.cs:435
 msgid "ServerTools.json配置读取错误:{0}"
 msgstr "Error reading ServerTools.json configuration: {0}"

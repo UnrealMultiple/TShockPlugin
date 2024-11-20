@@ -387,7 +387,7 @@ public partial class Plugin : TerrariaPlugin
     {
         if (Main.projectile.Where(x => x != null && x.owner == e.Owner && x.sentry && x.active).Count() > Config.sentryLimit)
         {
-            e.Player.Disconnect(GetString($"你因哨兵数量超过{Config.summonLimit}被踢出"));
+            e.Player.Disconnect(GetString($"你因哨兵数量超过{Config.sentryLimit}被踢出"));
         }
         if (Main.projectile[e.Index].minion)
         {
