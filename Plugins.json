@@ -724,7 +724,7 @@
   },
   {
     "Name": "EssentialsPlus",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "WhiteX等人，Average,Cjx,肝帝熙恩翻译,Cai更新",
     "Description": "增强版Essentials",
     "AssemblyName": "EssentialsPlus",
@@ -832,6 +832,24 @@
     "Description": "小游戏框架API",
     "AssemblyName": "MiniGamesAPI",
     "Path": "MiniGamesAPI.dll",
+    "Dependencies": []
+  },
+  {
+    "Name": "None",
+    "Version": "1.0",
+    "Author": "None",
+    "Description": "None",
+    "AssemblyName": "ItemDecoration",
+    "Path": "ItemDecoration.dll",
+    "Dependencies": []
+  },
+  {
+    "Name": "None",
+    "Version": "1.0",
+    "Author": "None",
+    "Description": "None",
+    "AssemblyName": "ItemDecoration",
+    "Path": "ItemDecoration.dll",
     "Dependencies": []
   },
   {
@@ -953,7 +971,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.7.5",
+    "Version": "1.1.7.6",
     "Author": "少司命",
     "Description": "服务器工具",
     "AssemblyName": "ServerTools",
