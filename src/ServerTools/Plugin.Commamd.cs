@@ -6,7 +6,7 @@ namespace ServerTools;
 
 public partial class Plugin
 {
-    public void Online(CommandArgs args)
+    public void OnlineRank(CommandArgs args)
     {
         void ShowOnline(List<string> line)
         {

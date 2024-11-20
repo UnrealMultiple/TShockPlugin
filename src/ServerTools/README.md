@@ -7,6 +7,9 @@
 ## 更新日志
 
 ```
+v1.1.7.7
+修复召唤物和哨兵检测问题，完成i18n英文
+
 v1.1.7.6
 修正默认值和文档，i18n预备
 
@@ -62,15 +65,15 @@ V1.0.0.3
 | 语法                                                 |          权限          |               说明               |
 | ---------------------------------------------------- | :--------------------: | :------------------------------: |
 | /clp [范围]                                          |      tshock.clear      |    清理弹幕但不清理玩家召唤物    |
-| /退出                                                | servertool.query.exit  |          手机端玩家自踢         |
-| /查花苞                                              | servertool.query.wall  | 查找地图上的花苞并添加到 Warp 里 |
-| /移除花苞                                            | servertool.query.wall  |       移除调 Warp 里的花苞       |
-| /自踢                                                |  servertool.user.kick  |         将自己踢出服务器         |
-| /自杀                                                |  servertool.user.kill  |             杀死自己             |
+| /退出 或 /toolexit                                   | servertool.query.exit  |          手机端玩家自踢         |
+| /查花苞 或 /scp                                             | servertool.query.wall  | 查找地图上的花苞并添加到 Warp 里 |
+| /移除花苞 或 /rcp                                          | servertool.query.wall  |       移除调 Warp 里的花苞       |
+| /自踢 或 /selfkick                                              |  servertool.user.kick  |         将自己踢出服务器         |
+| /自杀 或 /selfkill                                              |  servertool.user.kill  |             杀死自己             |
 | /ghost                                               | servertool.user.ghost  |    切换到幽灵状态再次使用复原    |
-| /旅途难度 [难度]`master` `journey` `normal` `expert` | servertool.set.journey |         设置旅途模式难度         |
-| /在线排行                                            | servertool.user.online |         查询玩家在线排行         |
-| /死亡排行                                            |  servertool.user.dead  |         查询玩家死亡排行         |
+| /旅途难度 [难度]`master` `journey` `normal` `expert` 或 /journeydiff [difficulty mode]`master` `journey` `normal` `expert` | servertool.set.journey |         设置旅途模式难度         |
+| /在线排行 或 /onlinerank                                           | servertool.user.online |         查询玩家在线排行         |
+| /死亡排行 或 /deadrank                                            |  servertool.user.dead  |         查询玩家死亡排行         |
 
 ## REST API
 
@@ -212,6 +215,6 @@ V1.0.0.3
 | `浮漂列表`                 |  `array<int>`   |                      检测多鱼线浮漂列表                      |                   空                    |
 
 ## 反馈
-
-- 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
-- 国内社区 trhub.cn 或 TShock 官方群等
+- 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
+- 次优先：TShock官方群：816771079
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love

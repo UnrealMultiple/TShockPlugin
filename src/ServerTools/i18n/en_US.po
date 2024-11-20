@@ -2,125 +2,123 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ServerTools\n"
 "POT-Creation-Date: 2024-11-21 02:50:32+0800\n"
-"PO-Revision-Date: 2024-11-21 02:50:32+0800\n"
+"PO-Revision-Date: 2024-11-21 03:16+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: GetText.NET Extractor\n"
+"X-Generator: Poedit 3.5\n"
 
 #: ..\..\Plugin.cs:225
 msgid " 被系统保护"
-msgstr ""
+msgstr "Protected by the server"
 
 #: ..\..\Plugin.Commamd.cs:61
 #, csharp-format
 msgid "[{0}] => 死亡{1}次"
-msgstr ""
+msgstr "[{0}] => Died {1} times"
 
 #: ..\..\Plugin.cs:199
 #, csharp-format
 msgid "[ServerTools] 玩家 [{0}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{1}]"
-msgstr ""
+msgstr "[ServerTools] Player [{0}] has been frozen for 3 seconds due to multiple accessories, and the system automatically performed a cleanup of the excessive accessory equipment [i:{1}]"
 
 #: ..\..\Plugin.cs:275
 msgid "{0} 权限组为 {1}."
-msgstr ""
+msgstr "{0} is in the permission group {1}."
 
 #: ..\..\Plugin.Commamd.cs:34
 #, csharp-format
 msgid "{0} 在线时长: {1}分钟"
-msgstr ""
+msgstr "{0}'s online duration: {1} minutes"
 
 #: ..\..\Plugin.cs:274
 msgid "{0} 账户ID为 {1}."
-msgstr ""
+msgstr "{0}'s account ID is {1}."
 
 #: ..\..\Plugin.cs:277
 msgid "{0} 注册时间为 {1} {2} UTC{3}."
-msgstr ""
+msgstr "{0} registered on {1} {2} UTC{3}."
 
 #: ..\..\Plugin.cs:265
 msgid "{0} 最后的登录时间为 {1} {2} UTC{3}."
-msgstr ""
+msgstr "{0}'s last login time was {1} {2} UTC{3}."
 
 #: ..\..\Plugin.cs:276
 msgid "{0} 最后登录使用的IP为 {1}."
-msgstr ""
+msgstr "{0} last logged in using the IP {1}."
 
 #: ..\..\Plugin.Commamd.cs:89
 msgid "{0}清除了{1}范围内{2}个射弹!"
-msgstr ""
+msgstr "{0} cleared {2} projectiles within a range of {1}!"
 
 #: ..\..\Plugin.Commamd.cs:98
 msgid "必须在旅途模式下才能设置难度！"
-msgstr ""
+msgstr "The difficulty can only be set in Journey mode!"
 
 #: ..\..\Plugin.Commamd.cs:72
 msgid "错误的范围!"
-msgstr ""
+msgstr "Incorrect range!"
 
 #: ..\..\Plugin.Commamd.cs:25
 msgid "当前没有玩家在线数据"
-msgstr ""
+msgstr "There is no player online data currently."
 
-#: ..\..\Plugin.Commamd.cs:132
-#: ..\..\Plugin.Commamd.cs:158
+#: ..\..\Plugin.Commamd.cs:132 ..\..\Plugin.Commamd.cs:158
 #: ..\..\Plugin.Commamd.cs:162
 msgid "花苞"
-msgstr ""
+msgstr "Plantera's Bulb"
 
 #: ..\..\Plugin.cs:562
 msgid "仅允许软核进入!"
-msgstr ""
+msgstr "Only softcore players are allowed to enter!"
 
-#: ..\..\Plugin.cs:522
-#: ..\..\Plugin.cs:533
+#: ..\..\Plugin.cs:522 ..\..\Plugin.cs:533
 msgid "禁止双箱!"
-msgstr ""
+msgstr "Double chests are prohibited!"
 
 #: ..\..\Plugin.Commamd.cs:55
 msgid "没有死亡数据!"
-msgstr ""
+msgstr "No death data!"
 
 #: ..\..\Plugin.Commamd.cs:103
 msgid "难度成功设置为 {0}!"
-msgstr ""
+msgstr "Difficulty successfully set to {0}!"
 
 #: ..\..\Plugin.Commamd.cs:172
 msgid "你不能过于频繁的使用此指令!"
-msgstr ""
+msgstr "You cannot use this command too frequently!"
 
 #: ..\..\Plugin.cs:342
 #, csharp-format
 msgid "你将在{0}秒后被踢出!"
-msgstr ""
+msgstr "You will be kicked out after {0} seconds!"
 
 #: ..\..\Plugin.Commamd.cs:127
 msgid "你要求被踢出！"
-msgstr ""
+msgstr "You requested to be kicked out!"
 
 #: ..\..\Plugin.cs:405
 msgid "你因多鱼线被石化3秒钟!"
-msgstr ""
+msgstr "You have been petrified for 3 seconds due to multiple fishing lines!"
 
-#: ..\..\Plugin.cs:338
-#: ..\..\Plugin.cs:346
+#: ..\..\Plugin.cs:338 ..\..\Plugin.cs:346
 msgid "请在单人模式中结束死亡状态重新进入服务器!"
-msgstr ""
+msgstr "Please end your death state in single-player mode and rejoin the server!"
 
 #: ..\..\Plugin.Commamd.cs:57
 msgid "输入 {0}死亡排行 {{0}} 查看更多"
-msgstr ""
+msgstr "Enter {0}death leaderboard {{0}} to see more."
 
 #: ..\..\Plugin.Commamd.cs:27
 msgid "输入 {0}在线排行 {{0}} 查看更多"
-msgstr ""
+msgstr "Enter {0}online leaderboard {{0}} to see more."
 
 #: ..\..\Plugin.Commamd.cs:56
 msgid "死亡排行 ({0}/{1})："
-msgstr ""
+msgstr "Death leaderboard ({0}/{1}):"
 
 #: ..\..\Plugin.cs:580
 #, csharp-format
@@ -128,37 +126,37 @@ msgid ""
 "退出服务器时处于死亡状态！\n"
 "请等待死亡结束，还有{0}秒结束！"
 msgstr ""
+"You were in a dead state when you left the server!\n"
+"Please wait for the death state to end, there are {0} seconds remaining!"
 
 #: ..\..\Plugin.Commamd.cs:167
 msgid "已为你搜索到{0}个花苞，输入/warp list可以查看结果"
-msgstr ""
+msgstr "{0} Plantera's Bulbs have been found for you. Enter **/warp list** to view the results."
 
 #: ..\..\Plugin.Commamd.cs:133
 msgid "已移除所有花苞传送点!"
-msgstr ""
+msgstr "All Plantera's Bulb warp points have been removed!"
 
 #: ..\..\Plugin.cs:282
 msgid "用户 {0} 不存在."
-msgstr ""
+msgstr "User {0} does not exist."
 
 #: ..\..\Plugin.Commamd.cs:109
 msgid "有效的难度模式: master，journey，normal，expert"
-msgstr ""
+msgstr "Valid difficulty modes: Master, Journey, Normal, Expert."
 
-#: ..\..\Plugin.cs:249
-#: ..\..\Plugin.cs:287
+#: ..\..\Plugin.cs:249 ..\..\Plugin.cs:287
 msgid "语法错误，正确语法: {0}accountinfo <username>."
-msgstr ""
+msgstr "Syntax error. Correct syntax: **{0}accountinfo <username>**."
 
 #: ..\..\Plugin.Commamd.cs:26
 msgid "在线排行 ({0}/{1})："
-msgstr ""
+msgstr "Online Rankings ({0}/{1}):"
 
 #: ..\..\Plugin.Commamd.cs:108
 msgid "正确语法: /旅途难度 <难度模式>"
-msgstr ""
+msgstr "Correct syntax: **/journeydiff <difficulty mode>**."
 
 #: ..\..\Plugin.cs:436
 msgid "ServerTools.json配置读取错误:{0}"
-msgstr ""
-
+msgstr "Error reading ServerTools.json configuration: {0}"
