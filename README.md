@@ -127,6 +127,7 @@
 | [Invincibility](src/Invincibility/README.md) | 限时无敌 | 无 |
 | [ItemPreserver](src/ItemPreserver/README.md) | 指定物品不消耗 | 无 |
 | [ItemBox](src/ItemBox/README.md) | 离线背包系统，物品盒子 | 无 |
+| [ItemDecoration](src/ItemDecoration/README.md) | 手持物品浮动消息显示 | 无 |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | 解锁旅途物品 | 无 |
 | [Lagrange.XocMat.Adapter](src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 | 无 |
 | [LazyAPI](src/LazyAPI/README.md) | 插件基础库 | linq2db |

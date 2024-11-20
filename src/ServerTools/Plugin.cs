@@ -20,7 +20,7 @@ public partial class Plugin : TerrariaPlugin
 
     public override string Name => "ServerTools";// 插件名字
 
-    public override Version Version => new(1, 1, 7, 5);// 插件版本
+    public override Version Version => new(1, 1, 7, 6);// 插件版本
 
     private static Config Config = new();
 
@@ -196,7 +196,7 @@ public partial class Plugin : TerrariaPlugin
         foreach (var keepArmor in ArmorGroup)
         {
             e.Player.SetBuff(156, 180, true);
-            TShock.Utils.Broadcast($"[ServerTools] 玩家 [{e.Player.Name}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{keepArmor.netID}]", Color.DarkRed);
+            TShock.Utils.Broadcast(GetString($"[ServerTools] 玩家 [{e.Player.Name}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{keepArmor.netID}]"), Color.DarkRed);
         }
         if (ArmorGroup.Any())
         {
@@ -222,7 +222,7 @@ public partial class Plugin : TerrariaPlugin
         if (Config.NpcProtectList.Contains(args.Npc.netID))
         {
             args.Handled = true;
-            TShock.Players[args.Player.whoAmI].SendInfoMessage("[ServerTools] " + args.Npc.FullName + " 被系统保护");
+            TShock.Players[args.Player.whoAmI].SendInfoMessage("[ServerTools] " + args.Npc.FullName + GetString(" 被系统保护"));
         }
     }
 
@@ -246,7 +246,7 @@ public partial class Plugin : TerrariaPlugin
     {
         if (args.Parameters.Count < 1)
         {
-            args.Player.SendErrorMessage("语法错误，正确语法: {0}accountinfo <username>.", Commands.Specifier);
+            args.Player.SendErrorMessage(GetString("语法错误，正确语法: {0}accountinfo <username>."), Commands.Specifier);
             return;
         }
 
@@ -262,7 +262,7 @@ public partial class Plugin : TerrariaPlugin
                 if (DateTime.TryParse(account.LastAccessed, out var LastSeen))
                 {
                     LastSeen = DateTime.Parse(account.LastAccessed).ToLocalTime();
-                    args.Player.SendSuccessMessage("{0} 最后的登录时间为 {1} {2} UTC{3}.", account.Name, LastSeen.ToShortDateString(),
+                    args.Player.SendSuccessMessage(GetString("{0} 最后的登录时间为 {1} {2} UTC{3}."), account.Name, LastSeen.ToShortDateString(),
                         LastSeen.ToShortTimeString(), Timezone);
                 }
 
@@ -271,20 +271,20 @@ public partial class Plugin : TerrariaPlugin
                     var KnownIps = JsonConvert.DeserializeObject<List<string>>(account.KnownIps?.ToString() ?? string.Empty);
                     var ip = KnownIps?[^1] ?? "N/A";
                     var Registered = DateTime.Parse(account.Registered).ToLocalTime();
-                    args.Player.SendSuccessMessage("{0} 账户ID为 {1}.", account.Name, account.ID);
-                    args.Player.SendSuccessMessage("{0} 权限组为 {1}.", account.Name, account.Group);
-                    args.Player.SendSuccessMessage("{0} 最后登录使用的IP为 {1}.", account.Name, ip);
-                    args.Player.SendSuccessMessage("{0} 注册时间为 {1} {2} UTC{3}.", account.Name, Registered.ToShortDateString(), Registered.ToShortTimeString(), Timezone);
+                    args.Player.SendSuccessMessage(GetString("{0} 账户ID为 {1}."), account.Name, account.ID);
+                    args.Player.SendSuccessMessage(GetString("{0} 权限组为 {1}."), account.Name, account.Group);
+                    args.Player.SendSuccessMessage(GetString("{0} 最后登录使用的IP为 {1}."), account.Name, ip);
+                    args.Player.SendSuccessMessage(GetString("{0} 注册时间为 {1} {2} UTC{3}."), account.Name, Registered.ToShortDateString(), Registered.ToShortTimeString(), Timezone);
                 }
             }
             else
             {
-                args.Player.SendErrorMessage("用户 {0} 不存在.", username);
+                args.Player.SendErrorMessage(GetString("用户 {0} 不存在."), username);
             }
         }
         else
         {
-            args.Player.SendErrorMessage("语法错误，正确语法: {0}accountinfo <username>.", Commands.Specifier);
+            args.Player.SendErrorMessage(GetString("语法错误，正确语法: {0}accountinfo <username>."), Commands.Specifier);
         }
     }
 
@@ -335,15 +335,15 @@ public partial class Plugin : TerrariaPlugin
             Task.Run(async () =>
             {
                 await Task.Delay(1000);
-                TShock.Players[args.Who].SendSuccessMessage("请在单人模式中结束死亡状态重新进入服务器!");
+                TShock.Players[args.Who].SendSuccessMessage(GetString("请在单人模式中结束死亡状态重新进入服务器!"));
                 var count = 0;
                 while (count < 3)
                 {
-                    TShock.Players[args.Who].SendSuccessMessage($"你将在{3 - count}秒后被踢出!");
+                    TShock.Players[args.Who].SendSuccessMessage(GetString($"你将在{3 - count}秒后被踢出!"));
                     await Task.Delay(1000);
                     count++;
                 }
-                TShock.Players[args.Who].Disconnect("请在单人模式中结束死亡状态重新进入服务器!");
+                TShock.Players[args.Who].Disconnect(GetString("请在单人模式中结束死亡状态重新进入服务器!"));
             });
         }
     }
@@ -410,7 +410,7 @@ public partial class Plugin : TerrariaPlugin
             var bobber = Main.projectile.Where(f => f != null && f.owner == e.Owner && f.active && f.type == e.Type);
             if (bobber.Count() > 2)
             {
-                e.Player.SendErrorMessage("你因多鱼线被石化3秒钟!");
+                e.Player.SendErrorMessage(GetString("你因多鱼线被石化3秒钟!"));
                 e.Player.SetBuff(156, 180, true);
             }
         }
@@ -441,7 +441,7 @@ public partial class Plugin : TerrariaPlugin
             catch (Exception e)
             {
 
-                TShock.Log.ConsoleError("ServerTools.json配置读取错误:{0}", e.ToString());
+                TShock.Log.ConsoleError(GetString("ServerTools.json配置读取错误:{0}"), e.ToString());
             }
         }
         else
@@ -527,7 +527,7 @@ public partial class Plugin : TerrariaPlugin
             {
                 ply.ActiveChest = -1;
                 ply.SendData(PacketTypes.ChestOpen, "", -1);
-                ply.SendErrorMessage("禁止双箱!");
+                ply.SendErrorMessage(GetString("禁止双箱!"));
                 args.Handled = true;
             }
         }
@@ -538,7 +538,7 @@ public partial class Plugin : TerrariaPlugin
             {
                 ply.ActiveChest = -1;
                 ply.SendData(PacketTypes.ChestOpen, "", -1);
-                ply.SendErrorMessage("禁止双箱!");
+                ply.SendErrorMessage(GetString("禁止双箱!"));
                 args.Handled = true;
             }
         }
@@ -567,7 +567,7 @@ public partial class Plugin : TerrariaPlugin
         {
             if (TShock.Players[args.Who].Difficulty != 0)
             {
-                TShock.Players[args.Who].Disconnect("仅允许软核进入!");
+                TShock.Players[args.Who].Disconnect(GetString("仅允许软核进入!"));
             }
         }
         if (Config.BlockUnregisteredEntry)
@@ -585,7 +585,7 @@ public partial class Plugin : TerrariaPlugin
                 var respawn = time - DateTime.Now;
                 if (respawn.TotalSeconds > 0)
                 {
-                    TShock.Players[args.Who].Disconnect($"退出服务器时处于死亡状态！\n请等待死亡结束，还有{respawn.TotalSeconds}秒结束！");
+                    TShock.Players[args.Who].Disconnect(GetString($"退出服务器时处于死亡状态！\n请等待死亡结束，还有{respawn.TotalSeconds}秒结束！"));
                 }
             }
         }
