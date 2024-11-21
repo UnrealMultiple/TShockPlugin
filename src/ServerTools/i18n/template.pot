@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ServerTools\n"
-"POT-Creation-Date: 2024-11-21 03:50:30+0800\n"
-"PO-Revision-Date: 2024-11-21 03:50:31+0800\n"
+"POT-Creation-Date: 2024-11-21 01:45:17+0000\n"
+"PO-Revision-Date: 2024-11-21 01:45:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,165 +10,165 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ..\..\Plugin.cs:225
+#: ../../Plugin.cs:225
 msgid " 被系统保护"
 msgstr ""
 
-#: ..\..\Plugin.Commamd.cs:61
+#: ../../Plugin.Commamd.cs:61
 #, csharp-format
 msgid "[{0}] => 死亡{1}次"
 msgstr ""
 
-#: ..\..\Plugin.cs:199
+#: ../../Plugin.cs:199
 #, csharp-format
 msgid "[ServerTools] 玩家 [{0}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{1}]"
 msgstr ""
 
-#: ..\..\Plugin.cs:275
-msgid "{0} 权限组为 {1}."
+#: ../../Plugin.cs:276
+msgid "{0} 最后登录使用的IP为 {1}."
 msgstr ""
 
-#: ..\..\Plugin.Commamd.cs:34
+#: ../../Plugin.cs:265
+msgid "{0} 最后的登录时间为 {1} {2} UTC{3}."
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:34
 #, csharp-format
 msgid "{0} 在线时长: {1}分钟"
 msgstr ""
 
-#: ..\..\Plugin.cs:274
-msgid "{0} 账户ID为 {1}."
+#: ../../Plugin.cs:275
+msgid "{0} 权限组为 {1}."
 msgstr ""
 
-#: ..\..\Plugin.cs:277
+#: ../../Plugin.cs:277
 msgid "{0} 注册时间为 {1} {2} UTC{3}."
 msgstr ""
 
-#: ..\..\Plugin.cs:265
-msgid "{0} 最后的登录时间为 {1} {2} UTC{3}."
+#: ../../Plugin.cs:274
+msgid "{0} 账户ID为 {1}."
 msgstr ""
 
-#: ..\..\Plugin.cs:276
-msgid "{0} 最后登录使用的IP为 {1}."
-msgstr ""
-
-#: ..\..\Plugin.Commamd.cs:89
+#: ../../Plugin.Commamd.cs:89
 msgid "{0}清除了{1}范围内{2}个射弹!"
 msgstr ""
 
-#: ..\..\Plugin.Commamd.cs:98
-msgid "必须在旅途模式下才能设置难度！"
+#: ../../Plugin.cs:435
+msgid "ServerTools.json配置读取错误:{0}"
 msgstr ""
 
-#: ..\..\Plugin.Commamd.cs:72
-msgid "错误的范围!"
-msgstr ""
-
-#: ..\..\Plugin.Commamd.cs:25
-msgid "当前没有玩家在线数据"
-msgstr ""
-
-#: ..\..\Plugin.Commamd.cs:132
-#: ..\..\Plugin.Commamd.cs:158
-#: ..\..\Plugin.Commamd.cs:162
-msgid "花苞"
-msgstr ""
-
-#: ..\..\Plugin.cs:561
+#: ../../Plugin.cs:561
 msgid "仅允许软核进入!"
 msgstr ""
 
-#: ..\..\Plugin.cs:521
-#: ..\..\Plugin.cs:532
-msgid "禁止双箱!"
-msgstr ""
-
-#: ..\..\Plugin.Commamd.cs:55
-msgid "没有死亡数据!"
-msgstr ""
-
-#: ..\..\Plugin.Commamd.cs:103
-msgid "难度成功设置为 {0}!"
-msgstr ""
-
-#: ..\..\Plugin.Commamd.cs:172
+#: ../../Plugin.Commamd.cs:172
 msgid "你不能过于频繁的使用此指令!"
 msgstr ""
 
-#: ..\..\Plugin.cs:342
-#, csharp-format
-msgid "你将在{0}秒后被踢出!"
-msgstr ""
-
-#: ..\..\Plugin.Commamd.cs:127
-msgid "你要求被踢出！"
-msgstr ""
-
-#: ..\..\Plugin.cs:404
-msgid "你因多鱼线被石化3秒钟!"
-msgstr ""
-
-#: ..\..\Plugin.cs:390
-#, csharp-format
-msgid "你因哨兵数量超过{0}被踢出"
-msgstr ""
-
-#: ..\..\Plugin.cs:396
+#: ../../Plugin.cs:396
 #, csharp-format
 msgid "你因召唤物数量超过{0}被踢出"
 msgstr ""
 
-#: ..\..\Plugin.cs:338
-#: ..\..\Plugin.cs:346
-msgid "请在单人模式中结束死亡状态重新进入服务器!"
+#: ../../Plugin.cs:390
+#, csharp-format
+msgid "你因哨兵数量超过{0}被踢出"
 msgstr ""
 
-#: ..\..\Plugin.Commamd.cs:57
-msgid "输入 {0}死亡排行 {{0}} 查看更多"
+#: ../../Plugin.cs:404
+msgid "你因多鱼线被石化3秒钟!"
 msgstr ""
 
-#: ..\..\Plugin.Commamd.cs:27
-msgid "输入 {0}在线排行 {{0}} 查看更多"
+#: ../../Plugin.cs:342
+#, csharp-format
+msgid "你将在{0}秒后被踢出!"
 msgstr ""
 
-#: ..\..\Plugin.Commamd.cs:56
+#: ../../Plugin.Commamd.cs:127
+msgid "你要求被踢出！"
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:26
+msgid "在线排行 ({0}/{1})："
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:167
+msgid "已为你搜索到{0}个花苞，输入/warp list可以查看结果"
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:133
+msgid "已移除所有花苞传送点!"
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:25
+msgid "当前没有玩家在线数据"
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:98
+msgid "必须在旅途模式下才能设置难度！"
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:109
+msgid "有效的难度模式: master，journey，normal，expert"
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:108
+msgid "正确语法: /旅途难度 <难度模式>"
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:56
 msgid "死亡排行 ({0}/{1})："
 msgstr ""
 
-#: ..\..\Plugin.cs:579
+#: ../../Plugin.Commamd.cs:55
+msgid "没有死亡数据!"
+msgstr ""
+
+#: ../../Plugin.cs:282
+msgid "用户 {0} 不存在."
+msgstr ""
+
+#: ../../Plugin.cs:521
+#: ../../Plugin.cs:532
+msgid "禁止双箱!"
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:132
+#: ../../Plugin.Commamd.cs:158
+#: ../../Plugin.Commamd.cs:162
+msgid "花苞"
+msgstr ""
+
+#: ../../Plugin.cs:249
+#: ../../Plugin.cs:287
+msgid "语法错误，正确语法: {0}accountinfo <username>."
+msgstr ""
+
+#: ../../Plugin.cs:338
+#: ../../Plugin.cs:346
+msgid "请在单人模式中结束死亡状态重新进入服务器!"
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:27
+msgid "输入 {0}在线排行 {{0}} 查看更多"
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:57
+msgid "输入 {0}死亡排行 {{0}} 查看更多"
+msgstr ""
+
+#: ../../Plugin.cs:579
 #, csharp-format
 msgid ""
 "退出服务器时处于死亡状态！\n"
 "请等待死亡结束，还有{0}秒结束！"
 msgstr ""
 
-#: ..\..\Plugin.Commamd.cs:167
-msgid "已为你搜索到{0}个花苞，输入/warp list可以查看结果"
+#: ../../Plugin.Commamd.cs:72
+msgid "错误的范围!"
 msgstr ""
 
-#: ..\..\Plugin.Commamd.cs:133
-msgid "已移除所有花苞传送点!"
-msgstr ""
-
-#: ..\..\Plugin.cs:282
-msgid "用户 {0} 不存在."
-msgstr ""
-
-#: ..\..\Plugin.Commamd.cs:109
-msgid "有效的难度模式: master，journey，normal，expert"
-msgstr ""
-
-#: ..\..\Plugin.cs:249
-#: ..\..\Plugin.cs:287
-msgid "语法错误，正确语法: {0}accountinfo <username>."
-msgstr ""
-
-#: ..\..\Plugin.Commamd.cs:26
-msgid "在线排行 ({0}/{1})："
-msgstr ""
-
-#: ..\..\Plugin.Commamd.cs:108
-msgid "正确语法: /旅途难度 <难度模式>"
-msgstr ""
-
-#: ..\..\Plugin.cs:435
-msgid "ServerTools.json配置读取错误:{0}"
+#: ../../Plugin.Commamd.cs:103
+msgid "难度成功设置为 {0}!"
 msgstr ""
 

@@ -9,8 +9,8 @@
     "Dependencies": []
   },
   {
-    "Name": "Chireiden.TShock.Omni 451424f0c2",
-    "Version": "0.0.190.0",
+    "Name": "Chireiden.TShock.Omni 9ecf6e586b",
+    "Version": "0.0.191.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
     "AssemblyName": "Chireiden.TShock.Omni",
@@ -512,8 +512,8 @@
     "Dependencies": []
   },
   {
-    "Name": "Chireiden.TShock.Omni.Misc 451424f0c2",
-    "Version": "0.0.190.0",
+    "Name": "Chireiden.TShock.Omni.Misc 9ecf6e586b",
+    "Version": "0.0.191.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock - the miscellaneous part",
     "AssemblyName": "Chireiden.TShock.Omni.Misc",
@@ -971,7 +971,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.7.6",
+    "Version": "1.1.7.7",
     "Author": "少司命",
     "Description": "服务器工具",
     "AssemblyName": "ServerTools",
