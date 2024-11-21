@@ -20,7 +20,7 @@ public partial class Plugin : TerrariaPlugin
 
     public override string Name => "ServerTools";// 插件名字
 
-    public override Version Version => new(1, 1, 7, 6);// 插件版本
+    public override Version Version => new(1, 1, 7, 7);// 插件版本
 
     private static Config Config = new();
 
@@ -64,15 +64,15 @@ public partial class Plugin : TerrariaPlugin
 
         #region 指令
         Commands.ChatCommands.Add(new Command(Permissions.clear, this.Clear, "clp"));
-        Commands.ChatCommands.Add(new Command("servertool.query.exit", this.Exit, "退出"));
+        Commands.ChatCommands.Add(new Command("servertool.query.exit", this.Exit, "退出", "toolexit"));
         Commands.ChatCommands.Add(new Command("servertool.query.wall", this.WallQ, "查花苞", "scp"));
         Commands.ChatCommands.Add(new Command("servertool.query.wall", this.RWall, "移除花苞", "rcp"));
-        Commands.ChatCommands.Add(new Command("servertool.user.kick", this.SelfKick, "自踢"));
-        Commands.ChatCommands.Add(new Command("servertool.user.kill", this.SelfKill, "自杀"));
+        Commands.ChatCommands.Add(new Command("servertool.user.kick", this.SelfKick, "自踢", "selfkick"));
+        Commands.ChatCommands.Add(new Command("servertool.user.kill", this.SelfKill, "自杀", "selfkill"));
         Commands.ChatCommands.Add(new Command("servertool.user.ghost", this.Ghost, "ghost"));
-        Commands.ChatCommands.Add(new Command("servertool.set.journey", this.JourneyDiff, "旅途难度"));
-        Commands.ChatCommands.Add(new Command("servertool.user.dead", this.DeathRank, "死亡排行"));
-        Commands.ChatCommands.Add(new Command("servertool.user.online", this.Online, "在线排行"));
+        Commands.ChatCommands.Add(new Command("servertool.set.journey", this.JourneyDiff, "旅途难度", "journeydiff"));
+        Commands.ChatCommands.Add(new Command("servertool.user.dead", this.DeathRank, "死亡排行", "deadrank"));
+        Commands.ChatCommands.Add(new Command("servertool.user.online", this.OnlineRank, "在线排行", "onlinerank"));
         #endregion
         #region TShcok 钩子
         GetDataHandlers.NewProjectile.Register(this.NewProj);
@@ -121,7 +121,7 @@ public partial class Plugin : TerrariaPlugin
                 .GetValue(TShock.RestApi)!)
                 .RemoveAll(x => x.Name == "/onlineDuration" || x.Name == "/deathrank");
             #region 指令
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.Clear || x.CommandDelegate == this.WallQ || x.CommandDelegate == this.RWall || x.CommandDelegate == this.SelfKill || x.CommandDelegate == this.SelfKick || x.CommandDelegate == this.Ghost || x.CommandDelegate == this.JourneyDiff || x.CommandDelegate == this.DeathRank || x.CommandDelegate == this.Online);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.Clear || x.CommandDelegate == this.WallQ || x.CommandDelegate == this.RWall || x.CommandDelegate == this.SelfKill || x.CommandDelegate == this.SelfKick || x.CommandDelegate == this.Ghost || x.CommandDelegate == this.JourneyDiff || x.CommandDelegate == this.DeathRank || x.CommandDelegate == this.OnlineRank);
             #endregion
             #region TShcok 钩子
             GetDataHandlers.NewProjectile.UnRegister(this.NewProj);
@@ -385,24 +385,15 @@ public partial class Plugin : TerrariaPlugin
 
     private void NewProj(object? sender, GetDataHandlers.NewProjectileEventArgs e)
     {
-        if (Main.projectile[e.Index].sentry)
+        if (Main.projectile.Where(x => x != null && x.owner == e.Owner && x.sentry && x.active).Count() > Config.sentryLimit)
         {
-            if (Main.projectile.Where(x => x != null && x.owner == e.Owner && x.sentry && x.active).Count() > Config.sentryLimit)
-            {
-                Main.projectile[e.Index].active = false;
-                e.Handled = true;
-                TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", e.Index);
-                return;
-            }
+            e.Player.Disconnect(GetString($"你因哨兵数量超过{Config.sentryLimit}被踢出"));
         }
         if (Main.projectile[e.Index].minion)
         {
-            if (Main.projectile.Where(x => x != null && x.owner == e.Owner && x.minion && x.active).Count() > Config.summonLimit)
+            if (e.Player.TPlayer.slotsMinions > Config.summonLimit)
             {
-                Main.projectile[e.Index].active = false;
-                e.Handled = true;
-                TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", e.Index);
-                return;
+                e.Player.Disconnect(GetString($"你因召唤物数量超过{Config.summonLimit}被踢出"));
             }
         }
         if (Main.projectile[e.Index].bobber && Config.MultipleFishingRodsAreProhibited && Config.ForbiddenBuoys.FindAll(f => f == e.Type).Count > 0)
