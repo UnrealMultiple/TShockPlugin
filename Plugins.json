@@ -798,7 +798,7 @@
   },
   {
     "Name": "LazyAPI",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "cc004 & members of UnrealMultiple",
     "Description": "None",
     "AssemblyName": "LazyAPI",
