@@ -1,6 +1,6 @@
 ﻿using ProtoBuf;
 
-namespace MorMorAdapter.Model.Action.Receive;
+namespace Lagrange.XocMat.Adapter.Model.Action.Receive;
 
 [ProtoContract]
 public class ReStartServerArgs : BaseAction

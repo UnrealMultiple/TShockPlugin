@@ -1,6 +1,6 @@
 ﻿using ProtoBuf;
 
-namespace MorMorAdapter.Model.PlayerMessage;
+namespace Lagrange.XocMat.Adapter.Model.PlayerMessage;
 
 [ProtoContract]
 public class PlayerChatMessage : BasePlayerMessage

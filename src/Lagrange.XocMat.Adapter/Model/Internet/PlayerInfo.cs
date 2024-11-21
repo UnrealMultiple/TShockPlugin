@@ -1,7 +1,7 @@
 ﻿using ProtoBuf;
 using TShockAPI;
 
-namespace MorMorAdapter.Model.Internet;
+namespace Lagrange.XocMat.Adapter.Model.Internet;
 
 [ProtoContract]
 public class PlayerInfo

@@ -1,7 +1,7 @@
 ﻿using System.Net.WebSockets;
 using TShockAPI;
 
-namespace MorMorAdapter.Net;
+namespace Lagrange.XocMat.Adapter.Net;
 
 public class WebSocketReceive
 {

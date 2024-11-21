@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Reflection;
 
-namespace MorMorAdapter.Converter;
+namespace Lagrange.XocMat.Adapter.Converter;
 
 internal class MessageTypeConverter : JsonConverter
 {
