@@ -779,6 +779,17 @@
     "Dependencies": []
   },
   {
+    "Name": "ItemDecoration",
+    "Version": "1.0.0.0",
+    "Author": "FrankV22, Soofa, 少司命",
+    "Description": "Show Item Decoration and More!!!",
+    "AssemblyName": "ItemDecoration",
+    "Path": "ItemDecoration.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ]
+  },
+  {
     "Name": "ItemPreserver",
     "Version": "1.0.7",
     "Author": "肝帝熙恩 & 少司命",
@@ -832,24 +843,6 @@
     "Description": "小游戏框架API",
     "AssemblyName": "MiniGamesAPI",
     "Path": "MiniGamesAPI.dll",
-    "Dependencies": []
-  },
-  {
-    "Name": "None",
-    "Version": "1.0",
-    "Author": "None",
-    "Description": "None",
-    "AssemblyName": "ItemDecoration",
-    "Path": "ItemDecoration.dll",
-    "Dependencies": []
-  },
-  {
-    "Name": "None",
-    "Version": "1.0",
-    "Author": "None",
-    "Description": "None",
-    "AssemblyName": "ItemDecoration",
-    "Path": "ItemDecoration.dll",
     "Dependencies": []
   },
   {
