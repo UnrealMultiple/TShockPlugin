@@ -16,7 +16,7 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
 
     protected virtual string Filename => typeof(T).Namespace ?? typeof(T).Name;
 
-    protected virtual void Default()
+    protected virtual void SetDefault()
     {
     }
 
@@ -50,7 +50,7 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         }
         else
         {
-            t.Default();
+            t.SetDefault();
         }
         File.WriteAllText(file, JsonConvert.SerializeObject(t, _settings));
         return t;
