@@ -1,6 +1,5 @@
 ﻿using LinqToDB;
 using LinqToDB.Data;
-using System.Configuration.Provider;
 using TShockAPI;
 using TShockAPI.DB;
 using SqlType = TShockAPI.DB.SqlType;

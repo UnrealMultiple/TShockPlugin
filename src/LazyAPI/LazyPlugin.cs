@@ -37,8 +37,8 @@ public abstract class LazyPlugin : TerrariaPlugin
     {
     }
 
-    private readonly List<Type> restToLoad = new ();
-    
+    private readonly List<Type> restToLoad = new();
+
     internal void AutoLoad()
     {
         foreach (var type in this.GetType().Assembly.GetTypes())

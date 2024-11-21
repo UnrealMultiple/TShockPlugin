@@ -16,6 +16,10 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
 
     protected virtual string Filename => typeof(T).Namespace ?? typeof(T).Name;
 
+    protected virtual void SetDefault()
+    {
+    }
+
     private string FullFilename => Path.Combine(TShock.SavePath, $"{this.Filename}.{cultureInfo.Name}.json");
 
     protected JsonConfigBase()
@@ -43,6 +47,10 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         if (File.Exists(file))
         {
             return JsonConvert.DeserializeObject<T>(File.ReadAllText(file), _settings) ?? new();
+        }
+        else
+        {
+            t.SetDefault();
         }
         File.WriteAllText(file, JsonConvert.SerializeObject(t, _settings));
         return t;
