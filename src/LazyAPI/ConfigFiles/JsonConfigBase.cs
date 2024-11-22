@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Globalization;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using TShockAPI;
 using TShockAPI.Hooks;
 
@@ -46,14 +47,33 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         var file = t.FullFilename;
         if (File.Exists(file))
         {
-            return JsonConvert.DeserializeObject<T>(File.ReadAllText(file), _settings) ?? new();
+            return JsonConvert.DeserializeObject<T>(File.ReadAllText(file), _settings) ?? t;
         }
-        else
-        {
-            t.SetDefault();
-        }
-        File.WriteAllText(file, JsonConvert.SerializeObject(t, _settings));
+
+        t.SetDefault();
+        t.SaveTo();
         return t;
+    }
+
+    public virtual void SaveTo(string? path = null)
+    {
+        var filepath = path ?? this.FullFilename;
+        var dirPath = Path.GetDirectoryName(filepath);
+        if (!string.IsNullOrEmpty(dirPath))
+        {
+            var dirInfo = new DirectoryInfo(dirPath);
+            if (!dirInfo.Exists)
+            {
+                dirInfo.Create();
+            }
+        }
+        File.WriteAllText(filepath, JsonConvert.SerializeObject(this, _settings));
+    }
+
+
+    public static void Save()
+    {
+        Instance.SaveTo();
     }
 
     // .cctor is lazy load
