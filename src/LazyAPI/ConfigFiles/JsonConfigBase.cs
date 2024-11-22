@@ -67,7 +67,7 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
                 dirInfo.Create();
             }
         }
-        File.WriteAllText(this.FullFilename, JsonConvert.SerializeObject(this, _settings));
+        File.WriteAllText(filepath, JsonConvert.SerializeObject(this, _settings));
     }
 
 
