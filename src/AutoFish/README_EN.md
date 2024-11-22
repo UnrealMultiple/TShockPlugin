@@ -14,6 +14,14 @@
 ## Update Log
 
 ```
+v1.3.2
+- Attempted to fix the server crash bug that occurred when the bait quantity was 1.
+
+v1.3.1
+- Fixed the bug where in multi-hook fishing mode, individual summons would spawn additional quantities.
+- Added a configuration option to disable "spawned bullet hell" from these summons.
+- Introduced a random item configuration option; when enabled, players can randomly catch any item while fishing.
+
 v1.3.0
 Fixed: Preferred bait would not disappear, turning it into infinite bait or causing thread locking bugs.
 Modified: Extra catches can now be hooked along with existing environmental items.

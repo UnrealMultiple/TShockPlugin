@@ -104,7 +104,8 @@
 | [DeathDrop](src/DeathDrop/README.md) | No | Random and custom loot upon monster death | None |
 | [DisableMonsLoot](src/DisableMonsLoot/README.md) | No | Prohibit monster loot | None |
 | [DisableSurfaceProjectiles](src/DisableSurfaceProjectiles/README.md) | No | Prohibit surface projectiles | None |
-| [Don't Fuck](src/DonotFuck/README.md) | No | Prevent swearing | None |
+| [Don't Fuck](src/DonotFuck/README.md) | Yes | Prevent swearing | None |
+| [DwTP](src/DwTP/README.md) | Yes | Positioning Teleport | None |
 | [DTEntryBlock](src/DTEntryBlock/README.md) | No | Prevent entry into dungeons or temples | None |
 | [DumpTerrariaID](src/DumpTerrariaID/README.md) | No | Dump Terraria IDs | None |
 | [Economics.Deal](src/Economics.RPG/README_EN.md) | Yes | Trading plugin | [EconomicsAPI](src/EconomicsAPI/README_EN.md) |

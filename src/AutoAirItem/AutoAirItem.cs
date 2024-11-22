@@ -12,7 +12,7 @@ public class AutoAirItem : TerrariaPlugin
     #region 插件信息
     public override string Name => "自动垃圾桶";
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 1, 6);
+    public override Version Version => new Version(1, 1, 7);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 
@@ -170,7 +170,7 @@ public class AutoAirItem : TerrariaPlugin
         else
         {
             // 直接添加新ID和它的数量
-            delItem.Add(type, stack);
+            delItem.Add(type, 0);
         }
     }
     #endregion
