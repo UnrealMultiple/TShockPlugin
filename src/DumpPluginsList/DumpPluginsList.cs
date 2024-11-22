@@ -14,7 +14,7 @@ public class DumpPluginsList : TerrariaPlugin
 
     public override string Name => "DumpPluginsList";
 
-    public override Version Version => new(1, 0, 1, 3);
+    public override Version Version => new (1, 0, 1, 4);
 
     public DumpPluginsList(Main game) : base(game)
     {
@@ -30,26 +30,46 @@ public class DumpPluginsList : TerrariaPlugin
 
     private void Dump(EventArgs args)
     {
-        var dict = ((Dictionary<string, Assembly>?) typeof(ServerApi)
-            .GetField("loadedAssemblies", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)?
-            .GetValue(null))!
-            .ToDictionary(kvp => kvp.Value, kvp => kvp.Key);
-        File.WriteAllText("Plugins.json", JsonConvert.SerializeObject(ServerApi.Plugins
-            .OrderBy(p => p.Plugin.Order).ThenBy(p => p.Plugin.Name)
-            .Where(p => p.Plugin.GetType().Assembly != typeof(TShockAPI.TShock).Assembly)
-            .Select(p => new
-            {
-                p.Plugin.Name,
-                p.Plugin.Version,
-                p.Plugin.Author,
-                p.Plugin.Description,
-                AssemblyName = p.Plugin.GetType().Assembly.GetName().Name,
-                Path = dict.TryGetValue(p.Plugin.GetType().Assembly, out var name) ? name + ".dll" : null,
-                Dependencies = p.Plugin.GetType().Assembly.GetReferencedAssemblies()
-                    .IntersectBy(dict.Values, n => n.Name)
-                    .Where(n => n.Name != "TShockAPI")
-                    .Select(n => n.Name)
-            }), Formatting.Indented));
-        Environment.Exit(0);
+        try
+        {
+            var manifestsDir = Terraria.Program.LaunchParameters.GetValueOrDefault("-dump-plugins-list-only");
+            var dict = ((Dictionary<string, Assembly>?) typeof(ServerApi)
+                    .GetField("loadedAssemblies", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)?
+                    .GetValue(null))!
+                .ToDictionary(kvp => kvp.Value, kvp => kvp.Key);
+            File.WriteAllText("Plugins.json", JsonConvert.SerializeObject(ServerApi.Plugins
+                .OrderBy(p => p.Plugin.Order).ThenBy(p => p.Plugin.Name)
+                .Where(p => p.Plugin.GetType().Assembly != typeof(TShockAPI.TShock).Assembly)
+                .Select(p =>
+                {
+                    var manifestFilePath = !string.IsNullOrEmpty(manifestsDir) ? Path.Combine(manifestsDir, $"{p.Plugin.GetType().Assembly.GetName().Name!}.json") : null;
+                    var manifest = File.Exists(manifestFilePath) ? JsonConvert.DeserializeObject<ManifestModel>(File.ReadAllText(manifestFilePath)) : null;
+
+                    return new
+                    {
+                        Name = manifest?.Name ?? p.Plugin.Name,
+                        Version = manifest?.Version ?? p.Plugin.Version,
+                        Author = manifest?.Author ?? p.Plugin.Author,
+                        Description = manifest?.Description ?? p.Plugin.Description,
+                        AssemblyName = p.Plugin.GetType().Assembly.GetName().Name,
+                        Path = dict.TryGetValue(p.Plugin.GetType().Assembly, out var name) ? name + ".dll" : null,
+                        Dependencies = manifest?.Dependencies ?? p.Plugin.GetType().Assembly.GetReferencedAssemblies()
+                            .IntersectBy(dict.Values, n => n.Name)
+                            .Where(n => n.Name != "TShockAPI")
+                            .Select(n => n.Name)
+                    };
+                }), Formatting.Indented));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[{nameof(DumpPluginsList)}] {ex}");
+            Environment.Exit(-1);
+        }
+        finally
+        {
+            Environment.Exit(0);
+        }
     }
 }
+
+internal record ManifestModel(string? Name, Version? Version, string? Author, string? Description, string[]? Dependencies);
