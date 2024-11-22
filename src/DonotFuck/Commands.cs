@@ -24,14 +24,14 @@ internal class Commands
 
             if (args.Parameters[0].ToLower() == "log" && args.Player.HasPermission("DonotFuck.admin"))
             {
-                var Enabled = Config.Log;
-                Config.Log = !Enabled;
+                var Enabled = Configuration.Instance.EnableLog;
+                Configuration.Instance.EnableLog = !Enabled;
                 var Status = Enabled ?
                     GetString("禁用"):
                     GetString("启用");
 
                 args.Player.SendSuccessMessage($"已{Status}敏感词记录功能。");
-                Config.Write();
+                Configuration.Save();
                 return;
             }
 
@@ -66,7 +66,7 @@ internal class Commands
                 case "add":
                     if (args.Player.HasPermission("DonotFuck.admin"))
                     {
-                        if (Config.Add(word))
+                        if (Configuration.Instance.Add(word))
                         {
                             args.Player.SendSuccessMessage(GetString("已成功将敏感词添加到表中: [c/92C5EC:{0}]!", word));
                         }
@@ -80,7 +80,7 @@ internal class Commands
                 case "del":
                     if (args.Player.HasPermission("DonotFuck.admin"))
                     {
-                        if (Config.Del(word))
+                        if (Configuration.Instance.Del(word))
                         {
                             args.Player.SendSuccessMessage(GetString("已成功将敏感词从表中移除: [c/92C5EC:{0}]!", word));
                         }
@@ -124,7 +124,7 @@ internal class Commands
             mess.AppendFormat(GetString("/df log —— [c/8AE072:开启]|[c/ED7985:关闭]敏感词[c/EBB4E2:记录]\n"));
             mess.AppendFormat(GetString("/df clear —— [c/B3EADB:清理]所有[c/F2F191:脏话纪录]\n"));
             mess.AppendFormat(GetString("/df add 或 del 词语 —— [c/87DF86:添加]|[c/F19092:删除]敏感词\n"));
-            mess.AppendFormat(GetString($"敏感词纪录：[c/B3B6EA:{Config.Log}]"));
+            mess.AppendFormat(GetString($"敏感词纪录：[c/B3B6EA:{Configuration.Instance.EnableLog}]"));
             args.Player.SendMessage(mess.ToString(), 245, 241, 188);
         }
         else
@@ -141,8 +141,8 @@ internal class Commands
     #region 辅助方法 用Linq查询并排列 列出敏感词
     private static void ListDirtyWords(TSPlayer plr, int page)
     {
-        var Size = Config.PageSize;
-        var dirty = Config.DirtyWords.OrderBy(word => word).ToList();
+        var Size = Configuration.Instance.PageSize;
+        var dirty = Configuration.Instance.DirtyWords.OrderBy(word => word).ToList();
 
         var count = dirty.Count;
         var pages = (int) Math.Ceiling(count / (double) Size);

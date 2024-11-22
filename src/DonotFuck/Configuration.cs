@@ -1,51 +1,40 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI;
+using LazyAPI.ConfigFiles;
 using TShockAPI;
 
 namespace DonotFuck;
 
-public class Configuration
+[Config]
+public class Configuration : JsonConfigBase<Configuration>
 {
     #region 实例变量
-    [JsonProperty("每页行数")]
+    [LocalizedPropertyName(CultureType.Chinese, "每页行数")]
+    [LocalizedPropertyName(CultureType.English, "pageLine")]
     public int PageSize = 30;
 
-    [JsonProperty("记录日志")]
-    public bool Log = true;
+    [LocalizedPropertyName(CultureType.Chinese, "启用日志")]
+    [LocalizedPropertyName(CultureType.English, "enableLog")]
+    public bool EnableLog = true;
 
-    [JsonProperty("脏话表")]
+    [LocalizedPropertyName(CultureType.Chinese, "脏话表")]
+    [LocalizedPropertyName(CultureType.English, "dirtyWords")]
     public HashSet<string> DirtyWords { get; set; } = new HashSet<string>(); 
     #endregion
 
+    private const string _Directory = "DonotFuck";
+
+    private StreamWriter writer = null!;
+
+    internal StreamWriter Logger => this.writer ??= new StreamWriter(this.logFilePath);
+
+    private string logFilePath => Path.Combine(TShock.SavePath, _Directory, $"DonotFuck-{DateTime.Now:yyyy-MM-dd}.log");
+
+    protected override string Filename => Path.Combine(_Directory, "Config");
+
     #region 预设参数方法
-    public void Ints()
+    protected override void SetDefault()
     {
-        this.DirtyWords = new HashSet<string>{ "6", "六" };
-    }
-    #endregion
-
-    #region 读取与创建配置文件方法
-    public static readonly string FilePath = Path.Combine(TShock.SavePath, "禁止脏话", "禁止脏话.json");
-
-    public void Write()
-    {
-        var json = JsonConvert.SerializeObject(this, Formatting.Indented);
-        File.WriteAllText(FilePath, json);
-    }
-
-    public static Configuration Read()
-    {
-        if (!File.Exists(FilePath))
-        {
-            var NewConfig = new Configuration();
-            NewConfig.Ints();
-            new Configuration().Write();
-            return NewConfig;
-        }
-        else
-        {
-            var jsonContent = File.ReadAllText(FilePath);
-            return JsonConvert.DeserializeObject<Configuration>(jsonContent)!;
-        }
+        this.DirtyWords = new HashSet<string> { "6", "六" };
     }
     #endregion
 
@@ -55,6 +44,15 @@ public class Configuration
         return this.DirtyWords.Contains(text);
     }
 
+    public void Log(string text)
+    {
+        if (this.EnableLog)
+        {
+            this.Logger.WriteLine(text);
+            this.Logger.Flush();
+        }
+    }
+
     public bool Add(string text)
     {
         if (this.Exempt(text))
@@ -62,7 +60,7 @@ public class Configuration
             return false;
         }
         this.DirtyWords.Add(text);
-        this.Write();
+        this.SaveTo();
         return true;
     }
 
@@ -71,7 +69,7 @@ public class Configuration
         if (this.Exempt(text))
         {
             this.DirtyWords.Remove(text);
-            this.Write();
+            this.SaveTo();
             return true;
         }
         return false;
