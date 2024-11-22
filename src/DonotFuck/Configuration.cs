@@ -21,13 +21,13 @@ public class Configuration : JsonConfigBase<Configuration>
     public HashSet<string> DirtyWords { get; set; } = new HashSet<string>(); 
     #endregion
 
-    private const string _Directory = "DonotFuck";
+    public const string _Directory = "DonotFuck";
 
-    private StreamWriter writer = null!;
+    private StreamWriter? writer;
 
     internal StreamWriter Logger => this.writer ??= new StreamWriter(this.logFilePath);
 
-    private string logFilePath => Path.Combine(TShock.SavePath, _Directory, $"DonotFuck-{DateTime.Now:yyyy-MM-dd}.log");
+    internal string logFilePath => Path.Combine(TShock.SavePath, _Directory, $"DonotFuck-{DateTime.Now:yyyy-MM-dd}.log");
 
     protected override string Filename => Path.Combine(_Directory, "Config");
 
@@ -51,6 +51,13 @@ public class Configuration : JsonConfigBase<Configuration>
             this.Logger.WriteLine(text);
             this.Logger.Flush();
         }
+    }
+
+    public void DisposeLog()
+    { 
+        this.writer?.Close();
+        this.writer?.Dispose();
+        this.writer = null;
     }
 
     public bool Add(string text)

@@ -37,22 +37,13 @@ internal class Commands
 
             if (args.Parameters[0].ToLower() == "clear" && args.Player.HasPermission("DonotFuck.admin"))
             {
-                var Path = System.IO.Path.Combine(TShock.SavePath, "禁止脏话", "脏话纪录");
-                if (Directory.Exists(Path))
-                {
-                    try
-                    {
-                        Directory.Delete(Path, true);
-                    }
-                    catch (Exception) { }
-                    args.Player.SendSuccessMessage(GetString("《脏话纪录》文件夹已成功清空。"));
-                    return;
+                var dirinfo = new DirectoryInfo(Path.Combine(TShock.SavePath, Configuration._Directory));
+                foreach (var file in dirinfo.GetFiles("*.log"))
+                { 
+                    file.Delete();
                 }
-                else
-                {
-                    args.Player.SendSuccessMessage(GetString("请输入指令开启敏感词记录：/df log"));
-                    return;
-                }
+                args.Player.SendSuccessMessage(GetString("《脏话纪录》文件夹已成功清空。"));
+                return;
             }
         }
 
