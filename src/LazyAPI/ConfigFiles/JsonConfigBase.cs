@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System.Globalization;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using TShockAPI;
 using TShockAPI.Hooks;
-using static LinqToDB.Reflection.Methods.LinqToDB.Insert;
 
 namespace LazyAPI.ConfigFiles;
 
@@ -53,18 +53,29 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         {
             t.SetDefault();
         }
-        t.Save();
+        t.SaveTo();
         return t;
     }
 
-    public virtual void Save()
+    public virtual void SaveTo(string path)
     {
-        var dirInfo = new DirectoryInfo(Path.GetDirectoryName(this.FullFilename)!);
+        var dirInfo = new DirectoryInfo(Path.GetDirectoryName(path)!);
         if (!dirInfo.Exists)
         {
             dirInfo.Create();
         }
         File.WriteAllText(this.FullFilename, JsonConvert.SerializeObject(this, _settings));
+    }
+
+
+    public virtual void SaveTo()
+    {
+        this.SaveTo(this.FullFilename);
+    }
+
+    public static void Save()
+    {
+        Instance.SaveTo();
     }
 
     // .cctor is lazy load
