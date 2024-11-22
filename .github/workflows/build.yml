@@ -63,7 +63,14 @@ jobs:
           Copy-Item out/**/*.dll bin/ServerPlugins/
           Copy-Item SubmoduleAssembly/*.dll bin/ServerPlugins/
           Set-Location bin
-          ./TShock.Server -dump-plugins-list-only
+          New-Item -Name manifests -ItemType Directory
+          foreach ($p in @(Get-ChildItem ../src/**/*.csproj)) {
+            $manifestPath = Join-Path $p.DirectoryName manifest.json
+            if (Test-Path $manifestPath -PathType Leaf) {
+              Copy-Item $manifestPath $(Join-Path manifests "$($p.Basename).json")
+            }
+          }
+          ./TShock.Server -dump-plugins-list-only ./manifests
           Set-Location ../
           New-Item -Path out/Target -Name Plugins -ItemType Directory
           $ErrorActionPreference = "SilentlyContinue"
@@ -92,13 +99,13 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           $Changed = [System.Object[]]::new(0)
-          foreach ($p in @(Get-ChildItem src/**/*.csproj))  {
+          foreach ($p in @(Get-ChildItem src/**/*.csproj)) {
             $pot = [System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot")
             New-Item -Path $p.DirectoryName -Name i18n -ItemType Directory -Force
             dotnet tool run GetText.Extractor -u -o -s $p.FullName -t $pot
           }
           git add -N src/**/i18n/*.pot
-          foreach ($p in @(git diff --numstat))  {
+          foreach ($p in @(git diff --numstat)) {
             if (!$p.EndsWith(".pot")) { continue }
             $d = -split $p
             if ([int]$d[0] -le 2 -and [int]$d[1] -le 2) {
