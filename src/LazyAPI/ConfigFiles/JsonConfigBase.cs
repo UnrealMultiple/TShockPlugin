@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Reflection;
 using TShockAPI;
 using TShockAPI.Hooks;
+using static LinqToDB.Reflection.Methods.LinqToDB.Insert;
 
 namespace LazyAPI.ConfigFiles;
 
@@ -46,14 +47,24 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         var file = t.FullFilename;
         if (File.Exists(file))
         {
-            return JsonConvert.DeserializeObject<T>(File.ReadAllText(file), _settings) ?? new();
+            return JsonConvert.DeserializeObject<T>(File.ReadAllText(file), _settings) ?? t;
         }
         else
         {
             t.SetDefault();
         }
-        File.WriteAllText(file, JsonConvert.SerializeObject(t, _settings));
+        t.Save();
         return t;
+    }
+
+    public virtual void Save()
+    {
+        var dirInfo = new DirectoryInfo(Path.GetDirectoryName(this.FullFilename)!);
+        if (!dirInfo.Exists)
+        {
+            dirInfo.Create();
+        }
+        File.WriteAllText(this.FullFilename, JsonConvert.SerializeObject(this, _settings));
     }
 
     // .cctor is lazy load
