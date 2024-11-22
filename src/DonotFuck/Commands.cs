@@ -37,6 +37,7 @@ internal class Commands
 
             if (args.Parameters[0].ToLower() == "clear" && args.Player.HasPermission("DonotFuck.admin"))
             {
+                Configuration.Instance.DisposeLog();
                 var dirinfo = new DirectoryInfo(Path.Combine(TShock.SavePath, Configuration._Directory));
                 foreach (var file in dirinfo.GetFiles("*.log"))
                 { 
