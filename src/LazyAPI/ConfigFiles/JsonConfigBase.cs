@@ -49,29 +49,27 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         {
             return JsonConvert.DeserializeObject<T>(File.ReadAllText(file), _settings) ?? t;
         }
-        else
-        {
-            t.SetDefault();
-        }
+
+        t.SetDefault();
         t.SaveTo();
         return t;
     }
 
-    public virtual void SaveTo(string path)
+    public virtual void SaveTo(string? path = null)
     {
-        var dirInfo = new DirectoryInfo(Path.GetDirectoryName(path)!);
-        if (!dirInfo.Exists)
+        var filepath = path ?? this.FullFilename;
+        var dirPath = Path.GetDirectoryName(filepath);
+        if (!string.IsNullOrEmpty(dirPath))
         {
-            dirInfo.Create();
+            var dirInfo = new DirectoryInfo(dirPath);
+            if (!dirInfo.Exists)
+            {
+                dirInfo.Create();
+            }
         }
         File.WriteAllText(this.FullFilename, JsonConvert.SerializeObject(this, _settings));
     }
 
-
-    public virtual void SaveTo()
-    {
-        this.SaveTo(this.FullFilename);
-    }
 
     public static void Save()
     {
