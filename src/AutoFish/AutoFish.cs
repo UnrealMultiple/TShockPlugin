@@ -15,7 +15,7 @@ public class AutoFish : TerrariaPlugin
     #region 插件信息
     public override string Name => "自动钓鱼";
     public override string Author => "羽学 少司命";
-    public override Version Version => new Version(1, 3, 1);
+    public override Version Version => new Version(1, 3, 2);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 
@@ -162,15 +162,17 @@ public class AutoFish : TerrariaPlugin
                     if (inv.bait > 0 && baitTypeUsed == inv.type)
                     {
                         //当物品数量正常则开始进入钓鱼检查
-                        if (inv.stack > 0)
+                        if (inv.stack > 1)
                         {
-                            //当前物品数量为1则移除（避免选中的饵不会主动消失 变成无限饵 或 卡住线程）
-                            if (plr.TPlayer.inventory[i].stack == 1)
-                            {
-                                inv.TurnToAir();
-                            }
-
                             //发包到对应饵料的格子内
+                            plr.SendData(PacketTypes.PlayerSlot, "", plr.Index, i);
+                            break;
+                        }
+
+                        //当前物品数量为1则移除（避免选中的饵不会主动消失 变成无限饵 或 卡住线程）
+                        if (inv.stack == 1 || inv.bait == 1)
+                        {
+                            inv.TurnToAir();
                             plr.SendData(PacketTypes.PlayerSlot, "", plr.Index, i);
                             break;
                         }
