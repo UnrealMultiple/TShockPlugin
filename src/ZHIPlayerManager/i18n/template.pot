@@ -474,7 +474,7 @@ msgstr ""
 
 #: ..\..\ZHIPM.Initialize.cs:3703
 #: ..\..\ZHIPM.Initialize.cs:3734
-msgid "检测到违规行为，请联系管理员"
+msgid "你已被管理员封禁！"
 msgstr ""
 
 #: ..\..\ZHIPM.Initialize.cs:3787

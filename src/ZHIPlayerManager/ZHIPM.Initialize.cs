@@ -3700,7 +3700,7 @@ public partial class ZHIPM : TerrariaPlugin
                     return;
                 }
 
-                var reason = args.Parameters.Count == 4 ? args.Parameters[3] : GetString("检测到违规行为，请联系管理员");
+                var reason = args.Parameters.Count == 4 ? args.Parameters[3] : GetString("你已被管理员封禁！");
                 TSPlayer? suspect = null;
                 foreach (var v in TShock.Players)
                 {
@@ -3711,14 +3711,14 @@ public partial class ZHIPM : TerrariaPlugin
                     }
                 }
 
-                if (suspect != null && suspect.Ban(reason, "ZHIPlayerManager by " + args.Player.Name))
+                if (suspect != null && suspect.Ban(reason, args.Player.Name))
                 {
                     args.Player.SendMessage(GetString($"用户 {suspect.Name} 已被 {args.Player.Name} 封禁"), broadcastColor);
                     TShock.Log.Info(GetString($"用户 {suspect.Name} 已被 {args.Player.Name} 封禁"));
                 }
                 else
                 {
-                    TShock.Bans.InsertBan("uuid:" + args.Parameters[2], reason, "ZHIPlayerManager by " + args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
+                    TShock.Bans.InsertBan("uuid:" + args.Parameters[2], reason, args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
                     TSPlayer.All.SendMessage(GetString($"uuid: {args.Parameters[2]} 已被 {args.Player.Name} 封禁"), broadcastColor);
                     TShock.Log.Info(GetString($"uuid: {args.Parameters[2]} 已被 {args.Player.Name} 封禁"));
                 }
@@ -3731,7 +3731,7 @@ public partial class ZHIPM : TerrariaPlugin
                     return;
                 }
 
-                var reason = args.Parameters.Count == 4 ? args.Parameters[3] : GetString("检测到违规行为，请联系管理员");
+                var reason = args.Parameters.Count == 4 ? args.Parameters[3] : GetString("你已被管理员封禁！");
                 TSPlayer? suspect = null;
                 foreach (var v in TShock.Players)
                 {
@@ -3742,14 +3742,14 @@ public partial class ZHIPM : TerrariaPlugin
                     }
                 }
 
-                if (suspect != null && suspect.Ban(reason, "ZHIPlayerManager by " + args.Player.Name))
+                if (suspect != null && suspect.Ban(reason, args.Player.Name))
                 {
                     args.Player.SendMessage(GetString($"用户 {suspect.Name} 已被 {args.Player.Name} 封禁"), broadcastColor);
                     TShock.Log.Info(GetString($"用户 {suspect.Name} 已被 {args.Player.Name} 封禁"));
                 }
                 else
                 {
-                    TShock.Bans.InsertBan("ip:" + args.Parameters[2], reason, "ZHIPlayerManager by " + args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
+                    TShock.Bans.InsertBan("ip:" + args.Parameters[2], reason, args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
                     TSPlayer.All.SendMessage(GetString($"ip: {args.Parameters[2]} 已被 {args.Player.Name} 封禁"), broadcastColor);
                     TShock.Log.Info(GetString($"ip: {args.Parameters[2]} 已被 {args.Player.Name} 封禁"));
                 }
@@ -3758,10 +3758,10 @@ public partial class ZHIPM : TerrariaPlugin
             {
                 var list = this.BestFindPlayerByNameOrIndex(args.Parameters[1]);
                 //封禁原因，可不填
-                var reason = args.Parameters.Count == 3 ? args.Parameters[2] : "检测到违规行为，请联系管理员";
+                var reason = args.Parameters.Count == 3 ? args.Parameters[2] : "你已被管理员封禁！";
                 if (list.Count == 1)
                 {
-                    if (list[0].Ban(reason, "ZHIPlayerManager by " + args.Player.Name))
+                    if (list[0].Ban(reason, args.Player.Name))
                     {
                         args.Player.SendMessage(GetString($"用户 {list[0].Name} 已被 {args.Player.Name} 封禁"), broadcastColor);
                         TShock.Log.Info(GetString($"用户 {list[0].Name} 已被 {args.Player.Name} 封禁"));
@@ -3804,12 +3804,12 @@ public partial class ZHIPM : TerrariaPlugin
 
                     if (!string.IsNullOrWhiteSpace(user.Name))
                     {
-                        TShock.Bans.InsertBan("acc:" + user.Name, reason, "ZHIPlayerManager by " + args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
+                        TShock.Bans.InsertBan("acc:" + user.Name, reason, args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
                     }
 
                     if (!string.IsNullOrWhiteSpace(user.UUID))
                     {
-                        TShock.Bans.InsertBan("uuid:" + user.UUID, reason, "ZHIPlayerManager by " + args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
+                        TShock.Bans.InsertBan("uuid:" + user.UUID, reason, args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
                     }
 
                     if (!string.IsNullOrWhiteSpace(user.KnownIps))
@@ -3819,7 +3819,7 @@ public partial class ZHIPM : TerrariaPlugin
                         {
                             if (!string.IsNullOrWhiteSpace(str))
                             {
-                                TShock.Bans.InsertBan("ip:" + str, reason, "ZHIPlayerManager by " + args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
+                                TShock.Bans.InsertBan("ip:" + str, reason, args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
                             }
                         }
                     }
