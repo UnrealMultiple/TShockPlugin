@@ -1089,7 +1089,7 @@
   },
   {
     "Name": "ZHIPlayerManager",
-    "Version": "1.0.0.8",
+    "Version": "1.0.0.9",
     "Author": "z枳",
     "Description": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
     "AssemblyName": "ZHIPlayerManager",
