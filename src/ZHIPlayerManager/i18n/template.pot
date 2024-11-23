@@ -416,6 +416,11 @@ msgstr ""
 msgid "已打包为{0}/Zhipm/{1}.zip"
 msgstr ""
 
+
+#: ..\..\ZHIPM.Initialize.cs:3703
+#: ..\..\ZHIPM.Initialize.cs:3734
+msgid "你已被管理员封禁！"
+
 #: ../../ZHIPM.Initialize.cs:2483
 msgid "已清理所有射弹，物品，无用NPC"
 msgstr ""
