@@ -3,6 +3,7 @@ using Economics.Skill.JSInterpreter;
 using Economics.Skill.Model.Options;
 using Economics.Skill.Model.Options.Projectile;
 using Economics.Skill.Model.Options.Range;
+using EconomicsAPI.Configured;
 using EconomicsAPI.Extensions;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
@@ -24,8 +25,11 @@ public class SkillContext
     [JsonProperty("全服唯一")]
     public bool SkillUniqueAll { get; set; }
 
+    [JsonProperty("隐藏")]
+    public bool Hidden { get; set; }
+
     [JsonProperty("技能价格")]
-    public long Cost { get; set; }
+    public List<RedemptionRelationshipsOption> RedemptionRelationshipsOption { get; set; } = new();
 
     [JsonProperty("限制等级")]
     public List<string> LimitLevel { get; set; } = new();
@@ -67,7 +71,7 @@ public class SkillContext
     public string? ExecuteScript
     {
         get => this.JsScript?.FilePathOrUri;
-        set => this.JsScript = this.Set(value);
+        set => this.JsScript = this.Set(value!);
     }
 
     [JsonProperty("弹幕")]
@@ -76,7 +80,7 @@ public class SkillContext
     [JsonIgnore]
     public JsScript? JsScript { get; set; }
 
-    public JsScript? Set(string? path)
+    public JsScript? Set(string path)
     {
         var jistScript = new JsScript
         {

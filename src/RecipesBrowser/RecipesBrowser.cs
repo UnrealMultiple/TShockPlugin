@@ -391,8 +391,8 @@ public class MainPlugin : TerrariaPlugin
     {
         var text = "可合成的物品:\n";
         var source = from r in Main.recipe
-                                   where r.requiredItem.Select((Item i) => i.type).Contains(item.type)
-                                   select r.createItem;
+                     where r.requiredItem.Select((Item i) => i.type).Contains(item.type)
+                     select r.createItem;
         for (var j = 1; j <= source.Count(); j++)
         {
             var val = source.ElementAt(j - 1);

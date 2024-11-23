@@ -15,7 +15,7 @@ namespace AutoReset.MainPlugin;
 [ApiVersion(2, 1)]
 public class AutoResetPlugin : TerrariaPlugin
 {
-    public static ResetConfig Config;
+    public static ResetConfig Config = null!;
 
     private static readonly string AllPath = Path.Combine(TShock.SavePath, "AutoReset");
 
@@ -185,7 +185,7 @@ public class AutoResetPlugin : TerrariaPlugin
         }
     }
 
-    private void ResetCmd(CommandArgs e)
+    private void ResetCmd(CommandArgs? e)
     {
         if (this._status != Status.Available)
         {
@@ -321,8 +321,8 @@ public class AutoResetPlugin : TerrariaPlugin
             // 世界信息
             case "信息":
             case "info":
-                op.SendInfoMessage(GetString($"地图名: {(Config.SetWorld.Name ?? Main.worldName)}\n") +
-                                   GetString($"种子: {(Config.SetWorld.Seed ?? GetString("随机"))}"));
+                op.SendInfoMessage(GetString($"地图名: {Config.SetWorld.Name ?? Main.worldName}\n") +
+                                   GetString($"种子: {Config.SetWorld.Seed ?? GetString("随机")}"));
                 break;
             case "名字":
             case "name":

@@ -9,7 +9,10 @@ public class Config
     public bool DeathLast = true;
 
     [JsonProperty("限制哨兵数量")]
-    public int sentryLimit = 10;
+    public int sentryLimit = 20;
+
+    [JsonProperty("限制召唤物数量")]
+    public int summonLimit = 11;
 
     [JsonProperty("仅允许软核进入")]
     public bool OnlySoftCoresAreAllowed = false;

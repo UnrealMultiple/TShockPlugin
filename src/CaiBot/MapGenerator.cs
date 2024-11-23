@@ -1,5 +1,3 @@
-// 来自：https://github.com/UnrealMultiple/MorMor/blob/master/MorMor/TShock/Map/
-
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using System.IO.Compression;
@@ -7,7 +5,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.IO;
 using Terraria.Map;
-using Color = Microsoft.Xna.Framework.Color;
 using Image = SixLabors.ImageSharp.Image;
 
 namespace CaiBot;
@@ -16,9 +13,9 @@ public static class MapGenerator
 {
     public static Image Create()
     {
-        Image<Rgba32> image = new(Main.tile.Width, Main.tile.Height);
+        Image<Rgba32> image = new(Main.maxTilesX, Main.maxTilesY);
         MapHelper.Initialize();
-        Main.Map = new(Main.tile.Width, Main.tile.Height);
+        Main.Map = new(Main.maxTilesX, Main.maxTilesY);
         for (var x = 0; x < Main.maxTilesX; x++)
         {
             for (var y = 0; y < Main.maxTilesY; y++)
@@ -39,7 +36,7 @@ internal class CreateMapFile
 
     public bool Status { get; private set; }
 
-    private WorldMap WorldMap { get; set; }
+    //private WorldMap WorldMap { get; set; }
 
 
     public void Init()
@@ -51,23 +48,23 @@ internal class CreateMapFile
     public MapInfo Start()
     {
         this.Status = true;
-        this.WorldMap = new WorldMap(Main.tile.Width, Main.tile.Height);
+        var worldMap = new WorldMap(Main.tile.Width, Main.tile.Height);
         Main.Map = new(Main.tile.Width, Main.tile.Height);
         for (var x = 0; x < Main.maxTilesX; x++)
         {
             for (var y = 0; y < Main.maxTilesY; y++)
             {
                 var tile = MapHelper.CreateMapTile(x, y, byte.MaxValue);
-                this.WorldMap.SetTile(x, y, ref tile);
+                worldMap.SetTile(x, y, ref tile);
             }
         }
 
-        var res = this.InternalSaveMap();
+        var res = this.InternalSaveMap(worldMap);
         this.Status = false;
         return res;
     }
 
-    public MapInfo InternalSaveMap()
+    public MapInfo InternalSaveMap(WorldMap worldMap)
     {
         var text = !Main.ActiveWorldFileData.UseGuidAsMapName
             ? Main.worldID + ".map"
@@ -172,7 +169,7 @@ internal class CreateMapFile
                 int num3;
                 for (num3 = 0; num3 < Main.maxTilesX; num3++)
                 {
-                    var mapTile = this.WorldMap[num3, j];
+                    var mapTile = worldMap[num3, j];
                     byte b4;
                     byte b3;
                     var b5 = b4 = b3 = 0;
@@ -193,7 +190,7 @@ internal class CreateMapFile
                         num4 = 0;
                         var num9 = num3 + 1;
                         var num10 = Main.maxTilesX - num3 - 1;
-                        while (num10 > 0 && this.WorldMap[num9, j].Light <= 18)
+                        while (num10 > 0 && worldMap[num9, j].Light <= 18)
                         {
                             num4++;
                             num10--;
@@ -258,7 +255,7 @@ internal class CreateMapFile
                             num5 = num9;
                             while (num10 > 0)
                             {
-                                var other = this.WorldMap[num9, j];
+                                var other = worldMap[num9, j];
                                 if (mapTile.EqualsWithoutLight(ref other))
                                 {
                                     num10--;
@@ -278,7 +275,7 @@ internal class CreateMapFile
                             var num10 = Main.maxTilesX - num3 - 1;
                             while (num10 > 0)
                             {
-                                var other2 = this.WorldMap[num9, j];
+                                var other2 = worldMap[num9, j];
                                 if (!mapTile.Equals(ref other2))
                                 {
                                     break;
@@ -366,7 +363,7 @@ internal class CreateMapFile
 
                     for (var k = num5; k < num6; k++)
                     {
-                        array[num] = this.WorldMap[k, j].Light;
+                        array[num] = worldMap[k, j].Light;
                         num++;
                     }
 

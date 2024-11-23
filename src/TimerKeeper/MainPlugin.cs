@@ -16,7 +16,7 @@ public class TimerKeeper : TerrariaPlugin
     public override string Name => "TimerKeeper";
 
     public override Version Version => new Version(2024, 9, 8, 1);
-    public static PlayerData data { get; set; }
+    //public static PlayerData data { get; set; }
     public TimerKeeper(Main game)
     : base(game)
     {
@@ -30,7 +30,7 @@ public class TimerKeeper : TerrariaPlugin
         ServerApi.Hooks.GamePostInitialize.Register(this, this.OnPostInitialize);
     }
 
-    private void OnTileEdit(object sender, GetDataHandlers.TileEditEventArgs e)
+    private void OnTileEdit(object? sender, GetDataHandlers.TileEditEventArgs e)
     {
         if (Main.tile[e.X, e.Y].type == 144)
         {

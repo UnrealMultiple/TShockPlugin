@@ -15,7 +15,7 @@ public class BloodBagProj : CProjectile
 
     public override void ProjectileAI()
     {
-        NPC val = null;
+        NPC? val = null;
         if (this.ai[3] != -1f)
         {
             val = Main.npc[(int) this.ai[3]];
@@ -48,13 +48,9 @@ public class BloodBagProj : CProjectile
         {
             this.v = 6f;
         }
-        else if (NPC.downedBoss2)
-        {
-            this.v = 4.5f;
-        }
         else
         {
-            this.v = NPC.downedBoss1 ? 3.5f : 2f;
+            this.v = NPC.downedBoss2 ? 4.5f : NPC.downedBoss1 ? 3.5f : 2f;
         }
         if (val != null && (val.type == 134 || val.type == 135 || val.type == 136))
         {

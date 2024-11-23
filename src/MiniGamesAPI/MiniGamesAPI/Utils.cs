@@ -51,11 +51,7 @@ public static class Utils
         {
             return true;
         }
-        if (main.X == first.X && main.Y + 1 == first.Y)
-        {
-            return true;
-        }
-        return main.X + 1 == first.X && main.Y + 1 == first.Y;
+        return main.X == first.X && main.Y + 1 == first.Y ? true : main.X + 1 == first.X && main.Y + 1 == first.Y;
     }
 
     public static void ClearItem(int id)

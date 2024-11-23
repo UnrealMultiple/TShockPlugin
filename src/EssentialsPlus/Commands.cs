@@ -20,14 +20,14 @@ public static class Commands
         var match = regex.Match(e.Message);
         if (!match.Success)
         {
-            e.Player.SendErrorMessage("格式错误！正确的语法是：{0}find <-类> <名称...> [页数]",
+            e.Player.SendErrorMessage(GetString("格式错误！正确的语法是：{0}find <-参数> <名称...> [页数]"),
                 TShock.Config.Settings.CommandSpecifier);
-            e.Player.SendSuccessMessage("有效的 {0}find 类：", TShock.Config.Settings.CommandSpecifier);
-            e.Player.SendInfoMessage("-command: 查找命令.");
-            e.Player.SendInfoMessage("-item: 查找物品.");
-            e.Player.SendInfoMessage("-npc: 查找NPC.");
-            e.Player.SendInfoMessage("-tile: 查找方块.");
-            e.Player.SendInfoMessage("-wall: 查找墙壁.");
+            e.Player.SendSuccessMessage(GetString("有效的 {0}find 参数："), TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendInfoMessage(GetString("-command: 查找命令."));
+            e.Player.SendInfoMessage(GetString("-item: 查找物品."));
+            e.Player.SendInfoMessage(GetString("-npc: 查找NPC."));
+            e.Player.SendInfoMessage(GetString("-tile: 查找方块."));
+            e.Player.SendInfoMessage(GetString("-wall: 查找墙壁."));
             return;
         }
 
@@ -35,7 +35,7 @@ public static class Commands
         if (!string.IsNullOrWhiteSpace(match.Groups["page"].Value) &&
             (!int.TryParse(match.Groups["page"].Value, out page) || page <= 0))
         {
-            e.Player.SendErrorMessage("无效的页数 '{0}'！", match.Groups["page"].Value);
+            e.Player.SendErrorMessage(GetString("无效的页数 '{0}'！"), match.Groups["page"].Value);
             return;
         }
 
@@ -55,16 +55,16 @@ public static class Commands
                         var command in
                             TShockAPI.Commands.ChatCommands.FindAll(c => c.Names.Any(s => s.ContainsInsensitive(match.Groups[2].Value))))
                     {
-                        commands.Add(string.Format("{0} (权限: {1})", command.Name, command.Permissions.FirstOrDefault()));
+                        commands.Add(string.Format(GetString("{0} (权限: {1})"), command.Name, command.Permissions.FirstOrDefault()));
                     }
                 });
 
                 PaginationTools.SendPage(e.Player, page, commands,
                     new PaginationTools.Settings
                     {
-                        HeaderFormat = "找到的命令 ({0}/{1}):",
-                        FooterFormat = string.Format("输入 /find -command {0} {{0}} 查看更多", match.Groups[2].Value),
-                        NothingToDisplayString = "未找到命令。"
+                        HeaderFormat = GetString("找到的命令 ({0}/{1}):"),
+                        FooterFormat = string.Format(GetString("输入 /find -command {0} {{0}} 查看更多"), match.Groups[2].Value),
+                        NothingToDisplayString = GetString("未找到命令。")
                     });
                 return;
             }
@@ -102,9 +102,9 @@ public static class Commands
                 PaginationTools.SendPage(e.Player, page, items,
                     new PaginationTools.Settings
                     {
-                        HeaderFormat = "找到的物品 ({0}/{1}):",
-                        FooterFormat = string.Format("输入 /find -item {0} {{0}} 查看更多", match.Groups[2].Value),
-                        NothingToDisplayString = "未找到物品。"
+                        HeaderFormat = GetString("找到的物品 ({0}/{1}):"),
+                        FooterFormat = string.Format(GetString("输入 /find -item {0} {{0}} 查看更多"), match.Groups[2].Value),
+                        NothingToDisplayString = GetString("未找到物品。")
                     });
                 return;
             }
@@ -143,9 +143,9 @@ public static class Commands
                 PaginationTools.SendPage(e.Player, page, npcs,
                     new PaginationTools.Settings
                     {
-                        HeaderFormat = "找到的NPC ({0}/{1}):",
-                        FooterFormat = string.Format("输入 /find -npc {0} {{0}} 查看更多", match.Groups[2].Value),
-                        NothingToDisplayString = "未找到NPC。",
+                        HeaderFormat = GetString("找到的NPC ({0}/{1}):"),
+                        FooterFormat = string.Format(GetString("输入 /find -npc {0} {{0}} 查看更多"), match.Groups[2].Value),
+                        NothingToDisplayString = GetString("未找到NPC。"),
                     });
                 return;
             }
@@ -170,7 +170,7 @@ public static class Commands
                         {
                             if (char.IsUpper(fi.Name[i]) && i > 0)
                             {
-                                sb.Append(" ").Append(fi.Name[i]);
+                                sb.Append(' ').Append(fi.Name[i]);
                             }
                             else
                             {
@@ -189,9 +189,9 @@ public static class Commands
                 PaginationTools.SendPage(e.Player, page, tiles,
                     new PaginationTools.Settings
                     {
-                        HeaderFormat = "找到的方块 ({0}/{1}):",
-                        FooterFormat = string.Format("输入 /find -tile {0} {{0}} 查看更多", match.Groups[2].Value),
-                        NothingToDisplayString = "未找到方块。",
+                        HeaderFormat = GetString("找到的方块 ({0}/{1}):"),
+                        FooterFormat = string.Format(GetString("输入 /find -tile {0} {{0}} 查看更多"), match.Groups[2].Value),
+                        NothingToDisplayString = GetString("未找到方块。"),
                     });
                 return;
             }
@@ -215,7 +215,7 @@ public static class Commands
                         {
                             if (char.IsUpper(fi.Name[i]) && i > 0)
                             {
-                                sb.Append(" ").Append(fi.Name[i]);
+                                sb.Append(' ').Append(fi.Name[i]);
                             }
                             else
                             {
@@ -234,9 +234,9 @@ public static class Commands
                 PaginationTools.SendPage(e.Player, page, walls,
                     new PaginationTools.Settings
                     {
-                        HeaderFormat = "找到的墙壁 ({0}/{1}):",
-                        FooterFormat = string.Format("输入 /find -wall {0} {{0}} 查看更多", match.Groups[2].Value),
-                        NothingToDisplayString = "未找到墙壁。",
+                        HeaderFormat = GetString("找到的墙壁 ({0}/{1}):"),
+                        FooterFormat = string.Format(GetString("输入 /find -wall {0} {{0}} 查看更多"), match.Groups[2].Value),
+                        NothingToDisplayString = GetString("未找到墙壁。"),
                     });
                 return;
             }
@@ -245,12 +245,12 @@ public static class Commands
 
             default:
             {
-                e.Player.SendSuccessMessage("有效的 {0}find 开关:", TShock.Config.Settings.CommandSpecifier);
-                e.Player.SendInfoMessage("-command: 查找命令.");
-                e.Player.SendInfoMessage("-item: 查找物品.");
-                e.Player.SendInfoMessage("-npc: 查找NPC.");
-                e.Player.SendInfoMessage("-tile: 查找方块.");
-                e.Player.SendInfoMessage("-wall: 查找墙壁.");
+                e.Player.SendSuccessMessage(GetString("有效的 {0}find 参数:"), TShock.Config.Settings.CommandSpecifier);
+                e.Player.SendInfoMessage(GetString("-command: 查找命令."));
+                e.Player.SendInfoMessage(GetString("-item: 查找物品."));
+                e.Player.SendInfoMessage(GetString("-npc: 查找NPC."));
+                e.Player.SendInfoMessage(GetString("-tile: 查找方块."));
+                e.Player.SendInfoMessage(GetString("-wall: 查找墙壁."));
                 return;
             }
         }
@@ -263,7 +263,7 @@ public static class Commands
         if (FreezeTimer.Enabled)
         {
             FreezeTimer.Stop();
-            TSPlayer.All.SendInfoMessage("{0} 解除了时间冻结。", e.Player.Name);
+            TSPlayer.All.SendInfoMessage(GetString("{0} 解除了时间冻结。"), e.Player.Name);
         }
         else
         {
@@ -279,7 +279,7 @@ public static class Commands
                 TSPlayer.All.SendData(PacketTypes.TimeSet);
             };
             FreezeTimer.Start();
-            TSPlayer.All.SendInfoMessage("{0} 冻结了时间。", e.Player.Name);
+            TSPlayer.All.SendInfoMessage(GetString("{0} 冻结了时间。"), e.Player.Name);
         }
     }
 
@@ -287,7 +287,7 @@ public static class Commands
     {
         if (e.Parameters.Count > 1)
         {
-            e.Player.SendErrorMessage("语法错误！正确的语法是：{0}delhome <家的名称>", TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendErrorMessage(GetString("语法错误！正确的语法是：{0}delhome <家的名称>"), TShock.Config.Settings.CommandSpecifier);
             return;
         }
 
@@ -297,31 +297,31 @@ public static class Commands
         {
             if (EssentialsPlus.Homes.DeleteHome(e.Player, homeName))
             {
-                e.Player.SendSuccessMessage("成功删除您的家 '{0}'。", homeName);
+                e.Player.SendSuccessMessage(GetString("成功删除您的家 '{0}'。"), homeName);
             }
             else
             {
-                e.Player.SendErrorMessage("无法删除家，请检查日志获取更多详细信息。");
+                e.Player.SendErrorMessage(GetString("无法删除家，请检查日志获取更多详细信息。"));
             }
         }
         else
         {
-            e.Player.SendErrorMessage("无效的家 '{0}'！", homeName);
+            e.Player.SendErrorMessage(GetString("无效的家 '{0}'！"), homeName);
         }
     }
 
-    public static async void MyHome(CommandArgs e)
+    public static void MyHome(CommandArgs e)
     {
         if (e.Parameters.Count > 1)
         {
-            e.Player.SendErrorMessage("语法错误！正确的语法是：{0}myhome <家的名称>", TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendErrorMessage(GetString("语法错误！正确的语法是：{0}myhome <家的名称>"), TShock.Config.Settings.CommandSpecifier);
             return;
         }
 
         if (Regex.Match(e.Message, @"^\w+ -l(?:ist)?$").Success)
         {
             var homes = EssentialsPlus.Homes.GetAllAsync(e.Player);
-            e.Player.SendInfoMessage(homes.Count == 0 ? "您没有设置家。" : "家的列表: {0}", string.Join(", ", homes.Select(h => h.Name)));
+            e.Player.SendInfoMessage(homes.Count == 0 ? GetString("您没有设置家。") : GetString("家的列表: {0}"), string.Join(", ", homes.Select(h => h.Name)));
         }
         else
         {
@@ -330,20 +330,20 @@ public static class Commands
             if (home != null)
             {
                 e.Player.Teleport(home.X, home.Y);
-                e.Player.SendSuccessMessage("传送您到您的家 '{0}'。", homeName);
+                e.Player.SendSuccessMessage(GetString("传送您到您的家 '{0}'。"), homeName);
             }
             else
             {
-                e.Player.SendErrorMessage("无效的家 '{0}'！", homeName);
+                e.Player.SendErrorMessage(GetString("无效的家 '{0}'！"), homeName);
             }
         }
     }
 
-    public static async void SetHome(CommandArgs e)
+    public static void SetHome(CommandArgs e)
     {
         if (e.Parameters.Count > 1)
         {
-            e.Player.SendErrorMessage("语法错误！正确的语法是：{0}sethome <家的名称>", TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendErrorMessage(GetString("语法错误！正确的语法是：{0}sethome <家的名称>"), TShock.Config.Settings.CommandSpecifier);
             return;
         }
 
@@ -352,28 +352,28 @@ public static class Commands
         {
             if (EssentialsPlus.Homes.UpdateHome(e.Player, homeName, e.Player.X, e.Player.Y))
             {
-                e.Player.SendSuccessMessage("更新了您的家 '{0}'。", homeName);
+                e.Player.SendSuccessMessage(GetString("更新了您的家 '{0}'。"), homeName);
             }
             else
             {
-                e.Player.SendErrorMessage("无法更新家，请检查日志获取更多详细信息。");
+                e.Player.SendErrorMessage(GetString("无法更新家，请检查日志获取更多详细信息。"));
             }
             return;
         }
 
         if (EssentialsPlus.Homes.GetAllAsync(e.Player).Count >= e.Player.Group.GetDynamicPermission(Permissions.HomeSet))
         {
-            e.Player.SendErrorMessage("您已达到家的设置上限！");
+            e.Player.SendErrorMessage(GetString("您已达到家的设置上限！"));
             return;
         }
 
         if (EssentialsPlus.Homes.AddHome(e.Player, homeName, e.Player.X, e.Player.Y))
         {
-            e.Player.SendSuccessMessage("设置了您的家 '{0}'。", homeName);
+            e.Player.SendSuccessMessage(GetString("设置了您的家 '{0}'。"), homeName);
         }
         else
         {
-            e.Player.SendErrorMessage("无法设置家，请检查日志获取更多详细信息。");
+            e.Player.SendErrorMessage(GetString("无法设置家，请检查日志获取更多详细信息。"));
         }
     }
 
@@ -391,23 +391,23 @@ public static class Commands
                     noSave = true;
                     continue;
                 default:
-                    e.Player.SendSuccessMessage("有效的 {0}kickall 开关:", TShock.Config.Settings.CommandSpecifier);
-                    e.Player.SendInfoMessage("-nosave: 踢出时不保存 SSC 数据.");
+                    e.Player.SendSuccessMessage(GetString("有效的 {0}kickall 参数:"), TShock.Config.Settings.CommandSpecifier);
+                    e.Player.SendInfoMessage(GetString("-nosave: 踢出时不保存 SSC 数据."));
                     return;
             }
         }
 
         var kickLevel = e.Player.Group.GetDynamicPermission(Permissions.KickAll);
-        var reason = string.IsNullOrWhiteSpace(match.Groups[2].Value) ? "没有原因。" : match.Groups[2].Value;
+        var reason = string.IsNullOrWhiteSpace(match.Groups[2].Value) ? GetString("没有原因。") : match.Groups[2].Value;
         await Task.WhenAll(TShock.Players.Where(p => p != null && p.Group.GetDynamicPermission(Permissions.KickAll) < kickLevel).Select(p => Task.Run(() =>
         {
             if (!noSave && p.IsLoggedIn)
             {
                 p.SaveServerCharacter();
             }
-            p.Disconnect("踢出原因: " + reason);
+            p.Disconnect(GetString("踢出原因: ") + reason);
         })));
-        e.Player.SendSuccessMessage("成功踢出所有人。原因: '{0}'。", reason);
+        e.Player.SendSuccessMessage(GetString("成功踢出所有人。原因: '{0}'。"), reason);
     }
 
 
@@ -416,11 +416,11 @@ public static class Commands
         var lastCommand = e.Player.GetPlayerInfo().LastCommand;
         if (string.IsNullOrWhiteSpace(lastCommand))
         {
-            e.Player.SendErrorMessage("您没有上次的命令！");
+            e.Player.SendErrorMessage(GetString("您没有上次的命令！"));
             return;
         }
 
-        e.Player.SendSuccessMessage("重复执行上次的命令 '{0}{1}'！", TShock.Config.Settings.CommandSpecifier, lastCommand);
+        e.Player.SendSuccessMessage(GetString("重复执行上次的命令 '{0}{1}'！"), TShock.Config.Settings.CommandSpecifier, lastCommand);
         await Task.Run(() => TShockAPI.Commands.HandleCommand(e.Player, TShock.Config.Settings.CommandSpecifier + lastCommand));
     }
 
@@ -447,11 +447,11 @@ public static class Commands
                 }
                 if (!full)
                 {
-                    e.Player.SendSuccessMessage("填满了您的物品栏。");
+                    e.Player.SendSuccessMessage(GetString("填满了您的物品栏。"));
                 }
                 else
                 {
-                    e.Player.SendErrorMessage("您的物品栏已经满了。");
+                    e.Player.SendErrorMessage(GetString("您的物品栏已经满了。"));
                 }
             }
             else
@@ -460,14 +460,14 @@ public static class Commands
                 var amtToAdd = item.maxStack - item.stack;
                 if (amtToAdd == 0)
                 {
-                    e.Player.SendErrorMessage("您的{0}已经满了。", item.Name);
+                    e.Player.SendErrorMessage(GetString("您的{0}已经满了。"), item.Name);
                 }
                 else if (amtToAdd > 0 && item.stack > 0)
                 {
                     e.Player.GiveItem(item.type, amtToAdd);
                 }
 
-                e.Player.SendSuccessMessage("增加了您的{0}的堆叠数量。", item.Name);
+                e.Player.SendSuccessMessage(GetString("增加了您的{0}的堆叠数量。"), item.Name);
             }
         });
     }
@@ -485,7 +485,7 @@ public static class Commands
                 var match = regex.Match(e.Message);
                 if (!match.Success)
                 {
-                    e.Player.SendErrorMessage("无效的语法！正确的语法是：/mute add <名称> [时间]");
+                    e.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：/mute add <名称> [时间]"));
                     return;
                 }
 
@@ -494,7 +494,7 @@ public static class Commands
                     (!TShock.Utils.TryParseTime(match.Groups[3].Value, out seconds) || seconds <= 0 ||
                      seconds > int.MaxValue / 1000))
                 {
-                    e.Player.SendErrorMessage("无效的时间 '{0}'！", match.Groups[3].Value);
+                    e.Player.SendErrorMessage(GetString("无效的时间 '{0}'！"), match.Groups[3].Value);
                     return;
                 }
 
@@ -507,50 +507,50 @@ public static class Commands
                     var user = TShock.UserAccounts.GetUserAccountByName(playerName);
                     if (user == null)
                     {
-                        e.Player.SendErrorMessage("无效的玩家或账户 '{0}'！", playerName);
+                        e.Player.SendErrorMessage(GetString("无效的玩家或账户 '{0}'！"), playerName);
                     }
                     else
                     {
                         if (TShock.Groups.GetGroupByName(user.Group).GetDynamicPermission(Permissions.Mute) >=
                             e.Player.Group.GetDynamicPermission(Permissions.Mute))
                         {
-                            e.Player.SendErrorMessage("您不能禁言 {0}！", user.Name);
+                            e.Player.SendErrorMessage(GetString("您不能禁言 {0}！"), user.Name);
                             return;
                         }
 
                         if (EssentialsPlus.Mutes.AddMute(user, DateTime.UtcNow.AddSeconds(seconds)))
                         {
-                            TSPlayer.All.SendInfoMessage("{0} 禁言了 {1}。", e.Player.Name, user.Name);
+                            TSPlayer.All.SendInfoMessage(GetString("{0} 禁言了 {1}。"), e.Player.Name, user.Name);
                         }
                         else
                         {
-                            e.Player.SendErrorMessage("无法禁言，请查看日志获取更多信息。");
+                            e.Player.SendErrorMessage(GetString("无法禁言，请查看日志获取更多信息。"));
                         }
                     }
                 }
                 else if (players.Count > 1)
                 {
-                    e.Player.SendErrorMessage("匹配到多个玩家：{0}", string.Join(", ", players.Select(p => p.Name)));
+                    e.Player.SendErrorMessage(GetString("匹配到多个玩家：{0}"), string.Join(", ", players.Select(p => p.Name)));
                 }
                 else
                 {
                     if (players[0].Group.GetDynamicPermission(Permissions.Mute) >=
                         e.Player.Group.GetDynamicPermission(Permissions.Mute))
                     {
-                        e.Player.SendErrorMessage("您不能禁言 {0}！", players[0].Name);
+                        e.Player.SendErrorMessage(GetString("您不能禁言 {0}！"), players[0].Name);
                         return;
                     }
 
                     if (EssentialsPlus.Mutes.AddMute(players[0], DateTime.UtcNow.AddSeconds(seconds)))
                     {
-                        TSPlayer.All.SendInfoMessage("{0} 禁言了 {1}。", e.Player.Name, players[0].Name);
+                        TSPlayer.All.SendInfoMessage(GetString("{0} 禁言了 {1}。"), e.Player.Name, players[0].Name);
 
                         players[0].mute = true;
                         try
                         {
                             await Task.Delay(TimeSpan.FromSeconds(seconds), players[0].GetPlayerInfo().MuteToken);
                             players[0].mute = false;
-                            players[0].SendInfoMessage("您已解除禁言。");
+                            players[0].SendInfoMessage(GetString("您已解除禁言。"));
                         }
                         catch (TaskCanceledException)
                         {
@@ -558,7 +558,7 @@ public static class Commands
                     }
                     else
                     {
-                        e.Player.SendErrorMessage("无法禁言，请查看日志获取更多信息。");
+                        e.Player.SendErrorMessage(GetString("无法禁言，请查看日志获取更多信息。"));
                     }
                 }
             }
@@ -575,7 +575,7 @@ public static class Commands
                 var match = regex.Match(e.Message);
                 if (!match.Success)
                 {
-                    e.Player.SendErrorMessage("无效的语法！正确的语法是：/mute del <名称>");
+                    e.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：/mute del <名称>"));
                     return;
                 }
 
@@ -588,34 +588,34 @@ public static class Commands
                     var user = TShock.UserAccounts.GetUserAccountByName(playerName);
                     if (user == null)
                     {
-                        e.Player.SendErrorMessage("无效的玩家或账户 '{0}'！", playerName);
+                        e.Player.SendErrorMessage(GetString("无效的玩家或账户 '{0}'！"), playerName);
                     }
                     else
                     {
                         if (EssentialsPlus.Mutes.DeleteMute(user))
                         {
-                            TSPlayer.All.SendInfoMessage("{0} 解除了 {1} 的禁言。", e.Player.Name, user.Name);
+                            TSPlayer.All.SendInfoMessage(GetString("{0} 解除了 {1} 的禁言。"), e.Player.Name, user.Name);
                         }
                         else
                         {
-                            e.Player.SendErrorMessage("无法解除禁言，请查看日志获取更多信息。");
+                            e.Player.SendErrorMessage(GetString("无法解除禁言，请查看日志获取更多信息。"));
                         }
                     }
                 }
                 else if (players.Count > 1)
                 {
-                    e.Player.SendErrorMessage("匹配到多个玩家：{0}", string.Join(", ", players.Select(p => p.Name)));
+                    e.Player.SendErrorMessage(GetString("匹配到多个玩家：{0}"), string.Join(", ", players.Select(p => p.Name)));
                 }
                 else
                 {
                     if (EssentialsPlus.Mutes.DeleteMute(players[0]))
                     {
                         players[0].mute = false;
-                        TSPlayer.All.SendInfoMessage("{0} 解除了 {1} 的禁言。", e.Player.Name, players[0].Name);
+                        TSPlayer.All.SendInfoMessage(GetString("{0} 解除了 {1} 的禁言。"), e.Player.Name, players[0].Name);
                     }
                     else
                     {
-                        e.Player.SendErrorMessage("无法解除禁言，请查看日志获取更多信息。");
+                        e.Player.SendErrorMessage(GetString("无法解除禁言，请查看日志获取更多信息。"));
                     }
                 }
             }
@@ -626,9 +626,9 @@ public static class Commands
             #region 帮助
 
             default:
-                e.Player.SendSuccessMessage("禁言子命令:");
-                e.Player.SendInfoMessage("add <名称> [时间] - 禁言玩家或账户。");
-                e.Player.SendInfoMessage("del <名称> - 解除禁言玩家或账户。");
+                e.Player.SendSuccessMessage(GetString("禁言子命令:"));
+                e.Player.SendInfoMessage(GetString("add <名称> [时间] - 禁言玩家或账户。"));
+                e.Player.SendInfoMessage(GetString("del <名称> - 解除禁言玩家或账户。"));
                 return;
 
                 #endregion
@@ -650,7 +650,7 @@ public static class Commands
         {
             if (e.Player.TempPoints.Any(p => p == Point.Zero))
             {
-                e.Player.SendErrorMessage("尺规未设置！");
+                e.Player.SendErrorMessage(GetString("尺规未设置！"));
                 return;
             }
 
@@ -659,28 +659,28 @@ public static class Commands
             var x = Math.Abs(p1.X - p2.X);
             var y = Math.Abs(p1.Y - p2.Y);
             var cartesian = Math.Sqrt((x * x) + (y * y));
-            e.Player.SendInfoMessage("距离：X轴：{0}，Y轴：{1}，直角距离：{2:N3}", x, y, cartesian);
+            e.Player.SendInfoMessage(GetString("距离：X轴：{0}，Y轴：{1}，直角距离：{2:N3}"), x, y, cartesian);
         }
         else if (e.Parameters.Count == 1)
         {
             if (e.Parameters[0] == "1")
             {
                 e.Player.AwaitingTempPoint = 1;
-                e.Player.SendInfoMessage("修改一个方块以设置第一个尺规点。");
+                e.Player.SendInfoMessage(GetString("修改一个方块以设置第一个尺规点。"));
             }
             else if (e.Parameters[0] == "2")
             {
                 e.Player.AwaitingTempPoint = 2;
-                e.Player.SendInfoMessage("修改一个方块以设置第二个尺规点。");
+                e.Player.SendInfoMessage(GetString("修改一个方块以设置第二个尺规点。"));
             }
             else
             {
-                e.Player.SendErrorMessage("无效的语法！正确的语法是：{0}ruler [1/2]", TShock.Config.Settings.CommandSpecifier);
+                e.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：{0}ruler [1/2]"), TShock.Config.Settings.CommandSpecifier);
             }
         }
         else
         {
-            e.Player.SendErrorMessage("无效的语法！正确的语法是：{0}ruler [1/2]", TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：{0}ruler [1/2]"), TShock.Config.Settings.CommandSpecifier);
         }
     }
 
@@ -691,7 +691,7 @@ public static class Commands
         var match = regex.Match(e.Message);
         if (!match.Success)
         {
-            e.Player.SendErrorMessage("无效的语法！正确的语法是：{0}send [r,g,b] <文本...>", TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：{0}send [r,g,b] <文本...>"), TShock.Config.Settings.CommandSpecifier);
             return;
         }
 
@@ -701,7 +701,7 @@ public static class Commands
         if (!string.IsNullOrWhiteSpace(match.Groups[1].Value) && !string.IsNullOrWhiteSpace(match.Groups[2].Value) && !string.IsNullOrWhiteSpace(match.Groups[3].Value) &&
             (!byte.TryParse(match.Groups[1].Value, out r) || !byte.TryParse(match.Groups[2].Value, out g) || !byte.TryParse(match.Groups[3].Value, out b)))
         {
-            e.Player.SendErrorMessage("无效的颜色！");
+            e.Player.SendErrorMessage(GetString("无效的颜色！"));
             return;
         }
         TSPlayer.All.SendMessage(match.Groups[4].Value, new Color(r, g, b));
@@ -714,9 +714,9 @@ public static class Commands
         var match = regex.Match(e.Message);
         if (!match.Success)
         {
-            e.Player.SendErrorMessage("无效的语法！正确的语法是：{0}sudo [-switches...] <玩家> <命令...>", TShock.Config.Settings.CommandSpecifier);
-            e.Player.SendSuccessMessage("有效的 {0}sudo 开关：", TShock.Config.Settings.CommandSpecifier);
-            e.Player.SendInfoMessage("-f, -force: 强制sudo，忽略权限限制。");
+            e.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：{0}sudo [-switches...] <玩家> <命令...>"), TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendSuccessMessage(GetString("有效的 {0}sudo 参数："), TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendInfoMessage(GetString("-f, -force: 强制sudo，忽略权限限制。"));
             return;
         }
 
@@ -729,14 +729,14 @@ public static class Commands
                 case "force":
                     if (!e.Player.Group.HasPermission(Permissions.SudoForce))
                     {
-                        e.Player.SendErrorMessage("您没有访问 '-{0}' 开关的权限！", capture.Value);
+                        e.Player.SendErrorMessage(GetString("您没有访问 '-{0}' 参数的权限！"), capture.Value);
                         return;
                     }
                     force = true;
                     continue;
                 default:
-                    e.Player.SendSuccessMessage("有效的 {0}sudo 开关：", TShock.Config.Settings.CommandSpecifier);
-                    e.Player.SendInfoMessage("-f, -force: 强制sudo，忽略权限限制。");
+                    e.Player.SendSuccessMessage(GetString("有效的 {0}sudo 参数："), TShock.Config.Settings.CommandSpecifier);
+                    e.Player.SendInfoMessage(GetString("-f, -force: 强制sudo，忽略权限限制。"));
                     return;
             }
         }
@@ -747,25 +747,25 @@ public static class Commands
         var players = TShock.Players.FindPlayers(playerName);
         if (players.Count == 0)
         {
-            e.Player.SendErrorMessage("无效的玩家 '{0}'！", playerName);
+            e.Player.SendErrorMessage(GetString("无效的玩家 '{0}'！"), playerName);
         }
         else if (players.Count > 1)
         {
-            e.Player.SendErrorMessage("匹配到多个玩家：{0}", string.Join(", ", players.Select(p => p.Name)));
+            e.Player.SendErrorMessage(GetString("匹配到多个玩家：{0}"), string.Join(", ", players.Select(p => p.Name)));
         }
         else
         {
             if ((e.Player.Group.GetDynamicPermission(Permissions.Sudo) <= players[0].Group.GetDynamicPermission(Permissions.Sudo))
                 && !e.Player.Group.HasPermission(Permissions.SudoSuper))
             {
-                e.Player.SendErrorMessage("您无法强制 {0} 执行 {1}{2}！", players[0].Name, TShock.Config.Settings.CommandSpecifier, command);
+                e.Player.SendErrorMessage(GetString("您无法强制 {0} 执行 {1}{2}！"), players[0].Name, TShock.Config.Settings.CommandSpecifier, command);
                 return;
             }
 
-            e.Player.SendSuccessMessage("强制 {0} 执行 {1}{2}。", players[0].Name, TShock.Config.Settings.CommandSpecifier, command);
+            e.Player.SendSuccessMessage(GetString("强制 {0} 执行 {1}{2}。"), players[0].Name, TShock.Config.Settings.CommandSpecifier, command);
             if (!e.Player.Group.HasPermission(Permissions.SudoInvisible))
             {
-                players[0].SendInfoMessage("{0} 强制您执行 {1}{2}。", e.Player.Name, TShock.Config.Settings.CommandSpecifier, command);
+                players[0].SendInfoMessage(GetString("{0} 强制您执行 {1}{2}。"), e.Player.Name, TShock.Config.Settings.CommandSpecifier, command);
             }
 
             var fakePlayer = new TSPlayer(players[0].Index)
@@ -792,9 +792,9 @@ public static class Commands
         var match = regex.Match(e.Message);
         if (!match.Success)
         {
-            e.Player.SendErrorMessage("无效的语法！正确的语法是：{0}timecmd [-switches...] <时间> <命令...>", TShock.Config.Settings.CommandSpecifier);
-            e.Player.SendSuccessMessage("有效的 {0}timecmd 开关:", TShock.Config.Settings.CommandSpecifier);
-            e.Player.SendInfoMessage("-r, -repeat: 重复执行时间命令。");
+            e.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：{0}timecmd [-switches...] <时间> <命令...>"), TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendSuccessMessage(GetString("有效的 {0}timecmd 参数:"), TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendInfoMessage(GetString("-r, -repeat: 重复执行时间命令。"));
             return;
         }
 
@@ -808,31 +808,31 @@ public static class Commands
                     repeat = true;
                     break;
                 default:
-                    e.Player.SendSuccessMessage("有效的 {0}timecmd 开关:", TShock.Config.Settings.CommandSpecifier);
-                    e.Player.SendInfoMessage("-r, -repeat: 重复执行时间命令。");
+                    e.Player.SendSuccessMessage(GetString("有效的 {0}timecmd 参数:"), TShock.Config.Settings.CommandSpecifier);
+                    e.Player.SendInfoMessage(GetString("-r, -repeat: 重复执行时间命令。"));
                     return;
             }
         }
 
         if (!TShock.Utils.TryParseTime(match.Groups[2].Value, out int seconds) || seconds <= 0 || seconds > int.MaxValue / 1000)
         {
-            e.Player.SendErrorMessage("无效的时间 '{0}'!", match.Groups[2].Value);
+            e.Player.SendErrorMessage(GetString("无效的时间 '{0}'!"), match.Groups[2].Value);
             return;
         }
 
         if (repeat)
         {
-            e.Player.SendSuccessMessage("已排队执行命令 '{0}{1}'。使用 /cancel 取消！", TShock.Config.Settings.CommandSpecifier, match.Groups[3].Value);
+            e.Player.SendSuccessMessage(GetString("已排队执行命令 '{0}{1}'。使用 /cancel 取消！"), TShock.Config.Settings.CommandSpecifier, match.Groups[3].Value);
         }
         else
         {
-            e.Player.SendSuccessMessage("已排队执行命令 '{0}{1}'。使用 /cancel 取消！", TShock.Config.Settings.CommandSpecifier, match.Groups[3].Value);
+            e.Player.SendSuccessMessage(GetString("已排队执行命令 '{0}{1}'。使用 /cancel 取消！"), TShock.Config.Settings.CommandSpecifier, match.Groups[3].Value);
         }
 
         e.Player.AddResponse("cancel", o =>
         {
             e.Player.GetPlayerInfo().CancelTimeCmd();
-            e.Player.SendSuccessMessage("取消所有时间命令！");
+            e.Player.SendSuccessMessage(GetString("取消所有时间命令！"));
         });
 
         var token = e.Player.GetPlayerInfo().TimeCmdToken;
@@ -858,26 +858,26 @@ public static class Commands
     {
         if (e.Parameters.Count > 1)
         {
-            e.Player.SendErrorMessage("无效的语法！正确的语法是：{0}eback [步数]", TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：{0}eback [步数]"), TShock.Config.Settings.CommandSpecifier);
             return;
         }
 
         var steps = 1;
         if (e.Parameters.Count > 0 && (!int.TryParse(e.Parameters[0], out steps) || steps <= 0))
         {
-            e.Player.SendErrorMessage("无效的步数 '{0}'！", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("无效的步数 '{0}'！"), e.Parameters[0]);
             return;
         }
 
         var info = e.Player.GetPlayerInfo();
         if (info.BackHistoryCount == 0)
         {
-            e.Player.SendErrorMessage("无法传送回上一个位置！");
+            e.Player.SendErrorMessage(GetString("无法传送回上一个位置！"));
             return;
         }
 
         steps = Math.Min(steps, info.BackHistoryCount);
-        e.Player.SendSuccessMessage("传送回 {0} 步.", steps);
+        e.Player.SendSuccessMessage(GetString("传送回 {0} 步."), steps);
         var vector = info.PopBackHistory(steps);
         e.Player.Teleport(vector.X, vector.Y);
     }
@@ -886,14 +886,14 @@ public static class Commands
     {
         if (e.Parameters.Count > 1)
         {
-            e.Player.SendErrorMessage("无效的语法！正确的语法是：{0}down [层数]", TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：{0}down [层数]"), TShock.Config.Settings.CommandSpecifier);
             return;
         }
 
         var levels = 1;
         if (e.Parameters.Count > 0 && (!int.TryParse(e.Parameters[0], out levels) || levels <= 0))
         {
-            e.Player.SendErrorMessage("无效的层数 '{0}'！", levels);
+            e.Player.SendErrorMessage(GetString("无效的层数 '{0}'！"), levels);
             return;
         }
 
@@ -923,7 +923,7 @@ public static class Commands
 
         if (currentLevel == 0)
         {
-            e.Player.SendErrorMessage("无法传送下去！");
+            e.Player.SendErrorMessage(GetString("无法传送下去！"));
         }
         else
         {
@@ -933,7 +933,7 @@ public static class Commands
             }
 
             e.Player.Teleport(16 * x, (16 * y) - 10);
-            e.Player.SendSuccessMessage("传送下 {0} 层.", currentLevel);
+            e.Player.SendSuccessMessage(GetString("传送下 {0} 层."), currentLevel);
         }
     }
 
@@ -941,14 +941,14 @@ public static class Commands
     {
         if (e.Parameters.Count > 1)
         {
-            e.Player.SendErrorMessage("无效的语法！正确的语法是：{0}left [层数]", TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：{0}left [层数]"), TShock.Config.Settings.CommandSpecifier);
             return;
         }
 
         var levels = 1;
         if (e.Parameters.Count > 0 && (!int.TryParse(e.Parameters[0], out levels) || levels <= 0))
         {
-            e.Player.SendErrorMessage("无效的层数 '{0}'！", levels);
+            e.Player.SendErrorMessage(GetString("无效的层数 '{0}'！"), levels);
             return;
         }
 
@@ -981,7 +981,7 @@ public static class Commands
 
         if (currentLevel == 0)
         {
-            e.Player.SendErrorMessage("无法传送左边！");
+            e.Player.SendErrorMessage(GetString("无法传送左边！"));
         }
         else
         {
@@ -991,7 +991,7 @@ public static class Commands
             }
 
             e.Player.Teleport((16 * x) + 12, 16 * y);
-            e.Player.SendSuccessMessage("传送左 {0} 层.", currentLevel);
+            e.Player.SendSuccessMessage(GetString("传送左 {0} 层."), currentLevel);
         }
     }
 
@@ -999,14 +999,14 @@ public static class Commands
     {
         if (e.Parameters.Count > 1)
         {
-            e.Player.SendErrorMessage("无效的语法！正确的语法是：{0}right [层数]", TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：{0}right [层数]"), TShock.Config.Settings.CommandSpecifier);
             return;
         }
 
         var levels = 1;
         if (e.Parameters.Count > 0 && (!int.TryParse(e.Parameters[0], out levels) || levels <= 0))
         {
-            e.Player.SendErrorMessage("无效的层数 '{0}'！", levels);
+            e.Player.SendErrorMessage(GetString("无效的层数 '{0}'！"), levels);
             return;
         }
 
@@ -1039,7 +1039,7 @@ public static class Commands
 
         if (currentLevel == 0)
         {
-            e.Player.SendErrorMessage("无法传送右边！");
+            e.Player.SendErrorMessage(GetString("无法传送右边！"));
         }
         else
         {
@@ -1049,7 +1049,7 @@ public static class Commands
             }
 
             e.Player.Teleport(16 * x, 16 * y);
-            e.Player.SendSuccessMessage("传送右 {0} 层.", currentLevel);
+            e.Player.SendSuccessMessage(GetString("传送右 {0} 层."), currentLevel);
         }
     }
 
@@ -1057,14 +1057,14 @@ public static class Commands
     {
         if (e.Parameters.Count > 1)
         {
-            e.Player.SendErrorMessage("无效的语法！正确的语法是：{0}up [层数]", TShock.Config.Settings.CommandSpecifier);
+            e.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：{0}up [层数]"), TShock.Config.Settings.CommandSpecifier);
             return;
         }
 
         var levels = 1;
         if (e.Parameters.Count > 0 && (!int.TryParse(e.Parameters[0], out levels) || levels <= 0))
         {
-            e.Player.SendErrorMessage("无效的层数 '{0}'！", levels);
+            e.Player.SendErrorMessage(GetString("无效的层数 '{0}'！"), levels);
             return;
         }
 
@@ -1097,7 +1097,7 @@ public static class Commands
 
         if (currentLevel == 0)
         {
-            e.Player.SendErrorMessage("无法传送上面！");
+            e.Player.SendErrorMessage(GetString("无法传送上面！"));
         }
         else
         {
@@ -1107,7 +1107,7 @@ public static class Commands
             }
 
             e.Player.Teleport(16 * x, (16 * y) + 6);
-            e.Player.SendSuccessMessage("传送上 {0} 层.", currentLevel);
+            e.Player.SendSuccessMessage(GetString("传送上 {0} 层."), currentLevel);
         }
     }
 

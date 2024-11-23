@@ -6,18 +6,18 @@ namespace Ezperm;
 internal class GroupInfo
 {
     [JsonProperty("组名字")]
-    public string Name { get; set; }
+    public string Name { get; set; } = "";
     [JsonProperty("添加的权限")]
-    public List<string> AddPermissions { get; set; }
+    public List<string> AddPermissions { get; set; } = new();
     [JsonProperty("删除的权限")]
-    public List<string> DelPermissions { get; set; }
+    public List<string> DelPermissions { get; set; } = new();
 }
 
 internal class Configuration
 {
     public static readonly string FilePath = Path.Combine(TShock.SavePath, "ezperm.json");
 
-    public List<GroupInfo> Groups { get; set; }
+    public List<GroupInfo> Groups { get; set; } = new();
 
     public void Write(string path)
     {
@@ -43,7 +43,7 @@ internal class Configuration
                     new GroupInfo
                     {
                         Name = "default",
-                        AddPermissions = new List<string> { "tshock.world.movenpc","tshock.tp.pylon", "tshock.tp.demonconch", "tshock.tp.magicconch", "tshock.tp.tppotion", "tshock.tp.rod","tshock.npc.startdd2","tshock.tp.wormhole","tshock.npc.summonboss","tshock.npc.startinvasion","tshock.world.time.usesundial" },
+                        AddPermissions = new List<string> { "tshock.world.movenpc","tshock.world.time.usesundial", "tshock.tp.pylon", "tshock.tp.demonconch", "tshock.tp.magicconch", "tshock.tp.tppotion", "tshock.tp.rod","tshock.tp.wormhole","tshock.npc.startdd2", "tshock.npc.spawnpets", "tshock.npc.summonboss","tshock.npc.startinvasion" },
                         DelPermissions = new List<string> { "tshock.admin" }
                     }
                 }
@@ -57,7 +57,7 @@ internal class Configuration
         {
             using (var sr = new StreamReader(fs))
             {
-                var cf = JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd());
+                var cf = JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd())!;
                 return cf;
             }
         }

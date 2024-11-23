@@ -14,45 +14,34 @@ public class Utils
 {
     public static SkillContext VerifyBindSkill(TSPlayer Player, int index)
     {
-        var context = Skill.Config.GetSkill(index) ?? throw new NullReferenceException($"技能序号{index} 不存在！");
+        var context = Skill.Config.GetSkill(index) ?? throw new NullReferenceException(GetString($"技能序号{index} 不存在！"));
         if (context.SkillSpark.SparkMethod.Contains(SkillSparkType.Take) && (Player.SelectedItem.netID == 0 || Player.SelectedItem.stack == 0))
         {
-            throw new Exception("这是一个主动技能，请手持一个有效武器!");
+            throw new Exception(GetString("绑定此技能需要手持一个武器!"));
         }
-
+        if (context.Hidden)
+        {
+            throw new Exception(GetString("此技能无法被购买!"));
+        }
         if (!RPG.RPG.InLevel(Player.Name, context.LimitLevel))
         {
-            throw new Exception($"你当前等级无法购买此技能，限制等级:{string.Join(", ", context.LimitLevel)}");
+            throw new Exception(GetString($"你当前等级无法购买此技能，限制等级:{string.Join(", ", context.LimitLevel)}"));
         }
 
         if (!Player.InProgress(context.LimitProgress))
         {
-            throw new Exception($"当前进度无法购买此技能，限制进度:{string.Join(", ", context.LimitProgress)}");
+            throw new Exception(GetString($"当前进度无法购买此技能，限制进度:{string.Join(", ", context.LimitProgress)}"));
         }
 
-        var bind = Skill.PlayerSKillManager.QuerySkillByItem(Player.Name, Player.SelectedItem.netID);
-        if (context.SkillUnique && Skill.PlayerSKillManager.HasSkill(Player.Name, index))
-        {
-            throw new Exception("此技能是唯一的不能重复绑定!");
-        }
-
-        if (context.SkillUniqueAll && Skill.PlayerSKillManager.HasSkill(index))
-        {
-            throw new Exception("此技能全服唯一已经有其他人绑定了此技能!");
-        }
-
-        if (bind.Count >= Skill.Config.SkillMaxCount)
-        {
-            throw new Exception("技能已超过规定的最大绑定数量!");
-        }
-
-        if (bind.Where(x => x.Skill != null && x.Skill.SkillSpark.SparkMethod.Contains(SkillSparkType.Take)).Count() >= Skill.Config.WeapoeBindMaxCount)
-        {
-            throw new Exception("此武器已超过规定的最大绑定数量!");
-        }
-
-        return bind.Where(x => x.Skill != null && x.Skill.SkillSpark.SparkMethod.Contains(SkillSparkType.Take)).Count() >= Skill.Config.PSkillMaxCount
-            ? throw new Exception("被动类型技能已超过最大绑定数量!")
+        var bind = Skill.PlayerSKillManager.QuerySkillByItem(Player.Name, Player.SelectedItem.netID).Where(s => s.Skill != null && s.Skill.Hidden);
+        return context.SkillUnique && Skill.PlayerSKillManager.HasSkill(Player.Name, index)
+            ? throw new Exception(GetString("此技能是唯一的不能重复绑定!"))
+            : context.SkillUniqueAll && Skill.PlayerSKillManager.HasSkill(index)
+            ? throw new Exception(GetString("此技能全服唯一已经有其他人绑定了此技能!"))
+            : bind.Count() >= Skill.Config.SkillMaxCount
+            ? throw new Exception(GetString("技能已超过规定的最大绑定数量!"))
+            : bind.Where(x => x.Skill != null && x.Skill.SkillSpark.SparkMethod.Contains(SkillSparkType.Take)).Count() >= Skill.Config.WeapoeBindMaxCount
+            ? throw new Exception(GetString("此武器已超过规定的最大绑定数量!"))
             : context;
     }
 

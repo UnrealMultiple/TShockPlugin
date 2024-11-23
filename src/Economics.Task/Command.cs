@@ -24,9 +24,9 @@ public class Command
                 new PaginationTools.Settings
                 {
                     MaxLinesPerPage = Plugin.TaskConfig.PageCount,
-                    NothingToDisplayString = "当前没有任务",
-                    HeaderFormat = "任务列表 ({0}/{1})：",
-                    FooterFormat = "输入 {0}task list {{0}} 查看更多".SFormat(Commands.Specifier)
+                    NothingToDisplayString = GetString("当前没有任务"),
+                    HeaderFormat = GetString("任务列表 ({0}/{1})："),
+                    FooterFormat = GetString("输入 {0}task list {{0}} 查看更多").SFormat(Commands.Specifier)
                 }
             );
         }
@@ -42,23 +42,23 @@ public class Command
                 var task = Plugin.TaskConfig.GetTask(index);
                 if (task == null)
                 {
-                    args.Player.SendErrorMessage("不存在此任务!");
+                    args.Player.SendErrorMessage(GetString("不存在此任务!"));
                 }
                 else
                 {
-                    args.Player.SendMessage($"{task.TaskName}介绍: {task.Description}", Microsoft.Xna.Framework.Color.Wheat);
+                    args.Player.SendMessage(GetString($"{task.TaskName}介绍: {task.Description}"), Microsoft.Xna.Framework.Color.Wheat);
                 }
             }
             else
             {
-                args.Player.SendErrorMessage("错误的技能序号!");
+                args.Player.SendErrorMessage(GetString("错误的技能序号!"));
             }
         }
         else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "pick")
         {
             if (UserTaskData.HasTask(args.Player.Name))
             {
-                args.Player.SendErrorMessage("您还有一个任务正在进行，不能接多个任务!");
+                args.Player.SendErrorMessage(GetString("您还有一个任务正在进行，不能接多个任务!"));
             }
             else
             {
@@ -69,39 +69,39 @@ public class Command
                     {
                         if (Plugin.TaskFinishManager.HasFinishTask(index, args.Player.Name))
                         {
-                            args.Player.SendErrorMessage($"此任务你已经完成过了!");
+                            args.Player.SendErrorMessage(GetString($"此任务你已经完成过了!"));
                             return;
                         }
                         if (!Plugin.InOfFinishTask(args.Player, task.FinishTask))
                         {
-                            args.Player.SendErrorMessage($"必须完成任务 {string.Join(",", task.FinishTask)} 才能接此任务");
+                            args.Player.SendErrorMessage(GetString($"必须完成任务 {string.Join(",", task.FinishTask)} 才能接此任务"));
                             return;
                         }
                         if (!RPG.RPG.InLevel(args.Player.Name, task.LimitLevel))
                         {
-                            args.Player.SendErrorMessage($"只有在{string.Join(", ", task.LimitLevel)} 以及符等级才能接取此任务");
+                            args.Player.SendErrorMessage(GetString($"只有在{string.Join(", ", task.LimitLevel)} 以及符等级才能接取此任务"));
                             return;
                         }
                         if (!args.Player.InProgress(task.LimitProgress))
                         {
-                            args.Player.SendErrorMessage($"需要满足进度{string.Join(", ", task.LimitLevel)}才能接取此任务");
+                            args.Player.SendErrorMessage(GetString($"需要满足进度{string.Join(", ", task.LimitLevel)}才能接取此任务"));
                             return;
                         }
 
                         UserTaskData.Add(args.Player.Name, index);
                         Plugin.TaskFinishManager.Add(index, args.Player.Name, TaskStatus.Ongoing);
-                        args.Player.SendSuccessMessage("任务接取成功!");
-                        args.Player.SendSuccessMessage($"任务名称:{task.TaskName}");
-                        args.Player.SendSuccessMessage($"任务介绍:{task.Description}");
+                        args.Player.SendSuccessMessage(GetString("任务接取成功!"));
+                        args.Player.SendSuccessMessage(GetString($"任务名称:{task.TaskName}"));
+                        args.Player.SendSuccessMessage(GetString($"任务介绍:{task.Description}"));
                     }
                     else
                     {
-                        args.Player.SendErrorMessage("任务不存在!");
+                        args.Player.SendErrorMessage(GetString("任务不存在!"));
                     }
                 }
                 else
                 {
-                    args.Player.SendErrorMessage("输入了一个错误的序号!");
+                    args.Player.SendErrorMessage(GetString("输入了一个错误的序号!"));
                 }
             }
         }
@@ -114,7 +114,7 @@ public class Command
             }
             else
             {
-                args.Player.SendErrorMessage("你没有接取一个任务!");
+                args.Player.SendErrorMessage(GetString("你没有接取一个任务!"));
             }
         }
         else if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "del")
@@ -142,36 +142,36 @@ public class Command
                 }
                 else
                 {
-                    args.Player.SendErrorMessage("你当前的任务还没有完成!");
+                    args.Player.SendErrorMessage(GetString("你当前的任务还没有完成!"));
                 }
             }
             else
             {
-                args.Player.SendErrorMessage("你还没有接一个任务!");
+                args.Player.SendErrorMessage(GetString("你还没有接一个任务!"));
             }
         }
         else if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "reset")
         {
             if (!args.Player.HasPermission(Permission.TaskAdmin))
             {
-                args.Player.SendErrorMessage("你没有使用该指令的权限!");
+                args.Player.SendErrorMessage(GetString("你没有使用该指令的权限!"));
                 return;
             }
             Plugin.TaskFinishManager.RemoveAll();
             UserTaskData.Clear();
             Plugin.KillNPCManager.RemoveAll();
             Plugin.TallkManager.RemoveAll();
-            args.Player.SendSuccessMessage("已清空完成任务!");
+            args.Player.SendSuccessMessage(GetString("已清空完成任务!"));
         }
         else
         {
-            args.Player.SendInfoMessage("/task list 查看任务列表");
-            args.Player.SendInfoMessage("/task info <序号> 查看任务详情");
-            args.Player.SendInfoMessage("/task pick <序号> 接取一个任务");
-            args.Player.SendInfoMessage("/task prog 查看任务完成进度");
-            args.Player.SendInfoMessage("/task pr 提交任务");
-            args.Player.SendInfoMessage("/task del 移除任务");
-            args.Player.SendInfoMessage("/task reset 清空完成任务");
+            args.Player.SendInfoMessage(GetString("/task list 查看任务列表"));
+            args.Player.SendInfoMessage(GetString("/task info <序号> 查看任务详情"));
+            args.Player.SendInfoMessage(GetString("/task pick <序号> 接取一个任务"));
+            args.Player.SendInfoMessage(GetString("/task prog 查看任务完成进度"));
+            args.Player.SendInfoMessage(GetString("/task pr 提交任务"));
+            args.Player.SendInfoMessage(GetString("/task del 移除任务"));
+            args.Player.SendInfoMessage(GetString("/task reset 清空完成任务"));
         }
     }
 }

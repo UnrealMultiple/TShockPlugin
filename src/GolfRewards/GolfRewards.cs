@@ -11,18 +11,17 @@ public class GolfRewards : TerrariaPlugin
     public override string Name => "高尔夫奖励";
     public override string Author => "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449";
     public override string Description => "将高尔夫打入球洞会得到奖励.";
-    public override Version Version => new Version(1, 0, 7);
+    public override Version Version => new Version(1, 0, 8);
 
     public GolfRewards(Main game) : base(game)
     {
         base.Order = 5;
-        LC.RI();
     }
 
 
     public override void Initialize()
     {
-
+        //LC.RI();
         LC.RC();
         GeneralHooks.ReloadEvent += this.CMD;
         Commands.ChatCommands.Add(new Command("物块坐标", this.CMD2, "物块坐标")
@@ -86,7 +85,7 @@ public class GolfRewards : TerrariaPlugin
         LC.LPlayers.TryRemove(e.Who, out _);
     }
 
-    private void TileEdit(object sender, GetDataHandlers.TileEditEventArgs args)
+    private void TileEdit(object? sender, GetDataHandlers.TileEditEventArgs args)
     {
         if (args.Handled)
         {
@@ -107,7 +106,7 @@ public class GolfRewards : TerrariaPlugin
     }
 
 
-    public void Golf(object sender, GetDataHandlers.LandGolfBallInCupEventArgs args)
+    public void Golf(object? sender, GetDataHandlers.LandGolfBallInCupEventArgs args)
     {
         if (args.Handled)
         {

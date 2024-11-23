@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\template.targets" />
-
+    <PropertyGroup>
+        <LangVersion>11.0</LangVersion>
+    </PropertyGroup>
 </Project>

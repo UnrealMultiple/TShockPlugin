@@ -12,7 +12,7 @@ public class Autoclear : TerrariaPlugin
     public override string Description => "智能扫地机";
     public override string Name => "智能自动扫地";
     public override Version Version => new Version(1, 0, 4);
-    public static Configuration Config;
+    public static Configuration Config = null!;
     private bool _sweepScheduled = false;
     private DateTime _sweepScheduledAt;
     private long _updateCounter;
@@ -23,7 +23,7 @@ public class Autoclear : TerrariaPlugin
 
     private static void LoadConfig()
     {
-        Config = Configuration.Read(Configuration.FilePath);
+        Config = Configuration.Read(Configuration.FilePath)!;
         Config.Write(Configuration.FilePath);
     }
 

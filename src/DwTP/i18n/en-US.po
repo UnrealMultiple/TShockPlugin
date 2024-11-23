@@ -1,0 +1,79 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DwTP\n"
+"POT-Creation-Date: 2024-11-22 12:55:31+0000\n"
+"PO-Revision-Date: 2024-11-22 16:29+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: ../../DwTP.cs:62
+msgid ""
+"[i:3455][c/AD89D5:定][c/D68ACA:位][c/DF909A:传][c/E5A894:送][i:3454] [C/"
+"BFDFEA:by] [c/7CAEDD:羽学][i:3459]\n"
+msgstr ""
+"[i:3455][c/AD89D5:Tele][c/D68ACA:port][c/DF909A:to][c/E5A894:Location]"
+"[i:3454] [C/BFDFEA:by] [c/7CAEDD:Yu Xue][i:3459]\n"
+
+#: ../../DwTP.cs:66
+msgid "/dw bag ——传送到[c/E2E4C4:宝藏袋]附近\n"
+msgstr "/dw bag —— Teleport to near the [c/E2E4C4:LootBag]\n"
+
+#: ../../DwTP.cs:67
+msgid "/dw dl ——传送到[c/E2E4C4:地牢]附近[骷髅王前/石后]"
+msgstr ""
+"/dw dl —— Teleport to near the [c/E2E4C4:Dungeon] [Before Skeletron / After "
+"Stone Giant]"
+
+#: ../../DwTP.cs:65
+msgid "/dw hb ——传送到[c/E2E4C4:花苞]附近\n"
+msgstr "/dw hb —— Teleport to near the [c/E2E4C4:Bulb]\n"
+
+#: ../../DwTP.cs:64
+msgid "/dw sm ——传送到[c/E2E4C4:神庙]附近\n"
+msgstr "/dw sm —— Teleport to near the [c/E2E4C4:Temple]\n"
+
+#: ../../DwTP.cs:63
+msgid "/dw wg ——传送到[c/E2E4C4:微光湖]附近\n"
+msgstr "/dw wg —— Teleport to near the [c/E2E4C4:Glowing Lake]\n"
+
+#: ../../DwTP.cs:183
+msgid "世纪之花[c/F25156:未生长],无法获取[c/E2E4C4:花苞坐标]"
+msgstr ""
+"Plantera [c/F25156:not grown], cannot obtain [c/E2E4C4:Bulb coordinates]"
+
+#: ../../DwTP.cs:225
+msgid "地牢守护者[c/F25156:已击败],无法获取[c/E2E4C4:地牢坐标]"
+msgstr ""
+"Dungeon Guardian [c/F25156:defeated], cannot obtain [c/E2E4C4:Dungeon "
+"coordinates]"
+
+#: ../../DwTP.cs:220
+#, csharp-format
+msgid "已将您传送到[c/F25156:地牢]附近([c/E2E4C4:{0} {1}])"
+msgstr "Teleported you to near the [c/F25156:Dungeon] ([c/E2E4C4:{0} {1}])"
+
+#: ../../DwTP.cs:235
+#, csharp-format
+msgid "已将您传送到[c/F25156:宝藏袋]附近([c/E2E4C4:{0} {1}])"
+msgstr "Teleported you to near the [c/F25156:LootBag] ([c/E2E4C4:{0} {1}])"
+
+#: ../../DwTP.cs:102
+#, csharp-format
+msgid "已将您传送到[c/F25156:微光湖]附近([c/E2E4C4:{0} {1}])"
+msgstr ""
+"Teleported you to near the [c/F25156:Glowing Lake] ([c/E2E4C4:{0} {1}])"
+
+#: ../../DwTP.cs:146
+#, csharp-format
+msgid "已将您传送到[c/F25156:神庙]附近([c/E2E4C4:{0} {1}])"
+msgstr "Teleported you to near the [c/F25156:Temple] ([c/E2E4C4:{0} {1}])"
+
+#: ../../DwTP.cs:178
+#, csharp-format
+msgid "已将您传送到[c/F25156:花苞]附近([c/E2E4C4:{0} {1}])"
+msgstr "Teleported you to near the [c/F25156:Bulb] ([c/E2E4C4:{0} {1}])"

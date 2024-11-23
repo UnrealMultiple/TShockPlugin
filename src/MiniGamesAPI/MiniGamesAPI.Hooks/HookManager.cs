@@ -8,11 +8,11 @@ public static class HookManager
 
     public delegate void LeaveRoomD(LeaveRoomArgs args);
 
-    public static GameSecondD GameSecond;
+    public static GameSecondD? GameSecond;
 
-    public static JoinRoomD JoinRoom;
+    public static JoinRoomD? JoinRoom;
 
-    public static LeaveRoomD LeaveRoom;
+    public static LeaveRoomD? LeaveRoom;
 
     public static void OnGameSecond(MiniPlayer player)
     {

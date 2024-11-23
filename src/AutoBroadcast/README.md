@@ -1,13 +1,18 @@
 # AutoBroadcast 自动广播
 
 - 作者: Scavenger，Zaicon,GK 小改良，肝帝熙恩更新至1449
-- 出处: 无
+- 出处: [github](https://github.com/Scavenger3/AutoBroadcast)
 - 定时在服务器中广播，或执行命令。
 
 ## 更新日志
 
 ```
-暂无
+v1.0.6
+修复了初始配置文件的问题
+v1.0.5
+i18n 和 README_EN.md
+v1.0.4
+i18n预定
 ```
 
 ## 指令

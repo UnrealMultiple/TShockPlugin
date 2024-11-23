@@ -24,7 +24,7 @@ public class History : TerrariaPlugin
 
     readonly CancellationTokenSource Cancel = new();
     private readonly BlockingCollection<HCommand> CommandQueue = new();
-    private Thread CommandQueueThread;
+    private Thread CommandQueueThread = null!;
     public override string Description => "记录图格操作.";
     public override string Name => "History";
     public override Version Version => new Version(1, 0, 4);

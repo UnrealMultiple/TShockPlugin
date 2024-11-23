@@ -11,7 +11,7 @@ public class Plugin : TerrariaPlugin
     #region 插件信息
     public override string Name => "击败怪物替换世界物品";
     public override string Author => "onusai 羽学";
-    public override Version Version => new Version(1, 0, 0);
+    public override Version Version => new Version(1, 0, 2);
     public override string Description => "击败指定怪物替换世界指定图格与所有箱子内物品";
     #endregion
 
@@ -41,7 +41,7 @@ public class Plugin : TerrariaPlugin
         Config = Configuration.Read();
         WriteName();
         Config.Write();
-        TShock.Log.ConsoleInfo("[替换世界物品]重新加载配置完毕。");
+        TShock.Log.ConsoleInfo(GetString("[替换世界物品]重新加载配置完毕。"));
     }
     #endregion
 
@@ -155,9 +155,9 @@ public class Plugin : TerrariaPlugin
         if (TilesUpdate + ItemUpdate > 0)
         {
             UpdateWorld();
-            TShock.Utils.Broadcast("已替换世界物品! \n" +
-                $"转换的图格数量：[c/BEE9FA:{TilesUpdate}] \n" +
-                $"转换的箱子物品数量：[c/FFC4C2:{ItemUpdate}]", 255, 234, 115);
+            TShock.Utils.Broadcast(GetString("已替换世界物品! \n") +
+                GetString($"转换的图格数量：[c/BEE9FA:{TilesUpdate}] \n") +
+                GetString($"转换的箱子物品数量：[c/FFC4C2:{ItemUpdate}]"), 255, 234, 115);
         }
         else
         {

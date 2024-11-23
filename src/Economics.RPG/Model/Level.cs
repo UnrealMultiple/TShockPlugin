@@ -1,5 +1,6 @@
 ﻿using Economics.RPG.Converter;
 using EconomicsAPI.Model;
+using EconomicsAPI.Configured;
 using Newtonsoft.Json;
 
 namespace Economics.RPG.Model;
@@ -21,6 +22,9 @@ public class Level
     [JsonProperty("升级广播")]
     public string RankBroadcast { get; set; } = string.Empty;
 
+    [JsonProperty("手持武器")]
+    public HashSet<int> SelectedWeapon { get; set; } = new();
+
     [JsonProperty("进度限制")]
     public HashSet<string> Limit { get; set; } = new();
 
@@ -34,7 +38,7 @@ public class Level
     public Item[] RewardGoods { get; set; } = Array.Empty<Item>();
 
     [JsonProperty("升级消耗")]
-    public long Cost { get; set; }
+    public List<RedemptionRelationshipsOption> RedemptionRelationshipsOption { get; set; } = new();
 
     [JsonProperty("父等级")]
     [JsonConverter(typeof(LevelConverter))]

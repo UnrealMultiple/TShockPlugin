@@ -40,7 +40,7 @@ public class Config
     public void Read(Stream stream)
     {
         using var streamReader = new StreamReader(stream);
-        var deserializedConfig = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd());
+        var deserializedConfig = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd())!;
         this.CopyFrom(deserializedConfig);
     }
 

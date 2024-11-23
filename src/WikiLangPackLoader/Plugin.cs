@@ -25,7 +25,7 @@ public class WikiLangPackLoader : TerrariaPlugin
     public override string Description => "加载Wiki语言包";
 
     public override string Name => "中文Wiki语言包加载器";
-    public override Version Version => new (2024, 9, 16, 1);
+    public override Version Version => new(2024, 9, 16, 1);
 
     public override void Initialize()
     {
@@ -70,7 +70,7 @@ public class WikiLangPackLoader : TerrariaPlugin
         var services = new GameServiceContainer();
         var resourceName = "WikiLangPackLoader.ResourcePack.zip";
         var filePath = @"tshock/LangResourcePack.zip";
-        using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
+        using (var resourceStream = assembly.GetManifestResourceStream(resourceName)!)
         using (var fileStream = new FileStream(filePath, FileMode.Create))
         {
             resourceStream.CopyTo(fileStream);

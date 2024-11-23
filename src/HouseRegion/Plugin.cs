@@ -17,10 +17,15 @@ public class HousingPlugin : TerrariaPlugin
     public override string Description => "一个著名的用于保护房屋的插件。";
     public override string Name => "HousingDistricts";
     public override Version Version => new Version(1, 0, 0, 4);
-    public HousingPlugin(Main game) : base(game) { LPlayers = new LPlayer[256]; this.Order = 5; LConfig = new Config(); }
-    public static Config LConfig { get; set; }
+    public HousingPlugin(Main game) : base(game) 
+    { 
+        this.Order = 5; 
+        LConfig = new Config();
+        this._reloadHandler = (_) => this.RC();
+    }
+    public static Config LConfig { get; set; } = null!;
     internal static string LConfigPath => Path.Combine(TShock.SavePath, "HouseRegion.json");
-    public static LPlayer[] LPlayers { get; set; }//L表示local本地的意思
+    public static LPlayer?[] LPlayers { get; set; } = new LPlayer[256];//L表示local本地的意思
     public static List<House> Houses = new();
     static readonly System.Timers.Timer Update = new(1100);//创建一个1.1秒的时钟
     public static bool ULock = false;
@@ -92,7 +97,7 @@ public class HousingPlugin : TerrariaPlugin
     #endregion
 
     #region 插件的各种初始化
-    private GeneralHooks.ReloadEventD _reloadHandler;
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()// 插件启动时，用于初始化各种狗子
     {
         this.RC();
@@ -103,7 +108,6 @@ public class HousingPlugin : TerrariaPlugin
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);//玩家进入服务器
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);//玩家退出服务器
         ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitialize);//地图读入后
-        this._reloadHandler = (_) => this.RC();
         GeneralHooks.ReloadEvent += this._reloadHandler;
     }
     protected override void Dispose(bool disposing)// 插件关闭时
@@ -160,7 +164,7 @@ public class HousingPlugin : TerrariaPlugin
             case "name"://确认房子名字
             {
                 args.Player.SendMessage("请敲击一个块查看它属于哪个房子。", Color.Yellow);
-                LPlayers[args.Player.Index].Look = true; break;
+                LPlayers[args.Player.Index]!.Look = true; break;
             }
             case "set"://设置点
             {
@@ -193,7 +197,8 @@ public class HousingPlugin : TerrariaPlugin
                 {
                     var maxHouses = Utils.MaxCount(args.Player); var authorHouses = 0;
                     for (var i = 0; i < Houses.Count; i++)
-                    { if (Houses[i].Author == args.Player.Account.ID.ToString())
+                    {
+                        if (Houses[i].Author == args.Player.Account.ID.ToString())
                         {
                             authorHouses++;
                         }
@@ -209,7 +214,7 @@ public class HousingPlugin : TerrariaPlugin
                             var width = Math.Abs(args.Player.TempPoints[0].X - args.Player.TempPoints[1].X) + 1;
                             var height = Math.Abs(args.Player.TempPoints[0].Y - args.Player.TempPoints[1].Y) + 1;
                             var maxSize = Utils.MaxSize(args.Player);
-                            if (width * height <= maxSize && width >= LConfig.MinWidth && height >= LConfig.MinHeight || args.Player.Group.HasPermission("house.bypasssize"))
+                            if ((width * height <= maxSize && width >= LConfig.MinWidth && height >= LConfig.MinHeight) || args.Player.Group.HasPermission("house.bypasssize"))
                             {
                                 var newHouseR = new Rectangle(x, y, width, height);
                                 for (var i = 0; i < Houses.Count; i++)
@@ -557,7 +562,7 @@ public class HousingPlugin : TerrariaPlugin
                             var width = Math.Abs(args.Player.TempPoints[0].X - args.Player.TempPoints[1].X) + 1;
                             var height = Math.Abs(args.Player.TempPoints[0].Y - args.Player.TempPoints[1].Y) + 1;
                             var maxSize = Utils.MaxSize(args.Player);
-                            if (width * height <= maxSize && width >= LConfig.MinWidth && height >= LConfig.MinHeight || args.Player.Group.HasPermission("house.bypasssize"))
+                            if ((width * height <= maxSize && width >= LConfig.MinWidth && height >= LConfig.MinHeight) || args.Player.Group.HasPermission("house.bypasssize"))
                             {
                                 var newHouseR = new Rectangle(x, y, width, height);
                                 for (var i = 0; i < Houses.Count; i++)
@@ -728,7 +733,9 @@ public class HousingPlugin : TerrariaPlugin
         if (!user.ConnectionAlive) { args.Handled = true; return; }//若已丢失连接直接返回
         using (var data = new MemoryStream(args.Msg.readBuffer, args.Index, args.Length))
         {
-            try { if (GetDataHandlers.HandlerGetData(args.MsgID, user, data))
+            try
+            {
+                if (GetDataHandlers.HandlerGetData(args.MsgID, user, data))
                 {
                     args.Handled = true;
                 }
@@ -739,7 +746,7 @@ public class HousingPlugin : TerrariaPlugin
     #endregion
 
     #region 时钟事件
-    public void OnUpdate(object sender, ElapsedEventArgs e)//时钟更新数据时
+    public void OnUpdate(object? sender, ElapsedEventArgs e)//时钟更新数据时
     {
         if (!LConfig.HouseRegion || ULock)
         {
@@ -765,7 +772,7 @@ public class HousingPlugin : TerrariaPlugin
                 if (player == null) { ULock = false; return; }//玩家组变动，此时不计入
                 var house = Utils.InAreaHouse(player.TileX, player.TileY);//当前所在的房子
                 var Lhouse = Utils.InAreaHouse(user.TileX, user.TileY);//之前所在的房子
-                LPlayers[user.Who].TileX = player.TileX; LPlayers[user.Who].TileY = player.TileY;//使此为前
+                user.TileX = player.TileX; user.TileY = player.TileY;//使此为前
                 if (Lhouse == null && house == null)
                 {
                     continue;
@@ -795,7 +802,7 @@ public class HousingPlugin : TerrariaPlugin
                 }
                 else//此乃离开了一个房子又进入另外一个房子
                 {
-                    if (Lhouse.Name == house.Name)
+                    if (Lhouse!.Name == house!.Name)
                     {
                         continue;//仍然在原来的房子里
                     }

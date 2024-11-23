@@ -21,11 +21,11 @@ public class WeaponPlus : TerrariaPlugin
 
     public override string Description => "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes";
 
-    public override Version Version => new Version(1, 0, 0, 3);
+    public override Version Version => new Version(2, 0, 0, 0);
     #endregion
 
     #region 实例变量
-    public static WeaponPlusDB DB { get; set; }
+    public static WeaponPlusDB DB { get; set; } = null!;
 
     public string configPath = Path.Combine(TShock.SavePath, "WeaponPlus.json");
 
@@ -33,7 +33,6 @@ public class WeaponPlus : TerrariaPlugin
 
     public static WPlayer[] wPlayers = new WPlayer[256];
 
-    public static List<List<string>> LangTips = new List<List<string>>();
     #endregion
 
     #region 注册与卸载钩子
@@ -41,18 +40,17 @@ public class WeaponPlus : TerrariaPlugin
     public override void Initialize()
     {
         DB = new WeaponPlusDB(TShock.DB);
-        this.NewLangTips();
         LoadConfig();
         GeneralHooks.ReloadEvent += LoadConfig;
         ServerApi.Hooks.NetGreetPlayer.Register((TerrariaPlugin) (object) this, this.OnGreetPlayer);
         ServerApi.Hooks.ServerLeave.Register((TerrariaPlugin) (object) this, this.OnServerLeave);
         Commands.ChatCommands.Add(new Command("weaponplus.plus", this.PlusItem, "plus")
         {
-            HelpText = LangTipsGet("输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料")
+            HelpText = GetString("输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料")
         });
         Commands.ChatCommands.Add(new Command("weaponplus.admin", this.ClearPlusItem, "clearallplayersplus")
         {
-            HelpText = LangTipsGet("输入 /clearallplayersplus    将数据库中所有玩家的所有强化物品全部清理，管理员专属")
+            HelpText = GetString("输入 /clearallplayersplus    将数据库中所有玩家的所有强化物品全部清理，管理员专属")
         });
     }
 
@@ -67,92 +65,6 @@ public class WeaponPlus : TerrariaPlugin
     }
     #endregion
 
-    #region 创建提示语
-    public void NewLangTips()
-    {
-        LangTips.Add(new List<string> { "几乎所有的武器和弹药都能强化，但是强化结果会无效化词缀，作为补偿，前三次强化价格降低 80%", "Almost all weapons and ammunition can be strengthened, but the strengthening results will invalidate the affixes. As compensation, the price of the first three enhancements will be reduced by 80%" });
-        LangTips.Add(new List<string> { "强化绑定一类武器，即同 ID 武器，而不是单独的一个物品。强化与人物绑定，不可分享，扔出即失效，只在背包，猪猪等个人私有库存内起效。", "Strengthen the binding of a type of weapon, that is, the same ID weapon, rather than a single item. Strengthen the binding with the character, which cannot be shared. Throw it out and it will become invalid. It only works in the private inventory of backpacks, piggy bank and other individuals." });
-        LangTips.Add(new List<string> { "当你不小心扔出或其他原因导致强化无效，请使用指令 /plus load 来重新获取。每次重新获取都会从当前背包中查找并强制拿出来重给，请注意捡取避免丢失。", "When you throw it out carelessly or the reinforcement is invalid for other reasons, please use the command </plus load> to retrieve it again. Each time you retrieve it, you will find it from the current backpack and force it to be taken out again. Please pay attention to picking up to avoid loss." });
-        LangTips.Add(new List<string> { "重新获取时重给的物品是单独给予，不会被其他玩家捡走，每次进入服务器时会默认强制重新获取。", "The items to be re-acquired are given separately and will not be picked up by other players. Each time you enter the server, you will be forced to re-acquire by default." });
-        LangTips.Add(new List<string> { "第一个物品栏是强化栏，指令只对该物品栏内的物品起效，强化完即可将武器拿走换至其他栏位，功能类似于哥布林的重铸槽。", "The first item column is the reinforcement column. The command only works on the items in this item column. After the reinforcement, the weapon can be taken away and replaced to another column. The function is similar to the recasting slot of Goblin." });
-        LangTips.Add(new List<string> { "输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料", "Enter /plus     --to view the current level status of the weapon and how many materials are needed to upgrade to the next level" });
-        LangTips.Add(new List<string> { "输入 /plus help    查看 plus 系列指令帮助", "Enter /plus help     --to view the help of the plus series of instructions" });
-        LangTips.Add(new List<string> { "输入 /plus load    将当前身上所有已升级的武器重新获取", "Enter /plus load     --to reacquire all upgraded weapons on the current inventory" });
-        LangTips.Add(new List<string> { "输入 /plus <damage/da/伤害> <up/down> <num>   升级/降级当前武器的伤害等级", "Enter /plus <damage/da> <up/down> <num>    --to upgrade/downgrade the damage level of the current weapon" });
-        LangTips.Add(new List<string> { "输入 /plus <scale/sc/大小> <up/down> <num>  升级/降级当前武器或射弹的体积等级 ±5%", "Enter /plus <scale/sc> <up/down> <num>    --to upgrade/downgrade the volume level of the current weapon or projectile by ± 5%" });
-        LangTips.Add(new List<string> { "输入 /plus <knockback/kn/击退> <up/down> <num>   升级/降级当前武器的击退等级 ±5%", "Enter /plus <knockback/kn> <up/down> <num>    --to upgrade/downgrade the knockback level of the current weapon by ± 5%" });
-        LangTips.Add(new List<string> { "输入 /plus <usespeed/us/用速> <up/down> <num>   升级/降级当前武器的使用速度等级", "Enter /plus <usespeed/us> <up/down> <num>    --to upgrade/downgrade the speed level of the current weapon" });
-        LangTips.Add(new List<string> { "输入 /plus <shootspeed/sh/飞速> <up/down> <num>   升级/降级当前武器的射弹飞行速度等级，影响鞭类武器范围±5%", "Enter /plus <shootspeed/sh> <up/down> <num>    --to upgrade/downgrade the projectile flying speed level of the current weapon, affecting the range of whip weapons by ± 5%" });
-        LangTips.Add(new List<string> { "输入 /plus clear    清理当前武器的所有等级，可以回收一点消耗物", "Enter /plus clear     --to clear all levels of the current weapon, and you can recycle some consumables" });
-        LangTips.Add(new List<string> { "输入 /clearallplayersplus    将数据库中所有玩家的所有强化物品全部清理，管理员专属", "Enter /clearallplayersplus     --to clear all enhancement items of all players in the database, exclusive to the administrator" });
-        LangTips.Add(new List<string> { "该指令必须在游戏内使用", "This command must be used in the game" });
-        LangTips.Add(new List<string> { "请在第一个物品栏内放入武器而不是其他什么东西或空", "Please put weapons in the first item column instead of anything else or empty" });
-        LangTips.Add(new List<string> { "当前物品：", "Current item: " });
-        LangTips.Add(new List<string> { "您当前的升级武器已重新读取", "Your current upgraded weapon has been re-read" });
-        LangTips.Add(new List<string> { "当前武器没有任何等级，不用回炉重做", "The current weapon has no level, so you don't need to redo it" });
-        LangTips.Add(new List<string>
-    {
-        "完全重置成功！" + EconomicsAPI.Economics.Setting.CurrencyName + "回收：",
-        "Complete reset succeeded! " + EconomicsAPI.Economics.Setting.CurrencyName + " recovery: "
-    });
-        LangTips.Add(new List<string> { "升级成功", "Upgrade succeeded" });
-        LangTips.Add(new List<string> { "共计消耗：", "Total consumption: " });
-        LangTips.Add(new List<string> { "降级成功", "Degraded successfully" });
-        LangTips.Add(new List<string> { "等级过低", "The grade is too low" });
-        LangTips.Add(new List<string> { "当前该类型升级已达到上限，无法升级", "Currently, the upgrade of this type has reached the upper limit and cannot be upgraded" });
-        LangTips.Add(new List<string>
-    {
-        "扣除" + EconomicsAPI.Economics.Setting.CurrencyName + "：",
-        "Deduct " + EconomicsAPI.Economics.Setting.CurrencyName + ": "
-    });
-        LangTips.Add(new List<string> { "当前剩余：", "Current remaining: " });
-        LangTips.Add(new List<string>
-    {
-        EconomicsAPI.Economics.Setting.CurrencyName + "不足！",
-        "Not enough " + EconomicsAPI.Economics.Setting.CurrencyName + "!"
-    });
-        LangTips.Add(new List<string> { "所有玩家的所有强化数据全部清理成功！", "All enhancement data of all players have been cleared successfully!" });
-        LangTips.Add(new List<string> { "强化数据清理失败！！!", "Enhanced data cleaning failed!!!" });
-        LangTips.Add(new List<string> { "当前总等级：", "Current total level: " });
-        LangTips.Add(new List<string> { "剩余强化次数：", "How many times can the weapon be strengthened: " });
-        LangTips.Add(new List<string> { "次", "times" });
-        LangTips.Add(new List<string> { "伤害等级：", "damage level: " });
-        LangTips.Add(new List<string> { "大小等级：", "scale level: " });
-        LangTips.Add(new List<string> { "击退等级：", "knockback level: " });
-        LangTips.Add(new List<string> { "攻速等级：", "use time level: " });
-        LangTips.Add(new List<string> { "射弹飞行速度等级：", "projectile speed level: " });
-        LangTips.Add(new List<string> { "未升级过，无任何加成", "Not upgraded, no bonus" });
-        LangTips.Add(new List<string> { "当前状态：", "Current status: " });
-        LangTips.Add(new List<string> { "伤害", "damage" });
-        LangTips.Add(new List<string> { "大小", "scale" });
-        LangTips.Add(new List<string> { "击退", "knockback" });
-        LangTips.Add(new List<string> { "攻速", "use time" });
-        LangTips.Add(new List<string> { "射弹飞速", "projectile speed" });
-        LangTips.Add(new List<string> { "伤害升至下一级需：", "Damage to the next level requires: " });
-        LangTips.Add(new List<string> { "大小升至下一级需：", "Scale to the next level requires: " });
-        LangTips.Add(new List<string> { "击退升至下一级需：", "KnockBack to the next level requires: " });
-        LangTips.Add(new List<string> { "攻速升至下一级需：", "UseTime to the next level requires: " });
-        LangTips.Add(new List<string> { "射弹飞速升至下一级需：", "Proiectile speed to the next level requires: " });
-        LangTips.Add(new List<string> { "当前已满级", "The current level is full" });
-        LangTips.Add(new List<string> { "已达到最大武器总等级", "The maximum total weapon level has been reached" });
-        LangTips.Add(new List<string> { "SSC 未开启", "SSC is disable" });
-        LangTips.Add(new List<string> { "请输入正整数", "Please enter a positive integer" });
-    }
-    #endregion
-
-    #region 切换提示语语言方法
-    public static string LangTipsGet(string str)
-    {
-        foreach (var langTip in LangTips)
-        {
-            if (langTip.Contains(str))
-            {
-                return config.EnableEnglish ? langTip[1] : langTip[0];
-            }
-        }
-        return string.Empty;
-    }
-    #endregion
 
     #region 配置文件创建与重读加载方法
     private static void LoadConfig(ReloadEventArgs args = null!)
@@ -161,7 +73,7 @@ public class WeaponPlus : TerrariaPlugin
         config.Write(TerrariaMap.Config.configPath);
         if (args != null && args.Player != null)
         {
-            args.Player.SendSuccessMessage("[武器强化EC版]重新加载配置完毕。");
+            args.Player.SendSuccessMessage(GetString("[武器强化EC版]重新加载配置完毕。"));
         }
     }
     #endregion
@@ -211,8 +123,8 @@ public class WeaponPlus : TerrariaPlugin
     #region  强化物品
     private void PlusItem(CommandArgs args)
     {
-        var text = LangTipsGet("几乎所有的武器和弹药都能强化，但是强化结果会无效化词缀，作为补偿，前三次强化价格降低 80%") + "\n" + LangTipsGet("强化绑定一类武器，即同 ID 武器，而不是单独的一个物品。强化与人物绑定，不可分享，扔出即失效，只在背包，猪猪等个人私有库存内起效。") + "\n" + LangTipsGet("当你不小心扔出或其他原因导致强化无效，请使用指令 /plus load 来重新获取。每次重新获取都会从当前背包中查找并强制拿出来重给，请注意捡取避免丢失。") + "\n" + LangTipsGet("重新获取时重给的物品是单独给予，不会被其他玩家捡走，每次进入服务器时会默认强制重新获取。") + "\n" + LangTipsGet("第一个物品栏是强化栏，指令只对该物品栏内的物品起效，强化完即可将武器拿走换至其他栏位，功能类似于哥布林的重铸槽。");
-        var text2 = LangTipsGet("输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料") + "\n" + LangTipsGet("输入 /plus load    将当前身上所有已升级的武器重新获取") + "\n" + LangTipsGet("输入 /plus <damage/da/伤害> <up/down> <num>   升级/降级当前武器的伤害等级") + "\n" + LangTipsGet("输入 /plus <scale/sc/大小> <up/down> <num>  升级/降级当前武器或射弹的体积等级 ±5%") + "\n" + LangTipsGet("输入 /plus <knockback/kn/击退> <up/down> <num>   升级/降级当前武器的击退等级 ±5%") + "\n" + LangTipsGet("输入 /plus <usespeed/us/用速> <up/down> <num>   升级/降级当前武器的使用速度等级") + "\n" + LangTipsGet("输入 /plus <shootspeed/sh/飞速> <up/down> <num>   升级/降级当前武器的射弹飞行速度等级，影响鞭类武器范围±5%") + "\n" + LangTipsGet("输入 /plus clear    清理当前武器的所有等级，可以回收一点消耗物") + "\n" + LangTipsGet("输入 /clearallplayersplus    将数据库中所有玩家的所有强化物品全部清理，管理员专属");
+        var text = GetString("几乎所有的武器和弹药都能强化，但是强化结果会无效化词缀，作为补偿，前三次强化价格降低 80%\n强化绑定一类武器，即同 ID 武器，而不是单独的一个物品。强化与人物绑定，不可分享，扔出即失效，只在背包，猪猪等个人私有库存内起效。\n当你不小心扔出或其他原因导致强化无效，请使用指令 /plus load 来重新获取。每次重新获取都会从当前背包中查找并强制拿出来重给，请注意捡取避免丢失。\n重新获取时重给的物品是单独给予，不会被其他玩家捡走，每次进入服务器时会默认强制重新获取。\n第一个物品栏是强化栏，指令只对该物品栏内的物品起效，强化完即可将武器拿走换至其他栏位，功能类似于哥布林的重铸槽。");
+        var text2 = GetString("输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料\n输入 /plus load    将当前身上所有已升级的武器重新获取\n输入 /plus <damage/da/伤害> <up/down> <num>   升级/降级当前武器的伤害等级\n输入 /plus <scale/sc/大小> <up/down> <num>  升级/降级当前武器或射弹的体积等级 ±5%\n输入 /plus <knockback/kn/击退> <up/down> <num>   升级/降级当前武器的击退等级 ±5%\n输入 /plus <usespeed/us/用速> <up/down> <num>   升级/降级当前武器的使用速度等级\n输入 /plus <shootspeed/sh/飞速> <up/down> <num>   升级/降级当前武器的射弹飞行速度等级，影响鞭类武器范围±5%\n输入 /plus clear    清理当前武器的所有等级，可以回收一点消耗物\n输入 /clearallplayersplus    将数据库中所有玩家的所有强化物品全部清理，管理员专属");
         if (args.Parameters.Count == 1 && args.Parameters[0].Equals("help", StringComparison.OrdinalIgnoreCase))
         {
             if (!args.Player.Active)
@@ -226,12 +138,12 @@ public class WeaponPlus : TerrariaPlugin
         }
         if (!args.Player.Active)
         {
-            args.Player.SendInfoMessage(LangTipsGet("该指令必须在游戏内使用"));
+            args.Player.SendInfoMessage(GetString("该指令必须在游戏内使用"));
             return;
         }
         if (!TShock.ServerSideCharacterConfig.Settings.Enabled)
         {
-            args.Player.SendInfoMessage(LangTipsGet("SSC 未开启"));
+            args.Player.SendInfoMessage(GetString("SSC 未开启"));
             return;
         }
         var wPlayer = wPlayers[args.Player.Index];
@@ -240,11 +152,11 @@ public class WeaponPlus : TerrariaPlugin
         select ??= new WItem(firstItem.netID, args.Player.Name);
         if ((firstItem == null || firstItem.IsAir || TShock.Utils.GetItemById(firstItem.type).damage <= 0 || firstItem.accessory || firstItem.netID == 0) && (args.Parameters.Count != 1 || !args.Parameters[0].Equals("load", StringComparison.OrdinalIgnoreCase)))
         {
-            args.Player.SendInfoMessage(LangTipsGet("请在第一个物品栏内放入武器而不是其他什么东西或空"));
+            args.Player.SendInfoMessage(GetString("请在第一个物品栏内放入武器而不是其他什么东西或空"));
         }
         else if (args.Parameters.Count == 0)
         {
-            args.Player.SendMessage($"{LangTipsGet("当前物品：")}[i:{firstItem.netID}]   {LangTipsGet("共计消耗：")}{select.allCost}\n{select.ItemMess()}", this.getRandColor());
+            args.Player.SendMessage(GetString($"{"当前物品："}[i:{firstItem!.netID}]   {"共计消耗："}{select.allCost}\n{select.ItemMess()}"), this.getRandColor());
         }
         else if (args.Parameters.Count == 1)
         {
@@ -254,25 +166,25 @@ public class WeaponPlus : TerrariaPlugin
                 {
                     ReplaceWeaponsInBackpack(args.Player.TPlayer, hasItem);
                 }
-                args.Player.SendInfoMessage(LangTipsGet("您当前的升级武器已重新读取"));
+                args.Player.SendInfoMessage(GetString("您当前的升级武器已重新读取"));
             }
             else if (args.Parameters[0].Equals("clear", StringComparison.OrdinalIgnoreCase))
             {
                 if (select.Level == 0)
                 {
-                    args.Player.SendInfoMessage(LangTipsGet("当前武器没有任何等级，不用回炉重做"));
+                    args.Player.SendInfoMessage(GetString("当前武器没有任何等级，不用回炉重做"));
                     return;
                 }
                 var num = (long) (select.allCost * config.ResetTheWeaponReturnMultiple);
-                EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num);
-                wPlayer.hasItems.RemoveAll((x) => x.id == firstItem.netID);
-                DB.DeleteDB(args.Player.Name, firstItem.netID);
+                EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num, config.Currency);
+                wPlayer.hasItems.RemoveAll((x) => x.id == firstItem!.netID);
+                DB.DeleteDB(args.Player.Name, firstItem!.netID);
                 ReplaceWeaponsInBackpack(args.Player.TPlayer, select, 1);
-                args.Player.SendMessage(LangTipsGet("完全重置成功！" + EconomicsAPI.Economics.Setting.CurrencyName + "回收：") + num, new Color(0, 255, 0));
+                args.Player.SendMessage(GetString("完全重置成功！" + config.Currency + "回收：") + num, new Color(0, 255, 0));
             }
             else
             {
-                args.Player.SendInfoMessage(LangTipsGet("输入 /plus help    查看 plus 系列指令帮助"));
+                args.Player.SendInfoMessage(GetString("输入 /plus help    查看 plus 系列指令帮助"));
             }
         }
         else if (args.Parameters.Count >= 2 && args.Parameters.Count <= 3)
@@ -282,12 +194,12 @@ public class WeaponPlus : TerrariaPlugin
             {
                 if (!int.TryParse(args.Parameters[2], out result))
                 {
-                    args.Player.SendInfoMessage(LangTipsGet("输入 /plus help    查看 plus 系列指令帮助"));
+                    args.Player.SendInfoMessage(GetString("输入 /plus help    查看 plus 系列指令帮助"));
                     return;
                 }
                 if (result <= 0)
                 {
-                    args.Player.SendInfoMessage(LangTipsGet("请输入正整数"));
+                    args.Player.SendInfoMessage(GetString("请输入正整数"));
                     return;
                 }
             }
@@ -302,7 +214,7 @@ public class WeaponPlus : TerrariaPlugin
             }
             else
             {
-                args.Player.SendInfoMessage(LangTipsGet("输入 /plus help    查看 plus 系列指令帮助"));
+                args.Player.SendInfoMessage(GetString("输入 /plus help    查看 plus 系列指令帮助"));
             }
             if (args.Parameters[0].Equals("damage", StringComparison.OrdinalIgnoreCase) || args.Parameters[0].Equals("da", StringComparison.OrdinalIgnoreCase) || args.Parameters[0] == "伤害")
             {
@@ -318,20 +230,20 @@ public class WeaponPlus : TerrariaPlugin
                             }
                             DB.WriteDB(select);
                             ReplaceWeaponsInBackpack(args.Player.TPlayer, select);
-                            args.Player.SendMessage($"[i:{select.id}] {LangTipsGet("升级成功")}   {LangTipsGet("共计消耗：")}{select.allCost}\n{select.ItemMess()}", this.getRandColor());
+                            args.Player.SendMessage(GetString($"[i:{select.id}] 升级成功   共计消耗：{select.allCost}\n{select.ItemMess()}"), this.getRandColor());
                         }
                         break;
                     case -1:
                         if (select.damage_level - result < 0)
                         {
-                            args.Player.SendInfoMessage(LangTipsGet("等级过低"));
+                            args.Player.SendInfoMessage(GetString("等级过低"));
                             break;
                         }
                         select.damage_level -= result;
                         select.CheckDB();
                         DB.WriteDB(select);
                         ReplaceWeaponsInBackpack(args.Player.TPlayer, select);
-                        args.Player.SendMessage($"[i:{select.id}]  {LangTipsGet("降级成功")}   {LangTipsGet("共计消耗：")}{select.allCost}\n{select.ItemMess()}", new Color(0, 255, 0));
+                        args.Player.SendMessage(GetString($"[i:{select.id}]  降级成功  共计消耗：{select.allCost}\n{select.ItemMess()}"), new Color(0, 255, 0));
                         break;
                 }
             }
@@ -349,20 +261,20 @@ public class WeaponPlus : TerrariaPlugin
                             }
                             DB.WriteDB(select);
                             ReplaceWeaponsInBackpack(args.Player.TPlayer, select);
-                            args.Player.SendMessage($"[i:{select.id}] {LangTipsGet("升级成功")}   {LangTipsGet("共计消耗：")}{select.allCost}\n{select.ItemMess()}", this.getRandColor());
+                            args.Player.SendMessage(GetString($"[i:{select.id}] 升级成功   共计消耗：{select.allCost}\n{select.ItemMess()}"), this.getRandColor());
                         }
                         break;
                     case -1:
                         if (select.scale_level - result < 0)
                         {
-                            args.Player.SendInfoMessage(LangTipsGet("等级过低"));
+                            args.Player.SendInfoMessage(GetString("等级过低"));
                             break;
                         }
                         select.scale_level -= result;
                         select.CheckDB();
                         DB.WriteDB(select);
                         ReplaceWeaponsInBackpack(args.Player.TPlayer, select);
-                        args.Player.SendMessage($"[i:{select.id}]  {LangTipsGet("降级成功")}   {LangTipsGet("共计消耗：")}{select.allCost}\n{select.ItemMess()}", new Color(0, 255, 0));
+                        args.Player.SendMessage(GetString($"[i:{select.id}]  降级成功  共计消耗：{select.allCost}\n{select.ItemMess()}"), new Color(0, 255, 0));
                         break;
                 }
             }
@@ -380,20 +292,20 @@ public class WeaponPlus : TerrariaPlugin
                             }
                             DB.WriteDB(select);
                             ReplaceWeaponsInBackpack(args.Player.TPlayer, select);
-                            args.Player.SendMessage($"[i:{select.id}] {LangTipsGet("升级成功")}   {LangTipsGet("共计消耗：")}{select.allCost}\n{select.ItemMess()}", this.getRandColor());
+                            args.Player.SendMessage(GetString($"[i:{select.id}] 升级成功   共计消耗：{select.allCost}\n{select.ItemMess()}"), this.getRandColor());
                         }
                         break;
                     case -1:
                         if (select.knockBack_level - result < 0)
                         {
-                            args.Player.SendInfoMessage(LangTipsGet("等级过低"));
+                            args.Player.SendInfoMessage(GetString("等级过低"));
                             break;
                         }
                         select.knockBack_level -= result;
                         select.CheckDB();
                         DB.WriteDB(select);
                         ReplaceWeaponsInBackpack(args.Player.TPlayer, select);
-                        args.Player.SendMessage($"[i:{select.id}]  {LangTipsGet("降级成功")}   {LangTipsGet("共计消耗：")}{select.allCost}\n{select.ItemMess()}", new Color(0, 255, 0));
+                        args.Player.SendMessage(GetString($"[i:{select.id}]  降级成功  共计消耗：{select.allCost}\n{select.ItemMess()}"), new Color(0, 255, 0));
                         break;
                 }
             }
@@ -411,20 +323,20 @@ public class WeaponPlus : TerrariaPlugin
                             }
                             DB.WriteDB(select);
                             ReplaceWeaponsInBackpack(args.Player.TPlayer, select);
-                            args.Player.SendMessage($"[i:{select.id}] {LangTipsGet("升级成功")}   {LangTipsGet("共计消耗：")}{select.allCost}\n{select.ItemMess()}", this.getRandColor());
+                            args.Player.SendMessage(GetString($"[i:{select.id}] 升级成功   共计消耗：{select.allCost}\n{select.ItemMess()}"), this.getRandColor());
                         }
                         break;
                     case -1:
                         if (select.useSpeed_level - result < 0)
                         {
-                            args.Player.SendInfoMessage(LangTipsGet("等级过低"));
+                            args.Player.SendInfoMessage(GetString("等级过低"));
                             break;
                         }
                         select.useSpeed_level -= result;
                         select.CheckDB();
                         DB.WriteDB(select);
                         ReplaceWeaponsInBackpack(args.Player.TPlayer, select);
-                        args.Player.SendMessage($"[i:{select.id}]  {LangTipsGet("降级成功")}   {LangTipsGet("共计消耗：")}{select.allCost}\n{select.ItemMess()}", new Color(0, 255, 0));
+                        args.Player.SendMessage(GetString($"[i:{select.id}]  降级成功  共计消耗：{select.allCost}\n{select.ItemMess()}"), new Color(0, 255, 0));
                         break;
                 }
             }
@@ -442,31 +354,31 @@ public class WeaponPlus : TerrariaPlugin
                             }
                             DB.WriteDB(select);
                             ReplaceWeaponsInBackpack(args.Player.TPlayer, select);
-                            args.Player.SendMessage($"[i:{select.id}] {LangTipsGet("升级成功")}   {LangTipsGet("共计消耗：")}{select.allCost}\n{select.ItemMess()}", this.getRandColor());
+                            args.Player.SendMessage(GetString($"[i:{select.id}] 升级成功   共计消耗：{select.allCost}\n{select.ItemMess()}"), this.getRandColor());
                         }
                         break;
                     case -1:
                         if (select.shootSpeed_level - result < 0)
                         {
-                            args.Player.SendInfoMessage(LangTipsGet("等级过低"));
+                            args.Player.SendInfoMessage(GetString("等级过低"));
                             break;
                         }
                         select.shootSpeed_level -= result;
                         select.CheckDB();
                         DB.WriteDB(select);
                         ReplaceWeaponsInBackpack(args.Player.TPlayer, select);
-                        args.Player.SendMessage($"[i:{select.id}]  {LangTipsGet("降级成功")}   {LangTipsGet("共计消耗：")}{select.allCost}\n{select.ItemMess()}", new Color(0, 255, 0));
+                        args.Player.SendMessage(GetString($"[i:{select.id}]  降级成功  共计消耗：{select.allCost}\n{select.ItemMess()}"), new Color(0, 255, 0));
                         break;
                 }
             }
             else
             {
-                args.Player.SendInfoMessage(LangTipsGet("输入 /plus help    查看 plus 系列指令帮助"));
+                args.Player.SendInfoMessage(GetString("输入 /plus help    查看 plus 系列指令帮助"));
             }
         }
         else
         {
-            args.Player.SendInfoMessage(LangTipsGet("输入 /plus help    查看 plus 系列指令帮助"));
+            args.Player.SendInfoMessage(GetString("输入 /plus help    查看 plus 系列指令帮助"));
         }
     }
     #endregion
@@ -491,16 +403,16 @@ public class WeaponPlus : TerrariaPlugin
                     }
                     wPlayer.hasItems.Clear();
                 }
-                TSPlayer.All.SendSuccessMessage(LangTipsGet("所有玩家的所有强化数据全部清理成功！"));
+                TSPlayer.All.SendSuccessMessage(GetString("所有玩家的所有强化数据全部清理成功！"));
             }
             else
             {
-                args.Player.SendErrorMessage(LangTipsGet("强化数据清理失败！！!"));
+                args.Player.SendErrorMessage(GetString("强化数据清理失败！！!"));
             }
         }
         else
         {
-            args.Player.SendInfoMessage(LangTipsGet("输入 /clearallplayersplus   将数据库中强化物品全部清理"));
+            args.Player.SendInfoMessage(GetString("输入 /clearallplayersplus   将数据库中强化物品全部清理"));
         }
     }
     #endregion
@@ -658,16 +570,16 @@ public class WeaponPlus : TerrariaPlugin
         var name = TShock.Players[whoAMI].Name;
         if (!WItem.plusPrice(plusType, out var price, gap))
         {
-            TShock.Players[whoAMI].SendMessage(LangTipsGet("当前该类型升级已达到上限，无法升级"), Color.Red);
+            TShock.Players[whoAMI].SendMessage(GetString("当前该类型升级已达到上限，无法升级"), Color.Red);
             return false;
         }
-        if (EconomicsAPI.Economics.CurrencyManager.DelUserCurrency(name, price))
+        if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(name, price, config.Currency))
         {
             WItem.allCost += price;
-            TShock.Players[whoAMI].SendMessage(LangTipsGet("扣除" + EconomicsAPI.Economics.Setting.CurrencyName + "：") + price + "，" + LangTipsGet("当前剩余：") + EconomicsAPI.Economics.CurrencyManager.GetUserCurrency(name), new Color(99, 106, 255));
+            TShock.Players[whoAMI].SendMessage(GetString("扣除" + config.Currency + "：") + price + "，" + GetString("当前剩余：") + EconomicsAPI.Economics.CurrencyManager.GetUserCurrency(name, config.Currency).Number, new Color(99, 106, 255));
             return true;
         }
-        TShock.Players[whoAMI].SendInfoMessage(LangTipsGet(EconomicsAPI.Economics.Setting.CurrencyName + "不足！"));
+        TShock.Players[whoAMI].SendInfoMessage(GetString(config.Currency + "不足！"));
         return false;
     }
     #endregion

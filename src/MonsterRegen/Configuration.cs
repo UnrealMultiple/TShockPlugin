@@ -119,13 +119,13 @@ internal class Configuration
     //List转换键值方法
     public class LevelDataConverter : JsonConverter<List<LevelData>>
     {
-        public override void WriteJson(JsonWriter writer, List<LevelData> value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, List<LevelData>? value, JsonSerializer serializer)
         {
-            var StageDict = value.ToDictionary(item => item.ID, item => item.Level);
+            var StageDict = value!.ToDictionary(item => item.ID, item => item.Level);
             serializer.Serialize(writer, StageDict);
         }
 
-        public override List<LevelData> ReadJson(JsonReader reader, Type objectType, List<LevelData> existingValue, bool hasExistingValue, JsonSerializer serializer)
+        public override List<LevelData> ReadJson(JsonReader reader, Type objectType, List<LevelData>? existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             var LevelDict = serializer.Deserialize<Dictionary<int, int>>(reader);
             return LevelDict?.Select(kv => new LevelData(kv.Key, kv.Value)).ToList() ?? new List<LevelData>();

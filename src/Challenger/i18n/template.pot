@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Challenger\n"
-"POT-Creation-Date: 2024-09-07 18:08:25+0000\n"
-"PO-Revision-Date: 2024-09-07 18:08:25+0000\n"
+"POT-Creation-Date: 2024-11-19 17:21:43+0000\n"
+"PO-Revision-Date: 2024-11-19 17:21:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -464,7 +464,7 @@ msgstr ""
 msgid "小心我爆炸的鳞甲"
 msgstr ""
 
-#: ../../Challenger.CNPCs/SlimeKing.cs:210
+#: ../../Challenger.CNPCs/SlimeKing.cs:214
 msgid "小辣鸡"
 msgstr ""
 
@@ -506,7 +506,7 @@ msgstr ""
 msgid "挑战模式已取消，您觉得太难了？[操作来自：{0}]"
 msgstr ""
 
-#: ../../Challenger.CProjs/BloodBagProj.cs:99
+#: ../../Challenger.CProjs/BloodBagProj.cs:95
 #, csharp-format
 msgid "敌怪治疗 + {0}"
 msgstr ""
@@ -622,7 +622,7 @@ msgstr ""
 msgid "蜂糖罐治疗 + {0}"
 msgstr ""
 
-#: ../../Challenger.CProjs/BloodBagProj.cs:125
+#: ../../Challenger.CProjs/BloodBagProj.cs:121
 #, csharp-format
 msgid "血包治疗 + {0}"
 msgstr ""
@@ -643,7 +643,7 @@ msgstr ""
 msgid "谁人惊扰了我的蜂巢！"
 msgstr ""
 
-#: ../../Challenger.CNPCs/SlimeKing.cs:204
+#: ../../Challenger.CNPCs/SlimeKing.cs:208
 msgid "走位真菜"
 msgstr ""
 
@@ -675,7 +675,7 @@ msgstr ""
 msgid "远方的巨兽将会摧毁你所拥有的一切"
 msgstr ""
 
-#: ../../Challenger.CNPCs/SlimeKing.cs:207
+#: ../../Challenger.CNPCs/SlimeKing.cs:211
 msgid "连我都打不过，回家喝奶吧你"
 msgstr ""
 

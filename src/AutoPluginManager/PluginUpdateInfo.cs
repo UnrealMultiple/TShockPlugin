@@ -1,21 +1,27 @@
 ﻿namespace AutoPluginManager;
 
-public class PluginUpdateInfo
+public record PluginUpdateInfo(PluginVersionInfo Current, PluginVersionInfo Latest)
 {
-    public PluginUpdateInfo(string name, string author, Version newVersion, Version oldVersion, string localPath, string remotePath)
+    public class AssemblyNameEqualityComparer : IEqualityComparer<PluginUpdateInfo>
     {
-        this.NewVersion = newVersion;
-        this.OldVersion = oldVersion;
-        this.Author = author;
-        this.Name = name;
-        this.LocalPath = localPath;
-        this.RemotePath = remotePath;
-    }
-    public Version NewVersion { get; set; }
-    public Version OldVersion { get; set; }
-    public string Author { get; set; }
-    public string Name { get; set; }
-    public string LocalPath { get; set; }
-    public string RemotePath { get; set; }
+        public bool Equals(PluginUpdateInfo? x, PluginUpdateInfo? y)
+        {
+            if (ReferenceEquals(x, y))
+            {
+                return true;
+            }
 
+            if (x is null || y is null)
+            {
+                return false;
+            }
+
+            return x.Latest.AssemblyName == y.Latest.AssemblyName;
+        }
+
+        public int GetHashCode(PluginUpdateInfo obj)
+        {
+            return obj.Latest.AssemblyName.GetHashCode();
+        }
+    }
 }

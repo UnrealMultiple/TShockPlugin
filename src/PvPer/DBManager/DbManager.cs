@@ -6,7 +6,7 @@ namespace PvPer;
 
 public class DbManager
 {
-    private static IDbConnection _db;
+    private static IDbConnection _db = null!;
 
     public DbManager(IDbConnection db)
     {

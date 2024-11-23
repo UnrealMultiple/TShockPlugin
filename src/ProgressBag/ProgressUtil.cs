@@ -37,19 +37,14 @@ public static class ProgressUtil
             var state = false;
             var map = field.GetCustomAttribute<ProgressMapAttribute>();
             var progName = field.GetCustomAttribute<ProgressNameAttribute>();
-            if (map?.Target == typeof(NPC))
-            {
-                state = (ProgressType) field.GetValue(-1)! switch
+            state = map?.Target == typeof(NPC)
+                ? (ProgressType) field.GetValue(-1)! switch
                 {
                     ProgressType.EvilBoss => InBestiaryDB(Terraria.ID.NPCID.EaterofWorldsHead) && CompareVlaue(map, null),
                     ProgressType.Brainof => InBestiaryDB(Terraria.ID.NPCID.BrainofCthulhu) && CompareVlaue(map, null),
                     _ => CompareVlaue(map, null),
-                };
-            }
-            else
-            {
-                state = map?.Target == typeof(Player) ? CompareVlaue(map, Player.TPlayer) : CompareVlaue(map, null);
-            }
+                }
+                : map?.Target == typeof(Player) ? CompareVlaue(map, Player.TPlayer) : CompareVlaue(map, null);
             foreach (var name in progName!.Names)
             {
                 progress[name] = state;

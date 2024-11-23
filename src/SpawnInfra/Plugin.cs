@@ -11,17 +11,19 @@ public class Plugin : TerrariaPlugin
     #region 插件信息
     public override string Name => "生成基础建设";
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 5, 5);
+    public override Version Version => new Version(1, 5, 6);
     public override string Description => "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）";
     #endregion
 
     #region 注册与释放
-    public Plugin(Main game) : base(game) { }
-    private GeneralHooks.ReloadEventD _reloadHandler;
+    public Plugin(Main game) : base(game)
+    {
+        this._reloadHandler = (_) => LoadConfig();
+    }
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
         LoadConfig();
-        this._reloadHandler = (_) => LoadConfig();
         GeneralHooks.ReloadEvent += this._reloadHandler;
         //提高优先级避免覆盖CreateSpawn插件
         ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize, 20);
@@ -70,22 +72,25 @@ public class Plugin : TerrariaPlugin
 
         if (Config.Enabled)
         {
+            foreach (var cmd in Config.CommandList)
+            {
+                Commands.HandleCommand(TSPlayer.Server, cmd);
+            }
+
+            //监狱
+            foreach (var item in Config.Prison)
+            {
+                GenLargeHouse(Main.spawnTileX + item.spawnTileX, Main.spawnTileY + item.spawnTileY, item.BigHouseWidth, item.BigHouseHeight);
+            }
+
+
+            //箱子
             foreach (var item in Config.Chests)
             {
                 SpawnChest(Main.spawnTileX + item.spawnTileX, Main.spawnTileY + item.spawnTileY, item.ClearHeight, item.ChestWidth, item.ChestCount, item.ChestLayers);
             }
 
-            foreach (var item in Config.WorldPlatform)
-            {
-                if (Main.zenithWorld || Main.remixWorld) //天顶 颠倒以天空层往下算
-                {
-                    WorldPlatform((int) sky - item.WorldPlatformY, item.WorldPlatformClearY);
-                }
-                else //正常世界从出生点算
-                {
-                    WorldPlatform(Main.spawnTileY + item.WorldPlatformY, item.WorldPlatformClearY);
-                }
-            }
+
 
             //自建微光湖
             foreach (var item in Config.SpawnShimmerBiome)
@@ -105,6 +110,7 @@ public class Plugin : TerrariaPlugin
                     }
                 }
             }
+
 
             //地狱直通车与刷怪场
             foreach (var item in Config.HellTunnel)
@@ -173,10 +179,17 @@ public class Plugin : TerrariaPlugin
                 UnderworldPlatform(Main.UnderworldLayer + item.HellPlatformY, item.HellPlatformY);
             }
 
-            //监狱
-            foreach (var item in Config.Prison)
+            //世界平台
+            foreach (var item in Config.WorldPlatform)
             {
-                GenLargeHouse(Main.spawnTileX + item.spawnTileX, Main.spawnTileY + item.spawnTileY, item.BigHouseWidth, item.BigHouseHeight);
+                if (Main.zenithWorld || Main.remixWorld) //天顶 颠倒以天空层往下算
+                {
+                    WorldPlatform((int) sky - item.WorldPlatformY, item.WorldPlatformClearY);
+                }
+                else //正常世界从出生点往上算
+                {
+                    WorldPlatform(Main.spawnTileY + item.WorldPlatformY, item.WorldPlatformClearY);
+                }
             }
 
             TShock.Utils.Broadcast(
@@ -185,7 +198,6 @@ public class Plugin : TerrariaPlugin
 
             Commands.HandleCommand(TSPlayer.Server, "/save");
             Commands.HandleCommand(TSPlayer.Server, "/clear i 9999");
-
             Configuration.Read();
             Config.Enabled = false;
             Config.Write();
@@ -312,7 +324,10 @@ public class Plugin : TerrariaPlugin
                             WorldGen.PlaceWall(CenterRight + j - 8 - CenterVal, middle + i, 164, false); // 右 62 - 84格刷怪区 放红玉晶莹墙警示
                         }
                     }
-
+                    if (Main.tile[x, y].wall != Terraria.ID.WallID.None)
+                    {
+                        continue;
+                    }
                     WorldGen.PlaceTile(x, middle + 11 + CenterVal, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0); //中间下11格放箱子的实体块
 
                     WorldGen.PlaceTile(x, middle + 10 + CenterVal, Config.Chests[0].ChestTileID, false, true, -1, Config.Chests[0].ChestStyle); //中间下10格放箱子
@@ -603,7 +618,7 @@ public class Plugin : TerrariaPlugin
                 {
                     val.wall = wall;
                 }
-                if (i == num && j > posY - 5 || i == num + num2 - 1 && j > posY - 5 || j == posY - 1)
+                if ((i == num && j > posY - 5) || (i == num + num2 - 1 && j > posY - 5) || j == posY - 1)
                 {
                     WorldGen.PlaceTile(i, j, platform.id, false, true, -1, platform.style);
                 }
@@ -703,6 +718,7 @@ public class Plugin : TerrariaPlugin
         }
 
         var clear = Math.Max(0, height);
+
         for (var y = Main.oceanBG; y < sky + clear; y += interval)
         {
             for (var top = y - IntlClear; top < y; top++)
@@ -736,51 +752,46 @@ public class Plugin : TerrariaPlugin
                         WorldGen.PlaceLiquid(x, y, 0, 255);
                     }
 
-                    //开启实体块包围左海平台
+                    // 开启实体块包围左海平台
                     if (Config.WorldPlatform[0].Enclose)
                     {
-                        //清理顶部上面一层
+                        // 清理顶部上面一层
                         for (var j = 1; j < clear; j++)
                         {
-                            Main.tile[x, sky - clear + height - j].ClearTile(); // 清除方块
+                            if (sky - clear + height - j >= 0 && sky - clear + height - j < Main.maxTilesY)
+                            {
+                                Main.tile[x, sky - clear + height - j].ClearTile();
+                            }
                         }
-                        //左海平台顶部放1层格栅让海水流下来
-                        WorldGen.PlaceTile(x, sky - clear + height, 546, false, false, -1, 0);
 
-                        //清理底部上面一层
+                        // 放置左海平台顶部格栅
+                        if (sky - clear + height >= 0 && sky - clear + height < Main.maxTilesY)
+                        {
+                            WorldGen.PlaceTile(x, sky - clear + height, 546, false, false, -1, 0);
+                        }
+
+                        // 清理底部上面一层
                         for (var j = 1; j < IntlClear; j++)
                         {
-                            Main.tile[x, sky + clear - j].ClearEverything(); // 清除所有
+                            if (sky + clear - j >= 0 && sky + clear - j < Main.maxTilesY)
+                            {
+                                Main.tile[x, sky + clear - j].ClearEverything();
+                            }
                         }
-                        //左海平台底部放1层
-                        WorldGen.PlaceTile(x, sky + clear, 38, false, true, -1, 0);
 
-                        // 左右侧实体块对上下对齐 (这个对CPU算力要求很高 加载超级慢
-                        if (Config.WorldPlatform[0].AccordantY)
+                        // 放置左海平台底部
+                        if (sky + clear >= 0 && sky + clear < Main.maxTilesY)
                         {
-                            for (var y2 = sky - clear + height; y2 < sky + clear; y2++)
-                            {
-                                WorldGen.PlaceTile(0, y2, 38, false, true, -1, 0);
-                                WorldGen.PlaceTile(wide - 1, y2, 38, false, true, -1, 0);
-                            }
+                            WorldGen.PlaceTile(x, sky + clear, 38, false, true, -1, 0);
                         }
-                        else
+
+                        // 放置左边一列特定方块
+                        var leftX = 0;
+                        var leftY = x + y - IntlClear;
+                        if (leftY >= 0 && leftY < Main.maxTilesY)
                         {
-                            //左边放一列 这列只能从地图编辑器看（41以内的x轴坐标已经超出地图边界外了）
-                            WorldGen.PlaceTile(0, x + y - IntlClear, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
-
-                            //考虑十周年有些出生点离左海太近 所以不放右侧
-                            if (Math.Abs(wide - Main.spawnTileX) < Radius)
-                            {
-                                continue;
-                            }
-                            else
-                            {
-                                //正常出生点的左海都会放右侧墙
-                                WorldGen.PlaceTile(wide, x + y - IntlClear, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
-                            }
+                            WorldGen.PlaceTile(leftX, leftY, Config.HellTunnel[0].Hell_BM_TileID, false, true, -1, 0);
                         }
-
                     }
                 }
             }
@@ -805,6 +816,11 @@ public class Plugin : TerrariaPlugin
 
             for (var y = posY - clear; y <= posY; y++)
             {
+                if (x < 0 || x >= Main.maxTilesX || y < 0 || y >= Main.maxTilesY)
+                {
+                    continue;
+                }
+
                 Main.tile[x, y].ClearEverything();
             }
 

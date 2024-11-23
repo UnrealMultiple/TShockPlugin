@@ -13,7 +13,7 @@ public class DTEntryBlock : TerrariaPlugin
     public override string Name => "阻止进入地牢或神庙";
     public override string Description => "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙";
     public override Version Version => new Version(1, 1, 5);
-    public static Configuration Config;
+    public static Configuration Config = null!;
     Color orangeColor = new Color(255, 165, 0);
 
     public DTEntryBlock(Main game) : base(game)
@@ -28,7 +28,7 @@ public class DTEntryBlock : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(DTEntryBlock).Name);
+        args.Player?.SendSuccessMessage(GetString("[阻止进入地牢或神庙] 重新加载配置完毕。"));
     }
     public override void Initialize()
     {
@@ -67,14 +67,14 @@ public class DTEntryBlock : TerrariaPlugin
 
                 if (Config.TeleportPlayersEnterDungeonForUnkilledSkullKing)
                 {
-                    player.SendMessage("因为在没击败骷髅王的时候探索地牢，你被传送到出生点.", this.orangeColor);
+                    player.SendMessage(GetString("因为在没击败骷髅王的时候探索地牢，你被传送到出生点."), this.orangeColor);
                     player.Teleport(Main.spawnTileX * 16, Main.spawnTileY * 16);
                     player.TPlayer.ZoneDungeon = false;
                 }
                 if (Config.KillPlayersEnterDungeonForUnkilledSkullKing)
                 {
                     player.KillPlayer();
-                    player.SendMessage("因为在没击败骷髅王的时候探索地牢，你被击杀了.", this.orangeColor);
+                    player.SendMessage(GetString("因为在没击败骷髅王的时候探索地牢，你被击杀了."), this.orangeColor);
                     player.TPlayer.ZoneDungeon = false;
 
                 }
@@ -88,13 +88,13 @@ public class DTEntryBlock : TerrariaPlugin
             {
                 if (Config.TeleportPlayersEnterTempleForUnkilledPlantBoss)
                 {
-                    player.SendMessage("禁止在没击败世纪之花的时候探索神庙，你被传送到出生点", this.orangeColor);
+                    player.SendMessage(GetString("禁止在没击败世纪之花的时候探索神庙，你被传送到出生点"), this.orangeColor);
                     player.Teleport(Main.spawnTileX * 16, Main.spawnTileY * 16);
                     player.TPlayer.ZoneLihzhardTemple = false;
                 }
                 if (Config.KillPlayersEnterTempleForUnkilledPlantBoss)
                 {
-                    player.SendMessage("禁止在没击败世纪之花的时候探索神庙，你被击杀", this.orangeColor);
+                    player.SendMessage(GetString("禁止在没击败世纪之花的时候探索神庙，你被击杀"), this.orangeColor);
                     player.KillPlayer();
                     player.TPlayer.ZoneLihzhardTemple = false;
                 }

@@ -41,8 +41,8 @@ public class ShowArmors : TerrariaPlugin
 
     private void ShowMySlots(CommandArgs args)
     {
-        TSPlayer target = null;
-        Item[] armors = null;
+        TSPlayer? target = null;
+        Item[]? armors = null;
         var str = "";
         const int MAX_SLOTS_NUMBER = 10;
         var argsCount = args.Parameters.Count;
@@ -75,6 +75,10 @@ public class ShowArmors : TerrariaPlugin
                 armors = target.TPlayer.armor;
                 str = $"{target.Name}" + " : " + "拿着 " + $"[i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]" + $"{(ItemPrefix) target.SelectedItem.prefix}";
             }
+        }
+        if (target is null || armors is null)
+        {
+            return;
         }
         for (var i = 0; i < MAX_SLOTS_NUMBER; i++)
         {

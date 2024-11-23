@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => "禁止特定弹幕在地表产生";
     public override string Name => "禁地表弹幕";
     public override Version Version => new(1, 0, 0, 6);
-    internal static Configuration Config;
+    internal static Configuration Config = null!;
     public static bool _isEnabled; // 存储插件是否启用的状态，默认为false
     public Plugin(Main game) : base(game)
     {
@@ -32,7 +32,7 @@ public class Plugin : TerrariaPlugin
         GetDataHandlers.NewProjectile += this.OnProjectileNew;
         GeneralHooks.ReloadEvent += ReloadConfig;
         ServerApi.Hooks.GamePostInitialize.Register(this, OnWorldload);
-        Commands.ChatCommands.Add(new Command("禁地表弹幕", this.Command, "禁地表弹幕")); //添加一个指令权限
+        Commands.ChatCommands.Add(new Command("禁地表弹幕", this.Command, "禁地表弹幕", "DSproj")); //添加一个指令权限
     }
 
     protected override void Dispose(bool disposing)
@@ -53,13 +53,13 @@ public class Plugin : TerrariaPlugin
         LoadConfig();
     }
 
-    private static void ReloadConfig(ReloadEventArgs args = null)
+    private static void ReloadConfig(ReloadEventArgs? args = null)
     {
         LoadConfig();
         // 如果 args 不为空，则发送重载成功的消息
         if (args != null && args.Player != null)
         {
-            args.Player.SendSuccessMessage("[禁地表弹幕]重新加载配置完毕。");
+            args.Player.SendSuccessMessage(GetString("[禁地表弹幕]重新加载配置完毕。"));
         }
 
         _isEnabled = Config.Enabled; // 重新加载后同步插件启用状态
@@ -81,10 +81,10 @@ public class Plugin : TerrariaPlugin
         Config.Write(Configuration.FilePath); // 将新状态写入配置文件
 
         // 检查玩家是否具有“禁地表弹幕”权限
-        if (!args.Player.HasPermission("禁地表弹幕"))
+        if (!args.Player.HasPermission("禁地表弹幕") || !args.Player.HasPermission("DSproj"))
         {
             // 如果没有权限，则向该玩家发送错误消息并退出方法
-            args.Player.SendErrorMessage("你没有使用禁地表弹幕指令的权限");
+            args.Player.SendErrorMessage(GetString("你没有使用禁地表弹幕指令的权限"));
             return;
         }
 
@@ -94,7 +94,7 @@ public class Plugin : TerrariaPlugin
         Config.Write(Configuration.FilePath);
 
         // 根据previousState而不是_isEnabled来构建消息，因为_isEnabled已经被切换了
-        var stateChangeVerb = previousState ? "关闭" : "开启";
+        var stateChangeVerb = previousState ? GetString("关闭") : GetString("开启");
 
         // 当插件启用时的操作
         if (_isEnabled)
@@ -124,13 +124,13 @@ public class Plugin : TerrariaPlugin
                 }
 
                 // 构建并发送给玩家成功消息，包含启用/关闭状态及弹幕列表
-                var playerMessage = $"{args.Player.Name}[c/FFAE80:{stateChangeVerb}]禁止地表弹幕功能,\n[c/FD7E83:禁止地表生成弹幕表]:\n{formattedIdsForPlayers}\n";
+                var playerMessage = GetString($"{args.Player.Name}[c/FFAE80:{stateChangeVerb}]禁止地表弹幕功能,\n[c/FD7E83:禁止地表生成弹幕表]:\n{formattedIdsForPlayers}\n");
                 TSPlayer.All.SendSuccessMessage(playerMessage);
 
                 // 构建控制台消息前缀，并根据启用状态决定是否展示弹幕列表 之所以写2个是因为tshock控制台不能输出带颜色的代码
-                var consoleMessagePrefix = $"{args.Player.Name} {stateChangeVerb}了禁止地表弹幕功能,\n";
+                var consoleMessagePrefix = GetString($"{args.Player.Name} {stateChangeVerb}了禁止地表弹幕功能,\n");
                 var consoleProjectilesList = _isEnabled
-                    ? $"禁止地表生成弹幕表：\n{string.Join(", ", projectileIdsWithNames.Select(kv => $"{kv.Value}({kv.Key})"))}\n"
+                    ? GetString($"禁止地表生成弹幕表：\n{string.Join(", ", projectileIdsWithNames.Select(kv => $"{kv.Value}({kv.Key})"))}\n")
                     : string.Empty;
 
                 // 组合完整控制台消息并记录到TShock日志
@@ -143,11 +143,11 @@ public class Plugin : TerrariaPlugin
         if (!_isEnabled)
         {
             // 向所有玩家发送消息，通知已关闭禁地表弹幕功能，避免再次把弹幕ID发出来所以额外写了个关闭消息，同样写2个：1个给玩家看（带颜色），1个给控制台看。
-            var playerMessage = $"{args.Player.Name}[c/FFAE80:关闭了]禁止地表弹幕功能.";
+            var playerMessage = GetString($"{args.Player.Name}[c/FFAE80:关闭了]禁止地表弹幕功能.");
             TSPlayer.All.SendSuccessMessage(playerMessage);
 
             // 记录到控制台，只显示关闭通知，避免再次把弹幕ID发出来所以额外写了个关闭消息
-            var consoleMessagePrefix = $"{args.Player.Name} 关闭了禁止地表弹幕功能.";
+            var consoleMessagePrefix = GetString($"{args.Player.Name} 关闭了禁止地表弹幕功能.");
             var fullConsoleMessage = $"{consoleMessagePrefix}\n";
             TShock.Log.ConsoleInfo(fullConsoleMessage);
         }
@@ -194,9 +194,9 @@ public class Plugin : TerrariaPlugin
         }
     }
 
-    private void OnProjectileNew(object sender, GetDataHandlers.NewProjectileEventArgs e)
+    private void OnProjectileNew(object? sender, GetDataHandlers.NewProjectileEventArgs e)
     {
-        if (e.Player.HasPermission("免检地表弹幕"))
+        if (e.Player.HasPermission("免检地表弹幕") || e.Player.HasPermission("IgnoreDSproj"))
         {
             return;
         }

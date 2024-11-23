@@ -25,13 +25,11 @@ public class Economics : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 1, 0);
+    public override Version Version => new(2, 0, 0, 1);
 
     public readonly static List<TSPlayer> ServerPlayers = new();
 
     private readonly ConcurrentDictionary<NPC, Dictionary<Player, float>> Strike = new();
-
-    private readonly object TLock = new();
 
     public static string SaveDirPath => Path.Combine(TShock.SavePath, "Economics");
 
@@ -113,29 +111,35 @@ public class Economics : TerrariaPlugin
                 "[c/00ffbf:{0}]",
                 "[c/1aecb8:{0}]"
             };
+            Setting.CustomizeCurrencys.Add(new());
         }
-
         Setting = ConfigHelper.LoadConfig(this.ConfigPATH, Setting);
     }
 
     private void PlayerHandler_OnPlayerCountertop(PlayerCountertopArgs args)
     {
-        args.Messages.Add(new($"当前延迟: {args.Ping.GetPing():F1}ms", 7));
-        args.Messages.Add(new($"玩家名称: {args.Player.Name}", 1));
-        args.Messages.Add(new($"{Setting.CurrencyName}数量: {CurrencyManager.GetUserCurrency(args.Player.Name)}", 3));
-        args.Messages.Add(new($"在线人数: {TShock.Utils.GetActivePlayerCount()}/{Main.maxPlayers}", 4));
-        args.Messages.Add(new($"世界名称: {Main.worldName}", 9));
-        args.Messages.Add(new($"当前生命: {args.Player.TPlayer.statLife}/{args.Player.TPlayer.statLifeMax}", 5));
-        args.Messages.Add(new($"当前魔力: {args.Player.TPlayer.statMana}/{args.Player.TPlayer.statManaMax}", 6));
+        args.Messages.Add(new(GetString($"当前延迟: {args.Ping.GetPing():F1}ms"), 7));
+        args.Messages.Add(new(GetString($"玩家名称: {args.Player!.Name}"), 1));
+        foreach (var currency in Setting.CustomizeCurrencys)
+        {
+            args.Messages.Add(new(GetString($"{currency.Name}数量: {CurrencyManager.GetUserCurrency(args.Player.Name, currency.Name)}"), 3));
+        }
+        args.Messages.Add(new(GetString($"在线人数: {TShock.Utils.GetActivePlayerCount()}/{Main.maxPlayers}"), 4));
+        args.Messages.Add(new(GetString($"世界名称: {Main.worldName}"), 9));
+        args.Messages.Add(new(GetString($"当前生命: {args.Player.TPlayer.statLife}/{args.Player.TPlayer.statLifeMax}"), 5));
+        args.Messages.Add(new(GetString($"当前魔力: {args.Player.TPlayer.statMana}/{args.Player.TPlayer.statManaMax}"), 6));
     }
 
     private void OnKillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
     {
-        if (Setting.DeathDropRate >= 0)
+        foreach (var currency in Setting.CustomizeCurrencys)
         {
-            var drop = CurrencyManager.GetUserCurrency(e.Player.Name) * Setting.DeathDropRate;
-            CurrencyManager.DelUserCurrency(e.Player.Name, Convert.ToInt64(drop));
-            e.Player.SendErrorMessage($"你因死亡掉落{drop:F0}个{Setting.CurrencyName}!");
+            if (currency.DeathFallOption.Enable)
+            {
+                var drop = CurrencyManager.GetUserCurrency(e.Player.Name, currency.Name).Number * currency.DeathFallOption.DropRate;
+                CurrencyManager.DeductUserCurrency(e.Player.Name, Convert.ToInt64(drop), currency.Name);
+                e.Player.SendErrorMessage(GetString($"你因死亡掉落{drop:F0}个{currency.Name}!"));
+            }
         }
     }
 
@@ -215,18 +219,23 @@ public class Economics : TerrariaPlugin
         {
             return;
         }
-
         if (this.Strike.TryGetValue(args.npc, out var result) && result != null)
         {
             foreach (var (player, damage) in result)
             {
                 if (!PlayerHandler.PlayerKillNpc(new PlayerKillNpcArgs(player, args.npc, damage)))
                 {
-                    var num = Convert.ToInt64(damage * Setting.ConversionRate);
-                    CurrencyManager.AddUserCurrency(player.name, num);
-                    if (Setting.ShowAboveHead)
+                    foreach (var currency in Setting.CustomizeCurrencys)
                     {
-                        player.SendCombatMsg($"+{num}$", Color.AntiqueWhite);
+                        if (currency.CurrencyObtain.CurrencyObtainType == Enumerates.CurrencyObtainType.KillNpc)
+                        {
+                            var num = Convert.ToInt64(damage * currency.CurrencyObtain.ConversionRate);
+                            CurrencyManager.AddUserCurrency(player.name, num, currency.Name);
+                            if (currency.CombatMsgOption.Enable)
+                            {
+                                player.SendCombatMsg($"+{num}$", new Color(currency.CombatMsgOption.Color[0], currency.CombatMsgOption.Color[1], currency.CombatMsgOption.Color[2]));
+                            }
+                        }
                     }
                 }
             }
@@ -300,7 +309,6 @@ public class Economics : TerrariaPlugin
                 ServerPlayers.Remove(player);
             }
         }
-
     }
 
     private void OnGreet(GreetPlayerEventArgs args)

@@ -12,8 +12,8 @@ public class Ezperm : TerrariaPlugin
     public override string Name => "Ezperm";
     public override string Author => "大豆子,肝帝熙恩优化1449";
     public override string Description => "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限";
-    public override Version Version => new Version(1, 2, 3);
-    internal static Configuration Config;
+    public override Version Version => new Version(1, 2, 4);
+    internal static Configuration Config = null!;
     public Ezperm(Main game) : base(game)
     {
 
@@ -28,7 +28,7 @@ public class Ezperm : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player?.SendSuccessMessage("重新加载{0}配置完毕。", typeof(Ezperm).Name);
+        args.Player?.SendSuccessMessage("[Ezperm] 重新加载配置完毕。");
     }
     public override void Initialize()
     {
@@ -56,7 +56,7 @@ public class Ezperm : TerrariaPlugin
                 try
                 {
                     TShock.Groups.AddGroup(groupName, null, "", Group.defaultChatColor);
-                    args.Player.SendSuccessMessage($"组 {groupName} 不存在，已创建该组。\r\n");
+                    args.Player.SendSuccessMessage(GetString($"组 {groupName} 不存在，已创建该组。") + "\r\n");
                 }
                 catch (GroupManagerException ex)
                 {
@@ -71,7 +71,7 @@ public class Ezperm : TerrariaPlugin
                     var response = TShock.Groups.AddPermissions(groupName, groupInfo.AddPermissions);
                     if (response.Length > 0)
                     {
-                        args.Player.SendSuccessMessage($"成功为组 {groupName} 添加权限: {string.Join(", ", groupInfo.AddPermissions)}\r\n");
+                        args.Player.SendSuccessMessage(GetString($"成功为组 {groupName} 添加权限: {string.Join(", ", groupInfo.AddPermissions)}")+"\r\n");
                     }
                 }
                 catch (GroupManagerException ex)
@@ -88,7 +88,7 @@ public class Ezperm : TerrariaPlugin
                     var response = TShock.Groups.DeletePermissions(groupName, groupInfo.DelPermissions);
                     if (response.Length > 0)
                     {
-                        args.Player.SendSuccessMessage($"成功为组 {groupName} 删除权限: {string.Join(", ", groupInfo.DelPermissions)}\r\n\r\n");
+                        args.Player.SendSuccessMessage(GetString($"成功为组 {groupName} 删除权限: {string.Join(", ", groupInfo.DelPermissions)}") + "\r\n\r\n");
                     }
                 }
                 catch (GroupManagerException ex)

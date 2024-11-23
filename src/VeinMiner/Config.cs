@@ -6,7 +6,7 @@ namespace VeinMiner;
 
 public class Config
 {
-    public static void Load(ReloadEventArgs args = null)
+    public static void Load(ReloadEventArgs? args = null)
     {
         try
         {
@@ -26,7 +26,7 @@ public class Config
                 NotMine = new() { 21, 26, 88 }
             }, Formatting.Indented));
 
-            VeinMiner.Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Path.Combine(TShock.SavePath, "VeinMiner.json")));
+            VeinMiner.Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Path.Combine(TShock.SavePath, "VeinMiner.json")))!;
             if (args != null)
             {
                 TShock.Log.ConsoleInfo(GetString("<VeinMiner> 配置已重新加载。"));
@@ -48,13 +48,13 @@ public class Config
     [JsonProperty("放入背包")]
     public bool PutInInventory { get; set; } = true;
 
-    [JsonProperty("矿石类型")]
+    [JsonProperty("矿石物块ID")]
     public List<int> Tile { get; set; } = new();
 
-    [JsonProperty("当矿石上方有这些物品时，该处矿石不被挖掘")]
+    [JsonProperty("忽略挖掘表面方块ID")]
     public List<int> NotMine { get; set; } = new();
 
-    [JsonProperty("兑换规则")]
+    [JsonProperty("奖励规则")]
     public List<Exchange> Exchange { get; set; } = new();
 }
 
@@ -66,9 +66,9 @@ public struct Exchange
     [JsonProperty("最小尺寸")]
     public int MinSize;
 
-    [JsonProperty("类型")]
+    [JsonProperty("矿石物块ID")]
     public int Type;
 
-    [JsonProperty("物品")]
+    [JsonProperty("奖励物品")]
     public Dictionary<int, int> Item;
 }

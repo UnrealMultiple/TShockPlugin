@@ -21,12 +21,12 @@ jobs:
           fetch-depth: 0
           ssh-key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: 初始化.NET 6
+      - name: 初始化.NET 8
         uses: actions/setup-dotnet@v4
         env:
           DOTNET_CLI_UI_LANGUAGE: zh-CN
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 8.0.404
 
       - name: 安装构建依赖
         shell: pwsh
@@ -63,7 +63,14 @@ jobs:
           Copy-Item out/**/*.dll bin/ServerPlugins/
           Copy-Item SubmoduleAssembly/*.dll bin/ServerPlugins/
           Set-Location bin
-          ./TShock.Server -dump-plugins-list-only
+          New-Item -Name manifests -ItemType Directory
+          foreach ($p in @(Get-ChildItem ../src/**/*.csproj)) {
+            $manifestPath = Join-Path $p.DirectoryName manifest.json
+            if (Test-Path $manifestPath -PathType Leaf) {
+              Copy-Item $manifestPath $(Join-Path manifests "$($p.Basename).json")
+            }
+          }
+          ./TShock.Server -dump-plugins-list-only ./manifests
           Set-Location ../
           New-Item -Path out/Target -Name Plugins -ItemType Directory
           $ErrorActionPreference = "SilentlyContinue"
@@ -74,14 +81,14 @@ jobs:
           $ErrorActionPreference = "Continue"
           Copy-Item out/**/*.dll,out/**/*.pdb out/Target/Plugins/
           Copy-Item SubmoduleAssembly/* out/Target/Plugins/
-          Copy-Item bin/Plugins.json,README.md,Usage.txt,LICENSE out/Target/
-          python scripts/zip.py
+          Copy-Item bin/Plugins.json,README.md,README_EN.md,Usage.txt,LICENSE out/Target/
 
       - name: 上传临时插件包
         uses: actions/upload-artifact@v4
         with:
           name: Plugins
-          path: out/Plugins.zip
+          path: out/Target/*
+          compression-level: 9
 
       - name: 更新相关文件
         continue-on-error: true
@@ -92,16 +99,16 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           $Changed = [System.Object[]]::new(0)
-          foreach ($p in @(Get-ChildItem src/**/*.csproj))  {
+          foreach ($p in @(Get-ChildItem src/**/*.csproj)) {
             $pot = [System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot")
             New-Item -Path $p.DirectoryName -Name i18n -ItemType Directory -Force
             dotnet tool run GetText.Extractor -u -o -s $p.FullName -t $pot
           }
           git add -N src/**/i18n/*.pot
-          foreach ($p in @((git diff --numstat).Split([System.Environment]::NewLine)))  {
+          foreach ($p in @(git diff --numstat)) {
             if (!$p.EndsWith(".pot")) { continue }
-            $d = $p.Split("`t")
-            if ($d[0] -le 2 -and $d[1] -le 2) {
+            $d = -split $p
+            if ([int]$d[0] -le 2 -and [int]$d[1] -le 2) {
               git checkout $d[2]
             } else {
               foreach ($t in @(Get-ChildItem $([System.IO.Path]::GetDirectoryName($d[2]))*.po)) {
@@ -124,6 +131,14 @@ jobs:
             git commit -m "自动更新$($Changed -Join ", ") [skip ci]"
             git push
           }
+      
+      - name: 下载临时插件包
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          name: Plugins
+          path: bin
+          skip_unpack: true
 
       - name: 同步其他平台
         continue-on-error: true
@@ -146,7 +161,7 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v5
         with:
           configuration: ".config/log_config.json"
-
+          
       - name: 发布插件包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: ncipollo/release-action@v1
@@ -166,6 +181,6 @@ jobs:
             ${{steps.external_changelog_second.outputs.changelog}}
             </details>
           artifacts: |
-            out/Plugins.zip
+            bin/Plugins.zip
           allowUpdates: true
           removeArtifacts: true

@@ -59,22 +59,22 @@ public class ConsoleSql : TerrariaPlugin
     {
         if (args.Player.RealPlayer)
         {
-            args.Player.SendErrorMessage("此命令仅支持控制台(BOT)执行!");
+            args.Player.SendErrorMessage(GetString("此命令仅支持控制台(BOT)执行!"));
             return;
         }
         if (args.Parameters.Count == 0)
         {
-            args.Player.SendErrorMessage("格式错误!正确格式: sql <SQL语句>;");
-            args.Player.SendWarningMessage("常用SQL语句:");
-            args.Player.SendWarningMessage("->Sqlite列出表格:SELECT name FROM sqlite_master WHERE type='table';");
-            args.Player.SendWarningMessage("->Mysql列出表格:SHOW TABLES;");
-            args.Player.SendWarningMessage("->清空表格:DROP TABLE <表格名字>;");
-            args.Player.SendWarningMessage("->删除表格:DELETE FROM <表格名字>;");
-            args.Player.SendWarningMessage("->删除记录:DELETE FROM <表格名字> WHERE <条件>;");
-            args.Player.SendWarningMessage("->查询表格内容:SELECT * FROM <表格名字>;");
-            args.Player.SendWarningMessage("->查询表格内容扩展:SELECT * FROM <表格名字> WHERE <条件 > LIMIT <返回行数>;");
-            args.Player.SendWarningMessage("->修改数据表指定内容:UPDATE <表格名字> SET <更新列名> = '更新值' WHERE <条件>");
-            args.Player.SendWarningMessage("*详细教程：https://www.runoob.com/sql/sql-tutorial.html");
+            args.Player.SendErrorMessage(GetString("格式错误!正确格式: sql <SQL语句>;"));
+            args.Player.SendWarningMessage(GetString("常用SQL语句:"));
+            args.Player.SendWarningMessage(GetString("->Sqlite列出表格:SELECT name FROM sqlite_master WHERE type='table';"));
+            args.Player.SendWarningMessage(GetString("->Mysql列出表格:SHOW TABLES;"));
+            args.Player.SendWarningMessage(GetString("->清空表格:DROP TABLE <表格名字>;"));
+            args.Player.SendWarningMessage(GetString("->删除表格:DELETE FROM <表格名字>;"));
+            args.Player.SendWarningMessage(GetString("->删除记录:DELETE FROM <表格名字> WHERE <条件>;"));
+            args.Player.SendWarningMessage(GetString("->查询表格内容:SELECT * FROM <表格名字>;"));
+            args.Player.SendWarningMessage(GetString("->查询表格内容扩展:SELECT * FROM <表格名字> WHERE <条件 > LIMIT <返回行数>;"));
+            args.Player.SendWarningMessage(GetString("->修改数据表指定内容:UPDATE <表格名字> SET <更新列名> = '更新值' WHERE <条件>"));
+            args.Player.SendWarningMessage(GetString("*详细教程：https://www.runoob.com/sql/sql-tutorial.html"));
 
         }
         else
@@ -93,15 +93,15 @@ public class ConsoleSql : TerrariaPlugin
                     var sb = new StringBuilder();
                     if (dt.Columns.Count == 0)
                     {
-                        sb.AppendLine($"执行成功!");
-                        sb.AppendLine($"影响{reader.Reader.RecordsAffected}行 ({ts.TotalSeconds.ToString("F2")}秒)");
+                        sb.AppendLine(GetString($"执行成功!"));
+                        sb.AppendLine(GetString($"影响{reader.Reader.RecordsAffected}行 ({ts.TotalSeconds.ToString("F2")}秒)"));
                         args.Player.SendInfoMessage(sb.ToString());
                         return;
                     }
 
 
                     // 添加查询时间和查询到的条数
-                    sb.Append("+");
+                    sb.Append('+');
                     foreach (DataColumn column in dt.Columns)
                     {
                         sb.Append("----------------------------+");
@@ -114,7 +114,7 @@ public class ConsoleSql : TerrariaPlugin
                     }
                     sb.AppendLine("|");
 
-                    sb.Append("+");
+                    sb.Append('+');
                     foreach (DataColumn column in dt.Columns)
                     {
                         sb.Append("----------------------------+");
@@ -130,22 +130,22 @@ public class ConsoleSql : TerrariaPlugin
                         }
                         sb.AppendLine("|");
 
-                        sb.Append("+");
+                        sb.Append('+');
                         foreach (DataColumn column in dt.Columns)
                         {
                             sb.Append("----------------------------+");
                         }
                         sb.AppendLine();
                     }
-                    sb.AppendLine($"查询到{dt.Rows.Count}行 ({ts.TotalSeconds.ToString("F2")}秒)");
+                    sb.AppendLine(GetString($"查询到{dt.Rows.Count}行 ({ts.TotalSeconds.ToString("F2")}秒)"));
                     args.Player.SendInfoMessage(sb.ToString());
                 }
 
             }
             catch (Exception ex)
             {
-                args.Player.SendErrorMessage("SQL执行失败!\n" +
-                    $"原因:{ex.Message}");
+                args.Player.SendErrorMessage(GetString("SQL执行失败!\n") +
+                    GetString($"原因:{ex.Message}"));
             }
 
         }

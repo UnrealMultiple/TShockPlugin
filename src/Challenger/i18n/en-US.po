@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Challenger\n"
-"POT-Creation-Date: 2024-09-06 16:13:04+0000\n"
+"POT-Creation-Date: 2024-11-19 17:21:43+0000\n"
 "PO-Revision-Date: 2024-09-07 23:06+0800\n"
 "Last-Translator: LaoSparrow\n"
 "Language-Team: UnrealMultiple\n"
@@ -23,8 +23,7 @@ msgstr ""
 #: ../../Challenger/Challenger.cs:529
 #, csharp-format
 msgid "[c/95CFA6:<挑战者:挖矿套>] 连锁挖掘了 [c/95CFA6: {0} {1}]."
-msgstr ""
-"[c/95CFA6:<Challenger: Mining Set>] Chain mined [c/95CFA6: {0} {1}]."
+msgstr "[c/95CFA6:<Challenger: Mining Set>] Chain mined [c/95CFA6: {0} {1}]."
 
 #: ../../Challenger/Challenger.cs:107
 msgid "[挑战者模式]重新加载配置完毕。"
@@ -41,36 +40,36 @@ msgstr ""
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}有流星"
 msgstr ""
-"{0} listened to the World Prophet broadcast from {1}: There will be a "
-"meteor shower at {2}."
+"{0} listened to the World Prophet broadcast from {1}: There will be a meteor "
+"shower at {2}."
 
 #: ../../Challenger/Challenger.cs:2036
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}满月"
 msgstr ""
-"{0} listened to the World Prophet broadcast from {1}: It's a full moon "
-"at {2}."
+"{0} listened to the World Prophet broadcast from {1}: It's a full moon at "
+"{2}."
 
 #: ../../Challenger/Challenger.cs:2048
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}灯笼夜"
 msgstr ""
-"{0} listened to the World Prophet broadcast from {1}: It's Lantern "
-"Night at {2}."
+"{0} listened to the World Prophet broadcast from {1}: It's Lantern Night at "
+"{2}."
 
 #: ../../Challenger/Challenger.cs:2040
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}血月"
 msgstr ""
-"{0} listened to the World Prophet broadcast from {1}: It's a Blood Moon "
-"at {2}."
+"{0} listened to the World Prophet broadcast from {1}: It's a Blood Moon at "
+"{2}."
 
 #: ../../Challenger/Challenger.cs:2044
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：明天日食"
 msgstr ""
-"{0} listened to the World Prophet broadcast from {1}: There will be a "
-"solar eclipse tomorrow."
+"{0} listened to the World Prophet broadcast from {1}: There will be a solar "
+"eclipse tomorrow."
 
 #: ../../Challenger/Challenger.cs:1999
 #, csharp-format
@@ -82,22 +81,21 @@ msgstr ""
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会有沙尘暴"
 msgstr ""
-"{0} listened to the weather forecast broadcast from {1}: There will be "
-"no sandstorm."
+"{0} listened to the weather forecast broadcast from {1}: There will be no "
+"sandstorm."
 
 #: ../../Challenger/Challenger.cs:2006
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会有风"
 msgstr ""
-"{0} listened to the weather forecast broadcast from {1}: There will be "
-"no wind."
+"{0} listened to the weather forecast broadcast from {1}: There will be no "
+"wind."
 
 #: ../../Challenger/Challenger.cs:1993
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将下雨"
 msgstr ""
-"{0} listened to the weather forecast broadcast from {1}: Rain is coming "
-"soon."
+"{0} listened to the weather forecast broadcast from {1}: Rain is coming soon."
 
 #: ../../Challenger/Challenger.cs:2031
 #, csharp-format
@@ -110,22 +108,21 @@ msgstr ""
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起狂风"
 msgstr ""
-"{0} listened to the weather forecast broadcast from {1}: Gale-force "
-"winds are coming soon."
+"{0} listened to the weather forecast broadcast from {1}: Gale-force winds "
+"are coming soon."
 
 #: ../../Challenger/Challenger.cs:2013
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起风"
 msgstr ""
-"{0} listened to the weather forecast broadcast from {1}: Wind is coming "
-"soon."
+"{0} listened to the weather forecast broadcast from {1}: Wind is coming soon."
 
 #: ../../Challenger/Challenger.cs:2056
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：顺其自然，不会发生任何事件"
 msgstr ""
-"{0} listened to the weather forecast broadcast from {1}: All will be "
-"calm; no events will occur."
+"{0} listened to the weather forecast broadcast from {1}: All will be calm; "
+"no events will occur."
 
 #: ../../Challenger/Challenger.cs:1284
 msgid ""
@@ -616,7 +613,7 @@ msgstr "Howling wind"
 msgid "小心我爆炸的鳞甲"
 msgstr "Watch out for my exploding scales"
 
-#: ../../Challenger.CNPCs/SlimeKing.cs:210
+#: ../../Challenger.CNPCs/SlimeKing.cs:214
 msgid "小辣鸡"
 msgstr "Loser!"
 
@@ -657,10 +654,9 @@ msgstr "Challenge Mode disabled. Text hints cannot be enabled."
 #, csharp-format
 msgid "挑战模式已取消，您觉得太难了？[操作来自：{0}]"
 msgstr ""
-"Challenge Mode canceled. Think you're too good for this? [Action by: "
-"{0}]"
+"Challenge Mode canceled. Think you're too good for this? [Action by: {0}]"
 
-#: ../../Challenger.CProjs/BloodBagProj.cs:99
+#: ../../Challenger.CProjs/BloodBagProj.cs:95
 #, csharp-format
 msgid "敌怪治疗 + {0}"
 msgstr "Enemy healing + {0}"
@@ -770,7 +766,7 @@ msgstr "Real or fake? Who knows!"
 msgid "蜂糖罐治疗 + {0}"
 msgstr "Honey pot healing + {0}"
 
-#: ../../Challenger.CProjs/BloodBagProj.cs:125
+#: ../../Challenger.CProjs/BloodBagProj.cs:121
 #, csharp-format
 msgid "血包治疗 + {0}"
 msgstr "Blood pack healing + {0}"
@@ -791,7 +787,7 @@ msgstr "Please use this command in game"
 msgid "谁人惊扰了我的蜂巢！"
 msgstr "Who dares disturb my beehive!"
 
-#: ../../Challenger.CNPCs/SlimeKing.cs:204
+#: ../../Challenger.CNPCs/SlimeKing.cs:208
 msgid "走位真菜"
 msgstr "Your movement is so bad!"
 
@@ -810,15 +806,14 @@ msgstr "Type in /cf to switch some skills or status."
 #: ../../Challenger/Challenger.cs:64
 msgid "输入 /ctip  来启用内容提示，如各种物品的强化文字提示，再次使用取消"
 msgstr ""
-"Type in /ctip to enable content tips, such as enhanced text tips for "
-"various items, use again to cancel."
+"Type in /ctip to enable content tips, such as enhanced text tips for various "
+"items, use again to cancel."
 
 #: ../../Challenger/Challenger.cs:1858
-msgid ""
-"输入 /ctip 来启用内容提示，如各种物品装备的修改文字提示，再次使用取消"
+msgid "输入 /ctip 来启用内容提示，如各种物品装备的修改文字提示，再次使用取消"
 msgstr ""
-"Type in /ctip to enable content tips, such as enhanced text tips for "
-"various items and equipment, use again to cancel."
+"Type in /ctip to enable content tips, such as enhanced text tips for various "
+"items and equipment, use again to cancel."
 
 #: ../../Challenger.CNPCs/WallofFleshEye.cs:101
 msgid "这么想看清我的卡姿兰大眼是吧"
@@ -828,7 +823,7 @@ msgstr "So you want to see my big eyes?"
 msgid "远方的巨兽将会摧毁你所拥有的一切"
 msgstr "The distant behemoth will destroy everything you have."
 
-#: ../../Challenger.CNPCs/SlimeKing.cs:207
+#: ../../Challenger.CNPCs/SlimeKing.cs:211
 msgid "连我都打不过，回家喝奶吧你"
 msgstr "You can't even beat me? Go home and drink your milk!"
 

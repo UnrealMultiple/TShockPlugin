@@ -4,18 +4,18 @@ using TShockAPI;
 using TShockAPI.Hooks;
 using static TShockAPI.GetDataHandlers;
 
-namespace autoteam;
+namespace AutoTeam;
 
 [ApiVersion(2, 1)]
-public class Autoteam : TerrariaPlugin
+public class AutoTeam : TerrariaPlugin
 {
     public override string Author => "十七改，肝帝熙恩改";
-    public override Version Version => new Version(2, 4, 3);
+    public override Version Version => new Version(2, 4, 4);
     public override string Description => "AutoTeamPlus";
     public override string Name => "更好的自动队伍";
-    public static Configuration Config;
+    public static Configuration Config = null!;
 
-    public Autoteam(Main game) : base(game)
+    public AutoTeam(Main game) : base(game)
     {
     }
 
@@ -56,34 +56,14 @@ public class Autoteam : TerrariaPlugin
 
     private void TogglePlugin(CommandArgs args)
     {
-        var player = args.Player;
-        var parameters = args.Parameters;
-
-        if (parameters.Count < 1)
-        {
-            player.SendErrorMessage(GetString("用法: /autoteam <on|off>"));
-            return;
-        }
-
-        var action = parameters[0].ToLower();
-        switch (action)
-        {
-            case "on":
-                Config.Enabled = true;
-                player.SendSuccessMessage(GetString("AutoTeamPlus 插件已启用."));
-                break;
-            case "off":
-                Config.Enabled = false;
-                player.SendSuccessMessage(GetString("AutoTeamPlus 插件已禁用."));
-                break;
-            default:
-                player.SendErrorMessage(GetString("无效的操作。请使用 'on' 或 'off'。"));
-                break;
-        }
+        // 切换插件的状态
+        Config.Enabled = !Config.Enabled;
+        var status = Config.Enabled ? GetString("启用") : GetString("禁用");
+        args.Player.SendSuccessMessage(GetString("AutoTeamPlus 插件已") + status + GetString("。"));
     }
 
 
-    private void Team(object sender, PlayerTeamEventArgs args)
+    private void Team(object? sender, PlayerTeamEventArgs args)
     {
         this.SetTeam(args.Player);
         args.Handled = true;

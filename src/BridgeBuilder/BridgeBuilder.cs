@@ -10,10 +10,10 @@ namespace BridgeBuilder;
 public class BridgeBuilder : TerrariaPlugin
 {
     public override string Name => "BridgeBuilder";
-    public override Version Version => new Version(1, 0, 8);
+    public override Version Version => new Version(1, 1, 0);
     public override string Author => "Soofa，肝帝熙恩汉化1449";
     public override string Description => "铺桥!";
-    public static Configuration Config;
+    public static Configuration Config = null!;
     public BridgeBuilder(Main game) : base(game)
     {
     }
@@ -27,7 +27,7 @@ public class BridgeBuilder : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player?.SendSuccessMessage("[铺桥] 重新加载配置完毕。");
+        args.Player?.SendSuccessMessage(GetString("[铺桥] 重新加载配置完毕。"));
     }
 
     public override void Initialize()
@@ -36,7 +36,7 @@ public class BridgeBuilder : TerrariaPlugin
         TShockAPI.Commands.ChatCommands.Add(new("bridgebuilder.bridge", this.BridgeCmd, "bridge", "桥来")
         {
             AllowServer = false,
-            HelpText = "朝着你看的方向建造桥梁。（你需要持有一定数量的平台或团队块或种植盆。）"
+            HelpText = GetString("朝着你看的方向建造桥梁。（你需要持有一定数量的平台或团队块或种植盆。）")
         });
         LoadConfig();
     }
@@ -79,7 +79,7 @@ public class BridgeBuilder : TerrariaPlugin
 
             if (selectedItem.createTile < 0 && selectedItem.createWall < 0)
             {
-                plr.SendErrorMessage("你手持的物品无法放置。");
+                plr.SendErrorMessage(GetString("你手持的物品无法放置。"));
                 return;
             }
 
@@ -88,7 +88,7 @@ public class BridgeBuilder : TerrariaPlugin
 
             if (j < 0 || j >= Main.maxTilesY)
             {
-                plr.SendErrorMessage("无法在这里建造桥梁。");
+                plr.SendErrorMessage(GetString("无法在这里建造桥梁。"));
                 return;
             }
 
@@ -117,11 +117,11 @@ public class BridgeBuilder : TerrariaPlugin
 
             if (placedCount > 0)
             {
-                plr.SendSuccessMessage($"{placedCount}格桥梁建造完成！");
+                plr.SendSuccessMessage(GetString($"{placedCount}格桥梁建造完成！"));
             }
             else
             {
-                plr.SendErrorMessage("没有足够的空间或物品来建造桥梁。");
+                plr.SendErrorMessage(GetString("没有足够的空间或物品来建造桥梁。"));
             }
 
             NetMessage.SendData((int) PacketTypes.PlayerSlot, -1, -1, NetworkText.FromLiteral(plr.SelectedItem.Name), plr.Index, plr.TPlayer.selectedItem);

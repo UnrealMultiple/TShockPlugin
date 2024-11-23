@@ -397,17 +397,17 @@ public partial class ZHIPM : TerrariaPlugin
         p.TPlayer.statMana = pd.mana;
         p.TPlayer.statManaMax = pd.maxMana;
         p.TPlayer.extraAccessory = pd.extraSlot == 1 ? true : false;
-        p.TPlayer.skinVariant = pd.skinVariant.Value;
-        p.TPlayer.hair = pd.hair.Value;
+        p.TPlayer.skinVariant = pd.skinVariant!.Value;
+        p.TPlayer.hair = pd.hair!.Value;
         p.TPlayer.hairDye = pd.hairDye;
-        p.TPlayer.hairColor = pd.hairColor.Value;
-        p.TPlayer.pantsColor = pd.pantsColor.Value;
-        p.TPlayer.shirtColor = pd.shirtColor.Value;
-        p.TPlayer.underShirtColor = pd.underShirtColor.Value;
-        p.TPlayer.shoeColor = pd.shoeColor.Value;
+        p.TPlayer.hairColor = pd.hairColor!.Value;
+        p.TPlayer.pantsColor = pd.pantsColor!.Value;
+        p.TPlayer.shirtColor = pd.shirtColor!.Value;
+        p.TPlayer.underShirtColor = pd.underShirtColor!.Value;
+        p.TPlayer.shoeColor = pd.shoeColor!.Value;
         p.TPlayer.hideVisibleAccessory = pd.hideVisuals;
-        p.TPlayer.skinColor = pd.skinColor.Value;
-        p.TPlayer.eyeColor = pd.eyeColor.Value;
+        p.TPlayer.skinColor = pd.skinColor!.Value;
+        p.TPlayer.eyeColor = pd.eyeColor!.Value;
         p.TPlayer.anglerQuestsFinished = pd.questsCompleted;
         p.TPlayer.UsingBiomeTorches = pd.usingBiomeTorches == 1;
         p.TPlayer.happyFunTorchTime = pd.happyFunTorchTime == 1;
@@ -462,19 +462,19 @@ public partial class ZHIPM : TerrariaPlugin
                     accid,
                     pd.spawnX,
                     pd.spawnY,
-                    pd.hair,
+                    pd.hair!,
                     pd.hairDye,
-                    TShock.Utils.EncodeColor(pd.hairColor),
-                    TShock.Utils.EncodeColor(pd.pantsColor),
-                    TShock.Utils.EncodeColor(pd.shirtColor),
-                    TShock.Utils.EncodeColor(pd.underShirtColor),
-                    TShock.Utils.EncodeColor(pd.shoeColor),
-                    TShock.Utils.EncodeBoolArray(pd.hideVisuals),
-                    TShock.Utils.EncodeColor(pd.skinColor),
-                    TShock.Utils.EncodeColor(pd.eyeColor),
+                    TShock.Utils.EncodeColor(pd.hairColor)!,
+                    TShock.Utils.EncodeColor(pd.pantsColor)!,
+                    TShock.Utils.EncodeColor(pd.shirtColor)!,
+                    TShock.Utils.EncodeColor(pd.underShirtColor)!,
+                    TShock.Utils.EncodeColor(pd.shoeColor)!,
+                    TShock.Utils.EncodeBoolArray(pd.hideVisuals)!,
+                    TShock.Utils.EncodeColor(pd.skinColor)!,
+                    TShock.Utils.EncodeColor(pd.eyeColor)!,
                     pd.questsCompleted,
-                    pd.skinVariant,
-                    pd.extraSlot,
+                    pd.skinVariant!,
+                    pd.extraSlot!,
                     pd.usingBiomeTorches,
                     pd.happyFunTorchTime,
                     pd.unlockedBiomeTorches,
@@ -632,7 +632,7 @@ public partial class ZHIPM : TerrariaPlugin
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError(GetString("错误 ResetPlayer ：" )+ ex.ToString());
+            TShock.Log.ConsoleError(GetString("错误 ResetPlayer ：") + ex.ToString());
             return false;
         }
     }
@@ -969,9 +969,9 @@ public partial class ZHIPM : TerrariaPlugin
         var sb = new StringBuilder();
         foreach (var v in keyValues)
         {
-            sb.Append(v.Key.ToString());
+            sb.Append(v.Key);
             sb.Append('~');
-            sb.Append(v.Value.ToString());
+            sb.Append(v.Value);
             sb.Append(',');
         }
         return sb.ToString();
@@ -1025,7 +1025,7 @@ public partial class ZHIPM : TerrariaPlugin
         }
         if (sb.Length == 0)
         {
-            sb.Append("无");
+            sb.Append('无');
         }
         return sb.ToString().Trim().Trim('，');
     }
@@ -1087,10 +1087,10 @@ public partial class ZHIPM : TerrariaPlugin
                 {
                     Directory.CreateDirectory(TShock.SavePath + "/Zhipm/" + worldname + this.now);
                 }
-                var rijndaelManaged = new RijndaelManaged();
+                var aes = Aes.Create();
                 using (Stream stream = new FileStream(path, FileMode.Create))
                 {
-                    using (var cryptoStream = new CryptoStream(stream, rijndaelManaged.CreateEncryptor(Player.ENCRYPTION_KEY, Player.ENCRYPTION_KEY), CryptoStreamMode.Write))
+                    using (var cryptoStream = new CryptoStream(stream, aes.CreateEncryptor(Player.ENCRYPTION_KEY, Player.ENCRYPTION_KEY), CryptoStreamMode.Write))
                     {
                         using (var binaryWriter = new BinaryWriter(cryptoStream))
                         {
@@ -1139,17 +1139,17 @@ public partial class ZHIPM : TerrariaPlugin
                     statMana = data.mana,
                     statManaMax = data.maxMana,
                     extraAccessory = data.extraSlot == 1 ? true : false,
-                    skinVariant = data.skinVariant.Value,
-                    hair = data.hair.Value,
+                    skinVariant = data.skinVariant!.Value,
+                    hair = data.hair!.Value,
                     hairDye = data.hairDye,
-                    hairColor = data.hairColor.Value,
-                    pantsColor = data.pantsColor.Value,
-                    shirtColor = data.shirtColor.Value,
-                    underShirtColor = data.underShirtColor.Value,
-                    shoeColor = data.shoeColor.Value,
+                    hairColor = data.hairColor!.Value,
+                    pantsColor = data.pantsColor!.Value,
+                    shirtColor = data.shirtColor!.Value,
+                    underShirtColor = data.underShirtColor!.Value,
+                    shoeColor = data.shoeColor!.Value,
                     hideVisibleAccessory = data.hideVisuals,
-                    skinColor = data.skinColor.Value,
-                    eyeColor = data.eyeColor.Value,
+                    skinColor = data.skinColor!.Value,
+                    eyeColor = data.eyeColor!.Value,
                     anglerQuestsFinished = data.questsCompleted,
                     UsingBiomeTorches = data.usingBiomeTorches == 1,
                     happyFunTorchTime = data.happyFunTorchTime == 1,
@@ -1526,7 +1526,7 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 return player;
             }
-            catch (Exception ex)
+            catch
             {
                 TShock.Log.ConsoleError(GetString($"正常的意外因玩家 [ {name} ] 数据残缺而导出人物失败 CreateAPlayer"));
                 return null;
@@ -1584,10 +1584,10 @@ public partial class ZHIPM : TerrariaPlugin
             if (ts != null && ts.Name == name)
             {
                 var num = Terraria.Utils.CoinsCount(out var flag, ts.TPlayer.inventory, new int[] { 58, 57, 56, 55, 54 });
-                var num2 = Terraria.Utils.CoinsCount(out flag, ts.TPlayer.bank.item, new int[0]);
-                var num3 = Terraria.Utils.CoinsCount(out flag, ts.TPlayer.bank2.item, new int[0]);
-                var num4 = Terraria.Utils.CoinsCount(out flag, ts.TPlayer.bank3.item, new int[0]);
-                var num5 = Terraria.Utils.CoinsCount(out flag, ts.TPlayer.bank4.item, new int[0]);
+                var num2 = Terraria.Utils.CoinsCount(out flag, ts.TPlayer.bank.item, Array.Empty<int>());
+                var num3 = Terraria.Utils.CoinsCount(out flag, ts.TPlayer.bank2.item, Array.Empty<int>());
+                var num4 = Terraria.Utils.CoinsCount(out flag, ts.TPlayer.bank3.item, Array.Empty<int>());
+                var num5 = Terraria.Utils.CoinsCount(out flag, ts.TPlayer.bank4.item, Array.Empty<int>());
                 return num + num2 + num3 + num4 + num5;
             }
         }
@@ -1609,7 +1609,7 @@ public partial class ZHIPM : TerrariaPlugin
                         items.Add(temp);
                     }
                 }
-                return Terraria.Utils.CoinsCount(out var flag, items.ToArray(), new int[0]);
+                return Terraria.Utils.CoinsCount(out var flag, items.ToArray(), Array.Empty<int>());
             }
             else
             {

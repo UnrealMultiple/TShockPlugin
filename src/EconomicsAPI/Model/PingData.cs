@@ -8,9 +8,9 @@ public class PingData
 
     public DateTime End = DateTime.Now;
 
-    public TSPlayer TSPlayer;
+    public TSPlayer TSPlayer = null!;
 
-    public Action<PingData> action;
+    public Action<PingData> action = null!;
 
     public double GetPing()
     {

@@ -6,7 +6,7 @@ namespace ServerTools;
 
 public partial class Plugin
 {
-    public void Online(CommandArgs args)
+    public void OnlineRank(CommandArgs args)
     {
         void ShowOnline(List<string> line)
         {
@@ -22,16 +22,16 @@ public partial class Plugin
                     new PaginationTools.Settings
                     {
                         MaxLinesPerPage = 8,
-                        NothingToDisplayString = "当前没有玩家在线数据",
-                        HeaderFormat = "在线排行 ({0}/{1})：",
-                        FooterFormat = "输入 {0}在线排行 {{0}} 查看更多".SFormat(Commands.Specifier)
+                        NothingToDisplayString = GetString("当前没有玩家在线数据"),
+                        HeaderFormat = GetString("在线排行 ({0}/{1})："),
+                        FooterFormat = GetString("输入 {0}在线排行 {{0}} 查看更多").SFormat(Commands.Specifier)
                     }
                 );
         }
         var OnlineInfo = from online in PlayerOnlines
-                                         orderby online.Value descending
-                                         where online.Value > 0
-                                         select $"{online.Key} 在线时长: {Math.Ceiling(Convert.ToDouble(online.Value * 1.0f / 60))}分钟".Color(TShockAPI.Utils.GreenHighlight);
+                         orderby online.Value descending
+                         where online.Value > 0
+                         select GetString($"{online.Key} 在线时长: {Math.Ceiling(Convert.ToDouble(online.Value * 1.0f / 60))}分钟").Color(TShockAPI.Utils.GreenHighlight);
         ShowOnline(OnlineInfo.ToList());
     }
 
@@ -52,13 +52,13 @@ public partial class Plugin
                 new PaginationTools.Settings
                 {
                     MaxLinesPerPage = 6,
-                    NothingToDisplayString = "没有死亡数据!",
-                    HeaderFormat = "死亡排行 ({0}/{1})：",
-                    FooterFormat = "输入 {0}死亡排行 {{0}} 查看更多".SFormat(Commands.Specifier)
+                    NothingToDisplayString = GetString("没有死亡数据!"),
+                    HeaderFormat = GetString("死亡排行 ({0}/{1})："),
+                    FooterFormat = GetString("输入 {0}死亡排行 {{0}} 查看更多").SFormat(Commands.Specifier)
                 }
             );
         }
-        var line = PlayerDeathRank.OrderByDescending(x => x.Value).Select(x => $"[{x.Key}] => 死亡{x.Value}次").ToList();
+        var line = PlayerDeathRank.OrderByDescending(x => x.Value).Select(x => GetString($"[{x.Key}] => 死亡{x.Value}次")).ToList();
         Show(line);
     }
 
@@ -69,7 +69,7 @@ public partial class Plugin
         {
             if (!int.TryParse(args.Parameters[0], out radius) || radius <= 0)
             {
-                args.Player.SendErrorMessage("错误的范围!");
+                args.Player.SendErrorMessage(GetString("错误的范围!"));
                 return;
             }
         }
@@ -86,7 +86,7 @@ public partial class Plugin
                 cleared++;
             }
         }
-        TShock.Utils.Broadcast(string.Format("{0}清除了{1}范围内{2}个射弹!", args.Player.Name, radius, cleared), Color.Yellow);
+        TShock.Utils.Broadcast(string.Format(GetString("{0}清除了{1}范围内{2}个射弹!"), args.Player.Name, radius, cleared), Color.Yellow);
     }
 
     private void JourneyDiff(CommandArgs args)
@@ -95,18 +95,18 @@ public partial class Plugin
         {
             if (!Main._currentGameModeInfo.IsJourneyMode)
             {
-                args.Player.SendErrorMessage("必须在旅途模式下才能设置难度！");
+                args.Player.SendErrorMessage(GetString("必须在旅途模式下才能设置难度！"));
                 return;
             }
             if (this.SetJourneyDiff(args.Parameters[0]))
             {
-                args.Player.SendSuccessMessage("难度成功设置为 {0}!", args.Parameters[0]);
+                args.Player.SendSuccessMessage(GetString("难度成功设置为 {0}!"), args.Parameters[0]);
             }
         }
         else
         {
-            args.Player.SendErrorMessage("正确语法: /旅途难度 <难度模式>");
-            args.Player.SendErrorMessage("有效的难度模式: master，journey，normal，expert");
+            args.Player.SendErrorMessage(GetString("正确语法: /旅途难度 <难度模式>"));
+            args.Player.SendErrorMessage(GetString("有效的难度模式: master，journey，normal，expert"));
         }
     }
 
@@ -124,13 +124,13 @@ public partial class Plugin
 
     private void SelfKick(CommandArgs args)
     {
-        args.Player.Disconnect("你要求被踢出！");
+        args.Player.Disconnect(GetString("你要求被踢出！"));
     }
 
     private void RWall(CommandArgs args)
     {
-        TShock.Warps.Warps.FindAll(x => x.Name.StartsWith("花苞")).ForEach(n => TShock.Warps.Remove(n.Name));
-        args.Player.SendSuccessMessage("已移除所以花苞传送点!");
+        TShock.Warps.Warps.FindAll(x => x.Name.StartsWith(GetString("花苞"))).ForEach(n => TShock.Warps.Remove(n.Name));
+        args.Player.SendSuccessMessage(GetString("已移除所有花苞传送点!"));
     }
 
     private void WallQ(CommandArgs args)
@@ -155,21 +155,21 @@ public partial class Plugin
                         count++;
                         if (!TShock.Warps.Warps.Any(s => s.Position.X == i && s.Position.Y == j))
                         {
-                            while (TShock.Warps.Warps.Any(x => x.Name == "花苞" + n))
+                            while (TShock.Warps.Warps.Any(x => x.Name == GetString("花苞") + n))
                             {
                                 n++;
                             }
-                            TShock.Warps.Add(i, j, "花苞" + n);
+                            TShock.Warps.Add(i, j, GetString("花苞") + n);
                         }
                     }
                 }
             }
-            args.Player.SendInfoMessage("已为你搜索到{0}个花苞，输入/warp list可以查看结果", count);
+            args.Player.SendInfoMessage(GetString("已为你搜索到{0}个花苞，输入/warp list可以查看结果"), count);
             this.LastCommandUseTime = Now;
         }
         else
         {
-            args.Player.SendErrorMessage("你不能过于频繁的使用此指令!");
+            args.Player.SendErrorMessage(GetString("你不能过于频繁的使用此指令!"));
         }
     }
 }

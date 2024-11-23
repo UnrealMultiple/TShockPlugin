@@ -13,7 +13,7 @@ public class PlayerInfo
     public int BackHistoryCount => this.backHistory.Count;
     public CancellationToken MuteToken => this.mute.Token;
     public CancellationToken TimeCmdToken => this.timeCmd.Token;
-    public string LastCommand { get; set; }
+    public string? LastCommand { get; set; }
 
     ~PlayerInfo()
     {

@@ -9,11 +9,11 @@ namespace VeinMiner;
 public class VeinMiner : TerrariaPlugin
 {
     public override string Name => "VeinMiner";
-    public override Version Version => new Version(1, 6, 0, 5);
+    public override Version Version => new Version(1, 6, 0, 6);
     public override string Author => "Megghy|YSpoof|Maxthegreat99|肝帝熙恩";
     public override string Description => "VeinMiner by Megghy 适用于 TShock 5.2 支持！";
 
-    internal static Config Config = new ();
+    internal static Config Config = new();
 
     public VeinMiner(Main game) : base(game)
     {
@@ -24,7 +24,7 @@ public class VeinMiner : TerrariaPlugin
         Config.Load();
         Commands.ChatCommands.Add(new Command(
             permissions: "veinminer",
-            cmd: delegate(CommandArgs args)
+            cmd: delegate (CommandArgs args)
             {
                 var tsp = args.Player;
                 var result = tsp.GetData<VMStatus>("VeinMiner");
@@ -85,7 +85,7 @@ public class VeinMiner : TerrariaPlugin
 
     void Mine(TSPlayer plr, int x, int y, int type)
     {
-        var list = GetVein(new (), x, y, type);
+        var list = GetVein(new(), x, y, type);
         var count = list.Count;
         var item = Utils.GetItemFromTile(x, y);
         var mineableList = new List<Point>();
@@ -112,17 +112,24 @@ public class VeinMiner : TerrariaPlugin
                 {
                     if (e.Item.Count <= plr.GetBlankSlot())
                     {
-                        e.Item.ForEach(ex => plr.GiveItem(ex.Key, ex.Value));
-                        if (e.OnlyGiveItem)
+                        if (plr.IsSpaceEnough(item.netID, mineCount))
                         {
-                            mineCount = KillTileAndSend(list, true);
+                            e.Item.ForEach(ex => plr.GiveItem(ex.Key, ex.Value));
+                            if (e.OnlyGiveItem)
+                            {
+                                mineCount = KillTileAndSend(list, true);
+                                plr.SendInfoMessage(GetString($"[c/95CFA6:<VeinMiner>] 已给予奖励物品"));
+                            }
+                            else
+                            {
+                                GiveItem();
+                                plr.SendInfoMessage(GetString($"[c/95CFA6:<VeinMiner>] 已给予奖励物品"));
+                            }
                         }
                         else
                         {
-                            GiveItem();
+                                GiveItem();
                         }
-
-                        plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {mineCount} {(item.type == 0 ? GetString("未知") : item.Name)}]."), Color.White);
                         return;
                     }
 
@@ -134,15 +141,19 @@ public class VeinMiner : TerrariaPlugin
             {
                 GiveItem();
             }
-
             void GiveItem()
             {
+                if (plr.GetData<VMStatus>("VeinMiner").EnableBroadcast && Config.Broadcast && mineCount > 1)
+                {
+                    plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{mineCount} {(item.type == 0 ? "未知" : item.Name)}]."), Color.White);
+                }
                 if (Config.PutInInventory)
                 {
                     if (plr.IsSpaceEnough(item.netID, mineCount))
                     {
                         mineCount = KillTileAndSend(list, true);
                         plr.GiveItem(item.netID, mineCount);
+                        plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {mineCount} {(item.type == 0 ? GetString("未知") : item.Name)}]."), Color.White);
 
                     }
                     else
@@ -154,11 +165,6 @@ public class VeinMiner : TerrariaPlugin
                 else
                 {
                     mineCount = KillTileAndSend(list, false);
-                }
-
-                if (plr.GetData<VMStatus>("VeinMiner").EnableBroadcast && Config.Broadcast && mineCount > 1)
-                {
-                    plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{mineCount} {(item.type == 0 ? "未知" : item.Name)}]."), Color.White);
                 }
             }
         }
@@ -175,7 +181,7 @@ public class VeinMiner : TerrariaPlugin
             return 0;
         }
 
-        int killCount = 0;
+        var killCount = 0;
         list.ForEach(p =>
         {
             WorldGen.KillTile(p.X, p.Y, false, false, noItem);
@@ -184,7 +190,7 @@ public class VeinMiner : TerrariaPlugin
         list.ForEach(p =>
         {
 
-            ITile tile = Main.tile[p.X, p.Y];
+            var tile = Main.tile[p.X, p.Y];
             if (tile == null || !tile.active())
             {
                 killCount++;
@@ -204,7 +210,7 @@ public class VeinMiner : TerrariaPlugin
                 return list;
             }
 
-            list.Add(new (x, y));
+            list.Add(new(x, y));
             list = GetVein(list, x + 1, y, type);
             list = GetVein(list, x - 1, y, type);
             list = GetVein(list, x, y + 1, type);

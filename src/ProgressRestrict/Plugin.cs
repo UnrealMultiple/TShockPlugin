@@ -12,9 +12,9 @@ public class Plugin : TerrariaPlugin
     public override string Author => "少司命 & 恋恋魔改三合一";
     public override string Description => "根据进度限制";
     public override string Name => "超进度限制";
-    public override Version Version => new(1, 0, 0, 1);
+    public override Version Version => new(1, 0, 0, 2);
 
-    public Config config;
+    public Config config = null!;
 
     private readonly bool[] RestrictedProjectiles = new bool[ProjectileID.Count];
     private readonly bool[] RestrictedItems = new bool[ItemID.Count];
@@ -24,7 +24,6 @@ public class Plugin : TerrariaPlugin
 
     public Plugin(Main game) : base(game)
     {
-        this.config = Config.LoadConfig(this.path);
     }
     public override void Initialize()
     {

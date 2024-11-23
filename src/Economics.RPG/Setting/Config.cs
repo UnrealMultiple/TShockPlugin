@@ -28,11 +28,12 @@ internal class Config
         foreach (var (name, level) in this.RPG)
         {
             level.Name = name;
-            if (!this.RPG.TryGetValue(level.Parent?.Name, out var info) || info == null)
+            var parentName = level.Parent?.Name ?? "";
+            if (!this.RPG.TryGetValue(parentName, out var info) || info == null)
             {
-                if (level.Parent.Name != this.DefaultLevel.Name)
+                if (parentName != this.DefaultLevel.Name)
                 {
-                    TShock.Log.ConsoleError($"等级 {name} 空引用等级 {level.Parent.Name}");
+                    TShock.Log.ConsoleError(GetString($"等级 {name} 空引用等级 {parentName}"));
                     level.Parent = null;
                 }
                 else
@@ -101,7 +102,7 @@ internal class Config
             }
             if (level.Parent?.Name == name)
             {
-                TShock.Log.ConsoleError($"{level.Name} 与 {name} 之间循环引用");
+                TShock.Log.ConsoleError(GetString($"{level.Name} 与 {name} 之间循环引用"));
                 break;
             }
             parents.Add(level);

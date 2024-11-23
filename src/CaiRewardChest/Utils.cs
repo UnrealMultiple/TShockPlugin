@@ -24,7 +24,7 @@ public static class Utils
             stack = 1
         }));
         GiveItemByDrop(args.Player, chestType, 1, 0);
-        args.Player.SendSuccessMessage($"[i:{chestType}]你打开了一个奖励箱: " +
+        args.Player.SendSuccessMessage(GetString($"[i:{chestType}]你打开了一个奖励箱: ") +
                                        $"" + string.Join(", ", itemsReceived));
         chest.HasOpenPlayer.Add(args.Player.Account.ID);
         Db.UpdateChest(chest);

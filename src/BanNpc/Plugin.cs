@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "禁止怪物";
 
-    public override Version Version => new(1, 0, 0, 1);
+    public override Version Version => new(1, 0, 0, 3);
 
     private static Config Config { get; set; } = new();
 
@@ -22,7 +22,7 @@ public class Plugin : TerrariaPlugin
 
     public Plugin(Main game) : base(game)
     {
-
+        this._reloadHandler = (_) => this.LoadConfig();
     }
     private void LoadConfig()
     {
@@ -34,21 +34,19 @@ public class Plugin : TerrariaPlugin
             }
             else
             {
-                TShock.Log.ConsoleError("未找到禁止怪物表，已为您创建！" +
-                                    "修改配置后输入/bm reload可以应用新的配置。");
+                TShock.Log.ConsoleError(GetString("未找到禁止怪物表，已为您创建！\n修改配置后输入/bm reload可以应用新的配置。"));
             }
             Config.Write(PATH);
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError("禁止怪物表读取错误:" + ex.ToString());
+            TShock.Log.ConsoleError(GetString("禁止怪物表读取错误:") + ex.ToString());
         }
     }
-    private GeneralHooks.ReloadEventD _reloadHandler;
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
         this.LoadConfig();
-        this._reloadHandler = (_) => this.LoadConfig();
         Commands.ChatCommands.Add(new Command("bannpc.use", this.BanCommand, "bm"));
         ServerApi.Hooks.NpcSpawn.Register(this, this.OnSpawn);
         ServerApi.Hooks.NpcTransform.Register(this, this.OnTransform);
@@ -75,11 +73,11 @@ public class Plugin : TerrariaPlugin
         {
             if (Config.Npcs.Count < 1)
             {
-                args.Player.SendInfoMessage("当前阻止表为空.");
+                args.Player.SendInfoMessage(GetString("当前阻止表为空."));
             }
             else
             {
-                args.Player.SendInfoMessage("阻止怪物表: " + string.Join(", ", Config.Npcs.Select(x => TShock.Utils.GetNPCById(x)?.FullName + "({0})".SFormat(x))));
+                args.Player.SendInfoMessage(GetString("阻止怪物表: ") + string.Join(", ", Config.Npcs.Select(x => TShock.Utils.GetNPCById(x)?.FullName + "({0})".SFormat(x))));
             }
 
             return;
@@ -90,7 +88,7 @@ public class Plugin : TerrariaPlugin
             var matchedNPCs = TShock.Utils.GetNPCByIdOrName(args.Parameters[1]);
             if (matchedNPCs.Count == 0)
             {
-                args.Player.SendErrorMessage("无效NPC: {0} !", args.Parameters[1]);
+                args.Player.SendErrorMessage(GetString("无效NPC: {0} !"), args.Parameters[1]);
                 return;
             }
             else if (matchedNPCs.Count > 1)
@@ -108,12 +106,12 @@ public class Plugin : TerrariaPlugin
                 {
                     if (Config.Npcs.Contains(npc.netID))
                     {
-                        args.Player.SendErrorMessage("NPC ID {0} 已在阻止列表中!", npc.netID);
+                        args.Player.SendErrorMessage(GetString("NPC ID {0} 已在阻止列表中!"), npc.netID);
                         return;
                     }
                     Config.Npcs.Add(npc.netID);
                     Config.Write(PATH);
-                    args.Player.SendSuccessMessage("已成功将NPC ID添加到阻止列表: {0}!", npc.netID);
+                    args.Player.SendSuccessMessage(GetString("已成功将NPC ID添加到阻止列表: {0}!"), npc.netID);
                     break;
                 }
                 case "delete":
@@ -122,17 +120,17 @@ public class Plugin : TerrariaPlugin
                 {
                     if (!Config.Npcs.Contains(npc.netID))
                     {
-                        args.Player.SendErrorMessage("NPC ID {0} 不在筛选列表中!", npc.netID);
+                        args.Player.SendErrorMessage(GetString("NPC ID {0} 不在筛选列表中!"), npc.netID);
                         return;
                     }
                     Config.Npcs.Remove(npc.netID);
                     Config.Write(PATH);
-                    args.Player.SendSuccessMessage("已成功从阻止列表中删除NPC ID: {0}!", npc.netID);
+                    args.Player.SendSuccessMessage(GetString("已成功从阻止列表中删除NPC ID: {0}!"), npc.netID);
                     break;
                 }
                 default:
                 {
-                    args.Player.SendErrorMessage("语法错误: /bm <add/del> [name or ID]");
+                    args.Player.SendErrorMessage(GetString("语法错误: /bm <add/del> [名称 或 ID]"));
                     break;
                 }
             }
@@ -141,8 +139,8 @@ public class Plugin : TerrariaPlugin
         {
             args.Player.SendInfoMessage("/bm");
             args.Player.SendInfoMessage("/bm list");
-            args.Player.SendInfoMessage("/bm add [name or ID]");
-            args.Player.SendInfoMessage("/bm del [name or ID]");
+            args.Player.SendInfoMessage(GetString("/bm add [名称 或 ID]"));
+            args.Player.SendInfoMessage(GetString("/bm del [名称 或 ID]"));
             return;
         }
     }

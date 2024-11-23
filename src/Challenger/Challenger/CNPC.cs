@@ -7,7 +7,7 @@ namespace Challenger;
 
 public class CNPC
 {
-    public NPC? npc;
+    public NPC npc;
 
     private readonly int netID;
 
@@ -31,7 +31,7 @@ public class CNPC
 
     public CNPC()
     {
-        this.npc = null;
+        this.npc = null!;
         this.netID = 0;
         this.index = 0;
         this.ai = new float[8];
@@ -45,7 +45,7 @@ public class CNPC
     {
         if (npc == null)
         {
-            this.npc = null;
+            this.npc = null!;
             this.netID = 0;
             this.index = 0;
             this.ai = new float[8];
@@ -70,10 +70,10 @@ public class CNPC
     {
         if (npc == null)
         {
-            this.npc = null;
+            this.npc = null!;
             this.netID = 0;
             this.index = 0;
-            ai = new float[8];
+            this.ai = new float[8];
             state = 0;
             this.LifeMax = 0;
             this.isActive = false;

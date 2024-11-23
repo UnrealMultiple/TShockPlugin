@@ -14,5 +14,10 @@
             <HintPath>SixLabors.ImageSharp.dll</HintPath>
         </Reference>
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
+      <ProjectReference Include="..\Economics.Skill\Economics.Skill.csproj" />
+      <ProjectReference Include="..\EconomicsAPI\EconomicsAPI.csproj" />
+    </ItemGroup>
 
 </Project>

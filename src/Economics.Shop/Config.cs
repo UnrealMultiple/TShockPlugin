@@ -10,7 +10,7 @@ public class Config
     public int PageMax { get; set; } = 10;
 
     [JsonProperty("商品列表")]
-    public List<Product> Products { get; set; }
+    public List<Product> Products { get; set; } = new();
 
     public Product? GetProduct(int index)
     {

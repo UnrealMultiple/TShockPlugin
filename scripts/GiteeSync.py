@@ -9,7 +9,7 @@ headers = {
     'Authorization': f'token {gitee_token}'
 }
 files = {
-    'file': open('out/Plugins.zip', 'rb')
+    'file': open('bin/Plugins.zip', 'rb')
 }
 attachments = requests.get(f"https://gitee.com/api/v5/repos/{owner}/{repo}/releases/{release_id}/attach_files?&page=1&per_page=100&direction=asc",headers=headers).json()
 for attachment in attachments:

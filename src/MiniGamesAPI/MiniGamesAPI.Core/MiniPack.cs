@@ -173,7 +173,7 @@ public class MiniPack
         {
             player.TPlayer.eyeColor = this.EyeColor.Value;
         }
-        player.TPlayer.hideVisibleAccessory = this.HideVisuals != null ? this.HideVisuals : (new bool[player.TPlayer.hideVisibleAccessory.Length]);
+        player.TPlayer.hideVisibleAccessory = this.HideVisuals ?? (new bool[player.TPlayer.hideVisibleAccessory.Length]);
         for (var i = 0; i < NetItem.MaxInventory; i++)
         {
             if (i < 59)
@@ -382,7 +382,7 @@ public class MiniPack
         NetMessage.SendData(39, player.Index, -1, NetworkText.Empty, 400, 0f, 0f, 0f, 0, 0, 0);
     }
 
-    public void CopyFromPlayer(TSPlayer plr)
+    public void CopyFromPlayer(TSPlayer? plr)
     {
         if (plr != null)
         {

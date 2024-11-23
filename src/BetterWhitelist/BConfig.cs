@@ -14,7 +14,7 @@ public class BConfig
     public static BConfig Load(string path)
     {
         var result = File.Exists(path)
-            ? JsonConvert.DeserializeObject<BConfig>(File.ReadAllText(path))
+            ? JsonConvert.DeserializeObject<BConfig>(File.ReadAllText(path))!
             : new BConfig
             {
                 Disabled = false

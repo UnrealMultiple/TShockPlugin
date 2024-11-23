@@ -182,7 +182,7 @@ public class HelpPlus : TerrariaPlugin
         var Specifier = TShock.Config.Settings.CommandSpecifier;
         if (args.Parameters.Count > 1)
         {
-            args.Player.SendErrorMessage(GetString( "无效用法.正确用法: {0}help <命令/页码>", Specifier));
+            args.Player.SendErrorMessage(GetString("无效用法.正确用法: {0}help <命令/页码>", Specifier));
             return;
         }
 
@@ -246,7 +246,7 @@ public class HelpPlus : TerrariaPlugin
             args.Player.SendInfoMessage(
                 GetString($"权限: {(command.Permissions.Count == 0 || command.Permissions.Count(i => i == "") == command.Permissions.Count ? GetString("[c/c2ff39:无权限限制]") : "[c/bf0705:" + string.Join(',', command.Permissions) + "]")}"));
             args.Player.SendInfoMessage(
-                GetString($"来源插件: [c/8500ff:{command.CommandDelegate.Method.DeclaringType.Assembly.FullName.Split(',').First()}]"));
+                GetString($"来源插件: [c/8500ff:{command.CommandDelegate.Method.DeclaringType!.Assembly.FullName!.Split(',').First()}]"));
             if (!command.AllowServer)
             {
                 args.Player.SendInfoMessage(GetString("*此命令只能游戏内执行"));

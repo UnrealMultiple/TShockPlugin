@@ -135,7 +135,7 @@ public class CNSConfig
         }
         else
         {
-            CNSPlugin.Config = JsonConvert.DeserializeObject<CNSConfig>(File.ReadAllText(path));
+            CNSPlugin.Config = JsonConvert.DeserializeObject<CNSConfig>(File.ReadAllText(path))!;
         }
 
         foreach (var shopContainer in CNSPlugin.Config.Shops)
@@ -145,7 +145,7 @@ public class CNSConfig
                 continue;
             }
 
-            for (var s = 0; s < shopContainer.Shops.Count(); s++)
+            for (var s = 0; s < shopContainer.Shops.Length; s++)
             {
                 var shop = shopContainer.Shops[s];
                 if (!shop.Enabled)
