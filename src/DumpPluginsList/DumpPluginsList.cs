@@ -73,4 +73,4 @@ public class DumpPluginsList : TerrariaPlugin
     }
 }
 
-internal record ManifestModel(string? Name, Version? Version, string? Author, string? Description, string[]? Dependencies, bool HotReload);
+internal record ManifestModel(string? Name, Version? Version, string? Author, string? Description, string[]? Dependencies, bool? HotReload);

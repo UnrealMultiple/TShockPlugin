@@ -64,12 +64,13 @@ jobs:
           Copy-Item SubmoduleAssembly/*.dll bin/ServerPlugins/
           Set-Location bin
           New-Item -Name manifests -ItemType Directory
-          foreach ($p in @(Get-ChildItem ../src/**/*.csproj, ../src/Submodules/*/*.csproj)) {
+          foreach ($p in @(Get-ChildItem ../src/**/*.csproj)) {
             $manifestPath = Join-Path $p.DirectoryName manifest.json
             if (Test-Path $manifestPath -PathType Leaf) {
               Copy-Item $manifestPath $(Join-Path manifests "$($p.Basename).json")
             }
           }
+          Copy-Item ../.config/submodule-manifests/* ./manifests
           ./TShock.Server -dump-plugins-list-only ./manifests
           Set-Location ../
           New-Item -Path out/Target -Name Plugins -ItemType Directory
