@@ -20,7 +20,7 @@ public partial class Plugin : TerrariaPlugin
 
     public override string Name => "ServerTools";// 插件名字
 
-    public override Version Version => new(1, 1, 7, 7);// 插件版本
+    public override Version Version => new(1, 1, 7, 8);// 插件版本
 
     private static Config Config = new();
 
@@ -175,9 +175,6 @@ public partial class Plugin : TerrariaPlugin
     }
 
 
-
-
-
     #region 禁双饰品与肉前第7格饰品位方法
     private void OnUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
     {
@@ -198,14 +195,17 @@ public partial class Plugin : TerrariaPlugin
             e.Player.SetBuff(156, 180, true);
             TShock.Utils.Broadcast(GetString($"[ServerTools] 玩家 [{e.Player.Name}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{keepArmor.netID}]"), Color.DarkRed);
         }
-        if (ArmorGroup.Any())
+        if (TShock.ServerSideCharacterConfig.Settings.Enabled)
         {
-            Utils.ClearItem(ArmorGroup.ToArray(), e.Player);
-        }
+            if (ArmorGroup.Any())
+            {
+                Utils.ClearItem(ArmorGroup.ToArray(), e.Player);
+            }
 
-        if (Config.KeepArmor2 && !Main.hardMode)
-        {
-            Utils.Clear7Item(e.Player);
+            if (Config.KeepArmor2 && !Main.hardMode)
+            {
+                Utils.Clear7Item(e.Player);
+            }
         }
     }
 
@@ -389,12 +389,9 @@ public partial class Plugin : TerrariaPlugin
         {
             e.Player.Disconnect(GetString($"你因哨兵数量超过{Config.sentryLimit}被踢出"));
         }
-        if (Main.projectile[e.Index].minion)
+        if (e.Player.TPlayer.slotsMinions > Config.summonLimit)
         {
-            if (e.Player.TPlayer.slotsMinions > Config.summonLimit)
-            {
-                e.Player.Disconnect(GetString($"你因召唤物数量超过{Config.summonLimit}被踢出"));
-            }
+            e.Player.Disconnect(GetString($"你因召唤物数量超过{Config.summonLimit}被踢出"));
         }
         if (Main.projectile[e.Index].bobber && Config.MultipleFishingRodsAreProhibited && Config.ForbiddenBuoys.FindAll(f => f == e.Type).Count > 0)
         {
