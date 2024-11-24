@@ -46,7 +46,7 @@ internal static class Utils
                 }
                 catch (Exception ex)
                 {
-                    failedUnload.Add(c.Plugin.Name);
+                    failedUnload.Add(c.Plugin.GetType().Assembly.GetName().Name!);
                     if (Config.PluginConfig.ConinueHotReloadWhenError)
                     {
                         TShock.Log.ConsoleError($"卸载 \"{c.Plugin.Name}\" 时出错.\n" +

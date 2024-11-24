@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoPluginManager";
 
-    public override Version Version => new (2, 0, 2, 3);
+    public override Version Version => new (2, 0, 2, 2);
 
     public override string Author => "少司命,Cai,LaoSparrow";
 
@@ -70,7 +70,7 @@ public class Plugin : TerrariaPlugin
                     return;
                 }
 
-                TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", availableUpdates.Select(i => $"[{i.Current.Name}] V{i.Current.Version} >>> V{i.Latest.Version}"))));
+                TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", availableUpdates.Select(i => $"[{i.Current!.Name}] V{i.Current!.Version} >>> V{i.Latest.Version}"))));
                 if (Config.PluginConfig.AutoUpdate)
                 {
                     TShock.Log.ConsoleInfo(GetString("正在自动更新插件..."));
@@ -238,16 +238,19 @@ public class Plugin : TerrariaPlugin
                 player.SendSuccessMessage(GetString("安装了个寂寞~"));
                 return;
             }
-            var failedUnload = new List<string>();
-            var failedLoad = new List<string>();
+            // A bit weird, might be refactored in the next version
+            // FIXME: inconsistency in return values of `Utils.UnLoadPlugins` and `Utils.LoadPlugins`
+            var failedUnload = new List<string>(); // AssemblyName of Plugins which failed to unload
+            var failedLoad = new List<string>(); // Type.FullName of Plugin Classes which failed to load
             if (Config.PluginConfig.HotReloadPlugin)
             {
                 
                 failedUnload = Utils.UnLoadPlugins(success.plugins
-                    .Where(s => s.Current is not null && s.Current.HotReload)
+                    .Where(s => s.Current is not null && s.Latest.HotReload)
                     .Select(s => s.Current!.Path));
                 failedLoad = Utils.LoadPlugins(success.plugins
-                    .Select(s => s.Current is not null && s.Current.HotReload  && !failedUnload.Contains(s.Current.Name) ? s.Current.Path : s.Latest.Path));
+                    .Where(s => s.Latest.HotReload  && !failedUnload.Contains(s.Latest.AssemblyName))
+                    .Select(s => s.Current?.Path ?? s.Latest.Path));
             }
             player.SendFormattedServerPluginsModifications(success);
 
@@ -320,16 +323,19 @@ public class Plugin : TerrariaPlugin
                 return;
             }
 
-            var failedUnload = new List<string>();
-            var failedLoad = new List<string>();
+            // A bit weird, might be refactored in the next version
+            // FIXME: inconsistency in return values of `Utils.UnLoadPlugins` and `Utils.LoadPlugins`
+            var failedUnload = new List<string>(); // AssemblyName of Plugins which failed to unload
+            var failedLoad = new List<string>(); // Type.FullName of Plugin Classes which failed to load
             if (Config.PluginConfig.HotReloadPlugin)
             {
                 
                 failedUnload = Utils.UnLoadPlugins(success.plugins
-                    .Where(s => s.Current is not null && s.Current.HotReload)
+                    .Where(s => s.Current is not null && s.Latest.HotReload)
                     .Select(s => s.Current!.Path));
                 failedLoad = Utils.LoadPlugins(success.plugins
-                    .Select(s => s.Current is not null && s.Current.HotReload  && !failedUnload.Contains(s.Current.Name) ? s.Current.Path : s.Latest.Path));
+                    .Where(s => s.Latest.HotReload  && !failedUnload.Contains(s.Latest.AssemblyName))
+                    .Select(s => s.Current?.Path ?? s.Latest.Path));
             }
             player.SendFormattedServerPluginsModifications(success);
 
