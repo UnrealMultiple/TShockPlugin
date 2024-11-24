@@ -154,7 +154,6 @@ public class PluginManagementContext : IDisposable
                     string.Join('\n', bannedDependencies));
                 continue;
             }
-
             var installedPluginsWhichDontExistLocally = pending.updates
                 .Where(u =>
                     u.Current is not null &&

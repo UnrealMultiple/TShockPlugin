@@ -12,9 +12,9 @@ public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoPluginManager";
 
-    public override Version Version => new (2, 0, 2, 1);
+    public override Version Version => new (2, 0, 2, 2);
 
-    public override string Author => "少司命，Cai，LaoSparrow";
+    public override string Author => "少司命,Cai,LaoSparrow";
 
     public override string Description => "自动更新你的插件！";
 
@@ -70,7 +70,7 @@ public class Plugin : TerrariaPlugin
                     return;
                 }
 
-                TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", availableUpdates.Select(i => $"[{i.Current.Name}] V{i.Current.Version} >>> V{i.Latest.Version}"))));
+                TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", availableUpdates.Select(i => $"[{i.Current!.Name}] V{i.Current!.Version} >>> V{i.Latest.Version}"))));
                 if (Config.PluginConfig.AutoUpdate)
                 {
                     TShock.Log.ConsoleInfo(GetString("正在自动更新插件..."));
@@ -238,19 +238,48 @@ public class Plugin : TerrariaPlugin
                 player.SendSuccessMessage(GetString("安装了个寂寞~"));
                 return;
             }
-
-            if (Config.PluginConfig.AutoReloadPlugin)
+            // A bit weird, might be refactored in the next version
+            // FIXME: inconsistency in return values of `Utils.UnLoadPlugins` and `Utils.LoadPlugins`
+            var failedUnload = new List<string>(); // AssemblyName of Plugins which failed to unload
+            var failedLoad = new List<string>(); // Type.FullName of Plugin Classes which failed to load
+            if (Config.PluginConfig.HotReloadPlugin)
             {
-                Utils.UnLoadPlugins(success.plugins
-                    .Where(s => s.Current is not null)
+                
+                failedUnload = Utils.UnLoadPlugins(success.plugins
+                    .Where(s => s.Current is not null && s.Latest.HotReload)
                     .Select(s => s.Current!.Path));
-                Utils.LoadPlugins(success.plugins
-                    .Select(s => s.Current is not null ? s.Current.Path : s.Latest.Path));
+                failedLoad = Utils.LoadPlugins(success.plugins
+                    .Where(s => s.Latest.HotReload  && !failedUnload.Contains(s.Latest.AssemblyName))
+                    .Select(s => s.Current?.Path ?? s.Latest.Path));
             }
-
             player.SendFormattedServerPluginsModifications(success);
 
-            player.SendSuccessMessage(GetString("重启服务器后插件生效!"));
+            if (Config.PluginConfig.HotReloadPlugin)
+            {
+                if (failedUnload.Any())
+                {
+                    player.SendWarningMessage(GetString($"*卸载失败: {string.Join(',',failedUnload)}"));
+                }
+                if (failedLoad.Any())
+                {
+                    player.SendWarningMessage(GetString($"*加载失败: {string.Join(',',failedLoad)}"));
+                }
+                if (failedLoad.Any() || failedLoad.Any())
+                {
+                    player.SendWarningMessage(GetString("*热加载失败的插件需要重启服务器后才会生效!"));
+                }
+                else
+                {
+                    player.SendSuccessMessage(GetString("*热重载已启用,安装的插件已生效!"));
+                }
+                
+            }
+            else
+            {
+                player.SendSuccessMessage(GetString("*热重载已关闭,插件需要重启服务器后才会生效!"));
+            }
+
+            
         }
         catch (Exception ex)
         {
@@ -281,7 +310,7 @@ public class Plugin : TerrariaPlugin
                     return;
                 }
             }
-
+            
             player.SendInfoMessage(GetString("正在下载最新插件包..."));
             context.EnsurePluginArchiveDownloaded();
             player.SendInfoMessage(GetString("正在解压插件包..."));
@@ -294,18 +323,46 @@ public class Plugin : TerrariaPlugin
                 return;
             }
 
-            if (Config.PluginConfig.AutoReloadPlugin)
+            // A bit weird, might be refactored in the next version
+            // FIXME: inconsistency in return values of `Utils.UnLoadPlugins` and `Utils.LoadPlugins`
+            var failedUnload = new List<string>(); // AssemblyName of Plugins which failed to unload
+            var failedLoad = new List<string>(); // Type.FullName of Plugin Classes which failed to load
+            if (Config.PluginConfig.HotReloadPlugin)
             {
-                Utils.UnLoadPlugins(success.plugins
-                    .Where(s => s.Current is not null)
+                
+                failedUnload = Utils.UnLoadPlugins(success.plugins
+                    .Where(s => s.Current is not null && s.Latest.HotReload)
                     .Select(s => s.Current!.Path));
-                Utils.LoadPlugins(success.plugins
-                    .Select(s => s.Current is not null ? s.Current.Path : s.Latest.Path));
+                failedLoad = Utils.LoadPlugins(success.plugins
+                    .Where(s => s.Latest.HotReload  && !failedUnload.Contains(s.Latest.AssemblyName))
+                    .Select(s => s.Current?.Path ?? s.Latest.Path));
             }
-
             player.SendFormattedServerPluginsModifications(success);
 
-            player.SendSuccessMessage(GetString("重启服务器后插件生效!"));
+            if (Config.PluginConfig.HotReloadPlugin)
+            {
+                if (failedUnload.Any())
+                {
+                    player.SendWarningMessage(GetString($"*卸载失败: {string.Join(',',failedUnload)}"));
+                }
+                if (failedLoad.Any())
+                {
+                    player.SendWarningMessage(GetString($"*加载失败: {string.Join(',',failedLoad)}"));
+                }
+                if (failedLoad.Any() || failedLoad.Any())
+                {
+                    player.SendWarningMessage(GetString("*热加载失败的插件需要重启服务器后才会生效!"));
+                }
+                else
+                {
+                    player.SendSuccessMessage(GetString("*热重载已启用,安装的插件已生效!"));
+                }
+                
+            }
+            else
+            {
+                player.SendSuccessMessage(GetString("*热重载已关闭,插件需要重启服务器后才会生效!"));
+            }
         }
         catch (Exception ex)
         {

@@ -13,6 +13,8 @@ public class PluginVersionInfo
     public string Path { get; set; } = string.Empty;
 
     public string[] Dependencies { get; set; } = Array.Empty<string>();
+    
+    public bool HotReload { get; set; } = true; 
 
     public string AssemblyName { get; set; } = string.Empty;
 
