@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Globalization;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using TShockAPI;
 using TShockAPI.Hooks;
 
