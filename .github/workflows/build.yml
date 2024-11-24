@@ -64,7 +64,7 @@ jobs:
           Copy-Item SubmoduleAssembly/*.dll bin/ServerPlugins/
           Set-Location bin
           New-Item -Name manifests -ItemType Directory
-          foreach ($p in @(Get-ChildItem ../src/**/*.csproj)) {
+          foreach ($p in @(Get-ChildItem ../src/**/*.csproj, ../src/Submodules/*/*.csproj)) {
             $manifestPath = Join-Path $p.DirectoryName manifest.json
             if (Test-Path $manifestPath -PathType Leaf) {
               Copy-Item $manifestPath $(Join-Path manifests "$($p.Basename).json")
