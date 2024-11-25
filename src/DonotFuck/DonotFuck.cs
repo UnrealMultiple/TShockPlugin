@@ -13,7 +13,7 @@ public class Plugin : LazyPlugin
     public override string Name => "Don't Fuck";
     public override string Author => "Cai 羽学";
     public override string Description => "当玩家聊天有敏感词时用*号代替该词";
-    public override Version Version => new Version(3, 1, 0);
+    public override Version Version => new Version(3, 2, 0);
     #endregion
 
     #region 注册与释放

@@ -1,7 +1,7 @@
 # AutoAirItem 
 
 - Authors:  羽学
-- Source:  无
+- Source: [AutoAirItem](https://github.com/1242509682/AutoAirItem)
 - TShock version of the Auto Trash Can, a small plugin to help players clean up their trash.
 - A plugin that is independently run by players using commands, without the need for server administrators to write configurations.
 - It automatically creates the configuration structure when a player joins the server.
@@ -9,6 +9,23 @@
 
 ## Update Log
 ```
+v1.2.2
+- Cleaned up unused code.
+- Fixed a bug where items already in the trash bin would not be automatically removed upon reinsertion.
+- Added feedback broadcast for item quantity when removing items.
+
+v1.2.1
+- Added an [Exclusion List] configuration option.
+- Fixed a bug where the first removed item did not return the correct quantity.
+- Fixed a bug where money was also considered as trash and removed.
+- Fixed a bug where /air ck could not check the number of recently removed trash.
+- Added logic to remove and record the quantity of items placed in the trash bin for the first time.
+- Fixed a bug where PE received two prompts when using /air del to return items.
+
+v1.2.0
+- Added database storage logic for the automatic trash bin to prevent data loss after server restarts.
+- Note: When resetting the server, use the command to clear the data: /airreset
+
 v1.1.7
 - Fixed the bug where using `/air del` would return double the items on Mobile Games
 
@@ -85,8 +102,15 @@ v1.0.0
 > Configuration file location：tshock/自动垃圾桶.json
 ```json
 {
-  "Plugin Command Permissions": "Command menu: /air or /trash, permission name [AutoAir.use], give players permission: /group addperm default AutoAir.use",
-  "Plugin Enable": true
+  "Plugin Command Permission": "Command menu: /air or /trash, permission name [AutoAir.use], give players permission: /group addperm default AutoAir.use",
+  "Plugin Switch": true,
+  "Do Not Delete Data on Server Restart": true,
+  "Exclusion ItemID": [
+    71,
+    72,
+    73,
+    74
+  ]
 }
 ```
 ## FeedBack
