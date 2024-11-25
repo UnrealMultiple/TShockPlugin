@@ -14,7 +14,7 @@ public class DumpPluginsList : TerrariaPlugin
 
     public override string Name => "DumpPluginsList";
 
-    public override Version Version => new (1, 0, 1, 4);
+    public override Version Version => new (1, 0, 1, 5);
 
     public DumpPluginsList(Main game) : base(game)
     {
@@ -56,7 +56,8 @@ public class DumpPluginsList : TerrariaPlugin
                         Dependencies = manifest?.Dependencies ?? p.Plugin.GetType().Assembly.GetReferencedAssemblies()
                             .IntersectBy(dict.Values, n => n.Name)
                             .Where(n => n.Name != "TShockAPI")
-                            .Select(n => n.Name)
+                            .Select(n => n.Name),
+                        HotReload = manifest?.HotReload ?? true
                     };
                 }), Formatting.Indented));
         }
@@ -72,4 +73,4 @@ public class DumpPluginsList : TerrariaPlugin
     }
 }
 
-internal record ManifestModel(string? Name, Version? Version, string? Author, string? Description, string[]? Dependencies);
+internal record ManifestModel(string? Name, Version? Version, string? Author, string? Description, string[]? Dependencies, bool? HotReload);
