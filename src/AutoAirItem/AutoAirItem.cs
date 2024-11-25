@@ -13,7 +13,7 @@ public class AutoAirItem : TerrariaPlugin
     #region 插件信息
     public override string Name => "自动垃圾桶";
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 2, 2);
+    public override Version Version => new Version(1, 2, 3);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 
@@ -21,7 +21,7 @@ public class AutoAirItem : TerrariaPlugin
     public AutoAirItem(Main game) : base(game) { }
     internal static Configuration Config = new();
     internal static MyData Data = new();
-    public static Database DB = new Database(new SqliteConnection("Data Source=" + Database.Path));
+    public static Database DB = new();
     public override void Initialize()
     {
         LoadConfig();

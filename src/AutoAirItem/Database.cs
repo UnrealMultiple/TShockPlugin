@@ -1,6 +1,5 @@
-using System.Data;
-using System.Text.Json;
 using MySql.Data.MySqlClient;
+using System.Text.Json;
 using TShockAPI;
 using TShockAPI.DB;
 
@@ -8,16 +7,10 @@ namespace AutoAirItem;
 
 public class Database
 {
-    public static string Path = System.IO.Path.Combine(TShock.SavePath, "自动垃圾桶.sqlite");
-
-    private readonly IDbConnection? DB;
-
     #region 垃圾桶数据表结构
-    public Database(IDbConnection db)
+    public Database()
     {
-        this.DB = db;
-
-        var sql = new SqlTableCreator(db, new SqliteQueryCreator());
+        var sql = new SqlTableCreator(TShock.DB, new SqliteQueryCreator());
 
         // 定义并确保 AutoTrash 表的结构
         sql.EnsureTableStructure(new SqlTable("AutoTrash", //表名
@@ -39,14 +32,14 @@ public class Database
         var delItem = JsonSerializer.Serialize(data.DelItem);
 
         // 更新现有记录
-        if (this.DB.Query("UPDATE AutoTrash SET Enabled = @0, Auto = @1, Mess = @2, ItemType = @3, DelItem = @4 WHERE Name = @5",
+        if (TShock.DB.Query("UPDATE AutoTrash SET Enabled = @0, Auto = @1, Mess = @2, ItemType = @3, DelItem = @4 WHERE Name = @5",
             data.Enabled ? 1 : 0, data.Auto ? 1 : 0, data.Mess ? 1 : 0, itemType, delItem, data.Name) != 0)
         {
             return true;
         }
 
         // 如果没有更新到任何记录，则插入新记录
-        return this.DB.Query("INSERT INTO AutoTrash (Name, Enabled, Auto, Mess, ItemType, DelItem) VALUES (@0, @1, @2, @3, @4, @5)",
+        return TShock.DB.Query("INSERT INTO AutoTrash (Name, Enabled, Auto, Mess, ItemType, DelItem) VALUES (@0, @1, @2, @3, @4, @5)",
             data.Name, data.Enabled ? 1 : 0, data.Auto ? 1 : 0, data.Mess ? 1 : 0, itemType, delItem) != 0;
     }
     #endregion
@@ -56,7 +49,7 @@ public class Database
     {
         var data = new List<MyData.PlayerData>();
 
-        using var reader = this.DB.QueryReader("SELECT * FROM AutoTrash");
+        using var reader = TShock.DB.QueryReader("SELECT * FROM AutoTrash");
 
         while (reader.Read())
         {
@@ -83,7 +76,7 @@ public class Database
     #region 清理所有数据方法
     public bool ClearData()
     {
-        return this.DB.Query("DELETE FROM AutoTrash") != 0;
+        return TShock.DB.Query("DELETE FROM AutoTrash") != 0;
     } 
     #endregion
 }

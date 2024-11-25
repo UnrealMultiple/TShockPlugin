@@ -9,6 +9,9 @@
 
 ## Update Log
 ```
+v1.2.3
+- Move database tables to tshock.sqlite
+
 v1.2.2
 - Cleaned up unused code.
 - Fixed a bug where items already in the trash bin would not be automatically removed upon reinsertion.
