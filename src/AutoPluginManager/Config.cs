@@ -54,5 +54,6 @@ public class Config
     [JsonProperty("自定义源清单地址")] public string CustomSourceManifestUrl = string.Empty;
     [JsonProperty("自定义源压缩文件地址")] public string CustomSourceArchiveUrl = string.Empty;
     [JsonProperty("插件排除列表")] public List<string> UpdateBlackList = new ();
-    [JsonProperty("热重载升级插件")] public bool AutoReloadPlugin = false;
+    [JsonProperty("热重载升级插件")] public bool HotReloadPlugin = true;
+    [JsonProperty("热重载出错时继续")] public bool ConinueHotReloadWhenError = true;
 }

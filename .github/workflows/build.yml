@@ -70,6 +70,7 @@ jobs:
               Copy-Item $manifestPath $(Join-Path manifests "$($p.Basename).json")
             }
           }
+          Copy-Item ../.config/submodule-manifests/* ./manifests
           ./TShock.Server -dump-plugins-list-only ./manifests
           Set-Location ../
           New-Item -Path out/Target -Name Plugins -ItemType Directory

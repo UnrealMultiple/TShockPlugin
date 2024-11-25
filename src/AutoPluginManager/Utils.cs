@@ -17,9 +17,10 @@ internal static class Utils
     private static Dictionary<string, PluginVersionInfo>? _installedPluginsManifestCache;
     public static Dictionary<string, PluginVersionInfo> InstalledPluginsManifestCache => _installedPluginsManifestCache ??= GetInstalledPlugins().ToDictionary(i => i.AssemblyName);
     public static readonly Dictionary<string, Version> PluginVersionOverrides = new ();
-
-    public static void UnLoadPlugins(IEnumerable<string> targetPaths)
+    
+    public static List<string> UnLoadPlugins(IEnumerable<string> targetPaths)
     {
+        var failedUnload = new List<string>();
         _installedPluginsManifestCache = null;
         var loadedAssemblies = (Dictionary<string, Assembly>) typeof(ServerApi)
             .GetField("loadedAssemblies", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)?
@@ -37,17 +38,39 @@ internal static class Utils
                          .Where(c => c.Plugin.GetType().Assembly == loadedAssemblies[p])
                          .ToArray())
             {
-                c.Plugin.Dispose();
-                plugins.Remove(c);
-                TShock.Log.ConsoleInfo($"Plugin {c.Plugin.Name} v{c.Plugin.Version} (by {c.Plugin.Author}) disposed.");
+                try
+                {
+                    c.Plugin.Dispose();
+                    plugins.Remove(c);
+                    TShock.Log.ConsoleInfo($"Plugin {c.Plugin.Name} v{c.Plugin.Version} (by {c.Plugin.Author}) disposed.");
+                }
+                catch (Exception ex)
+                {
+                    failedUnload.Add(c.Plugin.GetType().Assembly.GetName().Name!);
+                    if (Config.PluginConfig.ConinueHotReloadWhenError)
+                    {
+                        TShock.Log.ConsoleError($"卸载 \"{c.Plugin.Name}\" 时出错.\n" +
+                                                $"{ex}");
+                    }
+                    else
+                    {
+                        throw new Exception(
+                            string.Format("卸载 \"{0}\" 时出错.", c.Plugin.Name), ex);
+                    }
+                    
+                }
+                
             }
 
             loadedAssemblies.Remove(p);
         }
+
+        return failedUnload;
     }
 
-    public static void LoadPlugins(IEnumerable<string> targetPaths)
+    public static List<string> LoadPlugins(IEnumerable<string> targetPaths)
     {
+        var failedLoad = new List<string>();
         _installedPluginsManifestCache = null;
         var flag = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
         var loadedAssemblies = (Dictionary<string, Assembly>) typeof(ServerApi).GetField("loadedAssemblies", flag)?.GetValue(null)!;
@@ -92,8 +115,7 @@ internal static class Utils
                             TShock.Log.ConsoleError(
                                 string.Format("Plugin \"{0}\" is designed for a different Server API version ({1}) and was ignored.",
                                     type.FullName, apiVersion.ToString(2)), TraceLevel.Warning);
-
-                            return;
+                            continue;
                         }
                     }
 
@@ -110,13 +132,22 @@ internal static class Utils
                     }
                     catch (Exception ex)
                     {
-                        // Broken plugins better stop the entire server init.
-                        throw new InvalidOperationException(
-                            string.Format("Could not create an instance of plugin class \"{0}\".", type.FullName), ex);
+                        failedLoad.Add(type.FullName!);
+                        if (Config.PluginConfig.ConinueHotReloadWhenError)
+                        {
+                            TShock.Log.ConsoleError($"Could not create an instance of plugin class \"{type.FullName}\".\n" +
+                                                    $"{ex}");
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException(
+                                string.Format("Could not create an instance of plugin class \"{0}\".", type.FullName), ex);
+                        }
                     }
                 }
             }
         }
+        return failedLoad;
     }
 
     public static PluginVersionInfo[] GetInstalledPlugins()
