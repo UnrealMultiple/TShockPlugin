@@ -26,7 +26,6 @@ public class PluginContainer : LazyPlugin
             {
                 break;
             }
-
             action();
             TimingUtils.scheduled.Dequeue();
         }
