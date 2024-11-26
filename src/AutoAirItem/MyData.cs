@@ -3,10 +3,10 @@
 public class MyData
 {
     //玩家数据表
-    public List<ItemData> Items { get; set; } = new List<ItemData>();
+    public List<PlayerData> Items { get; set; } = new List<PlayerData>();
 
     #region 数据结构
-    public class ItemData
+    public class PlayerData
     {
         //玩家名字
         public string Name { get; set; }
@@ -26,7 +26,7 @@ public class MyData
         //移除物品的字典
         public Dictionary<int, int> DelItem { get; set; } = new Dictionary<int, int>();
 
-        public ItemData(string name = "", bool enabled = true, bool auto = true, bool mess = true, List<int> item = null!, Dictionary<int, int> DelItem = null!)
+        public PlayerData(string name = "", bool enabled = true, bool auto = true, bool mess = true, List<int> item = null!, Dictionary<int, int> DelItem = null!)
         {
             this.Name = name ?? "";
             this.Enabled = enabled;

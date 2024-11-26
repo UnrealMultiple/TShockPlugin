@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DonotFuck\n"
-"POT-Creation-Date: 2024-11-22 12:55:29+0000\n"
-"PO-Revision-Date: 2024-11-22 16:06+0800\n"
+"POT-Creation-Date: 2024-11-25 13:21:52+0000\n"
+"PO-Revision-Date: 2024-11-25 14:58+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -72,6 +72,11 @@ msgstr ""
 #: ../../Commands.cs:31
 msgid "启用"
 msgstr "Enable"
+
+#: ../../Commands.cs:33
+#, csharp-format
+msgid "已{0}敏感词记录功能。"
+msgstr "Sensitive word logging function has been {0}."
 
 #: ../../Commands.cs:77
 #, csharp-format

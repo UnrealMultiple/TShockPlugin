@@ -30,7 +30,7 @@ internal class Commands
                     GetString("禁用"):
                     GetString("启用");
 
-                args.Player.SendSuccessMessage($"已{Status}敏感词记录功能。");
+                args.Player.SendSuccessMessage(GetString($"已{Status}敏感词记录功能。"));
                 Configuration.Save();
                 return;
             }
