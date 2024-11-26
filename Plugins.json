@@ -869,7 +869,7 @@
   },
   {
     "Name": "ItemDecoration",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "FrankV22, Soofa, 少司命",
     "Description": "Show Item Decoration and More!!!",
     "AssemblyName": "ItemDecoration",
@@ -901,7 +901,7 @@
   },
   {
     "Name": "LazyAPI",
-    "Version": "1.0.0.4",
+    "Version": "1.0.0.5",
     "Author": "cc004 & members of UnrealMultiple",
     "Description": "None",
     "AssemblyName": "LazyAPI",
@@ -1073,7 +1073,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.7.7",
+    "Version": "1.1.7.8",
     "Author": "少司命",
     "Description": "服务器工具",
     "AssemblyName": "ServerTools",
