@@ -8,10 +8,12 @@ public class Setting : JsonConfigBase<Setting>
 {
     [LocalizedPropertyName(CultureType.Chinese, "物品聊天")]
     [LocalizedPropertyName(CultureType.English, "itemChat")]
+    [LocalizedPropertyName(CultureType.Spanish, "ObjetoEnChat")]
     public ItemChatConfig ItemChatConfig { get; set; } = new();
 
     [LocalizedPropertyName(CultureType.Chinese, "物品切换")]
     [LocalizedPropertyName(CultureType.English, "itemText")]
+    [LocalizedPropertyName(CultureType.Spanish, "textoDeObjeto")]
     public ItemTextConfig ItemTextConfig { get; set; } = new();
 
     protected override string Filename => "ItemDecoration";

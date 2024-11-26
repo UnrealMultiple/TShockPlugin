@@ -16,7 +16,7 @@ public class Plugin : LazyPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 0);
+    public override Version Version => new(1, 0, 0, 1);
 
     public Plugin(Main game) : base(game)
     {
@@ -38,7 +38,7 @@ public class Plugin : LazyPlugin
             return;
         }
         var msg = ReplacePlaceholderWithItem(player, args.Text);
-        TShock.Utils.Broadcast(msg, player.Group.R, player.Group.G, player.Group.B);
+        TShock.Utils.Broadcast(string.Format(TShock.Config.Settings.ChatFormat, player.Group.Name, player.Group.Prefix, player.Name, player.Group.Suffix,msg), player.Group.R, player.Group.G, player.Group.B);
         args.Handled = true;
     }
 

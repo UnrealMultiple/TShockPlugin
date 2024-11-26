@@ -16,103 +16,99 @@ No se requiere ningún comando adicional.
 
 ## Configuración
 
-> Ruta del archivo de configuración: `tshock/ItemDeco/ItemChatConfig.json`
+> Ruta del archivo de configuración: `tshock/ItemDeco/ItemDecoration.es-ES.json`
 ```json
 {
-  "CONFIGURATION": {    
-    "ShowItem": true, // Si se muestra el nombre del ítem
-    "ShowDamage": true, // Si se muestra el daño del ítem
-    "ItemColor": {  // Color del nombre del ítem
+  "ObjetoEnChat": {
+    "colorDelObjeto": {
       "R": 255,
       "G": 255,
       "B": 255
     },
-    "DamageColor": {  // Color del daño
+    "ColorDelDaño": {
       "R": 0,
       "G": 255,
       "B": 255
-    }
-  }
-}
-```
-
-> Ruta del archivo de configuración: `tshock/ItemDeco/ItemTextConfig.json`
-```json
-{
-  "ShowName": true, // Si se muestra el nombre del ítem
-  "ShowDamage": true, // Si se muestra el daño del ítem
-  "DamageText": "Daño", // Texto que precede al valor de daño
-  "DefaultColor": { // Color predeterminado
-    "r": 255, // Componente rojo
-    "g": 255, // Componente verde
-    "b": 255  // Componente azul
+    },
+    "mostrarNombre": false,
+    "mostrarDaño": false
   },
-  "RarityColors": { // Colores para la rareza
-    "-1": { // Gris (169, 169, 169)
-      "r": 169,
-      "g": 169,
-      "b": 169
+  "textoDeObjeto": {
+    "textoDeDaño": "Damage",
+    "colorPorDefecto": {
+      "R": 255,
+      "G": 255,
+      "B": 255
     },
-    "0": { // Blanco (255, 255, 255)
-      "r": 255,
-      "g": 255,
-      "b": 255
+    "coloresDeRaridad": {
+      "-1": {
+        "R": 169,
+        "G": 169,
+        "B": 169
+      },
+      "0": {
+        "R": 255,
+        "G": 255,
+        "B": 255
+      },
+      "1": {
+        "R": 0,
+        "G": 128,
+        "B": 0
+      },
+      "2": {
+        "R": 0,
+        "G": 112,
+        "B": 221
+      },
+      "3": {
+        "R": 128,
+        "G": 0,
+        "B": 128
+      },
+      "4": {
+        "R": 255,
+        "G": 128,
+        "B": 0
+      },
+      "5": {
+        "R": 255,
+        "G": 0,
+        "B": 0
+      },
+      "6": {
+        "R": 255,
+        "G": 215,
+        "B": 0
+      },
+      "7": {
+        "R": 255,
+        "G": 105,
+        "B": 180
+      },
+      "8": {
+        "R": 255,
+        "G": 215,
+        "B": 0
+      },
+      "9": {
+        "R": 0,
+        "G": 255,
+        "B": 255
+      },
+      "10": {
+        "R": 255,
+        "G": 105,
+        "B": 180
+      },
+      "11": {
+        "R": 75,
+        "G": 0,
+        "B": 130
+      }
     },
-    "1": { // Verde (0, 128, 0)
-      "r": 0,
-      "g": 128,
-      "b": 0
-    },
-    "2": { // Azul (0, 112, 221)
-      "r": 0,
-      "g": 112,
-      "b": 221
-    },
-    "3": { // Púrpura (128, 0, 128)
-      "r": 128,
-      "g": 0,
-      "b": 128
-    },
-    "4": { // Naranja (255, 128, 0)
-      "r": 255,
-      "g": 128,
-      "b": 0
-    },
-    "5": { // Rojo (255, 0, 0)
-      "r": 255,
-      "g": 0,
-      "b": 0
-    },
-    "6": { // Dorado (255, 215, 0)
-      "r": 255,
-      "g": 215,
-      "b": 0
-    },
-    "7": { // Rosa (255, 105, 180)
-      "r": 255,
-      "g": 105,
-      "b": 180
-    },
-    "8": { // Dorado (255, 215, 0)
-      "r": 255,
-      "g": 215,
-      "b": 0
-    },
-    "9": { // Cian (0, 255, 255)
-      "r": 0,
-      "g": 255,
-      "b": 255
-    },
-    "10": { // Rosa (255, 105, 180)
-      "r": 255,
-      "g": 105,
-      "b": 180
-    },
-    "11": { // Púrpura oscuro (75, 0, 130)
-      "r": 75,
-      "g": 0,
-      "b": 130
-    }
+    "mostrarNombre": true,
+    "mostrarDaño": true
   }
 }
 ```
