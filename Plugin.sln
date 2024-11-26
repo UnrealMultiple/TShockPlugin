@@ -252,7 +252,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemDecoration", "src\ItemD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DwTP", "src\DwTP\DwTP.csproj", "{2003D2E7-0A1C-4557-A0EE-F4E06B766B78}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoClear", "src\AutoClear\AutoClear.csproj", "{998A17B6-92DE-490D-8AB2-01941C729BFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoClear", "src\AutoClears\AutoClear.csproj", "{998A17B6-92DE-490D-8AB2-01941C729BFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
