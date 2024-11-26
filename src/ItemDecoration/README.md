@@ -9,7 +9,9 @@
 ## 更新日志
 
 ```
-V1.0.0.1
+v1.0.0.1
+完成西班牙语的i18n config配置，修复聊天不显示名字的问题
+V1.0.0.0
 重构代码
 ```
 
@@ -19,31 +21,31 @@ V1.0.0.1
 ```
 
 ## 配置
-> 配置文件路径：tshock/ItemDecoration.json
+> 配置文件路径：tshock/ItemDecoration.zh-CN.json
 ```json
-
-  "itemChat": {
-    "itemColor": {
+{
+  "物品聊天": {
+    "物品颜色": {
       "R": 255,
       "G": 255,
       "B": 255
     },
-    "damageColor": {
+    "伤害颜色": {
       "R": 0,
       "G": 255,
       "B": 255
     },
-    "showName": false,
-    "showDamage": false
+    "显示名称": false,
+    "显示伤害": false
   },
-  "itemText": {
-    "damageText": "Damage",
-    "defaultColor": {
+  "物品切换": {
+    "伤害文本": "Damage",
+    "默认颜色": {
       "R": 255,
       "G": 255,
       "B": 255
     },
-    "rarityColors": {
+    "稀有颜色": {
       "-1": {
         "R": 169,
         "G": 169,
@@ -110,8 +112,8 @@ V1.0.0.1
         "B": 130
       }
     },
-    "showName": true,
-    "showDamage": true
+    "显示名称": true,
+    "显示伤害": true
   }
 }
 ```

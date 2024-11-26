@@ -28,6 +28,8 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         {
             "zh" or "zh-cn" => new CultureInfo("zh-CN"),
             "en" or "en-us" => new CultureInfo("en-US"),
+            "es" or "es-es" => new CultureInfo("es-ES"),
+            "ru" or "ru-ru" => new CultureInfo("ru-RU"),
             _ => (CultureInfo) typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
         "TranslationCultureInfo",
         BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!
