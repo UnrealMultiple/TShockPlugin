@@ -1,7 +1,9 @@
-﻿using LazyAPI.ConfigFiles;
+﻿using LazyAPI;
+using LazyAPI.ConfigFiles;
 
 namespace AnnouncementBoxPlus;
 
+[Config]
 public class Config : JsonConfigBase<Config>
 {
     protected override string Filename => "AnnouncementBoxPlus";

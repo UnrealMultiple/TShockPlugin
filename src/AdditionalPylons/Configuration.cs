@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using LazyAPI.ConfigFiles;
+using LazyAPI;
 
 namespace AdditionalPylons;
 
+[Config]
 internal class Configuration : JsonConfigBase<Configuration>
 {
     protected override string Filename => "AdditionalPylons";

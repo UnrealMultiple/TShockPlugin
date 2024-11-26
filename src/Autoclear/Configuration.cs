@@ -1,75 +1,60 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI;
+using LazyAPI.ConfigFiles;
+using Newtonsoft.Json;
 using TShockAPI;
 
-namespace Autoclear;
+namespace AutoClear;
 
-public class Configuration
+[Config]
+public class Configuration : JsonConfigBase<Configuration>
 {
-    public static readonly string FilePath = Path.Combine(TShock.SavePath, "AutoClear.json");
+    protected override string Filename => "AutoClear";
 
-    [JsonProperty("多久检测一次(s)")]
-    public int SmartSweepThreshold { get; set; } = 100;
+    [LocalizedPropertyName(CultureType.Chinese, "清理间隔")]
+    [LocalizedPropertyName(CultureType.English, "interval")]
+    public int detectionIntervalSeconds { get; set; } = 100;
 
-    [JsonProperty("不清扫的物品ID列表")]
+    [LocalizedPropertyName(CultureType.Chinese, "排除列表")]
+    [LocalizedPropertyName(CultureType.English, "exclude")]
     public List<int> NonSweepableItemIDs { get; set; } = new List<int>();
 
-    [JsonProperty("智能清扫数量临界值")]
-    public int detectionIntervalSeconds { get; set; } = 10;
+    [LocalizedPropertyName(CultureType.Chinese, "清理阈值")]
+    [LocalizedPropertyName(CultureType.English, "threshold")]
+    public int SmartSweepThreshold { get; set; } = 10;
 
-    [JsonProperty("延迟清扫(s)")]
+    [LocalizedPropertyName(CultureType.Chinese, "延迟清扫")]
+    [LocalizedPropertyName(CultureType.English, "dealy")]
     public int DelayedSweepTimeoutSeconds { get; set; } = 10;
 
-    [JsonProperty("延迟清扫自定义消息")]
+    [LocalizedPropertyName(CultureType.Chinese, "延迟清扫消息")]
+    [LocalizedPropertyName(CultureType.English, "dealyMsg")]
     public string DelayedSweepCustomMessage { get; set; } = "";
 
-    [JsonProperty("是否清扫挥动武器")]
+    [LocalizedPropertyName(CultureType.Chinese, "清扫挥动武器")]
+    [LocalizedPropertyName(CultureType.English, "sweepSwinging")]
     public bool SweepSwinging { get; set; } = true;
 
-    [JsonProperty("是否清扫投掷武器")]
+    [LocalizedPropertyName(CultureType.Chinese, "清扫投掷武器")]
+    [LocalizedPropertyName(CultureType.English, "sweepThrowable")]
     public bool SweepThrowable { get; set; } = true;
 
-    [JsonProperty("是否清扫普通物品")]
+    [LocalizedPropertyName(CultureType.Chinese, "清扫普通物品")]
+    [LocalizedPropertyName(CultureType.English, "sweepRegaular")]
     public bool SweepRegular { get; set; } = true;
 
-    [JsonProperty("是否清扫装备")]
+    [LocalizedPropertyName(CultureType.Chinese, "清扫装备")]
+    [LocalizedPropertyName(CultureType.English, "sweepEquipment")]
     public bool SweepEquipment { get; set; } = true;
 
-    [JsonProperty("是否清扫时装")]
+    [LocalizedPropertyName(CultureType.Chinese, "清扫时装")]
+    [LocalizedPropertyName(CultureType.English, "sweepVanity")]
     public bool SweepVanity { get; set; } = true;
 
-    [JsonProperty("完成清扫自定义消息")]
+    [LocalizedPropertyName(CultureType.Chinese, "完成清扫消息")]
+    [LocalizedPropertyName(CultureType.English, "sweepMsg")]
     public string CustomMessage { get; set; } = "";
 
-    [JsonProperty("具体消息")]
+    [LocalizedPropertyName(CultureType.Chinese, "清理提示")]
+    [LocalizedPropertyName(CultureType.English, "sweepTip")]
     public bool SpecificMessage { get; set; } = true;
-
-
-    public void Write(string path)
-    {
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
-        {
-            var str = JsonConvert.SerializeObject(this, Formatting.Indented);
-            using (var sw = new StreamWriter(fs))
-            {
-                sw.Write(str);
-            }
-        }
-    }
-
-    public static Configuration? Read(string path)
-    {
-        if (!File.Exists(path))
-        {
-            return new Configuration();
-        }
-
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-        {
-            using (var sr = new StreamReader(fs))
-            {
-                var cf = JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd());
-                return cf;
-            }
-        }
-    }
 }

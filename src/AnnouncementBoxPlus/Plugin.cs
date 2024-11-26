@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LazyAPI;
+using Microsoft.Xna.Framework;
 using On.OTAPI;
 using System.Text;
 using Terraria;
@@ -10,7 +11,7 @@ using TShockAPI.Hooks;
 namespace AnnouncementBoxPlus;
 
 [ApiVersion(2, 1)]
-public class AnnouncementBoxPlus : TerrariaPlugin
+public class AnnouncementBoxPlus : LazyPlugin
 {
     //定义插件的作者名称
     public override string Author => "Cai";
@@ -22,7 +23,7 @@ public class AnnouncementBoxPlus : TerrariaPlugin
     public override string Name => "AnnouncementBoxPlus";
 
     //插件的版本
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
 
     //插件的构造器
     public AnnouncementBoxPlus(Main game) : base(game)

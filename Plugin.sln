@@ -90,7 +90,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invincibility", "src\Invinc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ezperm", "src\Ezperm\Ezperm.csproj", "{4AB96380-C0D3-4746-87FF-D5FF0AFF1AE3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autoclear", "src\Autoclear\Autoclear.csproj", "{75442E3B-E8FD-4B36-BA0B-7113005E5D11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoClear", "src\Autoclear\AutoClear.csproj", "{75442E3B-E8FD-4B36-BA0B-7113005E5D11}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EssentialsPlus", "src\EssentialsPlus\EssentialsPlus.csproj", "{F1D3C3A7-247D-4537-A9DE-C5988AF7EAFD}"
 EndProject

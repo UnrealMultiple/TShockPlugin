@@ -45,7 +45,7 @@ public class Commands
     #region 检查物品数量方法
     public static void CheckCmd(CommandArgs args, int num)
     {
-        if (!AutoAirItem.Config.Open)
+        if (!Configuration.Instance.Enable)
         {
             return;
         }
@@ -91,7 +91,7 @@ public class Commands
         var name = args.Player.Name;
         var data = AutoAirItem.Data.Items.FirstOrDefault(item => item.Name == name);
 
-        if (!AutoAirItem.Config.Open)
+        if (!Configuration.Instance.Enable)
         {
             return;
         }
