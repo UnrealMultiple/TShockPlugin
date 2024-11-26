@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DonotFuck\n"
-"POT-Creation-Date: 2024-11-22 12:55:29+0000\n"
-"PO-Revision-Date: 2024-11-22 12:55:29+0000\n"
+"POT-Creation-Date: 2024-11-25 13:21:52+0000\n"
+"PO-Revision-Date: 2024-11-25 13:21:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -69,6 +69,11 @@ msgstr ""
 
 #: ../../Commands.cs:31
 msgid "启用"
+msgstr ""
+
+#: ../../Commands.cs:33
+#, csharp-format
+msgid "已{0}敏感词记录功能。"
 msgstr ""
 
 #: ../../Commands.cs:77

@@ -35,6 +35,7 @@ public class Commands
         if (args.Parameters.Count == 0)
         {
             AutoAirItem.Data.Items.Clear();
+            AutoAirItem.DB.ClearData();
             args.Player.SendSuccessMessage(GetString($"已[c/92C5EC:清空]所有玩家《自动垃圾桶》数据！"));
             return;
         }
@@ -50,15 +51,17 @@ public class Commands
         }
 
         var flag = false;
-        args.Player.SendInfoMessage(GetString($"【以下垃圾桶数量超过[c/92C5EC:{num}]的玩家】"));
+        args.Player.SendInfoMessage(GetString($"以下垃圾物品数量超过【[c/92C5EC:{num}]】的玩家"));
 
         var plrs = new List<(int Index, string Name, List<(string ItemName, int Count)> ExcessItems)>();
 
         var index = 1;
 
-        foreach (var data in AutoAirItem.Data.Items)
+        var db = AutoAirItem.DB.LoadData(); // 调用数据库查询方法
+
+        foreach (var data in db)
         {
-            var Items = data.DelItem.Where(pair => pair.Value > num).Select(pair =>
+            var Items = data.DelItem.Where(pair => pair.Value >= num).Select(pair =>
                 (ItemName: TShock.Utils.GetItemById(pair.Key).Name, Count: pair.Value)).ToList();
 
             if (Items.Any())
@@ -72,12 +75,13 @@ public class Commands
         {
             foreach (var plr in plrs)
             {
-                args.Player.SendMessage(GetString($"[c/32CEB7:{plr.Index}.][c/F3E83B:{plr.Name}:] {string.Join(", ", plr.ExcessItems.Select(item => $"{item.ItemName}([c/92C5EC:{item.Count}])"))}"), 193, 223, 186);
+                args.Player.SendMessage(GetString($"[c/32CEB7:{plr.Index}.][c/F3E83B:{plr.Name}:] " +
+                    $"{string.Join(", ", plr.ExcessItems.Select(item => $"{item.ItemName}([c/92C5EC:{item.Count}])"))}"), 193, 223, 186);
             }
         }
         else
         {
-            args.Player.SendMessage(GetString($"没有找到垃圾桶数量超过[c/92C5EC:{num}]的玩家"), 193, 223, 186);
+            args.Player.SendMessage(GetString($"没有找到垃圾数量超过[c/92C5EC:{num}]的玩家"), 193, 223, 186);
         }
     }
     #endregion
@@ -126,6 +130,7 @@ public class Commands
                 args.Player.SendSuccessMessage(data.Enabled ?
                     GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:启用]自动垃圾桶功能。") :
                     GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:禁用]自动垃圾桶功能。"));
+                AutoAirItem.DB.UpdateData(data); // 更新数据库
                 return;
             }
 
@@ -134,6 +139,7 @@ public class Commands
                 data.ItemType.Clear();
                 data.DelItem.Clear();
                 args.Player.SendSuccessMessage(GetString($"已清理[c/92C5EC: {args.Player.Name} ]的自动垃圾桶表"));
+                AutoAirItem.DB.UpdateData(data); // 更新数据库
                 return;
             }
 
@@ -141,6 +147,7 @@ public class Commands
             {
                 data.ItemType.Add(args.TPlayer.inventory[args.TPlayer.selectedItem].type);
                 args.Player.SendSuccessMessage(GetString("手选物品 [c/92C5EC:{0}] 已加入自动垃圾桶中! 脱手即清!"), args.TPlayer.inventory[args.TPlayer.selectedItem].Name);
+                AutoAirItem.DB.UpdateData(data); // 更新数据库
                 return;
             }
 
@@ -150,6 +157,7 @@ public class Commands
                 args.Player.SendSuccessMessage(data.Auto ?
                     GetString($"玩家 [{args.Player.Name}] 的垃圾桶位格监听功能已[c/92C5EC:启用]") :
                     GetString($"玩家 [{args.Player.Name}] 的垃圾桶位格监听功能已[c/92C5EC:禁用]"));
+                AutoAirItem.DB.UpdateData(data); // 更新数据库
                 return;
             }
 
@@ -159,6 +167,7 @@ public class Commands
                 args.Player.SendSuccessMessage(data.Mess ?
                     GetString($"玩家 [{args.Player.Name}] 的自动清理消息已[c/92C5EC:启用]") :
                     GetString($"玩家 [{args.Player.Name}] 的自动清理消息已[c/92C5EC:禁用]"));
+                AutoAirItem.DB.UpdateData(data); // 更新数据库
                 return;
             }
         }
@@ -195,6 +204,7 @@ public class Commands
                     }
                     data.ItemType.Add(item.type);
                     args.Player.SendSuccessMessage(GetString("已成功将物品添加到垃圾桶: [c/92C5EC:{0}]!"), item.Name);
+                    AutoAirItem.DB.UpdateData(data); // 更新数据库
                     break;
                 }
 
@@ -210,6 +220,8 @@ public class Commands
 
                     // 返还被清理的物品（字典存在玩家自己的数据里，键=物品ID，值则是在这个ID下的物品数量）
                     var del = data.DelItem.FirstOrDefault(x => x.Key == item.type);
+
+                    args.Player.SendSuccessMessage(GetString("已从垃圾桶移出:[c/DEFF7D:{1}]个[c/92C5EC:{0}]"), item.Name, del.Value);
 
                     //从找到的ID里判断:值大于堆叠数
                     if (del.Value > item.maxStack)
@@ -246,7 +258,7 @@ public class Commands
 
                     data.DelItem.Remove(del.Key);
                     data.ItemType.Remove(item.type);
-                    args.Player.SendSuccessMessage(GetString("已成功从垃圾桶移出物品: [c/92C5EC:{0}]!"), item.Name);
+                    AutoAirItem.DB.UpdateData(data); // 更新数据库
                     break;
                 }
 
