@@ -32,7 +32,6 @@ public class AnnouncementBoxPlus : TerrariaPlugin
     //插件加载时执行的代码
     public override void Initialize()
     {
-        Config.Read();
         GeneralHooks.ReloadEvent += this.GeneralHooks_ReloadEvent;
         On.OTAPI.Hooks.Wiring.InvokeAnnouncementBox += this.OnAnnouncementBox;
         GetDataHandlers.SignRead.Register(this.OnSignRead);
@@ -51,14 +50,13 @@ public class AnnouncementBoxPlus : TerrariaPlugin
     }
     private void GeneralHooks_ReloadEvent(ReloadEventArgs e)
     {
-        Config.Read();
         e.Player.SendSuccessMessage("[AnnouncementBoxPlus]配置文件已重载!");
     }
 
     private void OnSign(object? sender, GetDataHandlers.SignEventArgs e)
     {
         var tile = Main.tile[e.X, e.Y];
-        if (tile.type == 425 && Config.config.usePerm)
+        if (tile.type == 425 && Config.Instance.usePerm)
         {
             if (!e.Player.HasPermission("AnnouncementBoxPlus.Edit"))
             {
@@ -71,7 +69,7 @@ public class AnnouncementBoxPlus : TerrariaPlugin
     private void OnSignRead(object? sender, GetDataHandlers.SignReadEventArgs e)
     {
         var tile = Main.tile[e.X, e.Y];
-        if (tile.type == 425 && Config.config.usePerm)
+        if (tile.type == 425 && Config.Instance.usePerm)
         {
             if (!e.Player.HasPermission("AnnouncementBoxPlus.Edit"))
             {
@@ -86,7 +84,7 @@ public class AnnouncementBoxPlus : TerrariaPlugin
     {
         try
         {
-            if (Config.config.disabled)
+            if (!Config.Instance.Enable)
             {
                 return false;
             }
@@ -98,10 +96,10 @@ public class AnnouncementBoxPlus : TerrariaPlugin
             var text = Main.sign[num37].text;
 
 
-            if (Config.config.justWho && Wiring.CurrentUser != 255 && TShock.Players[Wiring.CurrentUser] != null)
+            if (Config.Instance.justWho && Wiring.CurrentUser != 255 && TShock.Players[Wiring.CurrentUser] != null)
             {
 
-                if (Config.config.range <= 0)
+                if (Config.Instance.range <= 0)
                 {
                     NetMessage.SendData(107, Wiring.CurrentUser, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, Wiring.CurrentUser)), 255, Color.White.R, Color.White.G, Color.White.B, 460);
 
@@ -109,7 +107,7 @@ public class AnnouncementBoxPlus : TerrariaPlugin
                 else
                 {
 
-                    if (Main.player[Wiring.CurrentUser].active && Main.player[Wiring.CurrentUser].Distance(new Vector2((x * 16) + 16, (y * 16) + 16)) <= Config.config.range)
+                    if (Main.player[Wiring.CurrentUser].active && Main.player[Wiring.CurrentUser].Distance(new Vector2((x * 16) + 16, (y * 16) + 16)) <= Config.Instance.range)
                     {
                         NetMessage.SendData(107, Wiring.CurrentUser, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, Wiring.CurrentUser)), 255, Color.White.R, Color.White.G, Color.White.B, 460);
                     }
@@ -117,7 +115,7 @@ public class AnnouncementBoxPlus : TerrariaPlugin
             }
             else
             {
-                if (Config.config.range <= 0)
+                if (Config.Instance.range <= 0)
                 {
                     for (var i = 0; i < Main.maxPlayers; i++)
                     {
@@ -131,7 +129,7 @@ public class AnnouncementBoxPlus : TerrariaPlugin
                 {
                     for (var i = 0; i < Main.maxPlayers; i++)
                     {
-                        if (Main.player[i].active && Main.player[i].Distance(new Vector2((x * 16) + 16, (y * 16) + 16)) <= Config.config.range)
+                        if (Main.player[i].active && Main.player[i].Distance(new Vector2((x * 16) + 16, (y * 16) + 16)) <= Config.Instance.range)
                         {
                             NetMessage.SendData(107, i, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, i)), 255, Color.White.R, Color.White.G, Color.White.B, 460);
                         }
@@ -165,15 +163,15 @@ public class AnnouncementBoxPlus : TerrariaPlugin
         online = string.Join(",", players);
         if (index >= Main.maxPlayers || TShock.Players[index] == null)
         {
-            if (Config.config.useFormat)
+            if (Config.Instance.useFormat)
             {
-                text = Config.config.formation
+                text = Config.Instance.formation
                     .Replace("%玩家组名%", "")
                     .Replace("%玩家名%", "[服务器]")
                     .Replace("%当前时间%", DateTime.Now.ToString("HH:mm"))
                     .Replace("%内容%", text);
             }
-            if (Config.config.usePlaceholder)
+            if (Config.Instance.usePlaceholder)
             {
                 text = text.Replace("%玩家组名%", "")
                     .Replace("%玩家名%", "[服务器]")
@@ -200,15 +198,15 @@ public class AnnouncementBoxPlus : TerrariaPlugin
             return text;
         }
         var plr = TShock.Players[index];
-        if (Config.config.useFormat)
+        if (Config.Instance.useFormat)
         {
-            text = Config.config.formation
+            text = Config.Instance.formation
                 .Replace("%玩家组名%", plr.Group.Name)
                 .Replace("%玩家名%", plr.Name)
                 .Replace("%当前时间%", DateTime.Now.ToString("HH:mm"))
                 .Replace("%内容%", text);
         }
-        if (Config.config.usePlaceholder)
+        if (Config.Instance.usePlaceholder)
         {
             text = text.Replace("%玩家组名%", plr.Group.Name)
                 .Replace("%玩家名%", plr.Name)
