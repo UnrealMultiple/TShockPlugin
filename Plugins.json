@@ -31,12 +31,14 @@
   },
   {
     "Name": "[放置更多晶塔] AdditionalPylons",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "Stealownz,肝帝熙恩优化1449",
     "Description": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
     "AssemblyName": "AdditionalPylons",
     "Path": "AdditionalPylons.dll",
-    "Dependencies": [],
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {
@@ -305,12 +307,14 @@
   },
   {
     "Name": "智能自动扫地",
-    "Version": "1.0.4",
+    "Version": "1.0.5",
     "Author": "大豆子[Mute适配1447]，肝帝熙恩更新",
     "Description": "智能扫地机",
-    "AssemblyName": "Autoclear",
-    "Path": "Autoclear.dll",
-    "Dependencies": [],
+    "AssemblyName": "AutoClear",
+    "Path": "AutoClear.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {
@@ -335,12 +339,14 @@
   },
   {
     "Name": "自动垃圾桶",
-    "Version": "1.2.3",
+    "Version": "1.2.4",
     "Author": "羽学",
     "Description": "涡轮增压不蒸鸭",
     "AssemblyName": "AutoAirItem",
     "Path": "AutoAirItem.dll",
-    "Dependencies": [],
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {
@@ -355,22 +361,26 @@
   },
   {
     "Name": "AnnouncementBoxPlus",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "Cai",
     "Description": "优化广播盒",
     "AssemblyName": "AnnouncementBoxPlus",
     "Path": "AnnouncementBoxPlus.dll",
-    "Dependencies": [],
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.0.6",
+    "Version": "1.0.7",
     "Author": "Scavenger",
     "Description": "自动广播插件",
     "AssemblyName": "AutoBroadcast",
     "Path": "AutoBroadcast.dll",
-    "Dependencies": [],
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {

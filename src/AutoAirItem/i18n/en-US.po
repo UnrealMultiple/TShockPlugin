@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoAirItem\n"
-"POT-Creation-Date: 2024-11-25 13:21:30+0000\n"
+"POT-Creation-Date: 2024-11-29 03:44:50+0000\n"
 "PO-Revision-Date: 2024-11-25 15:00+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,10 +20,6 @@ msgstr "[{0}'s Trash Bin]\n"
 #, csharp-format
 msgid "[c/32CEB7:{0}.][c/F3E83B:{1}:] {0}"
 msgstr "[c/32CEB7:{0}.][c/F3E83B:{1}:] {0}"
-
-#: ../../AutoAirItem.cs:59
-msgid "[自动垃圾桶]重新加载配置完毕。"
-msgstr "[Auto Air Item] Reload configuration completed。"
 
 #: ../../Commands.cs:17
 msgid ""
@@ -94,7 +90,7 @@ msgstr "All players' [c/92C5EC:Cleared] Auto Trash Bin data！"
 msgid "已从垃圾桶移出:[c/DEFF7D:{1}]个[c/92C5EC:{0}]"
 msgstr "Removed from the AutoTrash: [c/92C5EC:{0}]([c/DEFF7D:{1}])"
 
-#: ../../AutoAirItem.cs:154
+#: ../../AutoAirItem.cs:134
 #, csharp-format
 msgid ""
 "已从垃圾桶移除:[c/EC73B9:{0}]个[c/FF5C5F:{1}]|[c/92C5EC:返还]: [c/A1D4C2:/"
@@ -103,7 +99,7 @@ msgstr ""
 "Removed from the trash bin: [c/FF5C5F:{1}]([c/EC73B9:{0}]) | [c/92C5EC:"
 "Return]: [c/A1D4C2:/air del {2}]"
 
-#: ../../AutoAirItem.cs:172
+#: ../../AutoAirItem.cs:152
 #, csharp-format
 msgid ""
 "已从背包移除:[c/EC73B9:{0}]个[c/FF5C5F:{1}]|[c/92C5EC:返还]: [c/A1D4C2:/air "
@@ -193,6 +189,9 @@ msgstr "Please enter the command to enable →: [c/92C5EC:/air on] "
 #: ../../Commands.cs:115
 msgid "输入指令[c/E4EFBC:切换]自动模式：[c/C086DF:/air auto]"
 msgstr "Enter the command to [c/E4EFBC:Toggle] Auto Mode: [c/C086DF:/air auto]"
+
+#~ msgid "[自动垃圾桶]重新加载配置完毕。"
+#~ msgstr "[Auto Air Item] Reload configuration completed。"
 
 #, csharp-format
 #~ msgid "已将 '[c/92C5EC:{0}]'添加到自动垃圾桶|指令菜单: [c/A1D4C2:/air]"
