@@ -90,8 +90,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invincibility", "src\Invinc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ezperm", "src\Ezperm\Ezperm.csproj", "{4AB96380-C0D3-4746-87FF-D5FF0AFF1AE3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autoclear", "src\Autoclear\Autoclear.csproj", "{75442E3B-E8FD-4B36-BA0B-7113005E5D11}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EssentialsPlus", "src\EssentialsPlus\EssentialsPlus.csproj", "{F1D3C3A7-247D-4537-A9DE-C5988AF7EAFD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShowArmors", "src\ShowArmors\ShowArmors.csproj", "{32AA74DF-D75A-44B7-9BFD-F48BE66247CB}"
@@ -253,6 +251,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemDecoration", "src\ItemDecoration\ItemDecoration.csproj", "{C4A6D861-D53D-447E-9948-A23A797E2C1C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DwTP", "src\DwTP\DwTP.csproj", "{2003D2E7-0A1C-4557-A0EE-F4E06B766B78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoClear", "src\AutoClears\AutoClear.csproj", "{998A17B6-92DE-490D-8AB2-01941C729BFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -590,14 +590,6 @@ Global
 		{4AB96380-C0D3-4746-87FF-D5FF0AFF1AE3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4AB96380-C0D3-4746-87FF-D5FF0AFF1AE3}.Release|x64.ActiveCfg = Release|Any CPU
 		{4AB96380-C0D3-4746-87FF-D5FF0AFF1AE3}.Release|x64.Build.0 = Release|Any CPU
-		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Debug|x64.Build.0 = Debug|Any CPU
-		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Release|x64.ActiveCfg = Release|Any CPU
-		{75442E3B-E8FD-4B36-BA0B-7113005E5D11}.Release|x64.Build.0 = Release|Any CPU
 		{F1D3C3A7-247D-4537-A9DE-C5988AF7EAFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F1D3C3A7-247D-4537-A9DE-C5988AF7EAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D3C3A7-247D-4537-A9DE-C5988AF7EAFD}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1246,6 +1238,14 @@ Global
 		{2003D2E7-0A1C-4557-A0EE-F4E06B766B78}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2003D2E7-0A1C-4557-A0EE-F4E06B766B78}.Release|x64.ActiveCfg = Release|Any CPU
 		{2003D2E7-0A1C-4557-A0EE-F4E06B766B78}.Release|x64.Build.0 = Release|Any CPU
+		{998A17B6-92DE-490D-8AB2-01941C729BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{998A17B6-92DE-490D-8AB2-01941C729BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{998A17B6-92DE-490D-8AB2-01941C729BFE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{998A17B6-92DE-490D-8AB2-01941C729BFE}.Debug|x64.Build.0 = Debug|Any CPU
+		{998A17B6-92DE-490D-8AB2-01941C729BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{998A17B6-92DE-490D-8AB2-01941C729BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{998A17B6-92DE-490D-8AB2-01941C729BFE}.Release|x64.ActiveCfg = Release|Any CPU
+		{998A17B6-92DE-490D-8AB2-01941C729BFE}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

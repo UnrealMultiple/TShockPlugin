@@ -1,37 +1,31 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using LazyAPI;
 using Terraria;
 using Terraria.ID;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 
 namespace AutoAirItem;
 
 [ApiVersion(2, 1)]
-public class AutoAirItem : TerrariaPlugin
+public class AutoAirItem : LazyPlugin
 {
     #region 插件信息
     public override string Name => "自动垃圾桶";
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 2, 3);
+    public override Version Version => new Version(1, 2, 4);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 
     #region 注册与释放
     public AutoAirItem(Main game) : base(game) { }
-    internal static Configuration Config = new();
     internal static MyData Data = new();
-    public static Database DB = new();
+    internal static Database DB = new();
     public override void Initialize()
     {
-        LoadConfig();
-
-        if (Config.Db)
+        if (Configuration.Instance.Db)
         {
             this.LoadAllPlayerData(); // 加载所有玩家的数据
         }
-
-        GeneralHooks.ReloadEvent += ReloadConfig;
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);
         TShockAPI.Commands.ChatCommands.Add(new Command("AutoAir.use", Commands.AirCmd, "air", "垃圾"));
@@ -42,26 +36,12 @@ public class AutoAirItem : TerrariaPlugin
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= ReloadConfig;
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreetPlayer);
             TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.AirCmd);
             TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Reset);
         }
         base.Dispose(disposing);
-    }
-    #endregion
-
-    #region 配置重载读取与写入方法
-    private static void ReloadConfig(ReloadEventArgs args)
-    {
-        LoadConfig();
-        args.Player.SendInfoMessage(GetString("[自动垃圾桶]重新加载配置完毕。"));
-    }
-    private static void LoadConfig()
-    {
-        Config = Configuration.Read();
-        Config.Write();
     }
     #endregion
 
@@ -78,7 +58,7 @@ public class AutoAirItem : TerrariaPlugin
     #region 玩家更新配置方法（创建配置结构）
     private void OnGreetPlayer(GreetPlayerEventArgs args)
     {
-        if (args == null || !Config.Open)
+        if (args == null || !Configuration.Instance.Enable)
         {
             return;
         }
@@ -110,7 +90,7 @@ public class AutoAirItem : TerrariaPlugin
     private void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
     {
         var plr = e.Player;
-        if (!Config.Open || e == null || plr == null || !plr.IsLoggedIn || !plr.Active || !plr.HasPermission("AutoAir.use"))
+        if (!Configuration.Instance.Enable || e == null || plr == null || !plr.IsLoggedIn || !plr.Active || !plr.HasPermission("AutoAir.use"))
         {
             return;
         }
@@ -133,7 +113,7 @@ public class AutoAirItem : TerrariaPlugin
                 var selected = plr.TPlayer.inventory[plr.TPlayer.selectedItem];
 
                 //排除钱币
-                if (Config.Exclude.Contains(trash.type) || Config.Exclude.Contains(inv.type))
+                if (Configuration.Instance.Exclude.Contains(trash.type) || Configuration.Instance.Exclude.Contains(inv.type))
                 {
                     return;
                 }

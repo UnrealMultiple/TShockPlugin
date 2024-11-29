@@ -1,75 +1,70 @@
+using LazyAPI;
+using LazyAPI.ConfigFiles;
 using Newtonsoft.Json;
 using System.IO;
 
 namespace AutoBroadcast;
 
-public class ABConfig
+[Config]
+public class ABConfig : JsonConfigBase<ABConfig>
 {
-    [JsonProperty("广播列表")]
-    public Broadcast[] Broadcasts { get; set; } = new Broadcast[0];
+    [LocalizedPropertyName(CultureType.Chinese, "广播列表")]
+    [LocalizedPropertyName(CultureType.English, "broadcasts")]
+    public Broadcast[] Broadcasts { get; set; } = Array.Empty<Broadcast>();
 
-    public ABConfig Write(string file)
-    {
-        File.WriteAllText(file, JsonConvert.SerializeObject(this, Formatting.Indented));
-        return this;
-    }
+    protected override string Filename => "AutoBroadcast";
 
-    public static ABConfig Read(string file)
+    protected override void SetDefault()
     {
-        if (!File.Exists(file))
+        this.Broadcasts = new[]
         {
-            WriteExample(file);
-        }
-        return JsonConvert.DeserializeObject<ABConfig>(File.ReadAllText(file)) ?? new ABConfig();
-    }
-
-    public static void WriteExample(string file)
-    {
-        var exampleConfig = new ABConfig
-        {
-            Broadcasts = new[]
+            new Broadcast
             {
-                new Broadcast
-                {
-                    Name = "示例广播",
-                    Enabled = true,
-                    Messages = new string[] { "/time 4:30", "设置时间为4:30" },
-                    ColorRGB = new float[] { 255, 234, 115 },
-                    Interval = 600,
-                }
+                Name = "示例广播",
+                Enabled = true,
+                Messages = new string[] { "/time 4:30", "设置时间为4:30" },
+                ColorRGB = new float[] { 255, 234, 115 },
+                Interval = 600,
             }
         };
-
-        exampleConfig.Write(file);
     }
 }
 
 public class Broadcast
 {
-    [JsonProperty("广播名称")]
+    [LocalizedPropertyName(CultureType.Chinese, "广播名称")]
+    [LocalizedPropertyName(CultureType.English, "name")]
     public string Name { get; set; } = string.Empty;
 
-    [JsonProperty("启用")]
+    [LocalizedPropertyName(CultureType.Chinese, "启用")]
+    [LocalizedPropertyName(CultureType.English, "enable")]
     public bool Enabled { get; set; } = false;
 
-    [JsonProperty("广播消息")]
-    public string[] Messages { get; set; } = new string[0];
+    [LocalizedPropertyName(CultureType.Chinese, "广播消息")]
+    [LocalizedPropertyName(CultureType.English, "msg")]
+    public string[] Messages { get; set; } = Array.Empty<string>();
 
-    [JsonProperty("RGB颜色")]
+    [LocalizedPropertyName(CultureType.Chinese, "RGB颜色")]
+    [LocalizedPropertyName(CultureType.English, "color")]
     public float[] ColorRGB { get; set; } = new float[3];
 
-    [JsonProperty("时间间隔")]
+    [LocalizedPropertyName(CultureType.Chinese, "时间间隔")]
+    [LocalizedPropertyName(CultureType.English, "interval")]
     public int Interval { get; set; } = 0;
 
-    [JsonProperty("延迟执行")]
+    [LocalizedPropertyName(CultureType.Chinese, "延迟执行")]
+    [LocalizedPropertyName(CultureType.English, "delay")]
     public int StartDelay { get; set; } = 0;
 
-    [JsonProperty("广播组")]
-    public string[] Groups { get; set; } = new string[0];
+    [LocalizedPropertyName(CultureType.Chinese, "广播组")]
+    [LocalizedPropertyName(CultureType.English, "groups")]
+    public string[] Groups { get; set; } = Array.Empty<string>();
 
-    [JsonProperty("触发词语")]
-    public string[] TriggerWords { get; set; } = new string[0];
+    [LocalizedPropertyName(CultureType.Chinese, "触发词语")]
+    [LocalizedPropertyName(CultureType.English, "triggerWords")]
+    public string[] TriggerWords { get; set; } = Array.Empty<string>();
 
-    [JsonProperty("触发整个组")]
+    [LocalizedPropertyName(CultureType.Chinese, "触发整个组")]
+    [LocalizedPropertyName(CultureType.English, "triggerToWholeGroup")]
     public bool TriggerToWholeGroup { get; set; } = false;
 }
