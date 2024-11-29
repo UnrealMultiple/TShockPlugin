@@ -9,46 +9,46 @@
 > Configuration file location：tshock/CaiCustomEmojiCommand.json
 ```json    
 {
-  "emojiCommands": [
+  "EmojiCommands": [
     {
-      "command": "/who",
-      "emojiId": 0
+      "Command": "/who",
+      "EmojiId": 0
     },
     {
-      "command": "/home",
-      "emojiId": 2
+      "Command": "/home",
+      "EmojiId": 2
     },
     {
-      "command": "/back",
-      "emojiId": 1
+      "Command": "/back",
+      "EmojiId": 1
     },
     {
-      "command": "/进度补给",
-      "emojiId": 149
+      "Command": "/进度补给",
+      "EmojiId": 149
     },
     {
-      "command": "/进度查询",
-      "emojiId": 14
+      "Command": "/进度查询",
+      "EmojiId": 14
     },
     {
-      "command": "/进度列表",
-      "emojiId": 11
+      "Command": "/进度列表",
+      "EmojiId": 11
     },
     {
-      "command": "/atp",
-      "emojiId": 17
+      "Command": "/atp",
+      "EmojiId": 17
     },
     {
-      "command": "/vm",
-      "emojiId": 90
+      "Command": "/vm",
+      "EmojiId": 90
     },
     {
-      "command": "/key",
-      "emojiId": 7
+      "Command": "/key",
+      "EmojiId": 7
     },
     {
-      "command": "/su",
-      "emojiId": 3
+      "Command": "/su",
+      "EmojiId": 3
     }
   ]
 }
