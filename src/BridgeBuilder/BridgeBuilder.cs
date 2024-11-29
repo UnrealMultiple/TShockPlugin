@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using LazyAPI;
+using Terraria;
 using Terraria.Localization;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -7,38 +8,26 @@ using TShockAPI.Hooks;
 namespace BridgeBuilder;
 
 [ApiVersion(2, 1)]
-public class BridgeBuilder : TerrariaPlugin
+public class BridgeBuilder : LazyPlugin
 {
     public override string Name => "BridgeBuilder";
-    public override Version Version => new Version(1, 1, 0);
+    public override Version Version => new Version(1, 1, 1);
     public override string Author => "Soofa，肝帝熙恩汉化1449";
     public override string Description => "铺桥!";
-    public static Configuration Config = null!;
+
     public BridgeBuilder(Main game) : base(game)
     {
     }
 
-    private static void LoadConfig()
-    {
-        Config = Configuration.Read(Configuration.FilePath);
-        Config.Write(Configuration.FilePath);
 
-    }
-    private static void ReloadConfig(ReloadEventArgs args)
-    {
-        LoadConfig();
-        args.Player?.SendSuccessMessage(GetString("[铺桥] 重新加载配置完毕。"));
-    }
 
     public override void Initialize()
     {
-        GeneralHooks.ReloadEvent += ReloadConfig;
-        TShockAPI.Commands.ChatCommands.Add(new("bridgebuilder.bridge", this.BridgeCmd, "bridge", "桥来")
+        Commands.ChatCommands.Add(new("bridgebuilder.bridge", this.BridgeCmd, "bridge", "桥来")
         {
             AllowServer = false,
             HelpText = GetString("朝着你看的方向建造桥梁。（你需要持有一定数量的平台或团队块或种植盆。）")
         });
-        LoadConfig();
     }
 
     protected override void Dispose(bool disposing)
@@ -46,7 +35,6 @@ public class BridgeBuilder : TerrariaPlugin
         if (disposing)
         {
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.BridgeCmd);
-            GeneralHooks.ReloadEvent -= ReloadConfig;
         }
 
         // Call the base class dispose method.
@@ -139,8 +127,8 @@ public class BridgeBuilder : TerrariaPlugin
 
         var horizontalDistance = Math.Abs(plr.TileX - x); // 计算水平方向上的距离
         var verticalDistance = Math.Abs(plr.TileY - y); // 计算竖直方向上的距离
-        canPlace &= horizontalDistance < Config.MaxPlaceLength && verticalDistance < Config.MaxPlaceLength;
-        canPlace &= horizontalDistance < Config.MaxPlaceLength && verticalDistance < Config.MaxPlaceLength;
+        canPlace &= horizontalDistance < Configuration.Instance.MaxPlaceLength && verticalDistance < Configuration.Instance.MaxPlaceLength;
+        canPlace &= horizontalDistance < Configuration.Instance.MaxPlaceLength && verticalDistance < Configuration.Instance.MaxPlaceLength;
         canPlace &= plr.SelectedItem.stack > 0;
         canPlace &= !TShock.Regions.InArea(x, y);
 
