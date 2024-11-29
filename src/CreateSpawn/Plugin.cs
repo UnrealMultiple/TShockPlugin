@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using LazyAPI;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
@@ -6,7 +7,7 @@ using TShockAPI.Hooks;
 namespace CreateSpawn;
 
 [ApiVersion(2, 1)]
-public class Plugin : TerrariaPlugin
+public class Plugin : LazyPlugin
 {
     public override string Author => "少司命";
 
@@ -14,12 +15,8 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "CreateSpawn";
 
-    public override Version Version => new(1, 0, 0, 2);
+    public override Version Version => new(1, 0, 0, 3);
 
-
-    private readonly string SavePath = Path.Combine(TShock.SavePath, "Create.json");
-
-    public Config Config = new();
 
     private bool create = false;
     public Plugin(Main game) : base(game)
@@ -28,9 +25,7 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        this.LoadConfig();
         On.Terraria.WorldBuilding.GenerationProgress.End += this.GenerationProgress_End;
-        GeneralHooks.ReloadEvent += this.LoadConfig;
         Commands.ChatCommands.Add(new Command("create.copy", this.copy, "cb"));
         Commands.ChatCommands.Add(new Command("create.copy", this.CreateBuilding, "create"));
         ServerApi.Hooks.GamePostInitialize.Register(this, this.GamePost);
@@ -55,7 +50,6 @@ public class Plugin : TerrariaPlugin
         if (disposing)
         {
             On.Terraria.WorldBuilding.GenerationProgress.End -= this.GenerationProgress_End;
-            GeneralHooks.ReloadEvent -= this.LoadConfig;
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.copy || x.CommandDelegate == this.CreateBuilding);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.GamePost);
         }
@@ -112,8 +106,8 @@ public class Plugin : TerrariaPlugin
     private void CopyBuilding(int x1, int y1, int x2, int y2)
     {
         var Building = new List<Building>();
-        this.Config.centreX = (x2 - x1) / 2;
-        this.Config.CountY = y2 - y1;
+        Config.Instance.CentreX = (x2 - x1) / 2;
+        Config.Instance.CountY = y2 - y1;
         for (var i = x1; i < x2; i++)
         {
             for (var j = y1; j < y2; j++)
@@ -133,7 +127,6 @@ public class Plugin : TerrariaPlugin
                 });
             }
         }
-        this.Config.Write(this.SavePath);
         Map.SaveMap(Building);
     }
 
@@ -147,13 +140,13 @@ public class Plugin : TerrariaPlugin
             //出生点Y
             var spwy = Main.spawnTileY;
             //计算左X
-            var x1 = spwx - this.Config.centreX + this.Config.AdjustX;
+            var x1 = spwx - Config.Instance.CentreX + Config.Instance.AdjustX;
             //计算左Y
-            var y1 = spwy - this.Config.CountY + this.Config.AdjustY;
+            var y1 = spwy - Config.Instance.CountY + Config.Instance.AdjustY;
             //计算右x
-            var x2 = this.Config.centreX + spwx + this.Config.AdjustX;
+            var x2 = Config.Instance.CentreX + spwx + Config.Instance.AdjustX;
             //计算右y
-            var y2 = spwy + this.Config.AdjustY;
+            var y2 = spwy + Config.Instance.AdjustY;
             var n = 0;
             for (var i = x1; i < x2; i++)
             {
@@ -174,21 +167,5 @@ public class Plugin : TerrariaPlugin
                 }
             }
         });
-    }
-
-    public void LoadConfig(ReloadEventArgs? args = null)
-    {
-        if (File.Exists(this.SavePath))
-        {
-            try
-            {
-                this.Config = Config.Read(this.SavePath);
-            }
-            catch (Exception e)
-            {
-                TShock.Log.ConsoleError(GetString("配置文件读取错误:{0}"), e.ToString());
-            }
-        }
-        this.Config.Write(this.SavePath);
     }
 }

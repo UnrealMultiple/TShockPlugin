@@ -3,10 +3,12 @@
 - 作者: Cai
 - 出处: 本仓库
 - 懒得输一些长长的命令?试试自定义表情命令，将常用的命令转换为表情执行
+- EmojiID可以在wiki(https://terraria.wiki.gg/zh/wiki/%E8%A1%A8%E6%83%85)上查询, 本插件不支持跳过权限检查, 命令需要标识符(/或者.)
 
 ## 更新日志
 
 ```
+2024.11.29.1 使用lazyapi
 2024.9.8.1 添加英文翻译
 2024.7.28.1 添加插件
 ```
@@ -17,7 +19,6 @@
 > 配置文件位置：tshock/CaiCustomEmojiCommand.json
 ```json    
 {
-  "说明": "EmojiID可以在wiki(https://terraria.wiki.gg/zh/wiki/%E8%A1%A8%E6%83%85)上查询, 本插件不支持跳过权限检查, 命令需要标识符(/或者.)",
   "命令列表": [
     {
       "命令": "/who",
