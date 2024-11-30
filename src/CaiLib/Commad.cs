@@ -31,7 +31,7 @@ public static class CaiCommand
     /// <param name="helpDesc">帮助文档</param>
     /// <param name="allowServer">允许非玩家</param>
     /// <param name="doLog">日志记录参数</param>
-    public static void AddCommand(List<string> perms, CommandDelegate commandDelegate, List<string> names, bool replaceCommand = false, string helpText = null, string[] helpDesc = null, bool allowServer = true, bool doLog = true)
+    public static void AddCommand(List<string> perms, CommandDelegate commandDelegate, List<string> names, bool replaceCommand = false, string? helpText = null, string[]? helpDesc = null, bool allowServer = true, bool doLog = true)
     {
         if (replaceCommand)
         {
@@ -56,7 +56,7 @@ public static class CaiCommand
     /// <param name="helpDesc">帮助文档</param>
     /// <param name="allowServer">允许非玩家</param>
     /// <param name="doLog">日志记录参数</param>
-    public static void AddCommand(string perms, CommandDelegate commandDelegate, List<string> names, bool replaceCommand = false, string helpText = null, string[] helpDesc = null, bool allowServer = true, bool doLog = true)
+    public static void AddCommand(string perms, CommandDelegate commandDelegate, List<string> names, bool replaceCommand = false, string? helpText = null, string[]? helpDesc = null, bool allowServer = true, bool doLog = true)
     {
         if (replaceCommand)
         {
@@ -81,7 +81,7 @@ public static class CaiCommand
     /// <param name="helpDesc">帮助文档</param>
     /// <param name="allowServer">允许非玩家</param>
     /// <param name="doLog">日志记录参数</param>
-    public static void AddCommand(List<string> perms, CommandDelegate commandDelegate, string names, bool replaceCommand = false, string helpText = null, string[] helpDesc = null, bool allowServer = true, bool doLog = true)
+    public static void AddCommand(List<string> perms, CommandDelegate commandDelegate, string names, bool replaceCommand = false, string? helpText = null, string[]? helpDesc = null, bool allowServer = true, bool doLog = true)
     {
         if (replaceCommand)
         {
@@ -106,7 +106,7 @@ public static class CaiCommand
     /// <param name="helpDesc">帮助文档</param>
     /// <param name="allowServer">允许非玩家</param>
     /// <param name="doLog">日志记录参数</param>
-    public static void AddCommand(string perms, CommandDelegate commandDelegate, string names, bool replaceCommand = false, string helpText = null, string[] helpDesc = null, bool allowServer = true, bool doLog = true)
+    public static void AddCommand(string perms, CommandDelegate commandDelegate, string names, bool replaceCommand = false, string? helpText = null, string[]? helpDesc = null, bool allowServer = true, bool doLog = true)
     {
         if (replaceCommand)
         {

@@ -20,12 +20,14 @@ public class Plugin : TerrariaPlugin
     #endregion
 
     #region 注册与释放
-    public Plugin(Main game) : base(game) { }
-    private GeneralHooks.ReloadEventD _reloadHandler;
+    public Plugin(Main game) : base(game)
+    {
+        this._reloadHandler = (_) => this.LoadConfig();
+    }
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
         this.LoadConfig();
-        this._reloadHandler = (_) => this.LoadConfig();
         GeneralHooks.ReloadEvent += this._reloadHandler;
         ServerApi.Hooks.GameUpdate.Register(this, this.OnGameUpdate);
     }

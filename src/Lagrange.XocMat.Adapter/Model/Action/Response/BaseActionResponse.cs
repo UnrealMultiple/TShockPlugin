@@ -1,7 +1,7 @@
 ﻿
 using ProtoBuf;
 
-namespace MorMorAdapter.Model.Action.Response;
+namespace Lagrange.XocMat.Adapter.Model.Action.Response;
 
 [ProtoContract]
 [ProtoInclude(401, typeof(DeadRank))]
@@ -18,7 +18,7 @@ namespace MorMorAdapter.Model.Action.Response;
 [ProtoInclude(412, typeof(ExportPlayer))]
 public class BaseActionResponse : BaseAction
 {
-    [ProtoMember(6)] public string Message { get; set; }
+    [ProtoMember(6)] public string Message { get; set; } = "";
 
     [ProtoMember(7)] public bool Status { get; set; }
 }

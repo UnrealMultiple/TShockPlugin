@@ -27,12 +27,12 @@ public class Plugin : TerrariaPlugin
 
     public Plugin(Main game) : base(game)
     {
+        this._reloadHandler = (_) => this.LoadConfig();
     }
-    private GeneralHooks.ReloadEventD _reloadHandler;
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
         this.LoadConfig();
-        this._reloadHandler = (_) => this.LoadConfig();
         DB.Init();
         DB.ReadAll();
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnJoin);

@@ -5,7 +5,7 @@ namespace SmartRegions;
 
 sealed class DBConnection
 {
-    SqliteConnection Connection;
+    SqliteConnection Connection = null!;
 
     public void Initialize()
     {

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ConsoleSql\n"
-"POT-Creation-Date: 2024-10-01 00:06:44+0000\n"
-"PO-Revision-Date: 2024-10-01 00:06:44+0000\n"
+"POT-Creation-Date: 2024-11-19 17:21:47+0000\n"
+"PO-Revision-Date: 2024-11-19 17:21:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,8 @@ msgid ""
 msgstr ""
 
 #: ../../Plugin.cs:148
-msgid "原因:{ex.Message}"
+#, csharp-format
+msgid "原因:{0}"
 msgstr ""
 
 #: ../../Plugin.cs:68

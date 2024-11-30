@@ -5,11 +5,11 @@ namespace CGive;
 
 public class CGive
 {
-    public string Executer { get; set; }
+    public string Executer { get; set; } = "";
 
-    public string cmd { get; set; }
+    public string cmd { get; set; } = "";
 
-    public string who { get; set; }
+    public string who { get; set; } = "";
 
     public int id { get; set; }
 

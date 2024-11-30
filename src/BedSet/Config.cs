@@ -1,40 +1,27 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI;
+using LazyAPI.ConfigFiles;
+using Newtonsoft.Json;
 
 namespace BedSet;
 
-internal class Config
+[Config]
+internal class Config : JsonConfigBase<Config>
 {
     public class BedSpawn
     {
 
-        [JsonProperty("X坐标")]
+        [LocalizedPropertyName(CultureType.Chinese, "X坐标")]
+        [LocalizedPropertyName(CultureType.Chinese, "X")]
         public int X { get; set; }
 
-        [JsonProperty("Y坐标")]
+        [LocalizedPropertyName(CultureType.Chinese, "Y坐标")]
+        [LocalizedPropertyName(CultureType.Chinese, "Y")]
         public int Y { get; set; }
     }
 
-    private static readonly string PATH = Path.Combine(TShockAPI.TShock.SavePath, "Bed.json");
+    protected override string Filename => "Bed";
 
-    [JsonProperty("重生点")]
+    [LocalizedPropertyName(CultureType.Chinese, "重生点")]
+    [LocalizedPropertyName(CultureType.Chinese, "spawnOption")]
     public Dictionary<string, BedSpawn> SpawnOption { get; set; } = new();
-
-    public static Config Read()
-    {
-        if (File.Exists(PATH))
-        {
-            return JsonConvert.DeserializeObject<Config>(File.ReadAllText(PATH)) ?? new();
-        }
-        else
-        {
-            var obj = new Config();
-            obj.Write();
-            return obj;
-        }
-    }
-
-    public void Write()
-    {
-        File.WriteAllText(PATH, JsonConvert.SerializeObject(this, Formatting.Indented));
-    }
 }

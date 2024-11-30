@@ -8,13 +8,13 @@ namespace SmartRegions;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    private DBConnection DBConnection;
-    List<SmartRegion> regions;
+    private DBConnection DBConnection = null!;
+    List<SmartRegion> regions = null!;
     readonly PlayerData[] players = new PlayerData[255];
     struct PlayerData
     {
         public Dictionary<SmartRegion, DateTime> cooldowns;
-        public SmartRegion regionToReplace;
+        public SmartRegion? regionToReplace;
         public void Reset()
         {
             this.cooldowns = new Dictionary<SmartRegion, DateTime>();
@@ -72,12 +72,12 @@ public class Plugin : TerrariaPlugin
         this.players[args.Who].Reset();
     }
 
-    public static event EventHandler<PlayerInRegionEventArgs> PlayerInRegion;
+    public static event EventHandler<PlayerInRegionEventArgs>? PlayerInRegion;
 
     public class PlayerInRegionEventArgs : EventArgs
     {
-        public TSPlayer Player { get; set; }
-        public SmartRegion Region { get; set; }
+        public required TSPlayer Player { get; set; }
+        public required SmartRegion Region { get; set; }
         public bool IgnoreRegion { get; set; }
     }
 
@@ -277,7 +277,10 @@ public class Plugin : TerrariaPlugin
                 var maxDist = int.MaxValue;
                 if (args.Parameters.Count > 1)
                 {
-                    int.TryParse(args.Parameters[1], out pageNumber);
+                    if(!int.TryParse(args.Parameters[1], out pageNumber))
+                    {
+                        pageNumber = 1;
+                    }
                 }
                 if (args.Parameters.Count > 2)
                 {
@@ -286,7 +289,10 @@ public class Plugin : TerrariaPlugin
                         args.Player.SendErrorMessage("如果您是服务器后台，不能使用距离参数。");
                         return;
                     }
-                    int.TryParse(args.Parameters[2], out maxDist);
+                    if(!int.TryParse(args.Parameters[2], out maxDist))
+                    {
+                        maxDist = int.MaxValue;
+                    }
                 }
 
                 var regionList = this.regions;
@@ -364,16 +370,17 @@ public class Plugin : TerrariaPlugin
     {
         try
         {
-            if (this.players[args.Player.Index].regionToReplace == null)
+            var player = this.players[args.Player.Index];
+            if (player.regionToReplace == null)
             {
                 args.Player.SendErrorMessage("你现在不能做这个操作！");
             }
             else
             {
-                this.regions.RemoveAll(x => x.name == this.players[args.Player.Index].regionToReplace.name);
-                this.regions.Add(this.players[args.Player.Index].regionToReplace);
-                await this.DBConnection.SaveRegion(this.players[args.Player.Index].regionToReplace);
-                this.players[args.Player.Index].regionToReplace = null;
+                this.regions.RemoveAll(x => x.name == player.regionToReplace.name);
+                this.regions.Add(player.regionToReplace);
+                await this.DBConnection.SaveRegion(player.regionToReplace);
+                player.regionToReplace = null;
                 args.Player.SendSuccessMessage("区域替换成功！");
             }
         }

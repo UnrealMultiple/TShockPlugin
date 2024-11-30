@@ -3,7 +3,7 @@ using System.Data;
 using TShockAPI;
 using TShockAPI.DB;
 
-namespace MorMorAdapter.DB;
+namespace Lagrange.XocMat.Adapter.DB;
 
 public class PlayerOnline : Dictionary<string, int>
 {

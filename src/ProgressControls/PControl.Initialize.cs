@@ -330,12 +330,12 @@ public partial class PControl : TerrariaPlugin
                             }
                             else if (v.EndsWith("*.txt", StringComparison.OrdinalIgnoreCase) && Directory.Exists(Path.GetDirectoryName(v))) // 复制指定后缀名的文件
                             {
-                                var directory = Path.GetDirectoryName(v);
+                                var directory = Path.GetDirectoryName(v)!;
                                 var extension = v[(v.LastIndexOf('.') + 1)..];
                                 foreach (var file in Directory.GetFiles(directory, $"*.{extension}", SearchOption.AllDirectories))
                                 {
                                     var relativePath = file[(directory.Length + 1)..]; // 获取相对路径
-                                    var destFolder = Path.Combine(destinationFolder, Path.GetDirectoryName(relativePath)); // 目标目录结构
+                                    var destFolder = Path.Combine(destinationFolder, Path.GetDirectoryName(relativePath)!); // 目标目录结构
                                     var destFile = Path.Combine(destFolder, Path.GetFileName(file) + currentDate + Path.GetExtension(file)); // 文件名后添加日期
                                     Directory.CreateDirectory(destFolder);
                                     File.Copy(file, destFile, config.Command_PcoCopy_CoverFile);
@@ -1212,7 +1212,7 @@ public partial class PControl : TerrariaPlugin
                 }
                 else if (args.Parameters[1].Equals("stop", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (countdownCom.enable || this.thread_com.IsAlive)
+                    if (countdownCom.enable || (this.thread_com is { IsAlive: true }))
                     {
                         countdownCom.enable = false;
                         countdownCom.time = 0;
@@ -1639,7 +1639,7 @@ public partial class PControl : TerrariaPlugin
                 }
                 else if (args.Parameters[1].Equals("stop", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (countdownRestart.enable || this.thread_reload.IsAlive)
+                    if (countdownRestart.enable || (this.thread_reload is { IsAlive: true }))
                     {
                         countdownRestart.enable = false;
                         countdownRestart.time = 0;
@@ -1929,7 +1929,7 @@ public partial class PControl : TerrariaPlugin
                 }
                 else if (args.Parameters[1].Equals("stop", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (countdownReset.enable || this.thread_reset.IsAlive)
+                    if (countdownReset.enable || (this.thread_reset is { IsAlive: true }))
                     {
                         countdownReset.enable = false;
                         countdownReset.time = 0;

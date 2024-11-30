@@ -1,12 +1,12 @@
-﻿using MorMorAdapter.DB;
-using MorMorAdapter.Enumerates;
-using MorMorAdapter.Model;
-using MorMorAdapter.Model.Action;
-using MorMorAdapter.Model.Internet;
-using MorMorAdapter.Model.PlayerMessage;
-using MorMorAdapter.Model.ServerMessage;
-using MorMorAdapter.Net;
-using MorMorAdapter.Setting;
+﻿using Lagrange.XocMat.Adapter.DB;
+using Lagrange.XocMat.Adapter.Enumerates;
+using Lagrange.XocMat.Adapter.Model;
+using Lagrange.XocMat.Adapter.Model.Action;
+using Lagrange.XocMat.Adapter.Model.Internet;
+using Lagrange.XocMat.Adapter.Model.PlayerMessage;
+using Lagrange.XocMat.Adapter.Model.ServerMessage;
+using Lagrange.XocMat.Adapter.Net;
+using Lagrange.XocMat.Adapter.Setting;
 using ProtoBuf;
 using Rests;
 using System.Reflection;
@@ -17,7 +17,7 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 
-namespace MorMorAdapter;
+namespace Lagrange.XocMat.Adapter;
 
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
@@ -238,7 +238,7 @@ public class Plugin : TerrariaPlugin
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError($"[MorMorAdapter] 解析通信时出错: {ex}");
+            TShock.Log.ConsoleError($"[Lagrange.XocMat.Adapter] 解析通信时出错: {ex}");
         }
     }
 

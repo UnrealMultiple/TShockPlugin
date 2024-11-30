@@ -1,20 +1,20 @@
-﻿using System.Reflection;
+﻿using LazyAPI;
+using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 
 namespace AutoPluginManager;
 
 [ApiVersion(2, 1)]
 // ReSharper disable once UnusedType.Global
-public class Plugin : TerrariaPlugin
+public class Plugin : LazyPlugin
 {
     public override string Name => "AutoPluginManager";
 
-    public override Version Version => new (2, 0, 2, 0);
+    public override Version Version => new (2, 0, 2, 3);
 
-    public override string Author => "少司命，Cai，LaoSparrow";
+    public override string Author => "少司命,Cai,LaoSparrow";
 
     public override string Description => "自动更新你的插件！";
 
@@ -29,8 +29,6 @@ public class Plugin : TerrariaPlugin
     {
         Commands.ChatCommands.Add(new ("AutoUpdatePlugin", this.PluginManager, "apm"));
         ServerApi.Hooks.GamePostInitialize.Register(this, this.AutoCheckUpdate, int.MinValue);
-        Config.Read();
-        GeneralHooks.ReloadEvent += this.GeneralHooksOnReloadEvent;
     }
 
     protected override void Dispose(bool disposing)
@@ -39,18 +37,11 @@ public class Plugin : TerrariaPlugin
         {
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.PluginManager);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.AutoCheckUpdate);
-            GeneralHooks.ReloadEvent -= this.GeneralHooksOnReloadEvent;
             this._timer.Stop();
             this._timer.Dispose();
         }
 
         base.Dispose(disposing);
-    }
-
-    private void GeneralHooksOnReloadEvent(ReloadEventArgs e)
-    {
-        Config.Read();
-        e.Player.SendSuccessMessage(GetString("[AutoUpdatePlugin]插件配置已重载~"));
     }
 
     private void AutoCheckUpdate(EventArgs args)
@@ -70,8 +61,8 @@ public class Plugin : TerrariaPlugin
                     return;
                 }
 
-                TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", availableUpdates.Select(i => $"[{i.Current.Name}] V{i.Current.Version} >>> V{i.Latest.Version}"))));
-                if (Config.PluginConfig.AutoUpdate)
+                TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", availableUpdates.Select(i => $"[{i.Current!.Name}] V{i.Current!.Version} >>> V{i.Latest.Version}"))));
+                if (Config.Instance.AutoUpdate)
                 {
                     TShock.Log.ConsoleInfo(GetString("正在自动更新插件..."));
                     UpdateCmd(TSPlayer.Server, Array.Empty<string>());
@@ -156,14 +147,14 @@ public class Plugin : TerrariaPlugin
                 return;
             }
 
-            if (Config.PluginConfig.UpdateBlackList.Contains(args.Parameters[1]))
+            if (Config.Instance.UpdateBlackList.Contains(args.Parameters[1]))
             {
                 args.Player.SendErrorMessage(GetString("排除失败, 已经排除过这个插件了呢~"));
                 return;
             }
 
-            Config.PluginConfig.UpdateBlackList.Add(args.Parameters[1]);
-            Config.PluginConfig.Write();
+            Config.Instance.UpdateBlackList.Add(args.Parameters[1]);
+            Config.Save();
             args.Player.SendSuccessMessage(GetString("排除成功, 已跳过此插件的更新检查~"));
         }
         else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-r" || args.Parameters[0].ToLower() == "r"))
@@ -172,25 +163,25 @@ public class Plugin : TerrariaPlugin
         }
         else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-rb" || args.Parameters[0].ToLower() == "rb"))
         {
-            if (!Config.PluginConfig.UpdateBlackList.Contains(args.Parameters[1]))
+            if (!Config.Instance.UpdateBlackList.Contains(args.Parameters[1]))
             {
                 args.Player.SendErrorMessage(GetString("删除失败, 没有在你的插件列表里找到这个插件呢~"));
                 return;
             }
 
-            Config.PluginConfig.UpdateBlackList.Remove(args.Parameters[1]);
-            Config.PluginConfig.Write();
+            Config.Instance.UpdateBlackList.Remove(args.Parameters[1]);
+            Config.Save();
             args.Player.SendSuccessMessage(GetString("删除成功, 此插件将会被检查更新~"));
         }
         else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-lb" || args.Parameters[0].ToLower() == "lb"))
         {
-            if (!Config.PluginConfig.UpdateBlackList.Any())
+            if (!Config.Instance.UpdateBlackList.Any())
             {
                 args.Player.SendSuccessMessage(GetString("当前没有排除任何一个插件哦~"));
                 return;
             }
 
-            args.Player.SendErrorMessage(GetString("插件更新排除列表:\n") + string.Join('\n', Config.PluginConfig.UpdateBlackList));
+            args.Player.SendErrorMessage(GetString("插件更新排除列表:\n") + string.Join('\n', Config.Instance.UpdateBlackList));
         }
         else
         {
@@ -238,19 +229,48 @@ public class Plugin : TerrariaPlugin
                 player.SendSuccessMessage(GetString("安装了个寂寞~"));
                 return;
             }
-
-            if (Config.PluginConfig.AutoReloadPlugin)
+            // A bit weird, might be refactored in the next version
+            // FIXME: inconsistency in return values of `Utils.UnLoadPlugins` and `Utils.LoadPlugins`
+            var failedUnload = new List<string>(); // AssemblyName of Plugins which failed to unload
+            var failedLoad = new List<string>(); // Type.FullName of Plugin Classes which failed to load
+            if (Config.Instance.HotReloadPlugin)
             {
-                Utils.UnLoadPlugins(success.plugins
-                    .Where(s => s.Current is not null)
+                
+                failedUnload = Utils.UnLoadPlugins(success.plugins
+                    .Where(s => s.Current is not null && s.Latest.HotReload)
                     .Select(s => s.Current!.Path));
-                Utils.LoadPlugins(success.plugins
-                    .Select(s => s.Current is not null ? s.Current.Path : s.Latest.Path));
+                failedLoad = Utils.LoadPlugins(success.plugins
+                    .Where(s => s.Latest.HotReload  && !failedUnload.Contains(s.Latest.AssemblyName))
+                    .Select(s => s.Current?.Path ?? s.Latest.Path));
             }
-
             player.SendFormattedServerPluginsModifications(success);
 
-            player.SendSuccessMessage(GetString("重启服务器后插件生效!"));
+            if (Config.Instance.HotReloadPlugin)
+            {
+                if (failedUnload.Any())
+                {
+                    player.SendWarningMessage(GetString($"*卸载失败: {string.Join(',',failedUnload)}"));
+                }
+                if (failedLoad.Any())
+                {
+                    player.SendWarningMessage(GetString($"*加载失败: {string.Join(',',failedLoad)}"));
+                }
+                if (failedLoad.Any() || failedLoad.Any())
+                {
+                    player.SendWarningMessage(GetString("*热加载失败的插件需要重启服务器后才会生效!"));
+                }
+                else
+                {
+                    player.SendSuccessMessage(GetString("*热重载已启用,安装的插件已生效!"));
+                }
+                
+            }
+            else
+            {
+                player.SendSuccessMessage(GetString("*热重载已关闭,插件需要重启服务器后才会生效!"));
+            }
+
+            
         }
         catch (Exception ex)
         {
@@ -281,7 +301,7 @@ public class Plugin : TerrariaPlugin
                     return;
                 }
             }
-
+            
             player.SendInfoMessage(GetString("正在下载最新插件包..."));
             context.EnsurePluginArchiveDownloaded();
             player.SendInfoMessage(GetString("正在解压插件包..."));
@@ -294,18 +314,46 @@ public class Plugin : TerrariaPlugin
                 return;
             }
 
-            if (Config.PluginConfig.AutoReloadPlugin)
+            // A bit weird, might be refactored in the next version
+            // FIXME: inconsistency in return values of `Utils.UnLoadPlugins` and `Utils.LoadPlugins`
+            var failedUnload = new List<string>(); // AssemblyName of Plugins which failed to unload
+            var failedLoad = new List<string>(); // Type.FullName of Plugin Classes which failed to load
+            if (Config.Instance.HotReloadPlugin)
             {
-                Utils.UnLoadPlugins(success.plugins
-                    .Where(s => s.Current is not null)
+                
+                failedUnload = Utils.UnLoadPlugins(success.plugins
+                    .Where(s => s.Current is not null && s.Latest.HotReload)
                     .Select(s => s.Current!.Path));
-                Utils.LoadPlugins(success.plugins
-                    .Select(s => s.Current is not null ? s.Current.Path : s.Latest.Path));
+                failedLoad = Utils.LoadPlugins(success.plugins
+                    .Where(s => s.Latest.HotReload  && !failedUnload.Contains(s.Latest.AssemblyName))
+                    .Select(s => s.Current?.Path ?? s.Latest.Path));
             }
-
             player.SendFormattedServerPluginsModifications(success);
 
-            player.SendSuccessMessage(GetString("重启服务器后插件生效!"));
+            if (Config.Instance.HotReloadPlugin)
+            {
+                if (failedUnload.Any())
+                {
+                    player.SendWarningMessage(GetString($"*卸载失败: {string.Join(',',failedUnload)}"));
+                }
+                if (failedLoad.Any())
+                {
+                    player.SendWarningMessage(GetString($"*加载失败: {string.Join(',',failedLoad)}"));
+                }
+                if (failedLoad.Any() || failedLoad.Any())
+                {
+                    player.SendWarningMessage(GetString("*热加载失败的插件需要重启服务器后才会生效!"));
+                }
+                else
+                {
+                    player.SendSuccessMessage(GetString("*热重载已启用,安装的插件已生效!"));
+                }
+                
+            }
+            else
+            {
+                player.SendSuccessMessage(GetString("*热重载已关闭,插件需要重启服务器后才会生效!"));
+            }
         }
         catch (Exception ex)
         {

@@ -21,7 +21,7 @@ public partial class WeaponPlus : TerrariaPlugin
     public static Config config = new Config();
     public static WPlayer[] wPlayers = new WPlayer[256];
     public static List<List<string>> LangTips = new List<List<string>>();
-    public static WeaponPlusDB DB { get; set; }
+    public static WeaponPlusDB DB { get; set; } = null!;
     #endregion
 
     #region 注册卸载钩子

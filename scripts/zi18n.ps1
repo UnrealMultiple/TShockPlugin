@@ -61,19 +61,22 @@ function Update-I18n {
   if (($d.Length -ge 2) -and ([int]$d[0] -le 2 -and [int]$d[1] -le 2)) {
     git restore $pot
     Write-Output "[$($p.Name)] template.pot restored!"
-    continue
   }
 
-  if ($NoPo) {
+  if ($NoPo -and $NoMo) {
     continue
   }
 
   foreach ($t in @(Get-ChildItem $($p.DirectoryName)i18n/*.po)) {
-    Write-Output "[$($p.Name)] [$($t.Name)] merging..."
-    msgmerge --previous --update $t.FullName $pot
+    if (!$NoPo) {
+      Write-Output "[$($p.Name)] [$($t.Name)] merging..."
+      msgmerge --previous --update $t.FullName $pot
+    }
     
     if (!$NoMo) {
-      msgfmt -o $([System.IO.Path]::ChangeExtension($t.FullName, '.mo')) $t.FullName
+      $mo = [System.IO.Path]::ChangeExtension($t.FullName, '.mo')
+      Write-Output "[$($p.Name)] [$([System.IO.Path]::GetFileName($mo))] generating..."
+      msgfmt -o $mo $t.FullName
     }
   }
 }

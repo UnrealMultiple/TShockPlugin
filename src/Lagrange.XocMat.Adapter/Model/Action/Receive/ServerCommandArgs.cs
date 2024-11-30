@@ -1,9 +1,9 @@
 ﻿using ProtoBuf;
 
-namespace MorMorAdapter.Model.Action.Receive;
+namespace Lagrange.XocMat.Adapter.Model.Action.Receive;
 
 [ProtoContract]
 public class ServerCommandArgs : BaseAction
 {
-    [ProtoMember(5)] public string Text { get; set; }
+    [ProtoMember(5)] public string Text { get; set; } = "";
 }

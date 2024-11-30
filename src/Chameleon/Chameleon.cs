@@ -1,4 +1,5 @@
-﻿using System.IO.Streams;
+﻿using LazyAPI;
+using System.IO.Streams;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -8,13 +9,11 @@ using TShockAPI.Hooks;
 namespace Chameleon;
 
 [ApiVersion(2, 1)]
-public class Chameleon : TerrariaPlugin
+public class Chameleon : LazyPlugin
 {
     public const string WaitPwd4Reg = "reg-pwd";
 
     public const ushort Size = 10;
-
-    internal static Configuration Config;
 
     public static string[] PrepareList = new string[Size];
 
@@ -24,23 +23,19 @@ public class Chameleon : TerrariaPlugin
 
     public override string Description => "账户系统交互替换方案";
 
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
 
-    private readonly string _clientWasBooted;
 
     public Chameleon(Main game) : base(game)
     {
         this.Order = 1;
-        this._clientWasBooted = Terraria.Localization.Language.GetTextValue("CLI.ClientWasBooted", "", "").Trim();
     }
 
     public override void Initialize()
     {
         ServerApi.Hooks.NetGetData.Register(this, OnGetData, 9999);
         ServerApi.Hooks.GamePostInitialize.Register(this, OnPostInit, 9999);
-        ServerApi.Hooks.GameInitialize.Register(this, OnInit);
 
-        GeneralHooks.ReloadEvent += ReloadConfig;
     }
 
     protected override void Dispose(bool disposing)
@@ -49,17 +44,12 @@ public class Chameleon : TerrariaPlugin
         {
             ServerApi.Hooks.NetGetData.Deregister(this, OnGetData);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, OnPostInit);
-            ServerApi.Hooks.GameInitialize.Deregister(this, OnInit);
 
-            GeneralHooks.ReloadEvent -= ReloadConfig;
         }
         base.Dispose(disposing);
     }
 
-    private static void OnInit(EventArgs args)
-    {
-        LoadConfig();
-    }
+
 
     private static void OnPostInit(EventArgs args)
     {
@@ -91,12 +81,16 @@ public class Chameleon : TerrariaPlugin
         var type = args.MsgID;
 
         var player = TShock.Players[args.Msg.whoAmI];
-        if (player?.IsLoggedIn == true)
+        if(player == null)
+        {
+            return;
+        }
+        if (player.IsLoggedIn == true)
         {
             return;
         }
 
-        if (player?.RequiresPassword == true && type != PacketTypes.PasswordSend)
+        if (player.RequiresPassword == true && type != PacketTypes.PasswordSend)
         {
             args.Handled = true;
             return;
@@ -179,10 +173,10 @@ public class Chameleon : TerrariaPlugin
             return true;
         }
 
-        if (Config.EnableForcedHint && !PrepareList.Contains(player.Name))
+        if (Configuration.Instance.EnableForcedHint && !PrepareList.Contains(player.Name))
         {
             AddToList(player.Name);
-            Kick(player, string.Join("\n", Config.Hints), Config.Greeting);
+            Kick(player, string.Join("\n", Configuration.Instance.Hints), Configuration.Instance.Greeting);
             return true;
         }
 
@@ -256,7 +250,7 @@ public class Chameleon : TerrariaPlugin
                 PlayerHooks.OnPlayerPostLogin(player);
                 return true;
             }
-            Kick(player, Config.VerficationFailedMessage, GetString("验证失败"));
+            Kick(player, Configuration.Instance.VerificationFailedMessage, GetString("验证失败"));
             return true;
         }
         if (player.Name != TSServerPlayer.AccountName)
@@ -354,29 +348,5 @@ public class Chameleon : TerrariaPlugin
         player.SilentKickInProgress = true;
         player.Disconnect($"{custom}：{msg}");
         TShock.Log.ConsoleInfo(GetString($"向{player.Name}发送通知完毕."));
-    }
-
-    private static void LoadConfig()
-    {
-        Config = Configuration.Read(Configuration.FilePath);
-
-        if (Config == null)
-        {
-            Config = new Configuration();
-            Config.Write(Configuration.FilePath);
-        }
-
-        if (Config.AwaitBufferSize != Size)
-        {
-            Array.Resize(ref PrepareList, Config.AwaitBufferSize);
-            Array.Clear(PrepareList, 0, Config.AwaitBufferSize);
-        }
-    }
-
-    private static void ReloadConfig(ReloadEventArgs args)
-    {
-        LoadConfig();
-
-        args.Player?.SendSuccessMessage(GetString("[Chameleon] 重新加载配置完毕。"));
     }
 }

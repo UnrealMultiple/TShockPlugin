@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LazyAPI;
+using Microsoft.Xna.Framework;
 using On.OTAPI;
 using System.Text;
 using Terraria;
@@ -10,7 +11,7 @@ using TShockAPI.Hooks;
 namespace AnnouncementBoxPlus;
 
 [ApiVersion(2, 1)]
-public class AnnouncementBoxPlus : TerrariaPlugin
+public class AnnouncementBoxPlus : LazyPlugin
 {
     //定义插件的作者名称
     public override string Author => "Cai";
@@ -22,7 +23,7 @@ public class AnnouncementBoxPlus : TerrariaPlugin
     public override string Name => "AnnouncementBoxPlus";
 
     //插件的版本
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
 
     //插件的构造器
     public AnnouncementBoxPlus(Main game) : base(game)
@@ -32,8 +33,6 @@ public class AnnouncementBoxPlus : TerrariaPlugin
     //插件加载时执行的代码
     public override void Initialize()
     {
-        Config.Read();
-        GeneralHooks.ReloadEvent += this.GeneralHooks_ReloadEvent;
         On.OTAPI.Hooks.Wiring.InvokeAnnouncementBox += this.OnAnnouncementBox;
         GetDataHandlers.SignRead.Register(this.OnSignRead);
         GetDataHandlers.Sign.Register(this.OnSign);
@@ -45,20 +44,14 @@ public class AnnouncementBoxPlus : TerrariaPlugin
             GetDataHandlers.SignRead.UnRegister(this.OnSignRead);
             GetDataHandlers.Sign.UnRegister(this.OnSign);
             On.OTAPI.Hooks.Wiring.InvokeAnnouncementBox -= this.OnAnnouncementBox;
-            GeneralHooks.ReloadEvent -= this.GeneralHooks_ReloadEvent;
         }
         base.Dispose(disposing);
-    }
-    private void GeneralHooks_ReloadEvent(ReloadEventArgs e)
-    {
-        Config.Read();
-        e.Player.SendSuccessMessage("[AnnouncementBoxPlus]配置文件已重载!");
     }
 
     private void OnSign(object? sender, GetDataHandlers.SignEventArgs e)
     {
         var tile = Main.tile[e.X, e.Y];
-        if (tile.type == 425 && Config.config.usePerm)
+        if (tile.type == 425 && Config.Instance.usePerm)
         {
             if (!e.Player.HasPermission("AnnouncementBoxPlus.Edit"))
             {
@@ -71,7 +64,7 @@ public class AnnouncementBoxPlus : TerrariaPlugin
     private void OnSignRead(object? sender, GetDataHandlers.SignReadEventArgs e)
     {
         var tile = Main.tile[e.X, e.Y];
-        if (tile.type == 425 && Config.config.usePerm)
+        if (tile.type == 425 && Config.Instance.usePerm)
         {
             if (!e.Player.HasPermission("AnnouncementBoxPlus.Edit"))
             {
@@ -86,7 +79,7 @@ public class AnnouncementBoxPlus : TerrariaPlugin
     {
         try
         {
-            if (Config.config.disabled)
+            if (!Config.Instance.Enable)
             {
                 return false;
             }
@@ -98,10 +91,10 @@ public class AnnouncementBoxPlus : TerrariaPlugin
             var text = Main.sign[num37].text;
 
 
-            if (Config.config.justWho && Wiring.CurrentUser != 255 && TShock.Players[Wiring.CurrentUser] != null)
+            if (Config.Instance.justWho && Wiring.CurrentUser != 255 && TShock.Players[Wiring.CurrentUser] != null)
             {
 
-                if (Config.config.range <= 0)
+                if (Config.Instance.range <= 0)
                 {
                     NetMessage.SendData(107, Wiring.CurrentUser, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, Wiring.CurrentUser)), 255, Color.White.R, Color.White.G, Color.White.B, 460);
 
@@ -109,7 +102,7 @@ public class AnnouncementBoxPlus : TerrariaPlugin
                 else
                 {
 
-                    if (Main.player[Wiring.CurrentUser].active && Main.player[Wiring.CurrentUser].Distance(new Vector2((x * 16) + 16, (y * 16) + 16)) <= Config.config.range)
+                    if (Main.player[Wiring.CurrentUser].active && Main.player[Wiring.CurrentUser].Distance(new Vector2((x * 16) + 16, (y * 16) + 16)) <= Config.Instance.range)
                     {
                         NetMessage.SendData(107, Wiring.CurrentUser, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, Wiring.CurrentUser)), 255, Color.White.R, Color.White.G, Color.White.B, 460);
                     }
@@ -117,7 +110,7 @@ public class AnnouncementBoxPlus : TerrariaPlugin
             }
             else
             {
-                if (Config.config.range <= 0)
+                if (Config.Instance.range <= 0)
                 {
                     for (var i = 0; i < Main.maxPlayers; i++)
                     {
@@ -131,7 +124,7 @@ public class AnnouncementBoxPlus : TerrariaPlugin
                 {
                     for (var i = 0; i < Main.maxPlayers; i++)
                     {
-                        if (Main.player[i].active && Main.player[i].Distance(new Vector2((x * 16) + 16, (y * 16) + 16)) <= Config.config.range)
+                        if (Main.player[i].active && Main.player[i].Distance(new Vector2((x * 16) + 16, (y * 16) + 16)) <= Config.Instance.range)
                         {
                             NetMessage.SendData(107, i, -1, NetworkText.FromLiteral(FormatBox(Main.sign[num37].text, i)), 255, Color.White.R, Color.White.G, Color.White.B, 460);
                         }
@@ -165,15 +158,15 @@ public class AnnouncementBoxPlus : TerrariaPlugin
         online = string.Join(",", players);
         if (index >= Main.maxPlayers || TShock.Players[index] == null)
         {
-            if (Config.config.useFormat)
+            if (Config.Instance.useFormat)
             {
-                text = Config.config.formation
+                text = Config.Instance.formation
                     .Replace("%玩家组名%", "")
                     .Replace("%玩家名%", "[服务器]")
                     .Replace("%当前时间%", DateTime.Now.ToString("HH:mm"))
                     .Replace("%内容%", text);
             }
-            if (Config.config.usePlaceholder)
+            if (Config.Instance.usePlaceholder)
             {
                 text = text.Replace("%玩家组名%", "")
                     .Replace("%玩家名%", "[服务器]")
@@ -200,15 +193,15 @@ public class AnnouncementBoxPlus : TerrariaPlugin
             return text;
         }
         var plr = TShock.Players[index];
-        if (Config.config.useFormat)
+        if (Config.Instance.useFormat)
         {
-            text = Config.config.formation
+            text = Config.Instance.formation
                 .Replace("%玩家组名%", plr.Group.Name)
                 .Replace("%玩家名%", plr.Name)
                 .Replace("%当前时间%", DateTime.Now.ToString("HH:mm"))
                 .Replace("%内容%", text);
         }
-        if (Config.config.usePlaceholder)
+        if (Config.Instance.usePlaceholder)
         {
             text = text.Replace("%玩家组名%", plr.Group.Name)
                 .Replace("%玩家名%", plr.Name)

@@ -14,7 +14,7 @@ public class LifemaxExtra : TerrariaPlugin
     public override string Description => "提升生命值上限";
     public override string Name => "LifemaxExtra";
     public override Version Version => new Version(1, 0, 0, 7);
-    public static Configuration Config;
+    public static Configuration Config = null!;
 
     public LifemaxExtra(Main game) : base(game)
     {

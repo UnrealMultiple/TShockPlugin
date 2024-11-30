@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -6,14 +6,8 @@ using TShockAPI;
 namespace BetterWhitelist;
 
 [ApiVersion(2, 1)]
-public class BetterWhitelist : TerrariaPlugin
+public class BetterWhitelist : LazyPlugin
 {
-    private static readonly string BetterWhitelistDir = Path.Combine(TShock.SavePath, "BetterWhitelist");
-
-    private static readonly string ConfigPath = Path.Combine(BetterWhitelistDir, "config.json");
-
-    private static BConfig _config = null!;
-
     public BetterWhitelist(Main game) : base(game)
     {
     }
@@ -28,14 +22,6 @@ public class BetterWhitelist : TerrariaPlugin
 
     public override void Initialize()
     {
-        var path = Path.Combine(TShock.SavePath, "BetterWhitelist");
-        if (!Directory.Exists(path))
-        {
-            Directory.CreateDirectory(path);
-        }
-
-        this.Load();
-
         Commands.ChatCommands.Add(new Command("bwl.use", this.BetterWhitelistCommand, "bwl"));
     }
     protected override void Dispose(bool disposing)
@@ -72,7 +58,7 @@ public class BetterWhitelist : TerrariaPlugin
                 break;
 
             case "list":
-                foreach (var msg in _config.WhitePlayers)
+                foreach (var msg in BConfig.Instance.WhitePlayers)
                 {
                     args.Player.SendInfoMessage(msg);
                 }
@@ -80,41 +66,41 @@ public class BetterWhitelist : TerrariaPlugin
                 break;
 
             case "false":
-                if (_config.Disabled)
+                if (BConfig.Instance.Disabled)
                 {
                     args.Player.SendErrorMessage(GetString("禁用失败! 插件已是关闭状态"));
                 }
                 else
                 {
-                    _config.Disabled = true;
+                    BConfig.Instance.Disabled = true;
                     args.Player.SendSuccessMessage(GetString("禁用成功!"));
-                    File.WriteAllText(ConfigPath, JsonConvert.SerializeObject(_config, Formatting.Indented));
+                    BConfig.Save();
                 }
 
                 break;
 
             case "true":
-                if (!_config.Disabled)
+                if (!BConfig.Instance.Disabled)
                 {
                     args.Player.SendErrorMessage(GetString("启用失败! 插件已是打开状态"));
                 }
                 else
                 {
-                    _config.Disabled = false;
+                    BConfig.Instance.Disabled = false;
                     args.Player.SendSuccessMessage(GetString("启用成功!"));
                     foreach (var tsPlayer in TShock.Players.Where(p =>
-                                 p != null && !_config.WhitePlayers.Contains(p.Name)))
+                                 p != null && !BConfig.Instance.WhitePlayers.Contains(p.Name)))
                     {
-                        tsPlayer.Disconnect(_config.NotInWhiteList);
+                        tsPlayer.Disconnect(BConfig.Instance.NotInWhiteList);
                     }
 
-                    File.WriteAllText(ConfigPath, JsonConvert.SerializeObject(_config, Formatting.Indented));
+                    BConfig.Save(); 
                 }
 
                 break;
 
             case "add":
-                if (_config.Disabled)
+                if (BConfig.Instance.Disabled)
                 {
                     args.Player.SendErrorMessage(GetString("插件开关已被禁用，请检查配置文件!"));
                 }
@@ -128,11 +114,11 @@ public class BetterWhitelist : TerrariaPlugin
 
                     var playerNameToAdd = args.Parameters[1];
 
-                    if (playerNameToAdd != null && !_config.WhitePlayers.Contains(playerNameToAdd))
+                    if (playerNameToAdd != null && !BConfig.Instance.WhitePlayers.Contains(playerNameToAdd))
                     {
-                        _config.WhitePlayers.Add(playerNameToAdd);
+                        BConfig.Instance.WhitePlayers.Add(playerNameToAdd);
                         args.Player.SendSuccessMessage(GetString("添加成功!"));
-                        File.WriteAllText(ConfigPath, JsonConvert.SerializeObject(_config, Formatting.Indented));
+                        BConfig.Save();
                     }
                     else
                     {
@@ -141,14 +127,8 @@ public class BetterWhitelist : TerrariaPlugin
                 }
 
                 break;
-
-            case "reload":
-                this.Load();
-                args.Player.SendSuccessMessage(GetString("[BetterWhitelist]重载成功!"));
-                break;
-
             case "del":
-                if (_config.Disabled)
+                if (BConfig.Instance.Disabled)
                 {
                     args.Player.SendErrorMessage(GetString("插件开关已被禁用，请检查配置文件!"));
                 }
@@ -161,25 +141,18 @@ public class BetterWhitelist : TerrariaPlugin
                     }
 
                     var playerNameToDelete = args.Parameters[1];
-                    if (playerNameToDelete != null && _config.WhitePlayers.Contains(playerNameToDelete))
+                    if (playerNameToDelete != null && BConfig.Instance.WhitePlayers.Contains(playerNameToDelete))
                     {
-                        _config.WhitePlayers.Remove(playerNameToDelete);
+                        BConfig.Instance.WhitePlayers.Remove(playerNameToDelete);
                         args.Player.SendSuccessMessage(GetString("删除成功!"));
-                        File.WriteAllText(ConfigPath, JsonConvert.SerializeObject(_config, Formatting.Indented));
+                        BConfig.Save();
                         TShock.Players
                             .Where(p => p != null && p.Name == playerNameToDelete)
-                            .ForEach(p => p.Disconnect(_config.NotInWhiteList));
+                            .ForEach(p => p.Disconnect(BConfig.Instance.NotInWhiteList));
                     }
                 }
 
                 break;
         }
-    }
-
-
-    private void Load()
-    {
-        _config = BConfig.Load(ConfigPath);
-        File.WriteAllText(ConfigPath, JsonConvert.SerializeObject(_config, Formatting.Indented));
     }
 }

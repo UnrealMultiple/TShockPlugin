@@ -14,6 +14,14 @@
 ## Update Log
 
 ```
+v1.3.2
+- Attempted to fix the server crash bug that occurred when the bait quantity was 1.
+
+v1.3.1
+- Fixed the bug where in multi-hook fishing mode, individual summons would spawn additional quantities.
+- Added a configuration option to disable "spawned bullet hell" from these summons.
+- Introduced a random item configuration option; when enabled, players can randomly catch any item while fishing.
+
 v1.3.0
 Fixed: Preferred bait would not disappear, turning it into infinite bait or causing thread locking bugs.
 Modified: Extra catches can now be hooked along with existing environmental items.
@@ -69,6 +77,7 @@ Attempted: Triggering the reel-in effect by changing AI[0] to 1, but unable to o
 {
   "插件开关": true,  // Global plugin switch
   "多钩钓鱼": true,  // Enable multi-hook mode for automatic fishing to increase efficiency
+  "随机物品": false, // Randomly fish out any item
   "多钩上限": 5,     // Define the maximum number of hooks that can fish simultaneously
   "广告开关": true,  // Switch for the following string
   "广告内容": "\n[i:3456][C/F2F2C7:Plugin Development] [C/BFDFEA:by] [c/00FFFF:Yu Xue] | [c/7CAEDD:Shao Siming][i:3459]", // Customizable string content
@@ -91,7 +100,22 @@ Attempted: Triggering the reel-in effect by changing AI[0] to 1, but unable to o
     29,
     3093,
     4345
+  ],
+  "禁止衍生弹幕": [
+    623, // To solve the BUG where single summon creatures spawn more numbers under multi-hook mode
+    625,
+    626,
+    627,
+    628,
+    831,
+    832,
+    833,
+    834,
+    835,
+    963,
+    970
   ]
+
 }
 ```
 

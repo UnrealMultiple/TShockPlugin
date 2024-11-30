@@ -31,7 +31,7 @@ public class Command
                     }
                 );
         }
-        if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "push")
+        if (args.Parameters.Count == 3 && args.Parameters[0].ToLower() == "push")
         {
             if (args.Player.SelectedItem.stack == 0)
             {
@@ -43,9 +43,14 @@ public class Command
                 args.Player.SendErrorMessage(GetString("请输入一个正确的价格!"));
                 return;
             }
-            Deal.Config.PushItem(args.Player, cost);
+            if (!EconomicsAPI.Economics.Setting.HasCustomizeCurrency(args.Parameters[2]))
+            {
+                args.Player.SendErrorMessage(GetString($"货币类型{args.Parameters[2]}不存在!"));
+                return;
+            }
+            Deal.Config.PushItem(args.Player, cost, args.Parameters[2]);
             args.Player.SendSuccessMessage(GetString("发布成功"));
-            TShock.Utils.Broadcast(GetString($"玩家`{args.Player.Name}`发布了一个交易物品: [i/s{args.Player.SelectedItem.stack}:{args.Player.SelectedItem.netID}] 价格: {cost}"), Color.DarkGreen);
+            TShock.Utils.Broadcast(GetString($"玩家`{args.Player.Name}`发布了一个交易物品: [i/s{args.Player.SelectedItem.stack}:{args.Player.SelectedItem.netID}] 价格: {args.Parameters[2]}x{cost}"), Color.DarkGreen);
             args.Player.SelectedItem.stack = 0;
             args.Player.SendData(PacketTypes.PlayerSlot, "", args.Player.Index, args.Player.TPlayer.selectedItem);
         }
@@ -56,10 +61,10 @@ public class Command
             foreach (var DealContext in Deal.Config.DealContexts)
             {
                 lines.Add(string.Format(GetString("{0}：{1} 发布者：{2} 价格{3}")
-                    , index.Color(TShockAPI.Utils.RedHighlight)
+                    , index.Color(Utils.RedHighlight)
                     , DealContext.Item.ToString()
-                    , DealContext.Publisher.Color(TShockAPI.Utils.PinkHighlight)
-                    , DealContext.Cost.Color(TShockAPI.Utils.GreenHighlight)));
+                    , DealContext.Publisher.Color(Utils.PinkHighlight)
+                    , DealContext.RedemptionRelationships.ToString().Color(Utils.GreenHighlight)));
                 index++;
             }
 
@@ -78,12 +83,12 @@ public class Command
                 args.Player.SendErrorMessage(GetString("不存在此交易!"));
                 return;
             }
-            if (!EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, context.Cost))
+            if (!EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, context.RedemptionRelationships))
             {
-                args.Player.SendErrorMessage(GetString($"你的{EconomicsAPI.Economics.Setting.CurrencyName}不足，无法购买!"));
+                args.Player.SendErrorMessage(GetString($"你的{context.RedemptionRelationships.CurrencyType}不足，无法购买!"));
                 return;
             }
-            EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(context.Publisher, context.Cost);
+            EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(context.Publisher, context.RedemptionRelationships);
             args.Player.GiveItem(context.Item.netID, context.Item.Stack, context.Item.Prefix);
             args.Player.SendSuccessMessage(GetString("交易成功!"));
             TShock.Utils.Broadcast(string.Format(GetString("玩家{0}购买了{1}发布的物品{2}!"), args.Player.Name, context.Publisher, context.Item.ToString()), Color.OrangeRed);
@@ -114,7 +119,7 @@ public class Command
         }
         else if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "help")
         {
-            args.Player.SendInfoMessage(GetString("/deal push [价格]"));
+            args.Player.SendInfoMessage(GetString("/deal push [价格] [货币类型]"));
             args.Player.SendInfoMessage(GetString("/deal buy [ID]"));
             args.Player.SendInfoMessage(GetString("/deal recall [ID]"));
             args.Player.SendInfoMessage(GetString("/deal list"));

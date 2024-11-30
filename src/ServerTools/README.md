@@ -7,6 +7,15 @@
 ## 更新日志
 
 ```
+v1.1.7.8
+也许根本不需要判Main.projectile[e.Index].minion，以及非SSC情况下检测到多饰品不尝试为玩家摘下
+
+v1.1.7.7
+修复召唤物和哨兵检测问题，完成i18n英文
+
+v1.1.7.6
+修正默认值和文档，i18n预备
+
 V1.1.7.5
 添加配置限制召唤物数量
 
@@ -59,15 +68,15 @@ V1.0.0.3
 | 语法                                                 |          权限          |               说明               |
 | ---------------------------------------------------- | :--------------------: | :------------------------------: |
 | /clp [范围]                                          |      tshock.clear      |    清理弹幕但不清理玩家召唤物    |
-| /退出                                                | servertool.query.exit  |          手机端玩家自踢         |
-| /查花苞                                              | servertool.query.wall  | 查找地图上的花苞并添加到 Warp 里 |
-| /移除花苞                                            | servertool.query.wall  |       移除调 Warp 里的花苞       |
-| /自踢                                                |  servertool.user.kick  |         将自己踢出服务器         |
-| /自杀                                                |  servertool.user.kill  |             杀死自己             |
+| /退出 或 /toolexit                                   | servertool.query.exit  |          手机端玩家自踢         |
+| /查花苞 或 /scp                                             | servertool.query.wall  | 查找地图上的花苞并添加到 Warp 里 |
+| /移除花苞 或 /rcp                                          | servertool.query.wall  |       移除调 Warp 里的花苞       |
+| /自踢 或 /selfkick                                              |  servertool.user.kick  |         将自己踢出服务器         |
+| /自杀 或 /selfkill                                              |  servertool.user.kill  |             杀死自己             |
 | /ghost                                               | servertool.user.ghost  |    切换到幽灵状态再次使用复原    |
-| /旅途难度 [难度]`master` `journey` `normal` `expert` | servertool.set.journey |         设置旅途模式难度         |
-| /在线排行                                            | servertool.user.online |         查询玩家在线排行         |
-| /死亡排行                                            |  servertool.user.dead  |         查询玩家死亡排行         |
+| /旅途难度 [难度]`master` `journey` `normal` `expert` 或 /journeydiff [difficulty mode]`master` `journey` `normal` `expert` | servertool.set.journey |         设置旅途模式难度         |
+| /在线排行 或 /onlinerank                                           | servertool.user.online |         查询玩家在线排行         |
+| /死亡排行 或 /deadrank                                            |  servertool.user.dead  |         查询玩家死亡排行         |
 
 ## REST API
 
@@ -82,7 +91,8 @@ V1.0.0.3
 ```json
 {
   "死亡延续": true,
-  "限制哨兵数量": 10,
+  "限制哨兵数量": 20,
+  "限制召唤物数量": 11,
   "仅允许软核进入": false,
   "是否设置世界模式": true,
   "世界模式": 2,
@@ -184,6 +194,7 @@ V1.0.0.3
 | -------------------------- | :-------------: | :----------------------------------------------------------: | :-------------------------------------: |
 | `死亡延续`                 |     `bool`      | 当玩家以死亡状态退出服务器，再次进入服务器需要等待死亡结束。 |                   空                    |
 | `限制哨兵数量`             |     `int32`     |                    限制玩家可召唤哨兵数量                    |                   空                    |
+| `限制召唤物数量`           |     `int32`     |                    限制玩家可召唤召唤物数量                    |                   空                    |
 | `仅允许软核进入`           |     `bool`      |                                                              |                   空                    |
 | `是否设置世界模式`         |     `bool`      |                   如果为 true 设置世界模式                   |                   空                    |
 | `设置世界模式`             |     `int32`     |                             难度                             | `0`为旅途 `1`为普通 `2`为专家 `3`为大师 |
@@ -191,9 +202,8 @@ V1.0.0.3
 | `设置旅途模式难度`         |     `bool`      |                    为 true 时设置旅途难度                    |                   空                    |
 | `旅途模式难度`             |    `string`     |                             难度                             |  `master` `journey` `normal` `expert`   |
 | `阻止未注册进入 `          |     `bool`      |                   阻止未注册玩家进入服务器                   |                   空                    |
-| `阻止怪物捡钱 `            |     `bool`      |                    玩家死亡后怪物无法捡钱                    |                   空                    |
+| `禁止怪物捡钱 `            |     `bool`      |                    玩家死亡后怪物无法捡钱                    |                   空                    |
 | `清理掉落物`               |     `bool`      |                     清理玩家死亡后掉落物                     |                   空                    |
-| `禁止多鱼线 `              |     `bool`      |                     阻止玩家卡多鱼线 Bug                     |                   空                    |
 | `阻止死亡角色进入`         |     `bool`      |   禁止玩家以死亡状态进入服务器，需玩家进入单机模式结束死亡   |                   空                    |
 | `死亡倒计时`               |     `bool`      |                      是否开启死亡倒计时                      |                   空                    |
 | `禁止双箱`                 |     `bool`      |                     禁止同时打开两个箱子                     |                   空                    |
@@ -202,9 +212,12 @@ V1.0.0.3
 | `死亡倒计时格式`           |    `string`     |                        死亡倒计时格式                        |              `{0}`剩下时间              |
 | `未注册阻止语句`           |    `string`     |                     阻止未注册玩家提示语                     |                   空                    |
 | `未注册启动服务器执行命令` | `array<string>` |             当服务器启动且没有注册玩家时执行命令             |                   空                    |
+| `开启NPC保护 `              |     `bool`      |                     开启NPC保护                     |                   空                    |
+| `NPC保护表`                 |  `array<int>`   |                      NPC保护表                      |                   空                    |
+| `禁止多鱼线 `              |     `bool`      |                     阻止玩家卡多鱼线 Bug                     |                   空                    |
 | `浮漂列表`                 |  `array<int>`   |                      检测多鱼线浮漂列表                      |                   空                    |
 
 ## 反馈
-
-- 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
-- 国内社区 trhub.cn 或 TShock 官方群等
+- 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
+- 次优先：TShock官方群：816771079
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love

@@ -1,25 +1,24 @@
-﻿using Terraria;
+﻿using LazyAPI;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
 namespace AutoBroadcast;
 
 [ApiVersion(2, 1)]
-public class AutoBroadcast : TerrariaPlugin
+public class AutoBroadcast : LazyPlugin
 {
     public override string Name => "AutoBroadcast";
     public override string Author => "Scavenger";
     public override string Description => "自动广播插件";
-    public override Version Version => new Version(1, 0, 6);
-    public string ConfigPath => Path.Combine(TShock.SavePath, "AutoBroadcastConfig.json");
-    public ABConfig Config = new ABConfig();
+    public override Version Version => new Version(1, 0, 7);
+
     public DateTime LastCheck = DateTime.UtcNow;
 
     public AutoBroadcast(Main Game) : base(Game) { }
 
     public override void Initialize()
     {
-        ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
         ServerApi.Hooks.ServerChat.Register(this, this.OnChat);
     }
@@ -28,36 +27,14 @@ public class AutoBroadcast : TerrariaPlugin
     {
         if (Disposing)
         {
-            ServerApi.Hooks.GameInitialize.Deregister(this, this.OnInitialize);
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
             ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
         }
         base.Dispose(Disposing);
     }
 
-    public void OnInitialize(EventArgs args)
-    {
-        this.autobc();
-        TShockAPI.Hooks.GeneralHooks.ReloadEvent += (_) =>
-        {
-            TSPlayer.Server.SendSuccessMessage(GetString("自定义广播配置已重读!"));
-            this.autobc();
-        };
-    }
 
-    public void autobc()
-    {
-        try
-        {
-            this.Config = ABConfig.Read(this.ConfigPath).Write(this.ConfigPath);
-        }
-        catch (Exception ex)
-        {
-            this.Config = new ABConfig();
-            TShock.Log.Error(GetString("[AutoBroadcast]配置读取发生错误!\n{0}").SFormat(ex.ToString()));
-        }
-    }
-
+  
     #region Chat
     public void OnChat(ServerChatEventArgs args)
     {
@@ -65,14 +42,14 @@ public class AutoBroadcast : TerrariaPlugin
         {
             return;
         }
-        var Groups = new string[0];
-        var Messages = new string[0];
-        var Colour = new float[0];
+        var Groups = Array.Empty<string>();
+        var Messages = Array.Empty<string>();
+        var Colour = Array.Empty<float>();
         var PlayerGroup = TShock.Players[args.Who].Group.Name;
 
-        lock (this.Config.Broadcasts)
+        lock (ABConfig.Instance.Broadcasts)
         {
-            foreach (var broadcast in this.Config.Broadcasts)
+            foreach (var broadcast in ABConfig.Instance.Broadcasts)
             {
                 if (broadcast == null || !broadcast.Enabled ||
                    broadcast.TriggerToWholeGroup && !broadcast.Groups.Contains(PlayerGroup))
@@ -114,32 +91,32 @@ public class AutoBroadcast : TerrariaPlugin
         {
             this.LastCheck = DateTime.UtcNow;
             var NumBroadcasts = 0;
-            lock (this.Config.Broadcasts)
+            lock (ABConfig.Instance.Broadcasts)
             {
-                NumBroadcasts = this.Config.Broadcasts.Length;
+                NumBroadcasts = ABConfig.Instance.Broadcasts.Length;
             }
 
             for (var i = 0; i < NumBroadcasts; i++)
             {
-                var Groups = new string[0];
-                var Messages = new string[0];
-                var Colour = new float[0];
+                var Groups = Array.Empty<string>();
+                var Messages = Array.Empty<string>();
+                var Colour = Array.Empty<float>();
 
-                lock (this.Config.Broadcasts)
+                lock (ABConfig.Instance.Broadcasts)
                 {
-                    if (this.Config.Broadcasts[i] == null || !this.Config.Broadcasts[i].Enabled || this.Config.Broadcasts[i].Interval < 1)
+                    if (ABConfig.Instance.Broadcasts[i] == null || ABConfig.Instance.Broadcasts[i].Enabled || ABConfig.Instance.Broadcasts[i].Interval < 1)
                     {
                         continue;
                     }
-                    if (this.Config.Broadcasts[i].StartDelay > 0)
+                    if (ABConfig.Instance.Broadcasts[i].StartDelay > 0)
                     {
-                        this.Config.Broadcasts[i].StartDelay--;
+                        ABConfig.Instance.Broadcasts[i].StartDelay--;
                         continue;
                     }
-                    this.Config.Broadcasts[i].StartDelay = this.Config.Broadcasts[i].Interval;// Start Delay used as Interval Countdown
-                    Groups = this.Config.Broadcasts[i].Groups;
-                    Messages = this.Config.Broadcasts[i].Messages;
-                    Colour = this.Config.Broadcasts[i].ColorRGB;
+                    ABConfig.Instance.Broadcasts[i].StartDelay = ABConfig.Instance.Broadcasts[i].Interval;// Start Delay used as Interval Countdown
+                    Groups = ABConfig.Instance.Broadcasts[i].Groups;
+                    Messages = ABConfig.Instance.Broadcasts[i].Messages;
+                    Colour = ABConfig.Instance.Broadcasts[i].ColorRGB;
                 }
 
                 if (Groups.Length > 0)

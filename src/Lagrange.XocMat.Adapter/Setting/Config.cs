@@ -1,8 +1,8 @@
-﻿using MorMorAdapter.Setting.Configs;
+﻿using Lagrange.XocMat.Adapter.Setting.Configs;
 using Newtonsoft.Json;
 using TShockAPI;
 
-namespace MorMorAdapter.Setting;
+namespace Lagrange.XocMat.Adapter.Setting;
 
 public class Config
 {

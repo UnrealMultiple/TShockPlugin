@@ -9,6 +9,7 @@
     <Import Project="..\..\template.targets" />
 
     <ItemGroup>
+      <ProjectReference Include="..\LazyAPI\LazyAPI.csproj" />
       <ProjectReference Include="..\Submodules\TrProtocol\TrProtocol\TrProtocol.csproj" />
     </ItemGroup>
 

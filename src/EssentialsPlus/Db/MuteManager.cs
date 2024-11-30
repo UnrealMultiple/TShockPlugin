@@ -110,7 +110,7 @@ public class MuteManager
                 user.Name,
                 user.UUID,
                 user.ID,
-                ip,
+                ip!,
                 DateTime.Now,
                 expiration
                 ));

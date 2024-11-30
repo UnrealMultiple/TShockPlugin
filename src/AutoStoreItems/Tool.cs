@@ -10,10 +10,10 @@ internal class Tool
     public static bool StoreItemInBanks(TSPlayer plr, bool listen, bool mess, List<int> List)
     {
         var Stored = false;
-        Stored |= AutoStoreItems.Config.bank1 && AutoStoredItem(plr, plr.TPlayer.bank.item, PlayerItemSlotID.Bank1_0, GetString("[c/32CEB7:存钱罐]"), listen, mess, List);
-        Stored |= AutoStoreItems.Config.bank2 && AutoStoredItem(plr, plr.TPlayer.bank2.item, PlayerItemSlotID.Bank2_0, GetString("[c/32CEB7:保险箱]"), listen, mess, List);
-        Stored |= AutoStoreItems.Config.bank3 && AutoStoredItem(plr, plr.TPlayer.bank3.item, PlayerItemSlotID.Bank3_0, GetString("[c/32CEB7:护卫熔炉]"), listen, mess, List);
-        Stored |= AutoStoreItems.Config.bank4 && AutoStoredItem(plr, plr.TPlayer.bank4.item, PlayerItemSlotID.Bank4_0, GetString("[c/32CEB7:虚空袋]"), listen, mess, List);
+        Stored |= Configuration.Instance.bank1 && AutoStoredItem(plr, plr.TPlayer.bank.item, PlayerItemSlotID.Bank1_0, GetString("[c/32CEB7:存钱罐]"), listen, mess, List);
+        Stored |= Configuration.Instance.bank2 && AutoStoredItem(plr, plr.TPlayer.bank2.item, PlayerItemSlotID.Bank2_0, GetString("[c/32CEB7:保险箱]"), listen, mess, List);
+        Stored |= Configuration.Instance.bank3 && AutoStoredItem(plr, plr.TPlayer.bank3.item, PlayerItemSlotID.Bank3_0, GetString("[c/32CEB7:护卫熔炉]"), listen, mess, List);
+        Stored |= Configuration.Instance.bank4 && AutoStoredItem(plr, plr.TPlayer.bank4.item, PlayerItemSlotID.Bank4_0, GetString("[c/32CEB7:虚空袋]"), listen, mess, List);
         return Stored;
     }
     #endregion
@@ -57,7 +57,7 @@ internal class Tool
                 if (List.Contains(inv.type) && inv.type == bank.type && inv.type != plr.inventory[plr.selectedItem].type)
                 {
                     //性能模式开关
-                    if (AutoStoreItems.Config.PM)
+                    if (Configuration.Instance.PM)
                     {
                         PerformanceMode(tplr, bankItems, bankSlot, bankName, mess, bank, i, inv);
                     }

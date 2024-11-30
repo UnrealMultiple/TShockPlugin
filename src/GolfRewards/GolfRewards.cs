@@ -21,7 +21,7 @@ public class GolfRewards : TerrariaPlugin
 
     public override void Initialize()
     {
-        LC.RI();
+        //LC.RI();
         LC.RC();
         GeneralHooks.ReloadEvent += this.CMD;
         Commands.ChatCommands.Add(new Command("物块坐标", this.CMD2, "物块坐标")
@@ -85,7 +85,7 @@ public class GolfRewards : TerrariaPlugin
         LC.LPlayers.TryRemove(e.Who, out _);
     }
 
-    private void TileEdit(object sender, GetDataHandlers.TileEditEventArgs args)
+    private void TileEdit(object? sender, GetDataHandlers.TileEditEventArgs args)
     {
         if (args.Handled)
         {
@@ -106,7 +106,7 @@ public class GolfRewards : TerrariaPlugin
     }
 
 
-    public void Golf(object sender, GetDataHandlers.LandGolfBallInCupEventArgs args)
+    public void Golf(object? sender, GetDataHandlers.LandGolfBallInCupEventArgs args)
     {
         if (args.Handled)
         {

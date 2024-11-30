@@ -8,7 +8,7 @@ namespace Plugin;
 [ApiVersion(2, 1)]
 public class EndureBoost : TerrariaPlugin
 {
-    public static Configuration Config;
+    public static Configuration Config = null!;
 
     public override string Author => "肝帝熙恩";
 

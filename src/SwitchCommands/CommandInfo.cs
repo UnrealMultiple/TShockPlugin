@@ -38,9 +38,9 @@ public class SwitchPos
         return "X: {0}, Y: {1}".SFormat(this.X, this.Y);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
-        return obj is not SwitchPos check ? false : check.X == this.X && check.Y == this.Y;
+        return obj is SwitchPos check && check.X == this.X && check.Y == this.Y;
     }
 
     public override int GetHashCode()

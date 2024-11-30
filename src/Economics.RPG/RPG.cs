@@ -19,7 +19,7 @@ public class RPG : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 7);
+    public override Version Version => new(2, 0, 0, 0);
 
     internal static Config Config { get; set; } = new Config();
 
@@ -82,9 +82,9 @@ public class RPG : TerrariaPlugin
 
     private void OnCounterTop(PlayerCountertopArgs args)
     {
-        var level = PlayerLevelManager.GetLevel(args.Player.Name);
+        var level = PlayerLevelManager.GetLevel(args.Player!.Name);
         args.Messages.Add(new(GetString($"当前职业: {level.Name}"), 10));
-        args.Messages.Add(new(GetString($"升级职业: {string.Join(",", level.RankLevels.Select(x => $"{x.Name}({x.Cost})"))}"), 11));
+        args.Messages.Add(new(GetString($"升级职业: {string.Join(",", level.RankLevels.Select(x => $"{x.Name}"))}"), 11));
     }
 
     private void PlayerHooks_PlayerChat(PlayerChatEventArgs e)

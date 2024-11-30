@@ -1,67 +1,24 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI;
+using LazyAPI.ConfigFiles;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace CaiCustomEmojiCommand;
 
-public class Config
+[Config]
+public class Config : JsonConfigBase<Config>
 {
-    public const string Path = "tshock/CaiCustomEmojiCommand.json";
+    protected override string Filename => "CaiCustomEmojiCommand";
 
-    public static Config config = new();
+    [LocalizedPropertyName(CultureType.Chinese, "命令列表")]
+    [LocalizedPropertyName(CultureType.English, "EmojiCommands")]
+    public List<EmojiCommand> EmojiCommands { get; set; } = new();
 
-    [JsonProperty("说明", Order = -1)]
-    public string Description = GetString("EmojiID可以在wiki(https://terraria.wiki.gg/zh/wiki/%E8%A1%A8%E6%83%85)上查询, 本插件不支持跳过权限检查, 命令需要标识符(/或者.)");
-
-    [JsonProperty("命令列表", Order = 0)] public List<EmojiCommand> EmojiCommands = new();
-
-    public void Write(string path = Path)
+    protected override void SetDefault()
     {
-        using FileStream fileStream = new(path, FileMode.Create, FileAccess.Write, FileShare.Write);
-        this.Write(fileStream);
-    }
-
-    public void Write(Stream stream)
-    {
-        var value = JsonConvert.SerializeObject(this, Formatting.Indented);
-        using (StreamWriter streamWriter = new(stream))
+        this.EmojiCommands = new List<EmojiCommand>
         {
-            streamWriter.Write(value);
-        }
-    }
-
-    public static Config? Read(string path = Path)
-    {
-        Config? result;
-        if (!File.Exists(path))
-        {
-            result = new Config
-            {
-                EmojiCommands = new List<EmojiCommand>
-                {
-                    new(0, "/home")
-                }
-            };
-            result.Write(path);
-        }
-        else
-        {
-            using (FileStream fileStream = new(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                result = Read(fileStream);
-            }
-        }
-
-        config = result!;
-        return result;
-    }
-
-    public static Config? Read(Stream stream)
-    {
-        Config? result;
-        using (StreamReader streamReader = new(stream))
-        {
-            result = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd());
-        }
-
-        return result;
+            new EmojiCommand(0, "/home")
+        };
     }
 }

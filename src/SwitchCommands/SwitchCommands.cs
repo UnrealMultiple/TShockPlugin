@@ -146,7 +146,7 @@ public class SwitchCommands : TerrariaPlugin
                                 return;
                             }
 
-                            Group currGroup = null;
+                            Group? currGroup = null;
 
                             var ignorePerms = database.switchCommandList[pos.ToString()].ignorePerms;
 

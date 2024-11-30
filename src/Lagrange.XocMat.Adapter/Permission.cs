@@ -1,4 +1,4 @@
-﻿namespace MorMorAdapter;
+﻿namespace Lagrange.XocMat.Adapter;
 
 internal class Permission
 {

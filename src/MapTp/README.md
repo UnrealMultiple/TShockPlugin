@@ -16,10 +16,10 @@ v1.0.1
 
 ## 指令
 
-| Command |  Perminsion  |   说明   |
-|---------|:------------:| :------: |
-| None    | maptp.noclip | 	Allows double-click teleportation (excluding solid blocks)|
-| None    |    maptp     | Allows double-click teleportation (including solid blocks)|
+| 指令 |     权限     |             说明             |
+| ---- | :----------: | :--------------------------: |
+| 无   | maptp.noclip | 允许双击传送(不包括实心方块) |
+| 无   |    maptp     |  允许双击传送(包括实心方块)  |
 
 ## 配置
 

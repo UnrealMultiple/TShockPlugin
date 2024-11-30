@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using LazyAPI;
+using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.NetModules;
 using TerrariaApi.Server;
@@ -9,12 +10,12 @@ using TShockAPI.Net;
 namespace AdditionalPylons;
 
 [ApiVersion(2, 1)]
-public class AdditionalPylonsPlugin : TerrariaPlugin
+public class AdditionalPylonsPlugin : LazyPlugin
 {
     #region Plugin Properties
     public override string Name => "[放置更多晶塔] AdditionalPylons";
 
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
 
     public override string Author => "Stealownz,肝帝熙恩优化1449";
 
@@ -30,28 +31,14 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
 
     private readonly HashSet<int> pylonItemIDList = new HashSet<int>() { 4875, 4876, 4916, 4917, 4918, 4919, 4920, 4921, 4951 };
     private readonly HashSet<int> playersHoldingPylon = new HashSet<int>();
-    internal static Configuration Config;
-    private static void LoadConfig()
-    {
 
-        Config = Configuration.Read(Configuration.FilePath);
-        Config.Write(Configuration.FilePath);
-
-    }
-    private static void ReloadConfig(ReloadEventArgs args)
-    {
-        LoadConfig();
-        args.Player?.SendSuccessMessage(GetString("[无限晶塔]重新加载配置完毕."));
-    }
 
     #region Plugin Overrides
     public override void Initialize()
     {
-        LoadConfig();
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
         GetDataHandlers.PlaceTileEntity.Register(this.OnPlaceTileEntity, HandlerPriority.High);
         GetDataHandlers.SendTileRect.Register(this.OnSendTileRect, HandlerPriority.High);
-        GeneralHooks.ReloadEvent += ReloadConfig;
     }
     #endregion
     #region [IDisposable Implementation]
@@ -70,7 +57,6 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             GetDataHandlers.PlaceTileEntity.UnRegister(this.OnPlaceTileEntity);
             GetDataHandlers.SendTileRect.UnRegister(this.OnSendTileRect);
-            GeneralHooks.ReloadEvent -= ReloadConfig;
         }
 
         base.Dispose(isDisposing);
@@ -79,7 +65,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
     #endregion // [IDisposable Implementation]
 
     #region Plugin Hooks
-    private void OnSendTileRect(object sender, GetDataHandlers.SendTileRectEventArgs e)
+    private void OnSendTileRect(object? sender, GetDataHandlers.SendTileRectEventArgs e)
     {
         // 如果有更高优先级的插件需要处理，就尊重它们的决定...
         if (this.IsDisposed || e.Handled)
@@ -125,7 +111,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
         Main.PylonSystem._pylons.Clear();
     }
 
-    private void OnPlayerUpdate(object sender, TShockAPI.GetDataHandlers.PlayerUpdateEventArgs e)
+    private void OnPlayerUpdate(object? sender, TShockAPI.GetDataHandlers.PlayerUpdateEventArgs e)
     {
         if (this.IsDisposed || e.Handled)
         {
@@ -165,7 +151,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
         }
     }
 
-    private void OnPlaceTileEntity(object sender, TShockAPI.GetDataHandlers.PlaceTileEntityEventArgs e)
+    private void OnPlaceTileEntity(object? sender, TShockAPI.GetDataHandlers.PlaceTileEntityEventArgs e)
     {
         // 如果插件已被销毁或事件已被处理，则返回
         if (this.IsDisposed || e.Handled)
@@ -214,7 +200,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
             switch (pylonItemId)
             {
                 case 4875:
-                    if (count >= Config.JungleTowerLimit)
+                    if (count >= Configuration.Instance.JungleTowerLimit)
                     {
                         TShock.Players[playerId].SendErrorMessage(GetString("丛林晶塔数量已达到上限。"));
                         return;
@@ -222,7 +208,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
                     break;
 
                 case 4876:
-                    if (count >= Config.SurfacePurityTowerLimit)
+                    if (count >= Configuration.Instance.SurfacePurityTowerLimit)
                     {
                         TShock.Players[playerId].SendErrorMessage(GetString("森林晶塔数量已达到上限。"));
                         return;
@@ -230,7 +216,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
                     break;
 
                 case 4916:
-                    if (count >= Config.HallowTowerLimit)
+                    if (count >= Configuration.Instance.HallowTowerLimit)
                     {
                         TShock.Players[playerId].SendErrorMessage(GetString("神圣晶塔数量已达到上限。"));
                         return;
@@ -238,7 +224,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
                     break;
 
                 case 4917:
-                    if (count >= Config.UndergroundTowerLimit)
+                    if (count >= Configuration.Instance.UndergroundTowerLimit)
                     {
                         TShock.Players[playerId].SendErrorMessage(GetString("洞穴晶塔数量已达到上限。"));
                         return;
@@ -246,7 +232,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
                     break;
 
                 case 4918:
-                    if (count >= Config.BeachTowerLimit)
+                    if (count >= Configuration.Instance.BeachTowerLimit)
                     {
                         TShock.Players[playerId].SendErrorMessage(GetString("海洋晶塔数量已达到上限。"));
                         return;
@@ -254,7 +240,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
                     break;
 
                 case 4919:
-                    if (count >= Config.DesertTowerLimit)
+                    if (count >= Configuration.Instance.DesertTowerLimit)
                     {
                         TShock.Players[playerId].SendErrorMessage(GetString("沙漠晶塔数量已达到上限。"));
                         return;
@@ -262,7 +248,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
                     break;
 
                 case 4920:
-                    if (count >= Config.SnowTowerLimit)
+                    if (count >= Configuration.Instance.SnowTowerLimit)
                     {
                         TShock.Players[playerId].SendErrorMessage(GetString("雪原晶塔数量已达到上限。"));
                         return;
@@ -270,7 +256,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
                     break;
 
                 case 4921:
-                    if (count >= Config.GlowingMushroomTowerLimit)
+                    if (count >= Configuration.Instance.GlowingMushroomTowerLimit)
                     {
                         TShock.Players[playerId].SendErrorMessage(GetString("蘑菇晶塔数量已达到上限。"));
                         return;
@@ -278,7 +264,7 @@ public class AdditionalPylonsPlugin : TerrariaPlugin
                     break;
 
                 case 4951:
-                    if (count >= Config.VictoryTowerLimit)
+                    if (count >= Configuration.Instance.VictoryTowerLimit)
                     {
                         TShock.Players[playerId].SendErrorMessage(GetString("万能晶塔数量已达到上限。"));
                         return;

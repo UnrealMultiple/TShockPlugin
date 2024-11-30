@@ -15,21 +15,21 @@ public partial class ZHIPM : TerrariaPlugin
 
     public override string Name => "ZHIPlayerManager";
 
-    public override Version Version => new Version(1, 0, 0, 7);
+    public override Version Version => new Version(1, 0, 0, 9);
 
     #region 字段或属性
     /// <summary>
     /// 人物备份数据库
     /// </summary>
-    public static ZplayerDB ZPDataBase { get; set; }
+    public static ZplayerDB ZPDataBase { get; set; } = null!;
     /// <summary>
     /// 额外数据库
     /// </summary>
-    public static ZplayerExtraDB ZPExtraDB { get; set; }
+    public static ZplayerExtraDB ZPExtraDB { get; set; } = null!;
     /// <summary>
     /// 在线玩家的额外数据库的集合
     /// </summary>
-    public static List<ExtraData> edPlayers { get; set; }
+    public static List<ExtraData> edPlayers { get; set; } = new();
     /// <summary>
     /// 广播颜色
     /// </summary>
@@ -49,7 +49,7 @@ public partial class ZHIPM : TerrariaPlugin
     /// <summary>
     /// 记录当前时间
     /// </summary>
-    public string now { get; set; }
+    public string now { get; set; } = "";
     /// <summary>
     /// 记录需要冻结的玩家
     /// </summary>
@@ -84,11 +84,13 @@ public partial class ZHIPM : TerrariaPlugin
 
     public override void Initialize()
     {
+        /*
         if (!TShock.ServerSideCharacterConfig.Settings.Enabled)
         {
             Console.WriteLine(GetString("该插件需要开启SSC才能使用"));
             return;
         }
+        */
         Timer = 0L;
         config = ZhipmConfig.LoadConfigFile();
         ZPDataBase = new ZplayerDB(TShock.DB);

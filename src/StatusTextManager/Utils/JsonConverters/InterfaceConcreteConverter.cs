@@ -15,16 +15,15 @@ public class InterfaceConcreteConverter : JsonConverter
         return objectType.IsInterface;
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
         try
         {
             var jsonObj = JObject.Load(reader);
-            object target = null;
-            JToken jsonTypeName;
-            if (jsonObj.TryGetValue("TypeName", out jsonTypeName) && jsonTypeName is JValue)
+            object? target = null;
+            if (jsonObj.TryGetValue("TypeName", out var jsonTypeName) && jsonTypeName is JValue)
             {
-                foreach (var t in objectType.GetCustomAttribute<ImplementsAttribute>()?.ImplementsTypes)
+                foreach (var t in objectType.GetCustomAttribute<ImplementsAttribute>()!.ImplementsTypes)
                 {
                     var propInfo = t.GetProperty("TypeName", BindingFlags.Public | BindingFlags.Static);
                     if (propInfo == null || propInfo.PropertyType != typeof(string))
@@ -32,7 +31,7 @@ public class InterfaceConcreteConverter : JsonConverter
                         continue;
                     }
 
-                    if ((string) propInfo.GetValue(null) == jsonTypeName.Value<string>())
+                    if ((string?) propInfo.GetValue(null) == jsonTypeName.Value<string>())
                     {
                         target = Activator.CreateInstance(t);
                         break;
@@ -54,7 +53,7 @@ public class InterfaceConcreteConverter : JsonConverter
         }
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         throw new NotImplementedException();
     }

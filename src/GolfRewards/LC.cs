@@ -5,17 +5,17 @@ namespace RewardSection;
 
 internal class LC
 {
-    public static ConfigFile LConfig { get; set; }
+    public static ConfigFile LConfig { get; set; } = new();
     internal static string LConfigPath => Path.Combine(TShock.SavePath, "高尔夫奖励.json");
-    public static ConcurrentDictionary<int, LPlayer> LPlayers { get; set; }
+    public static ConcurrentDictionary<int, LPlayer> LPlayers { get; set; } = new();
     public static Random LRadom = new Random();
 
-    public static void RI()
-    {
-        LConfig = new ConfigFile();
-        // 初始化 LPlayers 为 ConcurrentDictionary
-        LPlayers = new ConcurrentDictionary<int, LPlayer>();
-    }
+    //public static void RI()
+    //{
+    //    LConfig = new ConfigFile();
+    //    // 初始化 LPlayers 为 ConcurrentDictionary
+    //    LPlayers = new ConcurrentDictionary<int, LPlayer>();
+    //}
 
     public static void RC()
     {

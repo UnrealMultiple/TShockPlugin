@@ -1,12 +1,12 @@
-﻿using MorMorAdapter.Attributes;
-using MorMorAdapter.Enumerates;
-using MorMorAdapter.Model.Internet;
+﻿using Lagrange.XocMat.Adapter.Attributes;
+using Lagrange.XocMat.Adapter.Enumerates;
+using Lagrange.XocMat.Adapter.Model.Internet;
 using Rests;
 using Terraria;
 using TShockAPI;
-using Item = MorMorAdapter.Model.Internet.Item;
+using Item = Lagrange.XocMat.Adapter.Model.Internet.Item;
 
-namespace MorMorAdapter;
+namespace Lagrange.XocMat.Adapter;
 
 internal class Rest
 {

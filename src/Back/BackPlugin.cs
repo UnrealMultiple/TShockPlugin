@@ -1,38 +1,27 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LazyAPI;
+using Microsoft.Xna.Framework;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 
 namespace BP;
 
 [ApiVersion(2, 1)]
-public class BackPlugin : TerrariaPlugin
+public class BackPlugin : LazyPlugin
 {
     private readonly Dictionary<int, DateTime> cooldowns = new Dictionary<int, DateTime>();
 
     public override string Author => "Megghy,熙恩改";
     public override string Description => "允许玩家传送回死亡地点";
     public override string Name => "BackPlugin";
-    public override Version Version => new Version(1, 0, 0, 5);
-    public static Configuration Config;
+    public override Version Version => new Version(1, 0, 0, 6);
+
     public BackPlugin(Main game) : base(game)
     {
     }
-    private static void LoadConfig()
-    {
-        Config = Configuration.Read(Configuration.FilePath);
-        Config.Write(Configuration.FilePath);
 
-    }
-    private static void ReloadConfig(ReloadEventArgs args)
-    {
-        LoadConfig();
-        args.Player?.SendSuccessMessage(GetString("[Back] 重新加载配置完毕。"));
-    }
     public override void Initialize()
     {
-        GeneralHooks.ReloadEvent += ReloadConfig;
         ServerApi.Hooks.ServerLeave.Register(this, this.ResetPos);
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnPlayerJoin);
         GetDataHandlers.KillMe += this.OnDead;
@@ -42,14 +31,12 @@ public class BackPlugin : TerrariaPlugin
             HelpText = GetString("返回最后一次死亡的位置"),
             AllowServer = false
         });
-        LoadConfig();
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= ReloadConfig;
             ServerApi.Hooks.ServerLeave.Deregister(this, this.ResetPos);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnPlayerJoin);
             GetDataHandlers.KillMe -= this.OnDead;
@@ -103,7 +90,7 @@ public class BackPlugin : TerrariaPlugin
         }
     }
 
-    private void OnDead(object o, GetDataHandlers.KillMeEventArgs args)
+    private void OnDead(object? o, GetDataHandlers.KillMeEventArgs args)
     {
         args.Player.SetData("DeadPoint", new Point((int) args.Player.X, (int) args.Player.Y));
     }
@@ -145,7 +132,7 @@ public class BackPlugin : TerrariaPlugin
 
     private void SetCooldown(TSPlayer player)
     {
-        var cooldownDuration = TimeSpan.FromSeconds(Config.BackCooldown);
+        var cooldownDuration = TimeSpan.FromSeconds(Configuration.Instance.BackCooldown);
         var cooldownEnd = DateTime.Now.Add(cooldownDuration);
 
         if (this.cooldowns.ContainsKey(player.Index))

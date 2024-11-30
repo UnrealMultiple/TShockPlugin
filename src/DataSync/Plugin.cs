@@ -94,7 +94,7 @@ public class Plugin : TerrariaPlugin
     }
 
     private int _frameCount = 0;
-    private GeneralHooks.ReloadEventD _reloadHandler;
+    private GeneralHooks.ReloadEventD _reloadHandler = null!;
     public override void Initialize()
     {
         Config.LoadConfig();

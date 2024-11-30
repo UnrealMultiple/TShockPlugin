@@ -1,10 +1,10 @@
-﻿using MorMorAdapter.Model.Internet;
+﻿using Lagrange.XocMat.Adapter.Model.Internet;
 using ProtoBuf;
 
-namespace MorMorAdapter.Model.Action.Response;
+namespace Lagrange.XocMat.Adapter.Model.Action.Response;
 
 [ProtoContract]
 public class PlayerStrikeBoss : BaseActionResponse
 {
-    [ProtoMember(8)] public List<KillNpc> Damages { get; set; }
+    [ProtoMember(8)] public List<KillNpc> Damages { get; set; } = new();
 }

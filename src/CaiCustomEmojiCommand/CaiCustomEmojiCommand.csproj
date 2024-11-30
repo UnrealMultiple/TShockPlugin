@@ -6,4 +6,8 @@
       <Folder Include="i18n\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\LazyAPI\LazyAPI.csproj" />
+    </ItemGroup>
+
 </Project>

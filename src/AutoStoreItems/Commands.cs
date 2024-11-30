@@ -47,7 +47,7 @@ public class Commands
         var name = args.Player.Name;
         var data = AutoStoreItems.Data.Items.FirstOrDefault(item => item.Name == name);
 
-        if (!AutoStoreItems.Config.open)
+        if (!Configuration.Instance.open)
         {
             return;
         }
@@ -61,7 +61,7 @@ public class Commands
         if (args.Parameters.Count == 0)
         {
             HelpCmd(args.Player);
-            args.Player.SendSuccessMessage(GetString($"服务器[c/87DF86:性能模式]：[c/C086DF:{AutoStoreItems.Config.PM}]"));
+            args.Player.SendSuccessMessage(GetString($"服务器[c/87DF86:性能模式]：[c/C086DF:{Configuration.Instance.PM}]"));
             args.Player.SendSuccessMessage(GetString($"您的自存[c/BBE9B7:监听]为：[c/E489C0:{data.listen}]"));
             args.Player.SendSuccessMessage(GetString($"您的[c/F2BEC0:自动识别]为：[c/87DF86:{data.AutoMode}]"));
             args.Player.SendSuccessMessage(GetString($"您的[c/BCB7E9:装备识别]为：[c/F29192:{data.ArmorMode}]"));
@@ -79,9 +79,9 @@ public class Commands
 
             if (args.Parameters[0].ToLower() == "pm" && args.Player.HasPermission("AutoStore.admin"))
             {
-                var isEnabled = AutoStoreItems.Config.PM;
-                AutoStoreItems.Config.PM = !isEnabled;
-                AutoStoreItems.Config.Write();
+                var isEnabled = Configuration.Instance.PM;
+                Configuration.Instance.PM = !isEnabled;
+                Configuration.Save();
                 var Mess = isEnabled ? GetString("禁用") : GetString("启用");
                 args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{Mess}]服务器性能模式。"));
                 args.Player.SendInfoMessage(GetString($"性能模式:不为[c/C086DF:堆叠达到单格上限]物品进行分堆累积"));

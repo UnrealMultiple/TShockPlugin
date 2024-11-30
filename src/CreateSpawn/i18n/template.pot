@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CreateSpawn\n"
-"POT-Creation-Date: 2024-09-28 12:12:10+0000\n"
-"PO-Revision-Date: 2024-09-28 12:12:10+0000\n"
+"POT-Creation-Date: 2024-11-30 13:55:19+0000\n"
+"PO-Revision-Date: 2024-11-30 13:55:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,35 +10,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:106
+#: ../../Plugin.cs:100
 msgid "/cb set <1/2> --选择复制的区域"
 msgstr ""
 
-#: ../../Plugin.cs:101
+#: ../../Plugin.cs:95
 msgid "保存成功!"
 msgstr ""
 
-#: ../../Plugin.cs:69
+#: ../../Plugin.cs:63
 msgid "建筑已创建!"
 msgstr ""
 
-#: ../../Plugin.cs:96
+#: ../../Plugin.cs:90
 msgid "您还没有选择复制的区域！"
 msgstr ""
 
-#: ../../Plugin.cs:87
+#: ../../Plugin.cs:81
 msgid "正确指令：/cb set <1/2> --选择复制的区域"
 msgstr ""
 
-#: ../../Plugin.cs:84
+#: ../../Plugin.cs:78
 msgid "请选择复制区域的右下角"
 msgstr ""
 
-#: ../../Plugin.cs:80
+#: ../../Plugin.cs:74
 msgid "请选择复制区域的左上角"
-msgstr ""
-
-#: ../../Plugin.cs:189
-msgid "配置文件读取错误:{0}"
 msgstr ""
 

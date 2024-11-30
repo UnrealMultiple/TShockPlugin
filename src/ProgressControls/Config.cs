@@ -116,7 +116,7 @@ public class Config
         Config config;
         try
         {
-            config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(configPath));
+            config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(configPath))!;
         }
         catch
         {

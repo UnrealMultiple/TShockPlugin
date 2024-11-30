@@ -1,68 +1,58 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI;
+using LazyAPI.ConfigFiles;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace CaiPacketDebug;
 
-public class Config
+[Config]
+public class Config : JsonConfigBase<Config>
 {
-    public const string Path = "tshock/CaiPacketDebug.json";
+    protected override string Filename => "CaiPacketDebug";
 
-    public static Config Settings = new ();
+    [LocalizedPropertyName(CultureType.Chinese, "C->S")]
+    [LocalizedPropertyName(CultureType.English, "ClientToServer")]
+    public DebugSettings ClientToServer { get; set; } = new();
 
-    [JsonProperty("C->S")] public DebugSettings ClientToServer = new ();
-    [JsonProperty("S->C")] public DebugSettings ServerToClient = new ();
+    [LocalizedPropertyName(CultureType.Chinese, "S->C")]
+    [LocalizedPropertyName(CultureType.English, "ServerToClient")]
+    public DebugSettings ServerToClient { get; set; } = new();
 
-    public void Write(string path = Path)
+    protected override void SetDefault()
     {
-        using FileStream fileStream = new (path, FileMode.Create, FileAccess.Write, FileShare.Write);
-        this.Write(fileStream);
-    }
-
-    public void Write(Stream stream)
-    {
-        var value = JsonConvert.SerializeObject(this, Formatting.Indented);
-        using (StreamWriter streamWriter = new (stream))
+        this.ClientToServer = new DebugSettings
         {
-            streamWriter.Write(value);
-        }
-    }
+            DebugAfterInit = false,
+            ExcludePackets = new int[] { 114, 514 },
+            WhiteListMode = false,
+            WhiteListPackets = new int[] { 1, 2, 3 }
+        };
 
-    public static Config? Read(string path = Path)
-    {
-        var flag = !File.Exists(path);
-        Config? result;
-        if (flag)
+        this.ServerToClient = new DebugSettings
         {
-            result = new Config();
-            result.Write(path);
-        }
-        else
-        {
-            using (FileStream fileStream = new (path, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                result = Read(fileStream);
-            }
-        }
-
-        Settings = result!;
-        return result;
-    }
-
-    public static Config? Read(Stream stream)
-    {
-        Config? result;
-        using (StreamReader streamReader = new (stream))
-        {
-            result = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd());
-        }
-
-        return result;
+            DebugAfterInit = false,
+            ExcludePackets = new int[] { 114, 514 },
+            WhiteListMode = false,
+            WhiteListPackets = new int[] { 1, 2, 3 }
+        };
     }
 }
 
 public class DebugSettings
 {
-    [JsonProperty("自启动")] public bool DebugAfterInit;
-    [JsonProperty("排除数据包")] public int[] ExcludePackets = { 114, 514 };
-    [JsonProperty("白名单模式")] public bool WhiteListMode;
-    [JsonProperty("白名单模式数据包")] public int[] WhiteListPackets = { 1, 2, 3 };
+    [LocalizedPropertyName(CultureType.Chinese, "自启动")]
+    [LocalizedPropertyName(CultureType.English, "DebugAfterInit")]
+    public bool DebugAfterInit { get; set; }
+
+    [LocalizedPropertyName(CultureType.Chinese, "排除数据包")]
+    [LocalizedPropertyName(CultureType.English, "ExcludePackets")]
+    public int[] ExcludePackets { get; set; } = Array.Empty<int>();
+
+    [LocalizedPropertyName(CultureType.Chinese, "白名单模式")]
+    [LocalizedPropertyName(CultureType.English, "WhiteListMode")]
+    public bool WhiteListMode { get; set; }
+
+    [LocalizedPropertyName(CultureType.Chinese, "白名单模式数据包")]
+    [LocalizedPropertyName(CultureType.English, "WhiteListPackets")]
+    public int[] WhiteListPackets { get; set; } = Array.Empty<int>();
 }

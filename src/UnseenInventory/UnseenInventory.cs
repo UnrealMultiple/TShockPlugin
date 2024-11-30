@@ -14,7 +14,7 @@ public class UnseenInventory : TerrariaPlugin
     public override string Description => "允许服务器端生成“无法获取”的物品";
     public override string Name => "UnseenInventory";
     public override Version Version => new Version(1, 0, 0);
-    public static Configuration Config;
+    public static Configuration Config = null!;
 
     public UnseenInventory(Main game) : base(game)
     {

@@ -1,4 +1,5 @@
 ﻿using EconomicsAPI.Enumerates;
+using System.Drawing;
 
 namespace EconomicsAPI.EventArgs.PlayerEventArgs;
 
@@ -9,4 +10,6 @@ public class PlayerCurrencyUpdateArgs : BasePlayerEventArgs
     public CurrencyUpdateType CurrentType { get; init; }
 
     public long Change { get; init; }
+
+    public string CurrencyType { get; init; } = string.Empty;
 }

@@ -19,9 +19,9 @@ public class InventoryData
 public class Suits
 {
     //饰品时装
-    public InventoryData[] armor { get; set; }
+    public InventoryData[] armor { get; set; } = Array.Empty<InventoryData>();
     //染料
-    public InventoryData[] dye { get; set; }
+    public InventoryData[] dye { get; set; } = Array.Empty<InventoryData>();
 }
 
 public class RetObject
@@ -29,7 +29,7 @@ public class RetObject
     //在线状态
     public bool OnlineStatu { get; set; }
     //玩家名字
-    public string Username { get; set; }
+    public string Username { get; set; } = "";
     //最大生命
     public int statLifeMax { get; set; }
     //当前生命
@@ -39,27 +39,27 @@ public class RetObject
     //当前法力
     public int statMana { get; set; }
     //buff
-    public int[] buffType { get; set; }
+    public int[] buffType { get; set; } = Array.Empty<int>();
     //buff时间
-    public int[] buffTime { get; set; }
+    public int[] buffTime { get; set; } = Array.Empty<int>();
     //背包
-    public InventoryData[] inventory { get; set; }
+    public InventoryData[] inventory { get; set; } = Array.Empty<InventoryData>();
     //宠物坐骑等
-    public InventoryData[] miscEquip { get; set; }
+    public InventoryData[] miscEquip { get; set; } = Array.Empty<InventoryData>();
     //宠物坐骑染料
-    public InventoryData[] miscDye { get; set; }
+    public InventoryData[] miscDye { get; set; } = Array.Empty<InventoryData>();
     //套装
-    public Suits[] Loadout { get; set; }
+    public Suits[] Loadout { get; set; } = Array.Empty<Suits>();
     //垃圾桶
-    public InventoryData[] trashItem { get; set; }
+    public InventoryData[] trashItem { get; set; } = Array.Empty<InventoryData>();
     //猪猪存钱罐
-    public InventoryData[] Piggiy { get; set; }
+    public InventoryData[] Piggiy { get; set; } = Array.Empty<InventoryData>();
     //保险箱
-    public InventoryData[] safe { get; set; }
+    public InventoryData[] safe { get; set; } = Array.Empty<InventoryData>();
     //护卫熔炉
-    public InventoryData[] Forge { get; set; }
+    public InventoryData[] Forge { get; set; } = Array.Empty<InventoryData>();
     //虚空保险箱
-    public InventoryData[] VoidVault { get; set; }
+    public InventoryData[] VoidVault { get; set; } = Array.Empty<InventoryData>();
 }
 
 public static class Utils

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Regain\n"
-"POT-Creation-Date: 2024-09-30 12:32:32+0000\n"
-"PO-Revision-Date: 2024-09-30 12:32:33+0000\n"
+"POT-Creation-Date: 2024-11-15 03:22:37+0000\n"
+"PO-Revision-Date: 2024-11-15 03:22:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,53 +10,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Regain..cs:138
+#: ../../Config.cs:20
+#, csharp-format
+msgid "[i:{0}] {1} 价格:{2}"
+msgstr ""
+
+#: ../../Regain..cs:149
 msgid "/regain"
 msgstr ""
 
-#: ../../Regain..cs:139
+#: ../../Regain..cs:150
 msgid "/regain [数量]"
 msgstr ""
 
-#: ../../Regain..cs:140
+#: ../../Regain..cs:151
 msgid "/regain list"
 msgstr ""
 
-#: ../../Regain..cs:137
-msgid "/regain语法"
+#: ../../Regain..cs:148
+msgid "/regain 语法"
 msgstr ""
 
-#: ../../Regain..cs:90
+#: ../../Regain..cs:91
 msgid "你必须登录游戏使用此命令!"
 msgstr ""
 
-#: ../../Regain..cs:121
+#: ../../Regain..cs:126
 #, csharp-format
 msgid "值{0}无效!"
 msgstr ""
 
-#: ../../Regain..cs:69
+#: ../../Regain..cs:70
 msgid "回收物品列表 ({0}/{1})："
 msgstr ""
 
-#: ../../Regain..cs:68
+#: ../../Regain..cs:69
 msgid "当前可回收物品"
 msgstr ""
 
-#: ../../Regain..cs:133
+#: ../../Regain..cs:112
+#: ../../Regain..cs:144
 #, csharp-format
-msgid "成功兑换{0}个{1}!"
+msgid "成功兑换{0}"
 msgstr ""
 
-#: ../../Regain..cs:78
+#: ../../Regain..cs:79
 msgid "该物品暂时无法回收!"
 msgstr ""
 
-#: ../../Regain..cs:83
+#: ../../Regain..cs:84
 msgid "请手持一个有效物品!"
 msgstr ""
 
-#: ../../Regain..cs:70
+#: ../../Regain..cs:71
 msgid "输入 {0}regain list {{0}} 查看更多"
 msgstr ""
 

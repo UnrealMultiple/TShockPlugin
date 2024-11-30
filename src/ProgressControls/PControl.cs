@@ -385,10 +385,7 @@ public partial class PControl : TerrariaPlugin
     private void OnReload(ReloadEventArgs e)
     {
         var config = Config.LoadConfigFile();
-        if (e != null && e.Player != null)
-        {
-            e.Player.SendSuccessMessage("[计划书]重新加载配置完毕。");
-        }
+        e.Player.SendSuccessMessage("[计划书]重新加载配置完毕。");
 
         if (config.HowLongTimeOfAotuResetServer < 0)
         {
@@ -474,8 +471,8 @@ public partial class PControl : TerrariaPlugin
         {
             for (var i = 1; i < npc.Value.Count; i++)
             {
-                var t = CorrectCommand(npc.Value[i].ToString());
-                if (t != npc.Value[i].ToString() && !string.IsNullOrWhiteSpace(t))
+                var t = CorrectCommand(npc.Value[i]!.ToString());
+                if (t != npc.Value[i]!.ToString() && !string.IsNullOrWhiteSpace(t))
                 {
                     e.Player.SendInfoMessage($"你在配置文件中提供的指令：[/{npc.Value[i]}] 含有多余斜杠和空格，已转化为等价指令：[/{t}]");
                 }

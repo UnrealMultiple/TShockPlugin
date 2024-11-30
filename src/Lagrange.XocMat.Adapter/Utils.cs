@@ -1,8 +1,8 @@
-﻿using MorMorAdapter.Attributes;
-using MorMorAdapter.Enumerates;
-using MorMorAdapter.Extension;
-using MorMorAdapter.Model.Action.Receive;
-using MorMorAdapter.Model.Internet;
+﻿using Lagrange.XocMat.Adapter.Attributes;
+using Lagrange.XocMat.Adapter.Enumerates;
+using Lagrange.XocMat.Adapter.Extension;
+using Lagrange.XocMat.Adapter.Model.Action.Receive;
+using Lagrange.XocMat.Adapter.Model.Internet;
 using ProtoBuf;
 using Rests;
 using SixLabors.ImageSharp;
@@ -20,7 +20,7 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
 
-namespace MorMorAdapter;
+namespace Lagrange.XocMat.Adapter;
 
 internal class Utils
 {
@@ -42,7 +42,6 @@ internal class Utils
         Player.Serialize(playerFileData, player, binaryWriter);
         binaryWriter.Flush();
         cryptoStream.FlushFinalBlock();
-        //stream.Flush();
         return stream.ToArray();
     }
 
@@ -129,10 +128,10 @@ internal class Utils
     /// <typeparam name="T">返回特性类型</typeparam>
     /// <param name="paramType">参数类型</param>
     /// <returns></returns>
-    public static Dictionary<MethodInfo, (object, T)> MatchAssemblyMethodByAttribute<T>(params Type[] paramType) where T : Attribute
+    public static Dictionary<MethodInfo, (object?, T)> MatchAssemblyMethodByAttribute<T>(params Type[] paramType) where T : Attribute
     {
-        var methods = new Dictionary<MethodInfo, (object, T)>();
-        Dictionary<Type, object> types = new();
+        var methods = new Dictionary<MethodInfo, (object?, T)>();
+        Dictionary<Type, object?> types = new();
         Assembly.GetExecutingAssembly().GetTypes().ForEach(x =>
         {
             if (!x.IsAbstract && !x.IsInterface)
@@ -258,22 +257,17 @@ internal class Utils
         };
         for (var i = 0; i < tsplayer.Loadouts.Length; i++)
         {
-            if (i == tsplayer.CurrentLoadoutIndex)
-            {
-                retObject.Loadout[i] = new Suits()
+            retObject.Loadout[i] = i == tsplayer.CurrentLoadoutIndex
+                ? new Suits()
                 {
                     armor = Utils.GetInventoryData(tsplayer.armor, NetItem.ArmorSlots),
                     dye = Utils.GetInventoryData(tsplayer.dye, NetItem.DyeSlots),
-                };
-            }
-            else
-            {
-                retObject.Loadout[i] = new Suits()
+                }
+                : new Suits()
                 {
                     armor = Utils.GetInventoryData(tsplayer.Loadouts[i].Armor, tsplayer.Loadouts[i].Armor.Length),
                     dye = Utils.GetInventoryData(tsplayer.Loadouts[i].Dye, tsplayer.Loadouts[i].Dye.Length)
                 };
-            }
         }
         //垃圾桶
         retObject.trashItem = new Model.Internet.Item[1]
@@ -302,7 +296,7 @@ internal class Utils
             statLifeMax = data.maxHealth,
             statMana = data.mana,
             statManaMax = data.maxMana,
-            extraAccessory = data.extraSlot == 1 ? true : false,
+            extraAccessory = data.extraSlot == 1,
             skinVariant = data.skinVariant ?? default,
             hair = data.hair ?? default,
             hairDye = data.hairDye,
@@ -341,42 +335,42 @@ internal class Utils
                 }
                 else if (i < NetItem.ArmorIndex.Item2)
                 {
-                    int num = i - NetItem.ArmorIndex.Item1;
+                    var num = i - NetItem.ArmorIndex.Item1;
                     player.armor[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.armor[num].stack = data.inventory[i].Stack;
                     player.armor[num].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.DyeIndex.Item2)
                 {
-                    int num2 = i - NetItem.DyeIndex.Item1;
+                    var num2 = i - NetItem.DyeIndex.Item1;
                     player.dye[num2] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.dye[num2].stack = data.inventory[i].Stack;
                     player.dye[num2].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.MiscEquipIndex.Item2)
                 {
-                    int num3 = i - NetItem.MiscEquipIndex.Item1;
+                    var num3 = i - NetItem.MiscEquipIndex.Item1;
                     player.miscEquips[num3] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.miscEquips[num3].stack = data.inventory[i].Stack;
                     player.miscEquips[num3].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.MiscDyeIndex.Item2)
                 {
-                    int num4 = i - NetItem.MiscDyeIndex.Item1;
+                    var num4 = i - NetItem.MiscDyeIndex.Item1;
                     player.miscDyes[num4] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.miscDyes[num4].stack = data.inventory[i].Stack;
                     player.miscDyes[num4].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.PiggyIndex.Item2)
                 {
-                    int num5 = i - NetItem.PiggyIndex.Item1;
+                    var num5 = i - NetItem.PiggyIndex.Item1;
                     player.bank.item[num5] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.bank.item[num5].stack = data.inventory[i].Stack;
                     player.bank.item[num5].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.SafeIndex.Item2)
                 {
-                    int num6 = i - NetItem.SafeIndex.Item1;
+                    var num6 = i - NetItem.SafeIndex.Item1;
                     player.bank2.item[num6] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.bank2.item[num6].stack = data.inventory[i].Stack;
                     player.bank2.item[num6].prefix = data.inventory[i].PrefixId;
@@ -389,56 +383,56 @@ internal class Utils
                 }
                 else if (i < NetItem.ForgeIndex.Item2)
                 {
-                    int num7 = i - NetItem.ForgeIndex.Item1;
+                    var num7 = i - NetItem.ForgeIndex.Item1;
                     player.bank3.item[num7] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.bank3.item[num7].stack = data.inventory[i].Stack;
                     player.bank3.item[num7].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.VoidIndex.Item2)
                 {
-                    int num8 = i - NetItem.VoidIndex.Item1;
+                    var num8 = i - NetItem.VoidIndex.Item1;
                     player.bank4.item[num8] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.bank4.item[num8].stack = data.inventory[i].Stack;
                     player.bank4.item[num8].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.Loadout1Armor.Item2)
                 {
-                    int num9 = i - NetItem.Loadout1Armor.Item1;
+                    var num9 = i - NetItem.Loadout1Armor.Item1;
                     player.Loadouts[0].Armor[num9] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.Loadouts[0].Armor[num9].stack = data.inventory[i].Stack;
                     player.Loadouts[0].Armor[num9].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.Loadout1Dye.Item2)
                 {
-                    int num10 = i - NetItem.Loadout1Dye.Item1;
+                    var num10 = i - NetItem.Loadout1Dye.Item1;
                     player.Loadouts[0].Dye[num10] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.Loadouts[0].Dye[num10].stack = data.inventory[i].Stack;
                     player.Loadouts[0].Dye[num10].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.Loadout2Armor.Item2)
                 {
-                    int num11 = i - NetItem.Loadout2Armor.Item1;
+                    var num11 = i - NetItem.Loadout2Armor.Item1;
                     player.Loadouts[1].Armor[num11] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.Loadouts[1].Armor[num11].stack = data.inventory[i].Stack;
                     player.Loadouts[1].Armor[num11].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.Loadout2Dye.Item2)
                 {
-                    int num12 = i - NetItem.Loadout2Dye.Item1;
+                    var num12 = i - NetItem.Loadout2Dye.Item1;
                     player.Loadouts[1].Dye[num12] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.Loadouts[1].Dye[num12].stack = data.inventory[i].Stack;
                     player.Loadouts[1].Dye[num12].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.Loadout3Armor.Item2)
                 {
-                    int num13 = i - NetItem.Loadout3Armor.Item1;
+                    var num13 = i - NetItem.Loadout3Armor.Item1;
                     player.Loadouts[2].Armor[num13] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.Loadouts[2].Armor[num13].stack = data.inventory[i].Stack;
                     player.Loadouts[2].Armor[num13].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.Loadout3Dye.Item2)
                 {
-                    int num14 = i - NetItem.Loadout3Dye.Item1;
+                    var num14 = i - NetItem.Loadout3Dye.Item1;
                     player.Loadouts[2].Dye[num14] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.Loadouts[2].Dye[num14].stack = data.inventory[i].Stack;
                     player.Loadouts[2].Dye[num14].prefix = data.inventory[i].PrefixId;
@@ -448,15 +442,15 @@ internal class Utils
         //异常同步
         else
         {
-            int notselected = 0;
-            for (int i = 0; i < 3; i++)
+            var notselected = 0;
+            for (var i = 0; i < 3; i++)
             {
                 if (player.CurrentLoadoutIndex != i && data.currentLoadoutIndex != i)
                 {
                     notselected = i;
                 }
             }
-            for (int i = 0; i < NetItem.MaxInventory; i++)
+            for (var i = 0; i < NetItem.MaxInventory; i++)
             {
                 if (i < NetItem.InventoryIndex.Item2)
                 {
@@ -466,42 +460,42 @@ internal class Utils
                 }
                 else if (i < NetItem.ArmorIndex.Item2)
                 {
-                    int num = i - NetItem.ArmorIndex.Item1;
+                    var num = i - NetItem.ArmorIndex.Item1;
                     player.Loadouts[data.currentLoadoutIndex].Armor[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.Loadouts[data.currentLoadoutIndex].Armor[num].stack = data.inventory[i].Stack;
                     player.Loadouts[data.currentLoadoutIndex].Armor[num].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.DyeIndex.Item2)
                 {
-                    int num = i - NetItem.DyeIndex.Item1;
+                    var num = i - NetItem.DyeIndex.Item1;
                     player.Loadouts[data.currentLoadoutIndex].Dye[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.Loadouts[data.currentLoadoutIndex].Dye[num].stack = data.inventory[i].Stack;
                     player.Loadouts[data.currentLoadoutIndex].Dye[num].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.MiscEquipIndex.Item2)
                 {
-                    int num = i - NetItem.MiscEquipIndex.Item1;
+                    var num = i - NetItem.MiscEquipIndex.Item1;
                     player.miscEquips[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.miscEquips[num].stack = data.inventory[i].Stack;
                     player.miscEquips[num].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.MiscDyeIndex.Item2)
                 {
-                    int num = i - NetItem.MiscDyeIndex.Item1;
+                    var num = i - NetItem.MiscDyeIndex.Item1;
                     player.miscDyes[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.miscDyes[num].stack = data.inventory[i].Stack;
                     player.miscDyes[num].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.PiggyIndex.Item2)
                 {
-                    int num = i - NetItem.PiggyIndex.Item1;
+                    var num = i - NetItem.PiggyIndex.Item1;
                     player.bank.item[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.bank.item[num].stack = data.inventory[i].Stack;
                     player.bank.item[num].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.SafeIndex.Item2)
                 {
-                    int num = i - NetItem.SafeIndex.Item1;
+                    var num = i - NetItem.SafeIndex.Item1;
                     player.bank2.item[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.bank2.item[num].stack = data.inventory[i].Stack;
                     player.bank2.item[num].prefix = data.inventory[i].PrefixId;
@@ -514,21 +508,21 @@ internal class Utils
                 }
                 else if (i < NetItem.ForgeIndex.Item2)
                 {
-                    int num = i - NetItem.ForgeIndex.Item1;
+                    var num = i - NetItem.ForgeIndex.Item1;
                     player.bank3.item[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.bank3.item[num].stack = data.inventory[i].Stack;
                     player.bank3.item[num].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.VoidIndex.Item2)
                 {
-                    int num = i - NetItem.VoidIndex.Item1;
+                    var num = i - NetItem.VoidIndex.Item1;
                     player.bank4.item[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                     player.bank4.item[num].stack = data.inventory[i].Stack;
                     player.bank4.item[num].prefix = data.inventory[i].PrefixId;
                 }
                 else if (i < NetItem.Loadout1Armor.Item2)
                 {
-                    int num = i - NetItem.Loadout1Armor.Item1;
+                    var num = i - NetItem.Loadout1Armor.Item1;
                     if (data.currentLoadoutIndex != 0)
                     {
                         if (notselected == 0)
@@ -555,7 +549,7 @@ internal class Utils
                 }
                 else if (i < NetItem.Loadout1Dye.Item2)
                 {
-                    int num = i - NetItem.Loadout1Dye.Item1;
+                    var num = i - NetItem.Loadout1Dye.Item1;
                     if (data.currentLoadoutIndex != 0)
                     {
                         if (notselected == 0)
@@ -581,7 +575,7 @@ internal class Utils
                 }
                 else if (i < NetItem.Loadout2Armor.Item2)
                 {
-                    int num = i - NetItem.Loadout2Armor.Item1;
+                    var num = i - NetItem.Loadout2Armor.Item1;
                     if (data.currentLoadoutIndex != 1)
                     {
                         if (notselected == 1)
@@ -607,7 +601,7 @@ internal class Utils
                 }
                 else if (i < NetItem.Loadout2Dye.Item2)
                 {
-                    int num = i - NetItem.Loadout2Dye.Item1;
+                    var num = i - NetItem.Loadout2Dye.Item1;
                     if (data.currentLoadoutIndex != 1)
                     {
                         if (notselected == 1)
@@ -633,7 +627,7 @@ internal class Utils
                 }
                 else if (i < NetItem.Loadout3Armor.Item2)
                 {
-                    int num = i - NetItem.Loadout3Armor.Item1;
+                    var num = i - NetItem.Loadout3Armor.Item1;
                     if (data.currentLoadoutIndex != 2)
                     {
                         if (notselected == 2)
@@ -662,7 +656,7 @@ internal class Utils
                 }
                 else if (i < NetItem.Loadout3Dye.Item2)
                 {
-                    int num = i - NetItem.Loadout3Dye.Item1;
+                    var num = i - NetItem.Loadout3Dye.Item1;
                     if (data.currentLoadoutIndex != 2)
                     {
                         if (notselected == 2)
@@ -713,10 +707,7 @@ internal class Utils
         Image<Rgba32> image = new(Main.maxTilesX, Main.maxTilesY);
 
         MapHelper.Initialize();
-        if (Main.Map == null)
-        {
-            Main.Map = new WorldMap(0, 0);
-        }
+        Main.Map ??= new WorldMap(0, 0);
         for (var x = 0; x < Main.maxTilesX; x++)
         {
             for (var y = 0; y < Main.maxTilesY; y++)
@@ -764,13 +755,18 @@ internal class Utils
             .GetProperty("DefaultLogWriter", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(ServerApi.LogWriter)!;
         obj.Dispose();
         if (Plugin.Config.ResetConfig.ClearLogs)
+        {
             new DirectoryInfo(TShock.Config.Settings.LogPath)
                 .GetFiles()
                 .ForEach(x => x.Delete());
+        }
 
         if (Plugin.Config.ResetConfig.ClearMap && File.Exists(Main.worldPathName))
+        {
             File.Delete(Main.worldPathName);
-        var dir = Path.GetDirectoryName(Main.worldPathName);
+        }
+
+        var dir = Path.GetDirectoryName(Main.worldPathName)!;
         if (args.UseFile)
         {
             File.WriteAllBytes(Path.Combine(dir, args.FileName), args.FileBuffer);
@@ -792,7 +788,7 @@ internal class Utils
 
     internal static void HandleCommandLine(string[] param)
     {
-        Dictionary<string, string> args = Terraria.Utils.ParseArguements(param);
+        var args = Terraria.Utils.ParseArguements(param);
         foreach (var (key, value) in args)
         {
             switch (key.ToLower())
@@ -802,8 +798,11 @@ internal class Utils
                     break;
                 case "-mode":
 
-                    if (int.TryParse(value, out int mode))
+                    if (int.TryParse(value, out var mode))
+                    {
                         Plugin.Channeler.Writer.TryWrite(mode);
+                    }
+
                     break;
             }
         }

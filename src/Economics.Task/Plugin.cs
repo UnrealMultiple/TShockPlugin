@@ -21,7 +21,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 2);
+    public override Version Version => new(2, 0, 0, 0);
 
     internal static Config TaskConfig = new();
 
@@ -182,7 +182,7 @@ public class Plugin : TerrariaPlugin
             return;
         }
 
-        var task = UserTaskData.GetUserTask(args.Player.Name);
+        var task = UserTaskData.GetUserTask(args.Player!.Name);
         if (task != null)
         {
             var kill = task.TaskInfo.KillNPCS.Find(x => x.ID == args.Npc.netID);

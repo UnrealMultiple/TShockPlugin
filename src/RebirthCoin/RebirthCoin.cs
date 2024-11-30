@@ -17,7 +17,7 @@ public class TestPlugin : TerrariaPlugin
     #endregion
 
     #region 实例与变量
-    private LPlayer[] LPlayers { get; set; }
+    private LPlayer?[] LPlayers { get; set; }
     #endregion
 
     #region 注册与释放
@@ -149,10 +149,10 @@ public class TestPlugin : TerrariaPlugin
                 var num2 = binaryReader.ReadInt16();
                 var num3 = binaryReader.ReadInt32();
                 var val2 = (PlayerSpawnContext)binaryReader.ReadByte();
-                if (val2 == 0 && num3 <= 0 && this.LPlayers[plr.Index].tp)
+                if (val2 == 0 && num3 <= 0 && this.LPlayers[plr.Index]!.tp)
                 {
-                    plr.Teleport(this.LPlayers[plr.Index].x, this.LPlayers[plr.Index].y, 1);
-                    this.LPlayers[plr.Index].tp = false;
+                    plr.Teleport(this.LPlayers[plr.Index]!.x, this.LPlayers[plr.Index]!.y, 1);
+                    this.LPlayers[plr.Index]!.tp = false;
                     args.Handled = true;
                 }
                 return;
@@ -210,9 +210,9 @@ public class TestPlugin : TerrariaPlugin
                     plr.SendData((PacketTypes)5, "", plr.Index, slot, plr.TPlayer.inventory[0].prefix, 0f, 0);
                 }
 
-                this.LPlayers[plr.Index].x = plr.X;
-                this.LPlayers[plr.Index].y = plr.Y;
-                this.LPlayers[plr.Index].tp = true;
+                this.LPlayers[plr.Index]!.x = plr.X;
+                this.LPlayers[plr.Index]!.y = plr.Y;
+                this.LPlayers[plr.Index]!.tp = true;
 
                 //玩家生成
                 plr.Spawn(0, null);
