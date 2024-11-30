@@ -45,7 +45,7 @@
 - No dejar puertas traseras en los complementos.
 - Incluya un archivo README.md con cada proyecto de complemento.
 
-## Feedback
+## Comentarios
 
 > Cualquier comentario, sugerencia o mejora en esta biblioteca de códigos se considerará contribución pública y podrá incluirse en esta biblioteca de códigos a menos que se indique explícitamente lo contrario.
 
@@ -60,7 +60,7 @@
 > Intente consultar la documentación china siempre que sea posible.
 
 <Details>
-<Summary>Plugin List</Summary>
+<Summary>Listado de Plugins</Summary>
 
 
 md
