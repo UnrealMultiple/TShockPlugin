@@ -7,7 +7,7 @@
 [![QQ](https://img.shields.io/badge/QQ-EB1923?logo=tencent-qq&logoColor=white)](https://qm.qq.com/cgi-bin/qm/qr?k=54tOesIU5g13yVBNFIuMBQ6AzjgE6f0m&jump_from=webapi&authKey=6jzafzJEqQGzq7b2mAHBw+Ws5uOdl83iIu7CvFmrfm/Xxbo2kNHKSNXJvDGYxhSW)
 [![TShock](https://img.shields.io/badge/TShock5.2.0-2B579A.svg?&logo=TShock&logoColor=white)](https://github.com/Pryaxis/TShock)
 
-**&gt; 简体中文 &lt;** | [English](README_EN.md)
+**&gt; 简体中文 &lt;** | [English](README_EN.md) | [Spanish/Español](README_ES.md)
 
 </div>
 
@@ -127,7 +127,7 @@
 | [Invincibility](src/Invincibility/README.md) | 限时无敌 | 无 |
 | [ItemPreserver](src/ItemPreserver/README.md) | 指定物品不消耗 | 无 |
 | [ItemBox](src/ItemBox/README.md) | 离线背包系统，物品盒子 | 无 |
-| [ItemDecoration](src/ItemDecoration/README.md) | 手持物品浮动消息显示 | 无 |
+| [ItemDecoration](src/ItemDecoration/README.md) | 手持物品浮动消息显示 | [LazyAPI](src/LazyAPI/README.md) |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | 解锁旅途物品 | 无 |
 | [Lagrange.XocMat.Adapter](src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 | 无 |
 | [LazyAPI](src/LazyAPI/README.md) | 插件基础库 | linq2db |
