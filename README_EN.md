@@ -7,7 +7,7 @@
 [![QQ](https://img.shields.io/badge/QQ-EB1923?logo=tencent-qq&logoColor=white)](https://qm.qq.com/cgi-bin/qm/qr?k=54tOesIU5g13yVBNFIuMBQ6AzjgE6f0m&jump_from=webapi&authKey=6jzafzJEqQGzq7b2mAHBw+Ws5uOdl83iIu7CvFmrfm/Xxbo2kNHKSNXJvDGYxhSW)
 [![TShock](https://img.shields.io/badge/TShock5.2.0-2B579A.svg?&logo=TShock&logoColor=white)](https://github.com/Pryaxis/TShock)
 
-[简体中文](README.md) | **&gt; English &lt;**
+[简体中文](README.md) | **&gt; English &lt;** | [Spanish/Español](README_ES.md)
 
 </div>
 
@@ -132,7 +132,7 @@
 | [Invincibility](src/Invincibility/README.md) | No | Time-limited invincibility | None |
 | [ItemPreserver](src/ItemPreserver/README.md) | No | Preserve specified items from consumption | None |
 | [ItemBox](src/itemBox/README.md) | No | Off-line inventory | None |
-| [ItemDecoration](src/ItemDecoration/README_EN.md) | Yes | Floating message display for held items | None |
+| [ItemDecoration](src/ItemDecoration/README_EN.md) | Yes | Floating message display for held items | [LazyAPI](src/LazyAPI/README.md) |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | No | Unlock journey items | None |
 | [LazyAPI](src/LazyAPI/README.md) | Yes | Plugin base library | linq2db |
 | [LifemaxExtra](src/LifemaxExtra/README.md) | No | Eat more life fruits/crystals | None |
