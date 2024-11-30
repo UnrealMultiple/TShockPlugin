@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CaiRewardChest\n"
-"POT-Creation-Date: 2024-09-28 12:12:05+0000\n"
+"POT-Creation-Date: 2024-11-30 02:03:55+0000\n"
 "PO-Revision-Date: 2024-09-29 12:54+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ../../Plugin.cs:144
+#: ../../Plugin.cs:143
 #, csharp-format
 msgid "[i:{0}]你已经领取过这个奖励箱啦!"
 msgstr "[i:{0}] You've already claimed this reward chest!"
@@ -21,39 +21,39 @@ msgstr "[i:{0}] You've already claimed this reward chest!"
 msgid "[i:{0}]你打开了一个奖励箱: "
 msgstr "[i:{0}] You've opened a reward chest: "
 
-#: ../../Plugin.cs:98
+#: ../../Plugin.cs:97
 msgid "[i:48]你删除了这个奖励箱~"
 msgstr "[i:48] You've deleted this reward chest~"
 
-#: ../../Plugin.cs:114
+#: ../../Plugin.cs:113
 msgid "[i:48]你添加了一个奖励箱~"
 msgstr "[i:48] You've added a reward chest~"
 
-#: ../../Plugin.cs:177
+#: ../../Plugin.cs:176
 #, csharp-format
 msgid "[i:48]奖励箱初始化完成,共添加{0}个奖励箱~"
 msgstr "[i:48] Reward chest initialization complete, {0} reward chests added~"
 
-#: ../../Plugin.cs:161
+#: ../../Plugin.cs:160
 msgid "[i:48]奖励箱已全部清除~"
 msgstr "[i:48] All reward chests have been cleared~"
 
-#: ../../Plugin.cs:74
+#: ../../Plugin.cs:73
 msgid "[i:48]请打开需要删除的奖励箱~"
 msgstr "[i:48] Please open the reward chest you want to delete~"
 
-#: ../../Plugin.cs:68
+#: ../../Plugin.cs:67
 msgid "[i:48]请打开需要添加的奖励箱~"
 msgstr "[i:48] Please open the reward chest you want to add~"
 
-#: ../../Plugin.cs:62
+#: ../../Plugin.cs:61
 msgid "[i:48]请打开需要编辑的奖励箱~"
 msgstr "[i:48] Please open the reward chest you want to edit~"
 
-#: ../../Plugin.cs:92 ../../Plugin.cs:127
+#: ../../Plugin.cs:91 ../../Plugin.cs:126
 msgid "[i:48]这个箱子好像不是奖励箱捏~"
 msgstr "[i:48] This chest doesn't seem to be a reward chest, huh? :D"
 
-#: ../../Plugin.cs:108
+#: ../../Plugin.cs:107
 msgid "[i:48]这个箱子好像是奖励箱捏~"
 msgstr "[i:48] This chest seems to be a reward chest, huh? :D"
