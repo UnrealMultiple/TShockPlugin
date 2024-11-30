@@ -62,9 +62,6 @@
 <Details>
 <Summary>Listado de Plugins</Summary>
 
-
-md
-Copiar código
 | Nombre del plugin | Disponible en Español | Descripcion del Plugin  | Dependencias |
 | :-: | :-: | :-: | :-: |
 | [AutoPluginManager](src/AutoPluginManager/README_EN.md) | No | Actualice los complementos automáticamente con una sola tecla | None |
