@@ -64,7 +64,7 @@
 
 | Nombre del plugin | Disponible en Español | Descripcion del Plugin  | Dependencias |
 | :-: | :-: | :-: | :-: |
-| [AutoPluginManager](src/AutoPluginManager/README_EN.md) | No | Actualice los complementos automáticamente con una sola tecla | None |
+| [AutoPluginManager](src/AutoPluginManager/README_EN.md) | Si | Actualice los complementos automáticamente con una sola tecla | None |
 | [AdditionalPylons](src/AdditionalPylons/README_EN.md) | No | Colocar más pilones | None |
 | [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | No | Mejora la funcionalidad de la caja de anuncios | None |
 | [AutoBroadcast](src/AutoBroadcast/README_EN.md) | No | Transmisión automática | None |
