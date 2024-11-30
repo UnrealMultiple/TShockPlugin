@@ -132,7 +132,7 @@
 | [Invincibility](src/Invincibility/README.md) | No | Time-limited invincibility | None |
 | [ItemPreserver](src/ItemPreserver/README.md) | No | Preserve specified items from consumption | None |
 | [ItemBox](src/itemBox/README.md) | No | Off-line inventory | None |
-| [ItemDecoration](src/ItemDecoration/README_EN.md) | Yes | Floating message display for held items | None |
+| [ItemDecoration](src/ItemDecoration/README_EN.md) | Yes | Floating message display for held items | [LazyAPI](src/LazyAPI/README.md) |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | No | Unlock journey items | None |
 | [LazyAPI](src/LazyAPI/README.md) | Yes | Plugin base library | linq2db |
 | [LifemaxExtra](src/LifemaxExtra/README.md) | No | Eat more life fruits/crystals | None |
