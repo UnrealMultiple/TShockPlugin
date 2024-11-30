@@ -8,6 +8,8 @@
 ## 更新日志
 
 ```
+V1.0.4
+使用lazyapi
 v1.0.3
 i18n和README_EN.md
 v1.0.2

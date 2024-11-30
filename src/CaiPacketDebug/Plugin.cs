@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using LazyAPI;
+using System.Reflection;
 using Terraria;
 using Terraria.Net.Sockets;
 using TerrariaApi.Server;
@@ -10,7 +11,7 @@ using Hooks = On.OTAPI.Hooks;
 namespace CaiPacketDebug;
 
 [ApiVersion(2, 1)]
-public class CaiPacketDebug : TerrariaPlugin
+public class CaiPacketDebug : LazyPlugin
 {
     private readonly PacketSerializer _clientPacketSerializer = new (true);
 
@@ -26,18 +27,14 @@ public class CaiPacketDebug : TerrariaPlugin
     public override string Author => "Cai";
     public override string Description => "用于调试数据包的插件捏~";
     public override string Name => "CaiPacketDebug";
-    public override Version Version => new (2024, 11, 10, 0);
+    public override Version Version => new (2024, 11, 30, 0);
 
 
     public override void Initialize()
     {
-        Config.Read();
-        this._clientToServerDebug = Config.Settings.ClientToServer.DebugAfterInit;
-        this._serverToClientDebug = Config.Settings.ServerToClient.DebugAfterInit;
         Commands.ChatCommands.Add(new Command("CaiPacketDebug.Use", this.CpdCmd, "cpd"));
         Hooks.MessageBuffer.InvokeGetData += this.MessageBufferOnInvokeGetData;
         Hooks.NetMessage.InvokeSendBytes += this.NetMessageOnInvokeSendBytes;
-        GeneralHooks.ReloadEvent += this.GeneralHooksOnReloadEvent;
     }
 
     protected override void Dispose(bool disposing)
@@ -46,26 +43,20 @@ public class CaiPacketDebug : TerrariaPlugin
         {
             Hooks.MessageBuffer.InvokeGetData -= this.MessageBufferOnInvokeGetData;
             Hooks.NetMessage.InvokeSendBytes -= this.NetMessageOnInvokeSendBytes;
-            GeneralHooks.ReloadEvent -= this.GeneralHooksOnReloadEvent;
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.CpdCmd);
         }
 
         base.Dispose(disposing);
     }
 
-    private void GeneralHooksOnReloadEvent(ReloadEventArgs e)
-    {
-        Config.Read();
-        e.Player.SendSuccessMessage("[CaiPacketDebug]配置文件已重载喵~");
-    }
 
     private void CpdCmd(CommandArgs args)
     {
         if (args.Parameters.Count == 0)
         {
             args.Player.SendInfoMessage("[CaiPacketDebug]\n" +
-                                        $"C->S: {(this._clientToServerDebug ? "[c/00FF00:已启用]" : "[c/FF0000:已禁用]")}\n" +
-                                        $"S->C: {(this._serverToClientDebug ? "[c/00FF00:已启用]" : "[c/FF0000:已禁用]")}");
+                                        $"C->S: {(this._clientToServerDebug ? GetString("[c/00FF00:已启用]") : GetString("[c/FF0000:已禁用]"))}\n" +
+                                        $"S->C: {(this._serverToClientDebug ? GetString("[c/00FF00:已启用]") : GetString("[c/FF0000:已禁用]"))}");
             args.Player.SendWarningMessage("*/cpd cts|stc 开关数据包调试");
             return;
         }
@@ -76,13 +67,13 @@ public class CaiPacketDebug : TerrariaPlugin
             case "cts":
                 this._clientToServerDebug = !this._clientToServerDebug;
                 args.Player.SendInfoMessage("[CaiPacketDebug]\n" +
-                                            $"C->S: {(this._clientToServerDebug ? "[c/00FF00:已启用]" : "[c/FF0000:已禁用]")}");
+                                            $"C->S: {(this._clientToServerDebug ? GetString("[c/00FF00:已启用]") : GetString("[c/FF0000:已禁用]"))}");
                 return;
             case "sc":
             case "stc":
                 this._serverToClientDebug = !this._serverToClientDebug;
                 args.Player.SendInfoMessage("[CaiPacketDebug]\n" +
-                                            $"S->C: {(this._serverToClientDebug ? "[c/00FF00:已启用]" : "[c/FF0000:已禁用]")}");
+                                            $"S->C: {(this._serverToClientDebug ? GetString("[c/00FF00:已启用]") : GetString("[c/FF0000:已禁用]"))}");
                 return;
         }
     }
@@ -98,13 +89,13 @@ public class CaiPacketDebug : TerrariaPlugin
             using BinaryReader reader = new (memoryStream);
             var packet = this._clientPacketSerializer.Deserialize(reader);
 
-            if (Config.Settings.ServerToClient.ExcludePackets.Contains((int) packet.Type))
+            if (Config.Instance.ServerToClient.ExcludePackets.Contains((int) packet.Type))
             {
                 return;
             }
 
-            if (Config.Settings.ServerToClient.WhiteListMode &&
-                !Config.Settings.ServerToClient.WhiteListPackets.Contains((int) packet.Type))
+            if (Config.Instance.ServerToClient.WhiteListMode &&
+                !Config.Instance.ServerToClient.WhiteListPackets.Contains((int) packet.Type))
             {
                 return;
             }
@@ -125,13 +116,13 @@ public class CaiPacketDebug : TerrariaPlugin
 
             var packet = this._serverPacketSerializer.Deserialize(instance.reader);
 
-            if (Config.Settings.ClientToServer.ExcludePackets.Contains((int) packet.Type))
+            if (Config.Instance.ClientToServer.ExcludePackets.Contains((int) packet.Type))
             {
                 return result;
             }
 
-            if (Config.Settings.ClientToServer.WhiteListMode &&
-                !Config.Settings.ClientToServer.WhiteListPackets.Contains((int) packet.Type))
+            if (Config.Instance.ClientToServer.WhiteListMode &&
+                !Config.Instance.ClientToServer.WhiteListPackets.Contains((int) packet.Type))
             {
                 return result;
             }
