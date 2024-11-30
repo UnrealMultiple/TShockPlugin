@@ -507,12 +507,14 @@
   },
   {
     "Name": "CaiCustomEmojiCommand",
-    "Version": "2024.9.8.1",
+    "Version": "2024.11.29.1",
     "Author": "Cai",
     "Description": "自定义Emoji表情执行命令",
     "AssemblyName": "CaiCustomEmojiCommand",
     "Path": "CaiCustomEmojiCommand.dll",
-    "Dependencies": [],
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {
@@ -529,12 +531,13 @@
   },
   {
     "Name": "CaiPacketDebug",
-    "Version": "2024.11.10.0",
+    "Version": "2024.11.30.0",
     "Author": "Cai",
     "Description": "用于调试数据包的插件捏~",
     "AssemblyName": "CaiPacketDebug",
     "Path": "CaiPacketDebug.dll",
     "Dependencies": [
+      "LazyAPI",
       "TrProtocol"
     ],
     "HotReload": true
@@ -574,12 +577,14 @@
   },
   {
     "Name": "Chameleon",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "mistzzt，肝帝熙恩修复1449",
     "Description": "账户系统交互替换方案",
     "AssemblyName": "Chameleon",
     "Path": "Chameleon.dll",
-    "Dependencies": [],
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {
@@ -638,12 +643,14 @@
   },
   {
     "Name": "CreateSpawn",
-    "Version": "1.0.0.2",
+    "Version": "1.0.0.3",
     "Author": "少司命",
     "Description": "出生建筑",
     "AssemblyName": "CreateSpawn",
     "Path": "CreateSpawn.dll",
-    "Dependencies": [],
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {

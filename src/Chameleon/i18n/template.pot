@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chameleon\n"
-"POT-Creation-Date: 2024-11-19 17:21:44+0000\n"
-"PO-Revision-Date: 2024-11-19 17:21:44+0000\n"
+"POT-Creation-Date: 2024-11-30 13:55:16+0000\n"
+"PO-Revision-Date: 2024-11-30 13:55:16+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,73 +10,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Chameleon.cs:73
+#: ../../Chameleon.cs:63
 msgid "[Chameleon] 在启用本插件的情况下，入服前登录将被强制开启。"
 msgstr ""
 
-#: ../../Chameleon.cs:68
+#: ../../Chameleon.cs:58
 msgid "[Chameleon] 在启用本插件的情况下，服务器密码功能将失效。"
 msgstr ""
 
-#: ../../Chameleon.cs:79
+#: ../../Chameleon.cs:69
 msgid "[Chameleon] 在启用本插件的情况下，注册登录将被强制开启。"
 msgstr ""
 
-#: ../../Chameleon.cs:384
-msgid "[Chameleon] 重新加载配置完毕。"
-msgstr ""
-
-#: ../../Chameleon.cs:280
+#: ../../Chameleon.cs:270
 msgid "个字符。"
 msgstr ""
 
-#: ../../Chameleon.cs:284
+#: ../../Chameleon.cs:274
 msgid "你的密码是{0}"
 msgstr ""
 
-#: ../../Chameleon.cs:360
+#: ../../Chameleon.cs:350
 #, csharp-format
 msgid "向{0}发送通知完毕."
 msgstr ""
 
-#: ../../Chameleon.cs:280
+#: ../../Chameleon.cs:270
 msgid "密码位数不能少于"
 msgstr ""
 
-#: ../../Chameleon.cs:174
-#: ../../Chameleon.cs:257
-#: ../../Chameleon.cs:328
+#: ../../Chameleon.cs:164
+#: ../../Chameleon.cs:247
+#: ../../Chameleon.cs:318
 #, csharp-format
 msgid "已经验证{0}登录完毕。"
 msgstr ""
 
-#: ../../Chameleon.cs:175
-#: ../../Chameleon.cs:258
-#: ../../Chameleon.cs:329
+#: ../../Chameleon.cs:165
+#: ../../Chameleon.cs:248
+#: ../../Chameleon.cs:319
 msgid "成功验证登录。"
 msgstr ""
 
-#: ../../Chameleon.cs:280
+#: ../../Chameleon.cs:270
 msgid "注册失败"
 msgstr ""
 
-#: ../../Chameleon.cs:286
+#: ../../Chameleon.cs:276
 msgid "玩家{0}注册了新账户：{1}"
 msgstr ""
 
-#: ../../Chameleon.cs:336
+#: ../../Chameleon.cs:326
 msgid "该用户名已被占用。"
 msgstr ""
 
-#: ../../Chameleon.cs:336
+#: ../../Chameleon.cs:326
 msgid "请更换人物名"
 msgstr ""
 
-#: ../../Chameleon.cs:283
+#: ../../Chameleon.cs:273
 msgid "账户{0}注册成功。"
 msgstr ""
 
-#: ../../Chameleon.cs:263
+#: ../../Chameleon.cs:253
 msgid "验证失败"
 msgstr ""
 
