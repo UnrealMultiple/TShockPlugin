@@ -39,7 +39,7 @@
 
 > Estandarización de codigo
 
-- No utilice nombres de variables chinos.
+- Está prohibido el uso de variables chinas.
 - No utilice funciones peligrosas.
 - Evite el uso de subprocesos múltiples siempre que sea posible.
 - No dejar puertas traseras en los complementos.
