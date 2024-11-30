@@ -3,52 +3,52 @@
 - Authors: Cai
 - Source: Here
 - Tired of typing long commands? Try custom emoji commands to convert frequently used commands into emojis for execution.
+- Emoji IDs can be found on the wiki (https://terraria.wiki.gg/wiki/Emotes). This plugin does not support bypassing permission checks, and commands require an identifier (/ or .).
 
 ## Config
 > Configuration file location：tshock/CaiCustomEmojiCommand.json
 ```json    
 {
-  "说明": "Emoji IDs can be found on the wiki (https://terraria.wiki.gg/wiki/Emotes). This plugin does not support bypassing permission checks, and commands require an identifier (/ or .).",
-  "命令列表": [ //Commands List 
+  "EmojiCommands": [
     {
-      "命令": "/who", //Command
-      "表情ID": 0 //Emoji ID
+      "Command": "/who",
+      "EmojiId": 0
     },
     {
-      "命令": "/home",
-      "表情ID": 2
+      "Command": "/home",
+      "EmojiId": 2
     },
     {
-      "命令": "/back",
-      "表情ID": 1
+      "Command": "/back",
+      "EmojiId": 1
     },
     {
-      "命令": "/进度补给",
-      "表情ID": 149
+      "Command": "/进度补给",
+      "EmojiId": 149
     },
     {
-      "命令": "/进度查询",
-      "表情ID": 14
+      "Command": "/进度查询",
+      "EmojiId": 14
     },
     {
-      "命令": "/进度列表",
-      "表情ID": 11
+      "Command": "/进度列表",
+      "EmojiId": 11
     },
     {
-      "命令": "/atp",
-      "表情ID": 17
-    } ,
-    {
-      "命令": "/vm",
-      "表情ID": 90
+      "Command": "/atp",
+      "EmojiId": 17
     },
     {
-      "命令": "/key",
-      "表情ID": 7
+      "Command": "/vm",
+      "EmojiId": 90
     },
     {
-      "命令": "/su",
-      "表情ID": 3
+      "Command": "/key",
+      "EmojiId": 7
+    },
+    {
+      "Command": "/su",
+      "EmojiId": 3
     }
   ]
 }
