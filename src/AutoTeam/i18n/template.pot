@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoTeam\n"
-"POT-Creation-Date: 2024-10-25 14:10:02+0000\n"
-"PO-Revision-Date: 2024-10-25 14:10:03+0000\n"
+"POT-Creation-Date: 2024-11-30 02:03:48+0000\n"
+"PO-Revision-Date: 2024-11-30 02:03:48+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,36 +10,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../AutoTeamPlus.cs:62
+#: ../../AutoTeamPlus.cs:47
 msgid "。"
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:31
-msgid "[自动队伍] 重新加载配置完毕。"
-msgstr ""
-
-#: ../../AutoTeamPlus.cs:62
+#: ../../AutoTeamPlus.cs:47
 msgid "AutoTeamPlus 插件已"
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:110
+#: ../../AutoTeamPlus.cs:95
 #, csharp-format
 msgid "你的队伍已切换为 {0}."
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:61
+#: ../../AutoTeamPlus.cs:46
 msgid "启用"
 msgstr ""
 
-#: ../../Configuration.cs:21
+#: ../../Configuration.cs:20
 msgid "无队伍"
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:114
+#: ../../AutoTeamPlus.cs:99
 msgid "未配置，可随意切换."
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:61
+#: ../../AutoTeamPlus.cs:46
 msgid "禁用"
 msgstr ""
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Back\n"
-"POT-Creation-Date: 2024-10-25 14:10:03+0000\n"
-"PO-Revision-Date: 2024-10-25 14:10:03+0000\n"
+"POT-Creation-Date: 2024-11-30 02:03:48+0000\n"
+"PO-Revision-Date: 2024-11-30 02:03:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,34 +10,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../BackPlugin.cs:31
-msgid "[Back] 重新加载配置完毕。"
-msgstr ""
-
-#: ../../BackPlugin.cs:97
+#: ../../BackPlugin.cs:84
 #, csharp-format
 msgid "BackPlugin: 传送玩家 {0} 时发生错误: {1}"
 msgstr ""
 
-#: ../../BackPlugin.cs:77
+#: ../../BackPlugin.cs:64
 msgid "你尚未复活，无法传送回死亡地点."
 msgstr ""
 
-#: ../../BackPlugin.cs:102
+#: ../../BackPlugin.cs:89
 msgid "你还未死亡过"
 msgstr ""
 
-#: ../../BackPlugin.cs:84
+#: ../../BackPlugin.cs:71
 #, csharp-format
 msgid "你还需要等待 {0:F} 秒才能再次使用此命令."
 msgstr ""
 
-#: ../../BackPlugin.cs:91
+#: ../../BackPlugin.cs:78
 #, csharp-format
 msgid "已传送至死亡地点 [c/8DF9D8:<{0} - {1}>]."
 msgstr ""
 
-#: ../../BackPlugin.cs:42
+#: ../../BackPlugin.cs:31
 msgid "返回最后一次死亡的位置"
 msgstr ""
 

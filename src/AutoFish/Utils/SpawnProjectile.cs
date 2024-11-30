@@ -272,7 +272,7 @@ public class SpawnProjectile
         }
 
         //排除单体召唤物：星尘守卫、星尘龙、沙漠虎、阿比盖尔的弹幕
-        if (AutoFish.Config.DisableProjectile.Contains(Type))
+        if (Configuration.Instance.DisableProjectile.Contains(Type))
         {
             timeLeft = 0;
             projectile.frame = 0;

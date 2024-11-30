@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using LazyAPI;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
@@ -6,13 +7,13 @@ using TShockAPI.Hooks;
 namespace AutoStoreItems;
 
 [ApiVersion(2, 1)]
-public class AutoStoreItems : TerrariaPlugin
+public class AutoStoreItems : LazyPlugin
 {
 
     #region 插件信息
     public override string Name => "自动存储";
     public override string Author => "羽学 cmgy雱";
-    public override Version Version => new Version(1, 3, 0);
+    public override Version Version => new Version(1, 3, 2);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 
@@ -20,8 +21,6 @@ public class AutoStoreItems : TerrariaPlugin
     public AutoStoreItems(Main game) : base(game) { }
     public override void Initialize()
     {
-        LoadConfig();
-        GeneralHooks.ReloadEvent += this.ReloadConfig;
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
         TShockAPI.Commands.ChatCommands.Add(new Command("AutoStore.use", Commands.Ast, "ast", "自存"));
@@ -33,7 +32,6 @@ public class AutoStoreItems : TerrariaPlugin
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= this.ReloadConfig;
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Ast);
@@ -43,25 +41,14 @@ public class AutoStoreItems : TerrariaPlugin
     }
     #endregion
 
-    #region 配置重载读取与写入方法
-    internal static Configuration Config = new();
+  
     internal static MyData Data = new();
-    private void ReloadConfig(ReloadEventArgs args)
-    {
-        LoadConfig();
-        args.Player.SendInfoMessage(GetString("[自动存储]重新加载配置完毕。"));
-    }
-    private static void LoadConfig()
-    {
-        Config = Configuration.Read();
-        Config.Write();
-    }
-    #endregion
+
 
     #region 玩家更新配置方法（创建配置结构）
     private void OnJoin(JoinEventArgs args)
     {
-        if (args == null || !Config.open)
+        if (args == null || !Configuration.Instance.open)
         {
             return;
         }
@@ -110,9 +97,9 @@ public class AutoStoreItems : TerrariaPlugin
         if (list.AutoMode && !list.HandMode && !list.ArmorMode)
         {
             //遍历背包前50格内是否存在储物类的道具
-            var inv = plr.TPlayer.inventory.Take(50).Any(x => Config.BankItems.Contains(x.netID));
+            var inv = plr.TPlayer.inventory.Take(50).Any(x => Configuration.Instance.BankItems.Contains(x.netID));
             //遍历工具栏第一格是否存在储物类道具（纯粹是为了方便装备上 眼骨）
-            var miscEquips = plr.TPlayer.miscEquips.Take(1).Any(x => Config.BankItems.Contains(x.netID));
+            var miscEquips = plr.TPlayer.miscEquips.Take(1).Any(x => Configuration.Instance.BankItems.Contains(x.netID));
 
             //如果存在则触发自动存储逻辑
             if (inv || miscEquips)
@@ -132,7 +119,7 @@ public class AutoStoreItems : TerrariaPlugin
         if (list.HandMode && !list.AutoMode && !list.ArmorMode)
         {
             //如果储物类道具出现在玩家手上，则触发自动储存逻辑
-            if (Config.BankItems.Contains(plr.TPlayer.inventory[plr.TPlayer.selectedItem].type))
+            if (Configuration.Instance.BankItems.Contains(plr.TPlayer.inventory[plr.TPlayer.selectedItem].type))
             {
                 //存物品
                 Tool.StoreItemInBanks(plr, list.listen, list.Mess, list.ItemType);
@@ -149,10 +136,10 @@ public class AutoStoreItems : TerrariaPlugin
         if (list.ArmorMode && !list.HandMode && !list.AutoMode)
         {
             //遍历盔甲3格+饰品7格，是否存在储物类的道具
-            var armor = plr.TPlayer.armor.Take(10).Any(x => Config.ArmorItem.Contains(x.netID));
+            var armor = plr.TPlayer.armor.Take(10).Any(x => Configuration.Instance.ArmorItem.Contains(x.netID));
 
             //遍历宠物栏（方便眼骨）
-            var miscEquips = plr.TPlayer.miscEquips.Take(1).Any(x => Config.ArmorItem.Contains(x.netID));
+            var miscEquips = plr.TPlayer.miscEquips.Take(1).Any(x => Configuration.Instance.ArmorItem.Contains(x.netID));
 
             if (armor || miscEquips)
             {

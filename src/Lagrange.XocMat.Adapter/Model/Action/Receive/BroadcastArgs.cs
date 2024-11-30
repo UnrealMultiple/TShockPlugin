@@ -9,6 +9,6 @@ public class BroadcastArgs : BaseAction
 {
     [ProtoMember(5)] public string Text { get; set; } = "";
 
-    [ProtoMember(6)] public byte[] Color { get; set; } = new byte[3];
+    [ProtoMember(6)] public byte[] Color { get; set; } = Array.Empty<byte>();
 
 }
