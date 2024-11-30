@@ -54,7 +54,7 @@ public class Configuration
         {
             using (var sr = new StreamReader(fs))
             {
-                var cf = JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd());
+                var cf = JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd())!;
                 return cf;
             }
         }

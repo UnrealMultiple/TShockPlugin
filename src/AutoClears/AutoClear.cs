@@ -1,18 +1,19 @@
-﻿using Terraria;
+﻿using LazyAPI;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 
-namespace Autoclear;
+namespace AutoClear;
 
 [ApiVersion(2, 1)]
-public class Autoclear : TerrariaPlugin
+public class Autoclear : LazyPlugin
 {
     public override string Author => "大豆子[Mute适配1447]，肝帝熙恩更新";
     public override string Description => "智能扫地机";
     public override string Name => "智能自动扫地";
-    public override Version Version => new Version(1, 0, 4);
-    public static Configuration Config;
+    public override Version Version => new Version(1, 0, 5);
+
     private bool _sweepScheduled = false;
     private DateTime _sweepScheduledAt;
     private long _updateCounter;
@@ -21,31 +22,18 @@ public class Autoclear : TerrariaPlugin
     {
     }
 
-    private static void LoadConfig()
-    {
-        Config = Configuration.Read(Configuration.FilePath);
-        Config.Write(Configuration.FilePath);
-    }
-
-    private static void ReloadConfig(ReloadEventArgs args)
-    {
-        LoadConfig();
-        args.Player?.SendSuccessMessage(GetString("[智能自动扫地机] 重新加载配置完毕。"));
-    }
-
     public override void Initialize()
     {
-        GeneralHooks.ReloadEvent += ReloadConfig;
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
-        LoadConfig();
     }
+
+
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= ReloadConfig;
-            ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
+            //ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
         }
         base.Dispose(disposing);
     }
@@ -54,25 +42,17 @@ public class Autoclear : TerrariaPlugin
     {
         this._updateCounter++;
 
-        if (this._updateCounter % (60 * Config.detectionIntervalSeconds) == 0)
+        if (this._updateCounter % (60 * Configuration.Instance.detectionIntervalSeconds) == 0)
         {
-            var totalItems2 = 0;
-            for (var i = 0; i < Main.item.Length; i++)
+            if (Main.item.Where(i => i != null && i.active && !Configuration.Instance.NonSweepableItemIDs.Contains(i.type)).Count() < Configuration.Instance.SmartSweepThreshold)
             {
-                if (Main.item[i].active && !Config.NonSweepableItemIDs.Contains(Main.item[i].type))
-                {
-                    totalItems2++;
-                }
+                return;
             }
-
-            if (totalItems2 >= Config.SmartSweepThreshold)
+            if (!this._sweepScheduled)
             {
-                if (!this._sweepScheduled)
-                {
-                    this._sweepScheduled = true;
-                    this._sweepScheduledAt = DateTime.UtcNow.AddSeconds(Config.DelayedSweepTimeoutSeconds);
-                    TSPlayer.All.SendSuccessMessage($"{Config.DelayedSweepCustomMessage}");
-                }
+                this._sweepScheduled = true;
+                this._sweepScheduledAt = DateTime.UtcNow.AddSeconds(Configuration.Instance.DelayedSweepTimeoutSeconds);
+                TSPlayer.All.SendSuccessMessage($"{Configuration.Instance.DelayedSweepCustomMessage}");
             }
             if (this._sweepScheduled && DateTime.UtcNow >= this._sweepScheduledAt)
             {
@@ -85,6 +65,7 @@ public class Autoclear : TerrariaPlugin
 
     private void PerformSmartSweep()
     {
+        
         var totalItems = 0;
         var totalThrowable = 0;
         var totalSwinging = 0;
@@ -94,7 +75,7 @@ public class Autoclear : TerrariaPlugin
 
         for (var i = 0; i < Main.item.Length; i++)
         {
-            if (Main.item[i].active && !Config.NonSweepableItemIDs.Contains(Main.item[i].type))
+            if (Main.item[i].active && !Configuration.Instance.NonSweepableItemIDs.Contains(Main.item[i].type))
             {
                 var isThrowable = Main.item[i].damage > 0 && Main.item[i].maxStack > 1;
                 var isSwinging = Main.item[i].damage > 0 && Main.item[i].maxStack == 1;
@@ -102,11 +83,11 @@ public class Autoclear : TerrariaPlugin
                 var isEquipment = Main.item[i].damage == 0 && Main.item[i].maxStack == 1;
                 var isVanity = Main.item[i].damage < 0 && Main.item[i].maxStack == 1;
 
-                if ((Config.SweepThrowable && isThrowable) ||
-                    (Config.SweepSwinging && isSwinging) ||
-                    (Config.SweepRegular && isRegular) ||
-                    (Config.SweepEquipment && isEquipment) ||
-                    (Config.SweepVanity && isVanity))
+                if ((Configuration.Instance.SweepThrowable && isThrowable) ||
+                    (Configuration.Instance.SweepSwinging && isSwinging) ||
+                    (Configuration.Instance.SweepRegular && isRegular) ||
+                    (Configuration.Instance.SweepEquipment && isEquipment) ||
+                    (Configuration.Instance.SweepVanity && isVanity))
                 {
                     Main.item[i].active = false;
                     TSPlayer.All.SendData(PacketTypes.ItemDrop, " ", i, 0f, 0f, 0f, 0);
@@ -142,12 +123,12 @@ public class Autoclear : TerrariaPlugin
 
         if (totalItems > 0)
         {
-            if (!string.IsNullOrEmpty(Config.CustomMessage))
+            if (!string.IsNullOrEmpty(Configuration.Instance.CustomMessage))
             {
-                TSPlayer.All.SendSuccessMessage($"{Config.CustomMessage}");
+                TSPlayer.All.SendSuccessMessage($"{Configuration.Instance.CustomMessage}");
             }
 
-            if (Config.SpecificMessage)
+            if (Configuration.Instance.SpecificMessage)
             {
                 TSPlayer.All.SendSuccessMessage(GetString($"智能扫地机已清扫：[c/FFFFFF:{totalItems}]种物品"));
                 TSPlayer.All.SendSuccessMessage(GetString($"包含：【投掷武器[c/FFFFFF:{totalThrowable}]】-【挥动武器[c/FFFFFF:{totalSwinging}]】-【普通物品[c/FFFFFF:{totalRegular}]】-【装备[c/FFFFFF:{totalEquipment}]】-【时装[c/FFFFFF:{totalVanity}]】"));

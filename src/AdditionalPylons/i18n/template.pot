@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AdditionalPylons\n"
-"POT-Creation-Date: 2024-10-25 14:09:57+0000\n"
-"PO-Revision-Date: 2024-10-25 14:09:57+0000\n"
+"POT-Creation-Date: 2024-11-29 03:44:49+0000\n"
+"PO-Revision-Date: 2024-11-29 03:44:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,43 +10,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../AdditionalPylonsPlugin.cs:44
-msgid "[无限晶塔]重新加载配置完毕."
-msgstr ""
-
-#: ../../AdditionalPylonsPlugin.cs:283
+#: ../../AdditionalPylonsPlugin.cs:269
 msgid "万能晶塔数量已达到上限。"
 msgstr ""
 
-#: ../../AdditionalPylonsPlugin.cs:219
+#: ../../AdditionalPylonsPlugin.cs:205
 msgid "丛林晶塔数量已达到上限。"
 msgstr ""
 
-#: ../../AdditionalPylonsPlugin.cs:227
+#: ../../AdditionalPylonsPlugin.cs:213
 msgid "森林晶塔数量已达到上限。"
 msgstr ""
 
-#: ../../AdditionalPylonsPlugin.cs:259
+#: ../../AdditionalPylonsPlugin.cs:245
 msgid "沙漠晶塔数量已达到上限。"
 msgstr ""
 
-#: ../../AdditionalPylonsPlugin.cs:243
+#: ../../AdditionalPylonsPlugin.cs:229
 msgid "洞穴晶塔数量已达到上限。"
 msgstr ""
 
-#: ../../AdditionalPylonsPlugin.cs:251
+#: ../../AdditionalPylonsPlugin.cs:237
 msgid "海洋晶塔数量已达到上限。"
 msgstr ""
 
-#: ../../AdditionalPylonsPlugin.cs:235
+#: ../../AdditionalPylonsPlugin.cs:221
 msgid "神圣晶塔数量已达到上限。"
 msgstr ""
 
-#: ../../AdditionalPylonsPlugin.cs:275
+#: ../../AdditionalPylonsPlugin.cs:261
 msgid "蘑菇晶塔数量已达到上限。"
 msgstr ""
 
-#: ../../AdditionalPylonsPlugin.cs:267
+#: ../../AdditionalPylonsPlugin.cs:253
 msgid "雪原晶塔数量已达到上限。"
 msgstr ""
 

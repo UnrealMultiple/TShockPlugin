@@ -70,7 +70,7 @@ public class WikiLangPackLoader : TerrariaPlugin
         var services = new GameServiceContainer();
         var resourceName = "WikiLangPackLoader.ResourcePack.zip";
         var filePath = @"tshock/LangResourcePack.zip";
-        using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
+        using (var resourceStream = assembly.GetManifestResourceStream(resourceName)!)
         using (var fileStream = new FileStream(filePath, FileMode.Create))
         {
             resourceStream.CopyTo(fileStream);

@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
     public override string Name => "超进度限制";
     public override Version Version => new(1, 0, 0, 2);
 
-    public Config config;
+    public Config config = null!;
 
     private readonly bool[] RestrictedProjectiles = new bool[ProjectileID.Count];
     private readonly bool[] RestrictedItems = new bool[ItemID.Count];

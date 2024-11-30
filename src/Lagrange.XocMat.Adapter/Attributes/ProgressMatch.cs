@@ -1,4 +1,4 @@
-﻿namespace MorMorAdapter.Attributes;
+﻿namespace Lagrange.XocMat.Adapter.Attributes;
 
 [AttributeUsage(AttributeTargets.Field)]
 public class ProgressMatch : Attribute

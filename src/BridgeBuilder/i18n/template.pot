@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BridgeBuilder\n"
-"POT-Creation-Date: 2024-09-28 12:12:02+0000\n"
-"PO-Revision-Date: 2024-09-28 12:12:02+0000\n"
+"POT-Creation-Date: 2024-11-30 02:03:51+0000\n"
+"PO-Revision-Date: 2024-11-30 02:03:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,28 +10,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../BridgeBuilder.cs:30
-msgid "[铺桥] 重新加载配置完毕。"
-msgstr ""
-
-#: ../../BridgeBuilder.cs:120
+#: ../../BridgeBuilder.cs:108
 #, csharp-format
 msgid "{0}格桥梁建造完成！"
 msgstr ""
 
-#: ../../BridgeBuilder.cs:82
+#: ../../BridgeBuilder.cs:70
 msgid "你手持的物品无法放置。"
 msgstr ""
 
-#: ../../BridgeBuilder.cs:91
+#: ../../BridgeBuilder.cs:79
 msgid "无法在这里建造桥梁。"
 msgstr ""
 
-#: ../../BridgeBuilder.cs:39
+#: ../../BridgeBuilder.cs:29
 msgid "朝着你看的方向建造桥梁。（你需要持有一定数量的平台或团队块或种植盆。）"
 msgstr ""
 
-#: ../../BridgeBuilder.cs:124
+#: ../../BridgeBuilder.cs:112
 msgid "没有足够的空间或物品来建造桥梁。"
 msgstr ""
 

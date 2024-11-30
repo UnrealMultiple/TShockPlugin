@@ -48,7 +48,7 @@ public static class Login
                     return false;
                 }
 
-                MessageHandle.SendDateAsync(re.ToJson());
+                _ = MessageHandle.SendDateAsync(re.ToJson());
             }
         }
         catch (Exception ex)
@@ -98,7 +98,7 @@ public static class Login
         }
     }
 
-    public static async Task<bool> CheckWhiteAsync(string name, int code)
+    public static bool CheckWhiteAsync(string name, int code)
     {
         var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
         var number = Config.config.GroupNumber;

@@ -27,8 +27,8 @@ public class PvPer : TerrariaPlugin
     readonly List<int> illegalMeleePrefixes = new List<int>();
     readonly List<int> illegalRangedPrefixes = new List<int>();
     readonly List<int> illegalMagicPrefixes = new List<int>();
-    public List<string> weaponbans;
-    public List<int> buffbans;
+    public List<string> weaponbans = null!;
+    public List<int> buffbans = null!;
     readonly string path = Path.Combine(TShock.SavePath, "决斗系统.json");
     #endregion
 

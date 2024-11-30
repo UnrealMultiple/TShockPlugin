@@ -170,7 +170,7 @@ public static class Commands
                         {
                             if (char.IsUpper(fi.Name[i]) && i > 0)
                             {
-                                sb.Append(" ").Append(fi.Name[i]);
+                                sb.Append(' ').Append(fi.Name[i]);
                             }
                             else
                             {
@@ -215,7 +215,7 @@ public static class Commands
                         {
                             if (char.IsUpper(fi.Name[i]) && i > 0)
                             {
-                                sb.Append(" ").Append(fi.Name[i]);
+                                sb.Append(' ').Append(fi.Name[i]);
                             }
                             else
                             {
@@ -310,7 +310,7 @@ public static class Commands
         }
     }
 
-    public static async void MyHome(CommandArgs e)
+    public static void MyHome(CommandArgs e)
     {
         if (e.Parameters.Count > 1)
         {
@@ -339,7 +339,7 @@ public static class Commands
         }
     }
 
-    public static async void SetHome(CommandArgs e)
+    public static void SetHome(CommandArgs e)
     {
         if (e.Parameters.Count > 1)
         {

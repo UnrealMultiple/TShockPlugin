@@ -11,7 +11,7 @@ public class DynamicText : IStatusTextSetting, IStatusTextUpdateHandler
 {
     [JsonProperty] public static string TypeName => nameof(DynamicText);
 
-    public string Text { get; set; }
+    public string Text { get; set; } = "";
 
     public ulong UpdateInterval { get; set; }
 

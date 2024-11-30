@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ZHIPlayerManager\n"
-"POT-Creation-Date: 2024-10-25 14:11:10+0000\n"
-"PO-Revision-Date: 2024-10-25 14:11:10+0000\n"
+"POT-Creation-Date: 2024-11-23 18:22:28+0000\n"
+"PO-Revision-Date: 2024-11-23 18:22:28+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -121,6 +121,11 @@ msgstr ""
 
 #: ../../ZHIPM.Initialize.cs:3795
 msgid "人数不唯一，为避免误封，请重新输入。若玩家名称带有空格可用英文引号将名称整个括起来"
+msgstr ""
+
+#: ../../ZHIPM.Initialize.cs:3703
+#: ../../ZHIPM.Initialize.cs:3734
+msgid "你已被管理员封禁！"
 msgstr ""
 
 #: ../../ZHIPM.Initialize.cs:5076
@@ -730,11 +735,6 @@ msgid ""
 "包含："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3703
-#: ../../ZHIPM.Initialize.cs:3734
-msgid "检测到违规行为，请联系管理员"
-msgstr ""
-
 #: ../../ZHIPM.Utils.cs:1531
 #, csharp-format
 msgid "正常的意外因玩家 [ {0} ] 数据残缺而导出人物失败 CreateAPlayer"
@@ -1088,10 +1088,6 @@ msgstr ""
 
 #: ../../ZHIPM.Initialize.cs:1326
 msgid "装备栏3："
-msgstr ""
-
-#: ../../ZHIPM.cs:89
-msgid "该插件需要开启SSC才能使用"
 msgstr ""
 
 #: ../../ZHIPM.cs:63

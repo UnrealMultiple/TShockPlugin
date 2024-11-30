@@ -6,7 +6,7 @@ namespace ChattyBridge.Message;
 public class PlayerMessage
 {
     [JsonProperty("server_name")]
-    public string ServerName { get; set; } = Plugin.Config.ServerName;
+    public string ServerName { get; set; } = Config.Instance.ServerName;
 
     [JsonProperty("name")]
     public string Name { get; init; }
@@ -38,7 +38,9 @@ public class PlayerMessage
     }
     public PlayerMessage()
     {
-
+        this.Name = "";
+        this.Prefix = "";
+        this.Group = "";
     }
 
     public string ToJson()

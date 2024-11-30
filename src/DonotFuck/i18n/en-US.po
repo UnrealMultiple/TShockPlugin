@@ -1,0 +1,118 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DonotFuck\n"
+"POT-Creation-Date: 2024-11-25 13:21:52+0000\n"
+"PO-Revision-Date: 2024-11-25 14:58+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: ../../Commands.cs:81
+#, csharp-format
+msgid "[c/92C5EC:{0}] 不在敏感词表中!"
+msgstr "[c/92C5EC:{0}] Not in the Dirty Words List!"
+
+#: ../../Commands.cs:67
+#, csharp-format
+msgid "[c/92C5EC:{0}] 已在敏感词表中!"
+msgstr "[c/92C5EC:{0}] Already in the Dirty Words List!"
+
+#: ../../Commands.cs:153
+#, csharp-format
+msgid ""
+"《敏感词》第 {0} 页，共 {1} 页:\n"
+"{2}"
+msgstr ""
+"《SensitiveWords》Page {0}, Total Pages {1}:\n"
+"{2}"
+
+#: ../../Commands.cs:113 ../../Commands.cs:125
+msgid ""
+"《禁止脏话》 [i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by] [c/00FFFF:羽学]"
+"[i:3459]\n"
+msgstr ""
+"《Don't Fuck》 [i:3456][C/F2F2C7:Plugin Development] [C/BFDFEA:by] [c/00FFFF:"
+"Yu Xue][i:3459]\n"
+
+#: ../../Commands.cs:46
+msgid "《脏话纪录》文件夹已成功清空。"
+msgstr "《Swear Record》Folder has been successfully cleared。"
+
+#: ../../Commands.cs:114 ../../Commands.cs:126
+msgid "/df —— 查看菜单\n"
+msgstr "/df —— View Menu\n"
+
+#: ../../Commands.cs:118
+msgid "/df add 或 del 词语 —— [c/87DF86:添加]|[c/F19092:删除]敏感词\n"
+msgstr ""
+"/df add | del [Text] —— [c/87DF86:Add]|[c/F19092:Delete] Sensitive Words\n"
+
+#: ../../Commands.cs:117
+msgid "/df clear —— [c/B3EADB:清理]所有[c/F2F191:脏话纪录]\n"
+msgstr "/df clear —— [c/B3EADB:Clear] all [c/F2F191:Swear Records]\n"
+
+#: ../../Commands.cs:127
+msgid "/df list 页数 —— [c/B3B5EA:列出]所有[c/B3EADD:敏感词]"
+msgstr "/df list [Page] —— [c/B3B5EA:List] all [c/B3EADD:Sensitive Words]"
+
+#: ../../Commands.cs:115
+msgid "/df list 页数 —— [c/B3B5EA:列出]所有[c/B3EADD:敏感词]\n"
+msgstr "/df list [Page] —— [c/B3B5EA:List] all [c/B3EADD:Sensitive Words]\n"
+
+#: ../../Commands.cs:116
+msgid "/df log —— [c/8AE072:开启]|[c/ED7985:关闭]敏感词[c/EBB4E2:记录]\n"
+msgstr ""
+"/df log —— [c/8AE072:Enable]|[c/ED7985:Disable] Sensitive Word [c/EBB4E2:"
+"Logging]\n"
+
+#: ../../Commands.cs:31
+msgid "启用"
+msgstr "Enable"
+
+#: ../../Commands.cs:33
+#, csharp-format
+msgid "已{0}敏感词记录功能。"
+msgstr "Sensitive word logging function has been {0}."
+
+#: ../../Commands.cs:77
+#, csharp-format
+msgid "已成功将敏感词从表中移除: [c/92C5EC:{0}]!"
+msgstr "Successfully removed the sensitive word from the list: [c/92C5EC:{0}]!"
+
+#: ../../Commands.cs:63
+#, csharp-format
+msgid "已成功将敏感词添加到表中: [c/92C5EC:{0}]!"
+msgstr "Successfully added the sensitive word to the list: [c/92C5EC:{0}]!"
+
+#: ../../DonotFuck.cs:71
+#, csharp-format
+msgid "敏感词: {0}\n"
+msgstr "Sensitive Words: {0}\n"
+
+#: ../../Commands.cs:119
+#, csharp-format
+msgid "敏感词纪录：[c/B3B6EA:{0}]"
+msgstr "Sensitive Word Record: [c/B3B6EA:{0}]"
+
+#: ../../Commands.cs:144
+#, csharp-format
+msgid "无效的页码。总共有 {0} 页。"
+msgstr "Invalid page number. There are {0} pages in total。"
+
+#: ../../Commands.cs:95
+msgid "无效的页码。请输入一个数字。"
+msgstr "Invalid page number. Please enter a number。"
+
+#: ../../Commands.cs:30
+msgid "禁用"
+msgstr "Disable"
+
+#~ msgid "[禁止脏话]重新加载配置完毕。"
+#~ msgstr "[Don't Fuck]Configuration reloaded。"
+
+#~ msgid "请输入指令开启敏感词记录：/df log"
+#~ msgstr "Please enter the command to enable sensitive word logging: /df log"

@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => "禁止特定弹幕在地表产生";
     public override string Name => "禁地表弹幕";
     public override Version Version => new(1, 0, 0, 6);
-    internal static Configuration Config;
+    internal static Configuration Config = null!;
     public static bool _isEnabled; // 存储插件是否启用的状态，默认为false
     public Plugin(Main game) : base(game)
     {
@@ -53,7 +53,7 @@ public class Plugin : TerrariaPlugin
         LoadConfig();
     }
 
-    private static void ReloadConfig(ReloadEventArgs args = null)
+    private static void ReloadConfig(ReloadEventArgs? args = null)
     {
         LoadConfig();
         // 如果 args 不为空，则发送重载成功的消息
@@ -194,7 +194,7 @@ public class Plugin : TerrariaPlugin
         }
     }
 
-    private void OnProjectileNew(object sender, GetDataHandlers.NewProjectileEventArgs e)
+    private void OnProjectileNew(object? sender, GetDataHandlers.NewProjectileEventArgs e)
     {
         if (e.Player.HasPermission("免检地表弹幕") || e.Player.HasPermission("IgnoreDSproj"))
         {

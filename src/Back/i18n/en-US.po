@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Back\n"
-"POT-Creation-Date: 2024-10-25 14:10:03+0000\n"
+"POT-Creation-Date: 2024-11-30 02:03:48+0000\n"
 "PO-Revision-Date: 2024-09-01 11:24+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,34 +11,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ../../BackPlugin.cs:31
-msgid "[Back] 重新加载配置完毕。"
-msgstr "[Back] Configuration reloaded successfully."
-
-#: ../../BackPlugin.cs:97
+#: ../../BackPlugin.cs:84
 #, csharp-format
 msgid "BackPlugin: 传送玩家 {0} 时发生错误: {1}"
 msgstr "BackPlugin: Error occurred while teleporting player {0}: {1}"
 
-#: ../../BackPlugin.cs:77
+#: ../../BackPlugin.cs:64
 msgid "你尚未复活，无法传送回死亡地点."
 msgstr ""
 "You have not respawned yet and cannot teleport back to the death location."
 
-#: ../../BackPlugin.cs:102
+#: ../../BackPlugin.cs:89
 msgid "你还未死亡过"
 msgstr "You have not died yet"
 
-#: ../../BackPlugin.cs:84
+#: ../../BackPlugin.cs:71
 #, csharp-format
 msgid "你还需要等待 {0:F} 秒才能再次使用此命令."
 msgstr "You need to wait {0:F} seconds before using this command again."
 
-#: ../../BackPlugin.cs:91
+#: ../../BackPlugin.cs:78
 #, csharp-format
 msgid "已传送至死亡地点 [c/8DF9D8:<{0} - {1}>]."
 msgstr "Teleported to death location [c/8DF9D8:<{0} - {1}>]."
 
-#: ../../BackPlugin.cs:42
+#: ../../BackPlugin.cs:31
 msgid "返回最后一次死亡的位置"
 msgstr "Return to the last death location"
+
+#~ msgid "[Back] 重新加载配置完毕。"
+#~ msgstr "[Back] Configuration reloaded successfully."

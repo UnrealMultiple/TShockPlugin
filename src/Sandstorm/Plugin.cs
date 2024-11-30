@@ -17,12 +17,14 @@ public class Plugin : TerrariaPlugin
     #endregion
 
     #region 注册与释放
-    public Plugin(Main game) : base(game) { }
-    private GeneralHooks.ReloadEventD _reloadHandler;
+    public Plugin(Main game) : base(game)
+    {
+        this._reloadHandler = (_) => LoadConfig();
+    }
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
         LoadConfig();
-        this._reloadHandler = (_) => LoadConfig();
         GeneralHooks.ReloadEvent += this._reloadHandler;
         TShockAPI.Commands.ChatCommands.Add(new Command("Sandstorm.admin", ToggleSandstorm, "sd", "沙尘暴"));
     }

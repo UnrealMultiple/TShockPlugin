@@ -10,7 +10,7 @@ namespace DeathDrop;
 public class DeathDrop : TerrariaPlugin
 {
     public static Random RandomGenerator = new Random();
-    public static Configuration Config;
+    public static Configuration Config = null!;
 
     public override string Author => "大豆子，肝帝熙恩更新优化";
     public override string Description => "怪物死亡随机和自定义掉落物品";

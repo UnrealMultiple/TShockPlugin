@@ -1,7 +1,7 @@
-﻿using MorMorAdapter.Attributes;
+﻿using Lagrange.XocMat.Adapter.Attributes;
 using Terraria;
 
-namespace MorMorAdapter.Enumerates;
+namespace Lagrange.XocMat.Adapter.Enumerates;
 
 internal enum ProgressType
 {

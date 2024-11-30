@@ -57,7 +57,7 @@ public class Platform : TerrariaPlugin
 
     private void OnGreet(GreetPlayerEventArgs args)
     {
-        if (TShock.Players[args.Who] == null || Platforms[args.Who] == null)
+        if (TShock.Players[args.Who] == null)
         {
             return;
         }

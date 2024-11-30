@@ -101,7 +101,7 @@ public class ConsoleSql : TerrariaPlugin
 
 
                     // 添加查询时间和查询到的条数
-                    sb.Append("+");
+                    sb.Append('+');
                     foreach (DataColumn column in dt.Columns)
                     {
                         sb.Append("----------------------------+");
@@ -114,7 +114,7 @@ public class ConsoleSql : TerrariaPlugin
                     }
                     sb.AppendLine("|");
 
-                    sb.Append("+");
+                    sb.Append('+');
                     foreach (DataColumn column in dt.Columns)
                     {
                         sb.Append("----------------------------+");
@@ -130,7 +130,7 @@ public class ConsoleSql : TerrariaPlugin
                         }
                         sb.AppendLine("|");
 
-                        sb.Append("+");
+                        sb.Append('+');
                         foreach (DataColumn column in dt.Columns)
                         {
                             sb.Append("----------------------------+");
@@ -145,7 +145,7 @@ public class ConsoleSql : TerrariaPlugin
             catch (Exception ex)
             {
                 args.Player.SendErrorMessage(GetString("SQL执行失败!\n") +
-                    GetString("原因:{ex.Message}"));
+                    GetString($"原因:{ex.Message}"));
             }
 
         }

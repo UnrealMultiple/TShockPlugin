@@ -122,7 +122,7 @@ public static class MessageHandle
                 var cmd = (string) jsonObject["cmd"]!;
                 CaiBotPlayer tr = new ();
                 Commands.HandleCommand(tr, cmd);
-                TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(long) jsonObject["group"]}`执行了: {(string) jsonObject["cmd"]!}", Microsoft.Xna.Framework.Color.PaleVioletRed);
+                TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(long) jsonObject["group"]!}`执行了: {(string) jsonObject["cmd"]!}", Microsoft.Xna.Framework.Color.PaleVioletRed);
                 result = new RestObject
                 {
                     { "type", "cmd" },
@@ -260,7 +260,7 @@ public static class MessageHandle
             case "whitelist":
                 var name = (string) jsonObject["name"]!;
                 var code = (int) jsonObject["code"]!;
-                if (await Login.CheckWhiteAsync(name, code))
+                if (Login.CheckWhiteAsync(name, code))
                 {
                     var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
                     if (playerList.Count == 0)

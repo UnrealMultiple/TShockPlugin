@@ -166,7 +166,7 @@ public class MiniRegion
         }
     }
 
-    public List<MiniRegion> Divide(int width, int height, int amount, int gap)
+    public List<MiniRegion>? Divide(int width, int height, int amount, int gap)
     {
         var x = this.TopLeft.X;
         var y = this.TopLeft.Y;

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoStoreItems\n"
-"POT-Creation-Date: 2024-10-31 19:21:41+0000\n"
-"PO-Revision-Date: 2024-10-31 19:21:41+0000\n"
+"POT-Creation-Date: 2024-11-30 02:03:47+0000\n"
+"PO-Revision-Date: 2024-11-30 02:03:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,22 +30,6 @@ msgstr ""
 
 #: ../../Tool.cs:16
 msgid "[c/32CEB7:虚空袋]"
-msgstr ""
-
-#: ../../Configuration.cs:16
-msgid "[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险) ,物品如果没放到【存钱罐】等储存空间内是不会触发自动存储的"
-msgstr ""
-
-#: ../../Configuration.cs:13
-msgid "[性能模式] 堆叠达到单格上限物品不进行分堆累积（人多推荐,发2次包）,关闭会为超出上限物品寻找空槽继续累积(最多发4次包)"
-msgstr ""
-
-#: ../../Configuration.cs:10
-msgid "[自动] [手持] [装备] 当开启3种模式任意一个时其他2个模式会默认关闭，不论哪种模式都需要玩家移动和攻击才会触发储存"
-msgstr ""
-
-#: ../../AutoStoreItems.cs:52
-msgid "[自动存储]重新加载配置完毕。"
 msgstr ""
 
 #: ../../Commands.cs:17

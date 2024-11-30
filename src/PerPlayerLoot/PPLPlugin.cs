@@ -76,7 +76,7 @@ public class PPLPlugin : TerrariaPlugin
     }
 
     // 处理宝箱物品变更事件
-    private void OnChestItemChange(object sender, GetDataHandlers.ChestItemEventArgs e)
+    private void OnChestItemChange(object? sender, GetDataHandlers.ChestItemEventArgs e)
     {
         if (!enablePpl)
         {
@@ -152,7 +152,7 @@ public class PPLPlugin : TerrariaPlugin
     }
 
     // 处理宝箱打开事件
-    private void OnChestOpen(object sender, GetDataHandlers.ChestOpenEventArgs e)
+    private void OnChestOpen(object? sender, GetDataHandlers.ChestOpenEventArgs e)
     {
         if (e.Handled)
         {
@@ -223,7 +223,7 @@ public class PPLPlugin : TerrariaPlugin
     }
 
     // 处理放置宝箱事件
-    private void OnChestPlace(object sender, GetDataHandlers.PlaceChestEventArgs e)
+    private void OnChestPlace(object? sender, GetDataHandlers.PlaceChestEventArgs e)
     {
         if (!enablePpl)
         {

@@ -4,7 +4,7 @@ namespace Challenger;
 
 public class CPlayer
 {
-    public TSPlayer? me;
+    public TSPlayer me;
 
     public bool tips;
 

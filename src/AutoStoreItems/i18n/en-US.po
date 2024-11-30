@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoStoreItems\n"
-"POT-Creation-Date: 2024-10-31 19:21:41+0000\n"
+"POT-Creation-Date: 2024-11-30 02:03:47+0000\n"
 "PO-Revision-Date: 2024-11-06 01:02+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -31,38 +31,6 @@ msgstr "[c/32CEB7:GuardianFurnace]"
 #: ../../Tool.cs:16
 msgid "[c/32CEB7:虚空袋]"
 msgstr "[c/32CEB7:VoidBag]"
-
-#: ../../Configuration.cs:16
-msgid ""
-"[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险) ,物品如果没"
-"放到【存钱罐】等储存空间内是不会触发自动存储的"
-msgstr ""
-"[BUG EXISTS] Favorited items may become unfavorited (risk of potion stacks "
-"in the Void Bag being split into chests). Items will not trigger automatic "
-"storage if they are not placed in storage spaces such as [Piggy Banks]."
-
-#: ../../Configuration.cs:13
-msgid ""
-"[性能模式] 堆叠达到单格上限物品不进行分堆累积（人多推荐,发2次包）,关闭会为超"
-"出上限物品寻找空槽继续累积(最多发4次包)"
-msgstr ""
-"[Performance Mode] Stack items up to the single slot limit without splitting "
-"(recommended for many players, sends 2 packets), disabling this will search "
-"for empty slots to continue stacking items that exceed the limit (sends up "
-"to 4 packets)."
-
-#: ../../Configuration.cs:10
-msgid ""
-"[自动] [手持] [装备] 当开启3种模式任意一个时其他2个模式会默认关闭，不论哪种模"
-"式都需要玩家移动和攻击才会触发储存"
-msgstr ""
-"[Auto] [Held] [Equipped] When any one of these three modes is enabled, the "
-"other two modes will default to being disabled. Regardless of which mode is "
-"active, storage will only trigger when the player moves or attacks."
-
-#: ../../AutoStoreItems.cs:52
-msgid "[自动存储]重新加载配置完毕。"
-msgstr "[Auto Storage] Configuration reloaded successfully。"
 
 #: ../../Commands.cs:17
 msgid ""
@@ -281,6 +249,36 @@ msgstr ""
 "Please rejoin the server with your character [c/D95065:rejoin server] and "
 "then enter: /ast \n"
 "Yu Xue declares: This plugin is [c/7E93DE:free], please do not be deceived"
+
+#~ msgid ""
+#~ "[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险) ,物品如果"
+#~ "没放到【存钱罐】等储存空间内是不会触发自动存储的"
+#~ msgstr ""
+#~ "[BUG EXISTS] Favorited items may become unfavorited (risk of potion "
+#~ "stacks in the Void Bag being split into chests). Items will not trigger "
+#~ "automatic storage if they are not placed in storage spaces such as [Piggy "
+#~ "Banks]."
+
+#~ msgid ""
+#~ "[性能模式] 堆叠达到单格上限物品不进行分堆累积（人多推荐,发2次包）,关闭会为"
+#~ "超出上限物品寻找空槽继续累积(最多发4次包)"
+#~ msgstr ""
+#~ "[Performance Mode] Stack items up to the single slot limit without "
+#~ "splitting (recommended for many players, sends 2 packets), disabling this "
+#~ "will search for empty slots to continue stacking items that exceed the "
+#~ "limit (sends up to 4 packets)."
+
+#~ msgid ""
+#~ "[自动] [手持] [装备] 当开启3种模式任意一个时其他2个模式会默认关闭，不论哪"
+#~ "种模式都需要玩家移动和攻击才会触发储存"
+#~ msgstr ""
+#~ "[Auto] [Held] [Equipped] When any one of these three modes is enabled, "
+#~ "the other two modes will default to being disabled. Regardless of which "
+#~ "mode is active, storage will only trigger when the player moves or "
+#~ "attacks."
+
+#~ msgid "[自动存储]重新加载配置完毕。"
+#~ msgstr "[Auto Storage] Configuration reloaded successfully。"
 
 #, fuzzy
 #~| msgid ""

@@ -13,7 +13,7 @@ public class DTEntryBlock : TerrariaPlugin
     public override string Name => "阻止进入地牢或神庙";
     public override string Description => "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙";
     public override Version Version => new Version(1, 1, 5);
-    public static Configuration Config;
+    public static Configuration Config = null!;
     Color orangeColor = new Color(255, 165, 0);
 
     public DTEntryBlock(Main game) : base(game)

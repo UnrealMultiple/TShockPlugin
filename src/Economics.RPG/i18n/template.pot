@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.RPG\n"
-"POT-Creation-Date: 2024-10-27 11:19:01+0000\n"
-"PO-Revision-Date: 2024-10-27 11:19:01+0000\n"
+"POT-Creation-Date: 2024-11-19 17:21:58+0000\n"
+"PO-Revision-Date: 2024-11-19 17:21:58+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Setting/Config.cs:104
+#: ../../Setting/Config.cs:105
 #, csharp-format
 msgid "{0} 与 {1} 之间循环引用"
 msgstr ""
@@ -30,9 +30,13 @@ msgid "你必须登陆才能使用此命令!"
 msgstr ""
 
 #: ../../Command.cs:52
+#, csharp-format
+msgid "升级所需 ({0})"
+msgstr ""
+
 #: ../../Command.cs:87
 #, csharp-format
-msgid "升级所需 {0}，你当前{1}仅有{2}!"
+msgid "升级所需 {0}"
 msgstr ""
 
 #: ../../RPG.cs:87
@@ -80,7 +84,7 @@ msgstr ""
 msgid "等级 {0} 不存在！ "
 msgstr ""
 
-#: ../../Setting/Config.cs:35
+#: ../../Setting/Config.cs:36
 #, csharp-format
 msgid "等级 {0} 空引用等级 {1}"
 msgstr ""

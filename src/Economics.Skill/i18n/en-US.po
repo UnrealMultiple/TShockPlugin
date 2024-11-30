@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Skill\n"
-"POT-Creation-Date: 2024-10-27 11:19:02+0000\n"
+"POT-Creation-Date: 2024-11-15 03:22:39+0000\n"
 "PO-Revision-Date: 2024-10-27 04:47:33+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,8 +22,9 @@ msgid "{0} 删除了你的一个技能 "
 msgstr "{0} has removed one of your skills"
 
 #: ../../Command.cs:46
-#, csharp-format
-msgid "{0}. {1}  价格 {2}"
+#, fuzzy, csharp-format
+#| msgid "{0}. {1}  价格 {2}"
+msgid "{0}. {1}  价格 {2})"
 msgstr "{0}. {1} Price {2}"
 
 #: ../../Command.cs:219
@@ -84,8 +85,9 @@ msgid "你没有权限执行此命令!"
 msgstr "You do not have permission to execute this command!"
 
 #: ../../Command.cs:67
-#, csharp-format
-msgid "你的{0} 不足购买此技能!"
+#, fuzzy
+#| msgid "你的{0} 不足购买此技能!"
+msgid "你的货币不足购买此技能!"
 msgstr "You do not have enough {0} to purchase this skill!"
 
 #: ../../Command.cs:103
@@ -178,7 +180,7 @@ msgstr "This weapon has exceeded the maximum allowed binding quantity!"
 msgid "目标玩家不存在或不在线!"
 msgstr "Target player does not exist or is not online!"
 
-#: ../../Skill.cs:140
+#: ../../Skill.cs:139
 #, csharp-format
 msgid "绑定技能: {0}"
 msgstr "Bound skill: {0}"

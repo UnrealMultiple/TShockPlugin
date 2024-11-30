@@ -7,11 +7,11 @@ public class PlayerHandler
 {
     public delegate void EventCallBack<in TArgs>(TArgs args) where TArgs : BaseEventArgs;
 
-    public static event EventCallBack<PlayerKillNpcArgs> OnPlayerKillNpc;
+    public static event EventCallBack<PlayerKillNpcArgs>? OnPlayerKillNpc;
 
-    public static event EventCallBack<PlayerCountertopArgs> OnPlayerCountertop;
+    public static event EventCallBack<PlayerCountertopArgs>? OnPlayerCountertop;
 
-    public static event EventCallBack<PlayerCurrencyUpdateArgs> OnPlayerCurrencyUpdate;
+    public static event EventCallBack<PlayerCurrencyUpdateArgs>? OnPlayerCurrencyUpdate;
 
     internal static bool PlayerCurrencyUpdate(PlayerCurrencyUpdateArgs args)
     {

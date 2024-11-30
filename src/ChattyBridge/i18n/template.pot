@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ChattyBridge\n"
-"POT-Creation-Date: 2024-10-01 07:02:53+0000\n"
-"PO-Revision-Date: 2024-10-01 07:02:53+0000\n"
+"POT-Creation-Date: 2024-11-18 10:20:03+0000\n"
+"PO-Revision-Date: 2024-11-18 10:20:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,12 +10,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:147
+#: ../../Plugin.cs:124
 #, csharp-format
 msgid "[聊天桥] 信息发送失败，目标地址:{0}"
 msgstr ""
 
-#: ../../Plugin.cs:115
+#: ../../Plugin.cs:92
 #, csharp-format
 msgid "接收到未知类型:{0}"
 msgstr ""

@@ -21,12 +21,12 @@ jobs:
           fetch-depth: 0
           ssh-key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: 初始化.NET 6
+      - name: 初始化.NET 8
         uses: actions/setup-dotnet@v4
         env:
           DOTNET_CLI_UI_LANGUAGE: zh-CN
         with:
-          dotnet-version: 6.0.100
+          dotnet-version: 8.0.404
 
       - name: 安装构建依赖
         shell: pwsh
@@ -63,7 +63,15 @@ jobs:
           Copy-Item out/**/*.dll bin/ServerPlugins/
           Copy-Item SubmoduleAssembly/*.dll bin/ServerPlugins/
           Set-Location bin
-          ./TShock.Server -dump-plugins-list-only
+          New-Item -Name manifests -ItemType Directory
+          foreach ($p in @(Get-ChildItem ../src/**/*.csproj)) {
+            $manifestPath = Join-Path $p.DirectoryName manifest.json
+            if (Test-Path $manifestPath -PathType Leaf) {
+              Copy-Item $manifestPath $(Join-Path manifests "$($p.Basename).json")
+            }
+          }
+          Copy-Item ../.config/submodule-manifests/* ./manifests
+          ./TShock.Server -dump-plugins-list-only ./manifests
           Set-Location ../
           New-Item -Path out/Target -Name Plugins -ItemType Directory
           $ErrorActionPreference = "SilentlyContinue"
@@ -74,7 +82,7 @@ jobs:
           $ErrorActionPreference = "Continue"
           Copy-Item out/**/*.dll,out/**/*.pdb out/Target/Plugins/
           Copy-Item SubmoduleAssembly/* out/Target/Plugins/
-          Copy-Item bin/Plugins.json,README.md,Usage.txt,LICENSE out/Target/
+          Copy-Item bin/Plugins.json,README.md,README_EN.md,README_ES.md,Usage.txt,LICENSE out/Target/
 
       - name: 上传临时插件包
         uses: actions/upload-artifact@v4
@@ -92,13 +100,13 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           $Changed = [System.Object[]]::new(0)
-          foreach ($p in @(Get-ChildItem src/**/*.csproj))  {
+          foreach ($p in @(Get-ChildItem src/**/*.csproj)) {
             $pot = [System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot")
             New-Item -Path $p.DirectoryName -Name i18n -ItemType Directory -Force
             dotnet tool run GetText.Extractor -u -o -s $p.FullName -t $pot
           }
           git add -N src/**/i18n/*.pot
-          foreach ($p in @(git diff --numstat))  {
+          foreach ($p in @(git diff --numstat)) {
             if (!$p.EndsWith(".pot")) { continue }
             $d = -split $p
             if ([int]$d[0] -le 2 -and [int]$d[1] -le 2) {

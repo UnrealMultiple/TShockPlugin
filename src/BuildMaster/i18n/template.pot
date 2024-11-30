@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuildMaster\n"
-"POT-Creation-Date: 2024-10-09 13:06:13+0000\n"
-"PO-Revision-Date: 2024-10-09 13:06:13+0000\n"
+"POT-Creation-Date: 2024-11-19 17:21:39+0000\n"
+"PO-Revision-Date: 2024-11-19 17:21:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../BuildPlayer.cs:54
+#: ../../BuildPlayer.cs:56
 msgid " 加入了房间"
 msgstr ""
 
@@ -26,23 +26,23 @@ msgstr ""
 msgid " 更改投票主题为 "
 msgstr ""
 
-#: ../../BuildRoom.cs:95
+#: ../../BuildRoom.cs:100
 msgid " 的作品"
 msgstr ""
 
-#: ../../BuildRoom.cs:251
+#: ../../BuildRoom.cs:256
 msgid " 的建筑区域"
 msgstr ""
 
-#: ../../BuildPlayer.cs:76
+#: ../../BuildPlayer.cs:78
 msgid " 离开了房间"
 msgstr ""
 
-#: ../../BuildRoom.cs:298
+#: ../../BuildRoom.cs:303
 msgid "————房内信息————"
 msgstr ""
 
-#: ../../BuildRoom.cs:353
+#: ../../BuildRoom.cs:358
 #, csharp-format
 msgid "[{0}] {1} 得分:{2}"
 msgstr ""
@@ -168,9 +168,9 @@ msgstr ""
 msgid "不在房间中"
 msgstr ""
 
-#: ../../BuildRoom.cs:307
-#: ../../BuildRoom.cs:325
-#: ../../BuildRoom.cs:334
+#: ../../BuildRoom.cs:312
+#: ../../BuildRoom.cs:330
+#: ../../BuildRoom.cs:339
 msgid "主题:"
 msgstr ""
 
@@ -186,24 +186,24 @@ msgstr ""
 msgid "你不能给自己评分"
 msgstr ""
 
-#: ../../BuildRoom.cs:306
-#: ../../BuildRoom.cs:324
-#: ../../BuildRoom.cs:333
+#: ../../BuildRoom.cs:311
+#: ../../BuildRoom.cs:329
+#: ../../BuildRoom.cs:338
 #, csharp-format
 msgid "倒计时[{0}:{1}]"
 msgstr ""
 
-#: ../../BuildRoom.cs:311
+#: ../../BuildRoom.cs:316
 #: ../../MainPlugin.cs:776
 msgid "已准备"
 msgstr ""
 
-#: ../../BuildRoom.cs:387
+#: ../../BuildRoom.cs:392
 msgid "已将你传送到建筑区域"
 msgstr ""
 
-#: ../../BuildRoom.cs:95
-#: ../../BuildRoom.cs:251
+#: ../../BuildRoom.cs:100
+#: ../../BuildRoom.cs:256
 msgid "已来到 "
 msgstr ""
 
@@ -225,9 +225,9 @@ msgstr ""
 msgid "已设置评分套装"
 msgstr ""
 
-#: ../../BuildRoom.cs:313
-#: ../../BuildRoom.cs:326
-#: ../../BuildRoom.cs:335
+#: ../../BuildRoom.cs:318
+#: ../../BuildRoom.cs:331
+#: ../../BuildRoom.cs:340
 #, csharp-format
 msgid "当前人数:{0}/{1}"
 msgstr ""
@@ -318,7 +318,7 @@ msgstr ""
 msgid "成功设置房间(id:{0}) 的评分时间为{1}秒"
 msgstr ""
 
-#: ../../BuildPlayer.cs:67
+#: ../../BuildPlayer.cs:69
 #: ../../MainPlugin.cs:355
 #: ../../MainPlugin.cs:380
 #: ../../MainPlugin.cs:405
@@ -341,17 +341,17 @@ msgstr ""
 msgid "插件重载成功"
 msgstr ""
 
-#: ../../BuildRoom.cs:307
-#: ../../BuildRoom.cs:325
-#: ../../BuildRoom.cs:334
+#: ../../BuildRoom.cs:312
+#: ../../BuildRoom.cs:330
+#: ../../BuildRoom.cs:339
 msgid "无"
 msgstr ""
 
-#: ../../BuildRoom.cs:311
+#: ../../BuildRoom.cs:316
 msgid "未准备"
 msgstr ""
 
-#: ../../BuildRoom.cs:421
+#: ../../BuildRoom.cs:426
 msgid "本次建筑的主题是 "
 msgstr ""
 
@@ -426,19 +426,19 @@ msgstr ""
 msgid "此房支持的主题"
 msgstr ""
 
-#: ../../BuildPlayer.cs:40
+#: ../../BuildPlayer.cs:42
 msgid "此房间满人了"
 msgstr ""
 
-#: ../../BuildRoom.cs:222
+#: ../../BuildRoom.cs:227
 msgid "游戏结束！"
 msgstr ""
 
-#: ../../BuildRoom.cs:196
+#: ../../BuildRoom.cs:201
 msgid "游戏被强制停止！"
 msgstr ""
 
-#: ../../BuildRoom.cs:136
+#: ../../BuildRoom.cs:141
 #, csharp-format
 msgid "游戏还有 {0} 秒开始...."
 msgstr ""
@@ -447,8 +447,8 @@ msgstr ""
 msgid "点未选取完毕"
 msgstr ""
 
-#: ../../BuildPlayer.cs:54
-#: ../../BuildPlayer.cs:76
+#: ../../BuildPlayer.cs:56
+#: ../../BuildPlayer.cs:78
 #: ../../MainPlugin.cs:776
 #: ../../MainPlugin.cs:802
 #: ../../MainPlugin.cs:807
@@ -472,11 +472,11 @@ msgstr ""
 msgid "该房间不存在此主题"
 msgstr ""
 
-#: ../../BuildPlayer.cs:45
+#: ../../BuildPlayer.cs:47
 msgid "该房间状态无法加入游戏"
 msgstr ""
 
-#: ../../BuildPlayer.cs:72
+#: ../../BuildPlayer.cs:74
 msgid "该房间状态无法离开游戏"
 msgstr ""
 
@@ -518,19 +518,19 @@ msgstr ""
 msgid "输入/bm help 查看帮助"
 msgstr ""
 
-#: ../../BuildRoom.cs:315
+#: ../../BuildRoom.cs:320
 msgid "输入/bm leave 离开房间"
 msgstr ""
 
-#: ../../BuildRoom.cs:314
+#: ../../BuildRoom.cs:319
 msgid "输入/bm ready 准备/未准备"
 msgstr ""
 
-#: ../../BuildRoom.cs:316
+#: ../../BuildRoom.cs:321
 msgid "输入/bm tl 查看主题列表"
 msgstr ""
 
-#: ../../BuildRoom.cs:317
+#: ../../BuildRoom.cs:322
 msgid "输入/bm vote [主题] 进行主题投票"
 msgstr ""
 
@@ -538,17 +538,17 @@ msgstr ""
 msgid "输入/bma help 查看帮助"
 msgstr ""
 
-#: ../../BuildRoom.cs:183
+#: ../../BuildRoom.cs:188
 #, csharp-format
 msgid "还有 {0} 秒结束游戏"
 msgstr ""
 
-#: ../../BuildRoom.cs:179
+#: ../../BuildRoom.cs:184
 #, csharp-format
 msgid "还有 {0} 秒进入下一个玩家的建筑区域评分,下一个玩家为{1}"
 msgstr ""
 
-#: ../../BuildRoom.cs:104
+#: ../../BuildRoom.cs:109
 #, csharp-format
 msgid "还有 {0} 秒进入评分环节..."
 msgstr ""

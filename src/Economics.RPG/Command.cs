@@ -39,7 +39,7 @@ public class Command
                     args.Player.SendErrorMessage(GetString($"必须满足进度限制:{string.Join(",", ranklevel.Limit)}"));
                     return;
                 }
-                if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, ranklevel.Cost))
+                if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, ranklevel.RedemptionRelationshipsOption))
                 {
                     args.Player.SendSuccessMessage(GetString($"成功升级至 {ranklevel.Name}!"));
                     TShock.Utils.Broadcast(string.Format(ranklevel.RankBroadcast, args.Player.Name, ranklevel.Name), Color.Green);
@@ -49,7 +49,7 @@ public class Command
                 }
                 else
                 {
-                    args.Player.SendErrorMessage(GetString($"升级所需 {ranklevel.Cost}，你当前{EconomicsAPI.Economics.Setting.CurrencyName}仅有{EconomicsAPI.Economics.CurrencyManager.GetUserCurrency(args.Player.Name)}!"));
+                    args.Player.SendErrorMessage(GetString($"升级所需 ({string.Join(" ", ranklevel.RedemptionRelationshipsOption.Select(x => $"{x.CurrencyType}x{x.Number}"))})"));
                 }
             }
             else
@@ -57,7 +57,7 @@ public class Command
                 args.Player.SendInfoMessage(GetString("请选择一个升级:"));
                 foreach (var info in level.RankLevels)
                 {
-                    args.Player.SendInfoMessage(GetString($"/rank {info.Name}({info.Cost})"));
+                    args.Player.SendInfoMessage(GetString($"/rank {info.Name}({string.Join(" ", info.RedemptionRelationshipsOption.Select(x=>$"{x.CurrencyType}x{x.Number}"))})"));
                 }
             }
         }
@@ -74,7 +74,7 @@ public class Command
                 args.Player.SendErrorMessage(GetString($"必须满足进度限制:{string.Join(",", ranklevel.Limit)}"));
                 return;
             }
-            if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, ranklevel.Cost))
+            if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, ranklevel.RedemptionRelationshipsOption))
             {
                 args.Player.SendSuccessMessage(GetString($"成功升级至 {ranklevel.Name}!"));
                 TShock.Utils.Broadcast(string.Format(ranklevel.RankBroadcast, args.Player.Name, ranklevel.Name), Color.Green);
@@ -84,7 +84,7 @@ public class Command
             }
             else
             {
-                args.Player.SendErrorMessage(GetString($"升级所需 {ranklevel.Cost}，你当前{EconomicsAPI.Economics.Setting.CurrencyName}仅有{EconomicsAPI.Economics.CurrencyManager.GetUserCurrency(args.Player.Name)}!"));
+                args.Player.SendErrorMessage(GetString($"升级所需 {string.Join(" ", ranklevel.RedemptionRelationshipsOption.Select(x => $"{x.CurrencyType}x{x.Number}"))}"));
             }
         }
         else

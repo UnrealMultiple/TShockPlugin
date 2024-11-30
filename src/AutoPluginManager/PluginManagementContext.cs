@@ -88,7 +88,7 @@ public class PluginManagementContext : IDisposable
                 (c, l) => new PluginUpdateInfo(c, l))
             .Where(i =>
                 i.Current!.Version < i.Latest.Version &&
-                !Config.PluginConfig.UpdateBlackList.Contains(i.Current.Name)) // use plugin name instead of assembly name for compatibility
+                !Config.Instance.UpdateBlackList.Contains(i.Current.Name)) // use plugin name instead of assembly name for compatibility
             .ToArray();
     }
 
@@ -144,7 +144,7 @@ public class PluginManagementContext : IDisposable
                 .ToArray();
 
             var bannedDependencies = pending.updates
-                .Where(u => Config.PluginConfig.UpdateBlackList.Contains(u.Current?.Name ?? u.Latest.Name))
+                .Where(u => Config.Instance.UpdateBlackList.Contains(u.Current?.Name ?? u.Latest.Name))
                 .Select(u => u.Current?.Name ?? u.Latest.Name)
                 .ToArray();
             if (bannedDependencies.Any())
@@ -154,7 +154,6 @@ public class PluginManagementContext : IDisposable
                     string.Join('\n', bannedDependencies));
                 continue;
             }
-
             var installedPluginsWhichDontExistLocally = pending.updates
                 .Where(u =>
                     u.Current is not null &&
@@ -179,7 +178,9 @@ public class PluginManagementContext : IDisposable
         foreach (var u in successfullyUpdatedPlugins)
         {
             CopyPluginFile(u.Latest.Path, u.Current?.Path ?? u.Latest.Path);
+            Utils.PluginVersionOverrides[u.Current?.AssemblyName ?? u.Latest.AssemblyName] = u.Latest.Version;
         }
+        Utils.ClearCache();
 
         var successfullyUpdatedExternalDlls = pluginsPassedCheck
             .SelectMany(x => x.externalDlls)
@@ -234,11 +235,8 @@ public class PluginManagementContext : IDisposable
 
     public static PluginManagementContext CreateDefault()
     {
-        if (Config.PluginConfig.UseCustomSource)
-        {
-            return new PluginManagementContext { UpstreamManifestUrl = Config.PluginConfig.CustomSourceManifestUrl, UpstreamPluginArchiveUrl = Config.PluginConfig.CustomSourceArchiveUrl };
-        }
-
-        return new PluginManagementContext { UpstreamManifestUrl = Config.PluginConfig.UseGithubSource ? Utils.GithubPluginManifestUrl : Utils.GiteePluginManifestUrl, UpstreamPluginArchiveUrl = Config.PluginConfig.UseGithubSource ? Utils.GithubPluginArchiveUrl : Utils.GiteePluginArchiveUrl };
+        return Config.Instance.UseCustomSource
+            ? new PluginManagementContext { UpstreamManifestUrl = Config.Instance.CustomSourceManifestUrl, UpstreamPluginArchiveUrl = Config.Instance.CustomSourceArchiveUrl }
+            : new PluginManagementContext { UpstreamManifestUrl = Config.Instance.UseGithubSource ? Utils.GithubPluginManifestUrl : Utils.GiteePluginManifestUrl, UpstreamPluginArchiveUrl = Config.Instance.UseGithubSource ? Utils.GithubPluginArchiveUrl : Utils.GiteePluginArchiveUrl };
     }
 }

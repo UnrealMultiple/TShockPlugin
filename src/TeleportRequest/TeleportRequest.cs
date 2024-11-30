@@ -9,7 +9,7 @@ namespace TeleportRequest;
 [ApiVersion(2, 1)]
 public class TeleportRequest : TerrariaPlugin
 {
-    private System.Timers.Timer Timer;
+    private System.Timers.Timer Timer = null!;
 
     private readonly bool[] TPAllows = new bool[256];
 
@@ -19,7 +19,7 @@ public class TeleportRequest : TerrariaPlugin
 
     public override string Author => "原作者: MarioE, 修改者: Dr.Toxic，肝帝熙恩";
 
-    public static Config tpConfig { get; set; }
+    public static Config tpConfig { get; set; } = null!;
 
     internal static string tpConfigPath => Path.Combine(TShock.SavePath, "tpconfig.json");
 
@@ -58,7 +58,7 @@ public class TeleportRequest : TerrariaPlugin
         GeneralHooks.ReloadEvent -= this.ReloadTPR;
     }
 
-    private void OnElapsed(object sender, ElapsedEventArgs e)
+    private void OnElapsed(object? sender, ElapsedEventArgs e)
     {
         for (var i = 0; i < this.TPRequests.Length; i++)
         {

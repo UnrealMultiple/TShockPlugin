@@ -19,12 +19,14 @@ public class Plugin : TerrariaPlugin
     #endregion
 
     #region 注册释放钩子
-    private GeneralHooks.ReloadEventD _reloadHandler;
-    public Plugin(Main game) : base(game) { }
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
+    public Plugin(Main game) : base(game)
+    {
+        this._reloadHandler = (_) => LoadConfig();
+    }
     public override void Initialize()
     {
         LoadConfig();
-        this._reloadHandler = (_) => LoadConfig();
         GeneralHooks.ReloadEvent += this._reloadHandler;
         ServerApi.Hooks.NpcKilled.Register(this, this.KillItem);
         TShockAPI.Commands.ChatCommands.Add(new Command("killitem.admin", kdm, "kdm", "禁掉落"));
@@ -80,7 +82,7 @@ public class Plugin : TerrariaPlugin
     #region 击杀指定怪物组 关闭清理的方法
     internal static Dictionary<int, HashSet<int>> BossDowned = new Dictionary<int, HashSet<int>>();
     private readonly object npcLock = new object();
-    public NPC RealNPC { get; set; }
+    public NPC RealNPC { get; set; } = null!;
     private void KillItem(NpcKilledEventArgs args)
     {
         lock (this.npcLock)

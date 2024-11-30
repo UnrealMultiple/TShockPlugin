@@ -15,7 +15,7 @@ public class BloodBagProj : CProjectile
 
     public override void ProjectileAI()
     {
-        NPC val = null;
+        NPC? val = null;
         if (this.ai[3] != -1f)
         {
             val = Main.npc[(int) this.ai[3]];

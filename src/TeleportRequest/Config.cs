@@ -35,6 +35,6 @@ public class Config
     public static Config Read(Stream stream)
     {
         using var streamReader = new StreamReader(stream);
-        return JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd());
+        return JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd())!;
     }
 }

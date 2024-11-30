@@ -1,5 +1,6 @@
 ﻿using EconomicsAPI.Configured;
 using System.Reflection;
+using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -16,7 +17,7 @@ public class Regain : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 2);
+    public override Version Version => new(2, 0, 0, 0);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Regain.json");
 
@@ -99,12 +100,16 @@ public class Regain : TerrariaPlugin
                 {
                     return;
                 }
-
-                var num = args.Player.SelectedItem.stack * regain.Cost;
-                EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num);
+                var sb = new StringBuilder();
+                foreach (var rro in regain.RedemptionRelationshipsOption)
+                { 
+                    var num = args.Player.SelectedItem.stack * rro.Number;
+                    EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num, rro.CurrencyType);
+                    sb.Append($"{rro.CurrencyType}x{num} ");
+                }
                 args.Player.SelectedItem.stack = 0;
                 args.Player.SendData(PacketTypes.PlayerSlot, "", args.Player.Index, args.Player.TPlayer.selectedItem);
-                args.Player.SendSuccessMessage($"成功兑换{num}个{EconomicsAPI.Economics.Setting.CurrencyName}!");
+                args.Player.SendSuccessMessage(GetString($"成功兑换{sb.ToString().Trim()}"));
                 break;
             }
             case 1:
@@ -127,14 +132,20 @@ public class Regain : TerrariaPlugin
                 }
 
                 count = count > args.Player.SelectedItem.stack ? args.Player.SelectedItem.stack : count;
-                EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, count * regain.Cost);
+                var sb = new StringBuilder();
+                foreach (var rro in regain.RedemptionRelationshipsOption)
+                {
+                    var num = count * rro.Number;
+                    EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num, rro.CurrencyType);
+                    sb.Append($"{rro.CurrencyType}x{num} ");
+                }
                 args.Player.SelectedItem.stack -= count;
                 args.Player.SendData(PacketTypes.PlayerSlot, "", args.Player.Index, args.Player.TPlayer.selectedItem);
-                args.Player.SendSuccessMessage(GetString($"成功兑换{count * regain.Cost}个{EconomicsAPI.Economics.Setting.CurrencyName}!"));
+                args.Player.SendSuccessMessage(GetString($"成功兑换{sb.ToString().Trim()}"));
                 break;
             }
             default:
-                args.Player.SendInfoMessage(GetString("/regain语法"));
+                args.Player.SendInfoMessage(GetString("/regain 语法"));
                 args.Player.SendInfoMessage(GetString("/regain"));
                 args.Player.SendInfoMessage(GetString("/regain [数量]"));
                 args.Player.SendInfoMessage(GetString("/regain list"));

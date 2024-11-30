@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Shop\n"
-"POT-Creation-Date: 2024-09-30 12:32:34+0000\n"
+"POT-Creation-Date: 2024-11-15 03:22:39+0000\n"
 "PO-Revision-Date: 2024-09-30 15:29:55+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,8 +12,9 @@ msgstr ""
 "X-Generator: GetText.NET Extractor\n"
 
 #: ../../Command.cs:40
-#, csharp-format
-msgid "{0}:[{1}]  {2} 价格:{3}"
+#, fuzzy, csharp-format
+#| msgid "{0}:[{1}]  {2} 价格:{3}"
+msgid "{0}:[{1}]  {2} 价格:{3})"
 msgstr "{0}:[{1}]  {2} price:{3}"
 
 #: ../../Command.cs:94
@@ -25,9 +26,8 @@ msgid "/shop list [序号]"
 msgstr "/shop list [index]"
 
 #: ../../Command.cs:81
-#, csharp-format
-msgid "你的{0}不足!"
-msgstr "You do not have enough {0}!"
+msgid "你的货币不足!"
+msgstr ""
 
 #: ../../Command.cs:55
 msgid "你输入的购买数量不正确!"
@@ -77,3 +77,7 @@ msgstr "Type {0}shop list {{0}} to see more"
 #: ../../Command.cs:99
 msgid "输入/shop help 查看指令帮助"
 msgstr "Type /shop help to view command assistance."
+
+#, csharp-format
+#~ msgid "你的{0}不足!"
+#~ msgstr "You do not have enough {0}!"

@@ -382,7 +382,7 @@ public class MiniPack
         NetMessage.SendData(39, player.Index, -1, NetworkText.Empty, 400, 0f, 0f, 0f, 0, 0, 0);
     }
 
-    public void CopyFromPlayer(TSPlayer plr)
+    public void CopyFromPlayer(TSPlayer? plr)
     {
         if (plr != null)
         {

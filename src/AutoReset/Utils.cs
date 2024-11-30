@@ -8,7 +8,7 @@ internal class Utils
 {
     public static void CallApi()
     {
-        if (AutoResetPlugin.Config.ResetCaution)
+        if (ResetConfig.Instance.ResetCaution)
         {
             try
             {
@@ -16,7 +16,7 @@ internal class Utils
                 HttpResponseMessage? response;
                 client.Timeout = TimeSpan.FromSeconds(5.0);
                 response = client.PostAsync($"http://api.terraria.ink:22334/bot/send_reset?" +
-                                           $"token={AutoResetPlugin.Config.CaiBotToken}" +
+                                           $"token={ResetConfig.Instance.CaiBotToken}" +
                                            $"&server_name={Main.worldName}" +
                                            $"&seed={(Main.ActiveWorldFileData.SeedText == "" ? Main.ActiveWorldFileData.Seed : Main.ActiveWorldFileData.SeedText)}", null)
                     .Result;

@@ -1,3 +1,4 @@
+using LazyAPI.ConfigFiles;
 using Newtonsoft.Json;
 using TShockAPI;
 
@@ -6,9 +7,13 @@ namespace CaiCustomEmojiCommand;
 [Serializable]
 public class EmojiCommand
 {
-    [JsonProperty("命令")] public string Command;
+    [LocalizedPropertyName(CultureType.Chinese, "命令")]
+    [LocalizedPropertyName(CultureType.English, "Command")]
+    public string Command { get; set; }
 
-    [JsonProperty("表情ID")] public int EmojiId;
+    [LocalizedPropertyName(CultureType.Chinese, "表情ID")]
+    [LocalizedPropertyName(CultureType.English, "EmojiId")]
+    public int EmojiId { get; set; }
 
     public EmojiCommand(int emojiId, string command)
     {

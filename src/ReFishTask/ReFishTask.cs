@@ -17,12 +17,14 @@ public class ReFishTask : TerrariaPlugin
     #endregion
 
     #region 注册与释放
-    public ReFishTask(Main game) : base(game) { }
-    private GeneralHooks.ReloadEventD _reloadHandler;
+    public ReFishTask(Main game) : base(game)
+    {
+        this._reloadHandler = (_) => LoadConfig();
+    }
+    private readonly GeneralHooks.ReloadEventD _reloadHandler;
     public override void Initialize()
     {
         LoadConfig();
-        this._reloadHandler = (_) => LoadConfig();
         GeneralHooks.ReloadEvent += this._reloadHandler;
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         ServerApi.Hooks.NetGetData.Register(this, OnGetData);

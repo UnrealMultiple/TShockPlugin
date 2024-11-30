@@ -27,7 +27,8 @@
   "自定义源清单地址": "", // Custom source plugin manifest url
   "自定义源压缩文件地址": "", // Custom source plugin archive url
   "插件排除列表": [], // Plugin exclusion list
-  "热重载升级插件": true // Hot reload upgrade plugin
+  "热重载升级插件": true, // Hot reload upgrade plugin
+  "热重载出错时继续": true // continue when hot reload error occurred
 }
 ```
 
