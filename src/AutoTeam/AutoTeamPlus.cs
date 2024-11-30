@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using LazyAPI;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
@@ -7,45 +8,29 @@ using static TShockAPI.GetDataHandlers;
 namespace AutoTeam;
 
 [ApiVersion(2, 1)]
-public class AutoTeam : TerrariaPlugin
+public class AutoTeam : LazyPlugin
 {
     public override string Author => "十七改，肝帝熙恩改";
     public override Version Version => new Version(2, 4, 4);
     public override string Description => "AutoTeamPlus";
     public override string Name => "更好的自动队伍";
-    public static Configuration Config = null!;
 
     public AutoTeam(Main game) : base(game)
     {
     }
 
-    private static void LoadConfig()
-    {
-        Config = Configuration.Read(Configuration.FilePath);
-        Config.Write(Configuration.FilePath);
-    }
-
-    private static void ReloadConfig(ReloadEventArgs args)
-    {
-        LoadConfig();
-        args.Player?.SendSuccessMessage(GetString("[自动队伍] 重新加载配置完毕。"));
-    }
-
     public override void Initialize()
     {
-        GeneralHooks.ReloadEvent += ReloadConfig;
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnJoin);
         PlayerHooks.PlayerPostLogin += this.OnLogin;
         GetDataHandlers.PlayerTeam += this.Team;
         Commands.ChatCommands.Add(new Command("autoteam.toggle", this.TogglePlugin, "autoteam", "at"));
-        LoadConfig();
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= ReloadConfig;
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnJoin);
             PlayerHooks.PlayerPostLogin -= this.OnLogin;
             GetDataHandlers.PlayerTeam -= this.Team;
@@ -57,8 +42,8 @@ public class AutoTeam : TerrariaPlugin
     private void TogglePlugin(CommandArgs args)
     {
         // 切换插件的状态
-        Config.Enabled = !Config.Enabled;
-        var status = Config.Enabled ? GetString("启用") : GetString("禁用");
+        Configuration.Instance.Enabled = !Configuration.Instance.Enabled;
+        var status = Configuration.Instance.Enabled ? GetString("启用") : GetString("禁用");
         args.Player.SendSuccessMessage(GetString("AutoTeamPlus 插件已") + status + GetString("。"));
     }
 
@@ -83,7 +68,7 @@ public class AutoTeam : TerrariaPlugin
 
     private void SetTeam(TSPlayer player)
     {
-        if (!Config.Enabled)
+        if (!Configuration.Instance.Enabled)
         {
             return;
         }
@@ -99,7 +84,7 @@ public class AutoTeam : TerrariaPlugin
         }
 
         var groupName = player.Group.Name.ToLower();
-        var teamName = Config.GetTeamForGroup(groupName);
+        var teamName = Configuration.Instance.GetTeamForGroup(groupName);
 
         // 获取队伍索引
         var teamIndex = this.GetTeamIndex(teamName);

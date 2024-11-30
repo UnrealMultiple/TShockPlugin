@@ -2,20 +2,20 @@
 using Terraria;
 using Terraria.ID;
 using TShockAPI;
-using TShockAPI.Hooks;
 using TerrariaApi.Server;
 using System.Text;
+using LazyAPI;
 
 namespace AutoFish;
 
 [ApiVersion(2, 1)]
-public class AutoFish : TerrariaPlugin
+public class AutoFish : LazyPlugin
 {
 
     #region 插件信息
     public override string Name => "自动钓鱼";
     public override string Author => "羽学 少司命";
-    public override Version Version => new Version(1, 3, 2);
+    public override Version Version => new Version(1, 3, 3);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 
@@ -23,10 +23,8 @@ public class AutoFish : TerrariaPlugin
     public AutoFish(Main game) : base(game) { }
     public override void Initialize()
     {
-        LoadConfig();
-        GeneralHooks.ReloadEvent += ReloadConfig;
-        GetDataHandlers.NewProjectile += this.ProjectNew!;
-        GetDataHandlers.NewProjectile += this.BuffUpdate!;
+        GetDataHandlers.NewProjectile.Register(this.ProjectNew);
+        GetDataHandlers.NewProjectile.Register(this.BuffUpdate);
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
         ServerApi.Hooks.ProjectileAIUpdate.Register(this, this.ProjectAiUpdate);
@@ -37,9 +35,8 @@ public class AutoFish : TerrariaPlugin
     {
         if (disposing)
         {
-            GeneralHooks.ReloadEvent -= ReloadConfig;
-            GetDataHandlers.NewProjectile -= this.ProjectNew!;
-            GetDataHandlers.NewProjectile -= this.BuffUpdate!;
+            GetDataHandlers.NewProjectile.UnRegister(this.ProjectNew);
+            GetDataHandlers.NewProjectile.UnRegister(this.BuffUpdate);
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             ServerApi.Hooks.ProjectileAIUpdate.Deregister(this, this.ProjectAiUpdate);
@@ -49,25 +46,11 @@ public class AutoFish : TerrariaPlugin
     }
     #endregion
 
-    #region 配置重载读取与写入方法
-    internal static Configuration Config = new();
-    private static void ReloadConfig(ReloadEventArgs args)
-    {
-        LoadConfig();
-        args.Player.SendInfoMessage(GetString("[自动钓鱼]重新加载配置完毕。"));
-    }
-    private static void LoadConfig()
-    {
-        Config = Configuration.Read();
-        Config.Write();
-    }
-    #endregion
-
     #region 玩家更新配置方法（创建配置结构）
     internal static MyData Data = new();
     private void OnJoin(JoinEventArgs args)
     {
-        if (args == null || !Config.Enabled)
+        if (args == null || !Configuration.Instance.Enabled)
         {
             return;
         }
@@ -99,7 +82,7 @@ public class AutoFish : TerrariaPlugin
         if (args.Projectile.owner is < 0 or > Main.maxPlayers ||
             !args.Projectile.active ||
             !args.Projectile.bobber ||
-            !Config.Enabled)
+            !Configuration.Instance.Enabled)
         {
             return;
         }
@@ -119,7 +102,7 @@ public class AutoFish : TerrariaPlugin
         }
 
         //开启消耗模式
-        if (Config.ConMod)
+        if (Configuration.Instance.ConMod)
         {
             //多加一个 list.Mod 来判断玩家是否花费了【指定物品】来换取功能时长
             if (list.Mod && list.Enabled)
@@ -194,7 +177,7 @@ public class AutoFish : TerrariaPlugin
                 args.Projectile.FishingCheck();
 
                 //随机物品
-                if (Config.Random)
+                if (Configuration.Instance.Random)
                 {
                     var rm = new Random();
                     var id = rm.Next(1, ItemID.Count - 1);
@@ -205,13 +188,13 @@ public class AutoFish : TerrariaPlugin
                 args.Projectile.ai[1] = args.Projectile.localAI[1];
 
                 //如果额外渔获 有任何1个物品ID 则参与AI[1]
-                if (Config.DoorItems.Any())
+                if (Configuration.Instance.DoorItems.Any())
                 {
                     //确保浮漂正在运动，没有鱼上钩（即ai[1]小于等于0）
                     if (args.Projectile.ai[1] < 0)
                     {
                         // 从DoorItems中随机选择一个物品，并将其ID赋值给ai[1]，模拟有新鱼上钩的情况
-                        args.Projectile.ai[1] = Convert.ToSingle(Config.DoorItems.OrderByDescending(x => Guid.NewGuid()).First());
+                        args.Projectile.ai[1] = Convert.ToSingle(Configuration.Instance.DoorItems.OrderByDescending(x => Guid.NewGuid()).First());
                     }
                 }
             }
@@ -229,7 +212,7 @@ public class AutoFish : TerrariaPlugin
     #endregion
 
     #region 多线钓鱼
-    public void ProjectNew(object sender, GetDataHandlers.NewProjectileEventArgs e)
+    public void ProjectNew(object? sender, GetDataHandlers.NewProjectileEventArgs e)
     {
         var plr = e.Player;
         var guid = Guid.NewGuid().ToString();
@@ -238,10 +221,10 @@ public class AutoFish : TerrariaPlugin
         if (plr == null ||
             !plr.Active ||
             !plr.IsLoggedIn ||
-            !Config.Enabled ||
-            !Config.MoreHook ||
+            !Configuration.Instance.Enabled ||
+            !Configuration.Instance.MoreHook ||
             !plr.HasPermission("autofish") ||
-            HookCount > Config.HookMax - 1)
+            HookCount > Configuration.Instance.HookMax - 1)
         {
             return;
         }
@@ -255,7 +238,7 @@ public class AutoFish : TerrariaPlugin
         }
 
         //开启消耗模式
-        if (Config.ConMod)
+        if (Configuration.Instance.ConMod)
         {
             //玩家的自动钓鱼开关
             if (list.Mod && list.Enabled)
@@ -294,11 +277,11 @@ public class AutoFish : TerrariaPlugin
     #endregion
 
     #region Buff更新方法
-    public void BuffUpdate(object sender, GetDataHandlers.NewProjectileEventArgs e)
+    public void BuffUpdate(object? sender, GetDataHandlers.NewProjectileEventArgs e)
     {
         var plr = e.Player;
 
-        if (plr == null || !plr.Active || !plr.IsLoggedIn || !Config.Enabled  || !plr.HasPermission("autofish"))
+        if (plr == null || !plr.Active || !plr.IsLoggedIn || !Configuration.Instance.Enabled  || !plr.HasPermission("autofish"))
         {
             return;
         }
@@ -315,7 +298,7 @@ public class AutoFish : TerrariaPlugin
         {
             if (Tools.BobbersActive(e.Owner))
             {
-                foreach (var buff in Config.BuffID)
+                foreach (var buff in Configuration.Instance.BuffID)
                 {
                     plr.SetBuff(buff.Key, buff.Value);
                 }
@@ -328,7 +311,7 @@ public class AutoFish : TerrariaPlugin
     private void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
     {
         var plr = e.Player;
-        if (!Config.Enabled || !Config.ConMod || e == null ||
+        if (!Configuration.Instance.Enabled || !Configuration.Instance.ConMod || e == null ||
             plr == null || !plr.IsLoggedIn || !plr.Active ||
             !plr.HasPermission("autofish"))
         {
@@ -349,11 +332,11 @@ public class AutoFish : TerrariaPlugin
         if (!data.Mod)
         {
             //初始化一个消耗值
-            var sun = Config.BaitStack;
+            var sun = Configuration.Instance.BaitStack;
 
             // 统计背包中指定鱼饵的总数量(不包含手上物品)
             var TotalBait = plr.TPlayer.inventory.Sum(inv =>
-            (Config.BaitType.Contains(inv.type) &&
+            (Configuration.Instance.BaitType.Contains(inv.type) &&
             inv.type != plr.TPlayer.inventory[plr.TPlayer.selectedItem].type) ?
             inv.stack : 0);
 
@@ -366,7 +349,7 @@ public class AutoFish : TerrariaPlugin
                     var inv = plr.TPlayer.inventory[i];
 
                     // 是Config里指定的鱼饵,不是手上的物品
-                    if (Config.BaitType.Contains(inv.type))
+                    if (Configuration.Instance.BaitType.Contains(inv.type))
                     {
                         var BaitStack = Math.Min(sun, inv.stack); // 计算需要消耗的鱼饵数量
 
@@ -411,13 +394,13 @@ public class AutoFish : TerrariaPlugin
     {
         var mess2 = new StringBuilder();
         mess2.AppendLine(GetString($"[i:3455][c/AD89D5:自][c/D68ACA:动][c/DF909A:钓][c/E5A894:鱼][i:3454]"));
-        mess2.AppendLine(GetString($"以下玩家超过 [c/E17D8C:{Config.timer}] 分钟 已关闭[c/76D5B4:自动钓鱼]权限："));
+        mess2.AppendLine(GetString($"以下玩家超过 [c/E17D8C:{Configuration.Instance.timer}] 分钟 已关闭[c/76D5B4:自动钓鱼]权限："));
 
         // 只显示分钟
         var Minutes = (DateTime.Now - data.LogTime).TotalMinutes;
 
         // 时间过期 关闭自动钓鱼权限
-        if (Minutes >= Config.timer)
+        if (Minutes >= Configuration.Instance.timer)
         {
             ClearCount++;
             data.Mod = false;
@@ -428,12 +411,6 @@ public class AutoFish : TerrariaPlugin
         // 确保有一个玩家计数，只播报一次
         if (ClearCount > 0 && mess2.Length > 0)
         {
-            //广告开关
-            if (Config.AdvertisementEnabled)
-            {
-                //自定义广告内容
-                mess2.AppendLine(Config.Advertisement);
-            }
             plr.SendMessage(mess2.ToString(), 247, 244, 150);
             ClearCount = 0;
         }

@@ -33,7 +33,6 @@ public class AnnouncementBoxPlus : LazyPlugin
     //插件加载时执行的代码
     public override void Initialize()
     {
-        GeneralHooks.ReloadEvent += this.GeneralHooks_ReloadEvent;
         On.OTAPI.Hooks.Wiring.InvokeAnnouncementBox += this.OnAnnouncementBox;
         GetDataHandlers.SignRead.Register(this.OnSignRead);
         GetDataHandlers.Sign.Register(this.OnSign);
@@ -45,13 +44,8 @@ public class AnnouncementBoxPlus : LazyPlugin
             GetDataHandlers.SignRead.UnRegister(this.OnSignRead);
             GetDataHandlers.Sign.UnRegister(this.OnSign);
             On.OTAPI.Hooks.Wiring.InvokeAnnouncementBox -= this.OnAnnouncementBox;
-            GeneralHooks.ReloadEvent -= this.GeneralHooks_ReloadEvent;
         }
         base.Dispose(disposing);
-    }
-    private void GeneralHooks_ReloadEvent(ReloadEventArgs e)
-    {
-        e.Player.SendSuccessMessage("[AnnouncementBoxPlus]配置文件已重载!");
     }
 
     private void OnSign(object? sender, GetDataHandlers.SignEventArgs e)
