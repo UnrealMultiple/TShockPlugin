@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Google.Protobuf.WellKnownTypes;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Rests;
 using System.Net;
@@ -10,6 +11,7 @@ using Terraria.Localization;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
+using TShockAPI.Hooks;
 
 
 namespace CaiBot;
@@ -20,7 +22,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "Cai,羽学,西江";
     public override string Description => "CaiBot机器人的适配插件";
     public override string Name => "CaiBotPlugin";
-    public static readonly Version VersionNum = new(2024, 11, 3 , 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new(2024, 12, 1 , 1); //日期+版本号(0,1,2...)
     public override Version Version => VersionNum;
     
     public Plugin(Main game) : base(game)
@@ -30,6 +32,7 @@ public class Plugin : TerrariaPlugin
     public static int InitCode = -1;
     public static bool LocalMode;
     public static bool DebugMode;
+    public static bool StopWebsocket = false;
     public static ClientWebSocket WebSocket = new();
     public static Task WebSocketTask = Task.CompletedTask;
     public static readonly CancellationTokenSource TokenSource = new ();
@@ -65,10 +68,13 @@ public class Plugin : TerrariaPlugin
         On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
         On.OTAPI.Hooks.MessageBuffer.InvokeGetData += Login.MessageBuffer_InvokeGetData;
         ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
+        ServerApi.Hooks.ServerChat.Register(this, this.OnChat, int.MaxValue);
+        PlayerHooks.PlayerPostLogin += this.PlayerHooksOnPlayerPostLogin;
+        PlayerHooks.PlayerLogout += this.PlayerHooksOnPlayerLogout;
         ServerApi.Hooks.GamePostInitialize.Register(this, this.GenCode);
         this.WsTask = Task.Run(async () =>
         {
-            while (true)
+            while (!StopWebsocket)
             {
                 try
                 {
@@ -139,7 +145,7 @@ public class Plugin : TerrariaPlugin
         },TokenSource.Token);
         this.HeartBeat = Task.Run(async () =>
         {
-            while (true)
+            while (!StopWebsocket)
             {
                 await Task.Delay(60000);
                 try
@@ -174,6 +180,10 @@ public class Plugin : TerrariaPlugin
             BanManager.OnBanPostAdd -= this.OnBanInsert;
             ServerApi.Hooks.NetGetData.Deregister(this, Login.OnGetData);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.GenCode);
+            ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
+            PlayerHooks.PlayerPostLogin -= this.PlayerHooksOnPlayerPostLogin;
+            PlayerHooks.PlayerLogout -= this.PlayerHooksOnPlayerLogout;
+            StopWebsocket = true;
             WebSocket.Dispose();
             if (!WebSocketTask.IsCompleted)
             {
@@ -183,6 +193,60 @@ public class Plugin : TerrariaPlugin
         }
         base.Dispose(disposing);
     }
+
+    private async void OnChat(ServerChatEventArgs args)
+    {
+        var plr = TShock.Players[args.Who];
+        if (!Config.config.SycnChatFromServer||plr==null|| !plr.IsLoggedIn ||args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) || args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier) || string.IsNullOrEmpty(args.Text))
+        {
+            return;
+        }
+        
+        var result = new RestObject
+        {
+            { "type", "chat" },
+            { "chat", string.Format(Config.config.ServerChatFormat, plr.Name, args.Text ,plr.Group.Name,plr.Group.Prefix,EconomicSupport.IsSupported("GetLevelName")?EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:",""):"不支持")}, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
+            { "group", Config.config.GroupNumber! }
+        };
+        await MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
+        
+    }
+    
+    private void PlayerHooksOnPlayerPostLogin(PlayerPostLoginEventArgs e)
+    {
+        var plr = e.Player;
+        if (!Config.config.SycnChatFromServer||plr==null)
+        {
+            return;
+        }
+        
+        var result = new RestObject
+        {
+            { "type", "chat" },
+            { "chat", string.Format(Config.config.JoinServerFormat, plr.Name,plr.Group.Name,plr.Group.Prefix,EconomicSupport.IsSupported("GetLevelName")?EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:",""):"不支持")}, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
+            { "group", Config.config.GroupNumber! }
+        };
+        MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
+    }
+    
+    private void PlayerHooksOnPlayerLogout(PlayerLogoutEventArgs e)
+    {
+        var plr = e.Player;
+        if (!Config.config.SycnChatFromServer||plr==null)
+        {
+            return;
+        }
+        
+        var result = new RestObject
+        {
+            { "type", "chat" },
+            { "chat", string.Format(Config.config.ExitServerFormat, plr.Name,plr.Group.Name,plr.Group.Prefix,EconomicSupport.IsSupported("GetLevelName")?EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:",""):"不支持")}, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
+            { "group", Config.config.GroupNumber! }
+        };
+        MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
+    }
+
+    
 
     private void CaiBotCommand(CommandArgs args)
     {

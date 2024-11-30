@@ -99,6 +99,8 @@ public static class MessageHandle
                     { "cai_whitelist", Config.config.WhiteList },
                     { "os", RuntimeInformation.RuntimeIdentifier },
                     { "world", TShock.Config.Settings.UseServerName ? TShock.Config.Settings.ServerName : Main.worldName },
+                    { "sync_group_chat",Config.config.SycnChatFromGroup},
+                    { "sync_server_chat",Config.config.SycnChatFromServer},
                     { "group", (long) jsonObject["group"]! }
                 };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
@@ -607,6 +609,18 @@ public static class MessageHandle
                     { "group", (long)jsonObject["group"]! }
                 };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
+                break;
+            case "chat": //"[群名{0}]玩家昵称{1}:内容{2}" 额外 {3}:群QQ号 {4}:发送者QQ
+                var groupName = (string) jsonObject["group_name"]!;
+                var nickname = (string) jsonObject["nickname"]!;
+                var chatText =  (string) jsonObject["chat_text"]!;
+                var groupNumber = (long) jsonObject["group_id"]!;
+                var senderId = (long) jsonObject["sender_id"]!;
+                if (Config.config.CustomGroupName.ContainsKey(groupNumber))
+                {
+                    groupName = Config.config.CustomGroupName[groupNumber];
+                }
+                TShock.Utils.Broadcast(string.Format(Config.config.GroupChatFormat, groupName, nickname, chatText, groupNumber, senderId),Color.White);
                 break;
         }
     }
