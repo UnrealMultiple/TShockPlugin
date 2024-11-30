@@ -22,7 +22,7 @@ public class Config
     
     [JsonProperty("同步服务器聊天")] public bool SycnChatFromServer;
 
-    [JsonProperty("服务器聊天格式")] public string ServerChatFormat = "[Server]{0}:{1}";
+    [JsonProperty("服务器聊天格式")] public string ServerChatFormat = "[Server]{0}:{1}"; //"[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
     
     [JsonProperty("加入服务器消息格式")] public string JoinServerFormat = "[Server]{0}加入了游戏";
     
