@@ -19,8 +19,7 @@ namespace CaiBot;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public static readonly Version VersionNum = new (2024, 12, 1, 1); //日期+版本号(0,1,2...)
-
+    public static readonly Version VersionNum = new (2024, 12, 1, 2); //日期+版本号(0,1,2...)
     public static int InitCode = -1;
     public static bool LocalMode;
     public static bool DebugMode;
@@ -63,6 +62,7 @@ public class Plugin : TerrariaPlugin
     {
         Commands.ChatCommands.Add(new Command("CaiBot.Admin", this.CaiBotCommand, "caibot"));
         Config.Read();
+        Config.config.Write();
         LocalMode = Program.LaunchParameters.ContainsKey("-cailocalbot");
         DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
         BanManager.OnBanPostAdd += this.OnBanInsert;
