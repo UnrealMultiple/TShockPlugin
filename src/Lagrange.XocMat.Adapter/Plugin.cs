@@ -28,7 +28,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "机器人适配插件";
 
-    public override Version Version => new(1, 0, 0, 0);
+    public override Version Version => new(1, 0, 0, 1);
 
     internal static readonly List<TSPlayer> ServerPlayers = new();
 
@@ -320,7 +320,7 @@ public class Plugin : TerrariaPlugin
         {
             if (Config.LimitJoin && TShock.UserAccounts.GetUserAccountByName(player.Name) == null)
             {
-                player.Disconnect(Config.DisConnentFormat);
+                player.Disconnect(string.Join("\n", Config.DisConnentFormat));
             }
         }
     }
