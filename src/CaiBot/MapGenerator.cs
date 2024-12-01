@@ -13,9 +13,9 @@ public static class MapGenerator
 {
     public static Image Create()
     {
-        Image<Rgba32> image = new(Main.maxTilesX, Main.maxTilesY);
+        Image<Rgba32> image = new (Main.maxTilesX, Main.maxTilesY);
         MapHelper.Initialize();
-        Main.Map = new(Main.maxTilesX, Main.maxTilesY);
+        Main.Map = new Terraria.Map.WorldMap(Main.maxTilesX, Main.maxTilesY);
         for (var x = 0; x < Main.maxTilesX; x++)
         {
             for (var y = 0; y < Main.maxTilesY; y++)
@@ -32,7 +32,7 @@ public static class MapGenerator
 
 internal class CreateMapFile
 {
-    public static readonly CreateMapFile Instance = new();
+    public static readonly CreateMapFile Instance = new ();
 
     public bool Status { get; private set; }
 
@@ -49,7 +49,7 @@ internal class CreateMapFile
     {
         this.Status = true;
         var worldMap = new WorldMap(Main.tile.Width, Main.tile.Height);
-        Main.Map = new(Main.tile.Width, Main.tile.Height);
+        Main.Map = new Terraria.Map.WorldMap(Main.tile.Width, Main.tile.Height);
         for (var x = 0; x < Main.maxTilesX; x++)
         {
             for (var y = 0; y < Main.maxTilesY; y++)
@@ -68,11 +68,11 @@ internal class CreateMapFile
     {
         var text = !Main.ActiveWorldFileData.UseGuidAsMapName
             ? Main.worldID + ".map"
-            : Main.ActiveWorldFileData.UniqueId.ToString() + ".map";
-        using (MemoryStream memoryStream = new(4000))
+            : Main.ActiveWorldFileData.UniqueId + ".map";
+        using (MemoryStream memoryStream = new (4000))
         {
-            using BinaryWriter binaryWriter = new(memoryStream);
-            using DeflateStream deflateStream = new(memoryStream, CompressionMode.Compress);
+            using BinaryWriter binaryWriter = new (memoryStream);
+            using DeflateStream deflateStream = new (memoryStream, CompressionMode.Compress);
             var num = 0;
             var array = new byte[16384];
             binaryWriter.Write(279);
@@ -385,29 +385,27 @@ internal class CreateMapFile
             return new MapInfo(text, memoryStream.ToArray());
         }
     }
-
 }
 
 public class MapInfo
 {
-    public string Name { get; set; }
-
-    public byte[] Buffer { get; set; }
-
     public MapInfo(string name, byte[] buffer)
     {
         this.Name = name;
         this.Buffer = buffer;
     }
+
+    public string Name { get; set; }
+
+    public byte[] Buffer { get; set; }
 }
+
 public class WorldMap
 {
-    public readonly int MaxWidth;
-    public readonly int MaxHeight;
-    public readonly int BlackEdgeWidth = 40;
     private readonly MapTile[,] _tiles;
-
-    public MapTile this[int x, int y] => this._tiles[x, y];
+    public readonly int BlackEdgeWidth = 40;
+    public readonly int MaxHeight;
+    public readonly int MaxWidth;
 
     public WorldMap(int maxWidth, int maxHeight)
     {
@@ -415,6 +413,8 @@ public class WorldMap
         this.MaxHeight = maxHeight;
         this._tiles = new MapTile[this.MaxWidth, this.MaxHeight];
     }
+
+    public MapTile this[int x, int y] => this._tiles[x, y];
 
     public void SetTile(int x, int y, ref MapTile tile)
     {

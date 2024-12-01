@@ -10,18 +10,18 @@
         <OutputPath>..\..\out\$(Configuration)</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
-		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+        <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
     </PropertyGroup>
 
     <ItemGroup>
-		<NuGetAuditSuppress Include="https://github.com/advisories/GHSA-6qmf-mmc7-6c2p" />
+        <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-6qmf-mmc7-6c2p"/>
         <PackageReference Include="TShock" Version="5.2.0">
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="..\Shared\**\*.cs" />
+        <Compile Include="..\Shared\**\*.cs"/>
         <EmbeddedResource Include=".\i18n\*.mo">
             <LogicalName>i18n.%(FileName).mo</LogicalName>
         </EmbeddedResource>

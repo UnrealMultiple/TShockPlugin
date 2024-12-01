@@ -2,6 +2,12 @@
 
 public class PluginInfo
 {
+    public string Author;
+    public string Description;
+
+    public string Name;
+    public Version Version;
+
     public PluginInfo(string name, string description, string author, Version version)
     {
         this.Name = name;
@@ -9,9 +15,4 @@ public class PluginInfo
         this.Author = author;
         this.Version = version;
     }
-
-    public string Name;
-    public string Description;
-    public string Author;
-    public Version Version;
 }

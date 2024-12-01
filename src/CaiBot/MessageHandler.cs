@@ -10,7 +10,6 @@ using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using Program = Terraria.Program;
 
 namespace CaiBot;
 
@@ -40,8 +39,7 @@ public static class MessageHandle
             fsForRead.Seek(0, SeekOrigin.Begin);
             var bs = new byte[fsForRead.Length];
             var log = Convert.ToInt32(fsForRead.Length);
-            // ReSharper disable once MustUseReturnValue
-            fsForRead.Read(bs, 0, log);
+            _ = fsForRead.Read(bs, 0, log);
             base64Str = Convert.ToBase64String(bs);
             return base64Str;
         }
@@ -85,7 +83,7 @@ public static class MessageHandle
                 Random rnd = new ();
                 Plugin.InitCode = rnd.Next(10000000, 99999999);
                 TShock.Log.ConsoleError($"[CaiBot]您的服务器绑定码为: {Plugin.InitCode}");
-                await Plugin.WebSocket.CloseAsync(WebSocketCloseStatus.Empty,"", new CancellationToken());
+                await Plugin.WebSocket.CloseAsync(WebSocketCloseStatus.Empty, "", new CancellationToken());
                 break;
             case "hello":
                 TShock.Log.ConsoleInfo("[CaiAPI]CaiBOT连接成功...");
@@ -99,8 +97,8 @@ public static class MessageHandle
                     { "cai_whitelist", Config.config.WhiteList },
                     { "os", RuntimeInformation.RuntimeIdentifier },
                     { "world", TShock.Config.Settings.UseServerName ? TShock.Config.Settings.ServerName : Main.worldName },
-                    { "sync_group_chat",Config.config.SycnChatFromGroup},
-                    { "sync_server_chat",Config.config.SycnChatFromServer},
+                    { "sync_group_chat", Config.config.SycnChatFromGroup },
+                    { "sync_server_chat", Config.config.SycnChatFromServer },
                     { "group", (long) jsonObject["group"]! }
                 };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
@@ -122,14 +120,8 @@ public static class MessageHandle
                 var cmd = (string) jsonObject["cmd"]!;
                 CaiBotPlayer tr = new ();
                 Commands.HandleCommand(tr, cmd);
-                TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(long) jsonObject["group"]!}`执行了: {(string) jsonObject["cmd"]!}", Microsoft.Xna.Framework.Color.PaleVioletRed);
-                result = new RestObject
-                {
-                    { "type", "cmd" },
-                    { "result", string.Join('\n', tr.GetCommandOutput()) },
-                    { "at", (string)jsonObject["at"]! },
-                    { "group", (long)jsonObject["group"]! }
-                };
+                TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(long) jsonObject["group"]!}`执行了: {(string) jsonObject["cmd"]!}", Color.PaleVioletRed);
+                result = new RestObject { { "type", "cmd" }, { "result", string.Join('\n', tr.GetCommandOutput()) }, { "at", (string) jsonObject["at"]! }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "online":
@@ -260,7 +252,7 @@ public static class MessageHandle
             case "whitelist":
                 var name = (string) jsonObject["name"]!;
                 var code = (int) jsonObject["code"]!;
-                if (Login.CheckWhiteAsync(name, code))
+                if (Login.CheckWhite(name, code))
                 {
                     var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
                     if (playerList.Count == 0)
@@ -602,25 +594,21 @@ public static class MessageHandle
             case "pluginlist":
                 var pluginList = ServerApi.Plugins.Select(p => new PluginInfo(p.Plugin.Name, p.Plugin.Description, p.Plugin.Author, p.Plugin.Version)).ToList();
 
-                result = new RestObject
-                {
-                    { "type", "pluginlist" },
-                    { "plugins", pluginList },
-                    { "group", (long)jsonObject["group"]! }
-                };
+                result = new RestObject { { "type", "pluginlist" }, { "plugins", pluginList }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "chat": //"[群名{0}]玩家昵称{1}:内容{2}" 额外 {3}:群QQ号 {4}:发送者QQ
                 var groupName = (string) jsonObject["group_name"]!;
                 var nickname = (string) jsonObject["nickname"]!;
-                var chatText =  (string) jsonObject["chat_text"]!;
+                var chatText = (string) jsonObject["chat_text"]!;
                 var groupNumber = (long) jsonObject["group_id"]!;
                 var senderId = (long) jsonObject["sender_id"]!;
                 if (Config.config.CustomGroupName.ContainsKey(groupNumber))
                 {
                     groupName = Config.config.CustomGroupName[groupNumber];
                 }
-                TShock.Utils.Broadcast(string.Format(Config.config.GroupChatFormat, groupName, nickname, chatText, groupNumber, senderId),Color.White);
+
+                TShock.Utils.Broadcast(string.Format(Config.config.GroupChatFormat, groupName, nickname, chatText, groupNumber, senderId), Color.White);
                 break;
         }
     }

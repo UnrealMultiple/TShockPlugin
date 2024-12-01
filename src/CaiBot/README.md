@@ -10,7 +10,6 @@
 
 - [ACaiCat/CaiBotDocument](https://github.com/ACaiCat/CaiBotDocument)
 
-
 ## 使用方法(轻量版):
 
 1. 将插件安装在ServerPlugins/
@@ -56,8 +55,8 @@ v1.1 修复前置加载失败的问题
 | 语法             |      权限      |      说明      |
 |----------------|:------------:|:------------:|
 | /caibot debug	 | CaiBot.Admin |    调试模式开关    |
-| /caibot code	  | CaiBot.Admin  |    生成验证码     |
-| /caibot info	  | CaiBot.Admin  | 显示CaiBot状态信息 |
+| /caibot code	  | CaiBot.Admin |    生成验证码     |
+| /caibot info	  | CaiBot.Admin | 显示CaiBot状态信息 |
 
 ## 配置
 
