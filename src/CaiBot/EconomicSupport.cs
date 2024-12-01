@@ -10,15 +10,15 @@ namespace CaiBot;
 
 public static class EconomicSupport
 {
-    private static bool IsOldCoinsSupport = false;
-    public static bool GetCoinsSupport { get; private set; }
-    public static bool GetLevelNameSupport { get; private set; }
-    public static bool GetSkillSupport { get; private set; }
+    private static bool IsOldCoinsSupport;
 
     private static Func<object> _getPlayerSKillManagerFunc = null!;
 
     private static Func<string> _getCurrencyNameFunc = null!;
     private static Func<string, long> _getUserCurrencyFunc = null!;
+    public static bool GetCoinsSupport { get; private set; }
+    public static bool GetLevelNameSupport { get; private set; }
+    public static bool GetSkillSupport { get; private set; }
 
     public static void Init()
     {
@@ -34,6 +34,7 @@ public static class EconomicSupport
                 {
                     break;
                 }
+
                 if (pluginContainer.Plugin.Version < new Version(2, 0, 0, 0))
                 {
                     var currencyNameField = settingProperty.PropertyType.GetField("CurrencyName");
@@ -53,12 +54,14 @@ public static class EconomicSupport
                     {
                         break;
                     }
-                    var paramTypes = new Type[] { typeof(string) };
+
+                    var paramTypes = new[] { typeof(string) };
                     var getUserCurrencyMethod = currencyManagerProperty.PropertyType.GetMethod(nameof(EconomicsAPI.Economics.CurrencyManager.GetUserCurrency), paramTypes);
                     if (getUserCurrencyMethod is null)
                     {
                         break;
                     }
+
                     func = new DynamicMethod("GetUserCurrency", typeof(long), paramTypes);
                     iL = func.GetILGenerator();
                     iL.Emit(OpCodes.Call, currencyManagerProperty.GetMethod!);
@@ -118,6 +121,7 @@ public static class EconomicSupport
                 {
                     break;
                 }
+
                 var func = new DynamicMethod(nameof(_getPlayerSKillManagerFunc), typeof(object), Type.EmptyTypes);
                 var iL = func.GetILGenerator();
                 iL.Emit(OpCodes.Call, playerSkillManagerProperty.GetMethod!);
@@ -147,6 +151,7 @@ public static class EconomicSupport
         {
             return $"{_getCurrencyNameFunc()}:{_getUserCurrencyFunc(name)}";
         }
+
         // 新方法是必要的，防止解析报错
         return GetNewCoins(name);
     }
@@ -166,7 +171,7 @@ public static class EconomicSupport
     public static string GetSkill(string name)
     {
         ThrowIfNotSupported();
-        var manager = (PlayerSKillManager)_getPlayerSKillManagerFunc.Invoke();
+        var manager = (PlayerSKillManager) _getPlayerSKillManagerFunc.Invoke();
         var skills = manager.QuerySkill(name);
         return !skills.Any() ? "技能:无" : string.Join(',', skills.Select(obj => obj.Skill is null ? "无效技能" : obj.Skill.Name));
     }

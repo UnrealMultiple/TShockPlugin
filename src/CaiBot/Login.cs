@@ -1,6 +1,6 @@
 ﻿using NuGet.Protocol;
+using On.OTAPI;
 using Rests;
-using System.IO.Streams;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -11,8 +11,7 @@ namespace CaiBot;
 
 public static class Login
 {
-
-    public static bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig,
+    public static bool MessageBuffer_InvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig,
         MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length,
         ref int messageType, int maxPackets)
     {
@@ -35,10 +34,7 @@ public static class Login
                     return false;
                 }
 
-                RestObject re = new ()
-                {
-                    { "type", "whitelistV2" }, { "name", player.Name }, { "uuid", uuid }, { "ip", player.IP },
-                };
+                RestObject re = new () { { "type", "whitelistV2" }, { "name", player.Name }, { "uuid", uuid }, { "ip", player.IP } };
                 if (!MessageHandle.IsWebsocketConnected)
                 {
                     TShock.Log.ConsoleError("[CaiBot]机器人处于未连接状态, 玩家无法加入。\n" +
@@ -55,6 +51,7 @@ public static class Login
         {
             TShock.Log.ConsoleError(ex.ToString());
         }
+
         return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
     }
 
@@ -73,7 +70,7 @@ public static class Login
             args.Handled = true;
             return;
         }
-        
+
         if ((player.State < 10 || player.Dead) && (int) type > 12 && (int) type != 16 && (int) type != 42 &&
             (int) type != 50 &&
             (int) type != 38 && (int) type != 21 && (int) type != 22)
@@ -90,7 +87,6 @@ public static class Login
                 player.DataWhenJoined.CopyCharacter(player);
                 args.Handled = true;
             }
-            
         }
         catch (Exception e)
         {
@@ -98,7 +94,7 @@ public static class Login
         }
     }
 
-    public static bool CheckWhiteAsync(string name, int code)
+    public static bool CheckWhite(string name, int code)
     {
         var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
         var number = Config.config.GroupNumber;
@@ -156,7 +152,7 @@ public static class Login
                     plr.SilentKickInProgress = true;
                     plr.Disconnect($"[Cai白名单]在群{number}内发送'登录',\n" +
                                    $"以批准此设备登录");
-                    
+
                     return false;
                 }
             }
@@ -229,12 +225,7 @@ public static class Login
 
         if (player.Name != TSServerPlayer.AccountName)
         {
-            account = new UserAccount
-            {
-                Name = player.Name,
-                Group = TShock.Config.Settings.DefaultRegistrationGroupName,
-                UUID = player.UUID
-            };
+            account = new UserAccount { Name = player.Name, Group = TShock.Config.Settings.DefaultRegistrationGroupName, UUID = player.UUID };
             try
             {
                 account.CreateBCryptHash(password);
@@ -299,7 +290,7 @@ public static class Login
         }
 
         player.SilentKickInProgress = true;
-        player.Disconnect($"[账号管理]该用户名已被占用.\n请更换人物名");
+        player.Disconnect("[账号管理]该用户名已被占用.\n请更换人物名");
         return true;
     }
 }

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\..\template.targets" />
+    <Import Project="..\..\template.targets"/>
 
     <ItemGroup>
         <None Remove="SixLabors.ImageSharp.dll"/>
@@ -15,9 +15,9 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
-      <ProjectReference Include="..\Economics.Skill\Economics.Skill.csproj" />
-      <ProjectReference Include="..\EconomicsAPI\EconomicsAPI.csproj" />
+        <ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj"/>
+        <ProjectReference Include="..\Economics.Skill\Economics.Skill.csproj"/>
+        <ProjectReference Include="..\EconomicsAPI\EconomicsAPI.csproj"/>
     </ItemGroup>
 
 </Project>

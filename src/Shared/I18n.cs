@@ -1,5 +1,4 @@
 ﻿global using static Localizer.I18n;
-
 using GetText;
 using System.Globalization;
 using System.Reflection;
