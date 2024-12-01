@@ -11,7 +11,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.192.0",
+    "Version": "0.0.193.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
     "AssemblyName": "Chireiden.TShock.Omni",
@@ -497,7 +497,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2024.11.9.1",
+    "Version": "2024.12.1.1",
     "Author": "Cai,羽学,西江",
     "Description": "CaiBot机器人的适配插件",
     "AssemblyName": "CaiBot",
@@ -611,7 +611,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.192.0",
+    "Version": "0.0.193.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock - the miscellaneous part",
     "AssemblyName": "Chireiden.TShock.Omni.Misc",
