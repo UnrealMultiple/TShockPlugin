@@ -45,7 +45,7 @@ public class WebSocketReceive
                 try
                 {
                     ClientWebSocket = new();
-                    ClientWebSocket.ConnectAsync(new Uri($"ws://{Host}:{Port}/momo?name={Plugin.Config.SocketConfig.ServerName}"), CancellationToken.None).Wait();
+                    ClientWebSocket.ConnectAsync(new Uri($"ws://{Host}:{Port}/"), CancellationToken.None).Wait();
                     OnConnect?.Invoke();
                     while (true)
                     {
@@ -68,7 +68,7 @@ public class WebSocketReceive
                 catch
                 {
                     ClientWebSocket.Dispose();
-                    TShock.Log.ConsoleError($"[Lagrange.XocMat.Adapter]({count}) 未连接至MorMor机器人，正在进行连接..");
+                    TShock.Log.ConsoleError($"[Lagrange.XocMat.Adapter]({count}) 未连接至XocMat机器人，正在进行连接..");
 
                 }
                 count++;
