@@ -9,17 +9,14 @@ namespace CaiBot;
 
 public class CaiBotPlayer : TSPlayer
 {
-    private readonly List<string> _commandOutput = new();
+    private readonly List<string> _commandOutput = new ();
 
     public CaiBotPlayer()
         : base("CaiBot")
     {
         this.Group = new SuperAdminGroup();
         this.AwaitingResponse = new Dictionary<string, Action<object>>();
-        this.Account = new UserAccount
-        {
-            Name = "CaiBot"
-        };
+        this.Account = new UserAccount { Name = "CaiBot" };
     }
 
     public override void SendMessage(string msg, Color color)
@@ -35,7 +32,7 @@ public class CaiBotPlayer : TSPlayer
             result1 += item.Text;
         }
 
-        Regex regex = new(@"\[i(tem)?(?:\/s(?<Stack>\d{1,4}))?(?:\/p(?<Prefix>\d{1,3}))?:(?<NetID>-?\d{1,4})\]");
+        Regex regex = new (@"\[i(tem)?(?:\/s(?<Stack>\d{1,4}))?(?:\/p(?<Prefix>\d{1,3}))?:(?<NetID>-?\d{1,4})\]");
 
         var result = regex.Replace(result1, m =>
         {
@@ -53,11 +50,9 @@ public class CaiBotPlayer : TSPlayer
                 {
                     return $"[{Lang.GetItemName(int.Parse(netId))}]";
                 }
-                else
-                {
-                    return
-                        $"[{Lang.prefix[int.Parse(prefix)]} {Lang.GetItemName(int.Parse(netId))}]"; //return $"[{Terraria.Lang.prefix[int.Parse(netID)]}]";
-                }
+
+                return
+                    $"[{Lang.prefix[int.Parse(prefix)]} {Lang.GetItemName(int.Parse(netId))}]"; //return $"[{Terraria.Lang.prefix[int.Parse(netID)]}]";
             }
 
             return $"[{Lang.prefix[int.Parse(prefix)]} {Lang.GetItemName(int.Parse(netId))} ({stack})]";
