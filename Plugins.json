@@ -147,7 +147,7 @@
   },
   {
     "Name": "机器人适配插件",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": "适配插件",
     "AssemblyName": "Lagrange.XocMat.Adapter",
