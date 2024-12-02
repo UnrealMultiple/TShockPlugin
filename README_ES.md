@@ -89,7 +89,7 @@
 | [CaiLib](src/CaiLib/README.md) | No | Biblioteca de precarga de Cai | None |
 | [CaiRewardChest](src/CaiRewardChest/README_EN.md) | No | Convierte cofres generados naturalmente en cofres de recompensa que todos pueden reclamar una vez | None |
 | [CGive](src/CGive/README_EN.md) | No | Comandos fuera de línea | None |
-| [Challenger](src/Challenger/README.md) | No | Modo Challenger | None |
+| [Challenger](src/Challenger/README.md) | Si | Modo Challenger | None |
 | [Chameleon](src/Chameleon/README_EN.md) | No | Inicia sesión antes de entrar al servidor | None |
 | [ChattyBridge](src/ChattyBridge/README.md) | No | Usado para el chat entre servidores | None |
 | [ChestRestore](src/ChestRestore/README_EN.md) | No | Objetos infinitos en servidores de recursos | None |
