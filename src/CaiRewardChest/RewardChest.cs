@@ -10,6 +10,7 @@ namespace CaiRewardChest;
 public class RewardChest : RecordBase<RewardChest>
 {
     [Column]
+    [PrimaryKey]
     public int ChestId;
 
     [NotColumn]
@@ -26,7 +27,7 @@ public class RewardChest : RecordBase<RewardChest>
     {
         get => string.Join(",", this._HasOpenPlayer);
 
-        set => this._HasOpenPlayer = value.Split(',').Select(int.Parse).ToList();
+        set => this._HasOpenPlayer = value?.Split(',').Select(int.Parse).ToList() ?? new();
     }
 
     [NotColumn]
