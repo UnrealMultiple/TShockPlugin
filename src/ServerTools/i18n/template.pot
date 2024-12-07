@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ServerTools\n"
-"POT-Creation-Date: 2024-11-26 09:16:05+0000\n"
-"PO-Revision-Date: 2024-11-26 09:16:05+0000\n"
+"POT-Creation-Date: 2024-12-07 07:17:22+0000\n"
+"PO-Revision-Date: 2024-12-07 07:17:22+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:225
+#: ../../Plugin.cs:216
 msgid " 被系统保护"
 msgstr ""
 
@@ -19,16 +19,16 @@ msgstr ""
 msgid "[{0}] => 死亡{1}次"
 msgstr ""
 
-#: ../../Plugin.cs:196
+#: ../../Plugin.cs:187
 #, csharp-format
 msgid "[ServerTools] 玩家 [{0}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{1}]"
 msgstr ""
 
-#: ../../Plugin.cs:276
+#: ../../Plugin.cs:267
 msgid "{0} 最后登录使用的IP为 {1}."
 msgstr ""
 
-#: ../../Plugin.cs:265
+#: ../../Plugin.cs:256
 msgid "{0} 最后的登录时间为 {1} {2} UTC{3}."
 msgstr ""
 
@@ -37,15 +37,15 @@ msgstr ""
 msgid "{0} 在线时长: {1}分钟"
 msgstr ""
 
-#: ../../Plugin.cs:275
+#: ../../Plugin.cs:266
 msgid "{0} 权限组为 {1}."
 msgstr ""
 
-#: ../../Plugin.cs:277
+#: ../../Plugin.cs:268
 msgid "{0} 注册时间为 {1} {2} UTC{3}."
 msgstr ""
 
-#: ../../Plugin.cs:274
+#: ../../Plugin.cs:265
 msgid "{0} 账户ID为 {1}."
 msgstr ""
 
@@ -53,11 +53,11 @@ msgstr ""
 msgid "{0}清除了{1}范围内{2}个射弹!"
 msgstr ""
 
-#: ../../Plugin.cs:432
+#: ../../Plugin.cs:417
 msgid "ServerTools.json配置读取错误:{0}"
 msgstr ""
 
-#: ../../Plugin.cs:558
+#: ../../Plugin.cs:543
 msgid "仅允许软核进入!"
 msgstr ""
 
@@ -65,21 +65,21 @@ msgstr ""
 msgid "你不能过于频繁的使用此指令!"
 msgstr ""
 
-#: ../../Plugin.cs:394
+#: ../../Plugin.cs:379
 #, csharp-format
 msgid "你因召唤物数量超过{0}被踢出"
 msgstr ""
 
-#: ../../Plugin.cs:390
+#: ../../Plugin.cs:375
 #, csharp-format
 msgid "你因哨兵数量超过{0}被踢出"
 msgstr ""
 
-#: ../../Plugin.cs:401
+#: ../../Plugin.cs:386
 msgid "你因多鱼线被石化3秒钟!"
 msgstr ""
 
-#: ../../Plugin.cs:342
+#: ../../Plugin.cs:327
 #, csharp-format
 msgid "你将在{0}秒后被踢出!"
 msgstr ""
@@ -124,12 +124,12 @@ msgstr ""
 msgid "没有死亡数据!"
 msgstr ""
 
-#: ../../Plugin.cs:282
+#: ../../Plugin.cs:273
 msgid "用户 {0} 不存在."
 msgstr ""
 
-#: ../../Plugin.cs:518
-#: ../../Plugin.cs:529
+#: ../../Plugin.cs:503
+#: ../../Plugin.cs:514
 msgid "禁止双箱!"
 msgstr ""
 
@@ -139,13 +139,13 @@ msgstr ""
 msgid "花苞"
 msgstr ""
 
-#: ../../Plugin.cs:249
-#: ../../Plugin.cs:287
+#: ../../Plugin.cs:240
+#: ../../Plugin.cs:278
 msgid "语法错误，正确语法: {0}accountinfo <username>."
 msgstr ""
 
-#: ../../Plugin.cs:338
-#: ../../Plugin.cs:346
+#: ../../Plugin.cs:323
+#: ../../Plugin.cs:331
 msgid "请在单人模式中结束死亡状态重新进入服务器!"
 msgstr ""
 
@@ -157,7 +157,7 @@ msgstr ""
 msgid "输入 {0}死亡排行 {{0}} 查看更多"
 msgstr ""
 
-#: ../../Plugin.cs:576
+#: ../../Plugin.cs:561
 #, csharp-format
 msgid ""
 "退出服务器时处于死亡状态！\n"
