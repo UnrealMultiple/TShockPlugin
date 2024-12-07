@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Rests;
 using SixLabors.ImageSharp.Formats.Png;
-using System.IO.Compression;
 using System.Net.WebSockets;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -28,45 +27,6 @@ public static class MessageHandle
         var messageBytes = Encoding.UTF8.GetBytes(message);
         await Plugin.WebSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true,
             CancellationToken.None);
-    }
-
-    private static string FileToBase64String(string path)
-    {
-        FileStream fsForRead = new (path, FileMode.Open); //文件路径
-        var base64Str = "";
-        try
-        {
-            fsForRead.Seek(0, SeekOrigin.Begin);
-            var bs = new byte[fsForRead.Length];
-            var log = Convert.ToInt32(fsForRead.Length);
-            _ = fsForRead.Read(bs, 0, log);
-            base64Str = Convert.ToBase64String(bs);
-            return base64Str;
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex.Message);
-            Console.ReadLine();
-            return base64Str;
-        }
-        finally
-        {
-            fsForRead.Close();
-        }
-    }
-
-    public static string CompressBase64(string base64String)
-    {
-        var base64Bytes = Encoding.UTF8.GetBytes(base64String);
-        using (var outputStream = new MemoryStream())
-        {
-            using (var gzipStream = new GZipStream(outputStream, CompressionMode.Compress))
-            {
-                gzipStream.Write(base64Bytes, 0, base64Bytes.Length);
-            }
-
-            return Convert.ToBase64String(outputStream.ToArray());
-        }
     }
 
     public static async Task HandleMessageAsync(string receivedData)
@@ -170,14 +130,7 @@ public static class MessageHandle
                     }
                     else
                     {
-                        if (WorldGen.crimson)
-                        {
-                            onlineProcessList.Add("克脑");
-                        }
-                        else
-                        {
-                            onlineProcessList.Add("世吞");
-                        }
+                        onlineProcessList.Add(WorldGen.crimson ? "克脑" : "世吞");
                     }
                 }
 
@@ -193,14 +146,7 @@ public static class MessageHandle
 
                 if (!NPC.downedMechBoss2 || !NPC.downedMechBoss1 || !NPC.downedMechBoss3)
                 {
-                    if (Main.zenithWorld)
-                    {
-                        onlineProcessList.Add("美杜莎");
-                    }
-                    else
-                    {
-                        onlineProcessList.Add("新三王");
-                    }
+                    onlineProcessList.Add(Main.zenithWorld ? "美杜莎" : "新三王");
                 }
 
                 if (!NPC.downedPlantBoss)
@@ -228,8 +174,7 @@ public static class MessageHandle
                     onlineProcessList.Add("月总");
                 }
 
-                string onlineProcess;
-                onlineProcess = !onlineProcessList.Any() ? "已毕业" : onlineProcessList.ElementAt(0) + "前";
+                var onlineProcess = !onlineProcessList.Any() ? "已毕业" : onlineProcessList.ElementAt(0) + "前";
 
                 #endregion
 
@@ -279,10 +224,10 @@ public static class MessageHandle
                 var bitmap = MapGenerator.Create();
                 using (MemoryStream ms = new ())
                 {
-                    bitmap.Save(ms, new PngEncoder());
+                    await bitmap.SaveAsync(ms, new PngEncoder());
                     var imageBytes = ms.ToArray();
                     var base64 = Convert.ToBase64String(imageBytes);
-                    result = new RestObject { { "type", "mappngV2" }, { "result", CompressBase64(base64) }, { "group", (long) jsonObject["group"]! } };
+                    result = new RestObject { { "type", "mappngV2" }, { "result",Utils.CompressBase64(base64) }, { "group", (long) jsonObject["group"]! } };
                 }
 
                 await SendDateAsync(JsonConvert.SerializeObject(result));
@@ -581,14 +526,12 @@ public static class MessageHandle
 
                 break;
             case "mapfile":
-                CreateMapFile.Instance.Init();
-                var info = CreateMapFile.Instance.Start();
-                var mapfileBase64 = Convert.ToBase64String(info.Buffer);
-                result = new RestObject { { "type", "mapfileV2" }, { "base64", CompressBase64(mapfileBase64) }, { "name", info.Name }, { "group", (long) jsonObject["group"]! } };
+                var mapfile = MapFileGenerator.Create();
+                result = new RestObject { { "type", "mapfileV2" }, { "base64", mapfile.Item1 }, { "name", mapfile.Item2  }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "worldfile":
-                result = new RestObject { { "type", "worldfileV2" }, { "name", Main.worldPathName }, { "base64", CompressBase64(FileToBase64String(Main.worldPathName)) }, { "group", (long) jsonObject["group"]! } };
+                result = new RestObject { { "type", "worldfileV2" }, { "name", Main.worldPathName }, { "base64", Utils.CompressBase64(Utils.FileToBase64String(Main.worldPathName)) }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "pluginlist":
@@ -603,9 +546,9 @@ public static class MessageHandle
                 var chatText = (string) jsonObject["chat_text"]!;
                 var groupNumber = (long) jsonObject["group_id"]!;
                 var senderId = (long) jsonObject["sender_id"]!;
-                if (Config.config.CustomGroupName.ContainsKey(groupNumber))
+                if (Config.config.CustomGroupName.TryGetValue(groupNumber, out var value))
                 {
-                    groupName = Config.config.CustomGroupName[groupNumber];
+                    groupName = value;
                 }
 
                 TShock.Utils.Broadcast(string.Format(Config.config.GroupChatFormat, groupName, nickname, chatText, groupNumber, senderId), Color.White);

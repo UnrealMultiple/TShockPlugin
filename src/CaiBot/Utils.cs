@@ -1,9 +1,50 @@
 ﻿using System.Data;
+using System.IO.Compression;
+using System.Text;
 
 namespace CaiBot;
 
 public static class Utils
 {
+    
+    public static string FileToBase64String(string path)
+    {
+        FileStream fsForRead = new (path, FileMode.Open); //文件路径
+        var base64Str = "";
+        try
+        {
+            fsForRead.Seek(0, SeekOrigin.Begin);
+            var bs = new byte[fsForRead.Length];
+            var log = Convert.ToInt32(fsForRead.Length);
+            _ = fsForRead.Read(bs, 0, log);
+            base64Str = Convert.ToBase64String(bs);
+            return base64Str;
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.Message);
+            Console.ReadLine();
+            return base64Str;
+        }
+        finally
+        {
+            fsForRead.Close();
+        }
+    }
+
+    public static string CompressBase64(string base64String)
+    {
+        var base64Bytes = Encoding.UTF8.GetBytes(base64String);
+        using (var outputStream = new MemoryStream())
+        {
+            using (var gzipStream = new GZipStream(outputStream, CompressionMode.Compress))
+            {
+                gzipStream.Write(base64Bytes, 0, base64Bytes.Length);
+            }
+
+            return Convert.ToBase64String(outputStream.ToArray());
+        }
+    }
     public static List<int> GetActiveBuffs(IDbConnection connection, int userId, string name)
     {
         try
@@ -27,6 +68,7 @@ public static class Utils
         }
         catch
         {
+            // ignored
         }
 
         try
@@ -50,6 +92,7 @@ public static class Utils
         }
         catch
         {
+            // ignored
         }
 
         return new List<int>();

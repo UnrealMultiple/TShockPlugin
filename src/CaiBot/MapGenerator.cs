@@ -15,7 +15,7 @@ public static class MapGenerator
     {
         Image<Rgba32> image = new (Main.maxTilesX, Main.maxTilesY);
         MapHelper.Initialize();
-        Main.Map = new Terraria.Map.WorldMap(Main.maxTilesX, Main.maxTilesY);
+        Main.Map = new WorldMap(Main.maxTilesX, Main.maxTilesY);
         for (var x = 0; x < Main.maxTilesX; x++)
         {
             for (var y = 0; y < Main.maxTilesY; y++)
@@ -30,216 +30,194 @@ public static class MapGenerator
     }
 }
 
-internal class CreateMapFile
+public static class MapFileGenerator
 {
-    public static readonly CreateMapFile Instance = new ();
-
-    public bool Status { get; private set; }
-
-    //private WorldMap WorldMap { get; set; }
-
-
-    public void Init()
+    public static (string, string) Create()
     {
-        MapHelper.Initialize();
-        Main.MapFileMetadata = FileMetadata.FromCurrentSettings(FileType.Map);
-    }
-
-    public MapInfo Start()
-    {
-        this.Status = true;
-        var worldMap = new WorldMap(Main.tile.Width, Main.tile.Height);
-        Main.Map = new Terraria.Map.WorldMap(Main.tile.Width, Main.tile.Height);
-        for (var x = 0; x < Main.maxTilesX; x++)
-        {
-            for (var y = 0; y < Main.maxTilesY; y++)
+            MapHelper.Initialize();
+            Main.MapFileMetadata = FileMetadata.FromCurrentSettings(FileType.Map);
+            Main.Map = new WorldMap(Main.maxTilesX, Main.maxTilesY) { _tiles = new MapTile[Main.maxTilesX, Main.maxTilesY] };
+            for (var x = 0; x < Main.maxTilesX; x++)
             {
-                var tile = MapHelper.CreateMapTile(x, y, byte.MaxValue);
-                worldMap.SetTile(x, y, ref tile);
-            }
-        }
-
-        var res = this.InternalSaveMap(worldMap);
-        this.Status = false;
-        return res;
-    }
-
-    public MapInfo InternalSaveMap(WorldMap worldMap)
-    {
-        var text = !Main.ActiveWorldFileData.UseGuidAsMapName
-            ? Main.worldID + ".map"
-            : Main.ActiveWorldFileData.UniqueId + ".map";
-        using (MemoryStream memoryStream = new (4000))
-        {
-            using BinaryWriter binaryWriter = new (memoryStream);
-            using DeflateStream deflateStream = new (memoryStream, CompressionMode.Compress);
-            var num = 0;
-            var array = new byte[16384];
-            binaryWriter.Write(279);
-            Main.MapFileMetadata.IncrementAndWrite(binaryWriter);
-            binaryWriter.Write(Main.worldName);
-            binaryWriter.Write(Main.worldID);
-            binaryWriter.Write(Main.maxTilesY);
-            binaryWriter.Write(Main.maxTilesX);
-            binaryWriter.Write((short) TileID.Count);
-            binaryWriter.Write((short) WallID.Count);
-            binaryWriter.Write((short) 4);
-            binaryWriter.Write((short) 256);
-            binaryWriter.Write((short) 256);
-            binaryWriter.Write((short) 256);
-            byte b = 1;
-            byte b2 = 0;
-            int i;
-            for (i = 0; i < TileID.Count; i++)
-            {
-                if (MapHelper.tileOptionCounts[i] != 1)
+                for (var y = 0; y < Main.maxTilesY; y++)
                 {
-                    b2 = (byte) (b2 | b);
+                    var tile = MapHelper.CreateMapTile(x, y, byte.MaxValue);
+                    Main.Map._tiles[x, y] = tile;
+                }
+            }
+            using var output = new MemoryStream(4000);
+            using var writer = new BinaryWriter(output);
+            using var deflateStream = new DeflateStream(output, CompressionLevel.SmallestSize);
+            var count = 0;
+            var buffer = new byte[16384];
+            writer.Write(279);
+            Main.MapFileMetadata.IncrementAndWrite(writer);
+            writer.Write(Main.worldName);
+            writer.Write(Main.worldID);
+            writer.Write(Main.maxTilesY);
+            writer.Write(Main.maxTilesX);
+            writer.Write((short) TileID.Count);
+            writer.Write((short) WallID.Count);
+            writer.Write((short) 4);
+            writer.Write((short) 256);
+            writer.Write((short) 256);
+            writer.Write((short) 256);
+            byte num1 = 1;
+            byte num2 = 0;
+            for (var index = 0; index < TileID.Count; ++index)
+            {
+                if (MapHelper.tileOptionCounts[index] != 1)
+                {
+                    num2 |= num1;
                 }
 
-                if (b == 128)
+                if (num1 == 128)
                 {
-                    binaryWriter.Write(b2);
-                    b2 = 0;
-                    b = 1;
+                    writer.Write(num2);
+                    num2 = 0;
+                    num1 = 1;
                 }
                 else
                 {
-                    b = (byte) (b << 1);
+                    num1 <<= 1;
                 }
             }
 
-            if (b != 1)
+            if (num1 != 1)
             {
-                binaryWriter.Write(b2);
+                writer.Write(num2);
             }
 
-            i = 0;
-            b = 1;
-            b2 = 0;
-            for (; i < WallID.Count; i++)
+            var index1 = 0;
+            byte num3 = 1;
+            byte num4 = 0;
+            for (; index1 < WallID.Count; ++index1)
             {
-                if (MapHelper.wallOptionCounts[i] != 1)
+                if (MapHelper.wallOptionCounts[index1] != 1)
                 {
-                    b2 = (byte) (b2 | b);
+                    num4 |= num3;
                 }
 
-                if (b == 128)
+                if (num3 == 128)
                 {
-                    binaryWriter.Write(b2);
-                    b2 = 0;
-                    b = 1;
+                    writer.Write(num4);
+                    num4 = 0;
+                    num3 = 1;
                 }
                 else
                 {
-                    b = (byte) (b << 1);
+                    num3 <<= 1;
                 }
             }
 
-            if (b != 1)
+            if (num3 != 1)
             {
-                binaryWriter.Write(b2);
+                writer.Write(num4);
             }
 
-            for (i = 0; i < TileID.Count; i++)
+            for (var index2 = 0; index2 < TileID.Count; ++index2)
             {
-                if (MapHelper.tileOptionCounts[i] != 1)
+                if (MapHelper.tileOptionCounts[index2] != 1)
                 {
-                    binaryWriter.Write((byte) MapHelper.tileOptionCounts[i]);
+                    writer.Write((byte) MapHelper.tileOptionCounts[index2]);
                 }
             }
 
-            for (i = 0; i < WallID.Count; i++)
+            for (var index3 = 0; index3 < WallID.Count; ++index3)
             {
-                if (MapHelper.wallOptionCounts[i] != 1)
+                if (MapHelper.wallOptionCounts[index3] != 1)
                 {
-                    binaryWriter.Write((byte) MapHelper.wallOptionCounts[i]);
+                    writer.Write((byte) MapHelper.wallOptionCounts[index3]);
                 }
             }
 
-            binaryWriter.Flush();
-            for (var j = 0; j < Main.maxTilesY; j++)
+            writer.Flush();
+            for (var y = 0; y < Main.maxTilesY; ++y)
             {
                 if (!MapHelper.noStatusText)
                 {
-                    var num2 = j / (float) Main.maxTilesY;
-                    //Main.statusText = Lang.gen[66].Value + " " + (int)(num2 * 100f + 1f) + "%";
+                    var num5 = y / (float) Main.maxTilesY;
+                    Main.statusText = Lang.gen[66].Value + " " + (int) ((num5 * 100.0) + 1.0) + "%";
                 }
 
-                int num3;
-                for (num3 = 0; num3 < Main.maxTilesX; num3++)
+                int num6;
+                for (var x1 = 0; x1 < Main.maxTilesX; x1 = num6 + 1)
                 {
-                    var mapTile = worldMap[num3, j];
-                    byte b4;
-                    byte b3;
-                    var b5 = b4 = b3 = 0;
-                    int num4;
-                    var flag = true;
+                    var mapTile = Main.Map._tiles[x1, y];
+                    int num7;
+                    var num8 = (byte) (num7 = 0);
+                    var num9 = (byte) num7;
+                    var num10 = (byte) num7;
+                    var flag1 = true;
                     var flag2 = true;
-                    var num5 = 0;
-                    var num6 = 0;
-                    byte b6 = 0;
-                    var num7 = 0;
-                    ushort num8;
+                    var num11 = 0;
+                    var num12 = 0;
+                    byte num13 = 0;
+                    int num14;
+                    ushort num15;
+                    int num16;
                     if (mapTile.Light <= 18)
                     {
                         flag2 = false;
-                        flag = false;
-                        num7 = 0;
-                        num8 = 0;
-                        num4 = 0;
-                        var num9 = num3 + 1;
-                        var num10 = Main.maxTilesX - num3 - 1;
-                        while (num10 > 0 && worldMap[num9, j].Light <= 18)
+                        flag1 = false;
+                        num14 = 0;
+                        num15 = 0;
+                        num16 = 0;
+                        var x2 = x1 + 1;
+                        for (var index4 = Main.maxTilesX - x1 - 1; index4 > 0 && Main.Map._tiles[x2, y].Light <= 18; ++x2)
                         {
-                            num4++;
-                            num10--;
-                            num9++;
+                            ++num16;
+                            --index4;
                         }
                     }
                     else
                     {
-                        b6 = mapTile.Color;
-                        num8 = mapTile.Type;
-                        if (num8 < MapHelper.wallPosition)
+                        num13 = mapTile.Color;
+                        num15 = mapTile.Type;
+                        if (num15 < MapHelper.wallPosition)
                         {
-                            num7 = 1;
-                            num8 = (ushort) (num8 - MapHelper.tilePosition);
+                            num14 = 1;
+                            num15 -= MapHelper.tilePosition;
                         }
-                        else if (num8 < MapHelper.liquidPosition)
+                        else if (num15 < MapHelper.liquidPosition)
                         {
-                            num7 = 2;
-                            num8 = (ushort) (num8 - MapHelper.wallPosition);
+                            num14 = 2;
+                            num15 -= MapHelper.wallPosition;
                         }
-                        else if (num8 < MapHelper.skyPosition)
+                        else if (num15 < MapHelper.skyPosition)
                         {
-                            var num11 = num8 - MapHelper.liquidPosition;
-                            if (num11 == 3)
+                            var num17 = num15 - MapHelper.liquidPosition;
+                            if (num17 == 3)
                             {
-                                b4 = (byte) (b4 | 0x40u);
-                                num11 = 0;
+                                num9 |= 64;
+                                num17 = 0;
                             }
 
-                            num7 = 3 + num11;
-                            flag = false;
+                            num14 = 3 + num17;
+                            flag1 = false;
                         }
-                        else if (num8 < MapHelper.dirtPosition)
+                        else if (num15 < MapHelper.dirtPosition)
                         {
-                            num7 = 6;
+                            num14 = 6;
                             flag2 = false;
-                            flag = false;
+                            flag1 = false;
                         }
-                        else if (num8 < MapHelper.hellPosition)
+                        else if (num15 < MapHelper.hellPosition)
                         {
-                            num7 = 7;
-                            num8 = num8 >= MapHelper.rockPosition
-                                ? (ushort) (num8 - MapHelper.rockPosition)
-                                : (ushort) (num8 - MapHelper.dirtPosition);
+                            num14 = 7;
+                            if (num15 < MapHelper.rockPosition)
+                            {
+                                num15 -= MapHelper.dirtPosition;
+                            }
+                            else
+                            {
+                                num15 -= MapHelper.rockPosition;
+                            }
                         }
                         else
                         {
-                            num7 = 6;
-                            flag = false;
+                            num14 = 6;
+                            flag1 = false;
                         }
 
                         if (mapTile.Light == byte.MaxValue)
@@ -249,175 +227,147 @@ internal class CreateMapFile
 
                         if (flag2)
                         {
-                            num4 = 0;
-                            var num9 = num3 + 1;
-                            var num10 = Main.maxTilesX - num3 - 1;
-                            num5 = num9;
-                            while (num10 > 0)
+                            num16 = 0;
+                            var x3 = x1 + 1;
+                            var num18 = Main.maxTilesX - x1 - 1;
+                            num11 = x3;
+                            while (num18 > 0)
                             {
-                                var other = worldMap[num9, j];
+                                var other = Main.Map._tiles[x3, y];
                                 if (mapTile.EqualsWithoutLight(ref other))
                                 {
-                                    num10--;
-                                    num4++;
-                                    num9++;
-                                    continue;
+                                    --num18;
+                                    ++num16;
+                                    ++x3;
                                 }
-
-                                num6 = num9;
-                                break;
+                                else
+                                {
+                                    num12 = x3;
+                                    break;
+                                }
                             }
                         }
                         else
                         {
-                            num4 = 0;
-                            var num9 = num3 + 1;
-                            var num10 = Main.maxTilesX - num3 - 1;
-                            while (num10 > 0)
+                            num16 = 0;
+                            var x4 = x1 + 1;
+                            var num19 = Main.maxTilesX - x1 - 1;
+                            while (num19 > 0)
                             {
-                                var other2 = worldMap[num9, j];
-                                if (!mapTile.Equals(ref other2))
+                                var other = Main.Map._tiles[x4, y];
+                                if (mapTile.Equals(ref other))
+                                {
+                                    --num19;
+                                    ++num16;
+                                    ++x4;
+                                }
+                                else
                                 {
                                     break;
                                 }
-
-                                num10--;
-                                num4++;
-                                num9++;
                             }
                         }
                     }
 
-                    if (b6 > 0)
+                    if (num13 > 0)
                     {
-                        b4 = (byte) (b4 | (byte) (b6 << 1));
+                        num9 |= (byte) ((uint) num13 << 1);
                     }
 
-                    if (b3 != 0)
+                    if (num8 != 0)
                     {
-                        b4 = (byte) (b4 | 1u);
+                        num9 |= 1;
                     }
 
-                    if (b4 != 0)
+                    if (num9 != 0)
                     {
-                        b5 = (byte) (b5 | 1u);
+                        num10 |= 1;
                     }
 
-                    b5 = (byte) (b5 | (byte) (num7 << 1));
-                    if (flag && num8 > 255)
+                    var num20 = (byte) (num10 | (uint) (byte) (num14 << 1));
+                    if (flag1 && num15 > byte.MaxValue)
                     {
-                        b5 = (byte) (b5 | 0x10u);
+                        num20 |= 16;
                     }
 
                     if (flag2)
                     {
-                        b5 = (byte) (b5 | 0x20u);
+                        num20 |= 32;
                     }
 
-                    if (num4 > 0)
+                    if (num16 > 0)
                     {
-                        b5 = num4 <= 255 ? (byte) (b5 | 0x40u) : (byte) (b5 | 0x80u);
-                    }
-
-                    array[num] = b5;
-                    num++;
-                    if (b4 != 0)
-                    {
-                        array[num] = b4;
-                        num++;
-                    }
-
-                    if (b3 != 0)
-                    {
-                        array[num] = b3;
-                        num++;
-                    }
-
-                    if (flag)
-                    {
-                        array[num] = (byte) num8;
-                        num++;
-                        if (num8 > 255)
+                        if (num16 > byte.MaxValue)
                         {
-                            array[num] = (byte) (num8 >> 8);
-                            num++;
+                            num20 |= 128;
+                        }
+                        else
+                        {
+                            num20 |= 64;
+                        }
+                    }
+
+                    buffer[count] = num20;
+                    ++count;
+                    if (num9 != 0)
+                    {
+                        buffer[count] = num9;
+                        ++count;
+                    }
+
+                    if (num8 != 0)
+                    {
+                        buffer[count] = num8;
+                        ++count;
+                    }
+
+                    if (flag1)
+                    {
+                        buffer[count] = (byte) num15;
+                        ++count;
+                        if (num15 > byte.MaxValue)
+                        {
+                            buffer[count] = (byte) ((uint) num15 >> 8);
+                            ++count;
                         }
                     }
 
                     if (flag2)
                     {
-                        array[num] = mapTile.Light;
-                        num++;
+                        buffer[count] = mapTile.Light;
+                        ++count;
                     }
 
-                    if (num4 > 0)
+                    if (num16 > 0)
                     {
-                        array[num] = (byte) num4;
-                        num++;
-                        if (num4 > 255)
+                        buffer[count] = (byte) num16;
+                        ++count;
+                        if (num16 > byte.MaxValue)
                         {
-                            array[num] = (byte) (num4 >> 8);
-                            num++;
+                            buffer[count] = (byte) (num16 >> 8);
+                            ++count;
                         }
                     }
 
-                    for (var k = num5; k < num6; k++)
+                    for (var x5 = num11; x5 < num12; ++x5)
                     {
-                        array[num] = worldMap[k, j].Light;
-                        num++;
+                        buffer[count] = Main.Map._tiles[x5, y].Light;
+                        ++count;
                     }
 
-                    num3 += num4;
-                    if (num >= 4096)
+                    num6 = x1 + num16;
+                    if (count >= 4096)
                     {
-                        deflateStream.Write(array, 0, num);
-                        num = 0;
+                        deflateStream.Write(buffer, 0, count);
+                        count = 0;
                     }
                 }
             }
 
-            if (num > 0)
+            if (count > 0)
             {
-                deflateStream.Write(array, 0, num);
+                deflateStream.Write(buffer, 0, count);
             }
-
-            deflateStream.Dispose();
-            return new MapInfo(text, memoryStream.ToArray());
-        }
-    }
-}
-
-public class MapInfo
-{
-    public MapInfo(string name, byte[] buffer)
-    {
-        this.Name = name;
-        this.Buffer = buffer;
-    }
-
-    public string Name { get; set; }
-
-    public byte[] Buffer { get; set; }
-}
-
-public class WorldMap
-{
-    private readonly MapTile[,] _tiles;
-    public readonly int BlackEdgeWidth = 40;
-    public readonly int MaxHeight;
-    public readonly int MaxWidth;
-
-    public WorldMap(int maxWidth, int maxHeight)
-    {
-        this.MaxWidth = maxWidth;
-        this.MaxHeight = maxHeight;
-        this._tiles = new MapTile[this.MaxWidth, this.MaxHeight];
-    }
-
-    public MapTile this[int x, int y] => this._tiles[x, y];
-
-    public void SetTile(int x, int y, ref MapTile tile)
-    {
-        this._tiles[x, y] = tile;
+            return (Utils.CompressBase64(Convert.ToBase64String(output.ToArray())), Path.GetFileName(!Main.ActiveWorldFileData.UseGuidAsMapName ? Main.worldID + ".map" : Main.ActiveWorldFileData.UniqueId + ".map"));
     }
 }

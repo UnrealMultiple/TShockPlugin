@@ -10,7 +10,7 @@ namespace CaiBot;
 
 public static class EconomicSupport
 {
-    private static bool IsOldCoinsSupport;
+    private static bool _isOldCoinsSupport;
 
     private static Func<object> _getPlayerSKillManagerFunc = null!;
 
@@ -22,7 +22,7 @@ public static class EconomicSupport
 
     public static void Init()
     {
-        var pluginContainer = ServerApi.Plugins.Where(x => x.Plugin.Name == "EconomicsAPI").FirstOrDefault();
+        var pluginContainer = ServerApi.Plugins.FirstOrDefault(x => x.Plugin.Name == "EconomicsAPI");
         if (pluginContainer is not null)
         {
             do
@@ -70,7 +70,7 @@ public static class EconomicSupport
                     iL.Emit(OpCodes.Ret);
                     _getUserCurrencyFunc = func.CreateDelegate<Func<string, long>>();
 
-                    IsOldCoinsSupport = true;
+                    _isOldCoinsSupport = true;
                     GetCoinsSupport = true;
                 }
                 else
@@ -80,14 +80,14 @@ public static class EconomicSupport
             } while (false);
         }
 
-        pluginContainer = ServerApi.Plugins.Where(x => x.Plugin.Name == "Economics.RPG").FirstOrDefault();
+        pluginContainer = ServerApi.Plugins.FirstOrDefault(x => x.Plugin.Name == "Economics.RPG");
         if (pluginContainer is not null)
         {
             do
             {
-                var economicsRPGType = pluginContainer.Plugin.GetType();
+                var economicsRpgType = pluginContainer.Plugin.GetType();
 
-                var playerLevelManagerProperty = economicsRPGType.GetProperty(nameof(RPG.PlayerLevelManager));
+                var playerLevelManagerProperty = economicsRpgType.GetProperty(nameof(RPG.PlayerLevelManager));
                 if (playerLevelManagerProperty is null)
                 {
                     break;
@@ -110,7 +110,7 @@ public static class EconomicSupport
             } while (false);
         }
 
-        pluginContainer = ServerApi.Plugins.Where(x => x.Plugin.Name == "Economics.Skill").FirstOrDefault();
+        pluginContainer = ServerApi.Plugins.FirstOrDefault(x => x.Plugin.Name == "Economics.Skill");
         if (pluginContainer is not null)
         {
             do
@@ -147,11 +147,10 @@ public static class EconomicSupport
     public static string GetCoins(string name)
     {
         ThrowIfNotSupported();
-        if (IsOldCoinsSupport)
+        if (_isOldCoinsSupport)
         {
             return $"{_getCurrencyNameFunc()}:{_getUserCurrencyFunc(name)}";
         }
-
         // 新方法是必要的，防止解析报错
         return GetNewCoins(name);
     }

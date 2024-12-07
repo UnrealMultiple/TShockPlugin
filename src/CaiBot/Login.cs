@@ -104,7 +104,6 @@ public static class Login
         }
 
         var plr = playerList[0];
-        //NetMessage.SendData(9, args.Who, -1, Terraria.Localization.NetworkText.FromLiteral($"[Cai白名单]正在校验白名单..."), 1);
         if (string.IsNullOrEmpty(name))
         {
             TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})版本可能过低...");
@@ -119,7 +118,6 @@ public static class Login
                 case 200:
                 {
                     TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})已通过白名单验证...");
-                    //NetMessage.SendData(9, args.Who, -1, Terraria.Localization.NetworkText.FromLiteral($"[Cai白名单]白名单校验成功!\n"), 1);
                     break;
                 }
                 case 404:
@@ -159,15 +157,14 @@ public static class Login
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})验证白名单时出现错误...");
-            TShock.Log.ConsoleInfo("[XSB适配插件]:\n" + ex);
+            TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})验证白名单时出现错误...\n" +
+                                   $"{ex}");
             plr.SilentKickInProgress = true;
             plr.Disconnect($"[Cai白名单]服务器发生错误无法处理该请求!请尝试重新加入游戏或者联系服务器群{number}管理员");
             return false;
         }
 
         return true;
-        //NetMessage.SendData(9, plr.Index, -1, NetworkText.FromLiteral("正在检查白名单..."), 1);
     }
 
     public static bool HandleLogin(TSPlayer player, string password)
@@ -232,16 +229,12 @@ public static class Login
             }
             catch (ArgumentOutOfRangeException)
             {
-                //Kick(player, "注册失败!\n密码位数不能少于" + TShock.Config.Settings.MinimumPasswordLength + "个字符.");
                 return true;
             }
 
             player.SendSuccessMessage("[CaiBot]账户{0}注册成功。", account.Name);
             TShock.UserAccounts.AddUserAccount(account);
             TShock.Log.ConsoleInfo("玩家{0}注册了新账户：{1}", player.Name, account.Name);
-
-            //player.RequiresPassword = false;
-            //player.SetData(WaitPwd4Reg, false);
             player.PlayerData = TShock.CharacterDB.GetPlayerData(player, account.ID);
 
             if (player.State == 1)
@@ -290,7 +283,7 @@ public static class Login
         }
 
         player.SilentKickInProgress = true;
-        player.Disconnect("[账号管理]该用户名已被占用.\n请更换人物名");
+        player.Disconnect("[CaiBot]此名字不可用!");
         return true;
     }
 }
