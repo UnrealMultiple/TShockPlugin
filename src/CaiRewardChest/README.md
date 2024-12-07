@@ -26,13 +26,14 @@
 
 ## 指令
 
-| 语法      |          权限           |         说明         |
-|---------|:---------------------:|:------------------:|
-| /初始化奖励箱 或 /rcinit |  CaiRewardChest.Init  | 将全图箱子设为奖励箱(仅刚开服适用) |
-| /添加奖励箱 或 /rcadd    |  CaiRewardChest.Add   |      添加一个奖励箱       |
-| /编辑奖励箱 或 /rcedit   |  CaiRewardChest.Edit  |      编辑一个奖励箱       |
+| 语法                          |          权限           |         说明         |
+|-----------------------------|:---------------------:|:------------------:|
+| /初始化奖励箱 或 /rcinit           |  CaiRewardChest.Init  | 将全图箱子设为奖励箱(仅刚开服适用) |
+| /添加奖励箱 或 /rcadd             |  CaiRewardChest.Add   |      添加一个奖励箱       |
+| /编辑奖励箱 或 /rcedit            |  CaiRewardChest.Edit  |      编辑一个奖励箱       |
 | /删除奖励箱 或 /rcdelete 或 /rcdel | CaiRewardChest.Delete |      删除一个奖励箱       |
-| /清空奖励箱 或 /rcclear  | CaiRewardChest.Clear  |      移除所有奖励箱       |
+| /清空奖励箱 或 /rcclear           | CaiRewardChest.Clear  |      移除所有奖励箱       |
+
 ## 配置
 
 ```json    

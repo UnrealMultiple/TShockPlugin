@@ -8,6 +8,8 @@ namespace CaiRewardChest;
 [ApiVersion(2, 1)]
 public class CaiRewardChest : TerrariaPlugin
 {
+    public static List<int> RewardChestId = new (); //用于防止快速堆叠爆SQL
+
     public CaiRewardChest(Main game)
         : base(game)
     {
@@ -19,9 +21,7 @@ public class CaiRewardChest : TerrariaPlugin
 
     public override string Name => "CaiRewardChest";
 
-    public override Version Version => new(2024, 12, 8, 1);
-
-    public static List<int> RewardChestId = new (); //用于防止快速堆叠爆SQL
+    public override Version Version => new (2024, 12, 8, 1);
 
 
     public override void Initialize()
@@ -43,10 +43,10 @@ public class CaiRewardChest : TerrariaPlugin
             GetDataHandlers.ChestOpen.UnRegister(OnChestOpen);
             Hooks.Chest.InvokeQuickStack -= ChestOnInvokeQuickStack;
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == InitChest ||
-                                                x.CommandDelegate == ClearChest ||
-                                                x.CommandDelegate == DeleteChest ||
-                                                x.CommandDelegate == AddChest ||
-                                                x.CommandDelegate == EditChest);
+                                                 x.CommandDelegate == ClearChest ||
+                                                 x.CommandDelegate == DeleteChest ||
+                                                 x.CommandDelegate == AddChest ||
+                                                 x.CommandDelegate == EditChest);
         }
 
         base.Dispose(disposing);
@@ -57,79 +57,76 @@ public class CaiRewardChest : TerrariaPlugin
     {
         return !RewardChestId.Contains(chestindex);
     }
-    
-        private static void OnChestOpen(object? sender, GetDataHandlers.ChestOpenEventArgs e)
+
+    private static void OnChestOpen(object? sender, GetDataHandlers.ChestOpenEventArgs e)
     {
-            if (e.Player.ContainsData("WaitChestSetting"))
+        if (e.Player.ContainsData("WaitChestSetting"))
+        {
+            var chest = RewardChest.GetChestByPos(e.X, e.Y);
+            if (e.Player.GetData<string>("WaitChestSetting") == "Add")
             {
-                var chest = RewardChest.GetChestByPos(e.X, e.Y);
-                if (e.Player.GetData<string>("WaitChestSetting") == "Add")
+                e.Player.RemoveData("WaitChestSetting");
+                if (chest != null)
                 {
-                    e.Player.RemoveData("WaitChestSetting");
-                    if (chest != null)
-                    {
-                        e.Player.SendWarningMessage(GetString("[i:48]这个箱子好像是奖励箱捏~"));
-                        e.Handled = true;
-                        return;
-                    }
-
-                    RewardChest.AddChest(Chest.FindChest(e.X, e.Y), e.X, e.Y);
-                    e.Player.SendSuccessMessage(GetString("[i:48]你添加了一个奖励箱~"));
-                    e.Handled = true;
-                    return;
-                }
-                
-                
-                if (e.Player.GetData<string>("WaitChestSetting") == "Del")
-                {
-                    e.Player.RemoveData("WaitChestSetting");
-                    if (chest == null)
-                    {
-                        e.Player.SendWarningMessage(GetString("[i:48]这个箱子好像不是奖励箱捏~"));
-                        e.Handled = true;
-                        return;
-                    }
-
-                    RewardChest.DelChest(chest.ChestId);
-                    e.Player.SendSuccessMessage(GetString("[i:48]你删除了这个奖励箱~"));
+                    e.Player.SendWarningMessage(GetString("[i:48]这个箱子好像是奖励箱捏~"));
                     e.Handled = true;
                     return;
                 }
 
-                
+                RewardChest.AddChest(Chest.FindChest(e.X, e.Y), e.X, e.Y);
+                e.Player.SendSuccessMessage(GetString("[i:48]你添加了一个奖励箱~"));
+                e.Handled = true;
+                return;
+            }
 
-                if (e.Player.GetData<string>("WaitChestSetting") == "Edit")
+
+            if (e.Player.GetData<string>("WaitChestSetting") == "Del")
+            {
+                e.Player.RemoveData("WaitChestSetting");
+                if (chest == null)
                 {
-                    e.Player.RemoveData("WaitChestSetting");
-                    if (chest != null)
-                    {
-                        return;
-                    }
-
                     e.Player.SendWarningMessage(GetString("[i:48]这个箱子好像不是奖励箱捏~"));
                     e.Handled = true;
                     return;
                 }
-            }
-            
-            if (!RewardChestId.Contains(Chest.FindChest(e.X, e.Y)))
-            {
-                return;
-            }
-            var chest2 = RewardChest.GetChestByPos(e.X, e.Y)!;
-            e.Handled = true;
 
-            if (chest2.HasOpenPlayer.Contains(e.Player.Account.ID))
-            {
-                e.Player.SendWarningMessage(
-                    GetString($"[i:{WorldGen.GetChestItemDrop(chest2.X, chest2.Y, Main.tile[chest2.X, chest2.Y].type)}]你已经领取过这个奖励箱啦!"));
+                RewardChest.DelChest(chest.ChestId);
+                e.Player.SendSuccessMessage(GetString("[i:48]你删除了这个奖励箱~"));
+                e.Handled = true;
                 return;
             }
 
-            Utils.GiveItem(chest2, e);
-        
 
-   
+            if (e.Player.GetData<string>("WaitChestSetting") == "Edit")
+            {
+                e.Player.RemoveData("WaitChestSetting");
+                if (chest != null)
+                {
+                    return;
+                }
+
+                e.Player.SendWarningMessage(GetString("[i:48]这个箱子好像不是奖励箱捏~"));
+                e.Handled = true;
+                return;
+            }
+        }
+
+        if (!RewardChestId.Contains(Chest.FindChest(e.X, e.Y)))
+        {
+            return;
+        }
+
+        var chest2 = RewardChest.GetChestByPos(e.X, e.Y)!;
+        e.Handled = true;
+
+        if (chest2.HasOpenPlayer.Contains(e.Player.Account.ID))
+        {
+            e.Player.SendWarningMessage(
+                GetString($"[i:{WorldGen.GetChestItemDrop(chest2.X, chest2.Y, Main.tile[chest2.X, chest2.Y].type)}]你已经领取过这个奖励箱啦!"));
+            return;
+        }
+
+        Utils.GiveItem(chest2, e);
     }
 
     private static void EditChest(CommandArgs args)
@@ -150,7 +147,7 @@ public class CaiRewardChest : TerrariaPlugin
         args.Player.SetData("WaitChestSetting", "Del");
     }
 
-    
+
     private static void ClearChest(CommandArgs args)
     {
         RewardChest.ClearDb();
@@ -163,13 +160,13 @@ public class CaiRewardChest : TerrariaPlugin
         var count = 0;
         foreach (var chest in Main.chest)
         {
-            if (chest != null && chest.item.Count(i=>i!=null && i.type != 0)>0)
+            if (chest != null && chest.item.Count(i => i != null && i.type != 0) > 0)
             {
                 RewardChest.AddChest(Chest.FindChest(chest.x, chest.y), chest.x, chest.y);
                 count++;
             }
         }
+
         args.Player.SendSuccessMessage(GetString($"[i:48]奖励箱初始化完成,共添加{count}个奖励箱~"));
     }
-
 }

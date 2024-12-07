@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\..\template.targets" />
+    <Import Project="..\..\template.targets"/>
 
     <ItemGroup>
-      <ProjectReference Include="..\LazyAPI\LazyAPI.csproj" />
+        <ProjectReference Include="..\LazyAPI\LazyAPI.csproj"/>
     </ItemGroup>
 
 </Project>
