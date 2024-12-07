@@ -23,7 +23,6 @@ public static class Utils
         catch (Exception ex)
         {
             Console.Write(ex.Message);
-            Console.ReadLine();
             return base64Str;
         }
         finally
