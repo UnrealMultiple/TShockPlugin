@@ -1,6 +1,7 @@
 ﻿using LazyAPI.Database;
 using LinqToDB;
 using LinqToDB.Mapping;
+using NuGet.Protocol.Plugins;
 using System.Data;
 using Terraria;
 
@@ -13,8 +14,15 @@ public class RewardChest : RecordBase<RewardChest>
     [PrimaryKey]
     public int ChestId;
 
-    [NotColumn]
-    public List<int> _HasOpenPlayer = new();
+    [NotColumn] public List<int> HasOpenPlayer = new ();
+
+    [Column]
+    // ReSharper disable once InconsistentNaming
+    public string _hasOpenPlayer 
+    {
+        get => string.Join(',', this.HasOpenPlayer.Select(x => x.ToString()));
+        set => this.HasOpenPlayer = value==string.Empty?new List<int>():value.Split(',').Select(int.Parse).ToList();
+    }
 
     [Column]
     public int X { get; set; }
@@ -22,19 +30,17 @@ public class RewardChest : RecordBase<RewardChest>
     [Column]
     public int Y { get; set; }
 
-    [Column]
-    public string HasOpenPlayer
-    {
-        get => string.Join(",", this._HasOpenPlayer);
-
-        set => this._HasOpenPlayer = value?.Split(',').Select(int.Parse).ToList() ?? new();
-    }
-
     [NotColumn]
     public Chest Chest => Main.chest[this.ChestId];
 
-    internal static Context context => Db.Context<RewardChest>("CaiRewardChest");
+    private static Context context => Db.Context<RewardChest>("CaiRewardChest");
 
+    public static List<int> GetAllChestId()
+    {
+        return context.Records.Select(x=>x.ChestId).ToList();
+    }
+    
+    
     public static RewardChest? GetChestByPos(int x, int y)
     {
         return context.Records.FirstOrDefault(i => i.X == x && i.Y == y);
@@ -44,30 +50,27 @@ public class RewardChest : RecordBase<RewardChest>
     {
         return context.Records.FirstOrDefault(i => i.ChestId == chestId);
     }
-
-
-    public static void AddChest(int chestId, int x, int y)
-    {
-        context.Insert<RewardChest>(new()
-        {
-            ChestId = chestId,
-            X = x,
-            Y = y
-        });
-    }
-
+    
+    
     public static void UpdateChest(RewardChest chest)
     {
         context.Update(chest);
     }
-
+    public static void AddChest(int chestId, int x, int y)
+    {
+        CaiRewardChest.RewardChestId.Add(chestId);
+        var chest = new RewardChest { ChestId = chestId, X = x, Y = y };
+        context.Insert(chest);
+    }
     public static void DelChest(int chestId)
     {
+        CaiRewardChest.RewardChestId.Remove(chestId);
         context.Records.Delete(x => x.ChestId == chestId);
     }
 
     public static void ClearDb()
     {
-        context.Records.Delete();
+        CaiRewardChest.RewardChestId.Clear();
+        context.Records.Drop();
     }
 }
