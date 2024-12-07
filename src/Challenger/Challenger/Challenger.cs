@@ -32,7 +32,7 @@ public class Challenger : TerrariaPlugin
 
     public override string Name => "Challenger";
 
-    public override Version Version => new Version(1, 0, 1, 6);
+    public override Version Version => new Version(1, 0, 1, 7);
 
     public Challenger(Main game)
         : base(game)

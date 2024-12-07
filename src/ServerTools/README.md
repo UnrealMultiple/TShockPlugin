@@ -7,6 +7,9 @@
 ## 更新日志
 
 ```
+v1.1.7.9
+修复hook报错
+
 v1.1.7.8
 也许根本不需要判Main.projectile[e.Index].minion，以及非SSC情况下检测到多饰品不尝试为玩家摘下
 

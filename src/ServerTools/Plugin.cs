@@ -20,7 +20,7 @@ public partial class Plugin : TerrariaPlugin
 
     public override string Name => "ServerTools";// 插件名字
 
-    public override Version Version => new(1, 1, 7, 8);// 插件版本
+    public override Version Version => new(1, 1, 7, 9);// 插件版本
 
     private static Config Config = new();
 
@@ -48,7 +48,6 @@ public partial class Plugin : TerrariaPlugin
     {
 
         this.LoadConfig();
-        #region 钩子
         ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitialize);
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);
@@ -60,9 +59,6 @@ public partial class Plugin : TerrariaPlugin
         ServerApi.Hooks.ServerLeave.Register(this, this._OnLeave);
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
         ServerApi.Hooks.NpcAIUpdate.Register(this, OnNPCUpdate);
-        #endregion
-
-        #region 指令
         Commands.ChatCommands.Add(new Command(Permissions.clear, this.Clear, "clp"));
         Commands.ChatCommands.Add(new Command("servertool.query.exit", this.Exit, "退出", "toolexit"));
         Commands.ChatCommands.Add(new Command("servertool.query.wall", this.WallQ, "查花苞", "scp"));
@@ -73,28 +69,23 @@ public partial class Plugin : TerrariaPlugin
         Commands.ChatCommands.Add(new Command("servertool.set.journey", this.JourneyDiff, "旅途难度", "journeydiff"));
         Commands.ChatCommands.Add(new Command("servertool.user.dead", this.DeathRank, "死亡排行", "deadrank"));
         Commands.ChatCommands.Add(new Command("servertool.user.online", this.OnlineRank, "在线排行", "onlinerank"));
-        #endregion
-        #region TShcok 钩子
         GetDataHandlers.NewProjectile.Register(this.NewProj);
         GetDataHandlers.ItemDrop.Register(this.OnItemDrop);
         GetDataHandlers.KillMe.Register(this.KillMe);
         GetDataHandlers.PlayerSpawn.Register(this.OnPlayerSpawn);
         GetDataHandlers.PlayerUpdate.Register(this.OnUpdate);
         GeneralHooks.ReloadEvent += this._reloadHandler;
-        #endregion
-        CmdHook = new Hook(typeof(Commands).GetMethod(nameof(Commands.HandleCommand)), CommandHook);
+        CmdHook = new Hook(typeof(TSRestPlayer).GetConstructor(new Type[] { typeof(string), typeof(TShockAPI.Group) }), RestPlayerCtor);
         AccountInfoHook = new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static), ViewAccountInfo);
-        #region RestAPI
         this.addRestCommands = new RestCommand[]
         {
-    new RestCommand("/deathrank", this.DeadRank),
-    new RestCommand("/onlineDuration", this.Queryduration)
+            new RestCommand("/deathrank", this.DeadRank),
+            new RestCommand("/onlineDuration", this.Queryduration)
         };
         foreach (var command in this.addRestCommands)
         {
             TShock.RestApi.Register(command);
         }
-        #endregion
         Timer += this.OnUpdatePlayerOnline;
         On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
         this.HandleCommandLine(Environment.GetCommandLineArgs());
@@ -293,21 +284,15 @@ public partial class Plugin : TerrariaPlugin
         args.Player.SendData(PacketTypes.ChestOpen, "", args.Player.Index, -1);
     }
 
-    public static bool CommandHook(TSPlayer ply, string cmd)
-    {
-        CmdHook.Undo();
-        if (ply.GetType() == typeof(TSRestPlayer))
+    public static void RestPlayerCtor(Action<TSRestPlayer, string, TShockAPI.Group> orig, TSRestPlayer self, string name, TShockAPI.Group group)
+    { 
+        self.Account = new()
         {
-            ply.Account = new()
-            {
-                Name = ply.Name,
-                Group = ply.Group.Name,
-                ID = ply.Index
-            };
-        }
-        var status = Commands.HandleCommand(ply, cmd);
-        CmdHook.Apply();
-        return status;
+            Name = self.Name,
+            Group = self.Group.Name,
+            ID = self.Index
+        };
+        orig(self, name, group);
     }
 
     private void OnPlayerSpawn(object? sender, GetDataHandlers.SpawnEventArgs e)
