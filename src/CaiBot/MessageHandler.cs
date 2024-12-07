@@ -526,10 +526,8 @@ public static class MessageHandle
 
                 break;
             case "mapfile":
-                CreateMapFile.Instance.Init();
-                var info = CreateMapFile.Instance.Start();
-                var mapfileBase64 = Convert.ToBase64String(info.Buffer);
-                result = new RestObject { { "type", "mapfileV2" }, { "base64", Utils.CompressBase64(mapfileBase64) }, { "name", info.Name }, { "group", (long) jsonObject["group"]! } };
+                var mapfile = MapFileGenerator.Create();
+                result = new RestObject { { "type", "mapfileV2" }, { "base64", mapfile.Item1 }, { "name", mapfile.Item2  }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "worldfile":
