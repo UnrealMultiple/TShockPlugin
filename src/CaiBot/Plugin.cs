@@ -23,12 +23,10 @@ public class Plugin : TerrariaPlugin
     public static int InitCode = -1;
     public static bool LocalMode;
     public static bool DebugMode;
-    public static bool StopWebsocket;
+    private static bool _stopWebsocket;
     public static ClientWebSocket WebSocket = new ();
-    public static Task WebSocketTask = Task.CompletedTask;
-    public static readonly CancellationTokenSource TokenSource = new ();
-    public Task? HeartBeat;
-    public Task? WsTask;
+    private static readonly Task WebSocketTask = Task.CompletedTask;
+    private static readonly CancellationTokenSource TokenSource = new ();
 
     public Plugin(Main game) : base(game)
     {
@@ -41,13 +39,13 @@ public class Plugin : TerrariaPlugin
     
     public override void Initialize()
     {
+        AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
         Commands.ChatCommands.Add(new Command("CaiBot.Admin", this.CaiBotCommand, "caibot"));
         Config.Read();
         Config.config.Write();
         LocalMode = Program.LaunchParameters.ContainsKey("-cailocalbot");
         DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
         BanManager.OnBanPostAdd += this.OnBanInsert;
-        AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
         Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
         Hooks.MessageBuffer.InvokeGetData += Login.MessageBuffer_InvokeGetData;
         ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
@@ -55,9 +53,9 @@ public class Plugin : TerrariaPlugin
         PlayerHooks.PlayerPostLogin += this.PlayerHooksOnPlayerPostLogin;
         PlayerHooks.PlayerLogout += this.PlayerHooksOnPlayerLogout;
         ServerApi.Hooks.GamePostInitialize.Register(this, this.GenCode);
-        this.WsTask = Task.Run(async () =>
+        Task.Run(async () =>
         {
-            while (!StopWebsocket)
+            while (!_stopWebsocket)
             {
                 try
                 {
@@ -66,10 +64,9 @@ public class Plugin : TerrariaPlugin
                     {
                         await Task.Delay(TimeSpan.FromSeconds(10));
                         HttpClient client = new ();
-                        HttpResponseMessage? response;
                         client.Timeout = TimeSpan.FromSeconds(5.0);
-                        response = client.GetAsync($"http://api.terraria.ink:22334/bot/get_token?" +
-                                                   $"code={InitCode}")
+                        var response = client.GetAsync($"http://api.terraria.ink:22334/bot/get_token?" +
+                                                       $"code={InitCode}")
                             .Result;
                         //TShock.Log.ConsoleInfo($"[CaiAPI]尝试被动绑定,状态码:{response.StatusCode}");
                         if (response.StatusCode == HttpStatusCode.OK && Config.config.Token == "")
@@ -125,9 +122,9 @@ public class Plugin : TerrariaPlugin
                 await Task.Delay(5000);
             }
         }, TokenSource.Token);
-        this.HeartBeat = Task.Run(async () =>
+        Task.Run(async () =>
         {
-            while (!StopWebsocket)
+            while (!_stopWebsocket)
             {
                 await Task.Delay(60000);
                 try
@@ -161,7 +158,7 @@ public class Plugin : TerrariaPlugin
             ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
             PlayerHooks.PlayerPostLogin -= this.PlayerHooksOnPlayerPostLogin;
             PlayerHooks.PlayerLogout -= this.PlayerHooksOnPlayerLogout;
-            StopWebsocket = true;
+            _stopWebsocket = true;
             WebSocket.Dispose();
             if (!WebSocketTask.IsCompleted)
             {
@@ -173,7 +170,7 @@ public class Plugin : TerrariaPlugin
         base.Dispose(disposing);
     }
 
-    private async void OnChat(ServerChatEventArgs args)
+    private void OnChat(ServerChatEventArgs args)
     {
         var plr = TShock.Players[args.Who];
         if (!Config.config.SycnChatFromServer || plr == null || !plr.IsLoggedIn || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) || args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier) || string.IsNullOrEmpty(args.Text))
@@ -187,7 +184,7 @@ public class Plugin : TerrariaPlugin
             { "chat", string.Format(Config.config.ServerChatFormat, plr.Name, args.Text, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
             { "group", Config.config.GroupNumber }
         };
-        await MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
+        _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
     }
 
     private void PlayerHooksOnPlayerPostLogin(PlayerPostLoginEventArgs e)
@@ -204,7 +201,7 @@ public class Plugin : TerrariaPlugin
             { "chat", string.Format(Config.config.JoinServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
             { "group", Config.config.GroupNumber }
         };
-        MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result)).Start();
+        _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
     }
 
     private void PlayerHooksOnPlayerLogout(PlayerLogoutEventArgs e)
@@ -221,9 +218,8 @@ public class Plugin : TerrariaPlugin
             { "chat", string.Format(Config.config.ExitServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
             { "group", Config.config.GroupNumber }
         };
-        MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result)).Start();
+        _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
     }
-
 
     private void CaiBotCommand(CommandArgs args)
     {
@@ -295,7 +291,7 @@ public class Plugin : TerrariaPlugin
         }
     }
 
-    private async void OnBanInsert(object? sender, BanEventArgs e)
+    private void OnBanInsert(object? sender, BanEventArgs e)
     {
         if (e.Ban.Identifier.StartsWith(Identifier.Name.Prefix) || e.Ban.Identifier.StartsWith(Identifier.Account.Prefix))
         {
@@ -309,7 +305,7 @@ public class Plugin : TerrariaPlugin
                 { "admin", e.Ban.BanningUser },
                 { "expire_time", expireTime == "Never" ? "永久封禁" : expireTime }
             };
-            await MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
+            _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
         }
     }
 
