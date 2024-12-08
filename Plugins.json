@@ -405,7 +405,7 @@
   },
   {
     "Name": "AutoReset",
-    "Version": "2024.9.2",
+    "Version": "2024.12.8.1",
     "Author": "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩",
     "Description": "完全自动重置插件",
     "AssemblyName": "AutoReset",
