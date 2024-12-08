@@ -13,36 +13,37 @@
 
 
 ## Config
-> Configuration file location：tshock/AutoReset/reset_config.json
+> Configuration file location：tshock/AutoReset/AutoReset.en-US.json.json
+> Replace Files: tshock/AutoReset/ReplaceFiles
 ```json
 {
-  "替换文件": { //Replace Files
+  "ReplaceFiles": { //Replace Files
     "/tshock/原神.json": "原神.json", // Replace /tshock/原神.json with 原神.json
     "/tshock/XSB数据缓存.json": "" // Delete /tshock/XSB数据缓存.json
   },
-  "击杀重置": { // Kill to reset setting
-    "击杀重置开关": false, // Enable or disable the kill to reset feature
-    "已击杀次数": 0, // Current kill count
-    "生物ID": 50, // NPC ID of the creature to be killed
-    "需要击杀次数": 50 // Number of kills required to trigger the reset
+  "KillToReset": { // Kill to reset setting
+    "KillResetEnable": false, // Enable or disable the kill to reset feature
+    "CurrentKillCount": 0, // Current kill count
+    "NpcId": 50, // NPC ID of the creature to be killed
+    "NeedKillCount": 50 // Number of kills required to trigger the reset
   },
-  "重置后指令": [ // Commands to execute after reset
+  "AfterResetCommand": [ // Commands to execute after reset
     "/reload", // Reload the server
     "/初始化进度补给箱", 
     "/rpg reset"
   ],
-  "重置前指令": [ // Commands to execute before reset
+  "BeforeResetCommand": [ // Commands to execute before reset
     "/结算金币" 
   ],
-  "重置后SQL命令": [ // SQL commands to execute after reset
+  "AfterResetSQL": [ // SQL commands to execute after reset
     "DELETE FROM tsCharacter" // Delete all characters from the tsCharacter table
   ],
-  "地图预设": { // Map presets
-    "地图名": null, // Name of the map
-    "地图种子": null // Seed of the map
+  "WorldSetting": { // Map presets
+    "WorldName": null, // Name of the map
+    "WorldSeed": null // Seed of the map
   },
-  "重置提醒": false, // Enable or disable CaiBot reset reminders (CaiBot is a QQ Group BOT)
-  "CaiBot服务器令牌": "西江超级可爱喵" // CaiBot server token
+  "CaiBotResetCaution": false, // Enable or disable CaiBot reset reminders (CaiBot is a QQ Group BOT)
+  "CaiBotToken": "西江超级可爱喵" // CaiBot server token "西江 is absolutely adorable!" 
 }
 ```
 

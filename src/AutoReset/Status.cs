@@ -1,4 +1,4 @@
-﻿namespace AutoReset.MainPlugin;
+﻿namespace AutoReset;
 
 internal enum Status
 {

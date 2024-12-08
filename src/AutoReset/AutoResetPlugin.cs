@@ -9,19 +9,18 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
 
-namespace AutoReset.MainPlugin;
+namespace AutoReset;
 
 [ApiVersion(2, 1)]
 public class AutoResetPlugin : LazyPlugin
 {
-    internal static readonly string AllPath = Path.Combine(TShock.SavePath, "AutoReset");
-
-    private readonly string _configPath = Path.Combine(AllPath, "reset_config.json");
-    private readonly string _filePath = Path.Combine(AllPath, "backup_files");
+    public static readonly string FolderName = "AutoReset";
+    
+    private readonly string _replaceFilePath = Path.Combine(TShock.SavePath, FolderName, "ReplaceFiles");
 
     private Status _status;
 
-    public GenerationProgress? GenerationProgress;
+    private GenerationProgress? _generationProgress;
 
     public AutoResetPlugin(Main game) : base(game)
     {
@@ -29,7 +28,7 @@ public class AutoResetPlugin : LazyPlugin
 
     public override string Name => "AutoReset";
 
-    public override Version Version => new(2024, 9, 2);
+    public override Version Version => new(2024, 12, 8,1);
 
     public override string Author => "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩";
 
@@ -44,7 +43,7 @@ public class AutoResetPlugin : LazyPlugin
         ServerApi.Hooks.ServerJoin.Register(this, this.OnServerJoin, int.MaxValue);
         ServerApi.Hooks.WorldSave.Register(this, this.OnWorldSave, int.MaxValue);
         ServerApi.Hooks.NpcKilled.Register(this, this.CountKill);
-        ;
+        Terraria.Utils.TryCreatingDirectory(this._replaceFilePath);
     }
 
     private void ResetDataCmd(CommandArgs args)
@@ -65,25 +64,13 @@ public class AutoResetPlugin : LazyPlugin
 
         base.Dispose(disposing);
     }
-
-  
-
-   
-
+    
     private void OnWho(CommandArgs args)
     {
         if (ResetConfig.Instance.KillToReset.KillCount != 0 && ResetConfig.Instance.KillToReset.KillCount != ResetConfig.Instance.KillToReset.NeedKillCount)
         {
-            if (args.Player.RealPlayer)
-            {
-                args.Player.SendInfoMessage(
-                    GetString($"[i:3611]击杀自动重置:{Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}({ResetConfig.Instance.KillToReset.KillCount}/{ResetConfig.Instance.KillToReset.NeedKillCount})"));
-            }
-            else
-            {
-                args.Player.SendInfoMessage(
-                    GetString($"📝击杀自动重置:{Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}({ResetConfig.Instance.KillToReset.KillCount}/{ResetConfig.Instance.KillToReset.NeedKillCount})"));
-            }
+            args.Player.SendInfoMessage(
+                args.Player.RealPlayer ? GetString($"[i:3611]击杀自动重置:[c/DC143C:{Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}] ([c/98FB98:{ResetConfig.Instance.KillToReset.KillCount}]/{ResetConfig.Instance.KillToReset.NeedKillCount})") : GetString($"📝击杀自动重置:{Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}({ResetConfig.Instance.KillToReset.KillCount}/{ResetConfig.Instance.KillToReset.NeedKillCount})"));
         }
 
         var status = this._status;
@@ -107,10 +94,7 @@ public class AutoResetPlugin : LazyPlugin
         {
             ResetConfig.Instance.KillToReset.KillCount++;
             ResetConfig.Instance.SaveTo();
-            TShock.Utils.Broadcast(
-                string.Format(
-                    GetString($"[AutoReset]服务器中已经击杀{Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}{ResetConfig.Instance.KillToReset.KillCount}/{ResetConfig.Instance.KillToReset.NeedKillCount}")),
-                Color.Orange);
+            TShock.Utils.Broadcast(GetString($"[重置计数器]已经击杀[c/DC143C:{Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}] ([c/98FB98:{ResetConfig.Instance.KillToReset.KillCount}]/{ResetConfig.Instance.KillToReset.NeedKillCount})"),Color.Gold);
             if (ResetConfig.Instance.KillToReset.NeedKillCount <= ResetConfig.Instance.KillToReset.KillCount)
             {
                 this.ResetCmd(null);
@@ -124,22 +108,22 @@ public class AutoResetPlugin : LazyPlugin
         {
             return;
         }
-
+    
         Task.Run(delegate
         {
-            this._status = Status.Cleaning;
-            TShock.Utils.Broadcast(GetString("[AutoReset]服务器即将开始重置..."), Color.Orange);
+            var worldName = Main.worldName;
+            TShock.Utils.Broadcast(GetString("[AutoReset]服务器即将[c/DC143C:开始重置]..."), Color.Orange);
             for (var i = 60; i >= 0; i--)
             {
-                TShock.Utils.Broadcast(string.Format(GetString("[AutoReset]{0}s后关闭服务器..."), i), Color.Orange);
+                TShock.Utils.Broadcast(string.Format(GetString("[AutoReset][c/98FB98:{0}s]后[c/DC143C:关闭服务器]..."), i), Color.Orange);
                 Thread.Sleep(1000);
             }
-
+            this._status = Status.Cleaning;
             TShock.Players.ForEach(delegate (TSPlayer? p)
             {
                 p?.Kick(GetString("[AutoReset]服务器已开始重置..."), true, true);
             });
-
+            
 
             ResetConfig.Instance.PreResetCommands.ForEach(delegate (string c) { Commands.HandleCommand(TSPlayer.Server, c); });
             Main.WorldFileMetadata = null;
@@ -159,12 +143,13 @@ public class AutoResetPlugin : LazyPlugin
             WorldGen.generatingWorld = true;
             Main.rand = new UnifiedRandom(Main.ActiveWorldFileData.Seed);
             Main.menuMode = 10;
-            this.GenerationProgress = new GenerationProgress();
-            var task = WorldGen.CreateNewWorld(this.GenerationProgress);
+            this._generationProgress = new GenerationProgress();
+            var task = WorldGen.CreateNewWorld(this._generationProgress);
             this._status = Status.Generating;
             while (!task.IsCompleted)
             {
-                TShock.Log.ConsoleInfo(this.GetProgress());
+                TSPlayer.Server.SendWarningMessage(this.GetProgress());
+                Main.worldName = worldName + this.GetShortProgress();
                 Thread.Sleep(1000);
             }
 
@@ -181,6 +166,7 @@ public class AutoResetPlugin : LazyPlugin
             Main.bloodMoon = WorldFile._tempBloodMoon;
             Main.eclipse = WorldFile._tempEclipse;
             Main.gameMenu = false;
+            Main.worldName = worldName;
             try
             {
                 if (ResetConfig.Instance.SetWorld.Name != null)
@@ -196,7 +182,7 @@ public class AutoResetPlugin : LazyPlugin
             finally
             {
                 Utils.CallApi();
-                this.GenerationProgress = null;
+                this._generationProgress = null;
                 this._status = Status.Available;
             }
         });
@@ -220,7 +206,9 @@ public class AutoResetPlugin : LazyPlugin
             {
                 "/rs info",
                 GetString("/rs name <地图名>"),
-                    GetString("/rs seed <种子>"),
+                GetString("/rs seed <种子>"),
+                GetString("/reset 重置世界"),
+                GetString("/resetdata 重置数据")
             };
 
             PaginationTools.SendPage(
@@ -255,7 +243,12 @@ public class AutoResetPlugin : LazyPlugin
             case "信息":
             case "info":
                 op.SendInfoMessage(GetString($"地图名: {ResetConfig.Instance.SetWorld.Name ?? Main.worldName}\n") +
-                                   GetString($"种子: {ResetConfig.Instance.SetWorld.Seed ?? GetString("随机")}"));
+                                   GetString($"种子: {ResetConfig.Instance.SetWorld.Seed ?? GetString("随机")}\n")+
+                                   GetString($"CaiBot重置提醒: {ResetConfig.Instance.ResetCaution}\n")+
+                                   GetString($"击杀重置: {ResetConfig.Instance.KillToReset.Enable}\n") +
+                                   GetString($"击杀Npc: {Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}({ResetConfig.Instance.KillToReset.NpcId})\n") +
+                                   GetString($"目标击杀数: {ResetConfig.Instance.KillToReset.NeedKillCount}\n") +
+                                   GetString($"已击杀数: {ResetConfig.Instance.KillToReset.KillCount}"));
                 break;
             case "名字":
             case "name":
@@ -324,7 +317,7 @@ public class AutoResetPlugin : LazyPlugin
             {
                 if (!string.IsNullOrEmpty(keyValuePair.Value))
                 {
-                    File.Copy(Path.Combine(this._filePath, keyValuePair.Value),
+                    File.Copy(Path.Combine(this._replaceFilePath, keyValuePair.Value),
                         Path.Combine(Environment.CurrentDirectory, keyValuePair.Key), true);
                 }
                 else
@@ -343,8 +336,14 @@ public class AutoResetPlugin : LazyPlugin
 
     private string GetProgress()
     {
-        return string.Format("{0:0.0%} - " + this.GenerationProgress!.Message + " - {1:0.0%}",
-            this.GenerationProgress.TotalProgress, this.GenerationProgress.Value);
+        return string.Format("{0:0.0%} - " + this._generationProgress!.Message + " - {1:0.0%}",
+            this._generationProgress.TotalProgress, this._generationProgress.Value);
+    }
+    
+    private string GetShortProgress()
+    {
+        return string.Format(" {0:0.0%}"+"("+this._generationProgress!.Message+")",
+            this._generationProgress.TotalProgress);
     }
 
     private void OnServerJoin(JoinEventArgs args)
