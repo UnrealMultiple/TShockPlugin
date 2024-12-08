@@ -2,9 +2,9 @@
 using Terraria;
 using TShockAPI;
 
-namespace AutoReset.MainPlugin;
+namespace AutoReset;
 
-internal class Utils
+internal static class Utils
 {
     public static void CallApi()
     {
