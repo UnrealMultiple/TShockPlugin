@@ -63,13 +63,13 @@
 | [AutoPluginManager](src/AutoPluginManager/README.md) | 一键自动更新插件 | 无 |
 | [AdditionalPylons](src/AdditionalPylons/README.md) | 放置更多晶塔 | 无 |
 | [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | 广播盒功能强化 | 无 |
-| [AutoAirItem](src/AutoAirItem/README.md) | 自动垃圾桶插件 | 无 |
+| [AutoAirItem](src/AutoAirItem/README.md) | 自动垃圾桶插件 |  [LazyAPI](src/LazyAPI/README.md)  |
 | [AutoBroadcast](src/AutoBroadcast/README.md) | 自动广播 | 无 |
 | [AutoClear](src/Autoclear/README.md) | 智能自动扫地 | 无 |
 | [AutoReset](src/AutoReset/README.md) | 完全自动重置 | 无 |
 | [AutoStoreItems](src/AutoStoreItems/README.md) | 自动储存 | 无 |
 | [AutoTeam](src/AutoTeam/README.md) | 自动队伍 | 无 |
-| [AutoFish](src/AutoFish/README.md) | 自动钓鱼 | 无 |
+| [AutoFish](src/AutoFish/README.md) | 自动钓鱼 |  [LazyAPI](src/LazyAPI/README.md)  |
 | [Back](src/Back/README.md) | 死亡回溯 | 无 |
 | [BagPing](src/BagPing/README.md) | 地图上标记宝藏袋 | 无 |
 | [BetterWhitelist](src/BetterWhitelist/README.md) | 白名单插件 | 无 |
@@ -133,6 +133,7 @@
 | [LazyAPI](src/LazyAPI/README.md) | 插件基础库 | linq2db |
 | [LifemaxExtra](src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | 无 |
 | [ListPlugins](src/ListPlugins/README.md) | 查已装插件 | 无 |
+| [ModifyWeapons](src/ModifyWeapons/README.md) | 修改武器 |  [LazyAPI](src/LazyAPI/README.md)  |
 | [MapTeleport](src/MapTp/README.md) | 双击大地图传送 | 无 |
 | [MiniGamesAPI](src/MiniGamesAPI/README.md) | 豆沙小游戏 API | 无 |
 | [MonsterRegen](src/MonsterRegen/README.md) | 怪物进度回血 | 无 |
@@ -140,6 +141,7 @@
 | [Noagent](src/Noagent/README.md) | 禁止代理 ip 进入 | 无 |
 | [NormalDropsBags](src/NormalDropsBags/README.md) | 普通难度宝藏袋 | 无 |
 | [OnlineGiftPackage](src/OnlineGiftPackage/README.md) | 在线礼包 | 无 |
+| [PlayerSpeed](src/PlayerSpeed/README.md) | 玩家速度 |  [LazyAPI](src/LazyAPI/README.md)  |
 | [PacketsStop](src/PacketsStop/README.md) | 数据包拦截 | 无 |
 | [PermaBuff](src/PermaBuff/README.md) | 永久 Buff | 无 |
 | [PerPlayerLoot](src/PerPlayerLoot/README.md) | 玩家战利品单独箱子 | 无 |

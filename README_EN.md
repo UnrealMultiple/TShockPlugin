@@ -137,6 +137,7 @@
 | [LazyAPI](src/LazyAPI/README.md) | Yes | Plugin base library | linq2db |
 | [LifemaxExtra](src/LifemaxExtra/README.md) | No | Eat more life fruits/crystals | None |
 | [ListPlugins](src/ListPlugins/README.md) | No | List installed plugins | None |
+| [ModifyWeapons](src/ModifyWeapons/README_EN.md) | Yes | ModifyWeapons | [LazyAPI](src/LazyAPI/README.md) |
 | [MapTeleport](src/MapTp/README_EN.md) | Yes | Double-click on the map to teleport | None |
 | [MiniGamesAPI](src/MiniGamesAPI/README.md) | No | Bean paste mini-game API | None |
 | [MonsterRegen](src/MonsterRegen/README.md) | No | Monster progress regeneration | None |
@@ -144,6 +145,7 @@
 | [Noagent](src/Noagent/README.md) | No | Prohibit proxy IP from entering | None |
 | [NormalDropsBags](src/NormalDropsBags/README.md) | No | Drop treasure bags at normal difficulty | None |
 | [OnlineGiftPackage](src/OnlineGiftPackage/README.md) | No | Online gift package | None |
+| [PlayerSpeed](src/PlayerSpeed/README.md) | Yes | Enable players to achieve a two-stage sprint |  [LazyAPI](src/LazyAPI/README.md)  |
 | [PacketsStop](src/PacketsStop/README.md) | No | Packet interception | None |
 | [PermaBuff](src/PermaBuff/README.md) | No | Permanent buff | None |
 | [PerPlayerLoot](src/PerPlayerLoot/README_EN.md) | Yes | Separate chest for player loot | None |

@@ -14,6 +14,12 @@
 ## Update Log
 
 ```
+v1.3.4
+Supplement the code omitted in v1.3.2
+
+v1.3.3
+using LazyAPI
+
 v1.3.2
 - Attempted to fix the server crash bug that occurred when the bait quantity was 1.
 

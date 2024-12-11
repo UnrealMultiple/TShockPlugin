@@ -15,7 +15,7 @@ public class AutoFish : LazyPlugin
     #region 插件信息
     public override string Name => "自动钓鱼";
     public override string Author => "羽学 少司命";
-    public override Version Version => new Version(1, 3, 3);
+    public override Version Version => new Version(1, 3, 4);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 
@@ -101,112 +101,97 @@ public class AutoFish : LazyPlugin
             return;
         }
 
-        //开启消耗模式
-        if (Configuration.Instance.ConMod)
+        // 正常状态下 与消耗模式下启用自动钓鱼
+        if (!Configuration.Instance.ConMod || (Configuration.Instance.ConMod && list.Mod))
         {
-            //多加一个 list.Mod 来判断玩家是否花费了【指定物品】来换取功能时长
-            if (list.Mod && list.Enabled)
+            if (args.Projectile.ai[1] < 0)
             {
-                ControlFishing(args, plr);
-            }
-        }
-        else
-        {
-            //否则只要打开插件开关就能使用功能
-            if (list.Enabled)
-            {
-                ControlFishing(args, plr);
-            }
-        }
-    }
-    #endregion
+                args.Projectile.ai[0] = 1.0f;
 
-    #region 自动钓鱼核心逻辑（由少司命贡献） 我就加一下他没写完的逻辑- -
-    private static void ControlFishing(ProjectileAiUpdateEventArgs args, TSPlayer plr)
-    {
-        if (args.Projectile.ai[1] < 0)
-        {
-            args.Projectile.ai[0] = 1.0f;
+                var baitItem = new Item();
 
-            var baitItem = new Item();
-
-            // 检查并选择消耗饵料
-            plr.TPlayer.ItemCheck_CheckFishingBobber_PickAndConsumeBait(args.Projectile, out var pullTheBobber, out var baitTypeUsed);
-            if (pullTheBobber)
-            {
-                plr.TPlayer.ItemCheck_CheckFishingBobber_PullBobber(args.Projectile, baitTypeUsed);
-
-                // 更新玩家背包 使用饵料信息
-                for (var i = 0; i < plr.TPlayer.inventory.Length; i++)
+                // 检查并选择消耗饵料
+                plr.TPlayer.ItemCheck_CheckFishingBobber_PickAndConsumeBait(args.Projectile, out var pullTheBobber, out var baitTypeUsed);
+                if (pullTheBobber)
                 {
-                    var inv = plr.TPlayer.inventory[i];
+                    plr.TPlayer.ItemCheck_CheckFishingBobber_PullBobber(args.Projectile, baitTypeUsed);
 
-                    //玩家饵料（指的是你手上鱼竿上的那个数字），使用的饵料是背包里的物品
-                    if (inv.bait > 0 && baitTypeUsed == inv.type)
+                    // 更新玩家背包 使用饵料信息
+                    for (var i = 0; i < plr.TPlayer.inventory.Length; i++)
                     {
-                        //当物品数量正常则开始进入钓鱼检查
-                        if (inv.stack > 1)
-                        {
-                            //发包到对应饵料的格子内
-                            plr.SendData(PacketTypes.PlayerSlot, "", plr.Index, i);
-                            break;
-                        }
+                        var inv = plr.TPlayer.inventory[i];
 
-                        //当前物品数量为1则移除（避免选中的饵不会主动消失 变成无限饵 或 卡住线程）
-                        if (inv.stack == 1 || inv.bait == 1)
+                        //玩家饵料（指的是你手上鱼竿上的那个数字），使用的饵料是背包里的物品
+                        if (inv.bait > 0 && baitTypeUsed == inv.type)
                         {
-                            inv.TurnToAir();
-                            plr.SendData(PacketTypes.PlayerSlot, "", plr.Index, i);
-                            break;
+                            //当物品数量正常则开始进入钓鱼检查
+                            if (inv.stack > 1)
+                            {
+                                //发包到对应饵料的格子内
+                                plr.SendData(PacketTypes.PlayerSlot, "", plr.Index, i);
+                                break;
+                            }
+
+                            //当前物品数量为1则移除（避免选中的饵不会主动消失 变成无限饵 或 卡住线程）
+                            if (inv.stack == 1 || inv.bait == 1)
+                            {
+                                inv.TurnToAir();
+                                plr.SendData(PacketTypes.PlayerSlot, "", plr.Index, i);
+                                break;
+                            }
                         }
                     }
                 }
-            }
 
-            //松露虫 判断一下玩家是否在海边
-            if (baitItem.type == 2673 && plr.X / 16 == Main.oceanBG && plr.Y / 16 == Main.oceanBG)
-            {
-                args.Projectile.ai[1] = 0;
+                //松露虫 判断一下玩家是否在海边
+                if (baitItem.type == 2673 && plr.X / 16 == Main.oceanBG && plr.Y / 16 == Main.oceanBG)
+                {
+                    args.Projectile.ai[1] = 0;
+                    plr.SendData(PacketTypes.ProjectileNew, "", args.Projectile.whoAmI);
+                    return;
+                }
+
+                //获得钓鱼物品方法
+                var flag = false;
+                var ActiveCount = TShock.Players.Where(plr => plr != null && plr.Active && plr.IsLoggedIn).Count();
+                var Limit = Tools.GetLimit(ActiveCount); //根据人数动态调整Limit
+                for (var count = 0; !flag && count < Limit; count++)
+                {
+                    args.Projectile.FishingCheck();
+
+                    if (Configuration.Instance.Random)
+                    {
+                        args.Projectile.localAI[1] = Random.Shared.Next(1, ItemID.Count);
+                    }
+
+                    args.Projectile.ai[1] = args.Projectile.localAI[1];
+
+                    // 如果额外渔获有任何1个物品ID，则参与AI[1]
+                    if (Configuration.Instance.DoorItems.Any())
+                    {
+                        if (args.Projectile.ai[1] <= 0)
+                        {
+                            args.Projectile.ai[1] = Configuration.Instance.DoorItems[Main.rand.Next(Configuration.Instance.DoorItems.Count)];
+                        }
+                    }
+
+                    flag = args.Projectile.ai[1] > 0;
+                }
+
+                if (!flag)
+                {
+                    return;
+                }
+
+
+                //这里发的是连续弹幕 避免线断 因为弹幕是不需要玩家物理点击来触发收杆的
                 plr.SendData(PacketTypes.ProjectileNew, "", args.Projectile.whoAmI);
-                return;
+
+                var index = SpawnProjectile.NewProjectile(Main.projectile[args.Projectile.whoAmI].GetProjectileSource_FromThis(),
+                    args.Projectile.position, args.Projectile.velocity, args.Projectile.type, 0, 0, args.Projectile.owner, 0, 0, 0);
+
+                plr.SendData(PacketTypes.ProjectileNew, "", index);
             }
-
-            do //无限循环检查
-            {
-                // 执行钓鱼检查
-                args.Projectile.FishingCheck();
-
-                //随机物品
-                if (Configuration.Instance.Random)
-                {
-                    var rm = new Random();
-                    var id = rm.Next(1, ItemID.Count - 1);
-                    args.Projectile.localAI[1] = id;
-                }
-
-                // 将localAI[1]的值复制到ai[1]
-                args.Projectile.ai[1] = args.Projectile.localAI[1];
-
-                //如果额外渔获 有任何1个物品ID 则参与AI[1]
-                if (Configuration.Instance.DoorItems.Any())
-                {
-                    //确保浮漂正在运动，没有鱼上钩（即ai[1]小于等于0）
-                    if (args.Projectile.ai[1] < 0)
-                    {
-                        // 从DoorItems中随机选择一个物品，并将其ID赋值给ai[1]，模拟有新鱼上钩的情况
-                        args.Projectile.ai[1] = Convert.ToSingle(Configuration.Instance.DoorItems.OrderByDescending(x => Guid.NewGuid()).First());
-                    }
-                }
-            }
-            while (args.Projectile.ai[1] <= 0); // 循环直到有一个有效的鱼上钩（ai[1]大于0）
-
-            //这里发的是连续弹幕 避免线断 因为弹幕是不需要玩家物理点击来触发收杆的
-            plr.SendData(PacketTypes.ProjectileNew, "", args.Projectile.whoAmI);
-
-            var index = SpawnProjectile.NewProjectile(Main.projectile[args.Projectile.whoAmI].GetProjectileSource_FromThis(),
-                args.Projectile.position, args.Projectile.velocity, args.Projectile.type, 0, 0, args.Projectile.owner, 0, 0, 0);
-
-            plr.SendData(PacketTypes.ProjectileNew, "", index);
         }
     }
     #endregion
@@ -237,40 +222,17 @@ public class AutoFish : LazyPlugin
             return;
         }
 
-        //开启消耗模式
-        if (Configuration.Instance.ConMod)
+        // 正常状态下与消耗模式下启用多线钓鱼
+        if (!Configuration.Instance.ConMod || (Configuration.Instance.ConMod && list.Mod))
         {
-            //玩家的自动钓鱼开关
-            if (list.Mod && list.Enabled)
+            // 检查是否上钩
+            if (Tools.BobbersActive(e.Owner))
             {
-                // 检查是否上钩
-                if (Tools.BobbersActive(e.Owner))
-                {
-                    //构建新弹幕
-                    var index = SpawnProjectile.NewProjectile(Main.projectile[e.Index].GetProjectileSource_FromThis(),
-                        e.Position, e.Velocity, e.Type, (int)e.Damage, e.Knockback, e.Owner, 0, 0, 0, -1, guid);
+                var index = SpawnProjectile.NewProjectile(Main.projectile[e.Index].GetProjectileSource_FromThis(), e.Position, e.Velocity, e.Type, e.Damage, e.Knockback, e.Owner, 0, 0, 0, -1, guid);
+                plr.SendData(PacketTypes.ProjectileNew, "", index);
 
-                    plr.SendData(PacketTypes.ProjectileNew, "", index);
-
-                    // 更新多线计数
-                    HookCount++;
-                }
-            }
-        }
-
-        else //正常模式下多线
-        {
-            if (list.Enabled)
-            {
-                if (Tools.BobbersActive(e.Owner))
-                {
-                    var index = SpawnProjectile.NewProjectile(Main.projectile[e.Index].GetProjectileSource_FromThis(),
-                        e.Position, e.Velocity, e.Type, (int)e.Damage, e.Knockback, e.Owner, 0, 0, 0, -1, guid);
-
-                    plr.SendData(PacketTypes.ProjectileNew, "", index);
-
-                    HookCount++;
-                }
+                // 更新多线计数
+                HookCount++;
             }
         }
     }
