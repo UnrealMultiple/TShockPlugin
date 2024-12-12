@@ -166,7 +166,7 @@ public class Database
     #region 移除所有玩家的指定物品方法
     public bool RemovePwData(int type)
     {
-        var AllData = GetAll();
+        var AllData = this.GetAll();
         var flag = false;
 
         foreach (var data in AllData)
@@ -180,21 +180,14 @@ public class Database
                 }
 
                 // 更新玩家数据
-                if (UpdateData(data))
+                if (this.UpdateData(data))
                 {
                     flag = true;
                 }
             }
         }
 
-        if (flag)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return flag;
     }
     #endregion
 

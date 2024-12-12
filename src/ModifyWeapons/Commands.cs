@@ -373,10 +373,10 @@ public class Commands
                             var ItemVal = new Dictionary<string, string>();
                             Parse(args.Parameters, out ItemVal, 3);
 
-                            if (UpdateItem(acc.Name, item.type, ItemVal)) // 更新玩家的指定物品属性
+                            var datas = DB.GetData(acc.Name);
+                            if (UpdateItem(acc.Name, item.type, ItemVal) && datas != null) // 更新玩家的指定物品属性
                             {
                                 // 播报给执行者
-                                var datas = DB.GetData(acc.Name);
                                 if (datas.Dict.TryGetValue(acc.Name, out var dataList))
                                 {
                                     foreach (var data2 in dataList.Where(d => d.type == item.type))
@@ -665,6 +665,11 @@ public class Commands
     public static void SetItem(TSPlayer plr, Database.PlayerData? data, int damage, int stack, byte prefix, float scale, float knockBack, int useTime, int useAnimation,
         int shoot, float shootSpeed, int ammo, int useAmmo, Color color)
     {
+        if (data == null)
+        {
+            return;
+        }
+
         var item = TShock.Utils.GetItemById(plr.SelectedItem.type);
         var MyIndex = new TSPlayer(plr.Index);
         var MyItem = Item.NewItem(null, (int)MyIndex.X, (int)MyIndex.Y, item.width, item.height, item.type, item.stack);
@@ -697,6 +702,11 @@ public class Commands
     #region 只给指定名字物品方法
     private static void OnlyItem(Item item, Database.PlayerData? datas, TSPlayer? plr2)
     {
+        if (datas == null || plr2 == null)
+        {
+            return;
+        }
+
         if (!Configuration.Instance.OnlyGiveItemName)
         {
             if (datas.Dict.TryGetValue(plr2.Name, out var DataList))
@@ -788,14 +798,7 @@ public class Commands
     {
         newItem.playerIndexTheItemIsReservedFor = plr.Index;
 
-        if (plr.SelectedItem.type == item.type)
-        {
-            newItem.prefix = plr.SelectedItem.prefix;
-        }
-        else
-        {
-            newItem.prefix = prefix;
-        }
+        newItem.prefix = plr.SelectedItem.type == item.type ? plr.SelectedItem.prefix : prefix;
 
         newItem.damage = damage;
         newItem.stack = stack;
@@ -1093,21 +1096,19 @@ public class Commands
         }
 
         var plr = TShock.Players.FirstOrDefault(p => p != null && p.IsLoggedIn && p.Active && p.Name == name);
-        if (plr != null)
-        {
-            plr.SendMessage(mess.ToString(), 255, 244, 150);
-        }
+        plr?.SendMessage(mess.ToString(), 255, 244, 150);
     }
     #endregion
 
     #region 解析输入参数的属性名2 用于/mw up指令修改玩家已存在的修改物品中指定物品属性
     public static bool UpdateItem(string name, int id, Dictionary<string, string> itemValues)
     {
+
         var mess = new StringBuilder();
         mess.Append($"修改数值:");
 
         var datas = DB.GetData(name);
-        if (datas.Dict.ContainsKey(name))
+        if (datas != null && datas.Dict.ContainsKey(name))
         {
             var data = datas.Dict[name];
             var item = data.FirstOrDefault(i => i.type == id);
@@ -1364,7 +1365,7 @@ public class Commands
     private static void ListItem(TSPlayer plr, int page)
     {
         var data = DB.GetData(plr.Name);
-        if (data.Dict.TryGetValue(plr.Name, out var list) && list.Count > 0)
+        if (data != null && data.Dict.TryGetValue(plr.Name, out var list) && list.Count > 0)
         {
             var Size = 1; // 每页显示一个物品
             var Total = list.Count; // 总页数等于物品总数
@@ -1453,19 +1454,70 @@ public class Commands
         }
 
         var diff = new Dictionary<string, object>();
-        if (Data.type != type) diff.Add($"{Lang.GetItemNameValue(Data.type)}", Data.type);
-        if (Data.stack != stack) diff.Add(GetString("数量"), Data.stack);
-        if (Data.prefix != prefix) diff.Add(GetString("前缀"), pr);
-        if (Data.damage != damage) diff.Add(GetString("伤害"), Data.damage);
-        if (Data.scale != scale) diff.Add(GetString("大小"), Data.scale);
-        if (Data.knockBack != knockBack) diff.Add(GetString("击退"), Data.knockBack);
-        if (Data.useTime != useTime) diff.Add(GetString("用速"), Data.useTime);
-        if (Data.useAnimation != useAnimation) diff.Add(GetString("攻速"), Data.useAnimation);
-        if (Data.shoot != shoot) diff.Add(GetString("弹幕"), Data.shoot);
-        if (Data.shootSpeed != shootSpeed) diff.Add(GetString("射速"), Data.shootSpeed);
-        if (Data.ammo != ammo) diff.Add(GetString("弹药"), Data.ammo);
-        if (Data.useAmmo != useAmmo) diff.Add(GetString("发射器"), Data.useAmmo);
-        if (Data.color != color) diff.Add(GetString("颜色"), ColorToHex(Data.color));
+        if (Data.type != type)
+        {
+            diff.Add($"{Lang.GetItemNameValue(Data.type)}", Data.type);
+        }
+
+        if (Data.stack != stack)
+        {
+            diff.Add(GetString("数量"), Data.stack);
+        }
+
+        if (Data.prefix != prefix)
+        {
+            diff.Add(GetString("前缀"), pr);
+        }
+
+        if (Data.damage != damage)
+        {
+            diff.Add(GetString("伤害"), Data.damage);
+        }
+
+        if (Data.scale != scale)
+        {
+            diff.Add(GetString("大小"), Data.scale);
+        }
+
+        if (Data.knockBack != knockBack)
+        {
+            diff.Add(GetString("击退"), Data.knockBack);
+        }
+
+        if (Data.useTime != useTime)
+        {
+            diff.Add(GetString("用速"), Data.useTime);
+        }
+
+        if (Data.useAnimation != useAnimation)
+        {
+            diff.Add(GetString("攻速"), Data.useAnimation);
+        }
+
+        if (Data.shoot != shoot)
+        {
+            diff.Add(GetString("弹幕"), Data.shoot);
+        }
+
+        if (Data.shootSpeed != shootSpeed)
+        {
+            diff.Add(GetString("射速"), Data.shootSpeed);
+        }
+
+        if (Data.ammo != ammo)
+        {
+            diff.Add(GetString("弹药"), Data.ammo);
+        }
+
+        if (Data.useAmmo != useAmmo)
+        {
+            diff.Add(GetString("发射器"), Data.useAmmo);
+        }
+
+        if (Data.color != color)
+        {
+            diff.Add(GetString("颜色"), ColorToHex(Data.color));
+        }
 
         return diff;
     }
@@ -1549,7 +1601,7 @@ public class Commands
                 foreach (var other in name)
                 {
                     var datas = DB.GetData(other);
-                    if (datas.Dict.TryGetValue(other, out var dataList))
+                    if (datas != null && datas.Dict.TryGetValue(other, out var dataList))
                     {
                         foreach (var data2 in dataList.Where(d => d.type == item.type))
                         {
@@ -1619,7 +1671,7 @@ public class Commands
     #region 获取手上物品信息方法
     private static void HandText(TSPlayer plr, Item Sel, Database.PlayerData? data, KeyValuePair<string, List<Database.PlayerData.ItemData>> ItemData)
     {
-        if (!data.Join)
+        if (data != null && !data.Join)
         {
             plr.SendSuccessMessage(GetString("重读开关:[c/E8585B:未开启]"));
         }

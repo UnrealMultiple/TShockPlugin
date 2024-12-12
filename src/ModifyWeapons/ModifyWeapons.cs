@@ -13,7 +13,7 @@ public class Plugin : LazyPlugin
     #region 插件信息
     public override string Name => "修改武器";
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 2, 7);
+    public override Version Version => new Version(1, 2, 7, 1);
     public override string Description => "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品";
     #endregion
 
@@ -276,8 +276,18 @@ public class Plugin : LazyPlugin
                 }
 
                 var datas = DB.GetData(plr.Name);
+                if (datas == null) 
+                { 
+                    continue;
+                }
+
                 var data = datas.Dict[plr.Name].FirstOrDefault(d => d.type == item.type);
-                if (data != null)
+                if (data == null)
+                {
+                    continue;
+                }
+
+                else if (data != null)
                 {
                     var diffs = CompareItem2(item, data.type, data.stack, data.prefix, data.damage, data.scale,
                         data.knockBack, data.useTime, data.useAnimation, data.shoot, data.shootSpeed,
