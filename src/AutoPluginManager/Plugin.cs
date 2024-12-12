@@ -1,18 +1,18 @@
-﻿using LazyAPI;
-using System.Reflection;
+﻿using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace AutoPluginManager;
 
 [ApiVersion(2, 1)]
 // ReSharper disable once UnusedType.Global
-public class Plugin : LazyPlugin
+public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoPluginManager";
 
-    public override Version Version => new (2, 0, 2, 3);
+    public override Version Version => new (2, 0, 2, 4);
 
     public override string Author => "少司命,Cai,LaoSparrow";
 
@@ -29,6 +29,8 @@ public class Plugin : LazyPlugin
     {
         Commands.ChatCommands.Add(new ("AutoUpdatePlugin", this.PluginManager, "apm"));
         ServerApi.Hooks.GamePostInitialize.Register(this, this.AutoCheckUpdate, int.MinValue);
+        Config.Read();
+        GeneralHooks.ReloadEvent += this.GeneralHooksOnReloadEvent;
     }
 
     protected override void Dispose(bool disposing)
@@ -37,11 +39,18 @@ public class Plugin : LazyPlugin
         {
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.PluginManager);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.AutoCheckUpdate);
+            GeneralHooks.ReloadEvent -= this.GeneralHooksOnReloadEvent;
             this._timer.Stop();
             this._timer.Dispose();
         }
 
         base.Dispose(disposing);
+    }
+
+    private void GeneralHooksOnReloadEvent(ReloadEventArgs e)
+    {
+        Config.Read();
+        e.Player.SendSuccessMessage(GetString("[AutoUpdatePlugin]插件配置已重载~"));
     }
 
     private void AutoCheckUpdate(EventArgs args)
@@ -62,7 +71,7 @@ public class Plugin : LazyPlugin
                 }
 
                 TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", availableUpdates.Select(i => $"[{i.Current!.Name}] V{i.Current!.Version} >>> V{i.Latest.Version}"))));
-                if (Config.Instance.AutoUpdate)
+                if (Config.PluginConfig.AutoUpdate)
                 {
                     TShock.Log.ConsoleInfo(GetString("正在自动更新插件..."));
                     UpdateCmd(TSPlayer.Server, Array.Empty<string>());
@@ -147,14 +156,14 @@ public class Plugin : LazyPlugin
                 return;
             }
 
-            if (Config.Instance.UpdateBlackList.Contains(args.Parameters[1]))
+            if (Config.PluginConfig.UpdateBlackList.Contains(args.Parameters[1]))
             {
                 args.Player.SendErrorMessage(GetString("排除失败, 已经排除过这个插件了呢~"));
                 return;
             }
 
-            Config.Instance.UpdateBlackList.Add(args.Parameters[1]);
-            Config.Save();
+            Config.PluginConfig.UpdateBlackList.Add(args.Parameters[1]);
+            Config.PluginConfig.Write();
             args.Player.SendSuccessMessage(GetString("排除成功, 已跳过此插件的更新检查~"));
         }
         else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-r" || args.Parameters[0].ToLower() == "r"))
@@ -163,25 +172,25 @@ public class Plugin : LazyPlugin
         }
         else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-rb" || args.Parameters[0].ToLower() == "rb"))
         {
-            if (!Config.Instance.UpdateBlackList.Contains(args.Parameters[1]))
+            if (!Config.PluginConfig.UpdateBlackList.Contains(args.Parameters[1]))
             {
                 args.Player.SendErrorMessage(GetString("删除失败, 没有在你的插件列表里找到这个插件呢~"));
                 return;
             }
 
-            Config.Instance.UpdateBlackList.Remove(args.Parameters[1]);
-            Config.Save();
+            Config.PluginConfig.UpdateBlackList.Remove(args.Parameters[1]);
+            Config.PluginConfig.Write();
             args.Player.SendSuccessMessage(GetString("删除成功, 此插件将会被检查更新~"));
         }
         else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-lb" || args.Parameters[0].ToLower() == "lb"))
         {
-            if (!Config.Instance.UpdateBlackList.Any())
+            if (!Config.PluginConfig.UpdateBlackList.Any())
             {
                 args.Player.SendSuccessMessage(GetString("当前没有排除任何一个插件哦~"));
                 return;
             }
 
-            args.Player.SendErrorMessage(GetString("插件更新排除列表:\n") + string.Join('\n', Config.Instance.UpdateBlackList));
+            args.Player.SendErrorMessage(GetString("插件更新排除列表:\n") + string.Join('\n', Config.PluginConfig.UpdateBlackList));
         }
         else
         {
@@ -233,7 +242,7 @@ public class Plugin : LazyPlugin
             // FIXME: inconsistency in return values of `Utils.UnLoadPlugins` and `Utils.LoadPlugins`
             var failedUnload = new List<string>(); // AssemblyName of Plugins which failed to unload
             var failedLoad = new List<string>(); // Type.FullName of Plugin Classes which failed to load
-            if (Config.Instance.HotReloadPlugin)
+            if (Config.PluginConfig.HotReloadPlugin)
             {
                 
                 failedUnload = Utils.UnLoadPlugins(success.plugins
@@ -245,7 +254,7 @@ public class Plugin : LazyPlugin
             }
             player.SendFormattedServerPluginsModifications(success);
 
-            if (Config.Instance.HotReloadPlugin)
+            if (Config.PluginConfig.HotReloadPlugin)
             {
                 if (failedUnload.Any())
                 {
@@ -318,7 +327,7 @@ public class Plugin : LazyPlugin
             // FIXME: inconsistency in return values of `Utils.UnLoadPlugins` and `Utils.LoadPlugins`
             var failedUnload = new List<string>(); // AssemblyName of Plugins which failed to unload
             var failedLoad = new List<string>(); // Type.FullName of Plugin Classes which failed to load
-            if (Config.Instance.HotReloadPlugin)
+            if (Config.PluginConfig.HotReloadPlugin)
             {
                 
                 failedUnload = Utils.UnLoadPlugins(success.plugins
@@ -330,7 +339,7 @@ public class Plugin : LazyPlugin
             }
             player.SendFormattedServerPluginsModifications(success);
 
-            if (Config.Instance.HotReloadPlugin)
+            if (Config.PluginConfig.HotReloadPlugin)
             {
                 if (failedUnload.Any())
                 {
