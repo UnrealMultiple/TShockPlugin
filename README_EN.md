@@ -65,38 +65,38 @@
 | Plugin Name | English Available | Plugin Description | Dependencies |
 | :-: | :-: | :-: | :-: |
 | [AutoPluginManager](src/AutoPluginManager/README_EN.md) | Yes | Update plugins automatically in one key | None |
-| [AdditionalPylons](src/AdditionalPylons/README_EN.md) | Yes | Place more Pylons | None |
-| [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | No | Enhance Broadcast Box Functionality | None |
-| [AutoBroadcast](src/AutoBroadcast/README_EN.md) | Yes | Automatic broadcast | None |
-| [AutoAirItem](src/AutoAirItem/README_EN.md) | Yes | Automatic trash cans | None |
-| [AutoClear](src/Autoclear/README_EN.md) | Yes | Intelligent automatic cleaning | None |
-| [AutoReset](src/AutoReset/README_EN.md) | Yes | Fully automatic reset | None |
-| [AutoStoreItems](src/AutoStoreItems/README_EN.md) | Yes | Automatic storage | None |
-| [AutoTeam](src/AutoTeam/README_EN.md) | Yes | Automatic team formation | None |
-| [AutoFish](src/AutoFish/README_EN.md) | Yes | Automatic fishing | None |
-| [Back](src/Back/README_EN.md) | Yes | Return to the point of death | None |
+| [AdditionalPylons](src/AdditionalPylons/README_EN.md) | Yes | Place more Pylons | [LazyAPI](src/LazyAPI/README.md) |
+| [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | No | Enhance Broadcast Box Functionality | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoBroadcast](src/AutoBroadcast/README_EN.md) | Yes | Automatic broadcast | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoAirItem](src/AutoAirItem/README_EN.md) | Yes | Automatic trash cans | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoClear](src/Autoclear/README_EN.md) | Yes | Intelligent automatic cleaning | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoReset](src/AutoReset/README_EN.md) | Yes | Fully automatic reset | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoStoreItems](src/AutoStoreItems/README_EN.md) | Yes | Automatic storage | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoTeam](src/AutoTeam/README_EN.md) | Yes | Automatic team formation | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoFish](src/AutoFish/README_EN.md) | Yes | Automatic fishing | [LazyAPI](src/LazyAPI/README.md) |
+| [Back](src/Back/README_EN.md) | Yes | Return to the point of death | [LazyAPI](src/LazyAPI/README.md) |
 | [BagPing](src/BagPing/README_EN.md) | Yes | Mark treasure bags on the map | None |
 | [BetterWhitelist](src/BetterWhitelist/README_EN.md) | Yes | Whitelist plugin | None |
-| [BanNpc](src/BanNpc/README_EN.md) | Yes | Prevent monster generation | None |
-| [BedSet](src/BedSet/README_EN.md) | Yes | Set and record respawn points | None |
-| [BridgeBuilder](src/BridgeBuilder/README_EN.md) | Yes | Quick bridge building | None |
-| [BuildMaster](src/BuildMaster/README.md) | No | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](src/MiniGamesAPI/README.md) |
+| [BanNpc](src/BanNpc/README_EN.md) | Yes | Prevent monster generation | [LazyAPI](src/LazyAPI/README.md) |
+| [BedSet](src/BedSet/README_EN.md) | Yes | Set and record respawn points | [LazyAPI](src/LazyAPI/README.md) |
+| [BridgeBuilder](src/BridgeBuilder/README_EN.md) | Yes | Quick bridge building | [LazyAPI](src/LazyAPI/README.md) |
+| [BuildMaster](src/BuildMaster/README.md) | No | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](src/MiniGamesAPI/README.md) [LazyAPI](src/LazyAPI/README.md) |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | Yes | Yet another misc plugin for TShock - the core part | None |
 | [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | Yes | Yet another misc plugin for TShock - the miscellaneous part | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [CaiBot](src/CaiBot/README.md) | No | CaiBot adapter plugin | Built-in dependencies |
 | [CaiPacketDebug](src/CaiPacketDebug/README.md) | No | Cai Packet Debug Tool | [TrProtocol](https://github.com/UnrealMultiple/TrProtocol) |
 | [CaiCustomEmojiCommand](src/CaiCustomEmojiCommand/README_EN.md) | Yes | Custom emoji command | None |
 | [CaiLib](src/CaiLib/README.md) | No | Cai's preload library | None |
-| [CaiRewardChest](src/CaiRewardChest/README_EN.md) | Yes | Convert naturally generated chests into reward chests that everyone can claim once | None |
+| [CaiRewardChest](src/CaiRewardChest/README_EN.md) | Yes | Convert naturally generated chests into reward chests that everyone can claim once | [LazyAPI](src/LazyAPI/README.md) |
 | [CGive](src/CGive/README_EN.md) | Yes | Offline commands | None |
 | [Challenger](src/Challenger/README.md) | Yes | Challenger mode | None |
-| [Chameleon](src/Chameleon/README_EN.md) | Yes | Login before entering the server | None |
-| [ChattyBridge](src/ChattyBridge/README.md) | No | Used for cross-server chat | None |
+| [Chameleon](src/Chameleon/README_EN.md) | Yes | Login before entering the server | [LazyAPI](src/LazyAPI/README.md) |
+| [ChattyBridge](src/ChattyBridge/README.md) | No | Used for cross-server chat | [LazyAPI](src/LazyAPI/README.md) |
 | [ChestRestore](src/ChestRestore/README_EN.md) | Yes | Infinite items in resource servers | None |
 | [CNPCShop](src/CNPCShop/README.md) | No | Custom NPC shop | None |
 | [ConsoleSql](src/ConsoleSql/README.md) | No | Execute SQL statements in the console | None |
 | [ConvertWorld](src/ConvertWorld/README_EN.md) | Yes | Convert world items by defeating monsters | None |
-| [CreateSpawn](src/CreateSpawn/README.md) | No | Spawn point building generation | None |
+| [CreateSpawn](src/CreateSpawn/README.md) | No | Spawn point building generation | [LazyAPI](src/LazyAPI/README.md) |
 | [CriticalHit](src/CriticalHit/README.md) | No | Critical hit prompt | None |
 | [DamageRuleLoot](src/DamageRuleLoot/README_EN.md) | Yes | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation | None |
 | [DamageStatistic](src/DamageStatistic/README.md) | No | Display damage caused by each player after each boss fight | None |
@@ -135,7 +135,7 @@
 | [ItemDecoration](src/ItemDecoration/README_EN.md) | Yes | Floating message display for held items | [LazyAPI](src/LazyAPI/README.md) |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | No | Unlock journey items | None |
 | [LazyAPI](src/LazyAPI/README.md) | Yes | Plugin base library | linq2db |
-| [LifemaxExtra](src/LifemaxExtra/README.md) | No | Eat more life fruits/crystals | None |
+| [LifemaxExtra](src/LifemaxExtra/README_EN.md) | Yes | Increase higher health and mana | [LazyAPI](src/LazyAPI/README.md) |
 | [ListPlugins](src/ListPlugins/README.md) | No | List installed plugins | None |
 | [ModifyWeapons](src/ModifyWeapons/README_EN.md) | Yes | ModifyWeapons | [LazyAPI](src/LazyAPI/README.md) |
 | [MapTeleport](src/MapTp/README_EN.md) | Yes | Double-click on the map to teleport | None |

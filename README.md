@@ -131,7 +131,7 @@
 | [JourneyUnlock](src/JourneyUnlock/README.md) | 解锁旅途物品 | 无 |
 | [Lagrange.XocMat.Adapter](src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 | 无 |
 | [LazyAPI](src/LazyAPI/README.md) | 插件基础库 | linq2db |
-| [LifemaxExtra](src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | 无 |
+| [LifemaxExtra](src/LifemaxExtra/README.md) | 提升更高的生命和魔力 | [LazyAPI](src/LazyAPI/README.md) |
 | [ListPlugins](src/ListPlugins/README.md) | 查已装插件 | 无 |
 | [ModifyWeapons](src/ModifyWeapons/README.md) | 修改武器 |  [LazyAPI](src/LazyAPI/README.md)  |
 | [MapTeleport](src/MapTp/README.md) | 双击大地图传送 | 无 |

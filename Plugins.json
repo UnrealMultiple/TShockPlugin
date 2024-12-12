@@ -293,7 +293,7 @@
   },
   {
     "Name": "修改武器",
-    "Version": "1.2.7",
+    "Version": "1.2.7.1",
     "Author": "羽学",
     "Description": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
     "AssemblyName": "ModifyWeapons",
