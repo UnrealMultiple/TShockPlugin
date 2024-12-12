@@ -24,8 +24,7 @@ public class LifemaxExtra : LazyPlugin
     public override void Initialize()
     {
         GeneralHooks.ReloadEvent += this.ReloadConfig;
-        TShock.Config.Settings.MaxHP = Configuration.Instance.MaxHP;
-        TShock.Config.Settings.MaxMP = Configuration.Instance.MaxMP;
+        this.SaveMPandHP();
         Commands.ChatCommands.Add(new Command("lifemaxextra.use", this.HP, "hp"));
         Commands.ChatCommands.Add(new Command("lifemaxextra.use", this.Mana, "mp"));
         GetDataHandlers.PlayerUpdate += this.OnPlayerUpdate;
@@ -47,6 +46,12 @@ public class LifemaxExtra : LazyPlugin
         base.Dispose(disposing);
     }
 
+    private void SaveMPandHP()
+    {
+        TShock.Config.Settings.MaxHP = Configuration.Instance.MaxHP;
+        TShock.Config.Settings.MaxMP = Configuration.Instance.MaxMP;
+        TShock.Config.Write(Path.Combine(TShock.SavePath, "config.json"));
+    }
     private void ReloadConfig(ReloadEventArgs args)
     {
         if (!TShock.ServerSideCharacterConfig.Settings.Enabled)
@@ -54,8 +59,7 @@ public class LifemaxExtra : LazyPlugin
             args.Player.SendErrorMessage(GetString("你没有开启SSC，LifemaxExtra无法正常运行"));
             return;
         }
-        TShock.Config.Settings.MaxHP = Configuration.Instance.MaxHP;
-        TShock.Config.Settings.MaxMP = Configuration.Instance.MaxMP;
+        this.SaveMPandHP();
     }
 
     private void Mana(CommandArgs args)
