@@ -137,6 +137,7 @@
 | [LazyAPI](src/LazyAPI/README.md)              | No                    | Biblioteca base para plugins                                | linq2db     |
 | [LifemaxExtra](src/LifemaxExtra/README.md)    | No                    | Comer más frutas/cristales de vida                          | Ninguna     |
 | [ListPlugins](src/ListPlugins/README.md)      | No                    | Lista los plugins instalados                                | Ninguna     |
+| [ModifyWeapons](src/ModifyWeapons/README_EN.md)         | No                    | Deje que los jugadores realicen dos Sprint                 |  [LazyAPI](src/LazyAPI/README.md)      |
 | [MapTeleport](src/MapTp/README_EN.md)         | No                    | Teletransportarse con doble clic en el mapa                 | Ninguna     |
 | [MiniGamesAPI](src/MiniGamesAPI/README.md)    | No                    | API para el mini-juego de pasta de frijol                   | Ninguna     |
 | [MonsterRegen](src/MonsterRegen/README.md)    | No                    | Regeneración de progreso de monstruos                       | Ninguna     |
@@ -144,6 +145,7 @@
 | [Noagent](src/Noagent/README.md)              | No                    | Prohíbe que las IPs de proxy ingresen al servidor           | Ninguna     |
 | [NormalDropsBags](src/NormalDropsBags/README.md) | No                   | Suelta bolsas de tesoros en dificultad normal               | Ninguna     |
 | [OnlineGiftPackage](src/OnlineGiftPackage/README.md) | No                | Paquete de regalos en línea                                 | Ninguna     |
+| [PlayerSpeed](src/PlayerSpeed/README.md)      | No                    | Interceptación de paquetes                                   | [LazyAPI](src/LazyAPI/README.md)     |
 | [PacketsStop](src/PacketsStop/README.md)      | No                    | Interceptación de paquetes                                   | Ninguna     |
 | [PermaBuff](src/PermaBuff/README.md)          | No                    | Buff permanente                                             | Ninguna     |
 | [PerPlayerLoot](src/PerPlayerLoot/README_EN.md) | No                   | Cofre separado para el botín del jugador                    | Ninguna     |
