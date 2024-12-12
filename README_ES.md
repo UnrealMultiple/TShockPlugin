@@ -135,7 +135,7 @@
 | [ItemDecoration](src/ItemDecoration/README_EN.md) | Sí                  | Muestra mensajes flotantes para los ítems en las manos     | [LazyAPI](src/LazyAPI/README.md)     |
 | [JourneyUnlock](src/JourneyUnlock/README.md)  | No                    | Desbloquea ítems del modo Journey                           | Ninguna     |
 | [LazyAPI](src/LazyAPI/README.md)              | No                    | Biblioteca base para plugins                                | linq2db     |
-| [LifemaxExtra](src/LifemaxExtra/README.md)    | No                    | Comer más frutas/cristales de vida                          | Ninguna     |
+| [LifemaxExtra](src/LifemaxExtra/README.md)    | No                    | Aumenta tu salud y mana a niveles más altos                 | [LazyAPI](src/LazyAPI/README.md)     |
 | [ListPlugins](src/ListPlugins/README.md)      | No                    | Lista los plugins instalados                                | Ninguna     |
 | [ModifyWeapons](src/ModifyWeapons/README_EN.md)         | No                    | Deje que los jugadores realicen dos Sprint                 |  [LazyAPI](src/LazyAPI/README.md)      |
 | [MapTeleport](src/MapTp/README_EN.md)         | No                    | Teletransportarse con doble clic en el mapa                 | Ninguna     |
