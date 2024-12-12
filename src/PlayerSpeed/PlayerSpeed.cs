@@ -157,6 +157,10 @@ public class PlayerSpeed : LazyPlugin
         var CRight = tplr.controlRight && tplr.direction == 1;
         var CLeft = tplr.controlLeft && tplr.direction == -1;
         var armor = tplr.armor.Take(20).Any(x => Configuration.Instance.ArmorItem != null && Configuration.Instance.ArmorItem.Contains(x.netID));
+        if (data == null)
+        {
+            return;
+        }
         var LastCool = data.CoolTime == default ? 0f : (float) Math.Round((now - data.CoolTime).TotalSeconds, 2);
 
         //计算冷却过去多久

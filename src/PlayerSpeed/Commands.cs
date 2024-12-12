@@ -206,14 +206,7 @@ public class Commands
                 case "移除物品":
                     if (int.TryParse(kvp.Value, out var remove))
                     {
-                        if (UpdateItem.Remove(remove))
-                        {
-                            prop = GetString("移除物品");
-                        }
-                        else
-                        {
-                            prop = GetString($"物品 {remove} 不存在.");
-                        }
+                        prop = UpdateItem.Remove(remove) ? GetString("移除物品") : GetString($"物品 {remove} 不存在.");
                     }
                     else
                     {
@@ -230,14 +223,7 @@ public class Commands
                         }
 
                         var del = ToRemove[0];
-                        if (UpdateItem.Remove(del.netID))
-                        {
-                            prop = GetString("移除物品");
-                        }
-                        else
-                        {
-                            prop = GetString("物品不存在");
-                        }
+                        prop = UpdateItem.Remove(del.netID) ? GetString("移除物品") : GetString("物品不存在");
                     }
                     break;
                 default:

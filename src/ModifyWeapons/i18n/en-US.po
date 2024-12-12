@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ModifyWeapons\n"
-"POT-Creation-Date: 2024-12-11 20:47:02+0800\n"
-"PO-Revision-Date: 2024-12-11 21:44+0800\n"
+"POT-Creation-Date: 2024-12-12 20:00:24+0800\n"
+"PO-Revision-Date: 2024-12-12 20:00+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ..\..\Commands.cs:1610
+#: ..\..\Commands.cs:1662
 #, csharp-format
 msgid " - 共计[C/91DFBB:{0}个]玩家 -"
 msgstr " - Total [C/91DFBB:{0} players] -"
@@ -33,18 +33,18 @@ msgstr ""
 msgid "[c/8AD0EA:{0}]"
 msgstr "[c/8AD0EA:{0}]"
 
-#: ..\..\ModifyWeapons.cs:303
+#: ..\..\ModifyWeapons.cs:313
 msgid "[c/AD89D5:公][c/D68ACA:用][c/DF909A:武][c/E5A894:器] 已更新!"
 msgstr ""
-"[c/AD89D5:Public][c/D68ACA: Utility][c/DF909A: Weapon][c/E5A894:Item ] "
-"has been updated!"
+"[c/AD89D5:Public][c/D68ACA: Utility][c/DF909A: Weapon][c/E5A894:Item ] has "
+"been updated!"
 
-#: ..\..\Commands.cs:1272
+#: ..\..\Commands.cs:1273
 #, csharp-format
 msgid "[c/D4E443:管理员] 已修改你的: [c/92C5EC:{0}]"
 msgstr "[c/D4E443:Administrator] has modified your: [c/92C5EC:{0}]"
 
-#: ..\..\Commands.cs:1435
+#: ..\..\Commands.cs:1436
 #, csharp-format
 msgid ""
 "[c/FE727D:《物品列表》]第 [c/68A7E8:{0}] 页，共 [c/EC6AC9:{1}] 页:\n"
@@ -73,12 +73,11 @@ msgstr "{0}'s server rejoin: [c/92C5EC:Enabled]"
 msgid "{0}的进服重读:[c/E8585B:关闭]"
 msgstr "{0}'s server rejoin: [c/E8585B:Disabled]"
 
-#: ..\..\ModifyWeapons.cs:464 ..\..\ModifyWeapons.cs:495
+#: ..\..\ModifyWeapons.cs:474 ..\..\ModifyWeapons.cs:505
 #, csharp-format
 msgid "《[c/AD89D5:清][c/D68ACA:理][c/DF909A:警][c/E5A894:告]》 玩家:{0}\n"
 msgstr ""
-"《[c/AD89D5:Clear][c/D68ACA: ][c/DF909A:Warning][c/E5A894: ]》 Player: "
-"{0}\n"
+"《[c/AD89D5:Clear][c/D68ACA: ][c/DF909A:Warning][c/E5A894: ]》 Player: {0}\n"
 
 #: ..\..\ModifyWeapons.cs:147 ..\..\ModifyWeapons.cs:161
 #, csharp-format
@@ -86,12 +85,11 @@ msgid "《[c/AD89D5:自][c/D68ACA:动][c/DF909A:重][c/E5A894:读]》 玩家:{0}
 msgstr ""
 "《[c/AD89D5:Auto][c/D68ACA: ][c/DF909A:Rejoin][c/E5A894: ]》 Player: {0}"
 
-#: ..\..\ModifyWeapons.cs:429
+#: ..\..\ModifyWeapons.cs:439
 #, csharp-format
 msgid "《[c/AD89D5:自][c/D68ACA:动][c/DF909A:重][c/E5A894:读]》 玩家:{0}\n"
 msgstr ""
-"《[c/AD89D5:Auto][c/D68ACA: ][c/DF909A:Rejoin][c/E5A894: ]》 Player: "
-"{0}\n"
+"《[c/AD89D5:Auto][c/D68ACA: ][c/DF909A:Rejoin][c/E5A894: ]》 Player: {0}\n"
 
 #: ..\..\ModifyWeapons.cs:162
 #, csharp-format
@@ -103,11 +101,11 @@ msgstr "《[c/FCFE63:Suffix Conversion]》[c/15EDDB:{0}] "
 msgid "《[c/FCFE63:弹药转换]》[c/15EDDB:{0}] "
 msgstr "《[c/FCFE63:Ammunition Conversion]》[c/15EDDB:{0}] "
 
-#: ..\..\Commands.cs:1510
+#: ..\..\Commands.cs:1562
 msgid "《公用武器菜单》"
 msgstr "《[c/AD89D5:Public][c/D68ACA: Weapon][c/DF909A: Menu]》"
 
-#: ..\..\Commands.cs:1589
+#: ..\..\Commands.cs:1641
 msgid "《下一批修改物品名单》:\n"
 msgstr "《Next Batch of Modified Items List》:\n"
 
@@ -121,7 +119,7 @@ msgstr ""
 "/mw all —— [c/FFF540:Modify items for all players and][c/FF6863:Create "
 "Data]\n"
 
-#: ..\..\Commands.cs:1522
+#: ..\..\Commands.cs:1574
 msgid "/mw all 物品名 d 200 ua 10 …"
 msgstr "/mw all ItemName d 200 ua 10 …"
 
@@ -137,20 +135,19 @@ msgstr "/mw clear —— [c/FFB357:Toggle Auto Cleanup] Function\n"
 msgid "/mw del 玩家名 —— [c/DF909A:删除指定]玩家数据\n"
 msgstr "/mw del 玩家名 —— [c/DF909A:Delete Specified] Player Data\n"
 
-#: ..\..\Commands.cs:1503
+#: ..\..\Commands.cs:1555
 msgid "/mw g 玩家名 物品名 d 20 ua 10 …"
 msgstr "/mw g PlayerName ItemName d 20 ua 10 …"
 
 #: ..\..\Commands.cs:650
 msgid "/mw give —— [c/4C95DD:给指定玩家]修改物品并[c/86F06E:建数据]\n"
 msgstr ""
-"/mw give —— [c/4C95DD:Modify items for specified player and][c/86F06E:"
-"Create Data]\n"
+"/mw give —— [c/4C95DD:Modify items for specified player and][c/86F06E:Create "
+"Data]\n"
 
 #: ..\..\Commands.cs:626 ..\..\Commands.cs:639
 msgid "/mw hand —— 获取[c/FFB357:手持物品]信息开关\n"
-msgstr ""
-"/mw hand —— Toggle [c/FFB357:Handheld Item] Information Retrieval\n"
+msgstr "/mw hand —— Toggle [c/FFB357:Handheld Item] Information Retrieval\n"
 
 #: ..\..\Commands.cs:627 ..\..\Commands.cs:640
 msgid "/mw join —— 切换[c/4C95DD:进服重读]开关\n"
@@ -185,7 +182,7 @@ msgstr "/mw reads —— [c/D68ACA:Assist All Players] with Rejoin\n"
 msgid "/mw reset —— [c/ED3241:重置所有]玩家数据"
 msgstr "/mw reset —— [c/ED3241:Reset All] Player Data"
 
-#: ..\..\Commands.cs:1496
+#: ..\..\Commands.cs:1548
 msgid "/mw s d 20 ua 10 … 自定义组合"
 msgstr "/mw s d 20 ua 10 … Custom Combination"
 
@@ -196,10 +193,9 @@ msgstr "/mw set —— Modify [c/FFB357:Attributes of Held] Item\n"
 #: ..\..\Commands.cs:648
 msgid "/mw up —— 修改玩家[c/AD89D5:已有物品]的指定属性\n"
 msgstr ""
-"/mw up —— Modify Specified Attributes of Player's [c/AD89D5:Existing "
-"Items]\n"
+"/mw up —— Modify Specified Attributes of Player's [c/AD89D5:Existing Items]\n"
 
-#: ..\..\Commands.cs:1530
+#: ..\..\Commands.cs:1582
 msgid "/mw up 玩家名 物品名 d 20 ua 10"
 msgstr "/mw up PlayerName ItemName d 20 ua 10"
 
@@ -212,7 +208,7 @@ msgstr ""
 "[i:3455][c/AD89D5:Modify][c/D68ACA:ify ][c/DF909A:Wea][c/E5A894: pon]"
 "[i:3454] \n"
 
-#: ..\..\Commands.cs:1539
+#: ..\..\Commands.cs:1591
 msgid ""
 "\n"
 "《已修改物品名单》:\n"
@@ -220,7 +216,7 @@ msgstr ""
 "\n"
 "《已修改物品名单》:\n"
 
-#: ..\..\Commands.cs:1529
+#: ..\..\Commands.cs:1581
 msgid ""
 "\n"
 "保留原有修改参数进行二次更改,格式为:"
@@ -228,7 +224,7 @@ msgstr ""
 "\n"
 "Keep existing modification parameters for secondary changes, format is:"
 
-#: ..\..\Commands.cs:1477
+#: ..\..\Commands.cs:1529
 msgid ""
 "\n"
 "弹药相关(远程只需前2步):\n"
@@ -236,7 +232,7 @@ msgstr ""
 "\n"
 "Ammunition related (only the first 2 steps are required for ranged):\n"
 
-#: ..\..\Commands.cs:1523
+#: ..\..\Commands.cs:1575
 msgid ""
 "\n"
 "发2次:[c/91DFBB:建数据>发物品]"
@@ -260,27 +256,27 @@ msgid ""
 "管理员 [c/D4E443:{0}] 已为所有玩家[c/92C5EC:手动重读]修改物品"
 msgstr ""
 "\n"
-"Administrator [c/D4E443:{0}] has manually reloaded modified items for "
-"all players: [c/92C5EC:Manual Rejoin]"
+"Administrator [c/D4E443:{0}] has manually reloaded modified items for all "
+"players: [c/92C5EC:Manual Rejoin]"
 
-#: ..\..\Commands.cs:1478
+#: ..\..\Commands.cs:1530
 msgid "1.先用[c/91DFBB:m 1]指定1个物品作为[c/C9360D:弹药]\n"
 msgstr ""
 "1. First, use [c/91DFBB:m 1] to designate one item as [c/C9360D:"
 "Ammunition].\n"
 
-#: ..\..\Commands.cs:1479
+#: ..\..\Commands.cs:1531
 msgid "2.再用[c/FF6975:aa 1]把另1个物品设为[c/0DD65D:发射器]\n"
 msgstr ""
 "2. Then, use [c/FF6975:aa 1] to set another item as [c/0DD65D:Launcher]\n"
 
-#: ..\..\Commands.cs:1480
+#: ..\..\Commands.cs:1532
 msgid "3.近战想用[c/FF5338:弹药]得加个[c/2F99D7:sh 1]弹幕属性"
 msgstr ""
-"3. For melee attacks to use [c/FF5338:Ammunition], add the [c/2F99D7:sh "
-"1] projectile attribute"
+"3. For melee attacks to use [c/FF5338:Ammunition], add the [c/2F99D7:sh 1] "
+"projectile attribute"
 
-#: ..\..\Commands.cs:1486
+#: ..\..\Commands.cs:1538
 msgid "除了[c/DADEA0:/mw up]其他都会还原数值再修改"
 msgstr ""
 "Except for [c/DADEA0:/mw up], all other commands will reset the values "
@@ -290,39 +286,38 @@ msgstr ""
 msgid "触发[c/FFFAA1:自动重读]规则:\n"
 msgstr "Trigger [c/FFFAA1:Auto Rejoin] rules:\n"
 
-#: ..\..\ModifyWeapons.cs:509
+#: ..\..\ModifyWeapons.cs:519
 msgid "触发延时指令:"
 msgstr "Trigger delayed command:"
 
-#: ..\..\Commands.cs:1483
+#: ..\..\Commands.cs:1535
 msgid "词缀相关:玩家[c/D45B7E:手上不是修改物品]时才能改"
 msgstr ""
 "Suffix related: Players can only modify items when the item [c/D45B7E:in "
 "hand is not a modified item]"
 
-#: ..\..\Commands.cs:993 ..\..\Commands.cs:1158 ..\..\Commands.cs:1399
-#: ..\..\Commands.cs:1460 ..\..\ModifyWeapons.cs:348
+#: ..\..\Commands.cs:996 ..\..\Commands.cs:1159 ..\..\Commands.cs:1400
+#: ..\..\Commands.cs:1479 ..\..\ModifyWeapons.cs:358
 msgid "大小"
 msgstr "scale"
 
-#: ..\..\Commands.cs:1033 ..\..\Commands.cs:1198 ..\..\Commands.cs:1403
-#: ..\..\Commands.cs:1464 ..\..\ModifyWeapons.cs:368
+#: ..\..\Commands.cs:1036 ..\..\Commands.cs:1199 ..\..\Commands.cs:1404
+#: ..\..\Commands.cs:1499 ..\..\ModifyWeapons.cs:378
 msgid "弹幕"
 msgstr "shoot"
 
-#: ..\..\Commands.cs:1489
+#: ..\..\Commands.cs:1541
 msgid ""
 "弹幕[c/A3E295:sh] 弹药[c/91DFBB:m] 发射器[c/5264D9:aa] 颜色[c/5264D9:hc]"
 msgstr ""
-"shoot[c/A3E295:sh] ammo[c/91DFBB:m] useAmmo[c/5264D9:aa] color[c/5264D9:"
-"hc]"
+"shoot[c/A3E295:sh] ammo[c/91DFBB:m] useAmmo[c/5264D9:aa] color[c/5264D9:hc]"
 
-#: ..\..\Commands.cs:1056 ..\..\Commands.cs:1221 ..\..\Commands.cs:1405
-#: ..\..\Commands.cs:1466 ..\..\ModifyWeapons.cs:378
+#: ..\..\Commands.cs:1059 ..\..\Commands.cs:1222 ..\..\Commands.cs:1406
+#: ..\..\Commands.cs:1509 ..\..\ModifyWeapons.cs:388
 msgid "弹药"
 msgstr "ammo"
 
-#: ..\..\Commands.cs:1639
+#: ..\..\Commands.cs:1691
 msgid "弹药[c/91DFBB:{10}] 发射器[c/5264D9:{11}] 颜色[c/F5DDD3:{12}]"
 msgstr "ammo[c/91DFBB:{10}] useAmmo[c/5264D9:{11}] color[c/F5DDD3:{12}]"
 
@@ -332,55 +327,53 @@ msgstr ""
 "2.use economic [c/4C95DD:commands] when the [c/86F06E:inventory has] "
 "modified items.\n"
 
-#: ..\..\Commands.cs:1504
+#: ..\..\Commands.cs:1556
 msgid "发2次:[c/91DFBB:建数据>发物品]"
 msgstr "Send twice: [c/91DFBB:Create Data > Send Item]"
 
-#: ..\..\Commands.cs:1068 ..\..\Commands.cs:1233 ..\..\Commands.cs:1406
-#: ..\..\Commands.cs:1467 ..\..\ModifyWeapons.cs:383
+#: ..\..\Commands.cs:1071 ..\..\Commands.cs:1234 ..\..\Commands.cs:1407
+#: ..\..\Commands.cs:1514 ..\..\ModifyWeapons.cs:393
 msgid "发射器"
 msgstr "useAmmo"
 
-#: ..\..\Commands.cs:1511
+#: ..\..\Commands.cs:1563
 msgid "格式1:/mw p 物品名 d 20 … 添加或修改"
 msgstr "Format 1: /mw p ItemName d 20 … Add or Modify"
 
-#: ..\..\Commands.cs:1512
+#: ..\..\Commands.cs:1564
 msgid "格式2:/mw p on与off 公用武器开关"
 msgstr "Format 2: /mw p on and off —— Public Weapon Switch"
 
-#: ..\..\Commands.cs:1513
+#: ..\..\Commands.cs:1565
 msgid "格式3:/mw p del 物品名 删除玩家指定武器"
 msgstr "Format 3: /mw p del ItemName —— Delete Specified Player Weapon"
 
-#: ..\..\Commands.cs:1502
+#: ..\..\Commands.cs:1554
 msgid "给别人指定物品并改参数,格式为:"
-msgstr ""
-"Assign an item and modify parameters for another player, format is:"
+msgstr "Assign an item and modify parameters for another player, format is:"
 
-#: ..\..\Commands.cs:1521
+#: ..\..\Commands.cs:1573
 msgid "给所有人指定物品并改参数,格式为:"
 msgstr "Assign an item and modify parameters for all players, format is:"
 
-#: ..\..\Commands.cs:780
+#: ..\..\Commands.cs:790
 msgid "公用武器功能未启用或配置为空。"
-msgstr ""
-"Public weapon functionality is not enabled or is configured as empty。"
+msgstr "Public weapon functionality is not enabled or is configured as empty。"
 
-#: ..\..\Commands.cs:1515
+#: ..\..\Commands.cs:1567
 msgid "公用武器数据优先级 ＞ 给物品指令数据"
 msgstr "Public weapon data priority ＞ Item command data"
 
-#: ..\..\Commands.cs:1023 ..\..\Commands.cs:1188 ..\..\Commands.cs:1402
-#: ..\..\Commands.cs:1463 ..\..\ModifyWeapons.cs:363
+#: ..\..\Commands.cs:1026 ..\..\Commands.cs:1189 ..\..\Commands.cs:1403
+#: ..\..\Commands.cs:1494 ..\..\ModifyWeapons.cs:373
 msgid "攻速"
 msgstr "useAnimation"
 
-#: ..\..\Commands.cs:1485
+#: ..\..\Commands.cs:1537
 msgid "攻速相关:影响所有[c/EAF836:近战]越小挥舞间隔越快"
 msgstr ""
-"use Animation related: Affects all [c/EAF836:melee] attacks; the smaller "
-"the swing interval, the faster the attack speed"
+"use Animation related: Affects all [c/EAF836:melee] attacks; the smaller the "
+"swing interval, the faster the attack speed"
 
 #: ..\..\Commands.cs:450
 #, csharp-format
@@ -392,38 +385,37 @@ msgstr "Admin [c/D4E443:{0}] has created data for [c/92C5EC:{1}]"
 msgid "管理员 [c/D4E443:{0}] 已为所有玩家 创建数据"
 msgstr "Admin [c/D4E443:{0}] has created data for all players"
 
-#: ..\..\Commands.cs:1003 ..\..\Commands.cs:1168 ..\..\Commands.cs:1400
-#: ..\..\Commands.cs:1461 ..\..\ModifyWeapons.cs:353
+#: ..\..\Commands.cs:1006 ..\..\Commands.cs:1169 ..\..\Commands.cs:1401
+#: ..\..\Commands.cs:1484 ..\..\ModifyWeapons.cs:363
 msgid "击退"
 msgstr "knockBack"
 
-#: ..\..\Commands.cs:1638
+#: ..\..\Commands.cs:1690
 msgid ""
-"击退[c/5C9EE1:{5}] 用速[c/74E55D:{6}] 攻速[c/94BAE0:{7}] 弹幕[c/E83C10:"
-"{8}] 射速[c/F0EC9E:{9}]\n"
+"击退[c/5C9EE1:{5}] 用速[c/74E55D:{6}] 攻速[c/94BAE0:{7}] 弹幕[c/E83C10:{8}] "
+"射速[c/F0EC9E:{9}]\n"
 msgstr ""
 "knockBack[c/5C9EE1:{5}] useTime[c/74E55D:{6}] useAnimation[c/94BAE0:{7}] "
 "shoot[c/E83C10:{8}] shootSpeed[c/F0EC9E:{9}]\n"
 
-#: ..\..\Commands.cs:1488
+#: ..\..\Commands.cs:1540
 msgid ""
-"击退[c/F79361:kb] 用速[c/74E55D:ut] 攻速[c/F7B661:ua] 射速[c/F7F261:"
-"ss] \n"
+"击退[c/F79361:kb] 用速[c/74E55D:ut] 攻速[c/F7B661:ua] 射速[c/F7F261:ss] \n"
 msgstr ""
 "knockBack[c/F79361:kb] useTime[c/74E55D:ut] useAnimation[c/F7B661:ua] "
 "shootSpeed[c/F7F261:ss] \n"
 
-#: ..\..\ModifyWeapons.cs:430
+#: ..\..\ModifyWeapons.cs:440
 #, csharp-format
 msgid "检测到经济指令 重读物品:[c/4C95DD:{0}]!"
 msgstr "Detected economy command, reloading item: [c/4C95DD:{0}]!"
 
-#: ..\..\ModifyWeapons.cs:465
+#: ..\..\ModifyWeapons.cs:475
 #, csharp-format
 msgid "禁止乱丢修改物品:[c/4C95DD:{0}]!"
 msgstr "Prohibit discarding modified items: [c/4C95DD:{0}]!"
 
-#: ..\..\Commands.cs:885
+#: ..\..\Commands.cs:888
 msgid "没有找到该玩家的物品数据。"
 msgstr "No item data found for the specified player。"
 
@@ -432,11 +424,11 @@ msgid "没有找到与指定名称匹配的物品或无法移除。"
 msgstr ""
 "No item matching the specified name was found, or it cannot be removed。"
 
-#: ..\..\Commands.cs:1481
+#: ..\..\Commands.cs:1533
 msgid "免堆叠检测权限:[c/40A9DE:tshock.ignore.itemstack]"
 msgstr "Stack exemption permission: [c/40A9DE:tshock.ignore.itemstack]"
 
-#: ..\..\Commands.cs:917
+#: ..\..\Commands.cs:920
 #, csharp-format
 msgid ""
 "您的重读冷却:[c/5C9EE1:{0}] < [c/FF6975:{1}]秒 重读次数:[c/93E0D8:{2}]\n"
@@ -444,33 +436,33 @@ msgstr ""
 "Your rejoin cool-down: [c/5C9EE1:{0}] < [c/FF6975:{1}] seconds, Rejoin "
 "times: [c/93E0D8:{2}]\n"
 
-#: ..\..\Commands.cs:1439
+#: ..\..\Commands.cs:1440
 msgid "您没有任何修改物品。"
 msgstr "You have no modified items。"
 
-#: ..\..\Commands.cs:983 ..\..\Commands.cs:1148 ..\..\Commands.cs:1458
-#: ..\..\ModifyWeapons.cs:338
+#: ..\..\Commands.cs:986 ..\..\Commands.cs:1149 ..\..\Commands.cs:1469
+#: ..\..\ModifyWeapons.cs:348
 msgid "前缀"
 msgstr "Prefix"
 
-#: ..\..\Commands.cs:1412
+#: ..\..\Commands.cs:1413
 #, csharp-format
 msgid "前缀([c/94D3E4:{0}]):[c/FFF4{1}:{2}]"
 msgstr "Prefix([c/94D3E4:{0}]):[c/FFF4{1}:{2}]"
 
-#: ..\..\Commands.cs:918
+#: ..\..\Commands.cs:921
 #, csharp-format
 msgid "请等待[c/93E0D8:{0}]秒后手动重读指令:[c/A7D3D6:/mw read]"
 msgstr ""
 "Please wait [c/93E0D8:{0}] seconds and then manually rejoin using the "
 "command: [c/A7D3D6:/mw read]"
 
-#: ..\..\Commands.cs:1424
+#: ..\..\Commands.cs:1425
 #, csharp-format
 msgid "请输入 [c/68A7E8:/mw list {0}] 查看更多"
 msgstr "Please enter [c/68A7E8:/mw list {0}] to view more"
 
-#: ..\..\Commands.cs:1430
+#: ..\..\Commands.cs:1431
 #, csharp-format
 msgid "请输入 [c/68A7E8:/mw list {0}] 查看上一页"
 msgstr "Please enter [c/68A7E8:/mw list {0}] to view the previous page"
@@ -482,23 +474,23 @@ msgstr "Please enter a valid integer as the rejoin times。"
 #: ..\..\Commands.cs:616
 msgid "请用角色[c/D95065:重进服务器]后输入：/mw 指令查看菜单\n"
 msgstr ""
-"Please re-enter the server with your character and then input: [c/"
-"D95065:/mw command] to view the menu\n"
+"Please re-enter the server with your character and then input: [c/D95065:/mw "
+"command] to view the menu\n"
 
-#: ..\..\Commands.cs:965 ..\..\Commands.cs:1130 ..\..\Commands.cs:1398
-#: ..\..\Commands.cs:1459 ..\..\ModifyWeapons.cs:343
+#: ..\..\Commands.cs:968 ..\..\Commands.cs:1131 ..\..\Commands.cs:1399
+#: ..\..\Commands.cs:1474 ..\..\ModifyWeapons.cs:353
 msgid "伤害"
 msgstr "damage"
 
-#: ..\..\Commands.cs:1487
+#: ..\..\Commands.cs:1539
 msgid ""
 "伤害[c/FF6975:d] 数量[c/74E55D:sk] 前缀[c/74E55D:pr] 大小[c/5C9EE1:sc] \n"
 msgstr ""
 "damage[c/FF6975:d] Stack[c/74E55D:sk] Prefix[c/74E55D:pr] scale[c/5C9EE1:"
 "sc] \n"
 
-#: ..\..\Commands.cs:1044 ..\..\Commands.cs:1209 ..\..\Commands.cs:1404
-#: ..\..\Commands.cs:1465 ..\..\ModifyWeapons.cs:373
+#: ..\..\Commands.cs:1047 ..\..\Commands.cs:1210 ..\..\Commands.cs:1405
+#: ..\..\Commands.cs:1504 ..\..\ModifyWeapons.cs:383
 msgid "射速"
 msgstr "shootSpeed"
 
@@ -511,22 +503,22 @@ msgstr "Remaining modified item rejoin attempts: [c/A7D3D6:{0}]"
 msgid "使用方法: /mw pw del <物品名>"
 msgstr "Usage: /mw pw del <ItemName>"
 
-#: ..\..\Commands.cs:1514
+#: ..\..\Commands.cs:1566
 msgid "使用指令修改[c/91DFBB:配置] 自动写入所有玩家数据"
 msgstr ""
-"Use command to modify [c/91DFBB:configuration], automatically write to "
-"all player data"
+"Use command to modify [c/91DFBB:configuration], automatically write to all "
+"player data"
 
-#: ..\..\Commands.cs:1637
+#: ..\..\Commands.cs:1689
 msgid ""
-"手持[c/92C5EC:{0}] 伤害[c/FF6975:{1}] 前缀[c/F5DDD3:{2}] 数量[c/2CCFC6:"
-"{3}] 大小[c/5C9EE1:{4}] \n"
+"手持[c/92C5EC:{0}] 伤害[c/FF6975:{1}] 前缀[c/F5DDD3:{2}] 数量[c/2CCFC6:{3}] "
+"大小[c/5C9EE1:{4}] \n"
 msgstr ""
 "Selected[c/92C5EC:{0}] damage[c/FF6975:{1}] prefix[c/F5DDD3:{2}] "
 "stack[c/2CCFC6:{3}] scale[c/5C9EE1:{4}] \n"
 
-#: ..\..\Commands.cs:974 ..\..\Commands.cs:1139 ..\..\Commands.cs:1397
-#: ..\..\Commands.cs:1457 ..\..\ModifyWeapons.cs:333
+#: ..\..\Commands.cs:977 ..\..\Commands.cs:1140 ..\..\Commands.cs:1398
+#: ..\..\Commands.cs:1464 ..\..\ModifyWeapons.cs:343
 msgid "数量"
 msgstr "stack"
 
@@ -546,16 +538,16 @@ msgstr "Player [{0}] has [c/92C5EC:disabled] the server rejoin function。"
 #, csharp-format
 msgid "玩家 [{0}] 已[c/92C5EC:启用]获取手持物品信息功能。"
 msgstr ""
-"Player [{0}] has [c/92C5EC:enabled] the function to obtain information "
-"about SelectedItem。"
+"Player [{0}] has [c/92C5EC:enabled] the function to obtain information about "
+"SelectedItem。"
 
 #: ..\..\Commands.cs:53
 #, csharp-format
 msgid "玩家 [{0}] 已[c/92C5EC:启用]进服重读功能。"
 msgstr "Player [{0}] has [c/92C5EC:enabled] the server rejoin function。"
 
-#: ..\..\Commands.cs:1389 ..\..\Commands.cs:1452 ..\..\ModifyWeapons.cs:159
-#: ..\..\ModifyWeapons.cs:322
+#: ..\..\Commands.cs:1390 ..\..\Commands.cs:1453 ..\..\ModifyWeapons.cs:159
+#: ..\..\ModifyWeapons.cs:332
 msgid "无"
 msgstr "null"
 
@@ -563,46 +555,45 @@ msgstr "null"
 #, csharp-format
 msgid "无法找到玩家 [c/E8585B:{0}] 或更新重读次数失败。"
 msgstr ""
-"Unable to find player [c/E8585B:{0}] or failed to update rejoin "
-"attempts。"
+"Unable to find player [c/E8585B:{0}] or failed to update rejoin attempts。"
 
-#: ..\..\Commands.cs:1085 ..\..\Commands.cs:1250
+#: ..\..\Commands.cs:1088 ..\..\Commands.cs:1251
 msgid "无效的颜色代码格式"
 msgstr "Invalid color code format"
 
-#: ..\..\Commands.cs:1374
+#: ..\..\Commands.cs:1375
 msgid "无效的页码,总共有 {0} 页。"
 msgstr "Invalid page number, there are a total of {0} pages。"
 
-#: ..\..\Commands.cs:1411
+#: ..\..\Commands.cs:1412
 #, csharp-format
 msgid "物品([c/94D3E4:{0}]):[c/FFF4{1}:{2}] | "
 msgstr "Item([c/94D3E4:{0}]):[c/FFF4{1}:{2}] | "
 
-#: ..\..\Commands.cs:1644
+#: ..\..\Commands.cs:1696
 #, csharp-format
 msgid "修改:[c/92B9D4:{0}]"
 msgstr "modified:[c/92B9D4:{0}]"
 
-#: ..\..\Commands.cs:951
+#: ..\..\Commands.cs:954
 msgid "修改数值:"
 msgstr "Modify values:"
 
-#: ..\..\ModifyWeapons.cs:496
+#: ..\..\ModifyWeapons.cs:506
 #, csharp-format
 msgid "修改物品禁止放箱子:[c/4C95DD:{0}]!"
 msgstr "Modified items cannot be placed in chests: [c/4C95DD:{0}]!"
 
-#: ..\..\Commands.cs:1495
+#: ..\..\Commands.cs:1547
 msgid "修改自己手上物品参数,格式为:"
 msgstr "Modify parameters of the SelectedItem, format is:"
 
-#: ..\..\Commands.cs:1246 ..\..\Commands.cs:1407 ..\..\Commands.cs:1468
-#: ..\..\ModifyWeapons.cs:388
+#: ..\..\Commands.cs:1247 ..\..\Commands.cs:1408 ..\..\Commands.cs:1519
+#: ..\..\ModifyWeapons.cs:398
 msgid "颜色"
 msgstr "color"
 
-#: ..\..\Commands.cs:1482
+#: ..\..\Commands.cs:1534
 msgid "颜色相关:[c/28DE5E:hc 2858de] (16进制无#号)"
 msgstr "Color related: [c/28DE5E:hc 2858de] (Hexadecimal without #)"
 
@@ -679,12 +670,12 @@ msgstr "Public weapons have been enabled"
 msgid "已为玩家 [c/2F99D7:{0}] 发送:"
 msgstr "Sent to player [c/2F99D7:{0}]:"
 
-#: ..\..\Commands.cs:1013 ..\..\Commands.cs:1178 ..\..\Commands.cs:1401
-#: ..\..\Commands.cs:1462 ..\..\ModifyWeapons.cs:358
+#: ..\..\Commands.cs:1016 ..\..\Commands.cs:1179 ..\..\Commands.cs:1402
+#: ..\..\Commands.cs:1489 ..\..\ModifyWeapons.cs:368
 msgid "用速"
 msgstr "useTime"
 
-#: ..\..\Commands.cs:1484
+#: ..\..\Commands.cs:1536
 msgid "用速相关:影响所有[c/FFBE38:远程]越小单次间隔越密集"
 msgstr ""
 "UseTime related: Affects all [c/FFBE38:ranged] attacks; the smaller the "
@@ -692,8 +683,7 @@ msgstr ""
 
 #: ..\..\Commands.cs:617
 msgid "羽学声明：本插件纯属[c/7E93DE:免费]请勿上当受骗"
-msgstr ""
-"YuXue Declaration: This plugin is [c/7E93DE:free]; do not be deceived"
+msgstr "YuXue Declaration: This plugin is [c/7E93DE:free]; do not be deceived"
 
 #: ..\..\Commands.cs:311
 msgid "找不到指定的物品"
@@ -707,6 +697,6 @@ msgstr "Cannot find the specified item。"
 msgid "指令正确格式：[c/FFF540:/mw auto 1 或 0]"
 msgstr "Correct command format: [c/FFF540:/mw auto 1 or 0]"
 
-#: ..\..\Commands.cs:1624
+#: ..\..\Commands.cs:1676
 msgid "重读开关:[c/E8585B:未开启]"
 msgstr "Rejoin switch: [c/E8585B:Not Enabled]"
