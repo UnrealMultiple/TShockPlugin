@@ -135,7 +135,7 @@
 | [ItemDecoration](src/ItemDecoration/README_EN.md) | Yes | Floating message display for held items | [LazyAPI](src/LazyAPI/README.md) |
 | [JourneyUnlock](src/JourneyUnlock/README.md) | No | Unlock journey items | None |
 | [LazyAPI](src/LazyAPI/README.md) | Yes | Plugin base library | linq2db |
-| [LifemaxExtra](src/LifemaxExtra/README_EN.md) | Yes | Eat more life fruits/crystals | [LazyAPI](src/LazyAPI/README.md) |
+| [LifemaxExtra](src/LifemaxExtra/README_EN.md) | Yes | Increase higher health and mana | [LazyAPI](src/LazyAPI/README.md) |
 | [ListPlugins](src/ListPlugins/README.md) | No | List installed plugins | None |
 | [ModifyWeapons](src/ModifyWeapons/README_EN.md) | Yes | ModifyWeapons | [LazyAPI](src/LazyAPI/README.md) |
 | [MapTeleport](src/MapTp/README_EN.md) | Yes | Double-click on the map to teleport | None |
