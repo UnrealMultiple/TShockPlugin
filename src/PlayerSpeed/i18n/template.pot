@@ -1,6 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PlayerSpeed\n"
+
 "POT-Creation-Date: 2024-12-12 19:57:33+0800\n"
 "PO-Revision-Date: 2024-12-12 19:57:33+0800\n"
 "Last-Translator: \n"
@@ -53,49 +54,51 @@ msgstr ""
 #, csharp-format
 msgid ""
 "\n"
-"玩家 [c/4EA4F2:{0}] 疾速[c/FF5265:冷却]完毕!"
+"玩家 [c/4EA4F2:{0}] 因[c/FF5265:冲刺]或[c/DBF34E:跳跃] 超过[c/47DCBD:{1}次]进入冷却"
 msgstr ""
 
 #: ..\..\PlayerSpeed.cs:196
 #, csharp-format
 msgid ""
 "\n"
-"玩家 [c/4EA4F2:{0}] 因[c/FF5265:冲刺]或[c/DBF34E:跳跃] 超过[c/47DCBD:{1}次]进入冷却"
+"玩家 [c/4EA4F2:{0}] 疾速[c/FF5265:冷却]完毕!"
 msgstr ""
 
-#: ..\..\Commands.cs:99
-msgid ""
-"参数: 速度([c/F24F62:sd]) 高度([c/48DCB8:h]) 间隔([c/4898DC:r]) 冷却([c/FE7F53:t])\n"
+#: ../../PlayerSpeed.cs:174
+msgid "使用克盾类饰品[c/47DCBD:冲刺]可冲更远"
 msgstr ""
 
-#: ..\..\Commands.cs:168
-msgid "次数"
+#: ../../Commands.cs:120
+msgid "修改冲刺:"
 msgstr ""
 
-#: ..\..\Commands.cs:100
-msgid ""
-"次数([c/DBF34E:c]) 加跳跃物品([c/59E32B:add]) 删跳跃物品([c/F14F63:del])\n"
+#: ../../Commands.cs:303
+#, csharp-format
+msgid "最高速度:[c/4EA4F2:{0}] 最大高度:[c/FF5265:{1}] "
 msgstr ""
 
 #: ..\..\Commands.cs:294
 msgid "当前为进度模式,服务器未击败相关BOSS"
 msgstr ""
 
-#: ..\..\Commands.cs:145
-msgid "高度"
+#: ../../Commands.cs:296
+#, csharp-format
+msgid "冷却:[c/48DCB8:{0}] 间隔:[c/47DCBD:{1}]"
 msgstr ""
 
-#: ..\..\Commands.cs:101
+#: ../../Commands.cs:304
+#, csharp-format
+msgid "冷却:[c/48DCB8:{0}秒] 使用次数:[c/47DCBD:{1}秒]"
+msgstr ""
+
+#: ../../Commands.cs:99
 msgid ""
-"格式为:[c/48DCB8:/vel s sd 20 add 恐慌项链…]\n"
+"参数: 速度([c/F24F62:sd]) 高度([c/48DCB8:h]) 间隔([c/4898DC:r]) 冷却([c/FE7F53:t])\n"
 msgstr ""
 
-#: ..\..\Commands.cs:178
-msgid "间隔"
-msgstr ""
-
-#: ..\..\Commands.cs:157
-msgid "冷却"
+#: ../../Commands.cs:63
+#, csharp-format
+msgid "已[c/E8585B:删除] {0} 的数据！"
 msgstr ""
 
 #: ..\..\Commands.cs:282
@@ -108,16 +111,17 @@ msgstr ""
 msgid "冷却:[c/48DCB8:{0}秒] 使用次数:[c/47DCBD:{1}秒]"
 msgstr ""
 
-#: ..\..\Commands.cs:102
-msgid "确保属性后有正确的数字或名字,任意组合"
+#: ../../Commands.cs:308
+msgid "当前为进度模式,服务器未击败相关BOSS"
 msgstr ""
 
 #: ..\..\PlayerSpeed.cs:178
 msgid "使用克盾类饰品[c/47DCBD:冲刺]可冲更远"
 msgstr ""
 
-#: ..\..\Commands.cs:134
-msgid "速度"
+#: ../../Commands.cs:101
+msgid ""
+"格式为:[c/48DCB8:/vel s sd 20 add 恐慌项链…]\n"
 msgstr ""
 
 #: ..\..\Commands.cs:281
@@ -125,55 +129,55 @@ msgstr ""
 msgid "速度:[c/4EA4F2:{0}] 高度:[c/FF5265:{1}] "
 msgstr ""
 
-#: ..\..\Commands.cs:198
+#: ../../Commands.cs:100
+msgid ""
+"次数([c/DBF34E:c]) 加跳跃物品([c/59E32B:add]) 删跳跃物品([c/F14F63:del])\n"
+msgstr ""
+
+#: ../../Commands.cs:198
 msgid "添加物品"
 msgstr ""
 
-#: ..\..\Commands.cs:46
+#: ../../Commands.cs:215
 #, csharp-format
-msgid "玩家 [{0}] 的已[c/92C5EC:关闭]玩家速度播报"
+msgid "物品 {0} 不存在."
 msgstr ""
 
-#: ..\..\Commands.cs:54
-#, csharp-format
-msgid "玩家 [{0}] 的已[c/92C5EC:关闭]自动进度模式"
+#: ../../Commands.cs:239
+msgid "物品不存在"
 msgstr ""
 
-#: ..\..\Commands.cs:45
-#, csharp-format
-msgid "玩家 [{0}] 的已[c/92C5EC:启用]玩家速度播报"
+#: ../../Commands.cs:202
+msgid "物品已存在"
 msgstr ""
 
-#: ..\..\Commands.cs:53
-#, csharp-format
-msgid "玩家 [{0}] 的已[c/92C5EC:启用]自动进度模式"
-msgstr ""
-
-#: ..\..\Commands.cs:39
+#: ../../Commands.cs:39
 #, csharp-format
 msgid "玩家 [{0}] 已[c/92C5EC:关闭]加速功能。"
 msgstr ""
 
-#: ..\..\Commands.cs:33
+#: ../../Commands.cs:33
 #, csharp-format
 msgid "玩家 [{0}] 已[c/92C5EC:启用]加速功能。"
 msgstr ""
 
 #: ..\..\Commands.cs:209
 #, csharp-format
-msgid "物品 {0} 不存在."
+msgid "玩家 [{0}] 的已[c/92C5EC:关闭]玩家速度播报"
 msgstr ""
 
 #: ..\..\Commands.cs:226
 msgid "物品不存在"
 msgstr ""
 
-#: ..\..\Commands.cs:202
-msgid "物品已存在"
+#: ../../Commands.cs:45
+#, csharp-format
+msgid "玩家 [{0}] 的已[c/92C5EC:启用]玩家速度播报"
 msgstr ""
 
-#: ..\..\Commands.cs:120
-msgid "修改冲刺:"
+#: ../../Commands.cs:53
+#, csharp-format
+msgid "玩家 [{0}] 的已[c/92C5EC:启用]自动进度模式"
 msgstr ""
 
 #: ..\..\Commands.cs:209
@@ -181,23 +185,23 @@ msgstr ""
 msgid "移除物品"
 msgstr ""
 
-#: ..\..\Commands.cs:63
-#, csharp-format
-msgid "已[c/E8585B:删除] {0} 的数据！"
+#: ../../Commands.cs:211
+#: ../../Commands.cs:235
+msgid "移除物品"
 msgstr ""
 
-#: ..\..\Commands.cs:84
-msgid "已清除所有玩家数据"
+#: ../../PlayerSpeed.cs:179
+msgid "装备指定物品[c/47DCBC:可加速跳跃]!"
 msgstr ""
 
-#: ..\..\Commands.cs:80
-msgid "已清除所有玩家数据,重置进度模式。"
+#: ../../Commands.cs:134
+msgid "速度"
 msgstr ""
 
 #: ..\..\Commands.cs:185
 #: ..\..\Commands.cs:216
 #, csharp-format
-msgid "找不到名为 {0} 的物品."
+msgid "速度:[c/4EA4F2:{0}] 高度:[c/FF5265:{1}] "
 msgstr ""
 
 #: ..\..\PlayerSpeed.cs:183
