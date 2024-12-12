@@ -18,6 +18,7 @@ public class LifemaxExtra : LazyPlugin
 
     public LifemaxExtra(Main game) : base(game)
     {
+        base.Order = 9999;
     }
 
     public override void Initialize()
