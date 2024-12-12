@@ -2,45 +2,34 @@
 using Terraria.ID;
 using TerrariaApi.Server;
 using TShockAPI;
+using LazyAPI;
 using TShockAPI.Hooks;
 using static TShockAPI.GetDataHandlers;
 
 namespace LifemaxExtra;
 
 [ApiVersion(2, 1)]
-public class LifemaxExtra : TerrariaPlugin
+public class LifemaxExtra : LazyPlugin
 {
     public override string Author => "佚名 & 肝帝熙恩 & 少司命";
     public override string Description => "提升生命值上限";
     public override string Name => "LifemaxExtra";
-    public override Version Version => new Version(1, 0, 0, 7);
-    public static Configuration Config = null!;
+    public override Version Version => new Version(1, 0, 0, 8);
 
     public LifemaxExtra(Main game) : base(game)
     {
     }
 
-    private static void LoadConfig()
-    {
-        Config = Configuration.Read(Configuration.FilePath);
-        Config.Write(Configuration.FilePath);
-    }
-
-    private static void ReloadConfig(ReloadEventArgs args)
-    {
-        LoadConfig();
-        args.Player.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(LifemaxExtra).Name);
-    }
-
     public override void Initialize()
     {
+        GeneralHooks.ReloadEvent += this.ReloadConfig;
+        TShock.Config.Settings.MaxHP = Configuration.Instance.MaxHP;
+        TShock.Config.Settings.MaxMP = Configuration.Instance.MaxMP;
         Commands.ChatCommands.Add(new Command("lifemaxextra.use", this.HP, "hp"));
         Commands.ChatCommands.Add(new Command("lifemaxextra.use", this.Mana, "mp"));
-        GeneralHooks.ReloadEvent += ReloadConfig;
         GetDataHandlers.PlayerUpdate += this.OnPlayerUpdate;
         GetDataHandlers.PlayerHP += this.OnHP;
         GetDataHandlers.PlayerMana += this.OnMana;
-        LoadConfig();
     }
 
 
@@ -48,13 +37,24 @@ public class LifemaxExtra : TerrariaPlugin
     {
         if (disposing)
         {
+            GeneralHooks.ReloadEvent -= this.ReloadConfig;
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.HP || x.CommandDelegate == this.Mana);
-            GeneralHooks.ReloadEvent -= ReloadConfig;
             GetDataHandlers.PlayerUpdate -= this.OnPlayerUpdate;
             GetDataHandlers.PlayerHP -= this.OnHP;
             GetDataHandlers.PlayerMana -= this.OnMana;
         }
         base.Dispose(disposing);
+    }
+
+    private void ReloadConfig(ReloadEventArgs args)
+    {
+        if (!TShock.ServerSideCharacterConfig.Settings.Enabled)
+        {
+            args.Player.SendErrorMessage(GetString("你没有开启SSC，LifemaxExtra无法正常运行"));
+            return;
+        }
+        TShock.Config.Settings.MaxHP = Configuration.Instance.MaxHP;
+        TShock.Config.Settings.MaxMP = Configuration.Instance.MaxMP;
     }
 
     private void Mana(CommandArgs args)
@@ -67,16 +67,16 @@ public class LifemaxExtra : TerrariaPlugin
                 if (int.TryParse(args.Parameters[2], out var hp) && hp >= 0)
                 {
                     this.SetPlayerMana(plys[0], hp, true);
-                    args.Player.SendSuccessMessage($"成功为玩家`{plys[0].Name}`提高{hp}魔法上限!");
+                    args.Player.SendSuccessMessage(GetString($"成功为玩家`{plys[0].Name}`提高{hp}魔法上限!"));
                 }
                 else
                 {
-                    args.Player.SendErrorMessage("输入的数值有误!");
+                    args.Player.SendErrorMessage(GetString("输入的数值有误!"));
                 }
             }
             else
             {
-                args.Player.SendErrorMessage("目标玩家不在线!");
+                args.Player.SendErrorMessage(GetString("目标玩家不在线!"));
             }
         }
         else if (args.Parameters.Count == 3 && args.Parameters[0].ToLower() == "set")
@@ -87,16 +87,16 @@ public class LifemaxExtra : TerrariaPlugin
                 if (int.TryParse(args.Parameters[2], out var hp) && hp >= 0)
                 {
                     this.SetPlayerMana(plys[0], hp);
-                    args.Player.SendSuccessMessage($"成功设置玩家`{plys[0].Name}`魔法上限!");
+                    args.Player.SendSuccessMessage(GetString($"成功设置玩家`{plys[0].Name}`魔法上限!"));
                 }
                 else
                 {
-                    args.Player.SendErrorMessage("输入的数值有误!");
+                    args.Player.SendErrorMessage(GetString("输入的数值有误!"));
                 }
             }
             else
             {
-                args.Player.SendErrorMessage("目标玩家不在线!");
+                args.Player.SendErrorMessage(GetString("目标玩家不在线!"));
             }
         }
         else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "enh")
@@ -104,11 +104,11 @@ public class LifemaxExtra : TerrariaPlugin
             if (int.TryParse(args.Parameters[1], out var hp) && hp >= 0)
             {
                 this.SetPlayerMana(args.Player, hp, true);
-                args.Player.SendSuccessMessage($"成功为玩家`{args.Player.Name}`提高{hp}魔法上限!");
+                args.Player.SendSuccessMessage(GetString($"成功为玩家`{args.Player.Name}`提高{hp}魔法上限!"));
             }
             else
             {
-                args.Player.SendErrorMessage("输入的数值有误!");
+                args.Player.SendErrorMessage(GetString("输入的数值有误!"));
             }
         }
         else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "set")
@@ -116,45 +116,121 @@ public class LifemaxExtra : TerrariaPlugin
             if (int.TryParse(args.Parameters[1], out var hp) && hp >= 0)
             {
                 this.SetPlayerMana(args.Player, hp);
-                args.Player.SendSuccessMessage($"成功设置玩家`{args.Player.Name}`魔法上限{hp}!");
+                args.Player.SendSuccessMessage(GetString($"成功设置玩家`{args.Player.Name}`魔法上限{hp}!"));
             }
             else
             {
-                args.Player.SendErrorMessage("输入的数值有误!");
+                args.Player.SendErrorMessage(GetString("输入的数值有误!"));
             }
         }
         else
         {
-            args.Player.SendErrorMessage("语法错误");
-            args.Player.SendInfoMessage("/mp enh <玩家> <提升数值>");
-            args.Player.SendInfoMessage("/mp set <玩家> <数值>");
-            args.Player.SendInfoMessage("/mp enh <提升数值>");
-            args.Player.SendInfoMessage("/mp set <数值>");
+            args.Player.SendErrorMessage(GetString("语法错误"));
+            args.Player.SendInfoMessage(GetString("/mp enh <玩家> <提升数值>"));
+            args.Player.SendInfoMessage(GetString("/mp set <玩家> <数值>"));
+            args.Player.SendInfoMessage(GetString("/mp enh <提升数值>"));
+            args.Player.SendInfoMessage(GetString("/mp set <数值>"));
         }
 
     }
 
     private void OnMana(object? sender, PlayerManaEventArgs e)
     {
-        if (e.Player.IsLoggedIn && e.Max > Config.MaxMP)
+        if (e.Player.IsLoggedIn && e.Max > Configuration.Instance.MaxMP)
         {
-            e.Player.TPlayer.statManaMax = Config.MaxMP;
+            e.Player.TPlayer.statManaMax = Configuration.Instance.MaxMP;
             e.Player.SendData(PacketTypes.PlayerMana, "", e.Player.Index);
-            e.Player.SendInfoMessage("最大蓝量不得超过{0}!", Config.MaxMP);
+            e.Player.SendInfoMessage(GetString("最大蓝量不得超过{0}!"), Configuration.Instance.MaxMP);
         }
     }
-
 
 
     private void OnHP(object? sender, PlayerHPEventArgs e)
     {
-        if (e.Player.IsLoggedIn && e.Max > Config.MaxHP)
+        if (e.Player.IsLoggedIn && e.Max > Configuration.Instance.MaxHP)
         {
-            e.Player.TPlayer.statLifeMax = Config.MaxHP;
+            e.Player.TPlayer.statLifeMax = Configuration.Instance.MaxHP;
             e.Player.SendData(PacketTypes.PlayerHp, "", e.Player.Index);
-            e.Player.SendInfoMessage("最大血量不得超过{0}!", Config.MaxHP);
+            e.Player.SendInfoMessage(GetString("最大血量不得超过{0}!"), Configuration.Instance.MaxHP);
         }
     }
+
+    private void HP(CommandArgs args)
+    {
+        if (args.Parameters.Count == 3 && args.Parameters[0].ToLower() == "enh")
+        {
+            var plys = TSPlayer.FindByNameOrID(args.Parameters[1]);
+            if (plys.Count > 0)
+            {
+                if (int.TryParse(args.Parameters[2], out var hp) && hp >= 0)
+                {
+                    this.SetPlayerHP(plys[0], hp, true);
+                    args.Player.SendSuccessMessage(GetString($"成功为玩家`{plys[0].Name}`提高{hp}血量上限!"));
+                }
+                else
+                {
+                    args.Player.SendErrorMessage(GetString("输入的数值有误!"));
+                }
+            }
+            else
+            {
+                args.Player.SendErrorMessage(GetString("目标玩家不在线!"));
+            }
+        }
+        else if (args.Parameters.Count == 3 && args.Parameters[0].ToLower() == "set")
+        {
+            var plys = TSPlayer.FindByNameOrID(args.Parameters[1]);
+            if (plys.Count > 0)
+            {
+                if (int.TryParse(args.Parameters[2], out var hp) && hp >= 0)
+                {
+                    this.SetPlayerHP(plys[0], hp);
+                    args.Player.SendSuccessMessage(GetString($"成功设置玩家`{plys[0].Name}`血量上限!"));
+                }
+                else
+                {
+                    args.Player.SendErrorMessage(GetString("输入的数值有误!"));
+                }
+            }
+            else
+            {
+                args.Player.SendErrorMessage(GetString("目标玩家不在线!"));
+            }
+        }
+        else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "enh")
+        {
+            if (int.TryParse(args.Parameters[1], out var hp) && hp >= 0)
+            {
+                this.SetPlayerHP(args.Player, hp, true);
+                args.Player.SendSuccessMessage(GetString($"成功为玩家`{args.Player.Name}`提高{hp}血量上限!"));
+            }
+            else
+            {
+                args.Player.SendErrorMessage(GetString("输入的数值有误!"));
+            }
+        }
+        else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "set")
+        {
+            if (int.TryParse(args.Parameters[1], out var hp) && hp >= 0)
+            {
+                this.SetPlayerHP(args.Player, hp);
+                args.Player.SendSuccessMessage(GetString($"成功设置玩家`{args.Player.Name}`血量上限{hp}!"));
+            }
+            else
+            {
+                args.Player.SendErrorMessage(GetString("输入的数值有误!"));
+            }
+        }
+        else
+        {
+            args.Player.SendErrorMessage(GetString("语法错误"));
+            args.Player.SendInfoMessage(GetString("/hp enh <玩家> <提升数值>"));
+            args.Player.SendInfoMessage(GetString("/hp set <玩家> <数值>"));
+            args.Player.SendInfoMessage(GetString("/hp enh <提升数值>"));
+            args.Player.SendInfoMessage(GetString("/hp set <数值>"));
+        }
+    }
+
 
     private void SetPlayerMana(TSPlayer ply, int Mana, bool enh = false)
     {
@@ -165,7 +241,7 @@ public class LifemaxExtra : TerrariaPlugin
         {
             raise = short.MaxValue - MaxMP;
             currency = short.MaxValue;
-            ply.SendErrorMessage("生命值无法大于{0}!", short.MaxValue);
+            ply.SendErrorMessage(GetString("生命值无法大于{0}!"), short.MaxValue);
         }
         else
         {
@@ -196,7 +272,7 @@ public class LifemaxExtra : TerrariaPlugin
         {
             raise = short.MaxValue - MaxHP;
             currency = short.MaxValue;
-            ply.SendErrorMessage("生命值无法大于{0}!", short.MaxValue);
+            ply.SendErrorMessage(GetString("生命值无法大于{0}!"), short.MaxValue);
         }
         else
         {
@@ -216,83 +292,6 @@ public class LifemaxExtra : TerrariaPlugin
         ply.TPlayer.statLife = currency;
         ply.SendData(PacketTypes.PlayerHp, null, ply.Index);
         ply.SendData(PacketTypes.EffectHeal, null, ply.Index, raise);
-    }
-
-
-    private void HP(CommandArgs args)
-    {
-        if (args.Parameters.Count == 3 && args.Parameters[0].ToLower() == "enh")
-        {
-            var plys = TSPlayer.FindByNameOrID(args.Parameters[1]);
-            if (plys.Count > 0)
-            {
-                if (int.TryParse(args.Parameters[2], out var hp) && hp >= 0)
-                {
-                    this.SetPlayerHP(plys[0], hp, true);
-                    args.Player.SendSuccessMessage($"成功为玩家`{plys[0].Name}`提高{hp}血量上限!");
-                }
-                else
-                {
-                    args.Player.SendErrorMessage("输入的数值有误!");
-                }
-            }
-            else
-            {
-                args.Player.SendErrorMessage("目标玩家不在线!");
-            }
-        }
-        else if (args.Parameters.Count == 3 && args.Parameters[0].ToLower() == "set")
-        {
-            var plys = TSPlayer.FindByNameOrID(args.Parameters[1]);
-            if (plys.Count > 0)
-            {
-                if (int.TryParse(args.Parameters[2], out var hp) && hp >= 0)
-                {
-                    this.SetPlayerHP(plys[0], hp);
-                    args.Player.SendSuccessMessage($"成功设置玩家`{plys[0].Name}`血量上限!");
-                }
-                else
-                {
-                    args.Player.SendErrorMessage("输入的数值有误!");
-                }
-            }
-            else
-            {
-                args.Player.SendErrorMessage("目标玩家不在线!");
-            }
-        }
-        else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "enh")
-        {
-            if (int.TryParse(args.Parameters[1], out var hp) && hp >= 0)
-            {
-                this.SetPlayerHP(args.Player, hp, true);
-                args.Player.SendSuccessMessage($"成功为玩家`{args.Player.Name}`提高{hp}血量上限!");
-            }
-            else
-            {
-                args.Player.SendErrorMessage("输入的数值有误!");
-            }
-        }
-        else if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "set")
-        {
-            if (int.TryParse(args.Parameters[1], out var hp) && hp >= 0)
-            {
-                this.SetPlayerHP(args.Player, hp);
-                args.Player.SendSuccessMessage($"成功设置玩家`{args.Player.Name}`血量上限{hp}!");
-            }
-            else
-            {
-                args.Player.SendErrorMessage("输入的数值有误!");
-            }
-        }
-        else
-        {
-            args.Player.SendErrorMessage("语法错误");
-            args.Player.SendInfoMessage("/hp enh <玩家> <提升数值>");
-            args.Player.SendInfoMessage("/hp set <玩家> <数值>");
-            args.Player.SendInfoMessage("/hp enh <提升数值>");
-            args.Player.SendInfoMessage("/hp set <数值>");
-        }
     }
 
 
@@ -316,7 +315,7 @@ public class LifemaxExtra : TerrariaPlugin
     {
         if (args.Player.TPlayer.ItemTimeIsZero && args.Player.TPlayer.controlUseItem)
         {
-            if (Config.ItemRaiseHP.TryGetValue(args.Player.SelectedItem.type, out var raiseHp))
+            if (Configuration.Instance.ItemRaiseHP.TryGetValue(args.Player.SelectedItem.type, out var raiseHp))
             {
                 if (args.Player.TPlayer.statLifeMax < raiseHp.Max)
                 {
@@ -341,7 +340,7 @@ public class LifemaxExtra : TerrariaPlugin
                 }
             }
 
-            if (Config.ItemRaiseMP.TryGetValue(args.Player.SelectedItem.type, out var raiseMp))
+            if (Configuration.Instance.ItemRaiseMP.TryGetValue(args.Player.SelectedItem.type, out var raiseMp))
             {
                 if (args.Player.TPlayer.statManaMax < raiseMp.Max)
                 {
