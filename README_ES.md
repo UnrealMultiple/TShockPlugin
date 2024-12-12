@@ -65,38 +65,38 @@
 | Nombre del plugin | Disponible en Español | Descripcion del Plugin  | Dependencias |
 | :-: | :-: | :-: | :-: |
 | [AutoPluginManager](src/AutoPluginManager/README_EN.md) | Si | Actualice los complementos automáticamente con una sola tecla | None |
-| [AdditionalPylons](src/AdditionalPylons/README_EN.md) | No | Colocar más pilones | None |
-| [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | No | Mejora la funcionalidad de la caja de anuncios | None |
-| [AutoBroadcast](src/AutoBroadcast/README_EN.md) | No | Transmisión automática | None |
-| [AutoAirItem](src/AutoAirItem/README_EN.md) | No | Botes de basura automáticos | None |
-| [AutoClear](src/Autoclear/README_EN.md) | No | Limpieza automática inteligente | None |
-| [AutoReset](src/AutoReset/README_EN.md) | No | Reinicio completamente automático | None |
-| [AutoStoreItems](src/AutoStoreItems/README_EN.md) | No | Almacenamiento automático | None |
-| [AutoTeam](src/AutoTeam/README_EN.md) | No | Formación automática de equipos | None |
-| [AutoFish](src/AutoFish/README_EN.md) | No | Pesca automática | None |
-| [Back](src/Back/README_EN.md) | no | Regresar al punto de muerte | None |
-| [BagPing](src/BagPing/README_EN.md) | No | Marcar las bolsas de tesoro en el mapa | None |
+| [AdditionalPylons](src/AdditionalPylons/README_EN.md) | No | Colocar más pilones | [LazyAPI](src/LazyAPI/README.md) |
+| [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | No | Mejora la funcionalidad de la caja de anuncios | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoBroadcast](src/AutoBroadcast/README_EN.md) | No | Transmisión automática | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoAirItem](src/AutoAirItem/README_EN.md) | No | Botes de basura automáticos | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoClear](src/Autoclear/README_EN.md) | No | Limpieza automática inteligente | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoReset](src/AutoReset/README_EN.md) | No | Reinicio completamente automático | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoStoreItems](src/AutoStoreItems/README_EN.md) | No | Almacenamiento automático | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoTeam](src/AutoTeam/README_EN.md) | No | Formación automática de equipos | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoFish](src/AutoFish/README_EN.md) | No | Pesca automática | [LazyAPI](src/LazyAPI/README.md) |
+| [Back](src/Back/README_EN.md) | no | Regresar al punto de muerte | [LazyAPI](src/LazyAPI/README.md) |
+| [BagPing](src/BagPing/README_EN.md) | No | Marcar las bolsas de tesoro en el mapa | [LazyAPI](src/LazyAPI/README.md) |
 | [BetterWhitelist](src/BetterWhitelist/README_EN.md) | No | Plugin de lista blanca | None |
-| [BanNpc](src/BanNpc/README_EN.md) | No | Previene la generación de monstruos | None |
-| [BedSet](src/BedSet/README_EN.md) | No | Establecer y registrar puntos de resurrección | None |
-| [BridgeBuilder](src/BridgeBuilder/README_EN.md) | No | Construcción rápida de puentes | None |
-| [BuildMaster](src/BuildMaster/README.md) | No | Modo Maestro Constructor para el Mini Juego Red Bean | [MiniGamesAPI](src/MiniGamesAPI/README.md) |
+| [BanNpc](src/BanNpc/README_EN.md) | No | Previene la generación de monstruos | [LazyAPI](src/LazyAPI/README.md) |
+| [BedSet](src/BedSet/README_EN.md) | No | Establecer y registrar puntos de resurrección | [LazyAPI](src/LazyAPI/README.md) |
+| [BridgeBuilder](src/BridgeBuilder/README_EN.md) | No | Construcción rápida de puentes | [LazyAPI](src/LazyAPI/README.md) |
+| [BuildMaster](src/BuildMaster/README.md) | No | Modo Maestro Constructor para el Mini Juego Red Bean | [MiniGamesAPI](src/MiniGamesAPI/README.md) [LazyAPI](src/LazyAPI/README.md) |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | No | Otro plugin misceláneo para TShock - la parte central | None |
 | [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | No | Otro plugin misceláneo para TShock - la parte miscelánea | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [CaiBot](src/CaiBot/README.md) | No | Plugin adaptador CaiBot | Dependencias integradas |
 | [CaiPacketDebug](src/CaiPacketDebug/README.md) | No | Herramienta de depuración de paquetes Cai | [TrProtocol](https://github.com/UnrealMultiple/TrProtocol) |
 | [CaiCustomEmojiCommand](src/CaiCustomEmojiCommand/README_EN.md) | no | Comando de emoji personalizado | None |
 | [CaiLib](src/CaiLib/README.md) | No | Biblioteca de precarga de Cai | None |
-| [CaiRewardChest](src/CaiRewardChest/README_EN.md) | No | Convierte cofres generados naturalmente en cofres de recompensa que todos pueden reclamar una vez | None |
+| [CaiRewardChest](src/CaiRewardChest/README_EN.md) | No | Convierte cofres generados naturalmente en cofres de recompensa que todos pueden reclamar una vez | [LazyAPI](src/LazyAPI/README.md) |
 | [CGive](src/CGive/README_EN.md) | No | Comandos fuera de línea | None |
 | [Challenger](src/Challenger/README.md) | Si | Modo Challenger | None |
-| [Chameleon](src/Chameleon/README_EN.md) | No | Inicia sesión antes de entrar al servidor | None |
-| [ChattyBridge](src/ChattyBridge/README.md) | No | Usado para el chat entre servidores | None |
+| [Chameleon](src/Chameleon/README_EN.md) | No | Inicia sesión antes de entrar al servidor | [LazyAPI](src/LazyAPI/README.md) |
+| [ChattyBridge](src/ChattyBridge/README.md) | No | Usado para el chat entre servidores | [LazyAPI](src/LazyAPI/README.md) |
 | [ChestRestore](src/ChestRestore/README_EN.md) | No | Objetos infinitos en servidores de recursos | None |
 | [CNPCShop](src/CNPCShop/README.md) | No | Tienda personalizada de NPC | None |
 | [ConsoleSql](src/ConsoleSql/README.md) | No | Ejecutar sentencias SQL en la consola | None |
 | [ConvertWorld](src/ConvertWorld/README_EN.md) | No | Convertir objetos del mundo al derrotar monstruos | None |
-| [CreateSpawn](src/CreateSpawn/README.md) | No | Generación de puntos de aparición | None |
+| [CreateSpawn](src/CreateSpawn/README.md) | No | Generación de puntos de aparición | [LazyAPI](src/LazyAPI/README.md) |
 | [CriticalHit](src/CriticalHit/README.md) | No | Indicación de golpe crítico | None |
 | [DamageRuleLoot](src/DamageRuleLoot/README_EN.md) | No | Determinar la bolsa de tesoro caída basada en la relación de daño y transferir el cálculo de daño | None |
 | [DamageStatistic](src/DamageStatistic/README.md) | No | Mostrar el daño causado por cada jugador después de cada pelea de jefe | None |
