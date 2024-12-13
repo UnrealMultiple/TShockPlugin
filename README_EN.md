@@ -103,7 +103,6 @@
 | [DataSync](src/DataSync/README.md) | No | Progress synchronization | None |
 | [DeathDrop](src/DeathDrop/README.md) | No | Random and custom loot upon monster death | None |
 | [DisableMonsLoot](src/DisableMonsLoot/README.md) | No | Prohibit monster loot | None |
-| [DisableSurfaceProjectiles](src/DisableSurfaceProjectiles/README.md) | No | Prohibit surface projectiles | None |
 | [Don't Fuck](src/DonotFuck/README.md) | Yes | Prevent swearing | None |
 | [DwTP](src/DwTP/README.md) | Yes | Positioning Teleport | None |
 | [DTEntryBlock](src/DTEntryBlock/README.md) | No | Prevent entry into dungeons or temples | None |
@@ -167,6 +166,7 @@
 | [Respawn](src/Respawn/README.md) | No | Respawn at the death place | None |
 | [RebirthCoin](src/RebirthCoin/README_EN.md) | Yes | Consume designated items to revive player | None |
 | [RestInventory](src/RestInventory/README.md) | No | Provide REST query backpack interface | None |
+| [SurfaceBlock](src/SurfaceBlock/README.md) | Yes | Prohibit surface projectiles |  [LazyAPI](src/LazyAPI/README.md) |
 | [Sandstorm](src/Sandstorm/README.md) | No | Toggle sandstorm | None |
 | [ServerTools](src/ServerTools/README.md) | No | Server management tools | None |
 | [SessionSentinel](src/SessionSentinel/README.md) | No | Handle players not sending data packets for a long time | None |

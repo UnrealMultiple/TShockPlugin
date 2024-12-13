@@ -99,7 +99,6 @@
 | [DataSync](src/DataSync/README.md) | 进度同步 | 无 |
 | [DeathDrop](src/DeathDrop/README.md) | 怪物死亡随机和自定义掉落物品 | 无 |
 | [DisableMonsLoot](src/DisableMonsLoot/README.md) | 禁怪物掉落 | 无 |
-| [DisableSurfaceProjectiles](src/DisableSurfaceProjectiles/README.md) | 禁地表弹幕 | 无 |
 | [Don't Fuck](src/DonotFuck/README.md) | 禁止脏话 | 无 |
 | [DTEntryBlock](src/DTEntryBlock/README.md) | 阻止进入地牢或神庙 | 无 |
 | [DumpTerrariaID](src/DumpTerrariaID/README.md) | 输出 ID | 无 |
@@ -163,6 +162,7 @@
 | [Respawn](src/Respawn/README.md) | 原地复活 | 无 |
 | [RebirthCoin](src/RebirthCoin/README.md) | 复活币 | 无 |
 | [RestInventory](src/RestInventory/README.md) | 提供 REST 查询背包接口 | 无 |
+| [SurfaceBlock](src/SurfaceBlock/README.md) | 禁地表弹幕 | 无 |
 | [Sandstorm](src/Sandstorm/README.md) | 切换沙尘暴 | 无 |
 | [ServerTools](src/ServerTools/README.md) | 服务器管理工具 | 无 |
 | [SessionSentinel](src/SessionSentinel/README.md) | 处理长时间不发送数据包的玩家 | 无 |

@@ -103,7 +103,6 @@
 | [DataSync](src/DataSync/README.md) | No | Sincronización de progreso | None |
 | [DeathDrop](src/DeathDrop/README.md) | No | Botín aleatorio y personalizado al morir un monstruo | None |
 | [DisableMonsLoot](src/DisableMonsLoot/README.md) | No | Prohibir el botín de monstruos | None |
-| [DisableSurfaceProjectiles](src/DisableSurfaceProjectiles/README.md) | No | Prohibir proyectiles en la superficie | None |
 | [Don't Fuck](src/DonotFuck/README.md) | No | Prevenir groserías | None |
 | [DwTP](src/DwTP/README.md) | no | Teletransportación por posicionamiento | None |
 | [DTEntryBlock](src/DTEntryBlock/README.md) | No | Prevenir la entrada a mazmorras o templos | None |
@@ -167,6 +166,7 @@
 | [Respawn](src/Respawn/README.md)              | No                    | Reaparece en el lugar de la muerte                          | Ninguna     |
 | [RebirthCoin](src/RebirthCoin/README_EN.md)   | No                    | Consume ítems designados para revivir al jugador           | Ninguna     |
 | [RestInventory](src/RestInventory/README.md)  | No                    | Proporciona una interfaz de consulta REST para la mochila   | Ninguna     |
+| [SurfaceBlock](src/SurfaceBlock/README.md) | No | Prohibir proyectiles en la superficie |  [LazyAPI](src/LazyAPI/README.md) |
 | [Sandstorm](src/Sandstorm/README.md)          | No                    | Alterna la tormenta de arena                                | Ninguna     |
 | [ServerTools](src/ServerTools/README.md)      | No                    | Herramientas de administración del servidor                 | Ninguna     |
 | [SessionSentinel](src/SessionSentinel/README.md) | No                   | Maneja jugadores que no envían paquetes de datos por mucho tiempo | Ninguna     |
