@@ -47,7 +47,7 @@ internal static class Utils
                 catch (Exception ex)
                 {
                     failedUnload.Add(c.Plugin.GetType().Assembly.GetName().Name!);
-                    if (Config.Instance.ConinueHotReloadWhenError)
+                    if (Config.PluginConfig.ConinueHotReloadWhenError)
                     {
                         TShock.Log.ConsoleError($"卸载 \"{c.Plugin.Name}\" 时出错.\n" +
                                                 $"{ex}");
@@ -133,7 +133,7 @@ internal static class Utils
                     catch (Exception ex)
                     {
                         failedLoad.Add(type.FullName!);
-                        if (Config.Instance.ConinueHotReloadWhenError)
+                        if (Config.PluginConfig.ConinueHotReloadWhenError)
                         {
                             TShock.Log.ConsoleError($"Could not create an instance of plugin class \"{type.FullName}\".\n" +
                                                     $"{ex}");

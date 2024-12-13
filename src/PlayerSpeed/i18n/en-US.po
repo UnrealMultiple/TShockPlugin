@@ -48,10 +48,12 @@ msgstr "/vel set —— Set Related Parameters\n"
 #, csharp-format
 msgid ""
 "\n"
-"玩家 [c/4EA4F2:{0}] 疾速[c/FF5265:冷却]完毕!"
+"玩家 [c/4EA4F2:{0}] 因[c/FF5265:冲刺]或[c/DBF34E:跳跃] 超过[c/47DCBD:{1}次]进"
+"入冷却"
 msgstr ""
 "\n"
-"Player [c/4EA4F2:{0}] Rapid [c/FF5265:Cool-down] Complete!"
+"Player [c/4EA4F2:{0}] enters cool-down for exceeding [c/47DCBD:{1} times] of "
+"[c/FF5265:sprinting] or [c/DBF34E:jumping]."
 
 #: ..\..\PlayerSpeed.cs:196
 #, csharp-format
@@ -88,19 +90,15 @@ msgid "当前为进度模式,服务器未击败相关BOSS"
 msgstr ""
 "Current mode is Progress Mode, server has not defeated the relevant BOSS"
 
-#: ..\..\Commands.cs:145
-msgid "高度"
-msgstr "Height"
-
-#: ..\..\Commands.cs:101
-msgid "格式为:[c/48DCB8:/vel s sd 20 add 恐慌项链…]\n"
-msgstr "Format: [c/48DCB8:/vel s sd 20 add Panic Necklace...]\n"
+#: ../../Commands.cs:120
+msgid "修改冲刺:"
+msgstr "Modify Sprint:"
 
 #: ..\..\Commands.cs:178
 msgid "间隔"
 msgstr "Interval"
 
-#: ..\..\Commands.cs:157
+#: ../../Commands.cs:157
 msgid "冷却"
 msgstr "CoolTime"
 
@@ -131,12 +129,12 @@ msgstr "Speed"
 
 #: ..\..\Commands.cs:281
 #, csharp-format
-msgid "速度:[c/4EA4F2:{0}] 高度:[c/FF5265:{1}] "
-msgstr "Speed:[c/4EA4F2:{0}] Height:[c/FF5265:{1}] "
+msgid "已[c/E8585B:删除] {0} 的数据！"
+msgstr "Data for {0} has been [c/E8585B:deleted]!"
 
-#: ..\..\Commands.cs:198
-msgid "添加物品"
-msgstr "AddItem"
+#: ../../Commands.cs:84
+msgid "已清除所有玩家数据"
+msgstr "All player data has been cleared."
 
 #: ..\..\Commands.cs:46
 #, csharp-format
@@ -148,7 +146,7 @@ msgstr "Player [{0}] 的 speed announcements have been [c/92C5EC:disabled]"
 msgid "玩家 [{0}] 的已[c/92C5EC:关闭]自动进度模式"
 msgstr "Player [{0}] 的 auto progress mode has been [c/92C5EC:disabled]"
 
-#: ..\..\Commands.cs:45
+#: ../../Commands.cs:185 ../../Commands.cs:223
 #, csharp-format
 msgid "玩家 [{0}] 的已[c/92C5EC:启用]玩家速度播报"
 msgstr "Player [{0}] 的 speed announcements have been [c/92C5EC:Enabled]"
@@ -177,19 +175,20 @@ msgstr "Item {0} None."
 msgid "物品不存在"
 msgstr "Item is null"
 
-#: ..\..\Commands.cs:202
+#: ../../Commands.cs:202
 msgid "物品已存在"
 msgstr "Item already exists"
 
-#: ..\..\Commands.cs:120
-msgid "修改冲刺:"
-msgstr "Modify Sprint:"
+#: ../../Commands.cs:39
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:关闭]加速功能。"
+msgstr "Player [{0}] has [c/92C5EC:disabled] the acceleration function."
 
 #: ..\..\Commands.cs:209 ..\..\Commands.cs:226
 msgid "移除物品"
 msgstr "Remove Item"
 
-#: ..\..\Commands.cs:63
+#: ../../Commands.cs:46
 #, csharp-format
 msgid "已[c/E8585B:删除] {0} 的数据！"
 msgstr "Data for {0} has been [c/E8585B:deleted]！"
@@ -204,8 +203,17 @@ msgstr "All player data has been cleared, and Progress Mode has been reset。"
 
 #: ..\..\Commands.cs:185 ..\..\Commands.cs:216
 #, csharp-format
-msgid "找不到名为 {0} 的物品."
-msgstr "Item named {0} not found."
+msgid "玩家 [{0}] 的已[c/92C5EC:启用]自动进度模式"
+msgstr "Player [{0}] 的 auto progress mode has been [c/92C5EC:Enabled]."
+
+#: ../../Commands.cs:102
+msgid "确保属性后有正确的数字或名字,任意组合"
+msgstr ""
+"Ensure attributes followed by correct numbers or names, any combination:"
+
+#: ../../Commands.cs:211 ../../Commands.cs:235
+msgid "移除物品"
+msgstr "Remove Item"
 
 #: ..\..\PlayerSpeed.cs:183
 msgid "装备指定物品[c/47DCBC:可加速跳跃]!"

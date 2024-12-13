@@ -61,38 +61,38 @@
 | 名称 | 插件说明 | 依赖 |
 | :-: | :-: | :-: |
 | [AutoPluginManager](src/AutoPluginManager/README.md) | 一键自动更新插件 | 无 |
-| [AdditionalPylons](src/AdditionalPylons/README.md) | 放置更多晶塔 | 无 |
-| [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | 广播盒功能强化 | 无 |
-| [AutoAirItem](src/AutoAirItem/README.md) | 自动垃圾桶插件 |  [LazyAPI](src/LazyAPI/README.md)  |
-| [AutoBroadcast](src/AutoBroadcast/README.md) | 自动广播 | 无 |
-| [AutoClear](src/Autoclear/README.md) | 智能自动扫地 | 无 |
-| [AutoReset](src/AutoReset/README.md) | 完全自动重置 | 无 |
-| [AutoStoreItems](src/AutoStoreItems/README.md) | 自动储存 | 无 |
-| [AutoTeam](src/AutoTeam/README.md) | 自动队伍 | 无 |
-| [AutoFish](src/AutoFish/README.md) | 自动钓鱼 |  [LazyAPI](src/LazyAPI/README.md)  |
-| [Back](src/Back/README.md) | 死亡回溯 | 无 |
+| [AdditionalPylons](src/AdditionalPylons/README.md) | 放置更多晶塔 | [LazyAPI](src/LazyAPI/README.md) |
+| [AnnouncementBoxPlus](src/AnnouncementBoxPlus/README.md) | 广播盒功能强化 | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoAirItem](src/AutoAirItem/README.md) | 自动垃圾桶插件 | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoBroadcast](src/AutoBroadcast/README.md) | 自动广播 | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoClear](src/Autoclear/README.md) | 智能自动扫地 | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoReset](src/AutoReset/README.md) | 完全自动重置 | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoStoreItems](src/AutoStoreItems/README.md) | 自动储存 | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoTeam](src/AutoTeam/README.md) | 自动队伍 | [LazyAPI](src/LazyAPI/README.md) |
+| [AutoFish](src/AutoFish/README.md) | 自动钓鱼 | [LazyAPI](src/LazyAPI/README.md) |
+| [Back](src/Back/README.md) | 死亡回溯 | [LazyAPI](src/LazyAPI/README.md) |
 | [BagPing](src/BagPing/README.md) | 地图上标记宝藏袋 | 无 |
 | [BetterWhitelist](src/BetterWhitelist/README.md) | 白名单插件 | 无 |
-| [BanNpc](src/BanNpc/README.md) | 阻止怪物生成 | 无 |
-| [BedSet](src/BedSet/README.md) | 设置并记录重生点 | 无 |
-| [BridgeBuilder](src/BridgeBuilder/README.md) | 快速铺桥 | 无 |
-| [BuildMaster](src/BuildMaster/README.md) | 豆沙小游戏·建筑大师模式 | [MiniGamesAPI](src/MiniGamesAPI/README.md) |
+| [BanNpc](src/BanNpc/README.md) | 阻止怪物生成 | [LazyAPI](src/LazyAPI/README.md) |
+| [BedSet](src/BedSet/README.md) | 设置并记录重生点 | [LazyAPI](src/LazyAPI/README.md) |
+| [BridgeBuilder](src/BridgeBuilder/README.md) | 快速铺桥 | [LazyAPI](src/LazyAPI/README.md) |
+| [BuildMaster](src/BuildMaster/README.md) | 豆沙小游戏·建筑大师模式 | [MiniGamesAPI](src/MiniGamesAPI/README.md) [LazyAPI](src/LazyAPI/README.md) |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 恋恋工具箱核心,用于修复各种TShock问题 (建议安装) | 无 |
 | [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 恋恋工具箱扩展 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [CaiBot](src/CaiBot/README.md) | CaiBot 适配插件 | 自带依赖 |
 | [CaiPacketDebug](src/CaiPacketDebug/README.md) | Cai数据包调试工具 | [TrProtocol](https://github.com/UnrealMultiple/TrProtocol) |
 | [CaiCustomEmojiCommand](src/CaiCustomEmojiCommand/README.md) | 自定义表情命令 | 无 |
 | [CaiLib](src/CaiLib/README.md) | Cai 的前置库 | 无 |
-| [CaiRewardChest](src/CaiRewardChest/README.md) | 将自然生成的箱子变为所有人都可以领一次的奖励箱 | 无 |
+| [CaiRewardChest](src/CaiRewardChest/README.md) | 将自然生成的箱子变为所有人都可以领一次的奖励箱 | [LazyAPI](src/LazyAPI/README.md) |
 | [CGive](src/CGive/README.md) | 离线命令 | 无 |
 | [Challenger](src/Challenger/README.md) | 挑战者模式 | 无 |
-| [Chameleon](src/Chameleon/README.md) | 进服前登录 | 无 |
-| [ChattyBridge](src/ChattyBridge/README.md) | 用于跨服聊天 | 无 |
+| [Chameleon](src/Chameleon/README.md) | 进服前登录 | [LazyAPI](src/LazyAPI/README.md) |
+| [ChattyBridge](src/ChattyBridge/README.md) | 用于跨服聊天 | [LazyAPI](src/LazyAPI/README.md) |
 | [ChestRestore](src/ChestRestore/README.md) | 资源服无限物品 | 无 |
 | [CNPCShop](src/CNPCShop/README.md) | 自定义NPC商店 | 无 |
 | [ConsoleSql](src/ConsoleSql/README.md) | 允许你在控制台执行SQL语句 | 无 |
 | [ConvertWorld](src/ConvertWorld/README.md) | 击败怪物转换世界物品 | 无 |
-| [CreateSpawn](src/CreateSpawn/README.md) | 出生点建筑生成 | 无 |
+| [CreateSpawn](src/CreateSpawn/README.md) | 出生点建筑生成 | [LazyAPI](src/LazyAPI/README.md) |
 | [CriticalHit](src/CriticalHit/README.md) | 击打提示 | 无 |
 | [DamageRuleLoot](src/DamageRuleLoot/README.md) | 伤害规则掉落 | 无 |
 | [DamageStatistic](src/DamageStatistic/README.md) | 在每次 Boss 战后显示每个玩家造成的伤害 | 无 |
