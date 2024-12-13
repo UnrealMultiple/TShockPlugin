@@ -179,6 +179,7 @@
 | [TeleportRequest](src/TeleportRequest/README.md) | 传送请求 | 无 |
 | [TimerKeeper](src/TimerKeeper/README.md) | 保存计时器状态 | 无 |
 | [TownNPCHomes](src/TownNPCHomes/README.md) | NPC 快速回家 | 无 |
+| [TShockConfigMultiLang](src/TShockConfigMultiLang/README.md) | 创建一个本地化语言的config | [LazyAPI](src/LazyAPI/README.md |
 | [UnseenInventory](src/UnseenInventory/README.md) | 允许服务器端生成“无法获取”的物品 | 无 |
 | [VeinMiner](src/VeinMiner/README.md) | 连锁挖矿 | 无 |
 | [VotePlus](src/VotePlus/README.md) | 多功能投票 | 无 |

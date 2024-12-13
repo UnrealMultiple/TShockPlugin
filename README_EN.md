@@ -182,6 +182,7 @@
 | [TeleportRequest](src/TeleportRequest/README_EN.md) | Yes | Teleport request | None |
 | [TimerKeeper](src/TimerKeeper/README_EN.md) | Yes | Save timer state | None |
 | [TownNPCHomes](src/TownNPCHomes/README_EN.md) | Yes | NPC quick home | None |
+| [TShockConfigMultiLang](src/TShockConfigMultiLang/README_EN.md) | Yes | Create a localized language config | [LazyAPI](src/LazyAPI/README.md) |
 | [TimeRate](src/TimeRate/README_EN.md) | Yes | modifying time acceleration using commands, and supporting player sleep to trigger events. | None |
 | [UnseenInventory](src/UnseenInventory/README.md) | No | Allows the server to generate items that are normally 'unobtainable' | None |
 | [VeinMiner](src/VeinMiner/README.md) | Yes | Chain mining | None |

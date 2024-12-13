@@ -182,6 +182,7 @@
 | [TeleportRequest](src/TeleportRequest/README_EN.md) | No                | Solicitud de teletransporte                                 | Ninguna     |
 | [TimerKeeper](src/TimerKeeper/README_EN.md)   | No                    | Guarda el estado del temporizador                            | Ninguna     |
 | [TownNPCHomes](src/TownNPCHomes/README_EN.md) | No                    | Casa rápida de NPC                                          | Ninguna     |
+| [TShockConfigMultiLang](src/TShockConfigMultiLang/README.md) | No     | Crear una configuración de idioma localizado | [LazyAPI](src/LazyAPI/README.md) |
 | [TimeRate](src/TimeRate/README_EN.md)         | No                    | Modifica la aceleración del tiempo usando comandos, y soporta el sueño de los jugadores para activar eventos | Ninguna     |
 | [UnseenInventory](src/UnseenInventory/README.md) | No                  | Permite que el servidor genere ítems "inobtenibles"         | Ninguna     |
 | [VeinMiner](src/VeinMiner/README.md)          | No                    | Minado en cadena                                            | Ninguna     |
