@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Time-limited invincibility"
+  },
+  "README.es-ES": {
+    "Description": "Invencibilidad limitada en el tiempo"
+  },
+  "README": {
+    "Description": "限时无敌"
+  }
+}

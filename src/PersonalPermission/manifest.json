@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Set permissions individually for players"
+  },
+  "README.es-ES": {
+    "Description": "Establece permisos individualmente para los jugadores"
+  },
+  "README": {
+    "Description": "为玩家单独设置权限"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Prevent swearing"
+  },
+  "README.es-ES": {
+    "Description": "Prevenir groserías"
+  },
+  "README": {
+    "Description": "禁止脏话"
+  }
+}

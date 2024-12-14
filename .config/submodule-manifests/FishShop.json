@@ -1,0 +1,12 @@
+{
+  "README.en-US": {
+    "Description": "Fish shop"
+  },
+  "README.es-ES": {
+    "Description": "Tienda de peces"
+  },
+  "README": {
+    "READMEUrl": "https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md",
+    "Description": "鱼店"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "RPG plugin"
+  },
+  "README.es-ES": {
+    "Description": "Plugin RPG"
+  },
+  "README": {
+    "Description": "RPG"
+  }
+}

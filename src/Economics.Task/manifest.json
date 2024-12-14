@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Task plugin"
+  },
+  "README.es-ES": {
+    "Description": "Plugin de tareas"
+  },
+  "README": {
+    "Description": "任务插件"
+  }
+}

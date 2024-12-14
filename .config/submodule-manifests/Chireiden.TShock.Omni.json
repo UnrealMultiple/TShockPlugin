@@ -1,4 +1,14 @@
 {
   "Name": "Chireiden.TShock.Omni",
-  "HotReload": false
+  "HotReload": false,
+  "README.en-US": {
+    "Description": "Yet another misc plugin for TShock - the core part"
+  },
+  "README.es-ES": {
+    "Description": "Otro plugin misceláneo para TShock - la parte central"
+  },
+  "README": {
+    "READMEUrl": "https://github.com/sgkoishi/yaaiomni/blob/master/README.md",
+    "Description": "恋恋工具箱核心,用于修复各种TShock问题 (建议安装)"
+  }
 }

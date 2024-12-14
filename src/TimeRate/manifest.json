@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "modifying time acceleration using commands, and supporting player sleep to trigger events."
+  },
+  "README.es-ES": {
+    "Description": "Modifica la aceleración del tiempo usando comandos, y soporta el sueño de los jugadores para activar eventos"
+  },
+  "README": {
+    "Description": "时间加速插件"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Preserve specified items from consumption"
+  },
+  "README.es-ES": {
+    "Description": "Conserva ítems específicos de la consumición"
+  },
+  "README": {
+    "Description": "指定物品不消耗"
+  }
+}

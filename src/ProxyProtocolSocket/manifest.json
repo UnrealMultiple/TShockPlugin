@@ -1,0 +1,12 @@
+{
+  "README.en-US": {
+    "Description": "Accept proxy protocol connections",
+    "LanguageAvailable": true
+  },
+  "README.es-ES": {
+    "Description": "Acepta conexiones de protocolo proxy"
+  },
+  "README": {
+    "Description": "接受 proxy protocol 协议"
+  }
+}

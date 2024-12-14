@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Cai Packet Debug Tool"
+  },
+  "README.es-ES": {
+    "Description": "Herramienta de depuración de paquetes Cai"
+  },
+  "README": {
+    "Description": "Cai数据包调试工具"
+  }
+}

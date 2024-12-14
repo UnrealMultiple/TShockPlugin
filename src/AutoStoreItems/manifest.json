@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Automatic storage"
+  },
+  "README.es-ES": {
+    "Description": "Almacenamiento automático"
+  },
+  "README": {
+    "Description": "自动储存"
+  }
+}

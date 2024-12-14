@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Simple music player"
+  },
+  "README.es-ES": {
+    "Description": "Reproductor de música simple"
+  },
+  "README": {
+    "Description": "简易音乐播放器"
+  }
+}

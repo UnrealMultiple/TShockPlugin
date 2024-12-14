@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Online gift package"
+  },
+  "README.es-ES": {
+    "Description": "Paquete de regalos en línea"
+  },
+  "README": {
+    "Description": "在线礼包"
+  }
+}

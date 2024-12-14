@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Toggle sandstorm"
+  },
+  "README.es-ES": {
+    "Description": "Alterna la tormenta de arena"
+  },
+  "README": {
+    "Description": "切换沙尘暴"
+  }
+}

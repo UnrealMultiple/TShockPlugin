@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Progress synchronization"
+  },
+  "README.es-ES": {
+    "Description": "Sincronización de progreso"
+  },
+  "README": {
+    "Description": "进度同步"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Server management tools"
+  },
+  "README.es-ES": {
+    "Description": "Herramientas de administración del servidor"
+  },
+  "README": {
+    "Description": "服务器管理工具"
+  }
+}

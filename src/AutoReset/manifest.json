@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Fully automatic reset"
+  },
+  "README.es-ES": {
+    "Description": "Reinicio completamente automático"
+  },
+  "README": {
+    "Description": "完全自动重置"
+  }
+}

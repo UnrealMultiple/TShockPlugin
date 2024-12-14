@@ -1,0 +1,12 @@
+{
+  "README.en-US": {
+    "Description": "Hufang's player manager"
+  },
+  "README.es-ES": {
+    "Description": "Administrador de jugadores de Hufang"
+  },
+  "README": {
+    "READMEUrl": "https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md",
+    "Description": "Hufang的玩家管理器"
+  }
+}

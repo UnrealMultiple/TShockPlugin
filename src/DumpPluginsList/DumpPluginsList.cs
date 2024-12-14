@@ -14,7 +14,7 @@ public class DumpPluginsList : TerrariaPlugin
 
     public override string Name => "DumpPluginsList";
 
-    public override Version Version => new (1, 0, 1, 5);
+    public override Version Version => new (1, 0, 1, 6);
 
     public DumpPluginsList(Main game) : base(game)
     {
@@ -39,7 +39,7 @@ public class DumpPluginsList : TerrariaPlugin
                 .ToDictionary(kvp => kvp.Value, kvp => kvp.Key);
             File.WriteAllText("Plugins.json", JsonConvert.SerializeObject(ServerApi.Plugins
                 .OrderBy(p => p.Plugin.Order).ThenBy(p => p.Plugin.Name)
-                .Where(p => p.Plugin.GetType().Assembly != typeof(TShockAPI.TShock).Assembly)
+                .Where(p => p.Plugin.GetType().Assembly != typeof(TShockAPI.TShock).Assembly && p.Plugin.GetType().Assembly != this.GetType().Assembly)
                 .Select(p =>
                 {
                     var manifestFilePath = !string.IsNullOrEmpty(manifestsDir) ? Path.Combine(manifestsDir, $"{p.Plugin.GetType().Assembly.GetName().Name!}.json") : null;

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Automatic broadcast"
+  },
+  "README.es-ES": {
+    "Description": "Transmisión automática"
+  },
+  "README": {
+    "Description": "自动广播"
+  }
+}

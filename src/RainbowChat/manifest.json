@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Random chat color"
+  },
+  "README.es-ES": {
+    "Description": "Colores aleatorios en el chat"
+  },
+  "README": {
+    "Description": "每次说话颜色不一样"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Prohibit proxy IP from entering"
+  },
+  "README.es-ES": {
+    "Description": "Prohíbe que las IPs de proxy ingresen al servidor"
+  },
+  "README": {
+    "Description": "禁止代理 ip 进入"
+  }
+}

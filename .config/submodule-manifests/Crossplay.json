@@ -1,0 +1,12 @@
+{
+  "README.en-US": {
+    "Description": "Allows for cross-platform play"
+  },
+  "README.es-ES": {
+    "Description": "Permite el juego multiplataforma"
+  },
+  "README": {
+    "READMEUrl": "https://github.com/UnrealMultiple/Crossplay/blob/main/README.md",
+    "Description": "跨版本游玩"
+  }
+}

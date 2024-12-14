@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Signboard login plugin"
+  },
+  "README.es-ES": {
+    "Description": "Plugin de inicio de sesión con cartel"
+  },
+  "README": {
+    "Description": "告示牌登录插件"
+  }
+}

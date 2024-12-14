@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Intelligent automatic cleaning"
+  },
+  "README.es-ES": {
+    "Description": "Limpieza automática inteligente"
+  },
+  "README": {
+    "Description": "智能自动扫地"
+  }
+}

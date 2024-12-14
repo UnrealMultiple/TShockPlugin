@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Batch change permissions"
+  },
+  "README.es-ES": {
+    "Description": "Cambio por lotes de permisos"
+  },
+  "README": {
+    "Description": "批量改权限"
+  }
+}

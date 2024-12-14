@@ -1,0 +1,12 @@
+{
+  "README.en-US": {
+    "Description": "World editor, can modify most of the world parameters"
+  },
+  "README.es-ES": {
+    "Description": "Editor del mundo, permite modificar la mayoría de los parámetros del mundo"
+  },
+  "README": {
+    "READMEUrl": "https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md",
+    "Description": "世界编辑器,可以修改大部分的世界参数"
+  }
+}

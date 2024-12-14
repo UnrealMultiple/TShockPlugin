@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Random and custom loot upon monster death"
+  },
+  "README.es-ES": {
+    "Description": "Botín aleatorio y personalizado al morir un monstruo"
+  },
+  "README": {
+    "Description": "怪物死亡随机和自定义掉落物品"
+  }
+}

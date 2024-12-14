@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Fix and enhance the Help command"
+  },
+  "README.es-ES": {
+    "Description": "Corrige y mejora el comando de ayuda"
+  },
+  "README": {
+    "Description": "修复和增强 Help 命令"
+  }
+}

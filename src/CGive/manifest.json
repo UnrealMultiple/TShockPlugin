@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Offline commands"
+  },
+  "README.es-ES": {
+    "Description": "Comandos fuera de línea"
+  },
+  "README": {
+    "Description": "离线命令"
+  }
+}
