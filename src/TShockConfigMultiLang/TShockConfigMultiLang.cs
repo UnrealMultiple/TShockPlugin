@@ -19,6 +19,7 @@ public class TShockConfigMultiLang : LazyPlugin
 
     public TShockConfigMultiLang(Main game) : base(game)
     {
+        this.Order = 1;
     }
 
     public override void Initialize()
