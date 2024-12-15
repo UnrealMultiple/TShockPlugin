@@ -68,7 +68,7 @@
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | No | Enhance Broadcast Box Functionality | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.en-US.md) | Yes | Automatic trash cans | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.en-US.md) | Yes | Automatic broadcast | [LazyAPI](./src/LazyAPI/README.md) |
-| [AutoClear](./src/AutoClears/README.en-US.md) | Yes | Intelligent automatic cleaning | [LazyAPI](./src/LazyAPI/README.md) |
+| [AutoClear](./src/AutoClear/README.en-US.md) | Yes | Intelligent automatic cleaning | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoFish](./src/AutoFish/README.en-US.md) | Yes | Automatic fishing | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoPluginManager](./src/AutoPluginManager/README.en-US.md) | Yes | Update plugins automatically in one key |  |
 | [AutoReset](./src/AutoReset/README.en-US.md) | Yes | Fully automatic reset | [LazyAPI](./src/LazyAPI/README.md) |

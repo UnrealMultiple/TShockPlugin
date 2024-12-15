@@ -718,16 +718,6 @@
     "HotReload": true
   },
   {
-    "Name": "DumpPluginsList",
-    "Version": "1.0.1.5",
-    "Author": "SGKoishi",
-    "Description": "Dump plugin list and exit",
-    "AssemblyName": "DumpPluginsList",
-    "Path": "DumpPluginsList.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
     "Name": "DumpTerrariaID",
     "Version": "1.0.0.1",
     "Author": "少司命",
@@ -827,16 +817,6 @@
   },
   {
     "Name": "Economics.WeaponPlus",
-    "Version": "1.0.0.3",
-    "Author": "z枳",
-    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
-    "AssemblyName": "WeaponPlus",
-    "Path": "WeaponPlus.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "Economics.WeaponPlus",
     "Version": "2.0.0.0",
     "Author": "z枳 少司命",
     "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
@@ -845,6 +825,16 @@
     "Dependencies": [
       "EconomicsAPI"
     ],
+    "HotReload": true
+  },
+  {
+    "Name": "Economics.WeaponPlus",
+    "Version": "1.0.0.3",
+    "Author": "z枳",
+    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+    "AssemblyName": "WeaponPlus",
+    "Path": "WeaponPlus.dll",
+    "Dependencies": [],
     "HotReload": true
   },
   {

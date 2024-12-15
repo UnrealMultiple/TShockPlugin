@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Challenger\n"
-"POT-Creation-Date: 2024-11-19 17:21:43+0000\n"
+"POT-Creation-Date: 2024-12-15 03:10:56+0000\n"
 "PO-Revision-Date: 2024-12-01 18:55-0500\n"
 "Last-Translator: itsFrankV22\n"
 "Language-Team: UnrealMultiple\n"
@@ -561,8 +561,8 @@ msgstr "La nieve y el hielo caen del cielo."
 msgid "冲刺类饰品冷却完成"
 msgstr "Enfriamiento de accesorios de sprint completado"
 
-#: ../../Challenger.CNPCs/EaterofWorldsHead.cs:39
 #: ../../Challenger.CNPCs/Skeletron.cs:165
+#: ../../Challenger.CNPCs/EaterofWorldsHead.cs:39
 msgid "创死你"
 msgstr "¡Te aplastaré!"
 

@@ -68,7 +68,7 @@
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | No | Mejora la funcionalidad de la caja de anuncios | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.md) | No | Botes de basura automáticos | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | No | Transmisión automática | [LazyAPI](./src/LazyAPI/README.md) |
-| [AutoClear](./src/AutoClears/README.md) | No | Limpieza automática inteligente | [LazyAPI](./src/LazyAPI/README.md) |
+| [AutoClear](./src/AutoClear/README.md) | No | Limpieza automática inteligente | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoFish](./src/AutoFish/README.md) | No | Pesca automática | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoPluginManager](./src/AutoPluginManager/README.es-ES.md) | Si | Actualice los complementos automáticamente con una sola tecla |  |
 | [AutoReset](./src/AutoReset/README.md) | No | Reinicio completamente automático | [LazyAPI](./src/LazyAPI/README.md) |

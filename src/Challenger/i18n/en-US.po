@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Challenger\n"
-"POT-Creation-Date: 2024-11-19 17:21:43+0000\n"
+"POT-Creation-Date: 2024-12-15 03:10:56+0000\n"
 "PO-Revision-Date: 2024-09-07 23:06+0800\n"
 "Last-Translator: LaoSparrow\n"
 "Language-Team: UnrealMultiple\n"
@@ -552,8 +552,8 @@ msgstr "Snow and ice are falling from the sky"
 msgid "冲刺类饰品冷却完成"
 msgstr "Sprint accessories cooldown completed"
 
-#: ../../Challenger.CNPCs/EaterofWorldsHead.cs:39
 #: ../../Challenger.CNPCs/Skeletron.cs:165
+#: ../../Challenger.CNPCs/EaterofWorldsHead.cs:39
 msgid "创死你"
 msgstr "I'll smash you!"
 
