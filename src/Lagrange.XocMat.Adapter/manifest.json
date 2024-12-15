@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Lagrange.XocMat Bot Adapter Plugin"
+  },
+  "README.es-ES": {
+    "Description": "Plugin adaptador para el bot Lagrange.XocMat"
+  },
+  "README": {
+    "Description": "Lagrange.XocMat的适配插件"
+  }
+}

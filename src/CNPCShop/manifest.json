@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Custom NPC shop"
+  },
+  "README.es-ES": {
+    "Description": "Tienda personalizada de NPC"
+  },
+  "README": {
+    "Description": "自定义NPC商店"
+  }
+}

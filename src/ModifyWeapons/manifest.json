@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "ModifyWeapons"
+  },
+  "README.es-ES": {
+    "Description": "Deje que los jugadores realicen dos Sprint"
+  },
+  "README": {
+    "Description": "修改武器"
+  }
+}

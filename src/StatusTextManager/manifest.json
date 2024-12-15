@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "PC status text management plugin"
+  },
+  "README.es-ES": {
+    "Description": "Plugin para gestionar el texto de estado en PC"
+  },
+  "README": {
+    "Description": "PC端模板文本管理插件"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Random spawn point"
+  },
+  "README.es-ES": {
+    "Description": "Punto de aparición aleatorio"
+  },
+  "README": {
+    "Description": "随机出生点"
+  }
+}

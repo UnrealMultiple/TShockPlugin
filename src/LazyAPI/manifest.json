@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Plugin base library"
+  },
+  "README.es-ES": {
+    "Description": "Biblioteca base para plugins"
+  },
+  "README": {
+    "Description": "插件基础库"
+  }
+}

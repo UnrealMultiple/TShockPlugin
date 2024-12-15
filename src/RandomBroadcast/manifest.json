@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Random broadcast"
+  },
+  "README.es-ES": {
+    "Description": "Transmisión aleatoria"
+  },
+  "README": {
+    "Description": "随机广播"
+  }
+}

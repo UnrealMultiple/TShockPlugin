@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Used for cross-server chat"
+  },
+  "README.es-ES": {
+    "Description": "Usado para el chat entre servidores"
+  },
+  "README": {
+    "Description": "用于跨服聊天"
+  }
+}

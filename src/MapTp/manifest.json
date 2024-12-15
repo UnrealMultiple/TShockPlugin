@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Double-click on the map to teleport"
+  },
+  "README.es-ES": {
+    "Description": "Teletransportarse con doble clic en el mapa"
+  },
+  "README": {
+    "Description": "双击大地图传送"
+  }
+}

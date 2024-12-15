@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Curfew"
+  },
+  "README.es-ES": {
+    "Description": "Toque de queda"
+  },
+  "README": {
+    "Description": "宵禁"
+  }
+}

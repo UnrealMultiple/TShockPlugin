@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Multi-function voting"
+  },
+  "README.es-ES": {
+    "Description": "Votación multifuncional"
+  },
+  "README": {
+    "Description": "多功能投票"
+  }
+}

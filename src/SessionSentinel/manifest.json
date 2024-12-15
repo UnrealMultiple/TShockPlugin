@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Handle players not sending data packets for a long time"
+  },
+  "README.es-ES": {
+    "Description": "Maneja jugadores que no envían paquetes de datos por mucho tiempo"
+  },
+  "README": {
+    "Description": "处理长时间不发送数据包的玩家"
+  }
+}

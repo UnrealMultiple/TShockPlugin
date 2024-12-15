@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Provide REST query backpack interface"
+  },
+  "README.es-ES": {
+    "Description": "Proporciona una interfaz de consulta REST para la mochila"
+  },
+  "README": {
+    "Description": "提供 REST 查询背包接口"
+  }
+}

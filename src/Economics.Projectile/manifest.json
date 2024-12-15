@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Custom projectiles"
+  },
+  "README.es-ES": {
+    "Description": "Proyectiles personalizados"
+  },
+  "README": {
+    "Description": "自定义弹幕"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Weapon enhancement"
+  },
+  "README.es-ES": {
+    "Description": "Mejora de armas"
+  },
+  "README": {
+    "Description": "强化武器"
+  }
+}

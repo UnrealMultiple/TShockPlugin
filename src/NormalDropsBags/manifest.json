@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Drop treasure bags at normal difficulty"
+  },
+  "README.es-ES": {
+    "Description": "Suelta bolsas de tesoros en dificultad normal"
+  },
+  "README": {
+    "Description": "普通难度宝藏袋"
+  }
+}

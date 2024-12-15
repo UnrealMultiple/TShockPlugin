@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Determine player device"
+  },
+  "README.es-ES": {
+    "Description": "Determina el dispositivo del jugador"
+  },
+  "README": {
+    "Description": "判断玩家设备"
+  }
+}

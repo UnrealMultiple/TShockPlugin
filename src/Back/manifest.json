@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Return to the point of death"
+  },
+  "README.es-ES": {
+    "Description": "Regresar al punto de muerte"
+  },
+  "README": {
+    "Description": "死亡回溯"
+  }
+}

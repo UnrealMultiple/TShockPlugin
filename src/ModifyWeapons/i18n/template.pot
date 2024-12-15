@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ModifyWeapons\n"
-"POT-Creation-Date: 2024-12-12 13:21:49+0000\n"
-"PO-Revision-Date: 2024-12-12 13:21:49+0000\n"
+"POT-Creation-Date: 2024-12-15 03:11:26+0000\n"
+"PO-Revision-Date: 2024-12-15 03:11:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -276,11 +276,11 @@ msgid ""
 "二.使用经济类[c/4C95DD:指令][c/86F06E:背包有]修改物品\n"
 msgstr ""
 
+#: ../../ModifyWeapons.cs:353
 #: ../../Commands.cs:968
 #: ../../Commands.cs:1131
 #: ../../Commands.cs:1399
 #: ../../Commands.cs:1474
-#: ../../ModifyWeapons.cs:353
 msgid "伤害"
 msgstr ""
 
@@ -327,11 +327,11 @@ msgstr ""
 msgid "公用武器数据优先级 ＞ 给物品指令数据"
 msgstr ""
 
+#: ../../ModifyWeapons.cs:363
 #: ../../Commands.cs:1006
 #: ../../Commands.cs:1169
 #: ../../Commands.cs:1401
 #: ../../Commands.cs:1484
-#: ../../ModifyWeapons.cs:363
 msgid "击退"
 msgstr ""
 
@@ -346,10 +346,10 @@ msgid ""
 "击退[c/F79361:kb] 用速[c/74E55D:ut] 攻速[c/F7B661:ua] 射速[c/F7F261:ss] \n"
 msgstr ""
 
+#: ../../ModifyWeapons.cs:348
 #: ../../Commands.cs:986
 #: ../../Commands.cs:1149
 #: ../../Commands.cs:1469
-#: ../../ModifyWeapons.cs:348
 msgid "前缀"
 msgstr ""
 
@@ -367,27 +367,27 @@ msgstr ""
 msgid "发2次:[c/91DFBB:建数据>发物品]"
 msgstr ""
 
+#: ../../ModifyWeapons.cs:393
 #: ../../Commands.cs:1071
 #: ../../Commands.cs:1234
 #: ../../Commands.cs:1407
 #: ../../Commands.cs:1514
-#: ../../ModifyWeapons.cs:393
 msgid "发射器"
 msgstr ""
 
+#: ../../ModifyWeapons.cs:358
 #: ../../Commands.cs:996
 #: ../../Commands.cs:1159
 #: ../../Commands.cs:1400
 #: ../../Commands.cs:1479
-#: ../../ModifyWeapons.cs:358
 msgid "大小"
 msgstr ""
 
+#: ../../ModifyWeapons.cs:383
 #: ../../Commands.cs:1047
 #: ../../Commands.cs:1210
 #: ../../Commands.cs:1405
 #: ../../Commands.cs:1504
-#: ../../ModifyWeapons.cs:383
 msgid "射速"
 msgstr ""
 
@@ -452,11 +452,11 @@ msgstr ""
 msgid "已更新玩家 [c/2F99D7:{0}] 的[c/92B9D4:{1}]"
 msgstr ""
 
+#: ../../ModifyWeapons.cs:378
 #: ../../Commands.cs:1036
 #: ../../Commands.cs:1199
 #: ../../Commands.cs:1404
 #: ../../Commands.cs:1499
-#: ../../ModifyWeapons.cs:378
 msgid "弹幕"
 msgstr ""
 
@@ -464,11 +464,11 @@ msgstr ""
 msgid "弹幕[c/A3E295:sh] 弹药[c/91DFBB:m] 发射器[c/5264D9:aa] 颜色[c/5264D9:hc]"
 msgstr ""
 
+#: ../../ModifyWeapons.cs:388
 #: ../../Commands.cs:1059
 #: ../../Commands.cs:1222
 #: ../../Commands.cs:1406
 #: ../../Commands.cs:1509
-#: ../../ModifyWeapons.cs:388
 msgid "弹药"
 msgstr ""
 
@@ -504,11 +504,11 @@ msgstr ""
 msgid "指令正确格式：[c/FFF540:/mw auto 1 或 0]"
 msgstr ""
 
+#: ../../ModifyWeapons.cs:373
 #: ../../Commands.cs:1026
 #: ../../Commands.cs:1189
 #: ../../Commands.cs:1403
 #: ../../Commands.cs:1494
-#: ../../ModifyWeapons.cs:373
 msgid "攻速"
 msgstr ""
 
@@ -516,18 +516,18 @@ msgstr ""
 msgid "攻速相关:影响所有[c/EAF836:近战]越小挥舞间隔越快"
 msgstr ""
 
+#: ../../ModifyWeapons.cs:343
 #: ../../Commands.cs:977
 #: ../../Commands.cs:1140
 #: ../../Commands.cs:1398
 #: ../../Commands.cs:1464
-#: ../../ModifyWeapons.cs:343
 msgid "数量"
 msgstr ""
 
-#: ../../Commands.cs:1390
-#: ../../Commands.cs:1453
 #: ../../ModifyWeapons.cs:159
 #: ../../ModifyWeapons.cs:332
+#: ../../Commands.cs:1390
+#: ../../Commands.cs:1453
 msgid "无"
 msgstr ""
 
@@ -595,11 +595,11 @@ msgstr ""
 msgid "玩家 [{0}] 已[c/92C5EC:启用]进服重读功能。"
 msgstr ""
 
+#: ../../ModifyWeapons.cs:368
 #: ../../Commands.cs:1016
 #: ../../Commands.cs:1179
 #: ../../Commands.cs:1402
 #: ../../Commands.cs:1489
-#: ../../ModifyWeapons.cs:368
 msgid "用速"
 msgstr ""
 
@@ -679,10 +679,10 @@ msgstr ""
 msgid "除了[c/DADEA0:/mw up]其他都会还原数值再修改"
 msgstr ""
 
+#: ../../ModifyWeapons.cs:398
 #: ../../Commands.cs:1247
 #: ../../Commands.cs:1408
 #: ../../Commands.cs:1519
-#: ../../ModifyWeapons.cs:398
 msgid "颜色"
 msgstr ""
 

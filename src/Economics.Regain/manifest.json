@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Item recycling"
+  },
+  "README.es-ES": {
+    "Description": "Reciclaje de objetos"
+  },
+  "README": {
+    "Description": "物品回收"
+  }
+}

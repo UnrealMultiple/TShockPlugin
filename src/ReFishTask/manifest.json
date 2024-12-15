@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Automatically refresh fisherman tasks"
+  },
+  "README.es-ES": {
+    "Description": "Refresca automáticamente las tareas del pescador"
+  },
+  "README": {
+    "Description": "自动刷新渔夫任务"
+  }
+}

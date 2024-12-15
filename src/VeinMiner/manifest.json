@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Chain mining"
+  },
+  "README.es-ES": {
+    "Description": "Minado en cadena"
+  },
+  "README": {
+    "Description": "连锁挖矿"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Skill plugin"
+  },
+  "README.es-ES": {
+    "Description": "Plugin de habilidades"
+  },
+  "README": {
+    "Description": "技能插件"
+  }
+}

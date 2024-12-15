@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Modify player backpack"
+  },
+  "README.es-ES": {
+    "Description": "Modificar mochila del jugador"
+  },
+  "README": {
+    "Description": "修改玩家背包"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Custom monster rewards"
+  },
+  "README.es-ES": {
+    "Description": "Recompensas personalizadas de monstruos"
+  },
+  "README": {
+    "Description": "自定义怪物奖励"
+  }
+}

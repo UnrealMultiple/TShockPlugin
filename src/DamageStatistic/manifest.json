@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Display damage caused by each player after each boss fight"
+  },
+  "README.es-ES": {
+    "Description": "Mostrar el daño causado por cada jugador después de cada pelea de jefe"
+  },
+  "README": {
+    "Description": "在每次 Boss 战后显示每个玩家造成的伤害"
+  }
+}

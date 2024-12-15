@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Trading plugin"
+  },
+  "README.es-ES": {
+    "Description": "Plugin de comercio"
+  },
+  "README": {
+    "Description": "交易插件"
+  }
+}

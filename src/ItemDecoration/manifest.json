@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Floating message display for held items"
+  },
+  "README.es-ES": {
+    "Description": "Muestra mensajes flotantes para los ítems en las manos"
+  },
+  "README": {
+    "Description": "手持物品浮动消息显示"
+  }
+}

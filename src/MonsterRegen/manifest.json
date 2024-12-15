@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Monster progress regeneration"
+  },
+  "README.es-ES": {
+    "Description": "Regeneración de progreso de monstruos"
+  },
+  "README": {
+    "Description": "怪物进度回血"
+  }
+}

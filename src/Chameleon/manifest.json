@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Login before entering the server"
+  },
+  "README.es-ES": {
+    "Description": "Inicia sesión antes de entrar al servidor"
+  },
+  "README": {
+    "Description": "进服前登录"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Automatic team formation"
+  },
+  "README.es-ES": {
+    "Description": "Formación automática de equipos"
+  },
+  "README": {
+    "Description": "自动队伍"
+  }
+}

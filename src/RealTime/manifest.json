@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Synchronize server time with real time"
+  },
+  "README.es-ES": {
+    "Description": "Sincroniza la hora del servidor con la hora real"
+  },
+  "README": {
+    "Description": "使服务器内时间同步现实时间"
+  }
+}
