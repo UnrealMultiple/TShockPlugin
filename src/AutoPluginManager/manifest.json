@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Update plugins automatically in one key"
+  },
+  "README.es-ES": {
+    "Description": "Actualice los complementos automáticamente con una sola tecla"
+  },
+  "README": {
+    "Description": "一键自动更新插件"
+  }
+}

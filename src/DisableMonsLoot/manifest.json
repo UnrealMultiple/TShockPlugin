@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Prohibit monster loot"
+  },
+  "README.es-ES": {
+    "Description": "Prohibir el botín de monstruos"
+  },
+  "README": {
+    "Description": "禁怪物掉落"
+  }
+}

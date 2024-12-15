@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Execute commands in region"
+  },
+  "README.es-ES": {
+    "Description": "Ejecuta comandos en regiones"
+  },
+  "README": {
+    "Description": "区域执行指令"
+  }
+}

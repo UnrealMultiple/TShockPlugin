@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Prevent monster generation"
+  },
+  "README.es-ES": {
+    "Description": "Previene la generación de monstruos"
+  },
+  "README": {
+    "Description": "阻止怪物生成"
+  }
+}

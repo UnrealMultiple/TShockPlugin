@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Positioning Teleport"
+  },
+  "README.es-ES": {
+    "Description": "Teletransportación por posicionamiento"
+  },
+  "README": {
+    "Description": "定位传送"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Land claiming plugin"
+  },
+  "README.es-ES": {
+    "Description": "Plugin de reclamación de tierras"
+  },
+  "README": {
+    "Description": "圈地插件"
+  }
+}

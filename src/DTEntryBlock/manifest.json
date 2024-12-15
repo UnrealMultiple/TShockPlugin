@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Prevent entry into dungeons or temples"
+  },
+  "README.es-ES": {
+    "Description": "Prevenir la entrada a mazmorras o templos"
+  },
+  "README": {
+    "Description": "阻止进入地牢或神庙"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Whitelist plugin"
+  },
+  "README.es-ES": {
+    "Description": "Plugin de lista blanca"
+  },
+  "README": {
+    "Description": "白名单插件"
+  }
+}

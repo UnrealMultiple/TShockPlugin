@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Convert world items by defeating monsters"
+  },
+  "README.es-ES": {
+    "Description": "Convertir objetos del mundo al derrotar monstruos"
+  },
+  "README": {
+    "Description": "击败怪物转换世界物品"
+  }
+}

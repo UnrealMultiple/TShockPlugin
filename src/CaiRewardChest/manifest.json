@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Convert naturally generated chests into reward chests that everyone can claim once"
+  },
+  "README.es-ES": {
+    "Description": "Convierte cofres generados naturalmente en cofres de recompensa que todos pueden reclamar una vez"
+  },
+  "README": {
+    "Description": "将自然生成的箱子变为所有人都可以领一次的奖励箱"
+  }
+}

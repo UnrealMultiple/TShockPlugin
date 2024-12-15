@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Respawn at the death place"
+  },
+  "README.es-ES": {
+    "Description": "Reaparece en el lugar de la muerte"
+  },
+  "README": {
+    "Description": "原地复活"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Dump Terraria IDs"
+  },
+  "README.es-ES": {
+    "Description": "Volcar las ID de Terraria"
+  },
+  "README": {
+    "Description": "输出 ID"
+  }
+}

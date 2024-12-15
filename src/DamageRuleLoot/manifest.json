@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Determine the drop treasure bag based on the ratio of damage and transfer damage calculation"
+  },
+  "README.es-ES": {
+    "Description": "Determinar la bolsa de tesoro caída basada en la relación de daño y transferir el cálculo de daño"
+  },
+  "README": {
+    "Description": "伤害规则掉落"
+  }
+}

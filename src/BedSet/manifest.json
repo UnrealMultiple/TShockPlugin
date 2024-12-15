@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Set and record respawn points"
+  },
+  "README.es-ES": {
+    "Description": "Establecer y registrar puntos de resurrección"
+  },
+  "README": {
+    "Description": "设置并记录重生点"
+  }
+}

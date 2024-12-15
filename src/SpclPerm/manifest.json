@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Server owner privileges"
+  },
+  "README.es-ES": {
+    "Description": "Privilegios del propietario del servidor"
+  },
+  "README": {
+    "Description": "服主特权"
+  }
+}

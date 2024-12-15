@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Crafting table"
+  },
+  "README.es-ES": {
+    "Description": "Mesa de trabajo"
+  },
+  "README": {
+    "Description": "合成表"
+  }
+}

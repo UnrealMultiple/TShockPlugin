@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Consume designated items to revive player"
+  },
+  "README.es-ES": {
+    "Description": "Consume ítems designados para revivir al jugador"
+  },
+  "README": {
+    "Description": "复活币"
+  }
+}

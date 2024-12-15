@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Critical hit prompt"
+  },
+  "README.es-ES": {
+    "Description": "Indicación de golpe crítico"
+  },
+  "README": {
+    "Description": "击打提示"
+  }
+}

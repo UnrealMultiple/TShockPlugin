@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Off-line inventory"
+  },
+  "README.es-ES": {
+    "Description": "Inventario fuera de línea"
+  },
+  "README": {
+    "Description": "离线背包系统，物品盒子"
+  }
+}

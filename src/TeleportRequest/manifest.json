@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Teleport request"
+  },
+  "README.es-ES": {
+    "Description": "Solicitud de teletransporte"
+  },
+  "README": {
+    "Description": "传送请求"
+  }
+}

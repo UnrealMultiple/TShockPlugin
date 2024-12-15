@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Execute SQL statements in the console"
+  },
+  "README.es-ES": {
+    "Description": "Ejecutar sentencias SQL en la consola"
+  },
+  "README": {
+    "Description": "允许你在控制台执行SQL语句"
+  }
+}

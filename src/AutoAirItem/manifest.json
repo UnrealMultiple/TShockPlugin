@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Automatic trash cans"
+  },
+  "README.es-ES": {
+    "Description": "Botes de basura automáticos"
+  },
+  "README": {
+    "Description": "自动垃圾桶插件"
+  }
+}

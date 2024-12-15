@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Bean paste mini-game API"
+  },
+  "README.es-ES": {
+    "Description": "API para el mini-juego de pasta de frijol"
+  },
+  "README": {
+    "Description": "豆沙小游戏 API"
+  }
+}

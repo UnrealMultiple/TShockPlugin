@@ -1,4 +1,14 @@
 {
   "Name": "Chireiden.TShock.Omni.Misc",
-  "HotReload": false
+  "HotReload": false,
+  "README.en-US": {
+    "Description": "Yet another misc plugin for TShock - the miscellaneous part"
+  },
+  "README.es-ES": {
+    "Description": "Otro plugin misceláneo para TShock - la parte miscelánea"
+  },
+  "README": {
+    "READMEUrl": "https://github.com/sgkoishi/yaaiomni/blob/master/README.md",
+    "Description": "恋恋工具箱扩展"
+  }
 }

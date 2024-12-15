@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Planbook (Automate server control)"
+  },
+  "README.es-ES": {
+    "Description": "Planificador (Automatiza el control del servidor)"
+  },
+  "README": {
+    "Description": "计划书（自动化控制服务器）"
+  }
+}

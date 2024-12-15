@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "List installed plugins"
+  },
+  "README.es-ES": {
+    "Description": "Lista los plugins instalados"
+  },
+  "README": {
+    "Description": "查已装插件"
+  }
+}

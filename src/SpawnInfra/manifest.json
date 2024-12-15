@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Generate basic infrastructure"
+  },
+  "README.es-ES": {
+    "Description": "Genera infraestructura básica"
+  },
+  "README": {
+    "Description": "生成基础建设"
+  }
+}

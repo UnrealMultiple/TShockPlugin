@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Allows the server to generate items that are normally 'unobtainable'"
+  },
+  "README.es-ES": {
+    "Description": "Permite que el servidor genere ítems \"inobtenibles\""
+  },
+  "README": {
+    "Description": "允许服务器端生成“无法获取”的物品"
+  }
+}

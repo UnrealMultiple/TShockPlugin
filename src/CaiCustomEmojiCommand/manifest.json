@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Custom emoji command"
+  },
+  "README.es-ES": {
+    "Description": "Comando de emoji personalizado"
+  },
+  "README": {
+    "Description": "自定义表情命令"
+  }
+}

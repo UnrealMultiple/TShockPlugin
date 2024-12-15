@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Save timer state"
+  },
+  "README.es-ES": {
+    "Description": "Guarda el estado del temporizador"
+  },
+  "README": {
+    "Description": "保存计时器状态"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Enable players to achieve a two-stage sprint"
+  },
+  "README.es-ES": {
+    "Description": "Interceptación de paquetes"
+  },
+  "README": {
+    "Description": "玩家速度"
+  }
+}

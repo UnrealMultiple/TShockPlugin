@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Separate chest for player loot"
+  },
+  "README.es-ES": {
+    "Description": "Cofre separado para el botín del jugador"
+  },
+  "README": {
+    "Description": "玩家战利品单独箱子"
+  }
+}

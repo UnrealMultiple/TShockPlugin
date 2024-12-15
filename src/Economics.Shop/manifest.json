@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Shop plugin"
+  },
+  "README.es-ES": {
+    "Description": "Plugin de tienda"
+  },
+  "README": {
+    "Description": "商店插件"
+  }
+}

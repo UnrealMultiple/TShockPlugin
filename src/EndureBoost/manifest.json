@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Grant specified buff when the player has a certain number of items"
+  },
+  "README.es-ES": {
+    "Description": "Otorga un buff específico cuando el jugador tiene una cantidad determinada de objetos"
+  },
+  "README": {
+    "Description": "拥有指定数量物品给指定buff"
+  }
+}
