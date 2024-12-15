@@ -11,7 +11,7 @@ namespace TShockConfigMultiLang;
 [Config]
 public class Config : JsonConfigBase<Config>
 {
-    protected override string Filename > "config";
+    protected override string Filename => "config";
 
     #region ServerSettings
 
