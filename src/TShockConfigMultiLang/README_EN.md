@@ -16,7 +16,7 @@
 ## Config
 > Configuration file location: tshock/config.en-US.json
 ```json
-
+{
     "ServerPassword": "",
     "ServerPort": 7777,
     "MaxSlots": 8,

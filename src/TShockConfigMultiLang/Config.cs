@@ -124,7 +124,7 @@ public class Config : JsonConfigBase<Config>
     public int DefaultMaximumSpawns = TShock.Config.Settings.DefaultMaximumSpawns;
 
     // 刷怪间隔(数值越低，敌人生成越频繁)
-    [LocalizedPropertyName(CultureType.Chinese, "默认刷怪率(越低越频繁)")]
+    [LocalizedPropertyName(CultureType.Chinese, "默认刷怪率")]
     [LocalizedPropertyName(CultureType.English, "DefaultSpawnRate")]
     public int DefaultSpawnRate = TShock.Config.Settings.DefaultSpawnRate;
 
