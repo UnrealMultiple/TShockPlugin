@@ -204,7 +204,7 @@ public class Config : JsonConfigBase<Config>
     public bool DisablePrimeBombs = TShock.Config.Settings.DisablePrimeBombs;
 
     // 强制世界时间为白天或黑夜(normal/day/night)
-    [LocalizedPropertyName(CultureType.Chinese, "强制世界时间(normal/day/night)")]
+    [LocalizedPropertyName(CultureType.Chinese, "强制世界时间")]
     [LocalizedPropertyName(CultureType.English, "ForceTime")]
     public string ForceTime = TShock.Config.Settings.ForceTime;
 
@@ -289,7 +289,7 @@ public class Config : JsonConfigBase<Config>
     public bool PreventDeadModification = TShock.Config.Settings.PreventDeadModification;
 
     // 阻止玩家放置无效风格的方块。
-    [LocalizedPropertyName(CultureType.Chinese, "阻止玩家放置无效方块")]
+    [LocalizedPropertyName(CultureType.Chinese, "阻止玩家放置无效特殊值方块")]
     [LocalizedPropertyName(CultureType.English, "PreventInvalidPlaceStyle")]
     public bool PreventInvalidPlaceStyle = TShock.Config.Settings.PreventInvalidPlaceStyle;
 
@@ -304,7 +304,7 @@ public class Config : JsonConfigBase<Config>
     public bool ForceHalloween = TShock.Config.Settings.ForceHalloween;
 
     // 允许管理员获取禁用物品。
-    [LocalizedPropertyName(CultureType.Chinese, "允许允许使用禁用物品的组生成禁用物品")]
+    [LocalizedPropertyName(CultureType.Chinese, "允许可使用禁用物品的组生成禁用物品")]
     [LocalizedPropertyName(CultureType.English, "AllowAllowedGroupsToSpawnBannedItems")]
     public bool AllowAllowedGroupsToSpawnBannedItems = TShock.Config.Settings.AllowAllowedGroupsToSpawnBannedItems;
 
