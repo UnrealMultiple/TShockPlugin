@@ -51,12 +51,12 @@ public class Config : JsonConfigBase<Config>
     public string LogPath = TShock.Config.Settings.LogPath;
 
     // 是否启用报错日志
-    [LocalizedPropertyName(CultureType.Chinese, "是否启用报错日志")]
+    [LocalizedPropertyName(CultureType.Chinese, "是否启用报Debug日志")]
     [LocalizedPropertyName(CultureType.English, "DebugLogs")]
     public bool DebugLogs = TShock.Config.Settings.DebugLogs;
 
     // 禁用加入后登录
-    [LocalizedPropertyName(CultureType.Chinese, "禁用加入后登录")]
+    [LocalizedPropertyName(CultureType.Chinese, "禁用登录后进入")]
     [LocalizedPropertyName(CultureType.English, "DisableLoginBeforeJoin")]
     public bool DisableLoginBeforeJoin = TShock.Config.Settings.DisableLoginBeforeJoin;
 
@@ -65,8 +65,8 @@ public class Config : JsonConfigBase<Config>
     [LocalizedPropertyName(CultureType.English, "IgnoreChestStacksOnLoad")]
     public bool IgnoreChestStacksOnLoad = TShock.Config.Settings.IgnoreChestStacksOnLoad;
 
-    // 世界图格提供器
-    [LocalizedPropertyName(CultureType.Chinese, "世界图格提供器(heaptile/constileation)")]
+    // 世界图格提供器 (heaptile/constileation)
+    [LocalizedPropertyName(CultureType.Chinese, "世界图格提供器")]
     [LocalizedPropertyName(CultureType.English, "WorldTileProvider")]
     public string WorldTileProvider = TShock.Config.Settings.WorldTileProvider;
 
@@ -90,12 +90,12 @@ public class Config : JsonConfigBase<Config>
     public bool ShowBackupAutosaveMessages = TShock.Config.Settings.ShowBackupAutosaveMessages;
 
     // 备份间隔(分钟)
-    [LocalizedPropertyName(CultureType.Chinese, "自动备份间隔(分钟)")]
+    [LocalizedPropertyName(CultureType.Chinese, "自动备份间隔")]
     [LocalizedPropertyName(CultureType.English, "BackupInterval")]
     public int BackupInterval = TShock.Config.Settings.BackupInterval;
 
     // 备份保留时间(分钟)
-    [LocalizedPropertyName(CultureType.Chinese, "备份保留时间(分钟)")]
+    [LocalizedPropertyName(CultureType.Chinese, "备份保留时间")]
     [LocalizedPropertyName(CultureType.English, "BackupKeepFor")]
     public int BackupKeepFor = TShock.Config.Settings.BackupKeepFor;
 
@@ -113,8 +113,8 @@ public class Config : JsonConfigBase<Config>
 
     #region World Settings
 
-    // 入侵事件的大小，由公式 100 + (倍数 * (200血量以上活跃玩家数量)) 计算得出
-    [LocalizedPropertyName(CultureType.Chinese, "事件入侵乘数(100 + 乘数*血量>200的在线玩家)")]
+    // 入侵事件的大小，由公式 //(100 + 乘数*血量>200的在线玩家)
+    [LocalizedPropertyName(CultureType.Chinese, "事件入侵乘数")]
     [LocalizedPropertyName(CultureType.English, "InvasionMultiplier")]
     public int InvasionMultiplier = TShock.Config.Settings.InvasionMultiplier;
 
@@ -124,17 +124,17 @@ public class Config : JsonConfigBase<Config>
     public int DefaultMaximumSpawns = TShock.Config.Settings.DefaultMaximumSpawns;
 
     // 刷怪间隔(数值越低，敌人生成越频繁)
-    [LocalizedPropertyName(CultureType.Chinese, "默认刷怪生成间隔(帧)")]
+    [LocalizedPropertyName(CultureType.Chinese, "默认刷怪率(越低越频繁)")]
     [LocalizedPropertyName(CultureType.English, "DefaultSpawnRate")]
     public int DefaultSpawnRate = TShock.Config.Settings.DefaultSpawnRate;
 
-    // 是否启用无限制入侵事件(仍需手动触发)
-    [LocalizedPropertyName(CultureType.Chinese, "事件无限入侵(/invade)")]
+    // 是否启用无限制入侵事件(仍需手动触发) (/invade)
+    [LocalizedPropertyName(CultureType.Chinese, "事件无限入侵")]
     [LocalizedPropertyName(CultureType.English, "InfiniteInvasion")]
     public bool InfiniteInvasion = TShock.Config.Settings.InfiniteInvasion;
 
-    // 设置 PvP 模式(有效选项：normal、always、pvpwithnoteam、disabled)
-    [LocalizedPropertyName(CultureType.Chinese, "设置PVP模式(normal/always/disabled/pvpwithnoteam)")]
+    // 设置 PvP 模式(normal/always/disabled/pvpwithnoteam)
+    [LocalizedPropertyName(CultureType.Chinese, "PVP模式")]
     [LocalizedPropertyName(CultureType.English, "PvPMode")]
     public string PvPMode = TShock.Config.Settings.PvPMode;
 
@@ -144,7 +144,7 @@ public class Config : JsonConfigBase<Config>
     public bool SpawnProtection = TShock.Config.Settings.SpawnProtection;
 
     // 默认生成点周围的保护范围(单位：格)
-    [LocalizedPropertyName(CultureType.Chinese, "出生点保护范围(格)")]
+    [LocalizedPropertyName(CultureType.Chinese, "出生点保护范围")]
     [LocalizedPropertyName(CultureType.English, "SpawnProtectionRadius")]
     public int SpawnProtectionRadius = TShock.Config.Settings.SpawnProtectionRadius;
 
@@ -173,12 +173,12 @@ public class Config : JsonConfigBase<Config>
     [LocalizedPropertyName(CultureType.English, "DisableBuild")]
     public bool DisableBuild = TShock.Config.Settings.DisableBuild;
 
-    // 如果启用，硬模式将不会通过魔眼或 /starthardmode 命令激活
+    // 如果启用，困难模式将不会通过肉山或 /starthardmode 命令激活
     [LocalizedPropertyName(CultureType.Chinese, "禁止困难模式")]
     [LocalizedPropertyName(CultureType.English, "DisableHardmode")]
     public bool DisableHardmode = TShock.Config.Settings.DisableHardmode;
 
-    // 禁止副本守护神生成，取而代之的是将玩家发送回生成点
+    // 禁止地牢守卫生成，取而代之的是将玩家发送回生成点
     [LocalizedPropertyName(CultureType.Chinese, "禁止生成地牢守卫")]
     [LocalizedPropertyName(CultureType.English, "DisableDungeonGuardian")]
     public bool DisableDungeonGuardian = TShock.Config.Settings.DisableDungeonGuardian;
@@ -189,7 +189,7 @@ public class Config : JsonConfigBase<Config>
     public bool DisableClownBombs = TShock.Config.Settings.DisableClownBombs;
 
     // 禁用雪球炸弹生成
-    [LocalizedPropertyName(CultureType.Chinese, "禁止雪块弹幕")]
+    [LocalizedPropertyName(CultureType.Chinese, "禁止雪人雪块弹幕")]
     [LocalizedPropertyName(CultureType.English, "DisableSnowBalls")]
     public bool DisableSnowBalls = TShock.Config.Settings.DisableSnowBalls;
 
@@ -199,11 +199,11 @@ public class Config : JsonConfigBase<Config>
     public bool DisableTombstones = TShock.Config.Settings.DisableTombstones;
 
     // 禁用 Skeletron Prime 炸弹生成，防止破坏 “for the worthy” 世界
-    [LocalizedPropertyName(CultureType.Chinese, "禁止炸弹")]
+    [LocalizedPropertyName(CultureType.Chinese, "禁止机械骷髅王炸弹")]
     [LocalizedPropertyName(CultureType.English, "DisablePrimeBombs")]
     public bool DisablePrimeBombs = TShock.Config.Settings.DisablePrimeBombs;
 
-    // 强制世界时间为白天或黑夜
+    // 强制世界时间为白天或黑夜(normal/day/night)
     [LocalizedPropertyName(CultureType.Chinese, "强制世界时间(normal/day/night)")]
     [LocalizedPropertyName(CultureType.English, "ForceTime")]
     public string ForceTime = TShock.Config.Settings.ForceTime;
@@ -224,7 +224,7 @@ public class Config : JsonConfigBase<Config>
     public bool RegionProtectChests = TShock.Config.Settings.RegionProtectChests;
 
     // 是否对宝石锁应用区域保护。
-    [LocalizedPropertyName(CultureType.Chinese, "保护区域箱子是否上锁")]
+    [LocalizedPropertyName(CultureType.Chinese, "保护区域内宝石锁")]
     [LocalizedPropertyName(CultureType.English, "RegionProtectGemLocks")]
     public bool RegionProtectGemLocks = TShock.Config.Settings.RegionProtectGemLocks;
 
@@ -249,32 +249,32 @@ public class Config : JsonConfigBase<Config>
     public bool AllowIce = TShock.Config.Settings.AllowIce;
 
     // 允许猩红在困难模式下蔓延。
-    [LocalizedPropertyName(CultureType.Chinese, "允许困难模式猩红蔓延")]
+    [LocalizedPropertyName(CultureType.Chinese, "允许猩红蔓延")]
     [LocalizedPropertyName(CultureType.English, "AllowCrimsonCreep")]
     public bool AllowCrimsonCreep = TShock.Config.Settings.AllowCrimsonCreep;
 
     // 允许腐化在困难模式下蔓延。
-    [LocalizedPropertyName(CultureType.Chinese, "允许困难模式腐化蔓延")]
+    [LocalizedPropertyName(CultureType.Chinese, "允许腐化蔓延")]
     [LocalizedPropertyName(CultureType.English, "AllowCorruptionCreep")]
     public bool AllowCorruptionCreep = TShock.Config.Settings.AllowCorruptionCreep;
 
     // 允许神圣在困难模式下蔓延。
-    [LocalizedPropertyName(CultureType.Chinese, "允许困难模式神圣蔓延")]
+    [LocalizedPropertyName(CultureType.Chinese, "允许神圣蔓延")]
     [LocalizedPropertyName(CultureType.English, "AllowHallowCreep")]
     public bool AllowHallowCreep = TShock.Config.Settings.AllowHallowCreep;
 
     // 统计200格之间的雕像生成NPC数量。
-    [LocalizedPropertyName(CultureType.Chinese, "200格之间雕像生成NPC数量")]
+    [LocalizedPropertyName(CultureType.Chinese, "雕像停止生成前200像素(12.5格)内该NPC数量")]
     [LocalizedPropertyName(CultureType.English, "StatueSpawn200")]
     public int StatueSpawn200 = TShock.Config.Settings.StatueSpawn200;
 
     // 统计600格之间的雕像生成NPC数量。
-    [LocalizedPropertyName(CultureType.Chinese, "600格之间雕像生成NPC数量")]
+    [LocalizedPropertyName(CultureType.Chinese, "雕像停止生成前600格(37.5格)内该NPC数量")]
     [LocalizedPropertyName(CultureType.English, "StatueSpawn600")]
     public int StatueSpawn600 = TShock.Config.Settings.StatueSpawn600;
 
-    // 统计整个世界雕像生成NPC数量。
-    [LocalizedPropertyName(CultureType.Chinese, "整个世界雕像生成NPC数量")]
+    // 整个世界雕像停止生成前该NPC数量"。
+    [LocalizedPropertyName(CultureType.Chinese, "整个世界雕像停止生成前该NPC数量")]
     [LocalizedPropertyName(CultureType.English, "StatueSpawnWorld")]
     public int StatueSpawnWorld = TShock.Config.Settings.StatueSpawnWorld;
 
@@ -304,32 +304,32 @@ public class Config : JsonConfigBase<Config>
     public bool ForceHalloween = TShock.Config.Settings.ForceHalloween;
 
     // 允许管理员获取禁用物品。
-    [LocalizedPropertyName(CultureType.Chinese, "允许管理员获取禁用物品")]
+    [LocalizedPropertyName(CultureType.Chinese, "允许允许使用禁用物品的组生成禁用物品")]
     [LocalizedPropertyName(CultureType.English, "AllowAllowedGroupsToSpawnBannedItems")]
     public bool AllowAllowedGroupsToSpawnBannedItems = TShock.Config.Settings.AllowAllowedGroupsToSpawnBannedItems;
 
     // 玩家复活时间(秒)。
-    [LocalizedPropertyName(CultureType.Chinese, "玩家复活时间/秒")]
+    [LocalizedPropertyName(CultureType.Chinese, "玩家复活时间")]
     [LocalizedPropertyName(CultureType.English, "RespawnSeconds")]
     public int RespawnSeconds = TShock.Config.Settings.RespawnSeconds;
 
     // 玩家BOSS战复活时间(秒)。
-    [LocalizedPropertyName(CultureType.Chinese, "玩家BOSS战复活时间/秒")]
+    [LocalizedPropertyName(CultureType.Chinese, "玩家BOSS战复活时间")]
     [LocalizedPropertyName(CultureType.English, "RespawnBossSeconds")]
     public int RespawnBossSeconds = TShock.Config.Settings.RespawnBossSeconds;
 
     // 是否提示BOSS生成或事件入侵。
-    [LocalizedPropertyName(CultureType.Chinese, "提示BOSS生成或事件入侵")]
+    [LocalizedPropertyName(CultureType.Chinese, "不显示召唤BOSS或事件入侵的玩家")]
     [LocalizedPropertyName(CultureType.English, "AnonymousBossInvasions")]
     public bool AnonymousBossInvasions = TShock.Config.Settings.AnonymousBossInvasions;
 
     // 检测玩家血量上限(超过会被网住)。
-    [LocalizedPropertyName(CultureType.Chinese, "检测玩家血量上限(超过会被网住)")]
+    [LocalizedPropertyName(CultureType.Chinese, "玩家血量上限")]
     [LocalizedPropertyName(CultureType.English, "MaxHP")]
     public int MaxHP = TShock.Config.Settings.MaxHP;
 
     // 检测玩家蓝量上限(惩罚同上)。
-    [LocalizedPropertyName(CultureType.Chinese, "检测玩家蓝量上限(惩罚同上)")]
+    [LocalizedPropertyName(CultureType.Chinese, "玩家蓝量上限")]
     [LocalizedPropertyName(CultureType.English, "MaxMP")]
     public int MaxMP = TShock.Config.Settings.MaxMP;
 
@@ -339,7 +339,7 @@ public class Config : JsonConfigBase<Config>
     public int BombExplosionRadius = TShock.Config.Settings.BombExplosionRadius;
 
     // 是否直接给予玩家物品到其背包中(需要SSC支持)。
-    [LocalizedPropertyName(CultureType.Chinese, "强制开荒下给玩家物品方式")]
+    [LocalizedPropertyName(CultureType.Chinese, "给予物品直接插入玩家背包(需SSC)")]
     [LocalizedPropertyName(CultureType.English, "GiveItemsDirectly")]
     public bool GiveItemsDirectly = TShock.Config.Settings.GiveItemsDirectly;
 
@@ -363,7 +363,7 @@ public class Config : JsonConfigBase<Config>
     public bool RememberLeavePos = TShock.Config.Settings.RememberLeavePos;
 
     // 最大登录失败尝试次数，超过此次数后踢出玩家。
-    [LocalizedPropertyName(CultureType.Chinese, "尝试登录次数上限/超过则踢出")]
+    [LocalizedPropertyName(CultureType.Chinese, "尝试登录次数上限")]
     [LocalizedPropertyName(CultureType.English, "MaximumLoginAttempts")]
     public int MaximumLoginAttempts = TShock.Config.Settings.MaximumLoginAttempts;
 
@@ -388,12 +388,12 @@ public class Config : JsonConfigBase<Config>
     public string MediumcoreBanReason = TShock.Config.Settings.MediumcoreBanReason;
 
     // 默认情况下，禁用 IP 封禁(如果没有传递参数到封禁命令)。
-    [LocalizedPropertyName(CultureType.Chinese, "封禁默认只封IP")]
+    [LocalizedPropertyName(CultureType.Chinese, "关闭默认封禁IP")]
     [LocalizedPropertyName(CultureType.English, "DisableDefaultIPBan")]
     public bool DisableDefaultIPBan = TShock.Config.Settings.DisableDefaultIPBan;
 
     // 根据 whitelist.txt 文件中的 IP 地址启用或禁用白名单。
-    [LocalizedPropertyName(CultureType.Chinese, "启用白名单(推荐用其他白名单插件)")]
+    [LocalizedPropertyName(CultureType.Chinese, "启用IP白名单")]
     [LocalizedPropertyName(CultureType.English, "EnableWhitelist")]
     public bool EnableWhitelist = TShock.Config.Settings.EnableWhitelist;
 
@@ -438,7 +438,7 @@ public class Config : JsonConfigBase<Config>
     public bool KickProxyUsers = TShock.Config.Settings.KickProxyUsers;
 
     // 是否要求所有玩家在游戏前注册或登录。
-    [LocalizedPropertyName(CultureType.Chinese, "启用注册登录系统务必开启")]
+    [LocalizedPropertyName(CultureType.Chinese, "用户必须登录")]
     [LocalizedPropertyName(CultureType.English, "RequireLogin")]
     public bool RequireLogin = TShock.Config.Settings.RequireLogin;
 
@@ -453,7 +453,7 @@ public class Config : JsonConfigBase<Config>
     public bool AllowRegisterAnyUsername = TShock.Config.Settings.AllowRegisterAnyUsername;
 
     // 新用户账户的最小密码长度。不能低于 4。
-    [LocalizedPropertyName(CultureType.Chinese, "密码最少长度(最少4位)")]
+    [LocalizedPropertyName(CultureType.Chinese, "密码最少长度")]
     [LocalizedPropertyName(CultureType.English, "MinimumPasswordLength")]
     public int MinimumPasswordLength = TShock.Config.Settings.MinimumPasswordLength;
 
@@ -555,14 +555,14 @@ public class Config : JsonConfigBase<Config>
     /// <summary>
     /// 描述: 区域与出生点提示无权建筑。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "区域与出生点提示无权建筑")]
+    [LocalizedPropertyName(CultureType.Chinese, "不提示受保护区域无权建筑信息")]
     [LocalizedPropertyName(CultureType.English, "SuppressPermissionFailureNotices")]
     public bool SuppressPermissionFailureNotices = TShock.Config.Settings.SuppressPermissionFailureNotices;
 
     /// <summary>
     /// 描述: 禁止修改后的天顶剑。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "禁止第一分形")]
+    [LocalizedPropertyName(CultureType.Chinese, "禁止修改的天顶剑")]
     [LocalizedPropertyName(CultureType.English, "DisableModifiedZenith")]
     public bool DisableModifiedZenith = TShock.Config.Settings.DisableModifiedZenith;
 
@@ -581,7 +581,7 @@ public class Config : JsonConfigBase<Config>
     /// 指定用于启动命令的字符串。
     /// 注意：如果字符串长度大于 1，可能无法正常工作。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "指令通用符")]
+    [LocalizedPropertyName(CultureType.Chinese, "指令前缀")]
     [LocalizedPropertyName(CultureType.English, "CommandSpecifier")]
     public string CommandSpecifier = TShock.Config.Settings.CommandSpecifier;
 
@@ -589,21 +589,21 @@ public class Config : JsonConfigBase<Config>
     /// 指定用于静默启动命令的字符串。
     /// 注意：如果字符串长度大于 1，可能无法正常工作。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "隐藏指令通用符")]
+    [LocalizedPropertyName(CultureType.Chinese, "隐藏指令前缀")]
     [LocalizedPropertyName(CultureType.English, "CommandSilentSpecifier")]
     public string CommandSilentSpecifier = TShock.Config.Settings.CommandSilentSpecifier;
 
     /// <summary>
     /// 禁用将日志作为消息发送给具有日志权限的玩家。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "禁止发送日志信息给有日志权限的玩家")]
+    [LocalizedPropertyName(CultureType.Chinese, "不将日志作为聊天信息发送给有日志权限的玩家")]
     [LocalizedPropertyName(CultureType.English, "DisableSpewLogs")]
     public bool DisableSpewLogs = TShock.Config.Settings.DisableSpewLogs;
 
     /// <summary>
     /// 阻止 OnSecondUpdate 检查写入日志文件。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "禁止每秒更新检查写入日志路径")]
+    [LocalizedPropertyName(CultureType.Chinese, "不将每秒的更新检查写入日志")]
     [LocalizedPropertyName(CultureType.English, "DisableSecondUpdateLogs")]
     public bool DisableSecondUpdateLogs = TShock.Config.Settings.DisableSecondUpdateLogs;
 
@@ -631,28 +631,28 @@ public class Config : JsonConfigBase<Config>
     /// <summary>
     /// 是否在玩家加入时基于其 IP 地址宣布玩家的地理位置。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "显示加入服务器的玩家IP国籍")]
+    [LocalizedPropertyName(CultureType.Chinese, "显示加入服务器的玩家IP地理位置")]
     [LocalizedPropertyName(CultureType.English, "EnableGeoIP")]
     public bool EnableGeoIP = TShock.Config.Settings.EnableGeoIP;
 
     /// <summary>
     /// 是否在玩家加入时向具有日志权限的用户显示玩家的 IP 地址。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "显示加入服务器的玩家IP")]
+    [LocalizedPropertyName(CultureType.Chinese, "向有日志权限的管理显示进入玩家的IP")]
     [LocalizedPropertyName(CultureType.English, "DisplayIPToAdmins")]
     public bool DisplayIPToAdmins = TShock.Config.Settings.DisplayIPToAdmins;
 
     /// <summary>
     /// 更改游戏内聊天格式：{0} = 组名，{1} = 组前缀，{2} = 玩家名称，{3} = 组后缀，{4} = 聊天消息。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "聊天格式(组名0/前缀1/玩家名字2/后缀3/内容4)")]
+    [LocalizedPropertyName(CultureType.Chinese, "聊天格式")]
     [LocalizedPropertyName(CultureType.English, "ChatFormat")]
     public string ChatFormat = TShock.Config.Settings.ChatFormat;
 
     /// <summary>
-    /// 更改使用头顶聊天时的玩家名称。以玩家名称包裹在括号中，符合 Terraria 的格式。\n与 ChatFormat 相同的格式，但不包含消息。
+    /// 更改使用头顶聊天时的玩家名称。以玩家名称包裹在括号中，符合 Terraria 的格式。\n与 ChatFormat 相同的格式，但不包含消息。（可用占位符）
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "聊天栏内玩家名字的占位符")]
+    [LocalizedPropertyName(CultureType.Chinese, "聊天栏内玩家名字")]
     [LocalizedPropertyName(CultureType.English, "ChatAboveHeadsFormat")]
     public string ChatAboveHeadsFormat = TShock.Config.Settings.ChatAboveHeadsFormat;
 
@@ -677,14 +677,14 @@ public class Config : JsonConfigBase<Config>
     /// <summary>
     /// 存储数据时使用的数据库类型: sqlite/mysql。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "数据库类型(sqlite/mysql)")]
+    [LocalizedPropertyName(CultureType.Chinese, "数据库类型")]
     [LocalizedPropertyName(CultureType.English, "StorageType")]
     public string StorageType = TShock.Config.Settings.StorageType;
 
     /// <summary>
     /// 本服务器的数据库路径。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "本服务器的数据库路径")]
+    [LocalizedPropertyName(CultureType.Chinese, "数据库路径")]
     [LocalizedPropertyName(CultureType.English, "SqliteDBPath")]
     public string SqliteDBPath = TShock.Config.Settings.SqliteDBPath;
 
@@ -726,7 +726,7 @@ public class Config : JsonConfigBase<Config>
     /// <summary>
     /// Sql日志返回文本日志之前连接次数。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Sql日志返回文本日志之前连接次数")]
+    [LocalizedPropertyName(CultureType.Chinese, "Sql日志连接失败指定次数后变回文本日志")]
     [LocalizedPropertyName(CultureType.English, "RevertToTextLogsOnSqlFailures")]
     public int RevertToTextLogsOnSqlFailures = TShock.Config.Settings.RevertToTextLogsOnSqlFailures;
 
@@ -765,21 +765,21 @@ public class Config : JsonConfigBase<Config>
     /// <summary>
     /// Rest连接失败的请求次数。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Rest连接失败的请求次数")]
+    [LocalizedPropertyName(CultureType.Chinese, "Rest最大请求次数")]
     [LocalizedPropertyName(CultureType.English, "RESTMaximumRequestsPerInterval")]
     public int RESTMaximumRequestsPerInterval = TShock.Config.Settings.RESTMaximumRequestsPerInterval;
 
     /// <summary>
     /// Rest连接请求次数间隔/分钟。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Rest连接请求次数间隔/分钟")]
+    [LocalizedPropertyName(CultureType.Chinese, "Rest允许连接请求加一间隔")]
     [LocalizedPropertyName(CultureType.English, "RESTRequestBucketDecreaseIntervalMinutes")]
     public int RESTRequestBucketDecreaseIntervalMinutes = TShock.Config.Settings.RESTRequestBucketDecreaseIntervalMinutes;
 
     /// <summary>
     /// Rest外部应用权限表。
     /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Rest外部应用权限表")]
+    [LocalizedPropertyName(CultureType.Chinese, "Rest外部应用令牌字典")]
     [LocalizedPropertyName(CultureType.English, "ApplicationRestTokens")]
     public Dictionary<string, SecureRest.TokenData> ApplicationRestTokens = TShock.Config.Settings.ApplicationRestTokens;
 
