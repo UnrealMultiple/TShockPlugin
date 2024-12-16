@@ -2,6 +2,7 @@
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 using static SurfaceBlock.Tool;
 
 namespace SurfaceBlock;
@@ -30,7 +31,6 @@ public class SurfaceBlock : LazyPlugin
     {
         if (disposing)
         {
-            DB.ClearData(); //关服自动清理玩家数据
             GetDataHandlers.TileEdit -= this.OnTileEdit!;
             GetDataHandlers.NewProjectile -= this.ProjectNew!;
             GetDataHandlers.PlayerUpdate -= this.OnPlayerUpdate!;
@@ -41,7 +41,7 @@ public class SurfaceBlock : LazyPlugin
     #endregion
 
     #region 玩家进服自动建数据
-    public static Database DB = new();
+    internal static MyData Mydata = new();
     private void OnGreetPlayer(GreetPlayerEventArgs args)
     {
         var plr = TShock.Players[args.Who];
@@ -49,18 +49,11 @@ public class SurfaceBlock : LazyPlugin
         {
             return;
         }
-        var data = DB.GetData(plr.Name);
 
         // 如果玩家不在数据表中，则创建新数据
-        if (data == null)
+        if (!Mydata.Dict!.ContainsKey(plr.Name))
         {
-            var newData = new Database.PlayerData
-            {
-                Name = plr.Name,
-                Enabled = false,
-                Time = default,
-            };
-            DB.AddData(newData); // 添加到数据库
+            Mydata.Dict.Add(plr.Name, new MyData.PlayerData());
         }
     }
     #endregion
@@ -110,14 +103,13 @@ public class SurfaceBlock : LazyPlugin
     #region 移除弹幕方法（并开启标识提供给其他方法作为参考使用）
     public static void Remover(GetDataHandlers.NewProjectileEventArgs e)
     {
-        var data = DB.GetData(e.Player.Name);
         var now = DateTime.UtcNow;
-        if (data != null)
+        if (Mydata.Dict != null && Mydata.Dict.TryGetValue(e.Player.Name, out var data))
         {
             var name = (string)Terraria.Lang.GetProjectileName(e.Type);
             if (name.StartsWith("ProjectileName."))
             {
-                name = "未知";
+                name = GetString("未知");
             }
 
             Main.projectile[e.Index].type = 0;
@@ -136,7 +128,6 @@ public class SurfaceBlock : LazyPlugin
             //开启销毁标识 记录当前销毁弹幕时间给PlayerUpdate TileEdit ItemDorp 3个方法用
             data.Enabled = true;
             data.Time = now;
-            DB.UpdateData(data);
         }
     }
     #endregion
@@ -152,8 +143,7 @@ public class SurfaceBlock : LazyPlugin
             return;
         }
 
-        var data = DB.GetData(plr.Name);
-        if (data != null)
+        if (Mydata.Dict != null && Mydata.Dict.TryGetValue(plr.Name, out var data))
         {
             if (data.Enabled)
             {
@@ -181,7 +171,6 @@ public class SurfaceBlock : LazyPlugin
                 if ((DateTime.UtcNow - data.Time).TotalSeconds >= Configuration.Instance.Seconds)
                 {
                     data.Enabled = false;
-                    DB.UpdateData(data);
                 }
             }
         }
@@ -224,8 +213,7 @@ public class SurfaceBlock : LazyPlugin
             return;
         }
 
-        var data = DB.GetData(plr.Name);
-        if (data != null)
+        if (Mydata.Dict != null && Mydata.Dict.TryGetValue(plr.Name, out var data))
         {
             if (data.Enabled)
             {
