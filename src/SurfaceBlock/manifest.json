@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Prohibit surface projectiles"
+  },
+  "README.es-ES": {
+    "Description": "Prohibir proyectiles en la superficie "
+  },
+  "README": {
+    "Description": "禁地表弹幕插件"
+  }
+}
