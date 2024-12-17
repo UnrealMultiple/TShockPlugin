@@ -11,7 +11,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.193.0",
+    "Version": "0.0.194.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
     "AssemblyName": "Chireiden.TShock.Omni",
@@ -31,7 +31,7 @@
   },
   {
     "Name": "[放置更多晶塔] AdditionalPylons",
-    "Version": "1.0.4",
+    "Version": "1.0.5",
     "Author": "Stealownz,肝帝熙恩优化1449",
     "Description": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
     "AssemblyName": "AdditionalPylons",
@@ -633,7 +633,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.193.0",
+    "Version": "0.0.194.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock - the miscellaneous part",
     "AssemblyName": "Chireiden.TShock.Omni.Misc",
@@ -964,16 +964,6 @@
     "HotReload": true
   },
   {
-    "Name": "LifemaxExtra",
-    "Version": "1.0.0.7",
-    "Author": "佚名 & 肝帝熙恩 & 少司命",
-    "Description": "提升生命值上限",
-    "AssemblyName": "LifemaxExtra",
-    "Path": "LifemaxExtra.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
     "Name": "MapTeleport",
     "Version": "1.0.2",
     "Author": "Nova4334，肝帝熙恩汉化适配1449",
@@ -1216,6 +1206,18 @@
     "HotReload": true
   },
   {
+    "Name": "TShockConfigMultiLang",
+    "Version": "1.0.0",
+    "Author": "肝帝熙恩，羽学",
+    "Description": "创建一个本地化语言的config",
+    "AssemblyName": "TShockConfigMultiLang",
+    "Path": "TShockConfigMultiLang.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
     "Name": "UnseenInventory",
     "Version": "1.0.0",
     "Author": "肝帝熙恩",
@@ -1346,6 +1348,18 @@
     "AssemblyName": "ProxyProtocolSocket",
     "Path": "ProxyProtocolSocket.dll",
     "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "LifemaxExtra",
+    "Version": "1.0.0.8",
+    "Author": "佚名 & 肝帝熙恩 & 少司命",
+    "Description": "提升生命值上限",
+    "AssemblyName": "LifemaxExtra",
+    "Path": "LifemaxExtra.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {

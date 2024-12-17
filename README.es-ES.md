@@ -137,7 +137,7 @@
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | No | Desbloquea ítems del modo Journey |  |
 | [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | No | Plugin adaptador para el bot Lagrange.XocMat | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.md) | No | Biblioteca base para plugins | [linq2db]() |
-| [LifemaxExtra](./src/LifemaxExtra/README.md) | No | Comer más frutas/cristales de vida |  |
+| [LifemaxExtra](./src/LifemaxExtra/README.md) | No | Comer más frutas/cristales de vida | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | No | Lista los plugins instalados |  |
 | [MapTp](./src/MapTp/README.md) | No | Teletransportarse con doble clic en el mapa |  |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) | No | API para el mini-juego de pasta de frijol |  |
@@ -186,6 +186,7 @@
 | [TimeRate](./src/TimeRate/README.md) | No | Modifica la aceleración del tiempo usando comandos, y soporta el sueño de los jugadores para activar eventos |  |
 | [TimerKeeper](./src/TimerKeeper/README.md) | No | Guarda el estado del temporizador |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | No | Casa rápida de NPC |  |
+| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | No | Localización del idioma de configuración de TShock | [LazyAPI](./src/LazyAPI/README.md) |
 | [UnseenInventory](./src/UnseenInventory/README.md) | No | Permite que el servidor genere ítems "inobtenibles" |  |
 | [VeinMiner](./src/VeinMiner/README.md) | No | Minado en cadena |  |
 | [VotePlus](./src/VotePlus/README.md) | No | Votación multifuncional |  |

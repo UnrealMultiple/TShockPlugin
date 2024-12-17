@@ -133,7 +133,7 @@
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | 解锁旅途物品 |  |
 | [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.md) | 插件基础库 | [linq2db]() |
-| [LifemaxExtra](./src/LifemaxExtra/README.md) | 吃更多生命果/水晶 |  |
+| [LifemaxExtra](./src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | 查已装插件 |  |
 | [MapTp](./src/MapTp/README.md) | 双击大地图传送 |  |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) | 豆沙小游戏 API |  |
@@ -182,6 +182,7 @@
 | [TimeRate](./src/TimeRate/README.md) | 时间加速插件 |  |
 | [TimerKeeper](./src/TimerKeeper/README.md) | 保存计时器状态 |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | NPC 快速回家 |  |
+| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | TShock config文件语言本土化 | [LazyAPI](./src/LazyAPI/README.md) |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 允许服务器端生成“无法获取”的物品 |  |
 | [VeinMiner](./src/VeinMiner/README.md) | 连锁挖矿 |  |
 | [VotePlus](./src/VotePlus/README.md) | 多功能投票 |  |

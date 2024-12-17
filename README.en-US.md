@@ -137,7 +137,7 @@
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | No | Unlock journey items |  |
 | [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | No | Lagrange.XocMat Bot Adapter Plugin | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.md) | No | Plugin base library | [linq2db]() |
-| [LifemaxExtra](./src/LifemaxExtra/README.md) | No | Eat more life fruits/crystals |  |
+| [LifemaxExtra](./src/LifemaxExtra/README.md) | No | Eat more life fruits/crystals | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | No | List installed plugins |  |
 | [MapTp](./src/MapTp/README.en-US.md) | Yes | Double-click on the map to teleport |  |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) | No | Bean paste mini-game API |  |
@@ -186,6 +186,7 @@
 | [TimeRate](./src/TimeRate/README.en-US.md) | Yes | modifying time acceleration using commands, and supporting player sleep to trigger events. |  |
 | [TimerKeeper](./src/TimerKeeper/README.en-US.md) | Yes | Save timer state |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.en-US.md) | Yes | NPC quick home |  |
+| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | No | TShock configuration language localization | [LazyAPI](./src/LazyAPI/README.md) |
 | [UnseenInventory](./src/UnseenInventory/README.md) | No | Allows the server to generate items that are normally 'unobtainable' |  |
 | [VeinMiner](./src/VeinMiner/README.en-US.md) | Yes | Chain mining |  |
 | [VotePlus](./src/VotePlus/README.en-US.md) | Yes | Multi-function voting |  |
