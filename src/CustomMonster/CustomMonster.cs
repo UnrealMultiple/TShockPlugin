@@ -384,7 +384,7 @@ public class TestPlugin : TerrariaPlugin
         var flag = false;
         var activePlayerCount = TShock.Utils.GetActivePlayerCount();
         var lifeMax = Main.npc[args.NpcId].lifeMax;
-        MonsterGroup config = null!;
+        MonsterGroup? config = null;
         var maxtime = 0;
         var lNKC = getLNKC(Main.npc[args.NpcId].netID);
         var num = 0;
@@ -656,6 +656,10 @@ public class TestPlugin : TerrariaPlugin
             }
             config = MonGroup;
             break;
+        }
+        if (config == null)
+        {
+            return;
         }
         if (!this.Config.IgnoreMonsterTable.Contains(Main.npc[args.NpcId].netID))
         {
