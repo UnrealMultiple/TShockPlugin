@@ -96,6 +96,7 @@
 | [CNPCShop](src/CNPCShop/README.md) | No | Tienda personalizada de NPC | None |
 | [ConsoleSql](src/ConsoleSql/README.md) | No | Ejecutar sentencias SQL en la consola | None |
 | [ConvertWorld](src/ConvertWorld/README_EN.md) | No | Convertir objetos del mundo al derrotar monstruos | None |
+| [CustomMonster](src/CustomMonster/README_EN.md) | No | Personalizar, modificar y generar monstruos y jefes | None |
 | [CreateSpawn](src/CreateSpawn/README.md) | No | Generación de puntos de aparición | None |
 | [CriticalHit](src/CriticalHit/README.md) | No | Indicación de golpe crítico | None |
 | [DamageRuleLoot](src/DamageRuleLoot/README_EN.md) | No | Determinar la bolsa de tesoro caída basada en la relación de daño y transferir el cálculo de daño | None |

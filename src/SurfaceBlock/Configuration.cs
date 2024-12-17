@@ -6,7 +6,7 @@ namespace SurfaceBlock;
 [Config]
 internal class Configuration : JsonConfigBase<Configuration>
 {
-    protected override string Filename => "禁地表弹幕";
+    protected override string Filename => "SurfaceBlock";
 
     [LocalizedPropertyName(CultureType.Chinese, "开关", Order = 0)]
     [LocalizedPropertyName(CultureType.English, "Enabled")]

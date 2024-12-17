@@ -96,6 +96,7 @@
 | [CNPCShop](src/CNPCShop/README.md) | No | Custom NPC shop | None |
 | [ConsoleSql](src/ConsoleSql/README.md) | No | Execute SQL statements in the console | None |
 | [ConvertWorld](src/ConvertWorld/README_EN.md) | Yes | Convert world items by defeating monsters | None |
+| [CustomMonster](src/CustomMonster/README_EN.md) | Yes | Customize, modify, and generate monsters and bosses | None |
 | [CreateSpawn](src/CreateSpawn/README.md) | No | Spawn point building generation | None |
 | [CriticalHit](src/CriticalHit/README.md) | No | Critical hit prompt | None |
 | [DamageRuleLoot](src/DamageRuleLoot/README_EN.md) | Yes | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation | None |

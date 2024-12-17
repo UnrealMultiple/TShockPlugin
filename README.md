@@ -92,6 +92,7 @@
 | [CNPCShop](src/CNPCShop/README.md) | 自定义NPC商店 | 无 |
 | [ConsoleSql](src/ConsoleSql/README.md) | 允许你在控制台执行SQL语句 | 无 |
 | [ConvertWorld](src/ConvertWorld/README.md) | 击败怪物转换世界物品 | 无 |
+| [CustomMonster](src/CustomMonster/README.md) | 自定义怪物 | 无 |
 | [CreateSpawn](src/CreateSpawn/README.md) | 出生点建筑生成 | [LazyAPI](src/LazyAPI/README.md) |
 | [CriticalHit](src/CriticalHit/README.md) | 击打提示 | 无 |
 | [DamageRuleLoot](src/DamageRuleLoot/README.md) | 伤害规则掉落 | 无 |
