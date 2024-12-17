@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\..\template.targets" />
+    <ItemGroup>
+        <EmbeddedResource Include="CustomMonster.json" />
+    </ItemGroup>
+</Project>

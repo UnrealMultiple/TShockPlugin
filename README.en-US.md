@@ -96,6 +96,7 @@
 | [CNPCShop](./src/CNPCShop/README.md) | No | Custom NPC shop |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | No | Execute SQL statements in the console |  |
 | [ConvertWorld](./src/ConvertWorld/README.en-US.md) | Yes | Convert world items by defeating monsters |  |
+| [CustomMonster](./src/CustomMonster/README.en-US.md) | Yes | Customize, modify, and generate monsters and bosses |  |
 | [CreateSpawn](./src/CreateSpawn/README.md) | No | Spawn point building generation | [LazyAPI](./src/LazyAPI/README.md) |
 | [CriticalHit](./src/CriticalHit/README.en-US.md) | No | Critical hit prompt |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | No | Allows for cross-platform play |  |
@@ -104,7 +105,6 @@
 | [DataSync](./src/DataSync/README.md) | No | Progress synchronization |  |
 | [DeathDrop](./src/DeathDrop/README.md) | No | Random and custom loot upon monster death |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | No | Prohibit monster loot |  |
-| [DisableSurfaceProjectiles](./src/DisableSurfaceProjectiles/README.md) | No | Prohibit surface projectiles |  |
 | [DonotFuck](./src/DonotFuck/README.en-US.md) | Yes | Prevent swearing | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | No | Prevent entry into dungeons or temples |  |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | No | Dump Terraria IDs |  |
@@ -174,6 +174,7 @@
 | [ServerTools](./src/ServerTools/README.en-US.md) | No | Server management tools |  |
 | [SessionSentinel](./src/SessionSentinel/README.md) | No | Handle players not sending data packets for a long time |  |
 | [ShortCommand](./src/ShortCommand/README.md) | No | Short command |  |
+| [SurfaceBlock](./src/SurfaceBlock/README.md) | No | Prohibit surface projectiles | [LazyAPI](./src/LazyAPI/README.md)  |
 | [ShowArmors](./src/ShowArmors/README.md) | No | Display equipment bar |  |
 | [SignInSign](./src/SignInSign/README.md) | No | Signboard login plugin |  |
 | [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | No | Solve problems like stuck double hammer and star spin machine gun | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
