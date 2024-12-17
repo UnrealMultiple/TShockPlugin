@@ -1,62 +1,70 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI;
+using LazyAPI.ConfigFiles;
+using Newtonsoft.Json;
 using Terraria.ID;
 using TShockAPI;
+using System.IO;
 
 namespace LifemaxExtra;
 
-public class Configuration
+[Config]
+public class Configuration : JsonConfigBase<Configuration>
 {
+    protected override string Filename => "LifemaxExtra";
     public class ItemRaiseInfo
     {
         [JsonProperty("最大提升至")]
+        [LocalizedPropertyName(CultureType.Chinese, "最大提升至")]
+        [LocalizedPropertyName(CultureType.English, "Max")]
         public int Max = 600;
 
         [JsonProperty("提升数值")]
+        [LocalizedPropertyName(CultureType.Chinese, "提升数值")]
+        [LocalizedPropertyName(CultureType.English, "Raise")]
         public int Raise = 20;
     }
 
-    public static readonly string FilePath = Path.Combine(TShock.SavePath, "LifemaxExtra.json");
-
     [JsonProperty("最大生命值")]
+    [LocalizedPropertyName(CultureType.Chinese, "最大生命值")]
+    [LocalizedPropertyName(CultureType.English, "MaxHP")]
     public short MaxHP = 1000;
 
     [JsonProperty("最大法力值")]
-    public short MaxMP = 1000;
+    [LocalizedPropertyName(CultureType.Chinese, "最大法力值")]
+    [LocalizedPropertyName(CultureType.English, "MaxMP")]
+    public short MaxMP = 400;
 
     [JsonProperty("提高血量物品")]
+    [LocalizedPropertyName(CultureType.Chinese, "提高血量物品")]
+    [LocalizedPropertyName(CultureType.English, "ItemRaiseHP")]
     public Dictionary<int, ItemRaiseInfo> ItemRaiseHP { get; set; } = new()
     {
         { ItemID.LifeCrystal, new() },
-        { ItemID.LifeFruit, new(){ Raise = 5, Max = 700 } }
+        { ItemID.LifeFruit, new(){ Raise = 5, Max = 1000 } }
     };
 
     [JsonProperty("提高法力物品")]
+    [LocalizedPropertyName(CultureType.Chinese, "提高法力物品")]
+    [LocalizedPropertyName(CultureType.English, "ItemRaiseMP")]
     public Dictionary<int, ItemRaiseInfo> ItemRaiseMP { get; set; } = new()
     {
-        { ItemID.ManaCrystal, new(){ Raise = 20, Max = 700 } }
+        { ItemID.ManaCrystal, new(){ Raise = 20, Max = 400 } }
     };
 
-    public void Write(string path)
+    protected override void SetDefault()
     {
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
-        {
-            var str = JsonConvert.SerializeObject(this, Formatting.Indented);
-            using (var sw = new StreamWriter(fs))
-            {
-                sw.Write(str);
-            }
-        }
-    }
+        this.MaxHP = 1000;
+        this.MaxMP = 400;
 
-    public static Configuration Read(string path)
-    {
-        if (!File.Exists(path))
+        this.ItemRaiseHP = new Dictionary<int, ItemRaiseInfo>
         {
-            return new Configuration();
-        }
+            { ItemID.LifeCrystal, new ItemRaiseInfo() },
+            { ItemID.LifeFruit, new ItemRaiseInfo { Raise = 5, Max = 100 } }
+        };
 
-        using var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-        using var sr = new StreamReader(fs);
-        return JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd()) ?? new();
+        this.ItemRaiseMP = new Dictionary<int, ItemRaiseInfo>
+        {
+            { ItemID.ManaCrystal, new ItemRaiseInfo { Raise = 20, Max = 400 } }
+        };
     }
 }
