@@ -27,7 +27,7 @@ public class History : TerrariaPlugin
     private Thread CommandQueueThread = null!;
     public override string Description => "记录图格操作.";
     public override string Name => "History";
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
 
     public History(Main game) : base(game)
     {

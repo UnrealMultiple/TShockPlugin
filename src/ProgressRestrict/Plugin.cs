@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "少司命 & 恋恋魔改三合一";
     public override string Description => "根据进度限制";
     public override string Name => "超进度限制";
-    public override Version Version => new(1, 0, 0, 2);
+    public override Version Version => new Version(1, 0, 0, 3);
 
     public Config config = null!;
 

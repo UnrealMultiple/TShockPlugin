@@ -13,7 +13,7 @@ public partial class WeaponPlus : TerrariaPlugin
     public override string Name => "Economics.WeaponPlus";
     public override string Author => "z枳";
     public override string Description => "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes";
-    public override Version Version => new Version(1, 0, 0, 3);
+    public override Version Version => new Version(1, 0, 0, 5);
     #endregion
 
     #region 实例变量

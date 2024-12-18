@@ -17,7 +17,7 @@ public class VotePlus : TerrariaPlugin
 
     public override string Name => "VotePlus";
 
-    public override Version Version => new Version(1, 0, 0, 0);
+    public override Version Version => new Version(1, 0, 0, 2);
 
     public VotePlus(Main game)
     : base(game)

@@ -11,7 +11,7 @@ public class MainPlugin : TerrariaPlugin
 
     public MainPlugin(Main game) : base(game) { }
     public override string Name => "BeanInvsee";
-    public override Version Version => new Version(1, 0, 0, 2);
+    public override Version Version => new Version(1, 0, 0, 4);
     public override string Author => "少司命";
     public override string Description => "rest查询背包";
     public RetObject retObject = new RetObject();

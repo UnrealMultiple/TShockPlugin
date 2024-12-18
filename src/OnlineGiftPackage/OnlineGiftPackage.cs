@@ -21,7 +21,7 @@ public class OnlineGiftPackage : TerrariaPlugin
     // 插件名称
     public override string Name => "在线礼包";
     // 插件版本号
-    public override Version Version => new Version(1, 0, 1, 2);
+    public override Version Version => new Version(1, 0, 1, 4);
     // 构造函数，初始化插件与游戏关联
     public OnlineGiftPackage(Main game) : base(game)
     {

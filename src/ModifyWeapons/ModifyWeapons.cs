@@ -13,7 +13,7 @@ public class Plugin : LazyPlugin
     #region 插件信息
     public override string Name => "修改武器";
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 2, 7, 2);
+    public override Version Version => new Version(1, 2, 7, 4);
     public override string Description => "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品";
     #endregion
 

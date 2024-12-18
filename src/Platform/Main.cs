@@ -14,7 +14,7 @@ public class Platform : TerrariaPlugin
 
     public override string Name => "Platform(判断玩家设备)";
 
-    public override Version Version => new Version(1, 1, 0, 1);
+    public override Version Version => new Version(1, 1, 0, 3);
 
     public Platform(Main game)
     : base(game)

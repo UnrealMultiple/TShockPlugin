@@ -25,7 +25,7 @@ public class Chameleon : LazyPlugin
 
     public override string Description => "账户系统交互替换方案";
 
-    public override Version Version => new Version(1, 0, 5);
+    public override Version Version => new Version(1, 0, 6);
 
 
     public Chameleon(Main game) : base(game)

@@ -75,7 +75,7 @@ public class StatusTextManager : TerrariaPlugin
     public override string Name => "Status Text Manager";
     public override string Author => "LaoSparrow";
     public override string Description => "Manage status text of different plugins";
-    public override Version Version => new (1, 1, 0);
+    public override Version Version => new Version(1, 1, 1);
 
     #endregion
 

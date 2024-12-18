@@ -27,7 +27,7 @@ public class TeleportRequest : TerrariaPlugin
 
     public override string Name => "传送请求";
 
-    public override Version Version => new(1, 0, 2);
+    public override Version Version => new Version(1, 0, 2);
 
     public TeleportRequest(Main game)
         : base(game)

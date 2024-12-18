@@ -14,7 +14,7 @@ public class BetterWhitelist : LazyPlugin
 
     public override string Name => "BetterWhitelist";
 
-    public override Version Version => new(2, 6);
+    public override Version Version => new(2, 6, 1);
 
     public override string Author => "豆沙，肝帝熙恩、Cai修改";
 
