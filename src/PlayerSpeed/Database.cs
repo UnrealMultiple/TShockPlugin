@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+ï»¿using MySql.Data.MySqlClient;
 using TShockAPI;
 using TShockAPI.DB;
 
@@ -6,18 +6,18 @@ namespace PlayerSpeed;
 
 public class Database
 {
-    #region Êı¾İµÄ½á¹¹Ìå
+    #region æ•°æ®çš„ç»“æ„ä½“
     public class PlayerData
     {
-        //Íæ¼ÒÃû×Ö
+        //ç©å®¶åå­—
         public string Name { get; set; }
-        //ÏŞÖÆ´ÎÊı
+        //é™åˆ¶æ¬¡æ•°
         public int Count { get; set; }
-        //Æô¶¯¼²ËÙÄ£Ê½¿ª¹Ø
+        //å¯åŠ¨ç–¾é€Ÿæ¨¡å¼å¼€å…³
         public bool Enabled { get; set; } = false;
-        //ÀäÈ´Ê±¼ä
+        //å†·å´æ—¶é—´
         public DateTime CoolTime { get; set; }
-        //¼ä¸ôÊ±¼ä
+        //é—´éš”æ—¶é—´
         public DateTime RangeTime { get; set; }
         internal PlayerData(string name = "",int count = 0 , bool enabled = true, DateTime coolTime = default, DateTime rangeTime = default)
         {
@@ -30,25 +30,25 @@ public class Database
     }
     #endregion
 
-    #region Êı¾İ¿â±í½á¹¹£¨Ê¹ÓÃTshock×Ô´øµÄÊı¾İ¿â×÷Îª´æ´¢£©
+    #region æ•°æ®åº“è¡¨ç»“æ„ï¼ˆä½¿ç”¨Tshockè‡ªå¸¦çš„æ•°æ®åº“ä½œä¸ºå­˜å‚¨ï¼‰
     public Database()
     {
         var sql = new SqlTableCreator(TShock.DB, new SqliteQueryCreator());
 
-        // ¶¨Òå²¢È·±£ PlayerSpeed ±íµÄ½á¹¹
-        sql.EnsureTableStructure(new SqlTable("PlayerSpeed", //±íÃû
-            new SqlColumn("ID", MySqlDbType.Int32) { Primary = true, Unique = true, AutoIncrement = true }, // Ö÷¼üÁĞ
-            new SqlColumn("Name", MySqlDbType.TinyText) { NotNull = true }, // ·Ç¿Õ×Ö·û´®ÁĞ
-            new SqlColumn("Enabled", MySqlDbType.Int32) { DefaultValue = "0" }, // boolÖµÁĞ
-            new SqlColumn("Count", MySqlDbType.Int32), //ÏŞÖÆ¼ÆÊı
-            new SqlColumn("CoolTime", MySqlDbType.DateTime), // ÀäÈ´Ê±¼ä
-            new SqlColumn("RangeTime", MySqlDbType.DateTime) // ·À¶¶¼ä¸ô
+        // å®šä¹‰å¹¶ç¡®ä¿ PlayerSpeed è¡¨çš„ç»“æ„
+        sql.EnsureTableStructure(new SqlTable("PlayerSpeed", //è¡¨å
+            new SqlColumn("ID", MySqlDbType.Int32) { Primary = true, Unique = true, AutoIncrement = true }, // ä¸»é”®åˆ—
+            new SqlColumn("Name", MySqlDbType.TinyText) { NotNull = true }, // éç©ºå­—ç¬¦ä¸²åˆ—
+            new SqlColumn("Enabled", MySqlDbType.Int32) { DefaultValue = "0" }, // boolå€¼åˆ—
+            new SqlColumn("Count", MySqlDbType.Int32), //é™åˆ¶è®¡æ•°
+            new SqlColumn("CoolTime", MySqlDbType.DateTime), // å†·å´æ—¶é—´
+            new SqlColumn("RangeTime", MySqlDbType.DateTime) // é˜²æŠ–é—´éš”
 
         ));
     }
     #endregion
 
-    #region ÎªÍæ¼Ò´´½¨Êı¾İ·½·¨
+    #region ä¸ºç©å®¶åˆ›å»ºæ•°æ®æ–¹æ³•
     public bool AddData(PlayerData data)
     {
         return TShock.DB.Query("INSERT INTO PlayerSpeed (Name, Enabled,Count, CoolTime, RangeTime) VALUES (@0, @1, @2, @3, @4)",
@@ -56,14 +56,14 @@ public class Database
     }
     #endregion
 
-    #region É¾³ıÖ¸¶¨Íæ¼ÒÊı¾İ·½·¨
+    #region åˆ é™¤æŒ‡å®šç©å®¶æ•°æ®æ–¹æ³•
     public bool DeleteData(string name)
     {
         return TShock.DB.Query("DELETE FROM PlayerSpeed WHERE Name = @0", name) != 0;
     }
     #endregion
 
-    #region ¸üĞÂÊı¾İÄÚÈİ·½·¨
+    #region æ›´æ–°æ•°æ®å†…å®¹æ–¹æ³•
     public bool UpdateData(PlayerData data)
     {
         return TShock.DB.Query("UPDATE PlayerSpeed SET Enabled = @0, Count = @1, CoolTime = @2, RangeTime = @3 WHERE Name = @4",
@@ -71,7 +71,7 @@ public class Database
     }
     #endregion
 
-    #region »ñÈ¡Êı¾İ·½·¨
+    #region è·å–æ•°æ®æ–¹æ³•
     public PlayerData? GetData(string name)
     {
         using var reader = TShock.DB.QueryReader("SELECT * FROM PlayerSpeed WHERE Name = @0", name);
@@ -88,7 +88,7 @@ public class Database
     }
     #endregion
 
-    #region »ñÈ¡ËùÓĞÍæ¼ÒÊı¾İ·½·¨
+    #region è·å–æ‰€æœ‰ç©å®¶æ•°æ®æ–¹æ³•
     public List<PlayerData> GetAll()
     {
         var data = new List<PlayerData>();
@@ -108,7 +108,7 @@ public class Database
     }
     #endregion
 
-    #region ÇåÀíËùÓĞÊı¾İ·½·¨
+    #region æ¸…ç†æ‰€æœ‰æ•°æ®æ–¹æ³•
     public bool ClearData()
     {
         return TShock.DB.Query("DELETE FROM PlayerSpeed") != 0;
