@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chameleon\n"
-"POT-Creation-Date: 2024-11-30 13:55:16+0000\n"
-"PO-Revision-Date: 2024-11-30 13:55:16+0000\n"
+"POT-Creation-Date: 2024-12-18 01:56:07+0800\n"
+"PO-Revision-Date: 2024-12-18 01:56:08+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,69 +10,81 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Chameleon.cs:63
-msgid "[Chameleon] 在启用本插件的情况下，入服前登录将被强制开启。"
-msgstr ""
-
-#: ../../Chameleon.cs:58
+#: ..\..\Chameleon.cs:60
 msgid "[Chameleon] 在启用本插件的情况下，服务器密码功能将失效。"
 msgstr ""
 
-#: ../../Chameleon.cs:69
+#: ..\..\Chameleon.cs:65
+msgid "[Chameleon] 在启用本插件的情况下，入服前登录将被强制开启。"
+msgstr ""
+
+#: ..\..\Chameleon.cs:71
 msgid "[Chameleon] 在启用本插件的情况下，注册登录将被强制开启。"
 msgstr ""
 
-#: ../../Chameleon.cs:270
+#: ..\..\Chameleon.cs:173
+#: ..\..\Chameleon.cs:270
+#: ..\..\Chameleon.cs:341
+msgid "成功验证登录。"
+msgstr ""
+
+#: ..\..\Chameleon.cs:184
+msgid "登录UUID与上次不同。"
+msgstr ""
+
+#: ..\..\Chameleon.cs:348
+msgid "该用户名已被占用。"
+msgstr ""
+
+#: ..\..\Chameleon.cs:292
 msgid "个字符。"
 msgstr ""
 
-#: ../../Chameleon.cs:274
+#: ..\..\Chameleon.cs:292
+msgid "密码位数不能少于"
+msgstr ""
+
+#: ..\..\Chameleon.cs:296
 msgid "你的密码是{0}"
 msgstr ""
 
-#: ../../Chameleon.cs:350
+#: ..\..\Chameleon.cs:348
+msgid "请更换人物名"
+msgstr ""
+
+#: ..\..\Chameleon.cs:298
+msgid "玩家{0}注册了新账户：{1}"
+msgstr ""
+
+#: ..\..\Chameleon.cs:372
 #, csharp-format
 msgid "向{0}发送通知完毕."
 msgstr ""
 
-#: ../../Chameleon.cs:270
-msgid "密码位数不能少于"
+#: ..\..\Chameleon.cs:275
+msgid "验证失败"
 msgstr ""
 
-#: ../../Chameleon.cs:164
-#: ../../Chameleon.cs:247
-#: ../../Chameleon.cs:318
+#: ..\..\Chameleon.cs:172
+#: ..\..\Chameleon.cs:269
+#: ..\..\Chameleon.cs:340
 #, csharp-format
 msgid "已经验证{0}登录完毕。"
 msgstr ""
 
-#: ../../Chameleon.cs:165
-#: ../../Chameleon.cs:248
-#: ../../Chameleon.cs:319
-msgid "成功验证登录。"
-msgstr ""
-
-#: ../../Chameleon.cs:270
-msgid "注册失败"
-msgstr ""
-
-#: ../../Chameleon.cs:276
-msgid "玩家{0}注册了新账户：{1}"
-msgstr ""
-
-#: ../../Chameleon.cs:326
-msgid "该用户名已被占用。"
-msgstr ""
-
-#: ../../Chameleon.cs:326
-msgid "请更换人物名"
-msgstr ""
-
-#: ../../Chameleon.cs:273
+#: ..\..\Chameleon.cs:295
 msgid "账户{0}注册成功。"
 msgstr ""
 
-#: ../../Chameleon.cs:253
-msgid "验证失败"
+#: ..\..\Chameleon.cs:292
+msgid "注册失败"
+msgstr ""
+
+#: ..\..\Chameleon.cs:189
+msgid "DisableUUIDLogin被设置为true，无法通过UUID自动登录。"
+msgstr ""
+
+#: ..\..\Chameleon.cs:179
+msgid "IP地址不存在或与上次登录IP地址不符。"
 msgstr ""
 
