@@ -92,10 +92,10 @@
 | [CNPCShop](./src/CNPCShop/README.md) | 自定义NPC商店 |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | 允许你在控制台执行SQL语句 |  |
 | [ConvertWorld](./src/ConvertWorld/README.md) | 击败怪物转换世界物品 |  |
-| [CustomMonster](./src/CustomMonster/README.md) | 自定义怪物  |  |
 | [CreateSpawn](./src/CreateSpawn/README.md) | 出生点建筑生成 | [LazyAPI](./src/LazyAPI/README.md) |
 | [CriticalHit](./src/CriticalHit/README.md) | 击打提示 |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 跨版本游玩 |  |
+| [CustomMonster](./src/CustomMonster/README.md) | 自定义怪物插件 |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 伤害规则掉落 |  |
 | [DamageStatistic](./src/DamageStatistic/README.md) | 在每次 Boss 战后显示每个玩家造成的伤害 |  |
 | [DataSync](./src/DataSync/README.md) | 进度同步 |  |
@@ -170,7 +170,6 @@
 | [ServerTools](./src/ServerTools/README.md) | 服务器管理工具 |  |
 | [SessionSentinel](./src/SessionSentinel/README.md) | 处理长时间不发送数据包的玩家 |  |
 | [ShortCommand](./src/ShortCommand/README.md) | 简短指令 |  |
-| [SurfaceBlock](./src/SurfaceBlock/README.md) | 禁地表弹幕 | [LazyAPI](./src/LazyAPI/README.md)  |
 | [ShowArmors](./src/ShowArmors/README.md) | 展示装备栏 |  |
 | [SignInSign](./src/SignInSign/README.md) | 告示牌登录插件 |  |
 | [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 解决卡双锤卡星旋机枪之类的问题 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
@@ -178,6 +177,7 @@
 | [SpawnInfra](./src/SpawnInfra/README.md) | 生成基础建设 |  |
 | [SpclPerm](./src/SpclPerm/README.md) | 服主特权 |  |
 | [StatusTextManager](./src/StatusTextManager/README.md) | PC端模板文本管理插件 |  |
+| [SurfaceBlock](./src/SurfaceBlock/README.md) | 禁地表弹幕插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [SwitchCommands](./src/SwitchCommands/README.md) | 区域执行指令 |  |
 | [TeleportRequest](./src/TeleportRequest/README.md) | 传送请求 |  |
 | [TimeRate](./src/TimeRate/README.md) | 时间加速插件 |  |

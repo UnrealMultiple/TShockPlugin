@@ -96,10 +96,10 @@
 | [CNPCShop](./src/CNPCShop/README.md) | No | Custom NPC shop |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | No | Execute SQL statements in the console |  |
 | [ConvertWorld](./src/ConvertWorld/README.en-US.md) | Yes | Convert world items by defeating monsters |  |
-| [CustomMonster](./src/CustomMonster/README.en-US.md) | Yes | Customize, modify, and generate monsters and bosses |  |
 | [CreateSpawn](./src/CreateSpawn/README.md) | No | Spawn point building generation | [LazyAPI](./src/LazyAPI/README.md) |
 | [CriticalHit](./src/CriticalHit/README.en-US.md) | No | Critical hit prompt |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | No | Allows for cross-platform play |  |
+| [CustomMonster](./src/CustomMonster/README.en-US.md) | Yes | Customize, modify, and generate monsters and bosses  |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.en-US.md) | Yes | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation |  |
 | [DamageStatistic](./src/DamageStatistic/README.md) | No | Display damage caused by each player after each boss fight |  |
 | [DataSync](./src/DataSync/README.md) | No | Progress synchronization |  |
@@ -174,7 +174,6 @@
 | [ServerTools](./src/ServerTools/README.en-US.md) | No | Server management tools |  |
 | [SessionSentinel](./src/SessionSentinel/README.md) | No | Handle players not sending data packets for a long time |  |
 | [ShortCommand](./src/ShortCommand/README.md) | No | Short command |  |
-| [SurfaceBlock](./src/SurfaceBlock/README.md) | No | Prohibit surface projectiles | [LazyAPI](./src/LazyAPI/README.md)  |
 | [ShowArmors](./src/ShowArmors/README.md) | No | Display equipment bar |  |
 | [SignInSign](./src/SignInSign/README.md) | No | Signboard login plugin |  |
 | [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | No | Solve problems like stuck double hammer and star spin machine gun | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
@@ -182,6 +181,7 @@
 | [SpawnInfra](./src/SpawnInfra/README.md) | No | Generate basic infrastructure |  |
 | [SpclPerm](./src/SpclPerm/README.md) | No | Server owner privileges |  |
 | [StatusTextManager](./src/StatusTextManager/README.md) | No | PC status text management plugin |  |
+| [SurfaceBlock](./src/SurfaceBlock/README.en-US.md) | Yes | Prohibit surface projectiles | [LazyAPI](./src/LazyAPI/README.md) |
 | [SwitchCommands](./src/SwitchCommands/README.md) | No | Execute commands in region |  |
 | [TeleportRequest](./src/TeleportRequest/README.en-US.md) | Yes | Teleport request |  |
 | [TimeRate](./src/TimeRate/README.en-US.md) | Yes | modifying time acceleration using commands, and supporting player sleep to trigger events. |  |
