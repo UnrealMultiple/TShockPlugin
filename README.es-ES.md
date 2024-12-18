@@ -96,10 +96,10 @@
 | [CNPCShop](./src/CNPCShop/README.md) | No | Tienda personalizada de NPC |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | No | Ejecutar sentencias SQL en la consola |  |
 | [ConvertWorld](./src/ConvertWorld/README.md) | No | Convertir objetos del mundo al derrotar monstruos |  |
-| [CustomMonster](./src/CustomMonster/README.md) | No | Personalizar, modificar y generar monstruos y jefes |  |
 | [CreateSpawn](./src/CreateSpawn/README.md) | No | Generación de puntos de aparición | [LazyAPI](./src/LazyAPI/README.md) |
 | [CriticalHit](./src/CriticalHit/README.md) | No | Indicación de golpe crítico |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | No | Permite el juego multiplataforma |  |
+| [CustomMonster](./src/CustomMonster/README.md) | No | Personalizar, modificar y generar monstruos y jefes  |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | No | Determinar la bolsa de tesoro caída basada en la relación de daño y transferir el cálculo de daño |  |
 | [DamageStatistic](./src/DamageStatistic/README.md) | No | Mostrar el daño causado por cada jugador después de cada pelea de jefe |  |
 | [DataSync](./src/DataSync/README.md) | No | Sincronización de progreso |  |
@@ -174,7 +174,6 @@
 | [ServerTools](./src/ServerTools/README.md) | No | Herramientas de administración del servidor |  |
 | [SessionSentinel](./src/SessionSentinel/README.md) | No | Maneja jugadores que no envían paquetes de datos por mucho tiempo |  |
 | [ShortCommand](./src/ShortCommand/README.md) | No | Comando corto |  |
-| [SurfaceBlock](./src/SurfaceBlock/README.md) | No | Prohibir proyectiles en la superficie | [LazyAPI](src/LazyAPI/README.md)  |
 | [ShowArmors](./src/ShowArmors/README.md) | No | Muestra la barra de equipo |  |
 | [SignInSign](./src/SignInSign/README.md) | No | Plugin de inicio de sesión con cartel |  |
 | [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | No | Resuelve problemas como el martillo doble atascado y la metralleta de estrellas | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
@@ -182,6 +181,7 @@
 | [SpawnInfra](./src/SpawnInfra/README.md) | No | Genera infraestructura básica |  |
 | [SpclPerm](./src/SpclPerm/README.md) | No | Privilegios del propietario del servidor |  |
 | [StatusTextManager](./src/StatusTextManager/README.md) | No | Plugin para gestionar el texto de estado en PC |  |
+| [SurfaceBlock](./src/SurfaceBlock/README.md) | No | Prohibir proyectiles en la superficie  | [LazyAPI](./src/LazyAPI/README.md) |
 | [SwitchCommands](./src/SwitchCommands/README.md) | No | Ejecuta comandos en regiones |  |
 | [TeleportRequest](./src/TeleportRequest/README.md) | No | Solicitud de teletransporte |  |
 | [TimeRate](./src/TimeRate/README.md) | No | Modifica la aceleración del tiempo usando comandos, y soporta el sueño de los jugadores para activar eventos |  |
