@@ -1,4 +1,4 @@
-﻿using LazyAPI;
+using LazyAPI;
 using Terraria;
 using Terraria.ID;
 using TerrariaApi.Server;
@@ -12,7 +12,7 @@ public class AutoAirItem : LazyPlugin
     #region 插件信息
     public override string Name => "自动垃圾桶";
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 2, 4);
+    public override Version Version => new Version(1, 2, 5);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 

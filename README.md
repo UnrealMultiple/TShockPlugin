@@ -92,6 +92,7 @@
 | [CNPCShop](./src/CNPCShop/README.md) | 自定义NPC商店 |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | 允许你在控制台执行SQL语句 |  |
 | [ConvertWorld](./src/ConvertWorld/README.md) | 击败怪物转换世界物品 |  |
+| [CustomMonster](./src/CustomMonster/README.md) | 自定义怪物  |  |
 | [CreateSpawn](./src/CreateSpawn/README.md) | 出生点建筑生成 | [LazyAPI](./src/LazyAPI/README.md) |
 | [CriticalHit](./src/CriticalHit/README.md) | 击打提示 |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 跨版本游玩 |  |
@@ -100,7 +101,6 @@
 | [DataSync](./src/DataSync/README.md) | 进度同步 |  |
 | [DeathDrop](./src/DeathDrop/README.md) | 怪物死亡随机和自定义掉落物品 |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 禁怪物掉落 |  |
-| [DisableSurfaceProjectiles](./src/DisableSurfaceProjectiles/README.md) | 禁地表弹幕 |  |
 | [DonotFuck](./src/DonotFuck/README.md) | 禁止脏话 | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 阻止进入地牢或神庙 |  |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 输出 ID |  |
@@ -170,6 +170,7 @@
 | [ServerTools](./src/ServerTools/README.md) | 服务器管理工具 |  |
 | [SessionSentinel](./src/SessionSentinel/README.md) | 处理长时间不发送数据包的玩家 |  |
 | [ShortCommand](./src/ShortCommand/README.md) | 简短指令 |  |
+| [SurfaceBlock](./src/SurfaceBlock/README.md) | 禁地表弹幕 | [LazyAPI](./src/LazyAPI/README.md)  |
 | [ShowArmors](./src/ShowArmors/README.md) | 展示装备栏 |  |
 | [SignInSign](./src/SignInSign/README.md) | 告示牌登录插件 |  |
 | [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 解决卡双锤卡星旋机枪之类的问题 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |

@@ -1,4 +1,4 @@
-using System.Text.Json;
+ï»¿using System.Text.Json;
 using System.Text.Json.Serialization;
 using MySql.Data.MySqlClient;
 using Microsoft.Xna.Framework;
@@ -9,11 +9,11 @@ namespace ModifyWeapons;
 
 public class Database
 {
-    #region Êı¾İµÄ½á¹¹Ìå
+    #region æ•°æ®çš„ç»“æ„ä½“
     private static readonly JsonSerializerOptions Options = new JsonSerializerOptions
     {
-        WriteIndented = true, //Ëõ½ø
-        //Í³Ò»±àÂë£¨±ÜÃâDictµÄ¼üÃûÎªÖĞÎÄÊ±±ä³ÉÂÒÂëÓÃ£©
+        WriteIndented = true, //ç¼©è¿›
+        //ç»Ÿä¸€ç¼–ç ï¼ˆé¿å…Dictçš„é”®åä¸ºä¸­æ–‡æ—¶å˜æˆä¹±ç ç”¨ï¼‰
         Encoder = System.Text.Encodings.Web.JavaScriptEncoder.Create(System.Text.Unicode.UnicodeRanges.All)
     };
 
@@ -82,14 +82,14 @@ public class Database
     }
     #endregion
 
-    #region Êı¾İ¿â±í½á¹¹£¨Ê¹ÓÃTshock×Ô´øµÄÊı¾İ¿â×÷Îª´æ´¢£©
+    #region æ•°æ®åº“è¡¨ç»“æ„ï¼ˆä½¿ç”¨Tshockè‡ªå¸¦çš„æ•°æ®åº“ä½œä¸ºå­˜å‚¨ï¼‰
     public Database()
     {
         var sql = new SqlTableCreator(TShock.DB, new SqliteQueryCreator());
 
-        sql.EnsureTableStructure(new SqlTable("ModifyWeapons", //±íÃû
-            new SqlColumn("ID", MySqlDbType.Int32) { Primary = true, Unique = true, AutoIncrement = true }, // Ö÷¼üÁĞ
-            new SqlColumn("Name", MySqlDbType.TinyText) { NotNull = true }, // ·Ç¿Õ×Ö·û´®ÁĞ
+        sql.EnsureTableStructure(new SqlTable("ModifyWeapons", //è¡¨å
+            new SqlColumn("ID", MySqlDbType.Int32) { Primary = true, Unique = true, AutoIncrement = true }, // ä¸»é”®åˆ—
+            new SqlColumn("Name", MySqlDbType.TinyText) { NotNull = true }, // éç©ºå­—ç¬¦ä¸²åˆ—
             new SqlColumn("ReadCount", MySqlDbType.Int32) { DefaultValue = "0" },
             new SqlColumn("IsProcess", MySqlDbType.Int32) { DefaultValue = "0" },
             new SqlColumn("Hand", MySqlDbType.Int32) { DefaultValue = "0" },
@@ -98,12 +98,12 @@ public class Database
             new SqlColumn("ReadTime", MySqlDbType.DateTime) { DefaultValue = "CURRENT_TIMESTAMP" },
             new SqlColumn("SyncTime", MySqlDbType.DateTime) { DefaultValue = "CURRENT_TIMESTAMP" },
             new SqlColumn("AloneTime", MySqlDbType.DateTime) { DefaultValue = "CURRENT_TIMESTAMP" },
-            new SqlColumn("Dict", MySqlDbType.LongText)  // ÎÄ±¾ÁĞ£¬ÓÃÓÚ´æ´¢ĞòÁĞ»¯µÄÎïÆ·IDÁĞ±í
+            new SqlColumn("Dict", MySqlDbType.LongText)  // æ–‡æœ¬åˆ—ï¼Œç”¨äºå­˜å‚¨åºåˆ—åŒ–çš„ç‰©å“IDåˆ—è¡¨
         ));
     }
     #endregion
 
-    #region ÎªÍæ¼Ò´´½¨Êı¾İ·½·¨
+    #region ä¸ºç©å®¶åˆ›å»ºæ•°æ®æ–¹æ³•
     public bool AddData(PlayerData data)
     {
         var dictJson = JsonSerializer.Serialize(data.Dict, Options);
@@ -112,7 +112,7 @@ public class Database
     }
     #endregion
 
-    #region ¸üĞÂÊı¾İÄÚÈİ·½·¨
+    #region æ›´æ–°æ•°æ®å†…å®¹æ–¹æ³•
     public bool UpdateData(PlayerData data)
     {
         var dictJson = JsonSerializer.Serialize(data.Dict, Options);
@@ -122,21 +122,21 @@ public class Database
     }
     #endregion
 
-    #region Ôö¼ÓÖ¸¶¨Íæ¼ÒÖØ¶Á´ÎÊı·½·¨
+    #region å¢åŠ æŒ‡å®šç©å®¶é‡è¯»æ¬¡æ•°æ–¹æ³•
     public bool UpReadCount(string name, int num)
     {
         return TShock.DB.Query("UPDATE ModifyWeapons SET ReadCount = ReadCount + @0 WHERE Name = @1", num, name) != 0;
     }
     #endregion
 
-    #region É¾³ıÖ¸¶¨Íæ¼ÒÊı¾İ·½·¨
+    #region åˆ é™¤æŒ‡å®šç©å®¶æ•°æ®æ–¹æ³•
     public bool DeleteData(string name)
     {
         return TShock.DB.Query("DELETE FROM ModifyWeapons WHERE Name = @0", name) != 0;
     }
     #endregion
 
-    #region »ñÈ¡Ö¸¶¨Íæ¼ÒÊı¾İ·½·¨
+    #region è·å–æŒ‡å®šç©å®¶æ•°æ®æ–¹æ³•
     public PlayerData? GetData(string name)
     {
         using var reader = TShock.DB.QueryReader("SELECT * FROM ModifyWeapons WHERE Name = @0", name);
@@ -163,7 +163,7 @@ public class Database
     }
     #endregion
 
-    #region ÒÆ³ıËùÓĞÍæ¼ÒµÄÖ¸¶¨ÎïÆ··½·¨
+    #region ç§»é™¤æ‰€æœ‰ç©å®¶çš„æŒ‡å®šç‰©å“æ–¹æ³•
     public bool RemovePwData(int type)
     {
         var AllData = this.GetAll();
@@ -173,13 +173,13 @@ public class Database
         {
             if (data.Dict != null && data.Dict.Values.Any(list => list.Any(item => item.type == type)))
             {
-                // ÒÆ³ıÖ¸¶¨ÀàĞÍµÄÎïÆ·
+                // ç§»é™¤æŒ‡å®šç±»å‹çš„ç‰©å“
                 foreach (var dict in data.Dict.ToList())
                 {
                     dict.Value.RemoveAll(item => item.type == type);
                 }
 
-                // ¸üĞÂÍæ¼ÒÊı¾İ
+                // æ›´æ–°ç©å®¶æ•°æ®
                 if (this.UpdateData(data))
                 {
                     flag = true;
@@ -191,7 +191,7 @@ public class Database
     }
     #endregion
 
-    #region »ñÈ¡ËùÓĞÍæ¼ÒÊı¾İ·½·¨
+    #region è·å–æ‰€æœ‰ç©å®¶æ•°æ®æ–¹æ³•
     public List<PlayerData> GetAll()
     {
         var data = new List<PlayerData>();
@@ -219,7 +219,7 @@ public class Database
     }
     #endregion
 
-    #region ÇåÀíËùÓĞÊı¾İ·½·¨
+    #region æ¸…ç†æ‰€æœ‰æ•°æ®æ–¹æ³•
     public bool ClearData()
     {
         return TShock.DB.Query("DELETE FROM ModifyWeapons") != 0;

@@ -7,44 +7,44 @@ namespace AutoAirItem;
 
 public class Database
 {
-    #region À¬»øÍ°Êı¾İ±í½á¹¹
+    #region åƒåœ¾æ¡¶æ•°æ®è¡¨ç»“æ„
     public Database()
     {
         var sql = new SqlTableCreator(TShock.DB, new SqliteQueryCreator());
 
-        // ¶¨Òå²¢È·±£ AutoTrash ±íµÄ½á¹¹
-        sql.EnsureTableStructure(new SqlTable("AutoTrash", //±íÃû
-            new SqlColumn("ID", MySqlDbType.Int32) { Primary = true, Unique = true, AutoIncrement = true }, // Ö÷¼üÁĞ
-            new SqlColumn("Name", MySqlDbType.TinyText) { NotNull = true }, // ·Ç¿Õ×Ö·û´®ÁĞ
-            new SqlColumn("Enabled", MySqlDbType.Int32) { DefaultValue = "0" }, // boolÖµÁĞ
-            new SqlColumn("Auto", MySqlDbType.Int32) { DefaultValue = "0" }, // boolÖµÁĞ
-            new SqlColumn("Mess", MySqlDbType.Int32) { DefaultValue = "1" }, // boolÖµÁĞ
-            new SqlColumn("ItemType", MySqlDbType.Text), // ÎÄ±¾ÁĞ£¬ÓÃÓÚ´æ´¢ĞòÁĞ»¯µÄÎïÆ·ÀàĞÍÁĞ±í
-            new SqlColumn("DelItem", MySqlDbType.Text) // ÎÄ±¾ÁĞ£¬ÓÃÓÚ´æ´¢ĞòÁĞ»¯µÄÒÆ³ıÎïÆ·×Öµä
+        // å®šä¹‰å¹¶ç¡®ä¿ AutoTrash è¡¨çš„ç»“æ„
+        sql.EnsureTableStructure(new SqlTable("AutoTrash", //è¡¨å
+            new SqlColumn("ID", MySqlDbType.Int32) { Primary = true, Unique = true, AutoIncrement = true }, // ä¸»é”®åˆ—
+            new SqlColumn("Name", MySqlDbType.TinyText) { NotNull = true }, // éç©ºå­—ç¬¦ä¸²åˆ—
+            new SqlColumn("Enabled", MySqlDbType.Int32) { DefaultValue = "0" }, // boolå€¼åˆ—
+            new SqlColumn("Auto", MySqlDbType.Int32) { DefaultValue = "0" }, // boolå€¼åˆ—
+            new SqlColumn("Mess", MySqlDbType.Int32) { DefaultValue = "1" }, // boolå€¼åˆ—
+            new SqlColumn("ItemType", MySqlDbType.Text), // æ–‡æœ¬åˆ—ï¼Œç”¨äºå­˜å‚¨åºåˆ—åŒ–çš„ç‰©å“ç±»å‹åˆ—è¡¨
+            new SqlColumn("DelItem", MySqlDbType.Text) // æ–‡æœ¬åˆ—ï¼Œç”¨äºå­˜å‚¨åºåˆ—åŒ–çš„ç§»é™¤ç‰©å“å­—å…¸
         ));
     }
     #endregion
 
-    #region ¸üĞÂÊı¾İ
+    #region æ›´æ–°æ•°æ®
     public bool UpdateData(MyData.PlayerData data)
     {
         var itemType = JsonSerializer.Serialize(data.ItemType);
         var delItem = JsonSerializer.Serialize(data.DelItem);
 
-        // ¸üĞÂÏÖÓĞ¼ÇÂ¼
+        // æ›´æ–°ç°æœ‰è®°å½•
         if (TShock.DB.Query("UPDATE AutoTrash SET Enabled = @0, Auto = @1, Mess = @2, ItemType = @3, DelItem = @4 WHERE Name = @5",
             data.Enabled ? 1 : 0, data.Auto ? 1 : 0, data.Mess ? 1 : 0, itemType, delItem, data.Name) != 0)
         {
             return true;
         }
 
-        // Èç¹ûÃ»ÓĞ¸üĞÂµ½ÈÎºÎ¼ÇÂ¼£¬Ôò²åÈëĞÂ¼ÇÂ¼
+        // å¦‚æœæ²¡æœ‰æ›´æ–°åˆ°ä»»ä½•è®°å½•ï¼Œåˆ™æ’å…¥æ–°è®°å½•
         return TShock.DB.Query("INSERT INTO AutoTrash (Name, Enabled, Auto, Mess, ItemType, DelItem) VALUES (@0, @1, @2, @3, @4, @5)",
             data.Name, data.Enabled ? 1 : 0, data.Auto ? 1 : 0, data.Mess ? 1 : 0, itemType, delItem) != 0;
     }
     #endregion
 
-    #region ¼ÓÔØËùÓĞÊı¾İ£¨Ã¿´ÎÖØÆô·şÎñÆ÷Ê±ÓÃÓÚ¶ÁÈ¡Ö®Ç°´æÏÂµÄÊı¾İ£©Ö÷ÒªÓÃÓÚ½â¾ö£ºÄÚ´æÇå¿ÕÊ±Êı¾İ¶ªÊ§µÄ·½·¨
+    #region åŠ è½½æ‰€æœ‰æ•°æ®ï¼ˆæ¯æ¬¡é‡å¯æœåŠ¡å™¨æ—¶ç”¨äºè¯»å–ä¹‹å‰å­˜ä¸‹çš„æ•°æ®ï¼‰ä¸»è¦ç”¨äºè§£å†³ï¼šå†…å­˜æ¸…ç©ºæ—¶æ•°æ®ä¸¢å¤±çš„æ–¹æ³•
     public List<MyData.PlayerData> LoadData()
     {
         var data = new List<MyData.PlayerData>();
@@ -73,7 +73,7 @@ public class Database
     }
     #endregion
 
-    #region ÇåÀíËùÓĞÊı¾İ·½·¨
+    #region æ¸…ç†æ‰€æœ‰æ•°æ®æ–¹æ³•
     public bool ClearData()
     {
         return TShock.DB.Query("DELETE FROM AutoTrash") != 0;
