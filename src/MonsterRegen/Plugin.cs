@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
     #region 插件信息
     public override string Name => "怪物进度回血";
     public override string Author => "途逗 羽学";
-    public override Version Version => new Version(1, 7, 1);
+    public override Version Version => new Version(1, 7, 2);
     public override string Description => "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔";
     internal static Configuration Config = new();
     private Timer? Timer;

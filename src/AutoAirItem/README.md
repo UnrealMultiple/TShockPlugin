@@ -9,6 +9,8 @@
 
 ## 更新日志
 ```
+v1.2.5
+Database改utf-8
 v1.2.3
 将数据库表移到tshock.sqlite内部
 
