@@ -1,4 +1,4 @@
-﻿using LazyAPI;
+using LazyAPI;
 using Terraria;
 using Terraria.ID;
 using TerrariaApi.Server;

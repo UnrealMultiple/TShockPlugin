@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System.Text.Json;
 using TShockAPI;
 using TShockAPI.DB;
