@@ -56,7 +56,7 @@ jobs:
         shell: pwsh
         run: |
           New-Item -Name bin -ItemType Directory
-          $rid = if ([System.Environment]::OSVersion.Platform -Match "Unix") { "linux-x64" } else { "win-x64" }
+          $rid = if ([System.Environment]::OSVersion.Platform -Match "Unix") { "linux-(x64|amd64)" } else { "win-(x64|amd64)" }
           Invoke-WebRequest (Invoke-WebRequest 'https://api.github.com/repos/Pryaxis/TShock/releases' | ConvertFrom-Json | Select-Object -First 1 -ExpandProperty assets | Where-Object browser_download_url -Match $rid | Select-Object -ExpandProperty browser_download_url) -OutFile bin/TShock.zip
           Expand-Archive bin/TShock.zip -DestinationPath bin
           if ([System.Environment]::OSVersion.Platform -Match "Unix") {

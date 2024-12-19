@@ -8,7 +8,7 @@ namespace LazyAPI;
 public class PluginContainer : LazyPlugin
 {
     public override string Author => "cc004 & members of UnrealMultiple";
-    public override Version Version => new(1, 0, 0, 5);
+    public override Version Version => new(1, 0, 0, 6);
 
     public PluginContainer(Main game) : base(game) { }
     public override void Initialize()

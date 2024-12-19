@@ -1,7 +1,9 @@
-﻿using LazyAPI.ConfigFiles;
+﻿using LazyAPI;
+using LazyAPI.ConfigFiles;
 
 namespace AutoTeam;
 
+[Config]
 public class Configuration : JsonConfigBase<Configuration>
 {
     protected override string Filename => "AutoTeam";

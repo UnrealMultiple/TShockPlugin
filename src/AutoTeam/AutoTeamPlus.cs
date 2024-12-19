@@ -11,7 +11,7 @@ namespace AutoTeam;
 public class AutoTeam : LazyPlugin
 {
     public override string Author => "十七改，肝帝熙恩改";
-    public override Version Version => new Version(2, 4, 4);
+    public override Version Version => new Version(2, 4, 5);
     public override string Description => "AutoTeamPlus";
     public override string Name => "更好的自动队伍";
 

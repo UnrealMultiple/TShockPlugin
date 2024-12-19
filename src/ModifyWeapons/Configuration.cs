@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LazyAPI;
+using Microsoft.Xna.Framework;
 using LazyAPI.ConfigFiles;
 
 namespace ModifyWeapons;
 
+[Config]
 internal class Configuration : JsonConfigBase<Configuration>
 {
     #region 实例变量
