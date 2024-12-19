@@ -128,7 +128,6 @@ public class Chameleon : LazyPlugin
                 if (account.UUID == player.UUID)
                 {
                     var knownIps = JsonConvert.DeserializeObject<List<string>>(account.KnownIps);
-                    //player.SendInfoMessage(GetString($"knownIps：{knownIps},knownIps[^1]:{knownIps[^1]},player.IP：{player.IP}"));
                     if (knownIps != null && player.IP == knownIps[^1])
                     {
                         if (player.State == 1)
