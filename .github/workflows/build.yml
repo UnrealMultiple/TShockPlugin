@@ -57,7 +57,7 @@ jobs:
         run: |
           New-Item -Name bin -ItemType Directory
           $rid = if ([System.Environment]::OSVersion.Platform -Match "Unix") { "linux-x64" } else { "win-x64" }
-          Invoke-WebRequest -Uri (Invoke-WebRequest -Uri 'https://api.github.com/repos/Pryaxis/TShock/releases' | ConvertFrom-Json | Select-Object -First 1 -ExpandProperty assets | Where-Object browser_download_url -Match $rid | Select-Object -ExpandProperty browser_download_url -First 1) -OutFile bin/TShock.zip
+          Invoke-WebRequest -Uri ((Invoke-WebRequest -Uri 'https://api.github.com/repos/Pryaxis/TShock/releases') | ConvertFrom-Json | Select-Object -First 1 -ExpandProperty assets | Where-Object browser_download_url -Match $rid | Select-Object -ExpandProperty browser_download_url -First 1) -OutFile bin/TShock.zip
           Expand-Archive bin/TShock.zip -DestinationPath bin
           if ([System.Environment]::OSVersion.Platform -Match "Unix") {
             tar xvf bin/TShock-Beta-linux-x64-Release.tar --directory bin
