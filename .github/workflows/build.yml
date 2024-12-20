@@ -33,7 +33,7 @@ jobs:
       - name: 安装构建依赖
         shell: pwsh
         run: |
-          Invoke-WebRequest -Uri "https://api.github.com/repos/Pryaxis/TShock/releases" | ConvertFrom-Json | Select-Object -First 1 -ExpandProperty assets | Where-Object browser_download_url -Match $rid | Select-Object -ExpandProperty browser_download_url
+          Invoke-WebRequest -Uri "https://api.github.com/repos/Pryaxis/TShock/releases" | ConvertFrom-Json | Select-Object -First 1 -ExpandProperty assets | Where-Object browser_download_url -Match $rid | Select-Object -ExpandProperty browser_download_url -First
           sudo apt install -y gettext
           foreach ($p in @(Get-ChildItem src/**/i18n/*.po))  {
             Start-Process -FilePath msgfmt -WorkingDirectory $p.Directory.FullName -ArgumentList "-o $([System.IO.Path]::ChangeExtension($p.Name, ".mo")) $($p.Name)"
