@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LazyAPI\n"
-"POT-Creation-Date: 2024-12-19 23:46:33+0800\n"
-"PO-Revision-Date: 2024-12-19 23:46:33+0800\n"
+"POT-Creation-Date: 2024-12-20 06:45:52+0000\n"
+"PO-Revision-Date: 2024-12-20 06:45:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../ConfigFiles/JsonConfigBase.cs:86
+#: ../../ConfigFiles/JsonConfigBase.cs:76
 #, csharp-format
 msgid "[{0}.{1}.json] config reloaded successfully!!!"
 msgstr ""

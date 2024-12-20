@@ -11,7 +11,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.194.0",
+    "Version": "0.0.195.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
     "AssemblyName": "Chireiden.TShock.Omni",
@@ -115,7 +115,7 @@
   },
   {
     "Name": "更好的自动队伍",
-    "Version": "2.4.4",
+    "Version": "2.4.5",
     "Author": "十七改，肝帝熙恩改",
     "Description": "AutoTeamPlus",
     "AssemblyName": "AutoTeam",
@@ -305,7 +305,7 @@
   },
   {
     "Name": "修改武器",
-    "Version": "1.2.7.2",
+    "Version": "1.2.7.3",
     "Author": "羽学",
     "Description": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
     "AssemblyName": "ModifyWeapons",
@@ -655,7 +655,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.194.0",
+    "Version": "0.0.195.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock - the miscellaneous part",
     "AssemblyName": "Chireiden.TShock.Omni.Misc",
@@ -975,7 +975,7 @@
   },
   {
     "Name": "LazyAPI",
-    "Version": "1.0.0.5",
+    "Version": "1.0.0.6",
     "Author": "cc004 & members of UnrealMultiple",
     "Description": "None",
     "AssemblyName": "LazyAPI",
@@ -983,7 +983,7 @@
     "Dependencies": [
       "linq2db"
     ],
-    "HotReload": true
+    "HotReload": false
   },
   {
     "Name": "MapTeleport",
