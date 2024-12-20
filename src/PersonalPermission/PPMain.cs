@@ -10,7 +10,7 @@ namespace PersonalPermission;
 public class PPMain : TerrariaPlugin
 {
     public override string Name => "PersonalPermission";
-    public override Version Version => new Version(1, 1, 0, 1);
+    public override Version Version => new Version(1, 1, 0, 3);
     public override string Author => "Megghy，肝帝熙恩更新1449";
     public override string Description => "允许为玩家单独设置权限.";
     public PPMain(Main game) : base(game)

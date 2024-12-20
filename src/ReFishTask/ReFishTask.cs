@@ -12,7 +12,7 @@ public class ReFishTask : TerrariaPlugin
     #region 插件信息
     public override string Name => "ReFishTask 刷新渔夫任务";
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 4, 2);
+    public override Version Version => new Version(1, 4, 3);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 

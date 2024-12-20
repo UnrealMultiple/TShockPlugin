@@ -15,7 +15,7 @@ public class Plugin : LazyPlugin
 
     public override string Name => "禁止怪物";
 
-    public override Version Version => new(1, 0, 0, 4);
+    public override Version Version => new Version(1, 0, 0, 5);
 
     public Plugin(Main game) : base(game)
     {

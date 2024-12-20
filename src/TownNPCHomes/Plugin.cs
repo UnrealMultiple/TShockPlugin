@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "TownNPCHomes";
 
-    public override Version Version => new Version(1, 1, 2);
+    public override Version Version => new Version(1, 1, 3);
 
     private readonly ConcurrentDictionary<int, Vector2> npcHomePositions = new ConcurrentDictionary<int, Vector2>();
 

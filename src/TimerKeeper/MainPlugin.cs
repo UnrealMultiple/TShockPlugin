@@ -15,7 +15,7 @@ public class TimerKeeper : TerrariaPlugin
 
     public override string Name => "TimerKeeper";
 
-    public override Version Version => new Version(2024, 9, 8, 1);
+    public override Version Version => new Version(2024, 12, 18, 3);
     //public static PlayerData data { get; set; }
     public TimerKeeper(Main game)
     : base(game)

@@ -11,7 +11,7 @@ public class MainPlugin : TerrariaPlugin
     public override string Name => "RandRespawn";
     public override string Author => "1413,肝帝熙恩适配1449";
     public override string Description => "随机出生点，任何回到出生点的操作都会被随机传送";
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
 
     private readonly Queue<TSPlayer> RespawnQueue = new();
     public MainPlugin(Main game) : base(game)

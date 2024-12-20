@@ -30,17 +30,13 @@ public class RegionView : TerrariaPlugin
         new Color(244,  93, 169)
     };
 
-    public override string Author
-        => "TBC开发者团队,肝帝熙恩汉化";
+    public override string Author => "TBC开发者团队,肝帝熙恩汉化";
 
-    public override string Description
-        => "为地区添加区域边界视图。";
+    public override string Description => "为地区添加区域边界视图。";
 
-    public override string Name
-        => "区域显示";
+    public override string Name => "区域显示";
 
-    public override Version Version
-        => new(1, 1, 1);
+    public override Version Version => new Version(1, 1, 1);
 
     private readonly System.Timers.Timer _refreshTimer = new(5000);
 

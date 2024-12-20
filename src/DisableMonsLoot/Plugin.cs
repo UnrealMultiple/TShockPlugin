@@ -13,7 +13,7 @@ public class Plugin : TerrariaPlugin
 {
     #region 插件信息
     public override string Name => "禁怪物掉落";
-    public override Version Version => new Version(1, 3, 1);
+    public override Version Version => new Version(1, 3, 2);
     public override string Author => "羽学";
     public override string Description => "清理怪物身边掉落物";
     #endregion

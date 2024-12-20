@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "进度礼包";
 
-    public override Version Version => new(1, 0, 1, 0);
+    public override Version Version => new Version(1, 0, 1, 1);
 
     public static Config config = new();
 

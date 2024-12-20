@@ -10,7 +10,7 @@ public class PPLPlugin : TerrariaPlugin
     #region 插件信息
     public override string Name => "PerPlayerLoot";
 
-    public override Version Version => new Version(2, 0, 3);
+    public override Version Version => new Version(2, 0, 4);
 
     public override string Author => "Codian, 肝帝熙恩汉化1449";
 

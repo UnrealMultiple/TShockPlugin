@@ -21,7 +21,7 @@ public class WeaponPlus : TerrariaPlugin
 
     public override string Description => "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes";
 
-    public override Version Version => new Version(2, 0, 0, 0);
+    public override Version Version => new Version(2, 0, 0, 2);
     #endregion
 
     #region 实例变量

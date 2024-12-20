@@ -14,7 +14,7 @@ public class DumpPluginsList : TerrariaPlugin
 
     public override string Name => "DumpPluginsList";
 
-    public override Version Version => new (1, 0, 1, 6);
+    public override Version Version => new Version(1, 0, 1, 7);
 
     public DumpPluginsList(Main game) : base(game)
     {

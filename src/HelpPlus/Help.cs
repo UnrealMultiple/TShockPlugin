@@ -29,7 +29,7 @@ public class HelpPlus : TerrariaPlugin
     public override string Description => "更好的Help";
 
     public override string Name => "Help+(更好的Help)";
-    public override Version Version => new(2024, 7, 28, 1);
+    public override Version Version => new Version(2024, 12, 18, 2);
 
     public override void Initialize()
     {

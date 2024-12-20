@@ -22,7 +22,7 @@ public class ConsoleSql : TerrariaPlugin
     public override string Name => "ConsoleSql";
 
     //插件的版本
-    public override Version Version => new Version(1, 0, 0);
+    public override Version Version => new Version(1, 0, 1);
 
     //插件的构造器
     public ConsoleSql(Main game) : base(game)

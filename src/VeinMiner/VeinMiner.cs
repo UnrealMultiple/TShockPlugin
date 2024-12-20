@@ -9,7 +9,7 @@ namespace VeinMiner;
 public class VeinMiner : TerrariaPlugin
 {
     public override string Name => "VeinMiner";
-    public override Version Version => new Version(1, 6, 0, 6);
+    public override Version Version => new Version(1, 6, 0, 8);
     public override string Author => "Megghy|YSpoof|Maxthegreat99|肝帝熙恩";
     public override string Description => "VeinMiner by Megghy 适用于 TShock 5.2 支持！";
 

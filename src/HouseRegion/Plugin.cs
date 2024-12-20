@@ -16,7 +16,7 @@ public class HousingPlugin : TerrariaPlugin
     public override string Author => "GK 阁下 改良";
     public override string Description => "一个著名的用于保护房屋的插件。";
     public override string Name => "HousingDistricts";
-    public override Version Version => new Version(1, 0, 0, 4);
+    public override Version Version => new Version(1, 0, 0, 6);
     public HousingPlugin(Main game) : base(game) 
     { 
         this.Order = 5; 

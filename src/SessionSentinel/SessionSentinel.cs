@@ -6,7 +6,7 @@ using TShockAPI;
 public class SessionSentinel : TerrariaPlugin
 {
     public override string Name => "SessionSentinel";
-    public override Version Version => new Version(1, 0, 0);
+    public override Version Version => new Version(1, 0, 1);
     public override string Author => "肝帝熙恩";
     public override string Description => "处理长时间不发送数据包的玩家";
 

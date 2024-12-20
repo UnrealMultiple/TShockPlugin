@@ -14,7 +14,7 @@ public class DamageRuleLoot : TerrariaPlugin
     #region 插件信息
     public override string Name => "伤害规则掉落";
     public override string Author => "羽学 西江小子";
-    public override Version Version => new Version(1, 3, 1);
+    public override Version Version => new Version(1, 3, 2);
     public override string Description => "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理";
     #endregion
 
