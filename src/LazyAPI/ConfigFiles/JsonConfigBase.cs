@@ -71,6 +71,11 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         File.WriteAllText(filepath, JsonConvert.SerializeObject(this, _settings));
     }
 
+    protected virtual void Reload(ReloadEventArgs args)
+    {
+        args.Player.SendSuccessMessage(GetString($"[{this.Filename}.{cultureInfo.Name}.json] config reloaded successfully!!!"));
+    }
+
 
     public static void Save()
     {
@@ -83,7 +88,7 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         GeneralHooks.ReloadEvent += args =>
         {
             _instance = GetConfig();
-            args.Player.SendSuccessMessage(GetString($"[{_instance.Filename}.{cultureInfo.Name}.json] config reloaded successfully!!!"));
+            _instance.Reload(args);
         };
         return Instance.Filename;
     }
