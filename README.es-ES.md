@@ -81,7 +81,7 @@
 | [BetterWhitelist](./src/BetterWhitelist/README.md) | No | Plugin de lista blanca | [LazyAPI](./src/LazyAPI/README.md) |
 | [BridgeBuilder](./src/BridgeBuilder/README.md) | No | Construcción rápida de puentes | [LazyAPI](./src/LazyAPI/README.md) |
 | [BuildMaster](./src/BuildMaster/README.md) | No | Modo Maestro Constructor para el Mini Juego Red Bean | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
-| [CaiBot](./src/CaiBot/README.md) | No | Plugin adaptador CaiBot |  |
+| [CaiBot](./src/CaiBot/README.md) | No | Plugin adaptador CaiBot (Only support QQ) |  |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.md) | No | Comando de emoji personalizado | [LazyAPI](./src/LazyAPI/README.md) |
 | [CaiLib](./src/CaiLib/README.md) | No | Biblioteca de precarga de Cai | [SixLabors.ImageSharp]() |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.md) | No | Herramienta de depuración de paquetes Cai | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
