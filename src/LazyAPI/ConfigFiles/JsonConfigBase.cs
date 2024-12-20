@@ -71,6 +71,11 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         File.WriteAllText(filepath, JsonConvert.SerializeObject(this, _settings));
     }
 
+    protected virtual void Reload(ReloadEventArgs args)
+    {
+        args.Player.SendSuccessMessage(GetString($"[{this.Filename}.{cultureInfo.Name}.json] config reloaded successfully!!!"));
+    }
+
 
     public static void Save()
     {
@@ -80,7 +85,11 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
     // .cctor is lazy load
     public static string Load()
     {
-        GeneralHooks.ReloadEvent += _ => _instance = GetConfig();
+        GeneralHooks.ReloadEvent += args =>
+        {
+            _instance = GetConfig();
+            _instance.Reload(args);
+        };
         return Instance.Filename;
     }
 
