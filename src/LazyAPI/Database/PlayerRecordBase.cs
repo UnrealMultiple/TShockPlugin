@@ -24,12 +24,12 @@ public abstract class PlayerRecordBase<T> : RecordBase<T> where T : PlayerRecord
             return this.Get(player.Account.Name);
         }
 
-        public Context(string tableName) : base(tableName)
+        public Context(string? tableName) : base(tableName)
         {
         }
     }
 
-    internal static new Context GetContext(string tableName)
+    internal static new Context GetContext(string? tableName)
     {
         return new Context(tableName);
     }

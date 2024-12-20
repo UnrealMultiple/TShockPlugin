@@ -1,4 +1,5 @@
 {
+  "HotReload": false,
   "README.en-US": {
     "Description": "Plugin base library"
   },
