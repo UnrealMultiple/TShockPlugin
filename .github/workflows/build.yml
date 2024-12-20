@@ -34,7 +34,7 @@ jobs:
         shell: pwsh
         run: |
           $rid = if ([System.Environment]::OSVersion.Platform -Match "Unix") { "linux-x64" } else { "win-x64" }
-          $tshock = Invoke-WebRequest -Uri "https://api.github.com/repos/Pryaxis/TShock/releases" | ConvertFrom-Json | Select-Object -First 1 -ExpandProperty assets | Where-Object browser_download_url -Match $rid | Select-Object -ExpandProperty browser_download_url -First 1
+          $tshock = Invoke-WebRequest -Uri "https://api.github.com/repos/Pryaxis/TShock/releases" | ConvertFrom-Json | Select-Object -First 1 -ExpandProperty assets | Where-Object browser_download_url -Match $rid | Select-Object -ExpandProperty browser_download_url -First 0
           Write-Host $tshock
           Invoke-WebRequest -Uri $tshock -OutFile bin/TShock.zip
           sudo apt install -y gettext
