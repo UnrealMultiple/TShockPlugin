@@ -6,22 +6,23 @@
 - Customize which items or categories of items are not to be cleaned.
 
 ## Config
-> Configuration file location：tshock/Autoclear.json
+> Configuration file location：tshock/Autoclear.en-US.json
 ```json
 {
-  "多久检测一次(s)": 10, // How often to check (seconds)
-  "不清扫的物品ID列表": [], // List of item IDs not to be cleaned
-  "智能清扫数量临界值": 100, // Threshold value for smart cleaning
-  "延迟清扫(s)": 10, // Delay cleaning (seconds)
-  "延迟清扫自定义消息": "", // Custom message for delayed cleaning
-  "是否清扫挥动武器": true, // Whether to clean Melee Weapons
-  "是否清扫投掷武器": true, // Whether to clean Consumables
-  "是否清扫普通物品": true, // Whether to clean Common Items
-  "是否清扫装备": true, // Whether to clean Armors
-  "是否清扫时装": true, // Whether to clean Vanity
-  "完成清扫自定义消息": "", // Custom message for completed cleaning
-  "具体消息": true // Broadcast clean message
+  "Interval": 10, // How often to check (seconds)
+  "Exclude": [], // List of item IDs not to be cleaned
+  "Threshold": 100, // Threshold value for smart cleaning
+  "Dealy": 10, // Delay cleaning (seconds)
+  "DealyMsg": "", // Custom message for delayed cleaning
+  "SweepSwinging": true, // Whether to clean Melee Weapons
+  "SweepThrowable": true, // Whether to clean Consumables
+  "SweepRegaular": true, // Whether to clean Common Items
+  "SweepEquipment": true, // Whether to clean Armors
+  "SweepVanity": true, // Whether to clean Vanity
+  "SweepMsg": "", // Custom message for completed cleaning
+  "SweepTip": true // Broadcast clean message
 }
+
 ```
 
 ## FeedBack
