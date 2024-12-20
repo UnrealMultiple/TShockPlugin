@@ -57,8 +57,8 @@ public static class MessageHandle
                     { "cai_whitelist", Config.config.WhiteList },
                     { "os", RuntimeInformation.RuntimeIdentifier },
                     { "world", TShock.Config.Settings.UseServerName ? TShock.Config.Settings.ServerName : Main.worldName },
-                    { "sync_group_chat", Config.config.SycnChatFromGroup },
-                    { "sync_server_chat", Config.config.SycnChatFromServer },
+                    { "sync_group_chat", Config.config.SyncChatFromGroup },
+                    { "sync_server_chat", Config.config.SyncChatFromServer },
                     { "group", (long) jsonObject["group"]! }
                 };
                 await SendDateAsync(JsonConvert.SerializeObject(result));

@@ -19,7 +19,7 @@ namespace CaiBot;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public static readonly Version VersionNum = new (2024, 12, 1, 2); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new (2024, 12, 20, 1); //日期+版本号(0,1,2...)
     public static int InitCode = -1;
     public static bool LocalMode;
     public static bool DebugMode;
@@ -173,7 +173,13 @@ public class Plugin : TerrariaPlugin
     private void OnChat(ServerChatEventArgs args)
     {
         var plr = TShock.Players[args.Who];
-        if (!Config.config.SycnChatFromServer || plr == null || !plr.IsLoggedIn || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) || args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier) || string.IsNullOrEmpty(args.Text))
+
+        if (Config.config.WhiteList && plr is { IsLoggedIn: false })
+        {
+            args.Handled = true;
+        }
+        
+        if (!Config.config.SyncChatFromServer || plr == null || !plr.IsLoggedIn || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) || args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier) || string.IsNullOrEmpty(args.Text))
         {
             return;
         }
@@ -190,7 +196,7 @@ public class Plugin : TerrariaPlugin
     private void PlayerHooksOnPlayerPostLogin(PlayerPostLoginEventArgs e)
     {
         var plr = e.Player;
-        if (!Config.config.SycnChatFromServer || plr == null)
+        if (!Config.config.SyncChatFromServer || plr == null)
         {
             return;
         }
@@ -207,7 +213,7 @@ public class Plugin : TerrariaPlugin
     private void PlayerHooksOnPlayerLogout(PlayerLogoutEventArgs e)
     {
         var plr = e.Player;
-        if (!Config.config.SycnChatFromServer || plr == null)
+        if (!Config.config.SyncChatFromServer || plr == null)
         {
             return;
         }
