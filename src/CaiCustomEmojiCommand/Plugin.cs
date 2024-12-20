@@ -17,7 +17,7 @@ public class CaiCustomEmojiCommand : LazyPlugin
     public override string Author => "Cai";
     public override string Description => "自定义Emoji表情执行命令";
     public override string Name => "CaiCustomEmojiCommand";
-    public override Version Version => new(2024, 11, 29, 1);
+    public override Version Version => new Version(2024, 12, 18, 2);
 
 
     public override void Initialize()

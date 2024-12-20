@@ -13,7 +13,7 @@ public class Plugin : LazyPlugin
     public override string Author => "cmgy";
     public override string Description => "";
     public override string Name => "BedSet 床设置";
-    public override Version Version => new(1, 0, 0, 4);
+    public override Version Version => new Version(1, 0, 0, 5);
     public Plugin(Main game) : base(game) { }
 
     public override void Initialize()

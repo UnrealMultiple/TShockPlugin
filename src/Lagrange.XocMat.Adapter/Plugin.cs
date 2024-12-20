@@ -28,7 +28,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "机器人适配插件";
 
-    public override Version Version => new(1, 0, 0, 1);
+    public override Version Version => new Version(1, 0, 0, 2);
 
     internal static readonly List<TSPlayer> ServerPlayers = new();
 

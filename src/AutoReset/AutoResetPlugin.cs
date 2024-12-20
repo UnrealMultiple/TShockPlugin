@@ -28,7 +28,7 @@ public class AutoResetPlugin : LazyPlugin
 
     public override string Name => "AutoReset";
 
-    public override Version Version => new(2024, 12, 8,1);
+    public override Version Version => new Version(2024, 12, 18, 2);
 
     public override string Author => "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩";
 

@@ -10,7 +10,7 @@ public class MiniGamesAPI : TerrariaPlugin
     #region 插件模版信息
     public override string Name => "MiniGamesAPI";
     public override string Author => "豆沙 羽学修复";
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
     public override string Description => "小游戏框架API";
     #endregion
 

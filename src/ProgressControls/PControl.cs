@@ -18,7 +18,7 @@ public partial class PControl : TerrariaPlugin
     public override string Author => "z枳 羽学";
     public override string Description => "计划书";
     public override string Name => "ProgressControl";
-    public override Version Version => new Version(1, 0, 0, 8);
+    public override Version Version => new Version(1, 0, 0, 10);
 
     public static Config config = new Config();
 

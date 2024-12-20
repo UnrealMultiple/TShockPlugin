@@ -11,7 +11,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "少司命";
     public override string Description => "DumpID";
     public override string Name => "DumpTerrariaID";
-    public override Version Version => new(1, 0, 0, 1);
+    public override Version Version => new Version(1, 0, 0, 2);
     public Dump Dump = new();
     public readonly Dictionary<int, string> EnglishBuffs = new();
     public readonly Dictionary<int, string> Prefixs = new();

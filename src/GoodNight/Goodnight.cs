@@ -13,7 +13,7 @@ public class Goodnight : TerrariaPlugin
     #region 变量与插件信息
     public override string Name => "宵禁";
     public override string Author => "Jonesn 羽学 少司命";
-    public override Version Version => new Version(2, 7, 3);
+    public override Version Version => new Version(2, 7, 4);
     public override string Description => "设置服务器无法进入或禁止生成怪物的时段";
     internal static Configuration Config = null!;
     #endregion

@@ -14,7 +14,7 @@ public class RainbowChat : TerrariaPlugin
     public override string Name => "Rainbow Chat";
     public override string Author => "Professor X 熙恩 羽学";
     public override string Description => "使玩家每次说话的颜色不一样.";
-    public override Version Version => new Version(1, 0, 7);
+    public override Version Version => new Version(1, 0, 8);
     #endregion
 
     #region 注册与卸载

@@ -19,7 +19,7 @@ public class Main : TerrariaPlugin
 
     public override string Name => "itemBox";
 
-    public override Version Version => new (2024, 10, 3, 0);
+    public override Version Version => new Version(2024, 12, 18, 1);
 
     public override void Initialize()
     {

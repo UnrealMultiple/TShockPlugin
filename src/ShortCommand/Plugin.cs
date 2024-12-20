@@ -28,7 +28,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Author => "GK 少司命修复版";
 
-    public override Version Version => new Version(1, 3, 0, 1);
+    public override Version Version => new Version(1, 3, 0, 3);
 
     public override string Description => "由GK改良的简短指令插件！";
 

@@ -21,7 +21,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(2, 0, 0, 0);
+    public override Version Version => new Version(2, 0, 0, 1);
 
     internal static Config TaskConfig = new();
 

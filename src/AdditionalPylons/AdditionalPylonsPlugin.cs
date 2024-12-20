@@ -15,7 +15,7 @@ public class AdditionalPylonsPlugin : LazyPlugin
     #region Plugin Properties
     public override string Name => "[放置更多晶塔] AdditionalPylons";
 
-    public override Version Version => new Version(1, 0, 5);
+    public override Version Version => new Version(1, 0, 6);
 
     public override string Author => "Stealownz,肝帝熙恩优化1449";
 

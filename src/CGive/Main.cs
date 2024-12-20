@@ -13,7 +13,7 @@ public class Main : TerrariaPlugin
 
     public override string Name => "CGive";
 
-    public override Version Version => new Version(1, 0, 0, 4);
+    public override Version Version => new Version(1, 0, 0, 6);
 
     public Main(Terraria.Main game)
         : base(game)

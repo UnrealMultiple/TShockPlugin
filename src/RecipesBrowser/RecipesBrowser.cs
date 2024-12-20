@@ -9,7 +9,7 @@ public class MainPlugin : TerrariaPlugin
 {
     public override string Name => "RecipesBrowser";
 
-    public override Version Version => new Version(1, 0, 6);
+    public override Version Version => new Version(1, 0, 7);
 
     public override string Author => "棱镜 羽学适配";
 

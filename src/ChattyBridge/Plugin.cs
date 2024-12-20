@@ -20,7 +20,7 @@ public class Plugin : LazyPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 4);
+    public override Version Version => new Version(1, 0, 0, 5);
 
     private HttpClient Client { get; set; }
 

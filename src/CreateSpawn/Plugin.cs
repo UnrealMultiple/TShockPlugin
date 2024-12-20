@@ -15,7 +15,7 @@ public class Plugin : LazyPlugin
 
     public override string Name => "CreateSpawn";
 
-    public override Version Version => new(1, 0, 0, 3);
+    public override Version Version => new Version(1, 0, 0, 4);
 
 
     private bool create = false;

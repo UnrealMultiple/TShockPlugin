@@ -15,7 +15,7 @@ public class AutoFish : LazyPlugin
     #region 插件信息
     public override string Name => "自动钓鱼";
     public override string Author => "羽学 少司命";
-    public override Version Version => new Version(1, 3, 4);
+    public override Version Version => new Version(1, 3, 5);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 

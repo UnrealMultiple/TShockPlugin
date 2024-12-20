@@ -11,7 +11,7 @@ public class Plugin : TerrariaPlugin
     #region 插件信息
     public override string Name => "击败怪物替换世界物品";
     public override string Author => "onusai 羽学";
-    public override Version Version => new Version(1, 0, 2);
+    public override Version Version => new Version(1, 0, 3);
     public override string Description => "击败指定怪物替换世界指定图格与所有箱子内物品";
     #endregion
 

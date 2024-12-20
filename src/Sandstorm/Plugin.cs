@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
     #region 插件信息
     public override string Name => "Sandstorm";
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
     public override string Description => "使用指令切换沙尘暴";
     #endregion
 

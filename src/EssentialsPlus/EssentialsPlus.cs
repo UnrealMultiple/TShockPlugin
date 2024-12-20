@@ -24,7 +24,7 @@ public class EssentialsPlus : TerrariaPlugin
 
     public override string Name => "EssentialsPlus";
 
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
 
 
     public EssentialsPlus(Main game)

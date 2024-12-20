@@ -21,7 +21,7 @@ public class TestPlugin : TerrariaPlugin
     public override string Author => "GK 阁下 羽学";
     public override string Description => "自定义怪物出没时的血量,当然不止这些！";
     public override string Name => "自定义怪物血量";
-    public override Version Version => new Version(1, 0, 4, 38);
+    public override Version Version => new Version(1, 0, 4, 40);
     #endregion
 
     #region 全局变量

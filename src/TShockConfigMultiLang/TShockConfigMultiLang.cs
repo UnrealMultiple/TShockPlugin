@@ -15,7 +15,7 @@ public class TShockConfigMultiLang : LazyPlugin
     public override string Name => "TShockConfigMultiLang";
     public override string Author => "肝帝熙恩，羽学";
     public override string Description => "创建一个本地化语言的config";
-    public override Version Version => new Version(1, 0, 0);
+    public override Version Version => new Version(1, 0, 1);
 
     public TShockConfigMultiLang(Main game) : base(game)
     {

@@ -15,7 +15,7 @@ public class Plugin : TerrariaPlugin
     #region 插件信息
     public override string Name => "服主特权";
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 8, 1);
+    public override Version Version => new Version(1, 8, 2);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 
