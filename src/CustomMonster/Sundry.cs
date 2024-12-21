@@ -1172,7 +1172,7 @@ public class Sundry
                 continue;
             }
             var num = 0;
-            num = (monster.StartRange <= 0) ? TShock.Players.Count((TSPlayer p) => p != null && p.Active && !p.Dead && p.TPlayer.statLife > 0 && npc.WithinRange(p.TPlayer.Center, monster.InRange << 4)) : TShock.Players.Count((TSPlayer p) => p != null && p.Active && !p.Dead && p.TPlayer.statLife > 0 && !npc.WithinRange(p.TPlayer.Center, monster.StartRange << 4) && npc.WithinRange(p.TPlayer.Center, monster.InRange << 4));
+            num = (monster.StartRange <= 0) ? TShock.Players.Count(p => p != null && p.Active && !p.Dead && p.TPlayer.statLife > 0 && (monster.Life == 0 || ((monster.Life > 0) ? (p.TPlayer.statLife >= monster.Life) : (p.TPlayer.statLife < Math.Abs(monster.Life)))) && Npc.WithinRange(p.TPlayer.Center, monster.InRange << 4)) : TShock.Players.Count(p => p != null && p.Active && !p.Dead && p.TPlayer.statLife > 0 && (monster.Life == 0 || ((monster.Life > 0) ? (p.TPlayer.statLife >= monster.Life) : (p.TPlayer.statLife < Math.Abs(monster.Life)))) && !Npc.WithinRange(p.TPlayer.Center, monster.StartRange << 4) && Npc.WithinRange(p.TPlayer.Center, monster.InRange << 4));
             if (monster.SuitNum == 0)
             {
                 continue;
@@ -1203,7 +1203,7 @@ public class Sundry
         foreach (var monster in Rmonster)
         {
             var num = 0;
-            num = (monster.Range <= 0) ? Main.npc.Count((NPC p) => p != null && p.active && (monster.NPCID == 0 || p.netID == monster.NPCID) && p.whoAmI != npc.whoAmI && (monster.LifeRate == 0 || p.lifeMax < 1 || ((monster.LifeRate > 0) ? (p.life * 100 / p.lifeMax >= monster.LifeRate) : (p.life * 100 / p.lifeMax < Math.Abs(monster.LifeRate)))) && (monster.Indicator == null || (LNpcs![p.whoAmI] != null && LNpcs[p.whoAmI].haveMarkers(monster.Indicator, npc))) && (monster.CheckSign == "" || (LNpcs![p.whoAmI] != null && LNpcs[p.whoAmI].Config != null && LNpcs[p.whoAmI].Config!.Sign == monster.CheckSign))) : Main.npc.Count((NPC p) => p != null && p.active && (monster.NPCID == 0 || p.netID == monster.NPCID) && p.whoAmI != npc.whoAmI && npc.WithinRange(p.Center, monster.Range << 4) && (monster.LifeRate == 0 || p.lifeMax < 1 || ((monster.LifeRate > 0) ? (p.life * 100 / p.lifeMax >= monster.LifeRate) : (p.life * 100 / p.lifeMax < Math.Abs(monster.LifeRate)))) && (monster.Indicator == null || (LNpcs![p.whoAmI] != null && LNpcs[p.whoAmI].haveMarkers(monster.Indicator, npc))) && (monster.CheckSign == "" || (LNpcs![p.whoAmI] != null && LNpcs[p.whoAmI].Config != null && LNpcs[p.whoAmI].Config!.Sign == monster.CheckSign)));
+            num = (monster.Range <= 0) ? Main.npc.Count(p => p != null && p.active && (monster.NPCID == 0 || p.netID == monster.NPCID) && p.whoAmI != Npc.whoAmI && (monster.LifeRate == 0 || p.lifeMax < 1 || ((monster.LifeRate > 0) ? (p.life * 100 / p.lifeMax >= monster.LifeRate) : (p.life * 100 / p.lifeMax < Math.Abs(monster.LifeRate)))) && (monster.Indicator == null || (LNpcs![p.whoAmI] != null && LNpcs[p.whoAmI].haveMarkers(monster.Indicator, Npc))) && (monster.CheckSign == "" || (LNpcs![p.whoAmI] != null && LNpcs[p.whoAmI].Config != null && LNpcs[p.whoAmI].Config!.Sign == monster.CheckSign))) : Main.npc.Count(p => p != null && p.active && (monster.NPCID == 0 || p.netID == monster.NPCID) && p.whoAmI != Npc.whoAmI && Npc.WithinRange(p.Center, monster.Range << 4) && (monster.LifeRate == 0 || p.lifeMax < 1 || ((monster.LifeRate > 0) ? (p.life * 100 / p.lifeMax >= monster.LifeRate) : (p.life * 100 / p.lifeMax < Math.Abs(monster.LifeRate)))) && (monster.Indicator == null || (LNpcs![p.whoAmI] != null && LNpcs[p.whoAmI].haveMarkers(monster.Indicator, Npc))) && (monster.CheckSign == "" || (LNpcs != null && LNpcs[p.whoAmI].Config != null && LNpcs[p.whoAmI].Config!.Sign == monster.CheckSign)));
             if (monster.SuitNum == 0)
             {
                 continue;
@@ -1233,20 +1233,35 @@ public class Sundry
     }
     #endregion
 
-    #region 清理弹幕使用记录
-    public static void clearPrjsOfUse(int useIndex, string notes)
+    #region 检查弹幕条件是否满足。
+    public static bool ProjectileRequirement(List<ProjectileConditionGroup> Rmonster, NPC npc)
     {
-        lock (LPrjs!)
+        var Npc = npc;
+        var result = false;
+        foreach (var rmonster in Rmonster)
         {
-            for (var i = 0; i < LPrjs.Count(); i++)
+            var num = 0;
+            num = (rmonster.Range <= 0) ? Main.projectile.Count(p => p != null && p.active && p.owner == Main.myPlayer && (rmonster.ProjectileID == 0 || p.type == rmonster.ProjectileID) && (!rmonster.FullProjectile || (LPrjs![p.whoAmI] != null && LPrjs[p.whoAmI].UseI == Npc.whoAmI)) && (rmonster.CheckSign == "" || (LPrjs![p.whoAmI] != null && LPrjs![p.whoAmI].Notes == rmonster.CheckSign))) : Main.projectile.Count(p => p != null && p.active && p.owner == Main.myPlayer && (rmonster.ProjectileID == 0 || p.type == rmonster.ProjectileID) && Npc.WithinRange(p.Center, rmonster.Range << 4) && (!rmonster.FullProjectile || (LPrjs![p.whoAmI] != null && LPrjs[p.whoAmI].UseI == Npc.whoAmI)) && (rmonster.CheckSign == "" || (LPrjs![p.whoAmI] != null && LPrjs[p.whoAmI].Notes == rmonster.CheckSign)));
+            if (rmonster.SuitNum == 0)
             {
-                if (LPrjs[i] != null && LPrjs[i].Index >= 0 && LPrjs[i].UseI == useIndex)
+                continue;
+            }
+            if (rmonster.SuitNum > 0)
+            {
+                if (num < rmonster.SuitNum)
                 {
-                    LPrjs[i].clear(notes);
+                    result = true;
+                    break;
                 }
             }
+            else if (num >= Math.Abs(rmonster.SuitNum))
+            {
+                result = true;
+                break;
+            }
         }
-    }
+        return result;
+    } 
     #endregion
 
     #region 更新弹幕和属性
@@ -1262,7 +1277,7 @@ public class Sundry
             var flag = false;
             lock (LPrjs!)
             {
-                for (var i = 0; i < LPrjs.Count(); i++)
+                for (var i = 0; i < LPrjs.Length; i++)  
                 {
                     if (LPrjs[i] == null || LPrjs[i].Index < 0 || LPrjs[i].Type != Proj.ProjectileID || !(LPrjs[i].Notes == Proj.Sign) || LPrjs[i].UseI != npc.whoAmI)
                     {
@@ -1496,9 +1511,22 @@ public class Sundry
                             }
                         }
                     }
-                    if (Proj.DestroyProjectile)
+                    if (Proj.Duration == 0)
                     {
                         Main.projectile[index].Kill();
+                    }
+                    else if (Proj.Duration > 0)
+                    {
+                        Main.projectile[index].timeLeft = Proj.Duration;
+                    }
+                    if (Proj.DestroyProjectile)
+                    {
+                        Main.projectile[index].active = false;
+                        Main.projectile[index].type = 0;
+                        if (!list.Contains(index))
+                        {
+                            list.Add(index);
+                        }
                     }
                 }
             }

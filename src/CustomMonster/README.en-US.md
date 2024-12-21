@@ -14,8 +14,13 @@
 ## Update Log
 
 ```
+December 21, 2024
+Integrated with GK's latest version 1.0.4.39
+Add Projectile Condition Section
+
 December 16, 2024
 Integrated the latest version 1.0.4.38 by GK
+Add Projectile Update Section
 
 October 14, 2024
 Integrated the latest version 1.0.4.36 by GK

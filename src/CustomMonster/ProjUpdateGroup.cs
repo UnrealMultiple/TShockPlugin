@@ -103,7 +103,10 @@ public class ProjUpdateGroup
     [JsonProperty(PropertyName = "弹幕Y轴注入指示物名")]
     public string ProjectileYIndicatorName = "";
 
-    [JsonProperty(PropertyName = "销毁弹幕")]
+    [JsonProperty(PropertyName = "持续时间")]
+    public int Duration = -1;
+
+    [JsonProperty(PropertyName = "清除弹幕")]
     public bool DestroyProjectile = false;
 
     public ProjUpdateGroup(int id, string note)
