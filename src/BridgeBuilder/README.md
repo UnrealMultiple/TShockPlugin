@@ -9,6 +9,8 @@
 ## 更新日志
 
 ```
+1.1.2
+准备更新TS 5.2.1,修正文档，初始配置内容更改
 1.1.0
 i18n和README_EN.md
 1.0.9
@@ -32,7 +34,7 @@ i18n预备
 | /bridge [up/down] 或 /桥来 [up/down]|  bridgebuilder.bridge  | 快速铺桥指令|
 
 ## 配置
-> 配置文件位置：tshock/铺桥配置.json
+> 配置文件位置：tshock/BridgeBuilder.zh-CN.json
 ```json
 {
   "允许快速铺路方块id": [

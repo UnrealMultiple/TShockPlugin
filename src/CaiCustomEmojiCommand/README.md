@@ -8,6 +8,7 @@
 ## 更新日志
 
 ```
+2024.12.18.2 准备更新TS 5.2.1,修正文档
 2024.11.29.1 使用lazyapi
 2024.9.8.1 添加英文翻译
 2024.7.28.1 添加插件
@@ -15,8 +16,9 @@
 
 ## 指令
 无
+
 ## 配置
-> 配置文件位置：tshock/CaiCustomEmojiCommand.json
+> 配置文件位置：tshock/CaiCustomEmojiCommand.zh-CN.json
 ```json    
 {
   "命令列表": [

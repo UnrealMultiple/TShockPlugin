@@ -25,7 +25,7 @@ v2.4.1
 | 无 | noautoteam  |   有该权限不会被自动分配队伍   |
 
 ## 配置
-> 配置文件位置：tshock/AutoTeamPlus.json
+> 配置文件位置：tshock/AutoTeam.zh-CN.json
 - 中文英文队伍名字参考如下：
 
 | 中文  | English |

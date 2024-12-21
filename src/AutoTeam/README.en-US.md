@@ -12,7 +12,7 @@
 | None               |   noautoteam    |   Having this permission will not automatically assign you to a team.   |
 
 ## Config
-> Configuration file location：tshock/AutoTeamPlus.json
+> Configuration file location：tshock/AutoTeam.en-US.json
 - Team Name Reference：
 
 | 中文  | English |
@@ -27,8 +27,8 @@
 - Configuration Example
 ```json
 {
-    "开启插件": true, // Enable Plugin
-    "组对应的队伍": { ////Group -> Team
+  "Enable": true,
+  "GroupTemp": {
     "guest": "pink",
     "default": "蓝队",
     "owner": "红队",

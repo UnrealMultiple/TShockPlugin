@@ -7,6 +7,8 @@
 ## 更新日志
 
 ```
+v2.6.1
+准备更新TS 5.2.1,修正文档，初始配置内容更改
 v2.6
 添加英文翻译
 ```
@@ -25,7 +27,7 @@ v2.6
 
 ## 配置
 
-> 配置文件位置：tshock/BetterWhitelist/config.json
+> 配置文件位置：tshock/BetterWhitelist.zh-CN.json
 ```json
 {
   "白名单玩家": [],

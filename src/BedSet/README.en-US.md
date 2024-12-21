@@ -12,10 +12,10 @@
 
 
 ## Config
-> Configuration file location：tshock/Bed.json
+> Configuration file location：tshock/Bed.en-US.json
 ```json
 {
-  "重生点": {} //Spawn Point
+  "SpawnOption": {} //Spawn Point
 }
 ```
 ## FeedBack

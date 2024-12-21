@@ -7,6 +7,8 @@
 ## 更新日志
 
 ```
+1.0.0.5
+准备更新TS 5.2.1,修正文档，初始配置内容更改
 1.0.0.3
 i18n和README_EN.md
 1.0.0.2
@@ -22,8 +24,8 @@ i18n预备
 | /shome	     | bed.spawn.set       |  设置出生点|
 
 
-## 文件位置
-> tshock/Bed.json
+## 配置
+> 配置文件位置：tshock/Bed.zh-CN.json
 ```json
 {
   "重生点": {}

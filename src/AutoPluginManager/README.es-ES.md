@@ -37,3 +37,10 @@
   "热重载出错时继续 ": true // Continuar si ocurre un error durante la recarga en caliente
 (La recarga en caliente continúa por error)
 }
+```
+
+## Soporte
+
+- Github Issue -> Repositorio de TShockPlugin: https://github.com/UnrealMultiple/TShockPlugin
+- Grupo de QQ de TShock: 816771079
+- Foro de Terraria en China: trhub.cn, bbstr.net, tr.monika.love
