@@ -92,14 +92,13 @@ public class LNPC
     #region 设置或更新指定名称的标记（Marker）的
     public void setMarkers(string name, int num, bool reset)
     {
-        var name2 = name;
-        if (!this.Markers!.Exists(t => t.IndName == name2))
+        if (!this.Markers!.Exists(t => t.IndName == name))
         {
-            this.Markers.Add(new IndicatorGroup2(name2, 0));
+            this.Markers.Add(new IndicatorGroup2(name, 0));
         }
         foreach (var marker in this.Markers)
         {
-            if (marker.IndName == name2)
+            if (marker.IndName == name)
             {
                 if (reset)
                 {
