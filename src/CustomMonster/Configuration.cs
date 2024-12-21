@@ -29,7 +29,7 @@ public class Configuration
     public bool ErrorLogs = false;
 
     [JsonProperty(PropertyName = "配置文件插件版本号", Order = 5)]
-    public string Version = "1.0.4.38";
+    public string Version = "1.0.4.39";
 
     [JsonProperty(PropertyName = "启动死亡队友视角", Order = 6)]
     public bool DeathPerspective = false;
