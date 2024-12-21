@@ -154,7 +154,7 @@ public class LNPC
             {
                 num = npc.whoAmI;
             }
-            else
+            else if(npc != null)
             {
                 switch (inname)
                 {
