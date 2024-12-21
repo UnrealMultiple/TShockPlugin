@@ -26,6 +26,27 @@ internal class Playerbuffs
         }
     }
 
+    public static void ClearAll()
+    {
+        var BuffList = new List<string>(PlayerBuffs.Keys);
+        foreach (var Name in BuffList)
+        {
+            var buffs = PlayerBuffs[Name];
+            foreach (var buffId in buffs.ToList())
+            {
+                buffs.Remove(buffId);
+                DB.Delbuff(Name, buffId);
+            }
+
+            if (buffs.Count == 0)
+            {
+                PlayerBuffs.Remove(Name);
+            }
+        }
+
+        DB.ClearTable();
+    }
+
     public static HashSet<int> GetBuffs(string Name)
     {
         if (!PlayerBuffs.TryGetValue(Name, out var buffs) || buffs == null)
