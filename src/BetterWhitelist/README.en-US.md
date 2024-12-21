@@ -17,12 +17,12 @@
 | `/bwl reload`     | `bwl.use` | Reload the plugin        |
 
 ## Config
-> Configuration file location：tshock/BetterWhitelist/config.json
+> Configuration file location：tshock/BetterWhitelist.en-US.json
 ```json
 {
-  "白名单玩家": [], // Whitelisted players
-  "插件开关": false, // Plugin switch
-  "连接时不在白名单提示": "你不在服务器白名单中！" // Message when not on the whitelist
+  "WhitePlayers": [], // Whitelisted players
+  "Enable": false, // Plugin switch
+  "NotInWhiteList": "你不在服务器白名单中！" // Message when not on the whitelist
 }
 ```
 

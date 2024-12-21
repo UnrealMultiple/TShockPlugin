@@ -24,7 +24,7 @@
 
 
 ## 配置
-> 配置文件位置：tshock/CaiPacketDebug.json
+> 配置文件位置：tshock/CaiPacketDebug.zh-CN.json
 ```json    
 {
   "C->S": { //客户端向服务器发送的数据包

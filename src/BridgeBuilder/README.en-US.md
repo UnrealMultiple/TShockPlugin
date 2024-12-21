@@ -15,10 +15,10 @@
 | /bridge [up/down] or /桥来 [up/down]|  bridgebuilder.bridge  | Quick bridge placement command |
 
 ## Config
-> Configuration file location：tshock/铺桥配置.json
+> Configuration file location：tshock/BridgeBuilder.en-US.json
 ```json
 {
-  "允许快速铺路方块id": [ // Allow quick placement of tile ID
+  "TilesID": [ // Allow quick placement of tile ID
     19,
     380,
     427,
@@ -28,8 +28,8 @@
     438,
     439
   ],
-  "允许快速铺路墙壁id": [], // Allow quick placement of wall ID
-  "一次性最长铺多少格": 256 // The maximum number of tiles that can be placed at once
+  "WallsID": [], // Allow quick placement of wall ID
+  "MaxTile": 256 // The maximum number of tiles that can be placed at once
 }
 ```
 

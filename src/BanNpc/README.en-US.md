@@ -12,10 +12,10 @@
 | /bm list     | bannpc.use |  View Block List  |
 
 ## Config
-> Configuration file location：tshock/禁止怪物表.json
+> Configuration file location：tshock/BanNpc.en-US.json
 ```json
 {
-  "阻止怪物生成表": [] //Block List
+  "BanNpc": [] //Block List
 }
 ```
 ## FeedBack

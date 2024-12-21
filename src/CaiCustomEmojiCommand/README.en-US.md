@@ -6,7 +6,7 @@
 - Emoji IDs can be found on the wiki (https://terraria.wiki.gg/wiki/Emotes). This plugin does not support bypassing permission checks, and commands require an identifier (/ or .).
 
 ## Config
-> Configuration file location：tshock/CaiCustomEmojiCommand.json
+> Configuration file location：tshock/CaiCustomEmojiCommand.en-US.json
 ```json    
 {
   "EmojiCommands": [

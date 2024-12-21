@@ -6,6 +6,8 @@
 ## 更新日志
 
 ```
+v1.0.0.4
+准备更新TS 5.2.1,修正文档，初始配置内容更改
 v1.0.0.3
 i18n和README_EN.md
 v1.0.0.2
@@ -23,7 +25,7 @@ v1.0.0.1
 | /bm list     | bannpc.use |  查看禁止生成表  |
 
 ## 配置
-> 配置文件位置：tshock/禁止怪物表.json
+> 配置文件位置：tshock/BanNPC.zh-CN.json
 ```json
 {
   "阻止怪物生成表": []

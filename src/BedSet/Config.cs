@@ -22,6 +22,6 @@ internal class Config : JsonConfigBase<Config>
     protected override string Filename => "Bed";
 
     [LocalizedPropertyName(CultureType.Chinese, "重生点")]
-    [LocalizedPropertyName(CultureType.Chinese, "spawnOption")]
+    [LocalizedPropertyName(CultureType.Chinese, "SpawnOption")]
     public Dictionary<string, BedSpawn> SpawnOption { get; set; } = new();
 }

@@ -11,10 +11,10 @@
 | /back |    back    | Return to Death Location  |
 
 ## Config
-> Configuration file location：tshock/Back.json
+> Configuration file location：tshock/Back.en-US.json
 ```json
 {
-  "back冷却时间": 20 //Cool Down Time
+  "CD": 20 //Cool Down Time
 }
 ```
 
