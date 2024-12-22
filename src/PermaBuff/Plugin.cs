@@ -82,25 +82,33 @@ public class Plugin : TerrariaPlugin
             }
             else
             {
-                buffs.ForEach(x => Playerbuffs.DelBuff(args.Player.Name, x));
+                buffs.Clear();
+                buffs.TrimExcess();
                 args.Player.SendSuccessMessage("已清空所有永久buff");
+                args.Player.SendData(PacketTypes.PlayerBuff, null, args.Player.Index);
             }
         }
-        else if (args.Parameters.Count == 1 && args.Player.HasPermission("clearbuffs.admin"))
+
+        else if (args.Parameters.Count >= 1 && args.Parameters[0].ToLower() == "all")
         {
-            if (args.Parameters[0].ToLower() == "all")
+            if (args.Player.HasPermission("clearbuffs.admin"))
             {
-                Playerbuffs.ClearAll();
+                Playerbuffs.PlayerBuffs.Clear();
+                DB.ClearTable();
                 args.Player.SendSuccessMessage("已清空所有玩家永久buff");
+                foreach (var plr in TShock.Players.Where(p => p != null && p.IsLoggedIn && p.Active))
+                {
+                    plr.SendData(PacketTypes.PlayerBuff, null, plr.Index);
+                }
             }
             else
             {
-                args.Player.SendErrorMessage("未知参数，请使用 '/clearbuffs' 或 '/cbuff all'");
+                args.Player.SendErrorMessage("权限不足，无法执行此命令");
             }
         }
         else
         {
-            args.Player.SendErrorMessage("权限不足，无法执行此命令");
+            args.Player.SendErrorMessage("未知参数，请使用 '/clearbuffs' 或 '/cbuff all'");
         }
     }
 
