@@ -27,8 +27,7 @@ jobs:
           DOTNET_CLI_UI_LANGUAGE: zh-CN
         with:
           dotnet-version: |
-            8.x
-            6.x
+            9.x
 
       - name: 安装构建依赖
         shell: pwsh
