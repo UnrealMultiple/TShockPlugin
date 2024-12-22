@@ -16,7 +16,7 @@ public class MainPlugin : TerrariaPlugin
 {
     public override string Name => "BuildMaster";
 
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
 
     public override string Author => "豆沙 羽学，肝帝熙恩适配";
 

@@ -11,7 +11,7 @@ namespace BridgeBuilder;
 public class BridgeBuilder : LazyPlugin
 {
     public override string Name => "BridgeBuilder";
-    public override Version Version => new Version(1, 1, 1);
+    public override Version Version => new Version(1, 1, 2);
     public override string Author => "Soofa，肝帝熙恩汉化1449";
     public override string Description => "铺桥!";
 

@@ -10,7 +10,7 @@ namespace DamageStatistic;
 public class DamageStatistic : TerrariaPlugin
 {
     public override string Name => "DamageStatistic-伤害统计";
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
     public override string Author => "Megghy";
     public override string Description => "在每次 Boss 战后显示每个玩家造成的伤害。";
     public DamageStatistic(Main game) : base(game)

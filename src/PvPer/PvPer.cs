@@ -11,7 +11,7 @@ namespace PvPer;
 public class PvPer : TerrariaPlugin
 {
     public override string Name => "决斗系统";
-    public override Version Version => new Version(1, 1, 3);
+    public override Version Version => new Version(1, 1, 4);
     public override string Author => "Soofa 羽学修改";
     public override string Description => "不是你死就是我活系列";
     public PvPer(Main game) : base(game)

@@ -11,7 +11,7 @@ public class RealTime : TerrariaPlugin
     public override string Author => "十七";
     public override string Description => "同步现实时间";
     public override string Name => "RealTime";
-    public override Version Version => new Version(2, 6, 0, 0);
+    public override Version Version => new Version(2, 6, 0, 2);
     public RealTime(Main game) : base(game)
     {
     }

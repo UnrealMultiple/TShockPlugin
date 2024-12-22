@@ -24,7 +24,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "CriticalHit!";
 
-    public override Version Version => new Version(1, 2, 1);
+    public override Version Version => new Version(1, 2, 2);
 
     public Plugin(Main game)
         : base(game)

@@ -78,36 +78,33 @@ Attempted: Triggering the reel-in effect by changing AI[0] to 1, but unable to o
 | /reload  | 无 |   tshock.cfg.reload    |    Reload the configuration file    |
 
 ## Configuration
-> Configuration file location： tshock/自动钓鱼.json
+> Configuration file location： tshock/AutoFish.en-US.json
 ```json
 {
-  "插件开关": true,  // Global plugin switch
-  "多钩钓鱼": true,  // Enable multi-hook mode for automatic fishing to increase efficiency
-  "随机物品": false, // Randomly fish out any item
-  "多钩上限": 5,     // Define the maximum number of hooks that can fish simultaneously
-  "广告开关": true,  // Switch for the following string
-  "广告内容": "\n[i:3456][C/F2F2C7:Plugin Development] [C/BFDFEA:by] [c/00FFFF:Yu Xue] | [c/7CAEDD:Shao Siming][i:3459]", // Customizable string content
-  "Buff": {
-    "80": 10,       // 80 is the buff ID, 10 is the duration in frames (60 frames = 1 second)
+  "AdditionalCatches": [
+    29,
+    3093,
+    4345
+  ], // Extra catch items in addition to those that exist in the environment
+  "Enable": true, // Global plugin switch
+  "MultipleFishFloats": true, // Enable multi-hook mode for automatic fishing to increase efficiency
+  "RandCatches": false, // Randomly fish out any item
+  "MultipleFishFloatsLimit": 5, // Define the maximum number of hooks that can fish simultaneously
+  "SetBuffs": {
+    "80": 10, // 80 is the buff ID, 10 is the duration in frames (60 frames = 1 second)
     "122": 240
   },
-  "消耗模式": false, // Consume items to exchange for automatic fishing usage duration
-  "消耗数量": 10,     // Item quantity requirement in consumption mode (e.g., 6 of item A + 4 of item B = 10)
-  "自动时长": 24,     // Duration of automatic fishing granted to players in consumption mode, in minutes
-  "消耗物品": [
-    2002,           // Specified items for consumption mode
+  "ConsumeBait": false, // Consume items to exchange for automatic fishing usage duration
+  "ConsumeBaitNum": 10, // Item quantity requirement in consumption mode (e.g., 6 of item A + 4 of item B = 10)
+  "Time": 24, // Duration of automatic fishing granted to players in consumption mode, in minutes
+  "ConsumeItem": [
+    2002, // Specified items for consumption mode
     2675,
     2676,
     3191,
     3194
   ],
-  "额外渔获": [
-    75,             // Extra catch items in addition to those that exist in the environment
-    29,
-    3093,
-    4345
-  ],
-  "禁止衍生弹幕": [
+  "ForbidProjectiles": [
     623, // To solve the BUG where single summon creatures spawn more numbers under multi-hook mode
     625,
     626,
@@ -121,7 +118,6 @@ Attempted: Triggering the reel-in effect by changing AI[0] to 1, but unable to o
     963,
     970
   ]
-
 }
 ```
 

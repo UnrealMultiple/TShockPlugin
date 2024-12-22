@@ -15,7 +15,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "普通难度宝藏袋";
 
-    public override Version Version => new Version(1, 1, 3, 0);
+    public override Version Version => new Version(1, 1, 3, 2);
 
     public Plugin(Main game) : base(game)
     {

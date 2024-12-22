@@ -19,7 +19,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new(1, 0, 0, 5);
+    public override Version Version => new Version(1, 0, 0, 6);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Projectile.json");
 

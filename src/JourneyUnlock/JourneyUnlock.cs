@@ -16,7 +16,7 @@ public class JourneyUnlock : TerrariaPlugin
 
     public override string Name => "JourneyUnlock";
 
-    public override Version Version => new(1, 0, 1, 2);
+    public override Version Version => new Version(1, 0, 1, 3);
 
     public JourneyUnlock(Main game) : base(game)
     {

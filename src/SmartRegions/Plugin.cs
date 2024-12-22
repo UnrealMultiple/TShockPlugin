@@ -24,7 +24,7 @@ public class Plugin : TerrariaPlugin
 
     public Plugin(Main game) : base(game) { }
 
-    public override Version Version => new Version(1, 4, 3);
+    public override Version Version => new Version(1, 4, 4);
 
     public override string Name => "Smart Regions";
 

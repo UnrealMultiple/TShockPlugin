@@ -14,7 +14,7 @@ public class SurfaceBlock : LazyPlugin
     public override string Name => "禁地表弹幕";
     public override string Author => "羽学 Cai 西江小子 熙恩";
     public override string Description => "禁止特定弹幕在地表产生";
-    public override Version Version => new(2, 0, 0, 0);
+    public override Version Version => new Version(2, 0, 0, 1);
     #endregion
 
     #region 注册与卸载钩子

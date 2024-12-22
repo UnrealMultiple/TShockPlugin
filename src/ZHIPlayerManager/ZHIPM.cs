@@ -15,7 +15,7 @@ public partial class ZHIPM : TerrariaPlugin
 
     public override string Name => "ZHIPlayerManager";
 
-    public override Version Version => new Version(1, 0, 0, 9);
+    public override Version Version => new Version(1, 0, 0, 11);
 
     #region 字段或属性
     /// <summary>

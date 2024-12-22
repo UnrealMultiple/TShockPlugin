@@ -11,47 +11,27 @@ None
 ```
 
 ## Config
-> Configuration file location：tshock/AutoBroadcast.json
+> Configuration file location：tshock/AutoBroadcast.en-US.json
 ```json
-{
-  "广播列表": [ 
-    {
-      "广播名称": "实例广播",
-      "启用": false,
-      "广播消息": [
-        "这是一条广播",
-        "每五分钟执行一次",
-        "可以执行命令",
-        "/time noon"
-      ],
-      "RGB颜色": [255.0, 0.0, 0.0],
-      "时间间隔": 300,
-      "延迟执行": 60,
-      "广播组": [],
-      "触发词语": [], //可以设置聊天消息关键词触发此广播
-      "触发整个组": false //开启后将会对'广播组'内所有玩家执行此广播
-    }
-  ]
-}
-
-// You can refer to this:
 {
   "Broadcasts": [
     {
-      "Name": "Example Broadcast",
-      "Enabled": false,
-      "Messages": [
-        "This is an example broadcast",
-        "It will broadcast every 5 minutes",
-        "Broadcasts can also execute commands",
-        "/time noon"
+      "Name": "示例广播",
+      "Enable": true,
+      "Msg": [
+        "/say Ciallo～(∠・ω< )⌒★",
+        "The auto broadcast executed the server command /say Ciallo～(∠・ω< )⌒★"
       ],
-      "ColorRGB": [255.0, 0.0, 0.0],
-      "Interval": 300,
-      "StartDelay": 60,
-      "Groups"": [],
+      "Color": [
+        255.0,
+        234.0,
+        115.0
+      ],
+      "Interval": 600, // This is the interval time in seconds.
+      "Delay": 0, // This is the delay before the first broadcast starts.
+      "Groups": [], // Define specific groups for this broadcast.
       "TriggerWords": [], // You can set chat message keywords to trigger this broadcast.
-      "TriggerToWholeGroup": false // When enabled, this broadcast will be executed for all players in the 'broadcast group'
+      "TriggerToWholeGroup": false // When enabled, this broadcast will be executed for all players in the 'broadcast group'.
     }
   ]
 }

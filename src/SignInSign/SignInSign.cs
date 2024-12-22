@@ -13,7 +13,7 @@ public class SignInSign : TerrariaPlugin
     public override string Name => "告示牌登录 SignInSign";
     public override string Description => "告示牌登录交互插件 支持进服弹窗！";
     public override string Author => "Soofa 羽学 少司命";
-    public override Version Version => new(1, 0, 5);
+    public override Version Version => new Version(1, 0, 6);
 
     #endregion
 

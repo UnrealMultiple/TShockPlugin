@@ -13,7 +13,7 @@ public class TestPlugin : TerrariaPlugin
     public override string Name => "复活币";
     public override string Author => "GK 阁下";
     public override string Description => "让死者瞬间原地复活的神奇力量！";
-    public override Version Version => new Version(1, 0, 0, 2);
+    public override Version Version => new Version(1, 0, 0, 4);
     #endregion
 
     #region 实例与变量
