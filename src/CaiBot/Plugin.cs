@@ -7,7 +7,6 @@ using System.Net.WebSockets;
 using System.Reflection;
 using System.Text;
 using Terraria;
-using Terraria.Localization;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
@@ -19,7 +18,7 @@ namespace CaiBot;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public static readonly Version VersionNum = new (2024, 12, 20, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new (2024, 12, 22, 1); //日期+版本号(0,1,2...)
     public static int InitCode = -1;
     public static bool LocalMode;
     public static bool DebugMode;
@@ -41,12 +40,11 @@ public class Plugin : TerrariaPlugin
     {
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
         Commands.ChatCommands.Add(new Command("CaiBot.Admin", this.CaiBotCommand, "caibot"));
-        Config.Read();
-        Config.config.Write();
+        Config.Settings.Read();
+        Config.Settings.Write();
         LocalMode = Program.LaunchParameters.ContainsKey("-cailocalbot");
         DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
         BanManager.OnBanPostAdd += this.OnBanInsert;
-        Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
         Hooks.MessageBuffer.InvokeGetData += Login.MessageBuffer_InvokeGetData;
         ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
         ServerApi.Hooks.ServerChat.Register(this, this.OnChat, int.MaxValue);
@@ -60,7 +58,7 @@ public class Plugin : TerrariaPlugin
                 try
                 {
                     WebSocket = new ClientWebSocket();
-                    while (string.IsNullOrEmpty(Config.config.Token))
+                    while (string.IsNullOrEmpty(Config.Settings.Token))
                     {
                         await Task.Delay(TimeSpan.FromSeconds(10));
                         HttpClient client = new ();
@@ -68,27 +66,27 @@ public class Plugin : TerrariaPlugin
                         var response = client.GetAsync($"http://api.terraria.ink:22334/bot/get_token?" +
                                                        $"code={InitCode}")
                             .Result;
-                        //TShock.Log.ConsoleInfo($"[CaiAPI]尝试被动绑定,状态码:{response.StatusCode}");
-                        if (response.StatusCode == HttpStatusCode.OK && Config.config.Token == "")
+                        if (response.StatusCode != HttpStatusCode.OK || Config.Settings.Token != "")
                         {
-                            var responseBody = await response.Content.ReadAsStringAsync();
-                            var json = JObject.Parse(responseBody);
-                            var token = json["token"]!.ToString();
-                            Config.config.Token = token;
-                            Config.config.Write();
-                            TShock.Log.ConsoleInfo("[CaiAPI]被动绑定成功!");
+                            continue;
                         }
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var json = JObject.Parse(responseBody);
+                        var token = json["token"]!.ToString();
+                        Config.Settings.Token = token;
+                        Config.Settings.Write();
+                        TShock.Log.ConsoleInfo("[CaiAPI]被动绑定成功!");
                     }
 
                     if (LocalMode)
                     {
-                        await WebSocket.ConnectAsync(new Uri("ws://127.0.0.1:22334/bot/" + Config.config.Token),
+                        await WebSocket.ConnectAsync(new Uri("ws://127.0.0.1:22334/bot/" + Config.Settings.Token),
                             CancellationToken.None);
                         TShock.Log.ConsoleWarn("[CaiAPI]你正在使用CaiBot本地模式,请确保你已本地部署CaiBot!");
                     }
                     else
                     {
-                        await WebSocket.ConnectAsync(new Uri("ws://api.terraria.ink:22334/bot/" + Config.config.Token),
+                        await WebSocket.ConnectAsync(new Uri("ws://api.terraria.ink:22334/bot/" + Config.Settings.Token),
                             CancellationToken.None);
                     }
 
@@ -150,7 +148,6 @@ public class Plugin : TerrariaPlugin
             var asm = Assembly.GetExecutingAssembly();
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate.Method.DeclaringType?.Assembly == asm);
             AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
-            Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
             Hooks.MessageBuffer.InvokeGetData -= Login.MessageBuffer_InvokeGetData;
             BanManager.OnBanPostAdd -= this.OnBanInsert;
             ServerApi.Hooks.NetGetData.Deregister(this, Login.OnGetData);
@@ -174,12 +171,12 @@ public class Plugin : TerrariaPlugin
     {
         var plr = TShock.Players[args.Who];
 
-        if (Config.config.WhiteList && plr is { IsLoggedIn: false })
+        if (Config.Settings.WhiteList && plr is { IsLoggedIn: false })
         {
             args.Handled = true;
         }
         
-        if (!Config.config.SyncChatFromServer || plr == null || !plr.IsLoggedIn || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) || args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier) || string.IsNullOrEmpty(args.Text))
+        if (!Config.Settings.SyncChatFromServer || plr == null || !plr.IsLoggedIn || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) || args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier) || string.IsNullOrEmpty(args.Text))
         {
             return;
         }
@@ -187,8 +184,8 @@ public class Plugin : TerrariaPlugin
         var result = new RestObject
         {
             { "type", "chat" },
-            { "chat", string.Format(Config.config.ServerChatFormat, plr.Name, args.Text, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
-            { "group", Config.config.GroupNumber }
+            { "chat", string.Format(Config.Settings.ServerChatFormat, plr.Name, args.Text, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
+            { "group", Config.Settings.GroupNumber }
         };
         _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
     }
@@ -196,7 +193,7 @@ public class Plugin : TerrariaPlugin
     private void PlayerHooksOnPlayerPostLogin(PlayerPostLoginEventArgs e)
     {
         var plr = e.Player;
-        if (!Config.config.SyncChatFromServer || plr == null)
+        if (!Config.Settings.SyncChatFromServer || plr == null)
         {
             return;
         }
@@ -204,8 +201,8 @@ public class Plugin : TerrariaPlugin
         var result = new RestObject
         {
             { "type", "chat" },
-            { "chat", string.Format(Config.config.JoinServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
-            { "group", Config.config.GroupNumber }
+            { "chat", string.Format(Config.Settings.JoinServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
+            { "group", Config.Settings.GroupNumber }
         };
         _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
     }
@@ -213,7 +210,7 @@ public class Plugin : TerrariaPlugin
     private void PlayerHooksOnPlayerLogout(PlayerLogoutEventArgs e)
     {
         var plr = e.Player;
-        if (!Config.config.SyncChatFromServer || plr == null)
+        if (!Config.Settings.SyncChatFromServer || plr == null)
         {
             return;
         }
@@ -221,8 +218,8 @@ public class Plugin : TerrariaPlugin
         var result = new RestObject
         {
             { "type", "chat" },
-            { "chat", string.Format(Config.config.ExitServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
-            { "group", Config.config.GroupNumber }
+            { "chat", string.Format(Config.Settings.ExitServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
+            { "group", Config.Settings.GroupNumber }
         };
         _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
     }
@@ -269,9 +266,9 @@ public class Plugin : TerrariaPlugin
                 plr.SendInfoMessage($"[CaiBot信息]\n" +
                                     $"插件版本: v{VersionNum}\n" +
                                     $"WebSocket状态: {WebSocket.State}\n" +
-                                    $"绑定QQ群: {(Config.config.GroupNumber == 0L ? "未绑定|未连接" : Config.config.GroupNumber)}\n" +
+                                    $"绑定QQ群: {(Config.Settings.GroupNumber == 0L ? "未绑定|未连接" : Config.Settings.GroupNumber)}\n" +
                                     $"本地模式: {LocalMode}\n" +
-                                    $"绑定状态: {Config.config.Token != ""}\n" +
+                                    $"绑定状态: {Config.Settings.Token != ""}\n" +
                                     $"Debug模式: {DebugMode}\n" +
                                     $"Economic API支持: {EconomicSupport.GetCoinsSupport}\n" +
                                     $"Economic RPG支持: {EconomicSupport.GetLevelNameSupport}\n" +
@@ -285,7 +282,7 @@ public class Plugin : TerrariaPlugin
                 break;
             case "验证码":
             case "code":
-                if (!string.IsNullOrEmpty(Config.config.Token))
+                if (!string.IsNullOrEmpty(Config.Settings.Token))
                 {
                     plr.SendInfoMessage("[CaiBot]服务器已绑定无法生成验证码!");
                     return;
@@ -319,7 +316,7 @@ public class Plugin : TerrariaPlugin
     private void GenCode(EventArgs args)
     {
         EconomicSupport.Init();
-        if (!string.IsNullOrEmpty(Config.config.Token))
+        if (!string.IsNullOrEmpty(Config.Settings.Token))
         {
             return;
         }
@@ -327,37 +324,7 @@ public class Plugin : TerrariaPlugin
         InitCode = new Random().Next(10000000, 99999999);
         TShock.Log.ConsoleError($"[CaiBot]您的服务器绑定码为: {InitCode}");
     }
-
-    private bool MessageBuffer_InvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig,
-        MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length,
-        ref int messageType, int maxPackets)
-    {
-        if (messageType == 217)
-        {
-            if (!string.IsNullOrEmpty(Config.config.Token))
-            {
-                NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable("exist"));
-                TShock.Log.ConsoleInfo("[CaiAPI]试图绑定已绑定服务器!");
-                return false;
-            }
-
-            instance.ResetReader();
-            instance.reader.BaseStream.Position = start + 1;
-            var data = instance.reader.ReadString();
-            var token = Guid.NewGuid().ToString();
-            if (data == InitCode.ToString())
-            {
-                NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable(token));
-                Config.config.Token = token;
-                Config.config.Write();
-                TShock.Log.ConsoleInfo("[CaiAPI]主动绑定成功!");
-                return false;
-            }
-
-            NetMessage.SendData(2, instance.whoAmI, -1, NetworkText.FromFormattable("code"));
-        }
-        return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
-    }
+    
     
     
     #region 加载前置

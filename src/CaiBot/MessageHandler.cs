@@ -38,8 +38,8 @@ public static class MessageHandle
         {
             case "delserver":
                 TShock.Log.ConsoleInfo("[CaiAPI]BOT发送解绑命令...");
-                Config.config.Token = "";
-                Config.config.Write();
+                Config.Settings.Token = "";
+                Config.Settings.Write();
                 Random rnd = new ();
                 Plugin.InitCode = rnd.Next(10000000, 99999999);
                 TShock.Log.ConsoleError($"[CaiBot]您的服务器绑定码为: {Plugin.InitCode}");
@@ -54,11 +54,11 @@ public static class MessageHandle
                     { "tshock_version", TShock.VersionNum.ToString() },
                     { "plugin_version", Plugin.VersionNum },
                     { "terraria_version", Main.versionNumber },
-                    { "cai_whitelist", Config.config.WhiteList },
+                    { "cai_whitelist", Config.Settings.WhiteList },
                     { "os", RuntimeInformation.RuntimeIdentifier },
                     { "world", TShock.Config.Settings.UseServerName ? TShock.Config.Settings.ServerName : Main.worldName },
-                    { "sync_group_chat", Config.config.SyncChatFromGroup },
-                    { "sync_server_chat", Config.config.SyncChatFromServer },
+                    { "sync_group_chat", Config.Settings.SyncChatFromGroup },
+                    { "sync_server_chat", Config.Settings.SyncChatFromServer },
                     { "group", (long) jsonObject["group"]! }
                 };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
@@ -66,13 +66,13 @@ public static class MessageHandle
             case "groupid":
                 var groupId = (long) jsonObject["groupid"]!;
                 TShock.Log.ConsoleInfo($"[CaiAPI]群号获取成功: {groupId}");
-                if (Config.config.GroupNumber != 0L)
+                if (Config.Settings.GroupNumber != 0L)
                 {
-                    TShock.Log.ConsoleWarn($"[CaiAPI]检测到你在配置文件中已设置群号[{Config.config.GroupNumber}],BOT自动获取的群号将被忽略！");
+                    TShock.Log.ConsoleWarn($"[CaiAPI]检测到你在配置文件中已设置群号[{Config.Settings.GroupNumber}],BOT自动获取的群号将被忽略！");
                 }
                 else
                 {
-                    Config.config.GroupNumber = groupId;
+                    Config.Settings.GroupNumber = groupId;
                 }
 
                 break;
@@ -85,31 +85,18 @@ public static class MessageHandle
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "online":
-                var onlineResult = "";
+                var onlineResult = new StringBuilder();
                 if (TShock.Utils.GetActivePlayerCount() == 0)
                 {
-                    onlineResult = "当前没有玩家在线捏";
+                    onlineResult.AppendLine("没有玩家在线捏...");
                 }
                 else
                 {
-                    onlineResult += $"在线的玩家({TShock.Utils.GetActivePlayerCount()}/{TShock.Config.Settings.MaxSlots})\n";
-
-
-                    List<string> players = new ();
-
-                    foreach (var ply in TShock.Players)
-                    {
-                        if (ply is { Active: true })
-                        {
-                            players.Add(ply.Name);
-                        }
-                    }
-
-                    onlineResult += string.Join(',', players);
+                    onlineResult.AppendLine($"在线玩家({TShock.Utils.GetActivePlayerCount()}/{TShock.Config.Settings.MaxSlots})");
+                    onlineResult.AppendLine(string.Join(',', TShock.Players.Where(x=>x!=null && x.Active).Select(x=>x.Name)));
                 }
 
                 List<string> onlineProcessList = new ();
-
                 #region 进度查询
 
                 if (!NPC.downedSlimeKing)
@@ -181,8 +168,8 @@ public static class MessageHandle
                 result = new RestObject
                 {
                     { "type", "online" },
-                    { "result", onlineResult },
-                    { "worldname", Main.worldName },
+                    { "result", onlineResult.ToString()}, // “怎么有种我是男的的感觉” -- 张芷睿大人 (24.12.22)
+                    { "worldname", string.IsNullOrEmpty(Main.worldName) ? "地图还没加载捏~" : Main.worldName }, 
                     { "process", onlineProcess },
                     { "group", (long) jsonObject["group"]! }
                 };
@@ -546,12 +533,12 @@ public static class MessageHandle
                 var chatText = (string) jsonObject["chat_text"]!;
                 var groupNumber = (long) jsonObject["group_id"]!;
                 var senderId = (long) jsonObject["sender_id"]!;
-                if (Config.config.CustomGroupName.TryGetValue(groupNumber, out var value))
+                if (Config.Settings.CustomGroupName.TryGetValue(groupNumber, out var value))
                 {
                     groupName = value;
                 }
 
-                TShock.Utils.Broadcast(string.Format(Config.config.GroupChatFormat, groupName, nickname, chatText, groupNumber, senderId), Color.White);
+                TShock.Utils.Broadcast(string.Format(Config.Settings.GroupChatFormat, groupName, nickname, chatText, groupNumber, senderId), Color.White);
                 break;
         }
     }
