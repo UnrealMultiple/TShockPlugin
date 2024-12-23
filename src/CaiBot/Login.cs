@@ -15,7 +15,7 @@ public static class Login
         MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length,
         ref int messageType, int maxPackets)
     {
-        if (!Config.config.WhiteList)
+        if (!Config.Settings.WhiteList)
         {
             return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
         }
@@ -57,7 +57,7 @@ public static class Login
 
     public static void OnGetData(GetDataEventArgs args)
     {
-        if (!Config.config.WhiteList)
+        if (!Config.Settings.WhiteList)
         {
             return;
         }
@@ -97,7 +97,7 @@ public static class Login
     public static bool CheckWhite(string name, int code)
     {
         var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
-        var number = Config.config.GroupNumber;
+        var number = Config.Settings.GroupNumber;
         if (playerList.Count == 0)
         {
             return false;
