@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuildMaster\n"
-"POT-Creation-Date: 2024-11-19 17:21:39+0000\n"
-"PO-Revision-Date: 2024-11-19 17:21:40+0000\n"
+"POT-Creation-Date: 2024-12-24 21:05:30+0000\n"
+"PO-Revision-Date: 2024-12-24 21:05:30+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -151,10 +151,6 @@ msgstr ""
 msgid "/bma swt [房间ID] [时间] 设置等待时间(单位：秒)"
 msgstr ""
 
-#: ../../MainPlugin.cs:245
-msgid "你已经评分过了"
-msgstr ""
-
 #: ../../MainPlugin.cs:167
 msgid "不可以破坏边框"
 msgstr ""
@@ -184,6 +180,10 @@ msgstr ""
 
 #: ../../MainPlugin.cs:228
 msgid "你不能给自己评分"
+msgstr ""
+
+#: ../../MainPlugin.cs:245
+msgid "你已经评分过了"
 msgstr ""
 
 #: ../../BuildRoom.cs:311
