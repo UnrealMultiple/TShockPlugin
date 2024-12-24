@@ -1729,7 +1729,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                 sb.AppendLine();
 
-                sb.Append("GetString(各种永久增益：");
+                sb.Append(GetString("各种永久增益："));
                 flag = 0;
                 if (list[0].TPlayer.extraAccessory)
                 {

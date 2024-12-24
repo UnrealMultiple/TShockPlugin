@@ -16,7 +16,7 @@ public class MainPlugin : TerrariaPlugin
 {
     public override string Name => "BuildMaster";
 
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
 
     public override string Author => "豆沙 羽学，肝帝熙恩适配";
 
@@ -242,7 +242,7 @@ public class MainPlugin : TerrariaPlugin
                 }
                 else
                 {
-                    playerByName.SendInfoMessage(GetString("GetString(你已经评分过了"));
+                    playerByName.SendInfoMessage(GetString("你已经评分过了"));
                 }
             }
             else if (ConfigUtils.config.BanItem.Contains(args.Player.TPlayer.HeldItem.netID))
