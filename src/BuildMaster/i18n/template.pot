@@ -152,7 +152,7 @@ msgid "/bma swt [房间ID] [时间] 设置等待时间(单位：秒)"
 msgstr ""
 
 #: ../../MainPlugin.cs:245
-msgid "GetString(你已经评分过了"
+msgid "你已经评分过了"
 msgstr ""
 
 #: ../../MainPlugin.cs:167
