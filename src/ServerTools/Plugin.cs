@@ -20,7 +20,7 @@ public partial class Plugin : TerrariaPlugin
 
     public override string Name => "ServerTools";// 插件名字
 
-    public override Version Version => new Version(1, 1, 7, 10);// 插件版本
+    public override Version Version => new Version(1, 1, 8, 0);// 插件版本
 
     private static Config Config = new();
 
@@ -288,8 +288,8 @@ public partial class Plugin : TerrariaPlugin
     { 
         self.Account = new()
         {
-            Name = self.Name,
-            Group = self.Group.Name,
+            Name = name,
+            Group = group.Name,
             ID = self.Index
         };
         orig(self, name, group);
