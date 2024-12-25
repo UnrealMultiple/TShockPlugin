@@ -4,6 +4,7 @@ using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
 using Rests;
 using System.Text;
+using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
@@ -36,7 +37,6 @@ public partial class Plugin : LazyPlugin
 
     public Plugin(Main game) : base(game)
     {
-        new Hook(typeof(TextLog).GetConstructor(new Type[] { typeof(string), typeof(bool) }), TextLogCtor);
         
     }
 
@@ -81,6 +81,7 @@ public partial class Plugin : LazyPlugin
             TShock.RestApi.Register(command);
         }
         Timer += this.OnUpdatePlayerOnline;
+        On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
         this.HandleCommandLine(Environment.GetCommandLineArgs());
     }
     protected override void Dispose(bool disposing)
@@ -113,6 +114,7 @@ public partial class Plugin : LazyPlugin
             GetDataHandlers.PlayerSpawn.UnRegister(this.OnPlayerSpawn);
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnUpdate);
             #endregion
+            On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
             CmdHook?.Dispose();
             AccountInfoHook?.Dispose();
             Timer -= this.OnUpdatePlayerOnline;
@@ -151,6 +153,32 @@ public partial class Plugin : LazyPlugin
                 Utils.Clear7Item(e.Player);
             }
         }
+    }
+    
+    private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
+    {
+
+        if (packetId == (byte) PacketTypes.LoadNetModule)
+        {
+            using var ms = new MemoryStream(instance.readBuffer);
+            ms.Position = readOffset;
+            using var reader = new BinaryReader(ms);
+            var id = reader.ReadUInt16();
+            if (id == Terraria.Net.NetManager.Instance.GetId<Terraria.GameContent.NetModules.NetTextModule>())
+            {
+                var msg = Terraria.Chat.ChatMessage.Deserialize(reader);
+                if (msg.Text.Length > Config.Instance.ChatLength)
+                {
+                    return false;
+                }
+
+                if (Config.Instance.DisableEmojiMessage && Regex.IsMatch(msg.Text, @"[\uD800-\uDBFF][\uDC00-\uDFFF]"))
+                {
+                    return false;
+                }
+            }
+        }
+        return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
     }
 
 
@@ -243,14 +271,6 @@ public partial class Plugin : LazyPlugin
             ID = self.Index
         };
         orig(self, name, group);
-    }
-
-    public static void TextLogCtor(Action<TextLog, string, bool> orig, TextLog self, string filename, bool clear)
-    {
-        typeof(TextLog)
-            .GetField("_logWriter", System.Reflection.BindingFlags.NonPublic)
-            ?.SetValue(self, new StreamWriter(TShock.Log.FileName, !clear, new UTF8Encoding(true, true)));
-        orig(self, filename, clear);
     }
 
     private void OnPlayerSpawn(object? sender, GetDataHandlers.SpawnEventArgs e)

@@ -38,6 +38,10 @@ public class Config : JsonConfigBase<Config>
     [LocalizedPropertyName(CultureType.English, "SetJourneyDifficult")]
     public bool SetJourneyDifficult = false;
 
+    [LocalizedPropertyName(CultureType.Chinese, "禁用Emoji消息")]
+    [LocalizedPropertyName(CultureType.English, "DisableEmojiMessage")]
+    public bool DisableEmojiMessage = false;
+
     [LocalizedPropertyName(CultureType.Chinese, "旅途模式难度")]
     [LocalizedPropertyName(CultureType.English, "JourneyDifficult")]
     public string JourneyMode = "master";
