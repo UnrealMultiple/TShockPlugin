@@ -36,7 +36,7 @@ public partial class Plugin : LazyPlugin
 
     public Plugin(Main game) : base(game)
     {
-        typeof(TextLog).GetField("_logWriter")?.SetValue(TShock.Log, new StreamWriter(TShock.Log.FileName, true, new UTF32Encoding(true, true)));
+        typeof(TextLog).GetField("_logWriter")?.SetValue(TShock.Log, new StreamWriter(TShock.Log.FileName, true, new UTF8Encoding(true, true)));
     }
 
     private RestCommand[] addRestCommands = null!;
