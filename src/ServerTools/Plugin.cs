@@ -36,7 +36,8 @@ public partial class Plugin : LazyPlugin
 
     public Plugin(Main game) : base(game)
     {
-        typeof(TextLog).GetField("_logWriter")?.SetValue(TShock.Log, new StreamWriter(TShock.Log.FileName, true, new UTF8Encoding(true, true)));
+        new Hook(typeof(TextLog).GetConstructor(new Type[] { typeof(string), typeof(bool) }), TextLogCtor);
+        
     }
 
     private RestCommand[] addRestCommands = null!;
@@ -242,6 +243,14 @@ public partial class Plugin : LazyPlugin
             ID = self.Index
         };
         orig(self, name, group);
+    }
+
+    public static void TextLogCtor(Action<TextLog, string, bool> orig, TextLog self, string filename, bool clear)
+    {
+        typeof(TextLog)
+            .GetField("_logWriter", System.Reflection.BindingFlags.NonPublic)
+            ?.SetValue(self, new StreamWriter(TShock.Log.FileName, !clear, new UTF8Encoding(true, true)));
+        orig(self, filename, clear);
     }
 
     private void OnPlayerSpawn(object? sender, GetDataHandlers.SpawnEventArgs e)
