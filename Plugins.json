@@ -1137,12 +1137,15 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.7.10",
+    "Version": "1.1.8.0",
     "Author": "少司命",
     "Description": "服务器工具",
     "AssemblyName": "ServerTools",
     "Path": "ServerTools.dll",
-    "Dependencies": [],
+    "Dependencies": [
+      "LazyAPI",
+      "linq2db"
+    ],
     "HotReload": true
   },
   {

@@ -167,7 +167,7 @@
 | [RestInventory](./src/RestInventory/README.md) | 提供 REST 查询背包接口 |  |
 | [RolesModifying](./src/RolesModifying/README.md) | 修改玩家背包 |  |
 | [Sandstorm](./src/Sandstorm/README.md) | 切换沙尘暴 |  |
-| [ServerTools](./src/ServerTools/README.md) | 服务器管理工具 |  |
+| [ServerTools](./src/ServerTools/README.md) | 服务器管理工具 | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
 | [SessionSentinel](./src/SessionSentinel/README.md) | 处理长时间不发送数据包的玩家 |  |
 | [ShortCommand](./src/ShortCommand/README.md) | 简短指令 |  |
 | [ShowArmors](./src/ShowArmors/README.md) | 展示装备栏 |  |
