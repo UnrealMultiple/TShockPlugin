@@ -149,7 +149,7 @@ public class Chameleon : LazyPlugin
                 break;
             }
             var knownIps = JsonConvert.DeserializeObject<List<string>>(account.KnownIps);
-            if (Configuration.Instance.VerifyloginIP && JsonConvert.DeserializeObject <string[]>(account.KnownIps) is var kownIps && (knownIps is null || player.IP != kownIps.LastOrDefault()))
+            if (Configuration.Instance.VerifyloginIP && JsonConvert.DeserializeObject <string[]>(account.KnownIps) is var kownIps && (knownIps is null || player.IP != kownIps.Last()))
             {
                 TShock.Log.ConsoleInfo(player.Name + GetString("IP地址不存在或与上次登录IP地址不符。"));
                 break;
