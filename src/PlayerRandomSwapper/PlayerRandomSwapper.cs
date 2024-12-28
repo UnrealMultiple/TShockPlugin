@@ -221,7 +221,7 @@ public class PlayerRandomSwapper : LazyPlugin
 
         if (Config.Instance.AllowSamePlayerSwap && player1.Name == player2.Name)
         {
-            TSPlayer.All.SendMessage(GetString($"{player1.Name}你尝试自交，但那是没用的"), Color.DeepSkyBlue);
+            TSPlayer.All.SendMessage(GetString($"{player1.Name} 尝试自交，但那是没用的"), Color.DeepSkyBlue);
             return;
         }
 
