@@ -25,7 +25,7 @@ public class Chameleon : LazyPlugin
 
     public override string Description => "账户系统交互替换方案";
 
-    public override Version Version => new Version(1, 0, 6);
+    public override Version Version => new Version(1, 0, 7);
 
 
     public Chameleon(Main game) : base(game)
@@ -128,7 +128,7 @@ public class Chameleon : LazyPlugin
                 if (account.UUID == player.UUID)
                 {
                     var knownIps = JsonConvert.DeserializeObject<List<string>>(account.KnownIps);
-                    if (knownIps != null && player.IP == knownIps[^1])
+                    if (knownIps != null && player.IP == knownIps[^1] || Configuration.Instance.VerifyloginIP)
                     {
                         if (player.State == 1)
                         {
