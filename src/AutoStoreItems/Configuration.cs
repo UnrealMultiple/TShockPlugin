@@ -15,7 +15,7 @@ internal class Configuration : JsonConfigBase<Configuration>
     public bool PM { get; set; } = true;
 
     [LocalizedPropertyName(CultureType.Chinese, "存钱罐", Order = -9)]
-    [LocalizedPropertyName(CultureType.English, "Piggiy", Order = -11)]
+    [LocalizedPropertyName(CultureType.English, "Piggy", Order = -11)]
     public bool bank1 { get; set; } = true;
     [LocalizedPropertyName(CultureType.Chinese, "保险箱", Order = -8)]
     [LocalizedPropertyName(CultureType.English, "Safe", Order = -11)]

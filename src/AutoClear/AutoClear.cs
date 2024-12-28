@@ -33,7 +33,7 @@ public class Autoclear : LazyPlugin
     {
         if (disposing)
         {
-            //ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
+            ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
         }
         base.Dispose(disposing);
     }
