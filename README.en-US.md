@@ -171,7 +171,7 @@
 | [RestInventory](./src/RestInventory/README.md) | No | Provide REST query backpack interface |  |
 | [RolesModifying](./src/RolesModifying/README.md) | No | Modify player backpack |  |
 | [Sandstorm](./src/Sandstorm/README.md) | No | Toggle sandstorm |  |
-| [ServerTools](./src/ServerTools/README.en-US.md) | No | Server management tools |  |
+| [ServerTools](./src/ServerTools/README.en-US.md) | No | Server management tools | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
 | [SessionSentinel](./src/SessionSentinel/README.md) | No | Handle players not sending data packets for a long time |  |
 | [ShortCommand](./src/ShortCommand/README.md) | No | Short command |  |
 | [ShowArmors](./src/ShowArmors/README.md) | No | Display equipment bar |  |

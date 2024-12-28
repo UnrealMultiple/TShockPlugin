@@ -171,7 +171,7 @@
 | [RestInventory](./src/RestInventory/README.md) | No | Proporciona una interfaz de consulta REST para la mochila |  |
 | [RolesModifying](./src/RolesModifying/README.md) | No | Modificar mochila del jugador |  |
 | [Sandstorm](./src/Sandstorm/README.md) | No | Alterna la tormenta de arena |  |
-| [ServerTools](./src/ServerTools/README.md) | No | Herramientas de administración del servidor |  |
+| [ServerTools](./src/ServerTools/README.md) | No | Herramientas de administración del servidor | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
 | [SessionSentinel](./src/SessionSentinel/README.md) | No | Maneja jugadores que no envían paquetes de datos por mucho tiempo |  |
 | [ShortCommand](./src/ShortCommand/README.md) | No | Comando corto |  |
 | [ShowArmors](./src/ShowArmors/README.md) | No | Muestra la barra de equipo |  |
