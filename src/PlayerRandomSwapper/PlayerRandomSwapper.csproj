@@ -3,14 +3,6 @@
     <Import Project="..\..\template.targets" />
 
     <ItemGroup>
-      <None Remove="i18n\en-US.mo" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="i18n\en-US.mo" />
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\LazyAPI\LazyAPI.csproj" />
     </ItemGroup>
 
