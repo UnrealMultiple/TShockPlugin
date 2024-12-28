@@ -17,7 +17,7 @@ internal class Config : JsonConfigBase<Config>
 
     [LocalizedPropertyName(CultureType.Chinese, "传送间隔秒")]
     [LocalizedPropertyName(CultureType.English, "IntervalSeconds")]
-    public int IntervalSeconds { get; set; } = 5;
+    public int IntervalSeconds { get; set; } = 10;
 
     [LocalizedPropertyName(CultureType.Chinese, "随机传送间隔")]
     [LocalizedPropertyName(CultureType.English, "RandomIntervalSeconds")]
@@ -45,7 +45,7 @@ internal class Config : JsonConfigBase<Config>
 
     [LocalizedPropertyName(CultureType.Chinese, "广播交换倒计时阈值")]
     [LocalizedPropertyName(CultureType.English, "BroadcastRemainingTimeThreshold")]
-    public int BroadcastRemainingTimeThreshold { get; set; } = 10;
+    public int BroadcastRemainingTimeThreshold { get; set; } = 5;
 
     [LocalizedPropertyName(CultureType.Chinese, "广播玩家交换位置信息")]
     [LocalizedPropertyName(CultureType.English, "BroadcastPlayerSwap")]
