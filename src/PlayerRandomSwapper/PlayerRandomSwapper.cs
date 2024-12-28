@@ -53,7 +53,7 @@ public class PlayerRandomSwapper : LazyPlugin
             return;
         }
 
-        var players = TShock.Players.Where(p => p != null && p.Active && !p.Dead).ToList();
+        var players = TShock.Players.Where(p => p != null && p.Active && !p.Dead);
         var eligiblePlayers = players.Where(p => p.HasPermission("playerswap")).ToList();
 
         if (eligiblePlayers.Count < 2)
