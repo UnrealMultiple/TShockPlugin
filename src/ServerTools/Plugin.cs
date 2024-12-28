@@ -1,18 +1,19 @@
+using LazyAPI;
 using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
 using Rests;
+using System.Text;
 using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 
 namespace ServerTools;
 
 [ApiVersion(2, 1)]
-public partial class Plugin : TerrariaPlugin
+public partial class Plugin : LazyPlugin
 {
     public override string Author => "少司命";// 插件作者
 
@@ -20,11 +21,7 @@ public partial class Plugin : TerrariaPlugin
 
     public override string Name => "ServerTools";// 插件名字
 
-    public override Version Version => new Version(1, 1, 7, 10);// 插件版本
-
-    private static Config Config = new();
-
-    private readonly string PATH = Path.Combine(TShock.SavePath, "ServerTools.json");
+    public override Version Version => new Version(1, 1, 8, 0);// 插件版本
 
     private DateTime LastCommandUseTime = DateTime.Now;
 
@@ -40,23 +37,21 @@ public partial class Plugin : TerrariaPlugin
 
     public Plugin(Main game) : base(game)
     {
-        this._reloadHandler = (_) => this.LoadConfig();
+        
     }
-    private readonly GeneralHooks.ReloadEventD _reloadHandler;
+
     private RestCommand[] addRestCommands = null!;
     public override void Initialize()
     {
-
-        this.LoadConfig();
         ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitialize);
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);
-        ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
+        ServerApi.Hooks.ServerLeave.Register(this, this.OnLeaveV2);
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
         ServerApi.Hooks.NetGetData.Register(this, this.GetData);
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreet);
-        ServerApi.Hooks.ServerLeave.Register(this, this._OnLeave);
+        ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
         ServerApi.Hooks.NpcAIUpdate.Register(this, OnNPCUpdate);
         Commands.ChatCommands.Add(new Command(Permissions.clear, this.Clear, "clp"));
@@ -74,7 +69,6 @@ public partial class Plugin : TerrariaPlugin
         GetDataHandlers.KillMe.Register(this.KillMe);
         GetDataHandlers.PlayerSpawn.Register(this.OnPlayerSpawn);
         GetDataHandlers.PlayerUpdate.Register(this.OnUpdate);
-        GeneralHooks.ReloadEvent += this._reloadHandler;
         CmdHook = new Hook(typeof(TSRestPlayer).GetConstructor(new Type[] { typeof(string), typeof(TShockAPI.Group) }), RestPlayerCtor);
         AccountInfoHook = new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static), ViewAccountInfo);
         this.addRestCommands = new RestCommand[]
@@ -95,7 +89,6 @@ public partial class Plugin : TerrariaPlugin
         if (disposing)
         {
             #region 钩子
-            GeneralHooks.ReloadEvent -= this._reloadHandler;
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.PostInitialize);
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);
             ServerApi.Hooks.GameInitialize.Deregister(this, this.OnInitialize);
@@ -104,7 +97,7 @@ public partial class Plugin : TerrariaPlugin
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
             ServerApi.Hooks.NetGetData.Deregister(this, this.GetData);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreet);
-            ServerApi.Hooks.ServerLeave.Deregister(this, this._OnLeave);
+            ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
             ServerApi.Hooks.NpcStrike.Deregister(this, OnStrike);
             ServerApi.Hooks.NpcAIUpdate.Deregister(this, OnNPCUpdate);
             #endregion
@@ -120,56 +113,18 @@ public partial class Plugin : TerrariaPlugin
             GetDataHandlers.KillMe.UnRegister(this.KillMe);
             GetDataHandlers.PlayerSpawn.UnRegister(this.OnPlayerSpawn);
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnUpdate);
-            GeneralHooks.ReloadEvent -= this._reloadHandler;
             #endregion
+            On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
             CmdHook?.Dispose();
             AccountInfoHook?.Dispose();
             Timer -= this.OnUpdatePlayerOnline;
-            On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
-
         }
         base.Dispose(disposing);
     }
 
-
-    //private void NPC_AI1(On.Terraria.NPC.orig_AI orig, NPC self)
-    //{
-    //    if(Collision.CanHit(self.Center,))
-    //}
-
-
-
-    private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
-    {
-
-        if (packetId == (byte) PacketTypes.LoadNetModule)
-        {
-            using var ms = new MemoryStream(instance.readBuffer);
-            ms.Position = readOffset;
-            using var reader = new BinaryReader(ms);
-            var id = reader.ReadUInt16();
-            if (id == Terraria.Net.NetManager.Instance.GetId<Terraria.GameContent.NetModules.NetTextModule>())
-            {
-                var msg = Terraria.Chat.ChatMessage.Deserialize(reader);
-                if (msg.Text.Length > Config.ChatLength)
-                {
-                    return false;
-                }
-
-                if (Regex.IsMatch(msg.Text, @"[\uD800-\uDBFF][\uDC00-\uDFFF]"))
-                {
-                    return false;
-                }
-            }
-        }
-        return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
-    }
-
-
-    #region 禁双饰品与肉前第7格饰品位方法
     private void OnUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
     {
-        if (!Config.KeepArmor || e.Player.HasPermission("servertool.armor.white"))
+        if (!Config.Instance.KeepArmor || e.Player.HasPermission("servertool.armor.white"))
         {
             return;
         }
@@ -193,24 +148,48 @@ public partial class Plugin : TerrariaPlugin
                 Utils.ClearItem(ArmorGroup.ToArray(), e.Player);
             }
 
-            if (Config.KeepArmor2 && !Main.hardMode)
+            if (Config.Instance.KeepArmor2 && !Main.hardMode)
             {
                 Utils.Clear7Item(e.Player);
             }
         }
     }
+    
+    private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
+    {
 
-    #endregion
+        if (packetId == (byte) PacketTypes.LoadNetModule)
+        {
+            using var ms = new MemoryStream(instance.readBuffer);
+            ms.Position = readOffset;
+            using var reader = new BinaryReader(ms);
+            var id = reader.ReadUInt16();
+            if (id == Terraria.Net.NetManager.Instance.GetId<Terraria.GameContent.NetModules.NetTextModule>())
+            {
+                var msg = Terraria.Chat.ChatMessage.Deserialize(reader);
+                if (msg.Text.Length > Config.Instance.ChatLength)
+                {
+                    return false;
+                }
 
-    #region NPC保护方法
+                if (Config.Instance.DisableEmojiMessage && Regex.IsMatch(msg.Text, @"[\uD800-\uDBFF][\uDC00-\uDFFF]"))
+                {
+                    return false;
+                }
+            }
+        }
+        return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+    }
+
+
     private static void OnStrike(NpcStrikeEventArgs args)
     {
-        if (!Config.NpcProtect || TShock.Players[args.Player.whoAmI].HasPermission("servertool.npc.strike"))
+        if (!Config.Instance.NpcProtect || TShock.Players[args.Player.whoAmI].HasPermission("servertool.npc.strike"))
         {
             return;
         }
 
-        if (Config.NpcProtectList.Contains(args.Npc.netID))
+        if (Config.Instance.NpcProtectList.Contains(args.Npc.netID))
         {
             args.Handled = true;
             TShock.Players[args.Player.whoAmI].SendInfoMessage("[ServerTools] " + args.Npc.FullName + GetString(" 被系统保护"));
@@ -219,19 +198,18 @@ public partial class Plugin : TerrariaPlugin
 
     private static void OnNPCUpdate(NpcAiUpdateEventArgs args)
     {
-        if (!Config.NpcProtect)
+        if (!Config.Instance.NpcProtect)
         {
             return;
         }
 
-        if (Config.NpcProtectList.Contains(args.Npc.netID) && args.Npc.active)
+        if (Config.Instance.NpcProtectList.Contains(args.Npc.netID) && args.Npc.active)
         {
             args.Npc.life = args.Npc.lifeMax;
             args.Npc.active = true;
             TSPlayer.All.SendData((PacketTypes) 23, "", args.Npc.whoAmI, 0f, 0f, 0f, 0);
         }
     }
-    #endregion
 
     private static void ViewAccountInfo(CommandArgs args)
     {
@@ -288,8 +266,8 @@ public partial class Plugin : TerrariaPlugin
     { 
         self.Account = new()
         {
-            Name = self.Name,
-            Group = self.Group.Name,
+            Name = name,
+            Group = group.Name,
             ID = self.Index
         };
         orig(self, name, group);
@@ -305,7 +283,7 @@ public partial class Plugin : TerrariaPlugin
 
     private void OnItemDrop(object? sender, GetDataHandlers.ItemDropEventArgs e)
     {
-        if (e.Player != null && e.Player.Dead && Config.ClearDrop)
+        if (e.Player != null && e.Player.Dead && Config.Instance.ClearDrop)
         {
             Main.item[e.ID].active = false;
             e.Handled = true;
@@ -315,7 +293,7 @@ public partial class Plugin : TerrariaPlugin
 
     private void OnGreetPlayer(GreetPlayerEventArgs args)
     {
-        if (Config.PreventsDeathStateJoin && Main.player[args.Who].dead)
+        if (Config.Instance.PreventsDeathStateJoin && Main.player[args.Who].dead)
         {
             Task.Run(async () =>
             {
@@ -339,13 +317,13 @@ public partial class Plugin : TerrariaPlugin
         if (TimerCount % 60 == 0)
         {
             Timer?.Invoke(e);
-            if (Config.DeadTimer)
+            if (Config.Instance.DeadTimer)
             {
                 foreach (var ply in Deads)
                 {
                     if (ply != null && ply.Active && ply.Dead && ply.RespawnTimer > 0)
                     {
-                        ply.SendInfoMessage(Config.DeadFormat, ply.RespawnTimer);
+                        ply.SendInfoMessage(Config.Instance.DeadFormat, ply.RespawnTimer);
                     }
                 }
             }
@@ -370,15 +348,15 @@ public partial class Plugin : TerrariaPlugin
 
     private void NewProj(object? sender, GetDataHandlers.NewProjectileEventArgs e)
     {
-        if (Main.projectile.Where(x => x != null && x.owner == e.Owner && x.sentry && x.active).Count() > Config.sentryLimit)
+        if (Main.projectile.Where(x => x != null && x.owner == e.Owner && x.sentry && x.active).Count() > Config.Instance.sentryLimit)
         {
-            e.Player.Disconnect(GetString($"你因哨兵数量超过{Config.sentryLimit}被踢出"));
+            e.Player.Disconnect(GetString($"你因哨兵数量超过{Config.Instance.sentryLimit}被踢出"));
         }
-        if (e.Player.TPlayer.slotsMinions > Config.summonLimit)
+        if (e.Player.TPlayer.slotsMinions > Config.Instance.summonLimit)
         {
-            e.Player.Disconnect(GetString($"你因召唤物数量超过{Config.summonLimit}被踢出"));
+            e.Player.Disconnect(GetString($"你因召唤物数量超过{Config.Instance.summonLimit}被踢出"));
         }
-        if (Main.projectile[e.Index].bobber && Config.MultipleFishingRodsAreProhibited && Config.ForbiddenBuoys.FindAll(f => f == e.Type).Count > 0)
+        if (Main.projectile[e.Index].bobber && Config.Instance.MultipleFishingRodsAreProhibited && Config.Instance.ForbiddenBuoys.FindAll(f => f == e.Type).Count > 0)
         {
             var bobber = Main.projectile.Where(f => f != null && f.owner == e.Owner && f.active && f.type == e.Type);
             if (bobber.Count() > 2)
@@ -402,29 +380,6 @@ public partial class Plugin : TerrariaPlugin
             }
         }
     }
-
-    public void LoadConfig()
-    {
-        if (File.Exists(this.PATH))
-        {
-            try
-            {
-                Config = Config.Read(this.PATH);
-            }
-            catch (Exception e)
-            {
-
-                TShock.Log.ConsoleError(GetString("ServerTools.json配置读取错误:{0}"), e.ToString());
-            }
-        }
-        else
-        {
-            Config.ForbiddenBuoys = new List<short>() { 360, 361, 362, 363, 364, 365, 366, 381, 382, 760, 775, 986, 987, 988, 989, 990, 991, 992, 993 };
-            Config.NpcProtectList = new List<int>() { 17, 18, 19, 20, 38, 105, 106, 107, 108, 160, 123, 124, 142, 207, 208, 227, 228, 229, 353, 354, 376, 441, 453, 550, 579, 588, 589, 633, 663, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 375, 442, 443, 539, 444, 445, 446, 447, 448, 605, 627, 601, 613 };
-        }
-        Config.Write(this.PATH);
-    }
-
     public bool SetJourneyDiff(string diffName)
     {
         float diff;
@@ -455,18 +410,18 @@ public partial class Plugin : TerrariaPlugin
     private void PostInitialize(EventArgs args)
     {
         //设置世界模式
-        if (Config.SetWorldMode)
+        if (Config.Instance.SetWorldMode)
         {
-            if (Config.WorldMode > 1 && Config.WorldMode < 4)
+            if (Config.Instance.WorldMode > 1 && Config.Instance.WorldMode < 4)
             {
-                Main.GameMode = Config.WorldMode;
+                Main.GameMode = Config.Instance.WorldMode;
                 TSPlayer.All.SendData(PacketTypes.WorldInfo);
             }
         }
         //旅途难度
-        if (Main._currentGameModeInfo.IsJourneyMode && Config.SetJourneyDifficult)
+        if (Main._currentGameModeInfo.IsJourneyMode && Config.Instance.SetJourneyDifficult)
         {
-            this.SetJourneyDiff(Config.JourneyMode);
+            this.SetJourneyDiff(Config.Instance.JourneyMode);
         }
     }
 
@@ -478,7 +433,7 @@ public partial class Plugin : TerrariaPlugin
             return;
         }
 
-        if (Config.PickUpMoney && args.MsgID == PacketTypes.SyncExtraValue)
+        if (Config.Instance.PickUpMoney && args.MsgID == PacketTypes.SyncExtraValue)
         {
             using BinaryReader reader = new(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length));
             var npcid = reader.ReadInt16();
@@ -491,7 +446,7 @@ public partial class Plugin : TerrariaPlugin
         }
 
 
-        if (Config.KeepOpenChest && args.MsgID == PacketTypes.ChestOpen)
+        if (Config.Instance.KeepOpenChest && args.MsgID == PacketTypes.ChestOpen)
         {
 
             using BinaryReader binaryReader5 = new(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length));
@@ -505,7 +460,7 @@ public partial class Plugin : TerrariaPlugin
             }
         }
 
-        if (args.MsgID == PacketTypes.ChestGetContents && Config.KeepOpenChest)
+        if (args.MsgID == PacketTypes.ChestGetContents && Config.Instance.KeepOpenChest)
         {
             if (ply.ActiveChest != -1)
             {
@@ -520,11 +475,11 @@ public partial class Plugin : TerrariaPlugin
     private void OnInitialize(EventArgs args)
     {
         //执行命令
-        if (TShock.UserAccounts.GetUserAccounts().Count == 0 && Config.ResetExecCommands.Length > 0)
+        if (TShock.UserAccounts.GetUserAccounts().Count == 0 && Config.Instance.ResetExecCommands.Length > 0)
         {
-            for (var i = 0; i < Config.ResetExecCommands.Length; i++)
+            for (var i = 0; i < Config.Instance.ResetExecCommands.Length; i++)
             {
-                Commands.HandleCommand(TSPlayer.Server, Config.ResetExecCommands[i]);
+                Commands.HandleCommand(TSPlayer.Server, Config.Instance.ResetExecCommands[i]);
             }
         }
     }
@@ -536,22 +491,22 @@ public partial class Plugin : TerrariaPlugin
             return;
         }
 
-        if (Config.OnlySoftCoresAreAllowed)
+        if (Config.Instance.OnlySoftCoresAreAllowed)
         {
             if (TShock.Players[args.Who].Difficulty != 0)
             {
                 TShock.Players[args.Who].Disconnect(GetString("仅允许软核进入!"));
             }
         }
-        if (Config.BlockUnregisteredEntry)
+        if (Config.Instance.BlockUnregisteredEntry)
         {
             //阻止未注册进入
             if (args.Who == -1 || TShock.Players[args.Who] == null || TShock.UserAccounts.GetUserAccountsByName(TShock.Players[args.Who].Name).Count == 0)
             {
-                TShock.Players[args.Who].Disconnect(Config.BlockEntryStatement);
+                TShock.Players[args.Who].Disconnect(Config.Instance.BlockEntryStatement);
             }
         }
-        if (Config.DeathLast && TShock.Players[args.Who] != null)
+        if (Config.Instance.DeathLast && TShock.Players[args.Who] != null)
         {
             if (this.PlayerDeath.TryGetValue(TShock.Players[args.Who].Name, out var time))
             {
