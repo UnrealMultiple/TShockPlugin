@@ -128,7 +128,7 @@ public class Chameleon : LazyPlugin
                 if (account.UUID == player.UUID)
                 {
                     var knownIps = JsonConvert.DeserializeObject<List<string>>(account.KnownIps);
-                    if (knownIps != null && player.IP == knownIps[^1] || !Configuration.Instance.VerifyloginIP)
+                    if (!Configuration.Instance.VerifyloginIP || knownIps?.LastOrDefault() == player.IP)
                     {
                         if (player.State == 1)
                         {
