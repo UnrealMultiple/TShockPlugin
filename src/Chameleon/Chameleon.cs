@@ -116,84 +116,6 @@ public class Chameleon : LazyPlugin
 
     private static bool HandleConnecting(TSPlayer player)
     {
-        var account = TShock.UserAccounts.GetUserAccountByName(player.Name);
-        player.DataWhenJoined = new PlayerData(player);
-        player.DataWhenJoined.CopyCharacter(player);
-
-        if (account != null)
-        {
-            // uuid自动登录 已注册part.2
-            if (!TShock.Config.Settings.DisableUUIDLogin)
-            {
-                if (account.UUID == player.UUID)
-                {
-                    var knownIps = JsonConvert.DeserializeObject<List<string>>(account.KnownIps);
-                    if (!Configuration.Instance.VerifyloginIP || knownIps?.LastOrDefault() == player.IP)
-                    {
-                        if (player.State == 1)
-                        {
-                            player.State = 2;
-                        }
-
-                        NetMessage.SendData((int) PacketTypes.WorldInfo, player.Index);
-
-                        player.PlayerData = TShock.CharacterDB.GetPlayerData(player, account.ID);
-
-                        var group = TShock.Groups.GetGroupByName(account.Group);
-
-                        player.Group = group;
-                        player.tempGroup = null;
-                        player.Account = account;
-                        player.IsLoggedIn = true;
-                        player.IsDisabledForSSC = false;
-
-                        if (Main.ServerSideCharacter)
-                        {
-                            if (player.HasPermission(Permissions.bypassssc))
-                            {
-                                player.PlayerData.CopyCharacter(player);
-                                TShock.CharacterDB.InsertPlayerData(player);
-                            }
-                            player.PlayerData.RestoreCharacter(player);
-                        }
-                        player.LoginFailsBySsi = false;
-
-                        if (player.HasPermission(Permissions.ignorestackhackdetection))
-                        {
-                            player.IsDisabledForStackDetection = false;
-                        }
-
-                        if (player.HasPermission(Permissions.usebanneditem))
-                        {
-                            player.IsDisabledForBannedWearable = false;
-                        }
-
-                        player.SendSuccessMessage(GetString($"已经验证{account.Name}登录完毕。"));
-                        TShock.Log.ConsoleInfo(player.Name + GetString("成功验证登录。"));
-                        PlayerHooks.OnPlayerPostLogin(player);
-                        return true;
-                    }
-                    else
-                    {
-                        TShock.Log.ConsoleInfo(player.Name + GetString("IP地址不存在或与上次登录IP地址不符。"));
-                    }
-                }
-                else
-                {
-                    TShock.Log.ConsoleInfo(player.Name + GetString("登录UUID与上次不同。"));
-                }
-            }
-            else
-            {
-                    TSPlayer.Server.SendMessage(GetString("DisableUUIDLogin被设置为true，无法通过UUID自动登录。"),Microsoft.Xna.Framework.Color.Yellow);
-            }
-
-            // 使用密码登录 part.2
-            player.RequiresPassword = true;
-            NetMessage.SendData((int) PacketTypes.PasswordRequired, player.Index);
-            return true;
-        }
-
         if (Configuration.Instance.EnableForcedHint && !PrepareList.Contains(player.Name))
         {
             AddToList(player.Name);
@@ -201,8 +123,83 @@ public class Chameleon : LazyPlugin
             return true;
         }
 
-        // 未注册 part.1
-        player.SetData(WaitPwd4Reg, true);
+        var account = TShock.UserAccounts.GetUserAccountByName(player.Name);
+        if (account is null)
+        {
+            // 未注册 part.1
+            player.SetData(WaitPwd4Reg, true);
+            NetMessage.SendData((int) PacketTypes.PasswordRequired, player.Index);
+            return true;
+        }
+
+        player.DataWhenJoined = new PlayerData(player);
+        player.DataWhenJoined.CopyCharacter(player);
+
+        do
+        {
+            // uuid自动登录 已注册part.2
+            if (TShock.Config.Settings.DisableUUIDLogin)
+            {
+                TSPlayer.Server.SendMessage(GetString("DisableUUIDLogin被设置为true，无法通过UUID自动登录。"), Microsoft.Xna.Framework.Color.Yellow);
+                break;
+            }
+            if (account.UUID != player.UUID)
+            {
+                TShock.Log.ConsoleInfo(player.Name + GetString("登录UUID与上次不同。"));
+                break;
+            }
+            var knownIps = JsonConvert.DeserializeObject<List<string>>(account.KnownIps);
+            if (Configuration.Instance.VerifyloginIP && JsonConvert.DeserializeObject <string[]>(account.KnownIps) is var kownIps && (knownIps is null || player.IP != kownIps.LastOrDefault()))
+            {
+                TShock.Log.ConsoleInfo(player.Name + GetString("IP地址不存在或与上次登录IP地址不符。"));
+                break;
+            }
+            if (player.State == 1)
+            {
+                player.State = 2;
+            }
+
+            NetMessage.SendData((int) PacketTypes.WorldInfo, player.Index);
+
+            player.PlayerData = TShock.CharacterDB.GetPlayerData(player, account.ID);
+
+            var group = TShock.Groups.GetGroupByName(account.Group);
+
+            player.Group = group;
+            player.tempGroup = null;
+            player.Account = account;
+            player.IsLoggedIn = true;
+            player.IsDisabledForSSC = false;
+
+            if (Main.ServerSideCharacter)
+            {
+                if (player.HasPermission(Permissions.bypassssc))
+                {
+                    player.PlayerData.CopyCharacter(player);
+                    TShock.CharacterDB.InsertPlayerData(player);
+                }
+                player.PlayerData.RestoreCharacter(player);
+            }
+            player.LoginFailsBySsi = false;
+
+            if (player.HasPermission(Permissions.ignorestackhackdetection))
+            {
+                player.IsDisabledForStackDetection = false;
+            }
+
+            if (player.HasPermission(Permissions.usebanneditem))
+            {
+                player.IsDisabledForBannedWearable = false;
+            }
+
+            player.SendSuccessMessage(GetString($"已经验证{account.Name}登录完毕。"));
+            TShock.Log.ConsoleInfo(player.Name + GetString("成功验证登录。"));
+            PlayerHooks.OnPlayerPostLogin(player);
+            return true;
+        } while (false);
+
+        // 使用密码登录 part.2
+        player.RequiresPassword = true;
         NetMessage.SendData((int) PacketTypes.PasswordRequired, player.Index);
         return true;
     }
