@@ -19,7 +19,7 @@
 | /swaptoggle mini <min interval>    | /swaptoggle mininterval     | swapplugin.toggle    | Set minimum teleport interval time (in seconds)|
 | /swaptoggle ri                     | /swaptoggle randominterval  | swapplugin.toggle    | Toggle random teleport interval                |
 | /swaptoggle swap                   | /swaptoggle swap            | swapplugin.toggle    | Toggle broadcasting player position swaps      |
-| /swaptoggle timer                  | /swaptoggle timer           | swapplugin.toggle    | Toggle broadcasting remaining teleport time    |
+| /swaptoggle timer [broadcast countdown threshold] | /swaptoggle timer     | swapplugin.toggle | Toggle the broadcast remaining teleport time status or set the broadcast countdown threshold. |
 |                                    |                            | playerswap           | Required permission to be included in teleport list |
 
 ## Configuration

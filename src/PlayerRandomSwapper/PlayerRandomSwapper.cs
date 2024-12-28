@@ -86,7 +86,7 @@ public class PlayerRandomSwapper : LazyPlugin
             args.Player.SendInfoMessage(GetString("用法:"));
             args.Player.SendInfoMessage("/swaptoggle <timer|swap|enable|interval|allowself|randominterval|mininterval|maxinterval>");
             args.Player.SendInfoMessage(GetString("/swaptoggle en - 切换随机位置互换的状态"));
-            args.Player.SendInfoMessage(GetString("/swaptoggle timer - 切换广播剩余传送时间的状态"));
+            args.Player.SendInfoMessage(GetString("/swaptoggle timer [广播交换倒计时阈值] - 切换广播剩余传送时间的状态或设置广播交换倒计时阈值"));
             args.Player.SendInfoMessage(GetString("/swaptoggle swap - 切换广播玩家交换位置信息的状态"));
             args.Player.SendInfoMessage(GetString("/swaptoggle i <传送间隔秒> - 设置传送间隔时间（秒）"));
             args.Player.SendInfoMessage(GetString("/swaptoggle as - 切换允许双人模式玩家和自己交换位置的状态"));
@@ -101,9 +101,24 @@ public class PlayerRandomSwapper : LazyPlugin
         {
             case "timer":
             case "广播时间":
-                Config.Instance.BroadcastRemainingTimeEnabled = !Config.Instance.BroadcastRemainingTimeEnabled;
-                Config.Save();
-                args.Player.SendSuccessMessage(GetString($"广播剩余传送时间已") + (Config.Instance.BroadcastRemainingTimeEnabled ? GetString("启用") : GetString("禁用")) + "。");
+                if (args.Parameters.Count == 1)
+                {
+                    Config.Instance.BroadcastRemainingTimeEnabled = !Config.Instance.BroadcastRemainingTimeEnabled;
+                    Config.Save();
+                    args.Player.SendSuccessMessage(GetString($"广播剩余传送时间已") + (Config.Instance.BroadcastRemainingTimeEnabled ? GetString("启用") : GetString("禁用")) + "。");
+                }
+                else if (args.Parameters.Count == 2 && int.TryParse(args.Parameters[1], out var time))
+                {
+                    Config.Instance.BroadcastRemainingTimeThreshold = time;
+                    Config.Save();
+                    args.Player.SendSuccessMessage(GetString($"广播剩余传送时间已设置为 {time} 秒"));
+                }
+                else
+                {
+                    args.Player.SendInfoMessage(GetString("用法:"));
+                    args.Player.SendErrorMessage(GetString("/swaptoggle timer - 切换广播剩余传送时间的状态"));
+                    args.Player.SendErrorMessage(GetString("/swaptoggle timer <时间> - 设置广播剩余传送时间"));
+                }
                 break;
 
             case "swap":
@@ -179,7 +194,7 @@ public class PlayerRandomSwapper : LazyPlugin
             case "help":
                 args.Player.SendInfoMessage(GetString("用法:"));
                 args.Player.SendInfoMessage(GetString("/swaptoggle en - 切换随机位置互换的状态"));
-                args.Player.SendInfoMessage(GetString("/swaptoggle timer - 切换广播剩余传送时间的状态"));
+                args.Player.SendInfoMessage(GetString("/swaptoggle timer [广播交换倒计时阈值] - 切换广播剩余传送时间的状态或设置广播交换倒计时阈值"));
                 args.Player.SendInfoMessage(GetString("/swaptoggle swap - 切换广播玩家交换位置信息的状态"));
                 args.Player.SendInfoMessage(GetString("/swaptoggle i <传送间隔秒> - 设置传送间隔时间（秒）"));
                 args.Player.SendInfoMessage(GetString("/swaptoggle as - 切换允许双人模式玩家和自己交换位置的状态"));

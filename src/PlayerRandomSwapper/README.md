@@ -22,7 +22,7 @@
 | /swaptoggle mini <最小传送间隔秒> | /swaptoggle mininterval | swapplugin.toggle | 设置最小传送间隔时间（秒）           |
 | /swaptoggle ri                   | /swaptoggle randominterval | swapplugin.toggle | 切换随机传送间隔的状态              |
 | /swaptoggle swap                 | /swaptoggle swap      | swapplugin.toggle | 切换广播玩家交换位置信息的状态         |
-| /swaptoggle timer                | /swaptoggle timer     | swapplugin.toggle | 切换广播剩余传送时间的状态             |
+| /swaptoggle timer [广播交换倒计时阈值]    | /swaptoggle timer     | swapplugin.toggle | 切换广播剩余传送时间的状态或设置广播交换倒计时阈值            |
 |                       |                       | playerswap | 有这个权限才会被传送            |
 
 ## 配置

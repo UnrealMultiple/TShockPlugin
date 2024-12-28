@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PlayerRandomSwapper\n"
-"POT-Creation-Date: 2024-12-28 12:16:33+0800\n"
-"PO-Revision-Date: 2024-12-28 12:23+0800\n"
+"POT-Creation-Date: 2024-12-28 13:06:28+0800\n"
+"PO-Revision-Date: 2024-12-28 13:06+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -11,79 +11,109 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ..\..\PlayerRandomSwapper.cs:233
+#: ..\..\PlayerRandomSwapper.cs:239
+#, csharp-format
+msgid "{0} 尝试自交，但那是没用的"
+msgstr "{0} tried to swap with yourself, but it doesn't work."
+
+#: ..\..\PlayerRandomSwapper.cs:250
 #, csharp-format
 msgid "{0} 和 {1} 交换了位置！"
 msgstr "{0} and {1} swapped positions!"
 
-#: ..\..\PlayerRandomSwapper.cs:222
-#, csharp-format
-msgid "{0}你尝试自交，但那是没用的"
-msgstr "{0} You tried to swap with yourself, but it doesn't work."
-
-#: ..\..\PlayerRandomSwapper.cs:90 ..\..\PlayerRandomSwapper.cs:183
+#: ..\..\PlayerRandomSwapper.cs:92 ..\..\PlayerRandomSwapper.cs:200
 msgid "/swaptoggle as - 切换允许双人模式玩家和自己交换位置的状态"
-msgstr "/swaptoggle as - Toggle the ability for players to swap with themselves in multiplayer mode."
+msgstr ""
+"/swaptoggle as - Toggle the ability for players to swap with themselves in "
+"multiplayer mode."
 
-#: ..\..\PlayerRandomSwapper.cs:86 ..\..\PlayerRandomSwapper.cs:179
+#: ..\..\PlayerRandomSwapper.cs:88 ..\..\PlayerRandomSwapper.cs:196
 msgid "/swaptoggle en - 切换随机位置互换的状态"
 msgstr "/swaptoggle en - Toggle the random position swap state."
 
-#: ..\..\PlayerRandomSwapper.cs:89 ..\..\PlayerRandomSwapper.cs:182
+#: ..\..\PlayerRandomSwapper.cs:91 ..\..\PlayerRandomSwapper.cs:199
 msgid "/swaptoggle i <传送间隔秒> - 设置传送间隔时间（秒）"
-msgstr "/swaptoggle i <interval seconds> - Set the teleport interval time (in seconds)."
+msgstr ""
+"/swaptoggle i <interval seconds> - Set the teleport interval time (in "
+"seconds)."
 
-#: ..\..\PlayerRandomSwapper.cs:93 ..\..\PlayerRandomSwapper.cs:186
+#: ..\..\PlayerRandomSwapper.cs:95 ..\..\PlayerRandomSwapper.cs:203
 msgid "/swaptoggle maxi <最大传送间隔秒> - 设置最大传送间隔时间（秒）"
-msgstr "/swaptoggle maxi <max interval seconds> - Set the maximum teleport interval time (in seconds)."
+msgstr ""
+"/swaptoggle maxi <max interval seconds> - Set the maximum teleport interval "
+"time (in seconds)."
 
-#: ..\..\PlayerRandomSwapper.cs:92 ..\..\PlayerRandomSwapper.cs:185
+#: ..\..\PlayerRandomSwapper.cs:94 ..\..\PlayerRandomSwapper.cs:202
 msgid "/swaptoggle mini <最小传送间隔秒> - 设置最小传送间隔时间（秒）"
-msgstr "/swaptoggle mini <min interval seconds> - Set the minimum teleport interval time (in seconds)."
+msgstr ""
+"/swaptoggle mini <min interval seconds> - Set the minimum teleport interval "
+"time (in seconds)."
 
-#: ..\..\PlayerRandomSwapper.cs:91 ..\..\PlayerRandomSwapper.cs:184
+#: ..\..\PlayerRandomSwapper.cs:93 ..\..\PlayerRandomSwapper.cs:201
 msgid "/swaptoggle ri - 切换随机传送间隔的状态"
 msgstr "/swaptoggle ri - Toggle the random teleport interval state."
 
-#: ..\..\PlayerRandomSwapper.cs:88 ..\..\PlayerRandomSwapper.cs:181
+#: ..\..\PlayerRandomSwapper.cs:90 ..\..\PlayerRandomSwapper.cs:198
 msgid "/swaptoggle swap - 切换广播玩家交换位置信息的状态"
-msgstr "/swaptoggle swap - Toggle the state of broadcasting player position swap information."
+msgstr ""
+"/swaptoggle swap - Toggle the state of broadcasting player position swap "
+"information."
 
-#: ..\..\PlayerRandomSwapper.cs:87 ..\..\PlayerRandomSwapper.cs:180
+#: ..\..\PlayerRandomSwapper.cs:119
 msgid "/swaptoggle timer - 切换广播剩余传送时间的状态"
-msgstr "/swaptoggle timer - Toggle the state of broadcasting the remaining teleport time."
+msgstr ""
+"/swaptoggle timer - Toggle the broadcast of remaining teleport time status."
 
-#: ..\..\PlayerRandomSwapper.cs:132
+#: ..\..\PlayerRandomSwapper.cs:89 ..\..\PlayerRandomSwapper.cs:197
+msgid ""
+"/swaptoggle timer [广播交换倒计时阈值] - 切换广播剩余传送时间的状态或设置广"
+"播交换倒计时阈值"
+msgstr ""
+"/swaptoggle timer [broadcast countdown threshold] - Toggle the status of "
+"broadcasting remaining teleport time or set the broadcast countdown "
+"threshold."
+
+#: ..\..\PlayerRandomSwapper.cs:120
+msgid "/swaptoggle timer <时间> - 设置广播剩余传送时间"
+msgstr ""
+"/swaptoggle timer <time> - Set the remaining teleport time for broadcast."
+
+#: ..\..\PlayerRandomSwapper.cs:149
 #, csharp-format
 msgid "传送间隔已设置为 {0} 秒。"
 msgstr "The teleport interval has been set to {0} seconds."
 
-#: ..\..\PlayerRandomSwapper.cs:104
+#: ..\..\PlayerRandomSwapper.cs:108
 msgid "广播剩余传送时间已"
 msgstr "Broadcasting remaining teleport time is"
 
-#: ..\..\PlayerRandomSwapper.cs:111
+#: ..\..\PlayerRandomSwapper.cs:114
+#, csharp-format
+msgid "广播剩余传送时间已设置为 {0} 秒"
+msgstr "`The remaining teleport time broadcast has been set to {0} seconds.`"
+
+#: ..\..\PlayerRandomSwapper.cs:128
 msgid "广播玩家交换位置信息已"
 msgstr "Broadcasting player position swap information is"
 
-#: ..\..\PlayerRandomSwapper.cs:104 ..\..\PlayerRandomSwapper.cs:111
-#: ..\..\PlayerRandomSwapper.cs:119 ..\..\PlayerRandomSwapper.cs:140
-#: ..\..\PlayerRandomSwapper.cs:148
+#: ..\..\PlayerRandomSwapper.cs:108 ..\..\PlayerRandomSwapper.cs:128
+#: ..\..\PlayerRandomSwapper.cs:136 ..\..\PlayerRandomSwapper.cs:157
+#: ..\..\PlayerRandomSwapper.cs:165
 msgid "禁用"
 msgstr "disabled"
 
-#: ..\..\PlayerRandomSwapper.cs:228 ..\..\PlayerRandomSwapper.cs:229
+#: ..\..\PlayerRandomSwapper.cs:245 ..\..\PlayerRandomSwapper.cs:246
 #, csharp-format
 msgid "你与 {0} 交换了位置！"
 msgstr "You swapped positions with {0}!"
 
-#: ..\..\PlayerRandomSwapper.cs:104 ..\..\PlayerRandomSwapper.cs:111
-#: ..\..\PlayerRandomSwapper.cs:119 ..\..\PlayerRandomSwapper.cs:140
-#: ..\..\PlayerRandomSwapper.cs:148
+#: ..\..\PlayerRandomSwapper.cs:108 ..\..\PlayerRandomSwapper.cs:128
+#: ..\..\PlayerRandomSwapper.cs:136 ..\..\PlayerRandomSwapper.cs:157
+#: ..\..\PlayerRandomSwapper.cs:165
 msgid "启用"
 msgstr "enabled"
 
-#: ..\..\PlayerRandomSwapper.cs:148
+#: ..\..\PlayerRandomSwapper.cs:165
 msgid "随机传送间隔已"
 msgstr "Random teleport interval is"
 
@@ -91,53 +121,54 @@ msgstr "Random teleport interval is"
 msgid "随机互换"
 msgstr "Random Swap"
 
-#: ..\..\PlayerRandomSwapper.cs:119
+#: ..\..\PlayerRandomSwapper.cs:136
 msgid "随机位置互换已"
 msgstr "Random position swap is"
 
-#: ..\..\PlayerRandomSwapper.cs:259
+#: ..\..\PlayerRandomSwapper.cs:276
 msgid "已经交换所有玩家位置！"
 msgstr "All players' positions have been swapped!"
 
-#: ..\..\PlayerRandomSwapper.cs:84 ..\..\PlayerRandomSwapper.cs:178
+#: ..\..\PlayerRandomSwapper.cs:86 ..\..\PlayerRandomSwapper.cs:118
+#: ..\..\PlayerRandomSwapper.cs:195
 msgid "用法:"
 msgstr "Usage:"
 
-#: ..\..\PlayerRandomSwapper.cs:190
+#: ..\..\PlayerRandomSwapper.cs:207
 msgid ""
-"用法: /swaptoggle <timer|swap|enable|interval|allowself|"
-"randominterval|mininterval|maxinterval>"
+"用法: /swaptoggle <timer|swap|enable|interval|allowself|randominterval|"
+"mininterval|maxinterval>"
 msgstr ""
-"Usage: /swaptoggle <timer|swap|enable|interval|allowself|"
-"randominterval|mininterval|maxinterval>"
+"Usage: /swaptoggle <timer|swap|enable|interval|allowself|randominterval|"
+"mininterval|maxinterval>"
 
-#: ..\..\PlayerRandomSwapper.cs:127
+#: ..\..\PlayerRandomSwapper.cs:144
 msgid "用法: /swaptoggle i <传送间隔秒>"
 msgstr "Usage: /swaptoggle i <interval seconds>"
 
-#: ..\..\PlayerRandomSwapper.cs:169
+#: ..\..\PlayerRandomSwapper.cs:186
 msgid "用法: /swaptoggle maxi <最大传送间隔秒>"
 msgstr "Usage: /swaptoggle maxi <max interval seconds>"
 
-#: ..\..\PlayerRandomSwapper.cs:156
+#: ..\..\PlayerRandomSwapper.cs:173
 msgid "用法: /swaptoggle mini <最小传送间隔秒>"
 msgstr "Usage: /swaptoggle mini <min interval seconds>"
 
-#: ..\..\PlayerRandomSwapper.cs:140
+#: ..\..\PlayerRandomSwapper.cs:157
 msgid "允许玩家和自己交换位置已"
 msgstr "Allow players to swap with themselves is"
 
-#: ..\..\PlayerRandomSwapper.cs:75
+#: ..\..\PlayerRandomSwapper.cs:77
 #, csharp-format
 msgid "注意：还有{0}秒就要交换位置了！"
 msgstr "Attention: {0} seconds left until the swap!"
 
-#: ..\..\PlayerRandomSwapper.cs:174
+#: ..\..\PlayerRandomSwapper.cs:191
 #, csharp-format
 msgid "最大传送间隔已设置为 {0} 秒。"
 msgstr "The maximum teleport interval has been set to {0} seconds."
 
-#: ..\..\PlayerRandomSwapper.cs:161
+#: ..\..\PlayerRandomSwapper.cs:178
 #, csharp-format
 msgid "最小传送间隔已设置为 {0} 秒。"
 msgstr "The minimum teleport interval has been set to {0} seconds."
