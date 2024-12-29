@@ -12,7 +12,7 @@ public class Autoclear : LazyPlugin
     public override string Author => "大豆子[Mute适配1447]，肝帝熙恩更新";
     public override string Description => "智能扫地机";
     public override string Name => "智能自动扫地";
-    public override Version Version => new Version(1, 0, 6);
+    public override Version Version => new Version(1, 0, 7);
 
     private bool _sweepScheduled = false;
     private DateTime _sweepScheduledAt;
@@ -33,7 +33,7 @@ public class Autoclear : LazyPlugin
     {
         if (disposing)
         {
-            //ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
+            ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
         }
         base.Dispose(disposing);
     }
