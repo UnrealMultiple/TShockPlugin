@@ -1,0 +1,12 @@
+{
+  "README.en-US": {
+    "Description": "Foundation library for VBY plugins"
+  },
+  "README.es-ES": {
+    "Description": "Biblioteca base para plugins VBY"
+  },
+  "README": {
+    "READMEUrl": "https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md",
+    "Description": "VBY插件的基础库"
+  }
+}

@@ -16,3 +16,6 @@
 [submodule "src/Submodules/TrProtocol"]
 	path = src/Submodules/TrProtocol
 	url = https://github.com/UnrealMultiple/TrProtocol.git
+[submodule "src/Submodules/VBY.Plugins"]
+	path = src/Submodules/VBY.Plugins
+	url = https://github.com/UnrealMultiple/MyPlugin.git
