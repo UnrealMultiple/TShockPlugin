@@ -21,7 +21,7 @@ public partial class Plugin : LazyPlugin
 
     public override string Name => "ServerTools";// 插件名字
 
-    public override Version Version => new Version(1, 1, 8, 0);// 插件版本
+    public override Version Version => new Version(1, 1, 8, 1);// 插件版本
 
     private DateTime LastCommandUseTime = DateTime.Now;
 
