@@ -6,7 +6,16 @@ public class Config
 {
     public const string Path = "tshock/AutoPluginManager.json";
 
-    public static Config PluginConfig = new ();
+    public const string GiteePluginArchiveUrl = "https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
+    public const string GiteePluginManifestUrl = "https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.json";
+
+    public const string GithubPluginArchiveUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
+    public const string GithubPluginManifestUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.json";
+
+    public static string UpstreamPluginArchiveUrl => Instance.UseCustomSource ? Instance.CustomSourceArchiveUrl : Instance.UseGithubSource ? GithubPluginArchiveUrl : GiteePluginArchiveUrl;
+    public static string UpstreamPluginManifestUrl => Instance.UseCustomSource ? Instance.CustomSourceManifestUrl : Instance.UseGithubSource ? GithubPluginManifestUrl : GiteePluginManifestUrl;
+
+    public static Config Instance = new ();
 
     public void Write()
     {
@@ -37,7 +46,7 @@ public class Config
             result = Read(fileStream);
         }
 
-        PluginConfig = result!;
+        Instance = result!;
     }
 
     private static Config? Read(Stream stream)

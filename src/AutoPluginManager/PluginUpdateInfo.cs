@@ -6,17 +6,7 @@ public record PluginUpdateInfo(PluginVersionInfo? Current, PluginVersionInfo Lat
     {
         public bool Equals(PluginUpdateInfo? x, PluginUpdateInfo? y)
         {
-            if (ReferenceEquals(x, y))
-            {
-                return true;
-            }
-
-            if (x is null || y is null)
-            {
-                return false;
-            }
-
-            return x.Latest.AssemblyName == y.Latest.AssemblyName;
+            return ReferenceEquals(x, y) || (x is not null && y is not null && x.Latest.AssemblyName == y.Latest.AssemblyName);
         }
 
         public int GetHashCode(PluginUpdateInfo obj)
