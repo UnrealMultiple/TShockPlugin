@@ -8,7 +8,7 @@ namespace ServerTools.DB;
 [Table("OnlineDuration")]
 public class PlayerOnline : RecordBase<PlayerOnline>
 {
-    [PrimaryKey, Identity]
+    [PrimaryKey]
     [Column("username")]
     public string Name { get; set; } = string.Empty;
 
@@ -18,7 +18,7 @@ public class PlayerOnline : RecordBase<PlayerOnline>
 
     private static Context? _context;
 
-    public static Context Instance => _context ??= Db.Context<PlayerOnline>("OnlineDuration");
+    public static Context Instance => _context ??= Db.Context<PlayerOnline>();
 
     public static PlayerOnline? GetPlayerOnline(string name)
     {

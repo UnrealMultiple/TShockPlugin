@@ -11,7 +11,7 @@ namespace ServerTools.DB;
 [Table("Death")]
 public class PlayerDeath : RecordBase<PlayerDeath>
 {
-    [PrimaryKey, Identity]
+    [PrimaryKey]
     [Column("Name")]
     public string Name { get; set; } = string.Empty;
 
@@ -21,7 +21,7 @@ public class PlayerDeath : RecordBase<PlayerDeath>
 
     private static Context? _context;
 
-    public static Context Instance => _context ??= Db.Context<PlayerDeath>("Death");
+    public static Context Instance => _context ??= Db.Context<PlayerDeath>();
 
     public static PlayerDeath? GetPlayerDeath(string name)
     { 
