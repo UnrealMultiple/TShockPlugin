@@ -10,7 +10,7 @@ public class Config
     public const string GiteePluginManifestUrl = "https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.json";
 
     public const string GithubPluginArchiveUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
-    public const string GithubPluginManifestUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.json";
+    public const string GithubPluginManifestUrl = "https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/Plugins.json";
 
     public static string UpstreamPluginArchiveUrl => Instance.UseCustomSource ? Instance.CustomSourceArchiveUrl : Instance.UseGithubSource ? GithubPluginArchiveUrl : GiteePluginArchiveUrl;
     public static string UpstreamPluginManifestUrl => Instance.UseCustomSource ? Instance.CustomSourceManifestUrl : Instance.UseGithubSource ? GithubPluginManifestUrl : GiteePluginManifestUrl;
