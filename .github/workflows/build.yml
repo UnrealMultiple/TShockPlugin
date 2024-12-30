@@ -126,7 +126,12 @@ jobs:
             $Changed += "译文模板"
             git add .
           }
-         
+          Copy-Item out/Target/Plugins.json Plugins.json -Force
+          git diff --quiet
+          if ($LastExitCode -ne 0) {
+            $Changed += "插件列表"
+            git add .
+          }
           ./scripts/generate-readme.ps1
           git diff --quiet
           if ($LastExitCode -ne 0) {
@@ -169,7 +174,7 @@ jobs:
           configuration: ".config/log_config.json"
           
       - name: 发布插件包
-        # if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: ncipollo/release-action@v1
         with:
           tag: V1.0.0.0
@@ -188,6 +193,5 @@ jobs:
             </details>
           artifacts: |
             bin/Plugins.zip
-            out/Target/Plugins.json
           allowUpdates: true
           removeArtifacts: true
