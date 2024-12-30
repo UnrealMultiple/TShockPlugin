@@ -18,7 +18,7 @@ public class PlayerOnline : RecordBase<PlayerOnline>
 
     private static Context? _context;
 
-    public static Context Instance => _context ??= Db.Context<PlayerOnline>("Death");
+    public static Context Instance => _context ??= Db.Context<PlayerOnline>("OnlineDuration");
 
     public static PlayerOnline? GetPlayerOnline(string name)
     {
