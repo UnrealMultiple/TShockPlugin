@@ -347,7 +347,7 @@
   },
   {
     "Name": "智能自动扫地",
-    "Version": "1.0.6",
+    "Version": "1.0.7",
     "Author": "大豆子[Mute适配1447]，肝帝熙恩更新",
     "Description": "智能扫地机",
     "AssemblyName": "AutoClear",
@@ -369,7 +369,7 @@
   },
   {
     "Name": "自动存储",
-    "Version": "1.3.3",
+    "Version": "1.3.4",
     "Author": "羽学 cmgy雱",
     "Description": "涡轮增压不蒸鸭",
     "AssemblyName": "AutoStoreItems",
@@ -621,8 +621,8 @@
   },
   {
     "Name": "Chameleon",
-    "Version": "1.0.6",
-    "Author": "mistzzt，肝帝熙恩修复1449",
+    "Version": "1.0.7",
+    "Author": "mistzzt,肝帝熙恩",
     "Description": "账户系统交互替换方案",
     "AssemblyName": "Chameleon",
     "Path": "Chameleon.dll",
@@ -1006,6 +1006,16 @@
     "HotReload": true
   },
   {
+    "Name": "None",
+    "Version": "1.0",
+    "Author": "yu",
+    "Description": "None",
+    "AssemblyName": "VBY.PluginLoader",
+    "Path": "VBY.PluginLoader.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "PermaBuff",
     "Version": "1.0.2",
     "Author": "少司命",
@@ -1043,6 +1053,18 @@
     "AssemblyName": "PlayerManager",
     "Path": "PlayerManager.dll",
     "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "PlayerSwapPlugin",
+    "Version": "1.0.6",
+    "Author": "肝帝熙恩,少司命",
+    "Description": "一个插件，用于在指定时间后随机交换玩家位置。",
+    "AssemblyName": "PlayerRandomSwapper",
+    "Path": "PlayerRandomSwapper.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {
@@ -1250,6 +1272,30 @@
     "AssemblyName": "UnseenInventory",
     "Path": "UnseenInventory.dll",
     "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "VBY.GameContentModify",
+    "Version": "1.9.1.1230",
+    "Author": "yu",
+    "Description": "一些游戏内容的修改 For Terraria v1.4.4.9",
+    "AssemblyName": "VBY.GameContentModify",
+    "Path": "VBY.GameContentModify.dll",
+    "Dependencies": [
+      "VBY.Common"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "VBY.OtherCommand",
+    "Version": "1.0.0.1230",
+    "Author": "yu",
+    "Description": "一些其他的辅助命令",
+    "AssemblyName": "VBY.OtherCommand",
+    "Path": "VBY.OtherCommand.dll",
+    "Dependencies": [
+      "VBY.Common"
+    ],
     "HotReload": true
   },
   {
