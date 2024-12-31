@@ -115,7 +115,7 @@
 | [Economics.Regain](./src/Economics.Regain/README.en-US.md) | Yes | Item recycling | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
 | [Economics.RPG](./src/Economics.RPG/README.en-US.md) | Yes | RPG plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
 | [Economics.Shop](./src/Economics.Shop/README.en-US.md) | Yes | Shop plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
-| [Economics.Skill](./src/Economics.Skill/README.md) | Yes | Skill plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
+| [Economics.Skill](./src/Economics.Skill/README.en-US.md) | Yes | Skill plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.Task](./src/Economics.Task/README.en-US.md) | Yes | Task plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | Yes | Weapon enhancement | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
 | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) | Yes | Economic plugin prerequisite |  |
@@ -137,7 +137,7 @@
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | No | Unlock journey items |  |
 | [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | No | Lagrange.XocMat Bot Adapter Plugin | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.md) | No | Plugin base library | [linq2db]() |
-| [LifemaxExtra](./src/LifemaxExtra/README.md) | No | Eat more life fruits/crystals | [LazyAPI](./src/LazyAPI/README.md) |
+| [LifemaxExtra](./src/LifemaxExtra/README.en-US.md) | No | Eat more life fruits/crystals | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | No | List installed plugins |  |
 | [MapTp](./src/MapTp/README.en-US.md) | Yes | Double-click on the map to teleport |  |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) | No | Bean paste mini-game API |  |
@@ -188,7 +188,7 @@
 | [TimeRate](./src/TimeRate/README.en-US.md) | Yes | modifying time acceleration using commands, and supporting player sleep to trigger events. |  |
 | [TimerKeeper](./src/TimerKeeper/README.en-US.md) | Yes | Save timer state |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.en-US.md) | Yes | NPC quick home |  |
-| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | No | TShock configuration language localization | [LazyAPI](./src/LazyAPI/README.md) |
+| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.en-US.md) | No | TShock configuration language localization | [LazyAPI](./src/LazyAPI/README.md) |
 | [UnseenInventory](./src/UnseenInventory/README.md) | No | Allows the server to generate items that are normally 'unobtainable' |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | No | Foundation library for VBY plugins |  |
 | [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | No | Customizable modifications for certain game content (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
