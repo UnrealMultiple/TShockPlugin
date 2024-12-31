@@ -8,35 +8,14 @@
 >  requires pre-installed plugins: EconomicsAPI, Economics.RPG (this repository)
 >  using the AI style function may cause a large amount of bandwidth usage.
 
-##  changelog
-
-
-```
-V1.2.1.6
-Added hidden skills, hidden skills cannot be actively purchased.
-Add Command:
-/skill give is not a safe command to add a skill to the player, it does not check the player's skill status.
-/skill del This command deletes the target player's ability
-/skill clearh Removes hidden abilities from target players
-
-V1.2.1.5
-适配新 EconomicsAPI
-
-V1.1.0.1
-添加 无敌帧，锁定怪物，AI样式，传送玩家，移除画圆配置，改用循环实现
-修复: 弹幕AI无法生效，持续时间无法生效
-
-V1.0.0.1
-修复:物品消耗
-```
 
 ##  Configuration Notes
 
 - In the trigger mode `击杀` `击打` `主动` three modes, any two of which can not be combined, hit Hit Hit itself is the embodiment of the initiative.
 
-##  Command
+##  Commands
 
-| Syntax | Privileges | Description |  | :::
+| Syntax | Permission | Description |  | :::
 | --------------------- | :-------------------: | :--------------------: |
 | /skill buy [skill index] | economics.skill.use | buy skill |
 | /skill del [skill index] | economics.skill.use | unbind skill |
@@ -45,9 +24,9 @@ V1.0.0.1
 | /skill clear | economics.skill.use | unbind all skills |
 | /skill reset | economics.skill.admin | reset skills |
 
-##  configuration
+## Configuration
 >  configuration file location: tshock/Economics/Skill.json
-```json
+```json5
 {
   "购买主动技能最大数量": 1,
   "单武器绑定最大技能数量": 1,
@@ -156,7 +135,7 @@ V1.0.0.1
 }
 ```
 
-Feedback for ## 
-
-- Co-maintained plugin repository: https://github.com/UnrealMultiple/TShockPlugin
-- Domestic community trhub.cn or TShock official group, etc.
+## FeedBack
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love

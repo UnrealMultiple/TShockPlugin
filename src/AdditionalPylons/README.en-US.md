@@ -6,13 +6,13 @@
 
 ## Commands
 
-| Command | Permission |             Details             |
-|---------|:----------:|:-------------------------------:|
-| None    | AdditionalPylons   | Permission to place more Pylons |
+| Command |    Permission    |             Details             |
+|---------|:----------------:|:-------------------------------:|
+| None    | AdditionalPylons | Permission to place more Pylons |
 
 ## Config
 > Configuration file location：tshock/AdditionalPylons.en-US.json
-```json
+```json5
 {
   "MaxJunglePylons": 2,
   "MaxForestPylons": 2,

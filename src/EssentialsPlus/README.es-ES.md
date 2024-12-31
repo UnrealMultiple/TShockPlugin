@@ -60,7 +60,7 @@
 ## Configuración
 
 > Ubicación del archivo de configuración: `tshock/EssentialsPlus.json`
-```json
+```json5
 {
   // Lista de comandos que desactivan PvP (Jugador contra Jugador) al usarlos.
   "ComandosDesactivanPvp": [

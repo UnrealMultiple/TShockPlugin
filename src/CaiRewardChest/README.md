@@ -9,6 +9,21 @@
 
 > 注意: 请在生成地图后使用`/初始化奖励箱`,否则可能会误将玩家的箱子标记
 
+## 指令
+
+| 语法                          |          权限           |         说明         |
+|-----------------------------|:---------------------:|:------------------:|
+| /初始化奖励箱 或 /rcinit           |  CaiRewardChest.Init  | 将全图箱子设为奖励箱(仅刚开服适用) |
+| /添加奖励箱 或 /rcadd             |  CaiRewardChest.Add   |      添加一个奖励箱       |
+| /编辑奖励箱 或 /rcedit            |  CaiRewardChest.Edit  |      编辑一个奖励箱       |
+| /删除奖励箱 或 /rcdelete 或 /rcdel | CaiRewardChest.Delete |      删除一个奖励箱       |
+| /清空奖励箱 或 /rcclear           | CaiRewardChest.Clear  |      移除所有奖励箱       |
+
+## 配置
+
+```json5
+无
+```
 ## 更新日志
 
 ```
@@ -22,22 +37,6 @@
 2024.7.24.1 禁止快速堆叠，修复快速堆叠刷物品
 1.0.0 添加插件
 
-```
-
-## 指令
-
-| 语法                          |          权限           |         说明         |
-|-----------------------------|:---------------------:|:------------------:|
-| /初始化奖励箱 或 /rcinit           |  CaiRewardChest.Init  | 将全图箱子设为奖励箱(仅刚开服适用) |
-| /添加奖励箱 或 /rcadd             |  CaiRewardChest.Add   |      添加一个奖励箱       |
-| /编辑奖励箱 或 /rcedit            |  CaiRewardChest.Edit  |      编辑一个奖励箱       |
-| /删除奖励箱 或 /rcdelete 或 /rcdel | CaiRewardChest.Delete |      删除一个奖励箱       |
-| /清空奖励箱 或 /rcclear           | CaiRewardChest.Clear  |      移除所有奖励箱       |
-
-## 配置
-
-```json    
-无
 ```
 
 ## 反馈

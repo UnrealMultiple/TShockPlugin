@@ -7,16 +7,10 @@
 > [!NOTE]
 >  requires the pre-installation of the plugin: EconomicsAPI (this repository).
 
-##  changelog
+##  Commands
 
-```
-1.支持多语言
-```
-
-##  directive
-
-| Syntax | Privileges | Description |
-| ------------------- | :--------------: | :------------: |
+| Syntax |       Pri        | Description |
+| ------------------- |:----------------:| :------------: |
 | /regain [quantity] | economics.regain | redeem handhelds |
 | /regain list [page number] | economics.regain | View Redeemable Items |
 | /regain | economics.regain | Redeeming Handheld Items |
@@ -33,7 +27,7 @@
   ]
 }
 ```
-Feedback from ## 
-- Priority sends ISSUED -> co-maintained plugin repository: https://github.com/UnrealMultiple/TShockPlugin
-- Sub-priority: TShock official group: 816771079
-- Most likely not visible but possible: domestic community trhub.cn , bbstr.net , tr.monika.love
+## FeedBack
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love

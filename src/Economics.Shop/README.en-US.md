@@ -7,21 +7,14 @@
 > [!NOTE]
 >  requires pre-installed plugins: EconomicsAPI, Economics.RPG (this repository)
 
-##  changelog
+## Commands
 
-```
-V1.0.0.3
-适配新 EconomicsAPI
-```
+| Syntax                    |   Permission   |    Description    |
+|---------------------------|:--------------:|:-----------------:|
+| /shop buy [serial number] | economics.shop |     buy item      |
+| /shop list [page number]  | economics.shop | View Product List |
 
-##  directive
-
-| Syntax | Privileges | Description |
-| ----------------- | :------------: | :----------: |
-| /shop buy [serial number] | economics.shop | buy item |
-| /shop list [page number] | economics.shop | View Product List |
-
-##  configuration
+## Configuration
 >  configuration file location: tshock/Economics/Shop.json
 ```json
 {
@@ -44,7 +37,7 @@ V1.0.0.3
   ]
 }
 ```
-Feedback for ## 
-- Priority sends ISSUED -> co-maintained plugin repository: https://github.com/UnrealMultiple/TShockPlugin
-- Sub-priority: TShock official group: 816771079
-- Most likely not visible but possible: domestic community trhub.cn , bbstr.net , tr.monika.love
+## FeedBack
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love

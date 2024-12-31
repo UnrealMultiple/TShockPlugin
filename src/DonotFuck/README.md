@@ -1,8 +1,32 @@
-## DonotFuck 禁止脏话
+# DonotFuck 禁止脏话
 
-- 作者: Cai 羽学
+- 作者: 羽学 Cai
 - 出处: [禁止脏话(内嵌版)](https://github.com/1242509682/DonotFuck)
 - 这是一个Tshock服务器插件主要用于：对服务器内的玩家检测文明发言，如果发送了配置文件中的字符则用*号代替该玩家词语。
+
+## 指令
+
+| 语法         | 别名 |        权限         |      说明       |
+|------------|:--:|:-----------------:|:-------------:|
+| /df        | 无  |     DonotFuck     |     指令菜单      |
+| /df list   | 无  |     DonotFuck     | 列出敏感词表(给玩家用的) |
+| /df log    | 无  |  DonotFuck.admin  |  开启或关闭敏感词记录   |
+| /df add 词语 | 无  |  DonotFuck.admin  |     添加敏感词     |
+| /df del 词语 | 无  |  DonotFuck.admin  |     移除敏感词     |
+| /reload    | 无  | tshock.cfg.reload |    重载配置文件     |
+
+## 配置
+> 配置文件路径: tshock/禁止脏话/禁止脏话.json
+```json
+{
+  "每页行数": 30,
+  "记录日志": true,
+  "脏话表": [
+    "6",
+    "六"
+  ]
+}
+```
 
 ## 更新日志
 
@@ -35,29 +59,6 @@ v1.0:
 
 ```
 
-## 指令
-
-| 语法                             | 别名  |       权限       |                   说明                   |
-| -------------------------------- | :---: | :--------------: | :--------------------------------------: |
-| /df  |  无 |   DonotFuck    |    指令菜单    |
-| /df list  |  无  |   DonotFuck    |    列出敏感词表(给玩家用的)    |
-| /df log  |  无  |   DonotFuck.admin    |    开启或关闭敏感词记录    |
-| /df add 词语  |  无 |   DonotFuck.admin    |    添加敏感词    |
-| /df del 词语  |  无 |   DonotFuck.admin    |    移除敏感词    |
-| /reload  | 无 |   tshock.cfg.reload    |    重载配置文件    |
-
-## 配置
-> 配置文件路径: tshock/禁止脏话/禁止脏话.json
-```json
-{
-  "每页行数": 30,
-  "记录日志": true,
-  "脏话表": [
-    "6",
-    "六"
-  ]
-}
-```
 ## 反馈
 - - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

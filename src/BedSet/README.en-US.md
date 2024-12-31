@@ -6,14 +6,14 @@
 
 ## Command
 
-| Command     | Permission |          Details          |
-| -------------- | :-----------------: | :------: |
-| /shome	     | bed.spawn.set       |  set spawn point|
+| Command |  Permission   |     Details     |
+|---------|:-------------:|:---------------:|
+| /shome	 | bed.spawn.set | set spawn point |
 
 
 ## Config
 > Configuration file location：tshock/Bed.en-US.json
-```json
+```json5
 {
   "SpawnOption": {} //Spawn Point
 }

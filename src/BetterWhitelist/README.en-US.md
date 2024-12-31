@@ -6,19 +6,19 @@
 
 ## Commands
 
-| Command     | Permission |          Details          |
-| -------------- |:----------:|:-------------------------:|
-| `/bwl help`       | `bwl.use` | Show help information      |
-| `/bwl add {name}` | `bwl.use` | Add player name to the whitelist  |
-| `/bwl del {name}` | `bwl.use` | Remove player from the whitelist    |
-| `/bwl list`       | `bwl.use` | 	Show all players on the whitelist |
-| `/bwl true`       | `bwl.use` | Enable the plugin        |
-| `/bwl false`      | `bwl.use` | 	Disable the plugin        |
-| `/bwl reload`     | `bwl.use` | Reload the plugin        |
+| Command           | Permission |              Details               |
+|-------------------|:----------:|:----------------------------------:|
+| `/bwl help`       | `bwl.use`  |       Show help information        |
+| `/bwl add {name}` | `bwl.use`  |  Add player name to the whitelist  |
+| `/bwl del {name}` | `bwl.use`  |  Remove player from the whitelist  |
+| `/bwl list`       | `bwl.use`  | 	Show all players on the whitelist |
+| `/bwl true`       | `bwl.use`  |         Enable the plugin          |
+| `/bwl false`      | `bwl.use`  |        	Disable the plugin         |
+| `/bwl reload`     | `bwl.use`  |         Reload the plugin          |
 
 ## Config
 > Configuration file location：tshock/BetterWhitelist.en-US.json
-```json
+```json5
 {
   "WhitePlayers": [], // Whitelisted players
   "Enable": false, // Plugin switch
