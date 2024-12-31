@@ -8,7 +8,7 @@
 ## Commands
 
 | Command |  Permission  |                          Details                           |
-| ------- | :----------: | :--------------------------------------------------------: |
+|---------|:------------:|:----------------------------------------------------------:|
 | None    | maptp.noclip | Allows double-click teleportation (excluding solid blocks) |
 | None    |    maptp     | Allows double-click teleportation (including solid blocks) |
 

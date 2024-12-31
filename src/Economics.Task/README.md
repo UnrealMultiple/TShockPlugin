@@ -7,28 +7,21 @@
 > [!NOTE]  
 > 需要安装前置插件：EconomicsAPI、Economics.RPG (本仓库) 
 
-## 更新日志
-
-```
-V2.0.0.0
-适配多货币
-```
-
 ## 指令
 
-| 语法                  |         权限         |       说明       |
-| --------------------- | :------------------: | :--------------: |
-| /task pick [任务索引] |  economics.task.use  |   接取一个任务   |
-| /task info [任务索引] |  economics.task.use  |   查看任务详细   |
-| /task prog            |  economics.task.use  | 查看任务完成进度 |
-| /task pr              |  economics.task.use  |     提交任务     |
-| /task del             |  economics.task.use  |     放弃任务     |
-| /task list [页码]     |  economics.task.use  |   查看任务列表   |
-| /task reset           | economics.task.admin |     重置任务     |
+| 语法                |          权限          |    说明    |
+|-------------------|:--------------------:|:--------:|
+| /task pick [任务索引] |  economics.task.use  |  接取一个任务  |
+| /task info [任务索引] |  economics.task.use  |  查看任务详细  |
+| /task prog        |  economics.task.use  | 查看任务完成进度 |
+| /task pr          |  economics.task.use  |   提交任务   |
+| /task del         |  economics.task.use  |   放弃任务   |
+| /task list [页码]   |  economics.task.use  |  查看任务列表  |
+| /task reset       | economics.task.admin |   重置任务   |
 
 ## 配置
 > 配置文件位置：tshock/Economics/Task.json
-```json
+```json5
 {
   "不可重复接任务": true,
   "页显示数量": 10,
@@ -69,7 +62,12 @@ V2.0.0.0
   ]
 }
 ```
+## 更新日志
 
+```
+V2.0.0.0
+适配多货币
+```
 ## 反馈
 
 - 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

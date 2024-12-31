@@ -8,27 +8,17 @@
 > [!NOTE]  
 > 需要安装前置插件：DataSync(本仓库) 
 
-## 更新日志
-
-```
-v1.0.0.2
-移除构造函数加载配置文件
-
-v1.0.0.1
-完善卸载函数
-```
-
 ## 指令
 
-| 语法 |            权限            |           说明           |
-| ---- | :------------------------: | :----------------------: |
-| 空   |    progress.item.white     |  超进度物品检查白名权限  |
-| 空   | progress.projecttile.white |  超进度弹幕检查白名权限  |
-| 空   |    progress.buff.white     | 超进度 Buff 检查白名权限 |
+| 语法 |             权限             |       说明        |
+|----|:--------------------------:|:---------------:|
+| 空  |    progress.item.white     |   超进度物品检查白名权限   |
+| 空  | progress.projecttile.white |   超进度弹幕检查白名权限   |
+| 空  |    progress.buff.white     | 超进度 Buff 检查白名权限 |
 
 ## 配置
 > 配置文件位置：tshock/超进度检测.json
-```json
+```json5
 {
   "惩罚违规": true,
   "惩罚Debuff时长": 5,
@@ -342,6 +332,17 @@ v1.0.0.1
   ]
 }
 ```
+
+## 更新日志
+
+```
+v1.0.0.2
+移除构造函数加载配置文件
+
+v1.0.0.1
+完善卸载函数
+```
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

@@ -7,39 +7,17 @@
 > [!NOTE]
 >  requires the pre-installed plugin: EconomicsAPI (this repository).
 
-##  changelog
+## Commands
 
-```
-V1.0.0.6
-Add Configuration: After filling in "手持武器", the player must level up and must hold the specified weapon
+| Syntax                  |     Permission      | Description  |
+|-------------------------|:-------------------:|:------------:|
+| /rank [profession name] | economics.rpg.rank  |   upgrade    |
+| /reset level            | economics.rpg.reset | reset career |
+| /level reset            | economics.rpg.admin |    reset     |
 
-V1.0.0.5
-适配新 EconomicsAPI
-
-V1.0.0.3
-- 支持多语言
-
-V1.0.0.2
-- 添加权限economics.rpg.chat，拥有此权限不会改变玩家聊天格式。
-
-V1.0.0.1
-- 增加显示信息
-- 添加/level reset指令
-- 添加自定义消息玩家组
-- 添加RPG聊天渐变色
-```
-
-##  directive
-
-| Syntax | Privileges | Description |
-| -------------- | :-----------------: | :------: |
-| /rank [profession name] | economics.rpg.rank | upgrade |
-| /reset level | economics.rpg.reset | reset career |
-| /level reset | economics.rpg.admin | reset |
-
-##  configuration
+## Configuration
 >  configuration file location: tshock/Economics/RPG.json
-```json
+```json5
 {
   "RPG信息": {
     "战士": {
@@ -75,7 +53,7 @@ V1.0.0.1
   }
 }
 ```
-Feedback for ## 
-- Priority sends ISSUED -> co-maintained plugin repository: https://github.com/UnrealMultiple/TShockPlugin
-- Sub-priority: TShock official group: 816771079
-- Most likely not visible but possible: domestic community trhub.cn , bbstr.net , tr.monika.love
+## FeedBack
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love

@@ -6,10 +6,6 @@
 - Personalización de colores: El color del mensaje flotante está configurado por defecto en blanco (RGB 255, 255, 255), y es personalizable.
 - Compatible con [Floating-MessageChat](https://github.com/itsFrankV22/FloatingText-Chat)
 
-## Registro de cambios
-
-Ninguno por ahora.
-
 ## Comandos
 
 No se requiere ningún comando adicional.
@@ -17,7 +13,7 @@ No se requiere ningún comando adicional.
 ## Configuración
 
 > Ruta del archivo de configuración: `tshock/ItemDeco/ItemDecoration.es-ES.json`
-```json
+```json5
 {
   "ObjetoEnChat": {
     "colorDelObjeto": {

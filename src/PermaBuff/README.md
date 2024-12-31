@@ -1,18 +1,8 @@
-# PermaBuff 永久 buff
+# PermaBuff 永久Buff
 
 - 作者: 少司命
 - 出处: 无
 - 让玩家永久拥有 buff
-
-## 更新日志
-
-```
-v 1.0.2
-加入清理所有BUFF子命令:/cbuff all
-
-v.1.0.1
-- 完善卸载函数
-```
 
 ## 指令
 
@@ -26,11 +16,22 @@ v.1.0.1
 
 ## 配置
 > 配置文件位置：tshock/permbuff.json
-```json
+```json5
 {
   "不可添加buff": []
 }
 ```
+## 更新日志
+
+```
+v 1.0.2
+加入清理所有BUFF子命令:/cbuff all
+
+v.1.0.1
+- 完善卸载函数
+```
+
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

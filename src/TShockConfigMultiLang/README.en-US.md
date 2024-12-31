@@ -8,14 +8,14 @@
 
 ## Commands
 
-| Syntax                         |       Permission       |           Description           |
-| ------------------------------ | :--------------------: | :------------------------------: |
-| /configToNewconfig or /ctc     | tshock.cfg.reload      | Synchronize the original config file to the localized config file |
-| /configToFromconfig or /cfc    | tshock.cfg.reload      | Synchronize the localized config file to the original config file |
+| Syntax                      |    Permission     |                            Description                            |
+|-----------------------------|:-----------------:|:-----------------------------------------------------------------:|
+| /configToNewconfig or /ctc  | tshock.cfg.reload | Synchronize the original config file to the localized config file |
+| /configToFromconfig or /cfc | tshock.cfg.reload | Synchronize the localized config file to the original config file |
 
 ## Config
 > Configuration file location: tshock/config.en-US.json
-```json
+```json5
 {
     "ServerPassword": "",
     "ServerPort": 7777,

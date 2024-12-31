@@ -6,11 +6,6 @@
 - **Color Customization**: The floating message color is by default white (RGB 255, 255, 255) but can be customized.
 - **Compatible with** [Floating-MessageChat](https://github.com/itsFrankV22/FloatingText-Chat)
 
-## Changelog
-
-```
-No updates yet
-```
 
 ## Commands
 ```
@@ -19,7 +14,7 @@ No commands yet
 
 ## Configuration
 > Configuration file path: tshock/ItemDeco/ItemDecoration.en-US.json
-```json
+```json5
 {
   "itemChat": {
     "itemColor": {

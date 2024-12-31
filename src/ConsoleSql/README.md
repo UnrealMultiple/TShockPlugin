@@ -1,4 +1,4 @@
-# ConsoleSql
+# ConsoleSql 控制台SQL
 
 - 作者: Cai
 - 出处: 本仓库
@@ -9,9 +9,6 @@
 
 ## 示例
 ```
-v1.0.0
-i18n预备
-
 列出Tshock的数据表名：  
 sql select name from sqlite_master where type='table'  
 查询“用户数据表”有什么：  
@@ -35,7 +32,8 @@ sql update users set username='熙恩' where id=2
 ## 更新日志
 
 ```
-暂无
+v1.0.0
+i18n预备
 ```
 
 ## 反馈

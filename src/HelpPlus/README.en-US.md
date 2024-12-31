@@ -9,15 +9,15 @@
 
 ## Commands
 
-| Command         | Permission |          Details          |
-|-----------------|:----------:| :------: |
-| help <page>     |     no     |   view the list of commands   |
-| /help <command> |     no     |    view detailed help for the command   |
+| Command         | Permission |              Details               |
+|-----------------|:----------:|:----------------------------------:|
+| help <page>     |     no     |     view the list of commands      |
+| /help <command> |     no     | view detailed help for the command |
 
 ## Config
 > Configuration file location：tshock/HelpPlus.json
 
-```json
+```json5
 {
   "简短提示开关": true, //Enable brief prompt
   "简短提示对应": { //Brief prompt setting

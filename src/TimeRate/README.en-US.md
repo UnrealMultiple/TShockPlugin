@@ -4,33 +4,16 @@
 - Source: Tshock Official QQ Group 816771079
 - This is a Tshock server plugin, primarily used for: modifying time acceleration using commands, and supporting player sleep to trigger events.
 
-## Changelog
-
-```
-v1.2.0
-Fixed a bug that when the server is empty and the command '/times all' is enabled,
-the game time fast-forwards by 1 to 2 minutes when the first player joins the server."
-
-v1.1.0
-Improved the menu aesthetics.
-Optimized performance (no longer sends WorldInfo packets).
-Added visual smoothness optimization configuration (whether to send TimeSet packets).
-Added logic for sleeping to increase acceleration and corresponding toggle commands.
-
-v1.0.0
-Added functionality to control time flow rate modification via commands.
-```
-
 ## Commands
 
-| Syntax                             | Aliases  |       Permission       |                   Description                   |
-| -------------------------------- | :---: | :--------------: | :--------------------------------------: |
-| /times  | /时间加速 |   times.admin    |    Time acceleration menu.    |
-| /times all  | /时间加速 all |   times.admin    |    Toggle All Players sleep acceleration.    |
-| /times one  | /时间加速 one |   times.admin    |    Toggle One Player sleep acceleration.    |
-| /times on | /时间加速 on |   times.admin    |    Enable command time acceleration.    |
-| /times off  | /时间加速 off |   times.admin    |    Disable command time acceleration.    |
-| /times set number | /times s 数值 |   times.admin    |    Set acceleration rate.    |
+| Syntax            |   Aliases   | Permission  |              Description               |
+|-------------------|:-----------:|:-----------:|:--------------------------------------:|
+| /times            |    /时间加速    | times.admin |        Time acceleration menu.         |
+| /times all        |  /时间加速 all  | times.admin | Toggle All Players sleep acceleration. |
+| /times one        |  /时间加速 one  | times.admin | Toggle One Player sleep acceleration.  |
+| /times on         |  /时间加速 on   | times.admin |   Enable command time acceleration.    |
+| /times off        |  /时间加速 off  | times.admin |   Disable command time acceleration.   |
+| /times set number | /times s 数值 | times.admin |         Set acceleration rate.         |
 
 ---
 Configuration Notes
@@ -42,7 +25,7 @@ Configuration Notes
 
 ## Configuration
 > Configuration file location：tshock/时间加速.json
-```json
+```json5
 {
   "Command Acceleration": false,
   "Group Sleep Acceleration": true,

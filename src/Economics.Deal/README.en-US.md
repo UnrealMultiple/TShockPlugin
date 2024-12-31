@@ -1,4 +1,4 @@
-# Economics.Deal deals plugin
+# Economics.Deal
 
 - Author: Shaosimin
 - Origin: None
@@ -7,27 +7,18 @@
 > [!NOTE]
 >  needs to be installed before the plugin: EconomicsAPI (this repository)
 
-##  changelog
 
-```
-V1.0.0.3
-适配新 EconomicsAPI
+## Commands
 
-V1.0.0.2
-支持多语言
-```
+| Syntax                   |      Permission      |        Description        |
+|--------------------------|:--------------------:|:-------------------------:|
+| /deal push [price]       |  economics.deal.use  |  Publish Handheld Items   |
+| /deal list [page number] |  economics.deal.use  | View list of traded items |
+| /deal buy [ID]           |  economics.deal.use  |      Buy trade items      |
+| /deal recall [ID]        |  economics.deal.use  |  Withdraw a posted item   |
+| /deal reset              | economics.deal.reset |        reset deal         |
 
-##  directive
-
-| Syntax | Privileges | Description |
-| ----------------- | :------------------: | :--------------: |
-| /deal push [price] | economics.deal.use | Publish Handheld Items |
-| /deal list [page number] | economics.deal.use | View list of traded items |
-| /deal buy [ID] | economics.deal.use | Buy trade items |
-| /deal recall [ID] | economics.deal.use | Withdraw a posted item |
-| /deal reset | economics.deal.reset | reset deal |
-
-##  configuration
+##  Configuration
 >  configuration file location: tshock/Economics/Deal.json
 ```json
 {
@@ -35,7 +26,7 @@ V1.0.0.2
   "交易列表": []
 }
 ```
-Feedback from ## 
-- Priority sends ISSUED -> co-maintained plugin repository: https://github.com/UnrealMultiple/TShockPlugin
-- Sub-priority: TShock official group: 816771079
-- Most likely not visible but possible: domestic community trhub.cn , bbstr.net , tr.monika.love
+## FeedBack
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love

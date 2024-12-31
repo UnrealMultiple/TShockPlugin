@@ -6,36 +6,22 @@
 - 因魔力的特殊性实际最大提升只能到 400
 - 仅限 SSC（强制开荒）开启时使用
 
-## 更新日志
-
-```
-v1.0.0.8
-SSC下指令无效提示，使用本插件自动更改ts自己config的maxmp和maxhp
-
-v1.0.0.7
-完善卸载函数
-
-1.修正使用物品判断
-2.添加指令/hp 和 /mp
-3.添加可自定义物品增加血量
-```
-
 ## 指令
 
-| 语法                    |       权限       |     说明     |
-| ----------------------- | :--------------: | :----------: |
+| 语法                 |        权限        |   说明   |
+|--------------------|:----------------:|:------:|
 | /hp enh [玩家名] [血量] | lifemaxextra.use | 提升玩家血量 |
 | /hp set [玩家名] [血量] | lifemaxextra.use | 设置玩家血量 |
-| /hp enh [血量]          | lifemaxextra.use | 提升自身血量 |
-| /hp set [血量]          | lifemaxextra.use | 设置自身血量 |
+| /hp enh [血量]       | lifemaxextra.use | 提升自身血量 |
+| /hp set [血量]       | lifemaxextra.use | 设置自身血量 |
 | /mp enh [玩家名] [血量] | lifemaxextra.use | 提升玩家魔力 |
 | /mp set [玩家名] [血量] | lifemaxextra.use | 设置玩家魔力 |
-| /mp enh [血量]          | lifemaxextra.use | 提升自身魔力 |
-| /mp set [血量]          | lifemaxextra.use | 设置自身魔力 |
+| /mp enh [血量]       | lifemaxextra.use | 提升自身魔力 |
+| /mp set [血量]       | lifemaxextra.use | 设置自身魔力 |
 
 ## 配置
 > 配置文件位置：tshock/LifemaxExtra.zh-CN.json
-```json
+```json5
 {
   "最大生命值": 1000,
   "最大法力值": 400,
@@ -57,6 +43,22 @@ v1.0.0.7
   }
 }
 ```
+
+
+## 更新日志
+
+```
+v1.0.0.8
+SSC下指令无效提示，使用本插件自动更改ts自己config的maxmp和maxhp
+
+v1.0.0.7
+完善卸载函数
+
+1.修正使用物品判断
+2.添加指令/hp 和 /mp
+3.添加可自定义物品增加血量
+```
+
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

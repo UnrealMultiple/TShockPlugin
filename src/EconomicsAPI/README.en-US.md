@@ -5,34 +5,21 @@
 - Source: None
 - Economic Suite Prequel Plugin
 
-## Update Log
-
-```
-V1.0.2.0 Added /bank query command to replace /query BREAKING CHANGE: CurrencyManager.DelUserCurrency renamed to DelUserCurrency.DeductUserCurrency
-V1.0.0.0
-Added extension functions
-Added display message API
-Added gradient message API
-Custom gradient message colors
-Fixed currency drop on death
-Fixed inaccurate player damage calculation
-```
-
 ## Commands
 
-| Syntax                           |           Permission           |               Description               |
-| ------------------------------ | :----------------------: | :------------------------------: |
-| /bank add <player name> <amount> |      economics.bank      |             Increase currency            |
-| /bank deduct <player name> <amount> |      economics.bank      |             Deduct currency            |
-| /bank pay <player name> <amount> |    economics.bank.pay    |             Transfer currency           |
-| /bank query [player name]        |   economics.bank.query   |             Query currency             |
-| /bank clear <player name>        |      economics.bank      |             Clear currency            |
-| /bank reset                     |      economics.bank      |            Global currency reset         |
-| /query                          | economics.currency.query | Query currency (Deprecated, will be removed in future versions) |
+| Syntax                              |        Permission        |                           Description                           |
+|-------------------------------------|:------------------------:|:---------------------------------------------------------------:|
+| /bank add <player name> <amount>    |      economics.bank      |                        Increase currency                        |
+| /bank deduct <player name> <amount> |      economics.bank      |                         Deduct currency                         |
+| /bank pay <player name> <amount>    |    economics.bank.pay    |                        Transfer currency                        |
+| /bank query [player name]           |   economics.bank.query   |                         Query currency                          |
+| /bank clear <player name>           |      economics.bank      |                         Clear currency                          |
+| /bank reset                         |      economics.bank      |                      Global currency reset                      |
+| /query                              | economics.currency.query | Query currency (Deprecated, will be removed in future versions) |
 
 ## Configuration
 > Configuration file location: tshock/Economics/Economics.json
-```json
+```json5
 {
   "Currency Name": "Soul Power",
   "Currency Exchange Rate": 1.0,
@@ -68,7 +55,7 @@ Fixed inaccurate player damage calculation
   ]
 }
 ```
-## Feedback
-Priority: Issued -> Shared Plugin Repository: https://github.com/UnrealMultiple/TShockPlugin
-Secondary Priority: TShock Official Group: 816771079
-Likely not seen but also possible: Domestic community trhub.cn, bbstr.net, tr.monika.love
+## FeedBack
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love

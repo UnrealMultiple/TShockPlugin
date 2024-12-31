@@ -1,4 +1,4 @@
-#  打击文字提示
+# CriticalHit 打击文字提示
 
 - 作者: White,Stone·Free，肝帝熙恩
 - 出处: TShock官方群聊
@@ -6,11 +6,6 @@
 - 根据武器类型不同产生不同文字
 - 可以设置即使不暴击也产生文字
 
-## 更新日志
-
-```
-v1.2.1 添加英文翻译
-```
 
 ## 指令
 
@@ -20,7 +15,7 @@ v1.2.1 添加英文翻译
 
 ## 配置
 > 配置文件位置：tshock/CriticalConfig.json
-```json
+```json5
 {
   "总开关": true,
   "仅暴击显示": true,
@@ -94,6 +89,14 @@ v1.2.1 添加英文翻译
   }
 }
 ```
+
+## 更新日志
+
+```
+v1.2.1 添加英文翻译
+```
+
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

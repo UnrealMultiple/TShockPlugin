@@ -4,41 +4,22 @@
 - 出处: 无
 - 经济套件前置插件
 
-## 更新日志
-
-```
-V2.0.0.0
-新增多货币实现
-
-V1.0.2.0
-新增 /bank query 指令以替代 /查询
-BREAKING CHANGE: CurrencyManager.DelUserCurrency 重命名为 DelUserCurrency.DeductUserCurrency
-
-V1.0.0.0
-- 添加扩展函数
-- 添加显示消息API
-- 添加渐变色消息API
-- 自定义渐变色消息颜色
-- 修复死亡掉落货币
-- 修复玩家伤害计算失准
-```
-
 ## 指令
 
-| 语法                           |           权限           |               说明               |
-| ------------------------------ | :----------------------: | :------------------------------: |
-| /bank add <玩家名称> <数量> <货币> |      economics.bank      |             增加货币             |
-| /bank deduct <玩家名称> <数量> <货币> |      economics.bank      |             扣除货币             |
-| /bank pay <玩家名称> <数量> <货币>   |    economics.bank.pay    |             转账货币             |
-| /bank query [玩家名称]         |   economics.bank.query   |             查询货币             |
-| /bank clear <玩家名称>         |      economics.bank      |             清除货币             |
-| /bank reset                    |      economics.bank      |           全局重置货币           |
-| /bank cash <原货币> <数量> <目标货币> |      economics.bank.cash     |     转换货币              |
-| /查询                          | economics.currency.query | 查询货币(废弃, 将在未来版本移除) |
+| 语法                            |            权限            |         说明         |
+|-------------------------------|:------------------------:|:------------------:|
+| /bank add <玩家名称> <数量> <货币>    |      economics.bank      |        增加货币        |
+| /bank deduct <玩家名称> <数量> <货币> |      economics.bank      |        扣除货币        |
+| /bank pay <玩家名称> <数量> <货币>    |    economics.bank.pay    |        转账货币        |
+| /bank query [玩家名称]            |   economics.bank.query   |        查询货币        |
+| /bank clear <玩家名称>            |      economics.bank      |        清除货币        |
+| /bank reset                   |      economics.bank      |       全局重置货币       |
+| /bank cash <原货币> <数量> <目标货币>  |   economics.bank.cash    |        转换货币        |
+| /查询                           | economics.currency.query | 查询货币(废弃, 将在未来版本移除) |
 
 ## 配置
 > 配置文件位置：tshock/Economics/Economics.json
-```json
+```json5
 {
   "货币名称": "魂力",
   "货币转换率": 1.0,
@@ -74,6 +55,26 @@ V1.0.0.0
   ]
 }
 ```
+
+## 更新日志
+
+```
+V2.0.0.0
+新增多货币实现
+
+V1.0.2.0
+新增 /bank query 指令以替代 /查询
+BREAKING CHANGE: CurrencyManager.DelUserCurrency 重命名为 DelUserCurrency.DeductUserCurrency
+
+V1.0.0.0
+- 添加扩展函数
+- 添加显示消息API
+- 添加渐变色消息API
+- 自定义渐变色消息颜色
+- 修复死亡掉落货币
+- 修复玩家伤害计算失准
+```
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

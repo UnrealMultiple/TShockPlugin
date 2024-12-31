@@ -6,15 +6,6 @@
 - 颜色自定义：浮动消息的颜色默认为白色（RGB 值为 255,255,255），可以自定义
 - 兼容 [Floating-MessageChat](https://github.com/itsFrankV22/FloatingText-Chat)
 
-## 更新日志
-
-```
-v1.0.0.1
-完成西班牙语的i18n config配置，修复聊天不显示名字的问题
-V1.0.0.0
-重构代码
-```
-
 ## 指令
 ```
 暂无
@@ -22,7 +13,7 @@ V1.0.0.0
 
 ## 配置
 > 配置文件路径：tshock/ItemDecoration.zh-CN.json
-```json
+```json5
 {
   "物品聊天": {
     "物品颜色": {
@@ -117,6 +108,15 @@ V1.0.0.0
   }
 }
 ```
+## 更新日志
+
+```
+v1.0.0.1
+完成西班牙语的i18n config配置，修复聊天不显示名字的问题
+V1.0.0.0
+重构代码
+```
+
 
 ## 反馈
 - 本插件优先找原仓库：[Github](https://github.com/itsFrankV22/ItemsDeco-Plugin)

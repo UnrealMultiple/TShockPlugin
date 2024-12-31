@@ -7,26 +7,18 @@
 > [!NOTE]  
 > 需要安装前置插件：EconomicsAPI、Economics.RPG (本仓库) 
 
-## 更新日志
 
-```
-V2.0.0.0
-适配多货币
-
-V1.0.0.3
-适配新 EconomicsAPI
-```
 
 ## 指令
 
-| 语法              |      权限      |     说明     |
-| ----------------- | :------------: | :----------: |
-| /shop buy [序号]  | economics.shop |   购买商品   |
+| 语法              |       权限       |   说明   |
+|-----------------|:--------------:|:------:|
+| /shop buy [序号]  | economics.shop |  购买商品  |
 | /shop list [页码] | economics.shop | 查看商品列表 |
 
 ## 配置
 > 配置文件位置：tshock/Economics/Shop.json
-```json
+```json5
 {
   "最大显示页": 10,
   "商品列表": [
@@ -47,6 +39,17 @@ V1.0.0.3
   ]
 }
 ```
+
+## 更新日志
+
+```
+V2.0.0.0
+适配多货币
+
+V1.0.0.3
+适配新 EconomicsAPI
+```
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

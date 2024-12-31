@@ -1,4 +1,4 @@
-# Lagrange.XocMat 机器人的TShock适配插件
+# Lagrange.XocMat BOT适配插件
 
 - 作者: 少司命
 - 仓库: 此仓库
@@ -7,12 +7,6 @@
 
 - [Lagrange.XocMat](https://github.com/UnrealMultiple/XocMat)
 
-## 更新日志
-
-```
-v1.0.0.1
-阻止语句改string[]
-```
 ## 指令
 
 ```
@@ -23,7 +17,7 @@ v1.0.0.1
 
 > 配置文件位置：tshock/Lagrange.XocMat.Adapter.json
 
-```json
+```json5
 {
   "阻止未注册进入": true,
   "阻止语句": ["未注禁止进入服务器！"],
@@ -75,6 +69,13 @@ v1.0.0.1
     ]
   }
 }
+```
+
+## 更新日志
+
+```
+v1.0.0.1
+阻止语句改string[]
 ```
 
 ## 反馈

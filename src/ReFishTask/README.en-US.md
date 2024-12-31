@@ -7,7 +7,7 @@
 
 ## Config
 > Configuration file location：tshock/刷新渔夫任务.json
-```json
+```json5
 {
   "是否切换任务鱼（关掉就可以1种鱼刷1天）": true // Whether to change fisherman task 
 }

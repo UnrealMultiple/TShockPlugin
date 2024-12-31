@@ -8,9 +8,9 @@
 
 ## Commands
 
-| Command     | Permission  |            Details            |
-|-------------|:-----------:|:-----------------------------:|
-| /npchome | tshock.world.movenpc  | 	This permission is for the original Tshock NPC housing assignment permission|
+| Command  |      Permission      |                                    Details                                    |
+|----------|:--------------------:|:-----------------------------------------------------------------------------:|
+| /npchome | tshock.world.movenpc | 	This permission is for the original Tshock NPC housing assignment permission |
 
 ## FeedBack
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin

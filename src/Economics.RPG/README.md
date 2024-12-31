@@ -1,4 +1,4 @@
-# Economics.RPG 升级职业插件
+# Economics.RPG 职业插件
 
 - 作者: 少司命
 - 出处: 无
@@ -7,42 +7,18 @@
 > [!NOTE]  
 > 需要安装前置插件：EconomicsAPI (本仓库)  
 
-## 更新日志
-
-```
-V2.0.0.0
-适配多货币
-
-V1.0.0.6
-添加配置 "手持武器"填写后玩家升级必须手持指定的武器
-
-V1.0.0.5
-适配新 EconomicsAPI
-
-V1.0.0.3
-- 支持多语言
-
-V1.0.0.2
-- 添加权限economics.rpg.chat，拥有此权限不会改变玩家聊天格式。
-
-V1.0.0.1
-- 增加显示信息
-- 添加/level reset指令
-- 添加自定义消息玩家组
-- 添加RPG聊天渐变色
-```
 
 ## 指令
 
-| 语法           |        权限         |   说明   |
-| -------------- | :-----------------: | :------: |
-| /rank [职业名] | economics.rpg.rank  |   升级   |
-| /重置等级      | economics.rpg.reset | 重置职业 |
-| /level reset   | economics.rpg.admin | 重置     |
+| 语法           |         权限          |  说明  |
+|--------------|:-------------------:|:----:|
+| /rank [职业名]  | economics.rpg.rank  |  升级  |
+| /重置等级        | economics.rpg.reset | 重置职业 |
+| /level reset | economics.rpg.admin |  重置  |
 
 ## 配置
 > 配置文件位置：tshock/Economics/RPG.json
-```json
+```json5
 {
   "RPG信息": {
     "战士": {
@@ -78,6 +54,33 @@ V1.0.0.1
   }
 }
 ```
+
+## 更新日志
+
+```
+V2.0.0.0
+适配多货币
+
+V1.0.0.6
+添加配置 "手持武器"填写后玩家升级必须手持指定的武器
+
+V1.0.0.5
+适配新 EconomicsAPI
+
+V1.0.0.3
+- 支持多语言
+
+V1.0.0.2
+- 添加权限economics.rpg.chat，拥有此权限不会改变玩家聊天格式。
+
+V1.0.0.1
+- 增加显示信息
+- 添加/level reset指令
+- 添加自定义消息玩家组
+- 添加RPG聊天渐变色
+```
+
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079
