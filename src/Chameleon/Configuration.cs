@@ -11,6 +11,10 @@ namespace Chameleon;
 internal class Configuration : JsonConfigBase<Configuration>
 {
     protected override string Filename => "Chameleon";
+    [LocalizedPropertyName(CultureType.Chinese, "验证登录IP是否一致", Order = -3)]
+    [LocalizedPropertyName(CultureType.English, "VerifyloginIP", Order = -3)]
+    public bool VerifyloginIP { get; set; } = false;
+
     [LocalizedPropertyName(CultureType.Chinese, "等待列表长度")]
     [LocalizedPropertyName(CultureType.English, "AwaitBufferSize")]
     public ushort AwaitBufferSize { get; set; } = Chameleon.Size;

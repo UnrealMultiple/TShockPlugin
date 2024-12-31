@@ -5,9 +5,9 @@ namespace CaiBot;
 
 public class Config
 {
-    private const string Path = "tshock/CaiBot.json";
+    private const string ConfigPath = "tshock/CaiBot.json";
 
-    public static Config config = new ();
+    public static Config Settings = new ();
     [JsonProperty("白名单开关",Order = 1)] public bool WhiteList = true;
     [JsonProperty("密钥",Order = 2)] public string Token = "";
     [JsonProperty("白名单拦截提示的群号",Order = 3)] public long GroupNumber;
@@ -21,42 +21,39 @@ public class Config
     [JsonProperty("群聊天发送格式",Order = 9)] public string GroupChatFormat = "[{0}]{1}:{2}"; // "[群名]玩家昵称:内容" 额外 {3}:群QQ号 {4}:发送者QQ
     [JsonProperty("群聊天自定义群名",Order = 10)] public Dictionary<long, string> CustomGroupName = new ();
 
-    public void Write(string path = Path)
+    /// <summary>
+    /// 将配置文件写入硬盘
+    /// </summary>
+    public void Write() 
     {
-        using FileStream fileStream = new (path, FileMode.Create, FileAccess.Write, FileShare.Write);
-        this.Write(fileStream);
+        using FileStream fileStream = new(ConfigPath, FileMode.Create, FileAccess.Write, FileShare.Write);
+        using StreamWriter streamWriter = new(fileStream);
+        streamWriter.Write(JsonConvert.SerializeObject(this, JsonSettings));
     }
 
-    private void Write(Stream stream)
+    /// <summary>
+    /// 从硬盘读取配置文件
+    /// </summary>
+    public void Read() 
     {
-        var value = JsonConvert.SerializeObject(this, Formatting.Indented);
-        using StreamWriter streamWriter = new (stream);
-        streamWriter.Write(value);
-    }
-
-    public static void Read(string path = Path)
-    {
-        var flag = !File.Exists(path);
-        Config? result;
-        if (flag)
+        Config result;
+        if (!File.Exists(ConfigPath))
         {
             result = new Config();
-            result.Write(path);
+            result.Write();
         }
         else
         {
-            using FileStream fileStream = new (path, FileMode.Open, FileAccess.Read, FileShare.Read);
-            result = Read(fileStream);
+            using FileStream fileStream = new(ConfigPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            using StreamReader streamReader = new(fileStream);
+            result = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd(), JsonSettings)!;
         }
-
-        config = result!;
+        Settings = result;
     }
-
-    private static Config? Read(Stream stream)
+    
+    private static readonly JsonSerializerSettings JsonSettings = new() 
     {
-        using StreamReader streamReader = new (stream);
-        var result = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd());
-
-        return result;
-    }
+        Formatting = Formatting.Indented,
+        ObjectCreationHandling = ObjectCreationHandling.Replace
+    };
 }

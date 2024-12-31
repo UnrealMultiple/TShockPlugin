@@ -153,6 +153,7 @@
 | [PersonalPermission](./src/PersonalPermission/README.md) | No | Set permissions individually for players |  |
 | [Platform](./src/Platform/README.md) | No | Determine player device |  |
 | [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | No | Hufang's player manager |  |
+| [PlayerRandomSwapper](./src/PlayerRandomSwapper/README.en-US.md) | Yes | Random Player Position Swap | [LazyAPI](./src/LazyAPI/README.md) |
 | [PlayerSpeed](./src/PlayerSpeed/README.en-US.md) | Yes | Enable players to achieve a two-stage sprint | [LazyAPI](./src/LazyAPI/README.md) |
 | [ProgressBag](./src/ProgressBag/README.md) | No | Progress gift pack |  |
 | [ProgressControls](./src/ProgressControls/README.md) | No | Planbook (Automate server control) |  |
@@ -171,7 +172,7 @@
 | [RestInventory](./src/RestInventory/README.md) | No | Provide REST query backpack interface |  |
 | [RolesModifying](./src/RolesModifying/README.md) | No | Modify player backpack |  |
 | [Sandstorm](./src/Sandstorm/README.md) | No | Toggle sandstorm |  |
-| [ServerTools](./src/ServerTools/README.en-US.md) | No | Server management tools |  |
+| [ServerTools](./src/ServerTools/README.en-US.md) | No | Server management tools | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
 | [SessionSentinel](./src/SessionSentinel/README.md) | No | Handle players not sending data packets for a long time |  |
 | [ShortCommand](./src/ShortCommand/README.md) | No | Short command |  |
 | [ShowArmors](./src/ShowArmors/README.md) | No | Display equipment bar |  |
@@ -189,6 +190,10 @@
 | [TownNPCHomes](./src/TownNPCHomes/README.en-US.md) | Yes | NPC quick home |  |
 | [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | No | TShock configuration language localization | [LazyAPI](./src/LazyAPI/README.md) |
 | [UnseenInventory](./src/UnseenInventory/README.md) | No | Allows the server to generate items that are normally 'unobtainable' |  |
+| [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | No | Foundation library for VBY plugins |  |
+| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | No | Customizable modifications for certain game content (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | No | Provide some other auxiliary commands | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | No | A plugin loader that allows hot reloading |  |
 | [VeinMiner](./src/VeinMiner/README.en-US.md) | Yes | Chain mining |  |
 | [VotePlus](./src/VotePlus/README.en-US.md) | Yes | Multi-function voting |  |
 | [WeaponPlus](./src/WeaponPlusCostCoin/README.md) | No | Weapon enhancement coin version |  |

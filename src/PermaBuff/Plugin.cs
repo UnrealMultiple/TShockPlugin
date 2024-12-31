@@ -15,7 +15,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
 
     private readonly string PATH = Path.Combine(TShock.SavePath, "permbuff.json");
 
@@ -38,9 +38,9 @@ public class Plugin : TerrariaPlugin
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnJoin);
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
         ServerApi.Hooks.GameUpdate.Register(this, this.Update);
-        Commands.ChatCommands.Add(new Command("permabuff.use", this.PAbuff, "permabuff"));
-        Commands.ChatCommands.Add(new Command("gpermabuff.use", this.GPbuff, "gpermabuff"));
-        Commands.ChatCommands.Add(new Command("clearbuffs.use", this.Cbuff, "clearbuffs"));
+        Commands.ChatCommands.Add(new Command("permabuff.use", this.PAbuff, "permabuff","pbuff"));
+        Commands.ChatCommands.Add(new Command("gpermabuff.use", this.GPbuff, "gpermabuff","gpbuff"));
+        Commands.ChatCommands.Add(new Command("clearbuffs.use", this.Cbuff, "clearbuffs","cbuff"));
         GeneralHooks.ReloadEvent += this._reloadHandler;
     }
     protected override void Dispose(bool disposing)
@@ -73,15 +73,42 @@ public class Plugin : TerrariaPlugin
 
     private void Cbuff(CommandArgs args)
     {
-        var buffs = Playerbuffs.GetBuffs(args.Player.Name);
-        if (buffs.Count == 0)
+        if (args.Parameters.Count == 0)
         {
-            args.Player.SendSuccessMessage("没有永久buff，无需清空");
+            var buffs = Playerbuffs.GetBuffs(args.Player.Name);
+            if (buffs.Count == 0)
+            {
+                args.Player.SendSuccessMessage("没有永久buff，无需清空");
+            }
+            else
+            {
+                buffs.Clear();
+                buffs.TrimExcess();
+                args.Player.SendSuccessMessage("已清空所有永久buff");
+                args.Player.SendData(PacketTypes.PlayerBuff, null, args.Player.Index);
+            }
+        }
+
+        else if (args.Parameters.Count >= 1 && args.Parameters[0].ToLower() == "all")
+        {
+            if (args.Player.HasPermission("clearbuffs.admin"))
+            {
+                Playerbuffs.PlayerBuffs.Clear();
+                DB.ClearTable();
+                args.Player.SendSuccessMessage("已清空所有玩家永久buff");
+                foreach (var plr in TShock.Players.Where(p => p != null && p.IsLoggedIn && p.Active))
+                {
+                    plr.SendData(PacketTypes.PlayerBuff, null, plr.Index);
+                }
+            }
+            else
+            {
+                args.Player.SendErrorMessage("权限不足，无法执行此命令");
+            }
         }
         else
         {
-            buffs.ForEach(x => Playerbuffs.DelBuff(args.Player.Name, x));
-            args.Player.SendSuccessMessage("已清空所有永久buff");
+            args.Player.SendErrorMessage("未知参数，请使用 '/clearbuffs' 或 '/cbuff all'");
         }
     }
 

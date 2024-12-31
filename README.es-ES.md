@@ -153,6 +153,7 @@
 | [PersonalPermission](./src/PersonalPermission/README.md) | No | Establece permisos individualmente para los jugadores |  |
 | [Platform](./src/Platform/README.md) | No | Determina el dispositivo del jugador |  |
 | [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | No | Administrador de jugadores de Hufang |  |
+| [PlayerRandomSwapper](./src/PlayerRandomSwapper/README.md) | No | Intercambio de posiciones aleatorio de jugadores | [LazyAPI](./src/LazyAPI/README.md) |
 | [PlayerSpeed](./src/PlayerSpeed/README.md) | No | Interceptación de paquetes | [LazyAPI](./src/LazyAPI/README.md) |
 | [ProgressBag](./src/ProgressBag/README.md) | No | Paquete de progreso |  |
 | [ProgressControls](./src/ProgressControls/README.md) | No | Planificador (Automatiza el control del servidor) |  |
@@ -171,7 +172,7 @@
 | [RestInventory](./src/RestInventory/README.md) | No | Proporciona una interfaz de consulta REST para la mochila |  |
 | [RolesModifying](./src/RolesModifying/README.md) | No | Modificar mochila del jugador |  |
 | [Sandstorm](./src/Sandstorm/README.md) | No | Alterna la tormenta de arena |  |
-| [ServerTools](./src/ServerTools/README.md) | No | Herramientas de administración del servidor |  |
+| [ServerTools](./src/ServerTools/README.md) | No | Herramientas de administración del servidor | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
 | [SessionSentinel](./src/SessionSentinel/README.md) | No | Maneja jugadores que no envían paquetes de datos por mucho tiempo |  |
 | [ShortCommand](./src/ShortCommand/README.md) | No | Comando corto |  |
 | [ShowArmors](./src/ShowArmors/README.md) | No | Muestra la barra de equipo |  |
@@ -189,6 +190,10 @@
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | No | Casa rápida de NPC |  |
 | [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | No | Localización del idioma de configuración de TShock | [LazyAPI](./src/LazyAPI/README.md) |
 | [UnseenInventory](./src/UnseenInventory/README.md) | No | Permite que el servidor genere ítems "inobtenibles" |  |
+| [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | No | Biblioteca base para plugins VBY |  |
+| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | No | Modificaciones personalizables para cierto contenido del juego (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | No | Proveer algunos otros comandos auxiliares | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | No | Un cargador de plugins que permite la recarga en caliente |  |
 | [VeinMiner](./src/VeinMiner/README.md) | No | Minado en cadena |  |
 | [VotePlus](./src/VotePlus/README.md) | No | Votación multifuncional |  |
 | [WeaponPlus](./src/WeaponPlusCostCoin/README.md) | No | Versión de monedas para mejorar armas |  |

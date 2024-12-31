@@ -43,6 +43,6 @@ public class DB
 
     public static void ClearTable()
     {
-        database.Query("TRUNCATE Permabuff");
+        database.Query("DELETE FROM Permabuff");
     }
 }
