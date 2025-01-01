@@ -1,4 +1,4 @@
-## SurfaceBlock 禁止地表弹幕
+# SurfaceBlock 禁止地表弹幕
 
 - 作者: 羽学
 - 出处: [github](https://github.com/1242509682/SurfaceBlock)
