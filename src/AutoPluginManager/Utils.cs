@@ -1,13 +1,14 @@
-﻿using Terraria;
+﻿using AutoPluginManager.Internal;
 using System.Diagnostics;
 using System.Reflection;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
 namespace AutoPluginManager;
 
 internal static class Utils
-{    
+{
     /// <summary>
     /// 卸载插件
     /// </summary>
@@ -57,9 +58,9 @@ internal static class Utils
                         throw new Exception(
                             string.Format("卸载 \"{0}\" 时出错.", c.Plugin.Name), ex);
                     }
-                    
+
                 }
-                
+
             }
 
             loadedAssemblies.Remove(p);
@@ -204,7 +205,7 @@ internal static class Utils
             .ToDictionary(i => i.Key, i => i.Value);
     }
 
-   
+
     public static void SendFormattedServerPluginsModifications(this TSPlayer player, (PluginUpdateInfo[] plugins, string[] externalDlls) success)
     {
         if (success.plugins.Any(p => p.Current is null))

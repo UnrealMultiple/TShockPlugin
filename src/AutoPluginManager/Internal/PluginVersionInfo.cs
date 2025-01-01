@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 
-namespace AutoPluginManager;
+namespace AutoPluginManager.Internal;
 
-public class PluginVersionInfo
+internal class PluginVersionInfo
 {
-    public Version Version { get; set; } = new ();
+    public Version Version { get; set; } = new();
 
     public string Author { get; set; } = string.Empty;
 
@@ -16,8 +16,8 @@ public class PluginVersionInfo
     public string FileName { get; set; } = string.Empty;
 
     public string[] Dependencies { get; set; } = Array.Empty<string>();
-    
-    public bool HotReload { get; set; } = true; 
+
+    public bool HotReload { get; set; } = true;
 
     public string AssemblyName { get; set; } = string.Empty;
 
