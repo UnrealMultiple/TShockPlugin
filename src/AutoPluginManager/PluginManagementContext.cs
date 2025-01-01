@@ -178,8 +178,10 @@ public class PluginManagementContext : IDisposable
                 success.Add(new(current, info));
             }
         }
-        plugins.ForEach(InstallPlugin);
-        var ed = this.ResolvePluginDependencies(plugins);
+
+        var pluginAssemblyNames = plugins as string[] ?? plugins.ToArray();
+        pluginAssemblyNames.ForEach(InstallPlugin);
+        var ed = this.ResolvePluginDependencies(pluginAssemblyNames);
         ed.ForEach(InstallPlugin);
         return (success.ToArray(), ed);
     }

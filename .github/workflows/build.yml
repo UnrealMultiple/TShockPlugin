@@ -101,7 +101,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
         run: |
           sudo pip install beautifulsoup4
-          python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}
+          python scripts/ApmApiSync.py ${{ secrets.CAI_APM_API_KEY }}
           sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
 
       - name: 更新tag
