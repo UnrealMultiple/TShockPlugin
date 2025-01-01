@@ -439,7 +439,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.2.5",
+    "Version": "2.0.2.6",
     "Author": "少司命,Cai,LaoSparrow",
     "Description": "自动更新你的插件！",
     "AssemblyName": "AutoPluginManager",
@@ -1276,7 +1276,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.1.1231",
+    "Version": "1.9.2.101",
     "Author": "yu",
     "Description": "一些游戏内容的修改 For Terraria v1.4.4.9",
     "AssemblyName": "VBY.GameContentModify",
@@ -1288,7 +1288,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.1231",
+    "Version": "1.0.0.101",
     "Author": "yu",
     "Description": "一些其他的辅助命令",
     "AssemblyName": "VBY.OtherCommand",
