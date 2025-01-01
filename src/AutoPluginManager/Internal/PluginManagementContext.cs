@@ -114,7 +114,7 @@ internal class PluginManagementContext : IDisposable
     {
         var buffer = ApiAdapter.Request(PluginAPIType.Alone, new Dictionary<string, string>()
         {
-            { "AssemblyName", assemblyName }
+            { "assembly_name", assemblyName }
         }).Result;
         return this.ExtractPluginFromBuffer(buffer).Values.First();
     }

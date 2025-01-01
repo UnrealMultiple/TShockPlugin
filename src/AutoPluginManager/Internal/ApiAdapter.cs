@@ -14,9 +14,12 @@ internal class ApiAdapter
     /// <param name="url"></param>
     /// <param name="args"></param>
     /// <returns></returns>
-    public static async Task<byte[]> HttpGetByte(string url, Dictionary<string, string>? args = null)
+    public static async Task<byte[]> Request(PluginAPIType type, Dictionary<string, string>? args = null)
     {
-        var uriBuilder = new UriBuilder(url);
+        var uriBuilder = new UriBuilder(RequestApi)
+        {
+            Path = type.GetAttribute<DescriptionAttribute>().Description
+        };
         var param = HttpUtility.ParseQueryString(uriBuilder.Query);
         if (args != null)
         {
@@ -27,11 +30,5 @@ internal class ApiAdapter
         }
         uriBuilder.Query = param.ToString();
         return await _client.GetByteArrayAsync(uriBuilder.ToString());
-    }
-
-    public static async Task<byte[]> Request(PluginAPIType type, Dictionary<string, string>? args = null)
-    {
-        var url = RequestApi + type.GetAttribute<DescriptionAttribute>().Description;
-        return await HttpGetByte(url, args);
     }
 }
