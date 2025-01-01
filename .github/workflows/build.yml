@@ -94,6 +94,59 @@ jobs:
           name: Plugins
           path: out/Target/*
           compression-level: 9
+          
+      - name: 同步其他平台
+        continue-on-error: true
+        shell: pwsh
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        run: |
+          sudo pip install beautifulsoup4
+          python scripts/ApmApiSync.py ${{ secrets.CAI_APM_API_KEY }}
+          sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
+
+      - name: 更新tag
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          git tag -f V1.0.0.0
+          git push -f origin V1.0.0.0
+
+      - name: 获取更新日志
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        id: external_changelog_second
+        uses: mikepenz/release-changelog-builder-action@v5
+        with:
+          configuration: ".config/log_config.json"
+
+      - name: 下载临时插件包
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          name: Plugins
+          path: bin
+          skip_unpack: true
+          
+      - name: 发布插件包
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: ncipollo/release-action@v1
+        with:
+          tag: V1.0.0.0
+          name: "最新版本"
+          body: |
+            # 插件下载和更新日志
+            ###  📅 每次仓库更新，我们都会在这里发布最新的Release。请注意，这个仓库只有一个Release，所以你总是能在这里找到最新的版本。
+            ###  📖介绍已经以MD的形式附在插件包中，可以使用文本编辑器打开。更推荐你直接在仓库主页中的[插件列表](https://github.com/UnrealMultiple/TShockPlugin?tab=readme-ov-file#%E5%B7%B2%E6%94%B6%E9%9B%86%E6%8F%92%E4%BB%B6)，点击插件名跳转。
+            ###  📦 你可以在页面的`最底部↓↓↓`找到插件包的下载链接。下载完成后，你需要使用`ZIP压缩工具`进行解压。
+            > [!CAUTION]
+            >**请你`仔细`地阅读`上面的说明`，不要到处问`插件怎么用`、`ZIP如何解压`**
+            <details>
+            <summary>更新日志</summary>
+            
+            ${{steps.external_changelog_second.outputs.changelog}}
+            </details>
+          artifacts: |
+            bin/Plugins.zip
+          allowUpdates: true
+          removeArtifacts: true
 
       - name: 更新相关文件
         continue-on-error: true
@@ -142,56 +195,3 @@ jobs:
             git commit -m "自动更新$($Changed -Join ", ") [skip ci]"
             git push
           }
-      
-      - name: 下载临时插件包
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: dawidd6/action-download-artifact@v6
-        with:
-          name: Plugins
-          path: bin
-          skip_unpack: true
-
-      - name: 同步其他平台
-        continue-on-error: true
-        shell: pwsh
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
-        run: |
-          sudo pip install beautifulsoup4
-          python scripts/GiteeSync.py ${{ secrets.CAI_GITEE_TOKEN }}
-          sudo python scripts/ForumHelper.py Cai ${{ secrets.MONIKA_TR_PASSWORD }}
-
-      - name: 更新tag
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: |
-          git tag -f V1.0.0.0
-          git push -f origin V1.0.0.0
-
-      - name: 获取更新日志
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        id: external_changelog_second
-        uses: mikepenz/release-changelog-builder-action@v5
-        with:
-          configuration: ".config/log_config.json"
-          
-      - name: 发布插件包
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: ncipollo/release-action@v1
-        with:
-          tag: V1.0.0.0
-          name: "最新版本"
-          body: |
-            # 插件下载和更新日志
-            ###  📅 每次仓库更新，我们都会在这里发布最新的Release。请注意，这个仓库只有一个Release，所以你总是能在这里找到最新的版本。
-            ###  📖介绍已经以MD的形式附在插件包中，可以使用文本编辑器打开。更推荐你直接在仓库主页中的[插件列表](https://github.com/UnrealMultiple/TShockPlugin?tab=readme-ov-file#%E5%B7%B2%E6%94%B6%E9%9B%86%E6%8F%92%E4%BB%B6)，点击插件名跳转。
-            ###  📦 你可以在页面的`最底部↓↓↓`找到插件包的下载链接。下载完成后，你需要使用`ZIP压缩工具`进行解压。
-            > [!CAUTION]
-            >**请你`仔细`地阅读`上面的说明`，不要到处问`插件怎么用`、`ZIP如何解压`**
-            <details>
-            <summary>更新日志</summary>
-            
-            ${{steps.external_changelog_second.outputs.changelog}}
-            </details>
-          artifacts: |
-            bin/Plugins.zip
-          allowUpdates: true
-          removeArtifacts: true

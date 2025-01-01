@@ -6,7 +6,16 @@ public class Config
 {
     public const string Path = "tshock/AutoPluginManager.json";
 
-    public static Config PluginConfig = new ();
+    public const string ApmApiPluginArchiveUrl = "http://api.terraria.ink:11434/plugin/get_all_plugins";
+    public const string ApmApiPluginManifestUrl = "http://api.terraria.ink:11434/plugin/get_plugin_list";
+
+    public const string GithubPluginArchiveUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
+    public const string GithubPluginManifestUrl = "https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/Plugins.json";
+
+    public static string UpstreamPluginArchiveUrl => Instance.UseCustomSource ? Instance.CustomSourceArchiveUrl : Instance.UseGithubSource ? GithubPluginArchiveUrl : ApmApiPluginArchiveUrl;
+    public static string UpstreamPluginManifestUrl => Instance.UseCustomSource ? Instance.CustomSourceManifestUrl : Instance.UseGithubSource ? GithubPluginManifestUrl : ApmApiPluginManifestUrl;
+
+    public static Config Instance = new ();
 
     public void Write()
     {
@@ -37,7 +46,7 @@ public class Config
             result = Read(fileStream);
         }
 
-        PluginConfig = result!;
+        Instance = result!;
     }
 
     private static Config? Read(Stream stream)

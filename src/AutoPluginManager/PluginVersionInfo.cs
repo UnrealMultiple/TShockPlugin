@@ -1,4 +1,6 @@
-﻿namespace AutoPluginManager;
+﻿using Newtonsoft.Json;
+
+namespace AutoPluginManager;
 
 public class PluginVersionInfo
 {
@@ -10,7 +12,8 @@ public class PluginVersionInfo
 
     public string Description { get; set; } = string.Empty;
 
-    public string Path { get; set; } = string.Empty;
+    [JsonProperty("Path")]
+    public string FileName { get; set; } = string.Empty;
 
     public string[] Dependencies { get; set; } = Array.Empty<string>();
     
@@ -22,17 +25,7 @@ public class PluginVersionInfo
     {
         public bool Equals(PluginVersionInfo? x, PluginVersionInfo? y)
         {
-            if (ReferenceEquals(x, y))
-            {
-                return true;
-            }
-
-            if (x is null || y is null)
-            {
-                return false;
-            }
-
-            return x.AssemblyName == y.AssemblyName;
+            return ReferenceEquals(x, y) || (x is not null && y is not null && x.AssemblyName == y.AssemblyName);
         }
 
         public int GetHashCode(PluginVersionInfo obj)
