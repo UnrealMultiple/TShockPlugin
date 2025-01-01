@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoPluginManager\n"
-"POT-Creation-Date: 2025-01-01 07:30:00+0000\n"
+"POT-Creation-Date: 2025-01-01 10:30:25+0000\n"
 "PO-Revision-Date: 2024-11-16 21:58+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,15 +19,15 @@ msgstr "[AutoUpdate] Unable to get update:"
 msgid "[AutoUpdatePlugin]插件配置已重载~"
 msgstr "[AutoUpdatePlugin] Plugin configuration has been reloaded~"
 
-#: ../../Plugin.cs:67 ../../Plugin.cs:356
+#: ../../Plugin.cs:67 ../../Plugin.cs:351
 msgid "[以下插件有新的版本更新]\n"
 msgstr "[The following plugins have new version updates]\n"
 
-#: ../../Utils.cs:231
+#: ../../Utils.cs:232
 msgid "[外部库安装完成]\n"
 msgstr "[External Libraries Installation Complete]\n"
 
-#: ../../Utils.cs:213
+#: ../../Utils.cs:214
 msgid "[安装完成]\n"
 msgstr "[Installation Complete]\n"
 
@@ -35,7 +35,7 @@ msgstr "[Installation Complete]\n"
 msgid "[插件重复安装]"
 msgstr "[Duplicate Plugin Installation]"
 
-#: ../../Utils.cs:222
+#: ../../Utils.cs:223
 msgid "[更新完成]\n"
 msgstr "[Update Complete]\n"
 
@@ -43,25 +43,25 @@ msgstr "[Update Complete]\n"
 msgid "*使用/apm -i <序号> 即可安装哦~"
 msgstr "*Use /apm -i <number> to install~"
 
-#: ../../Plugin.cs:243 ../../Plugin.cs:322
+#: ../../Plugin.cs:238 ../../Plugin.cs:317
 #, csharp-format
 msgid "*加载失败: {0}"
 msgstr ""
 
-#: ../../Plugin.cs:239 ../../Plugin.cs:318
+#: ../../Plugin.cs:234 ../../Plugin.cs:313
 #, csharp-format
 msgid "*卸载失败: {0}"
 msgstr ""
 
-#: ../../Plugin.cs:247 ../../Plugin.cs:326
+#: ../../Plugin.cs:242 ../../Plugin.cs:321
 msgid "*热加载失败的插件需要重启服务器后才会生效!"
 msgstr ""
 
-#: ../../Plugin.cs:257 ../../Plugin.cs:336
+#: ../../Plugin.cs:252 ../../Plugin.cs:331
 msgid "*热重载已关闭,插件需要重启服务器后才会生效!"
 msgstr ""
 
-#: ../../Plugin.cs:251 ../../Plugin.cs:330
+#: ../../Plugin.cs:246 ../../Plugin.cs:325
 msgid "*热重载已启用,安装的插件已生效!"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgstr "apm u [plugin name] update all plugins or a specified plugin"
 msgid "你可以使用命令/apm -u 更新插件哦~"
 msgstr "You can use the command /apm -u to update the plugins~"
 
-#: ../../Plugin.cs:275 ../../Plugin.cs:352
+#: ../../Plugin.cs:270 ../../Plugin.cs:347
 msgid "你的插件全是最新版本，无需更新哦~"
 msgstr "All your plugins are up to date, no need to update~"
 
@@ -113,11 +113,11 @@ msgstr "Deletion successful, this plugin will now be checked for updates~"
 msgid "可安装插件列表:"
 msgstr "List of installable plugins:"
 
-#: ../../Plugin.cs:216
+#: ../../Plugin.cs:211
 msgid "安装了个寂寞~"
 msgstr "Nothing has been installed~"
 
-#: ../../Plugin.cs:264
+#: ../../Plugin.cs:259
 msgid "安装插件出现错误:"
 msgstr "An error occurred while installing the plugin:"
 
@@ -147,25 +147,17 @@ msgstr "Exclusion successful, this plugin's update check has been skipped~"
 msgid "插件更新排除列表:\n"
 msgstr "Plugin update exclusion list:\n"
 
-#: ../../PluginManagementContext.cs:120
-msgid "插件清单差异，正在进行新的缓存..."
-msgstr ""
-
 #: ../../Plugin.cs:190
 msgid "无效参数，请附带需要安装插件的选择项!"
 msgstr ""
 "Invalid parameter, please include the required options for the plugin to be "
 "installed!"
 
-#: ../../Plugin.cs:360
+#: ../../Plugin.cs:355
 msgid "无法获取更新:"
 msgstr "Unable to get update:"
 
-#: ../../PluginManagementContext.cs:85
-msgid "无法连接服务器"
-msgstr "Unable to connect to the server"
-
-#: ../../Plugin.cs:294
+#: ../../Plugin.cs:289
 msgid "更新了个寂寞~"
 msgstr "Updated nothing~"
 
@@ -173,9 +165,12 @@ msgstr "Updated nothing~"
 msgid "正在自动更新插件..."
 msgstr "Automatically updating plugins..."
 
-#: ../../Plugin.cs:341
+#: ../../Plugin.cs:336
 msgid "自动更新出现错误:"
 msgstr "An error occurred during automatic update:"
+
+#~ msgid "无法连接服务器"
+#~ msgstr "Unable to connect to the server"
 
 #, csharp-format
 #~ msgid "[跳过安装或更新] 插件{0}({1})的其中一项依赖被禁止安装或更新\n"
