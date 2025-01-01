@@ -9,9 +9,9 @@ using TShockAPI.Hooks;
 
 namespace CaiBot;
 
-public static class Login
+internal static class Login
 {
-    public static bool MessageBuffer_InvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig,
+    internal static bool MessageBuffer_InvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig,
         MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length,
         ref int messageType, int maxPackets)
     {
@@ -55,7 +55,7 @@ public static class Login
         return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
     }
 
-    public static void OnGetData(GetDataEventArgs args)
+    internal static void OnGetData(GetDataEventArgs args)
     {
         if (!Config.Settings.WhiteList)
         {
@@ -94,7 +94,7 @@ public static class Login
         }
     }
 
-    public static bool CheckWhite(string name, int code)
+    internal static bool CheckWhite(string name, int code)
     {
         var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
         var number = Config.Settings.GroupNumber;
@@ -167,7 +167,7 @@ public static class Login
         return true;
     }
 
-    public static bool HandleLogin(TSPlayer player, string password)
+    internal static bool HandleLogin(TSPlayer player, string password)
     {
         var account = TShock.UserAccounts.GetUserAccountByName(player.Name);
         if (account != null)

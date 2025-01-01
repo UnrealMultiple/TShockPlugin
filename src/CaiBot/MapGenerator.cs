@@ -9,9 +9,9 @@ using Image = SixLabors.ImageSharp.Image;
 
 namespace CaiBot;
 
-public static class MapGenerator
+internal static class MapGenerator
 {
-    public static Image Create()
+    internal static Image Create()
     {
         Image<Rgba32> image = new (Main.maxTilesX, Main.maxTilesY);
         MapHelper.Initialize();
@@ -30,9 +30,9 @@ public static class MapGenerator
     }
 }
 
-public static class MapFileGenerator
+internal static class MapFileGenerator
 {
-    public static (string, string) Create()
+    internal static (string, string) Create()
     {
             MapHelper.Initialize();
             Main.MapFileMetadata = FileMetadata.FromCurrentSettings(FileType.Map);
