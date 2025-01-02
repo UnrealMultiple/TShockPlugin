@@ -18,18 +18,15 @@ public class Plugin : TerrariaPlugin
 
     public override string Description => "自动更新你的插件！";
 
-    private PluginManagementContext pluginManagementContext = null!;
-
     public Plugin(Main game) : base(game)
     {
     }
 
     public override void Initialize()
     {
-        this.pluginManagementContext = new PluginManagementContext();
-        Commands.ChatCommands.Add(new("AutoUpdatePlugin", this.PluginManager, "apm"));
-        ServerApi.Hooks.GamePostInitialize.Register(this, this.AutoCheckUpdate, int.MinValue);
         Config.Read();
+        Commands.ChatCommands.Add(new("AutoUpdatePlugin", CommandAdapter.Adapter, "apm"));
+        PluginManagementContext.Instance.OnPluginUpdate += this.AutoCheckUpdate;
         GeneralHooks.ReloadEvent += this.GeneralHooksOnReloadEvent;
     }
 
@@ -37,12 +34,11 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.PluginManager);
-            ServerApi.Hooks.GamePostInitialize.Deregister(this, this.AutoCheckUpdate);
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == CommandAdapter.Adapter);
+            PluginManagementContext.Instance.OnPluginUpdate -= this.AutoCheckUpdate;
             GeneralHooks.ReloadEvent -= this.GeneralHooksOnReloadEvent;
-            this.pluginManagementContext.Dispose();
+            
         }
-
         base.Dispose(disposing);
     }
 
@@ -52,307 +48,30 @@ public class Plugin : TerrariaPlugin
         e.Player.SendSuccessMessage(GetString("[AutoUpdatePlugin]插件配置已重载~"));
     }
 
-    private void AutoCheckUpdate(EventArgs args)
+
+    private void AutoCheckUpdate(PluginUpdateInfo[] availableUpdates)
     {
-        this.pluginManagementContext.OnPluginUpdate += availableUpdates =>
-        {
-            try
-            {
-                CheckDuplicatePlugins(TSPlayer.Server);
-                if (!availableUpdates.Any())
-                {
-                    return;
-                }
-
-                TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", availableUpdates.Select(i => $"[{i.Current!.Name}] V{i.Current!.Version} >>> V{i.Latest.Version}"))));
-                if (Config.Instance.AutoUpdate)
-                {
-                    TShock.Log.ConsoleInfo(GetString("正在自动更新插件..."));
-                    this.UpdateCmd(TSPlayer.Server, Array.Empty<string>());
-                }
-                else
-                {
-                    TShock.Log.ConsoleInfo(GetString("你可以使用命令/apm -u 更新插件哦~"));
-                }
-            }
-            catch (Exception ex)
-            {
-                TShock.Log.ConsoleInfo(GetString("[AutoUpdate]无法获取更新:") + ex);
-            }
-        };
-    }
-
-    private static void CheckDuplicatePlugins(TSPlayer ply)
-    {
-        var duplicates = Utils.CheckDuplicatePlugins();
-        if (duplicates.Any())
-        {
-            ply.SendErrorMessage(GetString("[插件重复安装]") + string.Join(" >>> ", duplicates.Select(x => x.Key + ".dll")));
-        }
-    }
-
-    private void PluginManager(CommandArgs args)
-    {
-        if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-c" || args.Parameters[0].ToLower() == "c"))
-        {
-            this.CheckCmd(args.Player);
-        }
-        else if (args.Parameters.Count >= 1 && (args.Parameters[0].ToLower() == "-u" || args.Parameters[0].ToLower() == "u"))
-        {
-            var targets = Array.Empty<string>();
-            if (args.Parameters.Count > 1)
-            {
-                targets = args.Parameters[1].Split(",");
-            }
-
-            this.UpdateCmd(args.Player, targets);
-        }
-        else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-i" || args.Parameters[0].ToLower() == "i"))
-        {
-            var indices = args.Parameters[1]
-                .Split(",")
-                .Select(x => int.TryParse(x, out var index) ? index : -1)
-                .ToArray();
-            this.InstallCmd(args.Player, indices);
-        }
-        else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-l" || args.Parameters[0].ToLower() == "l"))
-        {
-            var manifest = this.pluginManagementContext.ClouldPluginManifests.Values.ToArray();
-            args.Player.SendInfoMessage(GetString("可安装插件列表:"));
-            for (var i = 0; i < manifest.Length; i++)
-            {
-                args.Player.SendInfoMessage($"{i + 1}.{manifest[i].Name} v{manifest[i].Version} (by {manifest[i].Author}) - {manifest[i].Description}");
-            }
-
-            args.Player.SendInfoMessage(GetString("*使用/apm -i <序号> 即可安装哦~"));
-        }
-        else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-b" || args.Parameters[0].ToLower() == "b"))
-        {
-            var plugins = this.pluginManagementContext.LocalPluginManifests.Values;
-            if (plugins.All(p => p.Name != args.Parameters[1]))
-            {
-                args.Player.SendErrorMessage(GetString("排除失败, 没有在你的插件列表里找到这个插件呢~"));
-                return;
-            }
-
-            if (Config.Instance.UpdateBlackList.Contains(args.Parameters[1]))
-            {
-                args.Player.SendErrorMessage(GetString("排除失败, 已经排除过这个插件了呢~"));
-                return;
-            }
-
-            Config.Instance.UpdateBlackList.Add(args.Parameters[1]);
-            Config.Instance.Write();
-            args.Player.SendSuccessMessage(GetString("排除成功, 已跳过此插件的更新检查~"));
-        }
-        else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-r" || args.Parameters[0].ToLower() == "r"))
-        {
-            CheckDuplicatePlugins(args.Player);
-        }
-        else if (args.Parameters.Count == 2 && (args.Parameters[0].ToLower() == "-rb" || args.Parameters[0].ToLower() == "rb"))
-        {
-            if (!Config.Instance.UpdateBlackList.Contains(args.Parameters[1]))
-            {
-                args.Player.SendErrorMessage(GetString("删除失败, 没有在你的插件列表里找到这个插件呢~"));
-                return;
-            }
-
-            Config.Instance.UpdateBlackList.Remove(args.Parameters[1]);
-            Config.Instance.Write();
-            args.Player.SendSuccessMessage(GetString("删除成功, 此插件将会被检查更新~"));
-        }
-        else if (args.Parameters.Count == 1 && (args.Parameters[0].ToLower() == "-lb" || args.Parameters[0].ToLower() == "lb"))
-        {
-            if (!Config.Instance.UpdateBlackList.Any())
-            {
-                args.Player.SendSuccessMessage(GetString("当前没有排除任何一个插件哦~"));
-                return;
-            }
-
-            args.Player.SendErrorMessage(GetString("插件更新排除列表:\n") + string.Join('\n', Config.Instance.UpdateBlackList));
-        }
-        else
-        {
-            args.Player.SendInfoMessage(GetString("apm c 检测已安装插件更新"));
-            args.Player.SendInfoMessage(GetString("apm u [插件名] 更新所有插件或指定插件"));
-            args.Player.SendInfoMessage(GetString("apm i [序号] 安装指定插件"));
-            args.Player.SendInfoMessage(GetString("apm l 查看可安装插件表"));
-            args.Player.SendInfoMessage(GetString("apm b [插件名字] 更新时跳过指定插件"));
-            args.Player.SendInfoMessage(GetString("apm rb [插件名字] 取消更新排除"));
-            args.Player.SendInfoMessage(GetString("apm lb 查看更新排除列表"));
-        }
-    }
-
-    private void InstallCmd(TSPlayer player, params int[] targets)
-    {
-        if (!targets.Any())
-        {
-            player.SendErrorMessage(GetString("无效参数，请附带需要安装插件的选择项!"));
-            return;
-        }
-
         try
         {
-            var availablePlugins = this.pluginManagementContext.ClouldPluginManifests.Values.ToArray();
-            var pendingPlugins = targets
-                .Where(i => i > 0 && i <= availablePlugins.Length)
-                .Select(i => availablePlugins[i - 1])
-                .ToList();
-            if (!pendingPlugins.Any())
+            if (!availableUpdates.Any())
             {
-                player.SendErrorMessage(GetString("序号无效，请附带需要安装插件的选择项!"));
                 return;
             }
 
-            var success = this.pluginManagementContext.InstallOrUpdatePlugins(pendingPlugins.Select(x => x.AssemblyName));
-
-            if (!success.plugins.Any())
+            TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", availableUpdates.Select(i => $"[{i.Current!.Name}] V{i.Current!.Version} >>> V{i.Latest.Version}"))));
+            if (Config.Instance.AutoUpdate)
             {
-                player.SendSuccessMessage(GetString("安装了个寂寞~"));
-                return;
-            }
-            // A bit weird, might be refactored in the next version
-            // FIXME: inconsistency in return values of `Utils.UnLoadPlugins` and `Utils.LoadPlugins`
-            var failedUnload = new List<string>(); // AssemblyName of Plugins which failed to unload
-            var failedLoad = new List<string>(); // Type.FullName of Plugin Classes which failed to load
-            if (Config.Instance.HotReloadPlugin)
-            {
-
-                failedUnload = Utils.UnLoadPlugins(success.plugins
-                    .Where(s => s.Current is not null && s.Latest.HotReload)
-                    .Select(s => s.Current!.FileName));
-                failedLoad = Utils.LoadPlugins(success.plugins
-                    .Where(s => s.Latest.HotReload && !failedUnload.Contains(s.Latest.AssemblyName))
-                    .Select(s => s.Current?.FileName ?? s.Latest.FileName));
-            }
-            player.SendFormattedServerPluginsModifications(success);
-
-            if (Config.Instance.HotReloadPlugin)
-            {
-                if (failedUnload.Any())
-                {
-                    player.SendWarningMessage(GetString($"*卸载失败: {string.Join(',', failedUnload)}"));
-                }
-                if (failedLoad.Any())
-                {
-                    player.SendWarningMessage(GetString($"*加载失败: {string.Join(',', failedLoad)}"));
-                }
-                if (failedLoad.Any() || failedLoad.Any())
-                {
-                    player.SendWarningMessage(GetString("*热加载失败的插件需要重启服务器后才会生效!"));
-                }
-                else
-                {
-                    player.SendSuccessMessage(GetString("*热重载已启用,安装的插件已生效!"));
-                }
-
+                TShock.Log.ConsoleInfo(GetString("正在自动更新插件..."));
+                CommandAdapter.UpdatePlugin(TSPlayer.Server, Array.Empty<string>());
             }
             else
             {
-                player.SendSuccessMessage(GetString("*热重载已关闭,插件需要重启服务器后才会生效!"));
-            }
-
-
-        }
-        catch (Exception ex)
-        {
-            player.SendErrorMessage(GetString("安装插件出现错误:") + ex);
-        }
-    }
-
-    private void UpdateCmd(TSPlayer player, params string[] targets)
-    {
-        try
-        {
-            var updates = this.pluginManagementContext.GetAvailableUpdates();
-            if (!updates.Any())
-            {
-                player.SendSuccessMessage(GetString("你的插件全是最新版本，无需更新哦~"));
-                return;
-            }
-
-            if (targets.Any())
-            {
-                updates = updates
-                    .Where(i => targets.Contains(i.Current!.Name))
-                    .ToArray();
-                if (!updates.Any())
-                {
-                    player.SendErrorMessage($"{string.Join(",", targets)} 无需更新!");
-                    return;
-                }
-            }
-
-            var success = this.pluginManagementContext.InstallOrUpdatePlugins(updates.Select(x => x.Latest.AssemblyName));
-            if (!success.plugins.Any())
-            {
-                player.SendSuccessMessage(GetString("更新了个寂寞~"));
-                return;
-            }
-
-            // A bit weird, might be refactored in the next version
-            // FIXME: inconsistency in return values of `Utils.UnLoadPlugins` and `Utils.LoadPlugins`
-            var failedUnload = new List<string>(); // AssemblyName of Plugins which failed to unload
-            var failedLoad = new List<string>(); // Type.FullName of Plugin Classes which failed to load
-            if (Config.Instance.HotReloadPlugin)
-            {
-
-                failedUnload = Utils.UnLoadPlugins(success.plugins
-                    .Where(s => s.Current is not null && s.Latest.HotReload)
-                    .Select(s => s.Current!.FileName));
-                failedLoad = Utils.LoadPlugins(success.plugins
-                    .Where(s => s.Latest.HotReload && !failedUnload.Contains(s.Latest.AssemblyName))
-                    .Select(s => s.Current?.FileName ?? s.Latest.FileName));
-            }
-            player.SendFormattedServerPluginsModifications(success);
-
-            if (Config.Instance.HotReloadPlugin)
-            {
-                if (failedUnload.Any())
-                {
-                    player.SendWarningMessage(GetString($"*卸载失败: {string.Join(',', failedUnload)}"));
-                }
-                if (failedLoad.Any())
-                {
-                    player.SendWarningMessage(GetString($"*加载失败: {string.Join(',', failedLoad)}"));
-                }
-                if (failedLoad.Any() || failedLoad.Any())
-                {
-                    player.SendWarningMessage(GetString("*热加载失败的插件需要重启服务器后才会生效!"));
-                }
-                else
-                {
-                    player.SendSuccessMessage(GetString("*热重载已启用,安装的插件已生效!"));
-                }
-
-            }
-            else
-            {
-                player.SendSuccessMessage(GetString("*热重载已关闭,插件需要重启服务器后才会生效!"));
+                TShock.Log.ConsoleInfo(GetString("你可以使用命令/apm -u 更新插件哦~"));
             }
         }
         catch (Exception ex)
         {
-            player.SendErrorMessage(GetString("自动更新出现错误:") + ex);
-        }
-    }
-
-    private void CheckCmd(TSPlayer Player)
-    {
-        try
-        {
-            var updates = this.pluginManagementContext.GetAvailableUpdates();
-            if (updates.Length == 0)
-            {
-                Player.SendSuccessMessage(GetString("你的插件全是最新版本，无需更新哦~"));
-                return;
-            }
-
-            Player.SendInfoMessage(GetString("[以下插件有新的版本更新]\n") + string.Join("\n", updates.Select(i => $"[{i.Current?.Name ?? i.Latest.Name}] V{i.Current?.Version} >>> V{i.Latest.Version}")));
-        }
-        catch (Exception ex)
-        {
-            Player.SendErrorMessage(GetString("无法获取更新:") + ex);
+            TShock.Log.ConsoleInfo(GetString("[AutoUpdate]无法获取更新:") + ex);
         }
     }
 }

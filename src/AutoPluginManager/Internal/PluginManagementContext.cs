@@ -7,7 +7,7 @@ using TShockAPI;
 
 namespace AutoPluginManager.Internal;
 
-internal class PluginManagementContext : IDisposable
+internal class PluginManagementContext
 {
     //定时器
     private readonly System.Timers.Timer _timer = new();
@@ -24,6 +24,9 @@ internal class PluginManagementContext : IDisposable
     private Dictionary<string, PluginContext>? _cloudPluginCache = null;
     //插件包缓存
     private Dictionary<string, PluginContext> CloudPluginCache => this._cloudPluginCache ??= this.ExtractPluginsFromCloud();
+
+    public static readonly PluginManagementContext Instance = new();
+
 
     /// <summary>
     /// 从压缩包中提取插件文件
@@ -86,7 +89,7 @@ internal class PluginManagementContext : IDisposable
         return contexts;
     }
 
-    public PluginManagementContext()
+    private PluginManagementContext()
     {
         this._timer.AutoReset = true;
         this._timer.Enabled = true;
@@ -232,20 +235,5 @@ internal class PluginManagementContext : IDisposable
             latestPluginInfo.Dependencies.ForEach(d => externalDependencies.Add(d));
         }
         return externalDependencies.ToArray();
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-        this._timer.Stop();
-        this._timer.Dispose();
-    }
-
-    public void Dispose()
-    {
-        this.Dispose(true);
-        GC.SuppressFinalize(this);
     }
 }
