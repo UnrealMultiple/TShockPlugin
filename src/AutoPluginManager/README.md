@@ -8,6 +8,11 @@
 ## 更新日志
 
 ```
+v2.0.2.9
+添加指令
+/apm il 查看本地插件列表
+/apm on 启用某个插件
+/apm off 关闭某个插件
 v2.0.2.8
 调整apm指令管理
 v2.0.2.7
@@ -65,16 +70,15 @@ V2.0.0.0
 | /apm -r | AutoUpdatePlugin   | 检查重复安装的插件 |
 | /apm -rb [插件名] | AutoUpdatePlugin   | 移除排除更新 |
 | /apm -lb | AutoUpdatePlugin   | 列出排除更新的插件 |
+| /apm -ib | AutoUpdatePlugin   | 列出已安装插件列表与启用状态 |
+| /apm -on [序号] | AutoUpdatePlugin   | 启用某个插件 |
+| /apm -off | AutoUpdatePlugin   | 关闭某个插件 |
 ## 配置
 
 > 配置文件位置：tshock/AutoPluginManager.json
 ```json5
 {
   "允许自动更新插件": false,
-  "使用Github源": true,
-  "使用自定义源": false,
-  "自定义源清单地址": "",
-  "自定义源压缩文件地址": "",
   "插件排除列表": [],
   "热重载升级插件": true,
   "热重载出错时继续": true

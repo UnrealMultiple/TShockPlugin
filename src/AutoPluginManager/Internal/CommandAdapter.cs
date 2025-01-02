@@ -1,4 +1,6 @@
-﻿using TShockAPI;
+﻿using System.Reflection;
+using TerrariaApi.Server;
+using TShockAPI;
 
 namespace AutoPluginManager.Internal;
 internal class CommandAdapter
@@ -12,14 +14,21 @@ internal class CommandAdapter
         { "r", Repeat },
         { "i", InstallPlugin },
         { "rb", RemoveSkipPlugin },
-        { "lb", SkipUpdateList }
+        { "lb", SkipUpdateList },
+        { "on", EnablePlugin },
+        { "off", OffPlugin },
+        { "il", LocalPlugins },
     };
+
+
+    
 
     public static void Adapter(CommandArgs args)
     {
         if (args.Parameters.Count >= 1)
         { 
-            var subcmd = args.Parameters[0].StartsWith("-") ? args.Parameters[0].TrimStart('-') : args.Parameters[0];
+            var text = args.Parameters[0].ToLower();
+            var subcmd = text.StartsWith("-") ? text.TrimStart('-') : text;
             if (_actions.TryGetValue(subcmd, out var action))
             {
                 action(args);
@@ -33,6 +42,123 @@ internal class CommandAdapter
         args.Player.SendInfoMessage(GetString("apm b [插件名字] 更新时跳过指定插件"));
         args.Player.SendInfoMessage(GetString("apm rb [插件名字] 取消更新排除"));
         args.Player.SendInfoMessage(GetString("apm lb 查看更新排除列表"));
+        args.Player.SendInfoMessage(GetString("apm ib 查看本地插件列表与启用状态"));
+        args.Player.SendInfoMessage(GetString("apm on 启用某个插件"));
+        args.Player.SendInfoMessage(GetString("apm off 关闭某个插件"));
+    }
+
+    /// <summary>
+    /// 本地已安装插件
+    /// </summary>
+    /// <param name="args"></param>
+    /// <exception cref="NotImplementedException"></exception>
+    private static void LocalPlugins(CommandArgs args)
+    {
+        var i = 1;
+        var plugins = ((List<PluginContainer>) typeof(ServerApi)
+            .GetField("plugins", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)?
+            .GetValue(null)!).ToDictionary(i => i.Plugin.GetType().Assembly.GetName().Name!);
+        foreach (var (assemblyName, plugin) in PluginManagementContext.Instance.LocalPluginManifests)
+        {
+            if (!PluginManagementContext.Instance.ClouldPluginManifests.ContainsKey(assemblyName))
+            {
+                args.Player.SendInfoMessage($"{i}.{plugin.Name} v{plugin.Version} (by {plugin.Author}) {(PluginManagementContext.Instance.ClouldPluginManifests.ContainsKey(assemblyName) ? "" : "- 此插件无法被开启或关闭!")}");
+            }
+            else
+            {
+                args.Player.SendInfoMessage($"{i}.{plugin.Name} v{plugin.Version} (by {plugin.Author}) - 状态: {(plugins[assemblyName].Initialized ? "开启" : "关闭")}");
+            }
+            i++;
+        }
+    }
+
+    private static void OffPlugin(CommandArgs args)
+    {
+        if (args.Parameters.Count != 2)
+        {
+            args.Player.SendInfoMessage(GetString("语法错误，正确语法:/apm off [序号]"));
+            return;
+        }
+        var indices = args.Parameters[1]
+                .Split(",")
+                .Select(x => int.TryParse(x, out var index) ? index : -1)
+                .ToArray();
+
+        var availablePlugins = PluginManagementContext.Instance.LocalPluginManifests.Values.ToArray();
+        var cloudAssemblys = PluginManagementContext.Instance.ClouldPluginManifests.Keys.ToArray();
+        var pendingPlugins = indices
+            .Where(i => i > 0 && i <= availablePlugins.Length && cloudAssemblys.Contains(availablePlugins[i - 1].AssemblyName))
+            .Select(i => availablePlugins[i - 1])
+            .ToList();
+        if (!pendingPlugins.Any())
+        {
+            args.Player.SendErrorMessage(GetString("序号无效，请附带需要关闭插件的选择项!"));
+            return;
+        }
+
+        var plugins = (List<PluginContainer>) typeof(ServerApi)
+            .GetField("plugins", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)?
+            .GetValue(null)!;
+        foreach (var plugin in plugins)
+        {
+            if (pendingPlugins.Any(i => i.AssemblyName == plugin.Plugin.GetType().Assembly.GetName().Name))
+            {
+                if (plugin.Initialized)
+                {
+                    plugin.Dispose();
+                    plugin.DeInitialize();
+                    args.Player.SendSuccessMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author} 关闭成功!"));
+                }
+                else
+                {
+                    args.Player.SendErrorMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author} 被关闭过了，无法重复关闭!"));
+                }
+            }
+        }
+    }
+
+    private static void EnablePlugin(CommandArgs args)
+    {
+        if (args.Parameters.Count != 2)
+        {
+            args.Player.SendInfoMessage(GetString("语法错误，正确语法:/apm on [序号]"));
+            return;
+        }
+        var indices = args.Parameters[1]
+                .Split(",")
+                .Select(x => int.TryParse(x, out var index) ? index : -1)
+                .ToArray();
+
+        var availablePlugins = PluginManagementContext.Instance.LocalPluginManifests.Values.ToArray();
+        var cloudAssemblys = PluginManagementContext.Instance.ClouldPluginManifests.Keys.ToArray();
+        var pendingPlugins = indices
+            .Where(i => i > 0 && i <= availablePlugins.Length && cloudAssemblys.Contains(availablePlugins[i - 1].AssemblyName))
+            .Select(i => availablePlugins[i - 1])
+            .ToList();
+        if (!pendingPlugins.Any())
+        {
+            args.Player.SendErrorMessage(GetString("序号无效，请附带需要开启插件的选择项!"));
+            return;
+        }
+
+        var plugins = (List<PluginContainer>) typeof(ServerApi)
+            .GetField("plugins", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)?
+            .GetValue(null)!;
+        foreach (var plugin in plugins)
+        {
+            if (pendingPlugins.Any(i => i.AssemblyName == plugin.Plugin.GetType().Assembly.GetName().Name))
+            {
+                if (!plugin.Initialized)
+                {
+                    plugin.Initialize();
+                    args.Player.SendSuccessMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author} 启用成功!"));
+                }
+                else
+                {
+                    args.Player.SendErrorMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author} 已开启，无法重复开启!"));
+                }
+            }
+        }
     }
 
     /// <summary>
