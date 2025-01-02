@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
 {
     public override string Name => "AutoPluginManager";
 
-    public override Version Version => new Version(2, 0, 2, 7);
+    public override Version Version => new Version(2, 0, 2, 8);
 
     public override string Author => "少司命,Cai,LaoSparrow";
 
