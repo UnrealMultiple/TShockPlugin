@@ -22,7 +22,7 @@
 
 ## Config
 
-```json    
+```json5 
 None
 ```
 

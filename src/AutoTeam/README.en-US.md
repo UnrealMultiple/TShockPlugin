@@ -6,26 +6,26 @@
 
 ## Commands
 
-| Command          |   Permission    |          Details          |
-|------------------|:---------------:| :------: |
-| /autoteam or /at | autoteam.toggle |   Toggle the automatic team assignment feature.   |
-| None               |   noautoteam    |   Having this permission will not automatically assign you to a team.   |
+| Command          |   Permission    |                               Details                               |
+|------------------|:---------------:|:-------------------------------------------------------------------:|
+| /autoteam or /at | autoteam.toggle |            Toggle the automatic team assignment feature.            |
+| None             |   noautoteam    | Having this permission will not automatically assign you to a team. |
 
 ## Config
 > Configuration file location：tshock/AutoTeam.en-US.json
 - Team Name Reference：
 
 | 中文  | English |
-|-------|---------|
+|-----|---------|
 | 无队伍 | none    |
-| 红队   | red     |
-| 绿队   | green   |
-| 蓝队   | blue    |
-| 黄队   | yellow  |
-| 粉队   | pink    |
+| 红队  | red     |
+| 绿队  | green   |
+| 蓝队  | blue    |
+| 黄队  | yellow  |
+| 粉队  | pink    |
 
 - Configuration Example
-```json
+```json5
 {
   "Enable": true,
   "GroupTemp": {

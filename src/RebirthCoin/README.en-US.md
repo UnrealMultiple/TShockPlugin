@@ -4,24 +4,16 @@
 - Source: 无
 - Description: This is a TShock server plugin mainly used for allowing players to quickly resurrect by consuming specific items.
 
-## Update Log
-
-```
-v1.0.2
-Adapted to .NET 6.0
-Changed the resurrection coin item ID from int to int[] (array)
-```
-
 ## Commands
 
-| Syntax                             | Alias  |       Permission       |                   Description                   |
-| -------------------------------- | :---: | :--------------: | :--------------------------------------: |
-| No  | No |   RebirthCoin    |    Permission to use resurrection coins    |  
-| /reload  | No |   tshock.cfg.reload    |    Reload the configuration file    |
+| Syntax  | Alias |    Permission     |             Description              |
+|---------|:-----:|:-----------------:|:------------------------------------:|
+| No      |  No   |    RebirthCoin    | Permission to use resurrection coins |  
+| /reload |  No   | tshock.cfg.reload |    Reload the configuration file     |
 
 ## Configuration
 > Configuration file location： tshock/复活币.json
-```json
+```json5
 {
   "插件开关": true, // Enable or disable the plugin function
   "允许PVP复活": false, // Allow or disallow using resurrection coins in PvP mode

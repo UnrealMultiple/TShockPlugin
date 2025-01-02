@@ -7,20 +7,13 @@
 > [!NOTE]  
 > 需要安装前置插件：EconomicsAPI (本仓库)  
 
-## 更新日志
-
-```
-V2.0.0.0
-适配多货币
-```
-
 ## 指令
 
-| 语法                |       权限       |      说明      |
-| ------------------- | :--------------: | :------------: |
-| /regain [数量]      | economics.regain |  兑换手持物品  |
+| 语法                |        权限        |   说明    |
+|-------------------|:----------------:|:-------:|
+| /regain [数量]      | economics.regain | 兑换手持物品  |
 | /regain list [页码] | economics.regain | 查看可兑换物品 |
-| /regain             | economics.regain |  兑换手持物品  |
+| /regain           | economics.regain | 兑换手持物品  |
 
 ## 配置
 > 配置文件位置：tshock/Economics/Regain.json
@@ -34,6 +27,13 @@ V2.0.0.0
   ]
 }
 ```
+## 更新日志
+
+```
+V2.0.0.0
+适配多货币
+```
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

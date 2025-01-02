@@ -5,15 +5,15 @@
 
 ## Commands
 
-| Command     | Permission |          Details          |
-| ------------ | :--------: | :--------------: |
-| /bm add [ID] | bannpc.use | Add NPC to block list |
+| Command      | Permission |          Details           |
+|--------------|:----------:|:--------------------------:|
+| /bm add [ID] | bannpc.use |   Add NPC to block list    |
 | /bm del [ID] | bannpc.use | Remove NPC from Block List |
-| /bm list     | bannpc.use |  View Block List  |
+| /bm list     | bannpc.use |      View Block List       |
 
 ## Config
 > Configuration file location：tshock/BanNpc.en-US.json
-```json
+```json5
 {
   "BanNpc": [] //Block List
 }

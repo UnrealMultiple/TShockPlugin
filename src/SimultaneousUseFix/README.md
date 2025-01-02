@@ -7,18 +7,11 @@
 > [!NOTE]  
 > 需要前置：https://github.com/sgkoishi/yaaiomni/releases
 
-## 更新日志
-
-```
-v1.0.6
-完善卸载函数
-```
-
 ## 指令
 
-| 语法           |        权限         |   说明   |
-| -------------- | :-----------------: | :------: |
-| 无 |  SimultaneousUseFix  | 完全免检权限 |
+| 语法 |         权限         |   说明   |
+|----|:------------------:|:------:|
+| 无  | SimultaneousUseFix | 完全免检权限 |
 
 ## 配置
     配置文件位置：tshock/解决卡双锤卡星旋机枪之类的问题.json
@@ -42,6 +35,15 @@ v1.0.6
   "是否踢出": false
 }
 ```
+
+
+## 更新日志
+
+```
+v1.0.6
+完善卸载函数
+```
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

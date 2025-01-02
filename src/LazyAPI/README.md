@@ -1,9 +1,11 @@
-# LazyAPI
+# LazyAPI 基础库
 
 - 作者: [cc004](https://github.com/cc004), UnrealMultiple 成员
 - 原始出处: [Github](https://github.com/cc004/LazyUtils)
 - 插件基础库
 
+## 命令行参数
+- `-culture zh|en` 此命令行参数用于切换生成配置文件的语言，默认跟随ts语言。
 ## 更新日志
 
 ```
@@ -23,9 +25,6 @@ v1.0.0.1
 v1.0.0.0
 初始上传
 ```
-
-## 命令行参数
-- -culture zh|en 此命令行参数用于切换生成配置文件的语言，默认跟随ts语言。
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

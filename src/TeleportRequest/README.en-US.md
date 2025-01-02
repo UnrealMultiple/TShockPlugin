@@ -6,19 +6,19 @@
 
 ## Commands
 
-| Command               | Permission |          Details          |
-|-----------------------| :---------------------: | :------------------- |
-| `/atp`                | `tprequest.gettpr`      | Accept teleport request          |
-| `/autodeny` `         | `tprequest.tpauto` | 	Automatically deny all teleport requests |
-| `/autoaccept` `       | `tprequest.tpauto` | 	Automatically accept all teleport requests |
-| `/dtp`                | `tprequest.gettpr`      | 	Deny teleport request          |
-| `/tpahere <player>` ` | `tprequest.tpat`        | Request to teleport the specified player to your current location |
-| `/tpa <player>` `     | `tprequest.tpat`        | Request to teleport to the specified player’s current location |
+| Command               |     Permission     | Details                                                           |
+|-----------------------|:------------------:|:------------------------------------------------------------------|
+| `/atp`                | `tprequest.gettpr` | Accept teleport request                                           |
+| `/autodeny` `         | `tprequest.tpauto` | 	Automatically deny all teleport requests                         |
+| `/autoaccept` `       | `tprequest.tpauto` | 	Automatically accept all teleport requests                       |
+| `/dtp`                | `tprequest.gettpr` | 	Deny teleport request                                            |
+| `/tpahere <player>` ` |  `tprequest.tpat`  | Request to teleport the specified player to your current location |
+| `/tpa <player>` `     |  `tprequest.tpat`  | Request to teleport to the specified player’s current location    |
 
 
 ## Config
 > Configuration file location：tshock/tpconfig.json
-```json
+```json5
 {
   "间隔秒数": 3, //Interval Seconds
   "超时次数": 3 //Timeout Count

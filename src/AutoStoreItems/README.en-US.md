@@ -21,7 +21,7 @@ Configuration Notes
 
 ## Config
 > Configuration file location：tshock/AutoStoreItems.en-US.json
-```json
+```json5
 {
   "Enable": true, // Enables equipment holding detection and main inventory holding detection features.
   "Optimize": true, // Optimization settings, this may include setting the storage speed (Main Inventory) to the recommended value of 120, as well as money storage speed settings, etc.

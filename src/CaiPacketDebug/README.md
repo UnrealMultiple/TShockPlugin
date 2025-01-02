@@ -7,25 +7,19 @@
 > [!NOTE]  
 > 需要安装前置：TrProtocol
 
-## 更新日志
-
-```
-2024.11.30.0 使用lazyapi,i18n预备
-2024.11.10.0 添加插件
-```
 
 ## 指令
 
-| 语法       |          权限           |    说明     |
-|----------|:---------------------:|:---------:|
-| /cpd     |  CaiPacketDebug.Use  | 查看调试启用状态  |
-| /cpd stc |  CaiPacketDebug.Use   | S->C数据包调试 |
-| /cpd cts |  CaiPacketDebug.Use  | C->S数据包调试 |
+| 语法       |         权限         |    说明     |
+|----------|:------------------:|:---------:|
+| /cpd     | CaiPacketDebug.Use | 查看调试启用状态  |
+| /cpd stc | CaiPacketDebug.Use | S->C数据包调试 |
+| /cpd cts | CaiPacketDebug.Use | C->S数据包调试 |
 
 
 ## 配置
 > 配置文件位置：tshock/CaiPacketDebug.zh-CN.json
-```json    
+```json5   
 {
   "C->S": { //客户端向服务器发送的数据包
     "自启动": false, //打开服务器时自动启用调试
@@ -53,6 +47,13 @@
     ]
   }
 }
+```
+
+## 更新日志
+
+```
+2024.11.30.0 使用lazyapi,i18n预备
+2024.11.10.0 添加插件
 ```
 
 ## 反馈

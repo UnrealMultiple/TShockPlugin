@@ -5,6 +5,7 @@
 - 使用指令自动更新服务器的插件(仅本仓库)
 - 提供了热重载插件的可能，但此热重载并不算是真正意义上的热重载，已加载的程序集无法卸载，而是依然存在于应用域
 中，只是不再生效!
+
 ## 更新日志
 
 ```
@@ -72,7 +73,7 @@ V2.0.0.0
 | /apm -lb | AutoUpdatePlugin   | 列出排除更新的插件 |
 | /apm -ib | AutoUpdatePlugin   | 列出已安装插件列表与启用状态 |
 | /apm -on [序号] | AutoUpdatePlugin   | 启用某个插件 |
-| /apm -off | AutoUpdatePlugin   | 关闭某个插件 |
+| /apm -off [序号] | AutoUpdatePlugin   | 关闭某个插件 |
 ## 配置
 
 > 配置文件位置：tshock/AutoPluginManager.json
@@ -84,6 +85,7 @@ V2.0.0.0
   "热重载出错时继续": true
 }
 ```
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

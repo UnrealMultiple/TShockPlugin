@@ -6,13 +6,13 @@
 
 ## Commands
 
-| Command     | Permission |          Details          |
-| -------------- |:----------:|:-------------------------:|
-| /back |    back    | Return to Death Location  |
+| Command | Permission |         Details          |
+|---------|:----------:|:------------------------:|
+| /back   |    back    | Return to Death Location |
 
 ## Config
 > Configuration file location：tshock/Back.en-US.json
-```json
+```json5
 {
   "CD": 20 //Cool Down Time
 }

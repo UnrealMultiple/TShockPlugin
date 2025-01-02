@@ -7,9 +7,9 @@
 
 ## Commands
 
-| Syntax                             | Aliases  |       Permission	       |                   Description                   |
-| -------------------------------- | :---: | :--------------: | :--------------------------------------: |
-| /reload  | None |   tshock.cfg.reload    |    Reloads the configuration file.    |
+| Syntax  | Aliases |    Permission	    |           Description           |
+|---------|:-------:|:-----------------:|:-------------------------------:|
+| /reload |  None   | tshock.cfg.reload | Reloads the configuration file. |
 
 ---
 Main Configuration Notes
@@ -47,7 +47,7 @@ The `Custom Damage Transfer Table` is located at the end of the list []. Enter ,
 
 ## Configuration
 > Configuration file location：tshock/伤害规则掉落.json
-```json
+```json5
 {
   "插件开关": true, // Plugin switch: whether the plugin is on or off
   "是否惩罚": true, // Whether punishment (for rule violations) is enabled

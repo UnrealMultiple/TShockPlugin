@@ -8,13 +8,13 @@
 
 ## Commands
 
-| Command          |   Permission    |          Details          |
-| -------------- | :-----------------: | :------: |
-| /ebbuff or /ldbuff or /loadbuff or /刷新buff| EndureBoost| Immediately refresh the plugin's buff status|
+| Command                                    | Permission  |                   Details                    |
+|--------------------------------------------|:-----------:|:--------------------------------------------:|
+| /ebbuff or /ldbuff or /loadbuff or /刷新buff | EndureBoost | Immediately refresh the plugin's buff status |
 
 ## Config
 > Configuration file location：tshock/EndureBoost.json
-```json
+```json5
 {
   "猪猪储钱罐": true, // Piggy Bank
   "保险箱": false, // Safe

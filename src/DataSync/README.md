@@ -6,29 +6,26 @@
 
 ## 更新日志
 
-```
-20240729
-咋没版本，补全卸载函数
-```
 
-## Rest APO
 
-| 路径      |   权限   |   说明   |
-| --------- | :------: | :------: |
+## Rest API
+
+| 路径        |    权限    |  说明  |
+|-----------|:--------:|:----:|
 | /DataSync | DataSync | 查询进度 |
 
 ## 指令
 
-| 语法                           |     权限     |   说明   |
-| ------------------------------ | :----------: | :------: |
-| /重置进度同步                  |   DataSync   |    无    |
+| 语法                        |      权限      |  说明  |
+|---------------------------|:------------:|:----:|
+| /重置进度同步                   |   DataSync   |  无   |
 | /进度 [进度名] [true or false] | DataSync.set | 设置进度 |
-| /进度 local                    |   DataSync   | 进度查询 |
-| /进度                          |   DataSync   | 进度查询 |
+| /进度 local                 |   DataSync   | 进度查询 |
+| /进度                       |   DataSync   | 进度查询 |
 
 ## 配置
 > 配置文件位置：tshock/DataSync.json
-```json
+```json5
 {
   "KingSlime": false,
   "EyeOfCthulhu": false,
@@ -75,6 +72,12 @@
   "Unreachable": false
 }
 ```
+
+```
+2024.07.29
+咋没版本，补全卸载函数
+```
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

@@ -7,7 +7,7 @@
 
 ## Config
 > Configuration file location：tshock/CaiCustomEmojiCommand.en-US.json
-```json    
+```json5 
 {
   "EmojiCommands": [
     {

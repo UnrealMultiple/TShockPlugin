@@ -60,7 +60,7 @@
 
 ## Config
 > Configuration file location：tshock/EssentialsPlus.json
-```json
+```json5
 {
   // List of commands that disable PvP (Player vs Player) when used.
   "Pvp禁用命令": [

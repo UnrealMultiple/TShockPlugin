@@ -28,7 +28,7 @@
 ## Descargas
 
 - Github Release: [Plugins.zip](https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
-- Gitee Release: [Plugins.zip](https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
+- ApmApi Release: [Plugins.zip](http://api.terraria.ink:11434/plugin/get_all_plugins)
 
 #### AutoPluginManager
     /apm l Lista todos los plugins

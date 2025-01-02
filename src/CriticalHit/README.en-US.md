@@ -8,7 +8,7 @@
 
 ## Config
 > Configuration file location：tshock/CriticalConfig.json
-```json
+```json5
 {
   "总开关": true, // Main switch
   "仅暴击显示": true, // Only show critical hits
