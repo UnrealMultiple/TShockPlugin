@@ -62,11 +62,11 @@ internal class CommandAdapter
         {
             if (!PluginManagementContext.Instance.ClouldPluginManifests.ContainsKey(assemblyName))
             {
-                args.Player.SendInfoMessage($"{i}.{plugin.Name} v{plugin.Version} (by {plugin.Author}) {(PluginManagementContext.Instance.ClouldPluginManifests.ContainsKey(assemblyName) ? "" : "- 此插件无法被开启或关闭!")}");
+                args.Player.SendInfoMessage(GetString($"{i}.{plugin.Name} v{plugin.Version} (by {plugin.Author}) {(PluginManagementContext.Instance.ClouldPluginManifests.ContainsKey(assemblyName) ? "" : "- 此插件无法被开启或关闭!")}"));
             }
             else
             {
-                args.Player.SendInfoMessage($"{i}.{plugin.Name} v{plugin.Version} (by {plugin.Author}) - 状态: {(plugins[assemblyName].Initialized ? "开启" : "关闭")}");
+                args.Player.SendInfoMessage(GetString($"{i}.{plugin.Name} v{plugin.Version} (by {plugin.Author}) - 状态: {(plugins[assemblyName].Initialized ? "开启" : "关闭")}"));
             }
             i++;
         }
@@ -107,11 +107,11 @@ internal class CommandAdapter
                 {
                     plugin.Dispose();
                     plugin.DeInitialize();
-                    args.Player.SendSuccessMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author} 关闭成功!"));
+                    args.Player.SendSuccessMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author}) 关闭成功!"));
                 }
                 else
                 {
-                    args.Player.SendErrorMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author} 被关闭过了，无法重复关闭!"));
+                    args.Player.SendErrorMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author}) 被关闭过了，无法重复关闭!"));
                 }
             }
         }
@@ -151,11 +151,11 @@ internal class CommandAdapter
                 if (!plugin.Initialized)
                 {
                     plugin.Initialize();
-                    args.Player.SendSuccessMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author} 启用成功!"));
+                    args.Player.SendSuccessMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author}) 启用成功!"));
                 }
                 else
                 {
-                    args.Player.SendErrorMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author} 已开启，无法重复开启!"));
+                    args.Player.SendErrorMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author}) 已开启，无法重复开启!"));
                 }
             }
         }
