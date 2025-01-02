@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoPluginManager\n"
-"POT-Creation-Date: 2025-01-01 10:30:25+0000\n"
+"POT-Creation-Date: 2025-01-02 15:08:18+0000\n"
 "PO-Revision-Date: 2024-11-30 13:55-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,15 +11,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ../../Plugin.cs:80
+#: ../../Plugin.cs:74
 msgid "[AutoUpdate]无法获取更新:"
 msgstr "[AutoUpdate] No se pueden obtener actualizaciones:"
 
-#: ../../Plugin.cs:52
+#: ../../Plugin.cs:48
 msgid "[AutoUpdatePlugin]插件配置已重载~"
 msgstr "[AutoUpdatePlugin] Plugin configuration has been reloaded~"
 
-#: ../../Plugin.cs:67 ../../Plugin.cs:351
+#: ../../Plugin.cs:61 ../../Internal/CommandAdapter.cs:329
 msgid "[以下插件有新的版本更新]\n"
 msgstr "[The following Estos plugins tienen nueva version disponible\n"
 
@@ -31,7 +31,7 @@ msgstr "[External [Instalacion de Librerias completada]]\n"
 msgid "[安装完成]\n"
 msgstr "[Instalacion completada]\n"
 
-#: ../../Plugin.cs:90
+#: ../../Internal/CommandAdapter.cs:175
 msgid "[插件重复安装]"
 msgstr "[Instalacion de plugin duplicado]"
 
@@ -39,154 +39,166 @@ msgstr "[Instalacion de plugin duplicado]"
 msgid "[更新完成]\n"
 msgstr "[Actualizacion completada]\n"
 
-#: ../../Plugin.cs:127
+#: ../../Internal/CommandAdapter.cs:221
 msgid "*使用/apm -i <序号> 即可安装哦~"
 msgstr "*Utilice /apm -i <número> para instalar~"
 
-#: ../../Plugin.cs:238 ../../Plugin.cs:317
+#: ../../Internal/CommandAdapter.cs:104 ../../Internal/CommandAdapter.cs:278
 #, csharp-format
 msgid "*加载失败: {0}"
 msgstr "*Error al cargar: {0}"
 
-#: ../../Plugin.cs:234 ../../Plugin.cs:313
+#: ../../Internal/CommandAdapter.cs:100 ../../Internal/CommandAdapter.cs:274
 #, csharp-format
 msgid "*卸载失败: {0}"
 msgstr "*Falló la desinstalación: {0}"
 
-#: ../../Plugin.cs:242 ../../Plugin.cs:321
+#: ../../Internal/CommandAdapter.cs:108 ../../Internal/CommandAdapter.cs:282
 msgid "*热加载失败的插件需要重启服务器后才会生效!"
 msgstr ""
 "*¡Los complementos que no se pueden cargar en caliente solo tendrán efecto "
 "después de que se reinicie el servidor!"
 
-#: ../../Plugin.cs:252 ../../Plugin.cs:331
+#: ../../Internal/CommandAdapter.cs:118 ../../Internal/CommandAdapter.cs:292
 msgid "*热重载已关闭,插件需要重启服务器后才会生效!"
 msgstr ""
 "* ¡La recarga en caliente está desactivada y el complemento entrará en vigor "
 "después de que se reinicie el servidor!"
 
-#: ../../Plugin.cs:246 ../../Plugin.cs:325
+#: ../../Internal/CommandAdapter.cs:112 ../../Internal/CommandAdapter.cs:286
 msgid "*热重载已启用,安装的插件已生效!"
 msgstr ""
 "*¡La recarga en caliente está habilitada y los complementos instalados han "
 "entrado en vigor!"
 
-#: ../../Plugin.cs:180
+#: ../../Internal/CommandAdapter.cs:33
 msgid "apm b [插件名字] 更新时跳过指定插件"
 msgstr ""
 "apm b [nombre del complemento] omite el complemento especificado al "
 "actualizar"
 
-#: ../../Plugin.cs:176
+#: ../../Internal/CommandAdapter.cs:29
 msgid "apm c 检测已安装插件更新"
 msgstr "apm c detecta actualizaciones de complementos instalados"
 
-#: ../../Plugin.cs:178
+#: ../../Internal/CommandAdapter.cs:31
 msgid "apm i [序号] 安装指定插件"
 msgstr "apm i [número de serie] instala el complemento especificado"
 
-#: ../../Plugin.cs:179
+#: ../../Internal/CommandAdapter.cs:32
 msgid "apm l 查看可安装插件表"
 msgstr "apm l Ver la lista de complementos instalables"
 
-#: ../../Plugin.cs:182
+#: ../../Internal/CommandAdapter.cs:35
 msgid "apm lb 查看更新排除列表"
 msgstr "apm lb Ver lista de exclusión de actualizaciones"
 
-#: ../../Plugin.cs:181
+#: ../../Internal/CommandAdapter.cs:34
 msgid "apm rb [插件名字] 取消更新排除"
 msgstr "apm rb [nombre del complemento] cancelar exclusión de actualización"
 
-#: ../../Plugin.cs:177
+#: ../../Internal/CommandAdapter.cs:30
 msgid "apm u [插件名] 更新所有插件或指定插件"
 msgstr ""
 "apm u [nombre del complemento] Actualiza todos los complementos o "
 "dependencias especificados"
 
-#: ../../Plugin.cs:75
+#: ../../Plugin.cs:69
 msgid "你可以使用命令/apm -u 更新插件哦~"
 msgstr "Puedes usar el comando /apm -u para actualizar los complementos~"
 
-#: ../../Plugin.cs:270 ../../Plugin.cs:347
+#: ../../Internal/CommandAdapter.cs:231 ../../Internal/CommandAdapter.cs:325
 msgid "你的插件全是最新版本，无需更新哦~"
 msgstr ""
 "Todos sus complementos están actualizados, no es necesario actualizarlos ~"
 
-#: ../../Plugin.cs:156
+#: ../../Internal/CommandAdapter.cs:157
 msgid "删除失败, 没有在你的插件列表里找到这个插件呢~"
 msgstr ""
 "La eliminación falló, el complemento no se encontró en su lista de "
 "complementos~"
 
-#: ../../Plugin.cs:162
+#: ../../Internal/CommandAdapter.cs:163
 msgid "删除成功, 此插件将会被检查更新~"
 msgstr ""
 "Eliminación exitosa, ahora se verificará si hay actualizaciones de este "
 "complemento~"
 
-#: ../../Plugin.cs:121
+#: ../../Internal/CommandAdapter.cs:216
 msgid "可安装插件列表:"
 msgstr "Lista de complementos instalables:"
 
-#: ../../Plugin.cs:211
+#: ../../Internal/CommandAdapter.cs:77
 msgid "安装了个寂寞~"
 msgstr "No se ha instalado nada~"
 
-#: ../../Plugin.cs:259
+#: ../../Internal/CommandAdapter.cs:125
 msgid "安装插件出现错误:"
 msgstr "Se produjo un error al instalar el complemento:"
 
-#: ../../Plugin.cs:203
+#: ../../Internal/CommandAdapter.cs:69
 msgid "序号无效，请附带需要安装插件的选择项!"
 msgstr ""
 "Número no válido, incluya las opciones requeridas para instalar el "
 "complemento."
 
-#: ../../Plugin.cs:168
+#: ../../Internal/CommandAdapter.cs:137
 msgid "当前没有排除任何一个插件哦~"
 msgstr "Actualmente, no se ha excluido ningún complemento ~"
 
-#: ../../Plugin.cs:140
+#: ../../Internal/CommandAdapter.cs:199
 msgid "排除失败, 已经排除过这个插件了呢~"
 msgstr "La exclusión falló, el complemento se excluyó anteriormente~"
 
-#: ../../Plugin.cs:134
+#: ../../Internal/CommandAdapter.cs:193
 msgid "排除失败, 没有在你的插件列表里找到这个插件呢~"
 msgstr ""
 "La exclusión falló, el complemento no se encontró en su lista de "
 "complementos~"
 
-#: ../../Plugin.cs:146
+#: ../../Internal/CommandAdapter.cs:205
 msgid "排除成功, 已跳过此插件的更新检查~"
 msgstr ""
 "Exclusión exitosa, se omitió la verificación de actualización de este "
 "complemento~"
 
-#: ../../Plugin.cs:172
+#: ../../Internal/CommandAdapter.cs:141
 msgid "插件更新排除列表:\n"
 msgstr "Lista de exclusión de actualización de complementos:\n"
 
-#: ../../Plugin.cs:190
+#: ../../Internal/CommandAdapter.cs:56
 msgid "无效参数，请附带需要安装插件的选择项!"
 msgstr ""
 "Parámetro no válido. Incluya las opciones requeridas para instalar el "
 "complemento."
 
-#: ../../Plugin.cs:355
+#: ../../Internal/CommandAdapter.cs:333
 msgid "无法获取更新:"
 msgstr "No se puede obtener la actualización:"
 
-#: ../../Plugin.cs:289
+#: ../../Internal/CommandAdapter.cs:250
 msgid "更新了个寂寞~"
 msgstr "No actualizado nada~"
 
-#: ../../Plugin.cs:70
+#: ../../Plugin.cs:64
 msgid "正在自动更新插件..."
 msgstr "Actualizando complementos automáticamente..."
 
-#: ../../Plugin.cs:336
+#: ../../Internal/CommandAdapter.cs:297
 msgid "自动更新出现错误:"
 msgstr "Se produjo un error durante la actualización automática:"
+
+#: ../../Internal/CommandAdapter.cs:187
+msgid "语法错误，正确语法:/apm b [插件名称]"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:46
+msgid "语法错误，正确语法:/apm i [序号]"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:152
+msgid "语法错误，正确语法:/apm rb [插件名称]"
+msgstr ""
 
 #~ msgid "无法连接服务器"
 #~ msgstr "No se puede conectar al servidor"
