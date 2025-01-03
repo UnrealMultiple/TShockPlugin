@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoPluginManager\n"
-"POT-Creation-Date: 2025-01-02 15:08:18+0000\n"
-"PO-Revision-Date: 2025-01-02 15:08:19+0000\n"
+"POT-Creation-Date: 2025-01-03 08:06:19+0000\n"
+"PO-Revision-Date: 2025-01-03 08:06:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgid "[AutoUpdatePlugin]插件配置已重载~"
 msgstr ""
 
 #: ../../Plugin.cs:61
-#: ../../Internal/CommandAdapter.cs:329
+#: ../../Internal/CommandAdapter.cs:455
 msgid ""
 "[以下插件有新的版本更新]\n"
 msgstr ""
@@ -34,7 +34,7 @@ msgid ""
 "[安装完成]\n"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:175
+#: ../../Internal/CommandAdapter.cs:301
 msgid "[插件重复安装]"
 msgstr ""
 
@@ -43,62 +43,104 @@ msgid ""
 "[更新完成]\n"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:221
+#: ../../Internal/CommandAdapter.cs:110
+#, csharp-format
+msgid "{0} v{1} (by {2}) 关闭成功!"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:154
+#, csharp-format
+msgid "{0} v{1} (by {2}) 启用成功!"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:158
+#, csharp-format
+msgid "{0} v{1} (by {2}) 已开启，无法重复开启!"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:114
+#, csharp-format
+msgid "{0} v{1} (by {2}) 被关闭过了，无法重复关闭!"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:69
+#, csharp-format
+msgid "{0}.{1} v{2} (by {3}) - 状态: {4}"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:65
+#, csharp-format
+msgid "{0}.{1} v{2} (by {3}) {4}"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:347
 msgid "*使用/apm -i <序号> 即可安装哦~"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:104
-#: ../../Internal/CommandAdapter.cs:278
+#: ../../Internal/CommandAdapter.cs:230
+#: ../../Internal/CommandAdapter.cs:404
 #, csharp-format
 msgid "*加载失败: {0}"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:100
-#: ../../Internal/CommandAdapter.cs:274
+#: ../../Internal/CommandAdapter.cs:226
+#: ../../Internal/CommandAdapter.cs:400
 #, csharp-format
 msgid "*卸载失败: {0}"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:108
-#: ../../Internal/CommandAdapter.cs:282
+#: ../../Internal/CommandAdapter.cs:234
+#: ../../Internal/CommandAdapter.cs:408
 msgid "*热加载失败的插件需要重启服务器后才会生效!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:118
-#: ../../Internal/CommandAdapter.cs:292
+#: ../../Internal/CommandAdapter.cs:244
+#: ../../Internal/CommandAdapter.cs:418
 msgid "*热重载已关闭,插件需要重启服务器后才会生效!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:112
-#: ../../Internal/CommandAdapter.cs:286
+#: ../../Internal/CommandAdapter.cs:238
+#: ../../Internal/CommandAdapter.cs:412
 msgid "*热重载已启用,安装的插件已生效!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:33
+#: ../../Internal/CommandAdapter.cs:42
 msgid "apm b [插件名字] 更新时跳过指定插件"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:29
+#: ../../Internal/CommandAdapter.cs:38
 msgid "apm c 检测已安装插件更新"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:31
+#: ../../Internal/CommandAdapter.cs:40
 msgid "apm i [序号] 安装指定插件"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:32
+#: ../../Internal/CommandAdapter.cs:45
+msgid "apm ib 查看本地插件列表与启用状态"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:41
 msgid "apm l 查看可安装插件表"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:35
+#: ../../Internal/CommandAdapter.cs:44
 msgid "apm lb 查看更新排除列表"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:34
+#: ../../Internal/CommandAdapter.cs:47
+msgid "apm off 关闭某个插件"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:46
+msgid "apm on 启用某个插件"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:43
 msgid "apm rb [插件名字] 取消更新排除"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:30
+#: ../../Internal/CommandAdapter.cs:39
 msgid "apm u [插件名] 更新所有插件或指定插件"
 msgstr ""
 
@@ -106,65 +148,73 @@ msgstr ""
 msgid "你可以使用命令/apm -u 更新插件哦~"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:231
-#: ../../Internal/CommandAdapter.cs:325
+#: ../../Internal/CommandAdapter.cs:357
+#: ../../Internal/CommandAdapter.cs:451
 msgid "你的插件全是最新版本，无需更新哦~"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:157
+#: ../../Internal/CommandAdapter.cs:283
 msgid "删除失败, 没有在你的插件列表里找到这个插件呢~"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:163
+#: ../../Internal/CommandAdapter.cs:289
 msgid "删除成功, 此插件将会被检查更新~"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:216
+#: ../../Internal/CommandAdapter.cs:342
 msgid "可安装插件列表:"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:77
+#: ../../Internal/CommandAdapter.cs:203
 msgid "安装了个寂寞~"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:125
+#: ../../Internal/CommandAdapter.cs:251
 msgid "安装插件出现错误:"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:69
+#: ../../Internal/CommandAdapter.cs:95
+msgid "序号无效，请附带需要关闭插件的选择项!"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:195
 msgid "序号无效，请附带需要安装插件的选择项!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:137
+#: ../../Internal/CommandAdapter.cs:140
+msgid "序号无效，请附带需要开启插件的选择项!"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:263
 msgid "当前没有排除任何一个插件哦~"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:199
+#: ../../Internal/CommandAdapter.cs:325
 msgid "排除失败, 已经排除过这个插件了呢~"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:193
+#: ../../Internal/CommandAdapter.cs:319
 msgid "排除失败, 没有在你的插件列表里找到这个插件呢~"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:205
+#: ../../Internal/CommandAdapter.cs:331
 msgid "排除成功, 已跳过此插件的更新检查~"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:141
+#: ../../Internal/CommandAdapter.cs:267
 msgid ""
 "插件更新排除列表:\n"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:56
+#: ../../Internal/CommandAdapter.cs:182
 msgid "无效参数，请附带需要安装插件的选择项!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:333
+#: ../../Internal/CommandAdapter.cs:459
 msgid "无法获取更新:"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:250
+#: ../../Internal/CommandAdapter.cs:376
 msgid "更新了个寂寞~"
 msgstr ""
 
@@ -172,19 +222,27 @@ msgstr ""
 msgid "正在自动更新插件..."
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:297
+#: ../../Internal/CommandAdapter.cs:423
 msgid "自动更新出现错误:"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:187
+#: ../../Internal/CommandAdapter.cs:313
 msgid "语法错误，正确语法:/apm b [插件名称]"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:46
+#: ../../Internal/CommandAdapter.cs:172
 msgid "语法错误，正确语法:/apm i [序号]"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:152
+#: ../../Internal/CommandAdapter.cs:79
+msgid "语法错误，正确语法:/apm off [序号]"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:124
+msgid "语法错误，正确语法:/apm on [序号]"
+msgstr ""
+
+#: ../../Internal/CommandAdapter.cs:278
 msgid "语法错误，正确语法:/apm rb [插件名称]"
 msgstr ""
 
