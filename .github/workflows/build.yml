@@ -94,6 +94,14 @@ jobs:
           name: Plugins
           path: out/Target/*
           compression-level: 9
+
+      - name: 下载临时插件包
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          name: Plugins
+          path: bin
+          skip_unpack: true
           
       - name: 同步其他平台
         continue-on-error: true
@@ -116,14 +124,6 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v5
         with:
           configuration: ".config/log_config.json"
-
-      - name: 下载临时插件包
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: dawidd6/action-download-artifact@v6
-        with:
-          name: Plugins
-          path: bin
-          skip_unpack: true
           
       - name: 发布插件包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
