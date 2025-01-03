@@ -6,36 +6,14 @@
 - 提供了热重载插件的可能，但此热重载并不算是真正意义上的热重载，已加载的程序集无法卸载，而是依然存在于应用域
 中，只是不再生效!
 
-## 指令
-
-| 语法             |        权限        |                    说明                     |
-|----------------|:----------------:|:-----------------------------------------:|
-| /apm -c        | AutoUpdatePlugin |                  检查插件更新                   |
-| /apm -u [插件名]  | AutoUpdatePlugin |       一键升级插件，需要重启服务器，插件名可多选`英文逗号隔开`       |
-| /apm -l        | AutoUpdatePlugin |                 查看仓库插件列表                  |
-| /apm -i [插件序号] | AutoUpdatePlugin | 安装插件，需重启服务器，插件序号多选`英文逗号隔开`配合`/apm -i`指令使用 |
-| /apm -b [插件名]  | AutoUpdatePlugin |                  将插件排除更新                  |
-| /apm -r        | AutoUpdatePlugin |                 检查重复安装的插件                 |
-| /apm -rb [插件名] | AutoUpdatePlugin |                  移除排除更新                   |
-| /apm -lb       | AutoUpdatePlugin |                 列出排除更新的插件                 |
-## 配置
-
-> 配置文件位置：tshock/AutoPluginManager.json
-```json5
-{
-  "允许自动更新插件": false,
-  "使用Github源": true,
-  "使用自定义源": false,
-  "自定义源清单地址": "",
-  "自定义源压缩文件地址": "",
-  "插件排除列表": [],
-  "热重载升级插件": true,
-  "热重载出错时继续": true
-}
-```
 ## 更新日志
 
 ```
+v2.0.2.9
+添加指令
+/apm il 查看本地插件列表
+/apm on 启用某个插件
+/apm off 关闭某个插件
 v2.0.2.8
 调整apm指令管理
 v2.0.2.7
@@ -79,6 +57,33 @@ V2.0.0.0
 1.正式更名为AutoPluginManager
 2.添加安装插件功能
 3.更改指令使用方式
+```
+
+## 指令
+
+| 语法           |        权限         |   说明   |
+| -------------- | :-----------------: | :------: |
+| /apm -c | AutoUpdatePlugin   | 检查插件更新|
+| /apm -u [插件名] | AutoUpdatePlugin   | 一键升级插件，需要重启服务器，插件名可多选`英文逗号隔开`|
+| /apm -l | AutoUpdatePlugin   | 查看仓库插件列表 |
+| /apm -i [插件序号] | AutoUpdatePlugin   | 安装插件，需重启服务器，插件序号多选`英文逗号隔开`配合`/apm -i`指令使用 |
+| /apm -b [插件名] | AutoUpdatePlugin   | 将插件排除更新 |
+| /apm -r | AutoUpdatePlugin   | 检查重复安装的插件 |
+| /apm -rb [插件名] | AutoUpdatePlugin   | 移除排除更新 |
+| /apm -lb | AutoUpdatePlugin   | 列出排除更新的插件 |
+| /apm -ib | AutoUpdatePlugin   | 列出已安装插件列表与启用状态 |
+| /apm -on [序号] | AutoUpdatePlugin   | 启用某个插件 |
+| /apm -off [序号] | AutoUpdatePlugin   | 关闭某个插件 |
+## 配置
+
+> 配置文件位置：tshock/AutoPluginManager.json
+```json5
+{
+  "允许自动更新插件": false,
+  "插件排除列表": [],
+  "热重载升级插件": true,
+  "热重载出错时继续": true
+}
 ```
 
 ## 反馈
