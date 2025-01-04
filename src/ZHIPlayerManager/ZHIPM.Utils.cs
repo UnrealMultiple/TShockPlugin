@@ -1012,7 +1012,7 @@ public partial class ZHIPM : TerrariaPlugin
                     sb.Append($"T3{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
                     break;
                 case 398:
-                    sb.Append(GetString("月亮领主(" + v.Value + ")"));
+                    sb.Append(GetString($"月亮领主({v.Value})"));
                     break;
                 default:
                     sb.Append($"{Lang.GetNPCNameValue(v.Key)}({v.Value})，");

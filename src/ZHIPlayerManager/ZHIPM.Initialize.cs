@@ -450,7 +450,7 @@ public partial class ZHIPM : TerrariaPlugin
                     }
                     else
                     {
-                        player2[0].SendMessage(GetString("克隆成功！已将玩家 [" + player1[0].Name + "] 的数据克隆到你身上"), new Color(0, 255, 0));
+                        player2[0].SendMessage(GetString($"克隆成功！您已将玩家 [{player1[0].Name}] 的数据克隆到你身上"), new Color(0, 255, 0));
                     }
                 }
                 else
@@ -493,7 +493,7 @@ public partial class ZHIPM : TerrariaPlugin
                     }
                     else
                     {
-                        player2[0].SendMessage(GetString("克隆成功！已将玩家 [" + user1.Name + "] 的数据克隆到你身上"), new Color(0, 255, 0));
+                        player2[0].SendMessage(GetString($"克隆成功！已将玩家 [{user1.Name}] 的数据克隆到你身上"), new Color(0, 255, 0));
                     }
                 }
                 else
@@ -1096,13 +1096,13 @@ public partial class ZHIPM : TerrariaPlugin
         {
             args.Player.SendInfoMessage(
                 GetString("输入 /zresetdb <name>  来清理该玩家的备份数据\n") +
-                          GetString("输入 /zresetdb all  来清理所有玩家的备份数据\n") +
-                                    GetString("输入 /zresetex <name>  来清理该玩家的额外数据\n") +
-                                              GetString("输入 /zresetex all  来清理所有玩家的额外数据\n") +
-                                                        GetString("输入 /zreset <name>  来清理该玩家的人物数据\n") +
-                                                                  GetString("输入 /zreset all  来清理所有玩家的人物数据\n") +
-                                                                            GetString("输入 /zresetallplayers  来清理所有玩家的所有数据")
-                                                                                , TextColor());
+                      GetString("输入 /zresetdb all  来清理所有玩家的备份数据\n") +
+                      GetString("输入 /zresetex <name>  来清理该玩家的额外数据\n") +
+                      GetString("输入 /zresetex all  来清理所有玩家的额外数据\n") +
+                      GetString("输入 /zreset <name>  来清理该玩家的人物数据\n") +
+                      GetString("输入 /zreset all  来清理所有玩家的人物数据\n") +
+                      GetString("输入 /zresetallplayers  来清理所有玩家的所有数据")
+                      ,TextColor());
             return;
         }
 
@@ -2386,7 +2386,7 @@ public partial class ZHIPM : TerrariaPlugin
                                     this.SendText(tsp, GetString("点数奖励 + 1000"), broadcastColor, tsp.TPlayer.Center);
                                 }
 
-                                tsp.SendMessage("您已经在线了 " + this.timetostring(extraData.time), broadcastColor);
+                                tsp.SendMessage(GetString("您已经在线了 ") + this.timetostring(extraData.time), broadcastColor);
                                 TShock.Log.Info(GetString($"玩家 {extraData.Name} 已经在线了 {this.timetostring(extraData.time)}"));
                                 NetMessage.PlayNetSound(new NetMessage.NetSoundInfo(tsp.TPlayer.Center, 4), tsp.Index);
                                 Projectile.NewProjectile(null, tsp.TPlayer.Center, -Vector2.UnitY * 4f, Main.rand.Next(415, 419), 0, 0f);
@@ -2889,19 +2889,19 @@ public partial class ZHIPM : TerrariaPlugin
         {
             var temp1 = config.EnableOnlineTimeTracking
                 ? GetString("输入 /zsort time  来查看人物在线时间排行榜前十名\n") +
-                            GetString("输入 /zsort time [num]  来查看当前[num]个人物在线时间排行榜\n") +
-                            GetString("输入 /zsort time all  来查看所有玩家在线时常排行榜\n")
+                    GetString("输入 /zsort time [num]  来查看当前[num]个人物在线时间排行榜\n") +
+                    GetString("输入 /zsort time all  来查看所有玩家在线时常排行榜\n")
                 : "";
             var temp2 = config.EnableNpcKillTracking
                 ? GetString("\n输入 /zsort kill [num]  来查看当前[num]个人物击杀生物数排行榜\n") +
-                            GetString("输入 /zsort kill  来查看人物击杀生物数排行榜前十名\n") +
-                            GetString("输入 /zsort kill all  来查看所有玩家击杀生物数排行榜\n") +
-                            GetString("输入 /zsort boss [num]  来查看当前[num]个人物击杀Boss总数排行榜\n") +
-                            GetString("输入 /zsort boss  来查看人物击杀Boss总数排行榜前十名\n") +
-                            GetString("输入 /zsort boss all  来查看所有玩家击杀Boss总数排行榜\n") +
-                            GetString("输入 /zsort rarenpc [num]  来查看当前[num]个人物击杀罕见生物总数排行榜\n") +
-                            GetString("输入 /zsort rarenpc  来查看人物击杀罕见生物总数排行榜前十名\n") +
-                            GetString("输入 /zsort rarenpc all  来查看所有玩家击杀罕见生物总数排行榜")
+                    GetString("输入 /zsort kill  来查看人物击杀生物数排行榜前十名\n") +
+                    GetString("输入 /zsort kill all  来查看所有玩家击杀生物数排行榜\n") +
+                    GetString("输入 /zsort boss [num]  来查看当前[num]个人物击杀Boss总数排行榜\n") +
+                    GetString("输入 /zsort boss  来查看人物击杀Boss总数排行榜前十名\n") +
+                    GetString("输入 /zsort boss all  来查看所有玩家击杀Boss总数排行榜\n") +
+                    GetString("输入 /zsort rarenpc [num]  来查看当前[num]个人物击杀罕见生物总数排行榜\n") +
+                    GetString("输入 /zsort rarenpc  来查看人物击杀罕见生物总数排行榜前十名\n") +
+                    GetString("输入 /zsort rarenpc all  来查看所有玩家击杀罕见生物总数排行榜")
                 : "";
             var temp3 = config.EnablePointTracking
                 ? GetString("\n输入 /zsort point [num]  来查看当前[num]个人物点数排行榜\n") +
@@ -2915,19 +2915,19 @@ public partial class ZHIPM : TerrariaPlugin
                 : "";
             var temp5 = config.EnableDeathCountTracking && config.EnableOnlineTimeTracking
                 ? GetString("\n输入 /zsort clumsy  来查看人物手残排行榜前十名\n") +
-                            GetString("输入 /zsort clumsy [num]  来查看当前[num]个人物手残排行榜\n") +
-                            GetString("输入 /zsort clumsy all  来查看所有玩家手残排行榜")
+                GetString("输入 /zsort clumsy [num]  来查看当前[num]个人物手残排行榜\n") +
+                GetString("输入 /zsort clumsy all  来查看所有玩家手残排行榜")
                 : "";
 
             args.Player.SendMessage(
                 temp1 +
                 GetString("输入 /zsort coin  来查看人物硬币数目排行榜前十名\n") +
                 GetString("输入 /zsort coin [num]  来查看当前[num]个人物硬币数目排行榜\n") +
-                          GetString("输入 /zsort coin all  来查看所有玩家硬币数目排行榜\n") +
-                          GetString("输入 /zsort fish  来查看人物任务鱼数目排行榜前十名\n") +
-                          GetString("输入 /zsort fish [num]  来查看当前[num]个人物任务鱼数目排行榜\n") +
-                          GetString("输入 /zsort fish all  来查看所有玩家任务鱼数目排行榜") +
-                          temp4 + temp2 + temp3 + temp5
+                GetString("输入 /zsort coin all  来查看所有玩家硬币数目排行榜\n") +
+                GetString("输入 /zsort fish  来查看人物任务鱼数目排行榜前十名\n") +
+                GetString("输入 /zsort fish [num]  来查看当前[num]个人物任务鱼数目排行榜\n") +
+                GetString("输入 /zsort fish all  来查看所有玩家任务鱼数目排行榜") +
+                temp4 + temp2 + temp3 + temp5
                 , TextColor());
             return;
         }
@@ -3379,7 +3379,7 @@ public partial class ZHIPM : TerrariaPlugin
                     var sb = new StringBuilder();
                     if (count > list.Count)
                     {
-                        sb.AppendLine(GetString("当前最多 " + list.Count + " 人"));
+                        sb.AppendLine(GetString($"当前最多 {list.Count} 人"));
                         count = list.Count;
                     }
 
@@ -3685,8 +3685,8 @@ public partial class ZHIPM : TerrariaPlugin
         if (args.Parameters.Count < 2)
         {
             args.Player.SendInfoMessage(GetString("输入 /zban add <name> [reason]  来封禁无论是否在线的玩家，reason 可不填\n") +
-                                                  GetString("输入 /zban add uuid <uuid> [reason]  来封禁uuid\n") +
-                                                  GetString("输入 /zban add ip <ip> [reason]  来封禁ip"));
+                                          GetString("输入 /zban add uuid <uuid> [reason]  来封禁uuid\n") +
+                                          GetString("输入 /zban add ip <ip> [reason]  来封禁ip"));
             return;
         }
 
@@ -3797,7 +3797,7 @@ public partial class ZHIPM : TerrariaPlugin
                         }
                         else
                         {
-                            args.Player.SendInfoMessage(this.noplayer + GetString("。若玩家名称带有空格可用英文引号将名称整个括起来"));
+                            args.Player.SendInfoMessage(GetString($"{this.noplayer}。若玩家名称带有空格可用英文引号将名称整个括起来"));
                             return;
                         }
                     }
