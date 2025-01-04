@@ -2,7 +2,7 @@
 
 namespace CaiBot;
 
-internal class Config
+public class Config
 {
     private const string ConfigPath = "tshock/CaiBot.json";
 
