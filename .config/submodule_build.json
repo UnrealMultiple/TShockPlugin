@@ -35,6 +35,30 @@
             "project_path": "src/Submodules/Crossplay/Crossplay/Crossplay.csproj",
             "assembly_path": "src/Submodules/Crossplay/Crossplay/bin/{BuildType}/{TargetFramework}/Crossplay.dll",
             "readme": "src/Submodules/Crossplay/README.md"
+        },
+        {
+            "name": "VBY.Common",
+            "project_path": "src/Submodules/VBY.Plugins/src/VBY/Common/Common.csproj",
+            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.Common.dll",
+            "readme": "src/Submodules/VBY.Plugins/docs/VBY.Common.md"
+        },
+        {
+            "name": "VBY.GameContentModify",
+            "project_path": "src/Submodules/VBY.Plugins/src/VBY/GameContentModify/GameContentModify.csproj",
+            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.GameContentModify.dll",
+            "readme": "src/Submodules/VBY.Plugins/docs/VBY.GameContentModify.md"
+        },
+        {
+            "name": "VBY.PluginLoader",
+            "project_path": "src/Submodules/VBY.Plugins/src/VBY/PluginLoader/PluginLoader.csproj",
+            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.PluginLoader.dll",
+            "readme": "src/Submodules/VBY.Plugins/docs/VBY.PluginLoader.md"
+        },
+        {
+            "name": "VBY.OtherCommand",
+            "project_path": "src/Submodules/VBY.Plugins/src/VBY/OtherCommand/OtherCommand.csproj",
+            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.OtherCommand.dll",
+            "readme": "src/Submodules/VBY.Plugins/docs/VBY.OtherCommand.md"
         }
     ]
 }

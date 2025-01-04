@@ -6,16 +6,16 @@
 
 ## Comandos
 
-| Comando                 |       Permiso       |                                                                Detalles                                                                |
-|-------------------------| :-----------------: |:-------------------------------------------------------------------------------------------------------------------------------------:|
-| /apm -c                 | AutoUpdatePlugin   |                                                    Verificar actualizaciones de plugins                                                |
-| /apm -u [nombre plugin] | AutoUpdatePlugin   |      Actualizar plugins con un solo clic, requiere reinicio del servidor. Múltiples nombres de plugins se pueden separar por `comas`.   |
-| /apm -l                 | AutoUpdatePlugin   |                                                   Ver la lista de plugins del repositorio                                              |
-| /apm -i [número plugin] | AutoUpdatePlugin   |     Instalar plugins, requiere reinicio del servidor. Múltiples números de plugins se pueden separar por `comas` y usar con `/apm -i`. |
-| /apm -b [nombre plugin] | AutoUpdatePlugin   |                                                       Excluir plugin de actualizaciones                                                |
-| /apm -r                 | AutoUpdatePlugin   |                                                  Verificar plugins duplicados instalados                                               |
-| /apm -rb [nombre plugin]| AutoUpdatePlugin   |                                                        Eliminar exclusión de actualizaciones                                           |
-| /apm -lb                | AutoUpdatePlugin   |                                                Listar plugins excluidos de actualizaciones                                             |
+| Comando                  |     Permiso      |                                                              Detalles                                                              |
+|--------------------------|:----------------:|:----------------------------------------------------------------------------------------------------------------------------------:|
+| /apm -c                  | AutoUpdatePlugin |                                                Verificar actualizaciones de plugins                                                |
+| /apm -u [nombre plugin]  | AutoUpdatePlugin |  Actualizar plugins con un solo clic, requiere reinicio del servidor. Múltiples nombres de plugins se pueden separar por `comas`.  |
+| /apm -l                  | AutoUpdatePlugin |                                              Ver la lista de plugins del repositorio                                               |
+| /apm -i [número plugin]  | AutoUpdatePlugin | Instalar plugins, requiere reinicio del servidor. Múltiples números de plugins se pueden separar por `comas` y usar con `/apm -i`. |
+| /apm -b [nombre plugin]  | AutoUpdatePlugin |                                                 Excluir plugin de actualizaciones                                                  |
+| /apm -r                  | AutoUpdatePlugin |                                              Verificar plugins duplicados instalados                                               |
+| /apm -rb [nombre plugin] | AutoUpdatePlugin |                                               Eliminar exclusión de actualizaciones                                                |
+| /apm -lb                 | AutoUpdatePlugin |                                            Listar plugins excluidos de actualizaciones                                             |
 
 ## Configuración
 > Ubicación del archivo de configuración: tshock/AutoPluginManager.json
@@ -37,3 +37,10 @@
   "热重载出错时继续 ": true // Continuar si ocurre un error durante la recarga en caliente
 (La recarga en caliente continúa por error)
 }
+```
+
+## Soporte
+
+- Github Issue -> Repositorio de TShockPlugin: https://github.com/UnrealMultiple/TShockPlugin
+- Grupo de QQ de TShock: 816771079
+- Foro de Terraria en China: trhub.cn, bbstr.net, tr.monika.love

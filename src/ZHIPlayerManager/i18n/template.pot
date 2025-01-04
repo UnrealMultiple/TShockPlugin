@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ZHIPlayerManager\n"
-"POT-Creation-Date: 2024-11-23 18:22:28+0000\n"
-"PO-Revision-Date: 2024-11-23 18:22:28+0000\n"
+"POT-Creation-Date: 2024-12-24 21:06:31+0000\n"
+"PO-Revision-Date: 2024-12-24 21:06:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -271,6 +271,7 @@ msgstr ""
 msgid "各种buff[i:678]："
 msgstr ""
 
+#: ../../ZHIPM.Initialize.cs:1732
 #: ../../ZHIPM.Initialize.cs:1898
 #: ../../ZHIPM.Initialize.cs:2025
 #: ../../ZHIPM.Initialize.cs:2195

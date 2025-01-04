@@ -92,7 +92,6 @@ public class LNPC
     #region 设置或更新指定名称的标记（Marker）的
     public void setMarkers(string name, int num, bool reset)
     {
-        var name2 = name;
         if (!this.Markers!.Exists(t => t.IndName == name))
         {
             this.Markers.Add(new IndicatorGroup2(name, 0));
@@ -119,9 +118,9 @@ public class LNPC
     public void setMarkers(string name, int num, bool reset, string inname, float infactor, string inop, int rmin, int rmax, ref Random rd, NPC npc)
     {
         var name2 = name;
-        if (!this.Markers!.Exists((IndicatorGroup2 t) => t.IndName == name))
+        if (!this.Markers!.Exists((IndicatorGroup2 t) => t.IndName == name2))
         {
-            this.Markers.Add(new IndicatorGroup2(name, 0));
+            this.Markers.Add(new IndicatorGroup2(name2, 0));
         }
         var num2 = 0;
         if (rmax > rmin)
@@ -131,7 +130,7 @@ public class LNPC
         var num3 = this.addMarkersIn(inname, infactor, npc);
         foreach (var marker in this.Markers)
         {
-            if (marker.IndName == name)
+            if (marker.IndName == name2)
             {
                 marker.IndStack = reset ? Sundry.intoperation(inop, 0, num + num2 + num3) : Sundry.intoperation(inop, marker.IndStack, num + num2 + num3);
                 break;
@@ -154,7 +153,7 @@ public class LNPC
             {
                 num = npc.whoAmI;
             }
-            else if (npc != null)
+            else if(npc != null)
             {
                 switch (inname)
                 {

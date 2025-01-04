@@ -1,16 +1,15 @@
-# SessionSentinel 处理长时间不发送数据包的玩家
+# SessionSentinel 踢出长时不发包玩家
 - 作者: 肝帝熙恩
 - 出处: 本仓库
 - 最初目的为用于防止pe玩家切后台卡bug无敌
 -原理为踢出20秒内不发playerupdate的玩家
-
  
 ## 指令
 ```
 暂无
 ```
 ## 配置
-```json
+```json5
 暂无
 ```
 ## 反馈

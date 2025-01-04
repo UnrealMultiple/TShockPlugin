@@ -7,19 +7,14 @@
 > [!NOTE]
 >  requires pre-installed plugins: EconomicsAPI, Economics.RPG (in this repository).
 
-##  changelog
 
-```
-无
-```
-
-##  directive
+## Commands
 
 None
 
-##  configuration
+## Configuration
 >  configuration file location: tshock/Economics/Projectile.json
-```json
+```json5
 {
   "弹幕触发": {
     "274": {
@@ -61,7 +56,7 @@ None
 }
 ```
 
-Feedback on ## 
-
-- Co-maintained plugin repository: https://github.com/UnrealMultiple/TShockPlugin
-- Domestic community trhub.cn or TShock official group, etc.
+## FeedBack
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love

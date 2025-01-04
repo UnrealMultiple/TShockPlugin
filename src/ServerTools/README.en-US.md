@@ -1,4 +1,4 @@
-# ServerTools Toolbox
+# ServerTools
 
 - **Author**: 少司命  
 - **Source**: None  
@@ -7,18 +7,18 @@
 
 ## Commands  
 
-| Syntax                                             |           Permission          |                Description               |
-| -------------------------------------------------- | :---------------------------: | :--------------------------------------: |
-| /clp [range]                                       |       `tshock.clear`         | Clear projectiles without removing summons. |
-| /退出 or /toolexit                                 | `servertool.query.exit`      | Allow mobile players to kick themselves.   |
-| /查花苞 or /scp                                    | `servertool.query.wall`      | Locate Plantera's Bulbs and add them to Warp. |
-| /移除花苞 or /rcp                                  | `servertool.query.wall`      | Remove Plantera's Bulbs from Warp.         |
-| /自踢 or /selfkick                                 | `servertool.user.kick`       | Kick yourself from the server.             |
-| /自杀 or /selfkill                                 | `servertool.user.kill`       | Kill yourself.                             |
-| /ghost                                             | `servertool.user.ghost`      | Toggle ghost mode, use again to revert.    |
-| /旅途难度 [difficulty] `master` `journey` `normal` `expert` or /journeydiff [difficulty mode] `master` `journey` `normal` `expert` | `servertool.set.journey` | Set difficulty for Journey mode.          |
-| /在线排行 or /onlinerank                           | `servertool.user.online`     | Check the online players' leaderboard.     |
-| /死亡排行 or /deadrank                             | `servertool.user.dead`       | Check the death leaderboard.               |
+| Syntax                                                                                                                         |        Permission        |                  Description                  |
+|--------------------------------------------------------------------------------------------------------------------------------|:------------------------:|:---------------------------------------------:|
+| /clp [range]                                                                                                                   |      `tshock.clear`      |  Clear projectiles without removing summons.  |
+| /退出 or /toolexit                                                                                                               | `servertool.query.exit`  |   Allow mobile players to kick themselves.    |
+| /查花苞 or /scp                                                                                                                   | `servertool.query.wall`  | Locate Plantera's Bulbs and add them to Warp. |
+| /移除花苞 or /rcp                                                                                                                  | `servertool.query.wall`  |      Remove Plantera's Bulbs from Warp.       |
+| /自踢 or /selfkick                                                                                                               |  `servertool.user.kick`  |        Kick yourself from the server.         |
+| /自杀 or /selfkill                                                                                                               |  `servertool.user.kill`  |                Kill yourself.                 |
+| /ghost                                                                                                                         | `servertool.user.ghost`  |    Toggle ghost mode, use again to revert.    |
+| /旅途难度 [difficulty] `master` `journey` `normal` `expert` or /journeydiff [difficulty mode] `master` `journey` `normal` `expert` | `servertool.set.journey` |       Set difficulty for Journey mode.        |
+| /在线排行 or /onlinerank                                                                                                           | `servertool.user.online` |    Check the online players' leaderboard.     |
+| /死亡排行 or /deadrank                                                                                                             |  `servertool.user.dead`  |         Check the death leaderboard.          |
 
 ## REST API  
 
@@ -31,7 +31,7 @@
 
 > Configuration file path: `tshock/ServerTools.json`
 
-```json
+```json5
 {
   "死亡延续": true,  // When a player exits in a death state, they must wait for respawn when re-entering the server.
   "限制哨兵数量": 20,  // Limits the number of sentinels a player can summon.
@@ -134,32 +134,32 @@
 ```
 
 
-| Field                     |      Type        |                             Description                             |                Possible Values                 |
-| -------------------------- | :-------------: | :-----------------------------------------------------------------: | :-------------------------------------------: |
-| `死亡延续`                |     `bool`      | Players who log out while dead must wait until the death state ends to rejoin. |                   Empty                    |
-| `限制哨兵数量`            |     `int32`     | Limits the number of sentries a player can summon.                     |                   Empty                    |
-| `限制召唤物数量`          |     `int32`     | Limits the number of summons a player can summon.                      |                   Empty                    |
-| `仅允许软核进入`          |     `bool`      | Only allows softcore players to join.                                  |                   Empty                    |
-| `是否设置世界模式`        |     `bool`      | If set to `true`, the world mode will be configured.                   |                   Empty                    |
-| `设置世界模式`            |     `int32`     | Specifies the world difficulty level.                                  | `0` for Journey, `1` for Normal, `2` for Expert, `3` for Master |
-| `限制发言长度`            |     `int32`     | Restricts the maximum length of messages players can send.             |                   Empty                    |
-| `设置旅途模式难度`        |     `bool`      | Enables setting the difficulty for Journey mode when `true`.           |                   Empty                    |
-| `旅途模式难度`            |    `string`     | Defines the difficulty level for Journey mode.                         | `master`, `journey`, `normal`, `expert`    |
-| `阻止未注册进入`          |     `bool`      | Prevents unregistered players from joining the server.                 |                   Empty                    |
-| `禁止怪物捡钱`            |     `bool`      | Prevents monsters from picking up coins dropped by players.            |                   Empty                    |
-| `清理掉落物`              |     `bool`      | Removes items dropped after a player's death.                          |                   Empty                    |
-| `阻止死亡角色进入`        |     `bool`      | Prevents players in a death state from joining the server until revived in single-player mode. |                   Empty                    |
-| `死亡倒计时`              |     `bool`      | Enables a countdown timer for player deaths.                           |                   Empty                    |
-| `禁止双箱`                |     `bool`      | Prevents players from opening two chests simultaneously.               |                   Empty                    |
-| `禁止双饰品`              |     `bool`      | Prevents equipping duplicate accessories.                              |                   Empty                    |
-| `禁止肉前第七格饰品`      |     `bool`      | Prohibits having a seventh accessory slot before entering Hardmode.    |                   Empty                    |
-| `死亡倒计时格式`          |    `string`     | Format for the death countdown timer.                                  |              `{0}` remaining time          |
-| `未注册阻止语句`          |    `string`     | Message displayed to unregistered players trying to join.              |                   Empty                    |
-| `未注册启动服务器执行命令`| `array<string>` | Commands executed at server startup when there are no registered players. |                   Empty                    |
-| `开启NPC保护`             |     `bool`      | Enables NPC protection.                                                |                   Empty                    |
-| `NPC保护表`               |  `array<int>`   | List of NPCs protected by the server.                                  |                   Empty                    |
-| `禁止多鱼线`              |     `bool`      | Prevents players from exploiting the multi-fishing line bug.           |                   Empty                    |
-| `浮漂列表`                |  `array<int>`   | List of bobbers used to detect multi-fishing line issues.              |                   Empty                    |
+| Field          |      Type       |                                          Description                                           |                         Possible Values                         |
+|----------------|:---------------:|:----------------------------------------------------------------------------------------------:|:---------------------------------------------------------------:|
+| `死亡延续`         |     `bool`      |         Players who log out while dead must wait until the death state ends to rejoin.         |                              Empty                              |
+| `限制哨兵数量`       |     `int32`     |                       Limits the number of sentries a player can summon.                       |                              Empty                              |
+| `限制召唤物数量`      |     `int32`     |                       Limits the number of summons a player can summon.                        |                              Empty                              |
+| `仅允许软核进入`      |     `bool`      |                             Only allows softcore players to join.                              |                              Empty                              |
+| `是否设置世界模式`     |     `bool`      |                      If set to `true`, the world mode will be configured.                      |                              Empty                              |
+| `设置世界模式`       |     `int32`     |                             Specifies the world difficulty level.                              | `0` for Journey, `1` for Normal, `2` for Expert, `3` for Master |
+| `限制发言长度`       |     `int32`     |                   Restricts the maximum length of messages players can send.                   |                              Empty                              |
+| `设置旅途模式难度`     |     `bool`      |                  Enables setting the difficulty for Journey mode when `true`.                  |                              Empty                              |
+| `旅途模式难度`       |    `string`     |                         Defines the difficulty level for Journey mode.                         |             `master`, `journey`, `normal`, `expert`             |
+| `阻止未注册进入`      |     `bool`      |                     Prevents unregistered players from joining the server.                     |                              Empty                              |
+| `禁止怪物捡钱`       |     `bool`      |                  Prevents monsters from picking up coins dropped by players.                   |                              Empty                              |
+| `清理掉落物`        |     `bool`      |                         Removes items dropped after a player's death.                          |                              Empty                              |
+| `阻止死亡角色进入`     |     `bool`      | Prevents players in a death state from joining the server until revived in single-player mode. |                              Empty                              |
+| `死亡倒计时`        |     `bool`      |                          Enables a countdown timer for player deaths.                          |                              Empty                              |
+| `禁止双箱`         |     `bool`      |                    Prevents players from opening two chests simultaneously.                    |                              Empty                              |
+| `禁止双饰品`        |     `bool`      |                           Prevents equipping duplicate accessories.                            |                              Empty                              |
+| `禁止肉前第七格饰品`    |     `bool`      |              Prohibits having a seventh accessory slot before entering Hardmode.               |                              Empty                              |
+| `死亡倒计时格式`      |    `string`     |                             Format for the death countdown timer.                              |                      `{0}` remaining time                       |
+| `未注册阻止语句`      |    `string`     |                   Message displayed to unregistered players trying to join.                    |                              Empty                              |
+| `未注册启动服务器执行命令` | `array<string>` |           Commands executed at server startup when there are no registered players.            |                              Empty                              |
+| `开启NPC保护`      |     `bool`      |                                    Enables NPC protection.                                     |                              Empty                              |
+| `NPC保护表`       |  `array<int>`   |                             List of NPCs protected by the server.                              |                              Empty                              |
+| `禁止多鱼线`        |     `bool`      |                  Prevents players from exploiting the multi-fishing line bug.                  |                              Empty                              |
+| `浮漂列表`         |  `array<int>`   |                   List of bobbers used to detect multi-fishing line issues.                    |                              Empty                              |
 
 
 ## FeedBack

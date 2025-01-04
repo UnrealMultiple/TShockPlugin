@@ -13,7 +13,7 @@ public class AutoStoreItems : LazyPlugin
     #region 插件信息
     public override string Name => "自动存储";
     public override string Author => "羽学 cmgy雱";
-    public override Version Version => new Version(1, 3, 3);
+    public override Version Version => new Version(1, 3, 4);
     public override string Description => "涡轮增压不蒸鸭";
     #endregion
 

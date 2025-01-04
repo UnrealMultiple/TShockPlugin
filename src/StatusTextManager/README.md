@@ -3,50 +3,40 @@
 - 出处: https://github.com/CNS-Team/StatusTxtMgr
 - 管理 PC 端右上角的模板文本
 
-## 更新日志
-
-```
-v1.1.0
-添加 DynamicText 类
-可插值
-
-v1.0.0
-初次添加插件
-```
 
 ## 指令
 
-| 语法        | 权限  |       说明       |
-| ----------- | :---: | :--------------: |
-| /statustext |  无   | 切换模板文本显示 |
-| /st         |  无   | 切换模板文本显示 |
+| 语法          | 权限 |    说明    |
+|-------------|:--:|:--------:|
+| /statustext | 无  | 切换模板文本显示 |
+| /st         | 无  | 切换模板文本显示 |
 
 ## DynamicText 插值表
 
-| 插值                      | 插值内容                        |
-| ------------------------- | ------------------------------- |
-| {PlayerName}              | 玩家名称                        |
-| {PlayerGroupName}         | 玩家所在组名称                  |
-| {PlayerLife}              | 玩家生命值                      |
-| {PlayerMana}              | 玩家魔力值                      |
-| {PlayerLifeMax}           | 玩家最大生命值                  |
-| {PlayerManaMax}           | 玩家最大魔力值                  |
-| {PlayerLuck}              | 玩家幸运值                      |
-| {PlayerCoordinateX}       | 玩家X坐标                       |
-| {PlayerCoordinateY}       | 玩家Y坐标                       |
-| {PlayerCurrentRegion}     | 玩家所在的 TShock 区域          |
-| {IsPlayerAlive}           | 玩家是否存活                    |
+| 插值                        | 插值内容              |
+|---------------------------|-------------------|
+| {PlayerName}              | 玩家名称              |
+| {PlayerGroupName}         | 玩家所在组名称           |
+| {PlayerLife}              | 玩家生命值             |
+| {PlayerMana}              | 玩家魔力值             |
+| {PlayerLifeMax}           | 玩家最大生命值           |
+| {PlayerManaMax}           | 玩家最大魔力值           |
+| {PlayerLuck}              | 玩家幸运值             |
+| {PlayerCoordinateX}       | 玩家X坐标             |
+| {PlayerCoordinateY}       | 玩家Y坐标             |
+| {PlayerCurrentRegion}     | 玩家所在的 TShock 区域   |
+| {IsPlayerAlive}           | 玩家是否存活            |
 | {RespawnTimer}            | 玩家重生倒计时 (未知原因不生效) |
-| {OnlinePlayersCount}      | 在线玩家数量                    |
-| {OnlinePlayersList}       | 在线玩家列表                    |
-| {AnglerQuestFishName}     | 渔夫任务鱼名称                  |
-| {AnglerQuestFishID}       | 渔夫任务鱼ID                    |
-| {AnglerQuestFishingBiome} | 渔夫任务鱼钓鱼点                |
-| {AnglerQuestCompleted}    | 渔夫任务是否已完成              |
-| {CurrentTime}             | 游戏内时间                      |
-| {RealWorldTime}           | 现实世界时间                    |
-| {WorldName}               | 世界名称                        |
-| {CurrentBiomes}           | 玩家当前所处群系                |
+| {OnlinePlayersCount}      | 在线玩家数量            |
+| {OnlinePlayersList}       | 在线玩家列表            |
+| {AnglerQuestFishName}     | 渔夫任务鱼名称           |
+| {AnglerQuestFishID}       | 渔夫任务鱼ID           |
+| {AnglerQuestFishingBiome} | 渔夫任务鱼钓鱼点          |
+| {AnglerQuestCompleted}    | 渔夫任务是否已完成         |
+| {CurrentTime}             | 游戏内时间             |
+| {RealWorldTime}           | 现实世界时间            |
+| {WorldName}               | 世界名称              |
+| {CurrentBiomes}           | 玩家当前所处群系          |
 
 ## 配置
 > 配置文件位置：tshock/StatusTextManager.json
@@ -145,6 +135,17 @@ public class Plugin : TerrariaPlugin
         base.Dispose(disposing);
     }
 }
+```
+
+## 更新日志
+
+```
+v1.1.0
+添加 DynamicText 类
+可插值
+
+v1.0.0
+初次添加插件
 ```
 
 ## 反馈

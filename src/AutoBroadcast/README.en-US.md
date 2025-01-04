@@ -12,7 +12,7 @@ None
 
 ## Config
 > Configuration file location：tshock/AutoBroadcast.en-US.json
-```json
+```json5
 {
   "Broadcasts": [
     {

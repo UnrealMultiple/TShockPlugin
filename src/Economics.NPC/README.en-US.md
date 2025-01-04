@@ -7,19 +7,14 @@
 > [!NOTE]
 >  requires the pre-installed plugin: EconomicsAPI (this repository)
 
-##  changelog
 
-```
-无
-```
-
-##  directive
+## Commands
 
 None
 
-##  configuration
+## Configuration
 >  configuration file location: tshock/Economics/NPC.json
-```json
+```json5
 {
   "开启提示": true,
   "提示内容": "你因击杀{0},获得额外奖励{1}{2}个",
@@ -37,7 +32,7 @@ None
 }
 ```
 
-Feedback for ## 
-
-- Co-maintained plugin repository: https://github.com/UnrealMultiple/TShockPlugin
-- Domestic community trhub.cn or TShock official group, etc.
+## FeedBack
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love

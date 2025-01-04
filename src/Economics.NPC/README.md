@@ -7,21 +7,13 @@
 > [!NOTE]  
 > 需要安装前置插件：EconomicsAPI(本仓库) 
 
-## 更新日志
-
-```
-V2.0.0.0
-适配多货币
-
-```
-
 ## 指令
 
 无
 
 ## 配置
 > 配置文件位置：tshock/Economics/NPC.json
-```json
+```json5
 {
   "开启提示": true,
   "提示内容": "你因击杀{0},获得额外奖励{1}{2}个",
@@ -38,7 +30,13 @@ V2.0.0.0
   }
 }
 ```
+## 更新日志
 
+```
+V2.0.0.0
+适配多货币
+
+```
 ## 反馈
 
 - 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

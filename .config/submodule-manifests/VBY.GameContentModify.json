@@ -1,0 +1,12 @@
+{
+  "README.en-US": {
+    "Description": "Customizable modifications for certain game content (super)"
+  },
+  "README.es-ES": {
+    "Description": "Modificaciones personalizables para cierto contenido del juego (super)"
+  },
+  "README": {
+    "READMEUrl": "https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md",
+    "Description": "对一些游戏内容的可自定义修改 (超强)"
+  }
+}

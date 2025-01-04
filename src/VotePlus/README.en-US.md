@@ -4,34 +4,29 @@
 - Source: None
 - A multi-functional voting plugin
 
-## Changelog
-
-```
-None
-```
 
 ## Commands
 
-| Command Syntax                   | Alias  |      Permission      |                    Description                    |
-| -------------------------------- | :----: | :------------------: | :-----------------------------------------------: |
-| /vote kick <player>              | None   |     vote.use         | Vote to kick the specified player                 |
-| /vote ban <player>               | None   |     vote.use         | Vote to ban the specified player                  |
-| /vote mute <player>              | None   |     vote.use         | Vote to mute the specified player                 |
-| /vote clearboss <BOSS name>      | None   |     vote.use         | Vote to clear the specified BOSS (no drops)       |
-| /vote clearevent                 | None   |     vote.use         | Vote to clear all events in the map               |
-| /vote day                        | None   |     vote.use         | Vote to change the time to daytime                |
-| /vote night                      | None   |     vote.use         | Change the time to nighttime                      |
-| /vote rain                       | None   |     vote.use         | Vote to start or stop rain                        |
-| /vote topic <topic>              | None   |     vote.use         | Free topic voting                                 |
-| /vote clearkick <player>         | None   |     vote.use         | Remove a player from the kick list                |
-| /vote kicklist                   | None   |     vote.use         | View the list of players in the kick state        |
-| /agree                           | 同意   |     vote.use         | Agree with the current vote                       |
-| /disagree                        | 反对   |	  vote.use		   | Disagree with the current vote                    |
+| Command Syntax              | Alias |  Permission   |                 Description                 |
+|-----------------------------|:-----:|:-------------:|:-------------------------------------------:|
+| /vote kick <player>         | None  |   vote.use    |      Vote to kick the specified player      |
+| /vote ban <player>          | None  |   vote.use    |      Vote to ban the specified player       |
+| /vote mute <player>         | None  |   vote.use    |      Vote to mute the specified player      |
+| /vote clearboss <BOSS name> | None  |   vote.use    | Vote to clear the specified BOSS (no drops) |
+| /vote clearevent            | None  |   vote.use    |     Vote to clear all events in the map     |
+| /vote day                   | None  |   vote.use    |     Vote to change the time to daytime      |
+| /vote night                 | None  |   vote.use    |        Change the time to nighttime         |
+| /vote rain                  | None  |   vote.use    |         Vote to start or stop rain          |
+| /vote topic <topic>         | None  |   vote.use    |              Free topic voting              |
+| /vote clearkick <player>    | None  |   vote.use    |     Remove a player from the kick list      |
+| /vote kicklist              | None  |   vote.use    | View the list of players in the kick state  |
+| /agree                      |  同意   |   vote.use    |         Agree with the current vote         |
+| /disagree                   |  反对   | 	  vote.use		 |       Disagree with the current vote        |
 
 
 ## Configuration
 > Configuration file location：tshock/VotePlus.json
-```json
+```json5
 {
   "启用投票踢出": true, // Enable voting to kick players
   "踢出持续时间(秒)": 600, // Duration (in seconds) for which a player is kicked
