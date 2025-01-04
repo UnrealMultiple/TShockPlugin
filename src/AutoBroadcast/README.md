@@ -4,26 +4,14 @@
 - 出处: [github](https://github.com/Scavenger3/AutoBroadcast)
 - 定时在服务器中广播，或执行命令。
 
-## 更新日志
-
-```
-v1.0.8
-准备更新TS 5.2.1,修正文档，初始配置内容更改
-v1.0.6
-修复了初始配置文件的问题
-v1.0.5
-i18n 和 README_EN.md
-v1.0.4
-i18n预定
-```
 
 ## 指令
-
+```
 无
-
+```
 ## 配置
 > 配置文件位置：tshock/AutoBroadcast.zh-CN.json
-```json
+```json5
 {
   "广播列表": [
     {
@@ -47,6 +35,20 @@ i18n预定
   ]
 }
 ```
+
+## 更新日志
+
+```
+v1.0.8
+准备更新TS 5.2.1,修正文档，初始配置内容更改
+v1.0.6
+修复了初始配置文件的问题
+v1.0.5
+i18n 和 README_EN.md
+v1.0.4
+i18n预定
+```
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

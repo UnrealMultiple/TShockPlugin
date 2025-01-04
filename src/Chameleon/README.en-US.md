@@ -17,6 +17,7 @@ None
 > Configuration file location：tshock/Chameleon.en-US.json
 ```json
 {
+  "VerifyloginIP": false,
   "AwaitBufferSize": 10,
   "EnableForcedHint": true,
   "Greeting": "   Welcome to niaoluo Server!",

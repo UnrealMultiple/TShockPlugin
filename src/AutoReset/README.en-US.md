@@ -15,7 +15,7 @@
 ## Config
 > Configuration file location：tshock/AutoReset/AutoReset.en-US.json.json
 > Replace Files: tshock/AutoReset/ReplaceFiles
-```json
+```json5
 {
   "ReplaceFiles": { //Replace Files
     "/tshock/原神.json": "原神.json", // Replace /tshock/原神.json with 原神.json

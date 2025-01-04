@@ -5,6 +5,20 @@
 - 有权限的玩家打开大地图后，双击去往所指定的位置
 - 更近一步是否允许传送到实心方块
 
+
+## 指令
+
+| 指令 |      权限      |       说明        |
+|----|:------------:|:---------------:|
+| 无  | maptp.noclip | 允许双击传送(不包括实心方块) |
+| 无  |    maptp     | 允许双击传送(包括实心方块)  |
+
+## 配置
+```
+暂无
+```
+
+
 ## 更新日志
 
 ```
@@ -14,19 +28,7 @@ v1.0.1
 完善卸载函数
 ```
 
-## 指令
-
-| 指令 |     权限     |             说明             |
-| ---- | :----------: | :--------------------------: |
-| 无   | maptp.noclip | 允许双击传送(不包括实心方块) |
-| 无   |    maptp     |  允许双击传送(包括实心方块)  |
-
-## 配置
-
-```
-暂无
-```
-## FeedBack
-- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
-- TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+## 反馈
+- 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
+- 次优先：TShock官方群：816771079
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love

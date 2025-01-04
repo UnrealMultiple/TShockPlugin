@@ -9,18 +9,15 @@ public partial class Plugin
 {
     public static readonly List<TSPlayer> ActivePlayers = new();
 
-    public static readonly PlayerOnline PlayerOnlines = new();
-
     private object Queryduration(RestRequestArgs args)
     {
-        var data = PlayerOnlines.OrderByDescending(x => x.Value).Select(x => new { name = x.Key, duration = x.Value });
+        var data = PlayerOnline.GetOnlineRank().Select(x => new { name = x.Name, duration = x.Duration });
         return new RestObject() { { "response", "查询成功" }, { "data", data } };
     }
 
-    private void _OnLeave(LeaveEventArgs args)
+    private void OnLeaveV2(LeaveEventArgs args)
     {
         ActivePlayers.Remove(TShock.Players[args.Who]);
-        PlayerOnlines.UpdateAll();
     }
 
     private void OnGreet(GreetPlayerEventArgs args)
@@ -40,7 +37,7 @@ public partial class Plugin
         {
             if (p != null && p.Active)
             {
-                PlayerOnlines[p.Name] += 1;
+                PlayerOnline.Add(p.Name, 1);
             }
         });
     }

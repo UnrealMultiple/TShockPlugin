@@ -7,27 +7,21 @@
 > [!NOTE]
 >  requires pre-installed plugins: EconomicsAPI, Economics.RPG (in this repository).
 
-##  changelog
+## Commands
 
-```
-暂无
-```
+| Syntax                   |      Permission      |          Description          |
+|--------------------------|:--------------------:|:-----------------------------:|
+| /task pick [task index]  |  economics.task.use  |        Pick up a task         |
+| /task info [task index]  |  economics.task.use  |       View task details       |
+| /task prog               |  economics.task.use  | View task completion progress |
+| /task pr                 |  economics.task.use  |         Submit Tasks          | /task del | economics.task.use
+| /task del                |  economics.task.use  |         Abandon Task          | /task list [|task del] | economics.task.use [|task list
+| /task list [page number] |  economics.task.use  |        View task list         | /task reset | /task reset | economics.task.use | View task list | /task reset
+| /task reset              | economics.task.admin |          Reset tasks          |
 
-##  directive
-
-| Syntax | Privileges | Description |
-| --------------------- | :------------------: | :--------------: |
-| /task pick [task index] | economics.task.use | Pick up a task |
-| /task info [task index] | economics.task.use | View task details |
-| /task prog | economics.task.use | View task completion progress |
-| /task pr | economics.task.use | Submit Tasks | /task del | economics.task.use
-| /task del | economics.task.use | Abandon Task | /task list [|task del] | economics.task.use [|task list
-| /task list [page number] | economics.task.use | View task list | /task reset | /task reset | economics.task.use | View task list | /task reset
-| /task reset | economics.task.admin | Reset tasks |
-
-##  configuration
+## Configuration
 >  configuration file location: tshock/Economics/Task.json
-```json
+```json5
 {
   "不可重复接任务": true,
   "页显示数量": 10,
@@ -69,7 +63,7 @@
 }
 ```
 
-Feedback for ## 
-
-- Co-maintained plugin repository: https://github.com/UnrealMultiple/TShockPlugin
-- Domestic community trhub.cn or TShock official group, etc.
+## FeedBack
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love

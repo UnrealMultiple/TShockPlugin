@@ -4,18 +4,6 @@
 - 出处: [github](https://github.com/QuiCM/EssentialsPlus)
 - Essentials+ 是一种组合，用于改进和优化 Essentials 和 MoreAdminCommands 中的某些功能。所有命令都是异步执行的。不包括 Flag 命令。
 
-## 更新日志
-```
-1.0.4
-添加西班牙语，修正部分内容
-1.0.3
-i18n完成，且预置es-EN
-1.0.2
-修复数据库错误
-1.0.1 
-修复重启无法获取禁言的BUG, 重命名一些方法
-```
-
 ## 指令
 
 - **/find** 或 **/查找** -> 包含多个子命令：
@@ -71,7 +59,7 @@ i18n完成，且预置es-EN
 
 ## 配置
 > 配置文件位置：tshock/EssentialsPlus.json
-```json
+```json5
 {
   "Pvp禁用命令": [
     "eback"
@@ -83,6 +71,19 @@ i18n完成，且预置es-EN
   "MySql密码": ""
 }
 ```
+
+## 更新日志
+```
+1.0.4
+添加西班牙语，修正部分内容
+1.0.3
+i18n完成，且预置es-EN
+1.0.2
+修复数据库错误
+1.0.1 
+修复重启无法获取禁言的BUG, 重命名一些方法
+```
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

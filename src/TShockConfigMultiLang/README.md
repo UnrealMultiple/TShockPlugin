@@ -5,21 +5,16 @@
 - 创建一个本地化语言的config，通过更改他来更改config，也可以反过来操作，同步后会自动重载
 - 有可能会和一些对tshock自己config进行操作的插件冲突，一般可以手动解决
 
-## 更新日志
-
-```
-暂无
-```
 
 ## 指令
-| 语法                    |       权限       |     说明     |
-| ----------------------- | :--------------: | :----------: |
-| /configToNewconfig 或 /ctc | tshock.cfg.reload | 原版配置文件同步给本地化配置文件 |
+| 语法                         |        权限         |        说明        |
+|----------------------------|:-----------------:|:----------------:|
+| /configToNewconfig 或 /ctc  | tshock.cfg.reload | 原版配置文件同步给本地化配置文件 |
 | /configToFromconfig 或 /cfc | tshock.cfg.reload | 本地化配置文件同步给原版配置文件 |
 
 ## 配置
 > 配置文件位置：tshock/config.zh-CN.json
-```json
+```json5
 {
   "服务器密码": "",
   "服务器端口": 7777,
@@ -167,6 +162,14 @@
   "Rest外部应用令牌字典": {}
 }
 ```
+
+
+## 更新日志
+
+```
+暂无
+```
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

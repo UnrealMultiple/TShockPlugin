@@ -17,7 +17,7 @@
 
 ## Config
 > Configuration file location：tshock/VeinMiner.json
-```json
+```json5
 {
   "启用": true, //Enable
   "广播": true, //Broadcast
@@ -31,12 +31,12 @@
     168,
     8
   ],
-  "忽略挖掘表面方块ID: [  // When these items are above the ore, the ore will not be mined.
-    21,
-    26,
-    88
+  "忽略挖掘表面方块ID": [    // When these items are above the ore, the ore will not be mined.
+    21,                 //Exchange rules
+    26,          
+    88           
   ],
-  "奖励规则"": [ //Exchange rules
+  "奖励规则": [ 
     {
       "仅给予物品": false, //Only give item
       "最小尺寸": 0, //Min size
@@ -47,7 +47,7 @@
 }
 ```
 ### Example
-```json
+```json5
 {
   "启用": true, //Enable
   "广播": true, //Broadcast

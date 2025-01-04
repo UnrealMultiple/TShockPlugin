@@ -11,30 +11,12 @@
 > [!NOTE]  
 > Requires the installation of the prerequisite plugin: EconomicsAPI (this repository)
 
-## Change Log
-
-```
-Change Log
-V1.0.0.5
-Adapted to the new EconomicsAPI
-
-1.0.3
-Adapted to the new EC suite
-Configuration file supports automatic Chinese and English conversion
-Command methods remain unchanged
-(Yuxue restructured the configuration file to make it simpler)
-
-1.0.2
-This version is the latest release on the Chinese forum, and the author has not open-sourced it.
-Yuxue decompiled and restructured the Config (removed Chinese variables)
-```
-
 ## Commands
 
-| Syntax           |   Alias  |   Permission         |   Description   |
-| -------------- | :---------:| :------------: | :------: |
-| /plus help |  None |  weaponplus.plus  | View the weapon enhancement menu |
-| /clearallplayersplus  | None |  weaponplus.admin |  Clear enhanced items for all players |
+| Syntax               | Alias |    Permission    |             Description              |
+|----------------------|:-----:|:----------------:|:------------------------------------:|
+| /plus help           | None  | weaponplus.plus  |   View the weapon enhancement menu   |
+| /clearallplayersplus | None  | weaponplus.admin | Clear enhanced items for all players |
 
 ## Configuration
 > Configuration file location: tshock/Economics/WeaponPlus.json
@@ -63,7 +45,7 @@ Yuxue decompiled and restructured the Config (removed Chinese variables)
 }
 ```
 
-## Feedback
-- Priority for issues: -> Jointly maintained plugin library: https://github.com/UnrealMultiple/TShockPlugin
-- Secondary priority: TShock official group: 816771079
-- Likely won't see it but can also try: Domestic communities trhub.cn, bbstr.net, tr.monika.love
+## FeedBack
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love

@@ -44,6 +44,7 @@ msgstr "[Update Complete]\n"
 msgid "{0} v{1} (by {2}) 关闭成功!"
 msgstr "{0} v{1} (by {2}) closed successfully!"
 
+
 #: ../../Internal/CommandAdapter.cs:154
 #, csharp-format
 msgid "{0} v{1} (by {2}) 启用成功!"

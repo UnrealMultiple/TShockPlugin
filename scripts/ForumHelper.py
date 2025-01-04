@@ -21,7 +21,7 @@ except:
 
 with open('README.md', 'r', encoding='utf-8') as file:
     md = file.read()
-md = re.sub(r'\b(src[^(\[]*\/README.md)\b', lambda x: "https://gitee.com/kksjsj/TShockPlugin/blob/master/" + x.group(), md)
+md = re.sub(r'\((\./src/([^/]+)/README.md)\)', r'(http://docs.terraria.ink/zh/guide/\2.html)', md)
 rendered = rq.post("https://api.github.com/markdown", headers = {
     "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28"

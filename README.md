@@ -20,14 +20,14 @@
 
 
 ## 使用者注意事项
-
+- 插件文档： [TShock中文插件库文档](http://docs.terraria.ink/zh/)
 - 注意有些插件可能需要安装依赖，请查看下方列表安装依赖插件。
 - 每个插件都有一个使用说明，在下方列表点击超链接查看具体说明事项。
 - 听说喜欢给仓库点星星的人，插件都不容易报错
 
 ## 下载
 
-- Gitee发布(国内推荐): [Plugins.zip](https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
+- ApmApi(国内推荐): [Plugins.zip](http://api.terraria.ink:11434/plugin/get_all_plugins)
 - Github发布: [Plugins.zip](https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
 
 #### AutoPluginManager插件 (本仓库推出的插件管理器)  
@@ -149,6 +149,7 @@
 | [PersonalPermission](./src/PersonalPermission/README.md) | 为玩家单独设置权限 |  |
 | [Platform](./src/Platform/README.md) | 判断玩家设备 |  |
 | [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | Hufang的玩家管理器 |  |
+| [PlayerRandomSwapper](./src/PlayerRandomSwapper/README.md) | 玩家位置随机交换 | [LazyAPI](./src/LazyAPI/README.md) |
 | [PlayerSpeed](./src/PlayerSpeed/README.md) | 玩家速度 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ProgressBag](./src/ProgressBag/README.md) | 进度礼包 |  |
 | [ProgressControls](./src/ProgressControls/README.md) | 计划书（自动化控制服务器） |  |
@@ -167,7 +168,7 @@
 | [RestInventory](./src/RestInventory/README.md) | 提供 REST 查询背包接口 |  |
 | [RolesModifying](./src/RolesModifying/README.md) | 修改玩家背包 |  |
 | [Sandstorm](./src/Sandstorm/README.md) | 切换沙尘暴 |  |
-| [ServerTools](./src/ServerTools/README.md) | 服务器管理工具 |  |
+| [ServerTools](./src/ServerTools/README.md) | 服务器管理工具 | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
 | [SessionSentinel](./src/SessionSentinel/README.md) | 处理长时间不发送数据包的玩家 |  |
 | [ShortCommand](./src/ShortCommand/README.md) | 简短指令 |  |
 | [ShowArmors](./src/ShowArmors/README.md) | 展示装备栏 |  |
@@ -185,6 +186,10 @@
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | NPC 快速回家 |  |
 | [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | TShock config文件语言本土化 | [LazyAPI](./src/LazyAPI/README.md) |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 允许服务器端生成“无法获取”的物品 |  |
+| [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | VBY插件的基础库 |  |
+| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 对一些游戏内容的可自定义修改 (超强) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 提供一些其他的辅助命令 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 一个允许热重载的插件加载器 |  |
 | [VeinMiner](./src/VeinMiner/README.md) | 连锁挖矿 |  |
 | [VotePlus](./src/VotePlus/README.md) | 多功能投票 |  |
 | [WeaponPlus](./src/WeaponPlusCostCoin/README.md) | 武器强化钱币版 |  |

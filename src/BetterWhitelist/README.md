@@ -4,12 +4,6 @@
 - 出处: [gitee](https://gitee.com/Crafty/BetterWhitelist)
 - 将玩家名字加入白名单，仅在白名单内的玩家可进入游戏
 
-## 更新日志
-
-```
-v2.6
-添加英文翻译
-```
 
 ## 指令
 
@@ -25,13 +19,22 @@ v2.6
 
 ## 配置
 
-> 配置文件位置：tshock/BetterWhitelist/config.json
-```json
+> 配置文件位置：tshock/BetterWhitelist.zh-CN.json
+```json5
 {
   "白名单玩家": [],
   "插件开关": false,
   "连接时不在白名单提示": "你不在服务器白名单中！"
 }
+```
+
+## 更新日志
+
+```
+v2.6.1
+准备更新TS 5.2.1,修正文档，初始配置内容更改
+v2.6
+添加英文翻译
 ```
 
 ## 反馈
