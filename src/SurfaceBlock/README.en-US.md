@@ -1,20 +1,23 @@
-# SurfaceBlock
+# SurfaceBlock 禁止地表弹幕
 
 - Authors: 羽学
 - Source: [SurfaceBlock](https://github.com/1242509682/SurfaceBlock)
 - This is a Tshock server plugin primarily used to:
-- prevent the generation of spam that occurs when players on the server surface of the world use explosives maliciously, damaging the server map.
+- 尤其是针对恶意使用爆炸物破坏服务器地图的人。
 
 ## Commands
 
-| Command Syntax	 | Alias |    Permission     |                 Description                  |
-|-----------------|:-----:|:-----------------:|:--------------------------------------------:|
-| None            | None  |   SurfaceBlock    | Neglecting violations of surface projectiles |
-| /reload         | None  | tshock.cfg.reload |        Reload the configuration file         |
+| 语法      |  Permission  |          Description          |
+| ------- | :----------: | :---------------------------: |
+| /reload |     None     | Reload the configuration file |
+| None    |    免检地表弹幕    |           不检测其弹幕是否违规          |
+| None    | SurfaceBlock |           不检测其弹幕是否违规          |
 
 ## Configuration
+
 > Configuration file location： tshock/禁地表弹幕.json
-```json
+
+```json5
 {
   "Enabled": true,
   "DestructionSeconds": 5,
@@ -26,7 +29,37 @@
   ]
 }
 ```
+
+## 更新日志
+
+```
+- 2.0.0
+- 重构所有代码,移除指令方法
+- 加入了数据库存储逻辑用于查找需要销毁弹幕的对应玩家
+- 加入了物品掉落、图格还原等方法逻辑
+- 支持全类型种子不同地图大小
+- 1.0.0.6.0
+- i18n预备
+- 1.0.6
+- 补全卸载函数
+- 1.0.5
+- 移除了计时器，使用OnWorldload方法实现加载完地图后再创建配置文件，
+- 方便计算出准确的Main.worldSurface地表值
+- 1.0.4
+- 添加了个计时器，20秒后再创建计算好Main.worldSurface世界地表值的配置文件，
+- 配置文件可支持正常地图与颠倒世界，将指令同步到配置文件总开关。
+- 1.0.3
+- 给插件加了个指令开关与权限，并在开启时获取所有ID带有名称的列表，
+- 名字显示不全的改为“未知”。
+- 开关指令名：/禁地表弹幕 （该指令的权限同名）
+- 1.0.2
+- 对config预设了更多的弹幕类型，涵盖了主要破坏地图的手段
+- 1.0.1
+- 加入了Config配置文件，玩家可通过Config设置拦截的弹幕ID
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
