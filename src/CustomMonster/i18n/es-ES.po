@@ -1,0 +1,269 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2024-12-18 10:03:43+0000\n"
+"PO-Revision-Date: 2025-01-05 06:38\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/CustomMonster/i18n/template.pot\n"
+"X-Crowdin-File-ID: 460\n"
+"Language: es_ES\n"
+
+#: ../../CustomMonster.cs:245
+msgid " /召唤自定义怪物血量怪物 怪物标志 "
+msgstr ""
+
+#: ../../CustomMonster.cs:247
+msgid " /召唤自定义怪物血量怪物 怪物标志 X像素坐标 Y像素坐标"
+msgstr ""
+
+#: ../../CustomMonster.cs:246
+msgid " /召唤自定义怪物血量怪物 怪物标志 数量"
+msgstr ""
+
+#: ../../CustomMonster.cs:129
+msgid " >>> 如果使用过程中出现什么问题可前往QQ群232109072交流反馈."
+msgstr ""
+
+#: ../../CustomMonster.cs:133
+msgid " >>> 抢先测试版,因配置项待定后续可能会修改,所以仅仅测试使用!!!!!!"
+msgstr ""
+
+#: ../../CustomMonster.cs:130
+msgid " >>> 本插件免费请勿上当受骗,您可在QQ群232109072中获取最新插件."
+msgstr ""
+
+#: ../../CustomMonster.cs:1158
+msgid " 剩"
+msgstr ""
+
+#: ../../CustomMonster.cs:1239
+msgid " 剩余攻略时间 "
+msgstr ""
+
+#: ../../CustomMonster.cs:1157
+msgid " 受服务器人数增多影响怪物血量减少 "
+msgstr ""
+
+#: ../../CustomMonster.cs:1164
+msgid " 受服务器人数增多影响怪物血量增加 "
+msgstr ""
+
+#: ../../CustomMonster.cs:1096
+msgid " 受服务器人数增多影响攻略时间减少 "
+msgstr ""
+
+#: ../../CustomMonster.cs:1103
+msgid " 受服务器人数增多影响攻略时间增加 "
+msgstr ""
+
+#: ../../CustomMonster.cs:126
+msgid " 已启动! --------"
+msgstr ""
+
+#: ../../CustomMonster.cs:127
+msgid " 已启动! --------------"
+msgstr ""
+
+#: ../../CustomMonster.cs:1251
+#: ../../CustomMonster.cs:2056
+msgid " 已撤离."
+msgstr ""
+
+#: ../../CustomMonster.cs:803
+msgid " 已被击败."
+msgstr ""
+
+#: ../../CustomMonster.cs:201
+msgid " 插件版本高于本插件版本,配置可能无法正常使用,请升级插件后使用！"
+msgstr ""
+
+#: ../../CustomMonster.cs:123
+msgid " 版本:"
+msgstr ""
+
+#: ../../CustomMonster.cs:1182
+msgid " 现身,攻略时间为 "
+msgstr ""
+
+#: ../../CustomMonster.cs:1190
+msgid " 现身,血量为 "
+msgstr ""
+
+#: ../../CustomMonster.cs:1183
+msgid " 秒,血量为 "
+msgstr ""
+
+#: ../../CustomMonster.cs:1240
+msgid " 秒."
+msgstr ""
+
+#: ../../CustomMonster.cs:1096
+msgid " 秒剩"
+msgstr ""
+
+#: ../../CustomMonster.cs:1184
+#: ../../CustomMonster.cs:1191
+msgid ",快快加入战斗吧!"
+msgstr ""
+
+#: ../../CustomMonster.cs:188
+msgid "[自定义怪物血量] 读入额外配置:"
+msgstr ""
+
+#: ../../CustomMonster.cs:229
+msgid "[自定义怪物血量] 配置错误:\n"
+msgstr ""
+
+#: ../../CustomMonster.cs:149
+msgid "[自定义怪物血量] 隐藏配置项:"
+msgstr ""
+
+#: ../../CustomMonster.cs:216
+#: ../../CustomMonster.cs:222
+msgid "[自定义怪物血量] 额外配置["
+msgstr ""
+
+#: ../../CustomMonster.cs:200
+msgid "[自定义怪物血量]您读入的额外配置 "
+msgstr ""
+
+#: ../../CustomMonster.cs:174
+msgid "[自定义怪物血量]您载入的配置文件插件版本高于本插件版本,配置可能无法正常使用,请升级插件后使用！"
+msgstr ""
+
+#: ../../CustomMonster.cs:237
+msgid "[自定义怪物血量]配置重读完毕。"
+msgstr ""
+
+#: ../../CustomMonster.cs:217
+msgid "]增添了"
+msgstr ""
+
+#: ../../CustomMonster.cs:223
+msgid "]错误:\n"
+msgstr ""
+
+#: ../../CustomMonster.cs:298
+msgid "{0} 召唤 {1} {2} 次."
+msgstr ""
+
+#: ../../CustomMonster.cs:320
+msgid "{0} 召唤了肉墙."
+msgstr ""
+
+#: ../../CustomMonster.cs:1165
+msgid "剩"
+msgstr ""
+
+#: ../../CustomMonster.cs:294
+msgid "召唤 {0} {1} 次."
+msgstr ""
+
+#: ../../CustomMonster.cs:265
+msgid "坐标错误,正确格式是: /召唤自定义怪物血量怪物 怪物标志 X像素坐标 Y像素坐标(无法指定肉山)"
+msgstr ""
+
+#: ../../CustomMonster.cs:504
+msgid "定义时间过小被阻止生成"
+msgstr ""
+
+#: ../../CustomMonster.cs:151
+msgid "已显示"
+msgstr ""
+
+#: ../../CustomMonster.cs:150
+msgid "已隐藏"
+msgstr ""
+
+#: ../../CustomMonster.cs:1250
+#: ../../CustomMonster.cs:2055
+msgid "攻略失败: "
+msgstr ""
+
+#: ../../CustomMonster.cs:802
+msgid "攻略成功: "
+msgstr ""
+
+#: ../../CustomMonster.cs:258
+msgid "数量错误,正确格式是: /召唤自定义怪物血量怪物 怪物标志 召唤数量"
+msgstr ""
+
+#: ../../CustomMonster.cs:252
+msgid "无效标志"
+msgstr ""
+
+#: ../../CustomMonster.cs:279
+msgid "无效的空NPCID!"
+msgstr ""
+
+#: ../../CustomMonster.cs:310
+msgid "无法根据肉墙的当前状态或您的当前位置生成肉墙。"
+msgstr ""
+
+#: ../../CustomMonster.cs:162
+msgid "未找到自定义怪物血量配置，已为您创建！修改配置后重启即可重新载入数据。"
+msgstr ""
+
+#: ../../CustomMonster.cs:218
+msgid "条配置"
+msgstr ""
+
+#: ../../CustomMonster.cs:244
+msgid "格式错误,正确格式是:"
+msgstr ""
+
+#: ../../CustomMonster.cs:328
+msgid "没有这个标记的怪物"
+msgstr ""
+
+#: ../../CustomMonster.cs:1095
+#: ../../CustomMonster.cs:1102
+#: ../../CustomMonster.cs:1156
+#: ../../CustomMonster.cs:1163
+#: ../../CustomMonster.cs:1189
+#: ../../CustomMonster.cs:1238
+msgid "注意: "
+msgstr ""
+
+#: ../../CustomMonster.cs:1097
+#: ../../CustomMonster.cs:1104
+msgid "秒."
+msgstr ""
+
+#: ../../CustomMonster.cs:1103
+msgid "秒剩"
+msgstr ""
+
+#: ../../CustomMonster.cs:317
+msgid "肉墙召唤成功."
+msgstr ""
+
+#: ../../CustomMonster.cs:2172
+msgid "自定义怪物血量插件处理超时,已抛弃部分处理!"
+msgstr ""
+
+#: ../../CustomMonster.cs:2155
+msgid "自定义怪物血量时钟:"
+msgstr ""
+
+#: ../../CustomMonster.cs:85
+msgid "输入 /召唤自定义怪物血量怪物 怪物标志 会召唤指定标记的怪物(无视召唤条件)"
+msgstr ""
+
+#: ../../CustomMonster.cs:81
+msgid "输入 /重读自定义怪物血量 会重新读取重读自定义怪物血量表"
+msgstr ""
+
+#: ../../CustomMonster.cs:324
+msgid "错误的召唤过程."
+msgstr ""
+
