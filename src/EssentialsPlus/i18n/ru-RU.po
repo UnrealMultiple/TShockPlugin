@@ -1,0 +1,562 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2024-10-24 10:01:14+0000\n"
+"PO-Revision-Date: 2025-01-05 07:04\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /master/src/EssentialsPlus/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1176\n"
+"Language: ru_RU\n"
+
+#: ../../Commands.cs:26
+#: ../../Commands.cs:249
+msgid "-command: 查找命令."
+msgstr ""
+
+#: ../../Commands.cs:719
+#: ../../Commands.cs:739
+msgid "-f, -force: 强制sudo，忽略权限限制。"
+msgstr ""
+
+#: ../../Commands.cs:27
+#: ../../Commands.cs:250
+msgid "-item: 查找物品."
+msgstr ""
+
+#: ../../Commands.cs:395
+msgid "-nosave: 踢出时不保存 SSC 数据."
+msgstr ""
+
+#: ../../Commands.cs:28
+#: ../../Commands.cs:251
+msgid "-npc: 查找NPC."
+msgstr ""
+
+#: ../../Commands.cs:797
+#: ../../Commands.cs:812
+msgid "-r, -repeat: 重复执行时间命令。"
+msgstr ""
+
+#: ../../Commands.cs:29
+#: ../../Commands.cs:252
+msgid "-tile: 查找方块."
+msgstr ""
+
+#: ../../Commands.cs:30
+#: ../../Commands.cs:253
+msgid "-wall: 查找墙壁."
+msgstr ""
+
+#: ../../EssentialsPlus.cs:134
+msgid "[Essentials+] MySQL已启用，但未设置Essentials+ MySQL配置。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:136
+msgid "[Essentials+] 此插件现在将禁用自身..."
+msgstr ""
+
+#: ../../EssentialsPlus.cs:135
+msgid "[Essentials+] 请在essentials.json中配置您的MySQL服务器信息，然后重新启动服务器。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:70
+msgid "[EssentialsPlus] 重新加载配置和家!"
+msgstr ""
+
+#: ../../Commands.cs:58
+msgid "{0} (权限: {1})"
+msgstr ""
+
+#: ../../Commands.cs:282
+msgid "{0} 冻结了时间。"
+msgstr ""
+
+#: ../../Commands.cs:768
+msgid "{0} 强制您执行 {1}{2}。"
+msgstr ""
+
+#: ../../Commands.cs:523
+#: ../../Commands.cs:546
+msgid "{0} 禁言了 {1}。"
+msgstr ""
+
+#: ../../Commands.cs:597
+#: ../../Commands.cs:614
+msgid "{0} 解除了 {1} 的禁言。"
+msgstr ""
+
+#: ../../Commands.cs:266
+msgid "{0} 解除了时间冻结。"
+msgstr ""
+
+#: ../../Commands.cs:630
+msgid "add <名称> [时间] - 禁言玩家或账户。"
+msgstr ""
+
+#: ../../Commands.cs:631
+msgid "del <名称> - 解除禁言玩家或账户。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:246
+msgid "以自定义颜色广播消息。"
+msgstr ""
+
+#: ../../Commands.cs:1110
+msgid "传送上 {0} 层."
+msgstr ""
+
+#: ../../Commands.cs:936
+msgid "传送下 {0} 层."
+msgstr ""
+
+#: ../../EssentialsPlus.cs:207
+msgid "传送到您的一个家点。"
+msgstr ""
+
+#: ../../Commands.cs:1052
+msgid "传送右 {0} 层."
+msgstr ""
+
+#: ../../Commands.cs:880
+msgid "传送回 {0} 步."
+msgstr ""
+
+#: ../../Commands.cs:994
+msgid "传送左 {0} 层."
+msgstr ""
+
+#: ../../Commands.cs:333
+msgid "传送您到您的家 '{0}'。"
+msgstr ""
+
+#: ../../Commands.cs:669
+msgid "修改一个方块以设置第一个尺规点。"
+msgstr ""
+
+#: ../../Commands.cs:674
+msgid "修改一个方块以设置第二个尺规点。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:251
+msgid "允许您以其他用户的身份执行命令。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:241
+msgid "允许您测量两个方块之间的距离。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:217
+msgid "允许您重复上一条命令。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:223
+msgid "最大化手持物品的堆叠。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:191
+msgid "切换冻结时间。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:235
+msgid "切换您的PvP状态。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:197
+msgid "删除您的一个家点。"
+msgstr ""
+
+#: ../../Commands.cs:533
+#: ../../Commands.cs:607
+#: ../../Commands.cs:754
+msgid "匹配到多个玩家：{0}"
+msgstr ""
+
+#: ../../Commands.cs:835
+msgid "取消所有时间命令！"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:96
+msgid "在PvP中无法使用该命令！"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:262
+msgid "在死亡或传送后将您传送回之前的位置。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:256
+msgid "在给定时间间隔后执行命令。"
+msgstr ""
+
+#: ../../Commands.cs:450
+msgid "填满了您的物品栏。"
+msgstr ""
+
+#: ../../Commands.cs:470
+msgid "增加了您的{0}的堆叠数量。"
+msgstr ""
+
+#: ../../Commands.cs:324
+msgid "家的列表: {0}"
+msgstr ""
+
+#: ../../Commands.cs:653
+msgid "尺规未设置！"
+msgstr ""
+
+#: ../../Commands.cs:825
+#: ../../Commands.cs:829
+msgid "已排队执行命令 '{0}{1}'。使用 /cancel 取消！"
+msgstr ""
+
+#: ../../Commands.cs:765
+msgid "强制 {0} 执行 {1}{2}。"
+msgstr ""
+
+#: ../../Commands.cs:517
+#: ../../Commands.cs:540
+msgid "您不能禁言 {0}！"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:317
+msgid "您已被解除禁言。"
+msgstr ""
+
+#: ../../Commands.cs:553
+msgid "您已解除禁言。"
+msgstr ""
+
+#: ../../Commands.cs:366
+msgid "您已达到家的设置上限！"
+msgstr ""
+
+#: ../../Commands.cs:761
+msgid "您无法强制 {0} 执行 {1}{2}！"
+msgstr ""
+
+#: ../../Commands.cs:419
+msgid "您没有上次的命令！"
+msgstr ""
+
+#: ../../Commands.cs:324
+msgid "您没有设置家。"
+msgstr ""
+
+#: ../../Commands.cs:732
+msgid "您没有访问 '-{0}' 参数的权限！"
+msgstr ""
+
+#: ../../Commands.cs:463
+msgid "您的{0}已经满了。"
+msgstr ""
+
+#: ../../Commands.cs:454
+msgid "您的物品栏已经满了。"
+msgstr ""
+
+#: ../../Commands.cs:300
+msgid "成功删除您的家 '{0}'。"
+msgstr ""
+
+#: ../../Commands.cs:410
+msgid "成功踢出所有人。原因: '{0}'。"
+msgstr ""
+
+#: ../../Commands.cs:146
+msgid "找到的NPC ({0}/{1}):"
+msgstr ""
+
+#: ../../Commands.cs:65
+msgid "找到的命令 ({0}/{1}):"
+msgstr ""
+
+#: ../../Commands.cs:237
+msgid "找到的墙壁 ({0}/{1}):"
+msgstr ""
+
+#: ../../Commands.cs:192
+msgid "找到的方块 ({0}/{1}):"
+msgstr ""
+
+#: ../../Commands.cs:105
+msgid "找到的物品 ({0}/{1}):"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:166
+msgid "无效的存储类型！"
+msgstr ""
+
+#: ../../Commands.cs:309
+#: ../../Commands.cs:337
+msgid "无效的家 '{0}'！"
+msgstr ""
+
+#: ../../Commands.cs:896
+#: ../../Commands.cs:951
+#: ../../Commands.cs:1009
+#: ../../Commands.cs:1067
+msgid "无效的层数 '{0}'！"
+msgstr ""
+
+#: ../../Commands.cs:819
+msgid "无效的时间 '{0}'!"
+msgstr ""
+
+#: ../../Commands.cs:497
+msgid "无效的时间 '{0}'！"
+msgstr ""
+
+#: ../../Commands.cs:868
+msgid "无效的步数 '{0}'！"
+msgstr ""
+
+#: ../../Commands.cs:750
+msgid "无效的玩家 '{0}'！"
+msgstr ""
+
+#: ../../Commands.cs:510
+#: ../../Commands.cs:591
+msgid "无效的玩家或账户 '{0}'！"
+msgstr ""
+
+#: ../../Commands.cs:889
+msgid "无效的语法！正确的语法是：{0}down [层数]"
+msgstr ""
+
+#: ../../Commands.cs:861
+msgid "无效的语法！正确的语法是：{0}eback [步数]"
+msgstr ""
+
+#: ../../Commands.cs:944
+msgid "无效的语法！正确的语法是：{0}left [层数]"
+msgstr ""
+
+#: ../../Commands.cs:1002
+msgid "无效的语法！正确的语法是：{0}right [层数]"
+msgstr ""
+
+#: ../../Commands.cs:678
+#: ../../Commands.cs:683
+msgid "无效的语法！正确的语法是：{0}ruler [1/2]"
+msgstr ""
+
+#: ../../Commands.cs:694
+msgid "无效的语法！正确的语法是：{0}send [r,g,b] <文本...>"
+msgstr ""
+
+#: ../../Commands.cs:717
+msgid "无效的语法！正确的语法是：{0}sudo [-switches...] <玩家> <命令...>"
+msgstr ""
+
+#: ../../Commands.cs:795
+msgid "无效的语法！正确的语法是：{0}timecmd [-switches...] <时间> <命令...>"
+msgstr ""
+
+#: ../../Commands.cs:1060
+msgid "无效的语法！正确的语法是：{0}up [层数]"
+msgstr ""
+
+#: ../../Commands.cs:488
+msgid "无效的语法！正确的语法是：/mute add <名称> [时间]"
+msgstr ""
+
+#: ../../Commands.cs:578
+msgid "无效的语法！正确的语法是：/mute del <名称>"
+msgstr ""
+
+#: ../../Commands.cs:38
+msgid "无效的页数 '{0}'！"
+msgstr ""
+
+#: ../../Commands.cs:704
+msgid "无效的颜色！"
+msgstr ""
+
+#: ../../Commands.cs:1100
+msgid "无法传送上面！"
+msgstr ""
+
+#: ../../Commands.cs:926
+msgid "无法传送下去！"
+msgstr ""
+
+#: ../../Commands.cs:1042
+msgid "无法传送右边！"
+msgstr ""
+
+#: ../../Commands.cs:875
+msgid "无法传送回上一个位置！"
+msgstr ""
+
+#: ../../Commands.cs:984
+msgid "无法传送左边！"
+msgstr ""
+
+#: ../../Commands.cs:304
+msgid "无法删除家，请检查日志获取更多详细信息。"
+msgstr ""
+
+#: ../../Commands.cs:359
+msgid "无法更新家，请检查日志获取更多详细信息。"
+msgstr ""
+
+#: ../../Commands.cs:527
+#: ../../Commands.cs:561
+msgid "无法禁言，请查看日志获取更多信息。"
+msgstr ""
+
+#: ../../Commands.cs:601
+#: ../../Commands.cs:618
+msgid "无法解除禁言，请查看日志获取更多信息。"
+msgstr ""
+
+#: ../../Commands.cs:376
+msgid "无法设置家，请检查日志获取更多详细信息。"
+msgstr ""
+
+#: ../../Commands.cs:355
+msgid "更新了您的家 '{0}'。"
+msgstr ""
+
+#: ../../Commands.cs:248
+msgid "有效的 {0}find 参数:"
+msgstr ""
+
+#: ../../Commands.cs:25
+msgid "有效的 {0}find 参数："
+msgstr ""
+
+#: ../../Commands.cs:394
+msgid "有效的 {0}kickall 参数:"
+msgstr ""
+
+#: ../../Commands.cs:718
+#: ../../Commands.cs:738
+msgid "有效的 {0}sudo 参数："
+msgstr ""
+
+#: ../../Commands.cs:796
+#: ../../Commands.cs:811
+msgid "有效的 {0}timecmd 参数:"
+msgstr ""
+
+#: ../../Commands.cs:148
+msgid "未找到NPC。"
+msgstr ""
+
+#: ../../Commands.cs:67
+msgid "未找到命令。"
+msgstr ""
+
+#: ../../Commands.cs:239
+msgid "未找到墙壁。"
+msgstr ""
+
+#: ../../Commands.cs:194
+msgid "未找到方块。"
+msgstr ""
+
+#: ../../Commands.cs:107
+msgid "未找到物品。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:186
+msgid "查找具有指定名称的物品和/或NPC。"
+msgstr ""
+
+#: ../../Commands.cs:23
+msgid "格式错误！正确的语法是：{0}find <-参数> <名称...> [页数]"
+msgstr ""
+
+#: ../../Commands.cs:401
+msgid "没有原因。"
+msgstr ""
+
+#: ../../Commands.cs:629
+msgid "禁言子命令:"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:229
+msgid "管理禁言。"
+msgstr ""
+
+#: ../../Commands.cs:372
+msgid "设置了您的家 '{0}'。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:202
+msgid "设置您的一个家点。"
+msgstr ""
+
+#: ../../Commands.cs:290
+msgid "语法错误！正确的语法是：{0}delhome <家的名称>"
+msgstr ""
+
+#: ../../Commands.cs:317
+msgid "语法错误！正确的语法是：{0}myhome <家的名称>"
+msgstr ""
+
+#: ../../Commands.cs:346
+msgid "语法错误！正确的语法是：{0}sethome <家的名称>"
+msgstr ""
+
+#: ../../Commands.cs:662
+msgid "距离：X轴：{0}，Y轴：{1}，直角距离：{2:N3}"
+msgstr ""
+
+#: ../../Commands.cs:408
+msgid "踢出原因: "
+msgstr ""
+
+#: ../../EssentialsPlus.cs:212
+msgid "踢出服务器上的所有人。"
+msgstr ""
+
+#: ../../Commands.cs:66
+msgid "输入 /find -command {0} {{0}} 查看更多"
+msgstr ""
+
+#: ../../Commands.cs:106
+msgid "输入 /find -item {0} {{0}} 查看更多"
+msgstr ""
+
+#: ../../Commands.cs:147
+msgid "输入 /find -npc {0} {{0}} 查看更多"
+msgstr ""
+
+#: ../../Commands.cs:193
+msgid "输入 /find -tile {0} {{0}} 查看更多"
+msgstr ""
+
+#: ../../Commands.cs:238
+msgid "输入 /find -wall {0} {{0}} 查看更多"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:282
+msgid "通过一个方块层向上传送您。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:267
+msgid "通过一个方块层向下传送您。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:277
+msgid "通过一个方块层向右传送您。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:272
+msgid "通过一个方块层向左传送您。"
+msgstr ""
+
+#: ../../Commands.cs:423
+msgid "重复执行上次的命令 '{0}{1}'！"
+msgstr ""
+

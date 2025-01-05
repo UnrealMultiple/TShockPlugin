@@ -1,0 +1,207 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2024-11-15 03:22:39+0000\n"
+"PO-Revision-Date: 2025-01-05 07:04\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/Economics.Skill/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1166\n"
+"Language: es_ES\n"
+
+#: ../../Command.cs:202
+#, csharp-format
+msgid "{0} 为你添加了一个技能 {1}"
+msgstr ""
+
+#: ../../Command.cs:214
+#, csharp-format
+msgid "{0} 删除了你的一个技能 "
+msgstr ""
+
+#: ../../Command.cs:46
+#, csharp-format
+msgid "{0}. {1}  价格 {2})"
+msgstr ""
+
+#: ../../Command.cs:219
+msgid "/skill buy [技能ID]"
+msgstr ""
+
+#: ../../Command.cs:226
+msgid "/skill clear"
+msgstr ""
+
+#: ../../Command.cs:223
+msgid "/skill clearh [玩家]"
+msgstr ""
+
+#: ../../Command.cs:220
+msgid "/skill del [技能ID]"
+msgstr ""
+
+#: ../../Command.cs:224
+msgid "/skill del [玩家] [序号]"
+msgstr ""
+
+#: ../../Command.cs:225
+msgid "/skill delall"
+msgstr ""
+
+#: ../../Command.cs:222
+msgid "/skill give [玩家] [技能序号]"
+msgstr ""
+
+#: ../../Command.cs:221
+msgid "/skill list [页码]"
+msgstr ""
+
+#: ../../Command.cs:227
+msgid "/skill reset"
+msgstr ""
+
+#: ../../Command.cs:114
+#: ../../Command.cs:156
+msgid "你并未绑定技能!"
+msgstr ""
+
+#: ../../Utils.cs:28
+#, csharp-format
+msgid "你当前等级无法购买此技能，限制等级:{0}"
+msgstr ""
+
+#: ../../Command.cs:37
+msgid "你必须登陆游戏才能购买技能!"
+msgstr ""
+
+#: ../../Command.cs:85
+msgid "你未绑定此技能，无需删除！"
+msgstr ""
+
+#: ../../Command.cs:174
+msgid "你没有权限执行此命令!"
+msgstr ""
+
+#: ../../Command.cs:67
+msgid "你的货币不足购买此技能!"
+msgstr ""
+
+#: ../../Command.cs:103
+msgid "已清除目标玩家绑定的隐藏技能!"
+msgstr ""
+
+#: ../../Command.cs:29
+msgid "当前技能列表空空如也"
+msgstr ""
+
+#: ../../Utils.cs:33
+#, csharp-format
+msgid "当前进度无法购买此技能，限制进度:{0}"
+msgstr ""
+
+#: ../../Command.cs:201
+#, csharp-format
+msgid "成功为 {0} 添加了一个技能 {1}"
+msgstr ""
+
+#: ../../Command.cs:213
+#, csharp-format
+msgid "成功删除 {0} 的一个技能"
+msgstr ""
+
+#: ../../Command.cs:148
+msgid "成功移除了手持武器的所有技能!"
+msgstr ""
+
+#: ../../Command.cs:167
+msgid "成功移除了绑定的所有技能!"
+msgstr ""
+
+#: ../../Command.cs:138
+msgid "手持物品并未绑定技能!"
+msgstr ""
+
+#: ../../Command.cs:30
+msgid "技能列表 ({0}/{1})："
+msgstr ""
+
+#: ../../Utils.cs:42
+msgid "技能已超过规定的最大绑定数量!"
+msgstr ""
+
+#: ../../Utils.cs:17
+#, csharp-format
+msgid "技能序号{0} 不存在！"
+msgstr ""
+
+#: ../../Command.cs:89
+msgid "技能移除成功!"
+msgstr ""
+
+#: ../../Command.cs:178
+msgid "技能重置成功!"
+msgstr ""
+
+#: ../../Command.cs:197
+#: ../../Command.cs:209
+msgid "无效得技能序号!"
+msgstr ""
+
+#: ../../Command.cs:126
+#, csharp-format
+msgid "无法溯源的技能序号: {0}"
+msgstr ""
+
+#: ../../Command.cs:117
+msgid "查询成功!"
+msgstr ""
+
+#: ../../Utils.cs:40
+msgid "此技能全服唯一已经有其他人绑定了此技能!"
+msgstr ""
+
+#: ../../Utils.cs:24
+msgid "此技能无法被购买!"
+msgstr ""
+
+#: ../../Utils.cs:38
+msgid "此技能是唯一的不能重复绑定!"
+msgstr ""
+
+#: ../../Utils.cs:44
+msgid "此武器已超过规定的最大绑定数量!"
+msgstr ""
+
+#: ../../Command.cs:189
+msgid "目标玩家不存在或不在线!"
+msgstr ""
+
+#: ../../Skill.cs:139
+#, csharp-format
+msgid "绑定技能: {0}"
+msgstr ""
+
+#: ../../Utils.cs:20
+msgid "绑定此技能需要手持一个武器!"
+msgstr ""
+
+#: ../../Command.cs:57
+msgid "请输入一个正确的序号!"
+msgstr ""
+
+#: ../../Command.cs:71
+msgid "购买成功，技能已绑定!"
+msgstr ""
+
+#: ../../Command.cs:31
+msgid "输入 {0}skill list {{0}} 查看更多"
+msgstr ""
+

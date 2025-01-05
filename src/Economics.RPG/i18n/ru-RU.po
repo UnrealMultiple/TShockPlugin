@@ -1,0 +1,106 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2024-11-19 17:21:58+0000\n"
+"PO-Revision-Date: 2025-01-05 07:04\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /master/src/Economics.RPG/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1160\n"
+"Language: ru_RU\n"
+
+#: ../../Setting/Config.cs:105
+#, csharp-format
+msgid "{0} 与 {1} 之间循环引用"
+msgstr ""
+
+#: ../../Command.cs:60
+#, csharp-format
+msgid "/rank {0}({1})"
+msgstr ""
+
+#: ../../Command.cs:113
+msgid "你因重置等级被踢出!"
+msgstr ""
+
+#: ../../Command.cs:17
+#: ../../Command.cs:101
+msgid "你必须登陆才能使用此命令!"
+msgstr ""
+
+#: ../../Command.cs:52
+#, csharp-format
+msgid "升级所需 ({0})"
+msgstr ""
+
+#: ../../Command.cs:87
+#, csharp-format
+msgid "升级所需 {0}"
+msgstr ""
+
+#: ../../RPG.cs:87
+#, csharp-format
+msgid "升级职业: {0}"
+msgstr ""
+
+#: ../../Command.cs:34
+#: ../../Command.cs:69
+#, csharp-format
+msgid "升级至 {0} 需要手持武器{1}！ "
+msgstr ""
+
+#: ../../Command.cs:92
+msgid "已经满级了，无法继续升级!"
+msgstr ""
+
+#: ../../RPG.cs:86
+#, csharp-format
+msgid "当前职业: {0}"
+msgstr ""
+
+#: ../../Command.cs:39
+#: ../../Command.cs:74
+#, csharp-format
+msgid "必须满足进度限制:{0}"
+msgstr ""
+
+#: ../../Command.cs:105
+msgid "您已成功重置等级!"
+msgstr ""
+
+#: ../../Command.cs:44
+#: ../../Command.cs:79
+#, csharp-format
+msgid "成功升级至 {0}!"
+msgstr ""
+
+#: ../../Command.cs:123
+msgid "玩家等级信息重置成功!"
+msgstr ""
+
+#: ../../Command.cs:29
+#, csharp-format
+msgid "等级 {0} 不存在！ "
+msgstr ""
+
+#: ../../Setting/Config.cs:36
+#, csharp-format
+msgid "等级 {0} 空引用等级 {1}"
+msgstr ""
+
+#: ../../Command.cs:127
+msgid "语法错误，正确语法:"
+msgstr ""
+
+#: ../../Command.cs:57
+msgid "请选择一个升级:"
+msgstr ""
+

@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: EconomicsAPI\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-11-15 03:22:41+0000\n"
-"PO-Revision-Date: 2024-10-25 21:36+0800\n"
+"PO-Revision-Date: 2025-01-05 07:04\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en_US\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/EconomicsAPI/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1172\n"
+"Language: en_US\n"
 
 #: ../../Economics.cs:125
 #, csharp-format
@@ -17,26 +23,20 @@ msgid "{0}数量: {1}"
 msgstr "{0} quantity: {1}"
 
 #: ../../Command.cs:73
-#, fuzzy
-#| msgid "/bank add <用户> <数量>"
 msgid "/bank add <用户> <数量> <类型>"
-msgstr "/bank add <user> <amount>"
+msgstr ""
 
 #: ../../Command.cs:77
 msgid "/bank clear <用户>"
 msgstr "/bank clear <user>"
 
 #: ../../Command.cs:74
-#, fuzzy
-#| msgid "/bank deduct <用户> <数量>"
 msgid "/bank deduct <用户> <数量> <类型>"
-msgstr "/bank deduct <user> <amount>"
+msgstr ""
 
 #: ../../Command.cs:75
-#, fuzzy
-#| msgid "/bank pay <用户> <数量>"
 msgid "/bank pay <用户> <数量> <类型>"
-msgstr "/bank pay <user> <amount>"
+msgstr ""
 
 #: ../../Command.cs:76
 msgid "/bank query [用户]"
@@ -44,7 +44,7 @@ msgstr "/bank query [user]"
 
 #: ../../Command.cs:78
 msgid "/bank reset"
-msgstr "/bank reset"
+msgstr ""
 
 #: ../../Command.cs:72
 msgid "bank 指令"
@@ -133,7 +133,8 @@ msgstr "Player name: {0}"
 msgid "用户`{0}`仅有{1}个{2}"
 msgstr "User `{0}` only has {1} {2}"
 
-#: ../../Command.cs:36 ../../Command.cs:249
+#: ../../Command.cs:36
+#: ../../Command.cs:249
 msgid "语法错误，请输入/bank help查看正确语法"
 msgstr "Syntax error, please enter /bank help to view the correct syntax"
 
@@ -151,8 +152,3 @@ msgstr ""
 msgid "货币类型`{0}`不存在!"
 msgstr ""
 
-#~ msgid "你"
-#~ msgstr "You"
-
-#~ msgid "你无权执行此命令!"
-#~ msgstr "You are not authorized to execute this command!"

@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2024-12-07 18:04:54+0000\n"
+"PO-Revision-Date: 2025-01-05 07:03\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/CaiRewardChest/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1126\n"
+"Language: es_ES\n"
+
+#: ../../Plugin.cs:125
+#, csharp-format
+msgid "[i:{0}]你已经领取过这个奖励箱啦!"
+msgstr ""
+
+#: ../../Utils.cs:23
+#, csharp-format
+msgid "[i:{0}]你打开了一个奖励箱: "
+msgstr ""
+
+#: ../../Plugin.cs:94
+msgid "[i:48]你删除了这个奖励箱~"
+msgstr ""
+
+#: ../../Plugin.cs:77
+msgid "[i:48]你添加了一个奖励箱~"
+msgstr ""
+
+#: ../../Plugin.cs:170
+#, csharp-format
+msgid "[i:48]奖励箱初始化完成,共添加{0}个奖励箱~"
+msgstr ""
+
+#: ../../Plugin.cs:154
+msgid "[i:48]奖励箱已全部清除~"
+msgstr ""
+
+#: ../../Plugin.cs:146
+msgid "[i:48]请打开需要删除的奖励箱~"
+msgstr ""
+
+#: ../../Plugin.cs:140
+msgid "[i:48]请打开需要添加的奖励箱~"
+msgstr ""
+
+#: ../../Plugin.cs:134
+msgid "[i:48]请打开需要编辑的奖励箱~"
+msgstr ""
+
+#: ../../Plugin.cs:88
+#: ../../Plugin.cs:108
+msgid "[i:48]这个箱子好像不是奖励箱捏~"
+msgstr ""
+
+#: ../../Plugin.cs:71
+msgid "[i:48]这个箱子好像是奖励箱捏~"
+msgstr ""
+

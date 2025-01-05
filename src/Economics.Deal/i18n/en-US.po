@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Economics.Deal\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-11-15 03:22:36+0000\n"
-"PO-Revision-Date: 2024-09-30 15:29:48+0800\n"
+"PO-Revision-Date: 2025-01-05 07:04\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: \n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/Economics.Deal/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1158\n"
+"Language: en_US\n"
 
 #: ../../Command.cs:63
 msgid "{0}：{1} 发布者：{2} 价格{3}"
@@ -17,23 +23,22 @@ msgstr "{0}: {1} publisher: {2} price: {3}"
 
 #: ../../Command.cs:123
 msgid "/deal buy [ID]"
-msgstr "/deal buy [ID]"
+msgstr ""
 
 #: ../../Command.cs:125
 msgid "/deal list"
 msgstr "/deal buy list"
 
 #: ../../Command.cs:122
-#, fuzzy
-#| msgid "/deal push [价格]"
 msgid "/deal push [价格] [货币类型]"
-msgstr "/deal push [price]"
+msgstr ""
 
 #: ../../Command.cs:124
 msgid "/deal recall [ID]"
-msgstr "/deal recall [ID]"
+msgstr ""
 
-#: ../../Command.cs:83 ../../Command.cs:107
+#: ../../Command.cs:83
+#: ../../Command.cs:107
 msgid "不存在此交易!"
 msgstr "This transaction does not exist!"
 
@@ -83,16 +88,16 @@ msgid "玩家{0}购买了{1}发布的物品{2}!"
 msgstr "Player {0} has purchased the item {2} posted by {1}!"
 
 #: ../../Command.cs:53
-#, fuzzy, csharp-format
-#| msgid "玩家`{0}`发布了一个交易物品: [i/s{1}:{2}] 价格: {3}"
+#, csharp-format
 msgid "玩家`{0}`发布了一个交易物品: [i/s{1}:{2}] 价格: {3}x{4}"
-msgstr "Player `{0}` has posted a trade item: [i/s{1}:{2}] Price: {3}"
+msgstr ""
 
 #: ../../Command.cs:112
 msgid "该交易不是你发布的无法撤回!"
 msgstr "This transaction was not initiated by you and cannot be retracted!"
 
-#: ../../Command.cs:77 ../../Command.cs:101
+#: ../../Command.cs:77
+#: ../../Command.cs:101
 msgid "请输入一个正确的ID"
 msgstr "Please enter a valid ID."
 
@@ -112,3 +117,4 @@ msgstr "Type {0}deal list {{0}} to see more"
 #: ../../Command.cs:140
 msgid "输入/deal help 查看命令使用方法"
 msgstr "Type /deal help to view command usage instructions."
+
