@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Economics.Task\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-10-25 14:10:28+0000\n"
-"PO-Revision-Date: 2024-09-30 15:30:00+0800\n"
+"PO-Revision-Date: 2025-01-05 06:39\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: \n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/Economics.Task/i18n/template.pot\n"
+"X-Crowdin-File-ID: 486\n"
+"Language: en_US\n"
 
 #: ../../Utils.cs:83
 msgid "(已完成)"
@@ -115,10 +121,8 @@ msgid "只有在{0} 以及符等级才能接取此任务"
 msgstr "Only in {0} and with the level of talisman can you pick up this task"
 
 #: ../../Command.cs:164
-#, fuzzy
-#| msgid "/task reset 清空完成任务"
 msgid "已清空完成任务!"
-msgstr "/task reset Clear completed tasks"
+msgstr ""
 
 #: ../../Command.cs:27
 msgid "当前没有任务"
@@ -179,3 +183,4 @@ msgstr "Need to meet progress {0} to pick up this task"
 #: ../../Plugin.cs:79
 msgid "非法的任务ID"
 msgstr "Illegal task ID"
+
