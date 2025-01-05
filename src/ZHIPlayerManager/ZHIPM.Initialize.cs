@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Globalization;
 using System.IO.Compression;
 using System.Text;
 using Terraria;
@@ -8,10 +9,11 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
 using TShockAPI.Hooks;
+// ReSharper disable InconsistentNaming
 
 namespace ZHIPlayerManager;
 
-public partial class ZHIPM : TerrariaPlugin
+public partial class ZHIPM
 {
     /// <summary>
     ///     帮助指令方法指令
@@ -25,37 +27,36 @@ public partial class ZHIPM : TerrariaPlugin
         }
         else
         {
-            args.Player.SendMessage(GetString("输入 /zsave    来备份自己的人物存档\n") +
-                                    GetString("输入 /zsaveauto <minute>    来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能\n") +
-                                    GetString("输入 /zvisa <num>    来查看自己的人物备份\n") +
-                                    GetString("输入 /zvisa name <num>  来查看该玩家的第几个人物备份\n") +
-                                    GetString("输入 /zhide kill  来取消 kill + 1 的显示，再次使用启用显示\n") +
-                                    GetString("输入 /zhide point  来取消 + 1 $ 的显示，再次使用启用显示\n") +
-                                    GetString("输入 /zback <name>    来读取该玩家的人物存档\n") +
-                                    GetString("输入 /zback <name> <num>    来读取该玩家的第几个人物存档\n") +
-                                    GetString("输入 /zclone <name1> <name2>    将玩家1的人物数据复制给玩家2\n") +
-                                    GetString("输入 /zclone <name>    将该玩家的人物数据复制给自己\n") +
-                                    GetString("输入 /zmodify help    查看修改玩家数据的指令帮助\n") +
-                                    GetString("输入 /vi <name>    来查看该玩家的库存\n") +
-                                    GetString("输入 /vid <name>    来查看该玩家的库存，不分类\n") +
-                                    GetString("输入 /vs <name>    来查看该玩家的状态\n") +
-                                    GetString("输入 /vs me    来查看自己的状态\n") +
-                                    GetString("输入 /zfre <name>    来冻结该玩家\n") +
-                                    GetString("输入 /zunfre <name>    来解冻该玩家\n") +
-                                    GetString("输入 /zunfre all    来解冻所有玩家\n") +
-                                    GetString("输入 /zsort help    来查看排序系列指令帮助\n") +
-                                    GetString("输入 /zout <name>  来导出该玩家的人物存档\n") +
-                                    GetString("输入 /zout all  来导出所有人物的存档并压缩打包\n") +
-                                    GetString("输入 /zreset help    来查看zreset系列指令帮助\n") +
-                                    GetString("输入 /zban add <name> <reason>  来封禁无论是否在线的玩家，reason 可不填\n") +
-                                    GetString("输入 /zban add uuid <uuid> <reason>  来封禁uuid\n") +
-                                    GetString("输入 /zban add ip <ip> <reason>  来封禁ip\n") +
-                                    GetString("输入 /zclear useless  来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n") +
-                                    GetString("输入 /zclear buff <name>  来清理该玩家的所有Buff\n") +
-                                    GetString("输入 /zclear buff all  来清理所有玩家所有Buff\n") +
-                                    GetString("输入 /zbpos  来返回上次死亡地点\n") /*+
-                                     GetString("输入 /zfind <id>  来查找当前哪些玩家拥有此物品")*/,
-                TextColor()
+            args.Player.SendMessage(GetString("输入 /zsave 来备份自己的人物存档\n" +
+                                              "输入 /zsaveauto <minute> 来每隔 minute 分钟自动备份自己的人物存档，当 minute为0时关闭该功能\n" +
+                                              "输入 /zvisa <num> 来查看自己的人物备份\n" +
+                                              "输入 /zvisa name <num> 来查看该玩家的第几个人物备份\n" +
+                                              "输入 /zhide kill 来取消 kill + 1 的显示，再次使用启用显示\n" +
+                                              "输入 /zhide point 来取消 + 1 $ 的显示，再次使用启用显示\n" +
+                                              "输入 /zback <name> 来读取该玩家的人物存档\n" +
+                                              "输入 /zback <name> <num> 来读取该玩家的第几个人物存档\n" +
+                                              "输入 /zclone <name1> <name2> 将玩家1的人物数据复制给玩家2\n" +
+                                              "输入 /zclone <name> 将该玩家的人物数据复制给自己\n" +
+                                              "输入 /zmodify help 查看修改玩家数据的指令帮助\n" +
+                                              "输入 /vi <name> 来查看该玩家的库存\n" +
+                                              "输入 /vid <name> 来查看该玩家的库存，不分类\n" +
+                                              "输入 /vs <name> 来查看该玩家的状态\n" +
+                                              "输入 /vs me 来查看自己的状态\n" +
+                                              "输入 /zfre <name> 来冻结该玩家\n" +
+                                              "输入 /zunfre <name> 来解冻该玩家\n" +
+                                              "输入 /zunfre all 来解冻所有玩家\n" +
+                                              "输入 /zsort help 来查看排序系列指令帮助\n" +
+                                              "输入 /zout <name> 来导出该玩家的人物存档\n" +
+                                              "输入 /zout all 来导出所有人物的存档并压缩打包\n" +
+                                              "输入 /zreset help 来查看zreset系列指令帮助\n" +
+                                              "输入 /zban add <name> <reason> 来封禁无论是否在线的玩家，reason 可不填\n" +
+                                              "输入 /zban add uuid <uuid> <reason> 来封禁uuid\n" +
+                                              "输入 /zban add ip <ip> <reason> 来封禁ip\n" +
+                                              "输入 /zclear useless 来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n" +
+                                              "输入 /zclear buff <name> 来清理该玩家的所有Buff\n" +
+                                              "输入 /zclear buff all 来清理所有玩家所有Buff\n" +
+                                              "输入 /zbpos 来返回上次死亡地点\n"),
+                                               TextColor()
             );
         }
     }
@@ -69,7 +70,7 @@ public partial class ZHIPM : TerrariaPlugin
     {
         if (args.Parameters.Count == 1)
         {
-            this.MySSCBack2(args, 1);
+            this.MySscBack2(args, 1);
             return;
         }
 
@@ -77,7 +78,8 @@ public partial class ZHIPM : TerrariaPlugin
         {
             if (!int.TryParse(args.Parameters[1], out var num))
             {
-                args.Player.SendInfoMessage(GetString("输入 /zback <name>  来读取该玩家的最新人物存档\n输入 /zback <name> <num>  来读取该玩家的第几个人物存档"));
+                args.Player.SendInfoMessage(GetString("输入 /zback <name>  来读取该玩家的最新人物存档\n" +
+                                                      "输入 /zback <name> <num>  来读取该玩家的第几个人物存档"));
                 return;
             }
 
@@ -87,11 +89,12 @@ public partial class ZHIPM : TerrariaPlugin
                 return;
             }
 
-            this.MySSCBack2(args, num);
+            this.MySscBack2(args, num);
         }
         else
         {
-            args.Player.SendInfoMessage(GetString("输入 /zback <name>  来读取该玩家的最新人物存档\n输入 /zback <name> <num>  来读取该玩家的第几个人物存档"));
+            args.Player.SendInfoMessage(GetString("输入 /zback <name>  来读取该玩家的最新人物存档\n" +
+                                                  "输入 /zback <name> <num>  来读取该玩家的第几个人物存档"));
         }
     }
 
@@ -172,14 +175,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
 
             ex.backuptime = num;
-            if (num != 0)
-            {
-                args.Player.SendMessage(GetString($"修改成功，你的存档将每隔{num}分钟自动备份一次，请注意存档覆盖情况，这可能会覆盖你手动备份的部分"), new Color(0, 255, 0));
-            }
-            else
-            {
-                args.Player.SendMessage(GetString("修改成功，你的自动备份已关"), new Color(0, 255, 0));
-            }
+            args.Player.SendMessage(num != 0 ? GetString($"修改成功，你的存档将每隔{num}分钟自动备份一次，请注意存档覆盖情况，这可能会覆盖你手动备份的部分") : GetString("修改成功，你的自动备份已关"), new Color(0, 255, 0));
         }
         else
         {
@@ -195,7 +191,7 @@ public partial class ZHIPM : TerrariaPlugin
     private void ViewMySSCSave(CommandArgs args)
     {
         //查询本人
-        if (args.Parameters.Count == 0 || (args.Parameters.Count == 1 && int.TryParse(args.Parameters[0], out var num1)))
+        if (args.Parameters.Count == 0 || (args.Parameters.Count == 1 && int.TryParse(args.Parameters[0], out _)))
         {
             if (!args.Player.IsLoggedIn)
             {
@@ -221,7 +217,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
 
             var playerData = ZPDataBase.ReadZPlayerDB(args.Player, args.Player.Account.ID, slot);
-            if (playerData == null || !playerData.exists)
+            if (!playerData.exists)
             {
                 args.Player.SendInfoMessage(GetString("您还未备份"));
             }
@@ -243,7 +239,7 @@ public partial class ZHIPM : TerrariaPlugin
         }
 
         //查询他人
-        else if (args.Parameters.Count == 1 || (args.Parameters.Count == 2 && int.TryParse(args.Parameters[1], out var num2)))
+        else if (args.Parameters.Count == 1 || (args.Parameters.Count == 2 && int.TryParse(args.Parameters[1], out _)))
         {
             int slot;
             if (args.Parameters.Count == 1)
@@ -262,12 +258,12 @@ public partial class ZHIPM : TerrariaPlugin
                 slot = num;
             }
 
-            var ID = -1;
-            var playerfullname = "";
+            int ID;
+            string playerfullname;
             var list = this.BestFindPlayerByNameOrIndex(args.Parameters[0]);
             if (list.Count == 0)
             {
-                args.Player.SendInfoMessage(this.offlineplayer);
+                args.Player.SendInfoMessage(this.playerOfflineWarning);
                 var users = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[0], true);
                 if (users.Count == 1 || (users.Count > 1 && users.Exists(x => x.Name == args.Parameters[0])))
                 {
@@ -285,12 +281,12 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else if (users.Count == 0)
                 {
-                    args.Player.SendInfoMessage(this.noplayer);
+                    args.Player.SendInfoMessage(this.nonExistPlayerWarning);
                     return;
                 }
                 else
                 {
-                    args.Player.SendInfoMessage(this.manyplayer);
+                    args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
                     return;
                 }
             }
@@ -301,7 +297,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
 
             var playerData = ZPDataBase.ReadZPlayerDB(new TSPlayer(-1), ID, slot);
-            if (playerData == null || !playerData.exists)
+            if (!playerData.exists)
             {
                 args.Player.SendInfoMessage(GetString("该玩家还未备份"));
             }
@@ -315,7 +311,7 @@ public partial class ZHIPM : TerrariaPlugin
                     items[i].prefix = playerData.inventory[i].PrefixId;
                 }
 
-                var text = "";
+                string text;
                 if (args.Player.IsLoggedIn)
                 {
                     text = GetItemsString(items, NetItem.MaxInventory);
@@ -333,7 +329,8 @@ public partial class ZHIPM : TerrariaPlugin
 
         else
         {
-            args.Player.SendInfoMessage(GetString("输入 /zvisa [num] 来查看自己的第几个人物备份\n输入 /zvisa name [num] 来查看该玩家的第几个人物备份"));
+            args.Player.SendInfoMessage(GetString("输入 /zvisa [num] 来查看自己的第几个人物备份\n" +
+                                                  "输入 /zvisa name [num] 来查看该玩家的第几个人物备份"));
         }
     }
 
@@ -346,7 +343,8 @@ public partial class ZHIPM : TerrariaPlugin
     {
         if (args.Parameters.Count == 0 || args.Parameters.Count > 2)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zclone [name1] [name2]  将玩家1的人物数据复制给玩家2\n输入 /zclone [name]  将该玩家的人物数据复制给自己"));
+            args.Player.SendInfoMessage(GetString("输入 /zclone [name1] [name2]  将玩家1的人物数据复制给玩家2\n" +
+                                                  "输入 /zclone [name]  将该玩家的人物数据复制给自己"));
             return;
         }
 
@@ -368,20 +366,20 @@ public partial class ZHIPM : TerrariaPlugin
             //找不到人，查离线
             if (list.Count == 0)
             {
-                args.Player.SendInfoMessage(this.offlineplayer);
+                args.Player.SendInfoMessage(this.playerOfflineWarning);
                 var user = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
                 var users = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[0], true);
                 if (user == null)
                 {
                     if (users.Count == 0)
                     {
-                        args.Player.SendInfoMessage(this.noplayer);
+                        args.Player.SendInfoMessage(this.nonExistPlayerWarning);
                         return;
                     }
 
                     if (users.Count > 1)
                     {
-                        args.Player.SendInfoMessage(this.manyplayer);
+                        args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
                         return;
                     }
 
@@ -401,7 +399,7 @@ public partial class ZHIPM : TerrariaPlugin
             //人太多，舍弃
             else if (list.Count > 1)
             {
-                args.Player.SendInfoMessage(this.manyplayer);
+                args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
                 return;
             }
             //一个在线
@@ -427,170 +425,172 @@ public partial class ZHIPM : TerrariaPlugin
             var player2 = this.BestFindPlayerByNameOrIndex(args.Parameters[1]);
             if (player1.Count > 1 || player2.Count > 1)
             {
-                args.Player.SendInfoMessage(this.manyplayer);
+                args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
                 return;
             }
 
-            //都在线的情况
-            if (player1.Count == 1 && player2.Count == 1)
+            switch (player1.Count)
             {
-                if (player1[0].Name == player2[0].Name)
+                //都在线的情况
+                case 1 when player2.Count == 1:
                 {
-                    args.Player.SendInfoMessage(GetString("请不要对同一个人进行克隆"));
+                    if (player1[0].Name == player2[0].Name)
+                    {
+                        args.Player.SendInfoMessage(GetString("请不要对同一个人进行克隆"));
+                        return;
+                    }
+
+                    player1[0].PlayerData.CopyCharacter(player1[0]);
+                    player1[0].PlayerData.exists = true;
+                    if (this.UpdatePlayerAll(player2[0], player1[0].PlayerData))
+                    {
+                        if (args.Player.Account.ID != player2[0].Account.ID)
+                        {
+                            args.Player.SendMessage(GetString($"克隆成功！您已将玩家 [{player1[0].Name}] 的数据克隆到 [{player2[0].Name}] 身上"), new Color(0, 255, 0));
+                        }
+                        else
+                        {
+                            player2[0].SendMessage(GetString($"克隆成功！您已将玩家 [{player1[0].Name}] 的数据克隆到你身上"), new Color(0, 255, 0));
+                        }
+                    }
+                    else
+                    {
+                        args.Player.SendMessage(GetString("克隆失败！未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"), new Color(255, 0, 0));
+                    }
+
                     return;
                 }
-
-                player1[0].PlayerData.CopyCharacter(player1[0]);
-                player1[0].PlayerData.exists = true;
-                if (this.UpdatePlayerAll(player2[0], player1[0].PlayerData))
+                //赋值者不在线，被赋值者在线的情况
+                case 0 when player2.Count == 1:
                 {
-                    if (args.Player.Account.ID != player2[0].Account.ID)
+                    args.Player.SendInfoMessage(GetString("玩家1不在线，正在查询离线数据"));
+                    var user1 = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
+                    var user1s = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[0], true);
+                    if (user1 == null)
                     {
-                        args.Player.SendMessage(GetString($"克隆成功！您已将玩家 [{player1[0].Name}] 的数据克隆到 [{player2[0].Name}] 身上"), new Color(0, 255, 0));
+                        if (user1s.Count == 0)
+                        {
+                            args.Player.SendInfoMessage(GetString("玩家1不存在"));
+                            return;
+                        }
+
+                        if (user1s.Count > 1)
+                        {
+                            args.Player.SendInfoMessage(GetString("玩家1不唯一"));
+                            return;
+                        }
+
+                        user1 = user1s[0];
+                    }
+
+                    var playerData1 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), user1.ID);
+                    if (this.UpdatePlayerAll(player2[0], playerData1))
+                    {
+                        if (args.Player.Account.ID != player2[0].Account.ID)
+                        {
+                            args.Player.SendMessage(GetString($"克隆成功！您已将玩家 [{user1.Name}] 的数据克隆到玩家 [{player2[0].Name}]身上"), new Color(0, 255, 0));
+                        }
+                        else
+                        {
+                            player2[0].SendMessage(GetString($"克隆成功！已将玩家 [{user1.Name}] 的数据克隆到你身上"), new Color(0, 255, 0));
+                        }
                     }
                     else
                     {
-                        player2[0].SendMessage(GetString($"克隆成功！您已将玩家 [{player1[0].Name}] 的数据克隆到你身上"), new Color(0, 255, 0));
-                    }
-                }
-                else
-                {
-                    args.Player.SendMessage(GetString("克隆失败！未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"), new Color(255, 0, 0));
-                }
-
-                return;
-            }
-
-            //赋值者不在线，被赋值者在线的情况
-            if (player1.Count == 0 && player2.Count == 1)
-            {
-                args.Player.SendInfoMessage(GetString("玩家1不在线，正在查询离线数据"));
-                var user1 = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
-                var user1s = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[0], true);
-                if (user1 == null)
-                {
-                    if (user1s.Count == 0)
-                    {
-                        args.Player.SendInfoMessage(GetString("玩家1不存在"));
-                        return;
+                        args.Player.SendMessage(GetString("克隆失败！未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"), new Color(255, 0, 0));
                     }
 
-                    if (user1s.Count > 1)
+                    return;
+                }
+                //赋值者在线，被赋值者不在线的情况
+                case 1 when player2.Count == 0:
+                {
+                    args.Player.SendInfoMessage(GetString("玩家2不在线，正在查询离线数据"));
+                    var user2 = TShock.UserAccounts.GetUserAccountByName(args.Parameters[1]);
+                    var user2s = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[1], true);
+                    if (user2 == null)
                     {
-                        args.Player.SendInfoMessage(GetString("玩家1不唯一"));
-                        return;
+                        if (user2s.Count == 0)
+                        {
+                            args.Player.SendInfoMessage(GetString("玩家2不存在"));
+                            return;
+                        }
+
+                        if (user2s.Count > 1)
+                        {
+                            args.Player.SendInfoMessage(GetString("玩家2不唯一"));
+                            return;
+                        }
+
+                        user2 = user2s[0];
                     }
 
-                    user1 = user1s[0];
-                }
-
-                var playerData1 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), user1.ID);
-                if (this.UpdatePlayerAll(player2[0], playerData1))
-                {
-                    if (args.Player.Account.ID != player2[0].Account.ID)
+                    var playerData1 = player1[0].PlayerData;
+                    playerData1.exists = true;
+                    if (this.UpdateTshockDbCharacter(user2.ID, playerData1))
                     {
-                        args.Player.SendMessage(GetString($"克隆成功！您已将玩家 [{user1.Name}] 的数据克隆到玩家 [{player2[0].Name}]身上"), new Color(0, 255, 0));
+                        args.Player.SendMessage(GetString($"克隆成功！您已将玩家 [{player1[0].Name}] 的数据克隆到玩家 [{user2.Name}] 身上"), new Color(0, 255, 0));
                     }
                     else
                     {
-                        player2[0].SendMessage(GetString($"克隆成功！已将玩家 [{user1.Name}] 的数据克隆到你身上"), new Color(0, 255, 0));
+                        args.Player.SendMessage(GetString("克隆失败！未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"), new Color(255, 0, 0));
                     }
-                }
-                else
-                {
-                    args.Player.SendMessage(GetString("克隆失败！未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"), new Color(255, 0, 0));
-                }
 
-                return;
-            }
-
-            //赋值者在线，被赋值者不在线的情况
-            if (player1.Count == 1 && player2.Count == 0)
-            {
-                args.Player.SendInfoMessage(GetString("玩家2不在线，正在查询离线数据"));
-                var user2 = TShock.UserAccounts.GetUserAccountByName(args.Parameters[1]);
-                var user2s = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[1], true);
-                if (user2 == null)
+                    return;
+                }
+                //都不在线
+                case 0 when player2.Count == 0:
                 {
-                    if (user2s.Count == 0)
+                    args.Player.SendInfoMessage(GetString("玩家都不在线，正在查询离线数据"));
+                    var user1 = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
+                    var user1s = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[0], true);
+                    var user2 = TShock.UserAccounts.GetUserAccountByName(args.Parameters[1]);
+                    var user2s = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[1], true);
+                    if (user1 == null)
                     {
-                        args.Player.SendInfoMessage(GetString("玩家2不存在"));
-                        return;
+                        if (user1s.Count == 0)
+                        {
+                            args.Player.SendInfoMessage(GetString("玩家1不存在"));
+                            return;
+                        }
+
+                        if (user1s.Count > 1)
+                        {
+                            args.Player.SendInfoMessage(GetString("玩家1不唯一"));
+                            return;
+                        }
+
+                        user1 = user1s[0];
                     }
 
-                    if (user2s.Count > 1)
+                    if (user2 == null)
                     {
-                        args.Player.SendInfoMessage(GetString("玩家2不唯一"));
-                        return;
+                        if (user2s.Count == 0)
+                        {
+                            args.Player.SendInfoMessage(GetString("玩家2不存在"));
+                            return;
+                        }
+
+                        if (user2s.Count > 1)
+                        {
+                            args.Player.SendInfoMessage(GetString("玩家2不唯一"));
+                            return;
+                        }
+
+                        user2 = user2s[0];
                     }
 
-                    user2 = user2s[0];
-                }
-
-                var playerData1 = player1[0].PlayerData;
-                playerData1.exists = true;
-                if (this.UpdateTshockDBCharac(user2.ID, playerData1))
-                {
-                    args.Player.SendMessage(GetString($"克隆成功！您已将玩家 [{player1[0].Name}] 的数据克隆到玩家 [{user2.Name}] 身上"), new Color(0, 255, 0));
-                }
-                else
-                {
-                    args.Player.SendMessage(GetString("克隆失败！未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"), new Color(255, 0, 0));
-                }
-
-                return;
-            }
-
-            //都不在线
-            if (player1.Count == 0 && player2.Count == 0)
-            {
-                args.Player.SendInfoMessage(GetString("玩家都不在线，正在查询离线数据"));
-                var user1 = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
-                var user1s = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[0], true);
-                var user2 = TShock.UserAccounts.GetUserAccountByName(args.Parameters[1]);
-                var user2s = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[1], true);
-                if (user1 == null)
-                {
-                    if (user1s.Count == 0)
+                    var playerData = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), user1.ID);
+                    if (this.UpdateTshockDbCharacter(user2.ID, playerData))
                     {
-                        args.Player.SendInfoMessage(GetString("玩家1不存在"));
-                        return;
+                        args.Player.SendMessage(GetString($"克隆成功！您已将玩家 [{user1.Name}] 的数据克隆到玩家 [{user2.Name}] 身上"), new Color(0, 255, 0));
                     }
-
-                    if (user1s.Count > 1)
+                    else
                     {
-                        args.Player.SendInfoMessage(GetString("玩家1不唯一"));
-                        return;
+                        args.Player.SendMessage(GetString("克隆失败！未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"), new Color(255, 0, 0));
                     }
 
-                    user1 = user1s[0];
-                }
-
-                if (user2 == null)
-                {
-                    if (user2s.Count == 0)
-                    {
-                        args.Player.SendInfoMessage(GetString("玩家2不存在"));
-                        return;
-                    }
-
-                    if (user2s.Count > 1)
-                    {
-                        args.Player.SendInfoMessage(GetString("玩家2不唯一"));
-                        return;
-                    }
-
-                    user2 = user2s[0];
-                }
-
-                var playerData = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), user1.ID);
-                if (this.UpdateTshockDBCharac(user2.ID, playerData))
-                {
-                    args.Player.SendMessage(GetString($"克隆成功！您已将玩家 [{user1.Name}] 的数据克隆到玩家 [{user2.Name}] 身上"), new Color(0, 255, 0));
-                }
-                else
-                {
-                    args.Player.SendMessage(GetString("克隆失败！未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"), new Color(255, 0, 0));
+                    break;
                 }
             }
         }
@@ -609,312 +609,311 @@ public partial class ZHIPM : TerrariaPlugin
             return;
         }
 
-        if (args.Parameters.Count == 1)
+        switch (args.Parameters.Count)
         {
-            if (args.Parameters[0].Equals("help", StringComparison.OrdinalIgnoreCase))
+            case 1:
             {
-                var temp = config.EnablePointTracking ? "\n输入 /zmodify [name] point [num]  来修改玩家点数" : "";
-                args.Player.SendMessage(
-                        GetString("输入 /zmodify [name] life [num]  来修改玩家的血量\n") +
-                        GetString("输入 /zmodify [name] lifemax [num]  来修改玩家的血量上限\n") +
-                        GetString("输入 /zmodify [name] mana [num]  来修改玩家的魔力\n") +
-                        GetString("输入 /zmodify [name] manamax [num]  来修改玩家的魔力上限\n") +
-                        GetString("输入 /zmodify [name] fish [num]  来修改玩家的渔夫任务数\n") +
-                        GetString("输入 /zmodify [name] torch [0或1]  来关闭或开启火把神增益\n") +
-                        GetString("输入 /zmodify [name] demmon [0或1]  来关闭或开启恶魔心增益\n") +
-                        GetString("输入 /zmodify [name] bread [0或1]  来关闭或开启工匠面包增益\n") +
-                        GetString("输入 /zmodify [name] heart [0或1]  来关闭或开启埃癸斯水晶增益\n") +
-                        GetString("输入 /zmodify [name] fruit [0或1]  来关闭或开启埃癸斯果增益\n") +
-                        GetString("输入 /zmodify [name] pearl [0或1]  来关闭或开启银河珍珠增益\n") +
-                        GetString("输入 /zmodify [name] worm [0或1]  来关闭或开启粘性蠕虫增益\n") +
-                        GetString("输入 /zmodify [name] ambrosia [0或1]  来关闭或开启珍馐增益\n") +
-                        GetString("输入 /zmodify [name] cart [0或1]  来关闭或开启超级矿车增益\n") +
-                        GetString("输入 /zmodify [name] all [0或1]  来关闭或开启所有玩家增益") + temp
-                    , TextColor());
-            }
-            else
-            {
-                args.Player.SendInfoMessage(GetString("输入 /zmodify help  查看修改玩家数据的指令帮助"));
-            }
+                if (args.Parameters[0].Equals("help", StringComparison.OrdinalIgnoreCase))
+                {
+                    var temp = config.EnablePointTracking ? "\n输入 /zmodify [name] point [num]  来修改玩家点数" : "";
+                    args.Player.SendMessage(
+                        GetString("输入 /zmodify [name] life [num] 来修改玩家的血量\n" +
+                                  "输入 /zmodify [name] lifemax [num] 来修改玩家的血量上限\n" +
+                                  "输入 /zmodify [name] mana [num] 来修改玩家的魔力\n" +
+                                  "输入 /zmodify [name] manamax [num] 来修改玩家的魔力上限\n" +
+                                  "输入 /zmodify [name] fish [num] 来修改玩家的渔夫任务数\n" +
+                                  "输入 /zmodify [name] torch [0或1] 来关闭或开启火把神增益\n" +
+                                  "输入 /zmodify [name] demmon [0或1] 来关闭或开启恶魔心增益\n" +
+                                  "输入 /zmodify [name] bread [0或1] 来关闭或开启工匠面包增益\n" +
+                                  "输入 /zmodify [name] heart [0或1] 来关闭或开启埃癸斯水晶增益\n" +
+                                  "输入 /zmodify [name] fruit [0或1] 来关闭或开启埃癸斯果增益\n" +
+                                  "输入 /zmodify [name] pearl [0或1] 来关闭或开启银河珍珠增益\n" +
+                                  "输入 /zmodify [name] worm [0或1] 来关闭或开启粘性蠕虫增益\n" +
+                                  "输入 /zmodify [name] ambrosia [0或1] 来关闭或开启珍馐增益\n" +
+                                  "输入 /zmodify [name] cart [0或1] 来关闭或开启超级矿车增益\n" +
+                                  "输入 /zmodify [name] all [0或1] 来关闭或开启所有玩家增益") + temp
+                        , TextColor());
+                }
+                else
+                {
+                    args.Player.SendInfoMessage(GetString("输入 /zmodify help  查看修改玩家数据的指令帮助"));
+                }
 
-            return;
-        }
-
-        if (args.Parameters.Count == 3)
-        {
-            //对参数3先判断是不是数据，不是数字结束
-            if (!int.TryParse(args.Parameters[2], out var num))
-            {
-                args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"));
                 return;
             }
-
-            //再判断能不能找到人的情况
-            var players = this.BestFindPlayerByNameOrIndex(args.Parameters[0]);
-            if (players.Count > 1)
+            case 3:
             {
-                args.Player.SendInfoMessage(this.manyplayer);
-                return;
-            }
-
-            //在线能找到
-            if (players.Count == 1)
-            {
-                if (args.Parameters[1].Equals("life", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.statLife = num;
-                    players[0].SendData(PacketTypes.PlayerHp, "", players[0].Index);
-                    players[0].SendMessage("您的生命值已被修改为：" + num, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("lifemax", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.statLifeMax = num;
-                    players[0].SendData(PacketTypes.PlayerHp, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的生命上限已被修改为：") + num, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("mana", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.statMana = num;
-                    players[0].SendData(PacketTypes.PlayerMana, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的魔力值已被修改为：") + num, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("manamax", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.statManaMax = num;
-                    players[0].SendData(PacketTypes.PlayerMana, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的魔力上限已被修改为：") + num, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("fish", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.anglerQuestsFinished = num;
-                    players[0].SendData(PacketTypes.NumberOfAnglerQuestsCompleted, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的渔夫任务完成数已被修改为：") + num, new Color(0, 255, 0));
-                }
-                else if (config.EnablePointTracking && args.Parameters[1].Equals("point", StringComparison.OrdinalIgnoreCase))
-                {
-                    var ex = edPlayers.Find(x => x.Name == players[0].Name);
-                    if (ex != null)
-                    {
-                        ex.point = num;
-                        players[0].SendMessage(GetString("您的点数已被修改为：") + num, new Color(0, 255, 0));
-                    }
-                    else
-                    {
-                        args.Player.SendInfoMessage(GetString("不可预料的错误，请重试或让该玩家重进游戏"));
-                        return;
-                    }
-                }
-                else if (num != 0 && num != 1)
+                //对参数3先判断是不是数据，不是数字结束
+                if (!int.TryParse(args.Parameters[2], out var num))
                 {
                     args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"));
                     return;
                 }
-                else if (args.Parameters[1].Equals("torch", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.unlockedBiomeTorches = num != 0;
-                    players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的火把神增益开启状态：") + players[0].TPlayer.unlockedBiomeTorches, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("demmon", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.extraAccessory = num != 0;
-                    players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的恶魔心增益开启状态：") + players[0].TPlayer.extraAccessory, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("bread", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.ateArtisanBread = num != 0;
-                    players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的工匠面包增益开启状态：") + players[0].TPlayer.ateArtisanBread, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("heart", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.usedAegisCrystal = num != 0;
-                    players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的埃癸斯水晶增益开启状态：") + players[0].TPlayer.usedAegisCrystal, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("fruit", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.usedAegisFruit = num != 0;
-                    players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的埃癸斯果增益开启状态：") + players[0].TPlayer.usedAegisFruit, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("star", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.usedArcaneCrystal = num != 0;
-                    players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的奥术水晶增益开启状态：") + players[0].TPlayer.usedArcaneCrystal, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("pearl", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.usedGalaxyPearl = num != 0;
-                    players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的银河珍珠增益开启状态：") + players[0].TPlayer.usedGalaxyPearl, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("worm", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.usedGummyWorm = num != 0;
-                    players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的粘性蠕虫增益开启状态：") + players[0].TPlayer.usedGummyWorm, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("ambrosia", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.usedAmbrosia = num != 0;
-                    players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的珍馐增益开启状态：") + players[0].TPlayer.usedAmbrosia, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("cart", StringComparison.OrdinalIgnoreCase))
-                {
-                    players[0].TPlayer.unlockedSuperCart = num != 0;
-                    players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                    players[0].SendMessage(GetString("您的超级矿车增益开启状态：") + players[0].TPlayer.unlockedSuperCart, new Color(0, 255, 0));
-                }
-                else if (args.Parameters[1].Equals("all", StringComparison.OrdinalIgnoreCase))
-                {
-                    if (num == 1)
-                    {
-                        players[0].TPlayer.unlockedBiomeTorches = true;
-                        players[0].TPlayer.extraAccessory = true;
-                        players[0].TPlayer.ateArtisanBread = true;
-                        players[0].TPlayer.usedAegisCrystal = true;
-                        players[0].TPlayer.usedAegisFruit = true;
-                        players[0].TPlayer.usedArcaneCrystal = true;
-                        players[0].TPlayer.usedGalaxyPearl = true;
-                        players[0].TPlayer.usedGummyWorm = true;
-                        players[0].TPlayer.usedAmbrosia = true;
-                        players[0].TPlayer.unlockedSuperCart = true;
-                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                        players[0].SendMessage(GetString("您的所有永久增益均开启"), new Color(0, 255, 0));
-                    }
-                    else if (num == 0)
-                    {
-                        players[0].TPlayer.unlockedBiomeTorches = false;
-                        players[0].TPlayer.extraAccessory = false;
-                        players[0].TPlayer.ateArtisanBread = false;
-                        players[0].TPlayer.usedAegisCrystal = false;
-                        players[0].TPlayer.usedAegisFruit = false;
-                        players[0].TPlayer.usedArcaneCrystal = false;
-                        players[0].TPlayer.usedGalaxyPearl = false;
-                        players[0].TPlayer.usedGummyWorm = false;
-                        players[0].TPlayer.usedAmbrosia = false;
-                        players[0].TPlayer.unlockedSuperCart = false;
-                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
-                        players[0].SendMessage(GetString("您的所有永久增益均关闭"), new Color(0, 255, 0));
-                    }
-                    else
-                    {
-                        args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"));
-                    }
-                }
 
-                args.Player.SendMessage(GetString("修改成功！"), new Color(0, 255, 0));
-            }
-            //不在线，修改离线数据
-            else if (players.Count == 0)
-            {
-                args.Player.SendInfoMessage(this.offlineplayer);
-                var user = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
-                if (user == null)
+                //再判断能不能找到人的情况
+                var players = this.BestFindPlayerByNameOrIndex(args.Parameters[0]);
+                if (players.Count > 1)
                 {
-                    var users = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[0], true);
-                    if (users.Count == 0)
-                    {
-                        args.Player.SendInfoMessage(this.noplayer);
-                        return;
-                    }
-
-                    if (users.Count > 1)
-                    {
-                        args.Player.SendInfoMessage(this.manyplayer);
-                        return;
-                    }
-
-                    user = users[0];
+                    args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
                 }
-
-                try
+                //在线能找到
+                else if (players.Count == 1)
                 {
-                    if (args.Parameters[1].Equals("life", StringComparison.OrdinalIgnoreCase))
+                    var subCommand = args.Parameters[1].ToLower();
+                    switch (subCommand)
                     {
-                        TShock.DB.Query("UPDATE tsCharacter SET Health = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("lifemax", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET MaxHealth= @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("mana", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET Mana = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("manamax", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET MaxMana = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("fish", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET questsCompleted = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (config.EnablePointTracking && args.Parameters[1].Equals("point", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE Zhipm_PlayerExtra SET point = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (num != 0 && num != 1)
-                    {
-                        args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"));
-                        return;
-                    }
-                    else if (args.Parameters[1].Equals("torch", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET unlockedBiomeTorches = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("demmon", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET extraSlot = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("bread", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET ateArtisanBread = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("crystal", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET usedAegisCrystal = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("fruit", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET usedAegisFruit = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("arcane", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET usedArcaneCrystal = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("pearl", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET usedGalaxyPearl = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("worm", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET usedGummyWorm = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("ambrosia", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET usedAmbrosia = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("cart", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET unlockedSuperCart = @0 WHERE Account = @1;", num, user.ID);
-                    }
-                    else if (args.Parameters[1].Equals("all", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TShock.DB.Query("UPDATE tsCharacter SET unlockedBiomeTorches = @1, extraSlot = @2, ateArtisanBread = @3, usedAegisCrystal = @4, usedAegisFruit = @5, usedArcaneCrystal = @6, usedGalaxyPearl = @7, usedGummyWorm = @8, usedAmbrosia = @9, unlockedSuperCart = @10 WHERE Account = @0;", user.ID, num, num, num, num, num, num, num, num, num, num);
+                        case "life":
+                            players[0].TPlayer.statLife = num;
+                            players[0].SendData(PacketTypes.PlayerHp, "", players[0].Index);
+                            players[0].SendMessage("您的生命值已被修改为：" + num, new Color(0, 255, 0));
+                            break;
+                        case "lifemax":
+                            players[0].TPlayer.statLifeMax = num;
+                            players[0].SendData(PacketTypes.PlayerHp, "", players[0].Index);
+                            players[0].SendMessage(GetString("您的生命上限已被修改为：") + num, new Color(0, 255, 0));
+                            break;
+                        case "mana":
+                            players[0].TPlayer.statMana = num;
+                            players[0].SendData(PacketTypes.PlayerMana, "", players[0].Index);
+                            players[0].SendMessage(GetString("您的魔力值已被修改为：") + num, new Color(0, 255, 0));
+                            break;
+                        case "manamax":
+                            players[0].TPlayer.statManaMax = num;
+                            players[0].SendData(PacketTypes.PlayerMana, "", players[0].Index);
+                            players[0].SendMessage(GetString("您的魔力上限已被修改为：") + num, new Color(0, 255, 0));
+                            break;
+                        case "fish":
+                            players[0].TPlayer.anglerQuestsFinished = num;
+                            players[0].SendData(PacketTypes.NumberOfAnglerQuestsCompleted, "", players[0].Index);
+                            players[0].SendMessage(GetString("您的渔夫任务完成数已被修改为：") + num, new Color(0, 255, 0));
+                            break;
+                        default:
+                        {
+                            if (config.EnablePointTracking && subCommand == "point")
+                            {
+                                var ex = edPlayers.Find(x => x.Name == players[0].Name);
+                                if (ex != null)
+                                {
+                                    ex.point = num;
+                                    players[0].SendMessage(GetString("您的点数已被修改为：") + num, new Color(0, 255, 0));
+                                }
+                                else
+                                {
+                                    args.Player.SendInfoMessage(GetString("不可预料的错误，请重试或让该玩家重进游戏"));
+                                    return;
+                                }
+                            }
+                            else if (num != 0 && num != 1)
+                            {
+                                args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"));
+                                return;
+                            }
+                            else
+                            {
+                                switch (subCommand)
+                                {
+                                    case "torch":
+                                        players[0].TPlayer.unlockedBiomeTorches = num != 0;
+                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        players[0].SendMessage(GetString("您的火把神增益开启状态：") + players[0].TPlayer.unlockedBiomeTorches, new Color(0, 255, 0));
+                                        break;
+                                    case "demmon":
+                                        players[0].TPlayer.extraAccessory = num != 0;
+                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        players[0].SendMessage(GetString("您的恶魔心增益开启状态：") + players[0].TPlayer.extraAccessory, new Color(0, 255, 0));
+                                        break;
+                                    case "bread":
+                                        players[0].TPlayer.ateArtisanBread = num != 0;
+                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        players[0].SendMessage(GetString("您的工匠面包增益开启状态：") + players[0].TPlayer.ateArtisanBread, new Color(0, 255, 0));
+                                        break;
+                                    case "heart":
+                                        players[0].TPlayer.usedAegisCrystal = num != 0;
+                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        players[0].SendMessage(GetString("您的埃癸斯水晶增益开启状态：") + players[0].TPlayer.usedAegisCrystal, new Color(0, 255, 0));
+                                        break;
+                                    case "fruit":
+                                        players[0].TPlayer.usedAegisFruit = num != 0;
+                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        players[0].SendMessage(GetString("您的埃癸斯果增益开启状态：") + players[0].TPlayer.usedAegisFruit, new Color(0, 255, 0));
+                                        break;
+                                    case "star":
+                                        players[0].TPlayer.usedArcaneCrystal = num != 0;
+                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        players[0].SendMessage(GetString("您的奥术水晶增益开启状态：") + players[0].TPlayer.usedArcaneCrystal, new Color(0, 255, 0));
+                                        break;
+                                    case "pearl":
+                                        players[0].TPlayer.usedGalaxyPearl = num != 0;
+                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        players[0].SendMessage(GetString("您的银河珍珠增益开启状态：") + players[0].TPlayer.usedGalaxyPearl, new Color(0, 255, 0));
+                                        break;
+                                    case "worm":
+                                        players[0].TPlayer.usedGummyWorm = num != 0;
+                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        players[0].SendMessage(GetString("您的粘性蠕虫增益开启状态：") + players[0].TPlayer.usedGummyWorm, new Color(0, 255, 0));
+                                        break;
+                                    case "ambrosia":
+                                        players[0].TPlayer.usedAmbrosia = num != 0;
+                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        players[0].SendMessage(GetString("您的珍馐增益开启状态：") + players[0].TPlayer.usedAmbrosia, new Color(0, 255, 0));
+                                        break;
+                                    case "cart":
+                                        players[0].TPlayer.unlockedSuperCart = num != 0;
+                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        players[0].SendMessage(GetString("您的超级矿车增益开启状态：") + players[0].TPlayer.unlockedSuperCart, new Color(0, 255, 0));
+                                        break;
+                                    case "all":
+                                        switch (num)
+                                        {
+                                            case 1:
+                                                players[0].TPlayer.unlockedBiomeTorches = true;
+                                                players[0].TPlayer.extraAccessory = true;
+                                                players[0].TPlayer.ateArtisanBread = true;
+                                                players[0].TPlayer.usedAegisCrystal = true;
+                                                players[0].TPlayer.usedAegisFruit = true;
+                                                players[0].TPlayer.usedArcaneCrystal = true;
+                                                players[0].TPlayer.usedGalaxyPearl = true;
+                                                players[0].TPlayer.usedGummyWorm = true;
+                                                players[0].TPlayer.usedAmbrosia = true;
+                                                players[0].TPlayer.unlockedSuperCart = true;
+                                                players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                                players[0].SendMessage(GetString("您的所有永久增益均开启"), new Color(0, 255, 0));
+                                                break;
+                                            case 0:
+                                                players[0].TPlayer.unlockedBiomeTorches = false;
+                                                players[0].TPlayer.extraAccessory = false;
+                                                players[0].TPlayer.ateArtisanBread = false;
+                                                players[0].TPlayer.usedAegisCrystal = false;
+                                                players[0].TPlayer.usedAegisFruit = false;
+                                                players[0].TPlayer.usedArcaneCrystal = false;
+                                                players[0].TPlayer.usedGalaxyPearl = false;
+                                                players[0].TPlayer.usedGummyWorm = false;
+                                                players[0].TPlayer.usedAmbrosia = false;
+                                                players[0].TPlayer.unlockedSuperCart = false;
+                                                players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                                players[0].SendMessage(GetString("您的所有永久增益均关闭"), new Color(0, 255, 0));
+                                                break;
+                                        }
+
+                                        break;
+                                }
+                            }
+
+                            break;
+                        }
                     }
 
                     args.Player.SendMessage(GetString("修改成功！"), new Color(0, 255, 0));
                 }
-                catch (Exception ex)
+                //不在线，修改离线数据
+                else if (players.Count == 0)
                 {
-                    args.Player.SendMessage(GetString("修改失败！错误：") + ex, new Color(255, 0, 0));
-                    TShock.Log.Error(GetString("修改失败！错误：") + ex);
+                    args.Player.SendInfoMessage(this.playerOfflineWarning);
+                    var user = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
+                    if (user == null)
+                    {
+                        var users = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[0], true);
+                        if (users.Count == 0)
+                        {
+                            args.Player.SendInfoMessage(this.nonExistPlayerWarning);
+                            return;
+                        }
+
+                        if (users.Count > 1)
+                        {
+                            args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
+                            return;
+                        }
+
+                        user = users[0];
+                    }
+
+                    try
+                    {
+                        if (args.Parameters[1].Equals("life", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET Health = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("lifemax", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET MaxHealth= @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("mana", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET Mana = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("manamax", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET MaxMana = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("fish", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET questsCompleted = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (config.EnablePointTracking && args.Parameters[1].Equals("point", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE Zhipm_PlayerExtra SET point = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (num != 0 && num != 1)
+                        {
+                            args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"));
+                            return;
+                        }
+                        else if (args.Parameters[1].Equals("torch", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET unlockedBiomeTorches = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("demmon", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET extraSlot = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("bread", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET ateArtisanBread = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("crystal", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET usedAegisCrystal = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("fruit", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET usedAegisFruit = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("arcane", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET usedArcaneCrystal = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("pearl", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET usedGalaxyPearl = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("worm", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET usedGummyWorm = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("ambrosia", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET usedAmbrosia = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("cart", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET unlockedSuperCart = @0 WHERE Account = @1;", num, user.ID);
+                        }
+                        else if (args.Parameters[1].Equals("all", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TShock.DB.Query("UPDATE tsCharacter SET unlockedBiomeTorches = @1, extraSlot = @2, ateArtisanBread = @3, usedAegisCrystal = @4, usedAegisFruit = @5, usedArcaneCrystal = @6, usedGalaxyPearl = @7, usedGummyWorm = @8, usedAmbrosia = @9, unlockedSuperCart = @10 WHERE Account = @0;", user.ID, num, num, num, num, num, num, num, num, num, num);
+                        }
+
+                        args.Player.SendMessage(GetString("修改成功！"), new Color(0, 255, 0));
+                    }
+                    catch (Exception ex)
+                    {
+                        args.Player.SendMessage(GetString("修改失败！错误：") + ex, new Color(255, 0, 0));
+                        TShock.Log.Error(GetString("修改失败！错误：") + ex);
+                    }
                 }
+
+                break;
             }
         }
     }
@@ -956,7 +955,7 @@ public partial class ZHIPM : TerrariaPlugin
             var list = this.BestFindPlayerByNameOrIndex(args.Parameters[0]);
             if (list.Count > 1)
             {
-                args.Player.SendInfoMessage(this.manyplayer);
+                args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
                 return;
             }
 
@@ -977,11 +976,11 @@ public partial class ZHIPM : TerrariaPlugin
 
             if (list.Count == 0)
             {
-                args.Player.SendInfoMessage(this.offlineplayer);
+                args.Player.SendInfoMessage(this.playerOfflineWarning);
                 var user = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
                 if (user == null)
                 {
-                    args.Player.SendMessage(this.noplayer, new Color(255, 0, 0));
+                    args.Player.SendMessage(this.nonExistPlayerWarning, new Color(255, 0, 0));
                 }
                 else
                 {
@@ -1007,7 +1006,8 @@ public partial class ZHIPM : TerrariaPlugin
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zresetex [name]  来清理该玩家的额外数据\n输入 /zresetex all  来清理所有玩家的额外数据"));
+            args.Player.SendInfoMessage(GetString("输入 /zresetex [name]  来清理该玩家的额外数据\n" +
+                                                  "输入 /zresetex all  来清理所有玩家的额外数据"));
             return;
         }
 
@@ -1037,7 +1037,7 @@ public partial class ZHIPM : TerrariaPlugin
         var tSPlayers = this.BestFindPlayerByNameOrIndex(args.Parameters[0]);
         if (tSPlayers.Count > 1)
         {
-            args.Player.SendInfoMessage(this.manyplayer);
+            args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
             return;
         }
 
@@ -1059,11 +1059,11 @@ public partial class ZHIPM : TerrariaPlugin
 
         if (tSPlayers.Count == 0)
         {
-            args.Player.SendInfoMessage(this.offlineplayer);
+            args.Player.SendInfoMessage(this.playerOfflineWarning);
             var user = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
             if (user == null)
             {
-                args.Player.SendMessage(this.noplayer, new Color(255, 0, 0));
+                args.Player.SendMessage(this.nonExistPlayerWarning, new Color(255, 0, 0));
             }
             else
             {
@@ -1094,15 +1094,15 @@ public partial class ZHIPM : TerrariaPlugin
 
         if (args.Parameters[0].Equals("help", StringComparison.OrdinalIgnoreCase))
         {
-            args.Player.SendInfoMessage(
-                GetString("输入 /zresetdb <name>  来清理该玩家的备份数据\n") +
-                      GetString("输入 /zresetdb all  来清理所有玩家的备份数据\n") +
-                      GetString("输入 /zresetex <name>  来清理该玩家的额外数据\n") +
-                      GetString("输入 /zresetex all  来清理所有玩家的额外数据\n") +
-                      GetString("输入 /zreset <name>  来清理该玩家的人物数据\n") +
-                      GetString("输入 /zreset all  来清理所有玩家的人物数据\n") +
-                      GetString("输入 /zresetallplayers  来清理所有玩家的所有数据")
-                      ,TextColor());
+            args.Player.SendInfoMessage(GetString(
+                    "输入 /zresetdb <name> 来清理该玩家的备份数据\n" +
+                    "输入 /zresetdb all 来清理所有玩家的备份数据\n" +
+                    "输入 /zresetex <name> 来清理该玩家的额外数据\n" +
+                    "输入 /zresetex all 来清理所有玩家的额外数据\n" +
+                    "输入 /zreset <name> 来清理该玩家的人物数据\n" +
+                    "输入 /zreset all 来清理所有玩家的人物数据\n" +
+                    "输入 /zresetallplayers 来清理所有玩家的所有数据"
+                    ),TextColor());
             return;
         }
 
@@ -1112,7 +1112,7 @@ public partial class ZHIPM : TerrariaPlugin
             {
                 foreach (var ts in TShock.Players)
                 {
-                    if (ts != null && ts.IsLoggedIn)
+                    if (ts is { IsLoggedIn: true })
                     {
                         this.ResetPlayer(ts);
                     }
@@ -1124,12 +1124,9 @@ public partial class ZHIPM : TerrariaPlugin
             if (!args.Player.IsLoggedIn)
             {
                 args.Player.SendMessage(GetString("所有玩家的人物数据均已重置"), broadcastColor);
-                TSPlayer.All.SendMessage(GetString("所有玩家的人物数据均已重置"), broadcastColor);
             }
-            else
-            {
-                TSPlayer.All.SendMessage(GetString("所有玩家的人物数据均已重置"), broadcastColor);
-            }
+
+            TSPlayer.All.SendMessage(GetString("所有玩家的人物数据均已重置"), broadcastColor);
 
             return;
         }
@@ -1137,17 +1134,17 @@ public partial class ZHIPM : TerrariaPlugin
         var list = this.BestFindPlayerByNameOrIndex(args.Parameters[0]);
         if (list.Count > 1)
         {
-            args.Player.SendInfoMessage(this.manyplayer);
+            args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
             return;
         }
 
         if (list.Count == 0)
         {
-            args.Player.SendInfoMessage(this.offlineplayer);
+            args.Player.SendInfoMessage(this.playerOfflineWarning);
             var user = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
             if (user == null)
             {
-                args.Player.SendInfoMessage(this.noplayer);
+                args.Player.SendInfoMessage(this.nonExistPlayerWarning);
             }
             else
             {
@@ -1195,7 +1192,7 @@ public partial class ZHIPM : TerrariaPlugin
         {
             foreach (var tsplayer in TShock.Players)
             {
-                if (tsplayer != null && tsplayer.IsLoggedIn)
+                if (tsplayer is { IsLoggedIn: true })
                 {
                     this.ResetPlayer(tsplayer);
                 }
@@ -1267,7 +1264,7 @@ public partial class ZHIPM : TerrariaPlugin
                 var trash = "";
                 if (model == 0 && !li.TPlayer.trashItem.IsAir)
                 {
-                    trash = string.Format("【[i/s{0}:{1}]】 ", li.TPlayer.trashItem.stack, li.TPlayer.trashItem.netID);
+                    trash = $"【[i/s{li.TPlayer.trashItem.stack}:{li.TPlayer.trashItem.netID}]】 ";
                 }
                 else if (model == 1 && !li.TPlayer.trashItem.IsAir)
                 {
@@ -1279,87 +1276,73 @@ public partial class ZHIPM : TerrariaPlugin
                 var forge = GetItemsString(li.TPlayer.bank3.item, NetItem.ForgeSlots, model);
                 var vault = GetItemsString(li.TPlayer.bank4.item, NetItem.VoidSlots, model);
 
-                if (list.Count == 1)
-                {
-                    sb.AppendLine(GetString($"玩家 【{li.Name}】 的所有库存如下:"));
-                }
-                else
-                {
-                    sb.AppendLine(GetString($"多个结果  玩家 【{li.Name}】 的所有库存如下:"));
-                }
+                sb.AppendLine(list.Count == 1 ? GetString($"玩家 【{li.Name}】 的所有库存如下:") : GetString($"多个结果  玩家 【{li.Name}】 的所有库存如下:"));
 
-                if (inventory.Length > 0 && inventory != null && inventory != "")
+                if (inventory.Length > 0 && inventory != "")
                 {
                     sb.AppendLine(GetString($"背包:"));
-                    if (model == 0)
-                    {
-                        sb.AppendLine(FormatArrangement(inventory, 30, " "));
-                    }
-                    else
-                    {
-                        sb.AppendLine(inventory);
-                    }
+                    sb.AppendLine(model == 0 ? FormatArrangement(inventory, 30, " ") : inventory);
                 }
 
                 //装备栏
-                if (armor.Length > 0 && armor != null && armor != "")
+                if (armor.Length > 0 && armor != "")
                 {
                     sb.AppendLine(GetString($"盔甲 + 饰品 + 时装:"));
                     sb.AppendLine(GetString($"当前装备栏："));
                     sb.AppendLine(armor);
                 }
 
-                if (armor1.Length > 0 && armor1 != null && armor1 != "")
+                if (armor1.Length > 0 && armor1 != "")
                 {
                     sb.AppendLine(GetString($"装备栏1："));
                     sb.AppendLine(armor1);
                 }
 
-                if (armor2.Length > 0 && armor2 != null && armor2 != "")
+                if (armor2.Length > 0 && armor2 != "")
                 {
                     sb.AppendLine(GetString($"装备栏2："));
                     sb.AppendLine(armor2);
                 }
 
-                if (armor3.Length > 0 && armor3 != null && armor3 != "")
+                if (armor3.Length > 0 && armor3 != "")
                 {
                     sb.AppendLine(GetString($"装备栏3："));
                     sb.AppendLine(armor3);
                 }
 
                 //染料
-                if (dyestuff.Length > 0 && dyestuff != null && dyestuff != "")
+                if (dyestuff.Length > 0 && dyestuff != "")
                 {
                     sb.AppendLine(GetString($"当前染料:"));
                     sb.AppendLine(dyestuff);
                 }
 
-                if (dyestuff1.Length > 0 && dyestuff1 != null && dyestuff1 != "")
+                if (dyestuff1.Length > 0 && dyestuff1 != "")
                 {
                     sb.AppendLine(GetString($"染料1:"));
                     sb.AppendLine(dyestuff1);
                 }
 
-                if (dyestuff2.Length > 0 && dyestuff2 != null && dyestuff2 != "")
+                if (dyestuff2.Length > 0 && dyestuff2 != "")
                 {
                     sb.AppendLine(GetString($"染料2:"));
                     sb.AppendLine(dyestuff2);
                 }
 
-                if (dyestuff3.Length > 0 && dyestuff3 != null && dyestuff3 != "")
+                if (dyestuff3.Length > 0 && dyestuff3 != "")
                 {
                     sb.AppendLine(GetString($"染料3:"));
                     sb.AppendLine(dyestuff3);
                 }
 
 
-                if (misc.Length > 0 && misc != null && misc != "")
+                if (misc.Length > 0 && misc != "")
                 {
                     sb.AppendLine(GetString($"宠物 + 矿车 + 坐骑 + 钩爪:"));
                     sb.AppendLine(misc);
                 }
 
-                if (miscDye.Length > 0 && miscDye != null && miscDye != "")
+                if (miscDye.Length > 0 && miscDye != "")
                 {
                     sb.AppendLine(GetString($"宠物 矿车 坐骑 钩爪 染料:"));
                     sb.AppendLine(miscDye);
@@ -1371,59 +1354,31 @@ public partial class ZHIPM : TerrariaPlugin
                     sb.AppendLine(trash);
                 }
 
-                if (pig.Length > 0 && pig != null && pig != "")
+                if (pig.Length > 0 && pig != "")
                 {
                     sb.AppendLine(GetString($"猪猪储蓄罐:"));
-                    if (model == 0)
-                    {
-                        sb.AppendLine(FormatArrangement(pig, 30, " "));
-                    }
-                    else
-                    {
-                        sb.AppendLine(pig);
-                    }
+                    sb.AppendLine(model == 0 ? FormatArrangement(pig, 30, " ") : pig);
                 }
 
-                if (safe.Length > 0 && safe != null && safe != "")
+                if (safe.Length > 0 && safe != "")
                 {
                     sb.AppendLine(GetString($"保险箱:"));
-                    if (model == 0)
-                    {
-                        sb.AppendLine(FormatArrangement(safe, 30, " "));
-                    }
-                    else
-                    {
-                        sb.AppendLine(safe);
-                    }
+                    sb.AppendLine(model == 0 ? FormatArrangement(safe, 30, " ") : safe);
                 }
 
-                if (forge.Length > 0 && forge != null && forge != "")
+                if (forge.Length > 0 && forge != "")
                 {
                     sb.AppendLine(GetString($"护卫熔炉:"));
-                    if (model == 0)
-                    {
-                        sb.AppendLine(FormatArrangement(forge, 30, " "));
-                    }
-                    else
-                    {
-                        sb.AppendLine(forge);
-                    }
+                    sb.AppendLine(model == 0 ? FormatArrangement(forge, 30, " ") : forge);
                 }
 
-                if (vault.Length > 0 && vault != null && vault != "")
+                if (vault.Length > 0 && vault != "")
                 {
                     sb.AppendLine(GetString($"虚空金库:"));
-                    if (model == 0)
-                    {
-                        sb.AppendLine(FormatArrangement(vault, 30, " "));
-                    }
-                    else
-                    {
-                        sb.AppendLine(vault);
-                    }
+                    sb.AppendLine(model == 0 ? FormatArrangement(vault, 30, " ") : vault);
                 }
 
-                if (sb.Length > 0 && sb != null && !string.IsNullOrEmpty(sb.ToString()))
+                if (sb.Length > 0 && !string.IsNullOrEmpty(sb.ToString()))
                 {
                     args.Player.SendMessage(sb + "\n", TextColor());
                 }
@@ -1435,7 +1390,7 @@ public partial class ZHIPM : TerrariaPlugin
         }
         else
         {
-            args.Player.SendInfoMessage(this.offlineplayer);
+            args.Player.SendInfoMessage(this.playerOfflineWarning);
             var users = new Dictionary<UserAccount, PlayerData>();
             var temp = TShock.UserAccounts.GetUserAccountsByName(name, true);
             if (temp.Count == 1 || (temp.Count > 1 && temp.Exists(x => x.Name == name)))
@@ -1443,7 +1398,7 @@ public partial class ZHIPM : TerrariaPlugin
                 if (temp.Count == 1)
                 {
                     var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), temp[0].ID);
-                    if (temp2 != null && temp2.exists)
+                    if (temp2 is { exists: true })
                     {
                         users.Add(temp[0], temp2);
                     }
@@ -1452,7 +1407,7 @@ public partial class ZHIPM : TerrariaPlugin
                 {
                     var u = temp.Find(x => x.Name == name)!;
                     var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), u.ID);
-                    if (temp2 != null && temp2.exists)
+                    if (temp2 is { exists: true })
                     {
                         users.Add(u, temp2);
                     }
@@ -1461,7 +1416,7 @@ public partial class ZHIPM : TerrariaPlugin
                         foreach (var t in temp)
                         {
                             var t2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), t.ID);
-                            if (t != null && t2.exists)
+                            if (t2.exists)
                             {
                                 users.Add(t, t2);
                             }
@@ -1474,7 +1429,7 @@ public partial class ZHIPM : TerrariaPlugin
                 foreach (var t in temp)
                 {
                     var t2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), t.ID);
-                    if (t != null && t2.exists)
+                    if (t2.exists)
                     {
                         users.Add(t, t2);
                     }
@@ -1483,7 +1438,7 @@ public partial class ZHIPM : TerrariaPlugin
 
             if (users.Count == 0)
             {
-                args.Player.SendInfoMessage(this.noplayer);
+                args.Player.SendInfoMessage(this.nonExistPlayerWarning);
             }
             else
             {
@@ -1557,7 +1512,7 @@ public partial class ZHIPM : TerrariaPlugin
                 var trash = "";
                 if (model == 0 && !li.TPlayer.trashItem.IsAir)
                 {
-                    trash = string.Format("【[i/s{0}:{1}]】 ", li.TPlayer.trashItem.stack, li.TPlayer.trashItem.netID);
+                    trash = $"【[i/s{li.TPlayer.trashItem.stack}:{li.TPlayer.trashItem.netID}]】 ";
                 }
                 else if (model == 1 && !li.TPlayer.trashItem.IsAir)
                 {
@@ -1594,7 +1549,7 @@ public partial class ZHIPM : TerrariaPlugin
         }
         else
         {
-            args.Player.SendInfoMessage(this.offlineplayer);
+            args.Player.SendInfoMessage(this.playerOfflineWarning);
             var users = new Dictionary<UserAccount, PlayerData>();
             var temp = TShock.UserAccounts.GetUserAccountsByName(name, true);
             if (temp.Count == 1 || (temp.Count > 1 && temp.Exists(x => x.Name == name)))
@@ -1602,7 +1557,7 @@ public partial class ZHIPM : TerrariaPlugin
                 if (temp.Count == 1)
                 {
                     var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), temp[0].ID);
-                    if (temp2 != null && temp2.exists)
+                    if (temp2 is { exists: true })
                     {
                         users.Add(temp[0], temp2);
                     }
@@ -1611,7 +1566,7 @@ public partial class ZHIPM : TerrariaPlugin
                 {
                     var u = temp.Find(x => x.Name == name)!;
                     var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), u.ID);
-                    if (temp2 != null && temp2.exists)
+                    if (temp2 is { exists: true })
                     {
                         users.Add(u, temp2);
                     }
@@ -1620,7 +1575,7 @@ public partial class ZHIPM : TerrariaPlugin
                         foreach (var t in temp)
                         {
                             var t2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), t.ID);
-                            if (t != null && t2.exists)
+                            if (t2.exists)
                             {
                                 users.Add(t, t2);
                             }
@@ -1633,7 +1588,7 @@ public partial class ZHIPM : TerrariaPlugin
                 foreach (var t in temp)
                 {
                     var t2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), t.ID);
-                    if (t != null && t2.exists)
+                    if (t2.exists)
                     {
                         users.Add(t, t2);
                     }
@@ -1642,7 +1597,7 @@ public partial class ZHIPM : TerrariaPlugin
 
             if (users.Count == 0)
             {
-                args.Player.SendInfoMessage(this.noplayer);
+                args.Player.SendInfoMessage(this.nonExistPlayerWarning);
             }
             else
             {
@@ -1703,11 +1658,11 @@ public partial class ZHIPM : TerrariaPlugin
                 var sb = new StringBuilder();
                 var ex = edPlayers.Find(x => x.Name == list[0].Name);
                 sb.AppendLine(GetString($"玩家 【{list[0].Name}】 的状态如下:"));
-                sb.AppendLine(GetString("最大生命值[i:29]：") + list[0].TPlayer.statLifeMax + GetString("   当前生命值[i:58]：") + list[0].TPlayer.statLife);
-                sb.AppendLine(GetString("最大魔力值[i:109]：") + list[0].TPlayer.statManaMax2 + GetString("   当前魔力值[i:184]：") + list[0].TPlayer.statMana);
-                sb.AppendLine(GetString("完成渔夫任务数[i:3120]：") + list[0].TPlayer.anglerQuestsFinished);
-                sb.AppendLine(GetString("库存硬币数[i:855]：") + this.cointostring(this.getPlayerCoin(list[0].Name)));
-                sb.Append(GetString("各种buff[i:678]："));
+                sb.AppendLine(GetString($"最大生命值[i:29]：{list[0].TPlayer.statLifeMax2}   当前生命值[i:58]：{list[0].TPlayer.statLife}"));
+                sb.AppendLine(GetString($"最大魔力值[i:109]：{list[0].TPlayer.statManaMax2}   当前魔力值[i:184]：{list[0].TPlayer.statMana}"));
+                sb.AppendLine(GetString($"完成渔夫任务数[i:3120]：") + list[0].TPlayer.anglerQuestsFinished);
+                sb.AppendLine(GetString($"库存硬币数[i:855]：") + this.Cointostring(this.GetPlayerCoin(list[0].Name)));
+                sb.Append(GetString($"各种buff[i:678]："));
                 var flag = 0;
                 foreach (var buff in list[0].TPlayer.buffType)
                 {
@@ -1801,7 +1756,7 @@ public partial class ZHIPM : TerrariaPlugin
                 {
                     if (config.EnableOnlineTimeTracking)
                     {
-                        sb.AppendLine(GetString("在线时长[i:3099]：") + this.timetostring(ex.time));
+                        sb.AppendLine(GetString("在线时长[i:3099]：") + this.Timetostring(ex.time));
                     }
 
                     if (config.EnableDeathCountTracking)
@@ -1812,11 +1767,11 @@ public partial class ZHIPM : TerrariaPlugin
                     if (config.EnableNpcKillTracking)
                     {
                         sb.AppendLine(GetString($"已击杀生物数[i:3095]：{ex.killNPCnum} 个"));
-                        sb.AppendLine(GetString("已击杀Boss[i:3868]：") + DictionaryToVSString(ex.killBossID));
-                        sb.AppendLine(GetString("已击杀罕见生物[i:4274]：") + DictionaryToVSString(ex.killRareNPCID));
+                        sb.AppendLine(GetString("已击杀Boss[i:3868]：") + DictionaryToVsString(ex.killBossID));
+                        sb.AppendLine(GetString("已击杀罕见生物[i:4274]：") + DictionaryToVsString(ex.killRareNPCID));
                     }
 
-                    if (config.EnablePointTracking && config.EnableNpcKillTracking)
+                    if (config is { EnablePointTracking: true, EnableNpcKillTracking: true })
                     {
                         sb.AppendLine(GetString("点数[i:575]：") + ex.point);
                     }
@@ -1826,7 +1781,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
             else
             {
-                args.Player.SendInfoMessage(this.offlineplayer);
+                args.Player.SendInfoMessage(this.playerOfflineWarning);
                 var users = new Dictionary<UserAccount, PlayerData>();
                 var temp = TShock.UserAccounts.GetUserAccountsByName(name, true);
                 if (temp.Count == 1 || (temp.Count > 1 && temp.Exists(x => x.Name == name)))
@@ -1834,7 +1789,7 @@ public partial class ZHIPM : TerrariaPlugin
                     if (temp.Count == 1)
                     {
                         var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), temp[0].ID);
-                        if (temp2 != null && temp2.exists)
+                        if (temp2 is { exists: true })
                         {
                             users.Add(temp[0], temp2);
                         }
@@ -1843,7 +1798,7 @@ public partial class ZHIPM : TerrariaPlugin
                     {
                         var u = temp.Find(x => x.Name == name)!;
                         var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), u.ID);
-                        if (temp2 != null && temp2.exists)
+                        if (temp2 is { exists: true })
                         {
                             users.Add(u, temp2);
                         }
@@ -1852,7 +1807,7 @@ public partial class ZHIPM : TerrariaPlugin
                             foreach (var t in temp)
                             {
                                 var t2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), t.ID);
-                                if (t != null && t2.exists)
+                                if (t2.exists)
                                 {
                                     users.Add(t, t2);
                                 }
@@ -1865,7 +1820,7 @@ public partial class ZHIPM : TerrariaPlugin
                     foreach (var t in temp)
                     {
                         var t2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), t.ID);
-                        if (t != null && t2.exists)
+                        if (t2.exists)
                         {
                             users.Add(t, t2);
                         }
@@ -1874,7 +1829,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                 if (users.Count == 0)
                 {
-                    args.Player.SendInfoMessage(this.noplayer);
+                    args.Player.SendInfoMessage(this.nonExistPlayerWarning);
                 }
                 else
                 {
@@ -1891,13 +1846,13 @@ public partial class ZHIPM : TerrariaPlugin
                             sb.AppendLine(GetString($"多个结果  玩家 【{p.Key.Name}】 的状态如下:"));
                         }
 
-                        sb.AppendLine(GetString("最大生命值[i:29]：") + p.Value.maxHealth + GetString("   当前生命值[i:58]：") + p.Value.health);
-                        sb.AppendLine(GetString("最大魔力值[i:109]：") + p.Value.maxMana + GetString("   当前魔力值[i:184]：") + p.Value.mana);
+                        sb.AppendLine(GetString($"最大生命值[i:29]：{p.Value.maxHealth}   当前生命值[i:58]：{p.Value.health}"));
+                        sb.AppendLine(GetString($"最大魔力值[i:109]：{p.Value.maxMana}   当前魔力值[i:184]：{p.Value.mana}"));
                         sb.AppendLine(GetString("完成渔夫任务数[i:3120]：") + p.Value.questsCompleted);
-                        sb.AppendLine(GetString("库存硬币数[i:855]：") + this.cointostring(this.getPlayerCoin(p.Key.Name)));
+                        sb.AppendLine(GetString("库存硬币数[i:855]：") + this.Cointostring(this.GetPlayerCoin(p.Key.Name)));
                         sb.Append(GetString("各种永久增益："));
                         var flag = 0;
-                        if (p.Value.extraSlot != null && p.Value.extraSlot.GetValueOrDefault() == 1)
+                        if (p.Value.extraSlot is 1)
                         {
                             flag++;
                             sb.Append("[i:3335]  ");
@@ -1967,7 +1922,7 @@ public partial class ZHIPM : TerrariaPlugin
                         {
                             if (config.EnableOnlineTimeTracking)
                             {
-                                sb.AppendLine(GetString("在线时长[i:3099]：") + this.timetostring(ex.time));
+                                sb.AppendLine(GetString("在线时长[i:3099]：") + this.Timetostring(ex.time));
                             }
 
                             if (config.EnableDeathCountTracking)
@@ -1978,11 +1933,11 @@ public partial class ZHIPM : TerrariaPlugin
                             if (config.EnableNpcKillTracking)
                             {
                                 sb.AppendLine(GetString($"已击杀生物数[i:3095]：{ex.killNPCnum} 个"));
-                                sb.AppendLine(GetString("已击杀Boss[i:3868]：") + DictionaryToVSString(ex.killBossID));
-                                sb.AppendLine(GetString("已击杀罕见生物[i:4274]：") + DictionaryToVSString(ex.killRareNPCID));
+                                sb.AppendLine(GetString("已击杀Boss[i:3868]：") + DictionaryToVsString(ex.killBossID));
+                                sb.AppendLine(GetString("已击杀罕见生物[i:4274]：") + DictionaryToVsString(ex.killRareNPCID));
                             }
 
-                            if (config.EnablePointTracking && config.EnableNpcKillTracking)
+                            if (config is { EnablePointTracking: true, EnableNpcKillTracking: true })
                             {
                                 sb.AppendLine(GetString("点数[i:575]：") + ex.point);
                             }
@@ -2000,10 +1955,10 @@ public partial class ZHIPM : TerrariaPlugin
                 var sb = new StringBuilder();
                 var ex = edPlayers.Find(x => x.Name == list[0].Name);
                 sb.AppendLine(GetString($"玩家 【{list[0].Name}】 的状态如下:"));
-                sb.AppendLine(GetString("最大生命值：") + list[0].TPlayer.statLifeMax + GetString("   当前生命值：") + list[0].TPlayer.statLife);
-                sb.AppendLine(GetString("最大魔力值：") + list[0].TPlayer.statManaMax2 + GetString("   当前魔力值：") + list[0].TPlayer.statMana);
+                sb.AppendLine(GetString($"最大生命值：{list[0].TPlayer.statLifeMax}   当前生命值：{list[0].TPlayer.statLife}"));
+                sb.AppendLine(GetString($"最大魔力值：{list[0].TPlayer.statManaMax2}   当前魔力值：{list[0].TPlayer.statMana}"));
                 sb.AppendLine(GetString("完成渔夫任务数：") + list[0].TPlayer.anglerQuestsFinished);
-                sb.AppendLine(GetString("库存硬币数：") + this.cointostring(this.getPlayerCoin(list[0].Name), 1));
+                sb.AppendLine(GetString("库存硬币数：") + this.Cointostring(this.GetPlayerCoin(list[0].Name), 1));
                 sb.Append(GetString("各种buff："));
                 var flag = 0;
                 foreach (var buff in list[0].TPlayer.buffType)
@@ -2094,7 +2049,7 @@ public partial class ZHIPM : TerrariaPlugin
                 {
                     if (config.EnableOnlineTimeTracking)
                     {
-                        sb.AppendLine(GetString("在线时长：") + this.timetostring(ex.time));
+                        sb.AppendLine(GetString("在线时长：") + this.Timetostring(ex.time));
                     }
 
                     if (config.EnableDeathCountTracking)
@@ -2105,11 +2060,11 @@ public partial class ZHIPM : TerrariaPlugin
                     if (config.EnableNpcKillTracking)
                     {
                         sb.AppendLine(GetString($"已击杀生物数：{ex.killNPCnum} 个"));
-                        sb.AppendLine(GetString("已击杀Boss：") + DictionaryToVSString(ex.killBossID, false));
-                        sb.AppendLine(GetString("已击杀罕见生物：") + DictionaryToVSString(ex.killRareNPCID, false));
+                        sb.AppendLine(GetString("已击杀Boss：") + DictionaryToVsString(ex.killBossID, false));
+                        sb.AppendLine(GetString("已击杀罕见生物：") + DictionaryToVsString(ex.killRareNPCID, false));
                     }
 
-                    if (config.EnableNpcKillTracking && config.EnablePointTracking)
+                    if (config is { EnableNpcKillTracking: true, EnablePointTracking: true })
                     {
                         sb.AppendLine(GetString("点数：") + ex.point);
                     }
@@ -2119,7 +2074,7 @@ public partial class ZHIPM : TerrariaPlugin
             }
             else
             {
-                args.Player.SendInfoMessage(this.offlineplayer);
+                args.Player.SendInfoMessage(this.playerOfflineWarning);
                 var users = new Dictionary<UserAccount, PlayerData>();
                 var temp = TShock.UserAccounts.GetUserAccountsByName(name, true);
                 if (temp.Count == 1 || (temp.Count > 1 && temp.Exists(x => x.Name == name)))
@@ -2127,7 +2082,7 @@ public partial class ZHIPM : TerrariaPlugin
                     if (temp.Count == 1)
                     {
                         var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), temp[0].ID);
-                        if (temp2 != null && temp2.exists)
+                        if (temp2 is { exists: true })
                         {
                             users.Add(temp[0], temp2);
                         }
@@ -2136,7 +2091,7 @@ public partial class ZHIPM : TerrariaPlugin
                     {
                         var u = temp.Find(x => x.Name == name)!;
                         var temp2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), u.ID);
-                        if (temp2 != null && temp2.exists)
+                        if (temp2 is { exists: true })
                         {
                             users.Add(u, temp2);
                         }
@@ -2145,7 +2100,7 @@ public partial class ZHIPM : TerrariaPlugin
                             foreach (var t in temp)
                             {
                                 var t2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), t.ID);
-                                if (t != null && t2.exists)
+                                if (t2.exists)
                                 {
                                     users.Add(t, t2);
                                 }
@@ -2157,10 +2112,9 @@ public partial class ZHIPM : TerrariaPlugin
                 {
                     foreach (var t in temp)
                     {
-                        PlayerData t2;
                         if (t != null)
                         {
-                            t2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), t.ID);
+                            var t2 = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), t.ID);
                             if (t2.exists)
                             {
                                 users.Add(t, t2);
@@ -2171,7 +2125,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                 if (users.Count == 0)
                 {
-                    args.Player.SendInfoMessage(this.noplayer);
+                    args.Player.SendInfoMessage(this.nonExistPlayerWarning);
                 }
                 else
                 {
@@ -2179,22 +2133,15 @@ public partial class ZHIPM : TerrariaPlugin
                     {
                         var sb = new StringBuilder();
                         var ex = ZPExtraDB.ReadExtraDB(p.Key.ID);
-                        if (users.Count == 1)
-                        {
-                            sb.AppendLine(GetString($"玩家 【{p.Key.Name}】 的状态如下:"));
-                        }
-                        else
-                        {
-                            sb.AppendLine(GetString($"多个结果  玩家 【{p.Key.Name}】 的状态如下:"));
-                        }
+                        sb.AppendLine(users.Count == 1 ? GetString($"玩家 【{p.Key.Name}】 的状态如下:") : GetString($"多个结果  玩家 【{p.Key.Name}】 的状态如下:"));
 
-                        sb.AppendLine(GetString("最大生命值：") + p.Value.maxHealth + GetString("   当前生命值：") + p.Value.health);
-                        sb.AppendLine(GetString("最大魔力值：") + p.Value.maxMana + GetString("   当前魔力值：") + p.Value.mana);
+                        sb.AppendLine(GetString($"最大生命值：{p.Value.maxHealth}   当前生命值：{p.Value.health}"));
+                        sb.AppendLine(GetString($"最大魔力值：{p.Value.maxMana}   当前魔力值：{p.Value.mana}"));
                         sb.AppendLine(GetString("完成渔夫任务数：") + p.Value.questsCompleted);
-                        sb.AppendLine(GetString("库存硬币数：") + this.cointostring(this.getPlayerCoin(p.Key.Name), 1));
+                        sb.AppendLine(GetString("库存硬币数：") + this.Cointostring(this.GetPlayerCoin(p.Key.Name), 1));
                         sb.Append(GetString("各种永久增益："));
                         var flag = 0;
-                        if (p.Value.extraSlot != null && p.Value.extraSlot.GetValueOrDefault() == 1)
+                        if (p.Value.extraSlot is 1)
                         {
                             flag++;
                             sb.Append(Lang.GetItemNameValue(3335) + "  ");
@@ -2264,7 +2211,7 @@ public partial class ZHIPM : TerrariaPlugin
                         {
                             if (config.EnableOnlineTimeTracking)
                             {
-                                sb.AppendLine(GetString("在线时长：") + this.timetostring(ex.time));
+                                sb.AppendLine(GetString("在线时长：") + this.Timetostring(ex.time));
                             }
 
                             if (config.EnableDeathCountTracking)
@@ -2275,11 +2222,11 @@ public partial class ZHIPM : TerrariaPlugin
                             if (config.EnableNpcKillTracking)
                             {
                                 sb.AppendLine(GetString("已击杀生物数：") + ex.killNPCnum + " 个");
-                                sb.AppendLine(GetString("已击杀Boss：") + DictionaryToVSString(ex.killBossID, false));
-                                sb.AppendLine(GetString("已击杀罕见生物：") + DictionaryToVSString(ex.killRareNPCID, false));
+                                sb.AppendLine(GetString("已击杀Boss：") + DictionaryToVsString(ex.killBossID, false));
+                                sb.AppendLine(GetString("已击杀罕见生物：") + DictionaryToVsString(ex.killRareNPCID, false));
                             }
 
-                            if (config.EnablePointTracking && config.EnableNpcKillTracking)
+                            if (config is { EnablePointTracking: true, EnableNpcKillTracking: true })
                             {
                                 sb.AppendLine(GetString("点数：") + ex.point);
                             }
@@ -2307,7 +2254,7 @@ public partial class ZHIPM : TerrariaPlugin
 
         if (args.Parameters.Count == 1 && args.Parameters[0].Equals("useless", StringComparison.OrdinalIgnoreCase))
         {
-            this.cleartime = Timer + 1200L;
+            this.clearTimer = Timer + 1200L;
             if (!args.Player.IsLoggedIn)
             {
                 args.Player.SendMessage(GetString("服务器将在20秒后清理世界内所有无用NPC，射弹和物品"), new Color(255, 0, 0));
@@ -2321,9 +2268,9 @@ public partial class ZHIPM : TerrariaPlugin
             {
                 foreach (var tSPlayer in TShock.Players)
                 {
-                    if (tSPlayer != null && tSPlayer.IsLoggedIn)
+                    if (tSPlayer is { IsLoggedIn: true })
                     {
-                        this.clearAllBuffFromPlayer(tSPlayer);
+                        ClearAllBuffFromPlayer(tSPlayer);
                     }
                 }
 
@@ -2338,17 +2285,19 @@ public partial class ZHIPM : TerrariaPlugin
             }
             else if (ts.Count > 1)
             {
-                args.Player.SendInfoMessage(this.manyplayer);
+                args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
             }
             else
             {
-                this.clearAllBuffFromPlayer(ts[0]);
+                ClearAllBuffFromPlayer(ts[0]);
                 args.Player.SendMessage(GetString($"玩家 [ {ts[0].Name} ] 的所有Buff均已消除"), new Color(0, 255, 0));
             }
         }
         else
         {
-            args.Player.SendInfoMessage(GetString("输入 /zclear useless  来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n输入 /zclear buff <name>  来清理该玩家的所有Buff\n输入 /zclear buff all  来清理所有玩家所有Buff"));
+            args.Player.SendInfoMessage(GetString("输入 /zclear useless  来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n" +
+                                                  "输入 /zclear buff <name>  来清理该玩家的所有Buff\n" +
+                                                  "输入 /zclear buff all  来清理所有玩家所有Buff"));
         }
     }
 
@@ -2366,13 +2315,13 @@ public partial class ZHIPM : TerrariaPlugin
         {
             //在线时长 +1 的部分，遍历在线玩家，对time进行自增
             var players = TShock.Players;
-            for (var i = 0; i < players.Length; i++)
+            foreach (var tsp in players)
             {
-                var tsp = players[i];
-                if (tsp != null && tsp.IsLoggedIn)
+                if (tsp is { IsLoggedIn: true })
                 {
                     //如果当前玩家已存在，那么更新额外数据
-                    var extraData = edPlayers.Find(x => x.Name == tsp.Name);
+                    var tsp1 = tsp;
+                    var extraData = edPlayers.Find(x => x.Name == tsp1.Name);
                     if (extraData != null)
                     {
                         if (config.EnableOnlineTimeTracking)
@@ -2386,8 +2335,8 @@ public partial class ZHIPM : TerrariaPlugin
                                     this.SendText(tsp, GetString("点数奖励 + 1000"), broadcastColor, tsp.TPlayer.Center);
                                 }
 
-                                tsp.SendMessage(GetString("您已经在线了 ") + this.timetostring(extraData.time), broadcastColor);
-                                TShock.Log.Info(GetString($"玩家 {extraData.Name} 已经在线了 {this.timetostring(extraData.time)}"));
+                                tsp.SendMessage(GetString("您已经在线了 ") + this.Timetostring(extraData.time), broadcastColor);
+                                TShock.Log.Info(GetString($"玩家 {extraData.Name} 已经在线了 {this.Timetostring(extraData.time)}"));
                                 NetMessage.PlayNetSound(new NetMessage.NetSoundInfo(tsp.TPlayer.Center, 4), tsp.Index);
                                 Projectile.NewProjectile(null, tsp.TPlayer.Center, -Vector2.UnitY * 4f, Main.rand.Next(415, 419), 0, 0f);
                             }
@@ -2422,7 +2371,7 @@ public partial class ZHIPM : TerrariaPlugin
                     //到达备份间隔时长，备份一次
                     foreach (var ts in TShock.Players)
                     {
-                        if (ts != null && ts.IsLoggedIn && ts.Name == ex.Name && ex.backuptime != 0L && Timer % (3600L * ex.backuptime) == 0L)
+                        if (ts is { IsLoggedIn: true } && ts.Name == ex.Name && ex.backuptime != 0L && Timer % (3600L * ex.backuptime) == 0L)
                         {
                             ZPExtraDB.WriteExtraDB(ex);
                             ZPDataBase.AddZPlayerDB(ts);
@@ -2435,7 +2384,7 @@ public partial class ZHIPM : TerrariaPlugin
 
 
             //清理世界无效数据处理
-            if (Timer > this.cleartime)
+            if (Timer > this.clearTimer)
             {
                 var asset = new List<int>
                 {
@@ -2454,7 +2403,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                 foreach (var v in Main.npc)
                 {
-                    if (v.active && !v.boss && !v.townNPC && !asset.Contains(v.netID))
+                    if (v.active && v is { boss: false, townNPC: false } && !asset.Contains(v.netID))
                     {
                         v.active = false;
                         NetMessage.SendData(23, -1, -1, null, v.whoAmI);
@@ -2479,19 +2428,19 @@ public partial class ZHIPM : TerrariaPlugin
                     }
                 }
 
-                this.cleartime = long.MaxValue;
+                this.clearTimer = long.MaxValue;
                 TSPlayer.All.SendMessage(GetString("已清理所有射弹，物品，无用NPC"), new Color(65, 165, 238));
             }
         }
 
         //冻结处理
-        if (frePlayers.Count != 0 && Timer % 2L == 0L)
+        if (frozenPlayers.Count != 0 && Timer % 2L == 0L)
         {
-            foreach (var v in frePlayers)
+            foreach (var v in frozenPlayers)
             {
                 TShock.Players.ForEach(x =>
                 {
-                    if (x != null && x.IsLoggedIn && (x.UUID.Equals(v.uuid) || x.Name.Equals(v.name) || (!string.IsNullOrEmpty(v.IPs) && !string.IsNullOrEmpty(x.IP) && this.IPStostringIPs(v.IPs).Contains(x.IP))))
+                    if (x is { IsLoggedIn: true } && (x.UUID.Equals(v.uuid) || x.Name.Equals(v.name) || (!string.IsNullOrEmpty(v.IPs) && !string.IsNullOrEmpty(x.IP) && ToIpStrings(v.IPs).Contains(x.IP))))
                     {
                         for (var i = 0; i < 22; i++)
                         {
@@ -2541,9 +2490,9 @@ public partial class ZHIPM : TerrariaPlugin
                         if (Timer > v.clock + 90)
                         {
                             var flag = false;
-                            foreach (var v in x.TPlayer.buffType)
+                            foreach (var i in x.TPlayer.buffType)
                             {
-                                if (v == 149)
+                                if (i == 149)
                                 {
                                     flag = true;
                                     break;
@@ -2572,49 +2521,45 @@ public partial class ZHIPM : TerrariaPlugin
     /// <param name="args"></param>
     private void OnServerJoin(JoinEventArgs args)
     {
-        if (args == null || TShock.Players[args.Who] == null)
+        if (TShock.Players[args.Who] == null)
         {
             return;
         }
 
         if (config.EnableSpecialNameBan)
         {
-            var tsplayer = TShock.Players[args.Who];
-            if (string.IsNullOrWhiteSpace(tsplayer.Name))
+            var tsPlayer = TShock.Players[args.Who];
+            if (string.IsNullOrWhiteSpace(tsPlayer.Name))
             {
-                tsplayer.Kick(GetString("请不要起空名字"), true);
+                tsPlayer.Kick(GetString("请不要起空名字"), true);
             }
-            else if (int.TryParse(tsplayer.Name, out var num) || double.TryParse(tsplayer.Name, out var num2))
+            else if ((tsPlayer.Name[0] >= ' ' && tsPlayer.Name[0] <= '/') || (tsPlayer.Name[0] >= ':' && tsPlayer.Name[0] <= '@') || (tsPlayer.Name[0] > '[' && tsPlayer.Name[0] <= '`') || (tsPlayer.Name[0] >= '{' && tsPlayer.Name[0] <= '~'))
             {
-                tsplayer.Kick(GetString("请不要起纯数字名字"), true);
+                tsPlayer.Kick(GetString("请不要在名字中使用特殊符号"), true);
             }
-            else if ((tsplayer.Name[0] >= ' ' && tsplayer.Name[0] <= '/') || (tsplayer.Name[0] >= ':' && tsplayer.Name[0] <= '@') || (tsplayer.Name[0] > '[' && tsplayer.Name[0] <= '`') || (tsplayer.Name[0] >= '{' && tsplayer.Name[0] <= '~'))
+            else if (tsPlayer.Name.Equals("all", StringComparison.OrdinalIgnoreCase))
             {
-                tsplayer.Kick(GetString("请不要在名字中使用特殊符号"), true);
+                tsPlayer.Kick(GetString("你的名字含有指令关键字: all ，请更换"), true);
             }
-            else if (tsplayer.Name.Equals("all", StringComparison.OrdinalIgnoreCase))
+            else if (tsPlayer.Name.Equals("time", StringComparison.OrdinalIgnoreCase))
             {
-                tsplayer.Kick(GetString("你的名字含有指令关键字: all ，请更换"), true);
+                tsPlayer.Kick(GetString("你的名字含有指令关键字: time ，请更换"), true);
             }
-            else if (tsplayer.Name.Equals("time", StringComparison.OrdinalIgnoreCase))
+            else if (tsPlayer.Name.Equals("help", StringComparison.OrdinalIgnoreCase))
             {
-                tsplayer.Kick(GetString("你的名字含有指令关键字: time ，请更换"), true);
+                tsPlayer.Kick(GetString("你的名字含有指令关键字: help ，请更换"), true);
             }
-            else if (tsplayer.Name.Equals("help", StringComparison.OrdinalIgnoreCase))
+            else if (tsPlayer.Name.Equals("me", StringComparison.OrdinalIgnoreCase))
             {
-                tsplayer.Kick(GetString("你的名字含有指令关键字: help ，请更换"), true);
+                tsPlayer.Kick(GetString("你的名字含有指令关键字: me ，请更换"), true);
             }
-            else if (tsplayer.Name.Equals("me", StringComparison.OrdinalIgnoreCase))
+            else if (tsPlayer.Name.Equals("uuid", StringComparison.OrdinalIgnoreCase))
             {
-                tsplayer.Kick(GetString("你的名字含有指令关键字: me ，请更换"), true);
+                tsPlayer.Kick(GetString("你的名字含有指令关键字: uuid ，请更换"), true);
             }
-            else if (tsplayer.Name.Equals("uuid", StringComparison.OrdinalIgnoreCase))
+            else if (tsPlayer.Name.Equals("ip", StringComparison.OrdinalIgnoreCase))
             {
-                tsplayer.Kick(GetString("你的名字含有指令关键字: uuid ，请更换"), true);
-            }
-            else if (tsplayer.Name.Equals("ip", StringComparison.OrdinalIgnoreCase))
-            {
-                tsplayer.Kick(GetString("你的名字含有指令关键字: ip ，请更换"), true);
+                tsPlayer.Kick(GetString("你的名字含有指令关键字: ip ，请更换"), true);
             }
         }
     }
@@ -2626,7 +2571,7 @@ public partial class ZHIPM : TerrariaPlugin
     /// <param name="args"></param>
     private void OnServerLeave(LeaveEventArgs args)
     {
-        if (args == null || TShock.Players[args.Who] == null)
+        if (TShock.Players[args.Who] == null)
         {
             return;
         }
@@ -2648,7 +2593,7 @@ public partial class ZHIPM : TerrariaPlugin
             var flag = false;
             foreach (var p in TShock.Players)
             {
-                if (p != null && p.IsLoggedIn && (p.Name == edPlayers[i].Name || p.Account.ID == edPlayers[i].Account))
+                if (p is { IsLoggedIn: true } && (p.Name == edPlayers[i].Name || p.Account.ID == edPlayers[i].Account))
                 {
                     flag = true;
                     break;
@@ -2728,12 +2673,13 @@ public partial class ZHIPM : TerrariaPlugin
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zout <name>  来导出该玩家的人物存档\n输入 /zout all  来导出所有人物的存档"));
+            args.Player.SendInfoMessage(GetString("输入 /zout <name>  来导出该玩家的人物存档\n" +
+                                                  "输入 /zout all  来导出所有人物的存档"));
             return;
         }
 
         //对每个导出的文件夹做时间名称后缀
-        this.now = "_" + this.FormatFileName(DateTime.Now.ToString());
+        this.now = "_" + this.FormatFileName(DateTime.Now.ToString(CultureInfo.CurrentCulture));
         if (args.Parameters[0].Equals("all", StringComparison.OrdinalIgnoreCase))
         {
             try
@@ -2757,23 +2703,23 @@ public partial class ZHIPM : TerrariaPlugin
                 }
 
                 var sb = new StringBuilder();
-                var failedcount = 0;
+                var failedCount = 0;
                 var worldName = this.FormatFileName(Main.worldName);
                 foreach (var one in players)
                 {
-                    var player = this.CreateAPlayer(one.Key.Name, one.Value);
+                    var player = this.CreateAPlayer(one.Key.Name, one.Value)!;
                     if (this.ExportPlayer(player, ZPExtraDB.getPlayerExtraDBTime(one.Key.ID)))
                     {
                         if (args.Player.IsLoggedIn)
                         {
-                            args.Player.SendMessage(GetString($"用户 [{player!.name}] 已导出，目录：tshock/Zhipm/{worldName + this.now}/{player!.name}.plr"), new Color(0, 255, 0));
+                            args.Player.SendMessage(GetString($"用户 [{player.name}] 已导出，目录：tshock/Zhipm/{worldName + this.now}/{player.name}.plr"), new Color(0, 255, 0));
                         }
                         else
                         {
-                            sb.AppendLine(GetString($"用户 [{player!.name}] 已导出，目录：tshock/Zhipm/{worldName + this.now}/{player!.name}.plr"));
+                            sb.AppendLine(GetString($"用户 [{player.name}] 已导出，目录：tshock/Zhipm/{worldName + this.now}/{player.name}.plr"));
                         }
 
-                        TShock.Log.Info(GetString($"用户 [{player!.name}] 已导出，目录：tshock/Zhipm/{worldName + this.now}/{player!.name}.plr"));
+                        TShock.Log.Info(GetString($"用户 [{player.name}] 已导出，目录：tshock/Zhipm/{worldName + this.now}/{player.name}.plr"));
                     }
                     else
                     {
@@ -2786,12 +2732,12 @@ public partial class ZHIPM : TerrariaPlugin
                             sb.AppendLine(GetString($"用户 [{one.Key.Name}] 因数据错误导出失败"));
                         }
 
-                        failedcount++;
+                        failedCount++;
                         TShock.Log.Info(GetString($"用户 [{one.Key.Name}] 因数据错误导出失败"));
                     }
                 }
 
-                sb.AppendLine(GetString($"{failedcount} 名用户因数据错误导出失败"));
+                sb.AppendLine(GetString($"{failedCount} 名用户因数据错误导出失败"));
                 //压缩打包
                 var sourcePath = $"{TShock.SavePath}/Zhipm/{worldName + this.now}";
                 var destPath = $"{TShock.SavePath}/Zhipm/{worldName + this.now}.zip";
@@ -2809,7 +2755,8 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    args.Player.SendSuccessMessage(GetString($"{failedcount} 名用户因数据残缺导出失败\n已全部打包为{TShock.SavePath}/Zhipm/{worldName + this.now}.zip"));
+                    args.Player.SendSuccessMessage(GetString($"{failedCount} 名用户因数据残缺导出失败\n" +
+                                                             $"已全部打包为{TShock.SavePath}/Zhipm/{worldName + this.now}.zip"));
                 }
             }
             catch (Exception ex)
@@ -2824,7 +2771,7 @@ public partial class ZHIPM : TerrariaPlugin
         var list = this.BestFindPlayerByNameOrIndex(args.Parameters[0]);
         if (list.Count == 0) //查不到，开始模糊搜索
         {
-            args.Player.SendInfoMessage(this.offlineplayer);
+            args.Player.SendInfoMessage(this.playerOfflineWarning);
             var users = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[0], true);
             if (users.Count == 1 || (users.Count > 1 && users.Exists(x => x.Name == args.Parameters[0])))
             {
@@ -2848,16 +2795,16 @@ public partial class ZHIPM : TerrariaPlugin
             }
             else if (users.Count == 0)
             {
-                args.Player.SendInfoMessage(this.noplayer);
+                args.Player.SendInfoMessage(this.nonExistPlayerWarning);
             }
             else if (users.Count > 1)
             {
-                args.Player.SendInfoMessage(this.manyplayer);
+                args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
             }
         }
         else if (list.Count > 1)
         {
-            args.Player.SendInfoMessage(this.manyplayer);
+            args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
         }
         else if (this.ExportPlayer(list[0].TPlayer, ZPExtraDB.getPlayerExtraDBTime(list[0].Account.ID)))
         {
@@ -2888,45 +2835,51 @@ public partial class ZHIPM : TerrariaPlugin
         if (args.Parameters[0].Equals("help", StringComparison.OrdinalIgnoreCase))
         {
             var temp1 = config.EnableOnlineTimeTracking
-                ? GetString("输入 /zsort time  来查看人物在线时间排行榜前十名\n") +
-                    GetString("输入 /zsort time [num]  来查看当前[num]个人物在线时间排行榜\n") +
-                    GetString("输入 /zsort time all  来查看所有玩家在线时常排行榜\n")
+                ? GetString(
+                    "\n输入 /zsort point [num] 来查看当前[num]个人物点数排行榜\n" +
+                    "输入 /zsort point 来查看人物点数排行榜前十名\n" +
+                    "输入 /zsort point all 来查看所有玩家点数排行榜\n"
+                )
                 : "";
             var temp2 = config.EnableNpcKillTracking
-                ? GetString("\n输入 /zsort kill [num]  来查看当前[num]个人物击杀生物数排行榜\n") +
-                    GetString("输入 /zsort kill  来查看人物击杀生物数排行榜前十名\n") +
-                    GetString("输入 /zsort kill all  来查看所有玩家击杀生物数排行榜\n") +
-                    GetString("输入 /zsort boss [num]  来查看当前[num]个人物击杀Boss总数排行榜\n") +
-                    GetString("输入 /zsort boss  来查看人物击杀Boss总数排行榜前十名\n") +
-                    GetString("输入 /zsort boss all  来查看所有玩家击杀Boss总数排行榜\n") +
-                    GetString("输入 /zsort rarenpc [num]  来查看当前[num]个人物击杀罕见生物总数排行榜\n") +
-                    GetString("输入 /zsort rarenpc  来查看人物击杀罕见生物总数排行榜前十名\n") +
-                    GetString("输入 /zsort rarenpc all  来查看所有玩家击杀罕见生物总数排行榜")
+                ? GetString(
+                    "\n输入 /zsort death [num] 来查看当前[num]个人物死亡次数排行榜\n" +
+                    "输入 /zsort death 来查看人物死亡次数排行榜前十名\n" +
+                    "输入 /zsort death all 来查看所有玩家死亡次数排行榜\n"
+                )
                 : "";
             var temp3 = config.EnablePointTracking
-                ? GetString("\n输入 /zsort point [num]  来查看当前[num]个人物点数排行榜\n") +
-                  GetString("输入 /zsort point  来查看人物点数排行榜前十名\n") +
-                  GetString("输入 /zsort point all  来查看所有玩家点数排行榜")
+                ? GetString(
+                    "\n输入 /zsort point [num] 来查看当前[num]个人物点数排行榜\n" +
+                    "输入 /zsort point 来查看人物点数排行榜前十名\n" +
+                    "输入 /zsort point all 来查看所有玩家点数排行榜\n"
+                )
                 : "";
             var temp4 = config.EnableDeathCountTracking
-                ? GetString("\n输入 /zsort death [num]  来查看当前[num]个人物死亡次数排行榜\n") +
-                  GetString("输入 /zsort death  来查看人物死亡次数排行榜前十名\n") +
-                  GetString("输入 /zsort death all  来查看所有玩家死亡次数排行榜")
+                ? GetString(
+                    "\n输入 /zsort death [num] 来查看当前[num]个人物死亡次数排行榜\n" +
+                    "输入 /zsort death 来查看人物死亡次数排行榜前十名\n" +
+                    "输入 /zsort death all 来查看所有玩家死亡次数排行榜\n"
+                )
                 : "";
-            var temp5 = config.EnableDeathCountTracking && config.EnableOnlineTimeTracking
-                ? GetString("\n输入 /zsort clumsy  来查看人物手残排行榜前十名\n") +
-                GetString("输入 /zsort clumsy [num]  来查看当前[num]个人物手残排行榜\n") +
-                GetString("输入 /zsort clumsy all  来查看所有玩家手残排行榜")
+            var temp5 = config is { EnableDeathCountTracking: true, EnableOnlineTimeTracking: true }
+                ? GetString(
+                    "\n输入 /zsort clumsy 来查看人物手残排行榜前十名\n" +
+                    "输入 /zsort clumsy [num] 来查看当前[num]个人物手残排行榜\n" +
+                    "输入 /zsort clumsy all 来查看所有玩家手残排行榜\n"
+                )
                 : "";
 
             args.Player.SendMessage(
                 temp1 +
-                GetString("输入 /zsort coin  来查看人物硬币数目排行榜前十名\n") +
-                GetString("输入 /zsort coin [num]  来查看当前[num]个人物硬币数目排行榜\n") +
-                GetString("输入 /zsort coin all  来查看所有玩家硬币数目排行榜\n") +
-                GetString("输入 /zsort fish  来查看人物任务鱼数目排行榜前十名\n") +
-                GetString("输入 /zsort fish [num]  来查看当前[num]个人物任务鱼数目排行榜\n") +
-                GetString("输入 /zsort fish all  来查看所有玩家任务鱼数目排行榜") +
+                GetString(
+                    "输入 /zsort coin 来查看人物硬币数目排行榜前十名\n" +
+                    "输入 /zsort coin [num] 来查看当前[num]个人物硬币数目排行榜\n" +
+                    "输入 /zsort coin all 来查看所有玩家硬币数目排行榜\n" +
+                    "输入 /zsort fish 来查看人物任务鱼数目排行榜前十名\n" +
+                    "输入 /zsort fish [num] 来查看当前[num]个人物任务鱼数目排行榜\n" +
+                    "输入 /zsort fish all 来查看所有玩家任务鱼数目排行榜\n"
+                ) +
                 temp4 + temp2 + temp3 + temp5
                 , TextColor());
             return;
@@ -2957,7 +2910,7 @@ public partial class ZHIPM : TerrariaPlugin
                 var sb = new StringBuilder();
                 for (var i = 0; i < num; i++)
                 {
-                    sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 在线时长 {this.timetostring(list[i].time)}"));
+                    sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 在线时长 {this.Timetostring(list[i].time)}"));
                 }
 
                 args.Player.SendMessage(sb.ToString(), TextColor());
@@ -2982,7 +2935,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                     for (var i = 0; i < count; i++)
                     {
-                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 在线时长 {this.timetostring(list[i].time)}"));
+                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 在线时长 {this.Timetostring(list[i].time)}"));
                     }
 
                     args.Player.SendMessage(sb.ToString(), TextColor());
@@ -2993,7 +2946,7 @@ public partial class ZHIPM : TerrariaPlugin
                     var sb = new StringBuilder();
                     for (var i = 0; i < list.Count; i++)
                     {
-                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 在线时长 {this.timetostring(list[i].time)}"));
+                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 在线时长 {this.Timetostring(list[i].time)}"));
                     }
 
                     args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3001,7 +2954,8 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    args.Player.SendInfoMessage(GetString("输入 /zsort time [num]  来查看当前[num]个人物在线时间排行榜\n输入 /zsort time  来查看人物在线时间排行榜前十名\n输入 /zsort time all  来查看所有玩家在线时常排行榜"));
+                    args.Player.SendInfoMessage(GetString("输入 /zsort time [num]  来查看当前[num]个人物在线时间排行榜\n" +
+                                                          "输入 /zsort time  来查看人物在线时间排行榜前十名\n输入 /zsort time all  来查看所有玩家在线时常排行榜"));
                 }
             }
         }
@@ -3024,7 +2978,7 @@ public partial class ZHIPM : TerrariaPlugin
                 return;
             }
 
-            list.Sort((p1, p2) => this.getPlayerCoin(p2.Name).CompareTo(this.getPlayerCoin(p1.Name)));
+            list.Sort((p1, p2) => this.GetPlayerCoin(p2.Name).CompareTo(this.GetPlayerCoin(p1.Name)));
             if (args.Parameters.Count == 1)
             {
                 var num = 10;
@@ -3036,14 +2990,7 @@ public partial class ZHIPM : TerrariaPlugin
                 var sb = new StringBuilder();
                 for (var i = 0; i < num; i++)
                 {
-                    if (args.Player.IsLoggedIn)
-                    {
-                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.cointostring(this.getPlayerCoin(list[i].Name))}"));
-                    }
-                    else
-                    {
-                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.cointostring(this.getPlayerCoin(list[i].Name), 1)}"));
-                    }
+                    sb.AppendLine(args.Player.IsLoggedIn ? GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name))}") : GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name), 1)}"));
                 }
 
                 args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3068,14 +3015,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                     for (var i = 0; i < count; i++)
                     {
-                        if (args.Player.IsLoggedIn)
-                        {
-                            sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.cointostring(this.getPlayerCoin(list[i].Name))}"));
-                        }
-                        else
-                        {
-                            sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.cointostring(this.getPlayerCoin(list[i].Name), 1)}"));
-                        }
+                        sb.AppendLine(args.Player.IsLoggedIn ? GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name))}") : GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name), 1)}"));
                     }
 
                     args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3086,14 +3026,7 @@ public partial class ZHIPM : TerrariaPlugin
                     var sb = new StringBuilder();
                     for (var i = 0; i < list.Count; i++)
                     {
-                        if (args.Player.IsLoggedIn)
-                        {
-                            sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.cointostring(this.getPlayerCoin(list[i].Name))}"));
-                        }
-                        else
-                        {
-                            sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.cointostring(this.getPlayerCoin(list[i].Name), 1)}"));
-                        }
+                        sb.AppendLine(args.Player.IsLoggedIn ? GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name))}") : GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name), 1)}"));
                     }
 
                     args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3101,7 +3034,9 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    args.Player.SendInfoMessage(GetString("输入 /zsort coin  来查看人物硬币数目排行榜前十名\n输入 /zsort coin [num]  来查看当前[num]个人物硬币数目排行榜\n输入 /zsort coin all  来查看所有玩家硬币数目排行榜"));
+                    args.Player.SendInfoMessage(GetString("输入 /zsort coin  来查看人物硬币数目排行榜前十名\n" +
+                                                          "输入 /zsort coin [num]  来查看当前[num]个人物硬币数目排行榜\n" +
+                                                          "输入 /zsort coin all  来查看所有玩家硬币数目排行榜"));
                 }
             }
         }
@@ -3179,7 +3114,9 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    args.Player.SendInfoMessage(GetString("输入 /zsort fish  来查看人物任务鱼数目排行榜前十名\n输入 /zsort fish [num]  来查看当前[num]个人物任务鱼数目排行榜\n输入 /zsort fish all  来查看所有玩家任务鱼数目排行榜"));
+                    args.Player.SendInfoMessage(GetString("输入 /zsort fish  来查看人物任务鱼数目排行榜前十名\n" +
+                                                          "输入 /zsort fish [num]  来查看当前[num]个人物任务鱼数目排行榜\n" +
+                                                          "输入 /zsort fish all  来查看所有玩家任务鱼数目排行榜"));
                 }
             }
         }
@@ -3252,7 +3189,9 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    args.Player.SendInfoMessage(GetString("输入 /zsort kill [num]  来查看当前[num]个人物击杀生物数排行榜\n输入 /zsort kill  来查看人物击杀生物数排行榜前十名\n输入 /zsort kill all  来查看所有玩家击杀生物数排行榜"));
+                    args.Player.SendInfoMessage(GetString("输入 /zsort kill [num]  来查看当前[num]个人物击杀生物数排行榜\n" +
+                                                          "输入 /zsort kill  来查看人物击杀生物数排行榜前十名\n" +
+                                                          "输入 /zsort kill all  来查看所有玩家击杀生物数排行榜"));
                 }
             }
         }
@@ -3272,7 +3211,7 @@ public partial class ZHIPM : TerrariaPlugin
                 return;
             }
 
-            list.Sort((p1, p2) => this.getKillNumFromDictionary(p2.killBossID).CompareTo(this.getKillNumFromDictionary(p1.killBossID)));
+            list.Sort((p1, p2) => this.GetKillNumFromDictionary(p2.killBossID).CompareTo(this.GetKillNumFromDictionary(p1.killBossID)));
             if (args.Parameters.Count == 1)
             {
                 var num = 10;
@@ -3284,7 +3223,7 @@ public partial class ZHIPM : TerrariaPlugin
                 var sb = new StringBuilder();
                 for (var i = 0; i < num; i++)
                 {
-                    sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 击杀Boss总数 {this.getKillNumFromDictionary(list[i].killBossID)} 个"));
+                    sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 击杀Boss总数 {this.GetKillNumFromDictionary(list[i].killBossID)} 个"));
                 }
 
                 args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3309,7 +3248,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                     for (var i = 0; i < count; i++)
                     {
-                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 击杀Boss总数 {this.getKillNumFromDictionary(list[i].killBossID)} 个"));
+                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 击杀Boss总数 {this.GetKillNumFromDictionary(list[i].killBossID)} 个"));
                     }
 
                     args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3320,7 +3259,7 @@ public partial class ZHIPM : TerrariaPlugin
                     var sb = new StringBuilder();
                     for (var i = 0; i < list.Count; i++)
                     {
-                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 击杀Boss总数 {this.getKillNumFromDictionary(list[i].killBossID)} 个"));
+                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 击杀Boss总数 {this.GetKillNumFromDictionary(list[i].killBossID)} 个"));
                     }
 
                     args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3328,7 +3267,9 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    args.Player.SendInfoMessage(GetString("输入 /zsort boss [num]  来查看当前[num]个人物击杀Boss总数排行榜\n输入 /zsort boss  来查看人物击杀Boss总数排行榜前十名\n输入 /zsort boss all  来查看所有玩家击杀Boss总数排行榜"));
+                    args.Player.SendInfoMessage(GetString("输入 /zsort boss [num]  来查看当前[num]个人物击杀Boss总数排行榜\n" +
+                                                          "输入 /zsort boss  来查看人物击杀Boss总数排行榜前十名\n" +
+                                                          "输入 /zsort boss all  来查看所有玩家击杀Boss总数排行榜"));
                 }
             }
         }
@@ -3348,7 +3289,7 @@ public partial class ZHIPM : TerrariaPlugin
                 return;
             }
 
-            list.Sort((p1, p2) => this.getKillNumFromDictionary(p2.killRareNPCID).CompareTo(this.getKillNumFromDictionary(p1.killRareNPCID)));
+            list.Sort((p1, p2) => this.GetKillNumFromDictionary(p2.killRareNPCID).CompareTo(this.GetKillNumFromDictionary(p1.killRareNPCID)));
             if (args.Parameters.Count == 1)
             {
                 var num = 10;
@@ -3360,7 +3301,7 @@ public partial class ZHIPM : TerrariaPlugin
                 var sb = new StringBuilder();
                 for (var i = 0; i < num; i++)
                 {
-                    sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 击杀罕见生物总数 {this.getKillNumFromDictionary(list[i].killRareNPCID)} 个"));
+                    sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 击杀罕见生物总数 {this.GetKillNumFromDictionary(list[i].killRareNPCID)} 个"));
                 }
 
                 args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3385,7 +3326,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                     for (var i = 0; i < count; i++)
                     {
-                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 击杀罕见生物总数 {this.getKillNumFromDictionary(list[i].killRareNPCID)} 个"));
+                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 击杀罕见生物总数 {this.GetKillNumFromDictionary(list[i].killRareNPCID)} 个"));
                     }
 
                     args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3396,7 +3337,7 @@ public partial class ZHIPM : TerrariaPlugin
                     var sb = new StringBuilder();
                     for (var i = 0; i < list.Count; i++)
                     {
-                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 击杀罕见生物总数 {this.getKillNumFromDictionary(list[i].killRareNPCID)} 个"));
+                        sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 击杀罕见生物总数 {this.GetKillNumFromDictionary(list[i].killRareNPCID)} 个"));
                     }
 
                     args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3404,7 +3345,9 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    args.Player.SendInfoMessage(GetString("输入 /zsort rarenpc [num]  来查看当前[num]个人物击杀罕见生物总数排行榜\n输入 /zsort rarenpc  来查看人物击杀罕见生物总数排行榜前十名\n输入 /zsort rarenpc all  来查看所有玩家击杀罕见生物总数排行榜"));
+                    args.Player.SendInfoMessage(GetString("输入 /zsort rarenpc [num]  来查看当前[num]个人物击杀罕见生物总数排行榜\n" +
+                                                          "输入 /zsort rarenpc  来查看人物击杀罕见生物总数排行榜前十名\n" +
+                                                          "输入 /zsort rarenpc all  来查看所有玩家击杀罕见生物总数排行榜"));
                 }
             }
         }
@@ -3479,7 +3422,9 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    args.Player.SendInfoMessage(GetString("输入 /zsort point [num]  来查看当前[num]个人物点数排行榜\n输入 /zsort point  来查看人物点数排行榜前十名\n输入 /zsort point all  来查看所有玩家点数排行榜"));
+                    args.Player.SendInfoMessage(GetString("输入 /zsort point [num]  来查看当前[num]个人物点数排行榜\n" +
+                                                          "输入 /zsort point  来查看人物点数排行榜前十名\n" +
+                                                          "输入 /zsort point all  来查看所有玩家点数排行榜"));
                 }
             }
         }
@@ -3554,12 +3499,14 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    args.Player.SendInfoMessage(GetString("输入 /zsort death [num]  来查看当前[num]个人物死亡次数排行榜\n输入 /zsort death  来查看人物死亡次数排行榜前十名\n输入 /zsort death all  来查看所有玩家死亡次数排行榜"));
+                    args.Player.SendInfoMessage(GetString("输入 /zsort death [num]  来查看当前[num]个人物死亡次数排行榜\n" +
+                                                          "输入 /zsort death  来查看人物死亡次数排行榜前十名\n" +
+                                                          "输入 /zsort death all  来查看所有玩家死亡次数排行榜"));
                 }
             }
         }
         //菜鸡榜
-        else if (config.EnableDeathCountTracking && config.EnableOnlineTimeTracking && args.Parameters[0].Equals("clumsy", StringComparison.OrdinalIgnoreCase))
+        else if (config is { EnableDeathCountTracking: true, EnableOnlineTimeTracking: true } && args.Parameters[0].Equals("clumsy", StringComparison.OrdinalIgnoreCase))
         {
             //排序前先保存
             foreach (var ex in edPlayers)
@@ -3665,7 +3612,9 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else
                 {
-                    args.Player.SendInfoMessage(GetString("输入 /zsort clumsy  来查看人物手残排行榜前十名\n输入 /zsort clumsy [num]  来查看当前[num]个人物手残排行榜\n输入 /zsort clumsy all  来查看所有玩家手残排行榜"));
+                    args.Player.SendInfoMessage(GetString("输入 /zsort clumsy  来查看人物手残排行榜前十名\n" +
+                                                          "输入 /zsort clumsy [num]  来查看当前[num]个人物手残排行榜\n" +
+                                                          "输入 /zsort clumsy all  来查看所有玩家手残排行榜"));
                 }
             }
         }
@@ -3684,9 +3633,11 @@ public partial class ZHIPM : TerrariaPlugin
     {
         if (args.Parameters.Count < 2)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zban add <name> [reason]  来封禁无论是否在线的玩家，reason 可不填\n") +
-                                          GetString("输入 /zban add uuid <uuid> [reason]  来封禁uuid\n") +
-                                          GetString("输入 /zban add ip <ip> [reason]  来封禁ip"));
+            args.Player.SendInfoMessage(GetString(
+                    "输入 /zban add <name> [reason] 来封禁无论是否在线的玩家，reason 可不填\n" +
+                    "输入 /zban add uuid <uuid> [reason] 来封禁uuid\n" +
+                    "输入 /zban add ip <ip> [reason] 来封禁ip\n"
+                ));
             return;
         }
 
@@ -3702,11 +3653,11 @@ public partial class ZHIPM : TerrariaPlugin
 
                 var reason = args.Parameters.Count == 4 ? args.Parameters[3] : GetString("你已被管理员封禁！");
                 TSPlayer? suspect = null;
-                foreach (var v in TShock.Players)
+                foreach (var i in TShock.Players)
                 {
-                    if (v != null && v.Active && v.UUID == args.Parameters[2])
+                    if (i is { Active: true } && i.UUID == args.Parameters[2])
                     {
-                        suspect = v;
+                        suspect = i;
                         break;
                     }
                 }
@@ -3735,7 +3686,7 @@ public partial class ZHIPM : TerrariaPlugin
                 TSPlayer? suspect = null;
                 foreach (var v in TShock.Players)
                 {
-                    if (v != null && v.Active && v.IP == args.Parameters[2])
+                    if (v is { Active: true } && v.IP == args.Parameters[2])
                     {
                         suspect = v;
                         break;
@@ -3775,12 +3726,12 @@ public partial class ZHIPM : TerrariaPlugin
                 }
                 else if (list.Count > 1)
                 {
-                    args.Player.SendInfoMessage(this.manyplayer);
+                    args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
                 }
                 //离线查找
                 else
                 {
-                    args.Player.SendInfoMessage(this.offlineplayer);
+                    args.Player.SendInfoMessage(this.playerOfflineWarning);
                     var user = TShock.UserAccounts.GetUserAccountByName(args.Parameters[1]);
                     if (user == null)
                     {
@@ -3797,7 +3748,7 @@ public partial class ZHIPM : TerrariaPlugin
                         }
                         else
                         {
-                            args.Player.SendInfoMessage(GetString($"{this.noplayer}。若玩家名称带有空格可用英文引号将名称整个括起来"));
+                            args.Player.SendInfoMessage(GetString($"{this.nonExistPlayerWarning}。若玩家名称带有空格可用英文引号将名称整个括起来"));
                             return;
                         }
                     }
@@ -3814,7 +3765,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                     if (!string.IsNullOrWhiteSpace(user.KnownIps))
                     {
-                        var ips = this.IPStostringIPs(user.KnownIps);
+                        var ips = ToIpStrings(user.KnownIps);
                         foreach (var str in ips)
                         {
                             if (!string.IsNullOrWhiteSpace(str))
@@ -3836,9 +3787,11 @@ public partial class ZHIPM : TerrariaPlugin
         }
         else
         {
-            args.Player.SendInfoMessage(GetString("输入 /zban add [name] [reason]  来封禁无论是否在线的玩家，reason 可不填\n") +
-                                                  GetString("输入 /zban add uuid [uuid] [reason]  来封禁uuid\n") +
-                                                  GetString("输入 /zban add ip [ip] [reason]  来封禁ip"));
+            args.Player.SendInfoMessage(GetString(
+                    "输入 /zban add [name] [reason] 来封禁无论是否在线的玩家，reason 可不填\n" +
+                    "输入 /zban add uuid [uuid] [reason] 来封禁uuid\n" +
+                    "输入 /zban add ip [ip] [reason] 来封禁ip\n"
+                ));
         }
     }
 
@@ -3859,17 +3812,17 @@ public partial class ZHIPM : TerrariaPlugin
         var ts = this.BestFindPlayerByNameOrIndex(args.Parameters[0]);
         if (ts.Count == 0)
         {
-            args.Player.SendInfoMessage(this.offlineplayer);
+            args.Player.SendInfoMessage(this.playerOfflineWarning);
             var user = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
             if (user != null)
             {
-                if (frePlayers.Exists(x => x.name == user.Name && x.uuid == user.UUID && (x.IPs == null || x.IPs.Equals(user.KnownIps))))
+                if (frozenPlayers.Exists(x => x.name == user.Name && x.uuid == user.UUID && x.IPs.Equals(user.KnownIps)))
                 {
                     args.Player.SendMessage(GetString($"玩家 [{user.Name}] 已冻结过!"), new Color(0, 255, 0));
                 }
                 else
                 {
-                    frePlayers.Add(new MessPlayer(user.ID, user.Name, user.UUID, user.KnownIps, Vector2.Zero));
+                    frozenPlayers.Add(new MessPlayer(user.ID, user.Name, user.UUID, user.KnownIps, Vector2.Zero));
                     args.Player.SendMessage(GetString($"玩家 [{user.Name}] 冻结成功"), new Color(0, 255, 0));
                 }
             }
@@ -3879,40 +3832,40 @@ public partial class ZHIPM : TerrariaPlugin
                 var users = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[0], true);
                 if (users.Count == 1)
                 {
-                    if (frePlayers.Exists(x => x.name == users[0].Name && x.uuid == users[0].UUID && (x.IPs == null || x.IPs.Equals(users[0].KnownIps))))
+                    if (frozenPlayers.Exists(x => x.name == users[0].Name && x.uuid == users[0].UUID && x.IPs.Equals(users[0].KnownIps)))
                     {
                         args.Player.SendMessage(GetString($"玩家 [{users[0].Name}] 已冻结过!"), new Color(0, 255, 0));
                     }
                     else
                     {
-                        frePlayers.Add(new MessPlayer(users[0].ID, users[0].Name, users[0].UUID, users[0].KnownIps, Vector2.Zero));
+                        frozenPlayers.Add(new MessPlayer(users[0].ID, users[0].Name, users[0].UUID, users[0].KnownIps, Vector2.Zero));
                         args.Player.SendMessage(GetString($"玩家 [{users[0].Name}] 冻结成功"), new Color(0, 255, 0));
                     }
                 }
                 else if (users.Count > 1)
                 {
-                    args.Player.SendInfoMessage(this.manyplayer);
+                    args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
                 }
                 else
                 {
-                    args.Player.SendInfoMessage(this.noplayer);
+                    args.Player.SendInfoMessage(this.nonExistPlayerWarning);
                 }
             }
         }
         else if (ts.Count > 1)
         {
-            args.Player.SendInfoMessage(this.manyplayer);
+            args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
         }
         else
         {
-            if (frePlayers.Exists(x => x.name == ts[0].Name && x.uuid == ts[0].UUID && (x.IPs == null ? true : x.IPs.Equals(ts[0].Account.KnownIps))))
+            if (frozenPlayers.Exists(x => x.name == ts[0].Name && x.uuid == ts[0].UUID && x.IPs.Equals(ts[0].Account.KnownIps)))
             {
                 args.Player.SendMessage(GetString($"玩家 [{ts[0].Name}] 已冻结过!"), new Color(0, 255, 0));
             }
             else
             {
-                this.clearAllBuffFromPlayer(ts[0]);
-                frePlayers.Add(new MessPlayer(ts[0].Account.ID, ts[0].Name, ts[0].UUID, ts[0].Account.KnownIps, ts[0].TPlayer.Center));
+                ClearAllBuffFromPlayer(ts[0]);
+                frozenPlayers.Add(new MessPlayer(ts[0].Account.ID, ts[0].Name, ts[0].UUID, ts[0].Account.KnownIps, ts[0].TPlayer.Center));
                 args.Player.SendMessage(GetString($"玩家 [{ts[0].Name}] 冻结成功"), new Color(0, 255, 0));
             }
         }
@@ -3934,15 +3887,15 @@ public partial class ZHIPM : TerrariaPlugin
 
         if (args.Parameters[0].Equals("all", StringComparison.OrdinalIgnoreCase))
         {
-            frePlayers.ForEach(x =>
+            frozenPlayers.ForEach(x =>
             {
                 var ts = this.BestFindPlayerByNameOrIndex(x.name);
                 if (ts.Count > 0 && ts[0].Name == x.name)
                 {
-                    this.clearAllBuffFromPlayer(ts[0]);
+                    ClearAllBuffFromPlayer(ts[0]);
                 }
             });
-            frePlayers.Clear();
+            frozenPlayers.Clear();
             args.Player.SendMessage(GetString("所有玩家均已解冻"), new Color(0, 255, 0));
             return;
         }
@@ -3950,19 +3903,12 @@ public partial class ZHIPM : TerrariaPlugin
         var ts = this.BestFindPlayerByNameOrIndex(args.Parameters[0]);
         if (ts.Count == 0)
         {
-            args.Player.SendInfoMessage(this.offlineplayer);
+            args.Player.SendInfoMessage(this.playerOfflineWarning);
             var user = TShock.UserAccounts.GetUserAccountByName(args.Parameters[0]);
             if (user != null)
             {
-                var c = frePlayers.RemoveAll(x => x.uuid == user.UUID || x.name == user.Name || (!string.IsNullOrEmpty(x.IPs) && !string.IsNullOrEmpty(user.KnownIps) && this.IPStostringIPs(x.IPs).Any(y => this.IPStostringIPs(user.KnownIps).Contains(y))) || (string.IsNullOrEmpty(x.IPs) && string.IsNullOrEmpty(user.KnownIps)));
-                if (c > 0)
-                {
-                    args.Player.SendMessage(GetString($"玩家 [{user.Name}] 已解冻"), new Color(0, 255, 0));
-                }
-                else
-                {
-                    args.Player.SendMessage(GetString($"玩家 [{user.Name}] 未被冻结！"), new Color(0, 255, 0));
-                }
+                var c = frozenPlayers.RemoveAll(x => x.uuid == user.UUID || x.name == user.Name || (!string.IsNullOrEmpty(x.IPs) && !string.IsNullOrEmpty(user.KnownIps) && ToIpStrings(x.IPs).Any(y => ToIpStrings(user.KnownIps).Contains(y))) || (string.IsNullOrEmpty(x.IPs) && string.IsNullOrEmpty(user.KnownIps)));
+                args.Player.SendMessage(c > 0 ? GetString($"玩家 [{user.Name}] 已解冻") : GetString($"玩家 [{user.Name}] 未被冻结！"), new Color(0, 255, 0));
             }
             else
             {
@@ -3970,37 +3916,30 @@ public partial class ZHIPM : TerrariaPlugin
                 var users = TShock.UserAccounts.GetUserAccountsByName(args.Parameters[0], true);
                 if (users.Count > 1)
                 {
-                    args.Player.SendInfoMessage(this.manyplayer);
+                    args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
                     return;
                 }
 
                 if (users.Count == 0)
                 {
-                    args.Player.SendInfoMessage(this.noplayer);
+                    args.Player.SendInfoMessage(this.nonExistPlayerWarning);
                     return;
                 }
 
-                var c = frePlayers.RemoveAll(x => x.uuid == users[0].UUID || x.name == users[0].Name || (!string.IsNullOrEmpty(x.IPs) && !string.IsNullOrEmpty(users[0].KnownIps) && this.IPStostringIPs(x.IPs).Any(y => this.IPStostringIPs(users[0].KnownIps).Contains(y))) || (string.IsNullOrEmpty(x.IPs) && string.IsNullOrEmpty(users[0].KnownIps)));
-                if (c > 0)
-                {
-                    args.Player.SendMessage(GetString($"玩家 [{users[0].Name}] 已解冻"), new Color(0, 255, 0));
-                }
-                else
-                {
-                    args.Player.SendMessage(GetString($"玩家 [{users[0].Name}] 未被冻结"), new Color(0, 255, 0));
-                }
+                var c = frozenPlayers.RemoveAll(x => x.uuid == users[0].UUID || x.name == users[0].Name || (!string.IsNullOrEmpty(x.IPs) && !string.IsNullOrEmpty(users[0].KnownIps) && ToIpStrings(x.IPs).Any(y => ToIpStrings(users[0].KnownIps).Contains(y))) || (string.IsNullOrEmpty(x.IPs) && string.IsNullOrEmpty(users[0].KnownIps)));
+                args.Player.SendMessage(c > 0 ? GetString($"玩家 [{users[0].Name}] 已解冻") : GetString($"玩家 [{users[0].Name}] 未被冻结"), new Color(0, 255, 0));
             }
         }
         else if (ts.Count > 1)
         {
-            args.Player.SendInfoMessage(this.manyplayer);
+            args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
         }
         else
         {
-            var c = frePlayers.RemoveAll(x => x.uuid == ts[0].UUID || x.name == ts[0].Name || (!string.IsNullOrEmpty(x.IPs) && !string.IsNullOrEmpty(ts[0].IP) && this.IPStostringIPs(x.IPs).Any(x => ts[0].IP == x)));
+            var c = frozenPlayers.RemoveAll(x => x.uuid == ts[0].UUID || x.name == ts[0].Name || (!string.IsNullOrEmpty(x.IPs) && !string.IsNullOrEmpty(ts[0].IP) && ToIpStrings(x.IPs).Any(y => ts[0].IP == y)));
             if (c > 0)
             {
-                this.clearAllBuffFromPlayer(ts[0]);
+                ClearAllBuffFromPlayer(ts[0]);
                 args.Player.SendMessage(GetString($"玩家 [{ts[0].Name}] 已解冻"), new Color(0, 255, 0));
                 ts[0].SendMessage(GetString("您已被解冻"), new Color(0, 255, 0));
             }
@@ -4199,16 +4138,12 @@ public partial class ZHIPM : TerrariaPlugin
                             TShock.Log.ConsoleError(GetString("错误的点数：") + point);
                         }
 
-                        x.point += point >= 0 && point < int.MaxValue ? point : 1;
+                        x.point += point is >= 0 and < int.MaxValue ? point : 1;
                     }
 
-                    if (x.killBossID.ContainsKey(134))
+                    if (!x.killBossID.TryAdd(134, 1))
                     {
                         x.killBossID[134]++;
-                    }
-                    else
-                    {
-                        x.killBossID.Add(134, 1);
                     }
 
                     var temp = this.BestFindPlayerByNameOrIndex(x.Name);
@@ -4230,7 +4165,7 @@ public partial class ZHIPM : TerrariaPlugin
 
             if (config.EnableBossDamageLeaderboard)
             {
-                this.SendKillBossMessage(args.npc.FullName, this.Destroyer, sum);
+                SendKillBossMessage(args.npc.FullName, this.Destroyer, sum);
             }
 
             this.Destroyer.Clear();
@@ -4281,16 +4216,12 @@ public partial class ZHIPM : TerrariaPlugin
                             TShock.Log.ConsoleError(GetString("错误的点数：") + point);
                         }
 
-                        x.point += point >= 0 && point < int.MaxValue ? point : 1;
+                        x.point += point is >= 0 and < int.MaxValue ? point : 1;
                     }
 
-                    if (x.killBossID.ContainsKey(113))
+                    if (!x.killBossID.TryAdd(113, 1))
                     {
                         x.killBossID[113]++;
-                    }
-                    else
-                    {
-                        x.killBossID.Add(113, 1);
                     }
 
                     var temp = this.BestFindPlayerByNameOrIndex(x.Name);
@@ -4312,7 +4243,7 @@ public partial class ZHIPM : TerrariaPlugin
 
             if (config.EnableBossDamageLeaderboard)
             {
-                this.SendKillBossMessage(GetString("血肉墙"), this.FleshWall, sum);
+                SendKillBossMessage(GetString("血肉墙"), this.FleshWall, sum);
             }
 
             this.FleshWall.Clear();
@@ -4376,16 +4307,12 @@ public partial class ZHIPM : TerrariaPlugin
                                             TShock.Log.ConsoleError(GetString("错误的点数：") + point);
                                         }
 
-                                        x.point += point >= 0 && point < int.MaxValue ? point : 1;
+                                        x.point += point is >= 0 and < int.MaxValue ? point : 1;
                                     }
 
-                                    if (x.killBossID.ContainsKey(13))
+                                    if (!x.killBossID.TryAdd(13, 1))
                                     {
                                         x.killBossID[13]++;
-                                    }
-                                    else
-                                    {
-                                        x.killBossID.Add(13, 1);
                                     }
 
                                     var temp = this.BestFindPlayerByNameOrIndex(x.Name);
@@ -4407,7 +4334,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                             if (config.EnableBossDamageLeaderboard)
                             {
-                                this.SendKillBossMessage(args.npc.FullName, this.Eaterworld, sum);
+                                SendKillBossMessage(args.npc.FullName, this.Eaterworld, sum);
                             }
 
                             strikeNPC.RemoveAll(x => x.id == 13 || x.id == 14 || x.id == 15 || x.id != Main.npc[x.index].netID || !Main.npc[x.index].active);
@@ -4422,7 +4349,7 @@ public partial class ZHIPM : TerrariaPlugin
                         var index = -1;
                         foreach (var n in Main.npc)
                         {
-                            if (n.whoAmI != args.npc.whoAmI && n.type == 492 && n.active)
+                            if (n.whoAmI != args.npc.whoAmI && n is { type: 492, active: true })
                             {
                                 flag = false;
                             }
@@ -4482,16 +4409,12 @@ public partial class ZHIPM : TerrariaPlugin
                                             TShock.Log.ConsoleError(GetString("错误的点数：") + point);
                                         }
 
-                                        x.point += point >= 0 && point < int.MaxValue ? point : 1;
+                                        x.point += point is >= 0 and < int.MaxValue ? point : 1;
                                     }
 
-                                    if (x.killBossID.ContainsKey(491))
+                                    if (!x.killBossID.TryAdd(491, 1))
                                     {
                                         x.killBossID[491]++;
-                                    }
-                                    else
-                                    {
-                                        x.killBossID.Add(491, 1);
                                     }
 
                                     var temp = this.BestFindPlayerByNameOrIndex(x.Name);
@@ -4513,7 +4436,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                             if (config.EnableBossDamageLeaderboard)
                             {
-                                this.SendKillBossMessage(airship.name, airship.playerAndDamage, airship.AllDamage);
+                                SendKillBossMessage(airship.name, airship.playerAndDamage, airship.AllDamage);
                             }
 
                             strikeNPC.RemoveAll(x => x.id == 491 || x.id == 492 || x.id != Main.npc[x.index].netID || !Main.npc[x.index].active);
@@ -4559,16 +4482,12 @@ public partial class ZHIPM : TerrariaPlugin
                                         TShock.Log.ConsoleError(GetString("错误的点数：") + point);
                                     }
 
-                                    x.point += point >= 0 && point < int.MaxValue ? point : 1;
+                                    x.point += point is >= 0 and < int.MaxValue ? point : 1;
                                 }
 
-                                if (x.killBossID.ContainsKey(398))
+                                if (!x.killBossID.TryAdd(398, 1))
                                 {
                                     x.killBossID[398]++;
-                                }
-                                else
-                                {
-                                    x.killBossID.Add(398, 1);
                                 }
 
                                 var temp = this.BestFindPlayerByNameOrIndex(x.Name);
@@ -4590,7 +4509,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                         if (config.EnableBossDamageLeaderboard)
                         {
-                            this.SendKillBossMessage(GetString("月亮领主"), strikeNPC[i].playerAndDamage, strikeNPC[i].AllDamage);
+                            SendKillBossMessage(GetString("月亮领主"), strikeNPC[i].playerAndDamage, strikeNPC[i].AllDamage);
                         }
 
                         strikeNPC.RemoveAll(x => x.id == 398 || x.id == 397 || x.id == 396 || x.id != Main.npc[x.index].netID || !Main.npc[x.index].active);
@@ -4657,16 +4576,12 @@ public partial class ZHIPM : TerrariaPlugin
                                             TShock.Log.ConsoleError(GetString("错误的点数：") + point);
                                         }
 
-                                        x.point += point >= 0 && point < int.MaxValue ? point : 1;
+                                        x.point += point is >= 0 and < int.MaxValue ? point : 1;
                                     }
 
-                                    if (x.killBossID.ContainsKey(127))
+                                    if (!x.killBossID.TryAdd(127, 1))
                                     {
                                         x.killBossID[127]++;
-                                    }
-                                    else
-                                    {
-                                        x.killBossID.Add(127, 1);
                                     }
 
                                     var temp = this.BestFindPlayerByNameOrIndex(x.Name);
@@ -4688,7 +4603,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                             if (config.EnableBossDamageLeaderboard)
                             {
-                                this.SendKillBossMessage(args.npc.FullName, strikeNPC[i].playerAndDamage, strikeNPC[i].AllDamage);
+                                SendKillBossMessage(args.npc.FullName, strikeNPC[i].playerAndDamage, strikeNPC[i].AllDamage);
                             }
 
                             strikeNPC.RemoveAll(x => x.id == 127 || x.id == 128 || x.id == 129 || x.id == 130 || x.id == 131 || x.id != Main.npc[x.index].netID || !Main.npc[x.index].active);
@@ -4756,16 +4671,12 @@ public partial class ZHIPM : TerrariaPlugin
                                             TShock.Log.ConsoleError(GetString("错误的点数：") + point);
                                         }
 
-                                        x.point += point >= 0 && point < int.MaxValue ? point : 1;
+                                        x.point += point is >= 0 and < int.MaxValue ? point : 1;
                                     }
 
-                                    if (x.killBossID.ContainsKey(245))
+                                    if (!x.killBossID.TryAdd(245, 1))
                                     {
                                         x.killBossID[245]++;
-                                    }
-                                    else
-                                    {
-                                        x.killBossID.Add(245, 1);
                                     }
 
                                     var temp = this.BestFindPlayerByNameOrIndex(x.Name);
@@ -4787,7 +4698,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                             if (config.EnableBossDamageLeaderboard)
                             {
-                                this.SendKillBossMessage(args.npc.FullName, strikeNPC[i].playerAndDamage, strikeNPC[i].AllDamage);
+                                SendKillBossMessage(args.npc.FullName, strikeNPC[i].playerAndDamage, strikeNPC[i].AllDamage);
                             }
 
                             strikeNPC.RemoveAll(x => x.id == 245 || x.id == 246 || x.id == 247 || x.id == 248 || x.id != Main.npc[x.index].netID || !Main.npc[x.index].active);
@@ -4853,16 +4764,12 @@ public partial class ZHIPM : TerrariaPlugin
                                             TShock.Log.ConsoleError(GetString("错误的点数：") + point);
                                         }
 
-                                        x.point += point >= 0 && point < int.MaxValue ? point : 1;
+                                        x.point += point is >= 0 and < int.MaxValue ? point : 1;
                                     }
 
-                                    if (x.killBossID.ContainsKey(266))
+                                    if (!x.killBossID.TryAdd(266, 1))
                                     {
                                         x.killBossID[266]++;
-                                    }
-                                    else
-                                    {
-                                        x.killBossID.Add(266, 1);
                                     }
 
                                     var temp = this.BestFindPlayerByNameOrIndex(x.Name);
@@ -4884,7 +4791,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                             if (config.EnableBossDamageLeaderboard)
                             {
-                                this.SendKillBossMessage(args.npc.FullName, strikeNPC[i].playerAndDamage, strikeNPC[i].AllDamage);
+                                SendKillBossMessage(args.npc.FullName, strikeNPC[i].playerAndDamage, strikeNPC[i].AllDamage);
                             }
 
                             strikeNPC.RemoveAll(x => x.id == 266 || x.id == 267 || x.id != Main.npc[x.index].netID || !Main.npc[x.index].active);
@@ -4896,11 +4803,6 @@ public partial class ZHIPM : TerrariaPlugin
                     {
                         foreach (var x in edPlayers)
                         {
-                            if (x == null)
-                            {
-                                continue;
-                            }
-
                             if (strikeNPC[i].playerAndDamage.TryGetValue(x.Account, out var value))
                             {
                                 x.killNPCnum++;
@@ -4919,36 +4821,28 @@ public partial class ZHIPM : TerrariaPlugin
                                         TShock.Log.ConsoleError(GetString("错误的点数：") + point);
                                     }
 
-                                    x.point += point >= 0 && point < int.MaxValue ? point : 1;
+                                    x.point += point is >= 0 and < int.MaxValue ? point : 1;
                                 }
 
                                 if (strikeNPC[i].isBoss)
                                 {
-                                    if (x.killBossID.ContainsKey(strikeNPC[i].id))
+                                    if (!x.killBossID.TryAdd(strikeNPC[i].id, 1))
                                     {
                                         x.killBossID[strikeNPC[i].id]++;
-                                    }
-                                    else
-                                    {
-                                        x.killBossID.Add(strikeNPC[i].id, 1);
                                     }
                                 }
 
                                 if (args.npc.rarity > 0 || (config.CreaturesTreatedAsRareForKills.Count > 0 && config.CreaturesTreatedAsRareForKills.Contains(args.npc.netID)))
                                 {
-                                    if (x.killRareNPCID.ContainsKey(strikeNPC[i].id))
+                                    if (!x.killRareNPCID.TryAdd(strikeNPC[i].id, 1))
                                     {
                                         x.killRareNPCID[strikeNPC[i].id]++;
-                                    }
-                                    else
-                                    {
-                                        x.killRareNPCID.Add(strikeNPC[i].id, 1);
                                     }
                                 }
 
                                 var temp = this.BestFindPlayerByNameOrIndex(x.Name);
 
-                                if (temp != null && temp.Count != 0)
+                                if (temp.Count != 0)
                                 {
                                     if (args.npc.rarity > 0)
                                     {
@@ -4980,7 +4874,7 @@ public partial class ZHIPM : TerrariaPlugin
 
                         if (config.EnableBossDamageLeaderboard && (args.npc.boss || args.npc.netID == 551 || args.npc.netID == 125 || args.npc.netID == 126 || config.AdditionalCreaturesForDamageLeaderboard.Contains(args.npc.netID)))
                         {
-                            this.SendKillBossMessage(args.npc.FullName, strikeNPC[i].playerAndDamage, strikeNPC[i].AllDamage);
+                            SendKillBossMessage(args.npc.FullName, strikeNPC[i].playerAndDamage, strikeNPC[i].AllDamage);
                         }
 
                         strikeNPC.RemoveAt(i);

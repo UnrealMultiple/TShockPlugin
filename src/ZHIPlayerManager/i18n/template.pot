@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ZHIPlayerManager\n"
-"POT-Creation-Date: 2025-01-05 00:53:26+0800\n"
-"PO-Revision-Date: 2025-01-05 00:53:27+0800\n"
+"POT-Creation-Date: 2025-01-05 10:56:13+0800\n"
+"PO-Revision-Date: 2025-01-05 10:56:13+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,466 +10,444 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../ZHIPM.Initialize.cs:2004
-#: ../../ZHIPM.Initialize.cs:2192
-msgid "   当前魔力值："
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:1707
-#: ../../ZHIPM.Initialize.cs:1895
-msgid "   当前魔力值[i:184]："
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2003
-#: ../../ZHIPM.Initialize.cs:2191
-msgid "   当前生命值："
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:1706
-#: ../../ZHIPM.Initialize.cs:1894
-msgid "   当前生命值[i:58]："
-msgstr ""
-
-#: ../../ZHIPM.Utils.cs:1112
+#: ../../ZHIPM.Utils.cs:1051
 msgid " 名字："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:5083
+#: ../../ZHIPM.Initialize.cs:4977
 #, csharp-format
 msgid "，消耗点数 {0}"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:1733
+#: ../../ZHIPM.Utils.cs:1660
 #, csharp-format
 msgid "{0}    伤害: [c/74F3C9:{1}]    比重: {2:0.00%} "
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2812
+#: ../../ZHIPM.Initialize.cs:2758
 #, csharp-format
 msgid ""
 "{0} 名用户因数据残缺导出失败\n"
-"已全部打包为{1}/Zhipm/{2}.zip"
+"已全部打包为{0}/Zhipm/{1}.zip"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2794
+#: ../../ZHIPM.Initialize.cs:2740
 #, csharp-format
 msgid "{0} 名用户因数据错误导出失败"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3800
+#: ../../ZHIPM.Initialize.cs:3751
 #, csharp-format
 msgid "{0}。若玩家名称带有空格可用英文引号将名称整个括起来"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:928
+#: ../../ZHIPM.Utils.cs:879
 #, csharp-format
 msgid "{0}[i:74] {1}[i:73] {2}[i:72] {3}[i:71]"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:929
+#: ../../ZHIPM.Utils.cs:880
 #, csharp-format
 msgid "{0}铂金币  {1}金币  {2}银币  {3}铜币"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:908
+#: ../../ZHIPM.Utils.cs:859
 #, csharp-format
 msgid "{0}小时 {1}分钟 {2}秒"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2917
+#: ../../ZHIPM.Initialize.cs:2867
 msgid ""
 "\n"
-"输入 /zsort clumsy  来查看人物手残排行榜前十名\n"
+"输入 /zsort clumsy 来查看人物手残排行榜前十名\n"
+"输入 /zsort clumsy [num] 来查看当前[num]个人物手残排行榜\n"
+"输入 /zsort clumsy all 来查看所有玩家手残排行榜\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2912
+#: ../../ZHIPM.Initialize.cs:2846
+#: ../../ZHIPM.Initialize.cs:2860
 msgid ""
 "\n"
-"输入 /zsort death [num]  来查看当前[num]个人物死亡次数排行榜\n"
+"输入 /zsort death [num] 来查看当前[num]个人物死亡次数排行榜\n"
+"输入 /zsort death 来查看人物死亡次数排行榜前十名\n"
+"输入 /zsort death all 来查看所有玩家死亡次数排行榜\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2896
+#: ../../ZHIPM.Initialize.cs:2839
+#: ../../ZHIPM.Initialize.cs:2853
 msgid ""
 "\n"
-"输入 /zsort kill [num]  来查看当前[num]个人物击杀生物数排行榜\n"
+"输入 /zsort point [num] 来查看当前[num]个人物点数排行榜\n"
+"输入 /zsort point 来查看人物点数排行榜前十名\n"
+"输入 /zsort point all 来查看所有玩家点数排行榜\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2907
-msgid ""
-"\n"
-"输入 /zsort point [num]  来查看当前[num]个人物点数排行榜\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:1389
+#: ../../ZHIPM.Initialize.cs:1365
 msgid "保险箱:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:5148
+#: ../../ZHIPM.Initialize.cs:5042
 msgid "备份存档数目最小为 1 ，请不要输入无效值，已修改为默认 5"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1293
+#: ../../ZHIPM.Initialize.cs:1283
 msgid "背包:"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:997
+#: ../../ZHIPM.Utils.cs:948
 #, csharp-format
 msgid "蹦跶{0}({1})，"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:703
+#: ../../ZHIPM.Initialize.cs:702
 msgid "不可预料的错误，请重试或让该玩家重进游戏"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2558
+#: ../../ZHIPM.Initialize.cs:2507
 msgid "不要耍小聪明"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3699
-#: ../../ZHIPM.Initialize.cs:3730
+#: ../../ZHIPM.Initialize.cs:3650
+#: ../../ZHIPM.Initialize.cs:3681
 msgid "参数过少"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1358
+#: ../../ZHIPM.Initialize.cs:1341
 msgid "宠物 + 矿车 + 坐骑 + 钩爪:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1364
+#: ../../ZHIPM.Initialize.cs:1347
 msgid "宠物 矿车 坐骑 钩爪 染料:"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:635
+#: ../../ZHIPM.Utils.cs:598
 msgid "错误 ResetPlayer ："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2817
+#: ../../ZHIPM.Initialize.cs:2764
 msgid "错误 ZhiExportPlayer ："
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:334
+#: ../../ZHIPM.DB.cs:214
 msgid "错误：AddZPlayerDB "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:355
+#: ../../ZHIPM.DB.cs:233
 msgid "错误：AddZPlayerDB 1 "
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:850
+#: ../../ZHIPM.Utils.cs:801
 msgid "错误：BackUp "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:378
+#: ../../ZHIPM.DB.cs:255
 msgid "错误：ClearALLZPlayerDB "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:580
+#: ../../ZHIPM.DB.cs:412
 msgid "错误：ClearALLZPlayerExtraDB "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:401
+#: ../../ZHIPM.DB.cs:275
 msgid "错误：ClearZPlayerDB "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:603
+#: ../../ZHIPM.DB.cs:432
 msgid "错误：ClearZPlayerExtraDB "
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:1111
+#: ../../ZHIPM.Utils.cs:1050
 msgid "错误：ExportPlayer "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:301
+#: ../../ZHIPM.DB.cs:185
 msgid "错误：getZPlayerDBMaxSlot "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:677
+#: ../../ZHIPM.DB.cs:504
 msgid "错误：ListAllExtraDB "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:485
+#: ../../ZHIPM.DB.cs:343
 msgid "错误：ReadExtraDB "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:146
+#: ../../ZHIPM.DB.cs:109
 msgid "错误：ReadZPlayerDB "
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:497
-msgid "错误：UpdateTshockDBCharac "
+#: ../../ZHIPM.Utils.cs:460
+msgid "错误：UpdateTshockDBCharacter "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:534
+#: ../../ZHIPM.DB.cs:379
 msgid "错误：WriteExtraDB "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:559
+#: ../../ZHIPM.DB.cs:391
 msgid "错误：WriteExtraDB 2 "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:218
+#: ../../ZHIPM.DB.cs:143
 msgid "错误：WriteZPlayerDB "
 msgstr ""
 
-#: ../../ZHIPM.DB.cs:268
+#: ../../ZHIPM.DB.cs:155
 msgid "错误：WriteZPlayerDB 2 "
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:4199
-#: ../../ZHIPM.Initialize.cs:4281
-#: ../../ZHIPM.Initialize.cs:4376
+#: ../../ZHIPM.Initialize.cs:4138
+#: ../../ZHIPM.Initialize.cs:4216
+#: ../../ZHIPM.Initialize.cs:4307
+#: ../../ZHIPM.Initialize.cs:4409
 #: ../../ZHIPM.Initialize.cs:4482
-#: ../../ZHIPM.Initialize.cs:4559
-#: ../../ZHIPM.Initialize.cs:4657
-#: ../../ZHIPM.Initialize.cs:4756
-#: ../../ZHIPM.Initialize.cs:4853
-#: ../../ZHIPM.Initialize.cs:4919
+#: ../../ZHIPM.Initialize.cs:4576
+#: ../../ZHIPM.Initialize.cs:4671
+#: ../../ZHIPM.Initialize.cs:4764
+#: ../../ZHIPM.Initialize.cs:4821
 msgid "错误的点数："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1333
+#: ../../ZHIPM.Initialize.cs:1316
 msgid "当前染料:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1308
+#: ../../ZHIPM.Initialize.cs:1291
 msgid "当前装备栏："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2979
-#: ../../ZHIPM.Initialize.cs:3065
-#: ../../ZHIPM.Initialize.cs:3157
-#: ../../ZHIPM.Initialize.cs:3230
-#: ../../ZHIPM.Initialize.cs:3306
-#: ../../ZHIPM.Initialize.cs:3382
-#: ../../ZHIPM.Initialize.cs:3457
-#: ../../ZHIPM.Initialize.cs:3532
-#: ../../ZHIPM.Initialize.cs:3629
+#: ../../ZHIPM.Initialize.cs:2932
+#: ../../ZHIPM.Initialize.cs:3012
+#: ../../ZHIPM.Initialize.cs:3092
+#: ../../ZHIPM.Initialize.cs:3167
+#: ../../ZHIPM.Initialize.cs:3245
+#: ../../ZHIPM.Initialize.cs:3323
+#: ../../ZHIPM.Initialize.cs:3400
+#: ../../ZHIPM.Initialize.cs:3477
+#: ../../ZHIPM.Initialize.cs:3576
 #, csharp-format
 msgid "当前最多 {0} 人"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2840
-#: ../../ZHIPM.Initialize.cs:2841
-#: ../../ZHIPM.Initialize.cs:2864
-#: ../../ZHIPM.Initialize.cs:2865
+#: ../../ZHIPM.Initialize.cs:2787
+#: ../../ZHIPM.Initialize.cs:2788
+#: ../../ZHIPM.Initialize.cs:2811
+#: ../../ZHIPM.Initialize.cs:2812
 #, csharp-format
 msgid "导出成功！目录：tshock/Zhipm/{0}/{1}.plr"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2869
-#: ../../ZHIPM.Initialize.cs:2870
+#: ../../ZHIPM.Initialize.cs:2816
+#: ../../ZHIPM.Initialize.cs:2817
 msgid "导出失败，因输入错误"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2845
-#: ../../ZHIPM.Initialize.cs:2846
+#: ../../ZHIPM.Initialize.cs:2792
+#: ../../ZHIPM.Initialize.cs:2793
 msgid "导出失败，因数据错误"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3605
-#: ../../ZHIPM.Initialize.cs:3609
-#: ../../ZHIPM.Initialize.cs:3637
-#: ../../ZHIPM.Initialize.cs:3641
-#: ../../ZHIPM.Initialize.cs:3655
-#: ../../ZHIPM.Initialize.cs:3659
+#: ../../ZHIPM.Initialize.cs:3552
+#: ../../ZHIPM.Initialize.cs:3556
+#: ../../ZHIPM.Initialize.cs:3584
+#: ../../ZHIPM.Initialize.cs:3588
+#: ../../ZHIPM.Initialize.cs:3602
+#: ../../ZHIPM.Initialize.cs:3606
 #, csharp-format
 msgid "第 {0} 名:【{1}】 菜鸡值 {2:0.00}"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3463
-#: ../../ZHIPM.Initialize.cs:3474
+#: ../../ZHIPM.Initialize.cs:3406
+#: ../../ZHIPM.Initialize.cs:3417
 #, csharp-format
 msgid "第 {0} 名:【{1}】 点数 {2}"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3438
+#: ../../ZHIPM.Initialize.cs:3381
 #, csharp-format
 msgid "第 {0} 名:【{1}】 点数 {2} "
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3363
-#: ../../ZHIPM.Initialize.cs:3388
-#: ../../ZHIPM.Initialize.cs:3399
+#: ../../ZHIPM.Initialize.cs:3304
+#: ../../ZHIPM.Initialize.cs:3329
+#: ../../ZHIPM.Initialize.cs:3340
 #, csharp-format
 msgid "第 {0} 名:【{1}】 击杀罕见生物总数 {2} 个"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3211
-#: ../../ZHIPM.Initialize.cs:3236
-#: ../../ZHIPM.Initialize.cs:3247
+#: ../../ZHIPM.Initialize.cs:3148
+#: ../../ZHIPM.Initialize.cs:3173
+#: ../../ZHIPM.Initialize.cs:3184
 #, csharp-format
 msgid "第 {0} 名:【{1}】 击杀生物总数 {2} 个"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3287
-#: ../../ZHIPM.Initialize.cs:3312
-#: ../../ZHIPM.Initialize.cs:3323
+#: ../../ZHIPM.Initialize.cs:3226
+#: ../../ZHIPM.Initialize.cs:3251
+#: ../../ZHIPM.Initialize.cs:3262
 #, csharp-format
 msgid "第 {0} 名:【{1}】 击杀Boss总数 {2} 个"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3538
-#: ../../ZHIPM.Initialize.cs:3549
+#: ../../ZHIPM.Initialize.cs:3483
+#: ../../ZHIPM.Initialize.cs:3494
 #, csharp-format
 msgid "第 {0} 名:【{1}】 死亡次数 {2}"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3513
+#: ../../ZHIPM.Initialize.cs:3458
 #, csharp-format
 msgid "第 {0} 名:【{1}】 死亡次数 {2} "
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2960
-#: ../../ZHIPM.Initialize.cs:2985
-#: ../../ZHIPM.Initialize.cs:2996
+#: ../../ZHIPM.Initialize.cs:2913
+#: ../../ZHIPM.Initialize.cs:2938
+#: ../../ZHIPM.Initialize.cs:2949
 #, csharp-format
 msgid "第 {0} 名:【{1}】 在线时长 {2}"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3138
-#: ../../ZHIPM.Initialize.cs:3163
-#: ../../ZHIPM.Initialize.cs:3174
+#: ../../ZHIPM.Initialize.cs:3073
+#: ../../ZHIPM.Initialize.cs:3098
+#: ../../ZHIPM.Initialize.cs:3109
 #, csharp-format
 msgid "第 {0} 名:【{1}】 总完成任务鱼数 {2}"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3041
-#: ../../ZHIPM.Initialize.cs:3045
-#: ../../ZHIPM.Initialize.cs:3073
-#: ../../ZHIPM.Initialize.cs:3077
-#: ../../ZHIPM.Initialize.cs:3091
-#: ../../ZHIPM.Initialize.cs:3095
+#: ../../ZHIPM.Initialize.cs:2993
+#: ../../ZHIPM.Initialize.cs:3018
+#: ../../ZHIPM.Initialize.cs:3029
 #, csharp-format
 msgid "第 {0} 名:【{1}】 总硬币数 {2}"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2114
-#: ../../ZHIPM.Initialize.cs:2284
+#: ../../ZHIPM.Initialize.cs:2069
+#: ../../ZHIPM.Initialize.cs:2231
 msgid "点数："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1821
-#: ../../ZHIPM.Initialize.cs:1987
+#: ../../ZHIPM.Initialize.cs:1776
+#: ../../ZHIPM.Initialize.cs:1942
 msgid "点数[i:575]："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:5094
+#: ../../ZHIPM.Initialize.cs:4988
 msgid "点数不足，无法回溯上次死亡地点"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2386
+#: ../../ZHIPM.Initialize.cs:2335
 msgid "点数奖励 + 1000"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:113
-#: ../../ZHIPM.Initialize.cs:155
-#: ../../ZHIPM.Initialize.cs:202
-#: ../../ZHIPM.Initialize.cs:363
-#: ../../ZHIPM.Initialize.cs:2682
-#: ../../ZHIPM.Initialize.cs:5065
+#: ../../ZHIPM.Initialize.cs:116
+#: ../../ZHIPM.Initialize.cs:158
+#: ../../ZHIPM.Initialize.cs:198
+#: ../../ZHIPM.Initialize.cs:361
+#: ../../ZHIPM.Initialize.cs:2627
+#: ../../ZHIPM.Initialize.cs:4959
 msgid "对象不正确，请检查您的状态，您是否为游戏内玩家？"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1288
+#: ../../ZHIPM.Initialize.cs:1279
 #, csharp-format
 msgid "多个结果  玩家 【{0}】 的所有库存如下:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1503
-#: ../../ZHIPM.Initialize.cs:1586
+#: ../../ZHIPM.Initialize.cs:1458
+#: ../../ZHIPM.Initialize.cs:1541
 #, csharp-format
 msgid ""
 "多个结果  玩家 【{0}】 的所有库存如下:\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1891
-#: ../../ZHIPM.Initialize.cs:2188
+#: ../../ZHIPM.Initialize.cs:1846
+#: ../../ZHIPM.Initialize.cs:2136
 #, csharp-format
 msgid "多个结果  玩家 【{0}】 的状态如下:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1661
+#: ../../ZHIPM.Initialize.cs:1616
 #, csharp-format
 msgid "多个结果 玩家 【{0}】 的所有库存如下:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2313
-#: ../../ZHIPM.Initialize.cs:2316
+#: ../../ZHIPM.Initialize.cs:2260
+#: ../../ZHIPM.Initialize.cs:2263
 msgid "服务器将在20秒后清理世界内所有无用NPC，射弹和物品"
 msgstr ""
 
-#: ../../ZHIPM.cs:62
+#: ../../ZHIPM.cs:63
 msgid "该玩家不存在，请重新输入"
 msgstr ""
 
-#: ../../ZHIPM.cs:63
+#: ../../ZHIPM.cs:64
 msgid "该玩家不唯一，请重新输入"
 msgstr ""
 
-#: ../../ZHIPM.cs:64
+#: ../../ZHIPM.cs:65
 msgid "该玩家不在线，正在查询离线数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2337
+#: ../../ZHIPM.Initialize.cs:2284
 msgid "该玩家不在线或不存在"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:306
+#: ../../ZHIPM.Initialize.cs:302
 msgid "该玩家还未备份"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:648
-#: ../../ZHIPM.Initialize.cs:709
-#: ../../ZHIPM.Initialize.cs:806
-#: ../../ZHIPM.Initialize.cs:863
+#: ../../ZHIPM.Initialize.cs:649
+#: ../../ZHIPM.Initialize.cs:708
+#: ../../ZHIPM.Initialize.cs:859
 msgid "格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1732
-#: ../../ZHIPM.Initialize.cs:1898
-#: ../../ZHIPM.Initialize.cs:2025
-#: ../../ZHIPM.Initialize.cs:2195
+#: ../../ZHIPM.Initialize.cs:1687
+#: ../../ZHIPM.Initialize.cs:1853
+#: ../../ZHIPM.Initialize.cs:1980
+#: ../../ZHIPM.Initialize.cs:2142
 msgid "各种永久增益："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2007
+#: ../../ZHIPM.Initialize.cs:1962
 msgid "各种buff："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1710
+#: ../../ZHIPM.Initialize.cs:1665
 msgid "各种buff[i:678]："
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:1710
+#: ../../ZHIPM.Utils.cs:1637
 #, csharp-format
 msgid "共有 [c/74F3C9:{0}] 位玩家击败了 [c/74F3C9:{1}]"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1402
+#: ../../ZHIPM.Initialize.cs:1371
 msgid "护卫熔炉:"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:844
+#: ../../ZHIPM.Utils.cs:795
 msgid "回档失败！"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:887
+#: ../../ZHIPM.Utils.cs:838
 msgid "回档失败！未备份数据或该玩家未登录"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:834
+#: ../../ZHIPM.Utils.cs:785
 #, csharp-format
 msgid "回档失败！未找到 [{0} - {1}] 号该备份"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:802
+#: ../../ZHIPM.Utils.cs:753
 msgid ""
 "检测到符合该条件的玩家数目不唯一，请重新输入\n"
 "包含："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3787
-#: ../../ZHIPM.Initialize.cs:3878
-#: ../../ZHIPM.Initialize.cs:3969
+#: ../../ZHIPM.Initialize.cs:3738
+#: ../../ZHIPM.Initialize.cs:3831
+#: ../../ZHIPM.Initialize.cs:3915
 msgid "精准查找未找到，正在尝试模糊查找"
 msgstr ""
 
@@ -483,143 +461,143 @@ msgstr ""
 msgid "克隆成功！您已将玩家 [{0}] 的数据克隆到你身上"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:534
-#: ../../ZHIPM.Initialize.cs:589
+#: ../../ZHIPM.Initialize.cs:532
+#: ../../ZHIPM.Initialize.cs:586
 #, csharp-format
 msgid "克隆成功！您已将玩家 [{0}] 的数据克隆到玩家 [{1}] 身上"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:492
+#: ../../ZHIPM.Initialize.cs:491
 #, csharp-format
 msgid "克隆成功！您已将玩家 [{0}] 的数据克隆到玩家 [{1}]身上"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:394
-#: ../../ZHIPM.Initialize.cs:415
+#: ../../ZHIPM.Initialize.cs:392
+#: ../../ZHIPM.Initialize.cs:413
 #, csharp-format
 msgid "克隆成功！您已将玩家[{0}]的数据克隆到你身上"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:496
+#: ../../ZHIPM.Initialize.cs:495
 #, csharp-format
 msgid "克隆成功！已将玩家 [{0}] 的数据克隆到你身上"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:357
+#: ../../ZHIPM.Initialize.cs:355
 msgid "克隆失败！请不要克隆自己"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:398
-#: ../../ZHIPM.Initialize.cs:419
+#: ../../ZHIPM.Initialize.cs:396
+#: ../../ZHIPM.Initialize.cs:417
 #: ../../ZHIPM.Initialize.cs:458
-#: ../../ZHIPM.Initialize.cs:501
-#: ../../ZHIPM.Initialize.cs:538
-#: ../../ZHIPM.Initialize.cs:593
+#: ../../ZHIPM.Initialize.cs:500
+#: ../../ZHIPM.Initialize.cs:536
+#: ../../ZHIPM.Initialize.cs:590
 msgid "克隆失败！未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2006
-#: ../../ZHIPM.Initialize.cs:2194
+#: ../../ZHIPM.Initialize.cs:1961
+#: ../../ZHIPM.Initialize.cs:2141
 msgid "库存硬币数："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1709
-#: ../../ZHIPM.Initialize.cs:1897
+#: ../../ZHIPM.Initialize.cs:1664
+#: ../../ZHIPM.Initialize.cs:1852
 msgid "库存硬币数[i:855]："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1307
+#: ../../ZHIPM.Initialize.cs:1290
 msgid "盔甲 + 饰品 + 时装:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1370
+#: ../../ZHIPM.Initialize.cs:1353
 msgid "垃圾桶:"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:1112
+#: ../../ZHIPM.Utils.cs:1051
 msgid "路径："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2947
-#: ../../ZHIPM.Initialize.cs:3023
-#: ../../ZHIPM.Initialize.cs:3123
-#: ../../ZHIPM.Initialize.cs:3198
-#: ../../ZHIPM.Initialize.cs:3271
-#: ../../ZHIPM.Initialize.cs:3347
-#: ../../ZHIPM.Initialize.cs:3423
-#: ../../ZHIPM.Initialize.cs:3498
-#: ../../ZHIPM.Initialize.cs:3573
+#: ../../ZHIPM.Initialize.cs:2900
+#: ../../ZHIPM.Initialize.cs:2977
+#: ../../ZHIPM.Initialize.cs:3058
+#: ../../ZHIPM.Initialize.cs:3135
+#: ../../ZHIPM.Initialize.cs:3210
+#: ../../ZHIPM.Initialize.cs:3288
+#: ../../ZHIPM.Initialize.cs:3366
+#: ../../ZHIPM.Initialize.cs:3443
+#: ../../ZHIPM.Initialize.cs:3520
 msgid "没有任何数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2597
+#: ../../ZHIPM.Initialize.cs:2542
 msgid "你的名字含有指令关键字: all ，请更换"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2605
+#: ../../ZHIPM.Initialize.cs:2550
 msgid "你的名字含有指令关键字: help ，请更换"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2617
+#: ../../ZHIPM.Initialize.cs:2562
 msgid "你的名字含有指令关键字: ip ，请更换"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2609
+#: ../../ZHIPM.Initialize.cs:2554
 msgid "你的名字含有指令关键字: me ，请更换"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2601
+#: ../../ZHIPM.Initialize.cs:2546
 msgid "你的名字含有指令关键字: time ，请更换"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2613
+#: ../../ZHIPM.Initialize.cs:2558
 msgid "你的名字含有指令关键字: uuid ，请更换"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:5076
+#: ../../ZHIPM.Initialize.cs:4970
 msgid "你没有上次死亡的地点"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3703
-#: ../../ZHIPM.Initialize.cs:3734
+#: ../../ZHIPM.Initialize.cs:3654
+#: ../../ZHIPM.Initialize.cs:3685
 msgid "你已被管理员封禁！"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:740
+#: ../../ZHIPM.Initialize.cs:738
 msgid "您的埃癸斯果增益开启状态："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:734
+#: ../../ZHIPM.Initialize.cs:733
 msgid "您的埃癸斯水晶增益开启状态："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:746
+#: ../../ZHIPM.Initialize.cs:743
 msgid "您的奥术水晶增益开启状态："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:240
+#: ../../ZHIPM.Initialize.cs:236
 #, csharp-format
 msgid ""
 "您的备份[{0} - {1}]的内容为：\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:125
+#: ../../ZHIPM.Initialize.cs:128
 msgid "您的备份保存成功！"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:129
+#: ../../ZHIPM.Initialize.cs:132
 msgid "您的备份保存失败！请尝试重进游戏重试"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:968
+#: ../../ZHIPM.Initialize.cs:967
 msgid "您的备份数据已重置"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:770
+#: ../../ZHIPM.Initialize.cs:763
 msgid "您的超级矿车增益开启状态："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:699
+#: ../../ZHIPM.Initialize.cs:698
 msgid "您的点数已被修改为："
 msgstr ""
 
@@ -627,7 +605,7 @@ msgstr ""
 msgid "您的额外数据已重置"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:722
+#: ../../ZHIPM.Initialize.cs:723
 msgid "您的恶魔心增益开启状态："
 msgstr ""
 
@@ -635,19 +613,19 @@ msgstr ""
 msgid "您的工匠面包增益开启状态："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:716
+#: ../../ZHIPM.Initialize.cs:718
 msgid "您的火把神增益开启状态："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:685
+#: ../../ZHIPM.Initialize.cs:683
 msgid "您的魔力上限已被修改为："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:679
+#: ../../ZHIPM.Initialize.cs:678
 msgid "您的魔力值已被修改为："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1172
+#: ../../ZHIPM.Initialize.cs:1169
 msgid "您的人物数据已被重置"
 msgstr ""
 
@@ -655,72 +633,72 @@ msgstr ""
 msgid "您的生命上限已被修改为："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:802
+#: ../../ZHIPM.Initialize.cs:794
 msgid "您的所有永久增益均关闭"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:787
+#: ../../ZHIPM.Initialize.cs:780
 msgid "您的所有永久增益均开启"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:752
+#: ../../ZHIPM.Initialize.cs:748
 msgid "您的银河珍珠增益开启状态："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:691
+#: ../../ZHIPM.Initialize.cs:688
 msgid "您的渔夫任务完成数已被修改为："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:758
+#: ../../ZHIPM.Initialize.cs:753
 msgid "您的粘性蠕虫增益开启状态："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:764
+#: ../../ZHIPM.Initialize.cs:758
 msgid "您的珍馐增益开启状态："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:226
+#: ../../ZHIPM.Initialize.cs:222
 msgid "您还未备份"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:5032
+#: ../../ZHIPM.Initialize.cs:4926
 #, csharp-format
 msgid "您遗失了：{0} 点数"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:5037
+#: ../../ZHIPM.Initialize.cs:4931
 #, csharp-format
 msgid "您遗失了：{0} 点数，已扣完"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2537
+#: ../../ZHIPM.Initialize.cs:2486
 msgid "您已被冻结"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2536
+#: ../../ZHIPM.Initialize.cs:2485
 msgid "您已被冻结，详情请询问管理员"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:4005
+#: ../../ZHIPM.Initialize.cs:3944
 msgid "您已被解冻"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:865
-#: ../../ZHIPM.Utils.cs:878
+#: ../../ZHIPM.Utils.cs:816
+#: ../../ZHIPM.Utils.cs:829
 msgid "您已回档成功！"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2389
+#: ../../ZHIPM.Initialize.cs:2338
 msgid "您已经在线了 "
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2693
-#: ../../ZHIPM.Initialize.cs:2704
+#: ../../ZHIPM.Initialize.cs:2638
+#: ../../ZHIPM.Initialize.cs:2649
 msgid "启用"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1211
-#: ../../ZHIPM.Initialize.cs:1212
+#: ../../ZHIPM.Initialize.cs:1208
+#: ../../ZHIPM.Initialize.cs:1209
 msgid "清理失败 ZResetPlayerAll :"
 msgstr ""
 
@@ -728,307 +706,124 @@ msgstr ""
 msgid "请不要对同一个人进行克隆"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2589
-msgid "请不要起纯数字名字"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2585
+#: ../../ZHIPM.Initialize.cs:2534
 msgid "请不要起空名字"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2593
+#: ../../ZHIPM.Initialize.cs:2538
 msgid "请不要在名字中使用特殊符号"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1339
+#: ../../ZHIPM.Initialize.cs:1322
 msgid "染料1:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1345
+#: ../../ZHIPM.Initialize.cs:1328
 msgid "染料2:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1351
+#: ../../ZHIPM.Initialize.cs:1334
 msgid "染料3:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3795
+#: ../../ZHIPM.Initialize.cs:3746
 msgid "人数不唯一，为避免误封，请重新输入。若玩家名称带有空格可用英文引号将名称整个括起来"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1236
+#: ../../ZHIPM.Initialize.cs:1233
 msgid "输入 /vi <玩家名>  来查看该玩家的库存"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:39
-msgid ""
-"输入 /vi <name>    来查看该玩家的库存\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:1528
+#: ../../ZHIPM.Initialize.cs:1483
 msgid "输入 /vid <玩家名>  来查看该玩家的库存，不进行排列"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:40
-msgid ""
-"输入 /vid <name>    来查看该玩家的库存，不分类\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:1687
+#: ../../ZHIPM.Initialize.cs:1642
 msgid "输入 /vs <玩家名>  来查看该玩家的状态"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:41
-msgid ""
-"输入 /vs <name>    来查看该玩家的状态\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:42
-msgid ""
-"输入 /vs me    来查看自己的状态\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:34
-msgid ""
-"输入 /zback <name>    来读取该玩家的人物存档\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:80
-#: ../../ZHIPM.Initialize.cs:94
+#: ../../ZHIPM.Initialize.cs:81
+#: ../../ZHIPM.Initialize.cs:96
 msgid ""
 "输入 /zback <name>  来读取该玩家的最新人物存档\n"
 "输入 /zback <name> <num>  来读取该玩家的第几个人物存档"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:35
+#: ../../ZHIPM.Initialize.cs:3791
 msgid ""
-"输入 /zback <name> <num>    来读取该玩家的第几个人物存档\n"
+"输入 /zban add [name] [reason] 来封禁无论是否在线的玩家，reason 可不填\n"
+"输入 /zban add uuid [uuid] [reason] 来封禁uuid\n"
+"输入 /zban add ip [ip] [reason] 来封禁ip\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3839
+#: ../../ZHIPM.Initialize.cs:3637
 msgid ""
-"输入 /zban add [name] [reason]  来封禁无论是否在线的玩家，reason 可不填\n"
+"输入 /zban add <name> [reason] 来封禁无论是否在线的玩家，reason 可不填\n"
+"输入 /zban add uuid <uuid> [reason] 来封禁uuid\n"
+"输入 /zban add ip <ip> [reason] 来封禁ip\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3687
-msgid ""
-"输入 /zban add <name> [reason]  来封禁无论是否在线的玩家，reason 可不填\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:50
-msgid ""
-"输入 /zban add <name> <reason>  来封禁无论是否在线的玩家，reason 可不填\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3841
-msgid "输入 /zban add ip [ip] [reason]  来封禁ip"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3689
-msgid "输入 /zban add ip <ip> [reason]  来封禁ip"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:52
-msgid ""
-"输入 /zban add ip <ip> <reason>  来封禁ip\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3840
-msgid ""
-"输入 /zban add uuid [uuid] [reason]  来封禁uuid\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3688
-msgid ""
-"输入 /zban add uuid <uuid> [reason]  来封禁uuid\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:51
-msgid ""
-"输入 /zban add uuid <uuid> <reason>  来封禁uuid\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:5057
+#: ../../ZHIPM.Initialize.cs:4951
 msgid "输入 /zbpos  来返回上次死亡地点"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:56
-msgid ""
-"输入 /zbpos  来返回上次死亡地点\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:54
-msgid ""
-"输入 /zclear buff <name>  来清理该玩家的所有Buff\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:55
-msgid ""
-"输入 /zclear buff all  来清理所有玩家所有Buff\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:53
-msgid ""
-"输入 /zclear useless  来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2304
-#: ../../ZHIPM.Initialize.cs:2351
+#: ../../ZHIPM.Initialize.cs:2251
+#: ../../ZHIPM.Initialize.cs:2298
 msgid ""
 "输入 /zclear useless  来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n"
 "输入 /zclear buff <name>  来清理该玩家的所有Buff\n"
 "输入 /zclear buff all  来清理所有玩家所有Buff"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:349
+#: ../../ZHIPM.Initialize.cs:346
 msgid ""
 "输入 /zclone [name1] [name2]  将玩家1的人物数据复制给玩家2\n"
 "输入 /zclone [name]  将该玩家的人物数据复制给自己"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:37
-msgid ""
-"输入 /zclone <name>    将该玩家的人物数据复制给自己\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:36
-msgid ""
-"输入 /zclone <name1> <name2>    将玩家1的人物数据复制给玩家2\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3855
+#: ../../ZHIPM.Initialize.cs:3808
 msgid "输入 /zfre [name]  来冻结该玩家"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:43
-msgid ""
-"输入 /zfre <name>    来冻结该玩家\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:24
+#: ../../ZHIPM.Initialize.cs:26
 msgid "输入 /zhelp  来查看指令帮助"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:32
-msgid ""
-"输入 /zhide kill  来取消 kill + 1 的显示，再次使用启用显示\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2676
-#: ../../ZHIPM.Initialize.cs:2718
+#: ../../ZHIPM.Initialize.cs:2621
+#: ../../ZHIPM.Initialize.cs:2663
 msgid ""
 "输入 /zhide kill  来取消 kill + 1 的显示，再次使用启用显示\n"
 "输入 /zhide point  来取消 + 1 $ 的显示，再次使用启用显示"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:33
-msgid ""
-"输入 /zhide point  来取消 + 1 $ 的显示，再次使用启用显示\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:632
-msgid "输入 /zmodify [name] all [0或1]  来关闭或开启所有玩家增益"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:630
-msgid ""
-"输入 /zmodify [name] ambrosia [0或1]  来关闭或开启珍馐增益\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:625
-msgid ""
-"输入 /zmodify [name] bread [0或1]  来关闭或开启工匠面包增益\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:631
-msgid ""
-"输入 /zmodify [name] cart [0或1]  来关闭或开启超级矿车增益\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:624
-msgid ""
-"输入 /zmodify [name] demmon [0或1]  来关闭或开启恶魔心增益\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:622
-msgid ""
-"输入 /zmodify [name] fish [num]  来修改玩家的渔夫任务数\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:627
-msgid ""
-"输入 /zmodify [name] fruit [0或1]  来关闭或开启埃癸斯果增益\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:626
-msgid ""
-"输入 /zmodify [name] heart [0或1]  来关闭或开启埃癸斯水晶增益\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:618
-msgid ""
-"输入 /zmodify [name] life [num]  来修改玩家的血量\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:619
-msgid ""
-"输入 /zmodify [name] lifemax [num]  来修改玩家的血量上限\n"
-msgstr ""
-
 #: ../../ZHIPM.Initialize.cs:620
 msgid ""
-"输入 /zmodify [name] mana [num]  来修改玩家的魔力\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:621
-msgid ""
-"输入 /zmodify [name] manamax [num]  来修改玩家的魔力上限\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:628
-msgid ""
-"输入 /zmodify [name] pearl [0或1]  来关闭或开启银河珍珠增益\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:623
-msgid ""
-"输入 /zmodify [name] torch [0或1]  来关闭或开启火把神增益\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:629
-msgid ""
-"输入 /zmodify [name] worm [0或1]  来关闭或开启粘性蠕虫增益\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:38
-msgid ""
-"输入 /zmodify help    查看修改玩家数据的指令帮助\n"
+"输入 /zmodify [name] life [num] 来修改玩家的血量\n"
+"输入 /zmodify [name] lifemax [num] 来修改玩家的血量上限\n"
+"输入 /zmodify [name] mana [num] 来修改玩家的魔力\n"
+"输入 /zmodify [name] manamax [num] 来修改玩家的魔力上限\n"
+"输入 /zmodify [name] fish [num] 来修改玩家的渔夫任务数\n"
+"输入 /zmodify [name] torch [0或1] 来关闭或开启火把神增益\n"
+"输入 /zmodify [name] demmon [0或1] 来关闭或开启恶魔心增益\n"
+"输入 /zmodify [name] bread [0或1] 来关闭或开启工匠面包增益\n"
+"输入 /zmodify [name] heart [0或1] 来关闭或开启埃癸斯水晶增益\n"
+"输入 /zmodify [name] fruit [0或1] 来关闭或开启埃癸斯果增益\n"
+"输入 /zmodify [name] pearl [0或1] 来关闭或开启银河珍珠增益\n"
+"输入 /zmodify [name] worm [0或1] 来关闭或开启粘性蠕虫增益\n"
+"输入 /zmodify [name] ambrosia [0或1] 来关闭或开启珍馐增益\n"
+"输入 /zmodify [name] cart [0或1] 来关闭或开启超级矿车增益\n"
+"输入 /zmodify [name] all [0或1] 来关闭或开启所有玩家增益"
 msgstr ""
 
 #: ../../ZHIPM.Initialize.cs:608
-#: ../../ZHIPM.Initialize.cs:637
+#: ../../ZHIPM.Initialize.cs:639
 msgid "输入 /zmodify help  查看修改玩家数据的指令帮助"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:47
-msgid ""
-"输入 /zout <name>  来导出该玩家的人物存档\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2731
+#: ../../ZHIPM.Initialize.cs:2676
 msgid ""
 "输入 /zout <name>  来导出该玩家的人物存档\n"
 "输入 /zout all  来导出所有人物的存档"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:48
-msgid ""
-"输入 /zout all  来导出所有人物的存档并压缩打包\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:1102
-msgid ""
-"输入 /zreset <name>  来清理该玩家的人物数据\n"
 msgstr ""
 
 #: ../../ZHIPM.Initialize.cs:1091
@@ -1037,22 +832,11 @@ msgid ""
 "输入 /zreset all  来清理所有玩家的人物数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1103
-msgid ""
-"输入 /zreset all  来清理所有玩家的人物数据\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:49
-msgid ""
-"输入 /zreset help    来查看zreset系列指令帮助\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:1104
-#: ../../ZHIPM.Initialize.cs:1190
+#: ../../ZHIPM.Initialize.cs:1187
 msgid "输入 /zresetallplayers  来清理所有玩家的所有数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:931
+#: ../../ZHIPM.Initialize.cs:930
 msgid ""
 "输入 /zresetdb [name]  来清理该玩家的备份数据\n"
 "输入 /zresetdb all  来清理所有玩家的备份数据"
@@ -1060,297 +844,186 @@ msgstr ""
 
 #: ../../ZHIPM.Initialize.cs:1098
 msgid ""
-"输入 /zresetdb <name>  来清理该玩家的备份数据\n"
+"输入 /zresetdb <name> 来清理该玩家的备份数据\n"
+"输入 /zresetdb all 来清理所有玩家的备份数据\n"
+"输入 /zresetex <name> 来清理该玩家的额外数据\n"
+"输入 /zresetex all 来清理所有玩家的额外数据\n"
+"输入 /zreset <name> 来清理该玩家的人物数据\n"
+"输入 /zreset all 来清理所有玩家的人物数据\n"
+"输入 /zresetallplayers 来清理所有玩家的所有数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1099
-msgid ""
-"输入 /zresetdb all  来清理所有玩家的备份数据\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:1010
+#: ../../ZHIPM.Initialize.cs:1009
 msgid ""
 "输入 /zresetex [name]  来清理该玩家的额外数据\n"
 "输入 /zresetex all  来清理所有玩家的额外数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1100
-msgid ""
-"输入 /zresetex <name>  来清理该玩家的额外数据\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:1101
-msgid ""
-"输入 /zresetex all  来清理所有玩家的额外数据\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:28
-msgid ""
-"输入 /zsave    来备份自己的人物存档\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:107
+#: ../../ZHIPM.Initialize.cs:110
 msgid "输入 /zsave  来备份自己的人物存档"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:149
-#: ../../ZHIPM.Initialize.cs:186
+#: ../../ZHIPM.Initialize.cs:30
+msgid ""
+"输入 /zsave 来备份自己的人物存档\n"
+"输入 /zsaveauto <minute> 来每隔 minute 分钟自动备份自己的人物存档，当 minute为0时关闭该功能\n"
+"输入 /zvisa <num> 来查看自己的人物备份\n"
+"输入 /zvisa name <num> 来查看该玩家的第几个人物备份\n"
+"输入 /zhide kill 来取消 kill + 1 的显示，再次使用启用显示\n"
+"输入 /zhide point 来取消 + 1 $ 的显示，再次使用启用显示\n"
+"输入 /zback <name> 来读取该玩家的人物存档\n"
+"输入 /zback <name> <num> 来读取该玩家的第几个人物存档\n"
+"输入 /zclone <name1> <name2> 将玩家1的人物数据复制给玩家2\n"
+"输入 /zclone <name> 将该玩家的人物数据复制给自己\n"
+"输入 /zmodify help 查看修改玩家数据的指令帮助\n"
+"输入 /vi <name> 来查看该玩家的库存\n"
+"输入 /vid <name> 来查看该玩家的库存，不分类\n"
+"输入 /vs <name> 来查看该玩家的状态\n"
+"输入 /vs me 来查看自己的状态\n"
+"输入 /zfre <name> 来冻结该玩家\n"
+"输入 /zunfre <name> 来解冻该玩家\n"
+"输入 /zunfre all 来解冻所有玩家\n"
+"输入 /zsort help 来查看排序系列指令帮助\n"
+"输入 /zout <name> 来导出该玩家的人物存档\n"
+"输入 /zout all 来导出所有人物的存档并压缩打包\n"
+"输入 /zreset help 来查看zreset系列指令帮助\n"
+"输入 /zban add <name> <reason> 来封禁无论是否在线的玩家，reason 可不填\n"
+"输入 /zban add uuid <uuid> <reason> 来封禁uuid\n"
+"输入 /zban add ip <ip> <reason> 来封禁ip\n"
+"输入 /zclear useless 来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n"
+"输入 /zclear buff <name> 来清理该玩家的所有Buff\n"
+"输入 /zclear buff all 来清理所有玩家所有Buff\n"
+"输入 /zbpos 来返回上次死亡地点\n"
+msgstr ""
+
+#: ../../ZHIPM.Initialize.cs:152
+#: ../../ZHIPM.Initialize.cs:182
 msgid "输入 /zsaveauto [minute]  来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:29
-msgid ""
-"输入 /zsaveauto <minute>    来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2900
-msgid ""
-"输入 /zsort boss  来查看人物击杀Boss总数排行榜前十名\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2899
-msgid ""
-"输入 /zsort boss [num]  来查看当前[num]个人物击杀Boss总数排行榜\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3331
+#: ../../ZHIPM.Initialize.cs:3270
 msgid ""
 "输入 /zsort boss [num]  来查看当前[num]个人物击杀Boss总数排行榜\n"
 "输入 /zsort boss  来查看人物击杀Boss总数排行榜前十名\n"
 "输入 /zsort boss all  来查看所有玩家击杀Boss总数排行榜"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2901
-msgid ""
-"输入 /zsort boss all  来查看所有玩家击杀Boss总数排行榜\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3668
+#: ../../ZHIPM.Initialize.cs:3615
 msgid ""
 "输入 /zsort clumsy  来查看人物手残排行榜前十名\n"
 "输入 /zsort clumsy [num]  来查看当前[num]个人物手残排行榜\n"
 "输入 /zsort clumsy all  来查看所有玩家手残排行榜"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2918
-msgid ""
-"输入 /zsort clumsy [num]  来查看当前[num]个人物手残排行榜\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2919
-msgid "输入 /zsort clumsy all  来查看所有玩家手残排行榜"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2924
-msgid ""
-"输入 /zsort coin  来查看人物硬币数目排行榜前十名\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3104
+#: ../../ZHIPM.Initialize.cs:3037
 msgid ""
 "输入 /zsort coin  来查看人物硬币数目排行榜前十名\n"
 "输入 /zsort coin [num]  来查看当前[num]个人物硬币数目排行榜\n"
 "输入 /zsort coin all  来查看所有玩家硬币数目排行榜"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2925
+#: ../../ZHIPM.Initialize.cs:2876
 msgid ""
-"输入 /zsort coin [num]  来查看当前[num]个人物硬币数目排行榜\n"
+"输入 /zsort coin 来查看人物硬币数目排行榜前十名\n"
+"输入 /zsort coin [num] 来查看当前[num]个人物硬币数目排行榜\n"
+"输入 /zsort coin all 来查看所有玩家硬币数目排行榜\n"
+"输入 /zsort fish 来查看人物任务鱼数目排行榜前十名\n"
+"输入 /zsort fish [num] 来查看当前[num]个人物任务鱼数目排行榜\n"
+"输入 /zsort fish all 来查看所有玩家任务鱼数目排行榜\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2926
-msgid ""
-"输入 /zsort coin all  来查看所有玩家硬币数目排行榜\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2913
-msgid ""
-"输入 /zsort death  来查看人物死亡次数排行榜前十名\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3557
+#: ../../ZHIPM.Initialize.cs:3502
 msgid ""
 "输入 /zsort death [num]  来查看当前[num]个人物死亡次数排行榜\n"
 "输入 /zsort death  来查看人物死亡次数排行榜前十名\n"
 "输入 /zsort death all  来查看所有玩家死亡次数排行榜"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2914
-msgid "输入 /zsort death all  来查看所有玩家死亡次数排行榜"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2927
-msgid ""
-"输入 /zsort fish  来查看人物任务鱼数目排行榜前十名\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3182
+#: ../../ZHIPM.Initialize.cs:3117
 msgid ""
 "输入 /zsort fish  来查看人物任务鱼数目排行榜前十名\n"
 "输入 /zsort fish [num]  来查看当前[num]个人物任务鱼数目排行榜\n"
 "输入 /zsort fish all  来查看所有玩家任务鱼数目排行榜"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2928
-msgid ""
-"输入 /zsort fish [num]  来查看当前[num]个人物任务鱼数目排行榜\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2929
-msgid "输入 /zsort fish all  来查看所有玩家任务鱼数目排行榜"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:46
-msgid ""
-"输入 /zsort help    来查看排序系列指令帮助\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2883
-#: ../../ZHIPM.Initialize.cs:3674
+#: ../../ZHIPM.Initialize.cs:2830
+#: ../../ZHIPM.Initialize.cs:3623
 msgid "输入 /zsort help  来查看排序系列指令帮助"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2897
-msgid ""
-"输入 /zsort kill  来查看人物击杀生物数排行榜前十名\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3255
+#: ../../ZHIPM.Initialize.cs:3192
 msgid ""
 "输入 /zsort kill [num]  来查看当前[num]个人物击杀生物数排行榜\n"
 "输入 /zsort kill  来查看人物击杀生物数排行榜前十名\n"
 "输入 /zsort kill all  来查看所有玩家击杀生物数排行榜"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2898
-msgid ""
-"输入 /zsort kill all  来查看所有玩家击杀生物数排行榜\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2908
-msgid ""
-"输入 /zsort point  来查看人物点数排行榜前十名\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3482
+#: ../../ZHIPM.Initialize.cs:3425
 msgid ""
 "输入 /zsort point [num]  来查看当前[num]个人物点数排行榜\n"
 "输入 /zsort point  来查看人物点数排行榜前十名\n"
 "输入 /zsort point all  来查看所有玩家点数排行榜"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2909
-msgid "输入 /zsort point all  来查看所有玩家点数排行榜"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2903
-msgid ""
-"输入 /zsort rarenpc  来查看人物击杀罕见生物总数排行榜前十名\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2902
-msgid ""
-"输入 /zsort rarenpc [num]  来查看当前[num]个人物击杀罕见生物总数排行榜\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3407
+#: ../../ZHIPM.Initialize.cs:3348
 msgid ""
 "输入 /zsort rarenpc [num]  来查看当前[num]个人物击杀罕见生物总数排行榜\n"
 "输入 /zsort rarenpc  来查看人物击杀罕见生物总数排行榜前十名\n"
 "输入 /zsort rarenpc all  来查看所有玩家击杀罕见生物总数排行榜"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2904
-msgid "输入 /zsort rarenpc all  来查看所有玩家击杀罕见生物总数排行榜"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2891
-msgid ""
-"输入 /zsort time  来查看人物在线时间排行榜前十名\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:2892
-msgid ""
-"输入 /zsort time [num]  来查看当前[num]个人物在线时间排行榜\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3004
+#: ../../ZHIPM.Initialize.cs:2957
 msgid ""
 "输入 /zsort time [num]  来查看当前[num]个人物在线时间排行榜\n"
 "输入 /zsort time  来查看人物在线时间排行榜前十名\n"
 "输入 /zsort time all  来查看所有玩家在线时常排行榜"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2893
-msgid ""
-"输入 /zsort time all  来查看所有玩家在线时常排行榜\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:3931
+#: ../../ZHIPM.Initialize.cs:3884
 msgid ""
 "输入 /zunfre [name]  来解冻该玩家\n"
 "输入 /zunfre all  来解冻所有玩家"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:44
-msgid ""
-"输入 /zunfre <name>    来解冻该玩家\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:45
-msgid ""
-"输入 /zunfre all    来解冻所有玩家\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:336
+#: ../../ZHIPM.Initialize.cs:332
 msgid ""
 "输入 /zvisa [num] 来查看自己的第几个人物备份\n"
 "输入 /zvisa name [num] 来查看该玩家的第几个人物备份"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:30
-msgid ""
-"输入 /zvisa <num>    来查看自己的人物备份\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:31
-msgid ""
-"输入 /zvisa name <num>  来查看该玩家的第几个人物备份\n"
-msgstr ""
-
-#: ../../ZHIPM.Initialize.cs:5072
+#: ../../ZHIPM.Initialize.cs:4966
 msgid "数据异常，请重试"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:163
+#: ../../ZHIPM.Initialize.cs:166
 msgid "数字不合理"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2972
-#: ../../ZHIPM.Initialize.cs:3058
-#: ../../ZHIPM.Initialize.cs:3150
-#: ../../ZHIPM.Initialize.cs:3223
-#: ../../ZHIPM.Initialize.cs:3299
-#: ../../ZHIPM.Initialize.cs:3375
-#: ../../ZHIPM.Initialize.cs:3450
-#: ../../ZHIPM.Initialize.cs:3525
-#: ../../ZHIPM.Initialize.cs:3622
+#: ../../ZHIPM.Initialize.cs:2925
+#: ../../ZHIPM.Initialize.cs:3005
+#: ../../ZHIPM.Initialize.cs:3085
+#: ../../ZHIPM.Initialize.cs:3160
+#: ../../ZHIPM.Initialize.cs:3238
+#: ../../ZHIPM.Initialize.cs:3316
+#: ../../ZHIPM.Initialize.cs:3393
+#: ../../ZHIPM.Initialize.cs:3470
+#: ../../ZHIPM.Initialize.cs:3569
 msgid "数字无效"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2102
-#: ../../ZHIPM.Initialize.cs:2272
+#: ../../ZHIPM.Initialize.cs:2057
+#: ../../ZHIPM.Initialize.cs:2219
 msgid "死亡次数："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1809
-#: ../../ZHIPM.Initialize.cs:1975
+#: ../../ZHIPM.Initialize.cs:1764
+#: ../../ZHIPM.Initialize.cs:1930
 msgid "死亡次数[i:321]："
 msgstr ""
 
+#: ../../ZHIPM.Initialize.cs:940
 #: ../../ZHIPM.Initialize.cs:941
-#: ../../ZHIPM.Initialize.cs:942
-#: ../../ZHIPM.Initialize.cs:946
+#: ../../ZHIPM.Initialize.cs:945
 msgid "所有玩家的备份数据均已重置"
 msgstr ""
 
@@ -1361,292 +1034,291 @@ msgid "所有玩家的额外数据均已重置"
 msgstr ""
 
 #: ../../ZHIPM.Initialize.cs:1126
-#: ../../ZHIPM.Initialize.cs:1127
-#: ../../ZHIPM.Initialize.cs:1131
+#: ../../ZHIPM.Initialize.cs:1129
 msgid "所有玩家的人物数据均已重置"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1219
-#: ../../ZHIPM.Initialize.cs:1223
+#: ../../ZHIPM.Initialize.cs:1216
+#: ../../ZHIPM.Initialize.cs:1220
 msgid "所有玩家的所有数据均已全部初始化"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2330
+#: ../../ZHIPM.Initialize.cs:2277
 msgid "所有玩家的所有Buff均已消除"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3946
+#: ../../ZHIPM.Initialize.cs:3899
 msgid "所有玩家均已解冻"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2005
-#: ../../ZHIPM.Initialize.cs:2193
+#: ../../ZHIPM.Initialize.cs:1960
+#: ../../ZHIPM.Initialize.cs:2140
 msgid "完成渔夫任务数："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1708
-#: ../../ZHIPM.Initialize.cs:1896
+#: ../../ZHIPM.Initialize.cs:1663
+#: ../../ZHIPM.Initialize.cs:1851
 msgid "完成渔夫任务数[i:3120]："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2346
+#: ../../ZHIPM.Initialize.cs:2293
 #, csharp-format
 msgid "玩家 [ {0} ] 的所有Buff均已消除"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3873
-#: ../../ZHIPM.Initialize.cs:3889
-#: ../../ZHIPM.Initialize.cs:3916
+#: ../../ZHIPM.Initialize.cs:3826
+#: ../../ZHIPM.Initialize.cs:3842
+#: ../../ZHIPM.Initialize.cs:3869
 #, csharp-format
 msgid "玩家 [{0}] 冻结成功"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:840
-#: ../../ZHIPM.Utils.cs:864
-#: ../../ZHIPM.Utils.cs:869
-#: ../../ZHIPM.Utils.cs:877
-#: ../../ZHIPM.Utils.cs:882
+#: ../../ZHIPM.Utils.cs:791
+#: ../../ZHIPM.Utils.cs:815
+#: ../../ZHIPM.Utils.cs:820
+#: ../../ZHIPM.Utils.cs:828
+#: ../../ZHIPM.Utils.cs:833
 #, csharp-format
 msgid "玩家 [{0}] 回档成功！启用备份 [ {1} ]"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3990
-#: ../../ZHIPM.Initialize.cs:4009
+#: ../../ZHIPM.Initialize.cs:3930
+#: ../../ZHIPM.Initialize.cs:3948
 #, csharp-format
 msgid "玩家 [{0}] 未被冻结"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3964
+#: ../../ZHIPM.Initialize.cs:3911
 #, csharp-format
 msgid "玩家 [{0}] 未被冻结！"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3868
-#: ../../ZHIPM.Initialize.cs:3884
-#: ../../ZHIPM.Initialize.cs:3910
+#: ../../ZHIPM.Initialize.cs:3821
+#: ../../ZHIPM.Initialize.cs:3837
+#: ../../ZHIPM.Initialize.cs:3863
 #, csharp-format
 msgid "玩家 [{0}] 已冻结过!"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3960
-#: ../../ZHIPM.Initialize.cs:3986
-#: ../../ZHIPM.Initialize.cs:4004
+#: ../../ZHIPM.Initialize.cs:3911
+#: ../../ZHIPM.Initialize.cs:3930
+#: ../../ZHIPM.Initialize.cs:3943
 #, csharp-format
 msgid "玩家 [{0}] 已解冻"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:5087
+#: ../../ZHIPM.Initialize.cs:4981
 #, csharp-format
 msgid "玩家 {0} 已传送到上次死亡地点"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2390
+#: ../../ZHIPM.Initialize.cs:2339
 #, csharp-format
 msgid "玩家 {0} 已经在线了 {1}"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1284
-#: ../../ZHIPM.Initialize.cs:1507
-#: ../../ZHIPM.Initialize.cs:1665
+#: ../../ZHIPM.Initialize.cs:1279
+#: ../../ZHIPM.Initialize.cs:1462
+#: ../../ZHIPM.Initialize.cs:1620
 #, csharp-format
 msgid "玩家 【{0}】 的所有库存如下:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1582
+#: ../../ZHIPM.Initialize.cs:1537
 #, csharp-format
 msgid ""
 "玩家 【{0}】 的所有库存如下:\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1705
-#: ../../ZHIPM.Initialize.cs:2002
-#: ../../ZHIPM.Initialize.cs:2184
+#: ../../ZHIPM.Initialize.cs:1660
+#: ../../ZHIPM.Initialize.cs:1957
+#: ../../ZHIPM.Initialize.cs:2136
 #, csharp-format
 msgid "玩家 【{0}】 的状态如下:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1432
+#: ../../ZHIPM.Initialize.cs:1387
 #, csharp-format
 msgid "玩家 【{0}】 未携带任何东西"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1512
-#: ../../ZHIPM.Initialize.cs:1670
+#: ../../ZHIPM.Initialize.cs:1467
+#: ../../ZHIPM.Initialize.cs:1625
 #, csharp-format
 msgid ""
 "玩家 【{0}】 未携带任何东西\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1591
+#: ../../ZHIPM.Initialize.cs:1546
 #, csharp-format
 msgid ""
 "玩家 【{0}】未携带任何东西\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:329
+#: ../../ZHIPM.Initialize.cs:325
 #, csharp-format
 msgid ""
 "玩家[{0}]备份 [{1} - {2}] 的内容为：\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2430
+#: ../../ZHIPM.Initialize.cs:2379
 #, csharp-format
 msgid "玩家【{0}】的人物存档和额外数据已备份和保存"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:474
-#: ../../ZHIPM.Initialize.cs:556
+#: ../../ZHIPM.Initialize.cs:473
+#: ../../ZHIPM.Initialize.cs:553
 msgid "玩家1不存在"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:480
-#: ../../ZHIPM.Initialize.cs:562
+#: ../../ZHIPM.Initialize.cs:479
+#: ../../ZHIPM.Initialize.cs:559
 msgid "玩家1不唯一"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:467
+#: ../../ZHIPM.Initialize.cs:466
 msgid "玩家1不在线，正在查询离线数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:517
-#: ../../ZHIPM.Initialize.cs:573
+#: ../../ZHIPM.Initialize.cs:515
+#: ../../ZHIPM.Initialize.cs:570
 msgid "玩家2不存在"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:523
-#: ../../ZHIPM.Initialize.cs:579
+#: ../../ZHIPM.Initialize.cs:521
+#: ../../ZHIPM.Initialize.cs:576
 msgid "玩家2不唯一"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:510
+#: ../../ZHIPM.Initialize.cs:508
 msgid "玩家2不在线，正在查询离线数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:547
+#: ../../ZHIPM.Initialize.cs:544
 msgid "玩家都不在线，正在查询离线数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1218
+#: ../../ZHIPM.Initialize.cs:1215
 msgid "玩家已全部初始化"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:86
-#: ../../ZHIPM.Initialize.cs:216
-#: ../../ZHIPM.Initialize.cs:258
+#: ../../ZHIPM.Initialize.cs:88
+#: ../../ZHIPM.Initialize.cs:212
+#: ../../ZHIPM.Initialize.cs:254
 #, csharp-format
 msgid "玩家最多有 {0} 个备份存档，范围 1 ~ {1}，请重新输入"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:5099
+#: ../../ZHIPM.Initialize.cs:4993
 msgid "未被允许死亡回调传送，请在配置文件中修改"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2714
+#: ../../ZHIPM.Initialize.cs:2659
 msgid "未启用点数统计，该功能不可用"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2710
+#: ../../ZHIPM.Initialize.cs:2655
 msgid "未启用击杀NPC统计，该功能不可用"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:825
+#: ../../ZHIPM.Utils.cs:776
 msgid "未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1727
-#: ../../ZHIPM.Initialize.cs:1796
-#: ../../ZHIPM.Initialize.cs:1962
-#: ../../ZHIPM.Initialize.cs:2020
-#: ../../ZHIPM.Initialize.cs:2089
+#: ../../ZHIPM.Initialize.cs:1682
+#: ../../ZHIPM.Initialize.cs:1751
+#: ../../ZHIPM.Initialize.cs:1917
+#: ../../ZHIPM.Initialize.cs:1975
+#: ../../ZHIPM.Initialize.cs:2044
 msgid "无"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:177
+#: ../../ZHIPM.Initialize.cs:178
 #, csharp-format
 msgid "修改成功，你的存档将每隔{0}分钟自动备份一次，请注意存档覆盖情况，这可能会覆盖你手动备份的部分"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:181
+#: ../../ZHIPM.Initialize.cs:178
 msgid "修改成功，你的自动备份已关"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2704
+#: ../../ZHIPM.Initialize.cs:2649
 #, csharp-format
 msgid "修改成功，您现在已{0}点数提示"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2693
+#: ../../ZHIPM.Initialize.cs:2638
 #, csharp-format
 msgid "修改成功，您现在已{0}击杀数提示"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:810
-#: ../../ZHIPM.Initialize.cs:911
+#: ../../ZHIPM.Initialize.cs:806
+#: ../../ZHIPM.Initialize.cs:907
 msgid "修改成功！"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:170
+#: ../../ZHIPM.Initialize.cs:173
 msgid "修改失败，请重进服务器重试"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:915
-#: ../../ZHIPM.Initialize.cs:916
+#: ../../ZHIPM.Initialize.cs:911
+#: ../../ZHIPM.Initialize.cs:912
 msgid "修改失败！错误："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1415
+#: ../../ZHIPM.Initialize.cs:1377
 msgid "虚空金库:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:4315
+#: ../../ZHIPM.Initialize.cs:4246
 msgid "血肉墙"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2805
+#: ../../ZHIPM.Initialize.cs:2751
 #, csharp-format
 msgid "已打包为{0}/Zhipm/{1}.zip"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2109
-#: ../../ZHIPM.Initialize.cs:2279
+#: ../../ZHIPM.Initialize.cs:2064
+#: ../../ZHIPM.Initialize.cs:2226
 msgid "已击杀罕见生物："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1816
-#: ../../ZHIPM.Initialize.cs:1982
+#: ../../ZHIPM.Initialize.cs:1771
+#: ../../ZHIPM.Initialize.cs:1937
 msgid "已击杀罕见生物[i:4274]："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2277
+#: ../../ZHIPM.Initialize.cs:2224
 msgid "已击杀生物数："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2107
+#: ../../ZHIPM.Initialize.cs:2062
 #, csharp-format
 msgid "已击杀生物数：{0} 个"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1814
-#: ../../ZHIPM.Initialize.cs:1980
+#: ../../ZHIPM.Initialize.cs:1769
+#: ../../ZHIPM.Initialize.cs:1935
 #, csharp-format
 msgid "已击杀生物数[i:3095]：{0} 个"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2108
-#: ../../ZHIPM.Initialize.cs:2278
+#: ../../ZHIPM.Initialize.cs:2063
+#: ../../ZHIPM.Initialize.cs:2225
 msgid "已击杀Boss："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1815
-#: ../../ZHIPM.Initialize.cs:1981
+#: ../../ZHIPM.Initialize.cs:1770
+#: ../../ZHIPM.Initialize.cs:1936
 msgid "已击杀Boss[i:3868]："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2483
+#: ../../ZHIPM.Initialize.cs:2432
 msgid "已清理所有射弹，物品，无用NPC"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:990
+#: ../../ZHIPM.Initialize.cs:989
 #, csharp-format
 msgid "已重置离线玩家 [ {0} ] 的备份数据"
 msgstr ""
@@ -1656,12 +1328,12 @@ msgstr ""
 msgid "已重置离线玩家 [ {0} ] 的额外数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1156
+#: ../../ZHIPM.Initialize.cs:1153
 #, csharp-format
 msgid "已重置离线玩家 [ {0} ] 的数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:967
+#: ../../ZHIPM.Initialize.cs:966
 #, csharp-format
 msgid "已重置玩家 [ {0} ] 的备份数据"
 msgstr ""
@@ -1671,149 +1343,153 @@ msgstr ""
 msgid "已重置玩家 [ {0} ] 的额外数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1171
+#: ../../ZHIPM.Initialize.cs:1168
 #, csharp-format
 msgid "已重置玩家 [ {0} ] 的数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2429
+#: ../../ZHIPM.Initialize.cs:2378
 msgid "已自动备份您的人物存档，自动保存您的额外数据"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2693
-#: ../../ZHIPM.Initialize.cs:2704
+#: ../../ZHIPM.Initialize.cs:2638
+#: ../../ZHIPM.Initialize.cs:2649
 msgid "隐藏"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2769
-#: ../../ZHIPM.Initialize.cs:2773
-#: ../../ZHIPM.Initialize.cs:2776
+#: ../../ZHIPM.Initialize.cs:2715
+#: ../../ZHIPM.Initialize.cs:2719
+#: ../../ZHIPM.Initialize.cs:2722
 #, csharp-format
 msgid "用户 [{0}] 已导出，目录：tshock/Zhipm/{1}/{2}.plr"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2782
-#: ../../ZHIPM.Initialize.cs:2786
-#: ../../ZHIPM.Initialize.cs:2790
+#: ../../ZHIPM.Initialize.cs:2728
+#: ../../ZHIPM.Initialize.cs:2732
+#: ../../ZHIPM.Initialize.cs:2736
 #, csharp-format
 msgid "用户 [{0}] 因数据错误导出失败"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3772
-#: ../../ZHIPM.Initialize.cs:3773
+#: ../../ZHIPM.Initialize.cs:3723
+#: ../../ZHIPM.Initialize.cs:3724
 #, csharp-format
 msgid "用户 {0} 封禁失败，可能该玩家已被封禁或所在组被禁止封禁"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3716
+#: ../../ZHIPM.Initialize.cs:3667
+#: ../../ZHIPM.Initialize.cs:3668
+#: ../../ZHIPM.Initialize.cs:3698
+#: ../../ZHIPM.Initialize.cs:3699
 #: ../../ZHIPM.Initialize.cs:3717
-#: ../../ZHIPM.Initialize.cs:3747
-#: ../../ZHIPM.Initialize.cs:3748
-#: ../../ZHIPM.Initialize.cs:3766
-#: ../../ZHIPM.Initialize.cs:3767
-#: ../../ZHIPM.Initialize.cs:3829
-#: ../../ZHIPM.Initialize.cs:3832
-#: ../../ZHIPM.Initialize.cs:3833
+#: ../../ZHIPM.Initialize.cs:3718
+#: ../../ZHIPM.Initialize.cs:3780
+#: ../../ZHIPM.Initialize.cs:3783
+#: ../../ZHIPM.Initialize.cs:3784
 #, csharp-format
 msgid "用户 {0} 已被 {1} 封禁"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:1000
+#: ../../ZHIPM.Utils.cs:951
 #, csharp-format
 msgid "游雨{0}({1})，"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2752
-#: ../../ZHIPM.Initialize.cs:2753
+#: ../../ZHIPM.Initialize.cs:2698
+#: ../../ZHIPM.Initialize.cs:2699
 msgid "预计导出所有用户存档数目："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:4593
+#: ../../ZHIPM.Initialize.cs:4512
 msgid "月亮领主"
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:1015
+#: ../../ZHIPM.Utils.cs:966
 #, csharp-format
 msgid "月亮领主({0})"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2097
-#: ../../ZHIPM.Initialize.cs:2267
+#: ../../ZHIPM.Initialize.cs:2052
+#: ../../ZHIPM.Initialize.cs:2214
 msgid "在线时长："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1804
-#: ../../ZHIPM.Initialize.cs:1970
+#: ../../ZHIPM.Initialize.cs:1759
+#: ../../ZHIPM.Initialize.cs:1925
 msgid "在线时长[i:3099]："
 msgstr ""
 
-#: ../../ZHIPM.Utils.cs:1531
+#: ../../ZHIPM.Utils.cs:1464
 #, csharp-format
 msgid "正常的意外因玩家 [ {0} ] 数据残缺而导出人物失败 CreateAPlayer"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:951
-#: ../../ZHIPM.Initialize.cs:972
-#: ../../ZHIPM.Initialize.cs:994
+#: ../../ZHIPM.Initialize.cs:950
+#: ../../ZHIPM.Initialize.cs:971
+#: ../../ZHIPM.Initialize.cs:993
 #: ../../ZHIPM.Initialize.cs:1031
 #: ../../ZHIPM.Initialize.cs:1054
 #: ../../ZHIPM.Initialize.cs:1076
-#: ../../ZHIPM.Initialize.cs:1176
+#: ../../ZHIPM.Initialize.cs:1173
 msgid "重置失败"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1160
+#: ../../ZHIPM.Initialize.cs:1157
 msgid "重置失败！未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1376
+#: ../../ZHIPM.Initialize.cs:1359
 msgid "猪猪储蓄罐:"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1314
+#: ../../ZHIPM.Initialize.cs:1297
 msgid "装备栏1："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1320
+#: ../../ZHIPM.Initialize.cs:1303
 msgid "装备栏2："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1326
+#: ../../ZHIPM.Initialize.cs:1309
 msgid "装备栏3："
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:143
+#: ../../ZHIPM.Initialize.cs:146
 msgid "自动备份被禁用，请联系管理员询问详情"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2004
-#: ../../ZHIPM.Initialize.cs:2192
-msgid "最大魔力值："
+#: ../../ZHIPM.Initialize.cs:1959
+#: ../../ZHIPM.Initialize.cs:2139
+#, csharp-format
+msgid "最大魔力值：{0}   当前魔力值：{1}"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1707
-#: ../../ZHIPM.Initialize.cs:1895
-msgid "最大魔力值[i:109]："
+#: ../../ZHIPM.Initialize.cs:1662
+#: ../../ZHIPM.Initialize.cs:1850
+#, csharp-format
+msgid "最大魔力值[i:109]：{0}   当前魔力值[i:184]：{1}"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:2003
-#: ../../ZHIPM.Initialize.cs:2191
-msgid "最大生命值："
+#: ../../ZHIPM.Initialize.cs:1958
+#: ../../ZHIPM.Initialize.cs:2138
+#, csharp-format
+msgid "最大生命值：{0}   当前生命值：{1}"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1706
-#: ../../ZHIPM.Initialize.cs:1894
-msgid "最大生命值[i:29]："
+#: ../../ZHIPM.Initialize.cs:1661
+#: ../../ZHIPM.Initialize.cs:1849
+#, csharp-format
+msgid "最大生命值[i:29]：{0}   当前生命值[i:58]：{1}"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3753
-#: ../../ZHIPM.Initialize.cs:3754
+#: ../../ZHIPM.Initialize.cs:3704
+#: ../../ZHIPM.Initialize.cs:3705
 #, csharp-format
 msgid "ip: {0} 已被 {1} 封禁"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:3722
-#: ../../ZHIPM.Initialize.cs:3723
+#: ../../ZHIPM.Initialize.cs:3673
+#: ../../ZHIPM.Initialize.cs:3674
 #, csharp-format
 msgid "uuid: {0} 已被 {1} 封禁"
 msgstr ""
