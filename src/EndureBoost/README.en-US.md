@@ -1,19 +1,20 @@
-# EndureBoost
+# EndureBoost 拥有指定数量物品给指定buff
 
 - Authors: 肝帝熙恩
-- Source: here
+- 出处: 本仓库
 - Grant specified buff when the player has a certain number of potions or specific items in their inventory
 - Refresh on player join, command use, death, and recall
 
-
 ## Commands
 
-| Command                                    | Permission  |                   Details                    |
-|--------------------------------------------|:-----------:|:--------------------------------------------:|
+| 语法                                         |  Permission |                      说明                      |
+| ------------------------------------------ | :---------: | :------------------------------------------: |
 | /ebbuff or /ldbuff or /loadbuff or /刷新buff | EndureBoost | Immediately refresh the plugin's buff status |
 
 ## Config
+
 > Configuration file location：tshock/EndureBoost.json
+
 ```json5
 {
   "猪猪储钱罐": true, // Piggy Bank
@@ -138,7 +139,19 @@
 }
 ```
 
+## 更新日志
+
+```
+v1.0.4
+全部物品包含社交栏
+v1.0.3
+允许自定义自动更新评率，添加配饰，染料，全部物品类型
+v1.0.2
+其他物品类型内支持多个buff，完成i18n
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
