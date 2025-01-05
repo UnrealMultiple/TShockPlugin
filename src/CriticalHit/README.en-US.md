@@ -6,8 +6,16 @@
 - Different text will appear based on the weapon type.
 - It can be set to display text even if it’s not a critical hit.
 
+## 指令
+
+```
+暂无
+```
+
 ## Config
+
 > Configuration file location：tshock/CriticalConfig.json
+
 ```json5
 {
   "总开关": true, // Main switch
@@ -54,7 +62,14 @@
 
 ```
 
+## 更新日志
+
+```
+v1.2.1 添加英文翻译
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
