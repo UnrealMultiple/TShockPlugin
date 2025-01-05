@@ -1,18 +1,21 @@
-# ItemDeco Plugin
+# ItemDeco 手持物品显示
 
 - Autor: FrankV22
 - Fuente: [Github](https://github.com/itsFrankV22/ItemsDeco-Plugin)
-- Mostrar el nombre del ítem: Cuando un jugador cambia el ítem que sostiene, el nombre de ese ítem aparecerá como un mensaje flotante sobre su cabeza y en el chat. Esta función también muestra el daño del ítem, y se puede habilitar o deshabilitar a través del archivo de configuración.
+- 显示物品名称：当玩家切换持有的物品时，该物品的名称会以浮动消息的形式出现在玩家头顶，并在聊天中显示。此功能还支持显示伤害值，并可通过配置文件启用或禁用。
 - Personalización de colores: El color del mensaje flotante está configurado por defecto en blanco (RGB 255, 255, 255), y es personalizable.
 - Compatible con [Floating-MessageChat](https://github.com/itsFrankV22/FloatingText-Chat)
 
 ## Comandos
 
-No se requiere ningún comando adicional.
+```
+暂无
+```
 
 ## Configuración
 
 > Ruta del archivo de configuración: `tshock/ItemDeco/ItemDecoration.es-ES.json`
+
 ```json5
 {
   "ObjetoEnChat": {
@@ -109,9 +112,18 @@ No se requiere ningún comando adicional.
 }
 ```
 
-## Comentarios
+## 更新日志
+
+```
+v1.0.0.1
+完成西班牙语的i18n config配置，修复聊天不显示名字的问题
+V1.0.0.0
+重构代码
+```
+
+## 反馈
 
 - Este plugin se encuentra en el repositorio original: [Github](https://github.com/itsFrankV22/ItemsDeco-Plugin)
 - Para problemas o sugerencias, por favor abre un "issue" en el repositorio compartido: https://github.com/UnrealMultiple/TShockPlugin
 - Para soporte adicional, únete al grupo oficial de TShock: 816771079
-- También puedes intentar en las comunidades locales: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
