@@ -1,18 +1,20 @@
-# RebirthCoin
+# RebirthCoin 复活币
 
 - Authors: GK & 羽学
-- Source: 无
+- 出处: GK的QQ群232109072
 - Description: This is a TShock server plugin mainly used for allowing players to quickly resurrect by consuming specific items.
 
 ## Commands
 
-| Syntax  | Alias |    Permission     |             Description              |
-|---------|:-----:|:-----------------:|:------------------------------------:|
-| No      |  No   |    RebirthCoin    | Permission to use resurrection coins |  
-| /reload |  No   | tshock.cfg.reload |    Reload the configuration file     |
+| Syntax  |  别名 |                     Permission                    |              Description             |
+| ------- | :-: | :-----------------------------------------------: | :----------------------------------: |
+| No      |  No |                    RebirthCoin                    | Permission to use resurrection coins |
+| /reload |  No | tshock.cfg.reload |     Reload the configuration file    |
 
 ## Configuration
+
 > Configuration file location： tshock/复活币.json
+
 ```json5
 {
   "插件开关": true, // Enable or disable the plugin function
@@ -28,7 +30,18 @@
   ]
 }
 ```
+
+## 更新日志
+
+```
+v1.0.2
+适配.Net 6.0
+将复活币的物品ID从整数改为数组（支持更多物品作为复活币）
+将复活币权限名改为：RebirthCoin
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
