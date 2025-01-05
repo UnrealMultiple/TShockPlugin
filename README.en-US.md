@@ -121,7 +121,7 @@
 | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) | Yes | Economic plugin prerequisite |  |
 | [EndureBoost](./src/EndureBoost/README.en-US.md) | Yes | Grant specified buff when the player has a certain number of items |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | Yes | Additional management commands |  |
-| [Ezperm](./src/Ezperm/README.md) | Yes | Batch change permissions |  |
+| [Ezperm](./src/Ezperm/README.en-US.md) | Yes | Batch change permissions |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | No | Fish shop |  |
 | [GenerateMap](./src/GenerateMap/README.md) | No | Generate map images | [CaiLib](./src/CaiLib/README.md) |
 | [GolfRewards](./src/GolfRewards/README.md) | No | Golf rewards |  |

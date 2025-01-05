@@ -621,7 +621,7 @@
   },
   {
     "Name": "Chameleon",
-    "Version": "1.0.7",
+    "Version": "1.0.8",
     "Author": "mistzzt,肝帝熙恩",
     "Description": "账户系统交互替换方案",
     "AssemblyName": "Chameleon",
