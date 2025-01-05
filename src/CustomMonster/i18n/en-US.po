@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: CustomMonster\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-12-18 10:03:43+0000\n"
-"PO-Revision-Date: 2024-12-17 21:04+0800\n"
+"PO-Revision-Date: 2025-01-05 06:38\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en_US\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/CustomMonster/i18n/template.pot\n"
+"X-Crowdin-File-ID: 460\n"
+"Language: en_US\n"
 
 #: ../../CustomMonster.cs:245
 msgid " /召唤自定义怪物血量怪物 怪物标志 "
@@ -25,21 +31,15 @@ msgstr " /smc sign num"
 
 #: ../../CustomMonster.cs:129
 msgid " >>> 如果使用过程中出现什么问题可前往QQ群232109072交流反馈."
-msgstr ""
-" >>>If there are any problems during use, you can go to QQ group 232109072 "
-"to exchange feedback."
+msgstr " >>>If there are any problems during use, you can go to QQ group 232109072 to exchange feedback."
 
 #: ../../CustomMonster.cs:133
 msgid " >>> 抢先测试版,因配置项待定后续可能会修改,所以仅仅测试使用!!!!!!"
-msgstr ""
-" >>>Pre emptive beta version, due to pending configuration items that may be "
-"modified in the future, only for testing use!!!!!!"
+msgstr " >>>Pre emptive beta version, due to pending configuration items that may be modified in the future, only for testing use!!!!!!"
 
 #: ../../CustomMonster.cs:130
 msgid " >>> 本插件免费请勿上当受骗,您可在QQ群232109072中获取最新插件."
-msgstr ""
-" >>>This plugin is free. Please do not be deceived. You can obtain the "
-"latest plugin in QQ group 232109072."
+msgstr " >>>This plugin is free. Please do not be deceived. You can obtain the latest plugin in QQ group 232109072."
 
 #: ../../CustomMonster.cs:1158
 msgid " 剩"
@@ -51,27 +51,19 @@ msgstr " Remaining strategy time "
 
 #: ../../CustomMonster.cs:1157
 msgid " 受服务器人数增多影响怪物血量减少 "
-msgstr ""
-" Affected by the increase in the number of servers, the monster's health has "
-"decreased "
+msgstr " Affected by the increase in the number of servers, the monster's health has decreased "
 
 #: ../../CustomMonster.cs:1164
 msgid " 受服务器人数增多影响怪物血量增加 "
-msgstr ""
-" Affected by the increase in the number of servers, the monster's health has "
-"increased "
+msgstr " Affected by the increase in the number of servers, the monster's health has increased "
 
 #: ../../CustomMonster.cs:1096
 msgid " 受服务器人数增多影响攻略时间减少 "
-msgstr ""
-" Affected by the increase in the number of servers, the strategy time has "
-"decreased "
+msgstr " Affected by the increase in the number of servers, the strategy time has decreased "
 
 #: ../../CustomMonster.cs:1103
 msgid " 受服务器人数增多影响攻略时间增加 "
-msgstr ""
-" Due to the increase in the number of servers, the strategy time has "
-"increased "
+msgstr " Due to the increase in the number of servers, the strategy time has increased "
 
 #: ../../CustomMonster.cs:126
 msgid " 已启动! --------"
@@ -81,7 +73,8 @@ msgstr " Started! --------"
 msgid " 已启动! --------------"
 msgstr " Started! --------------"
 
-#: ../../CustomMonster.cs:1251 ../../CustomMonster.cs:2056
+#: ../../CustomMonster.cs:1251
+#: ../../CustomMonster.cs:2056
 msgid " 已撤离."
 msgstr " evacuate."
 
@@ -91,10 +84,7 @@ msgstr " Defeated."
 
 #: ../../CustomMonster.cs:201
 msgid " 插件版本高于本插件版本,配置可能无法正常使用,请升级插件后使用！"
-msgstr ""
-" The plugin version is higher than this plugin version, and the "
-"configuration may not work properly. Please upgrade the plugin before using "
-"it！"
+msgstr " The plugin version is higher than this plugin version, and the configuration may not work properly. Please upgrade the plugin before using it！"
 
 #: ../../CustomMonster.cs:123
 msgid " 版本:"
@@ -120,7 +110,8 @@ msgstr " Second."
 msgid " 秒剩"
 msgstr " Second left"
 
-#: ../../CustomMonster.cs:1184 ../../CustomMonster.cs:1191
+#: ../../CustomMonster.cs:1184
+#: ../../CustomMonster.cs:1191
 msgid ",快快加入战斗吧!"
 msgstr ",Hurry up and join the battle!"
 
@@ -136,7 +127,8 @@ msgstr "[CustomMonster] Configuration error:\n"
 msgid "[自定义怪物血量] 隐藏配置项:"
 msgstr "[CustomMonster] Hidden configuration items:"
 
-#: ../../CustomMonster.cs:216 ../../CustomMonster.cs:222
+#: ../../CustomMonster.cs:216
+#: ../../CustomMonster.cs:222
 msgid "[自定义怪物血量] 额外配置["
 msgstr "[CustomMonster] Additional Configuration["
 
@@ -145,13 +137,8 @@ msgid "[自定义怪物血量]您读入的额外配置 "
 msgstr "[CustomMonster] The additional configuration you have read in "
 
 #: ../../CustomMonster.cs:174
-msgid ""
-"[自定义怪物血量]您载入的配置文件插件版本高于本插件版本,配置可能无法正常使用,"
-"请升级插件后使用！"
-msgstr ""
-"[CustomMonster] The version of the configuration file plugin you loaded is "
-"higher than the version of this plugin, and the configuration may not work "
-"properly. Please upgrade the plugin before using it！"
+msgid "[自定义怪物血量]您载入的配置文件插件版本高于本插件版本,配置可能无法正常使用,请升级插件后使用！"
+msgstr "[CustomMonster] The version of the configuration file plugin you loaded is higher than the version of this plugin, and the configuration may not work properly. Please upgrade the plugin before using it！"
 
 #: ../../CustomMonster.cs:237
 msgid "[自定义怪物血量]配置重读完毕。"
@@ -182,12 +169,8 @@ msgid "召唤 {0} {1} 次."
 msgstr "Summon {0} {1} count."
 
 #: ../../CustomMonster.cs:265
-msgid ""
-"坐标错误,正确格式是: /召唤自定义怪物血量怪物 怪物标志 X像素坐标 Y像素坐标(无"
-"法指定肉山)"
-msgstr ""
-"Coordinate error, the correct format is: /smc sign X Y (unable to "
-"WallofFlesh)"
+msgid "坐标错误,正确格式是: /召唤自定义怪物血量怪物 怪物标志 X像素坐标 Y像素坐标(无法指定肉山)"
+msgstr "Coordinate error, the correct format is: /smc sign X Y (unable to WallofFlesh)"
 
 #: ../../CustomMonster.cs:504
 msgid "定义时间过小被阻止生成"
@@ -201,7 +184,8 @@ msgstr "displayed"
 msgid "已隐藏"
 msgstr "Hidden"
 
-#: ../../CustomMonster.cs:1250 ../../CustomMonster.cs:2055
+#: ../../CustomMonster.cs:1250
+#: ../../CustomMonster.cs:2055
 msgid "攻略失败: "
 msgstr "Strategy failed: "
 
@@ -223,15 +207,11 @@ msgstr "Invalid empty NPCID!"
 
 #: ../../CustomMonster.cs:310
 msgid "无法根据肉墙的当前状态或您的当前位置生成肉墙。"
-msgstr ""
-"Unable to generate WallofFlesh based on its current status or your current "
-"location。"
+msgstr "Unable to generate WallofFlesh based on its current status or your current location。"
 
 #: ../../CustomMonster.cs:162
 msgid "未找到自定义怪物血量配置，已为您创建！修改配置后重启即可重新载入数据。"
-msgstr ""
-"CustomMonster Configuration not found, created for you! After modifying the "
-"configuration, restart to reload the data。"
+msgstr "CustomMonster Configuration not found, created for you! After modifying the configuration, restart to reload the data。"
 
 #: ../../CustomMonster.cs:218
 msgid "条配置"
@@ -245,13 +225,17 @@ msgstr "Format error, the correct format is:"
 msgid "没有这个标记的怪物"
 msgstr "Monsters without this mark"
 
-#: ../../CustomMonster.cs:1095 ../../CustomMonster.cs:1102
-#: ../../CustomMonster.cs:1156 ../../CustomMonster.cs:1163
-#: ../../CustomMonster.cs:1189 ../../CustomMonster.cs:1238
+#: ../../CustomMonster.cs:1095
+#: ../../CustomMonster.cs:1102
+#: ../../CustomMonster.cs:1156
+#: ../../CustomMonster.cs:1163
+#: ../../CustomMonster.cs:1189
+#: ../../CustomMonster.cs:1238
 msgid "注意: "
 msgstr "Note: "
 
-#: ../../CustomMonster.cs:1097 ../../CustomMonster.cs:1104
+#: ../../CustomMonster.cs:1097
+#: ../../CustomMonster.cs:1104
 msgid "秒."
 msgstr "Seconds."
 
@@ -265,20 +249,15 @@ msgstr "WallofFlesh successfully summoned."
 
 #: ../../CustomMonster.cs:2172
 msgid "自定义怪物血量插件处理超时,已抛弃部分处理!"
-msgstr ""
-"Custom monster plugin processing timeout, partial processing has been "
-"abandoned!"
+msgstr "Custom monster plugin processing timeout, partial processing has been abandoned!"
 
 #: ../../CustomMonster.cs:2155
 msgid "自定义怪物血量时钟:"
 msgstr "CustomMonsterClock:"
 
 #: ../../CustomMonster.cs:85
-msgid ""
-"输入 /召唤自定义怪物血量怪物 怪物标志 会召唤指定标记的怪物(无视召唤条件)"
-msgstr ""
-"Entering /smc sign Summon monsters with specified tags (ignoring summoning "
-"conditions)"
+msgid "输入 /召唤自定义怪物血量怪物 怪物标志 会召唤指定标记的怪物(无视召唤条件)"
+msgstr "Entering /smc sign Summon monsters with specified tags (ignoring summoning conditions)"
 
 #: ../../CustomMonster.cs:81
 msgid "输入 /重读自定义怪物血量 会重新读取重读自定义怪物血量表"
@@ -287,3 +266,4 @@ msgstr "Entering /reload will re read the custom monster configuration"
 #: ../../CustomMonster.cs:324
 msgid "错误的召唤过程."
 msgstr "Wrong summoning process."
+
