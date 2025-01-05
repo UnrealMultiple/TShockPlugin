@@ -1,20 +1,21 @@
 # AutoReset / OneKeyReset
 
 - Authors: cc04 & Leader & 棱镜 & Cai & 肝帝熙恩
-- Fully automatic reset plugin, fully customizable reset, freeing your hands.
+- 完全自动重置插件,自定义要重置什么
 
 ## Commands
 
-| Command     | Permission  |            Details            |
-|-------------|:-----------:|:-----------------------------:|
-| /reset	     | reset.admin | Generating map and reset data |
-| /resetdata	 | reset.admin |        Only reset data        |
-| /rs	        | reset.admin |         Reset Setting         |
-
+| 语法          |          Permission         |        说明       |
+| ----------- | :-------------------------: | :-------------: |
+| /reset      | reset.admin |       重置世界      |
+| /resetdata  | reset.admin | Only reset data |
+| /rs 或 /重置设置 | reset.admin |  Reset Setting  |
 
 ## Config
+
 > Configuration file location：tshock/AutoReset/AutoReset.en-US.json.json
 > Replace Files: tshock/AutoReset/ReplaceFiles
+
 ```json5
 {
   "ReplaceFiles": { //Replace Files
@@ -47,7 +48,16 @@
 }
 ```
 
+## 更新日志
+
+```
+v2024.12.8.1 修复配置文件位置错误，在世界名称显示进度
+v2024.9.1 添加英文翻译，添加resetdata以重置数据不生成地图
+v2024.8.24 尝试完善卸载函数
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
