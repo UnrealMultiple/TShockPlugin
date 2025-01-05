@@ -5,15 +5,16 @@
 - Configuration NPC Exclusive Rewards
 
 > [!NOTE]
->  requires the pre-installed plugin: EconomicsAPI (this repository)
-
+> requires the pre-installed plugin: EconomicsAPI (this repository)
 
 ## Commands
 
 None
 
 ## Configuration
->  configuration file location: tshock/Economics/NPC.json
+
+> configuration file location: tshock/Economics/NPC.json
+
 ```json5
 {
   "开启提示": true,
@@ -32,7 +33,15 @@ None
 }
 ```
 
+## 更新日志
+
+```
+V2.0.0.0
+适配多货币
+
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
-- TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 国内社区 trhub.cn 或 TShock 官方群等
