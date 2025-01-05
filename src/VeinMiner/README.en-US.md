@@ -2,21 +2,24 @@
 
 - Authors: Megghy|YSpoof|Maxthegreat99|肝帝熙恩|Cai
 - Source: [github](https://github.com/Maxthegreat99/TSHockVeinMiner)
-- To quickly mine veins of ore
-  
+- 连锁挖矿，字面意思
+- 可以连锁挖一堆矿然后爆指定物品
+
 > [!IMPORTANT]
 > To enable vein mining, you need the `veinminer` permission.
 > Authorization command: `/group addperm default veinminer` (default is the default group, you can replace it with the group you need)
 
 ## Commands
 
-| Command        | Permission |                 Details                 |
-|----------------|:----------:|:---------------------------------------:|
-| /vm            | veinminer  |           Toggle vein mining            |
-| /vm [Any agrs] | veinminer  | Toggle vein mining notification message |
+| 语法                                                                 | Permission |                    说明                   |
+| ------------------------------------------------------------------ | :--------: | :-------------------------------------: |
+| /vm                                                                |  veinminer |            Toggle vein mining           |
+| /vm [Any agrs] |  veinminer | Toggle vein mining notification message |
 
 ## Config
+
 > Configuration file location：tshock/VeinMiner.json
+
 ```json5
 {
   "启用": true, //Enable
@@ -46,7 +49,9 @@
   ]
 }
 ```
+
 ### Example
+
 ```json5
 {
   "启用": true, //Enable
@@ -88,7 +93,25 @@
 }
 ```
 
+## 更新日志
+
+```
+v1.6.0.6
+修复：背包满的时候去挖达到可获得奖励数量的矿，只会挖掉一个矿，但却会给予一个奖励物品，然后就可以用这个刷奖励
+完善消息提示逻辑
+
+v1.6.0.5
+修复刷矿，添加英文翻译
+
+v1.6.0.4
+完善卸载函数
+
+v1.6.0.3
+添加配置，当矿石上方有指定方块时，不会触发连锁挖矿（避免刷矿）
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
