@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AutoStoreItems\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-11-30 02:03:47+0000\n"
-"PO-Revision-Date: 2024-11-06 01:02+0800\n"
+"PO-Revision-Date: 2025-01-05 06:37\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en_US\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/AutoStoreItems/i18n/template.pot\n"
+"X-Crowdin-File-ID: 418\n"
+"Language: en_US\n"
 
 #: ../../Commands.cs:76
 #, csharp-format
@@ -33,12 +39,8 @@ msgid "[c/32CEB7:虚空袋]"
 msgstr "[c/32CEB7:VoidBag]"
 
 #: ../../Commands.cs:17
-msgid ""
-"【自动储存】指令菜单 [i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by] [c/00FFFF:羽"
-"学][i:3459]\n"
-msgstr ""
-"【AutoStorage】Command Menu [i:3456][C/F2F2C7:Plugin Development] [C/BFDFEA:"
-"by] [c/00FFFF:羽学][i:3459]\n"
+msgid "【自动储存】指令菜单 [i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by] [c/00FFFF:羽学][i:3459]\n"
+msgstr "【AutoStorage】Command Menu [i:3456][C/F2F2C7:Plugin Development] [C/BFDFEA:by] [c/00FFFF:羽学][i:3459]\n"
 
 #: ../../Commands.cs:18
 msgid "/ast —— 查看自动储存菜单\n"
@@ -46,9 +48,7 @@ msgstr "/ast — View the Auto Storage Menu\n"
 
 #: ../../Commands.cs:28
 msgid "/ast add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:删除]自存物品"
-msgstr ""
-"/ast <add> or <del> <ItemName> — [c/87DF86:Add] | [c/F19092:Delete] self-"
-"storage items"
+msgstr "/ast <add> or <del> <ItemName> — [c/87DF86:Add] | [c/F19092:Delete] self-storage items"
 
 #: ../../Commands.cs:22
 msgid "/ast armor —— 开启|关闭[c/F2F191:装备识别]模式\n"
@@ -87,20 +87,15 @@ msgid "/astreset —— 清空[c/85CFDE:所有玩家]数据\n"
 msgstr "/astreset — Clear All data for [c/85CFDE:all players]\n"
 
 #: ../../Commands.cs:162
-msgid ""
-"不存在该物品，\"物品查询\": \"[c/92C5EC:https://terraria.wiki.gg/zh/wiki/"
-"Item_IDs]\""
-msgstr ""
-"The item does not exist, \"Item Lookup\": \"[c/92C5EC:https://terraria.wiki."
-"gg/zh/wiki/Item_IDs]\""
+msgid "不存在该物品，\"物品查询\": \"[c/92C5EC:https://terraria.wiki.gg/zh/wiki/Item_IDs]\""
+msgstr "The item does not exist, \"Item Lookup\": \"[c/92C5EC:https://terraria.wiki.gg/zh/wiki/Item_IDs]\""
 
 #: ../../Commands.cs:69
 msgid "只有玩家[c/E4EFBC:移动|攻击]才会执行[c/87DF86:自存]"
-msgstr ""
-"Only when the player [c/E4EFBC:moves | attacks] will the [c/87DF86:self-"
-"storage] be executed."
+msgstr "Only when the player [c/E4EFBC:moves | attacks] will the [c/87DF86:self-storage] be executed."
 
-#: ../../Commands.cs:85 ../../Commands.cs:135
+#: ../../Commands.cs:85
+#: ../../Commands.cs:135
 msgid "启用"
 msgstr "Enabled"
 
@@ -108,24 +103,22 @@ msgstr "Enabled"
 msgid "已[c/92C5EC:清空]所有玩家《自动储存》数据！"
 msgstr "All players' [c/92C5EC:Cleared] Auto Storage data!"
 
-#: ../../Tool.cs:124 ../../Tool.cs:152 ../../Tool.cs:203
+#: ../../Tool.cs:124
+#: ../../Tool.cs:152
+#: ../../Tool.cs:203
 #, csharp-format
 msgid "已将 '[c/92C5EC:{0}]' 存入您的 {1} 当前数量: {2}"
-msgstr ""
-"Successfully stored '[c/92C5EC:{0}]' in your {1}. Current quantity: {2}"
+msgstr "Successfully stored '[c/92C5EC:{0}]' in your {1}. Current quantity: {2}"
 
 #: ../../Tool.cs:51
 #, csharp-format
 msgid "已将 '[c/92C5EC:{0}]'添加到自动储存表|指令菜单:[c/A1D4C2:/ast]"
-msgstr ""
-"Successfully added '[c/92C5EC:{0}]' to the Auto Storage Table | Command "
-"Menu: [c/A1D4C2:/ast]"
+msgstr "Successfully added '[c/92C5EC:{0}]' to the Auto Storage Table | Command Menu: [c/A1D4C2:/ast]"
 
 #: ../../Tool.cs:100
 #, csharp-format
 msgid "已将'[c/92C5EC:{0}]'存入您的{1} 当前数量: {2}"
-msgstr ""
-"Successfully stored '[c/92C5EC:{0}]' in your {1}. Current quantity: {2}"
+msgstr "Successfully stored '[c/92C5EC:{0}]' in your {1}. Current quantity: {2}"
 
 #: ../../Commands.cs:195
 msgid "已成功从自动储存删除物品: [c/92C5EC:{0}]!"
@@ -142,9 +135,7 @@ msgstr "Successfully cleared the Auto Storage Table for [c/92C5EC:{0}]."
 
 #: ../../Commands.cs:87
 msgid "性能模式:不为[c/C086DF:堆叠达到单格上限]物品进行分堆累积"
-msgstr ""
-"Performance Mode: Does not split stacks for items that [c/C086DF:reach the "
-"single slot limit]."
+msgstr "Performance Mode: Does not split stacks for items that [c/C086DF:reach the single slot limit]."
 
 #: ../../Tool.cs:221
 #, csharp-format
@@ -197,8 +188,7 @@ msgstr "Player [{0}] has [c/92C5EC:Enabled] the Auto Recognition mode."
 #: ../../Commands.cs:106
 #, csharp-format
 msgid "玩家 [{0}] 已[c/92C5EC:启用]装备识别储存模式。"
-msgstr ""
-"Player [{0}] has [c/92C5EC:Enabled] the Equipment Recognition Storage mode."
+msgstr "Player [{0}] has [c/92C5EC:Enabled] the Equipment Recognition Storage mode."
 
 #: ../../Commands.cs:96
 #, csharp-format
@@ -208,14 +198,12 @@ msgstr "Player [{0}] has [c/92C5EC:Disabled] the Auto Recognition mode."
 #: ../../Commands.cs:107
 #, csharp-format
 msgid "玩家 [{0}] 已[c/92C5EC:禁用]装备识别储存模式。"
-msgstr ""
-"Player [{0}] has [c/92C5EC:Disabled] the Equipment Recognition Storage mode."
+msgstr "Player [{0}] has [c/92C5EC:Disabled] the Equipment Recognition Storage mode."
 
 #: ../../Commands.cs:136
 #, csharp-format
 msgid "玩家 [{0}] 的储物空间位格监听功能已[c/92C5EC:{1}]"
-msgstr ""
-"Player [{0}]’s storage space slot monitoring function has been [c/92C5EC:{1}]"
+msgstr "Player [{0}]’s storage space slot monitoring function has been [c/92C5EC:{1}]"
 
 #: ../../Commands.cs:117
 #, csharp-format
@@ -237,95 +225,14 @@ msgstr "Player [{0}]’s auto storage messages have been [c/92C5EC:Enabled]"
 msgid "玩家 [{0}] 的自动储存消息已[c/92C5EC:禁用]"
 msgstr "Player [{0}]’s auto storage messages have been [c/92C5EC:Disabled]"
 
-#: ../../Commands.cs:85 ../../Commands.cs:135
+#: ../../Commands.cs:85
+#: ../../Commands.cs:135
 msgid "禁用"
 msgstr "Disabled"
 
 #: ../../Commands.cs:57
-msgid ""
-"请用角色[c/D95065:重进服务器]后输入：/ast 指令查看菜单\n"
+msgid "请用角色[c/D95065:重进服务器]后输入：/ast 指令查看菜单\n"
 "羽学声明：本插件纯属[c/7E93DE:免费]请勿上当受骗"
-msgstr ""
-"Please rejoin the server with your character [c/D95065:rejoin server] and "
-"then enter: /ast \n"
+msgstr "Please rejoin the server with your character [c/D95065:rejoin server] and then enter: /ast \n"
 "Yu Xue declares: This plugin is [c/7E93DE:free], please do not be deceived"
 
-#~ msgid ""
-#~ "[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险) ,物品如果"
-#~ "没放到【存钱罐】等储存空间内是不会触发自动存储的"
-#~ msgstr ""
-#~ "[BUG EXISTS] Favorited items may become unfavorited (risk of potion "
-#~ "stacks in the Void Bag being split into chests). Items will not trigger "
-#~ "automatic storage if they are not placed in storage spaces such as [Piggy "
-#~ "Banks]."
-
-#~ msgid ""
-#~ "[性能模式] 堆叠达到单格上限物品不进行分堆累积（人多推荐,发2次包）,关闭会为"
-#~ "超出上限物品寻找空槽继续累积(最多发4次包)"
-#~ msgstr ""
-#~ "[Performance Mode] Stack items up to the single slot limit without "
-#~ "splitting (recommended for many players, sends 2 packets), disabling this "
-#~ "will search for empty slots to continue stacking items that exceed the "
-#~ "limit (sends up to 4 packets)."
-
-#~ msgid ""
-#~ "[自动] [手持] [装备] 当开启3种模式任意一个时其他2个模式会默认关闭，不论哪"
-#~ "种模式都需要玩家移动和攻击才会触发储存"
-#~ msgstr ""
-#~ "[Auto] [Held] [Equipped] When any one of these three modes is enabled, "
-#~ "the other two modes will default to being disabled. Regardless of which "
-#~ "mode is active, storage will only trigger when the player moves or "
-#~ "attacks."
-
-#~ msgid "[自动存储]重新加载配置完毕。"
-#~ msgstr "[Auto Storage] Configuration reloaded successfully。"
-
-#, fuzzy
-#~| msgid ""
-#~| "[是否手持] 需要选中 [持有物品] 其中1个才会启动存储功能，关闭则背包含有 其"
-#~| "中1个就会启动"
-#~ msgid ""
-#~ "[手持存储模式] 需要选中 [触发存储的物品] 其中1个才会启动存储功能(2024年10"
-#~ "月6日已修复)，关闭则背包含有[存储道具]就会自存[储存物品表]的物品"
-#~ msgstr ""
-#~ "[Whether to hold (是否手持)] needs to select one of the held items (持有物"
-#~ "品) to activate the storage function. If disabled: the backpack contains "
-#~ "one of them (含有其中1个) to activate"
-
-#, fuzzy
-#~| msgid ""
-#~| "[装备饰品] 只会检测装备3格+饰品7格，与[存物速度]等无关，装备指定饰品(盔"
-#~| "甲)玩家只要移动或攻击就会触发自存 "
-#~ msgid ""
-#~ "[装备饰品存储模式] 只会检测装备3格+饰品7格，装备指定饰品(盔甲)玩家只要移动"
-#~ "或攻击就会触发存储机制，CPU主频没3Ghz以上的别开 "
-#~ msgstr ""
-#~ "[Armor accessories (装备饰品)] will only detect 3 Armor slots + 7 "
-#~ "accessory slots, unrelated to storage speed (存物速度)，Equipping "
-#~ "specified accessories/armor (饰品/盔甲) will trigger auto-storage when "
-#~ "the player moves or attacks."
-
-#~ msgid "保险箱"
-#~ msgstr "Safe"
-
-#~ msgid "存钱罐"
-#~ msgstr "Piggy Bank"
-
-#~ msgid "虚空袋"
-#~ msgstr "Void Vault"
-
-#~ msgid ""
-#~ "[存物速度] 不要低于60帧(推荐120)，否则手动 [连续] 快速放入 [同样物品到存储"
-#~ "空间格子] 会导致物品数量翻倍"
-#~ msgstr ""
-#~ "[Storage speed (存物速度)] should not be lower than 60 (recommended 120), "
-#~ "otherwise manually continuously quickly placing the same item into the "
-#~ "storage space slot will cause the item stack to double"
-
-#~ msgid ""
-#~ "[物品名] 会在使用 [/Reload] 指令时根据 [物品ID] 自动写入，[物品数量] 为储"
-#~ "存最低数量要求 "
-#~ msgstr ""
-#~ "[Item names (物品名)] will be automatically written based on item IDs (物"
-#~ "品ID) when using the /Reload command. Item stack (物品数量) is the "
-#~ "minimum storage requirement."
