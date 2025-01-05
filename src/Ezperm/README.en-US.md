@@ -1,4 +1,4 @@
-# Ezperm
+# Ezperm 便捷权限
 
 - Author: 大豆子, 肝帝熙恩优化1449
 - Source: Official Chinese TShock Group
@@ -7,12 +7,14 @@
 
 ## Commands
 
-| Syntax               | Permission   | Description      |
-|----------------------|--------------|------------------|
+| Syntax             |           Permission          |        Description       |
+| ------------------ | :---------------------------: | :----------------------: |
 | /inperms or /批量改权限 | inperms.admin | Batch modify permissions |
 
 ## Configuration
+
 > Configuration file location: tshock/ezperm.json
+
 ```json5
 {
   "Groups": [
@@ -40,7 +42,21 @@
 }
 ```
 
+## 更新日志
+
+```
+v1.2.4
+默认数据添加召唤城镇宠物的权限
+v1.2.3
+把这个抽象代码改了，支持没有该组自动创建
+v1.2.2
+加了几个权限
+v1.2.1
+优化代码，完善卸载函数
+```
+
 ## Feedback
+
 - Preferred: Submit an issue -> Commonly maintained plugin repository: https://github.com/UnrealMultiple/TShockPlugin
 - Secondary option: Official TShock QQ Group: 816771079
 - Least likely to be seen but still possible: Domestic Terraria community forums trhub.cn, bbstr.net, tr.monika.love
