@@ -1,0 +1,24 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2024-09-07 18:08:18+0000\n"
+"PO-Revision-Date: 2025-01-05 06:37\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/BagPing/i18n/template.pot\n"
+"X-Crowdin-File-ID: 424\n"
+"Language: es_ES\n"
+
+#: ../../BagPing.cs:50
+#, csharp-format
+msgid "宝藏袋掉落在坐标({0},{1}),已在小地图上标记!"
+msgstr ""
+
