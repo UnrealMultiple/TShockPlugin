@@ -20,7 +20,7 @@ public class ZhipmConfig
         if (!File.Exists(configPath))
         {
             File.WriteAllText(configPath, JsonConvert.SerializeObject(new ZhipmConfig(
-                true, true, true, false, true, false, true, true, 20, 5, new List<int>() { 68 }, new List<int>(), true, 40, 1.0f, false
+                true, true, true, false, true, false, true, true, 20, 5, new List<int> { 68 }, new List<int>(), true, 40, 1.0f, false
                 ), Formatting.Indented));
         }
 

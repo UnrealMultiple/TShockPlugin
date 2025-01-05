@@ -12,12 +12,12 @@ using TShockAPI;
 
 namespace CaiBot;
 
-public static class MessageHandle
+internal static class MessageHandle
 {
-    public static bool IsWebsocketConnected =>
+    internal static bool IsWebsocketConnected =>
         Plugin.WebSocket.State == WebSocketState.Open;
 
-    public static async Task SendDateAsync(string message)
+    internal static async Task SendDateAsync(string message)
     {
         if (Plugin.DebugMode)
         {
@@ -29,7 +29,7 @@ public static class MessageHandle
             CancellationToken.None);
     }
 
-    public static async Task HandleMessageAsync(string receivedData)
+    internal static async Task HandleMessageAsync(string receivedData)
     {
         var jsonObject = JObject.Parse(receivedData);
         var type = (string) jsonObject["type"]!;
@@ -43,7 +43,7 @@ public static class MessageHandle
                 Random rnd = new ();
                 Plugin.InitCode = rnd.Next(10000000, 99999999);
                 TShock.Log.ConsoleError($"[CaiBot]您的服务器绑定码为: {Plugin.InitCode}");
-                await Plugin.WebSocket.CloseAsync(WebSocketCloseStatus.Empty, "", new CancellationToken());
+                await Plugin.WebSocket.CloseAsync(WebSocketCloseStatus.Empty, "", CancellationToken.None);
                 break;
             case "hello":
                 TShock.Log.ConsoleInfo("[CaiAPI]CaiBOT连接成功...");
@@ -88,12 +88,12 @@ public static class MessageHandle
                 var onlineResult = new StringBuilder();
                 if (TShock.Utils.GetActivePlayerCount() == 0)
                 {
-                    onlineResult.AppendLine("没有玩家在线捏...");
+                    onlineResult.Append("没有玩家在线捏...");
                 }
                 else
                 {
                     onlineResult.AppendLine($"在线玩家({TShock.Utils.GetActivePlayerCount()}/{TShock.Config.Settings.MaxSlots})");
-                    onlineResult.AppendLine(string.Join(',', TShock.Players.Where(x=>x!=null && x.Active).Select(x=>x.Name)));
+                    onlineResult.AppendLine(string.Join(',', TShock.Players.Where(x=>x is { Active: true }).Select(x=>x.Name)));
                 }
 
                 List<string> onlineProcessList = new ();

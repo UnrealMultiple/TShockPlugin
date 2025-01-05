@@ -19,11 +19,11 @@ namespace CaiBot;
 public class Plugin : TerrariaPlugin
 {
     public static readonly Version VersionNum = new (2024, 12, 22, 1); //日期+版本号(0,1,2...)
-    public static int InitCode = -1;
+    internal static int InitCode = -1;
     public static bool LocalMode;
     public static bool DebugMode;
     private static bool _stopWebsocket;
-    public static ClientWebSocket WebSocket = new ();
+    internal static ClientWebSocket WebSocket = new ();
     private static readonly Task WebSocketTask = Task.CompletedTask;
     private static readonly CancellationTokenSource TokenSource = new ();
 

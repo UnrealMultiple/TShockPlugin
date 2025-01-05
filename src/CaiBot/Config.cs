@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace CaiBot;
 
@@ -24,7 +23,7 @@ public class Config
     /// <summary>
     /// 将配置文件写入硬盘
     /// </summary>
-    public void Write() 
+    internal void Write() 
     {
         using FileStream fileStream = new(ConfigPath, FileMode.Create, FileAccess.Write, FileShare.Write);
         using StreamWriter streamWriter = new(fileStream);
@@ -34,7 +33,7 @@ public class Config
     /// <summary>
     /// 从硬盘读取配置文件
     /// </summary>
-    public void Read() 
+    internal void Read() 
     {
         Config result;
         if (!File.Exists(ConfigPath))

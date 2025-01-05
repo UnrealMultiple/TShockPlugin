@@ -1,6 +1,6 @@
 ﻿namespace CaiBot;
 
-public class PluginInfo
+internal class PluginInfo
 {
     public string Author;
     public string Description;

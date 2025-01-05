@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AutoPluginManager\n"
 "POT-Creation-Date: 2025-01-03 08:06:19+0000\n"
-"PO-Revision-Date: 2024-11-16 21:58+0800\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2025-01-04 23:36+0800\n"
+"Last-Translator: Hexagon Force\n"
+"Language-Team: UnrealMultiple\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: ../../Plugin.cs:74
 msgid "[AutoUpdate]无法获取更新:"
@@ -42,32 +42,33 @@ msgstr "[Update Complete]\n"
 #: ../../Internal/CommandAdapter.cs:110
 #, csharp-format
 msgid "{0} v{1} (by {2}) 关闭成功!"
-msgstr ""
+msgstr "{0} v{1} (by {2}) closed successfully!"
+
 
 #: ../../Internal/CommandAdapter.cs:154
 #, csharp-format
 msgid "{0} v{1} (by {2}) 启用成功!"
-msgstr ""
+msgstr "{0} v{1} (by {2}) activated successfully!"
 
 #: ../../Internal/CommandAdapter.cs:158
 #, csharp-format
 msgid "{0} v{1} (by {2}) 已开启，无法重复开启!"
-msgstr ""
+msgstr "{0} v{1} (by {2}) has been opened and cannot be opened again!"
 
 #: ../../Internal/CommandAdapter.cs:114
 #, csharp-format
 msgid "{0} v{1} (by {2}) 被关闭过了，无法重复关闭!"
-msgstr ""
+msgstr "{0} v{1} (by {2}) has been closed and cannot be closed again!"
 
 #: ../../Internal/CommandAdapter.cs:69
 #, csharp-format
 msgid "{0}.{1} v{2} (by {3}) - 状态: {4}"
-msgstr ""
+msgstr "{0}.{1} v{2} (by {3}) - status: {4}"
 
 #: ../../Internal/CommandAdapter.cs:65
 #, csharp-format
 msgid "{0}.{1} v{2} (by {3}) {4}"
-msgstr ""
+msgstr "{0}.{1} v{2} (by {3}) {4}"
 
 #: ../../Internal/CommandAdapter.cs:347
 msgid "*使用/apm -i <序号> 即可安装哦~"
@@ -76,24 +77,24 @@ msgstr "*Use /apm -i <number> to install~"
 #: ../../Internal/CommandAdapter.cs:230 ../../Internal/CommandAdapter.cs:404
 #, csharp-format
 msgid "*加载失败: {0}"
-msgstr ""
+msgstr "*Loading failed: {0}"
 
 #: ../../Internal/CommandAdapter.cs:226 ../../Internal/CommandAdapter.cs:400
 #, csharp-format
 msgid "*卸载失败: {0}"
-msgstr ""
+msgstr "*Uninstall failed: {0}"
 
 #: ../../Internal/CommandAdapter.cs:234 ../../Internal/CommandAdapter.cs:408
 msgid "*热加载失败的插件需要重启服务器后才会生效!"
-msgstr ""
+msgstr "*Plug-ins that fail to be hot-loaded will only take effect after the server is restarted!"
 
 #: ../../Internal/CommandAdapter.cs:244 ../../Internal/CommandAdapter.cs:418
 msgid "*热重载已关闭,插件需要重启服务器后才会生效!"
-msgstr ""
+msgstr "*Hot reloading has been turned off, and the plug-in will not take effect until the server is restarted!"
 
 #: ../../Internal/CommandAdapter.cs:238 ../../Internal/CommandAdapter.cs:412
 msgid "*热重载已启用,安装的插件已生效!"
-msgstr ""
+msgstr "*Hot reloading is enabled and the installed plug-ins have taken effect!"
 
 #: ../../Internal/CommandAdapter.cs:42
 msgid "apm b [插件名字] 更新时跳过指定插件"
@@ -109,7 +110,7 @@ msgstr "apm i [number] install specified plugin"
 
 #: ../../Internal/CommandAdapter.cs:45
 msgid "apm ib 查看本地插件列表与启用状态"
-msgstr ""
+msgstr "apm ib View local plug-in list and activation status"
 
 #: ../../Internal/CommandAdapter.cs:41
 msgid "apm l 查看可安装插件表"
@@ -121,11 +122,11 @@ msgstr "apm lb view the update exclusion list"
 
 #: ../../Internal/CommandAdapter.cs:47
 msgid "apm off 关闭某个插件"
-msgstr ""
+msgstr "apm off turns off a plug-in"
 
 #: ../../Internal/CommandAdapter.cs:46
 msgid "apm on 启用某个插件"
-msgstr ""
+msgstr "apm on enables a plug-in"
 
 #: ../../Internal/CommandAdapter.cs:43
 msgid "apm rb [插件名字] 取消更新排除"
@@ -164,26 +165,16 @@ msgid "安装插件出现错误:"
 msgstr "An error occurred while installing the plugin:"
 
 #: ../../Internal/CommandAdapter.cs:95
-#, fuzzy
-#| msgid "序号无效，请附带需要安装插件的选择项!"
 msgid "序号无效，请附带需要关闭插件的选择项!"
-msgstr ""
-"Invalid number, please include the required options for the plugin to be "
-"installed!"
+msgstr "Invalid number, please include the required options for the plugin to be installed!"
 
 #: ../../Internal/CommandAdapter.cs:195
 msgid "序号无效，请附带需要安装插件的选择项!"
-msgstr ""
-"Invalid number, please include the required options for the plugin to be "
-"installed!"
+msgstr "Invalid number, please include the required options for the plugin to be installed!"
 
 #: ../../Internal/CommandAdapter.cs:140
-#, fuzzy
-#| msgid "序号无效，请附带需要安装插件的选择项!"
 msgid "序号无效，请附带需要开启插件的选择项!"
-msgstr ""
-"Invalid number, please include the required options for the plugin to be "
-"installed!"
+msgstr "Invalid number, please include the required options for the plugin to be installed!"
 
 #: ../../Internal/CommandAdapter.cs:263
 msgid "当前没有排除任何一个插件哦~"
@@ -207,9 +198,7 @@ msgstr "Plugin update exclusion list:\n"
 
 #: ../../Internal/CommandAdapter.cs:182
 msgid "无效参数，请附带需要安装插件的选择项!"
-msgstr ""
-"Invalid parameter, please include the required options for the plugin to be "
-"installed!"
+msgstr "Invalid parameter, please include the required options for the plugin to be installed!"
 
 #: ../../Internal/CommandAdapter.cs:459
 msgid "无法获取更新:"
@@ -229,23 +218,23 @@ msgstr "An error occurred during automatic update:"
 
 #: ../../Internal/CommandAdapter.cs:313
 msgid "语法错误，正确语法:/apm b [插件名称]"
-msgstr ""
+msgstr "Syntax error, correct syntax:/apm b [plugin name]"
 
 #: ../../Internal/CommandAdapter.cs:172
 msgid "语法错误，正确语法:/apm i [序号]"
-msgstr ""
+msgstr "Syntax error, correct syntax:/apm i [serial number]"
 
 #: ../../Internal/CommandAdapter.cs:79
 msgid "语法错误，正确语法:/apm off [序号]"
-msgstr ""
+msgstr "Syntax error, correct syntax:/apm off [serial number]"
 
 #: ../../Internal/CommandAdapter.cs:124
 msgid "语法错误，正确语法:/apm on [序号]"
-msgstr ""
+msgstr "Syntax error, correct syntax:/apm on [serial number]"
 
 #: ../../Internal/CommandAdapter.cs:278
 msgid "语法错误，正确语法:/apm rb [插件名称]"
-msgstr ""
+msgstr "Syntax error, correct syntax:/apm rb [plugin name]"
 
 #~ msgid "无法连接服务器"
 #~ msgstr "Unable to connect to the server"
@@ -253,16 +242,15 @@ msgstr ""
 #, csharp-format
 #~ msgid "[跳过安装或更新] 插件{0}({1})的其中一项依赖被禁止安装或更新\n"
 #~ msgstr ""
-#~ "[Skip Install or Update] plugin {0}({1}) has one of its dependencies "
-#~ "being banned for installation or update.\n"
+#~ "[Skip Install or Update] plugin {0}({1}) has one of its dependencies being banned for installation or "
+#~ "update.\n"
 
 #, csharp-format
 #~ msgid ""
-#~ "[跳过安装或更新] 无法在本地找到插件{0}({1})或其其中一项依赖,可能是云加载或"
-#~ "使用-additionalplugins加载\n"
+#~ "[跳过安装或更新] 无法在本地找到插件{0}({1})或其其中一项依赖,可能是云加载或使用-additionalplugins加载\n"
 #~ msgstr ""
-#~ "[Skip Install or Update] Could not find the plugin {0}({1}) locally, it "
-#~ "might be loaded from the cloud or using -additionalplugins.\n"
+#~ "[Skip Install or Update] Could not find the plugin {0}({1}) locally, it might be loaded from the cloud or "
+#~ "using -additionalplugins.\n"
 
 #~ msgid "正在下载最新插件包..."
 #~ msgstr "Downloading the latest plugin package..."

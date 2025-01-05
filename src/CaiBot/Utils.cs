@@ -4,10 +4,10 @@ using System.Text;
 
 namespace CaiBot;
 
-public static class Utils
+internal static class Utils
 {
     
-    public static string FileToBase64String(string path)
+    internal static string FileToBase64String(string path)
     {
         FileStream fsForRead = new (path, FileMode.Open); //文件路径
         var base64Str = "";
@@ -31,7 +31,7 @@ public static class Utils
         }
     }
 
-    public static string CompressBase64(string base64String)
+    internal static string CompressBase64(string base64String)
     {
         var base64Bytes = Encoding.UTF8.GetBytes(base64String);
         using (var outputStream = new MemoryStream())
@@ -44,7 +44,7 @@ public static class Utils
             return Convert.ToBase64String(outputStream.ToArray());
         }
     }
-    public static List<int> GetActiveBuffs(IDbConnection connection, int userId, string name)
+    internal static List<int> GetActiveBuffs(IDbConnection connection, int userId, string name)
     {
         try
         {
