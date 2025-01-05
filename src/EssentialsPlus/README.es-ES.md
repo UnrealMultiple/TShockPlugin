@@ -2,7 +2,7 @@
 
 - Autores: WhiteX y otros, Average, Cjx, adaptación y modificación por 肝帝熙恩, actualización por Cai
 - Fuente: [Github](https://github.com/QuiCM/EssentialsPlus)
-- Essentials+ es una combinación de funcionalidades de Essentials y MoreAdminCommands mejoradas. Todos los comandos se ejecutan de manera asíncrona. No incluye comandos de señales.
+- Essentials+ es una combinación de funcionalidades de Essentials y MoreAdminCommands mejoradas. Todos los comandos se ejecutan de manera asíncrona. No incluye comandos de señales.所有命令都是异步执行的。不包括 Flag 命令。
 
 ## Comandos
 
@@ -15,20 +15,20 @@
 - **/delhome** `<nombre_casa>` -> Elimina una casa específica con `<nombre_casa>`.
 - **/sethome** `<nombre_casa>` -> Establece una casa con el nombre `<nombre_casa>`.
 - **/myhome** `<nombre_casa>` -> Te teletransporta a tu casa llamada `<nombre_casa>`.
-- **/kickall** `<flag> <razón>` -> Expulsa a todos los jugadores por `<razón>`. Bandera válida: `-nosave` -> La expulsión no guarda el inventario SSC.
+- **/kickall** 或 **/踢所有人** `<原因>` -> 踢出服务器上的所有人。**/kickall** `<flag> <razón>` -> Expulsa a todos los jugadores por `<razón>`. Bandera válida: `-nosave` -> La expulsión no guarda el inventario SSC.
 - **/=** -> Repite el último comando ingresado (excluyendo otros usos de /=).
-- **/more** -> Maximiza la pila del ítem sostenido. Incluye subcomandos:
+- **/more** 或 **/堆叠** -> 最大化手持物品的堆叠。子命令：
   - **-all** -> Maximiza todos los ítems apilables en el inventario del jugador.
-- **/mute** -> Sobrescribe el comando `/mute` de TShock. Incluye subcomandos:
+- **/mute** -> Sobrescribe el comando `/mute` de TShock. Incluye subcomandos:包含子命令：
   - **add** `<nombre> <tiempo>` -> Silencia al jugador `<nombre>` por el tiempo `<tiempo>`.
   - **delete** `<nombre>` -> Quita el silencio del jugador `<nombre>`.
   - **help** -> Muestra información del comando.
 - **/pvpget** -> Activa o desactiva tu estado de PvP.
 - **/ruler** `[1|2]` -> Mide la distancia entre los puntos 1 y 2.
-- **/sudo** `[flag] <jugador> <comando>` -> Hace que `<jugador>` ejecute `<comando>`. Bandera válida: `-force` -> Obliga al jugador a ejecutar el comando, ignorando las verificaciones de permisos. Los jugadores con el permiso `essentials.sudo.super` pueden usar `/sudo` en cualquier persona.
-- **/timecmd** `[flag] <tiempo> <comando>` -> Ejecuta `<comando>` después de `<tiempo>`. Bandera válida: `-repeat` -> Repite `<comando>` cada `<tiempo>`.
-- **/eback** `[pasos]` -> Te lleva a una ubicación previa. Si se proporciona `[pasos]`, te lleva a tu posición `[pasos]` atrás.
-- **/down** `[niveles]` -> Te mueve hacia abajo en el mapa. Si se especifica `[niveles]`, intenta moverte hacia abajo `[niveles]` niveles.
+- **/sudo** `[flag] <jugador> <comando>` -> Hace que `<jugador>` ejecute `<comando>`. Bandera válida: `-force` -> Obliga al jugador a ejecutar el comando, ignorando las verificaciones de permisos. Los jugadores con el permiso `essentials.sudo.super` pueden usar `/sudo` en cualquier persona.有效标志：`-force` -> 强制执行命令，忽略 `<玩家>` 的权限限制。拥有 `essentials.sudo.super` 权限的玩家可以对任何人使用 /sudo。
+- **/timecmd** `[flag] <tiempo> <comando>` -> Ejecuta `<comando>` después de `<tiempo>`. Bandera válida: `-repeat` -> Repite `<comando>` cada `<tiempo>`.有效标志：`-repeat` -> 每隔 `<时间>` 重复执行 `<命令>`。
+- **/eback** `[pasos]` -> Te lleva a una ubicación previa. Si se proporciona `[pasos]`, te lleva a tu posición `[pasos]` atrás.如果提供了 `[步数]`，则尝试将您带回 `[步数]` 步之前的位置。
+- **/down** `[niveles]` -> Te mueve hacia abajo en el mapa. Si se especifica `[niveles]`, intenta moverte hacia abajo `[niveles]` niveles.如果指定了 `[层数]`，则尝试向下移动 `[层数]` 次。
 - **/left** `[niveles]` -> Similar a `/down [niveles]`, pero te mueve hacia la izquierda.
 - **/right** `[niveles]` -> Similar a `/down [niveles]`, pero te mueve hacia la derecha.
 - **/up** `[niveles]` -> Similar a `/down [niveles]`, pero te mueve hacia arriba.
@@ -60,6 +60,7 @@
 ## Configuración
 
 > Ubicación del archivo de configuración: `tshock/EssentialsPlus.json`
+
 ```json5
 {
   // Lista de comandos que desactivan PvP (Jugador contra Jugador) al usarlos.
@@ -84,8 +85,21 @@
 }
 ```
 
-## Soporte
+## 更新日志
+
+```
+1.0.4
+添加西班牙语，修正部分内容
+1.0.3
+i18n完成，且预置es-EN
+1.0.2
+修复数据库错误
+1.0.1 
+修复重启无法获取禁言的BUG, 重命名一些方法
+```
+
+## 反馈
 
 - Github Issue -> Repositorio de TShockPlugin: https://github.com/UnrealMultiple/TShockPlugin
 - Grupo de QQ de TShock: 816771079
-- Foro de Terraria en China: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
