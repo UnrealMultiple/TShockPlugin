@@ -1,19 +1,20 @@
 # Economics.Projectile Custom pop-ups
 
-- Author: Shao Shi Ming
+- 作者: 少司命
 - Source: None
 - Customizable projectile to make your weapon more cool!
 
 > [!NOTE]
->  requires pre-installed plugins: EconomicsAPI, Economics.RPG (in this repository).
-
+> requires pre-installed plugins: EconomicsAPI, Economics.RPG (in this repository).
 
 ## Commands
 
 None
 
 ## Configuration
->  configuration file location: tshock/Economics/Projectile.json
+
+> configuration file location: tshock/Economics/Projectile.json
+
 ```json5
 {
   "弹幕触发": {
@@ -56,7 +57,13 @@ None
 }
 ```
 
+## 更新日志
+
+```
+无
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
-- TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 国内社区 trhub.cn 或 TShock 官方群等
