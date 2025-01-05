@@ -1,6 +1,6 @@
 # Economics.WeaponPlus Weapon Enhancement EC Version
 
-- Author: Zhi, Shao Siming  
+- 作者: 枳、少司命
 - Source: [github](https://github.com/skywhale-zhi/WeaponPlusCostCoin)
 - This is a Tshock server plugin mainly used for weapon enhancement using Economics.
 - Enhances damage multiplier, knockback, size, attack speed, and projectile speed of items owned by players via commands.
@@ -8,18 +8,20 @@
 - Stores player weapon enhancement levels in the tshock.sqlite database, ensuring that enhancements are not lost when weapons are discarded or when rejoining the server.
 - This plugin supports Chinese and English conversion.
 
-> [!NOTE]  
+> [!NOTE]\
 > Requires the installation of the prerequisite plugin: EconomicsAPI (this repository)
 
 ## Commands
 
-| Syntax               | Alias |    Permission    |             Description              |
-|----------------------|:-----:|:----------------:|:------------------------------------:|
-| /plus help           | None  | weaponplus.plus  |   View the weapon enhancement menu   |
-| /clearallplayersplus | None  | weaponplus.admin | Clear enhanced items for all players |
+| Syntax               |  别名  |            Permission            |              Description             |
+| -------------------- | :--: | :------------------------------: | :----------------------------------: |
+| /plus help           | None |  weaponplus.plus |   View the weapon enhancement menu   |
+| /clearallplayersplus | None | weaponplus.admin | Clear enhanced items for all players |
 
 ## Configuration
+
 > Configuration file location: tshock/Economics/WeaponPlus.json
+
 ```
 {
   "Enable English": false,
@@ -45,7 +47,28 @@
 }
 ```
 
+## 更新日志
+
+```
+V2.0.0.0
+适配多货币
+
+V1.0.0.5
+适配新 EconomicsAPI
+
+1.0.3
+适配新版EC套件
+配置文件支持自动中英文转换
+指令方法无任何改变
+（羽学重构了配置文件使其更简洁）
+
+1.0.2
+此版本为中文论坛发布最新版，作者尚未开源。
+羽学对其反编译并重构了Config（移除中文变量）
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
