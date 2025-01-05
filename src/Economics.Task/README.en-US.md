@@ -5,22 +5,24 @@
 - Send tasks to players
 
 > [!NOTE]
->  requires pre-installed plugins: EconomicsAPI, Economics.RPG (in this repository).
+> requires pre-installed plugins: EconomicsAPI, Economics.RPG (in this repository).
 
 ## Commands
 
-| Syntax                   |      Permission      |          Description          |
-|--------------------------|:--------------------:|:-----------------------------:|
-| /task pick [task index]  |  economics.task.use  |        Pick up a task         |
+| Syntax                                                                       |                      Permission                      |          Description          |
+| ---------------------------------------------------------------------------- | :--------------------------------------------------: | :---------------------------: |
+| /task pick [task index]  |  economics.task.use  |         Pick up a task        |
 | /task info [task index]  |  economics.task.use  |       View task details       |
-| /task prog               |  economics.task.use  | View task completion progress |
-| /task pr                 |  economics.task.use  |         Submit Tasks          | /task del | economics.task.use
-| /task del                |  economics.task.use  |         Abandon Task          | /task list [|task del] | economics.task.use [|task list
-| /task list [page number] |  economics.task.use  |        View task list         | /task reset | /task reset | economics.task.use | View task list | /task reset
-| /task reset              | economics.task.admin |          Reset tasks          |
+| /task prog                                                                   |  economics.task.use  | View task completion progress |
+| /task pr                                                                     |  economics.task.use  |          Submit Tasks         |
+| /task del                                                                    |  economics.task.use  |          Abandon Task         |
+| /task list [page number] |  economics.task.use  |         View task list        |
+| /task reset                                                                  | economics.task.admin |          Reset tasks          |
 
 ## Configuration
->  configuration file location: tshock/Economics/Task.json
+
+> configuration file location: tshock/Economics/Task.json
+
 ```json5
 {
   "不可重复接任务": true,
@@ -63,7 +65,14 @@
 }
 ```
 
+## 更新日志
+
+```
+V2.0.0.0
+适配多货币
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
-- TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 国内社区 trhub.cn 或 TShock 官方群等
