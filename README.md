@@ -192,7 +192,7 @@
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 一个允许热重载的插件加载器 |  |
 | [VeinMiner](./src/VeinMiner/README.md) | 连锁挖矿 |  |
 | [VotePlus](./src/VotePlus/README.md) | 多功能投票 |  |
-| [WeaponPlus](./src/WeaponPlusCostCoin/README.md) | 武器强化钱币版 |  |
+| [WeaponPlus](./src/WeaponPlus/README.md) | 武器强化钱币版 |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 为服务器加载 Wiki 语言包 |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 世界编辑器,可以修改大部分的世界参数 |  |
 | [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | zhi的玩家管理插件 |  |

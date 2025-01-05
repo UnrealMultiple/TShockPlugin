@@ -196,7 +196,7 @@
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | No | Un cargador de plugins que permite la recarga en caliente |  |
 | [VeinMiner](./src/VeinMiner/README.md) | No | Minado en cadena |  |
 | [VotePlus](./src/VotePlus/README.md) | No | Votación multifuncional |  |
-| [WeaponPlus](./src/WeaponPlusCostCoin/README.md) | No | Versión de monedas para mejorar armas |  |
+| [WeaponPlus](./src/WeaponPlus/README.md) | No | Versión de monedas para mejorar armas |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | No | 为服务器加载 Wiki 语言包 |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | No | Editor del mundo, permite modificar la mayoría de los parámetros del mundo |  |
 | [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | No | Plugin de gestión de jugadores de Zhi |  |
