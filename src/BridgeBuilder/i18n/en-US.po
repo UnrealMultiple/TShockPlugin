@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: BridgeBuilder\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-11-30 02:03:51+0000\n"
-"PO-Revision-Date: 2024-09-29 12:40+0800\n"
+"PO-Revision-Date: 2025-01-05 06:38\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/BridgeBuilder/i18n/template.pot\n"
+"X-Crowdin-File-ID: 432\n"
+"Language: en_US\n"
 
 #: ../../BridgeBuilder.cs:108
 #, csharp-format
@@ -26,13 +32,9 @@ msgstr "Cannot build a bridge here."
 
 #: ../../BridgeBuilder.cs:29
 msgid "朝着你看的方向建造桥梁。（你需要持有一定数量的平台或团队块或种植盆。）"
-msgstr ""
-"Builds bridges towards the direction you're looking. (You need to be holding "
-"a certain amount of platforms, team blocks, or planters.)"
+msgstr "Builds bridges towards the direction you're looking. (You need to be holding a certain amount of platforms, team blocks, or planters.)"
 
 #: ../../BridgeBuilder.cs:112
 msgid "没有足够的空间或物品来建造桥梁。"
 msgstr "There is not enough space or items to build the bridge."
 
-#~ msgid "[铺桥] 重新加载配置完毕。"
-#~ msgstr "[BridgeBuilder] Configuration reloaded."
