@@ -1,20 +1,21 @@
-# TShockConfigMultiLang
+# TShockConfigMultiLang 创建一个本地化语言的config
 
 - Authors: 肝帝熙恩，羽学
 - Source: This Repository
 - Create a localized language config, modify the config by changing it, and vice versa. After synchronization, it will automatically reload.
 - It may conflict with some plugins that operate on TShock's own config. Generally, this can be resolved manually.
 
-
 ## Commands
 
-| Syntax                      |    Permission     |                            Description                            |
-|-----------------------------|:-----------------:|:-----------------------------------------------------------------:|
+| Syntax                      |                     Permission                    |                            Description                            |
+| --------------------------- | :-----------------------------------------------: | :---------------------------------------------------------------: |
 | /configToNewconfig or /ctc  | tshock.cfg.reload | Synchronize the original config file to the localized config file |
 | /configToFromconfig or /cfc | tshock.cfg.reload | Synchronize the localized config file to the original config file |
 
 ## Config
+
 > Configuration file location: tshock/config.en-US.json
+
 ```json5
 {
     "ServerPassword": "",
@@ -165,7 +166,14 @@
   }
 ```
 
+## 更新日志
+
+```
+暂无
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
