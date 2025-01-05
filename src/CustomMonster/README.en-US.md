@@ -1,27 +1,28 @@
-# CustomMonster 
+# CustomMonster 自定义怪物血量
 
 - Authors: GK & 羽学
 - Source: QQ Group 232109072 [CustomMonster](https://github.com/1242509682/CustomMonster)
 - This is a Tshock server plugin mainly used for:
 - Modifying monsters on the Tshock server,
-- Customize modifications to monsters and BOSSes including AI, health,
-- bullet patterns, drop items, area-of-effect buffs,
-- summons, pulling players,
-- defenses, invincibility, magma immunity,
+- 可自定义于怪物与BOSS的修改AI、修改血量、
+- 修改弹幕、修改掉落物、修改范围BUFF、
+- 修改随从怪物、拉取玩家、
+- 修改防御、修改无敌、修改免疫岩浆、
 - trap immunity, controlling specified monster counts, NPC protection, etc.
-- (Comes with built-in configuration as a reference)
 
 ## Commands
 
-| Command Syntax	 | Alias |  Permission   |                Description                |
-|-----------------|:-----:|:-------------:|:-----------------------------------------:|
-| /ggw            | None  | CustomMonster | Hide extra configuration items and reload |
-| /smc            | None  | CustomMonster |         Summon a flagged monster          |
-| /reload         | None  | CustomMonster |       Reload the configuration file       |
+| 语法      |  别名  |   Permission  |                Description                |
+| ------- | :--: | :-----------: | :---------------------------------------: |
+| /ggw    | None | CustomMonster | Hide extra configuration items and reload |
+| /smc    | None | CustomMonster |          Summon a flagged monster         |
+| /reload | None | CustomMonster |       Reload the configuration file       |
 
 ## Configuration
+
 > Configuration file location： tshock/CustomMonster.json
-```json5
+
+```json
 {
   "是否隐藏没用到配置项的指令/ggw": false,
   "自定义强制隐藏哪些配置项的指令/Reload": [
@@ -665,7 +666,59 @@
   ]
 }
 ```
+
+## 更新日志
+
+```
+2024年12月21日
+整合了GK最新版的1.0.4.39
+加入弹幕条件节
+
+2024年12月16日
+整合了GK最新版的1.0.4.38
+加入更新弹幕节
+
+2024年10月14日
+整合了GK最新版的1.0.4.36
+
+2024年6月12日
+移除无配置版，加入羽学内嵌版源码
+
+2024年6月6日
+修复无配置版报错提示
+并给羽学内嵌版与无配置版加入：/reload 重载报错只报行数  
+
+2024年6月5日
+加了个【自定义强制隐藏哪些配置项】：
+当【是否隐藏没用到的配置项】开启时触发
+不写自定义隐藏，只会忽略空值和默认值，
+写了哪怕有改动值也会被强制隐藏，并把该【指定的配置项】刷回成默认值（有毁配置风险，不建议碰它）
+比如【怪物血量】你改20000，然后在强制隐藏里加了【怪物血量】这个关键词，/reload后就会变成0
+
+羽学内嵌版调整：
+修改了“店员”的配置文件，
+移除了四子魔眼，加入了史莱姆强化、尖刺史莱姆、暗影焰鬼、雨云怪魔改
+调整了所有BOSS单体血量为1.5-2倍
+修复由原插件预设配置默认将击退、拉取范围等未改配置自动填值的问题
+修复了【人秒系数-10】/【出没秒数600】导致无法生成BOSS/过时消失的问题
+
+2024年6月4日
+加了【是否隐藏没用到的配置项】开关
+加了个指令：/改怪物 用于控制【是否隐藏没用到的配置项】：
+此开关可隐藏没用到的空值、默认值的配置项
+加入了“店员”的配置文件
+相关NPC魔改：光女、双足翼龙、月后四子魔眼、冰雪巨人、
+沙尘精、装甲幻影魔、恶魔眼、诅咒锤、猩红斧、附魔剑、骨蛇、
+神圣宝箱怪、冰雪女王、飞眼怪、哥布林巫师、哥布林召唤师
+
+1.0.4.9  
+加入了死亡执行命令、拉取范围等配置项
+此版本源码为无内嵌配置文件版，适用于直接编写。
+
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
