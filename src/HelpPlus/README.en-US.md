@@ -1,20 +1,19 @@
-﻿# HelpPlus
+# HelpPlus
 
 - Authors: Cai
-- Source: Here
-  Fix the issue where the /help command cannot be used in non-English Lang.
-  Add a brief prompt for /help.
-  Use /help <command> to see more detailed command help.
-
+- 出处: 此仓库
+- 修复/help指令无法使用的问题
+- 为/help添加简短提示
+- view detailed help for the command
 
 ## Commands
 
-| Command         | Permission |              Details               |
-|-----------------|:----------:|:----------------------------------:|
-| help <page>     |     no     |     view the list of commands      |
-| /help <command> |     no     | view detailed help for the command |
+```
+/help <command>
+```
 
 ## Config
+
 > Configuration file location：tshock/HelpPlus.json
 
 ```json5
@@ -38,7 +37,16 @@
 }
 ```
 
+## 更新日志
+
+```
+- v2024.9.1.1 更新翻译
+- v2024.7.28.1 修复/death、/roll等原版命令
+- v1.0.0 修复Help需要权限的奇怪问题
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
