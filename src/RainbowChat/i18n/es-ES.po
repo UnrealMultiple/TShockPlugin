@@ -1,0 +1,158 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2024-12-15 03:11:36+0000\n"
+"PO-Revision-Date: 2025-01-05 06:39\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/RainbowChat/i18n/template.pot\n"
+"X-Crowdin-File-ID: 516\n"
+"Language: es_ES\n"
+
+#: ../../RainbowChat.cs:113
+#: ../../Commands.cs:152
+msgid "[i:3454][c/E83849:注意][i:3454]\n"
+msgstr ""
+
+#: ../../RainbowChat.cs:52
+msgid "[彩色聊天]重新加载配置完毕。"
+msgstr ""
+
+#: ../../Commands.cs:179
+#, csharp-format
+msgid "{0} 的彩虹聊天已 启用."
+msgstr ""
+
+#: ../../Commands.cs:180
+#, csharp-format
+msgid "{0} 的彩虹聊天已 禁用."
+msgstr ""
+
+#: ../../Commands.cs:33
+#, csharp-format
+msgid "{0} 的彩虹聊天插件已关闭."
+msgstr ""
+
+#: ../../Commands.cs:25
+#, csharp-format
+msgid "{0} 的彩虹聊天插件已启用."
+msgstr ""
+
+#: ../../Commands.cs:206
+#, csharp-format
+msgid "{0} 的渐变聊天已 启用."
+msgstr ""
+
+#: ../../Commands.cs:207
+#, csharp-format
+msgid "{0} 的渐变聊天已 禁用."
+msgstr ""
+
+#: ../../Commands.cs:141
+msgid "《彩虹聊天》 菜单指令\n"
+msgstr ""
+
+#: ../../Commands.cs:142
+msgid "/rc 开启 或 关闭 - 开启|关闭插件功能\n"
+msgstr ""
+
+#: ../../Commands.cs:146
+msgid "/rc 渐变 - 开启或关闭自己的渐变聊天\n"
+msgstr ""
+
+#: ../../Commands.cs:147
+msgid "/rc 渐变 开始 R,G,B - 设置渐变聊天起始颜色\n"
+msgstr ""
+
+#: ../../Commands.cs:148
+msgid "/rc 渐变 结束 R,G,B - 设置渐变聊天结束颜色"
+msgstr ""
+
+#: ../../Commands.cs:144
+msgid "/rc 渐变开关 - 全局开启|关闭渐变色功能\n"
+msgstr ""
+
+#: ../../Commands.cs:145
+msgid "/rc 随机 - 开启或关闭自己的随机单色整句\n"
+msgstr ""
+
+#: ../../Commands.cs:143
+msgid "/rc 随机开关 - 全局开启|关闭随机色功能\n"
+msgstr ""
+
+#: ../../RainbowChat.cs:114
+#: ../../Commands.cs:153
+msgid "使用[c/B0B2D1:非正版客户端]或[c/B0B2D1:语言资源包]导致TS指令异常\n"
+msgstr ""
+
+#: ../../Commands.cs:52
+msgid "全局的渐变色聊天已 启用."
+msgstr ""
+
+#: ../../Commands.cs:53
+msgid "全局的渐变色聊天已 禁用."
+msgstr ""
+
+#: ../../Commands.cs:42
+msgid "全局的随机色聊天已 启用."
+msgstr ""
+
+#: ../../Commands.cs:43
+msgid "全局的随机色聊天已 禁用."
+msgstr ""
+
+#: ../../RainbowChat.cs:76
+msgid "您的渐变聊天功能已自动开启."
+msgstr ""
+
+#: ../../RainbowChat.cs:116
+msgid "或者请玩家使用 [c/B0B2D1:.help] 代替 [c/B0B2D1:/help]"
+msgstr ""
+
+#: ../../Commands.cs:155
+msgid "或者请玩家使用 [c/B0B2D1:．help] 代替 [c/B0B2D1:/help]"
+msgstr ""
+
+#: ../../Commands.cs:110
+msgid "无效的结束颜色值。请使用格式如 'R,G,B'（逗号分隔）的颜色表示法。"
+msgstr ""
+
+#: ../../Commands.cs:88
+msgid "无效的起始颜色值。请使用格式如 'R,G,B'（逗号分隔）的颜色表示法。"
+msgstr ""
+
+#: ../../Commands.cs:84
+#, csharp-format
+msgid "渐变开始颜色已设置为 R:{0}, G:{1}, B:{2}"
+msgstr ""
+
+#: ../../Commands.cs:106
+#, csharp-format
+msgid "渐变结束颜色已设置为 R:{0}, G:{1}, B:{2}"
+msgstr ""
+
+#: ../../Commands.cs:115
+msgid "结束颜色值缺失。请使用如 '/rc 渐变 结束 0,255,0' 的格式。"
+msgstr ""
+
+#: ../../RainbowChat.cs:115
+#: ../../Commands.cs:154
+msgid "请服主安装[c/B0B2D1:Chireiden.TShock.Omni]插件修复\n"
+msgstr ""
+
+#: ../../Commands.cs:93
+msgid "起始颜色值缺失。请使用如 '/rc 渐变 开始 255,0,0' 的格式。"
+msgstr ""
+
+#: ../../Commands.cs:226
+msgid "错误的玩家!"
+msgstr ""
+
