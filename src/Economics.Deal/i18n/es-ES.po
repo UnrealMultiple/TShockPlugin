@@ -1,0 +1,120 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2024-11-15 03:22:36+0000\n"
+"PO-Revision-Date: 2025-01-05 06:38\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/Economics.Deal/i18n/template.pot\n"
+"X-Crowdin-File-ID: 476\n"
+"Language: es_ES\n"
+
+#: ../../Command.cs:63
+msgid "{0}：{1} 发布者：{2} 价格{3}"
+msgstr ""
+
+#: ../../Command.cs:123
+msgid "/deal buy [ID]"
+msgstr ""
+
+#: ../../Command.cs:125
+msgid "/deal list"
+msgstr ""
+
+#: ../../Command.cs:122
+msgid "/deal push [价格] [货币类型]"
+msgstr ""
+
+#: ../../Command.cs:124
+msgid "/deal recall [ID]"
+msgstr ""
+
+#: ../../Command.cs:83
+#: ../../Command.cs:107
+msgid "不存在此交易!"
+msgstr ""
+
+#: ../../Command.cs:29
+msgid "交易列表 ({0}/{1})："
+msgstr ""
+
+#: ../../Command.cs:136
+msgid "交易已重置!"
+msgstr ""
+
+#: ../../Command.cs:93
+msgid "交易成功!"
+msgstr ""
+
+#: ../../Command.cs:38
+msgid "你手持物品为空!"
+msgstr ""
+
+#: ../../Command.cs:131
+msgid "你无权使用此命令!"
+msgstr ""
+
+#: ../../Command.cs:88
+#, csharp-format
+msgid "你的{0}不足，无法购买!"
+msgstr ""
+
+#: ../../Command.cs:52
+msgid "发布成功"
+msgstr ""
+
+#: ../../Command.cs:28
+msgid "当前没有交易物品"
+msgstr ""
+
+#: ../../Command.cs:115
+msgid "撤回成功!"
+msgstr ""
+
+#: ../../Command.cs:116
+msgid "玩家{0}撤回了发布的物品{1}!"
+msgstr ""
+
+#: ../../Command.cs:94
+msgid "玩家{0}购买了{1}发布的物品{2}!"
+msgstr ""
+
+#: ../../Command.cs:53
+#, csharp-format
+msgid "玩家`{0}`发布了一个交易物品: [i/s{1}:{2}] 价格: {3}x{4}"
+msgstr ""
+
+#: ../../Command.cs:112
+msgid "该交易不是你发布的无法撤回!"
+msgstr ""
+
+#: ../../Command.cs:77
+#: ../../Command.cs:101
+msgid "请输入一个正确的ID"
+msgstr ""
+
+#: ../../Command.cs:43
+msgid "请输入一个正确的价格!"
+msgstr ""
+
+#: ../../Command.cs:48
+#, csharp-format
+msgid "货币类型{0}不存在!"
+msgstr ""
+
+#: ../../Command.cs:30
+msgid "输入 {0}deal list {{0}} 查看更多"
+msgstr ""
+
+#: ../../Command.cs:140
+msgid "输入/deal help 查看命令使用方法"
+msgstr ""
+
