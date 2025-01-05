@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TownNPCHomes\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-10-25 14:11:06+0000\n"
-"PO-Revision-Date: 2024-09-08 01:41+0800\n"
+"PO-Revision-Date: 2025-01-05 06:39\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en_US\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/TownNPCHomes/i18n/template.pot\n"
+"X-Crowdin-File-ID: 536\n"
+"Language: en_US\n"
 
 #: ../../Plugin.cs:76
 #, csharp-format
@@ -29,3 +35,4 @@ msgstr "All town NPCs have been teleported home!"
 #, csharp-format
 msgid "无法找到ID为{0}的NPC，无法为其设置家的位置。"
 msgstr "Unable to find NPC with ID {0}, unable to set home location."
+
