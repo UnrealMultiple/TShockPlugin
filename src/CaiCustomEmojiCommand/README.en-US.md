@@ -1,13 +1,21 @@
 # CaiCustomEmojiCommand
 
 - Authors: Cai
-- Source: Here
+- 出处: 本仓库
 - Tired of typing long commands? Try custom emoji commands to convert frequently used commands into emojis for execution.
 - Emoji IDs can be found on the wiki (https://terraria.wiki.gg/wiki/Emotes). This plugin does not support bypassing permission checks, and commands require an identifier (/ or .).
 
+## 指令
+
+```
+无
+```
+
 ## Config
+
 > Configuration file location：tshock/CaiCustomEmojiCommand.en-US.json
-```json5 
+
+```json5
 {
   "EmojiCommands": [
     {
@@ -54,7 +62,17 @@
 }
 ```
 
+## 更新日志
+
+```
+2024.12.18.2 准备更新TS 5.2.1,修正文档
+2024.11.29.1 使用lazyapi
+2024.9.8.1 添加英文翻译
+2024.7.28.1 添加插件
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
