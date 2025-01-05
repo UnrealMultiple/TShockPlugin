@@ -1,32 +1,31 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Challenger\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-12-15 03:10:56+0000\n"
-"PO-Revision-Date: 2024-12-01 18:55-0500\n"
-"Last-Translator: itsFrankV22\n"
-"Language-Team: UnrealMultiple\n"
-"Language: es_ES\n"
+"PO-Revision-Date: 2025-01-05 06:38\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/Challenger/i18n/template.pot\n"
+"X-Crowdin-File-ID: 448\n"
+"Language: es_ES\n"
 
 #: ../../Challenger/Challenger.cs:533
 #, csharp-format
-msgid ""
-"[c/95CFA6:<挑战者:挖矿套>] 背包已满，还需空位：[c/95CFA6:{0}] 以放入 "
-"[c/95CFA6:{1}] ."
-msgstr ""
-"[c/95CFA6:<Challenger: conjunto de minería>]El inventario está lleno, "
-"necesitas un espacio adicional: [c/95CFA6:{0}] ta ella le gusta [c/95CFA6:"
-"{1}]."
+msgid "[c/95CFA6:<挑战者:挖矿套>] 背包已满，还需空位：[c/95CFA6:{0}] 以放入 [c/95CFA6:{1}] ."
+msgstr "[c/95CFA6:<Challenger: conjunto de minería>]El inventario está lleno, necesitas un espacio adicional: [c/95CFA6:{0}] ta ella le gusta [c/95CFA6:{1}]."
 
 #: ../../Challenger/Challenger.cs:529
 #, csharp-format
 msgid "[c/95CFA6:<挑战者:挖矿套>] 连锁挖掘了 [c/95CFA6: {0} {1}]."
-msgstr ""
-"[c/95CFA6:<Challenger: conjunto de minería>] Cadena minada[c/95CFA6: {0} "
-"{1}]."
+msgstr "[c/95CFA6:<Challenger: conjunto de minería>] Cadena minada[c/95CFA6: {0} {1}]."
 
 #: ../../Challenger/Challenger.cs:107
 msgid "[挑战者模式]重新加载配置完毕。"
@@ -35,177 +34,135 @@ msgstr "[Challenger] Configuración recargada exitosamente."
 #: ../../Challenger/Challenger.cs:1978
 #, csharp-format
 msgid "{0} 发动了混乱之脑迷惑，成功迷惑了附近 {1}个敌人"
-msgstr ""
-"{0} activó el Cerebro de la Confusión, confundiendo con éxito a {1} enemigos "
-"cercanos."
+msgstr "{0} activó el Cerebro de la Confusión, confundiendo con éxito a {1} enemigos cercanos."
 
 #: ../../Challenger/Challenger.cs:2052
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}有流星"
-msgstr ""
-"{0} escuchó la transmisión de World Prophet desde {1}: Habrá una lluvia de "
-"meteoritos en {2}."
+msgstr "{0} escuchó la transmisión de World Prophet desde {1}: Habrá una lluvia de meteoritos en {2}."
 
 #: ../../Challenger/Challenger.cs:2036
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}满月"
-msgstr ""
-"{0} escuchó la transmisión de World Prophet desde {1}: Hay luna llena a las "
-"{2}."
+msgstr "{0} escuchó la transmisión de World Prophet desde {1}: Hay luna llena a las {2}."
 
 #: ../../Challenger/Challenger.cs:2048
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}灯笼夜"
-msgstr ""
-"{0} escuchó la transmisión de World Prophet desde {1}: Es la Noche de los "
-"Linternas a las {2}."
+msgstr "{0} escuchó la transmisión de World Prophet desde {1}: Es la Noche de los Linternas a las {2}."
 
 #: ../../Challenger/Challenger.cs:2040
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}血月"
-msgstr ""
-"{0} escuchó la transmisión del Profeta Mundial desde {1}: Es una luna de "
-"sangre en {2}."
+msgstr "{0} escuchó la transmisión del Profeta Mundial desde {1}: Es una luna de sangre en {2}."
 
 #: ../../Challenger/Challenger.cs:2044
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：明天日食"
-msgstr ""
-"{0} escuchó la transmisión de World Prophet desde {1}: Mañana habrá un "
-"eclipse solar."
+msgstr "{0} escuchó la transmisión de World Prophet desde {1}: Mañana habrá un eclipse solar."
 
 #: ../../Challenger/Challenger.cs:1999
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会下雨"
-msgstr ""
-"{0} escuchó la transmisión del pronóstico del tiempo desde {1}: No lloverá."
+msgstr "{0} escuchó la transmisión del pronóstico del tiempo desde {1}: No lloverá."
 
 #: ../../Challenger/Challenger.cs:2026
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会有沙尘暴"
-msgstr ""
-"{0} escuchó {1} radio del pronóstico del tiempo: no habrá tormenta de arena"
+msgstr "{0} escuchó {1} radio del pronóstico del tiempo: no habrá tormenta de arena"
 
 #: ../../Challenger/Challenger.cs:2006
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会有风"
-msgstr ""
-"{0} escuchó la transmisión del pronóstico del tiempo desde {1}: No habrá "
-"viento."
+msgstr "{0} escuchó la transmisión del pronóstico del tiempo desde {1}: No habrá viento."
 
 #: ../../Challenger/Challenger.cs:1993
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将下雨"
-msgstr ""
-"{0} escuchó la transmisión del pronóstico del tiempo desde {1}: Pronto "
-"lloverá."
+msgstr "{0} escuchó la transmisión del pronóstico del tiempo desde {1}: Pronto lloverá."
 
 #: ../../Challenger/Challenger.cs:2031
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将刮起沙尘暴"
-msgstr ""
-"{0} escuchó la transmisión del pronóstico del tiempo desde {1}: Pronto se "
-"avecina una tormenta de arena."
+msgstr "{0} escuchó la transmisión del pronóstico del tiempo desde {1}: Pronto se avecina una tormenta de arena."
 
 #: ../../Challenger/Challenger.cs:2019
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起狂风"
-msgstr ""
-"{0} escuchó la transmisión del pronóstico del tiempo desde {1}: Pronto "
-"llegarán vientos huracanados."
+msgstr "{0} escuchó la transmisión del pronóstico del tiempo desde {1}: Pronto llegarán vientos huracanados."
 
 #: ../../Challenger/Challenger.cs:2013
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起风"
-msgstr ""
-"{0} escuchó la transmisión del pronóstico del tiempo desde {1}: El viento "
-"llegará pronto."
+msgstr "{0} escuchó la transmisión del pronóstico del tiempo desde {1}: El viento llegará pronto."
 
 #: ../../Challenger/Challenger.cs:2056
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：顺其自然，不会发生任何事件"
-msgstr ""
-"{0} escuchó la transmisión del pronóstico del tiempo desde {1}: Todo estará "
-"en calma; no ocurrirán eventos."
+msgstr "{0} escuchó la transmisión del pronóstico del tiempo desde {1}: Todo estará en calma; no ocurrirán eventos."
 
 #: ../../Challenger/Challenger.cs:1284
-msgid ""
-"【丛林套装】\n"
+msgid "【丛林套装】\n"
 "挑战模式奖励：间歇地从玩家周围生成伤害性的孢子"
-msgstr ""
-"[Conjunto de selva]  \n"
+msgstr "[Conjunto de selva]  \n"
 "Recompensa del modo Desafío: genera periódicamente\n"
 "esporas dañinas alrededor del jugador."
 
 #: ../../Challenger/Challenger.cs:1386
 #, csharp-format
-msgid ""
-"【克苏鲁之盾】\n"
+msgid "【克苏鲁之盾】\n"
 "挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n"
 "{0}秒"
-msgstr ""
-"[Escudo de Cthulhu]  \n"
+msgstr "[Escudo de Cthulhu]  \n"
 "Recompensa del modo Desafío: Otorga un breve período de\n"
 "invencibilidad mientras corres, tiempo de reutilización: {0} segundos"
 
 #: ../../Challenger/Challenger.cs:1389
 #, csharp-format
-msgid ""
-"【分趾袜】\n"
+msgid "【分趾袜】\n"
 "挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n"
 "{0}秒"
-msgstr ""
-"[Calcetines con punta abierta]  \n"
+msgstr "[Calcetines con punta abierta]  \n"
 "Recompensa del modo Desafío: Otorga un breve período de\n"
 "invencibilidad mientras corres, tiempo de reutilización: {0} segundos"
 
 #: ../../Challenger/Challenger.cs:1258
-msgid ""
-"【化石套装】\n"
+msgid "【化石套装】\n"
 "挑战模式奖励：在头上召唤一个琥珀光球，向敌人\n"
 "抛出极快的闪电矢"
-msgstr ""
-"[Conjunto de fósiles]  \n"
+msgstr "[Conjunto de fósiles]  \n"
 "Recompensa del modo Desafío: invoca una luz ámbar\n"
 "esfera sobre el jugador que dispara extremadamente rápido\n"
 "relámpagos a los enemigos."
 
 #: ../../Challenger/Challenger.cs:1346
-msgid ""
-"【叶绿套装】\n"
+msgid "【叶绿套装】\n"
 "挑战模式奖励：释放不精确的叶绿水晶矢，丛林之\n"
 "力给你更高的生命上限"
-msgstr ""
-"[Conjunto de hoja verde]  \n"
+msgstr "[Conjunto de hoja verde]  \n"
 "Recompensa del modo Desafío: Lanzamientos imprecisos\n"
 "flechas de cristal de color verde hoja; Poder de la jungla\n"
 "aumenta tu salud máxima."
 
 #: ../../Challenger/Challenger.cs:1248
-msgid ""
-"【垂钓套装】\n"
+msgid "【垂钓套装】\n"
 "挑战模式奖励：给予永久的声纳、钓鱼、宝匣、镇\n"
 "定Buff"
-msgstr ""
-"[Juego de pesca]  \n"
+msgstr "[Juego de pesca]  \n"
 "Recompensa del modo Desafío: otorga sonar permanente,\n"
 "pesca, cofre del tesoro y aficionados tranquilos."
 
 #: ../../Challenger/Challenger.cs:1325
-msgid ""
-"【寒霜套装】\n"
+msgid "【寒霜套装】\n"
 "挑战模式奖励：你周围开始下雪"
-msgstr ""
-"[Configuración de escarcha]  \n"
+msgstr "[Configuración de escarcha]  \n"
 "Recompensa del modo Desafío: comienza a nevar a tu alrededor."
 
 #: ../../Challenger/Challenger.cs:1375
-msgid ""
-"【幽魂套装】\n"
+msgid "【幽魂套装】\n"
 "挑战模式奖励：根据头饰选择增加40血上限或80魔\n"
 "力上限；召唤 2个幽魂诅咒环绕玩家，向附近敌人攻击"
-msgstr ""
-"[Conjunto fantasma]  \n"
+msgstr "[Conjunto fantasma]  \n"
 "Recompensa del modo Desafío: aumenta la salud máxima\n"
 "por 40 o maná máximo por 80 según el casco\n"
 "elección; invoca 2 anillos de maldición fantasmales alrededor del\n"
@@ -213,149 +170,119 @@ msgstr ""
 
 #: ../../Challenger/Challenger.cs:1392
 #, csharp-format
-msgid ""
-"【忍者大师装备】\n"
+msgid "【忍者大师装备】\n"
 "挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n"
 "{0}秒"
-msgstr ""
-"[Equipo maestro ninja]  \n"
+msgstr "[Equipo maestro ninja]  \n"
 "Recompensa del modo Desafío: Otorga un breve período de\n"
 "invencibilidad mientras corres, tiempo de reutilización: {0} segundos."
 
 #: ../../Challenger/Challenger.cs:1253
-msgid ""
-"【忍者套装】\n"
+msgid "【忍者套装】\n"
 "挑战模式奖励：有四分之一概率闪避非致命伤害并\n"
 "释放烟雾"
-msgstr ""
-"[Conjunto Ninja]  \n"
+msgstr "[Conjunto Ninja]  \n"
 "Recompensa del modo Desafío: 25% de probabilidad de esquivar\n"
 "daños no letales y liberación de humo."
 
 #: ../../Challenger/Challenger.cs:1243
-msgid ""
-"【挖矿套装】\n"
+msgid "【挖矿套装】\n"
 "挑战模式奖励：给予永久的挖矿、糖果冲刺Buff\n"
 "启用连锁挖矿能力"
-msgstr ""
-"[Conjunto de minería]  \n"
+msgstr "[Conjunto de minería]  \n"
 "Recompensa del modo Desafío: Otorga minería permanente\n"
-"y aficionados a las carreras de velocidad dulces; permite la capacidad de "
-"minería en cadena."
+"y aficionados a las carreras de velocidad dulces; permite la capacidad de minería en cadena."
 
 #: ../../Challenger/Challenger.cs:1412
-msgid ""
-"【挥发明胶】\n"
+msgid "【挥发明胶】\n"
 "挑战模式奖励：击中敌人有概率掉落碎魔晶，珍珠\n"
 "石，凝胶等"
-msgstr ""
-"[Gel volátil]  \n"
+msgstr "[Gel volátil]  \n"
 "Recompensa del modo Desafío: los enemigos golpeados tienen una oportunidad\n"
 "para dejar caer cristales mágicos rotos, perlas, gel, etc."
 
 #: ../../Challenger/Challenger.cs:1356
-msgid ""
-"【提基套装】\n"
+msgid "【提基套装】\n"
 "挑战模式奖励：增加20血上限，在鞭子的轨迹上留\n"
 "下孢子"
-msgstr ""
-"[Conjunto Tiki]  \n"
+msgstr "[Conjunto Tiki]  \n"
 "Recompensa del modo Desafío: aumenta la salud máxima\n"
 "por 20; deja esporas en el rastro del látigo."
 
 #: ../../Challenger/Challenger.cs:1401
-msgid ""
-"【收音机零件】\n"
+msgid "【收音机零件】\n"
 "挑战模式奖励：输入“/cf”收听天气预报，在困难\n"
 "模式中可以收听世界先知预报"
-msgstr ""
-"[Partes de radio]  \n"
+msgstr "[Partes de radio]  \n"
 "Recompensa del modo Desafío: ingresa “/cf” para escuchar\n"
 "pronósticos meteorológicos; También puedo escuchar World Prophet.\n"
 "pronósticos en modo difícil."
 
 #: ../../Challenger/Challenger.cs:1271
-msgid ""
-"【暗影套装】\n"
+msgid "【暗影套装】\n"
 "挑战模式奖励：暴击时从玩家周围生成吞噬怪飞弹\n"
 "攻击周围敌人，冷却 1秒"
-msgstr ""
-"[Conjunto de sombras]  \n"
+msgstr "[Conjunto de sombras]  \n"
 "Recompensa del modo Desafío: Genera monstruo devorador\n"
-"misiles alrededor del jugador en caso de impactos críticos; ataques "
-"cercanos\n"
+"misiles alrededor del jugador en caso de impactos críticos; ataques cercanos\n"
 "enemigos, tiempo de reutilización: 1 segundo."
 
 #: ../../Challenger/Challenger.cs:1290
-msgid ""
-"【死灵套装】\n"
+msgid "【死灵套装】\n"
 "挑战模式奖励：受到伤害时，向四周飞溅骨头；攻\n"
 "击时偶尔发射骨箭"
-msgstr ""
-"[Conjunto de nigromante]  \n"
+msgstr "[Conjunto de nigromante]  \n"
 "Recompensa del modo Desafío: salpica huesos\n"
 "al recibir daño; ocasionalmente dispara hueso\n"
 "flechas al atacar."
 
 #: ../../Challenger/Challenger.cs:1315
-msgid ""
-"【水晶刺客套装】\n"
+msgid "【水晶刺客套装】\n"
 "挑战模式奖励：当有敌人在附近时，自身释放出水\n"
 "晶碎片；若玩家被击中，释放出更强大的碎片"
-msgstr ""
-"[Conjunto de asesino de cristal]  \n"
+msgstr "[Conjunto de asesino de cristal]  \n"
 "Recompensa del modo Desafío: libera fragmentos de cristal\n"
 "cuando hay enemigos cerca; libera fragmentos más fuertes\n"
 "si el jugador es golpeado."
 
 #: ../../Challenger/Challenger.cs:1351
-msgid ""
-"【海龟套装】\n"
+msgid "【海龟套装】\n"
 "挑战模式奖励：增加60血上限，自动在附近释放爆\n"
 "炸碎片"
-msgstr ""
-"[Conjunto de tortugas]  \n"
+msgstr "[Conjunto de tortugas]  \n"
 "Recompensa del modo Desafío: aumenta la salud máxima\n"
 "por 60; Libera automáticamente fragmentos explosivos cercanos."
 
 #: ../../Challenger/Challenger.cs:1395
-msgid ""
-"【混乱之脑】\n"
+msgid "【混乱之脑】\n"
 "挑战模式奖励：输入“/cf”混乱周围所有敌怪"
-msgstr ""
-"[Cerebro de confusión]  \n"
+msgstr "[Cerebro de confusión]  \n"
 "Recompensa del modo Desafío: ingresa \"/cf\" en\n"
 "confundir a todos los enemigos cercanos."
 
 #: ../../Challenger/Challenger.cs:1305
-msgid ""
-"【狱炎套装】\n"
+msgid "【狱炎套装】\n"
 "挑战模式奖励：免疫岩浆，给予永久的地狱火增益"
-msgstr ""
-"[Conjunto infierno]  \n"
+msgstr "[Conjunto infierno]  \n"
 "Recompensa del modo Desafío: inmune a la lava;\n"
 "otorga un beneficio permanente de Hellfire."
 
 #: ../../Challenger/Challenger.cs:1263
-msgid ""
-"【猩红套装】\n"
+msgid "【猩红套装】\n"
 "挑战模式奖励：暴击时从周围每个敌怪处吸取一定\n"
 "血量随着敌怪数目增多吸血量-1，冷却 5秒"
-msgstr ""
-"[Conjunto carmesí]  \n"
+msgstr "[Conjunto carmesí]  \n"
 "Recompensa del modo Desafío: Absorbe una cierta cantidad\n"
 "de salud de cada enemigo en golpes críticos; La cantidad\n"
 "de salud absorbida disminuye en 1 a medida que el número de\n"
 "Los enemigos aumentan, tiempo de reutilización: 5 segundos."
 
 #: ../../Challenger/Challenger.cs:1362
-msgid ""
-"【甲虫套装】\n"
+msgid "【甲虫套装】\n"
 "挑战模式奖励：增加60血上限，敌人的伤害的一部\n"
 "分会治疗周围的队友并给予buff；当装备帕拉丁盾\n"
 "或其上级合成物时，帕拉丁之锤伤害翻倍"
-msgstr ""
-"[Armadura de escarabajo]\n"
+msgstr "[Armadura de escarabajo]\n"
 "Recompensa del modo Desafío: aumenta el límite de salud en 60,\n"
 "parte del daño enemigo cura a los compañeros de equipo cercanos y\n"
 "otorga beneficios; El daño del Martillo del Paladín se duplica\n"
@@ -363,132 +290,105 @@ msgstr ""
 "variante de nivel superior."
 
 #: ../../Challenger/Challenger.cs:1383
-msgid ""
-"【皇家凝胶】\n"
+msgid "【皇家凝胶】\n"
 "挑战模式奖励：天空开始下凝胶小雨"
-msgstr ""
-"[Gel real]\n"
+msgstr "[Gel real]\n"
 "Recompensa del modo Desafío: una ligera lluvia de gel cae del cielo."
 
 #: ../../Challenger/Challenger.cs:1339
-msgid ""
-"【神圣套装】\n"
+msgid "【神圣套装】\n"
 "挑战模式奖励：击中敌人时召唤光与暗剑气，输入\n"
 "“/cf”切换剑气类型"
-msgstr ""
-"[Armadura sagrada]\n"
+msgstr "[Armadura sagrada]\n"
 "Recompensa del modo Desafío: invoca luz y oscuridad\n"
 "ondas de espada al golpear a los enemigos.\n"
 "Escribe '/cf' para cambiar entre tipos de ondas de espada."
 
 #: ../../Challenger/Challenger.cs:1320
-msgid ""
-"【禁戒套装】\n"
+msgid "【禁戒套装】\n"
 "挑战模式奖励：释放自动寻的灵焰魂火攻击附近的\n"
 "敌人"
-msgstr ""
-"[Armadura prohibida]\n"
+msgstr "[Armadura prohibida]\n"
 "Recompensa del modo Desafío: Libera llamas espirituales rastreadoras.\n"
 "para atacar a los enemigos cercanos."
 
 #: ../../Challenger/Challenger.cs:1409
-msgid ""
-"【箭袋】\n"
+msgid "【箭袋】\n"
 "挑战模式奖励：无限补充弹药，额外获得BUFF"
-msgstr ""
-"[Carcaj]\n"
+msgstr "[Carcaj]\n"
 "Recompensa del modo Desafío: reposición infinita de munición\n"
 "y ventajas adicionales."
 
 #: ../../Challenger/Challenger.cs:1369
-msgid ""
-"【蘑菇套装】\n"
+msgid "【蘑菇套装】\n"
 "挑战模式奖励：射弹会不稳定地留下蘑菇"
-msgstr ""
-"[Armadura de hongo]\n"
+msgstr "[Armadura de hongo]\n"
 "Recompensa del modo Desafío: los proyectiles salen\n"
 "Hongos inestables detrás."
 
 #: ../../Challenger/Challenger.cs:1310
-msgid ""
-"【蜘蛛套装】\n"
+msgid "【蜘蛛套装】\n"
 "挑战模式奖励：攻击时，给予敌人中毒和剧毒减益\n"
 "，按“up”键生成一个毒牙药水瓶，砸中敌人时爆炸"
-msgstr ""
-"[Armadura de araña]\n"
+msgstr "[Armadura de araña]\n"
 "Recompensa del modo Desafío: inflige veneno y desventajas de veneno.\n"
 "sobre los enemigos al atacar.\n"
-"Presiona \"arriba\" para crear una poción de colmillo venenoso, que explota "
-"al impactar."
+"Presiona \"arriba\" para crear una poción de colmillo venenoso, que explota al impactar."
 
 #: ../../Challenger/Challenger.cs:1295
-msgid ""
-"【蜜蜂套装】\n"
+msgid "【蜜蜂套装】\n"
 "挑战模式奖励：给予永久的蜂蜜增益；不间断地向\n"
 "四周撒蜂糖罐，玩家接触后回血并给予15秒蜂蜜增\n"
 "益；对玩家自身的治疗量略低于对其他玩家"
-msgstr ""
-"[Armadura de abeja]\n"
+msgstr "[Armadura de abeja]\n"
 "Recompensa del modo Desafío: Otorga un beneficio de miel permanente;\n"
-"Esparce constantemente tarros de miel que curan a los jugadores al "
-"contacto.\n"
+"Esparce constantemente tarros de miel que curan a los jugadores al contacto.\n"
 "y proporciona un beneficio de miel de 15 segundos;\n"
-"La curación para el jugador es un poco menos efectiva en comparación con "
-"otras."
+"La curación para el jugador es un poco menos efectiva en comparación con otras."
 
 #: ../../Challenger/Challenger.cs:1404
-msgid ""
-"【蜜蜂背包】\n"
+msgid "【蜜蜂背包】\n"
 "挑战模式奖励：不间断地向四周扔出毒蜂罐，爆炸\n"
 "后释放一只蜜蜂"
-msgstr ""
-"[Paquete de abejas]\n"
+msgstr "[Paquete de abejas]\n"
 "Recompensa del modo Desafío: Lanza continuamente\n"
 "frascos de abejas envenenadas, liberando una abeja al explotar."
 
 #: ../../Challenger/Challenger.cs:1398
-msgid ""
-"【蠕虫围巾】\n"
+msgid "【蠕虫围巾】\n"
 "挑战模式奖励：免疫寒冷，霜火，灵液和咒火"
-msgstr ""
-"[Bufanda de gusano]\n"
+msgstr "[Bufanda de gusano]\n"
 "Recompensa del modo Desafío: inmunidad al frío,\n"
 "fuego helado, llamas malditas e icor."
 
 #: ../../Challenger/Challenger.cs:1380
-msgid ""
-"【阴森套装】\n"
+msgid "【阴森套装】\n"
 "挑战模式奖励：使用鞭子时，甩出蝙蝠或南\n"
 "瓜头"
-msgstr ""
-"[Conjunto siniestro]  \n"
+msgstr "[Conjunto siniestro]  \n"
 "Recompensa del modo Desafío: al usar un látigo, los murciélagos\n"
 "o se tiran cabezas de calabaza."
 
 #: ../../Challenger/Challenger.cs:1276
-msgid ""
-"【陨石套装】\n"
+msgid "【陨石套装】\n"
 "挑战模式奖励：暴击时恢复些许魔力，间歇地降下\n"
 "高伤害落星攻击敌人"
-msgstr ""
-"[Conjunto de meteoritos]  \n"
+msgstr "[Conjunto de meteoritos]  \n"
 "Recompensa del modo Desafío: Restaura una pequeña cantidad de maná\n"
 "en golpes críticos e invoca intermitentemente un gran daño\n"
 "estrellas fugaces para atacar a los enemigos."
 
 #: ../../Challenger/Challenger.cs:1300
-msgid ""
-"【黑曜石套装】\n"
+msgid "【黑曜石套装】\n"
 "挑战模式奖励：因为盗贼的祝福，掉落物会尝试掉落两次\n"
 "(仅对非boss生物和非高血量怪物有效)"
-msgstr ""
-"[Conjunto de obsidiana]  \n"
+msgstr "[Conjunto de obsidiana]  \n"
 "Recompensa del modo Desafío: debido a la bendición del ladrón,\n"
 "El botín intentará caer dos veces.\n"
-"(solo efectivo en criaturas que no son jefes y monstruos que no tienen mucha "
-"salud)."
+"(solo efectivo en criaturas que no son jefes y monstruos que no tienen mucha salud)."
 
-#: ../../Challenger/Challenger.cs:1467 ../../Challenger/Challenger.cs:1468
+#: ../../Challenger/Challenger.cs:1467
+#: ../../Challenger/Challenger.cs:1468
 msgid "Challenger.OnServerLeave异常3："
 msgstr "Challenger.OnServerLeave Excepción 3:"
 
@@ -657,15 +557,12 @@ msgstr "Modo desafío activado. ¡Divertirse! [Acción de: {0}]"
 
 #: ../../Challenger/Challenger.cs:1862
 msgid "挑战模式已关闭，无法开启文字提示"
-msgstr ""
-"Modo desafío desactivado. Las sugerencias de texto no se pueden habilitar."
+msgstr "Modo desafío desactivado. Las sugerencias de texto no se pueden habilitar."
 
 #: ../../Challenger/Challenger.cs:1915
 #, csharp-format
 msgid "挑战模式已取消，您觉得太难了？[操作来自：{0}]"
-msgstr ""
-"Modo desafío cancelado. ¿Crees que eres demasiado bueno para esto? [Acción "
-"de: {0}]"
+msgstr "Modo desafío cancelado. ¿Crees que eres demasiado bueno para esto? [Acción de: {0}]"
 
 #: ../../Challenger.CProjs/BloodBagProj.cs:95
 #, csharp-format
@@ -696,7 +593,8 @@ msgstr "¡Espinas venenosas te disparan a la cara!"
 msgid "毒牙咬击"
 msgstr "¡Mordedura de colmillo venenoso!"
 
-#: ../../Challenger/Challenger.cs:1956 ../../Challenger/Challenger.cs:1957
+#: ../../Challenger/Challenger.cs:1956
+#: ../../Challenger/Challenger.cs:1957
 msgid "永夜剑辉已启用"
 msgstr "¡Eternal Night Blade activado!"
 
@@ -717,15 +615,19 @@ msgstr "Estado anormal, error de uso: {0}"
 msgid "猪突猛进！"
 msgstr "¡Cargado!"
 
-#: ../../Challenger/Challenger.cs:777 ../../Challenger/Challenger.cs:824
-#: ../../Challenger/Challenger.cs:884 ../../Challenger/Challenger.cs:921
+#: ../../Challenger/Challenger.cs:777
+#: ../../Challenger/Challenger.cs:824
+#: ../../Challenger/Challenger.cs:884
+#: ../../Challenger/Challenger.cs:921
 #: ../../Challenger/Challenger.cs:1071
 #, csharp-format
 msgid "生命值上限 - {0}"
 msgstr "Max HP - {0}"
 
-#: ../../Challenger/Challenger.cs:766 ../../Challenger/Challenger.cs:813
-#: ../../Challenger/Challenger.cs:873 ../../Challenger/Challenger.cs:910
+#: ../../Challenger/Challenger.cs:766
+#: ../../Challenger/Challenger.cs:813
+#: ../../Challenger/Challenger.cs:873
+#: ../../Challenger/Challenger.cs:910
 #: ../../Challenger/Challenger.cs:1047
 #, csharp-format
 msgid "生命值上限 + {0}"
@@ -752,7 +654,8 @@ msgstr "¡Toma esta bofetada!"
 msgid "看我创死你"
 msgstr "¡Te voy a destrozar!"
 
-#: ../../Challenger/Challenger.cs:1951 ../../Challenger/Challenger.cs:1952
+#: ../../Challenger/Challenger.cs:1951
+#: ../../Challenger/Challenger.cs:1952
 msgid "神圣剑辉已启用"
 msgstr "¡Hoja Sagrada activada!"
 
@@ -804,15 +707,11 @@ msgstr "¡Tu movimiento es tan malo!"
 
 #: ../../Challenger/Challenger.cs:60
 msgid "输入 /cenable  来启用挑战模式，再次使用取消"
-msgstr ""
-"Escribe /cenable para habilitar el modo desafío, úsalo nuevamente para "
-"cancelar."
+msgstr "Escribe /cenable para habilitar el modo desafío, úsalo nuevamente para cancelar."
 
 #: ../../Challenger/Challenger.cs:1880
 msgid "输入 /cenable 来启用挑战模式，再次使用取消"
-msgstr ""
-"Escribe /cenable para habilitar el modo desafío, úsalo nuevamente para "
-"cancelar."
+msgstr "Escribe /cenable para habilitar el modo desafío, úsalo nuevamente para cancelar."
 
 #: ../../Challenger/Challenger.cs:68
 msgid "输入 /cf  来实现某些技能的或状态的切换"
@@ -820,16 +719,11 @@ msgstr "Escribe /cf para cambiar algunas habilidades o estados."
 
 #: ../../Challenger/Challenger.cs:64
 msgid "输入 /ctip  来启用内容提示，如各种物品的强化文字提示，再次使用取消"
-msgstr ""
-"Escriba /ctip para habilitar sugerencias de contenido, como sugerencias de "
-"texto mejorado para varios elementos, úselo nuevamente para cancelar."
+msgstr "Escriba /ctip para habilitar sugerencias de contenido, como sugerencias de texto mejorado para varios elementos, úselo nuevamente para cancelar."
 
 #: ../../Challenger/Challenger.cs:1858
 msgid "输入 /ctip 来启用内容提示，如各种物品装备的修改文字提示，再次使用取消"
-msgstr ""
-"Escriba /ctip para habilitar sugerencias de contenido, como sugerencias de "
-"texto mejoradas para varios artículos y equipos, utilícelas nuevamente para "
-"cancelar."
+msgstr "Escriba /ctip para habilitar sugerencias de contenido, como sugerencias de texto mejoradas para varios artículos y equipos, utilícelas nuevamente para cancelar."
 
 #: ../../Challenger.CNPCs/WallofFleshEye.cs:101
 msgid "这么想看清我的卡姿兰大眼是吧"
@@ -868,3 +762,4 @@ msgstr "Max Mana - {0}"
 #, csharp-format
 msgid "魔力值上限 + {0}"
 msgstr "Max Mana + {0}"
+
