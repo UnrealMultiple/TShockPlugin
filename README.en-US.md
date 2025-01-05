@@ -87,7 +87,7 @@
 | [CaiPacketDebug](./src/CaiPacketDebug/README.md) | No | Cai Packet Debug Tool | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [CaiRewardChest](./src/CaiRewardChest/README.en-US.md) | Yes | Convert naturally generated chests into reward chests that everyone can claim once | [linq2db]() [LazyAPI](./src/LazyAPI/README.md) |
 | [CGive](./src/CGive/README.en-US.md) | Yes | Offline commands |  |
-| [Challenger](./src/Challenger/README.md) | Yes | Challenger mode |  |
+| [Challenger](./src/Challenger/README.en-US.md) | Yes | Challenger mode |  |
 | [Chameleon](./src/Chameleon/README.en-US.md) | Yes | Login before entering the server | [LazyAPI](./src/LazyAPI/README.md) |
 | [ChattyBridge](./src/ChattyBridge/README.md) | No | Used for cross-server chat | [LazyAPI](./src/LazyAPI/README.md) |
 | [ChestRestore](./src/ChestRestore/README.en-US.md) | Yes | Infinite items in resource servers |  |
