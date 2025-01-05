@@ -3,5 +3,3 @@ commit_message: "[skip actions]"
 files:
   - source: /src/*/i18n/template.pot
     translation: /%original_path%/%locale%.po
-  - source: /src/*/README.md
-    translation: /%original_path%/README.%locale%.md
