@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AutoPluginManager\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-03 08:06:19+0000\n"
-"PO-Revision-Date: 2025-01-04 23:36+0800\n"
-"Last-Translator: Hexagon Force\n"
-"Language-Team: UnrealMultiple\n"
-"Language: en_US\n"
+"PO-Revision-Date: 2025-01-05 06:37\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/AutoPluginManager/i18n/template.pot\n"
+"X-Crowdin-File-ID: 414\n"
+"Language: en_US\n"
 
 #: ../../Plugin.cs:74
 msgid "[AutoUpdate]无法获取更新:"
@@ -19,7 +25,8 @@ msgstr "[AutoUpdate] Unable to get update:"
 msgid "[AutoUpdatePlugin]插件配置已重载~"
 msgstr "[AutoUpdatePlugin] Plugin configuration has been reloaded~"
 
-#: ../../Plugin.cs:61 ../../Internal/CommandAdapter.cs:455
+#: ../../Plugin.cs:61
+#: ../../Internal/CommandAdapter.cs:455
 msgid "[以下插件有新的版本更新]\n"
 msgstr "[The following plugins have new version updates]\n"
 
@@ -44,7 +51,6 @@ msgstr "[Update Complete]\n"
 msgid "{0} v{1} (by {2}) 关闭成功!"
 msgstr "{0} v{1} (by {2}) closed successfully!"
 
-
 #: ../../Internal/CommandAdapter.cs:154
 #, csharp-format
 msgid "{0} v{1} (by {2}) 启用成功!"
@@ -68,31 +74,36 @@ msgstr "{0}.{1} v{2} (by {3}) - status: {4}"
 #: ../../Internal/CommandAdapter.cs:65
 #, csharp-format
 msgid "{0}.{1} v{2} (by {3}) {4}"
-msgstr "{0}.{1} v{2} (by {3}) {4}"
+msgstr ""
 
 #: ../../Internal/CommandAdapter.cs:347
 msgid "*使用/apm -i <序号> 即可安装哦~"
 msgstr "*Use /apm -i <number> to install~"
 
-#: ../../Internal/CommandAdapter.cs:230 ../../Internal/CommandAdapter.cs:404
+#: ../../Internal/CommandAdapter.cs:230
+#: ../../Internal/CommandAdapter.cs:404
 #, csharp-format
 msgid "*加载失败: {0}"
 msgstr "*Loading failed: {0}"
 
-#: ../../Internal/CommandAdapter.cs:226 ../../Internal/CommandAdapter.cs:400
+#: ../../Internal/CommandAdapter.cs:226
+#: ../../Internal/CommandAdapter.cs:400
 #, csharp-format
 msgid "*卸载失败: {0}"
 msgstr "*Uninstall failed: {0}"
 
-#: ../../Internal/CommandAdapter.cs:234 ../../Internal/CommandAdapter.cs:408
+#: ../../Internal/CommandAdapter.cs:234
+#: ../../Internal/CommandAdapter.cs:408
 msgid "*热加载失败的插件需要重启服务器后才会生效!"
 msgstr "*Plug-ins that fail to be hot-loaded will only take effect after the server is restarted!"
 
-#: ../../Internal/CommandAdapter.cs:244 ../../Internal/CommandAdapter.cs:418
+#: ../../Internal/CommandAdapter.cs:244
+#: ../../Internal/CommandAdapter.cs:418
 msgid "*热重载已关闭,插件需要重启服务器后才会生效!"
 msgstr "*Hot reloading has been turned off, and the plug-in will not take effect until the server is restarted!"
 
-#: ../../Internal/CommandAdapter.cs:238 ../../Internal/CommandAdapter.cs:412
+#: ../../Internal/CommandAdapter.cs:238
+#: ../../Internal/CommandAdapter.cs:412
 msgid "*热重载已启用,安装的插件已生效!"
 msgstr "*Hot reloading is enabled and the installed plug-ins have taken effect!"
 
@@ -140,7 +151,8 @@ msgstr "apm u [plugin name] update all plugins or a specified plugin"
 msgid "你可以使用命令/apm -u 更新插件哦~"
 msgstr "You can use the command /apm -u to update the plugins~"
 
-#: ../../Internal/CommandAdapter.cs:357 ../../Internal/CommandAdapter.cs:451
+#: ../../Internal/CommandAdapter.cs:357
+#: ../../Internal/CommandAdapter.cs:451
 msgid "你的插件全是最新版本，无需更新哦~"
 msgstr "All your plugins are up to date, no need to update~"
 
@@ -236,33 +248,3 @@ msgstr "Syntax error, correct syntax:/apm on [serial number]"
 msgid "语法错误，正确语法:/apm rb [插件名称]"
 msgstr "Syntax error, correct syntax:/apm rb [plugin name]"
 
-#~ msgid "无法连接服务器"
-#~ msgstr "Unable to connect to the server"
-
-#, csharp-format
-#~ msgid "[跳过安装或更新] 插件{0}({1})的其中一项依赖被禁止安装或更新\n"
-#~ msgstr ""
-#~ "[Skip Install or Update] plugin {0}({1}) has one of its dependencies being banned for installation or "
-#~ "update.\n"
-
-#, csharp-format
-#~ msgid ""
-#~ "[跳过安装或更新] 无法在本地找到插件{0}({1})或其其中一项依赖,可能是云加载或使用-additionalplugins加载\n"
-#~ msgstr ""
-#~ "[Skip Install or Update] Could not find the plugin {0}({1}) locally, it might be loaded from the cloud or "
-#~ "using -additionalplugins.\n"
-
-#~ msgid "正在下载最新插件包..."
-#~ msgstr "Downloading the latest plugin package..."
-
-#~ msgid "正在升级插件..."
-#~ msgstr "Upgrading plugin..."
-
-#~ msgid "正在安装插件..."
-#~ msgstr "Installing plugin..."
-
-#~ msgid "正在解压插件包..."
-#~ msgstr "Extracting plugin package..."
-
-#~ msgid "重启服务器后插件生效!"
-#~ msgstr "Restart the server for the plugin to take effect!"
