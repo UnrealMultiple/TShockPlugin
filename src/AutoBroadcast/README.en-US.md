@@ -1,17 +1,19 @@
-# AutoBroadcast 
+# AutoBroadcast
 
 - Authors: Scavenger，Zaicon,GK 小改良，肝帝熙恩更新至1449
 - Source: [github](https://github.com/Scavenger3/AutoBroadcast)
 - Schedule broadcasts in the server or execute commands.
 
-
 ## Commands
+
 ```
 None
 ```
 
 ## Config
+
 > Configuration file location：tshock/AutoBroadcast.en-US.json
+
 ```json5
 {
   "Broadcasts": [
@@ -37,7 +39,21 @@ None
 }
 ```
 
+## 更新日志
+
+```
+v1.0.8
+准备更新TS 5.2.1,修正文档，初始配置内容更改
+v1.0.6
+修复了初始配置文件的问题
+v1.0.5
+i18n 和 README_EN.md
+v1.0.4
+i18n预定
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
