@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: VeinMiner\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-10-05 03:53:23+0000\n"
-"PO-Revision-Date: 2024-10-05 00:09+0800\n"
-"Last-Translator: Cai\n"
-"Language-Team: UnrealMultiple\n"
-"Language: en_US\n"
+"PO-Revision-Date: 2025-01-05 06:39\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/VeinMiner/i18n/template.pot\n"
+"X-Crowdin-File-ID: 538\n"
+"Language: en_US\n"
 
 #: ../../VeinMiner.cs:39
 #, csharp-format
@@ -21,7 +27,8 @@ msgstr "[c/95CFA6:<VeinMiner>  {0} .]"
 msgid "[c/95CFA6:<VeinMiner> 挖矿消息已{0}]."
 msgstr "[c/95CFA6:<VeinMiner> Mining Status {0}.]"
 
-#: ../../VeinMiner.cs:121 ../../VeinMiner.cs:126
+#: ../../VeinMiner.cs:121
+#: ../../VeinMiner.cs:126
 msgid "[c/95CFA6:<VeinMiner>] 已给予奖励物品"
 msgstr "[c/95CFA6:<VeinMiner>] Reward items granted"
 
@@ -31,11 +38,8 @@ msgid "[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {0} {1}]."
 msgstr "[c/95CFA6:<VeinMiner>] Mined [c/95CFA6: {0} {1} ]."
 
 #: ../../VeinMiner.cs:173
-msgid ""
-"[c/95CFA6:<VeinMiner>] 无法挖取矿石，可能是因为矿石上方有不可破坏的物体."
-msgstr ""
-"[c/95CFA6:<VeinMiner>] Unable to mine ore, possibly because there is an "
-"indestructible object above the ore."
+msgid "[c/95CFA6:<VeinMiner>] 无法挖取矿石，可能是因为矿石上方有不可破坏的物体."
+msgstr "[c/95CFA6:<VeinMiner>] Unable to mine ore, possibly because there is an indestructible object above the ore."
 
 #: ../../VeinMiner.cs:148
 #, csharp-format
@@ -49,12 +53,8 @@ msgstr "[c/95CFA6:<VeinMiner>] Inventory full, space needed: [c/95CFA6:{0}] ."
 
 #: ../../VeinMiner.cs:162
 #, csharp-format
-msgid ""
-"[c/95CFA6:<VeinMiner>] 背包已满，需额外空位：[c/95CFA6:{0}] 以放入 [c/95CFA6:"
-"{1}] ."
-msgstr ""
-"[c/95CFA6:<VeinMiner>] Inventory full, space needed: [c/95CFA6:{0}] to "
-"insert [c/95CFA6:{1}] ."
+msgid "[c/95CFA6:<VeinMiner>] 背包已满，需额外空位：[c/95CFA6:{0}] 以放入 [c/95CFA6:{1}] ."
+msgstr "[c/95CFA6:<VeinMiner>] Inventory full, space needed: [c/95CFA6:{0}] to insert [c/95CFA6:{1}] ."
 
 #: ../../Config.cs:38
 msgid "<VeinMiner> 读取配置文件失败。"
@@ -72,10 +72,12 @@ msgstr "Deactivated"
 msgid "关闭! | 要仅关闭挖矿消息提示请输入：/vm {任意参数}"
 msgstr "Deactivated! | To turn off only mining status messages use: /vm msg"
 
-#: ../../VeinMiner.cs:34 ../../VeinMiner.cs:39
+#: ../../VeinMiner.cs:34
+#: ../../VeinMiner.cs:39
 msgid "开启"
 msgstr "Activated"
 
 #: ../../VeinMiner.cs:156
 msgid "未知"
 msgstr "Unknown"
+
