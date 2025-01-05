@@ -1,22 +1,24 @@
 # Economics.RPG Upgrade Career Plugin
 
-- Author: Shao Shi Ming
+- 作者: 少司命
 - Source: None
 - RPG Upgrade Plugin
 
 > [!NOTE]
->  requires the pre-installed plugin: EconomicsAPI (this repository).
+> requires the pre-installed plugin: EconomicsAPI (this repository).
 
 ## Commands
 
-| Syntax                  |     Permission      | Description  |
-|-------------------------|:-------------------:|:------------:|
-| /rank [profession name] | economics.rpg.rank  |   upgrade    |
-| /reset level            | economics.rpg.reset | reset career |
-| /level reset            | economics.rpg.admin |    reset     |
+| Syntax                                                                      |                      Permission                     |  Description |
+| --------------------------------------------------------------------------- | :-------------------------------------------------: | :----------: |
+| /rank [profession name] |  economics.rpg.rank |    upgrade   |
+| /reset level                                                                | economics.rpg.reset | reset career |
+| /level reset                                                                | economics.rpg.admin |     reset    |
 
 ## Configuration
->  configuration file location: tshock/Economics/RPG.json
+
+> configuration file location: tshock/Economics/RPG.json
+
 ```json5
 {
   "RPG信息": {
@@ -53,7 +55,34 @@
   }
 }
 ```
+
+## 更新日志
+
+```
+V2.0.0.0
+适配多货币
+
+V1.0.0.6
+添加配置 "手持武器"填写后玩家升级必须手持指定的武器
+
+V1.0.0.5
+适配新 EconomicsAPI
+
+V1.0.0.3
+- 支持多语言
+
+V1.0.0.2
+- 添加权限economics.rpg.chat，拥有此权限不会改变玩家聊天格式。
+
+V1.0.0.1
+- 增加显示信息
+- 添加/level reset指令
+- 添加自定义消息玩家组
+- 添加RPG聊天渐变色
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
