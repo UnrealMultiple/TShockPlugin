@@ -1,32 +1,33 @@
-# ConvertWorld 
+# ConvertWorld 击败怪物替换世界物品
+
 - Author: onusai 羽学
 - Source: tshock-bless-world
 - Defeating the specified monster converts all world tiles and items in chests
 
-
 ## Commands
+
 ```
 None
-``` 
-  
-## Config
+```
 
 ---
-Configuration Notes
----
-1. The `World Tile Replacement Table` is for tile IDs, and the `Chest Item Replacement Table` is for item IDs.
 
-2. The `Monster Name` will be automatically filled in when you use /reload based on the `Monster ID`.
+## Configuration Notes
 
-3. Multiple `Monster IDs` can be listed.
+The `World Tile Replacement Table` is for tile IDs, and the `Chest Item Replacement Table` is for item IDs.
 
-4. For `Defeat All`, all monsters listed in the `Monster ID` must be defeated.
+The `Monster Name` will be automatically filled in when you use /reload based on the `Monster ID`.
+
+Multiple `Monster IDs` can be listed.
+
+For `Defeat All`, all monsters listed in the `Monster ID` must be defeated.
 Once all specified monsters are defeated, if there are any `specified tiles` or `items in chests` in the world, killing any one of them will trigger the conversion.
 If there are no convertible IDs, there will be no notification.
 
-
+## Config
 
 > Configuration file location：tshock/击败怪物替换世界物品.json
+
 ```json5
 {
   "使用说明": "击败指定NPC将世界所有指定图格与箱子内物品对比1:1转换",  // Usage Instructions: Defeating the specified NPC will convert all specified world tiles and items in chests on a 1:1 basis
@@ -75,7 +76,22 @@ If there are no convertible IDs, there will be no notification.
   ]
 }
 ```
+
+## 更新日志
+
+```
+v1.0.2
+i18n和README_EN.md
+v1.0.1
+i18n预定
+v1.0.0
+修改BlessWorld插件，将bless指令与服务器初始化时自动转换功能移除     
+加入了对击杀指定NPC实现转换设定      
+加入了从《怪物ID》取值，通过/reload事件重载，自动赋名给《怪物名》    
+```
+
 ## FeedBack
+
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
 - TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
