@@ -439,7 +439,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.2.9",
+    "Version": "2.0.3.1",
     "Author": "少司命,Cai,LaoSparrow",
     "Description": "自动更新你的插件！",
     "AssemblyName": "AutoPluginManager",
@@ -1330,7 +1330,7 @@
   },
   {
     "Name": "ZHIPlayerManager",
-    "Version": "1.0.1.1",
+    "Version": "1.0.1.2",
     "Author": "z枳",
     "Description": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
     "AssemblyName": "ZHIPlayerManager",
