@@ -62,9 +62,9 @@
 <Details>
 <Summary>Plugin List</Summary>
 
-| Plugin Name | English Available | Plugin Description | Dependencies |
+| Plugin Name | Translation Percentage | Plugin Description | Dependencies |
 | :-: | :-: | :-: | :-: |
-<!--{PluginList,en-US,Yes,No}-->
+<!--{PluginList,en-US}-->
 
 </Details>
 

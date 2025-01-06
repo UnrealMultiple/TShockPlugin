@@ -20,11 +20,30 @@ foreach ($p in @(Get-ChildItem ./src/**/*.csproj)) {
   $asm_to_dir[$p.BaseName] = Resolve-Path $p.Directory -Relative
 }
 
+function Get-TranslationPercentage {
+  param (
+    [string] $po_path
+  )
+
+  if (-not (Test-Path $po_path -PathType Leaf)) {
+    return '0.0%'
+  }
+
+  $regex_untranslated = [regex]::new('(?m)^msgstr ""(?!\n")')
+  $regex_total_plus_1 = [regex]::new('(?m)^msgstr "')
+  $po_content = Get-Content $po_path -Raw
+
+  $untranslated_count = $regex_untranslated.Matches($po_content).Count
+  $total_count = $regex_total_plus_1.Matches($po_content).Count - 1
+  if ($total_count -eq 0) {
+    return '0.0%'
+  }
+  return '{0:0.0}%' -f ([float]($total_count - $untranslated_count) / $total_count * 100)
+}
+
 function Get-PluginList {
   param (
-    [string] $culture,
-    [string] $text_yes,
-    [string] $text_no
+    [string] $culture
   )
 
   $dependencies = @{}
@@ -44,8 +63,9 @@ function Get-PluginList {
           "$($asm_to_dir[$asm_name])/README.md")
       Description = $json["README.$culture"]?['Description'] ??
         $json['README']?['Description']
-      LanguageAvailable = $json["README.$culture"]?['LanguageAvailable'] ??
-        (Test-Path "$($asm_to_dir[$asm_name])/i18n/$culture.po" -PathType Leaf)
+      TranslationPercentage = $json["README.$culture"]?['LanguageAvailable'] ? 
+        '100.0%' :
+        (Get-TranslationPercentage "$($asm_to_dir[$asm_name])/i18n/$culture.po")
       Dependencies = $dependencies[$asm_name] ?? @()
     }
   }
@@ -53,7 +73,7 @@ function Get-PluginList {
   return ($infos.GetEnumerator() | ForEach-Object {
     $name = $_.Key
     $rurl = $_.Value.READMEUrl
-    $lang = $_.Value.LanguageAvailable ? $text_yes : $text_no
+    $lang = $_.Value.TranslationPercentage
     $desc = $_.Value.Description
     $deps = ($_.Value.Dependencies | ForEach-Object { "[$_]($($infos[$_]?.READMEUrl))" }) -join ' '
     return $culture ?
@@ -69,7 +89,7 @@ foreach ($tf in @(Get-ChildItem ./.config/readme-templates/*.md)) {
     $raw_cmd = $args[0].ToString()
     $cmds = $raw_cmd.Substring(5, $raw_cmd.Length-5-4) -split ','
     switch -CaseSensitive ($cmds[0]) {
-      'PluginList' { Get-PluginList $cmds[1] $cmds[2] $cmds[3] }
+      'PluginList' { Get-PluginList $cmds[1] }
       Default { "<!--# no interpolation string named $($cmds[0]) #-->" }
     }
   })
