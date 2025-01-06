@@ -1266,7 +1266,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.105",
+    "Version": "1.9.2.106",
     "Author": "yu",
     "Description": "一些游戏内容的修改 For Terraria v1.4.4.9",
     "AssemblyName": "VBY.GameContentModify",
@@ -1278,7 +1278,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.105",
+    "Version": "1.0.0.106",
     "Author": "yu",
     "Description": "一些其他的辅助命令",
     "AssemblyName": "VBY.OtherCommand",
