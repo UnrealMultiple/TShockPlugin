@@ -68,6 +68,10 @@
 
 </Details>
 
+## Traducción
+
+- Si deseas participar en el trabajo de traducción, no dudes en visitar nuestro enlace de [Crowdin](https://es.crowdin.com/project/tshock-chinese-plugin)
+
 ## Links
 
 - [TShock Plugin Development Documentation](https://github.com/ACaiCat/TShockPluginDocument)

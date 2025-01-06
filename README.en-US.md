@@ -203,6 +203,10 @@
 
 </Details>
 
+## Translation
+
+- If you would like to participate in the translation work, feel free to visit our [Crowdin](https://crowdin.com/project/tshock-chinese-plugin) link
+
 ## Friendly Links
 
 - [TShock Plugin Development Documentation](https://github.com/ACaiCat/TShockPluginDocument)

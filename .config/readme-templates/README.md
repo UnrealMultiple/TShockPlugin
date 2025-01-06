@@ -64,6 +64,10 @@
 
 </Details>
 
+## 翻译
+
+- 如果你想要参与翻译工作，欢迎访问我们的 [Crowdin](https://zh.crowdin.com/project/tshock-chinese-plugin) 链接
+
 ## 友情链接
 
 - [TShock 插件开发文档](https://github.com/ACaiCat/TShockPluginDocument)
