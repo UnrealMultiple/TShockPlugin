@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-03 08:06:19+0000\n"
-"PO-Revision-Date: 2025-01-05 07:02\n"
+"PO-Revision-Date: 2025-01-06 08:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -74,7 +74,7 @@ msgstr "{0}.{1} v{2} (by {3}) - status: {4}"
 #: ../../Internal/CommandAdapter.cs:65
 #, csharp-format
 msgid "{0}.{1} v{2} (by {3}) {4}"
-msgstr ""
+msgstr "{0}.{1} v{2} (by {3}) {4}"
 
 #: ../../Internal/CommandAdapter.cs:347
 msgid "*使用/apm -i <序号> 即可安装哦~"

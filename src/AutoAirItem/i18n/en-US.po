@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-11-29 03:44:50+0000\n"
-"PO-Revision-Date: 2025-01-05 07:02\n"
+"PO-Revision-Date: 2025-01-05 07:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "[{0}'s Trash Bin]\n"
 #: ../../Commands.cs:78
 #, csharp-format
 msgid "[c/32CEB7:{0}.][c/F3E83B:{1}:] {0}"
-msgstr ""
+msgstr "[c/32CEB7:{0}.][c/F3E83B:{1}:] {0}"
 
 #: ../../Commands.cs:17
 msgid "【自动垃圾桶】指令菜单 [i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by] [c/00FFFF:羽学][i:3459]\n"

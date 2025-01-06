@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-11-15 03:22:41+0000\n"
-"PO-Revision-Date: 2025-01-05 07:04\n"
+"PO-Revision-Date: 2025-01-06 08:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -24,27 +24,27 @@ msgstr "{0} quantity: {1}"
 
 #: ../../Command.cs:73
 msgid "/bank add <用户> <数量> <类型>"
-msgstr ""
+msgstr "/bank add <player> <amount> <type>"
 
 #: ../../Command.cs:77
 msgid "/bank clear <用户>"
-msgstr "/bank clear <user>"
+msgstr "/bank clear <player>"
 
 #: ../../Command.cs:74
 msgid "/bank deduct <用户> <数量> <类型>"
-msgstr ""
+msgstr "/bank deduct <player> <amount> <type>"
 
 #: ../../Command.cs:75
 msgid "/bank pay <用户> <数量> <类型>"
-msgstr ""
+msgstr "/bank pay <player> <amount> <type>"
 
 #: ../../Command.cs:76
 msgid "/bank query [用户]"
-msgstr "/bank query [user]"
+msgstr "/bank query [player]"
 
 #: ../../Command.cs:78
 msgid "/bank reset"
-msgstr ""
+msgstr "/bank reset"
 
 #: ../../Command.cs:72
 msgid "bank 指令"
@@ -76,12 +76,12 @@ msgstr "You do not have enough {0} to transfer!"
 #: ../../Command.cs:238
 #, csharp-format
 msgid "兑换{0}个{1}需要{2}个{3}，而您只有{4}个!"
-msgstr ""
+msgstr "It takes {2} {3} to redeem {0} {1}, but you only have {4}!"
 
 #: ../../Economics.cs:127
 #, csharp-format
 msgid "在线人数: {0}/{1}"
-msgstr "Online users: {0}/{1}"
+msgstr "Online players: {0}/{1}"
 
 #: ../../Command.cs:133
 #, csharp-format
@@ -111,7 +111,7 @@ msgstr "Successfully added {1} {2} to `{0}`"
 #: ../../Command.cs:243
 #, csharp-format
 msgid "成功兑换{0}{1}个!"
-msgstr ""
+msgstr "Successfully redeemed {0}{1}!"
 
 #: ../../Command.cs:194
 #, csharp-format
@@ -131,7 +131,7 @@ msgstr "Player name: {0}"
 #: ../../Command.cs:197
 #, csharp-format
 msgid "用户`{0}`仅有{1}个{2}"
-msgstr "User `{0}` only has {1} {2}"
+msgstr "Player `{0}` only has {1} {2}"
 
 #: ../../Command.cs:36
 #: ../../Command.cs:249
@@ -145,10 +145,10 @@ msgstr "Please enter a valid number!"
 #: ../../Command.cs:232
 #, csharp-format
 msgid "货币{0}无法兑换为{1}!"
-msgstr ""
+msgstr "Currency {0} cannot be converted to {1}!"
 
 #: ../../Command.cs:60
 #, csharp-format
 msgid "货币类型`{0}`不存在!"
-msgstr ""
+msgstr "Currency type `{0}` does not exist!"
 

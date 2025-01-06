@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-12-12 13:21:55+0000\n"
-"PO-Revision-Date: 2025-01-05 07:05\n"
+"PO-Revision-Date: 2025-01-06 08:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,8 @@ msgstr "\n"
 #, csharp-format
 msgid "\n"
 "玩家 [c/4EA4F2:{0}] 疾速[c/FF5265:冷却]完毕!"
-msgstr ""
+msgstr "\n"
+"Player [c/4EA4F2:{0}] has quickly [c/FF5265:Cooldown] completed!"
 
 #: ../../PlayerSpeed.cs:178
 msgid "使用克盾类饰品[c/47DCBD:冲刺]可冲更远"
@@ -114,11 +115,11 @@ msgstr "Current mode is Progress Mode, server has not defeated the relevant BOSS
 #: ../../Commands.cs:216
 #, csharp-format
 msgid "找不到名为 {0} 的物品."
-msgstr ""
+msgstr "The item named {0} cannot be found."
 
 #: ../../Commands.cs:101
 msgid "格式为:[c/48DCB8:/vel s sd 20 add 恐慌项链…]\n"
-msgstr ""
+msgstr "The format is:[c/48DCB8:/vel s sd 20 add panic necklace…]\n"
 
 #: ../../Commands.cs:168
 msgid "次数"
@@ -130,7 +131,7 @@ msgstr "Count ([c/DBF34E:c]) Add Jump Item ([c/59E32B:add]) Remove Jump Item ([c
 
 #: ../../Commands.cs:198
 msgid "添加物品"
-msgstr ""
+msgstr "Add items"
 
 #: ../../Commands.cs:209
 #, csharp-format
@@ -195,7 +196,7 @@ msgstr "Speed"
 #: ../../Commands.cs:281
 #, csharp-format
 msgid "速度:[c/4EA4F2:{0}] 高度:[c/FF5265:{1}] "
-msgstr ""
+msgstr "Speed:[c/4EA4F2:{0}] Height:[c/FF5265:{1}] "
 
 #: ../../Commands.cs:178
 msgid "间隔"
@@ -203,5 +204,5 @@ msgstr "Interval"
 
 #: ../../Commands.cs:145
 msgid "高度"
-msgstr ""
+msgstr "Height"
 

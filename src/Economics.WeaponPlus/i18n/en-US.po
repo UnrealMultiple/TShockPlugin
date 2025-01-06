@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-10-25 14:10:28+0000\n"
-"PO-Revision-Date: 2025-01-05 07:04\n"
+"PO-Revision-Date: 2025-01-06 08:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,8 @@ msgstr ""
 #, csharp-format
 msgid "[i:{0}]  降级成功  共计消耗：{1}\n"
 "{2}"
-msgstr ""
+msgstr "[i:{0}] Downgraded successfully. Total consumption: {1}\n"
+"{2}"
 
 #: ../../WeaponPlus.cs:233
 #: ../../WeaponPlus.cs:264
@@ -35,7 +36,8 @@ msgstr ""
 #, csharp-format
 msgid "[i:{0}] 升级成功   共计消耗：{1}\n"
 "{2}"
-msgstr ""
+msgstr "[i:{0}] Upgrade successfully. Total consumption: {1}\n"
+"{2}"
 
 #: ../../WeaponPlus.cs:76
 msgid "[武器强化EC版]重新加载配置完毕。"
@@ -45,7 +47,8 @@ msgstr "[Weapon Enhancement EC Version] Configuration reloaded."
 #, csharp-format
 msgid "{0}[i:{1}]   {2}{3}\n"
 "{4}"
-msgstr ""
+msgstr "{0}[i:{1}]   {2}{3}\n"
+"{4}"
 
 #: ../../WeaponPlus.cs:146
 msgid "SSC 未开启"
@@ -213,15 +216,15 @@ msgstr "Please enter a positive integer"
 
 #: ../../WeaponPlus.cs:53
 msgid "输入 /clearallplayersplus    将数据库中所有玩家的所有强化物品全部清理，管理员专属"
-msgstr ""
+msgstr "Type /clearallplayersplus to clear all enhanced items of all players in the database, exclusive to administrators"
 
 #: ../../WeaponPlus.cs:415
 msgid "输入 /clearallplayersplus   将数据库中强化物品全部清理"
-msgstr ""
+msgstr "Type /clearallplayersplus to clear all enhanced items in the database"
 
 #: ../../WeaponPlus.cs:49
 msgid "输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料"
-msgstr ""
+msgstr "Type /plus to view the current level status of the weapon and how many materials are needed to upgrade to the next level."
 
 #: ../../WeaponPlus.cs:127
 msgid "输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料\n"
@@ -233,7 +236,15 @@ msgid "输入 /plus    查看当前该武器的等级状态和升至下一级需
 "输入 /plus <shootspeed/sh/飞速> <up/down> <num>   升级/降级当前武器的射弹飞行速度等级，影响鞭类武器范围±5%\n"
 "输入 /plus clear    清理当前武器的所有等级，可以回收一点消耗物\n"
 "输入 /clearallplayersplus    将数据库中所有玩家的所有强化物品全部清理，管理员专属"
-msgstr ""
+msgstr "Type /plus to view the current level status of the weapon and how many materials are needed to upgrade to the next level.\n"
+"Type /plus load to reacquire all upgraded weapons currently on your body\n"
+"Type /plus <damage/da> <up/down> <num> to upgrade/downgrade the damage level of the current weapon\n"
+"Type /plus <scale/sc> <up/down> <num> to upgrade/downgrade the current weapon or projectile's size level ±5%\n"
+"Type /plus <knockback/kn> <up/down> <num> to upgrade/downgrade the current weapon's knockback level ±5%\n"
+"Type /plus <usespeed/us> <up/down> <num> to upgrade/downgrade the use speed level of the current weapon.\n"
+"Type /plus <shootspeed/sh> <up/down> <num> to upgrade/downgrade the projectile flight speed level of the current weapon, affecting the range of whip weapons by ±5%\n"
+"Type /plus clear to clear all levels of the current weapon and recycle some consumables\n"
+"Type /clearallplayersplus to clear all enhanced items of all players in the database, exclusive to administrators"
 
 #: ../../WeaponPlus.cs:187
 #: ../../WeaponPlus.cs:197
@@ -241,5 +252,5 @@ msgstr ""
 #: ../../WeaponPlus.cs:376
 #: ../../WeaponPlus.cs:381
 msgid "输入 /plus help    查看 plus 系列指令帮助"
-msgstr ""
+msgstr "Type /plus help to view the plus series command help"
 

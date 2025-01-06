@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-11-30 02:03:51+0000\n"
-"PO-Revision-Date: 2025-01-05 07:03\n"
+"PO-Revision-Date: 2025-01-06 08:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../Main.cs:50
 msgid "-------[BetterWhitelist]-------"
-msgstr ""
+msgstr "-------[BetterWhitelist]-------"
 
 #: ../../Main.cs:52
 msgid "/bwl add {name}, 添加玩家名到白名单中\n"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-10-25 03:52:29+0000\n"
-"PO-Revision-Date: 2025-01-05 07:03\n"
+"PO-Revision-Date: 2025-01-06 08:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -39,12 +39,12 @@ msgstr " Percentage: [c/74F3C9:{0:0.00%}]"
 #: ../../Tool.cs:344
 #, csharp-format
 msgid " [c/A7DDF0:{0}]"
-msgstr ""
+msgstr " [c/A7DDF0:{0}]"
 
 #: ../../Tool.cs:357
 #, csharp-format
 msgid " [c/A7DDF0:{0}]([c/74F3C9:{1:0.00%}])"
-msgstr ""
+msgstr " [c/A7DDF0:{0}]([c/74F3C9:{1:0.00%}])"
 
 #: ../../Tool.cs:320
 #, csharp-format
@@ -59,12 +59,12 @@ msgstr " Congratulations to the following [c/74F3C9:{0}] players who defeated [c
 #: ../../Tool.cs:269
 #, csharp-format
 msgid "[c/F06576:{0}]"
-msgstr ""
+msgstr "[c/F06576:{0}]"
 
 #: ../../Tool.cs:305
 #, csharp-format
 msgid "[c/F06576:{0}] "
-msgstr ""
+msgstr "[c/F06576:{0}] "
 
 #: ../../Tool.cs:267
 #: ../../Tool.cs:303
@@ -157,5 +157,5 @@ msgstr "Target for damage transfer:[c/AEA3E4:{0}] | Health:[c/6DDA6D:{1}] < "
 #: ../../Tool.cs:297
 #, csharp-format
 msgid "转移:[c/6DDA6D:{0}] 伤害:[c/F06576:{1}] "
-msgstr ""
+msgstr "Transfer:[c/6DDA6D:{0}] Damage:[c/F06576:{1}] "
 

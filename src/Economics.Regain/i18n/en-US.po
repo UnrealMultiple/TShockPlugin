@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-11-15 03:22:37+0000\n"
-"PO-Revision-Date: 2025-01-05 07:04\n"
+"PO-Revision-Date: 2025-01-06 08:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +20,11 @@ msgstr ""
 #: ../../Config.cs:20
 #, csharp-format
 msgid "[i:{0}] {1} 价格:{2}"
-msgstr ""
+msgstr "[i:{0}] {1} Price:{2}"
 
 #: ../../Regain..cs:149
 msgid "/regain"
-msgstr ""
+msgstr "/regain"
 
 #: ../../Regain..cs:150
 msgid "/regain [数量]"
@@ -32,11 +32,11 @@ msgstr "/regain [num]"
 
 #: ../../Regain..cs:151
 msgid "/regain list"
-msgstr ""
+msgstr "/regain list"
 
 #: ../../Regain..cs:148
 msgid "/regain 语法"
-msgstr ""
+msgstr "/regain syntax"
 
 #: ../../Regain..cs:91
 msgid "你必须登录游戏使用此命令!"
@@ -59,7 +59,7 @@ msgstr "Current recyclable items"
 #: ../../Regain..cs:144
 #, csharp-format
 msgid "成功兑换{0}"
-msgstr ""
+msgstr "Successfully redeemed {0}"
 
 #: ../../Regain..cs:79
 msgid "该物品暂时无法回收!"

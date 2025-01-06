@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-12-15 03:11:26+0000\n"
-"PO-Revision-Date: 2025-01-05 07:04\n"
+"PO-Revision-Date: 2025-01-06 08:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr " 2. Items used as ammunition are directly used [c/86F06E:as weapons] [c/
 #: ../../ModifyWeapons.cs:164
 #, csharp-format
 msgid "[c/8AD0EA:{0}]"
-msgstr ""
+msgstr "[c/8AD0EA:{0}]"
 
 #: ../../ModifyWeapons.cs:313
 msgid "[c/AD89D5:公][c/D68ACA:用][c/DF909A:武][c/E5A894:器] 已更新!"
@@ -54,12 +54,12 @@ msgstr "[c/FE727D:《Item List》] Page [c/68A7E8:{0}], of [c/EC6AC9:{1}] pages:
 #: ../../ModifyWeapons.cs:163
 #, csharp-format
 msgid "[c/FF6863:{0}] => "
-msgstr ""
+msgstr "[c/FF6863:{0}] => "
 
 #: ../../ModifyWeapons.cs:149
 #, csharp-format
 msgid "[c/FF6863:{0}] => [c/8AD0EA:{1}]"
-msgstr ""
+msgstr "[c/FF6863:{0}] => [c/8AD0EA:{1}]"
 
 #: ../../Commands.cs:95
 #, csharp-format
@@ -96,7 +96,7 @@ msgstr "《[c/FCFE63:Ammunition Conversion]》[c/15EDDB:{0}] "
 #: ../../ModifyWeapons.cs:162
 #, csharp-format
 msgid "《[c/FCFE63:词缀转换]》[c/15EDDB:{0}] "
-msgstr ""
+msgstr "《[c/FCFE63: Affix conversion]》[c/15EDDB:{0}] "
 
 #: ../../Commands.cs:1641
 msgid "《下一批修改物品名单》:\n"
@@ -203,7 +203,8 @@ msgstr "\n"
 #: ../../Commands.cs:1591
 msgid "\n"
 "《已修改物品名单》:\n"
-msgstr ""
+msgstr "\n"
+"《Modified item list》:\n"
 
 #: ../../Commands.cs:1581
 msgid "\n"
@@ -252,11 +253,11 @@ msgstr "3. For melee attacks to use [c/FF5338:Ammunition], add the [c/2F99D7:sh 
 
 #: ../../Commands.cs:203
 msgid "一.手上拿着并[c/FFB357:正在使用]修改的物品\n"
-msgstr ""
+msgstr "1. Items held in hand and modified by [c/FFB357:in use]\n"
 
 #: ../../Commands.cs:206
 msgid "二.使用经济类[c/4C95DD:指令][c/86F06E:背包有]修改物品\n"
-msgstr ""
+msgstr "2. Use economic class [c/4C95DD: command] [c/86F06E: inventory] to modify items\n"
 
 #: ../../ModifyWeapons.cs:353
 #: ../../Commands.cs:968

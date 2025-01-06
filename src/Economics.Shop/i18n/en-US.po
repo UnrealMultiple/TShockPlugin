@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-11-15 03:22:39+0000\n"
-"PO-Revision-Date: 2025-01-05 07:04\n"
+"PO-Revision-Date: 2025-01-06 08:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: ../../Command.cs:40
 #, csharp-format
 msgid "{0}:[{1}]  {2} 价格:{3})"
-msgstr ""
+msgstr "{0}:[{1}] {2} Price:{3})"
 
 #: ../../Command.cs:94
 msgid "/shop buy [序号] [数量]"
@@ -32,7 +32,7 @@ msgstr "/shop list [index]"
 
 #: ../../Command.cs:81
 msgid "你的货币不足!"
-msgstr ""
+msgstr "You don't have enough currency!"
 
 #: ../../Command.cs:55
 msgid "你输入的购买数量不正确!"
