@@ -11,13 +11,12 @@
 
 
 ## 指令
-```
 | 语法           |        权限         |   说明   |
 | -------------- | :-----------------: | :------: |
 | /dummmy list | dummmy.client.use   | 查看假人|
 | /dummmy remove [index] | dummmy.client.use   | 移除假人|
 | /dummmy reconnect [index] | dummmy.client.use   | 重新连接 |
-```
+
 ## 配置
 > 配置文件位置：tshock/Dummmy.zh-CN.json
 ```json5
