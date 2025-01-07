@@ -26,6 +26,8 @@ internal class DummmyPlayer
 
     public TSPlayer TSPlayer => TShock.Players[this.PlayerSlot];
 
+    private Timer _timer = null!;
+
     public DummmyPlayer(SyncPlayer playerInfo)
     {
         this.PlayerInfo = playerInfo;
@@ -43,6 +45,7 @@ internal class DummmyPlayer
         this.IsPlaying = false;
         this.connected = false;
         this.client.Close();
+        this._timer.Dispose();
     }
 
     public void SendPacket(Packet packet)
@@ -153,6 +156,7 @@ internal class DummmyPlayer
         this.Hello(this.CurRelease);
         this.On<RequestPassword>(_ => this.SendPacket(new SendPassword { Password = password }));
         this.connected = true;
+        this._timer = new(this.OnFrame, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(1000));
         Task.Run(() =>
         {
             while (this.connected && !this.shouldExit())
@@ -173,4 +177,13 @@ internal class DummmyPlayer
             this.Close();
         });
     }
+
+    private void OnFrame(object? state)
+    {
+        if (this.connected)
+        {
+            this.SendPacket(new PlayerActive() { PlayerSlot = this.PlayerSlot, Active = true });
+        }
+    }
 }
+
