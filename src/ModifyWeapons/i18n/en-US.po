@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-12-15 03:11:26+0000\n"
-"PO-Revision-Date: 2025-01-06 08:06\n"
+"PO-Revision-Date: 2025-01-07 08:51\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -269,7 +269,7 @@ msgstr "damage"
 
 #: ../../Commands.cs:1539
 msgid "伤害[c/FF6975:d] 数量[c/74E55D:sk] 前缀[c/74E55D:pr] 大小[c/5C9EE1:sc] \n"
-msgstr ""
+msgstr "damage [c/FF6975:d] stack [c/74E55D:sk] prefix [c/74E55D:pr] scale [c/5C9EE1:sc] \n"
 
 #: ../../Commands.cs:1566
 msgid "使用指令修改[c/91DFBB:配置] 自动写入所有玩家数据"
@@ -277,7 +277,7 @@ msgstr "Use command to modify [c/91DFBB:configuration], automatically write to a
 
 #: ../../Commands.cs:296
 msgid "使用方法: /mw pw del <物品名>"
-msgstr ""
+msgstr "Usage: /mw pw del <item name>"
 
 #: ../../Commands.cs:1696
 #, csharp-format
@@ -376,23 +376,23 @@ msgstr "The server rejoin function for all players has been [c/92C5EC:enabled]�
 
 #: ../../Commands.cs:220
 msgid "已[c/92C5EC:开启]自动清理功能！"
-msgstr ""
+msgstr "Auto clear item has been [c/92C5EC:Enabled]!"
 
 #: ../../Commands.cs:193
 msgid "已[c/92C5EC:开启]自动重读修改功能！"
-msgstr ""
+msgstr "Auto reread modification has been [c/92C5EC:Enabled]!"
 
 #: ../../Commands.cs:170
 msgid "已[c/E8585B:关闭]所有玩家进服重读功能！"
-msgstr ""
+msgstr "Reread modification on join has been [c/E8585B:Disabled] for all player!"
 
 #: ../../Commands.cs:226
 msgid "已[c/E8585B:关闭]自动清理功能！"
-msgstr ""
+msgstr "Auto clear item has been [c/E8585B:Disabled]!"
 
 #: ../../Commands.cs:197
 msgid "已[c/E8585B:关闭]自动重读修改功能！"
-msgstr ""
+msgstr "Auto reread modification has been [c/E8585B:Disabled]!"
 
 #: ../../Commands.cs:107
 #, csharp-format
@@ -406,7 +406,7 @@ msgstr "{0}'s rejoin attempts have been [c/E8585B:added]! The new rejoin attempt
 
 #: ../../Commands.cs:236
 msgid "已[c/E8585B:清空]所有人的修改物品数据！"
-msgstr ""
+msgstr "Weapon modifications of all players have been [c/E8585B:Cleared]!"
 
 #: ../../Commands.cs:491
 #, csharp-format
@@ -424,12 +424,12 @@ msgstr "Public weapons have been enabled"
 #: ../../Commands.cs:319
 #, csharp-format
 msgid "已成功从所有玩家的公用武器配置中移除物品 [c/92C5EC:{0}]"
-msgstr ""
+msgstr "Item [c/92C5EC:{0}] removed from all player's public weapon modifications"
 
 #: ../../Commands.cs:390
 #, csharp-format
 msgid "已更新玩家 [c/2F99D7:{0}] 的[c/92B9D4:{1}]"
-msgstr ""
+msgstr "Updated [c/92B9D4:{1}] of player [c/2F99D7:{0}]"
 
 #: ../../ModifyWeapons.cs:378
 #: ../../Commands.cs:1036
@@ -462,7 +462,7 @@ msgstr "You have no modified items。"
 #: ../../Commands.cs:920
 #, csharp-format
 msgid "您的重读冷却:[c/5C9EE1:{0}] < [c/FF6975:{1}]秒 重读次数:[c/93E0D8:{2}]\n"
-msgstr ""
+msgstr "Your reread cooldown: [c/5C9EE1:{0}]s < [c/FF6975:{1}]s. Reread count: [c/93E0D8:{2}]\n"
 
 #: ../../Commands.cs:1689
 msgid "手持[c/92C5EC:{0}] 伤害[c/FF6975:{1}] 前缀[c/F5DDD3:{2}] 数量[c/2CCFC6:{3}] 大小[c/5C9EE1:{4}] \n"
@@ -470,7 +470,7 @@ msgstr "Selected[c/92C5EC:{0}] damage[c/FF6975:{1}] prefix[c/F5DDD3:{2}] stack[c
 
 #: ../../Commands.cs:311
 msgid "找不到指定的物品"
-msgstr ""
+msgstr "Cannot find the specified item"
 
 #: ../../Commands.cs:336
 msgid "找不到指定的物品。"
@@ -536,11 +536,11 @@ msgstr "Format 3: /mw p del ItemName —— Delete Specified Player Weapon"
 #: ../../ModifyWeapons.cs:440
 #, csharp-format
 msgid "检测到经济指令 重读物品:[c/4C95DD:{0}]!"
-msgstr ""
+msgstr "Reread triggering command detected. Reread item: [c/4C95DD:{0}]!"
 
 #: ../../Commands.cs:323
 msgid "没有找到与指定名称匹配的物品或无法移除。"
-msgstr ""
+msgstr "No item match the specified name or could not be removed."
 
 #: ../../Commands.cs:888
 msgid "没有找到该玩家的物品数据。"
@@ -624,7 +624,7 @@ msgstr "Suffix related: Players can only modify items when the item [c/D45B7E:in
 
 #: ../../Commands.cs:616
 msgid "请用角色[c/D95065:重进服务器]后输入：/mw 指令查看菜单\n"
-msgstr ""
+msgstr "Please [c/D95065:re-enter the server] with this character and then type in: \"/mw\" command to view the menu\n"
 
 #: ../../Commands.cs:921
 #, csharp-format
@@ -643,7 +643,7 @@ msgstr "Please enter [c/68A7E8:/mw list {0}] to view more"
 
 #: ../../Commands.cs:131
 msgid "请输入有效的整数作为重读次数。"
-msgstr ""
+msgstr "Please enter a valid integer number for rereading count."
 
 #: ../../Commands.cs:1676
 msgid "重读开关:[c/E8585B:未开启]"
