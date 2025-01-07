@@ -14,8 +14,6 @@ internal class DummyPlayer
     private readonly SyncPlayer PlayerInfo;
     public bool IsPlaying { get; private set; }
 
-    public bool connected = false;
-
     public event Action<DummyPlayer, NetworkText, Color>? OnChat;
     public event Action<DummyPlayer, string>? OnMessage;
     public Func<bool> shouldExit = () => false;
@@ -25,6 +23,8 @@ internal class DummyPlayer
     private readonly TrClient client;
 
     public TSPlayer TSPlayer => TShock.Players[this.PlayerSlot];
+
+    public bool Active { get; private set; }
 
     private Timer _timer = null!;
 
@@ -43,7 +43,7 @@ internal class DummyPlayer
     public void Close()
     {
         this.IsPlaying = false;
-        this.connected = false;
+        this.Active = false;
         this.client.Close();
         this._timer.Dispose();
     }
@@ -120,7 +120,7 @@ internal class DummyPlayer
         this.On<Kick>(kick =>
         {
             OnMessage?.Invoke(this, "Kicked : " + kick.Reason);
-            this.connected = false;
+            this.Close();
         });
         this.On<LoadPlayer>(player =>
         {
@@ -155,11 +155,11 @@ internal class DummyPlayer
     {
         this.Hello(this.CurRelease);
         this.On<RequestPassword>(_ => this.SendPacket(new SendPassword { Password = password }));
-        this.connected = true;
+        this.Active = true;
         this._timer = new(this.OnFrame, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(1000));
         Task.Run(() =>
         {
-            while (this.connected && !this.shouldExit())
+            while (this.Active && !this.shouldExit())
             {
                 var packet = this.client.Receive();
                 try
@@ -180,7 +180,7 @@ internal class DummyPlayer
 
     private void OnFrame(object? state)
     {
-        if (this.connected)
+        if (this.Active)
         {
             this.SendPacket(new PlayerActive() { PlayerSlot = this.PlayerSlot, Active = true });
         }

@@ -1,6 +1,8 @@
 ﻿using LazyAPI;
 using Terraria;
 using TerrariaApi.Server;
+using TrProtocol.Models;
+using TrProtocol.Packets;
 using TShockAPI;
 
 namespace Dummy;
@@ -44,14 +46,32 @@ public class Plugin : LazyPlugin
 
     private void Netplay_OpenPort(On.Terraria.Netplay.orig_OpenPort orig, int port)
     {
+        orig(port);
         foreach (var dummy in Config.Instance.Dummys)
         {
-            var ply = new DummyPlayer(dummy);
+            var ply = new DummyPlayer(new()
+            { 
+                Hair = dummy.Hair,
+                HairColor = dummy.HairColor,
+                EyeColor = dummy.EyeColor,
+                ShirtColor = dummy.ShirtColor,
+                ShoeColor = dummy.ShoeColor,
+                SkinColor = dummy.SkinColor,
+                HairDye = dummy.HairDye,
+                Name = dummy.Name,
+                SkinVariant = dummy.SkinVariant,
+                UnderShirtColor = dummy.UnderShirtColor,
+                HideMisc = dummy.HideMisc,
+            });
             ply.GameLoop("127.0.0.1", port, TShock.Config.Settings.ServerPassword);
+            if (!string.IsNullOrEmpty(dummy.Password))
+            { 
+                ply.ChatText($"/login {dummy.Password}");
+            }
             _players[ply.PlayerSlot] = ply;
         }
         Port = port;
-        orig(port);
+        
     }
 
     private void OnLeave(LeaveEventArgs args)

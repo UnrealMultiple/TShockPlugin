@@ -18,67 +18,51 @@
 | /dummy reconnect [index] | dummy.client.use   | 重新连接 |
 
 ## 配置
-> 配置文件位置：tshock/Dummmy.zh-CN.json
+> 配置文件位置：tshock/Dummy.zh-CN.json
 ```json5
 {
   "假人": [
     {
-      "Type": 4, //角色类型
-      "PlayerSlot": 0,  //不用填
-      "SkinVariant": 0, 
-      "Hair": 0, //发型
-      "Name": "熙恩", //假人名称
-      "HairDye": 0, 
-      "Bit1": {
-        "value": 0
-      },
-      "Bit2": {
-        "value": 0
-      },
-      "HideMisc": 0,
-      "HairColor": { //头发颜色
+      "登陆密码": "", //留空不登录
+      "皮肤": 0,
+      "头发": 0,
+      "名字": "熙恩",
+      "染发": 0,
+      "隐藏设置": 0,
+      "头发颜色": {
         "R": 239,
         "G": 211,
         "B": 211
       },
-      "SkinColor": { //肤色
+      "皮肤颜色": {
         "R": 239,
         "G": 202,
         "B": 202
       },
-      "EyeColor": { //眼睛颜色
+      "眼睛颜色": {
         "R": 51,
         "G": 9,
         "B": 9
       },
-      "ShirtColor": {  //衣服颜色
+      "上衣颜色": {
         "R": 239,
         "G": 211,
         "B": 211
       },
-      "UnderShirtColor": { //衣服颜色
+      "内衣颜色": {
         "R": 239,
         "G": 211,
         "B": 211
       },
-      "PantsColor": { //裤子颜色
+      "裤子颜色": {
         "R": 239,
         "G": 211,
         "B": 211
       },
-      "ShoeColor": { //鞋子颜色
+      "鞋子颜色": {
         "R": 239,
         "G": 211,
         "B": 211
-      },
-      "Bit3": {
-        "value": 0
-      },
-      "Bit4": {
-        "value": 0
-      },
-      "Bit5": {
-        "value": 0
       }
     }
   ]

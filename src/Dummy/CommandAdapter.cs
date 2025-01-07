@@ -31,7 +31,7 @@ internal class CommandAdapter
         if (args.Parameters.Count == 2 && int.TryParse(args.Parameters[1], out var index))
         {
             var ply = Plugin._players[index];
-            if (ply != null && !ply.connected)
+            if (ply != null && !ply.Active)
             {
                 ply.GameLoop("127.0.0.1", Plugin.Port, TShock.Config.Settings.ServerPassword);
             }
@@ -53,7 +53,7 @@ internal class CommandAdapter
             var player = Plugin._players[i];
             if (player != null && player.TSPlayer.Active)
             { 
-                args.Player.SendInfoMessage(GetString($"[{i}].{player.TSPlayer.Name} 连接状态: {player.connected}"));
+                args.Player.SendInfoMessage(GetString($"[{i}].{player.TSPlayer.Name} 连接状态: {player.Active}"));
             }
         }
     }
