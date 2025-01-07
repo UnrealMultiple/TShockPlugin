@@ -1,4 +1,4 @@
-# Dummmy 假人
+# Dummy 假人
 
 - 作者: 少司命
 - 出处: 此仓库
@@ -13,9 +13,9 @@
 ## 指令
 | 语法           |        权限         |   说明   |
 | -------------- | :-----------------: | :------: |
-| /dummmy list | dummmy.client.use   | 查看假人|
-| /dummmy remove [index] | dummmy.client.use   | 移除假人|
-| /dummmy reconnect [index] | dummmy.client.use   | 重新连接 |
+| /dummy list | dummy.client.use   | 查看假人|
+| /dummy remove [index] | dummy.client.use   | 移除假人|
+| /dummy reconnect [index] | dummy.client.use   | 重新连接 |
 
 ## 配置
 > 配置文件位置：tshock/Dummmy.zh-CN.json

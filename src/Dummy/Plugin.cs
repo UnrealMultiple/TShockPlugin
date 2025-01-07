@@ -1,15 +1,14 @@
 ﻿using LazyAPI;
-using System.Net;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
-namespace Dummmy;
+namespace Dummy;
 
 [ApiVersion(2, 1)]
 public class Plugin : LazyPlugin
 {
-    public override string Name => "Dummmy";
+    public override string Name => "Dummy";
 
     public override Version Version => new Version(1, 0, 0, 0);
 
@@ -17,7 +16,7 @@ public class Plugin : LazyPlugin
 
     public override string Description => "在你的服务器中放置假人！";
 
-    internal static readonly DummmyPlayer[] _players = new DummmyPlayer[Main.maxNetPlayers];
+    internal static readonly DummyPlayer[] _players = new DummyPlayer[Main.maxNetPlayers];
 
     internal static int Port = 7777;
 
@@ -29,7 +28,7 @@ public class Plugin : LazyPlugin
     {
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
         On.Terraria.Netplay.OpenPort += this.Netplay_OpenPort;
-        Commands.ChatCommands.Add(new("dummy.client.use", CommandAdapter.Adapter, "dummmy"));
+        Commands.ChatCommands.Add(new("dummy.client.use", CommandAdapter.Adapter, "dummy"));
     }
 
     protected override void Dispose(bool disposing)
@@ -45,9 +44,9 @@ public class Plugin : LazyPlugin
 
     private void Netplay_OpenPort(On.Terraria.Netplay.orig_OpenPort orig, int port)
     {
-        foreach (var dummmy in Config.Instance.Dummmys)
+        foreach (var dummy in Config.Instance.Dummys)
         {
-            var ply = new DummmyPlayer(dummmy);
+            var ply = new DummyPlayer(dummy);
             ply.GameLoop("127.0.0.1", port, TShock.Config.Settings.ServerPassword);
             _players[ply.PlayerSlot] = ply;
         }

@@ -5,8 +5,8 @@ using TrProtocol.Packets.Modules;
 using TrProtocol.Packets;
 using TShockAPI;
 
-namespace Dummmy;
-internal class DummmyPlayer
+namespace Dummy;
+internal class DummyPlayer
 {
     public byte PlayerSlot { get; private set; }
     public string CurRelease = "Terraria279";
@@ -16,8 +16,8 @@ internal class DummmyPlayer
 
     public bool connected = false;
 
-    public event Action<DummmyPlayer, NetworkText, Color>? OnChat;
-    public event Action<DummmyPlayer, string>? OnMessage;
+    public event Action<DummyPlayer, NetworkText, Color>? OnChat;
+    public event Action<DummyPlayer, string>? OnMessage;
     public Func<bool> shouldExit = () => false;
 
     private readonly Dictionary<Type, Action<Packet>> handlers = new();
@@ -28,7 +28,7 @@ internal class DummmyPlayer
 
     private Timer _timer = null!;
 
-    public DummmyPlayer(SyncPlayer playerInfo)
+    public DummyPlayer(SyncPlayer playerInfo)
     {
         this.PlayerInfo = playerInfo;
         this.client = new TrClient();

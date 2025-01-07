@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-using TShockAPI;
+﻿using TShockAPI;
 
-namespace Dummmy;
+namespace Dummy;
 internal class CommandAdapter
 {
     private static readonly Dictionary<string, CommandDelegate> _actions = new()
     {
-        { "remove", RemoveDummmy },
-        { "list", DummmyList },
+        { "remove", RemoveDummy },
+        { "list", DummyList },
         { "reconnect", ReConnect }
     };
 
@@ -27,9 +21,9 @@ internal class CommandAdapter
                 return;
             }
         }
-        args.Player.SendInfoMessage(GetString("dummmy remove [index] 移除目标假人"));
-        args.Player.SendInfoMessage(GetString("dummmy list 假人列表"));
-        args.Player.SendInfoMessage(GetString("dummmy reconnect [index] 重新连接"));
+        args.Player.SendInfoMessage(GetString("dummy remove [index] 移除目标假人"));
+        args.Player.SendInfoMessage(GetString("dummy list 假人列表"));
+        args.Player.SendInfoMessage(GetString("dummy reconnect [index] 重新连接"));
     }
 
     private static void ReConnect(CommandArgs args)
@@ -52,7 +46,7 @@ internal class CommandAdapter
         }
     }
 
-    private static void DummmyList(CommandArgs args)
+    private static void DummyList(CommandArgs args)
     {
         for (var i = 0; i < Plugin._players.Length; i++)
         { 
@@ -64,7 +58,7 @@ internal class CommandAdapter
         }
     }
 
-    private static void RemoveDummmy(CommandArgs args)
+    private static void RemoveDummy(CommandArgs args)
     {
         if (args.Parameters.Count == 2 && int.TryParse(args.Parameters[1], out var index))
         {

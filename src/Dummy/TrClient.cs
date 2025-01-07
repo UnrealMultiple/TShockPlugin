@@ -2,11 +2,8 @@
 using System.Net.Sockets;
 using System.Text;
 using TrProtocol;
-using TrProtocol.Models;
-using TrProtocol.Packets;
-using TrProtocol.Packets.Modules;
 
-namespace Dummmy;
+namespace Dummy;
 
 public class TrClient
 {
