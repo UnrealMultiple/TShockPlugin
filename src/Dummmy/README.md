@@ -11,13 +11,12 @@
 
 
 ## 指令
-```
 | 语法           |        权限         |   说明   |
 | -------------- | :-----------------: | :------: |
 | /dummmy list | dummmy.client.use   | 查看假人|
 | /dummmy remove [index] | dummmy.client.use   | 移除假人|
 | /dummmy reconnect [index] | dummmy.client.use   | 重新连接 |
-```
+
 ## 配置
 > 配置文件位置：tshock/Dummmy.zh-CN.json
 ```json5
@@ -89,14 +88,7 @@
 ## 更新日志
 
 ```
-v1.0.8
-准备更新TS 5.2.1,修正文档，初始配置内容更改
-v1.0.6
-修复了初始配置文件的问题
-v1.0.5
-i18n 和 README_EN.md
-v1.0.4
-i18n预定
+无
 ```
 
 ## 反馈
