@@ -1102,7 +1102,7 @@ public partial class ZHIPM
                     "输入 /zreset <name> 来清理该玩家的人物数据\n" +
                     "输入 /zreset all 来清理所有玩家的人物数据\n" +
                     "输入 /zresetallplayers 来清理所有玩家的所有数据"
-                    ),TextColor());
+                    ), TextColor());
             return;
         }
 

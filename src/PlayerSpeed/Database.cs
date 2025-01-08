@@ -19,7 +19,7 @@ public class Database
         public DateTime CoolTime { get; set; }
         //间隔时间
         public DateTime RangeTime { get; set; }
-        internal PlayerData(string name = "",int count = 0 , bool enabled = true, DateTime coolTime = default, DateTime rangeTime = default)
+        internal PlayerData(string name = "", int count = 0, bool enabled = true, DateTime coolTime = default, DateTime rangeTime = default)
         {
             this.Name = name ?? "";
             this.Count = count;
@@ -52,7 +52,7 @@ public class Database
     public bool AddData(PlayerData data)
     {
         return TShock.DB.Query("INSERT INTO PlayerSpeed (Name, Enabled,Count, CoolTime, RangeTime) VALUES (@0, @1, @2, @3, @4)",
-            data.Name, data.Enabled ? 1 : 0,data.Count, data.CoolTime, data.RangeTime) != 0;
+            data.Name, data.Enabled ? 1 : 0, data.Count, data.CoolTime, data.RangeTime) != 0;
     }
     #endregion
 
@@ -67,7 +67,7 @@ public class Database
     public bool UpdateData(PlayerData data)
     {
         return TShock.DB.Query("UPDATE PlayerSpeed SET Enabled = @0, Count = @1, CoolTime = @2, RangeTime = @3 WHERE Name = @4",
-            data.Enabled ? 1 : 0,data.Count, data.CoolTime, data.RangeTime, data.Name) != 0;
+            data.Enabled ? 1 : 0, data.Count, data.CoolTime, data.RangeTime, data.Name) != 0;
     }
     #endregion
 

@@ -7,7 +7,7 @@ namespace VotePlus;
 
 public class Vote
 {
-    public Vote(UserAccount sender,VoteType voteType,UserAccount target)
+    public Vote(UserAccount sender, VoteType voteType, UserAccount target)
     {
         this.Sender = sender;
         this.Type = voteType;
@@ -65,7 +65,7 @@ public class Vote
     public List<string> Argeement { get; set; } = new();
     public List<string> Disargeement { get; set; } = new();
     public int Total => TShock.Players.Where(p => p != null && p.Active).Count();
-    public int AgreePercent => (int) (this.Argeement.Count * 100 / this.Total) ;
+    public int AgreePercent => this.Argeement.Count * 100 / this.Total;
 
     public short VoteReminder = 3;
     public string ReminderBuild(int seconds)
@@ -117,7 +117,7 @@ public class Vote
                     TSPlayer.All.SendInfoMessage(this.ReminderBuild(15));
                     this.VoteReminder--;
                 }
-                break;            
+                break;
         }
     }
     public string VoteStartBuild()
@@ -152,7 +152,7 @@ public class Vote
                 }
                 TShock.Players.Where(p => p != null && p.Active && p.Account.Name == this.Target.Name).ToList().ForEach(p => p.Kick(GetString($"你被投票踢出游戏,持续{config.KickDuration}秒!"), true, true, this.Sender.Name, true));
                 TSPlayer.All.SendSuccessMessage(GetString($"[i:4344]玩家\"{this.Target.Name}\"被踢出游戏,持续{config.KickDuration}秒!"));
-                
+
                 break;
             case VoteType.PlayerBan:
                 TShock.Bans.InsertBan($"acc:{this.Target.Name}", GetString("你已被投票永久封禁"), this.Sender.Name, DateTime.UtcNow, DateTime.MaxValue);
@@ -195,7 +195,7 @@ public class Vote
                 TSPlayer.All.SendSuccessMessage(GetString($"[i:4344]时间已被投票修改为白天!"));
                 break;
             case VoteType.FreeVote:
-                 TSPlayer.All.SendSuccessMessage(GetString($"[i:4344]关于\"{this.Project}\"的投票已被通过!"));
+                TSPlayer.All.SendSuccessMessage(GetString($"[i:4344]关于\"{this.Project}\"的投票已被通过!"));
                 break;
             case VoteType.RainRequest:
                 if (this.rain)

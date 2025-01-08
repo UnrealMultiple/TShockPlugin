@@ -12,10 +12,9 @@ public class Plugin : TerrariaPlugin
 {
 
     #region 插件信息
-    public override string Name => "随机广播";
-    public override string Author => "羽学";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学";
     public override Version Version => new Version(1, 0, 4);
-    public override string Description => "涡轮增压不蒸鸭";
+    public override string Description => GetString("涡轮增压不蒸鸭");
     private static readonly Random random = new Random();
     #endregion
 

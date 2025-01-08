@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TownNPCHomes\n"
-"POT-Creation-Date: 2024-10-25 14:11:06+0000\n"
+"POT-Creation-Date: 2025-01-08 13:16:31+0000\n"
 "PO-Revision-Date: 2024-09-08 01:41+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,21 +11,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ../../Plugin.cs:76
+#: ../../Plugin.cs:75
 #, csharp-format
 msgid "发送NPC ({0}) 回家位置数据包时发生错误: {1}"
 msgstr "Error occurred while sending NPC ({0}) home location packet: {1}"
 
-#: ../../Plugin.cs:102
+#: ../../Plugin.cs:101
 #, csharp-format
 msgid "处理NPC回家事件时发生错误: {0}"
 msgstr "Error occurred while processing NPC return home event: {0}"
 
-#: ../../Plugin.cs:64
+#: ../../Plugin.cs:63
 msgid "已将所有城镇npc传送回家!"
 msgstr "All town NPCs have been teleported home!"
 
-#: ../../Plugin.cs:89
+#: ../../Plugin.cs:88
 #, csharp-format
 msgid "无法找到ID为{0}的NPC，无法为其设置家的位置。"
 msgstr "Unable to find NPC with ID {0}, unable to set home location."

@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using StatusTextManager.Utils;
-using System.Text;
 using System.Text.RegularExpressions;
 using Terraria;
 using TShockAPI;
@@ -34,31 +33,31 @@ public class DynamicText : IStatusTextSetting, IStatusTextUpdateHandler
                 return m.Value[1] == '{' // if {{abc}}
                     ? m.Value[1..^1]
                     : m.Value switch
-                {
-                    "{PlayerName}" => player.Name,
-                    "{PlayerGroupName}" => player.Group.Name,
-                    "{PlayerLife}" => player.TPlayer.statLife.ToString(),
-                    "{PlayerMana}" => player.TPlayer.statMana.ToString(),
-                    "{PlayerLifeMax}" => player.TPlayer.statLifeMax2.ToString(),
-                    "{PlayerManaMax}" => player.TPlayer.statManaMax2.ToString(),
-                    "{PlayerLuck}" => player.TPlayer.luck.ToString(),
-                    "{PlayerCoordinateX}" => player.TileX.ToString(),
-                    "{PlayerCoordinateY}" => player.TileY.ToString(),
-                    "{PlayerCurrentRegion}" => player.CurrentRegion == null ? GetString("空区域") : player.CurrentRegion.Name,
-                    "{IsPlayerAlive}" => player.Dead ? GetString("已死亡") : GetString("存活"),
-                    "{RespawnTimer}" => player.RespawnTimer == 0 ? GetString("未死亡") : player.RespawnTimer.ToString(),
-                    "{OnlinePlayersCount}" => TShock.Utils.GetActivePlayerCount().ToString(),
-                    "{OnlinePlayersList}" => string.Join(',', TShock.Players.Where(x => x is { Active: true }).Select(x => x.Name)),
-                    "{AnglerQuestFishName}" => Common.GetAnglerQuestFishName(),
-                    "{AnglerQuestFishID}" => Common.GetAnglerQuestFishId().ToString(),
-                    "{AnglerQuestFishingBiome}" => Common.GetAnglerQuestFishingBiome(),
-                    "{AnglerQuestCompleted}" => Main.anglerWhoFinishedToday.Exists((string x) => x == player.Name) ? GetString("已完成") : GetString("未完成"),
-                    "{CurrentTime}" => Common.GetCurrentTime(),
-                    "{RealWorldTime}" => DateTime.Now.ToString("HH:mm"),
-                    "{WorldName}" => Main.worldName,
-                    "{CurrentBiomes}" => player.GetFormattedBiomesList(),
-                    _ => m.Value,
-                };
+                    {
+                        "{PlayerName}" => player.Name,
+                        "{PlayerGroupName}" => player.Group.Name,
+                        "{PlayerLife}" => player.TPlayer.statLife.ToString(),
+                        "{PlayerMana}" => player.TPlayer.statMana.ToString(),
+                        "{PlayerLifeMax}" => player.TPlayer.statLifeMax2.ToString(),
+                        "{PlayerManaMax}" => player.TPlayer.statManaMax2.ToString(),
+                        "{PlayerLuck}" => player.TPlayer.luck.ToString(),
+                        "{PlayerCoordinateX}" => player.TileX.ToString(),
+                        "{PlayerCoordinateY}" => player.TileY.ToString(),
+                        "{PlayerCurrentRegion}" => player.CurrentRegion == null ? GetString("空区域") : player.CurrentRegion.Name,
+                        "{IsPlayerAlive}" => player.Dead ? GetString("已死亡") : GetString("存活"),
+                        "{RespawnTimer}" => player.RespawnTimer == 0 ? GetString("未死亡") : player.RespawnTimer.ToString(),
+                        "{OnlinePlayersCount}" => TShock.Utils.GetActivePlayerCount().ToString(),
+                        "{OnlinePlayersList}" => string.Join(',', TShock.Players.Where(x => x is { Active: true }).Select(x => x.Name)),
+                        "{AnglerQuestFishName}" => Common.GetAnglerQuestFishName(),
+                        "{AnglerQuestFishID}" => Common.GetAnglerQuestFishId().ToString(),
+                        "{AnglerQuestFishingBiome}" => Common.GetAnglerQuestFishingBiome(),
+                        "{AnglerQuestCompleted}" => Main.anglerWhoFinishedToday.Exists((string x) => x == player.Name) ? GetString("已完成") : GetString("未完成"),
+                        "{CurrentTime}" => Common.GetCurrentTime(),
+                        "{RealWorldTime}" => DateTime.Now.ToString("HH:mm"),
+                        "{WorldName}" => Main.worldName,
+                        "{CurrentBiomes}" => player.GetFormattedBiomesList(),
+                        _ => m.Value,
+                    };
 
             }
 

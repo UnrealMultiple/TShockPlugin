@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoBroadcast\n"
-"POT-Creation-Date: 2024-09-28 12:11:56+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:28+0000\n"
 "PO-Revision-Date: 2024-09-28 23:49+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,14 +11,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ../../AutoBroadcast.cs:57
-msgid ""
-"[AutoBroadcast]配置读取发生错误!\n"
-"{0}"
+#: ../../AutoBroadcast.cs:12
+msgid "自动广播插件"
 msgstr ""
-"[AutoBroadcast] Configuration read error!\n"
-"{0}"
 
-#: ../../AutoBroadcast.cs:43
-msgid "自定义广播配置已重读!"
-msgstr "AutoBroadcast configuration has been reloaded!"
+#~ msgid ""
+#~ "[AutoBroadcast]配置读取发生错误!\n"
+#~ "{0}"
+#~ msgstr ""
+#~ "[AutoBroadcast] Configuration read error!\n"
+#~ "{0}"
+
+#~ msgid "自定义广播配置已重读!"
+#~ msgstr "AutoBroadcast configuration has been reloaded!"

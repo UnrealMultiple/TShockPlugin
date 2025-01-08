@@ -1,6 +1,5 @@
 ﻿using LazyAPI;
 using LazyAPI.ConfigFiles;
-using Newtonsoft.Json;
 namespace BanNpc;
 
 

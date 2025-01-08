@@ -1,7 +1,7 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using Microsoft.Xna.Framework;
 using MySql.Data.MySqlClient;
-using Microsoft.Xna.Framework;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using TShockAPI;
 using TShockAPI.DB;
 
@@ -29,7 +29,7 @@ public class Database
         public DateTime SyncTime { get; set; }
         public DateTime AloneTime { get; set; }
         public Dictionary<string, List<ItemData>> Dict { get; set; } = new Dictionary<string, List<ItemData>>();
-        internal PlayerData(string name = "",int readCount = 0, bool hand = false, bool join = true, DateTime? readTime = null, DateTime? syncTime = null, Dictionary<string, List<ItemData>>? dict = null, int process = 0, bool alone = false, DateTime? aloneTime = default)
+        internal PlayerData(string name = "", int readCount = 0, bool hand = false, bool join = true, DateTime? readTime = null, DateTime? syncTime = null, Dictionary<string, List<ItemData>>? dict = null, int process = 0, bool alone = false, DateTime? aloneTime = default)
         {
             this.Name = name ?? "";
             this.ReadCount = readCount;
@@ -58,7 +58,7 @@ public class Database
             public int ammo { get; set; }
             public int useAmmo { get; set; }
             public Color color { get; set; }
-            public ItemData(){}
+            public ItemData() { }
 
             [JsonConstructor]
             public ItemData(int type, int stack, byte prefix, int damage, float scale, float knockBack,

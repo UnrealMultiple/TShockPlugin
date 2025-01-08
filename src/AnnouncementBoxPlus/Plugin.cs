@@ -7,7 +7,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 namespace AnnouncementBoxPlus;
 
 [ApiVersion(2, 1)]
@@ -17,11 +16,10 @@ public class AnnouncementBoxPlus : LazyPlugin
     public override string Author => "Cai";
 
     //插件的一句话描述
-    public override string Description => "优化广播盒";
+    public override string Description => GetString("优化广播盒");
 
     //插件的名称
-    public override string Name => "AnnouncementBoxPlus";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     //插件的版本
     public override Version Version => new Version(1, 0, 3);
 

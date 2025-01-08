@@ -103,6 +103,7 @@
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 禁怪物掉落 |  |
 | [DonotFuck](./src/DonotFuck/README.md) | 禁止脏话 | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 阻止进入地牢或神庙 |  |
+| [Dummy](./src/Dummy/README.md) | 服务器假人 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 输出 ID |  |
 | [DwTP](./src/DwTP/README.md) | 定位传送 |  |
 | [Economics.Deal](./src/Economics.Deal/README.md) | 交易插件 | [EconomicsAPI](./src/EconomicsAPI/README.md) |
@@ -198,6 +199,10 @@
 | [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | zhi的玩家管理插件 |  |
 
 </Details>
+
+## 翻译
+
+- 如果你想要参与翻译工作，欢迎访问我们的 [Crowdin](https://zh.crowdin.com/project/tshock-chinese-plugin) 链接
 
 ## 友情链接
 

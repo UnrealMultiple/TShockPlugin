@@ -1,10 +1,10 @@
 ﻿using AutoFish.Utils;
+using LazyAPI;
+using System.Text;
 using Terraria;
 using Terraria.ID;
-using TShockAPI;
 using TerrariaApi.Server;
-using System.Text;
-using LazyAPI;
+using TShockAPI;
 
 namespace AutoFish;
 
@@ -13,10 +13,9 @@ public class AutoFish : LazyPlugin
 {
 
     #region 插件信息
-    public override string Name => "自动钓鱼";
-    public override string Author => "羽学 少司命";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学 少司命";
     public override Version Version => new Version(1, 3, 5);
-    public override string Description => "涡轮增压不蒸鸭";
+    public override string Description => GetString("涡轮增压不蒸鸭");
     #endregion
 
     #region 注册与释放
@@ -243,14 +242,14 @@ public class AutoFish : LazyPlugin
     {
         var plr = e.Player;
 
-        if (plr == null || !plr.Active || !plr.IsLoggedIn || !Configuration.Instance.Enabled  || !plr.HasPermission("autofish"))
+        if (plr == null || !plr.Active || !plr.IsLoggedIn || !Configuration.Instance.Enabled || !plr.HasPermission("autofish"))
         {
             return;
         }
 
         // 从数据表中获取与玩家名字匹配的配置项
         var list = Data.Items.FirstOrDefault(x => x.Name == plr.Name);
-        if (list == null || !list.Buff )
+        if (list == null || !list.Buff)
         {
             return;
         }

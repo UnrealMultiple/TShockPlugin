@@ -38,12 +38,12 @@ public class SkillSparkOption
 
     public bool MeetHP(TSPlayer Player)
     {
-        return (this.HpRatio ? ((float) Player.TPlayer.statLife / (float) Player.TPlayer.statLifeMax * 100 <= this.HP) : Player.TPlayer.statLife <= this.HP) && !this.MoreHP;
+        return (this.HpRatio ? (Player.TPlayer.statLife / (float) Player.TPlayer.statLifeMax * 100 <= this.HP) : Player.TPlayer.statLife <= this.HP) && !this.MoreHP;
     }
 
     public bool MeetMP(TSPlayer Player)
     {
-        return (this.MpRatio ? ((float) Player.TPlayer.statMana / (float) Player.TPlayer.statManaMax * 100 <= this.MP) : Player.TPlayer.statMana <= this.MP) && !this.MoreMP;
+        return (this.MpRatio ? (Player.TPlayer.statMana / (float) Player.TPlayer.statManaMax * 100 <= this.MP) : Player.TPlayer.statMana <= this.MP) && !this.MoreMP;
     }
 
     public bool HasItem(TSPlayer player)

@@ -8,7 +8,7 @@ namespace CaiRewardChest;
 [ApiVersion(2, 1)]
 public class CaiRewardChest : TerrariaPlugin
 {
-    public static List<int> RewardChestId = new (); //用于防止快速堆叠爆SQL
+    public static List<int> RewardChestId = new(); //用于防止快速堆叠爆SQL
 
     public CaiRewardChest(Main game)
         : base(game)
@@ -17,10 +17,9 @@ public class CaiRewardChest : TerrariaPlugin
 
     public override string Author => "Cai";
 
-    public override string Description => "奖励箱！！";
+    public override string Description => GetString("奖励箱！！");
 
-    public override string Name => "CaiRewardChest";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(2024, 12, 18, 2);
 
 

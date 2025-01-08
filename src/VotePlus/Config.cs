@@ -1,7 +1,5 @@
-﻿using System.IO;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using OTAPI;
 using TShockAPI;
 
 public class Config
@@ -25,7 +23,7 @@ public class Config
     public bool EnableMute { get; set; } = true;
 
     [JsonProperty("启用投票清除BOSS")]
-    
+
     public bool EnableBossClear { get; set; } = true;
 
     [JsonProperty("启用投票关闭事件")]

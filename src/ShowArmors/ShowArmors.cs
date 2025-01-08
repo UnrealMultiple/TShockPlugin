@@ -10,10 +10,9 @@ public class ShowArmors : TerrariaPlugin
 {
     public override string Author => "Ak，肝帝熙恩更新";
 
-    public override string Description => "展示装备栏";
+    public override string Description => GetString("展示装备栏");
 
-    public override string Name => "Show Armors";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 3);
 
     public ShowArmors(Main game) : base(game)

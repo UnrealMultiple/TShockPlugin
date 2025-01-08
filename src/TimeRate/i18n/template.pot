@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TimeRate\n"
-"POT-Creation-Date: 2024-10-25 14:11:05+0000\n"
-"PO-Revision-Date: 2024-10-25 14:11:06+0000\n"
+"POT-Creation-Date: 2025-01-08 13:16:30+0000\n"
+"PO-Revision-Date: 2025-01-08 13:16:30+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "[c/FFF261:启用]"
 msgstr ""
 
-#: ../../TimeRate.cs:46
+#: ../../TimeRate.cs:45
 msgid "[时间加速插件]重新加载配置完毕。"
 msgstr ""
 
@@ -91,6 +91,10 @@ msgstr ""
 
 #: ../../Commands.cs:80
 msgid "已成功时间流速设置为: [c/C9C7F5:{0}] !"
+msgstr ""
+
+#: ../../TimeRate.cs:15
+msgid "涡轮增压不蒸鸭"
 msgstr ""
 
 #: ../../Commands.cs:33

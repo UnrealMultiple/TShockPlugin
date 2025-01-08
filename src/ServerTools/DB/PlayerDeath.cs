@@ -1,10 +1,7 @@
 ﻿using LazyAPI.Database;
 using LinqToDB;
 using LinqToDB.Mapping;
-using MySql.Data.MySqlClient;
 using System.Data;
-using TShockAPI;
-using TShockAPI.DB;
 
 namespace ServerTools.DB;
 
@@ -24,13 +21,13 @@ public class PlayerDeath : RecordBase<PlayerDeath>
     public static Context Instance => _context ??= Db.Context<PlayerDeath>();
 
     public static PlayerDeath? GetPlayerDeath(string name)
-    { 
+    {
         return Instance.Records.FirstOrDefault(x => x.Name == name);
     }
 
     public static List<PlayerDeath> GetDeathRank()
     {
-       return Instance.Records.OrderByDescending(x => x.Count).ToList();
+        return Instance.Records.OrderByDescending(x => x.Count).ToList();
     }
 
     public static void Add(string name)

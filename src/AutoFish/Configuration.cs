@@ -63,16 +63,16 @@ internal class Configuration : JsonConfigBase<Configuration>
             { 122,240 }
         };
 
-        this.BaitType = new List<int> 
-        { 
-            2002, 2675, 2676, 3191, 3194 
+        this.BaitType = new List<int>
+        {
+            2002, 2675, 2676, 3191, 3194
         };
 
         this.DoorItems = new List<int>
         {
             29,3093,4345
         };
-    } 
+    }
     #endregion
 
 }

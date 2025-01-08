@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VeinMiner\n"
-"POT-Creation-Date: 2024-10-05 03:53:23+0000\n"
-"PO-Revision-Date: 2024-10-05 03:53:24+0000\n"
+"POT-Creation-Date: 2025-01-08 13:16:33+0000\n"
+"PO-Revision-Date: 2025-01-08 13:16:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,41 +10,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../VeinMiner.cs:39
+#: ../../VeinMiner.cs:38
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner> 已{0}.]"
 msgstr ""
 
-#: ../../VeinMiner.cs:34
+#: ../../VeinMiner.cs:33
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner> 挖矿消息已{0}]."
 msgstr ""
 
-#: ../../VeinMiner.cs:121
-#: ../../VeinMiner.cs:126
+#: ../../VeinMiner.cs:120
+#: ../../VeinMiner.cs:125
 msgid "[c/95CFA6:<VeinMiner>] 已给予奖励物品"
 msgstr ""
 
-#: ../../VeinMiner.cs:156
+#: ../../VeinMiner.cs:155
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {0} {1}]."
 msgstr ""
 
-#: ../../VeinMiner.cs:173
+#: ../../VeinMiner.cs:172
 msgid "[c/95CFA6:<VeinMiner>] 无法挖取矿石，可能是因为矿石上方有不可破坏的物体."
 msgstr ""
 
-#: ../../VeinMiner.cs:148
+#: ../../VeinMiner.cs:147
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{0} {1}]."
 msgstr ""
 
-#: ../../VeinMiner.cs:136
+#: ../../VeinMiner.cs:135
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner>] 背包已满，还需空位：[c/95CFA6:{0}] ."
 msgstr ""
 
-#: ../../VeinMiner.cs:162
+#: ../../VeinMiner.cs:161
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner>] 背包已满，需额外空位：[c/95CFA6:{0}] 以放入 [c/95CFA6:{1}] ."
 msgstr ""
@@ -57,20 +57,24 @@ msgstr ""
 msgid "<VeinMiner> 配置已重新加载。"
 msgstr ""
 
-#: ../../VeinMiner.cs:34
+#: ../../VeinMiner.cs:13
+msgid "VeinMiner by Megghy 适用于 TShock 5.2 支持！"
+msgstr ""
+
+#: ../../VeinMiner.cs:33
 msgid "关闭"
 msgstr ""
 
-#: ../../VeinMiner.cs:39
+#: ../../VeinMiner.cs:38
 msgid "关闭! | 要仅关闭挖矿消息提示请输入：/vm {任意参数}"
 msgstr ""
 
-#: ../../VeinMiner.cs:34
-#: ../../VeinMiner.cs:39
+#: ../../VeinMiner.cs:33
+#: ../../VeinMiner.cs:38
 msgid "开启"
 msgstr ""
 
-#: ../../VeinMiner.cs:156
+#: ../../VeinMiner.cs:155
 msgid "未知"
 msgstr ""
 

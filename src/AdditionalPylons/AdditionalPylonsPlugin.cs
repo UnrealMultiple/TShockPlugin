@@ -4,7 +4,6 @@ using Terraria.GameContent;
 using Terraria.GameContent.NetModules;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 using TShockAPI.Net;
 
 namespace AdditionalPylons;
@@ -13,13 +12,12 @@ namespace AdditionalPylons;
 public class AdditionalPylonsPlugin : LazyPlugin
 {
     #region Plugin Properties
-    public override string Name => "[放置更多晶塔] AdditionalPylons";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 6);
 
     public override string Author => "Stealownz,肝帝熙恩优化1449";
 
-    public override string Description => "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境";
+    public override string Description => GetString("自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境");
 
 
     public AdditionalPylonsPlugin(Main game) : base(game)

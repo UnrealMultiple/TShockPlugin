@@ -7,13 +7,12 @@ using TShockAPI;
 [ApiVersion(2, 1)]
 public class MainPlugin : TerrariaPlugin
 {
-    public override string Name => "RecipesBrowser";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 7);
 
     public override string Author => "棱镜 羽学适配";
 
-    public override string Description => "通过指令获取物品合成表";
+    public override string Description => GetString("通过指令获取物品合成表");
 
     public MainPlugin(Main game)
         : base(game)

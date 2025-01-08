@@ -13,8 +13,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 2);
 
     private readonly string PATH = Path.Combine(TShock.SavePath, "permbuff.json");
@@ -38,9 +37,9 @@ public class Plugin : TerrariaPlugin
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnJoin);
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
         ServerApi.Hooks.GameUpdate.Register(this, this.Update);
-        Commands.ChatCommands.Add(new Command("permabuff.use", this.PAbuff, "permabuff","pbuff"));
-        Commands.ChatCommands.Add(new Command("gpermabuff.use", this.GPbuff, "gpermabuff","gpbuff"));
-        Commands.ChatCommands.Add(new Command("clearbuffs.use", this.Cbuff, "clearbuffs","cbuff"));
+        Commands.ChatCommands.Add(new Command("permabuff.use", this.PAbuff, "permabuff", "pbuff"));
+        Commands.ChatCommands.Add(new Command("gpermabuff.use", this.GPbuff, "gpermabuff", "gpbuff"));
+        Commands.ChatCommands.Add(new Command("clearbuffs.use", this.Cbuff, "clearbuffs", "cbuff"));
         GeneralHooks.ReloadEvent += this._reloadHandler;
     }
     protected override void Dispose(bool disposing)

@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -13,9 +12,8 @@ public class DeathDrop : TerrariaPlugin
     public static Configuration Config = null!;
 
     public override string Author => "大豆子，肝帝熙恩更新优化";
-    public override string Description => "怪物死亡随机和自定义掉落物品";
-    public override string Name => "死亡掉落";
-    public override Version Version => new Version(1, 0, 4);
+    public override string Description => GetString("怪物死亡随机和自定义掉落物品");
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 4);
 
     public DeathDrop(Main game) : base(game)
     {

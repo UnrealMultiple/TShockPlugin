@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DamageStatistic\n"
-"POT-Creation-Date: 2024-10-25 14:10:17+0000\n"
-"PO-Revision-Date: 2024-10-25 14:10:17+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:45+0000\n"
+"PO-Revision-Date: 2025-01-08 13:15:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,10 +10,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../DamageStatistic.cs:71
+#: ../../DamageStatistic.cs:70
 #, csharp-format
 msgid ""
 "[c/74F3C9:{0}] 位玩家击败了 [c/74F3C9:{1}]\n"
 "{2}"
+msgstr ""
+
+#: ../../DamageStatistic.cs:14
+msgid "在每次 Boss 战后显示每个玩家造成的伤害。"
 msgstr ""
 

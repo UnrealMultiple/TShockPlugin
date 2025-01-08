@@ -10,10 +10,9 @@ public class TimeRate : TerrariaPlugin
 {
 
     #region 插件信息
-    public override string Name => "时间加速";
-    public override string Author => "羽学";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学";
     public override Version Version => new Version(1, 2, 1);
-    public override string Description => "涡轮增压不蒸鸭";
+    public override string Description => GetString("涡轮增压不蒸鸭");
     #endregion
 
     #region 注册与释放
@@ -83,7 +82,7 @@ public class TimeRate : TerrariaPlugin
 
         if (Update && Config.TimeSet_Packet)
         {
-            TSPlayer.All.SendData((PacketTypes)18);
+            TSPlayer.All.SendData((PacketTypes) 18);
         }
     }
     #endregion

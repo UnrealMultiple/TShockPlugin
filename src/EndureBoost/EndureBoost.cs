@@ -12,10 +12,9 @@ public class EndureBoost : TerrariaPlugin
 
     public override string Author => "肝帝熙恩";
 
-    public override string Description => "拥有指定数量物品给指定buff";
+    public override string Description => GetString("拥有指定数量物品给指定buff");
 
-    public override string Name => "EndureBoost";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 5);
 
     public EndureBoost(Main game) : base(game)
@@ -28,8 +27,8 @@ public class EndureBoost : TerrariaPlugin
         GeneralHooks.ReloadEvent += ReloadConfig;
         ServerApi.Hooks.ServerJoin.Register(this, this.OnServerJoin);
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
-        GetDataHandlers.PlayerSpawn.Register(this.Rebirth);   
-        Commands.ChatCommands.Add(new Command("EndureBoost", this.SetPlayerBuffcmd, "ebbuff", "ldbuff", "loadbuff","刷新buff"));
+        GetDataHandlers.PlayerSpawn.Register(this.Rebirth);
+        Commands.ChatCommands.Add(new Command("EndureBoost", this.SetPlayerBuffcmd, "ebbuff", "ldbuff", "loadbuff", "刷新buff"));
     }
 
     protected override void Dispose(bool disposing)
@@ -164,7 +163,7 @@ public class EndureBoost : TerrariaPlugin
                 // 检查不同存储区中的物品
                 this.CheckBanksForItem(player, itemId, ref itemCount);
 
-                
+
                 if (inventory.Trigger)
                 {
                     if (itemCount < inventory.RequiredStack)
@@ -182,7 +181,7 @@ public class EndureBoost : TerrariaPlugin
                 }
             }
 
-            
+
             if ((inventory.Trigger && areAllItemsValid) || (!inventory.Trigger && isAnyItemValid))
             {
                 if (inventory.BuffType != null)
@@ -194,7 +193,7 @@ public class EndureBoost : TerrariaPlugin
                 }
             }
         }
-        
+
         // 处理 accessories（配饰）
         foreach (var accessorie in Config.Accessories)
         {
@@ -472,11 +471,11 @@ public class EndureBoost : TerrariaPlugin
                             itemCount += plr.Loadouts[2].Dye[i - 340].stack;
                         }
                     }
-            }
+                }
 
 
-            // 根据 Trigger 的值进行判断
-            if (custom.Trigger)
+                // 根据 Trigger 的值进行判断
+                if (custom.Trigger)
                 {
                     if (itemCount < custom.RequiredStack) // 如果数量不满足
                     {

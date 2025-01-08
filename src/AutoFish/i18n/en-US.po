@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoFish\n"
-"POT-Creation-Date: 2024-12-12 11:32:31+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:29+0000\n"
 "PO-Revision-Date: 2024-11-06 01:13+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "          [i:3455][c/AD89D5:Au][c/D68ACA:to][c/DF909A:Fi][c/E5A894:sh]"
 "[i:3454]"
 
-#: ../../AutoFish.cs:370
+#: ../../AutoFish.cs:369
 msgid "[c/A7DDF0:{0}]:[c/74F3C9:{1}分钟]"
 msgstr "[c/A7DDF0:{0}]:[c/74F3C9:{1}minute]"
 
-#: ../../AutoFish.cs:358
+#: ../../AutoFish.cs:357
 msgid "[i:3455][c/AD89D5:自][c/D68ACA:动][c/DF909A:钓][c/E5A894:鱼][i:3454]"
 msgstr "[i:3455][c/AD89D5:Au][c/D68ACA:to][c/DF909A:Fi][c/E5A894:sh][i:3454]"
 
@@ -138,7 +138,7 @@ msgstr ""
 "The item does not exist, \"Item Lookup\": \"[c/92C5EC:https://terraria.wiki."
 "gg/zh/wiki/Item_IDs]\""
 
-#: ../../AutoFish.cs:359
+#: ../../AutoFish.cs:358
 #, csharp-format
 msgid "以下玩家超过 [c/E17D8C:{0}] 分钟 已关闭[c/76D5B4:自动钓鱼]权限："
 msgstr ""
@@ -191,6 +191,10 @@ msgstr ""
 "Current condition is [c/F25055:Blood Moon], unable to fish up monsters. You "
 "can [c/46C4D4:Disable] the plugin: [c/F3F292:/af off]"
 
+#: ../../AutoFish.cs:18
+msgid "涡轮增压不蒸鸭"
+msgstr ""
+
 #: ../../Commands.cs:207
 msgid "物品 [c/92C5EC:{0}] 已在指定鱼饵表中!"
 msgstr "Item [c/92C5EC:{0}] is already in the Specified Bait Table!"
@@ -232,7 +236,7 @@ msgstr "Player [{0}] has [c/92C5EC:Enabled] the Auto Fishing function。"
 msgid "玩家 [{0}] 已[c/92C5EC:禁用]自动钓鱼功能。"
 msgstr "Player [{0}] has [c/92C5EC:Disabled] the Auto Fishing function。"
 
-#: ../../AutoFish.cs:340
+#: ../../AutoFish.cs:339
 #, csharp-format
 msgid "玩家 [c/46C2D4:{0}] 已开启[c/F5F251:自动钓鱼] 消耗物品为:{1}"
 msgstr ""

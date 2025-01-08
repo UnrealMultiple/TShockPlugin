@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TimeRate\n"
-"POT-Creation-Date: 2024-10-25 14:11:05+0000\n"
+"POT-Creation-Date: 2025-01-08 13:16:30+0000\n"
 "PO-Revision-Date: 2024-11-05 23:47+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,7 +21,8 @@ msgstr "[c/55A2E0:Enable]"
 
 #: ../../Commands.cs:17
 msgid "[c/EBE9A2:时间加速插件] [C/BFDFEA:by] [c/00FFFF:羽学][i:3459]\n"
-msgstr "[c/EBE9A2:TimeAccelerationPlugin] [C/BFDFEA:by] [c/00FFFF:Yu Xue][i:3459]\n"
+msgstr ""
+"[c/EBE9A2:TimeAccelerationPlugin] [C/BFDFEA:by] [c/00FFFF:Yu Xue][i:3459]\n"
 
 #: ../../Commands.cs:9 ../../Commands.cs:10 ../../Commands.cs:11
 msgid "[c/F25C71:关闭]"
@@ -31,7 +32,7 @@ msgstr "[c/F25C71:Disabled]"
 msgid "[c/FFF261:启用]"
 msgstr "[c/FFF261:Enable]"
 
-#: ../../TimeRate.cs:46
+#: ../../TimeRate.cs:45
 msgid "[时间加速插件]重新加载配置完毕。"
 msgstr "[TimeAccelerationPlugin] Configuration reloaded successfully."
 
@@ -53,11 +54,13 @@ msgstr "/times on | off — Enable | Disable [c/3ADB2C:Command] acceleration\n"
 
 #: ../../Commands.cs:20
 msgid "/times one —— 开启|关闭[c/55A2E0:单人睡觉]加速\n"
-msgstr "/times one — Enable | Disable [c/55A2E0:Single Player Sleep] acceleration\n"
+msgstr ""
+"/times one — Enable | Disable [c/55A2E0:Single Player Sleep] acceleration\n"
 
 #: ../../Commands.cs:23
 msgid "/times set 数字 —— 设置速率|日晷:[c/F25C71:60] 正常:[c/55A2E0:1]"
-msgstr "/times set number — Set Speed | Sundial: [c/F25C71:60] Normal: [c/55A2E0:1]"
+msgstr ""
+"/times set number — Set Speed | Sundial: [c/F25C71:60] Normal: [c/55A2E0:1]"
 
 #: ../../Commands.cs:33 ../../Commands.cs:42 ../../Commands.cs:53
 #: ../../Commands.cs:64
@@ -66,23 +69,34 @@ msgstr "Enable"
 
 #: ../../Commands.cs:54
 msgid "已[c/C9C7F5:{0}]全员睡觉加速!当前速率为：[c/FFFCCF:{1}]!"
-msgstr "Everyone sleep acceleration has been [c/C9C7F5:{0}]! Current speed is: [c/FFFCCF:{1}]!"
+msgstr ""
+"Everyone sleep acceleration has been [c/C9C7F5:{0}]! Current speed is: [c/"
+"FFFCCF:{1}]!"
 
 #: ../../Commands.cs:65
 msgid "已[c/C9C7F5:{0}]单人睡觉加速!当前速率为：[c/FFFCCF:{1}]!"
-msgstr "Single player sleep acceleration has been [c/C9C7F5:{0}]! Current speed is: [c/FFFCCF:{1}]!"
+msgstr ""
+"Single player sleep acceleration has been [c/C9C7F5:{0}]! Current speed is: "
+"[c/FFFCCF:{1}]!"
 
 #: ../../Commands.cs:43
 msgid "已[c/C9C7F5:{0}]时间流速!当前速率为：[c/FFFCCF:{1}]!"
-msgstr "Time flow speed has been [c/C9C7F5:{0}]! Current speed is: [c/FFFCCF:{1}]!"
+msgstr ""
+"Time flow speed has been [c/C9C7F5:{0}]! Current speed is: [c/FFFCCF:{1}]!"
 
 #: ../../Commands.cs:34
 msgid "已成功[c/C9C7F5:{0}]时间流速! 当前速率为：[c/FFFCCF:{1}]"
-msgstr "Time flow speed has been successfully [c/C9C7F5:{0}]! Current speed is: [c/FFFCCF:{1}]"
+msgstr ""
+"Time flow speed has been successfully [c/C9C7F5:{0}]! Current speed is: [c/"
+"FFFCCF:{1}]"
 
 #: ../../Commands.cs:80
 msgid "已成功时间流速设置为: [c/C9C7F5:{0}] !"
 msgstr "Time flow speed has been successfully set to: [c/C9C7F5:{0}]!"
+
+#: ../../TimeRate.cs:15
+msgid "涡轮增压不蒸鸭"
+msgstr ""
 
 #: ../../Commands.cs:33 ../../Commands.cs:42 ../../Commands.cs:53
 #: ../../Commands.cs:64

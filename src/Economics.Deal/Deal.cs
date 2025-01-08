@@ -11,10 +11,9 @@ public class Deal : TerrariaPlugin
 {
     public override string Author => "少司命";
 
-    public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Description => GetString("玩家可以进行交易");
 
-    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(2, 0, 0, 2);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Deal.json");

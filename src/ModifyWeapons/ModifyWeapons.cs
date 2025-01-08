@@ -1,9 +1,9 @@
-﻿using System.Text;
+﻿using LazyAPI;
+using Microsoft.Xna.Framework;
+using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using Microsoft.Xna.Framework;
-using LazyAPI;
 
 namespace ModifyWeapons;
 
@@ -11,10 +11,9 @@ namespace ModifyWeapons;
 public class Plugin : LazyPlugin
 {
     #region 插件信息
-    public override string Name => "修改武器";
-    public override string Author => "羽学";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学";
     public override Version Version => new Version(1, 2, 7, 4);
-    public override string Description => "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品";
+    public override string Description => GetString("修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品");
     #endregion
 
     #region 注册与释放
@@ -114,7 +113,7 @@ public class Plugin : LazyPlugin
             var last = 0f;
             if (datas.AloneTime != default)
             {
-                last = (float)Math.Round((now - datas.AloneTime).TotalMilliseconds, 2);
+                last = (float) Math.Round((now - datas.AloneTime).TotalMilliseconds, 2);
             }
             if (datas.Alone && last >= Configuration.Instance.AloneTimer)
             {
@@ -159,7 +158,7 @@ public class Plugin : LazyPlugin
                                     pr = GetString("无");
                                 }
                                 plr.SendInfoMessage(GetString($"《[c/AD89D5:自][c/D68ACA:动][c/DF909A:重][c/E5A894:读]》 玩家:{plr.Name}"));
-                                plr.SendMessage(GetString($"《[c/FCFE63:词缀转换]》[c/15EDDB:{Lang.GetItemName(Sel.type)}] ")+
+                                plr.SendMessage(GetString($"《[c/FCFE63:词缀转换]》[c/15EDDB:{Lang.GetItemName(Sel.type)}] ") +
                                     GetString($"[c/FF6863:{pr}] => ") +
                                     GetString($"[c/8AD0EA:{TShock.Utils.GetPrefixById(Sel.prefix)}]"), 255, 244, 155);
 
@@ -276,8 +275,8 @@ public class Plugin : LazyPlugin
                 }
 
                 var datas = DB.GetData(plr.Name);
-                if (datas == null) 
-                { 
+                if (datas == null)
+                {
                     continue;
                 }
 

@@ -264,6 +264,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayerRandomSwapper", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaponPlus", "src\WeaponPlus\WeaponPlus.csproj", "{D195EE0D-2B87-4724-9B23-25D4E30CC98C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dummy", "src\Dummy\Dummy.csproj", "{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1296,6 +1298,14 @@ Global
 		{D195EE0D-2B87-4724-9B23-25D4E30CC98C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D195EE0D-2B87-4724-9B23-25D4E30CC98C}.Release|x64.ActiveCfg = Release|Any CPU
 		{D195EE0D-2B87-4724-9B23-25D4E30CC98C}.Release|x64.Build.0 = Release|Any CPU
+		{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}.Debug|x64.Build.0 = Debug|Any CPU
+		{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}.Release|x64.ActiveCfg = Release|Any CPU
+		{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

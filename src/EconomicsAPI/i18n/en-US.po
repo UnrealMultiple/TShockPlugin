@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EconomicsAPI\n"
-"POT-Creation-Date: 2024-11-15 03:22:41+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:55+0000\n"
 "PO-Revision-Date: 2024-10-25 21:36+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: ../../Economics.cs:125
+#: ../../Economics.cs:124
 #, csharp-format
 msgid "{0}数量: {1}"
 msgstr "{0} quantity: {1}"
@@ -50,16 +50,16 @@ msgstr "/bank reset"
 msgid "bank 指令"
 msgstr "bank command"
 
-#: ../../Command.cs:88
+#: ../../Command.cs:89
 msgid "Economics 已重置"
 msgstr "Economics has been reset"
 
-#: ../../Economics.cs:128
+#: ../../Economics.cs:127
 #, csharp-format
 msgid "世界名称: {0}"
 msgstr "World name: {0}"
 
-#: ../../Economics.cs:141
+#: ../../Economics.cs:140
 #, csharp-format
 msgid "你因死亡掉落{0:F0}个{1}!"
 msgstr "You dropped {0:F0} {1} upon death!"
@@ -68,80 +68,84 @@ msgstr "You dropped {0:F0} {1} upon death!"
 msgid "你没有权限执行此命令!"
 msgstr "You do not have permission to execute this command!"
 
-#: ../../Command.cs:214
+#: ../../Command.cs:221
 #, csharp-format
 msgid "你的{0}不足，无法转账!"
 msgstr "You do not have enough {0} to transfer!"
 
-#: ../../Command.cs:238
+#: ../../Command.cs:245
 #, csharp-format
 msgid "兑换{0}个{1}需要{2}个{3}，而您只有{4}个!"
 msgstr ""
 
-#: ../../Economics.cs:127
+#: ../../Economics.cs:126
 #, csharp-format
 msgid "在线人数: {0}/{1}"
 msgstr "Online users: {0}/{1}"
 
-#: ../../Command.cs:133
+#: ../../Command.cs:136
 #, csharp-format
 msgid "已清空`{0}`的所有{1}"
 msgstr "All {1} of `{0}` have been cleared"
 
-#: ../../Economics.cs:121
+#: ../../Economics.cs:120
 #, csharp-format
 msgid "当前延迟: {0:F1}ms"
 msgstr "Current latency: {0:F1}ms"
 
-#: ../../Economics.cs:129
+#: ../../Economics.cs:128
 #, csharp-format
 msgid "当前生命: {0}/{1}"
 msgstr "Current health: {0}/{1}"
 
-#: ../../Economics.cs:130
+#: ../../Economics.cs:129
 #, csharp-format
 msgid "当前魔力: {0}/{1}"
 msgstr "Current mana: {0}/{1}"
 
-#: ../../Command.cs:181
+#: ../../Command.cs:186
 #, csharp-format
 msgid "成功为`{0}`添加 {1} 个{2}"
 msgstr "Successfully added {1} {2} to `{0}`"
 
-#: ../../Command.cs:243
+#: ../../Command.cs:250
 #, csharp-format
 msgid "成功兑换{0}{1}个!"
 msgstr ""
 
-#: ../../Command.cs:194
+#: ../../Command.cs:200
 #, csharp-format
 msgid "成功减去`{0}`的 {1} 个{2}"
 msgstr "Successfully deleted {1} {2} from `{0}`"
 
-#: ../../Command.cs:209
+#: ../../Command.cs:216
 #, csharp-format
 msgid "成功转账给`{0}` {1} 个{2}"
 msgstr "Successfully transferred {1} {2} to `{0}`"
 
-#: ../../Economics.cs:122
+#: ../../Economics.cs:24
+msgid "提供经济系统API"
+msgstr ""
+
+#: ../../Economics.cs:121
 #, csharp-format
 msgid "玩家名称: {0}"
 msgstr "Player name: {0}"
 
-#: ../../Command.cs:197
+#: ../../Command.cs:203
 #, csharp-format
 msgid "用户`{0}`仅有{1}个{2}"
 msgstr "User `{0}` only has {1} {2}"
 
-#: ../../Command.cs:36 ../../Command.cs:249
+#: ../../Command.cs:36 ../../Command.cs:256
 msgid "语法错误，请输入/bank help查看正确语法"
 msgstr "Syntax error, please enter /bank help to view the correct syntax"
 
-#: ../../Command.cs:165
+#: ../../Command.cs:169
 msgid "请输入一个有效数值!"
 msgstr "Please enter a valid number!"
 
-#: ../../Command.cs:232
+#: ../../Command.cs:239
 #, csharp-format
 msgid "货币{0}无法兑换为{1}!"
 msgstr ""

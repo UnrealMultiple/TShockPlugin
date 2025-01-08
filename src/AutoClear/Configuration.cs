@@ -1,7 +1,5 @@
 ﻿using LazyAPI;
 using LazyAPI.ConfigFiles;
-using Newtonsoft.Json;
-using TShockAPI;
 
 namespace AutoClear;
 

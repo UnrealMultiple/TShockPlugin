@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoPluginManager\n"
-"POT-Creation-Date: 2025-01-03 08:06:19+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:30+0000\n"
 "PO-Revision-Date: 2024-11-30 13:55-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,15 +11,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ../../Plugin.cs:74
+#: ../../Plugin.cs:73
 msgid "[AutoUpdate]无法获取更新:"
 msgstr "[AutoUpdate] No se pueden obtener actualizaciones:"
 
-#: ../../Plugin.cs:48
+#: ../../Plugin.cs:47
 msgid "[AutoUpdatePlugin]插件配置已重载~"
 msgstr "[AutoUpdatePlugin] Plugin configuration has been reloaded~"
 
-#: ../../Plugin.cs:61 ../../Internal/CommandAdapter.cs:455
+#: ../../Plugin.cs:60 ../../Internal/CommandAdapter.cs:455
 msgid "[以下插件有新的版本更新]\n"
 msgstr "[The following Estos plugins tienen nueva version disponible\n"
 
@@ -145,7 +145,7 @@ msgstr ""
 "apm u [nombre del complemento] Actualiza todos los complementos o "
 "dependencias especificados"
 
-#: ../../Plugin.cs:69
+#: ../../Plugin.cs:68
 msgid "你可以使用命令/apm -u 更新插件哦~"
 msgstr "Puedes usar el comando /apm -u para actualizar los complementos~"
 
@@ -238,8 +238,14 @@ msgstr "No se puede obtener la actualización:"
 msgid "更新了个寂寞~"
 msgstr "No actualizado nada~"
 
-#: ../../Plugin.cs:64
+#: ../../Plugin.cs:63
 msgid "正在自动更新插件..."
+msgstr "Actualizando complementos automáticamente..."
+
+#: ../../Plugin.cs:18
+#, fuzzy
+#| msgid "正在自动更新插件..."
+msgid "自动更新你的插件！"
 msgstr "Actualizando complementos automáticamente..."
 
 #: ../../Internal/CommandAdapter.cs:423

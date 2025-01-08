@@ -1,6 +1,6 @@
 [
   {
-    "Name": "Platform(判断玩家设备)",
+    "Name": "Platform",
     "Version": "1.1.0.3",
     "Author": "Cai",
     "Description": "判断玩家设备",
@@ -11,7 +11,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.197.0",
+    "Version": "0.0.198.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
     "AssemblyName": "Chireiden.TShock.Omni",
@@ -30,7 +30,7 @@
     "HotReload": true
   },
   {
-    "Name": "[放置更多晶塔] AdditionalPylons",
+    "Name": "AdditionalPylons",
     "Version": "1.0.6",
     "Author": "Stealownz,肝帝熙恩优化1449",
     "Description": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
@@ -39,378 +39,6 @@
     "Dependencies": [
       "LazyAPI"
     ],
-    "HotReload": true
-  },
-  {
-    "Name": "[禁止代理登录]Noagent",
-    "Version": "1.0.2",
-    "Author": "[星迹]Jonesn，肝帝熙恩更新适配1449",
-    "Description": "禁止代理登录",
-    "AssemblyName": "Noagent",
-    "Path": "Noagent.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "查已装插件",
-    "Version": "1.0.6",
-    "Author": "iheart 修改：羽学，肝帝熙恩",
-    "Description": "用指令查已装插件",
-    "AssemblyName": "ListPlugins",
-    "Path": "ListPlugins.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "超进度限制",
-    "Version": "1.0.0.3",
-    "Author": "少司命 & 恋恋魔改三合一",
-    "Description": "根据进度限制",
-    "AssemblyName": "ProgressRestrict",
-    "Path": "ProgressRestrict.dll",
-    "Dependencies": [
-      "DataSync"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "传送请求",
-    "Version": "1.0.2",
-    "Author": "原作者: MarioE, 修改者: Dr.Toxic，肝帝熙恩",
-    "Description": "传送前需要被传送者接受或拒绝请求",
-    "AssemblyName": "TeleportRequest",
-    "Path": "TeleportRequest.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "定位传送",
-    "Version": "1.0.1",
-    "Author": "羽学",
-    "Description": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
-    "AssemblyName": "DwTP",
-    "Path": "DwTP.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "服主特权",
-    "Version": "1.8.2",
-    "Author": "羽学",
-    "Description": "涡轮增压不蒸鸭",
-    "AssemblyName": "SpclPerm",
-    "Path": "SpclPerm.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "告示牌登录 SignInSign",
-    "Version": "1.0.6",
-    "Author": "Soofa 羽学 少司命",
-    "Description": "告示牌登录交互插件 支持进服弹窗！",
-    "AssemblyName": "SignInSign",
-    "Path": "SignInSign.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "更好的自动队伍",
-    "Version": "2.4.5",
-    "Author": "十七改，肝帝熙恩改",
-    "Description": "AutoTeamPlus",
-    "AssemblyName": "AutoTeam",
-    "Path": "AutoTeam.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "怪物进度回血",
-    "Version": "1.7.2",
-    "Author": "途逗 羽学",
-    "Description": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
-    "AssemblyName": "MonsterRegen",
-    "Path": "MonsterRegen.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "击败怪物替换世界物品",
-    "Version": "1.0.3",
-    "Author": "onusai 羽学",
-    "Description": "击败指定怪物替换世界指定图格与所有箱子内物品",
-    "AssemblyName": "ConvertWorld",
-    "Path": "ConvertWorld.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "机器人适配插件",
-    "Version": "1.0.0.2",
-    "Author": "少司命",
-    "Description": "适配插件",
-    "AssemblyName": "Lagrange.XocMat.Adapter",
-    "Path": "Lagrange.XocMat.Adapter.dll",
-    "Dependencies": [
-      "SixLabors.ImageSharp"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "禁地表弹幕",
-    "Version": "2.0.0.1",
-    "Author": "羽学 Cai 西江小子 熙恩",
-    "Description": "禁止特定弹幕在地表产生",
-    "AssemblyName": "SurfaceBlock",
-    "Path": "SurfaceBlock.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "禁怪物掉落",
-    "Version": "1.3.2",
-    "Author": "羽学",
-    "Description": "清理怪物身边掉落物",
-    "AssemblyName": "DisableMonsLoot",
-    "Path": "DisableMonsLoot.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "禁止怪物",
-    "Version": "1.0.0.5",
-    "Author": "Patrikk,GK 改良",
-    "Description": "禁止指定怪物的出没",
-    "AssemblyName": "BanNpc",
-    "Path": "BanNpc.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "决斗系统",
-    "Version": "1.1.4",
-    "Author": "Soofa 羽学修改",
-    "Description": "不是你死就是我活系列",
-    "AssemblyName": "PvPer",
-    "Path": "PvPer.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "普通难度宝藏袋",
-    "Version": "1.1.3.2",
-    "Author": "Quinci 羽学适配",
-    "Description": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
-    "AssemblyName": "NormalDropsBags",
-    "Path": "NormalDropsBags.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "区域显示",
-    "Version": "1.1.1",
-    "Author": "TBC开发者团队,肝帝熙恩汉化",
-    "Description": "为地区添加区域边界视图。",
-    "AssemblyName": "RegionView",
-    "Path": "RegionView.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "伤害规则掉落",
-    "Version": "1.3.2",
-    "Author": "羽学 西江小子",
-    "Description": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
-    "AssemblyName": "DamageRuleLoot",
-    "Path": "DamageRuleLoot.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "生成基础建设",
-    "Version": "1.5.7",
-    "Author": "羽学",
-    "Description": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
-    "AssemblyName": "SpawnInfra",
-    "Path": "SpawnInfra.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "时间加速",
-    "Version": "1.2.1",
-    "Author": "羽学",
-    "Description": "涡轮增压不蒸鸭",
-    "AssemblyName": "TimeRate",
-    "Path": "TimeRate.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "数据包拦截 PacketsStop",
-    "Version": "1.0.2",
-    "Author": "羽学 感谢少司命",
-    "Description": "拦截没有指定权限的用户组数据包",
-    "AssemblyName": "PacketsStop",
-    "Path": "PacketsStop.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "死亡掉落",
-    "Version": "1.0.4",
-    "Author": "大豆子，肝帝熙恩更新优化",
-    "Description": "怪物死亡随机和自定义掉落物品",
-    "AssemblyName": "DeathDrop",
-    "Path": "DeathDrop.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "随机广播",
-    "Version": "1.0.4",
-    "Author": "羽学",
-    "Description": "涡轮增压不蒸鸭",
-    "AssemblyName": "RandomBroadcast",
-    "Path": "RandomBroadcast.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "玩家速度",
-    "Version": "1.2.4",
-    "Author": "逆光奔跑 羽学",
-    "Description": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
-    "AssemblyName": "PlayerSpeed",
-    "Path": "PlayerSpeed.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "宵禁",
-    "Version": "2.7.4",
-    "Author": "Jonesn 羽学 少司命",
-    "Description": "设置服务器无法进入或禁止生成怪物的时段",
-    "AssemblyName": "GoodNight",
-    "Path": "GoodNight.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "修改武器",
-    "Version": "1.2.7.4",
-    "Author": "羽学",
-    "Description": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
-    "AssemblyName": "ModifyWeapons",
-    "Path": "ModifyWeapons.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "音乐播放器",
-    "Version": "1.0.4",
-    "Author": "Olink，Cjx适配，肝帝熙恩修改, yu大改",
-    "Description": "一个简单的音乐播放插件.",
-    "AssemblyName": "MusicPlayer",
-    "Path": "MusicPlayer.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "硬核死亡掉生命水晶",
-    "Version": "1.0.1",
-    "Author": "羽学",
-    "Description": "涡轮增压不蒸鸭",
-    "AssemblyName": "HardPlayerDrop",
-    "Path": "HardPlayerDrop.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "在线礼包",
-    "Version": "1.0.1.4",
-    "Author": "星夜神花 羽学适配",
-    "Description": "在线礼包插件 ",
-    "AssemblyName": "OnlineGiftPackage",
-    "Path": "OnlineGiftPackage.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "智能自动扫地",
-    "Version": "1.0.7",
-    "Author": "大豆子[Mute适配1447]，肝帝熙恩更新",
-    "Description": "智能扫地机",
-    "AssemblyName": "AutoClear",
-    "Path": "AutoClear.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "自定义怪物血量",
-    "Version": "1.0.4.39",
-    "Author": "GK 阁下 羽学",
-    "Description": "自定义怪物出没时的血量,当然不止这些！",
-    "AssemblyName": "CustomMonster",
-    "Path": "CustomMonster.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "自动存储",
-    "Version": "1.3.4",
-    "Author": "羽学 cmgy雱",
-    "Description": "涡轮增压不蒸鸭",
-    "AssemblyName": "AutoStoreItems",
-    "Path": "AutoStoreItems.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "自动钓鱼",
-    "Version": "1.3.5",
-    "Author": "羽学 少司命",
-    "Description": "涡轮增压不蒸鸭",
-    "AssemblyName": "AutoFish",
-    "Path": "AutoFish.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "自动垃圾桶",
-    "Version": "1.2.6",
-    "Author": "羽学",
-    "Description": "涡轮增压不蒸鸭",
-    "AssemblyName": "AutoAirItem",
-    "Path": "AutoAirItem.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "阻止进入地牢或神庙",
-    "Version": "1.1.6",
-    "Author": "肝帝熙恩",
-    "Description": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
-    "AssemblyName": "DTEntryBlock",
-    "Path": "DTEntryBlock.dll",
-    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -426,12 +54,48 @@
     "HotReload": true
   },
   {
+    "Name": "AutoAirItem",
+    "Version": "1.2.6",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "AssemblyName": "AutoAirItem",
+    "Path": "AutoAirItem.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
     "Name": "AutoBroadcast",
     "Version": "1.0.8",
     "Author": "Scavenger",
     "Description": "自动广播插件",
     "AssemblyName": "AutoBroadcast",
     "Path": "AutoBroadcast.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "AutoClear",
+    "Version": "1.0.7",
+    "Author": "大豆子[Mute适配1447]，肝帝熙恩更新",
+    "Description": "智能扫地机",
+    "AssemblyName": "AutoClear",
+    "Path": "AutoClear.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "AutoFish",
+    "Version": "1.3.5",
+    "Author": "羽学 少司命",
+    "Description": "涡轮增压不蒸鸭",
+    "AssemblyName": "AutoFish",
+    "Path": "AutoFish.dll",
     "Dependencies": [
       "LazyAPI"
     ],
@@ -460,7 +124,31 @@
     "HotReload": true
   },
   {
-    "Name": "BackPlugin",
+    "Name": "AutoStoreItems",
+    "Version": "1.3.4",
+    "Author": "羽学 cmgy雱",
+    "Description": "涡轮增压不蒸鸭",
+    "AssemblyName": "AutoStoreItems",
+    "Path": "AutoStoreItems.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "AutoTeam",
+    "Version": "2.4.5",
+    "Author": "十七改，肝帝熙恩改",
+    "Description": "AutoTeamPlus",
+    "AssemblyName": "AutoTeam",
+    "Path": "AutoTeam.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "Back",
     "Version": "1.0.0.8",
     "Author": "Megghy,熙恩改",
     "Description": "允许玩家传送回死亡地点",
@@ -482,17 +170,19 @@
     "HotReload": true
   },
   {
-    "Name": "BeanInvsee",
-    "Version": "1.0.0.4",
-    "Author": "少司命",
-    "Description": "rest查询背包",
-    "AssemblyName": "RestInventory",
-    "Path": "RestInventory.dll",
-    "Dependencies": [],
+    "Name": "BanNpc",
+    "Version": "1.0.0.5",
+    "Author": "Patrikk,GK 改良",
+    "Description": "禁止指定怪物的出没",
+    "AssemblyName": "BanNpc",
+    "Path": "BanNpc.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {
-    "Name": "BedSet 床设置",
+    "Name": "BedSet",
     "Version": "1.0.0.5",
     "Author": "cmgy",
     "Description": "",
@@ -540,7 +230,7 @@
     "HotReload": true
   },
   {
-    "Name": "CaiBotPlugin",
+    "Name": "CaiBot",
     "Version": "2024.12.22.1",
     "Author": "Cai,羽学,西江",
     "Description": "CaiBot机器人的适配插件",
@@ -655,7 +345,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.197.0",
+    "Version": "0.0.198.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock - the miscellaneous part",
     "AssemblyName": "Chireiden.TShock.Omni.Misc",
@@ -686,6 +376,16 @@
     "HotReload": true
   },
   {
+    "Name": "ConvertWorld",
+    "Version": "1.0.3",
+    "Author": "onusai 羽学",
+    "Description": "击败指定怪物替换世界指定图格与所有箱子内物品",
+    "AssemblyName": "ConvertWorld",
+    "Path": "ConvertWorld.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "CreateSpawn",
     "Version": "1.0.0.4",
     "Author": "少司命",
@@ -698,7 +398,7 @@
     "HotReload": true
   },
   {
-    "Name": "CriticalHit!",
+    "Name": "CriticalHit",
     "Version": "1.2.2",
     "Author": "White制作,Stone·Free汉化整合，肝帝熙恩更新适配1449",
     "Description": "提供攻击NPC跳出浮动文字效果",
@@ -708,7 +408,27 @@
     "HotReload": true
   },
   {
-    "Name": "DamageStatistic-伤害统计",
+    "Name": "CustomMonster",
+    "Version": "1.0.4.39",
+    "Author": "GK 阁下 羽学",
+    "Description": "自定义怪物出没时的血量,当然不止这些！",
+    "AssemblyName": "CustomMonster",
+    "Path": "CustomMonster.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "DamageRuleLoot",
+    "Version": "1.3.2",
+    "Author": "羽学 西江小子",
+    "Description": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
+    "AssemblyName": "DamageRuleLoot",
+    "Path": "DamageRuleLoot.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "DamageStatistic",
     "Version": "1.0.2",
     "Author": "Megghy",
     "Description": "在每次 Boss 战后显示每个玩家造成的伤害。",
@@ -728,7 +448,27 @@
     "HotReload": true
   },
   {
-    "Name": "Don't Fuck",
+    "Name": "DeathDrop",
+    "Version": "1.0.4",
+    "Author": "大豆子，肝帝熙恩更新优化",
+    "Description": "怪物死亡随机和自定义掉落物品",
+    "AssemblyName": "DeathDrop",
+    "Path": "DeathDrop.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "DisableMonsLoot",
+    "Version": "1.3.2",
+    "Author": "羽学",
+    "Description": "清理怪物身边掉落物",
+    "AssemblyName": "DisableMonsLoot",
+    "Path": "DisableMonsLoot.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "DonotFuck",
     "Version": "3.2.1",
     "Author": "Cai 羽学",
     "Description": "当玩家聊天有敏感词时用*号代替该词",
@@ -736,6 +476,29 @@
     "Path": "DonotFuck.dll",
     "Dependencies": [
       "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "DTEntryBlock",
+    "Version": "1.1.6",
+    "Author": "肝帝熙恩",
+    "Description": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+    "AssemblyName": "DTEntryBlock",
+    "Path": "DTEntryBlock.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "Dummy",
+    "Version": "1.0.0.0",
+    "Author": "少司命",
+    "Description": "在你的服务器中放置假人！",
+    "AssemblyName": "Dummy",
+    "Path": "Dummy.dll",
+    "Dependencies": [
+      "LazyAPI",
+      "TrProtocol"
     ],
     "HotReload": true
   },
@@ -750,10 +513,20 @@
     "HotReload": true
   },
   {
+    "Name": "DwTP",
+    "Version": "1.0.1",
+    "Author": "羽学",
+    "Description": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
+    "AssemblyName": "DwTP",
+    "Path": "DwTP.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "Economics.Deal",
     "Version": "2.0.0.2",
     "Author": "少司命",
-    "Description": "Economics.Deal",
+    "Description": "玩家可以进行交易",
     "AssemblyName": "Economics.Deal",
     "Path": "Economics.Deal.dll",
     "Dependencies": [
@@ -765,7 +538,7 @@
     "Name": "Economics.NPC",
     "Version": "2.0.0.1",
     "Author": "少司命",
-    "Description": "Economics.NPC",
+    "Description": "修改NPC掉落货币!",
     "AssemblyName": "Economics.NPC",
     "Path": "Economics.NPC.dll",
     "Dependencies": [
@@ -777,7 +550,7 @@
     "Name": "Economics.Regain",
     "Version": "2.0.0.1",
     "Author": "少司命",
-    "Description": "Economics.Regain",
+    "Description": "对玩家的物品进行回收!",
     "AssemblyName": "Economics.Regain",
     "Path": "Economics.Regain.dll",
     "Dependencies": [
@@ -789,7 +562,7 @@
     "Name": "Economics.RPG",
     "Version": "2.0.0.1",
     "Author": "少司命",
-    "Description": "Economics.RPG",
+    "Description": "提供RPG玩法!",
     "AssemblyName": "Economics.RPG",
     "Path": "Economics.RPG.dll",
     "Dependencies": [
@@ -801,7 +574,7 @@
     "Name": "Economics.Shop",
     "Version": "2.0.0.1",
     "Author": "少司命",
-    "Description": "Economics.Shop",
+    "Description": "经济商店!",
     "AssemblyName": "Economics.Shop",
     "Path": "Economics.Shop.dll",
     "Dependencies": [
@@ -814,7 +587,7 @@
     "Name": "Economics.Skill",
     "Version": "2.0.0.7",
     "Author": "少司命",
-    "Description": "Economics.Skill",
+    "Description": "让玩家拥有技能!",
     "AssemblyName": "Economics.Skill",
     "Path": "Economics.Skill.dll",
     "Dependencies": [
@@ -828,7 +601,7 @@
     "Name": "Economics.Task",
     "Version": "2.0.0.1",
     "Author": "少司命",
-    "Description": "Economics.Task",
+    "Description": "提供任务系统!",
     "AssemblyName": "Economics.Task",
     "Path": "Economics.Task.dll",
     "Dependencies": [
@@ -850,20 +623,10 @@
     "HotReload": true
   },
   {
-    "Name": "Economics.WeaponPlus",
-    "Version": "1.0.0.5",
-    "Author": "z枳",
-    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
-    "AssemblyName": "WeaponPlus",
-    "Path": "WeaponPlus.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
     "Name": "EconomicsAPI",
     "Version": "2.0.0.2",
     "Author": "少司命",
-    "Description": "EconomicsAPI",
+    "Description": "提供经济系统API",
     "AssemblyName": "EconomicsAPI",
     "Path": "EconomicsAPI.dll",
     "Dependencies": [],
@@ -922,7 +685,27 @@
     "HotReload": true
   },
   {
-    "Name": "InvincibilityPlugin",
+    "Name": "GoodNight",
+    "Version": "2.7.4",
+    "Author": "Jonesn 羽学 少司命",
+    "Description": "设置服务器无法进入或禁止生成怪物的时段",
+    "AssemblyName": "GoodNight",
+    "Path": "GoodNight.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "HardPlayerDrop",
+    "Version": "1.0.1",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "AssemblyName": "HardPlayerDrop",
+    "Path": "HardPlayerDrop.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "Invincibility",
     "Version": "1.0.8",
     "Author": "肝帝熙恩",
     "Description": "在命令中给予玩家一段时间的无敌状态。",
@@ -932,7 +715,7 @@
     "HotReload": true
   },
   {
-    "Name": "itemBox",
+    "Name": "ItemBox",
     "Version": "2024.12.18.1",
     "Author": "Cai & 2409",
     "Description": "离线物品盒子系统.",
@@ -974,6 +757,18 @@
     "HotReload": true
   },
   {
+    "Name": "Lagrange.XocMat.Adapter",
+    "Version": "1.0.0.2",
+    "Author": "少司命",
+    "Description": "适配插件",
+    "AssemblyName": "Lagrange.XocMat.Adapter",
+    "Path": "Lagrange.XocMat.Adapter.dll",
+    "Dependencies": [
+      "SixLabors.ImageSharp"
+    ],
+    "HotReload": true
+  },
+  {
     "Name": "LazyAPI",
     "Version": "1.0.0.6",
     "Author": "cc004 & members of UnrealMultiple",
@@ -986,7 +781,17 @@
     "HotReload": false
   },
   {
-    "Name": "MapTeleport",
+    "Name": "ListPlugins",
+    "Version": "1.0.6",
+    "Author": "iheart 修改：羽学，肝帝熙恩",
+    "Description": "用指令查已装插件",
+    "AssemblyName": "ListPlugins",
+    "Path": "ListPlugins.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "MapTp",
     "Version": "1.0.3",
     "Author": "Nova4334，肝帝熙恩汉化适配1449",
     "Description": "允许玩家传送到地图上的选定位置.",
@@ -1002,6 +807,78 @@
     "Description": "小游戏框架API",
     "AssemblyName": "MiniGamesAPI",
     "Path": "MiniGamesAPI.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "ModifyWeapons",
+    "Version": "1.2.7.4",
+    "Author": "羽学",
+    "Description": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
+    "AssemblyName": "ModifyWeapons",
+    "Path": "ModifyWeapons.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "MonsterRegen",
+    "Version": "1.7.2",
+    "Author": "途逗 羽学",
+    "Description": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+    "AssemblyName": "MonsterRegen",
+    "Path": "MonsterRegen.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "MusicPlayer",
+    "Version": "1.0.4",
+    "Author": "Olink，Cjx适配，肝帝熙恩修改, yu大改",
+    "Description": "一个简单的音乐播放插件.",
+    "AssemblyName": "MusicPlayer",
+    "Path": "MusicPlayer.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "Noagent",
+    "Version": "1.0.2",
+    "Author": "[星迹]Jonesn，肝帝熙恩更新适配1449",
+    "Description": "禁止代理登录",
+    "AssemblyName": "Noagent",
+    "Path": "Noagent.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "NormalDropsBags",
+    "Version": "1.1.3.2",
+    "Author": "Quinci 羽学适配",
+    "Description": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+    "AssemblyName": "NormalDropsBags",
+    "Path": "NormalDropsBags.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "OnlineGiftPackage",
+    "Version": "1.0.1.4",
+    "Author": "星夜神花 羽学适配",
+    "Description": "在线礼包插件 ",
+    "AssemblyName": "OnlineGiftPackage",
+    "Path": "OnlineGiftPackage.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "PacketsStop",
+    "Version": "1.0.2",
+    "Author": "羽学 感谢少司命",
+    "Description": "拦截没有指定权限的用户组数据包",
+    "AssemblyName": "PacketsStop",
+    "Path": "PacketsStop.dll",
     "Dependencies": [],
     "HotReload": true
   },
@@ -1046,7 +923,7 @@
     "HotReload": true
   },
   {
-    "Name": "PlayerSwapPlugin",
+    "Name": "PlayerRandomSwapper",
     "Version": "1.0.6",
     "Author": "肝帝熙恩,少司命",
     "Description": "一个插件，用于在指定时间后随机交换玩家位置。",
@@ -1058,7 +935,19 @@
     "HotReload": true
   },
   {
-    "Name": "ProgressControl",
+    "Name": "PlayerSpeed",
+    "Version": "1.2.4",
+    "Author": "逆光奔跑 羽学",
+    "Description": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
+    "AssemblyName": "PlayerSpeed",
+    "Path": "PlayerSpeed.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "ProgressControls",
     "Version": "1.0.0.10",
     "Author": "z枳 羽学",
     "Description": "计划书",
@@ -1068,12 +957,44 @@
     "HotReload": true
   },
   {
-    "Name": "Rainbow Chat",
+    "Name": "ProgressRestrict",
+    "Version": "1.0.0.3",
+    "Author": "少司命 & 恋恋魔改三合一",
+    "Description": "根据进度限制",
+    "AssemblyName": "ProgressRestrict",
+    "Path": "ProgressRestrict.dll",
+    "Dependencies": [
+      "DataSync"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "PvPer",
+    "Version": "1.1.4",
+    "Author": "Soofa 羽学修改",
+    "Description": "不是你死就是我活系列",
+    "AssemblyName": "PvPer",
+    "Path": "PvPer.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "RainbowChat",
     "Version": "1.0.8",
     "Author": "Professor X 熙恩 羽学",
     "Description": "使玩家每次说话的颜色不一样.",
     "AssemblyName": "RainbowChat",
     "Path": "RainbowChat.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "RandomBroadcast",
+    "Version": "1.0.4",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "AssemblyName": "RandomBroadcast",
+    "Path": "RandomBroadcast.dll",
     "Dependencies": [],
     "HotReload": true
   },
@@ -1108,12 +1029,22 @@
     "HotReload": true
   },
   {
-    "Name": "ReFishTask 刷新渔夫任务",
+    "Name": "ReFishTask",
     "Version": "1.4.3",
     "Author": "羽学",
     "Description": "涡轮增压不蒸鸭",
     "AssemblyName": "ReFishTask",
     "Path": "ReFishTask.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "RegionView",
+    "Version": "1.1.1",
+    "Author": "TBC开发者团队,肝帝熙恩汉化",
+    "Description": "为地区添加区域边界视图。",
+    "AssemblyName": "RegionView",
+    "Path": "RegionView.dll",
     "Dependencies": [],
     "HotReload": true
   },
@@ -1124,6 +1055,16 @@
     "Description": "原地复活",
     "AssemblyName": "Respawn",
     "Path": "Respawn.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "RestInventory",
+    "Version": "1.0.0.4",
+    "Author": "少司命",
+    "Description": "rest查询背包",
+    "AssemblyName": "RestInventory",
+    "Path": "RestInventory.dll",
     "Dependencies": [],
     "HotReload": true
   },
@@ -1171,12 +1112,22 @@
     "HotReload": true
   },
   {
-    "Name": "Show Armors",
+    "Name": "ShowArmors",
     "Version": "1.0.3",
     "Author": "Ak，肝帝熙恩更新",
     "Description": "展示装备栏",
     "AssemblyName": "ShowArmors",
     "Path": "ShowArmors.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "SignInSign",
+    "Version": "1.0.6",
+    "Author": "Soofa 羽学 少司命",
+    "Description": "告示牌登录交互插件 支持进服弹窗！",
+    "AssemblyName": "SignInSign",
+    "Path": "SignInSign.dll",
     "Dependencies": [],
     "HotReload": true
   },
@@ -1193,7 +1144,7 @@
     "HotReload": true
   },
   {
-    "Name": "Smart Regions",
+    "Name": "SmartRegions",
     "Version": "1.4.4",
     "Author": "GameRoom，肝帝熙恩汉化修复",
     "Description": "当玩家进入区域时运行命令。",
@@ -1203,7 +1154,27 @@
     "HotReload": true
   },
   {
-    "Name": "Status Text Manager",
+    "Name": "SpawnInfra",
+    "Version": "1.5.7",
+    "Author": "羽学",
+    "Description": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+    "AssemblyName": "SpawnInfra",
+    "Path": "SpawnInfra.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "SpclPerm",
+    "Version": "1.8.2",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "AssemblyName": "SpclPerm",
+    "Path": "SpclPerm.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "StatusTextManager",
     "Version": "1.1.1",
     "Author": "LaoSparrow",
     "Description": "Manage status text of different plugins",
@@ -1213,12 +1184,44 @@
     "HotReload": true
   },
   {
+    "Name": "SurfaceBlock",
+    "Version": "2.0.0.1",
+    "Author": "羽学 Cai 西江小子 熙恩",
+    "Description": "禁止特定弹幕在地表产生",
+    "AssemblyName": "SurfaceBlock",
+    "Path": "SurfaceBlock.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
     "Name": "SwitchCommands",
     "Version": "1.2.4",
     "Author": "Johuan Cjx适配 羽学，肝帝熙恩优化",
     "Description": "触发开关可以执行指令",
     "AssemblyName": "SwitchCommands",
     "Path": "SwitchCommands.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "TeleportRequest",
+    "Version": "1.0.2",
+    "Author": "原作者: MarioE, 修改者: Dr.Toxic，肝帝熙恩",
+    "Description": "传送前需要被传送者接受或拒绝请求",
+    "AssemblyName": "TeleportRequest",
+    "Path": "TeleportRequest.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "TimeRate",
+    "Version": "1.2.1",
+    "Author": "羽学",
+    "Description": "涡轮增压不蒸鸭",
+    "AssemblyName": "TimeRate",
+    "Path": "TimeRate.dll",
     "Dependencies": [],
     "HotReload": true
   },
@@ -1266,7 +1269,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.105",
+    "Version": "1.9.2.108",
     "Author": "yu",
     "Description": "一些游戏内容的修改 For Terraria v1.4.4.9",
     "AssemblyName": "VBY.GameContentModify",
@@ -1278,7 +1281,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.105",
+    "Version": "1.0.0.108",
     "Author": "yu",
     "Description": "一些其他的辅助命令",
     "AssemblyName": "VBY.OtherCommand",
@@ -1319,6 +1322,16 @@
     "HotReload": true
   },
   {
+    "Name": "WeaponPlus",
+    "Version": "1.0.0.5",
+    "Author": "z枳",
+    "Description": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+    "AssemblyName": "WeaponPlus",
+    "Path": "WeaponPlus.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "WorldModify",
     "Version": "1.0.0.0",
     "Author": "hufang360",
@@ -1339,8 +1352,8 @@
     "HotReload": true
   },
   {
-    "Name": "进度礼包",
-    "Version": "1.0.1.1",
+    "Name": "ProgressBag",
+    "Version": "1.0.1.2",
     "Author": "少司命",
     "Description": "进度礼包",
     "AssemblyName": "ProgressBag",
@@ -1349,7 +1362,7 @@
     "HotReload": true
   },
   {
-    "Name": "高尔夫奖励",
+    "Name": "GolfRewards",
     "Version": "1.0.9",
     "Author": "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449",
     "Description": "将高尔夫打入球洞会得到奖励.",
@@ -1369,7 +1382,7 @@
     "HotReload": true
   },
   {
-    "Name": "HousingDistricts",
+    "Name": "HouseRegion",
     "Version": "1.0.0.6",
     "Author": "GK 阁下 改良",
     "Description": "一个著名的用于保护房屋的插件。",
@@ -1382,7 +1395,7 @@
     "Name": "Economics.Projectile",
     "Version": "1.0.0.6",
     "Author": "少司命",
-    "Description": "Economics.Projectile",
+    "Description": "增强玩家武器弹幕!",
     "AssemblyName": "Economics.Projectile",
     "Path": "Economics.Projectile.dll",
     "Dependencies": [
@@ -1392,7 +1405,7 @@
     "HotReload": true
   },
   {
-    "Name": "复活币",
+    "Name": "RebirthCoin",
     "Version": "1.0.0.4",
     "Author": "GK 阁下",
     "Description": "让死者瞬间原地复活的神奇力量！",
@@ -1424,7 +1437,7 @@
     "HotReload": true
   },
   {
-    "Name": "简短指令改良版",
+    "Name": "ShortCommand",
     "Version": "1.3.0.3",
     "Author": "GK 少司命修复版",
     "Description": "由GK改良的简短指令插件！",
@@ -1434,22 +1447,22 @@
     "HotReload": true
   },
   {
-    "Name": "中文Wiki语言包加载器",
-    "Version": "2024.12.18.2",
-    "Author": "Cai",
-    "Description": "加载Wiki语言包",
-    "AssemblyName": "WikiLangPackLoader",
-    "Path": "WikiLangPackLoader.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "Help+(更好的Help)",
+    "Name": "HelpPlus",
     "Version": "2024.12.18.2",
     "Author": "Cai",
     "Description": "更好的Help",
     "AssemblyName": "HelpPlus",
     "Path": "HelpPlus.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "WikiLangPackLoader",
+    "Version": "2024.12.18.2",
+    "Author": "Cai",
+    "Description": "加载Wiki语言包",
+    "AssemblyName": "WikiLangPackLoader",
+    "Path": "WikiLangPackLoader.dll",
     "Dependencies": [],
     "HotReload": true
   }
