@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-12-20 06:45:52+0000\n"
-"PO-Revision-Date: 2025-01-05 07:04\n"
+"PO-Revision-Date: 2025-01-08 08:59\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -20,41 +20,41 @@ msgstr ""
 #: ../../ConfigFiles/JsonConfigBase.cs:76
 #, csharp-format
 msgid "[{0}.{1}.json] config reloaded successfully!!!"
-msgstr ""
+msgstr "[{0}.{1}.json] config reloaded successfully!!!"
 
 #: ../../LazyPlugin.cs:55
 #, csharp-format
 msgid "[{0}] command registered: {1}"
-msgstr ""
+msgstr "[{0}] command registered: {1}"
 
 #: ../../LazyPlugin.cs:50
 #, csharp-format
 msgid "[{0}] config registered: {1}"
-msgstr ""
+msgstr "[{0}] config registered: {1}"
 
 #: ../../RestHelper.cs:56
 #, csharp-format
 msgid "[{0}] rest endpoint registered: /{1}/{2}"
-msgstr ""
+msgstr "[{0}] rest endpoint registered: /{1}/{2}"
 
 #: ../../Commands/Command.HelpCommand.cs:29
 msgid "available usage:"
-msgstr ""
+msgstr "available usage:"
 
 #: ../../Commands/CommandHelper.cs:75
 #, csharp-format
 msgid "most match: {0}"
-msgstr ""
+msgstr "most match: {0}"
 
 #: ../../Commands/CommandHelper.cs:76
 msgid "use subcommand `help` for more usage"
-msgstr ""
+msgstr "use subcommand `help` for more usage"
 
 #: ../../Commands/CommandBase.cs:20
 msgid "You do not have access to this command."
-msgstr ""
+msgstr "You do not have access to this command."
 
 #: ../../Commands/CommandBase.cs:21
 msgid "You must use this command in-game."
-msgstr ""
+msgstr "You must use this command in-game."
 
