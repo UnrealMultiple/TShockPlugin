@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-10-25 14:10:32+0000\n"
-"PO-Revision-Date: 2025-01-05 07:04\n"
+"PO-Revision-Date: 2025-01-08 08:59\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -20,5 +20,5 @@ msgstr ""
 #: ../../Plugin.cs:60
 #, csharp-format
 msgid "地图已生成保存在{0}文件"
-msgstr ""
+msgstr "Map has been generated and saved in {0} file"
 
