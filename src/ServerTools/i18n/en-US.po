@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-12-28 00:56:59+0000\n"
-"PO-Revision-Date: 2025-01-05 07:05\n"
+"PO-Revision-Date: 2025-01-08 08:59\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,85 +19,85 @@ msgstr ""
 
 #: ../../Plugin.cs:195
 msgid " 被系统保护"
-msgstr ""
+msgstr " Protected by System"
 
 #: ../../Plugin.Commamd.cs:59
 #, csharp-format
 msgid "[{0}] => 死亡{1}次"
-msgstr ""
+msgstr "[{0}] => Died {1} Times"
 
 #: ../../Plugin.cs:142
 #, csharp-format
 msgid "[ServerTools] 玩家 [{0}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{1}]"
-msgstr ""
+msgstr "[ServerTools] Player [{0}] was frozen for 3 seconds due to multiple accessories, and the multi-accessory equipment was automatically cleared [i:{1}]"
 
 #: ../../Plugin.cs:245
 msgid "{0} 最后登录使用的IP为 {1}."
-msgstr ""
+msgstr "{0} Last IP used to log in is {1}."
 
 #: ../../Plugin.cs:234
 msgid "{0} 最后的登录时间为 {1} {2} UTC{3}."
-msgstr ""
+msgstr "{0} Last login time is {1} {2} UTC{3}."
 
 #: ../../Plugin.Commamd.cs:32
 #, csharp-format
 msgid "{0} 在线时长: {1}分钟"
-msgstr ""
+msgstr "{0} Online time: {1} Minutes"
 
 #: ../../Plugin.cs:244
 msgid "{0} 权限组为 {1}."
-msgstr ""
+msgstr "{0} Permission group is {1}."
 
 #: ../../Plugin.cs:246
 msgid "{0} 注册时间为 {1} {2} UTC{3}."
-msgstr ""
+msgstr "{0} Registered at {1} {2} UTC{3}."
 
 #: ../../Plugin.cs:243
 msgid "{0} 账户ID为 {1}."
-msgstr ""
+msgstr "{0} Account ID is {1}."
 
 #: ../../Plugin.Commamd.cs:87
 msgid "{0}清除了{1}范围内{2}个射弹!"
-msgstr ""
+msgstr "{0} Cleared {2} projectiles within {1} range!"
 
 #: ../../Plugin.cs:498
 msgid "仅允许软核进入!"
-msgstr ""
+msgstr "Only softcore character allowed!"
 
 #: ../../Plugin.Commamd.cs:170
 msgid "你不能过于频繁的使用此指令!"
-msgstr ""
+msgstr "You cannot use this command too frequently!"
 
 #: ../../Plugin.cs:357
 #, csharp-format
 msgid "你因召唤物数量超过{0}被踢出"
-msgstr ""
+msgstr "You were kicked out because the number of summons exceeded {0}"
 
 #: ../../Plugin.cs:353
 #, csharp-format
 msgid "你因哨兵数量超过{0}被踢出"
-msgstr ""
+msgstr "You were kicked out because the number of sentries exceeded {0}"
 
 #: ../../Plugin.cs:364
 msgid "你因多鱼线被石化3秒钟!"
-msgstr ""
+msgstr "You will be petrified for 3 seconds because of too many fishing lines!"
 
 #: ../../Plugin.cs:305
 #, csharp-format
 msgid "你将在{0}秒后被踢出!"
-msgstr ""
+msgstr "You will be kicked out in {0} seconds!"
 
 #: ../../Plugin.Commamd.cs:125
 msgid "你要求被踢出！"
-msgstr ""
+msgstr "You asked to be kicked out!"
 
 #: ../../Plugin.Commamd.cs:27
 msgid "在线排行 ({0}/{1})："
-msgstr ""
+msgstr "Online Rank ({0}/{1}):"
 
 #: ../../Plugin.Commamd.cs:165
 msgid "已为你搜索到{0}个花苞，输入/warp list可以查看结果"
-msgstr ""
+msgstr "{0} Buds have been searched for you, enter /warp list to view the results"
 
 #: ../../Plugin.Commamd.cs:131
 msgid "已移除所有花苞传送点!"
