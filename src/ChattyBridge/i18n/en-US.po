@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-11-18 10:20:03+0000\n"
-"PO-Revision-Date: 2025-01-05 07:03\n"
+"PO-Revision-Date: 2025-01-08 08:58\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -20,10 +20,10 @@ msgstr ""
 #: ../../Plugin.cs:124
 #, csharp-format
 msgid "[聊天桥] 信息发送失败，目标地址:{0}"
-msgstr ""
+msgstr "[Chat Bridge] Failed to send message, destination address: {0}"
 
 #: ../../Plugin.cs:92
 #, csharp-format
 msgid "接收到未知类型:{0}"
-msgstr ""
+msgstr "Unknown type received: {0}"
 
