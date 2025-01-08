@@ -9,10 +9,9 @@ public class Main : TerrariaPlugin
 {
     public override string Author => "Leader";
 
-    public override string Description => "离线give";
+    public override string Description => GetString("离线give");
 
-    public override string Name => "CGive";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 0, 6);
 
     public Main(Terraria.Main game)

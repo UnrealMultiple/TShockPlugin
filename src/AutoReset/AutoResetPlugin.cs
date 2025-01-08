@@ -15,7 +15,7 @@ namespace AutoReset;
 public class AutoResetPlugin : LazyPlugin
 {
     public static readonly string FolderName = "AutoReset";
-    
+
     private readonly string _replaceFilePath = Path.Combine(TShock.SavePath, FolderName, "ReplaceFiles");
 
     private Status _status;
@@ -26,13 +26,12 @@ public class AutoResetPlugin : LazyPlugin
     {
     }
 
-    public override string Name => "AutoReset";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(2024, 12, 18, 2);
 
     public override string Author => "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩";
 
-    public override string Description => "完全自动重置插件";
+    public override string Description => GetString("完全自动重置插件");
 
     public override void Initialize()
     {
@@ -64,7 +63,7 @@ public class AutoResetPlugin : LazyPlugin
 
         base.Dispose(disposing);
     }
-    
+
     private void OnWho(CommandArgs args)
     {
         if (ResetConfig.Instance.KillToReset.KillCount != 0 && ResetConfig.Instance.KillToReset.KillCount != ResetConfig.Instance.KillToReset.NeedKillCount)
@@ -94,7 +93,7 @@ public class AutoResetPlugin : LazyPlugin
         {
             ResetConfig.Instance.KillToReset.KillCount++;
             ResetConfig.Instance.SaveTo();
-            TShock.Utils.Broadcast(GetString($"[重置计数器]已经击杀[c/DC143C:{Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}] ([c/98FB98:{ResetConfig.Instance.KillToReset.KillCount}]/{ResetConfig.Instance.KillToReset.NeedKillCount})"),Color.Gold);
+            TShock.Utils.Broadcast(GetString($"[重置计数器]已经击杀[c/DC143C:{Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}] ([c/98FB98:{ResetConfig.Instance.KillToReset.KillCount}]/{ResetConfig.Instance.KillToReset.NeedKillCount})"), Color.Gold);
             if (ResetConfig.Instance.KillToReset.NeedKillCount <= ResetConfig.Instance.KillToReset.KillCount)
             {
                 this.ResetCmd(null);
@@ -108,7 +107,7 @@ public class AutoResetPlugin : LazyPlugin
         {
             return;
         }
-    
+
         Task.Run(delegate
         {
             var worldName = Main.worldName;
@@ -123,7 +122,7 @@ public class AutoResetPlugin : LazyPlugin
             {
                 p?.Kick(GetString("[AutoReset]服务器已开始重置..."), true, true);
             });
-            
+
 
             ResetConfig.Instance.PreResetCommands.ForEach(delegate (string c) { Commands.HandleCommand(TSPlayer.Server, c); });
             Main.WorldFileMetadata = null;
@@ -243,8 +242,8 @@ public class AutoResetPlugin : LazyPlugin
             case "信息":
             case "info":
                 op.SendInfoMessage(GetString($"地图名: {ResetConfig.Instance.SetWorld.Name ?? Main.worldName}\n") +
-                                   GetString($"种子: {ResetConfig.Instance.SetWorld.Seed ?? GetString("随机")}\n")+
-                                   GetString($"CaiBot重置提醒: {ResetConfig.Instance.ResetCaution}\n")+
+                                   GetString($"种子: {ResetConfig.Instance.SetWorld.Seed ?? GetString("随机")}\n") +
+                                   GetString($"CaiBot重置提醒: {ResetConfig.Instance.ResetCaution}\n") +
                                    GetString($"击杀重置: {ResetConfig.Instance.KillToReset.Enable}\n") +
                                    GetString($"击杀Npc: {Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}({ResetConfig.Instance.KillToReset.NpcId})\n") +
                                    GetString($"目标击杀数: {ResetConfig.Instance.KillToReset.NeedKillCount}\n") +
@@ -339,10 +338,10 @@ public class AutoResetPlugin : LazyPlugin
         return string.Format("{0:0.0%} - " + this._generationProgress!.Message + " - {1:0.0%}",
             this._generationProgress.TotalProgress, this._generationProgress.Value);
     }
-    
+
     private string GetShortProgress()
     {
-        return string.Format(" {0:0.0%}"+"("+this._generationProgress!.Message+")",
+        return string.Format(" {0:0.0%}" + "(" + this._generationProgress!.Message + ")",
             this._generationProgress.TotalProgress);
     }
 

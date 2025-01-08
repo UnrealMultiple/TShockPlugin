@@ -3,17 +3,15 @@ using Terraria;
 using Terraria.Localization;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 
 namespace BridgeBuilder;
 
 [ApiVersion(2, 1)]
 public class BridgeBuilder : LazyPlugin
 {
-    public override string Name => "BridgeBuilder";
-    public override Version Version => new Version(1, 1, 2);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 1, 2);
     public override string Author => "Soofa，肝帝熙恩汉化1449";
-    public override string Description => "铺桥!";
+    public override string Description => GetString("铺桥!");
 
     public BridgeBuilder(Main game) : base(game)
     {

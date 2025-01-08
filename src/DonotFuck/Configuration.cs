@@ -18,7 +18,7 @@ public class Configuration : JsonConfigBase<Configuration>
 
     [LocalizedPropertyName(CultureType.Chinese, "脏话表")]
     [LocalizedPropertyName(CultureType.English, "dirtyWords")]
-    public HashSet<string> DirtyWords { get; set; } = new HashSet<string>(); 
+    public HashSet<string> DirtyWords { get; set; } = new HashSet<string>();
     #endregion
 
     public const string _Directory = "DonotFuck";
@@ -54,7 +54,7 @@ public class Configuration : JsonConfigBase<Configuration>
     }
 
     public void DisposeLog()
-    { 
+    {
         this.writer?.Close();
         this.writer?.Dispose();
         this.writer = null;

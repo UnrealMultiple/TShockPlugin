@@ -9,9 +9,8 @@ public delegate void ChangeCloud();
 public class RealTime : TerrariaPlugin
 {
     public override string Author => "十七";
-    public override string Description => "同步现实时间";
-    public override string Name => "RealTime";
-    public override Version Version => new Version(2, 6, 0, 2);
+    public override string Description => GetString("同步现实时间");
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(2, 6, 0, 2);
     public RealTime(Main game) : base(game)
     {
     }

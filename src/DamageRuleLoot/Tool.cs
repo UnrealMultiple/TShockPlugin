@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework.Input;
-using System.Text;
+﻿using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -94,7 +93,7 @@ public static class Tool
         {
             if (list.Name.Count() < 1)
             {
-                var npcName = (string)Lang.GetNPCName(list.NPCA);
+                var npcName = (string) Lang.GetNPCName(list.NPCA);
                 list.Name = npcName;
             }
         }
@@ -394,7 +393,7 @@ public static class Tool
             var playerNames = LowDamager.ToString().Split(new[] { "," }, StringSplitOptions.None);
             var joinedNames = string.Join(", ", playerNames);
 
-            LowDamager.Insert(0,GetString($"[c/F06576:【注意】]输出少于 [c/A7DDF0:{DamageRuleLoot.Config.Damages:0.00%}] 禁止掉落宝藏袋:\n"));
+            LowDamager.Insert(0, GetString($"[c/F06576:【注意】]输出少于 [c/A7DDF0:{DamageRuleLoot.Config.Damages:0.00%}] 禁止掉落宝藏袋:\n"));
 
             TSPlayer.All.SendMessage(LowDamager.ToString(), 247, 244, 150);
         }

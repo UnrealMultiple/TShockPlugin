@@ -17,7 +17,7 @@ public class Config
         public override string ToString()
         {
             var item = TShock.Utils.GetItemById(this.ID);
-            return GetString($"[i:{this.ID}] {item.Name} 价格:{string.Join(" ", this.RedemptionRelationshipsOption.Select(r=>$"{r.CurrencyType}=>{r.Number}"))}");
+            return GetString($"[i:{this.ID}] {item.Name} 价格:{string.Join(" ", this.RedemptionRelationshipsOption.Select(r => $"{r.CurrencyType}=>{r.Number}"))}");
         }
     }
 

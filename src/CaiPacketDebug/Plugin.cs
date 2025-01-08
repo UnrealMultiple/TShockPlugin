@@ -5,7 +5,6 @@ using Terraria.Net.Sockets;
 using TerrariaApi.Server;
 using TrProtocol;
 using TShockAPI;
-using TShockAPI.Hooks;
 using Hooks = On.OTAPI.Hooks;
 
 namespace CaiPacketDebug;
@@ -13,9 +12,9 @@ namespace CaiPacketDebug;
 [ApiVersion(2, 1)]
 public class CaiPacketDebug : LazyPlugin
 {
-    private readonly PacketSerializer _clientPacketSerializer = new (true);
+    private readonly PacketSerializer _clientPacketSerializer = new(true);
 
-    private readonly PacketSerializer _serverPacketSerializer = new (false);
+    private readonly PacketSerializer _serverPacketSerializer = new(false);
 
     private bool _clientToServerDebug;
     private bool _serverToClientDebug;
@@ -25,9 +24,8 @@ public class CaiPacketDebug : LazyPlugin
     }
 
     public override string Author => "Cai";
-    public override string Description => "用于调试数据包的插件捏~";
-    public override string Name => "CaiPacketDebug";
-    public override Version Version => new Version(2024, 12, 18, 1);
+    public override string Description => GetString("用于调试数据包的插件捏~");
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(2024, 12, 18, 1);
 
 
     public override void Initialize()
@@ -85,8 +83,8 @@ public class CaiPacketDebug : LazyPlugin
 
         if (this._serverToClientDebug)
         {
-            using MemoryStream memoryStream = new (data);
-            using BinaryReader reader = new (memoryStream);
+            using MemoryStream memoryStream = new(data);
+            using BinaryReader reader = new(memoryStream);
             var packet = this._clientPacketSerializer.Deserialize(reader);
 
             if (Config.Instance.ServerToClient.ExcludePackets.Contains((int) packet.Type))

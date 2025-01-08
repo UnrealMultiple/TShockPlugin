@@ -1,5 +1,5 @@
-﻿using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using System.Text;
 using TShockAPI;
 using static PlayerSpeed.PlayerSpeed;
 

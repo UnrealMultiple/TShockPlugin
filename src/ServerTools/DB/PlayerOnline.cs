@@ -46,5 +46,5 @@ public class PlayerOnline : RecordBase<PlayerOnline>
             return false;
         }
     }
-  
+
 }

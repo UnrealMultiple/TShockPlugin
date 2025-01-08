@@ -77,6 +77,6 @@ public class Database
     public bool ClearData()
     {
         return TShock.DB.Query("DELETE FROM AutoTrash") != 0;
-    } 
+    }
     #endregion
 }

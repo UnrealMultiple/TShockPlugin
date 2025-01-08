@@ -1,5 +1,4 @@
 ﻿using Rests;
-using ServerTools.DB;
 using TShockAPI;
 
 namespace ServerTools;
@@ -23,7 +22,7 @@ public partial class Plugin
     private object DeadRank(RestRequestArgs args)
     {
         var data = DB.PlayerDeath.GetDeathRank()
-            .Select(x => new { x.Name , x.Count  })
+            .Select(x => new { x.Name, x.Count })
             .ToList();
         return new RestObject("200")
         {

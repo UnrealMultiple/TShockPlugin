@@ -1,7 +1,6 @@
 ﻿using LazyAPI;
 using Terraria;
 using TerrariaApi.Server;
-using TrProtocol.Models;
 using TrProtocol.Packets;
 using TShockAPI;
 
@@ -10,13 +9,12 @@ namespace Dummy;
 [ApiVersion(2, 1)]
 public class Plugin : LazyPlugin
 {
-    public override string Name => "Dummy";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 0, 0);
 
     public override string Author => "少司命";
 
-    public override string Description => "在你的服务器中放置假人！";
+    public override string Description => GetString("在你的服务器中放置假人！");
 
     internal static readonly DummyPlayer[] _players = new DummyPlayer[Main.maxNetPlayers];
 
@@ -50,7 +48,7 @@ public class Plugin : LazyPlugin
         foreach (var dummy in Config.Instance.Dummys)
         {
             var ply = new DummyPlayer(new()
-            { 
+            {
                 Hair = dummy.Hair,
                 HairColor = dummy.HairColor,
                 EyeColor = dummy.EyeColor,
@@ -65,19 +63,19 @@ public class Plugin : LazyPlugin
             });
             ply.GameLoop("127.0.0.1", port, TShock.Config.Settings.ServerPassword);
             if (!string.IsNullOrEmpty(dummy.Password))
-            { 
+            {
                 ply.ChatText($"/login {dummy.Password}");
             }
             ply.On<LoadPlayer>(p => _players[p.PlayerSlot] = ply);
         }
         Port = port;
-        
+
     }
 
     private void OnLeave(LeaveEventArgs args)
     {
         var ply = _players[args.Who];
         ply?.Close();
-        
+
     }
 }

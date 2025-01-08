@@ -17,10 +17,9 @@ public class OnlineGiftPackage : TerrariaPlugin
     // 插件作者信息
     public override string Author => "星夜神花 羽学适配";
     // 插件描述
-    public override string Description => "在线礼包插件 ";
+    public override string Description => GetString("在线礼包插件 ");
     // 插件名称
-    public override string Name => "在线礼包";
-    // 插件版本号
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;    // 插件版本号
     public override Version Version => new Version(1, 0, 1, 4);
     // 构造函数，初始化插件与游戏关联
     public OnlineGiftPackage(Main game) : base(game)

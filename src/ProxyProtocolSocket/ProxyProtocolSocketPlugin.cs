@@ -13,9 +13,8 @@ namespace ProxyProtocolSocket;
 // ReSharper disable once ClassNeverInstantiated.Global
 public class ProxyProtocolSocketPlugin : TerrariaPlugin
 {
-    public override string Name => "ProxyProtocolSocket";
-    public override string Author => "LaoSparrow";
-    public override string Description => "Proxy Protocol on TShock";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "LaoSparrow";
+    public override string Description => GetString("Proxy Protocol on TShock");
     public override Version Version => Assembly.GetExecutingAssembly().GetName().Version!;
 
     public static string ConfigFileName = "ProxyProtocolSocket.json";

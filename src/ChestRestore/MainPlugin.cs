@@ -11,10 +11,9 @@ public class MainPlugin : TerrariaPlugin
 
     public MainPlugin(Main game) : base(game) { }
 
-    public override string Name => "ChestRestore";
-    public override Version Version => new Version(1, 0, 8);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 8);
     public override string Author => "Cjx重构 | 肝帝熙恩简单修改";
-    public override string Description => "无限宝箱插件";
+    public override string Description => GetString("无限宝箱插件");
 
     public override void Initialize()
     {
@@ -41,7 +40,7 @@ public class MainPlugin : TerrariaPlugin
         {
             if (!this.IsPlayerInEditMode(tsplayer) || !tsplayer.HasPermission("chest.name"))
             {
-                tsplayer.SendData(PacketTypes.ChestOpen, "" ,-1);
+                tsplayer.SendData(PacketTypes.ChestOpen, "", -1);
                 args.Handled = true;
             }
         }

@@ -57,7 +57,7 @@ public class Command
                 args.Player.SendInfoMessage(GetString("请选择一个升级:"));
                 foreach (var info in level.RankLevels)
                 {
-                    args.Player.SendInfoMessage(GetString($"/rank {info.Name}({string.Join(" ", info.RedemptionRelationshipsOption.Select(x=>$"{x.CurrencyType}x{x.Number}"))})"));
+                    args.Player.SendInfoMessage(GetString($"/rank {info.Name}({string.Join(" ", info.RedemptionRelationshipsOption.Select(x => $"{x.CurrencyType}x{x.Number}"))})"));
                 }
             }
         }

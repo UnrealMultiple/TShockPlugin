@@ -103,13 +103,13 @@ public static class Tools
                 Text.Append($"[c/{thisColor.Hex3()}:{c}]");
 
                 // 移动索引
-                index++; 
+                index++;
             }
         }
 
         // 返回构建后的字符串
         return Text.ToString();
-    } 
+    }
     #endregion
 
     #region 返回物品图标方法

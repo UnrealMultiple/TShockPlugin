@@ -79,12 +79,12 @@ public class LNPC
             this.PLife = new List<RatioGroup>();
             this.Config.LifeEvent.ForEach(delegate (RatioGroup i)
             {
-                this.PLife.Add((RatioGroup)i.Clone());
+                this.PLife.Add((RatioGroup) i.Clone());
             });
             this.CTime = new List<TimeGroup>();
             this.Config.TimeEvent.ForEach(delegate (TimeGroup i)
             {
-                this.CTime.Add((TimeGroup)i.Clone());
+                this.CTime.Add((TimeGroup) i.Clone());
             });
         }
     }
@@ -145,7 +145,7 @@ public class LNPC
         var num = 0f;
         if (LNpcs![npc.whoAmI] == null)
         {
-            return (int)num;
+            return (int) num;
         }
         if (inname != "")
         {
@@ -153,7 +153,7 @@ public class LNPC
             {
                 num = npc.whoAmI;
             }
-            else if(npc != null)
+            else if (npc != null)
             {
                 switch (inname)
                 {
@@ -167,41 +167,41 @@ public class LNPC
                         break;
                     case "[TiemN]":
                     case "[耗时]":
-                        num = (int)LNpcs[npc.whoAmI].TiemN;
+                        num = (int) LNpcs[npc.whoAmI].TiemN;
                         break;
                     case "[X]":
                     case "[X坐标]":
                         if (npc != null)
                         {
-                            num = (int)npc.Center.X;
+                            num = (int) npc.Center.X;
                             break;
                         }
                         goto default;
                     default:
+                    {
+                        if (npc != null && (inname == "[Y坐标]" || inname == "[Y]"))
                         {
-                            if (npc != null && (inname == "[Y坐标]" || inname == "[Y]"))
-                            {
-                                num = (int)npc.Center.Y;
-                                break;
-                            }
-                            if (npc != null && (inname == "[血量]" || inname == "[lift]"))
-                            {
-                                num = npc.life;
-                                break;
-                            }
-                            if (!(inname == "[被杀]" || inname == "[Killed]") || npc == null)
-                            {
-                                num = (inname == "[AI0]" && npc != null) ? npc.ai[0] : ((inname == "[AI1]" && npc != null) ? npc.ai[1] : ((inname == "[AI2]" && npc != null) ? npc.ai[2] : ((!(inname == "[AI3]") || npc == null) ? LNpcs[npc!.whoAmI].getMarkers(inname) : npc.ai[3])));
-                                break;
-                            }
-                            var num2 = getLNKC(npc.netID);
-                            if (num2 > int.MaxValue)
-                            {
-                                num2 = 2147483647L;
-                            }
-                            num = (int)num2;
+                            num = (int) npc.Center.Y;
                             break;
                         }
+                        if (npc != null && (inname == "[血量]" || inname == "[lift]"))
+                        {
+                            num = npc.life;
+                            break;
+                        }
+                        if (!(inname == "[被杀]" || inname == "[Killed]") || npc == null)
+                        {
+                            num = (inname == "[AI0]" && npc != null) ? npc.ai[0] : ((inname == "[AI1]" && npc != null) ? npc.ai[1] : ((inname == "[AI2]" && npc != null) ? npc.ai[2] : ((!(inname == "[AI3]") || npc == null) ? LNpcs[npc!.whoAmI].getMarkers(inname) : npc.ai[3])));
+                            break;
+                        }
+                        var num2 = getLNKC(npc.netID);
+                        if (num2 > int.MaxValue)
+                        {
+                            num2 = 2147483647L;
+                        }
+                        num = (int) num2;
+                        break;
+                    }
                 }
             }
         }
@@ -209,7 +209,7 @@ public class LNPC
         {
             num *= infactor;
         }
-        return (int)num;
+        return (int) num;
     }
     #endregion
 

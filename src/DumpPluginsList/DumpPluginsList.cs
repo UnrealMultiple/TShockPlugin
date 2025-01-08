@@ -10,10 +10,9 @@ public class DumpPluginsList : TerrariaPlugin
 {
     public override string Author => "SGKoishi";
 
-    public override string Description => "Dump plugin list and exit";
+    public override string Description => GetString("Dump plugin list and exit");
 
-    public override string Name => "DumpPluginsList";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 1, 7);
 
     public DumpPluginsList(Main game) : base(game)

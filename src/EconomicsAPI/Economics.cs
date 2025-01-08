@@ -21,10 +21,9 @@ public class Economics : TerrariaPlugin
 {
     public override string Author => "少司命";
 
-    public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Description => GetString("提供经济系统API");
 
-    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(2, 0, 0, 2);
 
     public readonly static List<TSPlayer> ServerPlayers = new();

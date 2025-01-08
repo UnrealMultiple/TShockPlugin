@@ -10,10 +10,9 @@ public class Plugin : TerrariaPlugin
 {
 
     #region 插件信息
-    public override string Name => "Sandstorm";
-    public override string Author => "羽学";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学";
     public override Version Version => new Version(1, 0, 2);
-    public override string Description => "使用指令切换沙尘暴";
+    public override string Description => GetString("使用指令切换沙尘暴");
     #endregion
 
     #region 注册与释放

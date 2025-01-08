@@ -8,9 +8,8 @@ namespace AutoBroadcast;
 [ApiVersion(2, 1)]
 public class AutoBroadcast : LazyPlugin
 {
-    public override string Name => "AutoBroadcast";
-    public override string Author => "Scavenger";
-    public override string Description => "自动广播插件";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "Scavenger";
+    public override string Description => GetString("自动广播插件");
     public override Version Version => new Version(1, 0, 8);
 
     public DateTime LastCheck = DateTime.UtcNow;
@@ -34,7 +33,7 @@ public class AutoBroadcast : LazyPlugin
     }
 
 
-  
+
     #region Chat
     public void OnChat(ServerChatEventArgs args)
     {
@@ -52,7 +51,7 @@ public class AutoBroadcast : LazyPlugin
             foreach (var broadcast in ABConfig.Instance.Broadcasts)
             {
                 if (broadcast == null || !broadcast.Enabled ||
-                   broadcast.TriggerToWholeGroup && !broadcast.Groups.Contains(PlayerGroup))
+                   (broadcast.TriggerToWholeGroup && !broadcast.Groups.Contains(PlayerGroup)))
                 {
                     continue;
                 }

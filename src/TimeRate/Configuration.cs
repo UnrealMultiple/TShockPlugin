@@ -27,7 +27,7 @@ internal class Configuration
 
     public void Write()
     {
-        var json = JsonConvert.SerializeObject(this, Formatting.Indented); 
+        var json = JsonConvert.SerializeObject(this, Formatting.Indented);
         File.WriteAllText(FilePath, json);
     }
 
