@@ -11,7 +11,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.197.0",
+    "Version": "0.0.198.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock",
     "AssemblyName": "Chireiden.TShock.Omni",
@@ -655,7 +655,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.197.0",
+    "Version": "0.0.198.0",
     "Author": "SGKoishi",
     "Description": "Yet another misc plugin for TShock - the miscellaneous part",
     "AssemblyName": "Chireiden.TShock.Omni.Misc",
@@ -736,6 +736,19 @@
     "Path": "DonotFuck.dll",
     "Dependencies": [
       "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "Dummy",
+    "Version": "1.0.0.0",
+    "Author": "少司命",
+    "Description": "在你的服务器中放置假人！",
+    "AssemblyName": "Dummy",
+    "Path": "Dummy.dll",
+    "Dependencies": [
+      "LazyAPI",
+      "TrProtocol"
     ],
     "HotReload": true
   },
@@ -1266,7 +1279,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.106",
+    "Version": "1.9.2.108",
     "Author": "yu",
     "Description": "一些游戏内容的修改 For Terraria v1.4.4.9",
     "AssemblyName": "VBY.GameContentModify",
@@ -1278,7 +1291,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.106",
+    "Version": "1.0.0.108",
     "Author": "yu",
     "Description": "一些其他的辅助命令",
     "AssemblyName": "VBY.OtherCommand",

@@ -107,6 +107,7 @@
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 0.0% | Prohibir el botín de monstruos |  |
 | [DonotFuck](./src/DonotFuck/README.md) | 0.0% | Prevenir groserías | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 0.0% | Prevenir la entrada a mazmorras o templos |  |
+| [Dummy](./src/Dummy/README.md) | 0.0% | 服务器假人 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 0.0% | Volcar las ID de Terraria |  |
 | [DwTP](./src/DwTP/README.md) | 0.0% | Teletransportación por posicionamiento |  |
 | [Economics.Deal](./src/Economics.Deal/README.md) | 0.0% | Plugin de comercio | [EconomicsAPI](./src/EconomicsAPI/README.md) |

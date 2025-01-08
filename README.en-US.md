@@ -107,6 +107,7 @@
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 0.0% | Prohibit monster loot |  |
 | [DonotFuck](./src/DonotFuck/README.en-US.md) | 100.0% | Prevent swearing | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 0.0% | Prevent entry into dungeons or temples |  |
+| [Dummy](./src/Dummy/README.md) | 0.0% | 服务器假人 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 0.0% | Dump Terraria IDs |  |
 | [DwTP](./src/DwTP/README.en-US.md) | 100.0% | Positioning Teleport |  |
 | [Economics.Deal](./src/Economics.Deal/README.en-US.md) | 95.8% | Trading plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
