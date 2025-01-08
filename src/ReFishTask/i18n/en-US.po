@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-11-19 17:22:27+0000\n"
-"PO-Revision-Date: 2025-01-05 07:05\n"
+"PO-Revision-Date: 2025-01-08 08:59\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,5 +19,5 @@ msgstr ""
 
 #: ../../ReFishTask.cs:50
 msgid "[ReFishTask]重新加载配置完毕。"
-msgstr ""
+msgstr "[ReFishTask] Reloading configuration completed."
 
