@@ -72,15 +72,15 @@ internal class Commands
             {
                 case "s":
                 case "set":
+                {
+                    if (int.TryParse(args.Parameters[1], out var num))
                     {
-                        if (int.TryParse(args.Parameters[1], out var num))
-                        {
-                            TimeRate.Config.UpdateRate = num;
-                            TimeRate.Config.Write();
-                            args.Player.SendSuccessMessage(GetString("已成功时间流速设置为: [c/C9C7F5:{0}] !"), num);
-                        }
-                        break;
+                        TimeRate.Config.UpdateRate = num;
+                        TimeRate.Config.Write();
+                        args.Player.SendSuccessMessage(GetString("已成功时间流速设置为: [c/C9C7F5:{0}] !"), num);
                     }
+                    break;
+                }
             }
         }
     }

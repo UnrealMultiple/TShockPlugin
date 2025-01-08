@@ -1,7 +1,6 @@
 ﻿using Challenger;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using TShockAPI;
 
 namespace ChalleAnger;

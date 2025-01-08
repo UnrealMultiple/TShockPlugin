@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MySql.Data.MySqlClient;
 using System.Data;
-using System.Diagnostics.CodeAnalysis;
-using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
 
@@ -28,7 +26,7 @@ public partial class ZHIPM
         {
             this.database = db;
             this.tableName = "Zhipm_PlayerBackUp";
-            var table = new SqlTable(this.tableName, new SqlColumn("AccAndSlot", MySqlDbType.Text , 255)
+            var table = new SqlTable(this.tableName, new SqlColumn("AccAndSlot", MySqlDbType.Text, 255)
             {
                 Primary = true
             }, new SqlColumn("Account", MySqlDbType.Int32), new SqlColumn("Name", MySqlDbType.Text), new SqlColumn("Health", MySqlDbType.Int32), new SqlColumn("MaxHealth", MySqlDbType.Int32), new SqlColumn("Mana", MySqlDbType.Int32), new SqlColumn("MaxMana", MySqlDbType.Int32), new SqlColumn("Inventory", MySqlDbType.Text), new SqlColumn("extraSlot", MySqlDbType.Int32), new SqlColumn("spawnX", MySqlDbType.Int32), new SqlColumn("spawnY", MySqlDbType.Int32), new SqlColumn("skinVariant", MySqlDbType.Int32), new SqlColumn("hair", MySqlDbType.Int32), new SqlColumn("hairDye", MySqlDbType.Int32), new SqlColumn("hairColor", MySqlDbType.Int32), new SqlColumn("pantsColor", MySqlDbType.Int32), new SqlColumn("shirtColor", MySqlDbType.Int32), new SqlColumn("underShirtColor", MySqlDbType.Int32), new SqlColumn("shoeColor", MySqlDbType.Int32), new SqlColumn("hideVisuals", MySqlDbType.Int32), new SqlColumn("skinColor", MySqlDbType.Int32), new SqlColumn("eyeColor", MySqlDbType.Int32), new SqlColumn("questsCompleted", MySqlDbType.Int32), new SqlColumn("usingBiomeTorches", MySqlDbType.Int32), new SqlColumn("happyFunTorchTime", MySqlDbType.Int32), new SqlColumn("unlockedBiomeTorches", MySqlDbType.Int32), new SqlColumn("currentLoadoutIndex", MySqlDbType.Int32), new SqlColumn("ateArtisanBread", MySqlDbType.Int32), new SqlColumn("usedAegisCrystal", MySqlDbType.Int32), new SqlColumn("usedAegisFruit", MySqlDbType.Int32), new SqlColumn("usedArcaneCrystal", MySqlDbType.Int32), new SqlColumn("usedGalaxyPearl", MySqlDbType.Int32), new SqlColumn("usedGummyWorm", MySqlDbType.Int32), new SqlColumn("usedAmbrosia", MySqlDbType.Int32), new SqlColumn("unlockedSuperCart", MySqlDbType.Int32), new SqlColumn("enabledSuperCart", MySqlDbType.Int32));

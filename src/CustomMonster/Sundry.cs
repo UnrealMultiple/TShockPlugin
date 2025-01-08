@@ -1261,7 +1261,7 @@ public class Sundry
             }
         }
         return result;
-    } 
+    }
     #endregion
 
     #region 更新弹幕和属性
@@ -1277,7 +1277,7 @@ public class Sundry
             var flag = false;
             lock (LPrjs!)
             {
-                for (var i = 0; i < LPrjs.Length; i++)  
+                for (var i = 0; i < LPrjs.Length; i++)
                 {
                     if (LPrjs[i] == null || LPrjs[i].Index < 0 || LPrjs[i].Type != Proj.ProjectileID || !(LPrjs[i].Notes == Proj.Sign) || LPrjs[i].UseI != npc.whoAmI)
                     {

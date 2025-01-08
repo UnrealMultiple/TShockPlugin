@@ -39,7 +39,7 @@ internal static class Common
             num += 15.0;
         }
         num %= 24.0;
-        return string.Format("{0}:{1:D2}", (int)Math.Floor(num), (int)Math.Floor(num % 1.0 * 60.0));
+        return string.Format("{0}:{1:D2}", (int) Math.Floor(num), (int) Math.Floor(num % 1.0 * 60.0));
     }
 
     public static string GetFormattedBiomesList(this TSPlayer plr)

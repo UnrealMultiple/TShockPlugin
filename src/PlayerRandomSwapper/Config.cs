@@ -1,9 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using LazyAPI;
 using LazyAPI.ConfigFiles;
-using LazyAPI;
-using Newtonsoft.Json;
-using TShockAPI;
 
 namespace PlayerRandomSwapper;
 [Config]
@@ -12,7 +8,7 @@ internal class Config : JsonConfigBase<Config>
     protected override string Filename => "PlayerRandomSwapper";
 
     [LocalizedPropertyName(CultureType.Chinese, "总开关", Order = -3)]
-    [LocalizedPropertyName(CultureType.English, "PluginEnabled",Order = -3)]
+    [LocalizedPropertyName(CultureType.English, "PluginEnabled", Order = -3)]
     public bool pluginEnabled { get; set; } = true;
 
     [LocalizedPropertyName(CultureType.Chinese, "传送间隔秒")]

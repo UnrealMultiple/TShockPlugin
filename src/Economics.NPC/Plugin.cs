@@ -13,10 +13,9 @@ public class Plugin : TerrariaPlugin
 {
     public override string Author => "少司命";
 
-    public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Description => GetString("修改NPC掉落货币!");
 
-    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(2, 0, 0, 1);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "NPC.json");
@@ -73,12 +72,12 @@ public class Plugin : TerrariaPlugin
             foreach (var option in EconomicsAPI.Economics.Setting.CustomizeCurrencys)
             {
                 if (option.CurrencyObtain.CurrencyObtainType == EconomicsAPI.Enumerates.CurrencyObtainType.KillNpc)
-                { 
-                     var Curr = Convert.ToInt64(rw * ra.AllocationRatio);
+                {
+                    var Curr = Convert.ToInt64(rw * ra.AllocationRatio);
                     EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr, option.Name);
                     args.Player.SendCombatMsg($"+{Curr}$", new Color(option.CombatMsgOption.Color[0], option.CombatMsgOption.Color[1], option.CombatMsgOption.Color[2]));
                 }
-            }  
+            }
             args.Handler = true;
             return;
         }
@@ -109,7 +108,7 @@ public class Plugin : TerrariaPlugin
                         args.Player.SendInfoMessage(Config.PromptText, args.Npc.GetFullNetName(), option.CurrencyType, option.Number);
                     }
                 }
-                    
+
             }
         }
     }

@@ -17,7 +17,7 @@ public class Configuration
     [JsonProperty("复活提醒的颜色", Order = 9)]
     public int[] Colors = new int[3] { 255, 215, 0 };
 
-    [JsonProperty("复活币的物品ID",Order = 10)]
+    [JsonProperty("复活币的物品ID", Order = 10)]
     public int[] ItemID = new int[] { 3229 };
 
     #region 读取与创建配置文件方法

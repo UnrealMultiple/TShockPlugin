@@ -87,7 +87,7 @@ public class Config : JsonConfigBase<Config>
     public string BlockEntryStatement = "未注册不能进入服务器";
 
     [LocalizedPropertyName(CultureType.Chinese, "未注册启动服务器执行命令")]
-    [LocalizedPropertyName(CultureType.English, "BlockEntryExecCommands")]  
+    [LocalizedPropertyName(CultureType.English, "BlockEntryExecCommands")]
     public string[] ResetExecCommands = Array.Empty<string>();
 
     [JsonProperty("开启NPC保护", Order = 7)]

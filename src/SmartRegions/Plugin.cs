@@ -26,11 +26,10 @@ public class Plugin : TerrariaPlugin
 
     public override Version Version => new Version(1, 4, 4);
 
-    public override string Name => "Smart Regions";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "GameRoom，肝帝熙恩汉化修复";
 
-    public override string Description => "当玩家进入区域时运行命令。";
+    public override string Description => GetString("当玩家进入区域时运行命令。");
 
     public override void Initialize()
     {
@@ -277,7 +276,7 @@ public class Plugin : TerrariaPlugin
                 var maxDist = int.MaxValue;
                 if (args.Parameters.Count > 1)
                 {
-                    if(!int.TryParse(args.Parameters[1], out pageNumber))
+                    if (!int.TryParse(args.Parameters[1], out pageNumber))
                     {
                         pageNumber = 1;
                     }
@@ -289,7 +288,7 @@ public class Plugin : TerrariaPlugin
                         args.Player.SendErrorMessage("如果您是服务器后台，不能使用距离参数。");
                         return;
                     }
-                    if(!int.TryParse(args.Parameters[2], out maxDist))
+                    if (!int.TryParse(args.Parameters[2], out maxDist))
                     {
                         maxDist = int.MaxValue;
                     }

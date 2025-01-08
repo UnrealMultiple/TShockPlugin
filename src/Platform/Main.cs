@@ -10,10 +10,9 @@ public class Platform : TerrariaPlugin
 
     public override string Author => "Cai";
 
-    public override string Description => "判断玩家设备";
+    public override string Description => GetString("判断玩家设备");
 
-    public override string Name => "Platform(判断玩家设备)";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 1, 0, 3);
 
     public Platform(Main game)

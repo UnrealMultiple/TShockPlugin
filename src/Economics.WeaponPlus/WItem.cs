@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Text;
-using Terraria;
 using TShockAPI;
 
 namespace Economics.WeaponPlus;

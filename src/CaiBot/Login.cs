@@ -34,7 +34,7 @@ internal static class Login
                     return false;
                 }
 
-                RestObject re = new () { { "type", "whitelistV2" }, { "name", player.Name }, { "uuid", uuid }, { "ip", player.IP } };
+                RestObject re = new() { { "type", "whitelistV2" }, { "name", player.Name }, { "uuid", uuid }, { "ip", player.IP } };
                 if (!MessageHandle.IsWebsocketConnected)
                 {
                     TShock.Log.ConsoleError("[CaiBot]机器人处于未连接状态, 玩家无法加入。\n" +

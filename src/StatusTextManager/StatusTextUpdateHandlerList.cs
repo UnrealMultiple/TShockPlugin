@@ -6,10 +6,10 @@ namespace StatusTextManager;
 
 public class StatusTextUpdateHandlerList
 {
-    private readonly object HandlersLock = new ();
+    private readonly object HandlersLock = new();
 
-    private List<StatusTextUpdateHandlerItem> Handlers { get; } = new ();
-    private List<IStatusTextUpdateHandler> ProcessedHandlers { get; } = new ();
+    private List<StatusTextUpdateHandlerItem> Handlers { get; } = new();
+    private List<IStatusTextUpdateHandler> ProcessedHandlers { get; } = new();
 
     // ReSharper disable once UnusedMember.Global
     /// <summary>

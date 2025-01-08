@@ -2,7 +2,6 @@
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 
 namespace AutoClear;
 
@@ -10,9 +9,8 @@ namespace AutoClear;
 public class Autoclear : LazyPlugin
 {
     public override string Author => "大豆子[Mute适配1447]，肝帝熙恩更新";
-    public override string Description => "智能扫地机";
-    public override string Name => "智能自动扫地";
-    public override Version Version => new Version(1, 0, 7);
+    public override string Description => GetString("智能扫地机");
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 7);
 
     private bool _sweepScheduled = false;
     private DateTime _sweepScheduledAt;
@@ -65,7 +63,7 @@ public class Autoclear : LazyPlugin
 
     private void PerformSmartSweep()
     {
-        
+
         var totalItems = 0;
         var totalThrowable = 0;
         var totalSwinging = 0;

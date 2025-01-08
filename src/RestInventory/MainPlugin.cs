@@ -10,10 +10,9 @@ public class MainPlugin : TerrariaPlugin
 {
 
     public MainPlugin(Main game) : base(game) { }
-    public override string Name => "BeanInvsee";
-    public override Version Version => new Version(1, 0, 0, 4);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 4);
     public override string Author => "少司命";
-    public override string Description => "rest查询背包";
+    public override string Description => GetString("rest查询背包");
     public RetObject retObject = new RetObject();
     public override void Initialize()
     {

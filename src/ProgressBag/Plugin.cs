@@ -10,11 +10,10 @@ public class Plugin : TerrariaPlugin
 {
     public override string Author => "少司命";
 
-    public override string Description => "进度礼包";
+    public override string Description => GetString("进度礼包");
 
-    public override string Name => "进度礼包";
-
-    public override Version Version => new Version(1, 0, 1, 1);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 0, 1, 2);
 
     public static Config config = new();
 
@@ -30,7 +29,7 @@ public class Plugin : TerrariaPlugin
     {
         this.LoadConfig();
         GeneralHooks.ReloadEvent += this._reloadHandler;
-        Commands.ChatCommands.Add(new Command("bag.use", this.GiftBag, "礼包"));
+        Commands.ChatCommands.Add(new Command("bag.use", this.GiftBag, "礼包", "bag"));
     }
     protected override void Dispose(bool disposing)
     {

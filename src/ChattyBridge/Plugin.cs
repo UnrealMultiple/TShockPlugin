@@ -18,8 +18,7 @@ public class Plugin : LazyPlugin
 
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 0, 5);
 
     private HttpClient Client { get; set; }

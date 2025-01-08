@@ -10,5 +10,5 @@ public class Settings
     [JsonConverter(typeof(StringEnumConverter))]
     public LogLevel LogLevel = LogLevel.INFO;
 
-    public List<IStatusTextSetting> StatusTextSettings = new ();
+    public List<IStatusTextSetting> StatusTextSettings = new();
 }

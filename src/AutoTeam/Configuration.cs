@@ -12,7 +12,7 @@ public class Configuration : JsonConfigBase<Configuration>
     [LocalizedPropertyName(CultureType.English, "Enable")]
     public bool Enabled { get; set; } = true;
 
-    [LocalizedPropertyName(CultureType.Chinese,  "组对应的队伍")]
+    [LocalizedPropertyName(CultureType.Chinese, "组对应的队伍")]
     [LocalizedPropertyName(CultureType.English, "GroupTemp")]
     public Dictionary<string, string> GroupTeamMap { get; set; } = new Dictionary<string, string>();
 

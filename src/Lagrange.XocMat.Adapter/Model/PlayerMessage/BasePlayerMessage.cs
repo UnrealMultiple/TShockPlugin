@@ -13,7 +13,7 @@ public class BasePlayerMessage : BaseMessage
 
     [ProtoMember(5)] public string Group { get; set; } = "";
 
-    [ProtoMember(6)] public string Prefix { get; set; } = "";       
+    [ProtoMember(6)] public string Prefix { get; set; } = "";
 
     [ProtoMember(7)] public bool IsLogin { get; set; }
 

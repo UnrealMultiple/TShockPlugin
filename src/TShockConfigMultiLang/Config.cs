@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI;
 using LazyAPI.ConfigFiles;
-using LazyAPI;
-using System.Collections.Generic;
 using Rests;
 using TShockAPI;
 

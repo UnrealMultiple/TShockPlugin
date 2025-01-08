@@ -49,10 +49,10 @@ internal class CommandAdapter
     private static void DummyList(CommandArgs args)
     {
         for (var i = 0; i < Plugin._players.Length; i++)
-        { 
+        {
             var player = Plugin._players[i];
             if (player != null && player.TSPlayer.Active)
-            { 
+            {
                 args.Player.SendInfoMessage(GetString($"[{i}].{player.TSPlayer.Name} 连接状态: {player.Active}"));
             }
         }

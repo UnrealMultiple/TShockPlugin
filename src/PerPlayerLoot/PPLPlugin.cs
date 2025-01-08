@@ -8,13 +8,12 @@ namespace PerPlayerLoot;
 public class PPLPlugin : TerrariaPlugin
 {
     #region 插件信息
-    public override string Name => "PerPlayerLoot";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(2, 0, 4);
 
     public override string Author => "Codian, 肝帝熙恩汉化1449";
 
-    public override string Description => "玩家战利品单独箱子.";
+    public override string Description => GetString("玩家战利品单独箱子.");
     #endregion
 
     // 假宝箱数据库实例

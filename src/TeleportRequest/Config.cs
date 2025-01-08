@@ -17,7 +17,7 @@ public class Config
 
     public void Write(Stream stream)
     {
-        var value = JsonConvert.SerializeObject((object) this, (Formatting) 1);
+        var value = JsonConvert.SerializeObject(this, (Formatting) 1);
         using var streamWriter = new StreamWriter(stream);
         streamWriter.Write(value);
     }

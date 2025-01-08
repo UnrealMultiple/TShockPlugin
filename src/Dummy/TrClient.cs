@@ -8,7 +8,7 @@ namespace Dummy;
 public class TrClient
 {
     private TcpClient client = null!;
-    
+
 
     private BinaryReader? br;
     private BinaryWriter? bw;
@@ -66,10 +66,10 @@ public class TrClient
     public void Close()
     {
         if (this.client.Connected)
-        { 
+        {
             this.client.Close();
         }
-        
+
     }
 
     public void KillServer()
