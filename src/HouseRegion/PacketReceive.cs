@@ -26,6 +26,7 @@ public static class GetDataHandlers
         GetDataHandlerDelegates = new Dictionary<PacketTypes, GetDataHandlerDelegate>
         {   {PacketTypes.Tile, HandleTile},//修改砖放或敲
 		    {PacketTypes.DoorUse,HandleDoorUse},//使用门
+            { PacketTypes.PlayerSlot, HandlePlayerSlot },
 			//{PacketTypes.TileSendSquare, HandleSendTileSquareCentered},//地区改变
 			{PacketTypes.ChestGetContents, HandleChestOpen },//打开箱子
 			{PacketTypes.ChestItem, HandleChestItem },//更新箱子物品
@@ -38,14 +39,148 @@ public static class GetDataHandlers
 			{PacketTypes.PaintTile, HandlePaintTile},//油漆块
 			{PacketTypes.PaintWall, HandlePaintWall},//油漆墙体
 			//{PacketTypes.Teleport, HandleTeleport},//NPC或玩家传送处理//仿佛没有必要
-			{PacketTypes.PlaceObject, HandlePlaceObject },//放置物体//PacketTypes.ForceItemIntoNearestChest堆物品
+			{PacketTypes.PlaceObject, HandlePlaceObject },//放置物体
 			{PacketTypes.PlaceTileEntity, HandlePlaceTileEntity },//放置实体
-			{PacketTypes.PlaceItemFrame, HandlePlaceItemFrame },//放置物品框//PacketTypes.KillPortal杀传送门
+			{PacketTypes.PlaceItemFrame, HandlePlaceItemFrame },//放置物品框
+            {PacketTypes.WeaponsRackTryPlacing, HandleWeaponsRackTryPlacing },
+            {PacketTypes.FoodPlatterTryPlacing, HandleFoodPlatterTryPlacing },
+            {PacketTypes.RequestTileEntityInteraction, HandleRequestTileEntityInteraction },
+            {PacketTypes.TileEntityHatRackItemSync, HandleTileEntityHatRackItemSync },
 			//{ PacketTypes.SyncExtraValue, HandleSyncExtraValue },同步附加价值？
 			{PacketTypes.GemLockToggle, HandleGemLockToggle },//宝石锁启动
 			{PacketTypes.MassWireOperation, HandleMassWireOperation },//大规模电路
 		};
     }
+
+    private static bool HandleTileEntityHatRackItemSync(GetDataHandlerArgs args)
+    {
+        var id = args.Data.ReadInt32();
+        var ply = args.Data.ReadByte();
+        if (TileEntity.ByID.TryGetValue(id, out var tileEntity) && tileEntity is TEHatRack)
+        {
+            var house = Utils.InAreaHouse(tileEntity.Position.X, tileEntity.Position.Y);//直接读出放置房子
+            if (house == null)
+            {
+                return false;
+            }
+
+            if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house))
+            {
+                return false;
+            }
+
+            if (HousingPlugin.LConfig.WarningSpoiler)
+            {
+                args.Player.Disable("无权修改房子保护的物品!");
+            }
+            args.Player.SendErrorMessage("你没有权力修改被房子保护的物品。");
+            return true;
+        }
+        return false;
+    }
+
+    private static bool HandleFoodPlatterTryPlacing(GetDataHandlerArgs args)
+    {
+        var x = args.Data.ReadInt16();
+        var y = args.Data.ReadInt16();
+        var house = Utils.InAreaHouse(x, y);//直接读出放置房子
+        var te = (TEFoodPlatter) TileEntity.ByID[TEFoodPlatter.Find(x, y)];
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权修改房子保护的物品!");
+        }
+        
+        args.Player.SendErrorMessage("你没有权力修改被房子保护的物品。");
+        
+        if (args.Player.SelectedItem.type > 0)
+        {
+            args.Player.SetData("PlaceSlot", (true, args.Player.TPlayer.selectedItem));
+            NetMessage.SendData(86, -1, -1, NetworkText.Empty, te.ID);
+        }
+        return true;
+    }
+
+    private static bool HandleRequestTileEntityInteraction(GetDataHandlerArgs args)
+    {
+        var id = args.Data.ReadInt32();
+        var ply = args.Data.ReadByte();
+        if (!TileEntity.IsOccupied(id, out var _) && TileEntity.ByID.TryGetValue(id, out var tileEntity))
+        {
+            var house = Utils.InAreaHouse(tileEntity.Position.X, tileEntity.Position.Y);//直接读出放置房子
+            if (house == null)
+            {
+                return false;
+            }
+
+            if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house))
+            {
+                return false;
+            }
+
+            if (HousingPlugin.LConfig.WarningSpoiler)
+            {
+                args.Player.Disable("无权修改房子保护的物品!");
+            }
+            args.Player.SendErrorMessage("你没有权力修改被房子保护的物品。");
+            return true;
+        }
+        return false;
+    }
+
+    private static bool HandlePlayerSlot(GetDataHandlerArgs args)
+    {
+        var plr = args.Data.ReadInt8();
+        var slot = args.Data.ReadInt16();
+        var plyData = args.Player.GetData<(bool,int)>("PlaceSlot");
+        if (plyData.Item1 && plyData.Item2 == slot)
+        {
+            NetMessage.SendData(5, -1, -1, null, plr, slot);
+            args.Player.RemoveData("PlaceSlot");
+            return true;
+        }
+        return false;
+    }
+
+    private static bool HandleWeaponsRackTryPlacing(GetDataHandlerArgs args)
+    {
+        var x = args.Data.ReadInt16();
+        var y = args.Data.ReadInt16();
+        var house = Utils.InAreaHouse(x, y);//直接读出放置房子
+        var te = (TEWeaponsRack) TileEntity.ByID[TEWeaponsRack.Find(x, y)];
+        if (house == null)
+        {
+            return false;
+        }
+
+        if (args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house) || Utils.CanUseHouse(args.Player.Account.ID.ToString(), house))
+        {
+            return false;
+        }
+
+        if (HousingPlugin.LConfig.WarningSpoiler)
+        {
+            args.Player.Disable("无权修改房子保护的物品!");
+        }
+       
+        args.Player.SendErrorMessage("你没有权力修改被房子保护的物品。");
+        if (args.Player.SelectedItem.type > 0)
+        {
+            args.Player.SetData("PlaceSlot", (true, args.Player.TPlayer.selectedItem));
+            NetMessage.SendData(86, -1, -1, NetworkText.Empty, te.ID);
+        }
+        return true;
+    }
+
     public static bool HandlerGetData(PacketTypes type, TSPlayer player, MemoryStream data)
     {
         if (GetDataHandlerDelegates.TryGetValue(type, out var handler))
@@ -332,7 +467,7 @@ public static class GetDataHandlers
         args.Player.SendData(PacketTypes.SignNew, "", id);
         return true;//假表示允许修改//真表示禁止修改
     }
-    private static bool HandleLiquidSet(GetDataHandlerArgs args)//48放水
+    private static bool HandleLiquidSet(GetDataHandlerArgs args)//48放水损毁
     {
         int tileX = args.Data.ReadInt16();
         int tileY = args.Data.ReadInt16();
@@ -468,12 +603,13 @@ public static class GetDataHandlers
         args.Player.SendTileSquareCentered(x, y);
         return true;//假表示允许修改//真表示禁止修改
     }
+
     private static bool HandlePlaceItemFrame(GetDataHandlerArgs args)//89放置物品框
     {
         var x = args.Data.ReadInt16();
         var y = args.Data.ReadInt16();
-        var itemFrame = (TEItemFrame) TileEntity.ByID[TEItemFrame.Find(x, y)];
         var house = Utils.InAreaHouse(x, y);//直接读出放置房子
+        var te = (TEItemFrame)TileEntity.ByID[TEItemFrame.Find(x, y)];
         if (house == null)
         {
             return false;
@@ -490,7 +626,12 @@ public static class GetDataHandlers
         }
 
         args.Player.SendErrorMessage("你没有权力修改被房子保护的物品。");
-        NetMessage.SendData((int) PacketTypes.UpdateTileEntity, -1, -1, NetworkText.Empty, itemFrame.ID, 0, 1);
+        
+        if (args.Player.SelectedItem.type > 0)
+        {
+            args.Player.SetData("PlaceSlot", (true, args.Player.TPlayer.selectedItem));
+            NetMessage.SendData(86, -1, -1, NetworkText.Empty, te.ID);
+        }
         return true;
     }
     private static bool HandleGemLockToggle(GetDataHandlerArgs args)//105宝石锁

@@ -1,5 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ClientApi.Networking;
+using Microsoft.Xna.Framework;
 using MySql.Data.MySqlClient;
+using NuGet.Protocol.Plugins;
+using On.OTAPI;
 using System.Timers;
 using Terraria;
 using TerrariaApi.Server;
@@ -103,22 +106,41 @@ public class HousingPlugin : TerrariaPlugin
         this.RD();
         GetDataHandlers.InitGetDataHandler();//初始化配置值，RH要放在服务器开成后再读不然世界ID读不出
         Commands.ChatCommands.Add(new Command("house.use", this.HCommands, "house") { HelpText = "输入/house help可以显示与房子相关的操作提示。" });
-        ServerApi.Hooks.NetGetData.Register(this, this.GetData);//收到数据
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);//玩家进入服务器
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);//玩家退出服务器
         ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitialize);//地图读入后
+        Hooks.MessageBuffer.InvokeGetData += this.MessageBufferOnInvokeGetData;
         GeneralHooks.ReloadEvent += this._reloadHandler;
     }
+
+    private bool MessageBufferOnInvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
+    {
+        var user = TShock.Players[instance.whoAmI];
+        using (var data = new MemoryStream(instance.readBuffer, readOffset, length))
+        {
+            try
+            {
+                if (GetDataHandlers.HandlerGetData((PacketTypes)packetId, user, data))
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex) { TShock.Log.Error("房屋插件错误传递时出错:" + ex.ToString()); }
+        }
+        return orig.Invoke(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType,
+        maxPackets);
+    }
+
     protected override void Dispose(bool disposing)// 插件关闭时
     {
         if (disposing)
         {
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.HCommands);
-            ServerApi.Hooks.NetGetData.Deregister(this, this.GetData);//收到数据
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreetPlayer);//玩家进入服务器
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);//玩家退出服务器
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.PostInitialize);//地图读入后
             Update.Elapsed -= this.OnUpdate; Update.Stop();//销毁时钟
+            Hooks.MessageBuffer.InvokeGetData -= this.MessageBufferOnInvokeGetData;
             GeneralHooks.ReloadEvent -= this._reloadHandler;
         }
         base.Dispose(disposing);
@@ -719,30 +741,6 @@ public class HousingPlugin : TerrariaPlugin
     }//方法的括号
     #endregion
 
-    #region 收到数据
-    private void GetData(GetDataEventArgs args)//收到数据的狗子程序
-    {
-        if (args.Handled)
-        {
-            return;
-        }
-        //Console.WriteLine("收到数据"+ args.MsgID);
-        var user = TShock.Players[args.Msg.whoAmI];
-        if (user == null) { args.Handled = true; return; }//若用户不存在直接返回真
-        if (!user.ConnectionAlive) { args.Handled = true; return; }//若已丢失连接直接返回
-        using (var data = new MemoryStream(args.Msg.readBuffer, args.Index, args.Length))
-        {
-            try
-            {
-                if (GetDataHandlers.HandlerGetData(args.MsgID, user, data))
-                {
-                    args.Handled = true;
-                }
-            }
-            catch (Exception ex) { TShock.Log.Error("房屋插件错误传递时出错:" + ex.ToString()); }
-        }
-    }
-    #endregion
 
     #region 时钟事件
     public void OnUpdate(object? sender, ElapsedEventArgs e)//时钟更新数据时
