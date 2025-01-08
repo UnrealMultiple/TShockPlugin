@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SurfaceBlock\n"
-"POT-Creation-Date: 2024-12-18 10:04:28+0000\n"
+"POT-Creation-Date: 2025-01-08 13:16:28+0000\n"
 "PO-Revision-Date: 2024-12-17 21:05+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,11 +11,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ../../SurfaceBlock.cs:112
+#: ../../SurfaceBlock.cs:110
 msgid "未知"
 msgstr "None"
 
-#: ../../SurfaceBlock.cs:122
+#: ../../SurfaceBlock.cs:120
 #, csharp-format
 msgid "玩家 [c/4EA4F2:{0}] 使用禁地表弹幕 [c/15EDDB:{1}] 已清除!"
 msgstr "Player [c/4EA4F2:{0}] used SurfaceBlock [c/15EDDB:{1}] to clear!"
+
+#: ../../SurfaceBlock.cs:14
+msgid "禁止特定弹幕在地表产生"
+msgstr ""

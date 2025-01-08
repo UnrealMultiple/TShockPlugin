@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BedSet\n"
-"POT-Creation-Date: 2024-11-30 02:03:50+0000\n"
-"PO-Revision-Date: 2024-11-30 02:03:50+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:34+0000\n"
+"PO-Revision-Date: 2025-01-08 13:15:34+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:40
+#: ../../Plugin.cs:39
 msgid "出生点位置设置成功!"
 msgstr ""
 

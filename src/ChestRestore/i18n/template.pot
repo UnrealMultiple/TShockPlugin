@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ChestRestore\n"
-"POT-Creation-Date: 2024-11-16 23:55:01+0000\n"
-"PO-Revision-Date: 2024-11-16 23:55:02+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:40+0000\n"
+"PO-Revision-Date: 2025-01-08 13:15:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,16 +10,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../MainPlugin.cs:63
-#: ../../MainPlugin.cs:68
+#: ../../MainPlugin.cs:62
+#: ../../MainPlugin.cs:67
 msgid "你已进入箱子修改模式。"
 msgstr ""
 
-#: ../../MainPlugin.cs:63
+#: ../../MainPlugin.cs:62
 msgid "你已退出箱子修改模式。"
 msgstr ""
 
-#: ../../MainPlugin.cs:25
+#: ../../MainPlugin.cs:24
 msgid "切换个人修改箱子名字和内容的模式"
+msgstr ""
+
+#: ../../MainPlugin.cs:16
+msgid "无限宝箱插件"
 msgstr ""
 

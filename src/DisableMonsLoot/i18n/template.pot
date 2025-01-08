@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DisableMonsLoot\n"
-"POT-Creation-Date: 2024-11-19 17:21:52+0000\n"
-"PO-Revision-Date: 2024-11-19 17:21:52+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:46+0000\n"
+"PO-Revision-Date: 2025-01-08 13:15:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:55
+#: ../../Plugin.cs:54
 msgid "[禁怪物掉落]重新加载配置完毕。"
+msgstr ""
+
+#: ../../Plugin.cs:17
+msgid "清理怪物身边掉落物"
 msgstr ""
 

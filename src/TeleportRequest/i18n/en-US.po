@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TeleportRequest\n"
-"POT-Creation-Date: 2024-09-07 18:09:12+0000\n"
+"POT-Creation-Date: 2025-01-08 13:16:29+0000\n"
 "PO-Revision-Date: 2024-09-01 11:32+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,37 +11,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: ../../TeleportRequest.cs:319
+#: ../../TeleportRequest.cs:318
 msgid "[TeleportRequest] 重新加载配置完毕。"
 msgstr "[TeleportRequest] Configuration reloaded successfully."
 
-#: ../../TeleportRequest.cs:269
+#: ../../TeleportRequest.cs:268
 #, csharp-format
 msgid "{0}自动拒绝传送请求."
 msgstr "{0} automatically denies teleport requests."
 
-#: ../../TeleportRequest.cs:296
+#: ../../TeleportRequest.cs:295
 #, csharp-format
 msgid "{0}自动接受传送请求."
 msgstr "{0} automatically accepts teleport requests."
 
-#: ../../TeleportRequest.cs:311
+#: ../../TeleportRequest.cs:310
 msgid "TPR配置出现异常"
 msgstr "TPR configuration error"
 
-#: ../../TeleportRequest.cs:75
+#: ../../TeleportRequest.cs:26
+msgid "传送前需要被传送者接受或拒绝请求"
+msgstr ""
+
+#: ../../TeleportRequest.cs:74
 msgid "传送请求已超时."
 msgstr "Teleport request has timed out."
 
-#: ../../TeleportRequest.cs:159 ../../TeleportRequest.cs:231
+#: ../../TeleportRequest.cs:158 ../../TeleportRequest.cs:230
 msgid "你无法传送到玩家[{0}]."
 msgstr "You cannot teleport to player [{0}]."
 
-#: ../../TeleportRequest.cs:207 ../../TeleportRequest.cs:285
+#: ../../TeleportRequest.cs:206 ../../TeleportRequest.cs:284
 msgid "你暂时没有收到其他玩家的传送请求."
 msgstr "You have not received any teleport requests from other players."
 
-#: ../../TeleportRequest.cs:82
+#: ../../TeleportRequest.cs:81
 #, csharp-format
 msgid ""
 "你被请求传送到玩家[{{0}}]的当前位置. ({0}接受tp ({0}atp) 或 {0}拒绝tp ({0}"
@@ -50,59 +54,59 @@ msgstr ""
 "You are requested to teleport to player [{{0}}]'s current location. ({0} "
 "accept tp ({0}atp) or {0} deny tp ({0}dtp))"
 
-#: ../../TeleportRequest.cs:149 ../../TeleportRequest.cs:226
+#: ../../TeleportRequest.cs:148 ../../TeleportRequest.cs:225
 msgid "匹对到多于一位玩家!"
 msgstr "Matched more than one player!"
 
-#: ../../TeleportRequest.cs:118
+#: ../../TeleportRequest.cs:117
 msgid "发出传送到指定玩家当前位置的请求."
 msgstr "Request to teleport to the specified player's current location."
 
-#: ../../TeleportRequest.cs:113
+#: ../../TeleportRequest.cs:112
 msgid "发出把指定玩家传送到你当前位置的请求."
 msgstr "Request to teleport the specified player to your current location."
 
-#: ../../TeleportRequest.cs:269 ../../TeleportRequest.cs:296
+#: ../../TeleportRequest.cs:268 ../../TeleportRequest.cs:295
 msgid "启用"
 msgstr "Enable"
 
-#: ../../TeleportRequest.cs:186 ../../TeleportRequest.cs:258
+#: ../../TeleportRequest.cs:185 ../../TeleportRequest.cs:257
 msgid "已成功向玩家[{0}]发出传送请求."
 msgstr "Successfully sent a teleport request to player [{0}]."
 
-#: ../../TeleportRequest.cs:279
+#: ../../TeleportRequest.cs:278
 #, csharp-format
 msgid "已拒绝玩家[{0}]的传送请求."
 msgstr "Denied player [{0}]'s teleport request."
 
-#: ../../TeleportRequest.cs:169 ../../TeleportRequest.cs:200
-#: ../../TeleportRequest.cs:241
+#: ../../TeleportRequest.cs:168 ../../TeleportRequest.cs:199
+#: ../../TeleportRequest.cs:240
 msgid "已经传送到玩家[{0}]的当前位置."
 msgstr "Teleported to player [{0}]'s current location."
 
-#: ../../TeleportRequest.cs:144 ../../TeleportRequest.cs:221
+#: ../../TeleportRequest.cs:143 ../../TeleportRequest.cs:220
 msgid "找不到这位玩家!"
 msgstr "Player not found!"
 
-#: ../../TeleportRequest.cs:108
+#: ../../TeleportRequest.cs:107
 msgid "拒绝传送请求."
 msgstr "Deny teleport request."
 
-#: ../../TeleportRequest.cs:93
+#: ../../TeleportRequest.cs:92
 msgid "接受传送请求."
 msgstr "Accept teleport request."
 
-#: ../../TeleportRequest.cs:137
+#: ../../TeleportRequest.cs:136
 #, csharp-format
 msgid "格式错误! 正确格式为: {0}tpa <玩家>"
 msgstr "Syntax error! The correct syntax is: {0}tpa <player>"
 
-#: ../../TeleportRequest.cs:214
+#: ../../TeleportRequest.cs:213
 #, csharp-format
 msgid "格式错误! 正确格式为: {0}tpahere <玩家>"
 msgstr "Syntax error! The correct syntax is: {0}tpahere <player>"
 
-#: ../../TeleportRequest.cs:79
+#: ../../TeleportRequest.cs:78
 #, csharp-format
 msgid ""
 "玩家[{{0}}]要求传送到你当前位置. ({0}接受tp ({0}atp) 或 {0}拒绝tp ({0}dtp))"
@@ -110,45 +114,45 @@ msgstr ""
 "Player [{{0}}] requests to teleport to your current location. ({0} accept tp "
 "({0}atp) or {0} deny tp ({0}dtp))"
 
-#: ../../TeleportRequest.cs:170 ../../TeleportRequest.cs:201
-#: ../../TeleportRequest.cs:242
+#: ../../TeleportRequest.cs:169 ../../TeleportRequest.cs:200
+#: ../../TeleportRequest.cs:241
 msgid "玩家[{0}]已传送到你的当前位置."
 msgstr "Player [{0}] has teleported to your current location."
 
-#: ../../TeleportRequest.cs:179 ../../TeleportRequest.cs:251
+#: ../../TeleportRequest.cs:178 ../../TeleportRequest.cs:250
 msgid "玩家[{0}]已被其他玩家发出传送请求."
 msgstr "Player [{0}] has been requested to teleport by another player."
 
-#: ../../TeleportRequest.cs:280
+#: ../../TeleportRequest.cs:279
 #, csharp-format
 msgid "玩家[{0}]拒绝你的传送请求."
 msgstr "Player [{0}] denied your teleport request."
 
-#: ../../TeleportRequest.cs:76
+#: ../../TeleportRequest.cs:75
 #, csharp-format
 msgid "玩家[{0}]的传送请求已超时."
 msgstr "Player [{0}]'s teleport request has timed out."
 
-#: ../../TeleportRequest.cs:154
+#: ../../TeleportRequest.cs:153
 msgid "禁止向自己发送传送请求！"
 msgstr "You are sending teleport requests to yourself!"
 
-#: ../../TeleportRequest.cs:98
+#: ../../TeleportRequest.cs:97
 msgid "自动拒绝所有人的传送请求."
 msgstr "Automatically deny all teleport requests."
 
-#: ../../TeleportRequest.cs:103
+#: ../../TeleportRequest.cs:102
 msgid "自动接受所有人的传送请求."
 msgstr "Automatically accept all teleport requests."
 
-#: ../../TeleportRequest.cs:269 ../../TeleportRequest.cs:296
+#: ../../TeleportRequest.cs:268 ../../TeleportRequest.cs:295
 msgid "解除"
 msgstr "Disable"
 
-#: ../../TeleportRequest.cs:292
+#: ../../TeleportRequest.cs:291
 msgid "请先解除自动拒绝传送"
 msgstr "Please disable automatic denial of teleport requests first."
 
-#: ../../TeleportRequest.cs:265
+#: ../../TeleportRequest.cs:264
 msgid "请先解除自动接受传送"
 msgstr "Please disable automatic acceptance of teleport requests first."

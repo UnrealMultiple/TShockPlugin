@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ZHIPlayerManager\n"
-"POT-Creation-Date: 2025-01-05 03:40:13+0000\n"
+"POT-Creation-Date: 2025-01-08 13:16:35+0000\n"
 "PO-Revision-Date: 2025-01-05 11:23+0800\n"
 "Last-Translator: Hexagon Force\n"
 "Language-Team: UnrealMultiple\n"
@@ -902,6 +902,10 @@ msgstr ""
 msgid "玩家已全部初始化"
 msgstr "Players have all been initialized"
 
+#: ../../ZHIPM.cs:15
+msgid "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作"
+msgstr ""
+
 #: ../../ZHIPM.Initialize.cs:544
 msgid "玩家都不在线，正在查询离线数据"
 msgstr "None of the players are online, querying offline data"
@@ -1032,11 +1036,11 @@ msgstr ""
 msgid "装备栏3："
 msgstr ""
 
-#: ../../ZHIPM.cs:64
+#: ../../ZHIPM.cs:63
 msgid "该玩家不唯一，请重新输入"
 msgstr "This player is not unique, please re-enter"
 
-#: ../../ZHIPM.cs:65
+#: ../../ZHIPM.cs:64
 msgid "该玩家不在线，正在查询离线数据"
 msgstr "The player is not online and is querying offline data"
 
@@ -1044,7 +1048,7 @@ msgstr "The player is not online and is querying offline data"
 msgid "该玩家不在线或不存在"
 msgstr "This player is not online or does not exist"
 
-#: ../../ZHIPM.cs:63
+#: ../../ZHIPM.cs:62
 msgid "该玩家不存在，请重新输入"
 msgstr "This player does not exist, please re-enter"
 
@@ -1503,11 +1507,11 @@ msgstr "Error ResetPlayer:"
 msgid "错误 ZhiExportPlayer ："
 msgstr "Error ZhiExportPlayer:"
 
-#: ../../ZHIPM.DB.cs:214
+#: ../../ZHIPM.DB.cs:212
 msgid "错误：AddZPlayerDB "
 msgstr "Error: AddZPlayerDB "
 
-#: ../../ZHIPM.DB.cs:233
+#: ../../ZHIPM.DB.cs:231
 msgid "错误：AddZPlayerDB 1 "
 msgstr "Error: AddZPlayerDB 1 "
 
@@ -1515,19 +1519,19 @@ msgstr "Error: AddZPlayerDB 1 "
 msgid "错误：BackUp "
 msgstr "Error: BackUp "
 
-#: ../../ZHIPM.DB.cs:255
+#: ../../ZHIPM.DB.cs:253
 msgid "错误：ClearALLZPlayerDB "
 msgstr "Error: ClearALLZPlayerDB "
 
-#: ../../ZHIPM.DB.cs:412
+#: ../../ZHIPM.DB.cs:410
 msgid "错误：ClearALLZPlayerExtraDB "
 msgstr "Error: ClearALLZPlayerExtraDB "
 
-#: ../../ZHIPM.DB.cs:275
+#: ../../ZHIPM.DB.cs:273
 msgid "错误：ClearZPlayerDB "
 msgstr "Error: ClearZPlayerDB "
 
-#: ../../ZHIPM.DB.cs:432
+#: ../../ZHIPM.DB.cs:430
 msgid "错误：ClearZPlayerExtraDB "
 msgstr "Error: ClearZPlayerExtraDB "
 
@@ -1535,19 +1539,19 @@ msgstr "Error: ClearZPlayerExtraDB "
 msgid "错误：ExportPlayer "
 msgstr "Error: ExportPlayer "
 
-#: ../../ZHIPM.DB.cs:185
+#: ../../ZHIPM.DB.cs:183
 msgid "错误：getZPlayerDBMaxSlot "
 msgstr "Error: getZPlayerDBMaxSlot "
 
-#: ../../ZHIPM.DB.cs:504
+#: ../../ZHIPM.DB.cs:502
 msgid "错误：ListAllExtraDB "
 msgstr "Error: ListAllExtraDB "
 
-#: ../../ZHIPM.DB.cs:343
+#: ../../ZHIPM.DB.cs:341
 msgid "错误：ReadExtraDB "
 msgstr "Error: ReadExtraDB "
 
-#: ../../ZHIPM.DB.cs:109
+#: ../../ZHIPM.DB.cs:107
 msgid "错误：ReadZPlayerDB "
 msgstr "Error: ReadZPlayerDB "
 
@@ -1555,19 +1559,19 @@ msgstr "Error: ReadZPlayerDB "
 msgid "错误：UpdateTshockDBCharacter "
 msgstr "Error: UpdateTshockDBCharac  "
 
-#: ../../ZHIPM.DB.cs:379
+#: ../../ZHIPM.DB.cs:377
 msgid "错误：WriteExtraDB "
 msgstr "Error: WriteExtraDB "
 
-#: ../../ZHIPM.DB.cs:391
+#: ../../ZHIPM.DB.cs:389
 msgid "错误：WriteExtraDB 2 "
 msgstr "Error: WriteExtraDB 2 "
 
-#: ../../ZHIPM.DB.cs:143
+#: ../../ZHIPM.DB.cs:141
 msgid "错误：WriteZPlayerDB "
 msgstr "Error: WriteZPlayerDB "
 
-#: ../../ZHIPM.DB.cs:155
+#: ../../ZHIPM.DB.cs:153
 msgid "错误：WriteZPlayerDB 2 "
 msgstr "Error: WriteZPlayerDB 2 "
 

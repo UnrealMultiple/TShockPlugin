@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoBroadcast\n"
-"POT-Creation-Date: 2024-09-28 12:11:56+0000\n"
-"PO-Revision-Date: 2024-09-28 12:11:56+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:28+0000\n"
+"PO-Revision-Date: 2025-01-08 13:15:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,13 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../AutoBroadcast.cs:57
-msgid ""
-"[AutoBroadcast]配置读取发生错误!\n"
-"{0}"
-msgstr ""
-
-#: ../../AutoBroadcast.cs:43
-msgid "自定义广播配置已重读!"
+#: ../../AutoBroadcast.cs:12
+msgid "自动广播插件"
 msgstr ""
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Shop\n"
-"POT-Creation-Date: 2024-11-15 03:22:39+0000\n"
-"PO-Revision-Date: 2024-11-15 03:22:39+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:53+0000\n"
+"PO-Revision-Date: 2025-01-08 13:15:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,10 @@ msgstr ""
 
 #: ../../Command.cs:61
 msgid "此商品不存在，请检查序号后重新输入!"
+msgstr ""
+
+#: ../../Shop.cs:16
+msgid "经济商店!"
 msgstr ""
 
 #: ../../Command.cs:76
