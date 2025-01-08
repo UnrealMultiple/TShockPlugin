@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2024-09-30 03:22:34+0000\n"
-"PO-Revision-Date: 2025-01-05 07:03\n"
+"PO-Revision-Date: 2025-01-08 08:58\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,21 +19,21 @@ msgstr ""
 
 #: ../../DTEntryBlock.cs:31
 msgid "[阻止进入地牢或神庙] 重新加载配置完毕。"
-msgstr ""
+msgstr "[Block entry to dungeon or temple] Reload configuration completed."
 
 #: ../../DTEntryBlock.cs:70
 msgid "因为在没击败骷髅王的时候探索地牢，你被传送到出生点."
-msgstr ""
+msgstr "You explored the dungeon without defeating Skeletron!, you will be teleported to your spawn point."
 
 #: ../../DTEntryBlock.cs:77
 msgid "因为在没击败骷髅王的时候探索地牢，你被击杀了."
-msgstr ""
+msgstr "You were killed for exploring the dungeon without defeating Skeletron"
 
 #: ../../DTEntryBlock.cs:91
 msgid "禁止在没击败世纪之花的时候探索神庙，你被传送到出生点"
-msgstr ""
+msgstr "You explored the temple without defeating Plantera. You will be teleported to the spawn point."
 
 #: ../../DTEntryBlock.cs:97
 msgid "禁止在没击败世纪之花的时候探索神庙，你被击杀"
-msgstr ""
+msgstr "You explored the temple without defeating Plantera. You will be killed."
 
