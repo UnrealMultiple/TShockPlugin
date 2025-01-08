@@ -18,7 +18,8 @@ public class HousingPlugin : TerrariaPlugin
 {
     public override string Author => "GK 阁下 改良";
     public override string Description => GetString("一个著名的用于保护房屋的插件。");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 6);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; 
+    public override Version Version => new Version(1, 0, 0, 7);
     public HousingPlugin(Main game) : base(game)
     {
         this.Order = 5;
