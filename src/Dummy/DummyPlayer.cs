@@ -54,7 +54,6 @@ internal class DummyPlayer
         {
             ips.PlayerSlot = this.PlayerSlot;
         }
-
         this.client.Send(packet);
     }
     public void Hello(string message)
@@ -113,7 +112,6 @@ internal class DummyPlayer
 
     private void InternalOn()
     {
-
         this.On<StatusText>(status => OnChat?.Invoke(this, status.Text, Color.White));
         this.On<NetTextModuleS2C>(text => OnChat?.Invoke(this, text.Text, text.Color));
         this.On<SmartTextMessage>(text => OnChat?.Invoke(this, text.Text, text.Color));

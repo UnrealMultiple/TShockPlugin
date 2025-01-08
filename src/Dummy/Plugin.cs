@@ -68,7 +68,7 @@ public class Plugin : LazyPlugin
             { 
                 ply.ChatText($"/login {dummy.Password}");
             }
-            _players[ply.PlayerSlot] = ply;
+            ply.On<LoadPlayer>(p => _players[p.PlayerSlot] = ply);
         }
         Port = port;
         
