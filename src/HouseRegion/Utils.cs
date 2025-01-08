@@ -21,7 +21,7 @@ class Utils//专属工具包
                 return Convert.ToInt32(Match.Groups[1].Value);
             }
         }
-        return HousingPlugin.LConfig.HouseMaxNumber;
+        return Config.Instance.HouseMaxNumber;
     }
     public static int MaxSize(TSPlayer ply)//取最大尺寸
     {
@@ -34,7 +34,7 @@ class Utils//专属工具包
                 return Convert.ToInt32(Match.Groups[1].Value);
             }
         }
-        return HousingPlugin.LConfig.HouseMaxSize;//没有权限指定则返回配置的 内容
+        return Config.Instance.HouseMaxSize;//没有权限指定则返回配置的 内容
     }
     public static House? GetHouseByName(string name)//取得指定名字的房子
     {
@@ -87,7 +87,7 @@ class Utils//专属工具包
             {
                 return house.Owners.Contains(UserID);
             }
-            catch (Exception ex) { TShock.Log.Error("房屋插件错误超标错误:" + ex.ToString()); return false; }
+            catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误超标错误:") + ex.ToString()); return false; }
         }
         return false;
     }
@@ -152,7 +152,7 @@ public class HouseManager//房屋管理
         {
             TShock.DB.Query("INSERT INTO HousingDistrict (" + cols + ") VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9);", housename, tx, ty, width, height, author, "", Main.worldID.ToString(), locked, "");
         }
-        catch (Exception ex) { TShock.Log.Error("房屋插件错误数据库写入错误:" + ex.ToString()); return false; }
+        catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误数据库写入错误:") + ex.ToString()); return false; }
         HousingPlugin.Houses.Add(new House(new Rectangle(tx, ty, width, height), author, new List<string>(), housename, locked == 1, new List<string>()));
         return true;
     }
@@ -180,7 +180,7 @@ public class HouseManager//房屋管理
             var query = "UPDATE HousingDistrict SET Owners=@0 WHERE Name=@1";
             TShock.DB.Query(query, sb.ToString(), houseName);
         }
-        catch (Exception ex) { TShock.Log.Error("房屋插件错误数据库修改错误:" + ex.ToString()); return false; }
+        catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误数据库修改错误:") + ex.ToString()); return false; }
         return true;
     }
     public static bool AddNewUser(string houseName, string id)//添加使用者
@@ -207,7 +207,7 @@ public class HouseManager//房屋管理
             var query = "UPDATE HousingDistrict SET Users=@0 WHERE Name=@1";
             TShock.DB.Query(query, sb.ToString(), houseName);
         }
-        catch (Exception ex) { TShock.Log.Error("房屋插件错误数据库修改错误:" + ex.ToString()); return false; }
+        catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误数据库修改错误:") + ex.ToString()); return false; }
         return true;
     }
     public static bool DeleteOwner(string houseName, string id)//删除所有者
@@ -234,7 +234,7 @@ public class HouseManager//房屋管理
             var query = "UPDATE HousingDistrict SET Owners=@0 WHERE Name=@1";
             TShock.DB.Query(query, sb.ToString(), houseName);
         }
-        catch (Exception ex) { TShock.Log.Error("房屋插件错误数据库修改错误:" + ex.ToString()); return false; }
+        catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误数据库修改错误:") + ex.ToString()); return false; }
         return true;
     }
     public static bool DeleteUser(string houseName, string id)//删除使用者
@@ -261,7 +261,7 @@ public class HouseManager//房屋管理
             var query = "UPDATE HousingDistrict SET Users=@0 WHERE Name=@1";
             TShock.DB.Query(query, sb.ToString(), houseName);
         }
-        catch (Exception ex) { TShock.Log.Error("房屋插件错误数据库修改错误:" + ex.ToString()); return false; }
+        catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误数据库修改错误:") + ex.ToString()); return false; }
         return true;
     }
     public static bool RedefineHouse(int tx, int ty, int width, int height, string housename)
@@ -275,10 +275,10 @@ public class HouseManager//房屋管理
                 var query = "UPDATE HousingDistrict SET TopX=@0, TopY=@1, BottomX=@2, BottomY=@3, WorldID=@4 WHERE Name=@5";
                 TShock.DB.Query(query, tx, ty, width, height, Main.worldID.ToString(), house.Name);
             }
-            catch (Exception ex) { TShock.Log.Error("房屋插件错误数据库修改错误:" + ex.ToString()); return false; }
+            catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误数据库修改错误:") + ex.ToString()); return false; }
             house.HouseArea = new Rectangle(tx, ty, width, height);
         }
-        catch (Exception ex) { TShock.Log.Error("房屋插件错误重新定义房屋时出错:" + ex.ToString()); return false; }
+        catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误重新定义房屋时出错:") + ex.ToString()); return false; }
         return true;
     }
     public static bool ChangeLock(House house)
@@ -290,7 +290,7 @@ public class HouseManager//房屋管理
             var query = "UPDATE HousingDistrict SET Locked=@0 WHERE Name=@1";
             TShock.DB.Query(query, house.Locked ? 1 : 0, house.Name);
         }
-        catch (Exception ex) { TShock.Log.Error("房屋插件错误修改锁房屋时出错:" + ex.ToString()); return false; }
+        catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误修改锁房屋时出错:") + ex.ToString()); return false; }
         return true;
     }
 }

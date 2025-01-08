@@ -69,11 +69,11 @@ public static class GetDataHandlers
                 return false;
             }
 
-            if (HousingPlugin.LConfig.WarningSpoiler)
+            if (Config.Instance.WarningSpoiler)
             {
-                args.Player.Disable("无权修改房子保护的物品!");
+                args.Player.Disable(GetString("无权修改房子保护的物品!"));
             }
-            args.Player.SendErrorMessage("你没有权力修改被房子保护的物品。");
+            args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的物品。"));
             return true;
         }
         return false;
@@ -95,12 +95,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权修改房子保护的物品!");
+            args.Player.Disable(GetString("无权修改房子保护的物品!"));
         }
         
-        args.Player.SendErrorMessage("你没有权力修改被房子保护的物品。");
+        args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的物品。"));
         
         if (args.Player.SelectedItem.type > 0)
         {
@@ -127,11 +127,11 @@ public static class GetDataHandlers
                 return false;
             }
 
-            if (HousingPlugin.LConfig.WarningSpoiler)
-            {
-                args.Player.Disable("无权修改房子保护的物品!");
+                if (Config.Instance.WarningSpoiler)
+                {
+                args.Player.Disable(GetString("无权修改房子保护的物品!"));
             }
-            args.Player.SendErrorMessage("你没有权力修改被房子保护的物品。");
+            args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的物品。"));
             return true;
         }
         return false;
@@ -167,12 +167,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权修改房子保护的物品!");
+            args.Player.Disable(GetString("无权修改房子保护的物品!"));
         }
        
-        args.Player.SendErrorMessage("你没有权力修改被房子保护的物品。");
+        args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的物品。"));
         if (args.Player.SelectedItem.type > 0)
         {
             args.Player.SetData("PlaceSlot", (true, args.Player.TPlayer.selectedItem));
@@ -186,7 +186,7 @@ public static class GetDataHandlers
         if (GetDataHandlerDelegates.TryGetValue(type, out var handler))
         {
             try { return handler(new GetDataHandlerArgs(player, data)); }
-            catch (Exception ex) { TShock.Log.Error("房屋插件错误调用事件时出错:" + ex.ToString()); }
+            catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误调用事件时出错:") + ex.ToString()); }
         }
         return false;
     }
@@ -206,14 +206,14 @@ public static class GetDataHandlers
         {
             if (house == null)
             {
-                args.Player.SendMessage("敲击处不属于任何房子。", Color.Yellow);
+                args.Player.SendMessage(GetString("敲击处不属于任何房子。"), Color.Yellow);
             }
             else
             {
                 var AuthorNames = "";
                 try { AuthorNames = TShock.UserAccounts.GetUserAccountByID(Convert.ToInt32(house.Author)).Name; }
-                catch (Exception ex) { TShock.Log.Error("房屋插件错误超标错误:" + ex.ToString()); }
-                args.Player.SendMessage("敲击处为 " + AuthorNames + " 的房子: " + house.Name + " 状态: " + (!house.Locked || HousingPlugin.LConfig.LimitLockHouse ? "未上锁" : "已上锁"), Color.Yellow);
+                catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误超标错误:") + ex.ToString()); }
+                args.Player.SendMessage(GetString($"敲击处为 {AuthorNames} 的房子: {house.Name} 状态: {(!house.Locked || Config.Instance.LimitLockHouse ? GetString("未上锁") : GetString("已上锁"))}"), Color.Yellow);
             }
             args.Player.SendTileSquareCentered(x, y);
             HousingPlugin.LPlayers[args.Player.Index]!.Look = false;
@@ -225,12 +225,12 @@ public static class GetDataHandlers
             args.Player.TempPoints[args.Player.AwaitingTempPoint - 1].Y = y;
             if (args.Player.AwaitingTempPoint == 1)
             {
-                args.Player.SendMessage("保护区左上角已设置!", Color.Yellow);
+                args.Player.SendMessage(GetString("保护区左上角已设置!"), Color.Yellow);
             }
 
             if (args.Player.AwaitingTempPoint == 2)
             {
-                args.Player.SendMessage("保护区右下角已设置!", Color.Yellow);
+                args.Player.SendMessage(GetString("保护区右下角已设置!"), Color.Yellow);
             }
 
             args.Player.SendTileSquareCentered(x, y);
@@ -247,12 +247,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权修改房子保护!");
+            args.Player.Disable(GetString("无权修改房子保护!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力损坏被房子保护的地区。");
+        args.Player.SendErrorMessage(GetString("你没有权力损坏被房子保护的地区。"));
         args.Player.SendTileSquareCentered(x, y);
         return true;//假表示允许修改//真表示禁止修改
     }
@@ -267,7 +267,7 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (!house.Locked || HousingPlugin.LConfig.LimitLockHouse)
+        if (!house.Locked || Config.Instance.LimitLockHouse)
         {
             return false;//没锁，那随便开
         }
@@ -277,12 +277,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权修改门!");
+            args.Player.Disable(GetString("无权修改门!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力修改被房子保护的地区的门。");
+        args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的地区的门。"));
         args.Player.SendTileSquareCentered(x, y);
         return true;//假表示允许修改//真表示禁止修改
     }
@@ -334,7 +334,7 @@ public static class GetDataHandlers
             return false;
         }
 
-        if ((!house.Locked || HousingPlugin.LConfig.LimitLockHouse) && !HousingPlugin.LConfig.ProtectiveChest)
+        if ((!house.Locked || Config.Instance.LimitLockHouse) && !Config.Instance.ProtectiveChest)
         {
             return false;//没锁,且不保护箱子，那随便开
         }
@@ -344,12 +344,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权打开箱子!");
+            args.Player.Disable(GetString("无权打开箱子!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力打开被房子保护的地区的箱子。");
+        args.Player.SendErrorMessage(GetString("你没有权力打开被房子保护的地区的箱子。"));
         return true;//假表示允许修改//真表示禁止修改
     }
     private static bool HandleChestItem(GetDataHandlerArgs args)//32更新箱子
@@ -363,7 +363,7 @@ public static class GetDataHandlers
             return false;
         }
 
-        if ((!house.Locked || HousingPlugin.LConfig.LimitLockHouse) && !HousingPlugin.LConfig.ProtectiveChest)
+        if ((!house.Locked || Config.Instance.LimitLockHouse) && !Config.Instance.ProtectiveChest)
         {
             return false;//没锁,且不保护箱子，那随便开
         }
@@ -373,12 +373,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权更新箱子!");
+            args.Player.Disable(GetString("无权更新箱子!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力更新被房子保护的地区的箱子。");
+        args.Player.SendErrorMessage(GetString("你没有权力更新被房子保护的地区的箱子。"));
         return true;//假表示允许修改//真表示禁止修改
     }
     private static bool HandleChestActive(GetDataHandlerArgs args)//33修改箱子
@@ -392,7 +392,7 @@ public static class GetDataHandlers
             return false;
         }
 
-        if ((!house.Locked || HousingPlugin.LConfig.LimitLockHouse) && !HousingPlugin.LConfig.ProtectiveChest)
+        if ((!house.Locked || Config.Instance.LimitLockHouse) && !Config.Instance.ProtectiveChest)
         {
             return false;//没锁,且不保护箱子，那随便开
         }
@@ -402,12 +402,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权修改箱子!");
+            args.Player.Disable(GetString("无权修改箱子!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力修改被房子保护的地区的箱子。");
+        args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的地区的箱子。"));
         args.Player.SendData(PacketTypes.ChestOpen, "", -1);
         return true;//假表示允许修改//真表示禁止修改
     }
@@ -426,12 +426,12 @@ public static class GetDataHandlers
 
             if (house.HouseArea.Intersects(rect) && !(args.Player.Group.HasPermission(EditHouse) || args.Player.Account.ID.ToString() == house.Author || Utils.OwnsHouse(args.Player.Account.ID.ToString(), house)))
             {
-                if (HousingPlugin.LConfig.WarningSpoiler)
+                if (Config.Instance.WarningSpoiler)
                 {
-                    args.Player.Disable("无权放置家具!");
+                    args.Player.Disable(GetString("无权放置家具!"));
                 }
 
-                args.Player.SendErrorMessage("你没有权力放置被房子保护的地区的家具。");
+                args.Player.SendErrorMessage(GetString("你没有权力放置被房子保护的地区的家具。"));
                 args.Player.SendTileSquareCentered(tileX, tileY, 3);
                 return true;//假表示允许修改//真表示禁止修改
             }
@@ -458,12 +458,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权修改标牌!");
+            args.Player.Disable(GetString("无权修改标牌!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力修改被房子保护的地区的标牌。");
+        args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的地区的标牌。"));
         args.Player.SendData(PacketTypes.SignNew, "", id);
         return true;//假表示允许修改//真表示禁止修改
     }
@@ -482,12 +482,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权放水!");
+            args.Player.Disable(GetString("无权放水!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力在被房子保护的地区放水。");
+        args.Player.SendErrorMessage(GetString("你没有权力在被房子保护的地区放水。"));
         args.Player.SendTileSquareCentered(tileX, tileY);
         return true;//假表示允许修改//真表示禁止修改
     }
@@ -513,12 +513,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权油漆砖!");
+            args.Player.Disable(GetString("无权油漆砖!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力在被房子保护的地区油漆砖。");
+        args.Player.SendErrorMessage(GetString("你没有权力在被房子保护的地区油漆砖。"));
         args.Player.SendData(PacketTypes.PaintTile, "", X, Y, Main.tile[X, Y].color());
         return true;//假表示允许修改//真表示禁止修改
     }
@@ -537,12 +537,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权油漆墙!");
+            args.Player.Disable(GetString("无权油漆墙!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力在被房子保护的地区油漆墙。");
+        args.Player.SendErrorMessage(GetString("你没有权力在被房子保护的地区油漆墙。"));
         args.Player.SendData(PacketTypes.PaintWall, "", X, Y, Main.tile[X, Y].wallColor());
         return true;//假表示允许修改//真表示禁止修改
     }
@@ -570,12 +570,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权修改房子保护!");
+            args.Player.Disable(GetString("无权修改房子保护!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力修改被房子保护的地区。");
+        args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的地区。"));
         args.Player.SendTileSquareCentered(x, y);
         return true;//假表示允许修改//真表示禁止修改
     }
@@ -594,12 +594,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权修改房子保护!");
+            args.Player.Disable(GetString("无权修改房子保护!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力修改被房子保护的地区。");
+        args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的地区。"));
         args.Player.SendTileSquareCentered(x, y);
         return true;//假表示允许修改//真表示禁止修改
     }
@@ -620,12 +620,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权修改房子保护的物品!");
+            args.Player.Disable(GetString("无权修改房子保护的物品!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力修改被房子保护的物品。");
+        args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的物品。"));
         
         if (args.Player.SelectedItem.type > 0)
         {
@@ -638,7 +638,7 @@ public static class GetDataHandlers
     {
         var x = (int) args.Data.ReadInt16();
         var y = (int) args.Data.ReadInt16();
-        if (!HousingPlugin.LConfig.ProtectiveGemstoneLock)
+        if (!Config.Instance.ProtectiveGemstoneLock)
         {
             return false;
         }
@@ -654,12 +654,12 @@ public static class GetDataHandlers
             return false;
         }
 
-        if (HousingPlugin.LConfig.WarningSpoiler)
+        if (Config.Instance.WarningSpoiler)
         {
-            args.Player.Disable("无权触发房子保护的宝石锁!");
+            args.Player.Disable(GetString("无权触发房子保护的宝石锁!"));
         }
 
-        args.Player.SendErrorMessage("你没有权力触发被房子保护的宝石锁。");
+        args.Player.SendErrorMessage(GetString("你没有权力触发被房子保护的宝石锁。"));
         return true;
     }
     private static bool HandleMassWireOperation(GetDataHandlerArgs args)//109规模电路
