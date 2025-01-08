@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoFish\n"
-"POT-Creation-Date: 2025-01-08 13:15:29+0000\n"
+"POT-Creation-Date: 2025-01-08 18:22:43+0000\n"
 "PO-Revision-Date: 2024-11-06 01:13+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -191,10 +191,6 @@ msgstr ""
 "Current condition is [c/F25055:Blood Moon], unable to fish up monsters. You "
 "can [c/46C4D4:Disable] the plugin: [c/F3F292:/af off]"
 
-#: ../../AutoFish.cs:18
-msgid "涡轮增压不蒸鸭"
-msgstr ""
-
 #: ../../Commands.cs:207
 msgid "物品 [c/92C5EC:{0}] 已在指定鱼饵表中!"
 msgstr "Item [c/92C5EC:{0}] is already in the Specified Bait Table!"
@@ -246,6 +242,10 @@ msgstr ""
 #: ../../Commands.cs:134 ../../Commands.cs:159 ../../Commands.cs:169
 msgid "禁用"
 msgstr "Disabled"
+
+#: ../../AutoFish.cs:18
+msgid "自动钓鱼"
+msgstr ""
 
 #: ../../Commands.cs:103
 #, csharp-format

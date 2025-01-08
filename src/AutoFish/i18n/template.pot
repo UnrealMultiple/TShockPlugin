@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoFish\n"
-"POT-Creation-Date: 2025-01-08 13:15:29+0000\n"
-"PO-Revision-Date: 2025-01-08 13:15:30+0000\n"
+"POT-Creation-Date: 2025-01-08 18:22:43+0000\n"
+"PO-Revision-Date: 2025-01-08 18:22:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -174,10 +174,6 @@ msgstr ""
 msgid "当前为[c/F25055:血月]无法钓上怪物，可[c/46C4D4:关闭]插件：[c/F3F292:/af off]"
 msgstr ""
 
-#: ../../AutoFish.cs:18
-msgid "涡轮增压不蒸鸭"
-msgstr ""
-
 #: ../../Commands.cs:207
 msgid "物品 [c/92C5EC:{0}] 已在指定鱼饵表中!"
 msgstr ""
@@ -228,6 +224,10 @@ msgstr ""
 #: ../../Commands.cs:159
 #: ../../Commands.cs:169
 msgid "禁用"
+msgstr ""
+
+#: ../../AutoFish.cs:18
+msgid "自动钓鱼"
 msgstr ""
 
 #: ../../Commands.cs:103

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SpclPerm\n"
-"POT-Creation-Date: 2025-01-08 13:16:27+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:28+0000\n"
+"POT-Creation-Date: 2025-01-08 18:23:44+0000\n"
+"PO-Revision-Date: 2025-01-08 18:23:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../SpclPerm.cs:18
-msgid "涡轮增压不蒸鸭"
+#: ../../SpclPerm.cs:19
+msgid "服主自动执行：无敌、BUFF、物品、命令、设置背包"
 msgstr ""
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoAirItem\n"
-"POT-Creation-Date: 2025-01-08 13:15:28+0000\n"
-"PO-Revision-Date: 2025-01-08 13:15:28+0000\n"
+"POT-Creation-Date: 2025-01-08 18:22:42+0000\n"
+"PO-Revision-Date: 2025-01-08 18:22:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -94,13 +94,13 @@ msgstr ""
 msgid "已从垃圾桶移出:[c/DEFF7D:{1}]个[c/92C5EC:{0}]"
 msgstr ""
 
-#: ../../AutoAirItem.cs:133
+#: ../../AutoAirItem.cs:134
 #, csharp-format
 msgid ""
 "已从垃圾桶移除:[c/EC73B9:{0}]个[c/FF5C5F:{1}]|[c/92C5EC:返还]: [c/A1D4C2:/air del {2}]"
 msgstr ""
 
-#: ../../AutoAirItem.cs:151
+#: ../../AutoAirItem.cs:152
 #, csharp-format
 msgid ""
 "已从背包移除:[c/EC73B9:{0}]个[c/FF5C5F:{1}]|[c/92C5EC:返还]: [c/A1D4C2:/air del {2}]"
@@ -127,10 +127,6 @@ msgstr ""
 #: ../../Commands.cs:84
 #, csharp-format
 msgid "没有找到垃圾数量超过[c/92C5EC:{0}]的玩家"
-msgstr ""
-
-#: ../../AutoAirItem.cs:15
-msgid "涡轮增压不蒸鸭"
 msgstr ""
 
 #: ../../Commands.cs:202
@@ -169,6 +165,10 @@ msgstr ""
 #: ../../Commands.cs:169
 #, csharp-format
 msgid "玩家 [{0}] 的自动清理消息已[c/92C5EC:禁用]"
+msgstr ""
+
+#: ../../AutoAirItem.cs:16
+msgid "自动垃圾桶帮助玩家清理自身垃圾"
 msgstr ""
 
 #: ../../Commands.cs:101

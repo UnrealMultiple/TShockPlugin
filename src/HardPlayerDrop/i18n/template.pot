@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: HardPlayerDrop\n"
-"POT-Creation-Date: 2025-01-08 13:15:59+0000\n"
-"PO-Revision-Date: 2025-01-08 13:15:59+0000\n"
+"POT-Creation-Date: 2025-01-08 18:23:14+0000\n"
+"PO-Revision-Date: 2025-01-08 18:23:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:15
-msgid "涡轮增压不蒸鸭"
+#: ../../Plugin.cs:16
+msgid "根据玩家血量计算死亡后会掉落多少生命水晶"
 msgstr ""
 
