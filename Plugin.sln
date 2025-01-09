@@ -266,6 +266,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaponPlus", "src\WeaponPlu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dummy", "src\Dummy\Dummy.csproj", "{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurvivalCrisis", "src\SurvivalCrisis\SurvivalCrisis.csproj", "{37365719-9365-4EF3-9B5F-1909797E142F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1306,6 +1308,14 @@ Global
 		{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}.Release|x64.ActiveCfg = Release|Any CPU
 		{411A8F53-FEE2-4DC0-9965-7303FCBCB2F4}.Release|x64.Build.0 = Release|Any CPU
+		{37365719-9365-4EF3-9B5F-1909797E142F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37365719-9365-4EF3-9B5F-1909797E142F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37365719-9365-4EF3-9B5F-1909797E142F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{37365719-9365-4EF3-9B5F-1909797E142F}.Debug|x64.Build.0 = Debug|Any CPU
+		{37365719-9365-4EF3-9B5F-1909797E142F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37365719-9365-4EF3-9B5F-1909797E142F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37365719-9365-4EF3-9B5F-1909797E142F}.Release|x64.ActiveCfg = Release|Any CPU
+		{37365719-9365-4EF3-9B5F-1909797E142F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

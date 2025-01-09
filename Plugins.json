@@ -1,4 +1,2854 @@
 [
+    {
+        "Name": "Platform",
+        "Version": "1.1.0.3",
+        "Author": "Cai",
+        "Description": {
+            "en-US": "判断玩家设备",
+            "de-DE": "判断玩家设备",
+            "it-IT": "判断玩家设备",
+            "fr-FR": "判断玩家设备",
+            "es-ES": "判断玩家设备",
+            "ru-RU": "判断玩家设备",
+            "zh-CN": "判断玩家设备",
+            "pt-BR": "判断玩家设备",
+            "pl-PL": "判断玩家设备"
+        },
+        "AssemblyName": "Platform",
+        "Path": "Platform.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "Chireiden.TShock.Omni",
+        "Version": "0.0.198.0",
+        "Author": "SGKoishi",
+        "Description": {
+            "en-US": "Yet another misc plugin for TShock",
+            "de-DE": "Yet another misc plugin for TShock",
+            "it-IT": "Yet another misc plugin for TShock",
+            "fr-FR": "Yet another misc plugin for TShock",
+            "es-ES": "Yet another misc plugin for TShock",
+            "ru-RU": "Yet another misc plugin for TShock",
+            "zh-CN": "Yet another misc plugin for TShock",
+            "pt-BR": "Yet another misc plugin for TShock",
+            "pl-PL": "Yet another misc plugin for TShock"
+        },
+        "AssemblyName": "Chireiden.TShock.Omni",
+        "Path": "Chireiden.TShock.Omni.dll",
+        "Dependencies": [],
+        "HotReload": false
+    },
+    {
+        "Name": "Crossplay",
+        "Version": "2.2",
+        "Author": "Moneylover3246",
+        "Description": {
+            "en-US": "Enables crossplay for terraria",
+            "de-DE": "Enables crossplay for terraria",
+            "it-IT": "Enables crossplay for terraria",
+            "fr-FR": "Enables crossplay for terraria",
+            "es-ES": "Enables crossplay for terraria",
+            "ru-RU": "Enables crossplay for terraria",
+            "zh-CN": "Enables crossplay for terraria",
+            "pt-BR": "Enables crossplay for terraria",
+            "pl-PL": "Enables crossplay for terraria"
+        },
+        "AssemblyName": "Crossplay",
+        "Path": "Crossplay.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "AdditionalPylons",
+        "Version": "1.0.6",
+        "Author": "Stealownz,肝帝熙恩优化1449",
+        "Description": {
+            "en-US": "Customize the number of crystal towers that can be placed, at least one, and all of them ignore the environment",
+            "de-DE": "Customize the number of crystal towers that can be placed, at least one, and all of them ignore the environment",
+            "it-IT": "Customize the number of crystal towers that can be placed, at least one, and all of them ignore the environment",
+            "fr-FR": "Customize the number of crystal towers that can be placed, at least one, and all of them ignore the environment",
+            "es-ES": "Customize the number of crystal towers that can be placed, at least one, and all of them ignore the environment",
+            "ru-RU": "Customize the number of crystal towers that can be placed, at least one, and all of them ignore the environment",
+            "zh-CN": "Customize the number of crystal towers that can be placed, at least one, and all of them ignore the environment",
+            "pt-BR": "Customize the number of crystal towers that can be placed, at least one, and all of them ignore the environment",
+            "pl-PL": "Customize the number of crystal towers that can be placed, at least one, and all of them ignore the environment"
+        },
+        "AssemblyName": "AdditionalPylons",
+        "Path": "AdditionalPylons.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "AnnouncementBoxPlus",
+        "Version": "1.0.3",
+        "Author": "Cai",
+        "Description": {
+            "en-US": "优化广播盒",
+            "de-DE": "优化广播盒",
+            "it-IT": "优化广播盒",
+            "fr-FR": "优化广播盒",
+            "es-ES": "优化广播盒",
+            "ru-RU": "优化广播盒",
+            "zh-CN": "优化广播盒",
+            "pt-BR": "优化广播盒",
+            "pl-PL": "优化广播盒"
+        },
+        "AssemblyName": "AnnouncementBoxPlus",
+        "Path": "AnnouncementBoxPlus.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "AutoAirItem",
+        "Version": "1.2.6",
+        "Author": "羽学",
+        "Description": {
+            "en-US": "自动垃圾桶帮助玩家清理自身垃圾",
+            "de-DE": "自动垃圾桶帮助玩家清理自身垃圾",
+            "it-IT": "自动垃圾桶帮助玩家清理自身垃圾",
+            "fr-FR": "自动垃圾桶帮助玩家清理自身垃圾",
+            "es-ES": "自动垃圾桶帮助玩家清理自身垃圾",
+            "ru-RU": "自动垃圾桶帮助玩家清理自身垃圾",
+            "zh-CN": "自动垃圾桶帮助玩家清理自身垃圾",
+            "pt-BR": "自动垃圾桶帮助玩家清理自身垃圾",
+            "pl-PL": "自动垃圾桶帮助玩家清理自身垃圾"
+        },
+        "AssemblyName": "AutoAirItem",
+        "Path": "AutoAirItem.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "AutoBroadcast",
+        "Version": "1.0.8",
+        "Author": "Scavenger",
+        "Description": {
+            "en-US": "自动广播插件",
+            "de-DE": "自动广播插件",
+            "it-IT": "自动广播插件",
+            "fr-FR": "自动广播插件",
+            "es-ES": "自动广播插件",
+            "ru-RU": "自动广播插件",
+            "zh-CN": "自动广播插件",
+            "pt-BR": "自动广播插件",
+            "pl-PL": "自动广播插件"
+        },
+        "AssemblyName": "AutoBroadcast",
+        "Path": "AutoBroadcast.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "AutoClear",
+        "Version": "1.0.7",
+        "Author": "大豆子[Mute适配1447]，肝帝熙恩更新",
+        "Description": {
+            "en-US": "智能扫地机",
+            "de-DE": "智能扫地机",
+            "it-IT": "智能扫地机",
+            "fr-FR": "智能扫地机",
+            "es-ES": "智能扫地机",
+            "ru-RU": "智能扫地机",
+            "zh-CN": "智能扫地机",
+            "pt-BR": "智能扫地机",
+            "pl-PL": "智能扫地机"
+        },
+        "AssemblyName": "AutoClear",
+        "Path": "AutoClear.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "AutoFish",
+        "Version": "1.3.5",
+        "Author": "羽学 少司命",
+        "Description": {
+            "en-US": "自动钓鱼",
+            "de-DE": "自动钓鱼",
+            "it-IT": "自动钓鱼",
+            "fr-FR": "自动钓鱼",
+            "es-ES": "自动钓鱼",
+            "ru-RU": "自动钓鱼",
+            "zh-CN": "自动钓鱼",
+            "pt-BR": "自动钓鱼",
+            "pl-PL": "自动钓鱼"
+        },
+        "AssemblyName": "AutoFish",
+        "Path": "AutoFish.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "AutoPluginManager",
+        "Version": "2.0.3.2",
+        "Author": "少司命,Cai,LaoSparrow",
+        "Description": {
+            "en-US": "自动更新你的插件！",
+            "de-DE": "自动更新你的插件！",
+            "it-IT": "自动更新你的插件！",
+            "fr-FR": "自动更新你的插件！",
+            "es-ES": "自动更新你的插件！",
+            "ru-RU": "自动更新你的插件！",
+            "zh-CN": "自动更新你的插件！",
+            "pt-BR": "自动更新你的插件！",
+            "pl-PL": "自动更新你的插件！"
+        },
+        "AssemblyName": "AutoPluginManager",
+        "Path": "AutoPluginManager.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "AutoReset",
+        "Version": "2024.12.18.2",
+        "Author": "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩",
+        "Description": {
+            "en-US": "完全自动重置插件",
+            "de-DE": "完全自动重置插件",
+            "it-IT": "完全自动重置插件",
+            "fr-FR": "完全自动重置插件",
+            "es-ES": "完全自动重置插件",
+            "ru-RU": "完全自动重置插件",
+            "zh-CN": "完全自动重置插件",
+            "pt-BR": "完全自动重置插件",
+            "pl-PL": "完全自动重置插件"
+        },
+        "AssemblyName": "AutoReset",
+        "Path": "AutoReset.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "AutoStoreItems",
+        "Version": "1.3.4",
+        "Author": "羽学 cmgy雱",
+        "Description": {
+            "en-US": "持有指定物品根据配置物品ID自动存入存储空间",
+            "de-DE": "持有指定物品根据配置物品ID自动存入存储空间",
+            "it-IT": "持有指定物品根据配置物品ID自动存入存储空间",
+            "fr-FR": "持有指定物品根据配置物品ID自动存入存储空间",
+            "es-ES": "持有指定物品根据配置物品ID自动存入存储空间",
+            "ru-RU": "持有指定物品根据配置物品ID自动存入存储空间",
+            "zh-CN": "持有指定物品根据配置物品ID自动存入存储空间",
+            "pt-BR": "持有指定物品根据配置物品ID自动存入存储空间",
+            "pl-PL": "持有指定物品根据配置物品ID自动存入存储空间"
+        },
+        "AssemblyName": "AutoStoreItems",
+        "Path": "AutoStoreItems.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "AutoTeam",
+        "Version": "2.4.5",
+        "Author": "十七改，肝帝熙恩改",
+        "Description": {
+            "en-US": "AutoTeamPlus",
+            "de-DE": "AutoTeamPlus",
+            "it-IT": "AutoTeamPlus",
+            "fr-FR": "AutoTeamPlus",
+            "es-ES": "AutoTeamPlus",
+            "ru-RU": "AutoTeamPlus",
+            "zh-CN": "AutoTeamPlus",
+            "pt-BR": "AutoTeamPlus",
+            "pl-PL": "AutoTeamPlus"
+        },
+        "AssemblyName": "AutoTeam",
+        "Path": "AutoTeam.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "Back",
+        "Version": "1.0.0.8",
+        "Author": "Megghy,熙恩改",
+        "Description": {
+            "en-US": "允许玩家传送回死亡地点",
+            "de-DE": "允许玩家传送回死亡地点",
+            "it-IT": "允许玩家传送回死亡地点",
+            "fr-FR": "允许玩家传送回死亡地点",
+            "es-ES": "允许玩家传送回死亡地点",
+            "ru-RU": "允许玩家传送回死亡地点",
+            "zh-CN": "允许玩家传送回死亡地点",
+            "pt-BR": "允许玩家传送回死亡地点",
+            "pl-PL": "允许玩家传送回死亡地点"
+        },
+        "AssemblyName": "Back",
+        "Path": "Back.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "BagPing",
+        "Version": "1.0.4",
+        "Author": "Cai",
+        "Description": {
+            "en-US": "在小地图上标记掉落的宝藏袋",
+            "de-DE": "在小地图上标记掉落的宝藏袋",
+            "it-IT": "在小地图上标记掉落的宝藏袋",
+            "fr-FR": "在小地图上标记掉落的宝藏袋",
+            "es-ES": "在小地图上标记掉落的宝藏袋",
+            "ru-RU": "在小地图上标记掉落的宝藏袋",
+            "zh-CN": "在小地图上标记掉落的宝藏袋",
+            "pt-BR": "在小地图上标记掉落的宝藏袋",
+            "pl-PL": "在小地图上标记掉落的宝藏袋"
+        },
+        "AssemblyName": "BagPing",
+        "Path": "BagPing.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "BanNpc",
+        "Version": "1.0.0.5",
+        "Author": "Patrikk,GK 改良",
+        "Description": {
+            "en-US": "禁止指定怪物的出没",
+            "de-DE": "禁止指定怪物的出没",
+            "it-IT": "禁止指定怪物的出没",
+            "fr-FR": "禁止指定怪物的出没",
+            "es-ES": "禁止指定怪物的出没",
+            "ru-RU": "禁止指定怪物的出没",
+            "zh-CN": "禁止指定怪物的出没",
+            "pt-BR": "禁止指定怪物的出没",
+            "pl-PL": "禁止指定怪物的出没"
+        },
+        "AssemblyName": "BanNpc",
+        "Path": "BanNpc.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "BedSet",
+        "Version": "1.0.0.5",
+        "Author": "cmgy",
+        "Description": {
+            "en-US": "",
+            "de-DE": "",
+            "it-IT": "",
+            "fr-FR": "",
+            "es-ES": "",
+            "ru-RU": "",
+            "zh-CN": "",
+            "pt-BR": "",
+            "pl-PL": ""
+        },
+        "AssemblyName": "BedSet",
+        "Path": "BedSet.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "BetterWhitelist",
+        "Version": "2.6.1",
+        "Author": "豆沙，肝帝熙恩、Cai修改",
+        "Description": {
+            "en-US": "通过检查玩家姓名的玩家白名单",
+            "de-DE": "通过检查玩家姓名的玩家白名单",
+            "it-IT": "通过检查玩家姓名的玩家白名单",
+            "fr-FR": "通过检查玩家姓名的玩家白名单",
+            "es-ES": "通过检查玩家姓名的玩家白名单",
+            "ru-RU": "通过检查玩家姓名的玩家白名单",
+            "zh-CN": "通过检查玩家姓名的玩家白名单",
+            "pt-BR": "通过检查玩家姓名的玩家白名单",
+            "pl-PL": "通过检查玩家姓名的玩家白名单"
+        },
+        "AssemblyName": "BetterWhitelist",
+        "Path": "BetterWhitelist.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "BridgeBuilder",
+        "Version": "1.1.2",
+        "Author": "Soofa，肝帝熙恩汉化1449",
+        "Description": {
+            "en-US": "铺桥!",
+            "de-DE": "铺桥!",
+            "it-IT": "铺桥!",
+            "fr-FR": "铺桥!",
+            "es-ES": "铺桥!",
+            "ru-RU": "铺桥!",
+            "zh-CN": "铺桥!",
+            "pt-BR": "铺桥!",
+            "pl-PL": "铺桥!"
+        },
+        "AssemblyName": "BridgeBuilder",
+        "Path": "BridgeBuilder.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "BuildMaster",
+        "Version": "1.0.5",
+        "Author": "豆沙 羽学，肝帝熙恩适配",
+        "Description": {
+            "en-US": "A minigame that is named BuildMaster",
+            "de-DE": "A minigame that is named BuildMaster",
+            "it-IT": "A minigame that is named BuildMaster",
+            "fr-FR": "A minigame that is named BuildMaster",
+            "es-ES": "A minigame that is named BuildMaster",
+            "ru-RU": "A minigame that is named BuildMaster",
+            "zh-CN": "A minigame that is named BuildMaster",
+            "pt-BR": "A minigame that is named BuildMaster",
+            "pl-PL": "A minigame that is named BuildMaster"
+        },
+        "AssemblyName": "BuildMaster",
+        "Path": "BuildMaster.dll",
+        "Dependencies": [
+            "MiniGamesAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "CaiBot",
+        "Version": "2024.12.22.1",
+        "Author": "Cai,羽学,西江",
+        "Description": {
+            "en-US": "CaiBot机器人的适配插件",
+            "de-DE": "CaiBot机器人的适配插件",
+            "it-IT": "CaiBot机器人的适配插件",
+            "fr-FR": "CaiBot机器人的适配插件",
+            "es-ES": "CaiBot机器人的适配插件",
+            "ru-RU": "CaiBot机器人的适配插件",
+            "zh-CN": "CaiBot机器人的适配插件",
+            "pt-BR": "CaiBot机器人的适配插件",
+            "pl-PL": "CaiBot机器人的适配插件"
+        },
+        "AssemblyName": "CaiBot",
+        "Path": "CaiBot.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "CaiCustomEmojiCommand",
+        "Version": "2024.12.18.2",
+        "Author": "Cai",
+        "Description": {
+            "en-US": "自定义Emoji表情执行命令",
+            "de-DE": "自定义Emoji表情执行命令",
+            "it-IT": "自定义Emoji表情执行命令",
+            "fr-FR": "自定义Emoji表情执行命令",
+            "es-ES": "自定义Emoji表情执行命令",
+            "ru-RU": "自定义Emoji表情执行命令",
+            "zh-CN": "自定义Emoji表情执行命令",
+            "pt-BR": "自定义Emoji表情执行命令",
+            "pl-PL": "自定义Emoji表情执行命令"
+        },
+        "AssemblyName": "CaiCustomEmojiCommand",
+        "Path": "CaiCustomEmojiCommand.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "CaiLib",
+        "Version": "2024.12.18.3",
+        "Author": "Cai",
+        "Description": {
+            "en-US": "CaiLib",
+            "de-DE": "CaiLib",
+            "it-IT": "CaiLib",
+            "fr-FR": "CaiLib",
+            "es-ES": "CaiLib",
+            "ru-RU": "CaiLib",
+            "zh-CN": "CaiLib",
+            "pt-BR": "CaiLib",
+            "pl-PL": "CaiLib"
+        },
+        "AssemblyName": "CaiLib",
+        "Path": "CaiLib.dll",
+        "Dependencies": [
+            "SixLabors.ImageSharp"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "CaiPacketDebug",
+        "Version": "2024.12.18.1",
+        "Author": "Cai",
+        "Description": {
+            "en-US": "用于调试数据包的插件捏~",
+            "de-DE": "用于调试数据包的插件捏~",
+            "it-IT": "用于调试数据包的插件捏~",
+            "fr-FR": "用于调试数据包的插件捏~",
+            "es-ES": "用于调试数据包的插件捏~",
+            "ru-RU": "用于调试数据包的插件捏~",
+            "zh-CN": "用于调试数据包的插件捏~",
+            "pt-BR": "用于调试数据包的插件捏~",
+            "pl-PL": "用于调试数据包的插件捏~"
+        },
+        "AssemblyName": "CaiPacketDebug",
+        "Path": "CaiPacketDebug.dll",
+        "Dependencies": [
+            "LazyAPI",
+            "TrProtocol"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "CaiRewardChest",
+        "Version": "2024.12.18.2",
+        "Author": "Cai",
+        "Description": {
+            "en-US": "奖励箱！！",
+            "de-DE": "奖励箱！！",
+            "it-IT": "奖励箱！！",
+            "fr-FR": "奖励箱！！",
+            "es-ES": "奖励箱！！",
+            "ru-RU": "奖励箱！！",
+            "zh-CN": "奖励箱！！",
+            "pt-BR": "奖励箱！！",
+            "pl-PL": "奖励箱！！"
+        },
+        "AssemblyName": "CaiRewardChest",
+        "Path": "CaiRewardChest.dll",
+        "Dependencies": [
+            "linq2db",
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "CGive",
+        "Version": "1.0.0.6",
+        "Author": "Leader",
+        "Description": {
+            "en-US": "离线give",
+            "de-DE": "离线give",
+            "it-IT": "离线give",
+            "fr-FR": "离线give",
+            "es-ES": "离线give",
+            "ru-RU": "离线give",
+            "zh-CN": "离线give",
+            "pt-BR": "离线give",
+            "pl-PL": "离线give"
+        },
+        "AssemblyName": "CGive",
+        "Path": "CGive.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "Challenger",
+        "Version": "1.0.1.8",
+        "Author": "z枳 星夜神花 羽学",
+        "Description": {
+            "en-US": "增强游戏难度，更好的游戏体验",
+            "de-DE": "增强游戏难度，更好的游戏体验",
+            "it-IT": "增强游戏难度，更好的游戏体验",
+            "fr-FR": "增强游戏难度，更好的游戏体验",
+            "es-ES": "增强游戏难度，更好的游戏体验",
+            "ru-RU": "增强游戏难度，更好的游戏体验",
+            "zh-CN": "增强游戏难度，更好的游戏体验",
+            "pt-BR": "增强游戏难度，更好的游戏体验",
+            "pl-PL": "增强游戏难度，更好的游戏体验"
+        },
+        "AssemblyName": "Challenger",
+        "Path": "Challenger.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "Chameleon",
+        "Version": "1.0.8",
+        "Author": "mistzzt,肝帝熙恩",
+        "Description": {
+            "en-US": "账户系统交互替换方案",
+            "de-DE": "账户系统交互替换方案",
+            "it-IT": "账户系统交互替换方案",
+            "fr-FR": "账户系统交互替换方案",
+            "es-ES": "账户系统交互替换方案",
+            "ru-RU": "账户系统交互替换方案",
+            "zh-CN": "账户系统交互替换方案",
+            "pt-BR": "账户系统交互替换方案",
+            "pl-PL": "账户系统交互替换方案"
+        },
+        "AssemblyName": "Chameleon",
+        "Path": "Chameleon.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "ChattyBridge",
+        "Version": "1.0.0.5",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "ChattyBridge",
+            "de-DE": "ChattyBridge",
+            "it-IT": "ChattyBridge",
+            "fr-FR": "ChattyBridge",
+            "es-ES": "ChattyBridge",
+            "ru-RU": "ChattyBridge",
+            "zh-CN": "ChattyBridge",
+            "pt-BR": "ChattyBridge",
+            "pl-PL": "ChattyBridge"
+        },
+        "AssemblyName": "ChattyBridge",
+        "Path": "ChattyBridge.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "ChestRestore",
+        "Version": "1.0.8",
+        "Author": "Cjx重构 ，肝帝熙恩简单修改",
+        "Description": {
+            "en-US": "无限宝箱插件",
+            "de-DE": "无限宝箱插件",
+            "it-IT": "无限宝箱插件",
+            "fr-FR": "无限宝箱插件",
+            "es-ES": "无限宝箱插件",
+            "ru-RU": "无限宝箱插件",
+            "zh-CN": "无限宝箱插件",
+            "pt-BR": "无限宝箱插件",
+            "pl-PL": "无限宝箱插件"
+        },
+        "AssemblyName": "ChestRestore",
+        "Path": "ChestRestore.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "Chireiden.TShock.Omni.Misc",
+        "Version": "0.0.198.0",
+        "Author": "SGKoishi",
+        "Description": {
+            "en-US": "Yet another misc plugin for TShock - the miscellaneous part",
+            "de-DE": "Yet another misc plugin for TShock - the miscellaneous part",
+            "it-IT": "Yet another misc plugin for TShock - the miscellaneous part",
+            "fr-FR": "Yet another misc plugin for TShock - the miscellaneous part",
+            "es-ES": "Yet another misc plugin for TShock - the miscellaneous part",
+            "ru-RU": "Yet another misc plugin for TShock - the miscellaneous part",
+            "zh-CN": "Yet another misc plugin for TShock - the miscellaneous part",
+            "pt-BR": "Yet another misc plugin for TShock - the miscellaneous part",
+            "pl-PL": "Yet another misc plugin for TShock - the miscellaneous part"
+        },
+        "AssemblyName": "Chireiden.TShock.Omni.Misc",
+        "Path": "Chireiden.TShock.Omni.Misc.dll",
+        "Dependencies": [
+            "Chireiden.TShock.Omni"
+        ],
+        "HotReload": false
+    },
+    {
+        "Name": "CNPCShop",
+        "Version": "1.0.3",
+        "Author": "Megghy，肝帝熙恩更新1449",
+        "Description": {
+            "en-US": "自定义NPC商店出售的物品",
+            "de-DE": "自定义NPC商店出售的物品",
+            "it-IT": "自定义NPC商店出售的物品",
+            "fr-FR": "自定义NPC商店出售的物品",
+            "es-ES": "自定义NPC商店出售的物品",
+            "ru-RU": "自定义NPC商店出售的物品",
+            "zh-CN": "自定义NPC商店出售的物品",
+            "pt-BR": "自定义NPC商店出售的物品",
+            "pl-PL": "自定义NPC商店出售的物品"
+        },
+        "AssemblyName": "CNPCShop",
+        "Path": "CNPCShop.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "ConsoleSql",
+        "Version": "1.0.1",
+        "Author": "Cai",
+        "Description": {
+            "en-US": "让控制台可以执行SQL操作数据库",
+            "de-DE": "让控制台可以执行SQL操作数据库",
+            "it-IT": "让控制台可以执行SQL操作数据库",
+            "fr-FR": "让控制台可以执行SQL操作数据库",
+            "es-ES": "让控制台可以执行SQL操作数据库",
+            "ru-RU": "让控制台可以执行SQL操作数据库",
+            "zh-CN": "让控制台可以执行SQL操作数据库",
+            "pt-BR": "让控制台可以执行SQL操作数据库",
+            "pl-PL": "让控制台可以执行SQL操作数据库"
+        },
+        "AssemblyName": "ConsoleSql",
+        "Path": "ConsoleSql.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "ConvertWorld",
+        "Version": "1.0.3",
+        "Author": "onusai 羽学",
+        "Description": {
+            "en-US": "击败指定怪物替换世界指定图格与所有箱子内物品",
+            "de-DE": "击败指定怪物替换世界指定图格与所有箱子内物品",
+            "it-IT": "击败指定怪物替换世界指定图格与所有箱子内物品",
+            "fr-FR": "击败指定怪物替换世界指定图格与所有箱子内物品",
+            "es-ES": "击败指定怪物替换世界指定图格与所有箱子内物品",
+            "ru-RU": "击败指定怪物替换世界指定图格与所有箱子内物品",
+            "zh-CN": "击败指定怪物替换世界指定图格与所有箱子内物品",
+            "pt-BR": "击败指定怪物替换世界指定图格与所有箱子内物品",
+            "pl-PL": "击败指定怪物替换世界指定图格与所有箱子内物品"
+        },
+        "AssemblyName": "ConvertWorld",
+        "Path": "ConvertWorld.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "CreateSpawn",
+        "Version": "1.0.0.4",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "出生建筑",
+            "de-DE": "出生建筑",
+            "it-IT": "出生建筑",
+            "fr-FR": "出生建筑",
+            "es-ES": "出生建筑",
+            "ru-RU": "出生建筑",
+            "zh-CN": "出生建筑",
+            "pt-BR": "出生建筑",
+            "pl-PL": "出生建筑"
+        },
+        "AssemblyName": "CreateSpawn",
+        "Path": "CreateSpawn.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "CriticalHit",
+        "Version": "1.2.2",
+        "Author": "White制作,Stone·Free汉化整合，肝帝熙恩更新适配1449",
+        "Description": {
+            "en-US": "提供攻击NPC跳出浮动文字效果",
+            "de-DE": "提供攻击NPC跳出浮动文字效果",
+            "it-IT": "提供攻击NPC跳出浮动文字效果",
+            "fr-FR": "提供攻击NPC跳出浮动文字效果",
+            "es-ES": "提供攻击NPC跳出浮动文字效果",
+            "ru-RU": "提供攻击NPC跳出浮动文字效果",
+            "zh-CN": "提供攻击NPC跳出浮动文字效果",
+            "pt-BR": "提供攻击NPC跳出浮动文字效果",
+            "pl-PL": "提供攻击NPC跳出浮动文字效果"
+        },
+        "AssemblyName": "CriticalHit",
+        "Path": "CriticalHit.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "CustomMonster",
+        "Version": "1.0.4.39",
+        "Author": "GK 阁下 羽学",
+        "Description": {
+            "en-US": "自定义怪物出没时的血量,当然不止这些！",
+            "de-DE": "自定义怪物出没时的血量,当然不止这些！",
+            "it-IT": "自定义怪物出没时的血量,当然不止这些！",
+            "fr-FR": "自定义怪物出没时的血量,当然不止这些！",
+            "es-ES": "自定义怪物出没时的血量,当然不止这些！",
+            "ru-RU": "自定义怪物出没时的血量,当然不止这些！",
+            "zh-CN": "自定义怪物出没时的血量,当然不止这些！",
+            "pt-BR": "自定义怪物出没时的血量,当然不止这些！",
+            "pl-PL": "自定义怪物出没时的血量,当然不止这些！"
+        },
+        "AssemblyName": "CustomMonster",
+        "Path": "CustomMonster.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "DamageRuleLoot",
+        "Version": "1.3.2",
+        "Author": "羽学 西江小子",
+        "Description": {
+            "en-US": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
+            "de-DE": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
+            "it-IT": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
+            "fr-FR": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
+            "es-ES": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
+            "ru-RU": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
+            "zh-CN": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
+            "pt-BR": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
+            "pl-PL": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理"
+        },
+        "AssemblyName": "DamageRuleLoot",
+        "Path": "DamageRuleLoot.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "DamageStatistic",
+        "Version": "1.0.2",
+        "Author": "Megghy",
+        "Description": {
+            "en-US": "在每次 Boss 战后显示每个玩家造成的伤害。",
+            "de-DE": "在每次 Boss 战后显示每个玩家造成的伤害。",
+            "it-IT": "在每次 Boss 战后显示每个玩家造成的伤害。",
+            "fr-FR": "在每次 Boss 战后显示每个玩家造成的伤害。",
+            "es-ES": "在每次 Boss 战后显示每个玩家造成的伤害。",
+            "ru-RU": "在每次 Boss 战后显示每个玩家造成的伤害。",
+            "zh-CN": "在每次 Boss 战后显示每个玩家造成的伤害。",
+            "pt-BR": "在每次 Boss 战后显示每个玩家造成的伤害。",
+            "pl-PL": "在每次 Boss 战后显示每个玩家造成的伤害。"
+        },
+        "AssemblyName": "DamageStatistic",
+        "Path": "DamageStatistic.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "DataSync",
+        "Version": "1.0",
+        "Author": "None",
+        "Description": {
+            "en-US": "None",
+            "de-DE": "None",
+            "it-IT": "None",
+            "fr-FR": "None",
+            "es-ES": "None",
+            "ru-RU": "None",
+            "zh-CN": "None",
+            "pt-BR": "None",
+            "pl-PL": "None"
+        },
+        "AssemblyName": "DataSync",
+        "Path": "DataSync.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "DeathDrop",
+        "Version": "1.0.4",
+        "Author": "大豆子，肝帝熙恩更新优化",
+        "Description": {
+            "en-US": "怪物死亡随机和自定义掉落物品",
+            "de-DE": "怪物死亡随机和自定义掉落物品",
+            "it-IT": "怪物死亡随机和自定义掉落物品",
+            "fr-FR": "怪物死亡随机和自定义掉落物品",
+            "es-ES": "怪物死亡随机和自定义掉落物品",
+            "ru-RU": "怪物死亡随机和自定义掉落物品",
+            "zh-CN": "怪物死亡随机和自定义掉落物品",
+            "pt-BR": "怪物死亡随机和自定义掉落物品",
+            "pl-PL": "怪物死亡随机和自定义掉落物品"
+        },
+        "AssemblyName": "DeathDrop",
+        "Path": "DeathDrop.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "DisableMonsLoot",
+        "Version": "1.3.2",
+        "Author": "羽学",
+        "Description": {
+            "en-US": "清理怪物身边掉落物",
+            "de-DE": "清理怪物身边掉落物",
+            "it-IT": "清理怪物身边掉落物",
+            "fr-FR": "清理怪物身边掉落物",
+            "es-ES": "清理怪物身边掉落物",
+            "ru-RU": "清理怪物身边掉落物",
+            "zh-CN": "清理怪物身边掉落物",
+            "pt-BR": "清理怪物身边掉落物",
+            "pl-PL": "清理怪物身边掉落物"
+        },
+        "AssemblyName": "DisableMonsLoot",
+        "Path": "DisableMonsLoot.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "DonotFuck",
+        "Version": "3.2.1",
+        "Author": "Cai 羽学",
+        "Description": {
+            "en-US": "当玩家聊天有敏感词时用*号代替该词",
+            "de-DE": "当玩家聊天有敏感词时用*号代替该词",
+            "it-IT": "当玩家聊天有敏感词时用*号代替该词",
+            "fr-FR": "当玩家聊天有敏感词时用*号代替该词",
+            "es-ES": "当玩家聊天有敏感词时用*号代替该词",
+            "ru-RU": "当玩家聊天有敏感词时用*号代替该词",
+            "zh-CN": "当玩家聊天有敏感词时用*号代替该词",
+            "pt-BR": "当玩家聊天有敏感词时用*号代替该词",
+            "pl-PL": "当玩家聊天有敏感词时用*号代替该词"
+        },
+        "AssemblyName": "DonotFuck",
+        "Path": "DonotFuck.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "DTEntryBlock",
+        "Version": "1.1.6",
+        "Author": "肝帝熙恩",
+        "Description": {
+            "en-US": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+            "de-DE": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+            "it-IT": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+            "fr-FR": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+            "es-ES": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+            "ru-RU": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+            "zh-CN": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+            "pt-BR": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+            "pl-PL": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙"
+        },
+        "AssemblyName": "DTEntryBlock",
+        "Path": "DTEntryBlock.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "Dummy",
+        "Version": "1.0.0.0",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "在你的服务器中放置假人！",
+            "de-DE": "在你的服务器中放置假人！",
+            "it-IT": "在你的服务器中放置假人！",
+            "fr-FR": "在你的服务器中放置假人！",
+            "es-ES": "在你的服务器中放置假人！",
+            "ru-RU": "在你的服务器中放置假人！",
+            "zh-CN": "在你的服务器中放置假人！",
+            "pt-BR": "在你的服务器中放置假人！",
+            "pl-PL": "在你的服务器中放置假人！"
+        },
+        "AssemblyName": "Dummy",
+        "Path": "Dummy.dll",
+        "Dependencies": [
+            "LazyAPI",
+            "TrProtocol"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "DumpTerrariaID",
+        "Version": "1.0.0.2",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "DumpID",
+            "de-DE": "DumpID",
+            "it-IT": "DumpID",
+            "fr-FR": "DumpID",
+            "es-ES": "DumpID",
+            "ru-RU": "DumpID",
+            "zh-CN": "DumpID",
+            "pt-BR": "DumpID",
+            "pl-PL": "DumpID"
+        },
+        "AssemblyName": "DumpTerrariaID",
+        "Path": "DumpTerrariaID.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "DwTP",
+        "Version": "1.0.1",
+        "Author": "羽学",
+        "Description": {
+            "en-US": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
+            "de-DE": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
+            "it-IT": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
+            "fr-FR": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
+            "es-ES": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
+            "ru-RU": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
+            "zh-CN": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
+            "pt-BR": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
+            "pl-PL": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置"
+        },
+        "AssemblyName": "DwTP",
+        "Path": "DwTP.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "Economics.Deal",
+        "Version": "2.0.0.2",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "玩家可以进行交易",
+            "de-DE": "玩家可以进行交易",
+            "it-IT": "玩家可以进行交易",
+            "fr-FR": "玩家可以进行交易",
+            "es-ES": "玩家可以进行交易",
+            "ru-RU": "玩家可以进行交易",
+            "zh-CN": "玩家可以进行交易",
+            "pt-BR": "玩家可以进行交易",
+            "pl-PL": "玩家可以进行交易"
+        },
+        "AssemblyName": "Economics.Deal",
+        "Path": "Economics.Deal.dll",
+        "Dependencies": [
+            "EconomicsAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "Economics.NPC",
+        "Version": "2.0.0.1",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "修改NPC掉落货币!",
+            "de-DE": "修改NPC掉落货币!",
+            "it-IT": "修改NPC掉落货币!",
+            "fr-FR": "修改NPC掉落货币!",
+            "es-ES": "修改NPC掉落货币!",
+            "ru-RU": "修改NPC掉落货币!",
+            "zh-CN": "修改NPC掉落货币!",
+            "pt-BR": "修改NPC掉落货币!",
+            "pl-PL": "修改NPC掉落货币!"
+        },
+        "AssemblyName": "Economics.NPC",
+        "Path": "Economics.NPC.dll",
+        "Dependencies": [
+            "EconomicsAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "Economics.Regain",
+        "Version": "2.0.0.1",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "对玩家的物品进行回收!",
+            "de-DE": "对玩家的物品进行回收!",
+            "it-IT": "对玩家的物品进行回收!",
+            "fr-FR": "对玩家的物品进行回收!",
+            "es-ES": "对玩家的物品进行回收!",
+            "ru-RU": "对玩家的物品进行回收!",
+            "zh-CN": "对玩家的物品进行回收!",
+            "pt-BR": "对玩家的物品进行回收!",
+            "pl-PL": "对玩家的物品进行回收!"
+        },
+        "AssemblyName": "Economics.Regain",
+        "Path": "Economics.Regain.dll",
+        "Dependencies": [
+            "EconomicsAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "Economics.RPG",
+        "Version": "2.0.0.1",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "提供RPG玩法!",
+            "de-DE": "提供RPG玩法!",
+            "it-IT": "提供RPG玩法!",
+            "fr-FR": "提供RPG玩法!",
+            "es-ES": "提供RPG玩法!",
+            "ru-RU": "提供RPG玩法!",
+            "zh-CN": "提供RPG玩法!",
+            "pt-BR": "提供RPG玩法!",
+            "pl-PL": "提供RPG玩法!"
+        },
+        "AssemblyName": "Economics.RPG",
+        "Path": "Economics.RPG.dll",
+        "Dependencies": [
+            "EconomicsAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "Economics.Shop",
+        "Version": "2.0.0.1",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "经济商店!",
+            "de-DE": "经济商店!",
+            "it-IT": "经济商店!",
+            "fr-FR": "经济商店!",
+            "es-ES": "经济商店!",
+            "ru-RU": "经济商店!",
+            "zh-CN": "经济商店!",
+            "pt-BR": "经济商店!",
+            "pl-PL": "经济商店!"
+        },
+        "AssemblyName": "Economics.Shop",
+        "Path": "Economics.Shop.dll",
+        "Dependencies": [
+            "EconomicsAPI",
+            "Economics.RPG"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "Economics.Skill",
+        "Version": "2.0.0.7",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "让玩家拥有技能!",
+            "de-DE": "让玩家拥有技能!",
+            "it-IT": "让玩家拥有技能!",
+            "fr-FR": "让玩家拥有技能!",
+            "es-ES": "让玩家拥有技能!",
+            "ru-RU": "让玩家拥有技能!",
+            "zh-CN": "让玩家拥有技能!",
+            "pt-BR": "让玩家拥有技能!",
+            "pl-PL": "让玩家拥有技能!"
+        },
+        "AssemblyName": "Economics.Skill",
+        "Path": "Economics.Skill.dll",
+        "Dependencies": [
+            "EconomicsAPI",
+            "Jint",
+            "Economics.RPG"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "Economics.Task",
+        "Version": "2.0.0.1",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "提供任务系统!",
+            "de-DE": "提供任务系统!",
+            "it-IT": "提供任务系统!",
+            "fr-FR": "提供任务系统!",
+            "es-ES": "提供任务系统!",
+            "ru-RU": "提供任务系统!",
+            "zh-CN": "提供任务系统!",
+            "pt-BR": "提供任务系统!",
+            "pl-PL": "提供任务系统!"
+        },
+        "AssemblyName": "Economics.Task",
+        "Path": "Economics.Task.dll",
+        "Dependencies": [
+            "EconomicsAPI",
+            "Economics.RPG"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "Economics.WeaponPlus",
+        "Version": "2.0.0.2",
+        "Author": "z枳 少司命",
+        "Description": {
+            "en-US": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "de-DE": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "it-IT": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "fr-FR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "es-ES": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "ru-RU": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "zh-CN": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "pt-BR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "pl-PL": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes"
+        },
+        "AssemblyName": "Economics.WeaponPlus",
+        "Path": "Economics.WeaponPlus.dll",
+        "Dependencies": [
+            "EconomicsAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "EconomicsAPI",
+        "Version": "2.0.0.2",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "提供经济系统API",
+            "de-DE": "提供经济系统API",
+            "it-IT": "提供经济系统API",
+            "fr-FR": "提供经济系统API",
+            "es-ES": "提供经济系统API",
+            "ru-RU": "提供经济系统API",
+            "zh-CN": "提供经济系统API",
+            "pt-BR": "提供经济系统API",
+            "pl-PL": "提供经济系统API"
+        },
+        "AssemblyName": "EconomicsAPI",
+        "Path": "EconomicsAPI.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "EndureBoost",
+        "Version": "1.0.5",
+        "Author": "肝帝熙恩",
+        "Description": {
+            "en-US": "拥有指定数量物品给指定buff",
+            "de-DE": "拥有指定数量物品给指定buff",
+            "it-IT": "拥有指定数量物品给指定buff",
+            "fr-FR": "拥有指定数量物品给指定buff",
+            "es-ES": "拥有指定数量物品给指定buff",
+            "ru-RU": "拥有指定数量物品给指定buff",
+            "zh-CN": "拥有指定数量物品给指定buff",
+            "pt-BR": "拥有指定数量物品给指定buff",
+            "pl-PL": "拥有指定数量物品给指定buff"
+        },
+        "AssemblyName": "EndureBoost",
+        "Path": "EndureBoost.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "EssentialsPlus",
+        "Version": "1.0.5",
+        "Author": "WhiteX等人，Average,Cjx,肝帝熙恩翻译,Cai更新",
+        "Description": {
+            "en-US": "增强版Essentials",
+            "de-DE": "增强版Essentials",
+            "it-IT": "增强版Essentials",
+            "fr-FR": "增强版Essentials",
+            "es-ES": "增强版Essentials",
+            "ru-RU": "增强版Essentials",
+            "zh-CN": "增强版Essentials",
+            "pt-BR": "增强版Essentials",
+            "pl-PL": "增强版Essentials"
+        },
+        "AssemblyName": "EssentialsPlus",
+        "Path": "EssentialsPlus.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "Ezperm",
+        "Version": "1.2.5",
+        "Author": "大豆子,肝帝熙恩优化1449",
+        "Description": {
+            "en-US": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
+            "de-DE": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
+            "it-IT": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
+            "fr-FR": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
+            "es-ES": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
+            "ru-RU": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
+            "zh-CN": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
+            "pt-BR": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
+            "pl-PL": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限"
+        },
+        "AssemblyName": "Ezperm",
+        "Path": "Ezperm.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "FishShop",
+        "Version": "1.4.4.0",
+        "Author": "hufang360",
+        "Description": {
+            "en-US": "鱼店",
+            "de-DE": "鱼店",
+            "it-IT": "鱼店",
+            "fr-FR": "鱼店",
+            "es-ES": "鱼店",
+            "ru-RU": "鱼店",
+            "zh-CN": "鱼店",
+            "pt-BR": "鱼店",
+            "pl-PL": "鱼店"
+        },
+        "AssemblyName": "FishShop",
+        "Path": "FishShop.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "GenerateMap",
+        "Version": "1.0.3",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "生成地图图片",
+            "de-DE": "生成地图图片",
+            "it-IT": "生成地图图片",
+            "fr-FR": "生成地图图片",
+            "es-ES": "生成地图图片",
+            "ru-RU": "生成地图图片",
+            "zh-CN": "生成地图图片",
+            "pt-BR": "生成地图图片",
+            "pl-PL": "生成地图图片"
+        },
+        "AssemblyName": "GenerateMap",
+        "Path": "GenerateMap.dll",
+        "Dependencies": [
+            "CaiLib"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "GoodNight",
+        "Version": "2.7.4",
+        "Author": "Jonesn 羽学 少司命",
+        "Description": {
+            "en-US": "设置服务器无法进入或禁止生成怪物的时段",
+            "de-DE": "设置服务器无法进入或禁止生成怪物的时段",
+            "it-IT": "设置服务器无法进入或禁止生成怪物的时段",
+            "fr-FR": "设置服务器无法进入或禁止生成怪物的时段",
+            "es-ES": "设置服务器无法进入或禁止生成怪物的时段",
+            "ru-RU": "设置服务器无法进入或禁止生成怪物的时段",
+            "zh-CN": "设置服务器无法进入或禁止生成怪物的时段",
+            "pt-BR": "设置服务器无法进入或禁止生成怪物的时段",
+            "pl-PL": "设置服务器无法进入或禁止生成怪物的时段"
+        },
+        "AssemblyName": "GoodNight",
+        "Path": "GoodNight.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "HardPlayerDrop",
+        "Version": "1.0.1",
+        "Author": "羽学",
+        "Description": {
+            "en-US": "根据玩家血量计算死亡后会掉落多少生命水晶",
+            "de-DE": "根据玩家血量计算死亡后会掉落多少生命水晶",
+            "it-IT": "根据玩家血量计算死亡后会掉落多少生命水晶",
+            "fr-FR": "根据玩家血量计算死亡后会掉落多少生命水晶",
+            "es-ES": "根据玩家血量计算死亡后会掉落多少生命水晶",
+            "ru-RU": "根据玩家血量计算死亡后会掉落多少生命水晶",
+            "zh-CN": "根据玩家血量计算死亡后会掉落多少生命水晶",
+            "pt-BR": "根据玩家血量计算死亡后会掉落多少生命水晶",
+            "pl-PL": "根据玩家血量计算死亡后会掉落多少生命水晶"
+        },
+        "AssemblyName": "HardPlayerDrop",
+        "Path": "HardPlayerDrop.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "HouseRegion",
+        "Version": "1.0.0.7",
+        "Author": "GK 阁下 改良",
+        "Description": {
+            "en-US": "一个著名的用于保护房屋的插件。",
+            "de-DE": "一个著名的用于保护房屋的插件。",
+            "it-IT": "一个著名的用于保护房屋的插件。",
+            "fr-FR": "一个著名的用于保护房屋的插件。",
+            "es-ES": "一个著名的用于保护房屋的插件。",
+            "ru-RU": "一个著名的用于保护房屋的插件。",
+            "zh-CN": "一个著名的用于保护房屋的插件。",
+            "pt-BR": "一个著名的用于保护房屋的插件。",
+            "pl-PL": "一个著名的用于保护房屋的插件。"
+        },
+        "AssemblyName": "HouseRegion",
+        "Path": "HouseRegion.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "Invincibility",
+        "Version": "1.0.8",
+        "Author": "肝帝熙恩",
+        "Description": {
+            "en-US": "在命令中给予玩家一段时间的无敌状态。",
+            "de-DE": "在命令中给予玩家一段时间的无敌状态。",
+            "it-IT": "在命令中给予玩家一段时间的无敌状态。",
+            "fr-FR": "在命令中给予玩家一段时间的无敌状态。",
+            "es-ES": "在命令中给予玩家一段时间的无敌状态。",
+            "ru-RU": "在命令中给予玩家一段时间的无敌状态。",
+            "zh-CN": "在命令中给予玩家一段时间的无敌状态。",
+            "pt-BR": "在命令中给予玩家一段时间的无敌状态。",
+            "pl-PL": "在命令中给予玩家一段时间的无敌状态。"
+        },
+        "AssemblyName": "Invincibility",
+        "Path": "Invincibility.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "ItemBox",
+        "Version": "2024.12.18.1",
+        "Author": "Cai & 2409",
+        "Description": {
+            "en-US": "离线物品盒子系统.",
+            "de-DE": "离线物品盒子系统.",
+            "it-IT": "离线物品盒子系统.",
+            "fr-FR": "离线物品盒子系统.",
+            "es-ES": "离线物品盒子系统.",
+            "ru-RU": "离线物品盒子系统.",
+            "zh-CN": "离线物品盒子系统.",
+            "pt-BR": "离线物品盒子系统.",
+            "pl-PL": "离线物品盒子系统."
+        },
+        "AssemblyName": "ItemBox",
+        "Path": "ItemBox.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "ItemDecoration",
+        "Version": "1.0.0.2",
+        "Author": "FrankV22, Soofa, 少司命",
+        "Description": {
+            "en-US": "Show Item Decoration and More!!!",
+            "de-DE": "Show Item Decoration and More!!!",
+            "it-IT": "Show Item Decoration and More!!!",
+            "fr-FR": "Show Item Decoration and More!!!",
+            "es-ES": "Show Item Decoration and More!!!",
+            "ru-RU": "Show Item Decoration and More!!!",
+            "zh-CN": "Show Item Decoration and More!!!",
+            "pt-BR": "Show Item Decoration and More!!!",
+            "pl-PL": "Show Item Decoration and More!!!"
+        },
+        "AssemblyName": "ItemDecoration",
+        "Path": "ItemDecoration.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "ItemPreserver",
+        "Version": "1.0.8",
+        "Author": "肝帝熙恩 & 少司命",
+        "Description": {
+            "en-US": "指定物品不消耗",
+            "de-DE": "指定物品不消耗",
+            "it-IT": "指定物品不消耗",
+            "fr-FR": "指定物品不消耗",
+            "es-ES": "指定物品不消耗",
+            "ru-RU": "指定物品不消耗",
+            "zh-CN": "指定物品不消耗",
+            "pt-BR": "指定物品不消耗",
+            "pl-PL": "指定物品不消耗"
+        },
+        "AssemblyName": "ItemPreserver",
+        "Path": "ItemPreserver.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "JourneyUnlock",
+        "Version": "1.0.1.3",
+        "Author": "Maxthegreat99，肝帝熙恩汉化",
+        "Description": {
+            "en-US": "允许您为旅途中的角色解锁所有或特定物品",
+            "de-DE": "允许您为旅途中的角色解锁所有或特定物品",
+            "it-IT": "允许您为旅途中的角色解锁所有或特定物品",
+            "fr-FR": "允许您为旅途中的角色解锁所有或特定物品",
+            "es-ES": "允许您为旅途中的角色解锁所有或特定物品",
+            "ru-RU": "允许您为旅途中的角色解锁所有或特定物品",
+            "zh-CN": "允许您为旅途中的角色解锁所有或特定物品",
+            "pt-BR": "允许您为旅途中的角色解锁所有或特定物品",
+            "pl-PL": "允许您为旅途中的角色解锁所有或特定物品"
+        },
+        "AssemblyName": "JourneyUnlock",
+        "Path": "JourneyUnlock.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "Lagrange.XocMat.Adapter",
+        "Version": "1.0.0.2",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "适配插件",
+            "de-DE": "适配插件",
+            "it-IT": "适配插件",
+            "fr-FR": "适配插件",
+            "es-ES": "适配插件",
+            "ru-RU": "适配插件",
+            "zh-CN": "适配插件",
+            "pt-BR": "适配插件",
+            "pl-PL": "适配插件"
+        },
+        "AssemblyName": "Lagrange.XocMat.Adapter",
+        "Path": "Lagrange.XocMat.Adapter.dll",
+        "Dependencies": [
+            "SixLabors.ImageSharp"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "LazyAPI",
+        "Version": "1.0.0.6",
+        "Author": "cc004 & members of UnrealMultiple",
+        "Description": {
+            "en-US": "None",
+            "de-DE": "None",
+            "it-IT": "None",
+            "fr-FR": "None",
+            "es-ES": "None",
+            "ru-RU": "None",
+            "zh-CN": "None",
+            "pt-BR": "None",
+            "pl-PL": "None"
+        },
+        "AssemblyName": "LazyAPI",
+        "Path": "LazyAPI.dll",
+        "Dependencies": [
+            "linq2db"
+        ],
+        "HotReload": false
+    },
+    {
+        "Name": "ListPlugins",
+        "Version": "1.0.6",
+        "Author": "iheart 修改：羽学，肝帝熙恩",
+        "Description": {
+            "en-US": "用指令查已装插件",
+            "de-DE": "用指令查已装插件",
+            "it-IT": "用指令查已装插件",
+            "fr-FR": "用指令查已装插件",
+            "es-ES": "用指令查已装插件",
+            "ru-RU": "用指令查已装插件",
+            "zh-CN": "用指令查已装插件",
+            "pt-BR": "用指令查已装插件",
+            "pl-PL": "用指令查已装插件"
+        },
+        "AssemblyName": "ListPlugins",
+        "Path": "ListPlugins.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "MapTp",
+        "Version": "1.0.3",
+        "Author": "Nova4334，肝帝熙恩汉化适配1449",
+        "Description": {
+            "en-US": "允许玩家传送到地图上的选定位置.",
+            "de-DE": "允许玩家传送到地图上的选定位置.",
+            "it-IT": "允许玩家传送到地图上的选定位置.",
+            "fr-FR": "允许玩家传送到地图上的选定位置.",
+            "es-ES": "允许玩家传送到地图上的选定位置.",
+            "ru-RU": "允许玩家传送到地图上的选定位置.",
+            "zh-CN": "允许玩家传送到地图上的选定位置.",
+            "pt-BR": "允许玩家传送到地图上的选定位置.",
+            "pl-PL": "允许玩家传送到地图上的选定位置."
+        },
+        "AssemblyName": "MapTp",
+        "Path": "MapTp.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "MiniGamesAPI",
+        "Version": "1.0.2",
+        "Author": "豆沙 羽学修复",
+        "Description": {
+            "en-US": "小游戏框架API",
+            "de-DE": "小游戏框架API",
+            "it-IT": "小游戏框架API",
+            "fr-FR": "小游戏框架API",
+            "es-ES": "小游戏框架API",
+            "ru-RU": "小游戏框架API",
+            "zh-CN": "小游戏框架API",
+            "pt-BR": "小游戏框架API",
+            "pl-PL": "小游戏框架API"
+        },
+        "AssemblyName": "MiniGamesAPI",
+        "Path": "MiniGamesAPI.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "ModifyWeapons",
+        "Version": "1.2.7.4",
+        "Author": "羽学",
+        "Description": {
+            "en-US": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
+            "de-DE": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
+            "it-IT": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
+            "fr-FR": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
+            "es-ES": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
+            "ru-RU": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
+            "zh-CN": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
+            "pt-BR": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
+            "pl-PL": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品"
+        },
+        "AssemblyName": "ModifyWeapons",
+        "Path": "ModifyWeapons.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "MonsterRegen",
+        "Version": "1.7.2",
+        "Author": "途逗 羽学",
+        "Description": {
+            "en-US": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+            "de-DE": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+            "it-IT": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+            "fr-FR": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+            "es-ES": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+            "ru-RU": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+            "zh-CN": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+            "pt-BR": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+            "pl-PL": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔"
+        },
+        "AssemblyName": "MonsterRegen",
+        "Path": "MonsterRegen.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "MusicPlayer",
+        "Version": "1.0.4",
+        "Author": "Olink，Cjx适配，肝帝熙恩修改, yu大改",
+        "Description": {
+            "en-US": "一个简单的音乐播放插件.",
+            "de-DE": "一个简单的音乐播放插件.",
+            "it-IT": "一个简单的音乐播放插件.",
+            "fr-FR": "一个简单的音乐播放插件.",
+            "es-ES": "一个简单的音乐播放插件.",
+            "ru-RU": "一个简单的音乐播放插件.",
+            "zh-CN": "一个简单的音乐播放插件.",
+            "pt-BR": "一个简单的音乐播放插件.",
+            "pl-PL": "一个简单的音乐播放插件."
+        },
+        "AssemblyName": "MusicPlayer",
+        "Path": "MusicPlayer.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "Noagent",
+        "Version": "1.0.2",
+        "Author": "[星迹]Jonesn，肝帝熙恩更新适配1449",
+        "Description": {
+            "en-US": "禁止代理登录",
+            "de-DE": "禁止代理登录",
+            "it-IT": "禁止代理登录",
+            "fr-FR": "禁止代理登录",
+            "es-ES": "禁止代理登录",
+            "ru-RU": "禁止代理登录",
+            "zh-CN": "禁止代理登录",
+            "pt-BR": "禁止代理登录",
+            "pl-PL": "禁止代理登录"
+        },
+        "AssemblyName": "Noagent",
+        "Path": "Noagent.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "NormalDropsBags",
+        "Version": "1.1.3.2",
+        "Author": "Quinci 羽学适配",
+        "Description": {
+            "en-US": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+            "de-DE": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+            "it-IT": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+            "fr-FR": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+            "es-ES": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+            "ru-RU": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+            "zh-CN": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+            "pt-BR": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+            "pl-PL": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。"
+        },
+        "AssemblyName": "NormalDropsBags",
+        "Path": "NormalDropsBags.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "OnlineGiftPackage",
+        "Version": "1.0.1.4",
+        "Author": "星夜神花 羽学适配",
+        "Description": {
+            "en-US": "在线礼包插件 ",
+            "de-DE": "在线礼包插件 ",
+            "it-IT": "在线礼包插件 ",
+            "fr-FR": "在线礼包插件 ",
+            "es-ES": "在线礼包插件 ",
+            "ru-RU": "在线礼包插件 ",
+            "zh-CN": "在线礼包插件 ",
+            "pt-BR": "在线礼包插件 ",
+            "pl-PL": "在线礼包插件 "
+        },
+        "AssemblyName": "OnlineGiftPackage",
+        "Path": "OnlineGiftPackage.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "PacketsStop",
+        "Version": "1.0.2",
+        "Author": "羽学 感谢少司命",
+        "Description": {
+            "en-US": "拦截没有指定权限的用户组数据包",
+            "de-DE": "拦截没有指定权限的用户组数据包",
+            "it-IT": "拦截没有指定权限的用户组数据包",
+            "fr-FR": "拦截没有指定权限的用户组数据包",
+            "es-ES": "拦截没有指定权限的用户组数据包",
+            "ru-RU": "拦截没有指定权限的用户组数据包",
+            "zh-CN": "拦截没有指定权限的用户组数据包",
+            "pt-BR": "拦截没有指定权限的用户组数据包",
+            "pl-PL": "拦截没有指定权限的用户组数据包"
+        },
+        "AssemblyName": "PacketsStop",
+        "Path": "PacketsStop.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "PermaBuff",
+        "Version": "1.0.2",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "PermaBuff",
+            "de-DE": "PermaBuff",
+            "it-IT": "PermaBuff",
+            "fr-FR": "PermaBuff",
+            "es-ES": "PermaBuff",
+            "ru-RU": "PermaBuff",
+            "zh-CN": "PermaBuff",
+            "pt-BR": "PermaBuff",
+            "pl-PL": "PermaBuff"
+        },
+        "AssemblyName": "PermaBuff",
+        "Path": "PermaBuff.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "PerPlayerLoot",
+        "Version": "2.0.4",
+        "Author": "Codian, 肝帝熙恩汉化1449",
+        "Description": {
+            "en-US": "玩家战利品单独箱子.",
+            "de-DE": "玩家战利品单独箱子.",
+            "it-IT": "玩家战利品单独箱子.",
+            "fr-FR": "玩家战利品单独箱子.",
+            "es-ES": "玩家战利品单独箱子.",
+            "ru-RU": "玩家战利品单独箱子.",
+            "zh-CN": "玩家战利品单独箱子.",
+            "pt-BR": "玩家战利品单独箱子.",
+            "pl-PL": "玩家战利品单独箱子."
+        },
+        "AssemblyName": "PerPlayerLoot",
+        "Path": "PerPlayerLoot.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "PersonalPermission",
+        "Version": "1.1.0.3",
+        "Author": "Megghy，肝帝熙恩更新1449",
+        "Description": {
+            "en-US": "允许为玩家单独设置权限.",
+            "de-DE": "允许为玩家单独设置权限.",
+            "it-IT": "允许为玩家单独设置权限.",
+            "fr-FR": "允许为玩家单独设置权限.",
+            "es-ES": "允许为玩家单独设置权限.",
+            "ru-RU": "允许为玩家单独设置权限.",
+            "zh-CN": "允许为玩家单独设置权限.",
+            "pt-BR": "允许为玩家单独设置权限.",
+            "pl-PL": "允许为玩家单独设置权限."
+        },
+        "AssemblyName": "PersonalPermission",
+        "Path": "PersonalPermission.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "PlayerManager",
+        "Version": "1.3.4.0",
+        "Author": "hufang360",
+        "Description": {
+            "en-US": "玩家管理",
+            "de-DE": "玩家管理",
+            "it-IT": "玩家管理",
+            "fr-FR": "玩家管理",
+            "es-ES": "玩家管理",
+            "ru-RU": "玩家管理",
+            "zh-CN": "玩家管理",
+            "pt-BR": "玩家管理",
+            "pl-PL": "玩家管理"
+        },
+        "AssemblyName": "PlayerManager",
+        "Path": "PlayerManager.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "PlayerRandomSwapper",
+        "Version": "1.0.6",
+        "Author": "肝帝熙恩,少司命",
+        "Description": {
+            "en-US": "一个插件，用于在指定时间后随机交换玩家位置。",
+            "de-DE": "一个插件，用于在指定时间后随机交换玩家位置。",
+            "it-IT": "一个插件，用于在指定时间后随机交换玩家位置。",
+            "fr-FR": "一个插件，用于在指定时间后随机交换玩家位置。",
+            "es-ES": "一个插件，用于在指定时间后随机交换玩家位置。",
+            "ru-RU": "一个插件，用于在指定时间后随机交换玩家位置。",
+            "zh-CN": "一个插件，用于在指定时间后随机交换玩家位置。",
+            "pt-BR": "一个插件，用于在指定时间后随机交换玩家位置。",
+            "pl-PL": "一个插件，用于在指定时间后随机交换玩家位置。"
+        },
+        "AssemblyName": "PlayerRandomSwapper",
+        "Path": "PlayerRandomSwapper.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "PlayerSpeed",
+        "Version": "1.2.4",
+        "Author": "逆光奔跑 羽学",
+        "Description": {
+            "en-US": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
+            "de-DE": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
+            "it-IT": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
+            "fr-FR": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
+            "es-ES": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
+            "ru-RU": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
+            "zh-CN": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
+            "pt-BR": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
+            "pl-PL": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发"
+        },
+        "AssemblyName": "PlayerSpeed",
+        "Path": "PlayerSpeed.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "ProgressControls",
+        "Version": "1.0.0.10",
+        "Author": "z枳 羽学",
+        "Description": {
+            "en-US": "计划书",
+            "de-DE": "计划书",
+            "it-IT": "计划书",
+            "fr-FR": "计划书",
+            "es-ES": "计划书",
+            "ru-RU": "计划书",
+            "zh-CN": "计划书",
+            "pt-BR": "计划书",
+            "pl-PL": "计划书"
+        },
+        "AssemblyName": "ProgressControls",
+        "Path": "ProgressControls.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "ProgressRestrict",
+        "Version": "1.0.0.3",
+        "Author": "少司命 & 恋恋魔改三合一",
+        "Description": {
+            "en-US": "根据进度限制",
+            "de-DE": "根据进度限制",
+            "it-IT": "根据进度限制",
+            "fr-FR": "根据进度限制",
+            "es-ES": "根据进度限制",
+            "ru-RU": "根据进度限制",
+            "zh-CN": "根据进度限制",
+            "pt-BR": "根据进度限制",
+            "pl-PL": "根据进度限制"
+        },
+        "AssemblyName": "ProgressRestrict",
+        "Path": "ProgressRestrict.dll",
+        "Dependencies": [
+            "DataSync"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "PvPer",
+        "Version": "1.1.4",
+        "Author": "Soofa 羽学修改",
+        "Description": {
+            "en-US": "不是你死就是我活系列",
+            "de-DE": "不是你死就是我活系列",
+            "it-IT": "不是你死就是我活系列",
+            "fr-FR": "不是你死就是我活系列",
+            "es-ES": "不是你死就是我活系列",
+            "ru-RU": "不是你死就是我活系列",
+            "zh-CN": "不是你死就是我活系列",
+            "pt-BR": "不是你死就是我活系列",
+            "pl-PL": "不是你死就是我活系列"
+        },
+        "AssemblyName": "PvPer",
+        "Path": "PvPer.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "RainbowChat",
+        "Version": "1.0.8",
+        "Author": "Professor X 熙恩 羽学",
+        "Description": {
+            "en-US": "使玩家每次说话的颜色不一样.",
+            "de-DE": "使玩家每次说话的颜色不一样.",
+            "it-IT": "使玩家每次说话的颜色不一样.",
+            "fr-FR": "使玩家每次说话的颜色不一样.",
+            "es-ES": "使玩家每次说话的颜色不一样.",
+            "ru-RU": "使玩家每次说话的颜色不一样.",
+            "zh-CN": "使玩家每次说话的颜色不一样.",
+            "pt-BR": "使玩家每次说话的颜色不一样.",
+            "pl-PL": "使玩家每次说话的颜色不一样."
+        },
+        "AssemblyName": "RainbowChat",
+        "Path": "RainbowChat.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "RandomBroadcast",
+        "Version": "1.0.4",
+        "Author": "羽学",
+        "Description": {
+            "en-US": "定时随机发送一条广播内容",
+            "de-DE": "定时随机发送一条广播内容",
+            "it-IT": "定时随机发送一条广播内容",
+            "fr-FR": "定时随机发送一条广播内容",
+            "es-ES": "定时随机发送一条广播内容",
+            "ru-RU": "定时随机发送一条广播内容",
+            "zh-CN": "定时随机发送一条广播内容",
+            "pt-BR": "定时随机发送一条广播内容",
+            "pl-PL": "定时随机发送一条广播内容"
+        },
+        "AssemblyName": "RandomBroadcast",
+        "Path": "RandomBroadcast.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "RandRespawn",
+        "Version": "1.0.4",
+        "Author": "1413,肝帝熙恩适配1449",
+        "Description": {
+            "en-US": "随机出生点，任何回到出生点的操作都会被随机传送",
+            "de-DE": "随机出生点，任何回到出生点的操作都会被随机传送",
+            "it-IT": "随机出生点，任何回到出生点的操作都会被随机传送",
+            "fr-FR": "随机出生点，任何回到出生点的操作都会被随机传送",
+            "es-ES": "随机出生点，任何回到出生点的操作都会被随机传送",
+            "ru-RU": "随机出生点，任何回到出生点的操作都会被随机传送",
+            "zh-CN": "随机出生点，任何回到出生点的操作都会被随机传送",
+            "pt-BR": "随机出生点，任何回到出生点的操作都会被随机传送",
+            "pl-PL": "随机出生点，任何回到出生点的操作都会被随机传送"
+        },
+        "AssemblyName": "RandRespawn",
+        "Path": "RandRespawn.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "RealTime",
+        "Version": "2.6.0.2",
+        "Author": "十七",
+        "Description": {
+            "en-US": "同步现实时间",
+            "de-DE": "同步现实时间",
+            "it-IT": "同步现实时间",
+            "fr-FR": "同步现实时间",
+            "es-ES": "同步现实时间",
+            "ru-RU": "同步现实时间",
+            "zh-CN": "同步现实时间",
+            "pt-BR": "同步现实时间",
+            "pl-PL": "同步现实时间"
+        },
+        "AssemblyName": "RealTime",
+        "Path": "RealTime.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "RecipesBrowser",
+        "Version": "1.0.7",
+        "Author": "棱镜 羽学适配",
+        "Description": {
+            "en-US": "通过指令获取物品合成表",
+            "de-DE": "通过指令获取物品合成表",
+            "it-IT": "通过指令获取物品合成表",
+            "fr-FR": "通过指令获取物品合成表",
+            "es-ES": "通过指令获取物品合成表",
+            "ru-RU": "通过指令获取物品合成表",
+            "zh-CN": "通过指令获取物品合成表",
+            "pt-BR": "通过指令获取物品合成表",
+            "pl-PL": "通过指令获取物品合成表"
+        },
+        "AssemblyName": "RecipesBrowser",
+        "Path": "RecipesBrowser.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "ReFishTask",
+        "Version": "1.4.3",
+        "Author": "羽学",
+        "Description": {
+            "en-US": "当你完成渔夫任务时可无限接渔夫任务",
+            "de-DE": "当你完成渔夫任务时可无限接渔夫任务",
+            "it-IT": "当你完成渔夫任务时可无限接渔夫任务",
+            "fr-FR": "当你完成渔夫任务时可无限接渔夫任务",
+            "es-ES": "当你完成渔夫任务时可无限接渔夫任务",
+            "ru-RU": "当你完成渔夫任务时可无限接渔夫任务",
+            "zh-CN": "当你完成渔夫任务时可无限接渔夫任务",
+            "pt-BR": "当你完成渔夫任务时可无限接渔夫任务",
+            "pl-PL": "当你完成渔夫任务时可无限接渔夫任务"
+        },
+        "AssemblyName": "ReFishTask",
+        "Path": "ReFishTask.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "RegionView",
+        "Version": "1.1.1",
+        "Author": "TBC开发者团队,肝帝熙恩汉化",
+        "Description": {
+            "en-US": "为地区添加区域边界视图。",
+            "de-DE": "为地区添加区域边界视图。",
+            "it-IT": "为地区添加区域边界视图。",
+            "fr-FR": "为地区添加区域边界视图。",
+            "es-ES": "为地区添加区域边界视图。",
+            "ru-RU": "为地区添加区域边界视图。",
+            "zh-CN": "为地区添加区域边界视图。",
+            "pt-BR": "为地区添加区域边界视图。",
+            "pl-PL": "为地区添加区域边界视图。"
+        },
+        "AssemblyName": "RegionView",
+        "Path": "RegionView.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "Respawn",
+        "Version": "2.0.0.2",
+        "Author": "leader，肝帝熙恩",
+        "Description": {
+            "en-US": "原地复活",
+            "de-DE": "原地复活",
+            "it-IT": "原地复活",
+            "fr-FR": "原地复活",
+            "es-ES": "原地复活",
+            "ru-RU": "原地复活",
+            "zh-CN": "原地复活",
+            "pt-BR": "原地复活",
+            "pl-PL": "原地复活"
+        },
+        "AssemblyName": "Respawn",
+        "Path": "Respawn.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "RestInventory",
+        "Version": "1.0.0.4",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "rest查询背包",
+            "de-DE": "rest查询背包",
+            "it-IT": "rest查询背包",
+            "fr-FR": "rest查询背包",
+            "es-ES": "rest查询背包",
+            "ru-RU": "rest查询背包",
+            "zh-CN": "rest查询背包",
+            "pt-BR": "rest查询背包",
+            "pl-PL": "rest查询背包"
+        },
+        "AssemblyName": "RestInventory",
+        "Path": "RestInventory.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "RolesModifying",
+        "Version": "1.0.2",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "RolesModifying",
+            "de-DE": "RolesModifying",
+            "it-IT": "RolesModifying",
+            "fr-FR": "RolesModifying",
+            "es-ES": "RolesModifying",
+            "ru-RU": "RolesModifying",
+            "zh-CN": "RolesModifying",
+            "pt-BR": "RolesModifying",
+            "pl-PL": "RolesModifying"
+        },
+        "AssemblyName": "RolesModifying",
+        "Path": "RolesModifying.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "Sandstorm",
+        "Version": "1.0.2",
+        "Author": "羽学",
+        "Description": {
+            "en-US": "使用指令切换沙尘暴",
+            "de-DE": "使用指令切换沙尘暴",
+            "it-IT": "使用指令切换沙尘暴",
+            "fr-FR": "使用指令切换沙尘暴",
+            "es-ES": "使用指令切换沙尘暴",
+            "ru-RU": "使用指令切换沙尘暴",
+            "zh-CN": "使用指令切换沙尘暴",
+            "pt-BR": "使用指令切换沙尘暴",
+            "pl-PL": "使用指令切换沙尘暴"
+        },
+        "AssemblyName": "Sandstorm",
+        "Path": "Sandstorm.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "ServerTools",
+        "Version": "1.1.8.1",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "服务器工具",
+            "de-DE": "服务器工具",
+            "it-IT": "服务器工具",
+            "fr-FR": "服务器工具",
+            "es-ES": "服务器工具",
+            "ru-RU": "服务器工具",
+            "zh-CN": "服务器工具",
+            "pt-BR": "服务器工具",
+            "pl-PL": "服务器工具"
+        },
+        "AssemblyName": "ServerTools",
+        "Path": "ServerTools.dll",
+        "Dependencies": [
+            "LazyAPI",
+            "linq2db"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "SessionSentinel",
+        "Version": "1.0.1",
+        "Author": "肝帝熙恩",
+        "Description": {
+            "en-US": "处理长时间不发送数据包的玩家",
+            "de-DE": "处理长时间不发送数据包的玩家",
+            "it-IT": "处理长时间不发送数据包的玩家",
+            "fr-FR": "处理长时间不发送数据包的玩家",
+            "es-ES": "处理长时间不发送数据包的玩家",
+            "ru-RU": "处理长时间不发送数据包的玩家",
+            "zh-CN": "处理长时间不发送数据包的玩家",
+            "pt-BR": "处理长时间不发送数据包的玩家",
+            "pl-PL": "处理长时间不发送数据包的玩家"
+        },
+        "AssemblyName": "SessionSentinel",
+        "Path": "SessionSentinel.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "ShowArmors",
+        "Version": "1.0.3",
+        "Author": "Ak，肝帝熙恩更新",
+        "Description": {
+            "en-US": "展示装备栏",
+            "de-DE": "展示装备栏",
+            "it-IT": "展示装备栏",
+            "fr-FR": "展示装备栏",
+            "es-ES": "展示装备栏",
+            "ru-RU": "展示装备栏",
+            "zh-CN": "展示装备栏",
+            "pt-BR": "展示装备栏",
+            "pl-PL": "展示装备栏"
+        },
+        "AssemblyName": "ShowArmors",
+        "Path": "ShowArmors.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "SignInSign",
+        "Version": "1.0.6",
+        "Author": "Soofa 羽学 少司命",
+        "Description": {
+            "en-US": "告示牌登录交互插件 支持进服弹窗！",
+            "de-DE": "告示牌登录交互插件 支持进服弹窗！",
+            "it-IT": "告示牌登录交互插件 支持进服弹窗！",
+            "fr-FR": "告示牌登录交互插件 支持进服弹窗！",
+            "es-ES": "告示牌登录交互插件 支持进服弹窗！",
+            "ru-RU": "告示牌登录交互插件 支持进服弹窗！",
+            "zh-CN": "告示牌登录交互插件 支持进服弹窗！",
+            "pt-BR": "告示牌登录交互插件 支持进服弹窗！",
+            "pl-PL": "告示牌登录交互插件 支持进服弹窗！"
+        },
+        "AssemblyName": "SignInSign",
+        "Path": "SignInSign.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "SimultaneousUseFix",
+        "Version": "1.0.7",
+        "Author": "熙恩，感谢恋恋",
+        "Description": {
+            "en-US": "解决卡双锤，卡星旋机枪之类的问题",
+            "de-DE": "解决卡双锤，卡星旋机枪之类的问题",
+            "it-IT": "解决卡双锤，卡星旋机枪之类的问题",
+            "fr-FR": "解决卡双锤，卡星旋机枪之类的问题",
+            "es-ES": "解决卡双锤，卡星旋机枪之类的问题",
+            "ru-RU": "解决卡双锤，卡星旋机枪之类的问题",
+            "zh-CN": "解决卡双锤，卡星旋机枪之类的问题",
+            "pt-BR": "解决卡双锤，卡星旋机枪之类的问题",
+            "pl-PL": "解决卡双锤，卡星旋机枪之类的问题"
+        },
+        "AssemblyName": "SimultaneousUseFix",
+        "Path": "SimultaneousUseFix.dll",
+        "Dependencies": [
+            "Chireiden.TShock.Omni"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "SmartRegions",
+        "Version": "1.4.4",
+        "Author": "GameRoom，肝帝熙恩汉化修复",
+        "Description": {
+            "en-US": "当玩家进入区域时运行命令。",
+            "de-DE": "当玩家进入区域时运行命令。",
+            "it-IT": "当玩家进入区域时运行命令。",
+            "fr-FR": "当玩家进入区域时运行命令。",
+            "es-ES": "当玩家进入区域时运行命令。",
+            "ru-RU": "当玩家进入区域时运行命令。",
+            "zh-CN": "当玩家进入区域时运行命令。",
+            "pt-BR": "当玩家进入区域时运行命令。",
+            "pl-PL": "当玩家进入区域时运行命令。"
+        },
+        "AssemblyName": "SmartRegions",
+        "Path": "SmartRegions.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "SpawnInfra",
+        "Version": "1.5.7",
+        "Author": "羽学",
+        "Description": {
+            "en-US": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+            "de-DE": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+            "it-IT": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+            "fr-FR": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+            "es-ES": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+            "ru-RU": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+            "zh-CN": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+            "pt-BR": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+            "pl-PL": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）"
+        },
+        "AssemblyName": "SpawnInfra",
+        "Path": "SpawnInfra.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "SpclPerm",
+        "Version": "1.8.2",
+        "Author": "羽学",
+        "Description": {
+            "en-US": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
+            "de-DE": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
+            "it-IT": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
+            "fr-FR": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
+            "es-ES": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
+            "ru-RU": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
+            "zh-CN": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
+            "pt-BR": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
+            "pl-PL": "服主自动执行：无敌、BUFF、物品、命令、设置背包"
+        },
+        "AssemblyName": "SpclPerm",
+        "Path": "SpclPerm.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "StatusTextManager",
+        "Version": "1.1.1",
+        "Author": "LaoSparrow",
+        "Description": {
+            "en-US": "Manage status text of different plugins",
+            "de-DE": "Manage status text of different plugins",
+            "it-IT": "Manage status text of different plugins",
+            "fr-FR": "Manage status text of different plugins",
+            "es-ES": "Manage status text of different plugins",
+            "ru-RU": "Manage status text of different plugins",
+            "zh-CN": "Manage status text of different plugins",
+            "pt-BR": "Manage status text of different plugins",
+            "pl-PL": "Manage status text of different plugins"
+        },
+        "AssemblyName": "StatusTextManager",
+        "Path": "StatusTextManager.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "SurfaceBlock",
+        "Version": "2.0.0.1",
+        "Author": "羽学 Cai 西江小子 熙恩",
+        "Description": {
+            "en-US": "禁止特定弹幕在地表产生",
+            "de-DE": "禁止特定弹幕在地表产生",
+            "it-IT": "禁止特定弹幕在地表产生",
+            "fr-FR": "禁止特定弹幕在地表产生",
+            "es-ES": "禁止特定弹幕在地表产生",
+            "ru-RU": "禁止特定弹幕在地表产生",
+            "zh-CN": "禁止特定弹幕在地表产生",
+            "pt-BR": "禁止特定弹幕在地表产生",
+            "pl-PL": "禁止特定弹幕在地表产生"
+        },
+        "AssemblyName": "SurfaceBlock",
+        "Path": "SurfaceBlock.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "SwitchCommands",
+        "Version": "1.2.4",
+        "Author": "Johuan Cjx适配 羽学，肝帝熙恩优化",
+        "Description": {
+            "en-US": "触发开关可以执行指令",
+            "de-DE": "触发开关可以执行指令",
+            "it-IT": "触发开关可以执行指令",
+            "fr-FR": "触发开关可以执行指令",
+            "es-ES": "触发开关可以执行指令",
+            "ru-RU": "触发开关可以执行指令",
+            "zh-CN": "触发开关可以执行指令",
+            "pt-BR": "触发开关可以执行指令",
+            "pl-PL": "触发开关可以执行指令"
+        },
+        "AssemblyName": "SwitchCommands",
+        "Path": "SwitchCommands.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "TeleportRequest",
+        "Version": "1.0.2",
+        "Author": "原作者: MarioE, 修改者: Dr.Toxic，肝帝熙恩",
+        "Description": {
+            "en-US": "传送前需要被传送者接受或拒绝请求",
+            "de-DE": "传送前需要被传送者接受或拒绝请求",
+            "it-IT": "传送前需要被传送者接受或拒绝请求",
+            "fr-FR": "传送前需要被传送者接受或拒绝请求",
+            "es-ES": "传送前需要被传送者接受或拒绝请求",
+            "ru-RU": "传送前需要被传送者接受或拒绝请求",
+            "zh-CN": "传送前需要被传送者接受或拒绝请求",
+            "pt-BR": "传送前需要被传送者接受或拒绝请求",
+            "pl-PL": "传送前需要被传送者接受或拒绝请求"
+        },
+        "AssemblyName": "TeleportRequest",
+        "Path": "TeleportRequest.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "TimeRate",
+        "Version": "1.2.1",
+        "Author": "羽学",
+        "Description": {
+            "en-US": "使用指令修改时间加速",
+            "de-DE": "使用指令修改时间加速",
+            "it-IT": "使用指令修改时间加速",
+            "fr-FR": "使用指令修改时间加速",
+            "es-ES": "使用指令修改时间加速",
+            "ru-RU": "使用指令修改时间加速",
+            "zh-CN": "使用指令修改时间加速",
+            "pt-BR": "使用指令修改时间加速",
+            "pl-PL": "使用指令修改时间加速"
+        },
+        "AssemblyName": "TimeRate",
+        "Path": "TimeRate.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "TimerKeeper",
+        "Version": "2024.12.18.3",
+        "Author": "Cai",
+        "Description": {
+            "en-US": "保存计时器",
+            "de-DE": "保存计时器",
+            "it-IT": "保存计时器",
+            "fr-FR": "保存计时器",
+            "es-ES": "保存计时器",
+            "ru-RU": "保存计时器",
+            "zh-CN": "保存计时器",
+            "pt-BR": "保存计时器",
+            "pl-PL": "保存计时器"
+        },
+        "AssemblyName": "TimerKeeper",
+        "Path": "TimerKeeper.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "TownNPCHomes",
+        "Version": "1.1.3",
+        "Author": "棱镜 羽学优化",
+        "Description": {
+            "en-US": "None",
+            "de-DE": "None",
+            "it-IT": "None",
+            "fr-FR": "None",
+            "es-ES": "None",
+            "ru-RU": "None",
+            "zh-CN": "None",
+            "pt-BR": "None",
+            "pl-PL": "None"
+        },
+        "AssemblyName": "TownNPCHomes",
+        "Path": "TownNPCHomes.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "TShockConfigMultiLang",
+        "Version": "1.0.1",
+        "Author": "肝帝熙恩，羽学",
+        "Description": {
+            "en-US": "创建一个本地化语言的config",
+            "de-DE": "创建一个本地化语言的config",
+            "it-IT": "创建一个本地化语言的config",
+            "fr-FR": "创建一个本地化语言的config",
+            "es-ES": "创建一个本地化语言的config",
+            "ru-RU": "创建一个本地化语言的config",
+            "zh-CN": "创建一个本地化语言的config",
+            "pt-BR": "创建一个本地化语言的config",
+            "pl-PL": "创建一个本地化语言的config"
+        },
+        "AssemblyName": "TShockConfigMultiLang",
+        "Path": "TShockConfigMultiLang.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "UnseenInventory",
+        "Version": "1.0.1",
+        "Author": "肝帝熙恩",
+        "Description": {
+            "en-US": "允许服务器端生成“无法获取”的物品",
+            "de-DE": "允许服务器端生成“无法获取”的物品",
+            "it-IT": "允许服务器端生成“无法获取”的物品",
+            "fr-FR": "允许服务器端生成“无法获取”的物品",
+            "es-ES": "允许服务器端生成“无法获取”的物品",
+            "ru-RU": "允许服务器端生成“无法获取”的物品",
+            "zh-CN": "允许服务器端生成“无法获取”的物品",
+            "pt-BR": "允许服务器端生成“无法获取”的物品",
+            "pl-PL": "允许服务器端生成“无法获取”的物品"
+        },
+        "AssemblyName": "UnseenInventory",
+        "Path": "UnseenInventory.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "VBY.GameContentModify",
+        "Version": "1.9.2.109",
+        "Author": "yu",
+        "Description": {
+            "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
+            "de-DE": "一些游戏内容的修改 For Terraria v1.4.4.9",
+            "it-IT": "一些游戏内容的修改 For Terraria v1.4.4.9",
+            "fr-FR": "一些游戏内容的修改 For Terraria v1.4.4.9",
+            "es-ES": "一些游戏内容的修改 For Terraria v1.4.4.9",
+            "ru-RU": "一些游戏内容的修改 For Terraria v1.4.4.9",
+            "zh-CN": "一些游戏内容的修改 For Terraria v1.4.4.9",
+            "pt-BR": "一些游戏内容的修改 For Terraria v1.4.4.9",
+            "pl-PL": "一些游戏内容的修改 For Terraria v1.4.4.9"
+        },
+        "AssemblyName": "VBY.GameContentModify",
+        "Path": "VBY.GameContentModify.dll",
+        "Dependencies": [
+            "VBY.Common"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "VBY.OtherCommand",
+        "Version": "1.0.0.109",
+        "Author": "yu",
+        "Description": {
+            "en-US": "一些其他的辅助命令",
+            "de-DE": "一些其他的辅助命令",
+            "it-IT": "一些其他的辅助命令",
+            "fr-FR": "一些其他的辅助命令",
+            "es-ES": "一些其他的辅助命令",
+            "ru-RU": "一些其他的辅助命令",
+            "zh-CN": "一些其他的辅助命令",
+            "pt-BR": "一些其他的辅助命令",
+            "pl-PL": "一些其他的辅助命令"
+        },
+        "AssemblyName": "VBY.OtherCommand",
+        "Path": "VBY.OtherCommand.dll",
+        "Dependencies": [
+            "VBY.Common"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "VBY.PluginLoader",
+        "Version": "1.0",
+        "Author": "yu",
+        "Description": {
+            "en-US": "None",
+            "de-DE": "None",
+            "it-IT": "None",
+            "fr-FR": "None",
+            "es-ES": "None",
+            "ru-RU": "None",
+            "zh-CN": "None",
+            "pt-BR": "None",
+            "pl-PL": "None"
+        },
+        "AssemblyName": "VBY.PluginLoader",
+        "Path": "VBY.PluginLoader.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "VeinMiner",
+        "Version": "1.6.0.8",
+        "Author": "Megghy|YSpoof|Maxthegreat99|肝帝熙恩",
+        "Description": {
+            "en-US": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
+            "de-DE": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
+            "it-IT": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
+            "fr-FR": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
+            "es-ES": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
+            "ru-RU": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
+            "zh-CN": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
+            "pt-BR": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
+            "pl-PL": "VeinMiner by Megghy 适用于 TShock 5.2 支持！"
+        },
+        "AssemblyName": "VeinMiner",
+        "Path": "VeinMiner.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "VotePlus",
+        "Version": "1.0.0.2",
+        "Author": "Cai",
+        "Description": {
+            "en-US": "投票插件",
+            "de-DE": "投票插件",
+            "it-IT": "投票插件",
+            "fr-FR": "投票插件",
+            "es-ES": "投票插件",
+            "ru-RU": "投票插件",
+            "zh-CN": "投票插件",
+            "pt-BR": "投票插件",
+            "pl-PL": "投票插件"
+        },
+        "AssemblyName": "VotePlus",
+        "Path": "VotePlus.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "WeaponPlus",
+        "Version": "1.0.0.5",
+        "Author": "z枳",
+        "Description": {
+            "en-US": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "de-DE": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "it-IT": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "fr-FR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "es-ES": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "ru-RU": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "zh-CN": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "pt-BR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+            "pl-PL": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes"
+        },
+        "AssemblyName": "WeaponPlus",
+        "Path": "WeaponPlus.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "WorldModify",
+        "Version": "1.0.0.0",
+        "Author": "hufang360",
+        "Description": {
+            "en-US": "简易的世界修改器",
+            "de-DE": "简易的世界修改器",
+            "it-IT": "简易的世界修改器",
+            "fr-FR": "简易的世界修改器",
+            "es-ES": "简易的世界修改器",
+            "ru-RU": "简易的世界修改器",
+            "zh-CN": "简易的世界修改器",
+            "pt-BR": "简易的世界修改器",
+            "pl-PL": "简易的世界修改器"
+        },
+        "AssemblyName": "WorldModify",
+        "Path": "WorldModify.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "ZHIPlayerManager",
+        "Version": "1.0.1.2",
+        "Author": "z枳",
+        "Description": {
+            "en-US": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
+            "de-DE": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
+            "it-IT": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
+            "fr-FR": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
+            "es-ES": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
+            "ru-RU": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
+            "zh-CN": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
+            "pt-BR": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
+            "pl-PL": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作"
+        },
+        "AssemblyName": "ZHIPlayerManager",
+        "Path": "ZHIPlayerManager.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "ProgressBag",
+        "Version": "1.0.1.2",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "进度礼包",
+            "de-DE": "进度礼包",
+            "it-IT": "进度礼包",
+            "fr-FR": "进度礼包",
+            "es-ES": "进度礼包",
+            "ru-RU": "进度礼包",
+            "zh-CN": "进度礼包",
+            "pt-BR": "进度礼包",
+            "pl-PL": "进度礼包"
+        },
+        "AssemblyName": "ProgressBag",
+        "Path": "ProgressBag.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "GolfRewards",
+        "Version": "1.0.9",
+        "Author": "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449",
+        "Description": {
+            "en-US": "将高尔夫打入球洞会得到奖励.",
+            "de-DE": "将高尔夫打入球洞会得到奖励.",
+            "it-IT": "将高尔夫打入球洞会得到奖励.",
+            "fr-FR": "将高尔夫打入球洞会得到奖励.",
+            "es-ES": "将高尔夫打入球洞会得到奖励.",
+            "ru-RU": "将高尔夫打入球洞会得到奖励.",
+            "zh-CN": "将高尔夫打入球洞会得到奖励.",
+            "pt-BR": "将高尔夫打入球洞会得到奖励.",
+            "pl-PL": "将高尔夫打入球洞会得到奖励."
+        },
+        "AssemblyName": "GolfRewards",
+        "Path": "GolfRewards.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "History",
+        "Version": "1.0.5",
+        "Author": "Cracker64 & Zaicon & Cai & 肝帝熙恩",
+        "Description": {
+            "en-US": "记录图格操作.",
+            "de-DE": "记录图格操作.",
+            "it-IT": "记录图格操作.",
+            "fr-FR": "记录图格操作.",
+            "es-ES": "记录图格操作.",
+            "ru-RU": "记录图格操作.",
+            "zh-CN": "记录图格操作.",
+            "pt-BR": "记录图格操作.",
+            "pl-PL": "记录图格操作."
+        },
+        "AssemblyName": "History",
+        "Path": "History.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "Economics.Projectile",
+        "Version": "1.0.0.6",
+        "Author": "少司命",
+        "Description": {
+            "en-US": "增强玩家武器弹幕!",
+            "de-DE": "增强玩家武器弹幕!",
+            "it-IT": "增强玩家武器弹幕!",
+            "fr-FR": "增强玩家武器弹幕!",
+            "es-ES": "增强玩家武器弹幕!",
+            "ru-RU": "增强玩家武器弹幕!",
+            "zh-CN": "增强玩家武器弹幕!",
+            "pt-BR": "增强玩家武器弹幕!",
+            "pl-PL": "增强玩家武器弹幕!"
+        },
+        "AssemblyName": "Economics.Projectile",
+        "Path": "Economics.Projectile.dll",
+        "Dependencies": [
+            "EconomicsAPI",
+            "Economics.RPG"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "RebirthCoin",
+        "Version": "1.0.0.4",
+        "Author": "GK 阁下",
+        "Description": {
+            "en-US": "让死者瞬间原地复活的神奇力量！",
+            "de-DE": "让死者瞬间原地复活的神奇力量！",
+            "it-IT": "让死者瞬间原地复活的神奇力量！",
+            "fr-FR": "让死者瞬间原地复活的神奇力量！",
+            "es-ES": "让死者瞬间原地复活的神奇力量！",
+            "ru-RU": "让死者瞬间原地复活的神奇力量！",
+            "zh-CN": "让死者瞬间原地复活的神奇力量！",
+            "pt-BR": "让死者瞬间原地复活的神奇力量！",
+            "pl-PL": "让死者瞬间原地复活的神奇力量！"
+        },
+        "AssemblyName": "RebirthCoin",
+        "Path": "RebirthCoin.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "ProxyProtocolSocket",
+        "Version": "2.1.0.0",
+        "Author": "LaoSparrow",
+        "Description": {
+            "en-US": "Proxy Protocol on TShock",
+            "de-DE": "Proxy Protocol on TShock",
+            "it-IT": "Proxy Protocol on TShock",
+            "fr-FR": "Proxy Protocol on TShock",
+            "es-ES": "Proxy Protocol on TShock",
+            "ru-RU": "Proxy Protocol on TShock",
+            "zh-CN": "Proxy Protocol on TShock",
+            "pt-BR": "Proxy Protocol on TShock",
+            "pl-PL": "Proxy Protocol on TShock"
+        },
+        "AssemblyName": "ProxyProtocolSocket",
+        "Path": "ProxyProtocolSocket.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "LifemaxExtra",
+        "Version": "1.0.0.10",
+        "Author": "佚名 & 肝帝熙恩 & 少司命",
+        "Description": {
+            "en-US": "提升生命值上限",
+            "de-DE": "提升生命值上限",
+            "it-IT": "提升生命值上限",
+            "fr-FR": "提升生命值上限",
+            "es-ES": "提升生命值上限",
+            "ru-RU": "提升生命值上限",
+            "zh-CN": "提升生命值上限",
+            "pt-BR": "提升生命值上限",
+            "pl-PL": "提升生命值上限"
+        },
+        "AssemblyName": "LifemaxExtra",
+        "Path": "LifemaxExtra.dll",
+        "Dependencies": [
+            "LazyAPI"
+        ],
+        "HotReload": true
+    },
+    {
+        "Name": "ShortCommand",
+        "Version": "1.3.0.3",
+        "Author": "GK 少司命修复版",
+        "Description": {
+            "en-US": "由GK改良的简短指令插件！",
+            "de-DE": "由GK改良的简短指令插件！",
+            "it-IT": "由GK改良的简短指令插件！",
+            "fr-FR": "由GK改良的简短指令插件！",
+            "es-ES": "由GK改良的简短指令插件！",
+            "ru-RU": "由GK改良的简短指令插件！",
+            "zh-CN": "由GK改良的简短指令插件！",
+            "pt-BR": "由GK改良的简短指令插件！",
+            "pl-PL": "由GK改良的简短指令插件！"
+        },
+        "AssemblyName": "ShortCommand",
+        "Path": "ShortCommand.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "HelpPlus",
+        "Version": "2024.12.18.2",
+        "Author": "Cai",
+        "Description": {
+            "en-US": "更好的Help",
+            "de-DE": "更好的Help",
+            "it-IT": "更好的Help",
+            "fr-FR": "更好的Help",
+            "es-ES": "更好的Help",
+            "ru-RU": "更好的Help",
+            "zh-CN": "更好的Help",
+            "pt-BR": "更好的Help",
+            "pl-PL": "更好的Help"
+        },
+        "AssemblyName": "HelpPlus",
+        "Path": "HelpPlus.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "WikiLangPackLoader",
+        "Version": "2024.12.18.2",
+        "Author": "Cai",
+        "Description": {
+            "en-US": "加载Wiki语言包",
+            "de-DE": "加载Wiki语言包",
+            "it-IT": "加载Wiki语言包",
+            "fr-FR": "加载Wiki语言包",
+            "es-ES": "加载Wiki语言包",
+            "ru-RU": "加载Wiki语言包",
+            "zh-CN": "加载Wiki语言包",
+            "pt-BR": "加载Wiki语言包",
+            "pl-PL": "加载Wiki语言包"
+        },
+        "AssemblyName": "WikiLangPackLoader",
+        "Path": "WikiLangPackLoader.dll",
+        "Dependencies": [],
+        "HotReload": true
+    },
+    {
+        "Name": "SurvivalCrisis",
+        "Version": "1.0.0.0",
+        "Author": "GUZZ07",
+        "Description": {
+            "en-US": "类among us小游戏",
+            "de-DE": "类among us小游戏",
+            "it-IT": "类among us小游戏",
+            "fr-FR": "类among us小游戏",
+            "es-ES": "类among us小游戏",
+            "ru-RU": "类among us小游戏",
+            "zh-CN": "类among us小游戏",
+            "pt-BR": "类among us小游戏",
+            "pl-PL": "类among us小游戏"
+        },
+        "AssemblyName": "SurvivalCrisis",
+        "Path": "SurvivalCrisis.dll",
+        "Dependencies": [],
+        "HotReload": true
+    }
+=======
   {
     "Name": "Platform",
     "Version": "1.1.0.3",
