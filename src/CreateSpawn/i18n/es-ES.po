@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-11-30 13:55:19+0000\n"
-"PO-Revision-Date: 2025-01-05 07:03\n"
+"POT-Creation-Date: 2025-01-08 13:15:43+0000\n"
+"PO-Revision-Date: 2025-01-09 08:54\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,31 +17,35 @@ msgstr ""
 "X-Crowdin-File-ID: 1140\n"
 "Language: es_ES\n"
 
-#: ../../Plugin.cs:100
+#: ../../Plugin.cs:98
 msgid "/cb set <1/2> --选择复制的区域"
 msgstr ""
 
-#: ../../Plugin.cs:95
+#: ../../Plugin.cs:93
 msgid "保存成功!"
 msgstr ""
 
-#: ../../Plugin.cs:63
+#: ../../Plugin.cs:13
+msgid "出生建筑"
+msgstr ""
+
+#: ../../Plugin.cs:61
 msgid "建筑已创建!"
 msgstr ""
 
-#: ../../Plugin.cs:90
+#: ../../Plugin.cs:88
 msgid "您还没有选择复制的区域！"
 msgstr ""
 
-#: ../../Plugin.cs:81
+#: ../../Plugin.cs:79
 msgid "正确指令：/cb set <1/2> --选择复制的区域"
 msgstr ""
 
-#: ../../Plugin.cs:78
+#: ../../Plugin.cs:76
 msgid "请选择复制区域的右下角"
 msgstr ""
 
-#: ../../Plugin.cs:74
+#: ../../Plugin.cs:72
 msgid "请选择复制区域的左上角"
 msgstr ""
 
