@@ -197,6 +197,7 @@
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 为服务器加载 Wiki 语言包 |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 世界编辑器,可以修改大部分的世界参数 |  |
 | [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | zhi的玩家管理插件 |  |
+| [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 类among us小游戏 |  |
 
 </Details>
 
