@@ -1,8 +1,4 @@
 ﻿using System.Net;
-using TrProtocol;
-using TrProtocol.Models;
-using TrProtocol.Packets;
-using TrProtocol.Packets.Modules;
 using TShockAPI;
 
 namespace Dummy;

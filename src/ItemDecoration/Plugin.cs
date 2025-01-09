@@ -71,7 +71,7 @@ public class Plugin : LazyPlugin
 
                         message += $"{Setting.Instance.ItemTextConfig.DamageText}: {newSelectItem.damage}";
                     }
-                    LazyAPI.Utils.SendCombatText(player, message, GetColorByRarity(newSelectItem.rare));
+                    LazyAPI.Utility.Utils.SendCombatText(player, message, GetColorByRarity(newSelectItem.rare));
                 }
             }
         }

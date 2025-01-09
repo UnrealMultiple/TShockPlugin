@@ -1,5 +1,6 @@
 ﻿using BedSet;
 using LazyAPI;
+using LazyAPI.Utility;
 using TerrariaApi.Server;
 using TShockAPI;
 using Main = Terraria.Main;

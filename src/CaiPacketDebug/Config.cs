@@ -1,5 +1,4 @@
-﻿using LazyAPI;
-using LazyAPI.ConfigFiles;
+﻿using LazyAPI.ConfigFiles;
 
 namespace CaiPacketDebug;
 

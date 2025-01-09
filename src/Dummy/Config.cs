@@ -1,6 +1,4 @@
-﻿using LazyAPI;
-using LazyAPI.ConfigFiles;
-using TrProtocol.Models;
+﻿using LazyAPI.ConfigFiles;
 
 namespace Dummy;
 

@@ -21,7 +21,7 @@
  */
 using Newtonsoft.Json;
 
-namespace LazyAPI.ConfigFiles;
+namespace LazyAPI.Attributes;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
 public class LocalizedPropertyNameAttribute : Attribute

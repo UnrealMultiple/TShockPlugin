@@ -1,4 +1,6 @@
+using LazyAPI.Attributes;
 using LazyAPI.Commands;
+using LazyAPI.Utility;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;

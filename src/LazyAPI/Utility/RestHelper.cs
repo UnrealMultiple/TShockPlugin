@@ -1,10 +1,11 @@
+using LazyAPI.Attributes;
 using LazyAPI.Commands;
 using MonoMod.Utils;
 using Rests;
 using System.Reflection;
 using TShockAPI;
 
-namespace LazyAPI;
+namespace LazyAPI.Utility;
 
 public static class RestHelper
 {

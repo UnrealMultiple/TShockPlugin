@@ -1,4 +1,4 @@
-﻿namespace ProgressBag;
+﻿namespace LazyAPI.Attributes;
 
 [AttributeUsage(AttributeTargets.Field)]
 public class ProgressNameAttribute : Attribute

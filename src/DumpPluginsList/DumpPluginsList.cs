@@ -88,7 +88,7 @@ public class DumpPluginsList : TerrariaPlugin
             ServerApi.Plugins.ForEach(p =>
             {
                 if (!dic.TryGetValue(p.Plugin, out var des) || des == null)
-                { 
+                {
                     dic[p.Plugin] = new Dictionary<string, string>();
                 }
                 dic[p.Plugin][langName] = c.GetString(p.Plugin.Description);

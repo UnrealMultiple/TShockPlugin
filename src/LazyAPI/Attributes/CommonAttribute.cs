@@ -1,4 +1,31 @@
-﻿namespace LazyAPI.Commands;
+namespace LazyAPI.Attributes;
+
+[AttributeUsage(AttributeTargets.Class)]
+public class RestAttribute : Attribute
+{
+    public HashSet<string> alias;
+
+    public RestAttribute(params string[] aliases)
+    {
+        this.alias = new HashSet<string>(aliases);
+    }
+}
+
+[AttributeUsage(AttributeTargets.Class)]
+public class CommandAttribute : Attribute
+{
+    public HashSet<string> alias;
+
+    public CommandAttribute(params string[] aliases)
+    {
+        this.alias = new HashSet<string>(aliases);
+    }
+}
+
+[AttributeUsage(AttributeTargets.Class)]
+public class ConfigAttribute : Attribute
+{
+}
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
 public class RealPlayerAttribute : Attribute
@@ -33,3 +60,5 @@ public class AliasAttribute : Attribute
         this.alias = new HashSet<string>(aliases);
     }
 }
+
+

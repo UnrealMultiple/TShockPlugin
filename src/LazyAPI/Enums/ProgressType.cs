@@ -1,8 +1,9 @@
-﻿using Terraria;
+﻿using LazyAPI.Attributes;
+using Terraria;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 
-namespace ProgressBag;
+namespace LazyAPI.Enums;
 
 public enum ProgressType
 {
