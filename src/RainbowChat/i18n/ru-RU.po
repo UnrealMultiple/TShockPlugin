@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-12-15 03:11:36+0000\n"
-"PO-Revision-Date: 2025-01-05 07:05\n"
+"POT-Creation-Date: 2025-01-08 13:16:17+0000\n"
+"PO-Revision-Date: 2025-01-09 08:55\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,12 @@ msgstr ""
 "X-Crowdin-File-ID: 1198\n"
 "Language: ru_RU\n"
 
-#: ../../RainbowChat.cs:113
+#: ../../RainbowChat.cs:112
 #: ../../Commands.cs:152
 msgid "[i:3454][c/E83849:注意][i:3454]\n"
 msgstr ""
 
-#: ../../RainbowChat.cs:52
+#: ../../RainbowChat.cs:51
 msgid "[彩色聊天]重新加载配置完毕。"
 msgstr ""
 
@@ -88,7 +88,11 @@ msgstr ""
 msgid "/rc 随机开关 - 全局开启|关闭随机色功能\n"
 msgstr ""
 
-#: ../../RainbowChat.cs:114
+#: ../../RainbowChat.cs:15
+msgid "使玩家每次说话的颜色不一样."
+msgstr ""
+
+#: ../../RainbowChat.cs:113
 #: ../../Commands.cs:153
 msgid "使用[c/B0B2D1:非正版客户端]或[c/B0B2D1:语言资源包]导致TS指令异常\n"
 msgstr ""
@@ -109,11 +113,11 @@ msgstr ""
 msgid "全局的随机色聊天已 禁用."
 msgstr ""
 
-#: ../../RainbowChat.cs:76
+#: ../../RainbowChat.cs:75
 msgid "您的渐变聊天功能已自动开启."
 msgstr ""
 
-#: ../../RainbowChat.cs:116
+#: ../../RainbowChat.cs:115
 msgid "或者请玩家使用 [c/B0B2D1:.help] 代替 [c/B0B2D1:/help]"
 msgstr ""
 
@@ -143,7 +147,7 @@ msgstr ""
 msgid "结束颜色值缺失。请使用如 '/rc 渐变 结束 0,255,0' 的格式。"
 msgstr ""
 
-#: ../../RainbowChat.cs:115
+#: ../../RainbowChat.cs:114
 #: ../../Commands.cs:154
 msgid "请服主安装[c/B0B2D1:Chireiden.TShock.Omni]插件修复\n"
 msgstr ""
