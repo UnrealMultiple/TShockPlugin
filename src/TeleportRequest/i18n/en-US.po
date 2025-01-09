@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:29+0000\n"
-"PO-Revision-Date: 2025-01-09 08:56\n"
+"PO-Revision-Date: 2025-01-09 10:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "TPR configuration error"
 
 #: ../../TeleportRequest.cs:26
 msgid "传送前需要被传送者接受或拒绝请求"
-msgstr ""
+msgstr "Require teleport to accept or reject requests before transmitting"
 
 #: ../../TeleportRequest.cs:74
 msgid "传送请求已超时."
