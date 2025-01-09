@@ -172,7 +172,7 @@ internal static class Utils
                 AssemblyName = c.Plugin.GetType().Assembly.GetName().Name!,
                 Author = c.Plugin.Author,
                 Name = c.Plugin.Name,
-                Description = c.Plugin.Description,
+                Description = new Dictionary<string, string>() { { PluginManagementContext.Instance.CultureInfo.Name, c.Plugin.Description } },
                 FileName = pluginAssemblyToFileNameMap
                     .TryGetValue(c.Plugin.GetType().Assembly, out var fileName)
                     ? fileName + ".dll"
