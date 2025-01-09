@@ -421,7 +421,7 @@ namespace SurvivalCrisis
                 }
             }
 
-            [Obsolete("待补充")]
+            // 永远也不可能完成的todo 待补充
             public static void ToNextTask()
             {
                 Game.CurrentTask = null;

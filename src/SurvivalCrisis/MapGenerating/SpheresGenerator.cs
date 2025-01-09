@@ -49,7 +49,7 @@ namespace SurvivalCrisis.MapGenerating
 		private void PlaceSpheresLarge()
 		{
 			// 球的直径
-			const double d = 205.0;
+			// const double d = 205.0;
 			//int h = (int)Math.Ceiling((spheresLarge.Count * 4 - 3 + 1) * d / Coverage.Width);
 			//int g = (int)Math.Floor((Coverage.Width - 2 * d) / 4 * d);
 			//List<Point> points = new List<Point>(h * g);

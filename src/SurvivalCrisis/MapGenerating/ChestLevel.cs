@@ -1108,7 +1108,7 @@ namespace SurvivalCrisis.MapGenerating
 			{
 				AddChestItems(Main.chest[idx]);
 			}
-			catch (Exception e)
+			catch (Exception /*e*/)
 			{
 				//TSPlayer.All.SendErrorMessage(e.ToString());
 			}

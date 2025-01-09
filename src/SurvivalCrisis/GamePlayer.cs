@@ -372,12 +372,13 @@ namespace SurvivalCrisis
 			TSPlayer.GodMode = true;
 			var power = CreativePowerManager.Instance.GetPower<CreativePowers.GodmodePower>();
 			power.SetEnabledState(Index, true);
-
-			if (false)
+#if false
+            if (false)
 			{
 				NetMessage.SendData(4, -1, Index, null, Index, 0f, 0f, 0f, 0, 0, 0);
 				NetMessage.SendData(13, -1, Index, null, Index, 0f, 0f, 0f, 0, 0, 0);
 			}
+#endif
 		}
 		public void SetGodmode(bool value)
 		{
@@ -832,7 +833,7 @@ namespace SurvivalCrisis
 			AddTitle(SurvivalCrisis.Rand.Next(titlesCanGet));
 			Data.Coins -= cost;
 		}
-		#region Effects
+        #region Effects
 		public void AddEffect(Effect effect)
 		{
 			effect.Apply();
@@ -873,8 +874,8 @@ namespace SurvivalCrisis
 			}
 			Effects.Clear();
 		}
-		#endregion
-		#region Sends
+        #endregion
+        #region Sends
 		public void AddStatusMessage(string msg, Color color)
 		{
 			var hex = color.R.ToString("x2") + color.G.ToString("x2") + color.B.ToString("x2");
@@ -892,16 +893,16 @@ namespace SurvivalCrisis
 		{
 			TSPlayer.SendMessage(msg, color);
 		}
-		#endregion
-		#region ToString
+        #endregion
+        #region ToString
 		public override string ToString()
 		{
 			return Name;
 		}
-		#endregion
-		#endregion
-		#region Statics
+        #endregion
+#endregion
+        #region Statics
 		public static GamePlayer Guest(int index) => new GamePlayer(index, null);
-		#endregion
+        #endregion
 	}
 }

@@ -27,7 +27,8 @@ namespace SurvivalCrisis.MapGenerating
                 0 => TileID.SolarBrick,
                 1 => TileID.VortexBrick,
                 2 => TileID.NebulaBrick,
-                3 => TileID.StardustBrick
+                3 => TileID.StardustBrick,
+                _ => 1
             };
             biome = BiomeType.Icy;
         }

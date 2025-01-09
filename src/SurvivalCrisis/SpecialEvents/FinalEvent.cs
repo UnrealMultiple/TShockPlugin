@@ -158,8 +158,10 @@ namespace SurvivalCrisis.SpecialEvents
 							var identity = p.Party switch
 							{
 								PlayerIdentity.Survivor => "生存者",
-								PlayerIdentity.Traitor => "背叛者"
-							};
+								PlayerIdentity.Traitor => "背叛者",
+                                PlayerIdentity.Watcher => "旁观者",
+                                _ => "我也不知道你是什么鬼"
+                            };
 							Game.BCToAll($"{p.Index}号被驱逐", Color.CornflowerBlue);
 							Game.BCToAll($"{p.Index}号的身份是: {identity}", Color.CornflowerBlue);
 						}

@@ -19,9 +19,9 @@ namespace SurvivalCrisis.MapGenerating
 		private IslandsGenerator.TileBlockData npcHouse;
 		private int[] snowMinX;
 		private int[] snowMaxX;
-		private int snowTop;
-		private int snowBottom;
-		private int snowOriginLeft;
+		// private int snowTop;
+		// private int snowBottom;
+		// private int snowOriginLeft;
 		private int snowOriginRight;
 		private int waterLine;
 		private int lavaLine;
@@ -33,9 +33,9 @@ namespace SurvivalCrisis.MapGenerating
 			rand = new Random();
 			snowMinX = new int[Coverage.Height];
 			snowMaxX = new int[Coverage.Height];
-			snowTop = 0;
-			snowBottom = 0;
-			snowOriginLeft = 0;
+			// snowTop = 0;
+			// snowBottom = 0;
+			// snowOriginLeft = 0;
 			snowOriginRight = Coverage.Width;
 			lavaLine = Coverage.Height * 3 / 4;
 			waterLine = 0;
@@ -674,7 +674,8 @@ namespace SurvivalCrisis.MapGenerating
 			}
 			return false;
 		}
-		private void TileRunnerWeak(int i, int j, double strength, int steps, int type, bool addTile = false, float speedX = 0f, float speedY = 0f, bool killTile = false, bool noYChange = false, bool overRide = true, int ignoreTileType = -1)
+#if false
+        private void TileRunnerWeak(int i, int j, double strength, int steps, int type, bool addTile = false, float speedX = 0f, float speedY = 0f, bool killTile = false, bool noYChange = false, bool overRide = true, int ignoreTileType = -1)
 		{
 			bool mudWall = false;
 			int beachDistance = int.MaxValue;
@@ -994,7 +995,8 @@ namespace SurvivalCrisis.MapGenerating
 				}
 			}
 		}
-		private void TileRunner(int i, int j, double strength, int steps, int type, bool addTile = false, float speedX = 0f, float speedY = 0f, bool killTile = false, bool noYChange = false, bool overRide = true, int ignoreTileType = -1)
+#endif
+        private void TileRunner(int i, int j, double strength, int steps, int type, bool addTile = false, float speedX = 0f, float speedY = 0f, bool killTile = false, bool noYChange = false, bool overRide = true, int ignoreTileType = -1)
 		{
 			bool mudWall = false;
 			int beachDistance = int.MaxValue;
@@ -1260,7 +1262,7 @@ namespace SurvivalCrisis.MapGenerating
 				vector2.X += (float)rand.Next(-10, 11) * 0.05f;
 				if (false)
 				{
-					vector2.X += (float)rand.Next(-10, 11) * 0.25f;
+					// vector2.X += (float)rand.Next(-10, 11) * 0.25f;
 				}
 				if (vector2.X > 1f)
 				{

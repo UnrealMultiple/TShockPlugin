@@ -2,6 +2,7 @@
 // using OTAPI.Tile;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -399,9 +400,19 @@ namespace SurvivalCrisis
 			return !(left == right);
 		}
 
+        public override bool Equals(object obj)
+        {
+            return obj != null && obj is TileSection sec && this == sec;
+        }
+
+        public override int GetHashCode()
+        {
+            return X.GetHashCode() ^ Y.GetHashCode() ^ Width.GetHashCode() ^ Height.GetHashCode();
+        }
 
 
-		public Point LeftJoint { get { return new Point(Left, CenterY); } }
+
+        public Point LeftJoint { get { return new Point(Left, CenterY); } }
 		public Point RightJoint { get { return new Point(Right, CenterY); } }
 		public Point RandomJoint(Random rad)
 		{

@@ -79,7 +79,8 @@ namespace SurvivalCrisis
         public int TitleIDMin { get; }
         public int TitleIDMax { get; }
 
-        [Obsolete("事件没做完")]
+        //[Obsolete("事件没做完")]
+        // 事件没机会做完了
         public SpecialEvent[] Events
         {
             get;
