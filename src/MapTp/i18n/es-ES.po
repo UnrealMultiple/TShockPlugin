@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-09-07 18:08:50+0000\n"
-"PO-Revision-Date: 2025-01-05 07:04\n"
+"POT-Creation-Date: 2025-01-08 13:16:06+0000\n"
+"PO-Revision-Date: 2025-01-09 08:55\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,11 @@ msgstr ""
 "X-Crowdin-File-ID: 1188\n"
 "Language: es_ES\n"
 
-#: ../../MapTeleport.cs:52
+#: ../../MapTeleport.cs:16
+msgid "允许玩家传送到地图上的选定位置."
+msgstr ""
+
+#: ../../MapTeleport.cs:50
 msgid "您正在尝试传送到实心方块中。请在地图上选择一个不包含实心方块的地方，然后重试."
 msgstr ""
 
