@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 18:22:43+0000\n"
-"PO-Revision-Date: 2025-01-09 08:53\n"
+"PO-Revision-Date: 2025-01-09 10:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -224,7 +224,7 @@ msgstr "Disabled"
 
 #: ../../AutoFish.cs:18
 msgid "自动钓鱼"
-msgstr ""
+msgstr "Auto Fishing"
 
 #: ../../Commands.cs:103
 #, csharp-format
