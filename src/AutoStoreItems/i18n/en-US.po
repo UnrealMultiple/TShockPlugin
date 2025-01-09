@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 18:22:45+0000\n"
-"PO-Revision-Date: 2025-01-09 08:53\n"
+"PO-Revision-Date: 2025-01-09 10:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -164,7 +164,7 @@ msgstr "Your self-storage [c/BBE9B7:Monitoring] is: [c/E489C0:{0}]"
 
 #: ../../AutoStoreItems.cs:16
 msgid "持有指定物品根据配置物品ID自动存入存储空间"
-msgstr ""
+msgstr "Automatically store specified items into storage space based on configured item IDs."
 
 #: ../../Commands.cs:64
 #, csharp-format
