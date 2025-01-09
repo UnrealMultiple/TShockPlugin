@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:15:57+0000\n"
-"PO-Revision-Date: 2025-01-09 08:55\n"
+"PO-Revision-Date: 2025-01-09 10:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../Ezperm.cs:13
 msgid "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限"
-msgstr ""
+msgstr "A command to help beginners add missing permissions to the initial server and also allows for batch addition and deletion of permissions"
 
 #: ../../Ezperm.cs:90
 #, csharp-format
