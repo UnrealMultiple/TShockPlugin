@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:11+0000\n"
-"PO-Revision-Date: 2025-01-09 08:56\n"
+"PO-Revision-Date: 2025-01-09 10:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Per player loot is now disabled! You can modify chests now and they will
 
 #: ../../PPLPlugin.cs:16
 msgid "玩家战利品单独箱子."
-msgstr ""
+msgstr "Individual chests for player loot."
 
 #: ../../PPLPlugin.cs:69
 msgid "现在启用了每个玩家单独的宝箱!"
