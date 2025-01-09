@@ -1,0 +1,42 @@
+name: Crowdin Action
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  synchronize-with-crowdin:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: crowdin action
+        uses: crowdin/github-action@v2
+        with:
+          crowdin_branch_name: 'master'
+
+          upload_sources: true
+          upload_translations: false
+
+          download_translations: true
+          skip_untranslated_files: true
+
+          localization_branch_name: 'i18n-tmp'
+          commit_message: 'New Crowdin translations [skip actions]'
+          push_sources: false
+
+          create_pull_request: true
+          pull_request_title: 'New Crowdin Translations'
+          pull_request_body: 'New Crowdin pull request with translations'
+          pull_request_base_branch_name: 'master'
+        env:
+          # A classic GitHub Personal Access Token with the 'repo' scope selected (the user should have write access to the repository).
+          GITHUB_TOKEN: ${{ secrets.CROWDIN_GH_TOKEN }}
+
+          # Visit https://crowdin.com/settings#api-key to create this token
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
