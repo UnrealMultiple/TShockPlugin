@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-11-29 03:44:50+0000\n"
-"PO-Revision-Date: 2025-01-05 07:02\n"
+"POT-Creation-Date: 2025-01-08 18:22:42+0000\n"
+"PO-Revision-Date: 2025-01-09 08:52\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -158,6 +158,10 @@ msgstr ""
 #: ../../Commands.cs:169
 #, csharp-format
 msgid "玩家 [{0}] 的自动清理消息已[c/92C5EC:禁用]"
+msgstr ""
+
+#: ../../AutoAirItem.cs:16
+msgid "自动垃圾桶帮助玩家清理自身垃圾"
 msgstr ""
 
 #: ../../Commands.cs:101
