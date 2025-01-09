@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-10-16 17:51:16+0000\n"
-"PO-Revision-Date: 2025-01-05 07:04\n"
+"POT-Creation-Date: 2025-01-08 13:15:57+0000\n"
+"PO-Revision-Date: 2025-01-09 08:55\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,17 +17,21 @@ msgstr ""
 "X-Crowdin-File-ID: 1178\n"
 "Language: en_US\n"
 
-#: ../../Ezperm.cs:91
+#: ../../Ezperm.cs:13
+msgid "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限"
+msgstr ""
+
+#: ../../Ezperm.cs:90
 #, csharp-format
 msgid "成功为组 {0} 删除权限: {1}"
 msgstr "Success as group {0} Deleter permissions: {1}"
 
-#: ../../Ezperm.cs:74
+#: ../../Ezperm.cs:73
 #, csharp-format
 msgid "成功为组 {0} 添加权限: {1}"
 msgstr "Successfully added permissions for group {0}: {1}"
 
-#: ../../Ezperm.cs:59
+#: ../../Ezperm.cs:58
 #, csharp-format
 msgid "组 {0} 不存在，已创建该组。"
 msgstr "Group {0} does not exist and has been created."
