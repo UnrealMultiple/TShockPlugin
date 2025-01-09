@@ -1,20 +1,24 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: DamageRuleLoot\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:15:44+0000\n"
-"PO-Revision-Date: 2024-10-25 01:34+0800\n"
+"PO-Revision-Date: 2025-01-09 08:54\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en_US\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/DamageRuleLoot/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1146\n"
+"Language: en_US\n"
 
 #: ../../Tool.cs:318
-msgid ""
-"            [i:3455][c/AD89D5:伤][c/D68ACA:害][c/DF909A:排][c/E5A894:行][c/"
-"E5BE94:榜][i:3454]"
+msgid "            [i:3455][c/AD89D5:伤][c/D68ACA:害][c/DF909A:排][c/E5A894:行][c/E5BE94:榜][i:3454]"
 msgstr "            [i:3455]Damage Leaderboard[i:3454]"
 
 #: ../../Tool.cs:344
@@ -45,16 +49,12 @@ msgstr " [c/A7DDF0:{0}]([c/74F3C9:{1:0.00%}])"
 #: ../../Tool.cs:319
 #, csharp-format
 msgid " 当前服务器有 [c/74F3C9:{0}位] 玩家 | 未参战: [c/A7DDF0:{1}位]"
-msgstr ""
-" Current server has [c/74F3C9:{0}] players | Not engaged in battle: [c/"
-"A7DDF0:{1}]"
+msgstr " Current server has [c/74F3C9:{0}] players | Not engaged in battle: [c/A7DDF0:{1}]"
 
 #: ../../Tool.cs:320
 #, csharp-format
 msgid " 恭喜以下 [c/74F3C9:{0}位] 玩家击败了 [c/F7686D:{1}]"
-msgstr ""
-" Congratulations to the following [c/74F3C9:{0}] players who defeated [c/"
-"F7686D:{1}]"
+msgstr " Congratulations to the following [c/74F3C9:{0}] players who defeated [c/F7686D:{1}]"
 
 #: ../../Tool.cs:268
 #, csharp-format
@@ -66,7 +66,8 @@ msgstr "[c/F06576:{0}]"
 msgid "[c/F06576:{0}] "
 msgstr "[c/F06576:{0}] "
 
-#: ../../Tool.cs:266 ../../Tool.cs:302
+#: ../../Tool.cs:266
+#: ../../Tool.cs:302
 #, csharp-format
 msgid "[c/F06576:【停转】] 玩家:[c/F06576:{0}] "
 msgstr "[c/F06576:【Stop Rotation】] Player:[c/F06576:{0}] "
@@ -74,9 +75,7 @@ msgstr "[c/F06576:【Stop Rotation】] Player:[c/F06576:{0}] "
 #: ../../Tool.cs:396
 #, csharp-format
 msgid "[c/F06576:【注意】]输出少于 [c/A7DDF0:{0:0.00%}] 禁止掉落宝藏袋:\n"
-msgstr ""
-"[c/F06576:【Attention】] Output less than [c/A7DDF0:{0:0.00%}] prohibits "
-"dropping of treasure bag:\n"
+msgstr "[c/F06576:【Attention】] Output less than [c/A7DDF0:{0:0.00%}] prohibits dropping of treasure bag:\n"
 
 #: ../../DamageRuleLoot.cs:81
 #, csharp-format
@@ -106,7 +105,8 @@ msgstr "The Twins"
 msgid "对象:[c/AEA3E4:{0}] 满血:[c/FBF069:{1}] "
 msgstr "Target: [c/AEA3E4:{0}] Full Health: [c/FBF069:{1}] "
 
-#: ../../Tool.cs:259 ../../Tool.cs:295
+#: ../../Tool.cs:259
+#: ../../Tool.cs:295
 #, csharp-format
 msgid "攻击对象:[c/AEA3E4:{0}] | "
 msgstr "Attack Target: [c/AEA3E4:{0}] | "
@@ -121,9 +121,8 @@ msgid "月亮领主"
 msgstr "Moon Lord"
 
 #: ../../DamageRuleLoot.cs:17
-msgid ""
-"根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理"
-msgstr ""
+msgid "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理"
+msgstr "The penalty for dropping treasure bags is determined based on the output ranking list, and relative damage rules are dealt with for each BOSS."
 
 #: ../../DamageRuleLoot.cs:430
 msgid "火星飞碟"
@@ -133,7 +132,8 @@ msgstr "Martian Saucer"
 msgid "猪龙鱼公爵"
 msgstr "Duke Fishron"
 
-#: ../../Tool.cs:261 ../../Tool.cs:297
+#: ../../Tool.cs:261
+#: ../../Tool.cs:297
 #, csharp-format
 msgid "生命:[c/FBF069:{0}]"
 msgstr "Life:[c/FBF069:{0}]"
@@ -151,101 +151,15 @@ msgstr "Wall of Flesh"
 msgid "血量:[c/6DDA6D:{0}] 伤害:[c/F06576:{1}] "
 msgstr "Health: [c/6DDA6D:{0}] Damage: [c/F06576:{1}] "
 
-#: ../../Tool.cs:267 ../../Tool.cs:303
+#: ../../Tool.cs:267
+#: ../../Tool.cs:303
 #, csharp-format
 msgid "转伤对象:[c/AEA3E4:{0}] | 生命值:[c/6DDA6D:{1}] < "
 msgstr "Target for damage transfer:[c/AEA3E4:{0}] | Health:[c/6DDA6D:{1}] < "
 
-#: ../../Tool.cs:260 ../../Tool.cs:296
+#: ../../Tool.cs:260
+#: ../../Tool.cs:296
 #, csharp-format
 msgid "转移:[c/6DDA6D:{0}] 伤害:[c/F06576:{1}] "
-msgstr "转移:[c/6DDA6D:{0}] 伤害:[c/F06576:{1}] "
+msgstr "Transfer:[c/6DDA6D:{0}] Damage:[c/F06576:{1}] "
 
-#, csharp-format
-#~ msgid ""
-#~ " [c/A7DDF0:{0}]   伤害:[c/74F3C9:{0}]   暴击:[c/74F3C9:{0}]   比例:"
-#~ "[c/74F3C9:{0:0.00%}]"
-#~ msgstr ""
-#~ " [c/A7DDF0:{0}]   Damage:[c/74F3C9:{0}]   Critical Hit:[c/74F3C9:{0}]   "
-#~ "Ratio:[c/74F3C9:{0:0.00%}]"
-
-#, csharp-format
-#~ msgid ""
-#~ "[c/F06576:【停转】] 玩家:[c/F06576:{0}] 转伤对象:[c/AEA3E4:{0}] | 生命值:"
-#~ "[c/6DDA6D:{1}] < [c/F06576:{0}] "
-#~ msgstr ""
-#~ "[c/F06576:【Stop Rotation】] Player:[c/F06576:{0}] Target for damage "
-#~ "transfer:[c/AEA3E4:{0}] | Health:[c/6DDA6D:{1}] < [c/F06576:{0}] "
-
-#, csharp-format
-#~ msgid ""
-#~ "[c/FBF069:【暴击】] 玩家:[c/F06576:{0}] 对象:[c/AEA3E4:{0}] 满血:[c/"
-#~ "FBF069:{1}] 血量:[c/6DDA6D:{0}] 伤害:[c/F06576:{1}] 暴击数:[c/FBF069:{0}]"
-#~ msgstr ""
-#~ "[c/FBF069:【Critical Hit】] Player:[c/F06576:{0}] Target:[c/AEA3E4:{0}] "
-#~ "Full HP:[c/FBF069:{1}] Current HP:[c/6DDA6D:{0}] Damage:[c/F06576:{1}] "
-#~ "Critical Hits:[c/FBF069:{0}]"
-
-#, csharp-format
-#~ msgid ""
-#~ "[c/FBF069:【转伤】] 玩家:[c/F06576:{0}] 攻击对象:[c/AEA3E4:{0}] | 转移:"
-#~ "[c/6DDA6D:{0}] 伤害:[c/F06576:{1}] 生命:[c/FBF069:{0}]"
-#~ msgstr ""
-#~ "[c/FBF069:【Damage Transfer】] Player:[c/F06576:{0}] Attack Target:[c/"
-#~ "AEA3E4:{0}] | Transferred:[c/6DDA6D:{0}] Damage:[c/F06576:{1}] HP:[c/"
-#~ "FBF069:{0}]"
-
-#, csharp-format
-#~ msgid ""
-#~ "[c/FBF069:【转移】] 玩家:[c/F06576:{0}] 攻击对象:[c/AEA3E4:{0}] | 转移:"
-#~ "[c/6DDA6D:{0}] 伤害:[c/F06576:{1}] 生命:[c/FBF069:{0}]"
-#~ msgstr ""
-#~ "[c/FBF069:【Damage Transfer】] Player:[c/F06576:{0}] Attack Target:[c/"
-#~ "AEA3E4:{0}] | Transferred:[c/6DDA6D:{0}] Damage:[c/F06576:{1}] HP:[c/"
-#~ "FBF069:{0}]"
-
-#~ msgid ""
-#~ "[i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by]  羽学 [C/E7A5CC:|] [c/00FFFF:西"
-#~ "江小子][i:3459]"
-#~ msgstr ""
-#~ "[i:3456][C/F2F2C7:Plugin Development] [C/BFDFEA:by] Yu Xue [C/E7A5CC:|] "
-#~ "[c/00FFFF:West River Kid][i:3459]"
-
-#~ msgid "冰雪巨人"
-#~ msgstr "Ice Golem"
-
-#~ msgid "腐化宝箱怪"
-#~ msgstr "Corrupt Mimic2"
-
-#~ msgid "哥布林术士"
-#~ msgstr "Goblin Warlock"
-
-#~ msgid "海盗船长"
-#~ msgstr "Pirate Captain"
-
-#~ msgid "荷兰飞盗船"
-#~ msgstr "Animated Flying Dutchman"
-
-#~ msgid "黑暗魔法师"
-#~ msgstr "Dark Mage"
-
-#~ msgid "恐惧鹦鹉螺"
-#~ msgstr "Dreadnautilus"
-
-#~ msgid "沙尘精"
-#~ msgstr "Sand Elemental"
-
-#~ msgid "神圣宝箱怪"
-#~ msgstr "Hallowed Mimic2"
-
-#~ msgid "食人魔"
-#~ msgstr "Ogre"
-
-#~ msgid "猩红宝箱怪"
-#~ msgstr "Crimson Mimic2"
-
-#~ msgid "血浆哥布林鲨鱼"
-#~ msgstr "Hemogoblin Shark"
-
-#~ msgid "血鳗鱼"
-#~ msgstr "Blood Eel Head"

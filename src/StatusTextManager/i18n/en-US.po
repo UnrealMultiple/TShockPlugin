@@ -1,0 +1,185 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:16:28+0000\n"
+"PO-Revision-Date: 2025-01-09 10:06\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/StatusTextManager/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1206\n"
+"Language: en_US\n"
+
+#: ../../Utils/Common.cs:200
+msgid "（抓捕位置："
+msgstr "(Capture location:"
+
+#: ../../Utils/Common.cs:201
+msgid "）"
+msgstr ")"
+
+#: ../../StatusTextManager.cs:76
+msgid "Manage status text of different plugins"
+msgstr "Manage status text of different plugins"
+
+#: ../../Utils/Common.cs:83
+msgid "丛林"
+msgstr "Jungle"
+
+#: ../../Utils/Common.cs:107
+msgid "发光蘑菇"
+msgstr "Glowing Mushroom"
+
+#: ../../Utils/Common.cs:99
+msgid "和平蜡烛"
+msgstr "Peace Candle"
+
+#: ../../Utils/Common.cs:51
+#: ../../Utils/Common.cs:119
+msgid "地下"
+msgstr "Underground"
+
+#: ../../Utils/Common.cs:111
+msgid "地下沙漠"
+msgstr "Desert Underground"
+
+#: ../../Utils/Common.cs:67
+msgid "地牢"
+msgstr "Dungeon"
+
+#: ../../Utils/Common.cs:55
+#: ../../Utils/Common.cs:127
+msgid "地狱"
+msgstr "Underwold"
+
+#: ../../Utils/Common.cs:163
+msgid "墓地"
+msgstr "Graveyard"
+
+#: ../../Utils/Common.cs:147
+msgid "大理石"
+msgstr "Marble"
+
+#: ../../SettingsModel/DynamicText.cs:47
+msgid "存活"
+msgstr "Survive"
+
+#: ../../Utils/Common.cs:155
+msgid "宝石洞窟"
+msgstr "Gems Caves"
+
+#: ../../StatusTextManager.cs:30
+#: ../../StatusTextManager.cs:58
+msgid "已关闭模板显示"
+msgstr "Template display turned off"
+
+#: ../../SettingsModel/DynamicText.cs:54
+msgid "已完成"
+msgstr "Completed"
+
+#: ../../StatusTextManager.cs:24
+#: ../../StatusTextManager.cs:46
+msgid "已开启模板显示"
+msgstr "Template display turned on"
+
+#: ../../SettingsModel/DynamicText.cs:47
+msgid "已死亡"
+msgstr "Dead"
+
+#: ../../Utils/Common.cs:171
+msgid "微光"
+msgstr "Shimmer"
+
+#: ../../SettingsModel/DynamicText.cs:54
+msgid "未完成"
+msgstr "Not completed"
+
+#: ../../SettingsModel/DynamicText.cs:48
+msgid "未死亡"
+msgstr "Not dead"
+
+#: ../../Utils/Common.cs:175
+msgid "森林"
+msgstr "Forest"
+
+#: ../../Utils/Common.cs:95
+msgid "水蜡烛"
+msgstr "Water Candle"
+
+#: ../../Utils/Common.cs:139
+msgid "沙尘暴"
+msgstr "Sandstorm"
+
+#: ../../Utils/Common.cs:103
+msgid "沙漠"
+msgstr "Desert"
+
+#: ../../Utils/Common.cs:53
+#: ../../Utils/Common.cs:123
+msgid "洞穴"
+msgstr "Cave"
+
+#: ../../Utils/Common.cs:131
+msgid "海滩"
+msgstr "Ocean"
+
+#: ../../Utils/Common.cs:91
+msgid "猩红"
+msgstr "Crimson"
+
+#: ../../StatusTextManager.cs:63
+msgid "用法：/st <on/show/off/hide>"
+msgstr "Usage: /st <on/show/off/hide>"
+
+#: ../../Utils/Common.cs:75
+msgid "神圣"
+msgstr "Hallow"
+
+#: ../../Utils/Common.cs:159
+msgid "神庙"
+msgstr "Temple"
+
+#: ../../SettingsModel/DynamicText.cs:46
+msgid "空区域"
+msgstr "Empty Area"
+
+#: ../../Utils/Common.cs:49
+#: ../../Utils/Common.cs:115
+msgid "空岛"
+msgstr "Sky Island"
+
+#: ../../Utils/Common.cs:71
+msgid "腐化"
+msgstr "Corruption"
+
+#: ../../Utils/Common.cs:143
+msgid "花岗岩"
+msgstr "Granite"
+
+#: ../../Utils/Common.cs:151
+msgid "蜂巢"
+msgstr "Bee Hive"
+
+#: ../../Utils/Common.cs:167
+msgid "阴影蜡烛"
+msgstr "Shadow Candle"
+
+#: ../../Utils/Common.cs:79
+msgid "陨石"
+msgstr "Meteorite"
+
+#: ../../Utils/Common.cs:135
+msgid "雨天"
+msgstr "Rain"
+
+#: ../../Utils/Common.cs:87
+msgid "雪原"
+msgstr "Snow"
+
