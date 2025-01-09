@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-11-30 02:03:51+0000\n"
-"PO-Revision-Date: 2025-01-06 08:06\n"
+"POT-Creation-Date: 2025-01-08 13:15:34+0000\n"
+"PO-Revision-Date: 2025-01-09 08:53\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,35 +17,35 @@ msgstr ""
 "X-Crowdin-File-ID: 1110\n"
 "Language: en_US\n"
 
-#: ../../Main.cs:50
+#: ../../Main.cs:49
 msgid "-------[BetterWhitelist]-------"
 msgstr "-------[BetterWhitelist]-------"
 
-#: ../../Main.cs:52
+#: ../../Main.cs:51
 msgid "/bwl add {name}, 添加玩家名到白名单中\n"
 msgstr "/bwl add {name}, Add player name to the whitelist\n"
 
-#: ../../Main.cs:53
+#: ../../Main.cs:52
 msgid "/bwl del {name}, 将玩家移出白名单\n"
 msgstr "/bwl del {name}, Remove player from the whitelist\n"
 
-#: ../../Main.cs:56
+#: ../../Main.cs:55
 msgid "/bwl false, 关闭插件\n"
 msgstr "/bwl false, Disable the plugin\n"
 
-#: ../../Main.cs:51
+#: ../../Main.cs:50
 msgid "/bwl help, 显示帮助信息\n"
 msgstr "/bwl help, Show help information\n"
 
-#: ../../Main.cs:54
+#: ../../Main.cs:53
 msgid "/bwl list, 显示白名单上的全部玩家\n"
 msgstr "/bwl list, Show all players on the whitelist\n"
 
-#: ../../Main.cs:57
+#: ../../Main.cs:56
 msgid "/bwl reload, 重载插件"
 msgstr "/bwl reload, Reload the plugin"
 
-#: ../../Main.cs:55
+#: ../../Main.cs:54
 msgid "/bwl true, 启用插件\n"
 msgstr "/bwl true, Enable the plugin\n"
 
@@ -53,48 +53,52 @@ msgstr "/bwl true, Enable the plugin\n"
 msgid "你不在服务器白名单中！"
 msgstr "You are not on the server whitelist!"
 
-#: ../../Main.cs:147
+#: ../../Main.cs:146
 msgid "删除成功!"
 msgstr "Deleted successfully!"
 
-#: ../../Main.cs:85
+#: ../../Main.cs:84
 msgid "启用失败! 插件已是打开状态"
 msgstr "Enable failed! The plugin is already enabled"
 
-#: ../../Main.cs:90
+#: ../../Main.cs:89
 msgid "启用成功!"
 msgstr "Enabled successfully!"
 
-#: ../../Main.cs:105
-#: ../../Main.cs:133
+#: ../../Main.cs:104
+#: ../../Main.cs:132
 msgid "插件开关已被禁用，请检查配置文件!"
 msgstr "The plugin switch has been disabled, please check the configuration file!"
 
-#: ../../Main.cs:125
+#: ../../Main.cs:124
 msgid "添加失败! 该玩家已经在白名单中"
 msgstr "Add failed! The player is already on the whitelist"
 
-#: ../../Main.cs:120
+#: ../../Main.cs:119
 msgid "添加成功!"
 msgstr "Added successfully!"
 
-#: ../../Main.cs:41
+#: ../../Main.cs:40
 msgid "用法: 输入 /bwl help 显示帮助信息."
 msgstr "Usage: Enter /bwl help to show help information."
 
-#: ../../Main.cs:111
+#: ../../Main.cs:110
 msgid "用法错误!正确用法: /bwl add <玩家名>"
 msgstr "Usage error! Correct usage: /bwl add <player name>"
 
-#: ../../Main.cs:139
+#: ../../Main.cs:138
 msgid "用法错误!正确用法: /bwl del <玩家名>"
 msgstr "Usage error! Correct usage: /bwl del <player name>"
 
-#: ../../Main.cs:71
+#: ../../Main.cs:70
 msgid "禁用失败! 插件已是关闭状态"
 msgstr "Disable failed! The plugin is already disabled"
 
-#: ../../Main.cs:76
+#: ../../Main.cs:75
 msgid "禁用成功!"
 msgstr "Disabled successfully!"
+
+#: ../../Main.cs:20
+msgid "通过检查玩家姓名的玩家白名单"
+msgstr "Whitelist players by checking the name of the player"
 
