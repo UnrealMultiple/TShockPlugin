@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:13+0000\n"
-"PO-Revision-Date: 2025-01-09 08:56\n"
+"PO-Revision-Date: 2025-01-09 10:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr "/swaptoggle timer <time> - Set the remaining teleport time for broadcast
 
 #: ../../PlayerRandomSwapper.cs:12
 msgid "一个插件，用于在指定时间后随机交换玩家位置。"
-msgstr ""
+msgstr "A plugin for randomly swapping player positions after a specified time."
 
 #: ../../PlayerRandomSwapper.cs:148
 #, csharp-format
