@@ -1,6 +1,7 @@
 ﻿using LazyAPI;
 using Terraria;
 using TerrariaApi.Server;
+using TrProtocol.Packets;
 using TShockAPI;
 
 namespace Dummy;
