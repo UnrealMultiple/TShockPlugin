@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-09-28 12:11:56+0000\n"
-"PO-Revision-Date: 2025-01-06 08:05\n"
+"POT-Creation-Date: 2025-01-08 13:15:28+0000\n"
+"PO-Revision-Date: 2025-01-09 08:53\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,13 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1088\n"
 "Language: es_ES\n"
 
-#: ../../AutoBroadcast.cs:57
-msgid "[AutoBroadcast]配置读取发生错误!\n"
-"{0}"
-msgstr "[AutoBroadcast] ¡Error al leer la configuración!\n"
-"{0}"
-
-#: ../../AutoBroadcast.cs:43
-msgid "自定义广播配置已重读!"
-msgstr "¡Configuración de transmisión personalizada recargada!"
+#: ../../AutoBroadcast.cs:12
+msgid "自动广播插件"
+msgstr ""
 
