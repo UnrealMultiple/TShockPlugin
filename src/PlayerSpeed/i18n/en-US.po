@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-12-12 13:21:55+0000\n"
-"PO-Revision-Date: 2025-01-06 08:06\n"
+"POT-Creation-Date: 2025-01-08 13:16:13+0000\n"
+"PO-Revision-Date: 2025-01-09 08:56\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -49,23 +49,27 @@ msgstr "/vel reset —— Clear All Data"
 msgid "/vel set ——设置相关参数\n"
 msgstr "/vel set —— Set Related Parameters\n"
 
-#: ../../PlayerSpeed.cs:196
+#: ../../PlayerSpeed.cs:195
 #, csharp-format
 msgid "\n"
 "玩家 [c/4EA4F2:{0}] 因[c/FF5265:冲刺]或[c/DBF34E:跳跃] 超过[c/47DCBD:{1}次]进入冷却"
 msgstr "\n"
 "Player [c/4EA4F2:{0}] enters cool-down for exceeding [c/47DCBD:{1} times] of [c/FF5265:sprinting] or [c/DBF34E:jumping]"
 
-#: ../../PlayerSpeed.cs:174
+#: ../../PlayerSpeed.cs:173
 #, csharp-format
 msgid "\n"
 "玩家 [c/4EA4F2:{0}] 疾速[c/FF5265:冷却]完毕!"
 msgstr "\n"
 "Player [c/4EA4F2:{0}] has quickly [c/FF5265:Cooldown] completed!"
 
-#: ../../PlayerSpeed.cs:178
+#: ../../PlayerSpeed.cs:177
 msgid "使用克盾类饰品[c/47DCBD:冲刺]可冲更远"
 msgstr "Using a trinket similar to the Cthulhu Shield [c/47DCBD:sprint] can allow for longer dashes"
+
+#: ../../PlayerSpeed.cs:15
+msgid "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发"
+msgstr ""
 
 #: ../../Commands.cs:120
 msgid "修改冲刺:"
@@ -185,7 +189,7 @@ msgstr "Ensure attributes followed by correct numbers or names, any combination:
 msgid "移除物品"
 msgstr "Remove Item"
 
-#: ../../PlayerSpeed.cs:183
+#: ../../PlayerSpeed.cs:182
 msgid "装备指定物品[c/47DCBC:可加速跳跃]!"
 msgstr "Equip the specified item [c/47DCBC:to enhance jumping]!"
 
