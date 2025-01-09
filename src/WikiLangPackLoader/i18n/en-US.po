@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:34+0000\n"
-"PO-Revision-Date: 2025-01-09 08:59\n"
+"PO-Revision-Date: 2025-01-09 10:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,5 +19,5 @@ msgstr ""
 
 #: ../../Plugin.cs:25
 msgid "加载Wiki语言包"
-msgstr ""
+msgstr "Load Wiki language pack"
 
