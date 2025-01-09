@@ -180,6 +180,7 @@
 | [SpclPerm](./src/SpclPerm/README.md) | 服主特权 |  |
 | [StatusTextManager](./src/StatusTextManager/README.md) | PC端模板文本管理插件 |  |
 | [SurfaceBlock](./src/SurfaceBlock/README.md) | 禁地表弹幕插件 | [LazyAPI](./src/LazyAPI/README.md) |
+| [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 类among us小游戏 |  |
 | [SwitchCommands](./src/SwitchCommands/README.md) | 区域执行指令 |  |
 | [TeleportRequest](./src/TeleportRequest/README.md) | 传送请求 |  |
 | [TimeRate](./src/TimeRate/README.md) | 时间加速插件 |  |
@@ -197,7 +198,6 @@
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 为服务器加载 Wiki 语言包 |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 世界编辑器,可以修改大部分的世界参数 |  |
 | [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | zhi的玩家管理插件 |  |
-| [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 类among us小游戏 |  |
 
 </Details>
 
