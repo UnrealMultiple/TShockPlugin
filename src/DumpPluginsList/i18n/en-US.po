@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:49+0000\n"
-"PO-Revision-Date: 2025-01-09 08:58\n"
+"POT-Creation-Date: 2025-01-09 09:33:48+0000\n"
+"PO-Revision-Date: 2025-01-09 10:23\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1444\n"
 "Language: en_US\n"
 
-#: ../../DumpPluginsList.cs:13
+#: ../../DumpPluginsList.cs:16
 msgid "Dump plugin list and exit"
 msgstr ""
 
