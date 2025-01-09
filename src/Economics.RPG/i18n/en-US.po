@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-11-19 17:21:58+0000\n"
-"PO-Revision-Date: 2025-01-06 08:06\n"
+"POT-Creation-Date: 2025-01-08 13:15:52+0000\n"
+"PO-Revision-Date: 2025-01-09 08:54\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "Upgrade Required ({0})"
 msgid "升级所需 {0}"
 msgstr "Upgrade Required {0}"
 
-#: ../../RPG.cs:87
+#: ../../RPG.cs:86
 #, csharp-format
 msgid "升级职业: {0}"
 msgstr "Upgrade profession: {0}"
@@ -61,7 +61,7 @@ msgstr "Upgrading to {0} requires holding weapon {1}!"
 msgid "已经满级了，无法继续升级!"
 msgstr "Already at maximum level, cannot continue to upgrade!"
 
-#: ../../RPG.cs:86
+#: ../../RPG.cs:85
 #, csharp-format
 msgid "当前职业: {0}"
 msgstr "Current profession: {0}"
@@ -81,6 +81,10 @@ msgstr "You have successfully reset your level!"
 #, csharp-format
 msgid "成功升级至 {0}!"
 msgstr "Successfully upgraded to {0}!"
+
+#: ../../RPG.cs:18
+msgid "提供RPG玩法!"
+msgstr "Provides RPG gameplay!"
 
 #: ../../Command.cs:123
 msgid "玩家等级信息重置成功!"
