@@ -1,25 +1,34 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: EssentialsPlus\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:15:56+0000\n"
-"PO-Revision-Date: 2024-10-23 20:31+0800\n"
+"PO-Revision-Date: 2025-01-09 08:55\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/EssentialsPlus/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1176\n"
+"Language: en_US\n"
 
-#: ../../Commands.cs:23 ../../Commands.cs:246
+#: ../../Commands.cs:23
+#: ../../Commands.cs:246
 msgid "-command: 查找命令."
 msgstr "-command: Finds a command."
 
-#: ../../Commands.cs:716 ../../Commands.cs:736
+#: ../../Commands.cs:716
+#: ../../Commands.cs:736
 msgid "-f, -force: 强制sudo，忽略权限限制。"
 msgstr "-f, -force: Force sudo, ignoring permissions."
 
-#: ../../Commands.cs:24 ../../Commands.cs:247
+#: ../../Commands.cs:24
+#: ../../Commands.cs:247
 msgid "-item: 查找物品."
 msgstr "Finds an item."
 
@@ -27,39 +36,37 @@ msgstr "Finds an item."
 msgid "-nosave: 踢出时不保存 SSC 数据."
 msgstr "-nosave: Kicks without saving SSC data."
 
-#: ../../Commands.cs:25 ../../Commands.cs:248
+#: ../../Commands.cs:25
+#: ../../Commands.cs:248
 msgid "-npc: 查找NPC."
 msgstr "Finds an NPC."
 
-#: ../../Commands.cs:794 ../../Commands.cs:809
+#: ../../Commands.cs:794
+#: ../../Commands.cs:809
 msgid "-r, -repeat: 重复执行时间命令。"
 msgstr "-r, -repeat: Repeats the time command indefinitely."
 
-#: ../../Commands.cs:26 ../../Commands.cs:249
+#: ../../Commands.cs:26
+#: ../../Commands.cs:249
 msgid "-tile: 查找方块."
 msgstr "Finds a tile."
 
-#: ../../Commands.cs:27 ../../Commands.cs:250
+#: ../../Commands.cs:27
+#: ../../Commands.cs:250
 msgid "-wall: 查找墙壁."
 msgstr "Finds a wall."
 
 #: ../../EssentialsPlus.cs:133
 msgid "[Essentials+] MySQL已启用，但未设置Essentials+ MySQL配置。"
-msgstr ""
-"[Essentials+] MySQL is enabled, but the Essentials+ MySQL Configuration has "
-"not been set."
+msgstr "[Essentials+] MySQL is enabled, but the Essentials+ MySQL Configuration has not been set."
 
 #: ../../EssentialsPlus.cs:135
 msgid "[Essentials+] 此插件现在将禁用自身..."
 msgstr "[Essentials+] This plugin will now disable itself..."
 
 #: ../../EssentialsPlus.cs:134
-msgid ""
-"[Essentials+] 请在essentials.json中配置您的MySQL服务器信息，然后重新启动服务"
-"器。"
-msgstr ""
-"[Essentials+] Please configure your MySQL server information in essentials."
-"json, then restart the server."
+msgid "[Essentials+] 请在essentials.json中配置您的MySQL服务器信息，然后重新启动服务器。"
+msgstr "[Essentials+] Please configure your MySQL server information in essentials.json, then restart the server."
 
 #: ../../EssentialsPlus.cs:69
 msgid "[EssentialsPlus] 重新加载配置和家!"
@@ -77,11 +84,13 @@ msgstr "{0} froze the time."
 msgid "{0} 强制您执行 {1}{2}。"
 msgstr "{0} forced you to execute {1}{2}."
 
-#: ../../Commands.cs:520 ../../Commands.cs:543
+#: ../../Commands.cs:520
+#: ../../Commands.cs:543
 msgid "{0} 禁言了 {1}。"
 msgstr "{0} muted {1}."
 
-#: ../../Commands.cs:594 ../../Commands.cs:611
+#: ../../Commands.cs:594
+#: ../../Commands.cs:611
 msgid "{0} 解除了 {1} 的禁言。"
 msgstr "{0} unmuted {1}."
 
@@ -165,7 +174,9 @@ msgstr "Toggles your PvP status."
 msgid "删除您的一个家点。"
 msgstr "Deletes one of your home points."
 
-#: ../../Commands.cs:530 ../../Commands.cs:604 ../../Commands.cs:751
+#: ../../Commands.cs:530
+#: ../../Commands.cs:604
+#: ../../Commands.cs:751
 msgid "匹配到多个玩家：{0}"
 msgstr "More than one player matched: {0}"
 
@@ -179,8 +190,7 @@ msgstr "This command is blocked while in PvP!"
 
 #: ../../EssentialsPlus.cs:261
 msgid "在死亡或传送后将您传送回之前的位置。"
-msgstr ""
-"Teleports you back to your previous position after dying or teleporting."
+msgstr "Teleports you back to your previous position after dying or teleporting."
 
 #: ../../EssentialsPlus.cs:255
 msgid "在给定时间间隔后执行命令。"
@@ -196,7 +206,7 @@ msgstr "Filled up your {0}."
 
 #: ../../EssentialsPlus.cs:23
 msgid "增强版Essentials"
-msgstr ""
+msgstr "Enhanced version Essentials "
 
 #: ../../Commands.cs:321
 msgid "家的列表: {0}"
@@ -206,7 +216,8 @@ msgstr "List of homes: {0}"
 msgid "尺规未设置！"
 msgstr "Ruler points are not set up!"
 
-#: ../../Commands.cs:822 ../../Commands.cs:826
+#: ../../Commands.cs:822
+#: ../../Commands.cs:826
 msgid "已排队执行命令 '{0}{1}'。使用 /cancel 取消！"
 msgstr "Queued command '{0}{1}' indefinitely. Use /cancel to cancel!"
 
@@ -214,7 +225,8 @@ msgstr "Queued command '{0}{1}' indefinitely. Use /cancel to cancel!"
 msgid "强制 {0} 执行 {1}{2}。"
 msgstr "Forced {0} to execute {1}{2}."
 
-#: ../../Commands.cs:514 ../../Commands.cs:537
+#: ../../Commands.cs:514
+#: ../../Commands.cs:537
 msgid "您不能禁言 {0}！"
 msgstr "You can't mute {0}!"
 
@@ -286,11 +298,14 @@ msgstr "Found Items ({0}/{1}):"
 msgid "无效的存储类型！"
 msgstr "Invalid storage type!"
 
-#: ../../Commands.cs:306 ../../Commands.cs:334
+#: ../../Commands.cs:306
+#: ../../Commands.cs:334
 msgid "无效的家 '{0}'！"
 msgstr "Invalid home '{0}'!"
 
-#: ../../Commands.cs:893 ../../Commands.cs:948 ../../Commands.cs:1006
+#: ../../Commands.cs:893
+#: ../../Commands.cs:948
+#: ../../Commands.cs:1006
 #: ../../Commands.cs:1064
 msgid "无效的层数 '{0}'！"
 msgstr "Invalid number of levels '{0}'!"
@@ -311,7 +326,8 @@ msgstr "Invalid number of steps '{0}'!"
 msgid "无效的玩家 '{0}'！"
 msgstr "Invalid player '{0}'!"
 
-#: ../../Commands.cs:507 ../../Commands.cs:588
+#: ../../Commands.cs:507
+#: ../../Commands.cs:588
 msgid "无效的玩家或账户 '{0}'！"
 msgstr "Invalid player or account '{0}'!"
 
@@ -331,7 +347,8 @@ msgstr "Invalid syntax! Correct syntax: {0}left [levels]"
 msgid "无效的语法！正确的语法是：{0}right [层数]"
 msgstr "Invalid syntax! Correct syntax: {0}right [levels]"
 
-#: ../../Commands.cs:675 ../../Commands.cs:680
+#: ../../Commands.cs:675
+#: ../../Commands.cs:680
 msgid "无效的语法！正确的语法是：{0}ruler [1/2]"
 msgstr "Invalid syntax! Proper syntax: {0}ruler [1/2]"
 
@@ -341,13 +358,11 @@ msgstr "Invalid syntax! Proper syntax: {0}send [r,g,b] <text...>"
 
 #: ../../Commands.cs:714
 msgid "无效的语法！正确的语法是：{0}sudo [-switches...] <玩家> <命令...>"
-msgstr ""
-"Invalid syntax! Proper syntax: {0}sudo [-switches...] <player> <command...>"
+msgstr "Invalid syntax! Proper syntax: {0}sudo [-switches...] <player> <command...>"
 
 #: ../../Commands.cs:792
 msgid "无效的语法！正确的语法是：{0}timecmd [-switches...] <时间> <命令...>"
-msgstr ""
-"Invalid syntax! Proper syntax: {0}timecmd [-switches...] <time> <command...>"
+msgstr "Invalid syntax! Proper syntax: {0}timecmd [-switches...] <time> <command...>"
 
 #: ../../Commands.cs:1057
 msgid "无效的语法！正确的语法是：{0}up [层数]"
@@ -397,11 +412,13 @@ msgstr "Could not delete home, check logs for more details."
 msgid "无法更新家，请检查日志获取更多详细信息。"
 msgstr "Could not update home, check logs for more details."
 
-#: ../../Commands.cs:524 ../../Commands.cs:558
+#: ../../Commands.cs:524
+#: ../../Commands.cs:558
 msgid "无法禁言，请查看日志获取更多信息。"
 msgstr "Could not mute, check logs for details."
 
-#: ../../Commands.cs:598 ../../Commands.cs:615
+#: ../../Commands.cs:598
+#: ../../Commands.cs:615
 msgid "无法解除禁言，请查看日志获取更多信息。"
 msgstr "Could not unmute, check logs for details."
 
@@ -425,11 +442,13 @@ msgstr "Valid {0}find switches:"
 msgid "有效的 {0}kickall 参数:"
 msgstr "Valid {0}kickall switches:"
 
-#: ../../Commands.cs:715 ../../Commands.cs:735
+#: ../../Commands.cs:715
+#: ../../Commands.cs:735
 msgid "有效的 {0}sudo 参数："
 msgstr "Valid {0}sudo switches:"
 
-#: ../../Commands.cs:793 ../../Commands.cs:808
+#: ../../Commands.cs:793
+#: ../../Commands.cs:808
 msgid "有效的 {0}timecmd 参数:"
 msgstr "Valid {0}timecmd switches:"
 
@@ -544,3 +563,4 @@ msgstr "Teleports you left through a layer of blocks."
 #: ../../Commands.cs:420
 msgid "重复执行上次的命令 '{0}{1}'！"
 msgstr "Repeated last command '{0}{1}'!"
+

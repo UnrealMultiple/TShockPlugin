@@ -1,177 +1,148 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PlayerSpeed\n"
-"POT-Creation-Date: 2024-12-12 19:57:33+0800\n"
-"PO-Revision-Date: 2024-12-12 19:59+0800\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:16:13+0000\n"
+"PO-Revision-Date: 2025-01-09 10:06\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en_US\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/PlayerSpeed/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1196\n"
+"Language: en_US\n"
 
-#: ..\..\Commands.cs:269
+#: ../../Commands.cs:269
 msgid "[i:3455][c/AD89D5:玩][c/D68ACA:家][c/DF909A:速][c/E5A894:度][i:3454]\n"
-msgstr ""
-"[i:3455][c/AD89D5:play][c/D68ACA:home][c/DF909A:speed][c/E5A894:][i:3454]\n"
+msgstr "[i:3455][c/AD89D5:play][c/D68ACA:home][c/DF909A:speed][c/E5A894:][i:3454]\n"
 
-#: ..\..\Commands.cs:273
+#: ../../Commands.cs:273
 msgid "/vel boss ——进度模式开关\n"
 msgstr "/vel boss —— Progress Mode Toggle\n"
 
-#: ..\..\Commands.cs:275
+#: ../../Commands.cs:275
 msgid "/vel del 玩家名 ——删除玩家数据\n"
 msgstr "/vel del PlayerName —— Delete Player Data\n"
 
-#: ..\..\Commands.cs:274
+#: ../../Commands.cs:274
 msgid "/vel mess ——播报系统开关\n"
 msgstr "/vel mess —— Announcement System Toggle\n"
 
-#: ..\..\Commands.cs:271
+#: ../../Commands.cs:271
 msgid "/vel off ——关闭插件功能\n"
 msgstr "/vel off —— Disable Plugin Functionality\n"
 
-#: ..\..\Commands.cs:270
+#: ../../Commands.cs:270
 msgid "/vel on ——开启插件功能\n"
 msgstr "/vel on —— Enable Plugin Functionality\n"
 
-#: ..\..\Commands.cs:276
+#: ../../Commands.cs:276
 msgid "/vel reset ——清除所有数据"
 msgstr "/vel reset —— Clear All Data"
 
-#: ..\..\Commands.cs:272
+#: ../../Commands.cs:272
 msgid "/vel set ——设置相关参数\n"
 msgstr "/vel set —— Set Related Parameters\n"
 
-#: ..\..\PlayerSpeed.cs:174
+#: ../../PlayerSpeed.cs:195
 #, csharp-format
-msgid ""
-"\n"
-"玩家 [c/4EA4F2:{0}] 因[c/FF5265:冲刺]或[c/DBF34E:跳跃] 超过[c/47DCBD:{1}次]进"
-"入冷却"
-msgstr ""
-"\n"
-"Player [c/4EA4F2:{0}] enters cool-down for exceeding [c/47DCBD:{1} times] of "
-"[c/FF5265:sprinting] or [c/DBF34E:jumping]."
+msgid "\n"
+"玩家 [c/4EA4F2:{0}] 因[c/FF5265:冲刺]或[c/DBF34E:跳跃] 超过[c/47DCBD:{1}次]进入冷却"
+msgstr "\n"
+"Player [c/4EA4F2:{0}] enters cool-down for exceeding [c/47DCBD:{1} times] of [c/FF5265:sprinting] or [c/DBF34E:jumping]"
 
-#: ..\..\PlayerSpeed.cs:196
+#: ../../PlayerSpeed.cs:173
 #, csharp-format
-msgid ""
-"\n"
-"玩家 [c/4EA4F2:{0}] 因[c/FF5265:冲刺]或[c/DBF34E:跳跃] 超过[c/47DCBD:{1}次]进"
-"入冷却"
-msgstr ""
-"\n"
-"Player [c/4EA4F2:{0}] enters cool-down for exceeding [c/47DCBD:{1} times] of "
-"[c/FF5265:sprinting] or [c/DBF34E:jumping]"
+msgid "\n"
+"玩家 [c/4EA4F2:{0}] 疾速[c/FF5265:冷却]完毕!"
+msgstr "\n"
+"Player [c/4EA4F2:{0}] has quickly [c/FF5265:Cooldown] completed!"
 
-#: ..\..\Commands.cs:99
-msgid ""
-"参数: 速度([c/F24F62:sd]) 高度([c/48DCB8:h]) 间隔([c/4898DC:r]) 冷却([c/"
-"FE7F53:t])\n"
-msgstr ""
-"Parameters: Speed ([c/F24F62:sd]) Height ([c/48DCB8:h]) Interval ([c/4898DC:"
-"r]) Cool-down ([c/FE7F53:t])\n"
+#: ../../PlayerSpeed.cs:177
+msgid "使用克盾类饰品[c/47DCBD:冲刺]可冲更远"
+msgstr "Using a trinket similar to the Cthulhu Shield [c/47DCBD:sprint] can allow for longer dashes"
 
-#: ..\..\Commands.cs:168
-msgid "次数"
-msgstr "Count"
-
-#: ..\..\Commands.cs:100
-msgid ""
-"次数([c/DBF34E:c]) 加跳跃物品([c/59E32B:add]) 删跳跃物品([c/F14F63:del])\n"
-msgstr ""
-"Count ([c/DBF34E:c]) Add Jump Item ([c/59E32B:add]) Remove Jump Item ([c/"
-"F14F63:del])\n"
-
-#: ..\..\Commands.cs:294
-msgid "当前为进度模式,服务器未击败相关BOSS"
-msgstr ""
-"Current mode is Progress Mode, server has not defeated the relevant BOSS"
+#: ../../PlayerSpeed.cs:15
+msgid "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发"
+msgstr "Use commands to set player movement speed and trigger when sprinting or jumping while wearing custom equipment"
 
 #: ../../Commands.cs:120
 msgid "修改冲刺:"
 msgstr "Modify Sprint:"
 
-#: ..\..\Commands.cs:178
-msgid "间隔"
-msgstr "Interval"
+#: ../../Commands.cs:289
+#, csharp-format
+msgid "最高速度:[c/4EA4F2:{0}] 最大高度:[c/FF5265:{1}] "
+msgstr "Maximum Speed: [c/4EA4F2:{0}] Maximum Height: [c/FF5265:{1}] "
 
 #: ../../Commands.cs:157
 msgid "冷却"
 msgstr "CoolTime"
 
-#: ..\..\Commands.cs:282
+#: ../../Commands.cs:282
 #, csharp-format
 msgid "冷却:[c/48DCB8:{0}] 间隔:[c/47DCBD:{1}]"
 msgstr "CoolTime:[c/48DCB8:{0}] Interval:[c/47DCBD:{1}]"
 
-#: ..\..\Commands.cs:290
+#: ../../Commands.cs:290
 #, csharp-format
 msgid "冷却:[c/48DCB8:{0}秒] 使用次数:[c/47DCBD:{1}秒]"
 msgstr "CoolTime:[c/48DCB8:{0}秒] Count:[c/47DCBD:{1}秒]"
 
-#: ..\..\Commands.cs:102
-msgid "确保属性后有正确的数字或名字,任意组合"
-msgstr ""
-"Ensure attributes followed by correct numbers or names, any combination"
+#: ../../Commands.cs:99
+msgid "参数: 速度([c/F24F62:sd]) 高度([c/48DCB8:h]) 间隔([c/4898DC:r]) 冷却([c/FE7F53:t])\n"
+msgstr "Parameters: Speed ([c/F24F62:sd]) Height ([c/48DCB8:h]) Interval ([c/4898DC:r]) Cool-down ([c/FE7F53:t])\n"
 
-#: ..\..\PlayerSpeed.cs:178
-msgid "使用克盾类饰品[c/47DCBD:冲刺]可冲更远"
-msgstr ""
-"Using a trinket similar to the Cthulhu Shield [c/47DCBD:sprint] can allow "
-"for longer dashes"
-
-#: ..\..\Commands.cs:134
-msgid "速度"
-msgstr "Speed"
-
-#: ..\..\Commands.cs:281
+#: ../../Commands.cs:63
 #, csharp-format
 msgid "已[c/E8585B:删除] {0} 的数据！"
-msgstr "Data for {0} has been [c/E8585B:deleted]!"
+msgstr "Data for {0} has been [c/E8585B:deleted]！"
 
 #: ../../Commands.cs:84
 msgid "已清除所有玩家数据"
-msgstr "All player data has been cleared."
+msgstr "All player data has been cleared"
 
-#: ..\..\Commands.cs:46
+#: ../../Commands.cs:80
+msgid "已清除所有玩家数据,重置进度模式。"
+msgstr "All player data has been cleared, and Progress Mode has been reset。"
+
+#: ../../Commands.cs:294
+msgid "当前为进度模式,服务器未击败相关BOSS"
+msgstr "Current mode is Progress Mode, server has not defeated the relevant BOSS"
+
+#: ../../Commands.cs:185
+#: ../../Commands.cs:216
 #, csharp-format
-msgid "玩家 [{0}] 的已[c/92C5EC:关闭]玩家速度播报"
-msgstr "Player [{0}] 的 speed announcements have been [c/92C5EC:disabled]"
+msgid "找不到名为 {0} 的物品."
+msgstr "The item named {0} cannot be found."
 
-#: ..\..\Commands.cs:54
-#, csharp-format
-msgid "玩家 [{0}] 的已[c/92C5EC:关闭]自动进度模式"
-msgstr "Player [{0}] 的 auto progress mode has been [c/92C5EC:disabled]"
+#: ../../Commands.cs:101
+msgid "格式为:[c/48DCB8:/vel s sd 20 add 恐慌项链…]\n"
+msgstr "The format is:[c/48DCB8:/vel s sd 20 add panic necklace…]\n"
 
-#: ../../Commands.cs:185 ../../Commands.cs:223
-#, csharp-format
-msgid "玩家 [{0}] 的已[c/92C5EC:启用]玩家速度播报"
-msgstr "Player [{0}] 的 speed announcements have been [c/92C5EC:Enabled]"
+#: ../../Commands.cs:168
+msgid "次数"
+msgstr "Count"
 
-#: ..\..\Commands.cs:53
-#, csharp-format
-msgid "玩家 [{0}] 的已[c/92C5EC:启用]自动进度模式"
-msgstr "Player [{0}] 的 auto progress mode has been [c/92C5EC:Enabled]"
+#: ../../Commands.cs:100
+msgid "次数([c/DBF34E:c]) 加跳跃物品([c/59E32B:add]) 删跳跃物品([c/F14F63:del])\n"
+msgstr "Count ([c/DBF34E:c]) Add Jump Item ([c/59E32B:add]) Remove Jump Item ([c/F14F63:del])\n"
 
-#: ..\..\Commands.cs:39
-#, csharp-format
-msgid "玩家 [{0}] 已[c/92C5EC:关闭]加速功能。"
-msgstr "Player [{0}] has [c/92C5EC:disabled] the acceleration function。"
+#: ../../Commands.cs:198
+msgid "添加物品"
+msgstr "Add items"
 
-#: ..\..\Commands.cs:33
-#, csharp-format
-msgid "玩家 [{0}] 已[c/92C5EC:启用]加速功能。"
-msgstr "Player [{0}] has [c/92C5EC:Enabled] the acceleration function。"
-
-#: ..\..\Commands.cs:209
+#: ../../Commands.cs:209
 #, csharp-format
 msgid "物品 {0} 不存在."
 msgstr "Item {0} None."
 
-#: ..\..\Commands.cs:226
+#: ../../Commands.cs:226
 msgid "物品不存在"
 msgstr "Item is null"
 
@@ -184,42 +155,58 @@ msgstr "Item already exists"
 msgid "玩家 [{0}] 已[c/92C5EC:关闭]加速功能。"
 msgstr "Player [{0}] has [c/92C5EC:disabled] the acceleration function."
 
-#: ..\..\Commands.cs:209 ..\..\Commands.cs:226
-msgid "移除物品"
-msgstr "Remove Item"
+#: ../../Commands.cs:33
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:启用]加速功能。"
+msgstr "Player [{0}] has [c/92C5EC:Enabled] the acceleration function。"
 
 #: ../../Commands.cs:46
 #, csharp-format
-msgid "已[c/E8585B:删除] {0} 的数据！"
-msgstr "Data for {0} has been [c/E8585B:deleted]！"
+msgid "玩家 [{0}] 的已[c/92C5EC:关闭]玩家速度播报"
+msgstr "Player [{0}] 的 speed announcements have been [c/92C5EC:disabled]"
 
-#: ..\..\Commands.cs:84
-msgid "已清除所有玩家数据"
-msgstr "All player data has been cleared"
+#: ../../Commands.cs:54
+#, csharp-format
+msgid "玩家 [{0}] 的已[c/92C5EC:关闭]自动进度模式"
+msgstr "Player [{0}] 的 auto progress mode has been [c/92C5EC:disabled]"
 
-#: ..\..\Commands.cs:80
-msgid "已清除所有玩家数据,重置进度模式。"
-msgstr "All player data has been cleared, and Progress Mode has been reset。"
+#: ../../Commands.cs:45
+#, csharp-format
+msgid "玩家 [{0}] 的已[c/92C5EC:启用]玩家速度播报"
+msgstr "Player [{0}] 的 speed announcements have been [c/92C5EC:Enabled]"
 
-#: ..\..\Commands.cs:185 ..\..\Commands.cs:216
+#: ../../Commands.cs:53
 #, csharp-format
 msgid "玩家 [{0}] 的已[c/92C5EC:启用]自动进度模式"
 msgstr "Player [{0}] 的 auto progress mode has been [c/92C5EC:Enabled]."
 
 #: ../../Commands.cs:102
 msgid "确保属性后有正确的数字或名字,任意组合"
-msgstr ""
-"Ensure attributes followed by correct numbers or names, any combination:"
+msgstr "Ensure attributes followed by correct numbers or names, any combination:"
 
-#: ../../Commands.cs:211 ../../Commands.cs:235
+#: ../../Commands.cs:209
+#: ../../Commands.cs:226
 msgid "移除物品"
 msgstr "Remove Item"
 
-#: ..\..\PlayerSpeed.cs:183
+#: ../../PlayerSpeed.cs:182
 msgid "装备指定物品[c/47DCBC:可加速跳跃]!"
 msgstr "Equip the specified item [c/47DCBC:to enhance jumping]!"
 
-#: ..\..\Commands.cs:289
+#: ../../Commands.cs:134
+msgid "速度"
+msgstr "Speed"
+
+#: ../../Commands.cs:281
 #, csharp-format
-msgid "最高速度:[c/4EA4F2:{0}] 最大高度:[c/FF5265:{1}] "
-msgstr "Maximum Speed: [c/4EA4F2:{0}] Maximum Height: [c/FF5265:{1}] "
+msgid "速度:[c/4EA4F2:{0}] 高度:[c/FF5265:{1}] "
+msgstr "Speed:[c/4EA4F2:{0}] Height:[c/FF5265:{1}] "
+
+#: ../../Commands.cs:178
+msgid "间隔"
+msgstr "Interval"
+
+#: ../../Commands.cs:145
+msgid "高度"
+msgstr "Height"
+
