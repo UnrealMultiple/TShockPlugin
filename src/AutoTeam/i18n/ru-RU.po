@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-12-20 06:45:18+0000\n"
-"PO-Revision-Date: 2025-01-05 07:02\n"
+"POT-Creation-Date: 2025-01-08 13:15:31+0000\n"
+"PO-Revision-Date: 2025-01-09 08:53\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,20 +17,24 @@ msgstr ""
 "X-Crowdin-File-ID: 1100\n"
 "Language: ru_RU\n"
 
-#: ../../AutoTeamPlus.cs:47
+#: ../../AutoTeamPlus.cs:46
 msgid "。"
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:47
+#: ../../AutoTeamPlus.cs:15
+msgid "AutoTeamPlus"
+msgstr ""
+
+#: ../../AutoTeamPlus.cs:46
 msgid "AutoTeamPlus 插件已"
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:95
+#: ../../AutoTeamPlus.cs:94
 #, csharp-format
 msgid "你的队伍已切换为 {0}."
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:46
+#: ../../AutoTeamPlus.cs:45
 msgid "启用"
 msgstr ""
 
@@ -38,11 +42,11 @@ msgstr ""
 msgid "无队伍"
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:99
+#: ../../AutoTeamPlus.cs:98
 msgid "未配置，可随意切换."
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:46
+#: ../../AutoTeamPlus.cs:45
 msgid "禁用"
 msgstr ""
 
