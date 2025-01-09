@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.Net.Sockets;
 using TerrariaApi.Server;
 using TShockAPI;
+using TrProtocol;
 using Hooks = On.OTAPI.Hooks;
 
 namespace CaiPacketDebug;
