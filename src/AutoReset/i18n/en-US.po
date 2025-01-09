@@ -1,27 +1,29 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AutoReset\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:15:30+0000\n"
-"PO-Revision-Date: 2024-09-01 10:15+0800\n"
+"PO-Revision-Date: 2025-01-09 08:53\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en_US\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/AutoReset/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1096\n"
+"Language: en_US\n"
 
 #: ../../AutoResetPlugin.cs:117
-#, fuzzy
-#| msgid "[AutoReset]{0}s后关闭服务器..."
 msgid "[AutoReset][c/98FB98:{0}s]后[c/DC143C:关闭服务器]..."
-msgstr "[AutoReset] The server will shut down in {0}s..."
+msgstr "[AutoReset] [c/DC143C:The server will shut down] in [c/98FB98:{0}s]..."
 
 #: ../../AutoResetPlugin.cs:114
-#, fuzzy
-#| msgid "[AutoReset]服务器即将开始重置..."
 msgid "[AutoReset]服务器即将[c/DC143C:开始重置]..."
-msgstr "[AutoReset] The server is about to reset…"
+msgstr "[AutoReset] The server is about to [c/DC143C:reset]…"
 
 #: ../../AutoResetPlugin.cs:123
 msgid "[AutoReset]服务器已开始重置..."
@@ -29,7 +31,7 @@ msgstr "[AutoReset] The server has started resetting."
 
 #: ../../AutoResetPlugin.cs:51
 msgid "[AutoReset]服务器数据重置成功~"
-msgstr "[AutoReset] Server data reset successfully~"
+msgstr "[AutoReset] Server data reset successfully ~"
 
 #: ../../AutoResetPlugin.cs:360
 msgid "[AutoReset]生成地图中:\n"
@@ -50,10 +52,9 @@ msgid "[AutoReset]重置文件({0})替换失败: {1}"
 msgstr "[AutoReset] Resetting file ({0}) failed: {1}"
 
 #: ../../AutoResetPlugin.cs:72
-#, fuzzy, csharp-format
-#| msgid "[i:3611]击杀自动重置:{0}({1}/{2})"
+#, csharp-format
 msgid "[i:3611]击杀自动重置:[c/DC143C:{0}] ([c/98FB98:{1}]/{2})"
-msgstr "[i:3611] Auto-reset on kill: {0} ({1}/{2})"
+msgstr "[i:3611] Auto-reset on kill: [c/DC143C:{0}] ([c/98FB98:{1}]/{2})"
 
 #: ../../Utils.cs:25
 #, csharp-format
@@ -63,15 +64,15 @@ msgstr "[AutoReset] API call failed! (Status code: {0})"
 #: ../../AutoResetPlugin.cs:96
 #, csharp-format
 msgid "[重置计数器]已经击杀[c/DC143C:{0}] ([c/98FB98:{1}]/{2})"
-msgstr ""
+msgstr "[Reset counter] Killed [c/DC143C:{0}] ([c/98FB98:{1}]/{2})"
 
 #: ../../AutoResetPlugin.cs:209
 msgid "/reset 重置世界"
-msgstr ""
+msgstr "/reset Reset World"
 
 #: ../../AutoResetPlugin.cs:210
 msgid "/resetdata 重置数据"
-msgstr ""
+msgstr "/resetdata Reset Data"
 
 #: ../../AutoResetPlugin.cs:207
 msgid "/rs name <地图名>"
@@ -89,7 +90,7 @@ msgstr "📝 Auto-reset on kill: {0} ({1}/{2})"
 #: ../../AutoResetPlugin.cs:246
 #, csharp-format
 msgid "CaiBot重置提醒: {0}\n"
-msgstr ""
+msgstr "CaiBot reset reminder: {0}\n"
 
 #: ../../AutoResetPlugin.cs:264
 msgid "世界名字已设置为 "
@@ -110,12 +111,12 @@ msgstr "The world seed has been set to:"
 #: ../../AutoResetPlugin.cs:248
 #, csharp-format
 msgid "击杀Npc: {0}({1})\n"
-msgstr ""
+msgstr "Kill NPC: {0}({1})\n"
 
 #: ../../AutoResetPlugin.cs:247
 #, csharp-format
 msgid "击杀重置: {0}\n"
-msgstr ""
+msgstr "Kill Reset: {0}\n"
 
 #: ../../AutoResetPlugin.cs:244
 #, csharp-format
@@ -124,12 +125,12 @@ msgstr "Map name: {0}\n"
 
 #: ../../AutoResetPlugin.cs:34
 msgid "完全自动重置插件"
-msgstr ""
+msgstr "Full automatic plugin reset"
 
 #: ../../AutoResetPlugin.cs:250
 #, csharp-format
 msgid "已击杀数: {0}"
-msgstr ""
+msgstr "Number of Kills: {0}"
 
 #: ../../AutoResetPlugin.cs:217
 msgid "帮助 ({0}/{1})："
@@ -142,13 +143,12 @@ msgstr "Generating map… "
 #: ../../AutoResetPlugin.cs:249
 #, csharp-format
 msgid "目标击杀数: {0}\n"
-msgstr ""
+msgstr "Target Kills: {0}\n"
 
 #: ../../AutoResetPlugin.cs:245
-#, fuzzy, csharp-format
-#| msgid "种子: {0}"
+#, csharp-format
 msgid "种子: {0}\n"
-msgstr "Seed: {0}"
+msgstr "Seed: {0}\n"
 
 #: ../../AutoResetPlugin.cs:218
 msgid "输入 {0}rs help {{0}} 查看更多"
@@ -162,9 +162,3 @@ msgstr "Resetting data, please wait…"
 msgid "随机"
 msgstr "Random"
 
-#, csharp-format
-#~ msgid "[AutoReset]服务器中已经击杀{0}{1}/{2}"
-#~ msgstr "[AutoReset] {0}{1}/{2} have been killed in the server."
-
-#~ msgid "[AutoReset]自动重置插件配置已重载"
-#~ msgstr "[AutoReset] Auto-reset plugin configuration reloaded"
