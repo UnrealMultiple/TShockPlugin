@@ -1,5 +1,7 @@
 using Newtonsoft.Json;
+using System.Globalization;
 using System.IO.Compression;
+using System.Reflection;
 using System.Text;
 using System.Timers;
 using TerrariaApi.Server;
@@ -26,6 +28,10 @@ internal class PluginManagementContext
     private Dictionary<string, PluginContext> CloudPluginCache => this._cloudPluginCache ??= this.ExtractPluginsFromCloud();
 
     public static readonly PluginManagementContext Instance = new();
+
+    public readonly CultureInfo CultureInfo = (CultureInfo) typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
+            "TranslationCultureInfo",
+            BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
 
 
     /// <summary>

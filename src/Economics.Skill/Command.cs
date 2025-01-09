@@ -127,8 +127,7 @@ public class Command
 
                     return;
                 }
-
-                if (args.Parameters[0].ToLower() == "delall")
+                if (args.Parameters[0].ToLower() == "removeall")
                 {
                     var skills = Skill.PlayerSKillManager.QuerySkillByItem(args.Player.Name, args.Player.SelectedItem.netID);
                     if (!skills.Any())
@@ -220,7 +219,7 @@ public class Command
                 args.Player.SendInfoMessage(GetString("/skill give [玩家] [技能序号]"));
                 args.Player.SendInfoMessage(GetString("/skill clearh [玩家]"));
                 args.Player.SendInfoMessage(GetString("/skill del [玩家] [序号]"));
-                args.Player.SendInfoMessage(GetString("/skill delall"));
+                args.Player.SendInfoMessage(GetString("/skill removeall"));
                 args.Player.SendInfoMessage(GetString("/skill clear"));
                 args.Player.SendInfoMessage(GetString("/skill reset"));
                 break;

@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using GetText;
+using Localizer;
+using Newtonsoft.Json;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -49,7 +51,7 @@ public class DumpPluginsList : TerrariaPlugin
                         Name = manifest?.Name ?? p.Plugin.Name,
                         Version = manifest?.Version ?? p.Plugin.Version,
                         Author = manifest?.Author ?? p.Plugin.Author,
-                        Description = manifest?.Description ?? p.Plugin.Description,
+                        Description = this.GetDescription(p.Plugin),
                         AssemblyName = p.Plugin.GetType().Assembly.GetName().Name,
                         Path = dict.TryGetValue(p.Plugin.GetType().Assembly, out var name) ? name + ".dll" : null,
                         Dependencies = manifest?.Dependencies ?? p.Plugin.GetType().Assembly.GetReferencedAssemblies()
@@ -70,6 +72,20 @@ public class DumpPluginsList : TerrariaPlugin
             Environment.Exit(0);
         }
     }
-}
 
+    public Dictionary<string, string> GetDescription(TerrariaPlugin plugin)
+    {
+        var dic = new Dictionary<string, string>();
+        var flag = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+        foreach (var (langid, culture) in Terraria.Localization.GameCulture._legacyCultures)
+        {
+            Terraria.Localization.LanguageManager.Instance.SetLanguage(langid);
+            var func = typeof(I18n).GetMethod("GetCatalog", flag)!.CreateDelegate<Func<Catalog>>();
+            var c = func();
+            var langName = c.CultureInfo.Name == "zh-Hans" ? "zh-CN" : c.CultureInfo.Name;
+            dic[langName] = c.GetString(plugin.Description);
+        }
+        return dic;
+    }
+}
 internal record ManifestModel(string? Name, Version? Version, string? Author, string? Description, string[]? Dependencies, bool? HotReload);

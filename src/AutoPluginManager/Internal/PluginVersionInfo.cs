@@ -10,7 +10,7 @@ internal class PluginVersionInfo
 
     public string Name { get; set; } = string.Empty;
 
-    public string Description { get; set; } = string.Empty;
+    public Dictionary<string, string> Description { get; set; } = new();
 
     [JsonProperty("Path")]
     public string FileName { get; set; } = string.Empty;
