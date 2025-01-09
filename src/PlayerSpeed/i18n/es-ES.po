@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-12-12 13:21:55+0000\n"
-"PO-Revision-Date: 2025-01-05 07:05\n"
+"POT-Creation-Date: 2025-01-08 13:16:13+0000\n"
+"PO-Revision-Date: 2025-01-09 08:55\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -49,20 +49,24 @@ msgstr ""
 msgid "/vel set ——设置相关参数\n"
 msgstr ""
 
-#: ../../PlayerSpeed.cs:196
+#: ../../PlayerSpeed.cs:195
 #, csharp-format
 msgid "\n"
 "玩家 [c/4EA4F2:{0}] 因[c/FF5265:冲刺]或[c/DBF34E:跳跃] 超过[c/47DCBD:{1}次]进入冷却"
 msgstr ""
 
-#: ../../PlayerSpeed.cs:174
+#: ../../PlayerSpeed.cs:173
 #, csharp-format
 msgid "\n"
 "玩家 [c/4EA4F2:{0}] 疾速[c/FF5265:冷却]完毕!"
 msgstr ""
 
-#: ../../PlayerSpeed.cs:178
+#: ../../PlayerSpeed.cs:177
 msgid "使用克盾类饰品[c/47DCBD:冲刺]可冲更远"
+msgstr ""
+
+#: ../../PlayerSpeed.cs:15
+msgid "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发"
 msgstr ""
 
 #: ../../Commands.cs:120
@@ -183,7 +187,7 @@ msgstr ""
 msgid "移除物品"
 msgstr ""
 
-#: ../../PlayerSpeed.cs:183
+#: ../../PlayerSpeed.cs:182
 msgid "装备指定物品[c/47DCBC:可加速跳跃]!"
 msgstr ""
 
