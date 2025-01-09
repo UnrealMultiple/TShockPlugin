@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-11-18 10:20:03+0000\n"
-"PO-Revision-Date: 2025-01-05 07:03\n"
+"POT-Creation-Date: 2025-01-08 13:15:40+0000\n"
+"PO-Revision-Date: 2025-01-09 08:54\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,12 @@ msgstr ""
 "X-Crowdin-File-ID: 1132\n"
 "Language: ru_RU\n"
 
-#: ../../Plugin.cs:124
+#: ../../Plugin.cs:123
 #, csharp-format
 msgid "[聊天桥] 信息发送失败，目标地址:{0}"
 msgstr ""
 
-#: ../../Plugin.cs:92
+#: ../../Plugin.cs:91
 #, csharp-format
 msgid "接收到未知类型:{0}"
 msgstr ""
