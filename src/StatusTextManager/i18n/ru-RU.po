@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-10-25 14:11:03+0000\n"
-"PO-Revision-Date: 2025-01-05 07:05\n"
+"POT-Creation-Date: 2025-01-08 13:16:28+0000\n"
+"PO-Revision-Date: 2025-01-09 08:55\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,10 @@ msgstr ""
 
 #: ../../Utils/Common.cs:201
 msgid "）"
+msgstr ""
+
+#: ../../StatusTextManager.cs:76
+msgid "Manage status text of different plugins"
 msgstr ""
 
 #: ../../Utils/Common.cs:83
@@ -63,7 +67,7 @@ msgstr ""
 msgid "大理石"
 msgstr ""
 
-#: ../../SettingsModel/DynamicText.cs:48
+#: ../../SettingsModel/DynamicText.cs:47
 msgid "存活"
 msgstr ""
 
@@ -76,7 +80,7 @@ msgstr ""
 msgid "已关闭模板显示"
 msgstr ""
 
-#: ../../SettingsModel/DynamicText.cs:55
+#: ../../SettingsModel/DynamicText.cs:54
 msgid "已完成"
 msgstr ""
 
@@ -85,7 +89,7 @@ msgstr ""
 msgid "已开启模板显示"
 msgstr ""
 
-#: ../../SettingsModel/DynamicText.cs:48
+#: ../../SettingsModel/DynamicText.cs:47
 msgid "已死亡"
 msgstr ""
 
@@ -93,11 +97,11 @@ msgstr ""
 msgid "微光"
 msgstr ""
 
-#: ../../SettingsModel/DynamicText.cs:55
+#: ../../SettingsModel/DynamicText.cs:54
 msgid "未完成"
 msgstr ""
 
-#: ../../SettingsModel/DynamicText.cs:49
+#: ../../SettingsModel/DynamicText.cs:48
 msgid "未死亡"
 msgstr ""
 
@@ -142,7 +146,7 @@ msgstr ""
 msgid "神庙"
 msgstr ""
 
-#: ../../SettingsModel/DynamicText.cs:47
+#: ../../SettingsModel/DynamicText.cs:46
 msgid "空区域"
 msgstr ""
 
