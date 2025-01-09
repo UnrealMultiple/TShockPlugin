@@ -107,7 +107,7 @@
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 0.0% | Prohibit monster loot |  |
 | [DonotFuck](./src/DonotFuck/README.en-US.md) | 95.2% | Prevent swearing | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 0.0% | Prevent entry into dungeons or temples |  |
-| [Dummy](./src/Dummy/README.md) | 0.0% | 服务器假人 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
+| [Dummy](./src/Dummy/README.md) | 0.0% | Dummy client | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 0.0% | Dump Terraria IDs |  |
 | [DwTP](./src/DwTP/README.en-US.md) | 92.9% | Positioning Teleport |  |
 | [Economics.Deal](./src/Economics.Deal/README.en-US.md) | 92.0% | Trading plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
@@ -130,7 +130,7 @@
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 0.0% | Hardcore death drops life crystals |  |
 | [HelpPlus](./src/HelpPlus/README.en-US.md) | 93.3% | Fix and enhance the Help command |  |
 | [History](./src/History/README.md) | 0.0% | History grid record |  |
-| [HouseRegion](./src/HouseRegion/README.md) | 0.0% | Land claiming plugin |  |
+| [HouseRegion](./src/HouseRegion/README.md) | 0.0% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.md) |
 | [Invincibility](./src/Invincibility/README.md) | 0.0% | Time-limited invincibility |  |
 | [ItemBox](./src/ItemBox/README.md) | 0.0% | Off-line inventory |  |
 | [ItemDecoration](./src/ItemDecoration/README.en-US.md) | 0.0% | Floating message display for held items | [LazyAPI](./src/LazyAPI/README.md) |

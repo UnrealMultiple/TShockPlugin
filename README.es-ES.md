@@ -130,7 +130,7 @@
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 0.0% | Los jugadores en modo Hardcore sueltan corazones de vida al morir |  |
 | [HelpPlus](./src/HelpPlus/README.md) | 0.0% | Corrige y mejora el comando de ayuda |  |
 | [History](./src/History/README.md) | 0.0% | Registra un historial en formato de tabla |  |
-| [HouseRegion](./src/HouseRegion/README.md) | 0.0% | Plugin de reclamación de tierras |  |
+| [HouseRegion](./src/HouseRegion/README.md) | 0.0% | Plugin de reclamación de tierras | [LazyAPI](./src/LazyAPI/README.md) |
 | [Invincibility](./src/Invincibility/README.md) | 0.0% | Invencibilidad limitada en el tiempo |  |
 | [ItemBox](./src/ItemBox/README.md) | 0.0% | Inventario fuera de línea |  |
 | [ItemDecoration](./src/ItemDecoration/README.es-ES.md) | 0.0% | Muestra mensajes flotantes para los ítems en las manos | [LazyAPI](./src/LazyAPI/README.md) |

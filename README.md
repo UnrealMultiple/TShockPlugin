@@ -126,7 +126,7 @@
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 硬核死亡掉生命水晶 |  |
 | [HelpPlus](./src/HelpPlus/README.md) | 修复和增强 Help 命令 |  |
 | [History](./src/History/README.md) | 历史图格记录 |  |
-| [HouseRegion](./src/HouseRegion/README.md) | 圈地插件 |  |
+| [HouseRegion](./src/HouseRegion/README.md) | 圈地插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [Invincibility](./src/Invincibility/README.md) | 限时无敌 |  |
 | [ItemBox](./src/ItemBox/README.md) | 离线背包系统，物品盒子 |  |
 | [ItemDecoration](./src/ItemDecoration/README.md) | 手持物品浮动消息显示 | [LazyAPI](./src/LazyAPI/README.md) |

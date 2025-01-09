@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DumpPluginsList\n"
-"POT-Creation-Date: 2025-01-08 13:15:49+0000\n"
-"PO-Revision-Date: 2025-01-08 13:15:49+0000\n"
+"POT-Creation-Date: 2025-01-09 09:33:48+0000\n"
+"PO-Revision-Date: 2025-01-09 09:33:48+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../DumpPluginsList.cs:13
+#: ../../DumpPluginsList.cs:16
 msgid "Dump plugin list and exit"
 msgstr ""
 
