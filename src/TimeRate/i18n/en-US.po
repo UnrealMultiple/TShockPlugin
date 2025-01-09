@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-10-25 14:11:05+0000\n"
-"PO-Revision-Date: 2025-01-05 07:05\n"
+"POT-Creation-Date: 2025-01-08 18:23:47+0000\n"
+"PO-Revision-Date: 2025-01-09 08:56\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -66,6 +66,10 @@ msgstr "/times one — Enable | Disable [c/55A2E0:Single Player Sleep] accelerat
 #: ../../Commands.cs:23
 msgid "/times set 数字 —— 设置速率|日晷:[c/F25C71:60] 正常:[c/55A2E0:1]"
 msgstr "/times set number — Set Speed | Sundial: [c/F25C71:60] Normal: [c/55A2E0:1]"
+
+#: ../../TimeRate.cs:16
+msgid "使用指令修改时间加速"
+msgstr ""
 
 #: ../../Commands.cs:33
 #: ../../Commands.cs:42
