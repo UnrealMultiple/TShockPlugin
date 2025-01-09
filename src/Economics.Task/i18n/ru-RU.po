@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-10-25 14:10:28+0000\n"
-"PO-Revision-Date: 2025-01-05 07:04\n"
+"POT-Creation-Date: 2025-01-08 13:15:54+0000\n"
+"PO-Revision-Date: 2025-01-09 08:55\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -147,7 +147,11 @@ msgstr ""
 msgid "拥有{0}{1} ({2}/{3})"
 msgstr ""
 
-#: ../../Plugin.cs:84
+#: ../../Plugin.cs:20
+msgid "提供任务系统!"
+msgstr ""
+
+#: ../../Plugin.cs:83
 msgid "查询成功"
 msgstr ""
 
@@ -155,11 +159,11 @@ msgstr ""
 msgid "此任务你已经完成过了!"
 msgstr ""
 
-#: ../../Plugin.cs:74
+#: ../../Plugin.cs:73
 msgid "没有检测到任务ID"
 msgstr ""
 
-#: ../../Plugin.cs:69
+#: ../../Plugin.cs:68
 msgid "没有检测到玩家名称"
 msgstr ""
 
@@ -180,7 +184,7 @@ msgstr ""
 msgid "需要满足进度{0}才能接取此任务"
 msgstr ""
 
-#: ../../Plugin.cs:79
+#: ../../Plugin.cs:78
 msgid "非法的任务ID"
 msgstr ""
 
