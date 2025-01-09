@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-12-18 10:04:28+0000\n"
-"PO-Revision-Date: 2025-01-05 07:05\n"
+"POT-Creation-Date: 2025-01-08 13:16:28+0000\n"
+"PO-Revision-Date: 2025-01-09 08:55\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,16 @@ msgstr ""
 "X-Crowdin-File-ID: 1208\n"
 "Language: ru_RU\n"
 
-#: ../../SurfaceBlock.cs:112
+#: ../../SurfaceBlock.cs:110
 msgid "未知"
 msgstr ""
 
-#: ../../SurfaceBlock.cs:122
+#: ../../SurfaceBlock.cs:120
 #, csharp-format
 msgid "玩家 [c/4EA4F2:{0}] 使用禁地表弹幕 [c/15EDDB:{1}] 已清除!"
+msgstr ""
+
+#: ../../SurfaceBlock.cs:14
+msgid "禁止特定弹幕在地表产生"
 msgstr ""
 
