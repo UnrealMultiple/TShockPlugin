@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-09-28 12:12:05+0000\n"
-"PO-Revision-Date: 2025-01-05 07:03\n"
+"POT-Creation-Date: 2025-01-08 13:15:38+0000\n"
+"PO-Revision-Date: 2025-01-09 08:53\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,60 +17,64 @@ msgstr ""
 "X-Crowdin-File-ID: 1116\n"
 "Language: ru_RU\n"
 
-#: ../../Main.cs:148
+#: ../../Main.cs:147
 msgid "/cgive all [执行者] [命令]"
 msgstr ""
 
-#: ../../Main.cs:150
+#: ../../Main.cs:149
 msgid "/cgive del [id],删除指定id的离线命令"
 msgstr ""
 
-#: ../../Main.cs:149
+#: ../../Main.cs:148
 msgid "/cgive list,列出所有离线命令"
 msgstr ""
 
-#: ../../Main.cs:147
+#: ../../Main.cs:146
 msgid "/cgive personal [命令] [被执行者]"
 msgstr ""
 
-#: ../../Main.cs:151
+#: ../../Main.cs:150
 msgid "/cgive reset,重置所有数据"
 msgstr ""
 
-#: ../../Main.cs:173
+#: ../../Main.cs:172
 msgid "ID输入错误!"
 msgstr ""
 
-#: ../../Main.cs:213
+#: ../../Main.cs:212
 msgid "命令已保存"
 msgstr ""
 
-#: ../../Main.cs:218
+#: ../../Main.cs:217
 msgid "命令执行成功！"
 msgstr ""
 
-#: ../../Main.cs:169
+#: ../../Main.cs:168
 msgid "已执行删除"
 msgstr ""
 
-#: ../../Main.cs:158
+#: ../../Main.cs:157
 msgid "成功删除所有数据"
 msgstr ""
 
-#: ../../Main.cs:182
+#: ../../Main.cs:181
 #, csharp-format
 msgid "执行者:{0} 被执行者:{1} 命令:{2} id:{3}"
 msgstr ""
 
-#: ../../Main.cs:53
+#: ../../Main.cs:52
 msgid "没有找到注册名为"
 msgstr ""
 
-#: ../../Main.cs:53
+#: ../../Main.cs:52
 msgid "的账户"
 msgstr ""
 
-#: ../../Main.cs:102
+#: ../../Main.cs:12
+msgid "离线give"
+msgstr ""
+
+#: ../../Main.cs:101
 msgid "该玩家没有仓库"
 msgstr ""
 
