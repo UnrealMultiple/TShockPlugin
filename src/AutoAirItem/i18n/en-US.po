@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-11-29 03:44:50+0000\n"
-"PO-Revision-Date: 2025-01-05 07:20\n"
+"POT-Creation-Date: 2025-01-08 18:22:42+0000\n"
+"PO-Revision-Date: 2025-01-09 08:53\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -159,6 +159,10 @@ msgstr "Player [{0}]'s auto cleanup messages have been [c/92C5EC:enabled]"
 #, csharp-format
 msgid "玩家 [{0}] 的自动清理消息已[c/92C5EC:禁用]"
 msgstr "Player [{0}]'s auto cleanup messages have been [c/92C5EC:disabled]"
+
+#: ../../AutoAirItem.cs:16
+msgid "自动垃圾桶帮助玩家清理自身垃圾"
+msgstr "Automatic trash can helps players clean up their own trash"
 
 #: ../../Commands.cs:101
 msgid "请用角色[c/D95065:重进服务器]后输入：/air 指令查看菜单\n"
