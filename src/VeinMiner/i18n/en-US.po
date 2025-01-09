@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:33+0000\n"
-"PO-Revision-Date: 2025-01-09 08:57\n"
+"PO-Revision-Date: 2025-01-09 10:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "<VeinMiner> Config reloaded."
 
 #: ../../VeinMiner.cs:13
 msgid "VeinMiner by Megghy 适用于 TShock 5.2 支持！"
-msgstr ""
+msgstr "VeinMiner by Megghy for TShock 5.2 supported!"
 
 #: ../../VeinMiner.cs:33
 msgid "关闭"
