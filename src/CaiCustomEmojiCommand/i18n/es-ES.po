@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2024-09-07 18:08:22+0000\n"
-"PO-Revision-Date: 2025-01-05 07:03\n"
+"POT-Creation-Date: 2025-01-08 13:15:36+0000\n"
+"PO-Revision-Date: 2025-01-09 08:53\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1122\n"
 "Language: es_ES\n"
 
-#: ../../Plugin.cs:33
-msgid "[CustomEmojiCommand]配置文件已重载!"
-msgstr ""
-
-#: ../../Config.cs:12
-msgid "EmojiID可以在wiki(https://terraria.wiki.gg/zh/wiki/%E8%A1%A8%E6%83%85)上查询, 本插件不支持跳过权限检查, 命令需要标识符(/或者.)"
+#: ../../Plugin.cs:17
+msgid "自定义Emoji表情执行命令"
 msgstr ""
 
