@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:53+0000\n"
-"PO-Revision-Date: 2025-01-09 08:55\n"
+"POT-Creation-Date: 2025-01-09 09:33:53+0000\n"
+"PO-Revision-Date: 2025-01-09 10:21\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,12 @@ msgstr ""
 "X-Crowdin-File-ID: 1166\n"
 "Language: en_US\n"
 
-#: ../../Command.cs:200
+#: ../../Command.cs:199
 #, csharp-format
 msgid "{0} 为你添加了一个技能 {1}"
 msgstr "{0} has added a skill {1} for you"
 
-#: ../../Command.cs:212
+#: ../../Command.cs:211
 #, csharp-format
 msgid "{0} 删除了你的一个技能 "
 msgstr "{0} has removed one of your skills"
@@ -32,44 +32,44 @@ msgstr "{0} has removed one of your skills"
 msgid "{0}. {1}  价格 {2})"
 msgstr "{0}. {1} Price {2})"
 
-#: ../../Command.cs:217
+#: ../../Command.cs:216
 msgid "/skill buy [技能ID]"
 msgstr "/skill buy [Skill ID]"
 
-#: ../../Command.cs:224
+#: ../../Command.cs:223
 msgid "/skill clear"
 msgstr "/skill clear"
 
-#: ../../Command.cs:221
+#: ../../Command.cs:220
 msgid "/skill clearh [玩家]"
 msgstr "/skill clearh [Player]"
 
-#: ../../Command.cs:218
+#: ../../Command.cs:217
 msgid "/skill del [技能ID]"
 msgstr "/skill del [Skill ID]"
 
-#: ../../Command.cs:222
+#: ../../Command.cs:221
 msgid "/skill del [玩家] [序号]"
 msgstr "/skill del [Player] [Number]"
 
-#: ../../Command.cs:223
-msgid "/skill delall"
-msgstr "/skill delall"
-
-#: ../../Command.cs:220
+#: ../../Command.cs:219
 msgid "/skill give [玩家] [技能序号]"
 msgstr "/skill give [Player] [Skill Number]"
 
-#: ../../Command.cs:219
+#: ../../Command.cs:218
 msgid "/skill list [页码]"
 msgstr "/skill list [Page Number]"
 
-#: ../../Command.cs:225
+#: ../../Command.cs:222
+msgid "/skill removeall"
+msgstr ""
+
+#: ../../Command.cs:224
 msgid "/skill reset"
 msgstr "/skill reset"
 
 #: ../../Command.cs:112
-#: ../../Command.cs:154
+#: ../../Command.cs:153
 msgid "你并未绑定技能!"
 msgstr "You have not bound any skills!"
 
@@ -86,7 +86,7 @@ msgstr "You must log in to the game to purchase skills!"
 msgid "你未绑定此技能，无需删除！"
 msgstr "You have not bound this skill, no need to remove!"
 
-#: ../../Command.cs:172
+#: ../../Command.cs:171
 msgid "你没有权限执行此命令!"
 msgstr "You do not have permission to execute this command!"
 
@@ -107,25 +107,25 @@ msgstr "The current skill list is empty"
 msgid "当前进度无法购买此技能，限制进度:{0}"
 msgstr "Current progress cannot purchase this skill, progress limit: {0}"
 
-#: ../../Command.cs:199
+#: ../../Command.cs:198
 #, csharp-format
 msgid "成功为 {0} 添加了一个技能 {1}"
 msgstr "Successfully added a skill {1} for {0}"
 
-#: ../../Command.cs:211
+#: ../../Command.cs:210
 #, csharp-format
 msgid "成功删除 {0} 的一个技能"
 msgstr "Successfully removed a skill from {0}"
 
-#: ../../Command.cs:146
+#: ../../Command.cs:145
 msgid "成功移除了手持武器的所有技能!"
 msgstr "Successfully removed all skills from the held weapon!"
 
-#: ../../Command.cs:165
+#: ../../Command.cs:164
 msgid "成功移除了绑定的所有技能!"
 msgstr "Successfully removed all bound skills!"
 
-#: ../../Command.cs:136
+#: ../../Command.cs:135
 msgid "手持物品并未绑定技能!"
 msgstr "The item in hand is not bound to any skill!"
 
@@ -146,12 +146,12 @@ msgstr "Skill number {0} does not exist!"
 msgid "技能移除成功!"
 msgstr "Skill removal successful!"
 
-#: ../../Command.cs:176
+#: ../../Command.cs:175
 msgid "技能重置成功!"
 msgstr "Skill reset successful!"
 
-#: ../../Command.cs:195
-#: ../../Command.cs:207
+#: ../../Command.cs:194
+#: ../../Command.cs:206
 msgid "无效得技能序号!"
 msgstr "Invalid skill number!"
 
@@ -180,7 +180,7 @@ msgstr "This skill is unique and cannot be bound multiple times!"
 msgid "此武器已超过规定的最大绑定数量!"
 msgstr "This weapon has exceeded the maximum allowed binding quantity!"
 
-#: ../../Command.cs:187
+#: ../../Command.cs:186
 msgid "目标玩家不存在或不在线!"
 msgstr "Target player does not exist or is not online!"
 
