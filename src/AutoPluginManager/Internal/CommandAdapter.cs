@@ -21,12 +21,12 @@ internal class CommandAdapter
     };
 
 
-    
+
 
     public static void Adapter(CommandArgs args)
     {
         if (args.Parameters.Count >= 1)
-        { 
+        {
             var text = args.Parameters[0].ToLower();
             var subcmd = text.StartsWith("-") ? text.TrimStart('-') : text;
             if (_actions.TryGetValue(subcmd, out var action))
@@ -434,7 +434,7 @@ internal class CommandAdapter
         {
             targets = args.Parameters[1].Split(",");
         }
-        UpdatePlugin(args.Player, targets);   
+        UpdatePlugin(args.Player, targets);
     }
 
     /// <summary>

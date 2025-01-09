@@ -1,6 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI;
 using LazyAPI.ConfigFiles;
-using LazyAPI;
 
 namespace AdditionalPylons;
 

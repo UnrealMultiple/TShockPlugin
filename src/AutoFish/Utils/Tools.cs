@@ -1,5 +1,4 @@
 ﻿using Terraria;
-using TShockAPI;
 
 namespace AutoFish.Utils;
 

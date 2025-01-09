@@ -13,8 +13,7 @@ namespace DataSync;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public override string Name => "DataSync";
-    internal static Dictionary<int, List<ProgressType>> _idmatch = new Dictionary<int, List<ProgressType>>();
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; internal static Dictionary<int, List<ProgressType>> _idmatch = new Dictionary<int, List<ProgressType>>();
     internal static Dictionary<ProgressType, Func<bool?, bool>> _flagaccessors = new Dictionary<ProgressType, Func<bool?, bool>>();
     public Plugin(Main game) : base(game)
     {

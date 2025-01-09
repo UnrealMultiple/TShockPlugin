@@ -12,9 +12,9 @@ public class LPlayer
 
     public LPlayer(int index)
     {
-        Index = index;
-        tp = false;
-        x = 0f;
-        y = 0f;
+        this.Index = index;
+        this.tp = false;
+        this.x = 0f;
+        this.y = 0f;
     }
 }

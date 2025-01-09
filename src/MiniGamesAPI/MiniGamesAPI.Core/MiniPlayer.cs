@@ -64,7 +64,7 @@ public class MiniPlayer
 
     public MiniPlayer()
     {
-        this.Name =  null!;
+        this.Name = null!;
         this.Player = null!;
         this.BackUp = null!;
 

@@ -1,6 +1,4 @@
-﻿using Terraria;
-
-namespace CustomMonster;
+﻿namespace CustomMonster;
 
 public class LPrj
 {

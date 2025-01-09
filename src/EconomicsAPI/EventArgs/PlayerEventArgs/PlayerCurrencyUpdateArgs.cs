@@ -1,5 +1,4 @@
 ﻿using EconomicsAPI.Enumerates;
-using System.Drawing;
 
 namespace EconomicsAPI.EventArgs.PlayerEventArgs;
 

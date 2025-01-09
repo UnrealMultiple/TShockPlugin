@@ -1,7 +1,5 @@
-﻿using Economics.Skill.Internal;
-using Economics.Skill.Model;
+﻿using Economics.Skill.Model;
 using EconomicsAPI.Attributes;
-using Steamworks;
 using TShockAPI;
 
 namespace Economics.Skill;
@@ -90,7 +88,7 @@ public class Command
                     return;
                 }
                 else if (args.Parameters[0].ToLower() == "clearh")
-                { 
+                {
                     var playerName = args.Parameters[1];
                     var skills = Skill.PlayerSKillManager.QuerySkill(playerName);
                     foreach (var skill in skills)
@@ -141,7 +139,7 @@ public class Command
                     foreach (var skill in skills)
                     {
                         if (skill.Skill != null && !skill.Skill.Hidden)
-                        { 
+                        {
                             Skill.PlayerSKillManager.Remove(args.Player.Name, skill.ID);
                         }
                     }
@@ -179,7 +177,7 @@ public class Command
                     return;
                 }
                 break;
-               
+
             }
             case 3:
             {
@@ -204,7 +202,7 @@ public class Command
                 else if (args.Parameters[0].ToLower() == "del" && args.Player.HasPermission(Permission.SkillAdmin))
                 {
                     var playerSkills = Skill.PlayerSKillManager.QuerySkill(player.Name);
-                    if (!int.TryParse(args.Parameters[2], out var index) || !playerSkills.Any(x=>x.ID == index))
+                    if (!int.TryParse(args.Parameters[2], out var index) || !playerSkills.Any(x => x.ID == index))
                     {
                         args.Player.SendErrorMessage(GetString("无效得技能序号!"));
                         return;

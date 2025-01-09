@@ -6,10 +6,10 @@ namespace CaiBot;
 
 internal static class Utils
 {
-    
+
     internal static string FileToBase64String(string path)
     {
-        FileStream fsForRead = new (path, FileMode.Open); //文件路径
+        FileStream fsForRead = new(path, FileMode.Open); //文件路径
         var base64Str = "";
         try
         {

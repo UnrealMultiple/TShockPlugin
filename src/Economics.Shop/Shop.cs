@@ -13,10 +13,9 @@ public class Shop : TerrariaPlugin
 {
     public override string Author => "少司命";
 
-    public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Description => GetString("经济商店!");
 
-    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(2, 0, 0, 1);
 
     internal string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Shop.json");

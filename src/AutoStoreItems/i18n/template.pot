@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoStoreItems\n"
-"POT-Creation-Date: 2024-11-30 02:03:47+0000\n"
-"PO-Revision-Date: 2024-11-30 02:03:47+0000\n"
+"POT-Creation-Date: 2025-01-08 18:22:45+0000\n"
+"PO-Revision-Date: 2025-01-08 18:22:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -166,6 +166,10 @@ msgstr ""
 #: ../../Commands.cs:65
 #, csharp-format
 msgid "您的自存[c/BBE9B7:监听]为：[c/E489C0:{0}]"
+msgstr ""
+
+#: ../../AutoStoreItems.cs:16
+msgid "持有指定物品根据配置物品ID自动存入存储空间"
 msgstr ""
 
 #: ../../Commands.cs:64

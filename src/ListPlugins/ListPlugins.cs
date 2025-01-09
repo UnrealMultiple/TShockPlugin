@@ -6,10 +6,9 @@ using TShockAPI;
 [ApiVersion(2, 1)]
 public class ListPlugins : TerrariaPlugin
 {
-    public override string Name => "查已装插件";
-    public override Version Version => new Version(1, 0, 6);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 6);
     public override string Author => "iheart 修改：羽学，肝帝熙恩";
-    public override string Description => "用指令查已装插件";
+    public override string Description => GetString("用指令查已装插件");
 
     public ListPlugins(Main game)
         : base(game)

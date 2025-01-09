@@ -1,9 +1,8 @@
-﻿using System.Data;
+﻿using Microsoft.Xna.Framework;
+using System.Data;
 using System.Text;
-using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
-using LazyAPI;
 using static ModifyWeapons.Plugin;
 
 namespace ModifyWeapons;
@@ -50,7 +49,7 @@ public class Commands
                     {
                         data.Join = !data.Join;
                         plr.SendInfoMessage(data.Join ?
-                           GetString($"玩家 [{plr.Name}] 已[c/92C5EC:启用]进服重读功能。"):
+                           GetString($"玩家 [{plr.Name}] 已[c/92C5EC:启用]进服重读功能。") :
                             GetString($"玩家 [{plr.Name}] 已[c/92C5EC:关闭]进服重读功能。"));
                         DB.UpdateData(data);
                     }
@@ -638,7 +637,7 @@ public class Commands
             plr.SendMessage(GetString("\n[i:3455][c/AD89D5:修][c/D68ACA:改][c/DF909A:武][c/E5A894:器][i:3454]\n") +
             GetString("/mw hand —— 获取[c/FFB357:手持物品]信息开关\n") +
             GetString("/mw join —— 切换[c/4C95DD:进服重读]开关\n") +
-            GetString("/mw list —— [c/FF6863:列出所有]修改物品\n")+
+            GetString("/mw list —— [c/FF6863:列出所有]修改物品\n") +
             GetString("/mw read —— [c/FFF540:手动重读]修改物品\n") +
             GetString("/mw auto —— [c/F28F2B:自动重读]功能开关\n") +
             GetString("/mw clear —— [c/FFB357:自动清理]功能开关\n") +
@@ -672,7 +671,7 @@ public class Commands
 
         var item = TShock.Utils.GetItemById(plr.SelectedItem.type);
         var MyIndex = new TSPlayer(plr.Index);
-        var MyItem = Item.NewItem(null, (int)MyIndex.X, (int)MyIndex.Y, item.width, item.height, item.type, item.stack);
+        var MyItem = Item.NewItem(null, (int) MyIndex.X, (int) MyIndex.Y, item.width, item.height, item.type, item.stack);
 
         if (MyItem >= 0 && MyItem < Main.item.Length)
         {
@@ -848,7 +847,7 @@ public class Commands
 
                     if (find)
                     {
-                        var MyItem = Item.NewItem(null, (int)MyIndex.X, (int)MyIndex.Y, item.width, item.height, item.type, item.stack);
+                        var MyItem = Item.NewItem(null, (int) MyIndex.X, (int) MyIndex.Y, item.width, item.height, item.type, item.stack);
                         var newItem = Main.item[MyItem];
                         MyNewItem(plr, item, newItem, data.damage, data.stack, data.prefix, data.scale, data.knockBack, data.useTime, data.useAnimation, data.shoot, data.shootSpeed, data.ammo, data.useAmmo);
                         inv.SetDefaults(0);
@@ -907,7 +906,7 @@ public class Commands
                 if (data.ReadTime != default)
                 {
                     // 上次重读时间，保留2位小数
-                    last = (float)Math.Round((now - data.ReadTime).TotalSeconds, 2);
+                    last = (float) Math.Round((now - data.ReadTime).TotalSeconds, 2);
                 }
 
                 if (last >= Configuration.Instance.ReadTime) // 计算过去时间 自动累积重读次数 重置读取时间

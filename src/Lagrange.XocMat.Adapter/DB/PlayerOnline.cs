@@ -7,7 +7,7 @@ namespace Lagrange.XocMat.Adapter.DB;
 
 public class PlayerOnline : Dictionary<string, int>
 {
-    private HashSet<string> _players = new();
+    private readonly HashSet<string> _players = new();
     public new int this[string key]
     {
         get
@@ -22,7 +22,7 @@ public class PlayerOnline : Dictionary<string, int>
             base[key] = value;
         }
     }
-    private IDbConnection database;
+    private readonly IDbConnection database;
     public PlayerOnline()
     {
         this.database = TShock.DB;

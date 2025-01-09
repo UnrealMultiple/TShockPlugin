@@ -24,13 +24,12 @@ public class Plugin : TerrariaPlugin
         }
     }
 
-    public override string Name => "简短指令改良版";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "GK 少司命修复版";
 
     public override Version Version => new Version(1, 3, 0, 3);
 
-    public override string Description => "由GK改良的简短指令插件！";
+    public override string Description => GetString("由GK改良的简短指令插件！");
 
     private Config Config { get; set; }
 

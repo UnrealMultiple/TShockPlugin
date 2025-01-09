@@ -15,10 +15,9 @@ public class Plugin : TerrariaPlugin
 {
     public override string Author => "少司命";
 
-    public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Description => GetString("增强玩家武器弹幕!");
 
-    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 0, 6);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Projectile.json");

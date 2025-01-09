@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ConvertWorld\n"
-"POT-Creation-Date: 2024-09-28 12:12:09+0000\n"
-"PO-Revision-Date: 2024-09-28 12:12:10+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:42+0000\n"
+"PO-Revision-Date: 2025-01-08 13:15:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,22 +10,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../ConvertWorld.cs:44
+#: ../../ConvertWorld.cs:43
 msgid "[替换世界物品]重新加载配置完毕。"
 msgstr ""
 
-#: ../../ConvertWorld.cs:158
+#: ../../ConvertWorld.cs:14
+msgid "击败指定怪物替换世界指定图格与所有箱子内物品"
+msgstr ""
+
+#: ../../ConvertWorld.cs:157
 msgid ""
 "已替换世界物品! \n"
 msgstr ""
 
-#: ../../ConvertWorld.cs:159
+#: ../../ConvertWorld.cs:158
 #, csharp-format
 msgid ""
 "转换的图格数量：[c/BEE9FA:{0}] \n"
 msgstr ""
 
-#: ../../ConvertWorld.cs:160
+#: ../../ConvertWorld.cs:159
 #, csharp-format
 msgid "转换的箱子物品数量：[c/FFC4C2:{0}]"
 msgstr ""

@@ -1,6 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Org.BouncyCastle.Asn1.X509;
-using System.Text.Json.Serialization;
 using TShockAPI;
 
 public class Configuration

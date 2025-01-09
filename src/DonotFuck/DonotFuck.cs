@@ -10,9 +10,8 @@ namespace DonotFuck;
 public class Plugin : LazyPlugin
 {
     #region 插件信息
-    public override string Name => "Don't Fuck";
-    public override string Author => "Cai 羽学";
-    public override string Description => "当玩家聊天有敏感词时用*号代替该词";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "Cai 羽学";
+    public override string Description => GetString("当玩家聊天有敏感词时用*号代替该词");
     public override Version Version => new Version(3, 2, 1);
     #endregion
 

@@ -11,9 +11,8 @@ public class UnseenInventory : TerrariaPlugin
 {
 
     public override string Author => "肝帝熙恩";
-    public override string Description => "允许服务器端生成“无法获取”的物品";
-    public override string Name => "UnseenInventory";
-    public override Version Version => new Version(1, 0, 1);
+    public override string Description => GetString("允许服务器端生成“无法获取”的物品");
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 1);
     public static Configuration Config = null!;
 
     public UnseenInventory(Main game) : base(game)

@@ -24,10 +24,9 @@ public class Plugin : TerrariaPlugin
 {
     public override string Author => "少司命";
 
-    public override string Description => "适配插件";
+    public override string Description => GetString("适配插件");
 
-    public override string Name => "机器人适配插件";
-
+    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 0, 2);
 
     internal static readonly List<TSPlayer> ServerPlayers = new();

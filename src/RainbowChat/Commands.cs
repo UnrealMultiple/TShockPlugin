@@ -1,6 +1,6 @@
-﻿using TShockAPI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Text;
+using TShockAPI;
 
 namespace RainbowChat;
 public class Commands
@@ -179,7 +179,7 @@ public class Commands
             GetString($"{plr.Name} 的彩虹聊天已 启用.") :
             GetString($"{plr.Name} 的彩虹聊天已 禁用."));
 
-        if(RainbowChat.Gradient[plr.Index] && RainbowChat.Gradient[plr.Index])
+        if (RainbowChat.Gradient[plr.Index] && RainbowChat.Gradient[plr.Index])
         {
             RainbowChat.Gradient[plr.Index] = false;
         }
@@ -196,7 +196,7 @@ public class Commands
             return;
         }
 
-        if (!RainbowChat.Config.Enabled || !RainbowChat.Config.Gradient )
+        if (!RainbowChat.Config.Enabled || !RainbowChat.Config.Gradient)
         {
             return;
         }

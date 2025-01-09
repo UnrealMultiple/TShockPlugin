@@ -8,10 +8,9 @@ namespace VeinMiner;
 [ApiVersion(2, 1)]
 public class VeinMiner : TerrariaPlugin
 {
-    public override string Name => "VeinMiner";
-    public override Version Version => new Version(1, 6, 0, 8);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 6, 0, 8);
     public override string Author => "Megghy|YSpoof|Maxthegreat99|肝帝熙恩";
-    public override string Description => "VeinMiner by Megghy 适用于 TShock 5.2 支持！";
+    public override string Description => GetString("VeinMiner by Megghy 适用于 TShock 5.2 支持！");
 
     internal static Config Config = new();
 
@@ -128,7 +127,7 @@ public class VeinMiner : TerrariaPlugin
                         }
                         else
                         {
-                                GiveItem();
+                            GiveItem();
                         }
                         return;
                     }

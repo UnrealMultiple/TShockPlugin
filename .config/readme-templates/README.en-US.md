@@ -62,11 +62,15 @@
 <Details>
 <Summary>Plugin List</Summary>
 
-| Plugin Name | English Available | Plugin Description | Dependencies |
+| Plugin Name | Translation Percentage | Plugin Description | Dependencies |
 | :-: | :-: | :-: | :-: |
-<!--{PluginList,en-US,Yes,No}-->
+<!--{PluginList,en-US}-->
 
 </Details>
+
+## Translation
+
+- If you would like to participate in the translation work, feel free to visit our [Crowdin](https://crowdin.com/project/tshock-chinese-plugin) link
 
 ## Friendly Links
 

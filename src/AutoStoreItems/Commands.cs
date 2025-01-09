@@ -171,36 +171,36 @@ public class Commands
             switch (args.Parameters[0].ToLower())
             {
                 case "add":
+                {
+                    if (data.ItemType.Contains(item.type))
                     {
-                        if (data.ItemType.Contains(item.type))
-                        {
-                            args.Player.SendErrorMessage(GetString("物品 [c/92C5EC:{0}] 已在自动储存中!"), item.Name);
-                            return;
-                        }
-                        data.ItemType.Add(item.type);
-                        args.Player.SendSuccessMessage(GetString("已成功将物品添加到自动储存: [c/92C5EC:{0}]!"), item.Name);
-                        break;
+                        args.Player.SendErrorMessage(GetString("物品 [c/92C5EC:{0}] 已在自动储存中!"), item.Name);
+                        return;
                     }
+                    data.ItemType.Add(item.type);
+                    args.Player.SendSuccessMessage(GetString("已成功将物品添加到自动储存: [c/92C5EC:{0}]!"), item.Name);
+                    break;
+                }
 
                 case "del":
                 case "delete":
                 case "remove":
+                {
+                    if (!data.ItemType.Contains(item.type))
                     {
-                        if (!data.ItemType.Contains(item.type))
-                        {
-                            args.Player.SendErrorMessage(GetString("物品 {0} 不在自动储存中!"), item.Name);
-                            return;
-                        }
-                        data.ItemType.Remove(item.type);
-                        args.Player.SendSuccessMessage(GetString("已成功从自动储存删除物品: [c/92C5EC:{0}]!"), item.Name);
-                        break;
+                        args.Player.SendErrorMessage(GetString("物品 {0} 不在自动储存中!"), item.Name);
+                        return;
                     }
+                    data.ItemType.Remove(item.type);
+                    args.Player.SendSuccessMessage(GetString("已成功从自动储存删除物品: [c/92C5EC:{0}]!"), item.Name);
+                    break;
+                }
 
                 default:
-                    {
-                        HelpCmd(args.Player);
-                        break;
-                    }
+                {
+                    HelpCmd(args.Player);
+                    break;
+                }
             }
         }
     }

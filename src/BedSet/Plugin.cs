@@ -11,9 +11,8 @@ namespace Plugin;
 public class Plugin : LazyPlugin
 {
     public override string Author => "cmgy";
-    public override string Description => "";
-    public override string Name => "BedSet 床设置";
-    public override Version Version => new Version(1, 0, 0, 5);
+    public override string Description => GetString("");
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 5);
     public Plugin(Main game) : base(game) { }
 
     public override void Initialize()

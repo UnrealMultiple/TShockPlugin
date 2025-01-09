@@ -1,6 +1,6 @@
 ﻿using Terraria;
-using TShockAPI;
 using Terraria.ObjectData;
+using TShockAPI;
 using static SurfaceBlock.SurfaceBlock;
 
 namespace SurfaceBlock;
@@ -31,8 +31,8 @@ internal class Tool
         CheckForTileObjectsAbove(tileY, out var topWidth, out var topLength, out offsetY);
         CheckForTileObjectsBelow(tileY, out var botWidth, out var botLength);
 
-        width = Math.Max((byte)1, Math.Max(topWidth, botWidth));
-        length = Math.Max((byte)1, (byte)(topLength + botLength));
+        width = Math.Max((byte) 1, Math.Max(topWidth, botWidth));
+        length = Math.Max((byte) 1, (byte) (topLength + botLength));
 
         void CheckForTileObjectsAbove(int y, out byte objWidth, out byte objLength, out int yOffset)
         {
@@ -49,8 +49,8 @@ internal class Tool
             if (above.type < TileObjectData._data.Count && TileObjectData._data[above.type] != null)
             {
                 var data = TileObjectData._data[above.type];
-                objWidth = (byte)data.Width;
-                objLength = (byte)data.Height;
+                objWidth = (byte) data.Width;
+                objLength = (byte) data.Height;
                 yOffset = -data.Height;
             }
         }
@@ -69,8 +69,8 @@ internal class Tool
             if (below.type < TileObjectData._data.Count && TileObjectData._data[below.type] != null)
             {
                 var data = TileObjectData._data[below.type];
-                objWidth = (byte)data.Width;
-                objLength = (byte)data.Height;
+                objWidth = (byte) data.Width;
+                objLength = (byte) data.Height;
             }
         }
     }

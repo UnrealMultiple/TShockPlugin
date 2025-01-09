@@ -81,7 +81,8 @@ public class Command
 
             case "reset":
             {
-                if (PermissionValidator(EconomicsPerm.CurrencyAdmin)) {
+                if (PermissionValidator(EconomicsPerm.CurrencyAdmin))
+                {
                     return;
                 }
                 Economics.CurrencyManager.Reset();
@@ -91,7 +92,8 @@ public class Command
 
             case "query":
             {
-                if (PermissionValidator(EconomicsPerm.QueryCurrency)) {
+                if (PermissionValidator(EconomicsPerm.QueryCurrency))
+                {
                     return;
                 }
                 if (args.Parameters.Count > 1)
@@ -108,7 +110,7 @@ public class Command
                 args.Player.SendGradientMsg(sb.ToString().Trim());
                 return;
             }
-            
+
             default:
                 break;
         }
@@ -122,7 +124,8 @@ public class Command
         {
             case "clear":
             {
-                if (PermissionValidator(EconomicsPerm.CurrencyAdmin)) {
+                if (PermissionValidator(EconomicsPerm.CurrencyAdmin))
+                {
                     return;
                 }
                 foreach (var currency in Economics.Setting.CustomizeCurrencys)
@@ -136,7 +139,8 @@ public class Command
 
             case "query":
             {
-                if (PermissionValidator(EconomicsPerm.QueryCurrency)) {
+                if (PermissionValidator(EconomicsPerm.QueryCurrency))
+                {
                     return;
                 }
                 var name = args.Parameters[1];
@@ -150,12 +154,12 @@ public class Command
                 args.Player.SendGradientMsg(sb.ToString().Trim());
                 return;
             }
-            
+
             default:
                 break;
         }
-        
-        
+
+
         if (ParametersLengthValidator(4))
         {
             return;
@@ -173,7 +177,8 @@ public class Command
         {
             case "add":
             {
-                if (PermissionValidator(EconomicsPerm.CurrencyAdmin)) {
+                if (PermissionValidator(EconomicsPerm.CurrencyAdmin))
+                {
                     return;
                 }
                 var name = args.Parameters[1];
@@ -185,7 +190,8 @@ public class Command
             case "deduct":
             case "del": // obselete
             {
-                if (PermissionValidator(EconomicsPerm.CurrencyAdmin)) {
+                if (PermissionValidator(EconomicsPerm.CurrencyAdmin))
+                {
                     return;
                 }
                 var name = args.Parameters[1];
@@ -199,7 +205,8 @@ public class Command
             }
             case "pay":
             {
-                if (PermissionValidator(EconomicsPerm.PayCurrency)) {
+                if (PermissionValidator(EconomicsPerm.PayCurrency))
+                {
                     return;
                 }
                 var name = args.Parameters[1];

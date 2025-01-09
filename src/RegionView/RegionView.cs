@@ -32,10 +32,9 @@ public class RegionView : TerrariaPlugin
 
     public override string Author => "TBC开发者团队,肝帝熙恩汉化";
 
-    public override string Description => "为地区添加区域边界视图。";
+    public override string Description => GetString("为地区添加区域边界视图。");
 
-    public override string Name => "区域显示";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 1, 1);
 
     private readonly System.Timers.Timer _refreshTimer = new(5000);

@@ -4,7 +4,7 @@ namespace ItemBox;
 
 public class PlayerInventory
 {
-    public List<Item> Inventory { get; set; } = new ();
+    public List<Item> Inventory { get; set; } = new();
 
     public void Clear()
     {
