@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:27+0000\n"
-"PO-Revision-Date: 2025-01-09 08:59\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,5 +19,5 @@ msgstr ""
 
 #: ../../Plugin.cs:14
 msgid "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）"
-msgstr ""
+msgstr "Create NPC housing, warehouses, cave monster spawning grounds, hell/twilight through trains, surface and hell world-class platforms (tracks) for the new world"
 
