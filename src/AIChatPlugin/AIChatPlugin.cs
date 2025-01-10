@@ -57,7 +57,7 @@ namespace Plugin
                                  "[i:1344]/bcz                  - 清除您的上下文\n" +
                                  "[i:1344]/bbz                  - 显示此帮助信息\n" +
                                  "[i:1344]/aiclear              - 清除所有人的上下文\n" +
-                                $"[i:1344] - 聊天栏最前面输入“{Config.AILTCF}”接问题能触发AI对话";
+                                $"[i:1344] - 聊天栏最前面输入“{Config.AIChattriggerwords}”接问题能触发AI对话";
             args.Player.SendInfoMessage(helpMessage);
         }
         #endregion
@@ -67,27 +67,27 @@ namespace Plugin
         public class Configuration
         {
             [JsonProperty("模型选择：1为通用，2为速度")]
-            public string AIMSQH { get; set; } = "1";
+            public string AIModelselection { get; set; } = "1";
             [JsonProperty("聊天触发词")]
-            public string AILTCF { get; set; } = "AI";
+            public string AIChattriggerwords { get; set; } = "AI";
             [JsonProperty("回答字限制")]
-            public int AIZSXZ { get; set; } = 666;
+            public int AIAnswerwordlimit { get; set; } = 666;
             [JsonProperty("回答换行字")]
-            public int AIHH { get; set; } = 50;
+            public int AIAnswerwithlinebreaks { get; set; } = 50;
             [JsonProperty("上下文限制")]
-            public int AISXW { get; set; } = 10;
+            public int AIContextuallimitations { get; set; } = 10;
             [JsonProperty("联网搜索")]
-            public bool AILWSS { get; set; } = true;
+            public bool AIWebbasedsearch { get; set; } = true;
             [JsonProperty("AI超时时间")]
-            public int AICS { get; set; } = 100;
+            public int AITimeoutperiod { get; set; } = 100;
             [JsonProperty("名字")]
-            public string AIMZ { get; set; } = "AI";
+            public string AIname { get; set; } = "AI";
             [JsonProperty("AI设定")]
-            public string AISET { get; set; } = "你是一个简洁高效的AI，擅长用一句话精准概括复杂问题。";
+            public string AIsettings { get; set; } = "你是一个简洁高效的AI，擅长用一句话精准概括复杂问题。";
             [JsonProperty("temperature温度")]
-            public double AIWD { get; set; } = 0.5;
+            public double AItemperature { get; set; } = 0.5;
             [JsonProperty("top_p核采样")]
-            public double AIHCY { get; set; } = 0.5;
+            public double AINuclearsampling { get; set; } = 0.5;
         }
         #endregion
         #region 读取配置
@@ -107,20 +107,20 @@ namespace Plugin
                     Configuration tempConfig = JsonConvert.DeserializeObject<Configuration>(jsonContent) ?? new Configuration();
                     if (tempConfig != null)
                     {
-                        if (tempConfig.AIMSQH != "1" && tempConfig.AIMSQH != "2")
+                        if (tempConfig.AIModelselection != "1" && tempConfig.AIModelselection != "2")
                         {
                             TShock.Log.ConsoleError($"[AI聊天插件] 模式无效，已保留原配置，并使用默认值");
-                            tempConfig.AIMSQH = "1";
+                            tempConfig.AIModelselection = "1";
                         }
-                        tempConfig.AILTCF ??= "AI";
-                        tempConfig.AIZSXZ = tempConfig.AIZSXZ > 0 ? tempConfig.AIZSXZ : 666;
-                        tempConfig.AIHH = tempConfig.AIHH > 0 ? tempConfig.AIHH : 50;
-                        tempConfig.AISXW = tempConfig.AISXW > 0 ? tempConfig.AISXW : 10;
-                        tempConfig.AICS = tempConfig.AICS > 0 ? tempConfig.AICS : 100;
-                        tempConfig.AIMZ ??= "AI";
-                        tempConfig.AISET ??= "你是一个简洁高效的AI，擅长用一句话精准概括复杂问题。";
-                        tempConfig.AIHCY = (tempConfig.AIHCY < 0.0 || tempConfig.AIHCY > 1.0) ? 0.5 : tempConfig.AIHCY;
-                        tempConfig.AIWD = (tempConfig.AIWD < 0.0 || tempConfig.AIWD > 1.0) ? 0.5 : tempConfig.AIWD;
+                        tempConfig.AIChattriggerwords ??= "AI";
+                        tempConfig.AIAnswerwordlimit = tempConfig.AIAnswerwordlimit > 0 ? tempConfig.AIAnswerwordlimit : 666;
+                        tempConfig.AIAnswerwithlinebreaks = tempConfig.AIAnswerwithlinebreaks > 0 ? tempConfig.AIAnswerwithlinebreaks : 50;
+                        tempConfig.AIContextuallimitations = tempConfig.AIContextuallimitations > 0 ? tempConfig.AIContextuallimitations : 10;
+                        tempConfig.AITimeoutperiod = tempConfig.AITimeoutperiod > 0 ? tempConfig.AITimeoutperiod : 100;
+                        tempConfig.AIname ??= "AI";
+                        tempConfig.AIsettings ??= "你是一个简洁高效的AI，擅长用一句话精准概括复杂问题。";
+                        tempConfig.AINuclearsampling = (tempConfig.AINuclearsampling < 0.0 || tempConfig.AINuclearsampling > 1.0) ? 0.5 : tempConfig.AINuclearsampling;
+                        tempConfig.AItemperature = (tempConfig.AItemperature < 0.0 || tempConfig.AItemperature > 1.0) ? 0.5 : tempConfig.AItemperature;
                         Config = tempConfig;
                     }
                 }
@@ -135,17 +135,17 @@ namespace Plugin
             LoadConfig();
             args.Player.SendSuccessMessage("[AI聊天插件] 配置已重载");
             string configInfo = $"当前配置：\n" +
-                                $"模型选择：1为通用，2为速度：{Config.AIMSQH}\n" +
-                                $"聊天触发词：{Config.AILTCF}\n" +
-                                $"回答字限制：{Config.AIZSXZ}\n" +
-                                $"回答换行字：{Config.AIHH}\n" +
-                                $"上下文限制：{Config.AISXW}\n" +
-                                $"联网搜索：{Config.AILWSS}\n" +
-                                $"AI超时时间：{Config.AICS}\n" +
-                                $"名字：{Config.AIMZ}\n" +
-                                $"AI设定：{Config.AISET}\n" +
-                                $"temperature温度：{Config.AIWD}\n" +
-                                $"top_p核采样：{Config.AIHCY}";
+                                $"模型选择：1为通用，2为速度：{Config.AIModelselection}\n" +
+                                $"聊天触发词：{Config.AIChattriggerwords}\n" +
+                                $"回答字限制：{Config.AIAnswerwordlimit}\n" +
+                                $"回答换行字：{Config.AIAnswerwithlinebreaks}\n" +
+                                $"上下文限制：{Config.AIContextuallimitations}\n" +
+                                $"联网搜索：{Config.AIWebbasedsearch}\n" +
+                                $"AI超时时间：{Config.AITimeoutperiod}\n" +
+                                $"名字：{Config.AIname}\n" +
+                                $"AI设定：{Config.AIsettings}\n" +
+                                $"temperature温度：{Config.AItemperature}\n" +
+                                $"top_p核采样：{Config.AINuclearsampling}";
             TShock.Log.ConsoleInfo(configInfo);
         }
         #endregion
@@ -210,7 +210,7 @@ namespace Plugin
         private void OnChat(ServerChatEventArgs args)
         {
             string message = args.Text;
-            string triggerPhrase = $"{Config.AILTCF}";
+            string triggerPhrase = $"{Config.AIChattriggerwords}";
             if (message.StartsWith(triggerPhrase))
             {
                 int triggerLength = triggerPhrase.Length;
@@ -236,11 +236,11 @@ namespace Plugin
                 string formattedContext = context.Count > 0
                     ? "上下文信息:\n" + string.Join("\n", context) + "\n\n"
                     : "";
-                string model = Config.AIMSQH == "1" ? "glm-4-flash" : "GLM-4V-Flash";
-                using HttpClient client = new() { Timeout = TimeSpan.FromSeconds(Config.AICS) };
+                string model = Config.AIModelselection == "1" ? "glm-4-flash" : "GLM-4V-Flash";
+                using HttpClient client = new() { Timeout = TimeSpan.FromSeconds(Config.AITimeoutperiod) };
                 client.DefaultRequestHeaders.Add("Authorization", $"Bearer 742701d3fea4bed898578856989cb03c.5mKVzv5shSIqkkS7");
                 var tools = new List<object>();
-                if (Config.AILWSS)
+                if (Config.AIWebbasedsearch)
                 {
                     tools.Add(new
                     {
@@ -257,11 +257,11 @@ namespace Plugin
                     model,
                     messages = new[]
                     {
-                        new { role = "user", content = formattedContext + $"（设定：{Config.AISET}）请您引用以上的上下文信息回答现在的问题(必须不允许复读,如复读请岔开话题,不允许继续下去):\n那," + question }
+                        new { role = "user", content = formattedContext + $"（设定：{Config.AIsettings}）请您引用以上的上下文信息回答现在的问题(必须不允许复读,如复读请岔开话题,不允许继续下去):\n那," + question }
                     },
                     tools,
-                    temperature = Config.AIWD,
-                    top_p = Config.AIHCY,
+                    temperature = Config.AItemperature,
+                    top_p = Config.AINuclearsampling,
                 };
                 var response = await client.PostAsync("https://open.bigmodel.cn/api/paas/v4/chat/completions",
                     new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json"));
@@ -276,12 +276,12 @@ namespace Plugin
                         var firstChoice = result.Choices[0];
                         string responseMessage = firstChoice.Message.Content;
                         responseMessage = CleanMessage(responseMessage);
-                        if (responseMessage.Length > Config.AIZSXZ)
+                        if (responseMessage.Length > Config.AIAnswerwordlimit)
                         {
                             responseMessage = TruncateMessage(responseMessage);
                         }
                         string formattedQuestion = FormatMessage(question), formattedResponse = FormatMessage(responseMessage);
-                        string broadcastMessage = $"[i:267][c/FFD700:{player.Name}]\n[i:149][c/00FF00:提问: {formattedQuestion}]\n[c/A9A9A9:============================]\n[i:4805][c/FF00FF:{Config.AIMZ}]\n[i:149][c/FF4500:回答:] {formattedResponse}\n[c/A9A9A9:============================]";
+                        string broadcastMessage = $"[i:267][c/FFD700:{player.Name}]\n[i:149][c/00FF00:提问: {formattedQuestion}]\n[c/A9A9A9:============================]\n[i:4805][c/FF00FF:{Config.AIname}]\n[i:149][c/FF4500:回答:] {formattedResponse}\n[c/A9A9A9:============================]";
                         TSPlayer.All.SendInfoMessage(broadcastMessage); TShock.Log.ConsoleInfo($"\n[AI聊天插件]\n{player.Name} 提问: {formattedQuestion}\n回答: {formattedResponse}");
                         AddToContext(player.Index, question, true); AddToContext(player.Index, responseMessage, false);
                     }
@@ -346,7 +346,7 @@ namespace Plugin
                 playerContexts[playerId] = new List<string>();
             }
             string taggedMessage = isUserMessage ? $"问题：{message}" : $"回答：{message}";
-            if (playerContexts[playerId].Count >= Config.AISXW)
+            if (playerContexts[playerId].Count >= Config.AIContextuallimitations)
             {
                 playerContexts[playerId].RemoveAt(0);
             }
@@ -403,20 +403,20 @@ namespace Plugin
         #region 回答优限
         private static string TruncateMessage(string message)
         {
-            if (message.Length <= Config.AIZSXZ) return message;
+            if (message.Length <= Config.AIAnswerwordlimit) return message;
             TextElementEnumerator enumerator = StringInfo.GetTextElementEnumerator(message);
             StringBuilder truncated = new();
             int count = 0;
             while (enumerator.MoveNext())
             {
                 string textElement = enumerator.GetTextElement();
-                if (truncated.Length + textElement.Length > Config.AIZSXZ) break;
+                if (truncated.Length + textElement.Length > Config.AIAnswerwordlimit) break;
                 truncated.Append(textElement);
                 count++;
             }
-            if (count == 0 || truncated.Length >= Config.AIZSXZ)
+            if (count == 0 || truncated.Length >= Config.AIAnswerwordlimit)
             {
-                truncated.Append($"\n\n[i:1344]超出字数限制{Config.AIZSXZ}已省略！[i:1344]");
+                truncated.Append($"\n\n[i:1344]超出字数限制{Config.AIAnswerwordlimit}已省略！[i:1344]");
             }
             return truncated.ToString();
         }
@@ -428,7 +428,7 @@ namespace Plugin
             while (enumerator.MoveNext())
             {
                 string textElement = enumerator.GetTextElement();
-                if (currentLength + textElement.Length > Config.AIHH)
+                if (currentLength + textElement.Length > Config.AIAnswerwithlinebreaks)
                 {
                     if (formattedMessage.Length > 0)
                     {
