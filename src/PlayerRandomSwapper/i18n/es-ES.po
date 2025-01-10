@@ -1,0 +1,178 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:16:13+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/PlayerRandomSwapper/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1194\n"
+"Language: es_ES\n"
+
+#: ../../PlayerRandomSwapper.cs:249
+#, csharp-format
+msgid "{0} 和 {1} 交换了位置！"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:238
+#, csharp-format
+msgid "{0} 尝试自交，但那是没用的"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:91
+#: ../../PlayerRandomSwapper.cs:199
+msgid "/swaptoggle as - 切换允许双人模式玩家和自己交换位置的状态"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:87
+#: ../../PlayerRandomSwapper.cs:195
+msgid "/swaptoggle en - 切换随机位置互换的状态"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:90
+#: ../../PlayerRandomSwapper.cs:198
+msgid "/swaptoggle i <传送间隔秒> - 设置传送间隔时间（秒）"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:94
+#: ../../PlayerRandomSwapper.cs:202
+msgid "/swaptoggle maxi <最大传送间隔秒> - 设置最大传送间隔时间（秒）"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:93
+#: ../../PlayerRandomSwapper.cs:201
+msgid "/swaptoggle mini <最小传送间隔秒> - 设置最小传送间隔时间（秒）"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:92
+#: ../../PlayerRandomSwapper.cs:200
+msgid "/swaptoggle ri - 切换随机传送间隔的状态"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:89
+#: ../../PlayerRandomSwapper.cs:197
+msgid "/swaptoggle swap - 切换广播玩家交换位置信息的状态"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:118
+msgid "/swaptoggle timer - 切换广播剩余传送时间的状态"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:88
+#: ../../PlayerRandomSwapper.cs:196
+msgid "/swaptoggle timer [广播交换倒计时阈值] - 切换广播剩余传送时间的状态或设置广播交换倒计时阈值"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:119
+msgid "/swaptoggle timer <时间> - 设置广播剩余传送时间"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:12
+msgid "一个插件，用于在指定时间后随机交换玩家位置。"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:148
+#, csharp-format
+msgid "传送间隔已设置为 {0} 秒。"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:244
+#: ../../PlayerRandomSwapper.cs:245
+#, csharp-format
+msgid "你与 {0} 交换了位置！"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:156
+msgid "允许玩家和自己交换位置已"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:190
+#, csharp-format
+msgid "最大传送间隔已设置为 {0} 秒。"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:177
+#, csharp-format
+msgid "最小传送间隔已设置为 {0} 秒。"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:107
+#: ../../PlayerRandomSwapper.cs:127
+#: ../../PlayerRandomSwapper.cs:135
+#: ../../PlayerRandomSwapper.cs:156
+#: ../../PlayerRandomSwapper.cs:164
+msgid "启用"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:275
+msgid "已经交换所有玩家位置！"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:107
+msgid "广播剩余传送时间已"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:113
+#, csharp-format
+msgid "广播剩余传送时间已设置为 {0} 秒"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:127
+msgid "广播玩家交换位置信息已"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:76
+#, csharp-format
+msgid "注意：还有{0}秒就要交换位置了！"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:85
+#: ../../PlayerRandomSwapper.cs:117
+#: ../../PlayerRandomSwapper.cs:194
+msgid "用法:"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:206
+msgid "用法: /swaptoggle <timer|swap|enable|interval|allowself|randominterval|mininterval|maxinterval>"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:143
+msgid "用法: /swaptoggle i <传送间隔秒>"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:185
+msgid "用法: /swaptoggle maxi <最大传送间隔秒>"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:172
+msgid "用法: /swaptoggle mini <最小传送间隔秒>"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:107
+#: ../../PlayerRandomSwapper.cs:127
+#: ../../PlayerRandomSwapper.cs:135
+#: ../../PlayerRandomSwapper.cs:156
+#: ../../PlayerRandomSwapper.cs:164
+msgid "禁用"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:24
+msgid "随机互换"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:164
+msgid "随机传送间隔已"
+msgstr ""
+
+#: ../../PlayerRandomSwapper.cs:135
+msgid "随机位置互换已"
+msgstr ""
+
