@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:15:27+0000\n"
-"PO-Revision-Date: 2025-01-09 08:52\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "The number of Hallow Pylon has reached its maximum."
 
 #: ../../AdditionalPylonsPlugin.cs:20
 msgid "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境"
-msgstr "Customize the number of crystal towers that can be placed, at least one, and all of them ignore the environment"
+msgstr "Customize the number of pylon that can be placed, at least one, and all of them ignore the environment"
 
 #: ../../AdditionalPylonsPlugin.cs:259
 msgid "蘑菇晶塔数量已达到上限。"
