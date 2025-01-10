@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:15:32+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/Back/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1102\n"
+"Language: es_ES\n"
+
+#: ../../BackPlugin.cs:83
+#, csharp-format
+msgid "BackPlugin: 传送玩家 {0} 时发生错误: {1}"
+msgstr ""
+
+#: ../../BackPlugin.cs:63
+msgid "你尚未复活，无法传送回死亡地点."
+msgstr ""
+
+#: ../../BackPlugin.cs:88
+msgid "你还未死亡过"
+msgstr ""
+
+#: ../../BackPlugin.cs:70
+#, csharp-format
+msgid "你还需要等待 {0:F} 秒才能再次使用此命令."
+msgstr ""
+
+#: ../../BackPlugin.cs:15
+msgid "允许玩家传送回死亡地点"
+msgstr ""
+
+#: ../../BackPlugin.cs:77
+#, csharp-format
+msgid "已传送至死亡地点 [c/8DF9D8:<{0} - {1}>]."
+msgstr ""
+
+#: ../../BackPlugin.cs:30
+msgid "返回最后一次死亡的位置"
+msgstr ""
+

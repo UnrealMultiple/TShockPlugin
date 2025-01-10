@@ -1,0 +1,185 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:16:28+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/StatusTextManager/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1206\n"
+"Language: es_ES\n"
+
+#: ../../Utils/Common.cs:200
+msgid "（抓捕位置："
+msgstr ""
+
+#: ../../Utils/Common.cs:201
+msgid "）"
+msgstr ""
+
+#: ../../StatusTextManager.cs:76
+msgid "Manage status text of different plugins"
+msgstr ""
+
+#: ../../Utils/Common.cs:83
+msgid "丛林"
+msgstr ""
+
+#: ../../Utils/Common.cs:107
+msgid "发光蘑菇"
+msgstr ""
+
+#: ../../Utils/Common.cs:99
+msgid "和平蜡烛"
+msgstr ""
+
+#: ../../Utils/Common.cs:51
+#: ../../Utils/Common.cs:119
+msgid "地下"
+msgstr ""
+
+#: ../../Utils/Common.cs:111
+msgid "地下沙漠"
+msgstr ""
+
+#: ../../Utils/Common.cs:67
+msgid "地牢"
+msgstr ""
+
+#: ../../Utils/Common.cs:55
+#: ../../Utils/Common.cs:127
+msgid "地狱"
+msgstr ""
+
+#: ../../Utils/Common.cs:163
+msgid "墓地"
+msgstr ""
+
+#: ../../Utils/Common.cs:147
+msgid "大理石"
+msgstr ""
+
+#: ../../SettingsModel/DynamicText.cs:47
+msgid "存活"
+msgstr ""
+
+#: ../../Utils/Common.cs:155
+msgid "宝石洞窟"
+msgstr ""
+
+#: ../../StatusTextManager.cs:30
+#: ../../StatusTextManager.cs:58
+msgid "已关闭模板显示"
+msgstr ""
+
+#: ../../SettingsModel/DynamicText.cs:54
+msgid "已完成"
+msgstr ""
+
+#: ../../StatusTextManager.cs:24
+#: ../../StatusTextManager.cs:46
+msgid "已开启模板显示"
+msgstr ""
+
+#: ../../SettingsModel/DynamicText.cs:47
+msgid "已死亡"
+msgstr ""
+
+#: ../../Utils/Common.cs:171
+msgid "微光"
+msgstr ""
+
+#: ../../SettingsModel/DynamicText.cs:54
+msgid "未完成"
+msgstr ""
+
+#: ../../SettingsModel/DynamicText.cs:48
+msgid "未死亡"
+msgstr ""
+
+#: ../../Utils/Common.cs:175
+msgid "森林"
+msgstr ""
+
+#: ../../Utils/Common.cs:95
+msgid "水蜡烛"
+msgstr ""
+
+#: ../../Utils/Common.cs:139
+msgid "沙尘暴"
+msgstr ""
+
+#: ../../Utils/Common.cs:103
+msgid "沙漠"
+msgstr ""
+
+#: ../../Utils/Common.cs:53
+#: ../../Utils/Common.cs:123
+msgid "洞穴"
+msgstr ""
+
+#: ../../Utils/Common.cs:131
+msgid "海滩"
+msgstr ""
+
+#: ../../Utils/Common.cs:91
+msgid "猩红"
+msgstr ""
+
+#: ../../StatusTextManager.cs:63
+msgid "用法：/st <on/show/off/hide>"
+msgstr ""
+
+#: ../../Utils/Common.cs:75
+msgid "神圣"
+msgstr ""
+
+#: ../../Utils/Common.cs:159
+msgid "神庙"
+msgstr ""
+
+#: ../../SettingsModel/DynamicText.cs:46
+msgid "空区域"
+msgstr ""
+
+#: ../../Utils/Common.cs:49
+#: ../../Utils/Common.cs:115
+msgid "空岛"
+msgstr ""
+
+#: ../../Utils/Common.cs:71
+msgid "腐化"
+msgstr ""
+
+#: ../../Utils/Common.cs:143
+msgid "花岗岩"
+msgstr ""
+
+#: ../../Utils/Common.cs:151
+msgid "蜂巢"
+msgstr ""
+
+#: ../../Utils/Common.cs:167
+msgid "阴影蜡烛"
+msgstr ""
+
+#: ../../Utils/Common.cs:79
+msgid "陨石"
+msgstr ""
+
+#: ../../Utils/Common.cs:135
+msgid "雨天"
+msgstr ""
+
+#: ../../Utils/Common.cs:87
+msgid "雪原"
+msgstr ""
+

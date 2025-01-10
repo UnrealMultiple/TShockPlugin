@@ -1,0 +1,570 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:15:35+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /master/src/BuildMaster/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1114\n"
+"Language: ru_RU\n"
+
+#: ../../BuildPlayer.cs:56
+msgid " 加入了房间"
+msgstr ""
+
+#: ../../MainPlugin.cs:861
+msgid " 强制退出了房间"
+msgstr ""
+
+#: ../../MainPlugin.cs:800
+msgid " 投票主题 "
+msgstr ""
+
+#: ../../MainPlugin.cs:805
+msgid " 更改投票主题为 "
+msgstr ""
+
+#: ../../BuildRoom.cs:99
+msgid " 的作品"
+msgstr ""
+
+#: ../../BuildRoom.cs:255
+msgid " 的建筑区域"
+msgstr ""
+
+#: ../../BuildPlayer.cs:78
+msgid " 离开了房间"
+msgstr ""
+
+#: ../../BuildRoom.cs:302
+msgid "————房内信息————"
+msgstr ""
+
+#: ../../BuildRoom.cs:357
+#, csharp-format
+msgid "[{0}] {1} 得分:{2}"
+msgstr ""
+
+#: ../../MainPlugin.cs:715
+msgid "[BuildMaster] 玩家数据出错,请尝试重新进入服务器"
+msgstr ""
+
+#: ../../MainPlugin.cs:70
+msgid "[房内聊天]"
+msgstr ""
+
+#: ../../MainPlugin.cs:728
+msgid "/bm join [房间ID] 加入房间"
+msgstr ""
+
+#: ../../MainPlugin.cs:729
+msgid "/bm leave 离开房间"
+msgstr ""
+
+#: ../../MainPlugin.cs:727
+msgid "/bm list 查看房间列表"
+msgstr ""
+
+#: ../../MainPlugin.cs:730
+msgid "/bm ready 准备/未准备"
+msgstr ""
+
+#: ../../MainPlugin.cs:731
+msgid "/bm vote [主题] 投票主题"
+msgstr ""
+
+#: ../../MainPlugin.cs:280
+msgid "/bma addt [房间ID] [主题名] 添加主题"
+msgstr ""
+
+#: ../../MainPlugin.cs:269
+msgid "/bma create [房间名] 创建房间"
+msgstr ""
+
+#: ../../MainPlugin.cs:284
+msgid "/bma dp [玩家名字] 设置基础建造背包"
+msgstr ""
+
+#: ../../MainPlugin.cs:285
+msgid "/bma ep 设置评分套装"
+msgstr ""
+
+#: ../../MainPlugin.cs:268
+msgid "/bma list 列出所有房间"
+msgstr ""
+
+#: ../../MainPlugin.cs:286
+msgid "/bma reload 重载配置文件非房间文件"
+msgstr ""
+
+#: ../../MainPlugin.cs:270
+msgid "/bma remove [房间ID] 移除指定房间"
+msgstr ""
+
+#: ../../MainPlugin.cs:274
+msgid "/bma sdp [房间ID] [人数] 设置房间最小玩家数"
+msgstr ""
+
+#: ../../MainPlugin.cs:283
+msgid "/bma sg [房间ID] [间隔] 设置小区域间隔"
+msgstr ""
+
+#: ../../MainPlugin.cs:276
+msgid "/bma sgt [房间ID] [时间] 设置游戏时间(单位：秒)"
+msgstr ""
+
+#: ../../MainPlugin.cs:281
+msgid "/bma sh [房间ID] [高] 设置小区域高"
+msgstr ""
+
+#: ../../MainPlugin.cs:273
+msgid "/bma smp [房间ID] [人数] 设置房间最大玩家数"
+msgstr ""
+
+#: ../../MainPlugin.cs:278
+msgid "/bma sp [1/2] 选取点1/2"
+msgstr ""
+
+#: ../../MainPlugin.cs:279
+msgid "/bma sr [房间ID] 设置房间的游戏区域"
+msgstr ""
+
+#: ../../MainPlugin.cs:277
+msgid "/bma sst [房间ID] [时间] 设置评分时间(单位：秒)"
+msgstr ""
+
+#: ../../MainPlugin.cs:271
+msgid "/bma start [房间ID] 开启指定房间"
+msgstr ""
+
+#: ../../MainPlugin.cs:272
+msgid "/bma stop [房间ID] 关闭指定房间"
+msgstr ""
+
+#: ../../MainPlugin.cs:282
+msgid "/bma sw [房间ID] [宽] 设置小区域宽"
+msgstr ""
+
+#: ../../MainPlugin.cs:275
+msgid "/bma swt [房间ID] [时间] 设置等待时间(单位：秒)"
+msgstr ""
+
+#: ../../MainPlugin.cs:21
+msgid "A minigame that is named BuildMaster"
+msgstr ""
+
+#: ../../MainPlugin.cs:165
+msgid "不可以破坏边框"
+msgstr ""
+
+#: ../../MainPlugin.cs:207
+msgid "不可擅自离开建筑区域"
+msgstr ""
+
+#: ../../MainPlugin.cs:822
+#: ../../MainPlugin.cs:840
+msgid "不在房间中"
+msgstr ""
+
+#: ../../BuildRoom.cs:311
+#: ../../BuildRoom.cs:329
+#: ../../BuildRoom.cs:338
+msgid "主题:"
+msgstr ""
+
+#: ../../MainPlugin.cs:778
+msgid "你不在房间中"
+msgstr ""
+
+#: ../../MainPlugin.cs:140
+msgid "你不能在别人的区域内恶意倒液体"
+msgstr ""
+
+#: ../../MainPlugin.cs:226
+msgid "你不能给自己评分"
+msgstr ""
+
+#: ../../MainPlugin.cs:243
+msgid "你已经评分过了"
+msgstr ""
+
+#: ../../BuildRoom.cs:310
+#: ../../BuildRoom.cs:328
+#: ../../BuildRoom.cs:337
+#, csharp-format
+msgid "倒计时[{0}:{1}]"
+msgstr ""
+
+#: ../../BuildRoom.cs:315
+#: ../../MainPlugin.cs:774
+msgid "已准备"
+msgstr ""
+
+#: ../../BuildRoom.cs:391
+msgid "已将你传送到建筑区域"
+msgstr ""
+
+#: ../../BuildRoom.cs:99
+#: ../../BuildRoom.cs:255
+msgid "已来到 "
+msgstr ""
+
+#: ../../MainPlugin.cs:236
+#, csharp-format
+msgid "已给 {0} 的建筑更改评分:{1}分"
+msgstr ""
+
+#: ../../MainPlugin.cs:232
+#, csharp-format
+msgid "已给 {0} 的建筑评分:{1}分"
+msgstr ""
+
+#: ../../MainPlugin.cs:311
+msgid "已设置基础套装"
+msgstr ""
+
+#: ../../MainPlugin.cs:322
+msgid "已设置评分套装"
+msgstr ""
+
+#: ../../BuildRoom.cs:317
+#: ../../BuildRoom.cs:330
+#: ../../BuildRoom.cs:339
+#, csharp-format
+msgid "当前人数:{0}/{1}"
+msgstr ""
+
+#: ../../MainPlugin.cs:817
+msgid "当前房间状态不允许投票选主题"
+msgstr ""
+
+#: ../../MainPlugin.cs:85
+msgid "当前状态不能切换队伍"
+msgstr ""
+
+#: ../../MainPlugin.cs:116
+msgid "当前状态不能开PVP"
+msgstr ""
+
+#: ../../MainPlugin.cs:334
+#, csharp-format
+msgid "成功创建房间(id:{0})"
+msgstr ""
+
+#: ../../MainPlugin.cs:373
+#, csharp-format
+msgid "成功开启房间(id:{0})"
+msgstr ""
+
+#: ../../MainPlugin.cs:398
+#, csharp-format
+msgid "成功强制关闭房间(id:{0})"
+msgstr ""
+
+#: ../../MainPlugin.cs:560
+#, csharp-format
+msgid "成功添加房间(id:{0}) 的一个主题 {1}"
+msgstr ""
+
+#: ../../MainPlugin.cs:591
+#, csharp-format
+msgid "成功添加房间(id:{0}) 的游戏区域"
+msgstr ""
+
+#: ../../MainPlugin.cs:349
+msgid "成功移除房间"
+msgstr ""
+
+#: ../../MainPlugin.cs:422
+#, csharp-format
+msgid "成功设置房间(id:{0}) 的最大玩家数为{1}"
+msgstr ""
+
+#: ../../MainPlugin.cs:446
+#, csharp-format
+msgid "成功设置房间(id:{0}) 的最小玩家数为{1}"
+msgstr ""
+
+#: ../../MainPlugin.cs:639
+#, csharp-format
+msgid "成功设置房间(id:{0}) 的区域宽度为{1}"
+msgstr ""
+
+#: ../../MainPlugin.cs:687
+#, csharp-format
+msgid "成功设置房间(id:{0}) 的区域间隔为{1}"
+msgstr ""
+
+#: ../../MainPlugin.cs:663
+#, csharp-format
+msgid "成功设置房间(id:{0}) 的区域高度为{1}"
+msgstr ""
+
+#: ../../MainPlugin.cs:511
+#, csharp-format
+msgid "成功设置房间(id:{0}) 的游戏时间为{1}秒"
+msgstr ""
+
+#: ../../MainPlugin.cs:487
+#, csharp-format
+msgid "成功设置房间(id:{0}) 的等待时间为{1}秒"
+msgstr ""
+
+#: ../../MainPlugin.cs:615
+#, csharp-format
+msgid "成功设置房间(id:{0}) 的等待点"
+msgstr ""
+
+#: ../../MainPlugin.cs:535
+#, csharp-format
+msgid "成功设置房间(id:{0}) 的评分时间为{1}秒"
+msgstr ""
+
+#: ../../BuildPlayer.cs:69
+#: ../../MainPlugin.cs:353
+#: ../../MainPlugin.cs:378
+#: ../../MainPlugin.cs:403
+#: ../../MainPlugin.cs:427
+#: ../../MainPlugin.cs:451
+#: ../../MainPlugin.cs:492
+#: ../../MainPlugin.cs:516
+#: ../../MainPlugin.cs:540
+#: ../../MainPlugin.cs:565
+#: ../../MainPlugin.cs:596
+#: ../../MainPlugin.cs:620
+#: ../../MainPlugin.cs:644
+#: ../../MainPlugin.cs:668
+#: ../../MainPlugin.cs:692
+#: ../../MainPlugin.cs:756
+msgid "房间不存在"
+msgstr ""
+
+#: ../../MainPlugin.cs:702
+msgid "插件重载成功"
+msgstr ""
+
+#: ../../BuildRoom.cs:311
+#: ../../BuildRoom.cs:329
+#: ../../BuildRoom.cs:338
+msgid "无"
+msgstr ""
+
+#: ../../BuildRoom.cs:315
+msgid "未准备"
+msgstr ""
+
+#: ../../BuildRoom.cs:425
+msgid "本次建筑的主题是 "
+msgstr ""
+
+#: ../../MainPlugin.cs:745
+msgid "正确指令 /bm join [房间号]"
+msgstr ""
+
+#: ../../MainPlugin.cs:551
+msgid "正确指令 /bma addt [房间ID] [主题名]"
+msgstr ""
+
+#: ../../MainPlugin.cs:328
+msgid "正确指令 /bma create [房间名]"
+msgstr ""
+
+#: ../../MainPlugin.cs:300
+msgid "正确指令 /bma dp [玩家名]"
+msgstr ""
+
+#: ../../MainPlugin.cs:339
+msgid "正确指令 /bma remove [房间ID]"
+msgstr ""
+
+#: ../../MainPlugin.cs:438
+msgid "正确指令 /bma sdp [房间ID] [人数]"
+msgstr ""
+
+#: ../../MainPlugin.cs:679
+msgid "正确指令 /bma sg [房间ID] [间隔]"
+msgstr ""
+
+#: ../../MainPlugin.cs:655
+msgid "正确指令 /bma sh [房间ID] [高]"
+msgstr ""
+
+#: ../../MainPlugin.cs:414
+#: ../../MainPlugin.cs:479
+#: ../../MainPlugin.cs:503
+#: ../../MainPlugin.cs:527
+msgid "正确指令 /bma smp [房间ID] [人数]"
+msgstr ""
+
+#: ../../MainPlugin.cs:462
+msgid "正确指令 /bma sp [1/2]"
+msgstr ""
+
+#: ../../MainPlugin.cs:576
+msgid "正确指令 /bma sr [房间ID]"
+msgstr ""
+
+#: ../../MainPlugin.cs:364
+msgid "正确指令 /bma start [房间ID]"
+msgstr ""
+
+#: ../../MainPlugin.cs:389
+msgid "正确指令 /bma stop [房间ID]"
+msgstr ""
+
+#: ../../MainPlugin.cs:631
+msgid "正确指令 /bma sw [房间ID] [宽]"
+msgstr ""
+
+#: ../../MainPlugin.cs:607
+msgid "正确指令 /bma swp [房间ID]"
+msgstr ""
+
+#: ../../MainPlugin.cs:786
+msgid "正确指令/bm vote 主题名"
+msgstr ""
+
+#: ../../MainPlugin.cs:831
+msgid "此房支持的主题"
+msgstr ""
+
+#: ../../BuildPlayer.cs:42
+msgid "此房间满人了"
+msgstr ""
+
+#: ../../BuildRoom.cs:226
+msgid "游戏结束！"
+msgstr ""
+
+#: ../../BuildRoom.cs:200
+msgid "游戏被强制停止！"
+msgstr ""
+
+#: ../../BuildRoom.cs:140
+#, csharp-format
+msgid "游戏还有 {0} 秒开始...."
+msgstr ""
+
+#: ../../MainPlugin.cs:580
+msgid "点未选取完毕"
+msgstr ""
+
+#: ../../BuildPlayer.cs:56
+#: ../../BuildPlayer.cs:78
+#: ../../MainPlugin.cs:774
+#: ../../MainPlugin.cs:800
+#: ../../MainPlugin.cs:805
+#: ../../MainPlugin.cs:861
+msgid "玩家 "
+msgstr ""
+
+#: ../../MainPlugin.cs:316
+msgid "评分套"
+msgstr ""
+
+#: ../../MainPlugin.cs:147
+msgid "评选阶段不允许倒液体"
+msgstr ""
+
+#: ../../MainPlugin.cs:180
+msgid "评选阶段不允许建造"
+msgstr ""
+
+#: ../../MainPlugin.cs:812
+msgid "该房间不存在此主题"
+msgstr ""
+
+#: ../../BuildPlayer.cs:47
+msgid "该房间状态无法加入游戏"
+msgstr ""
+
+#: ../../BuildPlayer.cs:74
+msgid "该房间状态无法离开游戏"
+msgstr ""
+
+#: ../../MainPlugin.cs:258
+msgid "请输入 /bma help 查看帮助"
+msgstr ""
+
+#: ../../MainPlugin.cs:720
+msgid "请输入/bm help 查看指令帮助"
+msgstr ""
+
+#: ../../MainPlugin.cs:358
+#: ../../MainPlugin.cs:383
+#: ../../MainPlugin.cs:408
+#: ../../MainPlugin.cs:432
+#: ../../MainPlugin.cs:456
+#: ../../MainPlugin.cs:497
+#: ../../MainPlugin.cs:521
+#: ../../MainPlugin.cs:545
+#: ../../MainPlugin.cs:570
+#: ../../MainPlugin.cs:601
+#: ../../MainPlugin.cs:625
+#: ../../MainPlugin.cs:649
+#: ../../MainPlugin.cs:673
+#: ../../MainPlugin.cs:697
+#: ../../MainPlugin.cs:761
+msgid "请输入正确的数字"
+msgstr ""
+
+#: ../../MainPlugin.cs:468
+msgid "请选择点1"
+msgstr ""
+
+#: ../../MainPlugin.cs:473
+msgid "请选择点2"
+msgstr ""
+
+#: ../../MainPlugin.cs:845
+msgid "输入/bm help 查看帮助"
+msgstr ""
+
+#: ../../BuildRoom.cs:319
+msgid "输入/bm leave 离开房间"
+msgstr ""
+
+#: ../../BuildRoom.cs:318
+msgid "输入/bm ready 准备/未准备"
+msgstr ""
+
+#: ../../BuildRoom.cs:320
+msgid "输入/bm tl 查看主题列表"
+msgstr ""
+
+#: ../../BuildRoom.cs:321
+msgid "输入/bm vote [主题] 进行主题投票"
+msgstr ""
+
+#: ../../MainPlugin.cs:705
+msgid "输入/bma help 查看帮助"
+msgstr ""
+
+#: ../../BuildRoom.cs:187
+#, csharp-format
+msgid "还有 {0} 秒结束游戏"
+msgstr ""
+
+#: ../../BuildRoom.cs:183
+#, csharp-format
+msgid "还有 {0} 秒进入下一个玩家的建筑区域评分,下一个玩家为{1}"
+msgstr ""
+
+#: ../../BuildRoom.cs:108
+#, csharp-format
+msgid "还有 {0} 秒进入评分环节..."
+msgstr ""
+
+#: ../../MainPlugin.cs:172
+msgid "这不是你区域内的物块哦"
+msgstr ""
+
