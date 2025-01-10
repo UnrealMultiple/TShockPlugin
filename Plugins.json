@@ -257,18 +257,18 @@
   },
   {
     "Name": "AutoTeam",
-    "Version": "2.4.5",
+    "Version": "2.4.6",
     "Author": "十七改，肝帝熙恩改",
     "Description": {
-      "en-US": "AutoTeamPlus",
-      "de-DE": "AutoTeamPlus",
-      "it-IT": "AutoTeamPlus",
-      "fr-FR": "AutoTeamPlus",
-      "es-ES": "AutoTeamPlus",
-      "ru-RU": "AutoTeamPlus",
-      "zh-CN": "AutoTeamPlus",
-      "pt-BR": "AutoTeamPlus",
-      "pl-PL": "AutoTeamPlus"
+      "en-US": "自动分配一个组的玩家到特定队伍",
+      "de-DE": "自动分配一个组的玩家到特定队伍",
+      "it-IT": "自动分配一个组的玩家到特定队伍",
+      "fr-FR": "自动分配一个组的玩家到特定队伍",
+      "es-ES": "自动分配一个组的玩家到特定队伍",
+      "ru-RU": "自动分配一个组的玩家到特定队伍",
+      "zh-CN": "自动分配一个组的玩家到特定队伍",
+      "pt-BR": "自动分配一个组的玩家到特定队伍",
+      "pl-PL": "自动分配一个组的玩家到特定队伍"
     },
     "AssemblyName": "AutoTeam",
     "Path": "AutoTeam.dll",
@@ -2067,6 +2067,26 @@
     },
     "AssemblyName": "RestInventory",
     "Path": "RestInventory.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "ReverseWorld",
+    "Version": "1.0.0",
+    "Author": "1413, 肝帝熙恩适配1449",
+    "Description": {
+      "en-US": "None",
+      "de-DE": "None",
+      "it-IT": "None",
+      "fr-FR": "None",
+      "es-ES": "None",
+      "ru-RU": "None",
+      "zh-CN": "None",
+      "pt-BR": "None",
+      "pl-PL": "None"
+    },
+    "AssemblyName": "ReverseWorld",
+    "Path": "ReverseWorld.dll",
     "Dependencies": [],
     "HotReload": true
   },

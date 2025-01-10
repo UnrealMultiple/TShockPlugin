@@ -171,6 +171,7 @@
 | [RegionView](./src/RegionView/README.md) | 0.0% | Muestra los límites de las áreas |  |
 | [Respawn](./src/Respawn/README.md) | 0.0% | Reaparece en el lugar de la muerte |  |
 | [RestInventory](./src/RestInventory/README.md) | 0.0% | Proporciona una interfaz de consulta REST para la mochila |  |
+| [ReverseWorld](./src/ReverseWorld/README.md) | 0.0% | Complemento de Inversión del Mundo y Colocación de Minas Terrestres |  |
 | [RolesModifying](./src/RolesModifying/README.md) | 0.0% | Modificar mochila del jugador |  |
 | [Sandstorm](./src/Sandstorm/README.md) | 0.0% | Alterna la tormenta de arena |  |
 | [ServerTools](./src/ServerTools/README.md) | 0.0% | Herramientas de administración del servidor | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |

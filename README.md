@@ -167,6 +167,7 @@
 | [RegionView](./src/RegionView/README.md) | 显示区域边界 |  |
 | [Respawn](./src/Respawn/README.md) | 原地复活 |  |
 | [RestInventory](./src/RestInventory/README.md) | 提供 REST 查询背包接口 |  |
+| [ReverseWorld](./src/ReverseWorld/README.md) | 世界反转和放置地雷 |  |
 | [RolesModifying](./src/RolesModifying/README.md) | 修改玩家背包 |  |
 | [Sandstorm](./src/Sandstorm/README.md) | 切换沙尘暴 |  |
 | [ServerTools](./src/ServerTools/README.md) | 服务器管理工具 | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
