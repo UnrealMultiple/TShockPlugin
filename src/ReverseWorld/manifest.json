@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "World Reversal and Landmine Placement"
+  },
+  "README.es-ES": {
+    "Description": "Complemento de Inversión del Mundo y Colocación de Minas Terrestres"
+  },
+  "README": {
+    "Description": "世界反转和放置地雷"
+  }
+}
