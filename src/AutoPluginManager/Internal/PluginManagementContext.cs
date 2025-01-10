@@ -216,9 +216,10 @@ internal class PluginManagementContext
             }
         }
 
-        var pluginAssemblyNames = plugins as string[] ?? plugins.ToArray();
+        var pluginAssemblyNames = plugins.ToArray();
         pluginAssemblyNames.ForEach(InstallPlugin);
         var ed = this.ResolvePluginDependencies(pluginAssemblyNames);
+        Console.WriteLine(JsonConvert.SerializeObject(ed, Formatting.Indented));
         ed.ForEach(InstallPlugin);
         return (success.ToArray(), ed);
     }
@@ -231,15 +232,15 @@ internal class PluginManagementContext
     /// <exception cref="Exception"></exception>
     public string[] ResolvePluginDependencies(IEnumerable<string> pluginAssemblyNames)
     {
-        var externalDependencies = new HashSet<string>();
+        var externalDependencies = new List<string>();
         foreach (var n in pluginAssemblyNames)
         {
-            if (!this.ClouldPluginManifests.TryGetValue(n, out var latestPluginInfo))
+            if(this.ClouldPluginManifests.TryGetValue(n, out var ext))
             {
-                throw new Exception($"Plugin with assembly name {n} not found in the manifest.");
+                externalDependencies.AddRange(ext.Dependencies);
+                externalDependencies.AddRange(this.ResolvePluginDependencies(ext.Dependencies));
             }
-            latestPluginInfo.Dependencies.ForEach(d => externalDependencies.Add(d));
         }
-        return externalDependencies.ToArray();
+        return externalDependencies.ToHashSet().ToArray();
     }
 }
