@@ -1,0 +1,80 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:15:50+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/DwTP/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1156\n"
+"Language: es_ES\n"
+
+#: ../../DwTP.cs:61
+msgid "[i:3455][c/AD89D5:定][c/D68ACA:位][c/DF909A:传][c/E5A894:送][i:3454] [C/BFDFEA:by] [c/7CAEDD:羽学][i:3459]\n"
+msgstr ""
+
+#: ../../DwTP.cs:65
+msgid "/dw bag ——传送到[c/E2E4C4:宝藏袋]附近\n"
+msgstr ""
+
+#: ../../DwTP.cs:66
+msgid "/dw dl ——传送到[c/E2E4C4:地牢]附近[骷髅王前/石后]"
+msgstr ""
+
+#: ../../DwTP.cs:64
+msgid "/dw hb ——传送到[c/E2E4C4:花苞]附近\n"
+msgstr ""
+
+#: ../../DwTP.cs:63
+msgid "/dw sm ——传送到[c/E2E4C4:神庙]附近\n"
+msgstr ""
+
+#: ../../DwTP.cs:62
+msgid "/dw wg ——传送到[c/E2E4C4:微光湖]附近\n"
+msgstr ""
+
+#: ../../DwTP.cs:182
+msgid "世纪之花[c/F25156:未生长],无法获取[c/E2E4C4:花苞坐标]"
+msgstr ""
+
+#: ../../DwTP.cs:224
+msgid "地牢守护者[c/F25156:已击败],无法获取[c/E2E4C4:地牢坐标]"
+msgstr ""
+
+#: ../../DwTP.cs:219
+#, csharp-format
+msgid "已将您传送到[c/F25156:地牢]附近([c/E2E4C4:{0} {1}])"
+msgstr ""
+
+#: ../../DwTP.cs:234
+#, csharp-format
+msgid "已将您传送到[c/F25156:宝藏袋]附近([c/E2E4C4:{0} {1}])"
+msgstr ""
+
+#: ../../DwTP.cs:101
+#, csharp-format
+msgid "已将您传送到[c/F25156:微光湖]附近([c/E2E4C4:{0} {1}])"
+msgstr ""
+
+#: ../../DwTP.cs:145
+#, csharp-format
+msgid "已将您传送到[c/F25156:神庙]附近([c/E2E4C4:{0} {1}])"
+msgstr ""
+
+#: ../../DwTP.cs:177
+#, csharp-format
+msgid "已将您传送到[c/F25156:花苞]附近([c/E2E4C4:{0} {1}])"
+msgstr ""
+
+#: ../../DwTP.cs:13
+msgid "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置"
+msgstr ""
+

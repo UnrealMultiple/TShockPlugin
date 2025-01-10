@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AutoPluginManager\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-09 09:33:29+0000\n"
-"PO-Revision-Date: 2024-11-30 13:55-0500\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en_US\n"
+"Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/AutoPluginManager/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1094\n"
+"Language: es_ES\n"
 
 #: ../../Plugin.cs:73
 msgid "[AutoUpdate]无法获取更新:"
@@ -19,7 +25,8 @@ msgstr "[AutoUpdate] No se pueden obtener actualizaciones:"
 msgid "[AutoUpdatePlugin]插件配置已重载~"
 msgstr "[AutoUpdatePlugin] Plugin configuration has been reloaded~"
 
-#: ../../Plugin.cs:60 ../../Internal/CommandAdapter.cs:452
+#: ../../Plugin.cs:60
+#: ../../Internal/CommandAdapter.cs:452
 msgid "[以下插件有新的版本更新]\n"
 msgstr "[The following Estos plugins tienen nueva version disponible\n"
 
@@ -73,39 +80,36 @@ msgstr ""
 msgid "*使用/apm -i <序号> 即可安装哦~"
 msgstr "*Utilice /apm -i <número> para instalar~"
 
-#: ../../Internal/CommandAdapter.cs:227 ../../Internal/CommandAdapter.cs:401
+#: ../../Internal/CommandAdapter.cs:227
+#: ../../Internal/CommandAdapter.cs:401
 #, csharp-format
 msgid "*加载失败: {0}"
 msgstr "*Error al cargar: {0}"
 
-#: ../../Internal/CommandAdapter.cs:223 ../../Internal/CommandAdapter.cs:397
+#: ../../Internal/CommandAdapter.cs:223
+#: ../../Internal/CommandAdapter.cs:397
 #, csharp-format
 msgid "*卸载失败: {0}"
 msgstr "*Falló la desinstalación: {0}"
 
-#: ../../Internal/CommandAdapter.cs:231 ../../Internal/CommandAdapter.cs:405
+#: ../../Internal/CommandAdapter.cs:231
+#: ../../Internal/CommandAdapter.cs:405
 msgid "*热加载失败的插件需要重启服务器后才会生效!"
-msgstr ""
-"*¡Los complementos que no se pueden cargar en caliente solo tendrán efecto "
-"después de que se reinicie el servidor!"
+msgstr "*¡Los complementos que no se pueden cargar en caliente solo tendrán efecto después de que se reinicie el servidor!"
 
-#: ../../Internal/CommandAdapter.cs:241 ../../Internal/CommandAdapter.cs:415
+#: ../../Internal/CommandAdapter.cs:241
+#: ../../Internal/CommandAdapter.cs:415
 msgid "*热重载已关闭,插件需要重启服务器后才会生效!"
-msgstr ""
-"* ¡La recarga en caliente está desactivada y el complemento entrará en vigor "
-"después de que se reinicie el servidor!"
+msgstr "* ¡La recarga en caliente está desactivada y el complemento entrará en vigor después de que se reinicie el servidor!"
 
-#: ../../Internal/CommandAdapter.cs:235 ../../Internal/CommandAdapter.cs:409
+#: ../../Internal/CommandAdapter.cs:235
+#: ../../Internal/CommandAdapter.cs:409
 msgid "*热重载已启用,安装的插件已生效!"
-msgstr ""
-"*¡La recarga en caliente está habilitada y los complementos instalados han "
-"entrado en vigor!"
+msgstr "*¡La recarga en caliente está habilitada y los complementos instalados han entrado en vigor!"
 
 #: ../../Internal/CommandAdapter.cs:39
 msgid "apm b [插件名字] 更新时跳过指定插件"
-msgstr ""
-"apm b [nombre del complemento] omite el complemento especificado al "
-"actualizar"
+msgstr "apm b [nombre del complemento] omite el complemento especificado al actualizar"
 
 #: ../../Internal/CommandAdapter.cs:35
 msgid "apm c 检测已安装插件更新"
@@ -141,30 +145,24 @@ msgstr "apm rb [nombre del complemento] cancelar exclusión de actualización"
 
 #: ../../Internal/CommandAdapter.cs:36
 msgid "apm u [插件名] 更新所有插件或指定插件"
-msgstr ""
-"apm u [nombre del complemento] Actualiza todos los complementos o "
-"dependencias especificados"
+msgstr "apm u [nombre del complemento] Actualiza todos los complementos o dependencias especificados"
 
 #: ../../Plugin.cs:68
 msgid "你可以使用命令/apm -u 更新插件哦~"
 msgstr "Puedes usar el comando /apm -u para actualizar los complementos~"
 
-#: ../../Internal/CommandAdapter.cs:354 ../../Internal/CommandAdapter.cs:448
+#: ../../Internal/CommandAdapter.cs:354
+#: ../../Internal/CommandAdapter.cs:448
 msgid "你的插件全是最新版本，无需更新哦~"
-msgstr ""
-"Todos sus complementos están actualizados, no es necesario actualizarlos ~"
+msgstr "Todos sus complementos están actualizados, no es necesario actualizarlos ~"
 
 #: ../../Internal/CommandAdapter.cs:280
 msgid "删除失败, 没有在你的插件列表里找到这个插件呢~"
-msgstr ""
-"La eliminación falló, el complemento no se encontró en su lista de "
-"complementos~"
+msgstr "La eliminación falló, el complemento no se encontró en su lista de complementos~"
 
 #: ../../Internal/CommandAdapter.cs:286
 msgid "删除成功, 此插件将会被检查更新~"
-msgstr ""
-"Eliminación exitosa, ahora se verificará si hay actualizaciones de este "
-"complemento~"
+msgstr "Eliminación exitosa, ahora se verificará si hay actualizaciones de este complemento~"
 
 #: ../../Internal/CommandAdapter.cs:339
 msgid "可安装插件列表:"
@@ -179,26 +177,16 @@ msgid "安装插件出现错误:"
 msgstr "Se produjo un error al instalar el complemento:"
 
 #: ../../Internal/CommandAdapter.cs:92
-#, fuzzy
-#| msgid "序号无效，请附带需要安装插件的选择项!"
 msgid "序号无效，请附带需要关闭插件的选择项!"
 msgstr ""
-"Número no válido, incluya las opciones requeridas para instalar el "
-"complemento."
 
 #: ../../Internal/CommandAdapter.cs:192
 msgid "序号无效，请附带需要安装插件的选择项!"
-msgstr ""
-"Número no válido, incluya las opciones requeridas para instalar el "
-"complemento."
+msgstr "Número no válido, incluya las opciones requeridas para instalar el complemento."
 
 #: ../../Internal/CommandAdapter.cs:137
-#, fuzzy
-#| msgid "序号无效，请附带需要安装插件的选择项!"
 msgid "序号无效，请附带需要开启插件的选择项!"
 msgstr ""
-"Número no válido, incluya las opciones requeridas para instalar el "
-"complemento."
 
 #: ../../Internal/CommandAdapter.cs:260
 msgid "当前没有排除任何一个插件哦~"
@@ -210,15 +198,11 @@ msgstr "La exclusión falló, el complemento se excluyó anteriormente~"
 
 #: ../../Internal/CommandAdapter.cs:316
 msgid "排除失败, 没有在你的插件列表里找到这个插件呢~"
-msgstr ""
-"La exclusión falló, el complemento no se encontró en su lista de "
-"complementos~"
+msgstr "La exclusión falló, el complemento no se encontró en su lista de complementos~"
 
 #: ../../Internal/CommandAdapter.cs:328
 msgid "排除成功, 已跳过此插件的更新检查~"
-msgstr ""
-"Exclusión exitosa, se omitió la verificación de actualización de este "
-"complemento~"
+msgstr "Exclusión exitosa, se omitió la verificación de actualización de este complemento~"
 
 #: ../../Internal/CommandAdapter.cs:264
 msgid "插件更新排除列表:\n"
@@ -226,9 +210,7 @@ msgstr "Lista de exclusión de actualización de complementos:\n"
 
 #: ../../Internal/CommandAdapter.cs:179
 msgid "无效参数，请附带需要安装插件的选择项!"
-msgstr ""
-"Parámetro no válido. Incluya las opciones requeridas para instalar el "
-"complemento."
+msgstr "Parámetro no válido. Incluya las opciones requeridas para instalar el complemento."
 
 #: ../../Internal/CommandAdapter.cs:456
 msgid "无法获取更新:"
@@ -243,10 +225,8 @@ msgid "正在自动更新插件..."
 msgstr "Actualizando complementos automáticamente..."
 
 #: ../../Plugin.cs:18
-#, fuzzy
-#| msgid "正在自动更新插件..."
 msgid "自动更新你的插件！"
-msgstr "Actualizando complementos automáticamente..."
+msgstr ""
 
 #: ../../Internal/CommandAdapter.cs:420
 msgid "自动更新出现错误:"
@@ -272,35 +252,3 @@ msgstr ""
 msgid "语法错误，正确语法:/apm rb [插件名称]"
 msgstr ""
 
-#~ msgid "无法连接服务器"
-#~ msgstr "No se puede conectar al servidor"
-
-#, csharp-format
-#~ msgid "[跳过安装或更新] 插件{0}({1})的其中一项依赖被禁止安装或更新\n"
-#~ msgstr ""
-#~ "[Omitir instalación o actualización] Una de las dependencias del "
-#~ "complemento {0}({1}) tiene prohibida la instalación o actualización.\n"
-
-#, csharp-format
-#~ msgid ""
-#~ "[跳过安装或更新] 无法在本地找到插件{0}({1})或其其中一项依赖,可能是云加载或"
-#~ "使用-additionalplugins加载\n"
-#~ msgstr ""
-#~ "[Omitir instalación o actualización] No se pudo encontrar el complemento "
-#~ "{0}({1}) localmente, es posible que se haya cargado desde la nube o "
-#~ "mediante complementos adicionales.\n"
-
-#~ msgid "正在下载最新插件包..."
-#~ msgstr "Descargando el último paquete de complementos..."
-
-#~ msgid "正在升级插件..."
-#~ msgstr "Actualizando complemento..."
-
-#~ msgid "正在安装插件..."
-#~ msgstr "Instalando complemento..."
-
-#~ msgid "正在解压插件包..."
-#~ msgstr "Extrayendo paquete de complementos..."
-
-#~ msgid "重启服务器后插件生效!"
-#~ msgstr "Restart the server for the plugin to take effect!"

@@ -80,7 +80,7 @@
 | [BedSet](./src/BedSet/README.en-US.md) | 100.0% | Set and record respawn points | [LazyAPI](./src/LazyAPI/README.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.en-US.md) | 100.0% | Whitelist plugin | [LazyAPI](./src/LazyAPI/README.md) |
 | [BridgeBuilder](./src/BridgeBuilder/README.en-US.md) | 100.0% | Quick bridge building | [LazyAPI](./src/LazyAPI/README.md) |
-| [BuildMaster](./src/BuildMaster/README.md) | 0.0% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
+| [BuildMaster](./src/BuildMaster/README.md) | 0.8% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
 | [CaiBot](./src/CaiBot/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) |  |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.en-US.md) | 100.0% | Custom emoji command | [LazyAPI](./src/LazyAPI/README.md) |
 | [CaiLib](./src/CaiLib/README.md) | 0.0% | Cai's preload library | [SixLabors.ImageSharp]() |
@@ -107,7 +107,7 @@
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 100.0% | Prohibit monster loot |  |
 | [DonotFuck](./src/DonotFuck/README.en-US.md) | 100.0% | Prevent swearing | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 100.0% | Prevent entry into dungeons or temples |  |
-| [Dummy](./src/Dummy/README.md) | 100.0% | Dummy client | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
+| [Dummy](./src/Dummy/README.en-US.md) | 100.0% | Dummy client | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 100.0% | Dump Terraria IDs |  |
 | [DwTP](./src/DwTP/README.en-US.md) | 100.0% | Positioning Teleport |  |
 | [Economics.Deal](./src/Economics.Deal/README.en-US.md) | 100.0% | Trading plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
@@ -130,7 +130,7 @@
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 100.0% | Hardcore death drops life crystals |  |
 | [HelpPlus](./src/HelpPlus/README.en-US.md) | 100.0% | Fix and enhance the Help command |  |
 | [History](./src/History/README.md) | 100.0% | History grid record |  |
-| [HouseRegion](./src/HouseRegion/README.md) | 100.0% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.md) |
+| [HouseRegion](./src/HouseRegion/README.en-US.md) | 100.0% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.md) |
 | [Invincibility](./src/Invincibility/README.md) | 100.0% | Time-limited invincibility |  |
 | [ItemBox](./src/ItemBox/README.md) | 100.0% | Off-line inventory |  |
 | [ItemDecoration](./src/ItemDecoration/README.en-US.md) | 100.0% | Floating message display for held items | [LazyAPI](./src/LazyAPI/README.md) |
