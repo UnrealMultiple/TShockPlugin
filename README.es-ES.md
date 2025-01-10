@@ -156,7 +156,7 @@
 | [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | 0.0% | Administrador de jugadores de Hufang |  |
 | [PlayerRandomSwapper](./src/PlayerRandomSwapper/README.md) | 0.0% | Intercambio de posiciones aleatorio de jugadores | [LazyAPI](./src/LazyAPI/README.md) |
 | [PlayerSpeed](./src/PlayerSpeed/README.md) | 0.0% | Interceptación de paquetes | [LazyAPI](./src/LazyAPI/README.md) |
-| [ProgressBag](./src/ProgressBag/README.md) | 0.0% | Paquete de progreso |  |
+| [ProgressBag](./src/ProgressBag/README.md) | 0.0% | Paquete de progreso | [LazyAPI](./src/LazyAPI/README.md) |
 | [ProgressControls](./src/ProgressControls/README.md) | 0.0% | Planificador (Automatiza el control del servidor) |  |
 | [ProgressRestrict](./src/ProgressRestrict/README.md) | 0.0% | Detección de super progreso | [DataSync](./src/DataSync/README.md) |
 | [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 0.0% | Acepta conexiones de protocolo proxy |  |

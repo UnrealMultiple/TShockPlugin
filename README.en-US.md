@@ -156,7 +156,7 @@
 | [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | 0.0% | Hufang's player manager |  |
 | [PlayerRandomSwapper](./src/PlayerRandomSwapper/README.en-US.md) | 100.0% | Random Player Position Swap | [LazyAPI](./src/LazyAPI/README.md) |
 | [PlayerSpeed](./src/PlayerSpeed/README.en-US.md) | 100.0% | Enable players to achieve a two-stage sprint | [LazyAPI](./src/LazyAPI/README.md) |
-| [ProgressBag](./src/ProgressBag/README.md) | 100.0% | Progress gift pack |  |
+| [ProgressBag](./src/ProgressBag/README.md) | 100.0% | Progress gift pack | [LazyAPI](./src/LazyAPI/README.md) |
 | [ProgressControls](./src/ProgressControls/README.md) | 100.0% | Planbook (Automate server control) |  |
 | [ProgressRestrict](./src/ProgressRestrict/README.md) | 100.0% | Super progress detection | [DataSync](./src/DataSync/README.md) |
 | [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 100.0% | Accept proxy protocol connections |  |

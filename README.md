@@ -152,7 +152,7 @@
 | [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | Hufang的玩家管理器 |  |
 | [PlayerRandomSwapper](./src/PlayerRandomSwapper/README.md) | 玩家位置随机交换 | [LazyAPI](./src/LazyAPI/README.md) |
 | [PlayerSpeed](./src/PlayerSpeed/README.md) | 玩家速度 | [LazyAPI](./src/LazyAPI/README.md) |
-| [ProgressBag](./src/ProgressBag/README.md) | 进度礼包 |  |
+| [ProgressBag](./src/ProgressBag/README.md) | 进度礼包 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ProgressControls](./src/ProgressControls/README.md) | 计划书（自动化控制服务器） |  |
 | [ProgressRestrict](./src/ProgressRestrict/README.md) | 超进度检测 | [DataSync](./src/DataSync/README.md) |
 | [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 接受 proxy protocol 协议 |  |
