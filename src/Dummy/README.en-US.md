@@ -19,51 +19,51 @@
 | /dummy reconnect [index] | dummy.client.use   | reconnect |
 
 ## Configuration
-> Configuration file location: tshock/Dummy.zh-CN.json
+> Configuration file location: tshock/Dummy.en-US.json
 ```json5
 {
-  "dummy": [
+  "Dummys": [
     {
-      "登陆密码": "", //login password //leave blank not to log in
-      "皮肤": 0, //skin
-      "头发": 0, //hair
-      "名字": "熙恩", //name
-      "染发": 0, //hair dye
-      "隐藏设置": 0, //hidden setting
-      "头发颜色": { //hair color
-        "R": 239,
-        "G": 211,
-        "B": 211
+      "LoginPassword": "", //leave blank not to log in
+      "SkinVariant": 0,
+      "Hair": 0,
+      "Name": "熙恩",
+      "HairDye": 0,
+      "HideMisc": 0,
+      "HairColor": {
+        "R": 0,
+        "G": 0,
+        "B": 0
       },
-      "皮肤颜色": { //skin color
-        "R": 239,
-        "G": 202,
-        "B": 202
+      "SkinClolor": {
+        "R": 0,
+        "G": 0,
+        "B": 0
       },
-      "眼睛颜色": { //eye color
-        "R": 51,
-        "G": 9,
-        "B": 9
+      "EyeColor": {
+        "R": 0,
+        "G": 0,
+        "B": 0
       },
-      "上衣颜色": { //top color
-        "R": 239,
-        "G": 211,
-        "B": 211
+      "ShirtColor": {
+        "R": 0,
+        "G": 0,
+        "B": 0
       },
-      "内衣颜色": { //underwear color
-        "R": 239,
-        "G": 211,
-        "B": 211
+      "UnderShirtColor": {
+        "R": 0,
+        "G": 0,
+        "B": 0
       },
-      "裤子颜色": { //pants color
-        "R": 239,
-        "G": 211,
-        "B": 211
+      "PantColor": {
+        "R": 0,
+        "G": 0,
+        "B": 0
       },
-      "鞋子颜色": { //shoe color
-        "R": 239,
-        "G": 211,
-        "B": 211
+      "ShoeColor": {
+        "R": 0,
+        "G": 0,
+        "B": 0
       }
     }
   ]
