@@ -1,6 +1,7 @@
 ﻿using GetText;
 using Localizer;
 using Newtonsoft.Json;
+using System.Globalization;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -18,6 +19,9 @@ public class DumpPluginsList : TerrariaPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 1, 7);
 
+    private CultureInfo CultureInfo => (CultureInfo) typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
+            "TranslationCultureInfo",
+            BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
     public DumpPluginsList(Main game) : base(game)
     {
     }
@@ -53,7 +57,7 @@ public class DumpPluginsList : TerrariaPlugin
                         Name = manifest?.Name ?? p.Plugin.Name,
                         Version = manifest?.Version ?? p.Plugin.Version,
                         Author = manifest?.Author ?? p.Plugin.Author,
-                        Description = des[p.Plugin],
+                        Description = des.GetValueOrDefault(p.Plugin) ?? manifest?.Description,
                         AssemblyName = p.Plugin.GetType().Assembly.GetName().Name,
                         Path = dict.TryGetValue(p.Plugin.GetType().Assembly, out var name) ? name + ".dll" : null,
                         Dependencies = manifest?.Dependencies ?? p.Plugin.GetType().Assembly.GetReferencedAssemblies()
@@ -75,26 +79,55 @@ public class DumpPluginsList : TerrariaPlugin
         }
     }
 
+    public Catalog? CreateCatalog(string lang, TerrariaPlugin plugin)
+    {
+        var asm = plugin.GetType().Assembly;
+        var moFilePath = $"i18n.{lang}.mo";
+        return asm.GetManifestResourceInfo(moFilePath) == null ? null : new Catalog(asm.GetManifestResourceStream(moFilePath));
+    }
+
     public Dictionary<TerrariaPlugin, Dictionary<string, string>> GetDescriptions()
     {
         var dic = new Dictionary<TerrariaPlugin, Dictionary<string, string>>();
-        var flag = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
-        var func = typeof(I18n).GetMethod("GetCatalog", flag)!.CreateDelegate<Func<Catalog>>();
-        Terraria.Localization.GameCulture._legacyCultures.Keys.ForEach(i =>
+        var pluginDefaultDes = new Dictionary<TerrariaPlugin, string>();
+        var currentCulture = this.CultureInfo;
+        foreach(var p in ServerApi.Plugins)
         {
-            Terraria.Localization.LanguageManager.Instance.SetLanguage(i);
-            var c = func();
-            var langName = c.CultureInfo.Name == "zh-Hans" ? "zh-CN" : c.CultureInfo.Name;
-            ServerApi.Plugins.ForEach(p =>
+            var catalog = this.CreateCatalog(currentCulture.Name, p.Plugin);
+            if (catalog == null)
             {
-                if (!dic.TryGetValue(p.Plugin, out var des) || des == null)
+                pluginDefaultDes[p.Plugin] = p.Plugin.Description;
+                continue;
+            }
+            else
+            {
+                if (catalog.Translations.TryGetValue(p.Plugin.Description, out var translation))
                 {
-                    dic[p.Plugin] = new Dictionary<string, string>();
+                    pluginDefaultDes[p.Plugin] = translation.Length > 0 ? translation[0] : p.Plugin.Description;
                 }
-                dic[p.Plugin][langName] = c.GetString(p.Plugin.Description);
-            });
-        });
+                else
+                {
+                    var (msgid, msg) = catalog.Translations.Where(i => i.Value.Contains(p.Plugin.Description)).FirstOrDefault();
+                    pluginDefaultDes[p.Plugin] = msgid ?? p.Plugin.Description;
+                }
+                
+            }
+        }
+
+        foreach (var p in ServerApi.Plugins)
+        {
+            foreach (var l in Terraria.Localization.GameCulture._legacyCultures)
+            {
+                var langName = l.Value.Name == "zh-Hans" ? "zh-CN" : l.Value.Name;
+                var c = this.CreateCatalog(langName, p.Plugin);
+                if (!dic.ContainsKey(p.Plugin))
+                {
+                    dic[p.Plugin] = new();
+                }
+                dic[p.Plugin][langName] = c == null ? pluginDefaultDes[p.Plugin] : c.GetString(pluginDefaultDes[p.Plugin]);
+            }
+        }
         return dic;
     }
 }
-internal record ManifestModel(string? Name, Version? Version, string? Author, string? Description, string[]? Dependencies, bool? HotReload);
+internal record ManifestModel(string? Name, Version? Version, string? Author, Dictionary<string, string>? Description, string[]? Dependencies, bool? HotReload);
