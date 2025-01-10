@@ -215,14 +215,22 @@ internal class Utils
     #region 回答优限
     public static string TruncateMessage(string message)
     {
-        if (message.Length <= Config.Instance.AIAnswerwordlimit) return message;
+        if (message.Length <= Config.Instance.AIAnswerwordlimit)
+        {
+            return message;
+        }
+
         var enumerator = StringInfo.GetTextElementEnumerator(message);
         StringBuilder truncated = new();
         var count = 0;
         while (enumerator.MoveNext())
         {
             var textElement = enumerator.GetTextElement();
-            if (truncated.Length + textElement.Length > Config.Instance.AIAnswerwordlimit) break;
+            if (truncated.Length + textElement.Length > Config.Instance.AIAnswerwordlimit)
+            {
+                break;
+            }
+
             truncated.Append(textElement);
             count++;
         }
@@ -255,11 +263,7 @@ internal class Utils
     }
     public static string CleanMessage(string message)
     {
-        if (Regex.IsMatch(message, @"[\uD800-\uDBFF][\uDC00-\uDFFF]"))
-        {
-            return string.Empty;
-        }
-        return message;
+        return Regex.IsMatch(message, @"[\uD800-\uDBFF][\uDC00-\uDFFF]") ? string.Empty : message;
     }
     #endregion
 }
