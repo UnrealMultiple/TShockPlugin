@@ -20,7 +20,7 @@ internal class Utils
     public static readonly int cooldownDuration = 5;
     public static void ChatWithAI(TSPlayer player, string question)
     {
-        var index = player.Index < 0 ? 255 : player.Index;
+        var index = player.Index < 0 ? Main.maxPlayers - 1 : player.Index;
         if (PlayerProcess[index])
         {
             player.SendErrorMessage("[i:1344]有其他玩家在询问问题，请排队[i:1344]");
