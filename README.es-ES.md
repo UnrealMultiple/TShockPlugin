@@ -64,13 +64,13 @@
 
 | Nombre del plugin | Porcentaje de traducción | Descripcion del Plugin  | Dependencias |
 | :-: | :-: | :-: | :-: |
-| [AdditionalPylons](./src/AdditionalPylons/README.md) | 0.0% | Colocar más pilones | [LazyAPI](./src/LazyAPI/README.md) |
+| [AdditionalPylons](./src/AdditionalPylons/README.md) | 90.0% | Colocar más pilones | [LazyAPI](./src/LazyAPI/README.md) |
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 0.0% | Mejora la funcionalidad de la caja de anuncios | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.md) | 0.0% | Botes de basura automáticos | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 0.0% | Transmisión automática | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoClear](./src/AutoClear/README.md) | 0.0% | Limpieza automática inteligente | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoFish](./src/AutoFish/README.md) | 0.0% | Pesca automática | [LazyAPI](./src/LazyAPI/README.md) |
-| [AutoPluginManager](./src/AutoPluginManager/README.es-ES.md) | 74.5% | Actualice los complementos automáticamente con una sola tecla |  |
+| [AutoPluginManager](./src/AutoPluginManager/README.es-ES.md) | 69.1% | Actualice los complementos automáticamente con una sola tecla |  |
 | [AutoReset](./src/AutoReset/README.md) | 0.0% | Reinicio completamente automático | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoStoreItems](./src/AutoStoreItems/README.md) | 0.0% | Almacenamiento automático | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoTeam](./src/AutoTeam/README.md) | 0.0% | Formación automática de equipos | [LazyAPI](./src/LazyAPI/README.md) |
@@ -101,7 +101,7 @@
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Permite el juego multiplataforma |  |
 | [CustomMonster](./src/CustomMonster/README.md) | 0.0% | Personalizar, modificar y generar monstruos y jefes  |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 0.0% | Determinar la bolsa de tesoro caída basada en la relación de daño y transferir el cálculo de daño |  |
-| [DamageStatistic](./src/DamageStatistic/README.md) | 0.0% | Mostrar el daño causado por cada jugador después de cada pelea de jefe |  |
+| [DamageStatistic](./src/DamageStatistic/README.md) | 50.0% | Mostrar el daño causado por cada jugador después de cada pelea de jefe |  |
 | [DataSync](./src/DataSync/README.md) | 0.0% | Sincronización de progreso |  |
 | [DeathDrop](./src/DeathDrop/README.md) | 0.0% | Botín aleatorio y personalizado al morir un monstruo |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 0.0% | Prohibir el botín de monstruos |  |
