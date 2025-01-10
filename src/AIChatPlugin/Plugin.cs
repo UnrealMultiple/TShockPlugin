@@ -12,7 +12,7 @@ namespace Plugin
     public class AIChatPlugin : TerrariaPlugin
     {
         #region 插件信息
-        public override Version Version => new Version(2025, 1, 9);
+        public override Version Version => new Version(2025, 1, 10);
         public override string Name => "AIChatPlugin";
         public override string Description => "air";
         public override string Author => "镜奇路蓝";
