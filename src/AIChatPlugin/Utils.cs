@@ -20,7 +20,8 @@ internal class Utils
     public static readonly int cooldownDuration = 5;
     public static void ChatWithAI(TSPlayer player, string question)
     {
-        if (PlayerProcess[player.Index])
+        var index = player.Index < 0 ? 255 : player.Index;
+        if (PlayerProcess[index])
         {
             player.SendErrorMessage("[i:1344]有其他玩家在询问问题，请排队[i:1344]");
             return;
@@ -38,7 +39,7 @@ internal class Utils
         }
         lastCmdTime = DateTime.Now;
         player.SendSuccessMessage("[i:1344]正在处理您的请求，请稍候... [i:1344]");
-        PlayerProcess[player.Index] = true;
+        PlayerProcess[index] = true;
         Task.Run(async () =>
         {
             try
@@ -56,7 +57,7 @@ internal class Utils
             }
             finally
             {
-                PlayerProcess[player.Index] = false;
+                PlayerProcess[index] = false;
             }
         });
     }
