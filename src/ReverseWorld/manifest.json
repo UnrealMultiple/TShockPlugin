@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "World Reversal and Placing Mines Anywhere"
+  },
+  "README.es-ES": {
+    "Description": "Inversión del Mundo y Colocación de Minas en Cualquier Lugar"
+  },
+  "README": {
+    "Description": "世界反转和全图放置地雷插件"
+  }
+}

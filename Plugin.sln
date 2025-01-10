@@ -268,6 +268,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dummy", "src\Dummy\Dummy.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurvivalCrisis", "src\SurvivalCrisis\SurvivalCrisis.csproj", "{37365719-9365-4EF3-9B5F-1909797E142F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReverseWorld", "src\ReverseWorld\ReverseWorld.csproj", "{1E7334CF-E0C9-493D-8D6D-4E95BCB33E79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1316,6 +1318,14 @@ Global
 		{37365719-9365-4EF3-9B5F-1909797E142F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{37365719-9365-4EF3-9B5F-1909797E142F}.Release|x64.ActiveCfg = Release|Any CPU
 		{37365719-9365-4EF3-9B5F-1909797E142F}.Release|x64.Build.0 = Release|Any CPU
+		{1E7334CF-E0C9-493D-8D6D-4E95BCB33E79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E7334CF-E0C9-493D-8D6D-4E95BCB33E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E7334CF-E0C9-493D-8D6D-4E95BCB33E79}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1E7334CF-E0C9-493D-8D6D-4E95BCB33E79}.Debug|x64.Build.0 = Debug|Any CPU
+		{1E7334CF-E0C9-493D-8D6D-4E95BCB33E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E7334CF-E0C9-493D-8D6D-4E95BCB33E79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E7334CF-E0C9-493D-8D6D-4E95BCB33E79}.Release|x64.ActiveCfg = Release|Any CPU
+		{1E7334CF-E0C9-493D-8D6D-4E95BCB33E79}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
