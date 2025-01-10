@@ -130,7 +130,7 @@
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 100.0% | Hardcore death drops life crystals |  |
 | [HelpPlus](./src/HelpPlus/README.en-US.md) | 100.0% | Fix and enhance the Help command |  |
 | [History](./src/History/README.md) | 100.0% | History grid record |  |
-| [HouseRegion](./src/HouseRegion/README.md) | 100.0% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.md) |
+| [HouseRegion](./src/HouseRegion/README.en-US.md) | 100.0% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.md) |
 | [Invincibility](./src/Invincibility/README.md) | 100.0% | Time-limited invincibility |  |
 | [ItemBox](./src/ItemBox/README.md) | 100.0% | Off-line inventory |  |
 | [ItemDecoration](./src/ItemDecoration/README.en-US.md) | 100.0% | Floating message display for held items | [LazyAPI](./src/LazyAPI/README.md) |
