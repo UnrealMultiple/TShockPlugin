@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\..\template.targets" />
+    <PropertyGroup>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+</Project>

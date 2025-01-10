@@ -184,6 +184,7 @@
 | [SpclPerm](./src/SpclPerm/README.md) | 0.0% | Privilegios del propietario del servidor |  |
 | [StatusTextManager](./src/StatusTextManager/README.md) | 0.0% | Plugin para gestionar el texto de estado en PC |  |
 | [SurfaceBlock](./src/SurfaceBlock/README.md) | 0.0% | Prohibir proyectiles en la superficie  | [LazyAPI](./src/LazyAPI/README.md) |
+| [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 0.0% | 'Among Us' como un juego'' |  |
 | [SwitchCommands](./src/SwitchCommands/README.md) | 0.0% | Ejecuta comandos en regiones |  |
 | [TeleportRequest](./src/TeleportRequest/README.md) | 0.0% | Solicitud de teletransporte |  |
 | [TimeRate](./src/TimeRate/README.md) | 0.0% | Modifica la aceleración del tiempo usando comandos, y soporta el sueño de los jugadores para activar eventos |  |
