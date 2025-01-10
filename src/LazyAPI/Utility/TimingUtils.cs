@@ -1,4 +1,4 @@
-﻿namespace LazyAPI;
+﻿namespace LazyAPI.Utility;
 
 public static class TimingUtils
 {

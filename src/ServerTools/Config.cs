@@ -1,4 +1,5 @@
-﻿using LazyAPI.ConfigFiles;
+﻿using LazyAPI.Attributes;
+using LazyAPI.ConfigFiles;
 using Newtonsoft.Json;
 
 namespace ServerTools;

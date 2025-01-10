@@ -1,5 +1,6 @@
 ﻿using ItemDecoration.Configured;
 using LazyAPI;
+using LazyAPI.Extensions;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -71,7 +72,7 @@ public class Plugin : LazyPlugin
 
                         message += $"{Setting.Instance.ItemTextConfig.DamageText}: {newSelectItem.damage}";
                     }
-                    LazyAPI.Utils.SendCombatText(player, message, GetColorByRarity(newSelectItem.rare));
+                    player.SendCombatText(message, GetColorByRarity(newSelectItem.rare));
                 }
             }
         }

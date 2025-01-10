@@ -10,7 +10,7 @@ public class AutoStoreItems : LazyPlugin
 {
 
     #region 插件信息
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; 
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "羽学 cmgy雱";
     public override Version Version => new Version(1, 3, 4);
     public override string Description => GetString("持有指定物品根据配置物品ID自动存入存储空间");

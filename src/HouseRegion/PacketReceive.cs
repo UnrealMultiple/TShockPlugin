@@ -99,9 +99,9 @@ public static class GetDataHandlers
         {
             args.Player.Disable(GetString("无权修改房子保护的物品!"));
         }
-        
+
         args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的物品。"));
-        
+
         if (args.Player.SelectedItem.type > 0)
         {
             args.Player.SetData("PlaceSlot", (true, args.Player.TPlayer.selectedItem));
@@ -127,8 +127,8 @@ public static class GetDataHandlers
                 return false;
             }
 
-                if (Config.Instance.WarningSpoiler)
-                {
+            if (Config.Instance.WarningSpoiler)
+            {
                 args.Player.Disable(GetString("无权修改房子保护的物品!"));
             }
             args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的物品。"));
@@ -141,7 +141,7 @@ public static class GetDataHandlers
     {
         var plr = args.Data.ReadInt8();
         var slot = args.Data.ReadInt16();
-        var plyData = args.Player.GetData<(bool,int)>("PlaceSlot");
+        var plyData = args.Player.GetData<(bool, int)>("PlaceSlot");
         if (plyData.Item1 && plyData.Item2 == slot)
         {
             NetMessage.SendData(5, -1, -1, null, plr, slot);
@@ -171,7 +171,7 @@ public static class GetDataHandlers
         {
             args.Player.Disable(GetString("无权修改房子保护的物品!"));
         }
-       
+
         args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的物品。"));
         if (args.Player.SelectedItem.type > 0)
         {
@@ -609,7 +609,7 @@ public static class GetDataHandlers
         var x = args.Data.ReadInt16();
         var y = args.Data.ReadInt16();
         var house = Utils.InAreaHouse(x, y);//直接读出放置房子
-        var te = (TEItemFrame)TileEntity.ByID[TEItemFrame.Find(x, y)];
+        var te = (TEItemFrame) TileEntity.ByID[TEItemFrame.Find(x, y)];
         if (house == null)
         {
             return false;
@@ -626,7 +626,7 @@ public static class GetDataHandlers
         }
 
         args.Player.SendErrorMessage(GetString("你没有权力修改被房子保护的物品。"));
-        
+
         if (args.Player.SelectedItem.type > 0)
         {
             args.Player.SetData("PlaceSlot", (true, args.Player.TPlayer.selectedItem));

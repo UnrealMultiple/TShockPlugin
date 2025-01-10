@@ -1,4 +1,4 @@
-﻿using LazyAPI;
+﻿using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
 using TrProtocol.Models;
 

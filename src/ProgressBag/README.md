@@ -8,10 +8,10 @@
 
 | 语法            |    权限     |    说明     |
 |---------------|:---------:|:---------:|
-| /礼包 领取 [礼包名称] |  bag.use  |   领取礼包    |
-| /礼包 领取全部      |  bag.use  | 领取所有可领取礼包 |
-| /礼包 list      |  bag.use  |  查看礼包列表   |
-| /礼包 重置        | bag.admin |  重置领取礼包   |
+| /bag r [礼包名称] |  bag.use  |   领取礼包    |
+| /bag rall      |  bag.use  | 领取所有可领取礼包 |
+| /bag list      |  bag.use  |  查看礼包列表   |
+| /bag reset        | bag.admin |  重置领取礼包   |
 
 ## 具体进度请查看 ProgressType.cs 文件
 

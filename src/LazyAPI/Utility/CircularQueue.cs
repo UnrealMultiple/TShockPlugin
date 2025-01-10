@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 
-namespace LazyAPI;
+namespace LazyAPI.Utility;
 
 public class CircularQueue<T> : IEnumerable<T>
 {

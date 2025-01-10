@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using LazyAPI.Attributes;
+using System.Reflection;
 using TShockAPI;
 
 namespace LazyAPI.Commands;

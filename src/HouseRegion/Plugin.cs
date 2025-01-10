@@ -16,7 +16,7 @@ public class HousingPlugin : LazyPlugin
 {
     public override string Author => "GK 阁下 改良";
     public override string Description => GetString("一个著名的用于保护房屋的插件。");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; 
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 0, 7);
     public HousingPlugin(Main game) : base(game)
     {
@@ -26,7 +26,7 @@ public class HousingPlugin : LazyPlugin
     static readonly System.Timers.Timer Update = new(1100);//创建一个1.1秒的时钟
     public static bool ULock = false;
 
-  
+
     private void RD()//读取
     {
         var table = new SqlTable("HousingDistrict",
@@ -90,7 +90,7 @@ public class HousingPlugin : LazyPlugin
         {
             try
             {
-                if (GetDataHandlers.HandlerGetData((PacketTypes)packetId, user, data))
+                if (GetDataHandlers.HandlerGetData((PacketTypes) packetId, user, data))
                 {
                     return false;
                 }
@@ -614,7 +614,7 @@ public class HousingPlugin : LazyPlugin
                     {
                         args.Player.SendErrorMessage(GetString("未设置完整的房屋点,建议先使用指令: /house help"));
                     }
-                   
+
                     args.Player.TempPoints[0] = Point.Zero; args.Player.TempPoints[1] = Point.Zero;//清除已设置的点
                 }
                 else

@@ -3,8 +3,8 @@ using System.Reflection;
 using Terraria;
 using Terraria.Net.Sockets;
 using TerrariaApi.Server;
-using TrProtocol;
 using TShockAPI;
+using TrProtocol;
 using Hooks = On.OTAPI.Hooks;
 
 namespace CaiPacketDebug;
