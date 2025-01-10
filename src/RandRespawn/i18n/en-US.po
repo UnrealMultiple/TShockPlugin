@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:18+0000\n"
-"PO-Revision-Date: 2025-01-09 08:59\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,5 +19,5 @@ msgstr ""
 
 #: ../../MainPlugin.cs:12
 msgid "随机出生点，任何回到出生点的操作都会被随机传送"
-msgstr ""
+msgstr "Random spawn point, any operation back to the spawn point will be randomly teleported"
 
