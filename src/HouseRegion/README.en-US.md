@@ -22,23 +22,23 @@
 | /house lock [house name]          | none  | `house.use` `house.admin` |   House lock   |
 
 ## Configuration
-	Configuration file location: tshock/HouseRegion.json
+	Configuration file location: tshock/HouseRegion.en-US.json
 > HouseRegion.json
 
-```json
+```json5
 {
-  "进出房屋提示": true, //House Entry/Exit Notification
-  "房屋嘴大大小": 1000, //Maximum House Size
-  "房屋最小宽度": 30, //Minimum House Width
-  "房屋最小高度": 30, //Minimum House Height
-  "房屋最大数量": 1, //Maximum House
-  "禁止锁房屋": false, //Disabled House Locking
-  "保护宝石锁": false, //Protect Gems Lock
-  "始终保护箱子": false, //Always Protect Chest
-  "冻结警告破坏者": true, //Freeze Warning For Griefer
-  "禁止分享所有者7": false, //Disable Sharing Owner
-  "禁止分享使用者": false, //Disable Sharing Users
-  "禁止所有者修改使用者": true //Prevent Owners From Modifying Users
+  "JoinRegionText": true,
+  "HouseMaxSize": 1000,
+  "MinWidth": 30,
+  "MinHeight": 30,
+  "HouseMaxNumber": 1,
+  "ProhibitLockHouse": false,
+  "ProtectiveGemstoneLock": false,
+  "ProtectiveChest": true,
+  "WarningSpoiler": true,
+  "ProhibitSharingOwner": false,
+  "ProhibitSharingUser": false,
+  "ProhibitOwnerModifyingUser": true
 }
 ```
 
