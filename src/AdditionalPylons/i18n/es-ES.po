@@ -1,0 +1,59 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:15:27+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/AdditionalPylons/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1084\n"
+"Language: es_ES\n"
+
+#: ../../AdditionalPylonsPlugin.cs:267
+msgid "万能晶塔数量已达到上限。"
+msgstr "Has alcanzado el máximo posible de pilones universales."
+
+#: ../../AdditionalPylonsPlugin.cs:203
+msgid "丛林晶塔数量已达到上限。"
+msgstr "Has alcanzado el máximo posible de pilones de jungla."
+
+#: ../../AdditionalPylonsPlugin.cs:211
+msgid "森林晶塔数量已达到上限。"
+msgstr "Has alcanzado el máximo posible de pilones del bosque."
+
+#: ../../AdditionalPylonsPlugin.cs:243
+msgid "沙漠晶塔数量已达到上限。"
+msgstr "Has alcanzado el máximo posible de pilones del desierto."
+
+#: ../../AdditionalPylonsPlugin.cs:227
+msgid "洞穴晶塔数量已达到上限。"
+msgstr "Has alcanzado el máximo posible de pilones de las cavernas."
+
+#: ../../AdditionalPylonsPlugin.cs:235
+msgid "海洋晶塔数量已达到上限。"
+msgstr "Has alcanzado el máximo posible de pilones del océano."
+
+#: ../../AdditionalPylonsPlugin.cs:219
+msgid "神圣晶塔数量已达到上限。"
+msgstr "Has alcanzado el máximo posible de pilones sagrados."
+
+#: ../../AdditionalPylonsPlugin.cs:20
+msgid "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境"
+msgstr ""
+
+#: ../../AdditionalPylonsPlugin.cs:259
+msgid "蘑菇晶塔数量已达到上限。"
+msgstr "Has alcanzado el máximo posible de pilones champiñón."
+
+#: ../../AdditionalPylonsPlugin.cs:251
+msgid "雪原晶塔数量已达到上限。"
+msgstr "Has alcanzado el máximo posible de pilones de la nieve."
+

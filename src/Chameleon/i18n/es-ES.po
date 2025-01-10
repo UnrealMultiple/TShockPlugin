@@ -1,0 +1,105 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:15:39+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/Chameleon/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1130\n"
+"Language: es_ES\n"
+
+#: ../../Chameleon.cs:187
+#: ../../Chameleon.cs:258
+#: ../../Chameleon.cs:329
+#, csharp-format
+msgid "[Chameleon] `{0}`成功验证登录。"
+msgstr ""
+
+#: ../../Chameleon.cs:133
+#, csharp-format
+msgid "[Chameleon] `DisableUUIDLogin`被设置为true，不允许玩家`{0}`使用UUID登录,"
+msgstr ""
+
+#: ../../Chameleon.cs:284
+#, csharp-format
+msgid "[Chameleon] 你的密码是: [c/FF0000:{0}]"
+msgstr ""
+
+#: ../../Chameleon.cs:361
+#, csharp-format
+msgid "[Chameleon] 向`{0}`发送通知完毕."
+msgstr ""
+
+#: ../../Chameleon.cs:62
+msgid "[Chameleon] 在启用本插件的情况下，入服前登录将被强制开启。"
+msgstr ""
+
+#: ../../Chameleon.cs:57
+msgid "[Chameleon] 在启用本插件的情况下，服务器密码功能将失效。"
+msgstr ""
+
+#: ../../Chameleon.cs:68
+msgid "[Chameleon] 在启用本插件的情况下，注册登录将被强制开启。"
+msgstr ""
+
+#: ../../Chameleon.cs:186
+#: ../../Chameleon.cs:257
+#: ../../Chameleon.cs:328
+#, csharp-format
+msgid "[Chameleon] 已经验证`{0}`登录完毕。"
+msgstr ""
+
+#: ../../Chameleon.cs:286
+#, csharp-format
+msgid "[Chameleon] 玩家{0}注册了新账户：{1}"
+msgstr ""
+
+#: ../../Chameleon.cs:138
+#, csharp-format
+msgid "[Chameleon] 玩家`{0}`UUID登录失败，需要验证密码。"
+msgstr ""
+
+#: ../../Chameleon.cs:145
+#, csharp-format
+msgid "[Chameleon] 玩家`{0}`的IP与上次登录IP地址不符，需要验证密码。"
+msgstr ""
+
+#: ../../Chameleon.cs:283
+#, csharp-format
+msgid "[Chameleon] 账户`{0}`注册成功。"
+msgstr ""
+
+#: ../../Chameleon.cs:280
+#, csharp-format
+msgid "密码位数不能少于{0}个字符。"
+msgstr ""
+
+#: ../../Chameleon.cs:263
+msgid "密码错误..."
+msgstr ""
+
+#: ../../Chameleon.cs:336
+msgid "此用户名被禁用。"
+msgstr ""
+
+#: ../../Chameleon.cs:280
+msgid "注册失败"
+msgstr ""
+
+#: ../../Chameleon.cs:336
+msgid "请更换人物名"
+msgstr ""
+
+#: ../../Chameleon.cs:24
+msgid "账户系统交互替换方案"
+msgstr ""
+

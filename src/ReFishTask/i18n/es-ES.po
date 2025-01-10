@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 18:23:36+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/ReFishTask/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1200\n"
+"Language: es_ES\n"
+
+#: ../../ReFishTask.cs:50
+msgid "[ReFishTask]重新加载配置完毕。"
+msgstr ""
+
+#: ../../ReFishTask.cs:16
+msgid "当你完成渔夫任务时可无限接渔夫任务"
+msgstr ""
+

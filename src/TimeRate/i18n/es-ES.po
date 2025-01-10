@@ -1,0 +1,112 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 18:23:47+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/TimeRate/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1214\n"
+"Language: es_ES\n"
+
+#: ../../Commands.cs:9
+msgid "[c/3ADB2C:启用]"
+msgstr ""
+
+#: ../../Commands.cs:11
+msgid "[c/55A2E0:启用]"
+msgstr ""
+
+#: ../../Commands.cs:17
+msgid "[c/EBE9A2:时间加速插件] [C/BFDFEA:by] [c/00FFFF:羽学][i:3459]\n"
+msgstr ""
+
+#: ../../Commands.cs:9
+#: ../../Commands.cs:10
+#: ../../Commands.cs:11
+msgid "[c/F25C71:关闭]"
+msgstr ""
+
+#: ../../Commands.cs:10
+msgid "[c/FFF261:启用]"
+msgstr ""
+
+#: ../../TimeRate.cs:46
+msgid "[时间加速插件]重新加载配置完毕。"
+msgstr ""
+
+#: ../../Commands.cs:19
+msgid "/reload —— 重载配置文件\n"
+msgstr ""
+
+#: ../../Commands.cs:18
+msgid "/times —— 时间加速指令菜单\n"
+msgstr ""
+
+#: ../../Commands.cs:21
+msgid "/times all —— 开启|关闭[c/FFF261:全员睡觉]加速\n"
+msgstr ""
+
+#: ../../Commands.cs:22
+msgid "/times on | off —— 开启|关闭[c/3ADB2C:指令]加速\n"
+msgstr ""
+
+#: ../../Commands.cs:20
+msgid "/times one —— 开启|关闭[c/55A2E0:单人睡觉]加速\n"
+msgstr ""
+
+#: ../../Commands.cs:23
+msgid "/times set 数字 —— 设置速率|日晷:[c/F25C71:60] 正常:[c/55A2E0:1]"
+msgstr ""
+
+#: ../../TimeRate.cs:16
+msgid "使用指令修改时间加速"
+msgstr ""
+
+#: ../../Commands.cs:33
+#: ../../Commands.cs:42
+#: ../../Commands.cs:53
+#: ../../Commands.cs:64
+msgid "启用"
+msgstr ""
+
+#: ../../Commands.cs:54
+msgid "已[c/C9C7F5:{0}]全员睡觉加速!当前速率为：[c/FFFCCF:{1}]!"
+msgstr ""
+
+#: ../../Commands.cs:65
+msgid "已[c/C9C7F5:{0}]单人睡觉加速!当前速率为：[c/FFFCCF:{1}]!"
+msgstr ""
+
+#: ../../Commands.cs:43
+msgid "已[c/C9C7F5:{0}]时间流速!当前速率为：[c/FFFCCF:{1}]!"
+msgstr ""
+
+#: ../../Commands.cs:34
+msgid "已成功[c/C9C7F5:{0}]时间流速! 当前速率为：[c/FFFCCF:{1}]"
+msgstr ""
+
+#: ../../Commands.cs:80
+msgid "已成功时间流速设置为: [c/C9C7F5:{0}] !"
+msgstr ""
+
+#: ../../Commands.cs:33
+#: ../../Commands.cs:42
+#: ../../Commands.cs:53
+#: ../../Commands.cs:64
+msgid "禁用"
+msgstr ""
+
+#: ../../Commands.cs:24
+#, csharp-format
+msgid "速率:[c/C9C7F5:{0}] 指令:{1} 全员:{2} 单人:{3}"
+msgstr ""
+

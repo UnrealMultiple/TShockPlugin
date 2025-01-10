@@ -1,0 +1,32 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:16:28+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /master/src/SurfaceBlock/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1208\n"
+"Language: ru_RU\n"
+
+#: ../../SurfaceBlock.cs:110
+msgid "未知"
+msgstr ""
+
+#: ../../SurfaceBlock.cs:120
+#, csharp-format
+msgid "玩家 [c/4EA4F2:{0}] 使用禁地表弹幕 [c/15EDDB:{1}] 已清除!"
+msgstr ""
+
+#: ../../SurfaceBlock.cs:14
+msgid "禁止特定弹幕在地表产生"
+msgstr ""
+
