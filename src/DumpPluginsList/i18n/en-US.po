@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-09 09:33:48+0000\n"
-"PO-Revision-Date: 2025-01-09 10:23\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,5 +19,5 @@ msgstr ""
 
 #: ../../DumpPluginsList.cs:16
 msgid "Dump plugin list and exit"
-msgstr ""
+msgstr "Dump plugin list and exit"
 
