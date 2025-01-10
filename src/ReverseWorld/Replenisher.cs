@@ -1,89 +1,87 @@
 ﻿using Terraria;
 
-namespace Global
-{
-    internal class Replenisher
-    {
-        public static bool PlaceLandMine(int x, int y, int y2)
-        {
-            for (int i = y; i <= y2; i++)
-            {
-                if (TryPlaceLandMine(x, i))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+namespace Global;
 
-        private static bool TryPlaceLandMine(int x, int y)
+internal class Replenisher
+{
+    public static bool PlaceLandMine(int x, int y, int y2)
+    {
+        for (var i = y; i <= y2; i++)
         {
-            TileObject val;
-            if (TileObject.CanPlace(x, y, 210, 0, 1, out val, false))
+            if (TryPlaceLandMine(x, i))
             {
-                TileUtils.SetTile(x, y, 210);
                 return true;
             }
-            return false;
         }
+        return false;
+    }
 
-        public static bool Replenish(int amount, TileSection range, int TIMEOUT = 30000)
+    private static bool TryPlaceLandMine(int x, int y)
+    {
+        if (TileObject.CanPlace(x, y, 210, 0, 1, out var val, false))
         {
-            Random random = new Random();
-            int left = range.Left;
-            int top = range.Top;
-            int right = range.Right;
-            int bottom = range.Bottom;
-            int num = 0;
-            for (int i = 0; i < TIMEOUT; i++)
-            {
-                int x = random.Next(left, right);
-                int num2 = random.Next(top, bottom);
-                int y = ((num2 + 5 > bottom) ? bottom : (num2 + 5));
-                if (!PlaceLandMine(x, num2, y) && ++num > amount)
-                {
-                    return true;
-                }
-            }
-            return false;
+            TileUtils.SetTile(x, y, 210);
+            return true;
         }
+        return false;
+    }
 
-        public static void UpdateSection(int x, int y, int x2, int y2, int who = -1)
+    public static bool Replenish(int amount, TileSection range, int TIMEOUT = 30000)
+    {
+        var random = new Random();
+        var left = range.Left;
+        var top = range.Top;
+        var right = range.Right;
+        var bottom = range.Bottom;
+        var num = 0;
+        for (var i = 0; i < TIMEOUT; i++)
         {
-            int sectionX = Netplay.GetSectionX(x);
-            int sectionX2 = Netplay.GetSectionX(x2);
-            int sectionY = Netplay.GetSectionY(y);
-            int sectionY2 = Netplay.GetSectionY(y2);
-            if (who == -1)
+            var x = random.Next(left, right);
+            var num2 = random.Next(top, bottom);
+            var y = (num2 + 5 > bottom) ? bottom : (num2 + 5);
+            if (!PlaceLandMine(x, num2, y) && ++num > amount)
             {
-                RemoteClient[] clients = Netplay.Clients;
-                foreach (RemoteClient val in clients)
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void UpdateSection(int x, int y, int x2, int y2, int who = -1)
+    {
+        var sectionX = Netplay.GetSectionX(x);
+        var sectionX2 = Netplay.GetSectionX(x2);
+        var sectionY = Netplay.GetSectionY(y);
+        var sectionY2 = Netplay.GetSectionY(y2);
+        if (who == -1)
+        {
+            var clients = Netplay.Clients;
+            foreach (var val in clients)
+            {
+                if (!val.IsActive)
                 {
-                    if (!val.IsActive)
+                    continue;
+                }
+                for (var j = sectionX; j <= sectionX2; j++)
+                {
+                    for (var k = sectionY; k <= sectionY2; k++)
                     {
-                        continue;
-                    }
-                    for (int j = sectionX; j <= sectionX2; j++)
-                    {
-                        for (int k = sectionY; k <= sectionY2; k++)
-                        {
-                            val.TileSections[j, k] = false;
-                        }
+                        val.TileSections[j, k] = false;
                     }
                 }
-                return;
             }
-            RemoteClient val2 = Netplay.Clients[who];
-            if (!val2.IsActive)
+            return;
+        }
+        var val2 = Netplay.Clients[who];
+        if (!val2.IsActive)
+        {
+            return;
+        }
+        for (var l = sectionX; l <= sectionX2; l++)
+        {
+            for (var m = sectionY; m <= sectionY2; m++)
             {
-                return;
-            }
-            for (int l = sectionX; l <= sectionX2; l++)
-            {
-                for (int m = sectionY; m <= sectionY2; m++)
-                {
-                    val2.TileSections[l, m] = false;
-                }
+                val2.TileSections[l, m] = false;
             }
         }
     }

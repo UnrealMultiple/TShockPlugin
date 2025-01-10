@@ -15,14 +15,14 @@ public static class Code
                 {
                     result = 2000;
                 }
-                TileSection range = new TileSection(0, (int)Main.rockLayer, Main.maxTilesX, Main.maxTilesY - 200 - (int)Main.rockLayer);
+                var range = new TileSection(0, (int)Main.rockLayer, Main.maxTilesX, Main.maxTilesY - 200 - (int)Main.rockLayer);
                 Replenisher.Replenish(result, range, result * 5);
                 range.UpdateToPlayer();
-                player.SendSuccessMessage($"{result}个地雷已放置");
+                player.SendSuccessMessage(GetString($"{result}个地雷已放置"));
             }
             catch (Exception arg)
             {
-                player.SendErrorMessage($"失败：{arg}");
+                player.SendErrorMessage(GetString($"失败：{arg}"));
             }
         }
     }
