@@ -103,6 +103,7 @@
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 禁怪物掉落 |  |
 | [DonotFuck](./src/DonotFuck/README.md) | 禁止脏话 | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 阻止进入地牢或神庙 |  |
+| [Dummy](./src/Dummy/README.md) | 服务器假人 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 输出 ID |  |
 | [DwTP](./src/DwTP/README.md) | 定位传送 |  |
 | [Economics.Deal](./src/Economics.Deal/README.md) | 交易插件 | [EconomicsAPI](./src/EconomicsAPI/README.md) |
@@ -125,7 +126,7 @@
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 硬核死亡掉生命水晶 |  |
 | [HelpPlus](./src/HelpPlus/README.md) | 修复和增强 Help 命令 |  |
 | [History](./src/History/README.md) | 历史图格记录 |  |
-| [HouseRegion](./src/HouseRegion/README.md) | 圈地插件 |  |
+| [HouseRegion](./src/HouseRegion/README.md) | 圈地插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [Invincibility](./src/Invincibility/README.md) | 限时无敌 |  |
 | [ItemBox](./src/ItemBox/README.md) | 离线背包系统，物品盒子 |  |
 | [ItemDecoration](./src/ItemDecoration/README.md) | 手持物品浮动消息显示 | [LazyAPI](./src/LazyAPI/README.md) |
@@ -151,7 +152,7 @@
 | [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | Hufang的玩家管理器 |  |
 | [PlayerRandomSwapper](./src/PlayerRandomSwapper/README.md) | 玩家位置随机交换 | [LazyAPI](./src/LazyAPI/README.md) |
 | [PlayerSpeed](./src/PlayerSpeed/README.md) | 玩家速度 | [LazyAPI](./src/LazyAPI/README.md) |
-| [ProgressBag](./src/ProgressBag/README.md) | 进度礼包 |  |
+| [ProgressBag](./src/ProgressBag/README.md) | 进度礼包 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ProgressControls](./src/ProgressControls/README.md) | 计划书（自动化控制服务器） |  |
 | [ProgressRestrict](./src/ProgressRestrict/README.md) | 超进度检测 | [DataSync](./src/DataSync/README.md) |
 | [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 接受 proxy protocol 协议 |  |
@@ -166,6 +167,7 @@
 | [RegionView](./src/RegionView/README.md) | 显示区域边界 |  |
 | [Respawn](./src/Respawn/README.md) | 原地复活 |  |
 | [RestInventory](./src/RestInventory/README.md) | 提供 REST 查询背包接口 |  |
+| [ReverseWorld](./src/ReverseWorld/README.md) | 世界反转和放置地雷 |  |
 | [RolesModifying](./src/RolesModifying/README.md) | 修改玩家背包 |  |
 | [Sandstorm](./src/Sandstorm/README.md) | 切换沙尘暴 |  |
 | [ServerTools](./src/ServerTools/README.md) | 服务器管理工具 | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
@@ -179,6 +181,7 @@
 | [SpclPerm](./src/SpclPerm/README.md) | 服主特权 |  |
 | [StatusTextManager](./src/StatusTextManager/README.md) | PC端模板文本管理插件 |  |
 | [SurfaceBlock](./src/SurfaceBlock/README.md) | 禁地表弹幕插件 | [LazyAPI](./src/LazyAPI/README.md) |
+| [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 类among us小游戏 |  |
 | [SwitchCommands](./src/SwitchCommands/README.md) | 区域执行指令 |  |
 | [TeleportRequest](./src/TeleportRequest/README.md) | 传送请求 |  |
 | [TimeRate](./src/TimeRate/README.md) | 时间加速插件 |  |
@@ -192,12 +195,16 @@
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 一个允许热重载的插件加载器 |  |
 | [VeinMiner](./src/VeinMiner/README.md) | 连锁挖矿 |  |
 | [VotePlus](./src/VotePlus/README.md) | 多功能投票 |  |
-| [WeaponPlus](./src/WeaponPlusCostCoin/README.md) | 武器强化钱币版 |  |
+| [WeaponPlus](./src/WeaponPlus/README.md) | 武器强化钱币版 |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 为服务器加载 Wiki 语言包 |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 世界编辑器,可以修改大部分的世界参数 |  |
 | [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | zhi的玩家管理插件 |  |
 
 </Details>
+
+## 翻译
+
+- 如果你想要参与翻译工作，欢迎访问我们的 [Crowdin](https://zh.crowdin.com/project/tshock-chinese-plugin) 链接
 
 ## 友情链接
 

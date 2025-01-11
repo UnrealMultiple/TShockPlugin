@@ -2,7 +2,6 @@
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 
 namespace BanNpc;
 
@@ -11,17 +10,16 @@ public class Plugin : LazyPlugin
 {
     public override string Author => "Patrikk,GK 改良";
 
-    public override string Description => "禁止指定怪物的出没";
+    public override string Description => GetString("禁止指定怪物的出没");
 
-    public override string Name => "禁止怪物";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 0, 5);
 
     public Plugin(Main game) : base(game)
     {
 
     }
-   
+
     public override void Initialize()
     {
         Commands.ChatCommands.Add(new Command("bannpc.use", this.BanCommand, "bm"));

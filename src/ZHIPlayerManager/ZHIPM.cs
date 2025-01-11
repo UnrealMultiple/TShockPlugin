@@ -12,11 +12,10 @@ public partial class ZHIPM : TerrariaPlugin
 {
     public override string Author => "z枳";
 
-    public override string Description => "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作";
+    public override string Description => GetString("玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作");
 
-    public override string Name => "ZHIPlayerManager";
-
-    public override Version Version => new (1, 0, 1, 2);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new(1, 0, 1, 2);
 
     #region 字段或属性
     /// <summary>
@@ -34,7 +33,7 @@ public partial class ZHIPM : TerrariaPlugin
     /// <summary>
     /// 广播颜色
     /// </summary>
-    private static readonly Color broadcastColor = new (0, 255, 213);
+    private static readonly Color broadcastColor = new(0, 255, 213);
     /// <summary>
     /// 计时器，60 Timer = 1 秒
     /// </summary>
@@ -54,30 +53,30 @@ public partial class ZHIPM : TerrariaPlugin
     /// <summary>
     /// 记录需要冻结的玩家
     /// </summary>
-    private static readonly List<MessPlayer> frozenPlayers = new ();
+    private static readonly List<MessPlayer> frozenPlayers = new();
     /// <summary>
     /// 需要记录的被击中的npc
     /// </summary>
-    private static readonly List<StrikeNPC> strikeNPC = new ();
+    private static readonly List<StrikeNPC> strikeNPC = new();
 
     private readonly string nonExistPlayerWarning = GetString("该玩家不存在，请重新输入");
     private readonly string MultipleMatchPlayerWarning = GetString("该玩家不唯一，请重新输入");
     private readonly string playerOfflineWarning = GetString("该玩家不在线，正在查询离线数据");
 
-    private static ZhipmConfig config = new ();
+    private static ZhipmConfig config = new();
 
     /// <summary>
     /// 记录世界吞噬者的数据 击中他的玩家的id, 那个玩家造成的伤害
     /// </summary>
-    private readonly Dictionary<int, int> Eaterworld = new ();
+    private readonly Dictionary<int, int> Eaterworld = new();
     /// <summary>
     /// 记录毁灭者的数据
     /// </summary>
-    private readonly Dictionary<int, int> Destroyer = new ();
+    private readonly Dictionary<int, int> Destroyer = new();
     /// <summary>
     /// 记录血肉墙的数据
     /// </summary>
-    private readonly Dictionary<int, int> FleshWall = new ();
+    private readonly Dictionary<int, int> FleshWall = new();
 
     #endregion
 
@@ -392,7 +391,7 @@ public partial class ZHIPM : TerrariaPlugin
         /// <summary>
         /// 字典，用于记录 击中他的玩家的id 该玩家造成的总伤害
         /// </summary>
-        public Dictionary<int, int> playerAndDamage = new ();
+        public Dictionary<int, int> playerAndDamage = new();
         /// <summary>
         /// 受到的总伤害
         /// </summary>

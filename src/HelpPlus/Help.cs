@@ -26,10 +26,9 @@ public class HelpPlus : TerrariaPlugin
 
     public override string Author => "Cai";
 
-    public override string Description => "更好的Help";
+    public override string Description => GetString("更好的Help");
 
-    public override string Name => "Help+(更好的Help)";
-    public override Version Version => new Version(2024, 12, 18, 2);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(2024, 12, 18, 2);
 
     public override void Initialize()
     {

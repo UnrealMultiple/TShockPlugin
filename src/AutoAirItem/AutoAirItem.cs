@@ -10,10 +10,10 @@ namespace AutoAirItem;
 public class AutoAirItem : LazyPlugin
 {
     #region 插件信息
-    public override string Name => "自动垃圾桶";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "羽学";
     public override Version Version => new Version(1, 2, 6);
-    public override string Description => "涡轮增压不蒸鸭";
+    public override string Description => GetString("自动垃圾桶帮助玩家清理自身垃圾");
     #endregion
 
     #region 注册与释放

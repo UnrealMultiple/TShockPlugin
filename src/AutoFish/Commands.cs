@@ -104,7 +104,7 @@ public class Commands
             }
 
             //检测到血月
-            if(Main.bloodMoon)
+            if (Main.bloodMoon)
             {
                 args.Player.SendMessage(GetString($"当前为[c/F25055:血月]无法钓上怪物，可[c/46C4D4:关闭]插件：[c/F3F292:/af off]"), 243, 181, 145);
             }
@@ -201,95 +201,95 @@ public class Commands
                 switch (args.Parameters[0].ToLower())
                 {
                     case "add":
+                    {
+                        if (Configuration.Instance.BaitType.Contains(item.type))
                         {
-                            if (Configuration.Instance.BaitType.Contains(item.type))
-                            {
-                                args.Player.SendErrorMessage(GetString("物品 [c/92C5EC:{0}] 已在指定鱼饵表中!"), item.Name);
-                                return;
-                            }
-                            Configuration.Instance.BaitType.Add(item.type);
-                            Configuration.Instance.SaveTo();
-                            args.Player.SendSuccessMessage(GetString("已成功将物品添加指定鱼饵表: [c/92C5EC:{0}]!"), item.Name);
-                            break;
+                            args.Player.SendErrorMessage(GetString("物品 [c/92C5EC:{0}] 已在指定鱼饵表中!"), item.Name);
+                            return;
                         }
+                        Configuration.Instance.BaitType.Add(item.type);
+                        Configuration.Instance.SaveTo();
+                        args.Player.SendSuccessMessage(GetString("已成功将物品添加指定鱼饵表: [c/92C5EC:{0}]!"), item.Name);
+                        break;
+                    }
 
                     case "del":
+                    {
+                        if (!Configuration.Instance.BaitType.Contains(item.type))
                         {
-                            if (!Configuration.Instance.BaitType.Contains(item.type))
-                            {
-                                args.Player.SendErrorMessage(GetString("物品 {0} 不在指定鱼饵表中!"), item.Name);
-                                return;
-                            }
-                            Configuration.Instance.BaitType.Remove(item.type);
-                            Configuration.Instance.SaveTo();
-                            args.Player.SendSuccessMessage(GetString("已成功从指定鱼饵表移出物品: [c/92C5EC:{0}]!"), item.Name);
-                            break;
+                            args.Player.SendErrorMessage(GetString("物品 {0} 不在指定鱼饵表中!"), item.Name);
+                            return;
                         }
+                        Configuration.Instance.BaitType.Remove(item.type);
+                        Configuration.Instance.SaveTo();
+                        args.Player.SendSuccessMessage(GetString("已成功从指定鱼饵表移出物品: [c/92C5EC:{0}]!"), item.Name);
+                        break;
+                    }
 
                     case "+":
+                    {
+                        if (Configuration.Instance.DoorItems.Contains(item.type))
                         {
-                            if (Configuration.Instance.DoorItems.Contains(item.type))
-                            {
-                                args.Player.SendErrorMessage(GetString("物品 [c/92C5EC:{0}] 已在额外渔获表中!"), item.Name);
-                                return;
-                            }
-                            Configuration.Instance.DoorItems.Add(item.type);
-                            Configuration.Instance.SaveTo();
-                            args.Player.SendSuccessMessage(GetString("已成功将物品添加额外渔获表: [c/92C5EC:{0}]!"), item.Name);
-                            break;
+                            args.Player.SendErrorMessage(GetString("物品 [c/92C5EC:{0}] 已在额外渔获表中!"), item.Name);
+                            return;
                         }
+                        Configuration.Instance.DoorItems.Add(item.type);
+                        Configuration.Instance.SaveTo();
+                        args.Player.SendSuccessMessage(GetString("已成功将物品添加额外渔获表: [c/92C5EC:{0}]!"), item.Name);
+                        break;
+                    }
 
                     case "-":
+                    {
+                        if (!Configuration.Instance.DoorItems.Contains(item.type))
                         {
-                            if (!Configuration.Instance.DoorItems.Contains(item.type))
-                            {
-                                args.Player.SendErrorMessage(GetString("物品 {0} 不在额外渔获中!"), item.Name);
-                                return;
-                            }
-                            Configuration.Instance.DoorItems.Remove(item.type);
-                            Configuration.Instance.SaveTo();
-                            args.Player.SendSuccessMessage(GetString("已成功从额外渔获移出物品: [c/92C5EC:{0}]!"), item.Name);
-                            break;
+                            args.Player.SendErrorMessage(GetString("物品 {0} 不在额外渔获中!"), item.Name);
+                            return;
                         }
+                        Configuration.Instance.DoorItems.Remove(item.type);
+                        Configuration.Instance.SaveTo();
+                        args.Player.SendSuccessMessage(GetString("已成功从额外渔获移出物品: [c/92C5EC:{0}]!"), item.Name);
+                        break;
+                    }
 
                     case "set":
+                    {
+                        if (int.TryParse(args.Parameters[1], out var num))
                         {
-                            if (int.TryParse(args.Parameters[1], out var num))
-                            {
-                                Configuration.Instance.BaitStack = num;
-                                Configuration.Instance.SaveTo();
-                                args.Player.SendSuccessMessage(GetString("已成功将物品数量要求设置为: [c/92C5EC:{0}] 个!"), num);
-                            }
-                            break;
+                            Configuration.Instance.BaitStack = num;
+                            Configuration.Instance.SaveTo();
+                            args.Player.SendSuccessMessage(GetString("已成功将物品数量要求设置为: [c/92C5EC:{0}] 个!"), num);
                         }
+                        break;
+                    }
 
                     case "duo":
+                    {
+                        if (int.TryParse(args.Parameters[1], out var num))
                         {
-                            if (int.TryParse(args.Parameters[1], out var num))
-                            {
-                                Configuration.Instance.HookMax = num;
-                                Configuration.Instance.SaveTo();
-                                args.Player.SendSuccessMessage(GetString("已成功将多钩数量上限设置为: [c/92C5EC:{0}] 个!"), num);
-                            }
-                            break;
+                            Configuration.Instance.HookMax = num;
+                            Configuration.Instance.SaveTo();
+                            args.Player.SendSuccessMessage(GetString("已成功将多钩数量上限设置为: [c/92C5EC:{0}] 个!"), num);
                         }
+                        break;
+                    }
 
                     case "time":
+                    {
+                        if (int.TryParse(args.Parameters[1], out var num))
                         {
-                            if (int.TryParse(args.Parameters[1], out var num))
-                            {
-                                Configuration.Instance.timer = num;
-                                Configuration.Instance.SaveTo();
-                                args.Player.SendSuccessMessage(GetString("已成功将自动时长设置为: [c/92C5EC:{0}] 分钟!"), num);
-                            }
-                            break;
+                            Configuration.Instance.timer = num;
+                            Configuration.Instance.SaveTo();
+                            args.Player.SendSuccessMessage(GetString("已成功将自动时长设置为: [c/92C5EC:{0}] 分钟!"), num);
                         }
+                        break;
+                    }
 
                     default:
-                        {
-                            HelpCmd(args.Player);
-                            break;
-                        }
+                    {
+                        HelpCmd(args.Player);
+                        break;
+                    }
                 }
             }
         }

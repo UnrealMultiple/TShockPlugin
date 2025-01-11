@@ -8,9 +8,9 @@ namespace CaiRewardChest;
 [Table("CaiRewardChest")]
 public class RewardChest : RecordBase<RewardChest>
 {
-    [Column] [PrimaryKey] public int ChestId;
+    [Column][PrimaryKey] public int ChestId;
 
-    [NotColumn] public List<int> HasOpenPlayer = new ();
+    [NotColumn] public List<int> HasOpenPlayer = new();
 
     [Column]
     // ReSharper disable once InconsistentNaming

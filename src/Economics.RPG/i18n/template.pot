@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.RPG\n"
-"POT-Creation-Date: 2024-11-19 17:21:58+0000\n"
-"PO-Revision-Date: 2024-11-19 17:21:58+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:52+0000\n"
+"PO-Revision-Date: 2025-01-08 13:15:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr ""
 msgid "升级所需 {0}"
 msgstr ""
 
-#: ../../RPG.cs:87
+#: ../../RPG.cs:86
 #, csharp-format
 msgid "升级职业: {0}"
 msgstr ""
@@ -54,7 +54,7 @@ msgstr ""
 msgid "已经满级了，无法继续升级!"
 msgstr ""
 
-#: ../../RPG.cs:86
+#: ../../RPG.cs:85
 #, csharp-format
 msgid "当前职业: {0}"
 msgstr ""
@@ -73,6 +73,10 @@ msgstr ""
 #: ../../Command.cs:79
 #, csharp-format
 msgid "成功升级至 {0}!"
+msgstr ""
+
+#: ../../RPG.cs:18
+msgid "提供RPG玩法!"
 msgstr ""
 
 #: ../../Command.cs:123

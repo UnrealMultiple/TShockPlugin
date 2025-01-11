@@ -10,8 +10,7 @@ namespace DTEntryBlock;
 public class DTEntryBlock : TerrariaPlugin
 {
     public override string Author => "肝帝熙恩";
-    public override string Name => "阻止进入地牢或神庙";
-    public override string Description => "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Description => GetString("阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙");
     public override Version Version => new Version(1, 1, 6);
     public static Configuration Config = null!;
     Color orangeColor = new Color(255, 165, 0);
@@ -105,7 +104,7 @@ public class DTEntryBlock : TerrariaPlugin
     private bool IsPlayerInDungeon(TSPlayer player)
     {
         return Main.drunkWorld
-            ? player.TPlayer.ZoneDungeon && !(player.TPlayer.position.Y / 16f < (float) (Main.dungeonY + 40))
+            ? player.TPlayer.ZoneDungeon && !(player.TPlayer.position.Y / 16f < Main.dungeonY + 40)
             : player.TPlayer.ZoneDungeon;
     }
 

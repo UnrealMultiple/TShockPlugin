@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
 using Rests;
-using System.Text;
 using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -17,10 +16,9 @@ public partial class Plugin : LazyPlugin
 {
     public override string Author => "少司命";// 插件作者
 
-    public override string Description => "服务器工具";// 插件说明
+    public override string Description => GetString("服务器工具");// 插件说明
 
-    public override string Name => "ServerTools";// 插件名字
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 1, 8, 1);// 插件版本
 
     private DateTime LastCommandUseTime = DateTime.Now;
@@ -37,7 +35,7 @@ public partial class Plugin : LazyPlugin
 
     public Plugin(Main game) : base(game)
     {
-        
+
     }
 
     private RestCommand[] addRestCommands = null!;
@@ -154,7 +152,7 @@ public partial class Plugin : LazyPlugin
             }
         }
     }
-    
+
     private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
     {
 
@@ -226,7 +224,7 @@ public partial class Plugin : LazyPlugin
             if (account != null)
             {
                 var Timezone = TimeZoneInfo.Local.GetUtcOffset(DateTime.Now).Hours.ToString("+#;-#");
-                
+
 
                 if (DateTime.TryParse(account.LastAccessed, out var LastSeen))
                 {
@@ -263,7 +261,7 @@ public partial class Plugin : LazyPlugin
     }
 
     public static void RestPlayerCtor(Action<TSRestPlayer, string, TShockAPI.Group> orig, TSRestPlayer self, string name, TShockAPI.Group group)
-    { 
+    {
         self.Account = new()
         {
             Name = name,

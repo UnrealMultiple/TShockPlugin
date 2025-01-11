@@ -1,43 +1,50 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Back\n"
-"POT-Creation-Date: 2024-11-30 02:03:48+0000\n"
-"PO-Revision-Date: 2024-09-01 11:24+0800\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:15:32+0000\n"
+"PO-Revision-Date: 2025-01-10 01:11\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en_US\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/Back/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1102\n"
+"Language: en_US\n"
 
-#: ../../BackPlugin.cs:84
+#: ../../BackPlugin.cs:83
 #, csharp-format
 msgid "BackPlugin: 传送玩家 {0} 时发生错误: {1}"
 msgstr "BackPlugin: Error occurred while teleporting player {0}: {1}"
 
-#: ../../BackPlugin.cs:64
+#: ../../BackPlugin.cs:63
 msgid "你尚未复活，无法传送回死亡地点."
-msgstr ""
-"You have not respawned yet and cannot teleport back to the death location."
+msgstr "You have not respawned yet and cannot teleport back to the death location."
 
-#: ../../BackPlugin.cs:89
+#: ../../BackPlugin.cs:88
 msgid "你还未死亡过"
 msgstr "You have not died yet"
 
-#: ../../BackPlugin.cs:71
+#: ../../BackPlugin.cs:70
 #, csharp-format
 msgid "你还需要等待 {0:F} 秒才能再次使用此命令."
 msgstr "You need to wait {0:F} seconds before using this command again."
 
-#: ../../BackPlugin.cs:78
+#: ../../BackPlugin.cs:15
+msgid "允许玩家传送回死亡地点"
+msgstr "Allows the player to teleport back to the point of death"
+
+#: ../../BackPlugin.cs:77
 #, csharp-format
 msgid "已传送至死亡地点 [c/8DF9D8:<{0} - {1}>]."
 msgstr "Teleported to death location [c/8DF9D8:<{0} - {1}>]."
 
-#: ../../BackPlugin.cs:31
+#: ../../BackPlugin.cs:30
 msgid "返回最后一次死亡的位置"
 msgstr "Return to the last death location"
 
-#~ msgid "[Back] 重新加载配置完毕。"
-#~ msgstr "[Back] Configuration reloaded successfully."

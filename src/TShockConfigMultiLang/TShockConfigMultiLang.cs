@@ -1,20 +1,14 @@
 ﻿using LazyAPI;
-using Newtonsoft.Json;
 using Terraria;
-using Terraria.GameContent;
-using Terraria.GameContent.NetModules;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
-using TShockAPI.Net;
 
 namespace TShockConfigMultiLang;
 [ApiVersion(2, 1)]
 public class TShockConfigMultiLang : LazyPlugin
 {
-    public override string Name => "TShockConfigMultiLang";
-    public override string Author => "肝帝熙恩，羽学";
-    public override string Description => "创建一个本地化语言的config";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "肝帝熙恩，羽学";
+    public override string Description => GetString("创建一个本地化语言的config");
     public override Version Version => new Version(1, 0, 1);
 
     public TShockConfigMultiLang(Main game) : base(game)
@@ -25,7 +19,7 @@ public class TShockConfigMultiLang : LazyPlugin
     public override void Initialize()
     {
         Commands.ChatCommands.Add(new Command(Permissions.cfgreload, this.configToNewconfig, "configToNewconfig", "ctc", "本土同步原版"));
-        Commands.ChatCommands.Add(new Command(Permissions.cfgreload, this.configFromnNewconfig, "configFromnNewconfig", "cfc","原版同步本土"));
+        Commands.ChatCommands.Add(new Command(Permissions.cfgreload, this.configFromnNewconfig, "configFromnNewconfig", "cfc", "原版同步本土"));
     }
 
     private void configFromnNewconfig(CommandArgs args)

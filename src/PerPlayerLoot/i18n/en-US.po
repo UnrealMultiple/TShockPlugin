@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PerPlayerLoot\n"
-"POT-Creation-Date: 2024-09-28 12:12:36+0000\n"
-"PO-Revision-Date: 2024-09-28 23:42+0800\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:16:11+0000\n"
+"PO-Revision-Date: 2025-01-10 01:11\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/PerPlayerLoot/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1192\n"
+"Language: en_US\n"
 
 #: ../../FakeChestDatabase.cs:230
 #, csharp-format
@@ -20,11 +26,15 @@ msgstr "Saved {0} loot chest inventories, {1} player-placed chests."
 msgid "加载每个玩家的战利品宝箱库存..."
 msgstr "Loading per-player loot chest inventories..."
 
-#: ../../PPLPlugin.cs:74
+#: ../../PPLPlugin.cs:73
 msgid "每个玩家单独的宝箱现在被禁用！您现在可以修改宝箱，它们将被视为普通宝箱."
 msgstr "Per player loot is now disabled! You can modify chests now and they will count as loot chests."
 
-#: ../../PPLPlugin.cs:70
+#: ../../PPLPlugin.cs:16
+msgid "玩家战利品单独箱子."
+msgstr "Individual chests for player loot."
+
+#: ../../PPLPlugin.cs:69
 msgid "现在启用了每个玩家单独的宝箱!"
 msgstr "Per player loot is now enabled!"
 
@@ -32,6 +42,7 @@ msgstr "Per player loot is now enabled!"
 msgid "设置每个玩家的宝箱数据库..."
 msgstr "Setting up per-player chests database..."
 
-#: ../../PPLPlugin.cs:199
+#: ../../PPLPlugin.cs:198
 msgid "这个箱子里的战利品是每个玩家单独的!"
 msgstr "Loot in this chest is saved per-player!"
+

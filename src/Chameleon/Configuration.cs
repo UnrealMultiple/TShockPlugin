@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json;
-using TShockAPI;
-using LazyAPI;
+﻿using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
-using System.Collections.Generic;
-using System.IO;
 
 namespace Chameleon;
 

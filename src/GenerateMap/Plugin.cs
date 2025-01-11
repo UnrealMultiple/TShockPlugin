@@ -11,9 +11,8 @@ public class Plugin : TerrariaPlugin
 {
     public override string Author => "少司命";
 
-    public override string Name => "GenerateMap";
-
-    public override string Description => "生成地图图片";
+    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Description => GetString("生成地图图片");
 
     public override Version Version => new Version(1, 0, 3);
 

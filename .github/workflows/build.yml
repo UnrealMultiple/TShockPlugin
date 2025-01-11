@@ -102,7 +102,7 @@ jobs:
           name: Plugins
           path: bin
           skip_unpack: true
-          
+
       - name: 同步其他平台
         continue-on-error: true
         shell: pwsh
@@ -124,7 +124,7 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v5
         with:
           configuration: ".config/log_config.json"
-          
+
       - name: 发布插件包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: ncipollo/release-action@v1
@@ -168,10 +168,6 @@ jobs:
             $d = -split $p
             if ([int]$d[0] -le 2 -and [int]$d[1] -le 2) {
               git checkout $d[2]
-            } else {
-              foreach ($t in @(Get-ChildItem $([System.IO.Path]::GetDirectoryName($d[2]))*.po)) {
-                msgmerge --previous --update $t $d[2]
-              }
             }
           }
           git diff --quiet
@@ -195,3 +191,23 @@ jobs:
             git commit -m "自动更新$($Changed -Join ", ") [skip ci]"
             git push
           }
+
+      - name: 上传翻译模板至 Crowdin
+        continue-on-error: true
+        uses: crowdin/github-action@v2
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
+        with:
+          crowdin_branch_name: 'master'
+
+          upload_sources: true
+          upload_translations: false
+
+          download_sources: false
+          download_translations: false
+
+          push_translations: false
+          push_sources: false
+          
+          create_pull_request: false
+        env:
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}

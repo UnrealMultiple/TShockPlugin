@@ -12,13 +12,12 @@ public class BetterWhitelist : LazyPlugin
     {
     }
 
-    public override string Name => "BetterWhitelist";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new(2, 6, 1);
 
     public override string Author => "豆沙，肝帝熙恩、Cai修改";
 
-    public override string Description => "通过检查玩家姓名的玩家白名单";
+    public override string Description => GetString("通过检查玩家姓名的玩家白名单");
 
     public override void Initialize()
     {
@@ -94,7 +93,7 @@ public class BetterWhitelist : LazyPlugin
                         tsPlayer.Disconnect(BConfig.Instance.NotInWhiteList);
                     }
 
-                    BConfig.Save(); 
+                    BConfig.Save();
                 }
 
                 break;

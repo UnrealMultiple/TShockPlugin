@@ -18,11 +18,10 @@ public class Chameleon : LazyPlugin
 
     public static readonly List<string> PrepareList = new(); //已经发送过公告的玩家，等待注册
 
-    public override string Name => "Chameleon";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "mistzzt,肝帝熙恩";
 
-    public override string Description => "账户系统交互替换方案";
+    public override string Description => GetString("账户系统交互替换方案");
 
     public override Version Version => new Version(1, 0, 8);
 
@@ -79,14 +78,14 @@ public class Chameleon : LazyPlugin
         }
 
         var type = args.MsgID;
-        
+
         var player = TShock.Players[args.Msg.whoAmI];
-        
-        if( player == null)
+
+        if (player == null)
         {
             return;
         }
-        
+
         if (player.IsLoggedIn)
         {
             return;
@@ -139,21 +138,21 @@ public class Chameleon : LazyPlugin
                 TShock.Log.ConsoleInfo(GetString($"[Chameleon] 玩家`{player.Name}`UUID登录失败，需要验证密码。"));
                 break;
             }
-            if (Configuration.Instance.VerifyloginIP && 
+            if (Configuration.Instance.VerifyloginIP &&
                 JsonConvert.DeserializeObject<string[]>(account.KnownIps) is var knownIps &&
                 (knownIps is null || player.IP != knownIps.Last()))
             {
                 TShock.Log.ConsoleInfo(GetString($"[Chameleon] 玩家`{player.Name}`的IP与上次登录IP地址不符，需要验证密码。"));
                 break;
             }
-            
+
             if (player.State == 1)
             {
                 player.State = 2;
             }
 
             NetMessage.SendData((int) PacketTypes.WorldInfo, player.Index);
-            
+
             player.PlayerData = TShock.CharacterDB.GetPlayerData(player, account.ID);
             var group = TShock.Groups.GetGroupByName(account.Group);
 
@@ -188,9 +187,9 @@ public class Chameleon : LazyPlugin
             TShock.Log.ConsoleInfo(GetString($"[Chameleon] `{player.Name}`成功验证登录。"));
             PlayerHooks.OnPlayerPostLogin(player);
             return true;
-        #pragma warning disable CS0162 
+#pragma warning disable CS0162
         } while (false);
-        #pragma warning disable CS0162 
+#pragma warning disable CS0162
         // 使用密码登录 part.2
         player.RequiresPassword = true;
         NetMessage.SendData((int) PacketTypes.PasswordRequired, player.Index);
@@ -256,7 +255,7 @@ public class Chameleon : LazyPlugin
                 }
 
                 player.SendSuccessMessage(GetString($"[Chameleon] 已经验证`{account.Name}`登录完毕。"));
-                TShock.Log.ConsoleInfo( GetString($"[Chameleon] `{player.Name}`成功验证登录。"));
+                TShock.Log.ConsoleInfo(GetString($"[Chameleon] `{player.Name}`成功验证登录。"));
                 TShock.UserAccounts.SetUserAccountUUID(account, player.UUID);
                 PlayerHooks.OnPlayerPostLogin(player);
                 return true;
@@ -340,14 +339,14 @@ public class Chameleon : LazyPlugin
 
     private static void AddToList(string playerName)
     {
-        
+
         PrepareList.Add(playerName);
 
         if (PrepareList.Count > 10)
         {
             PrepareList.RemoveAt(0);
         }
-        
+
     }
 
     private static void Kick(TSPlayer player, string msg, string custom)

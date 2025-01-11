@@ -1,7 +1,5 @@
-﻿using Economics.Skill.Internal;
-using Economics.Skill.Model;
+﻿using Economics.Skill.Model;
 using EconomicsAPI.Attributes;
-using Steamworks;
 using TShockAPI;
 
 namespace Economics.Skill;
@@ -90,7 +88,7 @@ public class Command
                     return;
                 }
                 else if (args.Parameters[0].ToLower() == "clearh")
-                { 
+                {
                     var playerName = args.Parameters[1];
                     var skills = Skill.PlayerSKillManager.QuerySkill(playerName);
                     foreach (var skill in skills)
@@ -129,8 +127,7 @@ public class Command
 
                     return;
                 }
-
-                if (args.Parameters[0].ToLower() == "delall")
+                if (args.Parameters[0].ToLower() == "removeall")
                 {
                     var skills = Skill.PlayerSKillManager.QuerySkillByItem(args.Player.Name, args.Player.SelectedItem.netID);
                     if (!skills.Any())
@@ -141,7 +138,7 @@ public class Command
                     foreach (var skill in skills)
                     {
                         if (skill.Skill != null && !skill.Skill.Hidden)
-                        { 
+                        {
                             Skill.PlayerSKillManager.Remove(args.Player.Name, skill.ID);
                         }
                     }
@@ -179,7 +176,7 @@ public class Command
                     return;
                 }
                 break;
-               
+
             }
             case 3:
             {
@@ -204,7 +201,7 @@ public class Command
                 else if (args.Parameters[0].ToLower() == "del" && args.Player.HasPermission(Permission.SkillAdmin))
                 {
                     var playerSkills = Skill.PlayerSKillManager.QuerySkill(player.Name);
-                    if (!int.TryParse(args.Parameters[2], out var index) || !playerSkills.Any(x=>x.ID == index))
+                    if (!int.TryParse(args.Parameters[2], out var index) || !playerSkills.Any(x => x.ID == index))
                     {
                         args.Player.SendErrorMessage(GetString("无效得技能序号!"));
                         return;
@@ -222,7 +219,7 @@ public class Command
                 args.Player.SendInfoMessage(GetString("/skill give [玩家] [技能序号]"));
                 args.Player.SendInfoMessage(GetString("/skill clearh [玩家]"));
                 args.Player.SendInfoMessage(GetString("/skill del [玩家] [序号]"));
-                args.Player.SendInfoMessage(GetString("/skill delall"));
+                args.Player.SendInfoMessage(GetString("/skill removeall"));
                 args.Player.SendInfoMessage(GetString("/skill clear"));
                 args.Player.SendInfoMessage(GetString("/skill reset"));
                 break;

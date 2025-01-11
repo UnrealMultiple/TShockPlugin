@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -13,10 +11,9 @@ public class VotePlus : TerrariaPlugin
 
     public override string Author => "Cai";
 
-    public override string Description => "投票插件";
+    public override string Description => GetString("投票插件");
 
-    public override string Name => "VotePlus";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 0, 2);
 
     public VotePlus(Main game)
@@ -60,7 +57,7 @@ public class VotePlus : TerrariaPlugin
         {
             if (VoteKicks[plr.Account.Name] > DateTime.Now)
             {
-                plr.Disconnect(GetString($"你被投票踢出了服务器!解除时间剩余:{(int)(VoteKicks[plr.Account.Name] - DateTime.Now).TotalSeconds}秒"));
+                plr.Disconnect(GetString($"你被投票踢出了服务器!解除时间剩余:{(int) (VoteKicks[plr.Account.Name] - DateTime.Now).TotalSeconds}秒"));
             }
             else
             {
@@ -313,7 +310,7 @@ public class VotePlus : TerrariaPlugin
                 var kickList = VoteKicks.Where(v => v.Value > DateTime.Now);
                 foreach (var kick in kickList)
                 {
-                    stringBuilder.AppendLine(GetString($"{kick.Key}:剩余{(int)(kick.Value-DateTime.Now).TotalSeconds}秒"));
+                    stringBuilder.AppendLine(GetString($"{kick.Key}:剩余{(int) (kick.Value - DateTime.Now).TotalSeconds}秒"));
                 }
                 args.Player.SendSuccessMessage(stringBuilder.ToString());
                 break;

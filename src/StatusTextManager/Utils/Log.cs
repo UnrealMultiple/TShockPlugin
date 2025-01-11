@@ -11,7 +11,7 @@ public enum LogLevel
 
 internal static class Logger
 {
-    private static readonly Dictionary<LogLevel, ConsoleColor> level2Color = new ()
+    private static readonly Dictionary<LogLevel, ConsoleColor> level2Color = new()
     {
         { LogLevel.NONE, ConsoleColor.White },
         { LogLevel.ERROR, ConsoleColor.Red },
@@ -20,7 +20,7 @@ internal static class Logger
         { LogLevel.DEBUG, ConsoleColor.Green }
     };
 
-    private static readonly object consoleWriteLock = new ();
+    private static readonly object consoleWriteLock = new();
 
     public static void Err(string msg)
     {

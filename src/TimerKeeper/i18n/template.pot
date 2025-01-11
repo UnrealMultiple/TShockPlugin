@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TimerKeeper\n"
-"POT-Creation-Date: 2024-09-07 18:09:13+0000\n"
-"PO-Revision-Date: 2024-09-07 18:09:13+0000\n"
+"POT-Creation-Date: 2025-01-08 13:16:30+0000\n"
+"PO-Revision-Date: 2025-01-08 13:16:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../MainPlugin.cs:57
+#: ../../MainPlugin.cs:56
 msgid "[TimerKeeper]计时器已经加载!"
+msgstr ""
+
+#: ../../MainPlugin.cs:14
+msgid "保存计时器"
 msgstr ""
 

@@ -17,9 +17,8 @@ public class SwitchCommands : TerrariaPlugin
     public static Database database = null!;
     public static SwitchPos switchPos = null!;
 
-    public override string Name => "SwitchCommands";
-    public override string Author => "Johuan Cjx适配 羽学，肝帝熙恩优化";
-    public override string Description => "触发开关可以执行指令";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "Johuan Cjx适配 羽学，肝帝熙恩优化";
+    public override string Description => GetString("触发开关可以执行指令");
     public override Version Version => new Version(1, 2, 4);
 
     public SwitchCommands(Main game) : base(game) { }

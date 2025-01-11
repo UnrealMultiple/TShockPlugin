@@ -10,13 +10,12 @@ namespace AutoPluginManager;
 // ReSharper disable once UnusedType.Global
 public class Plugin : TerrariaPlugin
 {
-    public override string Name => "AutoPluginManager";
-
-    public override Version Version => new Version(2, 0, 3, 1);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(2, 0, 3, 3);
 
     public override string Author => "少司命,Cai,LaoSparrow";
 
-    public override string Description => "自动更新你的插件！";
+    public override string Description => GetString("自动更新你的插件！");
 
     public Plugin(Main game) : base(game)
     {
@@ -37,7 +36,7 @@ public class Plugin : TerrariaPlugin
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == CommandAdapter.Adapter);
             PluginManagementContext.Instance.OnPluginUpdate -= this.AutoCheckUpdate;
             GeneralHooks.ReloadEvent -= this.GeneralHooksOnReloadEvent;
-            
+
         }
         base.Dispose(disposing);
     }

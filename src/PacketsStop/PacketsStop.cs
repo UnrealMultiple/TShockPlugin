@@ -9,10 +9,9 @@ namespace PacketsStop;
 public class PacketsStop : TerrariaPlugin
 {
 
-    public override string Name => "数据包拦截 PacketsStop";
-    public override Version Version => new Version(1, 0, 2);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 2);
     public override string Author => "羽学 感谢少司命";
-    public override string Description => "拦截没有指定权限的用户组数据包";
+    public override string Description => GetString("拦截没有指定权限的用户组数据包");
 
     #region 配置方法的工具
     private readonly Dictionary<string, Dictionary<PacketTypes, DateTime>> countDictionary = new Dictionary<string, Dictionary<PacketTypes, DateTime>>();

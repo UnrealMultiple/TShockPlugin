@@ -10,9 +10,8 @@ namespace Plugin;
 public class TestPlugin : TerrariaPlugin
 {
     #region 插件信息
-    public override string Name => "复活币";
-    public override string Author => "GK 阁下";
-    public override string Description => "让死者瞬间原地复活的神奇力量！";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "GK 阁下";
+    public override string Description => GetString("让死者瞬间原地复活的神奇力量！");
     public override Version Version => new Version(1, 0, 0, 4);
     #endregion
 
@@ -134,13 +133,13 @@ public class TestPlugin : TerrariaPlugin
         }
 
         //玩家没死亡或没权限 返回
-        if ((int)args.MsgID != 118 || !plr.HasPermission("RebirthCoin"))
+        if ((int) args.MsgID != 118 || !plr.HasPermission("RebirthCoin"))
         {
             return;
         }
 
         //如果玩家生成（指重生）
-        if ((int)args.MsgID == 12)
+        if ((int) args.MsgID == 12)
         {
             using (var binaryReader = new BinaryReader(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length)))
             {
@@ -148,7 +147,7 @@ public class TestPlugin : TerrariaPlugin
                 var num = binaryReader.ReadInt16();
                 var num2 = binaryReader.ReadInt16();
                 var num3 = binaryReader.ReadInt32();
-                var val2 = (PlayerSpawnContext)binaryReader.ReadByte();
+                var val2 = (PlayerSpawnContext) binaryReader.ReadByte();
                 if (val2 == 0 && num3 <= 0 && this.LPlayers[plr.Index]!.tp)
                 {
                     plr.Teleport(this.LPlayers[plr.Index]!.x, this.LPlayers[plr.Index]!.y, 1);
@@ -196,7 +195,7 @@ public class TestPlugin : TerrariaPlugin
             binaryReader2.ReadByte();
             var val3 = PlayerDeathReason.FromReader(new BinaryReader(binaryReader2.BaseStream));
             var num5 = binaryReader2.ReadInt16();
-            var b = (byte)(binaryReader2.ReadByte() - 1);
+            var b = (byte) (binaryReader2.ReadByte() - 1);
             BitsByte val4 = binaryReader2.ReadByte();
             var flag = val4[0];
             binaryReader2.Close();
@@ -207,7 +206,7 @@ public class TestPlugin : TerrariaPlugin
                 {
                     var inv = plr.TPlayer.inventory[slot];
                     inv.stack--;
-                    plr.SendData((PacketTypes)5, "", plr.Index, slot, plr.TPlayer.inventory[0].prefix, 0f, 0);
+                    plr.SendData((PacketTypes) 5, "", plr.Index, slot, plr.TPlayer.inventory[0].prefix, 0f, 0);
                 }
 
                 this.LPlayers[plr.Index]!.x = plr.X;

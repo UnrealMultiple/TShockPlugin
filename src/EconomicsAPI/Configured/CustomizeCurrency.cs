@@ -26,7 +26,7 @@ public class CustomizeCurrency
 
 public class CombatMsgOption
 {
-    [JsonProperty("启用")] 
+    [JsonProperty("启用")]
     public bool Enable { get; set; }
 
     [JsonProperty("提示文本")]
@@ -49,7 +49,7 @@ public class CurrencyObtainOption
     [JsonProperty("获取方式")]
     public CurrencyObtainType CurrencyObtainType { get; set; } = default;
 
-    [JsonProperty("给予数量")] 
+    [JsonProperty("给予数量")]
     public long GiveCurrency { get; set; }
 
     [JsonProperty("比例")]

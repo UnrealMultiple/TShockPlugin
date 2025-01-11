@@ -1,7 +1,5 @@
-﻿using LazyAPI;
+﻿using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
-using Newtonsoft.Json;
-using System.IO;
 
 namespace CaiPacketDebug;
 

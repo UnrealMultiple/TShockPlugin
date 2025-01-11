@@ -1525,14 +1525,14 @@ public partial class ZHIPM
         }
         //离线的话
         var user = TShock.UserAccounts.GetUserAccountByName(name);
-        
+
         if (user == null)
         {
             return -1L;
         }
-        
+
         var pd = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), user.ID);
-        
+
         if (!pd.exists)
         {
             return -1L;

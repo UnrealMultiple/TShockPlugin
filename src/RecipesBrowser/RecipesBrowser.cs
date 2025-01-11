@@ -10,12 +10,11 @@ using TShockAPI;
 public class Plugin : TerrariaPlugin
 {
     public override string Name => "RecipesBrowser";
-
     public override Version Version => new (1, 1, 1);
 
     public override string Author => "棱镜,羽学适配,Cai优化";
 
-    public override string Description => "通过指令获取物品合成表";
+    public override string Description => GetString("通过指令获取物品合成表");
 
     public Plugin(Main game)
         : base(game)

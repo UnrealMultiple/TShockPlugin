@@ -20,13 +20,10 @@ internal class CommandAdapter
         { "il", LocalPlugins },
     };
 
-
-    
-
     public static void Adapter(CommandArgs args)
     {
         if (args.Parameters.Count >= 1)
-        { 
+        {
             var text = args.Parameters[0].ToLower();
             var subcmd = text.StartsWith("-") ? text.TrimStart('-') : text;
             if (_actions.TryGetValue(subcmd, out var action))
@@ -342,7 +339,7 @@ internal class CommandAdapter
         args.Player.SendInfoMessage(GetString("可安装插件列表:"));
         for (var i = 0; i < manifest.Length; i++)
         {
-            args.Player.SendInfoMessage($"{i + 1}.{manifest[i].Name} v{manifest[i].Version} (by {manifest[i].Author}) - {manifest[i].Description}");
+            args.Player.SendInfoMessage($"{i + 1}.{manifest[i].Name} v{manifest[i].Version} (by {manifest[i].Author}) - {manifest[i].Description[PluginManagementContext.Instance.CultureInfo.Name]}");
         }
         args.Player.SendInfoMessage(GetString("*使用/apm -i <序号> 即可安装哦~"));
     }
@@ -434,7 +431,7 @@ internal class CommandAdapter
         {
             targets = args.Parameters[1].Split(",");
         }
-        UpdatePlugin(args.Player, targets);   
+        UpdatePlugin(args.Player, targets);
     }
 
     /// <summary>

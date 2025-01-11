@@ -11,10 +11,9 @@ namespace AutoTeam;
 public class AutoTeam : LazyPlugin
 {
     public override string Author => "十七改，肝帝熙恩改";
-    public override Version Version => new Version(2, 4, 5);
-    public override string Description => "AutoTeamPlus";
-    public override string Name => "更好的自动队伍";
-
+    public override Version Version => new Version(2, 4, 6);
+    public override string Description => GetString("自动分配一个组的玩家到特定队伍");
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public AutoTeam(Main game) : base(game)
     {
     }
@@ -44,12 +43,23 @@ public class AutoTeam : LazyPlugin
         // 切换插件的状态
         Configuration.Instance.Enabled = !Configuration.Instance.Enabled;
         var status = Configuration.Instance.Enabled ? GetString("启用") : GetString("禁用");
-        args.Player.SendSuccessMessage(GetString("AutoTeamPlus 插件已") + status + GetString("。"));
+        args.Player.SendSuccessMessage(GetString("AutoTeamPlus 插件已") + status);
+        Configuration.Save();
     }
 
 
     private void Team(object? sender, PlayerTeamEventArgs args)
     {
+        if (args.Player == null)
+        {
+            return;
+        }
+
+        if (this.ShouldSkipAutoTeam(args.Player))
+        {
+            return;
+        }
+
         this.SetTeam(args.Player);
         args.Handled = true;
     }
@@ -57,33 +67,55 @@ public class AutoTeam : LazyPlugin
     private void OnJoin(GreetPlayerEventArgs args)
     {
         var player = TShock.Players[args.Who];
+        if (player == null)
+        {
+            return;
+        }
+
+        if (this.ShouldSkipAutoTeam(player))
+        {
+            return;
+        }
+
         this.SetTeam(player);
     }
 
     private void OnLogin(PlayerPostLoginEventArgs args)
     {
-        var player = args.Player;
-        this.SetTeam(player);
+        if (args.Player == null)
+        {
+            return;
+        }
+
+        if (this.ShouldSkipAutoTeam(args.Player))
+        {
+            return;
+        }
+
+        this.SetTeam(args.Player);
     }
 
-    private void SetTeam(TSPlayer player)
+    private bool ShouldSkipAutoTeam(TSPlayer player)
     {
         if (!Configuration.Instance.Enabled)
         {
-            return;
+            return true;
         }
 
-        if (player == null || player.Group == null)
+        if (player.Group == null || player.Group.HasPermission("noautoteam"))
         {
-            return;
+            return true;
         }
 
-        if (player.Group.HasPermission("noautoteam"))
-        {
-            return;
-        }
+        var groupName = player.Group.Name;
+        return Configuration.Instance.GetTeamForGroup(groupName) == "未配置";
+    }
 
-        var groupName = player.Group.Name.ToLower();
+
+    private void SetTeam(TSPlayer player)
+    {
+
+        var groupName = player.Group.Name;
         var teamName = Configuration.Instance.GetTeamForGroup(groupName);
 
         // 获取队伍索引
@@ -96,7 +128,7 @@ public class AutoTeam : LazyPlugin
         }
         else
         {
-            player.SendInfoMessage(GetString("未配置，可随意切换."));
+            player.SendInfoMessage(GetString($"队伍配置错误，您当前队伍为 {teamName}"));
         }
     }
 
