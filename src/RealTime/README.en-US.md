@@ -18,18 +18,10 @@
 none
 ```
 
-## Change log
+## Configuration
 
-```
-v2.6 update: Newly added Traveling Merchant updates items for sale every 24 minutes
-
-v2.5 update: Fixed the bug that forced PVP to switch teams
-
-v2.4 update: Changed the event to force PVP mode to open when it occurs.
-
-v2.3 update: Added daytime random weather function, updated every 15 minutes
-
-v2.2 update: Added nighttime NPC check-in function
+```json
+none
 ```
 
 ## Feedback
