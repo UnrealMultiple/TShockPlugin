@@ -55,6 +55,6 @@ jobs:
           committer: 'Crowdin Bot <support+bot@crowdin.com>'
           title: 'New Crowdin Translations'
           body: 'New Crowdin pull request with translations'
-          branch: 'i18n-tmp'
+          branch: 'i18n'
           base: 'master'
       
