@@ -1,0 +1,41 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-10 16:05:17+0000\n"
+"PO-Revision-Date: 2025-01-11 10:49\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/ReverseWorld/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1548\n"
+"Language: en_US\n"
+
+#: ../../Code.cs:21
+#, csharp-format
+msgid "{0}个地雷已放置"
+msgstr "{0} Mines have been placed"
+
+#: ../../PluginContainer.cs:103
+msgid "世界已成功反转！"
+msgstr "World has been successfully turned around!"
+
+#: ../../PluginContainer.cs:27
+msgid "反转整个世界的方向和地形"
+msgstr "Reverse the direction and terrain of the entire world"
+
+#: ../../PluginContainer.cs:35
+msgid "在玩家当前位置放置地雷"
+msgstr "Places a mine at the player's current location"
+
+#: ../../Code.cs:25
+#, csharp-format
+msgid "失败：{0}"
+msgstr "Failed：{0}"
+
