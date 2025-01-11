@@ -430,8 +430,8 @@
     "HotReload": true
   },
   {
-    "Name": "CaiBot",
-    "Version": "2024.12.22.1",
+    "Name": "CaiBotPlugin",
+    "Version": "2025.1.12.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot adapter plugin (Only support QQ)",
@@ -603,7 +603,7 @@
   },
   {
     "Name": "ChattyBridge",
-    "Version": "1.0.0.5",
+    "Version": "1.0.1.1",
     "Author": "少司命",
     "Description": {
       "en-US": "ChattyBridge",
@@ -1972,8 +1972,8 @@
   },
   {
     "Name": "RecipesBrowser",
-    "Version": "1.0.7",
-    "Author": "棱镜 羽学适配",
+    "Version": "1.1.1",
+    "Author": "棱镜,羽学适配,Cai优化",
     "Description": {
       "en-US": "Ask item recipes with commands",
       "de-DE": "通过指令获取物品合成表",
