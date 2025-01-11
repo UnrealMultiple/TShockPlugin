@@ -93,7 +93,7 @@ internal static class MessageHandle
                 else
                 {
                     onlineResult.AppendLine($"在线玩家({TShock.Utils.GetActivePlayerCount()}/{TShock.Config.Settings.MaxSlots})");
-                    onlineResult.AppendLine(string.Join(',', TShock.Players.Where(x=>x is { Active: true }).Select(x=>x.Name)));
+                    onlineResult.Append(string.Join(',', TShock.Players.Where(x=>x is { Active: true }).Select(x=>x.Name)));
                 }
 
                 List<string> onlineProcessList = new ();
