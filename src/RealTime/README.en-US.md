@@ -1,4 +1,4 @@
-# RealTime real time
+# RealTime
 
 - author: 十七
 - source: 作者原创
@@ -15,12 +15,6 @@
 ## instruction
 
 ```
-none
-```
-
-## Configuration
-
-```json
 none
 ```
 
