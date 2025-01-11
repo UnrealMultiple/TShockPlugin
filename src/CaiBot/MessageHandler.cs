@@ -40,7 +40,7 @@ internal static class MessageHandle
                 TShock.Log.ConsoleInfo("[CaiAPI]BOT发送解绑命令...");
                 Config.Settings.Token = "";
                 Config.Settings.Write();
-                Random rnd = new();
+                Random rnd = new ();
                 Plugin.InitCode = rnd.Next(10000000, 99999999);
                 TShock.Log.ConsoleError($"[CaiBot]您的服务器绑定码为: {Plugin.InitCode}");
                 await Plugin.WebSocket.CloseAsync(WebSocketCloseStatus.Empty, "", CancellationToken.None);
@@ -78,7 +78,7 @@ internal static class MessageHandle
                 break;
             case "cmd":
                 var cmd = (string) jsonObject["cmd"]!;
-                CaiBotPlayer tr = new();
+                CaiBotPlayer tr = new ();
                 Commands.HandleCommand(tr, cmd);
                 TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(long) jsonObject["group"]!}`执行了: {(string) jsonObject["cmd"]!}", Color.PaleVioletRed);
                 result = new RestObject { { "type", "cmd" }, { "result", string.Join('\n', tr.GetCommandOutput()) }, { "at", (string) jsonObject["at"]! }, { "group", (long) jsonObject["group"]! } };
@@ -93,10 +93,10 @@ internal static class MessageHandle
                 else
                 {
                     onlineResult.AppendLine($"在线玩家({TShock.Utils.GetActivePlayerCount()}/{TShock.Config.Settings.MaxSlots})");
-                    onlineResult.AppendLine(string.Join(',', TShock.Players.Where(x => x is { Active: true }).Select(x => x.Name)));
+                    onlineResult.Append(string.Join(',', TShock.Players.Where(x=>x is { Active: true }).Select(x=>x.Name)));
                 }
 
-                List<string> onlineProcessList = new();
+                List<string> onlineProcessList = new ();
                 #region 进度查询
 
                 if (!NPC.downedSlimeKing)
@@ -169,15 +169,15 @@ internal static class MessageHandle
                 {
                     { "type", "online" },
                     { "result", onlineResult.ToString()}, // “怎么有种我是男的的感觉” -- 张芷睿大人 (24.12.22)
-                    { "worldname", string.IsNullOrEmpty(Main.worldName) ? "地图还没加载捏~" : Main.worldName },
+                    { "worldname", string.IsNullOrEmpty(Main.worldName) ? "地图还没加载捏~" : Main.worldName }, 
                     { "process", onlineProcess },
                     { "group", (long) jsonObject["group"]! }
                 };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "process":
-                List<Dictionary<string, bool>> processList = new(
-                    new Dictionary<string, bool>[] { new() { { "King Slime", NPC.downedSlimeKing } }, new() { { "Eye of Cthulhu", NPC.downedBoss1 } }, new() { { "Eater of Worlds / Brain of Cthulhu", NPC.downedBoss2 } }, new() { { "Queen Bee", NPC.downedQueenBee } }, new() { { "Skeletron", NPC.downedBoss3 } }, new() { { "Deerclops", NPC.downedDeerclops } }, new() { { "Wall of Flesh", Main.hardMode } }, new() { { "Queen Slime", NPC.downedQueenSlime } }, new() { { "The Twins", NPC.downedMechBoss2 } }, new() { { "The Destroyer", NPC.downedMechBoss1 } }, new() { { "Skeletron Prime", NPC.downedMechBoss3 } }, new() { { "Plantera", NPC.downedPlantBoss } }, new() { { "Golem", NPC.downedGolemBoss } }, new() { { "Duke Fishron", NPC.downedFishron } }, new() { { "Empress of Light", NPC.downedEmpressOfLight } }, new() { { "Lunatic Cultist", NPC.downedAncientCultist } }, new() { { "Moon Lord", NPC.downedMoonlord } }, new() { { "Solar Pillar", NPC.downedTowerSolar } }, new() { { "Nebula Pillar", NPC.downedTowerNebula } }, new() { { "Vortex Pillar", NPC.downedTowerVortex } }, new() { { "Stardust Pillar", NPC.downedTowerStardust } } });
+                List<Dictionary<string, bool>> processList = new (
+                    new Dictionary<string, bool>[] { new () { { "King Slime", NPC.downedSlimeKing } }, new () { { "Eye of Cthulhu", NPC.downedBoss1 } }, new () { { "Eater of Worlds / Brain of Cthulhu", NPC.downedBoss2 } }, new () { { "Queen Bee", NPC.downedQueenBee } }, new () { { "Skeletron", NPC.downedBoss3 } }, new () { { "Deerclops", NPC.downedDeerclops } }, new () { { "Wall of Flesh", Main.hardMode } }, new () { { "Queen Slime", NPC.downedQueenSlime } }, new () { { "The Twins", NPC.downedMechBoss2 } }, new () { { "The Destroyer", NPC.downedMechBoss1 } }, new () { { "Skeletron Prime", NPC.downedMechBoss3 } }, new () { { "Plantera", NPC.downedPlantBoss } }, new () { { "Golem", NPC.downedGolemBoss } }, new () { { "Duke Fishron", NPC.downedFishron } }, new () { { "Empress of Light", NPC.downedEmpressOfLight } }, new () { { "Lunatic Cultist", NPC.downedAncientCultist } }, new () { { "Moon Lord", NPC.downedMoonlord } }, new () { { "Solar Pillar", NPC.downedTowerSolar } }, new () { { "Nebula Pillar", NPC.downedTowerNebula } }, new () { { "Vortex Pillar", NPC.downedTowerVortex } }, new () { { "Stardust Pillar", NPC.downedTowerStardust } } });
                 result = new RestObject { { "type", "process" }, { "result", processList }, { "worldname", Main.worldName }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
@@ -209,12 +209,12 @@ internal static class MessageHandle
                 break;
             case "mappng":
                 var bitmap = MapGenerator.Create();
-                using (MemoryStream ms = new())
+                using (MemoryStream ms = new ())
                 {
                     await bitmap.SaveAsync(ms, new PngEncoder());
                     var imageBytes = ms.ToArray();
                     var base64 = Convert.ToBase64String(imageBytes);
-                    result = new RestObject { { "type", "mappngV2" }, { "result", Utils.CompressBase64(base64) }, { "group", (long) jsonObject["group"]! } };
+                    result = new RestObject { { "type", "mappngV2" }, { "result",Utils.CompressBase64(base64) }, { "group", (long) jsonObject["group"]! } };
                 }
 
                 await SendDateAsync(JsonConvert.SerializeObject(result));
@@ -223,7 +223,7 @@ internal static class MessageHandle
                 name = (string) jsonObject["name"]!;
                 var playerList3 = TSPlayer.FindByNameOrID("tsn:" + name);
                 List<int> buffs;
-                List<int> enhance = new();
+                List<int> enhance = new ();
                 if (playerList3.Count != 0)
                 {
                     #region 查背包 在线
@@ -389,7 +389,7 @@ internal static class MessageHandle
                         }
                     }
 
-                    List<List<int>> itemList = new();
+                    List<List<int>> itemList = new ();
                     foreach (var i in netItems)
                     {
                         itemList.Add(new List<int> { i.NetId, i.Stack });
@@ -484,7 +484,7 @@ internal static class MessageHandle
                         enhance.Add(5289); // 5289	矿车升级包
                     }
 
-                    List<List<int>> itemList = new();
+                    List<List<int>> itemList = new ();
                     foreach (var i in data.inventory)
                     {
                         itemList.Add(new List<int> { i.NetId, i.Stack });
@@ -514,7 +514,7 @@ internal static class MessageHandle
                 break;
             case "mapfile":
                 var mapfile = MapFileGenerator.Create();
-                result = new RestObject { { "type", "mapfileV2" }, { "base64", mapfile.Item1 }, { "name", mapfile.Item2 }, { "group", (long) jsonObject["group"]! } };
+                result = new RestObject { { "type", "mapfileV2" }, { "base64", mapfile.Item1 }, { "name", mapfile.Item2  }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "worldfile":

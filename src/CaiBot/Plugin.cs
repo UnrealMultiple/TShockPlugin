@@ -18,23 +18,24 @@ namespace CaiBot;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public static readonly Version VersionNum = new(2024, 12, 22, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new (2025, 1, 12, 1); //日期+版本号(0,1,2...)
     internal static int InitCode = -1;
     public static bool LocalMode;
     public static bool DebugMode;
     private static bool _stopWebsocket;
-    internal static ClientWebSocket WebSocket = new();
+    internal static ClientWebSocket WebSocket = new ();
     private static readonly Task WebSocketTask = Task.CompletedTask;
-    private static readonly CancellationTokenSource TokenSource = new();
+    private static readonly CancellationTokenSource TokenSource = new ();
 
     public Plugin(Main game) : base(game)
     {
     }
 
     public override string Author => "Cai,羽学,西江";
-    public override string Description => GetString("CaiBot机器人的适配插件");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => VersionNum;
-
+    public override string Description => "CaiBot机器人的适配插件";
+    public override string Name => "CaiBotPlugin";
+    public override Version Version => VersionNum;
+    
     public override void Initialize()
     {
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
@@ -60,7 +61,7 @@ public class Plugin : TerrariaPlugin
                     while (string.IsNullOrEmpty(Config.Settings.Token))
                     {
                         await Task.Delay(TimeSpan.FromSeconds(10));
-                        HttpClient client = new();
+                        HttpClient client = new ();
                         client.Timeout = TimeSpan.FromSeconds(5.0);
                         var response = client.GetAsync($"http://api.terraria.ink:22334/bot/get_token?" +
                                                        $"code={InitCode}")
@@ -128,7 +129,7 @@ public class Plugin : TerrariaPlugin
                 {
                     if (WebSocket.State == WebSocketState.Open)
                     {
-                        Dictionary<string, string> heartBeat = new() { { "type", "HeartBeat" } };
+                        Dictionary<string, string> heartBeat = new () { { "type", "HeartBeat" } };
                         await MessageHandle.SendDateAsync(JsonConvert.SerializeObject(heartBeat));
                     }
                 }
@@ -174,7 +175,7 @@ public class Plugin : TerrariaPlugin
         {
             args.Handled = true;
         }
-
+        
         if (!Config.Settings.SyncChatFromServer || plr == null || !plr.IsLoggedIn || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) || args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier) || string.IsNullOrEmpty(args.Text))
         {
             return;
@@ -234,7 +235,7 @@ public class Plugin : TerrariaPlugin
                 return;
             }
 
-            List<string> lines = new() { "/caibot debug CaiBot调试开关", "/caibot code 生成并且展示验证码", "/caibot info 显示CaiBot的一些信息" };
+            List<string> lines = new () { "/caibot debug CaiBot调试开关", "/caibot code 生成并且展示验证码", "/caibot info 显示CaiBot的一些信息" };
 
             PaginationTools.SendPage(
                 plr, pageNumber, lines,
@@ -323,9 +324,9 @@ public class Plugin : TerrariaPlugin
         InitCode = new Random().Next(10000000, 99999999);
         TShock.Log.ConsoleError($"[CaiBot]您的服务器绑定码为: {InitCode}");
     }
-
-
-
+    
+    
+    
     #region 加载前置
 
     private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)

@@ -4,11 +4,10 @@
 - 出处: 无
 - 让多个服务器之间可以互相聊天
 
-
 ## 指令
-```
+
 无
-```
+
 ## 配置
 > 配置文件位置：tshock/ChattyBridge.json
 ```json5
@@ -26,11 +25,13 @@
   }
 }
 ```
-
 ## 更新日志
 
 ```
-V1.0.0.3
+v1.0.1.1
+修复大部分bug(URL错误,Format错误)
+
+v1.0.0.3
 使用LazyAPI实现多语言配置文件。
 
 v1.0.0.2
@@ -39,7 +40,6 @@ v1.0.0.2
 v1.0.0.1
 添加配置`是否转发指令`
 ```
-
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

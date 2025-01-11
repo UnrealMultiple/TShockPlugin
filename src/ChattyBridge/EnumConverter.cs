@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace ChattyBridge;
 
-internal class EnumConveter : JsonConverter
+internal class EnumConverter : JsonConverter
 {
     public override bool CanConvert(Type objectType)
     {
@@ -24,7 +24,7 @@ internal class EnumConveter : JsonConverter
                 }
             }
         }
-        return MsgType.Unknow;
+        return MsgType.Unknown;
     }
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
@@ -39,6 +39,6 @@ internal class EnumConveter : JsonConverter
                 return;
             }
         }
-        writer.WriteValue("unknow");
+        writer.WriteValue("unknown");
     }
 }
