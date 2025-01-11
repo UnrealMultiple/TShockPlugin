@@ -1,21 +1,28 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: RainbowChat\n"
-"POT-Creation-Date: 2024-12-15 03:11:36+0000\n"
-"PO-Revision-Date: 2024-11-06 00:04+0800\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:16:17+0000\n"
+"PO-Revision-Date: 2025-01-10 01:11\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en_US\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/RainbowChat/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1198\n"
+"Language: en_US\n"
 
-#: ../../RainbowChat.cs:113 ../../Commands.cs:152
+#: ../../RainbowChat.cs:112
+#: ../../Commands.cs:152
 msgid "[i:3454][c/E83849:注意][i:3454]\n"
 msgstr "[i:3454][c/E83849:Note][i:3454]\n"
 
-#: ../../RainbowChat.cs:52
+#: ../../RainbowChat.cs:51
 msgid "[彩色聊天]重新加载配置完毕。"
 msgstr "[RainbowChat] Configuration reloaded successfully."
 
@@ -81,11 +88,14 @@ msgstr "/rc random - Enable Or Disable your own random monochrome sentences\n"
 msgid "/rc 随机开关 - 全局开启|关闭随机色功能\n"
 msgstr "/rc rswitch - Globally enable | disable random color function\n"
 
-#: ../../RainbowChat.cs:114 ../../Commands.cs:153
+#: ../../RainbowChat.cs:15
+msgid "使玩家每次说话的颜色不一样."
+msgstr "Make the player chat a different color every time."
+
+#: ../../RainbowChat.cs:113
+#: ../../Commands.cs:153
 msgid "使用[c/B0B2D1:非正版客户端]或[c/B0B2D1:语言资源包]导致TS指令异常\n"
-msgstr ""
-"Using a [c/B0B2D1:non-official client] or [c/B0B2D1:language resource pack] "
-"may cause TShock command abnormalities.\n"
+msgstr "Using a [c/B0B2D1:non-official client] or [c/B0B2D1:language resource pack] may cause TShock command abnormalities.\n"
 
 #: ../../Commands.cs:52
 msgid "全局的渐变色聊天已 启用."
@@ -103,31 +113,25 @@ msgstr "Global random color chat has been enabled."
 msgid "全局的随机色聊天已 禁用."
 msgstr "Global random color chat has been disabled"
 
-#: ../../RainbowChat.cs:76
+#: ../../RainbowChat.cs:75
 msgid "您的渐变聊天功能已自动开启."
 msgstr "Your gradient chat feature has automatically turned on"
 
-#: ../../RainbowChat.cs:116
+#: ../../RainbowChat.cs:115
 msgid "或者请玩家使用 [c/B0B2D1:.help] 代替 [c/B0B2D1:/help]"
-msgstr ""
-"Or Please have the player use [c/B0B2D1:.help] instead of [c/B0B2D1:/help]"
+msgstr "Or Please have the player use [c/B0B2D1:.help] instead of [c/B0B2D1:/help]"
 
 #: ../../Commands.cs:155
 msgid "或者请玩家使用 [c/B0B2D1:．help] 代替 [c/B0B2D1:/help]"
-msgstr ""
-"Or Please have the player use [c/B0B2D1:．help] instead of [c/B0B2D1:/help]"
+msgstr "Or Please have the player use [c/B0B2D1:．help] instead of [c/B0B2D1:/help]"
 
 #: ../../Commands.cs:110
 msgid "无效的结束颜色值。请使用格式如 'R,G,B'（逗号分隔）的颜色表示法。"
-msgstr ""
-"Invalid end color value. Please use the format 'R,G,B' (comma-separated) for "
-"color notation."
+msgstr "Invalid end color value. Please use the format 'R,G,B' (comma-separated) for color notation."
 
 #: ../../Commands.cs:88
 msgid "无效的起始颜色值。请使用格式如 'R,G,B'（逗号分隔）的颜色表示法。"
-msgstr ""
-"Invalid start color value. Please use the format 'R,G,B' (comma-separated) "
-"for color notation."
+msgstr "Invalid start color value. Please use the format 'R,G,B' (comma-separated) for color notation."
 
 #: ../../Commands.cs:84
 #, csharp-format
@@ -141,21 +145,18 @@ msgstr "The gradient end color has been set to R:{0}, G:{1}, B:{2}."
 
 #: ../../Commands.cs:115
 msgid "结束颜色值缺失。请使用如 '/rc 渐变 结束 0,255,0' 的格式。"
-msgstr ""
-"End color value is missing. Please use the format '/rc gradient end 0,255,0'."
+msgstr "End color value is missing. Please use the format '/rc gradient end 0,255,0'."
 
-#: ../../RainbowChat.cs:115 ../../Commands.cs:154
+#: ../../RainbowChat.cs:114
+#: ../../Commands.cs:154
 msgid "请服主安装[c/B0B2D1:Chireiden.TShock.Omni]插件修复\n"
-msgstr ""
-"Please have the server owner install the [c/B0B2D1:Chireiden.TShock.Omni] "
-"plugin to fix the issue\n"
+msgstr "Please have the server owner install the [c/B0B2D1:Chireiden.TShock.Omni] plugin to fix the issue\n"
 
 #: ../../Commands.cs:93
 msgid "起始颜色值缺失。请使用如 '/rc 渐变 开始 255,0,0' 的格式。"
-msgstr ""
-"Start color value is missing. Please use the format '/rc gradient start "
-"255,0,0'。"
+msgstr "Start color value is missing. Please use the format '/rc gradient start 255,0,0'。"
 
 #: ../../Commands.cs:226
 msgid "错误的玩家!"
 msgstr "Incorrect player!"
+

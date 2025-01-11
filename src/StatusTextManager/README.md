@@ -109,8 +109,7 @@ namespace STMTest1;
 // ReSharper disable once UnusedType.Global
 public class Plugin : TerrariaPlugin
 {
-    public override string Name => "STMTest1";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public Plugin(Main game) : base(game)
     {
     }

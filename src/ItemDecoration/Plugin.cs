@@ -1,6 +1,6 @@
 ﻿using ItemDecoration.Configured;
 using LazyAPI;
-using System.Reflection;
+using LazyAPI.Extensions;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -12,10 +12,9 @@ public class Plugin : LazyPlugin
 {
     public override string Author => "FrankV22, Soofa, 少司命";
 
-    public override string Description => "Show Item Decoration and More!!!";
+    public override string Description => GetString("Show Item Decoration and More!!!");
 
-    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 0, 2);
 
     public Plugin(Main game) : base(game)
@@ -38,13 +37,13 @@ public class Plugin : LazyPlugin
             return;
         }
         var msg = ReplacePlaceholderWithItem(player, args.Text);
-        TShock.Utils.Broadcast(string.Format(TShock.Config.Settings.ChatFormat, player.Group.Name, player.Group.Prefix, player.Name, player.Group.Suffix,msg), player.Group.R, player.Group.G, player.Group.B);
+        TShock.Utils.Broadcast(string.Format(TShock.Config.Settings.ChatFormat, player.Group.Name, player.Group.Prefix, player.Name, player.Group.Suffix, msg), player.Group.R, player.Group.G, player.Group.B);
         args.Handled = true;
     }
 
     private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
     {
-        
+
         if (packetId == 13)
         {
             using var ms = new MemoryStream(instance.readBuffer);
@@ -73,7 +72,7 @@ public class Plugin : LazyPlugin
 
                         message += $"{Setting.Instance.ItemTextConfig.DamageText}: {newSelectItem.damage}";
                     }
-                    LazyAPI.Utils.SendCombatText(player, message, GetColorByRarity(newSelectItem.rare));
+                    player.SendCombatText(message, GetColorByRarity(newSelectItem.rare));
                 }
             }
         }

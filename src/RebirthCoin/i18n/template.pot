@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RebirthCoin\n"
-"POT-Creation-Date: 2024-11-07 09:32:10+0000\n"
-"PO-Revision-Date: 2024-11-07 09:32:11+0000\n"
+"POT-Creation-Date: 2025-01-08 13:16:19+0000\n"
+"PO-Revision-Date: 2025-01-08 13:16:19+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../RebirthCoin.cs:85
+#: ../../RebirthCoin.cs:84
 msgid "[复活币]重新加载配置完毕。"
 msgstr ""
 
@@ -18,15 +18,19 @@ msgstr ""
 msgid "{0} 被圣光笼罩，瞬间复活!!!"
 msgstr ""
 
-#: ../../RebirthCoin.cs:76
+#: ../../RebirthCoin.cs:75
 msgid "启动复活币需要先启动SSC功能，检测到服务器未开启SSC功能已自动关闭复活币功能"
 msgstr ""
 
-#: ../../RebirthCoin.cs:165
+#: ../../RebirthCoin.cs:164
 msgid "启动复活币需要先启动SSC功能! "
 msgstr ""
 
-#: ../../RebirthCoin.cs:64
+#: ../../RebirthCoin.cs:63
 msgid "未找到复活币配置，已为您创建！修改配置后输入指令 /reload 重新读取"
+msgstr ""
+
+#: ../../RebirthCoin.cs:14
+msgid "让死者瞬间原地复活的神奇力量！"
 msgstr ""
 

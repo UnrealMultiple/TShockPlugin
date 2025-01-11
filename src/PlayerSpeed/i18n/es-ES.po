@@ -1,0 +1,210 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:16:13+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/PlayerSpeed/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1196\n"
+"Language: es_ES\n"
+
+#: ../../Commands.cs:269
+msgid "[i:3455][c/AD89D5:玩][c/D68ACA:家][c/DF909A:速][c/E5A894:度][i:3454]\n"
+msgstr ""
+
+#: ../../Commands.cs:273
+msgid "/vel boss ——进度模式开关\n"
+msgstr ""
+
+#: ../../Commands.cs:275
+msgid "/vel del 玩家名 ——删除玩家数据\n"
+msgstr ""
+
+#: ../../Commands.cs:274
+msgid "/vel mess ——播报系统开关\n"
+msgstr ""
+
+#: ../../Commands.cs:271
+msgid "/vel off ——关闭插件功能\n"
+msgstr ""
+
+#: ../../Commands.cs:270
+msgid "/vel on ——开启插件功能\n"
+msgstr ""
+
+#: ../../Commands.cs:276
+msgid "/vel reset ——清除所有数据"
+msgstr ""
+
+#: ../../Commands.cs:272
+msgid "/vel set ——设置相关参数\n"
+msgstr ""
+
+#: ../../PlayerSpeed.cs:195
+#, csharp-format
+msgid "\n"
+"玩家 [c/4EA4F2:{0}] 因[c/FF5265:冲刺]或[c/DBF34E:跳跃] 超过[c/47DCBD:{1}次]进入冷却"
+msgstr ""
+
+#: ../../PlayerSpeed.cs:173
+#, csharp-format
+msgid "\n"
+"玩家 [c/4EA4F2:{0}] 疾速[c/FF5265:冷却]完毕!"
+msgstr ""
+
+#: ../../PlayerSpeed.cs:177
+msgid "使用克盾类饰品[c/47DCBD:冲刺]可冲更远"
+msgstr ""
+
+#: ../../PlayerSpeed.cs:15
+msgid "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发"
+msgstr ""
+
+#: ../../Commands.cs:120
+msgid "修改冲刺:"
+msgstr ""
+
+#: ../../Commands.cs:289
+#, csharp-format
+msgid "最高速度:[c/4EA4F2:{0}] 最大高度:[c/FF5265:{1}] "
+msgstr ""
+
+#: ../../Commands.cs:157
+msgid "冷却"
+msgstr ""
+
+#: ../../Commands.cs:282
+#, csharp-format
+msgid "冷却:[c/48DCB8:{0}] 间隔:[c/47DCBD:{1}]"
+msgstr ""
+
+#: ../../Commands.cs:290
+#, csharp-format
+msgid "冷却:[c/48DCB8:{0}秒] 使用次数:[c/47DCBD:{1}秒]"
+msgstr ""
+
+#: ../../Commands.cs:99
+msgid "参数: 速度([c/F24F62:sd]) 高度([c/48DCB8:h]) 间隔([c/4898DC:r]) 冷却([c/FE7F53:t])\n"
+msgstr ""
+
+#: ../../Commands.cs:63
+#, csharp-format
+msgid "已[c/E8585B:删除] {0} 的数据！"
+msgstr ""
+
+#: ../../Commands.cs:84
+msgid "已清除所有玩家数据"
+msgstr ""
+
+#: ../../Commands.cs:80
+msgid "已清除所有玩家数据,重置进度模式。"
+msgstr ""
+
+#: ../../Commands.cs:294
+msgid "当前为进度模式,服务器未击败相关BOSS"
+msgstr ""
+
+#: ../../Commands.cs:185
+#: ../../Commands.cs:216
+#, csharp-format
+msgid "找不到名为 {0} 的物品."
+msgstr ""
+
+#: ../../Commands.cs:101
+msgid "格式为:[c/48DCB8:/vel s sd 20 add 恐慌项链…]\n"
+msgstr ""
+
+#: ../../Commands.cs:168
+msgid "次数"
+msgstr ""
+
+#: ../../Commands.cs:100
+msgid "次数([c/DBF34E:c]) 加跳跃物品([c/59E32B:add]) 删跳跃物品([c/F14F63:del])\n"
+msgstr ""
+
+#: ../../Commands.cs:198
+msgid "添加物品"
+msgstr ""
+
+#: ../../Commands.cs:209
+#, csharp-format
+msgid "物品 {0} 不存在."
+msgstr ""
+
+#: ../../Commands.cs:226
+msgid "物品不存在"
+msgstr ""
+
+#: ../../Commands.cs:202
+msgid "物品已存在"
+msgstr ""
+
+#: ../../Commands.cs:39
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:关闭]加速功能。"
+msgstr ""
+
+#: ../../Commands.cs:33
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:启用]加速功能。"
+msgstr ""
+
+#: ../../Commands.cs:46
+#, csharp-format
+msgid "玩家 [{0}] 的已[c/92C5EC:关闭]玩家速度播报"
+msgstr ""
+
+#: ../../Commands.cs:54
+#, csharp-format
+msgid "玩家 [{0}] 的已[c/92C5EC:关闭]自动进度模式"
+msgstr ""
+
+#: ../../Commands.cs:45
+#, csharp-format
+msgid "玩家 [{0}] 的已[c/92C5EC:启用]玩家速度播报"
+msgstr ""
+
+#: ../../Commands.cs:53
+#, csharp-format
+msgid "玩家 [{0}] 的已[c/92C5EC:启用]自动进度模式"
+msgstr ""
+
+#: ../../Commands.cs:102
+msgid "确保属性后有正确的数字或名字,任意组合"
+msgstr ""
+
+#: ../../Commands.cs:209
+#: ../../Commands.cs:226
+msgid "移除物品"
+msgstr ""
+
+#: ../../PlayerSpeed.cs:182
+msgid "装备指定物品[c/47DCBC:可加速跳跃]!"
+msgstr ""
+
+#: ../../Commands.cs:134
+msgid "速度"
+msgstr ""
+
+#: ../../Commands.cs:281
+#, csharp-format
+msgid "速度:[c/4EA4F2:{0}] 高度:[c/FF5265:{1}] "
+msgstr ""
+
+#: ../../Commands.cs:178
+msgid "间隔"
+msgstr ""
+
+#: ../../Commands.cs:145
+msgid "高度"
+msgstr ""
+

@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Economics.RPG\n"
-"POT-Creation-Date: 2024-11-19 17:21:58+0000\n"
-"PO-Revision-Date: 2024-10-27 04:48:36+0800\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:15:52+0000\n"
+"PO-Revision-Date: 2025-01-10 01:11\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: \n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/Economics.RPG/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1160\n"
+"Language: en_US\n"
 
 #: ../../Setting/Config.cs:105
 #, csharp-format
@@ -25,27 +31,28 @@ msgstr "/rank {0}({1})"
 msgid "你因重置等级被踢出!"
 msgstr "You have been kicked out for resetting your level!"
 
-#: ../../Command.cs:17 ../../Command.cs:101
+#: ../../Command.cs:17
+#: ../../Command.cs:101
 msgid "你必须登陆才能使用此命令!"
 msgstr "You must be logged in to use this command!"
 
 #: ../../Command.cs:52
 #, csharp-format
 msgid "升级所需 ({0})"
-msgstr ""
+msgstr "Upgrade Required ({0})"
 
 #: ../../Command.cs:87
-#, fuzzy, csharp-format
-#| msgid "升级职业: {0}"
+#, csharp-format
 msgid "升级所需 {0}"
-msgstr "Upgrade profession: {0}"
+msgstr "Upgrade Required {0}"
 
-#: ../../RPG.cs:87
+#: ../../RPG.cs:86
 #, csharp-format
 msgid "升级职业: {0}"
 msgstr "Upgrade profession: {0}"
 
-#: ../../Command.cs:34 ../../Command.cs:69
+#: ../../Command.cs:34
+#: ../../Command.cs:69
 #, csharp-format
 msgid "升级至 {0} 需要手持武器{1}！ "
 msgstr "Upgrading to {0} requires holding weapon {1}!"
@@ -54,12 +61,13 @@ msgstr "Upgrading to {0} requires holding weapon {1}!"
 msgid "已经满级了，无法继续升级!"
 msgstr "Already at maximum level, cannot continue to upgrade!"
 
-#: ../../RPG.cs:86
+#: ../../RPG.cs:85
 #, csharp-format
 msgid "当前职业: {0}"
 msgstr "Current profession: {0}"
 
-#: ../../Command.cs:39 ../../Command.cs:74
+#: ../../Command.cs:39
+#: ../../Command.cs:74
 #, csharp-format
 msgid "必须满足进度限制:{0}"
 msgstr "Must meet the progress limit: {0}"
@@ -68,10 +76,15 @@ msgstr "Must meet the progress limit: {0}"
 msgid "您已成功重置等级!"
 msgstr "You have successfully reset your level!"
 
-#: ../../Command.cs:44 ../../Command.cs:79
+#: ../../Command.cs:44
+#: ../../Command.cs:79
 #, csharp-format
 msgid "成功升级至 {0}!"
 msgstr "Successfully upgraded to {0}!"
+
+#: ../../RPG.cs:18
+msgid "提供RPG玩法!"
+msgstr "Provides RPG gameplay!"
 
 #: ../../Command.cs:123
 msgid "玩家等级信息重置成功!"
@@ -95,6 +108,3 @@ msgstr "Syntax error, correct syntax:"
 msgid "请选择一个升级:"
 msgstr "Please select an upgrade:"
 
-#, csharp-format
-#~ msgid "升级所需 {0}，你当前{1}仅有{2}!"
-#~ msgstr "Upgrade requires {0}, you currently only have {2} {1}!"

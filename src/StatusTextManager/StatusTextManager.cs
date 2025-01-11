@@ -72,9 +72,8 @@ public class StatusTextManager : TerrariaPlugin
 
     #region Plugin Infos
 
-    public override string Name => "Status Text Manager";
-    public override string Author => "LaoSparrow";
-    public override string Description => "Manage status text of different plugins";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "LaoSparrow";
+    public override string Description => GetString("Manage status text of different plugins");
     public override Version Version => new Version(1, 1, 1);
 
     #endregion
@@ -83,7 +82,7 @@ public class StatusTextManager : TerrariaPlugin
 
     // Config
     private static readonly string ConfigFilePath = Path.Combine(TShock.SavePath, "StatusTextManager.json");
-    private static readonly ConfigFile<Settings> Config = new ();
+    private static readonly ConfigFile<Settings> Config = new();
     internal static Settings Settings => Config.Settings;
 
     // States

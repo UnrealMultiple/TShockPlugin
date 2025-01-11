@@ -2,7 +2,6 @@
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 using static SurfaceBlock.Tool;
 
 namespace SurfaceBlock;
@@ -11,9 +10,8 @@ namespace SurfaceBlock;
 public class SurfaceBlock : LazyPlugin
 {
     #region 插件信息
-    public override string Name => "禁地表弹幕";
-    public override string Author => "羽学 Cai 西江小子 熙恩";
-    public override string Description => "禁止特定弹幕在地表产生";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学 Cai 西江小子 熙恩";
+    public override string Description => GetString("禁止特定弹幕在地表产生");
     public override Version Version => new Version(2, 0, 0, 1);
     #endregion
 
@@ -69,7 +67,7 @@ public class SurfaceBlock : LazyPlugin
         {
             return;
         }
-        
+
         if (Configuration.Instance.ClearTable.Contains(e.Type))
         {
             if (!Main.remixWorld) //正常种子
@@ -106,7 +104,7 @@ public class SurfaceBlock : LazyPlugin
         var now = DateTime.UtcNow;
         if (Mydata.Dict != null && Mydata.Dict.TryGetValue(e.Player.Name, out var data))
         {
-            var name = (string)Terraria.Lang.GetProjectileName(e.Type);
+            var name = (string) Terraria.Lang.GetProjectileName(e.Type);
             if (name.StartsWith("ProjectileName."))
             {
                 name = GetString("未知");
@@ -182,7 +180,7 @@ public class SurfaceBlock : LazyPlugin
     {
         var item = TShock.Utils.GetItemById(plr.SelectedItem.type);
         var stack = plr.SelectedItem.stack;
-        var MyItem = Item.NewItem(null, (int)plr.X, (int)plr.Y, item.width, item.height, item.type, stack);
+        var MyItem = Item.NewItem(null, (int) plr.X, (int) plr.Y, item.width, item.height, item.type, stack);
         item.wet = Collision.WetCollision(item.position, item.width, item.height);
         if (MyItem >= 0 && MyItem < Main.item.Length)
         {
@@ -219,10 +217,10 @@ public class SurfaceBlock : LazyPlugin
             {
                 //获取图格回滚大小
                 GetRollbackSize(args.X, args.Y, out var width, out var length, out var offY);
-                var x = (short)(args.X - width);
-                var y = (short)(args.Y + offY);
-                var w = (byte)(width * 2);
-                var h = (byte)(length + 1);
+                var x = (short) (args.X - width);
+                var y = (short) (args.Y + offY);
+                var w = (byte) (width * 2);
+                var h = (byte) (length + 1);
 
                 TSPlayer.All.SendTileRect(x, y, w, h);
                 args.Handled = true;

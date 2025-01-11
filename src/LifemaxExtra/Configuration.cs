@@ -1,9 +1,7 @@
-﻿using LazyAPI;
+﻿using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
 using Newtonsoft.Json;
 using Terraria.ID;
-using TShockAPI;
-using System.IO;
 
 namespace LifemaxExtra;
 

@@ -1,0 +1,82 @@
+{
+  "Hall": {
+    "Left": 500,
+    "Top": 200,
+    "Right": 1100,
+    "Bottom": 600
+  },
+  "Lobby": {
+    "Left": 4003,
+    "Top": 331,
+    "Right": 4496,
+    "Bottom": 460
+  },
+  "WaitingZone": {
+    "Left": 4664,
+    "Top": 390,
+    "Right": 4770,
+    "Bottom": 464
+  },
+  "GamingZone": {
+    "Left": 433,
+    "Top": 9,
+    "Right": 3216,
+    "Bottom": 2391
+  },
+  "Islands": {
+    "Left": 433,
+    "Top": 9,
+    "Right": 3216,
+    "Bottom": 358
+  },
+  "Surface": {
+    "Left": 433,
+    "Top": 358,
+    "Right": 3216,
+    "Bottom": 648
+  },
+  "Cave": {
+    "Left": 433,
+    "Top": 648,
+    "Right": 3216,
+    "Bottom": 1032
+  },
+  "Spheres": {
+    "Left": 433,
+    "Top": 1032,
+    "Right": 3216,
+    "Bottom": 1671
+  },
+  "Maze": {
+    "Left": 433,
+    "Top": 1671,
+    "Right": 3216,
+    "Bottom": 2071
+  },
+  "CaveEx": {
+    "Left": 433,
+    "Top": 2071,
+    "Right": 3216,
+    "Bottom": 2201
+  },
+  "Hell": {
+    "Left": 433,
+    "Top": 2201,
+    "Right": 3216,
+    "Bottom": 2391
+  },
+
+
+  "SpheresLarge": 
+  [
+    { "X": 456, "Y": 1060 },
+    { "X": 801, "Y": 1353 },
+    { "X": 1156, "Y": 1111 },
+    { "X": 1503, "Y": 1037 },
+    { "X": 1794, "Y": 1367 },
+    { "X": 2133, "Y": 1107 },
+    { "X": 2491, "Y": 1303 },
+    { "X": 2882, "Y": 1123 }
+  ]
+
+}

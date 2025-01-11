@@ -9,7 +9,7 @@ namespace CaiBot;
 
 public class CaiBotPlayer : TSPlayer
 {
-    private readonly List<string> _commandOutput = new ();
+    private readonly List<string> _commandOutput = new();
 
     public CaiBotPlayer()
         : base("CaiBot")
@@ -32,7 +32,7 @@ public class CaiBotPlayer : TSPlayer
             result1 += item.Text;
         }
 
-        Regex regex = new (@"\[i(tem)?(?:\/s(?<Stack>\d{1,4}))?(?:\/p(?<Prefix>\d{1,3}))?:(?<NetID>-?\d{1,4})\]");
+        Regex regex = new(@"\[i(tem)?(?:\/s(?<Stack>\d{1,4}))?(?:\/p(?<Prefix>\d{1,3}))?:(?<NetID>-?\d{1,4})\]");
 
         var result = regex.Replace(result1, m =>
         {

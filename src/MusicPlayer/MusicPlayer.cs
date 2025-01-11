@@ -11,10 +11,9 @@ public class MusicPlayer : TerrariaPlugin
 {
     public override string Author => "Olink，Cjx适配，肝帝熙恩修改, yu大改";
 
-    public override string Description => "一个简单的音乐播放插件.";
+    public override string Description => GetString("一个简单的音乐播放插件.");
 
-    public override string Name => "音乐播放器";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 4);
 
     public string songPath = Path.Combine(TShock.SavePath, "Songs");

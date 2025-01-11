@@ -1,0 +1,23 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-10 13:00:16+0000\n"
+"PO-Revision-Date: 2025-01-11 01:09\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/DumpPluginsList/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1444\n"
+"Language: es_ES\n"
+
+#: ../../DumpPluginsList.cs:17
+msgid "Dump plugin list and exit"
+msgstr ""
+

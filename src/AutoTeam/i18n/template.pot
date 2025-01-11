@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoTeam\n"
-"POT-Creation-Date: 2024-12-20 06:45:18+0000\n"
-"PO-Revision-Date: 2024-12-20 06:45:18+0000\n"
+"POT-Creation-Date: 2025-01-10 16:04:26+0000\n"
+"PO-Revision-Date: 2025-01-10 16:04:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,32 +10,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../AutoTeamPlus.cs:47
-msgid "。"
-msgstr ""
-
-#: ../../AutoTeamPlus.cs:47
+#: ../../AutoTeamPlus.cs:46
 msgid "AutoTeamPlus 插件已"
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:95
+#: ../../AutoTeamPlus.cs:127
 #, csharp-format
 msgid "你的队伍已切换为 {0}."
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:46
+#: ../../AutoTeamPlus.cs:45
 msgid "启用"
 msgstr ""
 
-#: ../../Configuration.cs:22
-msgid "无队伍"
-msgstr ""
-
-#: ../../AutoTeamPlus.cs:99
-msgid "未配置，可随意切换."
-msgstr ""
-
-#: ../../AutoTeamPlus.cs:46
+#: ../../AutoTeamPlus.cs:45
 msgid "禁用"
+msgstr ""
+
+#: ../../AutoTeamPlus.cs:15
+msgid "自动分配一个组的玩家到特定队伍"
+msgstr ""
+
+#: ../../AutoTeamPlus.cs:131
+#, csharp-format
+msgid "队伍配置错误，您当前队伍为 {0}"
 msgstr ""
 

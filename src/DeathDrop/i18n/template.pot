@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DeathDrop\n"
-"POT-Creation-Date: 2024-10-25 14:10:18+0000\n"
-"PO-Revision-Date: 2024-10-25 14:10:19+0000\n"
+"POT-Creation-Date: 2025-01-08 13:15:46+0000\n"
+"PO-Revision-Date: 2025-01-08 13:15:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../DeathDrop.cs:49
+#: ../../DeathDrop.cs:47
 msgid "[死亡掉落] 重新加载配置完毕。"
+msgstr ""
+
+#: ../../DeathDrop.cs:15
+msgid "怪物死亡随机和自定义掉落物品"
 msgstr ""
 

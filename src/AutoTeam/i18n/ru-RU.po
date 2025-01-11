@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-10 16:04:26+0000\n"
+"PO-Revision-Date: 2025-01-11 01:09\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /master/src/AutoTeam/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1100\n"
+"Language: ru_RU\n"
+
+#: ../../AutoTeamPlus.cs:46
+msgid "AutoTeamPlus 插件已"
+msgstr ""
+
+#: ../../AutoTeamPlus.cs:127
+#, csharp-format
+msgid "你的队伍已切换为 {0}."
+msgstr ""
+
+#: ../../AutoTeamPlus.cs:45
+msgid "启用"
+msgstr ""
+
+#: ../../AutoTeamPlus.cs:45
+msgid "禁用"
+msgstr ""
+
+#: ../../AutoTeamPlus.cs:15
+msgid "自动分配一个组的玩家到特定队伍"
+msgstr ""
+
+#: ../../AutoTeamPlus.cs:131
+#, csharp-format
+msgid "队伍配置错误，您当前队伍为 {0}"
+msgstr ""
+

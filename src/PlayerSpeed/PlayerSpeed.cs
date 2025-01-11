@@ -1,7 +1,7 @@
-﻿using Terraria;
+﻿using LazyAPI;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using LazyAPI;
 using static PlayerSpeed.Configuration;
 
 namespace PlayerSpeed;
@@ -10,10 +10,9 @@ namespace PlayerSpeed;
 public class PlayerSpeed : LazyPlugin
 {
     #region 插件信息
-    public override string Name => "玩家速度";
-    public override string Author => "逆光奔跑 羽学";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "逆光奔跑 羽学";
     public override Version Version => new Version(1, 2, 4);
-    public override string Description => "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发";
+    public override string Description => GetString("使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发");
     #endregion
 
     #region 注册与释放
@@ -86,7 +85,7 @@ public class PlayerSpeed : LazyPlugin
             foreach (var id in group.ID)
             {
                 string npcName;
-                npcName = (string)Lang.GetNPCName(id);
+                npcName = (string) Lang.GetNPCName(id);
                 if (!Names.Contains(npcName))
                 {
                     Names.Add(npcName);
@@ -144,14 +143,14 @@ public class PlayerSpeed : LazyPlugin
             var boss = GetMaxSpeed(Configuration.Instance.BossList);
             if (boss != null && boss.Enabled)
             {
-                AddSpeed(plr, tplr, data,boss.CoolTime,boss.Count, boss.Speed, boss.Height);
+                AddSpeed(plr, tplr, data, boss.CoolTime, boss.Count, boss.Speed, boss.Height);
             }
         }
     }
     #endregion
 
     #region 加速方法核心逻辑
-    private static void AddSpeed(TSPlayer plr, Player tplr, Database.PlayerData? data,int CoolTime,int Count ,float Speed, float Height)
+    private static void AddSpeed(TSPlayer plr, Player tplr, Database.PlayerData? data, int CoolTime, int Count, float Speed, float Height)
     {
         var now = DateTime.UtcNow;
         var CRight = tplr.controlRight && tplr.direction == 1;
@@ -318,7 +317,7 @@ public class PlayerSpeed : LazyPlugin
         // 遍历列表寻找最大值
         foreach (var boss in bossList)
         {
-            if (boss.Enabled && 
+            if (boss.Enabled &&
                 (boss.Speed > maxBoss.Speed ||
                 boss.Height > maxBoss.Height ||
                 boss.Count > maxBoss.Count ||

@@ -16,11 +16,10 @@ public class ConsoleSql : TerrariaPlugin
     public override string Author => "Cai";
 
     //插件的一句话描述
-    public override string Description => "让控制台可以执行SQL操作数据库";
+    public override string Description => GetString("让控制台可以执行SQL操作数据库");
 
     //插件的名称
-    public override string Name => "ConsoleSql";
-
+    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     //插件的版本
     public override Version Version => new Version(1, 0, 1);
 

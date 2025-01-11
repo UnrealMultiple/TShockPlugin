@@ -6,7 +6,6 @@ using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Configuration;
-using TShockAPI.Models.PlayerUpdate;
 using static TShockAPI.GetDataHandlers;
 
 namespace MainPlugin;
@@ -14,13 +13,12 @@ namespace MainPlugin;
 [ApiVersion(2, 1)]
 public class MainPlugin : TerrariaPlugin
 {
-    public override string Name => "BuildMaster";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 5);
 
     public override string Author => "豆沙 羽学，肝帝熙恩适配";
 
-    public override string Description => "A minigame that is named BuildMaster";
+    public override string Description => GetString("A minigame that is named BuildMaster");
 
     public MainPlugin(Main game)
         : base(game)

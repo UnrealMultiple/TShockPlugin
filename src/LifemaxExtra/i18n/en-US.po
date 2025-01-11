@@ -1,0 +1,127 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:16:05+0000\n"
+"PO-Revision-Date: 2025-01-10 01:11\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/LifemaxExtra/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1186\n"
+"Language: en_US\n"
+
+#: ../../PluginContainer.cs:233
+msgid "/hp enh <提升数值>"
+msgstr "/hp enh <increase value>"
+
+#: ../../PluginContainer.cs:231
+msgid "/hp enh <玩家> <提升数值>"
+msgstr "/hp enh <player> <increase value>"
+
+#: ../../PluginContainer.cs:234
+msgid "/hp set <数值>"
+msgstr "/hp set <value>"
+
+#: ../../PluginContainer.cs:232
+msgid "/hp set <玩家> <数值>"
+msgstr "/hp set <player> <value>"
+
+#: ../../PluginContainer.cs:135
+msgid "/mp enh <提升数值>"
+msgstr "/mp enh <increase value>"
+
+#: ../../PluginContainer.cs:133
+msgid "/mp enh <玩家> <提升数值>"
+msgstr "/mp enh <player> <increase value>"
+
+#: ../../PluginContainer.cs:136
+msgid "/mp set <数值>"
+msgstr "/mp set <value>"
+
+#: ../../PluginContainer.cs:134
+msgid "/mp set <玩家> <数值>"
+msgstr "/mp set <player> <value>"
+
+#: ../../PluginContainer.cs:58
+msgid "你没有开启SSC，LifemaxExtra无法正常运行"
+msgstr "If you do not enable SSC, LifemaxExtra cannot run normally."
+
+#: ../../PluginContainer.cs:147
+msgid "最大蓝量不得超过{0}!"
+msgstr "Maximum mana value must not exceed {0}!"
+
+#: ../../PluginContainer.cs:158
+msgid "最大血量不得超过{0}!"
+msgstr "Maximum health value must not exceed {0}!"
+
+#: ../../PluginContainer.cs:172
+#: ../../PluginContainer.cs:209
+#, csharp-format
+msgid "成功为玩家`{0}`提高{1}血量上限!"
+msgstr "Successfully increased {1} health limit for player `{0}`!"
+
+#: ../../PluginContainer.cs:74
+#: ../../PluginContainer.cs:111
+#, csharp-format
+msgid "成功为玩家`{0}`提高{1}魔法上限!"
+msgstr "Successfully increased {1} mana limit for player `{0}`!"
+
+#: ../../PluginContainer.cs:192
+#, csharp-format
+msgid "成功设置玩家`{0}`血量上限!"
+msgstr "Successfully set player `{0}` health limit!"
+
+#: ../../PluginContainer.cs:221
+#, csharp-format
+msgid "成功设置玩家`{0}`血量上限{1}!"
+msgstr "Successfully set player `{0}` health limit {1}!"
+
+#: ../../PluginContainer.cs:94
+#, csharp-format
+msgid "成功设置玩家`{0}`魔法上限!"
+msgstr "Successfully set player `{0}` mana limit!"
+
+#: ../../PluginContainer.cs:123
+#, csharp-format
+msgid "成功设置玩家`{0}`魔法上限{1}!"
+msgstr "Successfully set player `{0}` mana limit {1}!"
+
+#: ../../PluginContainer.cs:15
+msgid "提升生命值上限"
+msgstr "Increase health and mana limit"
+
+#: ../../PluginContainer.cs:248
+#: ../../PluginContainer.cs:279
+msgid "生命值无法大于{0}!"
+msgstr "Health value cannot be greater than {0}!"
+
+#: ../../PluginContainer.cs:83
+#: ../../PluginContainer.cs:103
+#: ../../PluginContainer.cs:181
+#: ../../PluginContainer.cs:201
+msgid "目标玩家不在线!"
+msgstr "Player is not online!"
+
+#: ../../PluginContainer.cs:132
+#: ../../PluginContainer.cs:230
+msgid "语法错误"
+msgstr "Incorrect syntax"
+
+#: ../../PluginContainer.cs:78
+#: ../../PluginContainer.cs:98
+#: ../../PluginContainer.cs:115
+#: ../../PluginContainer.cs:127
+#: ../../PluginContainer.cs:176
+#: ../../PluginContainer.cs:196
+#: ../../PluginContainer.cs:213
+#: ../../PluginContainer.cs:225
+msgid "输入的数值有误!"
+msgstr "Wrong value entered!"
+

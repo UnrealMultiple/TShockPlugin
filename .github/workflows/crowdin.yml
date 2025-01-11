@@ -1,0 +1,60 @@
+name: Crowdin Sync
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  synchronize-with-crowdin:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Crowdin upload sources and download translations
+        uses: crowdin/github-action@v2
+        with:
+          crowdin_branch_name: 'master'
+
+          upload_sources: true
+          upload_translations: false
+
+          download_sources: false
+          download_translations: true
+
+          push_sources: false
+          push_translations: false
+
+          create_pull_request: false
+        env:
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+      
+      - name: Process translation files
+        shell: pwsh
+        run: |
+          foreach ($p in @(git diff --numstat)) {
+            if (!$p.EndsWith(".po")) { continue }
+            $d = -split $p
+            if ([int]$d[0] -le 1 -and [int]$d[1] -le 1) {
+              git checkout $d[2]
+            }
+          }
+  
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: 'New Crowdin translations [skip actions]'
+          committer: 'Crowdin Bot <support+bot@crowdin.com>'
+          title: 'New Crowdin Translations'
+          body: 'New Crowdin pull request with translations'
+          branch: 'i18n-tmp'
+          base: 'master'
+      

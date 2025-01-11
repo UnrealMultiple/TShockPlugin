@@ -1,3 +1,4 @@
+using LazyAPI.Attributes;
 using System.Reflection;
 using TShockAPI;
 

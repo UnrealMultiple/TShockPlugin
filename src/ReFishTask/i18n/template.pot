@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ReFishTask\n"
-"POT-Creation-Date: 2024-11-19 17:22:27+0000\n"
-"PO-Revision-Date: 2024-11-19 17:22:28+0000\n"
+"POT-Creation-Date: 2025-01-08 18:23:36+0000\n"
+"PO-Revision-Date: 2025-01-08 18:23:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -12,5 +12,9 @@ msgstr ""
 
 #: ../../ReFishTask.cs:50
 msgid "[ReFishTask]重新加载配置完毕。"
+msgstr ""
+
+#: ../../ReFishTask.cs:16
+msgid "当你完成渔夫任务时可无限接渔夫任务"
 msgstr ""
 

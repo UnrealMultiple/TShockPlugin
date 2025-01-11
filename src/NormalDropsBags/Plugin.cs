@@ -11,10 +11,9 @@ public class Plugin : TerrariaPlugin
 
     public override string Author => "Quinci 羽学适配";
 
-    public override string Description => "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。";
+    public override string Description => GetString("让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。");
 
-    public override string Name => "普通难度宝藏袋";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 1, 3, 2);
 
     public Plugin(Main game) : base(game)

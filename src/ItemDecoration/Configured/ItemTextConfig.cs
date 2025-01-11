@@ -1,9 +1,5 @@
-﻿using LazyAPI.ConfigFiles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LazyAPI.Attributes;
+using LazyAPI.ConfigFiles;
 
 namespace ItemDecoration.Configured;
 public class ItemTextConfig : BaseItemOption

@@ -20,10 +20,9 @@ public class EssentialsPlus : TerrariaPlugin
 
     public override string Author => "WhiteX等人，Average,Cjx,肝帝熙恩翻译,Cai更新";
 
-    public override string Description => "增强版Essentials";
+    public override string Description => GetString("增强版Essentials");
 
-    public override string Name => "EssentialsPlus";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 5);
 
 
@@ -150,7 +149,7 @@ public class EssentialsPlus : TerrariaPlugin
             var host = Config.MySqlHost.Split(':');
             Db = new MySqlConnection
             {
-                ConnectionString = string.Format(   "Server={0}; Port={1}; Database={2}; Uid={3}; Pwd={4};",
+                ConnectionString = string.Format("Server={0}; Port={1}; Database={2}; Uid={3}; Pwd={4};",
                     host[0],
                     host.Length == 1 ? "3306" : host[1],
                     Config.MySqlDbName,

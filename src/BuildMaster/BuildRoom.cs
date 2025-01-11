@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MiniGamesAPI;
 using Newtonsoft.Json;
-using Steamworks;
 using System.Text;
 using System.Timers;
 using Terraria;

@@ -1,5 +1,4 @@
 ﻿using EconomicsAPI.Configured;
-using IL.Terraria.GameContent.Creative;
 using Newtonsoft.Json;
 using TShockAPI;
 
@@ -18,7 +17,7 @@ public class Config
         var DealContext = new DealContext()
         {
             Publisher = player.Name,
-            RedemptionRelationships = new() { CurrencyType = type, Number = Cost},
+            RedemptionRelationships = new() { CurrencyType = type, Number = Cost },
             Item = new()
             {
                 netID = player.SelectedItem.netID,

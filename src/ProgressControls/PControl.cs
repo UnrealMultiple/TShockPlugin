@@ -16,9 +16,8 @@ public partial class PControl : TerrariaPlugin
     //指令色00A8FF
     //金表17，铂金表709，秒表3099，杀怪计数器3095，食人魔勋章3868，计划书903
     public override string Author => "z枳 羽学";
-    public override string Description => "计划书";
-    public override string Name => "ProgressControl";
-    public override Version Version => new Version(1, 0, 0, 10);
+    public override string Description => GetString("计划书");
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 10);
 
     public static Config config = new Config();
 

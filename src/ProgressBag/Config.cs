@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI.Attributes;
+using LazyAPI.ConfigFiles;
+using LazyAPI.Utility;
 
 namespace ProgressBag;
 
@@ -13,29 +15,49 @@ public class Award
 
 public class Bag
 {
-    [JsonProperty("礼包名称")]
+    [LocalizedPropertyName(CultureType.Chinese, "礼包名称")]
+    [LocalizedPropertyName(CultureType.English, "Name")]
     public string Name { get; set; } = "新手礼包";
 
-    [JsonProperty("进度限制")]
+    [LocalizedPropertyName(CultureType.Chinese, "进度限制")]
+    [LocalizedPropertyName(CultureType.English, "ProgressLimit")]
     public List<string> Limit { get; set; } = new();
 
-    [JsonProperty("礼包奖励")]
+    [LocalizedPropertyName(CultureType.Chinese, "礼包奖励")]
+    [LocalizedPropertyName(CultureType.English, "Award")]
     public List<Award> Award { get; set; } = new();
 
-    [JsonProperty("执行命令")]
+    [LocalizedPropertyName(CultureType.Chinese, "执行命令")]
+    [LocalizedPropertyName(CultureType.English, "Commands")]
     public List<string> Command { get; set; } = new();
 
-    [JsonProperty("已领取玩家")]
+    [LocalizedPropertyName(CultureType.Chinese, "已领取玩家")]
+    [LocalizedPropertyName(CultureType.English, "ReceivePlayers")]
     public List<string> Receive { get; set; } = new();
 
-    [JsonProperty("可领取组")]
+    [LocalizedPropertyName(CultureType.Chinese, "可领取组")]
+    [LocalizedPropertyName(CultureType.English, "Groups")]
     public List<string> Group { get; set; } = new();
 }
 
-public class Config
+[Config]
+public class Config : JsonConfigBase<Config>
 {
-    [JsonProperty("礼包")]
+    [LocalizedPropertyName(CultureType.Chinese, "礼包")]
+    [LocalizedPropertyName(CultureType.English, "Bags")]
     public List<Bag> Bag = new();
+
+    protected override void SetDefault()
+    {
+        foreach (var (type, names) in GameProgressHelper.DefaultProgressTypes)
+        {
+            Bag bag = new();
+            bag.Limit.Add(names.First());
+            bag.Name = names.First() + "礼包";
+            bag.Award.Add(new Award());
+            this.Bag.Add(bag);
+        }
+    }
 
     public void Reset()
     {
@@ -43,35 +65,6 @@ public class Config
         {
             bag.Receive.Clear();
         }
-        this.Write(Plugin.PATH);
-    }
-
-
-    public static Config Read(string Path)//给定文件进行读
-    {
-        if (!File.Exists(Path))
-        {
-            return new Config();
-        }
-
-        using var fs = new FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read);
-        return Read(fs);
-    }
-    public static Config Read(Stream stream)//给定流文件进行读取
-    {
-        using var sr = new StreamReader(stream);
-        var cf = JsonConvert.DeserializeObject<Config>(sr.ReadToEnd())!;
-        return cf;
-    }
-    public void Write(string Path)//给定路径进行写
-    {
-        using var fs = new FileStream(Path, FileMode.Create, FileAccess.Write, FileShare.Write);
-        this.Write(fs);
-    }
-    public void Write(Stream stream)//给定流文件写
-    {
-        var str = JsonConvert.SerializeObject(this, Formatting.Indented);
-        using var sw = new StreamWriter(stream);
-        sw.Write(str);
+        this.SaveTo();
     }
 }

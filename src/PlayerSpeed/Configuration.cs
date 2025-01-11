@@ -1,4 +1,4 @@
-﻿using LazyAPI;
+﻿using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
 
 namespace PlayerSpeed;
@@ -95,7 +95,7 @@ internal class Configuration : JsonConfigBase<Configuration>
         [LocalizedPropertyName(CultureType.English, "NPCID")]
         public int[] ID { get; set; }
 
-        public BossData(string name,bool enabled, int count, int coolTime, float speed,float height,int[] id)
+        public BossData(string name, bool enabled, int count, int coolTime, float speed, float height, int[] id)
         {
             this.Name = name ?? "";
             this.Enabled = enabled;

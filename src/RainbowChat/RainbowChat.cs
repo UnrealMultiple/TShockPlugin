@@ -1,9 +1,9 @@
-﻿using System.Text;
+﻿using Microsoft.Xna.Framework;
+using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
-using Microsoft.Xna.Framework;
 
 namespace RainbowChat;
 
@@ -11,9 +11,8 @@ namespace RainbowChat;
 public class RainbowChat : TerrariaPlugin
 {
     #region 插件信息
-    public override string Name => "Rainbow Chat";
-    public override string Author => "Professor X 熙恩 羽学";
-    public override string Description => "使玩家每次说话的颜色不一样.";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "Professor X 熙恩 羽学";
+    public override string Description => GetString("使玩家每次说话的颜色不一样.");
     public override Version Version => new Version(1, 0, 8);
     #endregion
 

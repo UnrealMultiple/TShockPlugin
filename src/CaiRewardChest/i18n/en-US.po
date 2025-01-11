@@ -1,17 +1,23 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: CaiRewardChest\n"
-"POT-Creation-Date: 2024-12-07 18:04:54+0000\n"
-"PO-Revision-Date: 2024-09-29 12:54+0800\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:15:38+0000\n"
+"PO-Revision-Date: 2025-01-10 01:11\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/CaiRewardChest/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1126\n"
+"Language: en_US\n"
 
-#: ../../Plugin.cs:125
+#: ../../Plugin.cs:124
 #, csharp-format
 msgid "[i:{0}]你已经领取过这个奖励箱啦!"
 msgstr "[i:{0}] You've already claimed this reward chest!"
@@ -21,39 +27,45 @@ msgstr "[i:{0}] You've already claimed this reward chest!"
 msgid "[i:{0}]你打开了一个奖励箱: "
 msgstr "[i:{0}] You've opened a reward chest: "
 
-#: ../../Plugin.cs:94
+#: ../../Plugin.cs:93
 msgid "[i:48]你删除了这个奖励箱~"
 msgstr "[i:48] You've deleted this reward chest~"
 
-#: ../../Plugin.cs:77
+#: ../../Plugin.cs:76
 msgid "[i:48]你添加了一个奖励箱~"
 msgstr "[i:48] You've added a reward chest~"
 
-#: ../../Plugin.cs:170
+#: ../../Plugin.cs:169
 #, csharp-format
 msgid "[i:48]奖励箱初始化完成,共添加{0}个奖励箱~"
 msgstr "[i:48] Reward chest initialization complete, {0} reward chests added~"
 
-#: ../../Plugin.cs:154
+#: ../../Plugin.cs:153
 msgid "[i:48]奖励箱已全部清除~"
 msgstr "[i:48] All reward chests have been cleared~"
 
-#: ../../Plugin.cs:146
+#: ../../Plugin.cs:145
 msgid "[i:48]请打开需要删除的奖励箱~"
 msgstr "[i:48] Please open the reward chest you want to delete~"
 
-#: ../../Plugin.cs:140
+#: ../../Plugin.cs:139
 msgid "[i:48]请打开需要添加的奖励箱~"
 msgstr "[i:48] Please open the reward chest you want to add~"
 
-#: ../../Plugin.cs:134
+#: ../../Plugin.cs:133
 msgid "[i:48]请打开需要编辑的奖励箱~"
 msgstr "[i:48] Please open the reward chest you want to edit~"
 
-#: ../../Plugin.cs:88 ../../Plugin.cs:108
+#: ../../Plugin.cs:87
+#: ../../Plugin.cs:107
 msgid "[i:48]这个箱子好像不是奖励箱捏~"
 msgstr "[i:48] This chest doesn't seem to be a reward chest, huh? :D"
 
-#: ../../Plugin.cs:71
+#: ../../Plugin.cs:70
 msgid "[i:48]这个箱子好像是奖励箱捏~"
 msgstr "[i:48] This chest seems to be a reward chest, huh? :D"
+
+#: ../../Plugin.cs:20
+msgid "奖励箱！！"
+msgstr "Bonus chest ! !"
+

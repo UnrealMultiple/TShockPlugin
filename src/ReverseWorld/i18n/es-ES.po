@@ -1,0 +1,41 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-10 16:05:17+0000\n"
+"PO-Revision-Date: 2025-01-11 01:09\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/ReverseWorld/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1548\n"
+"Language: es_ES\n"
+
+#: ../../Code.cs:21
+#, csharp-format
+msgid "{0}个地雷已放置"
+msgstr ""
+
+#: ../../PluginContainer.cs:103
+msgid "世界已成功反转！"
+msgstr ""
+
+#: ../../PluginContainer.cs:27
+msgid "反转整个世界的方向和地形"
+msgstr ""
+
+#: ../../PluginContainer.cs:35
+msgid "在玩家当前位置放置地雷"
+msgstr ""
+
+#: ../../Code.cs:25
+#, csharp-format
+msgid "失败：{0}"
+msgstr ""
+

@@ -1,63 +1,63 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: BanNpc\n"
-"POT-Creation-Date: 2024-11-30 02:03:50+0000\n"
-"PO-Revision-Date: 2024-09-29 11:50+0800\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:15:33+0000\n"
+"PO-Revision-Date: 2025-01-10 01:11\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en\n"
+"Language-Team: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/BanNpc/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1106\n"
+"Language: en_US\n"
 
-#: ../../Plugin.cs:117
+#: ../../Plugin.cs:115
 msgid "/bm add [名称 或 ID]"
 msgstr "/bm add [name or ID]"
 
-#: ../../Plugin.cs:118
+#: ../../Plugin.cs:116
 msgid "/bm del [名称 或 ID]"
 msgstr "/bm del [name or ID]"
 
-#: ../../Plugin.cs:98
+#: ../../Plugin.cs:96
 msgid "NPC ID {0} 不在筛选列表中!"
 msgstr "NPC ID {0} is not in the filter list!"
 
-#: ../../Plugin.cs:84
+#: ../../Plugin.cs:82
 msgid "NPC ID {0} 已在阻止列表中!"
 msgstr "NPC ID {0} is already in the block list!"
 
-#: ../../Plugin.cs:103
+#: ../../Plugin.cs:101
 msgid "已成功从阻止列表中删除NPC ID: {0}!"
 msgstr "NPC ID: {0} has been successfully removed from the block list!"
 
-#: ../../Plugin.cs:89
+#: ../../Plugin.cs:87
 msgid "已成功将NPC ID添加到阻止列表: {0}!"
 msgstr "NPC ID: {0} has been successfully added to the block list!"
 
-#: ../../Plugin.cs:51
+#: ../../Plugin.cs:49
 msgid "当前阻止表为空."
 msgstr "The current block list is empty."
 
-#: ../../Plugin.cs:66
+#: ../../Plugin.cs:64
 msgid "无效NPC: {0} !"
 msgstr "Invalid NPC: {0}!"
 
-#: ../../Plugin.cs:108
+#: ../../Plugin.cs:13
+msgid "禁止指定怪物的出没"
+msgstr "Prohibit the appearance of specified monsters"
+
+#: ../../Plugin.cs:106
 msgid "语法错误: /bm <add/del> [名称 或 ID]"
 msgstr "Syntax error: /bm <add/del> [name or ID]"
 
-#: ../../Plugin.cs:55
+#: ../../Plugin.cs:53
 msgid "阻止怪物表: "
 msgstr "Monster Block List: "
 
-#~ msgid ""
-#~ "未找到禁止怪物表，已为您创建！\n"
-#~ "修改配置后输入/bm reload可以应用新的配置。"
-#~ msgstr ""
-#~ "he block list for monsters was not found and has been created for you!\n"
-#~ "After modifying the configuration, enter /bm reload to apply the new "
-#~ "settings."
-
-#~ msgid "禁止怪物表读取错误:"
-#~ msgstr "Error reading the monster block list:"

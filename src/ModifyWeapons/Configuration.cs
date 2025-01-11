@@ -1,6 +1,6 @@
-﻿using LazyAPI;
-using Microsoft.Xna.Framework;
+﻿using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
+using Microsoft.Xna.Framework;
 
 namespace ModifyWeapons;
 

@@ -27,13 +27,13 @@ public static class Vector2Ext
 
     public static Vector2[] GetCircleEdgePoints(this Vector2 pos, float radius, float distanceBetweenPoints)
     {
-        var numPoints = (int)Math.Ceiling(2 * Math.PI * radius / distanceBetweenPoints);
+        var numPoints = (int) Math.Ceiling(2 * Math.PI * radius / distanceBetweenPoints);
         var points = new Vector2[numPoints];
         for (var i = 0; i < numPoints; i++)
         {
-            var angle = (float)(i * (2 * Math.PI) / numPoints);
-            var x = radius * (float)Math.Cos(angle);
-            var y = radius * (float)Math.Sin(angle);
+            var angle = (float) (i * (2 * Math.PI) / numPoints);
+            var x = radius * (float) Math.Cos(angle);
+            var y = radius * (float) Math.Sin(angle);
             points[i] = pos + new Vector2(x, y);
         }
         return points;
@@ -42,12 +42,12 @@ public static class Vector2Ext
     public static Vector2[] GetArcPoints(this Vector2 vel, float startAngle, float endAngle, float radius, float interval)
     {
         var points = new List<Vector2>();
-        var steps = (int)Math.Round((endAngle - startAngle + 360) % 360 / interval);
+        var steps = (int) Math.Round((endAngle - startAngle + 360) % 360 / interval);
         for (var i = 0; i <= steps; i++)
         {
             var angle = (startAngle + (i * interval) + 360) % 360;
-            var x = (float)(radius * Math.Cos(angle * Math.PI / 180));
-            var y = (float)(radius * Math.Sin(angle * Math.PI / 180));
+            var x = (float) (radius * Math.Cos(angle * Math.PI / 180));
+            var y = (float) (radius * Math.Sin(angle * Math.PI / 180));
             points.Add(new Vector2(x, y) + vel);
         }
         return points.ToArray();
@@ -150,10 +150,10 @@ public static class Vector2Ext
         }
         List<Vector2> curvePoints = new();
         double distance = (pointB - pointA).Magnitude();
-        var numPoints = (int)Math.Round(distance / interval);
+        var numPoints = (int) Math.Round(distance / interval);
         for (var i = 0; i <= numPoints; i++)
         {
-            var t = i / (float)numPoints;
+            var t = i / (float) numPoints;
             var midPoint = Vector2.Lerp(pointA, pointB, t);
             var direction = (pointB - pointA).Normalized();
             var perpendicular = new Vector2(-direction.Y, direction.X);
@@ -173,8 +173,8 @@ public static class Vector2Ext
         var currentAngle = startAngle;
         for (var i = 0; i < loopCount; i++)
         {
-            var x = center.X + (radius * (float)Math.Cos(currentAngle * Math.PI / 180));
-            var y = center.Y + (radius * (float)Math.Sin(currentAngle * Math.PI / 180));
+            var x = center.X + (radius * (float) Math.Cos(currentAngle * Math.PI / 180));
+            var y = center.Y + (radius * (float) Math.Sin(currentAngle * Math.PI / 180));
             points.Add(new Vector2(x, y));
             currentAngle += angleIncrement;
         }
@@ -188,8 +188,8 @@ public static class Vector2Ext
         for (var i = 0; i < numberOfPoints; i++)
         {
             float angle = angleIncrement * i;
-            var x = centerPoint.X + ((float)Math.Cos(angle) * (startPoint.X - centerPoint.X));
-            var y = centerPoint.Y + ((float)Math.Sin(angle) * (startPoint.Y - centerPoint.Y));
+            var x = centerPoint.X + ((float) Math.Cos(angle) * (startPoint.X - centerPoint.X));
+            var y = centerPoint.Y + ((float) Math.Sin(angle) * (startPoint.Y - centerPoint.Y));
             points.Add(new Vector2(x, y));
         }
         return points;

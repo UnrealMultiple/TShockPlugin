@@ -1,0 +1,94 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 13:15:42+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /master/src/ConsoleSql/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1136\n"
+"Language: ru_RU\n"
+
+#: ../../Plugin.cs:69
+msgid "->Mysql列出表格:SHOW TABLES;"
+msgstr ""
+
+#: ../../Plugin.cs:68
+msgid "->Sqlite列出表格:SELECT name FROM sqlite_master WHERE type='table';"
+msgstr ""
+
+#: ../../Plugin.cs:75
+msgid "->修改数据表指定内容:UPDATE <表格名字> SET <更新列名> = '更新值' WHERE <条件>"
+msgstr ""
+
+#: ../../Plugin.cs:71
+msgid "->删除表格:DELETE FROM <表格名字>;"
+msgstr ""
+
+#: ../../Plugin.cs:72
+msgid "->删除记录:DELETE FROM <表格名字> WHERE <条件>;"
+msgstr ""
+
+#: ../../Plugin.cs:73
+msgid "->查询表格内容:SELECT * FROM <表格名字>;"
+msgstr ""
+
+#: ../../Plugin.cs:74
+msgid "->查询表格内容扩展:SELECT * FROM <表格名字> WHERE <条件 > LIMIT <返回行数>;"
+msgstr ""
+
+#: ../../Plugin.cs:70
+msgid "->清空表格:DROP TABLE <表格名字>;"
+msgstr ""
+
+#: ../../Plugin.cs:76
+msgid "*详细教程：https://www.runoob.com/sql/sql-tutorial.html"
+msgstr ""
+
+#: ../../Plugin.cs:146
+msgid "SQL执行失败!\n"
+msgstr ""
+
+#: ../../Plugin.cs:147
+#, csharp-format
+msgid "原因:{0}"
+msgstr ""
+
+#: ../../Plugin.cs:67
+msgid "常用SQL语句:"
+msgstr ""
+
+#: ../../Plugin.cs:96
+#, csharp-format
+msgid "影响{0}行 ({1}秒)"
+msgstr ""
+
+#: ../../Plugin.cs:95
+msgid "执行成功!"
+msgstr ""
+
+#: ../../Plugin.cs:139
+#, csharp-format
+msgid "查询到{0}行 ({1}秒)"
+msgstr ""
+
+#: ../../Plugin.cs:66
+msgid "格式错误!正确格式: sql <SQL语句>;"
+msgstr ""
+
+#: ../../Plugin.cs:61
+msgid "此命令仅支持控制台(BOT)执行!"
+msgstr ""
+
+#: ../../Plugin.cs:19
+msgid "让控制台可以执行SQL操作数据库"
+msgstr ""
+

@@ -15,11 +15,10 @@ namespace Economics.WeaponPlus;
 public class WeaponPlus : TerrariaPlugin
 {
     #region 插件信息
-    public override string Name => "Economics.WeaponPlus";
-
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "z枳 少司命";
 
-    public override string Description => "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes";
+    public override string Description => GetString("允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes");
 
     public override Version Version => new Version(2, 0, 0, 2);
     #endregion

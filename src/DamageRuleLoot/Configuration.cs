@@ -41,7 +41,7 @@ public class Configuration
     public bool FireImp { get; set; } = true;
 
     [JsonProperty("参与伤害榜的非BOSS怪ID", Order = 10)]
-    public int[] Expand { get; set; } = new int[] 
+    public int[] Expand { get; set; } = new int[]
     {
         243,
         541,

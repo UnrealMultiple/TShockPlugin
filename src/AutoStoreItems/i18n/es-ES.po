@@ -1,0 +1,241 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-08 18:22:45+0000\n"
+"PO-Revision-Date: 2025-01-10 09:18\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/AutoStoreItems/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1098\n"
+"Language: es_ES\n"
+
+#: ../../Commands.cs:76
+#, csharp-format
+msgid "[{0}的自动储存表]\n"
+msgstr ""
+
+#: ../../Tool.cs:14
+msgid "[c/32CEB7:保险箱]"
+msgstr ""
+
+#: ../../Tool.cs:13
+msgid "[c/32CEB7:存钱罐]"
+msgstr ""
+
+#: ../../Tool.cs:15
+msgid "[c/32CEB7:护卫熔炉]"
+msgstr ""
+
+#: ../../Tool.cs:16
+msgid "[c/32CEB7:虚空袋]"
+msgstr ""
+
+#: ../../Commands.cs:17
+msgid "【自动储存】指令菜单 [i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by] [c/00FFFF:羽学][i:3459]\n"
+msgstr ""
+
+#: ../../Commands.cs:18
+msgid "/ast —— 查看自动储存菜单\n"
+msgstr ""
+
+#: ../../Commands.cs:28
+msgid "/ast add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:删除]自存物品"
+msgstr ""
+
+#: ../../Commands.cs:22
+msgid "/ast armor —— 开启|关闭[c/F2F191:装备识别]模式\n"
+msgstr ""
+
+#: ../../Commands.cs:20
+msgid "/ast auto —— 开启|关闭[c/89DF85:自动识别]模式\n"
+msgstr ""
+
+#: ../../Commands.cs:25
+msgid "/ast bank —— 监听[c/F3B691:储存空间位格]开关\n"
+msgstr ""
+
+#: ../../Commands.cs:24
+msgid "/ast clear —— [c/E488C1:清理]自动储存表\n"
+msgstr ""
+
+#: ../../Commands.cs:21
+msgid "/ast hand —— 开启|关闭[c/F19092:手持识别]模式\n"
+msgstr ""
+
+#: ../../Commands.cs:23
+msgid "/ast list —— [c/85CEDF:列出]自己的[c/85CEDF:自动储存表]\n"
+msgstr ""
+
+#: ../../Commands.cs:26
+msgid "/ast mess —— 开启|关闭物品[c/F2F292:自存消息]\n"
+msgstr ""
+
+#: ../../Commands.cs:27
+msgid "/ast pm —— 开启|关闭[c/85CFDE:性能模式]\n"
+msgstr ""
+
+#: ../../Commands.cs:19
+msgid "/astreset —— 清空[c/85CFDE:所有玩家]数据\n"
+msgstr ""
+
+#: ../../Commands.cs:162
+msgid "不存在该物品，\"物品查询\": \"[c/92C5EC:https://terraria.wiki.gg/zh/wiki/Item_IDs]\""
+msgstr ""
+
+#: ../../Commands.cs:69
+msgid "只有玩家[c/E4EFBC:移动|攻击]才会执行[c/87DF86:自存]"
+msgstr ""
+
+#: ../../Commands.cs:85
+#: ../../Commands.cs:135
+msgid "启用"
+msgstr ""
+
+#: ../../Commands.cs:39
+msgid "已[c/92C5EC:清空]所有玩家《自动储存》数据！"
+msgstr ""
+
+#: ../../Tool.cs:124
+#: ../../Tool.cs:152
+#: ../../Tool.cs:203
+#, csharp-format
+msgid "已将 '[c/92C5EC:{0}]' 存入您的 {1} 当前数量: {2}"
+msgstr ""
+
+#: ../../Tool.cs:51
+#, csharp-format
+msgid "已将 '[c/92C5EC:{0}]'添加到自动储存表|指令菜单:[c/A1D4C2:/ast]"
+msgstr ""
+
+#: ../../Tool.cs:100
+#, csharp-format
+msgid "已将'[c/92C5EC:{0}]'存入您的{1} 当前数量: {2}"
+msgstr ""
+
+#: ../../Commands.cs:195
+msgid "已成功从自动储存删除物品: [c/92C5EC:{0}]!"
+msgstr ""
+
+#: ../../Commands.cs:181
+msgid "已成功将物品添加到自动储存: [c/92C5EC:{0}]!"
+msgstr ""
+
+#: ../../Commands.cs:127
+#, csharp-format
+msgid "已清理[c/92C5EC: {0} ]的自动储存表"
+msgstr ""
+
+#: ../../Commands.cs:87
+msgid "性能模式:不为[c/C086DF:堆叠达到单格上限]物品进行分堆累积"
+msgstr ""
+
+#: ../../Tool.cs:221
+#, csharp-format
+msgid "您的 {0} 已经满了，无法继续存入物品。"
+msgstr ""
+
+#: ../../Commands.cs:67
+#, csharp-format
+msgid "您的[c/BCB7E9:装备识别]为：[c/F29192:{0}]"
+msgstr ""
+
+#: ../../Commands.cs:68
+#, csharp-format
+msgid "您的[c/E4EFBC:手持储存]为：[c/C086DF:{0}]"
+msgstr ""
+
+#: ../../Commands.cs:66
+#, csharp-format
+msgid "您的[c/F2BEC0:自动识别]为：[c/87DF86:{0}]"
+msgstr ""
+
+#: ../../Commands.cs:65
+#, csharp-format
+msgid "您的自存[c/BBE9B7:监听]为：[c/E489C0:{0}]"
+msgstr ""
+
+#: ../../AutoStoreItems.cs:16
+msgid "持有指定物品根据配置物品ID自动存入存储空间"
+msgstr ""
+
+#: ../../Commands.cs:64
+#, csharp-format
+msgid "服务器[c/87DF86:性能模式]：[c/C086DF:{0}]"
+msgstr ""
+
+#: ../../Commands.cs:177
+msgid "物品 [c/92C5EC:{0}] 已在自动储存中!"
+msgstr ""
+
+#: ../../Commands.cs:191
+msgid "物品 {0} 不在自动储存中!"
+msgstr ""
+
+#: ../../Commands.cs:86
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:{1}]服务器性能模式。"
+msgstr ""
+
+#: ../../Commands.cs:95
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:启用]自动识别模式。"
+msgstr ""
+
+#: ../../Commands.cs:106
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:启用]装备识别储存模式。"
+msgstr ""
+
+#: ../../Commands.cs:96
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:禁用]自动识别模式。"
+msgstr ""
+
+#: ../../Commands.cs:107
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:禁用]装备识别储存模式。"
+msgstr ""
+
+#: ../../Commands.cs:136
+#, csharp-format
+msgid "玩家 [{0}] 的储物空间位格监听功能已[c/92C5EC:{1}]"
+msgstr ""
+
+#: ../../Commands.cs:117
+#, csharp-format
+msgid "玩家 [{0}] 的手持识别模式已[c/92C5EC:启用]"
+msgstr ""
+
+#: ../../Commands.cs:118
+#, csharp-format
+msgid "玩家 [{0}] 的手持识别模式已[c/92C5EC:禁用]"
+msgstr ""
+
+#: ../../Commands.cs:144
+#, csharp-format
+msgid "玩家 [{0}] 的自动储存消息已[c/92C5EC:启用]"
+msgstr ""
+
+#: ../../Commands.cs:145
+#, csharp-format
+msgid "玩家 [{0}] 的自动储存消息已[c/92C5EC:禁用]"
+msgstr ""
+
+#: ../../Commands.cs:85
+#: ../../Commands.cs:135
+msgid "禁用"
+msgstr ""
+
+#: ../../Commands.cs:57
+msgid "请用角色[c/D95065:重进服务器]后输入：/ast 指令查看菜单\n"
+"羽学声明：本插件纯属[c/7E93DE:免费]请勿上当受骗"
+msgstr ""
+
