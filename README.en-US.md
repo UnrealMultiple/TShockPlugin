@@ -164,7 +164,7 @@
 | [RainbowChat](./src/RainbowChat/README.md) | 100.0% | Random chat color |  |
 | [RandomBroadcast](./src/RandomBroadcast/README.md) | 100.0% | Random broadcast |  |
 | [RandRespawn](./src/RandRespawn/README.en-US.md) | 100.0% | Random spawn point |  |
-| [RealTime](./src/RealTime/README.md) | 100.0% | Synchronize server time with real time |  |
+| [RealTime](./src/RealTime/README.en-US.md) | 100.0% | Synchronize server time with real time |  |
 | [RebirthCoin](./src/RebirthCoin/README.en-US.md) | 100.0% | Consume designated items to revive player |  |
 | [RecipesBrowser](./src/RecipesBrowser/README.en-US.md) | 100.0% | Crafting table |  |
 | [ReFishTask](./src/ReFishTask/README.en-US.md) | 100.0% | Automatically refresh fisherman tasks |  |
