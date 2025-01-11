@@ -193,7 +193,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.3.2",
+    "Version": "2.0.3.3",
     "Author": "少司命,Cai,LaoSparrow",
     "Description": {
       "en-US": "Automatically update your plugins!",
