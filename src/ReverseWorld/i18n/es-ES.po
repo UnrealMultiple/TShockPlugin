@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-10 16:04:26+0000\n"
+"POT-Creation-Date: 2025-01-10 16:05:17+0000\n"
 "PO-Revision-Date: 2025-01-11 01:09\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
@@ -13,33 +13,29 @@ msgstr ""
 "X-Crowdin-Project: tshock-chinese-plugin\n"
 "X-Crowdin-Project-ID: 751499\n"
 "X-Crowdin-Language: es-ES\n"
-"X-Crowdin-File: /master/src/AutoTeam/i18n/template.pot\n"
-"X-Crowdin-File-ID: 1100\n"
+"X-Crowdin-File: /master/src/ReverseWorld/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1548\n"
 "Language: es_ES\n"
 
-#: ../../AutoTeamPlus.cs:46
-msgid "AutoTeamPlus 插件已"
-msgstr ""
-
-#: ../../AutoTeamPlus.cs:127
+#: ../../Code.cs:21
 #, csharp-format
-msgid "你的队伍已切换为 {0}."
+msgid "{0}个地雷已放置"
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:45
-msgid "启用"
+#: ../../PluginContainer.cs:103
+msgid "世界已成功反转！"
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:45
-msgid "禁用"
+#: ../../PluginContainer.cs:27
+msgid "反转整个世界的方向和地形"
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:15
-msgid "自动分配一个组的玩家到特定队伍"
+#: ../../PluginContainer.cs:35
+msgid "在玩家当前位置放置地雷"
 msgstr ""
 
-#: ../../AutoTeamPlus.cs:131
+#: ../../Code.cs:25
 #, csharp-format
-msgid "队伍配置错误，您当前队伍为 {0}"
+msgid "失败：{0}"
 msgstr ""
 

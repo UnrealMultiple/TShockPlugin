@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:35+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"PO-Revision-Date: 2025-01-11 01:09\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr " Name:"
 #: ../../ZHIPM.Initialize.cs:4977
 #, csharp-format
 msgid "，消耗点数 {0}"
-msgstr ", Number of consumption points {0}"
+msgstr ", Consumption points {0}"
 
 #: ../../ZHIPM.Utils.cs:1660
 #, csharp-format
@@ -243,25 +243,29 @@ msgstr "[c/74F3C9:{0}] players defeated [c/74F3C9:{1}]"
 #: ../../ZHIPM.Initialize.cs:2138
 #, csharp-format
 msgid "最大生命值：{0}   当前生命值：{1}"
-msgstr "Maximum health: {0} Current health: {1}"
+msgstr "Maximum health: {0}\n"
+"Current health: {1}"
 
 #: ../../ZHIPM.Initialize.cs:1661
 #: ../../ZHIPM.Initialize.cs:1849
 #, csharp-format
 msgid "最大生命值[i:29]：{0}   当前生命值[i:58]：{1}"
-msgstr "Maximum health value [i:29]: {0} Current health value [i:58]: {1}"
+msgstr "Maximum health value [i:29]: {0}\n"
+"Current health value [i:58]: {1}"
 
 #: ../../ZHIPM.Initialize.cs:1959
 #: ../../ZHIPM.Initialize.cs:2139
 #, csharp-format
 msgid "最大魔力值：{0}   当前魔力值：{1}"
-msgstr "Maximum mana value: {0} Current mana value: {1}"
+msgstr "Maximum mana value: {0}\n"
+"Current mana value: {1}"
 
 #: ../../ZHIPM.Initialize.cs:1662
 #: ../../ZHIPM.Initialize.cs:1850
 #, csharp-format
 msgid "最大魔力值[i:109]：{0}   当前魔力值[i:184]：{1}"
-msgstr "Maximum mana value [i:109]: {0} Current mana value [i:184]: {1}"
+msgstr "Maximum mana value [i:109]: {0}\n"
+"Current mana value [i:184]: {1}"
 
 #: ../../ZHIPM.Initialize.cs:3650
 #: ../../ZHIPM.Initialize.cs:3681
@@ -344,12 +348,12 @@ msgstr "Multiple results All inventories of player [{0}] are as follows:"
 #: ../../ZHIPM.Initialize.cs:1960
 #: ../../ZHIPM.Initialize.cs:2140
 msgid "完成渔夫任务数："
-msgstr "Number of angler quest completed:"
+msgstr "Angler quest completed:"
 
 #: ../../ZHIPM.Initialize.cs:1663
 #: ../../ZHIPM.Initialize.cs:1851
 msgid "完成渔夫任务数[i:3120]："
-msgstr "Number of completed angler quest [i:3120]:"
+msgstr "Completed angler quest [i:3120]:"
 
 #: ../../ZHIPM.Initialize.cs:1341
 msgid "宠物 + 矿车 + 坐骑 + 钩爪:"
@@ -394,22 +398,22 @@ msgstr "Boss has been killed:"
 #: ../../ZHIPM.Initialize.cs:1770
 #: ../../ZHIPM.Initialize.cs:1936
 msgid "已击杀Boss[i:3868]："
-msgstr "Bosshas been killed [i:3868] :"
+msgstr "Boss has been killed [i:3868]:"
 
 #: ../../ZHIPM.Initialize.cs:2224
 msgid "已击杀生物数："
-msgstr "Number of mobs killed:"
+msgstr "Mobs killed:"
 
 #: ../../ZHIPM.Initialize.cs:2062
 #, csharp-format
 msgid "已击杀生物数：{0} 个"
-msgstr "Number of mobs killed: {0}"
+msgstr "Mobs killed: {0}"
 
 #: ../../ZHIPM.Initialize.cs:1769
 #: ../../ZHIPM.Initialize.cs:1935
 #, csharp-format
 msgid "已击杀生物数[i:3095]：{0} 个"
-msgstr "Number of mobs killed [i:3095]: {0}"
+msgstr "Mobs killed [i:3095]: {0}"
 
 #: ../../ZHIPM.Initialize.cs:2064
 #: ../../ZHIPM.Initialize.cs:2226
@@ -419,7 +423,7 @@ msgstr "Rare mobs have been killed:"
 #: ../../ZHIPM.Initialize.cs:1771
 #: ../../ZHIPM.Initialize.cs:1937
 msgid "已击杀罕见生物[i:4274]："
-msgstr "Killed rare mobs [i:4274]:"
+msgstr "Rare mobs killed [i:4274]:"
 
 #: ../../ZHIPM.Initialize.cs:2751
 #, csharp-format
@@ -467,12 +471,12 @@ msgstr "Extra data for offline player [ {0} ] has been reset"
 #: ../../ZHIPM.Initialize.cs:1961
 #: ../../ZHIPM.Initialize.cs:2141
 msgid "库存硬币数："
-msgstr "Number of coins in stock:"
+msgstr "Coins in inventory:"
 
 #: ../../ZHIPM.Initialize.cs:1664
 #: ../../ZHIPM.Initialize.cs:1852
 msgid "库存硬币数[i:855]："
-msgstr "Number of coins in inventory[i:855]:"
+msgstr "Coins in inventory[i:855]:"
 
 #: ../../ZHIPM.Initialize.cs:2932
 #: ../../ZHIPM.Initialize.cs:3012
@@ -485,7 +489,7 @@ msgstr "Number of coins in inventory[i:855]:"
 #: ../../ZHIPM.Initialize.cs:3576
 #, csharp-format
 msgid "当前最多 {0} 人"
-msgstr "Currently at most {0} people"
+msgstr "Currently at most {0} player"
 
 #: ../../ZHIPM.Initialize.cs:1316
 msgid "当前染料:"
@@ -522,11 +526,11 @@ msgstr "Your character data has been reset"
 
 #: ../../ZHIPM.Initialize.cs:738
 msgid "您的埃癸斯果增益开启状态："
-msgstr "Your Aegis Fruit buff is on:"
+msgstr "Your Aegis Fruit booster is on:"
 
 #: ../../ZHIPM.Initialize.cs:733
 msgid "您的埃癸斯水晶增益开启状态："
-msgstr "Your Vital Crystal buff is on:"
+msgstr "Your Vital Crystal booster is on:"
 
 #: ../../ZHIPM.Initialize.cs:236
 #, csharp-format
@@ -547,7 +551,7 @@ msgstr "Your backup data has been reset"
 
 #: ../../ZHIPM.Initialize.cs:743
 msgid "您的奥术水晶增益开启状态："
-msgstr "Your Arcane Crystal Buff is on:"
+msgstr "Your Arcane Crystal booster is on:"
 
 #: ../../ZHIPM.Initialize.cs:728
 msgid "您的工匠面包增益开启状态："
@@ -563,11 +567,11 @@ msgstr "All your permanent boosters are turned off"
 
 #: ../../ZHIPM.Initialize.cs:780
 msgid "您的所有永久增益均开启"
-msgstr "All your permanent boosters are on"
+msgstr "All your permanent boosters are turned on"
 
 #: ../../ZHIPM.Initialize.cs:688
 msgid "您的渔夫任务完成数已被修改为："
-msgstr "Your number of angler quest completions has been modified to:"
+msgstr "Your angler quest completions has been modified to:"
 
 #: ../../ZHIPM.Initialize.cs:718
 msgid "您的火把神增益开启状态："
@@ -603,7 +607,7 @@ msgstr "Your extra data has been reset"
 
 #: ../../ZHIPM.Initialize.cs:683
 msgid "您的魔力上限已被修改为："
-msgstr "Your mana power limit has been modified to:"
+msgstr "Your mana limit has been modified to:"
 
 #: ../../ZHIPM.Initialize.cs:678
 msgid "您的魔力值已被修改为："
@@ -731,7 +735,7 @@ msgstr "Dye 3:"
 #: ../../ZHIPM.Initialize.cs:708
 #: ../../ZHIPM.Initialize.cs:859
 msgid "格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"
-msgstr "Format error! Enter /zmodify help to view command help for modifying player data"
+msgstr "Invalid syntax! Type /zmodify help to view command help for modifying player data"
 
 #: ../../ZHIPM.Utils.cs:753
 msgid "检测到符合该条件的玩家数目不唯一，请重新输入\n"

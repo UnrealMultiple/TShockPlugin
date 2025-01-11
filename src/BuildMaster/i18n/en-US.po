@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:15:35+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-01-11 01:09\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -23,214 +23,214 @@ msgstr " Joined the room"
 
 #: ../../MainPlugin.cs:861
 msgid " 强制退出了房间"
-msgstr ""
+msgstr " Forced to exit the room"
 
 #: ../../MainPlugin.cs:800
 msgid " 投票主题 "
-msgstr ""
+msgstr " Voting topic "
 
 #: ../../MainPlugin.cs:805
 msgid " 更改投票主题为 "
-msgstr ""
+msgstr " Change the voting topic to "
 
 #: ../../BuildRoom.cs:99
 msgid " 的作品"
-msgstr ""
+msgstr " Works"
 
 #: ../../BuildRoom.cs:255
 msgid " 的建筑区域"
-msgstr ""
+msgstr " Building area"
 
 #: ../../BuildPlayer.cs:78
 msgid " 离开了房间"
-msgstr ""
+msgstr " Left the room"
 
 #: ../../BuildRoom.cs:302
 msgid "————房内信息————"
-msgstr ""
+msgstr "————In-room information————"
 
 #: ../../BuildRoom.cs:357
 #, csharp-format
 msgid "[{0}] {1} 得分:{2}"
-msgstr ""
+msgstr "[{0}] {1} Score: {2}"
 
 #: ../../MainPlugin.cs:715
 msgid "[BuildMaster] 玩家数据出错,请尝试重新进入服务器"
-msgstr ""
+msgstr "[BuildMaster] Player data error, please try to re-enter the server"
 
 #: ../../MainPlugin.cs:70
 msgid "[房内聊天]"
-msgstr ""
+msgstr "[In-room chat]"
 
 #: ../../MainPlugin.cs:728
 msgid "/bm join [房间ID] 加入房间"
-msgstr ""
+msgstr "/bm join [room ID] join the room"
 
 #: ../../MainPlugin.cs:729
 msgid "/bm leave 离开房间"
-msgstr ""
+msgstr "/bm leave Leave the room"
 
 #: ../../MainPlugin.cs:727
 msgid "/bm list 查看房间列表"
-msgstr ""
+msgstr "/bm list View room list"
 
 #: ../../MainPlugin.cs:730
 msgid "/bm ready 准备/未准备"
-msgstr ""
+msgstr "/bm ready Ready/not ready"
 
 #: ../../MainPlugin.cs:731
 msgid "/bm vote [主题] 投票主题"
-msgstr ""
+msgstr "/bm vote [topic] voting topic"
 
 #: ../../MainPlugin.cs:280
 msgid "/bma addt [房间ID] [主题名] 添加主题"
-msgstr ""
+msgstr "/bma addt [Room ID] [topic name] Add topic"
 
 #: ../../MainPlugin.cs:269
 msgid "/bma create [房间名] 创建房间"
-msgstr ""
+msgstr "/bma create [room name] Create a room"
 
 #: ../../MainPlugin.cs:284
 msgid "/bma dp [玩家名字] 设置基础建造背包"
-msgstr ""
+msgstr "/bma dp [player name] Sets the basic building inventory"
 
 #: ../../MainPlugin.cs:285
 msgid "/bma ep 设置评分套装"
-msgstr ""
+msgstr "/bma ep Set rating kit"
 
 #: ../../MainPlugin.cs:268
 msgid "/bma list 列出所有房间"
-msgstr ""
+msgstr "/bma list List all rooms"
 
 #: ../../MainPlugin.cs:286
 msgid "/bma reload 重载配置文件非房间文件"
-msgstr ""
+msgstr "/bma reload Reloads configuration files other than room files"
 
 #: ../../MainPlugin.cs:270
 msgid "/bma remove [房间ID] 移除指定房间"
-msgstr ""
+msgstr "/bma remove [Room ID] Remove the specified room"
 
 #: ../../MainPlugin.cs:274
 msgid "/bma sdp [房间ID] [人数] 设置房间最小玩家数"
-msgstr ""
+msgstr "/bma sdp [Room ID] [number of player] Set the minimum number of players in the room"
 
 #: ../../MainPlugin.cs:283
 msgid "/bma sg [房间ID] [间隔] 设置小区域间隔"
-msgstr ""
+msgstr "/bma sg [Room ID] [interval] Set small area interval"
 
 #: ../../MainPlugin.cs:276
 msgid "/bma sgt [房间ID] [时间] 设置游戏时间(单位：秒)"
-msgstr ""
+msgstr "/bma sgt [Room ID] [time] Set game time (unit: seconds)"
 
 #: ../../MainPlugin.cs:281
 msgid "/bma sh [房间ID] [高] 设置小区域高"
-msgstr ""
+msgstr "/bma sh [Room ID] [high] Set the height of a small area"
 
 #: ../../MainPlugin.cs:273
 msgid "/bma smp [房间ID] [人数] 设置房间最大玩家数"
-msgstr ""
+msgstr "/bma smp [room ID] [number of player] Set the maximum number of players in the room"
 
 #: ../../MainPlugin.cs:278
 msgid "/bma sp [1/2] 选取点1/2"
-msgstr ""
+msgstr "/bma sp [1/2] Select 1/2"
 
 #: ../../MainPlugin.cs:279
 msgid "/bma sr [房间ID] 设置房间的游戏区域"
-msgstr ""
+msgstr "/bma sr [Room ID] Set the game area of ​​the room"
 
 #: ../../MainPlugin.cs:277
 msgid "/bma sst [房间ID] [时间] 设置评分时间(单位：秒)"
-msgstr ""
+msgstr "/bma sst [Room ID] [time] Set the scoring time (unit: seconds)"
 
 #: ../../MainPlugin.cs:271
 msgid "/bma start [房间ID] 开启指定房间"
-msgstr ""
+msgstr "/bma start [Room ID] Opens the specified room"
 
 #: ../../MainPlugin.cs:272
 msgid "/bma stop [房间ID] 关闭指定房间"
-msgstr ""
+msgstr "/bma stop [Room ID] Close the specified room"
 
 #: ../../MainPlugin.cs:282
 msgid "/bma sw [房间ID] [宽] 设置小区域宽"
-msgstr ""
+msgstr "/bma sw [Room ID] [width] Set the width of the small area"
 
 #: ../../MainPlugin.cs:275
 msgid "/bma swt [房间ID] [时间] 设置等待时间(单位：秒)"
-msgstr ""
+msgstr "/bma swt [Room ID] [time] Set waiting time (unit: seconds)"
 
 #: ../../MainPlugin.cs:21
 msgid "A minigame that is named BuildMaster"
-msgstr ""
+msgstr "A minigame that is named BuildMaster"
 
 #: ../../MainPlugin.cs:165
 msgid "不可以破坏边框"
-msgstr ""
+msgstr "Do not destroy borders"
 
 #: ../../MainPlugin.cs:207
 msgid "不可擅自离开建筑区域"
-msgstr ""
+msgstr "Do not leave building area without permission"
 
 #: ../../MainPlugin.cs:822
 #: ../../MainPlugin.cs:840
 msgid "不在房间中"
-msgstr ""
+msgstr "Not in the room"
 
 #: ../../BuildRoom.cs:311
 #: ../../BuildRoom.cs:329
 #: ../../BuildRoom.cs:338
 msgid "主题:"
-msgstr ""
+msgstr "Theme:"
 
 #: ../../MainPlugin.cs:778
 msgid "你不在房间中"
-msgstr ""
+msgstr "You are not in the room"
 
 #: ../../MainPlugin.cs:140
 msgid "你不能在别人的区域内恶意倒液体"
-msgstr ""
+msgstr "You cannot maliciously pour liquids in other player areas"
 
 #: ../../MainPlugin.cs:226
 msgid "你不能给自己评分"
-msgstr ""
+msgstr "You can't rate yourself"
 
 #: ../../MainPlugin.cs:243
 msgid "你已经评分过了"
-msgstr ""
+msgstr "You have already rated"
 
 #: ../../BuildRoom.cs:310
 #: ../../BuildRoom.cs:328
 #: ../../BuildRoom.cs:337
 #, csharp-format
 msgid "倒计时[{0}:{1}]"
-msgstr ""
+msgstr "Countdown [{0}:{1}]"
 
 #: ../../BuildRoom.cs:315
 #: ../../MainPlugin.cs:774
 msgid "已准备"
-msgstr ""
+msgstr "Prepared"
 
 #: ../../BuildRoom.cs:391
 msgid "已将你传送到建筑区域"
-msgstr ""
+msgstr "Teleported you to building area"
 
 #: ../../BuildRoom.cs:99
 #: ../../BuildRoom.cs:255
 msgid "已来到 "
-msgstr ""
+msgstr "Has arrived "
 
 #: ../../MainPlugin.cs:236
 #, csharp-format
 msgid "已给 {0} 的建筑更改评分:{1}分"
-msgstr ""
+msgstr "{0}'s building changes have been rated: {1} points"
 
 #: ../../MainPlugin.cs:232
 #, csharp-format
 msgid "已给 {0} 的建筑评分:{1}分"
-msgstr ""
+msgstr "Building {0} has been rated: {1} points"
 
 #: ../../MainPlugin.cs:311
 msgid "已设置基础套装"
-msgstr ""
+msgstr "Basic package set up"
 
 #: ../../MainPlugin.cs:322
 msgid "已设置评分套装"

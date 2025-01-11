@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:14+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-10 13:00:42+0000\n"
+"PO-Revision-Date: 2025-01-11 01:09\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,87 @@ msgstr ""
 "X-Crowdin-File-ID: 1494\n"
 "Language: ru_RU\n"
 
-#: ../../Plugin.cs:13
+#: ../../Plugin.cs:118
+#: ../../Plugin.cs:119
+#, csharp-format
+msgid "[{0}] => {1}"
+msgstr ""
+
+#: ../../Plugin.cs:79
+msgid "[{0}] 礼包已经领取过了，不能重复领取"
+msgstr ""
+
+#: ../../Plugin.cs:65
+#, csharp-format
+msgid "[进度礼包]: {0} 领取了 {1}"
+msgstr ""
+
+#: ../../Plugin.cs:109
+msgid "/bag list"
+msgstr ""
+
+#: ../../Plugin.cs:111
+msgid "/bag r <礼包名称>"
+msgstr ""
+
+#: ../../Plugin.cs:110
+msgid "/bag rall"
+msgstr ""
+
+#: ../../Plugin.cs:112
+msgid "/bag reload"
+msgstr ""
+
+#: ../../Plugin.cs:113
+msgid "/bag reset"
+msgstr ""
+
+#: ../../Plugin.cs:50
+msgid "你当前所在的组无法领取该礼包!"
+msgstr ""
+
+#: ../../Plugin.cs:41
+msgid "当前进度无法领取该礼包!"
+msgstr ""
+
+#: ../../Plugin.cs:143
+#, csharp-format
+msgid "成功领取{0}个进度礼包!"
+msgstr ""
+
+#: ../../Plugin.cs:155
+msgid "没有此礼包"
+msgstr ""
+
+#: ../../Plugin.cs:127
+msgid "没有足够权限执行此命令"
+msgstr ""
+
+#: ../../Plugin.cs:143
+msgid "没有进度礼包可以领取!"
+msgstr ""
+
+#: ../../Plugin.cs:102
+msgid "礼包列表 ({0}/{1})："
+msgstr ""
+
+#: ../../Plugin.cs:131
+msgid "礼包领取重置成功!"
+msgstr ""
+
+#: ../../Plugin.cs:103
+msgid "输入 {0}礼包 list {{0}} 查看更多"
+msgstr ""
+
+#: ../../Plugin.cs:159
+msgid "输入/bag help"
+msgstr ""
+
+#: ../../Plugin.cs:14
 msgid "进度礼包"
+msgstr ""
+
+#: ../../Plugin.cs:68
+msgid "领取成功 [{0}] 礼包"
 msgstr ""
 
