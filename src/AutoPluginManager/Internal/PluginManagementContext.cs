@@ -219,7 +219,6 @@ internal class PluginManagementContext
         var pluginAssemblyNames = plugins.ToArray();
         pluginAssemblyNames.ForEach(InstallPlugin);
         var ed = this.ResolvePluginDependencies(pluginAssemblyNames);
-        Console.WriteLine(JsonConvert.SerializeObject(ed, Formatting.Indented));
         ed.ForEach(InstallPlugin);
         return (success.ToArray(), ed);
     }
