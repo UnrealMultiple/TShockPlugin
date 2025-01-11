@@ -80,7 +80,7 @@
 | [BedSet](./src/BedSet/README.en-US.md) | 100.0% | Set and record respawn points | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.en-US.md) | 100.0% | Whitelist plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BridgeBuilder](./src/BridgeBuilder/README.en-US.md) | 100.0% | Quick bridge building | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [BuildMaster](./src/BuildMaster/README.md) | 0.8% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
+| [BuildMaster](./src/BuildMaster/README.en-US.md) | 42.5% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) |
 | [CaiBot](./src/CaiBot/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) |  |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.en-US.md) | 100.0% | Custom emoji command | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CaiLib](./src/CaiLib/README.md) | 0.0% | Cai's preload library | [SixLabors.ImageSharp]() |
@@ -104,7 +104,7 @@
 | [DamageStatistic](./src/DamageStatistic/README.md) | 100.0% | Display damage caused by each player after each boss fight |  |
 | [DataSync](./src/DataSync/README.md) | 0.0% | Progress synchronization |  |
 | [DeathDrop](./src/DeathDrop/README.md) | 100.0% | Random and custom loot upon monster death |  |
-| [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 100.0% | Prohibit monster loot |  |
+| [DisableMonsLoot](./src/DisableMonsLoot/README.en-US.md) | 100.0% | Prohibit monster loot |  |
 | [DonotFuck](./src/DonotFuck/README.en-US.md) | 100.0% | Prevent swearing | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 100.0% | Prevent entry into dungeons or temples |  |
 | [Dummy](./src/Dummy/README.en-US.md) | 100.0% | Dummy client | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
@@ -141,7 +141,7 @@
 | [LifemaxExtra](./src/LifemaxExtra/README.en-US.md) | 100.0% | Eat more life fruits/crystals | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | 100.0% | List installed plugins |  |
 | [MapTp](./src/MapTp/README.en-US.md) | 100.0% | Double-click on the map to teleport |  |
-| [MiniGamesAPI](./src/MiniGamesAPI/README.md) | 100.0% | Bean paste mini-game API |  |
+| [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) | 100.0% | Bean paste mini-game API |  |
 | [ModifyWeapons](./src/ModifyWeapons/README.en-US.md) | 100.0% | ModifyWeapons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [MonsterRegen](./src/MonsterRegen/README.md) | 100.0% | Monster progress regeneration |  |
 | [MusicPlayer](./src/MusicPlayer/README.md) | 100.0% | Simple music player |  |
@@ -156,7 +156,7 @@
 | [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | 0.0% | Hufang's player manager |  |
 | [PlayerRandomSwapper](./src/PlayerRandomSwapper/README.en-US.md) | 100.0% | Random Player Position Swap | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [PlayerSpeed](./src/PlayerSpeed/README.en-US.md) | 100.0% | Enable players to achieve a two-stage sprint | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [ProgressBag](./src/ProgressBag/README.md) | 100.0% | Progress gift pack | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [ProgressBag](./src/ProgressBag/README.en-US.md) | 100.0% | Progress gift pack | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ProgressControls](./src/ProgressControls/README.md) | 100.0% | Planbook (Automate server control) |  |
 | [ProgressRestrict](./src/ProgressRestrict/README.md) | 100.0% | Super progress detection | [DataSync](./src/DataSync/README.md) |
 | [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 100.0% | Accept proxy protocol connections |  |
@@ -171,7 +171,7 @@
 | [RegionView](./src/RegionView/README.md) | 100.0% | Display area boundaries |  |
 | [Respawn](./src/Respawn/README.md) | 100.0% | Respawn at the death place |  |
 | [RestInventory](./src/RestInventory/README.md) | 100.0% | Provide REST query backpack interface |  |
-| [ReverseWorld](./src/ReverseWorld/README.md) | 0.0% | World Reversal and Landmine Placement |  |
+| [ReverseWorld](./src/ReverseWorld/README.en-US.md) | 100.0% | World Reversal and Landmine Placement |  |
 | [RolesModifying](./src/RolesModifying/README.md) | 0.0% | Modify player backpack |  |
 | [Sandstorm](./src/Sandstorm/README.md) | 100.0% | Toggle sandstorm |  |
 | [ServerTools](./src/ServerTools/README.en-US.md) | 100.0% | Server management tools | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |

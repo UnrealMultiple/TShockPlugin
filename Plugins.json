@@ -260,7 +260,7 @@
     "Version": "2.4.6",
     "Author": "十七改，肝帝熙恩改",
     "Description": {
-      "en-US": "自动分配一个组的玩家到特定队伍",
+      "en-US": "Automatically assign a group of players to a specific team",
       "de-DE": "自动分配一个组的玩家到特定队伍",
       "it-IT": "自动分配一个组的玩家到特定队伍",
       "fr-FR": "自动分配一个组的玩家到特定队伍",
@@ -2501,7 +2501,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.110",
+    "Version": "1.9.2.111",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2523,7 +2523,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.110",
+    "Version": "1.0.0.111",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
@@ -2668,7 +2668,7 @@
     "Version": "1.0.1.3",
     "Author": "少司命",
     "Description": {
-      "en-US": "Progress gift pack",
+      "en-US": "Progress Bag",
       "de-DE": "进度礼包",
       "it-IT": "进度礼包",
       "fr-FR": "进度礼包",
