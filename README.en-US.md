@@ -172,7 +172,7 @@
 | [Respawn](./src/Respawn/README.md) | 100.0% | Respawn at the death place |  |
 | [RestInventory](./src/RestInventory/README.md) | 100.0% | Provide REST query backpack interface |  |
 | [ReverseWorld](./src/ReverseWorld/README.en-US.md) | 100.0% | World Reversal and Landmine Placement |  |
-| [RolesModifying](./src/RolesModifying/README.md) | 0.0% | Modify player backpack |  |
+| [RolesModifying](./src/RolesModifying/README.en-US.md) | 0.0% | Modify player backpack |  |
 | [Sandstorm](./src/Sandstorm/README.md) | 100.0% | Toggle sandstorm |  |
 | [ServerTools](./src/ServerTools/README.en-US.md) | 100.0% | Server management tools | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |
 | [SessionSentinel](./src/SessionSentinel/README.md) | 100.0% | Handle players not sending data packets for a long time |  |
