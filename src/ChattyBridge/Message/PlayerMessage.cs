@@ -21,7 +21,7 @@ public class PlayerMessage
     public byte[] RGB { get; init; } = new byte[3];
 
     [JsonProperty("type")]
-    [JsonConverter(typeof(EnumConveter))]
+    [JsonConverter(typeof(EnumConverter))]
     public MsgType Type { get; init; }
 
     public PlayerMessage(TSPlayer player)

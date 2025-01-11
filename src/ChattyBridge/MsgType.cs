@@ -4,8 +4,8 @@ namespace ChattyBridge;
 
 public enum MsgType
 {
-    [Description("unknow")]
-    Unknow,
+    [Description("unknown")]
+    Unknown,
 
     [Description("player_chat")]
     Chat,

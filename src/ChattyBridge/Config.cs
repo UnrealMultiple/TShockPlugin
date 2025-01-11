@@ -8,7 +8,7 @@ public class Config : JsonConfigBase<Config>
 {
     [LocalizedPropertyName(CultureType.English, "forward_command")]
     [LocalizedPropertyName(CultureType.Chinese, "转发指令")]
-    public bool ForwardCommamd { get; set; } = false;
+    public bool ForwardCommand { get; set; } = false;
 
     [LocalizedPropertyName(CultureType.English, "rest_address")]
     [LocalizedPropertyName(CultureType.Chinese, "Rest地址")]
