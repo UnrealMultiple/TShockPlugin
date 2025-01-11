@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:34+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-01-10 13:00:01+0000\n"
+"PO-Revision-Date: 2025-01-11 01:09\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1108\n"
 "Language: en_US\n"
 
-#: ../../Plugin.cs:39
+#: ../../Plugin.cs:40
 msgid "出生点位置设置成功!"
 msgstr "Spawn point set successfully!"
 
