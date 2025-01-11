@@ -3,18 +3,7 @@
 - 出处: [tshock-bless-world](https://github.com/onusai/tshock-bless-world)
 - 击败指定怪物转换世界所有图格与箱子内物品
 
-## 更新日志
-```
-v1.0.2
-i18n和README_EN.md
-v1.0.1
-i18n预定
-v1.0.0
-修改BlessWorld插件，将bless指令与服务器初始化时自动转换功能移除     
-加入了对击杀指定NPC实现转换设定      
-加入了从《怪物ID》取值，通过/reload事件重载，自动赋名给《怪物名》    
-```
-  
+
 ## 命令
 ```
 暂无
@@ -35,7 +24,7 @@ v1.0.0
   
 ## 配置
 > 配置文件位置：tshock/击败怪物替换世界物品.json
-```json
+```json5
 {
   "使用说明":"击败指定NPC将世界所有指定图格与箱子内物品对比1:1转换",
   "插件开关": true,
@@ -83,6 +72,20 @@ v1.0.0
   ]
 }
 ```
+
+## 更新日志
+```
+v1.0.2
+i18n和README_EN.md
+v1.0.1
+i18n预定
+v1.0.0
+修改BlessWorld插件，将bless指令与服务器初始化时自动转换功能移除     
+加入了对击杀指定NPC实现转换设定      
+加入了从《怪物ID》取值，通过/reload事件重载，自动赋名给《怪物名》    
+```
+
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

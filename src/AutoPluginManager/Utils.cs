@@ -1,6 +1,7 @@
-﻿using Terraria;
+﻿using AutoPluginManager.Internal;
 using System.Diagnostics;
 using System.Reflection;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -8,20 +9,15 @@ namespace AutoPluginManager;
 
 internal static class Utils
 {
-    public const string GiteePluginArchiveUrl = "https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
-    public const string GiteePluginManifestUrl = "https://gitee.com/kksjsj/TShockPlugin/raw/master/Plugins.json";
-
-    public const string GithubPluginArchiveUrl = "https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip";
-    public const string GithubPluginManifestUrl = "https://raw.githubusercontent.com/UnrealMultiple/TShockPlugin/master/Plugins.json";
-
-    private static Dictionary<string, PluginVersionInfo>? _installedPluginsManifestCache;
-    public static Dictionary<string, PluginVersionInfo> InstalledPluginsManifestCache => _installedPluginsManifestCache ??= GetInstalledPlugins().ToDictionary(i => i.AssemblyName);
-    public static readonly Dictionary<string, Version> PluginVersionOverrides = new ();
-    
+    /// <summary>
+    /// 卸载插件
+    /// </summary>
+    /// <param name="targetPaths"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public static List<string> UnLoadPlugins(IEnumerable<string> targetPaths)
     {
         var failedUnload = new List<string>();
-        _installedPluginsManifestCache = null;
         var loadedAssemblies = (Dictionary<string, Assembly>) typeof(ServerApi)
             .GetField("loadedAssemblies", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)?
             .GetValue(null)!;
@@ -29,11 +25,16 @@ internal static class Utils
             .GetField("plugins", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)?
             .GetValue(null)!;
 
-        string[] targetPathsArray = targetPaths
+        var targetPathsArray = targetPaths
             .Select(Path.GetFileNameWithoutExtension)
             .ToArray()!;
         foreach (var p in targetPathsArray)
         {
+            if (p is null)
+            {
+                continue;
+            }
+
             foreach (var c in plugins
                          .Where(c => c.Plugin.GetType().Assembly == loadedAssemblies[p])
                          .ToArray())
@@ -47,7 +48,7 @@ internal static class Utils
                 catch (Exception ex)
                 {
                     failedUnload.Add(c.Plugin.GetType().Assembly.GetName().Name!);
-                    if (Config.PluginConfig.ConinueHotReloadWhenError)
+                    if (Config.Instance.ConinueHotReloadWhenError)
                     {
                         TShock.Log.ConsoleError($"卸载 \"{c.Plugin.Name}\" 时出错.\n" +
                                                 $"{ex}");
@@ -57,9 +58,9 @@ internal static class Utils
                         throw new Exception(
                             string.Format("卸载 \"{0}\" 时出错.", c.Plugin.Name), ex);
                     }
-                    
+
                 }
-                
+
             }
 
             loadedAssemblies.Remove(p);
@@ -68,10 +69,15 @@ internal static class Utils
         return failedUnload;
     }
 
+    /// <summary>
+    /// 加载插件
+    /// </summary>
+    /// <param name="targetPaths"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
     public static List<string> LoadPlugins(IEnumerable<string> targetPaths)
     {
         var failedLoad = new List<string>();
-        _installedPluginsManifestCache = null;
         var flag = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
         var loadedAssemblies = (Dictionary<string, Assembly>) typeof(ServerApi).GetField("loadedAssemblies", flag)?.GetValue(null)!;
         var game = (Main) typeof(ServerApi).GetField("game", flag)?.GetValue(null)!;
@@ -133,7 +139,7 @@ internal static class Utils
                     catch (Exception ex)
                     {
                         failedLoad.Add(type.FullName!);
-                        if (Config.PluginConfig.ConinueHotReloadWhenError)
+                        if (Config.Instance.ConinueHotReloadWhenError)
                         {
                             TShock.Log.ConsoleError($"Could not create an instance of plugin class \"{type.FullName}\".\n" +
                                                     $"{ex}");
@@ -150,6 +156,10 @@ internal static class Utils
         return failedLoad;
     }
 
+    /// <summary>
+    /// 获取本地安装的插件
+    /// </summary>
+    /// <returns></returns>
     public static PluginVersionInfo[] GetInstalledPlugins()
     {
         var pluginAssemblyToFileNameMap = ((Dictionary<string, Assembly>?) typeof(ServerApi)
@@ -163,22 +173,38 @@ internal static class Utils
                 Author = c.Plugin.Author,
                 Name = c.Plugin.Name,
                 Description = c.Plugin.Description,
-                Path = pluginAssemblyToFileNameMap
+                FileName = pluginAssemblyToFileNameMap
                     .TryGetValue(c.Plugin.GetType().Assembly, out var fileName)
                     ? fileName + ".dll"
                     : "",
-                Version = PluginVersionOverrides.GetValueOrDefault(c.Plugin.GetType().Assembly.GetName().Name!, c.Plugin.Version)
+                Version = c.Plugin.Version
             })
             .DistinctBy(i => i.AssemblyName) // to prevent from being crashed by some ClassLibrary1 ...
             .ToArray();
 
         return installedPlugins;
     }
-    
-    public static void ClearCache()
+
+    /// <summary>
+    /// 检查重复安装的插件
+    /// </summary>
+    /// <returns></returns>
+    public static Dictionary<string, Assembly> CheckDuplicatePlugins()
     {
-        _installedPluginsManifestCache = null;
+        return typeof(ServerApi)
+                .GetField(
+                    "loadedAssemblies",
+                    BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance)
+                !.GetValue(null) is not Dictionary<string, Assembly> loadedAssemblies
+            ? new Dictionary<string, Assembly>()
+            : loadedAssemblies
+            .GroupBy(x => x.Value.GetName().FullName)
+            .Where(x => x.Count() > 1)
+            .SelectMany(x => x)
+            .ToArray()
+            .ToDictionary(i => i.Key, i => i.Value);
     }
+
 
     public static void SendFormattedServerPluginsModifications(this TSPlayer player, (PluginUpdateInfo[] plugins, string[] externalDlls) success)
     {

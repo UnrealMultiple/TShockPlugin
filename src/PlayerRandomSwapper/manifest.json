@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Random Player Position Swap"
+  },
+  "README.es-ES": {
+    "Description": "Intercambio de posiciones aleatorio de jugadores"
+  },
+  "README": {
+    "Description": "玩家位置随机交换"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "README.en-US": {
+    "Description": "Provide some other auxiliary commands"
+  },
+  "README.es-ES": {
+    "Description": "Proveer algunos otros comandos auxiliares"
+  },
+  "README": {
+    "READMEUrl": "https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md",
+    "Description": "提供一些其他的辅助命令"
+  }
+}

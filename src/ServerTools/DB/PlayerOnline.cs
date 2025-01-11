@@ -1,87 +1,50 @@
-﻿using MySql.Data.MySqlClient;
+﻿using LazyAPI.Database;
+using LinqToDB;
+using LinqToDB.Mapping;
 using System.Data;
-using TShockAPI;
-using TShockAPI.DB;
 
 namespace ServerTools.DB;
 
-public class PlayerOnline : Dictionary<string, int>
+[Table("OnlineDuration")]
+public class PlayerOnline : RecordBase<PlayerOnline>
 {
-    private readonly HashSet<string> _players = new();
-    public new int this[string key]
-    {
-        get => this.TryGetValue(key, out var result) ? result : 0;
+    [PrimaryKey]
+    [Column("username")]
+    public string Name { get; set; } = string.Empty;
 
-        set => base[key] = value;
-    }
-    private readonly IDbConnection database;
-    public PlayerOnline()
+    [Column("duration")]
+    public int Duration { get; set; }
+
+
+    private static Context? _context;
+
+    public static Context Instance => _context ??= Db.Context<PlayerOnline>();
+
+    public static PlayerOnline? GetPlayerOnline(string name)
     {
-        this.database = TShock.DB;
-        var Skeleton = new SqlTable("OnlineDuration",
-            new SqlColumn("username", MySqlDbType.Text) { Length = 500 },
-            new SqlColumn("duration", MySqlDbType.Int32) { Length = 255 }
-              );
-        var List = new SqlTableCreator(this.database, this.database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
-        List.EnsureTableStructure(Skeleton);
-        this.ReadAll();
+        return Instance.Records.FirstOrDefault(x => x.Name == name);
     }
 
-    public void ReadAll()
+    public static List<PlayerOnline> GetOnlineRank()
     {
-        using var reader = this.database.QueryReader("SELECT * FROM OnlineDuration");
-        while (reader.Read())
+        return Instance.Records.OrderByDescending(x => x.Duration).ToList();
+    }
+
+    public static bool Add(string Name, int duration)
+    {
+        var online = GetPlayerOnline(Name);
+        if (online == null)
         {
-            var username = reader.Get<string>("username");
-            var duration = reader.Get<int>("duration");
-            this[username] = duration;
-            this._players.Add(username);
-        }
-    }
-
-    public bool Read(string name, out int duration)
-    {
-        using var reader = this.database.QueryReader("SELECT * FROM `OnlineDuration` WHERE `username` LIKE @0", name);
-        if (reader.Read())
-        {
-            duration = reader.Get<int>("duration");
+            online = new PlayerOnline { Name = Name, Duration = duration };
+            Instance.Insert(online);
             return true;
         }
         else
         {
-            duration = 0;
+            online.Duration += duration;
+            Instance.Update(online);
             return false;
         }
     }
-
-    public bool Update(string Name, int duration)
-    {
-        return 1 == this.database.Query("UPDATE `OnlineDuration` SET `duration` = @0 WHERE `OnlineDuration`.`username` = @1", duration, Name);
-
-    }
-    public bool Insert(string Name, int duration)
-    {
-        this._players.Add(Name);
-        return 1 == this.database.Query("INSERT INTO `OnlineDuration` (`username`, `duration`) VALUES (@0, @1)", Name, duration);
-    }
-
-
-
-
-    public void AddOrUpdate(string name, int duration)
-    {
-        if (this._players.Contains(name))
-        {
-            this.Update(name, duration);
-        }
-        else
-        {
-            this.Insert(name, duration);
-        }
-    }
-
-    public void UpdateAll()
-    {
-        this.ForEach(x => this.AddOrUpdate(x.Key, x.Value));
-    }
+  
 }

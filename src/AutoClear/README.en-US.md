@@ -7,7 +7,7 @@
 
 ## Config
 > Configuration file location：tshock/Autoclear.en-US.json
-```json
+```json5
 {
   "Interval": 10, // How often to check (seconds)
   "Exclude": [], // List of item IDs not to be cleaned

@@ -8,21 +8,21 @@
 
 ## Commands
 
-| Syntax                        |       Permission        |      Description      |
-| ----------------------------- | :---------------------:| :-------------------: |
-| /hp enh [player name] [health]| lifemaxextra.use       | Increase player's health |
-| /hp set [player name] [health]| lifemaxextra.use       | Set player's health    |
-| /hp enh [health]              | lifemaxextra.use       | Increase own health    |
-| /hp set [health]              | lifemaxextra.use       | Set own health         |
-| /mp enh [player name] [mana]  | lifemaxextra.use       | Increase player's mana |
-| /mp set [player name] [mana]  | lifemaxextra.use       | Set player's mana      |
-| /mp enh [mana]                | lifemaxextra.use       | Increase own mana      |
-| /mp set [mana]                | lifemaxextra.use       | Set own mana           |
+| Syntax                         |    Permission    |       Description        |
+|--------------------------------|:----------------:|:------------------------:|
+| /hp enh [player name] [health] | lifemaxextra.use | Increase player's health |
+| /hp set [player name] [health] | lifemaxextra.use |   Set player's health    |
+| /hp enh [health]               | lifemaxextra.use |   Increase own health    |
+| /hp set [health]               | lifemaxextra.use |      Set own health      |
+| /mp enh [player name] [mana]   | lifemaxextra.use |  Increase player's mana  |
+| /mp set [player name] [mana]   | lifemaxextra.use |    Set player's mana     |
+| /mp enh [mana]                 | lifemaxextra.use |    Increase own mana     |
+| /mp set [mana]                 | lifemaxextra.use |       Set own mana       |
 
 
 ## Config
 > Configuration file location：tshock/LifemaxExtra.en-US.json
-```json
+```json5
 {
   "MaxHP": 1000,
   "MaxMP": 400,

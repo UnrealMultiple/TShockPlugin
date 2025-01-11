@@ -28,7 +28,7 @@
 ## Download
 
 - Github Release: [Plugins.zip](https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
-- Gitee Release: [Plugins.zip](https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
+- ApmApi Release: [Plugins.zip](http://api.terraria.ink:11434/plugin/get_all_plugins)
 
 #### AutoPluginManager
     /apm l List all plugins
@@ -81,7 +81,7 @@
 | [BetterWhitelist](./src/BetterWhitelist/README.en-US.md) | Yes | Whitelist plugin | [LazyAPI](./src/LazyAPI/README.md) |
 | [BridgeBuilder](./src/BridgeBuilder/README.en-US.md) | Yes | Quick bridge building | [LazyAPI](./src/LazyAPI/README.md) |
 | [BuildMaster](./src/BuildMaster/README.md) | No | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
-| [CaiBot](./src/CaiBot/README.md) | No | CaiBot adapter plugin |  |
+| [CaiBot](./src/CaiBot/README.md) | No | CaiBot adapter plugin (Only support QQ) |  |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.en-US.md) | Yes | Custom emoji command | [LazyAPI](./src/LazyAPI/README.md) |
 | [CaiLib](./src/CaiLib/README.md) | No | Cai's preload library | [SixLabors.ImageSharp]() |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.md) | No | Cai Packet Debug Tool | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
@@ -115,13 +115,13 @@
 | [Economics.Regain](./src/Economics.Regain/README.en-US.md) | Yes | Item recycling | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
 | [Economics.RPG](./src/Economics.RPG/README.en-US.md) | Yes | RPG plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
 | [Economics.Shop](./src/Economics.Shop/README.en-US.md) | Yes | Shop plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
-| [Economics.Skill](./src/Economics.Skill/README.md) | Yes | Skill plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
+| [Economics.Skill](./src/Economics.Skill/README.en-US.md) | Yes | Skill plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.Task](./src/Economics.Task/README.en-US.md) | Yes | Task plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | Yes | Weapon enhancement | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
 | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) | Yes | Economic plugin prerequisite |  |
 | [EndureBoost](./src/EndureBoost/README.en-US.md) | Yes | Grant specified buff when the player has a certain number of items |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | Yes | Additional management commands |  |
-| [Ezperm](./src/Ezperm/README.md) | Yes | Batch change permissions |  |
+| [Ezperm](./src/Ezperm/README.en-US.md) | Yes | Batch change permissions |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | No | Fish shop |  |
 | [GenerateMap](./src/GenerateMap/README.md) | No | Generate map images | [CaiLib](./src/CaiLib/README.md) |
 | [GolfRewards](./src/GolfRewards/README.md) | No | Golf rewards |  |
@@ -137,7 +137,7 @@
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | No | Unlock journey items |  |
 | [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | No | Lagrange.XocMat Bot Adapter Plugin | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.md) | No | Plugin base library | [linq2db]() |
-| [LifemaxExtra](./src/LifemaxExtra/README.md) | No | Eat more life fruits/crystals | [LazyAPI](./src/LazyAPI/README.md) |
+| [LifemaxExtra](./src/LifemaxExtra/README.en-US.md) | No | Eat more life fruits/crystals | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | No | List installed plugins |  |
 | [MapTp](./src/MapTp/README.en-US.md) | Yes | Double-click on the map to teleport |  |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) | No | Bean paste mini-game API |  |
@@ -153,6 +153,7 @@
 | [PersonalPermission](./src/PersonalPermission/README.md) | No | Set permissions individually for players |  |
 | [Platform](./src/Platform/README.md) | No | Determine player device |  |
 | [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | No | Hufang's player manager |  |
+| [PlayerRandomSwapper](./src/PlayerRandomSwapper/README.en-US.md) | Yes | Random Player Position Swap | [LazyAPI](./src/LazyAPI/README.md) |
 | [PlayerSpeed](./src/PlayerSpeed/README.en-US.md) | Yes | Enable players to achieve a two-stage sprint | [LazyAPI](./src/LazyAPI/README.md) |
 | [ProgressBag](./src/ProgressBag/README.md) | No | Progress gift pack |  |
 | [ProgressControls](./src/ProgressControls/README.md) | No | Planbook (Automate server control) |  |
@@ -171,7 +172,7 @@
 | [RestInventory](./src/RestInventory/README.md) | No | Provide REST query backpack interface |  |
 | [RolesModifying](./src/RolesModifying/README.md) | No | Modify player backpack |  |
 | [Sandstorm](./src/Sandstorm/README.md) | No | Toggle sandstorm |  |
-| [ServerTools](./src/ServerTools/README.en-US.md) | No | Server management tools |  |
+| [ServerTools](./src/ServerTools/README.en-US.md) | No | Server management tools | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
 | [SessionSentinel](./src/SessionSentinel/README.md) | No | Handle players not sending data packets for a long time |  |
 | [ShortCommand](./src/ShortCommand/README.md) | No | Short command |  |
 | [ShowArmors](./src/ShowArmors/README.md) | No | Display equipment bar |  |
@@ -187,14 +188,18 @@
 | [TimeRate](./src/TimeRate/README.en-US.md) | Yes | modifying time acceleration using commands, and supporting player sleep to trigger events. |  |
 | [TimerKeeper](./src/TimerKeeper/README.en-US.md) | Yes | Save timer state |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.en-US.md) | Yes | NPC quick home |  |
-| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | No | TShock configuration language localization | [LazyAPI](./src/LazyAPI/README.md) |
+| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.en-US.md) | No | TShock configuration language localization | [LazyAPI](./src/LazyAPI/README.md) |
 | [UnseenInventory](./src/UnseenInventory/README.md) | No | Allows the server to generate items that are normally 'unobtainable' |  |
+| [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | No | Foundation library for VBY plugins |  |
+| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | No | Customizable modifications for certain game content (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | No | Provide some other auxiliary commands | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | No | A plugin loader that allows hot reloading |  |
 | [VeinMiner](./src/VeinMiner/README.en-US.md) | Yes | Chain mining |  |
 | [VotePlus](./src/VotePlus/README.en-US.md) | Yes | Multi-function voting |  |
 | [WeaponPlus](./src/WeaponPlusCostCoin/README.md) | No | Weapon enhancement coin version |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | No | Load Chinese Wiki language pack for server |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | No | World editor, can modify most of the world parameters |  |
-| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | No | zZhi's player management plugin |  |
+| [ZHIPlayerManager](./src/ZHIPlayerManager/README.en-US.md) | Yes | zZhi's player management plugin |  |
 
 </Details>
 

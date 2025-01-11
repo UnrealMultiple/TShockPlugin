@@ -3,24 +3,6 @@
 - 出处: [github](https://github.com/skywhale-zhi/ZHIPlayerManager)
 - 玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作
 
- ## 更新日志
-
-```
-v.1.0.1.1
-修正不正确的GetString
-v.1.0.0.9
-修改zban的默认理由,和封禁用户名
-v.1.0.0.8
-fix：允许非SSC使用
-v.1.0.0.6
-完善卸载函数
-v.1.0.0.5
-为是否允许特殊名字加了个总开关
-v.1.0.0.4
-修复mysql没有指定键长度,修改中文变量为英文，为缺少权限的指令重新添加权限
-```
-
-
 ## 功能介绍
 
 ### 1. 查看玩家库存和状态
@@ -61,59 +43,59 @@ v.1.0.0.4
 
 ## 指令
 
-| 功能分类 | 权限 | 指令 & 功能 |
-| --- | --- | --- |
-| **帮助系列** | `zhipm.help` | `/zhelp`: 查看该插件下的所有指令帮助 |
-| **保存系列** | `zhipm.save` | 
-|  |  | `/zsave`: 备份自己的人物存档 |
-|  |  | `/zvisa [num]`: 查看自己备份的库存，`num`范围 1~5（默认5，可改） |
-|  |  | `/zvisa [name] [num]`: 查看某人备份的库存，`num`范围 1~5 |
-|  |  | `/zsaveauto [num]`: 允许用户自动备份，每隔`num`分钟一次 |
-| **回档系列** | `zhipm.back` | `/zback [name] [num]`: 让玩家回档到`num`号备份 |
-| **复制系列** | `zhipm.clone` | `/zclone [name1] [name2]`: 将`name1`的数据复制给`name2` |
-| **修改系列** | `zhipm.modify` | 
-|  |  | `/zmodify help`: 查看`zmodify`系列指令帮助 |
-|  |  | `/zmodify [name] life [num]`: 修改生命值 |
-|  |  | `/zmodify [name] lifemax [num]`: 修改生命上限 |
-|  |  | `/zmodify [name] mana [num]`: 修改魔力值 |
-|  |  | `/zmodify [name] manamax [num]`: 修改最大魔力值 |
-|  |  | `/zmodify [name] fish [num]`: 修改钓鱼完成数 |
-|  |  | `/zmodify [name] torch [0或1]`: 开启或关闭火把神增益 |
-|  |  | ... (省略其他增益指令) |
-|  |  | `/zmodify [name] point [num]`: 修改点数 |
-| **冻结系列** | `zhipm.freeze` | 
-|  |  | `/zfre [name]`: 冻结玩家 |
-|  |  | `/zunfre [name]`: 解冻玩家 |
-|  |  | `/zunfre all`: 解冻所有玩家 |
-| **重置系列** | `zhipm.reset` | 
-|  |  | `/zresetdb [name]`: 重置备份数据 |
-|  |  | `/zresetdb all`: 重置所有备份数据 |
-|  |  | `/zresetex [name]`: 重置额外数据 |
-|  |  | `/zresetex all`: 重置所有额外数据 |
-|  |  | `/zreset [name]`: 重置人物数据 |
-|  |  | `/zreset all`: 重置所有人物数据 |
-|  |  | `/zresetallplayers`: 重置所有玩家所有数据 |
-| **查背包系列** | `zhipm.vi` | 
-|  |  | `/vi [name]`: 查询玩家库存(按顺序) |
-|  |  | `/vid [name]`: 查询玩家库存(不按顺序) |
-| **查状态信息系列** | `zhipm.vs` | 
-|  |  | `/vs [name]`: 查询状态数据 |
-|  |  | `/vs me`: 查询自己状态 |
-| **排榜系列** | `zhipm.sort` | 
-|  |  | `/zsort help`: 查看排榜指令帮助 |
-|  |  | `/zsort time [num/all]`: 排序在线时间 |
-|  |  | `/zsort coin [num/all]`: 排序钱币数 |
-|  |  | ... (省略其他排序指令) |
-|  |  | `/zsort clumsy [num/all]`: 排序菜鸡值 |
-| **导出数据系列** | `zhipm.out` | `/zout [name/all]`: 导出玩家存档 |
-| **超级ban系列** | `zhipm.ban` | `/zban add [name] [原因]`: 优化过的ban指令 |
-| **玩家游戏体验设置** | `zhipm.hide` | `/zhide kill 或 point`: 隐藏击杀或点数提示 |
-| **清理系列** | `zhipm.clear` | 
-|  |  | `/zclear useless`: 清理无用物品 |
-|  |  | `/zclear buff [name]`: 清除玩家所有buff |
+| 功能分类         | 权限             | 指令 & 功能                                          |
+|--------------|----------------|--------------------------------------------------|
+| **帮助系列**     | `zhipm.help`   | `/zhelp`: 查看该插件下的所有指令帮助                          |
+| **保存系列**     | `zhipm.save`   | 
+|              |                | `/zsave`: 备份自己的人物存档                              |
+|              |                | `/zvisa [num]`: 查看自己备份的库存，`num`范围 1~5（默认5，可改）    |
+|              |                | `/zvisa [name] [num]`: 查看某人备份的库存，`num`范围 1~5     |
+|              |                | `/zsaveauto [num]`: 允许用户自动备份，每隔`num`分钟一次         |
+| **回档系列**     | `zhipm.back`   | `/zback [name] [num]`: 让玩家回档到`num`号备份            |
+| **复制系列**     | `zhipm.clone`  | `/zclone [name1] [name2]`: 将`name1`的数据复制给`name2` |
+| **修改系列**     | `zhipm.modify` | 
+|              |                | `/zmodify help`: 查看`zmodify`系列指令帮助               |
+|              |                | `/zmodify [name] life [num]`: 修改生命值              |
+|              |                | `/zmodify [name] lifemax [num]`: 修改生命上限          |
+|              |                | `/zmodify [name] mana [num]`: 修改魔力值              |
+|              |                | `/zmodify [name] manamax [num]`: 修改最大魔力值         |
+|              |                | `/zmodify [name] fish [num]`: 修改钓鱼完成数            |
+|              |                | `/zmodify [name] torch [0或1]`: 开启或关闭火把神增益        |
+|              |                | ... (省略其他增益指令)                                   |
+|              |                | `/zmodify [name] point [num]`: 修改点数              |
+| **冻结系列**     | `zhipm.freeze` | 
+|              |                | `/zfre [name]`: 冻结玩家                             |
+|              |                | `/zunfre [name]`: 解冻玩家                           |
+|              |                | `/zunfre all`: 解冻所有玩家                            |
+| **重置系列**     | `zhipm.reset`  | 
+|              |                | `/zresetdb [name]`: 重置备份数据                       |
+|              |                | `/zresetdb all`: 重置所有备份数据                        |
+|              |                | `/zresetex [name]`: 重置额外数据                       |
+|              |                | `/zresetex all`: 重置所有额外数据                        |
+|              |                | `/zreset [name]`: 重置人物数据                         |
+|              |                | `/zreset all`: 重置所有人物数据                          |
+|              |                | `/zresetallplayers`: 重置所有玩家所有数据                  |
+| **查背包系列**    | `zhipm.vi`     | 
+|              |                | `/vi [name]`: 查询玩家库存(按顺序)                        |
+|              |                | `/vid [name]`: 查询玩家库存(不按顺序)                      |
+| **查状态信息系列**  | `zhipm.vs`     | 
+|              |                | `/vs [name]`: 查询状态数据                             |
+|              |                | `/vs me`: 查询自己状态                                 |
+| **排榜系列**     | `zhipm.sort`   | 
+|              |                | `/zsort help`: 查看排榜指令帮助                          |
+|              |                | `/zsort time [num/all]`: 排序在线时间                  |
+|              |                | `/zsort coin [num/all]`: 排序钱币数                   |
+|              |                | ... (省略其他排序指令)                                   |
+|              |                | `/zsort clumsy [num/all]`: 排序菜鸡值                 |
+| **导出数据系列**   | `zhipm.out`    | `/zout [name/all]`: 导出玩家存档                       |
+| **超级ban系列**  | `zhipm.ban`    | `/zban add [name] [原因]`: 优化过的ban指令               |
+| **玩家游戏体验设置** | `zhipm.hide`   | `/zhide kill 或 point`: 隐藏击杀或点数提示                 |
+| **清理系列**     | `zhipm.clear`  | 
+|              |                | `/zclear useless`: 清理无用物品                        |
+|              |                | `/zclear buff [name]`: 清除玩家所有buff                |
 ## 配置
 > 配置文件位置：tshock/Zhipm/ZhiPlayerManager.json
-```json
+```json5
 {
   "是否启用在线时长统计": true,		//启用这个功能将记录玩家在线时长
   "是否启用死亡次数统计": true        //同上
@@ -175,6 +157,23 @@ public class ExtraData
     ///死亡次数
     int deathCount;
 }
+```
+## 更新日志
+```
+v.1.0.1.2
+添加英文翻译
+v.1.0.1.1
+修正不正确的GetString
+v.1.0.0.9
+修改zban的默认理由,和封禁用户名
+v.1.0.0.8
+fix：允许非SSC使用
+v.1.0.0.6
+完善卸载函数
+v.1.0.0.5
+为是否允许特殊名字加了个总开关
+v.1.0.0.4
+修复mysql没有指定键长度,修改中文变量为英文，为缺少权限的指令重新添加权限
 ```
 
 ## 反馈

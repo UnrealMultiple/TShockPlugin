@@ -1,53 +1,50 @@
-﻿using MySql.Data.MySqlClient;
+﻿using LazyAPI.Database;
+using LinqToDB;
+using LinqToDB.Mapping;
+using MySql.Data.MySqlClient;
 using System.Data;
 using TShockAPI;
 using TShockAPI.DB;
 
 namespace ServerTools.DB;
 
-public class PlayerDeath : Dictionary<string, int>
+[Table("Death")]
+public class PlayerDeath : RecordBase<PlayerDeath>
 {
-    private new int this[string key]
-    {
-        get => this.TryGetValue(key, out var result) ? result : 0;
+    [PrimaryKey]
+    [Column("Name")]
+    public string Name { get; set; } = string.Empty;
 
-        set => base[key] = value;
-    }
-    private readonly IDbConnection database;
-    public PlayerDeath()
-    {
-        this.database = TShock.DB;
-        var Skeleton = new SqlTable("Death",
-            new SqlColumn("Count", MySqlDbType.Int32) { Length = 255 },
-            new SqlColumn("Name", MySqlDbType.VarChar) { Length = 255, Unique = true }
-              );
-        var List = new SqlTableCreator(this.database, this.database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
-        List.EnsureTableStructure(Skeleton);
-        this.ReadAll();
+    [Column("Count")]
+    public int Count { get; set; }
+
+
+    private static Context? _context;
+
+    public static Context Instance => _context ??= Db.Context<PlayerDeath>();
+
+    public static PlayerDeath? GetPlayerDeath(string name)
+    { 
+        return Instance.Records.FirstOrDefault(x => x.Name == name);
     }
 
-    private void ReadAll()
+    public static List<PlayerDeath> GetDeathRank()
     {
-        using var reader = this.database.QueryReader("SELECT * FROM Death");
-        while (reader.Read())
+       return Instance.Records.OrderByDescending(x => x.Count).ToList();
+    }
+
+    public static void Add(string name)
+    {
+        var record = GetPlayerDeath(name);
+        if (record == null)
         {
-            var Name = reader.Get<string>("Name");
-            var Count = reader.Get<int>("Count");
-            this[Name] = Count;
-        }
-    }
-
-    public void Add(string name)
-    {
-        if (this.ContainsKey(name))
-        {
-            this[name] += 1;
-            this.database.Query("UPDATE Death SET Count = @0 WHERE Name = @1", this[name], name);
+            record = new PlayerDeath { Name = name, Count = 1 };
+            Instance.Insert(record);
         }
         else
         {
-            this[name] = 1;
-            this.database.Query("INSERT INTO `Death` (`Name`, `Count`) VALUES (@0, @1)", name, 1);
+            record.Count++;
+            Instance.Update(record);
         }
     }
 }

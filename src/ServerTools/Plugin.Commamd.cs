@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using ServerTools.DB;
 using Terraria;
 using TShockAPI;
 
@@ -28,10 +29,7 @@ public partial class Plugin
                     }
                 );
         }
-        var OnlineInfo = from online in PlayerOnlines
-                         orderby online.Value descending
-                         where online.Value > 0
-                         select GetString($"{online.Key} 在线时长: {Math.Ceiling(Convert.ToDouble(online.Value * 1.0f / 60))}分钟").Color(TShockAPI.Utils.GreenHighlight);
+        var OnlineInfo = PlayerOnline.GetOnlineRank().Select(online => GetString($"{online.Name} 在线时长: {Math.Ceiling(Convert.ToDouble(online.Duration * 1.0f / 60))}分钟").Color(TShockAPI.Utils.GreenHighlight)).ToList();
         ShowOnline(OnlineInfo.ToList());
     }
 
@@ -58,7 +56,7 @@ public partial class Plugin
                 }
             );
         }
-        var line = PlayerDeathRank.OrderByDescending(x => x.Value).Select(x => GetString($"[{x.Key}] => 死亡{x.Value}次")).ToList();
+        var line = DB.PlayerDeath.GetDeathRank().Select(x => GetString($"[{x.Name}] => 死亡{x.Count}次")).ToList();
         Show(line);
     }
 

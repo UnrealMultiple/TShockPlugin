@@ -6,29 +6,29 @@
 
 ## Commands
 
-| Command          |   Permission    |          Details          |
-|------------------|:---------------:| :------: |
-| /autoteam or /at | autoteam.toggle |   Toggle the automatic team assignment feature.   |
-| None               |   noautoteam    |   Having this permission will not automatically assign you to a team.   |
+| Command          |   Permission    |                               Details                               |
+|------------------|:---------------:|:-------------------------------------------------------------------:|
+| /autoteam or /at | autoteam.toggle |            Toggle the automatic team assignment feature.            |
+| None             |   noautoteam    | Having this permission will not automatically assign you to a team. |
 
 ## Config
-> Configuration file location：tshock/AutoTeamPlus.json
+> Configuration file location：tshock/AutoTeam.en-US.json
 - Team Name Reference：
 
 | 中文  | English |
-|-------|---------|
+|-----|---------|
 | 无队伍 | none    |
-| 红队   | red     |
-| 绿队   | green   |
-| 蓝队   | blue    |
-| 黄队   | yellow  |
-| 粉队   | pink    |
+| 红队  | red     |
+| 绿队  | green   |
+| 蓝队  | blue    |
+| 黄队  | yellow  |
+| 粉队  | pink    |
 
 - Configuration Example
-```json
+```json5
 {
-    "开启插件": true, // Enable Plugin
-    "组对应的队伍": { ////Group -> Team
+  "Enable": true,
+  "GroupTemp": {
     "guest": "pink",
     "default": "蓝队",
     "owner": "红队",

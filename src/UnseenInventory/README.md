@@ -1,4 +1,4 @@
-# UnseenInventory 允许服务器端生成“无法获取”的物品
+# UnseenInventory 允许生成“无法获取”的物品
 
 - 作者: 肝帝熙恩
 - 出处: 参考了[gitee](https://gitee.com/hufang360/TShockAllowFirstFractal)
@@ -7,11 +7,7 @@
 - 特殊客户端，电脑版可b站搜：hufang360,手机版可b站搜：EternalFuture
 - 或者https://niaoluo.top/wp-admin/post.php?post=232&action=edit内搜索“泰拉瑞亚，实用工具”
 
-## 更新日志
 
-```
-暂无
-```
 ## 指令
 
 ```
@@ -20,7 +16,7 @@
 
 ## 配置
 
-```json
+```json5
 {
   "允许无法获取的物品id": [
     4722
@@ -54,6 +50,12 @@
   }
 }
 ```
+## 更新日志
+
+```
+暂无
+```
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

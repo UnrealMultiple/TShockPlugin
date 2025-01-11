@@ -8,6 +8,17 @@
 - 兼容旧版本，但是sqlite和json二选一
 - 以 -- 结束区域名称，并且仅当它具有所有重叠区域中最高的 Z 值时，它才会执行
 
+
+## 指令
+
+| 语法           |         权限          |   说明   |
+|--------------|:-------------------:|:------:|
+| /smartregion | SmartRegions.manage | 智能区域管理 |
+| /replace     | SmartRegions.manage |  区域替换  |
+
+## 配置
+> 配置文件位置：tshock/SmartRegions/SmartRegions.sqlite或config.json
+
 ## 更新日志
 
 ```
@@ -18,15 +29,6 @@ v1.4.2
 修复初始化顺序错误
 ```
 
-## 指令
-
-| 语法           |        权限         |   说明   |
-| -------------- | :-----------------: | :------: |
-| /smartregion |  SmartRegions.manage  | 智能区域管理 |
-| /replace |  SmartRegions.manage  | 区域替换 |
-
-## 配置
-    配置文件位置：tshock/SmartRegions/SmartRegions.sqlite或config.json
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

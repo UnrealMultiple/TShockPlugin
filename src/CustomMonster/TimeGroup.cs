@@ -103,6 +103,9 @@ public class TimeGroup : ICloneable
     [JsonProperty(PropertyName = "玩家条件")]
     public List<PlayerConditionGroup> PlayerCondition = new List<PlayerConditionGroup>();
 
+    [JsonProperty(PropertyName = "弹幕条件")]
+    public List<ProjectileConditionGroup> ProjectileCondition = new List<ProjectileConditionGroup>();
+
     [JsonProperty(PropertyName = "指示物条件")]
     public List<IndicatorGroup2> IndicatorConditions = new List<IndicatorGroup2>();
 

@@ -3,6 +3,7 @@ using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
+// ReSharper disable InconsistentNaming
 
 namespace ZHIPlayerManager;
 
@@ -15,68 +16,68 @@ public partial class ZHIPM : TerrariaPlugin
 
     public override string Name => "ZHIPlayerManager";
 
-    public override Version Version => new Version(1, 0, 1, 1);
+    public override Version Version => new (1, 0, 1, 2);
 
     #region 字段或属性
     /// <summary>
     /// 人物备份数据库
     /// </summary>
-    public static ZplayerDB ZPDataBase { get; set; } = null!;
+    private static ZplayerDB ZPDataBase { get; set; } = null!;
     /// <summary>
     /// 额外数据库
     /// </summary>
-    public static ZplayerExtraDB ZPExtraDB { get; set; } = null!;
+    private static ZplayerExtraDB ZPExtraDB { get; set; } = null!;
     /// <summary>
     /// 在线玩家的额外数据库的集合
     /// </summary>
-    public static List<ExtraData> edPlayers { get; set; } = new();
+    private static List<ExtraData> edPlayers { get; set; } = new();
     /// <summary>
     /// 广播颜色
     /// </summary>
-    public readonly static Color broadcastColor = new Color(0, 255, 213);
+    private static readonly Color broadcastColor = new (0, 255, 213);
     /// <summary>
     /// 计时器，60 Timer = 1 秒
     /// </summary>
-    public static long Timer
+    private static long Timer
     {
         get;
-        private set;
+        set;
     }
     /// <summary>
     /// 清理数据的计时器
     /// </summary>
-    public long cleartime = long.MaxValue;
+    private long clearTimer = long.MaxValue;
     /// <summary>
     /// 记录当前时间
     /// </summary>
-    public string now { get; set; } = "";
+    private string now { get; set; } = "";
     /// <summary>
     /// 记录需要冻结的玩家
     /// </summary>
-    public static List<MessPlayer> frePlayers = new List<MessPlayer>();
+    private static readonly List<MessPlayer> frozenPlayers = new ();
     /// <summary>
     /// 需要记录的被击中的npc
     /// </summary>
-    public static List<StrikeNPC> strikeNPC = new List<StrikeNPC>();
+    private static readonly List<StrikeNPC> strikeNPC = new ();
 
-    public readonly string noplayer = GetString("该玩家不存在，请重新输入");
-    public readonly string manyplayer = GetString("该玩家不唯一，请重新输入");
-    public readonly string offlineplayer = GetString("该玩家不在线，正在查询离线数据");
+    private readonly string nonExistPlayerWarning = GetString("该玩家不存在，请重新输入");
+    private readonly string MultipleMatchPlayerWarning = GetString("该玩家不唯一，请重新输入");
+    private readonly string playerOfflineWarning = GetString("该玩家不在线，正在查询离线数据");
 
-    public static ZhipmConfig config = new ZhipmConfig();
+    private static ZhipmConfig config = new ();
 
     /// <summary>
-    /// 记录世界吞噬者的数据 <击中他的玩家的id, 那个玩家造成的伤害>
+    /// 记录世界吞噬者的数据 击中他的玩家的id, 那个玩家造成的伤害
     /// </summary>
-    public Dictionary<int, int> Eaterworld = new Dictionary<int, int>();
+    private readonly Dictionary<int, int> Eaterworld = new ();
     /// <summary>
     /// 记录毁灭者的数据
     /// </summary>
-    public Dictionary<int, int> Destroyer = new Dictionary<int, int>();
+    private readonly Dictionary<int, int> Destroyer = new ();
     /// <summary>
     /// 记录血肉墙的数据
     /// </summary>
-    public Dictionary<int, int> FleshWall = new Dictionary<int, int>();
+    private readonly Dictionary<int, int> FleshWall = new ();
 
     #endregion
 
@@ -387,19 +388,19 @@ public partial class ZHIPM : TerrariaPlugin
         /// <summary>
         /// 是否为boss
         /// </summary>
-        public bool isBoss = false;
+        public bool isBoss;
         /// <summary>
-        /// 字典，用于记录 <击中他的玩家的id -> 该玩家造成的总伤害>
+        /// 字典，用于记录 击中他的玩家的id 该玩家造成的总伤害
         /// </summary>
-        public Dictionary<int, int> playerAndDamage = new Dictionary<int, int>();
+        public Dictionary<int, int> playerAndDamage = new ();
         /// <summary>
         /// 受到的总伤害
         /// </summary>
-        public int AllDamage = 0;
+        public int AllDamage;
         /// <summary>
         /// 价值
         /// </summary>
-        public float value = 0f;
+        public float value;
 
         public StrikeNPC() { }
 

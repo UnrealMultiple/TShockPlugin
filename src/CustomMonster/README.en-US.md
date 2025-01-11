@@ -11,61 +11,17 @@
 - trap immunity, controlling specified monster counts, NPC protection, etc.
 - (Comes with built-in configuration as a reference)
 
-## Update Log
-
-```
-December 16, 2024
-Integrated the latest version 1.0.4.38 by GK
-
-October 14, 2024
-Integrated the latest version 1.0.4.36 by GK
-
-June 12, 2024
-Removed the no-config version and added the embedded version source code by Yu Xue
-
-June 6, 2024
-Fixed error prompts in the no-config version
-And added to both the embedded version and the no-config version: /reload reloads only reporting line numbers of errors
-
-June 5, 2024
-Added ["Custom Forced Hidden Config Items"]:
-When ["Hide Unused Config Items"] is enabled, it triggers.
-Without custom hidden items, it will only ignore empty and default values,
-But if you write a custom hidden item, even if it has been modified, it will be forcibly hidden after /reload, and the specified configuration item will revert to its default value (there's a risk of breaking configurations, not recommended to change this)
-For example, if you set 【Monster Health】to 20000, and then add 【Monster Health】as a keyword in the forced hidden items, after /reload it will reset to 0.
-
-Adjustments in the embedded version by Yu Xue:
-Modified the "Shopkeeper" configuration file,
-Removed Four Eyes Demon, added Enhanced Slime, Spiked Slime, Shadow Flame Devil, Rain Cloud Fiend modification
-Adjusted all BOSS individual health to 1.5-2 times
-Fixed issues caused by the original plugin preset configuration automatically filling unmodified settings such as knockback range, pull range, etc.
-Fixed issues where setting 【Player Kill Coefficient -10】/【Spawn Duration 600】caused BOSSes to not spawn or disappear prematurely.
-
-June 4, 2024
-Added ["Hide Unused Config Items"] switch
-Added command: /editmonster to control ["Hide Unused Config Items"]:
-This switch can hide unused config items with empty or default values.
-Added the "Shopkeeper" configuration file
-Related NPC modifications: Light Maiden, Wyvern, Queen Moon's Four Eyes Demon, Snow Giant,
-Dust Imp, Armored Phantom, Demon Eye, Cursed Hammer, Crimson Axe, Enchanted Sword, Bone Serpent,
-Holy Chest Monster, Snow Queen, Flying Eye, Goblin Mage, Goblin Summoner
-
-Version 1.0.4.9  
-Added death execution commands, pull range, and other configuration items
-This version's source code is for the no-embedded-config-file version, suitable for direct writing.
-```
-
 ## Commands
 
-| Command Syntax	                             | Alias  |       Permission       |                   Description                   |
-| -------------------------------- | :---: | :--------------: | :--------------------------------------: |
-| /ggw  | None  |   CustomMonster    |    Hide extra configuration items and reload    |
-| /smc  |  None  |   CustomMonster    |    Summon a flagged monster    |
-| /reload  | None |   CustomMonster    |    Reload the configuration file    |
+| Command Syntax	 | Alias |  Permission   |                Description                |
+|-----------------|:-----:|:-------------:|:-----------------------------------------:|
+| /ggw            | None  | CustomMonster | Hide extra configuration items and reload |
+| /smc            | None  | CustomMonster |         Summon a flagged monster          |
+| /reload         | None  | CustomMonster |       Reload the configuration file       |
 
 ## Configuration
 > Configuration file location： tshock/CustomMonster.json
-```json
+```json5
 {
   "是否隐藏没用到配置项的指令/ggw": false,
   "自定义强制隐藏哪些配置项的指令/Reload": [

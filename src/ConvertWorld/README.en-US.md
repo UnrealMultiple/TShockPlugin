@@ -27,7 +27,7 @@ If there are no convertible IDs, there will be no notification.
 
 
 > Configuration file location：tshock/击败怪物替换世界物品.json
-```
+```json5
 {
   "使用说明": "击败指定NPC将世界所有指定图格与箱子内物品对比1:1转换",  // Usage Instructions: Defeating the specified NPC will convert all specified world tiles and items in chests on a 1:1 basis
   "插件开关": true,  // Plugin Switch: Enables or disables the plugin

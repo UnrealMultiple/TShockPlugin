@@ -1,0 +1,12 @@
+{
+  "README.en-US": {
+    "Description": "A plugin loader that allows hot reloading"
+  },
+  "README.es-ES": {
+    "Description": "Un cargador de plugins que permite la recarga en caliente"
+  },
+  "README": {
+    "READMEUrl": "https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md",
+    "Description": "一个允许热重载的插件加载器"
+  }
+}

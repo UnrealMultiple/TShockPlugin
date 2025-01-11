@@ -20,14 +20,14 @@
 
 
 ## 使用者注意事项
-
+- 插件文档： [TShock中文插件库文档](http://docs.terraria.ink/zh/)
 - 注意有些插件可能需要安装依赖，请查看下方列表安装依赖插件。
 - 每个插件都有一个使用说明，在下方列表点击超链接查看具体说明事项。
 - 听说喜欢给仓库点星星的人，插件都不容易报错
 
 ## 下载
 
-- Gitee发布(国内推荐): [Plugins.zip](https://gitee.com/kksjsj/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
+- ApmApi(国内推荐): [Plugins.zip](http://api.terraria.ink:11434/plugin/get_all_plugins)
 - Github发布: [Plugins.zip](https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
 
 #### AutoPluginManager插件 (本仓库推出的插件管理器)  
