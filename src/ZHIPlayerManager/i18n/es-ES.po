@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:35+0000\n"
-"PO-Revision-Date: 2025-01-09 08:56\n"
+"PO-Revision-Date: 2025-01-11 10:47\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -19,55 +19,58 @@ msgstr ""
 
 #: ../../ZHIPM.Utils.cs:1051
 msgid " 名字："
-msgstr ""
+msgstr "Nombre:"
 
 #: ../../ZHIPM.Initialize.cs:4977
 #, csharp-format
 msgid "，消耗点数 {0}"
-msgstr ""
+msgstr "Puntos de consumo {0}"
 
 #: ../../ZHIPM.Utils.cs:1660
 #, csharp-format
 msgid "{0}    伤害: [c/74F3C9:{1}]    比重: {2:0.00%} "
-msgstr ""
+msgstr "{0} Daño: [c/74F3C9:{1}] Gravedad específica: {2:0.00%}"
 
 #: ../../ZHIPM.Initialize.cs:2758
 #, csharp-format
 msgid "{0} 名用户因数据残缺导出失败\n"
 "已全部打包为{0}/Zhipm/{1}.zip"
-msgstr ""
+msgstr "{0} usuarios no pudieron exportar debido a datos incompletos\n"
+"Todo empaquetado como {0}/Zhipm/{1}.zip"
 
 #: ../../ZHIPM.Initialize.cs:2740
 #, csharp-format
 msgid "{0} 名用户因数据错误导出失败"
-msgstr ""
+msgstr "La exportación falló para {0} usuarios debido a un error de datos"
 
 #: ../../ZHIPM.Initialize.cs:3751
 #, csharp-format
 msgid "{0}。若玩家名称带有空格可用英文引号将名称整个括起来"
-msgstr ""
+msgstr "{0}. Si el nombre del jugador tiene espacios, puedes escribir el nombre completo entre comillas en inglés."
 
 #: ../../ZHIPM.Utils.cs:879
 #, csharp-format
 msgid "{0}[i:74] {1}[i:73] {2}[i:72] {3}[i:71]"
-msgstr ""
+msgstr "{0}[i:74] {1}[i:73] {2}[i:72] {3}[i:71]"
 
 #: ../../ZHIPM.Utils.cs:859
 #, csharp-format
 msgid "{0}小时 {1}分钟 {2}秒"
-msgstr ""
+msgstr "{0} horas {1} minutos {2} segundos"
 
 #: ../../ZHIPM.Utils.cs:880
 #, csharp-format
 msgid "{0}铂金币  {1}金币  {2}银币  {3}铜币"
-msgstr ""
+msgstr "{0}Moneda de platino {1}Moneda de oro {2}Moneda de plata {3}Moneda de cobre"
 
 #: ../../ZHIPM.Initialize.cs:2867
 msgid "\n"
 "输入 /zsort clumsy 来查看人物手残排行榜前十名\n"
 "输入 /zsort clumsy [num] 来查看当前[num]个人物手残排行榜\n"
 "输入 /zsort clumsy all 来查看所有玩家手残排行榜\n"
-msgstr ""
+msgstr "Ingrese /zsort torpe para ver las diez clasificaciones de handicap de personajes principales\n"
+"Ingrese /zsort clumsy [num] para ver las clasificaciones de handicap de caracteres actuales de [num]\n"
+"Escribe /zsort clumsy all para ver las clasificaciones de handicap de todos los jugadores."
 
 #: ../../ZHIPM.Initialize.cs:2846
 #: ../../ZHIPM.Initialize.cs:2860
@@ -89,95 +92,95 @@ msgstr ""
 #: ../../ZHIPM.Initialize.cs:3705
 #, csharp-format
 msgid "ip: {0} 已被 {1} 封禁"
-msgstr ""
+msgstr "ip: {0} ha sido bloqueada por {1}"
 
 #: ../../ZHIPM.Initialize.cs:3673
 #: ../../ZHIPM.Initialize.cs:3674
 #, csharp-format
 msgid "uuid: {0} 已被 {1} 封禁"
-msgstr ""
+msgstr "uuid: {0} ha sido bloqueado por {1}"
 
 #: ../../ZHIPM.Initialize.cs:702
 msgid "不可预料的错误，请重试或让该玩家重进游戏"
-msgstr ""
+msgstr "Error inesperado, inténtalo de nuevo o deja que el jugador vuelva a ingresar al juego."
 
 #: ../../ZHIPM.Initialize.cs:2507
 msgid "不要耍小聪明"
-msgstr ""
+msgstr "no seas inteligente"
 
 #: ../../ZHIPM.Initialize.cs:3746
 msgid "人数不唯一，为避免误封，请重新输入。若玩家名称带有空格可用英文引号将名称整个括起来"
-msgstr ""
+msgstr "El número de personas no es único. Para evitar ser bloqueado por error, vuelva a ingresar. Si el nombre del jugador tiene espacios, puedes escribir el nombre completo entre comillas en inglés."
 
 #: ../../ZHIPM.Initialize.cs:3654
 #: ../../ZHIPM.Initialize.cs:3685
 msgid "你已被管理员封禁！"
-msgstr ""
+msgstr "¡Has sido baneado por el administrador!"
 
 #: ../../ZHIPM.Initialize.cs:4970
 msgid "你没有上次死亡的地点"
-msgstr ""
+msgstr "No tienes un lugar donde moriste por última vez."
 
 #: ../../ZHIPM.Initialize.cs:2542
 msgid "你的名字含有指令关键字: all ，请更换"
-msgstr ""
+msgstr "Su nombre contiene la palabra clave del comando: all, cámbielo"
 
 #: ../../ZHIPM.Initialize.cs:2550
 msgid "你的名字含有指令关键字: help ，请更换"
-msgstr ""
+msgstr "Su nombre contiene la palabra clave del comando: help, cambialo"
 
 #: ../../ZHIPM.Initialize.cs:2562
 msgid "你的名字含有指令关键字: ip ，请更换"
-msgstr ""
+msgstr "Su nombre contiene la palabra clave del comando: ip, cámbielo"
 
 #: ../../ZHIPM.Initialize.cs:2554
 msgid "你的名字含有指令关键字: me ，请更换"
-msgstr ""
+msgstr "Su nombre contiene la palabra clave del comando: me, por favor cámbielo"
 
 #: ../../ZHIPM.Initialize.cs:2546
 msgid "你的名字含有指令关键字: time ，请更换"
-msgstr ""
+msgstr "Su nombre contiene la palabra clave del comando: time, por favor cámbielo"
 
 #: ../../ZHIPM.Initialize.cs:2558
 msgid "你的名字含有指令关键字: uuid ，请更换"
-msgstr ""
+msgstr "Su nombre contiene la palabra clave del comando: uuid, cámbielo"
 
 #: ../../ZHIPM.Initialize.cs:1365
 msgid "保险箱:"
-msgstr ""
+msgstr "seguro:"
 
 #: ../../ZHIPM.Initialize.cs:173
 msgid "修改失败，请重进服务器重试"
-msgstr ""
+msgstr "La modificación falló, inicie sesión en el servidor e inténtelo nuevamente."
 
 #: ../../ZHIPM.Initialize.cs:911
 #: ../../ZHIPM.Initialize.cs:912
 msgid "修改失败！错误："
-msgstr ""
+msgstr "¡La modificación falló! error:"
 
 #: ../../ZHIPM.Initialize.cs:178
 #, csharp-format
 msgid "修改成功，你的存档将每隔{0}分钟自动备份一次，请注意存档覆盖情况，这可能会覆盖你手动备份的部分"
-msgstr ""
+msgstr "La modificación se realizó correctamente. Se realizará una copia de seguridad de su archivo automáticamente cada {0} minutos. Preste atención a la cobertura del archivo, que puede sobrescribir la parte de la que realizó la copia de seguridad manualmente."
 
 #: ../../ZHIPM.Initialize.cs:178
 msgid "修改成功，你的自动备份已关"
-msgstr ""
+msgstr "Modificación exitosa, su copia de seguridad automática está desactivada"
 
 #: ../../ZHIPM.Initialize.cs:2638
 #, csharp-format
 msgid "修改成功，您现在已{0}击杀数提示"
-msgstr ""
+msgstr "Modificación exitosa, ahora tienes {0} mensaje de recuento de muertes"
 
 #: ../../ZHIPM.Initialize.cs:2649
 #, csharp-format
 msgid "修改成功，您现在已{0}点数提示"
-msgstr ""
+msgstr "Modificación exitosa, ahora tienes un recordatorio de {0} puntos"
 
 #: ../../ZHIPM.Initialize.cs:806
 #: ../../ZHIPM.Initialize.cs:907
 msgid "修改成功！"
-msgstr ""
+msgstr "¡Modificación exitosa!"
 
 #: ../../ZHIPM.Initialize.cs:396
 #: ../../ZHIPM.Initialize.cs:417
@@ -186,92 +189,92 @@ msgstr ""
 #: ../../ZHIPM.Initialize.cs:536
 #: ../../ZHIPM.Initialize.cs:590
 msgid "克隆失败！未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"
-msgstr ""
+msgstr "¡La clonación falló! El reproductor no se encontró en la base de datos original. Verifique si la entrada es correcta y si el reproductor evita la detección de SSC y luego vuelva a ingresar."
 
 #: ../../ZHIPM.Initialize.cs:355
 msgid "克隆失败！请不要克隆自己"
-msgstr ""
+msgstr "¡La clonación falló! Por favor no te clones"
 
 #: ../../ZHIPM.Initialize.cs:495
 #, csharp-format
 msgid "克隆成功！已将玩家 [{0}] 的数据克隆到你身上"
-msgstr ""
+msgstr "¡Clonación exitosa! Los datos del jugador [{0}] han sido clonados en ti"
 
 #: ../../ZHIPM.Initialize.cs:449
 #, csharp-format
 msgid "克隆成功！您已将玩家 [{0}] 的数据克隆到 [{1}] 身上"
-msgstr ""
+msgstr "¡Clonación exitosa! Has clonado los datos del jugador [{0}] en [{1}]"
 
 #: ../../ZHIPM.Initialize.cs:453
 #, csharp-format
 msgid "克隆成功！您已将玩家 [{0}] 的数据克隆到你身上"
-msgstr ""
+msgstr "¡Clonación exitosa! Has clonado los datos del jugador [{0}] en ti"
 
 #: ../../ZHIPM.Initialize.cs:532
 #: ../../ZHIPM.Initialize.cs:586
 #, csharp-format
 msgid "克隆成功！您已将玩家 [{0}] 的数据克隆到玩家 [{1}] 身上"
-msgstr ""
+msgstr "¡Clonación exitosa! Has clonado los datos del jugador [{0}] en el jugador [{1}]"
 
 #: ../../ZHIPM.Initialize.cs:491
 #, csharp-format
 msgid "克隆成功！您已将玩家 [{0}] 的数据克隆到玩家 [{1}]身上"
-msgstr ""
+msgstr "¡Clonación exitosa! Has clonado los datos del jugador [{0}] en el jugador [{1}]"
 
 #: ../../ZHIPM.Initialize.cs:392
 #: ../../ZHIPM.Initialize.cs:413
 #, csharp-format
 msgid "克隆成功！您已将玩家[{0}]的数据克隆到你身上"
-msgstr ""
+msgstr "¡Clonación exitosa! Has clonado los datos del jugador [{0}]"
 
 #: ../../ZHIPM.Utils.cs:1637
 #, csharp-format
 msgid "共有 [c/74F3C9:{0}] 位玩家击败了 [c/74F3C9:{1}]"
-msgstr ""
+msgstr "[c/74F3C9:{0}] jugadores derrotados [c/74F3C9:{1}]"
 
 #: ../../ZHIPM.Initialize.cs:1958
 #: ../../ZHIPM.Initialize.cs:2138
 #, csharp-format
 msgid "最大生命值：{0}   当前生命值：{1}"
-msgstr ""
+msgstr "Estado máximo: {0} Estado actual: {1}"
 
 #: ../../ZHIPM.Initialize.cs:1661
 #: ../../ZHIPM.Initialize.cs:1849
 #, csharp-format
 msgid "最大生命值[i:29]：{0}   当前生命值[i:58]：{1}"
-msgstr ""
+msgstr "Valor de salud máximo [i:29]: {0} Valor de salud actual [i:58]: {1}"
 
 #: ../../ZHIPM.Initialize.cs:1959
 #: ../../ZHIPM.Initialize.cs:2139
 #, csharp-format
 msgid "最大魔力值：{0}   当前魔力值：{1}"
-msgstr ""
+msgstr "Valor mágico máximo: {0} Valor mágico actual: {1}"
 
 #: ../../ZHIPM.Initialize.cs:1662
 #: ../../ZHIPM.Initialize.cs:1850
 #, csharp-format
 msgid "最大魔力值[i:109]：{0}   当前魔力值[i:184]：{1}"
-msgstr ""
+msgstr "Valor mágico máximo [i:109]: {0} Valor mágico actual [i:184]: {1}"
 
 #: ../../ZHIPM.Initialize.cs:3650
 #: ../../ZHIPM.Initialize.cs:3681
 msgid "参数过少"
-msgstr ""
+msgstr "Muy pocos parámetros"
 
 #: ../../ZHIPM.Initialize.cs:1962
 msgid "各种buff："
-msgstr ""
+msgstr "Varios buffos:"
 
 #: ../../ZHIPM.Initialize.cs:1665
 msgid "各种buff[i:678]："
-msgstr ""
+msgstr "Varios buffos[i:678]:"
 
 #: ../../ZHIPM.Initialize.cs:1687
 #: ../../ZHIPM.Initialize.cs:1853
 #: ../../ZHIPM.Initialize.cs:1980
 #: ../../ZHIPM.Initialize.cs:2142
 msgid "各种永久增益："
-msgstr ""
+msgstr "Varios buffos permanentes:"
 
 #: ../../ZHIPM.Initialize.cs:2638
 #: ../../ZHIPM.Initialize.cs:2649
@@ -516,7 +519,7 @@ msgstr ""
 
 #: ../../ZHIPM.Initialize.cs:733
 msgid "您的埃癸斯水晶增益开启状态："
-msgstr ""
+msgstr "Tu beneficio de Aegis Crystal está activado:"
 
 #: ../../ZHIPM.Initialize.cs:236
 #, csharp-format
@@ -525,75 +528,75 @@ msgstr ""
 
 #: ../../ZHIPM.Initialize.cs:132
 msgid "您的备份保存失败！请尝试重进游戏重试"
-msgstr ""
+msgstr "¡Tu copia de seguridad no se pudo guardar! Por favor intenta volver a entrar al juego y vuelve a intentarlo."
 
 #: ../../ZHIPM.Initialize.cs:128
 msgid "您的备份保存成功！"
-msgstr ""
+msgstr "¡Tu copia de seguridad se guardó exitosamente!"
 
 #: ../../ZHIPM.Initialize.cs:967
 msgid "您的备份数据已重置"
-msgstr ""
+msgstr "Tus datos de respaldo han sido restablecidos"
 
 #: ../../ZHIPM.Initialize.cs:743
 msgid "您的奥术水晶增益开启状态："
-msgstr ""
+msgstr "Tu beneficio de Cristal Arcano está activado:"
 
 #: ../../ZHIPM.Initialize.cs:728
 msgid "您的工匠面包增益开启状态："
-msgstr ""
+msgstr "Tu estado de aficionado al pan artesanal es:"
 
 #: ../../ZHIPM.Initialize.cs:723
 msgid "您的恶魔心增益开启状态："
-msgstr ""
+msgstr "Tu beneficio de Corazón demoníaco está activado:"
 
 #: ../../ZHIPM.Initialize.cs:794
 msgid "您的所有永久增益均关闭"
-msgstr ""
+msgstr "Todos tus beneficios permanentes están desactivados."
 
 #: ../../ZHIPM.Initialize.cs:780
 msgid "您的所有永久增益均开启"
-msgstr ""
+msgstr "Todos tus beneficios permanentes están activados."
 
 #: ../../ZHIPM.Initialize.cs:688
 msgid "您的渔夫任务完成数已被修改为："
-msgstr ""
+msgstr "Su número de tareas de pescador completadas se ha modificado a:"
 
 #: ../../ZHIPM.Initialize.cs:718
 msgid "您的火把神增益开启状态："
-msgstr ""
+msgstr "Tu beneficio del Dios de la Antorcha está activado:"
 
 #: ../../ZHIPM.Initialize.cs:698
 msgid "您的点数已被修改为："
-msgstr ""
+msgstr "Tus puntos han sido modificados a:"
 
 #: ../../ZHIPM.Initialize.cs:758
 msgid "您的珍馐增益开启状态："
-msgstr ""
+msgstr "Tu beneficio de delicadeza está activado:"
 
 #: ../../ZHIPM.Initialize.cs:673
 msgid "您的生命上限已被修改为："
-msgstr ""
+msgstr "Su límite de vida ha sido modificado a:"
 
 #: ../../ZHIPM.Initialize.cs:753
 msgid "您的粘性蠕虫增益开启状态："
-msgstr ""
+msgstr "Tu beneficio de Sticky Worm está activado:"
 
 #: ../../ZHIPM.Initialize.cs:763
 msgid "您的超级矿车增益开启状态："
-msgstr ""
+msgstr "Tu beneficio de súper carro minero está activado:"
 
 #: ../../ZHIPM.Initialize.cs:748
 msgid "您的银河珍珠增益开启状态："
-msgstr ""
+msgstr "Tu beneficio Galaxy Pearl está activado:"
 
 #: ../../ZHIPM.Initialize.cs:1050
 msgid "您的额外数据已重置"
-msgstr ""
+msgstr "Tus datos adicionales han sido restablecidos"
 
 #: ../../ZHIPM.Initialize.cs:683
 msgid "您的魔力上限已被修改为："
-msgstr ""
+msgstr "Tu límite de maná ha sido modificado a:"
 
 #: ../../ZHIPM.Initialize.cs:678
 msgid "您的魔力值已被修改为："
