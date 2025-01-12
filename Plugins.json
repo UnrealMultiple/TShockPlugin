@@ -82,6 +82,26 @@
     "HotReload": true
   },
   {
+    "Name": "AIChatPlugin",
+    "Version": "2025.1.12",
+    "Author": "忍",
+    "Description": {
+      "en-US": "一个提供AI对话的插件",
+      "de-DE": "一个提供AI对话的插件",
+      "it-IT": "一个提供AI对话的插件",
+      "fr-FR": "一个提供AI对话的插件",
+      "es-ES": "一个提供AI对话的插件",
+      "ru-RU": "一个提供AI对话的插件",
+      "zh-CN": "一个提供AI对话的插件",
+      "pt-BR": "一个提供AI对话的插件",
+      "pl-PL": "一个提供AI对话的插件"
+    },
+    "AssemblyName": "AIChatPlugin",
+    "Path": "AIChatPlugin.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "AnnouncementBoxPlus",
     "Version": "1.0.3",
     "Author": "Cai",
@@ -2501,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.111",
+    "Version": "1.9.2.112",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2523,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.111",
+    "Version": "1.0.0.112",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",

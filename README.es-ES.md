@@ -65,6 +65,7 @@
 | Nombre del plugin | Porcentaje de traducción | Descripcion del Plugin  | Dependencias |
 | :-: | :-: | :-: | :-: |
 | [AdditionalPylons](./src/AdditionalPylons/README.md) | 90.0% | Colocar más pilones | [LazyAPI](./src/LazyAPI/README.md) |
+| [AIChatPlugin](./src/AIChatPlugin/README.md) | 0.0% | AI聊天插件 |  |
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 0.0% | Mejora la funcionalidad de la caja de anuncios | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.md) | 0.0% | Botes de basura automáticos | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 0.0% | Transmisión automática | [LazyAPI](./src/LazyAPI/README.md) |
