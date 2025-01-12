@@ -8,9 +8,10 @@ namespace AutoBroadcast;
 [ApiVersion(2, 1)]
 public class AutoBroadcast : LazyPlugin
 {
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "Scavenger";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Author => "Scavenger";
     public override string Description => GetString("自动广播插件");
-    public override Version Version => new Version(1, 0, 8);
+    public override Version Version => new Version(1, 0, 9);
 
     public DateTime LastCheck = DateTime.UtcNow;
 
@@ -103,7 +104,7 @@ public class AutoBroadcast : LazyPlugin
 
                 lock (ABConfig.Instance.Broadcasts)
                 {
-                    if (ABConfig.Instance.Broadcasts[i] == null || ABConfig.Instance.Broadcasts[i].Enabled || ABConfig.Instance.Broadcasts[i].Interval < 1)
+                    if (ABConfig.Instance.Broadcasts[i] == null || !ABConfig.Instance.Broadcasts[i].Enabled || ABConfig.Instance.Broadcasts[i].Interval < 1)
                     {
                         continue;
                     }
