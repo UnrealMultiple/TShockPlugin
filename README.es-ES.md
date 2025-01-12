@@ -65,6 +65,7 @@
 | Nombre del plugin | Porcentaje de traducción | Descripcion del Plugin  | Dependencias |
 | :-: | :-: | :-: | :-: |
 | [AdditionalPylons](./src/AdditionalPylons/README.md) | 90.0% | Colocar más pilones | [LazyAPI](./src/LazyAPI/README.md) |
+| [AIChatPlugin](./src/AIChatPlugin/README.md) | 0.0% | AI聊天插件 |  |
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 0.0% | Mejora la funcionalidad de la caja de anuncios | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.md) | 0.0% | Botes de basura automáticos | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 0.0% | Transmisión automática | [LazyAPI](./src/LazyAPI/README.md) |
@@ -202,7 +203,7 @@
 | [WeaponPlus](./src/WeaponPlus/README.md) | 0.0% | Versión de monedas para mejorar armas |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 0.0% | 为服务器加载 Wiki 语言包 |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 0.0% | Editor del mundo, permite modificar la mayoría de los parámetros del mundo |  |
-| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | 0.0% | Plugin de gestión de jugadores de Zhi |  |
+| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | 24.2% | Plugin de gestión de jugadores de Zhi |  |
 
 </Details>
 

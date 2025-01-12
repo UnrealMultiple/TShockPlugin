@@ -82,6 +82,26 @@
     "HotReload": true
   },
   {
+    "Name": "AIChatPlugin",
+    "Version": "2025.1.12",
+    "Author": "忍",
+    "Description": {
+      "en-US": "一个提供AI对话的插件",
+      "de-DE": "一个提供AI对话的插件",
+      "it-IT": "一个提供AI对话的插件",
+      "fr-FR": "一个提供AI对话的插件",
+      "es-ES": "一个提供AI对话的插件",
+      "ru-RU": "一个提供AI对话的插件",
+      "zh-CN": "一个提供AI对话的插件",
+      "pt-BR": "一个提供AI对话的插件",
+      "pl-PL": "一个提供AI对话的插件"
+    },
+    "AssemblyName": "AIChatPlugin",
+    "Path": "AIChatPlugin.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "AnnouncementBoxPlus",
     "Version": "1.0.3",
     "Author": "Cai",
@@ -127,7 +147,7 @@
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.0.8",
+    "Version": "1.0.9",
     "Author": "Scavenger",
     "Description": {
       "en-US": "Automatic broadcast plugin",
@@ -430,11 +450,11 @@
     "HotReload": true
   },
   {
-    "Name": "CaiBot",
-    "Version": "2024.12.22.1",
+    "Name": "CaiBotPlugin",
+    "Version": "2025.1.12.1",
     "Author": "Cai,羽学,西江",
     "Description": {
-      "en-US": "CaiBot adapter plugin (Only support QQ)",
+      "en-US": "CaiBot机器人的适配插件",
       "de-DE": "CaiBot机器人的适配插件",
       "it-IT": "CaiBot机器人的适配插件",
       "fr-FR": "CaiBot机器人的适配插件",
@@ -603,7 +623,7 @@
   },
   {
     "Name": "ChattyBridge",
-    "Version": "1.0.0.5",
+    "Version": "1.0.1.1",
     "Author": "少司命",
     "Description": {
       "en-US": "ChattyBridge",
@@ -1972,8 +1992,8 @@
   },
   {
     "Name": "RecipesBrowser",
-    "Version": "1.0.7",
-    "Author": "棱镜 羽学适配",
+    "Version": "1.1.1",
+    "Author": "棱镜,羽学适配,Cai优化",
     "Description": {
       "en-US": "Ask item recipes with commands",
       "de-DE": "通过指令获取物品合成表",
@@ -2501,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.111",
+    "Version": "1.9.2.112",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2523,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.111",
+    "Version": "1.0.0.112",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",

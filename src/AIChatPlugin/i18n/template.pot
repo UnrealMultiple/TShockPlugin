@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AutoBroadcast\n"
-"POT-Creation-Date: 2025-01-12 09:51:55+0000\n"
-"PO-Revision-Date: 2025-01-12 09:51:55+0000\n"
+"Project-Id-Version: AIChatPlugin\n"
+"POT-Creation-Date: 2025-01-12 04:53:47+0000\n"
+"PO-Revision-Date: 2025-01-12 04:53:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../AutoBroadcast.cs:13
-msgid "自动广播插件"
+#: ../../AIChatPlugin.cs:16
+msgid "一个提供AI对话的插件"
 msgstr ""
 

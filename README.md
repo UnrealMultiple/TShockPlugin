@@ -61,6 +61,7 @@
 | 名称 | 插件说明 | 依赖 |
 | :-: | :-: | :-: |
 | [AdditionalPylons](./src/AdditionalPylons/README.md) | 放置更多晶塔 | [LazyAPI](./src/LazyAPI/README.md) |
+| [AIChatPlugin](./src/AIChatPlugin/README.md) | AI聊天插件 |  |
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 广播盒功能强化 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.md) | 自动垃圾桶插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 自动广播 | [LazyAPI](./src/LazyAPI/README.md) |

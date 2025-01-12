@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:36+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-11 17:27:37+0000\n"
+"PO-Revision-Date: 2025-01-12 01:16\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,15 +17,11 @@ msgstr ""
 "X-Crowdin-File-ID: 1120\n"
 "Language: es_ES\n"
 
-#: ../../Plugin.cs:35
-msgid "CaiBot机器人的适配插件"
-msgstr ""
-
-#: ../../Plugin.cs:241
+#: ../../Plugin.cs:242
 msgid "帮助 ({0}/{1})："
 msgstr ""
 
-#: ../../Plugin.cs:241
+#: ../../Plugin.cs:242
 msgid "输入 {0}caibot help {{0}} 查看更多"
 msgstr ""
 

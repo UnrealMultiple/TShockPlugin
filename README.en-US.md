@@ -65,6 +65,7 @@
 | Plugin Name | Translation Percentage | Plugin Description | Dependencies |
 | :-: | :-: | :-: | :-: |
 | [AdditionalPylons](./src/AdditionalPylons/README.en-US.md) | 100.0% | Place more Pylons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [AIChatPlugin](./src/AIChatPlugin/README.md) | 0.0% | AIChatPlugin |  |
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 100.0% | Enhance Broadcast Box Functionality | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoAirItem](./src/AutoAirItem/README.en-US.md) | 100.0% | Automatic trash cans | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.en-US.md) | 100.0% | Automatic broadcast | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -80,7 +81,7 @@
 | [BedSet](./src/BedSet/README.en-US.md) | 100.0% | Set and record respawn points | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.en-US.md) | 100.0% | Whitelist plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BridgeBuilder](./src/BridgeBuilder/README.en-US.md) | 100.0% | Quick bridge building | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [BuildMaster](./src/BuildMaster/README.en-US.md) | 42.5% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) |
+| [BuildMaster](./src/BuildMaster/README.en-US.md) | 100.0% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) |
 | [CaiBot](./src/CaiBot/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) |  |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.en-US.md) | 100.0% | Custom emoji command | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CaiLib](./src/CaiLib/README.md) | 0.0% | Cai's preload library | [SixLabors.ImageSharp]() |
@@ -101,7 +102,7 @@
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Allows for cross-platform play |  |
 | [CustomMonster](./src/CustomMonster/README.en-US.md) | 100.0% | Customize, modify, and generate monsters and bosses  |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.en-US.md) | 100.0% | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation |  |
-| [DamageStatistic](./src/DamageStatistic/README.md) | 100.0% | Display damage caused by each player after each boss fight |  |
+| [DamageStatistic](./src/DamageStatistic/README.en-US.md) | 100.0% | Display damage caused by each player after each boss fight |  |
 | [DataSync](./src/DataSync/README.md) | 0.0% | Progress synchronization |  |
 | [DeathDrop](./src/DeathDrop/README.md) | 100.0% | Random and custom loot upon monster death |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.en-US.md) | 100.0% | Prohibit monster loot |  |

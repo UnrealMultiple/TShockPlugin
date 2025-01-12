@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:19+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-01-11 17:28:21+0000\n"
+"PO-Revision-Date: 2025-01-12 01:16\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,69 @@ msgstr ""
 "X-Crowdin-File-ID: 1510\n"
 "Language: en_US\n"
 
-#: ../../RecipesBrowser.cs:15
+#: ../../RecipesBrowser.cs:127
+msgid "[i:1134]蜂蜜 "
+msgstr "[i:1134] Honey "
+
+#: ../../RecipesBrowser.cs:131
+msgid "[i:126]水 "
+msgstr "[i:126] Water "
+
+#: ../../RecipesBrowser.cs:149
+msgid "[i:321]墓地 "
+msgstr "[i:321] Ecto Mist "
+
+#: ../../RecipesBrowser.cs:123
+msgid "[i:3258]徒手 "
+msgstr "[i:3258] Slap Hand "
+
+#: ../../RecipesBrowser.cs:135
+msgid "[i:4825]岩浆 "
+msgstr "[i:4825] Lava "
+
+#: ../../RecipesBrowser.cs:144
+msgid "[i:4956]天顶种子 "
+msgstr "[i:4956] Zenith Seeds "
+
+#: ../../RecipesBrowser.cs:140
+msgid "[i:593]雪原群系 "
+msgstr "[i:593] Snow Biome "
+
+#: ../../RecipesBrowser.cs:96
+#, csharp-format
+msgid "{0}配方{1}:"
+msgstr "{0}Recipe{1}:"
+
+#: ../../RecipesBrowser.cs:157
+msgid "可合成的物品:\n"
+msgstr "Items can be crafted:\n"
+
+#: ../../RecipesBrowser.cs:116
+msgid "合成站："
+msgstr "Imbuing Station:"
+
+#: ../../RecipesBrowser.cs:61
+msgid "未找到物品"
+msgstr "Item not found"
+
+#: ../../RecipesBrowser.cs:109
+msgid "材料："
+msgstr "Material:"
+
+#: ../../RecipesBrowser.cs:53
+msgid "格式错误!正确格式: /find <物品ID|物品名>"
+msgstr "Invalid syntax! Correct syntax: /find <item ID|item name>"
+
+#: ../../RecipesBrowser.cs:84
+msgid "此物品无配方"
+msgstr "There is no recipe for this item"
+
+#: ../../RecipesBrowser.cs:81
+#, csharp-format
+msgid "物品:{0}"
+msgstr "Item:{0}"
+
+#: ../../RecipesBrowser.cs:17
 msgid "通过指令获取物品合成表"
 msgstr "Ask item recipes with commands"
 
