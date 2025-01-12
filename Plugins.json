@@ -147,7 +147,7 @@
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.0.8",
+    "Version": "1.0.9",
     "Author": "Scavenger",
     "Description": {
       "en-US": "Automatic broadcast plugin",
