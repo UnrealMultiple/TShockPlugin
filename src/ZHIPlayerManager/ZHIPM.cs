@@ -33,7 +33,7 @@ public partial class ZHIPM : TerrariaPlugin
     /// <summary>
     /// 广播颜色
     /// </summary>
-    private static readonly Color broadcastColor = new Version(0, 255, 214);
+    private static readonly Color broadcastColor = new Color(0, 255, 214);
     /// <summary>
     /// 计时器，60 Timer = 1 秒
     /// </summary>
