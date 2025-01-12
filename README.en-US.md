@@ -102,7 +102,7 @@
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Allows for cross-platform play |  |
 | [CustomMonster](./src/CustomMonster/README.en-US.md) | 100.0% | Customize, modify, and generate monsters and bosses  |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.en-US.md) | 100.0% | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation |  |
-| [DamageStatistic](./src/DamageStatistic/README.md) | 100.0% | Display damage caused by each player after each boss fight |  |
+| [DamageStatistic](./src/DamageStatistic/README.en-US.md) | 100.0% | Display damage caused by each player after each boss fight |  |
 | [DataSync](./src/DataSync/README.md) | 0.0% | Progress synchronization |  |
 | [DeathDrop](./src/DeathDrop/README.md) | 100.0% | Random and custom loot upon monster death |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.en-US.md) | 100.0% | Prohibit monster loot |  |
