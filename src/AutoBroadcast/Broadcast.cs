@@ -1,35 +1,82 @@
-using LazyAPI.Attributes;
+﻿using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
+using System.Text.Json;
+using TShockAPI;
 
 namespace AutoBroadcast;
-
-[Config]
-public class ABConfig : JsonConfigBase<ABConfig>
-{
-    [LocalizedPropertyName(CultureType.Chinese, "广播列表")]
-    [LocalizedPropertyName(CultureType.English, "Broadcasts")]
-    public Broadcast[] Broadcasts { get; set; } = Array.Empty<Broadcast>();
-
-    protected override string Filename => "AutoBroadcast";
-
-    protected override void SetDefault()
-    {
-        this.Broadcasts = new[]
-        {
-            new Broadcast
-            {
-                Name = "示例广播",
-                Enabled = true,
-                Messages = new string[] { "/say Ciallo～(∠・ω< )⌒★", "自动广播执行了服务器指令/say Ciallo～(∠・ω< )⌒★" },
-                ColorRGB = new float[] { 255, 234, 115 },
-                Interval = 600,
-            }
-        };
-    }
-}
-
 public class Broadcast
 {
+    private int _interval;
+    private readonly List<int> _delays = new();
+    
+    public Broadcast()
+    {
+        this._interval = this.Interval;
+    }
+    
+    public void RunTriggerWords(TSPlayer plr)
+    {
+        if (this.TriggerToWholeGroup)
+        {
+            Utils.BroadcastToGroups(this.Groups, this.Messages, this.ColorRGB);
+        }
+        else
+        {
+            Utils.BroadcastToPlayer(plr, this.Messages, this.ColorRGB);
+        }
+    }
+    
+    public void Run()
+    {
+        if (this.Groups.Length > 0)
+        {
+            Utils.BroadcastToGroups(this.Groups, this.Messages, this.ColorRGB);
+        }
+        else
+        {
+            Utils.BroadcastToAll(this.Messages, this.ColorRGB);
+        }
+    }
+
+    public void RunDelay()
+    {
+        if (this.StartDelay <= 0)
+        {
+            this.Run();
+            
+        }
+        else
+        {
+            this._delays.Add(this.StartDelay);
+        }
+    }
+
+    /// <summary>
+    /// 更新广播计时器
+    /// </summary>
+    /// <returns>如果计时器已经跑完, 就开始</returns>
+    public void SecondUpdate()
+    {
+        
+        for (var i = 0; i < this._delays.Count; i++)
+        {
+            this._delays[i]--;
+            if (this._delays[i] <= 0)
+            {
+                this.Run();
+            }
+        }
+        this._delays.RemoveAll(x=>x <= 0);
+        
+        this._interval--;
+        if (this._interval <= 0)
+        {
+            this.RunDelay();
+            this._interval = this.Interval;
+        }
+        
+    }
+
     [LocalizedPropertyName(CultureType.Chinese, "广播名称")]
     [LocalizedPropertyName(CultureType.English, "Name")]
     public string Name { get; set; } = string.Empty;
@@ -44,7 +91,7 @@ public class Broadcast
 
     [LocalizedPropertyName(CultureType.Chinese, "RGB颜色")]
     [LocalizedPropertyName(CultureType.English, "Color")]
-    public float[] ColorRGB { get; set; } = new float[3];
+    public byte[] ColorRGB { get; set; } = new byte[3];
 
     [LocalizedPropertyName(CultureType.Chinese, "时间间隔")]
     [LocalizedPropertyName(CultureType.English, "Interval")]

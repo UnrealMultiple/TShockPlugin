@@ -1,12 +1,86 @@
 ﻿using System.Data;
 using System.IO.Compression;
 using System.Text;
+using Terraria;
 
 namespace CaiBot;
 
 internal static class Utils
 {
 
+    internal static List<string> GetOnlineProcessList()
+    {
+        List<string> onlineProcessList = new ();
+        #region 进度查询
+
+        if (!NPC.downedSlimeKing)
+        {
+            onlineProcessList.Add("史王");
+        }
+
+        if (!NPC.downedBoss1)
+        {
+            onlineProcessList.Add("克眼");
+        }
+
+        if (!NPC.downedBoss2)
+        {
+            if (Main.drunkWorld)
+            {
+                onlineProcessList.Add("世吞/克脑");
+            }
+            else
+            {
+                onlineProcessList.Add(WorldGen.crimson ? "克脑" : "世吞");
+            }
+        }
+
+        if (!NPC.downedBoss3)
+        {
+            onlineProcessList.Add("骷髅王");
+        }
+
+        if (!Main.hardMode)
+        {
+            onlineProcessList.Add("血肉墙");
+        }
+
+        if (!NPC.downedMechBoss2 || !NPC.downedMechBoss1 || !NPC.downedMechBoss3)
+        {
+            onlineProcessList.Add(Main.zenithWorld ? "美杜莎" : "新三王");
+        }
+
+        if (!NPC.downedPlantBoss)
+        {
+            onlineProcessList.Add("世花");
+        }
+
+        if (!NPC.downedGolemBoss)
+        {
+            onlineProcessList.Add("石巨人");
+        }
+
+        if (!NPC.downedAncientCultist)
+        {
+            onlineProcessList.Add("拜月教徒");
+        }
+
+        if (!NPC.downedTowers)
+        {
+            onlineProcessList.Add("四柱");
+        }
+
+        if (!NPC.downedMoonlord)
+        {
+            onlineProcessList.Add("月总");
+        }
+
+        return onlineProcessList;
+
+
+        #endregion
+    }
+    
     internal static string FileToBase64String(string path)
     {
         FileStream fsForRead = new(path, FileMode.Open); //文件路径
