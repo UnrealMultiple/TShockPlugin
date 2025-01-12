@@ -147,7 +147,7 @@
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.0.8",
+    "Version": "1.0.9",
     "Author": "Scavenger",
     "Description": {
       "en-US": "Automatic broadcast plugin",
@@ -454,7 +454,7 @@
     "Version": "2025.1.12.1",
     "Author": "Cai,羽学,西江",
     "Description": {
-      "en-US": "CaiBot adapter plugin (Only support QQ)",
+      "en-US": "CaiBot机器人的适配插件",
       "de-DE": "CaiBot机器人的适配插件",
       "it-IT": "CaiBot机器人的适配插件",
       "fr-FR": "CaiBot机器人的适配插件",
