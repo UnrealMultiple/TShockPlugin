@@ -11,7 +11,7 @@ public class AutoBroadcast : LazyPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Scavenger";
     public override string Description => GetString("自动广播插件");
-    public override Version Version => new Version(1, 0, 9);
+    public override Version Version => new Version(1, 0, 10);
 
     public DateTime LastCheck = DateTime.UtcNow;
 

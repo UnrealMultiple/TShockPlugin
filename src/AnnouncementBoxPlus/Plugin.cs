@@ -21,7 +21,7 @@ public class AnnouncementBoxPlus : LazyPlugin
     //插件的名称
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     //插件的版本
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
 
     //插件的构造器
     public AnnouncementBoxPlus(Main game) : base(game)

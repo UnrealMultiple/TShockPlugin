@@ -9,7 +9,7 @@ namespace BetterWhitelist;
 public class BetterWhitelist : LazyPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new(2, 6, 2);
+    public override Version Version => new Version(2, 6, 3);
 
     public override string Author => "豆沙，肝帝熙恩、Cai修改";
 
