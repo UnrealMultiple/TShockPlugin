@@ -7,10 +7,10 @@
 
 | 指令 | 权限 | 作用 |
 | :-----| ----: | :----: |
-| /ab | tshock.canchat | 向 AI 提问 |
-| /bcz | tshock.canchat | 清除你的上下文记录 |
-| /bbz | tshock.canchat | 显示帮助信息 |
-| /aiclear | tshock.cfg.reload | 清除所有玩家的上下文记录 |
+| /ab | 无 | 向 AI 提问 |
+| /bcz | 无 | 清除你的上下文记录 |
+| /bbz | 无 | 显示帮助信息 |
+| /aiclear | aiclear | 清除所有玩家的上下文记录 |
 | /reload | tshock.cfg.reload | 重载配置文件 |
 
 ## 配置文件

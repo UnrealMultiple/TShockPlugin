@@ -3,28 +3,27 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 using System.Reflection;
-using static AIChatPlugin.AIConfig;
+using static AIChatPlugin.Configuration;
 using static AIChatPlugin.Utils;
 
 namespace AIChatPlugin;
-
 [ApiVersion(2, 1)]
 public class AIChatPlugin : TerrariaPlugin
 {
     #region 插件信息
-    public override Version Version => new Version(2025, 1, 11);
+    public override Version Version => new Version(2025, 1, 12);
     public override string Name => "AIChatPlugin";
     public override string Description => GetString("一个提供AI对话的插件");
-    public override string Author => "镜奇路蓝";
+    public override string Author => "忍";
     #endregion
     #region 插件启动
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("tshock.canchat", this.ChatWithAICommand, "ab"));
-        Commands.ChatCommands.Add(new Command("tshock.cfg.reload", this.AIreload, "reload"));
-        Commands.ChatCommands.Add(new Command("tshock.cfg.reload", AIclear, "aiclear"));
-        Commands.ChatCommands.Add(new Command("tshock.canchat", this.BotReset, "bcz"));
-        Commands.ChatCommands.Add(new Command("tshock.canchat", this.BotHelp, "bbz"));
+        Commands.ChatCommands.Add(new Command(this.ChatWithAICommand, "ab"));
+        Commands.ChatCommands.Add(new Command("ailear", AIclear, "aiclear"));
+        Commands.ChatCommands.Add(new Command(this.BotReset, "bcz"));
+        Commands.ChatCommands.Add(new Command(this.BotHelp, "bbz"));
+        GeneralHooks.ReloadEvent += this.GeneralHooks_ReloadEvent;
         PlayerHooks.PlayerLogout += this.OnPlayerLogout;
     }
     public AIChatPlugin(Main game) : base(game)
@@ -39,8 +38,8 @@ public class AIChatPlugin : TerrariaPlugin
         if (disposing)
         {
             Commands.ChatCommands.RemoveAll(cmd => cmd.CommandDelegate.Method?.DeclaringType?.Assembly == Assembly.GetExecutingAssembly());
+            GeneralHooks.ReloadEvent -= this.GeneralHooks_ReloadEvent;
             PlayerHooks.PlayerLogout -= this.OnPlayerLogout;
-            playerContexts.Clear();
         }
     }
     #endregion
@@ -48,15 +47,15 @@ public class AIChatPlugin : TerrariaPlugin
     private void BotHelp(CommandArgs args)
     {
         var helpMessage = "  [i:1344]AIChatPlugin帮助信息[i:1344]\n" +
-                             "[i:1344]/ab                   - 向AI提问\n" +
-                             "[i:1344]/bcz                  - 清除您的上下文\n" +
-                             "[i:1344]/bbz                  - 显示此帮助信息\n" +
-                             "[i:1344]/aiclear              - 清除所有人的上下文";
+                          "[i:1344]/ab                   - 向AI提问\n" +
+                          "[i:1344]/bcz                  - 清除您的上下文\n" +
+                          "[i:1344]/bbz                  - 显示此帮助信息\n" +
+                          "[i:1344]/aiclear              - 清除所有人的上下文";
         args.Player.SendInfoMessage(helpMessage);
     }
     #endregion
     #region 读取配置
-    private void AIreload(CommandArgs args)
+    private void GeneralHooks_ReloadEvent(ReloadEventArgs e)
     {
         LoadConfig();
     }
