@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:40+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-11 17:27:41+0000\n"
+"PO-Revision-Date: 2025-01-12 01:16\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,13 +17,24 @@ msgstr ""
 "X-Crowdin-File-ID: 1132\n"
 "Language: ru_RU\n"
 
-#: ../../Plugin.cs:123
+#: ../../Plugin.cs:120
 #, csharp-format
-msgid "[聊天桥] 信息发送失败，目标地址:{0}"
+msgid "[聊天桥] 信息发送失败，目标地址:{0}\n"
+"错误信息:{1}"
 msgstr ""
 
-#: ../../Plugin.cs:91
+#: ../../Plugin.cs:89
 #, csharp-format
-msgid "接收到未知类型:{0}"
+msgid "[聊天桥] 接收到未知类型:{0}"
+msgstr ""
+
+#: ../../Plugin.cs:144
+#, csharp-format
+msgid "[聊天桥] 目标服务器处理请求出错:{0}!"
+msgstr ""
+
+#: ../../Plugin.cs:141
+#, csharp-format
+msgid "[聊天桥] 访问目标服务器验证失败:{0},请检查你的令牌是否配置正确!"
 msgstr ""
 
