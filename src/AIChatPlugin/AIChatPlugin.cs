@@ -19,6 +19,7 @@ public class AIChatPlugin : TerrariaPlugin
     #region 插件启动
     public override void Initialize()
     {
+        LoadConfig();
         Commands.ChatCommands.Add(new Command(this.ChatWithAICommand, "ab"));
         Commands.ChatCommands.Add(new Command("ailear", AIclear, "aiclear"));
         Commands.ChatCommands.Add(new Command(this.BotReset, "bcz"));
@@ -29,7 +30,6 @@ public class AIChatPlugin : TerrariaPlugin
     public AIChatPlugin(Main game) : base(game)
     {
         base.Order = 1;
-        LoadConfig();
     }
     #endregion
     #region 插件卸载
