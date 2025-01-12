@@ -15,7 +15,7 @@ public class Plugin : LazyPlugin
     public override string Description => GetString("Show Item Decoration and More!!!");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 2);
+    public override Version Version => new Version(1, 0, 0, 3);
 
     public Plugin(Main game) : base(game)
     {

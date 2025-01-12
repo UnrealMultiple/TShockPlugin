@@ -18,7 +18,7 @@ public class Main : TerrariaPlugin
     public override string Description => GetString("离线物品盒子系统.");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2024, 12, 18, 1);
+    public override Version Version => new Version(2024, 12, 18, 2);
 
     public override void Initialize()
     {

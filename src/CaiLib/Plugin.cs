@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(2024, 12, 18, 3);
+    public override Version Version => new Version(2024, 12, 18, 4);
 
     public Plugin(Main game) : base(game)
     {

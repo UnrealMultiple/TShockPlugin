@@ -14,7 +14,6 @@
 | `/bwl list`       | `bwl.use`  | 	Show all players on the whitelist |
 | `/bwl true`       | `bwl.use`  |         Enable the plugin          |
 | `/bwl false`      | `bwl.use`  |        	Disable the plugin         |
-| `/bwl reload`     | `bwl.use`  |         Reload the plugin          |
 
 ## Config
 > Configuration file location：tshock/BetterWhitelist.en-US.json

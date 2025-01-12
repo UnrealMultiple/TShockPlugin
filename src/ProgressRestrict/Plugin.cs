@@ -11,7 +11,7 @@ public class Plugin : TerrariaPlugin
 {
     public override string Author => "少司命 & 恋恋魔改三合一";
     public override string Description => GetString("根据进度限制");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 3);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 4);
 
     public Config config = null!;
 

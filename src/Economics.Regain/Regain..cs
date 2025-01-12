@@ -16,7 +16,7 @@ public class Regain : TerrariaPlugin
     public override string Description => GetString("对玩家的物品进行回收!");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 1);
+    public override Version Version => new Version(2, 0, 0, 2);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Regain.json");
 

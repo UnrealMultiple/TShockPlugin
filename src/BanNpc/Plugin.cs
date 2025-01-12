@@ -13,7 +13,7 @@ public class Plugin : LazyPlugin
     public override string Description => GetString("禁止指定怪物的出没");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 5);
+    public override Version Version => new Version(1, 0, 0, 6);
 
     public Plugin(Main game) : base(game)
     {
