@@ -4,5 +4,8 @@
     },
     "README": {
         "Description": "服务器假人"
+    },
+    "README.es-ES": {
+        "Description": "Servidor de Pruebas (Ficticio) Para TEST"
     }
 }
