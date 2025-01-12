@@ -8,25 +8,40 @@ namespace BetterWhitelist;
 [ApiVersion(2, 1)]
 public class BetterWhitelist : LazyPlugin
 {
-    public BetterWhitelist(Main game) : base(game)
-    {
-    }
-
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new(2, 6, 1);
+    public override Version Version => new(2, 6, 2);
 
     public override string Author => "豆沙，肝帝熙恩、Cai修改";
 
     public override string Description => GetString("通过检查玩家姓名的玩家白名单");
-
+    public BetterWhitelist(Main game) : base(game)
+    {
+    }
     public override void Initialize()
     {
+        ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         Commands.ChatCommands.Add(new Command("bwl.use", this.BetterWhitelistCommand, "bwl"));
     }
+
+    private void OnJoin(JoinEventArgs args)
+    {
+        var player = TShock.Players[args.Who];
+
+        if (BConfig.Instance.Enable && !BConfig.Instance.WhitePlayers.Contains(player.Name))
+        {
+            player.Disconnect(BConfig.Instance.NotInWhiteList);
+        }
+        else if (!BConfig.Instance.Enable)
+        {
+            TShock.Log.ConsoleInfo("[BetterWhitelist] 开关已被禁用，请检查配置文件!");
+        }
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
+            ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.BetterWhitelistCommand);
         }
 
@@ -52,8 +67,7 @@ public class BetterWhitelist : LazyPlugin
                                             GetString("/bwl del {name}, 将玩家移出白名单\n") +
                                             GetString("/bwl list, 显示白名单上的全部玩家\n") +
                                             GetString("/bwl true, 启用插件\n") +
-                                            GetString("/bwl false, 关闭插件\n") +
-                                            GetString("/bwl reload, 重载插件"));
+                                            GetString("/bwl false, 关闭插件\n"));
                 break;
 
             case "list":
@@ -65,28 +79,28 @@ public class BetterWhitelist : LazyPlugin
                 break;
 
             case "false":
-                if (BConfig.Instance.Disabled)
+                if (!BConfig.Instance.Enable)
                 {
-                    args.Player.SendErrorMessage(GetString("禁用失败! 插件已是关闭状态"));
+                    args.Player.SendErrorMessage(GetString("[BetterWhitelist] 插件已是关闭状态"));
                 }
                 else
                 {
-                    BConfig.Instance.Disabled = true;
-                    args.Player.SendSuccessMessage(GetString("禁用成功!"));
+                    BConfig.Instance.Enable = false;
+                    args.Player.SendSuccessMessage(GetString("[BetterWhitelist] 白名单禁用成功!"));
                     BConfig.Save();
                 }
 
                 break;
 
             case "true":
-                if (!BConfig.Instance.Disabled)
+                if (BConfig.Instance.Enable)
                 {
-                    args.Player.SendErrorMessage(GetString("启用失败! 插件已是打开状态"));
+                    args.Player.SendErrorMessage(GetString("[BetterWhitelist] 白名单已是打开状态"));
                 }
                 else
                 {
-                    BConfig.Instance.Disabled = false;
-                    args.Player.SendSuccessMessage(GetString("启用成功!"));
+                    BConfig.Instance.Enable = true;
+                    args.Player.SendSuccessMessage(GetString("[BetterWhitelist] 白名单启用成功!"));
                     foreach (var tsPlayer in TShock.Players.Where(p =>
                                  p != null && !BConfig.Instance.WhitePlayers.Contains(p.Name)))
                     {
@@ -99,9 +113,9 @@ public class BetterWhitelist : LazyPlugin
                 break;
 
             case "add":
-                if (BConfig.Instance.Disabled)
+                if (!BConfig.Instance.Enable)
                 {
-                    args.Player.SendErrorMessage(GetString("插件开关已被禁用，请检查配置文件!"));
+                    args.Player.SendErrorMessage(GetString("[BetterWhitelist] 开关已被禁用，请检查配置文件!"));
                 }
                 else
                 {
@@ -127,7 +141,7 @@ public class BetterWhitelist : LazyPlugin
 
                 break;
             case "del":
-                if (BConfig.Instance.Disabled)
+                if (!BConfig.Instance.Enable)
                 {
                     args.Player.SendErrorMessage(GetString("插件开关已被禁用，请检查配置文件!"));
                 }
