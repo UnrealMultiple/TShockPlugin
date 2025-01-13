@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:35+0000\n"
-"PO-Revision-Date: 2025-01-12 01:16\n"
+"PO-Revision-Date: 2025-01-13 01:13\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -78,7 +78,9 @@ msgid "\n"
 "输入 /zsort death [num] 来查看当前[num]个人物死亡次数排行榜\n"
 "输入 /zsort death 来查看人物死亡次数排行榜前十名\n"
 "输入 /zsort death all 来查看所有玩家死亡次数排行榜\n"
-msgstr ""
+msgstr "Ingrese /zsort death [num] para ver las clasificaciones de muerte de personajes actuales [num]\n"
+"Escribe /zsort death para ver las diez clasificaciones de muertes de personajes principales\n"
+"Escribe /zsort death all para ver la tabla de clasificación de todas las muertes de jugadores."
 
 #: ../../ZHIPM.Initialize.cs:2839
 #: ../../ZHIPM.Initialize.cs:2853
@@ -86,7 +88,9 @@ msgid "\n"
 "输入 /zsort point [num] 来查看当前[num]个人物点数排行榜\n"
 "输入 /zsort point 来查看人物点数排行榜前十名\n"
 "输入 /zsort point all 来查看所有玩家点数排行榜\n"
-msgstr ""
+msgstr "Ingrese /zsort point [num] para ver las clasificaciones de puntos de caracteres actuales [num]\n"
+"Ingrese /zsort point para ver las clasificaciones de los diez puntos de caracteres principales\n"
+"Escribe /zsort point all para ver todas las clasificaciones de puntos de los jugadores."
 
 #: ../../ZHIPM.Initialize.cs:3704
 #: ../../ZHIPM.Initialize.cs:3705
@@ -279,78 +283,78 @@ msgstr "Varios buffos permanentes:"
 #: ../../ZHIPM.Initialize.cs:2638
 #: ../../ZHIPM.Initialize.cs:2649
 msgid "启用"
-msgstr ""
+msgstr "permitir"
 
 #: ../../ZHIPM.Utils.cs:795
 msgid "回档失败！"
-msgstr ""
+msgstr "¡Error al deshacer!"
 
 #: ../../ZHIPM.Utils.cs:838
 msgid "回档失败！未备份数据或该玩家未登录"
-msgstr ""
+msgstr "¡Error al deshacer! No se realiza una copia de seguridad de los datos o el reproductor no ha iniciado sesión"
 
 #: ../../ZHIPM.Utils.cs:785
 #, csharp-format
 msgid "回档失败！未找到 [{0} - {1}] 号该备份"
-msgstr ""
+msgstr "¡Error al deshacer! No se encontró el número de respaldo [{0} - {1}]"
 
 #: ../../ZHIPM.Initialize.cs:2052
 #: ../../ZHIPM.Initialize.cs:2214
 msgid "在线时长："
-msgstr ""
+msgstr "Tiempo en línea:"
 
 #: ../../ZHIPM.Initialize.cs:1759
 #: ../../ZHIPM.Initialize.cs:1925
 msgid "在线时长[i:3099]："
-msgstr ""
+msgstr "Tiempo en línea [i:3099]:"
 
 #: ../../ZHIPM.Initialize.cs:1353
 msgid "垃圾桶:"
-msgstr ""
+msgstr "Slot de Trash:"
 
 #: ../../ZHIPM.Initialize.cs:5042
 msgid "备份存档数目最小为 1 ，请不要输入无效值，已修改为默认 5"
-msgstr ""
+msgstr "El número mínimo de archivos de copia de seguridad es 1. No ingrese valores no válidos. Se ha modificado al valor predeterminado de 5."
 
 #: ../../ZHIPM.Initialize.cs:1279
 #, csharp-format
 msgid "多个结果  玩家 【{0}】 的所有库存如下:"
-msgstr ""
+msgstr "Múltiples resultados Todos los inventarios del jugador [{0}] son ​​los siguientes:"
 
 #: ../../ZHIPM.Initialize.cs:1458
 #: ../../ZHIPM.Initialize.cs:1541
 #, csharp-format
 msgid "多个结果  玩家 【{0}】 的所有库存如下:\n"
-msgstr ""
+msgstr "Múltiples resultados Todos los inventarios del jugador [{0}] son ​​los siguientes:"
 
 #: ../../ZHIPM.Initialize.cs:1846
 #: ../../ZHIPM.Initialize.cs:2136
 #, csharp-format
 msgid "多个结果  玩家 【{0}】 的状态如下:"
-msgstr ""
+msgstr "Múltiples resultados El estado del jugador [{0}] es el siguiente:"
 
 #: ../../ZHIPM.Initialize.cs:1616
 #, csharp-format
 msgid "多个结果 玩家 【{0}】 的所有库存如下:"
-msgstr ""
+msgstr "Múltiples resultados Todos los inventarios del jugador [{0}] son ​​los siguientes:"
 
 #: ../../ZHIPM.Initialize.cs:1960
 #: ../../ZHIPM.Initialize.cs:2140
 msgid "完成渔夫任务数："
-msgstr ""
+msgstr "Número de Misiones de pescador realizadas:"
 
 #: ../../ZHIPM.Initialize.cs:1663
 #: ../../ZHIPM.Initialize.cs:1851
 msgid "完成渔夫任务数[i:3120]："
-msgstr ""
+msgstr "Número de tareas de pescador completadas [i:3120]:"
 
 #: ../../ZHIPM.Initialize.cs:1341
 msgid "宠物 + 矿车 + 坐骑 + 钩爪:"
-msgstr ""
+msgstr "Mascota + Carro minero + Montura + Gancho:"
 
 #: ../../ZHIPM.Initialize.cs:1347
 msgid "宠物 矿车 坐骑 钩爪 染料:"
-msgstr ""
+msgstr "Tinte de gancho para montura de carro de mina para mascotas:"
 
 #: ../../ZHIPM.Initialize.cs:116
 #: ../../ZHIPM.Initialize.cs:158
@@ -359,17 +363,17 @@ msgstr ""
 #: ../../ZHIPM.Initialize.cs:2627
 #: ../../ZHIPM.Initialize.cs:4959
 msgid "对象不正确，请检查您的状态，您是否为游戏内玩家？"
-msgstr ""
+msgstr "El objeto es incorrecto, verifica tu estado. ¿Eres un jugador del juego?"
 
 #: ../../ZHIPM.Initialize.cs:2792
 #: ../../ZHIPM.Initialize.cs:2793
 msgid "导出失败，因数据错误"
-msgstr ""
+msgstr "La exportación falló debido a un error de datos"
 
 #: ../../ZHIPM.Initialize.cs:2816
 #: ../../ZHIPM.Initialize.cs:2817
 msgid "导出失败，因输入错误"
-msgstr ""
+msgstr "La exportación falló debido a un error de entrada"
 
 #: ../../ZHIPM.Initialize.cs:2787
 #: ../../ZHIPM.Initialize.cs:2788
@@ -377,95 +381,95 @@ msgstr ""
 #: ../../ZHIPM.Initialize.cs:2812
 #, csharp-format
 msgid "导出成功！目录：tshock/Zhipm/{0}/{1}.plr"
-msgstr ""
+msgstr "¡Exportación exitosa! Directorio: tshock/Zhipm/{0}/{1}.plr"
 
 #: ../../ZHIPM.Initialize.cs:2063
 #: ../../ZHIPM.Initialize.cs:2225
 msgid "已击杀Boss："
-msgstr ""
+msgstr "El jefe ha sido asesinado:"
 
 #: ../../ZHIPM.Initialize.cs:1770
 #: ../../ZHIPM.Initialize.cs:1936
 msgid "已击杀Boss[i:3868]："
-msgstr ""
+msgstr "El jefe[i:3868] ha sido asesinado:"
 
 #: ../../ZHIPM.Initialize.cs:2224
 msgid "已击杀生物数："
-msgstr ""
+msgstr "Número de criaturas asesinadas:"
 
 #: ../../ZHIPM.Initialize.cs:2062
 #, csharp-format
 msgid "已击杀生物数：{0} 个"
-msgstr ""
+msgstr "Número de criaturas asesinadas: {0}"
 
 #: ../../ZHIPM.Initialize.cs:1769
 #: ../../ZHIPM.Initialize.cs:1935
 #, csharp-format
 msgid "已击杀生物数[i:3095]：{0} 个"
-msgstr ""
+msgstr "Número de criaturas asesinadas [i:3095]: {0}"
 
 #: ../../ZHIPM.Initialize.cs:2064
 #: ../../ZHIPM.Initialize.cs:2226
 msgid "已击杀罕见生物："
-msgstr ""
+msgstr "Se han matado criaturas raras:"
 
 #: ../../ZHIPM.Initialize.cs:1771
 #: ../../ZHIPM.Initialize.cs:1937
 msgid "已击杀罕见生物[i:4274]："
-msgstr ""
+msgstr "Se han matado criaturas raras [i:4274]:"
 
 #: ../../ZHIPM.Initialize.cs:2751
 #, csharp-format
 msgid "已打包为{0}/Zhipm/{1}.zip"
-msgstr ""
+msgstr "Se han matado criaturas raras [i:4274]:"
 
 #: ../../ZHIPM.Initialize.cs:2432
 msgid "已清理所有射弹，物品，无用NPC"
-msgstr ""
+msgstr "Limpiado de todos los proyectiles, objetos y NPC inútiles."
 
 #: ../../ZHIPM.Initialize.cs:2378
 msgid "已自动备份您的人物存档，自动保存您的额外数据"
-msgstr ""
+msgstr "Se ha realizado una copia de seguridad de tu personaje guardado y tus datos adicionales se han guardado automáticamente."
 
 #: ../../ZHIPM.Initialize.cs:966
 #, csharp-format
 msgid "已重置玩家 [ {0} ] 的备份数据"
-msgstr ""
+msgstr "Se han restablecido los datos de copia de seguridad del reproductor [ {0} ]"
 
 #: ../../ZHIPM.Initialize.cs:1168
 #, csharp-format
 msgid "已重置玩家 [ {0} ] 的数据"
-msgstr ""
+msgstr "Se han restablecido los datos del jugador [ {0} ]"
 
 #: ../../ZHIPM.Initialize.cs:1049
 #, csharp-format
 msgid "已重置玩家 [ {0} ] 的额外数据"
-msgstr ""
+msgstr "Se han restablecido los datos adicionales del jugador [ {0} ]"
 
 #: ../../ZHIPM.Initialize.cs:989
 #, csharp-format
 msgid "已重置离线玩家 [ {0} ] 的备份数据"
-msgstr ""
+msgstr "Se han restablecido los datos de copia de seguridad para el reproductor sin conexión [ {0} ]"
 
 #: ../../ZHIPM.Initialize.cs:1153
 #, csharp-format
 msgid "已重置离线玩家 [ {0} ] 的数据"
-msgstr ""
+msgstr "Se han restablecido los datos del jugador sin conexión [ {0} ]"
 
 #: ../../ZHIPM.Initialize.cs:1072
 #, csharp-format
 msgid "已重置离线玩家 [ {0} ] 的额外数据"
-msgstr ""
+msgstr "Se han restablecido los datos adicionales para el jugador sin conexión [ {0} ]"
 
 #: ../../ZHIPM.Initialize.cs:1961
 #: ../../ZHIPM.Initialize.cs:2141
 msgid "库存硬币数："
-msgstr ""
+msgstr "Número de monedas en stock:"
 
 #: ../../ZHIPM.Initialize.cs:1664
 #: ../../ZHIPM.Initialize.cs:1852
 msgid "库存硬币数[i:855]："
-msgstr ""
+msgstr "Número de monedas en stock:"
 
 #: ../../ZHIPM.Initialize.cs:2932
 #: ../../ZHIPM.Initialize.cs:3012
@@ -478,44 +482,44 @@ msgstr ""
 #: ../../ZHIPM.Initialize.cs:3576
 #, csharp-format
 msgid "当前最多 {0} 人"
-msgstr ""
+msgstr "Actualmente como máximo {0} personas"
 
 #: ../../ZHIPM.Initialize.cs:1316
 msgid "当前染料:"
-msgstr ""
+msgstr "Tintes actuales:"
 
 #: ../../ZHIPM.Initialize.cs:1291
 msgid "当前装备栏："
-msgstr ""
+msgstr "Columna de equipamiento actual:"
 
 #: ../../ZHIPM.Utils.cs:816
 #: ../../ZHIPM.Utils.cs:829
 msgid "您已回档成功！"
-msgstr ""
+msgstr "¡Has devuelto el archivo con éxito!"
 
 #: ../../ZHIPM.Initialize.cs:2338
 msgid "您已经在线了 "
-msgstr ""
+msgstr "Ya estas en linea"
 
 #: ../../ZHIPM.Initialize.cs:2486
 msgid "您已被冻结"
-msgstr ""
+msgstr "has estado congelado"
 
 #: ../../ZHIPM.Initialize.cs:2485
 msgid "您已被冻结，详情请询问管理员"
-msgstr ""
+msgstr "Ha sido congelado, solicite más detalles al administrador."
 
 #: ../../ZHIPM.Initialize.cs:3944
 msgid "您已被解冻"
-msgstr ""
+msgstr "te han descongelado"
 
 #: ../../ZHIPM.Initialize.cs:1169
 msgid "您的人物数据已被重置"
-msgstr ""
+msgstr "Los datos de tu personaje han sido restablecidos."
 
 #: ../../ZHIPM.Initialize.cs:738
 msgid "您的埃癸斯果增益开启状态："
-msgstr ""
+msgstr "Tu estado de mejora de Aegis Fruit es:"
 
 #: ../../ZHIPM.Initialize.cs:733
 msgid "您的埃癸斯水晶增益开启状态："
@@ -524,7 +528,7 @@ msgstr "Tu beneficio de Aegis Crystal está activado:"
 #: ../../ZHIPM.Initialize.cs:236
 #, csharp-format
 msgid "您的备份[{0} - {1}]的内容为：\n"
-msgstr ""
+msgstr "El contenido de su copia de seguridad [{0} - {1}] es:"
 
 #: ../../ZHIPM.Initialize.cs:132
 msgid "您的备份保存失败！请尝试重进游戏重试"
@@ -600,59 +604,59 @@ msgstr "Tu límite de maná ha sido modificado a:"
 
 #: ../../ZHIPM.Initialize.cs:678
 msgid "您的魔力值已被修改为："
-msgstr ""
+msgstr "Tu valor mágico ha sido modificado a:"
 
 #: ../../ZHIPM.Initialize.cs:222
 msgid "您还未备份"
-msgstr ""
+msgstr "Aún no has hecho una copia de seguridad"
 
 #: ../../ZHIPM.Initialize.cs:4926
 #, csharp-format
 msgid "您遗失了：{0} 点数"
-msgstr ""
+msgstr "Te faltan: {0} puntos"
 
 #: ../../ZHIPM.Initialize.cs:4931
 #, csharp-format
 msgid "您遗失了：{0} 点数，已扣完"
-msgstr ""
+msgstr "Perdiste: {0} puntos, todos deducidos"
 
 #: ../../ZHIPM.Initialize.cs:3899
 msgid "所有玩家均已解冻"
-msgstr ""
+msgstr "Todos los jugadores han sido descongelados."
 
 #: ../../ZHIPM.Initialize.cs:1126
 #: ../../ZHIPM.Initialize.cs:1129
 msgid "所有玩家的人物数据均已重置"
-msgstr ""
+msgstr "Se han restablecido los datos de todos los personajes de los jugadores."
 
 #: ../../ZHIPM.Initialize.cs:940
 #: ../../ZHIPM.Initialize.cs:941
 #: ../../ZHIPM.Initialize.cs:945
 msgid "所有玩家的备份数据均已重置"
-msgstr ""
+msgstr "Se han restablecido los datos de copia de seguridad de todos los jugadores."
 
 #: ../../ZHIPM.Initialize.cs:2277
 msgid "所有玩家的所有Buff均已消除"
-msgstr ""
+msgstr "Se han eliminado todos los beneficios para todos los jugadores."
 
 #: ../../ZHIPM.Initialize.cs:1216
 #: ../../ZHIPM.Initialize.cs:1220
 msgid "所有玩家的所有数据均已全部初始化"
-msgstr ""
+msgstr "Se han inicializado todos los datos de todos los jugadores."
 
 #: ../../ZHIPM.Initialize.cs:1021
 #: ../../ZHIPM.Initialize.cs:1022
 #: ../../ZHIPM.Initialize.cs:1026
 msgid "所有玩家的额外数据均已重置"
-msgstr ""
+msgstr "Se han restablecido todos los datos adicionales del jugador."
 
 #: ../../ZHIPM.Initialize.cs:1371
 msgid "护卫熔炉:"
-msgstr ""
+msgstr "Guarda la forja:"
 
 #: ../../ZHIPM.Initialize.cs:166
 msgid "数字不合理"
-msgstr ""
+msgstr "Los números no tienen sentido"
 
 #: ../../ZHIPM.Initialize.cs:2925
 #: ../../ZHIPM.Initialize.cs:3005
@@ -664,11 +668,11 @@ msgstr ""
 #: ../../ZHIPM.Initialize.cs:3470
 #: ../../ZHIPM.Initialize.cs:3569
 msgid "数字无效"
-msgstr ""
+msgstr "Número no válido"
 
 #: ../../ZHIPM.Initialize.cs:4966
 msgid "数据异常，请重试"
-msgstr ""
+msgstr "Anomalía en los datos, inténtelo de nuevo"
 
 #: ../../ZHIPM.Initialize.cs:1682
 #: ../../ZHIPM.Initialize.cs:1751
@@ -676,75 +680,76 @@ msgstr ""
 #: ../../ZHIPM.Initialize.cs:1975
 #: ../../ZHIPM.Initialize.cs:2044
 msgid "无"
-msgstr ""
+msgstr "nada"
 
 #: ../../ZHIPM.Initialize.cs:4512
 msgid "月亮领主"
-msgstr ""
+msgstr "señor de la luna"
 
 #: ../../ZHIPM.Utils.cs:966
 #, csharp-format
 msgid "月亮领主({0})"
-msgstr ""
+msgstr "Señor de la luna ({0})"
 
 #: ../../ZHIPM.Initialize.cs:2260
 #: ../../ZHIPM.Initialize.cs:2263
 msgid "服务器将在20秒后清理世界内所有无用NPC，射弹和物品"
-msgstr ""
+msgstr "El servidor limpiará todos los NPC, proyectiles y elementos inútiles del mundo después de 20 segundos."
 
 #: ../../ZHIPM.Initialize.cs:2655
 msgid "未启用击杀NPC统计，该功能不可用"
-msgstr ""
+msgstr "Las estadísticas de muertes de NPC no están habilitadas y esta función no está disponible."
 
 #: ../../ZHIPM.Initialize.cs:2659
 msgid "未启用点数统计，该功能不可用"
-msgstr ""
+msgstr "Las estadísticas de puntos no están habilitadas y esta función no está disponible"
 
 #: ../../ZHIPM.Utils.cs:776
 msgid "未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入"
-msgstr ""
+msgstr "El reproductor no se encontró en la base de datos original. Verifique si la entrada es correcta y si el reproductor evita la detección de SSC y luego vuelva a ingresar."
 
 #: ../../ZHIPM.Initialize.cs:4993
 msgid "未被允许死亡回调传送，请在配置文件中修改"
-msgstr ""
+msgstr "La transmisión de devolución de llamada por muerte no está permitida, modifíquela en el archivo de configuración"
 
 #: ../../ZHIPM.Initialize.cs:1322
 msgid "染料1:"
-msgstr ""
+msgstr "Tinte 1:"
 
 #: ../../ZHIPM.Initialize.cs:1328
 msgid "染料2:"
-msgstr ""
+msgstr "Tinte 2:"
 
 #: ../../ZHIPM.Initialize.cs:1334
 msgid "染料3:"
-msgstr ""
+msgstr "Tinte 3:"
 
 #: ../../ZHIPM.Initialize.cs:649
 #: ../../ZHIPM.Initialize.cs:708
 #: ../../ZHIPM.Initialize.cs:859
 msgid "格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"
-msgstr ""
+msgstr "¡Error de formato! Escriba /zmodify help para ver la ayuda del comando para modificar los datos del jugador"
 
 #: ../../ZHIPM.Utils.cs:753
 msgid "检测到符合该条件的玩家数目不唯一，请重新输入\n"
 "包含："
-msgstr ""
+msgstr "Se detecta que el número de jugadores que cumplen esta condición no es único. Vuelva a ingresar.\n"
+"Incluir:"
 
 #: ../../ZHIPM.Utils.cs:1464
 #, csharp-format
 msgid "正常的意外因玩家 [ {0} ] 数据残缺而导出人物失败 CreateAPlayer"
-msgstr ""
+msgstr "Accidente normal. La exportación de personajes falló debido a datos incompletos del jugador [{0}]."
 
 #: ../../ZHIPM.Initialize.cs:2057
 #: ../../ZHIPM.Initialize.cs:2219
 msgid "死亡次数："
-msgstr ""
+msgstr "Número de muertes:"
 
 #: ../../ZHIPM.Initialize.cs:1764
 #: ../../ZHIPM.Initialize.cs:1930
 msgid "死亡次数[i:321]："
-msgstr ""
+msgstr "Número de muertes[i:321]:"
 
 #: ../../ZHIPM.Initialize.cs:2900
 #: ../../ZHIPM.Initialize.cs:2977
@@ -756,17 +761,17 @@ msgstr ""
 #: ../../ZHIPM.Initialize.cs:3443
 #: ../../ZHIPM.Initialize.cs:3520
 msgid "没有任何数据"
-msgstr ""
+msgstr "sin datos"
 
 #: ../../ZHIPM.Initialize.cs:1208
 #: ../../ZHIPM.Initialize.cs:1209
 msgid "清理失败 ZResetPlayerAll :"
-msgstr ""
+msgstr "Error de limpieza ZResetPlayerAll:"
 
 #: ../../ZHIPM.Utils.cs:951
 #, csharp-format
 msgid "游雨{0}({1})，"
-msgstr ""
+msgstr "游雨{0}({1})，(Traduccion No terminada no se)"
 
 #: ../../ZHIPM.Initialize.cs:2069
 #: ../../ZHIPM.Initialize.cs:2231

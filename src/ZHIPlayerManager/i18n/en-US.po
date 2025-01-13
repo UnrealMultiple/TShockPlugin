@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:35+0000\n"
-"PO-Revision-Date: 2025-01-11 01:09\n"
+"PO-Revision-Date: 2025-01-13 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -506,7 +506,7 @@ msgstr "You have successfully returned the file!"
 
 #: ../../ZHIPM.Initialize.cs:2338
 msgid "您已经在线了 "
-msgstr "Player {0} is already online {1} "
+msgstr "You have been online for "
 
 #: ../../ZHIPM.Initialize.cs:2486
 msgid "您已被冻结"
@@ -717,7 +717,7 @@ msgstr "The player was not found in the original database. Please check whether 
 
 #: ../../ZHIPM.Initialize.cs:4993
 msgid "未被允许死亡回调传送，请在配置文件中修改"
-msgstr "Death callback transmission is not allowed, please modify it in the configuration file"
+msgstr "Death teleport is not allowed, please modify it in the configuration file"
 
 #: ../../ZHIPM.Initialize.cs:1322
 msgid "染料1:"
