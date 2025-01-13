@@ -203,7 +203,7 @@
 | [WeaponPlus](./src/WeaponPlus/README.md) | 0.0% | Versión de monedas para mejorar armas |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 0.0% | 为服务器加载 Wiki 语言包 |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 0.0% | Editor del mundo, permite modificar la mayoría de los parámetros del mundo |  |
-| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | 24.2% | Plugin de gestión de jugadores de Zhi |  |
+| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | 54.5% | Plugin de gestión de jugadores de Zhi |  |
 
 </Details>
 

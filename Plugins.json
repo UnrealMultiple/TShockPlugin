@@ -21,7 +21,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.198.0",
+    "Version": "0.0.200.0",
     "Author": "SGKoishi",
     "Description": {
       "en-US": "Yet another misc plugin for TShock",
@@ -86,7 +86,7 @@
     "Version": "2025.1.13",
     "Author": "忍",
     "Description": {
-      "en-US": "一个提供AI对话的插件",
+      "en-US": "A plugin provides AI dialogue",
       "de-DE": "一个提供AI对话的插件",
       "it-IT": "一个提供AI对话的插件",
       "fr-FR": "一个提供AI对话的插件",
@@ -665,7 +665,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.198.0",
+    "Version": "0.0.200.0",
     "Author": "SGKoishi",
     "Description": {
       "en-US": "Yet another misc plugin for TShock - the miscellaneous part",
@@ -2521,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.112",
+    "Version": "1.9.2.113",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2543,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.112",
+    "Version": "1.0.0.113",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
