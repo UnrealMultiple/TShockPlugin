@@ -10,7 +10,7 @@ public class GolfRewards : TerrariaPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449";
     public override string Description => GetString("将高尔夫打入球洞会得到奖励.");
-    public override Version Version => new Version(1, 0, 9);
+    public override Version Version => new Version(1, 0, 10);
 
     public GolfRewards(Main game) : base(game)
     {

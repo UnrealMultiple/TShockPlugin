@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:34+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-12 21:10:22+0000\n"
+"PO-Revision-Date: 2025-01-13 01:13\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,35 +17,51 @@ msgstr ""
 "X-Crowdin-File-ID: 1110\n"
 "Language: es_ES\n"
 
-#: ../../Main.cs:49
+#: ../../Main.cs:64
 msgid "-------[BetterWhitelist]-------"
 msgstr ""
 
-#: ../../Main.cs:51
+#: ../../Main.cs:118
+msgid "[BetterWhitelist] 开关已被禁用，请检查配置文件!"
+msgstr ""
+
+#: ../../Main.cs:84
+msgid "[BetterWhitelist] 插件已是关闭状态"
+msgstr ""
+
+#: ../../Main.cs:103
+msgid "[BetterWhitelist] 白名单启用成功!"
+msgstr ""
+
+#: ../../Main.cs:98
+msgid "[BetterWhitelist] 白名单已是打开状态"
+msgstr ""
+
+#: ../../Main.cs:89
+msgid "[BetterWhitelist] 白名单禁用成功!"
+msgstr ""
+
+#: ../../Main.cs:66
 msgid "/bwl add {name}, 添加玩家名到白名单中\n"
 msgstr ""
 
-#: ../../Main.cs:52
+#: ../../Main.cs:67
 msgid "/bwl del {name}, 将玩家移出白名单\n"
 msgstr ""
 
-#: ../../Main.cs:55
+#: ../../Main.cs:70
 msgid "/bwl false, 关闭插件\n"
 msgstr ""
 
-#: ../../Main.cs:50
+#: ../../Main.cs:65
 msgid "/bwl help, 显示帮助信息\n"
 msgstr ""
 
-#: ../../Main.cs:53
+#: ../../Main.cs:68
 msgid "/bwl list, 显示白名单上的全部玩家\n"
 msgstr ""
 
-#: ../../Main.cs:56
-msgid "/bwl reload, 重载插件"
-msgstr ""
-
-#: ../../Main.cs:54
+#: ../../Main.cs:69
 msgid "/bwl true, 启用插件\n"
 msgstr ""
 
@@ -53,52 +69,35 @@ msgstr ""
 msgid "你不在服务器白名单中！"
 msgstr ""
 
-#: ../../Main.cs:146
+#: ../../Main.cs:160
 msgid "删除成功!"
 msgstr ""
 
-#: ../../Main.cs:84
-msgid "启用失败! 插件已是打开状态"
-msgstr ""
-
-#: ../../Main.cs:89
-msgid "启用成功!"
-msgstr ""
-
-#: ../../Main.cs:104
-#: ../../Main.cs:132
+#: ../../Main.cs:146
 msgid "插件开关已被禁用，请检查配置文件!"
 msgstr ""
 
-#: ../../Main.cs:124
+#: ../../Main.cs:138
 msgid "添加失败! 该玩家已经在白名单中"
 msgstr ""
 
-#: ../../Main.cs:119
+#: ../../Main.cs:133
 msgid "添加成功!"
 msgstr ""
 
-#: ../../Main.cs:40
+#: ../../Main.cs:55
 msgid "用法: 输入 /bwl help 显示帮助信息."
 msgstr ""
 
-#: ../../Main.cs:110
+#: ../../Main.cs:124
 msgid "用法错误!正确用法: /bwl add <玩家名>"
 msgstr ""
 
-#: ../../Main.cs:138
+#: ../../Main.cs:152
 msgid "用法错误!正确用法: /bwl del <玩家名>"
 msgstr ""
 
-#: ../../Main.cs:70
-msgid "禁用失败! 插件已是关闭状态"
-msgstr ""
-
-#: ../../Main.cs:75
-msgid "禁用成功!"
-msgstr ""
-
-#: ../../Main.cs:20
+#: ../../Main.cs:16
 msgid "通过检查玩家姓名的玩家白名单"
 msgstr ""
 

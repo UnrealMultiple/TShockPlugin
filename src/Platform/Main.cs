@@ -13,7 +13,7 @@ public class Platform : TerrariaPlugin
     public override string Description => GetString("判断玩家设备");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 0, 3);
+    public override Version Version => new Version(1, 1, 0, 4);
 
     public Platform(Main game)
     : base(game)

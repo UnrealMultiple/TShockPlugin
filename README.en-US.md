@@ -65,7 +65,7 @@
 | Plugin Name | Translation Percentage | Plugin Description | Dependencies |
 | :-: | :-: | :-: | :-: |
 | [AdditionalPylons](./src/AdditionalPylons/README.en-US.md) | 100.0% | Place more Pylons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [AIChatPlugin](./src/AIChatPlugin/README.md) | 0.0% | AIChatPlugin |  |
+| [AIChatPlugin](./src/AIChatPlugin/README.md) | 100.0% | AIChatPlugin |  |
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 100.0% | Enhance Broadcast Box Functionality | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoAirItem](./src/AutoAirItem/README.en-US.md) | 100.0% | Automatic trash cans | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.en-US.md) | 100.0% | Automatic broadcast | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -79,7 +79,7 @@
 | [BagPing](./src/BagPing/README.en-US.md) | 100.0% | Mark treasure bags on the map |  |
 | [BanNpc](./src/BanNpc/README.en-US.md) | 100.0% | Prevent monster generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BedSet](./src/BedSet/README.en-US.md) | 100.0% | Set and record respawn points | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [BetterWhitelist](./src/BetterWhitelist/README.en-US.md) | 100.0% | Whitelist plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [BetterWhitelist](./src/BetterWhitelist/README.en-US.md) | 76.2% | Whitelist plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BridgeBuilder](./src/BridgeBuilder/README.en-US.md) | 100.0% | Quick bridge building | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BuildMaster](./src/BuildMaster/README.en-US.md) | 100.0% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) |
 | [CaiBot](./src/CaiBot/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) |  |
@@ -125,10 +125,10 @@
 | [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | 100.0% | Additional management commands |  |
 | [Ezperm](./src/Ezperm/README.en-US.md) | 100.0% | Batch change permissions |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Fish shop |  |
-| [GenerateMap](./src/GenerateMap/README.md) | 100.0% | Generate map images | [CaiLib](./src/CaiLib/README.md) |
+| [GenerateMap](./src/GenerateMap/README.en-US.md) | 100.0% | Generate map images | [CaiLib](./src/CaiLib/README.md) |
 | [GolfRewards](./src/GolfRewards/README.md) | 100.0% | Golf rewards |  |
 | [GoodNight](./src/GoodNight/README.md) | 100.0% | Curfew |  |
-| [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 100.0% | Hardcore death drops life crystals |  |
+| [HardPlayerDrop](./src/HardPlayerDrop/README.en-US.md) | 100.0% | Hardcore death drops life crystals |  |
 | [HelpPlus](./src/HelpPlus/README.en-US.md) | 100.0% | Fix and enhance the Help command |  |
 | [History](./src/History/README.md) | 100.0% | History grid record |  |
 | [HouseRegion](./src/HouseRegion/README.en-US.md) | 100.0% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |

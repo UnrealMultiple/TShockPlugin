@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-12 09:51:55+0000\n"
+"POT-Creation-Date: 2025-01-12 04:53:47+0000\n"
 "PO-Revision-Date: 2025-01-13 01:13\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
@@ -13,11 +13,11 @@ msgstr ""
 "X-Crowdin-Project: tshock-chinese-plugin\n"
 "X-Crowdin-Project-ID: 751499\n"
 "X-Crowdin-Language: ru\n"
-"X-Crowdin-File: /master/src/AutoBroadcast/i18n/template.pot\n"
-"X-Crowdin-File-ID: 1088\n"
+"X-Crowdin-File: /master/src/AIChatPlugin/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1554\n"
 "Language: ru_RU\n"
 
-#: ../../AutoBroadcast.cs:13
-msgid "自动广播插件"
+#: ../../AIChatPlugin.cs:16
+msgid "一个提供AI对话的插件"
 msgstr ""
 

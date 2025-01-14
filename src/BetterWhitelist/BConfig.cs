@@ -12,7 +12,7 @@ public class BConfig : JsonConfigBase<BConfig>
 
     [LocalizedPropertyName(CultureType.Chinese, "插件开关", Order = 0)]
     [LocalizedPropertyName(CultureType.English, "Enable", Order = 0)]
-    public bool Disabled { get; set; }
+    public bool Enable { get; set; }
 
     [LocalizedPropertyName(CultureType.Chinese, "连接时不在白名单提示", Order = 1)]
     [LocalizedPropertyName(CultureType.English, "NotInWhiteList", Order = 1)]
