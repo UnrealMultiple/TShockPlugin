@@ -33,7 +33,7 @@ public class Configuration
             }
             catch (Exception ex)
             {
-                TShock.Log.ConsoleError($"[AIChatPlugin] 加载配置时发生错误：{ex.Message}");
+                TShock.Log.ConsoleError(GetString($"[AIChatPlugin] 加载配置时发生错误：{ex.Message}"));
             }
         }
     }
