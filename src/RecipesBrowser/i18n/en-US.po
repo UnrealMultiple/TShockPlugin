@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-11 17:28:21+0000\n"
-"PO-Revision-Date: 2025-01-12 01:16\n"
+"PO-Revision-Date: 2025-01-13 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgstr "Items can be crafted:\n"
 
 #: ../../RecipesBrowser.cs:116
 msgid "合成站："
-msgstr "Imbuing Station:"
+msgstr "Crafting Station:"
 
 #: ../../RecipesBrowser.cs:61
 msgid "未找到物品"
