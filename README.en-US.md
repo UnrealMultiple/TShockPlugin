@@ -79,7 +79,7 @@
 | [BagPing](./src/BagPing/README.en-US.md) | 100.0% | Mark treasure bags on the map |  |
 | [BanNpc](./src/BanNpc/README.en-US.md) | 100.0% | Prevent monster generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BedSet](./src/BedSet/README.en-US.md) | 100.0% | Set and record respawn points | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [BetterWhitelist](./src/BetterWhitelist/README.en-US.md) | 76.2% | Whitelist plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [BetterWhitelist](./src/BetterWhitelist/README.en-US.md) | 100.0% | Whitelist plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BridgeBuilder](./src/BridgeBuilder/README.en-US.md) | 100.0% | Quick bridge building | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BuildMaster](./src/BuildMaster/README.en-US.md) | 100.0% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) |
 | [CaiBot](./src/CaiBot/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) |  |
