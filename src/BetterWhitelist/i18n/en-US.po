@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-12 21:10:22+0000\n"
-"PO-Revision-Date: 2025-01-13 01:13\n"
+"PO-Revision-Date: 2025-01-14 01:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -23,23 +23,23 @@ msgstr "-------[BetterWhitelist]-------"
 
 #: ../../Main.cs:118
 msgid "[BetterWhitelist] 开关已被禁用，请检查配置文件!"
-msgstr ""
+msgstr "[BetterWhitelist] switch has been disabled, please check the config file!"
 
 #: ../../Main.cs:84
 msgid "[BetterWhitelist] 插件已是关闭状态"
-msgstr ""
+msgstr "[BetterWhitelist] plugin is closed"
 
 #: ../../Main.cs:103
 msgid "[BetterWhitelist] 白名单启用成功!"
-msgstr ""
+msgstr "[BetterWhitelist] Whitelist enabled successfully!"
 
 #: ../../Main.cs:98
 msgid "[BetterWhitelist] 白名单已是打开状态"
-msgstr ""
+msgstr "[BetterWhitelist] Whitelist is already open"
 
 #: ../../Main.cs:89
 msgid "[BetterWhitelist] 白名单禁用成功!"
-msgstr ""
+msgstr "[BetterWhitelist] Whitelist disabled successfully!"
 
 #: ../../Main.cs:66
 msgid "/bwl add {name}, 添加玩家名到白名单中\n"
