@@ -10,12 +10,12 @@ internal class Utils
 {
     #region 问题审核
     public static readonly Dictionary<int, List<string>> playerContexts = new();
-    public static readonly Dictionary<int, bool> isProcessing = new();
     public static DateTime lastCmdTime = DateTime.MinValue;
+    public static bool isProcessing = false;
     public static void ChatWithAI(TSPlayer player, string question)
     {
         var playerIndex = player.Index;
-        if (isProcessing.Values.Any(p => p))
+        if (isProcessing)
         {
             player.SendErrorMessage(GetString("[i:1344]有其他玩家在询问问题，请排队[i:1344]"));
             return;
@@ -27,7 +27,7 @@ internal class Utils
         }
         lastCmdTime = DateTime.Now;
         player.SendSuccessMessage(GetString("[i:1344]正在处理您的请求，请稍候...[i:1344]"));
-        isProcessing[playerIndex] = true;
+        isProcessing = true;
         Task.Run(async () =>
         {
             try
@@ -44,7 +44,7 @@ internal class Utils
             }
             finally
             {
-                isProcessing[playerIndex] = false;
+                isProcessing = false;
             }
         });
     }
