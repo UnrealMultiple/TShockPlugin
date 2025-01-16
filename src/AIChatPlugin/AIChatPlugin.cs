@@ -80,10 +80,6 @@ public class AIChatPlugin : TerrariaPlugin
         {
             playerContexts.Remove(playerId);
         }
-        if (isProcessing.ContainsKey(playerId))
-        {
-            isProcessing.Remove(playerId);
-        }
     }
     private void BotReset(CommandArgs args)
     {
