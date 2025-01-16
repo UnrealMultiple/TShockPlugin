@@ -65,7 +65,7 @@
 | Plugin Name | Translation Percentage | Plugin Description | Dependencies |
 | :-: | :-: | :-: | :-: |
 | [AdditionalPylons](./src/AdditionalPylons/README.en-US.md) | 100.0% | Place more Pylons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [AIChatPlugin](./src/AIChatPlugin/README.md) | 100.0% | AIChatPlugin |  |
+| [AIChatPlugin](./src/AIChatPlugin/README.en-US.md) | 100.0% | AIChatPlugin |  |
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 100.0% | Enhance Broadcast Box Functionality | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoAirItem](./src/AutoAirItem/README.en-US.md) | 100.0% | Automatic trash cans | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.en-US.md) | 100.0% | Automatic broadcast | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -90,11 +90,11 @@
 | [CGive](./src/CGive/README.en-US.md) | 100.0% | Offline commands |  |
 | [Challenger](./src/Challenger/README.en-US.md) | 100.0% | Challenger mode |  |
 | [Chameleon](./src/Chameleon/README.en-US.md) | 100.0% | Login before entering the server | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [ChattyBridge](./src/ChattyBridge/README.md) | 100.0% | Used for cross-server chat | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [ChattyBridge](./src/ChattyBridge/README.en-US.md) | 100.0% | Used for cross-server chat | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ChestRestore](./src/ChestRestore/README.en-US.md) | 100.0% | Infinite items in resource servers |  |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the core part |  |
 | [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the miscellaneous part | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
-| [CNPCShop](./src/CNPCShop/README.md) | 100.0% | Custom NPC shop |  |
+| [CNPCShop](./src/CNPCShop/README.en-US.md) | 100.0% | Custom NPC shop |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | 100.0% | Execute SQL statements in the console |  |
 | [ConvertWorld](./src/ConvertWorld/README.en-US.md) | 100.0% | Convert world items by defeating monsters |  |
 | [CreateSpawn](./src/CreateSpawn/README.md) | 100.0% | Spawn point building generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -104,12 +104,12 @@
 | [DamageRuleLoot](./src/DamageRuleLoot/README.en-US.md) | 100.0% | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation |  |
 | [DamageStatistic](./src/DamageStatistic/README.en-US.md) | 100.0% | Display damage caused by each player after each boss fight |  |
 | [DataSync](./src/DataSync/README.md) | 0.0% | Progress synchronization |  |
-| [DeathDrop](./src/DeathDrop/README.md) | 100.0% | Random and custom loot upon monster death |  |
+| [DeathDrop](./src/DeathDrop/README.en-US.md) | 100.0% | Random and custom loot upon monster death |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.en-US.md) | 100.0% | Prohibit monster loot |  |
 | [DonotFuck](./src/DonotFuck/README.en-US.md) | 100.0% | Prevent swearing | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [DTEntryBlock](./src/DTEntryBlock/README.md) | 100.0% | Prevent entry into dungeons or temples |  |
+| [DTEntryBlock](./src/DTEntryBlock/README.en-US.md) | 100.0% | Prevent entry into dungeons or temples |  |
 | [Dummy](./src/Dummy/README.en-US.md) | 100.0% | Dummy client | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
-| [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 100.0% | Dump Terraria IDs |  |
+| [DumpTerrariaID](./src/DumpTerrariaID/README.en-US.md) | 100.0% | Dump Terraria IDs |  |
 | [DwTP](./src/DwTP/README.en-US.md) | 100.0% | Positioning Teleport |  |
 | [Economics.Deal](./src/Economics.Deal/README.en-US.md) | 100.0% | Trading plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
 | [Economics.NPC](./src/Economics.NPC/README.en-US.md) | 100.0% | Custom monster rewards | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |

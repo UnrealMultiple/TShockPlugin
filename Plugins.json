@@ -86,7 +86,7 @@
     "Version": "2025.1.13",
     "Author": "ZJLLL114514",
     "Description": {
-      "en-US": "A plugin provides AI dialogue",
+      "en-US": "A plugin provides Ai chat",
       "de-DE": "一个提供AI对话的插件",
       "it-IT": "一个提供AI对话的插件",
       "fr-FR": "一个提供AI对话的插件",
@@ -2521,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.115",
+    "Version": "1.9.2.116",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2543,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.115",
+    "Version": "1.0.0.116",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
