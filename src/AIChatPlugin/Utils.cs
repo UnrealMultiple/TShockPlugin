@@ -12,19 +12,12 @@ internal class Utils
     public static readonly Dictionary<int, List<string>> playerContexts = new();
     public static readonly Dictionary<int, bool> isProcessing = new();
     public static DateTime lastCmdTime = DateTime.MinValue;
-    public const int cooldownDuration = 5;
     public static void ChatWithAI(TSPlayer player, string question)
     {
         var playerIndex = player.Index;
-        if (isProcessing.ContainsKey(playerIndex) && isProcessing[playerIndex])
+        if (isProcessing.Values.Any(p => p))
         {
             player.SendErrorMessage(GetString("[i:1344]有其他玩家在询问问题，请排队[i:1344]"));
-            return;
-        }
-        if ((DateTime.Now - lastCmdTime).TotalSeconds < cooldownDuration)
-        {
-            var remainingTime = cooldownDuration - (int)(DateTime.Now - lastCmdTime).TotalSeconds;
-            player.SendErrorMessage(GetString($"[i:1344]请耐心等待{remainingTime}秒后再输入![i:1344]"));
             return;
         }
         if (string.IsNullOrWhiteSpace(question))
