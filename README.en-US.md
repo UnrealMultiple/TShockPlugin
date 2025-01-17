@@ -126,7 +126,7 @@
 | [Ezperm](./src/Ezperm/README.en-US.md) | 100.0% | Batch change permissions |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Fish shop |  |
 | [GenerateMap](./src/GenerateMap/README.en-US.md) | 100.0% | Generate map images | [CaiLib](./src/CaiLib/README.md) |
-| [GolfRewards](./src/GolfRewards/README.md) | 100.0% | Golf rewards |  |
+| [GolfRewards](./src/GolfRewards/README.en-US.md) | 100.0% | Golf rewards |  |
 | [GoodNight](./src/GoodNight/README.md) | 100.0% | Curfew |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.en-US.md) | 100.0% | Hardcore death drops life crystals |  |
 | [HelpPlus](./src/HelpPlus/README.en-US.md) | 100.0% | Fix and enhance the Help command |  |
@@ -146,14 +146,14 @@
 | [ModifyWeapons](./src/ModifyWeapons/README.en-US.md) | 100.0% | ModifyWeapons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [MonsterRegen](./src/MonsterRegen/README.md) | 100.0% | Monster progress regeneration |  |
 | [MusicPlayer](./src/MusicPlayer/README.md) | 100.0% | Simple music player |  |
-| [Noagent](./src/Noagent/README.md) | 100.0% | Prohibit proxy IP from entering |  |
+| [Noagent](./src/Noagent/README.en-US.md) | 100.0% | Prohibit proxy IP from entering |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.md) | 100.0% | Drop treasure bags at normal difficulty |  |
 | [OnlineGiftPackage](./src/OnlineGiftPackage/README.md) | 100.0% | Online gift package |  |
 | [PacketsStop](./src/PacketsStop/README.md) | 100.0% | Packet interception |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 0.0% | Permanent buff |  |
 | [PerPlayerLoot](./src/PerPlayerLoot/README.en-US.md) | 100.0% | Separate chest for player loot |  |
-| [PersonalPermission](./src/PersonalPermission/README.md) | 100.0% | Set permissions individually for players |  |
-| [Platform](./src/Platform/README.md) | 100.0% | Determine player device |  |
+| [PersonalPermission](./src/PersonalPermission/README.en-US.md) | 100.0% | Set permissions individually for players |  |
+| [Platform](./src/Platform/README.en-US.md) | 100.0% | Determine player device |  |
 | [PlayerManager](https://github.com/UnrealMultiple/TShockPlayerManager/blob/master/README.md) | 0.0% | Hufang's player manager |  |
 | [PlayerRandomSwapper](./src/PlayerRandomSwapper/README.en-US.md) | 100.0% | Random Player Position Swap | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [PlayerSpeed](./src/PlayerSpeed/README.en-US.md) | 100.0% | Enable players to achieve a two-stage sprint | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -176,7 +176,7 @@
 | [RolesModifying](./src/RolesModifying/README.en-US.md) | 0.0% | Modify player backpack |  |
 | [Sandstorm](./src/Sandstorm/README.md) | 100.0% | Toggle sandstorm |  |
 | [ServerTools](./src/ServerTools/README.en-US.md) | 100.0% | Server management tools | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |
-| [SessionSentinel](./src/SessionSentinel/README.md) | 100.0% | Handle players not sending data packets for a long time |  |
+| [SessionSentinel](./src/SessionSentinel/README.en-US.md) | 100.0% | Handle players not sending data packets for a long time |  |
 | [ShortCommand](./src/ShortCommand/README.md) | 100.0% | Short command |  |
 | [ShowArmors](./src/ShowArmors/README.md) | 100.0% | Display equipment bar |  |
 | [SignInSign](./src/SignInSign/README.md) | 100.0% | Signboard login plugin |  |

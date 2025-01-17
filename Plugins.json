@@ -2521,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.116",
+    "Version": "1.9.2.117",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2543,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.116",
+    "Version": "1.0.0.117",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
@@ -2612,7 +2612,7 @@
       "de-DE": "投票插件",
       "it-IT": "投票插件",
       "fr-FR": "投票插件",
-      "es-ES": "投票插件",
+      "es-ES": "Complemento de votación",
       "ru-RU": "投票插件",
       "zh-CN": "投票插件",
       "pt-BR": "投票插件",
@@ -2632,7 +2632,7 @@
       "de-DE": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "it-IT": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "fr-FR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
-      "es-ES": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+      "es-ES": "Permitir que cualquier arma se fortalezca en atributos básicos, Permitir que cualquier arma se fortalezca en atributos básicos",
       "ru-RU": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "zh-CN": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "pt-BR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
@@ -2879,7 +2879,7 @@
       "de-DE": "加载Wiki语言包",
       "it-IT": "加载Wiki语言包",
       "fr-FR": "加载Wiki语言包",
-      "es-ES": "加载Wiki语言包",
+      "es-ES": "Cargar paquete de idioma Wiki",
       "ru-RU": "加载Wiki语言包",
       "zh-CN": "加载Wiki语言包",
       "pt-BR": "加载Wiki语言包",
