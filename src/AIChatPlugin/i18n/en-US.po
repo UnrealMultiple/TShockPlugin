@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-15 06:21:46+0000\n"
-"PO-Revision-Date: 2025-01-16 01:07\n"
+"POT-Creation-Date: 2025-01-16 07:28:06+0000\n"
+"PO-Revision-Date: 2025-01-17 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -21,25 +21,25 @@ msgstr ""
 msgid "  [i:1344]AIChatPlugin帮助信息[i:1344]\n"
 msgstr "  [i:1344]AIChatPlugin Help Information[i:1344]\n"
 
-#: ../../Utils.cs:247
+#: ../../Utils.cs:240
 msgid "[\\uD800-\\uDBFF][\\uDC00-\\uDFFF]"
 msgstr "[\\uD800-\\uDBFF][\\uDC00-\\uDFFF]"
 
-#: ../../Utils.cs:133
+#: ../../Utils.cs:126
 #, csharp-format
 msgid "[AIChatPlugin] AI未能及时响应，状态码：{0}"
 msgstr "[AIChatPlugin] AI failed to respond in time, status code: {0}"
 
-#: ../../Utils.cs:136
+#: ../../Utils.cs:129
 msgid "[AIChatPlugin] AI未能及时响应！详细信息请查看日志"
 msgstr "[AIChatPlugin] AI failed to respond in time! Please check the log for details"
 
-#: ../../Utils.cs:146
+#: ../../Utils.cs:139
 #, csharp-format
 msgid "[AIChatPlugin] 出现错误！详细信息：{0}"
 msgstr "[AIChatPlugin] An error occurred! Details: {0}"
 
-#: ../../Utils.cs:149
+#: ../../Utils.cs:142
 msgid "[AIChatPlugin] 出现错误！详细信息请查看日志"
 msgstr "[AIChatPlugin] An error occurred! Please check the log for details"
 
@@ -48,33 +48,33 @@ msgstr "[AIChatPlugin] An error occurred! Please check the log for details"
 msgid "[AIChatPlugin] 加载配置时发生错误：{0}"
 msgstr "[AIChatPlugin] An error occurred while loading configuration: {0}"
 
-#: ../../Utils.cs:46
+#: ../../Utils.cs:39
 #, csharp-format
 msgid "[AIChatPlugin] 处理`{0}`的请求时发生错误！详细信息：{1}"
 msgstr "[AIChatPlugin] An error occurred while processing the request for `{0}`! Details: {1}"
 
-#: ../../Utils.cs:49
+#: ../../Utils.cs:42
 msgid "[AIChatPlugin] 处理请求时发生错误！详细信息请查看日志"
 msgstr "[AIChatPlugin] An error occurred while processing the request! Please check the log for details"
 
-#: ../../Utils.cs:189
+#: ../../Utils.cs:182
 msgid "[AIChatPlugin] 当前没有任何人的上下文记录"
 msgstr "[AIChatPlugin] There are currently no context records for anyone"
 
-#: ../../Utils.cs:128
+#: ../../Utils.cs:121
 msgid "[AIChatPlugin] 很抱歉，这次未获得有效的AI响应"
 msgstr "[AIChatPlugin] Sorry, there was no valid AI response this time"
 
-#: ../../Utils.cs:194
+#: ../../Utils.cs:187
 msgid "[AIChatPlugin] 所有人的上下文已清除"
 msgstr "[AIChatPlugin] Context cleared for everyone"
 
-#: ../../Utils.cs:142
+#: ../../Utils.cs:135
 msgid "[AIChatPlugin] 请求超时！"
 msgstr "[AIChatPlugin] Request timed out!"
 
-#: ../../Utils.cs:116
-#: ../../Utils.cs:119
+#: ../../Utils.cs:109
+#: ../../Utils.cs:112
 msgid "[c/A9A9A9:============================]"
 msgstr "[c/A9A9A9:============================]"
 
@@ -94,56 +94,51 @@ msgstr "[i:1344]/bbz - displays this help message\n"
 msgid "[i:1344]/bcz                  - 清除您的上下文\n"
 msgstr "[i:1344]/bcz - clear your context\n"
 
-#: ../../AIChatPlugin.cs:97
+#: ../../AIChatPlugin.cs:93
 msgid "[i:1344]您当前没有上下文记录！[i:1344]"
 msgstr "[i:1344]You do not currently have a context record![i:1344]"
 
-#: ../../AIChatPlugin.cs:93
+#: ../../AIChatPlugin.cs:89
 msgid "[i:1344]您的上下文记录已重置！[i:1344]"
 msgstr "[i:1344]Your context record has been reset![i:1344]"
 
-#: ../../Utils.cs:32
+#: ../../Utils.cs:25
 msgid "[i:1344]您的问题不能为空，请输入您想询问的内容！[i:1344]"
 msgstr "[i:1344]Your question cannot be empty, please enter what you want to ask![i:1344]"
 
-#: ../../Utils.cs:21
+#: ../../Utils.cs:20
 msgid "[i:1344]有其他玩家在询问问题，请排队[i:1344]"
 msgstr "[i:1344]Other players are asking questions, please queue[i:1344]"
 
-#: ../../Utils.cs:36
+#: ../../Utils.cs:29
 msgid "[i:1344]正在处理您的请求，请稍候...[i:1344]"
 msgstr "[i:1344]Your request is being processed, please wait...[i:1344]"
-
-#: ../../Utils.cs:27
-#, csharp-format
-msgid "[i:1344]请耐心等待{0}秒后再输入![i:1344]"
-msgstr "[i:1344]Please wait for {0} seconds before entering again![i:1344]"
 
 #: ../../AIChatPlugin.cs:68
 msgid "[i:1344]请输入您想询问的内容！[i:1344]"
 msgstr "[i:1344]Please enter what you want to ask! [i:1344]"
 
-#: ../../Utils.cs:115
+#: ../../Utils.cs:108
 #, csharp-format
 msgid "[i:149][c/00FF00:提问: {0}]\n"
 msgstr "[i:149][c/00FF00:Question: {0}]\n"
 
-#: ../../Utils.cs:118
+#: ../../Utils.cs:111
 #, csharp-format
 msgid "[i:149][c/FF4500:回答:] {0}\n"
 msgstr "[i:149][c/FF4500:Answer:] {0}\n"
 
-#: ../../Utils.cs:114
+#: ../../Utils.cs:107
 #, csharp-format
 msgid "[i:267][c/FFD700:{0}]\n"
 msgstr "[i:267][c/FFD700:{0}]\n"
 
-#: ../../Utils.cs:117
+#: ../../Utils.cs:110
 #, csharp-format
 msgid "[i:4805][c/FF00FF:{0}]\n"
 msgstr "[i:4805][c/FF00FF:{0}]\n"
 
-#: ../../Utils.cs:220
+#: ../../Utils.cs:213
 #, csharp-format
 msgid "\n\n"
 "[i:1344]超出字数限制{0}已截断！[i:1344]"
