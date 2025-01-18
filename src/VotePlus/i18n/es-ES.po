@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:33+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-01-17 01:07\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -20,90 +20,90 @@ msgstr ""
 #: ../../Vote.cs:132
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了关闭目前事件投票!\n"
-msgstr ""
+msgstr "[i:4344] \"{0}\" inició una votación para terminar el evento actual."
 
 #: ../../Vote.cs:129
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了封禁玩家\"{1}\"投票!\n"
-msgstr ""
+msgstr "[i:4344]\"{0}\" inició una votación para banear al jugador \"{1}\"!\n"
 
 #: ../../Vote.cs:131
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了清除BOSS\"{1}\"投票!\n"
-msgstr ""
+msgstr "[i:4344]\"{0}\" inició una votación para borrar el Boss \"{1}\"!\n"
 
 #: ../../Vote.cs:130
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了禁言玩家\"{1}\"投票!\n"
-msgstr ""
+msgstr "[i:4344]\"{0}\" inició una votación para banear al jugador \"{1}\"!\n"
 
 #: ../../Vote.cs:136
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了请求{1}下雨投票!\n"
-msgstr ""
+msgstr "[i:4344] \"{0}\" inició una solicitud para que {1} votara por la lluvia.\n"
 
 #: ../../Vote.cs:133
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了请求修改为夜晚投票!\n"
-msgstr ""
+msgstr "[i:4344]\"{0}\" inició una solicitud para cambiar a la votación de  la noche."
 
 #: ../../Vote.cs:134
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了请求修改为白天投票!\n"
-msgstr ""
+msgstr "[i:4344]\"{0}\" inició una solicitud para cambiar a votación del dia."
 
 #: ../../Vote.cs:135
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了赞成关于\"{1}\"投票!\n"
-msgstr ""
+msgstr "[i:4344]\"{0}\" inició una votación a favor de \"{1}\"!"
 
 #: ../../Vote.cs:128
 #, csharp-format
 msgid "[i:4344]\"{0}\"发起了踢出玩家\"{1}\"(持续{2})投票!\n"
-msgstr ""
+msgstr "[i:4344]\"{0}\" inició una votación para expulsar al jugador \"{1}\" (que duró {2})."
 
 #: ../../Vote.cs:174
 #, csharp-format
 msgid "[i:4344]BOSS\"{0}\"已被投票清除!"
-msgstr ""
+msgstr "[i:4344] ¡Boss \"{0}\" ha sido eliminado!"
 
 #: ../../Main.cs:106
 #: ../../Main.cs:340
 msgid "[i:4344]Vote用法:\n"
-msgstr ""
+msgstr "[i:4344] uso de /vote:"
 
 #: ../../Main.cs:78
 #: ../../Main.cs:94
 msgid "[i:4344]你已经投过票了!"
-msgstr ""
+msgstr "[i:4344]¡Ya has votado!"
 
 #: ../../Main.cs:320
 msgid "[i:4344]你没有权限这么做!"
-msgstr ""
+msgstr "[i:4344]¡No tienes permiso para Usar esto!"
 
 #: ../../Vote.cs:198
 #, csharp-format
 msgid "[i:4344]关于\"{0}\"的投票已被通过!"
-msgstr ""
+msgstr "[i:4344]¡La votación sobre \"{0}\" ha sido aprobada!"
 
 #: ../../Vote.cs:209
 #, csharp-format
 msgid "[i:4344]关于{0}下雨的投票已被通过!"
-msgstr ""
+msgstr "[i:4344]¡Se aprobó la votación sobre {0} lluvia!"
 
 #: ../../Vote.cs:79
 #, csharp-format
 msgid "[i:4344]关闭目前入侵事件投票还有{0}秒结束!\n"
-msgstr ""
+msgstr "[i:4344] ¡Quedan {0} segundos para cerrar la votación del evento de invasión actual!"
 
 #: ../../Vote.cs:76
 #, csharp-format
 msgid "[i:4344]封禁玩家\"{0}\"投票还有{1}秒结束!\n"
-msgstr ""
+msgstr "[i:4344] ¡La votación para el jugador baneado \"{0}\" finaliza en {1} segundos!"
 
 #: ../../Main.cs:309
 msgid "[i:4344]当前投票踢出列表:"
-msgstr ""
+msgstr "[i:4344] Voto actual para eliminar la lista:"
 
 #: ../../Main.cs:135
 #: ../../Main.cs:160
@@ -115,29 +115,29 @@ msgstr ""
 #: ../../Main.cs:279
 #: ../../Main.cs:298
 msgid "[i:4344]当前有正在进行的投票!"
-msgstr ""
+msgstr "[i:4344]¡Actualmente hay una encuesta en progreso!"
 
 #: ../../Main.cs:73
 #: ../../Main.cs:89
 msgid "[i:4344]当前没有正在进行的投票!"
-msgstr ""
+msgstr "[i:4344]¡Actualmente no hay encuestas en curso!"
 
 #: ../../Main.cs:331
 msgid "[i:4344]成功清除投票踢出!"
-msgstr ""
+msgstr "[i:4344] ¡Voto aprobado exitosamente para expulsar!"
 
 #: ../../Main.cs:274
 msgid "[i:4344]投票修改天气功能已被禁用!"
-msgstr ""
+msgstr "[i:4344]¡La función de votar para modificar el clima ha sido deshabilitada!"
 
 #: ../../Main.cs:246
 #: ../../Main.cs:260
 msgid "[i:4344]投票修改时间功能已被禁用!"
-msgstr ""
+msgstr "[i:4344] ¡La función de hora de modificación de la votación ha sido deshabilitada!"
 
 #: ../../Main.cs:150
 msgid "[i:4344]投票封禁功能已被禁用!"
-msgstr ""
+msgstr "[i:4344] ¡La función de prohibición de votación ha sido deshabilitada!"
 
 #: ../../Main.cs:368
 #: ../../Main.cs:375
@@ -146,227 +146,227 @@ msgstr ""
 
 #: ../../Main.cs:198
 msgid "[i:4344]投票清除Boss功能已被禁用!"
-msgstr ""
+msgstr "[i:4344] ¡La votación para borrar la función Boss ha sido deshabilitada!"
 
 #: ../../Main.cs:232
 msgid "[i:4344]投票清除事件功能已被禁用!"
-msgstr ""
+msgstr "[i:4344] ¡La función del evento de limpieza de votos ha sido deshabilitada!"
 
 #: ../../Main.cs:174
 msgid "[i:4344]投票禁言功能已被禁用!"
-msgstr ""
+msgstr "[i:4344] ¡La función de prohibición de votación ha sido deshabilitada!"
 
 #: ../../Main.cs:125
 msgid "[i:4344]投票踢出功能已被禁用!"
-msgstr ""
+msgstr "[i:4344]¡La funcionalidad de votar para expulsar ha sido deshabilitada!"
 
 #: ../../Vote.cs:191
 msgid "[i:4344]时间已被投票修改为夜晚!"
-msgstr ""
+msgstr "[i:4344]¡La hora se cambió a noche mediante votación!"
 
 #: ../../Vote.cs:195
 msgid "[i:4344]时间已被投票修改为白天!"
-msgstr ""
+msgstr "[i:4344]¡La hora se cambió a noche mediante votación!"
 
 #: ../../Vote.cs:78
 #, csharp-format
 msgid "[i:4344]清除BOSS\"{0}\"投票还有{1}秒结束!\n"
-msgstr ""
+msgstr "[i:4344] ¡La votación para el jugador baneado \"{0}\" finaliza en {1} segundos!"
 
 #: ../../Vote.cs:160
 #, csharp-format
 msgid "[i:4344]玩家\"{0}\"已被投票永久封禁!"
-msgstr ""
+msgstr "[i:4344] ¡El jugador \"{0}\" ha sido votado para ser baneado permanentemente!"
 
 #: ../../Vote.cs:165
 #, csharp-format
 msgid "[i:4344]玩家\"{0}\"已被投票禁言!"
-msgstr ""
+msgstr "[i:4344] ¡El jugador \"{0}\" ha sido votado para ser baneado!"
 
 #: ../../Vote.cs:154
 #, csharp-format
 msgid "[i:4344]玩家\"{0}\"被踢出游戏,持续{1}秒!"
-msgstr ""
+msgstr "[i:4344] ¡El jugador \"{0}\" fue expulsado del juego durante {1} segundos!"
 
 #: ../../Main.cs:155
 msgid "[i:4344]用法: /vote ban <玩家>"
-msgstr ""
+msgstr "[i:4344] Uso: /vote ban <jugador>"
 
 #: ../../Main.cs:203
 msgid "[i:4344]用法: /vote clearboss <BOSS名称>"
-msgstr ""
+msgstr "[i:4344] Uso: /vote clearboss <nombre de BOSS>"
 
 #: ../../Main.cs:325
 msgid "[i:4344]用法: /vote clearkick <玩家>"
-msgstr ""
+msgstr "[i:4344] Uso: /vote clearkick <jugador>"
 
 #: ../../Main.cs:130
 msgid "[i:4344]用法: /vote kick <玩家>"
-msgstr ""
+msgstr "[i:4344] Uso: /vote kick <jugador>"
 
 #: ../../Main.cs:179
 msgid "[i:4344]用法: /vote mute <玩家>"
-msgstr ""
+msgstr "[i:4344] Uso: /vote mute <jugador>"
 
 #: ../../Main.cs:293
 msgid "[i:4344]用法: /vote topic <投票主题>"
-msgstr ""
+msgstr "[i:4344] Uso: /tema topic <tema de votación>"
 
 #: ../../Vote.cs:187
 msgid "[i:4344]目前事件已被投票关闭!"
-msgstr ""
+msgstr "[i:4344] ¡El evento actual ha sido votado para cerrarse!"
 
 #: ../../Main.cs:215
 msgid "[i:4344]目标BOSS不存在!"
-msgstr ""
+msgstr "[i:4344]¡El BOSS no existe!"
 
 #: ../../Main.cs:225
 msgid "[i:4344]目标不是BOSS!"
-msgstr ""
+msgstr "[i:4344]¡El objetivo no es el BOSS!"
 
 #: ../../Main.cs:335
 msgid "[i:4344]目标玩家不存在投票踢出列表中!"
-msgstr ""
+msgstr "[i:4344]¡El jugador objetivo no existe en la lista de votación para expulsar!"
 
 #: ../../Main.cs:141
 #: ../../Main.cs:166
 #: ../../Main.cs:190
 msgid "[i:4344]目标账号不存在!"
-msgstr ""
+msgstr "[i:4344]¡La cuenta no existe!"
 
 #: ../../Vote.cs:77
 #, csharp-format
 msgid "[i:4344]禁言玩家\"{0}\"投票还有{1}秒结束!\n"
-msgstr ""
+msgstr "[i:4344] ¡La votación para el jugador baneado \"{0}\" finaliza en {1} segundos!"
 
 #: ../../Main.cs:288
 msgid "[i:4344]自由主题投票功能已被禁用!"
-msgstr ""
+msgstr "[i:4344] ¡La función gratuita de votación de temas ha sido deshabilitada!"
 
 #: ../../Vote.cs:83
 #, csharp-format
 msgid "[i:4344]请求{0}下雨投票还有{1}秒结束!\n"
-msgstr ""
+msgstr "[i:4344] ¡La solicitud de {0} votación por lluvia finalizará en {1} segundos!"
 
 #: ../../Vote.cs:80
 #, csharp-format
 msgid "[i:4344]请求修改为夜晚投票还有{0}秒结束!\n"
-msgstr ""
+msgstr "[i:4344] ¡Solicitud para cambiar a votación nocturna y faltan {0} segundos!"
 
 #: ../../Vote.cs:81
 #, csharp-format
 msgid "[i:4344]请求修改为白天投票还有{0}秒结束!\n"
-msgstr ""
+msgstr "[i:4344] ¡Solicitud para cambiar a votación nocturna y faltan {0} segundos!"
 
 #: ../../Vote.cs:82
 #, csharp-format
 msgid "[i:4344]赞成关于\"{0}\"投票还有{1}秒结束!\n"
-msgstr ""
+msgstr "[i:4344] ¡La votación de acuerdo con \"{0}\" finaliza en {1} segundos!"
 
 #: ../../Vote.cs:75
 #, csharp-format
 msgid "[i:4344]踢出玩家\"{0}\"(持续{1})投票还有{2}秒结束!\n"
-msgstr ""
+msgstr "[i:4344] ¡La votación del jugador expulsado \"{0}\" (dura {1}) finaliza en {2} segundos!"
 
 #: ../../Main.cs:313
 #, csharp-format
 msgid "{0}:剩余{1}秒"
-msgstr ""
+msgstr "{0}: quedan {1} segundos"
 
 #: ../../Vote.cs:91
 msgid "*使用\"[c/32FF82:/agree(/同意)]\"或\"[c/E11919:/disagree(/反对)]\"进行投票"
-msgstr ""
+msgstr "*Utilice \"[c/32FF82:/agree(/agree)]\" o \"[c/E11919:/disagree(/disagree)]\" para votar"
 
 #: ../../Main.cs:369
 #, csharp-format
 msgid "*投票人数少于{0}人"
-msgstr ""
+msgstr "*El número de votantes es inferior a {0}"
 
 #: ../../Main.cs:376
 #: ../../Main.cs:384
 #, csharp-format
 msgid "*赞成:[c/32FF82:{0}票],反对:[c/E11919:{1}票],通过率:{2}%({3}%)"
-msgstr ""
+msgstr "*A favor: [c/32FF82: {0} votos], en contra: [c/E11919: {1} votos], Tasa de aprobación: {2}% ({3}%)"
 
 #: ../../Vote.cs:90
 #, csharp-format
 msgid "*赞成:[c/32FF82:{0}票],反对:[c/E11919:{1}票],通过率:{2}%({3}%)\n"
-msgstr ""
+msgstr "*A favor: [c/32FF82: {0} votos], en contra: [c/E11919: {1} votos], Tasa de aprobación: {2}% ({3}%)"
 
 #: ../../Main.cs:108
 #: ../../Main.cs:342
 msgid "/vote ban <玩家> 投票封禁玩家\n"
-msgstr ""
+msgstr "/vote ban <jugador> Vota para banear al jugador"
 
 #: ../../Main.cs:110
 #: ../../Main.cs:344
 msgid "/vote clearboss <BOSS名称> 投票清理BOSS(不掉落)\n"
-msgstr ""
+msgstr "/vote clearboss <nombre de BOSS> Vota para borrar el BOSS (sin caídas)"
 
 #: ../../Main.cs:111
 #: ../../Main.cs:345
 msgid "/vote clearevent 投票清理地图中所有事件\n"
-msgstr ""
+msgstr "/vote clearevent Vota para borrar todos los eventos en el mapa"
 
 #: ../../Main.cs:116
 #: ../../Main.cs:350
 msgid "/vote clearkick <玩家> 将玩家从踢出状态移除\n"
-msgstr ""
+msgstr "/vote clearkick <jugador> Elimina al jugador del estado pateado"
 
 #: ../../Main.cs:112
 #: ../../Main.cs:346
 msgid "/vote day 投票将时间改为白天\n"
-msgstr ""
+msgstr "/día de votación Vote para cambiar la hora a diurna"
 
 #: ../../Main.cs:107
 #: ../../Main.cs:341
 msgid "/vote kick <玩家> 投票踢出玩家\n"
-msgstr ""
+msgstr "/vote kick <jugador> Vota para expulsar al jugador"
 
 #: ../../Main.cs:117
 #: ../../Main.cs:351
 msgid "/vote kicklist 查看处于踢出状态的玩家"
-msgstr ""
+msgstr "/vote kicklist Ver jugadores expulsados"
 
 #: ../../Main.cs:109
 #: ../../Main.cs:343
 msgid "/vote mute <玩家> 投票禁言玩家\n"
-msgstr ""
+msgstr "/vote mute <jugador> Vota para silenciar al jugador"
 
 #: ../../Main.cs:113
 #: ../../Main.cs:347
 msgid "/vote night 将时间改为黑夜\n"
-msgstr ""
+msgstr "/votar noche cambia la hora a noche"
 
 #: ../../Main.cs:114
 #: ../../Main.cs:348
 msgid "/vote rain 投票下雨或停止下雨\n"
-msgstr ""
+msgstr "/vota lluvia Vota por la lluvia o deja de llover"
 
 #: ../../Main.cs:115
 #: ../../Main.cs:349
 msgid "/vote topic <主题> 自由主题投票\n"
-msgstr ""
+msgstr "/votar topic <tema> Votación de tema libre"
 
 #: ../../Vote.cs:158
 msgid "你已被投票永久封禁"
-msgstr ""
+msgstr "Has sido votado para ser baneado permanentemente."
 
 #: ../../Vote.cs:159
 msgid "你被投票永久封禁!"
-msgstr ""
+msgstr "¡Has sido votado para ser baneado permanentemente!"
 
 #: ../../Main.cs:60
 #, csharp-format
 msgid "你被投票踢出了服务器!解除时间剩余:{0}秒"
-msgstr ""
+msgstr "¡Has sido expulsado del servidor! Tiempo de salida restante: {0} segundos."
 
 #: ../../Vote.cs:153
 #, csharp-format
 msgid "你被投票踢出游戏,持续{0}秒!"
-msgstr ""
+msgstr "¡Has sido expulsado del juego durante {0} segundos!"
 
 #: ../../Main.cs:14
 msgid "投票插件"
-msgstr ""
+msgstr "Complemento de votación"
 

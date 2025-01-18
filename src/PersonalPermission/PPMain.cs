@@ -9,7 +9,7 @@ namespace PersonalPermission;
 [ApiVersion(2, 1)]
 public class PPMain : TerrariaPlugin
 {
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 1, 0, 3);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 1, 0, 4);
     public override string Author => "Megghy，肝帝熙恩更新1449";
     public override string Description => GetString("允许为玩家单独设置权限.");
     public PPMain(Main game) : base(game)

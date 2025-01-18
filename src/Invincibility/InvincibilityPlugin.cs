@@ -11,7 +11,7 @@ public class InvincibilityPlugin : TerrariaPlugin
 {
     public override string Author => "肝帝熙恩";
     public override string Description => GetString("在命令中给予玩家一段时间的无敌状态。");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 8);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 9);
     public static Configuration Config = null!;
 
     private readonly Dictionary<TSPlayer, float> invincibleDurations = new();

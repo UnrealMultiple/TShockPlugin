@@ -25,7 +25,7 @@ public class CaiPacketDebug : LazyPlugin
 
     public override string Author => "Cai";
     public override string Description => GetString("用于调试数据包的插件捏~");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(2024, 12, 18, 1);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(2024, 12, 18, 2);
 
 
     public override void Initialize()

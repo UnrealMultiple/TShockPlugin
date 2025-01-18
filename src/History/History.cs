@@ -26,7 +26,7 @@ public class History : TerrariaPlugin
     private readonly BlockingCollection<HCommand> CommandQueue = new();
     private Thread CommandQueueThread = null!;
     public override string Description => GetString("记录图格操作.");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 5);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 6);
 
     public History(Main game) : base(game)
     {

@@ -9,7 +9,7 @@ namespace PacketsStop;
 public class PacketsStop : TerrariaPlugin
 {
 
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 2);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 3);
     public override string Author => "羽学 感谢少司命";
     public override string Description => GetString("拦截没有指定权限的用户组数据包");
 

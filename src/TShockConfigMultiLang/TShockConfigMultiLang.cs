@@ -9,7 +9,7 @@ public class TShockConfigMultiLang : LazyPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "肝帝熙恩，羽学";
     public override string Description => GetString("创建一个本地化语言的config");
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
 
     public TShockConfigMultiLang(Main game) : base(game)
     {

@@ -1,0 +1,151 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-16 07:28:06+0000\n"
+"PO-Revision-Date: 2025-01-17 01:07\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/AIChatPlugin/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1554\n"
+"Language: en_US\n"
+
+#: ../../AIChatPlugin.cs:49
+msgid "  [i:1344]AIChatPlugin帮助信息[i:1344]\n"
+msgstr "  [i:1344]AIChatPlugin Help Information[i:1344]\n"
+
+#: ../../Utils.cs:240
+msgid "[\\uD800-\\uDBFF][\\uDC00-\\uDFFF]"
+msgstr "[\\uD800-\\uDBFF][\\uDC00-\\uDFFF]"
+
+#: ../../Utils.cs:126
+#, csharp-format
+msgid "[AIChatPlugin] AI未能及时响应，状态码：{0}"
+msgstr "[AIChatPlugin] AI failed to respond in time, status code: {0}"
+
+#: ../../Utils.cs:129
+msgid "[AIChatPlugin] AI未能及时响应！详细信息请查看日志"
+msgstr "[AIChatPlugin] AI failed to respond in time! Please check the log for details"
+
+#: ../../Utils.cs:139
+#, csharp-format
+msgid "[AIChatPlugin] 出现错误！详细信息：{0}"
+msgstr "[AIChatPlugin] An error occurred! Details: {0}"
+
+#: ../../Utils.cs:142
+msgid "[AIChatPlugin] 出现错误！详细信息请查看日志"
+msgstr "[AIChatPlugin] An error occurred! Please check the log for details"
+
+#: ../../AIConfig.cs:36
+#, csharp-format
+msgid "[AIChatPlugin] 加载配置时发生错误：{0}"
+msgstr "[AIChatPlugin] An error occurred while loading configuration: {0}"
+
+#: ../../Utils.cs:39
+#, csharp-format
+msgid "[AIChatPlugin] 处理`{0}`的请求时发生错误！详细信息：{1}"
+msgstr "[AIChatPlugin] An error occurred while processing the request for `{0}`! Details: {1}"
+
+#: ../../Utils.cs:42
+msgid "[AIChatPlugin] 处理请求时发生错误！详细信息请查看日志"
+msgstr "[AIChatPlugin] An error occurred while processing the request! Please check the log for details"
+
+#: ../../Utils.cs:182
+msgid "[AIChatPlugin] 当前没有任何人的上下文记录"
+msgstr "[AIChatPlugin] There are currently no context records for anyone"
+
+#: ../../Utils.cs:121
+msgid "[AIChatPlugin] 很抱歉，这次未获得有效的AI响应"
+msgstr "[AIChatPlugin] Sorry, there was no valid AI response this time"
+
+#: ../../Utils.cs:187
+msgid "[AIChatPlugin] 所有人的上下文已清除"
+msgstr "[AIChatPlugin] Context cleared for everyone"
+
+#: ../../Utils.cs:135
+msgid "[AIChatPlugin] 请求超时！"
+msgstr "[AIChatPlugin] Request timed out!"
+
+#: ../../Utils.cs:109
+#: ../../Utils.cs:112
+msgid "[c/A9A9A9:============================]"
+msgstr "[c/A9A9A9:============================]"
+
+#: ../../AIChatPlugin.cs:50
+msgid "[i:1344]/ab                   - 向AI提问\n"
+msgstr "[i:1344]/ab - Ask a question\n"
+
+#: ../../AIChatPlugin.cs:53
+msgid "[i:1344]/aiclear              - 清除所有人的上下文"
+msgstr "[i:1344]/aiclear - Clear context for everyone"
+
+#: ../../AIChatPlugin.cs:52
+msgid "[i:1344]/bbz                  - 显示此帮助信息\n"
+msgstr "[i:1344]/bbz - displays this help message\n"
+
+#: ../../AIChatPlugin.cs:51
+msgid "[i:1344]/bcz                  - 清除您的上下文\n"
+msgstr "[i:1344]/bcz - clear your context\n"
+
+#: ../../AIChatPlugin.cs:93
+msgid "[i:1344]您当前没有上下文记录！[i:1344]"
+msgstr "[i:1344]You do not currently have a context record![i:1344]"
+
+#: ../../AIChatPlugin.cs:89
+msgid "[i:1344]您的上下文记录已重置！[i:1344]"
+msgstr "[i:1344]Your context record has been reset![i:1344]"
+
+#: ../../Utils.cs:25
+msgid "[i:1344]您的问题不能为空，请输入您想询问的内容！[i:1344]"
+msgstr "[i:1344]Your question cannot be empty, please enter what you want to ask![i:1344]"
+
+#: ../../Utils.cs:20
+msgid "[i:1344]有其他玩家在询问问题，请排队[i:1344]"
+msgstr "[i:1344]Other players are asking questions, please queue[i:1344]"
+
+#: ../../Utils.cs:29
+msgid "[i:1344]正在处理您的请求，请稍候...[i:1344]"
+msgstr "[i:1344]Your request is being processed, please wait...[i:1344]"
+
+#: ../../AIChatPlugin.cs:68
+msgid "[i:1344]请输入您想询问的内容！[i:1344]"
+msgstr "[i:1344]Please enter what you want to ask! [i:1344]"
+
+#: ../../Utils.cs:108
+#, csharp-format
+msgid "[i:149][c/00FF00:提问: {0}]\n"
+msgstr "[i:149][c/00FF00:Question: {0}]\n"
+
+#: ../../Utils.cs:111
+#, csharp-format
+msgid "[i:149][c/FF4500:回答:] {0}\n"
+msgstr "[i:149][c/FF4500:Answer:] {0}\n"
+
+#: ../../Utils.cs:107
+#, csharp-format
+msgid "[i:267][c/FFD700:{0}]\n"
+msgstr "[i:267][c/FFD700:{0}]\n"
+
+#: ../../Utils.cs:110
+#, csharp-format
+msgid "[i:4805][c/FF00FF:{0}]\n"
+msgstr "[i:4805][c/FF00FF:{0}]\n"
+
+#: ../../Utils.cs:213
+#, csharp-format
+msgid "\n\n"
+"[i:1344]超出字数限制{0}已截断！[i:1344]"
+msgstr "\n\n"
+"[i:1344]word limit{0}truncated![i:1344]"
+
+#: ../../AIChatPlugin.cs:16
+msgid "一个提供AI对话的插件"
+msgstr "A plugin provides Ai chat"
+

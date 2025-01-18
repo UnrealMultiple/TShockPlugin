@@ -108,7 +108,7 @@
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 0.0% | Prohibir el botín de monstruos |  |
 | [DonotFuck](./src/DonotFuck/README.md) | 0.0% | Prevenir groserías | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 0.0% | Prevenir la entrada a mazmorras o templos |  |
-| [Dummy](./src/Dummy/README.md) | 0.0% | 服务器假人 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
+| [Dummy](./src/Dummy/README.md) | 0.0% | Servidor de Pruebas (Ficticio) Para TEST | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 0.0% | Volcar las ID de Terraria |  |
 | [DwTP](./src/DwTP/README.md) | 0.0% | Teletransportación por posicionamiento |  |
 | [Economics.Deal](./src/Economics.Deal/README.md) | 0.0% | Plugin de comercio | [EconomicsAPI](./src/EconomicsAPI/README.md) |
@@ -199,11 +199,11 @@
 | [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Proveer algunos otros comandos auxiliares | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 0.0% | Un cargador de plugins que permite la recarga en caliente |  |
 | [VeinMiner](./src/VeinMiner/README.md) | 0.0% | Minado en cadena |  |
-| [VotePlus](./src/VotePlus/README.md) | 0.0% | Votación multifuncional |  |
-| [WeaponPlus](./src/WeaponPlus/README.md) | 0.0% | Versión de monedas para mejorar armas |  |
-| [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 0.0% | 为服务器加载 Wiki 语言包 |  |
+| [VotePlus](./src/VotePlus/README.md) | 98.6% | Votación multifuncional |  |
+| [WeaponPlus](./src/WeaponPlus/README.md) | 100.0% | Versión de monedas para mejorar armas |  |
+| [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 100.0% | Cargue el paquete de idioma wiki para el servidor. |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 0.0% | Editor del mundo, permite modificar la mayoría de los parámetros del mundo |  |
-| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | 24.2% | Plugin de gestión de jugadores de Zhi |  |
+| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | 100.0% | Plugin de gestión de jugadores de Zhi |  |
 
 </Details>
 
