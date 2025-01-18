@@ -4,5 +4,8 @@
   },
   "README": {
     "Description": "为服务器加载 Wiki 语言包"
+  },
+  "README.es-ES": {
+    "Description": "Cargue el paquete de idioma wiki para el servidor."
   }
 }

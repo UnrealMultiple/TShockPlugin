@@ -9,181 +9,81 @@ namespace AutoBroadcast;
 public class AutoBroadcast : LazyPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override string Author => "Scavenger";
+
+    public override string Author => "Scavenger,Cai";
     public override string Description => GetString("自动广播插件");
-    public override Version Version => new Version(1, 0, 10);
+    
+    public override Version Version => new (1, 1, 1);
 
-    public DateTime LastCheck = DateTime.UtcNow;
+    private DateTime _lastUpdate = DateTime.Now;
 
-    public AutoBroadcast(Main Game) : base(Game) { }
+    public AutoBroadcast(Main game) : base(game) { }
 
     public override void Initialize()
     {
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
-        ServerApi.Hooks.ServerChat.Register(this, this.OnChat);
+        ServerApi.Hooks.ServerChat.Register(this, OnChat, int.MinValue); //最低优先级，这样不需要处理命令
     }
 
-    protected override void Dispose(bool Disposing)
+    protected override void Dispose(bool disposing)
     {
-        if (Disposing)
+        if (disposing)
         {
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
-            ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
+            ServerApi.Hooks.ServerChat.Deregister(this, OnChat);
         }
-        base.Dispose(Disposing);
+        base.Dispose(disposing);
     }
 
-
-
-    #region Chat
-    public void OnChat(ServerChatEventArgs args)
+    /*
+     * 每一秒运行一次
+     * 更新所有广播的计时器
+     */
+    private void OnUpdate(EventArgs args)
     {
-        if (TShock.Players[args.Who] == null)
+        
+        if (!((DateTime.Now - this._lastUpdate).TotalSeconds >= 1)) 
         {
             return;
         }
-        var Groups = Array.Empty<string>();
-        var Messages = Array.Empty<string>();
-        var Colour = Array.Empty<float>();
-        var PlayerGroup = TShock.Players[args.Who].Group.Name;
-
-        lock (ABConfig.Instance.Broadcasts)
+        
+        this._lastUpdate = DateTime.Now;
+        
+        foreach (var broadcast in AutoBroadcastConfig.Instance.Broadcasts)
         {
-            foreach (var broadcast in ABConfig.Instance.Broadcasts)
+            if (!broadcast.Enabled || broadcast.Interval==0) //不更新未启用和计时间隔为0的广播
             {
-                if (broadcast == null || !broadcast.Enabled ||
-                   (broadcast.TriggerToWholeGroup && !broadcast.Groups.Contains(PlayerGroup)))
-                {
-                    continue;
-                }
-
-                foreach (var Word in broadcast.TriggerWords)
-                {
-                    if (args.Text.Contains(Word))
-                    {
-                        if (broadcast.TriggerToWholeGroup && broadcast.Groups.Length > 0)
-                        {
-                            Groups = broadcast.Groups;
-                        }
-                        Messages = broadcast.Messages;
-                        Colour = broadcast.ColorRGB;
-                        break;
-                    }
-                }
+                continue;
             }
-        }
-
-        if (Groups.Length > 0)
-        {
-            BroadcastToGroups(Groups, Messages, Colour);
-        }
-        else
-        {
-            BroadcastToPlayer(args.Who, Messages, Colour);
+            broadcast.SecondUpdate();
         }
     }
-    #endregion
 
-    #region Update
-    public void OnUpdate(EventArgs args)
+    /*
+     * 聊天关键词触发广播
+     * 当聊天关键词匹配时触发广播
+     */
+    private static void OnChat(ServerChatEventArgs args)
     {
-        if ((DateTime.UtcNow - this.LastCheck).TotalSeconds >= 1)
+        var plr = TShock.Players[args.Who];
+        
+        if (plr == null)
         {
-            this.LastCheck = DateTime.UtcNow;
-            var NumBroadcasts = 0;
-            lock (ABConfig.Instance.Broadcasts)
+            return;
+        }
+        
+        foreach (var broadcast in AutoBroadcastConfig.Instance.Broadcasts)
+        {
+            if (!broadcast.Enabled)
             {
-                NumBroadcasts = ABConfig.Instance.Broadcasts.Length;
+                continue;
             }
-
-            for (var i = 0; i < NumBroadcasts; i++)
+            
+            if (broadcast.TriggerWords.Any(word => args.Text.Contains(word))) //检查消息内是否含有关键词
             {
-                var Groups = Array.Empty<string>();
-                var Messages = Array.Empty<string>();
-                var Colour = Array.Empty<float>();
-
-                lock (ABConfig.Instance.Broadcasts)
-                {
-                    if (ABConfig.Instance.Broadcasts[i] == null || !ABConfig.Instance.Broadcasts[i].Enabled || ABConfig.Instance.Broadcasts[i].Interval < 1)
-                    {
-                        continue;
-                    }
-                    if (ABConfig.Instance.Broadcasts[i].StartDelay > 0)
-                    {
-                        ABConfig.Instance.Broadcasts[i].StartDelay--;
-                        continue;
-                    }
-                    ABConfig.Instance.Broadcasts[i].StartDelay = ABConfig.Instance.Broadcasts[i].Interval;// Start Delay used as Interval Countdown
-                    Groups = ABConfig.Instance.Broadcasts[i].Groups;
-                    Messages = ABConfig.Instance.Broadcasts[i].Messages;
-                    Colour = ABConfig.Instance.Broadcasts[i].ColorRGB;
-                }
-
-                if (Groups.Length > 0)
-                {
-                    BroadcastToGroups(Groups, Messages, Colour);
-                }
-                else
-                {
-                    BroadcastToAll(Messages, Colour);
-                }
+                broadcast.RunTriggerWords(plr);
             }
         }
     }
-    #endregion
-
-    public static void BroadcastToGroups(string[] Groups, string[] Messages, float[] Colour)
-    {
-        foreach (var Line in Messages)
-        {
-            if (Line.StartsWith("/"))
-            {
-                Commands.HandleCommand(TSPlayer.Server, Line);
-            }
-            else
-            {
-                lock (TShock.Players)
-                {
-                    foreach (var player in TShock.Players)
-                    {
-                        if (player != null && Groups.Contains(player.Group.Name))
-                        {
-                            player.SendMessage(Line, (byte) Colour[0], (byte) Colour[1], (byte) Colour[2]);
-                        }
-                    }
-                }
-            }
-        }
-    }
-    public static void BroadcastToAll(string[] Messages, float[] Colour)
-    {
-        foreach (var Line in Messages)
-        {
-            if (Line.StartsWith("/"))
-            {
-                Commands.HandleCommand(TSPlayer.Server, Line);
-            }
-            else
-            {
-                TSPlayer.All.SendMessage(Line, (byte) Colour[0], (byte) Colour[1], (byte) Colour[2]);
-            }
-        }
-    }
-    public static void BroadcastToPlayer(int plr, string[] Messages, float[] Colour)
-    {
-        foreach (var Line in Messages)
-        {
-            if (Line.StartsWith("/"))
-            {
-                Commands.HandleCommand(TSPlayer.Server, Line);
-            }
-            else
-            {
-                lock (TShock.Players)
-                {
-                    TShock.Players[plr].SendMessage(Line, (byte) Colour[0], (byte) Colour[1], (byte) Colour[2]);
-                }
-            }
-        }
-    }
+    
 }

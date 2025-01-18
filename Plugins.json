@@ -84,9 +84,9 @@
   {
     "Name": "AIChatPlugin",
     "Version": "2025.1.13",
-    "Author": "忍",
+    "Author": "ZJLLL114514",
     "Description": {
-      "en-US": "A plugin provides AI dialogue",
+      "en-US": "A plugin provides Ai chat",
       "de-DE": "一个提供AI对话的插件",
       "it-IT": "一个提供AI对话的插件",
       "fr-FR": "一个提供AI对话的插件",
@@ -147,8 +147,8 @@
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.0.10",
-    "Author": "Scavenger",
+    "Version": "1.1.1",
+    "Author": "Scavenger,Cai",
     "Description": {
       "en-US": "Automatic broadcast plugin",
       "de-DE": "自动广播插件",
@@ -2521,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.113",
+    "Version": "1.9.2.118",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2543,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.113",
+    "Version": "1.0.0.118",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
@@ -2612,7 +2612,7 @@
       "de-DE": "投票插件",
       "it-IT": "投票插件",
       "fr-FR": "投票插件",
-      "es-ES": "投票插件",
+      "es-ES": "Complemento de votación",
       "ru-RU": "投票插件",
       "zh-CN": "投票插件",
       "pt-BR": "投票插件",
@@ -2632,7 +2632,7 @@
       "de-DE": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "it-IT": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "fr-FR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
-      "es-ES": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+      "es-ES": "Permitir que cualquier arma se fortalezca en atributos básicos, Permitir que cualquier arma se fortalezca en atributos básicos",
       "ru-RU": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "zh-CN": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "pt-BR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
@@ -2665,7 +2665,7 @@
   },
   {
     "Name": "ZHIPlayerManager",
-    "Version": "1.0.1.3",
+    "Version": "1.0.2.1",
     "Author": "z枳",
     "Description": {
       "en-US": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
@@ -2879,7 +2879,7 @@
       "de-DE": "加载Wiki语言包",
       "it-IT": "加载Wiki语言包",
       "fr-FR": "加载Wiki语言包",
-      "es-ES": "加载Wiki语言包",
+      "es-ES": "Cargar paquete de idioma Wiki",
       "ru-RU": "加载Wiki语言包",
       "zh-CN": "加载Wiki语言包",
       "pt-BR": "加载Wiki语言包",

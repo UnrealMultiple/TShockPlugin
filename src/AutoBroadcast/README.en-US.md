@@ -23,9 +23,9 @@ None
         "The auto broadcast executed the server command /say Ciallo～(∠・ω< )⌒★"
       ],
       "Color": [
-        255.0,
-        234.0,
-        115.0
+        255,
+        234,
+        115
       ],
       "Interval": 600, // This is the interval time in seconds.
       "Delay": 0, // This is the delay before the first broadcast starts.

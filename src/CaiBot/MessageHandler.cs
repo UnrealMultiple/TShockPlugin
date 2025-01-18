@@ -74,7 +74,6 @@ internal static class MessageHandle
                 {
                     Config.Settings.GroupNumber = groupId;
                 }
-
                 break;
             case "cmd":
                 var cmd = (string) jsonObject["cmd"]!;
@@ -96,75 +95,8 @@ internal static class MessageHandle
                     onlineResult.Append(string.Join(',', TShock.Players.Where(x=>x is { Active: true }).Select(x=>x.Name)));
                 }
 
-                List<string> onlineProcessList = new ();
-                #region 进度查询
-
-                if (!NPC.downedSlimeKing)
-                {
-                    onlineProcessList.Add("史王");
-                }
-
-                if (!NPC.downedBoss1)
-                {
-                    onlineProcessList.Add("克眼");
-                }
-
-                if (!NPC.downedBoss2)
-                {
-                    if (Main.drunkWorld)
-                    {
-                        onlineProcessList.Add("世吞/克脑");
-                    }
-                    else
-                    {
-                        onlineProcessList.Add(WorldGen.crimson ? "克脑" : "世吞");
-                    }
-                }
-
-                if (!NPC.downedBoss3)
-                {
-                    onlineProcessList.Add("骷髅王");
-                }
-
-                if (!Main.hardMode)
-                {
-                    onlineProcessList.Add("血肉墙");
-                }
-
-                if (!NPC.downedMechBoss2 || !NPC.downedMechBoss1 || !NPC.downedMechBoss3)
-                {
-                    onlineProcessList.Add(Main.zenithWorld ? "美杜莎" : "新三王");
-                }
-
-                if (!NPC.downedPlantBoss)
-                {
-                    onlineProcessList.Add("世花");
-                }
-
-                if (!NPC.downedGolemBoss)
-                {
-                    onlineProcessList.Add("石巨人");
-                }
-
-                if (!NPC.downedAncientCultist)
-                {
-                    onlineProcessList.Add("拜月教徒");
-                }
-
-                if (!NPC.downedTowers)
-                {
-                    onlineProcessList.Add("四柱");
-                }
-
-                if (!NPC.downedMoonlord)
-                {
-                    onlineProcessList.Add("月总");
-                }
-
+                var onlineProcessList = Utils.GetOnlineProcessList();
                 var onlineProcess = !onlineProcessList.Any() ? "已毕业" : onlineProcessList.ElementAt(0) + "前";
-
-                #endregion
-
                 result = new RestObject
                 {
                     { "type", "online" },
@@ -222,294 +154,60 @@ internal static class MessageHandle
             case "lookbag":
                 name = (string) jsonObject["name"]!;
                 var playerList3 = TSPlayer.FindByNameOrID("tsn:" + name);
-                List<int> buffs;
-                List<int> enhance = new ();
                 if (playerList3.Count != 0)
                 {
-                    #region 查背包 在线
-
                     var plr = playerList3[0].TPlayer;
-                    if (plr.extraAccessory)
-                    {
-                        enhance.Add(3335); // 3335 恶魔之心
-                    }
-
-                    if (plr.unlockedBiomeTorches)
-                    {
-                        enhance.Add(5043); // 5043 火把神徽章
-                    }
-
-                    if (plr.ateArtisanBread)
-                    {
-                        enhance.Add(5326); // 5326	工匠面包
-                    }
-
-                    if (plr.usedAegisCrystal)
-                    {
-                        enhance.Add(5337); // 5337 生命水晶	永久强化生命再生 
-                    }
-
-                    if (plr.usedAegisFruit)
-                    {
-                        enhance.Add(5338); // 5338 埃癸斯果	永久提高防御力 
-                    }
-
-                    if (plr.usedArcaneCrystal)
-                    {
-                        enhance.Add(5339); // 5339 奥术水晶	永久提高魔力再生 
-                    }
-
-                    if (plr.usedGalaxyPearl)
-                    {
-                        enhance.Add(5340); // 5340	银河珍珠	永久增加运气 
-                    }
-
-                    if (plr.usedGummyWorm)
-                    {
-                        enhance.Add(5341); // 5341	黏性蠕虫	永久提高钓鱼技能  
-                    }
-
-                    if (plr.usedAmbrosia)
-                    {
-                        enhance.Add(5342); // 5342	珍馐	 永久提高采矿和建造速度 
-                    }
-
-                    if (plr.unlockedSuperCart)
-                    {
-                        enhance.Add(5289); // 5289	矿车升级包
-                    }
-
-                    buffs = plr.buffType.ToList();
-                    var netItems = new NetItem[NetItem.MaxInventory];
-                    var inventory = plr.inventory;
-                    var armor = plr.armor;
-                    var dye = plr.dye;
-                    var miscEqups = plr.miscEquips;
-                    var miscDyes = plr.miscDyes;
-                    var piggy = plr.bank.item;
-                    var safe = plr.bank2.item;
-                    var forge = plr.bank3.item;
-                    var voidVault = plr.bank4.item;
-                    var trash = plr.trashItem;
-                    var loadout1Armor = plr.Loadouts[0].Armor;
-                    var loadout1Dye = plr.Loadouts[0].Dye;
-                    var loadout2Armor = plr.Loadouts[1].Armor;
-                    var loadout2Dye = plr.Loadouts[1].Dye;
-                    var loadout3Armor = plr.Loadouts[2].Armor;
-                    var loadout3Dye = plr.Loadouts[2].Dye;
-                    for (var i = 0; i < NetItem.MaxInventory; i++)
-                    {
-                        if (i < NetItem.InventoryIndex.Item2)
-                        {
-                            //0-58
-                            netItems[i] = (NetItem) inventory[i];
-                        }
-                        else if (i < NetItem.ArmorIndex.Item2)
-                        {
-                            //59-78
-                            var index = i - NetItem.ArmorIndex.Item1;
-                            netItems[i] = (NetItem) armor[index];
-                        }
-                        else if (i < NetItem.DyeIndex.Item2)
-                        {
-                            //79-88
-                            var index = i - NetItem.DyeIndex.Item1;
-                            netItems[i] = (NetItem) dye[index];
-                        }
-                        else if (i < NetItem.MiscEquipIndex.Item2)
-                        {
-                            //89-93
-                            var index = i - NetItem.MiscEquipIndex.Item1;
-                            netItems[i] = (NetItem) miscEqups[index];
-                        }
-                        else if (i < NetItem.MiscDyeIndex.Item2)
-                        {
-                            //93-98
-                            var index = i - NetItem.MiscDyeIndex.Item1;
-                            netItems[i] = (NetItem) miscDyes[index];
-                        }
-                        else if (i < NetItem.PiggyIndex.Item2)
-                        {
-                            //98-138
-                            var index = i - NetItem.PiggyIndex.Item1;
-                            netItems[i] = (NetItem) piggy[index];
-                        }
-                        else if (i < NetItem.SafeIndex.Item2)
-                        {
-                            //138-178
-                            var index = i - NetItem.SafeIndex.Item1;
-                            netItems[i] = (NetItem) safe[index];
-                        }
-                        else if (i < NetItem.TrashIndex.Item2)
-                        {
-                            //179-219
-                            netItems[i] = (NetItem) trash;
-                        }
-                        else if (i < NetItem.ForgeIndex.Item2)
-                        {
-                            //220
-                            var index = i - NetItem.ForgeIndex.Item1;
-                            netItems[i] = (NetItem) forge[index];
-                        }
-                        else if (i < NetItem.VoidIndex.Item2)
-                        {
-                            //220
-                            var index = i - NetItem.VoidIndex.Item1;
-                            netItems[i] = (NetItem) voidVault[index];
-                        }
-                        else if (i < NetItem.Loadout1Armor.Item2)
-                        {
-                            var index = i - NetItem.Loadout1Armor.Item1;
-                            netItems[i] = (NetItem) loadout1Armor[index];
-                        }
-                        else if (i < NetItem.Loadout1Dye.Item2)
-                        {
-                            var index = i - NetItem.Loadout1Dye.Item1;
-                            netItems[i] = (NetItem) loadout1Dye[index];
-                        }
-                        else if (i < NetItem.Loadout2Armor.Item2)
-                        {
-                            var index = i - NetItem.Loadout2Armor.Item1;
-                            netItems[i] = (NetItem) loadout2Armor[index];
-                        }
-                        else if (i < NetItem.Loadout2Dye.Item2)
-                        {
-                            var index = i - NetItem.Loadout2Dye.Item1;
-                            netItems[i] = (NetItem) loadout2Dye[index];
-                        }
-                        else if (i < NetItem.Loadout3Armor.Item2)
-                        {
-                            var index = i - NetItem.Loadout3Armor.Item1;
-                            netItems[i] = (NetItem) loadout3Armor[index];
-                        }
-                        else if (i < NetItem.Loadout3Dye.Item2)
-                        {
-                            var index = i - NetItem.Loadout3Dye.Item1;
-                            netItems[i] = (NetItem) loadout3Dye[index];
-                        }
-                    }
-
-                    List<List<int>> itemList = new ();
-                    foreach (var i in netItems)
-                    {
-                        itemList.Add(new List<int> { i.NetId, i.Stack });
-                    }
-
-                    #endregion
-
+                    var lookOnlineResult = LookBag.LookOnline(plr);
                     result = new RestObject
                     {
                         { "type", "lookbag" },
-                        { "name", plr.name },
+                        { "name", lookOnlineResult.Name },
                         { "exist", 1 },
-                        { "life", $"{plr.statLife}/{plr.statLifeMax}" },
-                        { "mana", $"{plr.statMana}/{plr.statManaMax}" },
-                        { "quests_completed", plr.anglerQuestsFinished },
-                        { "inventory", itemList },
-                        { "buffs", buffs },
-                        { "enhances", enhance },
-                        { "economic", EconomicData.GetEconomicData(plr.name) },
+                        { "life", $"{lookOnlineResult.Health}/{lookOnlineResult.MaxHealth}" },
+                        { "mana", $"{lookOnlineResult.Mana}/{lookOnlineResult.MaxMana}" },
+                        { "quests_completed", lookOnlineResult.QuestsCompleted },
+                        { "inventory", lookOnlineResult.ItemList},
+                        { "buffs", lookOnlineResult.Buffs },
+                        { "enhances", lookOnlineResult.Enhances },
+                        { "economic", EconomicData.GetEconomicData(lookOnlineResult.Name) },
                         { "group", (long) jsonObject["group"]! }
                     };
-                    await SendDateAsync(JsonConvert.SerializeObject(result));
                 }
                 else
                 {
-                    #region 查背包 离线
-
                     var acc = TShock.UserAccounts.GetUserAccountByName(name);
                     if (acc == null)
                     {
-                        result = new RestObject { { "type", "lookbag" }, { "exist", 0 } };
+                        result = new RestObject { { "type", "lookbag" }, { "exist", 0 } ,{ "group", (long) jsonObject["group"]! }};
                         await SendDateAsync(JsonConvert.SerializeObject(result));
                         return;
                     }
-
                     var data = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), acc.ID);
-
                     if (data == null)
                     {
-                        result = new RestObject { { "type", "lookbag" }, { "exist", 0 } };
+                        result = new RestObject { { "type", "lookbag" }, { "exist", 0 },{ "group", (long) jsonObject["group"]! }};
                         await SendDateAsync(JsonConvert.SerializeObject(result));
                         return;
                     }
-
-                    if (data.extraSlot == 1)
-                    {
-                        enhance.Add(3335); // 3335 恶魔之心
-                    }
-
-                    if (data.unlockedBiomeTorches == 1)
-                    {
-                        enhance.Add(5043); // 5043 火把神徽章
-                    }
-
-                    if (data.ateArtisanBread == 1)
-                    {
-                        enhance.Add(5326); // 5326	工匠面包
-                    }
-
-                    if (data.usedAegisCrystal == 1)
-                    {
-                        enhance.Add(5337); // 5337 生命水晶	永久强化生命再生 
-                    }
-
-                    if (data.usedAegisFruit == 1)
-                    {
-                        enhance.Add(5338); // 5338 埃癸斯果	永久提高防御力 
-                    }
-
-                    if (data.usedArcaneCrystal == 1)
-                    {
-                        enhance.Add(5339); // 5339 奥术水晶	永久提高魔力再生 
-                    }
-
-                    if (data.usedGalaxyPearl == 1)
-                    {
-                        enhance.Add(5340); // 5340	银河珍珠	永久增加运气 
-                    }
-
-                    if (data.usedGummyWorm == 1)
-                    {
-                        enhance.Add(5341); // 5341	黏性蠕虫	永久提高钓鱼技能  
-                    }
-
-                    if (data.usedAmbrosia == 1)
-                    {
-                        enhance.Add(5342); // 5342	珍馐	永久提高采矿和建造速度 
-                    }
-
-                    if (data.unlockedSuperCart == 1)
-                    {
-                        enhance.Add(5289); // 5289	矿车升级包
-                    }
-
-                    List<List<int>> itemList = new ();
-                    foreach (var i in data.inventory)
-                    {
-                        itemList.Add(new List<int> { i.NetId, i.Stack });
-                    }
-
-                    buffs = Utils.GetActiveBuffs(TShock.DB, acc.ID, acc.Name);
-
-                    #endregion
-
+                    
+                    var lookOnlineResult = LookBag.LookOffline(acc, data);
                     result = new RestObject
                     {
                         { "type", "lookbag" },
+                        { "name", lookOnlineResult.Name },
                         { "exist", 1 },
-                        { "name", acc.Name },
-                        { "life", $"{data.health}/{data.maxHealth}" },
-                        { "mana", $"{data.mana}/{data.maxMana}" },
-                        { "quests_completed", data.questsCompleted },
-                        { "inventory", itemList },
-                        { "buffs", buffs },
-                        { "enhances", enhance },
-                        { "economic", EconomicData.GetEconomicData(acc.Name) },
+                        { "life", $"{lookOnlineResult.Health}/{lookOnlineResult.MaxHealth}" },
+                        { "mana", $"{lookOnlineResult.Mana}/{lookOnlineResult.MaxMana}" },
+                        { "quests_completed", lookOnlineResult.QuestsCompleted },
+                        { "inventory", lookOnlineResult.ItemList},
+                        { "buffs", lookOnlineResult.Buffs },
+                        { "enhances", lookOnlineResult.Enhances },
+                        { "economic", EconomicData.GetEconomicData(lookOnlineResult.Name) },
                         { "group", (long) jsonObject["group"]! }
                     };
-                    await SendDateAsync(JsonConvert.SerializeObject(result));
                 }
+
+                await SendDateAsync(JsonConvert.SerializeObject(result));
 
                 break;
             case "mapfile":
@@ -523,7 +221,6 @@ internal static class MessageHandle
                 break;
             case "pluginlist":
                 var pluginList = ServerApi.Plugins.Select(p => new PluginInfo(p.Plugin.Name, p.Plugin.Description, p.Plugin.Author, p.Plugin.Version)).ToList();
-
                 result = new RestObject { { "type", "pluginlist" }, { "plugins", pluginList }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
