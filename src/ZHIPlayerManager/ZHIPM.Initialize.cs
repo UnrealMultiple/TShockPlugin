@@ -603,6 +603,12 @@ public partial class ZHIPM
     /// <param name="args"></param>
     private void SSCModify(CommandArgs args)
     {
+        if (!TShock.ServerSideCharacterConfig.Settings.Enabled)
+        {
+            args.Player.SendErrorMessage(GetString("服务器没有开启ServerSideCharacter,无法使用该命令!"));
+            return;
+        }
+        
         if (args.Parameters.Count != 1 && args.Parameters.Count != 3)
         {
             args.Player.SendInfoMessage(GetString("输入 /zmodify help  查看修改玩家数据的指令帮助"));
@@ -649,13 +655,15 @@ public partial class ZHIPM
                     args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"));
                     return;
                 }
-
+                
                 //再判断能不能找到人的情况
                 var players = this.BestFindPlayerByNameOrIndex(args.Parameters[0]);
                 if (players.Count > 1)
                 {
                     args.Player.SendInfoMessage(this.MultipleMatchPlayerWarning);
+                    
                 }
+                
                 //在线能找到
                 else if (players.Count == 1)
                 {
@@ -664,28 +672,33 @@ public partial class ZHIPM
                     {
                         case "life":
                             players[0].TPlayer.statLife = num;
-                            players[0].SendData(PacketTypes.PlayerHp, "", players[0].Index);
-                            players[0].SendMessage("您的生命值已被修改为：" + num, new Color(0, 255, 0));
+                            TSPlayer.All.SendData(PacketTypes.PlayerHp, "", players[0].Index);
+                            players[0].SendMessage(GetString("您的生命值已被修改为：") + num, new Color(0, 255, 0));
                             break;
                         case "lifemax":
                             players[0].TPlayer.statLifeMax = num;
-                            players[0].SendData(PacketTypes.PlayerHp, "", players[0].Index);
+                            TSPlayer.All.SendData(PacketTypes.PlayerHp, "", players[0].Index);
                             players[0].SendMessage(GetString("您的生命上限已被修改为：") + num, new Color(0, 255, 0));
                             break;
                         case "mana":
                             players[0].TPlayer.statMana = num;
-                            players[0].SendData(PacketTypes.PlayerMana, "", players[0].Index);
+                            TSPlayer.All.SendData(PacketTypes.PlayerMana, "", players[0].Index);
                             players[0].SendMessage(GetString("您的魔力值已被修改为：") + num, new Color(0, 255, 0));
                             break;
                         case "manamax":
                             players[0].TPlayer.statManaMax = num;
-                            players[0].SendData(PacketTypes.PlayerMana, "", players[0].Index);
+                            TSPlayer.All.SendData(PacketTypes.PlayerMana, "", players[0].Index);
                             players[0].SendMessage(GetString("您的魔力上限已被修改为：") + num, new Color(0, 255, 0));
                             break;
                         case "fish":
                             players[0].TPlayer.anglerQuestsFinished = num;
-                            players[0].SendData(PacketTypes.NumberOfAnglerQuestsCompleted, "", players[0].Index);
+                            TSPlayer.All.SendData(PacketTypes.NumberOfAnglerQuestsCompleted, "", players[0].Index);
                             players[0].SendMessage(GetString("您的渔夫任务完成数已被修改为：") + num, new Color(0, 255, 0));
+                            break;
+                        case "golf":
+                            players[0].TPlayer.golferScoreAccumulated = num;
+                            TSPlayer.All.SendData(PacketTypes.NumberOfAnglerQuestsCompleted, "", players[0].Index);
+                            players[0].SendMessage(GetString("您的高尔夫球分数已被修改为：") + num, new Color(0, 255, 0));
                             break;
                         default:
                         {
@@ -714,52 +727,52 @@ public partial class ZHIPM
                                 {
                                     case "torch":
                                         players[0].TPlayer.unlockedBiomeTorches = num != 0;
-                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        TSPlayer.All.SendData(PacketTypes.PlayerInfo, "", players[0].Index);
                                         players[0].SendMessage(GetString("您的火把神增益开启状态：") + players[0].TPlayer.unlockedBiomeTorches, new Color(0, 255, 0));
                                         break;
                                     case "demmon":
                                         players[0].TPlayer.extraAccessory = num != 0;
-                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        TSPlayer.All.SendData(PacketTypes.PlayerInfo, "", players[0].Index);
                                         players[0].SendMessage(GetString("您的恶魔心增益开启状态：") + players[0].TPlayer.extraAccessory, new Color(0, 255, 0));
                                         break;
                                     case "bread":
                                         players[0].TPlayer.ateArtisanBread = num != 0;
-                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        TSPlayer.All.SendData(PacketTypes.PlayerInfo, "", players[0].Index);
                                         players[0].SendMessage(GetString("您的工匠面包增益开启状态：") + players[0].TPlayer.ateArtisanBread, new Color(0, 255, 0));
                                         break;
                                     case "heart":
                                         players[0].TPlayer.usedAegisCrystal = num != 0;
-                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        TSPlayer.All.SendData(PacketTypes.PlayerInfo, "", players[0].Index);
                                         players[0].SendMessage(GetString("您的埃癸斯水晶增益开启状态：") + players[0].TPlayer.usedAegisCrystal, new Color(0, 255, 0));
                                         break;
                                     case "fruit":
                                         players[0].TPlayer.usedAegisFruit = num != 0;
-                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        TSPlayer.All.SendData(PacketTypes.PlayerInfo, "", players[0].Index);
                                         players[0].SendMessage(GetString("您的埃癸斯果增益开启状态：") + players[0].TPlayer.usedAegisFruit, new Color(0, 255, 0));
                                         break;
                                     case "star":
                                         players[0].TPlayer.usedArcaneCrystal = num != 0;
-                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        TSPlayer.All.SendData(PacketTypes.PlayerInfo, "", players[0].Index);
                                         players[0].SendMessage(GetString("您的奥术水晶增益开启状态：") + players[0].TPlayer.usedArcaneCrystal, new Color(0, 255, 0));
                                         break;
                                     case "pearl":
                                         players[0].TPlayer.usedGalaxyPearl = num != 0;
-                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        TSPlayer.All.SendData(PacketTypes.PlayerInfo, "", players[0].Index);
                                         players[0].SendMessage(GetString("您的银河珍珠增益开启状态：") + players[0].TPlayer.usedGalaxyPearl, new Color(0, 255, 0));
                                         break;
                                     case "worm":
                                         players[0].TPlayer.usedGummyWorm = num != 0;
-                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        TSPlayer.All.SendData(PacketTypes.PlayerInfo, "", players[0].Index);
                                         players[0].SendMessage(GetString("您的粘性蠕虫增益开启状态：") + players[0].TPlayer.usedGummyWorm, new Color(0, 255, 0));
                                         break;
                                     case "ambrosia":
                                         players[0].TPlayer.usedAmbrosia = num != 0;
-                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        TSPlayer.All.SendData(PacketTypes.PlayerInfo, "", players[0].Index);
                                         players[0].SendMessage(GetString("您的珍馐增益开启状态：") + players[0].TPlayer.usedAmbrosia, new Color(0, 255, 0));
                                         break;
                                     case "cart":
                                         players[0].TPlayer.unlockedSuperCart = num != 0;
-                                        players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                        TSPlayer.All.SendData(PacketTypes.PlayerInfo, "", players[0].Index);
                                         players[0].SendMessage(GetString("您的超级矿车增益开启状态：") + players[0].TPlayer.unlockedSuperCart, new Color(0, 255, 0));
                                         break;
                                     case "all":
@@ -776,7 +789,7 @@ public partial class ZHIPM
                                                 players[0].TPlayer.usedGummyWorm = true;
                                                 players[0].TPlayer.usedAmbrosia = true;
                                                 players[0].TPlayer.unlockedSuperCart = true;
-                                                players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                                TSPlayer.All.SendData(PacketTypes.PlayerInfo, "", players[0].Index);
                                                 players[0].SendMessage(GetString("您的所有永久增益均开启"), new Color(0, 255, 0));
                                                 break;
                                             case 0:
@@ -790,7 +803,7 @@ public partial class ZHIPM
                                                 players[0].TPlayer.usedGummyWorm = false;
                                                 players[0].TPlayer.usedAmbrosia = false;
                                                 players[0].TPlayer.unlockedSuperCart = false;
-                                                players[0].SendData(PacketTypes.PlayerInfo, "", players[0].Index);
+                                                TSPlayer.All.SendData(PacketTypes.PlayerInfo, "", players[0].Index);
                                                 players[0].SendMessage(GetString("您的所有永久增益均关闭"), new Color(0, 255, 0));
                                                 break;
                                         }
@@ -1177,7 +1190,7 @@ public partial class ZHIPM
 
 
     /// <summary>
-    ///     重置所有用户所有数据方法指令
+    /// 重置所有用户所有数据方法指令
     /// </summary>
     /// <param name="args"></param>
     private void ZResetPlayerAll(CommandArgs args)
