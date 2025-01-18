@@ -12,8 +12,9 @@ public class DamageRuleLoot : TerrariaPlugin
 {
 
     #region 插件信息
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学 西江小子";
-    public override Version Version => new Version(1, 3, 3);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Author => "羽学 西江小子";
+    public override Version Version => new Version(1, 3, 4);
     public override string Description => GetString("根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理");
     #endregion
 
@@ -440,13 +441,8 @@ public class DamageRuleLoot : TerrariaPlugin
                     case 372:
                     case 373:
                     {
-                        if (!Config.Sharkron)
-                        {
-                            return;
-                        }
-
                         var strike2 = strikeNPC.Find(x => x.npcID == 370);
-                        CombDmg2(i, ref strike2, 370, new int[] { 372, 373 }, 10000f);
+                        CombDmg3(Config.Sharkron, i, ref strike2, 370, new int[] { 372, 373 }, 10000f);
                         if (strikeNPC[i].npcID == 370)
                         {
                             SendKillMessage(GetString("猪龙鱼公爵"), strikeNPC[i].PlayerOrDamage, strikeNPC[i].AllDamage);
@@ -499,7 +495,7 @@ public class DamageRuleLoot : TerrariaPlugin
                         }
 
                         var strike2 = strikeNPC.Find(x => x.npcID == 127);
-                        CombDmg3(i, ref strike2, 127, new int[] { 128, 129, 130, 131 }, 300000f);
+                        CombDmg3(Config.Sharkron, i, ref strike2, 127, new int[] { 128, 129, 130, 131 }, 300000f);
                         if (strikeNPC[i].npcID == 127)
                         {
                             SendKillMessage(args.npc.FullName, strikeNPC[i].PlayerOrDamage, strikeNPC[i].AllDamage);

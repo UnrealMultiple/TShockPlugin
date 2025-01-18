@@ -30,7 +30,8 @@
         "tshock.npc.summonboss",
         "tshock.npc.startinvasion",
         "tshock.npc.spawnpets",
-        "tshock.world.time.usesundial"
+        "tshock.world.time.usesundial",
+        "tshock.npc.hurttown"
       ],
       "删除的权限": [
         "tshock.admin"
