@@ -15,14 +15,14 @@ public class AutoBroadcast : LazyPlugin
     
     public override Version Version => new (1, 1, 1);
 
-    private DateTime _lastCheck = DateTime.UtcNow;
+    private DateTime _lastUpdate = DateTime.Now;
 
     public AutoBroadcast(Main game) : base(game) { }
 
     public override void Initialize()
     {
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
-        ServerApi.Hooks.ServerChat.Register(this, this.OnChat);
+        ServerApi.Hooks.ServerChat.Register(this, OnChat, int.MinValue); //最低优先级，这样不需要处理命令
     }
 
     protected override void Dispose(bool disposing)
@@ -30,57 +30,58 @@ public class AutoBroadcast : LazyPlugin
         if (disposing)
         {
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
-            ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
+            ServerApi.Hooks.ServerChat.Deregister(this, OnChat);
         }
         base.Dispose(disposing);
     }
-    
-    public void OnUpdate(EventArgs args)
+
+    /*
+     * 每一秒运行一次
+     * 更新所有广播的计时器
+     */
+    private void OnUpdate(EventArgs args)
     {
-        if (!((DateTime.UtcNow - this._lastCheck).TotalSeconds >= 1))
+        
+        if (!((DateTime.Now - this._lastUpdate).TotalSeconds >= 1)) 
         {
             return;
         }
-        this._lastCheck = DateTime.UtcNow;
+        
+        this._lastUpdate = DateTime.Now;
         
         foreach (var broadcast in AutoBroadcastConfig.Instance.Broadcasts)
         {
-            if (!broadcast.Enabled)
+            if (!broadcast.Enabled || broadcast.Interval==0) //不更新未启用和计时间隔为0的广播
             {
                 continue;
             }
-
             broadcast.SecondUpdate();
         }
     }
-    public void OnChat(ServerChatEventArgs args)
+
+    /*
+     * 聊天关键词触发广播
+     * 当聊天关键词匹配时触发广播
+     */
+    private static void OnChat(ServerChatEventArgs args)
     {
-        if (TShock.Players[args.Who] == null)
+        var plr = TShock.Players[args.Who];
+        
+        if (plr == null)
         {
             return;
         }
-
-        var plr = TShock.Players[args.Who];
         
         foreach (var broadcast in AutoBroadcastConfig.Instance.Broadcasts)
         {
             if (!broadcast.Enabled)
-            {
-                continue;
-            }
-
-            if (!broadcast.Groups.Contains(plr.Group.Name))
             {
                 continue;
             }
             
-            foreach (var word in broadcast.TriggerWords)
+            if (broadcast.TriggerWords.Any(word => args.Text.Contains(word))) //检查消息内是否含有关键词
             {
-                if (args.Text.Contains(word))
-                {
-                    broadcast.RunTriggerWords(plr);
-                    break;
-                }
+                broadcast.RunTriggerWords(plr);
             }
         }
     }

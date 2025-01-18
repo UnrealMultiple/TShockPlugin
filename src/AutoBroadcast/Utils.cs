@@ -4,12 +4,11 @@ namespace AutoBroadcast;
 
 public static class Utils
 {
-    
     public static void BroadcastToGroups(string[] groups, string[] messages, byte[] colour)
     {
         foreach (var line in messages)
         {
-            if (line.StartsWith(TShock.Config.Settings.CommandSpecifier))
+            if (line.StartsWith(TShock.Config.Settings.CommandSpecifier) || line.StartsWith(TShock.Config.Settings.CommandSilentSpecifier))
             {
                 Commands.HandleCommand(TSPlayer.Server, line);
             }
@@ -22,7 +21,6 @@ public static class Utils
                         player.SendMessage(line, colour[0], colour[1], colour[2]);
                     }
                 }
-                
             }
         }
     }
@@ -30,7 +28,7 @@ public static class Utils
     {
         foreach (var line in messages)
         {
-            if (line.StartsWith(TShock.Config.Settings.CommandSpecifier))
+            if (line.StartsWith(TShock.Config.Settings.CommandSpecifier) || line.StartsWith(TShock.Config.Settings.CommandSilentSpecifier))
             {
                 Commands.HandleCommand(TSPlayer.Server, line);
             }

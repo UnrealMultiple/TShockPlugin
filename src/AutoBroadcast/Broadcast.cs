@@ -1,6 +1,5 @@
 ﻿using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
-using System.Text.Json;
 using TShockAPI;
 
 namespace AutoBroadcast;
@@ -14,36 +13,104 @@ public class Broadcast
         this._interval = this.Interval;
     }
     
+    [LocalizedPropertyName(CultureType.Chinese, "广播名称")]
+    [LocalizedPropertyName(CultureType.English, "Name")]
+    public string Name  = string.Empty;
+
+    [LocalizedPropertyName(CultureType.Chinese, "启用")] 
+    [LocalizedPropertyName(CultureType.English, "Enable")]
+    public bool Enabled;
+
+    [LocalizedPropertyName(CultureType.Chinese, "广播消息")]
+    [LocalizedPropertyName(CultureType.English, "Msg")]
+    public string[] Messages = Array.Empty<string>();
+
+    [LocalizedPropertyName(CultureType.Chinese, "RGB颜色")]
+    [LocalizedPropertyName(CultureType.English, "ColorRGB")]
+    public int[] ColorRgb = new int[3];
+
+    public byte[] ColorRgbBytes => this.ColorRgb.Select(i => i > 255 ? (byte)255 : (byte)i).ToArray();
+
+
+    [LocalizedPropertyName(CultureType.Chinese, "时间间隔")] 
+    [LocalizedPropertyName(CultureType.English, "Interval")]
+    public int Interval;
+
+    [LocalizedPropertyName(CultureType.Chinese, "延迟执行")]
+    [LocalizedPropertyName(CultureType.English, "Delay")]
+    public int StartDelay;
+
+    [LocalizedPropertyName(CultureType.Chinese, "广播组")]
+    [LocalizedPropertyName(CultureType.English, "Groups")]
+    public string[] Groups = Array.Empty<string>();
+
+    [LocalizedPropertyName(CultureType.Chinese, "触发词语")]
+    [LocalizedPropertyName(CultureType.English, "TriggerWords")]
+    public string[] TriggerWords  = Array.Empty<string>();
+
+    [LocalizedPropertyName(CultureType.Chinese, "触发整个组")] 
+    [LocalizedPropertyName(CultureType.English, "TriggerToWholeGroup")]
+    public bool TriggerToWholeGroup;
+    
+    /// <summary>
+    /// 触发关键词的广播
+    /// </summary>
     public void RunTriggerWords(TSPlayer plr)
     {
-        if (this.TriggerToWholeGroup)
+        
+        if (this.Groups.Length > 0)
         {
-            Utils.BroadcastToGroups(this.Groups, this.Messages, this.ColorRGB);
+            if (this.Groups.Contains(plr.Group.Name))
+            {
+                return;
+            }
+
+            if (this.TriggerToWholeGroup)
+            {
+                Utils.BroadcastToGroups(this.Groups, this.Messages, this.ColorRgbBytes);
+            }
+            else
+            {
+                Utils.BroadcastToPlayer(plr, this.Messages, this.ColorRgbBytes);
+            }
+
         }
         else
         {
-            Utils.BroadcastToPlayer(plr, this.Messages, this.ColorRGB);
+            if (this.TriggerToWholeGroup)
+            {
+                Utils.BroadcastToGroups(this.Groups, this.Messages, this.ColorRgbBytes);
+            }
+            else
+            {
+                Utils.BroadcastToPlayer(plr, this.Messages, this.ColorRgbBytes);
+            }
         }
+        
     }
     
+    /// <summary>
+    /// 直接广播
+    /// </summary>
     public void Run()
     {
         if (this.Groups.Length > 0)
         {
-            Utils.BroadcastToGroups(this.Groups, this.Messages, this.ColorRGB);
+            Utils.BroadcastToGroups(this.Groups, this.Messages, this.ColorRgbBytes);
         }
         else
         {
-            Utils.BroadcastToAll(this.Messages, this.ColorRGB);
+            Utils.BroadcastToAll(this.Messages, this.ColorRgbBytes);
         }
     }
-
+    /// <summary>
+    /// 延迟广播
+    /// </summary>
     public void RunDelay()
     {
         if (this.StartDelay <= 0)
         {
             this.Run();
-            
         }
         else
         {
@@ -54,7 +121,6 @@ public class Broadcast
     /// <summary>
     /// 更新广播计时器
     /// </summary>
-    /// <returns>如果计时器已经跑完, 就开始</returns>
     public void SecondUpdate()
     {
         
@@ -66,6 +132,7 @@ public class Broadcast
                 this.Run();
             }
         }
+        
         this._delays.RemoveAll(x=>x <= 0);
         
         this._interval--;
@@ -77,39 +144,4 @@ public class Broadcast
         
     }
 
-    [LocalizedPropertyName(CultureType.Chinese, "广播名称")]
-    [LocalizedPropertyName(CultureType.English, "Name")]
-    public string Name { get; set; } = string.Empty;
-
-    [LocalizedPropertyName(CultureType.Chinese, "启用")]
-    [LocalizedPropertyName(CultureType.English, "Enable")]
-    public bool Enabled { get; set; } = false;
-
-    [LocalizedPropertyName(CultureType.Chinese, "广播消息")]
-    [LocalizedPropertyName(CultureType.English, "Msg")]
-    public string[] Messages { get; set; } = Array.Empty<string>();
-
-    [LocalizedPropertyName(CultureType.Chinese, "RGB颜色")]
-    [LocalizedPropertyName(CultureType.English, "Color")]
-    public byte[] ColorRGB { get; set; } = new byte[3];
-
-    [LocalizedPropertyName(CultureType.Chinese, "时间间隔")]
-    [LocalizedPropertyName(CultureType.English, "Interval")]
-    public int Interval { get; set; } = 0;
-
-    [LocalizedPropertyName(CultureType.Chinese, "延迟执行")]
-    [LocalizedPropertyName(CultureType.English, "Delay")]
-    public int StartDelay { get; set; } = 0;
-
-    [LocalizedPropertyName(CultureType.Chinese, "广播组")]
-    [LocalizedPropertyName(CultureType.English, "Groups")]
-    public string[] Groups { get; set; } = Array.Empty<string>();
-
-    [LocalizedPropertyName(CultureType.Chinese, "触发词语")]
-    [LocalizedPropertyName(CultureType.English, "TriggerWords")]
-    public string[] TriggerWords { get; set; } = Array.Empty<string>();
-
-    [LocalizedPropertyName(CultureType.Chinese, "触发整个组")]
-    [LocalizedPropertyName(CultureType.English, "TriggerToWholeGroup")]
-    public bool TriggerToWholeGroup { get; set; } = false;
 }
