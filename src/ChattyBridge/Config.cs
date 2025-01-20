@@ -6,10 +6,6 @@ namespace ChattyBridge;
 [Config]
 public class Config : JsonConfigBase<Config>
 {
-    [LocalizedPropertyName(CultureType.English, "debug")]
-    [LocalizedPropertyName(CultureType.Chinese, "debug")]
-    public bool Debug { get; set; } = false;
-
     [LocalizedPropertyName(CultureType.English, "forward_command")]
     [LocalizedPropertyName(CultureType.Chinese, "转发指令")]
     public bool ForwardCommand { get; set; } = false;
