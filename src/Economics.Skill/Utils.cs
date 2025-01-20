@@ -33,7 +33,7 @@ public class Utils
             throw new Exception(GetString($"当前进度无法购买此技能，限制进度:{string.Join(", ", context.LimitProgress)}"));
         }
 
-        var bind = Skill.PlayerSKillManager.QuerySkillByItem(Player.Name, Player.SelectedItem.netID).Where(s => s.Skill != null && s.Skill.Hidden);
+        var bind = Skill.PlayerSKillManager.QuerySkillByItem(Player.Name, Player.SelectedItem.netID).Where(s => s.Skill != null && !s.Skill.Hidden);
         return context.SkillUnique && Skill.PlayerSKillManager.HasSkill(Player.Name, index)
             ? throw new Exception(GetString("此技能是唯一的不能重复绑定!"))
             : context.SkillUniqueAll && Skill.PlayerSKillManager.HasSkill(index)
