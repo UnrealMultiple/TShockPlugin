@@ -2,9 +2,7 @@
 using LazyAPI;
 using Newtonsoft.Json.Linq;
 using Rests;
-using System.Net;
 using System.Reflection;
-using System.Text;
 using System.Web;
 using Terraria;
 using TerrariaApi.Server;
@@ -18,7 +16,7 @@ public class Plugin : LazyPlugin
     public override string Author => "少司命";
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 1, 2);
+    public override Version Version => new Version(1, 0, 1, 3);
 
     private readonly HttpClient _client  = new ();
 
@@ -53,15 +51,14 @@ public class Plugin : LazyPlugin
     private static object HandleMsg(RestRequestArgs args)
     {
         var msg = args.Parameters["msg"];
-        var isVer = args.Parameters["verify"] == Config.Instance.Verify;
-        if (!isVer)
+        TShock.Log.ConsoleDebug($"ChattyBridge Receive: {msg}");
+        if (args.Parameters["verify"] != Config.Instance.Verify)
         {
-            return new RestObject("403");
+            return new RestObject("403") { Response = "ChattyBridge Token Verify Error!" };
         }
         try
         {
-            var sourceMsg = Encoding.UTF8.GetString(Convert.FromBase64String(msg));
-            var json = JObject.Parse(sourceMsg);
+            var json = JObject.Parse(msg);
             if (json.TryGetValue("type", out var type))
             {
                 switch (type.ToString())
@@ -93,25 +90,23 @@ public class Plugin : LazyPlugin
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError(ex.ToString());
-            return new RestObject("500");
+            return new RestObject("500") { Response = $"An error occurred in the processing of the message: {ex.Message}" };
         }
-        return new RestObject("200");
+        return new RestObject("200") { Response = "Message Send Successfully!" };
     }
 
     private void SendMsg(string msg)
     {
-        Task.Run(() =>
+        Task.Run(async () =>
         {
-            var baseStr = Convert.ToBase64String(Encoding.UTF8.GetBytes(msg));
             foreach (var host in Config.Instance.RestHost)
             {
                 try
                 {
                     var url = $"http://{host}/chat";
-                    this.HttpGet(url, new Dictionary<string, string>
+                    await this.HttpGet(url, new Dictionary<string, string>
                     {
-                        { "msg", baseStr },
+                        { "msg", msg },
                         { "verify", Config.Instance.Verify }
                     });
                 }
@@ -123,7 +118,7 @@ public class Plugin : LazyPlugin
         });
     }
 
-    private void HttpGet(string url, Dictionary<string, string> payload)
+    private async Task HttpGet(string url, Dictionary<string, string> payload)
     {
         var urlBuilder = new UriBuilder(url);
         var param = HttpUtility.ParseQueryString(urlBuilder.Query);
@@ -132,18 +127,19 @@ public class Plugin : LazyPlugin
             param[key] = value;
         }
         urlBuilder.Query = param.ToString();
-        var response =  this._client.Send(new HttpRequestMessage(HttpMethod.Get, urlBuilder.ToString()));
-        switch (response.StatusCode)
+        var response = await this._client.GetAsync(urlBuilder.ToString());
+        try
         {
-            case HttpStatusCode.OK:
-                break;
-            case HttpStatusCode.Unauthorized:
-                 TShock.Log.ConsoleError(GetString($"[聊天桥] 访问目标服务器验证失败:{url},请检查你的令牌是否配置正确!"));
-                 break;
-            case HttpStatusCode.InternalServerError:
-                TShock.Log.ConsoleError(GetString($"[聊天桥] 目标服务器处理请求出错:{url}!"));
-                break;
-                    
+            TShock.Log.ConsoleDebug($"ChattyBridge Send: {payload["msg"]}");
+            response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException e)
+        {
+            TShock.Log.ConsoleError($"[ChattyBridge] Error: {e.Message}");
+        }
+        finally
+        {
+            TShock.Log.ConsoleDebug($"ChattyBridage Response: {await response.Content.ReadAsStringAsync()}");
         }
     }
 
