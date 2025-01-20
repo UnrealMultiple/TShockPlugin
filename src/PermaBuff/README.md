@@ -9,7 +9,7 @@
 | 语法                             | 别名  |       权限       |                   说明                   |
 | -------------------------------- | :---: | :--------------: | :--------------------------------------: |
 | /permabuff [buffID]  |  /pbuff  |  permabuff.use  |   给予自身永久 buff(再次使用移除)   |
-| /gpermabuff [玩家名称] [buffid] |  /gpbuff  |  gpermabuff.use | 给予玩家一个永久 buff(再次使用移除) |
+| /gpermabuff [buffid] [玩家名称] |  /gpbuff  |  gpermabuff.use | 给予玩家一个永久 buff(再次使用移除) |
 | /clearbuffs  |  /cbuff  |  clearbuffs.use | 清空自身所有 buff |
 | /clearbuffs all   |  /cbuff all  |  clearbuffs.admin | 清空所有玩家 buff |
 | /reload  | 无 |   tshock.cfg.reload    |    重载配置文件    |
@@ -24,7 +24,10 @@
 ## 更新日志
 
 ```
-v 1.0.2
+v1.0.4
+修正指令提
+
+v1.0.2
 加入清理所有BUFF子命令:/cbuff all
 
 v.1.0.1
