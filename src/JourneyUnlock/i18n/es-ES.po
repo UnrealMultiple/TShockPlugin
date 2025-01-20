@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:03+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-01-20 01:08\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -19,5 +19,5 @@ msgstr ""
 
 #: ../../JourneyUnlock.cs:15
 msgid "允许您为旅途中的角色解锁所有或特定物品"
-msgstr ""
+msgstr "Te permite desbloquear todos o elementos específicos para tu personaje en tu viaje."
 
