@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:06+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-01-20 01:08\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -19,9 +19,9 @@ msgstr ""
 
 #: ../../MapTeleport.cs:16
 msgid "允许玩家传送到地图上的选定位置."
-msgstr ""
+msgstr "Permite al jugador teletransportarse a una ubicación seleccionada en el mapa."
 
 #: ../../MapTeleport.cs:50
 msgid "您正在尝试传送到实心方块中。请在地图上选择一个不包含实心方块的地方，然后重试."
-msgstr ""
+msgstr "Estás intentando teletransportarte a un bloque sólido. Seleccione un lugar en el mapa que no contenga un cuadrado sólido e inténtelo nuevamente."
 
