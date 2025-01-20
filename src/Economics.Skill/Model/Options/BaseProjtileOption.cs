@@ -35,6 +35,9 @@ public class BaseProjtileOption
     [JsonProperty("持续时间")]
     public int TimeLeft { get; set; } = -1;
 
+    [JsonProperty("动态伤害")]
+    public bool DynamicDamage { get; set; }
+
     [JsonProperty("AI")]
     public float[] AI { get; set; } = new float[3];
 

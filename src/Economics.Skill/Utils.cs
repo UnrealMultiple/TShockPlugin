@@ -56,8 +56,9 @@ public class Utils
     }
 
 
-    internal static void CycleAdapr(TSPlayer ply, Vector2 vel, Vector2 pos, ProjectileOption option, NPC? lockNpc = null)
+    internal static void CycleAdapr(TSPlayer ply, Vector2 vel, Vector2 pos, ProjectileOption option, float Damage, NPC? lockNpc = null)
     {
+        var damage = option.DynamicDamage ? Damage / ply.SelectedItem.damage * option.Damage : Damage;
         foreach (var opt in option.ProjectileCycle.ProjectileCycles)
         {
             var _vel = vel;
@@ -100,7 +101,7 @@ public class Utils
                         _pos,
                         _vel * (opt.Reverse ? -1 : 1),
                         option.ID,
-                        option.Damage,
+                        Convert.ToInt32(Damage),
                         option.Knockback,
                         ply.Index,
                         option.AI[0],
@@ -141,7 +142,7 @@ public class Utils
     /// <param name="skill"></param>
     /// <param name="vel"></param>
     /// <param name="pos"></param>
-    public static void SpawnSkillProjectile(TSPlayer Player, SkillContext skill, Vector2 vel, Vector2 pos)
+    public static void SpawnSkillProjectile(TSPlayer Player, SkillContext skill, Vector2 vel, Vector2 pos, int Damage)
     {
         EmitGeneralSkill(Player, skill);
         foreach (var i in Enumerable.Range(0, skill.Projectiles.Count))
@@ -166,7 +167,7 @@ public class Utils
                         }
                     }
                 }
-                CycleAdapr(Player, vel, pos, proj, lockNpc);
+                CycleAdapr(Player, vel, pos, proj, Damage, lockNpc);
             }).AddMilliSeconds(proj.Dealy * i);
         }
     }
@@ -181,7 +182,7 @@ public class Utils
         var pos = Player.TPlayer.Center + Player.TPlayer.ItemOffSet();
         //原始角度速度参数
         var vel = Player.TPlayer.ItemOffSet();
-        SpawnSkillProjectile(Player, skill, vel, pos);
+        SpawnSkillProjectile(Player, skill, vel, pos, Player.SelectedItem.damage);
         Interpreter.ExecuteScript(skill, Player, pos, vel);
     }
 
@@ -191,7 +192,7 @@ public class Utils
         var pos = e.Position;
         //原始角度速度参数
         var vel = e.Velocity;
-        SpawnSkillProjectile(e.Player, skill, vel, pos);
+        SpawnSkillProjectile(e.Player, skill, vel, pos, e.Damage);
         Interpreter.ExecuteScript(skill, e.Player, pos, vel);
     }
 }
