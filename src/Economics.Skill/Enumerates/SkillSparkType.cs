@@ -39,5 +39,14 @@ public enum SkillSparkType
     Jump,
 
     [Description("受击")]
-    Struck
+    Struck,
+
+    [Description("BUFF")]
+    Buff,
+
+    [Description("环境")]
+    Environment,
+
+    [Description("技能")]
+    Skill
 }

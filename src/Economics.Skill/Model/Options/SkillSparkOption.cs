@@ -36,6 +36,15 @@ public class SkillSparkOption
     [JsonProperty("物品条件")]
     public List<TermItem> TermItem { get; set; } = new();
 
+    [JsonProperty("Buff条件")]
+    public List<int> BuffsCondition { get; set; } = new();
+
+    [JsonProperty("环境条件")]
+    public List<string> EnvironmentCondition { get; set; } = new();
+
+    [JsonProperty("技能条件")]
+    public List<int> SkillCondition { get; set; } = new();
+
     public bool MeetHP(TSPlayer Player)
     {
         return (this.HpRatio ? (Player.TPlayer.statLife / (float) Player.TPlayer.statLifeMax * 100 <= this.HP) : Player.TPlayer.statLife <= this.HP) && !this.MoreHP;
@@ -60,7 +69,15 @@ public class SkillSparkOption
             }
             if (item.Armory)
             {
-                var inv = player.TPlayer.armor.Where(x => x.netID == item.netID);
+                var inv = player.TPlayer.armor.Take(10).Where(x => x.netID == item.netID);
+                if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
+                {
+                    return false;
+                }
+            }
+            if (item.Misc)
+            {
+                var inv = player.TPlayer.armor.Skip(10).Where(x => x.netID == item.netID);
                 if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
                 {
                     return false;

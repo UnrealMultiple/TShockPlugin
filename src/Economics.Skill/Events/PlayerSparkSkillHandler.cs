@@ -1,5 +1,6 @@
 ﻿using Economics.Skill.DB;
 using Economics.Skill.Enumerates;
+using EconomicsAPI.Extensions;
 using TShockAPI;
 
 namespace Economics.Skill.Events;
@@ -21,13 +22,16 @@ public class PlayerSparkSkillHandler
                     SkillSparkType.MP => skill.Skill!.SkillSpark.MeetMP(Player),
                     SkillSparkType.Jump => Player.TPlayer.jump > 0,
                     SkillSparkType.Dash => Player.TPlayer.dashDelay == -1,
-                    SkillSparkType.CD => skill.SkillCD <= 0,
+                    SkillSparkType.CD => skill.SkillCD <= 0,    
                     SkillSparkType.Armor => skill.Skill!.SkillSpark.HasItem(Player),
                     SkillSparkType.Death => Player.Dead,
                     SkillSparkType.Take => skillSparkType == SkillSparkType.Take && skill.BindItem == Player.SelectedItem.netID,
                     SkillSparkType.Kill => skillSparkType == SkillSparkType.Kill,
                     SkillSparkType.Strike => skillSparkType == SkillSparkType.Strike,
                     SkillSparkType.Struck => skillSparkType == SkillSparkType.Struck,
+                    SkillSparkType.Buff => skill.Skill.SkillSpark.BuffsCondition.All(i => Player.TPlayer.buffType.Contains(i)),
+                    SkillSparkType.Skill => skill.Skill.SkillSpark.SkillCondition.All(i => Skill.PlayerSKillManager.HasSkill(Player.Name, i)),
+                    SkillSparkType.Environment => Player.InProgress(skill.Skill.SkillSpark.EnvironmentCondition),
                     _ => false
                 };
                 if (!enable)

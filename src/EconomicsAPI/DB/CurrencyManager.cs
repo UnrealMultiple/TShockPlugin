@@ -167,7 +167,7 @@ public class CurrencyManager
         }
         foreach (var rro in success)
         {
-            this.DeductUserCurrency(name, rro.Number, rro.CurrencyType);
+            this.DeductUserCurrency(name, rro.Number * count, rro.CurrencyType);
         }
         return true;
     }
