@@ -60,14 +60,14 @@ public class Utils
     {
         foreach (var opt in option.ProjectileCycle.ProjectileCycles)
         {
-            Vector2 _vel;
+            var _vel = vel;
             #region 锁定敌怪
             if (option.LockNpcOption.Enable && option.LockNpcOption.Lock && lockNpc != null)
             {
                 pos.Distance(lockNpc.Center);
                 _vel = (pos.DirectionTo(lockNpc.Center).SafeNormalize(-Vector2.UnitY) * lockNpc.velocity.Length()).ToLenOf(option.Speed);
             }
-            else
+            if(!option.AutoDirection)
             {
                 _vel = vel.RotationAngle(option.StartAngle).ToLenOf(option.Speed);
             }
