@@ -184,7 +184,7 @@ public static class Tool
     }
 
     //机械骷髅王的单独处理
-    public static void CombDmg3(int i, ref StrikeNPC? strike2, int id, int[] ids, float value)
+    public static void CombDmg3(bool flag, int i, ref StrikeNPC? strike2, int id, int[] ids, float value)
     {
         if (strike2 == null)
         {
@@ -207,7 +207,7 @@ public static class Tool
 
         else if (StrikeNPC.strikeNPC[i].npcID != id)
         {
-            if (!DamageRuleLoot.Config.Prime)
+            if (!flag)
             {
                 return; //比CombDmg2多了这一行 这个Config.Prime同时也影响伤害转移
             }

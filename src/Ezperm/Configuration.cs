@@ -43,7 +43,7 @@ internal class Configuration
                     new GroupInfo
                     {
                         Name = "default",
-                        AddPermissions = new List<string> { "tshock.world.movenpc","tshock.world.time.usesundial", "tshock.tp.pylon", "tshock.tp.demonconch", "tshock.tp.magicconch", "tshock.tp.tppotion", "tshock.tp.rod","tshock.tp.wormhole","tshock.npc.startdd2", "tshock.npc.spawnpets", "tshock.npc.summonboss","tshock.npc.startinvasion" },
+                        AddPermissions = new List<string> { "tshock.world.movenpc","tshock.world.time.usesundial", "tshock.tp.pylon", "tshock.tp.demonconch", "tshock.tp.magicconch", "tshock.tp.tppotion", "tshock.tp.rod","tshock.tp.wormhole","tshock.npc.startdd2", "tshock.npc.spawnpets", "tshock.npc.summonboss","tshock.npc.startinvasion","tshock.npc.hurttown" },
                         DelPermissions = new List<string> { "tshock.admin" }
                     }
                 }
