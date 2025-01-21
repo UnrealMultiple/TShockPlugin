@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:28+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-01-20 01:08\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -19,167 +19,167 @@ msgstr ""
 
 #: ../../Utils/Common.cs:200
 msgid "（抓捕位置："
-msgstr ""
+msgstr "(Ubicación de captura:"
 
 #: ../../Utils/Common.cs:201
 msgid "）"
-msgstr ""
+msgstr ")"
 
 #: ../../StatusTextManager.cs:76
 msgid "Manage status text of different plugins"
-msgstr ""
+msgstr "Administrar el texto de estado de diferentes complementos"
 
 #: ../../Utils/Common.cs:83
 msgid "丛林"
-msgstr ""
+msgstr "Selva"
 
 #: ../../Utils/Common.cs:107
 msgid "发光蘑菇"
-msgstr ""
+msgstr "Hongos Brillantes"
 
 #: ../../Utils/Common.cs:99
 msgid "和平蜡烛"
-msgstr ""
+msgstr "vela de la paz"
 
 #: ../../Utils/Common.cs:51
 #: ../../Utils/Common.cs:119
 msgid "地下"
-msgstr ""
+msgstr "Subterráneo"
 
 #: ../../Utils/Common.cs:111
 msgid "地下沙漠"
-msgstr ""
+msgstr "Desierto Subterráneo"
 
 #: ../../Utils/Common.cs:67
 msgid "地牢"
-msgstr ""
+msgstr "Mazmorra"
 
 #: ../../Utils/Common.cs:55
 #: ../../Utils/Common.cs:127
 msgid "地狱"
-msgstr ""
+msgstr "Infierno"
 
 #: ../../Utils/Common.cs:163
 msgid "墓地"
-msgstr ""
+msgstr "Cementerio"
 
 #: ../../Utils/Common.cs:147
 msgid "大理石"
-msgstr ""
+msgstr "Mármol"
 
 #: ../../SettingsModel/DynamicText.cs:47
 msgid "存活"
-msgstr ""
+msgstr "Sobrevivir"
 
 #: ../../Utils/Common.cs:155
 msgid "宝石洞窟"
-msgstr ""
+msgstr "Cueva de Gemas"
 
 #: ../../StatusTextManager.cs:30
 #: ../../StatusTextManager.cs:58
 msgid "已关闭模板显示"
-msgstr ""
+msgstr "ScoreBoard desactivada"
 
 #: ../../SettingsModel/DynamicText.cs:54
 msgid "已完成"
-msgstr ""
+msgstr "Terminado"
 
 #: ../../StatusTextManager.cs:24
 #: ../../StatusTextManager.cs:46
 msgid "已开启模板显示"
-msgstr ""
+msgstr "Scoreboard activada"
 
 #: ../../SettingsModel/DynamicText.cs:47
 msgid "已死亡"
-msgstr ""
+msgstr "Muerto"
 
 #: ../../Utils/Common.cs:171
 msgid "微光"
-msgstr ""
+msgstr "Brillar"
 
 #: ../../SettingsModel/DynamicText.cs:54
 msgid "未完成"
-msgstr ""
+msgstr "No completado"
 
 #: ../../SettingsModel/DynamicText.cs:48
 msgid "未死亡"
-msgstr ""
+msgstr "no muerto"
 
 #: ../../Utils/Common.cs:175
 msgid "森林"
-msgstr ""
+msgstr "Bosque"
 
 #: ../../Utils/Common.cs:95
 msgid "水蜡烛"
-msgstr ""
+msgstr "Vela de Agua"
 
 #: ../../Utils/Common.cs:139
 msgid "沙尘暴"
-msgstr ""
+msgstr "Tormenta de Arena"
 
 #: ../../Utils/Common.cs:103
 msgid "沙漠"
-msgstr ""
+msgstr "Desierto"
 
 #: ../../Utils/Common.cs:53
 #: ../../Utils/Common.cs:123
 msgid "洞穴"
-msgstr ""
+msgstr "cueva"
 
 #: ../../Utils/Common.cs:131
 msgid "海滩"
-msgstr ""
+msgstr "playa"
 
 #: ../../Utils/Common.cs:91
 msgid "猩红"
-msgstr ""
+msgstr "Escarcha"
 
 #: ../../StatusTextManager.cs:63
 msgid "用法：/st <on/show/off/hide>"
-msgstr ""
+msgstr "Uso：/st <on/show/off/hide>"
 
 #: ../../Utils/Common.cs:75
 msgid "神圣"
-msgstr ""
+msgstr "Sagrado"
 
 #: ../../Utils/Common.cs:159
 msgid "神庙"
-msgstr ""
+msgstr "Templo"
 
 #: ../../SettingsModel/DynamicText.cs:46
 msgid "空区域"
-msgstr ""
+msgstr "Vacio"
 
 #: ../../Utils/Common.cs:49
 #: ../../Utils/Common.cs:115
 msgid "空岛"
-msgstr ""
+msgstr "Isla Flotante"
 
 #: ../../Utils/Common.cs:71
 msgid "腐化"
-msgstr ""
+msgstr "Corrupción"
 
 #: ../../Utils/Common.cs:143
 msgid "花岗岩"
-msgstr ""
+msgstr "Granito"
 
 #: ../../Utils/Common.cs:151
 msgid "蜂巢"
-msgstr ""
+msgstr "Panal Gigante"
 
 #: ../../Utils/Common.cs:167
 msgid "阴影蜡烛"
-msgstr ""
+msgstr "Vela de Sombra"
 
 #: ../../Utils/Common.cs:79
 msgid "陨石"
-msgstr ""
+msgstr "Meteorito"
 
 #: ../../Utils/Common.cs:135
 msgid "雨天"
-msgstr ""
+msgstr "lluvia"
 
 #: ../../Utils/Common.cs:87
 msgid "雪原"
-msgstr ""
+msgstr "Tundra"
 
