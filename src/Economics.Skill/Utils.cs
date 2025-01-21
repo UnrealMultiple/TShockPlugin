@@ -107,9 +107,9 @@ public class Utils
                         Convert.ToInt32(Damage),
                         option.Knockback,
                         ply.Index,
-                        option.AI[0] == -1 ? ply.Index : option.AI[0],
-                        option.AI[1] == -1 ? ply.Index : option.AI[1],
-                        option.AI[2] == -1 ? ply.Index : option.AI[2],
+                        option.AI[0] == -1f ? ply.Index : option.AI[0],
+                        option.AI[1] == -1f ? ply.Index : option.AI[1],
+                        option.AI[2] == -1f ? ply.Index : option.AI[2],
                         option.TimeLeft,
                         guid);
                     TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
