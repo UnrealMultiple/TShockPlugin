@@ -32,7 +32,10 @@ public class Utils
         {
             throw new Exception(GetString($"当前进度无法购买此技能，限制进度:{string.Join(", ", context.LimitProgress)}"));
         }
-
+        if (!context.LimitSkill.All(i => Skill.PlayerSKillManager.HasSkill(Player.Name, i)))
+        {
+            throw new Exception(GetString($"你当前等级无法购买此技能，限制必须购买技能:{string.Join(", ", context.LimitSkill)}"));
+        }
         var bind = Skill.PlayerSKillManager.QuerySkillByItem(Player.Name, Player.SelectedItem.netID).Where(s => s.Skill != null && !s.Skill.Hidden);
         return context.SkillUnique && Skill.PlayerSKillManager.HasSkill(Player.Name, index)
             ? throw new Exception(GetString("此技能是唯一的不能重复绑定!"))
@@ -104,9 +107,9 @@ public class Utils
                         Convert.ToInt32(Damage),
                         option.Knockback,
                         ply.Index,
-                        option.AI[0],
-                        option.AI[1],
-                        option.AI[2],
+                        option.AI[0] == -1 ? ply.Index : option.AI[0],
+                        option.AI[1] == -1 ? ply.Index : option.AI[1],
+                        option.AI[2] == -1 ? ply.Index : option.AI[2],
                         option.TimeLeft,
                         guid);
                     TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
