@@ -1080,7 +1080,7 @@
   },
   {
     "Name": "Economics.RPG",
-    "Version": "2.0.0.2",
+    "Version": "2.0.0.3",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides RPG gameplay!",
@@ -1125,7 +1125,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "2.0.0.8",
+    "Version": "2.0.0.9",
     "Author": "少司命",
     "Description": {
       "en-US": "Let players have skills!",
@@ -1194,7 +1194,7 @@
   },
   {
     "Name": "EconomicsAPI",
-    "Version": "2.0.0.3",
+    "Version": "2.0.0.4",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides economic system API",
@@ -2521,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.121",
+    "Version": "1.9.2.122",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2543,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.121",
+    "Version": "1.0.0.122",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
