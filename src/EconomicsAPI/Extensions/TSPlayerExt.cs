@@ -89,18 +89,12 @@ public static class TSPlayerExt
 
     public static void HealAllLife(this TSPlayer Player, int Range, int life)
     {
-        if (life > 0)
-        {
-            Player.GetPlayerInRange(Range).ForEach(x => x.HealLife(life));
-        }
+        Player.GetPlayerInRange(Range).ForEach(x => x.HealLife(life));
     }
 
     public static void HealAllMana(this TSPlayer Player, int Range, int mana)
     {
-        if (mana > 0)
-        {
-            Player.GetPlayerInRange(Range).ForEach(x => x.HealMana(mana));
-        }
+        Player.GetPlayerInRange(Range).ForEach(x => x.HealMana(mana));
     }
 
     public static List<NPC> GetNpcInRange(this TSPlayer Player, int range)

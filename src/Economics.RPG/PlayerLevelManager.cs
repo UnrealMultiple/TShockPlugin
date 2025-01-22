@@ -45,6 +45,11 @@ public class PlayerLevelManager
             : RPG.Config.DefaultLevel;
     }
 
+    public bool HasLevel(string level)
+    { 
+        return this.Levels.ContainsValue(level);
+    }
+
     public void ResetPlayerLevel(string userName)
     {
         this.Update(userName, RPG.Config.DefaultLevel);

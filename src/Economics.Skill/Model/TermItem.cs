@@ -9,8 +9,11 @@ public class TermItem : Item
     [JsonProperty("背包物品")]
     public bool Inventory { get; set; } = false;
 
-    [JsonProperty("装备饰品")]
+    [JsonProperty("装备")]
     public bool Armory { get; set; } = false;
+
+    [JsonProperty("饰品")]
+    public bool Misc { get; set; } = false;
 
     [JsonProperty("手持物品")]
     public bool HeldItem { get; set; } = false;
