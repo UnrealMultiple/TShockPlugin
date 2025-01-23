@@ -23,7 +23,7 @@ public class Chameleon : LazyPlugin
 
     public override string Description => GetString("账户系统交互替换方案");
 
-    public override Version Version => new Version(1, 0, 9);
+    public override Version Version => new Version(1, 1, 0);
 
 
     public Chameleon(Main game) : base(game)
@@ -106,16 +106,17 @@ public class Chameleon : LazyPlugin
 
     private static bool HandleConnecting(TSPlayer player)
     {
-        if (Configuration.Instance.EnableForcedHint && !PrepareList.Contains(player.Name))
-        {
-            AddToList(player.Name);
-            Kick(player, string.Join("\n", Configuration.Instance.Hints), Configuration.Instance.Greeting);
-            return true;
-        }
-
         var account = TShock.UserAccounts.GetUserAccountByName(player.Name);
         if (account is null)
         {
+            // 只有未注册的玩家才会看到强制提示
+            if (Configuration.Instance.EnableForcedHint && !PrepareList.Contains(player.Name))
+            {
+                AddToList(player.Name);
+                Kick(player, string.Join("\n", Configuration.Instance.Hints), Configuration.Instance.Greeting);
+                return true;
+            }
+
             // 未注册 part.1
             player.SetData(WaitPwd4Reg, true);
             NetMessage.SendData((int) PacketTypes.PasswordRequired, player.Index);
