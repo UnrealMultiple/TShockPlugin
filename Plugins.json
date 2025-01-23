@@ -601,7 +601,7 @@
   },
   {
     "Name": "Chameleon",
-    "Version": "1.0.9",
+    "Version": "1.1.0",
     "Author": "mistzzt,肝帝熙恩",
     "Description": {
       "en-US": "Account system interactive replacement solution",
@@ -1726,7 +1726,7 @@
   },
   {
     "Name": "PermaBuff",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "少司命",
     "Description": {
       "en-US": "PermaBuff",
@@ -2521,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.122",
+    "Version": "1.9.2.123",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2543,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.122",
+    "Version": "1.0.0.123",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
@@ -2669,14 +2669,14 @@
     "Author": "z枳",
     "Description": {
       "en-US": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
-      "de-DE": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
-      "it-IT": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
-      "fr-FR": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
-      "es-ES": "Gestión de jugadores, que brinda la posibilidad de modificar cualquier información del jugador, permitiéndoles realizar copias de seguridad, retroceder, etc.",
-      "ru-RU": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
-      "zh-CN": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
-      "pt-BR": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作",
-      "pl-PL": "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作"
+      "de-DE": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
+      "it-IT": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
+      "fr-FR": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
+      "es-ES": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
+      "ru-RU": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
+      "zh-CN": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
+      "pt-BR": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
+      "pl-PL": "Player management, provides to modify any player information, allows players to back up, roll back, etc."
     },
     "AssemblyName": "ZHIPlayerManager",
     "Path": "ZHIPlayerManager.dll",
