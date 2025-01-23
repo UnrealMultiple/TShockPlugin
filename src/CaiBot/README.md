@@ -8,7 +8,7 @@
 
 ## CaiBOT详细文档
 
-- [ACaiCat/CaiBotDocument](https://github.com/ACaiCat/CaiBotDocument)
+- [ACaiCat/CaiBotDocument](https://github.com/UnrealMultiple/CaiBot)
 
 ## 使用方法(轻量版):
 
