@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:44+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-20 06:56:35+0000\n"
+"PO-Revision-Date: 2025-01-21 01:07\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr ""
 msgid "[c/F06576:【注意】]输出少于 [c/A7DDF0:{0:0.00%}] 禁止掉落宝藏袋:\n"
 msgstr ""
 
-#: ../../DamageRuleLoot.cs:81
+#: ../../DamageRuleLoot.cs:82
 #, csharp-format
 msgid "[c/FBF069:【暴击】] 玩家:[c/F06576:{0}] "
 msgstr ""
@@ -92,15 +92,15 @@ msgstr ""
 msgid "[c/FBF069:【转移】] 玩家:[c/F06576:{0}] "
 msgstr ""
 
-#: ../../DamageRuleLoot.cs:52
+#: ../../DamageRuleLoot.cs:53
 msgid "[伤害规则掉落]重新加载配置完毕。"
 msgstr ""
 
-#: ../../DamageRuleLoot.cs:348
+#: ../../DamageRuleLoot.cs:349
 msgid "双子魔眼"
 msgstr ""
 
-#: ../../DamageRuleLoot.cs:82
+#: ../../DamageRuleLoot.cs:83
 #, csharp-format
 msgid "对象:[c/AEA3E4:{0}] 满血:[c/FBF069:{1}] "
 msgstr ""
@@ -111,24 +111,24 @@ msgstr ""
 msgid "攻击对象:[c/AEA3E4:{0}] | "
 msgstr ""
 
-#: ../../DamageRuleLoot.cs:84
+#: ../../DamageRuleLoot.cs:85
 #, csharp-format
 msgid "暴击数:[c/FBF069:{0}]"
 msgstr ""
 
-#: ../../DamageRuleLoot.cs:483
+#: ../../DamageRuleLoot.cs:479
 msgid "月亮领主"
 msgstr ""
 
-#: ../../DamageRuleLoot.cs:17
+#: ../../DamageRuleLoot.cs:18
 msgid "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理"
 msgstr ""
 
-#: ../../DamageRuleLoot.cs:430
+#: ../../DamageRuleLoot.cs:431
 msgid "火星飞碟"
 msgstr ""
 
-#: ../../DamageRuleLoot.cs:452
+#: ../../DamageRuleLoot.cs:448
 msgid "猪龙鱼公爵"
 msgstr ""
 
@@ -138,15 +138,15 @@ msgstr ""
 msgid "生命:[c/FBF069:{0}]"
 msgstr ""
 
-#: ../../DamageRuleLoot.cs:659
+#: ../../DamageRuleLoot.cs:655
 msgid "美杜莎"
 msgstr ""
 
-#: ../../DamageRuleLoot.cs:311
+#: ../../DamageRuleLoot.cs:312
 msgid "血肉墙"
 msgstr ""
 
-#: ../../DamageRuleLoot.cs:83
+#: ../../DamageRuleLoot.cs:84
 #, csharp-format
 msgid "血量:[c/6DDA6D:{0}] 伤害:[c/F06576:{1}] "
 msgstr ""
