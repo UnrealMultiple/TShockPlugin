@@ -102,11 +102,11 @@
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Permite el juego multiplataforma |  |
 | [CustomMonster](./src/CustomMonster/README.md) | 0.0% | Personalizar, modificar y generar monstruos y jefes  |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 0.0% | Determinar la bolsa de tesoro caída basada en la relación de daño y transferir el cálculo de daño |  |
-| [DamageStatistic](./src/DamageStatistic/README.md) | 50.0% | Mostrar el daño causado por cada jugador después de cada pelea de jefe |  |
+| [DamageStatistic](./src/DamageStatistic/README.md) | 100.0% | Mostrar el daño causado por cada jugador después de cada pelea de jefe |  |
 | [DataSync](./src/DataSync/README.md) | 0.0% | Sincronización de progreso |  |
-| [DeathDrop](./src/DeathDrop/README.md) | 0.0% | Botín aleatorio y personalizado al morir un monstruo |  |
-| [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 0.0% | Prohibir el botín de monstruos |  |
-| [DonotFuck](./src/DonotFuck/README.md) | 0.0% | Prevenir groserías | [LazyAPI](./src/LazyAPI/README.md) |
+| [DeathDrop](./src/DeathDrop/README.md) | 100.0% | Botín aleatorio y personalizado al morir un monstruo |  |
+| [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 100.0% | Prohibir el botín de monstruos |  |
+| [DonotFuck](./src/DonotFuck/README.md) | 14.3% | Prevenir groserías | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 0.0% | Prevenir la entrada a mazmorras o templos |  |
 | [Dummy](./src/Dummy/README.md) | 0.0% | Servidor de Pruebas (Ficticio) Para TEST | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 0.0% | Volcar las ID de Terraria |  |
@@ -134,14 +134,14 @@
 | [HouseRegion](./src/HouseRegion/README.md) | 0.0% | Plugin de reclamación de tierras | [LazyAPI](./src/LazyAPI/README.md) |
 | [Invincibility](./src/Invincibility/README.md) | 0.0% | Invencibilidad limitada en el tiempo |  |
 | [ItemBox](./src/ItemBox/README.md) | 0.0% | Inventario fuera de línea |  |
-| [ItemDecoration](./src/ItemDecoration/README.es-ES.md) | 0.0% | Muestra mensajes flotantes para los ítems en las manos | [LazyAPI](./src/LazyAPI/README.md) |
-| [ItemPreserver](./src/ItemPreserver/README.md) | 0.0% | Conserva ítems específicos de la consumición |  |
-| [JourneyUnlock](./src/JourneyUnlock/README.md) | 0.0% | Desbloquea ítems del modo Journey |  |
-| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | 0.0% | Plugin adaptador para el bot Lagrange.XocMat | [SixLabors.ImageSharp]() |
+| [ItemDecoration](./src/ItemDecoration/README.es-ES.md) | 100.0% | Muestra mensajes flotantes para los ítems en las manos | [LazyAPI](./src/LazyAPI/README.md) |
+| [ItemPreserver](./src/ItemPreserver/README.md) | 100.0% | Conserva ítems específicos de la consumición |  |
+| [JourneyUnlock](./src/JourneyUnlock/README.md) | 100.0% | Desbloquea ítems del modo Journey |  |
+| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | 100.0% | Plugin adaptador para el bot Lagrange.XocMat | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.md) | 0.0% | Biblioteca base para plugins | [linq2db]() |
 | [LifemaxExtra](./src/LifemaxExtra/README.md) | 0.0% | Comer más frutas/cristales de vida | [LazyAPI](./src/LazyAPI/README.md) |
-| [ListPlugins](./src/ListPlugins/README.md) | 0.0% | Lista los plugins instalados |  |
-| [MapTp](./src/MapTp/README.md) | 0.0% | Teletransportarse con doble clic en el mapa |  |
+| [ListPlugins](./src/ListPlugins/README.md) | 100.0% | Lista los plugins instalados |  |
+| [MapTp](./src/MapTp/README.md) | 100.0% | Teletransportarse con doble clic en el mapa |  |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) | 0.0% | API para el mini-juego de pasta de frijol |  |
 | [ModifyWeapons](./src/ModifyWeapons/README.md) | 0.0% | Deje que los jugadores realicen dos Sprint | [LazyAPI](./src/LazyAPI/README.md) |
 | [MonsterRegen](./src/MonsterRegen/README.md) | 0.0% | Regeneración de progreso de monstruos |  |
@@ -184,7 +184,7 @@
 | [SmartRegions](./src/SmartRegions/README.md) | 0.0% | Regiones inteligentes |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 0.0% | Genera infraestructura básica |  |
 | [SpclPerm](./src/SpclPerm/README.md) | 0.0% | Privilegios del propietario del servidor |  |
-| [StatusTextManager](./src/StatusTextManager/README.md) | 0.0% | Plugin para gestionar el texto de estado en PC |  |
+| [StatusTextManager](./src/StatusTextManager/README.md) | 100.0% | Plugin para gestionar el texto de estado en PC |  |
 | [SurfaceBlock](./src/SurfaceBlock/README.md) | 0.0% | Prohibir proyectiles en la superficie  | [LazyAPI](./src/LazyAPI/README.md) |
 | [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 0.0% | 'Among Us' como un juego'' |  |
 | [SwitchCommands](./src/SwitchCommands/README.md) | 0.0% | Ejecuta comandos en regiones |  |

@@ -164,7 +164,7 @@ public class Command
         {
             return;
         }
-        if (!long.TryParse(args.Parameters[2], out var num))
+        if (!long.TryParse(args.Parameters[2], out var num) || num < 0)
         {
             args.Player.SendErrorMessage(GetString("请输入一个有效数值!"));
             return;

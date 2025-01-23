@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:52+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-01-22 16:39:23+0000\n"
+"PO-Revision-Date: 2025-01-23 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -22,26 +22,26 @@ msgstr ""
 msgid "{0} 与 {1} 之间循环引用"
 msgstr "{0} has a circular reference with {1}"
 
-#: ../../Command.cs:60
+#: ../../Command.cs:65
 #, csharp-format
 msgid "/rank {0}({1})"
 msgstr "/rank {0}({1})"
 
-#: ../../Command.cs:113
+#: ../../Command.cs:118
 msgid "你因重置等级被踢出!"
 msgstr "You have been kicked out for resetting your level!"
 
 #: ../../Command.cs:17
-#: ../../Command.cs:101
+#: ../../Command.cs:106
 msgid "你必须登陆才能使用此命令!"
 msgstr "You must be logged in to use this command!"
 
-#: ../../Command.cs:52
+#: ../../Command.cs:57
 #, csharp-format
 msgid "升级所需 ({0})"
 msgstr "Upgrade Required ({0})"
 
-#: ../../Command.cs:87
+#: ../../Command.cs:92
 #, csharp-format
 msgid "升级所需 {0}"
 msgstr "Upgrade Required {0}"
@@ -51,13 +51,13 @@ msgstr "Upgrade Required {0}"
 msgid "升级职业: {0}"
 msgstr "Upgrade profession: {0}"
 
-#: ../../Command.cs:34
-#: ../../Command.cs:69
+#: ../../Command.cs:39
+#: ../../Command.cs:74
 #, csharp-format
 msgid "升级至 {0} 需要手持武器{1}！ "
 msgstr "Upgrading to {0} requires holding weapon {1}!"
 
-#: ../../Command.cs:92
+#: ../../Command.cs:97
 msgid "已经满级了，无法继续升级!"
 msgstr "Already at maximum level, cannot continue to upgrade!"
 
@@ -66,18 +66,18 @@ msgstr "Already at maximum level, cannot continue to upgrade!"
 msgid "当前职业: {0}"
 msgstr "Current profession: {0}"
 
-#: ../../Command.cs:39
-#: ../../Command.cs:74
+#: ../../Command.cs:44
+#: ../../Command.cs:79
 #, csharp-format
 msgid "必须满足进度限制:{0}"
 msgstr "Must meet the progress limit: {0}"
 
-#: ../../Command.cs:105
+#: ../../Command.cs:110
 msgid "您已成功重置等级!"
 msgstr "You have successfully reset your level!"
 
-#: ../../Command.cs:44
-#: ../../Command.cs:79
+#: ../../Command.cs:49
+#: ../../Command.cs:84
 #, csharp-format
 msgid "成功升级至 {0}!"
 msgstr "Successfully upgraded to {0}!"
@@ -86,7 +86,11 @@ msgstr "Successfully upgraded to {0}!"
 msgid "提供RPG玩法!"
 msgstr "Provides RPG gameplay!"
 
-#: ../../Command.cs:123
+#: ../../Command.cs:34
+msgid "此职业全服唯一，已经存在此职业无法升级。"
+msgstr ""
+
+#: ../../Command.cs:128
 msgid "玩家等级信息重置成功!"
 msgstr "Player level information reset successfully!"
 
@@ -100,11 +104,11 @@ msgstr "Level {0} does not exist!"
 msgid "等级 {0} 空引用等级 {1}"
 msgstr "Level {0} has a null reference to level {1}"
 
-#: ../../Command.cs:127
+#: ../../Command.cs:132
 msgid "语法错误，正确语法:"
 msgstr "Syntax error, correct syntax:"
 
-#: ../../Command.cs:57
+#: ../../Command.cs:62
 msgid "请选择一个升级:"
 msgstr "Please select an upgrade:"
 

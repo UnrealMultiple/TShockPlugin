@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:05+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-20 06:56:55+0000\n"
+"PO-Revision-Date: 2025-01-21 01:07\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,78 +17,78 @@ msgstr ""
 "X-Crowdin-File-ID: 1186\n"
 "Language: ru_RU\n"
 
-#: ../../PluginContainer.cs:233
+#: ../../PluginContainer.cs:234
 msgid "/hp enh <提升数值>"
 msgstr ""
 
-#: ../../PluginContainer.cs:231
+#: ../../PluginContainer.cs:232
 msgid "/hp enh <玩家> <提升数值>"
 msgstr ""
 
-#: ../../PluginContainer.cs:234
+#: ../../PluginContainer.cs:235
 msgid "/hp set <数值>"
 msgstr ""
 
-#: ../../PluginContainer.cs:232
+#: ../../PluginContainer.cs:233
 msgid "/hp set <玩家> <数值>"
 msgstr ""
 
-#: ../../PluginContainer.cs:135
+#: ../../PluginContainer.cs:136
 msgid "/mp enh <提升数值>"
 msgstr ""
 
-#: ../../PluginContainer.cs:133
+#: ../../PluginContainer.cs:134
 msgid "/mp enh <玩家> <提升数值>"
 msgstr ""
 
-#: ../../PluginContainer.cs:136
+#: ../../PluginContainer.cs:137
 msgid "/mp set <数值>"
 msgstr ""
 
-#: ../../PluginContainer.cs:134
+#: ../../PluginContainer.cs:135
 msgid "/mp set <玩家> <数值>"
 msgstr ""
 
-#: ../../PluginContainer.cs:58
+#: ../../PluginContainer.cs:59
 msgid "你没有开启SSC，LifemaxExtra无法正常运行"
 msgstr ""
 
-#: ../../PluginContainer.cs:147
+#: ../../PluginContainer.cs:148
 msgid "最大蓝量不得超过{0}!"
 msgstr ""
 
-#: ../../PluginContainer.cs:158
+#: ../../PluginContainer.cs:159
 msgid "最大血量不得超过{0}!"
 msgstr ""
 
-#: ../../PluginContainer.cs:172
-#: ../../PluginContainer.cs:209
+#: ../../PluginContainer.cs:173
+#: ../../PluginContainer.cs:210
 #, csharp-format
 msgid "成功为玩家`{0}`提高{1}血量上限!"
 msgstr ""
 
-#: ../../PluginContainer.cs:74
-#: ../../PluginContainer.cs:111
+#: ../../PluginContainer.cs:75
+#: ../../PluginContainer.cs:112
 #, csharp-format
 msgid "成功为玩家`{0}`提高{1}魔法上限!"
 msgstr ""
 
-#: ../../PluginContainer.cs:192
+#: ../../PluginContainer.cs:193
 #, csharp-format
 msgid "成功设置玩家`{0}`血量上限!"
 msgstr ""
 
-#: ../../PluginContainer.cs:221
+#: ../../PluginContainer.cs:222
 #, csharp-format
 msgid "成功设置玩家`{0}`血量上限{1}!"
 msgstr ""
 
-#: ../../PluginContainer.cs:94
+#: ../../PluginContainer.cs:95
 #, csharp-format
 msgid "成功设置玩家`{0}`魔法上限!"
 msgstr ""
 
-#: ../../PluginContainer.cs:123
+#: ../../PluginContainer.cs:124
 #, csharp-format
 msgid "成功设置玩家`{0}`魔法上限{1}!"
 msgstr ""
@@ -97,31 +97,31 @@ msgstr ""
 msgid "提升生命值上限"
 msgstr ""
 
-#: ../../PluginContainer.cs:248
-#: ../../PluginContainer.cs:279
+#: ../../PluginContainer.cs:249
+#: ../../PluginContainer.cs:280
 msgid "生命值无法大于{0}!"
 msgstr ""
 
-#: ../../PluginContainer.cs:83
-#: ../../PluginContainer.cs:103
-#: ../../PluginContainer.cs:181
-#: ../../PluginContainer.cs:201
+#: ../../PluginContainer.cs:84
+#: ../../PluginContainer.cs:104
+#: ../../PluginContainer.cs:182
+#: ../../PluginContainer.cs:202
 msgid "目标玩家不在线!"
 msgstr ""
 
-#: ../../PluginContainer.cs:132
-#: ../../PluginContainer.cs:230
+#: ../../PluginContainer.cs:133
+#: ../../PluginContainer.cs:231
 msgid "语法错误"
 msgstr ""
 
-#: ../../PluginContainer.cs:78
-#: ../../PluginContainer.cs:98
-#: ../../PluginContainer.cs:115
-#: ../../PluginContainer.cs:127
-#: ../../PluginContainer.cs:176
-#: ../../PluginContainer.cs:196
-#: ../../PluginContainer.cs:213
-#: ../../PluginContainer.cs:225
+#: ../../PluginContainer.cs:79
+#: ../../PluginContainer.cs:99
+#: ../../PluginContainer.cs:116
+#: ../../PluginContainer.cs:128
+#: ../../PluginContainer.cs:177
+#: ../../PluginContainer.cs:197
+#: ../../PluginContainer.cs:214
+#: ../../PluginContainer.cs:226
 msgid "输入的数值有误!"
 msgstr ""
 

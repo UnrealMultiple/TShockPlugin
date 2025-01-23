@@ -11,7 +11,7 @@ public class Ezperm : TerrariaPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "大豆子,肝帝熙恩优化1449";
     public override string Description => GetString("一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限");
-    public override Version Version => new Version(1, 2, 6);
+    public override Version Version => new Version(1, 2, 7);
     internal static Configuration Config = null!;
     public Ezperm(Main game) : base(game)
     {

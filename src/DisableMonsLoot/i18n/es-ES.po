@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:15:46+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-01-20 01:08\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -19,9 +19,9 @@ msgstr ""
 
 #: ../../Plugin.cs:54
 msgid "[禁怪物掉落]重新加载配置完毕。"
-msgstr ""
+msgstr "[Gotas de monstruos prohibidos] La configuración de recarga está completa."
 
 #: ../../Plugin.cs:17
 msgid "清理怪物身边掉落物"
-msgstr ""
+msgstr "Limpiar los objetos que caen alrededor de los monstruos."
 
