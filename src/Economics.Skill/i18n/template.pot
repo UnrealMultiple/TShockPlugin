@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Skill\n"
-"POT-Creation-Date: 2025-01-09 09:33:53+0000\n"
-"PO-Revision-Date: 2025-01-09 09:33:53+0000\n"
+"POT-Creation-Date: 2025-01-22 16:39:24+0000\n"
+"PO-Revision-Date: 2025-01-22 16:39:24+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -66,6 +66,11 @@ msgstr ""
 msgid "你并未绑定技能!"
 msgstr ""
 
+#: ../../Utils.cs:37
+#, csharp-format
+msgid "你当前等级无法购买此技能，限制必须购买技能:{0}"
+msgstr ""
+
 #: ../../Utils.cs:28
 #, csharp-format
 msgid "你当前等级无法购买此技能，限制等级:{0}"
@@ -126,7 +131,7 @@ msgstr ""
 msgid "技能列表 ({0}/{1})："
 msgstr ""
 
-#: ../../Utils.cs:42
+#: ../../Utils.cs:45
 msgid "技能已超过规定的最大绑定数量!"
 msgstr ""
 
@@ -157,7 +162,7 @@ msgstr ""
 msgid "查询成功!"
 msgstr ""
 
-#: ../../Utils.cs:40
+#: ../../Utils.cs:43
 msgid "此技能全服唯一已经有其他人绑定了此技能!"
 msgstr ""
 
@@ -165,11 +170,11 @@ msgstr ""
 msgid "此技能无法被购买!"
 msgstr ""
 
-#: ../../Utils.cs:38
+#: ../../Utils.cs:41
 msgid "此技能是唯一的不能重复绑定!"
 msgstr ""
 
-#: ../../Utils.cs:44
+#: ../../Utils.cs:47
 msgid "此武器已超过规定的最大绑定数量!"
 msgstr ""
 

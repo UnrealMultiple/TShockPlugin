@@ -37,6 +37,9 @@ public class SkillContext
     [JsonProperty("限制进度")]
     public List<string> LimitProgress { get; set; } = new();
 
+    [JsonProperty("限制技能")]
+    public List<int> LimitSkill { get; set; } = new();
+
     [JsonProperty("触发设置")]
     public SkillSparkOption SkillSpark { get; set; } = new();
 
