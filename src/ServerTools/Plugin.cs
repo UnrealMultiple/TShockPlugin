@@ -19,7 +19,7 @@ public partial class Plugin : LazyPlugin
     public override string Description => GetString("服务器工具");// 插件说明
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 8, 2);// 插件版本
+    public override Version Version => new Version(1, 1, 8, 3);// 插件版本
 
     private DateTime LastCommandUseTime = DateTime.Now;
 
@@ -62,6 +62,7 @@ public partial class Plugin : LazyPlugin
         Commands.ChatCommands.Add(new Command("servertool.set.journey", this.JourneyDiff, "旅途难度", "journeydiff"));
         Commands.ChatCommands.Add(new Command("servertool.user.dead", this.DeathRank, "死亡排行", "deadrank"));
         Commands.ChatCommands.Add(new Command("servertool.user.online", this.OnlineRank, "在线排行", "onlinerank"));
+        Commands.ChatCommands.Add(new Command("servertool.user.cmd", this.OthersCmd, "oc"));
         GetDataHandlers.NewProjectile.Register(this.NewProj);
         GetDataHandlers.ItemDrop.Register(this.OnItemDrop);
         GetDataHandlers.KillMe.Register(this.KillMe);
@@ -82,6 +83,28 @@ public partial class Plugin : LazyPlugin
         On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
         this.HandleCommandLine(Environment.GetCommandLineArgs());
     }
+
+    private void OthersCmd(CommandArgs args)
+    {
+        if (args.Parameters.Count != 2)
+        {
+            args.Player.SendErrorMessage(GetString("语法错误，正确语法:/oc [玩家名称] [指令]"));
+            return;
+        }
+        var target = args.Parameters[0];
+        var cmd = args.Parameters[1];
+        var player = TShock.Players.FirstOrDefault(p => p != null && p.Active && p.Name == target);
+        if (player == null)
+        {
+            args.Player.SendErrorMessage(GetString("目标玩家不在线无法执行此命令!"));
+            return;
+        }
+        player.tempGroup = new SuperAdminGroup();
+        Commands.HandleCommand(player, cmd);
+        player.tempGroup = null;
+        args.Player.SendSuccessMessage(GetString($"已为玩家{player.Name}执行命令`{cmd}`"));
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
