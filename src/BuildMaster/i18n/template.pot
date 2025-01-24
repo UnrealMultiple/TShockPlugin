@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuildMaster\n"
-"POT-Creation-Date: 2025-01-23 08:52:04+0000\n"
-"PO-Revision-Date: 2025-01-23 08:52:05+0000\n"
+"POT-Creation-Date: 2025-01-24 01:41:57+0000\n"
+"PO-Revision-Date: 2025-01-24 01:41:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -322,7 +322,6 @@ msgstr ""
 msgid "成功设置房间(id:{0}) 的评分时间为{1}秒"
 msgstr ""
 
-#: ../../BuildPlayer.cs:69
 #: ../../MainPlugin.cs:353
 #: ../../MainPlugin.cs:378
 #: ../../MainPlugin.cs:403
@@ -338,6 +337,7 @@ msgstr ""
 #: ../../MainPlugin.cs:668
 #: ../../MainPlugin.cs:692
 #: ../../MainPlugin.cs:756
+#: ../../BuildPlayer.cs:69
 msgid "房间不存在"
 msgstr ""
 
@@ -451,12 +451,12 @@ msgstr ""
 msgid "点未选取完毕"
 msgstr ""
 
-#: ../../BuildPlayer.cs:56
-#: ../../BuildPlayer.cs:78
 #: ../../MainPlugin.cs:774
 #: ../../MainPlugin.cs:800
 #: ../../MainPlugin.cs:805
 #: ../../MainPlugin.cs:861
+#: ../../BuildPlayer.cs:56
+#: ../../BuildPlayer.cs:78
 msgid "玩家 "
 msgstr ""
 
