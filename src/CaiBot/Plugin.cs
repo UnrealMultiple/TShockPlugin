@@ -18,9 +18,9 @@ namespace CaiBot;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public static readonly Version VersionNum = new (2025, 1, 12, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new (2025, 1, 24, 1); //日期+版本号(0,1,2...)
     internal static int InitCode = -1;
-    public static bool LocalMode;
+    public static bool LocalMode => Config.Settings.BotApi != "api.terraria.ink:22334";
     public static bool DebugMode;
     private static bool _stopWebsocket;
     internal static ClientWebSocket WebSocket = new ();
@@ -36,15 +36,15 @@ public class Plugin : TerrariaPlugin
     public override string Name => "CaiBotPlugin";
     public override Version Version => VersionNum;
 
-    
+
     public override void Initialize()
     {
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
         MapGenerator.Init();
-        Commands.ChatCommands.Add(new Command("CaiBot.Admin", this.CaiBotCommand, "caibot"));
+        EconomicSupport.Init();
+        Commands.ChatCommands.Add(new Command("caibot.admin", this.CaiBotCommand, "caibot"));
         Config.Settings.Read();
         Config.Settings.Write();
-        LocalMode = Program.LaunchParameters.ContainsKey("-cailocalbot");
         DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
         BanManager.OnBanPostAdd += this.OnBanInsert;
         Hooks.MessageBuffer.InvokeGetData += Login.MessageBuffer_InvokeGetData;
@@ -52,97 +52,15 @@ public class Plugin : TerrariaPlugin
         ServerApi.Hooks.ServerChat.Register(this, this.OnChat, int.MaxValue);
         PlayerHooks.PlayerPostLogin += this.PlayerHooksOnPlayerPostLogin;
         PlayerHooks.PlayerLogout += this.PlayerHooksOnPlayerLogout;
-        ServerApi.Hooks.GamePostInitialize.Register(this, this.GenCode);
-        Task.Run(async () =>
+        GeneralHooks.ReloadEvent += this.GeneralHooksOnReloadEvent;
+        ServerApi.Hooks.GamePostInitialize.Register(this, GenBindCode);
+        Task.Run(StartCaiApi, TokenSource.Token);
+        Task.Run(StartHeartBeat, TokenSource.Token);
+        if (LocalMode)
         {
-            while (!_stopWebsocket)
-            {
-                try
-                {
-                    WebSocket = new ClientWebSocket();
-                    while (string.IsNullOrEmpty(Config.Settings.Token))
-                    {
-                        await Task.Delay(TimeSpan.FromSeconds(10));
-                        HttpClient client = new ();
-                        client.Timeout = TimeSpan.FromSeconds(5.0);
-                        var response = client.GetAsync($"http://api.terraria.ink:22334/bot/get_token?" +
-                                                       $"code={InitCode}")
-                            .Result;
-                        if (response.StatusCode != HttpStatusCode.OK || Config.Settings.Token != "")
-                        {
-                            continue;
-                        }
-                        var responseBody = await response.Content.ReadAsStringAsync();
-                        var json = JObject.Parse(responseBody);
-                        var token = json["token"]!.ToString();
-                        Config.Settings.Token = token;
-                        Config.Settings.Write();
-                        TShock.Log.ConsoleInfo("[CaiAPI]被动绑定成功!");
-                    }
-
-                    if (LocalMode)
-                    {
-                        await WebSocket.ConnectAsync(new Uri("ws://127.0.0.1:22334/bot/" + Config.Settings.Token),
-                            CancellationToken.None);
-                        TShock.Log.ConsoleWarn("[CaiAPI]你正在使用CaiBot本地模式,请确保你已本地部署CaiBot!");
-                    }
-                    else
-                    {
-                        await WebSocket.ConnectAsync(new Uri("ws://api.terraria.ink:22334/bot/" + Config.Settings.Token),
-                            CancellationToken.None);
-                    }
-
-                    while (true)
-                    {
-                        var buffer = new byte[1024];
-                        var result = await WebSocket.ReceiveAsync(new ArraySegment<byte>(buffer),
-                            CancellationToken.None);
-                        var receivedData = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                        if (DebugMode)
-                        {
-                            TShock.Log.ConsoleInfo($"[CaiAPI]收到BOT数据包: {receivedData}");
-                        }
-
-                        _ = MessageHandle.HandleMessageAsync(receivedData);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    TShock.Log.ConsoleInfo("[CaiAPI]CaiBot断开连接...");
-                    if (DebugMode)
-                    {
-                        TShock.Log.ConsoleError(ex.ToString());
-                    }
-                    else
-                    {
-                        TShock.Log.ConsoleError("链接失败原因: " + ex.Message);
-                    }
-                }
-
-                await Task.Delay(5000);
-            }
-        }, TokenSource.Token);
-        Task.Run(async () =>
-        {
-            while (!_stopWebsocket)
-            {
-                await Task.Delay(60000);
-                try
-                {
-                    if (WebSocket.State == WebSocketState.Open)
-                    {
-                        Dictionary<string, string> heartBeat = new () { { "type", "HeartBeat" } };
-                        await MessageHandle.SendDateAsync(JsonConvert.SerializeObject(heartBeat));
-                    }
-                }
-                catch
-                {
-                    TShock.Log.ConsoleInfo("[CaiBot]心跳包发送失败!");
-                }
-            }
-        }, TokenSource.Token);
+            TShock.Log.ConsoleWarn($"[CaiAPI]CaiBot插件正在以本地模式运行, 当前API地址: {Config.Settings.BotApi}");
+        }
     }
-    
 
     protected override void Dispose(bool disposing)
     {
@@ -155,7 +73,7 @@ public class Plugin : TerrariaPlugin
             Hooks.MessageBuffer.InvokeGetData -= Login.MessageBuffer_InvokeGetData;
             BanManager.OnBanPostAdd -= this.OnBanInsert;
             ServerApi.Hooks.NetGetData.Deregister(this, Login.OnGetData);
-            ServerApi.Hooks.GamePostInitialize.Deregister(this, this.GenCode);
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, GenBindCode);
             ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
             PlayerHooks.PlayerPostLogin -= this.PlayerHooksOnPlayerPostLogin;
             PlayerHooks.PlayerLogout -= this.PlayerHooksOnPlayerLogout;
@@ -170,6 +88,94 @@ public class Plugin : TerrariaPlugin
 
         base.Dispose(disposing);
     }
+    
+    private void GeneralHooksOnReloadEvent(ReloadEventArgs e)
+    {
+        Config.Settings.Read();
+        e.Player.SendSuccessMessage("[CaiBot]配置文件已重载 :)");
+        WebSocket.Dispose();
+    }
+    
+    private static async Task? StartHeartBeat()
+    {
+        while (!_stopWebsocket)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(60));
+            try
+            {
+                if (WebSocket.State == WebSocketState.Open)
+                {
+                    Dictionary<string, string> heartBeat = new () { { "type", "HeartBeat" } };
+                    await CaiBotApi.SendDateAsync(JsonConvert.SerializeObject(heartBeat));
+                }
+            }
+            catch
+            {
+                TShock.Log.ConsoleInfo("[CaiBot]心跳包发送失败!");
+            }
+        }
+    }
+
+    private static async Task? StartCaiApi()
+    {
+        while (!_stopWebsocket)
+        {
+            try
+            {
+                WebSocket = new ClientWebSocket();
+                while (string.IsNullOrEmpty(Config.Settings.Token))
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(10));
+                    HttpClient client = new ();
+                    client.Timeout = TimeSpan.FromSeconds(5.0);
+                    var response = client.GetAsync($"http://{Config.Settings.BotApi}/bot/get_token?" + $"code={InitCode}")
+                        .Result;
+                    if (response.StatusCode != HttpStatusCode.OK || Config.Settings.Token != "")
+                    {
+                        continue;
+                    }
+
+                    var responseBody = await response.Content.ReadAsStringAsync();
+                    var json = JObject.Parse(responseBody);
+                    var token = json["token"]!.ToString();
+                    Config.Settings.Token = token;
+                    Config.Settings.Write();
+                    TShock.Log.ConsoleInfo("[CaiAPI]被动绑定成功!");
+                }
+
+
+                await WebSocket.ConnectAsync(new Uri($"ws://{Config.Settings.BotApi}/bot/" + Config.Settings.Token), CancellationToken.None);
+
+
+                while (true)
+                {
+                    var buffer = new byte[1024];
+                    var result = await WebSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                    var receivedData = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                    if (DebugMode)
+                    {
+                        TShock.Log.ConsoleInfo($"[CaiAPI]收到BOT数据包: {receivedData}");
+                    }
+
+                    _ = CaiBotApi.HandleMessageAsync(receivedData);
+                }
+            }
+            catch (Exception ex)
+            {
+                TShock.Log.ConsoleInfo("[CaiAPI]CaiBot断开连接...");
+                if (DebugMode)
+                {
+                    TShock.Log.ConsoleError(ex.ToString());
+                }
+                else
+                {
+                    TShock.Log.ConsoleError("链接失败原因: " + ex.Message);
+                }
+            }
+
+            await Task.Delay(5000);
+        }
+    }
 
     private void OnChat(ServerChatEventArgs args)
     {
@@ -179,7 +185,7 @@ public class Plugin : TerrariaPlugin
         {
             args.Handled = true;
         }
-        
+
         if (!Config.Settings.SyncChatFromServer || plr is not { IsLoggedIn: true } || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) || args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier) || string.IsNullOrEmpty(args.Text))
         {
             return;
@@ -191,24 +197,24 @@ public class Plugin : TerrariaPlugin
             { "chat", string.Format(Config.Settings.ServerChatFormat, plr.Name, args.Text, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
             { "group", Config.Settings.GroupNumber }
         };
-        _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
+        _ = CaiBotApi.SendDateAsync(JsonConvert.SerializeObject(result));
     }
 
     private void PlayerHooksOnPlayerPostLogin(PlayerPostLoginEventArgs e)
     {
         var plr = e.Player;
-        if (!Config.Settings.SyncChatFromServer || string.IsNullOrEmpty(Config.Settings.JoinServerFormat) || plr == null )
+        if (!Config.Settings.SyncChatFromServer || string.IsNullOrEmpty(Config.Settings.JoinServerFormat) || plr == null)
         {
             return;
         }
-    
+
         var result = new RestObject
         {
             { "type", "chat" },
             { "chat", string.Format(Config.Settings.JoinServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
             { "group", Config.Settings.GroupNumber }
         };
-        _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
+        _ = CaiBotApi.SendDateAsync(JsonConvert.SerializeObject(result));
     }
 
     private void PlayerHooksOnPlayerLogout(PlayerLogoutEventArgs e)
@@ -225,7 +231,7 @@ public class Plugin : TerrariaPlugin
             { "chat", string.Format(Config.Settings.ExitServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
             { "group", Config.Settings.GroupNumber }
         };
-        _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
+        _ = CaiBotApi.SendDateAsync(JsonConvert.SerializeObject(result));
     }
 
     private void CaiBotCommand(CommandArgs args)
@@ -239,7 +245,14 @@ public class Plugin : TerrariaPlugin
                 return;
             }
 
-            List<string> lines = new () { "/caibot debug CaiBot调试开关", "/caibot code 生成并且展示验证码", "/caibot info 显示CaiBot的一些信息" };
+            List<string> lines = new () 
+            { 
+                "/caibot debug CaiBot调试开关", 
+                "/caibot code 生成并且展示验证码", 
+                "/caibot info 显示CaiBot的一些信息",
+                "/caibot unbind 主动解除绑定",
+                "/caibot test Cai保留用于测试的命令,乱用可能会爆掉"
+            };
 
             PaginationTools.SendPage(
                 plr, pageNumber, lines,
@@ -256,9 +269,8 @@ public class Plugin : TerrariaPlugin
 
         switch (args.Parameters[0].ToLowerInvariant())
         {
-            case "t":
-                Console.WriteLine(MapGenerator.CreateMapImg()); 
-                Console.WriteLine(MapGenerator.CreateMapFile()); 
+            case "test":
+                Console.WriteLine("你怎么知道Cai喜欢留一个测试命令?");
                 break;
             // 帮助
             case "help":
@@ -276,6 +288,7 @@ public class Plugin : TerrariaPlugin
                                     $"WebSocket状态: {WebSocket.State}\n" +
                                     $"绑定QQ群: {(Config.Settings.GroupNumber == 0L ? "未绑定|未连接" : Config.Settings.GroupNumber)}\n" +
                                     $"本地模式: {LocalMode}\n" +
+                                    $"BotAPI地址: {Config.Settings.BotApi}\n" +
                                     $"绑定状态: {Config.Settings.Token != ""}\n" +
                                     $"Debug模式: {DebugMode}\n" +
                                     $"Economic API支持: {EconomicSupport.GetCoinsSupport}\n" +
@@ -296,7 +309,21 @@ public class Plugin : TerrariaPlugin
                     return;
                 }
 
-                this.GenCode(EventArgs.Empty);
+                GenBindCode(EventArgs.Empty);
+                plr.SendInfoMessage("[CaiBot]验证码已生成,请在后台查看喵~");
+                break;
+            
+            case "解绑":
+            case "unbind":
+                if (string.IsNullOrEmpty(Config.Settings.Token))
+                {
+                    plr.SendInfoMessage("[CaiBot]服务器没有绑定任何群哦!");
+                    return;
+                }
+                Config.Settings.Token = string.Empty;
+                Config.Settings.Write();
+                WebSocket.Dispose();
+                GenBindCode(EventArgs.Empty);
                 plr.SendInfoMessage("[CaiBot]验证码已生成,请在后台查看喵~");
                 break;
         }
@@ -304,6 +331,11 @@ public class Plugin : TerrariaPlugin
 
     private void OnBanInsert(object? sender, BanEventArgs e)
     {
+        if (!Config.Settings.GroupBanNotice)
+        {
+            return;
+        }
+
         if (!e.Ban.Identifier.StartsWith(Identifier.Name.Prefix) && !e.Ban.Identifier.StartsWith(Identifier.Account.Prefix))
         {
             return;
@@ -319,13 +351,12 @@ public class Plugin : TerrariaPlugin
             { "admin", e.Ban.BanningUser },
             { "expire_time", expireTime == "Never" ? "永久封禁" : expireTime }
         };
-        _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
+        _ = CaiBotApi.SendDateAsync(JsonConvert.SerializeObject(result));
     }
 
 
-    private void GenCode(EventArgs args)
+    public static void GenBindCode(EventArgs args)
     {
-        EconomicSupport.Init();
         if (!string.IsNullOrEmpty(Config.Settings.Token))
         {
             return;
@@ -334,9 +365,8 @@ public class Plugin : TerrariaPlugin
         InitCode = new Random().Next(10000000, 99999999);
         TShock.Log.ConsoleError($"[CaiBot]您的服务器绑定码为: {InitCode}");
     }
-    
-    
-    
+
+
     #region 加载前置
 
     private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
@@ -352,7 +382,6 @@ public class Plugin : TerrariaPlugin
         var assemblyData = new byte[stream.Length];
         _ = stream.Read(assemblyData, 0, assemblyData.Length);
         return Assembly.Load(assemblyData);
-
     }
 
     #endregion

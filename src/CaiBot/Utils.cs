@@ -7,10 +7,10 @@ namespace CaiBot;
 
 internal static class Utils
 {
-
     internal static List<string> GetOnlineProcessList()
     {
         List<string> onlineProcessList = new ();
+
         #region 进度查询
 
         if (!NPC.downedSlimeKing)
@@ -77,13 +77,12 @@ internal static class Utils
 
         return onlineProcessList;
 
-
         #endregion
     }
-    
+
     internal static string FileToBase64String(string path)
     {
-        FileStream fsForRead = new(path, FileMode.Open); //文件路径
+        FileStream fsForRead = new (path, FileMode.Open); //文件路径
         var base64Str = "";
         try
         {
@@ -118,6 +117,7 @@ internal static class Utils
             return Convert.ToBase64String(outputStream.ToArray());
         }
     }
+
     internal static List<int> GetActiveBuffs(IDbConnection connection, int userId, string name)
     {
         try

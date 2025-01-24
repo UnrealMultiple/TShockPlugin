@@ -12,7 +12,7 @@ public class EconomicData
 
     public static EconomicData GetEconomicData(string name)
     {
-        EconomicData economicData = new();
+        EconomicData economicData = new ();
         if (EconomicSupport.GetCoinsSupport)
         {
             economicData.Coins = EconomicSupport.GetCoins(name);

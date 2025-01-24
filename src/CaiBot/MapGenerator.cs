@@ -13,13 +13,14 @@ namespace CaiBot;
 internal static class MapGenerator
 {
     private static readonly Hook WorldMapIndexerHook = new (typeof(WorldMap).GetMethod("get_Item"), NewWorldMapIndexer);
+
     internal static void Init()
     {
         WorldMapIndexerHook.Apply();
         MapHelper.Initialize();
         Main.mapEnabled = true;
-        Main.Map = new WorldMap(Main.maxTilesX, Main.maxTilesY) { _tiles = new MapTile[Main.maxTilesX,Main.maxTilesY] };
-        Main.ActivePlayerFileData = new PlayerFileData { Name = "CaiBot" ,_path = Main.GetPlayerPathFromName("CaiBot",false)};
+        Main.Map = new WorldMap(Main.maxTilesX, Main.maxTilesY) { _tiles = new MapTile[Main.maxTilesX, Main.maxTilesY] };
+        Main.ActivePlayerFileData = new PlayerFileData { Name = "CaiBot", _path = Main.GetPlayerPathFromName("CaiBot", false) };
         Main.MapFileMetadata = FileMetadata.FromCurrentSettings(FileType.Map);
     }
 
@@ -43,10 +44,10 @@ internal static class MapGenerator
             }
         }
     }
-    
+
     internal static Image CreateMapImg()
     {
-        Image<Rgba32> image = new(Main.maxTilesX, Main.maxTilesY);
+        Image<Rgba32> image = new (Main.maxTilesX, Main.maxTilesY);
         LightWholeMap();
         for (var x = 0; x < Main.maxTilesX; x++)
         {
@@ -57,9 +58,10 @@ internal static class MapGenerator
                 image[x, y] = new Rgba32(col.R, col.G, col.B, col.A);
             }
         }
+
         return image;
     }
-    
+
     internal static (string, string) CreateMapFile()
     {
         LightWholeMap();

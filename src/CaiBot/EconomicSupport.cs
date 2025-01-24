@@ -151,6 +151,7 @@ public static class EconomicSupport
         {
             return $"{_getCurrencyNameFunc()}:{_getUserCurrencyFunc(name)}";
         }
+
         // 新方法是必要的，防止解析报错
         return GetNewCoins(name);
     }
