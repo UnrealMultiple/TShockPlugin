@@ -16,7 +16,7 @@
 
 ## Configuration
 > Configuration file path: tshock/限时无敌.json
-```json
+```json5
 {
   "插件自带god无敌开启提示": true, //The plug-in comes with god invincible activation prompts
   "god无敌开启提示自定义文本": "", //God invincible activation prompt custom text
