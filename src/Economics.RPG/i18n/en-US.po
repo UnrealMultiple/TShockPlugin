@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-22 16:39:23+0000\n"
-"PO-Revision-Date: 2025-01-23 01:07\n"
+"PO-Revision-Date: 2025-01-24 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr "Provides RPG gameplay!"
 
 #: ../../Command.cs:34
 msgid "此职业全服唯一，已经存在此职业无法升级。"
-msgstr ""
+msgstr "This profession is the only one in the server. This profession already exists and cannot be upgraded."
 
 #: ../../Command.cs:128
 msgid "玩家等级信息重置成功!"

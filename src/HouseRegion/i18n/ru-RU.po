@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-22 17:42:39+0000\n"
-"PO-Revision-Date: 2025-01-23 01:07\n"
+"POT-Creation-Date: 2025-01-23 08:52:02+0000\n"
+"PO-Revision-Date: 2025-01-24 01:07\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -329,10 +329,10 @@ msgid "房屋插件错误调用事件时出错:"
 msgstr ""
 
 #: ../../PacketReceive.cs:215
+#: ../../Utils.cs:90
 #: ../../Plugin.cs:637
 #: ../../Plugin.cs:642
 #: ../../Plugin.cs:648
-#: ../../Utils.cs:90
 msgid "房屋插件错误超标错误:"
 msgstr ""
 
