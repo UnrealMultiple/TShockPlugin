@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-22 16:39:24+0000\n"
-"PO-Revision-Date: 2025-01-23 01:07\n"
+"PO-Revision-Date: 2025-01-24 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr "You have not bound any skills!"
 #: ../../Utils.cs:37
 #, csharp-format
 msgid "你当前等级无法购买此技能，限制必须购买技能:{0}"
-msgstr ""
+msgstr "You cannot purchase this skill at your current level. Limit the skills to be purchased:{0}"
 
 #: ../../Utils.cs:28
 #, csharp-format

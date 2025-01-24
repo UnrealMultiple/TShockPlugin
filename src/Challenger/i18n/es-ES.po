@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-22 17:42:16+0000\n"
-"PO-Revision-Date: 2025-01-23 01:07\n"
+"POT-Creation-Date: 2025-01-23 08:51:39+0000\n"
+"PO-Revision-Date: 2025-01-24 01:07\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -461,8 +461,8 @@ msgstr "La nieve y el hielo caen del cielo."
 msgid "冲刺类饰品冷却完成"
 msgstr "Enfriamiento de accesorios de sprint completado"
 
-#: ../../Challenger.CNPCs/EaterofWorldsHead.cs:39
 #: ../../Challenger.CNPCs/Skeletron.cs:164
+#: ../../Challenger.CNPCs/EaterofWorldsHead.cs:39
 msgid "创死你"
 msgstr "¡Te aplastaré!"
 
