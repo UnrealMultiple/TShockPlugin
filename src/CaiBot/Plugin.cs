@@ -35,10 +35,12 @@ public class Plugin : TerrariaPlugin
     public override string Description => "CaiBot机器人的适配插件";
     public override string Name => "CaiBotPlugin";
     public override Version Version => VersionNum;
+
     
     public override void Initialize()
     {
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
+        MapGenerator.Init();
         Commands.ChatCommands.Add(new Command("CaiBot.Admin", this.CaiBotCommand, "caibot"));
         Config.Settings.Read();
         Config.Settings.Write();
@@ -140,6 +142,7 @@ public class Plugin : TerrariaPlugin
             }
         }, TokenSource.Token);
     }
+    
 
     protected override void Dispose(bool disposing)
     {
@@ -147,6 +150,7 @@ public class Plugin : TerrariaPlugin
         {
             var asm = Assembly.GetExecutingAssembly();
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate.Method.DeclaringType?.Assembly == asm);
+            MapGenerator.Dispose();
             AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
             Hooks.MessageBuffer.InvokeGetData -= Login.MessageBuffer_InvokeGetData;
             BanManager.OnBanPostAdd -= this.OnBanInsert;
@@ -176,7 +180,7 @@ public class Plugin : TerrariaPlugin
             args.Handled = true;
         }
         
-        if (!Config.Settings.SyncChatFromServer || plr == null || !plr.IsLoggedIn || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) || args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier) || string.IsNullOrEmpty(args.Text))
+        if (!Config.Settings.SyncChatFromServer || plr is not { IsLoggedIn: true } || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier) || args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier) || string.IsNullOrEmpty(args.Text))
         {
             return;
         }
@@ -193,11 +197,11 @@ public class Plugin : TerrariaPlugin
     private void PlayerHooksOnPlayerPostLogin(PlayerPostLoginEventArgs e)
     {
         var plr = e.Player;
-        if (!Config.Settings.SyncChatFromServer || plr == null)
+        if (!Config.Settings.SyncChatFromServer || string.IsNullOrEmpty(Config.Settings.JoinServerFormat) || plr == null )
         {
             return;
         }
-
+    
         var result = new RestObject
         {
             { "type", "chat" },
@@ -210,7 +214,7 @@ public class Plugin : TerrariaPlugin
     private void PlayerHooksOnPlayerLogout(PlayerLogoutEventArgs e)
     {
         var plr = e.Player;
-        if (!Config.Settings.SyncChatFromServer || plr == null)
+        if (!Config.Settings.SyncChatFromServer || string.IsNullOrEmpty(Config.Settings.ExitServerFormat) || plr == null)
         {
             return;
         }
@@ -252,6 +256,10 @@ public class Plugin : TerrariaPlugin
 
         switch (args.Parameters[0].ToLowerInvariant())
         {
+            case "t":
+                Console.WriteLine(MapGenerator.CreateMapImg()); 
+                Console.WriteLine(MapGenerator.CreateMapFile()); 
+                break;
             // 帮助
             case "help":
                 ShowHelpText();
@@ -296,20 +304,22 @@ public class Plugin : TerrariaPlugin
 
     private void OnBanInsert(object? sender, BanEventArgs e)
     {
-        if (e.Ban.Identifier.StartsWith(Identifier.Name.Prefix) || e.Ban.Identifier.StartsWith(Identifier.Account.Prefix))
+        if (!e.Ban.Identifier.StartsWith(Identifier.Name.Prefix) && !e.Ban.Identifier.StartsWith(Identifier.Account.Prefix))
         {
-            var name = e.Ban.Identifier.Replace(Identifier.Name.Prefix, "").Replace(Identifier.Account.Prefix, "");
-            var expireTime = e.Ban.GetPrettyExpirationString();
-            var result = new RestObject
-            {
-                { "type", "post_ban_add" },
-                { "name", name },
-                { "reason", e.Ban.Reason },
-                { "admin", e.Ban.BanningUser },
-                { "expire_time", expireTime == "Never" ? "永久封禁" : expireTime }
-            };
-            _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
+            return;
         }
+
+        var name = e.Ban.Identifier.Replace(Identifier.Name.Prefix, "").Replace(Identifier.Account.Prefix, "");
+        var expireTime = e.Ban.GetPrettyExpirationString();
+        var result = new RestObject
+        {
+            { "type", "post_ban_add" },
+            { "name", name },
+            { "reason", e.Ban.Reason },
+            { "admin", e.Ban.BanningUser },
+            { "expire_time", expireTime == "Never" ? "永久封禁" : expireTime }
+        };
+        _ = MessageHandle.SendDateAsync(JsonConvert.SerializeObject(result));
     }
 
 
@@ -334,14 +344,15 @@ public class Plugin : TerrariaPlugin
         var resourceName =
             $"{Assembly.GetExecutingAssembly().GetName().Name}.{new AssemblyName(args.Name).Name}.dll";
         using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
-        if (stream != null)
+        if (stream == null)
         {
-            var assemblyData = new byte[stream.Length];
-            _ = stream.Read(assemblyData, 0, assemblyData.Length);
-            return Assembly.Load(assemblyData);
+            return null;
         }
 
-        return null;
+        var assemblyData = new byte[stream.Length];
+        _ = stream.Read(assemblyData, 0, assemblyData.Length);
+        return Assembly.Load(assemblyData);
+
     }
 
     #endregion

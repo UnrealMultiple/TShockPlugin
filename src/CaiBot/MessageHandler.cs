@@ -139,18 +139,7 @@ internal static class MessageHandle
 
                 playerList2[0].Kick("在群中使用自踢命令.", true, saveSSI: true);
                 break;
-            case "mappng":
-                var bitmap = MapGenerator.Create();
-                using (MemoryStream ms = new ())
-                {
-                    await bitmap.SaveAsync(ms, new PngEncoder());
-                    var imageBytes = ms.ToArray();
-                    var base64 = Convert.ToBase64String(imageBytes);
-                    result = new RestObject { { "type", "mappngV2" }, { "result",Utils.CompressBase64(base64) }, { "group", (long) jsonObject["group"]! } };
-                }
-
-                await SendDateAsync(JsonConvert.SerializeObject(result));
-                break;
+            
             case "lookbag":
                 name = (string) jsonObject["name"]!;
                 var playerList3 = TSPlayer.FindByNameOrID("tsn:" + name);
@@ -210,13 +199,25 @@ internal static class MessageHandle
                 await SendDateAsync(JsonConvert.SerializeObject(result));
 
                 break;
+            case "mappng":
+                var bitmap = MapGenerator.CreateMapImg();
+                using (MemoryStream ms = new ())
+                {
+                    await bitmap.SaveAsync(ms, new PngEncoder());
+                    var imageBytes = ms.ToArray();
+                    var base64 = Convert.ToBase64String(imageBytes);
+                    result = new RestObject { { "type", "mappngV2" }, { "result",Utils.CompressBase64(base64) }, { "group", (long) jsonObject["group"]! } };
+                }
+
+                await SendDateAsync(JsonConvert.SerializeObject(result));
+                break;
             case "mapfile":
-                var mapfile = MapFileGenerator.Create();
-                result = new RestObject { { "type", "mapfileV2" }, { "base64", mapfile.Item1 }, { "name", mapfile.Item2  }, { "group", (long) jsonObject["group"]! } };
+                var mapfile = MapGenerator.CreateMapFile();
+                result = new RestObject { { "type", "mapfileV2" }, { "base64", Utils.CompressBase64(mapfile.Item1) }, { "name", mapfile.Item2  }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "worldfile":
-                result = new RestObject { { "type", "worldfileV2" }, { "name", Main.worldPathName }, { "base64", Utils.CompressBase64(Utils.FileToBase64String(Main.worldPathName)) }, { "group", (long) jsonObject["group"]! } };
+                result = new RestObject { { "type", "worldfileV2" }, { "base64", Utils.CompressBase64(Utils.FileToBase64String(Main.worldPathName)) }, { "name", Main.worldPathName }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "pluginlist":
