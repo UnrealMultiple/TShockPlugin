@@ -97,13 +97,13 @@
 | [CNPCShop](./src/CNPCShop/README.en-US.md) | 100.0% | Custom NPC shop |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | 100.0% | Execute SQL statements in the console |  |
 | [ConvertWorld](./src/ConvertWorld/README.en-US.md) | 100.0% | Convert world items by defeating monsters |  |
-| [CreateSpawn](./src/CreateSpawn/README.md) | 100.0% | Spawn point building generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [CreateSpawn](./src/CreateSpawn/README.en-US.md) | 100.0% | Spawn point building generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CriticalHit](./src/CriticalHit/README.en-US.md) | 100.0% | Critical hit prompt |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Allows for cross-platform play |  |
 | [CustomMonster](./src/CustomMonster/README.en-US.md) | 100.0% | Customize, modify, and generate monsters and bosses  |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.en-US.md) | 100.0% | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation |  |
 | [DamageStatistic](./src/DamageStatistic/README.en-US.md) | 100.0% | Display damage caused by each player after each boss fight |  |
-| [DataSync](./src/DataSync/README.md) | 0.0% | Progress synchronization |  |
+| [DataSync](./src/DataSync/README.en-US.md) | 0.0% | Progress synchronization |  |
 | [DeathDrop](./src/DeathDrop/README.en-US.md) | 100.0% | Random and custom loot upon monster death |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.en-US.md) | 100.0% | Prohibit monster loot |  |
 | [DonotFuck](./src/DonotFuck/README.en-US.md) | 100.0% | Prevent swearing | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -159,7 +159,7 @@
 | [PlayerSpeed](./src/PlayerSpeed/README.en-US.md) | 100.0% | Enable players to achieve a two-stage sprint | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ProgressBag](./src/ProgressBag/README.en-US.md) | 100.0% | Progress gift pack | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ProgressControls](./src/ProgressControls/README.md) | 100.0% | Planbook (Automate server control) |  |
-| [ProgressRestrict](./src/ProgressRestrict/README.md) | 100.0% | Super progress detection | [DataSync](./src/DataSync/README.md) |
+| [ProgressRestrict](./src/ProgressRestrict/README.md) | 100.0% | Super progress detection | [DataSync](./src/DataSync/README.en-US.md) |
 | [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 100.0% | Accept proxy protocol connections |  |
 | [PvPer](./src/PvPer/README.md) | 100.0% | Duel system |  |
 | [RainbowChat](./src/RainbowChat/README.md) | 100.0% | Random chat color |  |
