@@ -130,12 +130,12 @@
 | [GoodNight](./src/GoodNight/README.md) | 100.0% | Curfew |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.en-US.md) | 100.0% | Hardcore death drops life crystals |  |
 | [HelpPlus](./src/HelpPlus/README.en-US.md) | 100.0% | Fix and enhance the Help command |  |
-| [History](./src/History/README.md) | 100.0% | History grid record |  |
+| [History](./src/History/README.en-US.md) | 100.0% | History grid record |  |
 | [HouseRegion](./src/HouseRegion/README.en-US.md) | 100.0% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [Invincibility](./src/Invincibility/README.md) | 100.0% | Time-limited invincibility |  |
-| [ItemBox](./src/ItemBox/README.md) | 100.0% | Off-line inventory |  |
+| [Invincibility](./src/Invincibility/README.en-US.md) | 100.0% | Time-limited invincibility |  |
+| [ItemBox](./src/ItemBox/README.en-US.md) | 100.0% | Off-line inventory |  |
 | [ItemDecoration](./src/ItemDecoration/README.en-US.md) | 100.0% | Floating message display for held items | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [ItemPreserver](./src/ItemPreserver/README.md) | 100.0% | Preserve specified items from consumption |  |
+| [ItemPreserver](./src/ItemPreserver/README.en-US.md) | 100.0% | Preserve specified items from consumption |  |
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | 100.0% | Unlock journey items |  |
 | [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | 100.0% | Lagrange.XocMat Bot Adapter Plugin | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.en-US.md) | 100.0% | Plugin base library | [linq2db]() |
@@ -148,8 +148,8 @@
 | [MusicPlayer](./src/MusicPlayer/README.md) | 100.0% | Simple music player |  |
 | [Noagent](./src/Noagent/README.en-US.md) | 100.0% | Prohibit proxy IP from entering |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.md) | 100.0% | Drop treasure bags at normal difficulty |  |
-| [OnlineGiftPackage](./src/OnlineGiftPackage/README.md) | 100.0% | Online gift package |  |
-| [PacketsStop](./src/PacketsStop/README.md) | 100.0% | Packet interception |  |
+| [OnlineGiftPackage](./src/OnlineGiftPackage/README.en-US.md) | 100.0% | Online gift package |  |
+| [PacketsStop](./src/PacketsStop/README.en-US.md) | 100.0% | Packet interception |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 0.0% | Permanent buff |  |
 | [PerPlayerLoot](./src/PerPlayerLoot/README.en-US.md) | 100.0% | Separate chest for player loot |  |
 | [PersonalPermission](./src/PersonalPermission/README.en-US.md) | 100.0% | Set permissions individually for players |  |
@@ -169,7 +169,7 @@
 | [RebirthCoin](./src/RebirthCoin/README.en-US.md) | 100.0% | Consume designated items to revive player |  |
 | [RecipesBrowser](./src/RecipesBrowser/README.en-US.md) | 100.0% | Crafting table |  |
 | [ReFishTask](./src/ReFishTask/README.en-US.md) | 100.0% | Automatically refresh fisherman tasks |  |
-| [RegionView](./src/RegionView/README.md) | 100.0% | Display area boundaries |  |
+| [RegionView](./src/RegionView/README.en-US.md) | 100.0% | Display area boundaries |  |
 | [Respawn](./src/Respawn/README.md) | 100.0% | Respawn at the death place |  |
 | [RestInventory](./src/RestInventory/README.md) | 100.0% | Provide REST query backpack interface |  |
 | [ReverseWorld](./src/ReverseWorld/README.en-US.md) | 100.0% | World Reversal and Landmine Placement |  |
