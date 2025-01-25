@@ -61,7 +61,7 @@ public class Utils
 
     internal static void CycleAdapr(TSPlayer ply, Vector2 vel, Vector2 pos, ProjectileOption option, float Damage, NPC? lockNpc = null)
     {
-        var damage = option.DynamicDamage ? Damage / ply.SelectedItem.damage * option.Damage : Damage;
+        var damage = option.DynamicDamage ? Damage / ply.SelectedItem.damage * option.Damage : option.Damage;
         foreach (var opt in option.ProjectileCycle.ProjectileCycles)
         {
             var _vel = vel;
@@ -104,7 +104,7 @@ public class Utils
                         _pos,
                         _vel * (opt.Reverse ? -1 : 1),
                         option.ID,
-                        Convert.ToInt32(Damage),
+                        Convert.ToInt32(damage),
                         option.Knockback,
                         ply.Index,
                         option.AI[0] == -1f ? ply.Index : option.AI[0],
