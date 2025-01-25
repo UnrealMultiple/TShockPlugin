@@ -104,7 +104,7 @@ public class Utils
                         _pos,
                         _vel * (opt.Reverse ? -1 : 1),
                         option.ID,
-                        Convert.ToInt32(Damage),
+                        Convert.ToInt32(damage),
                         option.Knockback,
                         ply.Index,
                         option.AI[0] == -1f ? ply.Index : option.AI[0],
