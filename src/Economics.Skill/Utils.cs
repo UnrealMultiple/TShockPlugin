@@ -61,7 +61,7 @@ public class Utils
 
     internal static void CycleAdapr(TSPlayer ply, Vector2 vel, Vector2 pos, ProjectileOption option, float Damage, NPC? lockNpc = null)
     {
-        var damage = option.DynamicDamage ? Damage / ply.SelectedItem.damage * option.Damage : Damage;
+        var damage = option.DynamicDamage ? Damage / ply.SelectedItem.damage * option.Damage : option.Damage;
         foreach (var opt in option.ProjectileCycle.ProjectileCycles)
         {
             var _vel = vel;
