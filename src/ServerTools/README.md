@@ -18,6 +18,7 @@
 | /旅途难度 [难度]`master` `journey` `normal` `expert` 或 /journeydiff [difficulty mode]`master` `journey` `normal` `expert` | servertool.set.journey |      设置旅途模式难度       |
 | /在线排行 或 /onlinerank                                                                                                 | servertool.user.online |      查询玩家在线排行       |
 | /死亡排行 或 /deadrank                                                                                                   |  servertool.user.dead  |      查询玩家死亡排行       |
+| /oc [玩家名称] [指令]                                                                                                    |  servertool.user.cmd  |      为指定玩家执行命令        |
 
 ## REST API
 

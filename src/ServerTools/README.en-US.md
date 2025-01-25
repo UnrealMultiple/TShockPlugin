@@ -19,6 +19,7 @@
 | /旅途难度 [difficulty] `master` `journey` `normal` `expert` or /journeydiff [difficulty mode] `master` `journey` `normal` `expert` | `servertool.set.journey` |       Set difficulty for Journey mode.        |
 | /在线排行 or /onlinerank                                                                                                           | `servertool.user.online` |    Check the online players' leaderboard.     |
 | /死亡排行 or /deadrank                                                                                                             |  `servertool.user.dead`  |         Check the death leaderboard.          |
+| /oc [playerName] [cmd]                                                                                                            |  servertool.user.cmd     |    Execute commands for the specified player   |
 
 ## REST API  
 
