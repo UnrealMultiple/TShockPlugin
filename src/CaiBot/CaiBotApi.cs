@@ -12,11 +12,13 @@ using TShockAPI;
 
 namespace CaiBot;
 
-internal static class MessageHandle
+internal static class CaiBotApi
 {
     internal static bool IsWebsocketConnected =>
         Plugin.WebSocket.State == WebSocketState.Open;
-
+    
+    internal static readonly Dictionary<string,(DateTime,int)> WhiteListCaches = new();
+    
     internal static async Task SendDateAsync(string message)
     {
         if (Plugin.DebugMode)
@@ -38,12 +40,10 @@ internal static class MessageHandle
         {
             case "delserver":
                 TShock.Log.ConsoleInfo("[CaiAPI]BOT发送解绑命令...");
-                Config.Settings.Token = "";
+                Config.Settings.Token = string.Empty;
                 Config.Settings.Write();
-                Random rnd = new ();
-                Plugin.InitCode = rnd.Next(10000000, 99999999);
-                TShock.Log.ConsoleError($"[CaiBot]您的服务器绑定码为: {Plugin.InitCode}");
-                await Plugin.WebSocket.CloseAsync(WebSocketCloseStatus.Empty, "", CancellationToken.None);
+                Plugin.GenBindCode(EventArgs.Empty);
+                Plugin.WebSocket.Dispose();
                 break;
             case "hello":
                 TShock.Log.ConsoleInfo("[CaiAPI]CaiBOT连接成功...");
@@ -74,6 +74,7 @@ internal static class MessageHandle
                 {
                     Config.Settings.GroupNumber = groupId;
                 }
+
                 break;
             case "cmd":
                 var cmd = (string) jsonObject["cmd"]!;
@@ -92,7 +93,7 @@ internal static class MessageHandle
                 else
                 {
                     onlineResult.AppendLine($"在线玩家({TShock.Utils.GetActivePlayerCount()}/{TShock.Config.Settings.MaxSlots})");
-                    onlineResult.Append(string.Join(',', TShock.Players.Where(x=>x is { Active: true }).Select(x=>x.Name)));
+                    onlineResult.Append(string.Join(',', TShock.Players.Where(x => x is { Active: true }).Select(x => x.Name)));
                 }
 
                 var onlineProcessList = Utils.GetOnlineProcessList();
@@ -100,8 +101,8 @@ internal static class MessageHandle
                 result = new RestObject
                 {
                     { "type", "online" },
-                    { "result", onlineResult.ToString()}, // “怎么有种我是男的的感觉” -- 张芷睿大人 (24.12.22)
-                    { "worldname", string.IsNullOrEmpty(Main.worldName) ? "地图还没加载捏~" : Main.worldName }, 
+                    { "result", onlineResult.ToString() }, // “怎么有种我是男的的感觉” -- 张芷睿大人 (24.12.22)
+                    { "worldname", string.IsNullOrEmpty(Main.worldName) ? "地图还没加载捏~" : Main.worldName },
                     { "process", onlineProcess },
                     { "group", (long) jsonObject["group"]! }
                 };
@@ -116,16 +117,16 @@ internal static class MessageHandle
             case "whitelist":
                 var name = (string) jsonObject["name"]!;
                 var code = (int) jsonObject["code"]!;
+                
+                WhiteListCaches[name] = (DateTime.Now, code);
+                
                 if (Login.CheckWhite(name, code))
                 {
-                    var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
-                    if (playerList.Count == 0)
+                    var plr = TShock.Players.FirstOrDefault(x => x.Name == name);
+                    if (plr != null)
                     {
-                        return;
+                        Login.HandleLogin(plr);
                     }
-
-                    var plr = playerList[0];
-                    Login.HandleLogin(plr, Guid.NewGuid().ToString());
                 }
 
                 break;
@@ -139,18 +140,7 @@ internal static class MessageHandle
 
                 playerList2[0].Kick("在群中使用自踢命令.", true, saveSSI: true);
                 break;
-            case "mappng":
-                var bitmap = MapGenerator.Create();
-                using (MemoryStream ms = new ())
-                {
-                    await bitmap.SaveAsync(ms, new PngEncoder());
-                    var imageBytes = ms.ToArray();
-                    var base64 = Convert.ToBase64String(imageBytes);
-                    result = new RestObject { { "type", "mappngV2" }, { "result",Utils.CompressBase64(base64) }, { "group", (long) jsonObject["group"]! } };
-                }
 
-                await SendDateAsync(JsonConvert.SerializeObject(result));
-                break;
             case "lookbag":
                 name = (string) jsonObject["name"]!;
                 var playerList3 = TSPlayer.FindByNameOrID("tsn:" + name);
@@ -166,7 +156,7 @@ internal static class MessageHandle
                         { "life", $"{lookOnlineResult.Health}/{lookOnlineResult.MaxHealth}" },
                         { "mana", $"{lookOnlineResult.Mana}/{lookOnlineResult.MaxMana}" },
                         { "quests_completed", lookOnlineResult.QuestsCompleted },
-                        { "inventory", lookOnlineResult.ItemList},
+                        { "inventory", lookOnlineResult.ItemList },
                         { "buffs", lookOnlineResult.Buffs },
                         { "enhances", lookOnlineResult.Enhances },
                         { "economic", EconomicData.GetEconomicData(lookOnlineResult.Name) },
@@ -178,18 +168,19 @@ internal static class MessageHandle
                     var acc = TShock.UserAccounts.GetUserAccountByName(name);
                     if (acc == null)
                     {
-                        result = new RestObject { { "type", "lookbag" }, { "exist", 0 } ,{ "group", (long) jsonObject["group"]! }};
+                        result = new RestObject { { "type", "lookbag" }, { "exist", 0 }, { "group", (long) jsonObject["group"]! } };
                         await SendDateAsync(JsonConvert.SerializeObject(result));
                         return;
                     }
+
                     var data = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), acc.ID);
                     if (data == null)
                     {
-                        result = new RestObject { { "type", "lookbag" }, { "exist", 0 },{ "group", (long) jsonObject["group"]! }};
+                        result = new RestObject { { "type", "lookbag" }, { "exist", 0 }, { "group", (long) jsonObject["group"]! } };
                         await SendDateAsync(JsonConvert.SerializeObject(result));
                         return;
                     }
-                    
+
                     var lookOnlineResult = LookBag.LookOffline(acc, data);
                     result = new RestObject
                     {
@@ -199,7 +190,7 @@ internal static class MessageHandle
                         { "life", $"{lookOnlineResult.Health}/{lookOnlineResult.MaxHealth}" },
                         { "mana", $"{lookOnlineResult.Mana}/{lookOnlineResult.MaxMana}" },
                         { "quests_completed", lookOnlineResult.QuestsCompleted },
-                        { "inventory", lookOnlineResult.ItemList},
+                        { "inventory", lookOnlineResult.ItemList },
                         { "buffs", lookOnlineResult.Buffs },
                         { "enhances", lookOnlineResult.Enhances },
                         { "economic", EconomicData.GetEconomicData(lookOnlineResult.Name) },
@@ -210,13 +201,25 @@ internal static class MessageHandle
                 await SendDateAsync(JsonConvert.SerializeObject(result));
 
                 break;
+            case "mappng":
+                var bitmap = MapGenerator.CreateMapImg();
+                using (MemoryStream ms = new ())
+                {
+                    await bitmap.SaveAsync(ms, new PngEncoder());
+                    var imageBytes = ms.ToArray();
+                    var base64 = Convert.ToBase64String(imageBytes);
+                    result = new RestObject { { "type", "mappngV2" }, { "result", Utils.CompressBase64(base64) }, { "group", (long) jsonObject["group"]! } };
+                }
+
+                await SendDateAsync(JsonConvert.SerializeObject(result));
+                break;
             case "mapfile":
-                var mapfile = MapFileGenerator.Create();
-                result = new RestObject { { "type", "mapfileV2" }, { "base64", mapfile.Item1 }, { "name", mapfile.Item2  }, { "group", (long) jsonObject["group"]! } };
+                var mapfile = MapGenerator.CreateMapFile();
+                result = new RestObject { { "type", "mapfileV2" }, { "base64", Utils.CompressBase64(mapfile.Item1) }, { "name", mapfile.Item2 }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "worldfile":
-                result = new RestObject { { "type", "worldfileV2" }, { "name", Main.worldPathName }, { "base64", Utils.CompressBase64(Utils.FileToBase64String(Main.worldPathName)) }, { "group", (long) jsonObject["group"]! } };
+                result = new RestObject { { "type", "worldfileV2" }, { "base64", Utils.CompressBase64(Utils.FileToBase64String(Main.worldPathName)) }, { "name", Main.worldPathName }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "pluginlist":
@@ -230,6 +233,12 @@ internal static class MessageHandle
                 var chatText = (string) jsonObject["chat_text"]!;
                 var groupNumber = (long) jsonObject["group_id"]!;
                 var senderId = (long) jsonObject["sender_id"]!;
+                
+                if (Config.Settings.GroupChatIgnoreUsers.Contains(senderId))
+                {
+                    break;
+                }
+                
                 if (Config.Settings.CustomGroupName.TryGetValue(groupNumber, out var value))
                 {
                     groupName = value;

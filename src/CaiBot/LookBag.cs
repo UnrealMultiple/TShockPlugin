@@ -12,16 +12,17 @@ internal class LookBag
     public int Mana;
     public int MaxMana;
     public int QuestsCompleted;
-    
+
     public readonly List<List<int>> ItemList = new ();
     public readonly List<int> Enhances = new ();
     public List<int> Buffs = new ();
 
-    public static LookBag LookOffline(UserAccount acc,PlayerData data)
+    public static LookBag LookOffline(UserAccount acc, PlayerData data)
     {
-        var lookBagData = new LookBag { 
-            Name = acc.Name, 
-            Health = data.health, 
+        var lookBagData = new LookBag
+        {
+            Name = acc.Name,
+            Health = data.health,
             MaxHealth = data.maxHealth,
             Mana = data.mana,
             MaxMana = data.maxMana,
@@ -76,7 +77,7 @@ internal class LookBag
         {
             lookBagData.Enhances.Add(5289); // 5289	矿车升级包
         }
-        
+
         foreach (var i in data.inventory)
         {
             lookBagData.ItemList.Add(new List<int> { i.NetId, i.Stack });
@@ -85,14 +86,14 @@ internal class LookBag
         lookBagData.Buffs = Utils.GetActiveBuffs(TShock.DB, acc.ID, acc.Name);
         return lookBagData;
     }
-    
+
 
     public static LookBag LookOnline(Player plr)
     {
         var lookBagData = new LookBag
-        { 
-            Name = plr.name, 
-            Health = plr.statLife, 
+        {
+            Name = plr.name,
+            Health = plr.statLife,
             MaxHealth = plr.statLifeMax,
             Mana = plr.statMana,
             MaxMana = plr.statManaMax,
@@ -265,5 +266,4 @@ internal class LookBag
 
         return lookBagData;
     }
-
 }
