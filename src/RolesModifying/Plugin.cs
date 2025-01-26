@@ -26,10 +26,11 @@ public class Plugin : TerrariaPlugin
 
     public override string Author => "少司命";
 
-    public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Description => GetString("复制然后修改其他玩家的背包");
 
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 3);
+    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
+
+    public override Version Version => new Version(1, 0, 4);
 
     private readonly Dictionary<TSPlayer, ModifyData> TempData = new();
     public Plugin(Main game) : base(game)
@@ -76,11 +77,11 @@ public class Plugin : TerrariaPlugin
                 modify.SourcePlayerData.RestoreCharacter(args.Player);
                 TShock.CharacterDB.InsertPlayerData(args.Player);
                 this.TempData.Remove(args.Player);
-                args.Player.SendSuccessMessage("修改保存成功！");
+                args.Player.SendSuccessMessage(GetString("修改保存成功！"));
             }
             else
             {
-                args.Player.SendErrorMessage("你没有对玩家的信息进行修改，无需保存！");
+                args.Player.SendErrorMessage(GetString("你没有对玩家的信息进行修改，无需保存！"));
             }
         }
         else if (args.Parameters.Count > 0)
@@ -95,7 +96,7 @@ public class Plugin : TerrariaPlugin
                 TShock.CharacterDB.InsertPlayerData(args.Player);
                 //复制
                 target.PlayerData.RestoreCharacter(args.Player);
-                args.Player.SendSuccessMessage("正在查看{0}的人物信息，可以对背包进行修改，使用/rm save 进行保存。", args.Parameters[0]);
+                args.Player.SendSuccessMessage(GetString("正在查看{0}的人物信息，可以对背包进行修改，使用/rm save 进行保存。"), args.Parameters[0]);
             }
             else
             {
@@ -113,14 +114,18 @@ public class Plugin : TerrariaPlugin
                     TShock.CharacterDB.InsertPlayerData(args.Player);
                     //复制
                     TempPlayer.PlayerData.RestoreCharacter(args.Player);
-                    args.Player.SendSuccessMessage("正在查看{0}的人物信息，可以对背包进行修改，使用/rm save 进行保存。", args.Parameters[0]);
+                    args.Player.SendSuccessMessage(GetString("正在查看{0}的人物信息，可以对背包进行修改，使用/rm save 进行保存。"), args.Parameters[0]);
                 }
                 else
                 {
-                    args.Player.SendErrorMessage("目标玩家不存在!");
+                    args.Player.SendErrorMessage(GetString("目标玩家不存在!"));
                 }
 
             }
+        }
+        else
+        {
+            args.Player.SendErrorMessage(GetString("用法:\n/rm <玩家名> - 查看玩家信息\n/rm save - 保存修改"));
         }
     }
 
