@@ -109,9 +109,18 @@ internal static class CaiBotApi
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "process":
-                List<Dictionary<string, bool>> processList = new (
-                    new Dictionary<string, bool>[] { new () { { "King Slime", NPC.downedSlimeKing } }, new () { { "Eye of Cthulhu", NPC.downedBoss1 } }, new () { { "Eater of Worlds / Brain of Cthulhu", NPC.downedBoss2 } }, new () { { "Queen Bee", NPC.downedQueenBee } }, new () { { "Skeletron", NPC.downedBoss3 } }, new () { { "Deerclops", NPC.downedDeerclops } }, new () { { "Wall of Flesh", Main.hardMode } }, new () { { "Queen Slime", NPC.downedQueenSlime } }, new () { { "The Twins", NPC.downedMechBoss2 } }, new () { { "The Destroyer", NPC.downedMechBoss1 } }, new () { { "Skeletron Prime", NPC.downedMechBoss3 } }, new () { { "Plantera", NPC.downedPlantBoss } }, new () { { "Golem", NPC.downedGolemBoss } }, new () { { "Duke Fishron", NPC.downedFishron } }, new () { { "Empress of Light", NPC.downedEmpressOfLight } }, new () { { "Lunatic Cultist", NPC.downedAncientCultist } }, new () { { "Moon Lord", NPC.downedMoonlord } }, new () { { "Solar Pillar", NPC.downedTowerSolar } }, new () { { "Nebula Pillar", NPC.downedTowerNebula } }, new () { { "Vortex Pillar", NPC.downedTowerVortex } }, new () { { "Stardust Pillar", NPC.downedTowerStardust } } });
-                result = new RestObject { { "type", "process" }, { "result", processList }, { "worldname", Main.worldName }, { "group", (long) jsonObject["group"]! } };
+                result = new RestObject
+                {
+                    { "type", "process" }, 
+                    { "process", Utils.GetProcessList() },
+                    { "kill_counts", Utils.GetKillCountList()},
+                    { "worldname", Main.worldName },
+                    { "drunk_world", Main.drunkWorld },
+                    { "zenith_world" , Main.zenithWorld },
+                    { "world_icon", Utils.GetWorldIconName()},
+                    { "group", (long) jsonObject["group"]! } 
+                    
+                };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "whitelist":
@@ -128,7 +137,6 @@ internal static class CaiBotApi
                         Login.HandleLogin(plr);
                     }
                 }
-
                 break;
             case "selfkick":
                 name = (string) jsonObject["name"]!;
@@ -140,7 +148,6 @@ internal static class CaiBotApi
 
                 playerList2[0].Kick("在群中使用自踢命令.", true, saveSSI: true);
                 break;
-
             case "lookbag":
                 name = (string) jsonObject["name"]!;
                 var playerList3 = TSPlayer.FindByNameOrID("tsn:" + name);
