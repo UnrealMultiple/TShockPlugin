@@ -116,6 +116,7 @@ internal static class Utils
         killCountList.Add("Skeletron", GetKillCount(NPCID.SkeletronHead));
         killCountList.Add("Wall of Flesh", GetKillCount(NPCID.WallofFlesh));
         killCountList.Add("Queen Slime", GetKillCount(NPCID.QueenSlimeBoss));
+        killCountList.Add("The Twins", Math.Min(GetKillCount(NPCID.Retinazer),GetKillCount(NPCID.Spazmatism)));
         killCountList.Add("The Destroyer", GetKillCount(NPCID.TheDestroyer));
         killCountList.Add("Skeletron Prime", GetKillCount(NPCID.SkeletronPrime));
         killCountList.Add("Plantera", GetKillCount(NPCID.Plantera));
