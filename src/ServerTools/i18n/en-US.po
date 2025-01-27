@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-25 12:35:36+0000\n"
-"PO-Revision-Date: 2025-01-26 01:09\n"
+"PO-Revision-Date: 2025-01-27 01:08\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr "{0} Buds have been searched for you, enter /warp list to view the result
 #: ../../Plugin.Commamd.cs:30
 #, csharp-format
 msgid "已为玩家{0}执行命令`{1}`"
-msgstr ""
+msgstr "Command `{1}` has been executed for player {0}"
 
 #: ../../Plugin.Commamd.cs:155
 msgid "已移除所有花苞传送点!"
@@ -142,7 +142,7 @@ msgstr "User {0} does not exist."
 
 #: ../../Plugin.Commamd.cs:22
 msgid "目标玩家不在线无法执行此命令!"
-msgstr ""
+msgstr "This command cannot be executed if the target player is not online!"
 
 #: ../../Plugin.cs:458
 #: ../../Plugin.cs:469
@@ -162,7 +162,7 @@ msgstr "Invalid Syntax, correct syntax: {0}accountinfo <username>."
 
 #: ../../Plugin.Commamd.cs:14
 msgid "语法错误，正确语法:/oc [玩家名称] [指令]"
-msgstr ""
+msgstr "Invalid syntax, correct syntax: /oc [player name] [command]"
 
 #: ../../Plugin.cs:301
 #: ../../Plugin.cs:309
