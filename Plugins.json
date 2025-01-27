@@ -1,5 +1,28 @@
 [
   {
+    "Name": "CaiPacketDebug",
+    "Version": "2025.1.25.1",
+    "Author": "Cai",
+    "Description": {
+      "en-US": "Plugin for debugging data packets~",
+      "de-DE": "用于调试数据包的插件捏~",
+      "it-IT": "用于调试数据包的插件捏~",
+      "fr-FR": "用于调试数据包的插件捏~",
+      "es-ES": "用于调试数据包的插件捏~",
+      "ru-RU": "用于调试数据包的插件捏~",
+      "zh-CN": "用于调试数据包的插件捏~",
+      "pt-BR": "用于调试数据包的插件捏~",
+      "pl-PL": "用于调试数据包的插件捏~"
+    },
+    "AssemblyName": "CaiPacketDebug",
+    "Path": "CaiPacketDebug.dll",
+    "Dependencies": [
+      "LazyAPI",
+      "TrProtocol"
+    ],
+    "HotReload": true
+  },
+  {
     "Name": "Platform",
     "Version": "1.1.0.4",
     "Author": "Cai",
@@ -510,29 +533,6 @@
     "Path": "CaiLib.dll",
     "Dependencies": [
       "SixLabors.ImageSharp"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "CaiPacketDebug",
-    "Version": "2024.12.18.2",
-    "Author": "Cai",
-    "Description": {
-      "en-US": "Plugin for debugging data packets~",
-      "de-DE": "用于调试数据包的插件捏~",
-      "it-IT": "用于调试数据包的插件捏~",
-      "fr-FR": "用于调试数据包的插件捏~",
-      "es-ES": "用于调试数据包的插件捏~",
-      "ru-RU": "用于调试数据包的插件捏~",
-      "zh-CN": "用于调试数据包的插件捏~",
-      "pt-BR": "用于调试数据包的插件捏~",
-      "pl-PL": "用于调试数据包的插件捏~"
-    },
-    "AssemblyName": "CaiPacketDebug",
-    "Path": "CaiPacketDebug.dll",
-    "Dependencies": [
-      "LazyAPI",
-      "TrProtocol"
     ],
     "HotReload": true
   },
