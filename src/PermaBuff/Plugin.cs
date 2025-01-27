@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
 
     private readonly string PATH = Path.Combine(TShock.SavePath, "permbuff.json");
 
@@ -149,7 +149,7 @@ public class Plugin : TerrariaPlugin
         }
         else
         {
-            args.Player.SendErrorMessage("语法错误! 请输入/gpermabuff <玩家名> <buffid>");
+            args.Player.SendErrorMessage("语法错误! 请输入/gpermabuff <buffid> <玩家名>");
         }
     }
 

@@ -32,8 +32,11 @@ public class Utils
         {
             throw new Exception(GetString($"当前进度无法购买此技能，限制进度:{string.Join(", ", context.LimitProgress)}"));
         }
-
-        var bind = Skill.PlayerSKillManager.QuerySkillByItem(Player.Name, Player.SelectedItem.netID).Where(s => s.Skill != null && s.Skill.Hidden);
+        if (!context.LimitSkill.All(i => Skill.PlayerSKillManager.HasSkill(Player.Name, i)))
+        {
+            throw new Exception(GetString($"你当前等级无法购买此技能，限制必须购买技能:{string.Join(", ", context.LimitSkill)}"));
+        }
+        var bind = Skill.PlayerSKillManager.QuerySkillByItem(Player.Name, Player.SelectedItem.netID).Where(s => s.Skill != null && !s.Skill.Hidden);
         return context.SkillUnique && Skill.PlayerSKillManager.HasSkill(Player.Name, index)
             ? throw new Exception(GetString("此技能是唯一的不能重复绑定!"))
             : context.SkillUniqueAll && Skill.PlayerSKillManager.HasSkill(index)
@@ -56,18 +59,19 @@ public class Utils
     }
 
 
-    internal static void CycleAdapr(TSPlayer ply, Vector2 vel, Vector2 pos, ProjectileOption option, NPC? lockNpc = null)
+    internal static void CycleAdapr(TSPlayer ply, Vector2 vel, Vector2 pos, ProjectileOption option, float Damage, NPC? lockNpc = null)
     {
+        var damage = option.DynamicDamage ? Damage / ply.SelectedItem.damage * option.Damage : option.Damage;
         foreach (var opt in option.ProjectileCycle.ProjectileCycles)
         {
-            Vector2 _vel;
+            var _vel = vel;
             #region 锁定敌怪
             if (option.LockNpcOption.Enable && option.LockNpcOption.Lock && lockNpc != null)
             {
                 pos.Distance(lockNpc.Center);
                 _vel = (pos.DirectionTo(lockNpc.Center).SafeNormalize(-Vector2.UnitY) * lockNpc.velocity.Length()).ToLenOf(option.Speed);
             }
-            else
+            if(!option.AutoDirection)
             {
                 _vel = vel.RotationAngle(option.StartAngle).ToLenOf(option.Speed);
             }
@@ -100,12 +104,12 @@ public class Utils
                         _pos,
                         _vel * (opt.Reverse ? -1 : 1),
                         option.ID,
-                        option.Damage,
+                        Convert.ToInt32(damage),
                         option.Knockback,
                         ply.Index,
-                        option.AI[0],
-                        option.AI[1],
-                        option.AI[2],
+                        option.AI[0] == -1f ? ply.Index : option.AI[0],
+                        option.AI[1] == -1f ? ply.Index : option.AI[1],
+                        option.AI[2] == -1f ? ply.Index : option.AI[2],
                         option.TimeLeft,
                         guid);
                     TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
@@ -141,7 +145,7 @@ public class Utils
     /// <param name="skill"></param>
     /// <param name="vel"></param>
     /// <param name="pos"></param>
-    public static void SpawnSkillProjectile(TSPlayer Player, SkillContext skill, Vector2 vel, Vector2 pos)
+    public static void SpawnSkillProjectile(TSPlayer Player, SkillContext skill, Vector2 vel, Vector2 pos, int Damage)
     {
         EmitGeneralSkill(Player, skill);
         foreach (var i in Enumerable.Range(0, skill.Projectiles.Count))
@@ -166,7 +170,7 @@ public class Utils
                         }
                     }
                 }
-                CycleAdapr(Player, vel, pos, proj, lockNpc);
+                CycleAdapr(Player, vel, pos, proj, Damage, lockNpc);
             }).AddMilliSeconds(proj.Dealy * i);
         }
     }
@@ -181,7 +185,7 @@ public class Utils
         var pos = Player.TPlayer.Center + Player.TPlayer.ItemOffSet();
         //原始角度速度参数
         var vel = Player.TPlayer.ItemOffSet();
-        SpawnSkillProjectile(Player, skill, vel, pos);
+        SpawnSkillProjectile(Player, skill, vel, pos, Player.SelectedItem.damage);
         Interpreter.ExecuteScript(skill, Player, pos, vel);
     }
 
@@ -191,7 +195,7 @@ public class Utils
         var pos = e.Position;
         //原始角度速度参数
         var vel = e.Velocity;
-        SpawnSkillProjectile(e.Player, skill, vel, pos);
+        SpawnSkillProjectile(e.Player, skill, vel, pos, e.Damage);
         Interpreter.ExecuteScript(skill, e.Player, pos, vel);
     }
 }

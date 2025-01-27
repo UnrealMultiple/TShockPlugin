@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-12 09:51:55+0000\n"
-"PO-Revision-Date: 2025-01-13 01:13\n"
+"POT-Creation-Date: 2025-01-18 12:04:54+0000\n"
+"PO-Revision-Date: 2025-01-19 01:12\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1088\n"
 "Language: en_US\n"
 
-#: ../../AutoBroadcast.cs:13
+#: ../../AutoBroadcast.cs:14
 msgid "自动广播插件"
 msgstr "Automatic broadcast plugin"
 

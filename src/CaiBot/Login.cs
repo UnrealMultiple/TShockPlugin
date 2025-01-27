@@ -39,7 +39,7 @@ internal static class Login
                 
                 if (CaiBotApi.WhiteListCaches.TryGetValue(player.Name, out var whiteListCache))
                 {
-                    if (whiteListCache.Item1 - DateTime.Now <= TimeSpan.FromSeconds(10))
+                    if (DateTime.Now - whiteListCache.Item1 <= TimeSpan.FromSeconds(10))
                     {
                         if (!CheckWhite(player.Name,whiteListCache.Item2))
                         {

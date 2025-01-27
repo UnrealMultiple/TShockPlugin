@@ -7,6 +7,30 @@ namespace ServerTools;
 
 public partial class Plugin
 {
+    private void OthersCmd(CommandArgs args)
+    {
+        if (args.Parameters.Count < 2)
+        {
+            args.Player.SendErrorMessage(GetString("语法错误，正确语法:/oc [玩家名称] [指令]"));
+            return;
+        }
+        var target = args.Parameters[0];
+        var cmd = args.Parameters[1];
+        var player = TShock.Players.FirstOrDefault(p => p != null && p.Active && p.Name == target);
+        if (player == null)
+        {
+            args.Player.SendErrorMessage(GetString("目标玩家不在线无法执行此命令!"));
+            return;
+        }
+        player.tempGroup = new SuperAdminGroup();
+        Commands.HandleCommand(player, cmd);
+        player.tempGroup = null;
+        if(args.Parameters.Count == 2)
+        {
+            args.Player.SendSuccessMessage(GetString($"已为玩家{player.Name}执行命令`{cmd}`"));
+        }
+    }
+
     public void OnlineRank(CommandArgs args)
     {
         void ShowOnline(List<string> line)

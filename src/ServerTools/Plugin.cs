@@ -19,7 +19,7 @@ public partial class Plugin : LazyPlugin
     public override string Description => GetString("服务器工具");// 插件说明
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 8, 2);// 插件版本
+    public override Version Version => new Version(1, 1, 8, 3);// 插件版本
 
     private DateTime LastCommandUseTime = DateTime.Now;
 
@@ -62,6 +62,7 @@ public partial class Plugin : LazyPlugin
         Commands.ChatCommands.Add(new Command("servertool.set.journey", this.JourneyDiff, "旅途难度", "journeydiff"));
         Commands.ChatCommands.Add(new Command("servertool.user.dead", this.DeathRank, "死亡排行", "deadrank"));
         Commands.ChatCommands.Add(new Command("servertool.user.online", this.OnlineRank, "在线排行", "onlinerank"));
+        Commands.ChatCommands.Add(new Command("servertool.user.cmd", this.OthersCmd, "oc"));
         GetDataHandlers.NewProjectile.Register(this.NewProj);
         GetDataHandlers.ItemDrop.Register(this.OnItemDrop);
         GetDataHandlers.KillMe.Register(this.KillMe);
@@ -82,6 +83,7 @@ public partial class Plugin : LazyPlugin
         On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
         this.HandleCommandLine(Environment.GetCommandLineArgs());
     }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)

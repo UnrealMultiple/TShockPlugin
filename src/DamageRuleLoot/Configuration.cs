@@ -14,7 +14,7 @@ public class Configuration
     public bool Enabled2 { get; set; } = true;
 
     [JsonProperty("广告开关", Order = 2)]
-    public bool Enabled3 { get; set; } = true;
+    public bool Enabled3 { get; set; } = false;
 
     [JsonProperty("广告内容", Order = 2)]
     public string Advertisement { get; set; } = $"[i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by]  羽学 [C/E7A5CC:|] [c/00FFFF:西江小子][i:3459]";
