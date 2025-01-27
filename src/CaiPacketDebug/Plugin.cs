@@ -87,8 +87,18 @@ public class CaiPacketDebug : LazyPlugin
         {
             using MemoryStream memoryStream = new(data);
             using BinaryReader reader = new(memoryStream);
-            var packet = this._clientPacketSerializer.Deserialize(reader);
-
+            Packet packet = null;
+            try
+            {
+                packet = this._clientPacketSerializer.Deserialize(reader);
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write($"[S->C({remoteclient})] 解析数据包时出错:" + ex);
+                Console.ResetColor();
+                return;
+            }
             if (Config.Instance.ServerToClient.ExcludePackets.Contains((int) packet.Type))
             {
                 return;
@@ -113,9 +123,19 @@ public class CaiPacketDebug : LazyPlugin
         if (this._clientToServerDebug)
         {
             instance.ResetReader();
-
-            var packet = this._serverPacketSerializer.Deserialize(instance.reader);
-
+            Packet packet = null;
+            try
+            {
+                packet = this._serverPacketSerializer.Deserialize(instance.reader);
+            }
+            
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write($"[C({instance.whoAmI})->S] 解析数据包时出错:" + ex);
+                Console.ResetColor();
+                return result;
+            }
             if (Config.Instance.ClientToServer.ExcludePackets.Contains((int) packet.Type))
             {
                 return result;
