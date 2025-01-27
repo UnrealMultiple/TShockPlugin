@@ -2,11 +2,132 @@
 using System.IO.Compression;
 using System.Text;
 using Terraria;
+using Terraria.GameContent.Events;
+using Terraria.ID;
+using Terraria.IO;
 
 namespace CaiBot;
 
 internal static class Utils
 {
+
+    
+    internal static string GetWorldIconName()
+    {
+        var data = Main.ActiveWorldFileData;
+        
+        static string GetSeedIcon(string seed)
+        {
+            return "Icon" + (Main.ActiveWorldFileData.IsHardMode ? "Hallow" : "") + (Main.ActiveWorldFileData.HasCorruption ? "Corruption" : "Crimson") + seed;
+        }
+        
+        if (data.ZenithWorld)
+        {
+            return "Icon" + (data.IsHardMode ? "Hallow" : "") + "Everything";
+        }
+        if (data.DrunkWorld)
+        {
+            return "Icon" + (data.IsHardMode ? "Hallow" : "") + "CorruptionCrimson";
+        }
+        if (data.ForTheWorthy)
+        {
+            return GetSeedIcon("FTW");
+        }
+        if (data.NotTheBees)
+        {
+            return GetSeedIcon("NotTheBees");
+        }
+        if (data.Anniversary)
+        {
+            return GetSeedIcon("Anniversary");
+        }
+        if (data.DontStarve)
+        {
+            return GetSeedIcon("DontStarve");
+        }
+        if (data.RemixWorld)
+        {
+            return GetSeedIcon("Remix");
+        }
+        if (data.NoTrapsWorld)
+        {
+            return GetSeedIcon("Traps");
+        }
+        return "Icon" + (data.IsHardMode ? "Hallow" : "") + (data.HasCorruption ? "Corruption" : "Crimson");
+    }
+    
+    internal static Dictionary<string,bool> GetProcessList()
+    {
+        
+        // ReSharper disable once UseObjectOrCollectionInitializer
+        Dictionary<string, bool> processList = new();
+        processList.Add("King Slime", NPC.downedSlimeKing);
+        processList.Add("Eye of Cthulhu", NPC.downedBoss1);
+        processList.Add("Eater of Worlds or Brain of Cthulhu", NPC.downedBoss2);
+        processList.Add("Eater of Worlds", Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPCID.EaterofWorldsHead])>0);
+        processList.Add("Brain of Cthulhu", Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPCID.BrainofCthulhu])>0);
+        processList.Add("Queen Bee", NPC.downedQueenBee);
+        processList.Add("Deerclops", NPC.downedDeerclops);
+        processList.Add("Skeletron", NPC.downedBoss3);
+        processList.Add("Wall of Flesh", Main.hardMode);
+        processList.Add("Queen Slime", NPC.downedQueenSlime);
+        processList.Add("The Destroyer", NPC.downedMechBoss1);
+        processList.Add("The Twins", NPC.downedMechBoss2);
+        processList.Add("Skeletron Prime", NPC.downedMechBoss3);
+        processList.Add("Plantera", NPC.downedPlantBoss);
+        processList.Add("Golem", NPC.downedGolemBoss);
+        processList.Add("Duke Fishron", NPC.downedFishron);
+        processList.Add("Empress of Light", NPC.downedEmpressOfLight);
+        processList.Add("Lunatic Cultist", NPC.downedAncientCultist);
+        
+        processList.Add("Tower Solar", NPC.downedTowerSolar);
+        processList.Add("Tower Nebula", NPC.downedTowerNebula);
+        processList.Add("Tower Vortex", NPC.downedTowerVortex);
+        processList.Add("Tower Stardust", NPC.downedTowerStardust);
+        
+        processList.Add("Moon Lord", NPC.downedMoonlord);
+        processList.Add("Pillars", NPC.downedTowerSolar && NPC.downedTowerNebula && NPC.downedTowerVortex &&  NPC.downedTowerStardust);
+        processList.Add("Goblins", NPC.downedGoblins);
+        processList.Add("Pirates", NPC.downedPirates);
+        processList.Add("Frost", NPC.downedFrost);
+        processList.Add("Frost Moon", NPC.downedChristmasTree && NPC.downedChristmasSantank && NPC.downedChristmasIceQueen);
+        processList.Add("Pumpkin Moon", NPC.downedHalloweenTree && NPC.downedHalloweenKing);
+        processList.Add("Martians", NPC.downedMartians);
+        processList.Add("DD2InvasionT1", DD2Event.DownedInvasionT1);
+        processList.Add("DD2InvasionT2", DD2Event.DownedInvasionT2);
+        processList.Add("DD2InvasionT3", DD2Event.DownedInvasionT3);
+        return processList;
+    }
+    
+    internal static Dictionary<string,int> GetKillCountList()
+    {
+        int GetKillCount(int id)
+        {
+           return Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[id]);
+        }
+        // ReSharper disable once UseObjectOrCollectionInitializer
+        Dictionary<string, int> killCountList = new();
+        killCountList.Add("King Slime", GetKillCount(NPCID.KingSlime));
+        killCountList.Add("Eye of Cthulhu", GetKillCount(NPCID.EyeofCthulhu));
+        killCountList.Add("Eater of Worlds", GetKillCount(NPCID.EaterofWorldsHead));
+        killCountList.Add("Brain of Cthulhu", GetKillCount(NPCID.BrainofCthulhu));
+        killCountList.Add("Queen Bee", GetKillCount(NPCID.QueenBee));
+        killCountList.Add("Deerclops", GetKillCount(NPCID.Deerclops));
+        killCountList.Add("Skeletron", GetKillCount(NPCID.SkeletronHead));
+        killCountList.Add("Wall of Flesh", GetKillCount(NPCID.WallofFlesh));
+        killCountList.Add("Queen Slime", GetKillCount(NPCID.QueenSlimeBoss));
+        killCountList.Add("The Destroyer", GetKillCount(NPCID.TheDestroyer));
+        killCountList.Add("Skeletron Prime", GetKillCount(NPCID.SkeletronPrime));
+        killCountList.Add("Plantera", GetKillCount(NPCID.Plantera));
+        killCountList.Add("Golem", GetKillCount(NPCID.Golem));
+        killCountList.Add("Duke Fishron", GetKillCount(NPCID.DukeFishron));
+        killCountList.Add("Empress of Light", GetKillCount(NPCID.HallowBoss));
+        killCountList.Add("Lunatic Cultist", GetKillCount(NPCID.CultistBoss));
+        killCountList.Add("Moon Lord", GetKillCount(NPCID.MoonLordCore));
+        return killCountList;
+    }
+    
+    
     internal static List<string> GetOnlineProcessList()
     {
         List<string> onlineProcessList = new ();
