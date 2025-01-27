@@ -21,11 +21,13 @@ public class CaiPacketDebug : LazyPlugin
 
     public CaiPacketDebug(Main game) : base(game)
     {
+        this.Order = int.MinValue;
     }
 
     public override string Author => "Cai";
     public override string Description => GetString("用于调试数据包的插件捏~");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(2024, 12, 18, 2);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; 
+    public override Version Version => new Version(2025, 1, 25, 1);
 
 
     public override void Initialize()
@@ -98,7 +100,7 @@ public class CaiPacketDebug : LazyPlugin
                 return;
             }
 
-            PrintPacket("[S->C]", ConsoleColor.Blue, packet);
+            PrintPacket($"[S->C({remoteclient})]", ConsoleColor.Blue, packet);
         }
     }
 
@@ -125,7 +127,7 @@ public class CaiPacketDebug : LazyPlugin
                 return result;
             }
 
-            PrintPacket("[C->S]", ConsoleColor.Red, packet);
+            PrintPacket($"[C{instance.whoAmI}->S]", ConsoleColor.Red, packet);
         }
 
         return result;
