@@ -1,11 +1,15 @@
 ﻿using LazyAPI;
+using On.Terraria.Chat;
+using On.Terraria.Net;
 using System.Reflection;
 using Terraria;
 using Terraria.Net.Sockets;
 using TerrariaApi.Server;
 using TShockAPI;
 using TrProtocol;
+using ChatMessage = Terraria.Chat.ChatMessage;
 using Hooks = On.OTAPI.Hooks;
+using NetPacket = Terraria.Net.NetPacket;
 
 namespace CaiPacketDebug;
 
@@ -35,14 +39,16 @@ public class CaiPacketDebug : LazyPlugin
         Commands.ChatCommands.Add(new Command("CaiPacketDebug.Use", this.CpdCmd, "cpd"));
         Hooks.MessageBuffer.InvokeGetData += this.MessageBufferOnInvokeGetData;
         Hooks.NetMessage.InvokeSendBytes += this.NetMessageOnInvokeSendBytes;
+        NetManager.SendData += this.NetManagerOnSendData;
     }
-
+    
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
             Hooks.MessageBuffer.InvokeGetData -= this.MessageBufferOnInvokeGetData;
             Hooks.NetMessage.InvokeSendBytes -= this.NetMessageOnInvokeSendBytes;
+            NetManager.SendData -= this.NetManagerOnSendData;
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.CpdCmd);
         }
 
@@ -77,7 +83,41 @@ public class CaiPacketDebug : LazyPlugin
                 return;
         }
     }
+    private void NetManagerOnSendData(NetManager.orig_SendData orig, Terraria.Net.NetManager self, ISocket socket, NetPacket netPacket)
+    {   
+        
+        orig(self, socket, netPacket);
+        var index = Netplay.Clients.First(x=>x.Socket == socket).Id;
+        if (this._serverToClientDebug)
+        {
+            using MemoryStream memoryStream = new(netPacket.Buffer.Data);
+            using BinaryReader reader = new(memoryStream);
+            Packet packet;
+            try
+            {
+                packet = this._clientPacketSerializer.Deserialize(reader);
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write($"[S->C({index})] 解析数据包时出错:" + ex);
+                Console.ResetColor();
+                return;
+            }
+            if (Config.Instance.ServerToClient.ExcludePackets.Contains((int) packet.Type))
+            {
+                return;
+            }
 
+            if (Config.Instance.ServerToClient.WhiteListMode &&
+                !Config.Instance.ServerToClient.WhiteListPackets.Contains((int) packet.Type))
+            {
+                return;
+            }
+
+            PrintPacket($"[S->C({index})]", ConsoleColor.Blue, packet);
+        }
+    }
     private void NetMessageOnInvokeSendBytes(Hooks.NetMessage.orig_InvokeSendBytes orig, ISocket socket, byte[] data,
         int offset, int size, SocketSendCallback callback, object state, int remoteclient)
     {
@@ -87,7 +127,7 @@ public class CaiPacketDebug : LazyPlugin
         {
             using MemoryStream memoryStream = new(data);
             using BinaryReader reader = new(memoryStream);
-            Packet packet = null;
+            Packet packet;
             try
             {
                 packet = this._clientPacketSerializer.Deserialize(reader);
@@ -123,7 +163,7 @@ public class CaiPacketDebug : LazyPlugin
         if (this._clientToServerDebug)
         {
             instance.ResetReader();
-            Packet packet = null;
+            Packet packet;
             try
             {
                 packet = this._serverPacketSerializer.Deserialize(instance.reader);
@@ -147,7 +187,7 @@ public class CaiPacketDebug : LazyPlugin
                 return result;
             }
 
-            PrintPacket($"[C{instance.whoAmI}->S]", ConsoleColor.Red, packet);
+            PrintPacket($"[C({instance.whoAmI})->S]", ConsoleColor.Red, packet);
         }
 
         return result;
