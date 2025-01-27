@@ -451,7 +451,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2025.1.25.1",
+    "Version": "2025.1.27.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot机器人的适配插件",
@@ -2521,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.126",
+    "Version": "1.9.2.127",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2543,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.126",
+    "Version": "1.0.0.127",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
