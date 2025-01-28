@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -46,16 +47,12 @@ internal static class Common
     {
         StringBuilder stringBuilder = new();
         var envInfo = plr.GetBiomesInfo();
-        var envStr = envInfo.Exists((string x) => x == GetString("空岛")) ?
-            ("[c/00BFFF:" + string.Join(',', envInfo) + "]") :
-            (envInfo.Exists((string x) => x == GetString("地下")) ?
-            ("[c/FF8C00:" + string.Join(',', envInfo) + "]") :
-            (envInfo.Exists((string x) => x == GetString("洞穴")) ?
-            ("[c/A0522D:" + string.Join(',', envInfo) + "]") :
-            ((!envInfo.Exists((string x) => x == GetString("地狱"))) ?
-            ("[c/008000:" + string.Join(',', envInfo) + "]") :
-            ("[c/FF0000:" + string.Join(',', envInfo) + "]"))));
-        stringBuilder.Append(envStr);
+        var colorHexCode = envInfo.Contains(GetString("空岛")) ? "00BFFF"
+            : envInfo.Contains(GetString("地下")) ? "FF8C00"
+            : envInfo.Contains(GetString("洞穴")) ? "A0522D"
+            : envInfo.Contains(GetString("地狱")) ? "FF0000"
+            : "008000";
+        stringBuilder.Append($"[c/{colorHexCode}:{string.Join(',', envInfo)}]");
         return stringBuilder.ToString();
     }
     public static List<string> GetBiomesInfo(this TSPlayer plr)
@@ -189,17 +186,19 @@ internal static class Common
         return itemID;
     }
 
+    private static Regex fishMissionPlaceRegex = new (@"(?<=（抓捕位置：|\(Capturado no |\(Поймано в |\(można złapać w |\(Se trouve |\(Se encuentra en |\(Caught ).*?(?=）|\))");
+    private static Regex fishMissionPlaceExceptionalCasesRegex = new (@"(?<=（|\().*?(?=）|\))");
+    
     public static string GetAnglerQuestFishingBiome()
     {
-        var itemID = Main.anglerQuestItemNetIDs[Main.anglerQuest];
-        var questText3 = Language.GetTextValue("AnglerQuestText.Quest_" + ItemID.Search.GetName(itemID));
-        var splits = questText3.Split("\n\n".ToCharArray());
-        if (splits.Length > 1)
+        var itemId = Main.anglerQuestItemNetIDs[Main.anglerQuest];
+        var questText = Language.GetTextValue($"AnglerQuestText.Quest_{ItemID.Search.GetName(itemId)}");
+        return Language.ActiveCulture.Name switch
         {
-            questText3 = splits[splits.Count() - 1];
-            questText3 = questText3.Replace(GetString("（抓捕位置："), "");
-            questText3 = questText3.Replace(GetString("）"), "");
-        }
-        return questText3;
+            "en-US" or "fr-FR" or "es-ES" or "ru-RU" or "zh-Hans" or "pt-BR" or "pl-PL" =>
+                fishMissionPlaceRegex.Match(questText).ToString(),
+            _ =>
+                fishMissionPlaceExceptionalCasesRegex.Match(questText).ToString()
+        };
     }
 }
