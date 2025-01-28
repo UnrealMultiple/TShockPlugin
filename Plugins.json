@@ -2112,18 +2112,18 @@
   },
   {
     "Name": "RolesModifying",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "少司命",
     "Description": {
-      "en-US": "RolesModifying",
-      "de-DE": "RolesModifying",
-      "it-IT": "RolesModifying",
-      "fr-FR": "RolesModifying",
-      "es-ES": "RolesModifying",
-      "ru-RU": "RolesModifying",
-      "zh-CN": "RolesModifying",
-      "pt-BR": "RolesModifying",
-      "pl-PL": "RolesModifying"
+      "en-US": "复制然后修改其他玩家的背包",
+      "de-DE": "复制然后修改其他玩家的背包",
+      "it-IT": "复制然后修改其他玩家的背包",
+      "fr-FR": "复制然后修改其他玩家的背包",
+      "es-ES": "复制然后修改其他玩家的背包",
+      "ru-RU": "复制然后修改其他玩家的背包",
+      "zh-CN": "复制然后修改其他玩家的背包",
+      "pt-BR": "复制然后修改其他玩家的背包",
+      "pl-PL": "复制然后修改其他玩家的背包"
     },
     "AssemblyName": "RolesModifying",
     "Path": "RolesModifying.dll",
@@ -2521,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.127",
+    "Version": "1.9.2.128",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2543,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.127",
+    "Version": "1.0.0.128",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
