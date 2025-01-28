@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:37+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-01-27 14:58:05+0000\n"
+"PO-Revision-Date: 2025-01-28 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,21 +17,21 @@ msgstr ""
 "X-Crowdin-File-ID: 1124\n"
 "Language: en_US\n"
 
-#: ../../Plugin.cs:56
-#: ../../Plugin.cs:57
-#: ../../Plugin.cs:68
-#: ../../Plugin.cs:74
+#: ../../Plugin.cs:64
+#: ../../Plugin.cs:65
+#: ../../Plugin.cs:76
+#: ../../Plugin.cs:82
 msgid "[c/00FF00:已启用]"
 msgstr "[c/00FF00:Enabled]"
 
-#: ../../Plugin.cs:56
-#: ../../Plugin.cs:57
-#: ../../Plugin.cs:68
-#: ../../Plugin.cs:74
+#: ../../Plugin.cs:64
+#: ../../Plugin.cs:65
+#: ../../Plugin.cs:76
+#: ../../Plugin.cs:82
 msgid "[c/FF0000:已禁用]"
 msgstr "[c/FF0000:Disabled]"
 
-#: ../../Plugin.cs:27
+#: ../../Plugin.cs:32
 msgid "用于调试数据包的插件捏~"
 msgstr "Plugin for debugging data packets~"
 
