@@ -59,7 +59,7 @@ public class InfoCommand : HCommand
         // 0 actions escape
         if (actions.Count == 0)
         {
-            this.sender.SendInfoMessage("{0}在指定区域中未执行任何图格操作.", this.account);
+            this.sender.SendInfoMessage(GetString("{0}在指定区域中未执行任何图格操作."), this.account);
             return;
         }
 
@@ -198,81 +198,81 @@ public class InfoCommand : HCommand
 
         if (TileModified.Count > 0)
         {
-            InfoPrep.Append(" 修改 " + TileModified.Count + " 物块" + ",");
+            InfoPrep.Append(GetString($" 修改 {TileModified.Count} 物块,"));
         }
 
         if (TileDestroyed.Count > 0)
         {
-            InfoPrep.Append(" 破环 " + TileDestroyed.Count + " 物块" + ",");
+            InfoPrep.Append(GetString($" 破环 {TileDestroyed.Count} 物块,"));
         }
 
         if (TilePlaced.Count > 0)
         {
-            InfoPrep.Append(" 放置 " + TilePlaced.Count + " 物块" + ",");
+            InfoPrep.Append(GetString($" 放置 {TilePlaced.Count} 物块,"));
         }
 
         if (WallModified.Count > 0)
         {
-            InfoPrep.Append(" 修改 " + WallModified.Count + " 墙" + ",");
+            InfoPrep.Append(GetString($" 修改 {WallModified.Count} 墙,"));
         }
 
         if (WallDestroyed.Count > 0)
         {
-            InfoPrep.Append(" 破坏 " + WallDestroyed.Count + " 墙" + ",");
+            InfoPrep.Append(GetString($" 破坏 {WallDestroyed.Count} 墙,"));
         }
 
         if (WallPlaced.Count > 0)
         {
-            InfoPrep.Append(" 放置 " + WallPlaced.Count + " 墙" + ",");
+            InfoPrep.Append(GetString($" 放置 {WallPlaced.Count} 墙,"));
         }
 
         if (WireModified.Count > 0)
         {
-            InfoPrep.Append(" 修改 " + WireModified.Count + " 电线" + ",");
+            InfoPrep.Append(GetString($" 修改 {WireModified.Count} 电线,"));
         }
 
         if (WireDestroyed.Count > 0)
         {
-            InfoPrep.Append(" 破坏 " + WireDestroyed.Count + " 电线" + ",");
+            InfoPrep.Append(GetString($" 破坏 {WireDestroyed.Count} 电线,"));
         }
 
         if (WirePlaced.Count > 0)
         {
-            InfoPrep.Append(" 放置 " + WirePlaced.Count + " 电线" + ",");
+            InfoPrep.Append(GetString($" 放置 {WirePlaced.Count} 电线,"));
         }
 
         if (ActuatorModified.Count > 0)
         {
-            InfoPrep.Append(" 修改 " + ActuatorModified.Count + " 致动器" + ",");
+            InfoPrep.Append(GetString($" 修改 {ActuatorModified.Count} 致动器,"));
         }
 
         if (ActuatorDestroyed.Count > 0)
         {
-            InfoPrep.Append(" 破坏 " + ActuatorDestroyed.Count + " 致动器" + ",");
+            InfoPrep.Append(GetString($" 破坏 {ActuatorDestroyed.Count} 致动器,"));
         }
 
         if (ActuatorPlaced.Count > 0)
         {
-            InfoPrep.Append(" 放置 " + ActuatorPlaced.Count + " 致动器" + ",");
+            InfoPrep.Append(GetString($" 放置 {ActuatorPlaced.Count} 致动器,"));
         }
 
         if (Painted.Count > 0)
         {
-            InfoPrep.Append(" 涂漆 " + Painted.Count + " 物块/墙" + ",");
+            InfoPrep.Append(GetString($" 涂漆 {Painted.Count} 物块/墙,"));
         }
 
         if (SignModified.Count > 0)
         {
-            InfoPrep.Append(" 修改 " + SignModified.Count + " 告示牌" + ",");
+            InfoPrep.Append(GetString($" 修改 {SignModified.Count} 告示牌,"));
         }
 
         if (Other.Count > 0)
         {
-            InfoPrep.Append(" " + Other.Count + " 其他修改" + ",");
+            InfoPrep.Append(GetString($" {Other.Count} 其他修改,"));
         }
 
         InfoPrep.Length--;
-        InfoPrep.Append(".");
+        InfoPrep.Append(GetString("."));
         this.sender.SendInfoMessage(InfoPrep.ToString());
     }
 }
