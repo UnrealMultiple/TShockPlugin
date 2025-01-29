@@ -279,7 +279,7 @@ public class RegionView : TerrariaPlugin
             // 如果区域很大，显示区域的大小。
             if (tRegion.Area.Width >= Region.MaximumSize || tRegion.Area.Height >= Region.MaximumSize)
             {
-                int num; int num2;
+                int num;
                 if (tRegion.Area.Bottom < args.Player.TileY)
                 {
                     num = args.Player.TileY - tRegion.Area.Bottom;
