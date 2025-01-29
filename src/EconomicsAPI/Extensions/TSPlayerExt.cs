@@ -27,10 +27,14 @@ public static class TSPlayerExt
 
     public static void ExecCommand(this TSPlayer player, IEnumerable<string> cmds)
     {
-        foreach (var cmd in cmds)
+        try
         {
-            player.ExecCommand(cmd);
+            foreach (var cmd in cmds)
+            {
+                player.ExecCommand(cmd);
+            }
         }
+        catch { }
     }
 
 
