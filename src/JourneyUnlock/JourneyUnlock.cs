@@ -15,7 +15,7 @@ public class JourneyUnlock : TerrariaPlugin
     public override string Description => GetString("允许您为旅途中的角色解锁所有或特定物品");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 1, 4);
+    public override Version Version => new Version(1, 0, 1, 5);
 
     public JourneyUnlock(Main game) : base(game)
     {
@@ -52,12 +52,12 @@ public class JourneyUnlock : TerrariaPlugin
             }
             if (!isSelf)
             {
-                TSPlayer.FindByNameOrID(tplayer.name)[0].SendInfoMessage("[旅程解锁] {0} 已为您解锁所有物品！", sender.Name);
-                sender.SendSuccessMessage("[旅程解锁] 成功为 {0} 解锁所有物品！", tplayer.name);
+                TSPlayer.FindByNameOrID(tplayer.name)[0].SendInfoMessage(GetString("[旅程解锁] {0} 已为您解锁所有物品！"), sender.Name);
+                sender.SendSuccessMessage(GetString("[旅程解锁] 成功为 {0} 解锁所有物品！"), tplayer.name);
             }
             else
             {
-                sender.SendSuccessMessage("[旅程解锁] 成功解锁所有物品！");
+                sender.SendSuccessMessage(GetString("[旅程解锁] 成功解锁所有物品！"));
             }
 
             return;
@@ -72,19 +72,19 @@ public class JourneyUnlock : TerrariaPlugin
 
             if (!isSelf)
             {
-                TSPlayer.FindByNameOrID(tplayer.name)[0].SendInfoMessage("[旅程解锁] {0} 为您解锁了物品 [i:{1}]！", sender.Name, itemid);
-                sender.SendSuccessMessage("[旅程解锁] 成功为 {1} 解锁了物品 [i:{0}]！", itemid, tplayer.name);
+                TSPlayer.FindByNameOrID(tplayer.name)[0].SendInfoMessage(GetString("[旅程解锁] {0} 为您解锁了物品 [i:{1}]！"), sender.Name, itemid);
+                sender.SendSuccessMessage(GetString("[旅程解锁] 成功为 {1} 解锁了物品 [i:{0}]！"), itemid, tplayer.name);
             }
             else
             {
-                sender.SendSuccessMessage("[旅程解锁] 成功解锁物品 [i:{0}]！", itemid);
+                sender.SendSuccessMessage(GetString("[旅程解锁] 成功解锁物品 [i:{0}]！"), itemid);
             }
 
             return;
         }
         else if (TShock.Utils.GetItemById(itemid) == null || itemid < 1 || itemid > ItemID.Count)
         {
-            sender.SendErrorMessage("[旅程解锁] 物品ID无效！");
+            sender.SendErrorMessage(GetString("[旅程解锁] 物品ID无效！"));
             return;
         }
 
@@ -93,13 +93,13 @@ public class JourneyUnlock : TerrariaPlugin
 
         if (TShock.Utils.GetItemByName(itemname).Count == 0)
         {
-            sender.SendErrorMessage("[旅程解锁] 未找到对应物品！");
+            sender.SendErrorMessage(GetString("[旅程解锁] 未找到对应物品！"));
             return;
         }
 
         if (TShock.Utils.GetItemByName(itemname).Count > 1)
         {
-            sender.SendErrorMessage("[旅程解锁] 找到了多个同名物品！");
+            sender.SendErrorMessage(GetString("[旅程解锁] 找到了多个同名物品！"));
             return;
         }
 
@@ -111,12 +111,12 @@ public class JourneyUnlock : TerrariaPlugin
 
         if (!isSelf)
         {
-            TSPlayer.FindByNameOrID(tplayer.name)[0].SendInfoMessage("[旅程解锁] {0} 为您解锁了物品 [i:{1}]！", sender.Name, itemid);
-            sender.SendSuccessMessage("[旅程解锁] 成功为 {1} 解锁了物品 [i:{0}]！", itemid, tplayer.name);
+            TSPlayer.FindByNameOrID(tplayer.name)[0].SendInfoMessage(GetString("[旅程解锁] {0} 为您解锁了物品 [i:{1}]！"), sender.Name, itemid);
+            sender.SendSuccessMessage(GetString("[旅程解锁] 成功为 {1} 解锁了物品 [i:{0}]！"), itemid, tplayer.name);
         }
         else
         {
-            sender.SendSuccessMessage("[旅程解锁] 成功解锁物品 [i:{0}]！", itemid);
+            sender.SendSuccessMessage(GetString("[旅程解锁] 成功解锁物品 [i:{0}]！"), itemid);
         }
     }
 
@@ -125,8 +125,8 @@ public class JourneyUnlock : TerrariaPlugin
         // 使用不当
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage("[旅程解锁] /i解锁 {物品名/ID} - 解锁指定物品。");
-            args.Player.SendInfoMessage("[旅程解锁] /i解锁 * - 解锁所有物品。");
+            args.Player.SendInfoMessage(GetString("[旅程解锁] /i解锁 {物品名/ID} - 解锁指定物品。"));
+            args.Player.SendInfoMessage(GetString("[旅程解锁] /i解锁 * - 解锁所有物品。"));
             return;
         }
 
@@ -138,19 +138,19 @@ public class JourneyUnlock : TerrariaPlugin
         // 使用不当
         if (args.Parameters.Count != 2)
         {
-            args.Player.SendInfoMessage("[旅程解锁] /g解锁 {玩家名} {物品名/ID} - 为指定玩家解锁物品。");
-            args.Player.SendInfoMessage("[旅程解锁] /g解锁 {玩家名} * - 为指定玩家解锁所有物品。");
+            args.Player.SendInfoMessage(GetString("[旅程解锁] /g解锁 {玩家名} {物品名/ID} - 为指定玩家解锁物品。"));
+            args.Player.SendInfoMessage(GetString("[旅程解锁] /g解锁 {玩家名} * - 为指定玩家解锁所有物品。"));
             return;
         }
 
         if (TSPlayer.FindByNameOrID(args.Parameters[0]).Count == 0)
         {
-            args.Player.SendErrorMessage("[旅程解锁] 未找到玩家！");
+            args.Player.SendErrorMessage(GetString("[旅程解锁] 未找到玩家！"));
             return;
         }
         if (TSPlayer.FindByNameOrID(args.Parameters[0]).Count > 1)
         {
-            args.Player.SendErrorMessage("[旅程解锁] 找到多个同名玩家！");
+            args.Player.SendErrorMessage(GetString("[旅程解锁] 找到多个同名玩家！"));
             return;
         }
 
