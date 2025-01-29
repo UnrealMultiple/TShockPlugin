@@ -226,7 +226,7 @@ internal static class CaiBotApi
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "worldfile":
-                result = new RestObject { { "type", "worldfileV2" }, { "base64", Utils.CompressBase64(Utils.FileToBase64String(Main.worldPathName)) }, { "name", Main.worldPathName }, { "group", (long) jsonObject["group"]! } };
+                result = new RestObject { { "type", "worldfileV2" }, { "base64", Utils.CompressBase64(Utils.FileToBase64String(Main.worldPathName)) }, { "name", Path.GetFileName(Main.worldPathName)  }, { "group", (long) jsonObject["group"]! } };
                 await SendDateAsync(JsonConvert.SerializeObject(result));
                 break;
             case "pluginlist":
