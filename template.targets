@@ -27,6 +27,16 @@
         </EmbeddedResource>
     </ItemGroup>
 
+	<Target Name="CopySpecificNuGetDlls" AfterTargets="Build" Condition="'$(CopyAssemblyToOutDir)' != ''">
+		<ItemGroup>
+			<AllAssemblies Include="@(ReferencePath)" />
+			<SpecificNuGetDlls Include="@(AllAssemblies)"
+								 Condition="$([System.String]::new(';$(CopyAssemblyToOutDir);').Contains(';%(Filename)%(Extension);'))" />
+		</ItemGroup>
+		<Message Text="Specific NuGet DLLs to copy: @(SpecificNuGetDlls)" Importance="high" />
+		<Copy SourceFiles="@(SpecificNuGetDlls)" DestinationFolder="$(OutputPath)" />
+	</Target>
+
     <Target Name="githash" BeforeTargets="PreBuildEvent">
         <Exec Command="git log -1 --pretty=&quot;format:%25H&quot;" StandardOutputImportance="low" StandardErrorImportance="low" ContinueOnError="true" ConsoleToMSBuild="true">
             <Output TaskParameter="ConsoleOutput" PropertyName="CommitHashValue"/>
