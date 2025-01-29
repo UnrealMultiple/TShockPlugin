@@ -260,7 +260,7 @@ public static class Config
         catch (Exception ex)
         {
             TShock.Log.Error(ex.ToString());
-            TSPlayer.Server.SendErrorMessage("[DataSync]配置文件读取错误！！！");
+            TSPlayer.Server.SendErrorMessage(GetString("[DataSync]配置文件读取错误！！！"));
         }
     }
 
@@ -269,7 +269,7 @@ public static class Config
         public override ProgressType ReadJson(JsonReader reader, Type objectType, ProgressType existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             var value = $"{reader.Value}";
-            return GetProgressType(value) is ProgressType type ? type : throw new JsonSerializationException($"无法识别的进度类型：{value}");
+            return GetProgressType(value) is ProgressType type ? type : throw new JsonSerializationException(GetString($"无法识别的进度类型：{value}"));
         }
 
         public override void WriteJson(JsonWriter writer, ProgressType value, JsonSerializer serializer)
