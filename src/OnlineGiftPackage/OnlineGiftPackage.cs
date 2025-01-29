@@ -5,7 +5,6 @@ using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
-using 在线礼包;
 
 // 插件命名空间
 namespace OnlineGiftPackage;
@@ -94,12 +93,12 @@ public class OnlineGiftPackage : TerrariaPlugin
     {
         this.LoadConfig();
 
-        // 调用UpdateTotalProbabilityOnReload方法来更新总概率
+        // 调用UpdateTotalProbabilityOnRelo方法来更新总概率
         config.UpdateTotalProbabilityOnReload();
 
-        Console.WriteLine(GetString($"已重载 [在线礼包] 配置文件,下次发放将在{config.DistributionInterval}秒后"));
+        TShock.Log.ConsoleInfo(GetString($"已重载 [在线礼包] 配置文件,下次发放将在{config.DistributionInterval}秒后"));
         var totalProbability = config.CalculateTotalProbability();
-        Console.WriteLine(GetString($"所有礼包的总概率为：{totalProbability}"));
+        TShock.Log.ConsoleInfo(GetString($"所有礼包的总概率为：{totalProbability}"));
     }
 
     private void Timer_Elapsed()
@@ -134,7 +133,7 @@ public class OnlineGiftPackage : TerrariaPlugin
                 var gift = this.RandGift();
                 if (gift == null)
                 {
-                    Console.WriteLine(GetString($"无法获取有效礼包，玩家 {player.Name} 的在线时长：{this.players[player.Name]} 秒"));
+                    TShock.Log.ConsoleInfo(GetString($"无法获取有效礼包，玩家 {player.Name} 的在线时长：{this.players[player.Name]} 秒"));
                     continue;
                 }
 
@@ -161,9 +160,9 @@ public class OnlineGiftPackage : TerrariaPlugin
                 // 控制台输出
                 if (config.OutputConsole)
                 {
-                    Console.WriteLine(GetString($"执行在线礼包发放任务，下次发放将在{config.DistributionInterval}秒后"));
+                    TShock.Log.ConsoleInfo(GetString($"执行在线礼包发放任务，下次发放将在{config.DistributionInterval}秒后"));
                     var totalProbability = config.CalculateTotalProbability();
-                    Console.WriteLine(GetString($"所有礼包的总概率为：{totalProbability}"));
+                    TShock.Log.ConsoleInfo(GetString($"所有礼包的总概率为：{totalProbability}"));
                 }
 
                 // 发放成功后重置玩家在线时长
