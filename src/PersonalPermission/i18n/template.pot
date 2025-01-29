@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PersonalPermission\n"
-"POT-Creation-Date: 2025-01-08 13:16:12+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:12+0000\n"
+"POT-Creation-Date: 2025-01-29 16:03:02+0000\n"
+"PO-Revision-Date: 2025-01-29 16:03:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,120 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../PPMain.cs:14
+#: ../../DB.cs:57
+#: ../../DB.cs:89
+#, csharp-format
+msgid ""
+"[PersonalPermission] 读取数据库时发生错误.\n"
+"{0}"
+msgstr ""
+
+#: ../../PPMain.cs:173
+msgid ""
+"/pp add [C/66E5B5:玩家名] [C/66E5B5:权限]\n"
+msgstr ""
+
+#: ../../PPMain.cs:174
+msgid ""
+"/pp del [C/66E5B5:玩家名] [C/66E5B5:权限]\n"
+msgstr ""
+
+#: ../../PPMain.cs:175
+msgid ""
+"/pp list [C/66E5B5:玩家名]\n"
+msgstr ""
+
+#: ../../PPMain.cs:176
+msgid ""
+"/pp search [C/66E5B5:权限名]\n"
+msgstr ""
+
+#: ../../DB.cs:100
+msgid "保存玩家权限失败."
+msgstr ""
+
+#: ../../PPMain.cs:15
 msgid "允许为玩家单独设置权限."
+msgstr ""
+
+#: ../../PPMain.cs:172
+msgid ""
+"可用命令:\n"
+msgstr ""
+
+#: ../../PPMain.cs:187
+#, csharp-format
+msgid "已为玩家 {0} 添加权限 {1}."
+msgstr ""
+
+#: ../../PPMain.cs:208
+#, csharp-format
+msgid "已为玩家 {0} 移除权限 {1}."
+msgstr ""
+
+#: ../../PPMain.cs:43
+msgid "已重载玩家个人权限."
+msgstr ""
+
+#: ../../PPMain.cs:152
+#, csharp-format
+msgid ""
+"拥有权限 {0} 的所有玩家: ({1} 位)\n"
+"{2}"
+msgstr ""
+
+#: ../../PPMain.cs:99
+msgid "无效的命令. /pp add [C/66E5B5:玩家名] [C/66E5B5:权限]"
+msgstr ""
+
+#: ../../PPMain.cs:121
+msgid "无效的命令. /pp del [C/66E5B5:玩家名] [C/66E5B5:权限]"
+msgstr ""
+
+#: ../../PPMain.cs:144
+msgid "无效的命令. /pp list [C/66E5B5:玩家名]"
+msgstr ""
+
+#: ../../PPMain.cs:156
+msgid "无效的命令. /pp search [C/66E5B5:权限名]"
+msgstr ""
+
+#: ../../PPMain.cs:90
+#: ../../PPMain.cs:112
+#: ../../PPMain.cs:134
+#, csharp-format
+msgid "未找到名称中包含 {0} 的玩家."
+msgstr ""
+
+#: ../../PPMain.cs:191
+msgid "添加权限失败."
+msgstr ""
+
+#: ../../DB.cs:36
+#, csharp-format
+msgid ""
+"添加玩家信息失败.\n"
+"{0}"
+msgstr ""
+
+#: ../../PPMain.cs:196
+#, csharp-format
+msgid "玩家 {0} 已存在权限 {1}."
+msgstr ""
+
+#: ../../PPMain.cs:217
+#, csharp-format
+msgid "玩家 {0} 未存在权限 {1}."
+msgstr ""
+
+#: ../../PPMain.cs:139
+#, csharp-format
+msgid ""
+"玩家 {0} 的所有权限: ({1} 条)\n"
+"{2}"
+msgstr ""
+
+#: ../../PPMain.cs:212
+msgid "移除权限失败."
 msgstr ""
 

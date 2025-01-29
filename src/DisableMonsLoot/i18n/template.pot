@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DisableMonsLoot\n"
-"POT-Creation-Date: 2025-01-08 13:15:46+0000\n"
-"PO-Revision-Date: 2025-01-08 13:15:47+0000\n"
+"POT-Creation-Date: 2025-01-29 16:02:37+0000\n"
+"PO-Revision-Date: 2025-01-29 16:02:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,11 +10,91 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:54
+#: ../../Plugin.cs:55
 msgid "[禁怪物掉落]重新加载配置完毕。"
 msgstr ""
 
-#: ../../Plugin.cs:17
+#: ../../Commands.cs:20
+msgid ""
+"【禁怪掉落指令菜单】\n"
+msgstr ""
+
+#: ../../Commands.cs:56
+msgid ""
+"【禁怪物掉落】\n"
+"'清理列表'中所有怪物的清理功能已开启"
+msgstr ""
+
+#: ../../Commands.cs:82
+#, csharp-format
+msgid ""
+"【禁怪物掉落】\n"
+"已成功将清理范围设置为: {0} 格!"
+msgstr ""
+
+#: ../../Commands.cs:36
+msgid "【禁怪物掉落】已启用"
+msgstr ""
+
+#: ../../Commands.cs:64
+msgid "【禁怪物掉落】已启用全杀功能。"
+msgstr ""
+
+#: ../../Commands.cs:37
+msgid "【禁怪物掉落】已禁用"
+msgstr ""
+
+#: ../../Commands.cs:65
+msgid "【禁怪物掉落】已禁用全杀功能。"
+msgstr ""
+
+#: ../../Commands.cs:44
+#, csharp-format
+msgid ""
+"【禁止掉落的怪物表】\n"
+"{0}"
+msgstr ""
+
+#: ../../Commands.cs:25
+msgid ""
+"/kdm f 数字 —— 设置清理范围(默认35格)\n"
+msgstr ""
+
+#: ../../Commands.cs:24
+msgid ""
+"/kdm kill —— 开启|关闭全杀功能\n"
+msgstr ""
+
+#: ../../Commands.cs:23
+msgid ""
+"/kdm list —— 列出禁止掉落的怪物表\n"
+msgstr ""
+
+#: ../../Commands.cs:22
+msgid ""
+"/kdm on —— 开启|关闭禁怪掉落功能\n"
+msgstr ""
+
+#: ../../Commands.cs:27
+msgid ""
+"/kdm reset —— 恢复所有清理开关\n"
+msgstr ""
+
+#: ../../Commands.cs:21
+msgid ""
+"/kdm 或 /禁掉落 —— 查看禁怪掉落指令菜单\n"
+msgstr ""
+
+#: ../../Commands.cs:26
+msgid ""
+"/reload —— 重载禁怪掉落配置文件\n"
+msgstr ""
+
+#: ../../Commands.cs:43
+msgid "未知NPC"
+msgstr ""
+
+#: ../../Plugin.cs:18
 msgid "清理怪物身边掉落物"
 msgstr ""
 

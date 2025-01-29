@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MiniGamesAPI\n"
-"POT-Creation-Date: 2025-01-08 13:16:06+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:07+0000\n"
+"POT-Creation-Date: 2025-01-29 16:02:57+0000\n"
+"PO-Revision-Date: 2025-01-29 16:02:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
+#: ../../MiniGamesAPI.Core/PrebuildBoard.cs:24
+#: ../../MiniGamesAPI.Core/PrebuildBoard.cs:39
+#, csharp-format
+msgid "{0}的预制板"
+msgstr ""
+
+#: ../../MiniGamesAPI.Core/MiniPlayer.cs:92
+#, csharp-format
+msgid "准备状态：{0}"
+msgstr ""
+
+#: ../../MiniGamesAPI.Core/MiniPlayer.cs:89
+#, csharp-format
+msgid "击杀数：{0}"
+msgstr ""
+
+#: ../../MiniGamesAPI.Core/MiniPlayer.cs:91
+#, csharp-format
+msgid "助攻数：{0}"
+msgstr ""
+
 #: ../../MiniGamesAPI.cs:13
 msgid "小游戏框架API"
+msgstr ""
+
+#: ../../MiniGamesAPI.Core/MiniRegion.cs:137
+#, csharp-format
+msgid ""
+"左上角({0},{1})\n"
+"左下角({2},{3})\n"
+"右上角({4},{5})\n"
+"右下角({6},{7})\n"
+msgstr ""
+
+#: ../../MiniGamesAPI.Core/MiniPlayer.cs:94
+#, csharp-format
+msgid "当前状态：{0}"
+msgstr ""
+
+#: ../../MiniGamesAPI.Core/MiniPlayer.cs:93
+#, csharp-format
+msgid "房间号：{0}"
+msgstr ""
+
+#: ../../MiniGamesAPI.Core/MiniPlayer.cs:90
+#, csharp-format
+msgid "死亡数：{0}"
+msgstr ""
+
+#: ../../MiniGamesAPI.Core/MiniPlayer.cs:88
+#, csharp-format
+msgid "玩家名：{0}"
 msgstr ""
 

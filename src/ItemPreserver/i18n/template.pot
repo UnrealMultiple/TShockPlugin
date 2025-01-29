@@ -1,14 +1,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ItemPreserver\n"
-"POT-Creation-Date: 2025-01-08 13:16:03+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:03+0000\n"
+"POT-Creation-Date: 2025-01-29 16:02:53+0000\n"
+"PO-Revision-Date: 2025-01-29 16:02:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
+
+#: ../../ItemPreserver.cs:59
+#, csharp-format
+msgid "[{0}] 重新加载配置完毕。"
+msgstr ""
 
 #: ../../ItemPreserver.cs:12
 msgid "指定物品不消耗"
