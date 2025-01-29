@@ -11,7 +11,8 @@ public class Noagent : TerrariaPlugin
 {
     public override string Author => "[星迹]Jonesn，肝帝熙恩更新适配1449";
     public override string Description => GetString("禁止代理登录");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 3);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 0, 4);
 
     public Noagent(Main game)
         : base(game)
@@ -66,7 +67,7 @@ public class Noagent : TerrariaPlugin
         // 忽略内网IP和回环地址
         if (this.IsPrivateOrLoopbackAddress(player.IP))
         {
-            Console.WriteLine($"{player.Name} 使用内网或回环地址，跳过代理检测");
+            Console.WriteLine(GetString($"{player.Name} 使用内网或回环地址，跳过代理检测"));
             return;
         }
         var message = new Message
@@ -83,17 +84,17 @@ public class Noagent : TerrariaPlugin
             var result = await message.Result.Task;
             if (result == "Y") // 假设新的IP查询服务返回 "Y" 表示代理IP
             {
-                Console.WriteLine($"检测到{player.Name}为代理，已踢出");
-                player.Disconnect("本服务禁止代理IP登录");
+                Console.WriteLine(GetString($"检测到{player.Name}为代理，已踢出"));
+                player.Disconnect(GetString("本服务禁止代理IP登录"));
             }
             else
             {
-                Console.WriteLine($"{player.Name} IP无异常");
+                Console.WriteLine(GetString($"{player.Name} IP无异常"));
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"检测玩家{player.Name} IP时发生错误: {ex.Message}");
+            Console.WriteLine(GetString($"检测玩家{player.Name} IP时发生错误: {ex.Message}"));
         }
     }
 
