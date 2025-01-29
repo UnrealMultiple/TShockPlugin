@@ -6,7 +6,8 @@ using TShockAPI;
 [ApiVersion(2, 1)]
 public class ListPlugins : TerrariaPlugin
 {
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 7);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 0, 8);
     public override string Author => "iheart 修改：羽学，肝帝熙恩";
     public override string Description => GetString("用指令查已装插件");
 
@@ -42,12 +43,12 @@ public class ListPlugins : TerrariaPlugin
 
             if (!pluginInfos.Any())
             {
-                args.Player.SendInfoMessage("没有安装任何插件。");
+                args.Player.SendInfoMessage(GetString("没有安装任何插件。"));
                 return;
             }
 
             var msgBuilder = new StringBuilder();
-            msgBuilder.AppendLine("插件列表：");
+            msgBuilder.AppendLine(GetString("插件列表："));
             foreach (var plugin in pluginInfos)
             {
                 msgBuilder.AppendLine(this.FormatPluginInfo(plugin));
@@ -58,7 +59,7 @@ public class ListPlugins : TerrariaPlugin
         catch (Exception ex)
         {
             TShock.Log.Error(ex.ToString());
-            args.Player.SendErrorMessage("获取插件列表时发生错误。");
+            args.Player.SendErrorMessage(GetString("获取插件列表时发生错误。"));
         }
     }
 
@@ -67,7 +68,9 @@ public class ListPlugins : TerrariaPlugin
         var random = new Random();
         var colorTag = $"[c/{random.Next(0, 16777216):X}:";
         string formattedName = colorTag + plugin.Name.Replace("]", "]" + colorTag + "]") + "]";
-        return $"{formattedName} - 版本: {plugin.Version} - 作者: {plugin.Author}" +
-               (plugin.Description != null ? $", 描述: {plugin.Description}" : "");
+        return GetString($"{formattedName} - 版本: {plugin.Version} - 作者: {plugin.Author}") +
+               (plugin.Description != null
+                   ? GetString($", 描述: {plugin.Description}")
+                   : "");
     }
 }
