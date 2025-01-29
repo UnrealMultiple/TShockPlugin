@@ -1,6 +1,7 @@
 {
   "README.en-US": {
-    "Description": "Weapon enhancement coin version"
+    "Description": "Weapon enhancement coin version",
+    "LanguageAvailable": true
   },
   "README.es-ES": {
     "Description": "Versión de monedas para mejorar armas"

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 
 
-namespace 在线礼包;
+namespace OnlineGiftPackage;
 
 public class Gift
 {

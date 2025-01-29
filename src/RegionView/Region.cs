@@ -107,7 +107,7 @@ public class Region
 
         if (this.RealTiles != null)
         {
-            throw new InvalidOperationException("该区域已设置虚拟图块。");
+            throw new InvalidOperationException(GetString("该区域已设置虚拟图块。"));
         }
 
         // Initialise the temporary tile array.
@@ -157,7 +157,7 @@ public class Region
 
         if (this.RealTiles == null)
         {
-            throw new InvalidOperationException("区域未设置虚拟图块。");
+            throw new InvalidOperationException(GetString("区域未设置虚拟图块。"));
         }
 
         // Top boundary
@@ -209,7 +209,7 @@ public class Region
 
         if (this.RealTiles == null)
         {
-            throw new InvalidOperationException("区域尚未设置虚拟图块。");
+            throw new InvalidOperationException(GetString("区域尚未设置虚拟图块。"));
         }
 
         ITile fakeTile;
@@ -252,7 +252,7 @@ public class Region
     {
         if (this.RealTiles == null)
         {
-            throw new InvalidOperationException("区域尚未设置虚拟图块。");
+            throw new InvalidOperationException(GetString("区域尚未设置虚拟图块。"));
         }
 
         if (x < 0 || y < 0 || x >= Main.maxTilesX || y >= Main.maxTilesY)

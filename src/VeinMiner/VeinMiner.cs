@@ -8,7 +8,8 @@ namespace VeinMiner;
 [ApiVersion(2, 1)]
 public class VeinMiner : TerrariaPlugin
 {
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 6, 0, 9);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 6, 0, 10);
     public override string Author => "Megghy|YSpoof|Maxthegreat99|肝帝熙恩";
     public override string Description => GetString("VeinMiner by Megghy 适用于 TShock 5.2 支持！");
 
@@ -144,7 +145,7 @@ public class VeinMiner : TerrariaPlugin
             {
                 if (plr.GetData<VMStatus>("VeinMiner").EnableBroadcast && Config.Broadcast && mineCount > 1)
                 {
-                    plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{mineCount} {(item.type == 0 ? "未知" : item.Name)}]."), Color.White);
+                    plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{mineCount} {(item.type == 0 ? GetString("未知") : item.Name)}]."), Color.White);
                 }
                 if (Config.PutInInventory)
                 {

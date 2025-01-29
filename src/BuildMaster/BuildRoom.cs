@@ -252,7 +252,7 @@ public class BuildRoom : MiniRoom, IRoom
                 num += buildPlayer.GiveMarks;
                 buildPlayer.GiveMarks = 0;
                 buildPlayer.Teleport(this.Players[this.PlayerIndex].CurrentRegion!.Center);
-                buildPlayer.SendInfoMessage(GetString(GetString("已来到 ") + this.Players[this.PlayerIndex].Name + GetString(" 的建筑区域")));
+                buildPlayer.SendInfoMessage(GetString($"已来到 {this.Players[this.PlayerIndex].Name} 的建筑区域"));
                 buildPlayer.Marked = false;
             }
         }
@@ -321,21 +321,16 @@ public class BuildRoom : MiniRoom, IRoom
                 stringBuilder.AppendLine(GetString("输入/bm vote [主题] 进行主题投票"));
                 break;
             }
-            case 2:
-            {
-                var num = this.GamingTime / 60;
-                var num2 = this.GamingTime % 60;
-                stringBuilder.AppendLine(GetString($"倒计时[{num}:{num2}]"));
-                stringBuilder.AppendLine(GetString("主题:") + (string.IsNullOrEmpty(this.Topic) ? GetString("无") : this.Topic));
-                stringBuilder.AppendLine(GetString($"当前人数:{this.GetPlayerCount()}/{this.MaxPlayer}"));
-                break;
-            }
             case 1:
+            case 2:
             {
                 var num = this.SeletingTime / 60;
                 var num2 = this.SeletingTime % 60;
+                var topic = string.IsNullOrEmpty(this.Topic)
+                    ? GetString("无")
+                    : this.Topic;
                 stringBuilder.AppendLine(GetString($"倒计时[{num}:{num2}]"));
-                stringBuilder.AppendLine(GetString("主题:") + (string.IsNullOrEmpty(this.Topic) ? GetString("无") : this.Topic));
+                stringBuilder.AppendLine(GetString($"主题:{topic}"));
                 stringBuilder.AppendLine(GetString($"当前人数:{this.GetPlayerCount()}/{this.MaxPlayer}"));
                 break;
             }
@@ -422,6 +417,6 @@ public class BuildRoom : MiniRoom, IRoom
             var val = new UnifiedRandom();
             this.Topic = list[val.Next(0, list.Count - 1)];
         }
-        this.Broadcast(GetString("本次建筑的主题是 ") + this.Topic, Color.MediumAquamarine);
+        this.Broadcast(GetString($"本次建筑的主题是 {this.Topic}"), Color.MediumAquamarine);
     }
 }

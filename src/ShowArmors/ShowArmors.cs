@@ -13,7 +13,7 @@ public class ShowArmors : TerrariaPlugin
     public override string Description => GetString("展示装备栏");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
 
     public ShowArmors(Main game) : base(game)
     {
@@ -24,7 +24,7 @@ public class ShowArmors : TerrariaPlugin
 
         Commands.ChatCommands.Add(new Command("ShowArmors", this.ShowMySlots, "装备", "show", "zb")
         {
-            HelpText = "发送自己的装备配置到聊天框。别名：show 和 zb "
+            HelpText = GetString("发送自己的装备配置到聊天框。别名：show 和 zb ")
         });
     }
 
@@ -49,7 +49,7 @@ public class ShowArmors : TerrariaPlugin
 
         if (argsCount != 0 && argsCount != 1)
         {
-            args.Player.SendErrorMessage($"语法错误！正确语法 [c/55D284:/装备] [c/55D284:<玩家>]");
+            args.Player.SendErrorMessage(GetString("语法错误！正确语法 [c/55D284:/装备] [c/55D284:<玩家>]"));
         }
         else if (argsCount == 0)
         {
@@ -62,7 +62,7 @@ public class ShowArmors : TerrariaPlugin
             var players = TSPlayer.FindByNameOrID(args.Parameters[0]);
             if (players.Count == 0)
             {
-                args.Player.SendErrorMessage("不存在该玩家!");
+                args.Player.SendErrorMessage(GetString("不存在该玩家!"));
             }
             else if (players.Count > 1)
             {
@@ -72,7 +72,7 @@ public class ShowArmors : TerrariaPlugin
             {
                 target = players[0];
                 armors = target.TPlayer.armor;
-                str = $"{target.Name}" + " : " + "拿着 " + $"[i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]" + $"{(ItemPrefix) target.SelectedItem.prefix}";
+                str = GetString($"{target.Name} : 拿着 [i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]{(ItemPrefix) target.SelectedItem.prefix}");
             }
         }
         if (target is null || armors is null)
@@ -107,22 +107,22 @@ public class ShowArmors : TerrariaPlugin
         {
             if (nothingEquipped)
             {
-                TShock.Utils.Broadcast($"{target.Name}这家伙啥都没装备。" + "只拿着: " + $"[i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]" + $"{(ItemPrefix) target.SelectedItem.prefix}", Microsoft.Xna.Framework.Color.Green);
+                TShock.Utils.Broadcast(GetString($"{target.Name}这家伙啥都没装备。只拿着: [i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]{(ItemPrefix) target.SelectedItem.prefix}"), Microsoft.Xna.Framework.Color.Green);
             }
             else
             {
-                TShock.Utils.Broadcast(str += " 拿着: " + $"[i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]" + $"{(ItemPrefix) target.SelectedItem.prefix}", Microsoft.Xna.Framework.Color.Green);
+                TShock.Utils.Broadcast(str += GetString($" 拿着: [i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]{(ItemPrefix) target.SelectedItem.prefix}"), Microsoft.Xna.Framework.Color.Green);
             }
         }
         else if (argsCount == 1)
         {
             if (nothingEquipped)
             {
-                args.Player.SendSuccessMessage($"{target.Name}这家伙啥都没装备，只拿着 " + $"[i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]" + $"{(ItemPrefix) target.SelectedItem.prefix}");
+                args.Player.SendSuccessMessage(GetString($"{target.Name}这家伙啥都没装备，只拿着 [i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]{(ItemPrefix) target.SelectedItem.prefix}"));
             }
             else
             {
-                args.Player.SendSuccessMessage(str += " 拿着: " + $"[i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]" + $"{(ItemPrefix) target.SelectedItem.prefix}");
+                args.Player.SendSuccessMessage(str += GetString($" 拿着: [i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]{(ItemPrefix) target.SelectedItem.prefix}"));
             }
         }
 

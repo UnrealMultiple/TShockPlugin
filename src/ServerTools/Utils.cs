@@ -14,7 +14,7 @@ internal class Utils
             Player.GiveItem(item.type, item.stack, item.prefix);
             Player.TPlayer.armor[8].TurnToAir();
             Player.SendData(PacketTypes.PlayerSlot, "", Player.Index, Terraria.ID.PlayerItemSlotID.Armor0 + 8);
-            TShock.Utils.Broadcast($"[ServerTools] 世界未开启困难模式，禁止玩家 [{Player.Name}]使用恶魔心饰品栏", Color.DarkRed);
+            TShock.Utils.Broadcast(GetString($"[ServerTools] 世界未开启困难模式，禁止玩家 [{Player.Name}]使用恶魔心饰品栏"), Color.DarkRed);
         }
     }
 

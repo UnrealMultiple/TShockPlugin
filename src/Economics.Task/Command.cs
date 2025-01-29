@@ -122,11 +122,11 @@ public class Command
             if (UserTaskData.HasTask(args.Player.Name))
             {
                 UserTaskData.Remove(args.Player.Name);
-                args.Player.SendSuccessMessage("你已放弃一个任务!!");
+                args.Player.SendSuccessMessage(GetString("你已放弃一个任务!!"));
             }
             else
             {
-                args.Player.SendSuccessMessage("你还没有开始接任务!!");
+                args.Player.SendSuccessMessage(GetString("你还没有开始接任务!!"));
             }
         }
         else if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "pr")

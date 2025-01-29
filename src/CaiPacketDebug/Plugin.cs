@@ -31,7 +31,7 @@ public class CaiPacketDebug : LazyPlugin
     public override string Author => "Cai";
     public override string Description => GetString("用于调试数据包的插件捏~");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; 
-    public override Version Version => new Version(2025, 1, 25, 1);
+    public override Version Version => new Version(2025, 1, 25, 2);
 
 
     public override void Initialize()
@@ -63,7 +63,7 @@ public class CaiPacketDebug : LazyPlugin
             args.Player.SendInfoMessage("[CaiPacketDebug]\n" +
                                         $"C->S: {(this._clientToServerDebug ? GetString("[c/00FF00:已启用]") : GetString("[c/FF0000:已禁用]"))}\n" +
                                         $"S->C: {(this._serverToClientDebug ? GetString("[c/00FF00:已启用]") : GetString("[c/FF0000:已禁用]"))}");
-            args.Player.SendWarningMessage("*/cpd cts|stc 开关数据包调试");
+            args.Player.SendWarningMessage(GetString("*/cpd cts|stc 开关数据包调试"));
             return;
         }
 
@@ -100,7 +100,7 @@ public class CaiPacketDebug : LazyPlugin
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write($"[S->C({index})] 解析数据包时出错:" + ex);
+                Console.Write(GetString($"[S->C({index})] 解析数据包时出错:{ex}"));
                 Console.ResetColor();
                 return;
             }
@@ -135,7 +135,7 @@ public class CaiPacketDebug : LazyPlugin
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write($"[S->C({remoteclient})] 解析数据包时出错:" + ex);
+                Console.Write(GetString($"[S->C({remoteclient})] 解析数据包时出错:{ex}"));
                 Console.ResetColor();
                 return;
             }
@@ -172,7 +172,7 @@ public class CaiPacketDebug : LazyPlugin
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write($"[C({instance.whoAmI})->S] 解析数据包时出错:" + ex);
+                Console.Write(GetString($"[C({instance.whoAmI})->S] 解析数据包时出错:{ex}"));
                 Console.ResetColor();
                 return result;
             }

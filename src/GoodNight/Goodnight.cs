@@ -12,7 +12,7 @@ public class Goodnight : TerrariaPlugin
 {
     #region 变量与插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "Jonesn 羽学 少司命";
-    public override Version Version => new Version(2, 7, 5);
+    public override Version Version => new Version(2, 7, 6);
     public override string Description => GetString("设置服务器无法进入或禁止生成怪物的时段");
     internal static Configuration Config = null!;
     #endregion
@@ -56,7 +56,7 @@ public class Goodnight : TerrariaPlugin
         Config.Write();
         if (args != null && args.Player != null)
         {
-            args.Player.SendSuccessMessage("[宵禁]重新加载配置完毕。");
+            args.Player.SendSuccessMessage(GetString("[宵禁]重新加载配置完毕。"));
         }
     }
     #endregion
@@ -76,7 +76,7 @@ public class Goodnight : TerrariaPlugin
             {
                 if (plr != null && !Config.Exempt(plr.Name))
                 {
-                    plr.Disconnect($"{Config.JoinMessage} \n禁止游戏时间:{Config.Time.Start}-{Config.Time.Stop}");
+                    plr.Disconnect(GetString($"{Config.JoinMessage} \n禁止游戏时间:{Config.Time.Start}-{Config.Time.Stop}"));
                 }
             }
         }
@@ -95,7 +95,7 @@ public class Goodnight : TerrariaPlugin
             {
                 if (e.Player != null && !Config.Exempt(e.Player.Name) && !e.Player.HasPermission("goodnight.admin"))
                 {
-                    e.Player.Disconnect($"{Config.NewProjMessage} \n禁止游戏时间:{Config.Time.Start}-{Config.Time.Stop}");
+                    e.Player.Disconnect(GetString($"{Config.NewProjMessage} \n禁止游戏时间:{Config.Time.Start}-{Config.Time.Stop}"));
                 }
             }
         }
@@ -116,7 +116,7 @@ public class Goodnight : TerrariaPlugin
         var NoPlr = PlayerCount <= Config.MaxPlayers && Config.MaxPlayers > 0;
         var NpcDeadInfo = string.Join(", ", Config.NpcDead.Select(x => TShock.Utils.GetNPCById(x)?.FullName));
         var isInRegion = Config.PlayersInRegion ? InRegion() : InRegion2();
-        var RegionInfo = Config.PlayersInRegion ? $"所有在线人员([c/FF3A4B:{PlayerCount}人])" : "有[c/FF3A4B:1人]";
+        var RegionInfo = Config.PlayersInRegion ? GetString($"所有在线人员([c/FF3A4B:{PlayerCount}人])") : GetString("有[c/FF3A4B:1人]");
         var BcstSwitch = Config.BcstSwitch ? this.IsBoss(args) : this.IsNotBoss(args);
         var BcstDefault = Config.BcstSwitch;
         var BcstSwitchOFF = Config.BcstSwitchOff;
@@ -138,10 +138,10 @@ public class Goodnight : TerrariaPlugin
                                 if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                                 {
                                     TShock.Utils.Broadcast(
-                                    $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}]/{Config.MaxPlayers}个玩家! \n" +
-                                    $"检测到{RegionInfo}已在【[c/E2FA76:{Config.RegionName}]】\n" +
-                                    $"允许召唤以下怪物：\n" +
-                                    $"[c/6EABE9:{NpcDeadInfo}]", Color.Aquamarine);
+                                        GetString($"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}]/{Config.MaxPlayers}个玩家! \n") +
+                                        GetString($"检测到{RegionInfo}已在【[c/E2FA76:{Config.RegionName}]】\n") +
+                                        GetString($"允许召唤以下怪物：\n") +
+                                        GetString($"[c/6EABE9:{NpcDeadInfo}]"), Color.Aquamarine);
                                 }
                             }
                             else
@@ -149,10 +149,10 @@ public class Goodnight : TerrariaPlugin
                                 if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                                 {
                                     TShock.Utils.Broadcast(
-                                    $"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}]/{Config.MaxPlayers}]个玩家! \n" +
-                                    $"允许召唤表为[c/6EABE9:空]，请在满足[c/FF3A4B:{Config.MaxPlayers}人]\n" +
-                                    $"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n" +
-                                    $"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])来获取允许召唤权", Color.AntiqueWhite);
+                                        GetString($"【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{PlayerCount}]/{Config.MaxPlayers}]个玩家! \n") +
+                                        GetString($"允许召唤表为[c/6EABE9:空]，请在满足[c/FF3A4B:{Config.MaxPlayers}人]\n") +
+                                        GetString($"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n") +
+                                        GetString($"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])来获取允许召唤权"), Color.AntiqueWhite);
                                 }
                             }
                         }
@@ -165,11 +165,11 @@ public class Goodnight : TerrariaPlugin
                                 if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                                 {
                                     TShock.Utils.Broadcast(
-                                    $"【宵禁】当前服务器处于维护时间\n" +
-                                    $"{RegionInfo}需要到【[c/E2FA76:{Config.RegionName}]】\n" +
-                                    $"可召唤以下怪物：\n" +
-                                    $"[c/6EABE9:{NpcDeadInfo}] \n" +
-                                    $"宵禁时段: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]", Color.AntiqueWhite);
+                                        GetString($"【宵禁】当前服务器处于维护时间\n") +
+                                        GetString($"{RegionInfo}需要到【[c/E2FA76:{Config.RegionName}]】\n") +
+                                        GetString($"可召唤以下怪物：\n") +
+                                        GetString($"[c/6EABE9:{NpcDeadInfo}] \n") +
+                                        GetString($"宵禁时段: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]"), Color.AntiqueWhite);
                                 }
                             }
                             else
@@ -177,10 +177,10 @@ public class Goodnight : TerrariaPlugin
                                 if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                                 {
                                     TShock.Utils.Broadcast(
-                                    $"【宵禁】当前服务器处于维护时间\n" +
-                                    $"允许召唤表为[c/6EABE9:空]，请在满足[c/FF3A4B:{Config.MaxPlayers}人]\n" +
-                                    $"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n" +
-                                    $"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])，来获取允许召唤权。", Color.AntiqueWhite);
+                                        GetString($"【宵禁】当前服务器处于维护时间\n") +
+                                        GetString($"允许召唤表为[c/6EABE9:空]，请在满足[c/FF3A4B:{Config.MaxPlayers}人]\n") +
+                                        GetString($"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n") +
+                                        GetString($"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])，来获取允许召唤权。"), Color.AntiqueWhite);
                                 }
                             }
                         }
@@ -194,10 +194,10 @@ public class Goodnight : TerrariaPlugin
                             if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                             {
                                 TShock.Utils.Broadcast(
-                                $"【宵禁】不在【[c/E2FA76:{Config.RegionName}]】无法生成指定怪物\n" +
-                                $"{RegionInfo}需要到[c/338AE1:{Config.RegionName}]才能召唤怪物\n" +
-                                $"请联系管理员使用[c/6EABE9:/region]创建一个[c/E2FA76:'{Config.RegionName}']\n" +
-                                $"如已创建请输入指令传送:[c/E2FAB4:/region tp {Config.RegionName}]", Color.AntiqueWhite);
+                                    GetString($"【宵禁】不在【[c/E2FA76:{Config.RegionName}]】无法生成指定怪物\n") +
+                                    GetString($"{RegionInfo}需要到[c/338AE1:{Config.RegionName}]才能召唤怪物\n") +
+                                    GetString($"请联系管理员使用[c/6EABE9:/region]创建一个[c/E2FA76:'{Config.RegionName}']\n") +
+                                    GetString($"如已创建请输入指令传送:[c/E2FAB4:/region tp {Config.RegionName}]"), Color.AntiqueWhite);
                             }
                         }
                     }
@@ -213,11 +213,11 @@ public class Goodnight : TerrariaPlugin
                             if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                             {
                                 TShock.Utils.Broadcast(
-                                $"【宵禁】当前服务器处于维护时间\n" +
-                                $"当前在线人数不满足:[c/FF3A4B:{PlayerCount}]/{Config.MaxPlayers}人\n" +
-                                $"且处于宵禁时段: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n" +
-                                $"仅允许召唤以下怪物：\n" +
-                                $"[c/6EABE9:{NpcDeadInfo}]\n", Color.Aquamarine);
+                                    GetString($"【宵禁】当前服务器处于维护时间\n") +
+                                    GetString($"当前在线人数不满足:[c/FF3A4B:{PlayerCount}]/{Config.MaxPlayers}人\n") +
+                                    GetString($"且处于宵禁时段: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n") +
+                                    GetString($"仅允许召唤以下怪物：\n") +
+                                    GetString($"[c/6EABE9:{NpcDeadInfo}]\n"), Color.Aquamarine);
                             }
                         }
                         else
@@ -225,10 +225,10 @@ public class Goodnight : TerrariaPlugin
                             if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                             {
                                 TShock.Utils.Broadcast(
-                                $"【宵禁】当前服务器处于维护时间\n" +
-                                $"允许召唤表为[c/6EABE9:空]，请在满足[c/FF3A4B:{Config.MaxPlayers}人]\n" +
-                                $"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n" +
-                                $"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])，来获取允许召唤权。", Color.AntiqueWhite);
+                                    GetString($"【宵禁】当前服务器处于维护时间\n") +
+                                    GetString($"允许召唤表为[c/6EABE9:空]，请在满足[c/FF3A4B:{Config.MaxPlayers}人]\n") +
+                                    GetString($"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n") +
+                                    GetString($"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])，来获取允许召唤权。"), Color.AntiqueWhite);
                             }
                         }
                     }
@@ -239,11 +239,11 @@ public class Goodnight : TerrariaPlugin
                         if (BcstSwitchOFF || (BcstDefault && BcstSwitch))
                         {
                             TShock.Utils.Broadcast(
-                            $"【宵禁】当前服务器处于维护时间\n" +
-                            $"你所召唤的怪物未被击败:[c/338AE1:{Config.DeadCount}次]\n" +
-                            $"请在服务器人数满足:[c/FF3A4B:{Config.MaxPlayers}人]\n" +
-                            $"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n" +
-                            $"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])，来获取允许召唤权。", Color.AntiqueWhite);
+                                GetString($"【宵禁】当前服务器处于维护时间\n") +
+                                GetString($"你所召唤的怪物未被击败:[c/338AE1:{Config.DeadCount}次]\n") +
+                                GetString($"请在服务器人数满足:[c/FF3A4B:{Config.MaxPlayers}人]\n") +
+                                GetString($"或[c/338AE1:宵禁时段]外: [c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]\n") +
+                                GetString($"尽可能击败该怪物([c/FF3A4B:{Config.DeadCount}次])，来获取允许召唤权。"), Color.AntiqueWhite);
                         }
                     }
                 }
@@ -337,7 +337,7 @@ public class Goodnight : TerrariaPlugin
         }
 
         var KillNpc = args.npc.netID;
-        var npcName = TShock.Utils.GetNPCById(KillNpc)?.FullName ?? "未知NPC";
+        var npcName = TShock.Utils.GetNPCById(KillNpc)?.FullName ?? GetString("未知NPC");
         var NpcListInfo = string.Join(", ", Config.NpcDead.Select(x => TShock.Utils.GetNPCById(x)?.FullName + $"({x})"));
 
         if (Config.Npcs.Contains(KillNpc))
@@ -354,8 +354,8 @@ public class Goodnight : TerrariaPlugin
             if (!Config.NpcDead.Contains(KillNpc))
             {
                 TShock.Utils.Broadcast(
-                $"【宵禁】击败NPC【[c/FF9187:{npcName}({KillNpc})]】\n" +
-                $"计入《允许召唤表》要求次数:[c/FF3A4B:{KillCounters[KillNpc]}]/[c/E2FA75:{Config.DeadCount}次]", Color.AntiqueWhite);
+                    GetString($"【宵禁】击败NPC【[c/FF9187:{npcName}({KillNpc})]】\n") +
+                    GetString($"计入《允许召唤表》要求次数:[c/FF3A4B:{KillCounters[KillNpc]}]/[c/E2FA75:{Config.DeadCount}次]"), Color.AntiqueWhite);
             }
 
             if (KillCounters[KillNpc] >= Config.DeadCount)
@@ -365,9 +365,9 @@ public class Goodnight : TerrariaPlugin
                     Config.NpcDead.Add(KillNpc);
                     Config.Write();
                     TShock.Utils.Broadcast(
-                        $"\n因击杀次数达到[c/E2FA75:{Config.DeadCount}次] 将不再播报计数\n" +
-                        $"已计入《允许召唤表》：\n[c/6EABE9:{NpcListInfo}]\n" +
-                        $"宵禁时段：[c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]", Color.AntiqueWhite);
+                        GetString($"\n因击杀次数达到[c/E2FA75:{Config.DeadCount}次] 将不再播报计数\n") +
+                        GetString($"已计入《允许召唤表》：\n[c/6EABE9:{NpcListInfo}]\n") +
+                        GetString($"宵禁时段：[c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]"), Color.AntiqueWhite);
                     KillCounters[KillNpc] = 0;
                 }
             }
@@ -378,7 +378,7 @@ public class Goodnight : TerrariaPlugin
             Config.NpcDead.Clear();
             KillCounters.Clear();
             Config.Write();
-            TShock.Utils.Broadcast($"【宵禁】玩家已击败:[c/FF9187:{npcName}({KillNpc})]，现清空《允许召唤表》", Color.AntiqueWhite);
+            TShock.Utils.Broadcast(GetString($"【宵禁】玩家已击败:[c/FF9187:{npcName}({KillNpc})]，现清空《允许召唤表》"), Color.AntiqueWhite);
         }
     }
     #endregion

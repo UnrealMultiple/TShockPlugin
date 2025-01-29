@@ -80,14 +80,14 @@ public class Vote
             VoteType.NightRequest => GetString($"[i:4344]请求修改为夜晚投票还有{seconds}秒结束!\n") + this.VoteResultBuild(),
             VoteType.DayRequest => GetString($"[i:4344]请求修改为白天投票还有{seconds}秒结束!\n") + this.VoteResultBuild(),
             VoteType.FreeVote => GetString($"[i:4344]赞成关于\"{this.Project}\"投票还有{seconds}秒结束!\n") + this.VoteResultBuild(),
-            VoteType.RainRequest => GetString($"[i:4344]请求{(this.rain ? "停止" : "开始")}下雨投票还有{seconds}秒结束!\n") + this.VoteResultBuild(),
+            VoteType.RainRequest => GetString($"[i:4344]请求{(this.rain ? GetString("停止") : GetString("开始"))}下雨投票还有{seconds}秒结束!\n") + this.VoteResultBuild(),
             _ => "",
         };
     }
 
     public string VoteResultBuild()
     {
-        return GetString($"*赞成:[c/32FF82:{this.Argeement.Count()}票],反对:[c/E11919:{this.Disargeement.Count()}票],通过率:{this.AgreePercent}%({config.VotePass}%)\n") +
+        return GetString($"*赞成:[c/32FF82:{this.Argeement.Count}票],反对:[c/E11919:{this.Disargeement.Count}票],通过率:{this.AgreePercent}%({config.VotePass}%)\n") +
                GetString($"*使用\"[c/32FF82:/agree(/同意)]\"或\"[c/E11919:/disagree(/反对)]\"进行投票");
     }
 
@@ -206,7 +206,7 @@ public class Vote
                 {
                     Main.StartRain();
                 }
-                TSPlayer.All.SendSuccessMessage(GetString($"[i:4344]关于{(this.rain ? "停止" : "开始")}下雨的投票已被通过!"));
+                TSPlayer.All.SendSuccessMessage(GetString($"[i:4344]关于{(this.rain ? GetString("停止") : GetString("开始"))}下雨的投票已被通过!"));
                 break;
         }
     }

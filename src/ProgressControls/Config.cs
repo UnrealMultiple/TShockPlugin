@@ -120,8 +120,8 @@ public class Config
         }
         catch
         {
-            TSPlayer.All.SendWarningMessage("ProgressControl.json 反序列化失败，可能有填写错误或配置文件需要更新，已对配置文件作了更新处理");
-            Console.WriteLine("ProgressControl.json 反序列化失败，可能有填写错误或配置文件需要更新，已对配置文件作了更新处理");
+            TSPlayer.All.SendWarningMessage(GetString("ProgressControl.json 反序列化失败，可能有填写错误或配置文件需要更新，已对配置文件作了更新处理"));
+            Console.WriteLine(GetString("ProgressControl.json 反序列化失败，可能有填写错误或配置文件需要更新，已对配置文件作了更新处理"));
             config = PControl.config;
             PControl.config.SaveConfigFile();
         }

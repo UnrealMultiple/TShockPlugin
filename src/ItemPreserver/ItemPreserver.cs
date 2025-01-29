@@ -10,7 +10,8 @@ public class ItemPreserver : TerrariaPlugin
 {
     public override string Author => "肝帝熙恩 & 少司命";
     public override string Description => GetString("指定物品不消耗");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 9);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 0, 10);
     public static Configuration Config = new();
 
     public class Pitem
@@ -55,7 +56,7 @@ public class ItemPreserver : TerrariaPlugin
                 }
             }
         }
-        args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(ItemPreserver).Name);
+        args.Player?.SendSuccessMessage(GetString($"[{nameof(ItemPreserver)}] 重新加载配置完毕。"));
     }
 
     public override void Initialize()

@@ -9,7 +9,7 @@ public class MiniGamesAPI : TerrariaPlugin
 {
     #region 插件模版信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "豆沙 羽学修复";
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
     public override string Description => GetString("小游戏框架API");
     #endregion
 

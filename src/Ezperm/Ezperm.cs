@@ -9,9 +9,10 @@ namespace Ezperm;
 [ApiVersion(2, 1)]
 public class Ezperm : TerrariaPlugin
 {
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "大豆子,肝帝熙恩优化1449";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Author => "大豆子,肝帝熙恩优化1449";
     public override string Description => GetString("一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限");
-    public override Version Version => new Version(1, 2, 7);
+    public override Version Version => new Version(1, 2, 8);
     internal static Configuration Config = null!;
     public Ezperm(Main game) : base(game)
     {
@@ -27,7 +28,7 @@ public class Ezperm : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player?.SendSuccessMessage("[Ezperm] 重新加载配置完毕。");
+        args.Player?.SendSuccessMessage(GetString("[Ezperm] 重新加载配置完毕。"));
     }
     public override void Initialize()
     {

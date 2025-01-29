@@ -100,6 +100,8 @@ public class RollbackCommand : HCommand
             UndoCommand.LastWasReenact = true;
         }
         UndoCommand.LastRollBack = actions;
-        this.sender.SendInfoMessage("{0} {1} 个操作.", this.reenact ? "重现" : "回溯", actions.Count);
+        this.sender.SendInfoMessage(this.reenact
+            ? GetString($"重现 {actions.Count} 个操作.")
+            : GetString($"回溯 {actions.Count} 个操作."));
     }
 }

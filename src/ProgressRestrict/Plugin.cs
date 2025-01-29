@@ -11,7 +11,8 @@ public class Plugin : TerrariaPlugin
 {
     public override string Author => "少司命 & 恋恋魔改三合一";
     public override string Description => GetString("根据进度限制");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 4);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 0, 0, 5);
 
     public Config config = null!;
 
@@ -70,12 +71,12 @@ public class Plugin : TerrariaPlugin
         {
             if (this.config.Broadcast)
             {
-                TShock.Utils.Broadcast($"玩家 {e.Player.Name} 拥有超进度buff {TShock.Utils.GetBuffName(e.Type)} ,已清除!", Microsoft.Xna.Framework.Color.Red);
+                TShock.Utils.Broadcast(GetString($"玩家 {e.Player.Name} 拥有超进度buff {TShock.Utils.GetBuffName(e.Type)} ,已清除!"), Microsoft.Xna.Framework.Color.Red);
             }
 
             if (this.config.WriteLog)
             {
-                TShock.Log.Info($"[ProgressBuff]: 玩家 {e.Player.Name} 拥有超进度buff {TShock.Utils.GetBuffName(e.Type)} ,已清除!");
+                TShock.Log.Info(GetString($"[ProgressBuff]: 玩家 {e.Player.Name} 拥有超进度buff {TShock.Utils.GetBuffName(e.Type)} ,已清除!"));
             }
 
             if (this.config.ClearBuff)
@@ -132,14 +133,14 @@ public class Plugin : TerrariaPlugin
             {
                 e.Player.SetBuff(156, 60 * this.config.PunishTime, false);
             }
-            e.Player.SendErrorMessage($"检测到超进度物品{TShock.Utils.GetItemById(e.Type).Name}!");
+            e.Player.SendErrorMessage(GetString($"检测到超进度物品{TShock.Utils.GetItemById(e.Type).Name}!"));
             if (this.config.Broadcast)
             {
-                TShock.Utils.Broadcast($"检测到{e.Player.Name}拥有超进度物品{TShock.Utils.GetItemById(e.Type).Name}!", Microsoft.Xna.Framework.Color.DarkRed);
+                TShock.Utils.Broadcast(GetString($"检测到{e.Player.Name}拥有超进度物品{TShock.Utils.GetItemById(e.Type).Name}!"), Microsoft.Xna.Framework.Color.DarkRed);
             }
             if (this.config.WriteLog)
             {
-                TShock.Log.Write($"[超进度物品限制] 玩家{e.Player.Name} 在背包第{e.Slot}格检测到超进度物品 {TShock.Utils.GetItemById(e.Type).Name} x{e.Stack}", System.Diagnostics.TraceLevel.Info);
+                TShock.Log.Write(GetString($"[超进度物品限制] 玩家{e.Player.Name} 在背包第{e.Slot}格检测到超进度物品 {TShock.Utils.GetItemById(e.Type).Name} x{e.Stack}"), System.Diagnostics.TraceLevel.Info);
             }
             if (this.config.ClearItem)
             {
@@ -148,7 +149,7 @@ public class Plugin : TerrariaPlugin
             }
             if (this.config.KickPlayer)
             {
-                e.Player.Kick("拥有超进度物品");
+                e.Player.Kick(GetString("拥有超进度物品"));
             }
         }
     }
@@ -167,14 +168,14 @@ public class Plugin : TerrariaPlugin
             {
                 e.Player.SetBuff(156, 60 * this.config.PunishTime, false);
             }
-            e.Player.SendErrorMessage($"检测到超进度弹幕{Lang.GetProjectileName(e.Type).Value}!");
+            e.Player.SendErrorMessage(GetString($"检测到超进度弹幕{Lang.GetProjectileName(e.Type).Value}!"));
             if (this.config.Broadcast)
             {
-                TShock.Utils.Broadcast($"检测到{e.Player.Name}使用超进度弹幕{Lang.GetProjectileName(e.Type).Value}!", Microsoft.Xna.Framework.Color.DarkRed);
+                TShock.Utils.Broadcast(GetString($"检测到{e.Player.Name}使用超进度弹幕{Lang.GetProjectileName(e.Type).Value}!"), Microsoft.Xna.Framework.Color.DarkRed);
             }
             if (this.config.WriteLog)
             {
-                TShock.Log.Write($"[超进度弹幕限制] 玩家{e.Player.Name} 使用超进度弹幕 {Lang.GetProjectileName(e.Type).Value} ID =>{e.Type}", System.Diagnostics.TraceLevel.Info);
+                TShock.Log.Write(GetString($"[超进度弹幕限制] 玩家{e.Player.Name} 使用超进度弹幕 {Lang.GetProjectileName(e.Type).Value} ID =>{e.Type}"), System.Diagnostics.TraceLevel.Info);
             }
             if (this.config.ClearItem)
             {
@@ -185,7 +186,7 @@ public class Plugin : TerrariaPlugin
 
             if (this.config.KickPlayer)
             {
-                e.Player.Kick("使用超进度弹幕");
+                e.Player.Kick(GetString("使用超进度弹幕"));
             }
         }
     }

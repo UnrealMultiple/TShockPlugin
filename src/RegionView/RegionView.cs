@@ -35,7 +35,7 @@ public class RegionView : TerrariaPlugin
     public override string Description => GetString("为地区添加区域边界视图。");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 2);
+    public override Version Version => new Version(1, 1, 3);
 
     private readonly System.Timers.Timer _refreshTimer = new(5000);
 
@@ -50,19 +50,23 @@ public class RegionView : TerrariaPlugin
         Commands.ChatCommands.Add(new Command("regionvision.regionview", this.CommandView, "regionview", "rv")
         {
             AllowServer = false,
-            HelpText = "显示指定区域的边界"
+            HelpText = GetString("显示指定区域的边界")
         });
 
         Commands.ChatCommands.Add(new Command("regionvision.regionview", this.CommandClear, "regionclear", "rc")
         {
             AllowServer = false,
-            HelpDesc = new string[] { "用法: /rc", "从您的视图中移除所有区域显示" }
+            HelpDesc = new string[]
+            {
+                GetString("用法: /rc"),
+                GetString("从您的视图中移除所有区域显示")
+            }
         });
 
         Commands.ChatCommands.Add(new Command("regionvision.regionviewnear", this.CommandViewNearby, "regionviewnear", "rvn")
         {
             AllowServer = false,
-            HelpText = "开启或关闭自动显示您附近的区域"
+            HelpText = GetString("开启或关闭自动显示您附近的区域")
         });
 
         GetDataHandlers.TileEdit += HandlerList<GetDataHandlers.TileEditEventArgs>.Create(this.OnTileEdit!, HandlerPriority.High, false);
@@ -111,7 +115,7 @@ public class RegionView : TerrariaPlugin
                     var region = player.Regions[i];
                     if (region.Name.Equals(args.Region.Name))
                     {
-                        player.TSPlayer.SendMessage("区域显示 " + region.Name + " 已被删除。", TextColors[region.Color - 13]);
+                        player.TSPlayer.SendMessage(GetString($"区域显示 {region.Name} 已被删除。"), TextColors[region.Color - 13]);
                         region.Refresh(player.TSPlayer);
                         player.Regions.RemoveAt(i);
 
@@ -155,7 +159,7 @@ public class RegionView : TerrariaPlugin
 
         if (args.Parameters.Count < 1)
         {
-            args.Player.SendErrorMessage("用法: /regionview <区域名称>");
+            args.Player.SendErrorMessage(GetString("用法: /regionview <区域名称>"));
             return;
         }
 
@@ -208,24 +212,24 @@ public class RegionView : TerrariaPlugin
             }
             else if (matches.Count == 0)
             {
-                args.Player.SendErrorMessage("没有找到这样的区域。");
+                args.Player.SendErrorMessage(GetString("没有找到这样的区域。"));
                 return;
             }
             else if (matches.Count > 5)
             {
-                args.Player.SendErrorMessage("找到了多个匹配的区域：{0} 等{1}个更多。请更具体一些。", string.Join(", ", matches.Take(5).Select(r => r.Name)), matches.Count - 5);
+                args.Player.SendErrorMessage(GetString("找到了多个匹配的区域：{0} 等{1}个更多。请更具体一些。"), string.Join(", ", matches.Take(5).Select(r => r.Name)), matches.Count - 5);
                 return;
             }
             else if (matches.Count > 1)
             {
-                args.Player.SendErrorMessage("找到了多个匹配的区域：{0}。请更具体一些。", string.Join(", ", matches.Select(r => r.Name)));
+                args.Player.SendErrorMessage(GetString("找到了多个匹配的区域：{0}。请更具体一些。"), string.Join(", ", matches.Select(r => r.Name)));
                 return;
             }
         }
 
         if (tRegion!.Area.Width < 0 || tRegion.Area.Height < 0)
         {
-            args.Player.SendErrorMessage("区域 {0} 不包含任何图块。 (找到的尺寸: {1} × {2})\n使用 [c/FF8080:/region resize] 来修复它。", tRegion.Name, tRegion.Area.Width, tRegion.Area.Height);
+            args.Player.SendErrorMessage(GetString("区域 {0} 不包含任何图块。 (找到的尺寸: {1} × {2})\n使用 [c/FF8080:/region resize] 来修复它。"), tRegion.Name, tRegion.Area.Width, tRegion.Area.Height);
             return;
         }
 
@@ -271,44 +275,35 @@ public class RegionView : TerrariaPlugin
                 _region.UnsetFakeTiles();
             }
 
-            var message = "您现在正在查看 " + region.Name + " 区域。";
+            var message = GetString($"您现在正在查看 {region.Name} 区域。");
             // 如果区域很大，显示区域的大小。
             if (tRegion.Area.Width >= Region.MaximumSize || tRegion.Area.Height >= Region.MaximumSize)
             {
-                int num; int num2;
+                int num;
                 if (tRegion.Area.Bottom < args.Player.TileY)
                 {
                     num = args.Player.TileY - tRegion.Area.Bottom;
-                    message += " 边界位于您上方 " + num + (num == 1 ? " 个图块" : " 个图块");
+                    message += GetString($" 边界位于您上方 {num} 个图块");
                 }
                 else if (tRegion.Area.Top > args.Player.TileY)
                 {
-                    num = tRegion.Area.Top - args.Player.TileY;
-                    message += " 边界位于您下方 " + (tRegion.Area.Top - args.Player.TileY) + (num == 1 ? " 个图块" : " 个图块");
+                    message += GetString($" 边界位于您下方 {tRegion.Area.Top - args.Player.TileY} 个图块");
                 }
                 else
                 {
-                    num = args.Player.TileY - tRegion.Area.Top;
-                    num2 = tRegion.Area.Bottom - args.Player.TileY;
-                    message += " 边界位于您上方 " + (args.Player.TileY - tRegion.Area.Top) + (num == 1 ? " 个图块" : " 个图块") +
-                        "，下方 " + (tRegion.Area.Bottom - args.Player.TileY) + (num2 == 1 ? " 个图块" : " 个图块");
+                    message += GetString($" 边界位于您上方 {args.Player.TileY - tRegion.Area.Top} 个图块，下方 {tRegion.Area.Bottom - args.Player.TileY} 个图块");
                 }
                 if (tRegion.Area.Right < args.Player.TileX)
                 {
-                    num = args.Player.TileX - tRegion.Area.Right;
-                    message += "，位于您右侧 " + (args.Player.TileX - tRegion.Area.Right) + (num == 1 ? " 个图块。" : " 个图块。");
+                    message += GetString($"，位于您右侧 {args.Player.TileX - tRegion.Area.Right} 个图块。");
                 }
                 else if (tRegion.Area.Left > args.Player.TileX)
                 {
-                    num = tRegion.Area.Left - args.Player.TileX;
-                    message += "，位于您左侧 " + (tRegion.Area.Left - args.Player.TileX) + (num == 1 ? " 个图块。" : " 个图块。");
+                    message += GetString($"，位于您左侧 {tRegion.Area.Left - args.Player.TileX} 个图块。");
                 }
                 else
                 {
-                    num = args.Player.TileX - tRegion.Area.Left;
-                    num2 = tRegion.Area.Right - args.Player.TileX;
-                    message += "，位于您右侧 " + (args.Player.TileX - tRegion.Area.Left) + (num == 1 ? " 个图块" : " 个图块") +
-                        "，左侧 " + (tRegion.Area.Right - args.Player.TileX) + (num2 == 1 ? " 个图块。" : " 个图块。");
+                    message += GetString($"，位于您右侧 {args.Player.TileX - tRegion.Area.Left} 个图块，左侧 {tRegion.Area.Right - args.Player.TileX} 个图块。");
                 }
             }
             args.Player.SendMessage(message, TextColors[region.Color - 13]);
@@ -347,12 +342,12 @@ public class RegionView : TerrariaPlugin
             if (player.IsViewingNearby)
             {
                 player.IsViewingNearby = false;
-                args.Player.SendInfoMessage("您不再查看您附近的区域。");
+                args.Player.SendInfoMessage(GetString("您不再查看您附近的区域。"));
             }
             else
             {
                 player.IsViewingNearby = true;
-                args.Player.SendInfoMessage("您现在正在查看您附近的区域。");
+                args.Player.SendInfoMessage(GetString("您现在正在查看您附近的区域。"));
 
                 this._refreshTimer.Interval = 1500;
                 this._refreshTimer.Enabled = true;
@@ -547,7 +542,7 @@ public class RegionView : TerrariaPlugin
                                     var region = new Region(tRegion.Name, tRegion.Area, false);
                                     region.CalculateArea(player.TSPlayer);
                                     player.Regions.Add(region);
-                                    player.TSPlayer.SendMessage("你正在看区域 " + region.Name + ".", TextColors[region.Color - 13]);
+                                    player.TSPlayer.SendMessage(GetString($"你正在看区域 {region.Name}."), TextColors[region.Color - 13]);
                                 }
                             }
                         }

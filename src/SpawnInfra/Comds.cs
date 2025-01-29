@@ -11,9 +11,9 @@ internal class Comds
         if (args.Parameters.Count == 0)
         {
             args.Player.SendMessage(
-                "【生成基础建设】\n" +
-                "/rm 数量 —— 建监狱\n" +
-                "/rm 重置 —— 重置自动建房开关", 250, 247, 105);
+                GetString("【生成基础建设】\n") +
+                GetString("/rm 数量 —— 建监狱\n") +
+                GetString("/rm 重置 —— 重置自动建房开关"), 250, 247, 105);
         }
 
         if (args.Parameters.Count == 1
@@ -22,7 +22,7 @@ internal class Comds
             || args.Parameters[0].ToLower() == "重置"))
         {
             Config.Enabled = true;
-            args.Player.SendMessage("【生成基础建设】开关已打开，请重启服务器。", 250, 247, 105);
+            args.Player.SendMessage(GetString("【生成基础建设】开关已打开，请重启服务器。"), 250, 247, 105);
             Config.Write();
             return;
         }
@@ -37,7 +37,7 @@ internal class Comds
 
             if (!int.TryParse(args.Parameters[1], out total))
             {
-                plr.SendErrorMessage("输入的监狱数量不对");
+                plr.SendErrorMessage(GetString("输入的监狱数量不对"));
                 return;
             }
 
