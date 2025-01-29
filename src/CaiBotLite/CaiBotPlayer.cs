@@ -12,11 +12,11 @@ public class CaiBotPlayer : TSPlayer
     private readonly List<string> _commandOutput = new ();
 
     public CaiBotPlayer()
-        : base("CaiBot")
+        : base("CaiBotLite")
     {
         this.Group = new SuperAdminGroup();
         this.AwaitingResponse = new Dictionary<string, Action<object>>();
-        this.Account = new UserAccount { Name = "CaiBot",ID = -1 };
+        this.Account = new UserAccount { Name = "CaiBotLite",ID = -1 };
     }
 
     public override void SendMessage(string msg, Color color)

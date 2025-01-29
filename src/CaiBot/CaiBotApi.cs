@@ -10,7 +10,7 @@ using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
-namespace CaiBot;
+namespace CaiBotLite;
 
 internal static class CaiBotApi
 {
