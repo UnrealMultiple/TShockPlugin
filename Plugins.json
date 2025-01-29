@@ -474,7 +474,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2025.1.27.1",
+    "Version": "2025.1.29.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot机器人的适配插件",
@@ -538,7 +538,7 @@
   },
   {
     "Name": "CaiRewardChest",
-    "Version": "2024.12.18.3",
+    "Version": "2025.1.29.1",
     "Author": "Cai",
     "Description": {
       "en-US": "Bonus chest ! !",
