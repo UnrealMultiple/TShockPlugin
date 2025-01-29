@@ -10,7 +10,8 @@ namespace PvPer;
 [ApiVersion(2, 1)]
 public class PvPer : TerrariaPlugin
 {
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 1, 5);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 1, 6);
     public override string Author => "Soofa 羽学修改";
     public override string Description => GetString("不是你死就是我活系列");
     public PvPer(Main game) : base(game)
@@ -83,7 +84,7 @@ public class PvPer : TerrariaPlugin
         if (File.Exists(configPath))
         {
             Config = Configuration.Read(configPath);
-            Console.WriteLine($"[决斗系统]已重载");
+            Console.WriteLine(GetString($"[决斗系统]已重载"));
         }
         else
         {
@@ -108,13 +109,13 @@ public class PvPer : TerrariaPlugin
             if (Config.KillPlayer)
             {
                 plr.KillPlayer();
-                TSPlayer.All.SendMessage($"{name}[c/E84B54:逃离]竞技场! 已判定为[C/13A1D1:怯战] 执行惩罚：[C/F86565:死亡]", Color.Yellow);
+                TSPlayer.All.SendMessage(GetString($"{name}[c/E84B54:逃离]竞技场! 已判定为[C/13A1D1:怯战] 执行惩罚：[C/F86565:死亡]"), Color.Yellow);
                 return;
             }
             else
             {
                 plr.DamagePlayer(Config.SlapPlayer);
-                plr.SendMessage($"[c/E84B54:禁止逃离竞技场!]惩罚：[c/F86565:扣{Config.SlapPlayer}血]", Color.Yellow);
+                plr.SendMessage(GetString($"[c/E84B54:禁止逃离竞技场!]惩罚：[c/F86565:扣{Config.SlapPlayer}血]"), Color.Yellow);
             }
 
             if (Config.PullArena)
@@ -141,7 +142,7 @@ public class PvPer : TerrariaPlugin
 
                 PullTP(plr, targetX, targetY, (int) Math.Max(pullR, 0));
 
-                TSPlayer.All.SendMessage($"{name}[c/E84B54:逃离]竞技场! 执行：[C/4284CD:拉回]", Color.Yellow);
+                TSPlayer.All.SendMessage(GetString($"{name}[c/E84B54:逃离]竞技场! 执行：[C/4284CD:拉回]"), Color.Yellow);
             }
 
             if (Config.CheckaAll)
@@ -261,7 +262,7 @@ public class PvPer : TerrariaPlugin
             return;
         }
 
-        var str = "以下武器在PvP中禁止使用： ";
+        var str = GetString("以下武器在PvP中禁止使用： ");
         var num = 0;
         foreach (var weapon in this.weaponbans)
         {
@@ -283,7 +284,7 @@ public class PvPer : TerrariaPlugin
             return;
         }
 
-        var str = "以下增益效果在PvP中禁止使用： ";
+        var str = GetString("以下增益效果在PvP中禁止使用： ");
         var num = 0;
         foreach (var buff in this.buffbans)
         {
@@ -315,7 +316,7 @@ public class PvPer : TerrariaPlugin
 
             if (wlist.Count < 1)
             {
-                args.Player.SendErrorMessage("未找到任何以此名称命名的物品。");
+                args.Player.SendErrorMessage(GetString("未找到任何以此名称命名的物品。"));
                 return;
 
             }
@@ -334,21 +335,21 @@ public class PvPer : TerrariaPlugin
                 case "add":
                     this.weaponbans.Add(wname);
                     Config.WeaponList.Add(wname); // 添加到配置文件的 WeaponList
-                    args.Player.SendSuccessMessage("已禁止 " + wname + " 在PvP中使用。");
+                    args.Player.SendSuccessMessage(GetString($"已禁止 {wname} 在PvP中使用。"));
                     PvPer.Config.Write(Configuration.FilePath);
                     break;
 
                 case "del":
                     this.weaponbans.Remove(wname);
                     Config.WeaponList.Remove(wname); // 从配置文件的 WeaponList 移除
-                    args.Player.SendSuccessMessage("已解除对 " + wname + " 在PvP中的禁用。");
+                    args.Player.SendSuccessMessage(GetString($"已解除对 {wname} 在PvP中的禁用。"));
                     PvPer.Config.Write(Configuration.FilePath);
                     break;
             }
         }
         else
         {
-            args.Player.SendErrorMessage("命令格式不正确。 /pvp.bw add|del <武器名>");
+            args.Player.SendErrorMessage(GetString("命令格式不正确。 /pvp.bw add|del <武器名>"));
         }
     }
 
@@ -364,7 +365,7 @@ public class PvPer : TerrariaPlugin
 
                 if (blist.Count < 1)
                 {
-                    args.Player.SendErrorMessage("未找到以此名称命名的增益效果。");
+                    args.Player.SendErrorMessage(GetString("未找到以此名称命名的增益效果。"));
                     return;
                 }
                 else if (blist.Count > 1)
@@ -383,25 +384,25 @@ public class PvPer : TerrariaPlugin
                 case "add":
                     this.buffbans.Add(buffid);
                     Config.BuffList.Add(buffid);
-                    args.Player.SendMessage("已禁止 " + TShock.Utils.GetBuffName(buffid) + " 在PvP中使用。", 232, 74, 83);
+                    args.Player.SendMessage(GetString($"已禁止 {TShock.Utils.GetBuffName(buffid)} 在PvP中使用。"), 232, 74, 83);
                     PvPer.Config.Write(Configuration.FilePath);
                     break;
 
                 case "del":
                     this.buffbans.Remove(buffid);
                     Config.BuffList.Remove(buffid);
-                    args.Player.SendMessage("已解除对 " + TShock.Utils.GetBuffName(buffid) + " 在PvP中的禁用。", 238, 232, 76);
+                    args.Player.SendMessage(GetString($"已解除对 {TShock.Utils.GetBuffName(buffid)} 在PvP中的禁用。"), 238, 232, 76);
                     PvPer.Config.Write(Configuration.FilePath);
                     break;
 
                 default:
-                    args.Player.SendErrorMessage("命令格式不正确。 /pvp.bb add|del <增益名/ID>");
+                    args.Player.SendErrorMessage(GetString("命令格式不正确。 /pvp.bb add|del <增益名/ID>"));
                     break;
             }
         }
         else
         {
-            args.Player.SendErrorMessage("命令格式不正确。 /pvp.bb add|del <增益名/ID>");
+            args.Player.SendErrorMessage(GetString("命令格式不正确。 /pvp.bb add|del <增益名/ID>"));
         }
     }
 
@@ -415,7 +416,7 @@ public class PvPer : TerrariaPlugin
         {
             if (plr.ItemInHand.Name == bannedWeapon || plr.SelectedItem.Name == bannedWeapon)
             {
-                this.DisableAndSendErrorMessage(plr, "使用了禁止的PvP武器", bannedWeapon + " 在PvP中无法使用，请查看 /pvp.wl");
+                this.DisableAndSendErrorMessage(plr, GetString("使用了禁止的PvP武器"), GetString($"{bannedWeapon} 在PvP中无法使用，请查看 /pvp.wl"));
                 break;
             }
         }
@@ -429,7 +430,7 @@ public class PvPer : TerrariaPlugin
             {
                 if (playerBuff == bannedBuff)
                 {
-                    this.DisableAndSendErrorMessage(plr, "使用了禁止的增益效果", TShock.Utils.GetBuffName(playerBuff) + " 在PvP中不可使用，请查看 /pvp.bl");
+                    this.DisableAndSendErrorMessage(plr, GetString("使用了禁止的增益效果"), GetString($"{TShock.Utils.GetBuffName(playerBuff)} 在PvP中不可使用，请查看 /pvp.bl"));
                     break;
                 }
             }
@@ -440,22 +441,22 @@ public class PvPer : TerrariaPlugin
     {
         if (this.IsStackableAndPrefix(plr.ItemInHand) || this.IsStackableAndPrefix(plr.SelectedItem))
         {
-            this.DisableAndSendErrorMessage(plr, "使用了非法前缀武器", "PvP中不允许使用非法前缀武器");
+            this.DisableAndSendErrorMessage(plr, GetString("使用了非法前缀武器"), GetString("PvP中不允许使用非法前缀武器"));
         }
         else if (this.IsMeleeAndHasIllegalPrefix(plr.ItemInHand, this.illegalMeleePrefixes.ToArray()) ||
                  this.IsMeleeAndHasIllegalPrefix(plr.SelectedItem, this.illegalMeleePrefixes.ToArray()))
         {
-            this.DisableAndSendErrorMessage(plr, "使用了非法前缀武器", "PvP中不允许使用非法前缀武器");
+            this.DisableAndSendErrorMessage(plr, GetString("使用了非法前缀武器"), GetString("PvP中不允许使用非法前缀武器"));
         }
         else if (this.IsRangedAndHasIllegalPrefix(plr.ItemInHand, this.illegalRangedPrefixes.ToArray()) ||
                  this.IsRangedAndHasIllegalPrefix(plr.SelectedItem, this.illegalRangedPrefixes.ToArray()))
         {
-            this.DisableAndSendErrorMessage(plr, "使用了非法前缀武器", "PvP中不允许使用非法前缀武器");
+            this.DisableAndSendErrorMessage(plr, GetString("使用了非法前缀武器"), GetString("PvP中不允许使用非法前缀武器"));
         }
         else if (this.IsMagicOrSummonedAndHasIllegalPrefix(plr.ItemInHand, this.illegalMagicPrefixes.ToArray()) ||
                  this.IsMagicOrSummonedAndHasIllegalPrefix(plr.SelectedItem, this.illegalMagicPrefixes.ToArray()))
         {
-            this.DisableAndSendErrorMessage(plr, "使用了非法前缀武器", "PvP中不允许使用非法前缀武器");
+            this.DisableAndSendErrorMessage(plr, GetString("使用了非法前缀武器"), GetString("PvP中不允许使用非法前缀武器"));
         }
     }
 
@@ -467,7 +468,7 @@ public class PvPer : TerrariaPlugin
             {
                 if (inventoryItem.netID == ammo && inventoryItem.prefix != 0)
                 {
-                    this.DisableAndSendErrorMessage(plr, "使用了前缀弹药", $"请移除PvP中的前缀弹药：{inventoryItem.Name}");
+                    this.DisableAndSendErrorMessage(plr, GetString("使用了前缀弹药"), GetString($"请移除PvP中的前缀弹药：{inventoryItem.Name}"));
                     break;
                 }
             }
@@ -480,7 +481,7 @@ public class PvPer : TerrariaPlugin
         {
             if (plr.TPlayer.armor[index].prefix != 0)
             {
-                this.DisableAndSendErrorMessage(plr, "使用了前缀护甲", $"请移除PvP中的前缀护甲：{plr.TPlayer.armor[index].Name}");
+                this.DisableAndSendErrorMessage(plr, GetString("使用了前缀护甲"), GetString($"请移除PvP中的前缀护甲：{plr.TPlayer.armor[index].Name}"));
                 break;
             }
         }
@@ -493,7 +494,7 @@ public class PvPer : TerrariaPlugin
         {
             if (duplicateItems.ContainsKey(equippedItem.netID))
             {
-                this.DisableAndSendErrorMessage(plr, "使用了重复饰品", $"请移除PvP中的重复饰品：{equippedItem.Name}");
+                this.DisableAndSendErrorMessage(plr, GetString("使用了重复饰品"), GetString($"请移除PvP中的重复饰品：{equippedItem.Name}"));
                 break;
             }
             else if (equippedItem.netID != 0)
@@ -507,7 +508,7 @@ public class PvPer : TerrariaPlugin
     {
         if (Config.Check7 || plr.TPlayer.armor[9].netID != 0)
         {
-            this.DisableAndSendErrorMessage(plr, "使用了第七个饰品槽", "PvP中不允许使用第七个饰品槽");
+            this.DisableAndSendErrorMessage(plr, GetString("使用了第七个饰品槽"), GetString("PvP中不允许使用第七个饰品槽"));
         }
     }
 
