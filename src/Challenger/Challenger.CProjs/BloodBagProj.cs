@@ -75,12 +75,12 @@ public class BloodBagProj : CProjectile
         if (val != null && val.active && this.proj.active)
         {
             val2 = this.proj.position - val.Center;
-            if (((Vector2) val2).LengthSquared() <= val.width * val.height / 2)
+            if (val2.LengthSquared() <= val.width * val.height / 2)
             {
                 var obj3 = val;
 
                 // 直接从配置中读取回血比例上限
-                var bloodMax = Challenger.config.BloodAbsorptionRatio_Max;
+                var bloodMax = Challenger.Config.BloodAbsorptionRatio_Max;
 
                 // 计算允许回血的上限值
                 var maxHeal = (int) (val.lifeMax * bloodMax);
@@ -90,16 +90,16 @@ public class BloodBagProj : CProjectile
                     healAmount = maxHeal - val.life; // 调整回血量不超过允许的上限
                 }
                 obj3.life += healAmount;
-                if (Challenger.config.EnableConsumptionMode)
+                if (Challenger.Config.EnableConsumptionMode)
                 {
-                    Challenger.SendPlayerText(GetString($"敌怪治疗 + {(int) this.ai[4]}"), new Color(190, 255, 0), val.Center);
+                    Challenger.SendPlayerText(GetString($"敌怪治疗 + {(int) this.ai[4]}"), new (190, 255, 0), val.Center);
                 }
                 else
                 {
-                    val.HealEffect((int) this.ai[4], true);
+                    val.HealEffect((int) this.ai[4]);
                 }
                 this.CKill();
-                TSPlayer.All.SendData((PacketTypes) 23, null, val.whoAmI, 0f, 0f, 0f, 0);
+                TSPlayer.All.SendData((PacketTypes) 23, null, val.whoAmI);
                 return;
             }
         }
@@ -113,12 +113,12 @@ public class BloodBagProj : CProjectile
                     continue;
                 }
                 val2 = this.proj.Center - val3.Center;
-                if (((Vector2) val2).LengthSquared() <= val3.width * val3.height / 2 && !val3.dead)
+                if (val2.LengthSquared() <= val3.width * val3.height / 2 && !val3.dead)
                 {
-                    if (Challenger.config.EnableConsumptionMode)
+                    if (Challenger.Config.EnableConsumptionMode)
                     {
                         Challenger.HealPlayer(Main.player[val3.whoAmI], (int) this.ai[0], visible: false);
-                        Challenger.SendPlayerText(GetString($"血包治疗 + {(int) this.ai[0]}"), new Color(0, 255, 0), val3.Center);
+                        Challenger.SendPlayerText(GetString($"血包治疗 + {(int) this.ai[0]}"), new (0, 255, 0), val3.Center);
                     }
                     else
                     {
@@ -137,7 +137,7 @@ public class BloodBagProj : CProjectile
         var num = Collect.MyNewProjectile(Projectile.GetNoneSource(), position, velocity, 125, 0, 0f, owner);
         var bloodBagProj = new BloodBagProj(Main.projectile[num], ai, lable);
         bloodBagProj.ai[1] = bloodBagProj.proj.timeLeft;
-        Collect.cprojs[num] = bloodBagProj;
+        Collect.Cprojs[num] = bloodBagProj;
         Update(num);
         return bloodBagProj;
     }

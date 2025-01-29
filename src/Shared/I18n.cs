@@ -20,7 +20,7 @@ internal static class I18n
         var asm = Assembly.GetExecutingAssembly();
         var moFilePath = $"i18n.{cultureInfo.Name}.mo";
 
-        return asm.GetManifestResourceInfo(moFilePath) == null ? new Catalog() : new Catalog(asm.GetManifestResourceStream(moFilePath));
+        return asm.GetManifestResourceInfo(moFilePath) == null ? new () : new Catalog(asm.GetManifestResourceStream(moFilePath));
     }
 
     public static string GetString(FormattableStringAdapter text)

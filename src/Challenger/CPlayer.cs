@@ -54,7 +54,7 @@ public class CPlayer
     {
         if (me == null)
         {
-            this.me = new TSPlayer(-1);
+            this.me = new (-1);
             this.index = 255;
             this.tips = true;
             this.isActive = false;

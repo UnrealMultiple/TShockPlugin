@@ -16,7 +16,7 @@ public class Skeletron_Surrand : CNPC
         this.skill0--;
         if (this.skill0 < 0)
         {
-            var num = NPC.NewNPC(this.npc.GetSpawnSourceForNPCFromNPCAI(), (int) this.npc.Center.X, (int) this.npc.Center.Y, 33, 0, 0f, 0f, 0f, 0f, 255);
+            var num = NPC.NewNPC(this.npc.GetSpawnSourceForNPCFromNPCAI(), (int) this.npc.Center.X, (int) this.npc.Center.Y, 33);
             Main.npc[num].lifeMax = 100;
             Main.npc[num].life = 101;
             this.skill0 = 180 + Main.rand.Next(-60, 61);
@@ -25,7 +25,7 @@ public class Skeletron_Surrand : CNPC
 
     public override void OnKilled()
     {
-        var targetData = this.npc.GetTargetData(true);
-        Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.DirectionTo(this.npc.Center, targetData.Center) * 5f, 270, 6, 30f, -1, 0f, 0f, 0f);
+        var targetData = this.npc.GetTargetData();
+        Projectile.NewProjectile(null, this.npc.Center, this.npc.Center.DirectionTo(targetData.Center) * 5f, 270, 6, 30f);
     }
 }

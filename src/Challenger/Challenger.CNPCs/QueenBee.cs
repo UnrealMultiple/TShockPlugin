@@ -8,7 +8,7 @@ namespace Challenger;
 
 public class QueenBee : CNPC
 {
-    private int timer = 0;
+    private int timer;
 
     public QueenBee(NPC npc)
         : base(npc)
@@ -17,7 +17,7 @@ public class QueenBee : CNPC
 
     public override void NPCAI()
     {
-        var targetData = this.npc.GetTargetData(true);
+        var targetData = this.npc.GetTargetData();
         this.SetState();
         switch (this.state)
         {
@@ -85,7 +85,7 @@ public class QueenBee : CNPC
                 }
                 if (Main.rand.Next(6) == 0)
                 {
-                    Projectile.NewProjectile(null, this.npc.Bottom, Terraria.Utils.RotateRandom(Vector2.UnitY, Math.PI / 2.0) * -8f, 719, 12, 1f, -1, 0f, 0f, 0f);
+                    Projectile.NewProjectile(null, this.npc.Bottom, Vector2.UnitY.RotateRandom(Math.PI / 2.0) * -8f, 719, 12, 1f);
                 }
                 break;
             case 4:
@@ -110,7 +110,7 @@ public class QueenBee : CNPC
                 }
                 if (this.npc.ai[1] % 12f == 0f)
                 {
-                    Projectile.NewProjectile(null, this.npc.position - new Vector2(Main.rand.Next(-1024, 1024), 384f), Vector2.UnitY * -3f, 719, 20, 1f, -1, 0f, 0f, 0f);
+                    Projectile.NewProjectile(null, this.npc.position - new Vector2(Main.rand.Next(-1024, 1024), 384f), Vector2.UnitY * -3f, 719, 20, 1f);
                 }
                 break;
         }
@@ -123,7 +123,7 @@ public class QueenBee : CNPC
             if (this.state == 0)
             {
                 this.state = 1;
-                if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
+                if (Challenger.Config.EnableBroadcastConsumptionMode)
                 {
                     TSPlayer.All.SendMessage(GetString("谁人惊扰了我的蜂巢！"), Color.Yellow);
                 }
@@ -135,7 +135,7 @@ public class QueenBee : CNPC
             if (this.state == 1)
             {
                 this.state = 2;
-                if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
+                if (Challenger.Config.EnableBroadcastConsumptionMode)
                 {
                     TSPlayer.All.SendMessage(GetString("不许抢我的蜂蜜"), Color.Yellow);
                 }
@@ -147,7 +147,7 @@ public class QueenBee : CNPC
             if (this.state == 2)
             {
                 this.state = 3;
-                if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
+                if (Challenger.Config.EnableBroadcastConsumptionMode)
                 {
                     TSPlayer.All.SendMessage(GetString("毒刺射你一脸"), Color.Yellow);
                 }
@@ -163,18 +163,18 @@ public class QueenBee : CNPC
 
     public override void OnHurtPlayers(PlayerDamageEventArgs e)
     {
-        if (global::Challenger.Challenger.config.EnableConsumptionMode)
+        if (Challenger.Config.EnableConsumptionMode)
         {
             switch (Main.rand.Next(1, 4))
             {
                 case 1:
-                    global::Challenger.Challenger.SendPlayerText(GetString("嗡嗡"), Color.Yellow, this.npc.Center + new Vector2(0f, -30f));
+                    Challenger.SendPlayerText(GetString("嗡嗡"), Color.Yellow, this.npc.Center + new Vector2(0f, -30f));
                     break;
                 case 2:
-                    global::Challenger.Challenger.SendPlayerText(GetString("嗡嗡嗡嗡"), Color.Yellow, this.npc.Center + new Vector2(0f, -30f));
+                    Challenger.SendPlayerText(GetString("嗡嗡嗡嗡"), Color.Yellow, this.npc.Center + new Vector2(0f, -30f));
                     break;
                 default:
-                    global::Challenger.Challenger.SendPlayerText(GetString("吱嗡"), Color.Yellow, this.npc.Center + new Vector2(0f, -30f));
+                    Challenger.SendPlayerText(GetString("吱嗡"), Color.Yellow, this.npc.Center + new Vector2(0f, -30f));
                     break;
             }
         }

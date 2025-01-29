@@ -13,10 +13,10 @@ public class Honey : CProjectile
 
     public override void ProjectileAI()
     {
-        var any4 = Challenger.config.HivePack_4;
-        var any5 = Challenger.config.HivePack_5;
-        var any6 = Challenger.config.HivePack_6;
-        var any8 = Challenger.config.HivePack_Time2;
+        var any4 = Challenger.Config.HivePack_4;
+        var any5 = Challenger.Config.HivePack_5;
+        var any6 = Challenger.Config.HivePack_6;
+        var any8 = Challenger.Config.HivePack_Time2;
 
         if (this.lable == 1)
         {
@@ -30,23 +30,23 @@ public class Honey : CProjectile
                         continue;
                     }
                     var val2 = this.proj.Center - val.Center;
-                    if (((Vector2) val2).LengthSquared() <= val.width * val.height / 2)
+                    if (val2.LengthSquared() <= val.width * val.height / 2)
                     {
                         var num = Main.rand.Next(5, 12);
                         if (val.whoAmI != this.proj.owner)
                         {
                             num = Main.rand.Next(8, 16);
                         }
-                        if (Challenger.config.EnableConsumptionMode)
+                        if (Challenger.Config.EnableConsumptionMode)
                         {
                             Challenger.HealPlayer(Main.player[val.whoAmI], num, visible: false);
-                            Challenger.SendPlayerText(GetString($"蜂糖罐治疗 + {num}"), new Color(232, 229, 74), val.Center);
+                            Challenger.SendPlayerText(GetString($"蜂糖罐治疗 + {num}"), new (232, 229, 74), val.Center);
                         }
                         else
                         {
                             Challenger.HealPlayer(Main.player[val.whoAmI], num);
                         }
-                        TShock.Players[val.whoAmI].SetBuff(48, 300, false);
+                        TShock.Players[val.whoAmI].SetBuff(48, 300);
                         this.CKill();
                         break;
                     }
@@ -55,9 +55,9 @@ public class Honey : CProjectile
             if (this.proj.timeLeft < 120)
             {
                 this.CKill();
-                if (!Challenger.honey.TryAdd(this.proj.whoAmI, 0))
+                if (!Challenger.Honey.TryAdd(this.proj.whoAmI, 0))
                 {
-                    Challenger.honey[this.proj.whoAmI] = 0;
+                    Challenger.Honey[this.proj.whoAmI] = 0;
                 }
             }
         }
@@ -69,9 +69,9 @@ public class Honey : CProjectile
                 Main.projectile[num2].usesLocalNPCImmunity = true;
                 Update(num2);
                 this.CKill();
-                if (!Challenger.honey.TryAdd(this.proj.whoAmI, 0))
+                if (!Challenger.Honey.TryAdd(this.proj.whoAmI, 0))
                 {
-                    Challenger.honey[this.proj.whoAmI] = 0;
+                    Challenger.Honey[this.proj.whoAmI] = 0;
                 }
             }
         }
@@ -79,14 +79,14 @@ public class Honey : CProjectile
 
     public static Honey NewCProjectile(Vector2 position, Vector2 velocity, int lable, int owner, float[] ai)
     {
-        var any = Challenger.config.HivePack_1;
-        var any2 = Challenger.config.HivePack_2;
-        var any3 = Challenger.config.HivePack_3;
+        var any = Challenger.Config.HivePack_1;
+        var any2 = Challenger.Config.HivePack_2;
+        var any3 = Challenger.Config.HivePack_3;
 
         var num = Collect.MyNewProjectile(Projectile.GetNoneSource(), position, velocity, any, any2, any3, owner, 0f, lable - 1);
         var honey = new Honey(Main.projectile[num], ai, lable);
         honey.ai[0] = honey.proj.timeLeft;
-        Collect.cprojs[num] = honey;
+        Collect.Cprojs[num] = honey;
         Update(num);
 
         return honey;

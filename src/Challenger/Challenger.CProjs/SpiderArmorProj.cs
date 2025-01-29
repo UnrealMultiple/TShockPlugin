@@ -17,7 +17,7 @@ public class SpiderArmorProj : CProjectile
         {
             for (var i = 0; i < 15; i++)
             {
-                var val = Vector2.UnitY.RotatedBy((double) (((float) Math.PI * 2f / 15f * i) + ((float) Math.PI / 15f)), default);
+                var val = Vector2.UnitY.RotatedBy(((float) Math.PI * 2f / 15f * i) + ((float) Math.PI / 15f));
                 var num = Collect.MyNewProjectile(this.proj.GetProjectileSource_FromThis(), this.proj.Center, val * 4f, 265, 40, 5f, this.proj.owner);
                 Update(num);
             }
@@ -33,7 +33,7 @@ public class SpiderArmorProj : CProjectile
             lable = 2012
         };
         spiderArmorProj.Update();
-        Collect.cprojs[num] = spiderArmorProj;
+        Collect.Cprojs[num] = spiderArmorProj;
         return spiderArmorProj;
     }
 }

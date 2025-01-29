@@ -21,39 +21,39 @@ public class WallofFleshEye : CNPC
         this.skill0 -= 1f;
         if (this.skill0 < 0f)
         {
-            var targetData = this.npc.GetTargetData(true);
+            var targetData = this.npc.GetTargetData();
             var val = this.npc.DirectionTo(targetData.Position);
             this.SetState();
             switch (this.state)
             {
                 case 0:
-                    Projectile.NewProjectile(null, this.npc.Center, val * 8f, 83, 12, 5f, -1, 0f, 0f, 0f);
+                    Projectile.NewProjectile(null, this.npc.Center, val * 8f, 83, 12, 5f);
                     this.skill0 += CooldownOfSkill0 + Main.rand.Next(100);
                     break;
                 case 1:
-                    Projectile.NewProjectile(null, this.npc.Center, val * 9f, 83, 12, 5f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, -0.1, default) * 8f, 83, 12, 5f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, 0.1, default) * 8f, 83, 12, 5f, -1, 0f, 0f, 0f);
+                    Projectile.NewProjectile(null, this.npc.Center, val * 9f, 83, 12, 5f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(-0.1) * 8f, 83, 12, 5f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(0.1) * 8f, 83, 12, 5f);
                     this.skill0 += CooldownOfSkill0 + Main.rand.Next(80);
                     break;
                 case 2:
-                    Projectile.NewProjectile(null, this.npc.Center, val * 9f, 83, 14, 20f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, 0.1, default) * 10f, 83, 14, 5f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, -0.1, default) * 10f, 83, 14, 5f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, 0.2, default) * 8f, 83, 14, 5f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, -0.2, default) * 8f, 83, 14, 5f, -1, 0f, 0f, 0f);
+                    Projectile.NewProjectile(null, this.npc.Center, val * 9f, 83, 14, 20f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(0.1) * 10f, 83, 14, 5f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(-0.1) * 10f, 83, 14, 5f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(0.2) * 8f, 83, 14, 5f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(-0.2) * 8f, 83, 14, 5f);
                     this.skill0 += CooldownOfSkill0 + Main.rand.Next(30);
                     break;
                 case 3:
-                    Projectile.NewProjectile(null, this.npc.Center, val * 15f, 83, 15, 20f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, 0.1, default) * 15f, 83, 15, 5f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, -0.1, default) * 15f, 83, 15, 5f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, 0.15, default) * 14f, 83, 15, 5f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, -0.15, default) * 14f, 83, 15, 5f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, 0.2, default) * 13f, 83, 15, 5f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, -0.2, default) * 13f, 83, 15, 5f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, 0.25, default) * 12f, 83, 15, 5f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val, -0.25, default) * 12f, 83, 15, 5f, -1, 0f, 0f, 0f);
+                    Projectile.NewProjectile(null, this.npc.Center, val * 15f, 83, 15, 20f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(0.1) * 15f, 83, 15, 5f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(-0.1) * 15f, 83, 15, 5f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(0.15) * 14f, 83, 15, 5f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(-0.15) * 14f, 83, 15, 5f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(0.2) * 13f, 83, 15, 5f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(-0.2) * 13f, 83, 15, 5f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(0.25) * 12f, 83, 15, 5f);
+                    Projectile.NewProjectile(null, this.npc.Center, val.RotatedBy(-0.25) * 12f, 83, 15, 5f);
                     this.skill0 += CooldownOfSkill0;
                     break;
             }
@@ -95,9 +95,9 @@ public class WallofFleshEye : CNPC
 
     public override void OnHurtPlayers(GetDataHandlers.PlayerDamageEventArgs e)
     {
-        if (global::Challenger.Challenger.config.EnableConsumptionMode)
+        if (Challenger.Config.EnableConsumptionMode)
         {
-            global::Challenger.Challenger.SendPlayerText(GetString("这么想看清我的卡姿兰大眼是吧"), new Color(0, 146, 255), this.npc.Center + new Vector2(0f, -30f));
+            Challenger.SendPlayerText(GetString("这么想看清我的卡姿兰大眼是吧"), new (0, 146, 255), this.npc.Center + new Vector2(0f, -30f));
         }
     }
 }

@@ -95,10 +95,10 @@ public class CProjectile
                 Main.projectile[index].TryGettingHitByOtherPlayersExplosives();
             }
             Main.projectile[index].active = false;
-            TSPlayer.All.SendData((PacketTypes) 29, "", Main.projectile[index].identity, Main.projectile[index].owner, 0f, 0f, 0);
-            if (Collect.cprojs[index] != null)
+            TSPlayer.All.SendData((PacketTypes) 29, "", Main.projectile[index].identity, Main.projectile[index].owner);
+            if (Collect.Cprojs[index] != null)
             {
-                Collect.cprojs[index].isActive = false;
+                Collect.Cprojs[index].isActive = false;
             }
         }
     }
@@ -114,22 +114,22 @@ public class CProjectile
                 this.proj.TryGettingHitByOtherPlayersExplosives();
             }
             this.proj.active = false;
-            TSPlayer.All.SendData((PacketTypes) 29, "", this.proj.identity, this.proj.owner, 0f, 0f, 0);
-            if (Collect.cprojs[this.proj.whoAmI] != null)
+            TSPlayer.All.SendData((PacketTypes) 29, "", this.proj.identity, this.proj.owner);
+            if (Collect.Cprojs[this.proj.whoAmI] != null)
             {
-                Collect.cprojs[this.proj.whoAmI].isActive = false;
+                Collect.Cprojs[this.proj.whoAmI].isActive = false;
             }
         }
     }
 
     public static void Update(int index)
     {
-        TSPlayer.All.SendData((PacketTypes) 27, null, index, 0f, 0f, 0f, 0);
+        TSPlayer.All.SendData((PacketTypes) 27, null, index);
     }
 
     public void Update()
     {
-        TSPlayer.All.SendData((PacketTypes) 27, null, this.index, 0f, 0f, 0f, 0);
+        TSPlayer.All.SendData((PacketTypes) 27, null, this.index);
     }
 
     public virtual void ProjectileAI()

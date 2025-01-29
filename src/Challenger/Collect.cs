@@ -2,22 +2,21 @@
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.Utilities;
 using static Terraria.UI.ItemSlot;
 
 namespace Challenger;
 
 internal static class Collect
 {
-    public static CProjectile[] cprojs = new CProjectile[1000];
+    public static readonly CProjectile[] Cprojs = new CProjectile[1000];
 
-    public static CNPC[] cnpcs = new CNPC[200];
+    public static readonly CNPC[] Cnpcs = new CNPC[200];
 
-    public static CPlayer[] cplayers = new CPlayer[255];
+    public static readonly CPlayer[] Cplayers = new CPlayer[255];
 
-    public static int worldevent = 0;
+    public static int WorldEvent = 0;
 
-    public static HashSet<int> noneedlifeNPC = new HashSet<int> { 115, 116, 488 };
+    public static readonly HashSet<int> NoNeedLifeNpc = new() { 115, 116, 488 };
 
     public static int MyNewProjectile(IEntitySource? spawnSource, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner = 255, float ai0 = 0f, float ai1 = 0f, float ai2 = 0f)
     {
@@ -117,16 +116,16 @@ internal static class Collect
         {
             return 0;
         }
-        Main.rand ??= new UnifiedRandom();
+        Main.rand ??= new ();
         if (Main.tenthAnniversaryWorld)
         {
             if (Type == 58)
             {
-                Type = Terraria.Utils.NextFromList<short>(Main.rand, new short[3] { 1734, 1867, 58 });
+                Type = Main.rand.NextFromList(new short[3] { 1734, 1867, 58 });
             }
             if (Type == 184)
             {
-                Type = Terraria.Utils.NextFromList<short>(Main.rand, new short[3] { 1735, 1868, 184 });
+                Type = Main.rand.NextFromList(new short[3] { 1735, 1868, 184 });
             }
         }
         if (Main.halloween)
@@ -156,14 +155,14 @@ internal static class Collect
             Item.cachedItemSpawnsByType[Type] += Stack;
             return 400;
         }
-        Main.item[400] = new Item();
+        Main.item[400] = new ();
         var num = 400;
         if (Main.netMode != 1)
         {
             num = Item.PickAnItemSlotToSpawnItemOn(reverseLookup, num);
         }
         Main.timeItemSlotCannotBeReusedFor[num] = 0;
-        Main.item[num] = new Item();
+        Main.item[num] = new ();
         var val = Main.item[num];
         val.SetDefaults(Type);
         val.Prefix(pfix);

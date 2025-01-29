@@ -37,7 +37,7 @@ public class CNPC
         this.ai = new float[8];
         this.state = 0;
         this.LifeMax = 0;
-        this.AccOfObsidian = new HashSet<string>();
+        this.AccOfObsidian = new ();
         this.isActive = false;
     }
 
@@ -63,7 +63,7 @@ public class CNPC
             this.LifeMax = npc.life;
             this.isActive = npc.active;
         }
-        this.AccOfObsidian = new HashSet<string>();
+        this.AccOfObsidian = new ();
     }
 
     public CNPC(NPC? npc, float[] ai, int state)
@@ -88,7 +88,7 @@ public class CNPC
             this.LifeMax = npc.life;
             this.isActive = npc.active;
         }
-        this.AccOfObsidian = new HashSet<string>();
+        this.AccOfObsidian = new ();
     }
 
     public virtual void NPCAI()

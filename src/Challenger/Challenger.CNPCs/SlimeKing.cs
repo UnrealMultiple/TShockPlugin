@@ -19,10 +19,10 @@ public class SlimeKing : CNPC
 
     public override void NPCAI()
     {
-        var targetData = this.npc.GetTargetData(true);
+        var targetData = this.npc.GetTargetData();
         if (this.npc.ai[0] > -200f && this.npc.ai[0] < -120f)
         {
-            var val = Terraria.Utils.ToTileCoordinates(this.npc.Bottom);
+            var val = this.npc.Bottom.ToTileCoordinates();
             var num = 20;
             var num2 = 1;
             val.X += this.npc.direction * 3;
@@ -50,7 +50,7 @@ public class SlimeKing : CNPC
                 if (this.ai[0] < 0f && this.npc.ai[0] != -120f && this.npc.ai[0] != -200f)
                 {
                     var val3 = new Vector2();
-                    var directionX = (targetData.Position.X - this.npc.Center.X > 0f) ? 1f : -1f;
+                    var directionX = targetData.Position.X - this.npc.Center.X > 0f ? 1f : -1f;
                     val3.X = directionX;
                     val3.Y = -2f;
 
@@ -69,7 +69,7 @@ public class SlimeKing : CNPC
                 if (this.ai[0] < 0f && this.npc.ai[0] != -120f && this.npc.ai[0] != -200f)
                 {
                     var val5 = new Vector2();
-                    var directionX = (targetData.Position.X - this.npc.Center.X > 0f) ? 1f : -1f;
+                    var directionX = targetData.Position.X - this.npc.Center.X > 0f ? 1f : -1f;
                     val5.X = directionX;
                     val5.Y = -2f;
 
@@ -82,7 +82,7 @@ public class SlimeKing : CNPC
 
                 if (this.ai[1] < 0f)
                 {
-                    Projectile.NewProjectile(null, this.npc.Center, Vector2.Zero, 464, 16, 32f, -1, 0f, 0f, 0f);
+                    Projectile.NewProjectile(null, this.npc.Center, Vector2.Zero, 464, 16, 32f);
                     this.ai[1] = this.CooldownOfSkill1 + Main.rand.Next(151);
                 }
                 break;
@@ -91,16 +91,16 @@ public class SlimeKing : CNPC
                 this.ai[1] -= 1f;
                 this.ai[2] -= 1f;
                 var val4 = this.npc.DirectionTo(targetData.Position);
-                ((Vector2) val4).Normalize();
+                val4.Normalize();
                 val4 *= 2.5f;
                 if (this.ai[1] < 0f)
                 {
-                    Projectile.NewProjectile(null, this.npc.Center, Vector2.Zero, 464, 16, 64f, -1, 0f, 0f, 0f);
+                    Projectile.NewProjectile(null, this.npc.Center, Vector2.Zero, 464, 16, 64f);
                     this.ai[1] = this.CooldownOfSkill1 + Main.rand.Next(121);
                 }
                 if (this.ai[2] < 120f && this.ai[2] % 40f == 0f)
                 {
-                    Projectile.NewProjectile(null, this.npc.Center, val4, 348, 18, 64f, -1, 0f, 0f, 0f);
+                    Projectile.NewProjectile(null, this.npc.Center, val4, 348, 18, 64f);
                 }
                 if (this.ai[2] < 0f)
                 {
@@ -114,25 +114,25 @@ public class SlimeKing : CNPC
                 this.ai[2] -= 1f;
                 if (this.ai[1] < 0f && this.ai[2] == 500f)
                 {
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(Vector2.One, Main.rand.NextDouble() * Math.PI, default), 464, 8, 64f, -1, 0f, 0f, 0f);
-                    Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(Vector2.One, Main.rand.NextDouble() * Math.PI, default), 464, 8, 64f, -1, 0f, 0f, 0f);
+                    Projectile.NewProjectile(null, this.npc.Center, Vector2.One.RotatedBy(Main.rand.NextDouble() * Math.PI), 464, 8, 64f);
+                    Projectile.NewProjectile(null, this.npc.Center, Vector2.One.RotatedBy(Main.rand.NextDouble() * Math.PI), 464, 8, 64f);
                     this.ai[1] = this.CooldownOfSkill1 + Main.rand.Next(151);
                 }
                 var val2 = this.npc.DirectionTo(targetData.Position);
-                ((Vector2) val2).Normalize();
+                val2.Normalize();
                 val2 *= 2.25f;
                 if (this.ai[2] < 180f && this.ai[2] % 60f == 0f)
                 {
                     if (Main.rand.Next(1, 3) == 2)
                     {
-                        Projectile.NewProjectile(null, this.npc.Center, val2, 348, 16, 64f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val2, 0.45, default), 348, 14, 64f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val2, -0.45, default), 348, 14, 64f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, this.npc.Center, val2, 348, 16, 64f);
+                        Projectile.NewProjectile(null, this.npc.Center, val2.RotatedBy(0.45), 348, 14, 64f);
+                        Projectile.NewProjectile(null, this.npc.Center, val2.RotatedBy(-0.45), 348, 14, 64f);
                     }
                     else
                     {
-                        Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val2, 0.4, default), 348, 14, 64f, -1, 0f, 0f, 0f);
-                        Projectile.NewProjectile(null, this.npc.Center, Terraria.Utils.RotatedBy(val2, -0.4, default), 348, 14, 64f, -1, 0f, 0f, 0f);
+                        Projectile.NewProjectile(null, this.npc.Center, val2.RotatedBy(0.4), 348, 14, 64f);
+                        Projectile.NewProjectile(null, this.npc.Center, val2.RotatedBy(-0.4), 348, 14, 64f);
                     }
                 }
                 if (this.ai[2] < 0f)
@@ -151,9 +151,9 @@ public class SlimeKing : CNPC
             if (this.state == 0)
             {
                 this.state = 1;
-                if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
+                if (Challenger.Config.EnableBroadcastConsumptionMode)
                 {
-                    TSPlayer.All.SendMessage(GetString("史莱姆王习得冰魔法归来"), new Color(0, 146, 255));
+                    TSPlayer.All.SendMessage(GetString("史莱姆王习得冰魔法归来"), new (0, 146, 255));
                 }
             }
             return this.state;
@@ -163,9 +163,9 @@ public class SlimeKing : CNPC
             if (this.state == 1)
             {
                 this.state = 2;
-                if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
+                if (Challenger.Config.EnableBroadcastConsumptionMode)
                 {
-                    TSPlayer.All.SendMessage(GetString("寒风呼啸"), new Color(0, 146, 255));
+                    TSPlayer.All.SendMessage(GetString("寒风呼啸"), new (0, 146, 255));
                 }
             }
             return this.state;
@@ -175,9 +175,9 @@ public class SlimeKing : CNPC
             if (this.state == 2)
             {
                 this.state = 3;
-                if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
+                if (Challenger.Config.EnableBroadcastConsumptionMode)
                 {
-                    TSPlayer.All.SendMessage(GetString("你感觉寒冷刺骨"), new Color(0, 146, 255));
+                    TSPlayer.All.SendMessage(GetString("你感觉寒冷刺骨"), new (0, 146, 255));
                 }
             }
             return this.state;
@@ -185,9 +185,9 @@ public class SlimeKing : CNPC
         if (this.state == 3)
         {
             this.state = 4;
-            if (global::Challenger.Challenger.config.EnableBroadcastConsumptionMode)
+            if (Challenger.Config.EnableBroadcastConsumptionMode)
             {
-                TSPlayer.All.SendMessage(GetString("史莱姆王发怒了"), new Color(0, 146, 255));
+                TSPlayer.All.SendMessage(GetString("史莱姆王发怒了"), new (0, 146, 255));
             }
         }
         return this.state;
@@ -199,18 +199,18 @@ public class SlimeKing : CNPC
         {
             return;
         }
-        if (global::Challenger.Challenger.config.EnableConsumptionMode)
+        if (Challenger.Config.EnableConsumptionMode)
         {
             switch (Main.rand.Next(1, 4))
             {
                 case 1:
-                    global::Challenger.Challenger.SendPlayerText(GetString("走位真菜"), new Color(0, 146, 255), this.npc.Center + new Vector2(0f, -30f));
+                    Challenger.SendPlayerText(GetString("走位真菜"), new (0, 146, 255), this.npc.Center + new Vector2(0f, -30f));
                     break;
                 case 2:
-                    global::Challenger.Challenger.SendPlayerText(GetString("连我都打不过，回家喝奶吧你"), new Color(0, 146, 255), this.npc.Center + new Vector2(0f, -30f));
+                    Challenger.SendPlayerText(GetString("连我都打不过，回家喝奶吧你"), new (0, 146, 255), this.npc.Center + new Vector2(0f, -30f));
                     break;
                 default:
-                    global::Challenger.Challenger.SendPlayerText(GetString("小辣鸡"), new Color(0, 146, 255), this.npc.Center + new Vector2(0f, -30f));
+                    Challenger.SendPlayerText(GetString("小辣鸡"), new (0, 146, 255), this.npc.Center + new Vector2(0f, -30f));
                     break;
             }
         }

@@ -11,11 +11,11 @@ public class Config
     [JsonProperty("是否启用挑战模式", Order = -5)]
     public bool enableChallenge = true;
     [JsonProperty("是否启用BOSS魔改", Order = -5)]
-    public bool enableBossAI = false;
+    public bool enableBossAI;
     [JsonProperty("启用话痨模式", Order = -5)]
-    public bool EnableConsumptionMode = false;
+    public bool EnableConsumptionMode;
     [JsonProperty("启用广播话痨模式", Order = -5)]
-    public bool EnableBroadcastConsumptionMode = false;
+    public bool EnableBroadcastConsumptionMode;
 
     [JsonProperty("是否启用怪物吸血", Order = -4)]
     public bool enableMonsterSucksBlood = true;
@@ -47,7 +47,7 @@ public class Config
     [JsonProperty("蜜蜂背包弹幕爆炸后的弹幕伤害")]
     public int HivePack_5 = 30;
     [JsonProperty("蜜蜂背包弹幕爆炸后的弹幕击退")]
-    public float HivePack_6 = 0f;
+    public float HivePack_6;
     [JsonProperty("蜜蜂背包二次弹幕间隔/帧")]
     public int HivePack_Time2 = 240;
 
@@ -88,9 +88,9 @@ public class Config
     [JsonProperty("忍者套闪避释放的弹幕ID")]
     public int NinjaArmorEffect_3 = 196;
     [JsonProperty("忍者套闪避释放的弹幕伤害")]
-    public int NinjaArmorEffect_4 = 0;
+    public int NinjaArmorEffect_4;
     [JsonProperty("忍者套闪避释放的弹幕击退")]
-    public float NinjaArmorEffect_5 = 0f;
+    public float NinjaArmorEffect_5;
 
     [JsonProperty("暗影套的弹幕ID")]
     public int ShadowArmorEffect = 307;
@@ -104,9 +104,9 @@ public class Config
     [JsonProperty("猩红套的弹幕ID")]
     public int CrimsonArmorEffect = 305;
     [JsonProperty("猩红套的弹幕伤害")]
-    public int CrimsonArmorEffect_2 = 0;
+    public int CrimsonArmorEffect_2;
     [JsonProperty("猩红套的弹幕击退")]
-    public float CrimsonArmorEffect_3 = 0f;
+    public float CrimsonArmorEffect_3;
     [JsonProperty("猩红套的弹幕间隔/帧")]
     public int CrimsonArmorEffect_4 = 300;
 
@@ -243,23 +243,23 @@ public class Config
     [JsonProperty("幽灵兜帽是否出幽灵弹幕", Order = 2)]
     public bool EnableSpectreArmorEffect_1 = true;
     [JsonProperty("幽灵面具是否出幽灵弹幕", Order = 2)]
-    public bool EnableSpectreArmorEffect_2 = false;
+    public bool EnableSpectreArmorEffect_2;
     [JsonProperty("幽灵套的弹幕ID", Order = 2)]
     public int EnableSpectreArmorEffect_3 = 79;
     [JsonProperty("幽灵套的弹幕伤害倍数", Order = 2)]
     public float EnableSpectreArmorEffect_4 = 50f;
     [JsonProperty("幽灵套的弹幕击退", Order = 2)]
-    public float EnableSpectreArmorEffect_5 = 0f;
+    public float EnableSpectreArmorEffect_5;
     [JsonProperty("幽灵套环绕的弹幕ID", Order = 2)]
     public int EnableSpectreArmorEffect_6 = 299;
     [JsonProperty("幽灵套环绕的弹幕伤害", Order = 2)]
-    public int EnableSpectreArmorEffect_7 = 0;
+    public int EnableSpectreArmorEffect_7;
     [JsonProperty("幽灵套环绕的弹幕击退", Order = 2)]
-    public float EnableSpectreArmorEffect_8 = 0f;
+    public float EnableSpectreArmorEffect_8;
     [JsonProperty("幽灵套的攻击弹幕间隔/帧", Order = 2)]
     public int EnableSpectreArmorEffect_9 = 2;
     [JsonProperty("幽灵套给什么永久BUFF", Order = 2)]
-    public int[] SpectreArmorEffectList { get; set; } = new int[] { 6, 7, 181, 178 };
+    public int[] SpectreArmorEffectList { get; set; } = { 6, 7, 181, 178 };
 
     [JsonProperty("甲虫套加多少生命上限")]
     public int BeetleArmorEffect_1 = 180;
@@ -283,41 +283,41 @@ public class Config
     [JsonProperty("皇家凝胶物品雨间隔/帧", Order = 1)]
     public int RoyalGel_Timer = 180;
     [JsonProperty("皇家凝胶物品雨表", Order = 1)]
-    public int[] RoyalGelList { get; set; } = new int[] { 75 };
+    public int[] RoyalGelList { get; set; } = { 75 };
 
     [JsonProperty("挥发凝胶击中敌怪掉落物品表", Order = 1)]
-    public int[] VolatileGelatin { get; set; } = new int[] { 72, 75, 501, 502 };
+    public int[] VolatileGelatin { get; set; } = { 72, 75, 501, 502 };
 
     [JsonProperty("蜜蜂套是否释放弹幕", Order = 3)]
     public bool BeeArmorEffect = true;
     [JsonProperty("蜜蜂套给什么永久BUFF", Order = 3)]
-    public int[] BeeArmorEffectList { get; set; } = new int[] { 48 };
+    public int[] BeeArmorEffectList { get; set; } = { 48 };
     [JsonProperty("蜜蜂套的BUFF时长/帧", Order = 3)]
     public int BeeArmorEffectTime = 150;
     [JsonProperty("蜜蜂套的弹幕间隔/帧", Order = 3)]
     public int BeeArmorEffect_1 = 120;
 
     [JsonProperty("狱岩套给什么永久BUFF", Order = 4)]
-    public int[] MoltenArmor { get; set; } = new int[] { 1, 172 };
+    public int[] MoltenArmor { get; set; } = { 1, 172 };
 
     [JsonProperty("钓鱼套包含哪些永久BUFF", Order = 5)]
-    public int[] AnglerArmorEffectList { get; set; } = new int[] { 106, 123, 121, 122 };
+    public int[] AnglerArmorEffectList { get; set; } = { 106, 123, 121, 122 };
 
     [JsonProperty("挖矿套是否开启连锁挖矿", Order = 6)]
     public bool MiningArmor_1 = true;
     [JsonProperty("挖矿套给什么永久BUFF", Order = 6)]
-    public int[] MiningArmor { get; set; } = new int[] { 104, 192 };
+    public int[] MiningArmor { get; set; } = { 104, 192 };
     [JsonProperty("挖矿套连锁图格ID表", Order = 6)]
-    public int[] Tile { get; set; } = new int[] { 6, 7, 8, 9, 166, 167, 168, 169, 22, 221, 222, 223, 224, 232, 37, 404, 408, 48, 481, 482, 483, 56, 571, 58, 63, 64, 65, 66, 67, 68, 107, 108, 111, 123, 178, 204, 211, 229, 230 };
+    public int[] Tile { get; set; } = { 6, 7, 8, 9, 166, 167, 168, 169, 22, 221, 222, 223, 224, 232, 37, 404, 408, 48, 481, 482, 483, 56, 571, 58, 63, 64, 65, 66, 67, 68, 107, 108, 111, 123, 178, 204, 211, 229, 230 };
 
     [JsonProperty("蠕虫围巾免疫buff是否开启", Order = 7)]
     public bool EnableWormScarf = true;
     [JsonProperty("蠕虫围巾遍历前几个buff", Order = 7)]
     public int WormScarfImmuneList_2 = 22;
     [JsonProperty("蠕虫围巾免疫DeBuff列表/遇到会清空所有BUFF", Order = 7)]
-    public int[] WormScarfImmuneList { get; set; } = new int[] { };
+    public int[] WormScarfImmuneList { get; set; } = { };
     [JsonProperty("蠕虫围巾给什么永久BUFF", Order = 7)]
-    public int[] WormScarfSetBuff { get; set; } = new int[] { 5, 114, 215 };
+    public int[] WormScarfSetBuff { get; set; } = { 5, 114, 215 };
 
     [JsonProperty("箭袋补充开关", Order = 8)]
     public bool RefillEnabled = true;
@@ -326,9 +326,9 @@ public class Config
     [JsonProperty("箭袋补充物品数量", Order = 8)]
     public int Refillstack { get; set; } = 99;
     [JsonProperty("箭袋补充物品ID", Order = 8)]
-    public int[] RefillArrow { get; set; } = new int[] { 40, 41, 47, 51, 516, 545, 988, 1235, 1334, 1341, 3003, 3568, 5348 };
+    public int[] RefillArrow { get; set; } = { 40, 41, 47, 51, 516, 545, 988, 1235, 1334, 1341, 3003, 3568, 5348 };
     [JsonProperty("箭袋给什么永久BUFF", Order = 8)]
-    public int[] RefillBuff { get; set; } = new int[] { 16, 93, 112 };
+    public int[] RefillBuff { get; set; } = { 16, 93, 112 };
 
 
     #region 读取与创建配置文件方法
@@ -353,15 +353,13 @@ public class Config
             c.Write(path);
             return c;
         }
-        else
+
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+        using (var sr = new StreamReader(fs))
         {
-            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (var sr = new StreamReader(fs))
-            {
-                var json = sr.ReadToEnd();
-                var cf = JsonConvert.DeserializeObject<Config>(json);
-                return cf!;
-            }
+            var json = sr.ReadToEnd();
+            var cf = JsonConvert.DeserializeObject<Config>(json);
+            return cf!;
         }
     }
     #endregion
