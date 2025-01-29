@@ -171,9 +171,9 @@ public class Commands
                         }
                         else
                         {
-                            plr.SendMessage($"[c/ED3241:注：]指令格式 [c/FFF540:/mw reads 1 或 2]\n" +
-                                $"[c/FFB357:1] 帮助所有在线玩家手动重读\n" +
-                                $"[c/4C95DD:2] 切换所有玩家进服重读功能", 100, 210, 190);
+                            plr.SendMessage(GetString($"[c/ED3241:注：]指令格式 [c/FFF540:/mw reads 1 或 2]\n") +
+                                            GetString($"[c/FFB357:1] 帮助所有在线玩家手动重读\n") +
+                                            GetString($"[c/4C95DD:2] 切换所有玩家进服重读功能"), 100, 210, 190);
                         }
                     }
                     return;
@@ -863,7 +863,7 @@ public class Commands
 
             if (ReItem.Count < 1)
             {
-                plr.SendInfoMessage("未能重读您身上任何修改物品");
+                plr.SendInfoMessage(GetString("未能重读您身上任何修改物品"));
             }
             else
             {
@@ -1080,7 +1080,7 @@ public class Commands
                             int.Parse(colorValue.Substring(2, 2), System.Globalization.NumberStyles.HexNumber),
                             int.Parse(colorValue.Substring(4, 2), System.Globalization.NumberStyles.HexNumber)
                         );
-                        propName = "颜色";
+                        propName = GetString("颜色");
                     }
                     else
                     {
@@ -1104,7 +1104,7 @@ public class Commands
     {
 
         var mess = new StringBuilder();
-        mess.Append($"修改数值:");
+        mess.Append(GetString("修改数值:"));
 
         var datas = DB.GetData(name);
         if (datas != null && datas.Dict.ContainsKey(name))
@@ -1352,7 +1352,7 @@ public class Commands
             });
 
             // 使用逗号分隔物品名称
-            mess.Append($"已重读身上[C/91DFBB:{WNames.Count}]个修改物品:{string.Join(", ", color)}");
+            mess.Append(GetString($"已重读身上[C/91DFBB:{WNames.Count}]个修改物品:{string.Join(", ", color)}"));
         }
 
         // 发送消息给玩家
@@ -1680,16 +1680,17 @@ public class Commands
             var pr = TShock.Utils.GetPrefixById(Sel.prefix);
             if (string.IsNullOrEmpty(pr))
             {
-                pr = "无";
+                pr = GetString("无");
             }
 
             string ColorToHex(Color color) => $"{color.R:X2}{color.G:X2}{color.B:X2}";
 
             plr.SendInfoMessage(GetString("手持[c/92C5EC:{0}] 伤害[c/FF6975:{1}] 前缀[c/F5DDD3:{2}] 数量[c/2CCFC6:{3}] 大小[c/5C9EE1:{4}] \n") +
-                GetString("击退[c/5C9EE1:{5}] 用速[c/74E55D:{6}] 攻速[c/94BAE0:{7}] 弹幕[c/E83C10:{8}] 射速[c/F0EC9E:{9}]\n") +
-                GetString("弹药[c/91DFBB:{10}] 发射器[c/5264D9:{11}] 颜色[c/F5DDD3:{12}]"),
-            Lang.GetItemName(Sel.type), Sel.damage, pr, Sel.stack,
-            Sel.scale, Sel.knockBack, Sel.useTime, Sel.useAnimation, Sel.shoot, Sel.shootSpeed, Sel.ammo, Sel.useAmmo, ColorToHex(Sel.color));
+                                GetString("击退[c/5C9EE1:{5}] 用速[c/74E55D:{6}] 攻速[c/94BAE0:{7}] 弹幕[c/E83C10:{8}] 射速[c/F0EC9E:{9}]\n") +
+                                GetString("弹药[c/91DFBB:{10}] 发射器[c/5264D9:{11}] 颜色[c/F5DDD3:{12}]"),
+                Lang.GetItemName(Sel.type), Sel.damage, pr, Sel.stack, Sel.scale,
+                Sel.knockBack, Sel.useTime, Sel.useAnimation, Sel.shoot, Sel.shootSpeed,
+                Sel.ammo, Sel.useAmmo, ColorToHex(Sel.color));
 
             var mess = new StringBuilder();
             mess.Append(GetString($"修改:[c/92B9D4:{Lang.GetItemName(Sel.type)}]"));
