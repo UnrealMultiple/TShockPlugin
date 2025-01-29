@@ -11,7 +11,7 @@ public class Plugin : TerrariaPlugin
 
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学";
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
     public override string Description => GetString("使用指令切换沙尘暴");
     #endregion
 
@@ -44,7 +44,7 @@ public class Plugin : TerrariaPlugin
     {
         Config = Configuration.Read();
         Config.Write();
-        TShock.Log.ConsoleInfo("[Sandstorm]重新加载配置完毕。");
+        TShock.Log.ConsoleInfo(GetString("[Sandstorm]重新加载配置完毕。"));
     }
     #endregion
 
@@ -63,7 +63,7 @@ public class Plugin : TerrariaPlugin
 
             if (Config.SendMessage)
             {
-                TSPlayer.All.SendMessage("沙尘暴: 已停止", (byte) Config.ColorRGB[0], (byte) Config.ColorRGB[1], (byte) Config.ColorRGB[2]);
+                TSPlayer.All.SendMessage(GetString("沙尘暴: 已停止"), (byte) Config.ColorRGB[0], (byte) Config.ColorRGB[1], (byte) Config.ColorRGB[2]);
             }
         }
         else
@@ -74,7 +74,7 @@ public class Plugin : TerrariaPlugin
 
             if (Config.SendMessage)
             {
-                TSPlayer.All.SendMessage("沙尘暴: 已开始", (byte) Config.ColorRGB[0], (byte) Config.ColorRGB[1], (byte) Config.ColorRGB[2]);
+                TSPlayer.All.SendMessage(GetString("沙尘暴: 已开始"), (byte) Config.ColorRGB[0], (byte) Config.ColorRGB[1], (byte) Config.ColorRGB[2]);
             }
         }
     }
