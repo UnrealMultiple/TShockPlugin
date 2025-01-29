@@ -23,14 +23,14 @@ internal class LC
         {
             if (!File.Exists(LConfigPath))
             {
-                TShock.Log.ConsoleError("未找到高尔夫奖励配置文件，已为您创建！");
+                TShock.Log.ConsoleError(GetString("未找到高尔夫奖励配置文件，已为您创建！"));
             }
             LConfig = ConfigFile.Read(LConfigPath);
             LConfig.Write(LConfigPath);
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError("高尔夫奖励插件错误配置读取错误:" + ex.ToString());
+            TShock.Log.ConsoleError(GetString($"高尔夫奖励插件错误配置读取错误:{ex}"));
         }
     }
 }
