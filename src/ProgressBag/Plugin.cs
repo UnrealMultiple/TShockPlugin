@@ -14,7 +14,7 @@ public class Plugin : LazyPlugin
     public override string Description => GetString("进度礼包");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 1, 4);
+    public override Version Version => new Version(1, 0, 1, 5);
 
     public Plugin(Main game) : base(game)
     {
@@ -115,8 +115,8 @@ public class Plugin : LazyPlugin
         else if (args.Parameters.Count >= 1 && args.Parameters[0] == "list")
         {
             var lines = Config.Instance.Bag.Select(b => b.Receive.Contains(args.Player.Name) ?
-                GetString($"[{b.Name}] => {"已领取".Color(TShockAPI.Utils.GreenHighlight)}") :
-                GetString($"[{b.Name}] => {"未领取".Color(TShockAPI.Utils.BoldHighlight)}")
+                GetString("[{0}] => {1}", b.Name, GetString("已领取").Color(TShockAPI.Utils.GreenHighlight)) :
+                GetString("[{0}] => {1}", b.Name, GetString("未领取").Color(TShockAPI.Utils.BoldHighlight))
             ).ToList();
             ShowBag(lines);
         }
