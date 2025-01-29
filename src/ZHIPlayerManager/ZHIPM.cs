@@ -15,7 +15,7 @@ public partial class ZHIPM : TerrariaPlugin
     public override string Description => GetString("玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 2, 1);
+    public override Version Version => new Version(1, 0, 2, 2);
 
     #region 字段或属性
     /// <summary>
@@ -115,101 +115,101 @@ public partial class ZHIPM : TerrariaPlugin
         #region 指令
         Commands.ChatCommands.Add(new Command("zhipm.help", this.Help, "zhelp")
         {
-            HelpText = "输入 /zhelp  来查看指令帮助"
+            HelpText = GetString("输入 /zhelp  来查看指令帮助")
         });
         Commands.ChatCommands.Add(new Command("zhipm.save", this.MySSCSave, "zsave")
         {
-            HelpText = "输入 /zsave  来备份自己的人物存档"
+            HelpText = GetString("输入 /zsave  来备份自己的人物存档")
         });
         Commands.ChatCommands.Add(new Command("zhipm.save", this.MySSCSaveAuto, "zsaveauto")
         {
-            HelpText = "输入 /zsaveauto [minute]  来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能"
+            HelpText = GetString("输入 /zsaveauto [minute]  来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能")
         });
         Commands.ChatCommands.Add(new Command("zhipm.save", this.ViewMySSCSave, "zvisa")
         {
-            HelpText = "输入 /zvisa [num] 来查看自己的第几个人物备份"
+            HelpText = GetString("输入 /zvisa [num] 来查看自己的第几个人物备份")
         });
         Commands.ChatCommands.Add(new Command("zhipm.back", this.MySSCBack, "zback")
         {
-            HelpText = "输入 /zback [name]  来读取该玩家的人物存档\n输入 /zback [name] [num]  来读取该玩家的第几个人物存档"
+            HelpText = GetString("输入 /zback [name]  来读取该玩家的人物存档\n输入 /zback [name] [num]  来读取该玩家的第几个人物存档")
         });
         Commands.ChatCommands.Add(new Command("zhipm.clone", this.SSCClone, "zclone")
         {
-            HelpText = "输入 /zclone [name1] [name2]  将玩家1的人物数据复制给玩家2\n输入 /zclone [name]  将该玩家的人物数据复制给自己"
+            HelpText = GetString("输入 /zclone [name1] [name2]  将玩家1的人物数据复制给玩家2\n输入 /zclone [name]  将该玩家的人物数据复制给自己")
         });
         Commands.ChatCommands.Add(new Command("zhipm.modify", this.SSCModify, "zmodify")
         {
-            HelpText = "输入 /zmodify help  查看修改玩家数据的指令帮助"
+            HelpText = GetString("输入 /zmodify help  查看修改玩家数据的指令帮助")
         });
         Commands.ChatCommands.Add(new Command("zhipm.out", this.ZhiExportPlayer, "zout")
         {
-            HelpText = "输入 /zout [name]  来导出该玩家的人物存档\n输入 /zout all  来导出所有人物的存档"
+            HelpText = GetString("输入 /zout [name]  来导出该玩家的人物存档\n输入 /zout all  来导出所有人物的存档")
         });
         Commands.ChatCommands.Add(new Command("zhipm.sort", this.ZhiSortPlayer, "zsort")
         {
-            HelpText = "输入 /zsort help  来查看排序系列指令帮助"
+            HelpText = GetString("输入 /zsort help  来查看排序系列指令帮助")
         });
         Commands.ChatCommands.Add(new Command("zhipm.hide", this.HideTips, "zhide")
         {
-            HelpText = "输入 /zhide kill  来取消 kill + 1 的显示，再次使用启用显示\n输入 /zhide point  来取消 + 1 $ 的显示，再次使用启用显示"
+            HelpText = GetString("输入 /zhide kill  来取消 kill + 1 的显示，再次使用启用显示\n输入 /zhide point  来取消 + 1 $ 的显示，再次使用启用显示")
         });
 
         Commands.ChatCommands.Add(new Command("zhipm.clear", this.Clear, "zclear")
         {
-            HelpText = "输入 /zclear useless  来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n输入 /zclear buff [name]  来清理该玩家的所有Buff\n输入 /zclear buff all  来清理所有玩家所有Buff"
+            HelpText = GetString("输入 /zclear useless  来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n输入 /zclear buff [name]  来清理该玩家的所有Buff\n输入 /zclear buff all  来清理所有玩家所有Buff")
         });
 
 
         Commands.ChatCommands.Add(new Command("zhipm.freeze", this.ZFreeze, "zfre")
         {
-            HelpText = "输入 /zfre [name]  来冻结该玩家"
+            HelpText = GetString("输入 /zfre [name]  来冻结该玩家")
         });
         Commands.ChatCommands.Add(new Command("zhipm.freeze", this.ZUnFreeze, "zunfre")
         {
-            HelpText = "输入 /zunfre [name]  来解冻该玩家\n输入 /zunfre all  来解冻所有玩家"
+            HelpText = GetString("输入 /zunfre [name]  来解冻该玩家\n输入 /zunfre all  来解冻所有玩家")
         });
 
 
         Commands.ChatCommands.Add(new Command("zhipm.reset", this.ZResetPlayerDB, "zresetdb")
         {
-            HelpText = "输入 /zresetdb [name]  来清理该玩家的备份数据\n输入 /zresetdb all  来清理所有玩家的备份数据"
+            HelpText = GetString("输入 /zresetdb [name]  来清理该玩家的备份数据\n输入 /zresetdb all  来清理所有玩家的备份数据")
         });
         Commands.ChatCommands.Add(new Command("zhipm.reset", this.ZResetPlayerEX, "zresetex")
         {
-            HelpText = "输入 /zresetex [name]  来清理该玩家的额外数据\n输入 /zresetex all  来清理所有玩家的额外数据"
+            HelpText = GetString("输入 /zresetex [name]  来清理该玩家的额外数据\n输入 /zresetex all  来清理所有玩家的额外数据")
         });
         Commands.ChatCommands.Add(new Command("zhipm.reset", this.ZResetPlayer, "zreset")
         {
-            HelpText = "输入 /zreset [name]  来清理该玩家的人物数据\n输入 /zreset all  来清理所有玩家的人物数据"
+            HelpText = GetString("输入 /zreset [name]  来清理该玩家的人物数据\n输入 /zreset all  来清理所有玩家的人物数据")
         });
         Commands.ChatCommands.Add(new Command("zhipm.reset", this.ZResetPlayerAll, "zresetallplayers")
         {
-            HelpText = "输入 /zresetallplayers  来清理所有玩家的所有数据"
+            HelpText = GetString("输入 /zresetallplayers  来清理所有玩家的所有数据")
         });
 
 
         Commands.ChatCommands.Add(new Command("zhipm.vi", this.ViewInvent, "vi")
         {
-            HelpText = "输入 /vi [name]  来查看该玩家的库存"
+            HelpText = GetString("输入 /vi [name]  来查看该玩家的库存")
         });
         Commands.ChatCommands.Add(new Command("zhipm.vi", this.ViewInventDisorder, "vid")
         {
-            HelpText = "输入 /vid [name]  来查看该玩家的库存，不分类"
+            HelpText = GetString("输入 /vid [name]  来查看该玩家的库存，不分类")
         });
         Commands.ChatCommands.Add(new Command("zhipm.vs", this.ViewState, "vs")
         {
-            HelpText = "输入 /vs [name]  来查看该玩家的状态"
+            HelpText = GetString("输入 /vs [name]  来查看该玩家的状态")
         });
 
 
         Commands.ChatCommands.Add(new Command("zhipm.ban", this.SuperBan, "zban")
         {
-            HelpText = "输入 /zban add [name] [reason]  来封禁无论是否在线的玩家，reason 可不填"
+            HelpText = GetString("输入 /zban add [name] [reason]  来封禁无论是否在线的玩家，reason 可不填")
         });
 
         Commands.ChatCommands.Add(new Command("zhipm.fun", this.Function, "zbpos")
         {
-            HelpText = "输入 /zbpos  来返回上次死亡地点"
+            HelpText = GetString("输入 /zbpos  来返回上次死亡地点")
         });
         /*
         Commands.ChatCommands.Add(new Command("zhipm.find", FindItem, "zfind")
