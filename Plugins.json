@@ -1418,7 +1418,7 @@
   },
   {
     "Name": "ItemDecoration",
-    "Version": "1.0.0.3",
+    "Version": "3.0.0",
     "Author": "FrankV22, Soofa, 少司命",
     "Description": {
       "en-US": "Show Item Decoration and More!!!",
@@ -2115,7 +2115,7 @@
     "Version": "1.0.4",
     "Author": "少司命",
     "Description": {
-      "en-US": "复制然后修改其他玩家的背包",
+      "en-US": "Copy and modify the inventory of other players",
       "de-DE": "复制然后修改其他玩家的背包",
       "it-IT": "复制然后修改其他玩家的背包",
       "fr-FR": "复制然后修改其他玩家的背包",
@@ -2521,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.129",
+    "Version": "1.9.2.130",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2543,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.129",
+    "Version": "1.0.0.130",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
