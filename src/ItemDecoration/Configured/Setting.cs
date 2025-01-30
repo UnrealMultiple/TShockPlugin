@@ -6,6 +6,11 @@ namespace ItemDecoration.Configured;
 [Config]
 public class Setting : JsonConfigBase<Setting>
 {
+    [LocalizedPropertyName(CultureType.Chinese, "物品显示在头顶")]
+    [LocalizedPropertyName(CultureType.English, "ItemAboveHead")]
+    [LocalizedPropertyName(CultureType.Spanish, "ItemSobreCabeza")]
+    public ItemAboveHeadConfig ItemAboveHeadConfig { get; set; } = new();
+
     [LocalizedPropertyName(CultureType.Chinese, "物品聊天")]
     [LocalizedPropertyName(CultureType.English, "itemChat")]
     [LocalizedPropertyName(CultureType.Spanish, "ObjetoEnChat")]
@@ -13,7 +18,7 @@ public class Setting : JsonConfigBase<Setting>
 
     [LocalizedPropertyName(CultureType.Chinese, "物品切换")]
     [LocalizedPropertyName(CultureType.English, "itemText")]
-    [LocalizedPropertyName(CultureType.Spanish, "textoDeObjeto")]
+    [LocalizedPropertyName(CultureType.Spanish, "TextoDeObjeto")]
     public ItemTextConfig ItemTextConfig { get; set; } = new();
 
     protected override string Filename => "ItemDecoration";
