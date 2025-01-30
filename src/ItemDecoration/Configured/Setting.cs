@@ -1,5 +1,4 @@
-﻿using LazyAPI;
-using LazyAPI.Attributes;
+﻿using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
 
 namespace ItemDecoration.Configured;

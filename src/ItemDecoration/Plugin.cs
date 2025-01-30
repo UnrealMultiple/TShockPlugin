@@ -1,12 +1,15 @@
 ﻿using ItemDecoration.Configured;
 using LazyAPI;
 using LazyAPI.Extensions;
+using Microsoft.Xna.Framework;
+using On.OTAPI;
+using System.Reflection;
+using System.Text;
 using Terraria;
+using Terraria.GameContent.Drawing;
+using Terraria.ID;
 using TerrariaApi.Server;
 using TShockAPI;
-using Terraria.GameContent.Drawing;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
 
 namespace ItemDecoration;
 
@@ -15,10 +18,10 @@ public class Plugin : LazyPlugin
 {
     public override string Author => "FrankV22, Soofa, 少司命";
 
-    public override string Description => "Show Item Decoration and More!!!";
+    public override string Description => GetString("Show Item Decoration and More!!!");
 
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(3, 0, 0);
+    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new (3, 0, 0);
 
     public Plugin(Main game) : base(game)
     {
@@ -27,27 +30,10 @@ public class Plugin : LazyPlugin
 
     public override void Initialize()
     {
-        ServerApi.Hooks.GamePostInitialize.Register(this, OnPostInitialize);
-        ServerApi.Hooks.NetGreetPlayer.Register(this, OnPlayerJoin);
         ServerApi.Hooks.ServerChat.Register(this, this.OnServerChat);
-        On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
+        Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
     }
-    private async void OnPostInitialize(EventArgs e)
-    {
-        await CheckForPluginUpdates();
-    }
-    public async Task CheckForPluginUpdates()
-    {
-        await CheckUpdates.CheckUpdates.CheckUpdateVerbose(this);
-    }
-
-
-    private async void OnPlayerJoin(GreetPlayerEventArgs args)
-    {
-        await Task.Delay(1500);
-        var player = TShock.Players[args.Who];
-        player.SendInfoMessage($"[c/44FFC2:[] [c/10F131:+] [c/44FFC2:]] [c/44FFC2:This server is powered by ItemDecoration v{Version} by {Author}]");
-    }
+    
 
     private void OnServerChat(ServerChatEventArgs args)
     {
@@ -76,103 +62,113 @@ public class Plugin : LazyPlugin
         args.Handled = true;
     }
 
-    private bool MessageBuffer_InvokeGetData(On.OTAPI.Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
+    private bool MessageBuffer_InvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
     {
-        if (packetId == 13) // Packet ID 13 - Item select
+        if (packetId != (byte) PacketTypes.PlayerUpdate) // Packet ID 13 - Item select
         {
-            using var ms = new MemoryStream(instance.readBuffer);
-            ms.Position = readOffset;
-            using var reader = new BinaryReader(ms);
-            var index = reader.ReadByte();
-            var player = TShock.Players[index];
+            return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+        }
 
-            if (player == null || !player.Active || player.Dead)
-                return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+        using var ms = new MemoryStream(instance.readBuffer);
+        ms.Position = readOffset;
+        using var reader = new BinaryReader(ms);
+        var index = reader.ReadByte();
+        var player = TShock.Players[index];
 
-            reader.BaseStream.Seek(4, SeekOrigin.Current);
-            var selectSlot = reader.ReadByte();
-            if (player.TPlayer.selectedItem != selectSlot)
+        if (player is not { Active: true } || player.Dead)
+        {
+            return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+        }
+
+        reader.BaseStream.Seek(4, SeekOrigin.Current);
+        var selectSlot = reader.ReadByte();
+        if (player.TPlayer.selectedItem == selectSlot)
+        {
+            return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+        }
+
+        var newSelectItem = player.TPlayer.inventory[selectSlot];
+        if (Setting.Instance.ItemTextConfig.ShowName || Setting.Instance.ItemTextConfig.ShowDamage)
+        {
+            var message = "";
+            if (Setting.Instance.ItemTextConfig.ShowName)
             {
-                var newSelectItem = player.TPlayer.inventory[selectSlot];
-                if (Setting.Instance.ItemTextConfig.ShowName || Setting.Instance.ItemTextConfig.ShowDamage)
-                {
-                    var message = "";
-                    if (Setting.Instance.ItemTextConfig.ShowName)
-                    {
-                        message += newSelectItem.Name;
-                    }
-                    if (Setting.Instance.ItemTextConfig.ShowDamage && newSelectItem.damage > 0)
-                    {
-                        if (!string.IsNullOrEmpty(message))
-                        {
-                            message += " - ";
-                        }
-
-                        message += $"{Setting.Instance.ItemTextConfig.DamageText}: {newSelectItem.damage}";
-                    }
-                    player.SendCombatText(message, GetColorByRarity(newSelectItem.rare));
-                }
-
-                if (Setting.Instance.ItemAboveHeadConfig.ItemAboveHead)
-                {
-                    // Generar partículas para el nuevo objeto seleccionado
-                    if (newSelectItem != null && newSelectItem.type != ItemID.None)
-                    {
-                        if (!lastSelectedItem.ContainsKey(player.Index) || lastSelectedItem[player.Index] != newSelectItem.type)
-                        {
-                            lastSelectedItem[player.Index] = newSelectItem.type;
-
-                            ParticleOrchestraSettings settings = new()
-                            {
-                                IndexOfPlayerWhoInvokedThis = (byte)player.Index,
-                                MovementVector = new Vector2(0, -24),
-                                PositionInWorld = player.TPlayer.Center + new Vector2(0, -24),
-                                UniqueInfoPiece = newSelectItem.type
-                            };
-                            ParticleOrchestrator.BroadcastParticleSpawn(ParticleOrchestraType.ItemTransfer, settings);
-                        }
-                    }
-                }
+                message += newSelectItem.Name;
             }
+            if (Setting.Instance.ItemTextConfig.ShowDamage && newSelectItem.damage > 0)
+            {
+                if (!string.IsNullOrEmpty(message))
+                {
+                    message += " - ";
+                }
+
+                message += $"{Setting.Instance.ItemTextConfig.DamageText}: {newSelectItem.damage}";
+            }
+            player.SendCombatText(message, GetColorByRarity(newSelectItem.rare));
+        }
+
+        if (!Setting.Instance.ItemAboveHeadConfig.ItemAboveHead)
+        {
+            return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+        }
+
+        if (newSelectItem == null || newSelectItem.type == ItemID.None)
+        {
+            return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
+        }
+        
+        
+        if (!this._lastSelectedItem.ContainsKey(player.Index) || this._lastSelectedItem[player.Index] != newSelectItem.type)
+        {
+            this._lastSelectedItem[player.Index] = newSelectItem.type;
+
+            ParticleOrchestraSettings settings = new()
+            {
+                IndexOfPlayerWhoInvokedThis = (byte)player.Index,
+                MovementVector = new Vector2(0, -24),
+                PositionInWorld = player.TPlayer.Center + new Vector2(0, -24),
+                UniqueInfoPiece = newSelectItem.type
+            };
+            ParticleOrchestrator.BroadcastParticleSpawn(ParticleOrchestraType.ItemTransfer, settings);
         }
 
         return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
     }
-    private Dictionary<int, int> lastSelectedItem = new Dictionary<int, int>();
+    private readonly Dictionary<int, int> _lastSelectedItem = new ();
 
-    private static Microsoft.Xna.Framework.Color GetColorByRarity(int rarity)
+    private static Color GetColorByRarity(int rarity)
     {
         return Setting.Instance.ItemTextConfig.RarityColors.TryGetValue(rarity, out var colorConfig)
-            ? new Microsoft.Xna.Framework.Color(colorConfig.R, colorConfig.G, colorConfig.B)
-            : new Microsoft.Xna.Framework.Color(Setting.Instance.ItemTextConfig.DefaultColor.R, Setting.Instance.ItemTextConfig.DefaultColor.G, Setting.Instance.ItemTextConfig.DefaultColor.B);
+            ? new Color(colorConfig.R, colorConfig.G, colorConfig.B)
+            : new Color(Setting.Instance.ItemTextConfig.DefaultColor.R, Setting.Instance.ItemTextConfig.DefaultColor.G, Setting.Instance.ItemTextConfig.DefaultColor.B);
     }
 
-    public static string ReplacePlaceholderWithItem(TSPlayer player, string message)
+    private static string ReplacePlaceholderWithItem(TSPlayer player, string message)
     {
         var selectedItem = player.TPlayer.inventory[player.TPlayer.selectedItem];
-        var suffix = "";
+        var stringBuilder = new StringBuilder();
 
-        if (selectedItem != null && selectedItem.type > 0)
+        if (selectedItem is { type: > 0 })
         {
             var damageColorHex = Setting.Instance.ItemChatConfig.DamageColor.ToHex();
 
             // Agregar el ítem si está habilitado
             if (Setting.Instance.ItemChatConfig.ShowName)
             {
-                suffix += $"[i:{selectedItem.netID}]";
+                stringBuilder.Append($"[i:{selectedItem.netID}]");
             }
 
             // Agregar el daño si está habilitado
             if (Setting.Instance.ItemChatConfig.ShowDamage && selectedItem.damage > 0)
             {
-                if (!string.IsNullOrEmpty(suffix))
+                if (Setting.Instance.ItemChatConfig.ShowName)
                 {
-                    suffix += " ";
+                    stringBuilder.Append(' ');
                 }
-
-                suffix += $"[c/{damageColorHex}:{selectedItem.damage}]";
+                
+                stringBuilder.Append($"[c/{damageColorHex}:{selectedItem.damage}]");
             }
         }
-        return !string.IsNullOrEmpty(suffix) ? $"[ {suffix} ] {message}." : message;
+        return stringBuilder.Length!=0 ? $"[ {stringBuilder} ] {message}." : message;
     }
 }
