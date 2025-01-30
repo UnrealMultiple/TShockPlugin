@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:58+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-01-29 16:02:48+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,38 @@ msgstr ""
 "X-Crowdin-File-ID: 1452\n"
 "Language: en_US\n"
 
-#: ../../GolfRewards.cs:12
+#: ../../GolfRewards.cs:66
+msgid "[高尔夫奖励] 重读配置完毕!"
+msgstr ""
+
+#: ../../GolfRewards.cs:13
 msgid "将高尔夫打入球洞会得到奖励."
 msgstr "Hitting the golf ball into the hole will receive rewards."
+
+#: ../../GolfRewards.cs:155
+#, csharp-format
+msgid "指令 {0} 执行失败！ "
+msgstr ""
+
+#: ../../GolfRewards.cs:75
+msgid "敲击物块以确认其坐标!"
+msgstr ""
+
+#: ../../LC.cs:26
+msgid "未找到高尔夫奖励配置文件，已为您创建！"
+msgstr ""
+
+#: ../../GolfRewards.cs:104
+#, csharp-format
+msgid "目标坐标为: X{0} Y{1}"
+msgstr ""
+
+#: ../../GolfRewards.cs:29
+msgid "输入/物块坐标后敲击物块确认坐标"
+msgstr ""
+
+#: ../../LC.cs:33
+#, csharp-format
+msgid "高尔夫奖励插件错误配置读取错误:{0}"
+msgstr ""
 

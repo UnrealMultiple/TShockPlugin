@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:25+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:03:16+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,59 @@ msgstr ""
 "X-Crowdin-File-ID: 1526\n"
 "Language: ru_RU\n"
 
+#: ../../SignInSign.cs:63
+msgid "[告示板登录]重新加载配置完毕。"
+msgstr ""
+
+#: ../../Command.cs:43
+msgid "[告示牌登录]设置传送点命令无需额外参数，将会使用你当前位置。"
+msgstr ""
+
+#: ../../SignInSign.cs:210
+#, csharp-format
+msgid "[告示牌登录]请使用 [c/F25E61:/gs s] 设置传送坐标，当前坐标为：{0},{1} \n"
+msgstr ""
+
+#: ../../Command.cs:15
+msgid "[告示牌登录]请输入以下指令：\n"
+"重置告示牌：[c/42B2CE:/gs r]\n"
+"设置传送点：[c/F25E61:/gs s]"
+msgstr ""
+
+#: ../../SignInSign.cs:161
+#, csharp-format
+msgid "{0:u} 玩家【{1}】的密码为：{2}"
+msgstr ""
+
+#: ../../Command.cs:50
+#, csharp-format
+msgid "【告示牌登录】传送点已设置，坐标为({0}, {1})"
+msgstr ""
+
 #: ../../SignInSign.cs:13
 msgid "告示牌登录交互插件 支持进服弹窗！"
+msgstr ""
+
+#: ../../Command.cs:49
+#, csharp-format
+msgid "已将你所在的位置设置为[c/9487D6:告示牌传送点]，坐标为({0}, {1})"
+msgstr ""
+
+#: ../../SignInSign.cs:211
+msgid "指令 [c/F25E61:/gs s] 的权限名为：signinsign.tp"
+msgstr ""
+
+#: ../../Utils.cs:18
+#, csharp-format
+msgid "未在位置({0}, {1})找到告示牌。"
+msgstr ""
+
+#: ../../SignInSign.cs:155
+#, csharp-format
+msgid "玩家【{0}】的密码为：{1}"
+msgstr ""
+
+#: ../../Utils.cs:68
+msgid "输入的密码不能为空"
 msgstr ""
 

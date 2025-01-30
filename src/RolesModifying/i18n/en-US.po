@@ -1,0 +1,48 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-28 03:38:55+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/RolesModifying/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1560\n"
+"Language: en_US\n"
+
+#: ../../Plugin.cs:84
+msgid "你没有对玩家的信息进行修改，无需保存！"
+msgstr "You do not modify the player's information, no need to save!"
+
+#: ../../Plugin.cs:80
+msgid "修改保存成功！"
+msgstr "Modification successful!"
+
+#: ../../Plugin.cs:29
+msgid "复制然后修改其他玩家的背包"
+msgstr "Copy and modify the inventory of other players"
+
+#: ../../Plugin.cs:99
+#: ../../Plugin.cs:117
+msgid "正在查看{0}的人物信息，可以对背包进行修改，使用/rm save 进行保存。"
+msgstr "The character information that is viewing {0} can be modified on the inventory, and the/rm save is saved."
+
+#: ../../Plugin.cs:128
+msgid "用法:\n"
+"/rm <玩家名> - 查看玩家信息\n"
+"/rm save - 保存修改"
+msgstr "Usage:\n"
+"/rm <player name> - View player information\n"
+"/rm save - Save and Modify"
+
+#: ../../Plugin.cs:121
+msgid "目标玩家不存在!"
+msgstr "Target player does not exist!"
+

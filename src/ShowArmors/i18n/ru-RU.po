@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:25+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:03:16+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,40 @@ msgstr ""
 "X-Crowdin-File-ID: 1524\n"
 "Language: ru_RU\n"
 
+#: ../../ShowArmors.cs:114
+#: ../../ShowArmors.cs:125
+#, csharp-format
+msgid " 拿着: [i/p{0}:{1}]{2}"
+msgstr ""
+
+#: ../../ShowArmors.cs:75
+#, csharp-format
+msgid "{0} : 拿着 [i/p{1}:{2}]{3}"
+msgstr ""
+
+#: ../../ShowArmors.cs:121
+#, csharp-format
+msgid "{0}这家伙啥都没装备，只拿着 [i/p{1}:{2}]{3}"
+msgstr ""
+
+#: ../../ShowArmors.cs:110
+#, csharp-format
+msgid "{0}这家伙啥都没装备。只拿着: [i/p{1}:{2}]{3}"
+msgstr ""
+
+#: ../../ShowArmors.cs:65
+msgid "不存在该玩家!"
+msgstr ""
+
+#: ../../ShowArmors.cs:27
+msgid "发送自己的装备配置到聊天框。别名：show 和 zb "
+msgstr ""
+
 #: ../../ShowArmors.cs:13
 msgid "展示装备栏"
+msgstr ""
+
+#: ../../ShowArmors.cs:52
+msgid "语法错误！正确语法 [c/55D284:/装备] [c/55D284:<玩家>]"
 msgstr ""
 

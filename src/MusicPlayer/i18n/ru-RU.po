@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:08+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:02:59+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -19,5 +19,57 @@ msgstr ""
 
 #: ../../MusicPlayer.cs:14
 msgid "一个简单的音乐播放插件."
+msgstr ""
+
+#: ../../MusicPlayer.cs:111
+msgid "使用 /song 来停止播放."
+msgstr ""
+
+#: ../../MusicPlayer.cs:142
+#: ../../MusicPlayer.cs:176
+msgid "加载歌曲失败: '{0}'"
+msgstr ""
+
+#: ../../MusicPlayer.cs:118
+#: ../../MusicPlayer.cs:187
+msgid "已经为你停止播放"
+msgstr ""
+
+#: ../../MusicPlayer.cs:190
+msgid "已经为所有玩家停止播放"
+msgstr ""
+
+#: ../../MusicPlayer.cs:110
+msgid "方式: /song <歌曲名称> [演奏乐器]\n"
+"演奏乐器: harp, theaxe, bell，默认为 harp"
+msgstr ""
+
+#: ../../MusicPlayer.cs:214
+msgid "本服务器有以下歌曲:\n"
+msgstr ""
+
+#: ../../MusicPlayer.cs:138
+msgid "正在播放: {0}"
+msgstr ""
+
+#: ../../MusicPlayer.cs:169
+msgid "正在给您播放: {0}，使用/song停止播放"
+msgstr ""
+
+#: ../../MusicPlayer.cs:102
+msgid "此命令要求在游戏内使用"
+msgstr ""
+
+#: ../../MusicPlayer.cs:209
+msgid "没有任何歌曲: {0}"
+msgstr ""
+
+#: ../../MusicPlayer.cs:200
+msgid "目录不存在: {0}"
+msgstr ""
+
+#: ../../NoteName.cs:15
+#, csharp-format
+msgid "给与的名称不是一个音符. 数值: [{0}]"
 msgstr ""
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:07+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:02:58+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,45 @@ msgstr ""
 "X-Crowdin-File-ID: 1478\n"
 "Language: ru_RU\n"
 
+#: ../../Plugin.cs:66
+msgid "[怪物进度回血]重新加载配置完毕。"
+msgstr ""
+
+#: ../../Plugin.cs:183
+msgid "\n"
+"【怪物进度回血】\n"
+msgstr ""
+
+#: ../../Plugin.cs:184
+msgid "因击败邪恶Boss,泰拉全体怪物激发进阶回血\n"
+msgstr ""
+
+#: ../../Plugin.cs:187
+#, csharp-format
+msgid "当前进度阶级：[c/DAA4EF:{0}]阶\n"
+msgstr ""
+
 #: ../../Plugin.cs:17
 msgid "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔"
+msgstr ""
+
+#: ../../Plugin.cs:188
+#, csharp-format
+msgid "阶段回血比例：[c/FFCEAB:{0:P1}] \n"
+msgstr ""
+
+#: ../../Plugin.cs:189
+#, csharp-format
+msgid "阶段回血间隔：[c/3DFFE3:{0}]秒"
+msgstr ""
+
+#: ../../Plugin.cs:186
+#, csharp-format
+msgid "限制最多回复：[c/F43A4C:{0}]点\n"
+msgstr ""
+
+#: ../../Plugin.cs:185
+#, csharp-format
+msgid "限制最少回复：[c/3DA1FF:{0}]点\n"
 msgstr ""
 
