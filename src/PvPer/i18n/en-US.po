@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:16+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-01-29 16:03:07+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,361 @@ msgstr ""
 "X-Crowdin-File-ID: 1502\n"
 "Language: en_US\n"
 
-#: ../../PvPer.cs:15
+#: ../../Commands.cs:298
+#: ../../Commands.cs:323
+#, csharp-format
+msgid "[c/63DC5A:击杀: ]{0}\n"
+msgstr ""
+
+#: ../../Commands.cs:181
+msgid "[c/74D3E8:/pvp data 或 /pvp 战绩] - [c/7EE874:战绩查询]\n"
+" "
+msgstr ""
+
+#: ../../Commands.cs:182
+msgid "[c/74D3E8:/pvp list 或 /pvp 排名] - [c/7EE874:排名]\n"
+" "
+msgstr ""
+
+#: ../../Commands.cs:180
+msgid "[c/74D3E8:/pvp no 或 /pvp 拒绝] - [c/7EE874:拒绝决斗] \n"
+" "
+msgstr ""
+
+#: ../../Commands.cs:193
+msgid "[c/74D3E8:/pvp R 或 /pvp 重置] - [c/7EE874:重置玩家数据库]"
+msgstr ""
+
+#: ../../Commands.cs:179
+msgid "[c/74D3E8:/pvp yes 或 /pvp 接受] - [c/7EE874:接受决斗] \n"
+" "
+msgstr ""
+
+#: ../../Commands.cs:192
+msgid "[c/74D3E8:/pvp.BB add|del <增益名/ID> ] - [c/7EE874:封禁指定Buff]\n"
+" "
+msgstr ""
+
+#: ../../Commands.cs:190
+msgid "[c/74D3E8:/pvp.BL ] - [c/7EE874:查看封禁增益表]\n"
+" "
+msgstr ""
+
+#: ../../Commands.cs:191
+msgid "[c/74D3E8:/pvp.BW add|del <武器名> ] - [c/7EE874:封禁指定武器]\n"
+" "
+msgstr ""
+
+#: ../../Commands.cs:189
+msgid "[c/74D3E8:/pvp.WL ] - [c/7EE874:查看封禁武器表]\n"
+" "
+msgstr ""
+
+#: ../../PvPer.cs:118
+#, csharp-format
+msgid "[c/E84B54:禁止逃离竞技场!]惩罚：[c/F86565:扣{0}血]"
+msgstr ""
+
+#: ../../Commands.cs:299
+#: ../../Commands.cs:324
+#, csharp-format
+msgid "[c/F56469:死亡:] {0}\n"
+msgstr ""
+
+#: ../../Commands.cs:300
+#: ../../Commands.cs:325
+#, csharp-format
+msgid "[c/F56469:连胜:] {0}\n"
+msgstr ""
+
+#: ../../Commands.cs:269
+#: ../../Commands.cs:282
+msgid "[c/FE7F81:您当前没有收到任何决斗邀请]"
+msgstr ""
+
+#: ../../Commands.cs:286
+msgid "[c/FFCB80:对方玩家已拒绝您的决斗邀请]。"
+msgstr ""
+
+#: ../../Commands.cs:297
+#: ../../Commands.cs:322
+msgid "[c/FFCB80:您的战绩:]\n"
+msgstr ""
+
+#: ../../Commands.cs:178
+msgid "[c/FFFE80:/pvp add 或 /pvp 邀请 玩家名] - [c/7EE874:邀请玩家参加决斗] \n"
+" "
+msgstr ""
+
+#: ../../Commands.cs:183
+msgid "[c/FFFE80:/pvp s 或 /pvp 设置 1 2 3 4] - [c/7EE874:1/2玩家位置 3/4竞技场边界]"
+msgstr ""
+
+#: ../../Commands.cs:116
+msgid "[i:4080]指令错误! [c/CCEB60:正确指令: /pvp set [1/2/3/4]]"
+msgstr ""
+
+#: ../../Commands.cs:124
+msgid "[i:4080]指令错误! \n"
+"正确指令: /pvp set [1/2/3/4] - [c/7EE874:1/2玩家位置 3/4竞技场边界]"
+msgstr ""
+
+#: ../../PvPer.cs:87
+msgid "[决斗系统]已重载"
+msgstr ""
+
+#: ../../Commands.cs:260
+#, csharp-format
+msgid "{0} [c/FE7F81:已向您发送决斗邀请] \n"
+"请输入 [c/CCFFCC:/pvp yes 接受]  或 [c/FFE6CC:/pvp no拒绝] "
+msgstr ""
+
+#: ../../PvPer.cs:433
+#, csharp-format
+msgid "{0} 在PvP中不可使用，请查看 /pvp.bl"
+msgstr ""
+
+#: ../../PvPer.cs:419
+#, csharp-format
+msgid "{0} 在PvP中无法使用，请查看 /pvp.wl"
+msgstr ""
+
+#: ../../Commands.cs:254
+#, csharp-format
+msgid "{0} 正在进行一场决斗。"
+msgstr ""
+
+#: ../../PvPer.cs:112
+#, csharp-format
+msgid "{0}[c/E84B54:逃离]竞技场! 已判定为[C/13A1D1:怯战] 执行惩罚：[C/F86565:死亡]"
+msgstr ""
+
+#: ../../PvPer.cs:145
+#, csharp-format
+msgid "{0}[c/E84B54:逃离]竞技场! 执行：[C/4284CD:拉回]"
+msgstr ""
+
+#: ../../Commands.cs:138
+#, csharp-format
+msgid "{0}试图执行重置决斗系统数据指令"
+msgstr ""
+
+#: ../../Commands.cs:177
+msgid "《决斗系统》 第1页 （1/2）：\n"
+" "
+msgstr ""
+
+#: ../../Commands.cs:188
+msgid "《决斗系统》 第2页 （2/2）：\n"
+" "
+msgstr ""
+
+#: ../../Commands.cs:99
+#, csharp-format
+msgid "【决斗系统】受邀者传送点已设置，坐标为({0}, {1})"
+msgstr ""
+
+#: ../../Commands.cs:112
+#, csharp-format
+msgid "【决斗系统】竞技场右下角已设置，坐标为({0}, {1})"
+msgstr ""
+
+#: ../../Commands.cs:106
+#, csharp-format
+msgid "【决斗系统】竞技场左上角已设置，坐标为({0}, {1})"
+msgstr ""
+
+#: ../../Commands.cs:93
+#, csharp-format
+msgid "【决斗系统】邀请者传送点已设置，坐标为({0}, {1})"
+msgstr ""
+
+#: ../../PvPer.cs:511
+msgid "PvP中不允许使用第七个饰品槽"
+msgstr ""
+
+#: ../../PvPer.cs:444
+#: ../../PvPer.cs:449
+#: ../../PvPer.cs:454
+#: ../../PvPer.cs:459
+msgid "PvP中不允许使用非法前缀武器"
+msgstr ""
+
+#: ../../PvPer.cs:16
 msgid "不是你死就是我活系列"
 msgstr "Pvp plugin"
+
+#: ../../PvPer.cs:287
+msgid "以下增益效果在PvP中禁止使用： "
+msgstr ""
+
+#: ../../PvPer.cs:265
+msgid "以下武器在PvP中禁止使用： "
+msgstr ""
+
+#: ../../Commands.cs:137
+msgid "你没有重置决斗系统数据表的权限。"
+msgstr ""
+
+#: ../../PvPer.cs:471
+msgid "使用了前缀弹药"
+msgstr ""
+
+#: ../../PvPer.cs:484
+msgid "使用了前缀护甲"
+msgstr ""
+
+#: ../../PvPer.cs:419
+msgid "使用了禁止的PvP武器"
+msgstr ""
+
+#: ../../PvPer.cs:433
+msgid "使用了禁止的增益效果"
+msgstr ""
+
+#: ../../PvPer.cs:511
+msgid "使用了第七个饰品槽"
+msgstr ""
+
+#: ../../PvPer.cs:497
+msgid "使用了重复饰品"
+msgstr ""
+
+#: ../../PvPer.cs:444
+#: ../../PvPer.cs:449
+#: ../../PvPer.cs:454
+#: ../../PvPer.cs:459
+msgid "使用了非法前缀武器"
+msgstr ""
+
+#: ../../Commands.cs:301
+#: ../../Commands.cs:326
+#, csharp-format
+msgid "击杀/死亡 [c/5993DB:胜负值: ]{0}"
+msgstr ""
+
+#: ../../PvPer.cs:399
+#: ../../PvPer.cs:405
+msgid "命令格式不正确。 /pvp.bb add|del <增益名/ID>"
+msgstr ""
+
+#: ../../PvPer.cs:352
+msgid "命令格式不正确。 /pvp.bw add|del <武器名>"
+msgstr ""
+
+#: ../../Commands.cs:98
+#, csharp-format
+msgid "已将你所在的位置设置为[c/49B3D6:受邀者]传送点，坐标为({0}, {1})"
+msgstr ""
+
+#: ../../Commands.cs:111
+#, csharp-format
+msgid "已将你所在的位置设置为[c/9487D6:竞技场]右下角，坐标为({0}, {1})"
+msgstr ""
+
+#: ../../Commands.cs:105
+#, csharp-format
+msgid "已将你所在的位置设置为[c/9487D6:竞技场]左上角，坐标为({0}, {1})"
+msgstr ""
+
+#: ../../Commands.cs:92
+#, csharp-format
+msgid "已将你所在的位置设置为[c/F75454:邀请者]传送点，坐标为({0}, {1})"
+msgstr ""
+
+#: ../../PvPer.cs:338
+#: ../../PvPer.cs:387
+#, csharp-format
+msgid "已禁止 {0} 在PvP中使用。"
+msgstr ""
+
+#: ../../PvPer.cs:345
+#: ../../PvPer.cs:394
+#, csharp-format
+msgid "已解除对 {0} 在PvP中的禁用。"
+msgstr ""
+
+#: ../../Commands.cs:248
+msgid "您不能与自己决斗！"
+msgstr ""
+
+#: ../../Commands.cs:240
+msgid "您现在已经在决斗中了。"
+msgstr ""
+
+#: ../../Commands.cs:259
+#, csharp-format
+msgid "成功邀请 {0} 进行决斗。"
+msgstr ""
+
+#: ../../Commands.cs:211
+#: ../../Commands.cs:212
+msgid "数据库中所有玩家的决斗数据已被成功清除。"
+msgstr ""
+
+#: ../../PvPer.cs:368
+msgid "未找到以此名称命名的增益效果。"
+msgstr ""
+
+#: ../../PvPer.cs:319
+msgid "未找到任何以此名称命名的物品。"
+msgstr ""
+
+#: ../../Commands.cs:234
+msgid "未找到指定玩家。"
+msgstr ""
+
+#: ../../Commands.cs:71
+msgid "注意：/pvp.BB 中间有个英文字符[c/F75454:“点”【 . 】]"
+msgstr ""
+
+#: ../../Commands.cs:67
+msgid "注意：/pvp.BL 中间有个英文字符[c/F75454:“点”【 . 】]"
+msgstr ""
+
+#: ../../Commands.cs:75
+msgid "注意：/pvp.BW 中间有个英文[c/F75454:“点”【 . 】]"
+msgstr ""
+
+#: ../../Commands.cs:63
+msgid "注意：/pvp.WL 中间有个英文字符[c/F75454:“点”【 . 】]"
+msgstr ""
+
+#: ../../Commands.cs:216
+#: ../../Commands.cs:217
+msgid "清除所有玩家决斗数据时发生错误。"
+msgstr ""
+
+#: ../../Commands.cs:305
+#: ../../Commands.cs:317
+#: ../../Commands.cs:330
+msgid "玩家未找到！"
+msgstr ""
+
+#: ../../Commands.cs:30
+msgid "请指定目标玩家的名称。"
+msgstr ""
+
+#: ../../PvPer.cs:471
+#, csharp-format
+msgid "请移除PvP中的前缀弹药：{0}"
+msgstr ""
+
+#: ../../PvPer.cs:484
+#, csharp-format
+msgid "请移除PvP中的前缀护甲：{0}"
+msgstr ""
+
+#: ../../PvPer.cs:497
+#, csharp-format
+msgid "请移除PvP中的重复饰品：{0}"
+msgstr ""
+
+#: ../../Commands.cs:13
+msgid "请输入 [c/42B2CE:/pvp help] [c/F25E61:共两页]"
+msgstr ""
+
+#: ../../Commands.cs:148
+msgid "请输入/pvp help [c/F75454:共两页]"
+msgstr ""
 

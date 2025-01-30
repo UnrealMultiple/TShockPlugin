@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:32+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:03:24+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,10 @@ msgstr ""
 "X-Crowdin-File: /master/src/UnseenInventory/i18n/template.pot\n"
 "X-Crowdin-File-ID: 1538\n"
 "Language: es_ES\n"
+
+#: ../../UnseenInventory.cs:33
+msgid "[{0}] 重新加载配置完毕。"
+msgstr ""
 
 #: ../../UnseenInventory.cs:14
 msgid "允许服务器端生成“无法获取”的物品"

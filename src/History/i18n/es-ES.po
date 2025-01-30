@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:00+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:02:50+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,188 @@ msgstr ""
 "X-Crowdin-File-ID: 1458\n"
 "Language: es_ES\n"
 
+#: ../../Commands/InfoCommand.cs:271
+#, csharp-format
+msgid " {0} 其他修改,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:266
+#, csharp-format
+msgid " 修改 {0} 告示牌,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:216
+#, csharp-format
+msgid " 修改 {0} 墙,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:201
+#, csharp-format
+msgid " 修改 {0} 物块,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:231
+#, csharp-format
+msgid " 修改 {0} 电线,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:246
+#, csharp-format
+msgid " 修改 {0} 致动器,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:226
+#, csharp-format
+msgid " 放置 {0} 墙,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:211
+#, csharp-format
+msgid " 放置 {0} 物块,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:241
+#, csharp-format
+msgid " 放置 {0} 电线,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:256
+#, csharp-format
+msgid " 放置 {0} 致动器,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:261
+#, csharp-format
+msgid " 涂漆 {0} 物块/墙,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:221
+#, csharp-format
+msgid " 破坏 {0} 墙,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:236
+#, csharp-format
+msgid " 破坏 {0} 电线,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:251
+#, csharp-format
+msgid " 破坏 {0} 致动器,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:206
+#, csharp-format
+msgid " 破环 {0} 物块,"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:275
+msgid "."
+msgstr ""
+
+#: ../../History.cs:1605
+#, csharp-format
+msgid "[History] 数据库已被 [{0}] 成功清除"
+msgstr ""
+
+#: ../../History.cs:1609
+msgid "[History] 数据库清除失败"
+msgstr ""
+
+#: ../../Commands/InfoCommand.cs:62
+msgid "{0}在指定区域中未执行任何图格操作."
+msgstr ""
+
+#: ../../History.cs:1590
+#, csharp-format
+msgid "{0}试图执行 [History] 数据重置指令"
+msgstr ""
+
+#: ../../History.cs:1500
+msgid "你也可以在后台使用/history <账号名> <时间> <范围>"
+msgstr ""
+
+#: ../../History.cs:1589
+msgid "你没有重置【History】数据表的权限。"
+msgstr ""
+
+#: ../../History.cs:1499
+msgid "单独的/history命令只能在服务器内使用."
+msgstr ""
+
+#: ../../Commands/PruneCommand.cs:22
+msgid "历史记录已被删除."
+msgstr ""
+
+#: ../../History.cs:1461
+msgid "发生错误.检查日志以了解更多详细信息."
+msgstr ""
+
+#: ../../Commands/RollbackCommand.cs:105
+#, csharp-format
+msgid "回溯 {0} 个操作."
+msgstr ""
+
+#: ../../Commands/HistoryCommand.cs:40
+msgid "图格历史记录 ({0}, {1}):"
+msgstr ""
+
+#: ../../Commands/UndoCommand.cs:36
+msgid "撤消完成! {0} 个操作被撤销."
+msgstr ""
+
+#: ../../History.cs:1505
+msgid "敲击(放置)一个方块查询这个坐标的历史记录."
+msgstr ""
+
+#: ../../History.cs:1484
+#: ../../History.cs:1521
+#: ../../History.cs:1542
+#: ../../History.cs:1566
+msgid "时间无效."
+msgstr ""
+
+#: ../../Commands/HistoryCommand.cs:48
+msgid "没有查询到这个图格的修改历史."
+msgstr ""
+
+#: ../../History.cs:1577
+msgid "没有要撤消的内容!"
+msgstr ""
+
+#: ../../History.cs:1584
+msgid "用法错误! 正确用法: /hreset"
+msgstr ""
+
+#: ../../History.cs:1557
+msgid "用法错误! 正确用法: /prunehist <时间>"
+msgstr ""
+
+#: ../../History.cs:1515
+msgid "用法错误! 正确用法: /reenact <账号名> <时间> [范围]"
+msgstr ""
+
+#: ../../History.cs:1536
+msgid "用法错误! 正确用法: /rollback <账号名> <时间> [范围]"
+msgstr ""
+
+#: ../../History.cs:1478
+msgid "用法错误! 正确用法: \n"
+"/history [账号名] [时间] [范围]"
+msgstr ""
+
+#: ../../History.cs:1488
+#: ../../History.cs:1525
+#: ../../History.cs:1546
+msgid "范围无效."
+msgstr ""
+
 #: ../../History.cs:28
 msgid "记录图格操作."
+msgstr ""
+
+#: ../../Commands/RollbackCommand.cs:104
+#, csharp-format
+msgid "重现 {0} 个操作."
 msgstr ""
 

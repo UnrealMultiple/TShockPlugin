@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:10+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:03:01+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,68 @@ msgstr ""
 "X-Crowdin-File-ID: 1488\n"
 "Language: ru_RU\n"
 
-#: ../../PacketsStop.cs:14
+#: ../../PacketsStop.cs:84
+msgid "[数据包拦截]已启用"
+msgstr ""
+
+#: ../../PacketsStop.cs:85
+msgid "[数据包拦截]已禁用"
+msgstr ""
+
+#: ../../PacketsStop.cs:65
+msgid "[数据包拦截]重新加载配置完毕。"
+msgstr ""
+
+#: ../../PacketsStop.cs:128
+#, csharp-format
+msgid "{0}已从LJ组移除，并被设为default组。"
+msgstr ""
+
+#: ../../PacketsStop.cs:117
+#, csharp-format
+msgid "{0}已被设为LJ组成员。"
+msgstr ""
+
+#: ../../PacketsStop.cs:91
+msgid "/拦截 add 玩家名 - 将玩家添加到LJ组(不存在自动创建)。\n"
+"/拦截 del 玩家名 - 将玩家从LJ组移除并设为default组。"
+msgstr ""
+
+#: ../../PacketsStop.cs:111
+msgid "LJ组已创建。"
+msgstr ""
+
+#: ../../PacketsStop.cs:77
+msgid "你没有使用数据包拦截的权限"
+msgstr ""
+
+#: ../../PacketsStop.cs:15
 msgid "拦截没有指定权限的用户组数据包"
+msgstr ""
+
+#: ../../PacketsStop.cs:136
+msgid "无效的子命令。使用 'add' 或 'del'。"
+msgstr ""
+
+#: ../../PacketsStop.cs:132
+#, csharp-format
+msgid "无法将{0}从LJ组移除或设为default组。错误信息: \n"
+"{1}"
+msgstr ""
+
+#: ../../PacketsStop.cs:121
+#, csharp-format
+msgid "无法将{0}设为LJ组成员。错误信息: \n"
+"{1}"
+msgstr ""
+
+#: ../../PacketsStop.cs:101
+#, csharp-format
+msgid "无法找到名为'{0}'的在线玩家。"
+msgstr ""
+
+#: ../../PacketsStop.cs:170
+#, csharp-format
+msgid "无法识别的数据包类型名称: {0}"
 msgstr ""
 

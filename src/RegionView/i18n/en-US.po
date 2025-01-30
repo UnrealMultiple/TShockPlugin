@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:20+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-01-29 16:03:11+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,110 @@ msgstr ""
 "X-Crowdin-File-ID: 1512\n"
 "Language: en_US\n"
 
+#: ../../RegionView.cs:286
+#, csharp-format
+msgid " 边界位于您上方 {0} 个图块"
+msgstr ""
+
+#: ../../RegionView.cs:294
+#, csharp-format
+msgid " 边界位于您上方 {0} 个图块，下方 {1} 个图块"
+msgstr ""
+
+#: ../../RegionView.cs:290
+#, csharp-format
+msgid " 边界位于您下方 {0} 个图块"
+msgstr ""
+
+#: ../../RegionView.cs:306
+#, csharp-format
+msgid "，位于您右侧 {0} 个图块，左侧 {1} 个图块。"
+msgstr ""
+
+#: ../../RegionView.cs:298
+#, csharp-format
+msgid "，位于您右侧 {0} 个图块。"
+msgstr ""
+
+#: ../../RegionView.cs:302
+#, csharp-format
+msgid "，位于您左侧 {0} 个图块。"
+msgstr ""
+
 #: ../../RegionView.cs:35
 msgid "为地区添加区域边界视图。"
 msgstr "Added a regional boundary view to the area."
+
+#: ../../RegionView.cs:62
+msgid "从您的视图中移除所有区域显示"
+msgstr ""
+
+#: ../../RegionView.cs:545
+#, csharp-format
+msgid "你正在看区域 {0}."
+msgstr ""
+
+#: ../../RegionView.cs:232
+msgid "区域 {0} 不包含任何图块。 (找到的尺寸: {1} × {2})\n"
+"使用 [c/FF8080:/region resize] 来修复它。"
+msgstr ""
+
+#: ../../Region.cs:212
+#: ../../Region.cs:255
+msgid "区域尚未设置虚拟图块。"
+msgstr ""
+
+#: ../../RegionView.cs:118
+#, csharp-format
+msgid "区域显示 {0} 已被删除。"
+msgstr ""
+
+#: ../../Region.cs:160
+msgid "区域未设置虚拟图块。"
+msgstr ""
+
+#: ../../RegionView.cs:69
+msgid "开启或关闭自动显示您附近的区域"
+msgstr ""
+
+#: ../../RegionView.cs:345
+msgid "您不再查看您附近的区域。"
+msgstr ""
+
+#: ../../RegionView.cs:278
+#, csharp-format
+msgid "您现在正在查看 {0} 区域。"
+msgstr ""
+
+#: ../../RegionView.cs:350
+msgid "您现在正在查看您附近的区域。"
+msgstr ""
+
+#: ../../RegionView.cs:220
+msgid "找到了多个匹配的区域：{0} 等{1}个更多。请更具体一些。"
+msgstr ""
+
+#: ../../RegionView.cs:225
+msgid "找到了多个匹配的区域：{0}。请更具体一些。"
+msgstr ""
+
+#: ../../RegionView.cs:53
+msgid "显示指定区域的边界"
+msgstr ""
+
+#: ../../RegionView.cs:215
+msgid "没有找到这样的区域。"
+msgstr ""
+
+#: ../../RegionView.cs:61
+msgid "用法: /rc"
+msgstr ""
+
+#: ../../RegionView.cs:162
+msgid "用法: /regionview <区域名称>"
+msgstr ""
+
+#: ../../Region.cs:110
+msgid "该区域已设置虚拟图块。"
+msgstr ""
 

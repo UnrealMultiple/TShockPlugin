@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-24 01:42:23+0000\n"
-"PO-Revision-Date: 2025-01-25 01:03\n"
+"POT-Creation-Date: 2025-01-29 16:02:51+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -192,6 +192,7 @@ msgid "你选择的区域与Tshock区域 {0} 重叠，这是不允许的。"
 msgstr "The area you selected overlaps with Tshock region {0}, which is not allowed."
 
 #: ../../Plugin.cs:215
+#: ../../Plugin.cs:563
 msgid "你选择的区域与其他房子存在重叠，这是不允许的。"
 msgstr "The area you selected overlaps with other houses, which is not allowed."
 
@@ -281,6 +282,10 @@ msgstr "House {0} already exists!"
 #, csharp-format
 msgid "房子: {0} {1}"
 msgstr "House: {0} {1}"
+
+#: ../../Plugin.cs:797
+msgid "房子插件提示处理超时,已抛弃部分提示!"
+msgstr ""
 
 #: ../../Plugin.cs:650
 #, csharp-format

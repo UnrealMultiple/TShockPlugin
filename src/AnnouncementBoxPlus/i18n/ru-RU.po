@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:27+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:02:17+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,176 @@ msgstr ""
 "X-Crowdin-File-ID: 1440\n"
 "Language: ru_RU\n"
 
-#: ../../Plugin.cs:19
+#: ../../Plugin.cs:63
+#: ../../Plugin.cs:76
+msgid "[i:3617]你没有权限修改广播盒(AnnouncementBoxPlus.Edit)"
+msgstr ""
+
+#: ../../Plugin.cs:171
+#: ../../Plugin.cs:179
+msgid "[服务器]"
+msgstr ""
+
+#: ../../Plugin.cs:337
+msgid "丛林"
+msgstr ""
+
+#: ../../Plugin.cs:23
 msgid "优化广播盒"
+msgstr ""
+
+#: ../../Plugin.cs:367
+msgid "发光蘑菇"
+msgstr ""
+
+#: ../../Plugin.cs:357
+msgid "和平蜡烛"
+msgstr ""
+
+#: ../../Plugin.cs:303
+#: ../../Plugin.cs:382
+msgid "地下"
+msgstr ""
+
+#: ../../Plugin.cs:372
+msgid "地下沙漠"
+msgstr ""
+
+#: ../../Plugin.cs:317
+msgid "地牢"
+msgstr ""
+
+#: ../../Plugin.cs:305
+#: ../../Plugin.cs:392
+msgid "地狱"
+msgstr ""
+
+#: ../../Plugin.cs:437
+msgid "墓地"
+msgstr ""
+
+#: ../../Plugin.cs:417
+msgid "大理石"
+msgstr ""
+
+#: ../../Plugin.cs:236
+msgid "存活"
+msgstr ""
+
+#: ../../Plugin.cs:427
+msgid "宝石洞窟"
+msgstr ""
+
+#: ../../Plugin.cs:243
+msgid "已完成"
+msgstr ""
+
+#: ../../Plugin.cs:235
+msgid "已死亡"
+msgstr ""
+
+#: ../../Plugin.cs:447
+msgid "微光"
+msgstr ""
+
+#: ../../Plugin.cs:186
+#: ../../Plugin.cs:187
+#: ../../Plugin.cs:188
+#: ../../Plugin.cs:189
+#: ../../Plugin.cs:190
+#: ../../Plugin.cs:191
+#: ../../Plugin.cs:192
+#: ../../Plugin.cs:193
+#: ../../Plugin.cs:194
+#: ../../Plugin.cs:195
+#: ../../Plugin.cs:196
+msgid "无法获取"
+msgstr ""
+
+#: ../../Plugin.cs:151
+msgid "服务器中没有玩家在线"
+msgstr ""
+
+#: ../../Plugin.cs:198
+#: ../../Plugin.cs:244
+msgid "未完成"
+msgstr ""
+
+#: ../../Plugin.cs:238
+msgid "未死亡"
+msgstr ""
+
+#: ../../Plugin.cs:452
+msgid "森林"
+msgstr ""
+
+#: ../../Plugin.cs:352
+msgid "水蜡烛"
+msgstr ""
+
+#: ../../Plugin.cs:407
+msgid "沙尘暴"
+msgstr ""
+
+#: ../../Plugin.cs:362
+msgid "沙漠"
+msgstr ""
+
+#: ../../Plugin.cs:304
+#: ../../Plugin.cs:387
+msgid "洞穴"
+msgstr ""
+
+#: ../../Plugin.cs:397
+msgid "海滩"
+msgstr ""
+
+#: ../../Plugin.cs:347
+msgid "猩红"
+msgstr ""
+
+#: ../../Plugin.cs:327
+msgid "神圣"
+msgstr ""
+
+#: ../../Plugin.cs:432
+msgid "神庙"
+msgstr ""
+
+#: ../../Plugin.cs:232
+msgid "空区域"
+msgstr ""
+
+#: ../../Plugin.cs:302
+#: ../../Plugin.cs:377
+msgid "空岛"
+msgstr ""
+
+#: ../../Plugin.cs:322
+msgid "腐化"
+msgstr ""
+
+#: ../../Plugin.cs:412
+msgid "花岗岩"
+msgstr ""
+
+#: ../../Plugin.cs:422
+msgid "蜂巢"
+msgstr ""
+
+#: ../../Plugin.cs:442
+msgid "阴影蜡烛"
+msgstr ""
+
+#: ../../Plugin.cs:332
+msgid "陨石"
+msgstr ""
+
+#: ../../Plugin.cs:402
+msgid "雨天"
+msgstr ""
+
+#: ../../Plugin.cs:342
+msgid "雪原"
 msgstr ""
 

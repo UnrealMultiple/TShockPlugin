@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-24 01:41:57+0000\n"
-"PO-Revision-Date: 2025-01-25 01:03\n"
+"POT-Creation-Date: 2025-01-29 16:02:25+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -21,25 +21,9 @@ msgstr ""
 msgid " 加入了房间"
 msgstr " Joined the room"
 
-#: ../../MainPlugin.cs:861
-msgid " 强制退出了房间"
-msgstr " Forced to exit the room"
-
-#: ../../MainPlugin.cs:800
-msgid " 投票主题 "
-msgstr " Voting topic "
-
-#: ../../MainPlugin.cs:805
-msgid " 更改投票主题为 "
-msgstr " Change the voting topic to "
-
 #: ../../BuildRoom.cs:99
 msgid " 的作品"
 msgstr " Works"
-
-#: ../../BuildRoom.cs:255
-msgid " 的建筑区域"
-msgstr " Building area"
 
 #: ../../BuildPlayer.cs:78
 msgid " 离开了房间"
@@ -49,7 +33,7 @@ msgstr " Left the room"
 msgid "————房内信息————"
 msgstr "————In-room information————"
 
-#: ../../BuildRoom.cs:357
+#: ../../BuildRoom.cs:352
 #, csharp-format
 msgid "[{0}] {1} 得分:{2}"
 msgstr "[{0}] {1} Score: {2}"
@@ -59,8 +43,9 @@ msgid "[BuildMaster] 玩家数据出错,请尝试重新进入服务器"
 msgstr "[BuildMaster] Player data error, please try to re-enter the server"
 
 #: ../../MainPlugin.cs:70
-msgid "[房内聊天]"
-msgstr "[In-room chat]"
+#, csharp-format
+msgid "[房内聊天]{0}:{1}"
+msgstr ""
 
 #: ../../MainPlugin.cs:728
 msgid "/bm join [房间ID] 加入房间"
@@ -170,18 +155,21 @@ msgstr "Do not destroy borders"
 msgid "不可擅自离开建筑区域"
 msgstr "Do not leave building area without permission"
 
-#: ../../MainPlugin.cs:822
-#: ../../MainPlugin.cs:840
+#: ../../MainPlugin.cs:824
+#: ../../MainPlugin.cs:842
 msgid "不在房间中"
 msgstr "Not in the room"
 
 #: ../../BuildRoom.cs:311
-#: ../../BuildRoom.cs:329
-#: ../../BuildRoom.cs:338
 msgid "主题:"
 msgstr "Theme:"
 
-#: ../../MainPlugin.cs:778
+#: ../../BuildRoom.cs:333
+#, csharp-format
+msgid "主题:{0}"
+msgstr ""
+
+#: ../../MainPlugin.cs:780
 msgid "你不在房间中"
 msgstr "You are not in the room"
 
@@ -198,25 +186,27 @@ msgid "你已经评分过了"
 msgstr "You have already rated"
 
 #: ../../BuildRoom.cs:310
-#: ../../BuildRoom.cs:328
-#: ../../BuildRoom.cs:337
+#: ../../BuildRoom.cs:332
 #, csharp-format
 msgid "倒计时[{0}:{1}]"
 msgstr "Countdown [{0}:{1}]"
 
 #: ../../BuildRoom.cs:315
-#: ../../MainPlugin.cs:774
 msgid "已准备"
 msgstr "Prepared"
 
-#: ../../BuildRoom.cs:391
+#: ../../BuildRoom.cs:386
 msgid "已将你传送到建筑区域"
 msgstr "Teleported you to building area"
 
 #: ../../BuildRoom.cs:99
-#: ../../BuildRoom.cs:255
 msgid "已来到 "
 msgstr "Has arrived "
+
+#: ../../BuildRoom.cs:255
+#, csharp-format
+msgid "已来到 {0} 的建筑区域"
+msgstr ""
 
 #: ../../MainPlugin.cs:236
 #, csharp-format
@@ -237,13 +227,12 @@ msgid "已设置评分套装"
 msgstr "Rating package set up"
 
 #: ../../BuildRoom.cs:317
-#: ../../BuildRoom.cs:330
-#: ../../BuildRoom.cs:339
+#: ../../BuildRoom.cs:334
 #, csharp-format
 msgid "当前人数:{0}/{1}"
 msgstr "Current players: {0}/{1}"
 
-#: ../../MainPlugin.cs:817
+#: ../../MainPlugin.cs:819
 msgid "当前房间状态不允许投票选主题"
 msgstr "Vote selection is not allowed in current room status"
 
@@ -353,8 +342,7 @@ msgid "插件重载成功"
 msgstr "Plugin successfully reloaded"
 
 #: ../../BuildRoom.cs:311
-#: ../../BuildRoom.cs:329
-#: ../../BuildRoom.cs:338
+#: ../../BuildRoom.cs:330
 msgid "无"
 msgstr "None"
 
@@ -362,9 +350,10 @@ msgstr "None"
 msgid "未准备"
 msgstr "Not prepared"
 
-#: ../../BuildRoom.cs:425
-msgid "本次建筑的主题是 "
-msgstr "The theme of this building is "
+#: ../../BuildRoom.cs:420
+#, csharp-format
+msgid "本次建筑的主题是 {0}"
+msgstr ""
 
 #: ../../MainPlugin.cs:745
 msgid "正确指令 /bm join [房间号]"
@@ -429,11 +418,11 @@ msgstr "Correct command /bma sw [Room ID] [width]"
 msgid "正确指令 /bma swp [房间ID]"
 msgstr "Correct command /bma swp [Room ID]"
 
-#: ../../MainPlugin.cs:786
+#: ../../MainPlugin.cs:788
 msgid "正确指令/bm vote 主题名"
 msgstr "Correct command /bm vote [theme name]"
 
-#: ../../MainPlugin.cs:831
+#: ../../MainPlugin.cs:833
 msgid "此房支持的主题"
 msgstr "Theme supported by this room"
 
@@ -458,14 +447,35 @@ msgstr "Game starts in {0} seconds...."
 msgid "点未选取完毕"
 msgstr "Point not selected yet"
 
-#: ../../MainPlugin.cs:774
-#: ../../MainPlugin.cs:800
-#: ../../MainPlugin.cs:805
-#: ../../MainPlugin.cs:861
 #: ../../BuildPlayer.cs:56
 #: ../../BuildPlayer.cs:78
 msgid "玩家 "
 msgstr "Player "
+
+#: ../../MainPlugin.cs:775
+#, csharp-format
+msgid "玩家 {0} 已准备"
+msgstr ""
+
+#: ../../MainPlugin.cs:863
+#, csharp-format
+msgid "玩家 {0} 强制退出了房间"
+msgstr ""
+
+#: ../../MainPlugin.cs:802
+#, csharp-format
+msgid "玩家 {0} 投票主题 {1}"
+msgstr ""
+
+#: ../../MainPlugin.cs:807
+#, csharp-format
+msgid "玩家 {0} 更改投票主题为 {1}"
+msgstr ""
+
+#: ../../MainPlugin.cs:776
+#, csharp-format
+msgid "玩家 {0} 未准备"
+msgstr ""
 
 #: ../../MainPlugin.cs:316
 msgid "评分套"
@@ -479,7 +489,7 @@ msgstr "Liquid is not allowed for the rating time"
 msgid "评选阶段不允许建造"
 msgstr "No building is allowed during the selection stage"
 
-#: ../../MainPlugin.cs:812
+#: ../../MainPlugin.cs:814
 msgid "该房间不存在此主题"
 msgstr "This theme does not exist in this room"
 
@@ -525,7 +535,7 @@ msgstr "Please select point 1"
 msgid "请选择点2"
 msgstr "Please select point 2"
 
-#: ../../MainPlugin.cs:845
+#: ../../MainPlugin.cs:847
 msgid "输入/bm help 查看帮助"
 msgstr "Type /bm help to view help"
 
