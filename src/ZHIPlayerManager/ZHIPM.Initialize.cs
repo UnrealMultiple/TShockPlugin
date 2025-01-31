@@ -111,7 +111,7 @@ public partial class ZHIPM
             return;
         }
 
-        if (!args.Player.IsLoggedIn)
+        if (!args.Player.RealPlayer)
         {
             args.Player.SendInfoMessage(GetString("对象不正确，请检查您的状态，您是否为游戏内玩家？"));
             return;
@@ -153,7 +153,7 @@ public partial class ZHIPM
             return;
         }
 
-        if (!args.Player.IsLoggedIn)
+        if (!args.Player.RealPlayer)
         {
             args.Player.SendInfoMessage(GetString("对象不正确，请检查您的状态，您是否为游戏内玩家？"));
             return;
@@ -195,7 +195,7 @@ public partial class ZHIPM
         //查询本人
         if (args.Parameters.Count == 0 || (args.Parameters.Count == 1 && int.TryParse(args.Parameters[0], out _)))
         {
-            if (!args.Player.IsLoggedIn)
+            if (!args.Player.RealPlayer)
             {
                 args.Player.SendInfoMessage(GetString("对象不正确，请检查您的状态，您是否为游戏内玩家？"));
                 return;
@@ -314,7 +314,7 @@ public partial class ZHIPM
                 }
 
                 string text;
-                if (args.Player.IsLoggedIn)
+                if (args.Player.RealPlayer)
                 {
                     text = GetItemsString(items, NetItem.MaxInventory);
                     text = FormatArrangement(text, 30, " ");
@@ -358,7 +358,7 @@ public partial class ZHIPM
                 return;
             }
 
-            if (!args.Player.IsLoggedIn)
+            if (!args.Player.RealPlayer)
             {
                 args.Player.SendInfoMessage(GetString("对象不正确，请检查您的状态，您是否为游戏内玩家？"));
                 return;
@@ -951,7 +951,7 @@ public partial class ZHIPM
         {
             if (ZPDataBase.ClearALLZPlayerDB(ZPDataBase))
             {
-                if (!args.Player.IsLoggedIn)
+                if (!args.Player.RealPlayer)
                 {
                     args.Player.SendMessage(GetString("所有玩家的备份数据均已重置"), broadcastColor);
                     TSPlayer.All.SendMessage(GetString("所有玩家的备份数据均已重置"), broadcastColor);
@@ -1032,7 +1032,7 @@ public partial class ZHIPM
             if (ZPExtraDB.ClearALLZPlayerExtraDB(ZPExtraDB))
             {
                 edPlayers.Clear();
-                if (!args.Player.IsLoggedIn)
+                if (!args.Player.RealPlayer)
                 {
                     args.Player.SendMessage(GetString("所有玩家的额外数据均已重置"), broadcastColor);
                     TSPlayer.All.SendMessage(GetString("所有玩家的额外数据均已重置"), broadcastColor);
@@ -1136,7 +1136,7 @@ public partial class ZHIPM
             catch { }
 
             TShock.DB.Query("delete from tsCharacter");
-            if (!args.Player.IsLoggedIn)
+            if (!args.Player.RealPlayer)
             {
                 args.Player.SendMessage(GetString("所有玩家的人物数据均已重置"), broadcastColor);
             }
@@ -1225,7 +1225,7 @@ public partial class ZHIPM
             return;
         }
 
-        if (!args.Player.IsLoggedIn)
+        if (!args.Player.RealPlayer)
         {
             args.Player.SendMessage(GetString($"玩家已全部初始化"), new Color(0, 255, 0));
             TSPlayer.All.SendMessage(GetString($"所有玩家的所有数据均已全部初始化"), broadcastColor);
@@ -1250,7 +1250,7 @@ public partial class ZHIPM
         }
 
         //显示模式
-        var model = args.Player.IsLoggedIn ? 0 : 1;
+        var model = args.Player.RealPlayer ? 0 : 1;
         //var model = 0;
 
         var name = args.Parameters[0];
@@ -1500,8 +1500,7 @@ public partial class ZHIPM
             return;
         }
 
-        //var model = args.Player.IsLoggedIn ? 0 : 1;
-        var model = 0;
+        var model = args.Player.RealPlayer ? 0 : 1;
         var name = args.Parameters[0];
         var list = this.BestFindPlayerByNameOrIndex(name);
         if (list.Count > 0)
@@ -1661,13 +1660,13 @@ public partial class ZHIPM
 
         var name = args.Parameters[0];
         var list = this.BestFindPlayerByNameOrIndex(name);
-        if (name.Equals("me", StringComparison.OrdinalIgnoreCase) && args.Player.IsLoggedIn)
+        if (name.Equals("me", StringComparison.OrdinalIgnoreCase) && args.Player.RealPlayer)
         {
             list.Clear();
             list.Add(args.Player);
         }
-        var moddel = true;
-        if (moddel)
+
+        if (args.Player.RealPlayer)
         {
             if (list.Any())
             {
@@ -2271,7 +2270,7 @@ public partial class ZHIPM
         if (args.Parameters.Count == 1 && args.Parameters[0].Equals("useless", StringComparison.OrdinalIgnoreCase))
         {
             this.clearTimer = Timer + 1200L;
-            if (!args.Player.IsLoggedIn)
+            if (!args.Player.RealPlayer)
             {
                 args.Player.SendMessage(GetString("服务器将在20秒后清理世界内所有无用NPC，射弹和物品"), new Color(255, 0, 0));
             }
@@ -2639,7 +2638,7 @@ public partial class ZHIPM
             return;
         }
 
-        if (!args.Player.IsLoggedIn)
+        if (!args.Player.RealPlayer)
         {
             args.Player.SendInfoMessage(GetString("对象不正确，请检查您的状态，您是否为游戏内玩家？"));
             return;
@@ -2727,7 +2726,7 @@ public partial class ZHIPM
                     var player = this.CreateAPlayer(one.Key.Name, one.Value)!;
                     if (this.ExportPlayer(player, ZPExtraDB.getPlayerExtraDBTime(one.Key.ID)))
                     {
-                        if (args.Player.IsLoggedIn)
+                        if (args.Player.RealPlayer)
                         {
                             args.Player.SendMessage(GetString($"用户 [{player.name}] 已导出，目录：tshock/Zhipm/{worldName + this.now}/{player.name}.plr"), new Color(0, 255, 0));
                         }
@@ -2740,7 +2739,7 @@ public partial class ZHIPM
                     }
                     else
                     {
-                        if (args.Player.IsLoggedIn)
+                        if (args.Player.RealPlayer)
                         {
                             args.Player.SendInfoMessage(GetString($"用户 [{one.Key}] 因数据错误导出失败"));
                         }
@@ -2766,7 +2765,7 @@ public partial class ZHIPM
                 ZipFile.CreateFromDirectory(sourcePath, destPath, CompressionLevel.SmallestSize, false);
                 Directory.Delete(sourcePath, true);
                 sb.AppendLine(GetString($"已打包为{TShock.SavePath}/Zhipm/{worldName + this.now}.zip"));
-                if (!args.Player.IsLoggedIn)
+                if (!args.Player.RealPlayer)
                 {
                     args.Player.SendInfoMessage(sb.ToString());
                 }
@@ -2996,7 +2995,7 @@ public partial class ZHIPM
                 var sb = new StringBuilder();
                 for (var i = 0; i < num; i++)
                 {
-                    sb.AppendLine(args.Player.IsLoggedIn ? GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name))}") : GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name), 1)}"));
+                    sb.AppendLine(args.Player.RealPlayer ? GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name))}") : GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name), 1)}"));
                 }
 
                 args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3021,7 +3020,7 @@ public partial class ZHIPM
 
                     for (var i = 0; i < count; i++)
                     {
-                        sb.AppendLine(args.Player.IsLoggedIn ? GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name))}") : GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name), 1)}"));
+                        sb.AppendLine(args.Player.RealPlayer ? GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name))}") : GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name), 1)}"));
                     }
 
                     args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3032,7 +3031,7 @@ public partial class ZHIPM
                     var sb = new StringBuilder();
                     for (var i = 0; i < list.Count; i++)
                     {
-                        sb.AppendLine(args.Player.IsLoggedIn ? GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name))}") : GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name), 1)}"));
+                        sb.AppendLine(args.Player.RealPlayer ? GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name))}") : GetString($"第 {i + 1} 名:【{list[i].Name}】 总硬币数 {this.Cointostring(this.GetPlayerCoin(list[i].Name), 1)}"));
                     }
 
                     args.Player.SendMessage(sb.ToString(), TextColor());
@@ -3560,7 +3559,7 @@ public partial class ZHIPM
                 var sb = new StringBuilder();
                 for (var i = 0; i < num; i++)
                 {
-                    if (args.Player.IsLoggedIn)
+                    if (args.Player.RealPlayer)
                     {
                         sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 菜鸡值 {list[i].deathCount * 1000.0 / list[i].time:0.00}"));
                     }
@@ -3592,7 +3591,7 @@ public partial class ZHIPM
 
                     for (var i = 0; i < count; i++)
                     {
-                        if (args.Player.IsLoggedIn)
+                        if (args.Player.RealPlayer)
                         {
                             sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 菜鸡值 {list[i].deathCount * 1000.0 / list[i].time:0.00}"));
                         }
@@ -3610,7 +3609,7 @@ public partial class ZHIPM
                     var sb = new StringBuilder();
                     for (var i = 0; i < list.Count; i++)
                     {
-                        if (args.Player.IsLoggedIn)
+                        if (args.Player.RealPlayer)
                         {
                             sb.AppendLine(GetString($"第 {i + 1} 名:【{list[i].Name}】 菜鸡值 {list[i].deathCount * 1000.0 / list[i].time:0.00}"));
                         }
@@ -3788,7 +3787,7 @@ public partial class ZHIPM
                         }
                     }
 
-                    if (!args.Player.IsLoggedIn)
+                    if (!args.Player.RealPlayer)
                     {
                         args.Player.SendMessage(GetString($"用户 {user.Name} 已被 {args.Player.Name} 封禁"), broadcastColor);
                     }
@@ -4966,7 +4965,7 @@ public partial class ZHIPM
 
         if (config.AllowPlayerRespawnAtLastDeathPoint)
         {
-            if (!args.Player.IsLoggedIn)
+            if (!args.Player.RealPlayer)
             {
                 args.Player.SendInfoMessage(GetString("对象不正确，请检查您的状态，您是否为游戏内玩家？"));
                 return;
