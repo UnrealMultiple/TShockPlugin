@@ -46,7 +46,7 @@
 
 ```
 v1.2.9
-是用lazyapi，添加父组预设
+使用lazyapi，添加父组预设
 v1.2.8
 添加 GetString
 v1.2.7
