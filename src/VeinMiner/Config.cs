@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Terraria.ID;
 using TShockAPI;
 using TShockAPI.Hooks;
 
@@ -10,20 +11,18 @@ public class Config
     {
         try
         {
-            FileTools.CreateIfNot(Path.Combine(TShock.SavePath, "VeinMiner.json"), JsonConvert.SerializeObject(new Config()
+            FileTools.CreateIfNot(Path.Combine(TShock.SavePath, "VeinMiner.json"), JsonConvert.SerializeObject(new Config
             {
-                Exchange = new()
+                Exchange = new List<Exchange>(),
+                TargetTile = new List<int>
                 {
-                    new()
-                    {
-                        //OnlyGiveItem = true,
-                        //MinSize = 10,
-                        //Type = 169,
-                        //Item = new() { { 953, 1 }, { 2425, 5 } }
-                    }
+                    TileID.Copper, TileID.Iron,TileID.Silver,TileID.Gold, TileID.Tin, TileID.Lead ,TileID.Tungsten ,
+                    TileID.Platinum, TileID.Meteorite,TileID.Demonite, TileID.Crimtane, TileID.Obsidian, TileID.Hellstone,
+                    TileID.Cobalt, TileID.Palladium, TileID.Mythril, TileID.Adamantite, TileID.Titanium,TileID.LunarOre,
+                    TileID.DesertFossil, TileID.ExposedGems, TileID.Obsidian, TileID.Sapphire, TileID.Ruby, TileID.Emerald, 
+                    TileID.Topaz, TileID.Amethyst, TileID.Diamond 
                 },
-                Tile = new() { 7, 166, 6, 167, 9, 168, 8, 169, 37, 22, 204, 56, 58, 107, 221, 108, 222, 111, 223, 211, 408, 123, 224, 404, 178, 63, 64, 65, 66, 67, 68 },
-                NotMine = new() { 21, 26, 88 }
+                IgnoreAboveTile = new List<int>()
             }, Formatting.Indented));
 
             VeinMiner.Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Path.Combine(TShock.SavePath, "VeinMiner.json")))!;
@@ -41,34 +40,16 @@ public class Config
 
     [JsonProperty("启用")]
     public bool Enable { get; set; } = true;
-
-    [JsonProperty("广播")]
-    public bool Broadcast { get; set; } = true;
-
+    
     [JsonProperty("放入背包")]
-    public bool PutInInventory { get; set; } = true;
+    public bool PutIntoInventory { get; set; } = true;
 
     [JsonProperty("矿石物块ID")]
-    public List<int> Tile { get; set; } = new();
+    public List<int> TargetTile { get; set; } = new();
 
     [JsonProperty("忽略挖掘表面方块ID")]
-    public List<int> NotMine { get; set; } = new();
+    public List<int> IgnoreAboveTile { get; set; } = new();
 
     [JsonProperty("奖励规则")]
     public List<Exchange> Exchange { get; set; } = new();
-}
-
-public struct Exchange
-{
-    [JsonProperty("仅给予物品")]
-    public bool OnlyGiveItem;
-
-    [JsonProperty("最小尺寸")]
-    public int MinSize;
-
-    [JsonProperty("矿石物块ID")]
-    public int Type;
-
-    [JsonProperty("奖励物品")]
-    public Dictionary<int, int> Item;
 }
