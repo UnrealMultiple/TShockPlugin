@@ -1500,8 +1500,8 @@ public partial class ZHIPM
             return;
         }
 
-        var model = args.Player.IsLoggedIn ? 0 : 1;
-
+        //var model = args.Player.IsLoggedIn ? 0 : 1;
+        var model = 0;
         var name = args.Parameters[0];
         var list = this.BestFindPlayerByNameOrIndex(name);
         if (list.Count > 0)
