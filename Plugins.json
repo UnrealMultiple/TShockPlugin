@@ -1254,7 +1254,7 @@
   },
   {
     "Name": "Ezperm",
-    "Version": "1.2.8",
+    "Version": "1.2.9",
     "Author": "大豆子,肝帝熙恩优化1449",
     "Description": {
       "en-US": "A command to help beginners add missing permissions to the initial server and also allows for batch addition and deletion of permissions",
@@ -1269,7 +1269,9 @@
     },
     "AssemblyName": "Ezperm",
     "Path": "Ezperm.dll",
-    "Dependencies": [],
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {
@@ -2479,7 +2481,7 @@
   },
   {
     "Name": "TShockConfigMultiLang",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "肝帝熙恩，羽学",
     "Description": {
       "en-US": "Create a localized language config",
@@ -2665,7 +2667,7 @@
   },
   {
     "Name": "ZHIPlayerManager",
-    "Version": "1.0.2.2",
+    "Version": "1.0.2.3",
     "Author": "z枳",
     "Description": {
       "en-US": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
