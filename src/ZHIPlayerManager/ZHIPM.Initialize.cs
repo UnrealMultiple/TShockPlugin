@@ -1251,6 +1251,7 @@ public partial class ZHIPM
 
         //显示模式
         var model = args.Player.IsLoggedIn ? 0 : 1;
+        //var model = 0;
 
         var name = args.Parameters[0];
         var list = this.BestFindPlayerByNameOrIndex(name);
@@ -1665,8 +1666,8 @@ public partial class ZHIPM
             list.Clear();
             list.Add(args.Player);
         }
-
-        if (args.Player.IsLoggedIn)
+        var moddel = true;
+        if (moddel)
         {
             if (list.Any())
             {
