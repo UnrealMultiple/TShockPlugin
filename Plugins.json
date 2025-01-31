@@ -538,7 +538,7 @@
   },
   {
     "Name": "CaiRewardChest",
-    "Version": "2025.1.29.1",
+    "Version": "2025.1.31.1",
     "Author": "Cai",
     "Description": {
       "en-US": "Bonus chest ! !",
@@ -2521,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.130",
+    "Version": "1.10.0.0",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2543,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.130",
+    "Version": "1.0.0.131",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
@@ -2585,18 +2585,18 @@
   },
   {
     "Name": "VeinMiner",
-    "Version": "1.6.0.10",
-    "Author": "Megghy|YSpoof|Maxthegreat99|肝帝熙恩",
+    "Version": "1.6.1.0",
+    "Author": "Megghy, YSpoof, Maxthegreat99, 肝帝熙恩, Cai",
     "Description": {
-      "en-US": "VeinMiner by Megghy for TShock 5.2 supported!",
-      "de-DE": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
-      "it-IT": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
-      "fr-FR": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
-      "es-ES": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
-      "ru-RU": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
-      "zh-CN": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
-      "pt-BR": "VeinMiner by Megghy 适用于 TShock 5.2 支持！",
-      "pl-PL": "VeinMiner by Megghy 适用于 TShock 5.2 支持！"
+      "en-US": "连锁挖矿插件！",
+      "de-DE": "连锁挖矿插件！",
+      "it-IT": "连锁挖矿插件！",
+      "fr-FR": "连锁挖矿插件！",
+      "es-ES": "连锁挖矿插件！",
+      "ru-RU": "连锁挖矿插件！",
+      "zh-CN": "连锁挖矿插件！",
+      "pt-BR": "连锁挖矿插件！",
+      "pl-PL": "连锁挖矿插件！"
     },
     "AssemblyName": "VeinMiner",
     "Path": "VeinMiner.dll",
