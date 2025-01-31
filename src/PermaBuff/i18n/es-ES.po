@@ -1,0 +1,92 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-01-29 16:03:01+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/PermaBuff/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1572\n"
+"Language: es_ES\n"
+
+#: ../../Plugin.cs:142
+#, csharp-format
+msgid "{0} 为你添加一个永久buff {1}"
+msgstr ""
+
+#: ../../Plugin.cs:136
+#, csharp-format
+msgid "{0} 移除了你的一个永久buff {1}"
+msgstr ""
+
+#: ../../Plugin.cs:67
+#, csharp-format
+msgid "permabuff.json 读取错误:{0}"
+msgstr ""
+
+#: ../../Plugin.cs:86
+msgid "已清空所有永久buff"
+msgstr ""
+
+#: ../../Plugin.cs:97
+msgid "已清空所有玩家永久buff"
+msgstr ""
+
+#: ../../Plugin.cs:141
+#, csharp-format
+msgid "成功为添加一个永久buff {0}!"
+msgstr ""
+
+#: ../../Plugin.cs:176
+#, csharp-format
+msgid "成功为自己添加一个永久buff {0}!"
+msgstr ""
+
+#: ../../Plugin.cs:147
+#: ../../Plugin.cs:181
+msgid "无效的buffid"
+msgstr ""
+
+#: ../../Plugin.cs:110
+msgid "未知参数，请使用 '/clearbuffs' 或 '/cbuff all'"
+msgstr ""
+
+#: ../../Plugin.cs:105
+msgid "权限不足，无法执行此命令"
+msgstr ""
+
+#: ../../Plugin.cs:128
+#: ../../Plugin.cs:164
+msgid "此buff不可被添加!"
+msgstr ""
+
+#: ../../Plugin.cs:80
+msgid "没有永久buff，无需清空"
+msgstr ""
+
+#: ../../Plugin.cs:121
+msgid "玩家不存在或玩家不在线!"
+msgstr ""
+
+#: ../../Plugin.cs:135
+#: ../../Plugin.cs:171
+#, csharp-format
+msgid "移除一个永久buff {0}!"
+msgstr ""
+
+#: ../../Plugin.cs:152
+msgid "语法错误! 请输入/gpermabuff <buffid> <玩家名>"
+msgstr ""
+
+#: ../../Plugin.cs:186
+msgid "语法错误! 请输入/permabuff <buffid>"
+msgstr ""
+

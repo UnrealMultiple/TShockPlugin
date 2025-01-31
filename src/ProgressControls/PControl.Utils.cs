@@ -30,7 +30,7 @@ public partial class PControl : TerrariaPlugin
                         x.SaveServerCharacter();
                     }
 
-                    x.Disconnect("服务器正在重置");
+                    x.Disconnect(GetString("服务器正在重置"));
                 }
             });
         }
@@ -40,7 +40,7 @@ public partial class PControl : TerrariaPlugin
             {
                 if (x != null && x.IsLoggedIn)
                 {
-                    x.Disconnect("服务器正在重置");
+                    x.Disconnect(GetString("服务器正在重置"));
                 }
             });
             try
@@ -118,8 +118,8 @@ public partial class PControl : TerrariaPlugin
                             if (i.Extension.Equals(files[^1].TrimStart('*'), StringComparison.OrdinalIgnoreCase) && File.Exists(i.FullName))
                             {
                                 File.Delete(i.FullName);      //删除指定后缀名文件
-                                TShock.Log.Info(i.Name + " 删除成功");
-                                Console.WriteLine(i.Name + " 删除成功");
+                                TShock.Log.Info(GetString($"{i.Name} 删除成功"));
+                                Console.WriteLine(GetString($"{i.Name} 删除成功"));
                             }
                         }
                     }
@@ -128,11 +128,11 @@ public partial class PControl : TerrariaPlugin
         }
         catch (Exception ex)
         {
-            TSPlayer.All.SendErrorMessage("重置前删除哪些文件错误：" + ex.ToString());
-            TShock.Log.Error("重置前删除哪些文件错误：" + ex.ToString());
-            Console.WriteLine("使用指令删除哪些文件发生错误：" + ex.ToString());
+            TSPlayer.All.SendErrorMessage(GetString($"重置前删除哪些文件错误：{ex}"));
+            TShock.Log.Error(GetString($"重置前删除哪些文件错误：{ex}"));
+            Console.WriteLine(GetString($"使用指令删除哪些文件发生错误：{ex}"));
         }
-        TShock.Log.Info("服务器正在重置——来自插件：计划书ProgressControl");
+        TShock.Log.Info(GetString("服务器正在重置——来自插件：计划书ProgressControl"));
 
         /*
         if (config.自动重置前是否删除日志)
@@ -254,7 +254,7 @@ public partial class PControl : TerrariaPlugin
                     x.SaveServerCharacter();
                 }
 
-                x.Disconnect("服务器正在重启");
+                x.Disconnect(GetString("服务器正在重启"));
             }
         });
         TShock.Utils.SaveWorld();
@@ -263,7 +263,7 @@ public partial class PControl : TerrariaPlugin
         TShock.Config.Settings.ServerPassword = config.AfterRestartServerPassword;//密码这个东西恒参考config.json，在启动参数里改无效
         TShock.Config.Settings.MaxSlots = config.AfterRestartPeople;//端口这个东西恒参考启动参数，我就不改config.json里的了（我知道这一行不是端口）
         Config.SaveTConfig();
-        TShock.Log.Info("服务器正在重启——来自插件：计划书ProgressControl");
+        TShock.Log.Info(GetString("服务器正在重启——来自插件：计划书ProgressControl"));
         try//关闭日志占用
         {
             var property = ServerApi.LogWriter.GetType().GetProperty("DefaultLogWriter", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -302,9 +302,9 @@ public partial class PControl : TerrariaPlugin
         {
             if (x.Contains("pco com add", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("请不要对自动执行的指令进行套娃！[" + "/" + x + "]");
-                TShock.Log.Warn("请不要对自动执行的指令进行套娃！[" + "/" + x + "]");
-                TSPlayer.All.SendErrorMessage("请不要对自动执行的指令进行套娃！[" + "/" + x + "]");
+                Console.WriteLine(GetString($"请不要对自动执行的指令进行套娃！[/{x}]"));
+                TShock.Log.Warn(GetString($"请不要对自动执行的指令进行套娃！[/{x}]"));
+                TSPlayer.All.SendErrorMessage(GetString($"请不要对自动执行的指令进行套娃！[/{x}]"));
                 return;
             }
             try
@@ -317,9 +317,9 @@ public partial class PControl : TerrariaPlugin
         {
             if (config.AutoCommandOfBroadcast)
             {
-                TShock.Log.Info("服务器执行指令成功——来自插件：计划书ProgressControl");
-                Console.WriteLine("服务器自动执行指令成功");
-                TSPlayer.All.SendMessage("服务器自动执行指令成功", Color.Yellow);
+                TShock.Log.Info(GetString("服务器执行指令成功——来自插件：计划书ProgressControl"));
+                Console.WriteLine(GetString("服务器自动执行指令成功"));
+                TSPlayer.All.SendMessage(GetString("服务器自动执行指令成功"), Color.Yellow);
             }
         }
         catch { }
@@ -341,7 +341,7 @@ public partial class PControl : TerrariaPlugin
             TSPlayer.All.SendData(PacketTypes.NpcUpdate, "", npc.whoAmI);
             if (enableBC)
             {
-                TSPlayer.All.SendInfoMessage($"{npc.FullName} 未到解锁时间，还剩{HoursToM(config.ProgressLockTimeForStartServerDate[bossname] - jiange, "28FFB8")}");
+                TSPlayer.All.SendInfoMessage(GetString($"{npc.FullName} 未到解锁时间，还剩{HoursToM(config.ProgressLockTimeForStartServerDate[bossname] - jiange, "28FFB8")}"));
             }
         }
     }
@@ -356,16 +356,16 @@ public partial class PControl : TerrariaPlugin
         config.ProgressLockTimeForStartServerDate[bossname] += addtime;
         config.SaveConfigFile();
         var st = addtime > 0
-            ? "推迟" + (player.IsLoggedIn ? HoursToM(addtime, "28FFB8") : HoursToM(addtime))
-            : addtime < 0 ? "提前" + (player.IsLoggedIn ? HoursToM(-1 * addtime, "28FFB8") : HoursToM(-1 * addtime)) : "正常";
+            ? GetString("推迟") + (player.IsLoggedIn ? HoursToM(addtime, "28FFB8") : HoursToM(addtime))
+            : addtime < 0 ? GetString("提前") + (player.IsLoggedIn ? HoursToM(-1 * addtime, "28FFB8") : HoursToM(-1 * addtime)) : GetString("正常");
         if (!config.OpenAutoControlProgressLock)
         {
-            player.SendWarningMessage("警告，未开启自动控制NPC进度计划，你的修改不会有任何效果");
-            player.SendSuccessMessage($"定位成功，{bossname}将{st}解锁");
+            player.SendWarningMessage(GetString("警告，未开启自动控制NPC进度计划，你的修改不会有任何效果"));
+            player.SendSuccessMessage(GetString($"定位成功，{bossname}将{st}解锁"));
         }
         else
         {
-            SendMessageAllAndMe(player, $"定位成功，{bossname}将{st}解锁", Color.LimeGreen);
+            SendMessageAllAndMe(player, GetString($"定位成功，{bossname}将{st}解锁"), Color.LimeGreen);
         }
     }
 
@@ -470,34 +470,34 @@ public partial class PControl : TerrariaPlugin
             {
                 if (h > 0)
                 {
-                    mess += $" [c/{color}:{h}] 时";
+                    mess += GetString($" [c/{color}:{h}] 时");
                 }
 
                 if (m > 0)
                 {
-                    mess += $" [c/{color}:{m}] 分";
+                    mess += GetString($" [c/{color}:{m}] 分");
                 }
 
                 if (s > 0 || (h == 0 && m == 0 && s == 0))
                 {
-                    mess += $" [c/{color}:{s}] 秒";
+                    mess += GetString($" [c/{color}:{s}] 秒");
                 }
             }
             else
             {
                 if (h > 0)
                 {
-                    mess += $" {h} 时";
+                    mess += GetString($" {h} 时");
                 }
 
                 if (m > 0)
                 {
-                    mess += $" {m} 分";
+                    mess += GetString($" {m} 分");
                 }
 
                 if (s > 0 || (h == 0 && m == 0 && s == 0))
                 {
-                    mess += $" {s} 秒";
+                    mess += GetString($" {s} 秒");
                 }
             }
         }
@@ -505,11 +505,11 @@ public partial class PControl : TerrariaPlugin
         {
             if (!string.IsNullOrWhiteSpace(color))
             {
-                mess += $" [c/{color}:0] 秒";
+                mess += GetString($" [c/{color}:0] 秒");
             }
             else
             {
-                mess += $" 0 秒";
+                mess += GetString(" 0 秒");
             }
         }
         return mess;
@@ -714,7 +714,7 @@ public partial class PControl : TerrariaPlugin
         });
         if (list.Count != 3)
         {
-            failureReason = "格式错误。应为[±num]或[±H:M:S]，num必须为整数或小数，H M S必须为整数或不填(不能为空格)，正号可以不加，冒号可用小数点代替但必须都要填";
+            failureReason = GetString("格式错误。应为[±num]或[±H:M:S]，num必须为整数或小数，H M S必须为整数或不填(不能为空格)，正号可以不加，冒号可用小数点代替但必须都要填");
             return double.MinValue;
         }
         else
@@ -743,12 +743,12 @@ public partial class PControl : TerrariaPlugin
 
                         if (m < 0 || s < 0)
                         {
-                            failureReason = "格式错误。M 和 S 不需要加负号，负号只需要填入 H 的前面即可";
+                            failureReason = GetString("格式错误。M 和 S 不需要加负号，负号只需要填入 H 的前面即可");
                             return double.MinValue;
                         }
                         if (m >= 60 || s >= 60)
                         {
-                            failureReason = "格式错误。M 和 S 不能大于59，请自行进位";
+                            failureReason = GetString("格式错误。M 和 S 不能大于59，请自行进位");
                             return double.MinValue;
                         }
                         sum = has负号 ? ((-1 * h) + (m / 60.0) + (s / 3600.0)) * -1 : h + (m / 60.0) + (s / 3600.0);
@@ -757,19 +757,19 @@ public partial class PControl : TerrariaPlugin
                     }
                     else
                     {
-                        failureReason = "格式错误。S 必须为整数";
+                        failureReason = GetString("格式错误。S 必须为整数");
                         return double.MinValue;
                     }
                 }
                 else
                 {
-                    failureReason = "格式错误。M 必须为整数";
+                    failureReason = GetString("格式错误。M 必须为整数");
                     return double.MinValue;
                 }
             }
             else
             {
-                failureReason = "格式错误。H 必须为整数";
+                failureReason = GetString("格式错误。H 必须为整数");
                 return double.MinValue;
             }
         }

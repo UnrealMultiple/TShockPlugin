@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 18:23:44+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:03:19+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,10 @@ msgstr ""
 "X-Crowdin-File: /master/src/SpclPerm/i18n/template.pot\n"
 "X-Crowdin-File-ID: 1534\n"
 "Language: es_ES\n"
+
+#: ../../SpclPerm.cs:60
+msgid "[服主特权]重新加载配置完毕。"
+msgstr ""
 
 #: ../../SpclPerm.cs:19
 msgid "服主自动执行：无敌、BUFF、物品、命令、设置背包"

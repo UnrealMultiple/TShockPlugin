@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:26+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:03:17+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,29 @@ msgstr ""
 "X-Crowdin-File: /master/src/SimultaneousUseFix/i18n/template.pot\n"
 "X-Crowdin-File-ID: 1528\n"
 "Language: es_ES\n"
+
+#: ../../SimultaneousUseFix.cs:32
+msgid "[{0}] 重新加载配置完毕。"
+msgstr ""
+
+#: ../../SimultaneousUseFix.cs:68
+msgid "因为卡换格子bug被踢出"
+msgstr ""
+
+#: ../../SimultaneousUseFix.cs:79
+#, csharp-format
+msgid "玩家 {0} 因为卡换格子bug被上buff"
+msgstr ""
+
+#: ../../SimultaneousUseFix.cs:73
+#, csharp-format
+msgid "玩家 {0} 因为卡换格子bug被杀死"
+msgstr ""
+
+#: ../../SimultaneousUseFix.cs:67
+#, csharp-format
+msgid "玩家 {0} 因为卡换格子bug被踢出"
+msgstr ""
 
 #: ../../SimultaneousUseFix.cs:13
 msgid "解决卡双锤，卡星旋机枪之类的问题"

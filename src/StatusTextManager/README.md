@@ -139,6 +139,9 @@ public class Plugin : TerrariaPlugin
 ## 更新日志
 
 ```
+v1.1.3
+重构渔夫任务点提取逻辑
+
 v1.1.0
 添加 DynamicText 类
 可插值

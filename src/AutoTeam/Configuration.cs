@@ -19,7 +19,7 @@ public class Configuration : JsonConfigBase<Configuration>
 
     public string GetTeamForGroup(string groupName)
     {
-        return this.GroupTeamMap.TryGetValue(groupName, out var team) ? team : "未配置";
+        return this.GroupTeamMap.TryGetValue(groupName, out var team) ? team : GetString("未配置");
     }
 
     protected override void SetDefault()

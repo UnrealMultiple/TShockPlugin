@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: HouseRegion\n"
-"POT-Creation-Date: 2025-01-24 01:42:23+0000\n"
-"PO-Revision-Date: 2025-01-24 01:42:23+0000\n"
+"POT-Creation-Date: 2025-01-29 16:02:51+0000\n"
+"PO-Revision-Date: 2025-01-29 16:02:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -185,6 +185,7 @@ msgid "你选择的区域与Tshock区域 {0} 重叠，这是不允许的。"
 msgstr ""
 
 #: ../../Plugin.cs:215
+#: ../../Plugin.cs:563
 msgid "你选择的区域与其他房子存在重叠，这是不允许的。"
 msgstr ""
 
@@ -275,6 +276,10 @@ msgstr ""
 #: ../../Plugin.cs:680
 #, csharp-format
 msgid "房子: {0} {1}"
+msgstr ""
+
+#: ../../Plugin.cs:797
+msgid "房子插件提示处理超时,已抛弃部分提示!"
 msgstr ""
 
 #: ../../Plugin.cs:650

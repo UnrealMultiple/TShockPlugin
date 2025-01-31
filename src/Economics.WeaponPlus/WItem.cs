@@ -98,113 +98,35 @@ public class WItem
     public string ItemMess()
     {
         var stringBuilder = new StringBuilder();
-        StringBuilder stringBuilder2;
-        StringBuilder.AppendInterpolatedStringHandler handler;
         if (this.Level > 0)
         {
-            stringBuilder2 = stringBuilder;
-            var stringBuilder3 = stringBuilder2;
-            handler = new StringBuilder.AppendInterpolatedStringHandler(16, 15, stringBuilder2);
-            handler.AppendFormatted(GetString("当前总等级："));
-            handler.AppendFormatted(this.Level);
-            handler.AppendLiteral("   ");
-            handler.AppendFormatted(GetString("剩余强化次数："));
-            handler.AppendFormatted(WeaponPlus.config.MaximunofLevel - this.Level);
-            handler.AppendLiteral(" ");
-            handler.AppendFormatted(GetString("次"));
-            handler.AppendLiteral("    ");
-            handler.AppendFormatted(GetString("伤害等级："));
-            handler.AppendFormatted(this.damage_level);
-            handler.AppendLiteral(", ");
-            handler.AppendFormatted(GetString("大小等级："));
-            handler.AppendFormatted(this.scale_level);
-            handler.AppendLiteral(", ");
-            handler.AppendFormatted(GetString("击退等级："));
-            handler.AppendFormatted(this.knockBack_level);
-            handler.AppendLiteral(", ");
-            handler.AppendFormatted(GetString("攻速等级："));
-            handler.AppendFormatted(this.useSpeed_level);
-            handler.AppendLiteral(", ");
-            handler.AppendFormatted(GetString("射弹飞行速度等级："));
-            handler.AppendFormatted(this.shootSpeed_level);
-            stringBuilder3.AppendLine(ref handler);
+            stringBuilder.AppendLine(GetString($"当前总等级：{this.Level}   剩余强化次数：{WeaponPlus.config.MaximunofLevel - this.Level} 次    伤害等级：{this.damage_level}, 大小等级：{this.scale_level}, 击退等级：{this.knockBack_level}, 攻速等级：{this.useSpeed_level}, 射弹飞行速度等级：{this.shootSpeed_level}"));
         }
         else
         {
             stringBuilder.AppendLine(GetString("未升级过，无任何加成"));
         }
-        var num = (int) (this.orig_damage * 0.05f * this.damage_level);
-        if (num < this.damage_level)
-        {
-            num = this.damage_level;
-        }
-        var value = num * 1f / this.orig_damage;
-        stringBuilder2 = stringBuilder;
-        var stringBuilder4 = stringBuilder2;
-        handler = new StringBuilder.AppendInterpolatedStringHandler(9, 7, stringBuilder2);
-        handler.AppendFormatted(GetString("当前状态："));
-        handler.AppendFormatted(GetString("伤害"));
-        handler.AppendLiteral(" +");
-        handler.AppendFormatted(value, "0.00%");
-        handler.AppendLiteral("，");
-        handler.AppendFormatted(GetString("大小"));
-        handler.AppendLiteral(" +");
-        handler.AppendFormatted(0.05f * this.scale_level, "0.00%");
-        handler.AppendLiteral("，");
-        handler.AppendFormatted(GetString("击退"));
-        handler.AppendLiteral(" +");
-        handler.AppendFormatted(0.05f * this.knockBack_level, "0.00%");
-        handler.AppendLiteral("，");
-        stringBuilder4.Append(ref handler);
-        value = (this.orig_useAnimation * 1f / (this.orig_useAnimation - this.useSpeed_level)) - 1f;
-        stringBuilder2 = stringBuilder;
-        var stringBuilder5 = stringBuilder2;
-        handler = new StringBuilder.AppendInterpolatedStringHandler(3, 4, stringBuilder2);
-        handler.AppendFormatted(GetString("攻速"));
-        handler.AppendLiteral("+");
-        handler.AppendFormatted(value, "0.00%");
-        handler.AppendLiteral("，");
-        handler.AppendFormatted(GetString("射弹飞速"));
-        handler.AppendLiteral("+");
-        handler.AppendFormatted(0.05f * this.shootSpeed_level, "0.00%");
-        stringBuilder5.AppendLine(ref handler);
+
+        var damageLevel = Math.Max((int) (this.orig_damage * 0.05f * this.damage_level), this.damage_level);
+        var damageBonus = damageLevel * 1f / this.orig_damage;
+        var scaleBonus = 0.05f * this.scale_level;
+        var knockBackBonus = 0.05f * this.knockBack_level;
+        var speedBonus = (this.orig_useAnimation * 1f / (this.orig_useAnimation - this.useSpeed_level)) - 1f;
+        var projectileBonus = 0.05f * this.shootSpeed_level;
+        stringBuilder.AppendLine(GetString($"当前状态：伤害 +{damageBonus:0.00%}，大小 +{scaleBonus:0.00%}，击退 +{knockBackBonus:0.00%}，攻速 +{speedBonus:0.00%}，射弹飞速 +{projectileBonus:0.00%}"));
         if (this.Level < WeaponPlus.config.MaximunofLevel)
         {
-            stringBuilder2 = stringBuilder;
-            var stringBuilder6 = stringBuilder2;
-            handler = new StringBuilder.AppendInterpolatedStringHandler(0, 2, stringBuilder2);
-            handler.AppendFormatted(GetString("伤害升至下一级需："));
-            handler.AppendFormatted(this.plusPrice(PlusType.damage, out var price) ? price : GetString("当前已满级"));
-            stringBuilder6.AppendLine(ref handler);
-            stringBuilder2 = stringBuilder;
-            var stringBuilder7 = stringBuilder2;
-            handler = new StringBuilder.AppendInterpolatedStringHandler(0, 2, stringBuilder2);
-            handler.AppendFormatted(GetString("大小升至下一级需："));
-            handler.AppendFormatted(this.plusPrice(PlusType.scale, out price) ? price : GetString("当前已满级"));
-            stringBuilder7.AppendLine(ref handler);
-            stringBuilder2 = stringBuilder;
-            var stringBuilder8 = stringBuilder2;
-            handler = new StringBuilder.AppendInterpolatedStringHandler(0, 2, stringBuilder2);
-            handler.AppendFormatted(GetString("击退升至下一级需："));
-            handler.AppendFormatted(this.plusPrice(PlusType.knockBack, out price) ? price : GetString("当前已满级"));
-            stringBuilder8.AppendLine(ref handler);
-            stringBuilder2 = stringBuilder;
-            var stringBuilder9 = stringBuilder2;
-            handler = new StringBuilder.AppendInterpolatedStringHandler(0, 2, stringBuilder2);
-            handler.AppendFormatted(GetString("攻速升至下一级需："));
-            handler.AppendFormatted(this.plusPrice(PlusType.useSpeed, out price) ? price : GetString("当前已满级"));
-            stringBuilder9.AppendLine(ref handler);
-            stringBuilder2 = stringBuilder;
-            var stringBuilder10 = stringBuilder2;
-            handler = new StringBuilder.AppendInterpolatedStringHandler(0, 2, stringBuilder2);
-            handler.AppendFormatted(GetString("射弹飞速升至下一级需："));
-            handler.AppendFormatted(this.plusPrice(PlusType.shootSpeed, out price) ? price : GetString("当前已满级"));
-            stringBuilder10.Append(ref handler);
+            stringBuilder.AppendLine(GetString("伤害升至下一级需：{0}", this.plusPrice(PlusType.damage, out var price) ? price : GetString("当前已满级")));
+            stringBuilder.AppendLine(GetString("大小升至下一级需：{0}", this.plusPrice(PlusType.scale, out price) ? price : GetString("当前已满级")));
+            stringBuilder.AppendLine(GetString("击退升至下一级需：{0}", this.plusPrice(PlusType.knockBack, out price) ? price : GetString("当前已满级")));
+            stringBuilder.AppendLine(GetString("攻速升至下一级需：{0}", this.plusPrice(PlusType.useSpeed, out price) ? price : GetString("当前已满级")));
+            stringBuilder.Append(GetString("射弹飞速升至下一级需：{0}", this.plusPrice(PlusType.shootSpeed, out price) ? price : GetString("当前已满级")));
         }
         else
         {
             stringBuilder.Append(GetString("已达到最大武器总等级"));
         }
+
         return stringBuilder.ToString();
     }
     #endregion

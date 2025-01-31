@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:38+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:02:28+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -63,11 +63,8 @@ msgid "执行者:{0} 被执行者:{1} 命令:{2} id:{3}"
 msgstr ""
 
 #: ../../Main.cs:52
-msgid "没有找到注册名为"
-msgstr ""
-
-#: ../../Main.cs:52
-msgid "的账户"
+#, csharp-format
+msgid "没有找到注册名为{0}的账户"
 msgstr ""
 
 #: ../../Main.cs:12

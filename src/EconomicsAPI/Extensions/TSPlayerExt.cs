@@ -21,8 +21,19 @@ public static class TSPlayerExt
     public static void ExecCommand(this TSPlayer player, string cmd)
     {
         player.tempGroup = new SuperAdminGroup();
-        Commands.HandleCommand(player, cmd.SFormat(player.Name));
-        player.tempGroup = null;
+        try
+        {
+            Commands.HandleCommand(player, cmd.SFormat(player.Name));
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.ConsoleDebug(GetString($"EconomicAPI 执行命令报错:{ex.Message}"));
+        }
+        finally
+        { 
+            player.tempGroup = null;
+        }
+        
     }
 
     public static void ExecCommand(this TSPlayer player, IEnumerable<string> cmds)

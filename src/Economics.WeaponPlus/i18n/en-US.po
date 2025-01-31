@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:54+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-01-29 16:02:45+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -43,32 +43,19 @@ msgstr "[i:{0}] Upgrade successfully. Total consumption: {1}\n"
 msgid "[武器强化EC版]重新加载配置完毕。"
 msgstr "[Weapon Enhancement EC Version] Configuration reloaded."
 
-#: ../../WeaponPlus.cs:158
+#: ../../WeaponPlus.cs:581
 #, csharp-format
-msgid "{0}[i:{1}]   {2}{3}\n"
-"{4}"
-msgstr "{0}[i:{1}]   {2}{3}\n"
-"{4}"
+msgid "{0}不足！"
+msgstr ""
 
 #: ../../WeaponPlus.cs:145
 msgid "SSC 未开启"
 msgstr "SSC not enabled"
 
-#: ../../WeaponPlus.cs:581
-msgid "不足！"
-msgstr "Insufficient!"
-
-#: ../../WItem.cs:146
-msgid "伤害"
-msgstr "Damage"
-
-#: ../../WItem.cs:176
-msgid "伤害升至下一级需："
-msgstr "Required to upgrade damage to the next level:"
-
-#: ../../WItem.cs:116
-msgid "伤害等级："
-msgstr "Damage Level:"
+#: ../../WItem.cs:119
+#, csharp-format
+msgid "伤害升至下一级需：{0}"
+msgstr ""
 
 #: ../../WeaponPlus.cs:21
 msgid "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes"
@@ -86,51 +73,27 @@ msgstr "Almost all weapons and ammunition can be enhanced, but the enhancement w
 "The retrieved item is given individually and cannot be picked up by other players. It is automatically retrieved each time you enter the server.\n"
 "The first inventory slot is the enhancement slot, and commands only affect items within that slot. Once enhanced, the weapon can be moved to another slot, similar to the goblin's reforging slot."
 
-#: ../../WItem.cs:154
-msgid "击退"
-msgstr "Knockback"
+#: ../../WItem.cs:121
+#, csharp-format
+msgid "击退升至下一级需：{0}"
+msgstr ""
 
-#: ../../WItem.cs:188
-msgid "击退升至下一级需："
-msgstr "Required to upgrade knockback to the next level:"
-
-#: ../../WItem.cs:122
-msgid "击退等级："
-msgstr "Knockback Level:"
-
-#: ../../WItem.cs:111
-msgid "剩余强化次数："
-msgstr "Remaining Enhancement Times:"
-
-#: ../../WItem.cs:150
-msgid "大小"
-msgstr "Size"
-
-#: ../../WItem.cs:182
-msgid "大小升至下一级需："
-msgstr "Required to upgrade size to the next level:"
-
-#: ../../WItem.cs:119
-msgid "大小等级："
-msgstr "Size Level:"
+#: ../../WItem.cs:120
+#, csharp-format
+msgid "大小升至下一级需：{0}"
+msgstr ""
 
 #: ../../WeaponPlus.cs:182
-msgid "完全重置成功！回收："
-msgstr "Complete reset successful! Recovered:"
+#, csharp-format
+msgid "完全重置成功！{0}回收：{1}"
+msgstr ""
 
-#: ../../WItem.cs:128
-msgid "射弹飞行速度等级："
-msgstr "Projectile Speed Level:"
+#: ../../WItem.cs:123
+#, csharp-format
+msgid "射弹飞速升至下一级需：{0}"
+msgstr ""
 
-#: ../../WItem.cs:167
-msgid "射弹飞速"
-msgstr "Projectile Speed"
-
-#: ../../WItem.cs:200
-msgid "射弹飞速升至下一级需："
-msgstr "Required to upgrade projectile speed to the next level:"
-
-#: ../../WItem.cs:206
+#: ../../WItem.cs:127
 msgid "已达到最大武器总等级"
 msgstr "Reached maximum total weapon level"
 
@@ -138,29 +101,33 @@ msgstr "Reached maximum total weapon level"
 msgid "强化数据清理失败！！!"
 msgstr "Failed to clear enhancement data!!!"
 
-#: ../../WeaponPlus.cs:578
-msgid "当前剩余："
-msgstr "Remaining:"
-
-#: ../../WItem.cs:177
-#: ../../WItem.cs:183
-#: ../../WItem.cs:189
-#: ../../WItem.cs:195
-#: ../../WItem.cs:201
+#: ../../WItem.cs:119
+#: ../../WItem.cs:120
+#: ../../WItem.cs:121
+#: ../../WItem.cs:122
+#: ../../WItem.cs:123
 msgid "当前已满级"
 msgstr "Already at max level"
 
-#: ../../WItem.cs:108
-msgid "当前总等级："
-msgstr "Current Total Level:"
+#: ../../WItem.cs:103
+#, csharp-format
+msgid "当前总等级：{0}   剩余强化次数：{1} 次    伤害等级：{2}, 大小等级：{3}, 击退等级：{4}, 攻速等级：{5}, 射弹飞行速度等级：{6}"
+msgstr ""
 
 #: ../../WeaponPlus.cs:174
 msgid "当前武器没有任何等级，不用回炉重做"
 msgstr "The current weapon has no levels and does not need to be remade."
 
-#: ../../WItem.cs:145
-msgid "当前状态："
-msgstr "Current Status:"
+#: ../../WeaponPlus.cs:158
+#, csharp-format
+msgid "当前物品：[i:{0}]   共计消耗：{1}\n"
+"{2}"
+msgstr ""
+
+#: ../../WItem.cs:116
+#, csharp-format
+msgid "当前状态：伤害 +{0:0.00%}，大小 +{1:0.00%}，击退 +{2:0.00%}，攻速 +{3:0.00%}，射弹飞速 +{4:0.00%}"
+msgstr ""
 
 #: ../../WeaponPlus.cs:572
 msgid "当前该类型升级已达到上限，无法升级"
@@ -175,28 +142,18 @@ msgid "所有玩家的所有强化数据全部清理成功！"
 msgstr "All enhancement data for all players successfully cleared!"
 
 #: ../../WeaponPlus.cs:578
-msgid "扣除："
-msgstr "Deducted:"
+#, csharp-format
+msgid "扣除{0}：{1}，当前剩余：{2}"
+msgstr ""
 
-#: ../../WItem.cs:163
-msgid "攻速"
-msgstr "Attack Speed"
+#: ../../WItem.cs:122
+#, csharp-format
+msgid "攻速升至下一级需：{0}"
+msgstr ""
 
-#: ../../WItem.cs:194
-msgid "攻速升至下一级需："
-msgstr "Required to upgrade attack speed to the next level:"
-
-#: ../../WItem.cs:125
-msgid "攻速等级："
-msgstr "Attack Speed Level:"
-
-#: ../../WItem.cs:134
+#: ../../WItem.cs:107
 msgid "未升级过，无任何加成"
 msgstr "Not upgraded, no bonuses"
-
-#: ../../WItem.cs:114
-msgid "次"
-msgstr "times"
 
 #: ../../WeaponPlus.cs:238
 #: ../../WeaponPlus.cs:269

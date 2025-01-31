@@ -1,7 +1,30 @@
 [
   {
+    "Name": "CaiPacketDebug",
+    "Version": "2025.1.25.2",
+    "Author": "Cai",
+    "Description": {
+      "en-US": "Plugin for debugging data packets~",
+      "de-DE": "用于调试数据包的插件捏~",
+      "it-IT": "用于调试数据包的插件捏~",
+      "fr-FR": "用于调试数据包的插件捏~",
+      "es-ES": "用于调试数据包的插件捏~",
+      "ru-RU": "用于调试数据包的插件捏~",
+      "zh-CN": "用于调试数据包的插件捏~",
+      "pt-BR": "用于调试数据包的插件捏~",
+      "pl-PL": "用于调试数据包的插件捏~"
+    },
+    "AssemblyName": "CaiPacketDebug",
+    "Path": "CaiPacketDebug.dll",
+    "Dependencies": [
+      "LazyAPI",
+      "TrProtocol"
+    ],
+    "HotReload": true
+  },
+  {
     "Name": "Platform",
-    "Version": "1.1.0.4",
+    "Version": "1.1.0.5",
     "Author": "Cai",
     "Description": {
       "en-US": "Determine player device",
@@ -103,7 +126,7 @@
   },
   {
     "Name": "AnnouncementBoxPlus",
-    "Version": "1.0.4",
+    "Version": "1.0.5",
     "Author": "Cai",
     "Description": {
       "en-US": "Optimize announcement box",
@@ -277,7 +300,7 @@
   },
   {
     "Name": "AutoTeam",
-    "Version": "2.4.7",
+    "Version": "2.4.8",
     "Author": "十七改，肝帝熙恩改",
     "Description": {
       "en-US": "Automatically assign a group of players to a specific team",
@@ -385,7 +408,7 @@
   },
   {
     "Name": "BetterWhitelist",
-    "Version": "2.6.3",
+    "Version": "2.6.4",
     "Author": "豆沙，肝帝熙恩、Cai修改",
     "Description": {
       "en-US": "Whitelist players by checking the name of the player",
@@ -429,7 +452,7 @@
   },
   {
     "Name": "BuildMaster",
-    "Version": "1.0.6",
+    "Version": "1.0.7",
     "Author": "豆沙 羽学，肝帝熙恩适配",
     "Description": {
       "en-US": "A minigame that is named BuildMaster",
@@ -451,7 +474,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2025.1.25.1",
+    "Version": "2025.1.29.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot机器人的适配插件",
@@ -514,31 +537,8 @@
     "HotReload": true
   },
   {
-    "Name": "CaiPacketDebug",
-    "Version": "2024.12.18.2",
-    "Author": "Cai",
-    "Description": {
-      "en-US": "Plugin for debugging data packets~",
-      "de-DE": "用于调试数据包的插件捏~",
-      "it-IT": "用于调试数据包的插件捏~",
-      "fr-FR": "用于调试数据包的插件捏~",
-      "es-ES": "用于调试数据包的插件捏~",
-      "ru-RU": "用于调试数据包的插件捏~",
-      "zh-CN": "用于调试数据包的插件捏~",
-      "pt-BR": "用于调试数据包的插件捏~",
-      "pl-PL": "用于调试数据包的插件捏~"
-    },
-    "AssemblyName": "CaiPacketDebug",
-    "Path": "CaiPacketDebug.dll",
-    "Dependencies": [
-      "LazyAPI",
-      "TrProtocol"
-    ],
-    "HotReload": true
-  },
-  {
     "Name": "CaiRewardChest",
-    "Version": "2024.12.18.3",
+    "Version": "2025.1.29.1",
     "Author": "Cai",
     "Description": {
       "en-US": "Bonus chest ! !",
@@ -561,7 +561,7 @@
   },
   {
     "Name": "CGive",
-    "Version": "1.0.0.7",
+    "Version": "1.0.0.8",
     "Author": "Leader",
     "Description": {
       "en-US": "Give offline",
@@ -789,7 +789,7 @@
   },
   {
     "Name": "CustomMonster",
-    "Version": "1.0.4.40",
+    "Version": "1.0.4.41",
     "Author": "GK 阁下 羽学",
     "Description": {
       "en-US": "Customize the health volume when monsters appear, of course it’s more than that!",
@@ -849,7 +849,7 @@
   },
   {
     "Name": "DataSync",
-    "Version": "1.0",
+    "Version": "2025.1.29",
     "Author": "None",
     "Description": {
       "en-US": "None",
@@ -889,7 +889,7 @@
   },
   {
     "Name": "DisableMonsLoot",
-    "Version": "1.3.3",
+    "Version": "1.3.4",
     "Author": "羽学",
     "Description": {
       "en-US": "Prevents excluded items from being dropped by monsters",
@@ -909,7 +909,7 @@
   },
   {
     "Name": "DonotFuck",
-    "Version": "3.2.2",
+    "Version": "3.2.3",
     "Author": "Cai 羽学",
     "Description": {
       "en-US": "When players chat with sensitive words, use * to replace the word.",
@@ -974,7 +974,7 @@
   },
   {
     "Name": "DumpTerrariaID",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "少司命",
     "Description": {
       "en-US": "Dump ID",
@@ -1149,7 +1149,7 @@
   },
   {
     "Name": "Economics.Task",
-    "Version": "2.0.0.2",
+    "Version": "2.0.0.3",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides task system!",
@@ -1172,7 +1172,7 @@
   },
   {
     "Name": "Economics.WeaponPlus",
-    "Version": "2.0.0.3",
+    "Version": "2.0.0.4",
     "Author": "z枳 少司命",
     "Description": {
       "en-US": "Allow any weapon to be strengthened on basic attributes",
@@ -1194,7 +1194,7 @@
   },
   {
     "Name": "EconomicsAPI",
-    "Version": "2.0.0.4",
+    "Version": "2.0.0.5",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides economic system API",
@@ -1254,7 +1254,7 @@
   },
   {
     "Name": "Ezperm",
-    "Version": "1.2.7",
+    "Version": "1.2.8",
     "Author": "大豆子,肝帝熙恩优化1449",
     "Description": {
       "en-US": "A command to help beginners add missing permissions to the initial server and also allows for batch addition and deletion of permissions",
@@ -1316,7 +1316,7 @@
   },
   {
     "Name": "GoodNight",
-    "Version": "2.7.5",
+    "Version": "2.7.6",
     "Author": "Jonesn 羽学 少司命",
     "Description": {
       "en-US": "Set when the server is unable to enter or disable the spawn mob",
@@ -1356,7 +1356,7 @@
   },
   {
     "Name": "HouseRegion",
-    "Version": "1.0.0.8",
+    "Version": "1.0.0.9",
     "Author": "GK 阁下 改良",
     "Description": {
       "en-US": "Plugin for protecting houses.",
@@ -1378,7 +1378,7 @@
   },
   {
     "Name": "Invincibility",
-    "Version": "1.0.9",
+    "Version": "1.0.10",
     "Author": "肝帝熙恩",
     "Description": {
       "en-US": "Gives the player invincibility for a period of time in the command.",
@@ -1398,7 +1398,7 @@
   },
   {
     "Name": "ItemBox",
-    "Version": "2024.12.18.2",
+    "Version": "2024.12.18.3",
     "Author": "Cai & 2409",
     "Description": {
       "en-US": "Offline item box system.",
@@ -1418,7 +1418,7 @@
   },
   {
     "Name": "ItemDecoration",
-    "Version": "1.0.0.3",
+    "Version": "3.0.0",
     "Author": "FrankV22, Soofa, 少司命",
     "Description": {
       "en-US": "Show Item Decoration and More!!!",
@@ -1440,7 +1440,7 @@
   },
   {
     "Name": "ItemPreserver",
-    "Version": "1.0.9",
+    "Version": "1.0.10",
     "Author": "肝帝熙恩 & 少司命",
     "Description": {
       "en-US": "Specified items can not consumed",
@@ -1460,7 +1460,7 @@
   },
   {
     "Name": "JourneyUnlock",
-    "Version": "1.0.1.4",
+    "Version": "1.0.1.5",
     "Author": "Maxthegreat99，肝帝熙恩汉化",
     "Description": {
       "en-US": "Allows you to unlock all or specific items for your character on journey",
@@ -1524,7 +1524,7 @@
   },
   {
     "Name": "ListPlugins",
-    "Version": "1.0.7",
+    "Version": "1.0.8",
     "Author": "iheart 修改：羽学，肝帝熙恩",
     "Description": {
       "en-US": "Use command to check installed plugins",
@@ -1564,7 +1564,7 @@
   },
   {
     "Name": "MiniGamesAPI",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "豆沙 羽学修复",
     "Description": {
       "en-US": "Mini game framework API",
@@ -1584,7 +1584,7 @@
   },
   {
     "Name": "ModifyWeapons",
-    "Version": "1.2.7.5",
+    "Version": "1.2.7.6",
     "Author": "羽学",
     "Description": {
       "en-US": "Modify player item data and automatically save and re-read. You can use the /mw command to give the player items with specified attributes",
@@ -1606,7 +1606,7 @@
   },
   {
     "Name": "MonsterRegen",
-    "Version": "1.7.3",
+    "Version": "1.7.4",
     "Author": "途逗 羽学",
     "Description": {
       "en-US": "By killing the designated boss, can increase the level of monster health recovery and customize the recovery interval",
@@ -1626,7 +1626,7 @@
   },
   {
     "Name": "MusicPlayer",
-    "Version": "1.0.5",
+    "Version": "1.0.6",
     "Author": "Olink，Cjx适配，肝帝熙恩修改, yu大改",
     "Description": {
       "en-US": "A simple music player plugin.",
@@ -1646,7 +1646,7 @@
   },
   {
     "Name": "Noagent",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "[星迹]Jonesn，肝帝熙恩更新适配1449",
     "Description": {
       "en-US": "Disable proxy login",
@@ -1686,7 +1686,7 @@
   },
   {
     "Name": "OnlineGiftPackage",
-    "Version": "1.0.1.5",
+    "Version": "1.0.1.6",
     "Author": "星夜神花 羽学适配",
     "Description": {
       "en-US": "Online gift package plugin ",
@@ -1706,7 +1706,7 @@
   },
   {
     "Name": "PacketsStop",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "羽学 感谢少司命",
     "Description": {
       "en-US": "Prevent user group packets without specified permissions",
@@ -1726,7 +1726,7 @@
   },
   {
     "Name": "PermaBuff",
-    "Version": "1.0.4",
+    "Version": "1.0.5",
     "Author": "少司命",
     "Description": {
       "en-US": "PermaBuff",
@@ -1766,7 +1766,7 @@
   },
   {
     "Name": "PersonalPermission",
-    "Version": "1.1.0.4",
+    "Version": "1.1.0.5",
     "Author": "Megghy，肝帝熙恩更新1449",
     "Description": {
       "en-US": "Allows individual permissions for players.",
@@ -1850,7 +1850,7 @@
   },
   {
     "Name": "ProgressControls",
-    "Version": "1.0.0.11",
+    "Version": "1.0.0.12",
     "Author": "z枳 羽学",
     "Description": {
       "en-US": "Control the progress",
@@ -1870,7 +1870,7 @@
   },
   {
     "Name": "ProgressRestrict",
-    "Version": "1.0.0.4",
+    "Version": "1.0.0.5",
     "Author": "少司命 & 恋恋魔改三合一",
     "Description": {
       "en-US": "Based on progress limit",
@@ -1892,7 +1892,7 @@
   },
   {
     "Name": "PvPer",
-    "Version": "1.1.5",
+    "Version": "1.1.6",
     "Author": "Soofa 羽学修改",
     "Description": {
       "en-US": "Pvp plugin",
@@ -1932,7 +1932,7 @@
   },
   {
     "Name": "RandomBroadcast",
-    "Version": "1.0.5",
+    "Version": "1.0.6",
     "Author": "羽学",
     "Description": {
       "en-US": "Send a broadcast content randomly at regular intervals",
@@ -1972,7 +1972,7 @@
   },
   {
     "Name": "RealTime",
-    "Version": "2.6.0.3",
+    "Version": "2.6.0.4",
     "Author": "十七",
     "Description": {
       "en-US": "Synchronize real time",
@@ -2032,7 +2032,7 @@
   },
   {
     "Name": "RegionView",
-    "Version": "1.1.2",
+    "Version": "1.1.3",
     "Author": "TBC开发者团队,肝帝熙恩汉化",
     "Description": {
       "en-US": "Added a regional boundary view to the area.",
@@ -2112,18 +2112,18 @@
   },
   {
     "Name": "RolesModifying",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "少司命",
     "Description": {
-      "en-US": "RolesModifying",
-      "de-DE": "RolesModifying",
-      "it-IT": "RolesModifying",
-      "fr-FR": "RolesModifying",
-      "es-ES": "RolesModifying",
-      "ru-RU": "RolesModifying",
-      "zh-CN": "RolesModifying",
-      "pt-BR": "RolesModifying",
-      "pl-PL": "RolesModifying"
+      "en-US": "Copy and modify the inventory of other players",
+      "de-DE": "复制然后修改其他玩家的背包",
+      "it-IT": "复制然后修改其他玩家的背包",
+      "fr-FR": "复制然后修改其他玩家的背包",
+      "es-ES": "复制然后修改其他玩家的背包",
+      "ru-RU": "复制然后修改其他玩家的背包",
+      "zh-CN": "复制然后修改其他玩家的背包",
+      "pt-BR": "复制然后修改其他玩家的背包",
+      "pl-PL": "复制然后修改其他玩家的背包"
     },
     "AssemblyName": "RolesModifying",
     "Path": "RolesModifying.dll",
@@ -2132,7 +2132,7 @@
   },
   {
     "Name": "Sandstorm",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "羽学",
     "Description": {
       "en-US": "Use command to toggle sandstorm",
@@ -2152,7 +2152,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.8.3",
+    "Version": "1.1.8.4",
     "Author": "少司命",
     "Description": {
       "en-US": "Server Utility",
@@ -2175,7 +2175,7 @@
   },
   {
     "Name": "SessionSentinel",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "肝帝熙恩",
     "Description": {
       "en-US": "Handling players don't send packets for a long time",
@@ -2195,7 +2195,7 @@
   },
   {
     "Name": "ShowArmors",
-    "Version": "1.0.4",
+    "Version": "1.0.5",
     "Author": "Ak，肝帝熙恩更新",
     "Description": {
       "en-US": "Show equipment slot",
@@ -2215,7 +2215,7 @@
   },
   {
     "Name": "SignInSign",
-    "Version": "1.0.7",
+    "Version": "1.0.8",
     "Author": "Soofa 羽学 少司命",
     "Description": {
       "en-US": "Prompt login interactive plugin supports the popup window!",
@@ -2235,7 +2235,7 @@
   },
   {
     "Name": "SimultaneousUseFix",
-    "Version": "1.0.8",
+    "Version": "1.0.9",
     "Author": "熙恩，感谢恋恋",
     "Description": {
       "en-US": "Solve problems such as stuck double hammers and stuck star-spinning machine guns",
@@ -2257,7 +2257,7 @@
   },
   {
     "Name": "SmartRegions",
-    "Version": "1.4.5",
+    "Version": "1.4.6",
     "Author": "GameRoom，肝帝熙恩汉化修复",
     "Description": {
       "en-US": "Run the command when player enters the region.",
@@ -2277,7 +2277,7 @@
   },
   {
     "Name": "SpawnInfra",
-    "Version": "1.5.8",
+    "Version": "1.5.9",
     "Author": "羽学",
     "Description": {
       "en-US": "Create NPC housing, warehouses, cave monster spawning grounds, hell/twilight through trains, surface and hell world-class platforms (tracks) for the new world",
@@ -2297,7 +2297,7 @@
   },
   {
     "Name": "SpclPerm",
-    "Version": "1.8.3",
+    "Version": "1.8.4",
     "Author": "羽学",
     "Description": {
       "en-US": "The server owner automatically executes: invincibility, buff, items, commands, and inventory settings",
@@ -2317,7 +2317,7 @@
   },
   {
     "Name": "StatusTextManager",
-    "Version": "1.1.2",
+    "Version": "1.1.3",
     "Author": "LaoSparrow",
     "Description": {
       "en-US": "Manage status text of different plugins",
@@ -2379,7 +2379,7 @@
   },
   {
     "Name": "SwitchCommands",
-    "Version": "1.2.5",
+    "Version": "1.2.6",
     "Author": "Johuan Cjx适配 羽学，肝帝熙恩优化",
     "Description": {
       "en-US": "Trigger switch can execute commands",
@@ -2501,7 +2501,7 @@
   },
   {
     "Name": "UnseenInventory",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Author": "肝帝熙恩",
     "Description": {
       "en-US": "Allow server-side generate \"unobtainable\" items",
@@ -2521,7 +2521,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.9.2.126",
+    "Version": "1.9.2.130",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
@@ -2543,7 +2543,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.126",
+    "Version": "1.0.0.130",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
@@ -2585,7 +2585,7 @@
   },
   {
     "Name": "VeinMiner",
-    "Version": "1.6.0.9",
+    "Version": "1.6.0.10",
     "Author": "Megghy|YSpoof|Maxthegreat99|肝帝熙恩",
     "Description": {
       "en-US": "VeinMiner by Megghy for TShock 5.2 supported!",
@@ -2605,7 +2605,7 @@
   },
   {
     "Name": "VotePlus",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "Cai",
     "Description": {
       "en-US": "Voting plugin",
@@ -2665,7 +2665,7 @@
   },
   {
     "Name": "ZHIPlayerManager",
-    "Version": "1.0.2.1",
+    "Version": "1.0.2.2",
     "Author": "z枳",
     "Description": {
       "en-US": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
@@ -2685,7 +2685,7 @@
   },
   {
     "Name": "ProgressBag",
-    "Version": "1.0.1.4",
+    "Version": "1.0.1.5",
     "Author": "少司命",
     "Description": {
       "en-US": "Progress Bag",
@@ -2707,7 +2707,7 @@
   },
   {
     "Name": "GolfRewards",
-    "Version": "1.0.10",
+    "Version": "1.0.11",
     "Author": "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449",
     "Description": {
       "en-US": "Hitting the golf ball into the hole will receive rewards.",
@@ -2727,7 +2727,7 @@
   },
   {
     "Name": "History",
-    "Version": "1.0.6",
+    "Version": "1.0.7",
     "Author": "Cracker64 & Zaicon & Cai & 肝帝熙恩",
     "Description": {
       "en-US": "Record grid operations.",
@@ -2832,7 +2832,7 @@
   },
   {
     "Name": "ShortCommand",
-    "Version": "1.3.0.4",
+    "Version": "1.3.0.5",
     "Author": "GK 少司命修复版",
     "Description": {
       "en-US": "Short command plugin improved by GK!",
@@ -2852,7 +2852,7 @@
   },
   {
     "Name": "HelpPlus",
-    "Version": "2024.12.18.3",
+    "Version": "2024.12.18.4",
     "Author": "Cai",
     "Description": {
       "en-US": "Better Help Command",

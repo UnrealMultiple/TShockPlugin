@@ -5,7 +5,6 @@ using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
-using 在线礼包;
 
 // 插件命名空间
 namespace OnlineGiftPackage;
@@ -20,7 +19,7 @@ public class OnlineGiftPackage : TerrariaPlugin
     public override string Description => GetString("在线礼包插件 ");
     // 插件名称
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;    // 插件版本号
-    public override Version Version => new Version(1, 0, 1, 5);
+    public override Version Version => new Version(1, 0, 1, 6);
     // 构造函数，初始化插件与游戏关联
     public OnlineGiftPackage(Main game) : base(game)
     {
@@ -94,12 +93,12 @@ public class OnlineGiftPackage : TerrariaPlugin
     {
         this.LoadConfig();
 
-        // 调用UpdateTotalProbabilityOnReload方法来更新总概率
+        // 调用UpdateTotalProbabilityOnRelo方法来更新总概率
         config.UpdateTotalProbabilityOnReload();
 
-        Console.WriteLine($"已重载 [在线礼包] 配置文件,下次发放将在{config.DistributionInterval}秒后");
+        TShock.Log.ConsoleInfo(GetString($"已重载 [在线礼包] 配置文件,下次发放将在{config.DistributionInterval}秒后"));
         var totalProbability = config.CalculateTotalProbability();
-        Console.WriteLine($"所有礼包的总概率为：{totalProbability}");
+        TShock.Log.ConsoleInfo(GetString($"所有礼包的总概率为：{totalProbability}"));
     }
 
     private void Timer_Elapsed()
@@ -134,7 +133,7 @@ public class OnlineGiftPackage : TerrariaPlugin
                 var gift = this.RandGift();
                 if (gift == null)
                 {
-                    Console.WriteLine($"无法获取有效礼包，玩家 {player.Name} 的在线时长：{this.players[player.Name]} 秒");
+                    TShock.Log.ConsoleInfo(GetString($"无法获取有效礼包，玩家 {player.Name} 的在线时长：{this.players[player.Name]} 秒"));
                     continue;
                 }
 
@@ -150,7 +149,7 @@ public class OnlineGiftPackage : TerrariaPlugin
 
                 // 添加DistributionInterval信息
                 var intervalForDisplay = config.DistributionInterval;
-                var intervalMessage = $"下次发放将在{intervalForDisplay}秒后";
+                var intervalMessage = GetString($"下次发放将在{intervalForDisplay}秒后");
 
                 // 合并两条消息
                 var combinedMessage = $"{packageInfoMessage} {intervalMessage}";
@@ -161,9 +160,9 @@ public class OnlineGiftPackage : TerrariaPlugin
                 // 控制台输出
                 if (config.OutputConsole)
                 {
-                    Console.WriteLine($"执行在线礼包发放任务，下次发放将在{config.DistributionInterval}秒后");
+                    TShock.Log.ConsoleInfo(GetString($"执行在线礼包发放任务，下次发放将在{config.DistributionInterval}秒后"));
                     var totalProbability = config.CalculateTotalProbability();
-                    Console.WriteLine($"所有礼包的总概率为：{totalProbability}");
+                    TShock.Log.ConsoleInfo(GetString($"所有礼包的总概率为：{totalProbability}"));
                 }
 
                 // 发放成功后重置玩家在线时长
@@ -182,7 +181,7 @@ public class OnlineGiftPackage : TerrariaPlugin
                 var sb = new StringBuilder();
 
                 // 添加标题行
-                sb.AppendLine("在线礼包概率表：\n");
+                sb.AppendLine(GetString("在线礼包概率表：\n"));
 
                 // 显示所有礼包的获取概率，按每5个一组分批显示
                 for (var i = 0; i < config.GiftPackList.Count; i++)
@@ -199,7 +198,7 @@ public class OnlineGiftPackage : TerrariaPlugin
 
                 // 计算并添加总概率信息
                 var totalProbability = config.CalculateTotalProbability();
-                sb.AppendLine($"\n所有礼包的总概率为：{totalProbability}%");
+                sb.AppendLine(GetString($"\n所有礼包的总概率为：{totalProbability}%"));
 
                 // 发送给玩家
                 args.Player.SendMessage(sb.ToString(), Color.Cornsilk);
@@ -207,7 +206,7 @@ public class OnlineGiftPackage : TerrariaPlugin
         }
         else
         {
-            args.Player.SendMessage("你没有足够的权限来查看礼包获取概率。", Color.Red); // 或者使用您的错误提示方式
+            args.Player.SendMessage(GetString("你没有足够的权限来查看礼包获取概率。"), Color.Red); // 或者使用您的错误提示方式
         }
     }
 

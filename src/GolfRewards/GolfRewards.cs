@@ -8,9 +8,10 @@ namespace RewardSection;
 [ApiVersion(2, 1)]
 public class GolfRewards : TerrariaPlugin
 {
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Author => "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449";
     public override string Description => GetString("将高尔夫打入球洞会得到奖励.");
-    public override Version Version => new Version(1, 0, 10);
+    public override Version Version => new Version(1, 0, 11);
 
     public GolfRewards(Main game) : base(game)
     {
@@ -25,7 +26,7 @@ public class GolfRewards : TerrariaPlugin
         GeneralHooks.ReloadEvent += this.CMD;
         Commands.ChatCommands.Add(new Command("物块坐标", this.CMD2, "物块坐标")
         {
-            HelpText = "输入/物块坐标后敲击物块确认坐标"
+            HelpText = GetString("输入/物块坐标后敲击物块确认坐标")
         });
         ServerApi.Hooks.NetGetData.Register(this, this.GetData);
 
@@ -62,7 +63,7 @@ public class GolfRewards : TerrariaPlugin
     private void CMD(ReloadEventArgs args)
     {
         LC.RC();
-        args.Player.SendSuccessMessage("[高尔夫奖励] 重读配置完毕!");
+        args.Player.SendSuccessMessage(GetString("[高尔夫奖励] 重读配置完毕!"));
     }
 
     private void CMD2(CommandArgs args)
@@ -71,7 +72,7 @@ public class GolfRewards : TerrariaPlugin
         {
             player.tip = true;
         }
-        args.Player.SendSuccessMessage("敲击物块以确认其坐标!");
+        args.Player.SendSuccessMessage(GetString("敲击物块以确认其坐标!"));
     }
 
     private void OnGreetPlayer(GreetPlayerEventArgs e)
@@ -100,7 +101,7 @@ public class GolfRewards : TerrariaPlugin
         if (LC.LPlayers.TryGetValue(args.Player.Index, out var player) && player != null && player.tip)
         {
             player.tip = false;
-            tsplayer.SendInfoMessage($"目标坐标为: X{args.X} Y{args.Y}");
+            tsplayer.SendInfoMessage(GetString($"目标坐标为: X{args.X} Y{args.Y}"));
         }
     }
 
@@ -151,7 +152,7 @@ public class GolfRewards : TerrariaPlugin
                 var cmdSuccess = Commands.HandleCommand(TSPlayer.Server, randomCMD.Replace("{name}", player.Name));
                 if (!cmdSuccess)
                 {
-                    Console.WriteLine($"指令 {randomCMD} 执行失败！ ");
+                    Console.WriteLine(GetString($"指令 {randomCMD} 执行失败！ "));
                 }
             }
 

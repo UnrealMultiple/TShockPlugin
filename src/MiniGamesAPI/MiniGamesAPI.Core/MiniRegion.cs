@@ -134,7 +134,7 @@ public class MiniRegion
 
     public string ShowCoordination()
     {
-        return $"左上角({this.TopLeft.X},{this.TopLeft.Y})\n左下角({this.BottomLeft.X},{this.BottomLeft.Y})\n右上角({this.TopRight.X},{this.TopRight.Y})\n右下角({this.BottomRight.X},{this.BottomRight.Y})\n";
+        return GetString($"左上角({this.TopLeft.X},{this.TopLeft.Y})\n左下角({this.BottomLeft.X},{this.BottomLeft.Y})\n右上角({this.TopRight.X},{this.TopRight.Y})\n右下角({this.BottomRight.X},{this.BottomRight.Y})\n");
     }
 
     public bool Contains(Point point)

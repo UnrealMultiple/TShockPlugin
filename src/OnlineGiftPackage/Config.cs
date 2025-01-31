@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using TShockAPI;
-using 在线礼包;
 
 namespace OnlineGiftPackage;
 
@@ -21,7 +20,7 @@ public class Configuration
         }
         else
         {
-            Console.WriteLine("无法计算总概率，因为礼包列表为空。");
+            Console.WriteLine(GetString("无法计算总概率，因为礼包列表为空。"));
             return 0;
         }
     }
@@ -518,7 +517,7 @@ public class Configuration
         // 初始化TriggerSequence，这里只有一条记录，可直接插入无需循环
         for (var i = 1; i <= 200; i++)
         {
-            config.TriggerSequence.Add(i * 1, $"[c/55CDFF:服主]送了你1个礼包");
+            config.TriggerSequence.Add(i * 1, GetString("[c/55CDFF:服主]送了你1个礼包"));
         }
         return config;
 

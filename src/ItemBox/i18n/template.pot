@@ -1,14 +1,75 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ItemBox\n"
-"POT-Creation-Date: 2025-01-08 13:16:02+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:02+0000\n"
+"POT-Creation-Date: 2025-01-29 16:02:52+0000\n"
+"PO-Revision-Date: 2025-01-29 16:02:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
+
+#: ../../ItemBox.cs:75
+msgid "[i:4131]/<gbox/给盒子> <用户名> <物品ID> <物品数量> <物品前缀> --- 给玩家背包发送物品"
+msgstr ""
+
+#: ../../ItemBox.cs:165
+msgid "[i:4131]你邮箱没有盒子，领了个寂寞！"
+msgstr ""
+
+#: ../../ItemBox.cs:82
+msgid "[i:4131]发送邮箱失败, 玩家未注册!"
+msgstr ""
+
+#: ../../ItemBox.cs:138
+#, csharp-format
+msgid "[i:4131]成功把物品：[i/p{0}/s{1}:{2}],前缀：{3}，发送到[c/FFFFFF:{4}]的邮箱"
+msgstr ""
+
+#: ../../ItemBox.cs:134
+#, csharp-format
+msgid "[i:4131]成功把物品：[i/p{0}/s{1}:{2}]×{3},前缀：{4}，发送到[c/FFFFFF:{5}]的邮箱"
+msgstr ""
+
+#: ../../ItemBox.cs:142
+#, csharp-format
+msgid ""
+"[i:4131]成功把物品：[i/p{0}/s{1}:{2}]×{3}+[i/p{4}/s{5}:{6}],前缀：{7}，发送到[c/FFFFFF:{8}]的邮箱"
+msgstr ""
+
+#: ../../ItemBox.cs:176
+#, csharp-format
+msgid "[i:4131]成功领取邮箱物品：{0}"
+msgstr ""
+
+#: ../../ItemBox.cs:60
+#, csharp-format
+msgid ""
+"[i:4131]检测到你的邮箱里面有物品：{0}\n"
+"[i:4131]快输入/cbox领取吧 :)"
+msgstr ""
+
+#: ../../ItemBox.cs:95
+msgid "[i:4131]没有找到你需要的物品捏!"
+msgstr ""
+
+#: ../../ItemBox.cs:103
+msgid "[i:4131]物品数量无效!"
+msgstr ""
+
+#: ../../ItemBox.cs:66
+msgid "[i:4131]离线背包清理成功!"
+msgstr ""
+
+#: ../../ItemBox.cs:154
+msgid "[i:4131]输入错误，正确输入：/<gbox/给盒子> <用户名> <物品ID> <物品数量> <物品前缀>---给玩家背包发送物品 "
+msgstr ""
+
+#: ../../ItemBox.cs:149
+#, csharp-format
+msgid "你收到了一份邮件,物品内容如下：[i/p{0}:{1}]×{2}"
+msgstr ""
 
 #: ../../ItemBox.cs:18
 msgid "离线物品盒子系统."

@@ -21,7 +21,7 @@ public class PrebuildBoard
     public PrebuildBoard(MiniRegion region)
     {
         this.ID = region.ID;
-        this.Name = region.Name + "的预制板";
+        this.Name = GetString($"{region.Name}的预制板");
         this.Region = region;
         this.Tiles = new List<MiniTile>();
         for (var i = region.TopLeft.X; i <= region.BottomRight.X; i++)
@@ -36,7 +36,7 @@ public class PrebuildBoard
     public PrebuildBoard(Point topLeft, Point bottomRight, int id, string name)
     {
         this.ID = id;
-        this.Name = name + "的预制板";
+        this.Name = GetString($"{name}的预制板");
         this.Region = null;
         this.Tiles = new List<MiniTile>();
         this.TestPoint_1 = topLeft;

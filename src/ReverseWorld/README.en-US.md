@@ -5,7 +5,7 @@
 - turn the entire world upside down
 - you can also place mines randomly
 
-## Rest API
+## Commands 
 
 
 | Instruction              | Alias            |       Permissions             | Description         |

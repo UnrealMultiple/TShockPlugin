@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ModifyWeapons\n"
-"POT-Creation-Date: 2025-01-24 01:42:29+0000\n"
-"PO-Revision-Date: 2025-01-24 01:42:30+0000\n"
+"POT-Creation-Date: 2025-01-29 16:02:57+0000\n"
+"PO-Revision-Date: 2025-01-29 16:02:58+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -25,6 +25,10 @@ msgid ""
 " 2.作为弹药的[c/FFB357:物品]直接[c/86F06E:当武器]使用\n"
 msgstr ""
 
+#: ../../Commands.cs:176
+msgid "[c/4C95DD:2] 切换所有玩家进服重读功能"
+msgstr ""
+
 #: ../../ModifyWeapons.cs:163
 #, csharp-format
 msgid "[c/8AD0EA:{0}]"
@@ -37,6 +41,11 @@ msgstr ""
 #: ../../Commands.cs:1272
 #, csharp-format
 msgid "[c/D4E443:管理员] 已修改你的: [c/92C5EC:{0}]"
+msgstr ""
+
+#: ../../Commands.cs:174
+msgid ""
+"[c/ED3241:注：]指令格式 [c/FFF540:/mw reads 1 或 2]\n"
 msgstr ""
 
 #: ../../Commands.cs:1435
@@ -54,6 +63,11 @@ msgstr ""
 #: ../../ModifyWeapons.cs:148
 #, csharp-format
 msgid "[c/FF6863:{0}] => [c/8AD0EA:{1}]"
+msgstr ""
+
+#: ../../Commands.cs:175
+msgid ""
+"[c/FFB357:1] 帮助所有在线玩家手动重读\n"
 msgstr ""
 
 #: ../../Commands.cs:94
@@ -297,12 +311,13 @@ msgstr ""
 msgid "使用方法: /mw pw del <物品名>"
 msgstr ""
 
-#: ../../Commands.cs:1695
+#: ../../Commands.cs:1696
 #, csharp-format
 msgid "修改:[c/92B9D4:{0}]"
 msgstr ""
 
 #: ../../Commands.cs:953
+#: ../../Commands.cs:1107
 msgid "修改数值:"
 msgstr ""
 
@@ -456,6 +471,11 @@ msgstr ""
 msgid "已更新玩家 [c/2F99D7:{0}] 的[c/92B9D4:{1}]"
 msgstr ""
 
+#: ../../Commands.cs:1355
+#, csharp-format
+msgid "已重读身上[C/91DFBB:{0}]个修改物品:{1}"
+msgstr ""
+
 #: ../../Commands.cs:1035
 #: ../../Commands.cs:1198
 #: ../../Commands.cs:1403
@@ -530,6 +550,7 @@ msgstr ""
 
 #: ../../Commands.cs:1389
 #: ../../Commands.cs:1452
+#: ../../Commands.cs:1683
 #: ../../ModifyWeapons.cs:158
 #: ../../ModifyWeapons.cs:331
 msgid "无"
@@ -547,6 +568,10 @@ msgstr ""
 #: ../../Commands.cs:125
 #, csharp-format
 msgid "无法找到玩家 [c/E8585B:{0}] 或更新重读次数失败。"
+msgstr ""
+
+#: ../../Commands.cs:866
+msgid "未能重读您身上任何修改物品"
 msgstr ""
 
 #: ../../Commands.cs:1562
@@ -683,6 +708,7 @@ msgstr ""
 msgid "除了[c/DADEA0:/mw up]其他都会还原数值再修改"
 msgstr ""
 
+#: ../../Commands.cs:1083
 #: ../../Commands.cs:1246
 #: ../../Commands.cs:1407
 #: ../../Commands.cs:1518

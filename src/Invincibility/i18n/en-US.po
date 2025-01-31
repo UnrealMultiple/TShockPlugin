@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:01+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-01-29 16:02:51+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,33 @@ msgstr ""
 "X-Crowdin-File-ID: 1462\n"
 "Language: en_US\n"
 
+#: ../../InvincibilityPlugin.cs:36
+msgid "[{0}] 重新加载配置完毕。"
+msgstr ""
+
+#: ../../InvincibilityPlugin.cs:121
+#: ../../InvincibilityPlugin.cs:150
+#, csharp-format
+msgid "你将在 {0} 秒内无敌."
+msgstr ""
+
 #: ../../InvincibilityPlugin.cs:13
 msgid "在命令中给予玩家一段时间的无敌状态。"
 msgstr "Gives the player invincibility for a period of time in the command."
+
+#: ../../InvincibilityPlugin.cs:101
+msgid "无效的持续时间。请输入一个正数。"
+msgstr ""
+
+#: ../../InvincibilityPlugin.cs:109
+msgid "玩家不在线。"
+msgstr ""
+
+#: ../../InvincibilityPlugin.cs:95
+msgid "用法: /限时god无敌或tgod <持续时间秒数>"
+msgstr ""
+
+#: ../../InvincibilityPlugin.cs:145
+msgid "用法: /限时无敌帧无敌或tframe <持续时间秒数>"
+msgstr ""
 

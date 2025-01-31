@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SessionSentinel\n"
-"POT-Creation-Date: 2025-01-08 13:16:24+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:24+0000\n"
+"POT-Creation-Date: 2025-01-29 16:03:15+0000\n"
+"PO-Revision-Date: 2025-01-29 16:03:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../SessionSentinel.cs:10
+#: ../../SessionSentinel.cs:66
+msgid "你咋不动了。"
+msgstr ""
+
+#: ../../SessionSentinel.cs:11
 msgid "处理长时间不发送数据包的玩家"
 msgstr ""
 
