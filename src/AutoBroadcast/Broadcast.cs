@@ -1,5 +1,6 @@
 ﻿using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
+using Newtonsoft.Json;
 using TShockAPI;
 
 namespace AutoBroadcast;
@@ -29,6 +30,7 @@ public class Broadcast
     [LocalizedPropertyName(CultureType.English, "ColorRGB")]
     public int[] ColorRgb = new int[3];
 
+    [JsonIgnore]
     public byte[] ColorRgbBytes => this.ColorRgb.Select(i => i > 255 ? (byte)255 : (byte)i).ToArray();
 
 
