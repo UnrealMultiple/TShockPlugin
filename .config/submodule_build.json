@@ -10,7 +10,7 @@
             "name": "Chireiden.TShock.Omni.Misc",
             "project_path": "src/Submodules/Yaaiomni/Misc/Misc.csproj",
             "assembly_path": "src/Submodules/Yaaiomni/Misc/bin/{BuildType}/{TargetFramework}/Chireiden.TShock.Omni.Misc.dll",
-            "readme": "src/Submodules/Yaaiomni/README.md"
+            "readme": ""
         },
         {
             "name": "FishShop",
