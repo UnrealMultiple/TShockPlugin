@@ -62,7 +62,7 @@
         },
         {
             "name": "VBY.PluginLoaderAutoReload",
-            "project_path": "src/Submodules/VBY.Plugins/src/VBY/OtherCommand/PluginLoaderAutoReload.csproj",
+            "project_path": "src/Submodules/VBY.Plugins/src/VBY/PluginLoaderAutoReload/PluginLoaderAutoReload.csproj",
             "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.PluginLoaderAutoReload.dll",
             "readme": "src/Submodules/VBY.Plugins/docs/VBY.PluginLoaderAutoReload.md"
         }
