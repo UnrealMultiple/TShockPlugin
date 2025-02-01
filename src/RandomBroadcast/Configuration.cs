@@ -60,7 +60,7 @@ internal class Configuration
         }
         else
         {
-            TShock.Log.ConsoleInfo("无法计算总概率，因消息表为空。");
+            TShock.Log.ConsoleInfo(GetString("无法计算总概率，因消息表为空。"));
         }
 
         return 0;

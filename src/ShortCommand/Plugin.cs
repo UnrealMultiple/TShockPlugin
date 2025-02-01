@@ -27,7 +27,7 @@ public class Plugin : TerrariaPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "GK 少司命修复版";
 
-    public override Version Version => new Version(1, 3, 0, 4);
+    public override Version Version => new Version(1, 3, 0, 5);
 
     public override string Description => GetString("由GK改良的简短指令插件！");
 
@@ -56,7 +56,7 @@ public class Plugin : TerrariaPlugin
             if (!File.Exists(this.PATH))
             {
                 this.Config.Commands.Add(new CMD());
-                TShock.Log.ConsoleError("未找到简短指令配置，已为您创建！");
+                TShock.Log.ConsoleError(GetString("未找到简短指令配置，已为您创建！"));
             }
             else
             {
@@ -84,7 +84,7 @@ public class Plugin : TerrariaPlugin
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError("简短指令配置读取错误:" + ex.ToString());
+            TShock.Log.ConsoleError(GetString($"简短指令配置读取错误:{ex}"));
         }
     }
 
@@ -98,7 +98,7 @@ public class Plugin : TerrariaPlugin
     private void Reload(ReloadEventArgs e)
     {
         this.RC();
-        e.Player.SendSuccessMessage("简短指令重读成功!");
+        e.Player.SendSuccessMessage(GetString("简短指令重读成功!"));
     }
 
     protected override void Dispose(bool disposing)
@@ -131,7 +131,7 @@ public class Plugin : TerrariaPlugin
 
         if (this.NotSourceCmd.Contains(args.CommandName))
         {
-            args.Player.SendErrorMessage("该指令已被禁止使用!");
+            args.Player.SendErrorMessage(GetString("该指令已被禁止使用!"));
             args.Handled = true;
             return;
         }
@@ -148,20 +148,20 @@ public class Plugin : TerrariaPlugin
             {
                 if (cmd.Condition == ConditionType.Alive && (args.Player.Dead || args.Player.TPlayer.statLife < 1))
                 {
-                    args.Player.SendErrorMessage("此指令要求你必须活着才能使用！");
+                    args.Player.SendErrorMessage(GetString("此指令要求你必须活着才能使用！"));
                     args.Handled = true;
                     return;
                 }
                 if (cmd.Condition == ConditionType.Death && (!args.Player.Dead || args.Player.TPlayer.statLife > 0))
                 {
-                    args.Player.SendErrorMessage("此指令要求你必须死亡才能使用！");
+                    args.Player.SendErrorMessage(GetString("此指令要求你必须死亡才能使用！"));
                     args.Handled = true;
                     return;
                 }
                 var num = this.GetCD(args.Player.Name, cmd.SourceCommand, cmd.CD, cmd.ShareCD);
                 if (num > 0)
                 {
-                    args.Player.SendErrorMessage("此指令正在冷却，还有{0}秒才能使用！", num);
+                    args.Player.SendErrorMessage(GetString("此指令正在冷却，还有{0}秒才能使用！"), num);
                     args.Handled = true;
                     return;
                 }

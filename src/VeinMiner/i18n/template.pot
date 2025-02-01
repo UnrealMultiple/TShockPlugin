@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VeinMiner\n"
-"POT-Creation-Date: 2025-01-08 13:16:33+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:33+0000\n"
+"POT-Creation-Date: 2025-01-31 12:03:02+0000\n"
+"PO-Revision-Date: 2025-01-31 12:03:02+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,71 +10,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../VeinMiner.cs:38
+#: ../../VeinMiner.cs:57
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner> 已{0}.]"
 msgstr ""
 
-#: ../../VeinMiner.cs:33
+#: ../../VeinMiner.cs:52
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner> 挖矿消息已{0}]."
 msgstr ""
 
-#: ../../VeinMiner.cs:120
-#: ../../VeinMiner.cs:125
+#: ../../VeinMiner.cs:112
 msgid "[c/95CFA6:<VeinMiner>] 已给予奖励物品"
 msgstr ""
 
-#: ../../VeinMiner.cs:155
+#: ../../VeinMiner.cs:141
 #, csharp-format
-msgid "[c/95CFA6:<VeinMiner>] 挖掘了 [c/95CFA6: {0} {1}]."
+msgid "[c/95CFA6:<VeinMiner>] 挖掘了[c/95CFA6:{0}块{1}]."
 msgstr ""
 
-#: ../../VeinMiner.cs:172
-msgid "[c/95CFA6:<VeinMiner>] 无法挖取矿石，可能是因为矿石上方有不可破坏的物体."
+#: ../../VeinMiner.cs:158
+msgid "[c/95CFA6:<VeinMiner>] 无法挖取矿石, 可能是因为矿石上方有不可破坏的物体."
+msgstr ""
+
+#: ../../VeinMiner.cs:133
+#, csharp-format
+msgid "[c/95CFA6:<VeinMiner>] 正在挖掘[c/95CFA6:{0}块{1}]."
+msgstr ""
+
+#: ../../VeinMiner.cs:121
+#, csharp-format
+msgid "[c/95CFA6:<VeinMiner>] 背包已满, 还需空位：[c/95CFA6:{0}]."
 msgstr ""
 
 #: ../../VeinMiner.cs:147
 #, csharp-format
-msgid "[c/95CFA6:<VeinMiner>] 正在挖掘 [c/95CFA6:{0} {1}]."
+msgid "[c/95CFA6:<VeinMiner>] 背包已满, 需要[c/95CFA6:{0}]个空位以放入[c/95CFA6:{1}]."
 msgstr ""
 
-#: ../../VeinMiner.cs:135
-#, csharp-format
-msgid "[c/95CFA6:<VeinMiner>] 背包已满，还需空位：[c/95CFA6:{0}] ."
-msgstr ""
-
-#: ../../VeinMiner.cs:161
-#, csharp-format
-msgid "[c/95CFA6:<VeinMiner>] 背包已满，需额外空位：[c/95CFA6:{0}] 以放入 [c/95CFA6:{1}] ."
-msgstr ""
-
-#: ../../Config.cs:38
+#: ../../Config.cs:37
 msgid "<VeinMiner> 读取配置文件失败。"
 msgstr ""
 
-#: ../../Config.cs:32
+#: ../../Config.cs:31
 msgid "<VeinMiner> 配置已重新加载。"
 msgstr ""
 
-#: ../../VeinMiner.cs:13
-msgid "VeinMiner by Megghy 适用于 TShock 5.2 支持！"
-msgstr ""
-
-#: ../../VeinMiner.cs:33
+#: ../../VeinMiner.cs:52
 msgid "关闭"
 msgstr ""
 
-#: ../../VeinMiner.cs:38
+#: ../../VeinMiner.cs:57
 msgid "关闭! | 要仅关闭挖矿消息提示请输入：/vm {任意参数}"
 msgstr ""
 
-#: ../../VeinMiner.cs:33
-#: ../../VeinMiner.cs:38
+#: ../../VeinMiner.cs:52
+#: ../../VeinMiner.cs:57
 msgid "开启"
 msgstr ""
 
-#: ../../VeinMiner.cs:155
+#: ../../VeinMiner.cs:133
+#: ../../VeinMiner.cs:141
 msgid "未知"
+msgstr ""
+
+#: ../../VeinMiner.cs:15
+msgid "连锁挖矿插件！"
 msgstr ""
 

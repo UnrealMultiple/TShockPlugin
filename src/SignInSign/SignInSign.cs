@@ -12,7 +12,7 @@ public class SignInSign : TerrariaPlugin
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Description => GetString("告示牌登录交互插件 支持进服弹窗！");
     public override string Author => "Soofa 羽学 少司命";
-    public override Version Version => new Version(1, 0, 7);
+    public override Version Version => new Version(1, 0, 8);
 
     #endregion
 
@@ -60,7 +60,7 @@ public class SignInSign : TerrariaPlugin
         Config.Write(Configuration.ConfigPath);
         if (args != null && args.Player != null)
         {
-            args.Player.SendSuccessMessage("[告示板登录]重新加载配置完毕。");
+            args.Player.SendSuccessMessage(GetString("[告示板登录]重新加载配置完毕。"));
         }
     }
     #endregion
@@ -152,11 +152,14 @@ public class SignInSign : TerrariaPlugin
 
         if (Config.PassInfo == true)
         {
-            TShock.Log.ConsoleInfo($"玩家【{args.Player.Name}】的密码为：{password}");//写入一份到Tshock自己的Logs文件里
+            TShock.Log.ConsoleInfo(GetString($"玩家【{args.Player.Name}】的密码为：{password}"));//写入一份到Tshock自己的Logs文件里
             var MiMaPath = Path.Combine(TShock.SavePath, "告示牌登录玩家密码", ""); //写入日志的路径
             Directory.CreateDirectory(MiMaPath); // 创建日志文件夹
-            var FileName = $"告示牌登录 {DateTime.Now.ToString("yyyy-MM-dd")}.txt"; //给日志名字加上日期
-            File.AppendAllLines(Path.Combine(MiMaPath, FileName), new string[] { DateTime.Now.ToString("u") + $" 玩家【{args.Player.Name}】的密码为：{password}" }); //写入日志log
+            var FileName = $"告示牌登录 {DateTime.Now:yyyy-MM-dd}.txt"; //给日志名字加上日期
+            File.AppendAllLines(Path.Combine(MiMaPath, FileName), new[]
+            {
+                GetString($"{DateTime.Now:u} 玩家【{args.Player.Name}】的密码为：{password}")
+            }); //写入日志log
         }
         #endregion
 
@@ -203,8 +206,9 @@ public class SignInSign : TerrariaPlugin
             {
                 if (Config.Teleport_X <= 0 || Config.Teleport_Y <= 0)
                 {
-                    args.Player!.SendMessage($"[告示牌登录]请使用 [c/F25E61:/gs s] 设置传送坐标，当前坐标为：{Config.Teleport_X},{Config.Teleport_Y} \n" +
-                        $"指令 [c/F25E61:/gs s] 的权限名为：signinsign.tp", color: Microsoft.Xna.Framework.Color.Yellow);
+                    args.Player!.SendMessage(
+                        GetString($"[告示牌登录]请使用 [c/F25E61:/gs s] 设置传送坐标，当前坐标为：{Config.Teleport_X},{Config.Teleport_Y} \n") +
+                        GetString($"指令 [c/F25E61:/gs s] 的权限名为：signinsign.tp"), color: Microsoft.Xna.Framework.Color.Yellow);
                 }
                 else
                 {

@@ -13,7 +13,9 @@ namespace DataSync;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; internal static Dictionary<int, List<ProgressType>> _idmatch = new Dictionary<int, List<ProgressType>>();
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new (2025, 1, 29);
+    internal static Dictionary<int, List<ProgressType>> _idmatch = new Dictionary<int, List<ProgressType>>();
     internal static Dictionary<ProgressType, Func<bool?, bool>> _flagaccessors = new Dictionary<ProgressType, Func<bool?, bool>>();
     public Plugin(Main game) : base(game)
     {
@@ -155,18 +157,18 @@ public class Plugin : TerrariaPlugin
             {
                 if (!args.Player.HasPermission("DataSync.set"))
                 {
-                    args.Player.SendErrorMessage("你没有权限设置进度");
+                    args.Player.SendErrorMessage(GetString("你没有权限设置进度"));
                     return;
                 }
                 var type = Config.GetProgressType(args.Parameters[0]);
                 if (type == null)
                 {
-                    args.Player.SendErrorMessage($"进度 '{args.Parameters[0]}' 不存在");
+                    args.Player.SendErrorMessage(GetString($"进度 '{args.Parameters[0]}' 不存在"));
                     return;
                 }
                 if (!bool.TryParse(args.Parameters[1], out var result))
                 {
-                    args.Player.SendErrorMessage($"值 '{args.Parameters[1]}' 应为 true 或 false");
+                    args.Player.SendErrorMessage(GetString($"值 '{args.Parameters[1]}' 应为 true 或 false"));
                     return;
                 }
                 if (_flagaccessors.TryGetValue(type.Value, out var accessor))
@@ -180,16 +182,16 @@ public class Plugin : TerrariaPlugin
             {
                 if (string.Equals(args.Parameters[0], "remote", StringComparison.OrdinalIgnoreCase))
                 {
-                    args.Player.SendInfoMessage("远程进度:");
+                    args.Player.SendInfoMessage(GetString("远程进度:"));
                     var readable = GetReadableProgress(SyncedProgress);
                     if (readable.ContainsKey(true))
                     {
-                        args.Player.SendInfoMessage("已完成:");
+                        args.Player.SendInfoMessage(GetString("已完成:"));
                         args.Player.SendSuccessMessage(string.Join(", ", readable[true]));
                     }
                     if (readable.ContainsKey(false))
                     {
-                        args.Player.SendInfoMessage("未完成:");
+                        args.Player.SendInfoMessage(GetString("未完成:"));
                         args.Player.SendErrorMessage(string.Join(", ", readable[false]));
                     }
                     return;
@@ -197,25 +199,25 @@ public class Plugin : TerrariaPlugin
                 var type = Config.GetProgressType(args.Parameters[0]);
                 if (type == null)
                 {
-                    args.Player.SendErrorMessage($"进度 '{args.Parameters[0]}' 不存在");
+                    args.Player.SendErrorMessage(GetString($"进度 '{args.Parameters[0]}' 不存在"));
                     return;
                 }
-                args.Player.SendInfoMessage($"进度 '{args.Parameters[0]}' 的值为 '{LocalProgress[type.Value]}'");
+                args.Player.SendInfoMessage(GetString($"进度 '{args.Parameters[0]}' 的值为 '{LocalProgress[type.Value]}'"));
                 return;
             }
 
             default:
             {
-                args.Player.SendInfoMessage("本地进度:");
+                args.Player.SendInfoMessage(GetString("本地进度:"));
                 var readable = GetReadableProgress(LocalProgress);
                 if (readable.ContainsKey(true))
                 {
-                    args.Player.SendInfoMessage("已完成:");
+                    args.Player.SendInfoMessage(GetString("已完成:"));
                     args.Player.SendSuccessMessage(string.Join(", ", readable[true]));
                 }
                 if (readable.ContainsKey(false))
                 {
-                    args.Player.SendInfoMessage("未完成:");
+                    args.Player.SendInfoMessage(GetString("未完成:"));
                     args.Player.SendErrorMessage(string.Join(", ", readable[false]));
                 }
                 return;
@@ -245,7 +247,7 @@ public class Plugin : TerrariaPlugin
             return;
         }
 
-        TSPlayer.Server.SendInfoMessage($"[DataSync]更新进度 {Config.GetProgressName(type)} {value}");
+        TSPlayer.Server.SendInfoMessage(GetString($"[DataSync]更新进度 {Config.GetProgressName(type)} {value}"));
 
         LocalProgress[type] = value;
 
@@ -253,7 +255,7 @@ public class Plugin : TerrariaPlugin
         {
             if (!SyncedProgress.TryGetValue(type, out var syncedValue) || syncedValue != value)
             {
-                TSPlayer.Server.SendInfoMessage($"[DataSync]上传进度 {Config.GetProgressName(type)} {value}");
+                TSPlayer.Server.SendInfoMessage(GetString($"[DataSync]上传进度 {Config.GetProgressName(type)} {value}"));
                 TShock.DB.Query("UPDATE synctable SET value = @1 WHERE `key` = @0", Config.GetProgressName(type), value);
             }
         }
@@ -286,7 +288,7 @@ public class Plugin : TerrariaPlugin
         }
         catch
         {
-            TSPlayer.Server.SendErrorMessage($"[DataSync]配置文件读取错误");
+            TSPlayer.Server.SendErrorMessage(GetString($"[DataSync]配置文件读取错误"));
         }
     }
 

@@ -10,7 +10,8 @@ public class RealTime : TerrariaPlugin
 {
     public override string Author => "十七";
     public override string Description => GetString("同步现实时间");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(2, 6, 0, 3);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(2, 6, 0, 4);
     public RealTime(Main game) : base(game)
     {
     }
@@ -38,7 +39,7 @@ public class RealTime : TerrariaPlugin
         {
             args.Player.SetTeam(0);
             args.Handled = true;
-            args.Player.SendInfoMessage("事件禁止切换队伍。");
+            args.Player.SendInfoMessage(GetString("事件禁止切换队伍。"));
         }
     }
 
@@ -87,7 +88,7 @@ public class RealTime : TerrariaPlugin
                     p.SetTeam(0);
                     p.TPlayer.hostile = true;
                     p.SendData(PacketTypes.TogglePvp, "", p.Index);
-                    p.SendInfoMessage("血月的邪恶影响会阻止你的PvP关闭。");
+                    p.SendInfoMessage(GetString("血月的邪恶影响会阻止你的PvP关闭。"));
                 }
             });
             if (DateTime.Now >= this.time)
@@ -115,7 +116,7 @@ public class RealTime : TerrariaPlugin
                     p.TPlayer.hostile = true;
                     p.SetTeam(0);
                     p.SendData(PacketTypes.TogglePvp, "", p.Index);
-                    p.SendInfoMessage("日食的邪恶影响会阻止你的PvP关闭。");
+                    p.SendInfoMessage(GetString("日食的邪恶影响会阻止你的PvP关闭。"));
                 }
             });
             if (DateTime.Now >= this.time)
@@ -145,7 +146,7 @@ public class RealTime : TerrariaPlugin
                         p.TPlayer.hostile = true;
                         p.SetTeam(0);
                         p.SendData(PacketTypes.TogglePvp, "", p.Index);
-                        p.SendInfoMessage("万圣节的邪恶影响会阻止你的PvP关闭。");
+                        p.SendInfoMessage(GetString("万圣节的邪恶影响会阻止你的PvP关闭。"));
                     }
                 });
                 Main.pumpkinMoon = false;
@@ -173,7 +174,7 @@ public class RealTime : TerrariaPlugin
                         p.TPlayer.hostile = true;
                         p.SetTeam(0);
                         p.SendData(PacketTypes.TogglePvp, "", p.Index);
-                        p.SendInfoMessage("霜月的邪恶影响会阻止你的PvP关闭。");
+                        p.SendInfoMessage(GetString("霜月的邪恶影响会阻止你的PvP关闭。"));
                     }
                 });
                 Main.snowMoon = false;
@@ -234,7 +235,7 @@ public class RealTime : TerrariaPlugin
             Chest.SetupTravelShop();
             NetMessage.SendData(72);
             Main.AnglerQuestSwap();//更换渔夫任务
-            TSPlayer.All.SendInfoMessage("渔夫任务和旅商商品已更换");
+            TSPlayer.All.SendInfoMessage(GetString("渔夫任务和旅商商品已更换"));
             if ((DateTime.Now.Hour >= 19 && DateTime.Now.Hour <= 24) || (0 <= DateTime.Now.Hour && DateTime.Now.Hour <= 4))
             {
                 if (0 <= Main.moonPhase + 1 && Main.moonPhase + 1 <= 7)
@@ -242,13 +243,13 @@ public class RealTime : TerrariaPlugin
                     var msg = this.GetMoon(Main.moonPhase);
                     Main.moonPhase += 1;
                     NetMessage.SendData(7);//发月相包
-                    TSPlayer.All.SendInfoMessage("月相已更换为：{0}", msg);
+                    TSPlayer.All.SendInfoMessage(GetString($"月相已更换为：{msg}"));
                 }
                 else
                 {
                     Main.moonPhase = 0;
                     NetMessage.SendData(7);//发月相包
-                    TSPlayer.All.SendInfoMessage("月相已更换为：满月");
+                    TSPlayer.All.SendInfoMessage(GetString("月相已更换为：满月"));
                 }
             }
             else
@@ -275,7 +276,7 @@ public class RealTime : TerrariaPlugin
                     };
                 this.GetRandom(arr)();
                 NetMessage.SendData(7);
-                TSPlayer.All.SendInfoMessage("天气已变更");
+                TSPlayer.All.SendInfoMessage(GetString("天气已变更"));
             }
             this.y = 0;
         }
@@ -284,7 +285,18 @@ public class RealTime : TerrariaPlugin
 
     private string GetMoon(int index)
     {
-        var arr = new string[] { "亏凸月", "下弦月", "残月", "新月", "娥眉月", "上弦月", "盈凸月" };
-        return index == -1 || index + 1 > arr.Length ? "[c/FF66FF:未知]" : arr[index];
+        var arr = new[]
+        {
+            GetString("亏凸月"),
+            GetString("下弦月"),
+            GetString("残月"),
+            GetString("新月"),
+            GetString("娥眉月"),
+            GetString("上弦月"),
+            GetString("盈凸月")
+        };
+        return index == -1 || index + 1 > arr.Length
+            ? GetString("[c/FF66FF:未知]")
+            : arr[index];
     }
 }

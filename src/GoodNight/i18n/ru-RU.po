@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:58+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:02:49+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,390 @@ msgstr ""
 "X-Crowdin-File-ID: 1454\n"
 "Language: ru_RU\n"
 
+#: ../../Commands.cs:23
+#: ../../Commands.cs:25
+#: ../../Commands.cs:27
+#: ../../Commands.cs:29
+msgid "—— —— —— —— —— "
+msgstr ""
+
+#: ../../Goodnight.cs:144
+#, csharp-format
+msgid "[c/6EABE9:{0}]"
+msgstr ""
+
+#: ../../Goodnight.cs:171
+#, csharp-format
+msgid "[c/6EABE9:{0}] \n"
+msgstr ""
+
+#: ../../Goodnight.cs:220
+#, csharp-format
+msgid "[c/6EABE9:{0}]\n"
+msgstr ""
+
+#: ../../Goodnight.cs:59
+msgid "[宵禁]重新加载配置完毕。"
+msgstr ""
+
+#: ../../Goodnight.cs:79
+#: ../../Goodnight.cs:98
+#, csharp-format
+msgid "{0} \n"
+"禁止游戏时间:{1}-{2}"
+msgstr ""
+
+#: ../../Goodnight.cs:198
+#, csharp-format
+msgid "{0}需要到[c/338AE1:{1}]才能召唤怪物\n"
+msgstr ""
+
+#: ../../Goodnight.cs:169
+#, csharp-format
+msgid "{0}需要到【[c/E2FA76:{1}]】\n"
+msgstr ""
+
+#: ../../Commands.cs:28
+#, csharp-format
+msgid "《不被断连的白名单》:\n"
+" {0}"
+msgstr ""
+
+#: ../../Commands.cs:26
+msgid "《允许召唤怪物表》:\n"
+msgstr ""
+
+#: ../../Commands.cs:24
+msgid "《禁止怪物生成表》:\n"
+msgstr ""
+
+#: ../../Goodnight.cs:197
+#, csharp-format
+msgid "【宵禁】不在【[c/E2FA76:{0}]】无法生成指定怪物\n"
+msgstr ""
+
+#: ../../Commands.cs:215
+msgid "【宵禁】你已被移出服务器白名单"
+msgstr ""
+
+#: ../../Goodnight.cs:357
+#, csharp-format
+msgid "【宵禁】击败NPC【[c/FF9187:{0}({1})]】\n"
+msgstr ""
+
+#: ../../Goodnight.cs:152
+#, csharp-format
+msgid "【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{0}]/{1}]个玩家! \n"
+msgstr ""
+
+#: ../../Goodnight.cs:141
+#, csharp-format
+msgid "【宵禁】当前[c/338AE1:服务器]存在 [c/FF3A4B:{0}]/{1}个玩家! \n"
+msgstr ""
+
+#: ../../Goodnight.cs:168
+#: ../../Goodnight.cs:180
+#: ../../Goodnight.cs:216
+#: ../../Goodnight.cs:228
+#: ../../Goodnight.cs:242
+msgid "【宵禁】当前服务器处于维护时间\n"
+msgstr ""
+
+#: ../../Goodnight.cs:381
+#, csharp-format
+msgid "【宵禁】玩家已击败:[c/FF9187:{0}({1})]，现清空《允许召唤表》"
+msgstr ""
+
+#: ../../Commands.cs:276
+msgid "【宵禁指令菜单】\n"
+msgstr ""
+
+#: ../../Commands.cs:277
+msgid "/gn —— 查看宵禁指令菜单\n"
+msgstr ""
+
+#: ../../Commands.cs:289
+msgid "/gn add 或 del 怪物名字 —— 添加|删除《禁止怪物表》的指定怪物\n"
+msgstr ""
+
+#: ../../Commands.cs:283
+msgid "/gn all —— 开启|关闭召唤区需所有人在场\n"
+msgstr ""
+
+#: ../../Commands.cs:285
+msgid "/gn boss 次数 —— 设置加入《允许召唤表》击杀要求次数\n"
+msgstr ""
+
+#: ../../Commands.cs:284
+msgid "/gn clear —— 清理《允许召唤表》\n"
+msgstr ""
+
+#: ../../Commands.cs:281
+msgid "/gn kick —— 开启|关闭断连功能\n"
+msgstr ""
+
+#: ../../Commands.cs:278
+msgid "/gn list —— 列出所有宵禁表\n"
+msgstr ""
+
+#: ../../Commands.cs:280
+msgid "/gn on —— 开启|关闭宵禁功能\n"
+msgstr ""
+
+#: ../../Commands.cs:288
+msgid "/gn plr add 或 del 玩家名字 —— 添加|移除指定玩家到断连白名单\n"
+msgstr ""
+
+#: ../../Commands.cs:287
+msgid "/gn plr 人数 —— 设置无视《禁止怪物表》在线人数\n"
+msgstr ""
+
+#: ../../Commands.cs:282
+msgid "/gn pos —— 开启|关闭召唤区\n"
+msgstr ""
+
+#: ../../Commands.cs:286
+msgid "/gn reset ID —— 设置重置《允许召唤表》的怪物ID\n"
+msgstr ""
+
+#: ../../Commands.cs:290
+msgid "/gn time a 或 b 23:59 —— 设置宵禁开启结束时间\n"
+msgstr ""
+
+#: ../../Commands.cs:291
+msgid "/region define 召唤区 —— 使用TS自带/Region指令设置召唤区"
+msgstr ""
+
+#: ../../Commands.cs:279
+msgid "/reload —— 重载宵禁配置文件\n"
+msgstr ""
+
+#: ../../Goodnight.cs:368
+#, csharp-format
+msgid "\n"
+"因击杀次数达到[c/E2FA75:{0}次] 将不再播报计数\n"
+msgstr ""
+
+#: ../../Commands.cs:135
+msgid "NPC ID {0} 不在筛选列表中!"
+msgstr ""
+
+#: ../../Commands.cs:121
+msgid "NPC ID {0} 已在阻止列表中!"
+msgstr ""
+
+#: ../../Commands.cs:106
+msgid "不存在的NPC"
+msgstr ""
+
+#: ../../Goodnight.cs:218
+#, csharp-format
+msgid "且处于宵禁时段: [c/DF95EC:{0}] — [c/FF9187:{1}]\n"
+msgstr ""
+
+#: ../../Goodnight.cs:219
+msgid "仅允许召唤以下怪物：\n"
+msgstr ""
+
+#: ../../Goodnight.cs:243
+#, csharp-format
+msgid "你所召唤的怪物未被击败:[c/338AE1:{0}次]\n"
+msgstr ""
+
+#: ../../Goodnight.cs:143
+msgid "允许召唤以下怪物：\n"
+msgstr ""
+
+#: ../../Goodnight.cs:153
+#: ../../Goodnight.cs:181
+#: ../../Goodnight.cs:229
+#, csharp-format
+msgid "允许召唤表为[c/6EABE9:空]，请在满足[c/FF3A4B:{0}人]\n"
+msgstr ""
+
+#: ../../Goodnight.cs:170
+msgid "可召唤以下怪物：\n"
+msgstr ""
+
+#: ../../Goodnight.cs:200
+#, csharp-format
+msgid "如已创建请输入指令传送:[c/E2FAB4:/region tp {0}]"
+msgstr ""
+
+#: ../../Goodnight.cs:172
+#, csharp-format
+msgid "宵禁时段: [c/DF95EC:{0}] — [c/FF9187:{1}]"
+msgstr ""
+
+#: ../../Goodnight.cs:370
+#, csharp-format
+msgid "宵禁时段：[c/DF95EC:{0}] — [c/FF9187:{1}]"
+msgstr ""
+
+#: ../../Goodnight.cs:183
+#: ../../Goodnight.cs:231
+#: ../../Goodnight.cs:246
+#, csharp-format
+msgid "尽可能击败该怪物([c/FF3A4B:{0}次])，来获取允许召唤权。"
+msgstr ""
+
+#: ../../Goodnight.cs:155
+#, csharp-format
+msgid "尽可能击败该怪物([c/FF3A4B:{0}次])来获取允许召唤权"
+msgstr ""
+
+#: ../../Commands.cs:63
+msgid "已启用召唤区，宵禁逻辑已切换。\n"
+"可用TS自带的/Region指令建个“召唤区”的领地"
+msgstr ""
+
+#: ../../Commands.cs:75
+msgid "已启用召唤区人数条件，召唤区逻辑已切换。\n"
+"【启用】所有人都得在召唤区\n"
+"【禁用】有一人在召唤区，其他人可在任意位置召唤"
+msgstr ""
+
+#: ../../Commands.cs:51
+msgid "已启用在宵禁时间断开玩家连接。"
+msgstr ""
+
+#: ../../Commands.cs:39
+msgid "已启用宵禁功能。"
+msgstr ""
+
+#: ../../Commands.cs:140
+msgid "已成功从阻止列表中删除NPC ID: {0}!"
+msgstr ""
+
+#: ../../Commands.cs:126
+msgid "已成功将NPC ID添加到阻止列表: {0}!"
+msgstr ""
+
+#: ../../Commands.cs:150
+msgid "已成功将解禁怪物玩家人数设置为: {0} 人!"
+msgstr ""
+
+#: ../../Commands.cs:161
+msgid "已成功将记录进度击杀次数设置为: {0} 次!"
+msgstr ""
+
+#: ../../Commands.cs:247
+#, csharp-format
+msgid "已成功设置宵禁开始时间为：{0}"
+msgstr ""
+
+#: ../../Commands.cs:254
+#, csharp-format
+msgid "已成功设置宵禁结束时间为：{0}"
+msgstr ""
+
+#: ../../Commands.cs:87
+msgid "已清理《允许召唤表》的怪物ID"
+msgstr ""
+
+#: ../../Commands.cs:64
+msgid "已禁用召唤区，宵禁逻辑已切换。\n"
+"可用TS自带的/Region指令建个“召唤区”的领地"
+msgstr ""
+
+#: ../../Commands.cs:76
+msgid "已禁用召唤区人数条件，召唤区逻辑已切换。\n"
+"【启用】所有人都得在召唤区\n"
+"【禁用】有一人在召唤区，其他人可在任意位置召唤"
+msgstr ""
+
+#: ../../Commands.cs:52
+msgid "已禁用在宵禁时间断开玩家连接。"
+msgstr ""
+
+#: ../../Commands.cs:40
+msgid "已禁用宵禁功能。"
+msgstr ""
+
+#: ../../Goodnight.cs:369
+#, csharp-format
+msgid "已计入《允许召唤表》：\n"
+"[c/6EABE9:{0}]\n"
+msgstr ""
+
+#: ../../Commands.cs:172
+msgid "已设置重置允许召唤表的怪物ID为: {0} !"
+msgstr ""
+
+#: ../../Goodnight.cs:217
+#, csharp-format
+msgid "当前在线人数不满足:[c/FF3A4B:{0}]/{1}人\n"
+msgstr ""
+
+#: ../../Commands.cs:219
+#, csharp-format
+msgid "成功删除玩家白名单： {0} "
+msgstr ""
+
+#: ../../Commands.cs:195
+#, csharp-format
+msgid "成功添加玩家 {0} 进入白名单"
+msgstr ""
+
+#: ../../Goodnight.cs:154
+#: ../../Goodnight.cs:182
+#: ../../Goodnight.cs:230
+#: ../../Goodnight.cs:245
+#, csharp-format
+msgid "或[c/338AE1:宵禁时段]外: [c/DF95EC:{0}] — [c/FF9187:{1}]\n"
+msgstr ""
+
+#: ../../Goodnight.cs:119
+#, csharp-format
+msgid "所有在线人员([c/FF3A4B:{0}人])"
+msgstr ""
+
+#: ../../Commands.cs:237
+msgid "时间格式错误，请使用HH:mm格式：23:59\n"
+"请确保小时在0-23之间，分钟在0-59之间"
+msgstr ""
+
+#: ../../Goodnight.cs:119
+msgid "有[c/FF3A4B:1人]"
+msgstr ""
+
+#: ../../Goodnight.cs:340
+msgid "未知NPC"
+msgstr ""
+
+#: ../../Goodnight.cs:142
+#, csharp-format
+msgid "检测到{0}已在【[c/E2FA76:{1}]】\n"
+msgstr ""
+
+#: ../../Goodnight.cs:358
+#, csharp-format
+msgid "计入《允许召唤表》要求次数:[c/FF3A4B:{0}]/[c/E2FA75:{1}次]"
+msgstr ""
+
+#: ../../Commands.cs:258
+msgid "设置宵禁时间: /gn time a 或 b 23:59"
+msgstr ""
+
 #: ../../Goodnight.cs:16
 msgid "设置服务器无法进入或禁止生成怪物的时段"
+msgstr ""
+
+#: ../../Commands.cs:223
+msgid "该玩家不存在白名单中"
+msgstr ""
+
+#: ../../Commands.cs:199
+msgid "该玩家已存在白名单中"
+msgstr ""
+
+#: ../../Goodnight.cs:244
+#, csharp-format
+msgid "请在服务器人数满足:[c/FF3A4B:{0}人]\n"
+msgstr ""
+
+#: ../../Goodnight.cs:199
+#, csharp-format
+msgid "请联系管理员使用[c/6EABE9:/region]创建一个[c/E2FA76:'{0}']\n"
 msgstr ""
 

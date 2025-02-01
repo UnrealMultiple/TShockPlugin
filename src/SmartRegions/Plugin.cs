@@ -24,7 +24,7 @@ public class Plugin : TerrariaPlugin
 
     public Plugin(Main game) : base(game) { }
 
-    public override Version Version => new Version(1, 4, 5);
+    public override Version Version => new Version(1, 4, 6);
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "GameRoom，肝帝熙恩汉化修复";
@@ -148,7 +148,7 @@ public class Plugin : TerrariaPlugin
         catch (Exception e)
         {
             TShock.Log.Error(e.ToString());
-            args.Player.SendErrorMessage("命令执行时出现错误。");
+            args.Player.SendErrorMessage(GetString("命令执行时出现错误。"));
         }
     }
 
@@ -160,28 +160,28 @@ public class Plugin : TerrariaPlugin
             {
                 if (args.Parameters.Count < 4)
                 {
-                    args.Player.SendErrorMessage("语法错误！正确的语法是：/smartregion add <区域名称> <冷却时间> <命令或文件>");
+                    args.Player.SendErrorMessage(GetString("语法错误！正确的语法是：/smartregion add <区域名称> <冷却时间> <命令或文件>"));
                 }
                 else
                 {
                     if (!double.TryParse(args.Parameters[2], out var cooldown))
                     {
-                        args.Player.SendErrorMessage("无效的语法！正确的语法是：/smartregion add <区域名> <冷却时间> <命令或文件>");
+                        args.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：/smartregion add <区域名> <冷却时间> <命令或文件>"));
                         return;
                     }
                     var command = string.Join(" ", args.Parameters.GetRange(3, args.Parameters.Count - 3));
                     if (!TShock.Regions.Regions.Exists(x => x.Name == args.Parameters[1]))
                     {
-                        args.Player.SendErrorMessage("区域 {0} 不存在！", args.Parameters[1]);
+                        args.Player.SendErrorMessage(GetString("区域 {0} 不存在！"), args.Parameters[1]);
                         var regionNames = from region_ in TShock.Regions.Regions
                                           where region_.WorldID == Main.worldID.ToString()
                                           select region_.Name;
                         PaginationTools.SendPage(args.Player, 1, PaginationTools.BuildLinesFromTerms(regionNames),
                             new PaginationTools.Settings
                             {
-                                HeaderFormat = "区域 ({0}/{1}) ：",
-                                FooterFormat = "输入 {0}region list {{0}} 查看更多。".SFormat(Commands.Specifier),
-                                NothingToDisplayString = "目前没有定义任何区域。"
+                                HeaderFormat = GetString("区域 ({0}/{1}) ："),
+                                FooterFormat = GetString("输入 {0}region list {{0}} 查看更多。").SFormat(Commands.Specifier),
+                                NothingToDisplayString = GetString("目前没有定义任何区域。")
                             });
                     }
                     else
@@ -194,12 +194,12 @@ public class Plugin : TerrariaPlugin
                         var cmd = Commands.ChatCommands.FirstOrDefault(c => c.HasAlias(cmdName));
                         if (cmd != null && !cmd.CanRun(args.Player))
                         {
-                            args.Player.SendErrorMessage("你没有权限使用此命令，因此不能创建智能区域！");
+                            args.Player.SendErrorMessage(GetString("你没有权限使用此命令，因此不能创建智能区域！"));
                             return;
                         }
                         if (cmd != null && !cmd.AllowServer)
                         {
-                            args.Player.SendErrorMessage("你的命令必须允许服务器执行！");
+                            args.Player.SendErrorMessage(GetString("你的命令必须允许服务器执行！"));
                             return;
                         }
 
@@ -213,13 +213,13 @@ public class Plugin : TerrariaPlugin
                         if (existingRegion != null)
                         {
                             this.players[args.Player.Index].regionToReplace = newRegion;
-                            args.Player.SendErrorMessage("智能区域 {0} 已经存在！请输入 /replace 替换它。", args.Parameters[1]);
+                            args.Player.SendErrorMessage(GetString("智能区域 {0} 已经存在！请输入 /replace 替换它。"), args.Parameters[1]);
                         }
                         else
                         {
                             this.regions.Add(newRegion);
                             await this.DBConnection.SaveRegion(newRegion);
-                            args.Player.SendSuccessMessage("智能区域已添加！");
+                            args.Player.SendSuccessMessage(GetString("智能区域已添加！"));
                         }
                     }
                 }
@@ -229,20 +229,20 @@ public class Plugin : TerrariaPlugin
             {
                 if (args.Parameters.Count != 2)
                 {
-                    args.Player.SendErrorMessage("无效的语法！正确的语法是：/smartregion remove <区域名>");
+                    args.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：/smartregion remove <区域名>"));
                 }
                 else
                 {
                     var region = this.regions.FirstOrDefault(x => x.name == args.Parameters[1]);
                     if (region == null)
                     {
-                        args.Player.SendErrorMessage("不存在这样的智能区域！");
+                        args.Player.SendErrorMessage(GetString("不存在这样的智能区域！"));
                     }
                     else
                     {
                         this.regions.Remove(region);
                         await this.DBConnection.RemoveRegion(region.name);
-                        args.Player.SendSuccessMessage("智能区域 {0} 已被移除！", args.Parameters[1]);
+                        args.Player.SendSuccessMessage(GetString("智能区域 {0} 已被移除！"), args.Parameters[1]);
                     }
                 }
             }
@@ -251,21 +251,23 @@ public class Plugin : TerrariaPlugin
             {
                 if (args.Parameters.Count != 2)
                 {
-                    args.Player.SendErrorMessage("无效的语法！正确的语法是：/smartregion check <区域名>");
+                    args.Player.SendErrorMessage(GetString("无效的语法！正确的语法是：/smartregion check <区域名>"));
                 }
                 else
                 {
                     var region = this.regions.FirstOrDefault(x => x.name == args.Parameters[1]);
                     if (region == null)
                     {
-                        args.Player.SendInfoMessage("该区域没有关联的命令。");
+                        args.Player.SendInfoMessage(GetString("该区域没有关联的命令。"));
                     }
                     else
                     {
-                        string file = Path.Combine(TShock.SavePath, "SmartRegions", region.command), commands;
-                        commands = File.Exists(file) ? "脚本中的命令如下：\n" + File.ReadAllText(file) : "命令如下：\n" + region.command;
+                        var file = Path.Combine(TShock.SavePath, "SmartRegions", region.command);
+                        var commands = File.Exists(file)
+                            ? GetString($"脚本中的命令如下：\n{File.ReadAllText(file)}")
+                            : GetString($"命令如下：\n{region.command}");
 
-                        args.Player.SendInfoMessage("区域 {0} 的冷却时间为 {1} 秒，使用命令：{2}", args.Parameters[1], region.cooldown, commands);
+                        args.Player.SendInfoMessage(GetString("区域 {0} 的冷却时间为 {1} 秒，使用命令：{2}"), args.Parameters[1], region.cooldown, commands);
                     }
                 }
             }
@@ -285,7 +287,7 @@ public class Plugin : TerrariaPlugin
                 {
                     if (args.Player == TSPlayer.Server)
                     {
-                        args.Player.SendErrorMessage("如果您是服务器后台，不能使用距离参数。");
+                        args.Player.SendErrorMessage(GetString("如果您是服务器后台，不能使用距离参数。"));
                         return;
                     }
                     if (!int.TryParse(args.Parameters[2], out maxDist))
@@ -307,12 +309,9 @@ public class Plugin : TerrariaPlugin
 
                 if (regionNames.Count == 0)
                 {
-                    var suffix = "";
-                    if (maxDist < int.MaxValue)
-                    {
-                        suffix = "附近的";
-                    }
-                    args.Player.SendErrorMessage($"没有{suffix}智能区域。");
+                    args.Player.SendErrorMessage(maxDist < int.MaxValue
+                        ? GetString("没有附近的智能区域。")
+                        : GetString("没有智能区域。"));
                 }
                 else
                 {
@@ -320,8 +319,8 @@ public class Plugin : TerrariaPlugin
                         args.Player, pageNumber, PaginationTools.BuildLinesFromTerms(regionNames),
                         new PaginationTools.Settings
                         {
-                            HeaderFormat = "智能区域 ({0}/{1}) ：",
-                            FooterFormat = $"输入 {Commands.Specifier}smartregion list {{0}} 查看更多。"
+                            HeaderFormat = GetString("智能区域 ({0}/{1}) ："),
+                            FooterFormat = GetString($"输入 {Commands.Specifier}smartregion list {{0}} 查看更多。")
                         }
                     );
                 }
@@ -330,7 +329,7 @@ public class Plugin : TerrariaPlugin
 
             default:
             {
-                args.Player.SendInfoMessage("/smartregion 子命令:\nadd <区域名> <冷却时间> <命令或文件>\nremove <区域名>\ncheck <区域名>\nlist [页码] [最大距离]");
+                args.Player.SendInfoMessage(GetString("/smartregion 子命令:\nadd <区域名> <冷却时间> <命令或文件>\nremove <区域名>\ncheck <区域名>\nlist [页码] [最大距离]"));
             }
             break;
         }
@@ -372,7 +371,7 @@ public class Plugin : TerrariaPlugin
             var player = this.players[args.Player.Index];
             if (player.regionToReplace == null)
             {
-                args.Player.SendErrorMessage("你现在不能做这个操作！");
+                args.Player.SendErrorMessage(GetString("你现在不能做这个操作！"));
             }
             else
             {
@@ -380,13 +379,13 @@ public class Plugin : TerrariaPlugin
                 this.regions.Add(player.regionToReplace);
                 await this.DBConnection.SaveRegion(player.regionToReplace);
                 player.regionToReplace = null;
-                args.Player.SendSuccessMessage("区域替换成功！");
+                args.Player.SendSuccessMessage(GetString("区域替换成功！"));
             }
         }
         catch (Exception e)
         {
             TShock.Log.Error(e.ToString());
-            args.Player.SendErrorMessage("命令执行时出现错误。");
+            args.Player.SendErrorMessage(GetString("命令执行时出现错误。"));
         }
     }
 }

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sandstorm\n"
-"POT-Creation-Date: 2025-01-08 13:16:23+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:23+0000\n"
+"POT-Creation-Date: 2025-01-29 16:03:14+0000\n"
+"PO-Revision-Date: 2025-01-29 16:03:14+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
+#: ../../Plugin.cs:47
+msgid "[Sandstorm]重新加载配置完毕。"
+msgstr ""
+
 #: ../../Plugin.cs:15
 msgid "使用指令切换沙尘暴"
+msgstr ""
+
+#: ../../Plugin.cs:66
+msgid "沙尘暴: 已停止"
+msgstr ""
+
+#: ../../Plugin.cs:77
+msgid "沙尘暴: 已开始"
 msgstr ""
 

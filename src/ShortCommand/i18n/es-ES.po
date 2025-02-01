@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:24+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:03:15+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,36 @@ msgstr ""
 "X-Crowdin-File-ID: 1522\n"
 "Language: es_ES\n"
 
+#: ../../Plugin.cs:59
+msgid "未找到简短指令配置，已为您创建！"
+msgstr ""
+
+#: ../../Plugin.cs:164
+msgid "此指令正在冷却，还有{0}秒才能使用！"
+msgstr ""
+
+#: ../../Plugin.cs:157
+msgid "此指令要求你必须死亡才能使用！"
+msgstr ""
+
+#: ../../Plugin.cs:151
+msgid "此指令要求你必须活着才能使用！"
+msgstr ""
+
 #: ../../Plugin.cs:32
 msgid "由GK改良的简短指令插件！"
+msgstr ""
+
+#: ../../Plugin.cs:87
+#, csharp-format
+msgid "简短指令配置读取错误:{0}"
+msgstr ""
+
+#: ../../Plugin.cs:101
+msgid "简短指令重读成功!"
+msgstr ""
+
+#: ../../Plugin.cs:134
+msgid "该指令已被禁止使用!"
 msgstr ""
 

@@ -26,7 +26,8 @@ public class History : TerrariaPlugin
     private readonly BlockingCollection<HCommand> CommandQueue = new();
     private Thread CommandQueueThread = null!;
     public override string Description => GetString("记录图格操作.");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 6);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 0, 7);
 
     public History(Main game) : base(game)
     {
@@ -1457,7 +1458,7 @@ public class History : TerrariaPlugin
                 }
                 catch (Exception ex)
                 {
-                    command.Error("发生错误.检查日志以了解更多详细信息.");
+                    command.Error(GetString("发生错误.检查日志以了解更多详细信息."));
                     TShock.Log.ConsoleError(ex.ToString());
                 }
             }
@@ -1474,19 +1475,17 @@ public class History : TerrariaPlugin
         {
             if (e.Parameters.Count != 2 && e.Parameters.Count != 3)
             {
-                e.Player.SendErrorMessage(
-                    "用法错误! 正确用法: \n" +
-                    "/history [账号名] [时间] [范围]");
+                e.Player.SendErrorMessage(GetString("用法错误! 正确用法: \n/history [账号名] [时间] [范围]"));
                 return;
             }
             var radius = 10000;
             if (!TShock.Utils.TryParseTime(e.Parameters[1], out int time) || time <= 0)
             {
-                e.Player.SendErrorMessage("时间无效.");
+                e.Player.SendErrorMessage(GetString("时间无效."));
             }
             else if (e.Parameters.Count == 3 && (!int.TryParse(e.Parameters[2], out radius) || radius <= 0))
             {
-                e.Player.SendErrorMessage("范围无效.");
+                e.Player.SendErrorMessage(GetString("范围无效."));
             }
             else
             {
@@ -1497,13 +1496,13 @@ public class History : TerrariaPlugin
         {
             if (e.Player.Index == -1)
             {
-                TShock.Log.ConsoleError("单独的/history命令只能在服务器内使用.");
-                TShock.Log.ConsoleError("你也可以在后台使用/history <账号名> <时间> <范围>");
+                TShock.Log.ConsoleError(GetString("单独的/history命令只能在服务器内使用."));
+                TShock.Log.ConsoleError(GetString("你也可以在后台使用/history <账号名> <时间> <范围>"));
                 return;
             }
             else
             {
-                e.Player.SendMessage("敲击(放置)一个方块查询这个坐标的历史记录.", Color.LimeGreen);
+                e.Player.SendMessage(GetString("敲击(放置)一个方块查询这个坐标的历史记录."), Color.LimeGreen);
                 this.AwaitingHistory[e.Player.Index] = true;
             }
 
@@ -1513,17 +1512,17 @@ public class History : TerrariaPlugin
     {
         if (e.Parameters.Count != 2 && e.Parameters.Count != 3)
         {
-            e.Player.SendErrorMessage("用法错误! 正确用法: /reenact <账号名> <时间> [范围]");
+            e.Player.SendErrorMessage(GetString("用法错误! 正确用法: /reenact <账号名> <时间> [范围]"));
             return;
         }
         var radius = 10000;
         if (!TShock.Utils.TryParseTime(e.Parameters[1], out int time) || time <= 0)
         {
-            e.Player.SendErrorMessage("时间无效.");
+            e.Player.SendErrorMessage(GetString("时间无效."));
         }
         else if (e.Parameters.Count == 3 && (!int.TryParse(e.Parameters[2], out radius) || radius <= 0))
         {
-            e.Player.SendErrorMessage("范围无效.");
+            e.Player.SendErrorMessage(GetString("范围无效."));
         }
         else
         {
@@ -1534,17 +1533,17 @@ public class History : TerrariaPlugin
     {
         if (e.Parameters.Count != 2 && e.Parameters.Count != 3)
         {
-            e.Player.SendErrorMessage("用法错误! 正确用法: /rollback <账号名> <时间> [范围]");
+            e.Player.SendErrorMessage(GetString("用法错误! 正确用法: /rollback <账号名> <时间> [范围]"));
             return;
         }
         var radius = 10000;
         if (!TShock.Utils.TryParseTime(e.Parameters[1], out int time) || time <= 0)
         {
-            e.Player.SendErrorMessage("时间无效.");
+            e.Player.SendErrorMessage(GetString("时间无效."));
         }
         else if (e.Parameters.Count == 3 && (!int.TryParse(e.Parameters[2], out radius) || radius <= 0))
         {
-            e.Player.SendErrorMessage("范围无效.");
+            e.Player.SendErrorMessage(GetString("范围无效."));
         }
         else
         {
@@ -1555,7 +1554,7 @@ public class History : TerrariaPlugin
     {
         if (e.Parameters.Count != 1)
         {
-            e.Player.SendErrorMessage("用法错误! 正确用法: /prunehist <时间>");
+            e.Player.SendErrorMessage(GetString("用法错误! 正确用法: /prunehist <时间>"));
             return;
         }
         if (TShock.Utils.TryParseTime(e.Parameters[0], out int time) && time > 0)
@@ -1564,7 +1563,7 @@ public class History : TerrariaPlugin
         }
         else
         {
-            e.Player.SendErrorMessage("时间无效.");
+            e.Player.SendErrorMessage(GetString("时间无效."));
         }
     }
     void Undo(CommandArgs e)
@@ -1575,20 +1574,20 @@ public class History : TerrariaPlugin
         }
         else
         {
-            e.Player.SendErrorMessage("没有要撤消的内容!");
+            e.Player.SendErrorMessage(GetString("没有要撤消的内容!"));
         }
     }
 
     #region 使用指令清理数据库
     private void ResetCmd(CommandArgs e)
     {
-        if (e.Parameters.Count > 0) { e.Player.SendErrorMessage("用法错误! 正确用法: /hreset"); return; }
+        if (e.Parameters.Count > 0) { e.Player.SendErrorMessage(GetString("用法错误! 正确用法: /hreset")); return; }
         else
         {
             if (!e.Player.HasPermission("history.admin"))
             {
-                e.Player.SendErrorMessage("你没有重置【History】数据表的权限。");
-                TShock.Log.ConsoleInfo($"{e.Player.Name}试图执行 [History] 数据重置指令");
+                e.Player.SendErrorMessage(GetString("你没有重置【History】数据表的权限。"));
+                TShock.Log.ConsoleInfo(GetString($"{e.Player.Name}试图执行 [History] 数据重置指令"));
                 return;
             }
             else
@@ -1603,11 +1602,11 @@ public class History : TerrariaPlugin
     {
         if (HistoryCommand.ClearData())
         {
-            TShock.Utils.Broadcast($"[History] 数据库已被 [{args.Player.Name}] 成功清除", Color.DarkRed);
+            TShock.Utils.Broadcast(GetString($"[History] 数据库已被 [{args.Player.Name}] 成功清除"), Color.DarkRed);
         }
         else
         {
-            TShock.Log.ConsoleInfo("[History] 数据库清除失败");
+            TShock.Log.ConsoleInfo(GetString("[History] 数据库清除失败"));
         }
     }
     #endregion

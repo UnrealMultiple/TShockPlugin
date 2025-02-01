@@ -17,23 +17,24 @@
 {
   "Groups": [
     {
-      "组名字": "default",
-      "添加的权限": [
+      "Name": "default",
+      "Parent": "guest",
+      "AddPermissions": [
         "tshock.world.movenpc",
+        "tshock.world.time.usesundial",
         "tshock.tp.pylon",
         "tshock.tp.demonconch",
         "tshock.tp.magicconch",
         "tshock.tp.tppotion",
         "tshock.tp.rod",
-        "tshock.npc.startdd2",
         "tshock.tp.wormhole",
+        "tshock.npc.startdd2",
+        "tshock.npc.spawnpets",
         "tshock.npc.summonboss",
         "tshock.npc.startinvasion",
-        "tshock.npc.spawnpets",
-        "tshock.world.time.usesundial",
         "tshock.npc.hurttown"
       ],
-      "删除的权限": [
+      "DelPermissions": [
         "tshock.admin"
       ]
     }

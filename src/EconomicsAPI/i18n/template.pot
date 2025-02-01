@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EconomicsAPI\n"
-"POT-Creation-Date: 2025-01-08 13:15:55+0000\n"
-"PO-Revision-Date: 2025-01-08 13:15:55+0000\n"
+"POT-Creation-Date: 2025-01-29 17:44:48+0000\n"
+"PO-Revision-Date: 2025-01-29 17:44:48+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,11 @@ msgstr ""
 
 #: ../../Command.cs:72
 msgid "bank 指令"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExt.cs:30
+#, csharp-format
+msgid "EconomicAPI 执行命令报错:{0}"
 msgstr ""
 
 #: ../../Command.cs:89

@@ -14,7 +14,7 @@ public class VotePlus : TerrariaPlugin
     public override string Description => GetString("投票插件");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 3);
+    public override Version Version => new Version(1, 0, 0, 4);
 
     public VotePlus(Main game)
     : base(game)

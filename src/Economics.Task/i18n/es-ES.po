@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:54+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:02:44+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -94,6 +94,10 @@ msgstr ""
 msgid "任务接取成功!"
 msgstr ""
 
+#: ../../Command.cs:125
+msgid "你已放弃一个任务!!"
+msgstr ""
+
 #: ../../Command.cs:145
 msgid "你当前的任务还没有完成!"
 msgstr ""
@@ -104,6 +108,10 @@ msgstr ""
 
 #: ../../Command.cs:117
 msgid "你没有接取一个任务!"
+msgstr ""
+
+#: ../../Command.cs:129
+msgid "你还没有开始接任务!!"
 msgstr ""
 
 #: ../../Command.cs:150

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:28+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-01-29 16:03:19+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,53 +17,45 @@ msgstr ""
 "X-Crowdin-File-ID: 1206\n"
 "Language: en_US\n"
 
-#: ../../Utils/Common.cs:200
-msgid "（抓捕位置："
-msgstr "(Capture location:"
-
-#: ../../Utils/Common.cs:201
-msgid "）"
-msgstr ")"
-
 #: ../../StatusTextManager.cs:76
 msgid "Manage status text of different plugins"
 msgstr "Manage status text of different plugins"
 
-#: ../../Utils/Common.cs:83
+#: ../../Utils/Common.cs:80
 msgid "丛林"
 msgstr "Jungle"
 
-#: ../../Utils/Common.cs:107
+#: ../../Utils/Common.cs:104
 msgid "发光蘑菇"
 msgstr "Glowing Mushroom"
 
-#: ../../Utils/Common.cs:99
+#: ../../Utils/Common.cs:96
 msgid "和平蜡烛"
 msgstr "Peace Candle"
 
 #: ../../Utils/Common.cs:51
-#: ../../Utils/Common.cs:119
+#: ../../Utils/Common.cs:116
 msgid "地下"
 msgstr "Underground"
 
-#: ../../Utils/Common.cs:111
+#: ../../Utils/Common.cs:108
 msgid "地下沙漠"
 msgstr "Desert Underground"
 
-#: ../../Utils/Common.cs:67
+#: ../../Utils/Common.cs:64
 msgid "地牢"
 msgstr "Dungeon"
 
-#: ../../Utils/Common.cs:55
-#: ../../Utils/Common.cs:127
+#: ../../Utils/Common.cs:53
+#: ../../Utils/Common.cs:124
 msgid "地狱"
 msgstr "Underwold"
 
-#: ../../Utils/Common.cs:163
+#: ../../Utils/Common.cs:160
 msgid "墓地"
 msgstr "Graveyard"
 
-#: ../../Utils/Common.cs:147
+#: ../../Utils/Common.cs:144
 msgid "大理石"
 msgstr "Marble"
 
@@ -71,7 +63,7 @@ msgstr "Marble"
 msgid "存活"
 msgstr "Survive"
 
-#: ../../Utils/Common.cs:155
+#: ../../Utils/Common.cs:152
 msgid "宝石洞窟"
 msgstr "Gems Caves"
 
@@ -93,7 +85,7 @@ msgstr "Template display turned on"
 msgid "已死亡"
 msgstr "Dead"
 
-#: ../../Utils/Common.cs:171
+#: ../../Utils/Common.cs:168
 msgid "微光"
 msgstr "Shimmer"
 
@@ -105,32 +97,32 @@ msgstr "Not completed"
 msgid "未死亡"
 msgstr "Not dead"
 
-#: ../../Utils/Common.cs:175
+#: ../../Utils/Common.cs:172
 msgid "森林"
 msgstr "Forest"
 
-#: ../../Utils/Common.cs:95
+#: ../../Utils/Common.cs:92
 msgid "水蜡烛"
 msgstr "Water Candle"
 
-#: ../../Utils/Common.cs:139
+#: ../../Utils/Common.cs:136
 msgid "沙尘暴"
 msgstr "Sandstorm"
 
-#: ../../Utils/Common.cs:103
+#: ../../Utils/Common.cs:100
 msgid "沙漠"
 msgstr "Desert"
 
-#: ../../Utils/Common.cs:53
-#: ../../Utils/Common.cs:123
+#: ../../Utils/Common.cs:52
+#: ../../Utils/Common.cs:120
 msgid "洞穴"
 msgstr "Cave"
 
-#: ../../Utils/Common.cs:131
+#: ../../Utils/Common.cs:128
 msgid "海滩"
 msgstr "Ocean"
 
-#: ../../Utils/Common.cs:91
+#: ../../Utils/Common.cs:88
 msgid "猩红"
 msgstr "Crimson"
 
@@ -138,11 +130,11 @@ msgstr "Crimson"
 msgid "用法：/st <on/show/off/hide>"
 msgstr "Usage: /st <on/show/off/hide>"
 
-#: ../../Utils/Common.cs:75
+#: ../../Utils/Common.cs:72
 msgid "神圣"
 msgstr "Hallow"
 
-#: ../../Utils/Common.cs:159
+#: ../../Utils/Common.cs:156
 msgid "神庙"
 msgstr "Temple"
 
@@ -150,36 +142,36 @@ msgstr "Temple"
 msgid "空区域"
 msgstr "Empty Area"
 
-#: ../../Utils/Common.cs:49
-#: ../../Utils/Common.cs:115
+#: ../../Utils/Common.cs:50
+#: ../../Utils/Common.cs:112
 msgid "空岛"
 msgstr "Sky Island"
 
-#: ../../Utils/Common.cs:71
+#: ../../Utils/Common.cs:68
 msgid "腐化"
 msgstr "Corruption"
 
-#: ../../Utils/Common.cs:143
+#: ../../Utils/Common.cs:140
 msgid "花岗岩"
 msgstr "Granite"
 
-#: ../../Utils/Common.cs:151
+#: ../../Utils/Common.cs:148
 msgid "蜂巢"
 msgstr "Bee Hive"
 
-#: ../../Utils/Common.cs:167
+#: ../../Utils/Common.cs:164
 msgid "阴影蜡烛"
 msgstr "Shadow Candle"
 
-#: ../../Utils/Common.cs:79
+#: ../../Utils/Common.cs:76
 msgid "陨石"
 msgstr "Meteorite"
 
-#: ../../Utils/Common.cs:135
+#: ../../Utils/Common.cs:132
 msgid "雨天"
 msgstr "Rain"
 
-#: ../../Utils/Common.cs:87
+#: ../../Utils/Common.cs:84
 msgid "雪原"
 msgstr "Snow"
 

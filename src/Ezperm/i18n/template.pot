@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ezperm\n"
-"POT-Creation-Date: 2025-01-08 13:15:57+0000\n"
-"PO-Revision-Date: 2025-01-08 13:15:57+0000\n"
+"POT-Creation-Date: 2025-01-31 16:21:48+0000\n"
+"PO-Revision-Date: 2025-01-31 16:21:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,21 +10,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Ezperm.cs:13
+#: ../../Ezperm.cs:15
 msgid "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限"
 msgstr ""
 
-#: ../../Ezperm.cs:90
+#: ../../Ezperm.cs:106
 #, csharp-format
 msgid "成功为组 {0} 删除权限: {1}"
 msgstr ""
 
-#: ../../Ezperm.cs:73
+#: ../../Ezperm.cs:89
 #, csharp-format
 msgid "成功为组 {0} 添加权限: {1}"
 msgstr ""
 
-#: ../../Ezperm.cs:58
+#: ../../Ezperm.cs:72
+#, csharp-format
+msgid "成功将组 {0} 的父组设置为 {1}。"
+msgstr ""
+
+#: ../../Ezperm.cs:48
 #, csharp-format
 msgid "组 {0} 不存在，已创建该组。"
 msgstr ""

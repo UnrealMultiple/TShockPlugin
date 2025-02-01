@@ -13,7 +13,7 @@ public class Platform : TerrariaPlugin
     public override string Description => GetString("判断玩家设备");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 0, 4);
+    public override Version Version => new Version(1, 1, 0, 5);
 
     public Platform(Main game)
     : base(game)
@@ -40,17 +40,17 @@ public class Platform : TerrariaPlugin
             if (plys.Count > 0)
             {
                 var platform = PlatformTool.GetPlatform(plys[0]);
-                args.Player.SendInfoMessage($"玩家 `{plys[0].Name}` 的设备是: {platform}");
+                args.Player.SendInfoMessage(GetString($"玩家 `{plys[0].Name}` 的设备是: {platform}"));
             }
             else
             {
-                args.Player.SendErrorMessage("目标玩家不在线!");
+                args.Player.SendErrorMessage(GetString("目标玩家不在线!"));
             }
         }
         else
         {
-            args.Player.SendErrorMessage("语法错误");
-            args.Player.SendInfoMessage("/platform <玩家名字/序号id>");
+            args.Player.SendErrorMessage(GetString("语法错误"));
+            args.Player.SendInfoMessage(GetString("/platform <玩家名字/序号id>"));
         }
     }
 
@@ -60,7 +60,7 @@ public class Platform : TerrariaPlugin
         {
             return;
         }
-        TShock.Log.ConsoleInfo($"[Platform]玩家{TShock.Players[args.Who].Name}游玩平台:{Platforms[args.Who]}");
+        TShock.Log.ConsoleInfo(GetString($"[Platform]玩家{TShock.Players[args.Who].Name}游玩平台:{Platforms[args.Who]}"));
 
     }
 

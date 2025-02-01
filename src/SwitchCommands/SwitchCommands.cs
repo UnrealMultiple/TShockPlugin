@@ -19,7 +19,7 @@ public class SwitchCommands : TerrariaPlugin
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "Johuan Cjx适配 羽学，肝帝熙恩优化";
     public override string Description => GetString("触发开关可以执行指令");
-    public override Version Version => new Version(1, 2, 5);
+    public override Version Version => new Version(1, 2, 6);
 
     public SwitchCommands(Main game) : base(game) { }
 
@@ -51,7 +51,7 @@ public class SwitchCommands : TerrariaPlugin
         database.Write(Database.databasePath);
         if (args != null && args.Player != null)
         {
-            args.Player.SendSuccessMessage("[开关指令插件]重新加载配置完毕。");
+            args.Player.SendSuccessMessage(GetString("[开关指令插件]重新加载配置完毕。"));
         }
     }
     #endregion
@@ -105,7 +105,7 @@ public class SwitchCommands : TerrariaPlugin
 
                     if (database.switchCommandList.ContainsKey(pos.ToString()) && !string.IsNullOrEmpty(database.switchCommandList[pos.ToString()].show))
                     {
-                        player.SendMessage($"开关说明：{database.switchCommandList[pos.ToString()].show}", color: Microsoft.Xna.Framework.Color.Yellow);
+                        player.SendMessage(GetString($"开关说明：{database.switchCommandList[pos.ToString()].show}"), color: Microsoft.Xna.Framework.Color.Yellow);
                     }
 
                     var playerState = player.GetData<PlayerState>("PlayerState");
@@ -113,8 +113,8 @@ public class SwitchCommands : TerrariaPlugin
                     if (playerState == PlayerState.SelectingSwitch)
                     {
                         player.SetData("SwitchPos", pos);
-                        player.SendSuccessMessage("成功绑定位于X：{0}、Y：{1} 的开关".SFormat(pos.X, pos.Y));
-                        player.SendSuccessMessage("输入/开关 ，可查看子命令列表".SFormat(pos.X, pos.Y));
+                        player.SendSuccessMessage(GetString("成功绑定位于X：{0}、Y：{1} 的开关").SFormat(pos.X, pos.Y));
+                        player.SendSuccessMessage(GetString("输入/开关 ，可查看子命令列表").SFormat(pos.X, pos.Y));
                         player.SetData("PlayerState", PlayerState.AddingCommands);
 
                         if (database.switchCommandList.ContainsKey(pos.ToString()))

@@ -33,7 +33,7 @@ class DB
     public static bool AddUser(int id)
     {
         try { return DbExt.Query(TShock.DB, $"INSERT INTO PersonalPermission (UserID) VALUES ({id});") != -1; }
-        catch (Exception ex) { TShock.Log.ConsoleError($"添加玩家信息失败.\n" + ex); return false; }
+        catch (Exception ex) { TShock.Log.ConsoleError(GetString($"添加玩家信息失败.\n{ex}")); return false; }
     }
     public static List<string> GetPermissions(int id)
     {
@@ -54,7 +54,7 @@ class DB
                         list.Add(text);
                     }
                 }
-                catch (Exception ex) { TShock.Log.ConsoleError($"[PersonalPermission] 读取数据库时发生错误.\n{ex}"); }
+                catch (Exception ex) { TShock.Log.ConsoleError(GetString($"[PersonalPermission] 读取数据库时发生错误.\n{ex}")); }
             }
             else
             {
@@ -86,7 +86,7 @@ class DB
 
                     list.Add(reader.Get<int>("UserID"), permissions);
                 }
-                catch (Exception ex) { TShock.Log.ConsoleError($"[PersonalPermission] 读取数据库时发生错误.\n{ex}"); }
+                catch (Exception ex) { TShock.Log.ConsoleError(GetString($"[PersonalPermission] 读取数据库时发生错误.\n{ex}")); }
             }
             return list;
         }
@@ -97,7 +97,7 @@ class DB
         {
             return true;
         }
-        TShock.Log.ConsoleError("保存玩家权限失败.");
+        TShock.Log.ConsoleError(GetString("保存玩家权限失败."));
         return false;
     }
 }

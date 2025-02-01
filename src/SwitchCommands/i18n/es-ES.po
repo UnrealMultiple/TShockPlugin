@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:29+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:03:21+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,102 @@ msgstr ""
 "X-Crowdin-File-ID: 1536\n"
 "Language: es_ES\n"
 
+#: ../../SwitchCommands.cs:54
+msgid "[开关指令插件]重新加载配置完毕。"
+msgstr ""
+
+#: ../../PluginCommands.cs:130
+msgid "你没有权限使用此命令"
+msgstr ""
+
+#: ../../PluginCommands.cs:103
+msgid "冷却时间已设置为 {0} 秒"
+msgstr ""
+
+#: ../../PluginCommands.cs:147
+msgid "否"
+msgstr ""
+
+#: ../../PluginCommands.cs:157
+msgid "已取消添加要添加的命令"
+msgstr ""
+
+#: ../../SwitchCommands.cs:108
+#, csharp-format
+msgid "开关说明：{0}"
+msgstr ""
+
+#: ../../PluginCommands.cs:119
+#, csharp-format
+msgid "开关说明已设置为：{0}"
+msgstr ""
+
+#: ../../PluginCommands.cs:62
+msgid "当前开关绑定的指令:"
+msgstr ""
+
+#: ../../PluginCommands.cs:85
+msgid "成功删除了第{1}条指令：{0}。"
+msgstr ""
+
+#: ../../PluginCommands.cs:55
+msgid "成功添加: {0}"
+msgstr ""
+
+#: ../../SwitchCommands.cs:116
+msgid "成功绑定位于X：{0}、Y：{1} 的开关"
+msgstr ""
+
+#: ../../PluginCommands.cs:147
+msgid "是"
+msgstr ""
+
+#: ../../PluginCommands.cs:148
+msgid "是否忽略玩家权限设置为: {0}."
+msgstr ""
+
+#: ../../PluginCommands.cs:36
+msgid "正确指令："
+msgstr ""
+
+#: ../../PluginCommands.cs:29
+msgid "激活一个开关以将其绑定,之后可输入/开关 ，查看子命令"
+msgstr ""
+
 #: ../../SwitchCommands.cs:21
 msgid "触发开关可以执行指令"
+msgstr ""
+
+#: ../../PluginCommands.cs:175
+msgid "设置成功的开关位于 X： {0}， Y： {1}"
+msgstr ""
+
+#: ../../PluginCommands.cs:189
+#, csharp-format
+msgid "语法无效. {0}"
+msgstr ""
+
+#: ../../PluginCommands.cs:77
+msgid "语法错误：/开关 del <指令>"
+msgstr ""
+
+#: ../../PluginCommands.cs:96
+msgid "语法错误：/开关 冷却 <秒>"
+msgstr ""
+
+#: ../../PluginCommands.cs:140
+msgid "语法错误：/开关 权限忽略 <true/false>"
+msgstr ""
+
+#: ../../PluginCommands.cs:111
+msgid "语法错误：/开关 说明 <内容>"
+msgstr ""
+
+#: ../../SwitchCommands.cs:117
+msgid "输入/开关 ，可查看子命令列表"
+msgstr ""
+
+#: ../../PluginCommands.cs:165
+msgid "重新激活开关后可以重新绑定"
 msgstr ""
 

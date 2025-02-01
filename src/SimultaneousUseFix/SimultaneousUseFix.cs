@@ -11,7 +11,8 @@ public class SimultaneousUseFix : TerrariaPlugin
 {
     public override string Author => "熙恩，感谢恋恋";
     public override string Description => GetString("解决卡双锤，卡星旋机枪之类的问题");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 8);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 0, 9);
     public static Configuration Config = null!;
     public bool otherPluginExists = false;
 
@@ -28,7 +29,7 @@ public class SimultaneousUseFix : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(SimultaneousUseFix).Name);
+        args.Player?.SendSuccessMessage(GetString("[{0}] 重新加载配置完毕。"), nameof(SimultaneousUseFix));
     }
 
 
@@ -63,19 +64,19 @@ public class SimultaneousUseFix : TerrariaPlugin
 
             if (Config.KickPlayerOnUse)
             {
-                TShock.Utils.Broadcast("玩家 " + player.Name + " 因为卡换格子bug被踢出", Color.Green);
-                player.Kick("因为卡换格子bug被踢出");
+                TShock.Utils.Broadcast(GetString($"玩家 {player.Name} 因为卡换格子bug被踢出"), Color.Green);
+                player.Kick(GetString("因为卡换格子bug被踢出"));
             }
 
             if (Config.KillPlayerOnUse)
             {
-                TShock.Utils.Broadcast("玩家 " + player.Name + " 因为卡换格子bug被杀死", Color.Green);
+                TShock.Utils.Broadcast(GetString($"玩家 {player.Name} 因为卡换格子bug被杀死"), Color.Green);
                 player.KillPlayer();
             }
 
             if (Config.ApplyBuffOnUse)
             {
-                TShock.Utils.Broadcast("玩家 " + player.Name + " 因为卡换格子bug被上buff", Color.Green);
+                TShock.Utils.Broadcast(GetString($"玩家 {player.Name} 因为卡换格子bug被上buff"), Color.Green);
                 foreach (var buffType in Config.BuffTypes)
                 {
                     player.SetBuff(buffType, Config.Bufftime);

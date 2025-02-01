@@ -33,7 +33,7 @@ public class UndoCommand : HCommand
         var undo = new SaveCommand(LastRollBack.ToArray());
         undo.Execute();
 
-        this.sender.SendSuccessMessage("撤消完成! {0} 个操作被撤销.", LastRollBack.Count);
+        this.sender.SendSuccessMessage(GetString("撤消完成! {0} 个操作被撤销."), LastRollBack.Count);
         LastRollBack = null!;
     }
 }

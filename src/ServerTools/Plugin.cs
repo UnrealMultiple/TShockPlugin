@@ -19,7 +19,7 @@ public partial class Plugin : LazyPlugin
     public override string Description => GetString("服务器工具");// 插件说明
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 8, 3);// 插件版本
+    public override Version Version => new Version(1, 1, 8, 4);// 插件版本
 
     private DateTime LastCommandUseTime = DateTime.Now;
 
@@ -192,7 +192,7 @@ public partial class Plugin : LazyPlugin
         if (Config.Instance.NpcProtectList.Contains(args.Npc.netID))
         {
             args.Handled = true;
-            TShock.Players[args.Player.whoAmI].SendInfoMessage("[ServerTools] " + args.Npc.FullName + GetString(" 被系统保护"));
+            TShock.Players[args.Player.whoAmI].SendInfoMessage(GetString($"[ServerTools] {args.Npc.FullName} 被系统保护"));
         }
     }
 

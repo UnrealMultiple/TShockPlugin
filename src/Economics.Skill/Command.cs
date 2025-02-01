@@ -117,7 +117,9 @@ public class Command
                     {
                         if (skill.Skill != null)
                         {
-                            args.Player.SendSuccessMessage(GetString(skill.Skill.SkillSpark.SparkMethod.Contains(Enumerates.SkillSparkType.Take) ? $"[{skill.ID}] 主动技能 [i:{skill.BindItem}] 绑定 {skill.Skill.Name}" : $"[{skill.ID}] 被动技能 {skill.Skill.Name}"));
+                            args.Player.SendSuccessMessage(skill.Skill.SkillSpark.SparkMethod.Contains(Enumerates.SkillSparkType.Take)
+                                ? GetString($"[{skill.ID}] 主动技能 [i:{skill.BindItem}] 绑定 {skill.Skill.Name}")
+                                : GetString($"[{skill.ID}] 被动技能 {skill.Skill.Name}"));
                         }
                         else
                         {

@@ -15,7 +15,7 @@ public class Plugin : TerrariaPlugin
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 8, 3);
+    public override Version Version => new Version(1, 8, 4);
     public override string Description => GetString("服主自动执行：无敌、BUFF、物品、命令、设置背包");
     #endregion
 
@@ -57,7 +57,7 @@ public class Plugin : TerrariaPlugin
     {
         Config = Read();
         Config.Write();
-        TShock.Log.ConsoleInfo("[服主特权]重新加载配置完毕。");
+        TShock.Log.ConsoleInfo(GetString("[服主特权]重新加载配置完毕。"));
     }
     #endregion
 

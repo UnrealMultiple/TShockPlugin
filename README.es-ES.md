@@ -105,8 +105,8 @@
 | [DamageStatistic](./src/DamageStatistic/README.md) | 100.0% | Mostrar el daño causado por cada jugador después de cada pelea de jefe |  |
 | [DataSync](./src/DataSync/README.md) | 0.0% | Sincronización de progreso |  |
 | [DeathDrop](./src/DeathDrop/README.md) | 100.0% | Botín aleatorio y personalizado al morir un monstruo |  |
-| [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 100.0% | Prohibir el botín de monstruos |  |
-| [DonotFuck](./src/DonotFuck/README.md) | 14.3% | Prevenir groserías | [LazyAPI](./src/LazyAPI/README.md) |
+| [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 11.1% | Prohibir el botín de monstruos |  |
+| [DonotFuck](./src/DonotFuck/README.md) | 15.0% | Prevenir groserías | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 0.0% | Prevenir la entrada a mazmorras o templos |  |
 | [Dummy](./src/Dummy/README.md) | 0.0% | Servidor de Pruebas (Ficticio) Para TEST | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 0.0% | Volcar las ID de Terraria |  |
@@ -123,7 +123,7 @@
 | [EconomicsAPI](./src/EconomicsAPI/README.md) | 0.0% | Plugin económico |  |
 | [EndureBoost](./src/EndureBoost/README.md) | 0.0% | Otorga un buff específico cuando el jugador tiene una cantidad determinada de objetos |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.es-ES.md) | 99.2% | Comandos de gestión adicionales |  |
-| [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos |  |
+| [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos | [LazyAPI](./src/LazyAPI/README.md) |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Tienda de peces |  |
 | [GenerateMap](./src/GenerateMap/README.md) | 0.0% | Generar imágenes de mapas | [CaiLib](./src/CaiLib/README.md) |
 | [GolfRewards](./src/GolfRewards/README.md) | 0.0% | Recompensas de golf |  |
@@ -134,13 +134,13 @@
 | [HouseRegion](./src/HouseRegion/README.md) | 0.0% | Plugin de reclamación de tierras | [LazyAPI](./src/LazyAPI/README.md) |
 | [Invincibility](./src/Invincibility/README.md) | 0.0% | Invencibilidad limitada en el tiempo |  |
 | [ItemBox](./src/ItemBox/README.md) | 0.0% | Inventario fuera de línea |  |
-| [ItemDecoration](./src/ItemDecoration/README.es-ES.md) | 100.0% | Muestra mensajes flotantes para los ítems en las manos | [LazyAPI](./src/LazyAPI/README.md) |
-| [ItemPreserver](./src/ItemPreserver/README.md) | 100.0% | Conserva ítems específicos de la consumición |  |
-| [JourneyUnlock](./src/JourneyUnlock/README.md) | 100.0% | Desbloquea ítems del modo Journey |  |
+| [ItemDecoration](./src/ItemDecoration/README.es-ES.md) | 100.0% | Muestra el spryte y texto de info y damage del item seleccionado | [LazyAPI](./src/LazyAPI/README.md) |
+| [ItemPreserver](./src/ItemPreserver/README.md) | 50.0% | Conserva ítems específicos de la consumición |  |
+| [JourneyUnlock](./src/JourneyUnlock/README.md) | 6.3% | Desbloquea ítems del modo Journey |  |
 | [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | 100.0% | Plugin adaptador para el bot Lagrange.XocMat | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.md) | 0.0% | Biblioteca base para plugins | [linq2db]() |
 | [LifemaxExtra](./src/LifemaxExtra/README.md) | 0.0% | Comer más frutas/cristales de vida | [LazyAPI](./src/LazyAPI/README.md) |
-| [ListPlugins](./src/ListPlugins/README.md) | 100.0% | Lista los plugins instalados |  |
+| [ListPlugins](./src/ListPlugins/README.md) | 16.7% | Lista los plugins instalados |  |
 | [MapTp](./src/MapTp/README.md) | 100.0% | Teletransportarse con doble clic en el mapa |  |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) | 0.0% | API para el mini-juego de pasta de frijol |  |
 | [ModifyWeapons](./src/ModifyWeapons/README.md) | 0.0% | Deje que los jugadores realicen dos Sprint | [LazyAPI](./src/LazyAPI/README.md) |
@@ -199,11 +199,11 @@
 | [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Proveer algunos otros comandos auxiliares | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 0.0% | Un cargador de plugins que permite la recarga en caliente |  |
 | [VeinMiner](./src/VeinMiner/README.md) | 0.0% | Minado en cadena |  |
-| [VotePlus](./src/VotePlus/README.md) | 98.6% | Votación multifuncional |  |
+| [VotePlus](./src/VotePlus/README.md) | 96.1% | Votación multifuncional |  |
 | [WeaponPlus](./src/WeaponPlus/README.md) | 100.0% | Versión de monedas para mejorar armas |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 100.0% | Cargue el paquete de idioma wiki para el servidor. |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 0.0% | Editor del mundo, permite modificar la mayoría de los parámetros del mundo |  |
-| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | 100.0% | Plugin de gestión de jugadores de Zhi |  |
+| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | 66.1% | Plugin de gestión de jugadores de Zhi |  |
 
 </Details>
 

@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 0, 5);
+    public override Version Version => new Version(1, 0, 6);
     public override string Description => GetString("定时随机发送一条广播内容");
     private static readonly Random random = new Random();
     #endregion
@@ -50,7 +50,7 @@ public class Plugin : TerrariaPlugin
         Config = Configuration.Read();
         Config.UpdateTotalRate();
         Config.Write();
-        TShock.Log.ConsoleInfo("[随机发送消息]重新加载配置完毕。");
+        TShock.Log.ConsoleInfo(GetString("[随机发送消息]重新加载配置完毕。"));
     }
     #endregion
 

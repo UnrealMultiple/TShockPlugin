@@ -39,7 +39,8 @@
 ## 更新日志
 
 ```
-
+v1.1.2
+为ColorRgbBytes添加[JsonIgnore]
 v1.1.1
 几乎完全重写逻辑
 v1.0.9

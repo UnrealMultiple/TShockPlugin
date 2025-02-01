@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RandomBroadcast\n"
-"POT-Creation-Date: 2025-01-08 18:23:33+0000\n"
-"PO-Revision-Date: 2025-01-08 18:23:34+0000\n"
+"POT-Creation-Date: 2025-01-29 16:03:08+0000\n"
+"PO-Revision-Date: 2025-01-29 16:03:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
+#: ../../Plugin.cs:53
+msgid "[随机发送消息]重新加载配置完毕。"
+msgstr ""
+
 #: ../../Plugin.cs:18
 msgid "定时随机发送一条广播内容"
+msgstr ""
+
+#: ../../Configuration.cs:63
+msgid "无法计算总概率，因消息表为空。"
 msgstr ""
 
