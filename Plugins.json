@@ -170,7 +170,7 @@
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.1.1",
+    "Version": "1.1.2",
     "Author": "Scavenger,Cai",
     "Description": {
       "en-US": "Automatic broadcast plugin",
@@ -2545,7 +2545,7 @@
   },
   {
     "Name": "VBY.OtherCommand",
-    "Version": "1.0.0.131",
+    "Version": "1.0.0.201",
     "Author": "yu",
     "Description": {
       "en-US": "一些其他的辅助命令",
