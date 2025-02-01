@@ -20,7 +20,7 @@ public class CaiRewardChest : TerrariaPlugin
     public override string Description => GetString("奖励箱！！");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new (2025, 1, 29, 1);
+    public override Version Version => new (2025, 1, 31, 1);
 
 
     public override void Initialize()
@@ -130,6 +130,7 @@ public class CaiRewardChest : TerrariaPlugin
             {
                 e.Player.SendWarningMessage(
                     GetString($"[i:{WorldGen.GetChestItemDrop(chest2.X, chest2.Y, Main.tile[chest2.X, chest2.Y].type)}]你已经领取过这个奖励箱啦!"));
+                e.Handled = true;
                 return;
             }
             e.Handled = true;
