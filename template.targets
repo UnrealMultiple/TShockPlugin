@@ -15,7 +15,7 @@
 
     <ItemGroup>
         <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-6qmf-mmc7-6c2p"/>
-        <PackageReference Include="TShock" Version="5.2.1">
+        <PackageReference Include="TShock" Version="5.2.2">
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>
