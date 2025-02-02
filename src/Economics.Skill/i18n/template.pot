@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Skill\n"
-"POT-Creation-Date: 2025-02-02 04:20:38+0000\n"
-"PO-Revision-Date: 2025-02-02 04:20:39+0000\n"
+"POT-Creation-Date: 2025-02-02 04:38:45+0000\n"
+"PO-Revision-Date: 2025-02-02 04:38:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -71,18 +71,6 @@ msgstr ""
 msgid "/skill reset"
 msgstr ""
 
-#: ../../Enumerates/SkillSparkType.cs:44
-msgid "BUFF"
-msgstr ""
-
-#: ../../Enumerates/SkillSparkType.cs:20
-msgid "CD"
-msgstr ""
-
-#: ../../Enumerates/SkillSparkType.cs:11
-msgid "主动"
-msgstr ""
-
 #: ../../Command.cs:112
 #: ../../Command.cs:155
 msgid "你并未绑定技能!"
@@ -114,22 +102,6 @@ msgstr ""
 msgid "你的货币不足购买此技能!"
 msgstr ""
 
-#: ../../Enumerates/SkillSparkType.cs:32
-msgid "冲刺"
-msgstr ""
-
-#: ../../Enumerates/SkillSparkType.cs:29
-msgid "击打"
-msgstr ""
-
-#: ../../Enumerates/SkillSparkType.cs:26
-msgid "击杀"
-msgstr ""
-
-#: ../../Enumerates/SkillSparkType.cs:41
-msgid "受击"
-msgstr ""
-
 #: ../../Command.cs:101
 msgid "已清除目标玩家绑定的隐藏技能!"
 msgstr ""
@@ -141,10 +113,6 @@ msgstr ""
 #: ../../Utils.cs:33
 #, csharp-format
 msgid "当前进度无法购买此技能，限制进度:{0}"
-msgstr ""
-
-#: ../../Enumerates/AIStyleType.cs:13
-msgid "悬浮"
 msgstr ""
 
 #: ../../Command.cs:200
@@ -167,10 +135,6 @@ msgstr ""
 
 #: ../../Command.cs:137
 msgid "手持物品并未绑定技能!"
-msgstr ""
-
-#: ../../Enumerates/SkillSparkType.cs:50
-msgid "技能"
 msgstr ""
 
 #: ../../Command.cs:28
@@ -232,24 +196,8 @@ msgstr ""
 msgid "此武器已超过规定的最大绑定数量!"
 msgstr ""
 
-#: ../../Enumerates/SkillSparkType.cs:23
-msgid "死亡"
-msgstr ""
-
-#: ../../Enumerates/SkillSparkType.cs:47
-msgid "环境"
-msgstr ""
-
-#: ../../Enumerates/AIStyleType.cs:10
-msgid "环绕"
-msgstr ""
-
 #: ../../Command.cs:188
 msgid "目标玩家不存在或不在线!"
-msgstr ""
-
-#: ../../Enumerates/AIStyleType.cs:7
-msgid "空"
 msgstr ""
 
 #: ../../Skill.cs:143
@@ -259,18 +207,6 @@ msgstr ""
 
 #: ../../Utils.cs:20
 msgid "绑定此技能需要手持一个武器!"
-msgstr ""
-
-#: ../../Enumerates/SkillSparkType.cs:17
-msgid "蓝量"
-msgstr ""
-
-#: ../../Enumerates/SkillSparkType.cs:14
-msgid "血量"
-msgstr ""
-
-#: ../../Enumerates/SkillSparkType.cs:35
-msgid "装备"
 msgstr ""
 
 #: ../../Skill.cs:21
@@ -283,14 +219,6 @@ msgstr ""
 
 #: ../../Command.cs:69
 msgid "购买成功，技能已绑定!"
-msgstr ""
-
-#: ../../Enumerates/AIStyleType.cs:16
-msgid "跟踪"
-msgstr ""
-
-#: ../../Enumerates/SkillSparkType.cs:38
-msgid "跳跃"
 msgstr ""
 
 #: ../../Command.cs:29

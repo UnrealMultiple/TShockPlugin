@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EconomicsAPI\n"
-"POT-Creation-Date: 2025-02-02 04:20:40+0000\n"
-"PO-Revision-Date: 2025-02-02 04:20:40+0000\n"
+"POT-Creation-Date: 2025-02-02 04:38:47+0000\n"
+"PO-Revision-Date: 2025-02-02 04:38:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -52,10 +52,6 @@ msgstr ""
 msgid "Economics 已重置"
 msgstr ""
 
-#: ../../Enumerates/CurrencyObtainType.cs:6
-msgid "不可获取"
-msgstr ""
-
 #: ../../Economics.cs:127
 #, csharp-format
 msgid "世界名称: {0}"
@@ -78,10 +74,6 @@ msgstr ""
 #: ../../Command.cs:245
 #, csharp-format
 msgid "兑换{0}个{1}需要{2}个{3}，而您只有{4}个!"
-msgstr ""
-
-#: ../../Enumerates/CurrencyObtainType.cs:9
-msgid "击杀怪物"
 msgstr ""
 
 #: ../../Economics.cs:126
@@ -127,10 +119,6 @@ msgstr ""
 #: ../../Command.cs:216
 #, csharp-format
 msgid "成功转账给`{0}` {1} 个{2}"
-msgstr ""
-
-#: ../../Enumerates/CurrencyObtainType.cs:12
-msgid "挖掘矿物"
 msgstr ""
 
 #: ../../Economics.cs:24

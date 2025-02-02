@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoPluginManager\n"
-"POT-Creation-Date: 2025-02-02 04:20:21+0000\n"
-"PO-Revision-Date: 2025-02-02 04:20:21+0000\n"
+"POT-Creation-Date: 2025-02-02 04:38:21+0000\n"
+"PO-Revision-Date: 2025-02-02 04:38:21+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -102,22 +102,6 @@ msgstr ""
 #: ../../Internal/CommandAdapter.cs:235
 #: ../../Internal/CommandAdapter.cs:409
 msgid "*热重载已启用,安装的插件已生效!"
-msgstr ""
-
-#: ../../Internal/PluginAPIType.cs:15
-msgid "/plugin/get_all_plugins"
-msgstr ""
-
-#: ../../Internal/PluginAPIType.cs:6
-msgid "/plugin/get_plugin_list"
-msgstr ""
-
-#: ../../Internal/PluginAPIType.cs:9
-msgid "/plugin/get_plugin_manifest/"
-msgstr ""
-
-#: ../../Internal/PluginAPIType.cs:12
-msgid "/plugin/get_plugin_zip"
 msgstr ""
 
 #: ../../Internal/CommandAdapter.cs:39

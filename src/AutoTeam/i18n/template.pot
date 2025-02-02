@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoTeam\n"
-"POT-Creation-Date: 2025-02-02 04:20:22+0000\n"
-"PO-Revision-Date: 2025-02-02 04:20:22+0000\n"
+"POT-Creation-Date: 2025-02-02 04:38:23+0000\n"
+"PO-Revision-Date: 2025-02-02 04:38:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,8 +23,8 @@ msgstr ""
 msgid "启用"
 msgstr ""
 
-#: ../../Configuration.cs:22
 #: ../../AutoTeamPlus.cs:111
+#: ../../Configuration.cs:22
 msgid "未配置"
 msgstr ""
 
