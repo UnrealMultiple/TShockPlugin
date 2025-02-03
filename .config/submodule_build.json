@@ -10,7 +10,7 @@
             "name": "Chireiden.TShock.Omni.Misc",
             "project_path": "src/Submodules/Yaaiomni/Misc/Misc.csproj",
             "assembly_path": "src/Submodules/Yaaiomni/Misc/bin/{BuildType}/{TargetFramework}/Chireiden.TShock.Omni.Misc.dll",
-            "readme": "src/Submodules/Yaaiomni/README.md"
+            "readme": ""
         },
         {
             "name": "FishShop",
@@ -59,6 +59,12 @@
             "project_path": "src/Submodules/VBY.Plugins/src/VBY/OtherCommand/OtherCommand.csproj",
             "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.OtherCommand.dll",
             "readme": "src/Submodules/VBY.Plugins/docs/VBY.OtherCommand.md"
+        },
+        {
+            "name": "VBY.PluginLoaderAutoReload",
+            "project_path": "src/Submodules/VBY.Plugins/src/VBY/PluginLoaderAutoReload/PluginLoaderAutoReload.csproj",
+            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.PluginLoaderAutoReload.dll",
+            "readme": "src/Submodules/VBY.Plugins/docs/VBY.PluginLoaderAutoReload.md"
         }
     ]
 }
