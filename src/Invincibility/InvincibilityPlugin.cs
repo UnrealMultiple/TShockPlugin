@@ -12,7 +12,7 @@ public class InvincibilityPlugin : TerrariaPlugin
     public override string Author => "肝帝熙恩";
     public override string Description => GetString("在命令中给予玩家一段时间的无敌状态。");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 10);
+    public override Version Version => new Version(1, 1, 0);
     public static Configuration Config = null!;
 
     private readonly Dictionary<TSPlayer, float> invincibleDurations = new();
@@ -92,7 +92,7 @@ public class InvincibilityPlugin : TerrariaPlugin
     {
         if (args.Parameters.Count < 1)
         {
-            args.Player.SendErrorMessage(GetString("用法: /限时god无敌或tgod <持续时间秒数>"));
+            args.Player.SendErrorMessage(GetString("用法: /限时god无敌 或 /tgod <持续时间秒数>"));
             return;
         }
 

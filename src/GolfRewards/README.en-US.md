@@ -10,7 +10,7 @@
 
 | Command    |  Permissions  |     Description      |
 |-------|:----:|:-----------:|
-| /物块坐标 | 物块坐标 | Auxiliary command to determine block coordinates |
+| /物块坐标 或 /blockpos | blockpos | Auxiliary command to determine block coordinates |
 
 ## Configuration
 > Configuration file location: tshock/高尔夫奖励.json
