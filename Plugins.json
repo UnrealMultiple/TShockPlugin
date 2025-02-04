@@ -1380,7 +1380,7 @@
   },
   {
     "Name": "Invincibility",
-    "Version": "1.0.10",
+    "Version": "1.1.0",
     "Author": "肝帝熙恩",
     "Description": {
       "en-US": "Gives the player invincibility for a period of time in the command.",
@@ -2731,7 +2731,7 @@
   },
   {
     "Name": "GolfRewards",
-    "Version": "1.0.11",
+    "Version": "1.1.0",
     "Author": "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449",
     "Description": {
       "en-US": "Hitting the golf ball into the hole will receive rewards.",
