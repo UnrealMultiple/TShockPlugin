@@ -268,7 +268,7 @@ public class ActionHandler
     private static void CommandHandler(BaseAction action, MemoryStream stream)
     {
         var data = Serializer.Deserialize<ServerCommandArgs>(stream);
-        var player = new OneBotPlayer("MorMorBot");
+        var player = new OneBotPlayer("XocMat");
         Commands.HandleCommand(player, data.Text);
         var res = new ServerCommand(player.CommandOutput)
         {

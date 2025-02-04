@@ -2,7 +2,7 @@
 
 namespace Economics.Skill.Model.Options;
 
-public class Buff
+public class BuffOption
 {
     [JsonProperty("BuffID")]
     public int BuffId { get; set; }

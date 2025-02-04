@@ -3,40 +3,42 @@
 namespace Economics.Skill.Internal;
 internal class JobjManager
 {
-    private readonly static List<Scheduler> _schedulers = new();
+    internal static PriorityQueue<Action<object>, long> scheduled = new();
+
+    private static readonly Dictionary<Action<object>, object> Args = new();
+
+    public static long Timer { get; internal set; }
+
+    public static void Schedule(int interval, Action<object> action)
+    {
+
+        void Wrapper(object args)
+        {
+            action(args);
+            Delayed(interval, Wrapper, args);
+        }
+
+        Delayed(interval, Wrapper, Args[action]);
+    }
+
+    public static void Delayed(int delay, Action<object> action, object obj)
+    {
+        Args[action] = obj;
+        scheduled.Enqueue(action, delay + Timer);
+    }
 
     internal static void FrameUpdate()
     {
-        for (var i = _schedulers.Count - 1; i >= 0; i--)
+        ++Timer;
+        while (scheduled.TryPeek(out var action, out var time))
         {
-            var scheduler = _schedulers[i];
-            scheduler.Update().CanRun();
-            if (scheduler.Running == ScheduleState.Success)
+            if (time > Timer)
             {
-                _schedulers.RemoveAt(i);
+                break;
             }
+            action(Args[action]);
+            scheduled.Dequeue();
         }
     }
 
-    public static Scheduler Add(Action action, bool autoRest = false)
-    {
-        var sch = new Scheduler(action, autoRest);
-        _schedulers.Add(sch);
-        return sch;
-    }
-
-    public static Scheduler Add(Action action, TimeSpan ts, bool autoRest = false)
-    {
-        return Add(action, autoRest).AddTimeSpan(ts);
-    }
-
-    public static int RemoveAll(Guid guid)
-    {
-        return _schedulers.RemoveAll(s => s.Guid == guid);
-    }
-
-    public static bool Remove(Scheduler scheduler)
-    {
-        return _schedulers.Remove(scheduler);
-    }
 }
