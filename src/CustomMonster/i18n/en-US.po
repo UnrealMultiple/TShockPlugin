@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:34+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-02-04 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../CustomMonster.cs:239
 msgid " /召唤自定义怪物血量怪物 怪物标志 "
-msgstr " /smc sign "
+msgstr " /smc flag "
 
 #: ../../CustomMonster.cs:241
 msgid " /召唤自定义怪物血量怪物 怪物标志 X像素坐标 Y像素坐标"
@@ -92,7 +92,7 @@ msgstr "{0} Summoned Wall of Flesh."
 #: ../../CustomMonster.cs:498
 #, csharp-format
 msgid "{0}定义时间过小被阻止生成"
-msgstr "{0} The definition time is too small and is prevented from generating"
+msgstr "{0} Defined time is too small and is prevented from generating"
 
 #: ../../CustomMonster.cs:123
 #, csharp-format
@@ -105,7 +105,7 @@ msgstr "Summon {0} {1} count."
 
 #: ../../CustomMonster.cs:259
 msgid "坐标错误,正确格式是: /召唤自定义怪物血量怪物 怪物标志 X像素坐标 Y像素坐标(无法指定肉山)"
-msgstr "Coordinate error, the correct format is: /smc sign X Y (unable to WallofFlesh)"
+msgstr "Coordinate error, correct format is: /smc sign X Y (unable to Wall of Flesh)"
 
 #: ../../CustomMonster.cs:124
 msgid "已启动! --------------"
@@ -113,7 +113,7 @@ msgstr "Started! ----------------------------------------"
 
 #: ../../CustomMonster.cs:149
 msgid "已显示"
-msgstr "displayed"
+msgstr "Displayed"
 
 #: ../../CustomMonster.cs:148
 msgid "已隐藏"
@@ -123,7 +123,7 @@ msgstr "Hidden"
 #: ../../CustomMonster.cs:2032
 #, csharp-format
 msgid "攻略失败: {0} 已撤离."
-msgstr "Attacking failed: {0} has been evacuated."
+msgstr "Attacking failed: {0} has been removed."
 
 #: ../../CustomMonster.cs:796
 #, csharp-format
@@ -132,7 +132,7 @@ msgstr "Attack success: {0} has been defeated."
 
 #: ../../CustomMonster.cs:252
 msgid "数量错误,正确格式是: /召唤自定义怪物血量怪物 怪物标志 召唤数量"
-msgstr "Quantity is wrong, the correct format is: /smc sign num"
+msgstr "Quantity is wrong, correct format is: /smc sign num"
 
 #: ../../CustomMonster.cs:246
 msgid "无效标志"
@@ -144,15 +144,15 @@ msgstr "Invalid empty NPC ID!"
 
 #: ../../CustomMonster.cs:304
 msgid "无法根据肉墙的当前状态或您的当前位置生成肉墙。"
-msgstr "Unable to generate Wall of Flesh based on its current status or your current location."
+msgstr "Unable to spawn Wall of Flesh based on its current status or your current location."
 
 #: ../../CustomMonster.cs:160
 msgid "未找到自定义怪物血量配置，已为您创建！修改配置后重启即可重新载入数据。"
-msgstr "CustomMonster Configuration not found, created for you! After modifying the configuration, restart to reload the data。"
+msgstr "CustomMonster Configuration not found, created for you! After modifying the configuration, restart to reload data."
 
 #: ../../CustomMonster.cs:238
 msgid "格式错误,正确格式是:"
-msgstr "Format error, the correct format is:"
+msgstr "Format error, correct format is:"
 
 #: ../../CustomMonster.cs:322
 msgid "没有这个标记的怪物"
@@ -166,32 +166,32 @@ msgstr "Note: {0} remaining strategy time {1} seconds."
 #: ../../CustomMonster.cs:1145
 #, csharp-format
 msgid "注意: {0} 受服务器人数增多影响怪物血量减少 {1} 剩{2}."
-msgstr "Note: {0} is affected by the increase in the number of people on the server to reduce the number of monsters to {1} left with{2}."
+msgstr "Note: {0} is affected by the increase in the number of players on the server to reduce the number of monsters to {1} left with{2}."
 
 #: ../../CustomMonster.cs:1150
 #, csharp-format
 msgid "注意: {0} 受服务器人数增多影响怪物血量增加 {1}剩{2}."
-msgstr "Note: {0} Monsters affected by increasing number of people on server increases the amount of {1}left by{2}."
+msgstr "Note: {0} Monsters affected by increasing number of player on server increases the amount of {1}left by{2}."
 
 #: ../../CustomMonster.cs:1088
 #, csharp-format
 msgid "注意: {0} 受服务器人数增多影响攻略时间减少 {1} 秒剩{2}秒."
-msgstr "Note: {0} The increase in the number of people is affected by the increase in the strategy of the guide time {1} second left {2} seconds."
+msgstr "Note: {0} The increase in the number of players is affected by the increase in the strategy of the guide time {1} second left {2} seconds."
 
 #: ../../CustomMonster.cs:1093
 #, csharp-format
 msgid "注意: {0} 受服务器人数增多影响攻略时间增加 {1}秒剩{2}秒."
-msgstr ""
+msgstr "Note: {0} Increased the number of player to increase the time increase {1} second left {2} seconds."
 
 #: ../../CustomMonster.cs:1166
 #, csharp-format
 msgid "注意: {0} 现身,攻略时间为 {1} 秒,血量为 {2},快快加入战斗吧!"
-msgstr ""
+msgstr "Note: {0} appear, with health {2}, the strategy time is {1} seconds, join the battle!"
 
 #: ../../CustomMonster.cs:1171
 #, csharp-format
 msgid "注意: {0} 现身,血量为 {1},快快加入战斗吧!"
-msgstr ""
+msgstr "Note: {0} appear, with health {1}, join the battle!"
 
 #: ../../CustomMonster.cs:311
 msgid "肉墙召唤成功."
@@ -208,7 +208,7 @@ msgstr "Custom monster plugin processing timeout, partial processing has been ab
 #: ../../CustomMonster.cs:2131
 #, csharp-format
 msgid "自定义怪物血量时钟:{0}"
-msgstr ""
+msgstr "Custom Monster Clock:{0}"
 
 #: ../../CustomMonster.cs:85
 msgid "输入 /召唤自定义怪物血量怪物 怪物标志 会召唤指定标记的怪物(无视召唤条件)"
