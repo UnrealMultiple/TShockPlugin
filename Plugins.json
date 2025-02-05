@@ -44,7 +44,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.200.0",
+    "Version": "0.0.202.0",
     "Author": "SGKoishi",
     "Description": {
       "en-US": "Yet another misc plugin for TShock",
@@ -665,7 +665,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.200.0",
+    "Version": "0.0.202.0",
     "Author": "SGKoishi",
     "Description": {
       "en-US": "Yet another misc plugin for TShock - the miscellaneous part",
@@ -2652,7 +2652,7 @@
     "Version": "1.0.0.6",
     "Author": "z枳",
     "Description": {
-      "en-US": "Allow any weapon to be strengthened on basic attributes",
+      "en-US": "Allow to modify weapon to be strengthened on basic attributes",
       "de-DE": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "it-IT": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "fr-FR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
