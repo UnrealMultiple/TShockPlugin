@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:03:27+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"POT-Creation-Date: 2025-01-31 16:22:29+0000\n"
+"PO-Revision-Date: 2025-02-01 01:11\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -145,7 +145,7 @@ msgstr "Su nombre contiene la palabra clave del comando: time, por favor cámbie
 msgid "你的名字含有指令关键字: uuid ，请更换"
 msgstr "Su nombre contiene la palabra clave del comando: uuid, cámbielo"
 
-#: ../../ZHIPM.Initialize.cs:1380
+#: ../../ZHIPM.Initialize.cs:1381
 msgid "保险箱:"
 msgstr "seguro:"
 
@@ -304,7 +304,7 @@ msgstr "Tiempo en línea:"
 msgid "在线时长[i:3099]："
 msgstr "Tiempo en línea [i:3099]:"
 
-#: ../../ZHIPM.Initialize.cs:1368
+#: ../../ZHIPM.Initialize.cs:1369
 msgid "垃圾桶:"
 msgstr "Slot de Trash:"
 
@@ -312,12 +312,12 @@ msgstr "Slot de Trash:"
 msgid "备份存档数目最小为 1 ，请不要输入无效值，已修改为默认 5"
 msgstr "El número mínimo de archivos de copia de seguridad es 1. No ingrese valores no válidos. Se ha modificado al valor predeterminado de 5."
 
-#: ../../ZHIPM.Initialize.cs:1294
+#: ../../ZHIPM.Initialize.cs:1295
 #, csharp-format
 msgid "多个结果  玩家 【{0}】 的所有库存如下:"
 msgstr "Múltiples resultados Todos los inventarios del jugador [{0}] son ​​los siguientes:"
 
-#: ../../ZHIPM.Initialize.cs:1473
+#: ../../ZHIPM.Initialize.cs:1474
 #, csharp-format
 msgid "多个结果  玩家 【{0}】 的所有库存如下:\n"
 "{1}"
@@ -351,11 +351,11 @@ msgstr "Número de Misiones de pescador realizadas:"
 msgid "完成渔夫任务数[i:3120]："
 msgstr "Número de tareas de pescador completadas [i:3120]:"
 
-#: ../../ZHIPM.Initialize.cs:1356
+#: ../../ZHIPM.Initialize.cs:1357
 msgid "宠物 + 矿车 + 坐骑 + 钩爪:"
 msgstr "Mascota + Carro minero + Montura + Gancho:"
 
-#: ../../ZHIPM.Initialize.cs:1362
+#: ../../ZHIPM.Initialize.cs:1363
 msgid "宠物 矿车 坐骑 钩爪 染料:"
 msgstr "Tinte de gancho para montura de carro de mina para mascotas:"
 
@@ -489,11 +489,11 @@ msgstr "Número de monedas en stock:"
 msgid "当前最多 {0} 人"
 msgstr "Actualmente como máximo {0} personas"
 
-#: ../../ZHIPM.Initialize.cs:1331
+#: ../../ZHIPM.Initialize.cs:1332
 msgid "当前染料:"
 msgstr "Tintes actuales:"
 
-#: ../../ZHIPM.Initialize.cs:1306
+#: ../../ZHIPM.Initialize.cs:1307
 msgid "当前装备栏："
 msgstr "Columna de equipamiento actual:"
 
@@ -664,7 +664,7 @@ msgstr "Se han inicializado todos los datos de todos los jugadores."
 msgid "所有玩家的额外数据均已重置"
 msgstr "Se han restablecido todos los datos adicionales del jugador."
 
-#: ../../ZHIPM.Initialize.cs:1386
+#: ../../ZHIPM.Initialize.cs:1387
 msgid "护卫熔炉:"
 msgstr "Guarda la forja:"
 
@@ -731,15 +731,15 @@ msgstr "El reproductor no se encontró en la base de datos original. Verifique s
 msgid "未被允许死亡回调传送，请在配置文件中修改"
 msgstr "La transmisión de devolución de llamada por muerte no está permitida, modifíquela en el archivo de configuración"
 
-#: ../../ZHIPM.Initialize.cs:1337
+#: ../../ZHIPM.Initialize.cs:1338
 msgid "染料1:"
 msgstr "Tinte 1:"
 
-#: ../../ZHIPM.Initialize.cs:1343
+#: ../../ZHIPM.Initialize.cs:1344
 msgid "染料2:"
 msgstr "Tinte 2:"
 
-#: ../../ZHIPM.Initialize.cs:1349
+#: ../../ZHIPM.Initialize.cs:1350
 msgid "染料3:"
 msgstr "Tinte 3:"
 
@@ -810,7 +810,7 @@ msgstr "Puntos insuficientes, incapaz de volver al último lugar de muerte."
 msgid "点数奖励 + 1000"
 msgstr "Bonificación de puntos + 1000"
 
-#: ../../ZHIPM.Initialize.cs:1374
+#: ../../ZHIPM.Initialize.cs:1375
 msgid "猪猪储蓄罐:"
 msgstr "Alcancía de cerdo:"
 
@@ -870,23 +870,23 @@ msgstr "El jugador {0} se ha teletransportado al lugar de su última muerte."
 msgid "玩家 {0} 已经在线了 {1}"
 msgstr "El jugador {0} ya está en línea {1}"
 
-#: ../../ZHIPM.Initialize.cs:1402
+#: ../../ZHIPM.Initialize.cs:1403
 #, csharp-format
 msgid "玩家 【{0}】 未携带任何东西"
 msgstr "El jugador [{0}] no lleva nada"
 
-#: ../../ZHIPM.Initialize.cs:1482
+#: ../../ZHIPM.Initialize.cs:1483
 #: ../../ZHIPM.Initialize.cs:1640
 #, csharp-format
 msgid "玩家 【{0}】 未携带任何东西\n"
 msgstr "El jugador [{0}] no lleva nada"
 
-#: ../../ZHIPM.Initialize.cs:1294
+#: ../../ZHIPM.Initialize.cs:1295
 #, csharp-format
 msgid "玩家 【{0}】 的所有库存如下:"
 msgstr "Todos los inventarios del jugador [{0}] son ​​los siguientes:"
 
-#: ../../ZHIPM.Initialize.cs:1477
+#: ../../ZHIPM.Initialize.cs:1478
 #, csharp-format
 msgid "玩家 【{0}】 的所有库存如下:\n"
 "{1}"
@@ -1002,7 +1002,7 @@ msgstr "El usuario {0} no pudo ser baneado. Quizás el jugador ha sido baneado o
 msgid "用户 {0} 已被 {1} 封禁"
 msgstr "El usuario {0} ha sido baneado por {1}"
 
-#: ../../ZHIPM.Initialize.cs:1305
+#: ../../ZHIPM.Initialize.cs:1306
 msgid "盔甲 + 饰品 + 时装:"
 msgstr "Armadura + Accesorios + Vanidad:"
 
@@ -1086,7 +1086,7 @@ msgstr "No. {0}: [{1}] Valor de novato {2:0.00}"
 msgid "精准查找未找到，正在尝试模糊查找"
 msgstr "No se encontró la búsqueda exacta, intenté con la búsqueda difusa"
 
-#: ../../ZHIPM.Initialize.cs:1298
+#: ../../ZHIPM.Initialize.cs:1299
 msgid "背包:"
 msgstr "Inventario:"
 
@@ -1094,7 +1094,7 @@ msgstr "Inventario:"
 msgid "自动备份被禁用，请联系管理员询问详情"
 msgstr "La copia de seguridad automática está deshabilitada; comuníquese con su administrador para obtener más detalles."
 
-#: ../../ZHIPM.Initialize.cs:1392
+#: ../../ZHIPM.Initialize.cs:1393
 msgid "虚空金库:"
 msgstr "Bóveda del Vacío:"
 
@@ -1102,15 +1102,15 @@ msgstr "Bóveda del Vacío:"
 msgid "血肉墙"
 msgstr "Muro Carnoso"
 
-#: ../../ZHIPM.Initialize.cs:1312
+#: ../../ZHIPM.Initialize.cs:1313
 msgid "装备栏1："
 msgstr "Equipo columna 1:"
 
-#: ../../ZHIPM.Initialize.cs:1318
+#: ../../ZHIPM.Initialize.cs:1319
 msgid "装备栏2："
 msgstr "Equipo columna 2:"
 
-#: ../../ZHIPM.Initialize.cs:1324
+#: ../../ZHIPM.Initialize.cs:1325
 msgid "装备栏3："
 msgstr "Equipo columna 3:"
 
@@ -1175,7 +1175,7 @@ msgstr ""
 msgid "输入 /vid <name> 来查看该玩家的库存，不分类\n"
 msgstr ""
 
-#: ../../ZHIPM.Initialize.cs:1498
+#: ../../ZHIPM.Initialize.cs:1499
 msgid "输入 /vid <玩家名>  来查看该玩家的库存，不进行排列"
 msgstr "Ingrese /vid <nombre del jugador> para ver el inventario del jugador sin ordenar"
 

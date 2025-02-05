@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:37+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-02-04 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,76 +19,79 @@ msgstr ""
 
 #: ../../Plugin.cs:55
 msgid "[禁怪物掉落]重新加载配置完毕。"
-msgstr "[Forbidden Monster Drops] Reloading configuration is complete."
+msgstr "【Prevent Monster Drops】Reload configuration complete."
 
 #: ../../Commands.cs:20
 msgid "【禁怪掉落指令菜单】\n"
-msgstr ""
+msgstr "【Prevent Monster Drops Instruction Menu】\n"
 
 #: ../../Commands.cs:56
 msgid "【禁怪物掉落】\n"
 "'清理列表'中所有怪物的清理功能已开启"
-msgstr ""
+msgstr "【Prevent Monster Drops】\n"
+"Cleaning function of all monsters in the \"Cleanings List 'has been opened"
 
 #: ../../Commands.cs:82
 #, csharp-format
 msgid "【禁怪物掉落】\n"
 "已成功将清理范围设置为: {0} 格!"
-msgstr ""
+msgstr "【Prevent Monster Drops】\n"
+"has set the cleanup range to: {0}!"
 
 #: ../../Commands.cs:36
 msgid "【禁怪物掉落】已启用"
-msgstr ""
+msgstr "【Prevent Monster Drops】Enabled"
 
 #: ../../Commands.cs:64
 msgid "【禁怪物掉落】已启用全杀功能。"
-msgstr ""
+msgstr "【Prevent Monster Drops】Full kill function has been enabled."
 
 #: ../../Commands.cs:37
 msgid "【禁怪物掉落】已禁用"
-msgstr ""
+msgstr "【Prevent Monster Drops】Disabled"
 
 #: ../../Commands.cs:65
 msgid "【禁怪物掉落】已禁用全杀功能。"
-msgstr ""
+msgstr "【Prevent Monster Drops】Full kill function has been disabled."
 
 #: ../../Commands.cs:44
 #, csharp-format
 msgid "【禁止掉落的怪物表】\n"
 "{0}"
-msgstr ""
+msgstr "【Prevent Monster Drops】\n"
+"{0}"
 
 #: ../../Commands.cs:25
 msgid "/kdm f 数字 —— 设置清理范围(默认35格)\n"
-msgstr ""
+msgstr "/kdm f [Number] —— Set the cleanup range (default 35 grid)\n"
 
 #: ../../Commands.cs:24
 msgid "/kdm kill —— 开启|关闭全杀功能\n"
-msgstr ""
+msgstr "/kdm kill —— Turn on | off full kill function\n"
 
 #: ../../Commands.cs:23
 msgid "/kdm list —— 列出禁止掉落的怪物表\n"
-msgstr ""
+msgstr "/kdm list —— List monster prevent to drop\n"
 
 #: ../../Commands.cs:22
 msgid "/kdm on —— 开启|关闭禁怪掉落功能\n"
-msgstr ""
+msgstr "/kdm on —— Turn on | off ban on the prevent monster drop function\n"
 
 #: ../../Commands.cs:27
 msgid "/kdm reset —— 恢复所有清理开关\n"
-msgstr ""
+msgstr "/kdm reset —— Restore all cleaning switches\n"
 
 #: ../../Commands.cs:21
 msgid "/kdm 或 /禁掉落 —— 查看禁怪掉落指令菜单\n"
-msgstr ""
+msgstr "/kdm —— View ban monster drop instruction menu\n"
 
 #: ../../Commands.cs:26
 msgid "/reload —— 重载禁怪掉落配置文件\n"
-msgstr ""
+msgstr "/reload —— Reload prevent monster drop configuration file\n"
 
 #: ../../Commands.cs:43
 msgid "未知NPC"
-msgstr ""
+msgstr "Unknown NPC"
 
 #: ../../Plugin.cs:18
 msgid "清理怪物身边掉落物"

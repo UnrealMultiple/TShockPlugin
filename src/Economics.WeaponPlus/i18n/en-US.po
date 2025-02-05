@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:45+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-02-04 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "[Weapon Enhancement EC Version] Configuration reloaded."
 #: ../../WeaponPlus.cs:581
 #, csharp-format
 msgid "{0}不足！"
-msgstr ""
+msgstr "{0} Not enough!"
 
 #: ../../WeaponPlus.cs:145
 msgid "SSC 未开启"
@@ -55,7 +55,7 @@ msgstr "SSC not enabled"
 #: ../../WItem.cs:119
 #, csharp-format
 msgid "伤害升至下一级需：{0}"
-msgstr ""
+msgstr "Damage require to the next level need: {0}"
 
 #: ../../WeaponPlus.cs:21
 msgid "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes"
@@ -76,22 +76,22 @@ msgstr "Almost all weapons and ammunition can be enhanced, but the enhancement w
 #: ../../WItem.cs:121
 #, csharp-format
 msgid "击退升至下一级需：{0}"
-msgstr ""
+msgstr "Knockback require to the next level needs: {0}"
 
 #: ../../WItem.cs:120
 #, csharp-format
 msgid "大小升至下一级需：{0}"
-msgstr ""
+msgstr "Size require to the next level needs: {0}"
 
 #: ../../WeaponPlus.cs:182
 #, csharp-format
 msgid "完全重置成功！{0}回收：{1}"
-msgstr ""
+msgstr "Complete resettlement! {0} Recycling: {1}"
 
 #: ../../WItem.cs:123
 #, csharp-format
 msgid "射弹飞速升至下一级需：{0}"
-msgstr ""
+msgstr "Projectile speed require to the next level needs: {0}"
 
 #: ../../WItem.cs:127
 msgid "已达到最大武器总等级"
@@ -112,7 +112,7 @@ msgstr "Already at max level"
 #: ../../WItem.cs:103
 #, csharp-format
 msgid "当前总等级：{0}   剩余强化次数：{1} 次    伤害等级：{2}, 大小等级：{3}, 击退等级：{4}, 攻速等级：{5}, 射弹飞行速度等级：{6}"
-msgstr ""
+msgstr "Current total level: {0} remaining number of reinforcements: {1} damage level: {2}, size level: {3}, knockback level: {4}, attack speed level: {5}, projectile speed level : {6}"
 
 #: ../../WeaponPlus.cs:174
 msgid "当前武器没有任何等级，不用回炉重做"
@@ -122,12 +122,13 @@ msgstr "The current weapon has no levels and does not need to be remade."
 #, csharp-format
 msgid "当前物品：[i:{0}]   共计消耗：{1}\n"
 "{2}"
-msgstr ""
+msgstr "Current items: [i:{0}] Total consumption: {1}\n"
+"{2}"
 
 #: ../../WItem.cs:116
 #, csharp-format
 msgid "当前状态：伤害 +{0:0.00%}，大小 +{1:0.00%}，击退 +{2:0.00%}，攻速 +{3:0.00%}，射弹飞速 +{4:0.00%}"
-msgstr ""
+msgstr "Current status: damage+{0:0.00%}, size+{1:0.00%}, knockback+{2:0.00%}, attack speed+{3:0.00%}, projectile speed+{4:0.00%}"
 
 #: ../../WeaponPlus.cs:572
 msgid "当前该类型升级已达到上限，无法升级"
@@ -144,12 +145,12 @@ msgstr "All enhancement data for all players successfully cleared!"
 #: ../../WeaponPlus.cs:578
 #, csharp-format
 msgid "扣除{0}：{1}，当前剩余：{2}"
-msgstr ""
+msgstr "Deduction {0}: {1}, current remaining: {2}"
 
 #: ../../WItem.cs:122
 #, csharp-format
 msgid "攻速升至下一级需：{0}"
-msgstr ""
+msgstr "Attack speed require to the next level needs: {0}"
 
 #: ../../WItem.cs:107
 msgid "未升级过，无任何加成"
