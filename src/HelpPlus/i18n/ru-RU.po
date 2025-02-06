@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:59+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:02:50+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,49 +17,54 @@ msgstr ""
 "X-Crowdin-File-ID: 1182\n"
 "Language: ru_RU\n"
 
-#: ../../Help.cs:246
+#: ../../Help.cs:247
 msgid "[c/c2ff39:无权限限制]"
 msgstr ""
 
-#: ../../Help.cs:45
+#: ../../Help.cs:46
 msgid "[HelpPlus]插件配置已重载！"
 msgstr ""
 
-#: ../../Help.cs:227
+#: ../../Help.cs:228
 #, csharp-format
 msgid "{0}{1}的帮助:"
 msgstr ""
 
-#: ../../Help.cs:259
+#: ../../Help.cs:145
+#, csharp-format
+msgid "{0}执行了/{1}。"
+msgstr ""
+
+#: ../../Help.cs:260
 msgid "*本插件只能查询主命令权限，详细权限请使用/whynot查看!"
 msgstr ""
 
-#: ../../Help.cs:256
+#: ../../Help.cs:257
 msgid "*此命令不记录命令参数"
 msgstr ""
 
-#: ../../Help.cs:251
+#: ../../Help.cs:252
 msgid "*此命令只能游戏内执行"
 msgstr ""
 
-#: ../../Help.cs:223
+#: ../../Help.cs:224
 msgid "你没有权限查询此命令."
 msgstr ""
 
-#: ../../Help.cs:242
+#: ../../Help.cs:243
 #, csharp-format
 msgid "别名: [c/00ffff:{0}]"
 msgstr ""
 
-#: ../../Help.cs:202
+#: ../../Help.cs:203
 msgid "命令列表 ({0}/{1}):"
 msgstr ""
 
-#: ../../Help.cs:217
+#: ../../Help.cs:218
 msgid "无效命令."
 msgstr ""
 
-#: ../../Help.cs:184
+#: ../../Help.cs:185
 #, csharp-format
 msgid "无效用法.正确用法: {0}help <命令/页码>"
 msgstr ""
@@ -68,17 +73,17 @@ msgstr ""
 msgid "更好的Help"
 msgstr ""
 
-#: ../../Help.cs:246
+#: ../../Help.cs:247
 #, csharp-format
 msgid "权限: {0}"
 msgstr ""
 
-#: ../../Help.cs:248
+#: ../../Help.cs:249
 #, csharp-format
 msgid "来源插件: [c/8500ff:{0}]"
 msgstr ""
 
-#: ../../Help.cs:203
+#: ../../Help.cs:204
 #, csharp-format
 msgid "输入 {0}help {{0}} 翻页."
 msgstr ""

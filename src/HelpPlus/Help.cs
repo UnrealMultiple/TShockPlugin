@@ -28,7 +28,8 @@ public class HelpPlus : TerrariaPlugin
 
     public override string Description => GetString("更好的Help");
 
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(2024, 12, 18, 3);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(2024, 12, 18, 4);
 
     public override void Initialize()
     {
@@ -141,7 +142,7 @@ public class HelpPlus : TerrariaPlugin
                         if (cmdName == "help")
                         {
                             Help(new CommandArgs(null, false, player, args));
-                            TShock.Utils.SendLogs($"{player.Name}执行了/{cmdText}。", Color.PaleVioletRed, player);
+                            TShock.Utils.SendLogs(GetString($"{player.Name}执行了/{cmdText}。"), Color.PaleVioletRed, player);
                             return false;
                         }
                         break;
@@ -243,7 +244,7 @@ public class HelpPlus : TerrariaPlugin
             }
 
             args.Player.SendInfoMessage(
-                GetString($"权限: {(command.Permissions.Count == 0 || command.Permissions.Count(i => i == "") == command.Permissions.Count ? GetString("[c/c2ff39:无权限限制]") : "[c/bf0705:" + string.Join(',', command.Permissions) + "]")}"));
+                GetString($"权限: {(command.Permissions.Count == 0 || command.Permissions.Count(i => i == "") == command.Permissions.Count ? GetString("[c/c2ff39:无权限限制]") : $"[c/bf0705:{string.Join(',', command.Permissions)}]")}"));
             args.Player.SendInfoMessage(
                 GetString($"来源插件: [c/8500ff:{command.CommandDelegate.Method.DeclaringType!.Assembly.FullName!.Split(',').First()}]"));
             if (!command.AllowServer)

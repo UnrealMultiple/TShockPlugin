@@ -14,7 +14,7 @@ public class MusicPlayer : TerrariaPlugin
     public override string Description => GetString("一个简单的音乐播放插件.");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 5);
+    public override Version Version => new Version(1, 0, 6);
 
     public string songPath = Path.Combine(TShock.SavePath, "Songs");
 
@@ -99,7 +99,7 @@ public class MusicPlayer : TerrariaPlugin
     {
         if (!args.Player.RealPlayer)
         {
-            args.Player.SendErrorMessage("此命令要求在游戏内使用");
+            args.Player.SendErrorMessage(GetString("此命令要求在游戏内使用"));
             return;
         }
         var songPlayer = SongPlayers[args.Player.Index];
@@ -107,15 +107,15 @@ public class MusicPlayer : TerrariaPlugin
         {
             return;
         }
-        const string invalidUsageMessage = "方式: /song <歌曲名称> [演奏乐器]\n演奏乐器: harp, theaxe, bell，默认为 harp";
-        const string stopPlaybackMessage = "使用 /song 来停止播放.";
+        var invalidUsageMessage = GetString("方式: /song <歌曲名称> [演奏乐器]\n演奏乐器: harp, theaxe, bell，默认为 harp");
+        var stopPlaybackMessage = GetString("使用 /song 来停止播放.");
 
         if (args.Parameters.Count == 0)
         {
             if (songPlayer.Listening)
             {
                 songPlayer.EndSong();
-                TShock.Players[songPlayer.Player.Index].SendInfoMessage("已经为你停止播放");
+                TShock.Players[songPlayer.Player.Index].SendInfoMessage(GetString("已经为你停止播放"));
             }
             else
             {
@@ -135,11 +135,11 @@ public class MusicPlayer : TerrariaPlugin
                 var performer = VirtualPerformer.GetPerformer(args.Parameters.ElementAtOrDefault(1));
                 performer.Create(songPlayer.Player.Index);
                 songPlayer.StartSong(new PlaySongInfo(notes, tempo, performer));
-                args.Player.SendInfoMessage("正在播放: {0}", songName); // 添加这条消息来提示正在播放
+                args.Player.SendInfoMessage(GetString("正在播放: {0}"), songName); // 添加这条消息来提示正在播放
             }
             else
             {
-                args.Player.SendErrorMessage("加载歌曲失败: '{0}'", songName);
+                args.Player.SendErrorMessage(GetString("加载歌曲失败: '{0}'"), songName);
             }
         }
     }
@@ -166,14 +166,14 @@ public class MusicPlayer : TerrariaPlugin
                         songPlayer.StartSong(new PlaySongInfo(notes, tempo, performer));
                         if (TShock.Players[i].Active)
                         {
-                            TShock.Players[i].SendInfoMessage("正在给您播放: {0}，使用/song停止播放", songName);
+                            TShock.Players[i].SendInfoMessage(GetString("正在给您播放: {0}，使用/song停止播放"), songName);
                         }
                     }
                 }
             }
             else
             {
-                args.Player.SendErrorMessage("加载歌曲失败: '{0}'", songName);
+                args.Player.SendErrorMessage(GetString("加载歌曲失败: '{0}'"), songName);
             }
         }
         else
@@ -184,10 +184,10 @@ public class MusicPlayer : TerrariaPlugin
                 if (songPlayer != null && songPlayer.Listening)
                 {
                     songPlayer.EndSong();
-                    TShock.Players[songPlayer.Player.Index].SendInfoMessage("已经为你停止播放");
+                    TShock.Players[songPlayer.Player.Index].SendInfoMessage(GetString("已经为你停止播放"));
                 }
             }
-            args.Player.SendInfoMessage("已经为所有玩家停止播放");
+            args.Player.SendInfoMessage(GetString("已经为所有玩家停止播放"));
         }
     }
 
@@ -197,7 +197,7 @@ public class MusicPlayer : TerrariaPlugin
         var targetFolder = Path.Combine(TShock.SavePath, "Songs");
         if (!Directory.Exists(targetFolder))
         {
-            args.Player.SendErrorMessage("目录不存在: {0}", targetFolder);
+            args.Player.SendErrorMessage(GetString("目录不存在: {0}"), targetFolder);
             return;
         }
 
@@ -206,12 +206,12 @@ public class MusicPlayer : TerrariaPlugin
         // 如果没有文件
         if (files.Length == 0)
         {
-            args.Player.SendSuccessMessage("没有任何歌曲: {0}", targetFolder);
+            args.Player.SendSuccessMessage(GetString("没有任何歌曲: {0}"), targetFolder);
             return;
         }
 
         // 发送文件列表到聊天
-        var fileListMessage = new StringBuilder($"本服务器有以下歌曲:\n");
+        var fileListMessage = new StringBuilder(GetString("本服务器有以下歌曲:\n"));
         foreach (var file in files)
         {
             fileListMessage.Append(Path.GetFileName(file)).AppendLine();

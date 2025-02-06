@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CaiRewardChest\n"
-"POT-Creation-Date: 2025-01-08 13:15:38+0000\n"
-"PO-Revision-Date: 2025-01-08 13:15:38+0000\n"
+"POT-Creation-Date: 2025-01-31 12:02:05+0000\n"
+"PO-Revision-Date: 2025-01-31 12:02:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:124
+#: ../../Plugin.cs:141
+msgid "[CaiRewardChest]发生错误: "
+msgstr ""
+
+#: ../../Plugin.cs:132
 #, csharp-format
 msgid "[i:{0}]你已经领取过这个奖励箱啦!"
 msgstr ""
@@ -20,41 +24,41 @@ msgstr ""
 msgid "[i:{0}]你打开了一个奖励箱: "
 msgstr ""
 
-#: ../../Plugin.cs:93
+#: ../../Plugin.cs:95
 msgid "[i:48]你删除了这个奖励箱~"
 msgstr ""
 
-#: ../../Plugin.cs:76
+#: ../../Plugin.cs:78
 msgid "[i:48]你添加了一个奖励箱~"
 msgstr ""
 
-#: ../../Plugin.cs:169
+#: ../../Plugin.cs:184
 #, csharp-format
 msgid "[i:48]奖励箱初始化完成,共添加{0}个奖励箱~"
 msgstr ""
 
-#: ../../Plugin.cs:153
+#: ../../Plugin.cs:168
 msgid "[i:48]奖励箱已全部清除~"
 msgstr ""
 
-#: ../../Plugin.cs:145
+#: ../../Plugin.cs:160
 msgid "[i:48]请打开需要删除的奖励箱~"
 msgstr ""
 
-#: ../../Plugin.cs:139
+#: ../../Plugin.cs:154
 msgid "[i:48]请打开需要添加的奖励箱~"
 msgstr ""
 
-#: ../../Plugin.cs:133
+#: ../../Plugin.cs:148
 msgid "[i:48]请打开需要编辑的奖励箱~"
 msgstr ""
 
-#: ../../Plugin.cs:87
-#: ../../Plugin.cs:107
+#: ../../Plugin.cs:89
+#: ../../Plugin.cs:109
 msgid "[i:48]这个箱子好像不是奖励箱捏~"
 msgstr ""
 
-#: ../../Plugin.cs:70
+#: ../../Plugin.cs:72
 msgid "[i:48]这个箱子好像是奖励箱捏~"
 msgstr ""
 

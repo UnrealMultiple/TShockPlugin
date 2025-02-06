@@ -12,7 +12,7 @@ public static class NoteName
         {
             return -3f; // 例如，返回-3f表示停顿
         }
-        throw new ArgumentException("给与的名称不是一个音符. 数值: [" + name + "]", nameof(name));
+        throw new ArgumentException(GetString($"给与的名称不是一个音符. 数值: [{name}]"), nameof(name));
     }
     public static bool TryGetNoteByName(string name, out float noteValue)
     {

@@ -10,7 +10,7 @@ public class Plugin : TerrariaPlugin
 {
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学";
-    public override Version Version => new Version(1, 5, 8);
+    public override Version Version => new Version(1, 5, 9);
     public override string Description => GetString("给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）");
     #endregion
 
@@ -29,7 +29,7 @@ public class Plugin : TerrariaPlugin
         GetDataHandlers.PlayerUpdate.Register(this.PlayerUpdate);
         Commands.ChatCommands.Add(new Command("room.use", Comds.Comd, "rm", "基建")
         {
-            HelpText = "生成基础建设"
+            HelpText = GetString("生成基础建设")
         });
     }
 
@@ -52,7 +52,7 @@ public class Plugin : TerrariaPlugin
     {
         Config = Configuration.Read();
         Config.Write();
-        TShock.Log.ConsoleInfo("[生成基础建设]重新加载配置完毕。");
+        TShock.Log.ConsoleInfo(GetString("[生成基础建设]重新加载配置完毕。"));
     }
     #endregion
 
@@ -192,8 +192,8 @@ public class Plugin : TerrariaPlugin
             }
 
             TShock.Utils.Broadcast(
-                "基础建设已完成，如需重置布局\n" +
-                "请输入指令后重启服务器：/rm reset", 250, 247, 105);
+                GetString("基础建设已完成，如需重置布局\n") +
+                GetString("请输入指令后重启服务器：/rm reset"), 250, 247, 105);
 
             Commands.HandleCommand(TSPlayer.Server, "/save");
             Commands.HandleCommand(TSPlayer.Server, "/clear i 9999");
@@ -666,7 +666,7 @@ public class Plugin : TerrariaPlugin
         {
             TileHelper.InformPlayers();
             var value = Utils.GetUnixTimestamp - secondLast;
-            plr.SendSuccessMessage($"已生成{total}个小房子，用时{value}秒。");
+            plr.SendSuccessMessage(GetString($"已生成{total}个小房子，用时{value}秒。"));
         });
     }
 

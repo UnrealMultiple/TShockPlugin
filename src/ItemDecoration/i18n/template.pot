@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ItemDecoration\n"
-"POT-Creation-Date: 2025-01-10 13:00:30+0000\n"
-"PO-Revision-Date: 2025-01-10 13:00:30+0000\n"
+"POT-Creation-Date: 2025-01-30 06:28:49+0000\n"
+"PO-Revision-Date: 2025-01-30 06:28:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:15
+#: ../../Plugin.cs:21
 msgid "Show Item Decoration and More!!!"
 msgstr ""
 

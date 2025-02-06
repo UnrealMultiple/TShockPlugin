@@ -74,7 +74,7 @@ public class StatusTextManager : TerrariaPlugin
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "LaoSparrow";
     public override string Description => GetString("Manage status text of different plugins");
-    public override Version Version => new Version(1, 1, 2);
+    public override Version Version => new Version(1, 1, 3);
 
     #endregion
 

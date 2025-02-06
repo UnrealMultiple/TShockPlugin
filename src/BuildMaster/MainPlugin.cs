@@ -14,7 +14,7 @@ namespace MainPlugin;
 public class MainPlugin : TerrariaPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 6);
+    public override Version Version => new Version(1, 0, 7);
 
     public override string Author => "豆沙 羽学，肝帝熙恩适配";
 
@@ -67,7 +67,7 @@ public class MainPlugin : TerrariaPlugin
         var roomByID = ConfigUtils.GetRoomByID(playerByName.CurrentRoomID);
         if (!args.Text.StartsWith(((ConfigFile<TShockSettings>) (object) TShock.Config).Settings.CommandSilentSpecifier) && !args.Text.StartsWith(((ConfigFile<TShockSettings>) (object) TShock.Config).Settings.CommandSpecifier) && playerByName != null && roomByID != null)
         {
-            roomByID.Broadcast(GetString("[房内聊天]") + playerByName.Name + ":" + args.Text, Color.DodgerBlue);
+            roomByID.Broadcast(GetString($"[房内聊天]{playerByName.Name}:{args.Text}"), Color.DodgerBlue);
             ((HandledEventArgs) (object) args).Handled = true;
         }
     }
@@ -771,7 +771,9 @@ public class MainPlugin : TerrariaPlugin
                 if (roomByID != null)
                 {
                     playerByName.Ready();
-                    roomByID.Broadcast(GetString("玩家 ") + playerByName.Name + " " + (playerByName.IsReady ? GetString("已准备") : "未准备"), Color.OrangeRed);
+                    roomByID.Broadcast(playerByName.IsReady
+                        ? GetString($"玩家 {playerByName.Name} 已准备")
+                        : GetString($"玩家 {playerByName.Name} 未准备"), Color.OrangeRed);
                 }
                 else
                 {
@@ -797,12 +799,12 @@ public class MainPlugin : TerrariaPlugin
                             if (string.IsNullOrEmpty(playerByName.SelectedTopic))
                             {
                                 roomByID.Topics[text]++;
-                                roomByID.Broadcast(GetString("玩家 ") + playerByName.Name + GetString(" 投票主题 ") + text, Color.DarkTurquoise);
+                                roomByID.Broadcast(GetString($"玩家 {playerByName.Name} 投票主题 {text}"), Color.DarkTurquoise);
                             }
                             else
                             {
                                 roomByID.Topics[playerByName.SelectedTopic]--;
-                                roomByID.Broadcast(GetString("玩家 ") + playerByName.Name + GetString(" 更改投票主题为 ") + text, Color.DarkTurquoise);
+                                roomByID.Broadcast(GetString($"玩家 {playerByName.Name} 更改投票主题为 {text}"), Color.DarkTurquoise);
                                 roomByID.Topics[text]++;
                             }
                             playerByName.SelectedTopic = text;
@@ -831,7 +833,7 @@ public class MainPlugin : TerrariaPlugin
                     stringBuilder.AppendLine(GetString("此房支持的主题"));
                     foreach (var key in roomByID.Topics.Keys)
                     {
-                        stringBuilder.AppendLine("[" + key + "]");
+                        stringBuilder.AppendLine($"[{key}]");
                     }
                     playerByName.SendSuccessMessage(stringBuilder.ToString());
                 }
@@ -858,7 +860,7 @@ public class MainPlugin : TerrariaPlugin
                 if (roomByID != null)
                 {
                     roomByID.Players.Remove(buildPlayer);
-                    roomByID.Broadcast(GetString("玩家 ") + buildPlayer.Name + GetString(" 强制退出了房间"), Color.Crimson);
+                    roomByID.Broadcast(GetString($"玩家 {buildPlayer.Name} 强制退出了房间"), Color.Crimson);
                 }
                 buildPlayer.CurrentRoomID = 0;
                 buildPlayer.IsReady = false;

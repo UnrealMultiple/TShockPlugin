@@ -4,7 +4,7 @@
 - source: none
 - Modify player inventory
 
-## Rest API
+## Commands 
 
 | Command               |             Permissions             |  Description  |
 |------------------|:--------------------------:|:----:|

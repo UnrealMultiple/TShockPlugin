@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:37+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:02:27+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,21 +17,36 @@ msgstr ""
 "X-Crowdin-File-ID: 1124\n"
 "Language: es_ES\n"
 
-#: ../../Plugin.cs:56
-#: ../../Plugin.cs:57
-#: ../../Plugin.cs:68
-#: ../../Plugin.cs:74
+#: ../../Plugin.cs:175
+#, csharp-format
+msgid "[C({0})->S] 解析数据包时出错:{1}"
+msgstr ""
+
+#: ../../Plugin.cs:64
+#: ../../Plugin.cs:65
+#: ../../Plugin.cs:76
+#: ../../Plugin.cs:82
 msgid "[c/00FF00:已启用]"
 msgstr ""
 
-#: ../../Plugin.cs:56
-#: ../../Plugin.cs:57
-#: ../../Plugin.cs:68
-#: ../../Plugin.cs:74
+#: ../../Plugin.cs:64
+#: ../../Plugin.cs:65
+#: ../../Plugin.cs:76
+#: ../../Plugin.cs:82
 msgid "[c/FF0000:已禁用]"
 msgstr ""
 
-#: ../../Plugin.cs:27
+#: ../../Plugin.cs:103
+#: ../../Plugin.cs:138
+#, csharp-format
+msgid "[S->C({0})] 解析数据包时出错:{1}"
+msgstr ""
+
+#: ../../Plugin.cs:66
+msgid "*/cpd cts|stc 开关数据包调试"
+msgstr ""
+
+#: ../../Plugin.cs:32
 msgid "用于调试数据包的插件捏~"
 msgstr ""
 

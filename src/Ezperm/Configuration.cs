@@ -1,65 +1,65 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI.Attributes;
+using LazyAPI.ConfigFiles;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
 using TShockAPI;
 
 namespace Ezperm;
 
-internal class GroupInfo
+[Config]
+internal class Configuration : JsonConfigBase<Configuration>
 {
-    [JsonProperty("组名字")]
-    public string Name { get; set; } = "";
-    [JsonProperty("添加的权限")]
-    public List<string> AddPermissions { get; set; } = new();
-    [JsonProperty("删除的权限")]
-    public List<string> DelPermissions { get; set; } = new();
-}
-
-internal class Configuration
-{
-    public static readonly string FilePath = Path.Combine(TShock.SavePath, "ezperm.json");
-
-    public List<GroupInfo> Groups { get; set; } = new();
-
-    public void Write(string path)
+    protected override string Filename => "ezperm";
+    internal class GroupInfo
     {
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
-        {
-            var str = JsonConvert.SerializeObject(this, Formatting.Indented);
-            using (var sw = new StreamWriter(fs))
-            {
-                sw.Write(str);
-            }
-        }
+        [LocalizedPropertyName(CultureType.Chinese, "组名字")]
+        [LocalizedPropertyName(CultureType.English, "Name")]
+        public string Name { get; set; } = "";
+
+        [LocalizedPropertyName(CultureType.Chinese, "父组")]
+        [LocalizedPropertyName(CultureType.English, "Parent")]
+        public string Parent { get; set; } = "";
+
+        [LocalizedPropertyName(CultureType.Chinese, "添加的权限")]
+        [LocalizedPropertyName(CultureType.English, "AddPermissions")]
+        public List<string> AddPermissions { get; set; } = new List<string>();
+
+        [LocalizedPropertyName(CultureType.Chinese, "删除的权限")]
+        [LocalizedPropertyName(CultureType.English, "DelPermissions")]
+        public List<string> DelPermissions { get; set; } = new List<string>();
     }
 
-    public static Configuration Read(string path)
+    [LocalizedPropertyName(CultureType.Chinese, "组列表", Order = -3)]
+    [LocalizedPropertyName(CultureType.English, "Groups", Order = -3)]
+    public List<GroupInfo> Groups { get; set; } = new List<GroupInfo>();
+
+    protected override void SetDefault()
     {
-        if (!File.Exists(path))
+        this.Groups = new List<GroupInfo>
         {
-            // If the file doesn't exist, create a default configuration
-            var defaultConfig = new Configuration
+            new GroupInfo
             {
-                Groups = new List<GroupInfo>
+                Name = "default",
+                Parent = "guest",
+                AddPermissions = new List<string>
                 {
-                    new GroupInfo
-                    {
-                        Name = "default",
-                        AddPermissions = new List<string> { "tshock.world.movenpc","tshock.world.time.usesundial", "tshock.tp.pylon", "tshock.tp.demonconch", "tshock.tp.magicconch", "tshock.tp.tppotion", "tshock.tp.rod","tshock.tp.wormhole","tshock.npc.startdd2", "tshock.npc.spawnpets", "tshock.npc.summonboss","tshock.npc.startinvasion","tshock.npc.hurttown" },
-                        DelPermissions = new List<string> { "tshock.admin" }
-                    }
-                }
-            };
-
-            defaultConfig.Write(path);
-            return defaultConfig;
-        }
-
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-        {
-            using (var sr = new StreamReader(fs))
-            {
-                var cf = JsonConvert.DeserializeObject<Configuration>(sr.ReadToEnd())!;
-                return cf;
+                    "tshock.world.movenpc",
+                    "tshock.world.time.usesundial",
+                    "tshock.tp.pylon",
+                    "tshock.tp.demonconch",
+                    "tshock.tp.magicconch",
+                    "tshock.tp.tppotion",
+                    "tshock.tp.rod",
+                    "tshock.tp.wormhole",
+                    "tshock.npc.startdd2",
+                    "tshock.npc.spawnpets",
+                    "tshock.npc.summonboss",
+                    "tshock.npc.startinvasion",
+                    "tshock.npc.hurttown"
+                },
+                DelPermissions = new List<string> { "tshock.admin" }
             }
-        }
+        };
     }
 }

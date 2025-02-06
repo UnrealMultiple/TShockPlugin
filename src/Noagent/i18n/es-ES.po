@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:08+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:02:59+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,30 @@ msgstr ""
 "X-Crowdin-File: /master/src/Noagent/i18n/template.pot\n"
 "X-Crowdin-File-ID: 1482\n"
 "Language: es_ES\n"
+
+#: ../../Noagent.cs:92
+#, csharp-format
+msgid "{0} IP无异常"
+msgstr ""
+
+#: ../../Noagent.cs:70
+#, csharp-format
+msgid "{0} 使用内网或回环地址，跳过代理检测"
+msgstr ""
+
+#: ../../Noagent.cs:88
+msgid "本服务禁止代理IP登录"
+msgstr ""
+
+#: ../../Noagent.cs:87
+#, csharp-format
+msgid "检测到{0}为代理，已踢出"
+msgstr ""
+
+#: ../../Noagent.cs:97
+#, csharp-format
+msgid "检测玩家{0} IP时发生错误: {1}"
+msgstr ""
 
 #: ../../Noagent.cs:13
 msgid "禁止代理登录"

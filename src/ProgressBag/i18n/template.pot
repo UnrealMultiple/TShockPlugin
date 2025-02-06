@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ProgressBag\n"
-"POT-Creation-Date: 2025-01-10 13:00:42+0000\n"
-"PO-Revision-Date: 2025-01-10 13:00:42+0000\n"
+"POT-Creation-Date: 2025-01-29 16:03:04+0000\n"
+"PO-Revision-Date: 2025-01-29 16:03:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -49,6 +49,10 @@ msgstr ""
 msgid "你当前所在的组无法领取该礼包!"
 msgstr ""
 
+#: ../../Plugin.cs:118
+msgid "已领取"
+msgstr ""
+
 #: ../../Plugin.cs:41
 msgid "当前进度无法领取该礼包!"
 msgstr ""
@@ -56,6 +60,10 @@ msgstr ""
 #: ../../Plugin.cs:143
 #, csharp-format
 msgid "成功领取{0}个进度礼包!"
+msgstr ""
+
+#: ../../Plugin.cs:119
+msgid "未领取"
 msgstr ""
 
 #: ../../Plugin.cs:155

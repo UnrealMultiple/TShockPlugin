@@ -13,7 +13,7 @@ internal class TileHelper
     {
         if (isTaskRunning)
         {
-            op?.SendErrorMessage("另一个创建任务正在执行，请稍后再操作");
+            op?.SendErrorMessage(GetString("另一个创建任务正在执行，请稍后再操作"));
         }
         return isTaskRunning;
     }

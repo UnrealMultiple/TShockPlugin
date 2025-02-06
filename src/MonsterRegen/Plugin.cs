@@ -13,7 +13,7 @@ public class Plugin : TerrariaPlugin
 {
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "途逗 羽学";
-    public override Version Version => new Version(1, 7, 3);
+    public override Version Version => new Version(1, 7, 4);
     public override string Description => GetString("通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔");
     internal static Configuration Config = new();
     private Timer? Timer;
@@ -63,7 +63,7 @@ public class Plugin : TerrariaPlugin
     {
         Config = Configuration.Read();
         Config.Write();
-        TShock.Log.ConsoleInfo("[怪物进度回血]重新加载配置完毕。");
+        TShock.Log.ConsoleInfo(GetString("[怪物进度回血]重新加载配置完毕。"));
         if (Config.Enable && this.Timer != null)
         {
             this.UpdateTimer();
@@ -180,13 +180,13 @@ public class Plugin : TerrariaPlugin
                     this.Level = 0;
                 }
 
-                TShock.Utils.Broadcast($"\n【怪物进度回血】\n" +
-                    $"因击败邪恶Boss,泰拉全体怪物激发进阶回血\n" +
-                    $"限制最少回复：[c/3DA1FF:{Config.HealMin}]点\n" +
-                    $"限制最多回复：[c/F43A4C:{Config.HealMax}]点\n" +
-                    $"当前进度阶级：[c/DAA4EF:{this.Level}]阶\n" +
-                    $"阶段回血比例：[c/FFCEAB:{Heal:P1}] \n" +
-                    $"阶段回血间隔：[c/3DFFE3:{Config.DefaultTimer}]秒", Color.Yellow);
+                TShock.Utils.Broadcast(GetString($"\n【怪物进度回血】\n") +
+                    GetString($"因击败邪恶Boss,泰拉全体怪物激发进阶回血\n") +
+                    GetString($"限制最少回复：[c/3DA1FF:{Config.HealMin}]点\n") +
+                    GetString($"限制最多回复：[c/F43A4C:{Config.HealMax}]点\n") +
+                    GetString($"当前进度阶级：[c/DAA4EF:{this.Level}]阶\n") +
+                    GetString($"阶段回血比例：[c/FFCEAB:{Heal:P1}] \n") +
+                    GetString($"阶段回血间隔：[c/3DFFE3:{Config.DefaultTimer}]秒"), Color.Yellow);
             }
         }
     }

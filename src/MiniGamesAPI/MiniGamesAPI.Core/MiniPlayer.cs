@@ -85,13 +85,13 @@ public class MiniPlayer
     public override string ToString()
     {
         var stringBuilder = new StringBuilder();
-        stringBuilder.AppendLine("玩家名：" + this.Name);
-        stringBuilder.AppendLine($"击杀数：{this.Kills}");
-        stringBuilder.AppendLine($"死亡数：{this.Deaths}");
-        stringBuilder.AppendLine($"助攻数：{this.Assistances}");
-        stringBuilder.AppendLine($"准备状态：{this.IsReady}");
-        stringBuilder.AppendLine($"房间号：{this.CurrentRoomID}");
-        stringBuilder.AppendLine($"当前状态：{this.Status}");
+        stringBuilder.AppendLine(GetString($"玩家名：{this.Name}"));
+        stringBuilder.AppendLine(GetString($"击杀数：{this.Kills}"));
+        stringBuilder.AppendLine(GetString($"死亡数：{this.Deaths}"));
+        stringBuilder.AppendLine(GetString($"助攻数：{this.Assistances}"));
+        stringBuilder.AppendLine(GetString($"准备状态：{this.IsReady}"));
+        stringBuilder.AppendLine(GetString($"房间号：{this.CurrentRoomID}"));
+        stringBuilder.AppendLine(GetString($"当前状态：{this.Status}"));
         return stringBuilder.ToString();
     }
 

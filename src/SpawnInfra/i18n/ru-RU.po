@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:27+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:03:18+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,56 @@ msgstr ""
 "X-Crowdin-File-ID: 1532\n"
 "Language: ru_RU\n"
 
+#: ../../Plugin.cs:55
+msgid "[生成基础建设]重新加载配置完毕。"
+msgstr ""
+
+#: ../../Comds.cs:14
+msgid "【生成基础建设】\n"
+msgstr ""
+
+#: ../../Comds.cs:25
+msgid "【生成基础建设】开关已打开，请重启服务器。"
+msgstr ""
+
+#: ../../Comds.cs:15
+msgid "/rm 数量 —— 建监狱\n"
+msgstr ""
+
+#: ../../Comds.cs:16
+msgid "/rm 重置 —— 重置自动建房开关"
+msgstr ""
+
+#: ../../TileHelper.cs:16
+msgid "另一个创建任务正在执行，请稍后再操作"
+msgstr ""
+
+#: ../../Plugin.cs:195
+msgid "基础建设已完成，如需重置布局\n"
+msgstr ""
+
+#: ../../Plugin.cs:669
+#, csharp-format
+msgid "已生成{0}个小房子，用时{1}秒。"
+msgstr ""
+
+#: ../../Plugin.cs:32
+msgid "生成基础建设"
+msgstr ""
+
 #: ../../Plugin.cs:14
 msgid "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）"
+msgstr ""
+
+#: ../../Plugin.cs:196
+msgid "请输入指令后重启服务器：/rm reset"
+msgstr ""
+
+#: ../../Utils.cs:12
+msgid "请进入游戏后再操作！"
+msgstr ""
+
+#: ../../Comds.cs:40
+msgid "输入的监狱数量不对"
 msgstr ""
 

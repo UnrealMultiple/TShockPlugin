@@ -17,7 +17,8 @@ public partial class PControl : TerrariaPlugin
     //金表17，铂金表709，秒表3099，杀怪计数器3095，食人魔勋章3868，计划书903
     public override string Author => "z枳 羽学";
     public override string Description => GetString("计划书");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 11);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 0, 0, 12);
 
     public static Config config = new Config();
 
@@ -91,38 +92,38 @@ public partial class PControl : TerrariaPlugin
                 {
                     if (time % 3600 == 0)
                     {
-                        TSPlayer.All.SendInfoMessage($"世界将于{HoursToM(span.TotalHours, "EA00FF")}后重置");
-                        Console.WriteLine($"世界将于{HoursToM(span.TotalHours)}后重置");
+                        TSPlayer.All.SendInfoMessage(GetString($"世界将于{HoursToM(span.TotalHours, "EA00FF")}后重置"));
+                        Console.WriteLine(GetString($"世界将于{HoursToM(span.TotalHours)}后重置"));
                     }
                 }
                 else if (time >= 3600)// [1h ~ 5h)，30m一次广播
                 {
                     if (time % 1800 == 0)
                     {
-                        TSPlayer.All.SendInfoMessage($"世界将于{HoursToM(span.TotalHours, "EA00FF")}后重置");
-                        Console.WriteLine($"世界将于{HoursToM(span.TotalHours)}后重置");
+                        TSPlayer.All.SendInfoMessage(GetString($"世界将于{HoursToM(span.TotalHours, "EA00FF")}后重置"));
+                        Console.WriteLine(GetString($"世界将于{HoursToM(span.TotalHours)}后重置"));
                     }
                 }
                 else if (time >= 600)// [10m ~ 60m)，10m一次
                 {
                     if (time % 600 == 0)
                     {
-                        TSPlayer.All.SendInfoMessage($"世界将于{HoursToM(span.TotalHours, "EA00FF")}后重置");
-                        Console.WriteLine($"世界将于{HoursToM(span.TotalHours)}后重置");
+                        TSPlayer.All.SendInfoMessage(GetString($"世界将于{HoursToM(span.TotalHours, "EA00FF")}后重置"));
+                        Console.WriteLine(GetString($"世界将于{HoursToM(span.TotalHours)}后重置"));
                     }
                 }
                 else if (time >= 60)//[60s ~ 10m), 1m一次
                 {
                     if (time % 60 == 0)
                     {
-                        TSPlayer.All.SendInfoMessage($"世界将于{HoursToM(span.TotalHours, "EA00FF")}后重置");
-                        Console.WriteLine($"世界将于{HoursToM(span.TotalHours)}后重置");
+                        TSPlayer.All.SendInfoMessage(GetString($"世界将于{HoursToM(span.TotalHours, "EA00FF")}后重置"));
+                        Console.WriteLine(GetString($"世界将于{HoursToM(span.TotalHours)}后重置"));
                     }
                 }
                 else if (time >= 0)//[0 , 60)
                 {
-                    TSPlayer.All.SendInfoMessage($"世界将于 [c/EA00FF:{span.Seconds}] 秒后重置");
-                    Console.WriteLine($"世界将于 {span.Seconds} 秒后重置");
+                    TSPlayer.All.SendInfoMessage(GetString($"世界将于 [c/EA00FF:{span.Seconds}] 秒后重置"));
+                    Console.WriteLine(GetString($"世界将于 {span.Seconds} 秒后重置"));
                 }
                 else
                 {
@@ -140,38 +141,38 @@ public partial class PControl : TerrariaPlugin
                 {
                     if (time % 3600 == 0)
                     {
-                        TSPlayer.All.SendInfoMessage($"服务器将于{HoursToM(span.TotalHours, "FF9000")}后重启");
-                        Console.WriteLine($"服务器将于{HoursToM(span.TotalHours)}后重启");
+                        TSPlayer.All.SendInfoMessage(GetString($"服务器将于{HoursToM(span.TotalHours, "FF9000")}后重启"));
+                        Console.WriteLine(GetString($"服务器将于{HoursToM(span.TotalHours)}后重启"));
                     }
                 }
                 else if (time >= 3600)//[1h, 5h)
                 {
                     if (time % 1800 == 0)
                     {
-                        TSPlayer.All.SendInfoMessage($"服务器将于{HoursToM(span.TotalHours, "FF9000")}后重启");
-                        Console.WriteLine($"服务器将于{HoursToM(span.TotalHours)}后重启");
+                        TSPlayer.All.SendInfoMessage(GetString($"服务器将于{HoursToM(span.TotalHours, "FF9000")}后重启"));
+                        Console.WriteLine(GetString($"服务器将于{HoursToM(span.TotalHours)}后重启"));
                     }
                 }
                 else if (time >= 600)//[10m, 1h)
                 {
                     if (time % 600 == 0)
                     {
-                        TSPlayer.All.SendInfoMessage($"服务器将于{HoursToM(span.TotalHours, "FF9000")}后重启");
-                        Console.WriteLine($"服务器将于{HoursToM(span.TotalHours)}后重启");
+                        TSPlayer.All.SendInfoMessage(GetString($"服务器将于{HoursToM(span.TotalHours, "FF9000")}后重启"));
+                        Console.WriteLine(GetString($"服务器将于{HoursToM(span.TotalHours)}后重启"));
                     }
                 }
                 else if (time >= 60)//[1m, 10m)
                 {
                     if (time % 60 == 0)
                     {
-                        TSPlayer.All.SendInfoMessage($"服务器将于{HoursToM(span.TotalHours, "FF9000")}后重启");
-                        Console.WriteLine($"服务器将于{HoursToM(span.TotalHours)}后重启");
+                        TSPlayer.All.SendInfoMessage(GetString($"服务器将于{HoursToM(span.TotalHours, "FF9000")}后重启"));
+                        Console.WriteLine(GetString($"服务器将于{HoursToM(span.TotalHours)}后重启"));
                     }
                 }
                 else if (time >= 0)//[0s, 1m)
                 {
-                    TSPlayer.All.SendInfoMessage($"世界将于 [c/FF9000:{span.Seconds}] 秒后重启");
-                    Console.WriteLine($"世界将于 {span.Seconds} 秒后重启");
+                    TSPlayer.All.SendInfoMessage(GetString($"世界将于 [c/FF9000:{span.Seconds}] 秒后重启"));
+                    Console.WriteLine(GetString($"世界将于 {span.Seconds} 秒后重启"));
                 }
                 else
                 {
@@ -201,46 +202,46 @@ public partial class PControl : TerrariaPlugin
             {
                 if (countdownReset.time % 3600 == 0)
                 {
-                    TSPlayer.All.SendInfoMessage($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600, "EA00FF")}后重置");
-                    Console.WriteLine($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600)}后重置");
+                    TSPlayer.All.SendInfoMessage(GetString($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600, "EA00FF")}后重置"));
+                    Console.WriteLine(GetString($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600)}后重置"));
                 }
             }
             else if (countdownReset.time >= 3600)//1h ~ 5h，每隔30m发送
             {
                 if (countdownReset.time % 1800 == 0)
                 {
-                    TSPlayer.All.SendInfoMessage($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600, "EA00FF")}后重置");
-                    Console.WriteLine($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600)}后重置");
+                    TSPlayer.All.SendInfoMessage(GetString($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600, "EA00FF")}后重置"));
+                    Console.WriteLine(GetString($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600)}后重置"));
                 }
             }
             else if (countdownReset.time >= 600)// 10m ~ 1h，10m一次
             {
                 if (countdownReset.time % 600 == 0)
                 {
-                    TSPlayer.All.SendInfoMessage($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600, "EA00FF")}后重置");
-                    Console.WriteLine($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600)}后重置");
+                    TSPlayer.All.SendInfoMessage(GetString($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600, "EA00FF")}后重置"));
+                    Console.WriteLine(GetString($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600)}后重置"));
                 }
             }
             else if (countdownReset.time >= 60)//1m ~ 10m，1m一次
             {
                 if (countdownReset.time % 60 == 0)
                 {
-                    TSPlayer.All.SendInfoMessage($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600, "EA00FF")}后重置");
-                    Console.WriteLine($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600)}秒后重置");
+                    TSPlayer.All.SendInfoMessage(GetString($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600, "EA00FF")}后重置"));
+                    Console.WriteLine(GetString($"服务器将在{HoursToM(countdownReset.time * 1.0 / 3600)}秒后重置"));
                 }
             }
             else if (countdownReset.time >= 20)//20s ~ 60s，5s一次
             {
                 if (countdownReset.time % 5 == 0)
                 {
-                    TSPlayer.All.SendInfoMessage($"服务器将在 [c/EA00FF:{countdownReset.time}] 秒后重置");
-                    Console.WriteLine($"服务器将在 {countdownReset.time} 秒后重置");
+                    TSPlayer.All.SendInfoMessage(GetString($"服务器将在 [c/EA00FF:{countdownReset.time}] 秒后重置"));
+                    Console.WriteLine(GetString($"服务器将在 {countdownReset.time} 秒后重置"));
                 }
             }
             else if (countdownReset.time >= 1)//1s ~ 20s ，一秒一次
             {
-                TSPlayer.All.SendInfoMessage($"服务器将在 [c/EA00FF:{countdownReset.time}] 秒后重置");
-                Console.WriteLine($"服务器将在 {countdownReset.time} 秒后重置");
+                TSPlayer.All.SendInfoMessage(GetString($"服务器将在 [c/EA00FF:{countdownReset.time}] 秒后重置"));
+                Console.WriteLine(GetString($"服务器将在 {countdownReset.time} 秒后重置"));
             }
             else
             {
@@ -263,46 +264,46 @@ public partial class PControl : TerrariaPlugin
             {
                 if (countdownRestart.time % 3600 == 0)//每隔一小时发送自动化广播
                 {
-                    TSPlayer.All.SendInfoMessage($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600, "FF9000")}后重启");
-                    Console.WriteLine($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600)}后重启");
+                    TSPlayer.All.SendInfoMessage(GetString($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600, "FF9000")}后重启"));
+                    Console.WriteLine(GetString($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600)}后重启"));
                 }
             }
             else if (countdownRestart.time >= 3600)//大于1h小于5h
             {
                 if (countdownRestart.time % 1800 == 0)//每隔30m发送自动化广播
                 {
-                    TSPlayer.All.SendInfoMessage($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600, "FF9000")}后重启");
-                    Console.WriteLine($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600)}后重启");
+                    TSPlayer.All.SendInfoMessage(GetString($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600, "FF9000")}后重启"));
+                    Console.WriteLine(GetString($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600)}后重启"));
                 }
             }
             else if (countdownRestart.time >= 600)//10m ~ 1h
             {
                 if (countdownRestart.time % 600 == 0)//每隔十分钟发一次广播
                 {
-                    TSPlayer.All.SendInfoMessage($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600, "FF9000")}后重启");
-                    Console.WriteLine($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600)}后重启");
+                    TSPlayer.All.SendInfoMessage(GetString($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600, "FF9000")}后重启"));
+                    Console.WriteLine(GetString($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600)}后重启"));
                 }
             }
             else if (countdownRestart.time >= 60)//1m ~ 10m
             {
                 if (countdownRestart.time % 60 == 0)//每一分钟发一次广播
                 {
-                    TSPlayer.All.SendInfoMessage($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600, "FF9000")}后重启");
-                    Console.WriteLine($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600)}后重启");
+                    TSPlayer.All.SendInfoMessage(GetString($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600, "FF9000")}后重启"));
+                    Console.WriteLine(GetString($"服务器将在{HoursToM(countdownRestart.time * 1.0 / 3600)}后重启"));
                 }
             }
             else if (countdownRestart.time >= 20)//20s ~ 60s
             {
                 if (countdownRestart.time % 5 == 0)//5秒发一次广播
                 {
-                    TSPlayer.All.SendInfoMessage($"服务器将在 [c/FF9000:{countdownRestart.time}] 秒后重启");
-                    Console.WriteLine($"服务器将在 {countdownRestart.time} 秒后重启");
+                    TSPlayer.All.SendInfoMessage(GetString($"服务器将在 [c/FF9000:{countdownRestart.time}] 秒后重启"));
+                    Console.WriteLine(GetString($"服务器将在 {countdownRestart.time} 秒后重启"));
                 }
             }
             else if (countdownRestart.time >= 1)//0~20秒内，每秒发一次
             {
-                TSPlayer.All.SendInfoMessage($"服务器将在 [c/FF9000:{countdownRestart.time}] 秒后重启");
-                Console.WriteLine($"服务器将在 {countdownRestart.time} 秒后重启");
+                TSPlayer.All.SendInfoMessage(GetString($"服务器将在 [c/FF9000:{countdownRestart.time}] 秒后重启"));
+                Console.WriteLine(GetString($"服务器将在 {countdownRestart.time} 秒后重启"));
             }
             else
             {
@@ -344,7 +345,7 @@ public partial class PControl : TerrariaPlugin
 
         Commands.ChatCommands.Add(new Command("", this.PCO, "pco")
         {
-            HelpText = "输入 /pco help 来获取该插件的帮助"
+            HelpText = GetString("输入 /pco help 来获取该插件的帮助")
         });
         /*
         Commands.ChatCommands.Add(new Command("", Test, "t")
@@ -384,7 +385,7 @@ public partial class PControl : TerrariaPlugin
     private void OnReload(ReloadEventArgs e)
     {
         var config = Config.LoadConfigFile();
-        e.Player.SendSuccessMessage("[计划书]重新加载配置完毕。");
+        e.Player.SendSuccessMessage(GetString("[计划书]重新加载配置完毕。"));
 
         if (config.HowLongTimeOfAotuResetServer < 0)
         {
@@ -404,7 +405,7 @@ public partial class PControl : TerrariaPlugin
         if ((config.StartServerDate.AddHours(config.HowLongTimeOfAotuResetServer) - DateTime.Now).TotalHours <= AvoidTime * 1.0 / 60.0 && config.OpenAutoReset)
         {
             var temp = (DateTime.Now.AddMinutes(AvoidTime) - config.StartServerDate.AddHours(config.HowLongTimeOfAotuResetServer)).TotalHours;
-            e.Player.SendInfoMessage($"重置世界倒计时过短，需Time大于 {temp:0.00} 来避免立刻重置(最短重置时间5分钟)，修改失败。若要立刻重置，请使用 /pco reset hand 指令");
+            e.Player.SendInfoMessage(GetString($"重置世界倒计时过短，需Time大于 {temp:0.00} 来避免立刻重置(最短重置时间5分钟)，修改失败。若要立刻重置，请使用 /pco reset hand 指令"));
             config.HowLongTimeOfAotuResetServer = PControl.config.HowLongTimeOfAotuResetServer;
             config.OpenAutoReset = PControl.config.OpenAutoReset;
         }
@@ -412,14 +413,14 @@ public partial class PControl : TerrariaPlugin
         if ((config.LasetServerRestartDate.AddHours(config.HowLongTimeOfRestartServer) - DateTime.Now).TotalHours <= AvoidTime * 1.0 / 60.0 && config.AutoRestartServer)
         {
             var temp = (DateTime.Now.AddMinutes(AvoidTime) - config.LasetServerRestartDate.AddHours(config.HowLongTimeOfRestartServer)).TotalHours;
-            e.Player.SendInfoMessage($"重启服务器倒计时过短，需Time大于 {temp:0.00} 来避免立刻重启(最短重启时间{AvoidTime}分钟)，修改失败。若要立刻重启，请使用 /pco reload hand 指令");
+            e.Player.SendInfoMessage(GetString($"重启服务器倒计时过短，需Time大于 {temp:0.00} 来避免立刻重启(最短重启时间{AvoidTime}分钟)，修改失败。若要立刻重启，请使用 /pco reload hand 指令"));
             config.HowLongTimeOfRestartServer = PControl.config.HowLongTimeOfRestartServer;
             config.AutoRestartServer = PControl.config.AutoRestartServer;
         }
         //对自动执行指令的警告下
         if ((config.LasetAutoCommandDate.AddHours(config.HowLongTimeOfAutoCommand) - DateTime.Now).TotalSeconds <= 60.0 && config.OpenAutoCommand)
         {
-            e.Player.SendInfoMessage($"自动执行指令倒计时过短，可能即将开始自动执行指令");
+            e.Player.SendInfoMessage(GetString("自动执行指令倒计时过短，可能即将开始自动执行指令"));
         }
         //对自动指令的情况过滤下
         var com_temp = new HashSet<string>();
@@ -428,7 +429,7 @@ public partial class PControl : TerrariaPlugin
             var t = CorrectCommand(x);
             if (t != x && !string.IsNullOrWhiteSpace(t))
             {
-                e.Player.SendInfoMessage($"你在配置文件中提供自动执行的指令：[/{x}] 含有多余斜杠和空格，已转化为等价指令：[/{t}]");
+                e.Player.SendInfoMessage(GetString($"你在配置文件中提供自动执行的指令：[/{x}] 含有多余斜杠和空格，已转化为等价指令：[/{t}]"));
             }
             if (!string.IsNullOrWhiteSpace(t))
             {
@@ -436,7 +437,7 @@ public partial class PControl : TerrariaPlugin
             }
             else
             {
-                e.Player.SendInfoMessage($"你在配置文件中提供了一个空白指令，已删除");
+                e.Player.SendInfoMessage(GetString("你在配置文件中提供了一个空白指令，已删除"));
             }
         });
         config.AutoCommandList = com_temp;
@@ -448,7 +449,7 @@ public partial class PControl : TerrariaPlugin
             world_name.Add(tempname);
             if (tempname != x)
             {
-                e.Player.SendInfoMessage($"你在配置文件中提供用于重置的地图名称：[{x}] 含有一些不规则的字符或不必要的后缀，已过滤：[{tempname}]");
+                e.Player.SendInfoMessage(GetString($"你在配置文件中提供用于重置的地图名称：[{x}] 含有一些不规则的字符或不必要的后缀，已过滤：[{tempname}]"));
             }
         });
         config.ExpectedUsageWorldFileNameForAotuReset = world_name;
@@ -456,7 +457,7 @@ public partial class PControl : TerrariaPlugin
         var world_name_temp = config.ExpectedUsageWorldFileNameForAotuReset.Count > 0 ? config.ExpectedUsageWorldFileNameForAotuReset.First() : "";
         if (world_name_temp == Main.worldName && (config.OpenAutoReset || countdownReset.enable) && !config.DeleteWorldForReset)
         {
-            e.Player.SendWarningMessage("警告：你当前在配置文件中提供的第一个用于重置的地图名称和当前地图名称相同，这会导致下次重置直接调用本次地图");
+            e.Player.SendWarningMessage(GetString("警告：你当前在配置文件中提供的第一个用于重置的地图名称和当前地图名称相同，这会导致下次重置直接调用本次地图"));
         }
 
         //更新npc的死亡次数触发器
@@ -473,7 +474,7 @@ public partial class PControl : TerrariaPlugin
                 var t = CorrectCommand(npc.Value[i]!.ToString());
                 if (t != npc.Value[i]!.ToString() && !string.IsNullOrWhiteSpace(t))
                 {
-                    e.Player.SendInfoMessage($"你在配置文件中提供的指令：[/{npc.Value[i]}] 含有多余斜杠和空格，已转化为等价指令：[/{t}]");
+                    e.Player.SendInfoMessage(GetString($"你在配置文件中提供的指令：[/{npc.Value[i]}] 含有多余斜杠和空格，已转化为等价指令：[/{t}]"));
                 }
                 if (!string.IsNullOrWhiteSpace(t))
                 {
@@ -481,7 +482,7 @@ public partial class PControl : TerrariaPlugin
                 }
                 else
                 {
-                    e.Player.SendInfoMessage($"你在配置文件中提供了一个空白指令，已删除");
+                    e.Player.SendInfoMessage(GetString("你在配置文件中提供了一个空白指令，已删除"));
                 }
             }
         }

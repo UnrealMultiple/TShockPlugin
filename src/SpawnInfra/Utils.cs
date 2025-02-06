@@ -9,7 +9,7 @@ internal class Utils
     {
         if (!plr.RealPlayer)
         {
-            plr.SendErrorMessage("请进入游戏后再操作！");
+            plr.SendErrorMessage(GetString("请进入游戏后再操作！"));
         }
         return !plr.RealPlayer;
     }

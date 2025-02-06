@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OnlineGiftPackage\n"
-"POT-Creation-Date: 2025-01-08 13:16:10+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:10+0000\n"
+"POT-Creation-Date: 2025-01-29 16:03:00+0000\n"
+"PO-Revision-Date: 2025-01-29 16:03:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../OnlineGiftPackage.cs:20
+#: ../../Config.cs:520
+msgid "[c/55CDFF:服主]送了你1个礼包"
+msgstr ""
+
+#: ../../OnlineGiftPackage.cs:201
+#, csharp-format
+msgid ""
+"\n"
+"所有礼包的总概率为：{0}%"
+msgstr ""
+
+#: ../../OnlineGiftPackage.cs:152
+#, csharp-format
+msgid "下次发放将在{0}秒后"
+msgstr ""
+
+#: ../../OnlineGiftPackage.cs:209
+msgid "你没有足够的权限来查看礼包获取概率。"
+msgstr ""
+
+#: ../../OnlineGiftPackage.cs:19
 msgid "在线礼包插件 "
+msgstr ""
+
+#: ../../OnlineGiftPackage.cs:184
+msgid ""
+"在线礼包概率表：\n"
+msgstr ""
+
+#: ../../OnlineGiftPackage.cs:99
+#, csharp-format
+msgid "已重载 [在线礼包] 配置文件,下次发放将在{0}秒后"
+msgstr ""
+
+#: ../../OnlineGiftPackage.cs:101
+#: ../../OnlineGiftPackage.cs:165
+#, csharp-format
+msgid "所有礼包的总概率为：{0}"
+msgstr ""
+
+#: ../../OnlineGiftPackage.cs:163
+#, csharp-format
+msgid "执行在线礼包发放任务，下次发放将在{0}秒后"
+msgstr ""
+
+#: ../../OnlineGiftPackage.cs:136
+#, csharp-format
+msgid "无法获取有效礼包，玩家 {0} 的在线时长：{1} 秒"
+msgstr ""
+
+#: ../../Config.cs:23
+msgid "无法计算总概率，因为礼包列表为空。"
 msgstr ""
 

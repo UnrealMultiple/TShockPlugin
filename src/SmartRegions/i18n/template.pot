@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SmartRegions\n"
-"POT-Creation-Date: 2025-01-08 13:16:26+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:27+0000\n"
+"POT-Creation-Date: 2025-01-29 16:03:18+0000\n"
+"PO-Revision-Date: 2025-01-29 16:03:18+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,128 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
+#: ../../Plugin.cs:332
+msgid ""
+"/smartregion 子命令:\n"
+"add <区域名> <冷却时间> <命令或文件>\n"
+"remove <区域名>\n"
+"check <区域名>\n"
+"list [页码] [最大距离]"
+msgstr ""
+
+#: ../../Plugin.cs:239
+msgid "不存在这样的智能区域！"
+msgstr ""
+
+#: ../../Plugin.cs:197
+msgid "你没有权限使用此命令，因此不能创建智能区域！"
+msgstr ""
+
+#: ../../Plugin.cs:374
+msgid "你现在不能做这个操作！"
+msgstr ""
+
+#: ../../Plugin.cs:202
+msgid "你的命令必须允许服务器执行！"
+msgstr ""
+
+#: ../../Plugin.cs:182
+msgid "区域 ({0}/{1}) ："
+msgstr ""
+
+#: ../../Plugin.cs:175
+msgid "区域 {0} 不存在！"
+msgstr ""
+
+#: ../../Plugin.cs:270
+msgid "区域 {0} 的冷却时间为 {1} 秒，使用命令：{2}"
+msgstr ""
+
+#: ../../Plugin.cs:382
+msgid "区域替换成功！"
+msgstr ""
+
+#: ../../Plugin.cs:268
+#, csharp-format
+msgid ""
+"命令如下：\n"
+"{0}"
+msgstr ""
+
+#: ../../Plugin.cs:151
+#: ../../Plugin.cs:388
+msgid "命令执行时出现错误。"
+msgstr ""
+
+#: ../../Plugin.cs:290
+msgid "如果您是服务器后台，不能使用距离参数。"
+msgstr ""
+
 #: ../../Plugin.cs:32
 msgid "当玩家进入区域时运行命令。"
+msgstr ""
+
+#: ../../Plugin.cs:169
+msgid "无效的语法！正确的语法是：/smartregion add <区域名> <冷却时间> <命令或文件>"
+msgstr ""
+
+#: ../../Plugin.cs:254
+msgid "无效的语法！正确的语法是：/smartregion check <区域名>"
+msgstr ""
+
+#: ../../Plugin.cs:232
+msgid "无效的语法！正确的语法是：/smartregion remove <区域名>"
+msgstr ""
+
+#: ../../Plugin.cs:322
+msgid "智能区域 ({0}/{1}) ："
+msgstr ""
+
+#: ../../Plugin.cs:216
+msgid "智能区域 {0} 已经存在！请输入 /replace 替换它。"
+msgstr ""
+
+#: ../../Plugin.cs:245
+msgid "智能区域 {0} 已被移除！"
+msgstr ""
+
+#: ../../Plugin.cs:222
+msgid "智能区域已添加！"
+msgstr ""
+
+#: ../../Plugin.cs:314
+msgid "没有智能区域。"
+msgstr ""
+
+#: ../../Plugin.cs:313
+msgid "没有附近的智能区域。"
+msgstr ""
+
+#: ../../Plugin.cs:184
+msgid "目前没有定义任何区域。"
+msgstr ""
+
+#: ../../Plugin.cs:267
+#, csharp-format
+msgid ""
+"脚本中的命令如下：\n"
+"{0}"
+msgstr ""
+
+#: ../../Plugin.cs:261
+msgid "该区域没有关联的命令。"
+msgstr ""
+
+#: ../../Plugin.cs:163
+msgid "语法错误！正确的语法是：/smartregion add <区域名称> <冷却时间> <命令或文件>"
+msgstr ""
+
+#: ../../Plugin.cs:183
+msgid "输入 {0}region list {{0}} 查看更多。"
+msgstr ""
+
+#: ../../Plugin.cs:323
+#, csharp-format
+msgid "输入 {0}smartregion list {{0}} 查看更多。"
 msgstr ""
 

@@ -11,7 +11,8 @@ public class InvincibilityPlugin : TerrariaPlugin
 {
     public override string Author => "肝帝熙恩";
     public override string Description => GetString("在命令中给予玩家一段时间的无敌状态。");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 9);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 0, 10);
     public static Configuration Config = null!;
 
     private readonly Dictionary<TSPlayer, float> invincibleDurations = new();
@@ -32,7 +33,7 @@ public class InvincibilityPlugin : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player?.SendSuccessMessage("[{0}] 重新加载配置完毕。", typeof(InvincibilityPlugin).Name);
+        args.Player?.SendSuccessMessage(GetString("[{0}] 重新加载配置完毕。"), typeof(InvincibilityPlugin).Name);
     }
     public override void Initialize()
     {
@@ -91,13 +92,13 @@ public class InvincibilityPlugin : TerrariaPlugin
     {
         if (args.Parameters.Count < 1)
         {
-            args.Player.SendErrorMessage("用法: /限时god无敌或tgod <持续时间秒数>");
+            args.Player.SendErrorMessage(GetString("用法: /限时god无敌或tgod <持续时间秒数>"));
             return;
         }
 
         if (!float.TryParse(args.Parameters[0], out var duration) || duration <= 0)
         {
-            args.Player.SendErrorMessage("无效的持续时间。请输入一个正数。");
+            args.Player.SendErrorMessage(GetString("无效的持续时间。请输入一个正数。"));
             return;
         }
 
@@ -105,7 +106,7 @@ public class InvincibilityPlugin : TerrariaPlugin
 
         if (player == null || !player.Active)
         {
-            args.Player.SendErrorMessage("玩家不在线。");
+            args.Player.SendErrorMessage(GetString("玩家不在线。"));
             return;
         }
         this.addGodMode(player, duration);
@@ -117,7 +118,7 @@ public class InvincibilityPlugin : TerrariaPlugin
         CreativePowerManager.Instance.GetPower<CreativePowers.GodmodePower>().SetEnabledState(player.Index, player.GodMode);
         if (Config.EnableInvincibleReminder)
         {
-            player.SendSuccessMessage($"你将在 {duration} 秒内无敌.");
+            player.SendSuccessMessage(GetString($"你将在 {duration} 秒内无敌."));
         }
 
         if (!string.IsNullOrEmpty(Config.CustomInvincibleReminderText))
@@ -141,12 +142,12 @@ public class InvincibilityPlugin : TerrariaPlugin
     {
         if (args.Parameters.Count < 1 || !int.TryParse(args.Parameters[0], out var duration) || duration <= 0)
         {
-            args.Player.SendErrorMessage("用法: /限时无敌帧无敌或tframe <持续时间秒数>");
+            args.Player.SendErrorMessage(GetString("用法: /限时无敌帧无敌或tframe <持续时间秒数>"));
             return;
         }
         if (Config.EnableFrameReminder)
         {
-            args.Player.SendSuccessMessage($"你将在 {args.Parameters[0]} 秒内无敌.");
+            args.Player.SendSuccessMessage(GetString($"你将在 {args.Parameters[0]} 秒内无敌."));
         }
         if (!string.IsNullOrEmpty(Config.CustomStartFrameText))
         {

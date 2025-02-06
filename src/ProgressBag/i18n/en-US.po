@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-10 13:00:42+0000\n"
-"PO-Revision-Date: 2025-01-11 01:09\n"
+"POT-Creation-Date: 2025-01-29 16:03:04+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -56,6 +56,10 @@ msgstr "/bag reset"
 msgid "你当前所在的组无法领取该礼包!"
 msgstr "Your current group could not receive this bag!"
 
+#: ../../Plugin.cs:118
+msgid "已领取"
+msgstr ""
+
 #: ../../Plugin.cs:41
 msgid "当前进度无法领取该礼包!"
 msgstr "Bag cannot be claimed at the current progress!"
@@ -64,6 +68,10 @@ msgstr "Bag cannot be claimed at the current progress!"
 #, csharp-format
 msgid "成功领取{0}个进度礼包!"
 msgstr "Successfully received {0} progress bag!"
+
+#: ../../Plugin.cs:119
+msgid "未领取"
+msgstr ""
 
 #: ../../Plugin.cs:155
 msgid "没有此礼包"

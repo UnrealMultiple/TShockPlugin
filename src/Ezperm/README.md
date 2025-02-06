@@ -15,22 +15,24 @@
 > 配置文件位置：tshock/ezperm.json
 ```json5
 {
-  "Groups": [
+  "组列表": [
     {
       "组名字": "default",
+      "父组": "guest",
       "添加的权限": [
         "tshock.world.movenpc",
+        "tshock.world.time.usesundial",
         "tshock.tp.pylon",
         "tshock.tp.demonconch",
         "tshock.tp.magicconch",
         "tshock.tp.tppotion",
         "tshock.tp.rod",
-        "tshock.npc.startdd2",
         "tshock.tp.wormhole",
+        "tshock.npc.startdd2",
+        "tshock.npc.spawnpets",
         "tshock.npc.summonboss",
         "tshock.npc.startinvasion",
-        "tshock.npc.spawnpets",
-        "tshock.world.time.usesundial"
+        "tshock.npc.hurttown"
       ],
       "删除的权限": [
         "tshock.admin"
@@ -43,6 +45,10 @@
 ## 更新日志
 
 ```
+v1.2.9
+使用lazyapi，添加父组预设
+v1.2.8
+添加 GetString
 v1.2.7
 添加权限：
 v1.2.4

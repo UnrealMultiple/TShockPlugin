@@ -1,14 +1,77 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JourneyUnlock\n"
-"POT-Creation-Date: 2025-01-08 13:16:03+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:03+0000\n"
+"POT-Creation-Date: 2025-01-29 16:02:53+0000\n"
+"PO-Revision-Date: 2025-01-29 16:02:54+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
+
+#: ../../JourneyUnlock.cs:75
+#: ../../JourneyUnlock.cs:114
+msgid "[旅程解锁] {0} 为您解锁了物品 [i:{1}]！"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:55
+msgid "[旅程解锁] {0} 已为您解锁所有物品！"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:141
+msgid "[旅程解锁] /g解锁 {玩家名} {物品名/ID} - 为指定玩家解锁物品。"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:142
+msgid "[旅程解锁] /g解锁 {玩家名} * - 为指定玩家解锁所有物品。"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:128
+msgid "[旅程解锁] /i解锁 {物品名/ID} - 解锁指定物品。"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:129
+msgid "[旅程解锁] /i解锁 * - 解锁所有物品。"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:56
+msgid "[旅程解锁] 成功为 {0} 解锁所有物品！"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:76
+#: ../../JourneyUnlock.cs:115
+msgid "[旅程解锁] 成功为 {1} 解锁了物品 [i:{0}]！"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:60
+msgid "[旅程解锁] 成功解锁所有物品！"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:80
+#: ../../JourneyUnlock.cs:119
+msgid "[旅程解锁] 成功解锁物品 [i:{0}]！"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:102
+msgid "[旅程解锁] 找到了多个同名物品！"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:153
+msgid "[旅程解锁] 找到多个同名玩家！"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:96
+msgid "[旅程解锁] 未找到对应物品！"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:148
+msgid "[旅程解锁] 未找到玩家！"
+msgstr ""
+
+#: ../../JourneyUnlock.cs:87
+msgid "[旅程解锁] 物品ID无效！"
+msgstr ""
 
 #: ../../JourneyUnlock.cs:15
 msgid "允许您为旅途中的角色解锁所有或特定物品"

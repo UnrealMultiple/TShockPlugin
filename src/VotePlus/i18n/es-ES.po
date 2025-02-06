@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:33+0000\n"
-"PO-Revision-Date: 2025-01-17 01:07\n"
+"POT-Creation-Date: 2025-01-29 16:03:25+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -365,6 +365,16 @@ msgstr "¡Has sido expulsado del servidor! Tiempo de salida restante: {0} segund
 #, csharp-format
 msgid "你被投票踢出游戏,持续{0}秒!"
 msgstr "¡Has sido expulsado del juego durante {0} segundos!"
+
+#: ../../Vote.cs:83
+#: ../../Vote.cs:209
+msgid "停止"
+msgstr ""
+
+#: ../../Vote.cs:83
+#: ../../Vote.cs:209
+msgid "开始"
+msgstr ""
 
 #: ../../Main.cs:14
 msgid "投票插件"

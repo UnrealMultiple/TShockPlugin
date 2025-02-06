@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:47+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-29 16:02:37+0000\n"
+"PO-Revision-Date: 2025-01-30 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,73 +17,72 @@ msgstr ""
 "X-Crowdin-File-ID: 1154\n"
 "Language: ru_RU\n"
 
-#: ../../Commands.cs:80
+#: ../../Commands.cs:77
 #, csharp-format
 msgid "[c/92C5EC:{0}] 不在敏感词表中!"
 msgstr ""
 
-#: ../../Commands.cs:66
+#: ../../Commands.cs:63
 #, csharp-format
 msgid "[c/92C5EC:{0}] 已在敏感词表中!"
 msgstr ""
 
-#: ../../Commands.cs:152
+#: ../../Commands.cs:149
 #, csharp-format
 msgid "《敏感词》第 {0} 页，共 {1} 页:\n"
 "{2}"
 msgstr ""
 
-#: ../../Commands.cs:112
-#: ../../Commands.cs:124
+#: ../../Commands.cs:109
+#: ../../Commands.cs:121
 msgid "《禁止脏话》 [i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by] [c/00FFFF:羽学][i:3459]\n"
 msgstr ""
 
-#: ../../Commands.cs:45
+#: ../../Commands.cs:42
 msgid "《脏话纪录》文件夹已成功清空。"
 msgstr ""
 
-#: ../../Commands.cs:113
-#: ../../Commands.cs:125
+#: ../../Commands.cs:110
+#: ../../Commands.cs:122
 msgid "/df —— 查看菜单\n"
 msgstr ""
 
-#: ../../Commands.cs:117
+#: ../../Commands.cs:114
 msgid "/df add 或 del 词语 —— [c/87DF86:添加]|[c/F19092:删除]敏感词\n"
 msgstr ""
 
-#: ../../Commands.cs:116
+#: ../../Commands.cs:113
 msgid "/df clear —— [c/B3EADB:清理]所有[c/F2F191:脏话纪录]\n"
 msgstr ""
 
-#: ../../Commands.cs:126
+#: ../../Commands.cs:123
 msgid "/df list 页数 —— [c/B3B5EA:列出]所有[c/B3EADD:敏感词]"
 msgstr ""
 
-#: ../../Commands.cs:114
+#: ../../Commands.cs:111
 msgid "/df list 页数 —— [c/B3B5EA:列出]所有[c/B3EADD:敏感词]\n"
 msgstr ""
 
-#: ../../Commands.cs:115
+#: ../../Commands.cs:112
 msgid "/df log —— [c/8AE072:开启]|[c/ED7985:关闭]敏感词[c/EBB4E2:记录]\n"
 msgstr ""
 
-#: ../../Commands.cs:30
-msgid "启用"
+#: ../../Commands.cs:28
+msgid "已启用敏感词记录功能。"
 msgstr ""
 
-#: ../../Commands.cs:32
-#, csharp-format
-msgid "已{0}敏感词记录功能。"
-msgstr ""
-
-#: ../../Commands.cs:76
+#: ../../Commands.cs:73
 #, csharp-format
 msgid "已成功将敏感词从表中移除: [c/92C5EC:{0}]!"
 msgstr ""
 
-#: ../../Commands.cs:62
+#: ../../Commands.cs:59
 #, csharp-format
 msgid "已成功将敏感词添加到表中: [c/92C5EC:{0}]!"
+msgstr ""
+
+#: ../../Commands.cs:29
+msgid "已禁用敏感词记录功能。"
 msgstr ""
 
 #: ../../DonotFuck.cs:14
@@ -95,21 +94,17 @@ msgstr ""
 msgid "敏感词: {0}\n"
 msgstr ""
 
-#: ../../Commands.cs:118
+#: ../../Commands.cs:115
 #, csharp-format
 msgid "敏感词纪录：[c/B3B6EA:{0}]"
 msgstr ""
 
-#: ../../Commands.cs:143
+#: ../../Commands.cs:140
 #, csharp-format
 msgid "无效的页码。总共有 {0} 页。"
 msgstr ""
 
-#: ../../Commands.cs:94
+#: ../../Commands.cs:91
 msgid "无效的页码。请输入一个数字。"
-msgstr ""
-
-#: ../../Commands.cs:29
-msgid "禁用"
 msgstr ""
 

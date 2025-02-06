@@ -17,7 +17,7 @@ public class HousingPlugin : LazyPlugin
     public override string Author => "GK 阁下 改良";
     public override string Description => GetString("一个著名的用于保护房屋的插件。");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 8);
+    public override Version Version => new Version(1, 0, 0, 9);
     public HousingPlugin(Main game) : base(game)
     {
     }
@@ -560,7 +560,7 @@ public class HousingPlugin : LazyPlugin
                                     if (newHouseR.Intersects(Houses[i].HouseArea) && Houses[i].Name != house.Name)//如果发现重叠并且不是本房屋
                                     {
                                         args.Player.TempPoints[0] = Point.Zero; args.Player.TempPoints[1] = Point.Zero;//清除点
-                                        args.Player.SendErrorMessage("你选择的区域与其他房子存在重叠，这是不允许的。");
+                                        args.Player.SendErrorMessage(GetString("你选择的区域与其他房子存在重叠，这是不允许的。"));
                                         return;
                                     }
                                 }
@@ -794,7 +794,7 @@ public class HousingPlugin : LazyPlugin
             ULock = false;//超时自动解锁
         }
 
-        if (warn && ret) { TShock.Log.Error("房子插件提示处理超时,已抛弃部分提示!"); }
+        if (warn && ret) { TShock.Log.Error(GetString("房子插件提示处理超时,已抛弃部分提示!")); }
         return ret;
     }
     #endregion

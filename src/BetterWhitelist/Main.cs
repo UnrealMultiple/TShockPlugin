@@ -9,7 +9,7 @@ namespace BetterWhitelist;
 public class BetterWhitelist : LazyPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 6, 3);
+    public override Version Version => new Version(2, 6, 4);
 
     public override string Author => "豆沙，肝帝熙恩、Cai修改";
 
@@ -33,7 +33,7 @@ public class BetterWhitelist : LazyPlugin
         }
         else if (!BConfig.Instance.Enable)
         {
-            TShock.Log.ConsoleInfo("[BetterWhitelist] 开关已被禁用，请检查配置文件!");
+            TShock.Log.ConsoleInfo(GetString("[BetterWhitelist] 开关已被禁用，请检查配置文件!"));
         }
     }
 

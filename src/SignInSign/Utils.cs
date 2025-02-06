@@ -15,14 +15,14 @@ public static class Utils
                 return i;
             }
         }
-        Console.WriteLine($"δ��λ��({tileX}, {tileY})�ҵ���ʾ�ơ�");
+        Console.WriteLine(GetString($"未在位置({tileX}, {tileY})找到告示牌。"));
         return -1;
     }
 
     public static int SpawnSign(int x, int y)
     {
         WorldGen.KillTile(x, y);
-        if (Main.tile[x, y].wall == WallID.None) //���ǽ���Ƿ�Ϊ�գ������������ǽ
+        if (Main.tile[x, y].wall == WallID.None) //检查墙壁是否为空，空则放置隐形墙
         {
             Main.tile[Main.spawnTileX, Main.spawnTileY - 3].wall = WallID.EchoWall;
             Main.tile[Main.spawnTileX, Main.spawnTileY - 2].wall = WallID.EchoWall;
@@ -43,7 +43,7 @@ public static class Utils
         WorldGen.PlaceSign(Main.spawnTileX, Main.spawnTileY - 3, TileID.Signs, 4);
         WorldGen.PlaceObject(x, y, TileID.Signs, false, 4, -1, -1);
 
-        //���ҿյı�־ID
+        //查找空的标志ID
         var newSignID = 999;
         for (var i = 0; i < 1000; i++)
         {
@@ -54,7 +54,7 @@ public static class Utils
                 break;
             }
         }
-        //���±�־��Ϣ
+        //放下标志信息
         Main.sign[newSignID].text = SignInSign.Config.SignText;
         Main.sign[newSignID].x = x;
         Main.sign[newSignID].y = y;
@@ -65,7 +65,7 @@ public static class Utils
     public static string ReadPassword(string text)
     {
         return string.IsNullOrEmpty(text)
-            ? throw new ArgumentException("��������벻��Ϊ��")
+            ? throw new ArgumentException(GetString("输入的密码不能为空"))
             : text[SignInSign.Config.SignText.Length..].Trim();
     }
 }
