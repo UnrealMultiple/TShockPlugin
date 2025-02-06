@@ -2,7 +2,7 @@
 using TShockAPI;
 using TShockAPI.DB;
 
-namespace CaiBotLite;
+namespace CaiBot;
 
 internal class LookBag
 {

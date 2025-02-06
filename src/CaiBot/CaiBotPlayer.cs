@@ -5,7 +5,7 @@ using Terraria.UI.Chat;
 using TShockAPI;
 using TShockAPI.DB;
 
-namespace CaiBotLite;
+namespace CaiBot;
 
 public class CaiBotPlayer : TSPlayer
 {

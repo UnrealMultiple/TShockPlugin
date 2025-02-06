@@ -4,9 +4,8 @@ using System.Text;
 using Terraria;
 using Terraria.GameContent.Events;
 using Terraria.ID;
-using Terraria.IO;
 
-namespace CaiBotLite;
+namespace CaiBot;
 
 internal static class Utils
 {

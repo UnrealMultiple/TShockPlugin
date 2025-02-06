@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace CaiBotLite;
+namespace CaiBot;
 
 public class Config
 {

@@ -7,7 +7,7 @@ using TShockAPI;
 using TShockAPI.DB;
 using TShockAPI.Hooks;
 
-namespace CaiBotLite;
+namespace CaiBot;
 
 internal static class Login
 {

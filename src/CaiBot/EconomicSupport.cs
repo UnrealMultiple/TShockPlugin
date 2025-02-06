@@ -6,7 +6,7 @@ using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using TerrariaApi.Server;
 
-namespace CaiBotLite;
+namespace CaiBot;
 
 public static class EconomicSupport
 {

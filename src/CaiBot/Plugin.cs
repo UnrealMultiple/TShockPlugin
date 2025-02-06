@@ -13,7 +13,7 @@ using TShockAPI.DB;
 using TShockAPI.Hooks;
 using Program = Terraria.Program;
 
-namespace CaiBotLite;
+namespace CaiBot;
 
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin

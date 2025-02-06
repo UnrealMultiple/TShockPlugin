@@ -1,4 +1,4 @@
-﻿namespace CaiBotLite;
+﻿namespace CaiBot;
 
 internal class PluginInfo
 {
