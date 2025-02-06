@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:02:25+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"POT-Creation-Date: 2025-02-02 04:38:27+0000\n"
+"PO-Revision-Date: 2025-02-04 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr "[BuildMaster] Player data error, please try to re-enter the server"
 #: ../../MainPlugin.cs:70
 #, csharp-format
 msgid "[房内聊天]{0}:{1}"
-msgstr ""
+msgstr "[Chat in the room] {0}: {1}"
 
 #: ../../MainPlugin.cs:728
 msgid "/bm join [房间ID] 加入房间"
@@ -167,7 +167,7 @@ msgstr "Theme:"
 #: ../../BuildRoom.cs:333
 #, csharp-format
 msgid "主题:{0}"
-msgstr ""
+msgstr "Theme:{0}"
 
 #: ../../MainPlugin.cs:780
 msgid "你不在房间中"
@@ -206,7 +206,7 @@ msgstr "Has arrived "
 #: ../../BuildRoom.cs:255
 #, csharp-format
 msgid "已来到 {0} 的建筑区域"
-msgstr ""
+msgstr "Building area of {0} is already on"
 
 #: ../../MainPlugin.cs:236
 #, csharp-format
@@ -353,7 +353,7 @@ msgstr "Not prepared"
 #: ../../BuildRoom.cs:420
 #, csharp-format
 msgid "本次建筑的主题是 {0}"
-msgstr ""
+msgstr "Theme of this building is {0}"
 
 #: ../../MainPlugin.cs:745
 msgid "正确指令 /bm join [房间号]"
@@ -455,27 +455,27 @@ msgstr "Player "
 #: ../../MainPlugin.cs:775
 #, csharp-format
 msgid "玩家 {0} 已准备"
-msgstr ""
+msgstr "Player {0} is ready"
 
 #: ../../MainPlugin.cs:863
 #, csharp-format
 msgid "玩家 {0} 强制退出了房间"
-msgstr ""
+msgstr "Player {0} forced exits the room"
 
 #: ../../MainPlugin.cs:802
 #, csharp-format
 msgid "玩家 {0} 投票主题 {1}"
-msgstr ""
+msgstr "Player {0} voting theme {1}"
 
 #: ../../MainPlugin.cs:807
 #, csharp-format
 msgid "玩家 {0} 更改投票主题为 {1}"
-msgstr ""
+msgstr "Players {0} change the theme of voting theme is {1}"
 
 #: ../../MainPlugin.cs:776
 #, csharp-format
 msgid "玩家 {0} 未准备"
-msgstr ""
+msgstr "Player {0} is not prepared"
 
 #: ../../MainPlugin.cs:316
 msgid "评分套"

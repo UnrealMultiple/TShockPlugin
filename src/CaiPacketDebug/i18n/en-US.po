@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:27+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-02-04 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: ../../Plugin.cs:175
 #, csharp-format
 msgid "[C({0})->S] 解析数据包时出错:{1}"
-msgstr ""
+msgstr "[C({0})->S] Error when analyzing the data packet: {1}"
 
 #: ../../Plugin.cs:64
 #: ../../Plugin.cs:65
@@ -40,11 +40,11 @@ msgstr "[c/FF0000:Disabled]"
 #: ../../Plugin.cs:138
 #, csharp-format
 msgid "[S->C({0})] 解析数据包时出错:{1}"
-msgstr ""
+msgstr "[S->C({0})] Error when analyzing the data packet: {1}"
 
 #: ../../Plugin.cs:66
 msgid "*/cpd cts|stc 开关数据包调试"
-msgstr ""
+msgstr "*/cpd cts|stc Switch data packet debugging"
 
 #: ../../Plugin.cs:32
 msgid "用于调试数据包的插件捏~"
