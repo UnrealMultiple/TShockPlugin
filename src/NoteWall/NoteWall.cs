@@ -1,0 +1,234 @@
+﻿using System;
+using System.Linq;
+using LazyAPI;
+using TShockAPI;
+using Terraria;
+using NoteWall.DB;
+using TerrariaApi.Server;
+using Microsoft.Xna.Framework;
+
+namespace NoteWall;
+
+[ApiVersion(2, 1)]
+public class NoteWall : LazyPlugin
+{
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Author => "肝帝熙恩";
+    public override Version Version => new Version(1, 0, 0);
+    public override string Description => GetString("留言墙");
+
+    public NoteWall(Main game) : base(game)
+    {
+    }
+
+    public override void Initialize()
+    {
+        Commands.ChatCommands.Add(new Command("notewall.user.add", this.AddNote, "留言", "addnote"));
+        Commands.ChatCommands.Add(new Command("notewall.user.view", this.ViewNote, "查看留言", "viewnote","vinote"));
+        Commands.ChatCommands.Add(new Command("notewall.user.page", this.ViewNotesPage, "留言墙","notewall"));
+        Commands.ChatCommands.Add(new Command("notewall.user.random", this.RandomNote, "随机留言", "randomnote","rdnote"));
+        Commands.ChatCommands.Add(new Command("notewall.user.update", this.UpdateNote, "修改留言", "updatenote","upnote"));
+        Commands.ChatCommands.Add(new Command("notewall.admin.delete", this.DeleteNote, "删除留言", "deletenote","delnote"));
+        Commands.ChatCommands.Add(new Command("notewall.user.my", this.MyNotes, "我的留言", "mynote"));
+    }
+
+    private void AddNote(CommandArgs args)
+    {
+        if (args.Parameters.Count < 1)
+        {
+            args.Player.SendErrorMessage(GetString("请输入留言内容！"));
+            return;
+        }
+
+        var content = string.Join(" ", args.Parameters);
+        var note = Note.AddNote(args.Player.Name, content);
+
+        if (note != null)
+        {
+            args.Player.SendSuccessMessage(GetString($"留言成功！\n[{note.Id}] {note.Username}: {note.Content} (时间：{note.Timestamp})"));
+        }
+        else
+        {
+            args.Player.SendErrorMessage(GetString("你最多只能留言 5 条！"));
+        }
+    }
+
+    private void UpdateNote(CommandArgs args)
+    {
+        if (args.Parameters.Count < 2)
+        {
+            args.Player.SendErrorMessage(GetString("请输入留言序号和新的留言内容！"));
+            return;
+        }
+
+        if (!int.TryParse(args.Parameters[0], out var id))
+        {
+            args.Player.SendErrorMessage(GetString("无效的留言序号！"));
+            return;
+        }
+
+        var newContent = string.Join(" ", args.Parameters.Skip(1));
+        var note = Note.GetNoteById(id);
+
+        if (note != null && Note.UpdateNote(id, newContent, args.Player.Name))
+        {
+            args.Player.SendSuccessMessage(GetString($"留言修改成功！\n修改前：{note.Content}\n修改后：{newContent}（留言时间已更新）"));
+        }
+        else
+        {
+            args.Player.SendErrorMessage(GetString("只能修改你自己的留言，或留言不存在！"));
+        }
+    }
+
+    private void DeleteNote(CommandArgs args)
+    {
+        if (args.Parameters.Count < 1)
+        {
+            args.Player.SendErrorMessage(GetString("请输入留言序号或用户名！"));
+            return;
+        }
+
+        var param = args.Parameters[0];
+        if (int.TryParse(param, out var id))
+        {
+            var note = Note.DeleteNoteById(id, args.Player);
+            if (note != null)
+            {
+                args.Player.SendSuccessMessage(GetString($"成功删除留言 [{note.Id}] - {note.Username}: {note.Content} (时间：{note.Timestamp})"));
+            }
+            else
+            {
+                args.Player.SendErrorMessage(GetString("无法删除留言：留言不存在，或你无权删除！"));
+            }
+        }
+        else
+        {
+            if (!args.Player.HasPermission("notewall.admin.delete"))
+            {
+                args.Player.SendErrorMessage(GetString("你没有权限删除其他玩家的所有留言！"));
+                return;
+            }
+
+            var deletedCount = Note.DeleteNotesByUsername(param);
+            if (deletedCount > 0)
+            {
+                args.Player.SendSuccessMessage(GetString($"成功删除 {deletedCount} 条 {param} 的留言！"));
+            }
+            else
+            {
+                args.Player.SendErrorMessage(GetString("该玩家没有留言或删除失败！"));
+            }
+        }
+    }
+
+    private void ViewNote(CommandArgs args)
+    {
+        if (args.Parameters.Count < 1)
+        {
+            args.Player.SendErrorMessage(GetString("请输入留言序号或用户名！"));
+            return;
+        }
+
+        var param = args.Parameters[0];
+        if (int.TryParse(param, out var id))
+        {
+            var note = Note.GetNoteById(id);
+            if (note != null)
+            {
+                args.Player.SendInfoMessage(GetString($"留言 [{note.Id}] - {note.Username}: {note.Content} (时间：{note.Timestamp})"));
+            }
+            else
+            {
+                args.Player.SendErrorMessage(GetString("找不到该留言！"));
+            }
+        }
+        else
+        {
+            var notes = Note.GetNotesByUsername(param);
+            if (notes.Count > 0)
+            {
+                foreach (var note in notes)
+                {
+                    args.Player.SendInfoMessage(GetString($"留言 [{note.Id}] - {note.Username}: {note.Content} (时间：{note.Timestamp})"));
+                }
+            }
+            else
+            {
+                args.Player.SendErrorMessage(GetString("该玩家没有留言！"));
+            }
+        }
+    }
+
+    private void ViewNotesPage(CommandArgs args)
+    {
+        if (args.Parameters.Count < 1)
+        {
+            args.Player.SendErrorMessage(GetString("请输入页码！例如：/留言墙 1"));
+            return;
+        }
+
+        if (!int.TryParse(args.Parameters[0], out var page))
+        {
+            args.Player.SendErrorMessage(GetString("请输入有效的页码！"));
+            return;
+        }
+
+        var allNotes = Note.GetAllNotes();
+        var totalNotes = allNotes.Count;
+        var notesPerPage = 10;
+        var totalPages = (int)Math.Ceiling((double)totalNotes / notesPerPage);
+
+        if (page <= 0 || page > totalPages)
+        {
+            args.Player.SendErrorMessage(GetString($"页码无效！共有 {totalPages} 页。"));
+            return;
+        }
+
+        var skip = (page - 1) * notesPerPage;
+        var paginatedNotes = allNotes.Skip(skip).Take(notesPerPage).ToList();
+
+        if (paginatedNotes.Count > 0)
+        {
+            args.Player.SendInfoMessage(GetString("[i:531]========== 留言墙 ==========[i:531]"));
+            args.Player.SendMessage(GetString($"第 {page} 页，共 {totalPages} 页"), Color.Orange);
+            foreach (var note in paginatedNotes)
+            {
+                args.Player.SendInfoMessage(GetString($"[{note.Id}] {note.Username}: {note.Content} (时间：{note.Timestamp})"));
+            }
+        }
+        else
+        {
+            args.Player.SendErrorMessage(GetString("没有更多留言了！"));
+        }
+
+    }
+
+    private void RandomNote(CommandArgs args)
+    {
+        var note = Note.GetRandomNote();
+        if (note != null)
+        {
+            args.Player.SendInfoMessage(GetString($"随机留言 [{note.Id}] - {note.Username}: {note.Content} (时间：{note.Timestamp})"));
+        }
+        else
+        {
+            args.Player.SendErrorMessage(GetString("目前没有留言！"));
+        }
+    }
+
+    private void MyNotes(CommandArgs args)
+    {
+        var notes = Note.GetNotesByUsername(args.Player.Name);
+        if (notes.Count > 0)
+        {
+            foreach (var note in notes)
+            {
+                args.Player.SendInfoMessage(GetString($"留言 [{note.Id}] - {note.Username}: {note.Content} (时间：{note.Timestamp})"));
+            }
+        }
+        else
+        {
+            args.Player.SendErrorMessage(GetString("你还没有留言！"));
+        }
+    }
+}
