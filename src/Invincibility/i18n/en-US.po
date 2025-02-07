@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-02-03 19:28:35+0000\n"
-"PO-Revision-Date: 2025-02-04 01:07\n"
+"PO-Revision-Date: 2025-02-07 01:09\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -41,9 +41,9 @@ msgstr "Player is not online."
 
 #: ../../InvincibilityPlugin.cs:95
 msgid "用法: /限时god无敌 或 /tgod <持续时间秒数>"
-msgstr ""
+msgstr "Usage: /tgod <seconds>"
 
 #: ../../InvincibilityPlugin.cs:145
 msgid "用法: /限时无敌帧无敌或tframe <持续时间秒数>"
-msgstr "Usage: /tframe <duration seconds>"
+msgstr "Usage: /tframe <seconds>"
 
