@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:49+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-02-07 01:09\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: ../../Goodnight.cs:59
 msgid "[宵禁]重新加载配置完毕。"
-msgstr ""
+msgstr "[GoodNight] Configuration reloaded successfully."
 
 #: ../../Goodnight.cs:79
 #: ../../Goodnight.cs:98
@@ -53,12 +53,12 @@ msgstr ""
 #: ../../Goodnight.cs:198
 #, csharp-format
 msgid "{0}需要到[c/338AE1:{1}]才能召唤怪物\n"
-msgstr ""
+msgstr "{0} should be in [c/338AE1:{1}] to summon monster\n"
 
 #: ../../Goodnight.cs:169
 #, csharp-format
 msgid "{0}需要到【[c/E2FA76:{1}]】\n"
-msgstr ""
+msgstr "{0} needs to go to【[c/E2FA76:{1}]】\n"
 
 #: ../../Commands.cs:28
 #, csharp-format
