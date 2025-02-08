@@ -32,6 +32,15 @@ public class NoteWall : LazyPlugin
         Commands.ChatCommands.Add(new Command("notewall.user.my", this.MyNotes, "mynote"));
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.AddNote || x.CommandDelegate == this.ViewNote || x.CommandDelegate == this.ViewNotesPage || x.CommandDelegate == this.RandomNote || x.CommandDelegate == this.UpdateNote || x.CommandDelegate == this.DeleteNote || x.CommandDelegate == this.MyNotes);
+        }
+        base.Dispose(disposing);
+    }
+
     private void AddNote(CommandArgs args)
     {
         if (args.Parameters.Count < 1)
