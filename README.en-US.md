@@ -148,6 +148,7 @@
 | [MusicPlayer](./src/MusicPlayer/README.md) | 7.7% | Simple music player |  |
 | [Noagent](./src/Noagent/README.en-US.md) | 16.7% | Prohibit proxy IP from entering |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.md) | 100.0% | Drop treasure bags at normal difficulty |  |
+| [NoteWall](./src/NoteWall/README.en-US.md) | 0.0% | Players can leave and view notes here. | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |
 | [OnlineGiftPackage](./src/OnlineGiftPackage/README.en-US.md) | 9.1% | Online gift package |  |
 | [PacketsStop](./src/PacketsStop/README.en-US.md) | 7.1% | Packet interception |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 0.0% | Permanent buff |  |

@@ -1687,6 +1687,29 @@
     "HotReload": true
   },
   {
+    "Name": "NoteWall",
+    "Version": "1.0.1",
+    "Author": "肝帝熙恩",
+    "Description": {
+      "en-US": "留言墙",
+      "de-DE": "留言墙",
+      "it-IT": "留言墙",
+      "fr-FR": "留言墙",
+      "es-ES": "留言墙",
+      "ru-RU": "留言墙",
+      "zh-CN": "留言墙",
+      "pt-BR": "留言墙",
+      "pl-PL": "留言墙"
+    },
+    "AssemblyName": "NoteWall",
+    "Path": "NoteWall.dll",
+    "Dependencies": [
+      "LazyAPI",
+      "linq2db"
+    ],
+    "HotReload": true
+  },
+  {
     "Name": "OnlineGiftPackage",
     "Version": "1.0.1.6",
     "Author": "星夜神花 羽学适配",
@@ -2154,7 +2177,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.8.4",
+    "Version": "1.1.8.5",
     "Author": "少司命",
     "Description": {
       "en-US": "Server Utility",
