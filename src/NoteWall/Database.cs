@@ -101,13 +101,12 @@ public class Note : RecordBase<Note>
     }
 
 
-    public static Note? DeleteNoteById(int id, TSPlayer player)
+    public static Note? DeleteNoteById(int id)
     {
         using (var db = Db.Context<Note>(TableName))
         {
-            var note = db.Records.Where(n => n.Id == id).FirstOrDefault();
-
-            if (note == null || (!player.HasPermission("notewall.admin") && note.Username.ToLower() != player.Name.ToLower()))
+            var note = db.Records.FirstOrDefault(n => n.Id == id);
+            if (note == null)
             {
                 return null;
             }
@@ -117,7 +116,7 @@ public class Note : RecordBase<Note>
                 try
                 {
                     db.Delete(note);
-                    transaction.Commit(); 
+                    transaction.Commit();
                     return note;
                 }
                 catch (Exception ex)
