@@ -210,7 +210,7 @@ public class NoteWall : LazyPlugin
             args.Player.SendInfoMessage(GetString("/vinote <序号/玩家名字>  查看某个留言"));
             args.Player.SendInfoMessage(GetString("/notewall <页码/help> 查看留言墙"));
             args.Player.SendInfoMessage(GetString("/rdnote  查看一条随机留言"));
-            args.Player.SendInfoMessage(GetString("/upnote  修改你自己的留言"));
+            args.Player.SendInfoMessage(GetString("/upnote <序号> <新内容> 修改你自己的留言"));
             args.Player.SendInfoMessage(GetString("/delnote <序号> 删除你自己的留言"));
             args.Player.SendInfoMessage(GetString("/mynote  查看你自己的留言"));
             return;
