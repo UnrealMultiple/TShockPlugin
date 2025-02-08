@@ -1482,7 +1482,7 @@
   },
   {
     "Name": "Lagrange.XocMat.Adapter",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "少司命",
     "Description": {
       "en-US": "Adaptation plugin",
@@ -1688,7 +1688,7 @@
   },
   {
     "Name": "NoteWall",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "肝帝熙恩",
     "Description": {
       "en-US": "留言墙",
