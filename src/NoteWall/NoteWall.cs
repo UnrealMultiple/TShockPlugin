@@ -14,7 +14,7 @@ public class NoteWall : LazyPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "肝帝熙恩";
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
     public override string Description => GetString("留言墙");
 
     public NoteWall(Main game) : base(game)
@@ -51,14 +51,12 @@ public class NoteWall : LazyPlugin
 
         var content = string.Join(" ", args.Parameters);
 
-        // 检查留言内容的字数是否超过限制
         if (content.Length > Configuration.Instance.MaxNoteLength)
         {
             args.Player.SendErrorMessage(GetString($"留言内容不能超过 {Configuration.Instance.MaxNoteLength} 字！"));
             return;
         }
 
-        // 检查留言内容是否包含屏蔽词
         if (Configuration.Instance.BannedWords.Any(bannedWord => content.Contains(bannedWord, StringComparison.OrdinalIgnoreCase)))
         {
             args.Player.SendErrorMessage(GetString("留言内容包含不允许的词汇！"));
@@ -93,14 +91,12 @@ public class NoteWall : LazyPlugin
 
         var newContent = string.Join(" ", args.Parameters.Skip(1));
 
-        // 检查修改后的留言内容字数是否超过限制
         if (newContent.Length > Configuration.Instance.MaxNoteLength)
         {
             args.Player.SendErrorMessage(GetString($"修改后的留言内容不能超过 {Configuration.Instance.MaxNoteLength} 字！"));
             return;
         }
 
-        // 检查修改后的留言内容是否包含屏蔽词
         if (Configuration.Instance.BannedWords.Any(bannedWord => newContent.Contains(bannedWord, StringComparison.OrdinalIgnoreCase)))
         {
             args.Player.SendErrorMessage(GetString("修改后的留言内容包含不允许的词汇！"));
@@ -132,24 +128,18 @@ public class NoteWall : LazyPlugin
         var param = args.Parameters[0];
         if (int.TryParse(param, out var id))
         {
-            var note = Note.DeleteNoteById(id, args.Player);
+            var note = Note.DeleteNoteById(id);
             if (note != null)
             {
-                args.Player.SendSuccessMessage(GetString($"成功删除留言 [{note.Id}] - {note.Username}: {note.Content} (时间：{note.Timestamp})"));
+                args.Player.SendSuccessMessage(GetString($"管理员删除留言 [{note.Id}] - {note.Username}: {note.Content}"));
             }
             else
             {
-                args.Player.SendErrorMessage(GetString("无法删除留言：留言不存在，或你无权删除！"));
+                args.Player.SendErrorMessage(GetString("留言不存在！"));
             }
         }
         else
         {
-            if (!args.Player.HasPermission("notewall.admin.delete"))
-            {
-                args.Player.SendErrorMessage(GetString("你没有权限删除其他玩家的所有留言！"));
-                return;
-            }
-
             var deletedCount = Note.DeleteNotesByUsername(param);
             if (deletedCount > 0)
             {
@@ -211,7 +201,7 @@ public class NoteWall : LazyPlugin
             args.Player.SendInfoMessage(GetString("/notewall <页码/help> 查看留言墙"));
             args.Player.SendInfoMessage(GetString("/rdnote  查看一条随机留言"));
             args.Player.SendInfoMessage(GetString("/upnote <序号> <新内容> 修改你自己的留言"));
-            args.Player.SendInfoMessage(GetString("/delnote <序号> 删除你自己的留言"));
+            args.Player.SendInfoMessage(GetString("/delnote <序号/玩家名字>  删除留言"));
             args.Player.SendInfoMessage(GetString("/mynote  查看你自己的留言"));
             return;
         }

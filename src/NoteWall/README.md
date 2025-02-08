@@ -13,7 +13,7 @@
 | /notewall <页码/help>   | notewall                  | notewall.user.page     | 留言墙分页             |
 | /rdnote   | randomnote        | notewall.user.random   | 随机查看留言           |
 | /upnote <序号> <新内容>  | updatenote       | notewall.user.update   | 修改自己的留言         |
-| /delnote <序号或玩家名字>  | deletenote       | notewall.admin.delete  | 删除留言（管理员权限），填玩家名字会删除该玩家所有留言 |
+| /delnote <序号/玩家名字>  | deletenote       | notewall.admin.delete  | 删除留言（管理员权限），填玩家名字会删除该玩家所有留言 |
 | /mynote   | mynote                    | notewall.user.my       | 查看我的历史留言       |
 
 ## 配置
@@ -27,6 +27,13 @@
 }
 ```
 > 数据库位置：tshock/tshock.sqlite/NoteWall
+
+## 更新日志
+
+```
+v1.0.2
+修正文本和del逻辑
+```
 
 
 ## 反馈
