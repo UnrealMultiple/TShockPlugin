@@ -88,10 +88,6 @@ public class Note : RecordBase<Note>
                 };
 
                 var insertedId = db.InsertWithInt32Identity(note);
-                if (insertedId <= 0)
-                {
-                    return null;
-                }
 
                 note.Id = insertedId;
                 return note;
