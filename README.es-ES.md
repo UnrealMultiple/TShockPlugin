@@ -148,6 +148,7 @@
 | [MusicPlayer](./src/MusicPlayer/README.md) | 0.0% | Reproductor de música simple |  |
 | [Noagent](./src/Noagent/README.md) | 0.0% | Prohíbe que las IPs de proxy ingresen al servidor |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.md) | 0.0% | Suelta bolsas de tesoros en dificultad normal |  |
+| [NoteWall](./src/NoteWall/README.md) | 0.0% | Los jugadores pueden dejar y ver notas aquí. | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
 | [OnlineGiftPackage](./src/OnlineGiftPackage/README.md) | 0.0% | Paquete de regalos en línea |  |
 | [PacketsStop](./src/PacketsStop/README.md) | 0.0% | Interceptación de paquetes |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 0.0% | Buff permanente |  |
