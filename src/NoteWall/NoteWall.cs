@@ -50,6 +50,21 @@ public class NoteWall : LazyPlugin
         }
 
         var content = string.Join(" ", args.Parameters);
+
+        // 检查留言内容的字数是否超过限制
+        if (content.Length > Configuration.Instance.MaxNoteLength)
+        {
+            args.Player.SendErrorMessage(GetString($"留言内容不能超过 {Configuration.Instance.MaxNoteLength} 字！"));
+            return;
+        }
+
+        // 检查留言内容是否包含屏蔽词
+        if (Configuration.Instance.BannedWords.Any(bannedWord => content.Contains(bannedWord, StringComparison.OrdinalIgnoreCase)))
+        {
+            args.Player.SendErrorMessage(GetString("留言内容包含不允许的词汇！"));
+            return;
+        }
+
         var note = Note.AddNote(args.Player.Name, content);
 
         if (note != null)
@@ -77,6 +92,21 @@ public class NoteWall : LazyPlugin
         }
 
         var newContent = string.Join(" ", args.Parameters.Skip(1));
+
+        // 检查修改后的留言内容字数是否超过限制
+        if (newContent.Length > Configuration.Instance.MaxNoteLength)
+        {
+            args.Player.SendErrorMessage(GetString($"修改后的留言内容不能超过 {Configuration.Instance.MaxNoteLength} 字！"));
+            return;
+        }
+
+        // 检查修改后的留言内容是否包含屏蔽词
+        if (Configuration.Instance.BannedWords.Any(bannedWord => newContent.Contains(bannedWord, StringComparison.OrdinalIgnoreCase)))
+        {
+            args.Player.SendErrorMessage(GetString("修改后的留言内容包含不允许的词汇！"));
+            return;
+        }
+
         var note = Note.GetNoteById(id);
 
         if (note != null && Note.UpdateNote(id, newContent, args.Player.Name))
@@ -88,6 +118,8 @@ public class NoteWall : LazyPlugin
             args.Player.SendErrorMessage(GetString("只能修改你自己的留言，或留言不存在！输入/notewall help 查看帮助"));
         }
     }
+
+
 
     private void DeleteNote(CommandArgs args)
     {

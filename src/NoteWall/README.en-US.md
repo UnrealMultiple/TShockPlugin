@@ -21,7 +21,9 @@
 > Configuration file location：`tshock/NoteWall.en-US.json`  
 ```json5
 {
-  "Max Notes per Player": 5
+  "MaxNotesperPlayer": 5,
+  "MaxNoteLength": 50,
+  "BannedWordsList": ""
 }
 ```
 > Database file location: `tshock/tshock.sqlite/NoteWall`  

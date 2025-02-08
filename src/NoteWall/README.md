@@ -21,7 +21,9 @@
 > 配置文件位置：tshock/NoteWall.zh-CN.json
 ```json5
 {
-  "个人最大留言数量": 5
+  "个人最大留言数量": 5,
+  "留言字数限制": 50,
+  "屏蔽词列表": ""
 }
 ```
 > 数据库位置：tshock/tshock.sqlite/NoteWall
