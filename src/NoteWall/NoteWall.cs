@@ -14,7 +14,7 @@ public class NoteWall : LazyPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "肝帝熙恩";
-    public override Version Version => new Version(1, 0, 0);
+    public override Version Version => new Version(1, 0, 1);
     public override string Description => GetString("留言墙");
 
     public NoteWall(Main game) : base(game)
@@ -23,20 +23,20 @@ public class NoteWall : LazyPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("notewall.user.add", this.AddNote, "留言", "addnote"));
-        Commands.ChatCommands.Add(new Command("notewall.user.view", this.ViewNote, "查看留言", "viewnote","vinote"));
-        Commands.ChatCommands.Add(new Command("notewall.user.page", this.ViewNotesPage, "留言墙","notewall"));
-        Commands.ChatCommands.Add(new Command("notewall.user.random", this.RandomNote, "随机留言", "randomnote","rdnote"));
-        Commands.ChatCommands.Add(new Command("notewall.user.update", this.UpdateNote, "修改留言", "updatenote","upnote"));
-        Commands.ChatCommands.Add(new Command("notewall.admin.delete", this.DeleteNote, "删除留言", "deletenote","delnote"));
-        Commands.ChatCommands.Add(new Command("notewall.user.my", this.MyNotes, "我的留言", "mynote"));
+        Commands.ChatCommands.Add(new Command("notewall.user.add", this.AddNote, "addnote"));
+        Commands.ChatCommands.Add(new Command("notewall.user.view", this.ViewNote, "viewnote","vinote"));
+        Commands.ChatCommands.Add(new Command("notewall.user.page", this.ViewNotesPage,"notewall"));
+        Commands.ChatCommands.Add(new Command("notewall.user.random", this.RandomNote, "randomnote","rdnote"));
+        Commands.ChatCommands.Add(new Command("notewall.user.update", this.UpdateNote, "updatenote","upnote"));
+        Commands.ChatCommands.Add(new Command("notewall.admin.delete", this.DeleteNote, "deletenote","delnote"));
+        Commands.ChatCommands.Add(new Command("notewall.user.my", this.MyNotes, "mynote"));
     }
 
     private void AddNote(CommandArgs args)
     {
         if (args.Parameters.Count < 1)
         {
-            args.Player.SendErrorMessage(GetString("请输入留言内容！"));
+            args.Player.SendErrorMessage(GetString("请输入留言内容！输入/notewall help 查看帮助"));
             return;
         }
 
@@ -49,7 +49,7 @@ public class NoteWall : LazyPlugin
         }
         else
         {
-            args.Player.SendErrorMessage(GetString("你最多只能留言 5 条！"));
+            args.Player.SendErrorMessage(GetString($"你最多只能留言 {Configuration.Instance.MaxNotesPerPlayer} 条！"));
         }
     }
 
@@ -57,13 +57,13 @@ public class NoteWall : LazyPlugin
     {
         if (args.Parameters.Count < 2)
         {
-            args.Player.SendErrorMessage(GetString("请输入留言序号和新的留言内容！"));
+            args.Player.SendErrorMessage(GetString("请输入留言序号和新的留言内容！输入/notewall help 查看帮助"));
             return;
         }
 
         if (!int.TryParse(args.Parameters[0], out var id))
         {
-            args.Player.SendErrorMessage(GetString("无效的留言序号！"));
+            args.Player.SendErrorMessage(GetString("无效的留言序号！输入/notewall help 查看帮助"));
             return;
         }
 
@@ -76,7 +76,7 @@ public class NoteWall : LazyPlugin
         }
         else
         {
-            args.Player.SendErrorMessage(GetString("只能修改你自己的留言，或留言不存在！"));
+            args.Player.SendErrorMessage(GetString("只能修改你自己的留言，或留言不存在！输入/notewall help 查看帮助"));
         }
     }
 
@@ -84,7 +84,7 @@ public class NoteWall : LazyPlugin
     {
         if (args.Parameters.Count < 1)
         {
-            args.Player.SendErrorMessage(GetString("请输入留言序号或用户名！"));
+            args.Player.SendErrorMessage(GetString("请输入留言序号或用户名！输入/notewall help 查看帮助"));
             return;
         }
 
@@ -125,7 +125,7 @@ public class NoteWall : LazyPlugin
     {
         if (args.Parameters.Count < 1)
         {
-            args.Player.SendErrorMessage(GetString("请输入留言序号或用户名！"));
+            args.Player.SendErrorMessage(GetString("请输入留言序号或用户名！输入/notewall help 查看帮助"));
             return;
         }
 
@@ -161,22 +161,37 @@ public class NoteWall : LazyPlugin
 
     private void ViewNotesPage(CommandArgs args)
     {
+        // 如果输入 "help" 显示帮助信息
+        if (args.Parameters.Count > 0 && args.Parameters[0].ToLower() == "help")
+        {
+            args.Player.SendInfoMessage(GetString("===== 留言墙 插件指令 ====="));
+            args.Player.SendInfoMessage(GetString("/addnote <内容>  留下留言"));
+            args.Player.SendInfoMessage(GetString("/vinote <序号/玩家名字>  查看某个留言"));
+            args.Player.SendInfoMessage(GetString("/notewall <页码/help> 查看留言墙"));
+            args.Player.SendInfoMessage(GetString("/rdnote  查看一条随机留言"));
+            args.Player.SendInfoMessage(GetString("/upnote  修改你自己的留言"));
+            args.Player.SendInfoMessage(GetString("/delnote <序号> 删除你自己的留言"));
+            args.Player.SendInfoMessage(GetString("/mynote  查看你自己的留言"));
+            return;
+        }
+
+        // 如果参数不为 "help"，继续分页显示留言
         if (args.Parameters.Count < 1)
         {
-            args.Player.SendErrorMessage(GetString("请输入页码！例如：/留言墙 1"));
+            args.Player.SendErrorMessage(GetString("请输入页码！例如：/notewall 1"));
             return;
         }
 
         if (!int.TryParse(args.Parameters[0], out var page))
         {
-            args.Player.SendErrorMessage(GetString("请输入有效的页码！"));
+            args.Player.SendErrorMessage(GetString("请输入有效的页码！输入/notewall help 查看帮助"));
             return;
         }
 
         var allNotes = Note.GetAllNotes();
         var totalNotes = allNotes.Count;
         var notesPerPage = 10;
-        var totalPages = (int)Math.Ceiling((double)totalNotes / notesPerPage);
+        var totalPages = (int) Math.Ceiling((double) totalNotes / notesPerPage);
 
         if (page <= 0 || page > totalPages)
         {
@@ -200,8 +215,8 @@ public class NoteWall : LazyPlugin
         {
             args.Player.SendErrorMessage(GetString("没有更多留言了！"));
         }
-
     }
+
 
     private void RandomNote(CommandArgs args)
     {
@@ -212,7 +227,7 @@ public class NoteWall : LazyPlugin
         }
         else
         {
-            args.Player.SendErrorMessage(GetString("目前没有留言！"));
+            args.Player.SendErrorMessage(GetString("目前没有留言！输入/notewall help 查看帮助"));
         }
     }
 
@@ -228,7 +243,7 @@ public class NoteWall : LazyPlugin
         }
         else
         {
-            args.Player.SendErrorMessage(GetString("你还没有留言！"));
+            args.Player.SendErrorMessage(GetString("你还没有留言！输入/notewall help 查看帮助"));
         }
     }
 }

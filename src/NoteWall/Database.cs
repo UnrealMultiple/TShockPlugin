@@ -71,11 +71,47 @@ public class Note : RecordBase<Note>
     {
         using (var db = Db.Context<Note>(TableName))
         {
-            var hasExceededLimit = db.Records
-                .Any(n => n.Username.ToLower() == username.ToLower()
-                    && db.Records.Count(n2 => n2.Username.ToLower() == username.ToLower()) >= 5);
+            var noteCount = db.Records.Count(n => n.Username.ToLower() == username.ToLower());
 
-            if (hasExceededLimit)
+            if (noteCount >= Configuration.Instance.MaxNotesPerPlayer)
+            {
+                return null;
+            }
+
+            try
+            {
+                var note = new Note
+                {
+                    Username = username,
+                    Content = content,
+                    Timestamp = DateTime.Now
+                };
+
+                var insertedId = db.InsertWithInt32Identity(note);
+                if (insertedId <= 0)
+                {
+                    return null;
+                }
+
+                note.Id = insertedId;
+                return note;
+            }
+            catch (Exception ex)
+            {
+                TShock.Log.ConsoleError(GetString($"留言添加失败: {ex.Message}"));
+                return null;
+            }
+        }
+    }
+
+
+    public static Note? DeleteNoteById(int id, TSPlayer player)
+    {
+        using (var db = Db.Context<Note>(TableName))
+        {
+            var note = db.Records.Where(n => n.Id == id).FirstOrDefault();
+
+            if (note == null || (!player.HasPermission("notewall.admin") && note.Username.ToLower() != player.Name.ToLower()))
             {
                 return null;
             }
@@ -84,55 +120,20 @@ public class Note : RecordBase<Note>
             {
                 try
                 {
-                    var note = new Note
-                    {
-                        Username = username,
-                        Content = content,
-                        Timestamp = DateTime.Now
-                    };
-
-                    var insertedId = db.InsertWithInt32Identity(note);
-                    if (insertedId <= 0)
-                    {
-                        transaction.Rollback();
-                        return null;
-                    }
-
-                    note.Id = insertedId;
-                    transaction.Commit();
+                    db.Delete(note);
+                    transaction.Commit(); 
                     return note;
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    TShock.Log.ConsoleError($"留言添加失败: {ex.Message}");
+                    TShock.Log.ConsoleError(GetString($"删除留言失败: {ex.Message}"));
                     return null;
                 }
             }
         }
     }
 
-    public static Note? DeleteNoteById(int id, TSPlayer player)
-    {
-        using (var db = Db.Context<Note>(TableName))
-        {
-            var query = db.Records.Where(n => n.Id == id);
-
-            if (!player.HasPermission("notewall.admin"))
-            {
-                query = query.Where(n => n.Username.ToLower() == player.Name.ToLower());
-            }
-
-            var note = query.FirstOrDefault();
-            if (note == null)
-            {
-                return null;
-            }
-
-            db.Delete(note);
-            return note;
-        }
-    }
 
     public static bool UpdateNote(int id, string content, string username)
     {
@@ -144,14 +145,27 @@ public class Note : RecordBase<Note>
                 return false;
             }
 
-            var oldContent = note.Content;
-            note.Content = content;
-            note.Timestamp = DateTime.Now;
-            db.Update(note);
+            using (var transaction = db.BeginTransaction())
+            {
+                try
+                {
+                    note.Content = content;
+                    note.Timestamp = DateTime.Now;
 
-            return true;
+                    db.Update(note);
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    TShock.Log.ConsoleError(GetString($"修改留言失败: {ex.Message}"));
+                    return false;
+                }
+            }
         }
     }
+
 
 
     public static int DeleteNotesByUsername(string username)

@@ -8,19 +8,21 @@
 
 | 语法       | 别名                      | 权限                   | 说明                   |
 |------------|---------------------------|------------------------|------------------------|
-| /留言 <内容>      | addnote, add              | notewall.user.add      | 留下留言               |
-| /查看留言 <序号/玩家名字>  | viewnote, vinote          | notewall.user.view     | 查看留言               |
-| /留言墙 <页码>   | notewall                  | notewall.user.page     | 留言墙分页             |
-| /随机留言   | randomnote, rdnote        | notewall.user.random   | 随机查看留言           |
-| /修改留言 <序号>  | updatenote, upnote        | notewall.user.update   | 修改自己的留言         |
-| /删除留言 <序号或玩家名字>  | deletenote, delnote       | notewall.admin.delete  | 删除留言（管理员权限），填玩家名字会删除该玩家所有留言 |
-| /我的留言   | mynote                    | notewall.user.my       | 查看我的历史留言       |
+| /addnote <内容>      | addnote              | notewall.user.add      | 留下留言               |
+| /vinote <序号/玩家名字>  | viewnote       | notewall.user.view     | 查看留言               |
+| /notewall <页码/help>   | notewall                  | notewall.user.page     | 留言墙分页             |
+| /rdnote   | randomnote        | notewall.user.random   | 随机查看留言           |
+| /upnote <序号> <新内容>  | updatenote       | notewall.user.update   | 修改自己的留言         |
+| /delnote <序号或玩家名字>  | deletenote       | notewall.admin.delete  | 删除留言（管理员权限），填玩家名字会删除该玩家所有留言 |
+| /mynote   | mynote                    | notewall.user.my       | 查看我的历史留言       |
 
 ## 配置
 
 > 配置文件位置：tshock/NoteWall.zh-CN.json
 ```json5
-暂无
+{
+  "个人最大留言数量": 5
+}
 ```
 > 数据库位置：tshock/tshock.sqlite/NoteWall
 
