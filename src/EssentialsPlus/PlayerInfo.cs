@@ -38,7 +38,7 @@ public class PlayerInfo
     public void PushBackHistory(Vector2 vector)
     {
         this.backHistory.Insert(0, vector);
-        if (this.backHistory.Count > EssentialsPlus.Config.BackPositionHistory)
+        if (this.backHistory.Count > Config.Instance.BackPositionHistory)
         {
             this.backHistory.RemoveAt(this.backHistory.Count - 1);
         }
