@@ -1080,7 +1080,7 @@
   },
   {
     "Name": "Economics.RPG",
-    "Version": "2.0.0.3",
+    "Version": "2.0.0.4",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides RPG gameplay!",
@@ -1125,7 +1125,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "2.0.1.0",
+    "Version": "2.0.1.1",
     "Author": "少司命",
     "Description": {
       "en-US": "Let players have skills!",
