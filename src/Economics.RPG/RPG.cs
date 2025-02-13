@@ -20,7 +20,7 @@ public class RPG : TerrariaPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(2, 0, 0, 3);
 
-    internal static Config Config { get; set; } = new Config();
+    public static Config Config { get; set; } = new Config();
 
     public static PlayerLevelManager PlayerLevelManager { get; private set; } = null!;
 
