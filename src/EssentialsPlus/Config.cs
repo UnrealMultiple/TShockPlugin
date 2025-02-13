@@ -1,37 +1,49 @@
-﻿using Newtonsoft.Json;
+﻿using LazyAPI.Attributes;
+using LazyAPI.ConfigFiles;
 
 namespace EssentialsPlus;
 
-public class Config
+[Config]
+public class Config : JsonConfigBase<Config>
 {
-    [JsonProperty("Pvp禁用命令")]
-    public string[] DisabledCommandsInPvp = new string[]
+    protected override string Filename => "EssentialsPlus";
+
+    [LocalizedPropertyName(CultureType.Chinese, "Pvp禁用命令")]
+    [LocalizedPropertyName(CultureType.English, "Disabled Commands in Pvp")]
+    public string[] DisabledCommandsInPvp { get; set; } = Array.Empty<string>();
+
+    [LocalizedPropertyName(CultureType.Chinese, "禁言是否判断IP")]
+    [LocalizedPropertyName(CultureType.English, "MuteCheckIP")]
+    public bool IsMuteCheckIP { get; set; } 
+
+    [LocalizedPropertyName(CultureType.Chinese, "回退位置历史记录")]
+    [LocalizedPropertyName(CultureType.English, "Back Position History")]
+    public int BackPositionHistory { get; set; }
+
+    [LocalizedPropertyName(CultureType.Chinese, "MySql主机")]
+    [LocalizedPropertyName(CultureType.English, "MySQL Host")]
+    public string? MySqlHost { get; set; }
+
+    [LocalizedPropertyName(CultureType.Chinese, "MySql数据库名称")]
+    [LocalizedPropertyName(CultureType.English, "MySQL Database Name")]
+    public string? MySqlDbName { get; set; }
+
+    [LocalizedPropertyName(CultureType.Chinese, "MySql用户名")]
+    [LocalizedPropertyName(CultureType.English, "MySQL Username")]
+    public string? MySqlUsername { get; set; }
+
+    [LocalizedPropertyName(CultureType.Chinese, "MySql密码")]
+    [LocalizedPropertyName(CultureType.English, "MySQL Password")]
+    public string? MySqlPassword { get; set; }
+
+    protected override void SetDefault()
     {
-        "eback"
-    };
-
-    [JsonProperty("回退位置历史记录")]
-    public int BackPositionHistory = 10;
-
-    [JsonProperty("MySql主机")]
-    public string MySqlHost = "";
-
-    [JsonProperty("MySql数据库名称")]
-    public string MySqlDbName = "";
-
-    [JsonProperty("MySql用户名")]
-    public string MySqlUsername = "";
-
-    [JsonProperty("MySql密码")]
-    public string MySqlPassword = "";
-
-    public void Write(string path)
-    {
-        File.WriteAllText(path, JsonConvert.SerializeObject(this, Formatting.Indented));
-    }
-
-    public static Config Read(string path)
-    {
-        return File.Exists(path) ? JsonConvert.DeserializeObject<Config>(File.ReadAllText(path))! : new Config();
+        this.DisabledCommandsInPvp = new[] { "eback" };
+        this.IsMuteCheckIP = true;
+        this.BackPositionHistory = 10;
+        this.MySqlHost = "";
+        this.MySqlDbName = "";
+        this.MySqlUsername = "";
+        this.MySqlPassword = "";
     }
 }

@@ -74,6 +74,8 @@
 
 ## 更新日志
 ```
+1.0.7
+EssentialsPlus的config使用lazyapi，禁言判断uuid，名字，ip
 1.0.4
 添加西班牙语，修正部分内容
 1.0.3
