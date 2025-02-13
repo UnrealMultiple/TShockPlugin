@@ -1,5 +1,6 @@
 ﻿using EssentialsPlus.Db;
 using EssentialsPlus.Extensions;
+using LazyAPI;
 using Microsoft.Data.Sqlite;
 using MySql.Data.MySqlClient;
 using System.Data;
@@ -11,9 +12,8 @@ using TShockAPI.Hooks;
 namespace EssentialsPlus;
 
 [ApiVersion(2, 1)]
-public class EssentialsPlus : TerrariaPlugin
+public class EssentialsPlus : LazyPlugin
 {
-    public static Config Config { get; private set; } = null!;
     public static IDbConnection Db { get; private set; } = null!;
     public static HomeManager Homes { get; private set; } = null!;
     public static MuteManager Mutes { get; private set; } = null!;
@@ -23,7 +23,7 @@ public class EssentialsPlus : TerrariaPlugin
     public override string Description => GetString("增强版Essentials");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 6);
+    public override Version Version => new Version(1, 0, 7);
 
 
     public EssentialsPlus(Main game)
@@ -59,12 +59,6 @@ public class EssentialsPlus : TerrariaPlugin
 
     private void OnReload(ReloadEventArgs e)
     {
-        var path = Path.Combine(TShock.SavePath, "essentials.json");
-        Config = Config.Read(path);
-        if (!File.Exists(path))
-        {
-            Config.Write(path);
-        }
         Homes.Reload();
         e.Player.SendSuccessMessage(GetString("[EssentialsPlus] 重新加载配置和家!"));
     }
@@ -89,7 +83,7 @@ public class EssentialsPlus : TerrariaPlugin
 
         if (e.Player.TPlayer.hostile &&
             command.Names.Select(s => s.ToLowerInvariant())
-                .Intersect(Config.DisabledCommandsInPvp.Select(s => s.ToLowerInvariant()))
+                .Intersect(Config.Instance.DisabledCommandsInPvp.Select(s => s.ToLowerInvariant()))
                 .Any())
         {
             e.Player.SendErrorMessage(GetString("在PvP中无法使用该命令！"));
@@ -113,21 +107,14 @@ public class EssentialsPlus : TerrariaPlugin
     {
         #region Config
 
-        var path = Path.Combine(TShock.SavePath, "essentials.json");
-        Config = Config.Read(path);
-        if (!File.Exists(path))
-        {
-            Config.Write(path);
-        }
-
         #endregion
 
         #region Database
 
         if (TShock.Config.Settings.StorageType.Equals("mysql", StringComparison.OrdinalIgnoreCase))
         {
-            if (string.IsNullOrWhiteSpace(Config.MySqlHost) ||
-                string.IsNullOrWhiteSpace(Config.MySqlDbName))
+            if (string.IsNullOrWhiteSpace(Config.Instance.MySqlHost) ||
+                string.IsNullOrWhiteSpace(Config.Instance.MySqlDbName))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(GetString("[Essentials+] MySQL已启用，但未设置Essentials+ MySQL配置。"));
@@ -146,15 +133,15 @@ public class EssentialsPlus : TerrariaPlugin
                 return;
             }
 
-            var host = Config.MySqlHost.Split(':');
+            var host = Config.Instance.MySqlHost.Split(':');
             Db = new MySqlConnection
             {
                 ConnectionString = string.Format("Server={0}; Port={1}; Database={2}; Uid={3}; Pwd={4};",
                     host[0],
                     host.Length == 1 ? "3306" : host[1],
-                    Config.MySqlDbName,
-                    Config.MySqlUsername,
-                    Config.MySqlPassword)
+                    Config.Instance.MySqlDbName,
+                    Config.Instance.MySqlUsername,
+                    Config.Instance.MySqlPassword)
             };
         }
         else

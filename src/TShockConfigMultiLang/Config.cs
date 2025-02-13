@@ -549,235 +549,109 @@ public class Config : JsonConfigBase<Config>
     [LocalizedPropertyName(CultureType.Chinese, "踢出1秒内治疗其他玩家超出数值上限的玩家")]
     [LocalizedPropertyName(CultureType.English, "KickOnHealOtherThresholdBroken")]
     public bool KickOnHealOtherThresholdBroken = TShock.Config.Settings.KickOnHealOtherThresholdBroken;
-
-    /// <summary>
-    /// 描述: 区域与出生点提示无权建筑。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "不提示受保护区域无权建筑信息")]
+[LocalizedPropertyName(CultureType.Chinese, "不提示受保护区域无权建筑信息")]
     [LocalizedPropertyName(CultureType.English, "SuppressPermissionFailureNotices")]
     public bool SuppressPermissionFailureNotices = TShock.Config.Settings.SuppressPermissionFailureNotices;
-
-    /// <summary>
-    /// 描述: 禁止修改后的天顶剑。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "禁止修改的天顶剑")]
+[LocalizedPropertyName(CultureType.Chinese, "禁止修改的天顶剑")]
     [LocalizedPropertyName(CultureType.English, "DisableModifiedZenith")]
     public bool DisableModifiedZenith = TShock.Config.Settings.DisableModifiedZenith;
-
-    /// <summary>
-    /// 描述: 禁用自定义死亡信息。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "禁用自定义死亡信息")]
+[LocalizedPropertyName(CultureType.Chinese, "禁用自定义死亡信息")]
     [LocalizedPropertyName(CultureType.English, "DisableCustomDeathMessages")]
     public bool DisableCustomDeathMessages = TShock.Config.Settings.DisableCustomDeathMessages;
 
     #endregion
 
     #region Chat Settings
-
-    /// <summary>
-    /// 指定用于启动命令的字符串。
-    /// 注意：如果字符串长度大于 1，可能无法正常工作。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "指令前缀")]
+[LocalizedPropertyName(CultureType.Chinese, "指令前缀")]
     [LocalizedPropertyName(CultureType.English, "CommandSpecifier")]
     public string CommandSpecifier = TShock.Config.Settings.CommandSpecifier;
-
-    /// <summary>
-    /// 指定用于静默启动命令的字符串。
-    /// 注意：如果字符串长度大于 1，可能无法正常工作。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "隐藏指令前缀")]
+[LocalizedPropertyName(CultureType.Chinese, "隐藏指令前缀")]
     [LocalizedPropertyName(CultureType.English, "CommandSilentSpecifier")]
     public string CommandSilentSpecifier = TShock.Config.Settings.CommandSilentSpecifier;
-
-    /// <summary>
-    /// 禁用将日志作为消息发送给具有日志权限的玩家。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "不将日志作为聊天信息发送给有日志权限的玩家")]
+[LocalizedPropertyName(CultureType.Chinese, "不将日志作为聊天信息发送给有日志权限的玩家")]
     [LocalizedPropertyName(CultureType.English, "DisableSpewLogs")]
     public bool DisableSpewLogs = TShock.Config.Settings.DisableSpewLogs;
-
-    /// <summary>
-    /// 阻止 OnSecondUpdate 检查写入日志文件。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "不将每秒的更新检查写入日志")]
+[LocalizedPropertyName(CultureType.Chinese, "不将每秒的更新检查写入日志")]
     [LocalizedPropertyName(CultureType.English, "DisableSecondUpdateLogs")]
     public bool DisableSecondUpdateLogs = TShock.Config.Settings.DisableSecondUpdateLogs;
-
-    /// <summary>
-    /// 超级管理员组的聊天颜色。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "超级管理员的聊天颜色")]
+[LocalizedPropertyName(CultureType.Chinese, "超级管理员的聊天颜色")]
     [LocalizedPropertyName(CultureType.English, "SuperAdminChatRGB")]
     public int[] SuperAdminChatRGB = TShock.Config.Settings.SuperAdminChatRGB;
-
-    /// <summary>
-    /// 超级管理员的聊天前缀。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "超管的聊天前缀")]
+[LocalizedPropertyName(CultureType.Chinese, "超管的聊天前缀")]
     [LocalizedPropertyName(CultureType.English, "SuperAdminChatPrefix")]
     public string SuperAdminChatPrefix = TShock.Config.Settings.SuperAdminChatPrefix;
-
-    /// <summary>
-    /// 超级管理员的聊天后缀。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "超管的聊天后缀")]
+[LocalizedPropertyName(CultureType.Chinese, "超管的聊天后缀")]
     [LocalizedPropertyName(CultureType.English, "SuperAdminChatSuffix")]
     public string SuperAdminChatSuffix = TShock.Config.Settings.SuperAdminChatSuffix;
-
-    /// <summary>
-    /// 是否在玩家加入时基于其 IP 地址宣布玩家的地理位置。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "显示加入服务器的玩家IP地理位置")]
+[LocalizedPropertyName(CultureType.Chinese, "显示加入服务器的玩家IP地理位置")]
     [LocalizedPropertyName(CultureType.English, "EnableGeoIP")]
     public bool EnableGeoIP = TShock.Config.Settings.EnableGeoIP;
-
-    /// <summary>
-    /// 是否在玩家加入时向具有日志权限的用户显示玩家的 IP 地址。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "向有日志权限的管理显示进入玩家的IP")]
+[LocalizedPropertyName(CultureType.Chinese, "向有日志权限的管理显示进入玩家的IP")]
     [LocalizedPropertyName(CultureType.English, "DisplayIPToAdmins")]
     public bool DisplayIPToAdmins = TShock.Config.Settings.DisplayIPToAdmins;
-
-    /// <summary>
-    /// 更改游戏内聊天格式：{0} = 组名，{1} = 组前缀，{2} = 玩家名称，{3} = 组后缀，{4} = 聊天消息。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "聊天格式")]
+[LocalizedPropertyName(CultureType.Chinese, "聊天格式")]
     [LocalizedPropertyName(CultureType.English, "ChatFormat")]
     public string ChatFormat = TShock.Config.Settings.ChatFormat;
-
-    /// <summary>
-    /// 更改使用头顶聊天时的玩家名称。以玩家名称包裹在括号中，符合 Terraria 的格式。\n与 ChatFormat 相同的格式，但不包含消息。（可用占位符）
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "聊天栏内玩家名字")]
+[LocalizedPropertyName(CultureType.Chinese, "聊天栏内玩家名字")]
     [LocalizedPropertyName(CultureType.English, "ChatAboveHeadsFormat")]
     public string ChatAboveHeadsFormat = TShock.Config.Settings.ChatAboveHeadsFormat;
-
-    /// <summary>
-    /// 是否在玩家头顶显示聊天消息。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "是否在玩家头顶显示聊天消息")]
+[LocalizedPropertyName(CultureType.Chinese, "是否在玩家头顶显示聊天消息")]
     [LocalizedPropertyName(CultureType.English, "EnableChatAboveHeads")]
     public bool EnableChatAboveHeads = TShock.Config.Settings.EnableChatAboveHeads;
-
-    /// <summary>
-    /// 用于广播消息的颜色的 RGB 值。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "系统广播文字颜色")]
+[LocalizedPropertyName(CultureType.Chinese, "系统广播文字颜色")]
     [LocalizedPropertyName(CultureType.English, "BroadcastRGB")]
     public int[] BroadcastRGB = TShock.Config.Settings.BroadcastRGB;
 
     #endregion
 
     #region MySQL Settings
-
-    /// <summary>
-    /// 存储数据时使用的数据库类型: sqlite/mysql。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "数据库类型")]
+[LocalizedPropertyName(CultureType.Chinese, "数据库类型")]
     [LocalizedPropertyName(CultureType.English, "StorageType")]
     public string StorageType = TShock.Config.Settings.StorageType;
-
-    /// <summary>
-    /// 本服务器的数据库路径。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "数据库路径")]
+[LocalizedPropertyName(CultureType.Chinese, "数据库路径")]
     [LocalizedPropertyName(CultureType.English, "SqliteDBPath")]
     public string SqliteDBPath = TShock.Config.Settings.SqliteDBPath;
-
-    /// <summary>
-    /// Mysql连接的ip和端口。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Mysql连接的ip和端口")]
+[LocalizedPropertyName(CultureType.Chinese, "Mysql连接的ip和端口")]
     [LocalizedPropertyName(CultureType.English, "MySqlHost")]
     public string MySqlHost = TShock.Config.Settings.MySqlHost;
-
-    /// <summary>
-    /// Mysql的数据库名称。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Mysql的数据库名称")]
+[LocalizedPropertyName(CultureType.Chinese, "Mysql的数据库名称")]
     [LocalizedPropertyName(CultureType.English, "MySqlDbName")]
     public string MySqlDbName = TShock.Config.Settings.MySqlDbName;
-
-    /// <summary>
-    /// Mysql的用户名。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Mysql的用户名")]
+[LocalizedPropertyName(CultureType.Chinese, "Mysql的用户名")]
     [LocalizedPropertyName(CultureType.English, "MySqlUsername")]
     public string MySqlUsername = TShock.Config.Settings.MySqlUsername;
-
-    /// <summary>
-    /// Mysql的密码。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Mysql的密码")]
+[LocalizedPropertyName(CultureType.Chinese, "Mysql的密码")]
     [LocalizedPropertyName(CultureType.English, "MySqlPassword")]
     public string MySqlPassword = TShock.Config.Settings.MySqlPassword;
-
-    /// <summary>
-    /// 是否把日志存入数据库。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "是否把日志存入数据库")]
+[LocalizedPropertyName(CultureType.Chinese, "是否把日志存入数据库")]
     [LocalizedPropertyName(CultureType.English, "UseSqlLogs")]
     public bool UseSqlLogs = TShock.Config.Settings.UseSqlLogs;
-
-    /// <summary>
-    /// Sql日志返回文本日志之前连接次数。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Sql日志连接失败指定次数后变回文本日志")]
+[LocalizedPropertyName(CultureType.Chinese, "Sql日志连接失败指定次数后变回文本日志")]
     [LocalizedPropertyName(CultureType.English, "RevertToTextLogsOnSqlFailures")]
     public int RevertToTextLogsOnSqlFailures = TShock.Config.Settings.RevertToTextLogsOnSqlFailures;
 
     #endregion
 
     #region REST API Settings
-
-    /// <summary>
-    /// 开启 Rest API。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "开启 Rest API")]
+[LocalizedPropertyName(CultureType.Chinese, "开启 Rest API")]
     [LocalizedPropertyName(CultureType.English, "RestApiEnabled")]
     public bool RestApiEnabled = TShock.Config.Settings.RestApiEnabled;
-
-    /// <summary>
-    /// Rest的端口。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Rest的端口")]
+[LocalizedPropertyName(CultureType.Chinese, "Rest的端口")]
     [LocalizedPropertyName(CultureType.English, "RestApiPort")]
     public int RestApiPort = TShock.Config.Settings.RestApiPort;
-
-    /// <summary>
-    /// 记录Rest连线。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "记录Rest连线")]
+[LocalizedPropertyName(CultureType.Chinese, "记录Rest连线")]
     [LocalizedPropertyName(CultureType.English, "LogRest")]
     public bool LogRest = TShock.Config.Settings.LogRest;
-
-    /// <summary>
-    /// 开启对Rest的权限认证。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "开启对Rest的权限认证")]
+[LocalizedPropertyName(CultureType.Chinese, "开启对Rest的权限认证")]
     [LocalizedPropertyName(CultureType.English, "EnableTokenEndpointAuthentication")]
     public bool EnableTokenEndpointAuthentication = TShock.Config.Settings.EnableTokenEndpointAuthentication;
-
-    /// <summary>
-    /// Rest连接失败的请求次数。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Rest最大请求次数")]
+[LocalizedPropertyName(CultureType.Chinese, "Rest最大请求次数")]
     [LocalizedPropertyName(CultureType.English, "RESTMaximumRequestsPerInterval")]
     public int RESTMaximumRequestsPerInterval = TShock.Config.Settings.RESTMaximumRequestsPerInterval;
-
-    /// <summary>
-    /// Rest连接请求次数间隔/分钟。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Rest允许连接请求加一间隔")]
+[LocalizedPropertyName(CultureType.Chinese, "Rest允许连接请求加一间隔")]
     [LocalizedPropertyName(CultureType.English, "RESTRequestBucketDecreaseIntervalMinutes")]
     public int RESTRequestBucketDecreaseIntervalMinutes = TShock.Config.Settings.RESTRequestBucketDecreaseIntervalMinutes;
-
-    /// <summary>
-    /// Rest外部应用权限表。
-    /// </summary>
-    [LocalizedPropertyName(CultureType.Chinese, "Rest外部应用令牌字典")]
+[LocalizedPropertyName(CultureType.Chinese, "Rest外部应用令牌字典")]
     [LocalizedPropertyName(CultureType.English, "ApplicationRestTokens")]
     public Dictionary<string, SecureRest.TokenData> ApplicationRestTokens = TShock.Config.Settings.ApplicationRestTokens;
 

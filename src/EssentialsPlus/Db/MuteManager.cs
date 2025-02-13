@@ -164,8 +164,24 @@ public class MuteManager
             return false;
         }
     }
+
     public DateTime GetExpiration(TSPlayer player)
     {
-        return this.Mutes.Find(f => f.UUID == player.UUID)?.Expiration ?? DateTime.MinValue;
+        var muteRecord = this.Mutes.Find(f => f.UUID == player.UUID);
+        if (muteRecord != null)
+        {
+            return muteRecord.Expiration;
+        }
+        if (Config.Instance.IsMuteCheckIP)
+        {
+            muteRecord = this.Mutes.Find(f => f.IP == player.IP);
+            if (muteRecord != null)
+            {
+                return muteRecord.Expiration;
+            }
+        }
+        muteRecord = this.Mutes.Find(f => f.Name.Equals(player.Name, StringComparison.OrdinalIgnoreCase));
+
+        return muteRecord != null ? muteRecord.Expiration : DateTime.MinValue;
     }
 }
