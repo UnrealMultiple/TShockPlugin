@@ -44,7 +44,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.200.0",
+    "Version": "0.0.203.0",
     "Author": "SGKoishi",
     "Description": {
       "en-US": "Yet another misc plugin for TShock",
@@ -665,7 +665,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.200.0",
+    "Version": "0.0.203.0",
     "Author": "SGKoishi",
     "Description": {
       "en-US": "Yet another misc plugin for TShock - the miscellaneous part",
@@ -1482,7 +1482,7 @@
   },
   {
     "Name": "Lagrange.XocMat.Adapter",
-    "Version": "1.0.0.3",
+    "Version": "1.0.0.4",
     "Author": "少司命",
     "Description": {
       "en-US": "Adaptation plugin",
@@ -1684,6 +1684,29 @@
     "AssemblyName": "NormalDropsBags",
     "Path": "NormalDropsBags.dll",
     "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "NoteWall",
+    "Version": "1.0.2",
+    "Author": "肝帝熙恩",
+    "Description": {
+      "en-US": "留言墙",
+      "de-DE": "留言墙",
+      "it-IT": "留言墙",
+      "fr-FR": "留言墙",
+      "es-ES": "留言墙",
+      "ru-RU": "留言墙",
+      "zh-CN": "留言墙",
+      "pt-BR": "留言墙",
+      "pl-PL": "留言墙"
+    },
+    "AssemblyName": "NoteWall",
+    "Path": "NoteWall.dll",
+    "Dependencies": [
+      "LazyAPI",
+      "linq2db"
+    ],
     "HotReload": true
   },
   {
@@ -2154,7 +2177,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.8.4",
+    "Version": "1.1.8.5",
     "Author": "少司命",
     "Description": {
       "en-US": "Server Utility",
@@ -2652,7 +2675,7 @@
     "Version": "1.0.0.6",
     "Author": "z枳",
     "Description": {
-      "en-US": "Allow any weapon to be strengthened on basic attributes",
+      "en-US": "Allow to modify weapon to be strengthened on basic attributes",
       "de-DE": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "it-IT": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "fr-FR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:34+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"PO-Revision-Date: 2025-02-04 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,5 +19,5 @@ msgstr ""
 
 #: ../../WeaponPlus.cs:14
 msgid "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes"
-msgstr "Allow any weapon to be strengthened on basic attributes"
+msgstr "Allow to modify weapon to be strengthened on basic attributes"
 

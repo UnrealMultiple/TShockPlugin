@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace ServerTools;
 
-
+[Config]
 public class Config : JsonConfigBase<Config>
 {
     [LocalizedPropertyName(CultureType.Chinese, "死亡延续")]

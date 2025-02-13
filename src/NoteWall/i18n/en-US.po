@@ -1,0 +1,204 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-02-08 19:23:09+0000\n"
+"PO-Revision-Date: 2025-02-09 01:12\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/NoteWall/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1578\n"
+"Language: en_US\n"
+
+#: ../../NoteWall.cs:242
+#, csharp-format
+msgid "[{0}] {1}: {2} (时间：{3})"
+msgstr ""
+
+#: ../../NoteWall.cs:238
+msgid "[i:531]========== 留言墙 ==========[i:531]"
+msgstr ""
+
+#: ../../NoteWall.cs:199
+msgid "/addnote <内容>  留下留言"
+msgstr ""
+
+#: ../../NoteWall.cs:204
+msgid "/delnote <序号/玩家名字>  删除留言"
+msgstr ""
+
+#: ../../NoteWall.cs:205
+msgid "/mynote  查看你自己的留言"
+msgstr ""
+
+#: ../../NoteWall.cs:201
+msgid "/notewall <页码/help> 查看留言墙"
+msgstr ""
+
+#: ../../NoteWall.cs:202
+msgid "/rdnote  查看一条随机留言"
+msgstr ""
+
+#: ../../NoteWall.cs:203
+msgid "/upnote <序号> <新内容> 修改你自己的留言"
+msgstr ""
+
+#: ../../NoteWall.cs:200
+msgid "/vinote <序号/玩家名字>  查看某个留言"
+msgstr ""
+
+#: ../../NoteWall.cs:198
+msgid "===== 留言墙 插件指令 ====="
+msgstr ""
+
+#: ../../NoteWall.cs:74
+#, csharp-format
+msgid "你最多只能留言 {0} 条！"
+msgstr ""
+
+#: ../../NoteWall.cs:277
+msgid "你还没有留言！输入/notewall help 查看帮助"
+msgstr ""
+
+#: ../../NoteWall.cs:96
+#, csharp-format
+msgid "修改后的留言内容不能超过 {0} 字！"
+msgstr ""
+
+#: ../../NoteWall.cs:102
+msgid "修改后的留言内容包含不允许的词汇！"
+msgstr ""
+
+#: ../../Database.cs:157
+#, csharp-format
+msgid "修改留言失败: {0}"
+msgstr ""
+
+#: ../../Database.cs:125
+#, csharp-format
+msgid "删除留言失败: {0}"
+msgstr ""
+
+#: ../../NoteWall.cs:114
+msgid "只能修改你自己的留言，或留言不存在！输入/notewall help 查看帮助"
+msgstr ""
+
+#: ../../NoteWall.cs:146
+#, csharp-format
+msgid "成功删除 {0} 条 {1} 的留言！"
+msgstr ""
+
+#: ../../NoteWall.cs:173
+msgid "找不到该留言！"
+msgstr ""
+
+#: ../../NoteWall.cs:88
+msgid "无效的留言序号！输入/notewall help 查看帮助"
+msgstr ""
+
+#: ../../NoteWall.cs:247
+msgid "没有更多留言了！"
+msgstr ""
+
+#: ../../NoteWall.cs:169
+#: ../../NoteWall.cs:183
+#: ../../NoteWall.cs:272
+#, csharp-format
+msgid "留言 [{0}] - {1}: {2} (时间：{3})"
+msgstr ""
+
+#: ../../NoteWall.cs:138
+msgid "留言不存在！"
+msgstr ""
+
+#: ../../NoteWall.cs:110
+#, csharp-format
+msgid "留言修改成功！\n"
+"修改前：{0}\n"
+"修改后：{1}（留言时间已更新）"
+msgstr ""
+
+#: ../../NoteWall.cs:56
+#, csharp-format
+msgid "留言内容不能超过 {0} 字！"
+msgstr ""
+
+#: ../../NoteWall.cs:62
+msgid "留言内容包含不允许的词汇！"
+msgstr ""
+
+#: ../../NoteWall.cs:18
+msgid "留言墙"
+msgstr ""
+
+#: ../../NoteWall.cs:70
+#, csharp-format
+msgid "留言成功！\n"
+"[{0}] {1}: {2} (时间：{3})"
+msgstr ""
+
+#: ../../Database.cs:97
+#, csharp-format
+msgid "留言添加失败: {0}"
+msgstr ""
+
+#: ../../NoteWall.cs:261
+msgid "目前没有留言！输入/notewall help 查看帮助"
+msgstr ""
+
+#: ../../NoteWall.cs:239
+#, csharp-format
+msgid "第 {0} 页，共 {1} 页"
+msgstr ""
+
+#: ../../NoteWall.cs:134
+#, csharp-format
+msgid "管理员删除留言 [{0}] - {1}: {2}"
+msgstr ""
+
+#: ../../NoteWall.cs:188
+msgid "该玩家没有留言！"
+msgstr ""
+
+#: ../../NoteWall.cs:150
+msgid "该玩家没有留言或删除失败！"
+msgstr ""
+
+#: ../../NoteWall.cs:218
+msgid "请输入有效的页码！输入/notewall help 查看帮助"
+msgstr ""
+
+#: ../../NoteWall.cs:48
+msgid "请输入留言内容！输入/notewall help 查看帮助"
+msgstr ""
+
+#: ../../NoteWall.cs:82
+msgid "请输入留言序号和新的留言内容！输入/notewall help 查看帮助"
+msgstr ""
+
+#: ../../NoteWall.cs:124
+#: ../../NoteWall.cs:159
+msgid "请输入留言序号或用户名！输入/notewall help 查看帮助"
+msgstr ""
+
+#: ../../NoteWall.cs:212
+msgid "请输入页码！例如：/notewall 1"
+msgstr ""
+
+#: ../../NoteWall.cs:257
+#, csharp-format
+msgid "随机留言 [{0}] - {1}: {2} (时间：{3})"
+msgstr ""
+
+#: ../../NoteWall.cs:229
+#, csharp-format
+msgid "页码无效！共有 {0} 页。"
+msgstr ""
+

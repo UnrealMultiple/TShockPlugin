@@ -144,6 +144,7 @@
 | [MusicPlayer](./src/MusicPlayer/README.md) | 简易音乐播放器 |  |
 | [Noagent](./src/Noagent/README.md) | 禁止代理 ip 进入 |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.md) | 普通难度宝藏袋 |  |
+| [NoteWall](./src/NoteWall/README.md) | 留言墙 | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
 | [OnlineGiftPackage](./src/OnlineGiftPackage/README.md) | 在线礼包 |  |
 | [PacketsStop](./src/PacketsStop/README.md) | 数据包拦截 |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 永久 Buff |  |

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:50+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-02-04 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Help for {0}{1}:"
 #: ../../Help.cs:145
 #, csharp-format
 msgid "{0}执行了/{1}。"
-msgstr ""
+msgstr "{0} executed /{1}."
 
 #: ../../Help.cs:260
 msgid "*本插件只能查询主命令权限，详细权限请使用/whynot查看!"

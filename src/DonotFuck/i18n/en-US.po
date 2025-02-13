@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:37+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-02-04 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr "/df log —— [c/8AE072:Enable]|[c/ED7985:Disable] Sensitive Word [c/EB
 
 #: ../../Commands.cs:28
 msgid "已启用敏感词记录功能。"
-msgstr ""
+msgstr "Sensitive word record function has been enabled."
 
 #: ../../Commands.cs:73
 #, csharp-format
@@ -84,7 +84,7 @@ msgstr "Successfully added the sensitive word to the list: [c/92C5EC:{0}]!"
 
 #: ../../Commands.cs:29
 msgid "已禁用敏感词记录功能。"
-msgstr ""
+msgstr "Sensitive word record function has been disabled."
 
 #: ../../DonotFuck.cs:14
 msgid "当玩家聊天有敏感词时用*号代替该词"
