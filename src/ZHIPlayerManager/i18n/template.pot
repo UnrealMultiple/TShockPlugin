@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ZHIPlayerManager\n"
-"POT-Creation-Date: 2025-01-31 16:22:29+0000\n"
-"PO-Revision-Date: 2025-01-31 16:22:29+0000\n"
+"POT-Creation-Date: 2025-02-13 10:17:10+0000\n"
+"PO-Revision-Date: 2025-02-13 10:17:11+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1282,8 +1282,8 @@ msgid ""
 "输入 /zban add uuid <uuid> <reason> 来封禁uuid\n"
 msgstr ""
 
-#: ../../ZHIPM.cs:212
 #: ../../ZHIPM.Initialize.cs:4962
+#: ../../ZHIPM.cs:212
 msgid "输入 /zbpos  来返回上次死亡地点"
 msgstr ""
 
@@ -1360,8 +1360,8 @@ msgid ""
 "输入 /zclone <name1> <name2> 将玩家1的人物数据复制给玩家2\n"
 msgstr ""
 
-#: ../../ZHIPM.cs:165
 #: ../../ZHIPM.Initialize.cs:3819
+#: ../../ZHIPM.cs:165
 msgid "输入 /zfre [name]  来冻结该玩家"
 msgstr ""
 
@@ -1370,14 +1370,14 @@ msgid ""
 "输入 /zfre <name> 来冻结该玩家\n"
 msgstr ""
 
-#: ../../ZHIPM.cs:118
 #: ../../ZHIPM.Initialize.cs:26
+#: ../../ZHIPM.cs:118
 msgid "输入 /zhelp  来查看指令帮助"
 msgstr ""
 
-#: ../../ZHIPM.cs:154
 #: ../../ZHIPM.Initialize.cs:2637
 #: ../../ZHIPM.Initialize.cs:2679
+#: ../../ZHIPM.cs:154
 msgid ""
 "输入 /zhide kill  来取消 kill + 1 的显示，再次使用启用显示\n"
 "输入 /zhide point  来取消 + 1 $ 的显示，再次使用启用显示"
@@ -1468,9 +1468,9 @@ msgid ""
 "输入 /zmodify [name] worm [0或1] 来关闭或开启粘性蠕虫增益\n"
 msgstr ""
 
-#: ../../ZHIPM.cs:142
 #: ../../ZHIPM.Initialize.cs:616
 #: ../../ZHIPM.Initialize.cs:648
+#: ../../ZHIPM.cs:142
 msgid "输入 /zmodify help  查看修改玩家数据的指令帮助"
 msgstr ""
 
@@ -1531,8 +1531,8 @@ msgid ""
 "输入 /zreset help 来查看zreset系列指令帮助\n"
 msgstr ""
 
-#: ../../ZHIPM.cs:187
 #: ../../ZHIPM.Initialize.cs:1202
+#: ../../ZHIPM.cs:187
 msgid "输入 /zresetallplayers  来清理所有玩家的所有数据"
 msgstr ""
 
@@ -1540,8 +1540,8 @@ msgstr ""
 msgid "输入 /zresetallplayers 来清理所有玩家的所有数据"
 msgstr ""
 
-#: ../../ZHIPM.cs:175
 #: ../../ZHIPM.Initialize.cs:946
+#: ../../ZHIPM.cs:175
 msgid ""
 "输入 /zresetdb [name]  来清理该玩家的备份数据\n"
 "输入 /zresetdb all  来清理所有玩家的备份数据"
@@ -1582,8 +1582,8 @@ msgid ""
 "输入 /zresetex all 来清理所有玩家的额外数据\n"
 msgstr ""
 
-#: ../../ZHIPM.cs:122
 #: ../../ZHIPM.Initialize.cs:110
+#: ../../ZHIPM.cs:122
 msgid "输入 /zsave  来备份自己的人物存档"
 msgstr ""
 
@@ -1592,9 +1592,9 @@ msgid ""
 "输入 /zsave 来备份自己的人物存档\n"
 msgstr ""
 
-#: ../../ZHIPM.cs:126
 #: ../../ZHIPM.Initialize.cs:152
 #: ../../ZHIPM.Initialize.cs:184
+#: ../../ZHIPM.cs:126
 msgid "输入 /zsaveauto [minute]  来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能"
 msgstr ""
 
@@ -1725,9 +1725,9 @@ msgid ""
 "输入 /zsort fish 来查看人物任务鱼数目排行榜前十名\n"
 msgstr ""
 
-#: ../../ZHIPM.cs:150
 #: ../../ZHIPM.Initialize.cs:2847
 #: ../../ZHIPM.Initialize.cs:3636
+#: ../../ZHIPM.cs:150
 msgid "输入 /zsort help  来查看排序系列指令帮助"
 msgstr ""
 
@@ -1801,8 +1801,8 @@ msgid ""
 "输入 /zsort time [num]  来查看当前[num]个人物在线时间排行榜\n"
 msgstr ""
 
-#: ../../ZHIPM.cs:169
 #: ../../ZHIPM.Initialize.cs:3895
+#: ../../ZHIPM.cs:169
 msgid ""
 "输入 /zunfre [name]  来解冻该玩家\n"
 "输入 /zunfre all  来解冻所有玩家"
