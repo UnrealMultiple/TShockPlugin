@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:32+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-01-31 16:22:25+0000\n"
+"PO-Revision-Date: 2025-02-01 01:11\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,11 @@ msgstr ""
 "X-Crowdin-File-ID: 1210\n"
 "Language: es_ES\n"
 
-#: ../../TShockConfigMultiLang.cs:11
-msgid "创建一个本地化语言的config"
+#: ../../TShockConfigMultiLang.cs:38
+msgid "[TShockConfigMultiLang] 同步已完成，已自动重载所有配置"
 msgstr ""
 
-#: ../../TShockConfigMultiLang.cs:51
-msgid "同步已完成，已自动重载所有配置"
+#: ../../TShockConfigMultiLang.cs:12
+msgid "创建一个本地化语言的config"
 msgstr ""
 

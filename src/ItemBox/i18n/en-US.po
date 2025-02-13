@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:52+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-02-04 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,62 +19,63 @@ msgstr ""
 
 #: ../../ItemBox.cs:75
 msgid "[i:4131]/<gbox/给盒子> <用户名> <物品ID> <物品数量> <物品前缀> --- 给玩家背包发送物品"
-msgstr ""
+msgstr "[i:4131]/<gbox/给盒子> <Username > <Item ID> <Item Amount > <Item Prefix > -> ---Send items to player's inventory"
 
 #: ../../ItemBox.cs:165
 msgid "[i:4131]你邮箱没有盒子，领了个寂寞！"
-msgstr ""
+msgstr "[i:4131] Your email address has no boxes, you have a lonel!"
 
 #: ../../ItemBox.cs:82
 msgid "[i:4131]发送邮箱失败, 玩家未注册!"
-msgstr ""
+msgstr "[i:4131] Failed to send email, player not registered!"
 
 #: ../../ItemBox.cs:138
 #, csharp-format
 msgid "[i:4131]成功把物品：[i/p{0}/s{1}:{2}],前缀：{3}，发送到[c/FFFFFF:{4}]的邮箱"
-msgstr ""
+msgstr "[i:4131] Successful：[i/p{0}/s{1}:{2}], prefix：{3}, sent to [c/FFFFF:{4}] email address"
 
 #: ../../ItemBox.cs:134
 #, csharp-format
 msgid "[i:4131]成功把物品：[i/p{0}/s{1}:{2}]×{3},前缀：{4}，发送到[c/FFFFFF:{5}]的邮箱"
-msgstr ""
+msgstr "[i:4131] Successfully sent：[i/p{0}/s{1}:{2}]]x{3}, prefix：{4}, to [c/FFFFF:{5}] email address"
 
 #: ../../ItemBox.cs:142
 #, csharp-format
 msgid "[i:4131]成功把物品：[i/p{0}/s{1}:{2}]×{3}+[i/p{4}/s{5}:{6}],前缀：{7}，发送到[c/FFFFFF:{8}]的邮箱"
-msgstr ""
+msgstr "[i:4131] Successfully sent：[i/p{0}/s{1}:{2}]]x{3}+[i/p{4}/s{5}:{6}],prefix：{7}, email [c/FFF:{8}]"
 
 #: ../../ItemBox.cs:176
 #, csharp-format
 msgid "[i:4131]成功领取邮箱物品：{0}"
-msgstr ""
+msgstr "[i:4131] Successfully claimed email item：{0}"
 
 #: ../../ItemBox.cs:60
 #, csharp-format
 msgid "[i:4131]检测到你的邮箱里面有物品：{0}\n"
 "[i:4131]快输入/cbox领取吧 :)"
-msgstr ""
+msgstr "[i:4131] Detected in your email address：{0}\n"
+"[i:4131] Enter /cbox quickly :)"
 
 #: ../../ItemBox.cs:95
 msgid "[i:4131]没有找到你需要的物品捏!"
-msgstr ""
+msgstr "[i:4131] Could not find the item you need!"
 
 #: ../../ItemBox.cs:103
 msgid "[i:4131]物品数量无效!"
-msgstr ""
+msgstr "[i:4131] Number of items is invalid!"
 
 #: ../../ItemBox.cs:66
 msgid "[i:4131]离线背包清理成功!"
-msgstr ""
+msgstr "[i:4131] Offline inventory cleaned successfully!"
 
 #: ../../ItemBox.cs:154
 msgid "[i:4131]输入错误，正确输入：/<gbox/给盒子> <用户名> <物品ID> <物品数量> <物品前缀>---给玩家背包发送物品 "
-msgstr ""
+msgstr "[i:4131] Invalid syntax, correct：/<gbox/给盒子> <Username > <Item ID > <Item Amount > <Item Prefix >----send items to player's inventory"
 
 #: ../../ItemBox.cs:149
 #, csharp-format
 msgid "你收到了一份邮件,物品内容如下：[i/p{0}:{1}]×{2}"
-msgstr ""
+msgstr "You have received an email with the following：[i/p{0}:{1}]x{2}"
 
 #: ../../ItemBox.cs:18
 msgid "离线物品盒子系统."

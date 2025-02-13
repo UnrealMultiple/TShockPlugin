@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Players can leave and view notes here."
+  },
+  "README.es-ES": {
+    "Description": "Los jugadores pueden dejar y ver notas aquí."
+  },
+  "README": {
+    "Description": "留言墙"
+  }
+}
