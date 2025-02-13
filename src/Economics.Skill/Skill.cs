@@ -21,15 +21,15 @@ public class Skill : TerrariaPlugin
     public override string Description => GetString("让玩家拥有技能!");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 1, 0);
+    public override Version Version => new Version(2, 0, 1, 1);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
     public long TimerCount;
 
-    internal static Config Config { get; set; } = new();
+    public static Config Config { get; set; } = new();
 
-    internal static PlayerSKillManager PlayerSKillManager { get; set; } = null!;
+    public static PlayerSKillManager PlayerSKillManager { get; set; } = null!;
 
     public Skill(Main game) : base(game)
     {
@@ -56,7 +56,6 @@ public class Skill : TerrariaPlugin
         ServerApi.Hooks.GamePostInitialize.Register(this, this.OnPost);
         ServerApi.Hooks.NpcStrike.Register(this, this.OnStrike);
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
-        ServerApi.Hooks.ProjectileAIUpdate.Register(this, this.OnAiUpdate);
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
         GetDataHandlers.PlayerHP.Register(this.OnHP);
         GetDataHandlers.PlayerMana.Register(this.OnMP);
@@ -66,7 +65,6 @@ public class Skill : TerrariaPlugin
         EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += this.OnKillNpc;
         EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop += this.OnPlayerCountertop;
         GeneralHooks.ReloadEvent += LoadConfig;
-        On.Terraria.Projectile.Update += this.Projectile_Update;
     }
 
     protected override void Dispose(bool disposing)
@@ -78,7 +76,6 @@ public class Skill : TerrariaPlugin
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.OnPost);
             ServerApi.Hooks.NpcStrike.Deregister(this, this.OnStrike);
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
-            ServerApi.Hooks.ProjectileAIUpdate.Deregister(this, this.OnAiUpdate);
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             GetDataHandlers.PlayerHP.UnRegister(this.OnHP);
             GetDataHandlers.PlayerMana.UnRegister(this.OnMP);
@@ -87,8 +84,6 @@ public class Skill : TerrariaPlugin
             GetDataHandlers.PlayerDamage.UnRegister(this.OnPlayerDamage);
             EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc -= this.OnKillNpc;
             EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop -= this.OnPlayerCountertop;
-            GeneralHooks.ReloadEvent += LoadConfig;
-            On.Terraria.Projectile.Update -= this.Projectile_Update;
             GeneralHooks.ReloadEvent -= LoadConfig;
         }
         base.Dispose(disposing);
@@ -103,28 +98,6 @@ public class Skill : TerrariaPlugin
         PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.Struck);
     }
 
-    private void OnAiUpdate(ProjectileAiUpdateEventArgs args)
-    {
-        if (!string.IsNullOrEmpty(args.Projectile.miscText))
-        {
-            AIStyle.AI(args.Projectile);
-        }
-    }
-
-    private void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Projectile self, int i)
-    {
-        if (!string.IsNullOrEmpty(self.miscText) && self.timeLeft > 0 && self.active)
-        {
-            AIStyle.AI(self);
-        }
-
-        if (Main.time % 6 == 0 && self.timeLeft <= 0 && self.active)
-        {
-            self.Kill();
-        }
-
-        orig(self, i);
-    }
 
     private void KillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
     {
@@ -220,23 +193,11 @@ public class Skill : TerrariaPlugin
                 {
                     new Model.SkillContext()
                     {
-                        BuffOption = new()
-                        {
-                            Buffs = new()
-                        },
-                        Projectiles = new()
-                        {
-                            new()
-                            {
-                                ProjectileCycle = new()
-                                {
-                                    ProjectileCycles = new()
-                                    {
-                                        new()
-                                    }
-                                }
-                            }
-                        }
+                       LoopEvent = new()
+                       {
+                            ProjectileLoops = new()
+                            
+                       }
                     }
                 }
             };

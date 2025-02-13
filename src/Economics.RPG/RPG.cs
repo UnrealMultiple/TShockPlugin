@@ -18,9 +18,9 @@ public class RPG : TerrariaPlugin
     public override string Description => GetString("提供RPG玩法!");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 3);
+    public override Version Version => new Version(2, 0, 0, 4);
 
-    internal static Config Config { get; set; } = new Config();
+    public static Config Config { get; set; } = new Config();
 
     public static PlayerLevelManager PlayerLevelManager { get; private set; } = null!;
 

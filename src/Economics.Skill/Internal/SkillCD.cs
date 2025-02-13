@@ -24,10 +24,6 @@ internal class SkillCD
                 player.SkillCD -= 100;
             }
         }
-        if (Count % 100 == 0)
-        {
-            AIStyle.Remove();
-        }
 
         Count++;
     }

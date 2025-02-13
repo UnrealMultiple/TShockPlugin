@@ -745,8 +745,11 @@ internal class Utils
         {
             Commands.HandleCommand(TSPlayer.Server, cmd);
         }
-        //关闭rest
-        TShock.RestApi.Stop();
+        if (TShock.Config.Settings.RestApiEnabled)
+        {
+            //关闭rest
+            TShock.RestApi.Stop();
+        }
         //关闭Tshock日志
         TShock.Log.Dispose();
         //关闭terrariaApi日志
