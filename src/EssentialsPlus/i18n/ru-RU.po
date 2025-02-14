@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:56+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-02-13 10:16:28+0000\n"
+"PO-Revision-Date: 2025-02-14 01:09\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -56,19 +56,19 @@ msgstr ""
 msgid "-wall: 查找墙壁."
 msgstr ""
 
-#: ../../EssentialsPlus.cs:133
+#: ../../EssentialsPlus.cs:120
 msgid "[Essentials+] MySQL已启用，但未设置Essentials+ MySQL配置。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:135
+#: ../../EssentialsPlus.cs:122
 msgid "[Essentials+] 此插件现在将禁用自身..."
 msgstr ""
 
-#: ../../EssentialsPlus.cs:134
+#: ../../EssentialsPlus.cs:121
 msgid "[Essentials+] 请在essentials.json中配置您的MySQL服务器信息，然后重新启动服务器。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:69
+#: ../../EssentialsPlus.cs:63
 msgid "[EssentialsPlus] 重新加载配置和家!"
 msgstr ""
 
@@ -106,7 +106,7 @@ msgstr ""
 msgid "del <名称> - 解除禁言玩家或账户。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:245
+#: ../../EssentialsPlus.cs:232
 msgid "以自定义颜色广播消息。"
 msgstr ""
 
@@ -118,7 +118,7 @@ msgstr ""
 msgid "传送下 {0} 层."
 msgstr ""
 
-#: ../../EssentialsPlus.cs:206
+#: ../../EssentialsPlus.cs:193
 msgid "传送到您的一个家点。"
 msgstr ""
 
@@ -146,31 +146,31 @@ msgstr ""
 msgid "修改一个方块以设置第二个尺规点。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:250
+#: ../../EssentialsPlus.cs:237
 msgid "允许您以其他用户的身份执行命令。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:240
+#: ../../EssentialsPlus.cs:227
 msgid "允许您测量两个方块之间的距离。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:216
+#: ../../EssentialsPlus.cs:203
 msgid "允许您重复上一条命令。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:222
+#: ../../EssentialsPlus.cs:209
 msgid "最大化手持物品的堆叠。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:190
+#: ../../EssentialsPlus.cs:177
 msgid "切换冻结时间。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:234
+#: ../../EssentialsPlus.cs:221
 msgid "切换您的PvP状态。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:196
+#: ../../EssentialsPlus.cs:183
 msgid "删除您的一个家点。"
 msgstr ""
 
@@ -184,15 +184,15 @@ msgstr ""
 msgid "取消所有时间命令！"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:95
+#: ../../EssentialsPlus.cs:89
 msgid "在PvP中无法使用该命令！"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:261
+#: ../../EssentialsPlus.cs:248
 msgid "在死亡或传送后将您传送回之前的位置。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:255
+#: ../../EssentialsPlus.cs:242
 msgid "在给定时间间隔后执行命令。"
 msgstr ""
 
@@ -230,7 +230,7 @@ msgstr ""
 msgid "您不能禁言 {0}！"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:316
+#: ../../EssentialsPlus.cs:303
 msgid "您已被解除禁言。"
 msgstr ""
 
@@ -294,7 +294,7 @@ msgstr ""
 msgid "找到的物品 ({0}/{1}):"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:165
+#: ../../EssentialsPlus.cs:152
 msgid "无效的存储类型！"
 msgstr ""
 
@@ -472,7 +472,7 @@ msgstr ""
 msgid "未找到物品。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:185
+#: ../../EssentialsPlus.cs:172
 msgid "查找具有指定名称的物品和/或NPC。"
 msgstr ""
 
@@ -488,7 +488,7 @@ msgstr ""
 msgid "禁言子命令:"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:228
+#: ../../EssentialsPlus.cs:215
 msgid "管理禁言。"
 msgstr ""
 
@@ -496,7 +496,7 @@ msgstr ""
 msgid "设置了您的家 '{0}'。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:201
+#: ../../EssentialsPlus.cs:188
 msgid "设置您的一个家点。"
 msgstr ""
 
@@ -520,7 +520,7 @@ msgstr ""
 msgid "踢出原因: "
 msgstr ""
 
-#: ../../EssentialsPlus.cs:211
+#: ../../EssentialsPlus.cs:198
 msgid "踢出服务器上的所有人。"
 msgstr ""
 
@@ -544,19 +544,19 @@ msgstr ""
 msgid "输入 /find -wall {0} {{0}} 查看更多"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:281
+#: ../../EssentialsPlus.cs:268
 msgid "通过一个方块层向上传送您。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:266
+#: ../../EssentialsPlus.cs:253
 msgid "通过一个方块层向下传送您。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:276
+#: ../../EssentialsPlus.cs:263
 msgid "通过一个方块层向右传送您。"
 msgstr ""
 
-#: ../../EssentialsPlus.cs:271
+#: ../../EssentialsPlus.cs:258
 msgid "通过一个方块层向左传送您。"
 msgstr ""
 
