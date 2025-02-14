@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-02-02 04:38:45+0000\n"
-"PO-Revision-Date: 2025-02-04 01:07\n"
+"POT-Creation-Date: 2025-02-13 10:23:37+0000\n"
+"PO-Revision-Date: 2025-02-14 01:09\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -83,12 +83,12 @@ msgstr "/skill reset"
 msgid "你并未绑定技能!"
 msgstr "You have not bound any skills!"
 
-#: ../../Utils.cs:37
+#: ../../Utils.cs:36
 #, csharp-format
 msgid "你当前等级无法购买此技能，限制必须购买技能:{0}"
 msgstr "You cannot purchase this skill at your current level. Limit the skills to be purchased:{0}"
 
-#: ../../Utils.cs:28
+#: ../../Utils.cs:27
 #, csharp-format
 msgid "你当前等级无法购买此技能，限制等级:{0}"
 msgstr "Your current level cannot purchase this skill, level limit: {0}"
@@ -117,7 +117,7 @@ msgstr "Hidden skills bound to the target player have been cleared!"
 msgid "当前技能列表空空如也"
 msgstr "The current skill list is empty"
 
-#: ../../Utils.cs:33
+#: ../../Utils.cs:32
 #, csharp-format
 msgid "当前进度无法购买此技能，限制进度:{0}"
 msgstr "Current progress cannot purchase this skill, progress limit: {0}"
@@ -148,11 +148,11 @@ msgstr "The item in hand is not bound to any skill!"
 msgid "技能列表 ({0}/{1})："
 msgstr "Skill list ({0}/{1}):"
 
-#: ../../Utils.cs:45
+#: ../../Utils.cs:44
 msgid "技能已超过规定的最大绑定数量!"
 msgstr "The skill has exceeded the maximum allowed binding quantity!"
 
-#: ../../Utils.cs:17
+#: ../../Utils.cs:16
 #, csharp-format
 msgid "技能序号{0} 不存在！"
 msgstr "Skill number {0} does not exist!"
@@ -165,7 +165,7 @@ msgstr "Skill removal successful!"
 msgid "技能重置成功!"
 msgstr "Skill reset successful!"
 
-#: ../../Skill.cs:142
+#: ../../Skill.cs:115
 msgid "无"
 msgstr "None"
 
@@ -174,7 +174,7 @@ msgstr "None"
 msgid "无效得技能序号!"
 msgstr "Invalid skill number!"
 
-#: ../../Skill.cs:140
+#: ../../Skill.cs:113
 msgid "无效技能"
 msgstr "Invalid skill"
 
@@ -187,19 +187,19 @@ msgstr "Untraceable skill number: {0}"
 msgid "查询成功!"
 msgstr "Query successful!"
 
-#: ../../Utils.cs:43
+#: ../../Utils.cs:42
 msgid "此技能全服唯一已经有其他人绑定了此技能!"
 msgstr "This skill is unique across the server and someone else has already bound it!"
 
-#: ../../Utils.cs:24
+#: ../../Utils.cs:23
 msgid "此技能无法被购买!"
 msgstr "This skill cannot be purchased!"
 
-#: ../../Utils.cs:41
+#: ../../Utils.cs:40
 msgid "此技能是唯一的不能重复绑定!"
 msgstr "This skill is unique and cannot be bound multiple times!"
 
-#: ../../Utils.cs:47
+#: ../../Utils.cs:46
 msgid "此武器已超过规定的最大绑定数量!"
 msgstr "This weapon has exceeded the maximum allowed binding quantity!"
 
@@ -207,12 +207,12 @@ msgstr "This weapon has exceeded the maximum allowed binding quantity!"
 msgid "目标玩家不存在或不在线!"
 msgstr "Target player does not exist or is not online!"
 
-#: ../../Skill.cs:143
+#: ../../Skill.cs:116
 #, csharp-format
 msgid "绑定技能: {0}"
 msgstr "Bound skill: {0}"
 
-#: ../../Utils.cs:20
+#: ../../Utils.cs:19
 msgid "绑定此技能需要手持一个武器!"
 msgstr "You need to hold a weapon to bind this skill!"
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-02-02 04:38:27+0000\n"
-"PO-Revision-Date: 2025-02-04 01:07\n"
+"POT-Creation-Date: 2025-02-13 10:16:06+0000\n"
+"PO-Revision-Date: 2025-02-14 01:09\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -318,6 +318,7 @@ msgstr "Successfully set waiting point for room (id:{0})"
 msgid "成功设置房间(id:{0}) 的评分时间为{1}秒"
 msgstr "Successfully set rating time for room (id:{0}) to {1} seconds"
 
+#: ../../BuildPlayer.cs:69
 #: ../../MainPlugin.cs:353
 #: ../../MainPlugin.cs:378
 #: ../../MainPlugin.cs:403
@@ -333,7 +334,6 @@ msgstr "Successfully set rating time for room (id:{0}) to {1} seconds"
 #: ../../MainPlugin.cs:668
 #: ../../MainPlugin.cs:692
 #: ../../MainPlugin.cs:756
-#: ../../BuildPlayer.cs:69
 msgid "房间不存在"
 msgstr "Room does not exist"
 
