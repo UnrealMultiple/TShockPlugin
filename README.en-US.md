@@ -74,20 +74,20 @@
 | [AutoPluginManager](./src/AutoPluginManager/README.en-US.md) | 100.0% | Update plugins automatically in one key |  |
 | [AutoReset](./src/AutoReset/README.en-US.md) | 100.0% | Fully automatic reset | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoStoreItems](./src/AutoStoreItems/README.en-US.md) | 100.0% | Automatic storage | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [AutoTeam](./src/AutoTeam/README.en-US.md) | 85.7% | Automatic team formation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [AutoTeam](./src/AutoTeam/README.en-US.md) | 100.0% | Automatic team formation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Back](./src/Back/README.en-US.md) | 100.0% | Return to the point of death | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BagPing](./src/BagPing/README.en-US.md) | 100.0% | Mark treasure bags on the map |  |
 | [BanNpc](./src/BanNpc/README.en-US.md) | 100.0% | Prevent monster generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BedSet](./src/BedSet/README.en-US.md) | 100.0% | Set and record respawn points | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.en-US.md) | 100.0% | Whitelist plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BridgeBuilder](./src/BridgeBuilder/README.en-US.md) | 100.0% | Quick bridge building | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [BuildMaster](./src/BuildMaster/README.en-US.md) | 92.7% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) |
+| [BuildMaster](./src/BuildMaster/README.en-US.md) | 100.0% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) |
 | [CaiBot](./src/CaiBot/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) |  |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.en-US.md) | 100.0% | Custom emoji command | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CaiLib](./src/CaiLib/README.md) | 0.0% | Cai's preload library | [SixLabors.ImageSharp]() |
-| [CaiPacketDebug](./src/CaiPacketDebug/README.md) | 50.0% | Cai Packet Debug Tool | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
-| [CaiRewardChest](./src/CaiRewardChest/README.en-US.md) | 92.3% | Convert naturally generated chests into reward chests that everyone can claim once | [linq2db]() [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [CGive](./src/CGive/README.en-US.md) | 92.9% | Offline commands |  |
+| [CaiPacketDebug](./src/CaiPacketDebug/README.md) | 100.0% | Cai Packet Debug Tool | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
+| [CaiRewardChest](./src/CaiRewardChest/README.en-US.md) | 100.0% | Convert naturally generated chests into reward chests that everyone can claim once | [linq2db]() [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [CGive](./src/CGive/README.en-US.md) | 100.0% | Offline commands |  |
 | [Challenger](./src/Challenger/README.en-US.md) | 100.0% | Challenger mode |  |
 | [Chameleon](./src/Chameleon/README.en-US.md) | 100.0% | Login before entering the server | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ChattyBridge](./src/ChattyBridge/README.en-US.md) | 100.0% | Used for cross-server chat | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -100,16 +100,16 @@
 | [CreateSpawn](./src/CreateSpawn/README.en-US.md) | 100.0% | Spawn point building generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CriticalHit](./src/CriticalHit/README.en-US.md) | 100.0% | Critical hit prompt |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Allows for cross-platform play |  |
-| [CustomMonster](./src/CustomMonster/README.en-US.md) | 91.3% | Customize, modify, and generate monsters and bosses  |  |
+| [CustomMonster](./src/CustomMonster/README.en-US.md) | 100.0% | Customize, modify, and generate monsters and bosses  |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.en-US.md) | 100.0% | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation |  |
 | [DamageStatistic](./src/DamageStatistic/README.en-US.md) | 100.0% | Display damage caused by each player after each boss fight |  |
 | [DataSync](./src/DataSync/README.en-US.md) | 100.0% | Progress synchronization |  |
 | [DeathDrop](./src/DeathDrop/README.en-US.md) | 100.0% | Random and custom loot upon monster death |  |
-| [DisableMonsLoot](./src/DisableMonsLoot/README.en-US.md) | 11.1% | Prohibit monster loot |  |
-| [DonotFuck](./src/DonotFuck/README.en-US.md) | 90.0% | Prevent swearing | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [DisableMonsLoot](./src/DisableMonsLoot/README.en-US.md) | 100.0% | Prohibit monster loot |  |
+| [DonotFuck](./src/DonotFuck/README.en-US.md) | 100.0% | Prevent swearing | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.en-US.md) | 100.0% | Prevent entry into dungeons or temples |  |
 | [Dummy](./src/Dummy/README.en-US.md) | 100.0% | Dummy client | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
-| [DumpTerrariaID](./src/DumpTerrariaID/README.en-US.md) | 50.0% | Dump Terraria IDs |  |
+| [DumpTerrariaID](./src/DumpTerrariaID/README.en-US.md) | 100.0% | Dump Terraria IDs |  |
 | [DwTP](./src/DwTP/README.en-US.md) | 100.0% | Positioning Teleport |  |
 | [Economics.Deal](./src/Economics.Deal/README.en-US.md) | 100.0% | Trading plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
 | [Economics.NPC](./src/Economics.NPC/README.en-US.md) | 100.0% | Custom monster rewards | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
@@ -117,25 +117,25 @@
 | [Economics.Regain](./src/Economics.Regain/README.en-US.md) | 100.0% | Item recycling | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
 | [Economics.RPG](./src/Economics.RPG/README.en-US.md) | 100.0% | RPG plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
 | [Economics.Shop](./src/Economics.Shop/README.en-US.md) | 100.0% | Shop plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
-| [Economics.Skill](./src/Economics.Skill/README.en-US.md) | 92.0% | Skill plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
-| [Economics.Task](./src/Economics.Task/README.en-US.md) | 95.2% | Task plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
-| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 67.6% | Weapon enhancement | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
-| [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) | 96.8% | Economic plugin prerequisite |  |
+| [Economics.Skill](./src/Economics.Skill/README.en-US.md) | 100.0% | Skill plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
+| [Economics.Task](./src/Economics.Task/README.en-US.md) | 100.0% | Task plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
+| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
+| [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) | 100.0% | Economic plugin prerequisite |  |
 | [EndureBoost](./src/EndureBoost/README.en-US.md) | 100.0% | Grant specified buff when the player has a certain number of items |  |
-| [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | 100.0% | Additional management commands |  |
-| [Ezperm](./src/Ezperm/README.en-US.md) | 80.0% | Batch change permissions | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | 100.0% | Additional management commands | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [Ezperm](./src/Ezperm/README.en-US.md) | 100.0% | Batch change permissions | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Fish shop |  |
 | [GenerateMap](./src/GenerateMap/README.en-US.md) | 100.0% | Generate map images | [CaiLib](./src/CaiLib/README.md) |
-| [GolfRewards](./src/GolfRewards/README.en-US.md) | 12.5% | Golf rewards |  |
-| [GoodNight](./src/GoodNight/README.md) | 1.2% | Curfew |  |
+| [GolfRewards](./src/GolfRewards/README.en-US.md) | 87.5% | Golf rewards |  |
+| [GoodNight](./src/GoodNight/README.md) | 4.9% | Curfew |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.en-US.md) | 100.0% | Hardcore death drops life crystals |  |
-| [HelpPlus](./src/HelpPlus/README.en-US.md) | 93.8% | Fix and enhance the Help command |  |
-| [History](./src/History/README.en-US.md) | 2.5% | History grid record |  |
+| [HelpPlus](./src/HelpPlus/README.en-US.md) | 100.0% | Fix and enhance the Help command |  |
+| [History](./src/History/README.en-US.md) | 100.0% | History grid record |  |
 | [HouseRegion](./src/HouseRegion/README.en-US.md) | 99.2% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [Invincibility](./src/Invincibility/README.en-US.md) | 14.3% | Time-limited invincibility |  |
-| [ItemBox](./src/ItemBox/README.en-US.md) | 7.1% | Off-line inventory |  |
+| [Invincibility](./src/Invincibility/README.en-US.md) | 100.0% | Time-limited invincibility |  |
+| [ItemBox](./src/ItemBox/README.en-US.md) | 100.0% | Off-line inventory |  |
 | [ItemDecoration](./src/ItemDecoration/README.en-US.md) | 100.0% | Floating message display for held items | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [ItemPreserver](./src/ItemPreserver/README.en-US.md) | 50.0% | Preserve specified items from consumption |  |
+| [ItemPreserver](./src/ItemPreserver/README.en-US.md) | 100.0% | Preserve specified items from consumption |  |
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | 6.3% | Unlock journey items |  |
 | [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | 100.0% | Lagrange.XocMat Bot Adapter Plugin | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.en-US.md) | 100.0% | Plugin base library | [linq2db]() |
@@ -148,6 +148,7 @@
 | [MusicPlayer](./src/MusicPlayer/README.md) | 7.7% | Simple music player |  |
 | [Noagent](./src/Noagent/README.en-US.md) | 16.7% | Prohibit proxy IP from entering |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.md) | 100.0% | Drop treasure bags at normal difficulty |  |
+| [NoteWall](./src/NoteWall/README.en-US.md) | 0.0% | Players can leave and view notes here. | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |
 | [OnlineGiftPackage](./src/OnlineGiftPackage/README.en-US.md) | 9.1% | Online gift package |  |
 | [PacketsStop](./src/PacketsStop/README.en-US.md) | 7.1% | Packet interception |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 0.0% | Permanent buff |  |
@@ -192,13 +193,14 @@
 | [TimeRate](./src/TimeRate/README.en-US.md) | 100.0% | modifying time acceleration using commands, and supporting player sleep to trigger events. |  |
 | [TimerKeeper](./src/TimerKeeper/README.en-US.md) | 100.0% | Save timer state |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.en-US.md) | 100.0% | NPC quick home |  |
-| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.en-US.md) | 100.0% | TShock configuration language localization | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.en-US.md) | 50.0% | TShock configuration language localization |  |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 50.0% | Allows the server to generate items that are normally 'unobtainable' |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Foundation library for VBY plugins |  |
 | [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Customizable modifications for certain game content (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
 | [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Provide some other auxiliary commands | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 0.0% | A plugin loader that allows hot reloading |  |
-| [VeinMiner](./src/VeinMiner/README.en-US.md) | 100.0% | Chain mining |  |
+| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) |
+| [VeinMiner](./src/VeinMiner/README.en-US.md) | 60.0% | Chain mining |  |
 | [VotePlus](./src/VotePlus/README.en-US.md) | 97.4% | Multi-function voting |  |
 | [WeaponPlus](./src/WeaponPlus/README.md) | 100.0% | Weapon enhancement coin version |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 100.0% | Load Chinese Wiki language pack for server |  |

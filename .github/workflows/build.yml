@@ -98,7 +98,7 @@ jobs:
 
       - name: 下载临时插件包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: dawidd6/action-download-artifact@v6
+        uses: dawidd6/action-download-artifact@v8
         with:
           name: Plugins
           path: bin

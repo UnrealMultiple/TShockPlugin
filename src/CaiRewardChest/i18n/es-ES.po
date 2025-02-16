@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 17:09:15+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"POT-Creation-Date: 2025-01-31 12:02:05+0000\n"
+"PO-Revision-Date: 2025-02-01 01:11\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1126\n"
 "Language: es_ES\n"
 
-#: ../../Plugin.cs:140
+#: ../../Plugin.cs:141
 msgid "[CaiRewardChest]发生错误: "
 msgstr ""
 
@@ -39,24 +39,24 @@ msgstr ""
 msgid "[i:48]你添加了一个奖励箱~"
 msgstr ""
 
-#: ../../Plugin.cs:183
+#: ../../Plugin.cs:184
 #, csharp-format
 msgid "[i:48]奖励箱初始化完成,共添加{0}个奖励箱~"
 msgstr ""
 
-#: ../../Plugin.cs:167
+#: ../../Plugin.cs:168
 msgid "[i:48]奖励箱已全部清除~"
 msgstr ""
 
-#: ../../Plugin.cs:159
+#: ../../Plugin.cs:160
 msgid "[i:48]请打开需要删除的奖励箱~"
 msgstr ""
 
-#: ../../Plugin.cs:153
+#: ../../Plugin.cs:154
 msgid "[i:48]请打开需要添加的奖励箱~"
 msgstr ""
 
-#: ../../Plugin.cs:147
+#: ../../Plugin.cs:148
 msgid "[i:48]请打开需要编辑的奖励箱~"
 msgstr ""
 

@@ -122,7 +122,7 @@
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 0.0% | Mejora de armas | [EconomicsAPI](./src/EconomicsAPI/README.md) |
 | [EconomicsAPI](./src/EconomicsAPI/README.md) | 0.0% | Plugin económico |  |
 | [EndureBoost](./src/EndureBoost/README.md) | 0.0% | Otorga un buff específico cuando el jugador tiene una cantidad determinada de objetos |  |
-| [EssentialsPlus](./src/EssentialsPlus/README.es-ES.md) | 99.2% | Comandos de gestión adicionales |  |
+| [EssentialsPlus](./src/EssentialsPlus/README.es-ES.md) | 99.2% | Comandos de gestión adicionales | [LazyAPI](./src/LazyAPI/README.md) |
 | [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos | [LazyAPI](./src/LazyAPI/README.md) |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Tienda de peces |  |
 | [GenerateMap](./src/GenerateMap/README.md) | 0.0% | Generar imágenes de mapas | [CaiLib](./src/CaiLib/README.md) |
@@ -148,6 +148,7 @@
 | [MusicPlayer](./src/MusicPlayer/README.md) | 0.0% | Reproductor de música simple |  |
 | [Noagent](./src/Noagent/README.md) | 0.0% | Prohíbe que las IPs de proxy ingresen al servidor |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.md) | 0.0% | Suelta bolsas de tesoros en dificultad normal |  |
+| [NoteWall](./src/NoteWall/README.md) | 0.0% | Los jugadores pueden dejar y ver notas aquí. | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
 | [OnlineGiftPackage](./src/OnlineGiftPackage/README.md) | 0.0% | Paquete de regalos en línea |  |
 | [PacketsStop](./src/PacketsStop/README.md) | 0.0% | Interceptación de paquetes |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 0.0% | Buff permanente |  |
@@ -192,12 +193,13 @@
 | [TimeRate](./src/TimeRate/README.md) | 0.0% | Modifica la aceleración del tiempo usando comandos, y soporta el sueño de los jugadores para activar eventos |  |
 | [TimerKeeper](./src/TimerKeeper/README.md) | 0.0% | Guarda el estado del temporizador |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | 0.0% | Casa rápida de NPC |  |
-| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | 0.0% | Localización del idioma de configuración de TShock | [LazyAPI](./src/LazyAPI/README.md) |
+| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | 0.0% | Localización del idioma de configuración de TShock |  |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 0.0% | Permite que el servidor genere ítems "inobtenibles" |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Biblioteca base para plugins VBY |  |
 | [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Modificaciones personalizables para cierto contenido del juego (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
 | [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Proveer algunos otros comandos auxiliares | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 0.0% | Un cargador de plugins que permite la recarga en caliente |  |
+| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) |
 | [VeinMiner](./src/VeinMiner/README.md) | 0.0% | Minado en cadena |  |
 | [VotePlus](./src/VotePlus/README.md) | 96.1% | Votación multifuncional |  |
 | [WeaponPlus](./src/WeaponPlus/README.md) | 100.0% | Versión de monedas para mejorar armas |  |

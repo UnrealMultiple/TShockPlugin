@@ -27,8 +27,8 @@ public class Configuration : JsonConfigBase<Configuration>
         this.GroupTeamMap = new Dictionary<string, string>
         {
             {"guest", "pink"},
-            {"default", "蓝队"}, // Assuming "蓝队" is the Chinese for "Blue Team"
-            {"owner", "红队"}, // Assuming "红队" is the Chinese for "Red Team"
+            {"default", "蓝队"},
+            {"owner", "红队"}, 
             {"admin", "green"},
             {"vip", "none"}
         };

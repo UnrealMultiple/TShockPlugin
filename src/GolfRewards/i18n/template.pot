@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GolfRewards\n"
-"POT-Creation-Date: 2025-01-29 16:02:48+0000\n"
-"PO-Revision-Date: 2025-01-29 16:02:48+0000\n"
+"POT-Creation-Date: 2025-02-03 19:28:31+0000\n"
+"PO-Revision-Date: 2025-02-03 19:28:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgid "目标坐标为: X{0} Y{1}"
 msgstr ""
 
 #: ../../GolfRewards.cs:29
-msgid "输入/物块坐标后敲击物块确认坐标"
+msgid "输入/物块坐标 或 /blockpos 后敲击物块确认坐标"
 msgstr ""
 
 #: ../../LC.cs:33

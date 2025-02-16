@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:02:44+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"POT-Creation-Date: 2025-02-13 10:23:37+0000\n"
+"PO-Revision-Date: 2025-02-14 01:09\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -83,12 +83,12 @@ msgstr ""
 msgid "你并未绑定技能!"
 msgstr ""
 
-#: ../../Utils.cs:37
+#: ../../Utils.cs:36
 #, csharp-format
 msgid "你当前等级无法购买此技能，限制必须购买技能:{0}"
 msgstr ""
 
-#: ../../Utils.cs:28
+#: ../../Utils.cs:27
 #, csharp-format
 msgid "你当前等级无法购买此技能，限制等级:{0}"
 msgstr ""
@@ -117,7 +117,7 @@ msgstr ""
 msgid "当前技能列表空空如也"
 msgstr ""
 
-#: ../../Utils.cs:33
+#: ../../Utils.cs:32
 #, csharp-format
 msgid "当前进度无法购买此技能，限制进度:{0}"
 msgstr ""
@@ -148,11 +148,11 @@ msgstr ""
 msgid "技能列表 ({0}/{1})："
 msgstr ""
 
-#: ../../Utils.cs:45
+#: ../../Utils.cs:44
 msgid "技能已超过规定的最大绑定数量!"
 msgstr ""
 
-#: ../../Utils.cs:17
+#: ../../Utils.cs:16
 #, csharp-format
 msgid "技能序号{0} 不存在！"
 msgstr ""
@@ -165,7 +165,7 @@ msgstr ""
 msgid "技能重置成功!"
 msgstr ""
 
-#: ../../Skill.cs:142
+#: ../../Skill.cs:115
 msgid "无"
 msgstr ""
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "无效得技能序号!"
 msgstr ""
 
-#: ../../Skill.cs:140
+#: ../../Skill.cs:113
 msgid "无效技能"
 msgstr ""
 
@@ -187,19 +187,19 @@ msgstr ""
 msgid "查询成功!"
 msgstr ""
 
-#: ../../Utils.cs:43
+#: ../../Utils.cs:42
 msgid "此技能全服唯一已经有其他人绑定了此技能!"
 msgstr ""
 
-#: ../../Utils.cs:24
+#: ../../Utils.cs:23
 msgid "此技能无法被购买!"
 msgstr ""
 
-#: ../../Utils.cs:41
+#: ../../Utils.cs:40
 msgid "此技能是唯一的不能重复绑定!"
 msgstr ""
 
-#: ../../Utils.cs:47
+#: ../../Utils.cs:46
 msgid "此武器已超过规定的最大绑定数量!"
 msgstr ""
 
@@ -207,12 +207,12 @@ msgstr ""
 msgid "目标玩家不存在或不在线!"
 msgstr ""
 
-#: ../../Skill.cs:143
+#: ../../Skill.cs:116
 #, csharp-format
 msgid "绑定技能: {0}"
 msgstr ""
 
-#: ../../Utils.cs:20
+#: ../../Utils.cs:19
 msgid "绑定此技能需要手持一个武器!"
 msgstr ""
 

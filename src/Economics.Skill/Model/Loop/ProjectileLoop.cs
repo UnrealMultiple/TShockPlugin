@@ -1,9 +1,7 @@
-﻿using Economics.Skill.Model.Options.Range;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Economics.Skill.Model.Options;
-
-public class BaseProjtileOption
+namespace Economics.Skill.Model.Loop;
+public class ProjectileLoop : BaseLoop
 {
     [JsonProperty("弹幕ID")]
     public int ID { get; set; }
@@ -14,8 +12,8 @@ public class BaseProjtileOption
     [JsonProperty("击退")]
     public float Knockback { get; set; }
 
-    [JsonProperty("起始角度")]
-    public int StartAngle { get; set; }
+    [JsonProperty("角度")]
+    public int Angle { get; set; }
 
     [JsonProperty("X轴起始位置")]
     public int X { get; set; }
@@ -38,18 +36,14 @@ public class BaseProjtileOption
     [JsonProperty("动态伤害")]
     public bool DynamicDamage { get; set; }
 
-    [JsonProperty("AI")]
     public float[] AI { get; set; } = new float[3];
 
-    [JsonProperty("AI样式")]
-    public AIStyleOption AISytle { get; set; } = new();
-
-    [JsonProperty("射速")]
+    [JsonProperty("速度")]
     public float Speed { get; set; }
 
-    [JsonProperty("锁定怪物配置")]
-    public LockNpcOption LockNpcOption { get; set; } = new();
+    [JsonProperty("更新事件")]
+    public List<ProjectileMark> Marks { get; set; } = new();
 
-    [JsonProperty("延迟")]
-    public int Dealy { get; set; }
+    [JsonProperty("生成事件")]
+    public List<ProjectileGenerate> Generate { get; set; } = new();
 }

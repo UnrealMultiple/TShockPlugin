@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:02:48+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"POT-Creation-Date: 2025-02-03 19:28:31+0000\n"
+"PO-Revision-Date: 2025-02-04 01:07\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../GolfRewards.cs:66
 msgid "[高尔夫奖励] 重读配置完毕!"
-msgstr ""
+msgstr "[Golf Reward] Reread configuration complete!"
 
 #: ../../GolfRewards.cs:13
 msgid "将高尔夫打入球洞会得到奖励."
@@ -28,27 +28,27 @@ msgstr "Hitting the golf ball into the hole will receive rewards."
 #: ../../GolfRewards.cs:155
 #, csharp-format
 msgid "指令 {0} 执行失败！ "
-msgstr ""
+msgstr "Command {0} execution failed! "
 
 #: ../../GolfRewards.cs:75
 msgid "敲击物块以确认其坐标!"
-msgstr ""
+msgstr "Tap block to confirm its coordinates!"
 
 #: ../../LC.cs:26
 msgid "未找到高尔夫奖励配置文件，已为您创建！"
-msgstr ""
+msgstr "No golf reward configuration file has been found, and it has been created for you!"
 
 #: ../../GolfRewards.cs:104
 #, csharp-format
 msgid "目标坐标为: X{0} Y{1}"
-msgstr ""
+msgstr "Target coordinates are: X{0} Y{1}"
 
 #: ../../GolfRewards.cs:29
-msgid "输入/物块坐标后敲击物块确认坐标"
+msgid "输入/物块坐标 或 /blockpos 后敲击物块确认坐标"
 msgstr ""
 
 #: ../../LC.cs:33
 #, csharp-format
 msgid "高尔夫奖励插件错误配置读取错误:{0}"
-msgstr ""
+msgstr "Golf reward plugin error configuration read error: {0}"
 

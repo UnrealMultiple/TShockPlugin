@@ -25,5 +25,7 @@ foreach($submodule in $jsonContent.submodules)
     $pdb = $assembly_path -replace '.dll', '.pdb'
     Copy-Item -Path $assembly_path -Destination $(Join-Repo-Root 'SubmoduleAssembly')
     Copy-Item -Path $pdb -Destination $(Join-Repo-Root 'SubmoduleAssembly')
-    Copy-Item -Path $(Join-Repo-Root $submodule.readme) -Destination $(Join-Repo-Root 'SubmoduleAssembly' ($submodule.name + ".md"))
+    if (-not [string]::IsNullOrEmpty($submodule.readme)) {
+            Copy-Item -Path $(Join-Repo-Root $submodule.readme) -Destination $(Join-Repo-Root 'SubmoduleAssembly' ($submodule.name + ".md"))
+    }
 }

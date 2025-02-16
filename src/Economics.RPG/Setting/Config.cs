@@ -5,7 +5,7 @@ using TShockAPI;
 
 namespace Economics.RPG.Setting;
 
-internal class Config
+public class Config
 {
     [JsonProperty("RPG信息")]
     public Dictionary<string, Level> RPG { get; set; } = new();

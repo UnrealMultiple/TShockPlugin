@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:02:51+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"POT-Creation-Date: 2025-02-03 19:28:35+0000\n"
+"PO-Revision-Date: 2025-02-04 01:07\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgid "玩家不在线。"
 msgstr ""
 
 #: ../../InvincibilityPlugin.cs:95
-msgid "用法: /限时god无敌或tgod <持续时间秒数>"
+msgid "用法: /限时god无敌 或 /tgod <持续时间秒数>"
 msgstr ""
 
 #: ../../InvincibilityPlugin.cs:145

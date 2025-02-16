@@ -11,7 +11,7 @@ public class GolfRewards : TerrariaPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "GK 阁下 由 鸽子 定制，肝帝熙恩更新适配1449";
     public override string Description => GetString("将高尔夫打入球洞会得到奖励.");
-    public override Version Version => new Version(1, 0, 11);
+    public override Version Version => new Version(1, 1, 0);
 
     public GolfRewards(Main game) : base(game)
     {
@@ -24,9 +24,9 @@ public class GolfRewards : TerrariaPlugin
         //LC.RI();
         LC.RC();
         GeneralHooks.ReloadEvent += this.CMD;
-        Commands.ChatCommands.Add(new Command("物块坐标", this.CMD2, "物块坐标")
+        Commands.ChatCommands.Add(new Command("blockpos", this.CMD2, "blockpos","物块坐标")
         {
-            HelpText = GetString("输入/物块坐标后敲击物块确认坐标")
+            HelpText = GetString("输入/物块坐标 或 /blockpos 后敲击物块确认坐标")
         });
         ServerApi.Hooks.NetGetData.Register(this, this.GetData);
 

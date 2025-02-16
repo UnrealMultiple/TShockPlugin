@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:17+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-02-13 10:16:50+0000\n"
+"PO-Revision-Date: 2025-02-14 01:09\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,8 +17,8 @@ msgstr ""
 "X-Crowdin-File-ID: 1198\n"
 "Language: en_US\n"
 
-#: ../../RainbowChat.cs:112
 #: ../../Commands.cs:152
+#: ../../RainbowChat.cs:112
 msgid "[i:3454][c/E83849:注意][i:3454]\n"
 msgstr "[i:3454][c/E83849:Note][i:3454]\n"
 
@@ -92,8 +92,8 @@ msgstr "/rc rswitch - Globally enable | disable random color function\n"
 msgid "使玩家每次说话的颜色不一样."
 msgstr "Make the player chat a different color every time."
 
-#: ../../RainbowChat.cs:113
 #: ../../Commands.cs:153
+#: ../../RainbowChat.cs:113
 msgid "使用[c/B0B2D1:非正版客户端]或[c/B0B2D1:语言资源包]导致TS指令异常\n"
 msgstr "Using a [c/B0B2D1:non-official client] or [c/B0B2D1:language resource pack] may cause TShock command abnormalities.\n"
 
@@ -147,8 +147,8 @@ msgstr "The gradient end color has been set to R:{0}, G:{1}, B:{2}."
 msgid "结束颜色值缺失。请使用如 '/rc 渐变 结束 0,255,0' 的格式。"
 msgstr "End color value is missing. Please use the format '/rc gradient end 0,255,0'."
 
-#: ../../RainbowChat.cs:114
 #: ../../Commands.cs:154
+#: ../../RainbowChat.cs:114
 msgid "请服主安装[c/B0B2D1:Chireiden.TShock.Omni]插件修复\n"
 msgstr "Please have the server owner install the [c/B0B2D1:Chireiden.TShock.Omni] plugin to fix the issue\n"
 

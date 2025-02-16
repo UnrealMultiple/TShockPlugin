@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RainbowChat\n"
-"POT-Creation-Date: 2025-01-08 13:16:17+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:17+0000\n"
+"POT-Creation-Date: 2025-02-13 10:16:50+0000\n"
+"PO-Revision-Date: 2025-02-13 10:16:50+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,8 +10,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../RainbowChat.cs:112
 #: ../../Commands.cs:152
+#: ../../RainbowChat.cs:112
 msgid ""
 "[i:3454][c/E83849:注意][i:3454]\n"
 msgstr ""
@@ -93,8 +93,8 @@ msgstr ""
 msgid "使玩家每次说话的颜色不一样."
 msgstr ""
 
-#: ../../RainbowChat.cs:113
 #: ../../Commands.cs:153
+#: ../../RainbowChat.cs:113
 msgid ""
 "使用[c/B0B2D1:非正版客户端]或[c/B0B2D1:语言资源包]导致TS指令异常\n"
 msgstr ""
@@ -149,8 +149,8 @@ msgstr ""
 msgid "结束颜色值缺失。请使用如 '/rc 渐变 结束 0,255,0' 的格式。"
 msgstr ""
 
-#: ../../RainbowChat.cs:114
 #: ../../Commands.cs:154
+#: ../../RainbowChat.cs:114
 msgid ""
 "请服主安装[c/B0B2D1:Chireiden.TShock.Omni]插件修复\n"
 msgstr ""

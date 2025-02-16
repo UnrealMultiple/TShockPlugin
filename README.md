@@ -118,7 +118,7 @@
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 强化武器 | [EconomicsAPI](./src/EconomicsAPI/README.md) |
 | [EconomicsAPI](./src/EconomicsAPI/README.md) | 经济插件前置 |  |
 | [EndureBoost](./src/EndureBoost/README.md) | 拥有指定数量物品给指定buff |  |
-| [EssentialsPlus](./src/EssentialsPlus/README.md) | 更多管理指令 |  |
+| [EssentialsPlus](./src/EssentialsPlus/README.md) | 更多管理指令 | [LazyAPI](./src/LazyAPI/README.md) |
 | [Ezperm](./src/Ezperm/README.md) | 批量改权限 | [LazyAPI](./src/LazyAPI/README.md) |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 鱼店 |  |
 | [GenerateMap](./src/GenerateMap/README.md) | 生成地图图片 | [CaiLib](./src/CaiLib/README.md) |
@@ -144,6 +144,7 @@
 | [MusicPlayer](./src/MusicPlayer/README.md) | 简易音乐播放器 |  |
 | [Noagent](./src/Noagent/README.md) | 禁止代理 ip 进入 |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.md) | 普通难度宝藏袋 |  |
+| [NoteWall](./src/NoteWall/README.md) | 留言墙 | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
 | [OnlineGiftPackage](./src/OnlineGiftPackage/README.md) | 在线礼包 |  |
 | [PacketsStop](./src/PacketsStop/README.md) | 数据包拦截 |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 永久 Buff |  |
@@ -188,12 +189,13 @@
 | [TimeRate](./src/TimeRate/README.md) | 时间加速插件 |  |
 | [TimerKeeper](./src/TimerKeeper/README.md) | 保存计时器状态 |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | NPC 快速回家 |  |
-| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | TShock config文件语言本土化 | [LazyAPI](./src/LazyAPI/README.md) |
+| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | TShock config文件语言本土化 |  |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 允许服务器端生成“无法获取”的物品 |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | VBY插件的基础库 |  |
 | [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 对一些游戏内容的可自定义修改 (超强) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
 | [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 提供一些其他的辅助命令 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 一个允许热重载的插件加载器 |  |
+| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | VBY.PluginLoader的扩展, 自动热重载插件 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) |
 | [VeinMiner](./src/VeinMiner/README.md) | 连锁挖矿 |  |
 | [VotePlus](./src/VotePlus/README.md) | 多功能投票 |  |
 | [WeaponPlus](./src/WeaponPlus/README.md) | 武器强化钱币版 |  |

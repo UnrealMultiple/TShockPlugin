@@ -1,0 +1,6 @@
+{
+  "README": {
+    "READMEUrl": "https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md",
+    "Description": "VBY.PluginLoader的扩展, 自动热重载插件"
+  }
+}
