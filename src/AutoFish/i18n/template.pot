@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoFish\n"
-"POT-Creation-Date: 2025-01-08 18:22:43+0000\n"
-"PO-Revision-Date: 2025-01-08 18:22:44+0000\n"
+"POT-Creation-Date: 2025-02-23 07:00:09+0000\n"
+"PO-Revision-Date: 2025-02-23 07:00:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,11 +16,11 @@ msgid ""
 "          [i:3455][c/AD89D5:自][c/D68ACA:动][c/DF909A:钓][c/E5A894:鱼][i:3454]"
 msgstr ""
 
-#: ../../AutoFish.cs:369
+#: ../../AutoFish.cs:390
 msgid "[c/A7DDF0:{0}]:[c/74F3C9:{1}分钟]"
 msgstr ""
 
-#: ../../AutoFish.cs:357
+#: ../../AutoFish.cs:378
 msgid "[i:3455][c/AD89D5:自][c/D68ACA:动][c/DF909A:钓][c/E5A894:鱼][i:3454]"
 msgstr ""
 
@@ -126,7 +126,7 @@ msgid ""
 "不存在该物品，\"物品查询\": \"[c/92C5EC:https://terraria.wiki.gg/zh/wiki/Item_IDs]\""
 msgstr ""
 
-#: ../../AutoFish.cs:358
+#: ../../AutoFish.cs:379
 #, csharp-format
 msgid "以下玩家超过 [c/E17D8C:{0}] 分钟 已关闭[c/76D5B4:自动钓鱼]权限："
 msgstr ""
@@ -215,7 +215,7 @@ msgstr ""
 msgid "玩家 [{0}] 已[c/92C5EC:禁用]自动钓鱼功能。"
 msgstr ""
 
-#: ../../AutoFish.cs:339
+#: ../../AutoFish.cs:360
 #, csharp-format
 msgid "玩家 [c/46C2D4:{0}] 已开启[c/F5F251:自动钓鱼] 消耗物品为:{1}"
 msgstr ""
@@ -226,7 +226,7 @@ msgstr ""
 msgid "禁用"
 msgstr ""
 
-#: ../../AutoFish.cs:18
+#: ../../AutoFish.cs:19
 msgid "自动钓鱼"
 msgstr ""
 
