@@ -29,9 +29,7 @@ internal class PluginManagementContext
 
     public static readonly PluginManagementContext Instance = new();
 
-    public readonly CultureInfo CultureInfo = (CultureInfo) typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
-            "TranslationCultureInfo",
-            BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
+    public readonly CultureInfo CultureInfo;
 
 
     /// <summary>
@@ -97,6 +95,14 @@ internal class PluginManagementContext
 
     private PluginManagementContext()
     {
+        this.CultureInfo = (CultureInfo) typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
+            "TranslationCultureInfo",
+            BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
+        if (string.IsNullOrEmpty(this.CultureInfo.Name))
+        {
+            this.CultureInfo = new CultureInfo("en-US");
+        }
+        
         this._timer.AutoReset = true;
         this._timer.Enabled = true;
         this._timer.Interval = 60 * 10 * 1000;

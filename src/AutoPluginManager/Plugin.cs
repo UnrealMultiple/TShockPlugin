@@ -11,7 +11,7 @@ namespace AutoPluginManager;
 public class Plugin : TerrariaPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 3, 4);
+    public override Version Version => new Version(2, 0, 3, 5);
 
     public override string Author => "少司命,Cai,LaoSparrow";
 
