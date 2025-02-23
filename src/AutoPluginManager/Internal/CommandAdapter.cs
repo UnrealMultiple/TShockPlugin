@@ -344,7 +344,7 @@ internal class CommandAdapter
             {
                 cultureName = "zh-CN";
             }
-            args.Player.SendInfoMessage($"{i + 1}.{manifest[i].Name} v{manifest[i].Version} - {manifest[i].Description[cultureName]} (by {manifest[i].Author})");
+            args.Player.SendInfoMessage($"{i + 1}.{manifest[i].Name.Color("1E90FF")} v{manifest[i].Version} - {manifest[i].Description[cultureName].Color("32CD32")} (by {manifest[i].Author})");
         }
         args.Player.SendInfoMessage(GetString("*使用/apm -i <序号> 即可安装哦~"));
     }
