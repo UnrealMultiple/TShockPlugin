@@ -1,5 +1,6 @@
 ﻿using AutoFish.Utils;
 using LazyAPI;
+using Microsoft.Xna.Framework;
 using System.Text;
 using Terraria;
 using Terraria.ID;
@@ -14,7 +15,7 @@ public class AutoFish : LazyPlugin
 
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学 少司命";
-    public override Version Version => new Version(1, 3, 6);
+    public override Version Version => new (1, 3, 7);
     public override string Description => GetString("自动钓鱼");
     #endregion
 
@@ -185,9 +186,16 @@ public class AutoFish : LazyPlugin
 
                 //这里发的是连续弹幕 避免线断 因为弹幕是不需要玩家物理点击来触发收杆的
                 plr.SendData(PacketTypes.ProjectileNew, "", args.Projectile.whoAmI);
-
-                var index = SpawnProjectile.NewProjectile(Main.projectile[args.Projectile.whoAmI].GetProjectileSource_FromThis(),
-                    args.Projectile.position, args.Projectile.velocity, args.Projectile.type, 0, 0, args.Projectile.owner, 0, 0, 0);
+                
+                var index = Projectile.NewProjectile(
+                    args.Projectile.GetProjectileSource_FromThis(),
+                    // NewProjectile uses centred position
+                    args.Projectile.position + new Vector2((float)args.Projectile.width / 2, (float)args.Projectile.height / 2),
+                    args.Projectile.velocity,
+                    args.Projectile.type,
+                    0,
+                    0,
+                    args.Projectile.owner);
 
                 plr.SendData(PacketTypes.ProjectileNew, "", index);
             }
@@ -199,8 +207,7 @@ public class AutoFish : LazyPlugin
     public void ProjectNew(object? sender, GetDataHandlers.NewProjectileEventArgs e)
     {
         var plr = e.Player;
-        var guid = Guid.NewGuid().ToString();
-        var HookCount = Main.projectile.Count(p => p.active && p.owner == e.Owner && p.bobber); // 浮漂计数
+        var bobberCount = Main.projectile.Count(p => p.active && p.owner == e.Owner && p.bobber); // 浮漂计数
 
         if (plr == null ||
             !plr.Active ||
@@ -208,30 +215,44 @@ public class AutoFish : LazyPlugin
             !Configuration.Instance.Enabled ||
             !Configuration.Instance.MoreHook ||
             !plr.HasPermission("autofish") ||
-            HookCount > Configuration.Instance.HookMax - 1)
+            bobberCount > Configuration.Instance.HookMax - 1)
         {
             return;
         }
 
         // 从数据表中获取与玩家名字匹配的配置项
-        var list = Data.Items.FirstOrDefault(x => x.Name == plr.Name);
+        var playerData = Data.Items.FirstOrDefault(x => x.Name == plr.Name);
         // 如果没有找到配置项，或者自动钓鱼功能或启用状态未设置，则返回
-        if (list == null || !list.Enabled)
+        if (playerData is not { Enabled: true })
         {
             return;
         }
 
         // 正常状态下与消耗模式下启用多线钓鱼
-        if (!Configuration.Instance.ConMod || (Configuration.Instance.ConMod && list.Mod))
+        if (!Configuration.Instance.ConMod || (Configuration.Instance.ConMod && playerData.Mod))
         {
             // 检查是否上钩
             if (Tools.BobbersActive(e.Owner))
             {
-                var index = SpawnProjectile.NewProjectile(Main.projectile[e.Index].GetProjectileSource_FromThis(), e.Position, e.Velocity, e.Type, e.Damage, e.Knockback, e.Owner, 0, 0, 0, -1, guid);
-                plr.SendData(PacketTypes.ProjectileNew, "", index);
+                // since there is no `ProjectileID.Sets.IsBobber`, I can only determine in this way
+                var dummyProjectile = new Projectile();
+                dummyProjectile.SetDefaults(e.Type);
+                if (!dummyProjectile.bobber)
+                {
+                    return;
+                }
+                
+                var index = Projectile.NewProjectile(
+                    Main.projectile[e.Index].GetProjectileSource_FromThis(),
+                    e.Position,
+                    e.Velocity,
+                    e.Type,
+                    e.Damage,
+                    e.Knockback,
+                    e.Owner);
+                
 
-                // 更新多线计数
-                HookCount++;
+                plr.SendData(PacketTypes.ProjectileNew, "", index);
             }
         }
     }
