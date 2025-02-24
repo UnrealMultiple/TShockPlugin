@@ -17,6 +17,11 @@ internal static class I18n
         var cultureInfo = (CultureInfo) typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
             "TranslationCultureInfo",
             BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
+        if (string.IsNullOrEmpty(cultureInfo.Name))
+        {
+            cultureInfo = new CultureInfo("en-US");
+        }
+
         var asm = Assembly.GetExecutingAssembly();
         var moFilePath = $"i18n.{cultureInfo.Name}.mo";
 
