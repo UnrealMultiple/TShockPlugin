@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-02-13 10:17:10+0000\n"
-"PO-Revision-Date: 2025-02-14 01:09\n"
+"PO-Revision-Date: 2025-02-24 01:11\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "{0} Damage: [c/74F3C9:{1}] Ratio: {2:0.00%} "
 #: ../../ZHIPM.Initialize.cs:2775
 #, csharp-format
 msgid "{0} 名用户因数据残缺导出失败\n"
-msgstr ""
+msgstr "{0} Export failed for users due to data error\n"
 
 #: ../../ZHIPM.Initialize.cs:2756
 #, csharp-format
