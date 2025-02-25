@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-02-02 04:38:21+0000\n"
-"PO-Revision-Date: 2025-02-04 01:07\n"
+"POT-Creation-Date: 2025-02-24 05:07:06+0000\n"
+"PO-Revision-Date: 2025-02-25 01:11\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgid "[AutoUpdatePlugin]插件配置已重载~"
 msgstr "[AutoUpdatePlugin] Plugin configuration has been reloaded~"
 
 #: ../../Plugin.cs:60
-#: ../../Internal/CommandAdapter.cs:452
+#: ../../Internal/CommandAdapter.cs:457
 msgid "[以下插件有新的版本更新]\n"
 msgstr "[The following plugins have new version updates]\n"
 
@@ -76,34 +76,34 @@ msgstr "{0}.{1} v{2} (by {3}) - status: {4}"
 msgid "{0}.{1} v{2} (by {3}) {4}"
 msgstr "{0}.{1} v{2} (by {3}) {4}"
 
-#: ../../Internal/CommandAdapter.cs:344
+#: ../../Internal/CommandAdapter.cs:349
 msgid "*使用/apm -i <序号> 即可安装哦~"
 msgstr "*Use /apm -i <number> to install~"
 
 #: ../../Internal/CommandAdapter.cs:227
-#: ../../Internal/CommandAdapter.cs:401
+#: ../../Internal/CommandAdapter.cs:406
 #, csharp-format
 msgid "*加载失败: {0}"
 msgstr "*Loading failed: {0}"
 
 #: ../../Internal/CommandAdapter.cs:223
-#: ../../Internal/CommandAdapter.cs:397
+#: ../../Internal/CommandAdapter.cs:402
 #, csharp-format
 msgid "*卸载失败: {0}"
 msgstr "*Uninstall failed: {0}"
 
 #: ../../Internal/CommandAdapter.cs:231
-#: ../../Internal/CommandAdapter.cs:405
+#: ../../Internal/CommandAdapter.cs:410
 msgid "*热加载失败的插件需要重启服务器后才会生效!"
 msgstr "*Plug-ins that fail to be hot-loaded will only take effect after the server is restarted!"
 
 #: ../../Internal/CommandAdapter.cs:241
-#: ../../Internal/CommandAdapter.cs:415
+#: ../../Internal/CommandAdapter.cs:420
 msgid "*热重载已关闭,插件需要重启服务器后才会生效!"
 msgstr "*Hot reloading has been turned off, and the plug-in will not take effect until the server is restarted!"
 
 #: ../../Internal/CommandAdapter.cs:235
-#: ../../Internal/CommandAdapter.cs:409
+#: ../../Internal/CommandAdapter.cs:414
 msgid "*热重载已启用,安装的插件已生效!"
 msgstr "*Hot reloading is enabled and the installed plug-ins have taken effect!"
 
@@ -151,8 +151,8 @@ msgstr "apm u [plugin name] update all plugins or a specified plugin"
 msgid "你可以使用命令/apm -u 更新插件哦~"
 msgstr "You can use the command /apm -u to update the plugins~"
 
-#: ../../Internal/CommandAdapter.cs:354
-#: ../../Internal/CommandAdapter.cs:448
+#: ../../Internal/CommandAdapter.cs:359
+#: ../../Internal/CommandAdapter.cs:453
 msgid "你的插件全是最新版本，无需更新哦~"
 msgstr "All your plugins are up to date, no need to update~"
 
@@ -212,11 +212,11 @@ msgstr "Plugin update exclusion list:\n"
 msgid "无效参数，请附带需要安装插件的选择项!"
 msgstr "Invalid parameter, please include the required options for the plugin to be installed!"
 
-#: ../../Internal/CommandAdapter.cs:456
+#: ../../Internal/CommandAdapter.cs:461
 msgid "无法获取更新:"
 msgstr "Unable to get update:"
 
-#: ../../Internal/CommandAdapter.cs:373
+#: ../../Internal/CommandAdapter.cs:378
 msgid "更新了个寂寞~"
 msgstr "Updated nothing~"
 
@@ -228,7 +228,7 @@ msgstr "Automatically updating plugins..."
 msgid "自动更新你的插件！"
 msgstr "Automatically update your plugins!"
 
-#: ../../Internal/CommandAdapter.cs:420
+#: ../../Internal/CommandAdapter.cs:425
 msgid "自动更新出现错误:"
 msgstr "An error occurred during automatic update:"
 
