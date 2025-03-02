@@ -23,8 +23,11 @@ public class Plugin : TerrariaPlugin
     public static bool LocalMode => Config.Settings.BotApi != "api.terraria.ink:22334";
     public static bool DebugMode;
     private static bool _stopWebsocket;
-    internal static ClientWebSocket WebSocket = new ();
-
+    internal static ClientWebSocket WebSocket
+    {
+        get => PacketWriter.WebSocket;
+        set => PacketWriter.WebSocket = value;
+    }
     public Plugin(Main game) : base(game)
     {
     }
@@ -52,12 +55,12 @@ public class Plugin : TerrariaPlugin
         GeneralHooks.ReloadEvent += this.GeneralHooksOnReloadEvent;
         MapGenerator.Init();
         EconomicSupport.Init();
-        PacketWriter.Init(false,  WebSocket , DebugMode);
+        PacketWriter.Init(false, DebugMode);
         Task.Factory.StartNew(StartCaiApi, TaskCreationOptions.LongRunning);
         Task.Factory.StartNew(StartHeartBeat, TaskCreationOptions.LongRunning);
         if (LocalMode)
         {
-            TShock.Log.ConsoleWarn($"[CaiAPI]CaiBot插件正在以本地模式运行, 当前API地址: {Config.Settings.BotApi}");
+            TShock.Log.ConsoleWarn($"[CaiBot]CaiBot插件正在以本地模式运行, 当前API地址: {Config.Settings.BotApi}");
         }
     }
 
@@ -133,7 +136,7 @@ public class Plugin : TerrariaPlugin
                     var token = json["token"]!.ToString();
                     Config.Settings.Token = token;
                     Config.Settings.Write();
-                    TShock.Log.ConsoleInfo("[CaiAPI]被动绑定成功!");
+                    TShock.Log.ConsoleInfo("[CaiBot]被动绑定成功!");
                 }
 
 
@@ -147,7 +150,7 @@ public class Plugin : TerrariaPlugin
                     var receivedData = Encoding.UTF8.GetString(buffer, 0, result.Count);
                     if (DebugMode)
                     {
-                        TShock.Log.ConsoleInfo($"[CaiAPI]收到BOT数据包: {receivedData}");
+                        TShock.Log.ConsoleInfo($"[CaiBot]收到BOT数据包: {receivedData}");
                     }
 
                     _ = CaiBotApi.HandleMessageAsync(receivedData);
@@ -155,7 +158,7 @@ public class Plugin : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                TShock.Log.ConsoleInfo("[CaiAPI]CaiBot断开连接...");
+                TShock.Log.ConsoleInfo("[CaiBot]CaiBot断开连接...");
                 if (DebugMode)
                 {
                     TShock.Log.ConsoleError(ex.ToString());

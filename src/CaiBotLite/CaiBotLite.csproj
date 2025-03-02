@@ -3,22 +3,21 @@
     <Import Project="..\..\template.targets"/>
 
     <ItemGroup>
-        <None Remove="SixLabors.ImageSharp.dll"/>
+        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.6" />
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="SixLabors.ImageSharp.dll"/>
+        <EmbeddedResource Include="$(NuGetPackageRoot)sixlabors.imagesharp\3.1.6\lib\$(TargetFramework)\SixLabors.ImageSharp.dll">
+            <Link>SixLabors.ImageSharp.dll</Link>
+        </EmbeddedResource>
     </ItemGroup>
-    <ItemGroup>
-        <Reference Include="SixLabors.ImageSharp">
-            <HintPath>SixLabors.ImageSharp.dll</HintPath>
-        </Reference>
-    </ItemGroup>
+    
     <ItemGroup>
         <ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj"/>
         <ProjectReference Include="..\Economics.Skill\Economics.Skill.csproj"/>
         <ProjectReference Include="..\EconomicsAPI\EconomicsAPI.csproj"/>
     </ItemGroup>
+    
     <ItemGroup>
       <Compile Include="..\CaiBot\CaiBotPlayer.cs">
         <Link>CaiBotPlayer.cs</Link>

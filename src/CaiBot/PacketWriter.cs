@@ -1,7 +1,6 @@
-﻿using System.Net.WebSockets;
+﻿using Newtonsoft.Json;
+using System.Net.WebSockets;
 using System.Text;
-using System.Text.Encodings.Web;
-using System.Text.Json;
 using TShockAPI;
 
 namespace CaiBot;
@@ -17,10 +16,9 @@ public class PacketWriter : Dictionary<string, object>
     private readonly string _msgId;
     private readonly long _at;
 
-    public static void Init(bool isLiteMessage, ClientWebSocket webSocket,bool debug = false)
+    public static void Init(bool isLiteMessage,bool debug = false)
     {
         IsLiteMessage = isLiteMessage;
-        WebSocket = webSocket;
         Debug = debug;
     }
     
@@ -63,18 +61,14 @@ public class PacketWriter : Dictionary<string, object>
     }
     public void Send()
     {
-        var options = new JsonSerializerOptions
-        {
-            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            WriteIndented = false
-        };
+        var botPrefix = IsLiteMessage ? "CaiBotLite" : "CaiBot";
         try
         {
-            if (PacketWriter.IsLiteMessage)
+            if (IsLiteMessage)
             {
                 if (this._groupOpenId != "")
                 {
-                    this.Add("group", this._groupId);
+                    this.Add("group", this._groupOpenId);
                 }
                 if (this._msgId != "")
                 {
@@ -92,11 +86,10 @@ public class PacketWriter : Dictionary<string, object>
                     this.Add("at", this._at);
                 }
             }
-
-            var message = JsonSerializer.Serialize(this, options);
+            var message = JsonConvert.SerializeObject(this, Formatting.None);
             if (Debug)
             {
-                TShock.Log.ConsoleInfo($"[CaiAPI]发送BOT数据包：{message}");
+                TShock.Log.ConsoleInfo($"[{botPrefix}]发送BOT数据包：{message}");
             }
 
             var messageBytes = Encoding.UTF8.GetBytes(message);
@@ -105,7 +98,7 @@ public class PacketWriter : Dictionary<string, object>
         }
         catch (Exception e)
         {
-            TShock.Log.ConsoleInfo($"[CaiAPI]发送数据包时发生错误：{e}");
+            TShock.Log.ConsoleInfo($"[{botPrefix}]发送数据包时发生错误：{e}");
         }
     }
     

@@ -35,21 +35,21 @@ internal static class CaiBotApi
             
             if (jsonObject.ContainsKey("msg_id"))
             {
-                msgId = jsonObject["at"]!.ToObject<string>()!;
+                msgId = jsonObject["msg_id"]!.ToObject<string>()!;
             }
             
             var packetWriter = new PacketWriter(group, msgId);
             switch (type)
             {
                 case "delserver":
-                    TShock.Log.ConsoleInfo("[CaiLiteAPI]BOT发送解绑命令...");
+                    TShock.Log.ConsoleInfo("[CaiBotLite]BOT发送解绑命令...");
                     Config.Settings.Token = string.Empty;
                     Config.Settings.Write();
                     Plugin.GenBindCode(EventArgs.Empty);
                     Plugin.WebSocket.Dispose();
                     break;
                 case "hello":
-                    TShock.Log.ConsoleInfo("[CaiLiteAPI]CaiBOT连接成功...");
+                    TShock.Log.ConsoleInfo("[CaiBotLite]CaiBOT连接成功...");
                     //发送服务器信息
                     packetWriter.SetType("hello")
                         .Write("tshock_version", TShock.VersionNum.ToString())

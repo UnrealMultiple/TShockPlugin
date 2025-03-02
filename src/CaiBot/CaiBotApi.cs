@@ -41,14 +41,14 @@ internal static class CaiBotApi
             switch (type)
             {
                 case "delserver":
-                    TShock.Log.ConsoleInfo("[CaiAPI]BOT发送解绑命令...");
+                    TShock.Log.ConsoleInfo("[CaiBot]BOT发送解绑命令...");
                     Config.Settings.Token = string.Empty;
                     Config.Settings.Write();
                     Plugin.GenBindCode(EventArgs.Empty);
                     Plugin.WebSocket.Dispose();
                     break;
                 case "hello":
-                    TShock.Log.ConsoleInfo("[CaiAPI]CaiBOT连接成功...");
+                    TShock.Log.ConsoleInfo("[CaiBot]CaiBOT连接成功...");
                     //发送服务器信息
                     packetWriter.SetType("hello")
                         .Write("tshock_version", TShock.VersionNum.ToString())
@@ -63,10 +63,10 @@ internal static class CaiBotApi
                     break;
                 case "groupid":
                     var groupId = (long) jsonObject["groupid"]!;
-                    TShock.Log.ConsoleInfo($"[CaiAPI]群号获取成功: {groupId}");
+                    TShock.Log.ConsoleInfo($"[CaiBot]群号获取成功: {groupId}");
                     if (Config.Settings.GroupNumber != 0L)
                     {
-                        TShock.Log.ConsoleWarn($"[CaiAPI]检测到你在配置文件中已设置群号[{Config.Settings.GroupNumber}],BOT自动获取的群号将被忽略！");
+                        TShock.Log.ConsoleWarn($"[CaiBot]检测到你在配置文件中已设置群号[{Config.Settings.GroupNumber}],BOT自动获取的群号将被忽略！");
                     }
                     else
                     {
