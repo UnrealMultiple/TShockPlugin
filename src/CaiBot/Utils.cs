@@ -250,14 +250,12 @@ internal static class Utils
 
             connection.Open();
 
-            using (var reader = command.ExecuteReader())
+            using var reader = command.ExecuteReader();
+            if (reader.Read())
             {
-                if (reader.Read())
-                {
-                    var activeBuffsString = reader.GetString(0);
-                    var activeBuffsList = activeBuffsString.Split(',').Select(int.Parse).ToList();
-                    return activeBuffsList;
-                }
+                var activeBuffsString = reader.GetString(0);
+                var activeBuffsList = activeBuffsString.Split(',').Select(int.Parse).ToList();
+                return activeBuffsList;
             }
         }
         catch
@@ -274,14 +272,12 @@ internal static class Utils
 
             connection.Open();
 
-            using (var reader = command.ExecuteReader())
+            using var reader = command.ExecuteReader();
+            if (reader.Read())
             {
-                if (reader.Read())
-                {
-                    var activeBuffsString = reader.GetString(0);
-                    var activeBuffsList = activeBuffsString.Split(',').Select(int.Parse).ToList();
-                    return activeBuffsList;
-                }
+                var activeBuffsString = reader.GetString(0);
+                var activeBuffsList = activeBuffsString.Split(',').Select(int.Parse).ToList();
+                return activeBuffsList;
             }
         }
         catch

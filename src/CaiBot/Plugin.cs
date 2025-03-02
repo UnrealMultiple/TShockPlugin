@@ -49,8 +49,8 @@ public class Plugin : TerrariaPlugin
         BanManager.OnBanPostAdd += this.OnBanInsert;
         Hooks.MessageBuffer.InvokeGetData += Login.MessageBuffer_InvokeGetData;
         ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
-        ServerApi.Hooks.ServerChat.Register(this, this.OnChat, int.MaxValue);
-        PlayerHooks.PlayerPostLogin += this.PlayerHooksOnPlayerPostLogin;
+        ServerApi.Hooks.ServerChat.Register(this, OnChat, int.MaxValue);
+        PlayerHooks.PlayerPostLogin += PlayerHooksOnPlayerPostLogin;
         PlayerHooks.PlayerLogout += this.PlayerHooksOnPlayerLogout;
         GeneralHooks.ReloadEvent += this.GeneralHooksOnReloadEvent;
         ServerApi.Hooks.GamePostInitialize.Register(this, GenBindCode);
@@ -74,8 +74,8 @@ public class Plugin : TerrariaPlugin
             BanManager.OnBanPostAdd -= this.OnBanInsert;
             ServerApi.Hooks.NetGetData.Deregister(this, Login.OnGetData);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, GenBindCode);
-            ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
-            PlayerHooks.PlayerPostLogin -= this.PlayerHooksOnPlayerPostLogin;
+            ServerApi.Hooks.ServerChat.Deregister(this, OnChat);
+            PlayerHooks.PlayerPostLogin -= PlayerHooksOnPlayerPostLogin;
             PlayerHooks.PlayerLogout -= this.PlayerHooksOnPlayerLogout;
             _stopWebsocket = true;
             WebSocket.Dispose();
@@ -93,7 +93,6 @@ public class Plugin : TerrariaPlugin
     {
         Config.Settings.Read();
         e.Player.SendSuccessMessage("[CaiBot]配置文件已重载 :)");
-        WebSocket.Dispose();
     }
     
     private static async Task? StartHeartBeat()
@@ -177,7 +176,7 @@ public class Plugin : TerrariaPlugin
         }
     }
 
-    private void OnChat(ServerChatEventArgs args)
+    private static void OnChat(ServerChatEventArgs args)
     {
         var plr = TShock.Players[args.Who];
 
@@ -190,31 +189,28 @@ public class Plugin : TerrariaPlugin
         {
             return;
         }
-
-        var result = new RestObject
-        {
-            { "type", "chat" },
-            { "chat", string.Format(Config.Settings.ServerChatFormat, plr.Name, args.Text, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
-            { "group", Config.Settings.GroupNumber }
-        };
-        _ = CaiBotApi.SendDateAsync(JsonConvert.SerializeObject(result));
+            
+        PacketWriter packetWriter = new (false);
+        
+        packetWriter.SetType("chat") //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
+            .Write("chat", string.Format(Config.Settings.ServerChatFormat, plr.Name,args.Text, plr.Group.Name, plr.Group.Prefix,
+                EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") )
+            .Send();
     }
 
-    private void PlayerHooksOnPlayerPostLogin(PlayerPostLoginEventArgs e)
+    private static void PlayerHooksOnPlayerPostLogin(PlayerPostLoginEventArgs e)
     {
         var plr = e.Player;
         if (!Config.Settings.SyncChatFromServer || string.IsNullOrEmpty(Config.Settings.JoinServerFormat) || plr == null)
         {
             return;
         }
-
-        var result = new RestObject
-        {
-            { "type", "chat" },
-            { "chat", string.Format(Config.Settings.JoinServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
-            { "group", Config.Settings.GroupNumber }
-        };
-        _ = CaiBotApi.SendDateAsync(JsonConvert.SerializeObject(result));
+        
+        PacketWriter packetWriter = new (false);
+        
+        packetWriter.SetType("chat") //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
+            .Write("chat", string.Format(Config.Settings.JoinServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持"))
+            .Send();
     }
 
     private void PlayerHooksOnPlayerLogout(PlayerLogoutEventArgs e)
@@ -224,14 +220,10 @@ public class Plugin : TerrariaPlugin
         {
             return;
         }
-
-        var result = new RestObject
-        {
-            { "type", "chat" },
-            { "chat", string.Format(Config.Settings.ExitServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持") }, //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
-            { "group", Config.Settings.GroupNumber }
-        };
-        _ = CaiBotApi.SendDateAsync(JsonConvert.SerializeObject(result));
+        PacketWriter packetWriter = new (false);
+        packetWriter.SetType("chat") //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
+            .Write("chat", string.Format(Config.Settings.ExitServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持")) 
+            .Send();
     }
 
     private void CaiBotCommand(CommandArgs args)
@@ -343,15 +335,13 @@ public class Plugin : TerrariaPlugin
 
         var name = e.Ban.Identifier.Replace(Identifier.Name.Prefix, "").Replace(Identifier.Account.Prefix, "");
         var expireTime = e.Ban.GetPrettyExpirationString();
-        var result = new RestObject
-        {
-            { "type", "post_ban_add" },
-            { "name", name },
-            { "reason", e.Ban.Reason },
-            { "admin", e.Ban.BanningUser },
-            { "expire_time", expireTime == "Never" ? "永久封禁" : expireTime }
-        };
-        _ = CaiBotApi.SendDateAsync(JsonConvert.SerializeObject(result));
+        PacketWriter packetWriter = new (false);
+        packetWriter.SetType("post_ban_add")
+            .Write("name", name)
+            .Write("reason", e.Ban.Reason)
+            .Write("admin", e.Ban.BanningUser)
+            .Write("expire_time", expireTime == "Never" ? "永久封禁" : expireTime)
+            .Send();
     }
 
 
