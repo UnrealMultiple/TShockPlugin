@@ -6,6 +6,7 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
 using TShockAPI.Hooks;
+using PacketWriter = CaiBot.PacketWriter;
 
 namespace CaiBotLite;
 
@@ -51,11 +52,7 @@ internal static class Login
                     }
                 }
 
-                RestObject re = new () {
-                    { "type", "whitelistV2" },
-                    { "name", player.Name },
-                    { "uuid", uuid }, 
-                    { "ip", player.IP } };
+                
                 
                 if (!CaiBotApi.IsWebsocketConnected)
                 {
@@ -80,7 +77,12 @@ internal static class Login
                 }
                 else
                 {
-                    _ = CaiBotApi.SendDateAsync(re.ToJson());
+                    var packetWriter = new PacketWriter();
+                    packetWriter.SetType("whitelistV2")
+                        .Write("name", player.Name)
+                        .Write("uuid", uuid )
+                        .Write("ip", player.IP)
+                        .Send();
                 }
                 
             }

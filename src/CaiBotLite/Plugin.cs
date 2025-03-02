@@ -1,7 +1,6 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using On.OTAPI;
-using Rests;
+using CaiBot;
 using System.Net;
 using System.Net.WebSockets;
 using System.Reflection;
@@ -9,8 +8,8 @@ using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.DB;
 using TShockAPI.Hooks;
+using PacketWriter = CaiBot.PacketWriter;
 using Program = Terraria.Program;
 
 namespace CaiBotLite;
@@ -38,17 +37,18 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
+        DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
-        MapGenerator.Init();
-        EconomicSupport.Init();
         Commands.ChatCommands.Add(new Command("caibotlite.admin", this.CaiBotCommand, "caibotlite"));
         Config.Settings.Read();
         Config.Settings.Write();
-        DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
-        Hooks.MessageBuffer.InvokeGetData += Login.MessageBuffer_InvokeGetData; 
         ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
-        GeneralHooks.ReloadEvent += this.GeneralHooksOnReloadEvent;
         ServerApi.Hooks.GamePostInitialize.Register(this, GenBindCode);
+        Hooks.MessageBuffer.InvokeGetData += Login.MessageBuffer_InvokeGetData; 
+        GeneralHooks.ReloadEvent += GeneralHooksOnReloadEvent;
+        MapGenerator.Init();
+        EconomicSupport.Init();
+        PacketWriter.Init(true, WebSocket, DebugMode);
         Task.Run(StartCaiApi, TokenSource.Token);
         Task.Run(StartHeartBeat, TokenSource.Token);
     }
@@ -59,11 +59,11 @@ public class Plugin : TerrariaPlugin
         {
             var asm = Assembly.GetExecutingAssembly();
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate.Method.DeclaringType?.Assembly == asm);
-            MapGenerator.Dispose();
-            AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
-            Hooks.MessageBuffer.InvokeGetData -= Login.MessageBuffer_InvokeGetData;
             ServerApi.Hooks.NetGetData.Deregister(this, Login.OnGetData);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, GenBindCode);
+            AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
+            Hooks.MessageBuffer.InvokeGetData -= Login.MessageBuffer_InvokeGetData;
+            MapGenerator.Dispose();
             _stopWebsocket = true;
             WebSocket.Dispose();
             if (!WebSocketTask.IsCompleted)
@@ -76,11 +76,10 @@ public class Plugin : TerrariaPlugin
         base.Dispose(disposing);
     }
     
-    private void GeneralHooksOnReloadEvent(ReloadEventArgs e)
+    private static void GeneralHooksOnReloadEvent(ReloadEventArgs e)
     {
         Config.Settings.Read();
         e.Player.SendSuccessMessage("[CaiBot]配置文件已重载 :)");
-        WebSocket.Dispose();
     }
     
     private static async Task? StartHeartBeat()
@@ -92,8 +91,9 @@ public class Plugin : TerrariaPlugin
             {
                 if (WebSocket.State == WebSocketState.Open)
                 {
-                    Dictionary<string, string> heartBeat = new () { { "type", "HeartBeat" } };
-                    await CaiBotApi.SendDateAsync(JsonConvert.SerializeObject(heartBeat));
+                    var packetWriter = new PacketWriter();
+                    packetWriter.SetType("HeartBeat")
+                        .Send();
                 }
             }
             catch

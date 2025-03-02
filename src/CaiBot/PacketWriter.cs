@@ -1,4 +1,6 @@
-﻿using System.Text.Encodings.Web;
+﻿using System.Net.WebSockets;
+using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using TShockAPI;
 
@@ -7,16 +9,24 @@ namespace CaiBot;
 [Serializable]
 public class PacketWriter : Dictionary<string, object>
 {
+    public static bool Debug;
+    public static bool IsLiteMessage;
+    public static ClientWebSocket WebSocket = null!;
     private readonly long _groupId;
     private readonly string _groupOpenId;
-    private readonly bool _isLiteMessage;
     private readonly string _msgId;
     private readonly long _at;
-    
-    
-    public PacketWriter(bool isLiteMessage)
+
+    public static void Init(bool isLiteMessage, ClientWebSocket webSocket,bool debug = false)
     {
-        this._isLiteMessage = isLiteMessage;
+        IsLiteMessage = isLiteMessage;
+        WebSocket = webSocket;
+        Debug = debug;
+    }
+    
+    
+    public PacketWriter()
+    {
         this._groupId = 0L;
         this._at = 0L;
         this._groupOpenId = "";
@@ -25,7 +35,6 @@ public class PacketWriter : Dictionary<string, object>
     
     public PacketWriter(long groupId,long at = 0L)
     {
-        this._isLiteMessage = false;
         this._groupId = groupId;
         this._at = at;
         this._groupOpenId = "";
@@ -34,7 +43,6 @@ public class PacketWriter : Dictionary<string, object>
     
     public PacketWriter(string groupOpenId, string msgId)
     {
-        this._isLiteMessage = true;
         this._groupId = 0L;
         this._at = 0L;
         this._groupOpenId = groupOpenId;
@@ -62,7 +70,7 @@ public class PacketWriter : Dictionary<string, object>
         };
         try
         {
-            if (this._isLiteMessage)
+            if (PacketWriter.IsLiteMessage)
             {
                 if (this._groupOpenId != "")
                 {
@@ -84,8 +92,16 @@ public class PacketWriter : Dictionary<string, object>
                     this.Add("at", this._at);
                 }
             }
-            
-            _ = CaiBotApi.SendDateAsync(JsonSerializer.Serialize(this,options));
+
+            var message = JsonSerializer.Serialize(this, options);
+            if (Debug)
+            {
+                TShock.Log.ConsoleInfo($"[CaiAPI]发送BOT数据包：{message}");
+            }
+
+            var messageBytes = Encoding.UTF8.GetBytes(message);
+            _ = WebSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true,
+                CancellationToken.None);
         }
         catch (Exception e)
         {

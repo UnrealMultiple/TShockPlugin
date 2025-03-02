@@ -17,17 +17,6 @@ internal static class CaiBotApi
     
     internal static readonly Dictionary<string,(DateTime,int)> WhiteListCaches = new();
     
-    internal static async Task SendDateAsync(string message)
-    {
-        if (Plugin.DebugMode)
-        {
-            TShock.Log.ConsoleInfo($"[CaiAPI]发送BOT数据包：{message}");
-        }
-
-        var messageBytes = Encoding.UTF8.GetBytes(message);
-        await Plugin.WebSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true,
-            CancellationToken.None);
-    }
 
     internal static async Task HandleMessageAsync(string receivedData)
     {

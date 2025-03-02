@@ -40,20 +40,21 @@ public class Plugin : TerrariaPlugin
     public override void Initialize()
     {
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
-        MapGenerator.Init();
-        EconomicSupport.Init();
         Commands.ChatCommands.Add(new Command("caibot.admin", this.CaiBotCommand, "caibot"));
         Config.Settings.Read();
         Config.Settings.Write();
         DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
-        BanManager.OnBanPostAdd += this.OnBanInsert;
-        Hooks.MessageBuffer.InvokeGetData += Login.MessageBuffer_InvokeGetData;
         ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
         ServerApi.Hooks.ServerChat.Register(this, OnChat, int.MaxValue);
+        ServerApi.Hooks.GamePostInitialize.Register(this, GenBindCode);
+        BanManager.OnBanPostAdd += this.OnBanInsert;
+        Hooks.MessageBuffer.InvokeGetData += Login.MessageBuffer_InvokeGetData;
         PlayerHooks.PlayerPostLogin += PlayerHooksOnPlayerPostLogin;
         PlayerHooks.PlayerLogout += this.PlayerHooksOnPlayerLogout;
         GeneralHooks.ReloadEvent += this.GeneralHooksOnReloadEvent;
-        ServerApi.Hooks.GamePostInitialize.Register(this, GenBindCode);
+        MapGenerator.Init();
+        EconomicSupport.Init();
+        PacketWriter.Init(false,  WebSocket , DebugMode);
         Task.Run(StartCaiApi, TokenSource.Token);
         Task.Run(StartHeartBeat, TokenSource.Token);
         if (LocalMode)
@@ -68,17 +69,17 @@ public class Plugin : TerrariaPlugin
         {
             var asm = Assembly.GetExecutingAssembly();
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate.Method.DeclaringType?.Assembly == asm);
-            MapGenerator.Dispose();
             AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
-            Hooks.MessageBuffer.InvokeGetData -= Login.MessageBuffer_InvokeGetData;
-            BanManager.OnBanPostAdd -= this.OnBanInsert;
             ServerApi.Hooks.NetGetData.Deregister(this, Login.OnGetData);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, GenBindCode);
             ServerApi.Hooks.ServerChat.Deregister(this, OnChat);
+            Hooks.MessageBuffer.InvokeGetData -= Login.MessageBuffer_InvokeGetData;
+            BanManager.OnBanPostAdd -= this.OnBanInsert;
             PlayerHooks.PlayerPostLogin -= PlayerHooksOnPlayerPostLogin;
             PlayerHooks.PlayerLogout -= this.PlayerHooksOnPlayerLogout;
             _stopWebsocket = true;
             WebSocket.Dispose();
+            MapGenerator.Dispose();
             if (!WebSocketTask.IsCompleted)
             {
                 TokenSource.Cancel();
@@ -104,8 +105,8 @@ public class Plugin : TerrariaPlugin
             {
                 if (WebSocket.State == WebSocketState.Open)
                 {
-                    Dictionary<string, string> heartBeat = new () { { "type", "HeartBeat" } };
-                    await CaiBotApi.SendDateAsync(JsonConvert.SerializeObject(heartBeat));
+                    var packetWriter = new PacketWriter();
+                    packetWriter.SetType("HeartBeat").Send();
                 }
             }
             catch
@@ -190,7 +191,7 @@ public class Plugin : TerrariaPlugin
             return;
         }
             
-        PacketWriter packetWriter = new (false);
+        PacketWriter packetWriter = new ();
         
         packetWriter.SetType("chat") //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
             .Write("chat", string.Format(Config.Settings.ServerChatFormat, plr.Name,args.Text, plr.Group.Name, plr.Group.Prefix,
@@ -206,7 +207,7 @@ public class Plugin : TerrariaPlugin
             return;
         }
         
-        PacketWriter packetWriter = new (false);
+        PacketWriter packetWriter = new ();
         
         packetWriter.SetType("chat") //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
             .Write("chat", string.Format(Config.Settings.JoinServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持"))
@@ -220,7 +221,7 @@ public class Plugin : TerrariaPlugin
         {
             return;
         }
-        PacketWriter packetWriter = new (false);
+        PacketWriter packetWriter = new ();
         packetWriter.SetType("chat") //[Server]玩家名:内容" 额外 {2}:玩家组名 {3}:玩家聊天前缀 {4}:Ec职业名
             .Write("chat", string.Format(Config.Settings.ExitServerFormat, plr.Name, plr.Group.Name, plr.Group.Prefix, EconomicSupport.IsSupported("GetLevelName") ? EconomicSupport.GetLevelName(plr.Account.Name).Replace("职业:", "") : "不支持")) 
             .Send();
@@ -291,6 +292,7 @@ public class Plugin : TerrariaPlugin
             case "调试":
             case "debug":
                 DebugMode = !DebugMode;
+                PacketWriter.Debug = DebugMode;
                 plr.SendInfoMessage($"[CaiBot]调试模式已{(DebugMode ? "开启" : "关闭")}!");
                 break;
             case "验证码":
@@ -335,7 +337,7 @@ public class Plugin : TerrariaPlugin
 
         var name = e.Ban.Identifier.Replace(Identifier.Name.Prefix, "").Replace(Identifier.Account.Prefix, "");
         var expireTime = e.Ban.GetPrettyExpirationString();
-        PacketWriter packetWriter = new (false);
+        PacketWriter packetWriter = new ();
         packetWriter.SetType("post_ban_add")
             .Write("name", name)
             .Write("reason", e.Ban.Reason)

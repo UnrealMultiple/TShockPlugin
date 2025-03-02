@@ -51,8 +51,6 @@ internal static class Login
                     }
                 }
 
-                RestObject re = new () { { "type", "whitelistV2" }, { "name", player.Name }, { "uuid", uuid }, { "ip", player.IP } };
-                
                 if (!CaiBotApi.IsWebsocketConnected)
                 {
                     if (CaiBotApi.WhiteListCaches.TryGetValue(player.Name, out var whiteListCache2)) //从缓存处读取白名单
@@ -76,7 +74,13 @@ internal static class Login
                 }
                 else
                 {
-                    _ = CaiBotApi.SendDateAsync(re.ToJson());
+                                    
+                    PacketWriter packetWriter = new ();
+                    packetWriter.SetType("whitelistV2")
+                        .Write("name", player.Name)
+                        .Write("uuid", uuid)
+                        .Write("ip", player.IP)
+                        .Send();
                 }
                 
             }

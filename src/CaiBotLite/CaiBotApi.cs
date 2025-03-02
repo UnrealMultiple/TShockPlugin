@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Rests;
 using SixLabors.ImageSharp.Formats.Png;
 using System.Net.WebSockets;
 using System.Runtime.InteropServices;
@@ -9,6 +7,8 @@ using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using CaiBot;
+using Utils = CaiBot.Utils;
 
 namespace CaiBotLite;
 
@@ -18,18 +18,6 @@ internal static class CaiBotApi
         Plugin.WebSocket.State == WebSocketState.Open;
     
     internal static readonly Dictionary<string,(DateTime,int)> WhiteListCaches = new();
-    
-    internal static async Task SendDateAsync(string message)
-    {
-        if (Plugin.DebugMode)
-        {
-            TShock.Log.ConsoleInfo($"[CaiLiteAPI]发送BOT数据包：{message}");
-        }
-
-        var messageBytes = Encoding.UTF8.GetBytes(message);
-        await Plugin.WebSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true,
-            CancellationToken.None);
-    }
 
     internal static async Task HandleMessageAsync(string receivedData)
     {
@@ -37,45 +25,50 @@ internal static class CaiBotApi
         {
             var jsonObject = JObject.Parse(receivedData);
             var type = (string) jsonObject["type"]!;
-            RestObject result;
+            
+            var group = "";
+            var msgId = "";
+            if (jsonObject.ContainsKey("group"))
+            {
+                group = jsonObject["group"]!.ToObject<string>()!;
+            }
+            
+            if (jsonObject.ContainsKey("msg_id"))
+            {
+                msgId = jsonObject["at"]!.ToObject<string>()!;
+            }
+            
+            var packetWriter = new PacketWriter(group, msgId);
             switch (type)
             {
                 case "delserver":
-                    TShock.Log.ConsoleInfo("[CaiAPI]BOT发送解绑命令...");
+                    TShock.Log.ConsoleInfo("[CaiLiteAPI]BOT发送解绑命令...");
                     Config.Settings.Token = string.Empty;
                     Config.Settings.Write();
                     Plugin.GenBindCode(EventArgs.Empty);
                     Plugin.WebSocket.Dispose();
                     break;
                 case "hello":
-                    TShock.Log.ConsoleInfo("[CaiAPI]CaiBOT连接成功...");
+                    TShock.Log.ConsoleInfo("[CaiLiteAPI]CaiBOT连接成功...");
                     //发送服务器信息
-                    result = new RestObject
-                    {
-                        { "type", "hello" },
-                        { "tshock_version", TShock.VersionNum.ToString() },
-                        { "plugin_version", Plugin.VersionNum },
-                        { "terraria_version", Main.versionNumber },
-                        { "cai_whitelist", Config.Settings.WhiteList },
-                        { "os", RuntimeInformation.RuntimeIdentifier },
-                        { "world", TShock.Config.Settings.UseServerName ? TShock.Config.Settings.ServerName : Main.worldName }
-                    };
-                    await SendDateAsync(JsonConvert.SerializeObject(result));
+                    packetWriter.SetType("hello")
+                        .Write("tshock_version", TShock.VersionNum.ToString())
+                        .Write("plugin_version", Plugin.VersionNum)
+                        .Write("terraria_version", Main.versionNumber)
+                        .Write("cai_whitelist", Config.Settings.WhiteList)
+                        .Write("os", RuntimeInformation.RuntimeIdentifier)
+                        .Write("world", TShock.Config.Settings.UseServerName ? TShock.Config.Settings.ServerName : Main.worldName)
+                        .Send(); 
                     break;
                 case "cmd":
                     var cmd = (string) jsonObject["cmd"]!;
                     CaiBotPlayer tr = new ();
                     Commands.HandleCommand(tr, cmd);
-                    TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(string) jsonObject["group"]!}`执行了: {(string) jsonObject["cmd"]!}", Color.PaleVioletRed);
-                    result = new RestObject
-                    {
-                        { "type", "cmd" },
-                        { "result", string.Join('\n', tr.GetCommandOutput()) },
-                        { "at", (string) jsonObject["at"]! },
-                        { "group", (string) jsonObject["group"]! },
-                        { "msg_id", (string) jsonObject["msg_id"]! }
-                    };
-                    await SendDateAsync(JsonConvert.SerializeObject(result));
+                    TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(long) jsonObject["group"]!}`执行了: {(string) jsonObject["cmd"]!}", Color.PaleVioletRed);
+
+                    packetWriter.SetType("cmd")
+                        .Write("result", string.Join('\n', tr.GetCommandOutput()))
+                        .Send();
                     break;
                 case "online":
                     var onlineResult = new StringBuilder();
@@ -91,30 +84,22 @@ internal static class CaiBotApi
 
                     var onlineProcessList = Utils.GetOnlineProcessList();
                     var onlineProcess = !onlineProcessList.Any() ? "已毕业" : onlineProcessList.ElementAt(0) + "前";
-                    result = new RestObject
-                    {
-                        { "type", "online" },
-                        { "result", onlineResult.ToString() }, // “怎么有种我是男的的感觉” -- 张芷睿大人 (24.12.22)
-                        { "worldname", string.IsNullOrEmpty(Main.worldName) ? "地图还没加载捏~" : Main.worldName },
-                        { "process", onlineProcess },
-                        { "group", (string) jsonObject["group"]! }
-                    };
-                    await SendDateAsync(JsonConvert.SerializeObject(result));
+                    
+                    packetWriter.SetType("online")
+                        .Write("result", onlineResult.ToString()) // “怎么有种我是男的的感觉” -- 张芷睿大人 (24.12.22)
+                        .Write("worldname", string.IsNullOrEmpty(Main.worldName) ? "地图还没加载捏~" : Main.worldName)
+                        .Write("process", onlineProcess)
+                        .Send();
                     break;
                 case "process":
-                    result = new RestObject
-                    {
-                        { "type", "process" },
-                        { "process", Utils.GetProcessList() },
-                        { "kill_counts", Utils.GetKillCountList() },
-                        { "worldname", Main.worldName },
-                        { "drunk_world", Main.drunkWorld },
-                        { "zenith_world", Main.zenithWorld },
-                        { "world_icon", Utils.GetWorldIconName() },
-                        { "group", (string) jsonObject["group"]! },
-                        { "msg_id", (string) jsonObject["msg_id"]! }
-                    };
-                    await SendDateAsync(JsonConvert.SerializeObject(result));
+                    packetWriter.SetType("process")
+                        .Write("process", Utils.GetProcessList())
+                        .Write("kill_counts", Utils.GetKillCountList())
+                        .Write("worldname", Main.worldName)
+                        .Write("drunk_world", Main.drunkWorld)
+                        .Write("zenith_world", Main.zenithWorld)
+                        .Write("world_icon", Utils.GetWorldIconName())
+                        .Send();
                     break;
                 case "whitelist":
                     var name = (string) jsonObject["name"]!;
@@ -149,60 +134,51 @@ internal static class CaiBotApi
                     {
                         var plr = playerList3[0].TPlayer;
                         var lookOnlineResult = LookBag.LookOnline(plr);
-                        result = new RestObject
-                        {
-                            { "type", "lookbag" },
-                            { "name", lookOnlineResult.Name },
-                            { "exist", 1 },
-                            { "life", $"{lookOnlineResult.Health}/{lookOnlineResult.MaxHealth}" },
-                            { "mana", $"{lookOnlineResult.Mana}/{lookOnlineResult.MaxMana}" },
-                            { "quests_completed", lookOnlineResult.QuestsCompleted },
-                            { "inventory", lookOnlineResult.ItemList },
-                            { "buffs", lookOnlineResult.Buffs },
-                            { "enhances", lookOnlineResult.Enhances },
-                            { "economic", EconomicData.GetEconomicData(lookOnlineResult.Name) },
-                            { "group", (string) jsonObject["group"]! },
-                            { "msg_id", (string) jsonObject["msg_id"]! }
-                        };
+                        packetWriter.SetType("lookbag")
+                            .Write("name", lookOnlineResult.Name)
+                            .Write("exist", 1)
+                            .Write("life", $"{lookOnlineResult.Health}/{lookOnlineResult.MaxHealth}")
+                            .Write("mana", $"{lookOnlineResult.Mana}/{lookOnlineResult.MaxMana}")
+                            .Write("quests_completed", lookOnlineResult.QuestsCompleted)
+                            .Write("inventory", lookOnlineResult.ItemList)
+                            .Write("buffs", lookOnlineResult.Buffs)
+                            .Write("enhances", lookOnlineResult.Enhances)
+                            .Write("economic", EconomicData.GetEconomicData(lookOnlineResult.Name))
+                            .Send();
                     }
                     else
                     {
                         var acc = TShock.UserAccounts.GetUserAccountByName(name);
                         if (acc == null)
                         {
-                            result = new RestObject { { "type", "lookbag" }, { "exist", 0 }, { "group", (string) jsonObject["group"]! }, { "msg_id", (string) jsonObject["msg_id"]! } };
-                            await SendDateAsync(JsonConvert.SerializeObject(result));
+                            packetWriter.SetType("lookbag")
+                                .Write("exist", 0)
+                                .Send();
                             return;
                         }
 
                         var data = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), acc.ID);
                         if (data == null)
                         {
-                            result = new RestObject { { "type", "lookbag" }, { "exist", 0 }, { "group", (string) jsonObject["group"]! }, { "msg_id", (string) jsonObject["msg_id"]! } };
-                            await SendDateAsync(JsonConvert.SerializeObject(result));
+                            packetWriter.SetType("lookbag")
+                                .Write("exist", 0)
+                                .Send();
                             return;
                         }
 
                         var lookOnlineResult = LookBag.LookOffline(acc, data);
-                        result = new RestObject
-                        {
-                            { "type", "lookbag" },
-                            { "name", lookOnlineResult.Name },
-                            { "exist", 1 },
-                            { "life", $"{lookOnlineResult.Health}/{lookOnlineResult.MaxHealth}" },
-                            { "mana", $"{lookOnlineResult.Mana}/{lookOnlineResult.MaxMana}" },
-                            { "quests_completed", lookOnlineResult.QuestsCompleted },
-                            { "inventory", lookOnlineResult.ItemList },
-                            { "buffs", lookOnlineResult.Buffs },
-                            { "enhances", lookOnlineResult.Enhances },
-                            { "economic", EconomicData.GetEconomicData(lookOnlineResult.Name) },
-                            { "group", (string) jsonObject["group"]! },
-                            { "msg_id", (string) jsonObject["msg_id"]! }
-                        };
+                        packetWriter.SetType("lookbag")
+                                .Write("name", lookOnlineResult.Name )
+                                .Write("exist", 1 )
+                                .Write("life", $"{lookOnlineResult.Health}/{lookOnlineResult.MaxHealth}")
+                                .Write("mana", $"{lookOnlineResult.Mana}/{lookOnlineResult.MaxMana}")
+                                .Write("quests_completed", lookOnlineResult.QuestsCompleted)
+                                .Write("inventory", lookOnlineResult.ItemList)
+                                .Write("buffs", lookOnlineResult.Buffs)
+                                .Write("enhances", lookOnlineResult.Enhances )
+                                .Write("economic", EconomicData.GetEconomicData(lookOnlineResult.Name))
+                                .Send();
                     }
-
-                    await SendDateAsync(JsonConvert.SerializeObject(result));
-
                     break;
                 case "mappng":
                     var bitmap = MapGenerator.CreateMapImg();
@@ -211,15 +187,31 @@ internal static class CaiBotApi
                         await bitmap.SaveAsync(ms, new PngEncoder());
                         var imageBytes = ms.ToArray();
                         var base64 = Convert.ToBase64String(imageBytes);
-                        result = new RestObject { { "type", "mappngV2" }, { "result", Utils.CompressBase64(base64) }, { "group", (string) jsonObject["group"]! }, { "msg_id", (string) jsonObject["msg_id"]! } };
+                        packetWriter.SetType("mappngV2")
+                            .Write("result", Utils.CompressBase64(base64))
+                            .Send();
                     }
-
-                    await SendDateAsync(JsonConvert.SerializeObject(result));
+                    break;
+                case "mapfile":
+                    var mapfile = MapGenerator.CreateMapFile();
+                    packetWriter.SetType("mapfileV2")
+                        .Write("name", mapfile.Item2)
+                        .Write("base64", Utils.CompressBase64(mapfile.Item1) )
+                        .Send();
+                    
+                    break;
+                case "worldfile":
+                    packetWriter.SetType("worldfileV2")
+                        .Write("name", Path.GetFileName(Main.worldPathName))
+                        .Write("base64", Utils.CompressBase64(Utils.FileToBase64String(Main.worldPathName)) )
+                        .Send();
+                    
                     break;
                 case "pluginlist":
                     var pluginList = ServerApi.Plugins.Select(p => new PluginInfo(p.Plugin.Name, p.Plugin.Description, p.Plugin.Author, p.Plugin.Version)).ToList();
-                    result = new RestObject { { "type", "pluginlist" }, { "plugins", pluginList }, { "group", (string) jsonObject["group"]! }, { "msg_id", (string) jsonObject["msg_id"]! } };
-                    await SendDateAsync(JsonConvert.SerializeObject(result));
+                    packetWriter.SetType("pluginlist")
+                        .Write("plugins", pluginList)
+                        .Send();
                     break;
             }
         }
