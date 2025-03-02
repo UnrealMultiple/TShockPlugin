@@ -22,8 +22,6 @@ public class Plugin : TerrariaPlugin
     public static bool DebugMode;
     private static bool _stopWebsocket;
     internal static ClientWebSocket WebSocket = new ();
-    private static readonly Task WebSocketTask = Task.CompletedTask;
-    private static readonly CancellationTokenSource TokenSource = new ();
 
     public Plugin(Main game) : base(game)
     {
@@ -49,8 +47,8 @@ public class Plugin : TerrariaPlugin
         MapGenerator.Init();
         EconomicSupport.Init();
         PacketWriter.Init(true, WebSocket, DebugMode);
-        Task.Run(StartCaiApi, TokenSource.Token);
-        Task.Run(StartHeartBeat, TokenSource.Token);
+        Task.Factory.StartNew(StartCaiApi, TaskCreationOptions.LongRunning);
+        Task.Factory.StartNew(StartHeartBeat, TaskCreationOptions.LongRunning);
     }
 
     protected override void Dispose(bool disposing)
@@ -66,11 +64,6 @@ public class Plugin : TerrariaPlugin
             MapGenerator.Dispose();
             _stopWebsocket = true;
             WebSocket.Dispose();
-            if (!WebSocketTask.IsCompleted)
-            {
-                TokenSource.Cancel();
-                TokenSource.Dispose();
-            }
         }
 
         base.Dispose(disposing);

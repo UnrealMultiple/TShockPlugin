@@ -24,8 +24,6 @@ public class Plugin : TerrariaPlugin
     public static bool DebugMode;
     private static bool _stopWebsocket;
     internal static ClientWebSocket WebSocket = new ();
-    private static readonly Task WebSocketTask = Task.CompletedTask;
-    private static readonly CancellationTokenSource TokenSource = new ();
 
     public Plugin(Main game) : base(game)
     {
@@ -55,8 +53,8 @@ public class Plugin : TerrariaPlugin
         MapGenerator.Init();
         EconomicSupport.Init();
         PacketWriter.Init(false,  WebSocket , DebugMode);
-        Task.Run(StartCaiApi, TokenSource.Token);
-        Task.Run(StartHeartBeat, TokenSource.Token);
+        Task.Factory.StartNew(StartCaiApi, TaskCreationOptions.LongRunning);
+        Task.Factory.StartNew(StartHeartBeat, TaskCreationOptions.LongRunning);
         if (LocalMode)
         {
             TShock.Log.ConsoleWarn($"[CaiAPI]CaiBot插件正在以本地模式运行, 当前API地址: {Config.Settings.BotApi}");
@@ -80,11 +78,6 @@ public class Plugin : TerrariaPlugin
             _stopWebsocket = true;
             WebSocket.Dispose();
             MapGenerator.Dispose();
-            if (!WebSocketTask.IsCompleted)
-            {
-                TokenSource.Cancel();
-                TokenSource.Dispose();
-            }
         }
 
         base.Dispose(disposing);
