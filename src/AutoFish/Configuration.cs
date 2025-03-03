@@ -46,10 +46,6 @@ internal class Configuration : JsonConfigBase<Configuration>
     [LocalizedPropertyName(CultureType.Chinese, "额外渔获", Order = -1)]
     [LocalizedPropertyName(CultureType.English, "AdditionalCatches")]
     public List<int> DoorItems = new();
-
-    [LocalizedPropertyName(CultureType.Chinese, "禁止衍生弹幕", Order = 10)]
-    [LocalizedPropertyName(CultureType.English, "ForbidProjectiles")]
-    public int[] DisableProjectile { get; set; } = new int[] { 623, 625, 626, 627, 628, 831, 832, 833, 834, 835, 963, 970 };
     #endregion
 
     protected override string Filename => "AutoFish";

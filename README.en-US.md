@@ -66,7 +66,7 @@
 | :-: | :-: | :-: | :-: |
 | [AdditionalPylons](./src/AdditionalPylons/README.en-US.md) | 100.0% | Place more Pylons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AIChatPlugin](./src/AIChatPlugin/README.en-US.md) | 100.0% | AIChatPlugin |  |
-| [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 2.6% | Enhance Broadcast Box Functionality | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 100.0% | Enhance Broadcast Box Functionality | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoAirItem](./src/AutoAirItem/README.en-US.md) | 100.0% | Automatic trash cans | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.en-US.md) | 100.0% | Automatic broadcast | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoClear](./src/AutoClear/README.en-US.md) | 100.0% | Intelligent automatic cleaning | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -205,7 +205,7 @@
 | [WeaponPlus](./src/WeaponPlus/README.md) | 100.0% | Weapon enhancement coin version |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 100.0% | Load Chinese Wiki language pack for server |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 0.0% | World editor, can modify most of the world parameters |  |
-| [ZHIPlayerManager](./src/ZHIPlayerManager/README.en-US.md) | 66.1% | zZhi's player management plugin |  |
+| [ZHIPlayerManager](./src/ZHIPlayerManager/README.en-US.md) | 66.3% | zZhi's player management plugin |  |
 
 </Details>
 
