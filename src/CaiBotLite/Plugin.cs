@@ -14,12 +14,12 @@ using Program = Terraria.Program;
 
 namespace CaiBotLite;
 
-[ApiVersion(2, 1)]
-public class Plugin : TerrariaPlugin
+[ApiVersion(2， 1)]
+公共 class Plugin : TerrariaPlugin
 {
-    public static readonly Version VersionNum = new (2025, 3, 2, 1); //日期+版本号(0,1,2...)
+    公共 static readonly Version VersionNum = new (2025， 3， 3， 1); //日期+版本号(0,1,2...)
     internal static int InitCode = -1;
-    public static bool DebugMode;
+    公共 static bool DebugMode;
     private static bool _stopWebsocket;
     internal static ClientWebSocket WebSocket
     {
@@ -27,21 +27,21 @@ public class Plugin : TerrariaPlugin
         set => PacketWriter.WebSocket = value;
     }
 
-    public Plugin(Main game) : base(game)
+    公共 Plugin(Main game) : base(game)
     {
     }
 
-    public override string Author => "Cai,羽学,西江";
-    public override string Description => "CaiBot官方机器人的适配插件";
-    public override string Name => "CaiBotLitePlugin";
-    public override Version Version => VersionNum;
+    公共 override string Author => "Cai,羽学,西江";
+    公共 override string Description => "CaiBot官方机器人的适配插件";
+    公共 override string Name => "CaiBotLitePlugin";
+    公共 override Version Version => VersionNum;
 
 
-    public override void Initialize()
+    公共 override void Initialize()
     {
         DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
-        Commands.ChatCommands.Add(new Command("caibotlite.admin", this.CaiBotCommand, "caibotlite"));
+        Commands.ChatCommands.Add(new Command("caibotlite.admin"， this.CaiBotCommand, "caibotlite"));
         Config.Settings.Read();
         Config.Settings.Write();
         ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
