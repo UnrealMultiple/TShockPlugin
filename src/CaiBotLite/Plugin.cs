@@ -17,7 +17,7 @@ namespace CaiBotLite;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public static readonly Version VersionNum = new (2025, 3, 2, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new (2025, 3, 3, 1); //日期+版本号(0,1,2...)
     internal static int InitCode = -1;
     public static bool DebugMode;
     private static bool _stopWebsocket;
