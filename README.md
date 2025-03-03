@@ -79,6 +79,7 @@
 | [BridgeBuilder](./src/BridgeBuilder/README.md) | 快速铺桥 | [LazyAPI](./src/LazyAPI/README.md) |
 | [BuildMaster](./src/BuildMaster/README.md) | 豆沙小游戏·建筑大师模式 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
 | [CaiBot](./src/CaiBot/README.md) | CaiBot 适配插件 |  |
+| [CaiBotLite](./src/CaiBotLite/README.md) | CaiBot 官方机器人适配插件 |  |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.md) | 自定义表情命令 | [LazyAPI](./src/LazyAPI/README.md) |
 | [CaiLib](./src/CaiLib/README.md) | Cai 的前置库 | [SixLabors.ImageSharp]() |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.md) | Cai数据包调试工具 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
@@ -189,7 +190,7 @@
 | [TimeRate](./src/TimeRate/README.md) | 时间加速插件 |  |
 | [TimerKeeper](./src/TimerKeeper/README.md) | 保存计时器状态 |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | NPC 快速回家 |  |
-| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | TShock config文件语言本土化 |  |
+| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | TShock config文件语言本土化 | [LazyAPI](./src/LazyAPI/README.md) |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 允许服务器端生成“无法获取”的物品 |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | VBY插件的基础库 |  |
 | [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 对一些游戏内容的可自定义修改 (超强) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |

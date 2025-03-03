@@ -473,8 +473,28 @@
     "HotReload": true
   },
   {
+    "Name": "CaiBotLitePlugin",
+    "Version": "2025.3.3.1",
+    "Author": "Cai,羽学,西江",
+    "Description": {
+      "en-US": "CaiBot官方机器人的适配插件",
+      "de-DE": "CaiBot官方机器人的适配插件",
+      "it-IT": "CaiBot官方机器人的适配插件",
+      "fr-FR": "CaiBot官方机器人的适配插件",
+      "es-ES": "CaiBot官方机器人的适配插件",
+      "ru-RU": "CaiBot官方机器人的适配插件",
+      "zh-CN": "CaiBot官方机器人的适配插件",
+      "pt-BR": "CaiBot官方机器人的适配插件",
+      "pl-PL": "CaiBot官方机器人的适配插件"
+    },
+    "AssemblyName": "CaiBotLite",
+    "Path": "CaiBotLite.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "CaiBotPlugin",
-    "Version": "2025.1.29.1",
+    "Version": "2025.3.2.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot机器人的适配插件",
@@ -2502,6 +2522,28 @@
     "AssemblyName": "TownNPCHomes",
     "Path": "TownNPCHomes.dll",
     "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "TShockConfigMultiLang",
+    "Version": "1.0.3",
+    "Author": "肝帝熙恩，羽学",
+    "Description": {
+      "en-US": "Create a localized language config",
+      "de-DE": "创建一个本地化语言的config",
+      "it-IT": "创建一个本地化语言的config",
+      "fr-FR": "创建一个本地化语言的config",
+      "es-ES": "创建一个本地化语言的config",
+      "ru-RU": "创建一个本地化语言的config",
+      "zh-CN": "创建一个本地化语言的config",
+      "pt-BR": "创建一个本地化语言的config",
+      "pl-PL": "创建一个本地化语言的config"
+    },
+    "AssemblyName": "TShockConfigMultiLang",
+    "Path": "TShockConfigMultiLang.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {

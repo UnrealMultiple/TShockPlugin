@@ -83,6 +83,7 @@
 | [BridgeBuilder](./src/BridgeBuilder/README.md) | 0.0% | Construcción rápida de puentes | [LazyAPI](./src/LazyAPI/README.md) |
 | [BuildMaster](./src/BuildMaster/README.md) | 0.0% | Modo Maestro Constructor para el Mini Juego Red Bean | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
 | [CaiBot](./src/CaiBot/README.md) | 0.0% | Plugin adaptador CaiBot (Only support QQ) |  |
+| [CaiBotLite](./src/CaiBotLite/README.md) | 0.0% | Plugin adaptador CaiBot (Only support QQ) |  |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.md) | 0.0% | Comando de emoji personalizado | [LazyAPI](./src/LazyAPI/README.md) |
 | [CaiLib](./src/CaiLib/README.md) | 0.0% | Biblioteca de precarga de Cai | [SixLabors.ImageSharp]() |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.md) | 0.0% | Herramienta de depuración de paquetes Cai | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
@@ -193,7 +194,7 @@
 | [TimeRate](./src/TimeRate/README.md) | 0.0% | Modifica la aceleración del tiempo usando comandos, y soporta el sueño de los jugadores para activar eventos |  |
 | [TimerKeeper](./src/TimerKeeper/README.md) | 0.0% | Guarda el estado del temporizador |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | 0.0% | Casa rápida de NPC |  |
-| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | 0.0% | Localización del idioma de configuración de TShock |  |
+| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | 0.0% | Localización del idioma de configuración de TShock | [LazyAPI](./src/LazyAPI/README.md) |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 0.0% | Permite que el servidor genere ítems "inobtenibles" |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Biblioteca base para plugins VBY |  |
 | [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Modificaciones personalizables para cierto contenido del juego (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
