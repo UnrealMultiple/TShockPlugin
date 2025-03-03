@@ -1,0 +1,12 @@
+{
+  "Dependencies": [],
+  "README.en-US": {
+    "Description": "CaiBot adapter plugin (Only support QQ)"
+  },
+  "README.es-ES": {
+    "Description": "Plugin adaptador CaiBot (Only support QQ)"
+  },
+  "README": {
+    "Description": "CaiBot 官方机器人适配插件"
+  }
+}

@@ -16,7 +16,7 @@ public class CaiBotPlayer : TSPlayer
     {
         this.Group = new SuperAdminGroup();
         this.AwaitingResponse = new Dictionary<string, Action<object>>();
-        this.Account = new UserAccount { Name = "CaiBot" };
+        this.Account = new UserAccount { Name = "CaiBot",ID = -1 };
     }
 
     public override void SendMessage(string msg, Color color)

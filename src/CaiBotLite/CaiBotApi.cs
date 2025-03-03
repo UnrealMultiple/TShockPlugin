@@ -7,8 +7,10 @@ using System.Text;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using CaiBot;
+using Utils = CaiBot.Utils;
 
-namespace CaiBot;
+namespace CaiBotLite;
 
 internal static class CaiBotApi
 {
@@ -16,7 +18,6 @@ internal static class CaiBotApi
         Plugin.WebSocket.State == WebSocketState.Open;
     
     internal static readonly Dictionary<string,(DateTime,int)> WhiteListCaches = new();
-    
 
     internal static async Task HandleMessageAsync(string receivedData)
     {
@@ -25,30 +26,30 @@ internal static class CaiBotApi
             var jsonObject = JObject.Parse(receivedData);
             var type = (string) jsonObject["type"]!;
             
-            var group = 0L;
-            var at = 0L;
+            var group = "";
+            var msgId = "";
             if (jsonObject.ContainsKey("group"))
             {
-                group = jsonObject["group"]!.ToObject<long>();
+                group = jsonObject["group"]!.ToObject<string>()!;
             }
             
-            if (jsonObject.ContainsKey("at"))
+            if (jsonObject.ContainsKey("msg_id"))
             {
-                at = jsonObject["at"]!.ToObject<long>();
+                msgId = jsonObject["msg_id"]!.ToObject<string>()!;
             }
             
-            var packetWriter = new PacketWriter(group, at);
+            var packetWriter = new PacketWriter(group, msgId);
             switch (type)
             {
                 case "delserver":
-                    TShock.Log.ConsoleInfo("[CaiBot]BOT发送解绑命令...");
+                    TShock.Log.ConsoleInfo("[CaiBotLite]BOT发送解绑命令...");
                     Config.Settings.Token = string.Empty;
                     Config.Settings.Write();
                     Plugin.GenBindCode(EventArgs.Empty);
                     Plugin.WebSocket.Dispose();
                     break;
                 case "hello":
-                    TShock.Log.ConsoleInfo("[CaiBot]CaiBOT连接成功...");
+                    TShock.Log.ConsoleInfo("[CaiBotLite]CaiBOT连接成功...");
                     //发送服务器信息
                     packetWriter.SetType("hello")
                         .Write("tshock_version", TShock.VersionNum.ToString())
@@ -57,28 +58,13 @@ internal static class CaiBotApi
                         .Write("cai_whitelist", Config.Settings.WhiteList)
                         .Write("os", RuntimeInformation.RuntimeIdentifier)
                         .Write("world", TShock.Config.Settings.UseServerName ? TShock.Config.Settings.ServerName : Main.worldName)
-                        .Write("sync_group_chat", Config.Settings.SyncChatFromGroup)
-                        .Write("sync_server_chat", Config.Settings.SyncChatFromServer)
-                        .Send();    
-                    break;
-                case "groupid":
-                    var groupId = (long) jsonObject["groupid"]!;
-                    TShock.Log.ConsoleInfo($"[CaiBot]群号获取成功: {groupId}");
-                    if (Config.Settings.GroupNumber != 0L)
-                    {
-                        TShock.Log.ConsoleWarn($"[CaiBot]检测到你在配置文件中已设置群号[{Config.Settings.GroupNumber}],BOT自动获取的群号将被忽略！");
-                    }
-                    else
-                    {
-                        Config.Settings.GroupNumber = groupId;
-                    }
-
+                        .Send(); 
                     break;
                 case "cmd":
                     var cmd = (string) jsonObject["cmd"]!;
                     CaiBotPlayer tr = new ();
                     Commands.HandleCommand(tr, cmd);
-                    TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(long) jsonObject["group"]!}`执行了: {(string) jsonObject["cmd"]!}", Color.PaleVioletRed);
+                    TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(string) jsonObject["group"]!}`执行了: {(string) jsonObject["cmd"]!}", Color.PaleVioletRed);
 
                     packetWriter.SetType("cmd")
                         .Write("result", string.Join('\n', tr.GetCommandOutput()))
@@ -118,9 +104,9 @@ internal static class CaiBotApi
                 case "whitelist":
                     var name = (string) jsonObject["name"]!;
                     var code = (int) jsonObject["code"]!;
-                
+
                     WhiteListCaches[name] = (DateTime.Now, code);
-                
+
                     if (Login.CheckWhite(name, code))
                     {
                         var plr = TShock.Players.FirstOrDefault(x => x.Name == name);
@@ -129,6 +115,7 @@ internal static class CaiBotApi
                             Login.HandleLogin(plr);
                         }
                     }
+
                     break;
                 case "selfkick":
                     name = (string) jsonObject["name"]!;
@@ -137,6 +124,7 @@ internal static class CaiBotApi
                     {
                         return;
                     }
+
                     playerList2[0].Kick("在群中使用自踢命令.", true, saveSSI: true);
                     break;
                 case "lookbag":
@@ -157,7 +145,6 @@ internal static class CaiBotApi
                             .Write("enhances", lookOnlineResult.Enhances)
                             .Write("economic", EconomicData.GetEconomicData(lookOnlineResult.Name))
                             .Send();
-                        return;
                     }
                     else
                     {
@@ -226,33 +213,13 @@ internal static class CaiBotApi
                         .Write("plugins", pluginList)
                         .Send();
                     break;
-                case "chat": //"[群名{0}]玩家昵称{1}:内容{2}" 额外 {3}:群QQ号 {4}:发送者QQ
-                    var groupName = (string) jsonObject["group_name"]!;
-                    var nickname = (string) jsonObject["nickname"]!;
-                    var chatText = (string) jsonObject["chat_text"]!;
-                    var groupNumber = (long) jsonObject["group_id"]!;
-                    var senderId = (long) jsonObject["sender_id"]!;
-                
-                    if (Config.Settings.GroupChatIgnoreUsers.Contains(senderId))
-                    {
-                        break;
-                    }
-                
-                    if (Config.Settings.CustomGroupName.TryGetValue(groupNumber, out var value))
-                    {
-                        groupName = value;
-                    }
-
-                    TShock.Utils.Broadcast(string.Format(Config.Settings.GroupChatFormat, groupName, nickname, chatText, groupNumber, senderId), Color.White);
-                    break;
             }
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError($"[CaiBot] 处理BOT数据包时出错:\n" +
-                                    $"{ex}\n" +
-                                    $"源数据包: {receivedData}");
+            TShock.Log.ConsoleError("[CaiBotLite] 处理BOT数据包时出错:\n"+ex+$"\n源数据包: {receivedData}");
         }
     }
+    
         
 }

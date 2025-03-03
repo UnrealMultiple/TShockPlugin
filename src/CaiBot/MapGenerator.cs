@@ -36,6 +36,7 @@ internal static class MapGenerator
 
     private static void LightWholeMap()
     {
+        Main.Map = new WorldMap(Main.maxTilesX, Main.maxTilesY) { _tiles = new MapTile[Main.maxTilesX, Main.maxTilesY] };
         for (var x = 0; x < Main.maxTilesX; x++)
         {
             for (var y = 0; y < Main.maxTilesY; y++)
