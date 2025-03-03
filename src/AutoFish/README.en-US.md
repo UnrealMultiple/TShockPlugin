@@ -58,20 +58,6 @@
     2676,
     3191,
     3194
-  ],
-  "ForbidProjectiles": [
-    623, // To solve the BUG where single summon creatures spawn more numbers under multi-hook mode
-    625,
-    626,
-    627,
-    628,
-    831,
-    832,
-    833,
-    834,
-    835,
-    963,
-    970
   ]
 }
 ```

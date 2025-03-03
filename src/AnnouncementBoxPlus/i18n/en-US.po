@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:17+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-02-24 01:11\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -20,16 +20,16 @@ msgstr ""
 #: ../../Plugin.cs:63
 #: ../../Plugin.cs:76
 msgid "[i:3617]你没有权限修改广播盒(AnnouncementBoxPlus.Edit)"
-msgstr ""
+msgstr "[i:3617] You do not have permission to modify the broadcast box (AnnouncementBoxPlus.Edit)"
 
 #: ../../Plugin.cs:171
 #: ../../Plugin.cs:179
 msgid "[服务器]"
-msgstr ""
+msgstr "[SERVER]"
 
 #: ../../Plugin.cs:337
 msgid "丛林"
-msgstr ""
+msgstr "Jungle"
 
 #: ../../Plugin.cs:23
 msgid "优化广播盒"
@@ -37,57 +37,57 @@ msgstr "Optimize announcement box"
 
 #: ../../Plugin.cs:367
 msgid "发光蘑菇"
-msgstr ""
+msgstr "Glowing Mushroom"
 
 #: ../../Plugin.cs:357
 msgid "和平蜡烛"
-msgstr ""
+msgstr "Peace Candle"
 
 #: ../../Plugin.cs:303
 #: ../../Plugin.cs:382
 msgid "地下"
-msgstr ""
+msgstr "Underground"
 
 #: ../../Plugin.cs:372
 msgid "地下沙漠"
-msgstr ""
+msgstr "Underground Desert"
 
 #: ../../Plugin.cs:317
 msgid "地牢"
-msgstr ""
+msgstr "Dungeon"
 
 #: ../../Plugin.cs:305
 #: ../../Plugin.cs:392
 msgid "地狱"
-msgstr ""
+msgstr "Underworld"
 
 #: ../../Plugin.cs:437
 msgid "墓地"
-msgstr ""
+msgstr "Graveyard"
 
 #: ../../Plugin.cs:417
 msgid "大理石"
-msgstr ""
+msgstr "Marble"
 
 #: ../../Plugin.cs:236
 msgid "存活"
-msgstr ""
+msgstr "Survive"
 
 #: ../../Plugin.cs:427
 msgid "宝石洞窟"
-msgstr ""
+msgstr "Gemstone Cave"
 
 #: ../../Plugin.cs:243
 msgid "已完成"
-msgstr ""
+msgstr "Completed"
 
 #: ../../Plugin.cs:235
 msgid "已死亡"
-msgstr ""
+msgstr "Died"
 
 #: ../../Plugin.cs:447
 msgid "微光"
-msgstr ""
+msgstr "Shimmer"
 
 #: ../../Plugin.cs:186
 #: ../../Plugin.cs:187
@@ -101,92 +101,92 @@ msgstr ""
 #: ../../Plugin.cs:195
 #: ../../Plugin.cs:196
 msgid "无法获取"
-msgstr ""
+msgstr "Not available"
 
 #: ../../Plugin.cs:151
 msgid "服务器中没有玩家在线"
-msgstr ""
+msgstr "There are no players online"
 
 #: ../../Plugin.cs:198
 #: ../../Plugin.cs:244
 msgid "未完成"
-msgstr ""
+msgstr "Not completed"
 
 #: ../../Plugin.cs:238
 msgid "未死亡"
-msgstr ""
+msgstr "Not dead"
 
 #: ../../Plugin.cs:452
 msgid "森林"
-msgstr ""
+msgstr "Forest"
 
 #: ../../Plugin.cs:352
 msgid "水蜡烛"
-msgstr ""
+msgstr "Water Candle"
 
 #: ../../Plugin.cs:407
 msgid "沙尘暴"
-msgstr ""
+msgstr "Sandstorm"
 
 #: ../../Plugin.cs:362
 msgid "沙漠"
-msgstr ""
+msgstr "Desert"
 
 #: ../../Plugin.cs:304
 #: ../../Plugin.cs:387
 msgid "洞穴"
-msgstr ""
+msgstr "Cave"
 
 #: ../../Plugin.cs:397
 msgid "海滩"
-msgstr ""
+msgstr "Ocean"
 
 #: ../../Plugin.cs:347
 msgid "猩红"
-msgstr ""
+msgstr "Crimson"
 
 #: ../../Plugin.cs:327
 msgid "神圣"
-msgstr ""
+msgstr "Hallow"
 
 #: ../../Plugin.cs:432
 msgid "神庙"
-msgstr ""
+msgstr "Temple"
 
 #: ../../Plugin.cs:232
 msgid "空区域"
-msgstr ""
+msgstr "Empty Area"
 
 #: ../../Plugin.cs:302
 #: ../../Plugin.cs:377
 msgid "空岛"
-msgstr ""
+msgstr "Floating Island"
 
 #: ../../Plugin.cs:322
 msgid "腐化"
-msgstr ""
+msgstr "Corruption"
 
 #: ../../Plugin.cs:412
 msgid "花岗岩"
-msgstr ""
+msgstr "Granite"
 
 #: ../../Plugin.cs:422
 msgid "蜂巢"
-msgstr ""
+msgstr "Bee Hive"
 
 #: ../../Plugin.cs:442
 msgid "阴影蜡烛"
-msgstr ""
+msgstr "Shadow Candle"
 
 #: ../../Plugin.cs:332
 msgid "陨石"
-msgstr ""
+msgstr "Meteorite"
 
 #: ../../Plugin.cs:402
 msgid "雨天"
-msgstr ""
+msgstr "Rain"
 
 #: ../../Plugin.cs:342
 msgid "雪原"
-msgstr ""
+msgstr "Snow"
 
