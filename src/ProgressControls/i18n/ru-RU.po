@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-02-02 04:39:07+0000\n"
-"PO-Revision-Date: 2025-02-03 01:08\n"
+"POT-Creation-Date: 2025-02-27 12:33:09+0000\n"
+"PO-Revision-Date: 2025-02-28 01:11\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -91,10 +91,10 @@ msgstr ""
 msgid "[计划书]重新加载配置完毕。"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:278
-#: ../../PControl.Initialize.cs:279
 #: ../../PControl.Utils.cs:121
 #: ../../PControl.Utils.cs:122
+#: ../../PControl.Initialize.cs:278
+#: ../../PControl.Initialize.cs:279
 #, csharp-format
 msgid "{0} 删除成功"
 msgstr ""
@@ -421,10 +421,10 @@ msgstr ""
 msgid "你输入的地图名称带有非法字符或不必要的后缀，已过滤为：{0}"
 msgstr ""
 
+#: ../../PControl.Utils.cs:133
 #: ../../PControl.Initialize.cs:292
 #: ../../PControl.Initialize.cs:293
 #: ../../PControl.Initialize.cs:294
-#: ../../PControl.Utils.cs:133
 #, csharp-format
 msgid "使用指令删除哪些文件发生错误：{0}"
 msgstr ""
@@ -483,10 +483,10 @@ msgstr ""
 msgid "大师"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:778
-#: ../../PControl.Initialize.cs:782
 #: ../../PControl.Utils.cs:364
 #: ../../PControl.Utils.cs:368
+#: ../../PControl.Initialize.cs:778
+#: ../../PControl.Initialize.cs:782
 #, csharp-format
 msgid "定位成功，{0}将{1}解锁"
 msgstr ""
@@ -628,17 +628,17 @@ msgstr ""
 msgid "指令计划："
 msgstr ""
 
+#: ../../PControl.Utils.cs:359
 #: ../../PControl.Initialize.cs:739
 #: ../../PControl.Initialize.cs:773
 #: ../../PControl.Initialize.cs:1256
-#: ../../PControl.Utils.cs:359
 msgid "推迟"
 msgstr ""
 
+#: ../../PControl.Utils.cs:360
 #: ../../PControl.Initialize.cs:740
 #: ../../PControl.Initialize.cs:774
 #: ../../PControl.Initialize.cs:1257
-#: ../../PControl.Utils.cs:360
 msgid "提前"
 msgstr ""
 
@@ -782,9 +782,9 @@ msgstr ""
 msgid "服务器正在重置——来自插件：计划书ProgressControl"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1162
 #: ../../PControl.Utils.cs:321
 #: ../../PControl.Utils.cs:322
+#: ../../PControl.Initialize.cs:1162
 msgid "服务器自动执行指令成功"
 msgstr ""
 
@@ -939,9 +939,9 @@ msgstr ""
 msgid "格式错误。应为[±num]或[±H:M:S]，num必须为整数或小数，H M S必须为整数或不填(不能为空格)，正号可以不加，冒号可用小数点代替但必须都要填"
 msgstr ""
 
+#: ../../PControl.Utils.cs:360
 #: ../../PControl.Initialize.cs:740
 #: ../../PControl.Initialize.cs:774
-#: ../../PControl.Utils.cs:360
 msgid "正常"
 msgstr ""
 
@@ -994,8 +994,8 @@ msgstr ""
 msgid "自动执行指令倒计时必须大于等于0，请使用指令 /pco com os 调整"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1104
 #: ../../PControl.cs:423
+#: ../../PControl.Initialize.cs:1104
 msgid "自动执行指令倒计时过短，可能即将开始自动执行指令"
 msgstr ""
 
@@ -1071,9 +1071,9 @@ msgstr ""
 msgid "警告，未开启自动执行指令的计划，你的修改不会有任何效果"
 msgstr ""
 
+#: ../../PControl.Utils.cs:363
 #: ../../PControl.Initialize.cs:743
 #: ../../PControl.Initialize.cs:777
-#: ../../PControl.Utils.cs:363
 msgid "警告，未开启自动控制NPC进度计划，你的修改不会有任何效果"
 msgstr ""
 
@@ -1213,9 +1213,9 @@ msgstr ""
 msgid "输入 /pco help   来获取该插件的帮助\n"
 msgstr ""
 
+#: ../../PControl.cs:348
 #: ../../PControl.Initialize.cs:670
 #: ../../PControl.Initialize.cs:2169
-#: ../../PControl.cs:348
 msgid "输入 /pco help 来获取该插件的帮助"
 msgstr ""
 
@@ -1376,8 +1376,8 @@ msgstr ""
 msgid "输入 /pco reset stop    关闭手动重置世界计划"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1641
 #: ../../PControl.cs:416
+#: ../../PControl.Initialize.cs:1641
 #, csharp-format
 msgid "重启服务器倒计时过短，需Time大于 {0:0.00} 来避免立刻重启(最短重启时间{1}分钟)，修改失败。若要立刻重启，请使用 /pco reload hand 指令"
 msgstr ""
@@ -1386,8 +1386,8 @@ msgstr ""
 msgid "重启计划："
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1931
 #: ../../PControl.cs:408
+#: ../../PControl.Initialize.cs:1931
 #, csharp-format
 msgid "重置世界倒计时过短，需Time大于 {0:0.00} 来避免立刻重置(最短重置时间5分钟)，修改失败。若要立刻重置，请使用 /pco reset hand 指令"
 msgstr ""
