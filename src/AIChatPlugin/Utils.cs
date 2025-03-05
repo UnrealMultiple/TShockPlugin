@@ -81,7 +81,6 @@ internal class Utils
                 {
                     role = "user",
                     content =
-                    $"Name: \"{Config.AIName}\"\n" +
                     $"Response Requirements: \"{Config.AISettings}\"\n" +
                     $"Conversation History: \"{formattedContext}\"\n" +
                     $"Answer the current question based on the conversation history: \"{question}\"\n" +
