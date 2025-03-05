@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 using TShockAPI;
 using static AIChatPlugin.Configuration;
 
@@ -55,7 +54,6 @@ internal class Utils
     {
         try
         {
-            var cleanedQuestion = CleanMessage(question);
             var context = GetContext(player.Index);
             var formattedContext = context.Count > 0 ? string.Join("\n", context) + "\n" : "";
             using HttpClient client = new() { Timeout = TimeSpan.FromSeconds(Config.AITimeoutPeriod) };
@@ -107,7 +105,6 @@ internal class Utils
                 {
                     var firstChoice = result.Choices[0];
                     var responseMessage = firstChoice.Message.Content;
-                    responseMessage = CleanMessage(responseMessage);
                     if (responseMessage.Length > Config.AIAnswerWordsLimit)
                     {
                         responseMessage = TruncateMessage(responseMessage);
@@ -243,10 +240,6 @@ internal class Utils
             currentLength += textElement.Length;
         }
         return formattedMessage.ToString();
-    }
-    public static string CleanMessage(string message)
-    {
-        return Regex.IsMatch(message, GetString(@"[\uD800-\uDBFF][\uDC00-\uDFFF]")) ? string.Empty : message;
     }
     #endregion
 }
