@@ -81,6 +81,7 @@ internal class Utils
                     content =
                     $"Response Requirements: \"{Config.AISettings}\"\n" +
                     $"Conversation History: \"{formattedContext}\"\n" +
+                    "Note that this conversation history starts at the very bottom. The most recent message or reply is at the very bottom, please start reading from there to understand the complete communication process.\n" +
                     $"Answer the current question based on the conversation history: \"{question}\"\n" +
                     "====================Divider====================\n" +
                     "Conversation Rules:\n" +
