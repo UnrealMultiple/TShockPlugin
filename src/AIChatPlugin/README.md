@@ -23,7 +23,7 @@
   "回答自动换行字数": 50,
   "上下文限制": 10,
   "超时时间": 100,
-  "对话显示的名字": "AI",
+  "对话显示名字": "AI",
   "AI设定": "You're a concise and effective multilingual AI that is adept at summarizing complex questions in one sentence in the language of the questioner"
 }
 ```
