@@ -54,38 +54,49 @@ internal class Utils
     {
         try
         {
-            var cleanedQuestion = CleanMessage(question);
             var context = GetContext(player.Index);
-            var formattedContext = context.Count > 0 ? "上下文信息:\n" + string.Join("\n", context) + "\n\n" : "";
+            var formattedContext = context.Count > 0 ? string.Join("\n", context) + "\n" : "";
             using HttpClient client = new() { Timeout = TimeSpan.FromSeconds(Config.AITimeoutPeriod) };
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer 742701d3fea4bed898578856989cb03c.5mKVzv5shSIqkkS7");
             var tools = new List<object>()
+        {
+            new
             {
-                new
+                type = "web_search",
+                web_search = new
                 {
-                    type = "web_search",
-                    web_search = new
-                    {
-                        enable = true,
-                        search_query = question
-                    }
+                    enable = true,
+                    search_query = question
                 }
-            };
+            }
+        };
             var requestBody = new
             {
                 model = "glm-4-flash",
                 messages = new[]
                 {
-                    new
-                    {
-                        role = "user",
-                        content = formattedContext + $"（设定：{Config.AISettings}）请您引用以上的上下文信息回答现在的问题（必须不允许复读,如复读请岔开话题,不允许继续下去）：\n那，" + question
-                    }
-                },
+                new
+                {
+                    role = "user",
+                    content = GetString(
+                    $"响应要求: \"{Config.AISettings}\"\n" +
+                    $"对话历史: \"{formattedContext}\"\n" +
+                    "请注意，对话历史从底部开始。最新的消息或回复在底部，请从那里开始阅读以了解完整的沟通过程。\n" +
+                    $"根据对话历史回答当前问题: \"{question}\"\n" +
+                    "====================分隔线====================\n" +
+                    "对话规则:\n" +
+                    "1. 不要重复回答，根据对话内容灵活回答，并尝试改变话题。\n" +
+                    "2. 不要涉及明确内容、道德评价或其他敏感话题。\n" +
+                    "3. 回应应该保持礼貌和积极，避免使用攻击性或负面语言。\n" +
+                    "4. 根据对话历史提供连贯和相关的信息，但避免过度依赖过去的细节。\n" +
+                    "5. 如果问题涉及不清楚或不适当的请求，请适当回应并尝试将对话引导到更合适的方向。\n" +
+                    "6. 积极整合对话中的关键上下文以提供相关的回答。如果上下文不清楚，请请求更多细节并总结关键点以澄清讨论。")
+                }
+            },
                 tools
             };
             var response = await client.PostAsync("https://open.bigmodel.cn/api/paas/v4/chat/completions",
-            new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json"));
+                new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json"));
             if (response.IsSuccessStatusCode)
             {
                 var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -96,7 +107,6 @@ internal class Utils
                 {
                     var firstChoice = result.Choices[0];
                     var responseMessage = firstChoice.Message.Content;
-                    responseMessage = CleanMessage(responseMessage);
                     if (responseMessage.Length > Config.AIAnswerWordsLimit)
                     {
                         responseMessage = TruncateMessage(responseMessage);
@@ -111,10 +121,8 @@ internal class Utils
                     broadcastMessageBuilder.AppendFormat(GetString("[i:149][c/FF4500:回答:] {0}\n", formattedResponse));
                     broadcastMessageBuilder.AppendLine(GetString("[c/A9A9A9:============================]"));
                     var broadcastMessage = broadcastMessageBuilder.ToString();
-                    TSPlayer.All.SendInfoMessage(broadcastMessage);
-                    TShock.Log.ConsoleInfo(broadcastMessage);
-                    AddToContext(player.Index, question, true);
-                    AddToContext(player.Index, responseMessage, false);
+                    TSPlayer.All.SendInfoMessage(broadcastMessage); TShock.Log.ConsoleInfo(broadcastMessage);
+                    AddToContext(player.Index, question, true); AddToContext(player.Index, responseMessage, false);
                 }
                 else
                 {
@@ -164,7 +172,7 @@ internal class Utils
         {
             playerContexts[playerId] = new List<string>();
         }
-        var taggedMessage = isUserMessage ? $"问题：{message}" : $"回答：{message}";
+        var taggedMessage = isUserMessage ? GetString($"问题: {message}") : GetString($"回答: {message}");
         if (playerContexts[playerId].Count >= Config.AIContextuallimitations)
         {
             playerContexts[playerId].RemoveAt(0);
@@ -210,7 +218,7 @@ internal class Utils
         }
         if (count == 0 || truncated.Length >= Config.AIAnswerWordsLimit)
         {
-            truncated.Append(GetString($"\n\n[i:1344]超出字数限制{Config.AIAnswerWordsLimit}已截断！[i:1344]"));
+            truncated.Append(GetString($"\n\n[i:1344]超出字数限制 {Config.AIAnswerWordsLimit} 已截断！[i:1344]"));
         }
         return truncated.ToString();
     }
@@ -234,10 +242,6 @@ internal class Utils
             currentLength += textElement.Length;
         }
         return formattedMessage.ToString();
-    }
-    public static string CleanMessage(string message)
-    {
-        return Regex.IsMatch(message, GetString(@"[\uD800-\uDBFF][\uDC00-\uDFFF]")) ? string.Empty : message;
     }
     #endregion
 }
