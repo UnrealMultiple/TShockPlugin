@@ -78,19 +78,19 @@ internal class Utils
                 new
                 {
                     role = "user",
-                    content =
-                    $"Response Requirements: \"{Config.AISettings}\"\n" +
-                    $"Conversation History: \"{formattedContext}\"\n" +
-                    "Note that this conversation history starts at the very bottom. The most recent message or reply is at the very bottom, please start reading from there to understand the complete communication process.\n" +
-                    $"Answer the current question based on the conversation history: \"{question}\"\n" +
-                    "====================Divider====================\n" +
-                    "Conversation Rules:\n" +
-                    "1. Do not repeat, answer flexibly according to the conversation content and try to change the topic.\n" +
-                    "2. Do not involve explicit content, moral evaluations, or other sensitive topics.\n" +
-                    "3. Responses should maintain politeness and positivity, avoiding aggressive or negative language.\n" +
-                    "4. Provide coherent and relevant information based on the conversation history, but avoid relying excessively on past details.\n" +
-                    "5. If the question involves unclear or inappropriate requests, respond appropriately and try to guide the conversation towards a more suitable direction.\n" +
-                    "6. Actively integrate key context from the conversation to provide relevant responses. If the context is unclear, ask for more details and summarize key points to clarify the discussion."
+                    content = GetString(
+                    $"响应要求: \"{Config.AISettings}\"\n" +
+                    $"对话历史: \"{formattedContext}\"\n" +
+                    "请注意，对话历史从底部开始。最新的消息或回复在底部，请从那里开始阅读以了解完整的沟通过程。\n" +
+                    $"根据对话历史回答当前问题: \"{question}\"\n" +
+                    "====================分隔线====================\n" +
+                    "对话规则:\n" +
+                    "1. 不要重复回答，根据对话内容灵活回答，并尝试改变话题。\n" +
+                    "2. 不要涉及明确内容、道德评价或其他敏感话题。\n" +
+                    "3. 回应应该保持礼貌和积极，避免使用攻击性或负面语言。\n" +
+                    "4. 根据对话历史提供连贯和相关的信息，但避免过度依赖过去的细节。\n" +
+                    "5. 如果问题涉及不清楚或不适当的请求，请适当回应并尝试将对话引导到更合适的方向。\n" +
+                    "6. 积极整合对话中的关键上下文以提供相关的回答。如果上下文不清楚，请请求更多细节并总结关键点以澄清讨论。")
                 }
             },
                 tools
@@ -172,7 +172,7 @@ internal class Utils
         {
             playerContexts[playerId] = new List<string>();
         }
-        var taggedMessage = isUserMessage ? $"Question: {message}" : $"Answer: {message}";
+        var taggedMessage = isUserMessage ? GetString($"问题: {message}") : GetString($"回答: {message}");
         if (playerContexts[playerId].Count >= Config.AIContextuallimitations)
         {
             playerContexts[playerId].RemoveAt(0);
