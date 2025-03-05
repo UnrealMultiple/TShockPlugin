@@ -24,7 +24,7 @@
   "上下文限制": 10,
   "超时时间": 100,
   "对话显示名字": "AI",
-  "AI设定": "You're a concise and effective multilingual AI that is adept at summarizing complex questions in one sentence in the language of the questioner"
+  "AI设定": "你是一个简洁高效的多语言AI，擅长用提问者所使用的语言，一句话精准概括复杂问题"
 }
 ```
 
