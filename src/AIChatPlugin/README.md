@@ -19,12 +19,12 @@
 
 ```
 {
-  "Answer the word limit": 666,
-  "Answer the word count of word wraps": 50,
-  "Contextual limitations": 10,
-  "The AI answers the timeout": 100,
-  "The name displayed when the AI answers": "AI",
-  "Set up answer requirements": "You're a concise and effective multilingual AI that is adept at summarizing complex questions in one sentence in the language of the questioner"
+  "回答字数限制": 666,
+  "回答自动换行字数": 50,
+  "上下文限制": 10,
+  "超时时间": 100,
+  "对话显示的名字": "AI",
+  "AI设定": "You're a concise and effective multilingual AI that is adept at summarizing complex questions in one sentence in the language of the questioner"
 }
 ```
 
