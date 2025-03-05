@@ -88,7 +88,8 @@ internal class Utils
                     "2. Do not involve explicit content, moral evaluations, or other sensitive topics.\n" +
                     "3. Responses should maintain politeness and positivity, avoiding aggressive or negative language.\n" +
                     "4. Provide coherent and relevant information based on the conversation history, but avoid relying excessively on past details.\n" +
-                    "5. If the question involves unclear or inappropriate requests, respond appropriately and try to guide the conversation towards a more suitable direction."
+                    "5. If the question involves unclear or inappropriate requests, respond appropriately and try to guide the conversation towards a more suitable direction.\n" +
+                    "6. Actively integrate key context from the conversation to provide relevant responses. If the context is unclear, ask for more details and summarize key points to clarify the discussion."
                 }
             },
                 tools
