@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using TShockAPI;
 using static AIChatPlugin.Configuration;
 
@@ -56,36 +57,47 @@ internal class Utils
         {
             var cleanedQuestion = CleanMessage(question);
             var context = GetContext(player.Index);
-            var formattedContext = context.Count > 0 ? "上下文信息:\n" + string.Join("\n", context) + "\n\n" : "";
+            var formattedContext = context.Count > 0 ? string.Join("\n", context) + "\n" : "";
             using HttpClient client = new() { Timeout = TimeSpan.FromSeconds(Config.AITimeoutPeriod) };
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer 742701d3fea4bed898578856989cb03c.5mKVzv5shSIqkkS7");
             var tools = new List<object>()
+        {
+            new
             {
-                new
+                type = "web_search",
+                web_search = new
                 {
-                    type = "web_search",
-                    web_search = new
-                    {
-                        enable = true,
-                        search_query = question
-                    }
+                    enable = true,
+                    search_query = question
                 }
-            };
+            }
+        };
             var requestBody = new
             {
                 model = "glm-4-flash",
                 messages = new[]
                 {
-                    new
-                    {
-                        role = "user",
-                        content = formattedContext + $"（设定：{Config.AISettings}）请您引用以上的上下文信息回答现在的问题（必须不允许复读,如复读请岔开话题,不允许继续下去）：\n那，" + question
-                    }
-                },
+                new
+                {
+                    role = "user",
+                    content =
+                    $"Name: \"{Config.AIName}\"\n" +
+                    $"Response Requirements: \"{Config.AISettings}\"\n" +
+                    $"Conversation History: \"{formattedContext}\"\n" +
+                    $"Answer the current question based on the conversation history: \"{question}\"\n" +
+                    "====================Divider====================\n" +
+                    "Conversation Rules:\n" +
+                    "1. Do not repeat, answer flexibly according to the conversation content and try to change the topic.\n" +
+                    "2. Do not involve explicit content, moral evaluations, or other sensitive topics.\n" +
+                    "3. Responses should maintain politeness and positivity, avoiding aggressive or negative language.\n" +
+                    "4. Provide coherent and relevant information based on the conversation history, but avoid relying excessively on past details.\n" +
+                    "5. If the question involves unclear or inappropriate requests, respond appropriately and try to guide the conversation towards a more suitable direction."
+                }
+            },
                 tools
             };
             var response = await client.PostAsync("https://open.bigmodel.cn/api/paas/v4/chat/completions",
-            new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json"));
+                new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json"));
             if (response.IsSuccessStatusCode)
             {
                 var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -111,10 +123,8 @@ internal class Utils
                     broadcastMessageBuilder.AppendFormat(GetString("[i:149][c/FF4500:回答:] {0}\n", formattedResponse));
                     broadcastMessageBuilder.AppendLine(GetString("[c/A9A9A9:============================]"));
                     var broadcastMessage = broadcastMessageBuilder.ToString();
-                    TSPlayer.All.SendInfoMessage(broadcastMessage);
-                    TShock.Log.ConsoleInfo(broadcastMessage);
-                    AddToContext(player.Index, question, true);
-                    AddToContext(player.Index, responseMessage, false);
+                    TSPlayer.All.SendInfoMessage(broadcastMessage); TShock.Log.ConsoleInfo(broadcastMessage);
+                    AddToContext(player.Index, question, true); AddToContext(player.Index, responseMessage, false);
                 }
                 else
                 {
@@ -164,7 +174,7 @@ internal class Utils
         {
             playerContexts[playerId] = new List<string>();
         }
-        var taggedMessage = isUserMessage ? $"问题：{message}" : $"回答：{message}";
+        var taggedMessage = isUserMessage ? $"Question: {message}" : $"Answer: {message}";
         if (playerContexts[playerId].Count >= Config.AIContextuallimitations)
         {
             playerContexts[playerId].RemoveAt(0);
@@ -210,7 +220,7 @@ internal class Utils
         }
         if (count == 0 || truncated.Length >= Config.AIAnswerWordsLimit)
         {
-            truncated.Append(GetString($"\n\n[i:1344]超出字数限制{Config.AIAnswerWordsLimit}已截断！[i:1344]"));
+            truncated.Append(GetString($"\n\n[i:1344]超出字数限制 {Config.AIAnswerWordsLimit} 已截断！[i:1344]"));
         }
         return truncated.ToString();
     }

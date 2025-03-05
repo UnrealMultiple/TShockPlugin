@@ -11,10 +11,10 @@ namespace AIChatPlugin;
 public class AIChatPlugin : TerrariaPlugin
 {
     #region 插件信息
-    public override Version Version => new Version(2025, 1, 13);
+    public override Version Version => new Version(2025, 3, 5);
     public override string Name => "AIChatPlugin";
     public override string Description => GetString("一个提供AI对话的插件");
-    public override string Author => "ZJLLL114514";
+    public override string Author => "JTL";
     #endregion
     #region 插件启动
     public override void Initialize()

@@ -19,12 +19,12 @@
 
 ```
 {
-  "回答字限制": 666,
-  "回答换行字": 50,
-  "上下文限制": 10,
-  "超时时间": 100,
-  "名字": "AI",
-  "设定": "你是一个简洁高效的多语言AI，擅长用提问者所使用的语言，一句话精准概括复杂问题",
+  "Answer the word limit": 666,
+  "Answer the word count of word wraps": 50,
+  "Contextual limitations": 10,
+  "The AI answers the timeout": 100,
+  "The name displayed when the AI answers": "AI",
+  "Set up answer requirements": "You're a concise and effective multilingual AI that is adept at summarizing complex questions in one sentence in the language of the questioner"
 }
 ```
 
@@ -36,6 +36,7 @@
 ## 更新日志
 
 ```
+v2025.3.5 优化api调用
 v2025.1.13 修复执行/ab后玩家移动停顿问题与优化设定支持多语言，优化提问限制
 ```
 
