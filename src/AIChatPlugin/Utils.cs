@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Globalization;
 using System.Text;
-using System.Text.RegularExpressions;
 using TShockAPI;
 using static AIChatPlugin.Configuration;
 
@@ -70,6 +69,7 @@ internal class Utils
                 }
             }
         };
+            var timestamp2 = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             var requestBody = new
             {
                 model = "glm-4-flash",
@@ -79,18 +79,16 @@ internal class Utils
                 {
                     role = "user",
                     content = GetString(
-                    $"响应要求: \"{Config.AISettings}\"\n" +
-                    $"对话历史: \"{formattedContext}\"\n" +
-                    "请注意，对话历史从底部开始。最新的消息或回复在底部，请从那里开始阅读以了解完整的沟通过程。\n" +
-                    $"根据对话历史回答当前问题: \"{question}\"\n" +
+                    $"当前时间:\"{timestamp2}\"\n" +
+                    $"响应要求:\"{Config.AISettings}\"\n" +
+                    $"对话历史:\"{formattedContext}\"\n" +
+                    $"根据对话历史回答当前问题:\"{question}\"\n" +
                     "====================分隔线====================\n" +
                     "对话规则:\n" +
-                    "1. 不要重复回答，根据对话内容灵活回答，并尝试改变话题。\n" +
-                    "2. 不要涉及明确内容、道德评价或其他敏感话题。\n" +
-                    "3. 回应应该保持礼貌和积极，避免使用攻击性或负面语言。\n" +
-                    "4. 根据对话历史提供连贯和相关的信息，但避免过度依赖过去的细节。\n" +
-                    "5. 如果问题涉及不清楚或不适当的请求，请适当回应并尝试将对话引导到更合适的方向。\n" +
-                    "6. 积极整合对话中的关键上下文以提供相关的回答。如果上下文不清楚，请请求更多细节并总结关键点以澄清讨论。")
+                    "1.不要重复回答相同的问题。根据对话内容灵活回答问题，并在适当的时候尝试引入新的相关话题，以保持对话的多样性和兴趣。\n" +
+                    "2.根据对话历史提供连贯和一致的信息，优先考虑前一条信息的内容和主题，确保回答之间的逻辑顺畅，以提升对话的连贯性。\n" +
+                    "3.积极整合对话中的关键上下文以提供相关的回答。如果上下文不清楚，请请求更多细节并总结关键点以澄清讨论。\n" +
+                    "4.响应要求也是对话规则的一部分")
                 }
             },
                 tools
@@ -172,7 +170,10 @@ internal class Utils
         {
             playerContexts[playerId] = new List<string>();
         }
-        var taggedMessage = isUserMessage ? GetString($"问题: {message}") : GetString($"回答: {message}");
+        var timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        var taggedMessage = isUserMessage
+            ? GetString($"时间:\"{timestamp}\" 问题:\"{message}\"")
+            : GetString($"时间:\"{timestamp}\" 回答:\"{message}\"\n");
         if (playerContexts[playerId].Count >= Config.AIContextuallimitations)
         {
             playerContexts[playerId].RemoveAt(0);
