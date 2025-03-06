@@ -78,7 +78,7 @@ internal class Utils
                 new
                 {
                     role = "user",
-                    content = GetString($"时间：{timestamp2}\n要求：{Config.AISettings}\n历史：{formattedContext}\n问题：{question}")
+                    content = GetString($"时间:\n\"{timestamp2}\"\n要求:\n\"{Config.AISettings}\"\n历史:\n\"{formattedContext}\"\n问题:\n\"{question}\"")
                 }
             },
                 tools
