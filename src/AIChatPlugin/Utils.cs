@@ -164,6 +164,7 @@ internal class Utils
     }
     #endregion
     #region 历史限制
+    private static readonly Dictionary<int, string> pendingQuestions = new Dictionary<int, string>();
     public static void AddToContext(int playerId, string message, bool isUserMessage)
     {
         if (!playerContexts.ContainsKey(playerId))
@@ -174,11 +175,23 @@ internal class Utils
         var taggedMessage = isUserMessage
             ? GetString($"时间:\"{timestamp}\" 问题:\"{message}\"")
             : GetString($"时间:\"{timestamp}\" 回答:\"{message}\"\n");
-        if (playerContexts[playerId].Count >= Config.AIContextuallimitations)
+        if (isUserMessage)
         {
-            playerContexts[playerId].RemoveAt(0);
+            pendingQuestions[playerId] = taggedMessage;
         }
-        playerContexts[playerId].Add(taggedMessage);
+        else
+        {
+            if (pendingQuestions.TryGetValue(playerId, out var question))
+            {
+                playerContexts[playerId].Insert(0, taggedMessage);
+                playerContexts[playerId].Insert(0, question);
+                pendingQuestions.Remove(playerId);
+                if (playerContexts[playerId].Count > Config.AIContextuallimitations)
+                {
+                    playerContexts[playerId].RemoveRange(playerContexts[playerId].Count - 2, 2);
+                }
+            }
+        }
     }
     public static List<string> GetContext(int playerId)
     {
