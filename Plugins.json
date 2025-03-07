@@ -106,8 +106,8 @@
   },
   {
     "Name": "AIChatPlugin",
-    "Version": "2025.1.13",
-    "Author": "ZJLLL114514",
+    "Version": "2025.3.5",
+    "Author": "JTL",
     "Description": {
       "en-US": "A plugin provides Ai chat",
       "de-DE": "一个提供AI对话的插件",
