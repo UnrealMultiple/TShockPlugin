@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Globalization;
 using System.Text;
-using System.Text.RegularExpressions;
 using TShockAPI;
 using static AIChatPlugin.Configuration;
 
@@ -54,38 +53,38 @@ internal class Utils
     {
         try
         {
-            var cleanedQuestion = CleanMessage(question);
             var context = GetContext(player.Index);
-            var formattedContext = context.Count > 0 ? "上下文信息:\n" + string.Join("\n", context) + "\n\n" : "";
+            var formattedContext = context.Count > 0 ? string.Join("\n", context) + "\n" : "";
             using HttpClient client = new() { Timeout = TimeSpan.FromSeconds(Config.AITimeoutPeriod) };
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer 742701d3fea4bed898578856989cb03c.5mKVzv5shSIqkkS7");
             var tools = new List<object>()
+        {
+            new
             {
-                new
+                type = "web_search",
+                web_search = new
                 {
-                    type = "web_search",
-                    web_search = new
-                    {
-                        enable = true,
-                        search_query = question
-                    }
+                    enable = true,
+                    search_query = question
                 }
-            };
+            }
+        };
+            var timestamp2 = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             var requestBody = new
             {
                 model = "glm-4-flash",
                 messages = new[]
                 {
-                    new
-                    {
-                        role = "user",
-                        content = formattedContext + $"（设定：{Config.AISettings}）请您引用以上的上下文信息回答现在的问题（必须不允许复读,如复读请岔开话题,不允许继续下去）：\n那，" + question
-                    }
-                },
+                new
+                {
+                    role = "user",
+                    content = GetString($"时间:\n\"{timestamp2}\"\n要求:\n\"{Config.AISettings}\"\n历史:\n\"{formattedContext}\"\n问题:\n\"{question}\"")
+                }
+            },
                 tools
             };
             var response = await client.PostAsync("https://open.bigmodel.cn/api/paas/v4/chat/completions",
-            new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json"));
+                new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json"));
             if (response.IsSuccessStatusCode)
             {
                 var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -96,7 +95,6 @@ internal class Utils
                 {
                     var firstChoice = result.Choices[0];
                     var responseMessage = firstChoice.Message.Content;
-                    responseMessage = CleanMessage(responseMessage);
                     if (responseMessage.Length > Config.AIAnswerWordsLimit)
                     {
                         responseMessage = TruncateMessage(responseMessage);
@@ -111,10 +109,8 @@ internal class Utils
                     broadcastMessageBuilder.AppendFormat(GetString("[i:149][c/FF4500:回答:] {0}\n", formattedResponse));
                     broadcastMessageBuilder.AppendLine(GetString("[c/A9A9A9:============================]"));
                     var broadcastMessage = broadcastMessageBuilder.ToString();
-                    TSPlayer.All.SendInfoMessage(broadcastMessage);
-                    TShock.Log.ConsoleInfo(broadcastMessage);
-                    AddToContext(player.Index, question, true);
-                    AddToContext(player.Index, responseMessage, false);
+                    TSPlayer.All.SendInfoMessage(broadcastMessage); TShock.Log.ConsoleInfo(broadcastMessage);
+                    AddToContext(player.Index, question, true); AddToContext(player.Index, responseMessage, false);
                 }
                 else
                 {
@@ -158,18 +154,34 @@ internal class Utils
     }
     #endregion
     #region 历史限制
+    private static readonly Dictionary<int, string> pendingQuestions = new Dictionary<int, string>();
     public static void AddToContext(int playerId, string message, bool isUserMessage)
     {
         if (!playerContexts.ContainsKey(playerId))
         {
             playerContexts[playerId] = new List<string>();
         }
-        var taggedMessage = isUserMessage ? $"问题：{message}" : $"回答：{message}";
-        if (playerContexts[playerId].Count >= Config.AIContextuallimitations)
+        var timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        var taggedMessage = isUserMessage
+            ? GetString($"时间:\"{timestamp}\" 问题:\"{message}\"")
+            : GetString($"时间:\"{timestamp}\" 回答:\"{message}\"\n");
+        if (isUserMessage)
         {
-            playerContexts[playerId].RemoveAt(0);
+            pendingQuestions[playerId] = taggedMessage;
         }
-        playerContexts[playerId].Add(taggedMessage);
+        else
+        {
+            if (pendingQuestions.TryGetValue(playerId, out var question))
+            {
+                playerContexts[playerId].Insert(0, taggedMessage);
+                playerContexts[playerId].Insert(0, question);
+                pendingQuestions.Remove(playerId);
+                if (playerContexts[playerId].Count > Config.AIContextuallimitations)
+                {
+                    playerContexts[playerId].RemoveRange(playerContexts[playerId].Count - 2, 2);
+                }
+            }
+        }
     }
     public static List<string> GetContext(int playerId)
     {
@@ -210,7 +222,7 @@ internal class Utils
         }
         if (count == 0 || truncated.Length >= Config.AIAnswerWordsLimit)
         {
-            truncated.Append(GetString($"\n\n[i:1344]超出字数限制{Config.AIAnswerWordsLimit}已截断！[i:1344]"));
+            truncated.Append(GetString($"\n\n[i:1344]超出字数限制 {Config.AIAnswerWordsLimit} 已截断！[i:1344]"));
         }
         return truncated.ToString();
     }
@@ -234,10 +246,6 @@ internal class Utils
             currentLength += textElement.Length;
         }
         return formattedMessage.ToString();
-    }
-    public static string CleanMessage(string message)
-    {
-        return Regex.IsMatch(message, GetString(@"[\uD800-\uDBFF][\uDC00-\uDFFF]")) ? string.Empty : message;
     }
     #endregion
 }

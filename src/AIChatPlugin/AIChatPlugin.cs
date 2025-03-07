@@ -11,10 +11,10 @@ namespace AIChatPlugin;
 public class AIChatPlugin : TerrariaPlugin
 {
     #region 插件信息
-    public override Version Version => new Version(2025, 1, 13);
+    public override Version Version => new Version(2025, 3, 5);
     public override string Name => "AIChatPlugin";
     public override string Description => GetString("一个提供AI对话的插件");
-    public override string Author => "ZJLLL114514";
+    public override string Author => "JTL";
     #endregion
     #region 插件启动
     public override void Initialize()
@@ -46,11 +46,11 @@ public class AIChatPlugin : TerrariaPlugin
     #region 帮助信息
     private void BotHelp(CommandArgs args)
     {
-        var helpMessage = GetString("  [i:1344]AIChatPlugin帮助信息[i:1344]\n") +
-                          GetString("[i:1344]/ab                   - 向AI提问\n") +
-                          GetString("[i:1344]/bcz                  - 清除您的上下文\n") +
-                          GetString("[i:1344]/bbz                  - 显示此帮助信息\n") +
-                          GetString("[i:1344]/aiclear              - 清除所有人的上下文");
+        var helpMessage = GetString("  [i:1344]AIChatPlugin帮助信息[i:1344]\n" +
+                                    "[i:1344]/ab                   - 向AI提问\n" +
+                                    "[i:1344]/bcz                  - 清除您的上下文\n" +
+                                    "[i:1344]/bbz                  - 显示此帮助信息\n" +
+                                    "[i:1344]/aiclear              - 清除所有人的上下文");
         args.Player.SendInfoMessage(helpMessage);
     }
     #endregion
