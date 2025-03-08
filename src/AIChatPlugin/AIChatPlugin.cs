@@ -11,7 +11,7 @@ namespace AIChatPlugin;
 public class AIChatPlugin : TerrariaPlugin
 {
     #region 插件信息
-    public override Version Version => new Version(2025, 3, 5);
+    public override Version Version => new Version(2025, 3, 8);
     public override string Name => "AIChatPlugin";
     public override string Description => GetString("一个提供AI对话的插件");
     public override string Author => "JTL";
@@ -21,7 +21,7 @@ public class AIChatPlugin : TerrariaPlugin
     {
         LoadConfig();
         Commands.ChatCommands.Add(new Command(this.ChatWithAICommand, "ab"));
-        Commands.ChatCommands.Add(new Command("ailear", AIclear, "aiclear"));
+        Commands.ChatCommands.Add(new Command("aiclear", AIclear, "aiclear"));
         Commands.ChatCommands.Add(new Command(this.BotReset, "bcz"));
         Commands.ChatCommands.Add(new Command(this.BotHelp, "bbz"));
         GeneralHooks.ReloadEvent += this.GeneralHooks_ReloadEvent;
