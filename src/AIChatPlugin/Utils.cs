@@ -78,7 +78,7 @@ internal class Utils
                 new
                 {
                     role = "system",
-                    content = Config.AISettings + "\n" + GetString($"当前时间是{DateTime.Now:yyyy-MM-dd HH:mm:ss}")
+                    content = Config.AISettings + "\n" + GetString($"当前时间是 {DateTime.Now:yyyy-MM-dd HH:mm}")
                 }
                 }
                 .Concat(GetContext(player.Index)
