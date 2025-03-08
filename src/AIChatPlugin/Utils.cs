@@ -170,14 +170,9 @@ internal class Utils
         {
             playerContexts[playerId] = new List<string>();
         }
-        var sb = new StringBuilder();
-        sb.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-        sb.Append(' ');
-        sb.Append(isUserMessage ? GetString("用户信息") : GetString("系统信息"));
-        sb.Append(": \"");
-        sb.Append(message);
-        sb.Append('"');
-        var taggedMessage = sb.ToString();
+        var taggedMessage =
+            $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} " +
+            $"{(isUserMessage ? GetString("用户信息") : GetString("系统信息"))}: \"{message}\"";
         if (playerContexts[playerId].Count >= Config.AIContextuallimitations)
         {
             playerContexts[playerId].RemoveAt(0);
