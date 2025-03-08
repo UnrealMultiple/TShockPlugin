@@ -35,10 +35,6 @@ public class Configuration
             {
                 var jsonContent = File.ReadAllText(FilePath);
                 var tempConfig = JsonConvert.DeserializeObject<Configuration>(jsonContent) ?? new Configuration();
-                if (tempConfig.AIContextuallimitations % 2 != 0)
-                {
-                    tempConfig.AIContextuallimitations += 1;
-                }
                 TShock.Log.ConsoleInfo(GetString($"[AIChatPlugin] 已重载配置"));
                 Config = tempConfig;
             }
