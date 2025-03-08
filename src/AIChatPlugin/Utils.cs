@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System.Globalization;
 using System.Text;
 using TShockAPI;
@@ -58,18 +58,18 @@ internal class Utils
             using HttpClient client = new() { Timeout = TimeSpan.FromSeconds(Config.AITimeoutPeriod) };
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer 742701d3fea4bed898578856989cb03c.5mKVzv5shSIqkkS7");
             var tools = new List<object>()
-        {
+            {
             new
             {
                 type = "web_search",
                 web_search = new
                 {
                     enable = true,
+                    search_result = true,
                     search_query = question
                 }
             }
-        };
-            var timestamp2 = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            };
             var requestBody = new
             {
                 model = "glm-4-flash",
@@ -77,8 +77,18 @@ internal class Utils
                 {
                 new
                 {
+                    role = "system",
+                    content = Config.AISettings + "\n" + GetString($"当前时间是{DateTime.Now:yyyy-MM-dd HH:mm:ss}")
+                },
+                new
+                {
+                    role = "assistant",
+                    content = formattedContext
+                },
+                new
+                {
                     role = "user",
-                    content = GetString($"时间:\n\"{timestamp2}\"\n要求:\n\"{Config.AISettings}\"\n历史:\n\"{formattedContext}\"\n问题:\n\"{question}\"")
+                    content = question
                 }
             },
                 tools
@@ -154,34 +164,25 @@ internal class Utils
     }
     #endregion
     #region 历史限制
-    private static readonly Dictionary<int, string> pendingQuestions = new Dictionary<int, string>();
     public static void AddToContext(int playerId, string message, bool isUserMessage)
     {
         if (!playerContexts.ContainsKey(playerId))
         {
             playerContexts[playerId] = new List<string>();
         }
-        var timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        var taggedMessage = isUserMessage
-            ? GetString($"时间:\"{timestamp}\" 问题:\"{message}\"")
-            : GetString($"时间:\"{timestamp}\" 回答:\"{message}\"\n");
-        if (isUserMessage)
+        var sb = new StringBuilder();
+        sb.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+        sb.Append(' ');
+        sb.Append(isUserMessage ? GetString("用户信息") : GetString("系统信息"));
+        sb.Append(": \"");
+        sb.Append(message);
+        sb.Append('"');
+        var taggedMessage = sb.ToString();
+        if (playerContexts[playerId].Count >= Config.AIContextuallimitations)
         {
-            pendingQuestions[playerId] = taggedMessage;
+            playerContexts[playerId].RemoveAt(0);
         }
-        else
-        {
-            if (pendingQuestions.TryGetValue(playerId, out var question))
-            {
-                playerContexts[playerId].Insert(0, taggedMessage);
-                playerContexts[playerId].Insert(0, question);
-                pendingQuestions.Remove(playerId);
-                if (playerContexts[playerId].Count > Config.AIContextuallimitations)
-                {
-                    playerContexts[playerId].RemoveRange(playerContexts[playerId].Count - 2, 2);
-                }
-            }
-        }
+        playerContexts[playerId].Add(taggedMessage);
     }
     public static List<string> GetContext(int playerId)
     {
