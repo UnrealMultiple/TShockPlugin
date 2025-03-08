@@ -11,7 +11,7 @@ public class Configuration
     public int AIContextuallimitations
     {
         get => this._aiContextuallimitations;
-        set => this._aiContextuallimitations = (value % 2 == 0) ? value : value + 1;
+        set => this._aiContextuallimitations = value + (value % 2);
     }
     private int _aiContextuallimitations = 100;
     [JsonProperty("超时时间")] public int AITimeoutPeriod { get; set; } = 100;
