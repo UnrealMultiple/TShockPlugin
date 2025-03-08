@@ -79,18 +79,27 @@ internal class Utils
                 {
                     role = "system",
                     content = Config.AISettings + "\n" + GetString($"当前时间是{DateTime.Now:yyyy-MM-dd HH:mm:ss}")
-                },
-                new
-                {
-                    role = "assistant",
-                    content = formattedContext
-                },
-                new
-                {
-                    role = "user",
-                    content = question
                 }
-            },
+                }
+                .Concat(GetContext(player.Index)
+                        .Select(msg =>
+                        {
+                            var parts = msg.Split(new[] { ':' }, 2);
+                            return new
+                            {
+                                role = parts.Length > 1 ? parts[0].Trim().ToLower() : "user",
+                                content = parts.Length > 1 ? parts[1].Trim() : msg
+                            };
+                        }))
+                .Concat(new[]
+                {
+                    new
+                    {
+                        role = "user",
+                        content = question
+                    }
+                })
+                .ToArray(),
                 tools
             };
             var response = await client.PostAsync("https://open.bigmodel.cn/api/paas/v4/chat/completions",
@@ -170,9 +179,7 @@ internal class Utils
         {
             playerContexts[playerId] = new List<string>();
         }
-        var taggedMessage =
-            $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} " +
-            $"{(isUserMessage ? GetString("用户信息") : GetString("系统信息"))}: \"{message}\"";
+        var taggedMessage = $"{(isUserMessage ? "user" : "assistant")}:{message}";
         if (playerContexts[playerId].Count >= Config.AIContextuallimitations)
         {
             playerContexts[playerId].RemoveAt(0);
