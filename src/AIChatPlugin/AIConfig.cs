@@ -35,12 +35,11 @@ public class Configuration
             {
                 var jsonContent = File.ReadAllText(FilePath);
                 var tempConfig = JsonConvert.DeserializeObject<Configuration>(jsonContent) ?? new Configuration();
-                TShock.Log.ConsoleInfo(GetString($"[AIChatPlugin] 已重载配置"));
                 Config = tempConfig;
             }
             catch (Exception ex)
             {
-                TShock.Log.ConsoleError(GetString($"[AIChatPlugin] 重载配置时发生错误：{ex.Message}"));
+                TShock.Log.ConsoleError(GetString($"[AIChatPlugin] 加载配置时发生错误：{ex.Message}"));
             }
         }
     }
