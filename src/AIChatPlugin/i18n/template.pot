@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AIChatPlugin\n"
-"POT-Creation-Date: 2025-03-07 07:43:34+0000\n"
-"PO-Revision-Date: 2025-03-07 07:43:34+0000\n"
+"POT-Creation-Date: 2025-03-09 10:33:38+0000\n"
+"PO-Revision-Date: 2025-03-09 10:33:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,25 +19,25 @@ msgid ""
 "[i:1344]/aiclear              - 清除所有人的上下文"
 msgstr ""
 
-#: ../../Utils.cs:122
+#: ../../Utils.cs:141
 #, csharp-format
 msgid "[AIChatPlugin] AI未能及时响应，状态码：{0}"
 msgstr ""
 
-#: ../../Utils.cs:125
+#: ../../Utils.cs:144
 msgid "[AIChatPlugin] AI未能及时响应！详细信息请查看日志"
 msgstr ""
 
-#: ../../Utils.cs:135
+#: ../../Utils.cs:154
 #, csharp-format
 msgid "[AIChatPlugin] 出现错误！详细信息：{0}"
 msgstr ""
 
-#: ../../Utils.cs:138
+#: ../../Utils.cs:157
 msgid "[AIChatPlugin] 出现错误！详细信息请查看日志"
 msgstr ""
 
-#: ../../AIConfig.cs:36
+#: ../../AIConfig.cs:42
 #, csharp-format
 msgid "[AIChatPlugin] 加载配置时发生错误：{0}"
 msgstr ""
@@ -51,24 +51,24 @@ msgstr ""
 msgid "[AIChatPlugin] 处理请求时发生错误！详细信息请查看日志"
 msgstr ""
 
-#: ../../Utils.cs:194
+#: ../../Utils.cs:197
 msgid "[AIChatPlugin] 当前没有任何人的上下文记录"
 msgstr ""
 
-#: ../../Utils.cs:117
+#: ../../Utils.cs:136
 msgid "[AIChatPlugin] 很抱歉，这次未获得有效的AI响应"
 msgstr ""
 
-#: ../../Utils.cs:199
+#: ../../Utils.cs:202
 msgid "[AIChatPlugin] 所有人的上下文已清除"
 msgstr ""
 
-#: ../../Utils.cs:131
+#: ../../Utils.cs:150
 msgid "[AIChatPlugin] 请求超时！"
 msgstr ""
 
-#: ../../Utils.cs:107
-#: ../../Utils.cs:110
+#: ../../Utils.cs:126
+#: ../../Utils.cs:129
 msgid "[c/A9A9A9:============================]"
 msgstr ""
 
@@ -96,31 +96,31 @@ msgstr ""
 msgid "[i:1344]请输入您想询问的内容！[i:1344]"
 msgstr ""
 
-#: ../../Utils.cs:106
+#: ../../Utils.cs:125
 #, csharp-format
 msgid ""
 "[i:149][c/00FF00:提问: {0}]\n"
 msgstr ""
 
-#: ../../Utils.cs:109
+#: ../../Utils.cs:128
 #, csharp-format
 msgid ""
 "[i:149][c/FF4500:回答:] {0}\n"
 msgstr ""
 
-#: ../../Utils.cs:105
+#: ../../Utils.cs:124
 #, csharp-format
 msgid ""
 "[i:267][c/FFD700:{0}]\n"
 msgstr ""
 
-#: ../../Utils.cs:108
+#: ../../Utils.cs:127
 #, csharp-format
 msgid ""
 "[i:4805][c/FF00FF:{0}]\n"
 msgstr ""
 
-#: ../../Utils.cs:225
+#: ../../Utils.cs:228
 #, csharp-format
 msgid ""
 "\n"
@@ -132,27 +132,8 @@ msgstr ""
 msgid "一个提供AI对话的插件"
 msgstr ""
 
-#: ../../Utils.cs:167
-#, csharp-format
-msgid ""
-"时间:\"{0}\" 回答:\"{1}\"\n"
-msgstr ""
-
-#: ../../Utils.cs:166
-#, csharp-format
-msgid "时间:\"{0}\" 问题:\"{1}\""
-msgstr ""
-
 #: ../../Utils.cs:81
 #, csharp-format
-msgid ""
-"时间:\n"
-"\"{0}\"\n"
-"要求:\n"
-"\"{1}\"\n"
-"历史:\n"
-"\"{2}\"\n"
-"问题:\n"
-"\"{3}\""
+msgid "当前时间是 {0:yyyy-MM-dd HH:mm}"
 msgstr ""
 
