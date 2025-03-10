@@ -474,7 +474,7 @@
   },
   {
     "Name": "CaiBotLitePlugin",
-    "Version": "2025.3.3.1",
+    "Version": "2025.3.10.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot官方机器人的适配插件",
@@ -494,7 +494,7 @@
   },
   {
     "Name": "CaiBotPlugin",
-    "Version": "2025.3.2.1",
+    "Version": "2025.3.10.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot机器人的适配插件",
@@ -621,7 +621,7 @@
   },
   {
     "Name": "Chameleon",
-    "Version": "1.1.0",
+    "Version": "1.1.1",
     "Author": "mistzzt,肝帝熙恩",
     "Description": {
       "en-US": "Account system interactive replacement solution",
@@ -1588,7 +1588,7 @@
   },
   {
     "Name": "MiniGamesAPI",
-    "Version": "1.0.4",
+    "Version": "1.1.5",
     "Author": "豆沙 羽学修复",
     "Description": {
       "en-US": "Mini game framework API",
@@ -2159,7 +2159,7 @@
   },
   {
     "Name": "RolesModifying",
-    "Version": "1.0.4",
+    "Version": "1.0.5",
     "Author": "少司命",
     "Description": {
       "en-US": "Copy and modify the inventory of other players",
@@ -2734,7 +2734,7 @@
   },
   {
     "Name": "ZHIPlayerManager",
-    "Version": "1.0.2.3",
+    "Version": "1.0.2.4",
     "Author": "z枳",
     "Description": {
       "en-US": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
