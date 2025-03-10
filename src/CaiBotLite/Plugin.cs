@@ -17,7 +17,7 @@ namespace CaiBotLite;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public static readonly Version VersionNum = new (2025, 3, 3, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new (2025, 3, 10, 1); //日期+版本号(0,1,2...)
     internal static int InitCode = -1;
     public static bool DebugMode;
     private static bool _stopWebsocket;
@@ -110,8 +110,10 @@ public class Plugin : TerrariaPlugin
                 while (string.IsNullOrEmpty(Config.Settings.Token))
                 {
                     await Task.Delay(TimeSpan.FromSeconds(10));
-                    HttpClient client = new ();
-                    client.Timeout = TimeSpan.FromSeconds(5.0);
+                    HttpClient client = new()
+                    {
+                        Timeout = TimeSpan.FromSeconds(5.0)
+                    };
                     var response = client.GetAsync($"https://api.terraria.ink:22338/bot/get_token?code={InitCode}")
                         .Result;
                     if (response.StatusCode != HttpStatusCode.OK || Config.Settings.Token != "")

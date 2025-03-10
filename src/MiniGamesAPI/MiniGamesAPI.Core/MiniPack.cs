@@ -129,8 +129,8 @@ public class MiniPack
         player.TPlayer.statManaMax = this.MaxMana;
         player.TPlayer.SpawnX = this.SpawnX;
         player.TPlayer.SpawnY = this.SpawnY;
-        player.sX = this.SpawnX;
-        player.sY = this.SpawnY;
+        player.initialServerSpawnX = this.SpawnX;
+        player.initialServerSpawnY = this.SpawnY;
         player.TPlayer.hairDye = this.HairDye;
         player.TPlayer.anglerQuestsFinished = this.QuestsCompleted;
         if (this.ExtraSlots.HasValue)
@@ -510,35 +510,35 @@ public class MiniPack
         }
     }
 
-    public PlayerData TransToPlayerData()
+public PlayerData TransToPlayerData()
+{
+    return new PlayerData(true)
     {
-        return new PlayerData(new TSPlayer(255))
-        {
-            exists = this.Exists,
-            extraSlot = this.ExtraSlots,
-            eyeColor = this.EyeColor,
-            hair = this.Hair,
-            hairColor = this.HairColor,
-            hairDye = this.HairDye,
-            happyFunTorchTime = this.HappyFunTorchTime,
-            health = this.HP,
-            hideVisuals = this.HideVisuals,
-            inventory = this.ItemsToOriginInv(),
-            mana = this.Mana,
-            maxMana = this.MaxMana,
-            pantsColor = this.PantsColor,
-            questsCompleted = this.QuestsCompleted,
-            shirtColor = this.ShirtColor,
-            shoeColor = this.ShoeColor,
-            skinColor = this.SkinColor,
-            skinVariant = this.SkinVariant,
-            spawnX = this.SpawnX,
-            spawnY = this.SpawnY,
-            underShirtColor = this.UnderShirtColor,
-            unlockedBiomeTorches = this.UnlockedBiomeTorches,
-            usingBiomeTorches = this.UsingBiomeTorches
-        };
-    }
+        exists = this.Exists,
+        extraSlot = this.ExtraSlots,
+        eyeColor = this.EyeColor,
+        hair = this.Hair,
+        hairColor = this.HairColor,
+        hairDye = this.HairDye,
+        happyFunTorchTime = this.HappyFunTorchTime,
+        health = this.HP,
+        hideVisuals = this.HideVisuals,
+        inventory = this.ItemsToOriginInv(),
+        mana = this.Mana,
+        maxMana = this.MaxMana,
+        pantsColor = this.PantsColor,
+        questsCompleted = this.QuestsCompleted,
+        shirtColor = this.ShirtColor,
+        shoeColor = this.ShoeColor,
+        skinColor = this.SkinColor,
+        skinVariant = this.SkinVariant,
+        spawnX = this.SpawnX,
+        spawnY = this.SpawnY,
+        underShirtColor = this.UnderShirtColor,
+        unlockedBiomeTorches = this.UnlockedBiomeTorches,
+        usingBiomeTorches = this.UsingBiomeTorches
+    };
+}
 
     public NetItem[] ItemsToOriginInv()
     {

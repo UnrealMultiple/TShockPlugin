@@ -46,7 +46,7 @@ public partial class ZHIPM
         /// <returns></returns>
         public PlayerData ReadZPlayerDB(TSPlayer player, int acctid, int slot = 1)
         {
-            var playerData = new PlayerData(player)
+            var playerData = new PlayerData(true)
             {
                 exists = false
             };
