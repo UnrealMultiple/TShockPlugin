@@ -30,7 +30,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
 
     private readonly Dictionary<TSPlayer, ModifyData> TempData = new();
     public Plugin(Main game) : base(game)
@@ -147,49 +147,41 @@ public class Plugin : TerrariaPlugin
     /// <returns></returns>
     public PlayerData CopyCharacter(TSPlayer player)
     {
-        var PlayerData = new PlayerData(player)
+        var PlayerData = new PlayerData(true)
         {
             health = player.TPlayer.statLife > 0 ? player.TPlayer.statLife : 1,
             maxHealth = player.TPlayer.statLifeMax,
             mana = player.TPlayer.statMana,
-            maxMana = player.TPlayer.statManaMax
+            maxMana = player.TPlayer.statManaMax,
+            spawnX = player.TPlayer.SpawnX,
+            spawnY = player.TPlayer.SpawnY,
+            extraSlot = player.TPlayer.extraAccessory ? 1 : 0,
+            skinVariant = player.TPlayer.skinVariant,
+            hair = player.TPlayer.hair,
+            hairDye = player.TPlayer.hairDye,
+            hairColor = player.TPlayer.hairColor,
+            pantsColor = player.TPlayer.pantsColor,
+            shirtColor = player.TPlayer.shirtColor,
+            underShirtColor = player.TPlayer.underShirtColor,
+            shoeColor = player.TPlayer.shoeColor,
+            hideVisuals = player.TPlayer.hideVisibleAccessory,
+            skinColor = player.TPlayer.skinColor,
+            eyeColor = player.TPlayer.eyeColor,
+            questsCompleted = player.TPlayer.anglerQuestsFinished,
+            usingBiomeTorches = player.TPlayer.UsingBiomeTorches ? 1 : 0,
+            happyFunTorchTime = player.TPlayer.happyFunTorchTime ? 1 : 0,
+            unlockedBiomeTorches = player.TPlayer.unlockedBiomeTorches ? 1 : 0,
+            currentLoadoutIndex = player.TPlayer.CurrentLoadoutIndex,
+            ateArtisanBread = player.TPlayer.ateArtisanBread ? 1 : 0,
+            usedAegisCrystal = player.TPlayer.usedAegisCrystal ? 1 : 0,
+            usedAegisFruit = player.TPlayer.usedAegisFruit ? 1 : 0,
+            usedArcaneCrystal = player.TPlayer.usedArcaneCrystal ? 1 : 0,
+            usedGalaxyPearl = player.TPlayer.usedGalaxyPearl ? 1 : 0,
+            usedGummyWorm = player.TPlayer.usedGummyWorm ? 1 : 0,
+            usedAmbrosia = player.TPlayer.usedAmbrosia ? 1 : 0,
+            unlockedSuperCart = player.TPlayer.unlockedSuperCart ? 1 : 0,
+            enabledSuperCart = player.TPlayer.enabledSuperCart ? 1 : 0
         };
-        if (player.sX > 0 && player.sY > 0)
-        {
-            PlayerData.spawnX = player.sX;
-            PlayerData.spawnY = player.sY;
-        }
-        else
-        {
-            PlayerData.spawnX = player.TPlayer.SpawnX;
-            PlayerData.spawnY = player.TPlayer.SpawnY;
-        }
-        PlayerData.extraSlot = player.TPlayer.extraAccessory ? 1 : 0;
-        PlayerData.skinVariant = player.TPlayer.skinVariant;
-        PlayerData.hair = player.TPlayer.hair;
-        PlayerData.hairDye = player.TPlayer.hairDye;
-        PlayerData.hairColor = player.TPlayer.hairColor;
-        PlayerData.pantsColor = player.TPlayer.pantsColor;
-        PlayerData.shirtColor = player.TPlayer.shirtColor;
-        PlayerData.underShirtColor = player.TPlayer.underShirtColor;
-        PlayerData.shoeColor = player.TPlayer.shoeColor;
-        PlayerData.hideVisuals = player.TPlayer.hideVisibleAccessory;
-        PlayerData.skinColor = player.TPlayer.skinColor;
-        PlayerData.eyeColor = player.TPlayer.eyeColor;
-        PlayerData.questsCompleted = player.TPlayer.anglerQuestsFinished;
-        PlayerData.usingBiomeTorches = player.TPlayer.UsingBiomeTorches ? 1 : 0;
-        PlayerData.happyFunTorchTime = player.TPlayer.happyFunTorchTime ? 1 : 0;
-        PlayerData.unlockedBiomeTorches = player.TPlayer.unlockedBiomeTorches ? 1 : 0;
-        PlayerData.currentLoadoutIndex = player.TPlayer.CurrentLoadoutIndex;
-        PlayerData.ateArtisanBread = player.TPlayer.ateArtisanBread ? 1 : 0;
-        PlayerData.usedAegisCrystal = player.TPlayer.usedAegisCrystal ? 1 : 0;
-        PlayerData.usedAegisFruit = player.TPlayer.usedAegisFruit ? 1 : 0;
-        PlayerData.usedArcaneCrystal = player.TPlayer.usedArcaneCrystal ? 1 : 0;
-        PlayerData.usedGalaxyPearl = player.TPlayer.usedGalaxyPearl ? 1 : 0;
-        PlayerData.usedGummyWorm = player.TPlayer.usedGummyWorm ? 1 : 0;
-        PlayerData.usedAmbrosia = player.TPlayer.usedAmbrosia ? 1 : 0;
-        PlayerData.unlockedSuperCart = player.TPlayer.unlockedSuperCart ? 1 : 0;
-        PlayerData.enabledSuperCart = player.TPlayer.enabledSuperCart ? 1 : 0;
 
         var inventory = player.TPlayer.inventory;
         var armor = player.TPlayer.armor;

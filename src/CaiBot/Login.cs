@@ -121,7 +121,7 @@ internal static class Login
         {
             if (type == PacketTypes.ContinueConnecting2)
             {
-                player.DataWhenJoined = new PlayerData(player);
+                player.DataWhenJoined = new PlayerData(true);
                 player.DataWhenJoined.CopyCharacter(player);
                 args.Handled = true;
             }
