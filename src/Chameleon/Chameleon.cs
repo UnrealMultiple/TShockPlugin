@@ -23,7 +23,7 @@ public class Chameleon : LazyPlugin
 
     public override string Description => GetString("账户系统交互替换方案");
 
-    public override Version Version => new Version(1, 1, 0);
+    public override Version Version => new Version(1, 1, 1);
 
 
     public Chameleon(Main game) : base(game)
@@ -123,7 +123,7 @@ public class Chameleon : LazyPlugin
             return true;
         }
 
-        player.DataWhenJoined = new PlayerData(player);
+        player.DataWhenJoined = new PlayerData(true);
         player.DataWhenJoined.CopyCharacter(player);
 
         do
