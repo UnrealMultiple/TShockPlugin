@@ -2,7 +2,7 @@
 using Terraria;
 using TShockAPI;
 
-namespace Global;
+namespace ReverseWorld;
 
 public readonly struct TileSection
 {

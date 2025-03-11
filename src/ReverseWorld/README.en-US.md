@@ -10,7 +10,7 @@
 
 | Instruction              | Alias            |       Permissions             | Description         |
 |-------------------|:---------------------:|:------------:|:---------------:|
-| /reverseworld     | rw or reverse the world            | tofout.reverseworld   | Reverse the direction and terrain of the entire world     |
+| /reverseworld [kick]     | rw or reverse the world            | tofout.reverseworld   | Reverse the direction and terrain of the entire world ，Using the kick parameter will kick all players.    |
 | /placelandmine [amount]    | plm or place mines           | tofout.placelandmine  | Places a mine at the player's current location     |
 
 

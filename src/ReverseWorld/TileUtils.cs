@@ -1,6 +1,6 @@
 ﻿using Terraria;
 
-namespace Global;
+namespace ReverseWorld;
 
 internal class TileUtils
 {
