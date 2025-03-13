@@ -14,23 +14,17 @@ public class PluginContainer : TerrariaPlugin
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
 
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command(
-            "tofout.reverseworld",
-            Method,
-            "reverseworld", "rw", "反转世界")
+        Commands.ChatCommands.Add(new Command("tofout.reverseworld", Method, "reverseworld", "rw", "反转世界")
         {
             HelpText = GetString("反转整个世界的方向和地形")
         });
 
-        Commands.ChatCommands.Add(new Command(
-            "tofout.placelandmine",
-            cmd => Code.Method(cmd.Player, cmd.Parameters),
-            "placelandmine", "plm", "放置地雷")
+        Commands.ChatCommands.Add(new Command("tofout.placelandmine", cmd => Code.Method(cmd.Player, cmd.Parameters), "placelandmine", "plm", "放置地雷")
         {
             HelpText = GetString("在玩家当前位置放置地雷")
         });
@@ -46,7 +40,7 @@ public class PluginContainer : TerrariaPlugin
         base.Dispose(disposing);
     }
 
-    public static void ReverseWorld()
+    public static void ReverseWorld(bool nokick = true)
     {
         var chestList = new List<Chest>(Main.chest);
         foreach (var chest in chestList)
@@ -98,8 +92,22 @@ public class PluginContainer : TerrariaPlugin
                 }
             }
         }
+        for (var i = 0; i < TShock.Players.Length; i++)
+        {
+            var player = TShock.Players[i];
+            if (player != null && player.Active)
+            {
+                if (nokick)
+                {
+                    Replenisher.UpdateSection(player.TileX, player.TileY, Main.maxTilesX, Main.maxTilesY, -1);
+                }
+                else
+                {
+                    player.Kick(GetString("世界已成功反转！请重新加入！"));
+                }
+            }
+        }
 
-        // 向所有玩家发送提示消息
         TShock.Utils.Broadcast(GetString("世界已成功反转！"), Color.Yellow);
     }
 
@@ -119,7 +127,14 @@ public class PluginContainer : TerrariaPlugin
 
     public static void Method(CommandArgs args)
     {
-        ReverseWorld();
+        var nokick = true;
+
+        if (args.Parameters.Count > 0 && args.Parameters[0].ToLower() == "kick")
+        {
+            nokick = false;
+        }
+
+        ReverseWorld(nokick);
     }
 
 }

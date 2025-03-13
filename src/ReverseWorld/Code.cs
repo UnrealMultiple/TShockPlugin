@@ -1,7 +1,6 @@
-﻿using Global;
-using Terraria;
+﻿using Terraria;
 using TShockAPI;
-
+namespace ReverseWorld;
 public static class Code
 {
     public static void Method(TSPlayer player, List<string> args)
