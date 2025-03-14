@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-10 16:05:17+0000\n"
-"PO-Revision-Date: 2025-01-11 01:09\n"
+"POT-Creation-Date: 2025-03-13 07:55:04+0000\n"
+"PO-Revision-Date: 2025-03-14 01:11\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,24 +17,28 @@ msgstr ""
 "X-Crowdin-File-ID: 1548\n"
 "Language: ru_RU\n"
 
-#: ../../Code.cs:21
+#: ../../Code.cs:20
 #, csharp-format
 msgid "{0}个地雷已放置"
 msgstr ""
 
-#: ../../PluginContainer.cs:103
+#: ../../PluginContainer.cs:111
 msgid "世界已成功反转！"
 msgstr ""
 
-#: ../../PluginContainer.cs:27
+#: ../../PluginContainer.cs:106
+msgid "世界已成功反转！请重新加入！"
+msgstr ""
+
+#: ../../PluginContainer.cs:24
 msgid "反转整个世界的方向和地形"
 msgstr ""
 
-#: ../../PluginContainer.cs:35
+#: ../../PluginContainer.cs:29
 msgid "在玩家当前位置放置地雷"
 msgstr ""
 
-#: ../../Code.cs:25
+#: ../../Code.cs:24
 #, csharp-format
 msgid "失败：{0}"
 msgstr ""

@@ -1,44 +1,45 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-03-11 13:48:40+0800\n"
-"PO-Revision-Date: 2025-03-11 13:50+0800\n"
+"POT-Creation-Date: 2025-03-13 07:55:04+0000\n"
+"PO-Revision-Date: 2025-03-14 11:40\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
-"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
 "X-Crowdin-Project: tshock-chinese-plugin\n"
 "X-Crowdin-Project-ID: 751499\n"
 "X-Crowdin-Language: en\n"
 "X-Crowdin-File: /master/src/ReverseWorld/i18n/template.pot\n"
 "X-Crowdin-File-ID: 1548\n"
+"Language: en_US\n"
 
-#: ..\..\Code.cs:20
+#: ../../Code.cs:20
 #, csharp-format
 msgid "{0}个地雷已放置"
 msgstr "{0} Mines have been placed"
 
-#: ..\..\PluginContainer.cs:24
+#: ../../PluginContainer.cs:111
+msgid "世界已成功反转！"
+msgstr "The world has been reversed successfully!"
+
+#: ../../PluginContainer.cs:106
+msgid "世界已成功反转！请重新加入！"
+msgstr "The world has been reversed successfully! Please rejoin!"
+
+#: ../../PluginContainer.cs:24
 msgid "反转整个世界的方向和地形"
 msgstr "Reverse the direction and terrain of the entire world"
 
-#: ..\..\Code.cs:24
+#: ../../PluginContainer.cs:29
+msgid "在玩家当前位置放置地雷"
+msgstr "Places a mine at the player's current position"
+
+#: ../../Code.cs:24
 #, csharp-format
 msgid "失败：{0}"
-msgstr "Failed：{0}"
+msgstr "Failed: {0}"
 
-#: ..\..\PluginContainer.cs:111
-msgid "世界已成功反转！"
-msgstr "World has been successfully turned around!"
-
-#: ..\..\PluginContainer.cs:106
-msgid "世界已成功反转！请重新加入！"
-msgstr "World has been successfully turned around!Please rejoin the server!"
-
-#: ..\..\PluginContainer.cs:29
-msgid "在玩家当前位置放置地雷"
-msgstr "Places a mine at the player's current location"
