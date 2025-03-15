@@ -163,7 +163,7 @@ internal static class Login
                     TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})没有添加白名单...");
                     plr.SilentKickInProgress = true;
                     plr.Disconnect($"[Cai白名单]没有添加白名单!\n" +
-                                   $"请在群{number}内发送'添加白名单 角色名字'");
+                                   $"请在群{number}内发送'添加白名单 {plr.Name}'");
                     return false;
                 }
                 case 403:

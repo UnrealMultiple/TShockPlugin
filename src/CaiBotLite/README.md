@@ -4,15 +4,18 @@
 - 仓库: 此仓库
 - 此插件为CaiBotLite适配插件
 
+## 使用指南
+
+https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 
 ## 指令
 
-| 语法              |      权限      |      说明      |
-|-----------------|:------------:|:------------:|
-| /caibot debug   | caibot.admin |    调试模式开关    |
-| /caibot code	   | caibot.admin |    生成验证码     |
-| /caibot info	   | caibot.admin | 显示CaiBot状态信息 |
-| /caibot unbind	 | caibot.admin |   主动解除群绑定    |
+| 语法                  |      权限      |      说明      |
+|---------------------|:------------:|:------------:|
+| /caibotlite debug   | caibot.admin |    调试模式开关    |
+| /caibotlite code	   | caibot.admin |    生成验证码     |
+| /caibotlite info	   | caibot.admin | 显示CaiBot状态信息 |
+| /caibotlite unbind	 | caibot.admin |   主动解除群绑定    |
 
 ## 配置
 
@@ -29,6 +32,7 @@
 ## 更新日志
 
 ```
+v2025.03.15.1 修改一些提示
 v2025.03.10.1 适配TS 5.2.3
 v2025.01.28.1 建立项目
 ```
