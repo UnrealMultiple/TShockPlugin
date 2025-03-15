@@ -64,8 +64,8 @@ internal static class CaiBotApi
                     var cmd = (string) jsonObject["cmd"]!;
                     CaiBotPlayer tr = new ();
                     Commands.HandleCommand(tr, cmd);
-                    TShock.Utils.SendLogs($"[CaiBot] `{(string) jsonObject["at"]!}`来自群`{(string) jsonObject["group"]!}`执行了: {(string) jsonObject["cmd"]!}", Color.PaleVioletRed);
-
+                    TShock.Utils.SendLogs($"[CaiBotLite] `{(string) jsonObject["at"]!}`来自群`{(string) jsonObject["group"]!}`执行了: {(string) jsonObject["cmd"]!}", Color.PaleVioletRed);
+                   
                     packetWriter.SetType("cmd")
                         .Write("result", string.Join('\n', tr.GetCommandOutput()))
                         .Send();

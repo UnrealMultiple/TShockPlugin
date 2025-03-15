@@ -58,7 +58,7 @@ internal static class Login
                 {
                     if (CaiBotApi.WhiteListCaches.TryGetValue(player.Name, out var whiteListCache2)) //从缓存处读取白名单
                     {
-                        TShock.Log.ConsoleWarn("[CaiBot]正在使用白名单缓存验证玩家...");
+                        TShock.Log.ConsoleWarn("[CaiBotLite]正在使用白名单缓存验证玩家...");
                         if (!CheckWhite(player.Name, whiteListCache2.Item2))
                         {
                             return false;
@@ -67,9 +67,9 @@ internal static class Login
                     }
                     else
                     {
-                        TShock.Log.ConsoleError("[CaiBot]机器人处于未连接状态, 玩家无法加入。\n" +
+                        TShock.Log.ConsoleError("[CaiBotLite]机器人处于未连接状态, 玩家无法加入。\n" +
                                                 "如果你不想使用Cai白名单，可以在tshock/CaiBot.json中将其关闭。");
-                        player.Disconnect("[CaiBot]机器人处于未连接状态, 玩家无法加入。");
+                        player.Disconnect("[CaiBotLite]机器人处于未连接状态, 玩家无法加入。");
                         return false;
                     }
 
@@ -138,10 +138,10 @@ internal static class Login
     {
         var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
         
-        var groupID = Config.Settings.GroupNumber.ToString();
+        var groupId = Config.Settings.GroupNumber.ToString();
         if (Config.Settings.GroupNumber == 0)
         {
-            groupID = "未设置";
+            groupId = "<未配置>";
         }
         if (playerList.Count == 0)
         {
@@ -171,7 +171,7 @@ internal static class Login
                     TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})没有添加白名单...");
                     plr.SilentKickInProgress = true;
                     plr.Disconnect($"[Cai白名单]没有添加白名单!\n" +
-                                   $"请在群[{groupID}]内发送'/添加白名单 角色名字'");
+                                   $"请在群{groupId}内发送'/添加白名单 角色名字'");
                     return false;
                 }
                 case 403:
@@ -194,7 +194,8 @@ internal static class Login
                 {
                     TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})使用未授权的设备...");
                     plr.SilentKickInProgress = true;
-                    plr.Disconnect($"[Cai白名单]在群[{groupID}]内发送'/登录',\n" +
+                    plr.Disconnect($"[Cai白名单]未授权设备!\n" +
+                                   $"在群{groupId}内发送'/登录'\n" +
                                    $"以批准此设备登录");
 
                     return false;
@@ -206,7 +207,8 @@ internal static class Login
             TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})验证白名单时出现错误...\n" +
                                    $"{ex}");
             plr.SilentKickInProgress = true;
-            plr.Disconnect($"[Cai白名单]服务器发生错误无法处理该请求!请尝试重新加入游戏或者联系服务器群[{groupID}]管理员");
+            plr.Disconnect($"[Cai白名单]服务器发生错误无法处理该请求!\n" +
+                           $"请尝试重新加入游戏或者联系服务器群{groupId}管理员");
             return false;
         }
 
@@ -260,7 +262,7 @@ internal static class Login
                 player.IsDisabledForBannedWearable = false;
             }
 
-            player.SendSuccessMessage($"[CaiBot]已经验证{account.Name}登录完毕。");
+            player.SendSuccessMessage($"[CaiBotLite]已经验证{account.Name}登录完毕。");
             TShock.Log.ConsoleInfo(player.Name + "成功验证登录。");
             TShock.UserAccounts.SetUserAccountUUID(account, player.UUID);
             PlayerHooks.OnPlayerPostLogin(player);
@@ -279,7 +281,7 @@ internal static class Login
                 return true;
             }
 
-            player.SendSuccessMessage("[CaiBot]账户{0}注册成功。", account.Name);
+            player.SendSuccessMessage("[CaiBotLite]账户{0}注册成功。", account.Name);
             TShock.UserAccounts.AddUserAccount(account);
             TShock.Log.ConsoleInfo("玩家{0}注册了新账户：{1}", player.Name, account.Name);
             player.PlayerData = TShock.CharacterDB.GetPlayerData(player, account.ID);
@@ -322,7 +324,7 @@ internal static class Login
                 player.IsDisabledForBannedWearable = false;
             }
 
-            player.SendSuccessMessage($"[CaiBot]已经验证{account.Name}登录完毕.");
+            player.SendSuccessMessage($"[CaiBotLite]已经验证{account.Name}登录完毕.");
             TShock.Log.ConsoleInfo(player.Name + "成功验证登录.");
             TShock.UserAccounts.SetUserAccountUUID(account, player.UUID);
             PlayerHooks.OnPlayerPostLogin(player);
@@ -330,7 +332,7 @@ internal static class Login
         }
 
         player.SilentKickInProgress = true;
-        player.Disconnect("[CaiBot]此名字不可用!");
+        player.Disconnect("[CaiBotLite]此名字不可用!");
         return true;
     }
 }

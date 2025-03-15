@@ -6,6 +6,11 @@
 - 使用 \-caidebug开启调试模式
 - 如果你需要使用自己搭建的CaiBot,修改`BotAPI地址`即可
 
+> [!CATION]
+> CaiBot已不再提供支持, 请迁移到CaiBotLite  
+> 详见: https://docs.terraria.ink/zh/caibot/CaiBotLite.html
+
+
 ## CaiBOT详细文档
 
 - [ACaiCat/CaiBotDocument](https://github.com/UnrealMultiple/CaiBot)
