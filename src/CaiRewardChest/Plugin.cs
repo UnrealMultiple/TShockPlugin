@@ -1,4 +1,5 @@
-﻿using On.OTAPI;
+﻿using Microsoft.Xna.Framework;
+using On.OTAPI;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -8,7 +9,7 @@ namespace CaiRewardChest;
 [ApiVersion(2, 1)]
 public class CaiRewardChest : TerrariaPlugin
 {
-    public static List<int> RewardChestId = new(); //用于防止快速堆叠爆SQL
+    public static List<Point> RewardChestPos = new(); //用于防止快速堆叠爆SQL
 
     public CaiRewardChest(Main game)
         : base(game)
@@ -20,12 +21,12 @@ public class CaiRewardChest : TerrariaPlugin
     public override string Description => GetString("奖励箱！！");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new (2025, 1, 31, 1);
+    public override Version Version => new (2025, 3, 15, 1);
 
 
     public override void Initialize()
     {
-        RewardChestId = RewardChest.GetAllChestId();
+        RewardChestPos = RewardChest.GetAllChestId();
         GetDataHandlers.ChestOpen.Register(OnChestOpen);
         Hooks.Chest.InvokeQuickStack += ChestOnInvokeQuickStack;
         Commands.ChatCommands.Add(new Command("CaiRewardChest.Init", InitChest, "初始化奖励箱", "rcinit"));
@@ -54,7 +55,8 @@ public class CaiRewardChest : TerrariaPlugin
     private static bool ChestOnInvokeQuickStack(Hooks.Chest.orig_InvokeQuickStack orig, int playerid, Item item,
         int chestindex)
     {
-        return !RewardChestId.Contains(chestindex);
+        var chest = Main.chest[chestindex];
+        return !RewardChestPos.Exists(c=> c.X == chest.x && c.Y == chest.y);
     }
 
     private static void OnChestOpen(object? sender, GetDataHandlers.ChestOpenEventArgs e)
@@ -91,7 +93,7 @@ public class CaiRewardChest : TerrariaPlugin
                         return;
                     }
 
-                    RewardChest.DelChest(chest.ChestId);
+                    RewardChest.DelChest(e.X, e.Y);
                     e.Player.SendSuccessMessage(GetString("[i:48]你删除了这个奖励箱~"));
                     e.Handled = true;
                     return;
@@ -111,9 +113,8 @@ public class CaiRewardChest : TerrariaPlugin
                     return;
                 }
             }
-
-            var chestId = Chest.FindChest(e.X, e.Y);
-            if (!RewardChestId.Contains(chestId))
+            
+            if (!RewardChestPos.Exists(c=> c.X == e.X &&  c.Y == e.Y))
             {
                 return;
             }
@@ -122,7 +123,7 @@ public class CaiRewardChest : TerrariaPlugin
 
             if (chest2 == null)
             {
-                RewardChestId.Remove(chestId);
+                RewardChestPos.RemoveAll(c=> c.X == e.X &&  c.Y == e.Y);
                 return;
             }
                 
@@ -174,7 +175,7 @@ public class CaiRewardChest : TerrariaPlugin
         var count = 0;
         foreach (var chest in Main.chest)
         {
-            if (chest != null && chest.item.Count(i => i != null && i.type != 0) > 0)
+            if (chest != null && chest.item.Any(i => i != null && i.type != 0))
             {
                 RewardChest.AddChest(Chest.FindChest(chest.x, chest.y), chest.x, chest.y);
                 count++;

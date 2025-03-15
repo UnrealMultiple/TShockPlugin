@@ -1,6 +1,7 @@
 ﻿using LazyAPI.Database;
 using LinqToDB;
 using LinqToDB.Mapping;
+using Microsoft.Xna.Framework;
 using Terraria;
 
 namespace CaiRewardChest;
@@ -24,24 +25,19 @@ public class RewardChest : RecordBase<RewardChest>
 
     [Column] public int Y { get; set; }
 
-    [NotColumn] public Chest Chest => Main.chest[this.ChestId];
+    [NotColumn] public Chest Chest =>  Main.chest[Chest.FindChest(this.X, this.Y)];
 
     private static Context context => Db.Context<RewardChest>("CaiRewardChest");
 
-    public static List<int> GetAllChestId()
+    public static List<Point> GetAllChestId()
     {
-        return context.Records.Select(x => x.ChestId).ToList();
+        return context.Records.Select(c => new Point(c.X,c.Y) ).ToList();
     }
 
 
     public static RewardChest? GetChestByPos(int x, int y)
     {
         return context.Records.FirstOrDefault(i => i.X == x && i.Y == y);
-    }
-
-    public static RewardChest? GetChestById(int chestId)
-    {
-        return context.Records.FirstOrDefault(i => i.ChestId == chestId);
     }
 
 
@@ -52,20 +48,20 @@ public class RewardChest : RecordBase<RewardChest>
 
     public static void AddChest(int chestId, int x, int y)
     {
-        CaiRewardChest.RewardChestId.Add(chestId);
+        CaiRewardChest.RewardChestPos.Add(new  Point(x, y));
         var chest = new RewardChest { ChestId = chestId, X = x, Y = y };
         context.Insert(chest);
     }
 
-    public static void DelChest(int chestId)
+    public static void DelChest(int x,int y)
     {
-        CaiRewardChest.RewardChestId.Remove(chestId);
-        context.Records.Delete(x => x.ChestId == chestId);
+        CaiRewardChest.RewardChestPos.RemoveAll(c => c.X == x && c.Y == y );
+        context.Records.Delete(c => c.X== x && c.Y == y );
     }
 
     public static void ClearDb()
     {
-        CaiRewardChest.RewardChestId.Clear();
+        CaiRewardChest.RewardChestPos.Clear();
         context.Records.Drop();
     }
 }
