@@ -1,7 +1,7 @@
 # Smart Regions 智能区域
 
 - 作者: GameRoom，肝帝熙恩汉化修复
-- Source: [Github](https://github.com/ZakFahey/SmartRegions)
+- 出处: [Github](https://github.com/ZakFahey/SmartRegions)
 - 当玩家进入一个区域时，这个插件会运行你想要的任何命令
 - 你可以用它来设置一个玩家的团队，治疗他们，给他们物品，或者任何你想要的东西。可能性是无穷无尽的
 - 可以使用占位符 `[PLAYERNAME]`，插件会将其替换为该区域中的玩家
@@ -9,7 +9,6 @@
 - 以 -- 结束区域名称，并且仅当它具有所有重叠区域中最高的 Z 值时，它才会执行
 - 冷却时间表示两次激活的最小间隔（单位：毫秒）。
 - 可直接输入单条命令，或引用包含多命令的文本文件（文件需放在 tshock/SmartRegions/ 目录下，每行一条命令）
-
 
 
 ## 指令
