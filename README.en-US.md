@@ -183,7 +183,7 @@
 | [ShowArmors](./src/ShowArmors/README.md) | 12.5% | Display equipment bar |  |
 | [SignInSign](./src/SignInSign/README.md) | 8.3% | Signboard login plugin |  |
 | [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 16.7% | Solve problems like stuck double hammer and star spin machine gun | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
-| [SmartRegions](./src/SmartRegions/README.md) | 3.6% | Smart regions |  |
+| [SmartRegions](./src/SmartRegions/README.en-US.md) | 100.0% | Smart regions |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 7.7% | Generate basic infrastructure |  |
 | [SpclPerm](./src/SpclPerm/README.md) | 50.0% | Server owner privileges |  |
 | [StatusTextManager](./src/StatusTextManager/README.md) | 100.0% | PC status text management plugin |  |
