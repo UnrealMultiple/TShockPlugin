@@ -1,7 +1,7 @@
 # RolesModifying Modify player inventory
 
-- author: 少司命
-- source: none
+- Author: 少司命
+- Source: none
 - Modify player inventory
 
 ## Commands 

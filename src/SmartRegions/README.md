@@ -7,21 +7,30 @@
 - 可以使用占位符 `[PLAYERNAME]`，插件会将其替换为该区域中的玩家
 - 兼容旧版本，但是sqlite和json二选一
 - 以 -- 结束区域名称，并且仅当它具有所有重叠区域中最高的 Z 值时，它才会执行
+- 冷却时间表示两次激活的最小间隔（单位：毫秒）。
+- 可直接输入单条命令，或引用包含多命令的文本文件（文件需放在 tshock/SmartRegions/ 目录下，每行一条命令）
 
 
 ## 指令
 
-| 语法           |         权限          |   说明   |
-|--------------|:-------------------:|:------:|
-| /smartregion | SmartRegions.manage | 智能区域管理 |
-| /replace     | SmartRegions.manage |  区域替换  |
+| 语法                                  | 权限                   | 说明                                   |
+|---------------------------------------|-----------------------|----------------------------------------|
+| `/smartregion add <区域> <冷却> <命令>` | `SmartRegions.manage` | 为区域绑定命令（支持单命令或引用文件）       |
+| `/smartregion remove <区域>`           | `SmartRegions.manage` | 移除区域的命令绑定                     |
+| `/smartregion check <区域>`            | `SmartRegions.manage` | 查看区域详细信息（含冷却时间和命令内容）     |
+| `/smartregion list [页码] [距离]`      | `SmartRegions.manage` | 列出智能区域（支持分页和按玩家距离筛选）     |
+| `/replace <参数>`                      | `SmartRegions.manage` | 替换区域的配置或覆盖旧区域（需补充具体功能） |
+
 
 ## 配置
-> 配置文件位置：tshock/SmartRegions/SmartRegions.sqlite或config.json
+> 配置文件位置：tshock/SmartRegions/SmartRegions.sqlite
 
 ## 更新日志
 
 ```
+v1.4.7
+更新英文翻译
+
 v1.4.3
 完善卸载函数
 
