@@ -32,7 +32,7 @@ public class PacketsStop : TerrariaPlugin
         LoadConfig();
         this.Packets = this.GetPackets();
         ServerApi.Hooks.NetGetData.Register(this, this.OnGetData, int.MaxValue);
-        Commands.ChatCommands.Add(new Command("packetstop", this.Command, "拦截", "packetstop.use"));
+        Commands.ChatCommands.Add(new Command("packetstop.use", this.Command, "拦截", "packetstop"));
         GeneralHooks.ReloadEvent += LoadConfig;
     }
 
