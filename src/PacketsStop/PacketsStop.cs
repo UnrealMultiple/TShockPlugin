@@ -72,18 +72,11 @@ public class PacketsStop : TerrariaPlugin
 
     private void Command(CommandArgs args)
     {
-        if (!args.Player.HasPermission("packetstop.use"))
-        {
-            args.Player.SendErrorMessage(GetString("你没有使用数据包拦截的权限"));
-            return;
-        }
-        else
-        {
-            this._Enabled = !this._Enabled;
-            TSPlayer.All.SendInfoMessage(this._Enabled
-                ? GetString("[数据包拦截]已启用")
-                : GetString("[数据包拦截]已禁用"));
-        }
+
+        this._Enabled = !this._Enabled;
+        TSPlayer.All.SendInfoMessage(this._Enabled
+            ? GetString("[数据包拦截]已启用")
+            : GetString("[数据包拦截]已禁用"));
 
 
         if (args.Parameters.Count != 2)
