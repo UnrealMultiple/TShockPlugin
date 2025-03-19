@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:03:25+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -369,12 +369,12 @@ msgstr "You have been voted to be kicked from the game for {0} seconds!"
 #: ../../Vote.cs:83
 #: ../../Vote.cs:209
 msgid "停止"
-msgstr ""
+msgstr "Stop"
 
 #: ../../Vote.cs:83
 #: ../../Vote.cs:209
 msgid "开始"
-msgstr ""
+msgstr "Start"
 
 #: ../../Main.cs:14
 msgid "投票插件"

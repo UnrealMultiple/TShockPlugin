@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-02-27 12:32:54+0000\n"
-"PO-Revision-Date: 2025-02-28 01:11\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -285,7 +285,7 @@ msgstr "House: {0} {1}"
 
 #: ../../Plugin.cs:797
 msgid "房子插件提示处理超时,已抛弃部分提示!"
-msgstr ""
+msgstr "Reminder processing timed out, discarded some tips!"
 
 #: ../../Plugin.cs:650
 #, csharp-format

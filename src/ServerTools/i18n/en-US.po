@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:03:14+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -25,12 +25,12 @@ msgstr "[{0}] => Died {1} Times"
 #: ../../Plugin.cs:195
 #, csharp-format
 msgid "[ServerTools] {0} 被系统保护"
-msgstr ""
+msgstr "[ServerTools] {0} protected by the system"
 
 #: ../../Utils.cs:17
 #, csharp-format
 msgid "[ServerTools] 世界未开启困难模式，禁止玩家 [{0}]使用恶魔心饰品栏"
-msgstr ""
+msgstr "[ServerTools] The world is not Hardmode, players [{0}] are prohibited from using the Demon heart"
 
 #: ../../Plugin.cs:142
 #, csharp-format

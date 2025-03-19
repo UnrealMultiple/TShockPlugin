@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-31 12:02:05+0000\n"
-"PO-Revision-Date: 2025-02-04 01:07\n"
+"POT-Creation-Date: 2025-03-15 02:36:44+0000\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,11 @@ msgstr ""
 "X-Crowdin-File-ID: 1126\n"
 "Language: en_US\n"
 
-#: ../../Plugin.cs:141
+#: ../../Plugin.cs:142
 msgid "[CaiRewardChest]发生错误: "
 msgstr "[CaiRewardChest]Error: "
 
-#: ../../Plugin.cs:132
+#: ../../Plugin.cs:133
 #, csharp-format
 msgid "[i:{0}]你已经领取过这个奖励箱啦!"
 msgstr "[i:{0}] You've already claimed this reward chest!"
@@ -31,45 +31,45 @@ msgstr "[i:{0}] You've already claimed this reward chest!"
 msgid "[i:{0}]你打开了一个奖励箱: "
 msgstr "[i:{0}] You've opened a reward chest: "
 
-#: ../../Plugin.cs:95
+#: ../../Plugin.cs:97
 msgid "[i:48]你删除了这个奖励箱~"
 msgstr "[i:48] You've deleted this reward chest~"
 
-#: ../../Plugin.cs:78
+#: ../../Plugin.cs:80
 msgid "[i:48]你添加了一个奖励箱~"
 msgstr "[i:48] You've added a reward chest~"
 
-#: ../../Plugin.cs:184
+#: ../../Plugin.cs:185
 #, csharp-format
 msgid "[i:48]奖励箱初始化完成,共添加{0}个奖励箱~"
 msgstr "[i:48] Reward chest initialization complete, {0} reward chests added~"
 
-#: ../../Plugin.cs:168
+#: ../../Plugin.cs:169
 msgid "[i:48]奖励箱已全部清除~"
 msgstr "[i:48] All reward chests have been cleared~"
 
-#: ../../Plugin.cs:160
+#: ../../Plugin.cs:161
 msgid "[i:48]请打开需要删除的奖励箱~"
 msgstr "[i:48] Please open the reward chest you want to delete~"
 
-#: ../../Plugin.cs:154
+#: ../../Plugin.cs:155
 msgid "[i:48]请打开需要添加的奖励箱~"
 msgstr "[i:48] Please open the reward chest you want to add~"
 
-#: ../../Plugin.cs:148
+#: ../../Plugin.cs:149
 msgid "[i:48]请打开需要编辑的奖励箱~"
 msgstr "[i:48] Please open the reward chest you want to edit~"
 
-#: ../../Plugin.cs:89
-#: ../../Plugin.cs:109
+#: ../../Plugin.cs:91
+#: ../../Plugin.cs:111
 msgid "[i:48]这个箱子好像不是奖励箱捏~"
 msgstr "[i:48] This chest doesn't seem to be a reward chest, huh? :D"
 
-#: ../../Plugin.cs:72
+#: ../../Plugin.cs:74
 msgid "[i:48]这个箱子好像是奖励箱捏~"
 msgstr "[i:48] This chest seems to be a reward chest, huh? :D"
 
-#: ../../Plugin.cs:20
+#: ../../Plugin.cs:21
 msgid "奖励箱！！"
 msgstr "Bonus chest ! !"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-31 12:03:02+0000\n"
-"PO-Revision-Date: 2025-02-04 01:07\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: ../../VeinMiner.cs:57
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner> 已{0}.]"
-msgstr "[c/95CFA6:<VeinMiner>  {0} .]"
+msgstr "[c/95CFA6:<VeinMiner>  {0}.]"
 
 #: ../../VeinMiner.cs:52
 #, csharp-format
@@ -34,26 +34,26 @@ msgstr "[c/95CFA6:<VeinMiner>] Reward items granted"
 #: ../../VeinMiner.cs:141
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner>] 挖掘了[c/95CFA6:{0}块{1}]."
-msgstr ""
+msgstr "[c/95CFA6:<VeinMiner>] Mined [c/95CFA6:{0} block {1}]."
 
 #: ../../VeinMiner.cs:158
 msgid "[c/95CFA6:<VeinMiner>] 无法挖取矿石, 可能是因为矿石上方有不可破坏的物体."
-msgstr ""
+msgstr "[c/95CFA6:<VeinMiner>] Cannot mine ore, probably because there are unbreakable objects above the ore."
 
 #: ../../VeinMiner.cs:133
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner>] 正在挖掘[c/95CFA6:{0}块{1}]."
-msgstr ""
+msgstr "[c/95CFA6:<VeinMiner>] Mined [c/95CFA6:{0} block {1}]."
 
 #: ../../VeinMiner.cs:121
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner>] 背包已满, 还需空位：[c/95CFA6:{0}]."
-msgstr ""
+msgstr "[c/95CFA6:<VeinMiner>] Inventory full, space needed: [c/95CFA6:{0}]."
 
 #: ../../VeinMiner.cs:147
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner>] 背包已满, 需要[c/95CFA6:{0}]个空位以放入[c/95CFA6:{1}]."
-msgstr ""
+msgstr "[c/95CFA6:<VeinMiner>] Inventory full, space needed: [c/95CFA6:{0}] to insert [c/95CFA6:{1}]."
 
 #: ../../Config.cs:37
 msgid "<VeinMiner> 读取配置文件失败。"
@@ -83,5 +83,5 @@ msgstr "Unknown"
 
 #: ../../VeinMiner.cs:15
 msgid "连锁挖矿插件！"
-msgstr ""
+msgstr "Vein miner plug-in!"
 

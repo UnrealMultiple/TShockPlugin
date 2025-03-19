@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:56+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -20,20 +20,20 @@ msgstr ""
 #: ../../ListPlugins.cs:73
 #, csharp-format
 msgid ", 描述: {0}"
-msgstr ""
+msgstr ", Description: {0}"
 
 #: ../../ListPlugins.cs:71
 #, csharp-format
 msgid "{0} - 版本: {1} - 作者: {2}"
-msgstr ""
+msgstr "{0} - Version: {1} - Author: {2}"
 
 #: ../../ListPlugins.cs:51
 msgid "插件列表："
-msgstr ""
+msgstr "Plugin list:"
 
 #: ../../ListPlugins.cs:46
 msgid "没有安装任何插件。"
-msgstr ""
+msgstr "No plugins installed."
 
 #: ../../ListPlugins.cs:12
 msgid "用指令查已装插件"
@@ -41,5 +41,5 @@ msgstr "Use command to check installed plugins"
 
 #: ../../ListPlugins.cs:62
 msgid "获取插件列表时发生错误。"
-msgstr ""
+msgstr "An error occurred while getting the list of plugins."
 

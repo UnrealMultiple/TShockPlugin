@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:03:02+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -22,27 +22,28 @@ msgstr ""
 #, csharp-format
 msgid "[PersonalPermission] 读取数据库时发生错误.\n"
 "{0}"
-msgstr ""
+msgstr "[PersonalPermission] Error reading database.\n"
+"{0}"
 
 #: ../../PPMain.cs:173
 msgid "/pp add [C/66E5B5:玩家名] [C/66E5B5:权限]\n"
-msgstr ""
+msgstr "/pp add [C/66E5B5:Player Name] [C/66E5B5:Permission]\n"
 
 #: ../../PPMain.cs:174
 msgid "/pp del [C/66E5B5:玩家名] [C/66E5B5:权限]\n"
-msgstr ""
+msgstr "/pp del [C/66E5B5:Player Name] [C/66E5B5: Permissions]\n"
 
 #: ../../PPMain.cs:175
 msgid "/pp list [C/66E5B5:玩家名]\n"
-msgstr ""
+msgstr "/pp list [C/66E5B5:Player Name]\n"
 
 #: ../../PPMain.cs:176
 msgid "/pp search [C/66E5B5:权限名]\n"
-msgstr ""
+msgstr "/pp search [C/66E5B5: Permissions Name]\n"
 
 #: ../../DB.cs:100
 msgid "保存玩家权限失败."
-msgstr ""
+msgstr "Failed to save player permission."
 
 #: ../../PPMain.cs:15
 msgid "允许为玩家单独设置权限."
@@ -50,78 +51,81 @@ msgstr "Allows individual permissions for players."
 
 #: ../../PPMain.cs:172
 msgid "可用命令:\n"
-msgstr ""
+msgstr "Available Commands:\n"
 
 #: ../../PPMain.cs:187
 #, csharp-format
 msgid "已为玩家 {0} 添加权限 {1}."
-msgstr ""
+msgstr "Permission {1} has been added for player {0}."
 
 #: ../../PPMain.cs:208
 #, csharp-format
 msgid "已为玩家 {0} 移除权限 {1}."
-msgstr ""
+msgstr "Permission {1} has been removed for player {0}."
 
 #: ../../PPMain.cs:43
 msgid "已重载玩家个人权限."
-msgstr ""
+msgstr "Reloaded player's personal permissions."
 
 #: ../../PPMain.cs:152
 #, csharp-format
 msgid "拥有权限 {0} 的所有玩家: ({1} 位)\n"
 "{2}"
-msgstr ""
+msgstr "All players with permission {0}: ({1} bit)\n"
+"{2}"
 
 #: ../../PPMain.cs:99
 msgid "无效的命令. /pp add [C/66E5B5:玩家名] [C/66E5B5:权限]"
-msgstr ""
+msgstr "Invalid syntax, correct syntax: /pp add [C/66E5B5:Player Name] [C/66E5B5:Permission]"
 
 #: ../../PPMain.cs:121
 msgid "无效的命令. /pp del [C/66E5B5:玩家名] [C/66E5B5:权限]"
-msgstr ""
+msgstr "Invalid syntax, correct syntax: /pp del [C/66E5B5:Player Name] [C/66E5B5:Permission]"
 
 #: ../../PPMain.cs:144
 msgid "无效的命令. /pp list [C/66E5B5:玩家名]"
-msgstr ""
+msgstr "Invalid syntax, correct syntax: /pp list [C/66E5B5:Player Name]"
 
 #: ../../PPMain.cs:156
 msgid "无效的命令. /pp search [C/66E5B5:权限名]"
-msgstr ""
+msgstr "Invalid syntax, correct syntax: /pp search [C/66E5B5:Permission Name]"
 
 #: ../../PPMain.cs:90
 #: ../../PPMain.cs:112
 #: ../../PPMain.cs:134
 #, csharp-format
 msgid "未找到名称中包含 {0} 的玩家."
-msgstr ""
+msgstr "No player with {0} name was found."
 
 #: ../../PPMain.cs:191
 msgid "添加权限失败."
-msgstr ""
+msgstr "Failed to add permissions."
 
 #: ../../DB.cs:36
 #, csharp-format
 msgid "添加玩家信息失败.\n"
 "{0}"
-msgstr ""
+msgstr "Failed to add player information.\n"
+"{0}"
 
 #: ../../PPMain.cs:196
 #, csharp-format
 msgid "玩家 {0} 已存在权限 {1}."
-msgstr ""
+msgstr "Player {0} Permission {1} already exists."
 
 #: ../../PPMain.cs:217
 #, csharp-format
 msgid "玩家 {0} 未存在权限 {1}."
-msgstr ""
+msgstr "Player {0} does not have permission {1}."
 
 #: ../../PPMain.cs:139
 #, csharp-format
 msgid "玩家 {0} 的所有权限: ({1} 条)\n"
 "{2}"
-msgstr ""
+msgstr "All permissions of player {0}: ({1})\n"
+"{2}"
 
 #: ../../PPMain.cs:212
 msgid "移除权限失败."
-msgstr ""
+msgstr "Failed to remove permissions."
 

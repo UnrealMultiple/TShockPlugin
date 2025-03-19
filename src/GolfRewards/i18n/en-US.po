@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-02-03 19:28:31+0000\n"
-"PO-Revision-Date: 2025-02-04 01:07\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr "Target coordinates are: X{0} Y{1}"
 
 #: ../../GolfRewards.cs:29
 msgid "输入/物块坐标 或 /blockpos 后敲击物块确认坐标"
-msgstr ""
+msgstr "Type /blockpos to confirm the coordinates"
 
 #: ../../LC.cs:33
 #, csharp-format
