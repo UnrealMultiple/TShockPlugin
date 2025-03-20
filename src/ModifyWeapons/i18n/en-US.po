@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-02-02 04:38:59+0000\n"
-"PO-Revision-Date: 2025-02-04 01:07\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr " 2. Items used as ammunition are directly used [c/86F06E:as weapons] [c/
 
 #: ../../Commands.cs:176
 msgid "[c/4C95DD:2] 切换所有玩家进服重读功能"
-msgstr ""
+msgstr "[c/4C95DD:2] Switch all players to reread the server"
 
 #: ../../ModifyWeapons.cs:163
 #, csharp-format
@@ -50,7 +50,7 @@ msgstr "[c/D4E443:Administrator] has modified your: [c/92C5EC:{0}]"
 
 #: ../../Commands.cs:174
 msgid "[c/ED3241:注：]指令格式 [c/FFF540:/mw reads 1 或 2]\n"
-msgstr ""
+msgstr "[c/ED3241:Note:] Command format [c/FFF540:/mw reads 1 or 2]\n"
 
 #: ../../Commands.cs:1435
 #, csharp-format
@@ -71,7 +71,7 @@ msgstr "[c/FF6863:{0}] => [c/8AD0EA:{1}]"
 
 #: ../../Commands.cs:175
 msgid "[c/FFB357:1] 帮助所有在线玩家手动重读\n"
-msgstr ""
+msgstr "[c/FFB357:1] Help all online players to reread manually\n"
 
 #: ../../Commands.cs:94
 #, csharp-format
@@ -451,7 +451,7 @@ msgstr "Updated [c/92B9D4:{1}] of player [c/2F99D7:{0}]"
 #: ../../Commands.cs:1355
 #, csharp-format
 msgid "已重读身上[C/91DFBB:{0}]个修改物品:{1}"
-msgstr ""
+msgstr "Reread [C/91DFBB:{0}] modified items:{1}"
 
 #: ../../Commands.cs:1035
 #: ../../Commands.cs:1198
@@ -546,7 +546,7 @@ msgstr "Unable to find player [c/E8585B:{0}] or failed to update rejoin attempts
 
 #: ../../Commands.cs:866
 msgid "未能重读您身上任何修改物品"
-msgstr ""
+msgstr "Failed to reread any of your modified items"
 
 #: ../../Commands.cs:1562
 msgid "格式1:/mw p 物品名 d 20 … 添加或修改"

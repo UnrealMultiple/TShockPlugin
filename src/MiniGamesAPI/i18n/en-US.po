@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:57+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -21,22 +21,22 @@ msgstr ""
 #: ../../MiniGamesAPI.Core/PrebuildBoard.cs:39
 #, csharp-format
 msgid "{0}的预制板"
-msgstr ""
+msgstr "Preset Board for {0}"
 
 #: ../../MiniGamesAPI.Core/MiniPlayer.cs:92
 #, csharp-format
 msgid "准备状态：{0}"
-msgstr ""
+msgstr "Ready status: {0}"
 
 #: ../../MiniGamesAPI.Core/MiniPlayer.cs:89
 #, csharp-format
 msgid "击杀数：{0}"
-msgstr ""
+msgstr "Kills: {0}"
 
 #: ../../MiniGamesAPI.Core/MiniPlayer.cs:91
 #, csharp-format
 msgid "助攻数：{0}"
-msgstr ""
+msgstr "Assists: {0}"
 
 #: ../../MiniGamesAPI.cs:13
 msgid "小游戏框架API"
@@ -48,25 +48,28 @@ msgid "左上角({0},{1})\n"
 "左下角({2},{3})\n"
 "右上角({4},{5})\n"
 "右下角({6},{7})\n"
-msgstr ""
+msgstr "Upper left corner ({0},{1})\n"
+"Lower left corner ({2},{3})\n"
+"Upper right corner ({4},{5})\n"
+"Lower right corner ({6},{7})\n"
 
 #: ../../MiniGamesAPI.Core/MiniPlayer.cs:94
 #, csharp-format
 msgid "当前状态：{0}"
-msgstr ""
+msgstr "Current Status: {0}"
 
 #: ../../MiniGamesAPI.Core/MiniPlayer.cs:93
 #, csharp-format
 msgid "房间号：{0}"
-msgstr ""
+msgstr "Room Number: {0}"
 
 #: ../../MiniGamesAPI.Core/MiniPlayer.cs:90
 #, csharp-format
 msgid "死亡数：{0}"
-msgstr ""
+msgstr "Deaths: {0}"
 
 #: ../../MiniGamesAPI.Core/MiniPlayer.cs:88
 #, csharp-format
 msgid "玩家名：{0}"
-msgstr ""
+msgstr "Player Name: {0}"
 

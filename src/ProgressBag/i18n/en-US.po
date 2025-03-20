@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:03:04+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -25,12 +25,12 @@ msgstr "[{0}] => {1}"
 
 #: ../../Plugin.cs:79
 msgid "[{0}] 礼包已经领取过了，不能重复领取"
-msgstr "[{0}] Bag has already been received and cannot be received again."
+msgstr "[{0}] Bag has already been claimed and cannot be claimed again."
 
 #: ../../Plugin.cs:65
 #, csharp-format
 msgid "[进度礼包]: {0} 领取了 {1}"
-msgstr "[Progress Bag]: {0} Received {1}"
+msgstr "[Progress Bag]: {0} Claimed {1}"
 
 #: ../../Plugin.cs:109
 msgid "/bag list"
@@ -54,11 +54,11 @@ msgstr "/bag reset"
 
 #: ../../Plugin.cs:50
 msgid "你当前所在的组无法领取该礼包!"
-msgstr "Your current group could not receive this bag!"
+msgstr "Your current group could not claimed this bag!"
 
 #: ../../Plugin.cs:118
 msgid "已领取"
-msgstr ""
+msgstr "Claimed"
 
 #: ../../Plugin.cs:41
 msgid "当前进度无法领取该礼包!"
@@ -67,11 +67,11 @@ msgstr "Bag cannot be claimed at the current progress!"
 #: ../../Plugin.cs:143
 #, csharp-format
 msgid "成功领取{0}个进度礼包!"
-msgstr "Successfully received {0} progress bag!"
+msgstr "Successfully claimed {0} progress bag!"
 
 #: ../../Plugin.cs:119
 msgid "未领取"
-msgstr ""
+msgstr "Not Claimed"
 
 #: ../../Plugin.cs:155
 msgid "没有此礼包"
@@ -107,5 +107,5 @@ msgstr "Progress Bag"
 
 #: ../../Plugin.cs:68
 msgid "领取成功 [{0}] 礼包"
-msgstr "Successfully received [{0}] bag"
+msgstr "Successfully claimed [{0}] bag"
 

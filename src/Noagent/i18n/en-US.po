@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:59+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -20,26 +20,26 @@ msgstr ""
 #: ../../Noagent.cs:92
 #, csharp-format
 msgid "{0} IP无异常"
-msgstr ""
+msgstr "No exception for {0} IP"
 
 #: ../../Noagent.cs:70
 #, csharp-format
 msgid "{0} 使用内网或回环地址，跳过代理检测"
-msgstr ""
+msgstr "{0} uses intranet or loop addresses, skipping proxy detection"
 
 #: ../../Noagent.cs:88
 msgid "本服务禁止代理IP登录"
-msgstr ""
+msgstr "This server prohibits proxy IP login"
 
 #: ../../Noagent.cs:87
 #, csharp-format
 msgid "检测到{0}为代理，已踢出"
-msgstr ""
+msgstr "{0} Was detected as a proxy, kicked out"
 
 #: ../../Noagent.cs:97
 #, csharp-format
 msgid "检测玩家{0} IP时发生错误: {1}"
-msgstr ""
+msgstr "Error checking player{0} IP: {1}"
 
 #: ../../Noagent.cs:13
 msgid "禁止代理登录"

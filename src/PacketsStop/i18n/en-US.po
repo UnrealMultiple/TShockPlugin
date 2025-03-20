@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:03:01+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,38 +19,39 @@ msgstr ""
 
 #: ../../PacketsStop.cs:84
 msgid "[数据包拦截]已启用"
-msgstr ""
+msgstr "[PacketStop] Enabled"
 
 #: ../../PacketsStop.cs:85
 msgid "[数据包拦截]已禁用"
-msgstr ""
+msgstr "[PacketStop] Disabled"
 
 #: ../../PacketsStop.cs:65
 msgid "[数据包拦截]重新加载配置完毕。"
-msgstr ""
+msgstr "[PacketStop] Reload configuration completed."
 
 #: ../../PacketsStop.cs:128
 #, csharp-format
 msgid "{0}已从LJ组移除，并被设为default组。"
-msgstr ""
+msgstr "{0} has been removed from LJ group and set as default."
 
 #: ../../PacketsStop.cs:117
 #, csharp-format
 msgid "{0}已被设为LJ组成员。"
-msgstr ""
+msgstr "{0} has been set as a member of the LJ group."
 
 #: ../../PacketsStop.cs:91
 msgid "/拦截 add 玩家名 - 将玩家添加到LJ组(不存在自动创建)。\n"
 "/拦截 del 玩家名 - 将玩家从LJ组移除并设为default组。"
-msgstr ""
+msgstr "/拦截 add player name - Add player to the LJ group (auto-create does not exist).\n"
+"/拦截 del player name - Removes the player from the LJ group and sets to the default group."
 
 #: ../../PacketsStop.cs:111
 msgid "LJ组已创建。"
-msgstr ""
+msgstr "LJ group has been created."
 
 #: ../../PacketsStop.cs:77
 msgid "你没有使用数据包拦截的权限"
-msgstr ""
+msgstr "You do not have permission to use packet"
 
 #: ../../PacketsStop.cs:15
 msgid "拦截没有指定权限的用户组数据包"
@@ -58,27 +59,29 @@ msgstr "Prevent user group packets without specified permissions"
 
 #: ../../PacketsStop.cs:136
 msgid "无效的子命令。使用 'add' 或 'del'。"
-msgstr ""
+msgstr "Invalid subcommand. Use 'add' or 'del'."
 
 #: ../../PacketsStop.cs:132
 #, csharp-format
 msgid "无法将{0}从LJ组移除或设为default组。错误信息: \n"
 "{1}"
-msgstr ""
+msgstr "{0} Cannot be removed from the LJ group or set to the default group. Error message: \n"
+"{1}"
 
 #: ../../PacketsStop.cs:121
 #, csharp-format
 msgid "无法将{0}设为LJ组成员。错误信息: \n"
 "{1}"
-msgstr ""
+msgstr "{0} Cannot be set as an LJ group member. Error message: \n"
+"{1}"
 
 #: ../../PacketsStop.cs:101
 #, csharp-format
 msgid "无法找到名为'{0}'的在线玩家。"
-msgstr ""
+msgstr "Unable to find an online player named '{0}'."
 
 #: ../../PacketsStop.cs:170
 #, csharp-format
 msgid "无法识别的数据包类型名称: {0}"
-msgstr ""
+msgstr "Unrecognized packet type name: {0}"
 

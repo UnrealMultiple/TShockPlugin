@@ -2,30 +2,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:03:18+0000\n"
-"PO-Revision-Date: 2025-03-16 10:54+0800\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
-"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
 "X-Crowdin-Project: tshock-chinese-plugin\n"
 "X-Crowdin-Project-ID: 751499\n"
 "X-Crowdin-Language: en\n"
 "X-Crowdin-File: /master/src/SmartRegions/i18n/template.pot\n"
 "X-Crowdin-File-ID: 1530\n"
+"Language: en_US\n"
 
 #: ../../Plugin.cs:332
-msgid ""
-"/smartregion 子命令:\n"
+msgid "/smartregion 子命令:\n"
 "add <区域名> <冷却时间> <命令或文件>\n"
 "remove <区域名>\n"
 "check <区域名>\n"
 "list [页码] [最大距离]"
-msgstr ""
-"/smartregion sub-commands:\n"
+msgstr "/smartregion sub-commands:\n"
 "add <region name> <cooldown> <command or file>\n"
 "remove <region name>\n"
 "check <region name>\n"
@@ -65,14 +63,13 @@ msgstr "Region successfully replaced!"
 
 #: ../../Plugin.cs:268
 #, csharp-format
-msgid ""
-"命令如下：\n"
+msgid "命令如下：\n"
 "{0}"
-msgstr ""
-":\n"
+msgstr ":\n"
 "{0}"
 
-#: ../../Plugin.cs:151 ../../Plugin.cs:388
+#: ../../Plugin.cs:151
+#: ../../Plugin.cs:388
 msgid "命令执行时出现错误。"
 msgstr "The command threw an error."
 
@@ -126,11 +123,9 @@ msgstr "There are currently no regions defined."
 
 #: ../../Plugin.cs:267
 #, csharp-format
-msgid ""
-"脚本中的命令如下：\n"
+msgid "脚本中的命令如下：\n"
 "{0}"
-msgstr ""
-"s:\n"
+msgstr "s:\n"
 "{0}"
 
 #: ../../Plugin.cs:261
@@ -149,3 +144,4 @@ msgstr "Type {0}region list {{0}} for more."
 #, csharp-format
 msgid "输入 {0}smartregion list {{0}} 查看更多。"
 msgstr "Type {0}smartregion list {{0}} for more."
+
