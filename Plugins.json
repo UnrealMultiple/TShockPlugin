@@ -1753,7 +1753,7 @@
   },
   {
     "Name": "PacketsStop",
-    "Version": "1.0.4",
+    "Version": "1.0.5",
     "Author": "羽学 感谢少司命",
     "Description": {
       "en-US": "Prevent user group packets without specified permissions",
