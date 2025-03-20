@@ -10,7 +10,7 @@ public class PacketsStop : TerrariaPlugin
 {
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
     public override string Author => "羽学 感谢少司命";
     public override string Description => GetString("拦截没有指定权限的用户组数据包");
 
@@ -32,7 +32,7 @@ public class PacketsStop : TerrariaPlugin
         LoadConfig();
         this.Packets = this.GetPackets();
         ServerApi.Hooks.NetGetData.Register(this, this.OnGetData, int.MaxValue);
-        Commands.ChatCommands.Add(new Command("拦截", this.Command, "拦截"));
+        Commands.ChatCommands.Add(new Command("packetstop.use", this.Command, "拦截", "packetstop"));
         GeneralHooks.ReloadEvent += LoadConfig;
     }
 
@@ -72,18 +72,11 @@ public class PacketsStop : TerrariaPlugin
 
     private void Command(CommandArgs args)
     {
-        if (!args.Player.HasPermission("拦截"))
-        {
-            args.Player.SendErrorMessage(GetString("你没有使用数据包拦截的权限"));
-            return;
-        }
-        else
-        {
-            this._Enabled = !this._Enabled;
-            TSPlayer.All.SendInfoMessage(this._Enabled
-                ? GetString("[数据包拦截]已启用")
-                : GetString("[数据包拦截]已禁用"));
-        }
+
+        this._Enabled = !this._Enabled;
+        TSPlayer.All.SendInfoMessage(this._Enabled
+            ? GetString("[数据包拦截]已启用")
+            : GetString("[数据包拦截]已禁用"));
 
 
         if (args.Parameters.Count != 2)
@@ -149,7 +142,7 @@ public class PacketsStop : TerrariaPlugin
             return;
         }
 
-        if (!player.HasPermission("免拦截"))
+        if (!player.HasPermission("packetstop.notstop"))
         {
 
             this.HandlePacket(player, args.MsgID);

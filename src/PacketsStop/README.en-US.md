@@ -14,10 +14,10 @@
 
 | Command          | Permissions  |           Description           |
 |-------------|:---:|:----------------------:|
-| /拦截         | 拦截  |          Open function          |
-| /拦截 add player name | 拦截  | Add interception of specified players and assign them to an automatically created LJ group |
-| /拦截 del Player name | 拦截  |  Remove and intercept the designated player and allocate back to the default group  |
-| none           | 免拦截 |      Not affected by plugin packet interception       |
+| /packetstop         | packetstop.use  |          Open function          |
+| /packetstop add player name | packetstop.use  | Add interception of specified players and assign them to an automatically created LJ group |
+| /packetstop del Player name | packetstop.use  |  Remove and intercept the designated player and allocate back to the default group  |
+| none           | packetstop.notstop |      Not affected by plugin packet interception       |
 
 ## Configuration
 > Configuration file position: tshock/数据包拦截.json
