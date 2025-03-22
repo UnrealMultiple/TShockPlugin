@@ -8,191 +8,123 @@ namespace PacketsStop;
 [ApiVersion(2, 1)]
 public class PacketsStop : TerrariaPlugin
 {
-
+    #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 5);
-    public override string Author => "羽学 感谢少司命";
-    public override string Description => GetString("拦截没有指定权限的用户组数据包");
-
-    #region 配置方法的工具
-    private readonly Dictionary<string, Dictionary<PacketTypes, DateTime>> countDictionary = new Dictionary<string, Dictionary<PacketTypes, DateTime>>();
-    private const double PacketInterval = 1000.0;
-    private bool _Enabled = false;
-    internal static Configuration Config = null!;
-    private HashSet<PacketTypes> Packets = null!;
+    public override Version Version => new Version(1, 0, 6);
+    public override string Author => "羽学 少司命";
+    public override string Description => GetString("拦截指定玩家的数据包");
     #endregion
 
-    public PacketsStop(Main game) : base(game)
-    {
-        Config = new Configuration();
-    }
-
+    #region 注册与卸载
+    public PacketsStop(Main game) : base(game) { }
     public override void Initialize()
     {
         LoadConfig();
-        this.Packets = this.GetPackets();
+        Packets = GetPackets();
+        GeneralHooks.ReloadEvent += ReloadConfig;
         ServerApi.Hooks.NetGetData.Register(this, this.OnGetData, int.MaxValue);
-        Commands.ChatCommands.Add(new Command("packetstop.use", this.Command, "拦截", "packetstop"));
-        GeneralHooks.ReloadEvent += LoadConfig;
+        TShockAPI.Commands.ChatCommands.Add(new Command("packetstop.use", Commands.Command, "pksp", "packetstop"));
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
+            GeneralHooks.ReloadEvent -= ReloadConfig;
             ServerApi.Hooks.NetGetData.Deregister(this, this.OnGetData);
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.Command);
-            GeneralHooks.ReloadEvent -= LoadConfig;
+            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Command);
         }
         base.Dispose(disposing);
     }
-
-    #region 配置文件创建与重读加载方法
-    private static void LoadConfig(ReloadEventArgs? args = null)
-    {
-        if (!File.Exists(Configuration.FilePath))
-        {
-            var defaultConfig = new Configuration();
-            defaultConfig.Write(Configuration.FilePath);
-        }
-        else
-        {
-            Config = Configuration.Read(Configuration.FilePath);
-        }
-
-        if (args != null && args.Player != null)
-        {
-            args.Player.SendSuccessMessage(GetString("[数据包拦截]重新加载配置完毕。"));
-        }
-    }
     #endregion
 
-    #region 指令
-
-
-    private void Command(CommandArgs args)
+    #region 配置重载读取与写入方法
+    internal static Configuration Config = new();
+    private static void ReloadConfig(ReloadEventArgs args = null!)
     {
-
-        this._Enabled = !this._Enabled;
-        TSPlayer.All.SendInfoMessage(this._Enabled
-            ? GetString("[数据包拦截]已启用")
-            : GetString("[数据包拦截]已禁用"));
-
-
-        if (args.Parameters.Count != 2)
-        {
-            args.Player.SendInfoMessage(GetString("/拦截 add 玩家名 - 将玩家添加到LJ组(不存在自动创建)。\n/拦截 del 玩家名 - 将玩家从LJ组移除并设为default组。"));
-            return;
-        }
-
-        var Action = args.Parameters[0];
-        var Name = args.Parameters[1];
-        var Account = TShock.UserAccounts.GetUserAccountByName(Name);
-
-        if (Account == null)
-        {
-            args.Player.SendInfoMessage(GetString($"无法找到名为'{Name}'的在线玩家。"));
-            return;
-        }
-
-        switch (Action.ToLower())
-        {
-            case "add":
-                if (!TShock.Groups.GroupExists("LJ"))
-                {
-                    TShock.Groups.AddGroup("LJ", "", "tshock.canchat,tshock,tshock.partychat,tshock.sendemoji", "045,235,203");
-                    args.Player.SendSuccessMessage(GetString("LJ组已创建。"));
-                }
-
-                try
-                {
-                    TShock.UserAccounts.SetUserGroup(Account, "LJ");
-                    args.Player.SendSuccessMessage(GetString($"{Name}已被设为LJ组成员。"));
-                }
-                catch (Exception ex)
-                {
-                    args.Player.SendErrorMessage(GetString($"无法将{Name}设为LJ组成员。错误信息: \n{ex.Message}"));
-                }
-                break;
-            case "del":
-                try
-                {
-                    TShock.UserAccounts.SetUserGroup(Account, "default");
-                    args.Player.SendSuccessMessage(GetString($"{Name}已从LJ组移除，并被设为default组。"));
-                }
-                catch (Exception ex)
-                {
-                    args.Player.SendErrorMessage(GetString($"无法将{Name}从LJ组移除或设为default组。错误信息: \n{ex.Message}"));
-                }
-                break;
-            default:
-                args.Player.SendInfoMessage(GetString("无效的子命令。使用 'add' 或 'del'。"));
-                break;
-        }
+        LoadConfig();
+        Packets = GetPackets();
+        args.Player.SendInfoMessage(GetString("[数据包拦截]重新加载配置完毕。"));
     }
-    #endregion
-
-    #region 获取数据包方法
-    private void OnGetData(GetDataEventArgs args)
+    private static void LoadConfig()
     {
-        var player = TShock.Players[args.Msg.whoAmI];
-
-        if (!this._Enabled || !this.Packets.Contains(args.MsgID))
-        {
-            return;
-        }
-
-        if (!player.HasPermission("packetstop.notstop"))
-        {
-
-            this.HandlePacket(player, args.MsgID);
-        }
-    }
-
-    private HashSet<PacketTypes> GetPackets()
-    {
-        var Packets = new HashSet<PacketTypes>();
-        foreach (var packetName in Config.Packets)
-        {
-            if (Enum.TryParse(packetName, out PacketTypes packetType))
-            {
-                Packets.Add(packetType);
-            }
-            else
-            {
-                TShock.Log.Error(GetString($"无法识别的数据包类型名称: {packetName}"));
-            }
-        }
-        return Packets;
+        Config = Configuration.Read();
+        Config.Write();
     }
     #endregion
 
     #region 处理数据包方法
-    private void HandlePacket(TSPlayer args, PacketTypes packetType)
+    private static HashSet<PacketTypes> Packets = new HashSet<PacketTypes>();
+    private void OnGetData(GetDataEventArgs args)
     {
-        if (this._Enabled)
+        var plr = TShock.Players[args.Msg.whoAmI];
+
+        //如果插件没开启 则返回
+        if (!Config.Enabled)
+        {
+            return;
+        }
+
+        //如果数据包在拦截列表中且玩家名在拦截名单中
+        if (Packets.Contains(args.MsgID) && Config.PlayerList.Contains(plr.Name))
+        {
+            //直接处理数据包
+            args.Handled = true;
+        }
+        else 
+        {
+            //过滤数据包
+            this.HandlePacket(plr, args.MsgID);
+        }
+    }
+    #endregion
+
+    #region 过滤数据包方法
+    private readonly Dictionary<string, Dictionary<PacketTypes, DateTime>> CountDict = new Dictionary<string, Dictionary<PacketTypes, DateTime>>();
+    private void HandlePacket(TSPlayer plr, PacketTypes type)
+    {
+        if (plr.Name != null)
         {
             var now = DateTime.Now;
-            if (args.Name != null)
+            if (!this.CountDict.TryGetValue(plr.Name, out var dict))
             {
-                if (!this.countDictionary.TryGetValue(args.Name, out var packetDictionary))
+                dict = new Dictionary<PacketTypes, DateTime>();
+                this.CountDict[plr.Name] = dict;
+            }
+            if (dict.TryGetValue(type, out var lastTime))
+            {
+                if ((now - lastTime).TotalMilliseconds >= 1000.0)
                 {
-                    packetDictionary = new Dictionary<PacketTypes, DateTime>();
-                    this.countDictionary[args.Name] = packetDictionary;
-                }
-                if (packetDictionary.TryGetValue(packetType, out var lastPacketTime))
-                {
-                    if ((now - lastPacketTime).TotalMilliseconds >= PacketInterval)
-                    {
-                        packetDictionary[packetType] = now;
-                    }
-                }
-                else
-                {
-                    packetDictionary[packetType] = now;
+                    dict[type] = now;
                 }
             }
+            else
+            {
+                dict[type] = now;
+            }
         }
+    }
+    #endregion
+
+    #region 获取数据包名
+    //在配置文件中指定想要拦截数据包包名，
+    //GetPackets方法会把这些包名转换成对应的PacketTypes枚举值并存储起来，
+    //以便在OnGetData方法中进行数据包处理时使用
+    private static HashSet<PacketTypes> GetPackets()
+    {
+        var Packets = new HashSet<PacketTypes>();
+        foreach (var name in Config.Packets)
+        {
+            if (Enum.TryParse(name, out PacketTypes type))
+            {
+                Packets.Add(type);
+            }
+            else
+            {
+                TShock.Log.ConsoleError(GetString($"无法识别的数据包类型名称: {name}"));
+            }
+        }
+        return Packets;
     }
     #endregion
 }
