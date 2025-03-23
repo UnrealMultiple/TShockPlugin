@@ -17,7 +17,7 @@
 | /apm r | AutoUpdatePlugin   | Check for duplicate installed plugins |
 | /apm rb [Plugin name] | AutoUpdatePlugin   | Remove excluded updates |
 | /apm lb | AutoUpdatePlugin   | List plugins that are excluded from updates |
-| /apm ib | AutoUpdatePlugin   | List of installed plugins and their activation status |
+| /apm il | AutoUpdatePlugin   | List of installed plugins and their activation status |
 | /apm on [list number] | AutoUpdatePlugin   | Enable a plugin |
 | /apm off [list number] | AutoUpdatePlugin   | Close a plugin |
 
