@@ -1,4 +1,4 @@
-# CaiBotPlugin 官方机器人适配插件
+# CaiBotLitePlugin 官方机器人适配插件
 
 - 作者: Cai
 - 仓库: 此仓库
@@ -10,12 +10,12 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 
 ## 指令
 
-| 语法                  |      权限      |      说明      |
-|---------------------|:------------:|:------------:|
-| /caibotlite debug   | caibot.admin |    调试模式开关    |
-| /caibotlite code	   | caibot.admin |    生成验证码     |
-| /caibotlite info	   | caibot.admin | 显示CaiBot状态信息 |
-| /caibotlite unbind	 | caibot.admin |   主动解除群绑定    |
+| 语法                     |      权限      |      说明      |
+|------------------------|:------------:|:------------:|
+| /caibotlite(cbl) debug | caibot.admin |    调试模式开关    |
+| /caibotlite(cbl) code	      | caibot.admin |    生成验证码     |
+| /caibotlite(cbl) info	      | caibot.admin | 显示CaiBot状态信息 |
+| /caibotlite(cbl) unbind	    | caibot.admin |   主动解除群绑定    |
 
 ## 配置
 
@@ -32,6 +32,7 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 ## 更新日志
 
 ```
+v2025.03.29.1 修复白名单登录时空引用报错
 v2025.03.15.1 修改一些提示
 v2025.03.10.1 适配TS 5.2.3
 v2025.01.28.1 建立项目

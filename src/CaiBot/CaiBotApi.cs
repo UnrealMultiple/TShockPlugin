@@ -123,7 +123,7 @@ internal static class CaiBotApi
                 
                     if (Login.CheckWhite(name, code))
                     {
-                        var plr = TShock.Players.FirstOrDefault(x => x.Name == name);
+                        var plr = TShock.Players.FirstOrDefault(x => x?.Name == name);
                         if (plr != null)
                         {
                             Login.HandleLogin(plr);
@@ -132,19 +132,19 @@ internal static class CaiBotApi
                     break;
                 case "selfkick":
                     name = (string) jsonObject["name"]!;
-                    var playerList2 = TSPlayer.FindByNameOrID("tsn:" + name);
-                    if (playerList2.Count == 0)
+                    var kickPlr= TShock.Players.FirstOrDefault(x=> x?.Name == name);
+                    if (kickPlr == null)
                     {
                         return;
                     }
-                    playerList2[0].Kick("在群中使用自踢命令.", true, saveSSI: true);
+                    kickPlr.Kick("在群中使用自踢命令.", true, saveSSI: true);
                     break;
                 case "lookbag":
                     name = (string) jsonObject["name"]!;
-                    var playerList3 = TSPlayer.FindByNameOrID("tsn:" + name);
-                    if (playerList3.Count != 0)
+                    var lookPlr = TShock.Players.FirstOrDefault(x=> x?.Name == name);
+                    if (lookPlr != null)
                     {
-                        var plr = playerList3[0].TPlayer;
+                        var plr = lookPlr.TPlayer;
                         var lookOnlineResult = LookBag.LookOnline(plr);
                         packetWriter.SetType("lookbag")
                             .Write("name", lookOnlineResult.Name)
@@ -157,7 +157,6 @@ internal static class CaiBotApi
                             .Write("enhances", lookOnlineResult.Enhances)
                             .Write("economic", EconomicData.GetEconomicData(lookOnlineResult.Name))
                             .Send();
-                        return;
                     }
                     else
                     {
