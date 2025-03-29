@@ -151,7 +151,7 @@
 | [NormalDropsBags](./src/NormalDropsBags/README.md) | 100.0% | Drop treasure bags at normal difficulty |  |
 | [NoteWall](./src/NoteWall/README.en-US.md) | 0.0% | Players can leave and view notes here. | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |
 | [OnlineGiftPackage](./src/OnlineGiftPackage/README.en-US.md) | 9.1% | Online gift package |  |
-| [PacketsStop](./src/PacketsStop/README.en-US.md) | 100.0% | Packet interception |  |
+| [PacketsStop](./src/PacketsStop/README.en-US.md) | 0.0% | Packet interception |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 0.0% | Permanent buff |  |
 | [PerPlayerLoot](./src/PerPlayerLoot/README.en-US.md) | 100.0% | Separate chest for player loot |  |
 | [PersonalPermission](./src/PersonalPermission/README.en-US.md) | 100.0% | Set permissions individually for players |  |
