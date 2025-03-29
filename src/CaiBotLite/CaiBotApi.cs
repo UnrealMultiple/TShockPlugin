@@ -52,6 +52,7 @@ internal static class CaiBotApi
                     TShock.Log.ConsoleInfo("[CaiBotLite]CaiBOT连接成功...");
                     //发送服务器信息
                     packetWriter.SetType("hello")
+                        .Write("server_type", "TShock")
                         .Write("tshock_version", TShock.VersionNum.ToString())
                         .Write("plugin_version", Plugin.VersionNum)
                         .Write("terraria_version", Main.versionNumber)
@@ -109,7 +110,7 @@ internal static class CaiBotApi
 
                     if (Login.CheckWhite(name, code))
                     {
-                        var plr = TShock.Players.FirstOrDefault(x => x.Name == name);
+                        var plr = TShock.Players.FirstOrDefault(x => x?.Name == name);
                         if (plr != null)
                         {
                             Login.HandleLogin(plr);
@@ -119,20 +120,20 @@ internal static class CaiBotApi
                     break;
                 case "selfkick":
                     name = (string) jsonObject["name"]!;
-                    var playerList2 = TSPlayer.FindByNameOrID("tsn:" + name);
-                    if (playerList2.Count == 0)
+                    var kickPlr = TShock.Players.FirstOrDefault(x=> x?.Name == name);
+                    if (kickPlr == null)
                     {
                         return;
                     }
 
-                    playerList2[0].Kick("在群中使用自踢命令.", true, saveSSI: true);
+                    kickPlr.Kick("在群中使用自踢命令.", true, saveSSI: true);
                     break;
                 case "lookbag":
                     name = (string) jsonObject["name"]!;
-                    var playerList3 = TSPlayer.FindByNameOrID("tsn:" + name);
-                    if (playerList3.Count != 0)
+                    var lookPlr = TShock.Players.FirstOrDefault(x=> x?.Name == name);
+                    if (lookPlr != null)
                     {
-                        var plr = playerList3[0].TPlayer;
+                        var plr = lookPlr.TPlayer;
                         var lookOnlineResult = LookBag.LookOnline(plr);
                         packetWriter.SetType("lookbag")
                             .Write("name", lookOnlineResult.Name)
@@ -217,7 +218,9 @@ internal static class CaiBotApi
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError("[CaiBotLite] 处理BOT数据包时出错:\n"+ex+$"\n源数据包: {receivedData}");
+            TShock.Log.ConsoleError($"[CaiBotLite] 处理BOT数据包时出错:\n" +
+                                    $"{ex}\n" +
+                                    $"源数据包: {receivedData}");
         }
     }
     

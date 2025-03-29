@@ -1,6 +1,4 @@
-﻿using NuGet.Protocol;
-using On.OTAPI;
-using Rests;
+﻿using On.OTAPI;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -105,15 +103,18 @@ internal static class Login
         var type = args.MsgID;
 
         var player = TShock.Players[args.Msg.whoAmI];
-        if (player == null || !player.ConnectionAlive)
+        if (player is not { ConnectionAlive: true })
         {
             args.Handled = true;
             return;
         }
 
-        if ((player.State < 10 || player.Dead) && (int) type > 12 && (int) type != 16 && (int) type != 42 &&
-            (int) type != 50 &&
-            (int) type != 38 && (int) type != 21 && (int) type != 22)
+        if ((player.State < (int)ConnectionState.Complete || player.Dead) 
+            && type > PacketTypes.PlayerSpawn 
+            && type != PacketTypes.PlayerMana 
+            && type != PacketTypes.PlayerBuff 
+            //&& type != PacketTypes.ItemDrop 
+            && type != PacketTypes.ItemOwner)
         {
             args.Handled = true;
             return;
@@ -123,7 +124,7 @@ internal static class Login
         {
             if (type == PacketTypes.ContinueConnecting2)
             {
-                player.DataWhenJoined = new PlayerData(true);
+                player.DataWhenJoined = new PlayerData();
                 player.DataWhenJoined.CopyCharacter(player);
                 args.Handled = true;
             }
@@ -136,24 +137,23 @@ internal static class Login
 
     internal static bool CheckWhite(string name, int code)
     {
-        var playerList = TSPlayer.FindByNameOrID("tsn:" + name);
+        var player = TShock.Players.FirstOrDefault(x=> x?.Name == name);
         
         var groupId = Config.Settings.GroupNumber.ToString();
         if (Config.Settings.GroupNumber == 0)
         {
             groupId = "<未配置>";
         }
-        if (playerList.Count == 0)
+        if (player==null)
         {
             return false;
         }
 
-        var plr = playerList[0];
         if (string.IsNullOrEmpty(name))
         {
-            TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})版本可能过低...");
-            plr.Disconnect("你的游戏版本可能过低,\n" +
-                           "请使用Terraria1.4.4+游玩");
+            TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {player.IP})版本可能过低...");
+            player.Disconnect("你的游戏版本可能过低,\n" +
+                              "请使用Terraria1.4.4+游玩");
             return false;
         }
 
@@ -163,23 +163,23 @@ internal static class Login
             {
                 case 200:
                 {
-                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})已通过白名单验证...");
+                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {player.IP})已通过白名单验证...");
                     break;
                 }
                 case 404:
                 {
-                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})没有添加白名单...");
-                    plr.SilentKickInProgress = true;
-                    plr.Disconnect($"[Cai白名单]没有添加白名单!\n" +
-                                   $"请在群{groupId}内发送'/添加白名单 角色名字'");
+                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {player.IP})没有添加白名单...");
+                    player.SilentKickInProgress = true;
+                    player.Disconnect($"[Cai白名单]没有添加白名单!\n" +
+                                      $"请在群{groupId}内发送'/添加白名单 角色名字'");
                     return false;
                 }
                 case 403:
                 {
-                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})被屏蔽，处于CaiBot云黑名单中...");
-                    plr.SilentKickInProgress = true;
-                    plr.Disconnect("[Cai白名单]你已被服务器屏蔽,\n" +
-                                   "你处于本群黑名单中!");
+                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {player.IP})被屏蔽，处于CaiBot云黑名单中...");
+                    player.SilentKickInProgress = true;
+                    player.Disconnect("[Cai白名单]你已被服务器屏蔽,\n" +
+                                      "你处于本群黑名单中!");
                     return false;
                 }
                 // case 401:
@@ -192,11 +192,11 @@ internal static class Login
                 // }
                 case 405:
                 {
-                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})使用未授权的设备...");
-                    plr.SilentKickInProgress = true;
-                    plr.Disconnect($"[Cai白名单]未授权设备!\n" +
-                                   $"在群{groupId}内发送'/登录'\n" +
-                                   $"以批准此设备登录");
+                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {player.IP})使用未授权的设备...");
+                    player.SilentKickInProgress = true;
+                    player.Disconnect($"[Cai白名单]未授权设备!\n" +
+                                      $"在群{groupId}内发送'/登录'\n" +
+                                      $"以批准此设备登录");
 
                     return false;
                 }
@@ -204,18 +204,18 @@ internal static class Login
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})验证白名单时出现错误...\n" +
+            TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {player.IP})验证白名单时出现错误...\n" +
                                    $"{ex}");
-            plr.SilentKickInProgress = true;
-            plr.Disconnect($"[Cai白名单]服务器发生错误无法处理该请求!\n" +
-                           $"请尝试重新加入游戏或者联系服务器群{groupId}管理员");
+            player.SilentKickInProgress = true;
+            player.Disconnect($"[Cai白名单]服务器发生错误无法处理该请求!\n" +
+                              $"请尝试重新加入游戏或者联系服务器群{groupId}管理员");
             return false;
         }
 
         return true;
     }
 
-    internal static bool HandleLogin(TSPlayer player)
+    internal static void HandleLogin(TSPlayer player)
     {
         var password = Guid.NewGuid().ToString();
         var account = TShock.UserAccounts.GetUserAccountByName(player.Name);
@@ -266,7 +266,7 @@ internal static class Login
             TShock.Log.ConsoleInfo(player.Name + "成功验证登录。");
             TShock.UserAccounts.SetUserAccountUUID(account, player.UUID);
             PlayerHooks.OnPlayerPostLogin(player);
-            return true;
+            return;
         }
 
         if (player.Name != TSServerPlayer.AccountName)
@@ -278,7 +278,7 @@ internal static class Login
             }
             catch (ArgumentOutOfRangeException)
             {
-                return true;
+                return;
             }
 
             player.SendSuccessMessage("[CaiBotLite]账户{0}注册成功。", account.Name);
@@ -328,11 +328,10 @@ internal static class Login
             TShock.Log.ConsoleInfo(player.Name + "成功验证登录.");
             TShock.UserAccounts.SetUserAccountUUID(account, player.UUID);
             PlayerHooks.OnPlayerPostLogin(player);
-            return true;
+            return;
         }
 
         player.SilentKickInProgress = true;
         player.Disconnect("[CaiBotLite]此名字不可用!");
-        return true;
     }
 }
