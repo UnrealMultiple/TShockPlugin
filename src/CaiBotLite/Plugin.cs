@@ -17,7 +17,7 @@ namespace CaiBotLite;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public static readonly Version VersionNum = new (2025, 3, 15, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new (2025, 3, 29, 1); //日期+版本号(0,1,2...)
     internal static int InitCode = -1;
     public static bool DebugMode;
     private static bool _stopWebsocket;
@@ -34,6 +34,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "Cai,羽学,西江";
     public override string Description => "CaiBot官方机器人的适配插件";
     public override string Name => "CaiBotLitePlugin";
+    
     public override Version Version => VersionNum;
 
 
@@ -41,7 +42,7 @@ public class Plugin : TerrariaPlugin
     {
         DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
-        Commands.ChatCommands.Add(new Command("caibotlite.admin", this.CaiBotCommand, "caibotlite"));
+        Commands.ChatCommands.Add(new Command("caibotlite.admin", this.CaiBotCommand, "caibotlite", "cbl"));
         Config.Settings.Read();
         Config.Settings.Write();
         ServerApi.Hooks.NetGetData.Register(this, Login.OnGetData, int.MaxValue);
@@ -176,16 +177,16 @@ public class Plugin : TerrariaPlugin
 
             List<string> lines = new () 
             { 
-                "/caibot debug CaiBot调试开关", 
-                "/caibot code 生成并且展示验证码", 
-                "/caibot info 显示CaiBot的一些信息",
-                "/caibot unbind 主动解除绑定",
-                "/caibot test Cai保留用于测试的命令,乱用可能会爆掉"
+                "/caibotlite debug CaiBot调试开关", 
+                "/caibotlite code 生成并且展示验证码", 
+                "/caibotlite info 显示CaiBot的一些信息",
+                "/caibotlite unbind 主动解除绑定",
+                "/caibotlite test Cai保留用于测试的命令, 乱用可能会爆掉"
             };
 
             PaginationTools.SendPage(
                 plr, pageNumber, lines,
-                new PaginationTools.Settings { HeaderFormat = GetString("帮助 ({0}/{1})："), FooterFormat = GetString("输入 {0}caibot help {{0}} 查看更多").SFormat(Commands.Specifier) }
+                new PaginationTools.Settings { HeaderFormat = GetString("帮助 ({0}/{1})："), FooterFormat = GetString("输入 {0}caibotlite help {{0}} 查看更多").SFormat(Commands.Specifier) }
             );
         }
 
@@ -215,7 +216,7 @@ public class Plugin : TerrariaPlugin
                 plr.SendInfoMessage($"[CaiBot信息]\n" +
                                     $"插件版本: v{VersionNum}\n" +
                                     $"WebSocket状态: {WebSocket.State}\n" +
-                                    $"绑定QQ群: {(Config.Settings.GroupNumber == 0L ? "未绑定|未连接" : Config.Settings.GroupNumber)}\n" +
+                                    $"设置QQ群: {(Config.Settings.GroupNumber == 0L ? "未设置" : Config.Settings.GroupNumber)}\n" +
                                     $"绑定状态: {Config.Settings.Token != ""}\n" +
                                     $"Debug模式: {DebugMode}\n" +
                                     $"Economic API支持: {EconomicSupport.GetCoinsSupport}\n" +
