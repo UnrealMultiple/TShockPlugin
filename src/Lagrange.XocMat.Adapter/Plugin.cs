@@ -1,11 +1,11 @@
 ﻿using Lagrange.XocMat.Adapter.DB;
 using Lagrange.XocMat.Adapter.Enumerates;
-using Lagrange.XocMat.Adapter.Model;
-using Lagrange.XocMat.Adapter.Model.Action;
-using Lagrange.XocMat.Adapter.Model.Internet;
-using Lagrange.XocMat.Adapter.Model.PlayerMessage;
-using Lagrange.XocMat.Adapter.Model.ServerMessage;
+using Lagrange.XocMat.Adapter.Protocol;
+using Lagrange.XocMat.Adapter.Protocol.PlayerMessage;
+using Lagrange.XocMat.Adapter.Protocol.ServerMessage;
 using Lagrange.XocMat.Adapter.Net;
+using Lagrange.XocMat.Adapter.Protocol.Action;
+using Lagrange.XocMat.Adapter.Protocol.Internet;
 using Lagrange.XocMat.Adapter.Setting;
 using ProtoBuf;
 using Rests;

@@ -1,9 +1,9 @@
 ﻿using Lagrange.XocMat.Adapter.Enumerates;
-using Lagrange.XocMat.Adapter.Model.Action;
-using Lagrange.XocMat.Adapter.Model.Action.Receive;
-using Lagrange.XocMat.Adapter.Model.Action.Response;
-using Lagrange.XocMat.Adapter.Model.Internet;
 using Lagrange.XocMat.Adapter.Net;
+using Lagrange.XocMat.Adapter.Protocol.Action;
+using Lagrange.XocMat.Adapter.Protocol.Action.Receive;
+using Lagrange.XocMat.Adapter.Protocol.Action.Response;
+using Lagrange.XocMat.Adapter.Protocol.Internet;
 using Terraria;
 using Terraria.IO;
 using TerrariaApi.Server;
