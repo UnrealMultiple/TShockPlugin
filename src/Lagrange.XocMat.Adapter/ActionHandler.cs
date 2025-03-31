@@ -4,7 +4,6 @@ using Lagrange.XocMat.Adapter.Model.Action.Receive;
 using Lagrange.XocMat.Adapter.Model.Action.Response;
 using Lagrange.XocMat.Adapter.Model.Internet;
 using Lagrange.XocMat.Adapter.Net;
-using ProtoBuf;
 using Terraria;
 using Terraria.IO;
 using TerrariaApi.Server;
@@ -15,9 +14,9 @@ namespace Lagrange.XocMat.Adapter;
 
 public class ActionHandler
 {
-    public delegate void ActionHandlerArgs(BaseAction action, MemoryStream stream);
+    public delegate void ActionHandlerInvoker(BaseAction action);
 
-    private static readonly Dictionary<ActionType, ActionHandlerArgs> _action = new()
+    private static readonly Dictionary<ActionType, ActionHandlerInvoker> _action = new()
     {
         { ActionType.DeadRank , DeadRankHandler },
         { ActionType.OnlineRank , OnlineRankHandler },
@@ -40,9 +39,9 @@ public class ActionHandler
         { ActionType.ExportPlayer, ExportPlayerHandler }
     };
 
-    private static void ExportPlayerHandler(BaseAction action, MemoryStream stream)
+    private static void ExportPlayerHandler(BaseAction action)
     {
-        var data = Serializer.Deserialize<ExportPlayerArgs>(stream);
+        if (action is not ExportPlayerArgs data) return;
         if (data.Names == null || !data.Names.Any())
         {
             data.Names = TShock.UserAccounts.GetUserAccounts().Select(x => x.Name).ToList();
@@ -85,7 +84,7 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void StrikeBossHandler(BaseAction action, MemoryStream stream)
+    private static void StrikeBossHandler(BaseAction action)
     {
         var res = new PlayerStrikeBoss()
         {
@@ -98,9 +97,9 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void AccountHandler(BaseAction action, MemoryStream stream)
+    private static void AccountHandler(BaseAction action)
     {
-        var data = Serializer.Deserialize<QueryAccountArgs>(stream);
+        if (action is not QueryAccountArgs data) return;
         var res = new QueryAccount()
         {
             Status = true,
@@ -151,9 +150,9 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void ConnectStatusHandler(BaseAction action, MemoryStream stream)
+    private static void ConnectStatusHandler(BaseAction action)
     {
-        var data = Serializer.Deserialize<SocketConnectStatusArgs>(stream);
+        if (action is not SocketConnectStatusArgs data) return;
         switch (data.Status)
         {
             case SocketConnentType.Success:
@@ -175,9 +174,9 @@ public class ActionHandler
         });
     }
 
-    private static void ResetPasswordHandler(BaseAction action, MemoryStream stream)
+    private static void ResetPasswordHandler(BaseAction action)
     {
-        var data = Serializer.Deserialize<PlayerPasswordResetArgs>(stream);
+        if (action is not PlayerPasswordResetArgs data) return;
         var msg = "更改成功";
         var status = true;
         var account = new UserAccount()
@@ -212,12 +211,11 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    public static void Adapter(BaseAction action, MemoryStream stream)
+    public static void Adapter(BaseAction action)
     {
-        stream.Position = 0;
         if (_action.TryGetValue(action.ActionType, out var Handler))
         {
-            Handler(action, stream);
+            Handler(action);
         }
     }
 
@@ -227,7 +225,7 @@ public class ActionHandler
         WebSocketReceive.SendMessage(Utils.SerializeObj(obj));
     }
 
-    private static void ServerStatusHandler(BaseAction action, MemoryStream stream)
+    private static void ServerStatusHandler(BaseAction action)
     {
         var res = new ServerStatus()
         {
@@ -252,9 +250,9 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void ReStartServerHandler(BaseAction action, MemoryStream stream)
+    private static void ReStartServerHandler(BaseAction action)
     {
-        var data = Serializer.Deserialize<ReStartServerArgs>(stream);
+        if (action is not ReStartServerArgs data) return;
         var res = new BaseActionResponse()
         {
             Status = true,
@@ -265,9 +263,9 @@ public class ActionHandler
         Utils.ReStarServer(data.StartArgs, true);
     }
 
-    private static void CommandHandler(BaseAction action, MemoryStream stream)
+    private static void CommandHandler(BaseAction action)
     {
-        var data = Serializer.Deserialize<ServerCommandArgs>(stream);
+        if (action is not ServerCommandArgs data) return;
         var player = new OneBotPlayer("XocMatBot");
         Commands.HandleCommand(player, data.Text);
         var res = new ServerCommand(player.CommandOutput)
@@ -279,9 +277,9 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void PrivateMsgHandler(BaseAction action, MemoryStream stream)
+    private static void PrivateMsgHandler(BaseAction action)
     {
-        var data = Serializer.Deserialize<PrivatMsgArgs>(stream);
+        if (action is not PrivatMsgArgs data) return;
         TShock.Players.FirstOrDefault(x => x != null && x.Name == data.Name && x.Active)
             ?.SendMessage(data.Text, data.Color[0], data.Color[1], data.Color[2]);
         var res = new BaseActionResponse()
@@ -293,9 +291,9 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void PluginMsgHandler(BaseAction action, MemoryStream stream)
+    private static void PluginMsgHandler(BaseAction action)
     {
-        var data = Serializer.Deserialize<BroadcastArgs>(stream);
+        if (action is not BroadcastArgs data) return;
         TShock.Utils.Broadcast(data.Text, data.Color[0], data.Color[1], data.Color[2]);
         var res = new BaseActionResponse()
         {
@@ -306,13 +304,13 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void RegisterAccountHandler(BaseAction action, MemoryStream stream)
+    private static void RegisterAccountHandler(BaseAction action)
     {
         var res = new BaseActionResponse()
         {
             Echo = action.Echo
         };
-        var data = Serializer.Deserialize<RegisterAccountArgs>(stream);
+        if (action is not RegisterAccountArgs data) return;
         try
         {
             var account = new UserAccount()
@@ -333,7 +331,7 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void ServerOnlineHandler(BaseAction action, MemoryStream stream)
+    private static void ServerOnlineHandler(BaseAction action)
     {
         var players = TShock.Players.Where(x => x != null && x.Active).Select(x => new PlayerInfo(x)).ToList();
         var res = new ServerOnline(players)
@@ -345,9 +343,9 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void RestServerHandler(BaseAction action, MemoryStream stream)
+    private static void RestServerHandler(BaseAction action)
     {
-        var data = Serializer.Deserialize<ResetServerArgs>(stream);
+        if (action is not ResetServerArgs data) return;
         var res = new BaseActionResponse()
         {
             Status = true,
@@ -358,9 +356,9 @@ public class ActionHandler
         Utils.RestServer(data);
     }
 
-    private static void InventoryHandler(BaseAction action, MemoryStream stream)
+    private static void InventoryHandler(BaseAction action)
     {
-        var data = Serializer.Deserialize<QueryPlayerInventoryArgs>(stream);
+        if (action is not QueryPlayerInventoryArgs data) return; ;
         var inventory = Utils.BInvSee(data.Name);
         var res = new PlayerInventory(inventory)
         {
@@ -371,7 +369,7 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void UploadWorldHandler(BaseAction action, MemoryStream stream)
+    private static void UploadWorldHandler(BaseAction action)
     {
         WorldFile.SaveWorld();
         var buffer = File.ReadAllBytes(Main.worldPathName);
@@ -386,7 +384,7 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void GameProgressHandler(BaseAction action, MemoryStream stream)
+    private static void GameProgressHandler(BaseAction action)
     {
         var res = new GameProgress(Utils.GetGameProgress())
         {
@@ -397,9 +395,9 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void WorldMapHandler(BaseAction action, MemoryStream stream)
+    private static void WorldMapHandler(BaseAction action)
     {
-        var data = Serializer.Deserialize<MapImageArgs>(stream);
+        if (action is not MapImageArgs data) return;
         var buffer = Utils.CreateMapBytes(data.ImageType);
         var res = new MapImage(buffer)
         {
@@ -410,7 +408,7 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void OnlineRankHandler(BaseAction action, MemoryStream stream)
+    private static void OnlineRankHandler(BaseAction action)
     {
         var res = new PlayerOnlineRank(Plugin.Onlines)
         {
@@ -421,7 +419,7 @@ public class ActionHandler
         ResponseAction(res);
     }
 
-    private static void DeadRankHandler(BaseAction action, MemoryStream stream)
+    private static void DeadRankHandler(BaseAction action)
     {
         var res = new DeadRank(Plugin.Deaths)
         {

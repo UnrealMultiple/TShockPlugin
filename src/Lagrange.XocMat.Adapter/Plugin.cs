@@ -9,6 +9,7 @@ using Lagrange.XocMat.Adapter.Net;
 using Lagrange.XocMat.Adapter.Setting;
 using ProtoBuf;
 using Rests;
+using System;
 using System.Reflection;
 using System.Threading.Channels;
 using System.Timers;
@@ -223,14 +224,13 @@ public class Plugin : TerrariaPlugin
     {
         try
         {
-            using MemoryStream ms = new(buffer);
-            var baseMsg = Serializer.Deserialize<BaseAction>(ms);
+            var baseMsg = Serializer.Deserialize<BaseAction>(new ReadOnlyMemory<byte>(buffer));
             if (baseMsg.Token == Config.SocketConfig.Token || baseMsg.ActionType == ActionType.ConnectStatus)
             {
                 switch (baseMsg.MessageType)
                 {
                     case PostMessageType.Action:
-                        ActionHandler.Adapter(baseMsg, ms);
+                        ActionHandler.Adapter(baseMsg);
                         break;
                 }
             }
