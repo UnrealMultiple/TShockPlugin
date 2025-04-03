@@ -1,6 +1,6 @@
 # Platform 判断玩家设备
 
-- 作者: Cai、cc04(维度)
+- 作者: Cai、cc04
 - 出处: [github](https://github.com/ACaiCat/CaiPlugins)
 - 判断玩家是用什么设备进来的（只能判断类型）
 
@@ -11,14 +11,22 @@
 ## 更新日志
 
 ```
-暂无
+v2025.3.30.1 支持在聊天格式中显示设备
+```
+
+## 聊天前缀
+可以在`tshock/config.json`聊天格式`ChatFormat`中使用占位符`%platform%`/`%device%`来添加设备前缀
+```json5
+"ChatFormat": "[%platform%]{1}{2}{3}: {4}", 
+"ChatAboveHeadsFormat": "{1}{2}{3}", //不支持
+"EnableChatAboveHeads": false, //不支持, 请保持false
 ```
 
 ## 指令
 
-```
-暂无
-```
+| 语法              |      权限      |    说明    |
+|-----------------|:------------:|:--------:|
+| /platform <玩家名> | platform.use | 查看玩家游玩设备 |
 
 ## 配置
 
