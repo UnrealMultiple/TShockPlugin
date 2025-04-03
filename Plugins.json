@@ -23,26 +23,6 @@
     "HotReload": true
   },
   {
-    "Name": "Platform",
-    "Version": "1.1.0.5",
-    "Author": "Cai",
-    "Description": {
-      "en-US": "Determine player device",
-      "de-DE": "判断玩家设备",
-      "it-IT": "判断玩家设备",
-      "fr-FR": "判断玩家设备",
-      "es-ES": "判断玩家设备",
-      "ru-RU": "判断玩家设备",
-      "zh-CN": "判断玩家设备",
-      "pt-BR": "判断玩家设备",
-      "pl-PL": "判断玩家设备"
-    },
-    "AssemblyName": "Platform",
-    "Path": "Platform.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
     "Name": "Chireiden.TShock.Omni",
     "Version": "0.0.203.0",
     "Author": "SGKoishi",
@@ -1828,6 +1808,26 @@
     },
     "AssemblyName": "PersonalPermission",
     "Path": "PersonalPermission.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "Platform",
+    "Version": "2025.3.30.1",
+    "Author": "Cai",
+    "Description": {
+      "en-US": "Determine player device",
+      "de-DE": "判断玩家设备",
+      "it-IT": "判断玩家设备",
+      "fr-FR": "判断玩家设备",
+      "es-ES": "判断玩家设备",
+      "ru-RU": "判断玩家设备",
+      "zh-CN": "判断玩家设备",
+      "pt-BR": "判断玩家设备",
+      "pl-PL": "判断玩家设备"
+    },
+    "AssemblyName": "Platform",
+    "Path": "Platform.dll",
     "Dependencies": [],
     "HotReload": true
   },
