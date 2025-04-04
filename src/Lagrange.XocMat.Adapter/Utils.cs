@@ -1,8 +1,8 @@
 ﻿using Lagrange.XocMat.Adapter.Attributes;
 using Lagrange.XocMat.Adapter.Enumerates;
 using Lagrange.XocMat.Adapter.Extension;
-using Lagrange.XocMat.Adapter.Model.Action.Receive;
-using Lagrange.XocMat.Adapter.Model.Internet;
+using Lagrange.XocMat.Adapter.Protocol.Action.Receive;
+using Lagrange.XocMat.Adapter.Protocol.Internet;
 using ProtoBuf;
 using Rests;
 using SixLabors.ImageSharp;
@@ -198,18 +198,18 @@ internal class Utils
     /// <param name="items">物品数组</param>
     /// <param name="slots">背包格</param>
     /// <returns></returns>
-    public static Model.Internet.Item[] GetInventoryData(Terraria.Item[] items, int slots)
+    public static Protocol.Internet.Item[] GetInventoryData(Terraria.Item[] items, int slots)
     {
-        var info = new Model.Internet.Item[slots];
+        var info = new Protocol.Internet.Item[slots];
         for (var i = 0; i < slots; i++)
         {
-            info[i] = new Model.Internet.Item(items[i].netID, items[i].prefix, items[i].stack);
+            info[i] = new Protocol.Internet.Item(items[i].netID, items[i].prefix, items[i].stack);
         }
         return info;
     }
 
 
-    public static Model.Internet.PlayerData? BInvSee(string playerName)
+    public static Protocol.Internet.PlayerData? BInvSee(string playerName)
     {
         var tsplayer = new Player();
         var players = TSPlayer.FindByNameOrID(playerName);
@@ -228,7 +228,7 @@ internal class Utils
             var data = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), offline.ID);
             tsplayer = CreateAPlayer(playerName, data);
         }
-        var retObject = new Model.Internet.PlayerData
+        var retObject = new Protocol.Internet.PlayerData
         {
             //在线状态
             OnlineStatu = false,
@@ -270,7 +270,7 @@ internal class Utils
                 };
         }
         //垃圾桶
-        retObject.trashItem = new Model.Internet.Item[1]
+        retObject.trashItem = new Protocol.Internet.Item[1]
         {
             new(tsplayer.trashItem.netID, tsplayer.trashItem.prefix, tsplayer.trashItem.stack)
         };
