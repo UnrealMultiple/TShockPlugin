@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:03:06+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-04-05 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -20,25 +20,25 @@ msgstr ""
 #: ../../Plugin.cs:79
 #, csharp-format
 msgid "[ProgressBuff]: 玩家 {0} 拥有超进度buff {1} ,已清除!"
-msgstr ""
+msgstr "Player {0} has over-progress buff {1} cleared!"
 
 #: ../../Plugin.cs:178
 #, csharp-format
 msgid "[超进度弹幕限制] 玩家{0} 使用超进度弹幕 {1} ID =>{2}"
-msgstr ""
+msgstr "Player {0} has over-progress projectile {1} ID =>{2}"
 
 #: ../../Plugin.cs:143
 #, csharp-format
 msgid "[超进度物品限制] 玩家{0} 在背包第{1}格检测到超进度物品 {2} x{3}"
-msgstr ""
+msgstr "Player {0} Was detected an over-progress item {1} in inventory {2} x{3}"
 
 #: ../../Plugin.cs:189
 msgid "使用超进度弹幕"
-msgstr ""
+msgstr "Use over-progress projectile"
 
 #: ../../Plugin.cs:152
 msgid "拥有超进度物品"
-msgstr ""
+msgstr "Use over-progress item"
 
 #: ../../Plugin.cs:13
 msgid "根据进度限制"
@@ -47,25 +47,25 @@ msgstr "Based on progress limit"
 #: ../../Plugin.cs:174
 #, csharp-format
 msgid "检测到{0}使用超进度弹幕{1}!"
-msgstr ""
+msgstr "{0} Was detected using over-progress projectile{1}!"
 
 #: ../../Plugin.cs:139
 #, csharp-format
 msgid "检测到{0}拥有超进度物品{1}!"
-msgstr ""
+msgstr "{0} Was detected using over-progress item {1}!"
 
 #: ../../Plugin.cs:171
 #, csharp-format
 msgid "检测到超进度弹幕{0}!"
-msgstr ""
+msgstr "Exceeded progress projectile {0} was detected!"
 
 #: ../../Plugin.cs:136
 #, csharp-format
 msgid "检测到超进度物品{0}!"
-msgstr ""
+msgstr "Exceeded progress item {0} was detected!"
 
 #: ../../Plugin.cs:74
 #, csharp-format
 msgid "玩家 {0} 拥有超进度buff {1} ,已清除!"
-msgstr ""
+msgstr "Player {0} has over-progress buff {1} cleared!"
 

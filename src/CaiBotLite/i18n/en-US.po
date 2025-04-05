@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-03-15 02:36:42+0000\n"
-"PO-Revision-Date: 2025-03-19 01:13\n"
+"POT-Creation-Date: 2025-03-30 06:11:16+0000\n"
+"PO-Revision-Date: 2025-04-05 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,11 @@ msgstr ""
 "X-Crowdin-File-ID: 1583\n"
 "Language: en_US\n"
 
-#: ../../Plugin.cs:188
+#: ../../Plugin.cs:189
 msgid "帮助 ({0}/{1})："
 msgstr "Help ({0}/{1}):"
 
-#: ../../Plugin.cs:188
-msgid "输入 {0}caibot help {{0}} 查看更多"
-msgstr "Type {0}caibot help {{0}} to see more"
+#: ../../Plugin.cs:189
+msgid "输入 {0}caibotlite help {{0}} 查看更多"
+msgstr ""
 
