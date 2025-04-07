@@ -103,6 +103,7 @@ jobs:
         with:
           name: Plugins
           path: bin
+          run_id: ${{ github.run_id }}
           skip_unpack: true
 
       - name: 同步其他平台
