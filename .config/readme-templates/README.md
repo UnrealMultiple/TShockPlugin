@@ -12,48 +12,45 @@
 </div>
 
 ## 前言
-- 这是一个致力于收集整合 `TShock` 插件的仓库。
-- 库中部分插件内容来源于网络收集以及反编译。
-- 因项目的特殊性，可能会造成侵权行为，如有侵权请联系我们解决。
-- 我们将持续收集优质的 `TShock` 插件，进行及时的更新。并跟进`TShock`的最新版本。
-- 如果你也想加入我们，请按照下方`开发者注意事项`的规定对本仓库`Pull Request`。
+- 这是一个致力于收集整合`TShock`插件的仓库。
+- 我们将持续收集优质的`TShock`插件，进行及时的更新。并跟进`TShock`的最新版本。
+- 如果你也想加入我们，请按照仓库WIKI中的`开发者注意事项`的规定对本仓库`提交PR`。
+- 如果你想要参与翻译工作，欢迎访问我们的[Crowdin](https://zh.crowdin.com/project/tshock-chinese-plugin) 链接
 
+## 使用注意事项
+- `安装插件前`请查看对应插件的文档： [TShock中文插件库文档](http://docs.terraria.ink/zh/)
+- 注意有些插件可能需要`安装依赖`，请查看下方列表安装依赖插件。
+- 每个插件都有一个使用说明，在`下方列表`点击链接查看具体说明事项。
 
-## 使用者注意事项
-- 插件文档： [TShock中文插件库文档](http://docs.terraria.ink/zh/)
-- 注意有些插件可能需要安装依赖，请查看下方列表安装依赖插件。
-- 每个插件都有一个使用说明，在下方列表点击超链接查看具体说明事项。
-- 听说喜欢给仓库点星星的人，插件都不容易报错
+> [!IMPORTANT]
+> 许多插件依赖于`LazyAPI`,而`LazyAPI`依赖于`linq2db`。使用本仓库插件前，推荐先安装`LazyAPI.dll`和`linq2db.dll`  
+> 推荐使用`AutoPluginManager`安装本插件库插件，会自动补齐相应的依赖
 
-## 下载
+## 下载 (推荐使用APM安装插件)
 
-- ApmApi(国内推荐): [Plugins.zip](http://api.terraria.ink:11434/plugin/get_all_plugins)
+- APM镜像(国内推荐): [Plugins.zip](http://api.terraria.ink:11434/plugin/get_all_plugins)
 - Github发布: [Plugins.zip](https://github.com/UnrealMultiple/TShockPlugin/releases/download/V1.0.0.0/Plugins.zip)
 
-#### AutoPluginManager插件 (本仓库推出的插件管理器)  
+#### AutoPluginManager插件 (推荐)  
      /apm l 列出所有插件  
      /apm i <插件名> 一键安装插件  
      /apm u [插件名] 检查并且更新插件  
 
-## 开发者注意事项
-
-> 代码规范
-
-- 禁止使用中文变量
-- 禁止使用危险功能
-- 尽量避免使用多线程
-- 禁止为插件留有后门
-- 请给每个插件项目附带一个 README.md 说明文件。
-
 ## 反馈
 
-> 对于本代码库的任何反馈、建议或改进，将被视为公共贡献，并可能被纳入本代码库，除非明确声明其他意图。
+- [反馈BUG](https://github.com/UnrealMultiple/TShockPlugin/issues/new?template=report_bug.yaml)  
 
-- 如有 bug，请在 GitHub 的 `issue` 页提供相关系统信息、 TShock 版本 以及 bug 复现流程。
+- [新功能建议](https://github.com/UnrealMultiple/TShockPlugin/issues/new?template=feature_request.yaml)
+
+- [空白Issue](https://github.com/UnrealMultiple/TShockPlugin/issues/new)
+
+> [!IMPORTANT]
+> 反馈BUG时务必按照要求填写模板，提供详细的详细，必要时请安装`pdb`文件
+
 
 ### 已收集插件
 
-> 点击超链接可查看插件详细说明
+> 点击`链接`可查看`插件文档`
 
 <Details>
 <Summary>插件列表</Summary>
@@ -64,11 +61,9 @@
 
 </Details>
 
-## 翻译
-
-- 如果你想要参与翻译工作，欢迎访问我们的 [Crowdin](https://zh.crowdin.com/project/tshock-chinese-plugin) 链接
 
 ## 友情链接
 
 - [TShock 插件开发文档](https://github.com/ACaiCat/TShockPluginDocument)
 - [Tshock 相关内容大全导航](https://github.com/UnrealMultiple/Tshock-nav)
+
