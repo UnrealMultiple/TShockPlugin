@@ -12,7 +12,7 @@
 </div>
 
 ## 前言
-- 这是一个致力于收集整合`TShock`插件的仓库。 **原神** 原神 `原神`
+- 这是一个致力于收集整合`TShock`插件的仓库。
 - 我们将持续收集优质的`TShock`插件，进行及时的更新。并跟进`TShock`的最新版本。
 - 如果你也想加入我们，请按照仓库WIKI中的`开发者注意事项`的规定对本仓库`提交PR`。
 - 如果你想要参与翻译工作，欢迎访问我们的[Crowdin](https://zh.crowdin.com/project/tshock-chinese-plugin) 链接
