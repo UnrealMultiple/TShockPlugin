@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-02-24 05:07:06+0000\n"
-"PO-Revision-Date: 2025-02-25 01:11\n"
+"POT-Creation-Date: 2025-03-23 05:09:11+0000\n"
+"PO-Revision-Date: 2025-03-24 01:16\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgid "[AutoUpdatePlugin]插件配置已重载~"
 msgstr "[AutoUpdatePlugin] Plugin configuration has been reloaded~"
 
 #: ../../Plugin.cs:60
-#: ../../Internal/CommandAdapter.cs:457
+#: ../../Internal/CommandAdapter.cs:459
 msgid "[以下插件有新的版本更新]\n"
 msgstr "[The following Estos plugins tienen nueva version disponible\n"
 
@@ -38,7 +38,7 @@ msgstr "[External [Instalacion de Librerias completada]]\n"
 msgid "[安装完成]\n"
 msgstr "[Instalacion completada]\n"
 
-#: ../../Internal/CommandAdapter.cs:298
+#: ../../Internal/CommandAdapter.cs:300
 msgid "[插件重复安装]"
 msgstr "[Instalacion de plugin duplicado]"
 
@@ -46,64 +46,64 @@ msgstr "[Instalacion de plugin duplicado]"
 msgid "[更新完成]\n"
 msgstr "[Actualizacion completada]\n"
 
-#: ../../Internal/CommandAdapter.cs:107
+#: ../../Internal/CommandAdapter.cs:109
 #, csharp-format
 msgid "{0} v{1} (by {2}) 关闭成功!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:151
+#: ../../Internal/CommandAdapter.cs:153
 #, csharp-format
 msgid "{0} v{1} (by {2}) 启用成功!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:155
+#: ../../Internal/CommandAdapter.cs:157
 #, csharp-format
 msgid "{0} v{1} (by {2}) 已开启，无法重复开启!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:111
+#: ../../Internal/CommandAdapter.cs:113
 #, csharp-format
 msgid "{0} v{1} (by {2}) 被关闭过了，无法重复关闭!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:66
+#: ../../Internal/CommandAdapter.cs:68
 #, csharp-format
 msgid "{0}.{1} v{2} (by {3}) - 状态: {4}"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:62
+#: ../../Internal/CommandAdapter.cs:64
 #, csharp-format
 msgid "{0}.{1} v{2} (by {3}) {4}"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:349
+#: ../../Internal/CommandAdapter.cs:351
 msgid "*使用/apm -i <序号> 即可安装哦~"
 msgstr "*Utilice /apm -i <número> para instalar~"
 
-#: ../../Internal/CommandAdapter.cs:227
-#: ../../Internal/CommandAdapter.cs:406
+#: ../../Internal/CommandAdapter.cs:229
+#: ../../Internal/CommandAdapter.cs:408
 #, csharp-format
 msgid "*加载失败: {0}"
 msgstr "*Error al cargar: {0}"
 
-#: ../../Internal/CommandAdapter.cs:223
-#: ../../Internal/CommandAdapter.cs:402
+#: ../../Internal/CommandAdapter.cs:225
+#: ../../Internal/CommandAdapter.cs:404
 #, csharp-format
 msgid "*卸载失败: {0}"
 msgstr "*Falló la desinstalación: {0}"
 
-#: ../../Internal/CommandAdapter.cs:231
-#: ../../Internal/CommandAdapter.cs:410
+#: ../../Internal/CommandAdapter.cs:233
+#: ../../Internal/CommandAdapter.cs:412
 msgid "*热加载失败的插件需要重启服务器后才会生效!"
 msgstr "*¡Los complementos que no se pueden cargar en caliente solo tendrán efecto después de que se reinicie el servidor!"
 
-#: ../../Internal/CommandAdapter.cs:241
-#: ../../Internal/CommandAdapter.cs:420
+#: ../../Internal/CommandAdapter.cs:243
+#: ../../Internal/CommandAdapter.cs:422
 msgid "*热重载已关闭,插件需要重启服务器后才会生效!"
 msgstr "* ¡La recarga en caliente está desactivada y el complemento entrará en vigor después de que se reinicie el servidor!"
 
-#: ../../Internal/CommandAdapter.cs:235
-#: ../../Internal/CommandAdapter.cs:414
+#: ../../Internal/CommandAdapter.cs:237
+#: ../../Internal/CommandAdapter.cs:416
 msgid "*热重载已启用,安装的插件已生效!"
 msgstr "*¡La recarga en caliente está habilitada y los complementos instalados han entrado en vigor!"
 
@@ -120,7 +120,7 @@ msgid "apm i [序号] 安装指定插件"
 msgstr "apm i [número de serie] instala el complemento especificado"
 
 #: ../../Internal/CommandAdapter.cs:42
-msgid "apm ib 查看本地插件列表与启用状态"
+msgid "apm il 查看本地插件列表与启用状态"
 msgstr ""
 
 #: ../../Internal/CommandAdapter.cs:38
@@ -151,72 +151,72 @@ msgstr "apm u [nombre del complemento] Actualiza todos los complementos o depend
 msgid "你可以使用命令/apm -u 更新插件哦~"
 msgstr "Puedes usar el comando /apm -u para actualizar los complementos~"
 
-#: ../../Internal/CommandAdapter.cs:359
-#: ../../Internal/CommandAdapter.cs:453
+#: ../../Internal/CommandAdapter.cs:361
+#: ../../Internal/CommandAdapter.cs:455
 msgid "你的插件全是最新版本，无需更新哦~"
 msgstr "Todos sus complementos están actualizados, no es necesario actualizarlos ~"
 
-#: ../../Internal/CommandAdapter.cs:280
+#: ../../Internal/CommandAdapter.cs:282
 msgid "删除失败, 没有在你的插件列表里找到这个插件呢~"
 msgstr "La eliminación falló, el complemento no se encontró en su lista de complementos~"
 
-#: ../../Internal/CommandAdapter.cs:286
+#: ../../Internal/CommandAdapter.cs:288
 msgid "删除成功, 此插件将会被检查更新~"
 msgstr "Eliminación exitosa, ahora se verificará si hay actualizaciones de este complemento~"
 
-#: ../../Internal/CommandAdapter.cs:339
+#: ../../Internal/CommandAdapter.cs:341
 msgid "可安装插件列表:"
 msgstr "Lista de complementos instalables:"
 
-#: ../../Internal/CommandAdapter.cs:200
+#: ../../Internal/CommandAdapter.cs:202
 msgid "安装了个寂寞~"
 msgstr "No se ha instalado nada~"
 
-#: ../../Internal/CommandAdapter.cs:248
+#: ../../Internal/CommandAdapter.cs:250
 msgid "安装插件出现错误:"
 msgstr "Se produjo un error al instalar el complemento:"
 
-#: ../../Internal/CommandAdapter.cs:92
+#: ../../Internal/CommandAdapter.cs:94
 msgid "序号无效，请附带需要关闭插件的选择项!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:192
+#: ../../Internal/CommandAdapter.cs:194
 msgid "序号无效，请附带需要安装插件的选择项!"
 msgstr "Número no válido, incluya las opciones requeridas para instalar el complemento."
 
-#: ../../Internal/CommandAdapter.cs:137
+#: ../../Internal/CommandAdapter.cs:139
 msgid "序号无效，请附带需要开启插件的选择项!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:260
+#: ../../Internal/CommandAdapter.cs:262
 msgid "当前没有排除任何一个插件哦~"
 msgstr "Actualmente, no se ha excluido ningún complemento ~"
 
-#: ../../Internal/CommandAdapter.cs:322
+#: ../../Internal/CommandAdapter.cs:324
 msgid "排除失败, 已经排除过这个插件了呢~"
 msgstr "La exclusión falló, el complemento se excluyó anteriormente~"
 
-#: ../../Internal/CommandAdapter.cs:316
+#: ../../Internal/CommandAdapter.cs:318
 msgid "排除失败, 没有在你的插件列表里找到这个插件呢~"
 msgstr "La exclusión falló, el complemento no se encontró en su lista de complementos~"
 
-#: ../../Internal/CommandAdapter.cs:328
+#: ../../Internal/CommandAdapter.cs:330
 msgid "排除成功, 已跳过此插件的更新检查~"
 msgstr "Exclusión exitosa, se omitió la verificación de actualización de este complemento~"
 
-#: ../../Internal/CommandAdapter.cs:264
+#: ../../Internal/CommandAdapter.cs:266
 msgid "插件更新排除列表:\n"
 msgstr "Lista de exclusión de actualización de complementos:\n"
 
-#: ../../Internal/CommandAdapter.cs:179
+#: ../../Internal/CommandAdapter.cs:181
 msgid "无效参数，请附带需要安装插件的选择项!"
 msgstr "Parámetro no válido. Incluya las opciones requeridas para instalar el complemento."
 
-#: ../../Internal/CommandAdapter.cs:461
+#: ../../Internal/CommandAdapter.cs:463
 msgid "无法获取更新:"
 msgstr "No se puede obtener la actualización:"
 
-#: ../../Internal/CommandAdapter.cs:378
+#: ../../Internal/CommandAdapter.cs:380
 msgid "更新了个寂寞~"
 msgstr "No actualizado nada~"
 
@@ -228,27 +228,27 @@ msgstr "Actualizando complementos automáticamente..."
 msgid "自动更新你的插件！"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:425
+#: ../../Internal/CommandAdapter.cs:427
 msgid "自动更新出现错误:"
 msgstr "Se produjo un error durante la actualización automática:"
 
-#: ../../Internal/CommandAdapter.cs:310
+#: ../../Internal/CommandAdapter.cs:312
 msgid "语法错误，正确语法:/apm b [插件名称]"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:169
+#: ../../Internal/CommandAdapter.cs:171
 msgid "语法错误，正确语法:/apm i [序号]"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:76
+#: ../../Internal/CommandAdapter.cs:78
 msgid "语法错误，正确语法:/apm off [序号]"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:121
+#: ../../Internal/CommandAdapter.cs:123
 msgid "语法错误，正确语法:/apm on [序号]"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:275
+#: ../../Internal/CommandAdapter.cs:277
 msgid "语法错误，正确语法:/apm rb [插件名称]"
 msgstr ""
 
