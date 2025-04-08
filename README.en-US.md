@@ -150,9 +150,9 @@
 | [Noagent](./src/Noagent/README.en-US.md) | 100.0% | Prohibit proxy IP from entering |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.md) | 100.0% | Drop treasure bags at normal difficulty |  |
 | [NoteWall](./src/NoteWall/README.en-US.md) | 0.0% | Players can leave and view notes here. | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |
-| [OnlineGiftPackage](./src/OnlineGiftPackage/README.en-US.md) | 9.1% | Online gift package |  |
-| [PacketsStop](./src/PacketsStop/README.en-US.md) | 0.0% | Packet interception |  |
-| [PermaBuff](./src/PermaBuff/README.md) | 0.0% | Permanent buff |  |
+| [OnlineGiftPackage](./src/OnlineGiftPackage/README.en-US.md) | 100.0% | Online gift package |  |
+| [PacketsStop](./src/PacketsStop/README.en-US.md) | 8.7% | Packet interception |  |
+| [PermaBuff](./src/PermaBuff/README.md) | 100.0% | Permanent buff |  |
 | [PerPlayerLoot](./src/PerPlayerLoot/README.en-US.md) | 100.0% | Separate chest for player loot |  |
 | [PersonalPermission](./src/PersonalPermission/README.en-US.md) | 100.0% | Set permissions individually for players |  |
 | [Platform](./src/Platform/README.en-US.md) | 100.0% | Determine player device |  |
@@ -161,7 +161,7 @@
 | [PlayerSpeed](./src/PlayerSpeed/README.en-US.md) | 100.0% | Enable players to achieve a two-stage sprint | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ProgressBag](./src/ProgressBag/README.en-US.md) | 100.0% | Progress gift pack | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ProgressControls](./src/ProgressControls/README.md) | 0.3% | Planbook (Automate server control) |  |
-| [ProgressRestrict](./src/ProgressRestrict/README.md) | 9.1% | Super progress detection | [DataSync](./src/DataSync/README.en-US.md) |
+| [ProgressRestrict](./src/ProgressRestrict/README.md) | 100.0% | Super progress detection | [DataSync](./src/DataSync/README.en-US.md) |
 | [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 100.0% | Accept proxy protocol connections |  |
 | [PvPer](./src/PvPer/README.md) | 1.3% | Duel system |  |
 | [RainbowChat](./src/RainbowChat/README.md) | 100.0% | Random chat color |  |
@@ -206,7 +206,7 @@
 | [WeaponPlus](./src/WeaponPlus/README.md) | 100.0% | Weapon enhancement coin version |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 100.0% | Load Chinese Wiki language pack for server |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 0.0% | World editor, can modify most of the world parameters |  |
-| [ZHIPlayerManager](./src/ZHIPlayerManager/README.en-US.md) | 66.3% | zZhi's player management plugin |  |
+| [ZHIPlayerManager](./src/ZHIPlayerManager/README.en-US.md) | 71.8% | zZhi's player management plugin |  |
 
 </Details>
 
