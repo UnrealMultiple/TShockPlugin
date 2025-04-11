@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:04+0000\n"
-"PO-Revision-Date: 2025-01-20 01:08\n"
+"POT-Creation-Date: 2025-04-08 12:30:21+0000\n"
+"PO-Revision-Date: 2025-04-09 01:15\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1472\n"
 "Language: es_ES\n"
 
-#: ../../Plugin.cs:27
+#: ../../Plugin.cs:28
 msgid "适配插件"
 msgstr "Complemento de adaptación"
 
