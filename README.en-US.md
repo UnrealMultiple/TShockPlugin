@@ -206,7 +206,7 @@
 | [WeaponPlus](./src/WeaponPlus/README.md) | 100.0% | Weapon enhancement coin version |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 100.0% | Load Chinese Wiki language pack for server |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 0.0% | World editor, can modify most of the world parameters |  |
-| [ZHIPlayerManager](./src/ZHIPlayerManager/README.en-US.md) | 71.8% | zZhi's player management plugin |  |
+| [ZHIPlayerManager](./src/ZHIPlayerManager/README.en-US.md) | 81.7% | zZhi's player management plugin |  |
 
 </Details>
 
