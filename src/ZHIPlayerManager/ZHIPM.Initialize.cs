@@ -2598,7 +2598,7 @@ public partial class ZHIPM
             if (v.Name == TShock.Players[args.Who].Name)
             {
                 ZPExtraDB.WriteExtraDB(v);
-                edPlayers.RemoveAll(x => x.Account == v.Account || x.Name == v.Name);
+                edPlayers.RemoveAll(x => x.Name == v.Name);
                 break;
             }
         }
@@ -3985,18 +3985,18 @@ public partial class ZHIPM
         if (strike != null && strike.name != string.Empty)
         {
             //如果击中过，寻找击中他的玩家是否被记录
-            if (strike.playerAndDamage.ContainsKey(players[0].Account.ID))
+            if (strike.playerAndDamage.ContainsKey(players[0].Name))
             {
                 //已被记录，那么伤害记录加数值
                 if (args.Damage <= TShock.Config.Settings.MaxDamage && args.Damage <= TShock.Config.Settings.MaxProjDamage) //不正常的伤害应舍去
                 {
-                    strike.playerAndDamage[players[0].Account.ID] += args.Damage;
+                    strike.playerAndDamage[players[0].Name] += args.Damage;
                     strike.AllDamage += args.Damage;
                 }
             }
             else //否则，创建新的 player->damage
             {
-                strike.playerAndDamage.Add(players[0].Account.ID, args.Damage);
+                strike.playerAndDamage.Add(players[0].Name, args.Damage);
                 strike.AllDamage += args.Damage;
             }
         }
@@ -4082,7 +4082,7 @@ public partial class ZHIPM
                 13 or 14 or 15 or 325 or 327 or 564 or 565 or 576 or 577 or 551 or 344 or 345 or 346 or 517 or 422 or 493 or 507 or 68 => true,
                 _ => args.Npc.boss
             };
-            snpc.playerAndDamage.Add(players[0].Account.ID, args.Damage);
+            snpc.playerAndDamage.Add(players[0].Name, args.Damage);
             snpc.AllDamage += args.Damage;
             strikeNPC.Add(snpc);
         }
@@ -4136,7 +4136,7 @@ public partial class ZHIPM
 
             foreach (var x in edPlayers)
             {
-                if (this.Destroyer.TryGetValue(x.Account, out var value))
+                if (this.Destroyer.TryGetValue(x.Name, out var value))
                 {
                     x.killNPCnum++;
 
@@ -4214,7 +4214,7 @@ public partial class ZHIPM
 
             foreach (var x in edPlayers)
             {
-                if (this.FleshWall.TryGetValue(x.Account, out var value))
+                if (this.FleshWall.TryGetValue(x.Name, out var value))
                 {
                     x.killNPCnum++;
 
@@ -4305,7 +4305,7 @@ public partial class ZHIPM
 
                             foreach (var x in edPlayers)
                             {
-                                if (this.Eaterworld.TryGetValue(x.Account, out var value))
+                                if (this.Eaterworld.TryGetValue(x.Name, out var value))
                                 {
                                     x.killNPCnum++;
 
@@ -4407,7 +4407,7 @@ public partial class ZHIPM
 
                             foreach (var x in edPlayers)
                             {
-                                if (airship.playerAndDamage.TryGetValue(x.Account, out var value))
+                                if (airship.playerAndDamage.TryGetValue(x.Name, out var value))
                                 {
                                     x.killNPCnum += 2;
 
@@ -4480,7 +4480,7 @@ public partial class ZHIPM
 
                         foreach (var x in edPlayers)
                         {
-                            if (strikeNPC[i].playerAndDamage.TryGetValue(x.Account, out var value))
+                            if (strikeNPC[i].playerAndDamage.TryGetValue(x.Name, out var value))
                             {
                                 x.killNPCnum++;
 
@@ -4574,7 +4574,7 @@ public partial class ZHIPM
                         {
                             foreach (var x in edPlayers)
                             {
-                                if (strikeNPC[i].playerAndDamage.TryGetValue(x.Account, out var value))
+                                if (strikeNPC[i].playerAndDamage.TryGetValue(x.Name, out var value))
                                 {
                                     x.killNPCnum += 1;
 
@@ -4669,7 +4669,7 @@ public partial class ZHIPM
                         {
                             foreach (var x in edPlayers)
                             {
-                                if (strikeNPC[i].playerAndDamage.TryGetValue(x.Account, out var value))
+                                if (strikeNPC[i].playerAndDamage.TryGetValue(x.Name, out var value))
                                 {
                                     x.killNPCnum += 1;
 
@@ -4762,7 +4762,7 @@ public partial class ZHIPM
                         {
                             foreach (var x in edPlayers)
                             {
-                                if (strikeNPC[i].playerAndDamage.TryGetValue(x.Account, out var value))
+                                if (strikeNPC[i].playerAndDamage.TryGetValue(x.Name, out var value))
                                 {
                                     x.killNPCnum += 1;
 
@@ -4814,7 +4814,7 @@ public partial class ZHIPM
                     {
                         foreach (var x in edPlayers)
                         {
-                            if (strikeNPC[i].playerAndDamage.TryGetValue(x.Account, out var value))
+                            if (strikeNPC[i].playerAndDamage.TryGetValue(x.Name, out var value))
                             {
                                 x.killNPCnum++;
 

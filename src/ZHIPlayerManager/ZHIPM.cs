@@ -15,7 +15,7 @@ public partial class ZHIPM : TerrariaPlugin
     public override string Description => GetString("玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 2, 4);
+    public override Version Version => new Version(1, 0, 2, 5);
 
     #region 字段或属性
     /// <summary>
@@ -66,17 +66,17 @@ public partial class ZHIPM : TerrariaPlugin
     private static ZhipmConfig config = new();
 
     /// <summary>
-    /// 记录世界吞噬者的数据 击中他的玩家的id, 那个玩家造成的伤害
+    /// 记录世界吞噬者的数据 击中他的玩家的名字, 那个玩家造成的伤害
     /// </summary>
-    private readonly Dictionary<int, int> Eaterworld = new();
+    private readonly Dictionary<string, int> Eaterworld = new();
     /// <summary>
     /// 记录毁灭者的数据
     /// </summary>
-    private readonly Dictionary<int, int> Destroyer = new();
+    private readonly Dictionary<string, int> Destroyer = new();
     /// <summary>
     /// 记录血肉墙的数据
     /// </summary>
-    private readonly Dictionary<int, int> FleshWall = new();
+    private readonly Dictionary<string, int> FleshWall = new();
 
     #endregion
 
@@ -389,9 +389,9 @@ public partial class ZHIPM : TerrariaPlugin
         /// </summary>
         public bool isBoss;
         /// <summary>
-        /// 字典，用于记录 击中他的玩家的id 该玩家造成的总伤害
+        /// 字典，用于记录 击中他的玩家的索引 该玩家造成的总伤害
         /// </summary>
-        public Dictionary<int, int> playerAndDamage = new();
+        public Dictionary<string, int> playerAndDamage = new();
         /// <summary>
         /// 受到的总伤害
         /// </summary>
@@ -403,7 +403,7 @@ public partial class ZHIPM : TerrariaPlugin
 
         public StrikeNPC() { }
 
-        public StrikeNPC(int index, int id, string name, bool isBoss, Dictionary<int, int> playerAndDamage, int allDamage, float value)
+        public StrikeNPC(int index, int id, string name, bool isBoss, Dictionary<string, int> playerAndDamage, int allDamage, float value)
         {
             this.index = index;
             this.id = id;

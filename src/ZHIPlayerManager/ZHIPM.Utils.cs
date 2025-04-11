@@ -1629,16 +1629,16 @@ public partial class ZHIPM
     /// <param name="bossName"></param>
     /// <param name="playerAndDamage"></param>
     /// <param name="allDamage"></param>
-    private static void SendKillBossMessage(string bossName, Dictionary<int, int> playerAndDamage, int allDamage)
+    private static void SendKillBossMessage(string bossName, Dictionary<string, int> playerAndDamage, int allDamage)
     {
         var sb = new StringBuilder();
-        var sortpairs = new Dictionary<int, int>();
+        var sortpairs = new Dictionary<string, int>();
 
         sb.AppendLine(GetString($"共有 [c/74F3C9:{playerAndDamage.Count}] 位玩家击败了 [c/74F3C9:{bossName}]"));
         //简单的排个序
         while (playerAndDamage.Count > 0)
         {
-            var key = 0;
+            var key = "";
             var damage = 0;
             foreach (var v in playerAndDamage)
             {
@@ -1648,7 +1648,7 @@ public partial class ZHIPM
                     damage = v.Value;
                 }
             }
-            if (key != 0)
+            if (key != "")
             {
                 sortpairs.Add(key, damage);
                 playerAndDamage.Remove(key);
@@ -1657,7 +1657,7 @@ public partial class ZHIPM
 
         foreach (var v in sortpairs)
         {
-            sb.AppendLine(GetString($"{TShock.UserAccounts.GetUserAccountByID(v.Key).Name}    伤害: [c/74F3C9:{v.Value}]    比重: {v.Value * 1.0f / allDamage:0.00%} "));
+            sb.AppendLine(GetString($"{v.Key}    伤害: [c/74F3C9:{v.Value}]    比重: {v.Value * 1.0f / allDamage:0.00%} "));
         }
         TSPlayer.All.SendMessage(sb.ToString(), Color.Bisque);
     }
