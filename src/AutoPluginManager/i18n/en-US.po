@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-03-23 05:09:11+0000\n"
-"PO-Revision-Date: 2025-04-06 01:19\n"
+"PO-Revision-Date: 2025-04-11 11:47\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -121,7 +121,7 @@ msgstr "apm i [number] install specified plugin"
 
 #: ../../Internal/CommandAdapter.cs:42
 msgid "apm il 查看本地插件列表与启用状态"
-msgstr "apm il 查看本地插件列表与启用状态"
+msgstr "apm il view local plugin list and activation status"
 
 #: ../../Internal/CommandAdapter.cs:38
 msgid "apm l 查看可安装插件表"
