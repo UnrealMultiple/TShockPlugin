@@ -10,6 +10,7 @@ namespace CaiBotLite;
 
 internal static class Login
 {
+    
     internal static bool MessageBuffer_InvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig,
         MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length,
         ref int messageType, int maxPackets)
@@ -109,12 +110,15 @@ internal static class Login
             return;
         }
 
-        if ((player.State < (int)ConnectionState.Complete || player.Dead) 
+        if (player.State < (int)ConnectionState.Complete
             && type > PacketTypes.PlayerSpawn 
-            && type != PacketTypes.PlayerMana 
-            && type != PacketTypes.PlayerBuff 
-            //&& type != PacketTypes.ItemDrop 
-            && type != PacketTypes.ItemOwner)
+            && type != PacketTypes.PlayerMana
+            && type != PacketTypes.PlayerHp
+            && type != PacketTypes.PlayerBuff
+            && type != PacketTypes.ItemOwner
+            && type != PacketTypes.SyncLoadout
+            && type != PacketTypes.Placeholder //维度数据包
+            )
         {
             args.Handled = true;
             return;
@@ -159,14 +163,14 @@ internal static class Login
 
         try
         {
-            switch (code)
+            switch ((WhiteListStatus)code)
             {
-                case 200:
+                case WhiteListStatus.Success:
                 {
                     TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {player.IP})已通过白名单验证...");
                     break;
                 }
-                case 404:
+                case WhiteListStatus.NotInWhiteList:
                 {
                     TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {player.IP})没有添加白名单...");
                     player.SilentKickInProgress = true;
@@ -174,15 +178,15 @@ internal static class Login
                                       $"请在群{groupId}内发送'/添加白名单 角色名字'");
                     return false;
                 }
-                case 403:
+                case WhiteListStatus.Banned:
                 {
-                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {player.IP})被屏蔽，处于CaiBot云黑名单中...");
+                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {player.IP})被屏蔽，处于群封禁名单中...");
                     player.SilentKickInProgress = true;
                     player.Disconnect("[Cai白名单]你已被服务器屏蔽,\n" +
                                       "你处于本群黑名单中!");
                     return false;
                 }
-                // case 401:
+                //case WhiteListStatus.NotInGroup:
                 // {
                 //     TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {plr.IP})不在本群内...");
                 //     plr.SilentKickInProgress = true;
@@ -190,7 +194,7 @@ internal static class Login
                 //                    $"请加入服务器群: {number}");
                 //     return false;
                 // }
-                case 405:
+                case WhiteListStatus.Unauthorized:
                 {
                     TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {player.IP})使用未授权的设备...");
                     player.SilentKickInProgress = true;
@@ -224,10 +228,11 @@ internal static class Login
             player.RequiresPassword = false;
             player.PlayerData = TShock.CharacterDB.GetPlayerData(player, account.ID);
 
-            if (player.State == 1)
+            if (player.State == (int)ConnectionState.AssigningPlayerSlot)
             {
-                player.State = 2;
+                player.State = (int)ConnectionState.AwaitingPlayerInfo;
             }
+            
 
             NetMessage.SendData((int) PacketTypes.WorldInfo, player.Index);
 
@@ -286,9 +291,9 @@ internal static class Login
             TShock.Log.ConsoleInfo("玩家{0}注册了新账户：{1}", player.Name, account.Name);
             player.PlayerData = TShock.CharacterDB.GetPlayerData(player, account.ID);
 
-            if (player.State == 1)
+            if (player.State == (int)ConnectionState.AssigningPlayerSlot)
             {
-                player.State = 2;
+                player.State = (int)ConnectionState.AwaitingPlayerInfo;
             }
 
             NetMessage.SendData((int) PacketTypes.WorldInfo, player.Index);
