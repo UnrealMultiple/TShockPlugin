@@ -1,11 +1,8 @@
 #!/usr/bin/env pwsh
 
 param(
-    [Parameter(Mandatory)]
-    [string]$BuildType,
-
-    [Parameter(Mandatory)]
-    [string]$TargetFramework
+    [string]$BuildType = 'Debug',
+    [string]$TargetFramework = 'net6.0'
 )
 
 function Join-Repo-Root {

@@ -369,5 +369,9 @@ FodyWeavers.xsd
 template.pot.bak
 *.mo
 
-#Submodule compile temp file
-/SubmoduleAssembly/
+# Submodule compile temp file
+/SubmoduleAssembly
+
+# Publishing Plugins Zip
+/cache
+/publish

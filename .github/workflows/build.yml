@@ -55,40 +55,7 @@ jobs:
       - name: 打包
         shell: pwsh
         run: |
-          New-Item -Name bin -ItemType Directory
-          $rid = if ([System.Environment]::OSVersion.Platform -Match "Unix") { "linux-(x64|amd64)" } else { "win-(x64|amd64)" }
-          $secureGithubToken = ConvertTo-SecureString ${{ secrets.GITHUB_TOKEN }} -AsPlainText -Force
-          Invoke-WebRequest -Authentication Bearer -Token $secureGithubToken -Uri (Invoke-WebRequest -Authentication Bearer -Token $secureGithubToken -Uri 'https://api.github.com/repos/Pryaxis/TShock/releases' | ConvertFrom-Json | Select-Object -First 1 -ExpandProperty assets | Where-Object browser_download_url -Match $rid | Select-Object -ExpandProperty browser_download_url) -OutFile bin/TShock.zip
-          Expand-Archive bin/TShock.zip -DestinationPath bin
-          if ([System.Environment]::OSVersion.Platform -Match "Unix") {
-            tar xvf bin/TShock-Beta-linux-x64-Release.tar --directory bin
-          }
-          Copy-Item out/**/*.dll bin/ServerPlugins/
-          Copy-Item SubmoduleAssembly/*.dll bin/ServerPlugins/
-          Set-Location bin
-          New-Item -Name manifests -ItemType Directory
-          foreach ($p in @(Get-ChildItem ../src/**/*.csproj)) {
-            $manifestPath = Join-Path $p.DirectoryName manifest.json
-            if (Test-Path $manifestPath -PathType Leaf) {
-              Copy-Item $manifestPath $(Join-Path manifests "$($p.Basename).json")
-            }
-          }
-          Copy-Item ../.config/submodule-manifests/* ./manifests
-          ./TShock.Server -dump-plugins-list-only ./manifests
-          Set-Location ../
-          New-Item -Path out/Target -Name Plugins -ItemType Directory
-          $ErrorActionPreference = "SilentlyContinue"
-          foreach ($p in @(Get-ChildItem src/**/*.csproj))  {             
-            foreach ($r in @(Get-ChildItem "$($p.Directory)/README*.md")) {
-              $ext_parts = ($r.Name -split '\.')
-              $ext = $ext_parts[1..$ext_parts.Length] -join '.'
-              Copy-Item $r "out/Target/Plugins/$($p.BaseName).$ext"
-            }
-          }
-          $ErrorActionPreference = "Continue"
-          Copy-Item out/**/*.dll,out/**/*.pdb out/Target/Plugins/
-          Copy-Item SubmoduleAssembly/* out/Target/Plugins/
-          Copy-Item bin/Plugins.json,README*.md,Usage.txt,LICENSE out/Target/
+          ./scripts/publish-plugins-zip.ps1 -GithubToken ${{ secrets.GITHUB_TOKEN }} -UpdateREADME
 
       - name: 上传临时插件包
         uses: actions/upload-artifact@v4
@@ -96,15 +63,6 @@ jobs:
           name: Plugins
           path: out/Target/*
           compression-level: 9
-
-      - name: 下载临时插件包
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: dawidd6/action-download-artifact@v9
-        with:
-          name: Plugins
-          path: bin
-          run_id: ${{ github.run_id }}
-          skip_unpack: true
 
       - name: 同步其他平台
         continue-on-error: true
@@ -147,7 +105,7 @@ jobs:
             ${{steps.external_changelog_second.outputs.changelog}}
             </details>
           artifacts: |
-            bin/Plugins.zip
+            out/Plugins.zip
           allowUpdates: true
           removeArtifacts: true
 
@@ -160,6 +118,13 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           $Changed = [System.Object[]]::new(0)
+
+          git diff --quiet
+          if ($LastExitCode -ne 0) {
+            $Changed += "README文档"
+            git add .
+          }
+
           foreach ($p in @(Get-ChildItem src/**/*.csproj)) {
             $pot = [System.IO.Path]::Combine($p.DirectoryName, "i18n", "template.pot")
             New-Item -Path $p.DirectoryName -Name i18n -ItemType Directory -Force
@@ -178,18 +143,14 @@ jobs:
             $Changed += "译文模板"
             git add .
           }
+          
           Copy-Item out/Target/Plugins.json Plugins.json -Force
           git diff --quiet
           if ($LastExitCode -ne 0) {
             $Changed += "插件列表"
             git add .
           }
-          ./scripts/generate-readme.ps1
-          git diff --quiet
-          if ($LastExitCode -ne 0) {
-            $Changed += "README文档"
-            git add .
-          }
+
           if ($Changed.Length -gt 0) {
             git commit -m "自动更新$($Changed -Join ", ") [skip ci]"
             git push
