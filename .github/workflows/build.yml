@@ -55,7 +55,7 @@ jobs:
       - name: 打包
         shell: pwsh
         run: |
-          ./scripts/publish-plugins-zip.ps1 -GithubToken ${{ secrets.GITHUB_TOKEN }} -UpdateREADME
+          ./scripts/publish-plugins-zip.ps1 -GithubToken ${{ secrets.GITHUB_TOKEN }} -NoBuild -NoCache
 
       - name: 上传临时插件包
         uses: actions/upload-artifact@v4

@@ -8,13 +8,32 @@ param (
 
     [Parameter()]
     [switch]
-    $UpdateREADME
+    $NoBuild,
+
+    [Parameter()]
+    [string]
+    $BuildType = 'Debug',
+
+    [Parameter()]
+    [switch]
+    $NoCache,
+
+    [Parameter()]
+    [switch]
+    $NoUpdateREADME
 )
 
 Set-Location $PSScriptRoot/..
+
+# Build plugins
+if (-not $NoBuild) {
+    & $PSScriptRoot/submodule_build.ps1 -BuildType $BuildType
+    dotnet build Plugin.sln -c $BuildType
+}
+
 New-Item -Name ./cache -ItemType Directory -Force
 if (Test-Path ./publish) {
-    Remove-Item ./publish -Recurse
+    Remove-Item ./publish -Recurse -ProgressAction SilentlyContinue
 }
 New-Item -Name ./publish -ItemType Directory -Force
 
@@ -62,7 +81,7 @@ function Get-TShockZip {
 }
 
 # Prepare TShock
-if (-not(Test-Path ./cache/TShock.zip -PathType Leaf)) {
+if (-not(Test-Path ./cache/TShock.zip -PathType Leaf) -or $NoCache) {
     Get-TShockZip ./cache/TShock.zip
 }
 Expand-Archive ./cache/TShock.zip -DestinationPath ./publish
@@ -95,17 +114,17 @@ if ($job | Where-Object {$_.State -ne "Completed"}) {
     throw "TShock.Server timeout!"
 }
 
-if ($UpdateREADME) {
+if (-not $NoUpdateREADME) {
     & $PSScriptRoot/generate-readme.ps1
 }
 
 # Packing Plugins.zip
 Set-Location $PSScriptRoot/..
 if (Test-Path ./out/Target) {
-    Remove-Item ./out/Target -Recurse
+    Remove-Item ./out/Target -Recurse -ProgressAction SilentlyContinue
 }
 if (Test-Path ./out/Plugins.zip) {
-    Remove-Item ./out/Plugins.zip -Recurse
+    Remove-Item ./out/Plugins.zip -Recurse -ProgressAction SilentlyContinue
 }
 New-Item -Path ./out/Target -Name Plugins -ItemType Directory -Force
 $ErrorActionPreference = "SilentlyContinue"
