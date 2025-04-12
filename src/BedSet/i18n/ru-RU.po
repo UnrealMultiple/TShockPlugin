@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-10 13:00:01+0000\n"
-"PO-Revision-Date: 2025-01-11 01:09\n"
+"PO-Revision-Date: 2025-04-12 01:13\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -19,5 +19,5 @@ msgstr ""
 
 #: ../../Plugin.cs:40
 msgid "出生点位置设置成功!"
-msgstr ""
+msgstr "Новая точка вашего спавна установлена!"
 

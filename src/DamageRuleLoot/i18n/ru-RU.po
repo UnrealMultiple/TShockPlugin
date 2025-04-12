@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-20 06:56:35+0000\n"
-"PO-Revision-Date: 2025-01-21 01:07\n"
+"PO-Revision-Date: 2025-04-12 01:13\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -19,147 +19,147 @@ msgstr ""
 
 #: ../../Tool.cs:318
 msgid "            [i:3455][c/AD89D5:伤][c/D68ACA:害][c/DF909A:排][c/E5A894:行][c/E5BE94:榜][i:3454]"
-msgstr ""
+msgstr "       [i:3455][c/AD89D5:Таб][c/D68ACA:лица] [c/DF909A:Лиде][c/E5A894:ров] [c/E5BE94:По] [c/F08869:Уро][c/FE624F:ну][i:3454]"
 
 #: ../../Tool.cs:344
 #, csharp-format
 msgid "   伤害:[c/74F3C9:{0}]"
-msgstr ""
+msgstr "   Урон: [c/74F3C9:{0}]"
 
 #: ../../Tool.cs:345
 #, csharp-format
 msgid "   暴击:[c/74F3C9:{0}]"
-msgstr ""
+msgstr " Крит ударов: [c/74F3C9:{0}]"
 
 #: ../../Tool.cs:346
 #, csharp-format
 msgid "   比例:[c/74F3C9:{0:0.00%}]"
-msgstr ""
+msgstr " Отношение по урону: [c/74F3C9:{0:0.00%}]"
 
 #: ../../Tool.cs:343
 #, csharp-format
 msgid " [c/A7DDF0:{0}]"
-msgstr ""
+msgstr " [c/A7DDF0:{0}]"
 
 #: ../../Tool.cs:356
 #, csharp-format
 msgid " [c/A7DDF0:{0}]([c/74F3C9:{1:0.00%}])"
-msgstr ""
+msgstr " [c/A7DDF0:{0}]([c/74F3C9:{1:0.00%}])"
 
 #: ../../Tool.cs:319
 #, csharp-format
 msgid " 当前服务器有 [c/74F3C9:{0}位] 玩家 | 未参战: [c/A7DDF0:{1}位]"
-msgstr ""
+msgstr " Игроков на сервере: [c/74F3C9:{0}] | НЕ было в битве: [c/A7DDF0:{1}]"
 
 #: ../../Tool.cs:320
 #, csharp-format
 msgid " 恭喜以下 [c/74F3C9:{0}位] 玩家击败了 [c/F7686D:{1}]"
-msgstr ""
+msgstr " Поздравления [c/74F3C9:{0}] игрокам, победившие - [c/F7686D:{1}]"
 
 #: ../../Tool.cs:268
 #, csharp-format
 msgid "[c/F06576:{0}]"
-msgstr ""
+msgstr "[c/F06576:{0}]"
 
 #: ../../Tool.cs:304
 #, csharp-format
 msgid "[c/F06576:{0}] "
-msgstr ""
+msgstr "[c/F06576:{0}] "
 
 #: ../../Tool.cs:266
 #: ../../Tool.cs:302
 #, csharp-format
 msgid "[c/F06576:【停转】] 玩家:[c/F06576:{0}] "
-msgstr ""
+msgstr "[c/F06576:【Рубеж】] Игрок: [c/F06576:{0}] "
 
 #: ../../Tool.cs:396
 #, csharp-format
 msgid "[c/F06576:【注意】]输出少于 [c/A7DDF0:{0:0.00%}] 禁止掉落宝藏袋:\n"
-msgstr ""
+msgstr "[c/F06576:【Внимание!】] Нанесённый вами урон в [c/A7DDF0:{0:0.00%}] даёт вам оставаться без приза:\n"
 
 #: ../../DamageRuleLoot.cs:82
 #, csharp-format
 msgid "[c/FBF069:【暴击】] 玩家:[c/F06576:{0}] "
-msgstr ""
+msgstr "[c/FBF069:【Крит】] Игрок: [c/F06576:{0}] "
 
 #: ../../Tool.cs:294
 #, csharp-format
 msgid "[c/FBF069:【转伤】] 玩家:[c/F06576:{0}] "
-msgstr ""
+msgstr "[c/FBF069:【Передача урона】] Игрок: [c/F06576:{0}] "
 
 #: ../../Tool.cs:258
 #, csharp-format
 msgid "[c/FBF069:【转移】] 玩家:[c/F06576:{0}] "
-msgstr ""
+msgstr "[c/FBF069:【Передача】] Игрок: [c/F06576:{0}] "
 
 #: ../../DamageRuleLoot.cs:53
 msgid "[伤害规则掉落]重新加载配置完毕。"
-msgstr ""
+msgstr "[DamageRuleLoot] Успешное чтение конфигурации"
 
 #: ../../DamageRuleLoot.cs:349
 msgid "双子魔眼"
-msgstr ""
+msgstr "Близнецы"
 
 #: ../../DamageRuleLoot.cs:83
 #, csharp-format
 msgid "对象:[c/AEA3E4:{0}] 满血:[c/FBF069:{1}] "
-msgstr ""
+msgstr "Цель: [c/AEA3E4:{0}] Полный HP: [c/FBF069:{1}] "
 
 #: ../../Tool.cs:259
 #: ../../Tool.cs:295
 #, csharp-format
 msgid "攻击对象:[c/AEA3E4:{0}] | "
-msgstr ""
+msgstr "Цель: [c/AEA3E4:{0}] | "
 
 #: ../../DamageRuleLoot.cs:85
 #, csharp-format
 msgid "暴击数:[c/FBF069:{0}]"
-msgstr ""
+msgstr "Кол-во критов: [c/FBF069:{0}]"
 
 #: ../../DamageRuleLoot.cs:479
 msgid "月亮领主"
-msgstr ""
+msgstr "Лунный Лорд"
 
 #: ../../DamageRuleLoot.cs:18
 msgid "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理"
-msgstr ""
+msgstr "Позволяет отображать нанесённый урон по NPC, настраивать получение сокровищ, таблица лидеров"
 
 #: ../../DamageRuleLoot.cs:431
 msgid "火星飞碟"
-msgstr ""
+msgstr "Тарелка Марсиан"
 
 #: ../../DamageRuleLoot.cs:448
 msgid "猪龙鱼公爵"
-msgstr ""
+msgstr "Герцог Рыброн"
 
 #: ../../Tool.cs:261
 #: ../../Tool.cs:297
 #, csharp-format
 msgid "生命:[c/FBF069:{0}]"
-msgstr ""
+msgstr "Здоровье: [c/FBF069:{0}]"
 
 #: ../../DamageRuleLoot.cs:655
 msgid "美杜莎"
-msgstr ""
+msgstr "Мехдуза"
 
 #: ../../DamageRuleLoot.cs:312
 msgid "血肉墙"
-msgstr ""
+msgstr "Стена Плоти"
 
 #: ../../DamageRuleLoot.cs:84
 #, csharp-format
 msgid "血量:[c/6DDA6D:{0}] 伤害:[c/F06576:{1}] "
-msgstr ""
+msgstr "Остаточный HP: [c/6DDA6D:{0}] Урон: [c/F06576:{1}] "
 
 #: ../../Tool.cs:267
 #: ../../Tool.cs:303
 #, csharp-format
 msgid "转伤对象:[c/AEA3E4:{0}] | 生命值:[c/6DDA6D:{1}] < "
-msgstr ""
+msgstr "Цель: [c/AEA3E4:{0}], передача урона от убитых прислужников отключена! | HP: [c/6DDA6D:{1}] < "
 
 #: ../../Tool.cs:260
 #: ../../Tool.cs:296
 #, csharp-format
 msgid "转移:[c/6DDA6D:{0}] 伤害:[c/F06576:{1}] "
-msgstr ""
+msgstr "Передача: [c/6DDA6D:{0}] Урон: [c/F06576:{1}] "
 

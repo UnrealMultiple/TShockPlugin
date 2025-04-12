@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:15:45+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-04-12 01:13\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -21,9 +21,10 @@ msgstr ""
 #, csharp-format
 msgid "[c/74F3C9:{0}] 位玩家击败了 [c/74F3C9:{1}]\n"
 "{2}"
-msgstr ""
+msgstr "[c/74F3C9:{0}] Игрок(а/ов) убил(и) [c/74F3C9:{1}]\n"
+"{2}"
 
 #: ../../DamageStatistic.cs:14
 msgid "在每次 Boss 战后显示每个玩家造成的伤害。"
-msgstr ""
+msgstr "Отображает кол-во нанесённого игроками урона по боссам"
 

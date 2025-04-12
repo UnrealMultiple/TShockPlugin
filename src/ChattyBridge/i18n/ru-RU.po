@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-02-02 04:38:32+0000\n"
-"PO-Revision-Date: 2025-02-03 01:08\n"
+"PO-Revision-Date: 2025-04-12 01:13\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -21,10 +21,11 @@ msgstr ""
 #, csharp-format
 msgid "[聊天桥] 信息发送失败，目标地址:{0}\n"
 "错误信息:{1}"
-msgstr ""
+msgstr "[ChattyBridge] Не удалось переслать сообщение на {0}\n"
+"Проблема: {1}"
 
 #: ../../Plugin.cs:86
 #, csharp-format
 msgid "[聊天桥] 接收到未知类型:{0}"
-msgstr ""
+msgstr "[ChattyBridge] Неизвестный тип: {0}"
 
