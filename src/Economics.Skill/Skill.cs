@@ -21,7 +21,7 @@ public class Skill : TerrariaPlugin
     public override string Description => GetString("让玩家拥有技能!");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 1, 1);
+    public override Version Version => new Version(2, 0, 1, 2);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 

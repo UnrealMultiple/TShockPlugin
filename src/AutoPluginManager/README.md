@@ -18,7 +18,7 @@
 | /apm -r | AutoUpdatePlugin   | 检查重复安装的插件 |
 | /apm -rb [插件名] | AutoUpdatePlugin   | 移除排除更新 |
 | /apm -lb | AutoUpdatePlugin   | 列出排除更新的插件 |
-| /apm -ib | AutoUpdatePlugin   | 列出已安装插件列表与启用状态 |
+| /apm -il | AutoUpdatePlugin   | 列出已安装插件列表与启用状态 |
 | /apm -on [序号] | AutoUpdatePlugin   | 启用某个插件 |
 | /apm -off [序号] | AutoUpdatePlugin   | 关闭某个插件 |
 ## 配置
@@ -35,6 +35,8 @@
 
 ## 更新日志
 ```
+v2.0.3.6
+修复apm il指令可能出现的报错
 v2.0.3.5
 当系统语言为空时使用 en-US 作为默认语言
 当 Manifest 无对应语言 Description 时使用 zh-CN 的 Description

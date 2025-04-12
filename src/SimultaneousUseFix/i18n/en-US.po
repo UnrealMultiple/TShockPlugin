@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:03:17+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,26 +19,26 @@ msgstr ""
 
 #: ../../SimultaneousUseFix.cs:32
 msgid "[{0}] 重新加载配置完毕。"
-msgstr ""
+msgstr "[{0}] Reload configuration completed."
 
 #: ../../SimultaneousUseFix.cs:68
 msgid "因为卡换格子bug被踢出"
-msgstr ""
+msgstr "Kicked out because of the bug in the card changing grid"
 
 #: ../../SimultaneousUseFix.cs:79
 #, csharp-format
 msgid "玩家 {0} 因为卡换格子bug被上buff"
-msgstr ""
+msgstr "Player {0} is buffed because of a card changing grid bug"
 
 #: ../../SimultaneousUseFix.cs:73
 #, csharp-format
 msgid "玩家 {0} 因为卡换格子bug被杀死"
-msgstr ""
+msgstr "Player {0} was killed because of a card switch to the grid bug"
 
 #: ../../SimultaneousUseFix.cs:67
 #, csharp-format
 msgid "玩家 {0} 因为卡换格子bug被踢出"
-msgstr ""
+msgstr "Player {0} was kicked out because of a bug in the card switch to grid"
 
 #: ../../SimultaneousUseFix.cs:13
 msgid "解决卡双锤，卡星旋机枪之类的问题"

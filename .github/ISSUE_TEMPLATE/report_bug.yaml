@@ -8,14 +8,6 @@ body:
       value: |
         很高兴你能提交新的Bug，为了能够更好的解决问题，请你填写下面的表格捏 | We are glad you are submitting a new bug. To better solve the problem, please fill out the form below.
   - type: checkboxes
-    id: read-first-issue
-    attributes:
-      label: 已阅须知 | Read the guidelines
-      description: 我已经阅读发ISSUE必看 | I have read the guidelines for submitting an issue
-      options:
-        - label: 是 | Yes
-          required: true
-  - type: checkboxes
     id: read3
     attributes:
       label: BUG可复现 | Bug is reproducible
@@ -41,6 +33,15 @@ body:
     validations:
       required: true
 
+  - type: input
+    id: tshock-version
+    attributes:
+      label: TShock版本 | TShock Version
+      description: TShock版本 | TShock Version
+      placeholder: 5.2.3
+    validations:
+      required: true
+
   - type: dropdown
     id: system
     attributes:
@@ -49,7 +50,6 @@ body:
         - Windows
         - Linux
         - Mac
-        - 手机 | Mobile
     validations:
       required: true
 
@@ -92,7 +92,7 @@ body:
       render: shell
       placeholder: |
         2024-07-17 11:34:58 - Utils: INFO: Server执行了/slap Cai。
-        2024-07-17 11:34:58 - Slap: ERROR: System.Exception: 致命的扇巴掌数据库初始化错误：连接MySQL失败。查看内部异常以获取详细信息。
+        2024-07-17 11:34:58 - Slap: ERROR: System.Exception: 数据库初始化错误：连接MySQL失败。查看内部异常以获取详细信息。
         ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: ChestID'.
         at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
         at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements(Stopwatch timer)+MoveNext()
@@ -119,7 +119,7 @@ body:
       render: shell
       placeholder: |
         Server执行了/slap Cai。
-        ERROR: System.Exception: 致命的扇巴掌数据库初始化错误：连接MySQL失败。查看内部异常以获取详细信息。
+        ERROR: System.Exception: 数据库初始化错误：连接MySQL失败。查看内部异常以获取详细信息。
         ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: ChestID'.
         at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
         at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements(Stopwatch timer)+MoveNext()

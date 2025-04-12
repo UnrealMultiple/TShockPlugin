@@ -39,7 +39,7 @@ internal class CommandAdapter
         args.Player.SendInfoMessage(GetString("apm b [插件名字] 更新时跳过指定插件"));
         args.Player.SendInfoMessage(GetString("apm rb [插件名字] 取消更新排除"));
         args.Player.SendInfoMessage(GetString("apm lb 查看更新排除列表"));
-        args.Player.SendInfoMessage(GetString("apm ib 查看本地插件列表与启用状态"));
+        args.Player.SendInfoMessage(GetString("apm il 查看本地插件列表与启用状态"));
         args.Player.SendInfoMessage(GetString("apm on 启用某个插件"));
         args.Player.SendInfoMessage(GetString("apm off 关闭某个插件"));
     }
@@ -54,7 +54,9 @@ internal class CommandAdapter
         var i = 1;
         var plugins = ((List<PluginContainer>) typeof(ServerApi)
             .GetField("plugins", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)?
-            .GetValue(null)!).ToDictionary(i => i.Plugin.GetType().Assembly.GetName().Name!);
+            .GetValue(null)!)
+            .DistinctBy(i => i.Plugin.GetType().Assembly.GetName().Name!)
+            .ToDictionary(i => i.Plugin.GetType().Assembly.GetName().Name!);
         foreach (var (assemblyName, plugin) in PluginManagementContext.Instance.LocalPluginManifests)
         {
             if (!PluginManagementContext.Instance.ClouldPluginManifests.ContainsKey(assemblyName))

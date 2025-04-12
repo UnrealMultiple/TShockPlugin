@@ -1,4 +1,5 @@
 ﻿using Economics.Skill.Attributes;
+using Economics.Skill.Internal;
 using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
@@ -44,6 +45,12 @@ public class JSFunctions
     [JavaScriptFunction("SendPacket")]
     public static void SendPacket(int packetid, int num, int num2, int num3, int num4, int num5, int num6, int num7)
     {
-        NetMessage.SendData(packetid, -1, -1, null, num, num2, num5, num5, num6, num7);
+        NetMessage.SendData(packetid, -1, -1, null, num, num2, num3, num4, num5, num6, num7);
+    }
+
+    [JavaScriptFunction("Schedule")]
+    public static void Schedule(Action<object> action, int interval, object obj)
+    {
+        JobjManager.Delayed(interval, action, obj);
     }
 }

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:03:16+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-03-19 01:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,32 +19,34 @@ msgstr ""
 
 #: ../../SignInSign.cs:63
 msgid "[告示板登录]重新加载配置完毕。"
-msgstr ""
+msgstr "[SignInSign] Reload configuration completed."
 
 #: ../../Command.cs:43
 msgid "[告示牌登录]设置传送点命令无需额外参数，将会使用你当前位置。"
-msgstr ""
+msgstr "[SignInSign] To set the teleport command without additional arguments will use your current location."
 
 #: ../../SignInSign.cs:210
 #, csharp-format
 msgid "[告示牌登录]请使用 [c/F25E61:/gs s] 设置传送坐标，当前坐标为：{0},{1} \n"
-msgstr ""
+msgstr "[SignInSign] Please use [c/F25E61:/gs s] to set teleport coordinates, the current coordinates are: {0},{1} \n"
 
 #: ../../Command.cs:15
 msgid "[告示牌登录]请输入以下指令：\n"
 "重置告示牌：[c/42B2CE:/gs r]\n"
 "设置传送点：[c/F25E61:/gs s]"
-msgstr ""
+msgstr "[SignInSign] Please enter the following instructions:\n"
+"Reset sign: [c/42B2CE:/gs r]\n"
+"Set teleport point: [c/F25E61:/gs s]"
 
 #: ../../SignInSign.cs:161
 #, csharp-format
 msgid "{0:u} 玩家【{1}】的密码为：{2}"
-msgstr ""
+msgstr "{0:u} Password of the player [{1}] is: {2}"
 
 #: ../../Command.cs:50
 #, csharp-format
 msgid "【告示牌登录】传送点已设置，坐标为({0}, {1})"
-msgstr ""
+msgstr "[SignInSign] Teleport point has been set, coordinates ({0}, {1})"
 
 #: ../../SignInSign.cs:13
 msgid "告示牌登录交互插件 支持进服弹窗！"
@@ -53,23 +55,23 @@ msgstr "Prompt login interactive plugin supports the popup window!"
 #: ../../Command.cs:49
 #, csharp-format
 msgid "已将你所在的位置设置为[c/9487D6:告示牌传送点]，坐标为({0}, {1})"
-msgstr ""
+msgstr "Your location has been set to [c/9487D6:Sign Point], coordinates ({0}, {1})"
 
 #: ../../SignInSign.cs:211
 msgid "指令 [c/F25E61:/gs s] 的权限名为：signinsign.tp"
-msgstr ""
+msgstr "Permission for command [c/F25E61:/gs s] is: signinsign.tp"
 
 #: ../../Utils.cs:18
 #, csharp-format
 msgid "未在位置({0}, {1})找到告示牌。"
-msgstr ""
+msgstr "Sign was not found at location ({0}, {1})."
 
 #: ../../SignInSign.cs:155
 #, csharp-format
 msgid "玩家【{0}】的密码为：{1}"
-msgstr ""
+msgstr "Password of the player [{0}] is: {1}"
 
 #: ../../Utils.cs:68
 msgid "输入的密码不能为空"
-msgstr ""
+msgstr "Entered password cannot be empty"
 

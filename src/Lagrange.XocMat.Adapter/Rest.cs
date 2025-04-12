@@ -1,10 +1,10 @@
 ﻿using Lagrange.XocMat.Adapter.Attributes;
 using Lagrange.XocMat.Adapter.Enumerates;
-using Lagrange.XocMat.Adapter.Model.Internet;
+using Lagrange.XocMat.Adapter.Protocol.Internet;
 using Rests;
 using Terraria;
 using TShockAPI;
-using Item = Lagrange.XocMat.Adapter.Model.Internet.Item;
+using Item = Lagrange.XocMat.Adapter.Protocol.Internet.Item;
 
 namespace Lagrange.XocMat.Adapter;
 
@@ -28,7 +28,7 @@ internal class Rest
     [RestMatch("/beanInvsee")]
     private object BInvSee(RestRequestArgs args)
     {
-        string playerName = args.Parameters["name"];
+        var playerName = args.Parameters["name"];
         var tsplayer = new Player();
         var players = TSPlayer.FindByNameOrID(playerName);
         if (players.Count != 0)
@@ -46,7 +46,7 @@ internal class Rest
             var data = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), offline.ID);
             tsplayer = Utils.CreateAPlayer(playerName, data);
         }
-        var retObject = new Model.Internet.PlayerData
+        var retObject = new Protocol.Internet.PlayerData
         {
             //在线状态
             OnlineStatu = false,

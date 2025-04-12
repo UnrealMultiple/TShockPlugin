@@ -23,26 +23,6 @@
     "HotReload": true
   },
   {
-    "Name": "Platform",
-    "Version": "1.1.0.5",
-    "Author": "Cai",
-    "Description": {
-      "en-US": "Determine player device",
-      "de-DE": "判断玩家设备",
-      "it-IT": "判断玩家设备",
-      "fr-FR": "判断玩家设备",
-      "es-ES": "判断玩家设备",
-      "ru-RU": "判断玩家设备",
-      "zh-CN": "判断玩家设备",
-      "pt-BR": "判断玩家设备",
-      "pl-PL": "判断玩家设备"
-    },
-    "AssemblyName": "Platform",
-    "Path": "Platform.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
     "Name": "Chireiden.TShock.Omni",
     "Version": "0.0.203.0",
     "Author": "SGKoishi",
@@ -92,7 +72,7 @@
       "it-IT": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
       "fr-FR": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
       "es-ES": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
-      "ru-RU": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
+      "ru-RU": "Позволяет установить макс. кол-во возможных пилонов каждого типа, игнорирующие место нахождения (биома)",
       "zh-CN": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
       "pt-BR": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
       "pl-PL": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境"
@@ -236,7 +216,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.0.3.5",
+    "Version": "2.0.3.6",
     "Author": "少司命,Cai,LaoSparrow",
     "Description": {
       "en-US": "Automatically update your plugins!",
@@ -474,7 +454,7 @@
   },
   {
     "Name": "CaiBotLitePlugin",
-    "Version": "2025.3.10.1",
+    "Version": "2025.3.29.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot官方机器人的适配插件",
@@ -558,7 +538,7 @@
   },
   {
     "Name": "CaiRewardChest",
-    "Version": "2025.1.31.1",
+    "Version": "2025.3.15.1",
     "Author": "Cai",
     "Description": {
       "en-US": "Bonus chest ! !",
@@ -1145,7 +1125,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "2.0.1.1",
+    "Version": "2.0.1.2",
     "Author": "少司命",
     "Description": {
       "en-US": "Let players have skills!",
@@ -1753,18 +1733,18 @@
   },
   {
     "Name": "PacketsStop",
-    "Version": "1.0.4",
-    "Author": "羽学 感谢少司命",
+    "Version": "1.0.6",
+    "Author": "羽学 少司命",
     "Description": {
-      "en-US": "Prevent user group packets without specified permissions",
-      "de-DE": "拦截没有指定权限的用户组数据包",
-      "it-IT": "拦截没有指定权限的用户组数据包",
-      "fr-FR": "拦截没有指定权限的用户组数据包",
-      "es-ES": "拦截没有指定权限的用户组数据包",
-      "ru-RU": "拦截没有指定权限的用户组数据包",
-      "zh-CN": "拦截没有指定权限的用户组数据包",
-      "pt-BR": "拦截没有指定权限的用户组数据包",
-      "pl-PL": "拦截没有指定权限的用户组数据包"
+      "en-US": "拦截指定玩家的数据包",
+      "de-DE": "拦截指定玩家的数据包",
+      "it-IT": "拦截指定玩家的数据包",
+      "fr-FR": "拦截指定玩家的数据包",
+      "es-ES": "拦截指定玩家的数据包",
+      "ru-RU": "拦截指定玩家的数据包",
+      "zh-CN": "拦截指定玩家的数据包",
+      "pt-BR": "拦截指定玩家的数据包",
+      "pl-PL": "拦截指定玩家的数据包"
     },
     "AssemblyName": "PacketsStop",
     "Path": "PacketsStop.dll",
@@ -1828,6 +1808,26 @@
     },
     "AssemblyName": "PersonalPermission",
     "Path": "PersonalPermission.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "Platform",
+    "Version": "2025.3.30.1",
+    "Author": "Cai",
+    "Description": {
+      "en-US": "Determine player device",
+      "de-DE": "判断玩家设备",
+      "it-IT": "判断玩家设备",
+      "fr-FR": "判断玩家设备",
+      "es-ES": "判断玩家设备",
+      "ru-RU": "判断玩家设备",
+      "zh-CN": "判断玩家设备",
+      "pt-BR": "判断玩家设备",
+      "pl-PL": "判断玩家设备"
+    },
+    "AssemblyName": "Platform",
+    "Path": "Platform.dll",
     "Dependencies": [],
     "HotReload": true
   },
@@ -2225,7 +2225,7 @@
     "Version": "1.0.3",
     "Author": "肝帝熙恩",
     "Description": {
-      "en-US": "Handling players don't send packets for a long time",
+      "en-US": "Kick players who don't send packets for a long time",
       "de-DE": "处理长时间不发送数据包的玩家",
       "it-IT": "处理长时间不发送数据包的玩家",
       "fr-FR": "处理长时间不发送数据包的玩家",
@@ -2304,7 +2304,7 @@
   },
   {
     "Name": "SmartRegions",
-    "Version": "1.4.6",
+    "Version": "1.4.7",
     "Author": "GameRoom，肝帝熙恩汉化修复",
     "Description": {
       "en-US": "Run the command when player enters the region.",
@@ -2347,7 +2347,7 @@
     "Version": "1.8.4",
     "Author": "羽学",
     "Description": {
-      "en-US": "The server owner automatically executes: invincibility, buff, items, commands, and inventory settings",
+      "en-US": "Automatic executions: invincibility, buff, items, commands, and inventory settings",
       "de-DE": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
       "it-IT": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
       "fr-FR": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
@@ -2657,7 +2657,7 @@
     "Version": "1.6.1.0",
     "Author": "Megghy, YSpoof, Maxthegreat99, 肝帝熙恩, Cai",
     "Description": {
-      "en-US": "连锁挖矿插件！",
+      "en-US": "Vein miner plug-in!",
       "de-DE": "连锁挖矿插件！",
       "it-IT": "连锁挖矿插件！",
       "fr-FR": "连锁挖矿插件！",
@@ -2734,7 +2734,7 @@
   },
   {
     "Name": "ZHIPlayerManager",
-    "Version": "1.0.2.4",
+    "Version": "1.0.2.5",
     "Author": "z枳",
     "Description": {
       "en-US": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
