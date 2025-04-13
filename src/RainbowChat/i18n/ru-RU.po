@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-02-13 10:16:50+0000\n"
-"PO-Revision-Date: 2025-02-14 01:09\n"
+"PO-Revision-Date: 2025-04-13 02:42\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -20,143 +20,143 @@ msgstr ""
 #: ../../Commands.cs:152
 #: ../../RainbowChat.cs:112
 msgid "[i:3454][c/E83849:注意][i:3454]\n"
-msgstr ""
+msgstr "[i:3454][c/E83849:Примечание!][i:3454]\n"
 
 #: ../../RainbowChat.cs:51
 msgid "[彩色聊天]重新加载配置完毕。"
-msgstr ""
+msgstr "[RainbowChat] Успешное чтение конфигурации"
 
 #: ../../Commands.cs:179
 #, csharp-format
 msgid "{0} 的彩虹聊天已 启用."
-msgstr ""
+msgstr "{0} разноцветный чат [c/00C800:включен.]"
 
 #: ../../Commands.cs:180
 #, csharp-format
 msgid "{0} 的彩虹聊天已 禁用."
-msgstr ""
+msgstr "{0} разноцветный чат [c/C80000:отключен.]"
 
 #: ../../Commands.cs:33
 #, csharp-format
 msgid "{0} 的彩虹聊天插件已关闭."
-msgstr ""
+msgstr "{0} [cC80000:отключил] возможность использовать RanbowChat!"
 
 #: ../../Commands.cs:25
 #, csharp-format
 msgid "{0} 的彩虹聊天插件已启用."
-msgstr ""
+msgstr "{0} [c/00C800:включил] возможность использовать RainbowChat!"
 
 #: ../../Commands.cs:206
 #, csharp-format
 msgid "{0} 的渐变聊天已 启用."
-msgstr ""
+msgstr "{0} градиент [c/00C800:включен.]"
 
 #: ../../Commands.cs:207
 #, csharp-format
 msgid "{0} 的渐变聊天已 禁用."
-msgstr ""
+msgstr "{0} градиент [c/C80000:отключен.]"
 
 #: ../../Commands.cs:141
 msgid "《彩虹聊天》 菜单指令\n"
-msgstr ""
+msgstr "《RainbowChat》 Меню Команд\n"
 
 #: ../../Commands.cs:142
 msgid "/rc 开启 或 关闭 - 开启|关闭插件功能\n"
-msgstr ""
+msgstr "/rc <on>/<off> - [c/00C800:Включает] | [c/C80000:Отключает] плагин (для админа!)\n"
 
 #: ../../Commands.cs:146
 msgid "/rc 渐变 - 开启或关闭自己的渐变聊天\n"
-msgstr ""
+msgstr "/rc gradient - [c/00C800:Включает] | [c/C80000:Отключает] градиент твоих сообщений\n"
 
 #: ../../Commands.cs:147
 msgid "/rc 渐变 开始 R,G,B - 设置渐变聊天起始颜色\n"
-msgstr ""
+msgstr "/rc gradient start R,G,B - Установить начальный цвет градиента\n"
 
 #: ../../Commands.cs:148
 msgid "/rc 渐变 结束 R,G,B - 设置渐变聊天结束颜色"
-msgstr ""
+msgstr "/rc gradient end R,G,B - Установить конечный цвет градиента"
 
 #: ../../Commands.cs:144
 msgid "/rc 渐变开关 - 全局开启|关闭渐变色功能\n"
-msgstr ""
+msgstr "/rc gswitch -  [c/00C800:Включает] | [c/C80000:Отключает] возможность использования градиента всем (для админа!)\n"
 
 #: ../../Commands.cs:145
 msgid "/rc 随机 - 开启或关闭自己的随机单色整句\n"
-msgstr ""
+msgstr "/rc random - [c/00C800:Включает] | [c/C80000:Отключает] случайный цвет твоих сообщений\n"
 
 #: ../../Commands.cs:143
 msgid "/rc 随机开关 - 全局开启|关闭随机色功能\n"
-msgstr ""
+msgstr "/rc rswitch - [c/00C800:Включает] | [c/C80000:Отключает] возможность использования случайного цвета сообщений всем (для админа!)\n"
 
 #: ../../RainbowChat.cs:15
 msgid "使玩家每次说话的颜色不一样."
-msgstr ""
+msgstr "Позволяет сделать отправляемые в чат сообщения разноцветными."
 
 #: ../../Commands.cs:153
 #: ../../RainbowChat.cs:113
 msgid "使用[c/B0B2D1:非正版客户端]或[c/B0B2D1:语言资源包]导致TS指令异常\n"
-msgstr ""
+msgstr "Использование [c/B0B2D1:неофициального клиента] или [c/B0B2D1:текстур пака, влияющий как-то на языки] может вызвать проблемы при работе команд.\n"
 
 #: ../../Commands.cs:52
 msgid "全局的渐变色聊天已 启用."
-msgstr ""
+msgstr "Возможность использования градиента [c/00C800:включена]."
 
 #: ../../Commands.cs:53
 msgid "全局的渐变色聊天已 禁用."
-msgstr ""
+msgstr "Возможность использования градиента [c/C80000:отключена]."
 
 #: ../../Commands.cs:42
 msgid "全局的随机色聊天已 启用."
-msgstr ""
+msgstr "Возможность использования случайного цвета сообщений [c/00C800:включена]."
 
 #: ../../Commands.cs:43
 msgid "全局的随机色聊天已 禁用."
-msgstr ""
+msgstr "Возможность использования случайного цвета сообщений [c/C80000:отключена]."
 
 #: ../../RainbowChat.cs:75
 msgid "您的渐变聊天功能已自动开启."
-msgstr ""
+msgstr "Градиент ваших сообщений автоматически [c/00C800:влючен]."
 
 #: ../../RainbowChat.cs:115
 msgid "或者请玩家使用 [c/B0B2D1:.help] 代替 [c/B0B2D1:/help]"
-msgstr ""
+msgstr "Или используйте [c/B0B2D1:.help] вместо [c/B0B2D1:/help]"
 
 #: ../../Commands.cs:155
 msgid "或者请玩家使用 [c/B0B2D1:．help] 代替 [c/B0B2D1:/help]"
-msgstr ""
+msgstr "Или используйте [c/B0B2D1:.help] вместо [c/B0B2D1:/help]"
 
 #: ../../Commands.cs:110
 msgid "无效的结束颜色值。请使用格式如 'R,G,B'（逗号分隔）的颜色表示法。"
-msgstr ""
+msgstr "Неверно введён формат конечного цвета. Используйте \"R,G,B\" (через запятую 3 числа)."
 
 #: ../../Commands.cs:88
 msgid "无效的起始颜色值。请使用格式如 'R,G,B'（逗号分隔）的颜色表示法。"
-msgstr ""
+msgstr "Неверно введён формат начального цвета. Используйте \"R,G,B\" (через запятую 3 числа)."
 
 #: ../../Commands.cs:84
 #, csharp-format
 msgid "渐变开始颜色已设置为 R:{0}, G:{1}, B:{2}"
-msgstr ""
+msgstr "Установлен начальный цвет - R:{0}, G:{1}, B:{2}."
 
 #: ../../Commands.cs:106
 #, csharp-format
 msgid "渐变结束颜色已设置为 R:{0}, G:{1}, B:{2}"
-msgstr ""
+msgstr "Установлен конечный цвет - R:{0}, G:{1}, B:{2}."
 
 #: ../../Commands.cs:115
 msgid "结束颜色值缺失。请使用如 '/rc 渐变 结束 0,255,0' 的格式。"
-msgstr ""
+msgstr "Конечный цвет отсутствует. Впишите команду: /rc gradient end \"R,G,B\""
 
 #: ../../Commands.cs:154
 #: ../../RainbowChat.cs:114
 msgid "请服主安装[c/B0B2D1:Chireiden.TShock.Omni]插件修复\n"
-msgstr ""
+msgstr "Попросите владельца сервера установить плагин  [c/B0B2D1:Chireiden.TShock.Omni] для устранения проблем.\n"
 
 #: ../../Commands.cs:93
 msgid "起始颜色值缺失。请使用如 '/rc 渐变 开始 255,0,0' 的格式。"
-msgstr ""
+msgstr "Начальный цвет отсутствует. Впишите команду: /rc gradient end \"R,G,B\""
 
 #: ../../Commands.cs:226
 msgid "错误的玩家!"
-msgstr ""
+msgstr "Данный игрок не найден!"
 

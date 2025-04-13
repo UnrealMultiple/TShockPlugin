@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:22+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-04-13 02:42\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -19,5 +19,5 @@ msgstr ""
 
 #: ../../MainPlugin.cs:15
 msgid "rest查询背包"
-msgstr ""
+msgstr "Добавляет запросы REST на инвентарь"
 

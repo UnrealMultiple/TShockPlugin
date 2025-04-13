@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 18:22:55+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-04-13 02:42\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -20,17 +20,17 @@ msgstr ""
 #: ../../MainPlugin.cs:63
 #: ../../MainPlugin.cs:68
 msgid "你已进入箱子修改模式。"
-msgstr ""
+msgstr "Вы в режиме редактирования содержимого сундука."
 
 #: ../../MainPlugin.cs:63
 msgid "你已退出箱子修改模式。"
-msgstr ""
+msgstr "Вы вышли из режима редактирования."
 
 #: ../../MainPlugin.cs:25
 msgid "切换个人修改箱子名字和内容的模式"
-msgstr ""
+msgstr "Переключает режим редактирования для неисчерпаемых сундуков"
 
 #: ../../MainPlugin.cs:17
 msgid "无限宝箱插件"
-msgstr ""
+msgstr "Позволяет делать неисчерпаемые сундуки"
 
