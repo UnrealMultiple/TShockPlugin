@@ -105,14 +105,16 @@ foreach ($p in @(Get-ChildItem ../src/**/*.csproj)) {
 Copy-Item ../.config/submodule-manifests/* ./manifests
 
 # Start generating plugin list
-$job = Start-ThreadJob -ScriptBlock {
-    ./TShock.Server -dump-plugins-list-only ./manifests
-}
-$job | Wait-Job -Timeout 180 | Out-Null
-$job | Receive-Job
-if ($job | Where-Object {$_.State -ne "Completed"}) {
+$proc = Start-Process -NoNewWindow -PassThru './TShock.Server' -ArgumentList '-dump-plugins-list-only','./manifests'
+$proc | Wait-Process -Timeout 180 -ErrorAction SilentlyContinue -ErrorVariable timeouted
+if ($timeouted) {
+    $proc | Stop-Process
     throw "TShock.Server timeout!"
 }
+elseif ($proc.ExitCode -ne 0) {
+    throw "TShock.Server error!"
+}
+
 
 if (-not $NoUpdateREADME) {
     & $PSScriptRoot/generate-readme.ps1
