@@ -33,23 +33,100 @@
 > 配置文件位置：tshock/Economics/Skill.json
 ```json5
 {
-  "绑定技能最大数量": 0,
-  "单武器绑定最大技能数量": 0,
-  "禁止拉怪表": [],
-  "禁止伤怪表": [],
+  "绑定技能最大数量": 6,
+  "单武器绑定最大技能数量": 6,
+  "禁止拉怪表": [],  //填写npcid
+  "禁止伤怪表": [],  //填写npcid
   "最大显示页": 20,
   "技能列表": [
     {
-      "名称": "",
+      "名称": "测试技能",
       "喊话": "",
       "技能唯一": false,
       "全服唯一": false,
       "隐藏": false,
-      "技能价格": [],
-      "限制等级": [],
-      "限制进度": [],
+      "技能价格": [  //此技能价格需要根据EconomicsAPI调整
+        {
+          "数量": 0,
+          "货币类型": "经验"
+        }
+      ],
+      "限制等级": [], //填写RPG插件等级，此限制会检测并包含父等级
+      "限制进度": [], //填写进度
+      "限制技能": [], //技能序号
+      "事件循环": {
+        "循环间隔": 10,
+        "循环次数": 1,
+        "弹幕循环": [
+          {
+            "运行累计触发": 1,
+            "运行区间始": 1,
+            "运行区间终": 1,
+            "弹幕ID": 0,
+            "伤害": 0,
+            "击退": 0.0,
+            "角度": 0,
+            "X轴起始位置": 0,
+            "Y轴起始位置": 0,
+            "X轴速度": 0.0,
+            "Y轴速度": 0.0,
+            "自动方向": true,
+            "持续时间": -1,
+            "动态伤害": false,
+            "AI": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "速度": 0.0,
+            "更新事件": [],
+            "生成事件": [],
+            "广播": ""
+          }
+        ],
+        "范围循环": [
+          {
+            "运行累计触发": 1,
+            "运行区间始": 1,
+            "运行区间终": 1,
+            "范围": 0,
+            "Buff列表": [],
+            "清理弹幕": false,
+            "命令": [],
+            "血量": 0,
+            "魔力": 0,
+            "NPC增益": [],
+            "拉怪": false,
+            "拉怪X轴调整": 0,
+            "拉怪Y轴调整": 0,
+            "伤害敌怪": 0,
+            "广播": ""
+          }
+        ],
+        "玩家循环": [
+          {
+            "运行累计触发": 1,
+            "运行区间始": 1,
+            "运行区间终": 1,
+            "传送": {
+              "启用": false,
+              "面向修正": false,
+              "X轴位置": 0,
+              "Y轴位置": 0
+            },
+            "无敌": {
+              "启用": false,
+              "时长": 0
+            },
+            "广播": ""
+          }
+        ]
+      },
       "触发设置": {
-        "触发模式": [],
+        "触发模式": [
+          "主动",
+          "CD"
+        ],
         "冷却": 0,
         "血量": 0,
         "血量比例计算": false,
@@ -57,117 +134,151 @@
         "蓝量": 0,
         "蓝量比例计算": false,
         "大于蓝量": false,
-        "物品条件": [],
+        "物品条件": [
+          {
+            "背包物品": false,
+            "装备": false,
+            "饰品": false,
+            "手持物品": false,
+            "是否消耗": false,
+            "物品ID": 0,
+            "数量": 0,
+            "前缀": 0
+          }
+        ],
         "Buff条件": [],
         "环境条件": [],
         "技能条件": []
       },
-      "伤害敌怪": {
-        "伤害": 0,
-        "范围": 0
-      },
-      "敌怪BUFF": {
-        "启用": false,
-        "BUFF": {
-          "Buff列表": [],
-          "范围": 0
-        },
-        "范围": 0
-      },
-      "范围命令": {
-        "命令": [],
-        "范围": 0
-      },
-      "治愈": {
-        "血量": 0,
-        "魔力": 0,
-        "范围": 0
-      },
-      "清理弹幕": {
-        "启用": false,
-        "范围": 0
-      },
-      "拉怪": {
-        "X轴调整": 0,
-        "Y轴调整": 0,
-        "范围": 0
-      },
-      "传送": {
-        "启用": false,
-        "面向修正": false,
-        "X轴位置": 0,
-        "Y轴位置": 0
-      },
-      "无敌": {
-        "启用": false,
-        "时长": 0
-      },
-      "范围Buff": {
-        "Buff列表": [],
-        "范围": 0
-      },
-      "执行脚本": null,
-      "弹幕": [
-        {
-          "弹幕ID": 0,
-          "伤害": 0,
-          "击退": 0.0,
-          "起始角度": 0,
-          "X轴起始位置": 0,
-          "Y轴起始位置": 0,
-          "X轴速度": 0.0,
-          "Y轴速度": 0.0,
-          "自动方向": true,
-          "持续时间": -1,
-          "AI": [
-            0.0, //-1使用玩家索引
-            0.0,
-            0.0
-          ],
-          "AI样式": {
-            "样式": -1,
-            "发射弹幕": 0,
-            "伤害": 0,
-            "射速": 0,
-            "攻击范围": 50,
-            "环绕大小": 0,
-            "攻击间隔": 10,
-            "AI": [
-              0.0,
-              0.0,
-              0.0
-            ]
-          },
-          "射速": 0.0,
-          "锁定怪物配置": {
-            "启用": false,
-            "弹幕锁定敌怪": false,
-            "以锁定敌怪为中心": false,
-            "锁定血量最少": true,
-            "范围": 0
-          },
-          "延迟": 0,
-          "弹幕循环": {
-            "配置": [
-              {
-                "次数": 0,
-                "X递增": 0,
-                "Y递增": 0,
-                "角度递增": 0,
-                "圆面半径": 0,
-                "反向发射": false,
-                "延迟": 0,
-                "跟随玩家位置": false,
-                "根据角度计算新的点": false
-              }
-            ]
-          }
-        }
-      ]
+      "执行脚本": "环绕锁敌.js" //执行脚本名称
     }
   ]
 }
 ```
+
+## 配置说明
+- 在上方示例配置中，我并未解释事件循环如何配置，我个人认为事件循环的设计过于复杂，因此我并不推荐使用配置来实现弹幕效果
+- 在最新版的Skill插件配置中更加注重对单个弹幕的控制，这可能有助于实现更加复杂的弹幕效果，但他让配置文件变的宂余。因此我添加了新选择`JavaScript`
+- 这是我期待的，触发效果交给配置文件来处理，当达成触发条件后调用js脚本。
+
+## 脚本(Script)
+脚本是通过Jint库进行调用的，其性能并不高，我考虑过使用ClearScriptV8来支持脚本运行，但对于一个插件来说它太大了，因此最终选择了Jint，如果将来遇到性能瓶颈，我会考虑升级至ClearScriptV8.
+
+先来看一个示例
+```javascript
+var Xna = importNamespace("Microsoft.Xna.Framework");
+var Terraria = importNamespace("Terraria");
+
+function main(skill, ply, pos, vel) {
+    let projs = [];
+    var distance = 16 * 25;    // 固定半径
+    var startAngle = 0;         // 初始角度（度）
+    var angleIncrement = 60;    // 角度间隔（度）
+    var count = 360 / angleIncrement;             // 弹幕数量
+
+    // 生成初始位置并记录每个弹幕的初始角度（弧度）
+    var posList = ply.TPlayer.Center.GetPointsOnCircle(distance, startAngle, angleIncrement, count);
+    var n = 0;
+    posList.ForEach(pos => {
+        var projIdx = SpawnProjtile(ply, pos, new Xna.Vector2(0, 0), 684, 100, 10, ply.Index, 0, 0, 0);
+        SendProjectilePacket(projIdx);
+        projs.push({
+            id: projIdx,
+            angle: (startAngle + n * angleIncrement) * Math.PI / 180 // 初始角度转为弧度
+        });
+        n += 1;
+    });
+    
+    var loopCount = 60 * 100;
+    for (let i = 0; i < loopCount; i++) {
+        Schedule((args) => { // 使用闭包捕获当前帧数
+            projs.forEach(projData => {
+                var proj = Terraria.Main.projectile[projData.id];
+                //if (!proj.active) return;
+
+                // 计算新角度：初始角度 + 旋转速度 * 当前帧
+                var newAngle = projData.angle + i * 0.05; // 每帧旋转0.05弧度
+                var center = ply.TPlayer.Center;
+
+                // 用固定半径计算新位置
+                proj.Center = new Xna.Vector2(
+                    center.X + Math.cos(newAngle) * distance,
+                    center.Y + Math.sin(newAngle) * distance
+                );
+                SendProjectilePacket(projData.id);
+                LockNpc(ply, proj, projData.id);
+            });
+        }, i); // 按帧延迟执行
+    }
+}
+
+function LockNpc(ply, proj, id){
+    var npc = proj.Center.FindRangeNPC(50 * 16);
+    if (npc && Terraria.Main.rand.Next(40) == 0) {
+       // 找到最近的怪物
+        let targetVel = Terraria.Main.projectile[id].Center.DirectionTo(npc.Center).SafeNormalize(Xna.Vector2.UnitY);
+        targetVel = targetVel.ToLenOf(10);
+        var projIdx = SpawnProjtile(ply, proj.Center, targetVel, 684, 100, 10, ply.Index);
+        SendProjectilePacket(projIdx);
+    }
+}
+```
+- 上方的js脚本，会创建一些弹幕环绕在玩家身边持续100秒时间，在此期间环绕中的弹幕会锁定并攻击附近50格范围内的怪物。
+### 脚本说明
+所有的脚本必须已以下格式编写
+```javascript
+function main(skill, ply, pos, vel){
+
+}
+```
+这就跟c系语言的入口函数一样，main函数是脚本的入口，其参数亦不可变。
+
+#### 在脚本中内置了一些函数
+
+*void print(object msg);*
+```javascript
+function main(skill, ply, pos, vel){
+    print("Hellow World"); //在ts控制台你会看到输出
+}
+```
+*int SpawnProjtile(TSPlayer ply, Vector2 pos, Vector2 vel, int type, int Damage, int KnockBack, int Owner, float ai0 = 0, float ai1 = 0, float ai2 = 0, int timeLeft = -1, string uuid = "")*
+```javascript
+function main(skill, ply, pos, vel){
+    let index = SpawnProjtile(ply, pos, vel, 684, 100, 10, ply.Index, 0, 0, 0)
+        SendProjectilePacket(index);
+}
+```
+*void SendPacket(int packetid, int num, int num2, int num3, int num4, int num5, int num6, int num7)*
+```javascript
+function main(skill, ply, pos, vel){
+    SendPacket(66, ply.Index, life) //回复玩家100点生命
+}
+```
+*void Schedule(Action<object> action, int interval, object obj)*
+```javascript
+function main(skill, ply, pos, vel){
+    Schedule((args) =>{
+        SendPacket(66, ply.Index, life);
+    }, 60); //延迟60帧(1秒) 给玩家回复深生命值。
+}
+```
+#### 支持的扩展函数
+- EconomicsAPI.Extensions.GameProgress
+- Terraria.Utils
+- EconomicsAPI.Extensions.PlayerExt
+- EconomicsAPI.Extensions.NpcExt
+- EconomicsAPI.Extensions.TSPlayerExt
+- Enumerable
+- EconomicsAPI.Extensions.Vector2Ext
+示例脚本中相当一部分代码使用了扩展函数，你可以在这些命名空间中找到具体函数
+
+#### 支持的Assembly
+- EconomicsAPI
+- TShockAPI
+- OTAPI
+- System.Thread.Task
+你可以通过`importNamespace`函数访问这些程序集中的公开类
+
 ## 更新日志
 ```
 v2.0.1.0
