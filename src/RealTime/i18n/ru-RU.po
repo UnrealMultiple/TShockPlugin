@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:03:09+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-04-13 02:42\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -19,74 +19,74 @@ msgstr ""
 
 #: ../../RealTime.cs:299
 msgid "[c/FF66FF:未知]"
-msgstr ""
+msgstr "[c/FF66FF:Неизведанно]"
 
 #: ../../RealTime.cs:149
 msgid "万圣节的邪恶影响会阻止你的PvP关闭。"
-msgstr ""
+msgstr "Злые духи Хэллоуина не позволяют отключить PvP!"
 
 #: ../../RealTime.cs:295
 msgid "上弦月"
-msgstr ""
+msgstr "при первой четверти..."
 
 #: ../../RealTime.cs:291
 msgid "下弦月"
-msgstr ""
+msgstr "при третьей четверти..."
 
 #: ../../RealTime.cs:42
 msgid "事件禁止切换队伍。"
-msgstr ""
+msgstr "Переход в другую команду запрещён."
 
 #: ../../RealTime.cs:290
 msgid "亏凸月"
-msgstr ""
+msgstr "убывающая..."
 
 #: ../../RealTime.cs:12
 msgid "同步现实时间"
-msgstr ""
+msgstr "Синхронизация с реальным временем"
 
 #: ../../RealTime.cs:279
 msgid "天气已变更"
-msgstr ""
+msgstr "Погода меняется..."
 
 #: ../../RealTime.cs:294
 msgid "娥眉月"
-msgstr ""
+msgstr "растущий полумесяц..."
 
 #: ../../RealTime.cs:293
 msgid "新月"
-msgstr ""
+msgstr "Фаза новолуния..."
 
 #: ../../RealTime.cs:119
 msgid "日食的邪恶影响会阻止你的PvP关闭。"
-msgstr ""
+msgstr "Злые духи при Солнечном затмении не позволяют отключить PvP!"
 
 #: ../../RealTime.cs:246
 #, csharp-format
 msgid "月相已更换为：{0}"
-msgstr ""
+msgstr "Фаза Луны {0}"
 
 #: ../../RealTime.cs:252
 msgid "月相已更换为：满月"
-msgstr ""
+msgstr "полнолуния"
 
 #: ../../RealTime.cs:292
 msgid "残月"
-msgstr ""
+msgstr "при последней четверти..."
 
 #: ../../RealTime.cs:238
 msgid "渔夫任务和旅商商品已更换"
-msgstr ""
+msgstr "Задание рыбака и товары странствующего торговца изменены"
 
 #: ../../RealTime.cs:296
 msgid "盈凸月"
-msgstr ""
+msgstr "прибывающая..."
 
 #: ../../RealTime.cs:91
 msgid "血月的邪恶影响会阻止你的PvP关闭。"
-msgstr ""
+msgstr "Злые духи при Кровавой Луны не позволяют отключить PvP!"
 
 #: ../../RealTime.cs:177
 msgid "霜月的邪恶影响会阻止你的PvP关闭。"
-msgstr ""
+msgstr "Злые духи Рождества не позволяют отключить PvP!"
 

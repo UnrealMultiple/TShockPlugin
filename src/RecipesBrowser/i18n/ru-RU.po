@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-11 17:28:21+0000\n"
-"PO-Revision-Date: 2025-01-12 01:16\n"
+"PO-Revision-Date: 2025-04-13 02:42\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -19,67 +19,67 @@ msgstr ""
 
 #: ../../RecipesBrowser.cs:127
 msgid "[i:1134]蜂蜜 "
-msgstr ""
+msgstr "[i:1134]Мёд (лужа мёда)"
 
 #: ../../RecipesBrowser.cs:131
 msgid "[i:126]水 "
-msgstr ""
+msgstr "[i:126]Вода (лужа воды) | [i:2827) любая раковина"
 
 #: ../../RecipesBrowser.cs:149
 msgid "[i:321]墓地 "
-msgstr ""
+msgstr "[i:321]Мини-биом кладбища"
 
 #: ../../RecipesBrowser.cs:123
 msgid "[i:3258]徒手 "
-msgstr ""
+msgstr "[i:3258]Не требуется"
 
 #: ../../RecipesBrowser.cs:135
 msgid "[i:4825]岩浆 "
-msgstr ""
+msgstr "[i:4825]Лава (лужа лавы)"
 
 #: ../../RecipesBrowser.cs:144
 msgid "[i:4956]天顶种子 "
-msgstr ""
+msgstr "[i:4956]Только на сиде getfixedboi !"
 
 #: ../../RecipesBrowser.cs:140
 msgid "[i:593]雪原群系 "
-msgstr ""
+msgstr "[i:593]Снежный биом"
 
 #: ../../RecipesBrowser.cs:96
 #, csharp-format
 msgid "{0}配方{1}:"
-msgstr ""
+msgstr "{0}Репецт-{1}:"
 
 #: ../../RecipesBrowser.cs:157
 msgid "可合成的物品:\n"
-msgstr ""
+msgstr "Возможные крафты:\n"
 
 #: ../../RecipesBrowser.cs:116
 msgid "合成站："
-msgstr ""
+msgstr "На чём крафтить: "
 
 #: ../../RecipesBrowser.cs:61
 msgid "未找到物品"
-msgstr ""
+msgstr "Предмет не найден!"
 
 #: ../../RecipesBrowser.cs:109
 msgid "材料："
-msgstr ""
+msgstr "Материалы: "
 
 #: ../../RecipesBrowser.cs:53
 msgid "格式错误!正确格式: /find <物品ID|物品名>"
-msgstr ""
+msgstr "Неверно введена команда! Править: /find <item ID|item name>"
 
 #: ../../RecipesBrowser.cs:84
 msgid "此物品无配方"
-msgstr ""
+msgstr "Нет рецептов для этого предмета"
 
 #: ../../RecipesBrowser.cs:81
 #, csharp-format
 msgid "物品:{0}"
-msgstr ""
+msgstr "Предмет: {0}"
 
 #: ../../RecipesBrowser.cs:17
 msgid "通过指令获取物品合成表"
-msgstr ""
+msgstr "Позволяет узнать рецепт предмета командой."
 

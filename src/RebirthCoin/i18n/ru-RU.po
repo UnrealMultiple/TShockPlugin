@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:19+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-04-13 02:42\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -19,25 +19,25 @@ msgstr ""
 
 #: ../../RebirthCoin.cs:84
 msgid "[复活币]重新加载配置完毕。"
-msgstr ""
+msgstr "[RebithCoin] Успешное чтение конфигурации"
 
 #: ../../Config/Configuration.cs:15
 msgid "{0} 被圣光笼罩，瞬间复活!!!"
-msgstr ""
+msgstr "Невиданные силы мира Террарии окутывают {0} и воскрешают его моментально!"
 
 #: ../../RebirthCoin.cs:75
 msgid "启动复活币需要先启动SSC功能，检测到服务器未开启SSC功能已自动关闭复活币功能"
-msgstr ""
+msgstr "RebithCoin будет работать при включённом SSC (server side characher), иначе автоматически отключён"
 
 #: ../../RebirthCoin.cs:164
 msgid "启动复活币需要先启动SSC功能! "
-msgstr ""
+msgstr "Требуется включить SSC (server side character)!"
 
 #: ../../RebirthCoin.cs:63
 msgid "未找到复活币配置，已为您创建！修改配置后输入指令 /reload 重新读取"
-msgstr ""
+msgstr "Автоматически создан файл конфигурации для RebithCoin, при изменении впишите команду /reload"
 
 #: ../../RebirthCoin.cs:14
 msgid "让死者瞬间原地复活的神奇力量！"
-msgstr ""
+msgstr "Позволяет игрокам моментально воскрешаться после смерти!"
 
