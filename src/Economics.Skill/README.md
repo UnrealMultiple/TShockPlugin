@@ -190,14 +190,16 @@ function main(skill, ply, pos, vel) {
     });
     
     var loopCount = 60 * 100;
+    var j = 0;
     for (let i = 0; i < loopCount; i++) {
-        Schedule((args) => { // 使用闭包捕获当前帧数
+        Schedule((args) => {
+            j++; //闭包原因无法正确捕获变量i用j代替
             projs.forEach(projData => {
                 var proj = Terraria.Main.projectile[projData.id];
                 //if (!proj.active) return;
 
                 // 计算新角度：初始角度 + 旋转速度 * 当前帧
-                var newAngle = projData.angle + i * 0.05; // 每帧旋转0.05弧度
+                var newAngle = projData.angle + j * 0.05; // 每帧旋转0.05弧度
                 var center = ply.TPlayer.Center;
 
                 // 用固定半径计算新位置

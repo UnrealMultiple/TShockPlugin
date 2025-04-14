@@ -41,6 +41,12 @@ public class JSFunctions
         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
     }
 
+    [JavaScriptFunction("range")]
+    public static IEnumerable<int> GenerateRange(int start, int end)
+    { 
+        return Enumerable.Range(start, end);
+    }
+
 
     [JavaScriptFunction("SendPacket")]
     public static void SendPacket(int packetid, int num, int num2, int num3, int num4, int num5, int num6, int num7)
