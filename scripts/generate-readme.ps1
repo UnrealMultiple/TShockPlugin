@@ -6,6 +6,7 @@ $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 $ErrorActionPreference = 'Stop'
 
 # preparing manifests
+Remove-Item ./publish/manifests -Recurse -Force -ProgressAction SilentlyContinue -ErrorAction Ignore
 New-Item -Name ./publish/manifests -ItemType Directory -Force | Out-Null
 foreach ($p in @(Get-ChildItem ./src/**/*.csproj)) {
   $manifestPath = "$($p.DirectoryName)/manifest.json"
