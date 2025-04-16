@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-02-03 19:28:31+0000\n"
-"PO-Revision-Date: 2025-02-04 01:07\n"
+"PO-Revision-Date: 2025-04-14 01:18\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -19,36 +19,36 @@ msgstr ""
 
 #: ../../GolfRewards.cs:66
 msgid "[高尔夫奖励] 重读配置完毕!"
-msgstr ""
+msgstr "[GolfReward] Успешное чтение конфигурации!"
 
 #: ../../GolfRewards.cs:13
 msgid "将高尔夫打入球洞会得到奖励."
-msgstr ""
+msgstr "Позволяет редактировать награды за игру в гольф."
 
 #: ../../GolfRewards.cs:155
 #, csharp-format
 msgid "指令 {0} 执行失败！ "
-msgstr ""
+msgstr "Выполнение команды {0} не удалось!"
 
 #: ../../GolfRewards.cs:75
 msgid "敲击物块以确认其坐标!"
-msgstr ""
+msgstr "Нажмите на блок, чтобы узнать координаты!"
 
 #: ../../LC.cs:26
 msgid "未找到高尔夫奖励配置文件，已为您创建！"
-msgstr ""
+msgstr "[GoldReward] Файл конфигурации создан!"
 
 #: ../../GolfRewards.cs:104
 #, csharp-format
 msgid "目标坐标为: X{0} Y{1}"
-msgstr ""
+msgstr "Координаты блока: X{0} Y{1}"
 
 #: ../../GolfRewards.cs:29
 msgid "输入/物块坐标 或 /blockpos 后敲击物块确认坐标"
-msgstr ""
+msgstr "Впишите /blockpos чтобы узнать координаты блока."
 
 #: ../../LC.cs:33
 #, csharp-format
 msgid "高尔夫奖励插件错误配置读取错误:{0}"
-msgstr ""
+msgstr "[GoldReward] Ошибка чтения конфигурации: {0}"
 

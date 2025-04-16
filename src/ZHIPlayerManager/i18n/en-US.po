@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-02-27 12:33:32+0000\n"
-"PO-Revision-Date: 2025-04-11 11:47\n"
+"PO-Revision-Date: 2025-04-16 01:16\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -1381,59 +1381,59 @@ msgstr "Enter /zmodify [name] all [0 or 1] to turn off or turn on all player buf
 
 #: ../../ZHIPM.Initialize.cs:642
 msgid "输入 /zmodify [name] ambrosia [0或1] 来关闭或开启珍馐增益\n"
-msgstr ""
+msgstr "Enter /zmodify [name] ambrosia [0 or 1] to turn off or turn on the ambrosia buff\n"
 
 #: ../../ZHIPM.Initialize.cs:637
 msgid "输入 /zmodify [name] bread [0或1] 来关闭或开启工匠面包增益\n"
-msgstr ""
+msgstr "Enter /zmodify [name] bread [0 or 1] to turn off or turn on the artisan loaf buff\n"
 
 #: ../../ZHIPM.Initialize.cs:643
 msgid "输入 /zmodify [name] cart [0或1] 来关闭或开启超级矿车增益\n"
-msgstr ""
+msgstr "Enter /zmodify [name] cart [0 or 1] to turn off or turn on the minecart upgrade kit buff\n"
 
 #: ../../ZHIPM.Initialize.cs:636
 msgid "输入 /zmodify [name] demmon [0或1] 来关闭或开启恶魔心增益\n"
-msgstr ""
+msgstr "Enter /zmodify [name] demmon [0 or 1] to turn off or turn on the demon heart buff\n"
 
 #: ../../ZHIPM.Initialize.cs:634
 msgid "输入 /zmodify [name] fish [num] 来修改玩家的渔夫任务数\n"
-msgstr ""
+msgstr "Enter /zmodify [name] fish [num] to modify the player's angler quest completions\n"
 
 #: ../../ZHIPM.Initialize.cs:639
 msgid "输入 /zmodify [name] fruit [0或1] 来关闭或开启埃癸斯果增益\n"
-msgstr ""
+msgstr "Enter /zmodify [name] fruit [0 or 1] to turn off or turn on the aegis fruit buff\n"
 
 #: ../../ZHIPM.Initialize.cs:638
 msgid "输入 /zmodify [name] heart [0或1] 来关闭或开启埃癸斯水晶增益\n"
-msgstr ""
+msgstr "Enter /zmodify [name] heart [0 or 1] to turn off or turn on the vital crystal buff\n"
 
 #: ../../ZHIPM.Initialize.cs:630
 msgid "输入 /zmodify [name] life [num] 来修改玩家的血量\n"
-msgstr ""
+msgstr "Enter /zmodify [name] life [num] to modify the player's health\n"
 
 #: ../../ZHIPM.Initialize.cs:631
 msgid "输入 /zmodify [name] lifemax [num] 来修改玩家的血量上限\n"
-msgstr ""
+msgstr "Enter /zmodify [name] lifemax [num] to modify the player's health limit\n"
 
 #: ../../ZHIPM.Initialize.cs:632
 msgid "输入 /zmodify [name] mana [num] 来修改玩家的魔力\n"
-msgstr ""
+msgstr "Enter /zmodify [name] mana [num] to modify the player's mana\n"
 
 #: ../../ZHIPM.Initialize.cs:633
 msgid "输入 /zmodify [name] manamax [num] 来修改玩家的魔力上限\n"
-msgstr ""
+msgstr "Enter /zmodify [name] manamax [num] to modify the player's mana limit\n"
 
 #: ../../ZHIPM.Initialize.cs:640
 msgid "输入 /zmodify [name] pearl [0或1] 来关闭或开启银河珍珠增益\n"
-msgstr ""
+msgstr "Enter /zmodify [name] pearl [0 or 1] to turn off or turn on the galaxy pearl buff\n"
 
 #: ../../ZHIPM.Initialize.cs:635
 msgid "输入 /zmodify [name] torch [0或1] 来关闭或开启火把神增益\n"
-msgstr ""
+msgstr "Enter /zmodify [name] torch [0 or 1] to turn off or turn on the torch god buff\n"
 
 #: ../../ZHIPM.Initialize.cs:641
 msgid "输入 /zmodify [name] worm [0或1] 来关闭或开启粘性蠕虫增益\n"
-msgstr ""
+msgstr "Enter /zmodify [name] worm [0 or 1] to turn off or turn on the gummy worm buff\n"
 
 #: ../../ZHIPM.cs:142
 #: ../../ZHIPM.Initialize.cs:616
@@ -1443,33 +1443,35 @@ msgstr "Type /zmodify help to view command help for modifying player data"
 
 #: ../../ZHIPM.Initialize.cs:40
 msgid "输入 /zmodify help 查看修改玩家数据的指令帮助\n"
-msgstr ""
+msgstr "Enter /zmodify help to view commands help for modifying player data\n"
 
 #: ../../ZHIPM.cs:146
 msgid "输入 /zout [name]  来导出该玩家的人物存档\n"
 "输入 /zout all  来导出所有人物的存档"
-msgstr ""
+msgstr "Enter /zout [name] to export the player's character archive\n"
+"Enter /zout all to export all characters' archives"
 
 #: ../../ZHIPM.Initialize.cs:2692
 msgid "输入 /zout <name>  来导出该玩家的人物存档\n"
-msgstr ""
+msgstr "Enter /zout <name> to export the player's character archive\n"
 
 #: ../../ZHIPM.Initialize.cs:49
 msgid "输入 /zout <name> 来导出该玩家的人物存档\n"
-msgstr ""
+msgstr "Enter /zout <name> to export the player's character archive\n"
 
 #: ../../ZHIPM.Initialize.cs:2693
 msgid "输入 /zout all  来导出所有人物的存档"
-msgstr ""
+msgstr "Enter /zout all to export all characters' archives"
 
 #: ../../ZHIPM.Initialize.cs:50
 msgid "输入 /zout all 来导出所有人物的存档并压缩打包\n"
-msgstr ""
+msgstr "Enter /zout all to export all characters' archives and compress them\n"
 
 #: ../../ZHIPM.cs:183
 msgid "输入 /zreset [name]  来清理该玩家的人物数据\n"
 "输入 /zreset all  来清理所有玩家的人物数据"
-msgstr ""
+msgstr "Enter /zreset [name] to reset the player's character data\n"
+"Enter /zreset all to reset all player character data"
 
 #: ../../ZHIPM.Initialize.cs:1107
 msgid "输入 /zreset <name>  来清理该玩家的人物数据\n"
@@ -1479,15 +1481,15 @@ msgstr "Type /zreset <name> to clear this player's character data\n"
 
 #: ../../ZHIPM.Initialize.cs:1118
 msgid "输入 /zreset <name> 来清理该玩家的人物数据\n"
-msgstr ""
+msgstr "Enter /zreset <name> to reset the player's character data\n"
 
 #: ../../ZHIPM.Initialize.cs:1119
 msgid "输入 /zreset all 来清理所有玩家的人物数据\n"
-msgstr ""
+msgstr "Enter /zreset all to reset all player character data\n"
 
 #: ../../ZHIPM.Initialize.cs:51
 msgid "输入 /zreset help 来查看zreset系列指令帮助\n"
-msgstr ""
+msgstr "Enter /zreset help to view zreset series command help\n"
 
 #: ../../ZHIPM.cs:187
 #: ../../ZHIPM.Initialize.cs:1202
@@ -1496,7 +1498,7 @@ msgstr "Type /zresetallplayers to clear all data for all players"
 
 #: ../../ZHIPM.Initialize.cs:1120
 msgid "输入 /zresetallplayers 来清理所有玩家的所有数据"
-msgstr ""
+msgstr "Enter /zresetallplayers to reset all data for all players"
 
 #: ../../ZHIPM.cs:175
 #: ../../ZHIPM.Initialize.cs:946
@@ -1507,15 +1509,15 @@ msgstr "Type /zresetdb [name] to clear this player's backup data\n"
 
 #: ../../ZHIPM.Initialize.cs:1114
 msgid "输入 /zresetdb <name> 来清理该玩家的备份数据\n"
-msgstr ""
+msgstr "Enter /zresetdb <name> to reset the player's backup data\n"
 
 #: ../../ZHIPM.Initialize.cs:1115
 msgid "输入 /zresetdb all 来清理所有玩家的备份数据\n"
-msgstr ""
+msgstr "Enter /zresetdb all to reset backup data for all players\n"
 
 #: ../../ZHIPM.Initialize.cs:1025
 msgid "输入 /zresetex [name]  来清理该玩家的额外数据\n"
-msgstr ""
+msgstr "Enter /zresetex [name] to reset the player's extra data\n"
 
 #: ../../ZHIPM.cs:179
 msgid "输入 /zresetex [name]  来清理该玩家的额外数据\n"
@@ -1525,15 +1527,15 @@ msgstr "Type /zresetex [name] to clear this player's extra data\n"
 
 #: ../../ZHIPM.Initialize.cs:1116
 msgid "输入 /zresetex <name> 来清理该玩家的额外数据\n"
-msgstr ""
+msgstr "Enter /zresetex <name> to reset the player's extra data\n"
 
 #: ../../ZHIPM.Initialize.cs:1026
 msgid "输入 /zresetex all  来清理所有玩家的额外数据"
-msgstr ""
+msgstr "Enter /zresetex all to reset all players' extra data"
 
 #: ../../ZHIPM.Initialize.cs:1117
 msgid "输入 /zresetex all 来清理所有玩家的额外数据\n"
-msgstr ""
+msgstr "Enter /zresetex all to reset all players' extra data\n"
 
 #: ../../ZHIPM.cs:122
 #: ../../ZHIPM.Initialize.cs:110
@@ -1542,7 +1544,7 @@ msgstr "Type /zsave to back up your character save"
 
 #: ../../ZHIPM.Initialize.cs:30
 msgid "输入 /zsave 来备份自己的人物存档\n"
-msgstr ""
+msgstr "Enter /zsave to backup your character archive\n"
 
 #: ../../ZHIPM.cs:126
 #: ../../ZHIPM.Initialize.cs:152
@@ -1552,23 +1554,23 @@ msgstr "Type /zsaveauto [minute] to automatically back up your character save ev
 
 #: ../../ZHIPM.Initialize.cs:31
 msgid "输入 /zsaveauto <minute> 来每隔 minute 分钟自动备份自己的人物存档，当 minute为0时关闭该功能\n"
-msgstr ""
+msgstr "Enter /zsaveauto <minute> to automatically backup your character archive every minute. When minute is 0, turn off this function\n"
 
 #: ../../ZHIPM.Initialize.cs:3280
 msgid "输入 /zsort boss  来查看人物击杀Boss总数排行榜前十名\n"
-msgstr ""
+msgstr "Enter /zsort boss to view the top ten player kill bosses\n"
 
 #: ../../ZHIPM.Initialize.cs:3279
 msgid "输入 /zsort boss [num]  来查看当前[num]个人物击杀Boss总数排行榜\n"
-msgstr ""
+msgstr "Enter /zsort boss [num] to view the current player killing bosses ranking list\n"
 
 #: ../../ZHIPM.Initialize.cs:3281
 msgid "输入 /zsort boss all  来查看所有玩家击杀Boss总数排行榜"
-msgstr ""
+msgstr "Enter /zsort boss all to view the ranking of the total number of bosses killed by all players"
 
 #: ../../ZHIPM.Initialize.cs:3628
 msgid "输入 /zsort clumsy  来查看人物手残排行榜前十名\n"
-msgstr ""
+msgstr "Enter /zsort clumsy to view the top ten players' hand-in-hand rankings\n"
 
 #: ../../ZHIPM.Initialize.cs:3629
 msgid "输入 /zsort clumsy [num]  来查看当前[num]个人物手残排行榜\n"
@@ -1576,56 +1578,56 @@ msgstr "Enter /zsort clumsy [num] to view the current character hand-breaking ra
 
 #: ../../ZHIPM.Initialize.cs:2876
 msgid "输入 /zsort clumsy [num] 来查看当前[num]个人物手残排行榜\n"
-msgstr ""
+msgstr "Enter /zsort clumsy [num] to view the current player hand-breaking ranking list\n"
 
 #: ../../ZHIPM.Initialize.cs:3630
 msgid "输入 /zsort clumsy all  来查看所有玩家手残排行榜"
-msgstr ""
+msgstr "Enter /zsort clumsy all to view all player hand breaking rankings"
 
 #: ../../ZHIPM.Initialize.cs:2877
 msgid "输入 /zsort clumsy all 来查看所有玩家手残排行榜\n"
-msgstr ""
+msgstr "Enter /zsort clumsy all to view all player hand breaking rankings\n"
 
 #: ../../ZHIPM.Initialize.cs:3043
 msgid "输入 /zsort coin  来查看人物硬币数目排行榜前十名\n"
-msgstr ""
+msgstr "Enter /zsort coin to view the top ten players' coins\n"
 
 #: ../../ZHIPM.Initialize.cs:3044
 msgid "输入 /zsort coin [num]  来查看当前[num]个人物硬币数目排行榜\n"
-msgstr ""
+msgstr "Enter /zsort coin [num] to view the current player coins\n"
 
 #: ../../ZHIPM.Initialize.cs:2883
 msgid "输入 /zsort coin [num] 来查看当前[num]个人物硬币数目排行榜\n"
-msgstr ""
+msgstr "Enter /zsort coin [num] to view the current player coins\n"
 
 #: ../../ZHIPM.Initialize.cs:3045
 msgid "输入 /zsort coin all  来查看所有玩家硬币数目排行榜"
-msgstr ""
+msgstr "Enter /zsort coin all to view the ranking of all players' coins"
 
 #: ../../ZHIPM.Initialize.cs:2884
 msgid "输入 /zsort coin all 来查看所有玩家硬币数目排行榜\n"
-msgstr ""
+msgstr "Enter /zsort coin all to view the ranking of all players' coins\n"
 
 #: ../../ZHIPM.Initialize.cs:2882
 msgid "输入 /zsort coin 来查看人物硬币数目排行榜前十名\n"
-msgstr ""
+msgstr "Enter /zsort coin to view the top ten players' coins\n"
 
 #: ../../ZHIPM.Initialize.cs:3515
 msgid "输入 /zsort death  来查看人物死亡次数排行榜前十名\n"
-msgstr ""
+msgstr "Enter /zsort death to view the top ten deaths of the player\n"
 
 #: ../../ZHIPM.Initialize.cs:3514
 msgid "输入 /zsort death [num]  来查看当前[num]个人物死亡次数排行榜\n"
-msgstr ""
+msgstr "Enter /zsort death [num] to view the current deaths of the player\n"
 
 #: ../../ZHIPM.Initialize.cs:3516
 msgid "输入 /zsort death all  来查看所有玩家死亡次数排行榜"
-msgstr ""
+msgstr "Enter /zsort death all to view the ranking of all players' deaths"
 
 #: ../../ZHIPM.Initialize.cs:2862
 #: ../../ZHIPM.Initialize.cs:2872
 msgid "输入 /zsort death all 来查看所有玩家死亡次数排行榜\n"
-msgstr ""
+msgstr "Enter /zsort death all to view the ranking of all players' deaths\n"
 
 #: ../../ZHIPM.Initialize.cs:2861
 #: ../../ZHIPM.Initialize.cs:2871
@@ -1668,58 +1670,59 @@ msgstr "Enter /zsort help to view the sorting list command help\n"
 
 #: ../../ZHIPM.Initialize.cs:3201
 msgid "输入 /zsort kill  来查看人物击杀生物数排行榜前十名\n"
-msgstr ""
+msgstr "Enter /zsort kill to view the top ten creatures kill of the player\n"
 
 #: ../../ZHIPM.Initialize.cs:3200
 msgid "输入 /zsort kill [num]  来查看当前[num]个人物击杀生物数排行榜\n"
-msgstr ""
+msgstr "Enter /zsort kill [num] to view the current player kill creature ranking list\n"
 
 #: ../../ZHIPM.Initialize.cs:3202
 msgid "输入 /zsort kill all  来查看所有玩家击杀生物数排行榜"
-msgstr ""
+msgstr "Enter /zsort kill all to view the ranking of all players' kill creatures"
 
 #: ../../ZHIPM.Initialize.cs:3437
 msgid "输入 /zsort point  来查看人物点数排行榜前十名\n"
-msgstr ""
+msgstr "Enter /zsort point to view the top ten players' points rankings\n"
 
 #: ../../ZHIPM.Initialize.cs:3436
 msgid "输入 /zsort point [num]  来查看当前[num]个人物点数排行榜\n"
-msgstr ""
+msgstr "Enter /zsort point [num] to view the current player points ranking\n"
 
 #: ../../ZHIPM.Initialize.cs:3438
 msgid "输入 /zsort point all  来查看所有玩家点数排行榜"
-msgstr ""
+msgstr "Enter /zsort point all to view the ranking of all player points"
 
 #: ../../ZHIPM.Initialize.cs:2857
 #: ../../ZHIPM.Initialize.cs:2867
 msgid "输入 /zsort point all 来查看所有玩家点数排行榜\n"
-msgstr ""
+msgstr "Enter /zsort point all to view the ranking of all player points\n"
 
 #: ../../ZHIPM.Initialize.cs:2856
 #: ../../ZHIPM.Initialize.cs:2866
 msgid "输入 /zsort point 来查看人物点数排行榜前十名\n"
-msgstr ""
+msgstr "Enter /zsort point to view the top ten players' points rankings\n"
 
 #: ../../ZHIPM.Initialize.cs:3359
 msgid "输入 /zsort rarenpc  来查看人物击杀罕见生物总数排行榜前十名\n"
-msgstr ""
+msgstr "Enter /zsort rarenpc to view the top ten in the total rare creatures killed by players\n"
 
 #: ../../ZHIPM.Initialize.cs:3358
 msgid "输入 /zsort rarenpc [num]  来查看当前[num]个人物击杀罕见生物总数排行榜\n"
-msgstr ""
+msgstr "Enter /zsort rarenpc [num] to view the current ranking of rare creatures killed by players\n"
 
 #: ../../ZHIPM.Initialize.cs:3360
 msgid "输入 /zsort rarenpc all  来查看所有玩家击杀罕见生物总数排行榜"
-msgstr ""
+msgstr "Enter /zsort rarenpc all to view the ranking of all players' total of rare creatures killed"
 
 #: ../../ZHIPM.Initialize.cs:2963
 msgid "输入 /zsort time  来查看人物在线时间排行榜前十名\n"
 "输入 /zsort time all  来查看所有玩家在线时常排行榜"
-msgstr ""
+msgstr "Enter /zsort time to view the top ten players' online time rankings\n"
+"Enter /zsort time all to view the online rankings of all players"
 
 #: ../../ZHIPM.Initialize.cs:2962
 msgid "输入 /zsort time [num]  来查看当前[num]个人物在线时间排行榜\n"
-msgstr ""
+msgstr "Enter /zsort time [num] to view the current player online time ranking\n"
 
 #: ../../ZHIPM.cs:169
 #: ../../ZHIPM.Initialize.cs:3895
@@ -1730,31 +1733,31 @@ msgstr "Type /zunfre [name] to unfreeze this player\n"
 
 #: ../../ZHIPM.Initialize.cs:46
 msgid "输入 /zunfre <name> 来解冻该玩家\n"
-msgstr ""
+msgstr "Enter /zunfre <name> to unfreeze the player\n"
 
 #: ../../ZHIPM.Initialize.cs:47
 msgid "输入 /zunfre all 来解冻所有玩家\n"
-msgstr ""
+msgstr "Enter /zunfre all to unfreeze all players\n"
 
 #: ../../ZHIPM.cs:130
 msgid "输入 /zvisa [num] 来查看自己的第几个人物备份"
-msgstr ""
+msgstr "Enter /zvisa [num] to view your backup of your character"
 
 #: ../../ZHIPM.Initialize.cs:334
 msgid "输入 /zvisa [num] 来查看自己的第几个人物备份\n"
-msgstr ""
+msgstr "Enter /zvisa [num] to view your backup of your character\n"
 
 #: ../../ZHIPM.Initialize.cs:32
 msgid "输入 /zvisa <num> 来查看自己的人物备份\n"
-msgstr ""
+msgstr "Enter /zvisa <num> to view your character backup\n"
 
 #: ../../ZHIPM.Initialize.cs:335
 msgid "输入 /zvisa name [num] 来查看该玩家的第几个人物备份"
-msgstr ""
+msgstr "Enter /zvisa name [num] to view the player's backup of the character"
 
 #: ../../ZHIPM.Initialize.cs:33
 msgid "输入 /zvisa name <num> 来查看该玩家的第几个人物备份\n"
-msgstr ""
+msgstr "Enter /zvisa name <num> to view the player's backup of the character\n"
 
 #: ../../ZHIPM.Initialize.cs:966
 #: ../../ZHIPM.Initialize.cs:987
