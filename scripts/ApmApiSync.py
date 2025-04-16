@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 import requests
 
@@ -6,7 +7,7 @@ payload = {
     'token': f'{token}'
 }
 files = {
-    'file': open('bin/Plugins.zip', 'rb')
+    'file': open('out/Plugins.zip', 'rb')
 }
 
 response = requests.post(f"http://api.terraria.ink:11434/plugin/upload", data=payload, files=files)

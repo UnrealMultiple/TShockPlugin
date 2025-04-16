@@ -6,14 +6,15 @@ $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 $ErrorActionPreference = 'Stop'
 
 # preparing manifests
-New-Item -Name ./bin/manifests -ItemType Directory -Force | Out-Null
+Remove-Item ./publish/manifests -Recurse -Force -ProgressAction SilentlyContinue -ErrorAction Ignore
+New-Item -Name ./publish/manifests -ItemType Directory -Force | Out-Null
 foreach ($p in @(Get-ChildItem ./src/**/*.csproj)) {
   $manifestPath = "$($p.DirectoryName)/manifest.json"
   if (Test-Path $manifestPath -PathType Leaf) {
-    Copy-Item $manifestPath "./bin/manifests/$($p.Basename).json"
+    Copy-Item $manifestPath "./publish/manifests/$($p.Basename).json"
   }
 }
-Copy-Item ./.config/submodule-manifests/* ./bin/manifests
+Copy-Item ./.config/submodule-manifests/* ./publish/manifests
 
 $asm_to_dir = @{}
 foreach ($p in @(Get-ChildItem ./src/**/*.csproj)) {
@@ -52,7 +53,7 @@ function Get-PluginList {
   }
 
   $infos = [ordered]@{}
-  foreach ($jf in @(Get-ChildItem ./bin/manifests/*.json)) {
+  foreach ($jf in @(Get-ChildItem ./publish/manifests/*.json)) {
     $asm_name = $jf.BaseName
     $json = Get-Content $jf -Raw | ConvertFrom-Json -AsHashtable
     $infos[$asm_name] = [PSCustomObject]@{
