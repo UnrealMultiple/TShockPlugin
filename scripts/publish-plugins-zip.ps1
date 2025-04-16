@@ -27,14 +27,14 @@ Set-Location $PSScriptRoot/..
 
 # Build plugins
 if (-not $NoBuild) {
+    Remove-Item ./out/$BuildType -Recurse -Force -ProgressAction SilentlyContinue -ErrorAction Ignore
+    Remove-Item ./SubmoduleAssembly -Recurse -Force -ProgressAction SilentlyContinue -ErrorAction Ignore
     & $PSScriptRoot/submodule_build.ps1 -BuildType $BuildType
     dotnet build Plugin.sln -c $BuildType
 }
 
 New-Item -Name ./cache -ItemType Directory -Force
-if (Test-Path ./publish) {
-    Remove-Item ./publish -Recurse -ProgressAction SilentlyContinue
-}
+Remove-Item ./publish -Recurse -Force -ProgressAction SilentlyContinue -ErrorAction Ignore
 New-Item -Name ./publish -ItemType Directory -Force
 
 function Get-TShockZip {
@@ -122,12 +122,8 @@ if (-not $NoUpdateREADME) {
 
 # Packing Plugins.zip
 Set-Location $PSScriptRoot/..
-if (Test-Path ./out/Target) {
-    Remove-Item ./out/Target -Recurse -ProgressAction SilentlyContinue
-}
-if (Test-Path ./out/Plugins.zip) {
-    Remove-Item ./out/Plugins.zip -Recurse -ProgressAction SilentlyContinue
-}
+Remove-Item ./out/Target -Recurse -Force -ProgressAction SilentlyContinue -ErrorAction Ignore
+Remove-Item ./out/Plugins.zip -Recurse -Force -ProgressAction SilentlyContinue -ErrorAction Ignore
 New-Item -Path ./out/Target -Name Plugins -ItemType Directory -Force
 $ErrorActionPreference = "SilentlyContinue"
 foreach ($p in @(Get-ChildItem src/**/*.csproj)) {             
@@ -138,8 +134,11 @@ foreach ($p in @(Get-ChildItem src/**/*.csproj)) {
     }
 }
 $ErrorActionPreference = "Continue"
-Copy-Item ./out/**/*.dll, ./out/**/*.pdb ./out/Target/Plugins/
+Copy-Item ./out/$BuildType/*.dll, ./out/$BuildType/*.pdb ./out/Target/Plugins/
 Copy-Item ./SubmoduleAssembly/* ./out/Target/Plugins/
 Copy-Item ./publish/Plugins.json, ./README*.md, ./Usage.txt, ./LICENSE ./out/Target/
+# APM
+New-Item -Path ./out/Target -Name Apm -ItemType Directory -Force
+Copy-Item ./out/$BuildType/AutoPluginManager.* ./out/Target/Apm/
 
 Compress-Archive -Path ./out/Target/* -DestinationPath ./out/Plugins.zip

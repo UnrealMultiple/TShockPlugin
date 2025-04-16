@@ -38,24 +38,17 @@ jobs:
             Start-Process -FilePath msgfmt -WorkingDirectory $p.Directory.FullName -ArgumentList "-o $([System.IO.Path]::ChangeExtension($p.Name, ".mo")) $($p.Name)"
           }
 
-      - name: 构建插件
+      - name: 打包
         if: github.event_name != 'push' || github.ref != 'refs/heads/master'
         shell: pwsh
         run: |
-          ./scripts/submodule_build.ps1 -BuildType Debug -TargetFramework net6.0
-          dotnet build Plugin.sln -c Debug
+          ./scripts/publish-plugins-zip.ps1 -GithubToken ${{ secrets.GITHUB_TOKEN }} -NoCache -BuildType Debug
 
-      - name: 构建插件
+      - name: 打包
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         shell: pwsh
         run: |
-          ./scripts/submodule_build.ps1 -BuildType Release -TargetFramework net6.0
-          dotnet build Plugin.sln -c Release
-
-      - name: 打包
-        shell: pwsh
-        run: |
-          ./scripts/publish-plugins-zip.ps1 -GithubToken ${{ secrets.GITHUB_TOKEN }} -NoBuild -NoCache
+          ./scripts/publish-plugins-zip.ps1 -GithubToken ${{ secrets.GITHUB_TOKEN }} -NoCache -BuildType Release
 
       - name: 上传临时插件包
         uses: actions/upload-artifact@v4
