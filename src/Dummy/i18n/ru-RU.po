@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:15:48+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-04-14 01:18\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -20,35 +20,35 @@ msgstr ""
 #: ../../CommandAdapter.cs:56
 #, csharp-format
 msgid "[{0}].{1} 连接状态: {2}"
-msgstr ""
+msgstr "[{0}].{1} Статус присоединения: {2}"
 
 #: ../../CommandAdapter.cs:25
 msgid "dummy list 假人列表"
-msgstr ""
+msgstr "dummy list - список менекенов"
 
 #: ../../CommandAdapter.cs:26
 msgid "dummy reconnect [index] 重新连接"
-msgstr ""
+msgstr "dummy reconnect [номер] - подключите манекена к миру"
 
 #: ../../CommandAdapter.cs:24
 msgid "dummy remove [index] 移除目标假人"
-msgstr ""
+msgstr "dummy remove [номер] - отключает манекена из мира."
 
 #: ../../CommandAdapter.cs:69
 msgid "假人移除成功!"
-msgstr ""
+msgstr "Манекен убран!"
 
 #: ../../Plugin.cs:17
 msgid "在你的服务器中放置假人！"
-msgstr ""
+msgstr "Позволяет создавать манекенов-игроков!"
 
 #: ../../CommandAdapter.cs:40
 #: ../../CommandAdapter.cs:73
 msgid "目标假人不存在!"
-msgstr ""
+msgstr "Данного манекена не существует!"
 
 #: ../../CommandAdapter.cs:45
 #: ../../CommandAdapter.cs:78
 msgid "请输入正确的序号!"
-msgstr ""
+msgstr "Введите верный номер манекена!"
 

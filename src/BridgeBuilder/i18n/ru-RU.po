@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:15:35+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-04-14 01:18\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -20,25 +20,25 @@ msgstr ""
 #: ../../BridgeBuilder.cs:106
 #, csharp-format
 msgid "{0}格桥梁建造完成！"
-msgstr ""
+msgstr "{0} блоков было установлено!"
 
 #: ../../BridgeBuilder.cs:68
 msgid "你手持的物品无法放置。"
-msgstr ""
+msgstr "Выбранный предмет не может быть размещён!"
 
 #: ../../BridgeBuilder.cs:77
 msgid "无法在这里建造桥梁。"
-msgstr ""
+msgstr "Здесь невозможно построить мост."
 
 #: ../../BridgeBuilder.cs:27
 msgid "朝着你看的方向建造桥梁。（你需要持有一定数量的平台或团队块或种植盆。）"
-msgstr ""
+msgstr "Строит мост в сторону, куда смотрит персонаж."
 
 #: ../../BridgeBuilder.cs:110
 msgid "没有足够的空间或物品来建造桥梁。"
-msgstr ""
+msgstr "Не хватает предметов или места."
 
 #: ../../BridgeBuilder.cs:14
 msgid "铺桥!"
-msgstr ""
+msgstr "Позволяет строить мосты!"
 

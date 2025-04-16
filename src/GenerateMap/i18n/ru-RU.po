@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:15:57+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-04-14 01:18\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -20,9 +20,9 @@ msgstr ""
 #: ../../Plugin.cs:59
 #, csharp-format
 msgid "地图已生成保存在{0}文件"
-msgstr ""
+msgstr "Карта была создана и сохранена в файле {0}"
 
 #: ../../Plugin.cs:15
 msgid "生成地图图片"
-msgstr ""
+msgstr "Позволяет генерировать изображение карты."
 

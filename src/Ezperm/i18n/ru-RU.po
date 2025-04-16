@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-31 16:21:48+0000\n"
-"PO-Revision-Date: 2025-02-01 01:11\n"
+"PO-Revision-Date: 2025-04-14 01:18\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -19,25 +19,25 @@ msgstr ""
 
 #: ../../Ezperm.cs:15
 msgid "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限"
-msgstr ""
+msgstr "Позволяет облегчить работу с добавлением/удалением прав (permissions) для групп через команду /inperms"
 
 #: ../../Ezperm.cs:106
 #, csharp-format
 msgid "成功为组 {0} 删除权限: {1}"
-msgstr ""
+msgstr "Успешно изменён{0} | Права на удаления: {1}"
 
 #: ../../Ezperm.cs:89
 #, csharp-format
 msgid "成功为组 {0} 添加权限: {1}"
-msgstr ""
+msgstr "Успешно изменены права для {0}: {1}"
 
 #: ../../Ezperm.cs:72
 #, csharp-format
 msgid "成功将组 {0} 的父组设置为 {1}。"
-msgstr ""
+msgstr "Теперь {1} является родительским для {0}."
 
 #: ../../Ezperm.cs:48
 #, csharp-format
 msgid "组 {0} 不存在，已创建该组。"
-msgstr ""
+msgstr "Группы {0} не было найдено, но она была создана."
 
