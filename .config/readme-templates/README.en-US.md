@@ -59,8 +59,8 @@
 <Details>
 <Summary>Plugin List</Summary>
 
-| Plugin Name | Plugin Description | Depedencies |
-| :-: | :-: | :-: |
+| Plugin Name | Translation Percentage | Plugin Description | Dependencies |
+| :-: | :-: | :-: | :-: |
 <!--{PluginList,en-US}-->
 
 </Details>

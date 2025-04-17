@@ -59,8 +59,8 @@
 <Details>
 <Summary>Plugin List</Summary>
 
-| Plugin Name | Plugin Description | Depedencies |
-| :-: | :-: | :-: |
+| Plugin Name | Translation Percentage | Plugin Description | Dependencies |
+| :-: | :-: | :-: | :-: |
 | [AdditionalPylons](./src/AdditionalPylons/README.en-US.md) | 100.0% | Place more Pylons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AIChatPlugin](./src/AIChatPlugin/README.en-US.md) | 100.0% | AIChatPlugin |  |
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 100.0% | Enhance Broadcast Box Functionality | [LazyAPI](./src/LazyAPI/README.en-US.md) |
