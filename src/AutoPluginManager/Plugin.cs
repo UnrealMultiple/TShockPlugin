@@ -11,7 +11,7 @@ namespace AutoPluginManager;
 public class Plugin : TerrariaPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 3, 6);
+    public override Version Version => new Version(2, 0, 3, 7);
 
     public override string Author => "少司命,Cai,LaoSparrow";
 
@@ -57,7 +57,7 @@ public class Plugin : TerrariaPlugin
                 return;
             }
 
-            TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n" + string.Join("\n", availableUpdates.Select(i => $"[{i.Current!.Name}] V{i.Current!.Version} >>> V{i.Latest.Version}"))));
+            TShock.Log.ConsoleInfo(GetString("[以下插件有新的版本更新]\n") + string.Join("\n", availableUpdates.Select(i => $"[{i.Current!.Name}] V{i.Current!.Version} >>> V{i.Latest.Version}")));
             if (Config.Instance.AutoUpdate)
             {
                 TShock.Log.ConsoleInfo(GetString("正在自动更新插件..."));
