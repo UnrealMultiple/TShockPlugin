@@ -7,7 +7,7 @@
 [![QQ](https://img.shields.io/badge/QQ-EB1923?logo=tencent-qq&logoColor=white)](https://qm.qq.com/cgi-bin/qm/qr?k=54tOesIU5g13yVBNFIuMBQ6AzjgE6f0m&jump_from=webapi&authKey=6jzafzJEqQGzq7b2mAHBw+Ws5uOdl83iIu7CvFmrfm/Xxbo2kNHKSNXJvDGYxhSW)
 [![TShock](https://img.shields.io/badge/TShock5.2.0-2B579A.svg?&logo=TShock&logoColor=white)](https://github.com/Pryaxis/TShock)
 
-**&gt; 简体中文 &lt;** | [English](README.en-US.md) | [Spanish/Español](README.es-ES.md)
+[简体中文](README.md) | **&gt; English &lt;** | [Spanish/Español](README.es-ES.md)
 
 </div>
 
