@@ -23,7 +23,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 0)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zhelp  来查看指令帮助"));
+            args.Player.SendInfoMessage(GetString("输入 /zhelp 来查看指令帮助"));
         }
         else
         {
@@ -78,8 +78,8 @@ public partial class ZHIPM
         {
             if (!int.TryParse(args.Parameters[1], out var num))
             {
-                args.Player.SendInfoMessage(GetString("输入 /zback <name>  来读取该玩家的最新人物存档\n") +
-                                            GetString("输入 /zback <name> <num>  来读取该玩家的第几个人物存档"));
+                args.Player.SendInfoMessage(GetString("输入 /zback <name> 来读取该玩家的最新人物存档\n") +
+                                            GetString("输入 /zback <name> <num> 来读取该玩家的第几个人物存档"));
                 return;
             }
 
@@ -93,8 +93,8 @@ public partial class ZHIPM
         }
         else
         {
-            args.Player.SendInfoMessage(GetString("输入 /zback <name>  来读取该玩家的最新人物存档\n") +
-                                        GetString("输入 /zback <name> <num>  来读取该玩家的第几个人物存档"));
+            args.Player.SendInfoMessage(GetString("输入 /zback <name> 来读取该玩家的最新人物存档\n") +
+                                        GetString("输入 /zback <name> <num> 来读取该玩家的第几个人物存档"));
         }
     }
 
@@ -107,7 +107,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 0)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zsave  来备份自己的人物存档"));
+            args.Player.SendInfoMessage(GetString("输入 /zsave 来备份自己的人物存档"));
             return;
         }
 
@@ -149,7 +149,7 @@ public partial class ZHIPM
 
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zsaveauto [minute]  来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能"));
+            args.Player.SendInfoMessage(GetString("输入 /zsaveauto [minute] 来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能"));
             return;
         }
 
@@ -181,7 +181,7 @@ public partial class ZHIPM
         }
         else
         {
-            args.Player.SendInfoMessage(GetString("输入 /zsaveauto [minute]  来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能"));
+            args.Player.SendInfoMessage(GetString("输入 /zsaveauto [minute] 来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能"));
         }
     }
 
@@ -345,8 +345,8 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count == 0 || args.Parameters.Count > 2)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zclone [name1] [name2]  将玩家1的人物数据复制给玩家2\n") +
-                                        GetString("输入 /zclone [name]  将该玩家的人物数据复制给自己"));
+            args.Player.SendInfoMessage(GetString("输入 /zclone [name1] [name2] 将玩家1的人物数据复制给玩家2\n") +
+                                        GetString("输入 /zclone [name] 将该玩家的人物数据复制给自己"));
             return;
         }
 
@@ -613,7 +613,7 @@ public partial class ZHIPM
         
         if (args.Parameters.Count != 1 && args.Parameters.Count != 3)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zmodify help  查看修改玩家数据的指令帮助"));
+            args.Player.SendInfoMessage(GetString("输入 /zmodify help 查看修改玩家数据的指令帮助"));
             return;
         }
 
@@ -624,7 +624,7 @@ public partial class ZHIPM
                 if (args.Parameters[0].Equals("help", StringComparison.OrdinalIgnoreCase))
                 {
                     var temp = config.EnablePointTracking
-                        ? GetString("\n输入 /zmodify [name] point [num]  来修改玩家点数")
+                        ? GetString("\n输入 /zmodify [name] point [num] 来修改玩家点数")
                         : "";
                     args.Player.SendMessage(
                         GetString("输入 /zmodify [name] life [num] 来修改玩家的血量\n") +
@@ -645,7 +645,7 @@ public partial class ZHIPM
                 }
                 else
                 {
-                    args.Player.SendInfoMessage(GetString("输入 /zmodify help  查看修改玩家数据的指令帮助"));
+                    args.Player.SendInfoMessage(GetString("输入 /zmodify help 查看修改玩家数据的指令帮助"));
                 }
 
                 return;
@@ -655,7 +655,7 @@ public partial class ZHIPM
                 //对参数3先判断是不是数据，不是数字结束
                 if (!int.TryParse(args.Parameters[2], out var num))
                 {
-                    args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"));
+                    args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help 查看修改玩家数据的指令帮助"));
                     return;
                 }
                 
@@ -721,7 +721,7 @@ public partial class ZHIPM
                             }
                             else if (num != 0 && num != 1)
                             {
-                                args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"));
+                                args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help 查看修改玩家数据的指令帮助"));
                                 return;
                             }
                             else
@@ -872,7 +872,7 @@ public partial class ZHIPM
                         }
                         else if (num != 0 && num != 1)
                         {
-                            args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help  查看修改玩家数据的指令帮助"));
+                            args.Player.SendInfoMessage(GetString("格式错误！输入 /zmodify help 查看修改玩家数据的指令帮助"));
                             return;
                         }
                         else if (args.Parameters[1].Equals("torch", StringComparison.OrdinalIgnoreCase))
@@ -943,7 +943,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zresetdb [name]  来清理该玩家的备份数据\n输入 /zresetdb all  来清理所有玩家的备份数据"));
+            args.Player.SendInfoMessage(GetString("输入 /zresetdb [name] 来清理该玩家的备份数据\n输入 /zresetdb all 来清理所有玩家的备份数据"));
             return;
         }
 
@@ -1022,8 +1022,8 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zresetex [name]  来清理该玩家的额外数据\n") +
-                                        GetString("输入 /zresetex all  来清理所有玩家的额外数据"));
+            args.Player.SendInfoMessage(GetString("输入 /zresetex [name] 来清理该玩家的额外数据\n") +
+                                        GetString("输入 /zresetex all 来清理所有玩家的额外数据"));
             return;
         }
 
@@ -1104,7 +1104,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zreset <name>  来清理该玩家的人物数据\n输入 /zreset all  来清理所有玩家的人物数据"));
+            args.Player.SendInfoMessage(GetString("输入 /zreset <name> 来清理该玩家的人物数据\n输入 /zreset all 来清理所有玩家的人物数据"));
             return;
         }
 
@@ -1199,7 +1199,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 0)
         {
-            args.Player.SendInfoMessage(GetString($"输入 /zresetallplayers  来清理所有玩家的所有数据"));
+            args.Player.SendInfoMessage(GetString($"输入 /zresetallplayers 来清理所有玩家的所有数据"));
             return;
         }
 
@@ -1245,7 +1245,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString($"输入 /vi <玩家名>  来查看该玩家的库存"));
+            args.Player.SendInfoMessage(GetString($"输入 /vi <玩家名> 来查看该玩家的库存"));
             return;
         }
 
@@ -1496,7 +1496,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString($"输入 /vid <玩家名>  来查看该玩家的库存，不进行排列"));
+            args.Player.SendInfoMessage(GetString($"输入 /vid <玩家名> 来查看该玩家的库存，不进行排列"));
             return;
         }
 
@@ -1654,7 +1654,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString("输入 /vs <玩家名>  来查看该玩家的状态"));
+            args.Player.SendInfoMessage(GetString("输入 /vs <玩家名> 来查看该玩家的状态"));
             return;
         }
 
@@ -2263,7 +2263,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count < 1 || args.Parameters.Count > 2)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zclear useless  来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n输入 /zclear buff <name>  来清理该玩家的所有Buff\n输入 /zclear buff all  来清理所有玩家所有Buff"));
+            args.Player.SendInfoMessage(GetString("输入 /zclear useless 来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n输入 /zclear buff <name> 来清理该玩家的所有Buff\n输入 /zclear buff all 来清理所有玩家所有Buff"));
             return;
         }
 
@@ -2311,9 +2311,9 @@ public partial class ZHIPM
         else
         {
             args.Player.SendInfoMessage(
-                GetString("输入 /zclear useless  来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n") +
-                GetString("输入 /zclear buff <name>  来清理该玩家的所有Buff\n") +
-                GetString("输入 /zclear buff all  来清理所有玩家所有Buff"));
+                GetString("输入 /zclear useless 来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n") +
+                GetString("输入 /zclear buff <name> 来清理该玩家的所有Buff\n") +
+                GetString("输入 /zclear buff all 来清理所有玩家所有Buff"));
         }
     }
 
@@ -2634,7 +2634,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zhide kill  来取消 kill + 1 的显示，再次使用启用显示\n输入 /zhide point  来取消 + 1 $ 的显示，再次使用启用显示"));
+            args.Player.SendInfoMessage(GetString("输入 /zhide kill 来取消 kill + 1 的显示，再次使用启用显示\n输入 /zhide point 来取消 + 1 $ 的显示，再次使用启用显示"));
             return;
         }
 
@@ -2676,7 +2676,7 @@ public partial class ZHIPM
         }
         else
         {
-            args.Player.SendInfoMessage(GetString("输入 /zhide kill  来取消 kill + 1 的显示，再次使用启用显示\n输入 /zhide point  来取消 + 1 $ 的显示，再次使用启用显示"));
+            args.Player.SendInfoMessage(GetString("输入 /zhide kill 来取消 kill + 1 的显示，再次使用启用显示\n输入 /zhide point 来取消 + 1 $ 的显示，再次使用启用显示"));
         }
     }
 
@@ -2689,8 +2689,8 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zout <name>  来导出该玩家的人物存档\n") +
-                                        GetString("输入 /zout all  来导出所有人物的存档"));
+            args.Player.SendInfoMessage(GetString("输入 /zout <name> 来导出该玩家的人物存档\n") +
+                                        GetString("输入 /zout all 来导出所有人物的存档"));
             return;
         }
 
@@ -2844,29 +2844,19 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 1 && args.Parameters.Count != 2)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zsort help  来查看排序系列指令帮助"));
+            args.Player.SendInfoMessage(GetString("输入 /zsort help 来查看排序系列指令帮助"));
             return;
         }
 
         //帮助指令
         if (args.Parameters[0].Equals("help", StringComparison.OrdinalIgnoreCase))
         {
-            var temp1 = config.EnableOnlineTimeTracking
+            var temp1 = config.EnableOnlineTimeTracking || config.EnablePointTracking
                 ? GetString("\n输入 /zsort point [num] 来查看当前[num]个人物点数排行榜\n") +
                   GetString("输入 /zsort point 来查看人物点数排行榜前十名\n") +
                   GetString("输入 /zsort point all 来查看所有玩家点数排行榜\n")
                 : "";
-            var temp2 = config.EnableNpcKillTracking
-                ? GetString("\n输入 /zsort death [num] 来查看当前[num]个人物死亡次数排行榜\n") +
-                  GetString("输入 /zsort death 来查看人物死亡次数排行榜前十名\n") +
-                  GetString("输入 /zsort death all 来查看所有玩家死亡次数排行榜\n")
-                : "";
-            var temp3 = config.EnablePointTracking
-                ? GetString("\n输入 /zsort point [num] 来查看当前[num]个人物点数排行榜\n") +
-                  GetString("输入 /zsort point 来查看人物点数排行榜前十名\n") +
-                  GetString("输入 /zsort point all 来查看所有玩家点数排行榜\n")
-                : "";
-            var temp4 = config.EnableDeathCountTracking
+            var temp2 = config.EnableNpcKillTracking || config.EnableDeathCountTracking
                 ? GetString("\n输入 /zsort death [num] 来查看当前[num]个人物死亡次数排行榜\n") +
                   GetString("输入 /zsort death 来查看人物死亡次数排行榜前十名\n") +
                   GetString("输入 /zsort death all 来查看所有玩家死亡次数排行榜\n")
@@ -2885,7 +2875,7 @@ public partial class ZHIPM
                 GetString("输入 /zsort fish 来查看人物任务鱼数目排行榜前十名\n") +
                 GetString("输入 /zsort fish [num] 来查看当前[num]个人物任务鱼数目排行榜\n") +
                 GetString("输入 /zsort fish all 来查看所有玩家任务鱼数目排行榜\n") +
-                temp4 + temp2 + temp3 + temp5, TextColor());
+                temp2 + temp5, TextColor());
             return;
         }
         //时间排序
@@ -2959,8 +2949,8 @@ public partial class ZHIPM
                 else
                 {
                     args.Player.SendInfoMessage(
-                        GetString("输入 /zsort time [num]  来查看当前[num]个人物在线时间排行榜\n") +
-                        GetString("输入 /zsort time  来查看人物在线时间排行榜前十名\n输入 /zsort time all  来查看所有玩家在线时常排行榜"));
+                        GetString("输入 /zsort time [num] 来查看当前[num]个人物在线时间排行榜\n") +
+                        GetString("输入 /zsort time 来查看人物在线时间排行榜前十名\n输入 /zsort time all 来查看所有玩家在线时常排行榜"));
                 }
             }
         }
@@ -3040,9 +3030,9 @@ public partial class ZHIPM
                 else
                 {
                     args.Player.SendInfoMessage(
-                        GetString("输入 /zsort coin  来查看人物硬币数目排行榜前十名\n") +
-                        GetString("输入 /zsort coin [num]  来查看当前[num]个人物硬币数目排行榜\n") +
-                        GetString("输入 /zsort coin all  来查看所有玩家硬币数目排行榜"));
+                        GetString("输入 /zsort coin 来查看人物硬币数目排行榜前十名\n") +
+                        GetString("输入 /zsort coin [num] 来查看当前[num]个人物硬币数目排行榜\n") +
+                        GetString("输入 /zsort coin all 来查看所有玩家硬币数目排行榜"));
                 }
             }
         }
@@ -3121,9 +3111,9 @@ public partial class ZHIPM
                 else
                 {
                     args.Player.SendInfoMessage(
-                        GetString("输入 /zsort fish  来查看人物任务鱼数目排行榜前十名\n") +
-                        GetString("输入 /zsort fish [num]  来查看当前[num]个人物任务鱼数目排行榜\n") +
-                        GetString("输入 /zsort fish all  来查看所有玩家任务鱼数目排行榜"));
+                        GetString("输入 /zsort fish 来查看人物任务鱼数目排行榜前十名\n") +
+                        GetString("输入 /zsort fish [num] 来查看当前[num]个人物任务鱼数目排行榜\n") +
+                        GetString("输入 /zsort fish all 来查看所有玩家任务鱼数目排行榜"));
                 }
             }
         }
@@ -3197,9 +3187,9 @@ public partial class ZHIPM
                 else
                 {
                     args.Player.SendInfoMessage(
-                        GetString("输入 /zsort kill [num]  来查看当前[num]个人物击杀生物数排行榜\n") +
-                        GetString("输入 /zsort kill  来查看人物击杀生物数排行榜前十名\n") +
-                        GetString("输入 /zsort kill all  来查看所有玩家击杀生物数排行榜"));
+                        GetString("输入 /zsort kill [num] 来查看当前[num]个人物击杀生物数排行榜\n") +
+                        GetString("输入 /zsort kill 来查看人物击杀生物数排行榜前十名\n") +
+                        GetString("输入 /zsort kill all 来查看所有玩家击杀生物数排行榜"));
                 }
             }
         }
@@ -3276,9 +3266,9 @@ public partial class ZHIPM
                 else
                 {
                     args.Player.SendInfoMessage(
-                        GetString("输入 /zsort boss [num]  来查看当前[num]个人物击杀Boss总数排行榜\n") +
-                        GetString("输入 /zsort boss  来查看人物击杀Boss总数排行榜前十名\n") +
-                        GetString("输入 /zsort boss all  来查看所有玩家击杀Boss总数排行榜"));
+                        GetString("输入 /zsort boss [num] 来查看当前[num]个人物击杀Boss总数排行榜\n") +
+                        GetString("输入 /zsort boss 来查看人物击杀Boss总数排行榜前十名\n") +
+                        GetString("输入 /zsort boss all 来查看所有玩家击杀Boss总数排行榜"));
                 }
             }
         }
@@ -3355,9 +3345,9 @@ public partial class ZHIPM
                 else
                 {
                     args.Player.SendInfoMessage(
-                        GetString("输入 /zsort rarenpc [num]  来查看当前[num]个人物击杀罕见生物总数排行榜\n") +
-                        GetString("输入 /zsort rarenpc  来查看人物击杀罕见生物总数排行榜前十名\n") +
-                        GetString("输入 /zsort rarenpc all  来查看所有玩家击杀罕见生物总数排行榜"));
+                        GetString("输入 /zsort rarenpc [num] 来查看当前[num]个人物击杀罕见生物总数排行榜\n") +
+                        GetString("输入 /zsort rarenpc 来查看人物击杀罕见生物总数排行榜前十名\n") +
+                        GetString("输入 /zsort rarenpc all 来查看所有玩家击杀罕见生物总数排行榜"));
                 }
             }
         }
@@ -3433,9 +3423,9 @@ public partial class ZHIPM
                 else
                 {
                     args.Player.SendInfoMessage(
-                        GetString("输入 /zsort point [num]  来查看当前[num]个人物点数排行榜\n") +
-                        GetString("输入 /zsort point  来查看人物点数排行榜前十名\n") +
-                        GetString("输入 /zsort point all  来查看所有玩家点数排行榜"));
+                        GetString("输入 /zsort point [num] 来查看当前[num]个人物点数排行榜\n") +
+                        GetString("输入 /zsort point 来查看人物点数排行榜前十名\n") +
+                        GetString("输入 /zsort point all 来查看所有玩家点数排行榜"));
                 }
             }
         }
@@ -3511,9 +3501,9 @@ public partial class ZHIPM
                 else
                 {
                     args.Player.SendInfoMessage(
-                        GetString("输入 /zsort death [num]  来查看当前[num]个人物死亡次数排行榜\n") +
-                        GetString("输入 /zsort death  来查看人物死亡次数排行榜前十名\n") +
-                        GetString("输入 /zsort death all  来查看所有玩家死亡次数排行榜"));
+                        GetString("输入 /zsort death [num] 来查看当前[num]个人物死亡次数排行榜\n") +
+                        GetString("输入 /zsort death 来查看人物死亡次数排行榜前十名\n") +
+                        GetString("输入 /zsort death all 来查看所有玩家死亡次数排行榜"));
                 }
             }
         }
@@ -3625,15 +3615,15 @@ public partial class ZHIPM
                 else
                 {
                     args.Player.SendInfoMessage(
-                        GetString("输入 /zsort clumsy  来查看人物手残排行榜前十名\n") +
-                        GetString("输入 /zsort clumsy [num]  来查看当前[num]个人物手残排行榜\n") +
-                        GetString("输入 /zsort clumsy all  来查看所有玩家手残排行榜"));
+                        GetString("输入 /zsort clumsy 来查看人物手残排行榜前十名\n") +
+                        GetString("输入 /zsort clumsy [num] 来查看当前[num]个人物手残排行榜\n") +
+                        GetString("输入 /zsort clumsy all 来查看所有玩家手残排行榜"));
                 }
             }
         }
         else
         {
-            args.Player.SendInfoMessage(GetString("输入 /zsort help  来查看排序系列指令帮助"));
+            args.Player.SendInfoMessage(GetString("输入 /zsort help 来查看排序系列指令帮助"));
         }
     }
 
@@ -3816,7 +3806,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zfre [name]  来冻结该玩家"));
+            args.Player.SendInfoMessage(GetString("输入 /zfre [name] 来冻结该玩家"));
             return;
         }
 
@@ -3892,7 +3882,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zunfre [name]  来解冻该玩家\n输入 /zunfre all  来解冻所有玩家"));
+            args.Player.SendInfoMessage(GetString("输入 /zunfre [name] 来解冻该玩家\n输入 /zunfre all 来解冻所有玩家"));
             return;
         }
 
@@ -4959,7 +4949,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count > 0)
         {
-            args.Player.SendInfoMessage(GetString("输入 /zbpos  来返回上次死亡地点"));
+            args.Player.SendInfoMessage(GetString("输入 /zbpos 来返回上次死亡地点"));
             return;
         }
 
@@ -5014,7 +5004,7 @@ public partial class ZHIPM
     {
         if (args.Parameters.Count < 2)
         {
-            args.Player.SendInfoMessage("输入 /zfind [id]  来查找当前哪些玩家拥有此物品");
+            args.Player.SendInfoMessage("输入 /zfind [id] 来查找当前哪些玩家拥有此物品");
             return;
         }
 
