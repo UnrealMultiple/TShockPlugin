@@ -2734,7 +2734,7 @@
   },
   {
     "Name": "ZHIPlayerManager",
-    "Version": "1.0.2.5",
+    "Version": "1.0.2.6",
     "Author": "z枳",
     "Description": {
       "en-US": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
