@@ -66,7 +66,7 @@
 | :-: | :-: | :-: | :-: |
 | [AdditionalPylons](./src/AdditionalPylons/README.en-US.md) | 100.0% | Place more Pylons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AIChatPlugin](./src/AIChatPlugin/README.en-US.md) | 100.0% | AIChatPlugin |  |
-| [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 100.0% | Enhance Broadcast Box Functionality | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.en-US.md) | 100.0% | Enhance Broadcast Box Functionality | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoAirItem](./src/AutoAirItem/README.en-US.md) | 100.0% | Automatic trash cans | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.en-US.md) | 100.0% | Automatic broadcast | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoClear](./src/AutoClear/README.en-US.md) | 100.0% | Intelligent automatic cleaning | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -85,8 +85,8 @@
 | [CaiBot](./src/CaiBot/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) |  |
 | [CaiBotLite](./src/CaiBotLite/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) |  |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.en-US.md) | 100.0% | Custom emoji command | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [CaiLib](./src/CaiLib/README.md) | 0.0% | Cai's preload library | [SixLabors.ImageSharp]() |
-| [CaiPacketDebug](./src/CaiPacketDebug/README.md) | 100.0% | Cai Packet Debug Tool | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
+| [CaiLib](./src/CaiLib/README.en-US.md) | 0.0% | Cai's preload library | [SixLabors.ImageSharp]() |
+| [CaiPacketDebug](./src/CaiPacketDebug/README.en-US.md) | 100.0% | Cai Packet Debug Tool | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
 | [CaiRewardChest](./src/CaiRewardChest/README.en-US.md) | 100.0% | Convert naturally generated chests into reward chests that everyone can claim once | [linq2db]() [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CGive](./src/CGive/README.en-US.md) | 100.0% | Offline commands |  |
 | [Challenger](./src/Challenger/README.en-US.md) | 100.0% | Challenger mode |  |
@@ -96,7 +96,7 @@
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the core part |  |
 | [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the miscellaneous part | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [CNPCShop](./src/CNPCShop/README.en-US.md) | 100.0% | Custom NPC shop |  |
-| [ConsoleSql](./src/ConsoleSql/README.md) | 100.0% | Execute SQL statements in the console |  |
+| [ConsoleSql](./src/ConsoleSql/README.en-US.md) | 100.0% | Execute SQL statements in the console |  |
 | [ConvertWorld](./src/ConvertWorld/README.en-US.md) | 100.0% | Convert world items by defeating monsters |  |
 | [CreateSpawn](./src/CreateSpawn/README.en-US.md) | 100.0% | Spawn point building generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CriticalHit](./src/CriticalHit/README.en-US.md) | 100.0% | Critical hit prompt |  |
@@ -126,7 +126,7 @@
 | [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | 100.0% | Additional management commands | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Ezperm](./src/Ezperm/README.en-US.md) | 100.0% | Batch change permissions | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Fish shop |  |
-| [GenerateMap](./src/GenerateMap/README.en-US.md) | 100.0% | Generate map images | [CaiLib](./src/CaiLib/README.md) |
+| [GenerateMap](./src/GenerateMap/README.en-US.md) | 100.0% | Generate map images | [CaiLib](./src/CaiLib/README.en-US.md) |
 | [GolfRewards](./src/GolfRewards/README.en-US.md) | 100.0% | Golf rewards |  |
 | [GoodNight](./src/GoodNight/README.md) | 4.9% | Curfew |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.en-US.md) | 100.0% | Hardcore death drops life crystals |  |
