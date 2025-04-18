@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:02:50+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"PO-Revision-Date: 2025-04-18 01:15\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -19,72 +19,72 @@ msgstr ""
 
 #: ../../Help.cs:247
 msgid "[c/c2ff39:无权限限制]"
-msgstr ""
+msgstr "[c/c2ff39:Не требует дополнительных прав.]"
 
 #: ../../Help.cs:46
 msgid "[HelpPlus]插件配置已重载！"
-msgstr ""
+msgstr "[HelpPlus] Успешное чтение конфигурации!"
 
 #: ../../Help.cs:228
 #, csharp-format
 msgid "{0}{1}的帮助:"
-msgstr ""
+msgstr "Команда: {0}{1}:"
 
 #: ../../Help.cs:145
 #, csharp-format
 msgid "{0}执行了/{1}。"
-msgstr ""
+msgstr "{0} выполнил /{1}."
 
 #: ../../Help.cs:260
 msgid "*本插件只能查询主命令权限，详细权限请使用/whynot查看!"
-msgstr ""
+msgstr "*Этот плагин может запрашивать только основные разрешения команд."
 
 #: ../../Help.cs:257
 msgid "*此命令不记录命令参数"
-msgstr ""
+msgstr "*Эта команда не записывает параметры команды"
 
 #: ../../Help.cs:252
 msgid "*此命令只能游戏内执行"
-msgstr ""
+msgstr "*Данная команда может быть использована только в игре."
 
 #: ../../Help.cs:224
 msgid "你没有权限查询此命令."
-msgstr ""
+msgstr "У Вас нет прав на использование команды."
 
 #: ../../Help.cs:243
 #, csharp-format
 msgid "别名: [c/00ffff:{0}]"
-msgstr ""
+msgstr "Псевдонимы: [c/00ffff:{0}]"
 
 #: ../../Help.cs:203
 msgid "命令列表 ({0}/{1}):"
-msgstr ""
+msgstr "Список команд ({0}/{1}):"
 
 #: ../../Help.cs:218
 msgid "无效命令."
-msgstr ""
+msgstr "Неизвестная команда."
 
 #: ../../Help.cs:185
 #, csharp-format
 msgid "无效用法.正确用法: {0}help <命令/页码>"
-msgstr ""
+msgstr "Неправильное использование. Напишите {0}help <название команды / номер страницы>"
 
 #: ../../Help.cs:29
 msgid "更好的Help"
-msgstr ""
+msgstr "Улучшенная команда /help"
 
 #: ../../Help.cs:247
 #, csharp-format
 msgid "权限: {0}"
-msgstr ""
+msgstr "Требуемое разрешение: {0}"
 
 #: ../../Help.cs:249
 #, csharp-format
 msgid "来源插件: [c/8500ff:{0}]"
-msgstr ""
+msgstr "Искомый плагин: [c/8500ff:{0}]"
 
 #: ../../Help.cs:204
 #, csharp-format
 msgid "输入 {0}help {{0}} 翻页."
-msgstr ""
+msgstr "Напишите {0}help {{0}}, чтобы увидеть список команд."
 

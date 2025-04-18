@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 18:23:14+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"PO-Revision-Date: 2025-04-18 01:15\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -19,5 +19,5 @@ msgstr ""
 
 #: ../../Plugin.cs:16
 msgid "根据玩家血量计算死亡后会掉落多少生命水晶"
-msgstr ""
+msgstr "Позволяет рассчитать кол-во выпавших кристаллов жизни после смерти игрока пропорционально от его HP"
 
