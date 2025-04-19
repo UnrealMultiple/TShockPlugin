@@ -138,7 +138,7 @@
 | [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | 100.0% | Lagrange.XocMat Bot Adapter Plugin | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.en-US.md) | 100.0% | Plugin base library | [linq2db]() |
 | [LifemaxExtra](./src/LifemaxExtra/README.en-US.md) | 100.0% | Eat more life fruits/crystals | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [ListPlugins](./src/ListPlugins/README.md) | 100.0% | List installed plugins |  |
+| [ListPlugins](./src/ListPlugins/README.en-US.md) | 100.0% | List installed plugins |  |
 | [MapTp](./src/MapTp/README.en-US.md) | 100.0% | Double-click on the map to teleport |  |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) | 100.0% | Bean paste mini-game API |  |
 | [ModifyWeapons](./src/ModifyWeapons/README.en-US.md) | 100.0% | ModifyWeapons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
