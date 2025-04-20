@@ -92,6 +92,6 @@ public class Utils
         //原始角度速度参数
         var vel = e.Velocity;
         SpawnSkillProjectile(e.Player, skill, vel, pos, e.Damage);
-        Interpreter.ExecuteScript(skill, e.Player, pos, vel);
+        Interpreter.ExecuteScript(skill, e.Player, pos, vel, e.Index);
     }
 }

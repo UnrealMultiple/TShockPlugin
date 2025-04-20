@@ -168,8 +168,14 @@
 ```javascript
 var Xna = importNamespace("Microsoft.Xna.Framework");
 var Terraria = importNamespace("Terraria");
-
-function main(skill, ply, pos, vel) {
+/*
+* skill 是技能配置对象
+* ply 是玩家对象
+* pos 是技能释放位置
+* vel 是技能释放方向
+* identify 弹幕释放id如果不是弹幕触发的则为-1
+*/
+function main(skill, ply, pos, vel, identify) {
     let projs = [];
     var distance = 16 * 25;    // 固定半径
     var startAngle = 0;         // 初始角度（度）
