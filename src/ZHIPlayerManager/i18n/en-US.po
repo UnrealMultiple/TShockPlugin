@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-04-17 06:08:11+0000\n"
-"PO-Revision-Date: 2025-04-17 14:25\n"
+"PO-Revision-Date: 2025-04-20 01:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -757,7 +757,7 @@ msgstr "Dye 3:"
 #: ../../ZHIPM.Initialize.cs:724
 #: ../../ZHIPM.Initialize.cs:875
 msgid "格式错误！输入 /zmodify help 查看修改玩家数据的指令帮助"
-msgstr "Invalid syntax! Type /zmodify help to view command help for modifying player data"
+msgstr "Invalid syntax! Enter /zmodify help to view command help for modifying player data"
 
 #: ../../ZHIPM.Utils.cs:753
 msgid "检测到符合该条件的玩家数目不唯一，请重新输入\n"
@@ -1177,7 +1177,7 @@ msgstr "Enter /vi <name> to view the player's inventory\n"
 
 #: ../../ZHIPM.Initialize.cs:1248
 msgid "输入 /vi <玩家名> 来查看该玩家的库存"
-msgstr "Type /vi <playername> to view that player's inventory"
+msgstr "Enter /vi <playername> to view the player's inventory"
 
 #: ../../ZHIPM.cs:197
 msgid "输入 /vid [name] 来查看该玩家的库存，不分类"
@@ -1189,7 +1189,7 @@ msgstr "Enter /vid <name> to view the player's inventory, without classification
 
 #: ../../ZHIPM.Initialize.cs:1499
 msgid "输入 /vid <玩家名> 来查看该玩家的库存，不进行排列"
-msgstr "Type /vid <player name> to view the player's inventory without sorting"
+msgstr "Enter /vid <playername> to view the player's inventory, without sorting"
 
 #: ../../ZHIPM.cs:201
 msgid "输入 /vs [name] 来查看该玩家的状态"
@@ -1201,7 +1201,7 @@ msgstr "Enter /vs <name> to view the player's status\n"
 
 #: ../../ZHIPM.Initialize.cs:1657
 msgid "输入 /vs <玩家名> 来查看该玩家的状态"
-msgstr "Type /vs <playername> to view the player's status"
+msgstr "Enter /vs <playername> to view the player's status"
 
 #: ../../ZHIPM.Initialize.cs:44
 msgid "输入 /vs me 来查看自己的状态\n"
@@ -1210,26 +1210,26 @@ msgstr "Enter /vs me to view your status\n"
 #: ../../ZHIPM.cs:134
 msgid "输入 /zback [name] 来读取该玩家的人物存档\n"
 "输入 /zback [name] [num] 来读取该玩家的第几个人物存档"
-msgstr "Enter /zback [name] to read the player's character archive\n"
-"Enter /zback [name] [num] to read the player's [num]th character archive"
+msgstr "Enter /zback [name] to read the player's character backup\n"
+"Enter /zback [name] [num] to read the player's first character backup"
 
 #: ../../ZHIPM.Initialize.cs:82
 #: ../../ZHIPM.Initialize.cs:97
 msgid "输入 /zback <name> <num> 来读取该玩家的第几个人物存档"
-msgstr "Enter /zback <name> <num> to read the player's first character archive"
+msgstr "Enter /zback <name> <num> to read the player's first character backup"
 
 #: ../../ZHIPM.Initialize.cs:37
 msgid "输入 /zback <name> <num> 来读取该玩家的第几个人物存档\n"
-msgstr "Enter /zback <name> <num> to read the player's first character archive\n"
+msgstr "Enter /zback <name> <num> to read the player's first character backup\n"
 
 #: ../../ZHIPM.Initialize.cs:36
 msgid "输入 /zback <name> 来读取该玩家的人物存档\n"
-msgstr "Enter /zback <name> to read the player's character archive\n"
+msgstr "Enter /zback <name> to read the player's character backup\n"
 
 #: ../../ZHIPM.Initialize.cs:81
 #: ../../ZHIPM.Initialize.cs:96
 msgid "输入 /zback <name> 来读取该玩家的最新人物存档\n"
-msgstr "Enter /zback <name> to read the player's latest character archive\n"
+msgstr "Enter /zback <name> to read the player's latest character backup\n"
 
 #: ../../ZHIPM.cs:207
 msgid "输入 /zban add [name] [reason] 来封禁无论是否在线的玩家，reason 可不填"
@@ -1310,9 +1310,9 @@ msgstr "Enter /zclear useless to clean up world drop items, non-town or Boss NPC
 msgid "输入 /zclear useless 来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n"
 "输入 /zclear buff <name> 来清理该玩家的所有Buff\n"
 "输入 /zclear buff all 来清理所有玩家所有Buff"
-msgstr "Type /zclear useless to clear the world of dropped items, non-town or boss NPCs, and useless projectiles\n"
-"Type /zclear buff <name> to clear all buffs for this player\n"
-"Type /zclear buff all to clear all buffs from all players"
+msgstr "Enter /zclear useless to clear the world of dropped items, non-town or boss NPCs, and useless projectiles\n"
+"Enter /zclear buff <name> to clear all buffs for this player\n"
+"Enter /zclear buff all to clear all buffs from all players"
 
 #: ../../ZHIPM.Initialize.cs:349
 msgid "输入 /zclone [name] 将该玩家的人物数据复制给自己"
@@ -1325,8 +1325,8 @@ msgstr "Enter /zclone [name1] [name2] to copy the character data of player 1 to 
 #: ../../ZHIPM.cs:138
 msgid "输入 /zclone [name1] [name2] 将玩家1的人物数据复制给玩家2\n"
 "输入 /zclone [name] 将该玩家的人物数据复制给自己"
-msgstr "Type /zclone [name1] [name2] to copy player 1's character data to player 2\n"
-"Type /zclone [name] to copy the player's character data to yourself"
+msgstr "Enter /zclone [name1] [name2] to copy player 1's character data to player 2\n"
+"Enter /zclone [name] to copy the player's character data to yourself"
 
 #: ../../ZHIPM.Initialize.cs:39
 msgid "输入 /zclone <name> 将该玩家的人物数据复制给自己\n"
@@ -1339,7 +1339,7 @@ msgstr "Enter /zclone <name1> <name2> To copy the character data of player 1 to 
 #: ../../ZHIPM.cs:165
 #: ../../ZHIPM.Initialize.cs:3809
 msgid "输入 /zfre [name] 来冻结该玩家"
-msgstr "Type /zfre [name] to freeze this player"
+msgstr "Enter /zfre [name] to freeze the player"
 
 #: ../../ZHIPM.Initialize.cs:45
 msgid "输入 /zfre <name> 来冻结该玩家\n"
@@ -1348,7 +1348,7 @@ msgstr "Enter /zfre <name> to freeze the player\n"
 #: ../../ZHIPM.cs:118
 #: ../../ZHIPM.Initialize.cs:26
 msgid "输入 /zhelp 来查看指令帮助"
-msgstr "Type /zhelp to view command help"
+msgstr "Enter /zhelp to view command help"
 
 #: ../../ZHIPM.Initialize.cs:34
 msgid "输入 /zhide kill 来取消 kill + 1 的显示，再次使用启用显示\n"
@@ -1359,8 +1359,8 @@ msgstr "Enter /zhide kill to cancel the display of kill + 1, and use Enable disp
 #: ../../ZHIPM.Initialize.cs:2679
 msgid "输入 /zhide kill 来取消 kill + 1 的显示，再次使用启用显示\n"
 "输入 /zhide point 来取消 + 1 $ 的显示，再次使用启用显示"
-msgstr "Type /zhide kill to disable the display of kill + 1, then use again to enable the display\n"
-"Type /zhide point to disable the display of + 1 $ and enable display again using"
+msgstr "Enter /zhide kill to disable the display of kill + 1, then use again to enable the display\n"
+"Enter /zhide point to disable the display of + 1 $ and enable display again using"
 
 #: ../../ZHIPM.Initialize.cs:35
 msgid "输入 /zhide point 来取消 + 1 $ 的显示，再次使用启用显示\n"
@@ -1440,21 +1440,21 @@ msgstr "Enter /zmodify help to view commands help for modifying player data\n"
 #: ../../ZHIPM.cs:146
 msgid "输入 /zout [name] 来导出该玩家的人物存档\n"
 "输入 /zout all 来导出所有人物的存档"
-msgstr "Enter /zout [name] to export the player's character archive\n"
-"Enter /zout all to export all characters' archives"
+msgstr "Enter /zout [name] to export the player's character backup\n"
+"Enter /zout all to export all characters' backup"
 
 #: ../../ZHIPM.Initialize.cs:49
 #: ../../ZHIPM.Initialize.cs:2692
 msgid "输入 /zout <name> 来导出该玩家的人物存档\n"
-msgstr "Enter /zout <name> to export the player's character archive\n"
+msgstr "Enter /zout <name> to export the player's character backup\n"
 
 #: ../../ZHIPM.Initialize.cs:2693
 msgid "输入 /zout all 来导出所有人物的存档"
-msgstr "Enter /zout all to export all characters' archives"
+msgstr "Enter /zout all to export all characters' backup"
 
 #: ../../ZHIPM.Initialize.cs:50
 msgid "输入 /zout all 来导出所有人物的存档并压缩打包\n"
-msgstr "Enter /zout all to export all characters' archives and compress them\n"
+msgstr "Enter /zout all to export all characters' backup and compress them\n"
 
 #: ../../ZHIPM.cs:183
 msgid "输入 /zreset [name] 来清理该玩家的人物数据\n"
@@ -1469,8 +1469,8 @@ msgstr "Enter /zreset <name> to reset the player's character data\n"
 #: ../../ZHIPM.Initialize.cs:1107
 msgid "输入 /zreset <name> 来清理该玩家的人物数据\n"
 "输入 /zreset all 来清理所有玩家的人物数据"
-msgstr "Type /zreset <name> to clear this player's character data\n"
-"Type /zreset all to clear all player character data"
+msgstr "Enter /zreset <name> to reset the player's character data\n"
+"Enter /zreset all to reset all player character data"
 
 #: ../../ZHIPM.Initialize.cs:1119
 msgid "输入 /zreset all 来清理所有玩家的人物数据\n"
@@ -1490,8 +1490,8 @@ msgstr "Enter /zresetallplayers to reset all data for all players"
 #: ../../ZHIPM.Initialize.cs:946
 msgid "输入 /zresetdb [name] 来清理该玩家的备份数据\n"
 "输入 /zresetdb all 来清理所有玩家的备份数据"
-msgstr "Type /zresetdb [name] to clear this player's backup data\n"
-"Type /zresetdb all to clear all players' backup data"
+msgstr "Enter /zresetdb [name] to reset the player's backup data\n"
+"Enter /zresetdb all to reset backup data for all players"
 
 #: ../../ZHIPM.Initialize.cs:1114
 msgid "输入 /zresetdb <name> 来清理该玩家的备份数据\n"
@@ -1508,8 +1508,8 @@ msgstr "Enter /zresetex [name] to reset the player's extra data\n"
 #: ../../ZHIPM.cs:179
 msgid "输入 /zresetex [name] 来清理该玩家的额外数据\n"
 "输入 /zresetex all 来清理所有玩家的额外数据"
-msgstr "Type /zresetex [name] to clear this player's extra data\n"
-"Type /zresetex all to clear all players' extra data"
+msgstr "Enter /zresetex [name] to reset the player's extra data\n"
+"Enter /zresetex all to reset all players' extra data"
 
 #: ../../ZHIPM.Initialize.cs:1116
 msgid "输入 /zresetex <name> 来清理该玩家的额外数据\n"
@@ -1526,21 +1526,21 @@ msgstr "Enter /zresetex all to reset all players' extra data\n"
 #: ../../ZHIPM.cs:122
 #: ../../ZHIPM.Initialize.cs:110
 msgid "输入 /zsave 来备份自己的人物存档"
-msgstr "Enter /zsave to backup your character archive"
+msgstr "Enter /zsave to backup your character"
 
 #: ../../ZHIPM.Initialize.cs:30
 msgid "输入 /zsave 来备份自己的人物存档\n"
-msgstr "Enter /zsave to backup your character archive\n"
+msgstr "Enter /zsave to backup your character\n"
 
 #: ../../ZHIPM.cs:126
 #: ../../ZHIPM.Initialize.cs:152
 #: ../../ZHIPM.Initialize.cs:184
 msgid "输入 /zsaveauto [minute] 来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能"
-msgstr "Type /zsaveauto [minute] to automatically back up your character save every minute. When minute is 0, turn off this function"
+msgstr "Enter /zsaveauto [minute] to automatically backup your character data every minute, turn off this function when minute is 0."
 
 #: ../../ZHIPM.Initialize.cs:31
 msgid "输入 /zsaveauto <minute> 来每隔 minute 分钟自动备份自己的人物存档，当 minute为0时关闭该功能\n"
-msgstr "Enter /zsaveauto <minute> to automatically backup your character archive every minute. When minute is 0, turn off this function\n"
+msgstr "Enter /zsaveauto <minute> to automatically backup your character every minute. When minute is 0, turn off this function\n"
 
 #: ../../ZHIPM.Initialize.cs:3269
 msgid "输入 /zsort boss [num] 来查看当前[num]个人物击杀Boss总数排行榜\n"
@@ -1689,8 +1689,8 @@ msgstr "Enter /zsort time to view the top ten players' online time rankings\n"
 #: ../../ZHIPM.Initialize.cs:3885
 msgid "输入 /zunfre [name] 来解冻该玩家\n"
 "输入 /zunfre all 来解冻所有玩家"
-msgstr "Type /zunfre [name] to unfreeze this player\n"
-"Type /zunfre all to unfreeze all players"
+msgstr "Enter /zunfre [name] to unfreeze the player\n"
+"Enter /zunfre all to unfreeze all players"
 
 #: ../../ZHIPM.Initialize.cs:46
 msgid "输入 /zunfre <name> 来解冻该玩家\n"
