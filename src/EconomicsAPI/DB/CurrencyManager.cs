@@ -26,6 +26,12 @@ public class CurrencyManager
             this.PlayerName = player;
         }
 
+        // 添加 ToString 方法，使其在字符串上下文中直接返回 Number 值
+        public override string ToString()
+        {
+            return Number.ToString();
+        }
+
     }
     private readonly List<PlayerCurrency> Currencys = new();
 
