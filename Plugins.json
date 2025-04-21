@@ -1194,7 +1194,7 @@
   },
   {
     "Name": "EconomicsAPI",
-    "Version": "2.0.0.5",
+    "Version": "2.0.0.6",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides economic system API",
