@@ -117,12 +117,10 @@ public class Economics : TerrariaPlugin
 
     private void PlayerHandler_OnPlayerCountertop(PlayerCountertopArgs args)
     {
+        var playerCurrencys = CurrencyManager.GetPlayerCurrencies(args.Player!.Name);
         args.Messages.Add(new(GetString($"当前延迟: {args.Ping.GetPing():F1}ms"), 7));
         args.Messages.Add(new(GetString($"玩家名称: {args.Player!.Name}"), 1));
-        foreach (var currency in Setting.CustomizeCurrencys)
-        {
-            args.Messages.Add(new(GetString($"{currency.Name}数量: {CurrencyManager.GetUserCurrency(args.Player.Name, currency.Name)}"), 3));
-        }
+        args.Messages.Add(new(GetString($"货币数量: {string.Join(", ", playerCurrencys.Take(5).Select(c => c.ToString()))}{(playerCurrencys.Length > 5 ? "..." : string.Empty)}"), 3));
         args.Messages.Add(new(GetString($"在线人数: {TShock.Utils.GetActivePlayerCount()}/{Main.maxPlayers}"), 4));
         args.Messages.Add(new(GetString($"世界名称: {Main.worldName}"), 9));
         args.Messages.Add(new(GetString($"当前生命: {args.Player.TPlayer.statLife}/{args.Player.TPlayer.statLifeMax}"), 5));

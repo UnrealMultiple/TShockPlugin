@@ -29,7 +29,7 @@ public class CurrencyManager
         // 添加 ToString 方法，使其在字符串上下文中直接返回 Number 值
         public override string ToString()
         {
-            return Number.ToString();
+            return $"{this.CurrencyType}x{this.Number}";
         }
 
     }
@@ -92,6 +92,11 @@ public class CurrencyManager
     public PlayerCurrency GetUserCurrency(string name, string type)
     {
         return this.Currencys.Find(x => x.PlayerName == name && x.CurrencyType == type) ?? new(0, name, type);
+    }
+
+    public PlayerCurrency[] GetPlayerCurrencies(string name)
+    {
+        return this.Currencys.FindAll(x => x.PlayerName == name).ToArray();
     }
 
     public void AddUserCurrency(string name, params RedemptionRelationshipsOption[] options)
@@ -166,28 +171,27 @@ public class CurrencyManager
 
     public bool DeductUserCurrency(string name, IEnumerable<RedemptionRelationshipsOption> RedemptionRelationships, int count = 1)
     {
-        var success = RedemptionRelationships.Where(r => this.GetUserCurrency(name, r.CurrencyType).Number * count >= r.Number);
-        if (success.Count() != RedemptionRelationships.Count())
+        if(RedemptionRelationships.Any(r => this.GetUserCurrency(name, r.CurrencyType).Number * count < r.Number))
         {
             return false;
         }
-        foreach (var rro in success)
+        foreach (var option in RedemptionRelationships)
         {
-            this.DeductUserCurrency(name, rro.Number * count, rro.CurrencyType);
+            this.DeductUserCurrency(name, option.Number * count, option.CurrencyType);
         }
         return true;
     }
 
     public bool DeductUserCurrency(string name, params RedemptionRelationshipsOption[] options)
     {
-        var success = options.Where(r => this.GetUserCurrency(name, r.CurrencyType).Number >= r.Number);
-        if (success.Count() != options.Count())
+        //var success = options.Where(r => this.GetUserCurrency(name, r.CurrencyType).Number >= r.Number);
+        if (options.Any(r => this.GetUserCurrency(name, r.CurrencyType).Number < r.Number))
         {
             return false;
         }
-        foreach (var rro in success)
+        foreach (var option in options)
         {
-            this.DeductUserCurrency(name, rro.Number, rro.CurrencyType);
+            this.DeductUserCurrency(name, option.Number, option.CurrencyType);
         }
         return true;
     }
