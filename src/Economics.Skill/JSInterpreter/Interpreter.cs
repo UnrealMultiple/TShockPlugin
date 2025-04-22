@@ -52,7 +52,7 @@ public class Interpreter
         }
     }
 
-    public static void ExecuteScript(SkillContext skill, TSPlayer player, Vector2 pos, Vector2 vel)
+    public static void ExecuteScript(SkillContext skill, TSPlayer player, Vector2 pos, Vector2 vel, int index = -1)
     {
         if (skill.JsScript == null || string.IsNullOrEmpty(skill.JsScript.Script))
         {
@@ -61,7 +61,7 @@ public class Interpreter
         try
         {
             Engine.Evaluate(skill.JsScript.Script);
-            Engine.Invoke("main", skill, player, pos, vel);
+            Engine.Invoke("main", skill, player, pos, vel, index);
         }
         catch (Exception ex)
         {
