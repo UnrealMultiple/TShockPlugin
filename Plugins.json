@@ -454,7 +454,7 @@
   },
   {
     "Name": "CaiBotLitePlugin",
-    "Version": "2025.4.12.1",
+    "Version": "2025.4.26.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot官方机器人的适配插件",
