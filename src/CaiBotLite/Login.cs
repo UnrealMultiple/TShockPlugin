@@ -146,7 +146,7 @@ internal static class Login
         var groupId = Config.Settings.GroupNumber.ToString();
         if (Config.Settings.GroupNumber == 0)
         {
-            groupId = "<未配置>";
+            groupId = "";
         }
         if (player==null)
         {
@@ -201,6 +201,15 @@ internal static class Login
                     player.Disconnect($"[Cai白名单]未授权设备!\n" +
                                       $"在群{groupId}内发送'/登录'\n" +
                                       $"以批准此设备登录");
+
+                    return false;
+                }
+                default:
+                {
+                    TShock.Log.ConsoleInfo($"[Cai白名单]玩家[{name}](IP: {player.IP})无效登录状态码[{code}]...");
+                    player.SilentKickInProgress = true;
+                    player.Disconnect($"[Cai白名单]登录出错!" +
+                                      $"无法处理状态码: {code}");
 
                     return false;
                 }

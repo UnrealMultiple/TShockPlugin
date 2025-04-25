@@ -1,6 +1,6 @@
 ﻿namespace CaiBotLite;
 
-public enum WhiteListStatus : int
+public enum WhiteListStatus
 {
     /// <summary>
     /// 验证通过
@@ -25,5 +25,5 @@ public enum WhiteListStatus : int
     /// <summary>
     /// 用户未登录
     /// </summary>
-    Unauthorized = 401,
+    Unauthorized = 405,
 }
