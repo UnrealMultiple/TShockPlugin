@@ -242,28 +242,31 @@ function main(skill, ply, pos, vel){
 这就跟c系语言的入口函数一样，main函数是脚本的入口，其参数亦不可变。
 
 #### 在脚本中内置了一些函数
-
-*void print(object msg);*
 ```javascript
+//void print(object msg)
+
 function main(skill, ply, pos, vel){
     print("Hellow World"); //在ts控制台你会看到输出
 }
 ```
-*int SpawnProjtile(TSPlayer ply, Vector2 pos, Vector2 vel, int type, int Damage, int KnockBack, int Owner, float ai0 = 0, float ai1 = 0, float ai2 = 0, int timeLeft = -1, string uuid = "")*
 ```javascript
+//int SpawnProjtile(TSPlayer ply, Vector2 pos, Vector2 vel, int type, int Damage, int KnockBack, int Owner, float ai0 = 0, float ai1 = 0, float ai2 = 0, int timeLeft = -1, string uuid = "")
+
 function main(skill, ply, pos, vel){
     let index = SpawnProjtile(ply, pos, vel, 684, 100, 10, ply.Index, 0, 0, 0)
         SendProjectilePacket(index);
 }
 ```
-*void SendPacket(int packetid, int num, int num2, int num3, int num4, int num5, int num6, int num7)*
 ```javascript
+//void SendPacket(int packetid, int num, int num2, int num3, int num4, int num5, int num6, int num7)
+
 function main(skill, ply, pos, vel){
     SendPacket(66, ply.Index, life) //回复玩家100点生命
 }
 ```
-*void Schedule(Action<object> action, int interval, object obj)*
 ```javascript
+//void Schedule(Action<object> action, int interval, object obj)
+
 function main(skill, ply, pos, vel){
     Schedule((args) =>{
         SendPacket(66, ply.Index, life);
