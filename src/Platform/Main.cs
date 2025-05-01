@@ -8,13 +8,15 @@ namespace Platform;
 [ApiVersion(2, 1)]
 public class Platform : TerrariaPlugin
 {
+    private static readonly PlatformType[] _platforms = new PlatformType[Main.maxPlayers];
+    public static PlatformType[] Platforms => _platforms;
 
     public override string Author => "Cai";
 
     public override string Description => GetString("判断玩家设备");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new (2025, 3, 30, 1);
+    public override Version Version => new (2025, 5, 1, 0);
 
     public Platform(Main game)
     : base(game)
@@ -30,7 +32,6 @@ public class Platform : TerrariaPlugin
         Switch = 5,
         PC = 10
     }
-    public static readonly PlatformType[] Platforms  = new PlatformType[Main.maxPlayers];
     public override void Initialize()
     {
         On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.OnGetData;
