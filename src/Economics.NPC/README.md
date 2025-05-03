@@ -11,6 +11,9 @@
 
 无
 
+## 进度限制
+Economics文档：[进度限制值](../EconomicsAPI/README.md)
+
 ## 配置
 > 配置文件位置：tshock/Economics/NPC.json
 ```json5

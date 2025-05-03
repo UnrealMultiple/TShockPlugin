@@ -19,6 +19,9 @@
 | /task list [页码]   |  economics.task.use  |  查看任务列表  |
 | /task reset       | economics.task.admin |   重置任务   |
 
+## 进度限制
+Economics文档：[进度限制值](../EconomicsAPI/README.md)
+
 ## 配置
 > 配置文件位置：tshock/Economics/Task.json
 ```json5
