@@ -29,6 +29,9 @@
 | /skill del [玩家] [技能索引]  | economics.skill.admin |          移除目标玩家技能          |
 | /skill clearh [玩家]      | economics.skill.admin |         移除玩家所有隐藏技能         |
 
+## 进度限制
+Economics文档：[进度限制值](../EconomicsAPI/README.md)
+
 ## 配置
 > 配置文件位置：tshock/Economics/Skill.json
 ```json5
