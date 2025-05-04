@@ -45,7 +45,7 @@ public class CurrencyManager
             new SqlColumn("username", MySqlDbType.Text) { Length = 500 },
             new SqlColumn("currency", MySqlDbType.Int64) { Length = 255 },
             new SqlColumn("type", MySqlDbType.Text) { Length = 255 });
-        var List = new SqlTableCreator(this.database, this.database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
+        var List = new SqlTableCreator(this.database, this.database.GetSqlQueryBuilder());
         List.EnsureTableStructure(Skeleton);
         using (var reader = this.database.QueryReader("SELECT * FROM economics"))
         {

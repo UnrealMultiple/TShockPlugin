@@ -33,7 +33,7 @@ public class Database
     #region 数据库表结构（使用Tshock自带的数据库作为存储）
     public Database()
     {
-        var sql = new SqlTableCreator(TShock.DB, new SqliteQueryCreator());
+        var sql = new SqlTableCreator(TShock.DB, TShock.DB.GetSqlQueryBuilder());
 
         // 定义并确保 PlayerSpeed 表的结构
         sql.EnsureTableStructure(new SqlTable("PlayerSpeed", //表名

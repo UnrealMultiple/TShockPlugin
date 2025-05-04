@@ -9,7 +9,7 @@ public static class DB
     private static IDbConnection db => TShock.DB;
     public static void Connect()
     {
-        var sqlcreator = new SqlTableCreator(db, new MysqlQueryCreator());
+        var sqlcreator = new SqlTableCreator(db, db.GetSqlQueryBuilder());
 
         sqlcreator.EnsureTableStructure(new SqlTable("TimerKeeper",
             new SqlColumn("X", MySqlDbType.Int32) { Length = 4 },

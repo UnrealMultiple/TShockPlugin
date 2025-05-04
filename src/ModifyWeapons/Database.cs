@@ -85,7 +85,7 @@ public class Database
     #region 数据库表结构（使用Tshock自带的数据库作为存储）
     public Database()
     {
-        var sql = new SqlTableCreator(TShock.DB, new SqliteQueryCreator());
+        var sql = new SqlTableCreator(TShock.DB, TShock.DB.GetSqlQueryBuilder());
 
         sql.EnsureTableStructure(new SqlTable("ModifyWeapons", //表名
             new SqlColumn("ID", MySqlDbType.Int32) { Primary = true, Unique = true, AutoIncrement = true }, // 主键列

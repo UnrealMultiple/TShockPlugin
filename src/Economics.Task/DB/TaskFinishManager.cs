@@ -42,7 +42,7 @@ public class TaskFinishManager
             new SqlColumn("Status", MySqlDbType.Int32)
             );
 
-        var List = new SqlTableCreator(this.database, this.database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
+        var List = new SqlTableCreator(this.database, this.database.GetSqlQueryBuilder());
         List.EnsureTableStructure(table);
         this.Tasks = this.GetPlayerTasks();
     }

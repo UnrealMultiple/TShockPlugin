@@ -12,7 +12,7 @@ public class DbManager
     {
         _db = db;
 
-        var sqlCreator = new SqlTableCreator(db, new SqliteQueryCreator());
+        var sqlCreator = new SqlTableCreator(db, db.GetSqlQueryBuilder());
 
         sqlCreator.EnsureTableStructure(new SqlTable("Players",
             new SqlColumn("AccountID", MySqlDbType.Int32) { Primary = true, Unique = true },

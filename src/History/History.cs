@@ -1403,7 +1403,7 @@ public class History : TerrariaPlugin
     }
     void OnInitialize(EventArgs e)
     {
-        var sqlcreator = new SqlTableCreator(Database, new SqliteQueryCreator());
+        var sqlcreator = new SqlTableCreator(Database, Database.GetSqlQueryBuilder());
         sqlcreator.EnsureTableStructure(new SqlTable("History",
             new SqlColumn("Time", MySqlDbType.Int32),
             new SqlColumn("Account", MySqlDbType.VarChar) { Length = 50 },

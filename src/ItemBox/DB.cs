@@ -13,19 +13,8 @@ public static class DB
     public static void Connect()
     {
         var dbConnection = db;
-        IQueryBuilder provider;
-        if (db.GetSqlType() != SqlType.Sqlite)
-        {
-            IQueryBuilder queryBuilder = new MysqlQueryCreator();
-            provider = queryBuilder;
-        }
-        else
-        {
-            IQueryBuilder queryBuilder = new SqliteQueryCreator();
-            provider = queryBuilder;
-        }
 
-        var sqlTableCreator = new SqlTableCreator(dbConnection, provider);
+        var sqlTableCreator = new SqlTableCreator(dbConnection, dbConnection.GetSqlQueryBuilder());
         sqlTableCreator.EnsureTableStructure(new SqlTable("item_box", new SqlColumn("UserID", MySqlDbType.Int32) { Primary = true, Unique = true, Length = 8 }, new SqlColumn("Inventory", MySqlDbType.Text) { Length = int.MaxValue }));
     }
 
