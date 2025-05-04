@@ -79,9 +79,7 @@ public class Plugin : TerrariaPlugin
             }
         });
 
-        var sqlTableCreator = new SqlTableCreator(db, (db.GetSqlType() == SqlType.Sqlite)
-            ? new SqliteQueryCreator()
-            : new MysqlQueryCreator());
+        var sqlTableCreator = new SqlTableCreator(db, db.GetSqlQueryBuilder());
         sqlTableCreator.EnsureTableStructure(sqlTable);
 
         using var result = TShock.DB.QueryReader("SELECT * FROM synctable WHERE `key`=@0", Config.GetProgressName(ProgressType.Unreachable));

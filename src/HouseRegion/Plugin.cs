@@ -41,9 +41,7 @@ public class HousingPlugin : LazyPlugin
             new SqlColumn("WorldID", MySqlDbType.Text),//世界代号
             new SqlColumn("Locked", MySqlDbType.Int32),//是否上锁
             new SqlColumn("Users", MySqlDbType.Text));//使用者
-        var SQLWriter = new SqlTableCreator(TShock.DB,
-            TShock.DB.GetSqlType() == SqlType.Sqlite ?
-            new SqliteQueryCreator() : new MysqlQueryCreator());
+        var SQLWriter = new SqlTableCreator(TShock.DB,TShock.DB.GetSqlQueryBuilder());
         SQLWriter.EnsureTableStructure(table);
     }
     private void RH()//读取房屋

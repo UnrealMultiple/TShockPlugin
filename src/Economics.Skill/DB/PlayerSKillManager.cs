@@ -46,7 +46,7 @@ public class PlayerSKillManager
             new SqlColumn("Name", MySqlDbType.Text) { Length = 500 },
             new SqlColumn("BindItem", MySqlDbType.Int32) { Length = 255 }
               );
-        var List = new SqlTableCreator(this.database, this.database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
+        var List = new SqlTableCreator(this.database, this.database.GetSqlQueryBuilder());
         List.EnsureTableStructure(Skeleton);
         this.ReadAll();
     }

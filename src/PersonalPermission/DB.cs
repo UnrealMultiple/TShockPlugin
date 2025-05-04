@@ -15,24 +15,13 @@ class DB
                 new SqlColumn("Permissions", MySql.Data.MySqlClient.MySqlDbType.Text)
             });
             var db = TShock.DB;
-            IQueryBuilder queryBuilder2;
-            if (DbExt.GetSqlType(TShock.DB) != SqlType.Sqlite)
-            {
-                IQueryBuilder queryBuilder = new MysqlQueryCreator();
-                queryBuilder2 = queryBuilder;
-            }
-            else
-            {
-                IQueryBuilder queryBuilder = new SqliteQueryCreator();
-                queryBuilder2 = queryBuilder;
-            }
-            new SqlTableCreator(db, queryBuilder2).EnsureTableStructure(sqlTable);
+            new SqlTableCreator(db, db.GetSqlQueryBuilder()).EnsureTableStructure(sqlTable);
         }
         catch (Exception ex) { TShock.Log.Error(ex.Message); }
     }
     public static bool AddUser(int id)
     {
-        try { return DbExt.Query(TShock.DB, $"INSERT INTO PersonalPermission (UserID) VALUES ({id});") != -1; }
+        try { return TShock.DB.Query($"INSERT INTO PersonalPermission (UserID) VALUES ({id});") != -1; }
         catch (Exception ex) { TShock.Log.ConsoleError(GetString($"添加玩家信息失败.\n{ex}")); return false; }
     }
     public static List<string> GetPermissions(int id)

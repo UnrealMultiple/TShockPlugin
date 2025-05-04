@@ -15,7 +15,7 @@ public class WeaponPlusDB
     {
         this.database = database;
         var table = new SqlTable("WeaponPlusDBBasedOnEconomics", new SqlColumn("owner", (MySqlDbType) 752), new SqlColumn("itemID", (MySqlDbType) 3), new SqlColumn("itemName", (MySqlDbType) 752), new SqlColumn("lable", (MySqlDbType) 3), new SqlColumn("level", (MySqlDbType) 3), new SqlColumn("damage_level", (MySqlDbType) 3), new SqlColumn("scale_level", (MySqlDbType) 3), new SqlColumn("knockBack_level", (MySqlDbType) 3), new SqlColumn("useSpeed_level", (MySqlDbType) 3), new SqlColumn("shootSpeed_level", (MySqlDbType) 3), new SqlColumn("allCost", (MySqlDbType) 8));
-        IQueryBuilder queryBuilder = database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator();
+        var queryBuilder = database.GetSqlQueryBuilder();
         queryBuilder.CreateTable(table);
         var sqlTableCreator = new SqlTableCreator(database, queryBuilder);
         sqlTableCreator.EnsureTableStructure(table);

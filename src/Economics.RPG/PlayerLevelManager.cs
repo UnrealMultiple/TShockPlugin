@@ -20,7 +20,7 @@ public class PlayerLevelManager
             new SqlColumn("UserName", MySqlDbType.Text) { Length = 500 },
             new SqlColumn("Level", MySqlDbType.Text) { Length = 255 }
               );
-        var List = new SqlTableCreator(this.database, this.database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
+        var List = new SqlTableCreator(this.database, this.database.GetSqlQueryBuilder());
         List.EnsureTableStructure(Skeleton);
         this.Levels = this.GetPlayerLevel();
     }

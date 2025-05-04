@@ -43,7 +43,7 @@ public class Skill : TerrariaPlugin
         if (stream != null)
         {
             var assemblyData = new byte[stream.Length];
-            stream.Read(assemblyData, 0, assemblyData.Length);
+            stream.ReadExactly(assemblyData);
             return Assembly.Load(assemblyData);
         }
         return null;
