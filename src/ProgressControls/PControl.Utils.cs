@@ -15,7 +15,7 @@ public partial class PControl : TerrariaPlugin
     /// <summary>
     /// 重置函数
     /// </summary>
-    private static async void ResetGame()
+    private static void ResetGame()
     {
         //在服务器关闭前执行指令
         config.CommandForBeforeResetting.ForEach(x => Commands.HandleCommand(TSPlayer.Server, "/" + x.Trim('/', '.')));
@@ -273,8 +273,6 @@ public partial class PControl : TerrariaPlugin
         //Main.worldPathName是有.wld后缀的
         Process.Start(Environment.ProcessPath!,
             $"-lang 7 -world \"{Main.worldPathName}\" -maxplayers {Main.maxNetPlayers} -port {Netplay.ListenPort} {tileProviderArg}");
-        Netplay.Disconnect = true;
-        TShock.ShuttingDown = true;
         Environment.Exit(0);
     }
 

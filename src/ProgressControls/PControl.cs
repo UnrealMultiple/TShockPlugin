@@ -18,7 +18,7 @@ public partial class PControl : TerrariaPlugin
     public override string Author => "z枳 羽学";
     public override string Description => GetString("计划书");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 12);
+    public override Version Version => new Version(1, 1, 0,0);
 
     public static Config config = new Config();
 
