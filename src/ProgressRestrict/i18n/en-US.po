@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-29 16:03:06+0000\n"
-"PO-Revision-Date: 2025-04-06 01:19\n"
+"PO-Revision-Date: 2025-04-22 01:16\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Player {0} has over-progress projectile {1} ID =>{2}"
 #: ../../Plugin.cs:143
 #, csharp-format
 msgid "[超进度物品限制] 玩家{0} 在背包第{1}格检测到超进度物品 {2} x{3}"
-msgstr "Player {0} Was detected an over-progress item {1} in inventory {2} x{3}"
+msgstr "Player {0} has over-progress item {1} in inventory {2} x{3}"
 
 #: ../../Plugin.cs:189
 msgid "使用超进度弹幕"

@@ -32,6 +32,8 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 ## 更新日志
 
 ```
+v2025.04.30.1 更新依赖SixLabors.ImageSharp
+v2025.04.26.1 修复无法正确处理登录包
 v2025.04.12.1 修复死亡后无法掉落钱币, 维度插件无法正常获取玩家IP
 v2025.03.29.1 修复白名单登录时空引用报错
 v2025.03.15.1 修改一些提示

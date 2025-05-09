@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-04-17 06:08:11+0000\n"
-"PO-Revision-Date: 2025-04-20 01:20\n"
+"POT-Creation-Date: 2025-04-23 02:41:45+0000\n"
+"PO-Revision-Date: 2025-04-27 01:21\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -1271,8 +1271,8 @@ msgstr "Enter /zban add uuid <uuid> [reason] to ban uuid\n"
 msgid "输入 /zban add uuid <uuid> <reason> 来封禁uuid\n"
 msgstr "Enter /zban add uuid <uuid> <reason> to ban uuid\n"
 
-#: ../../ZHIPM.cs:212
 #: ../../ZHIPM.Initialize.cs:4952
+#: ../../ZHIPM.cs:212
 msgid "输入 /zbpos 来返回上次死亡地点"
 msgstr "Enter /zbpos to return to last death location"
 
@@ -1336,8 +1336,8 @@ msgstr "Enter /zclone <name> To copy the player's character data to yourself\n"
 msgid "输入 /zclone <name1> <name2> 将玩家1的人物数据复制给玩家2\n"
 msgstr "Enter /zclone <name1> <name2> To copy the character data of player 1 to player 2\n"
 
-#: ../../ZHIPM.cs:165
 #: ../../ZHIPM.Initialize.cs:3809
+#: ../../ZHIPM.cs:165
 msgid "输入 /zfre [name] 来冻结该玩家"
 msgstr "Enter /zfre [name] to freeze the player"
 
@@ -1345,8 +1345,8 @@ msgstr "Enter /zfre [name] to freeze the player"
 msgid "输入 /zfre <name> 来冻结该玩家\n"
 msgstr "Enter /zfre <name> to freeze the player\n"
 
-#: ../../ZHIPM.cs:118
 #: ../../ZHIPM.Initialize.cs:26
+#: ../../ZHIPM.cs:118
 msgid "输入 /zhelp 来查看指令帮助"
 msgstr "Enter /zhelp to view command help"
 
@@ -1354,9 +1354,9 @@ msgstr "Enter /zhelp to view command help"
 msgid "输入 /zhide kill 来取消 kill + 1 的显示，再次使用启用显示\n"
 msgstr "Enter /zhide kill to cancel the display of kill + 1, and use Enable display again\n"
 
-#: ../../ZHIPM.cs:154
 #: ../../ZHIPM.Initialize.cs:2637
 #: ../../ZHIPM.Initialize.cs:2679
+#: ../../ZHIPM.cs:154
 msgid "输入 /zhide kill 来取消 kill + 1 的显示，再次使用启用显示\n"
 "输入 /zhide point 来取消 + 1 $ 的显示，再次使用启用显示"
 msgstr "Enter /zhide kill to disable the display of kill + 1, then use again to enable the display\n"
@@ -1427,9 +1427,9 @@ msgstr "Enter /zmodify [name] torch [0 or 1] to turn off or turn on the torch go
 msgid "输入 /zmodify [name] worm [0或1] 来关闭或开启粘性蠕虫增益\n"
 msgstr "Enter /zmodify [name] worm [0 or 1] to turn off or turn on the gummy worm buff\n"
 
-#: ../../ZHIPM.cs:142
 #: ../../ZHIPM.Initialize.cs:616
 #: ../../ZHIPM.Initialize.cs:648
+#: ../../ZHIPM.cs:142
 msgid "输入 /zmodify help 查看修改玩家数据的指令帮助"
 msgstr "Enter /zmodify help to view commands help for modifying player data"
 
@@ -1480,14 +1480,14 @@ msgstr "Enter /zreset all to reset all player character data\n"
 msgid "输入 /zreset help 来查看zreset系列指令帮助\n"
 msgstr "Enter /zreset help to view zreset series command help\n"
 
-#: ../../ZHIPM.cs:187
 #: ../../ZHIPM.Initialize.cs:1120
 #: ../../ZHIPM.Initialize.cs:1202
+#: ../../ZHIPM.cs:187
 msgid "输入 /zresetallplayers 来清理所有玩家的所有数据"
 msgstr "Enter /zresetallplayers to reset all data for all players"
 
-#: ../../ZHIPM.cs:175
 #: ../../ZHIPM.Initialize.cs:946
+#: ../../ZHIPM.cs:175
 msgid "输入 /zresetdb [name] 来清理该玩家的备份数据\n"
 "输入 /zresetdb all 来清理所有玩家的备份数据"
 msgstr "Enter /zresetdb [name] to reset the player's backup data\n"
@@ -1523,8 +1523,8 @@ msgstr "Enter /zresetex all to reset all players' extra data"
 msgid "输入 /zresetex all 来清理所有玩家的额外数据\n"
 msgstr "Enter /zresetex all to reset all players' extra data\n"
 
-#: ../../ZHIPM.cs:122
 #: ../../ZHIPM.Initialize.cs:110
+#: ../../ZHIPM.cs:122
 msgid "输入 /zsave 来备份自己的人物存档"
 msgstr "Enter /zsave to backup your character"
 
@@ -1532,9 +1532,9 @@ msgstr "Enter /zsave to backup your character"
 msgid "输入 /zsave 来备份自己的人物存档\n"
 msgstr "Enter /zsave to backup your character\n"
 
-#: ../../ZHIPM.cs:126
 #: ../../ZHIPM.Initialize.cs:152
 #: ../../ZHIPM.Initialize.cs:184
+#: ../../ZHIPM.cs:126
 msgid "输入 /zsaveauto [minute] 来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能"
 msgstr "Enter /zsaveauto [minute] to automatically backup your character data every minute, turn off this function when minute is 0."
 
@@ -1624,9 +1624,9 @@ msgstr "Enter /zsort fish all to view the ranking of all players' angler quest\n
 msgid "输入 /zsort fish 来查看人物任务鱼数目排行榜前十名\n"
 msgstr "Enter /zsort fish to view the top ten angler quest completed of the player\n"
 
-#: ../../ZHIPM.cs:150
 #: ../../ZHIPM.Initialize.cs:2847
 #: ../../ZHIPM.Initialize.cs:3626
+#: ../../ZHIPM.cs:150
 msgid "输入 /zsort help 来查看排序系列指令帮助"
 msgstr "Enter /zsort help to view the sorting list command help"
 
@@ -1685,8 +1685,8 @@ msgid "输入 /zsort time 来查看人物在线时间排行榜前十名\n"
 msgstr "Enter /zsort time to view the top ten players' online time rankings\n"
 "Enter /zsort time all to view the online rankings of all players"
 
-#: ../../ZHIPM.cs:169
 #: ../../ZHIPM.Initialize.cs:3885
+#: ../../ZHIPM.cs:169
 msgid "输入 /zunfre [name] 来解冻该玩家\n"
 "输入 /zunfre all 来解冻所有玩家"
 msgstr "Enter /zunfre [name] to unfreeze the player\n"

@@ -16,6 +16,10 @@
 | /shop buy [序号]  | economics.shop |  购买商品  |
 | /shop list [页码] | economics.shop | 查看商品列表 |
 
+## 进度限制
+Economics文档：[进度限制值](../EconomicsAPI/README.md)
+
+
 ## 配置
 > 配置文件位置：tshock/Economics/Shop.json
 ```json5
