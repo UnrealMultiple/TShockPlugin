@@ -25,7 +25,7 @@ public class WikiLangPackLoader : TerrariaPlugin
     public override string Description => GetString("加载Wiki语言包");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2025, 4, 23, 1);
+    public override Version Version => new Version(2025, 4, 26, 1);
 
     public override void Initialize()
     {
