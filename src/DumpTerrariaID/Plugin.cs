@@ -11,7 +11,7 @@ public class Plugin : TerrariaPlugin
     public override string Author => "少司命";
     public override string Description => GetString("DumpID");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 4);
+    public override Version Version => new Version(1, 0, 0, 5);
     public Dump Dump = new();
     public readonly Dictionary<int, string> EnglishBuffs = new();
     public readonly Dictionary<int, string> Prefixs = new();
@@ -82,7 +82,7 @@ public class Plugin : TerrariaPlugin
             });
         }
 
-        for (var i = 0; i < NPCID.Count; i++)
+        for (var i = -65; i < NPCID.Count; i++)
         {
             this.Dump.NpcTable.Add(new Project()
             {

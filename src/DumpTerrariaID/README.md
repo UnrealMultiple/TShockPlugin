@@ -20,6 +20,8 @@ TerrariaID表
 ## 更新日志
 
 ```
+v1.0.0.5
+添加负数NPCid
 v1.0.0.4
 添加 GetString
 v1.0.0.1
