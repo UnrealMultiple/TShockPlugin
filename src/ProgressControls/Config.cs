@@ -161,17 +161,11 @@ public class Config
         this.WorldSeedForAfterReset = "";
         this.WorldNameForAfterReset = "SFE4";
         this.ExpectedUsageWorldFileNameForAotuReset = new HashSet<string>();
-        this.AfterResetPeople = 32;
-        this.AfterResetPort = "7777";
-        this.AfterResetServerPassword = "";
         this.WorldPath = "./world/";
 
         this.LasetServerRestartDate = DateTime.Now;
         this.AutoRestartServer = false;
         this.HowLongTimeOfRestartServer = 0;
-        this.AfterRestartPeople = 32;
-        this.AfterRestartPort = "7777";
-        this.AfterRestartServerPassword = "";
         this.CommandForBeforeRestart = new HashSet<string>();
 
         this.OpenAutoControlProgressLock = false;
@@ -224,13 +218,7 @@ public class Config
     public HashSet<string> ExpectedUsageWorldFileNameForAotuReset;
     [JsonProperty("地图存放目录", Order = -13)]
     public string WorldPath;
-
-    [JsonProperty("重置后的最多在线人数", Order = -12)]
-    public int AfterResetPeople;
-    [JsonProperty("重置后的端口", Order = -12)]
-    public string AfterResetPort;
-    [JsonProperty("重置后的服务器密码", Order = -12)]
-    public string AfterResetServerPassword;
+    
 
     //重启计划
     [JsonProperty("上次重启服务器的日期", Order = -11)]
@@ -239,12 +227,6 @@ public class Config
     public bool AutoRestartServer;
     [JsonProperty("多少小时后开始自动重启服务器", Order = -11)]
     public double HowLongTimeOfRestartServer;
-    [JsonProperty("重启后的最多在线人数", Order = -11)]
-    public int AfterRestartPeople;
-    [JsonProperty("重启后的端口", Order = -11)]
-    public string AfterRestartPort;
-    [JsonProperty("重启后的服务器密码", Order = -11)]
-    public string AfterRestartServerPassword;
     [JsonProperty("重启前执行的指令", Order = -11)]
     public HashSet<string> CommandForBeforeRestart;
 
