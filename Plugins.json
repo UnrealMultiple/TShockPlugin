@@ -1897,7 +1897,7 @@
   },
   {
     "Name": "ProgressControls",
-    "Version": "1.0.0.12",
+    "Version": "1.1.0.0",
     "Author": "z枳 羽学",
     "Description": {
       "en-US": "Control the progress",
