@@ -466,35 +466,35 @@ public class Action
         var dhms = new StringBuilder();
         if (timeDiff.Days != 0)
         {
-            dhms.Append(timeDiff.Days + "天");
+            dhms.Append(GetString($"{timeDiff.Days}天"));
         }
         if (timeDiff.Hours != 0)
         {
-            dhms.Append(timeDiff.Hours + "小时");
+            dhms.Append(GetString($"{timeDiff.Hours}小时"));
         }
         if (timeDiff.Minutes != 0)
         {
-            dhms.Append(timeDiff.Minutes + "分钟");
+            dhms.Append(GetString($"{timeDiff.Minutes}分钟"));
         }
         if (timeDiff.Seconds != 0)
         {
-            dhms.Append(timeDiff.Seconds + "秒");
+            dhms.Append(GetString($"{timeDiff.Seconds}秒"));
         }
 
         return this.action switch
         {
-            0 or 4 or 20 => string.Format("{0} {1} 破坏方块 {2}. ({3})", date, this.account, this.data, dhms),
-            1 => string.Format("{0} {1} 放置方块 {2}. ({3})", date, this.account, this.data, dhms),
-            2 => string.Format("{0} {1} 破坏墙 {2}. ({3})", date, this.account, this.data, dhms),
-            3 => string.Format("{0} {1} 放置墙 {2}. ({3})", date, this.account, this.data, dhms),
-            5 or 10 or 12 or 16 => string.Format("{0} {1} 放置电线. ({2})", date, this.account, dhms),
-            6 or 11 or 13 or 17 => string.Format("{0} {1} 破坏电线. ({2})", date, this.account, dhms),
-            7 or 14 => string.Format("{0} {1} 改变图格形状. ({2})", date, this.account, dhms),
-            8 => string.Format("{0} {1} 放置致动器. ({2})", date, this.account, dhms),
-            21 => string.Format("{0} {1} 放置物块 ({2})", date, this.account, dhms),
-            22 => string.Format("{0} {1} 放置墙. ({2})", date, this.account, dhms),
-            25 or 26 => string.Format("{0} {1} 涂漆物块/墙. ({2})", date, this.account, dhms),
-            27 => string.Format("{0} {1} 修改了告示牌文字. ({2})", date, this.account, dhms),
+            0 or 4 or 20 => GetString($"{date} {this.account} 破坏方块 {this.data}. ({dhms})"),
+            1 => GetString($"{date} {this.account} 放置方块 {this.data}. ({dhms})"),
+            2 => GetString($"{date} {this.account} 破坏墙 {this.data}. ({dhms})"),
+            3 => GetString($"{date} {this.account} 放置墙 {this.data}. ({dhms})"),
+            5 or 10 or 12 or 16 => GetString($"{date} {this.account} 放置电线. ({dhms})"),
+            6 or 11 or 13 or 17 => GetString($"{date} {this.account} 破坏电线. ({dhms})"),
+            7 or 14 => GetString($"{date} {this.account} 改变图格形状. ({dhms})"),
+            8 => GetString($"{date} {this.account} 放置致动器. ({dhms})"),
+            21 => GetString($"{date} {this.account} 放置物块 ({dhms})"),
+            22 => GetString($"{date} {this.account} 放置墙. ({dhms})"),
+            25 or 26 => GetString($"{date} {this.account} 涂漆物块/墙. ({dhms})"),
+            27 => GetString($"{date} {this.account} 修改了告示牌文字. ({dhms})"),
             _ => "",
         };
     }
