@@ -19,7 +19,7 @@ public partial class Plugin : LazyPlugin
     public override string Description => GetString("服务器工具");// 插件说明
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 8, 6);// 插件版本
+    public override Version Version => new Version(1, 1, 8, 7);// 插件版本
 
     private DateTime LastCommandUseTime = DateTime.Now;
 
@@ -513,7 +513,7 @@ public partial class Plugin : LazyPlugin
                 var respawn = time - DateTime.Now;
                 if (respawn.TotalSeconds > 0)
                 {
-                    TShock.Players[args.Who].Disconnect(GetString($"退出服务器时处于死亡状态！\n请等待死亡结束，还有{respawn.TotalSeconds}秒结束！"));
+                    TShock.Players[args.Who].Disconnect(GetString($"退出服务器时处于死亡状态！\n请等待死亡结束，还有{respawn.TotalSeconds:0}秒结束！"));
                 }
             }
         }

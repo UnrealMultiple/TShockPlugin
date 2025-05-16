@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ServerTools\n"
-"POT-Creation-Date: 2025-01-29 16:03:14+0000\n"
-"PO-Revision-Date: 2025-01-29 16:03:15+0000\n"
+"POT-Creation-Date: 2025-05-14 15:20:18+0000\n"
+"PO-Revision-Date: 2025-05-14 15:20:18+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -180,7 +180,7 @@ msgstr ""
 #, csharp-format
 msgid ""
 "退出服务器时处于死亡状态！\n"
-"请等待死亡结束，还有{0}秒结束！"
+"请等待死亡结束，还有{0:0}秒结束！"
 msgstr ""
 
 #: ../../Plugin.Commamd.cs:94

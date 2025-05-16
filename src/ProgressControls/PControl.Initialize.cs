@@ -535,7 +535,7 @@ public partial class PControl : TerrariaPlugin
                     //自动生成地图还是挑选备用地图
                     if (config.ExpectedUsageWorldFileNameForAotuReset.Count > 0 && ExistWorldNamePlus(config.ExpectedUsageWorldFileNameForAotuReset.First(), out var world) && !(world == Main.worldName && config.DeleteWorldForReset))
                     {
-                        mess_reset += GetString($"使用提供的地图：{world}，最多在线人数：{config.AfterResetPeople}，端口：{config.AfterResetPort}，是否重置玩家数据：{config.ResetTSCharacter}，服务器密码：{config.AfterResetServerPassword}，自动删图：{config.DeleteWorldForReset}");
+                        mess_reset += GetString($"使用提供的地图：{world}，最多在线人数：{Main.maxNetPlayers}，端口：{Netplay.ListenPort}，是否重置玩家数据：{config.ResetTSCharacter}，服务器密码：{Netplay.ServerPassword}，自动删图：{config.DeleteWorldForReset}");
                     }
                     else
                     {
@@ -547,8 +547,8 @@ public partial class PControl : TerrariaPlugin
                                 ? config.AddNumberFile(CorrectFileName(config.WorldNameForAfterReset))
                                 : config.AddNumberFile(CorrectFileName(config.WorldNameForAfterReset), Main.worldName);
                         mess_reset +=
-                            GetString($"生成地图名称：{temp}，地图大小：{size}，模式：{mode}，种子：{(string.IsNullOrWhiteSpace(config.WorldSeedForAfterReset) ? "随机" : config.WorldSeedForAfterReset)}，最多在线人数：{config.AfterResetPeople}") +
-                            GetString($"，端口：{config.AfterResetPort}，服务器密码：{(string.IsNullOrWhiteSpace(config.AfterResetServerPassword) ? "无" : config.AfterResetServerPassword)}，是否重置玩家数据：{config.ResetTSCharacter}，自动删图：{config.DeleteWorldForReset}");
+                            GetString($"生成地图名称：{temp}，地图大小：{size}，模式：{mode}，种子：{(string.IsNullOrWhiteSpace(config.WorldSeedForAfterReset) ? "随机" : config.WorldSeedForAfterReset)}") +
+                            GetString($"，端口：{Netplay.ListenPort}，服务器密码：{(string.IsNullOrWhiteSpace(Netplay.ServerPassword) ? "无" : Netplay.ServerPassword)}，是否重置玩家数据：{config.ResetTSCharacter}，自动删图：{config.DeleteWorldForReset}");
                     }
                     #endregion
 
@@ -573,11 +573,11 @@ public partial class PControl : TerrariaPlugin
 
                     mess_reload += GetString("地图名称：{0}，最多在线人数：{1}，端口：{2}，服务器密码：{3}",
                         Main.worldName,
-                        config.AfterRestartPeople,
-                        config.AfterRestartPort,
-                        string.IsNullOrWhiteSpace(config.AfterRestartServerPassword) 
+                        Main.maxNetPlayers,
+                        Netplay.ListenPort,
+                        string.IsNullOrWhiteSpace(Netplay.ServerPassword) 
                             ? GetString("无") 
-                            : config.AfterRestartServerPassword);
+                            : Netplay.ServerPassword);
                     
                     #endregion
 
@@ -1557,12 +1557,6 @@ public partial class PControl : TerrariaPlugin
                         GetString("输入 /pco reload os <±num/±H:M:S>   将自动重启服务器的时间推迟或提前num时或H时M分S秒，num可为小数\n") +
                         //2 || 3
                         GetString("输入 /pco reload hand <±num/±H:M:S>   手动重启服务器计划启用，在num时或H时M分S秒后开始重启，若不填则立刻重启，小于0则关闭当前存在的手动计划，其优先级大于自动重启\n") +
-                        //3
-                        GetString("输入 /pco reload maxplayers <num>   来设置下次重启地图时的最多在线玩家\n") +
-                        //3
-                        GetString("输入 /pco reload port <num>   来设置下次重启地图时的端口\n") +
-                        //2 || 3
-                        GetString("输入 /pco reload password <string>   来设置下次重启地图时的密码\n") +
                         GetString("输入 /pco reload stop   关闭手动重启服务器计划"), TextColor());
                 }
                 else if (args.Parameters[1].Equals("act", StringComparison.OrdinalIgnoreCase))
@@ -1596,12 +1590,6 @@ public partial class PControl : TerrariaPlugin
                 else if (args.Parameters[1].Equals("hand", StringComparison.OrdinalIgnoreCase))
                 {
                     RestartGame();
-                }
-                else if (args.Parameters[1].Equals("password", StringComparison.OrdinalIgnoreCase))
-                {
-                    config.AfterRestartServerPassword = "";
-                    config.SaveConfigFile();
-                    args.Player.SendSuccessMessage(GetString("下次重置服务器的密码已取消"));
                 }
                 else if (args.Parameters[1].Equals("stop", StringComparison.OrdinalIgnoreCase))
                 {
@@ -1727,31 +1715,6 @@ public partial class PControl : TerrariaPlugin
                         }
                     }
                 }
-                else if (args.Parameters[1].Equals("maxplayers", StringComparison.OrdinalIgnoreCase))
-                {
-                    if (int.TryParse(args.Parameters[2], out var num) && num >= 0 && num < 200)
-                    {
-                        args.Player.SendSuccessMessage(GetString($"下次重启地图的玩家上限成功修改为：{num}"));
-                        config.AfterRestartPeople = num;
-                        config.SaveConfigFile();
-                    }
-                    else
-                    {
-                        args.Player.SendInfoMessage(GetString("请输入整数，不要输入负数，数字不要过大"));
-                    }
-                }
-                else if (args.Parameters[1].Equals("port", StringComparison.OrdinalIgnoreCase))
-                {
-                    config.AfterRestartPort = args.Parameters[2];
-                    config.SaveConfigFile();
-                    args.Player.SendSuccessMessage(GetString($"下次重启地图时的端口为：{args.Parameters[2]}"));
-                }
-                else if (args.Parameters[1].Equals("password", StringComparison.OrdinalIgnoreCase))
-                {
-                    config.AfterRestartServerPassword = args.Parameters[2];
-                    config.SaveConfigFile();
-                    args.Player.SendSuccessMessage(GetString("下次重置服务器的密码修改成功"));
-                }
                 else
                 {
                     args.Player.SendInfoMessage(GetString("输入 /pco reload help   来查看指令计划的帮助指令"));
@@ -1780,12 +1743,8 @@ public partial class PControl : TerrariaPlugin
                         GetString("输入 /pco reset size <小1/中2/大3(只填数字)>   来设置下次重置时地图的大小\n") +
                         GetString("输入 /pco reset mode <普通0/专家1/大师2/旅途3(只填数字)>   来设置下次重置地图时的模式\n") +
                         GetString("输入 /pco reset seed <string>   来设置下次重置地图时的地图种子，不填时设为随机\n") +
-                        GetString("输入 /pco reset maxplayers <num>   来设置下次重置地图时的最多在线玩家\n") +
                         //2
                         GetString("输入 /pco reset resetplayers   来设置下次重置地图时清理玩家数据，再次使用取消\n") +
-                        GetString("输入 /pco reset port <num>   来设置下次重置地图时的端口\n") +
-                        //2 || 3
-                        GetString("输入 /pco reset password <string>   来设置下次重置地图时的密码\n") +
                         //2
                         GetString("输入 /pco reset delworld   来设置下次重置地图时删除当前地图，再次使用取消\n") +
                         GetString("输入 /pco reset addname <string>   来添加你提供的用来重置的地图的名称\n") +
@@ -1831,12 +1790,6 @@ public partial class PControl : TerrariaPlugin
                     config.WorldSeedForAfterReset = "";
                     config.SaveConfigFile();
                     args.Player.SendInfoMessage(GetString("已将地图种子设为随机"));
-                }
-                else if (args.Parameters[1].Equals("password", StringComparison.OrdinalIgnoreCase))
-                {
-                    config.AfterResetServerPassword = "";
-                    config.SaveConfigFile();
-                    args.Player.SendSuccessMessage(GetString("下次重置服务器的密码已取消"));
                 }
                 else if (args.Parameters[1].Equals("listname", StringComparison.OrdinalIgnoreCase) || args.Parameters[1].Equals("list", StringComparison.OrdinalIgnoreCase))
                 {
@@ -2088,31 +2041,6 @@ public partial class PControl : TerrariaPlugin
                     args.Player.SendSuccessMessage(GetString($"下次重置地图的种子成功修改为：{args.Parameters[2]}"));
                     config.WorldSeedForAfterReset = args.Parameters[2];
                     config.SaveConfigFile();
-                }
-                else if (args.Parameters[1].Equals("maxplayers", StringComparison.OrdinalIgnoreCase))
-                {
-                    if (int.TryParse(args.Parameters[2], out var num) && num >= 0 && num < 200)
-                    {
-                        args.Player.SendSuccessMessage(GetString($"下次重置地图的玩家上限成功修改为：{num}"));
-                        config.AfterResetPeople = num;
-                        config.SaveConfigFile();
-                    }
-                    else
-                    {
-                        args.Player.SendInfoMessage(GetString("请输入整数，不要输入负数，数字不要过大"));
-                    }
-                }
-                else if (args.Parameters[1].Equals("port", StringComparison.OrdinalIgnoreCase))
-                {
-                    config.AfterResetPort = args.Parameters[2];
-                    config.SaveConfigFile();
-                    args.Player.SendSuccessMessage(GetString($"下次重置地图时的端口为：{args.Parameters[2]}"));
-                }
-                else if (args.Parameters[1].Equals("password", StringComparison.OrdinalIgnoreCase))
-                {
-                    config.AfterResetServerPassword = args.Parameters[2];
-                    config.SaveConfigFile();
-                    args.Player.SendSuccessMessage(GetString("下次重置服务器的密码修改成功"));
                 }
                 else if (args.Parameters[1].Equals("addname", StringComparison.OrdinalIgnoreCase) || args.Parameters[1].Equals("add", StringComparison.OrdinalIgnoreCase))
                 {
