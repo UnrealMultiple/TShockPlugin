@@ -8,7 +8,7 @@ public class Plugin : TerrariaPlugin
 {
     public override string Author => "少司命";
 
-    public override string Description => "翻译任意插件";
+    public override string Description => GetString("翻译任意插件");
 
     public override string Name => "TransferPatch";
 
@@ -41,13 +41,13 @@ public class Plugin : TerrariaPlugin
 
     private string T_SetField(Mono.Cecil.FieldDefinition arg, string className)
     {
-        TShockAPI.TShock.Log.Debug($"[翻译]:{arg.FullName}...");
+        TShockAPI.TShock.Log.Debug(GetString($"[翻译]:{arg.FullName}..."));
         return Config.Instance.Transfers.GetValueOrDefault($"{className}.{arg.Name}", arg.Name);
     }
 
     private string T_SetProperty(Mono.Cecil.PropertyDefinition arg, string className)
     {
-        TShockAPI.TShock.Log.Debug($"[翻译]:{arg.FullName}...");
+        TShockAPI.TShock.Log.Debug(GetString($"[翻译]:{arg.FullName}..."));
         return Config.Instance.Transfers.GetValueOrDefault($"{className}.{arg.Name}", arg.Name);
     }
 

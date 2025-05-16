@@ -27,7 +27,7 @@ public class ILTranslate : IDisposable
         foreach (var className in classNames)
         { 
 
-            var targetType = this.FindTargetType(className) ?? throw new NullReferenceException("未找到目标类!");
+            var targetType = this.FindTargetType(className) ?? throw new NullReferenceException(GetString("未找到目标类!"));
             var jsonPropCtor = this.GenerateJsonPropertyConstructor();
             foreach (var prop in targetType.Properties)
             {
@@ -108,7 +108,7 @@ public class ILTranslate : IDisposable
 
     private MethodReference GenerateJsonPropertyConstructor()
     {
-        var jsonAssembly = this._assemblyDefinition.MainModule.AssemblyReferences.First(a => a.Name == JsonNameSpace) ?? throw new NullReferenceException("无法获取JsonPropertyAttribute");
+        var jsonAssembly = this._assemblyDefinition.MainModule.AssemblyReferences.First(a => a.Name == JsonNameSpace) ?? throw new NullReferenceException(GetString("无法获取JsonPropertyAttribute"));
         var attributeType = new TypeReference(
             JsonNameSpace,
             nameof(JsonPropertyAttribute),
