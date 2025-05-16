@@ -12,9 +12,9 @@ public class ILTranslate : IDisposable
 
     private const string JsonNameSpace = "Newtonsoft.Json";
 
-    public event Func<FieldDefinition, string, string>? SetField;
+    public event Func<FieldDefinition, string, string?>? SetField;
 
-    public event Func<PropertyDefinition, string, string>? SetProperty;
+    public event Func<PropertyDefinition, string, string?>? SetProperty;
 
     public ILTranslate(Stream stream, string fileName)
     {
@@ -45,9 +45,14 @@ public class ILTranslate : IDisposable
 
     private void AddJsonPropertyAttribute(PropertyDefinition prop, MethodReference constructor, string className)
     {
+        var jsonPropertyName = SetProperty?.Invoke(prop, className);
+        if (string.IsNullOrEmpty(jsonPropertyName))
+        {
+            return;
+        }
+        Console.WriteLine(GetString($"[翻译补丁]: {className}.{prop.Name} => {jsonPropertyName}"));
         this.RemoveExistingAttributes(prop.CustomAttributes);
         var jsonAttribute = new CustomAttribute(constructor);
-        var jsonPropertyName = SetProperty?.Invoke(prop, className);
         jsonAttribute.ConstructorArguments.Add(
             new CustomAttributeArgument(prop.Module.TypeSystem.String, jsonPropertyName));
         prop.CustomAttributes.Add(jsonAttribute);
@@ -55,9 +60,14 @@ public class ILTranslate : IDisposable
 
     private void AddJsonPropertyAttributeToField(FieldDefinition field, MethodReference constructor, string className)
     {
+        var jsonPropertyName = SetField?.Invoke(field, className);
+        if (string.IsNullOrEmpty(jsonPropertyName))
+        {
+            return;
+        }
+        Console.WriteLine(GetString($"[翻译补丁]: {className}.{field.Name} => {jsonPropertyName}"));
         this.RemoveExistingAttributes(field.CustomAttributes);
         var jsonAttribute = new CustomAttribute(constructor);
-        var jsonPropertyName = SetField?.Invoke(field, className);
         jsonAttribute.ConstructorArguments.Add(
             new CustomAttributeArgument(field.Module.TypeSystem.String, jsonPropertyName));
         field.CustomAttributes.Add(jsonAttribute);

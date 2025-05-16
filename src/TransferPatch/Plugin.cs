@@ -16,11 +16,11 @@ public class Plugin : TerrariaPlugin
 
     public Plugin(Main game) : base(game)
     {
+        this.Order = int.MinValue;
     }
 
     public override void Initialize()
     {
-        TShockAPI.Hooks.GeneralHooks.ReloadEvent += Config.OnReload;
         this.Run();
     }
 
@@ -32,28 +32,25 @@ public class Plugin : TerrariaPlugin
         }
         using var stream = new MemoryStream(File.ReadAllBytes(Config.Instance.TargetAssembly));
         var t = new ILTranslate(stream, Config.Instance.TargetAssembly);
-        t.SetProperty += this.T_SetProperty;
-        t.SetField += this.T_SetField;
+        t.SetProperty += this.SetProperty;
+        t.SetField += this.SetField;
         t.Patch(Config.Instance.TargetClassName);
-        t.SetProperty -= this.T_SetProperty;
-        t.SetField -= this.T_SetField;
+        t.SetProperty -= this.SetProperty;
+        t.SetField -= this.SetField;
     }
 
-    private string T_SetField(Mono.Cecil.FieldDefinition arg, string className)
+    private string? SetField(Mono.Cecil.FieldDefinition arg, string className)
     {
-        TShockAPI.TShock.Log.Debug(GetString($"[翻译]:{arg.FullName}..."));
-        return Config.Instance.Transfers.GetValueOrDefault($"{className}.{arg.Name}", arg.Name);
+        return Config.Instance.Transfers.GetValueOrDefault($"{className}.{arg.Name}");
     }
 
-    private string T_SetProperty(Mono.Cecil.PropertyDefinition arg, string className)
+    private string? SetProperty(Mono.Cecil.PropertyDefinition arg, string className)
     {
-        TShockAPI.TShock.Log.Debug(GetString($"[翻译]:{arg.FullName}..."));
-        return Config.Instance.Transfers.GetValueOrDefault($"{className}.{arg.Name}", arg.Name);
+        return Config.Instance.Transfers.GetValueOrDefault($"{className}.{arg.Name}");
     }
 
     protected override void Dispose(bool disposing)
     {
-        TShockAPI.Hooks.GeneralHooks.ReloadEvent -= Config.OnReload;
         base.Dispose(disposing);
     }
 }

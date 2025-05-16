@@ -26,10 +26,6 @@ public class Config
         File.WriteAllText(FileName, JsonConvert.SerializeObject(c ?? _instance, Formatting.Indented));
     }
 
-    internal static void OnReload(TShockAPI.Hooks.ReloadEventArgs e)
-    {
-        _instance = GetConfig();
-    }
 
     [JsonProperty("启用")]
     public bool Enable { get; set; }
