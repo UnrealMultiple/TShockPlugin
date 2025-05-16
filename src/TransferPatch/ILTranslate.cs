@@ -85,7 +85,7 @@ public class ILTranslate : IDisposable
             }
 
             if (type.HasGenericParameters &&
-                type.FullName.Split('`')[0] == targetClassName)
+                type.FullName == targetClassName)
             {
                 return type;
             }
@@ -96,7 +96,7 @@ public class ILTranslate : IDisposable
                 {
                     if (nestedType.FullName == targetClassName ||
                        (nestedType.HasGenericParameters &&
-                        nestedType.FullName.Split('`')[0] == targetClassName))
+                        nestedType.FullName == targetClassName))
                     {
                         return nestedType;
                     }
