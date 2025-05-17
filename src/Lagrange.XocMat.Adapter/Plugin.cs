@@ -102,6 +102,7 @@ public class Plugin : TerrariaPlugin
             ServerApi.Hooks.NpcKilled.Deregister(this, this.OnKillNpc);
             GetDataHandlers.KillMe.UnRegister(this.OnKill);
             GeneralHooks.ReloadEvent -= Config.Reload;
+            this.Timer.Elapsed -= this.TimerUpdate;
             this.Timer.Stop();
             RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             this.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
