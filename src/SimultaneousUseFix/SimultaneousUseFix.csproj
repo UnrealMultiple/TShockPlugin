@@ -2,10 +2,10 @@
 
 	<Import Project="..\..\template.targets" />
 
-	<ItemGroup>
-	  <Reference Include="Chireiden.TShock.Omni">
-	    <HintPath>..\Submodules\Yaaiomni\Core\bin\$(Configuration)\$(TargetFramework)\Chireiden.TShock.Omni.dll</HintPath>
-	  </Reference>
-	</ItemGroup>
-
+    <ItemGroup>
+        <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-6qmf-mmc7-6c2p"/>
+        <PackageReference Include="Chireiden.TShock.Omni" Version="0.0.203-ci">
+            <IncludeAssets>compile</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 </Project>
