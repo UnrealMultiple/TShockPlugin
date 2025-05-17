@@ -30,10 +30,6 @@
       <HintPath>lib\SixLabors.ImageSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Collections.Immutable">
-      <HintPath>lib\System.Collections.Immutable.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
 
 </Project>

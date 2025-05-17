@@ -1,6 +1,8 @@
 ﻿using Lagrange.XocMat.Adapter.Setting.Configs;
 using Newtonsoft.Json;
+using System.Reflection;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace Lagrange.XocMat.Adapter.Setting;
 
@@ -18,30 +20,37 @@ public class Config
     [JsonProperty("重置设置")]
     public ResetConfig ResetConfig { get; set; } = new();
 
-    [JsonIgnore]
-    public string PATH => Path.Combine(TShock.SavePath, "Lagrange.XocMat.Adapter.json");
-    public void Write()
-    {
-        var str = JsonConvert.SerializeObject(this, Formatting.Indented);
-        File.WriteAllText(this.PATH, str);
-    }
+    private static string PATH => Path.Combine(TShock.SavePath, "Lagrange.XocMat.Adapter.json");
 
-    public void Write(Config config)
-    {
-        var str = JsonConvert.SerializeObject(config, Formatting.Indented);
-        File.WriteAllText(this.PATH, str);
-    }
+    private static Config? _instance;
 
-    public Config Read()
+    public static Config Instance => _instance ??= Read();
+
+    public static void Write(Config? config = null)
     {
-        if (!File.Exists(this.PATH))
+        var str = JsonConvert.SerializeObject(config ?? _instance, Formatting.Indented);
+        File.WriteAllText(PATH, str);
+    }   
+
+    public static Config Read()
+    {
+        var c = new Config();
+        if (!File.Exists(PATH))
         {
-            this.Write();
-            return this;
+
+            Write(c);
+            return c;
         }
-        var str = File.ReadAllText(this.PATH);
+        var str = File.ReadAllText(PATH);
         var ret = JsonConvert.DeserializeObject<Config>(str) ?? new();
-        this.Write(ret);
+        Write(ret);
         return ret;
+    }
+
+    public static void Reload(ReloadEventArgs e)
+    {
+        Plugin.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+        _instance = Read();
+        Instance.SocketConfig.EmptyCommand.ForEach(x => Commands.ChatCommands.Add(new("", (_) => { }, x)));
     }
 }

@@ -3,6 +3,7 @@ using Lagrange.XocMat.Adapter.Enumerates;
 using Lagrange.XocMat.Adapter.Extension;
 using Lagrange.XocMat.Adapter.Protocol.Action.Receive;
 using Lagrange.XocMat.Adapter.Protocol.Internet;
+using Lagrange.XocMat.Adapter.Setting;
 using ProtoBuf;
 using Rests;
 using SixLabors.ImageSharp;
@@ -740,7 +741,7 @@ internal class Utils
     {
         WorldFile.SaveWorld();
         ClearDB();
-        foreach (var cmd in Plugin.Config.ResetConfig.Commands)
+        foreach (var cmd in Config.Instance.ResetConfig.Commands)
         {
             Commands.HandleCommand(TSPlayer.Server, cmd);
         }
@@ -756,14 +757,14 @@ internal class Utils
             .GetType()
             .GetProperty("DefaultLogWriter", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(ServerApi.LogWriter)!;
         obj.Dispose();
-        if (Plugin.Config.ResetConfig.ClearLogs)
+        if (Config.Instance.ResetConfig.ClearLogs)
         {
             new DirectoryInfo(TShock.Config.Settings.LogPath)
                 .GetFiles()
                 .ForEach(x => x.Delete());
         }
 
-        if (Plugin.Config.ResetConfig.ClearMap && File.Exists(Main.worldPathName))
+        if (Config.Instance.ResetConfig.ClearMap && File.Exists(Main.worldPathName))
         {
             File.Delete(Main.worldPathName);
         }
@@ -778,7 +779,7 @@ internal class Utils
 
     public static void ClearDB()
     {
-        Plugin.Config.ResetConfig.ClearTable.ForEach(x =>
+        Config.Instance.ResetConfig.ClearTable.ForEach(x =>
         {
             try
             {

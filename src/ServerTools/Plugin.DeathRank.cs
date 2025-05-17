@@ -6,7 +6,7 @@ namespace ServerTools;
 public partial class Plugin
 {
 
-    public static readonly List<TSPlayer> Deads = new();
+    public static readonly List<TSPlayer> Deads = [];
 
     private void KillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
     {
@@ -19,7 +19,7 @@ public partial class Plugin
         Deads.Add(e.Player);
     }
 
-    private object DeadRank(RestRequestArgs args)
+    private RestObject DeadRank(RestRequestArgs args)
     {
         var data = DB.PlayerDeath.GetDeathRank()
             .Select(x => new { x.Name, x.Count })

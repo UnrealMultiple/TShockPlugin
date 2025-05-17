@@ -222,7 +222,7 @@ public class ActionHandler
     private static void ResponseAction<T>(T obj) where T : BaseAction
     {
         obj.MessageType = PostMessageType.Action;
-        WebSocketReceive.SendMessage(Utils.SerializeObj(obj));
+        Plugin.Services.SendMessage(Utils.SerializeObj(obj));
     }
 
     private static void ServerStatusHandler(BaseAction action)
