@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Reflection;
 
 namespace TransferPatch;
 
@@ -12,18 +13,15 @@ public class Config
 
     private static Config GetConfig()
     {
-        var c = new Config();
-        if (File.Exists(FileName))
+        if (!File.Exists(FileName))
         {
-            return JsonConvert.DeserializeObject<Config>(File.ReadAllText(FileName)) ?? c;
+            var ass = Assembly.GetExecutingAssembly();
+            using var res = ass.GetManifestResourceStream("TransferPatch.Resources.TransferPatch.json")!;
+            using var fs = File.Create(FileName);
+            res.CopyTo(fs);
         }
-        Write(c);
-        return c;
-    }
+        return JsonConvert.DeserializeObject<Config>(File.ReadAllText(FileName)) ?? new();
 
-    private static void Write(Config? c = null)
-    {
-        File.WriteAllText(FileName, JsonConvert.SerializeObject(c ?? _instance, Formatting.Indented));
     }
 
 
