@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-04-21 12:25:54+0000\n"
-"PO-Revision-Date: 2025-04-22 01:16\n"
+"PO-Revision-Date: 2025-05-17 01:17\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "bank command"
 #: ../../Extensions/TSPlayerExt.cs:30
 #, csharp-format
 msgid "EconomicAPI 执行命令报错:{0}"
-msgstr "EconomicAPI Execute the command to report an error: {0}"
+msgstr "EconomicAPI command execution error: {0}"
 
 #: ../../Command.cs:89
 msgid "Economics 已重置"
@@ -76,7 +76,7 @@ msgstr "You do not have enough {0} to transfer!"
 #: ../../Command.cs:245
 #, csharp-format
 msgid "兑换{0}个{1}需要{2}个{3}，而您只有{4}个!"
-msgstr "It takes {2} {3} to redeem {0} {1}, but you only have {4}!"
+msgstr "Redeem {0} {1} requires {2} {3}, and you only have {4}!"
 
 #: ../../Economics.cs:124
 #, csharp-format
@@ -86,7 +86,7 @@ msgstr "Online players: {0}/{1}"
 #: ../../Command.cs:136
 #, csharp-format
 msgid "已清空`{0}`的所有{1}"
-msgstr "All {1} of `{0}` have been cleared"
+msgstr "All {1} ​​of `{0}` have been cleared"
 
 #: ../../Economics.cs:121
 #, csharp-format
@@ -154,7 +154,7 @@ msgstr "Currency {0} cannot be converted to {1}!"
 #: ../../Economics.cs:123
 #, csharp-format
 msgid "货币数量: {0}{1}"
-msgstr ""
+msgstr "Currency amount: {0}{1}"
 
 #: ../../Command.cs:60
 #, csharp-format
