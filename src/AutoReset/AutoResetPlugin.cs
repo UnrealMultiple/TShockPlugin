@@ -27,7 +27,7 @@ public class AutoResetPlugin : LazyPlugin
     }
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2024, 12, 18, 3);
+    public override Version Version => new Version(2025, 05, 18, 4);
 
     public override string Author => "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩";
 

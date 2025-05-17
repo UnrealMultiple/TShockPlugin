@@ -50,9 +50,7 @@ public class MuteManager
     {
         this.db = db;
 
-        var sqlCreator = new SqlTableCreator(db, db.GetSqlType() == SqlType.Sqlite
-            ? new SqliteQueryCreator()
-            : new MysqlQueryCreator());
+        var sqlCreator = new SqlTableCreator(db, db.GetSqlQueryBuilder());
 
         sqlCreator.EnsureTableStructure(new SqlTable("Mutes",
             new SqlColumn("ID", MySqlDbType.Int32) { AutoIncrement = true, Primary = true },

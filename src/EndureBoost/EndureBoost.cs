@@ -15,7 +15,7 @@ public class EndureBoost : TerrariaPlugin
     public override string Description => GetString("拥有指定数量物品给指定buff");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 6);
+    public override Version Version => new Version(1, 0, 7);
 
     public EndureBoost(Main game) : base(game)
     {

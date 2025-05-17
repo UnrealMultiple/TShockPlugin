@@ -9,7 +9,7 @@ public class dwTP : TerrariaPlugin
 {
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学";
-    public override Version Version => new Version(1, 0, 2);
+    public override Version Version => new Version(1, 0, 3);
     public override string Description => GetString("用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置");
     #endregion
 

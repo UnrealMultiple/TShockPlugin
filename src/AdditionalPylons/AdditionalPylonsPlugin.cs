@@ -13,7 +13,7 @@ public class AdditionalPylonsPlugin : LazyPlugin
 {
     #region Plugin Properties
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 7);
+    public override Version Version => new Version(1, 0, 8);
 
     public override string Author => "Stealownz,肝帝熙恩优化1449";
 

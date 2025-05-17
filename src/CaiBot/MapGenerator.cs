@@ -12,7 +12,7 @@ namespace CaiBot;
 
 internal static class MapGenerator
 {
-    private static readonly Hook WorldMapIndexerHook = new (typeof(WorldMap).GetMethod("get_Item"), NewWorldMapIndexer);
+    private static readonly Hook WorldMapIndexerHook = new (typeof(WorldMap).GetMethod("get_Item")!, NewWorldMapIndexer);
 
     internal static void Init()
     {

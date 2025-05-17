@@ -9,7 +9,7 @@ namespace DamageStatistic;
 [ApiVersion(2, 1)]
 public class DamageStatistic : TerrariaPlugin
 {
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 3);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 4);
     public override string Author => "Megghy";
     public override string Description => GetString("在每次 Boss 战后显示每个玩家造成的伤害。");
     public DamageStatistic(Main game) : base(game)

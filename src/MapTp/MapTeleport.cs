@@ -11,7 +11,7 @@ public class MapTeleport : TerrariaPlugin
     {
         this.Order = 1;
     }
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
     public override string Author => "Nova4334，肝帝熙恩汉化适配1449";
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Description => GetString("允许玩家传送到地图上的选定位置.");
 

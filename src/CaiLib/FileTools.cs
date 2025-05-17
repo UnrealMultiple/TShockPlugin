@@ -15,7 +15,7 @@ public class CaiFileTools
             fsForRead.Seek(0, SeekOrigin.Begin);
             var bs = new byte[fsForRead.Length];
             var log = Convert.ToInt32(fsForRead.Length);
-            fsForRead.Read(bs, 0, log);
+            fsForRead.ReadExactly(bs, 0, log);
             base64Str = Convert.ToBase64String(bs);
             return base64Str;
         }

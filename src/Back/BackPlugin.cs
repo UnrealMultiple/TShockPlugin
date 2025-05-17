@@ -13,7 +13,7 @@ public class BackPlugin : LazyPlugin
 
     public override string Author => "Megghy,熙恩改";
     public override string Description => GetString("允许玩家传送回死亡地点");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 9);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 10);
 
     public BackPlugin(Main game) : base(game)
     {

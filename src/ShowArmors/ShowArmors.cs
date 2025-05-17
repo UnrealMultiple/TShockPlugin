@@ -13,7 +13,7 @@ public class ShowArmors : TerrariaPlugin
     public override string Description => GetString("展示装备栏");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 5);
+    public override Version Version => new Version(1, 0, 6);
 
     public ShowArmors(Main game) : base(game)
     {
