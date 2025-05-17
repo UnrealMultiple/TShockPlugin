@@ -68,13 +68,13 @@ public partial class Plugin : LazyPlugin
         GetDataHandlers.KillMe.Register(this.KillMe);
         GetDataHandlers.PlayerSpawn.Register(this.OnPlayerSpawn);
         GetDataHandlers.PlayerUpdate.Register(this.OnUpdate);
-        CmdHook = new Hook(typeof(TSRestPlayer).GetConstructor(new Type[] { typeof(string), typeof(TShockAPI.Group) }), RestPlayerCtor);
-        AccountInfoHook = new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static), ViewAccountInfo);
-        this.addRestCommands = new RestCommand[]
-        {
+        CmdHook = new Hook(typeof(TSRestPlayer).GetConstructor([typeof(string), typeof(TShockAPI.Group)])!, RestPlayerCtor);
+        AccountInfoHook = new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)!, ViewAccountInfo);
+        this.addRestCommands =
+        [
             new RestCommand("/deathrank", this.DeadRank),
             new RestCommand("/onlineDuration", this.Queryduration)
-        };
+        ];
         foreach (var command in this.addRestCommands)
         {
             TShock.RestApi.Register(command);

@@ -9,7 +9,6 @@ using Lagrange.XocMat.Adapter.Protocol.Internet;
 using Lagrange.XocMat.Adapter.Setting;
 using ProtoBuf;
 using Rests;
-using System;
 using System.Reflection;
 using System.Threading.Channels;
 using System.Timers;
@@ -25,18 +24,12 @@ public class Plugin : TerrariaPlugin
 {
     public override string Author => "少司命";
 
-    public override string Description => GetString("适配插件");
+    public override string Description => GetString("Lagrange.XocMat机器人适配插件");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 5);
+    public override Version Version => new Version(1, 0, 0, 6);
 
     internal static readonly List<TSPlayer> ServerPlayers = new();
-
-    internal static Config Config { get; set; } = new();
-
-    internal static PlayerOnline Onlines { get; set; } = null!;
-
-    internal static PlayerDeath Deaths { get; set; } = null!;
 
     private long TimerCount = 0;
 
@@ -44,27 +37,33 @@ public class Plugin : TerrariaPlugin
 
     internal static Channel<int> Channeler = Channel.CreateBounded<int>(1);
 
-    internal static readonly Dictionary<int, KillNpc> DamageBoss = new();
+    internal static readonly Dictionary<int, KillNpc> DamageBoss = [];
 
+    #nullable disable
+    internal static WebSocketServices Services;
+
+    internal static PlayerOnline Onlines;
+
+    internal static PlayerDeath Deaths;
+    #nullable enable
     public Plugin(Main game) : base(game)
     {
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
     }
 
     public override void Initialize()
-    {
-        Config = new Config().Read();
+    {   
         if (!Directory.Exists("world"))
         {
             Directory.CreateDirectory("world");
         }
-
-        Onlines = new();
-        Deaths = new();
+        Services = new();
+        Onlines = [];
+        Deaths = [];
         Utils.MapingCommand();
         Utils.MapingRest();
-        WebSocketReceive.OnConnect += this.SkocketConnect;
-        WebSocketReceive.OnMessage += this.SocketClient_OnMessage;
+        Services.OnConnect += this.SkocketConnect;
+        Services.OnMessage += this.SocketClient_OnMessage;
         ServerApi.Hooks.GamePostInitialize.Register(this, this.OnInit);
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreet);
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
@@ -75,23 +74,23 @@ public class Plugin : TerrariaPlugin
         ServerApi.Hooks.NpcStrike.Register(this, this.OnStrike);
         ServerApi.Hooks.NpcKilled.Register(this, this.OnKillNpc);
         GetDataHandlers.KillMe.Register(this.OnKill);
-        Config.SocketConfig.EmptyCommand.ForEach(x => Commands.ChatCommands.Add(new("", (_) => { }, x)));
-        GeneralHooks.ReloadEvent += this.Reload;
+        Config.Instance.SocketConfig.EmptyCommand.ForEach(x => Commands.ChatCommands.Add(new("", (_) => { }, x)));
+        GeneralHooks.ReloadEvent += Config.Reload;
         Utils.HandleCommandLine(Environment.GetCommandLineArgs());
         this.Timer.AutoReset = true;
         this.Timer.Enabled = true;
-        this.Timer.Interval = Config.SocketConfig.HeartBeatTimer;
+        this.Timer.Interval = Config.Instance.SocketConfig.HeartBeatTimer;
         this.Timer.Elapsed += this.TimerUpdate;
-        WebSocketReceive.CanRun = true;
-        WebSocketReceive.Start(Config.SocketConfig.IP, Config.SocketConfig.Port);
+        Services.Start();
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            WebSocketReceive.OnConnect -= this.SkocketConnect;
-            WebSocketReceive.OnMessage -= this.SocketClient_OnMessage;
+            Services.OnConnect -= this.SkocketConnect;
+            Services.OnMessage -= this.SocketClient_OnMessage;
+            Services.Dispose();
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.OnInit);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreet);
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
@@ -102,19 +101,15 @@ public class Plugin : TerrariaPlugin
             ServerApi.Hooks.NpcStrike.Deregister(this, this.OnStrike);
             ServerApi.Hooks.NpcKilled.Deregister(this, this.OnKillNpc);
             GetDataHandlers.KillMe.UnRegister(this.OnKill);
-            GeneralHooks.ReloadEvent -= this.Reload;
+            GeneralHooks.ReloadEvent -= Config.Reload;
             this.Timer.Stop();
-            this.Timer.Dispose();
-            this.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             this.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
-            WebSocketReceive.CanRun = false;
-            WebSocketReceive.ClientWebSocket.CloseAsync(System.Net.WebSockets.WebSocketCloseStatus.EndpointUnavailable, "UnLoad", default);
-            WebSocketReceive.ClientWebSocket.Dispose();
         }
         base.Dispose(disposing);
     }
 
-    public void RemoveAssemblyCommands(Assembly assembly)
+    public static void RemoveAssemblyCommands(Assembly assembly)
     {
         Commands.ChatCommands.RemoveAll(cmd => cmd.GetType().Assembly == assembly);
     }
@@ -135,14 +130,7 @@ public class Plugin : TerrariaPlugin
         {
             MessageType = PostMessageType.HeartBeat
         };
-        WebSocketReceive.SendMessage(Utils.SerializeObj(obj));
-    }
-
-    private void Reload(ReloadEventArgs e)
-    {
-        this.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
-        Config = Config.Read();
-        Config.SocketConfig.EmptyCommand.ForEach(x => Commands.ChatCommands.Add(new("", (_) => { }, x)));
+        Services.SendMessage(Utils.SerializeObj(obj));
     }
 
     private void OnKillNpc(NpcKilledEventArgs args)
@@ -217,7 +205,7 @@ public class Plugin : TerrariaPlugin
             MessageType = PostMessageType.Connect,
         };
         var stream = Utils.SerializeObj(obj);
-        WebSocketReceive.SendMessage(stream);
+        Services.SendMessage(stream);
     }
 
     private void SocketClient_OnMessage(byte[] buffer)
@@ -225,7 +213,7 @@ public class Plugin : TerrariaPlugin
         try
         {
             var baseMsg = Serializer.Deserialize<BaseAction>(new ReadOnlyMemory<byte>(buffer));
-            if (baseMsg.Token == Config.SocketConfig.Token || baseMsg.ActionType == ActionType.ConnectStatus)
+            if (baseMsg.Token == Config.Instance.SocketConfig.Token || baseMsg.ActionType == ActionType.ConnectStatus)
             {
                 switch (baseMsg.MessageType)
                 {
@@ -269,7 +257,7 @@ public class Plugin : TerrariaPlugin
             TSPlayer.All.SendData(PacketTypes.WorldInfo);
         }
         var obj = new GameInitMessage();
-        WebSocketReceive.SendMessage(Utils.SerializeObj(obj));
+        Services.SendMessage(Utils.SerializeObj(obj));
     }
 
     private void OnChat(ServerChatEventArgs args)
@@ -292,7 +280,7 @@ public class Plugin : TerrariaPlugin
                     CommandPrefix = prefix,
                     Mute = player.mute
                 };
-                WebSocketReceive.SendMessage(Utils.SerializeObj(obj));
+                Services.SendMessage(Utils.SerializeObj(obj));
             }
             else
             {
@@ -307,7 +295,7 @@ public class Plugin : TerrariaPlugin
                     Mute = player.mute
                 };
                 var stream = Utils.SerializeObj(obj);
-                WebSocketReceive.SendMessage(stream);
+                Services.SendMessage(stream);
             }
         }
     }
@@ -317,9 +305,9 @@ public class Plugin : TerrariaPlugin
         var player = TShock.Players[args.Who];
         if (player != null)
         {
-            if (Config.LimitJoin && TShock.UserAccounts.GetUserAccountByName(player.Name) == null)
+            if (Config.Instance.LimitJoin && TShock.UserAccounts.GetUserAccountByName(player.Name) == null)
             {
-                player.Disconnect(string.Join("\n", Config.DisConnentFormat));
+                player.Disconnect(string.Join("\n", Config.Instance.DisConnentFormat));
             }
         }
     }
@@ -343,7 +331,7 @@ public class Plugin : TerrariaPlugin
                 Prefix = player.Group.Prefix,
                 IsLogin = player.IsLoggedIn,
             };
-            WebSocketReceive.SendMessage(Utils.SerializeObj(obj));
+            Services.SendMessage(Utils.SerializeObj(obj));
         }
         Onlines.UpdateAll();
     }
@@ -362,7 +350,7 @@ public class Plugin : TerrariaPlugin
                 Prefix = player.Group.Prefix,
                 IsLogin = player.IsLoggedIn,
             };
-            WebSocketReceive.SendMessage(Utils.SerializeObj(obj));
+            Services.SendMessage(Utils.SerializeObj(obj));
         }
     }
 }
