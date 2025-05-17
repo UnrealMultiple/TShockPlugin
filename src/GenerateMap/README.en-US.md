@@ -9,7 +9,7 @@
 
 ## Instruction
 
-| grammar                   |      Permissions      |   Description   |
+| Command                   |      Permissions      |   Description   |
 |----------------------|:------------:|:------:|
 | /generatemap | generate.map | Generate map image |
 
