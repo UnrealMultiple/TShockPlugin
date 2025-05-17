@@ -16,7 +16,7 @@ internal class ApiAdapter
     /// <returns></returns>
     public static async Task<byte[]> Request(PluginAPIType type, Dictionary<string, string>? args = null)
     {
-        var defaultArgs = new Dictionary<string, string> { { "tshock_version", TShockAPI.TShock.VersionNum.ToString() } };
+        var defaultArgs = new Dictionary<string, string> { { "tshock_version", "6.0.0" } }; //TODO: 等TShock 6正式发布改回`TShockAPI.TShock.VersionNum.ToString()`
         var uriBuilder = new UriBuilder(RequestApi)
         {
             Path = type.GetAttribute<DescriptionAttribute>().Description
