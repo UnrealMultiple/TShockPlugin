@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using IL.OTAPI;
+using Microsoft.Xna.Framework;
 using System.Diagnostics;
 using System.Reflection;
 using Terraria;
@@ -14,7 +15,7 @@ public partial class PControl : TerrariaPlugin
     /// <summary>
     /// 重置函数
     /// </summary>
-    private static async void ResetGame()
+    private static void ResetGame()
     {
         //在服务器关闭前执行指令
         config.CommandForBeforeResetting.ForEach(x => Commands.HandleCommand(TSPlayer.Server, "/" + x.Trim('/', '.')));
@@ -34,7 +35,7 @@ public partial class PControl : TerrariaPlugin
                 }
             });
         }
-        else//重置玩家数据
+        else //重置玩家数据
         {
             TShock.Players.ForEach(x =>
             {
@@ -49,6 +50,7 @@ public partial class PControl : TerrariaPlugin
             }
             catch { }
         }
+
         config.DeleteSQLiteForBeforeResetting?.ForEach(x =>
         {
             try
@@ -86,26 +88,23 @@ public partial class PControl : TerrariaPlugin
             }
         }
 
-        try
-        {
-            if (config.DeleteFileForBeforeResetting.Count > 0)
-            {
-                foreach (var v in config.DeleteFileForBeforeResetting)
-                {
-                    if (string.IsNullOrWhiteSpace(v))
-                    {
-                        continue;
-                    }
 
-                    if (File.Exists(v))//删除指定文件
+        if (config.DeleteFileForBeforeResetting.Count > 0)
+        {
+            foreach (var v in config.DeleteFileForBeforeResetting.Where(v => !string.IsNullOrWhiteSpace(v)))
+            {
+                try
+                {
+                    if (File.Exists(v)) //删除指定文件
                     {
                         File.Delete(v);
                     }
 
-                    if (Directory.Exists(v))//删除指定文件夹
+                    if (Directory.Exists(v)) //删除指定文件夹
                     {
                         Directory.Delete(v, true);
                     }
+
                     //分析删除后缀为 *.txt(举例) 的文件
                     var files = v.Split('/');
                     var theDirectory = v.Remove(v.Length - files[^1].Length);
@@ -117,21 +116,21 @@ public partial class PControl : TerrariaPlugin
                         {
                             if (i.Extension.Equals(files[^1].TrimStart('*'), StringComparison.OrdinalIgnoreCase) && File.Exists(i.FullName))
                             {
-                                File.Delete(i.FullName);      //删除指定后缀名文件
-                                TShock.Log.Info(GetString($"{i.Name} 删除成功"));
-                                Console.WriteLine(GetString($"{i.Name} 删除成功"));
+                                File.Delete(i.FullName); //删除指定后缀名文件
+                                TShock.Log.ConsoleInfo(GetString($"{i.Name} 删除成功"));
                             }
                         }
                     }
                 }
+                catch (Exception ex)
+                {
+                    TSPlayer.All.SendErrorMessage(GetString($"重置前删除哪些文件错误：{ex}"));
+                    TShock.Log.Error(GetString($"重置前删除哪些文件错误：{ex}"));
+                    Console.WriteLine(GetString($"使用指令删除哪些文件发生错误：{ex}"));
+                }
             }
         }
-        catch (Exception ex)
-        {
-            TSPlayer.All.SendErrorMessage(GetString($"重置前删除哪些文件错误：{ex}"));
-            TShock.Log.Error(GetString($"重置前删除哪些文件错误：{ex}"));
-            Console.WriteLine(GetString($"使用指令删除哪些文件发生错误：{ex}"));
-        }
+
         TShock.Log.Info(GetString("服务器正在重置——来自插件：计划书ProgressControl"));
 
         /*
@@ -153,19 +152,24 @@ public partial class PControl : TerrariaPlugin
         config.LasetServerRestartDate = DateTime.Now;
         config.LasetAutoCommandDate = DateTime.Now;
 
+        var tileProviderArg = Main.tile switch
+        {
+            TileProvider => "-heaptile",
+            ConstileationProvider => "-constileation",
+            _ => ""
+        };
+        
+        var passwordArg = string.IsNullOrEmpty(Netplay.ServerPassword)?"":"-password " + Netplay.ServerPassword ;
+
         //如果 你有提供预备名字 且 这个预备名字有对应地图，则直接调用
         if (config.ExpectedUsageWorldFileNameForAotuReset.Count > 0 && ExistWorldNamePlus(config.ExpectedUsageWorldFileNameForAotuReset.First(), out var worldname))
         {
-            TShock.Config.Settings.ServerPassword = config.AfterResetServerPassword;
-            TShock.Config.Settings.MaxSlots = config.AfterResetPeople;
-            Config.SaveTConfig();
             //成功后删掉预备名字
             config.ExpectedUsageWorldFileNameForAotuReset.Remove(config.ExpectedUsageWorldFileNameForAotuReset.First());
             config.SaveConfigFile();
             //这里worldname必须加.wld后缀
-            Process.Start(Path.Combine(Environment.CurrentDirectory, "Tshock.Server.exe", "Tshock.Server"),
-                $"-lang 7 -world \"{config.path()}/{worldname}.wld\" -maxplayers {TShock.Config.Settings.MaxSlots} -port {config.AfterResetPort} -c");
-
+            Process.Start(Environment.ProcessPath!,
+                $"-lang 7 -world \"{config.path()}/{worldname}.wld\" -maxplayers {Main.maxNetPlayers} -port {Netplay.ListenPort} {tileProviderArg} {passwordArg}");
         }
         //否则生成一个
         else
@@ -179,39 +183,26 @@ public partial class PControl : TerrariaPlugin
             {
                 worldname = config.AddNumberFile(CorrectFileName(config.WorldNameForAfterReset));
             }
-            //将密码和最多在线人数写入配置文件中。
-            //???: 启动参数里端口的修改有效，密码的修改无效，人数的修改仅重启第一次有效。密码和人数都会强制参考config.json的内容，为了修改成功，只能先写入config.json了
-            TShock.Config.Settings.ServerPassword = config.AfterResetServerPassword;//密码这个东西恒参考config.json，在启动参数里改无效
-            TShock.Config.Settings.MaxSlots = config.AfterResetPeople;//端口这个东西恒参考启动参数，我就不改config.json里的了（我知道这一行不是端口，但我就是要把注释写在这）
-            Config.SaveTConfig();
-            config.SaveConfigFile();//需要保存下，保存对开服时间等的修改
+
             //-autocreate可以不用加.wld后缀
-            Process.Start(Path.Combine(Environment.CurrentDirectory, "Tshock.Server.exe", "Tshock.Server"),
-                $"-lang 7 -autocreate {config.MapSizeForAfterReset} -seed {config.WorldSeedForAfterReset} -world {config.path()}/{worldname} -difficulty {config.MapDifficultyForAfterReset} -maxplayers {config.AfterResetPeople} -port {config.AfterResetPort} -c");
+            Process.Start(Environment.ProcessPath!,
+                $"-lang 7 -autocreate {config.MapSizeForAfterReset} -seed {config.WorldSeedForAfterReset} -world {config.path()}/{worldname} -difficulty {config.MapDifficultyForAfterReset} -maxplayers {Main.maxNetPlayers} -port {Netplay.ListenPort} {tileProviderArg} {passwordArg}");
         }
 
-        if (config.ServerLogWriterEnabledForAotuResetting)
-        {
-            try//关闭serverlog
-            {
-                var property = ServerApi.LogWriter.GetType().GetProperty("DefaultLogWriter", BindingFlags.Instance | BindingFlags.NonPublic);
-                var serverLogWriter = (property != null) ? (ServerLogWriter?) property.GetValue(ServerApi.LogWriter) : null;
-                serverLogWriter?.Dispose();
-            }
-            catch { }
-        }
-
-        //关闭restapi,只有你开启了才会起效
-        try
-        {
-            TShock.RestApi.Dispose();
-        }
-        catch { }
-        Netplay.SaveOnServerExit = false; //不保存地图
-        TShock.ShuttingDown = true;
-        Netplay.Disconnect = true;
-
-        await Task.Delay(5000); //考虑到用户使用自动重启的启动项
+        // if (config.ServerLogWriterEnabledForAotuResetting)
+        // {
+        //     try //关闭serverlog
+        //     {
+        //         var property = ServerApi.LogWriter.GetType().GetProperty("DefaultLogWriter", BindingFlags.Instance | BindingFlags.NonPublic);
+        //         var serverLogWriter = property != null ? (ServerLogWriter?) property.GetValue(ServerApi.LogWriter) : null;
+        //         serverLogWriter?.Dispose();
+        //     }
+        //     catch { }
+        // }
+        //
+        // Netplay.SaveOnServerExit = false; //不保存地图
+        // TShock.ShuttingDown = true;
+        // Netplay.Disconnect = true;
         Environment.Exit(0);
     }
 
@@ -258,29 +249,30 @@ public partial class PControl : TerrariaPlugin
             }
         });
         TShock.Utils.SaveWorld();
-        //将密码和最多在线人数写入配置文件中。
-        //bug: 启动参数里端口的修改有效，密码的修改无效，人数的修改仅重启第一次有效。密码和人数都会强制参考config.json的内容，为了修改成功，只能先写入config.json了
-        TShock.Config.Settings.ServerPassword = config.AfterRestartServerPassword;//密码这个东西恒参考config.json，在启动参数里改无效
-        TShock.Config.Settings.MaxSlots = config.AfterRestartPeople;//端口这个东西恒参考启动参数，我就不改config.json里的了（我知道这一行不是端口）
-        Config.SaveTConfig();
         TShock.Log.Info(GetString("服务器正在重启——来自插件：计划书ProgressControl"));
-        try//关闭日志占用
+        try //关闭日志占用
         {
             var property = ServerApi.LogWriter.GetType().GetProperty("DefaultLogWriter", BindingFlags.Instance | BindingFlags.NonPublic);
-            var serverLogWriter = (property != null) ? (ServerLogWriter?) property.GetValue(ServerApi.LogWriter) : null;
+            var serverLogWriter = property != null ? (ServerLogWriter?) property.GetValue(ServerApi.LogWriter) : null;
             serverLogWriter?.Dispose();
         }
         catch { }
-        try//关闭restapi,只有你开启了才会起效
+
+        try //关闭restapi,只有你开启了才会起效
         {
             TShock.RestApi.Dispose();
         }
         catch { }
+
+        var tileProviderArg = Main.tile switch
+        {
+            TileProvider => "-heaptile",
+            ConstileationProvider => "-constileation",
+            _ => ""
+        };
         //Main.worldPathName是有.wld后缀的
-        Process.Start(Path.Combine(Environment.CurrentDirectory, "Tshock.Server.exe", "Tshock.Server"),
-            $"-lang 7 -world \"{Main.worldPathName}\" -maxplayers {config.AfterRestartPeople} -port {config.AfterRestartPort} -c");
-        Netplay.Disconnect = true;
-        TShock.ShuttingDown = true;
+        Process.Start(Environment.ProcessPath!,
+            $"-lang 7 -world \"{Main.worldPathName}\" -maxplayers {Main.maxNetPlayers} -port {Netplay.ListenPort} {tileProviderArg}");
         Environment.Exit(0);
     }
 
@@ -307,6 +299,7 @@ public partial class PControl : TerrariaPlugin
                 TSPlayer.All.SendErrorMessage(GetString($"请不要对自动执行的指令进行套娃！[/{x}]"));
                 return;
             }
+
             try
             {
                 Commands.HandleCommand(TSPlayer.Server, "/" + x.Trim('/', '.'));
@@ -357,7 +350,9 @@ public partial class PControl : TerrariaPlugin
         config.SaveConfigFile();
         var st = addtime > 0
             ? GetString("推迟") + (player.IsLoggedIn ? HoursToM(addtime, "28FFB8") : HoursToM(addtime))
-            : addtime < 0 ? GetString("提前") + (player.IsLoggedIn ? HoursToM(-1 * addtime, "28FFB8") : HoursToM(-1 * addtime)) : GetString("正常");
+            : addtime < 0
+                ? GetString("提前") + (player.IsLoggedIn ? HoursToM(-1 * addtime, "28FFB8") : HoursToM(-1 * addtime))
+                : GetString("正常");
         if (!config.OpenAutoControlProgressLock)
         {
             player.SendWarningMessage(GetString("警告，未开启自动控制NPC进度计划，你的修改不会有任何效果"));
@@ -435,6 +430,7 @@ public partial class PControl : TerrariaPlugin
                     break;
             }
         }
+
         return new Color((int) (num4 * 255.0), (int) (num5 * 255.0), (int) (num6 * 255.0));
     }
 
@@ -452,8 +448,8 @@ public partial class PControl : TerrariaPlugin
         {
             int h, s, m; //时分秒
             h = (int) hours;
-            m = (int) (hours % 1 * 60);//分
-            var tempS = hours % 1 * 60 % 1 * 60;//秒
+            m = (int) (hours % 1 * 60); //分
+            var tempS = hours % 1 * 60 % 1 * 60; //秒
             s = tempS % 1 >= 0.5 ? (int) tempS + 1 : (int) tempS;
             //五入考虑进位
             if (s >= 60)
@@ -466,6 +462,7 @@ public partial class PControl : TerrariaPlugin
                     h += 1;
                 }
             }
+
             if (!string.IsNullOrWhiteSpace(color))
             {
                 if (h > 0)
@@ -512,6 +509,7 @@ public partial class PControl : TerrariaPlugin
                 mess += GetString(" 0 秒");
             }
         }
+
         return mess;
     }
 
@@ -540,6 +538,7 @@ public partial class PControl : TerrariaPlugin
         {
             return "World";
         }
+
         //删除文件名中的非法字符
         for (var i = 0; i < name.Length; ++i)
         {
@@ -550,21 +549,25 @@ public partial class PControl : TerrariaPlugin
                 i--;
             }
         }
+
         //修剪空格前后缀
         while (name.StartsWith(' ') || name.EndsWith(' '))
         {
             name = name.Trim();
         }
+
         //移除.wld后缀
         if (name.EndsWith(".wld", StringComparison.OrdinalIgnoreCase))
         {
-            name = name.Remove(name.Length - 4, 4);//name = name.Remove(name.LastIndexOf('.'), 4);
+            name = name.Remove(name.Length - 4, 4); //name = name.Remove(name.LastIndexOf('.'), 4);
         }
+
         //再修剪下
         while (name.StartsWith(' ') || name.EndsWith(' '))
         {
             name = name.Trim();
         }
+
         return name;
     }
 
@@ -587,6 +590,7 @@ public partial class PControl : TerrariaPlugin
             c = c.Trim();
             c = c.Replace("  ", " ");
         }
+
         return c;
     }
 
@@ -607,12 +611,14 @@ public partial class PControl : TerrariaPlugin
             worldname = name;
             return true;
         }
+
         //把提供的带空格的名字中的空格换成_，若存在也视为有
         if (File.Exists(config.path() + "/" + name.Replace(' ', '_') + ".wld"))
         {
             worldname = name.Replace(' ', '_');
             return true;
         }
+
         worldname = "";
         return false;
     }
@@ -640,6 +646,7 @@ public partial class PControl : TerrariaPlugin
                     npcs.Add(i, Lang.GetNPCNameValue(i));
                 }
             }
+
             return npcs;
         }
         else
@@ -651,6 +658,7 @@ public partial class PControl : TerrariaPlugin
                     npcs.Add(i, Lang.GetNPCNameValue(i));
                 }
             }
+
             return npcs;
         }
     }
@@ -703,6 +711,7 @@ public partial class PControl : TerrariaPlugin
         {
             return hour;
         }
+
         var has负号 = false;
         var list = preTime.Split(':', '.').ToList();
         list.ForEach(x =>
@@ -746,11 +755,13 @@ public partial class PControl : TerrariaPlugin
                             failureReason = GetString("格式错误。M 和 S 不需要加负号，负号只需要填入 H 的前面即可");
                             return double.MinValue;
                         }
+
                         if (m >= 60 || s >= 60)
                         {
                             failureReason = GetString("格式错误。M 和 S 不能大于59，请自行进位");
                             return double.MinValue;
                         }
+
                         sum = has负号 ? ((-1 * h) + (m / 60.0) + (s / 3600.0)) * -1 : h + (m / 60.0) + (s / 3600.0);
 
                         return sum;

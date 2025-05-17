@@ -732,8 +732,7 @@ internal class Utils
             Netplay.SaveOnServerExit = false;
             Netplay.Disconnect = true;
         }
-        var currentProcess = Process.GetCurrentProcess();
-        Process.Start(currentProcess.MainModule!.FileName!, startArgs);
+        Process.Start(Environment.ProcessPath!, startArgs);
         Environment.Exit(0);
     }
 

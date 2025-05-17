@@ -19,7 +19,7 @@ public partial class Plugin : LazyPlugin
     public override string Description => GetString("服务器工具");// 插件说明
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 8, 5);// 插件版本
+    public override Version Version => new Version(1, 1, 8, 7);// 插件版本
 
     private DateTime LastCommandUseTime = DateTime.Now;
 
@@ -53,15 +53,15 @@ public partial class Plugin : LazyPlugin
         ServerApi.Hooks.NpcStrike.Register(this, OnStrike);
         ServerApi.Hooks.NpcAIUpdate.Register(this, OnNPCUpdate);
         Commands.ChatCommands.Add(new Command(Permissions.clear, this.Clear, "clp"));
-        Commands.ChatCommands.Add(new Command("servertool.query.exit", this.Exit, "退出", "toolexit"));
-        Commands.ChatCommands.Add(new Command("servertool.query.wall", this.WallQ, "查花苞", "scp"));
-        Commands.ChatCommands.Add(new Command("servertool.query.wall", this.RWall, "移除花苞", "rcp"));
-        Commands.ChatCommands.Add(new Command("servertool.user.kick", this.SelfKick, "自踢", "selfkick"));
-        Commands.ChatCommands.Add(new Command("servertool.user.kill", this.SelfKill, "自杀", "selfkill"));
+        Commands.ChatCommands.Add(new Command("servertool.query.exit", this.Exit, "toolexit", "退出"));
+        Commands.ChatCommands.Add(new Command("servertool.query.wall", this.WallQ, "scp", "查花苞"));
+        Commands.ChatCommands.Add(new Command("servertool.query.wall", this.RWall, "rcp", "移除花苞"));
+        Commands.ChatCommands.Add(new Command("servertool.user.kick", this.SelfKick, "selfkick", "自踢"));
+        Commands.ChatCommands.Add(new Command("servertool.user.kill", this.SelfKill, "selfkill", "自杀"));
         Commands.ChatCommands.Add(new Command("servertool.user.ghost", this.Ghost, "ghost"));
-        Commands.ChatCommands.Add(new Command("servertool.set.journey", this.JourneyDiff, "旅途难度", "journeydiff"));
-        Commands.ChatCommands.Add(new Command("servertool.user.dead", this.DeathRank, "死亡排行", "deadrank"));
-        Commands.ChatCommands.Add(new Command("servertool.user.online", this.OnlineRank, "在线排行", "onlinerank"));
+        Commands.ChatCommands.Add(new Command("servertool.set.journey", this.JourneyDiff, "journeydiff", "旅途难度"));
+        Commands.ChatCommands.Add(new Command("servertool.user.dead", this.DeathRank, "deadrank", "死亡排行"));
+        Commands.ChatCommands.Add(new Command("servertool.user.online", this.OnlineRank, "onlinerank", "在线排行"));
         Commands.ChatCommands.Add(new Command("servertool.user.cmd", this.OthersCmd, "oc"));
         GetDataHandlers.NewProjectile.Register(this.NewProj);
         GetDataHandlers.ItemDrop.Register(this.OnItemDrop);
@@ -513,7 +513,7 @@ public partial class Plugin : LazyPlugin
                 var respawn = time - DateTime.Now;
                 if (respawn.TotalSeconds > 0)
                 {
-                    TShock.Players[args.Who].Disconnect(GetString($"退出服务器时处于死亡状态！\n请等待死亡结束，还有{respawn.TotalSeconds}秒结束！"));
+                    TShock.Players[args.Who].Disconnect(GetString($"退出服务器时处于死亡状态！\n请等待死亡结束，还有{respawn.TotalSeconds:0}秒结束！"));
                 }
             }
         }

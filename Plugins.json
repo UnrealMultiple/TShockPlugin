@@ -974,7 +974,7 @@
   },
   {
     "Name": "DumpTerrariaID",
-    "Version": "1.0.0.4",
+    "Version": "1.0.0.5",
     "Author": "少司命",
     "Description": {
       "en-US": "Dump ID",
@@ -1897,7 +1897,7 @@
   },
   {
     "Name": "ProgressControls",
-    "Version": "1.0.0.12",
+    "Version": "1.1.0.0",
     "Author": "z枳 羽学",
     "Description": {
       "en-US": "Control the progress",
@@ -2199,7 +2199,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.8.5",
+    "Version": "1.1.8.7",
     "Author": "少司命",
     "Description": {
       "en-US": "Server Utility",
@@ -2796,7 +2796,7 @@
   },
   {
     "Name": "History",
-    "Version": "1.0.7",
+    "Version": "1.0.8",
     "Author": "Cracker64 & Zaicon & Cai & 肝帝熙恩",
     "Description": {
       "en-US": "Record grid operations.",
@@ -2941,7 +2941,7 @@
   },
   {
     "Name": "WikiLangPackLoader",
-    "Version": "2024.12.18.3",
+    "Version": "2025.4.26.1",
     "Author": "Cai",
     "Description": {
       "en-US": "Load Wiki language pack",
