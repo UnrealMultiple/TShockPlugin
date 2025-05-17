@@ -4,23 +4,17 @@ using Newtonsoft.Json;
 
 namespace TransferPatch;
 
-public class ILTranslate : IDisposable
+public class ILTranslate(Stream stream, string fileName) : IDisposable
 {
-    private readonly string _file;
+    private readonly string _file = fileName;
 
-    private readonly AssemblyDefinition _assemblyDefinition;
+    private readonly AssemblyDefinition _assemblyDefinition = AssemblyDefinition.ReadAssembly(stream);
 
     private const string JsonNameSpace = "Newtonsoft.Json";
 
     public event Func<FieldDefinition, string, string?>? SetField;
 
     public event Func<PropertyDefinition, string, string?>? SetProperty;
-
-    public ILTranslate(Stream stream, string fileName)
-    {
-        this._file = fileName;
-        this._assemblyDefinition = AssemblyDefinition.ReadAssembly(stream);
-    }
 
     public void Patch(params string[] classNames)
     {
