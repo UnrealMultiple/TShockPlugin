@@ -179,14 +179,14 @@
 | [ShortCommand](./src/ShortCommand/README.en-US.md) | 100.0% | Short command |  |
 | [ShowArmors](./src/ShowArmors/README.md) | 100.0% | Display equipment bar |  |
 | [SignInSign](./src/SignInSign/README.md) | 100.0% | Signboard login plugin |  |
-| [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 100.0% | Solve problems like stuck double hammer and star spin machine gun |  |
+| [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 100.0% | Solve problems like stuck double hammer and star spin machine gun | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [SmartRegions](./src/SmartRegions/README.en-US.md) | 100.0% | Smart regions |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 100.0% | Generate basic infrastructure |  |
 | [SpclPerm](./src/SpclPerm/README.en-US.md) | 100.0% | Server owner privileges |  |
 | [StatusTextManager](./src/StatusTextManager/README.md) | 100.0% | PC status text management plugin |  |
 | [SurfaceBlock](./src/SurfaceBlock/README.en-US.md) | 100.0% | Prohibit surface projectiles | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 0.0% | 'Among Us' like game' |  |
-| [SwitchCommands](./src/SwitchCommands/README.md) | 100.0% | Execute commands in region |  |
+| [SwitchCommands](./src/SwitchCommands/README.en-US.md) | 100.0% | Execute commands in region |  |
 | [TeleportRequest](./src/TeleportRequest/README.en-US.md) | 100.0% | Teleport request |  |
 | [TimeRate](./src/TimeRate/README.en-US.md) | 100.0% | modifying time acceleration using commands, and supporting player sleep to trigger events. |  |
 | [TimerKeeper](./src/TimerKeeper/README.en-US.md) | 100.0% | Save timer state |  |

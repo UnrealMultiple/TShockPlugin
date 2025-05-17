@@ -182,7 +182,7 @@
 | [ShortCommand](./src/ShortCommand/README.md) | 0.0% | Comando corto |  |
 | [ShowArmors](./src/ShowArmors/README.md) | 0.0% | Muestra la barra de equipo |  |
 | [SignInSign](./src/SignInSign/README.md) | 0.0% | Plugin de inicio de sesión con cartel |  |
-| [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 0.0% | Resuelve problemas como el martillo doble atascado y la metralleta de estrellas |  |
+| [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 0.0% | Resuelve problemas como el martillo doble atascado y la metralleta de estrellas | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [SmartRegions](./src/SmartRegions/README.md) | 0.0% | Regiones inteligentes |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 0.0% | Genera infraestructura básica |  |
 | [SpclPerm](./src/SpclPerm/README.md) | 0.0% | Privilegios del propietario del servidor |  |
