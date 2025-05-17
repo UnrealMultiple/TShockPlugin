@@ -19,7 +19,7 @@ public partial class Plugin : LazyPlugin
     public override string Description => GetString("服务器工具");// 插件说明
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 8, 7);// 插件版本
+    public override Version Version => new Version(1, 1, 8, 8);// 插件版本
 
     private DateTime LastCommandUseTime = DateTime.Now;
 

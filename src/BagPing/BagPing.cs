@@ -16,7 +16,7 @@ public class BagPing : TerrariaPlugin
     public override string Description => GetString("在小地图上标记掉落的宝藏袋");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 5);
+    public override Version Version => new Version(1, 0, 6);
 
     public BagPing(Main game)
     : base(game)

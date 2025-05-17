@@ -12,7 +12,7 @@ public class TestPlugin : TerrariaPlugin
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "GK 阁下";
     public override string Description => GetString("让死者瞬间原地复活的神奇力量！");
-    public override Version Version => new Version(1, 0, 0, 5);
+    public override Version Version => new Version(1, 0, 0, 6);
     #endregion
 
     #region 实例与变量

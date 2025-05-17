@@ -11,7 +11,7 @@ public class Respawn : TerrariaPlugin
 {
     public override string Author => "leader，肝帝熙恩";
     public override string Description => GetString("原地复活");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(2, 0, 0, 3);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(2, 0, 0, 4);
 
     private readonly ConcurrentDictionary<TSPlayer, Vector2> DeadPos = new();//线程安全的dic
 

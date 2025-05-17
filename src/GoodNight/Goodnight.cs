@@ -12,7 +12,7 @@ public class Goodnight : TerrariaPlugin
 {
     #region 变量与插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "Jonesn 羽学 少司命";
-    public override Version Version => new Version(2, 7, 6);
+    public override Version Version => new Version(2, 7, 7);
     public override string Description => GetString("设置服务器无法进入或禁止生成怪物的时段");
     internal static Configuration Config = null!;
     #endregion

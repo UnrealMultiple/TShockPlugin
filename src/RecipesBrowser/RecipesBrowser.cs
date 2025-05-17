@@ -10,7 +10,7 @@ using TShockAPI;
 public class Plugin : TerrariaPlugin
 {
     public override string Name => "RecipesBrowser";
-    public override Version Version => new Version(1, 1, 2);
+    public override Version Version => new Version(1, 1, 3);
 
     public override string Author => "棱镜,羽学适配,Cai优化";
 

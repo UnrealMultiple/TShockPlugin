@@ -23,7 +23,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => GetString("提供攻击NPC跳出浮动文字效果");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 2, 3);
+    public override Version Version => new Version(1, 2, 4);
 
     public Plugin(Main game)
         : base(game)

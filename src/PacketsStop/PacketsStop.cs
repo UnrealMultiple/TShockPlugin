@@ -10,7 +10,7 @@ public class PacketsStop : TerrariaPlugin
 {
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 6);
+    public override Version Version => new Version(1, 0, 7);
     public override string Author => "羽学 少司命";
     public override string Description => GetString("拦截指定玩家的数据包");
     #endregion

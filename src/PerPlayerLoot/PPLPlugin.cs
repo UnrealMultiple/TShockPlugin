@@ -9,7 +9,7 @@ public class PPLPlugin : TerrariaPlugin
 {
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 5);
+    public override Version Version => new Version(2, 0, 6);
 
     public override string Author => "Codian, 肝帝熙恩汉化1449";
 

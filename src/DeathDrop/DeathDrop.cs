@@ -13,7 +13,7 @@ public class DeathDrop : TerrariaPlugin
 
     public override string Author => "大豆子，肝帝熙恩更新优化";
     public override string Description => GetString("怪物死亡随机和自定义掉落物品");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 5);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 6);
 
     public DeathDrop(Main game) : base(game)
     {

@@ -15,7 +15,7 @@ public class JourneyUnlock : TerrariaPlugin
     public override string Description => GetString("允许您为旅途中的角色解锁所有或特定物品");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 1, 5);
+    public override Version Version => new Version(1, 0, 1, 6);
 
     public JourneyUnlock(Main game) : base(game)
     {

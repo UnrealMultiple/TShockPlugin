@@ -13,7 +13,7 @@ public class AutoBroadcast : LazyPlugin
     public override string Author => "Scavenger,Cai";
     public override string Description => GetString("自动广播插件");
     
-    public override Version Version => new (1, 1, 2);
+    public override Version Version => new Version(1, 1, 3);
 
     private DateTime _lastUpdate = DateTime.Now;
 

@@ -10,7 +10,7 @@ namespace VeinMiner;
 public partial class VeinMiner : TerrariaPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; 
-    public override Version Version => new (1, 6, 1, 0);
+    public override Version Version => new Version(1, 6, 1, 1);
     public override string Author => "Megghy, YSpoof, Maxthegreat99, 肝帝熙恩, Cai";
     public override string Description => GetString("连锁挖矿插件！");
 

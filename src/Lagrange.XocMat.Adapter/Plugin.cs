@@ -28,7 +28,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => GetString("适配插件");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 4);
+    public override Version Version => new Version(1, 0, 0, 5);
 
     internal static readonly List<TSPlayer> ServerPlayers = new();
 
