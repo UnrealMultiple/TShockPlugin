@@ -7,9 +7,9 @@ namespace ServerTools;
 
 public partial class Plugin
 {
-    public static readonly List<TSPlayer> ActivePlayers = new();
+    public static readonly List<TSPlayer> ActivePlayers = [];
 
-    private object Queryduration(RestRequestArgs args)
+    private RestObject Queryduration(RestRequestArgs args)
     {
         var data = PlayerOnline.GetOnlineRank().Select(x => new { name = x.Name, duration = x.Duration });
         return new RestObject() { { "response", "查询成功" }, { "data", data } };
