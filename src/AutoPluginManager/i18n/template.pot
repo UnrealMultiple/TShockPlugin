@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoPluginManager\n"
-"POT-Creation-Date: 2025-03-23 05:09:11+0000\n"
-"PO-Revision-Date: 2025-03-23 05:09:11+0000\n"
+"POT-Creation-Date: 2025-05-17 17:40:14+0000\n"
+"PO-Revision-Date: 2025-05-17 17:40:14+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,15 +10,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:73
+#: ../../Plugin.cs:72
 msgid "[AutoUpdate]无法获取更新:"
 msgstr ""
 
-#: ../../Plugin.cs:47
+#: ../../Plugin.cs:46
 msgid "[AutoUpdatePlugin]插件配置已重载~"
 msgstr ""
 
-#: ../../Plugin.cs:60
+#: ../../Plugin.cs:59
 #: ../../Internal/CommandAdapter.cs:459
 msgid ""
 "[以下插件有新的版本更新]\n"
@@ -144,7 +144,7 @@ msgstr ""
 msgid "apm u [插件名] 更新所有插件或指定插件"
 msgstr ""
 
-#: ../../Plugin.cs:68
+#: ../../Plugin.cs:67
 msgid "你可以使用命令/apm -u 更新插件哦~"
 msgstr ""
 
@@ -218,11 +218,11 @@ msgstr ""
 msgid "更新了个寂寞~"
 msgstr ""
 
-#: ../../Plugin.cs:63
+#: ../../Plugin.cs:62
 msgid "正在自动更新插件..."
 msgstr ""
 
-#: ../../Plugin.cs:18
+#: ../../Plugin.cs:17
 msgid "自动更新你的插件！"
 msgstr ""
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DataSync\n"
-"POT-Creation-Date: 2025-01-29 16:02:36+0000\n"
-"PO-Revision-Date: 2025-01-29 16:02:36+0000\n"
+"POT-Creation-Date: 2025-05-17 17:40:31+0000\n"
+"PO-Revision-Date: 2025-05-17 17:40:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,17 +10,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:258
+#: ../../Plugin.cs:256
 #, csharp-format
 msgid "[DataSync]上传进度 {0} {1}"
 msgstr ""
 
-#: ../../Plugin.cs:250
+#: ../../Plugin.cs:248
 #, csharp-format
 msgid "[DataSync]更新进度 {0} {1}"
 msgstr ""
 
-#: ../../Plugin.cs:291
+#: ../../Plugin.cs:289
 msgid "[DataSync]配置文件读取错误"
 msgstr ""
 
@@ -28,17 +28,17 @@ msgstr ""
 msgid "[DataSync]配置文件读取错误！！！"
 msgstr ""
 
-#: ../../Plugin.cs:160
+#: ../../Plugin.cs:158
 msgid "你没有权限设置进度"
 msgstr ""
 
-#: ../../Plugin.cs:171
+#: ../../Plugin.cs:169
 #, csharp-format
 msgid "值 '{0}' 应为 true 或 false"
 msgstr ""
 
-#: ../../Plugin.cs:189
-#: ../../Plugin.cs:215
+#: ../../Plugin.cs:187
+#: ../../Plugin.cs:213
 msgid "已完成:"
 msgstr ""
 
@@ -47,27 +47,27 @@ msgstr ""
 msgid "无法识别的进度类型：{0}"
 msgstr ""
 
-#: ../../Plugin.cs:194
-#: ../../Plugin.cs:220
+#: ../../Plugin.cs:192
+#: ../../Plugin.cs:218
 msgid "未完成:"
 msgstr ""
 
-#: ../../Plugin.cs:211
+#: ../../Plugin.cs:209
 msgid "本地进度:"
 msgstr ""
 
-#: ../../Plugin.cs:166
-#: ../../Plugin.cs:202
+#: ../../Plugin.cs:164
+#: ../../Plugin.cs:200
 #, csharp-format
 msgid "进度 '{0}' 不存在"
 msgstr ""
 
-#: ../../Plugin.cs:205
+#: ../../Plugin.cs:203
 #, csharp-format
 msgid "进度 '{0}' 的值为 '{1}'"
 msgstr ""
 
-#: ../../Plugin.cs:185
+#: ../../Plugin.cs:183
 msgid "远程进度:"
 msgstr ""
 
