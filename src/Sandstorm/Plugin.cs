@@ -11,7 +11,7 @@ public class Plugin : TerrariaPlugin
 
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学";
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
     public override string Description => GetString("使用指令切换沙尘暴");
     #endregion
 

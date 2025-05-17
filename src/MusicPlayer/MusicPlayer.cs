@@ -14,7 +14,7 @@ public class MusicPlayer : TerrariaPlugin
     public override string Description => GetString("一个简单的音乐播放插件.");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 6);
+    public override Version Version => new Version(1, 0, 7);
 
     public string songPath = Path.Combine(TShock.SavePath, "Songs");
 

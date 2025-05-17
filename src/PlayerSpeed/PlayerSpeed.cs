@@ -11,7 +11,7 @@ public class PlayerSpeed : LazyPlugin
 {
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "逆光奔跑 羽学";
-    public override Version Version => new Version(1, 2, 5);
+    public override Version Version => new Version(1, 2, 6);
     public override string Description => GetString("使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发");
     #endregion
 

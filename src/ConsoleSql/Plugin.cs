@@ -21,7 +21,7 @@ public class ConsoleSql : TerrariaPlugin
     //插件的名称
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     //插件的版本
-    public override Version Version => new Version(1, 0, 2);
+    public override Version Version => new Version(1, 0, 3);
 
     //插件的构造器
     public ConsoleSql(Main game) : base(game)

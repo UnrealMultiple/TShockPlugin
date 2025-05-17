@@ -10,7 +10,7 @@ public class Database
     #region 垃圾桶数据表结构
     public Database()
     {
-        var sql = new SqlTableCreator(TShock.DB, new SqliteQueryCreator());
+        var sql = new SqlTableCreator(TShock.DB, TShock.DB.GetSqlQueryBuilder());
 
         // 定义并确保 AutoTrash 表的结构
         sql.EnsureTableStructure(new SqlTable("AutoTrash", //表名

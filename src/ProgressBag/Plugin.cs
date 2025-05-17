@@ -14,7 +14,7 @@ public class Plugin : LazyPlugin
     public override string Description => GetString("进度礼包");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 1, 5);
+    public override Version Version => new Version(1, 0, 1, 6);
 
     public Plugin(Main game) : base(game)
     {

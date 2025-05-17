@@ -12,7 +12,7 @@ public class TimeRate : TerrariaPlugin
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 2, 2);
+    public override Version Version => new Version(1, 2, 3);
     public override string Description => GetString("使用指令修改时间加速");
     #endregion
 

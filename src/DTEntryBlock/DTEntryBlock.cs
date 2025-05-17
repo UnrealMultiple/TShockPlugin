@@ -11,7 +11,7 @@ public class DTEntryBlock : TerrariaPlugin
 {
     public override string Author => "肝帝熙恩";
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Description => GetString("阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙");
-    public override Version Version => new Version(1, 1, 7);
+    public override Version Version => new Version(1, 1, 8);
     public static Configuration Config = null!;
     Color orangeColor = new Color(255, 165, 0);
 

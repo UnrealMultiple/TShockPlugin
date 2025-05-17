@@ -10,7 +10,7 @@ public class Plugin : TerrariaPlugin
 {
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学";
-    public override Version Version => new Version(1, 5, 9);
+    public override Version Version => new Version(1, 5, 10);
     public override string Description => GetString("给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）");
     #endregion
 

@@ -12,7 +12,7 @@ public partial class WeaponPlus : TerrariaPlugin
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "z枳";
     public override string Description => GetString("允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes");
-    public override Version Version => new Version(1, 0, 0, 6);
+    public override Version Version => new Version(1, 0, 0, 7);
     #endregion
 
     #region 实例变量

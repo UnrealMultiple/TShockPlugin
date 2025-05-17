@@ -11,7 +11,7 @@ namespace PvPer;
 public class PvPer : TerrariaPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 6);
+    public override Version Version => new Version(1, 1, 7);
     public override string Author => "Soofa 羽学修改";
     public override string Description => GetString("不是你死就是我活系列");
     public PvPer(Main game) : base(game)

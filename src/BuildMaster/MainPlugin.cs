@@ -14,7 +14,7 @@ namespace MainPlugin;
 public class MainPlugin : TerrariaPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 7);
+    public override Version Version => new Version(1, 0, 8);
 
     public override string Author => "豆沙 羽学，肝帝熙恩适配";
 

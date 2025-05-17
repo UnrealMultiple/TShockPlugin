@@ -29,7 +29,7 @@ public class PlayerDeath : Dictionary<string, int>
             new SqlColumn("Count", MySqlDbType.Int32) { Length = 255 },
             new SqlColumn("Name", MySqlDbType.VarChar) { Length = 255, Unique = true }
               );
-        var List = new SqlTableCreator(this.database, this.database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
+        var List = new SqlTableCreator(this.database, this.database.GetSqlQueryBuilder());
         List.EnsureTableStructure(Skeleton);
         this.ReadAll();
     }

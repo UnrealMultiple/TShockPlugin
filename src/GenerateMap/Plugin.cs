@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Description => GetString("生成地图图片");
 
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
 
     public Plugin(Main game) : base(game)
     {

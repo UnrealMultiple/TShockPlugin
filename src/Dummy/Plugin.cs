@@ -10,7 +10,7 @@ namespace Dummy;
 public class Plugin : LazyPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 1);
+    public override Version Version => new Version(1, 0, 0, 2);
 
     public override string Author => "少司命";
 

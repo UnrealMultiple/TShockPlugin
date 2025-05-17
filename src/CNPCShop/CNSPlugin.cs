@@ -10,7 +10,7 @@ namespace CNPCShop;
 public class CNSPlugin : TerrariaPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "Megghy，肝帝熙恩更新1449";
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
     public override string Description => GetString("自定义NPC商店出售的物品");
     public CNSPlugin(Main game) : base(game) { }
     public static List<CNSConfig.Shop> AviliableShops { get; internal set; } = new List<CNSConfig.Shop>();

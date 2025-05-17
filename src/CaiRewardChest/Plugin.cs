@@ -21,7 +21,7 @@ public class CaiRewardChest : TerrariaPlugin
     public override string Description => GetString("奖励箱！！");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new (2025, 3, 15, 1);
+    public override Version Version => new Version(2025, 05, 18, 2);
 
 
     public override void Initialize()
