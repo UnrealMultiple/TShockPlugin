@@ -2301,6 +2301,28 @@
     "HotReload": true
   },
   {
+    "Name": "SimultaneousUseFix",
+    "Version": "1.0.11",
+    "Author": "熙恩，感谢恋恋",
+    "Description": {
+      "en-US": "Solve problems such as stuck double hammers and stuck star-spinning machine guns",
+      "de-DE": "解决卡双锤，卡星旋机枪之类的问题",
+      "it-IT": "解决卡双锤，卡星旋机枪之类的问题",
+      "fr-FR": "解决卡双锤，卡星旋机枪之类的问题",
+      "es-ES": "解决卡双锤，卡星旋机枪之类的问题",
+      "ru-RU": "解决卡双锤，卡星旋机枪之类的问题",
+      "zh-CN": "解决卡双锤，卡星旋机枪之类的问题",
+      "pt-BR": "解决卡双锤，卡星旋机枪之类的问题",
+      "pl-PL": "解决卡双锤，卡星旋机枪之类的问题"
+    },
+    "AssemblyName": "SimultaneousUseFix",
+    "Path": "SimultaneousUseFix.dll",
+    "Dependencies": [
+      "Chireiden.TShock.Omni"
+    ],
+    "HotReload": true
+  },
+  {
     "Name": "SmartRegions",
     "Version": "1.4.8",
     "Author": "GameRoom，肝帝熙恩汉化修复",
