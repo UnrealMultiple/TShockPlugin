@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:03:14+0000\n"
-"PO-Revision-Date: 2025-03-19 01:13\n"
+"POT-Creation-Date: 2025-05-14 15:20:18+0000\n"
+"PO-Revision-Date: 2025-05-17 01:17\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -103,7 +103,7 @@ msgstr "Online Rank ({0}/{1}):"
 
 #: ../../Plugin.Commamd.cs:189
 msgid "已为你搜索到{0}个花苞，输入/warp list可以查看结果"
-msgstr "{0} Buds have been searched for you, enter /warp list to view the results"
+msgstr "{0} Plantera bulb have been searched for you, enter /warp list to view the results"
 
 #: ../../Plugin.Commamd.cs:30
 #, csharp-format
@@ -112,7 +112,7 @@ msgstr "Command `{1}` has been executed for player {0}"
 
 #: ../../Plugin.Commamd.cs:155
 msgid "已移除所有花苞传送点!"
-msgstr "All bud teleporter have been removed!"
+msgstr "All plantera bulb warp have been removed!"
 
 #: ../../Plugin.Commamd.cs:50
 msgid "当前没有玩家在线数据"
@@ -186,9 +186,9 @@ msgstr "Enter {0}Death Rank {{0}} to see more"
 #: ../../Plugin.cs:516
 #, csharp-format
 msgid "退出服务器时处于死亡状态！\n"
-"请等待死亡结束，还有{0}秒结束！"
+"请等待死亡结束，还有{0:0}秒结束！"
 msgstr "Dead state when exiting the server!\n"
-"Please wait for death to end, there are {0} seconds left!"
+"Please wait for death to end, there are {0:0} seconds left!"
 
 #: ../../Plugin.Commamd.cs:94
 msgid "错误的范围!"
