@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-08 13:16:28+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"PO-Revision-Date: 2025-05-17 01:17\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "None"
 #: ../../SurfaceBlock.cs:120
 #, csharp-format
 msgid "玩家 [c/4EA4F2:{0}] 使用禁地表弹幕 [c/15EDDB:{1}] 已清除!"
-msgstr "Player [c/4EA4F2:{0}] used SurfaceBlock [c/15EDDB:{1}] to clear!"
+msgstr "Player [c/4EA4F2:{0}] used [c/FF0000:{1}] on the surface,automatically removed!"
 
 #: ../../SurfaceBlock.cs:14
 msgid "禁止特定弹幕在地表产生"

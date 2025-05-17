@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:02:50+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"POT-Creation-Date: 2025-05-14 15:05:18+0000\n"
+"PO-Revision-Date: 2025-05-15 01:16\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -105,8 +105,88 @@ msgstr ""
 msgid "[History] 数据库清除失败"
 msgstr ""
 
+#: ../../Action.cs:497
+#, csharp-format
+msgid "{0} {1} 修改了告示牌文字. ({2})"
+msgstr ""
+
+#: ../../Action.cs:492
+#, csharp-format
+msgid "{0} {1} 改变图格形状. ({2})"
+msgstr ""
+
+#: ../../Action.cs:489
+#, csharp-format
+msgid "{0} {1} 放置墙 {2}. ({3})"
+msgstr ""
+
+#: ../../Action.cs:495
+#, csharp-format
+msgid "{0} {1} 放置墙. ({2})"
+msgstr ""
+
+#: ../../Action.cs:487
+#, csharp-format
+msgid "{0} {1} 放置方块 {2}. ({3})"
+msgstr ""
+
+#: ../../Action.cs:494
+#, csharp-format
+msgid "{0} {1} 放置物块 ({2})"
+msgstr ""
+
+#: ../../Action.cs:490
+#, csharp-format
+msgid "{0} {1} 放置电线. ({2})"
+msgstr ""
+
+#: ../../Action.cs:493
+#, csharp-format
+msgid "{0} {1} 放置致动器. ({2})"
+msgstr ""
+
+#: ../../Action.cs:496
+#, csharp-format
+msgid "{0} {1} 涂漆物块/墙. ({2})"
+msgstr ""
+
+#: ../../Action.cs:488
+#, csharp-format
+msgid "{0} {1} 破坏墙 {2}. ({3})"
+msgstr ""
+
+#: ../../Action.cs:486
+#, csharp-format
+msgid "{0} {1} 破坏方块 {2}. ({3})"
+msgstr ""
+
+#: ../../Action.cs:491
+#, csharp-format
+msgid "{0} {1} 破坏电线. ({2})"
+msgstr ""
+
+#: ../../Action.cs:477
+#, csharp-format
+msgid "{0}分钟"
+msgstr ""
+
 #: ../../Commands/InfoCommand.cs:62
 msgid "{0}在指定区域中未执行任何图格操作."
+msgstr ""
+
+#: ../../Action.cs:469
+#, csharp-format
+msgid "{0}天"
+msgstr ""
+
+#: ../../Action.cs:473
+#, csharp-format
+msgid "{0}小时"
+msgstr ""
+
+#: ../../Action.cs:481
+#, csharp-format
+msgid "{0}秒"
 msgstr ""
 
 #: ../../History.cs:1590

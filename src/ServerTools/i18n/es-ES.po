@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:03:14+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"POT-Creation-Date: 2025-05-14 15:20:18+0000\n"
+"PO-Revision-Date: 2025-05-15 01:16\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -186,7 +186,7 @@ msgstr ""
 #: ../../Plugin.cs:516
 #, csharp-format
 msgid "退出服务器时处于死亡状态！\n"
-"请等待死亡结束，还有{0}秒结束！"
+"请等待死亡结束，还有{0:0}秒结束！"
 msgstr ""
 
 #: ../../Plugin.Commamd.cs:94
