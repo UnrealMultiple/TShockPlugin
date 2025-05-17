@@ -23,6 +23,26 @@
     "HotReload": true
   },
   {
+    "Name": "TransferPatch",
+    "Version": "1.0.0.0",
+    "Author": "少司命",
+    "Description": {
+      "en-US": "翻译任意插件",
+      "de-DE": "翻译任意插件",
+      "it-IT": "翻译任意插件",
+      "fr-FR": "翻译任意插件",
+      "es-ES": "翻译任意插件",
+      "ru-RU": "翻译任意插件",
+      "zh-CN": "翻译任意插件",
+      "pt-BR": "翻译任意插件",
+      "pl-PL": "翻译任意插件"
+    },
+    "AssemblyName": "TransferPatch",
+    "Path": "TransferPatch.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "Chireiden.TShock.Omni",
     "Version": "0.0.203.0",
     "Author": "SGKoishi",
@@ -2500,28 +2520,6 @@
     "AssemblyName": "TownNPCHomes",
     "Path": "TownNPCHomes.dll",
     "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "TShockConfigMultiLang",
-    "Version": "1.0.4",
-    "Author": "肝帝熙恩，羽学",
-    "Description": {
-      "en-US": "Create a localized language config",
-      "de-DE": "创建一个本地化语言的config",
-      "it-IT": "创建一个本地化语言的config",
-      "fr-FR": "创建一个本地化语言的config",
-      "es-ES": "创建一个本地化语言的config",
-      "ru-RU": "创建一个本地化语言的config",
-      "zh-CN": "创建一个本地化语言的config",
-      "pt-BR": "创建一个本地化语言的config",
-      "pl-PL": "创建一个本地化语言的config"
-    },
-    "AssemblyName": "TShockConfigMultiLang",
-    "Path": "TShockConfigMultiLang.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
     "HotReload": true
   },
   {
