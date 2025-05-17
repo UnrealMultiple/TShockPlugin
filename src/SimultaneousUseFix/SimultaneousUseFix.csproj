@@ -8,8 +8,4 @@
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>
-
-    <PropertyGroup>
-        <CopyAssemblyToOutDir>Chireiden.TShock.Omni.dll</CopyAssemblyToOutDir>
-    </PropertyGroup>
 </Project>
