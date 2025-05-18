@@ -9,6 +9,8 @@ public partial class Plugin
 {
     public static readonly List<TSPlayer> ActivePlayers = [];
 
+    public static readonly object Lock = new();
+
     private RestObject Queryduration(RestRequestArgs args)
     {
         var data = PlayerOnline.GetOnlineRank().Select(x => new { name = x.Name, duration = x.Duration });
@@ -17,28 +19,37 @@ public partial class Plugin
 
     private void OnLeaveV2(LeaveEventArgs args)
     {
-        ActivePlayers.Remove(TShock.Players[args.Who]);
+        lock (Lock)
+        { 
+            ActivePlayers.Remove(TShock.Players[args.Who]);
+        }
     }
 
     private void OnGreet(GreetPlayerEventArgs args)
     {
-        var ply = TShock.Players[args.Who];
-        if (ply != null)
-        {
-            ActivePlayers.Add(ply);
-            ply.RespawnTimer = 0;
+        lock (Lock)
+        { 
+            var ply = TShock.Players[args.Who];
+            if (ply != null)
+            {
+                ActivePlayers.Add(ply);
+                ply.RespawnTimer = 0;
+            }
         }
-
     }
 
     private void OnUpdatePlayerOnline(EventArgs args)
     {
-        ActivePlayers.ForEach(p =>
-        {
-            if (p != null && p.Active)
-            {
-                PlayerOnline.Add(p.Name, 1);
+        lock (Lock)
+        { 
+            foreach (var p in ActivePlayers)
+            { 
+                if (p != null && p.Active)
+                {
+                    PlayerOnline.Add(p.Name, 1);
+                }
             }
-        });
+        }
+            
     }
 }
