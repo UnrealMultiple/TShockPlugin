@@ -234,7 +234,7 @@ public class QRCoder : TerrariaPlugin
 
                 if (qrCode.GetModule(j, i))
                 {
-                    Main.tile[tileX, tileY].wallColor(29); // 暗影漆
+                    Main.tile[tileX, tileY].wallColor(Terraria.ID.PaintID.ShadowPaint); // 暗影漆
                 }
                 else
                 {
