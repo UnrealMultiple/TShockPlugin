@@ -8,6 +8,7 @@ using TShockAPI;
 using static Net.Codecrete.QrCodeGenerator.QrCode;
 using System.Linq;
 using static TShockAPI.GetDataHandlers;
+using System.Reflection;
 
 namespace QRCoder;
 
@@ -38,7 +39,7 @@ public class QRCoder : TerrariaPlugin
         });
 
         GetDataHandlers.TileEdit += this.OnTileEdit;
-
+        AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
         TShock.RestApi.Register(new SecureRestCommand("/tool/qrcoder", this.QRtest, "tool.rest.qrcoder"));
     }
 
@@ -48,15 +49,29 @@ public class QRCoder : TerrariaPlugin
         {
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.QREncoder);
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.SetQRPosition);
+            AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
             GetDataHandlers.TileEdit -= this.OnTileEdit;
-((List<RestCommand>) typeof(Rest)
+            ((List<RestCommand>) typeof(Rest)
                 .GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
                 .GetValue(TShock.RestApi)!)
                 .RemoveAll(x => x.Name == "/tool/qrcoder");
         }
         base.Dispose(Disposing);
     }
+    private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
+    {
+        var resourceName =
+            $"{Assembly.GetExecutingAssembly().GetName().Name}.{new AssemblyName(args.Name).Name}.dll";
+        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+        if (stream == null)
+        {
+            return null;
+        }
 
+        var assemblyData = new byte[stream.Length];
+        _ = stream.Read(assemblyData, 0, assemblyData.Length);
+        return Assembly.Load(assemblyData);
+    }
     private void OnTileEdit(object? sender, TileEditEventArgs args)
     {
         if (args.Handled)
