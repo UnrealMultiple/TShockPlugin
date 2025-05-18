@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:03:02+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"POT-Creation-Date: 2025-05-17 17:40:58+0000\n"
+"PO-Revision-Date: 2025-05-18 01:24\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,8 +17,8 @@ msgstr ""
 "X-Crowdin-File-ID: 1490\n"
 "Language: ru_RU\n"
 
-#: ../../DB.cs:57
-#: ../../DB.cs:89
+#: ../../DB.cs:46
+#: ../../DB.cs:78
 #, csharp-format
 msgid "[PersonalPermission] 读取数据库时发生错误.\n"
 "{0}"
@@ -40,7 +40,7 @@ msgstr ""
 msgid "/pp search [C/66E5B5:权限名]\n"
 msgstr ""
 
-#: ../../DB.cs:100
+#: ../../DB.cs:89
 msgid "保存玩家权限失败."
 msgstr ""
 
@@ -99,7 +99,7 @@ msgstr ""
 msgid "添加权限失败."
 msgstr ""
 
-#: ../../DB.cs:36
+#: ../../DB.cs:25
 #, csharp-format
 msgid "添加玩家信息失败.\n"
 "{0}"
