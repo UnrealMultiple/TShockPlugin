@@ -21,7 +21,7 @@ public class Skill : TerrariaPlugin
     public override string Description => GetString("让玩家拥有技能!");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 1, 3);
+    public override Version Version => new Version(2, 0, 1, 4);
 
     internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
@@ -43,7 +43,7 @@ public class Skill : TerrariaPlugin
         if (stream != null)
         {
             var assemblyData = new byte[stream.Length];
-            stream.Read(assemblyData, 0, assemblyData.Length);
+            stream.ReadExactly(assemblyData);
             return Assembly.Load(assemblyData);
         }
         return null;

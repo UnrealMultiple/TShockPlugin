@@ -27,7 +27,7 @@ public class Plugin : TerrariaPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "GK 少司命修复版";
 
-    public override Version Version => new Version(1, 3, 0, 5);
+    public override Version Version => new Version(1, 3, 0, 6);
 
     public override string Description => GetString("由GK改良的简短指令插件！");
 

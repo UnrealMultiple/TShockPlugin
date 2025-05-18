@@ -19,7 +19,7 @@ public class OnlineGiftPackage : TerrariaPlugin
     public override string Description => GetString("在线礼包插件 ");
     // 插件名称
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;    // 插件版本号
-    public override Version Version => new Version(1, 0, 1, 6);
+    public override Version Version => new Version(1, 0, 1, 7);
     // 构造函数，初始化插件与游戏关联
     public OnlineGiftPackage(Main game) : base(game)
     {

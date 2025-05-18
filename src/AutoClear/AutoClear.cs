@@ -10,7 +10,7 @@ public class Autoclear : LazyPlugin
 {
     public override string Author => "大豆子[Mute适配1447]，肝帝熙恩更新";
     public override string Description => GetString("智能扫地机");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 8);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 9);
 
     private bool _sweepScheduled = false;
     private DateTime _sweepScheduledAt;

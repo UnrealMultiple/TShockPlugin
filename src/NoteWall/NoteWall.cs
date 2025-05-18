@@ -14,7 +14,7 @@ public class NoteWall : LazyPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "肝帝熙恩";
-    public override Version Version => new Version(1, 0, 2);
+    public override Version Version => new Version(1, 0, 3);
     public override string Description => GetString("留言墙");
 
     public NoteWall(Main game) : base(game)

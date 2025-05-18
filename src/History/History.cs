@@ -27,7 +27,7 @@ public class History : TerrariaPlugin
     private Thread CommandQueueThread = null!;
     public override string Description => GetString("记录图格操作.");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 8);
+    public override Version Version => new Version(1, 0, 9);
 
     public History(Main game) : base(game)
     {
@@ -1403,7 +1403,7 @@ public class History : TerrariaPlugin
     }
     void OnInitialize(EventArgs e)
     {
-        var sqlcreator = new SqlTableCreator(Database, new SqliteQueryCreator());
+        var sqlcreator = new SqlTableCreator(Database, Database.GetSqlQueryBuilder());
         sqlcreator.EnsureTableStructure(new SqlTable("History",
             new SqlColumn("Time", MySqlDbType.Int32),
             new SqlColumn("Account", MySqlDbType.VarChar) { Length = 50 },

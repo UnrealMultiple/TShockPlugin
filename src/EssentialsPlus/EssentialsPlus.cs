@@ -23,7 +23,7 @@ public class EssentialsPlus : LazyPlugin
     public override string Description => GetString("增强版Essentials");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 7);
+    public override Version Version => new Version(1, 0, 8);
 
 
     public EssentialsPlus(Main game)

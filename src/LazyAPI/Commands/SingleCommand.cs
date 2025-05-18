@@ -8,7 +8,7 @@ namespace LazyAPI.Commands;
 internal partial class SingleCommand : CommandBase
 {
     private readonly CommandParser.Parser[] argParsers;
-    private readonly FastReflectionDelegate method;
+    private readonly FastReflectionHelper.FastInvoker method;
 
     public SingleCommand(MethodInfo method, string infoPrefix) : base(method)
     {
@@ -25,7 +25,7 @@ internal partial class SingleCommand : CommandBase
 
         this.argParsers = ap.ToArray();
         this.info = sb.ToString();
-        this.method = method.CreateFastDelegate();
+        this.method = method.GetFastInvoker();
     }
 
     public override ParseResult TryParse(CommandArgs args, int current)

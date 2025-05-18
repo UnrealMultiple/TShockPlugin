@@ -18,7 +18,7 @@ namespace CaiBot;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public static readonly Version VersionNum = new (2025, 3, 10, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new Version(2025, 05, 18, 2); //日期+版本号(0,1,2...)
     internal static int InitCode = -1;
     public static bool LocalMode => Config.Settings.BotApi != "api.terraria.ink:22334";
     public static bool DebugMode;

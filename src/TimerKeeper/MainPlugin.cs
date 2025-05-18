@@ -14,7 +14,7 @@ public class TimerKeeper : TerrariaPlugin
     public override string Description => GetString("保存计时器");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2024, 12, 18, 4);
+    public override Version Version => new Version(2025, 05, 18, 5);
     //public static PlayerData data { get; set; }
     public TimerKeeper(Main game)
     : base(game)

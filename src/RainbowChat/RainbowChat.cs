@@ -13,7 +13,7 @@ public class RainbowChat : TerrariaPlugin
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "Professor X 熙恩 羽学";
     public override string Description => GetString("使玩家每次说话的颜色不一样.");
-    public override Version Version => new Version(1, 0, 9);
+    public override Version Version => new Version(1, 0, 10);
     #endregion
 
     #region 注册与卸载

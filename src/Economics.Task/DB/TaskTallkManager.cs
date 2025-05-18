@@ -17,7 +17,7 @@ public class TaskTallkManager
             new SqlColumn("NPCID", MySqlDbType.Int32),
             new SqlColumn("Name", MySqlDbType.Text) { Length = 500 }
               );
-        var List = new SqlTableCreator(this.database, this.database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
+        var List = new SqlTableCreator(this.database, this.database.GetSqlQueryBuilder());
         List.EnsureTableStructure(Skeleton);
         this.GetPlayerTallk();
     }

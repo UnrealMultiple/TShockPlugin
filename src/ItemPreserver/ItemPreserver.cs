@@ -11,7 +11,7 @@ public class ItemPreserver : TerrariaPlugin
     public override string Author => "肝帝熙恩 & 少司命";
     public override string Description => GetString("指定物品不消耗");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 10);
+    public override Version Version => new Version(1, 0, 11);
     public static Configuration Config = new();
 
     public class Pitem

@@ -16,17 +16,16 @@ internal class ApiAdapter
     /// <returns></returns>
     public static async Task<byte[]> Request(PluginAPIType type, Dictionary<string, string>? args = null)
     {
+        var defaultArgs = new Dictionary<string, string> { { "tshock_version", TShockAPI.TShock.VersionNum.ToString() } };
         var uriBuilder = new UriBuilder(RequestApi)
         {
             Path = type.GetAttribute<DescriptionAttribute>().Description
         };
         var param = HttpUtility.ParseQueryString(uriBuilder.Query);
-        if (args != null)
+        var requestArgs = args is null ? defaultArgs : args.Concat(defaultArgs);
+        foreach (var (key, val) in requestArgs)
         {
-            foreach (var (key, val) in args)
-            {
-                param[key] = val;
-            }
+            param[key] = val;
         }
         uriBuilder.Query = param.ToString();
         return await _client.GetByteArrayAsync(uriBuilder.ToString());

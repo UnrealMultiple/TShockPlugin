@@ -12,7 +12,7 @@ public class Noagent : TerrariaPlugin
     public override string Author => "[星迹]Jonesn，肝帝熙恩更新适配1449";
     public override string Description => GetString("禁止代理登录");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 4);
+    public override Version Version => new Version(1, 0, 5);
 
     public Noagent(Main game)
         : base(game)

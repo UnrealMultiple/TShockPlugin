@@ -24,7 +24,7 @@ public class Plugin : TerrariaPlugin
 
     public Plugin(Main game) : base(game) { }
 
-    public override Version Version => new Version(1, 4, 7);
+    public override Version Version => new Version(1, 4, 8);
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "GameRoom，肝帝熙恩汉化修复";

@@ -194,7 +194,7 @@
 | [TimeRate](./src/TimeRate/README.md) | 0.0% | Modifica la aceleración del tiempo usando comandos, y soporta el sueño de los jugadores para activar eventos |  |
 | [TimerKeeper](./src/TimerKeeper/README.md) | 0.0% | Guarda el estado del temporizador |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | 0.0% | Casa rápida de NPC |  |
-| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | 0.0% | Localización del idioma de configuración de TShock | [LazyAPI](./src/LazyAPI/README.md) |
+| [TransferPatch](./src/TransferPatch/README.md) | 0.0% | 翻译补丁 |  |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 0.0% | Permite que el servidor genere ítems "inobtenibles" |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Biblioteca base para plugins VBY |  |
 | [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Modificaciones personalizables para cierto contenido del juego (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |

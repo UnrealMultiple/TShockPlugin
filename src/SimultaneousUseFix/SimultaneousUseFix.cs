@@ -12,7 +12,7 @@ public class SimultaneousUseFix : TerrariaPlugin
     public override string Author => "熙恩，感谢恋恋";
     public override string Description => GetString("解决卡双锤，卡星旋机枪之类的问题");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 9);
+    public override Version Version => new Version(1, 0, 11);
     public static Configuration Config = null!;
     public bool otherPluginExists = false;
 

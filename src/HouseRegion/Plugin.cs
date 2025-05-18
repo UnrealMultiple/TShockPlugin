@@ -17,7 +17,7 @@ public class HousingPlugin : LazyPlugin
     public override string Author => "GK 阁下 改良";
     public override string Description => GetString("一个著名的用于保护房屋的插件。");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 9);
+    public override Version Version => new Version(1, 0, 0, 10);
     public HousingPlugin(Main game) : base(game)
     {
     }
@@ -41,9 +41,7 @@ public class HousingPlugin : LazyPlugin
             new SqlColumn("WorldID", MySqlDbType.Text),//世界代号
             new SqlColumn("Locked", MySqlDbType.Int32),//是否上锁
             new SqlColumn("Users", MySqlDbType.Text));//使用者
-        var SQLWriter = new SqlTableCreator(TShock.DB,
-            TShock.DB.GetSqlType() == SqlType.Sqlite ?
-            new SqliteQueryCreator() : new MysqlQueryCreator());
+        var SQLWriter = new SqlTableCreator(TShock.DB,TShock.DB.GetSqlQueryBuilder());
         SQLWriter.EnsureTableStructure(table);
     }
     private void RH()//读取房屋

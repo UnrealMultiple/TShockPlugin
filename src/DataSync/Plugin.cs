@@ -14,7 +14,7 @@ namespace DataSync;
 public class Plugin : TerrariaPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new (2025, 1, 29);
+    public override Version Version => new Version(2025, 05, 18);
     internal static Dictionary<int, List<ProgressType>> _idmatch = new Dictionary<int, List<ProgressType>>();
     internal static Dictionary<ProgressType, Func<bool?, bool>> _flagaccessors = new Dictionary<ProgressType, Func<bool?, bool>>();
     public Plugin(Main game) : base(game)
@@ -79,9 +79,7 @@ public class Plugin : TerrariaPlugin
             }
         });
 
-        var sqlTableCreator = new SqlTableCreator(db, (db.GetSqlType() == SqlType.Sqlite)
-            ? new SqliteQueryCreator()
-            : new MysqlQueryCreator());
+        var sqlTableCreator = new SqlTableCreator(db, db.GetSqlQueryBuilder());
         sqlTableCreator.EnsureTableStructure(sqlTable);
 
         using var result = TShock.DB.QueryReader("SELECT * FROM synctable WHERE `key`=@0", Config.GetProgressName(ProgressType.Unreachable));

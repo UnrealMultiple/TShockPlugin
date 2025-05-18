@@ -29,7 +29,7 @@ public class WeaponPlusDB
             new SqlColumn("useSpeed_level", (MySqlDbType) 3),
             new SqlColumn("shootSpeed_level", (MySqlDbType) 3),
             new SqlColumn("allCost", (MySqlDbType) 8));
-        IQueryBuilder queryBuilder = (database.GetSqlType() == SqlType.Sqlite) ? new SqliteQueryCreator() : new MysqlQueryCreator();
+        var queryBuilder = database.GetSqlQueryBuilder();
         queryBuilder.CreateTable(table);
         var sqlTableCreator = new SqlTableCreator(database, queryBuilder);
         sqlTableCreator.EnsureTableStructure(table);

@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(2024, 12, 18, 4);
+    public override Version Version => new Version(2025, 05, 18, 5);
 
     public Plugin(Main game) : base(game)
     {
@@ -26,7 +26,7 @@ public class Plugin : TerrariaPlugin
         if (stream != null)
         {
             var assemblyData = new byte[stream.Length];
-            stream.Read(assemblyData, 0, assemblyData.Length);
+            stream.ReadExactly(assemblyData);
             return Assembly.Load(assemblyData);
         }
         return null;

@@ -17,7 +17,7 @@ public class DumpPluginsList : TerrariaPlugin
     public override string Description => GetString("Dump plugin list and exit");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 1, 8);
+    public override Version Version => new Version(1, 0, 1, 9);
 
     private CultureInfo CultureInfo => (CultureInfo) typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
             "TranslationCultureInfo",

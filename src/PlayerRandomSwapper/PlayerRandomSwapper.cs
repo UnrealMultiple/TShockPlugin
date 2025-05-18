@@ -10,7 +10,7 @@ public class PlayerRandomSwapper : LazyPlugin
 {
     public override string Author => "肝帝熙恩,少司命";
     public override string Description => GetString("一个插件，用于在指定时间后随机交换玩家位置。");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 7);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 8);
 
     private DateTime LastCheck { get; set; } = DateTime.UtcNow;
     private int RemainingSeconds { get; set; }

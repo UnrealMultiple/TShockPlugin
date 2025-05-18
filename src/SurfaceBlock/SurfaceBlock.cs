@@ -12,7 +12,7 @@ public class SurfaceBlock : LazyPlugin
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学 Cai 西江小子 熙恩";
     public override string Description => GetString("禁止特定弹幕在地表产生");
-    public override Version Version => new Version(2, 0, 0, 2);
+    public override Version Version => new Version(2, 0, 0, 3);
     #endregion
 
     #region 注册与卸载钩子

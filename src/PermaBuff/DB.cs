@@ -14,7 +14,7 @@ public class DB
             new SqlColumn("buffid", MySqlDbType.Int32) { Length = 255, Unique = true },
             new SqlColumn("Name", MySqlDbType.VarChar) { Length = 255, Unique = true }
               );
-        var List = new SqlTableCreator(database, database.GetSqlType() == SqlType.Sqlite ? new SqliteQueryCreator() : new MysqlQueryCreator());
+        var List = new SqlTableCreator(database, database.GetSqlQueryBuilder());
         List.EnsureTableStructure(Skeleton);
     }
 

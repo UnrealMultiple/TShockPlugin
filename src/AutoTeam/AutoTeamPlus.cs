@@ -11,7 +11,7 @@ namespace AutoTeam;
 public class AutoTeam : LazyPlugin
 {
     public override string Author => "十七改，肝帝熙恩改";
-    public override Version Version => new Version(2, 4, 8);
+    public override Version Version => new Version(2, 4, 9);
     public override string Description => GetString("自动分配一个组的玩家到特定队伍");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public AutoTeam(Main game) : base(game)
