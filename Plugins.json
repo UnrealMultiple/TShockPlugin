@@ -1192,7 +1192,7 @@
   },
   {
     "Name": "Economics.WeaponPlus",
-    "Version": "2.0.0.5",
+    "Version": "2.0.0.6",
     "Author": "z枳 少司命",
     "Description": {
       "en-US": "Allow any weapon to be strengthened on basic attributes",
