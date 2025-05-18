@@ -1,5 +1,6 @@
 ﻿using Rests;
 using ServerTools.DB;
+using System.Collections.Concurrent;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -9,8 +10,6 @@ public partial class Plugin
 {
     public static readonly List<TSPlayer> ActivePlayers = [];
 
-    public static readonly object Lock = new();
-
     private RestObject Queryduration(RestRequestArgs args)
     {
         var data = PlayerOnline.GetOnlineRank().Select(x => new { name = x.Name, duration = x.Duration });
@@ -19,37 +18,28 @@ public partial class Plugin
 
     private void OnLeaveV2(LeaveEventArgs args)
     {
-        lock (Lock)
-        { 
-            ActivePlayers.Remove(TShock.Players[args.Who]);
-        }
+        ActivePlayers.Remove(TShock.Players[args.Who]);
     }
 
     private void OnGreet(GreetPlayerEventArgs args)
     {
-        lock (Lock)
-        { 
-            var ply = TShock.Players[args.Who];
-            if (ply != null)
-            {
-                ActivePlayers.Add(ply);
-                ply.RespawnTimer = 0;
-            }
+        var ply = TShock.Players[args.Who];
+        if (ply != null)
+        {
+            ActivePlayers.Add(ply);
+            ply.RespawnTimer = 0;
         }
     }
 
     private void OnUpdatePlayerOnline(EventArgs args)
     {
-        lock (Lock)
-        { 
-            foreach (var p in ActivePlayers)
-            { 
-                if (p != null && p.Active)
-                {
-                    PlayerOnline.Add(p.Name, 1);
-                }
+        for (var i = ActivePlayers.Count - 1; i >= 0; i--)
+        {
+            var p = ActivePlayers[i];
+            if (p != null && p.Active)
+            {
+                PlayerOnline.Add(p.Name, 1);
             }
-        }
-            
+        } 
     }
 }
