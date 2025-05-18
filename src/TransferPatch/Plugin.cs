@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "TransferPatch";
 
-    public override Version Version => new Version(1, 0, 0, 0);
+    public override Version Version => new Version(1, 0, 0, 1);
 
     public Plugin(Main game) : base(game)
     {
@@ -21,32 +21,18 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        this.Run();
-    }
-
-    private void Run()
-    {
-        if (!Config.Instance.Enable || !File.Exists(Config.Instance.TargetAssembly))
+        if (!Config.Instance.Enable)
         {
             return;
         }
-        using var stream = new MemoryStream(File.ReadAllBytes(Config.Instance.TargetAssembly));
-        var t = new ILTranslate(stream, Config.Instance.TargetAssembly);
-        t.SetProperty += this.SetProperty;
-        t.SetField += this.SetField;
-        t.Patch(Config.Instance.TargetClassName);
-        t.SetProperty -= this.SetProperty;
-        t.SetField -= this.SetField;
-    }
-
-    private string? SetField(Mono.Cecil.FieldDefinition arg, string className)
-    {
-        return Config.Instance.Transfers.GetValueOrDefault($"{className}.{arg.Name}");
-    }
-
-    private string? SetProperty(Mono.Cecil.PropertyDefinition arg, string className)
-    {
-        return Config.Instance.Transfers.GetValueOrDefault($"{className}.{arg.Name}");
+        foreach (var target in Config.Instance.TransferTargets)
+        {
+            using var stream = new MemoryStream(File.ReadAllBytes(target.TargetAssembly));
+            var t = new ILTranslate(stream, target.TargetAssembly);
+            t.SetMember += (member, className) => target.Transfers.GetValueOrDefault($"{className}.{member.Name}");
+            t.Patch(target.TargetClassName);
+            t.Dispose();
+        }
     }
 
     protected override void Dispose(bool disposing)
