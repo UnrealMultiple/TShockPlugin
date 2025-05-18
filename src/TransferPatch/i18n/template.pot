@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TransferPatch\n"
-"POT-Creation-Date: 2025-05-17 19:47:19+0000\n"
-"PO-Revision-Date: 2025-05-17 19:47:19+0000\n"
+"POT-Creation-Date: 2025-05-18 16:53:34+0000\n"
+"PO-Revision-Date: 2025-05-18 16:53:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,17 +10,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../ILTranslate.cs:47
-#: ../../ILTranslate.cs:62
+#: ../../ILTranslate.cs:46
+#: ../../ILTranslate.cs:61
 #, csharp-format
 msgid "[翻译补丁]: {0}.{1} => {2}"
 msgstr ""
 
-#: ../../ILTranslate.cs:115
+#: ../../ILTranslate.cs:114
 msgid "无法获取JsonPropertyAttribute"
 msgstr ""
 
-#: ../../ILTranslate.cs:24
+#: ../../ILTranslate.cs:23
 msgid "未找到目标类!"
 msgstr ""
 

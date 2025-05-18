@@ -24,7 +24,7 @@
   },
   {
     "Name": "TransferPatch",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": {
       "en-US": "翻译任意插件",
