@@ -216,7 +216,7 @@ public class QRCoder : TerrariaPlugin
                     var tileX = startX + j;
                     var tileY = startY + i;
 
-                    Main.tile[tileX, tileY].wall = 318;
+                    Main.tile[tileX, tileY].wall = Terraria.ID.WallID.EchoWall;
                     TSPlayer.All.SendTileSquareCentered(tileX, tileY, 1);
                 }
             }
