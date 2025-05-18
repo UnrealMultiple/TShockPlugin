@@ -49,6 +49,10 @@ public class QRCoder : TerrariaPlugin
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.QREncoder);
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.SetQRPosition);
             GetDataHandlers.TileEdit -= this.OnTileEdit;
+((List<RestCommand>) typeof(Rest)
+                .GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+                .GetValue(TShock.RestApi)!)
+                .RemoveAll(x => x.Name == "/tool/qrcoder");
         }
         base.Dispose(Disposing);
     }
