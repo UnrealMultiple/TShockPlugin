@@ -1978,6 +1978,26 @@
     "HotReload": true
   },
   {
+    "Name": "QRCoder",
+    "Version": "1.0.0.0",
+    "Author": "Jonesn，熙恩，Radix.",
+    "Description": {
+      "en-US": "生成二维码",
+      "de-DE": "生成二维码",
+      "it-IT": "生成二维码",
+      "fr-FR": "生成二维码",
+      "es-ES": "生成二维码",
+      "ru-RU": "生成二维码",
+      "zh-CN": "生成二维码",
+      "pt-BR": "生成二维码",
+      "pl-PL": "生成二维码"
+    },
+    "AssemblyName": "QRCoder",
+    "Path": "QRCoder.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "RainbowChat",
     "Version": "1.0.10",
     "Author": "Professor X 熙恩 羽学",

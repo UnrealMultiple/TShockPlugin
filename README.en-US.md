@@ -161,6 +161,7 @@
 | [ProgressRestrict](./src/ProgressRestrict/README.en-US.md) | 100.0% | Super progress detection | [DataSync](./src/DataSync/README.en-US.md) |
 | [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 100.0% | Accept proxy protocol connections |  |
 | [PvPer](./src/PvPer/README.md) | 1.3% | Duel system |  |
+| [QRCoder](./src/QRCoder/README.md) | 0.0% | QR Code Generator |  |
 | [RainbowChat](./src/RainbowChat/README.en-US.md) | 100.0% | Random chat color |  |
 | [RandomBroadcast](./src/RandomBroadcast/README.md) | 100.0% | Random broadcast |  |
 | [RandRespawn](./src/RandRespawn/README.en-US.md) | 100.0% | Random spawn point |  |

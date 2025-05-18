@@ -157,6 +157,7 @@
 | [ProgressRestrict](./src/ProgressRestrict/README.md) | 超进度检测 | [DataSync](./src/DataSync/README.md) |
 | [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 接受 proxy protocol 协议 |  |
 | [PvPer](./src/PvPer/README.md) | 决斗系统 |  |
+| [QRCoder](./src/QRCoder/README.md) | 二维码生成器 |  |
 | [RainbowChat](./src/RainbowChat/README.md) | 每次说话颜色不一样 |  |
 | [RandomBroadcast](./src/RandomBroadcast/README.md) | 随机广播 |  |
 | [RandRespawn](./src/RandRespawn/README.md) | 随机出生点 |  |
