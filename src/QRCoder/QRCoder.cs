@@ -238,7 +238,7 @@ public class QRCoder : TerrariaPlugin
                 }
                 else
                 {
-                    Main.tile[tileX, tileY].wallColor(26); // 普通漆
+                    Main.tile[tileX, tileY].wallColor(Terraria.ID.PaintID.WhitePaint); // 普通漆
                 }
 
                 WorldGen.paintCoatWall(tileX, tileY, 1, true); // 夜明漆
