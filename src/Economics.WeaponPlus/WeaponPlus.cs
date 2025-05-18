@@ -515,7 +515,7 @@ public class WeaponPlus : TerrariaPlugin
         {
             return;
         }
-        TShock.Log.ConsoleDebug(GetString($"{player.name} Modify Item {item.id} {item.ItemMess()}"));
+        TShock.Log.Info(GetString($"{player.name} Modify Item {item.id} {item.ItemMess()}"));
         var whoAmI = player.whoAmI;
         for (var i = 0; i < NetItem.InventoryIndex.Item2; i++)
         {
