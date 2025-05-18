@@ -230,7 +230,7 @@ public class QRCoder : TerrariaPlugin
                 var tileX = startX + j;
                 var tileY = startY + i;
 
-                Main.tile[tileX, tileY].wall = 155; // 宝石墙
+                Main.tile[tileX, tileY].wall = Terraria.ID.WallID.DiamondGemspark; // 宝石墙
 
                 if (qrCode.GetModule(j, i))
                 {
