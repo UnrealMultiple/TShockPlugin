@@ -88,7 +88,7 @@
 |              |                | ... (省略其他排序指令)                                   |
 |              |                | `/zsort clumsy [num/all]`: 排序菜鸡值                 |
 | **导出数据系列**   | `zhipm.out`    | `/zout [name/all]`: 导出玩家存档                       |
-| **超级ban系列**  | `zhipm.ban`    | `/zban add [name] [原因]`: 优化过的ban指令               |
+| **超级ban系列**  | `zhipm.ban`    | `/zban add [name] [时长] [原因]`: 优化过的ban指令               |
 | **玩家游戏体验设置** | `zhipm.hide`   | `/zhide kill 或 point`: 隐藏击杀或点数提示                 |
 | **清理系列**     | `zhipm.clear`  | 
 |              |                | `/zclear useless`: 清理无用物品                        |
@@ -160,6 +160,8 @@ public class ExtraData
 ```
 ## 更新日志
 ```
+v1.0.2.9
+/zban命令支持时长
 v.1.0.2.6
 修复 zsort help 的重复帮助条目
 删除帮助文本里多余的空格

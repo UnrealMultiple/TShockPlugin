@@ -1,5 +1,6 @@
 ﻿using Rests;
 using ServerTools.DB;
+using System.Collections.Concurrent;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -28,17 +29,17 @@ public partial class Plugin
             ActivePlayers.Add(ply);
             ply.RespawnTimer = 0;
         }
-
     }
 
     private void OnUpdatePlayerOnline(EventArgs args)
     {
-        ActivePlayers.ForEach(p =>
+        for (var i = ActivePlayers.Count - 1; i >= 0; i--)
         {
+            var p = ActivePlayers[i];
             if (p != null && p.Active)
             {
                 PlayerOnline.Add(p.Name, 1);
             }
-        });
+        } 
     }
 }
