@@ -21,13 +21,17 @@
 ```json5
 {
   "启用": true,
-  "目标程序集": "ServerPlugins/TShockAPI.dll",
-  "目标类": [ "TShockAPI.Configuration.TShockSettings", "TShockAPI.Configuration.ConfigFile`1" ],
-  "翻译列表": {
-    "TShockAPI.Configuration.TShockSettings.ServerPassword": "服务器密码",
-    "TShockAPI.Configuration.ConfigFile`1.Settings":  "设置" //泛型类(`1`代表泛型参数)
-    "Config/Option": "配置" //嵌套类
-  }
+  "执行列表": [
+    {
+	  "目标程序集": "ServerPlugins/TShockAPI.dll",
+      "目标类": [ "TShockAPI.Configuration.TShockSettings", "TShockAPI.Configuration.ConfigFile`1" ],
+      "翻译列表": {
+        "TShockAPI.Configuration.TShockSettings.ServerPassword": "服务器密码",
+        "TShockAPI.Configuration.ConfigFile`1.Settings":  "设置" //泛型类(`1`代表泛型参数数量)
+        "Config/Option": "配置" //嵌套类 (指Option声明在Config类中)
+      }
+    }
+  ]
 }
 ```
 

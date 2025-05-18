@@ -12,9 +12,8 @@ public class ILTranslate : IDisposable
 
     private const string JsonNameSpace = "Newtonsoft.Json";
 
-    public event Func<FieldDefinition, string, string?>? SetField;
+    public event Func<IMemberDefinition, string, string?>? SetMember;
 
-    public event Func<PropertyDefinition, string, string?>? SetProperty;
 
     public ILTranslate(Stream stream, string fileName)
     {
@@ -45,7 +44,7 @@ public class ILTranslate : IDisposable
 
     private void AddJsonPropertyAttribute(PropertyDefinition prop, MethodReference constructor, string className)
     {
-        var jsonPropertyName = SetProperty?.Invoke(prop, className);
+        var jsonPropertyName = SetMember?.Invoke(prop, className);
         if (string.IsNullOrEmpty(jsonPropertyName))
         {
             return;
@@ -60,7 +59,7 @@ public class ILTranslate : IDisposable
 
     private void AddJsonPropertyAttributeToField(FieldDefinition field, MethodReference constructor, string className)
     {
-        var jsonPropertyName = SetField?.Invoke(field, className);
+        var jsonPropertyName = SetMember?.Invoke(field, className);
         if (string.IsNullOrEmpty(jsonPropertyName))
         {
             return;
@@ -138,6 +137,15 @@ public class ILTranslate : IDisposable
 
     public void Dispose()
     {
+        var dels = SetMember?.GetInvocationList();
+        if (dels != null)
+        { 
+            foreach (var del in dels)
+            {
+                SetMember -= del as Func<IMemberDefinition, string, string>;
+            }
+        }
+        SetMember = null;
         GC.SuppressFinalize(this);
     }
 }

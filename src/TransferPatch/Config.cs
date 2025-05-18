@@ -21,21 +21,24 @@ public class Config
             res.CopyTo(fs);
         }
         return JsonConvert.DeserializeObject<Config>(File.ReadAllText(FileName)) ?? new();
-
     }
 
 
     [JsonProperty("启用")]
     public bool Enable { get; set; }
 
-    [JsonProperty("目标程序集")]
-    public string TargetAssembly { get; set; } = string.Empty;
+    [JsonProperty("执行列表")]
+    public List<TransferTarget> TransferTargets { get; set; } = [];
 
-    [JsonProperty("目标类")]
-    public string[] TargetClassName { get; set; } = Array.Empty<string>();
+    public class TransferTarget
+    { 
+        [JsonProperty("目标程序集")]
+        public string TargetAssembly { get; set; } = string.Empty;
 
-    [JsonProperty("翻译列表")]
-    public Dictionary<string, string> Transfers { get; set; } = new();
+        [JsonProperty("目标类")]
+        public string[] TargetClassName { get; set; } = [];
 
-
+        [JsonProperty("翻译列表")]
+        public Dictionary<string, string> Transfers { get; set; } = [];
+    }
 }
