@@ -2456,7 +2456,7 @@ public partial class ZHIPM
             {
                 TShock.Players.ForEach(x =>
                 {
-                    if (x is { IsLoggedIn: true } && (x.UUID.Equals(v.uuid) || x.Name.Equals(v.name) || (!string.IsNullOrEmpty(v.IPs) && !string.IsNullOrEmpty(x.IP) && ToIpStrings(v.IPs).Contains(x.IP))))
+                    if (x != null && x is { IsLoggedIn: true } && (x.UUID.Equals(v.uuid) || x.Name.Equals(v.name) || (!string.IsNullOrEmpty(v.IPs) && !string.IsNullOrEmpty(x.IP) && ToIpStrings(v.IPs).Contains(x.IP))))
                     {
                         for (var i = 0; i < 22; i++)
                         {
