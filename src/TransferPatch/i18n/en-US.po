@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-05-17 23:59:55+0000\n"
+"POT-Creation-Date: 2025-05-17 19:47:19+0000\n"
 "PO-Revision-Date: 2025-05-18 01:24\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
@@ -13,11 +13,25 @@ msgstr ""
 "X-Crowdin-Project: tshock-chinese-plugin\n"
 "X-Crowdin-Project-ID: 751499\n"
 "X-Crowdin-Language: en\n"
-"X-Crowdin-File: /master/src/Lagrange.XocMat.Adapter/i18n/template.pot\n"
-"X-Crowdin-File-ID: 1472\n"
+"X-Crowdin-File: /master/src/TransferPatch/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1588\n"
 "Language: en_US\n"
 
-#: ../../Plugin.cs:27
-msgid "Lagrange.XocMat机器人适配插件"
+#: ../../ILTranslate.cs:47
+#: ../../ILTranslate.cs:62
+#, csharp-format
+msgid "[翻译补丁]: {0}.{1} => {2}"
+msgstr ""
+
+#: ../../ILTranslate.cs:115
+msgid "无法获取JsonPropertyAttribute"
+msgstr ""
+
+#: ../../ILTranslate.cs:24
+msgid "未找到目标类!"
+msgstr ""
+
+#: ../../Plugin.cs:11
+msgid "翻译任意插件"
 msgstr ""
 
