@@ -3637,9 +3637,9 @@ public partial class ZHIPM
         if (args.Parameters.Count < 2)
         {
             args.Player.SendInfoMessage(
-                GetString("输入 /zban add <name> [reason] 来封禁无论是否在线的玩家，reason 可不填\n") +
-                GetString("输入 /zban add uuid <uuid> [reason] 来封禁uuid\n") +
-                GetString("输入 /zban add ip <ip> [reason] 来封禁ip\n"));
+                GetString("输入 /zban add <name> [duration] [reason] 来封禁无论是否在线的玩家，reason 可不填\n") +
+                GetString("输入 /zban add uuid <uuid> [duration] [reason] 来封禁uuid\n") +
+                GetString("输入 /zban add ip <ip> [duration] [reason] 来封禁ip\n"));
             return;
         }
 
@@ -3652,8 +3652,8 @@ public partial class ZHIPM
                     args.Player.SendInfoMessage(GetString("参数过少"));
                     return;
                 }
-
-                var reason = args.Parameters.Count == 4 ? args.Parameters[3] : GetString("你已被管理员封禁！");
+                var duration = args.Parameters.Count >= 4 ? args.Parameters[3] : "0h";
+                var reason = args.Parameters.Count == 5 ? args.Parameters[4] : GetString("你已被管理员封禁！");
                 TSPlayer? suspect = null;
                 foreach (var i in TShock.Players)
                 {
@@ -3664,15 +3664,20 @@ public partial class ZHIPM
                     }
                 }
 
-                if (suspect != null && suspect.Ban(reason, args.Player.Name))
+                if (suspect != null && suspect.SuperBan(reason, duration, args.Player.Name))
                 {
-                    args.Player.SendMessage(GetString($"用户 {suspect.Name} 已被 {args.Player.Name} 封禁"), broadcastColor);
+                    args.Player.SendMessage(GetString($"用户 {suspect.Name} 已被 {args.Player.Name} 封禁 {duration}"), broadcastColor);
                     TShock.Log.Info(GetString($"用户 {suspect.Name} 已被 {args.Player.Name} 封禁"));
                 }
                 else
                 {
-                    TShock.Bans.InsertBan("uuid:" + args.Parameters[2], reason, args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
-                    TSPlayer.All.SendMessage(GetString($"uuid: {args.Parameters[2]} 已被 {args.Player.Name} 封禁"), broadcastColor);
+                    var expiration = DateTime.MaxValue;
+                    if (TShock.Utils.TryParseTime(duration, out ulong seconds))
+                    {
+                        expiration = seconds > 0 ? DateTime.UtcNow.AddSeconds(seconds) : DateTime.MaxValue;
+                    }
+                    TShock.Bans.InsertBan("uuid:" + args.Parameters[2], reason, args.Player.Name, DateTime.UtcNow, expiration);
+                    TSPlayer.All.SendMessage(GetString($"uuid: {args.Parameters[2]} 已被 {args.Player.Name} 封禁 {duration}"), broadcastColor);
                     TShock.Log.Info(GetString($"uuid: {args.Parameters[2]} 已被 {args.Player.Name} 封禁"));
                 }
             }
@@ -3684,7 +3689,8 @@ public partial class ZHIPM
                     return;
                 }
 
-                var reason = args.Parameters.Count == 4 ? args.Parameters[3] : GetString("你已被管理员封禁！");
+                var duration = args.Parameters.Count >= 4 ? args.Parameters[3] : "0h";
+                var reason = args.Parameters.Count == 5 ? args.Parameters[4] : GetString("你已被管理员封禁！");
                 TSPlayer? suspect = null;
                 foreach (var v in TShock.Players)
                 {
@@ -3695,14 +3701,19 @@ public partial class ZHIPM
                     }
                 }
 
-                if (suspect != null && suspect.Ban(reason, args.Player.Name))
+                if (suspect != null && suspect.SuperBan(reason, duration, args.Player.Name))
                 {
                     args.Player.SendMessage(GetString($"用户 {suspect.Name} 已被 {args.Player.Name} 封禁"), broadcastColor);
                     TShock.Log.Info(GetString($"用户 {suspect.Name} 已被 {args.Player.Name} 封禁"));
                 }
                 else
                 {
-                    TShock.Bans.InsertBan("ip:" + args.Parameters[2], reason, args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
+                    var expiration = DateTime.MaxValue;
+                    if (TShock.Utils.TryParseTime(duration, out ulong seconds))
+                    {
+                        expiration = seconds > 0 ? DateTime.UtcNow.AddSeconds(seconds) : DateTime.MaxValue;
+                    }
+                    TShock.Bans.InsertBan("ip:" + args.Parameters[2], reason, args.Player.Name, DateTime.UtcNow, expiration);
                     TSPlayer.All.SendMessage(GetString($"ip: {args.Parameters[2]} 已被 {args.Player.Name} 封禁"), broadcastColor);
                     TShock.Log.Info(GetString($"ip: {args.Parameters[2]} 已被 {args.Player.Name} 封禁"));
                 }
@@ -3711,12 +3722,13 @@ public partial class ZHIPM
             {
                 var list = this.BestFindPlayerByNameOrIndex(args.Parameters[1]);
                 //封禁原因，可不填
-                var reason = args.Parameters.Count == 3 ? args.Parameters[2] : GetString("你已被管理员封禁！");
+                var duration = args.Parameters.Count >= 3 ? args.Parameters[2] : "0d";
+                var reason = args.Parameters.Count == 4 ? args.Parameters[2] : GetString("你已被管理员封禁！");
                 if (list.Count == 1)
                 {
-                    if (list[0].Ban(reason, args.Player.Name))
+                    if (list[0].SuperBan(reason, duration, args.Player.Name))
                     {
-                        args.Player.SendMessage(GetString($"用户 {list[0].Name} 已被 {args.Player.Name} 封禁"), broadcastColor);
+                        args.Player.SendMessage(GetString($"用户 {list[0].Name} 已被 {args.Player.Name} 封禁 {duration}"), broadcastColor);
                         TShock.Log.Info(GetString($"用户 {list[0].Name} 已被 {args.Player.Name} 封禁"));
                     }
                     else
@@ -3754,15 +3766,19 @@ public partial class ZHIPM
                             return;
                         }
                     }
-
+                    var expiration = DateTime.MaxValue;
+                    if (TShock.Utils.TryParseTime(duration, out ulong seconds))
+                    {
+                        expiration = seconds > 0 ? DateTime.UtcNow.AddSeconds(seconds) : DateTime.MaxValue;
+                    }
                     if (!string.IsNullOrWhiteSpace(user.Name))
                     {
-                        TShock.Bans.InsertBan("acc:" + user.Name, reason, args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
+                        TShock.Bans.InsertBan("acc:" + user.Name, reason, args.Player.Name, DateTime.UtcNow, expiration);
                     }
 
                     if (!string.IsNullOrWhiteSpace(user.UUID))
                     {
-                        TShock.Bans.InsertBan("uuid:" + user.UUID, reason, args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
+                        TShock.Bans.InsertBan("uuid:" + user.UUID, reason, args.Player.Name, DateTime.UtcNow, expiration);
                     }
 
                     if (!string.IsNullOrWhiteSpace(user.KnownIps))
@@ -3772,18 +3788,18 @@ public partial class ZHIPM
                         {
                             if (!string.IsNullOrWhiteSpace(str))
                             {
-                                TShock.Bans.InsertBan("ip:" + str, reason, args.Player.Name, DateTime.UtcNow, DateTime.MaxValue);
+                                TShock.Bans.InsertBan("ip:" + str, reason, args.Player.Name, DateTime.UtcNow, expiration);
                             }
                         }
                     }
 
                     if (!args.Player.RealPlayer)
                     {
-                        args.Player.SendMessage(GetString($"用户 {user.Name} 已被 {args.Player.Name} 封禁"), broadcastColor);
+                        args.Player.SendMessage(GetString($"用户 {user.Name} 已被 {args.Player.Name} 封禁 {expiration}"), broadcastColor);
                     }
 
-                    TSPlayer.All.SendMessage(GetString($"用户 {user.Name} 已被 {args.Player.Name} 封禁"), broadcastColor);
-                    TShock.Log.Info(GetString($"用户 {user.Name} 已被 {args.Player.Name} 封禁"));
+                    TSPlayer.All.SendMessage(GetString($"用户 {user.Name} 已被 {args.Player.Name} 封禁 {expiration}"), broadcastColor);
+                    TShock.Log.Info(GetString($"用户 {user.Name} 已被 {args.Player.Name} 封禁 {expiration}"));
                 }
             }
         }
