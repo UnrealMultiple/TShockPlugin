@@ -8,4 +8,7 @@
             <Link>QrCodeGenerator.dll</Link>
         </EmbeddedResource>
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\LazyAPI\LazyAPI.csproj" />
+    </ItemGroup>
 </Project>

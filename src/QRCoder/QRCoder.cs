@@ -9,16 +9,17 @@ using static Net.Codecrete.QrCodeGenerator.QrCode;
 using System.Linq;
 using static TShockAPI.GetDataHandlers;
 using System.Reflection;
+using LazyAPI;
 
 namespace QRCoder;
 
 [ApiVersion(2, 1)]
-public class QRCoder : TerrariaPlugin
+public class QRCoder : LazyPlugin
 {
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Jonesn，熙恩，Radix.";
     public override string Description => "生成二维码";
-    public override string Name => "QRCoder";
-    public override Version Version => new Version(1, 0, 0, 0);
+    public override Version Version => new Version(1, 0, 0, 1);
 
     private readonly Dictionary<int, QRPosition> _playerPositions = new Dictionary<int, QRPosition>();
 
@@ -245,18 +246,25 @@ public class QRCoder : TerrariaPlugin
                 var tileX = startX + j;
                 var tileY = startY + i;
 
-                Main.tile[tileX, tileY].wall = Terraria.ID.WallID.DiamondGemspark; // 宝石墙
+                Main.tile[tileX, tileY].wall = (ushort)Config.Instance.BaseWall; // 底墙
 
                 if (qrCode.GetModule(j, i))
                 {
-                    Main.tile[tileX, tileY].wallColor(Terraria.ID.PaintID.ShadowPaint); // 暗影漆
+                    Main.tile[tileX, tileY].wall = (ushort)Config.Instance.CodeWall; // 码墙
+                    WorldGen.paintWall(tileX, tileY, (byte) Config.Instance.CodeColor,true); // 码漆
                 }
                 else
                 {
-                    Main.tile[tileX, tileY].wallColor(Terraria.ID.PaintID.WhitePaint); // 普通漆
+                    WorldGen.paintWall(tileX, tileY, (byte)Config.Instance.BaseColor, true); // 底漆
                 }
-
-                WorldGen.paintCoatWall(tileX, tileY, 1, true); // 夜明漆
+                if (Config.Instance.isGlowPaintApplied)
+                {
+                    WorldGen.paintCoatWall(tileX, tileY, 1, true); // 夜明漆
+                }
+                else
+                {
+                    WorldGen.paintCoatWall(tileX, tileY, 0, true); // 无漆
+                }
                 TSPlayer.All.SendTileSquareCentered(tileX, tileY, 1);
             }
         }
