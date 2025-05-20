@@ -117,7 +117,7 @@
 | [Economics.Shop](./src/Economics.Shop/README.en-US.md) | 100.0% | Shop plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.Skill](./src/Economics.Skill/README.en-US.md) | 100.0% | Skill plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.Task](./src/Economics.Task/README.en-US.md) | 100.0% | Task plugin | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
-| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
+| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 97.1% | Weapon enhancement | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) |
 | [EconomicsAPI](./src/EconomicsAPI/README.en-US.md) | 100.0% | Economic plugin prerequisite |  |
 | [EndureBoost](./src/EndureBoost/README.en-US.md) | 100.0% | Grant specified buff when the player has a certain number of items |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | 100.0% | Additional management commands | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -135,7 +135,7 @@
 | [ItemDecoration](./src/ItemDecoration/README.en-US.md) | 100.0% | Floating message display for held items | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ItemPreserver](./src/ItemPreserver/README.en-US.md) | 100.0% | Preserve specified items from consumption |  |
 | [JourneyUnlock](./src/JourneyUnlock/README.en-US.md) | 100.0% | Unlock journey items |  |
-| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.en-US.md) | 0.0% | Lagrange.XocMat Bot Adapter Plugin | [SixLabors.ImageSharp]() |
+| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.en-US.md) | 100.0% | Lagrange.XocMat Bot Adapter Plugin | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.en-US.md) | 100.0% | Plugin base library | [linq2db]() |
 | [LifemaxExtra](./src/LifemaxExtra/README.en-US.md) | 100.0% | Eat more life fruits/crystals | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ListPlugins](./src/ListPlugins/README.en-US.md) | 100.0% | List installed plugins |  |
@@ -159,9 +159,9 @@
 | [ProgressBag](./src/ProgressBag/README.en-US.md) | 100.0% | Progress gift pack | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ProgressControls](./src/ProgressControls/README.md) | 0.4% | Planbook (Automate server control) |  |
 | [ProgressRestrict](./src/ProgressRestrict/README.en-US.md) | 100.0% | Super progress detection | [DataSync](./src/DataSync/README.en-US.md) |
-| [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 100.0% | Accept proxy protocol connections |  |
+| [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.en-US.md) | 100.0% | Accept proxy protocol connections |  |
 | [PvPer](./src/PvPer/README.md) | 1.3% | Duel system |  |
-| [QRCoder](./src/QRCoder/README.en-US.md) | 0.0% | QR Code Generator |  |
+| [QRCoder](./src/QRCoder/README.en-US.md) | 100.0% | QR Code Generator |  |
 | [RainbowChat](./src/RainbowChat/README.en-US.md) | 100.0% | Random chat color |  |
 | [RandomBroadcast](./src/RandomBroadcast/README.md) | 100.0% | Random broadcast |  |
 | [RandRespawn](./src/RandRespawn/README.en-US.md) | 100.0% | Random spawn point |  |
@@ -169,7 +169,7 @@
 | [RebirthCoin](./src/RebirthCoin/README.en-US.md) | 100.0% | Consume designated items to revive player |  |
 | [RecipesBrowser](./src/RecipesBrowser/README.en-US.md) | 100.0% | Crafting table |  |
 | [ReFishTask](./src/ReFishTask/README.en-US.md) | 100.0% | Automatically refresh fisherman tasks |  |
-| [RegionView](./src/RegionView/README.en-US.md) | 4.2% | Display area boundaries |  |
+| [RegionView](./src/RegionView/README.en-US.md) | 100.0% | Display area boundaries |  |
 | [Respawn](./src/Respawn/README.en-US.md) | 100.0% | Respawn at the death place |  |
 | [RestInventory](./src/RestInventory/README.en-US.md) | 100.0% | Provide REST query backpack interface |  |
 | [ReverseWorld](./src/ReverseWorld/README.en-US.md) | 100.0% | World Reversal and Landmine Placement |  |
@@ -178,8 +178,8 @@
 | [ServerTools](./src/ServerTools/README.en-US.md) | 100.0% | Server management tools | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |
 | [SessionSentinel](./src/SessionSentinel/README.en-US.md) | 100.0% | Handle players not sending data packets for a long time |  |
 | [ShortCommand](./src/ShortCommand/README.en-US.md) | 100.0% | Short command |  |
-| [ShowArmors](./src/ShowArmors/README.md) | 100.0% | Display equipment bar |  |
-| [SignInSign](./src/SignInSign/README.md) | 100.0% | Signboard login plugin |  |
+| [ShowArmors](./src/ShowArmors/README.en-US.md) | 100.0% | Display equipment bar |  |
+| [SignInSign](./src/SignInSign/README.en-US.md) | 100.0% | Signboard login plugin |  |
 | [SimultaneousUseFix](./src/SimultaneousUseFix/README.en-US.md) | 100.0% | Solve problems like stuck double hammer and star spin machine gun | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [SmartRegions](./src/SmartRegions/README.en-US.md) | 100.0% | Smart regions |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 100.0% | Generate basic infrastructure |  |
@@ -192,8 +192,8 @@
 | [TimeRate](./src/TimeRate/README.en-US.md) | 100.0% | modifying time acceleration using commands, and supporting player sleep to trigger events. |  |
 | [TimerKeeper](./src/TimerKeeper/README.en-US.md) | 100.0% | Save timer state |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.en-US.md) | 100.0% | NPC quick home |  |
-| [TransferPatch](./src/TransferPatch/README.md) | 0.0% | Transfer Plugin Config Patch |  |
-| [UnseenInventory](./src/UnseenInventory/README.md) | 100.0% | Allows the server to generate items that are normally 'unobtainable' |  |
+| [TransferPatch](./src/TransferPatch/README.en-US.md) | 100.0% | Transfer Plugin Config Patch |  |
+| [UnseenInventory](./src/UnseenInventory/README.en-US.md) | 100.0% | Allows the server to generate items that are normally 'unobtainable' |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Foundation library for VBY plugins |  |
 | [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Customizable modifications for certain game content (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
 | [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Provide some other auxiliary commands | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
@@ -201,7 +201,7 @@
 | [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) |
 | [VeinMiner](./src/VeinMiner/README.en-US.md) | 100.0% | Chain mining |  |
 | [VotePlus](./src/VotePlus/README.en-US.md) | 100.0% | Multi-function voting |  |
-| [WeaponPlus](./src/WeaponPlus/README.md) | 100.0% | Weapon enhancement coin version |  |
+| [WeaponPlus](./src/WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement coin version |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.en-US.md) | 100.0% | Load Chinese Wiki language pack for server |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 0.0% | World editor, can modify most of the world parameters |  |
 | [ZHIPlayerManager](./src/ZHIPlayerManager/README.en-US.md) | 100.0% | zZhi's player management plugin |  |
