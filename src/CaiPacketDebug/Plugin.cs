@@ -20,8 +20,8 @@ public class CaiPacketDebug : LazyPlugin
 
     private readonly PacketSerializer _serverPacketSerializer = new(false);
 
-    private bool _clientToServerDebug;
-    private bool _serverToClientDebug;
+    private bool _clientToServerDebug = Config.Instance.ClientToServer.DebugAfterInit;
+    private bool _serverToClientDebug = Config.Instance.ServerToClient.DebugAfterInit;
 
     public CaiPacketDebug(Main game) : base(game)
     {
@@ -31,7 +31,7 @@ public class CaiPacketDebug : LazyPlugin
     public override string Author => "Cai";
     public override string Description => GetString("用于调试数据包的插件捏~");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; 
-    public override Version Version => new Version(2025, 05, 18, 3);
+    public override Version Version => new Version(2025, 05, 20, 1);
 
 
     public override void Initialize()
