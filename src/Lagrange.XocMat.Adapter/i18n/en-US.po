@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-05-17 23:59:55+0000\n"
-"PO-Revision-Date: 2025-05-18 01:24\n"
+"PO-Revision-Date: 2025-05-20 01:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -19,5 +19,5 @@ msgstr ""
 
 #: ../../Plugin.cs:27
 msgid "Lagrange.XocMat机器人适配插件"
-msgstr ""
+msgstr "Lagrange.XocMat Bot Adapter Plugin"
 
