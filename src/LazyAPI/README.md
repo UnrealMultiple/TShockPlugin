@@ -9,8 +9,12 @@
 ## 更新日志
 
 ```
+v1.0.1.0
+修复`TShockAPI.I18n.TranslationCultureInfo`为空时, 无法正确生成配置
+
 v1.0.0.7
 添加游戏进度工具类
+
 v1.0.0.6
 Database/DB.cs 工具集设置 tableName 为可选
 添加配置文件重载提示
