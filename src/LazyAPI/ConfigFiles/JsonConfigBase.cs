@@ -34,7 +34,11 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
         "TranslationCultureInfo",
         BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!
         };
-
+        
+        if (string.IsNullOrEmpty(cultureInfo.Name))
+        {
+            cultureInfo = new CultureInfo("en-US");
+        } 
         _settings = new JsonSerializerSettings()
         {
             ContractResolver = new CultureContractResolver(cultureInfo),
