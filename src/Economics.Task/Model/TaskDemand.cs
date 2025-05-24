@@ -11,5 +11,5 @@ public class TaskDemand
     public List<KillNpc> KillNPCS { get; set; } = new();
 
     [JsonProperty("物品条件")]
-    public List<EconomicsAPI.Model.Item> Items { get; set; } = new();
+    public List<Core.Model.Item> Items { get; set; } = new();
 }

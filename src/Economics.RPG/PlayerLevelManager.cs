@@ -1,4 +1,5 @@
 ﻿using Economics.RPG.Model;
+using Economics.RPG.Setting;
 using MySql.Data.MySqlClient;
 using System.Data;
 using TShockAPI;
@@ -41,8 +42,8 @@ public class PlayerLevelManager
     public Level GetLevel(string userName)
     {
         return this.Levels.TryGetValue(userName, out var level) && level != null
-            ? RPG.Config.GetLevel(level) ?? RPG.Config.DefaultLevel
-            : RPG.Config.DefaultLevel;
+            ? Config.Instance.GetLevel(level) ?? Config.Instance.DefaultLevel
+            : Config.Instance.DefaultLevel;
     }
 
     public bool HasLevel(string level)
@@ -52,20 +53,25 @@ public class PlayerLevelManager
 
     public void ResetPlayerLevel(string userName)
     {
-        this.Update(userName, RPG.Config.DefaultLevel);
+        this.Update(userName, Config.Instance.DefaultLevel);
     }
 
     public void Update(string userName, Level level)
     {
+        this.Update(userName, level.Name);
+    }
+
+    public void Update(string userName, string level)
+    {
         if (this.Levels.ContainsKey(userName))
         {
-            this.database.Query("UPDATE `RPG` SET `Level` = @0 WHERE `RPG`.`UserName` = @1", level.Name, userName);
+            this.database.Query("UPDATE `RPG` SET `Level` = @0 WHERE `RPG`.`UserName` = @1", level, userName);
         }
         else
         {
-            this.database.Query("INSERT INTO `RPG` (`UserName`, `Level`) VALUES (@0, @1)", userName, level.Name);
+            this.database.Query("INSERT INTO `RPG` (`UserName`, `Level`) VALUES (@0, @1)", userName, level);
         }
-        this.Levels[userName] = level.Name;
+        this.Levels[userName] = level;
     }
 
     public void Remove(string userName)

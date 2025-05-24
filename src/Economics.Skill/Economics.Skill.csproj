@@ -20,7 +20,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
-		<ProjectReference Include="..\EconomicsAPI\EconomicsAPI.csproj" />
+		<ProjectReference Include="..\Economics.Core\Economics.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

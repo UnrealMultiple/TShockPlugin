@@ -3,7 +3,7 @@
 	<Import Project="..\..\template.targets" />
 
 	<ItemGroup>
-		<ProjectReference Include="..\EconomicsAPI\EconomicsAPI.csproj" />
+		<ProjectReference Include="..\Economics.Core\Economics.Core.csproj" />
 	</ItemGroup>
 
 </Project>

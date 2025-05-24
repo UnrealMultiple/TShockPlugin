@@ -2,10 +2,11 @@
 using Economics.Skill.Internal;
 using Economics.Skill.JSInterpreter;
 using Economics.Skill.Model;
-using EconomicsAPI.Extensions;
+using Economics.Core.Extensions;
 using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
+using Economics.Skill.Setting;
 
 namespace Economics.Skill;
 
@@ -13,7 +14,7 @@ public class Utils
 {
     public static SkillContext VerifyBindSkill(TSPlayer Player, int index)
     {
-        var context = Skill.Config.GetSkill(index) ?? throw new NullReferenceException(GetString($"技能序号{index} 不存在！"));
+        var context = Config.Instance.GetSkill(index) ?? throw new NullReferenceException(GetString($"技能序号{index} 不存在！"));
         if (context.SkillSpark.SparkMethod.Contains(SkillSparkType.Take) && (Player.SelectedItem.netID == 0 || Player.SelectedItem.stack == 0))
         {
             throw new Exception(GetString("绑定此技能需要手持一个武器!"));
@@ -40,9 +41,9 @@ public class Utils
             ? throw new Exception(GetString("此技能是唯一的不能重复绑定!"))
             : context.SkillUniqueAll && Skill.PlayerSKillManager.HasSkill(index)
             ? throw new Exception(GetString("此技能全服唯一已经有其他人绑定了此技能!"))
-            : bind.Count() >= Skill.Config.SkillMaxCount
+            : bind.Count() >= Config.Instance.SkillMaxCount
             ? throw new Exception(GetString("技能已超过规定的最大绑定数量!"))
-            : bind.Where(x => x.Skill != null && x.Skill.SkillSpark.SparkMethod.Contains(SkillSparkType.Take)).Count() >= Skill.Config.WeapoeBindMaxCount
+            : bind.Where(x => x.Skill != null && x.Skill.SkillSpark.SparkMethod.Contains(SkillSparkType.Take)).Count() >= Config.Instance.WeapoeBindMaxCount
             ? throw new Exception(GetString("此武器已超过规定的最大绑定数量!"))
             : context;
     }

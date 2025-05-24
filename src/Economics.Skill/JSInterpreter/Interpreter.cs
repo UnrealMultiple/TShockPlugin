@@ -13,21 +13,21 @@ public class Interpreter
 {
     private static readonly Engine Engine = new Engine((o) =>
     {
-        o.AllowClr(typeof(EconomicsAPI.Economics).Assembly,
+        o.AllowClr(typeof(Core.Economics).Assembly,
             typeof(TShock).Assembly,
             typeof(Task).Assembly,
             typeof(List<>).Assembly,
             typeof(Main).Assembly);
-        o.AddExtensionMethods(typeof(EconomicsAPI.Extensions.Vector2Ext),
-            typeof(EconomicsAPI.Extensions.GameProgress),
+        o.AddExtensionMethods(typeof(Core.Extensions.Vector2Ext),
+            typeof(Core.Extensions.GameProgress),
             typeof(Terraria.Utils),
-            typeof(EconomicsAPI.Extensions.PlayerExt),
-            typeof(EconomicsAPI.Extensions.NpcExt),
+            typeof(Core.Extensions.PlayerExt),
+            typeof(Core.Extensions.NpcExt),
             typeof(Enumerable),
-            typeof(EconomicsAPI.Extensions.TSPlayerExt));
+            typeof(Core.Extensions.TSPlayerExt));
     });
 
-    public static readonly string ScriptsDir = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "SkillScripts");
+    public static readonly string ScriptsDir = Path.Combine(Core.Economics.SaveDirPath, "SkillScripts");
     static Interpreter()
     {
         if (!Directory.Exists(ScriptsDir))

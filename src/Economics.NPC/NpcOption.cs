@@ -1,4 +1,4 @@
-﻿using EconomicsAPI.Configured;
+﻿using Economics.Core.ConfigFiles;
 using Newtonsoft.Json;
 
 namespace Economics.NPC;

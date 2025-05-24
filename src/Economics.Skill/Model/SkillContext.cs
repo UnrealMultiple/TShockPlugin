@@ -1,7 +1,7 @@
 ﻿using Economics.Skill.JSInterpreter;
 using Economics.Skill.Model.Loop;
 using Economics.Skill.Model.Options;
-using EconomicsAPI.Configured;
+using Economics.Core.ConfigFiles;
 using Newtonsoft.Json;
 using TShockAPI;
 

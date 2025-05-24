@@ -1,12 +1,15 @@
-﻿using Economics.RPG.Converter;
+﻿using Economics.Core.ConfigFiles;
+using Economics.RPG.Converter;
 using Economics.RPG.Model;
 using Newtonsoft.Json;
 using TShockAPI;
 
 namespace Economics.RPG.Setting;
 
-public class Config
+public class Config : JsonConfigBase<Config>
 {
+    protected override string Filename => Path.Combine(Core.Economics.SaveDirPath, "RPG.json");
+
     [JsonProperty("RPG信息")]
     public Dictionary<string, Level> RPG { get; set; } = new();
 
@@ -23,7 +26,19 @@ public class Config
     [JsonConverter(typeof(LevelConverter))]
     public Level DefaultLevel { get; set; } = new();
 
-    public void Init()
+    protected override void SetDefault()
+    {
+        this.RPG["战士"] = new()
+        {
+            SelectedWeapon = [],
+            Name = "战士",
+            Parent = this.DefaultLevel,
+            RedemptionRelationshipsOption = [new()],
+            RewardGoods = [new()]
+        };
+    }
+
+    protected override void Initialize()
     {
         foreach (var (name, level) in this.RPG)
         {

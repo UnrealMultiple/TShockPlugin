@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\..\template.targets"/>
+    <Import Project="..\..\template.targets" />
 
     <ItemGroup>
         <PackageReference Include="SixLabors.ImageSharp" Version="3.1.8" />
@@ -12,9 +12,9 @@
         </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj"/>
-        <ProjectReference Include="..\Economics.Skill\Economics.Skill.csproj"/>
-        <ProjectReference Include="..\EconomicsAPI\EconomicsAPI.csproj"/>
+        <ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
+        <ProjectReference Include="..\Economics.Skill\Economics.Skill.csproj" />
+        <ProjectReference Include="..\Economics.Core\Economics.Core.csproj" />
     </ItemGroup>
 
 </Project>

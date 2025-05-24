@@ -1,5 +1,5 @@
 ﻿
-using EconomicsAPI.Model;
+using Economics.Core.Model;
 using Newtonsoft.Json;
 
 namespace Economics.Skill.Model;

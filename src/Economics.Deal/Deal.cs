@@ -1,4 +1,4 @@
-﻿using EconomicsAPI.Configured;
+﻿using Economics.Core.ConfigFiles;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -7,42 +7,28 @@ using TShockAPI.Hooks;
 namespace Economics.Deal;
 
 [ApiVersion(2, 1)]
-public class Deal : TerrariaPlugin
+public class Deal(Main game) : TerrariaPlugin(game)
 {
     public override string Author => "少司命";
 
     public override string Description => GetString("玩家可以进行交易");
 
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 4);
-
-    internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Deal.json");
-
-    internal static Config Config { get; set; } = new();
-
-    public Deal(Main game) : base(game)
-    {
-    }
+    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(2, 0, 0, 5);
 
     public override void Initialize()
     {
-        this.LoadConfig();
-        GeneralHooks.ReloadEvent += (e) => Config = ConfigHelper.LoadConfig(PATH, Config);
-    }
-
-    private void LoadConfig(ReloadEventArgs? args = null)
-    {
-        Config = ConfigHelper.LoadConfig(PATH, Config);
+        Config.Load();
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
-            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            Core.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            Core.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
 
-            GeneralHooks.ReloadEvent -= this.LoadConfig;
+            Config.UnLoad();
         }
         base.Dispose(disposing);
     }
