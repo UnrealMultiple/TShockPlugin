@@ -138,8 +138,7 @@ public class AutoAirItem : LazyPlugin
 
                 e.Stack = 0; //清空该格子的物品数量
 
-                //避免卡BUG 顺带移除手上的物品
-                plr.TPlayer.inventory[plr.TPlayer.selectedItem].TurnToAir();
+                plr.TPlayer.inventory[e.Slot].TurnToAir();
 
                 //发包给玩家到对应格子的物品触发以上移除逻辑
                 plr.SendData(PacketTypes.PlayerSlot, "", plr.Index, e.Slot);
