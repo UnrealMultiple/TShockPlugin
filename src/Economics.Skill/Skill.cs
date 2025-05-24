@@ -3,8 +3,8 @@ using Economics.Skill.Events;
 using Economics.Skill.Internal;
 using Economics.Skill.JSInterpreter;
 using Economics.Skill.Setting;
-using EconomicsAPI.Configured;
-using EconomicsAPI.EventArgs.PlayerEventArgs;
+using Economics.Core.ConfigFiles;
+using Economics.Core.EventArgs.PlayerEventArgs;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -23,11 +23,8 @@ public class Skill : TerrariaPlugin
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(2, 0, 1, 4);
 
-    internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Skill.json");
 
     public long TimerCount;
-
-    public static Config Config { get; set; } = new();
 
     public static PlayerSKillManager PlayerSKillManager { get; set; } = null!;
 
@@ -51,7 +48,7 @@ public class Skill : TerrariaPlugin
 
     public override void Initialize()
     {
-        LoadConfig();
+        Config.Load();
         PlayerSKillManager = new();
         ServerApi.Hooks.GamePostInitialize.Register(this, this.OnPost);
         ServerApi.Hooks.NpcStrike.Register(this, this.OnStrike);
@@ -62,17 +59,17 @@ public class Skill : TerrariaPlugin
         GetDataHandlers.KillMe.Register(this.KillMe);
         GetDataHandlers.NewProjectile.Register(this.OnNewProj);
         GetDataHandlers.PlayerDamage.Register(this.OnPlayerDamage);
-        EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += this.OnKillNpc;
-        EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop += this.OnPlayerCountertop;
-        GeneralHooks.ReloadEvent += LoadConfig;
+        Core.Events.PlayerHandler.OnPlayerKillNpc += this.OnKillNpc;
+        Core.Events.PlayerHandler.OnPlayerCountertop += this.OnPlayerCountertop;
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
-            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            Config.UnLoad();
+            Core.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            Core.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.OnPost);
             ServerApi.Hooks.NpcStrike.Deregister(this, this.OnStrike);
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
@@ -82,9 +79,8 @@ public class Skill : TerrariaPlugin
             GetDataHandlers.KillMe.UnRegister(this.KillMe);
             GetDataHandlers.NewProjectile.UnRegister(this.OnNewProj);
             GetDataHandlers.PlayerDamage.UnRegister(this.OnPlayerDamage);
-            EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc -= this.OnKillNpc;
-            EconomicsAPI.Events.PlayerHandler.OnPlayerCountertop -= this.OnPlayerCountertop;
-            GeneralHooks.ReloadEvent -= LoadConfig;
+            Core.Events.PlayerHandler.OnPlayerKillNpc -= this.OnKillNpc;
+            Core.Events.PlayerHandler.OnPlayerCountertop -= this.OnPlayerCountertop;
         }
         base.Dispose(disposing);
     }
@@ -176,32 +172,6 @@ public class Skill : TerrariaPlugin
         if (e.Player.TPlayer.jump > 0)
         {
             PlayerSparkSkillHandler.Adapter(e.Player, Enumerates.SkillSparkType.Jump);
-        }
-    }
-
-    private static void LoadConfig(ReloadEventArgs? args = null)
-    {
-        if (File.Exists(PATH))
-        {
-            Config = ConfigHelper.LoadConfig<Config>(PATH);
-        }
-        else
-        {
-            Config = new Config()
-            {
-                SkillContexts = new()
-                {
-                    new Model.SkillContext()
-                    {
-                       LoopEvent = new()
-                       {
-                            ProjectileLoops = new()
-                            
-                       }
-                    }
-                }
-            };
-            Config = ConfigHelper.LoadConfig(PATH, Config);
         }
     }
 }

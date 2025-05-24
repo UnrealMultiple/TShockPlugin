@@ -1,6 +1,6 @@
 ﻿using Economics.RPG.Converter;
-using EconomicsAPI.Configured;
-using EconomicsAPI.Model;
+using Economics.Core.ConfigFiles;
+using Economics.Core.Model;
 using Newtonsoft.Json;
 
 namespace Economics.RPG.Model;

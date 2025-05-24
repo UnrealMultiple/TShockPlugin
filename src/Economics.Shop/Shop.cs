@@ -1,5 +1,4 @@
 ﻿using Economics.Shop.Model;
-using EconomicsAPI.Configured;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -18,31 +17,23 @@ public class Shop : TerrariaPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(2, 0, 0, 3);
 
-    internal string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Shop.json");
-
-    internal static Config Config { get; set; } = new();
     public Shop(Main game) : base(game)
     {
     }
 
     public override void Initialize()
     {
-        this.LoadConfig();
-        GeneralHooks.ReloadEvent += this.LoadConfig;
+        Config.Load();
     }
 
-    public void LoadConfig(ReloadEventArgs? args = null)
-    {
-        Config = ConfigHelper.LoadConfig(this.PATH, Config);
-    }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
-            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
-            GeneralHooks.ReloadEvent -= this.LoadConfig;
+            Core.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            Core.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            Config.UnLoad();
         }
         base.Dispose(disposing);
     }

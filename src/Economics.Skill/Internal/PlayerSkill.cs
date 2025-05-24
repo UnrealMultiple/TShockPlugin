@@ -1,8 +1,9 @@
 ﻿using Economics.Skill.Model.Loop;
 using Microsoft.Xna.Framework;
-using EconomicsAPI.Extensions;
+using Economics.Core.Extensions;
 using Terraria;
 using TShockAPI;
+using Economics.Core.Utils;
 
 namespace Economics.Skill.Internal;
 internal class PlayerSkill
@@ -151,7 +152,7 @@ internal class PlayerSkill
                 }
                 
                 pos = projLoop.Projectile.position + new Vector2(generate.X, generate.Y);
-                var index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(
+                var index = SpawnProjectile.NewProjectile(
                             this.Player.TPlayer.GetProjectileSource_Item(this.Player.TPlayer.HeldItem),
                             pos,
                             vel,
@@ -184,7 +185,7 @@ internal class PlayerSkill
                 {
                     vel = sourcevel;
                 }
-                var index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(
+                var index = SpawnProjectile.NewProjectile(
                             this.Player.TPlayer.GetProjectileSource_Item(this.Player.TPlayer.HeldItem),
                             pos,
                             vel,

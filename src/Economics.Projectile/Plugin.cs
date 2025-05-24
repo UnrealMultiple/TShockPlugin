@@ -1,5 +1,5 @@
 
-using EconomicsAPI.Extensions;
+using Economics.Core.Extensions;
 using Microsoft.Xna.Framework;
 using System.Collections.Concurrent;
 using System.Reflection;
@@ -20,10 +20,6 @@ public class Plugin : TerrariaPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 0, 8);
 
-    internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "Projectile.json");
-
-    private Config Config = new();
-
     private readonly int[] useCD = new int[Main.maxPlayers];
 
     private readonly int[] MiniCD = new int[Main.maxProjectiles];
@@ -38,8 +34,7 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        this.LoadConfig();
-        GeneralHooks.ReloadEvent += this.LoadConfig;
+        Config.Load();
         GetDataHandlers.NewProjectile.Register(this.OnProj);
         GetDataHandlers.PlayerUpdate.Register(this.OnDate);
         ServerApi.Hooks.GameUpdate.Register(this, this.Onupdate);
@@ -51,14 +46,14 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
-            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
-            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            Core.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            Core.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
             GetDataHandlers.NewProjectile.UnRegister(this.OnProj);
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnDate);
             ServerApi.Hooks.GameUpdate.Deregister(this, this.Onupdate);
             On.Terraria.Projectile.Minion_FindTargetInRange -= this.Projectile_Minion_FindTargetInRange;
             On.Terraria.Projectile.Update -= this.Projectile_Update;
-            GeneralHooks.ReloadEvent -= this.LoadConfig;
+            Config.UnLoad();
         }
         base.Dispose(disposing);
     }
@@ -84,7 +79,7 @@ public class Plugin : TerrariaPlugin
 
     private void Projectile_Minion_FindTargetInRange(On.Terraria.Projectile.orig_Minion_FindTargetInRange orig, Terraria.Projectile self, int startAttackRange, ref int attackTarget, bool skipIfCannotHitWithOwnBody, Func<Entity, int, bool> customEliminationCheck)
     {
-        if (this.Config.ProjectileReplace.TryGetValue(self.type, out var data) && data != null)
+        if (Config.Instance.ProjectileReplace.TryGetValue(self.type, out var data) && data != null)
         {
             float num = 1500;
             var num2 = num;
@@ -134,7 +129,7 @@ public class Plugin : TerrariaPlugin
                         var guid = Guid.NewGuid().ToString();
                         var npc = Main.npc[attackTarget];
                         var speed = self.DirectionTo(npc.Center).SafeNormalize(-Vector2.UnitY) * self.velocity.Length();
-                        var index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), self.Center, speed.ToLenOf(proj.Speed), proj.ID, (int) damage, knockback, self.owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft, guid);
+                        var index = Core.Utils.SpawnProjectile.NewProjectile(Terraria.Projectile.GetNoneSource(), self.Center, speed.ToLenOf(proj.Speed), proj.ID, (int) damage, knockback, self.owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft, guid);
                         TSPlayer.All.SendData(PacketTypes.ProjectileNew, "", index);
                         if (proj.AutoFollow)
                         {
@@ -181,7 +176,7 @@ public class Plugin : TerrariaPlugin
             && !e.Player.Dead
             && e.Player.TPlayer.controlUseItem
             && this.useCD[e.PlayerId] == 0
-            && this.Config.ItemReplace.TryGetValue(e.Player.TPlayer.HeldItem.netID, out var data)
+            && Config.Instance.ItemReplace.TryGetValue(e.Player.TPlayer.HeldItem.netID, out var data)
             && data != null)
         {
             if (data.UseAmmo)
@@ -201,7 +196,7 @@ public class Plugin : TerrariaPlugin
                     //速度
                     var speed = e.Player.TPlayer.ItemOffSet().ToLenOf(proj.Speed);
                     var guid = Guid.NewGuid().ToString();
-                    var index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Player.TPlayer.position, speed, proj.ID, (int) damage, knockback, e.PlayerId, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft, guid);
+                    var index = Core.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Player.TPlayer.position, speed, proj.ID, (int) damage, knockback, e.PlayerId, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft, guid);
                     TSPlayer.All.SendData(PacketTypes.ProjectileNew, null, index);
                     this.useCD[e.Player.Index] += e.Player.SelectedItem.useTime;
                     if (proj.AutoFollow)
@@ -223,7 +218,7 @@ public class Plugin : TerrariaPlugin
 
         if (e.Player.TPlayer.controlUseItem && e.Player.SelectedItem.useAmmo != 0)
         {
-            if (this.Config.ItemReplace.TryGetValue(e.Player.SelectedItem.netID, out var pr) && pr != null)
+            if (Config.Instance.ItemReplace.TryGetValue(e.Player.SelectedItem.netID, out var pr) && pr != null)
             {
                 if (pr.UseAmmo)
                 {
@@ -239,7 +234,7 @@ public class Plugin : TerrariaPlugin
                             //速度
                             var speed = proj.Speed > 0f ? e.Velocity.ToLenOf(proj.Speed) : e.Velocity;
                             var guid = Guid.NewGuid().ToString();
-                            var index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(Main.projectile[e.Index].GetProjectileSource_FromThis(), e.Position, speed, proj.ID, (int) damage, knockback, e.Owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft, guid);
+                            var index = Core.Utils.SpawnProjectile.NewProjectile(Main.projectile[e.Index].GetProjectileSource_FromThis(), e.Position, speed, proj.ID, (int) damage, knockback, e.Owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft, guid);
                             e.Player.SendData(PacketTypes.ProjectileNew, "", index);
                             if (proj.AutoFollow)
                             {
@@ -252,7 +247,7 @@ public class Plugin : TerrariaPlugin
         }
         else
         {
-            if (e.Player.IsLoggedIn && this.Config.ProjectileReplace.TryGetValue(e.Type, out var data) && data != null)
+            if (e.Player.IsLoggedIn && Config.Instance.ProjectileReplace.TryGetValue(e.Type, out var data) && data != null)
             {
                 if (!data.useItem || e.Player.TPlayer.controlUseItem)
                 {
@@ -273,7 +268,7 @@ public class Plugin : TerrariaPlugin
 
                                 var guid = Guid.NewGuid().ToString();
 
-                                var index = EconomicsAPI.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Position, speed, proj.ID, (int) damage, knockback, e.Owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft, guid);
+                                var index = Core.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Position, speed, proj.ID, (int) damage, knockback, e.Owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft, guid);
 
                                 e.Player.SendData(PacketTypes.ProjectileNew, "", index);
 
@@ -289,44 +284,4 @@ public class Plugin : TerrariaPlugin
         }
 
     }
-
-
-
-    public void LoadConfig(ReloadEventArgs? args = null)
-    {
-        if (!File.Exists(PATH))
-        {
-            this.Config.ProjectileReplace.Add(274, new ProjectileSpark()
-            {
-                ProjData = new List<CustomProjectile>()
-                {
-                    new()
-                    {
-                        ID = 132,
-                        Speed = 15,
-                        Damage=80,
-                        KnockBack = 10,
-                        Limit = new()
-                    }
-                }
-            });
-
-            this.Config.ItemReplace.Add(1327, new()
-            {
-                ProjData = new List<CustomProjectile>()
-                {
-                    new()
-                    {
-                        ID = 132,
-                        Speed = 15,
-                        Damage=80,
-                        KnockBack = 10,
-                        Limit = new()
-                    }
-                }
-            });
-        }
-        this.Config = EconomicsAPI.Configured.ConfigHelper.LoadConfig(PATH, this.Config);
-    }
-
 }
