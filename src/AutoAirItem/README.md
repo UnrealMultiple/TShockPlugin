@@ -4,8 +4,8 @@
 - 出处: [自动垃圾桶](https://github.com/1242509682/AutoAirItem)
 - Tshock版自动垃圾桶，帮助玩家清理自身垃圾的小插件
 - 由玩家使用指令独立运行的插件，无需服主写配置，
-- 它会自动根据玩家加入服务器自动创建配置结构。
-- 通过玩家指令交互的一款全自动插件。
+- 它会自动根据玩家加入服务器自动创建数据。
+- 通过玩家指令交互的一款全自动插件（需要开启SSC）。
 
 
 ## 指令
@@ -16,12 +16,10 @@
 | /air on           |      /垃圾 on       |    AutoAir.use    |    开启或关闭自身的垃圾桶功能    |
 | /air list         |     /垃圾 list      |    AutoAir.use    |     列出自己的垃圾桶物品名     |
 | /air clear        |     /垃圾 clear     |    AutoAir.use    |      清空自己的垃圾桶表      |
-| /air yes          |      /垃圾 yes      |    AutoAir.use    |     手持物品加入垃圾桶表      |
-| /air auto         |     /垃圾 auto      |    AutoAir.use    | 将物品放入垃圾桶位格时自动添加垃圾桶表 |
 | /air mess         |     /垃圾 mess      |    AutoAir.use    |      开启或关闭清理消息      |
 | /air ck 数量        |     /垃圾 ck 数量     |    AutoAir.use    |    筛选出物品超过此数量的玩家    |
-| /air add 或 del id | /垃圾 add 或 del 物品名 |    AutoAir.use    |    添加或移出自己的垃圾桶物品    |
-| /airreset         |      /重置垃圾桶       |   AutoAir.admin   |   清空玩家数据表（重置服务器用）   |
+| /air del id | /垃圾 del 物品名 |    AutoAir.use    |    从垃圾桶取出物品    |
+| /air reset         |      无       |   AutoAir.admin   |   清空玩家数据表（重置服务器用）   |
 | /reload           |         无         | tshock.cfg.reload |       重载配置文件        |
 
 ## 配置
@@ -30,7 +28,6 @@
 {
   "插件指令权限": "指令菜单：/air 或 /垃圾，权限名【AutoAir.use】，给玩家权限：/group addperm default AutoAir.use",
   "插件开关": true,
-  "重启服务器不删数据": true,
   "排除垃圾表": [
     71,
     72,
@@ -42,6 +39,13 @@
 
 ## 更新日志
 ```
+v1.2.9
+优化代码性能，从PlayerSolt事件中直接处理物品
+加入了清理时的物品图标显示，首次加入垃圾桶的物品会提示需要点击触发清理
+移除add/auto/yes等没有必要的子命令
+将/airreset指令改为：/air reset子命令
+不再从内存中获取物品数据，直接在数据库进行存取操作
+
 v1.2.5
 Database改utf-8
 v1.2.3
