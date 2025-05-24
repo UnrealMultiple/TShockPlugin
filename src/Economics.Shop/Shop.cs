@@ -15,7 +15,7 @@ public class Shop : TerrariaPlugin
     public override string Description => GetString("经济商店!");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 3);
+    public override Version Version => new Version(2, 0, 0, 4);
 
     public Shop(Main game) : base(game)
     {

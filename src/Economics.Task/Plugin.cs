@@ -19,7 +19,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => GetString("提供任务系统!");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 4);
+    public override Version Version => new Version(2, 0, 0, 5);
 
     internal static TaskFinishManager TaskFinishManager { get; private set; } = null!;
 

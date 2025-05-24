@@ -18,7 +18,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => GetString("增强玩家武器弹幕!");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 8);
+    public override Version Version => new Version(1, 0, 0, 9);
 
     private readonly int[] useCD = new int[Main.maxPlayers];
 
