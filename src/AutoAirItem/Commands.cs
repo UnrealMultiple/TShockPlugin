@@ -10,7 +10,7 @@ public class Commands
     public static void AirCmd(CommandArgs args)
     {
         var plr = args.Player;
-        var data = DB.GetData(plr.Name);
+        var data = Data.Items.FirstOrDefault(x => x.Name == plr.Name);
 
         if (!Configuration.Instance.Enabled)
         {
@@ -49,7 +49,6 @@ public class Commands
                         Lang.GetItemName(x.Key) + "([c/92C5EC:{0}])".SFormat(x.Value)));
                     plr.SendInfoMessage(GetString($"[{data.Name}的垃圾桶]"));
                     plr.SendInfoMessage(text);
-
                     return;
                 }
 
@@ -219,6 +218,7 @@ public class Commands
         }
         else
         {
+            Data.Items.Clear(); // 清空内存数据
             DB.ClearData();
             args.Player.SendSuccessMessage(GetString($"已[c/92C5EC:清空]所有玩家《自动垃圾桶》数据！"));
         }

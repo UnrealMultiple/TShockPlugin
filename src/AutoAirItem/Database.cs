@@ -27,16 +27,6 @@ public class Database
     }
     #endregion
 
-    #region 创建数据方法
-    public bool AddData(MyData.PlayerData data)
-    {
-        var trashList = JsonSerializer.Serialize(data.TrashList);
-
-        return TShock.DB.Query("INSERT INTO AutoTrash (Name, Enabled, Mess, TrashList) VALUES (@0, @1, @2, @3)",
-            data.Name, data.Enabled ? 1 : 0, data.Mess ? 1 : 0, trashList) != 0;
-    }
-    #endregion
-
     #region 更新数据
     public bool UpdateData(MyData.PlayerData data)
     {
@@ -52,22 +42,6 @@ public class Database
         // 如果没有更新到任何记录，则插入新记录
         return TShock.DB.Query("INSERT INTO AutoTrash (Name, Enabled, Mess, TrashList) VALUES (@0, @1, @2, @3)",
             data.Name, data.Enabled ? 1 : 0, data.Mess ? 1 : 0, trashList) != 0;
-    }
-    #endregion
-
-    #region 获取玩家数据
-    public MyData.PlayerData? GetData(string name)
-    {
-        using var reader = TShock.DB.QueryReader("SELECT * FROM AutoTrash WHERE Name = @0", name);
-
-        return reader.Read()
-            ? new MyData.PlayerData
-            (
-                name: reader.Get<string>("Name"),
-                enabled: reader.Get<int>("Enabled") == 1,
-                mess: reader.Get<int>("Mess") == 1,
-                trashList: JsonSerializer.Deserialize<Dictionary<int, int>>(reader.Get<string>("TrashList"))! // 反序列化的字典
-            ):  null;
     }
     #endregion
 

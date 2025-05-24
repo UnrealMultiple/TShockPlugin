@@ -17,14 +17,18 @@ public class AutoAirItem : LazyPlugin
 
     #region 全局变量
     internal static Database DB = new();
+    internal static MyData Data = new();
     #endregion
 
     #region 注册与释放
     public AutoAirItem(Main game) : base(game) { }
     public override void Initialize()
     {
+        if (Configuration.Instance.SaveDatabase)
+        {
+            this.LoadAllPlayerData();
+        }
         GetDataHandlers.PlayerSlot.Register(this.OnPlayerSlot);
-        GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);
         TShockAPI.Commands.ChatCommands.Add(new Command("AutoAir.use", Commands.AirCmd, "air", "垃圾"));
     }
@@ -34,7 +38,6 @@ public class AutoAirItem : LazyPlugin
         if (disposing)
         {
             GetDataHandlers.PlayerSlot.UnRegister(this.OnPlayerSlot);
-            GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreetPlayer);
             TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.AirCmd);
         }
@@ -57,27 +60,16 @@ public class AutoAirItem : LazyPlugin
             return;
         }
 
-        var data = DB.GetData(plr.Name); //获取玩家数据方法
-        if (data == null && TSPlayer.Server != plr) //如果没有获取到的玩家数据
+        // 如果玩家不在数据表中，则创建新的数据条目
+        if (!Data.Items.Any(item => item.Name == plr.Name))
         {
-            data = new MyData.PlayerData(plr.Name, true, true, new Dictionary<int, int>());
-            DB.AddData(data); //添加新数据
-        }
-    }
-
-    private void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
-    {
-        var plr = e.Player;
-        if (!Configuration.Instance.Enabled || plr == null || !plr.IsLoggedIn || !plr.Active || !plr.HasPermission("AutoAir.use"))
-        {
-            return;
-        }
-
-        var data = DB.GetData(plr.Name); //获取玩家数据方法
-        if (data == null && TSPlayer.Server != plr) //如果没有获取到的玩家数据
-        {
-            data = new MyData.PlayerData(plr.Name, true, true, new Dictionary<int, int>());
-            DB.AddData(data); //添加新数据
+            Data.Items.Add(new MyData.PlayerData()
+            {
+                Name = plr.Name,
+                Enabled = true,
+                Mess = true,
+                TrashList = new Dictionary<int, int> { { 0, 0 }, }
+            });
         }
     }
     #endregion
@@ -91,20 +83,24 @@ public class AutoAirItem : LazyPlugin
             return;
         }
 
-        var data = DB.GetData(plr.Name); //获取玩家数据方法
-
+        var data = Data.Items.FirstOrDefault(x => x.Name == plr.Name);
         if (data == null) //如果没有获取到的玩家数据
         {
             if (TSPlayer.Server != plr)
             {
-                data = new MyData.PlayerData(plr.Name, true, true, new Dictionary<int, int>());
-                DB.AddData(data); //添加新数据
+                Data.Items.Add(new MyData.PlayerData()
+                {
+                    Name = plr.Name,
+                    Enabled = true,
+                    Mess = true,
+                    TrashList = new Dictionary<int, int> { { 0, 0 }, }
+                });
             }
             return;
         }
 
         //如果玩家开启了功能开关
-        if (data.Enabled) 
+        if (data.Enabled)
         {
             var trash = plr.TPlayer.trashItem; //获取玩家背包内的垃圾桶格子
 
@@ -120,13 +116,17 @@ public class AutoAirItem : LazyPlugin
                 if (!data.TrashList.ContainsKey(trash.type))
                 {
                     //添加垃圾桶的物品和对应格子数量 到 “自动垃圾桶物品表”
-                    data.TrashList.Add(trash.type, e.Stack);
+                    data.TrashList.Add(trash.type, trash.stack);
                     plr.SendMessage(GetString($"检测到首次将[i/s{1}:{trash.type}]放入垃圾桶\n请手动[c/92C5EC:点击该物品]进行回收"), 240, 250, 150);
+
+                    DB.UpdateData(data); //更新玩家自己的数据库
+                    trash.TurnToAir(); //清空垃圾桶格子
+                    plr.SendData(PacketTypes.PlayerSlot, "", plr.Index, Terraria.ID.PlayerItemSlotID.TrashItem);
                 }
             }
 
             //如果格子里的物品ID在“自动垃圾桶物品表”里 
-            if (data.TrashList.ContainsKey(e.Type))
+            if (data.TrashList.ContainsKey(e.Type) && e.Stack != 0)
             {
                 if (data.Mess) //触发回馈信息
                 {
@@ -143,10 +143,20 @@ public class AutoAirItem : LazyPlugin
 
                 //发包给玩家到对应格子的物品触发以上移除逻辑
                 plr.SendData(PacketTypes.PlayerSlot, "", plr.Index, e.Slot);
+                DB.UpdateData(data); //更新玩家自己的数据库
             }
-
-            DB.UpdateData(data); //更新玩家自己的数据库
         }
     }
     #endregion
+
+    #region 加载所有玩家数据
+    private void LoadAllPlayerData()
+    {
+        foreach (var data in DB.GetAllData())
+        {
+            Data.Items.Add(data);
+        }
+    }
+    #endregion
+
 }
