@@ -18,6 +18,10 @@ internal class Configuration : JsonConfigBase<Configuration>
     [LocalizedPropertyName(CultureType.English, "SaveDatabase")]
     public bool SaveDatabase { get; set; } = true;
 
+    [LocalizedPropertyName(CultureType.Chinese, "冷却秒数")]
+    [LocalizedPropertyName(CultureType.English, "FirstCoolingTime")]
+    public float FirstCoolingTime { get; set; } = 0.5f;
+
     [LocalizedPropertyName(CultureType.Chinese, "排除垃圾表")]
     [LocalizedPropertyName(CultureType.English, "exclude")]
     public int[] Exclude = new int[] { 71, 72, 73, 74 };
