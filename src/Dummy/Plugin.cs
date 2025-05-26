@@ -10,7 +10,7 @@ namespace Dummy;
 public class Plugin : LazyPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 2);
+    public override Version Version => new Version(1, 0, 0, 3);
 
     public override string Author => "少司命";
 
@@ -60,7 +60,7 @@ public class Plugin : LazyPlugin
                 SkinVariant = dummy.SkinVariant,
                 UnderShirtColor = dummy.UnderShirtColor,
                 HideMisc = dummy.HideMisc,
-            });
+            }, dummy.UUID);
             ply.GameLoop("127.0.0.1", port, TShock.Config.Settings.ServerPassword);
             if (!string.IsNullOrEmpty(dummy.Password))
             {
