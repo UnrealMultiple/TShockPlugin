@@ -12,7 +12,7 @@ public class MainPlugin : TerrariaPlugin
     public MainPlugin(Main game) : base(game) { }
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 10);
+    public override Version Version => new Version(1, 1, 0);
     public override string Author => "Cjx重构 ，肝帝熙恩简单修改";
     public override string Description => GetString("无限宝箱插件");
 
@@ -36,13 +36,21 @@ public class MainPlugin : TerrariaPlugin
                 args.Handled = true;
             }
         }
-
         if (args.MsgID == PacketTypes.ChestOpen)
         {
-            if (!this.IsPlayerInEditMode(tsplayer) || !tsplayer.HasPermission("chest.name"))
+            var nameOffset = args.Index + 6;
+            var nameLength = args.Msg.readBuffer[nameOffset];
+
+            // 检查是否正在尝试修改箱子名称
+            if ((nameLength > 0 && nameLength <= 20) || nameLength == 255)
             {
-                tsplayer.SendData(PacketTypes.ChestOpen, "", -1);
-                args.Handled = true;
+                // 检查权限
+                if (!this.IsPlayerInEditMode(tsplayer) || !tsplayer.HasPermission("chest.name"))
+                {
+                    args.Handled = true;
+
+                    tsplayer.SendErrorMessage("你没有修改箱子名称的权限，或者你不在修改模式中。");
+                }
             }
         }
     }
