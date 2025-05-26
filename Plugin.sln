@@ -278,6 +278,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRCoder", "src\QRCoder\QRCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransferPatch", "src\TransferPatch\TransferPatch.csproj", "{BB76EA59-7A10-4692-8E16-E1FE8AB1A24A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoClassificationQuickStack", "src\AutoClassificationQuickStack\AutoClassificationQuickStack.csproj", "{A2ADDE91-FCB1-4014-814C-78756BFF1908}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1366,6 +1368,14 @@ Global
 		{BB76EA59-7A10-4692-8E16-E1FE8AB1A24A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB76EA59-7A10-4692-8E16-E1FE8AB1A24A}.Release|x64.ActiveCfg = Release|Any CPU
 		{BB76EA59-7A10-4692-8E16-E1FE8AB1A24A}.Release|x64.Build.0 = Release|Any CPU
+		{A2ADDE91-FCB1-4014-814C-78756BFF1908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2ADDE91-FCB1-4014-814C-78756BFF1908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2ADDE91-FCB1-4014-814C-78756BFF1908}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A2ADDE91-FCB1-4014-814C-78756BFF1908}.Debug|x64.Build.0 = Debug|Any CPU
+		{A2ADDE91-FCB1-4014-814C-78756BFF1908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2ADDE91-FCB1-4014-814C-78756BFF1908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2ADDE91-FCB1-4014-814C-78756BFF1908}.Release|x64.ActiveCfg = Release|Any CPU
+		{A2ADDE91-FCB1-4014-814C-78756BFF1908}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
