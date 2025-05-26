@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 namespace Economics.Core.Command;
 
 [AttributeUsage(AttributeTargets.Method)]
-public class OnlyPlayer : Attribute
+public class SubCommandAttribute(string subname, int length = 1) : Attribute
 {
+    public string Subname = subname;
+
+    public int Length = length;
 }

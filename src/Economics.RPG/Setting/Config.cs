@@ -90,14 +90,14 @@ public class Config : JsonConfigBase<Config>
         var level = this.GetLevel(name);
         while (level != null)
         {
+            perms.AddRange(level.AppendPermsssions);
             if (level.Parent?.Name == name || level.Parent?.Name == this.DefaultLevel.Name)
             {
                 break;
             }
-            perms.AddRange(level.AppendPermsssions);
             level = level.Parent;
         }
-        return perms.ToHashSet();
+        return [.. perms];
     }
 
     public Level? GetLevel(string name)

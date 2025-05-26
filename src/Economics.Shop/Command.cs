@@ -48,6 +48,7 @@ public class Command : BaseCommand
     }
 
     [SubCommand("buy", 2)]
+    [HelpText("/shop buy <id>")]
     [OnlyPlayer]
     public static void ShopBuy(CommandArgs args)
     {

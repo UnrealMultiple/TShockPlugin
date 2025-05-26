@@ -26,7 +26,7 @@ public class CurrencyManager
         }
 
     }
-    private readonly List<PlayerCurrency> Currencys = new();
+    private readonly List<PlayerCurrency> Currencys = [];
 
     public IDbConnection database;
 
@@ -63,10 +63,16 @@ public class CurrencyManager
         }
     }
 
+    public List<PlayerCurrency> GetCurrencies()
+    {
+        return this.Currencys;
+    }
+
     public bool Update(string UserName, string type)
     {
         return this.database.Query("UPDATE `economics` SET `currency` = @0 WHERE `economics`.`username` = @1 AND `economics`.`type` = @2", this.GetUserCurrency(UserName, type).Number, UserName, type) == 1;
     }
+
     public bool Update(PlayerCurrency currency)
     {
         return this.Update(currency.PlayerName, currency.CurrencyType);

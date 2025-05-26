@@ -16,6 +16,7 @@ public class Command : BaseCommand
     public override string ErrorText => GetString("语法错误，请输入/skill help查看正确使用方法!");
 
     [SubCommand("buy", 2)]
+    [HelpText("/skill buy <id>")]
     [OnlyPlayer]
     public static void SkillBuy(CommandArgs args)
     {
@@ -43,6 +44,7 @@ public class Command : BaseCommand
     }
 
     [SubCommand("del", 2)]
+    [HelpText("/skill del <id>")]
     [OnlyPlayer]
     public static void SkillDel(CommandArgs args)
     {
@@ -84,13 +86,9 @@ public class Command : BaseCommand
     }
 
     [SubCommand("clearh", 2)]
+    [HelpText("/skill clearh <player>")]
     public static void SkillClearh(CommandArgs args)
     {
-        if (!int.TryParse(args.Parameters[1], out var index))
-        {
-            args.Player.SendErrorMessage(GetString("请输入一个正确的序号!"));
-            return;
-        }
         var playerName = args.Parameters[1];
         var skills = Skill.PlayerSKillManager.QuerySkill(playerName);
         foreach (var skill in skills)
@@ -179,6 +177,7 @@ public class Command : BaseCommand
     }
 
     [SubCommand("give", 3)]
+    [HelpText("/skill give <player> <id>")]
     [CommandPermission(Permission.SkillAdmin)]
     public static void SkillGive(CommandArgs args)
     {

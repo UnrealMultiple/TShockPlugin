@@ -106,6 +106,7 @@
 | /bank clear <玩家名称>            |      economics.bank      |        清除货币        |
 | /bank reset                   |      economics.bank      |       全局重置货币       |
 | /bank cash <目标货币> <数量>    |   economics.bank.cash    |        转换货币        |
+| /bank lb <目标货币> <条目数量>    |   economics.bank.query    |     查看货币排行榜        |
 | /查询                           | economics.currency.query | 查询货币(废弃, 将在未来版本移除) |
 
 ## 配置

@@ -64,6 +64,7 @@ public class Command : BaseCommand
 
     [SubCommand("push", 3)]
     [OnlyPlayer]
+    [HelpText("/deal push <num> <currency>")]
     public static void DealPush(CommandArgs args)
     {
         if (args.Player.SelectedItem.stack == 0)
@@ -89,6 +90,7 @@ public class Command : BaseCommand
     }
 
     [SubCommand("buy", 2)]
+    [HelpText("/bank buy <id>")]
     [OnlyPlayer]
     public static void DealBuy(CommandArgs args)
     {
@@ -116,6 +118,7 @@ public class Command : BaseCommand
     }
 
     [SubCommand("recall", 2)]
+    [HelpText("/bank recall <id>")]
     [OnlyPlayer]
     public static void DealRecall(CommandArgs args)
     {

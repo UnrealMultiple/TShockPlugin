@@ -78,7 +78,7 @@ public class RankCommand : BaseCommand
             var ranklevel = level.RankLevels[0];
             if (ranklevel.SelectedWeapon.Count > 0 && !ranklevel.SelectedWeapon.Contains(args.Player.SelectedItem.netID))
             {
-                args.Player.SendErrorMessage(GetString($"升级至 {args.Parameters[0]} 需要手持武器{string.Join(",", ranklevel.SelectedWeapon.Select(i => TShock.Utils.GetItemById(i).Name))}！ "));
+                args.Player.SendErrorMessage(GetString($"升级至 {ranklevel} 需要手持武器{string.Join(",", ranklevel.SelectedWeapon.Select(i => TShock.Utils.GetItemById(i).Name))}！ "));
                 return;
             }
             if (!args.Player.InProgress(ranklevel.Limit))

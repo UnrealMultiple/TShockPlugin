@@ -21,12 +21,13 @@ public class BaseCommand
     {
         this.SubCommands = this.GetType()
             .GetMethods(this._flag)
-            .Where(m => m.IsDefined(typeof(SubCommand), true))
+            .Where(m => m.IsDefined(typeof(SubCommandAttribute), true))
             .Select(m =>
                 new SubCommandExtra(m,
-                    m.GetCustomAttribute<SubCommand>()!,
-                    m.GetCustomAttribute<OnlyPlayer>(),
-                    m.GetCustomAttribute<CommandPermission>()
+                    m.GetCustomAttribute<SubCommandAttribute>()!,
+                    m.GetCustomAttribute<OnlyPlayerAttribute>(),
+                    m.GetCustomAttribute<CommandPermissionAttribute>(),
+                    m.GetCustomAttribute<HelpTextAttribute>()
                     )
                 )
             .ToDictionary(s => s.SubCommand.Subname.ToLower());
@@ -57,11 +58,11 @@ public class BaseCommand
         }
         if (extar.SubCommand.Length > args.Parameters.Count)
         {
-            args.Player.SendErrorMessage(GetString(this.ErrorText));
+            args.Player.SendErrorMessage(extar.HelpText != null ? GetString($"语法错误，正确语法:{extar.HelpText.Text}") : GetString(this.ErrorText));
             return;
         }
         extar.Method.Invoke(null, [args]);
     }
 }
 
-public record SubCommandExtra(MethodInfo Method, SubCommand SubCommand, OnlyPlayer? OnlyPlayer, CommandPermission? CommandPermission);
+public record SubCommandExtra(MethodInfo Method, SubCommandAttribute SubCommand, OnlyPlayerAttribute? OnlyPlayer, CommandPermissionAttribute? CommandPermission, HelpTextAttribute HelpText);

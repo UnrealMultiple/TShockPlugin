@@ -7,6 +7,7 @@ using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
+using Newtonsoft.Json;
 
 namespace Economics.RPG;
 

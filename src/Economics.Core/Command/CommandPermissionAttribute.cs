@@ -8,7 +8,7 @@ using TShockAPI;
 namespace Economics.Core.Command;
 
 [AttributeUsage(AttributeTargets.Method)]
-public class CommandPermission(params string[] perm) : Attribute
+public class CommandPermissionAttribute(params string[] perm) : Attribute
 {
     public string[] Permissions = perm;
 

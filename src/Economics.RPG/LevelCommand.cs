@@ -25,19 +25,12 @@ public class LevelCommand : BaseCommand
     [SubCommand("reset")]
     public static void ResetLevel(CommandArgs args)
     {
-        if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "reset")
-        {
-            RPG.PlayerLevelManager.RemoveAll();
-            args.Player.SendSuccessMessage(GetString("玩家等级信息重置成功!"));
-        }
-        else
-        {
-            args.Player.SendErrorMessage(GetString("语法错误，正确语法:"));
-            args.Player.SendErrorMessage("/level reset");
-        }
+        RPG.PlayerLevelManager.RemoveAll();
+        args.Player.SendSuccessMessage(GetString("玩家等级信息重置成功!"));
     }
 
     [SubCommand("set", 2)]
+    [HelpText("/level set <player> <level> or /level set <level>")]
     public static void SetLevel(CommandArgs args)
     {
         var name = args.Player.Name;

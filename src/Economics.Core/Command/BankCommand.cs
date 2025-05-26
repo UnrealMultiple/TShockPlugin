@@ -26,6 +26,7 @@ public class BankCommand : BaseCommand
 
     [SubCommand("cash", 3)]
     [CommandPermission(EconomicsPerm.CurrencyAdmin, EconomicsPerm.CashCurrent)]
+    [HelpText("/bank cash <currency> <amount>")]
     [OnlyPlayer]
     public static void BankCash(CommandArgs args)
     {
@@ -50,7 +51,8 @@ public class BankCommand : BaseCommand
 
     [SubCommand("pay", 4)]
     [CommandPermission(EconomicsPerm.CurrencyAdmin, EconomicsPerm.PayCurrency)]
-    [OnlyPlayer]
+    [HelpText("/bank pay <player> <amount> <currency>")]
+    [OnlyPlayerAttribute]
     public static void BankPay(CommandArgs args)
     {
         if (NumberValidator(args, out var num))
@@ -73,6 +75,7 @@ public class BankCommand : BaseCommand
 
     [SubCommand("deduct", 4)]
     [CommandPermission(EconomicsPerm.CurrencyAdmin)]
+    [HelpText("/bank deduct <target> <amount> <currency>")]
     public static void BankDeduct(CommandArgs args)
     {
         if (NumberValidator(args, out var num))
@@ -89,8 +92,43 @@ public class BankCommand : BaseCommand
         return;
     }
 
+    [SubCommand("lb", 2)]
+    [CommandPermission(EconomicsPerm.CurrencyAdmin)]
+    [HelpText("/bank lb <currency> <count>")]
+    public static void BankLeaderBoard(CommandArgs args)
+    {
+        if (Setting.Instance.HasCustomizeCurrency(args.Parameters[1]))
+        {
+            args.Player.SendErrorMessage(GetString($"不存在的的货币类型`{args.Parameters[1]}`"));
+            return;
+        }
+        if (NumberValidator(args, out var count))
+        {
+            return;
+        }
+        
+        var currencys = Economics.CurrencyManager.GetCurrencies()
+            .Where(c => c.CurrencyType == args.Parameters[1])
+            .OrderByDescending(c => c.Number)
+            .Take((int)count);
+        if (!currencys.Any())
+        {
+            args.Player.SendSuccessMessage(GetString($"当前无人用有{args.Parameters[1]}"));
+            return;
+        }
+        args.Player.SendSuccessMessage(GetString($"货币`{args.Parameters[1]}`排行榜:"));
+        var lines = new List<string>();
+        var index = 1;
+        foreach (var currency in currencys)
+        {
+            args.Player.SendSuccessMessage(GetString($"{index}.{currency.PlayerName} 拥有 {currency.CurrencyType} {currency.Number}个。"));
+            index++;
+        }
+    }
+
     [SubCommand("clear", 2)]
     [CommandPermission(EconomicsPerm.CurrencyAdmin)]
+    [HelpText("/bank clear <player>")]
     public static void BankClear(CommandArgs args)
     {
         foreach (var currency in Setting.Instance.CustomizeCurrencys)
@@ -103,10 +141,11 @@ public class BankCommand : BaseCommand
 
     [SubCommand("query")]
     [CommandPermission(EconomicsPerm.QueryCurrency, EconomicsPerm.CurrencyAdmin)]
+    [HelpText("/bank query or /bank quer <player>")]
     public static void BankQuery(CommandArgs args)
     {
         var sb = new StringBuilder();
-        var name = "";
+        string? name;
         if (args.Parameters.Count > 1)
         {
             name = args.Parameters[1];
@@ -141,6 +180,7 @@ public class BankCommand : BaseCommand
 
     [SubCommand("add", 4)]
     [CommandPermission(EconomicsPerm.CurrencyAdmin)]
+    [HelpText("/bank add <player> <amount> <currency>")]
     public static void BankAdd(CommandArgs args)
     {
         if (NumberValidator(args, out var num))

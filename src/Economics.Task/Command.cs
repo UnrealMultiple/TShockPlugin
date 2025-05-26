@@ -43,6 +43,7 @@ public class Command : BaseCommand
     }
 
     [SubCommand("info", 2)]
+    [HelpText("/task info <id>")]
     public static void TaskInfo(CommandArgs args)
     {
         if (int.TryParse(args.Parameters[1], out var index))
@@ -64,6 +65,7 @@ public class Command : BaseCommand
     }
 
     [SubCommand("pick", 2)]
+    [HelpText("/task pick <id>")]
     [OnlyPlayer]
     public static void TaskPick(CommandArgs args)
     {
