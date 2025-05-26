@@ -189,33 +189,26 @@ public class QRCoder : LazyPlugin
         // 生成二维码
         this.GenerateQRCode(player, content, position, size);
     }
-    public Ecc eccLevel = Ecc.Low;
-    public void QRErrorCorrectionLevel()
+    public Ecc QRErrorCorrectionLevel(int level)
     {
-        if(Config.Instance.QRLevel == 1)
+        // 根据配置返回对应的纠错级别
+        return Config.Instance.QRLevel switch
         {
-            this.eccLevel = Ecc.Low;
-        }
-        else if(Config.Instance.QRLevel == 2)
-        {
-            this.eccLevel = Ecc.Medium;
-        }
-        else if(Config.Instance.QRLevel == 3)
-        {
-            this.eccLevel = Ecc.Quartile;
-        }
-        else if(Config.Instance.QRLevel == 4)
-        {
-            this.eccLevel = Ecc.High;
-        }
+            1 => Ecc.Low,
+            2 => Ecc.Medium,
+            3 => Ecc.Quartile,
+            4 => Ecc.High,
+            _ => Ecc.Medium,// 默认返回中等纠错级别或抛出异常
+        };
     }
 
     private void GenerateQRCode(TSPlayer player, string content, QRPosition position, int size)
     {
         var list = QrSegment.MakeSegments(content);
+        var eccLevel = this.QRErrorCorrectionLevel(Config.Instance.QRLevel);
         var qrCode = size > 0
-            ? QrCode.EncodeSegments(list, this.eccLevel, size, size, -1, false)
-            : QrCode.EncodeSegments(list, this.eccLevel, 1, 40, -1, false);
+            ? QrCode.EncodeSegments(list, eccLevel, size, size, -1, false)
+            : QrCode.EncodeSegments(list, eccLevel, 1, 40, -1, false);
 
         // 根据选择的位置类型计算起始坐标
         int startX, startY;
