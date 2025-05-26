@@ -246,10 +246,10 @@ function main(skill, ply, pos, vel){
 
 #### 在脚本中内置了一些函数
 ```javascript
-//void print(object msg)
+//void log(object msg)
 
 function main(skill, ply, pos, vel){
-    print("Hellow World"); //在ts控制台你会看到输出
+    log("Hellow World"); //在ts控制台你会看到输出
 }
 ```
 ```javascript

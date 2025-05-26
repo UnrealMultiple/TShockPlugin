@@ -5,7 +5,7 @@ namespace Economics.Projectile;
 
 public class Config : JsonConfigBase<Config>
 {
-    protected override string Filename => Path.Combine(Core.Economics.SaveDirPath, "Projectile.json");
+    protected override string Filename => "Projectile.json";
 
     [JsonProperty("弹幕触发")]
     public Dictionary<int, ProjectileSpark> ProjectileReplace { get; set; } = [];

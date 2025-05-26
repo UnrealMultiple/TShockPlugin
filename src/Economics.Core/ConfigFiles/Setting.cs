@@ -29,7 +29,7 @@ public class Setting : JsonConfigBase<Setting>
     [JsonProperty("货币配置")]
     public List<CustomizeCurrency> CustomizeCurrencys = [];
 
-    protected override string Filename => Path.Combine(Economics.SaveDirPath, "Economics.json");
+    protected override string Filename => "Economics.json";
 
     protected override void SetDefault()
     {

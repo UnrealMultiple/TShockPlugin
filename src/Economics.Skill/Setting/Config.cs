@@ -7,7 +7,7 @@ namespace Economics.Skill.Setting;
 
 public class Config : JsonConfigBase<Config>
 {
-    protected override string Filename => Path.Combine(Core.Economics.SaveDirPath, "Skill.json");
+    protected override string Filename => "Skill.json";
 
     [JsonProperty("绑定技能最大数量")]
     public int SkillMaxCount { get; set; }

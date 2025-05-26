@@ -4,7 +4,7 @@ using Terraria.Localization;
 
 namespace Economics.Core.Extensions;
 
-public static class PlayerExt
+public static class PlayerExtension
 {
     public static void SendCombatMsg(this Player player, string text, Color color)
     {

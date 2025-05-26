@@ -6,7 +6,7 @@ namespace Economics.Task;
 
 public class Config : JsonConfigBase<Config>
 {
-    protected override string Filename => Path.Combine(Core.Economics.SaveDirPath, "Task.json");
+    protected override string Filename => "Task.json";
 
     [JsonProperty("不可重复接任务")]
     public bool PickTasks { get; set; } = true;

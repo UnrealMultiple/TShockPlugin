@@ -1,15 +1,12 @@
 ﻿using Economics.Skill.DB;
 using Economics.Skill.Events;
 using Economics.Skill.Internal;
-using Economics.Skill.JSInterpreter;
 using Economics.Skill.Setting;
-using Economics.Core.ConfigFiles;
 using Economics.Core.EventArgs.PlayerEventArgs;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 
 namespace Economics.Skill;
 
@@ -50,7 +47,6 @@ public class Skill : TerrariaPlugin
     {
         Config.Load();
         PlayerSKillManager = new();
-        ServerApi.Hooks.GamePostInitialize.Register(this, this.OnPost);
         ServerApi.Hooks.NpcStrike.Register(this, this.OnStrike);
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
@@ -70,7 +66,6 @@ public class Skill : TerrariaPlugin
             Config.UnLoad();
             Core.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             Core.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
-            ServerApi.Hooks.GamePostInitialize.Deregister(this, this.OnPost);
             ServerApi.Hooks.NpcStrike.Deregister(this, this.OnStrike);
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
@@ -83,10 +78,6 @@ public class Skill : TerrariaPlugin
             Core.Events.PlayerHandler.OnPlayerCountertop -= this.OnPlayerCountertop;
         }
         base.Dispose(disposing);
-    }
-    private void OnPost(EventArgs args)
-    {
-        Interpreter.LoadFunction();
     }
 
     private void OnPlayerDamage(object? sender, GetDataHandlers.PlayerDamageEventArgs e)
@@ -115,7 +106,6 @@ public class Skill : TerrariaPlugin
     private void OnUpdate(EventArgs args)
     {
         this.TimerCount++;
-        JobjManager.FrameUpdate();
         if ((this.TimerCount % 6) == 0)
         {
             SkillCD.SendGodPacket();

@@ -32,7 +32,7 @@ public class CombatMsgOption
     [JsonProperty("提示文本")]
     public string CombatMsg { get; set; } = "+{0}$";
 
-    public int[] Color { get; set; } = new int[3] { 255, 255, 255 };
+    public int[] Color { get; set; } = [255, 255, 255];
 }
 
 public class DeathFallOption
@@ -51,6 +51,9 @@ public class CurrencyObtainOption
 
     [JsonProperty("给予数量")]
     public long GiveCurrency { get; set; }
+
+    [JsonProperty("指定ID")]
+    public HashSet<int> ContainsID { get; set; } = [];
 
     [JsonProperty("比例")]
     public float ConversionRate { get; set; } = 1f;

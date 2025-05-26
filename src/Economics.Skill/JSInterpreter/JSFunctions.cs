@@ -1,6 +1,6 @@
-﻿using Economics.Core.Utils;
+﻿using Economics.Core.Utility;
+using Economics.Core.Utils;
 using Economics.Skill.Attributes;
-using Economics.Skill.Internal;
 using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
@@ -9,8 +9,8 @@ namespace Economics.Skill.JSInterpreter;
 
 public class JSFunctions
 {
-    [JavaScriptFunction("print")]
-    public static void JSPrint(string message)
+    [JavaScriptFunction("log")]
+    public static void JSPrint(object message)
     {
         Console.WriteLine(message);
     }
@@ -56,8 +56,8 @@ public class JSFunctions
     }
 
     [JavaScriptFunction("Schedule")]
-    public static void Schedule(Action<object> action, int interval, object obj)
+    public static void Schedule(Action action, int interval)
     {
-        JobjManager.Delayed(interval, action, obj);
+        TimingUtils.Delayed(interval, action);
     }
 }

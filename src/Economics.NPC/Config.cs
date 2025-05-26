@@ -5,7 +5,7 @@ namespace Economics.NPC;
 
 public class Config : JsonConfigBase<Config>
 {
-    protected override string Filename => Path.Combine(Core.Economics.SaveDirPath, "NPC.json");
+    protected override string Filename => "NPC.json";
 
     public class NpcAllocationRatioOption
     {

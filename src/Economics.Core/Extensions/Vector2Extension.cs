@@ -4,7 +4,7 @@ using TShockAPI;
 
 namespace Economics.Core.Extensions;
 
-public static class Vector2Ext
+public static class Vector2Extension
 {
     public static bool HasNanOrInf(this Vector2 vec)
     {

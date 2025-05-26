@@ -11,20 +11,13 @@ namespace Economics.Core.DB;
 
 public class CurrencyManager
 {
-    public class PlayerCurrency
+    public class PlayerCurrency(long num, string player, string type)
     {
-        public long Number { get; set; }
+        public long Number { get; set; } = num;
 
-        public string CurrencyType { get; set; }
+        public string CurrencyType { get; set; } = type;
 
-        public string PlayerName { get; set; }
-
-        public PlayerCurrency(long num, string player, string type)
-        {
-            this.Number = num;
-            this.CurrencyType = type;
-            this.PlayerName = player;
-        }
+        public string PlayerName { get; set; } = player;
 
         // 添加 ToString 方法，使其在字符串上下文中直接返回 Number 值
         public override string ToString()

@@ -57,17 +57,17 @@ public class Utils
     /// <param name="pos"></param>
     public static void SpawnSkillProjectile(TSPlayer Player, SkillContext skill, Vector2 vel, Vector2 pos, int Damage)
     {
-        var playerskill = new PlayerSkill(skill.LoopEvent, Player);
-        foreach (var i in Enumerable.Range(0, skill.LoopEvent.LoopCount + 1))
-        {
-            JobjManager.Delayed(skill.LoopEvent.Interval * i, (args) =>
-            {
-                if (args is PlayerSkill con)
-                {
-                    con.Update(i, vel);
-                }
-            }, playerskill);
-        }
+        //var playerskill = new PlayerSkill(skill.LoopEvent, Player);
+        //foreach (var i in Enumerable.Range(0, skill.LoopEvent.LoopCount + 1))
+        //{
+        //    JobjManager.Delayed(skill.LoopEvent.Interval * i, (args) =>
+        //    {
+        //        if (args is PlayerSkill con)
+        //        {
+        //            con.Update(i, vel);
+        //        }
+        //    }, playerskill);
+        //}
     }
 
 

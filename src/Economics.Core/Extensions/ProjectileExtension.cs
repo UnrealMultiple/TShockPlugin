@@ -2,7 +2,7 @@
 
 namespace Economics.Core.Extensions;
 
-public static class ProjectileExt
+public static class ProjectileExtension
 {
     public static List<Projectile> GetProjectileInRange(this Projectile proj, int range)
     {

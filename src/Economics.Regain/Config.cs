@@ -6,7 +6,7 @@ namespace Economics.Regain;
 
 public class Config : JsonConfigBase<Config>
 {
-    protected override string Filename => Path.Combine(Core.Economics.SaveDirPath, "Regain.json");
+    protected override string Filename => "Regain.json";
     public class RegainInfo
     {
         [JsonProperty("物品ID")]

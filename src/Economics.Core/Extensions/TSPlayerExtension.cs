@@ -5,7 +5,7 @@ using TShockAPI;
 
 namespace Economics.Core.Extensions;
 
-public static class TSPlayerExt
+public static class TSPlayerExtension
 {
 
     public static void SendCombatMsg(this TSPlayer player, string text, Color color)

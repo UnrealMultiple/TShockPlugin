@@ -19,7 +19,7 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
     
     }
 
-    private string FullFilename => Path.Combine(TShock.SavePath, $"{this.Filename}.json");
+    private string FullFilename => Path.Combine(Economics.SaveDirPath, this.Filename);
 
 
     private static T GetConfig()
@@ -69,6 +69,7 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
     // .cctor is lazy load
     public static void Load()
     {
+        _instance = GetConfig();
         GeneralHooks.ReloadEvent += Instance.Reload;
     }
 

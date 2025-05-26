@@ -4,6 +4,7 @@ using Economics.Core.EventArgs.PlayerEventArgs;
 using Economics.Core.Events;
 using Economics.Core.Extensions;
 using Economics.Core.Model;
+using Economics.Core.Utility;
 using Economics.Core.Utils;
 using Microsoft.Xna.Framework;
 using Rests;
@@ -12,6 +13,7 @@ using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Economics.Core;
 
@@ -31,7 +33,9 @@ public class Economics : TerrariaPlugin
 
     public static string SaveDirPath => Path.Combine(TShock.SavePath, "Economics");
 
-    public static CurrencyManager CurrencyManager { get; private set; } = null!;
+    #nullable disable
+    public static CurrencyManager CurrencyManager { get; private set; }
+    #nullable enable
 
     private long TimerCount;
 
@@ -59,10 +63,36 @@ public class Economics : TerrariaPlugin
             ServerApi.Hooks.NpcSpawn.Deregister(this, this.OnNpcSpawn);
             ServerApi.Hooks.NpcStrike.Deregister(this, this.OnStrike);
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
+            GetDataHandlers.TileEdit.Register(this.OnTileEdit);
             GetDataHandlers.KillMe.UnRegister(this.OnKillMe);
             PlayerHandler.OnPlayerCountertop -= this.PlayerHandler_OnPlayerCountertop;
         }
         base.Dispose(disposing);
+    }
+
+    private void OnTileEdit(object? sender, GetDataHandlers.TileEditEventArgs e)
+    {
+        if (e.Action != GetDataHandlers.EditAction.KillTile)
+        {
+            return;
+        }
+        foreach (var currency in Setting.Instance.CustomizeCurrencys)
+        {
+            if (currency.CurrencyObtain.CurrencyObtainType != Enumerates.CurrencyObtainType.KillTiile)
+            {
+                continue;
+            }
+            if (currency.CurrencyObtain.ContainsID.Count > 0 && !currency.CurrencyObtain.ContainsID.Contains(e.EditData))
+            {
+                continue;
+            }
+            var num = Convert.ToInt64(currency.CurrencyObtain.GiveCurrency * currency.CurrencyObtain.ConversionRate);
+            CurrencyManager.AddUserCurrency(e.Player.Name, num, currency.Name);
+            if (currency.CombatMsgOption.Enable)
+            {
+                e.Player.SendCombatMsg(currency.CombatMsgOption.CombatMsg, new Color(currency.CombatMsgOption.Color[0], currency.CombatMsgOption.Color[1], currency.CombatMsgOption.Color[2]));
+            }
+        }
     }
 
     public override void Initialize()
@@ -108,31 +138,39 @@ public class Economics : TerrariaPlugin
 
     private void OnUpdate(System.EventArgs args)
     {
+        ++TimingUtils.Timer;
+        while (TimingUtils.scheduled.TryPeek(out var action, out var time))
+        {
+            if (time > TimingUtils.Timer)
+            {
+                break;
+            }
+            action();
+            TimingUtils.scheduled.Dequeue();
+        }
+
         this.TimerCount++;
         if (this.TimerCount % 60 == 0)
         {
-            lock (ServerPlayers)
+            for (var i = ServerPlayers.Count - 1; i >= 0; i--)
             {
-                foreach (var ply in ServerPlayers)
+                var ply = ServerPlayers[i];
+                if (ply == null || !ply.Active)
                 {
-                    if (ply == null || !ply.Active)
-                    {
-                        continue;
-                    }
-
-                    this.Ping(ply, data =>
-                    {
-                        var status = new PlayerCountertopArgs()
-                        {
-                            Ping = data,
-                            Player = data.TSPlayer
-                        };
-                        if (Setting.Instance.StatusText && !PlayerHandler.PlayerCountertopUpdate(status))
-                        {
-                            Helper.CountertopUpdate(status);
-                        }
-                    });
+                    continue;
                 }
+                this.Ping(ply, data =>
+                {
+                    var status = new PlayerCountertopArgs()
+                    {
+                        Ping = data,
+                        Player = data.TSPlayer
+                    };
+                    if (Setting.Instance.StatusText && !PlayerHandler.PlayerCountertopUpdate(status))
+                    {
+                        Helper.CountertopUpdate(status);
+                    }
+                });
             }
         }
         if (this.TimerCount % (60 * Setting.Instance.SaveTime) == 0)
@@ -149,7 +187,7 @@ public class Economics : TerrariaPlugin
     {
         if (this.Strike.TryGetValue(args.Npc, out var data) && data != null)
         {
-            if (data.TryGetValue(args.Player, out var damage))
+            if (data.TryGetValue(args.Player, out _))
             {
                 this.Strike[args.Npc][args.Player] += args.Damage;
             }
@@ -172,7 +210,7 @@ public class Economics : TerrariaPlugin
         var npc = Main.npc[args.NpcId];
         if (npc != null)
         {
-            this.Strike[npc] = new();
+            this.Strike[npc] = [];
         }
     }
 
@@ -182,24 +220,31 @@ public class Economics : TerrariaPlugin
         {
             return;
         }
-        if (this.Strike.TryGetValue(args.npc, out var result) && result != null)
+        if (!this.Strike.TryGetValue(args.npc, out var result) || result == null)
         {
-            foreach (var (player, damage) in result)
+            return;
+        }
+        foreach (var (player, damage) in result)
+        {
+            if (PlayerHandler.PlayerKillNpc(new PlayerKillNpcArgs(player, args.npc, damage)))
             {
-                if (!PlayerHandler.PlayerKillNpc(new PlayerKillNpcArgs(player, args.npc, damage)))
+                continue;
+            }
+            foreach (var currency in Setting.Instance.CustomizeCurrencys)
+            {
+                if (currency.CurrencyObtain.CurrencyObtainType != Enumerates.CurrencyObtainType.KillNpc)
                 {
-                    foreach (var currency in Setting.Instance.CustomizeCurrencys)
-                    {
-                        if (currency.CurrencyObtain.CurrencyObtainType == Enumerates.CurrencyObtainType.KillNpc)
-                        {
-                            var num = Convert.ToInt64(damage * currency.CurrencyObtain.ConversionRate);
-                            CurrencyManager.AddUserCurrency(player.name, num, currency.Name);
-                            if (currency.CombatMsgOption.Enable)
-                            {
-                                player.SendCombatMsg($"+{num}$", new Color(currency.CombatMsgOption.Color[0], currency.CombatMsgOption.Color[1], currency.CombatMsgOption.Color[2]));
-                            }
-                        }
-                    }
+                    continue;
+                }
+                if (currency.CurrencyObtain.ContainsID.Count > 0 && !currency.CurrencyObtain.ContainsID.Contains(args.npc.type))
+                {
+                    continue;
+                }
+                var num = Convert.ToInt64(damage * currency.CurrencyObtain.ConversionRate);
+                CurrencyManager.AddUserCurrency(player.name, num, currency.Name);
+                if (currency.CombatMsgOption.Enable)
+                {
+                    player.SendCombatMsg(currency.CombatMsgOption.CombatMsg, new Color(currency.CombatMsgOption.Color[0], currency.CombatMsgOption.Color[1], currency.CombatMsgOption.Color[2]));
                 }
             }
         }
@@ -265,24 +310,18 @@ public class Economics : TerrariaPlugin
     private void OnLeave(LeaveEventArgs args)
     {
         var player = TShock.Players[args.Who];
-        lock (ServerPlayers)
+        if (player != null)
         {
-            if (player != null)
-            {
-                ServerPlayers.Remove(player);
-            }
+            ServerPlayers.Remove(player);
         }
     }
 
     private void OnGreet(GreetPlayerEventArgs args)
     {
         var player = TShock.Players[args.Who];
-        lock (ServerPlayers)
+        if (player != null)
         {
-            if (player != null)
-            {
-                ServerPlayers.Add(player);
-            }
+            ServerPlayers.Add(player);
         }
     }
 }

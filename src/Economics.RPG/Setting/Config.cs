@@ -8,7 +8,7 @@ namespace Economics.RPG.Setting;
 
 public class Config : JsonConfigBase<Config>
 {
-    protected override string Filename => Path.Combine(Core.Economics.SaveDirPath, "RPG.json");
+    protected override string Filename => "RPG.json";
 
     [JsonProperty("RPG信息")]
     public Dictionary<string, Level> RPG { get; set; } = new();

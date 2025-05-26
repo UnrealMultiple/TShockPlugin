@@ -7,7 +7,7 @@ namespace Economics.Shop;
 
 public class Config : JsonConfigBase<Config>
 {
-    protected override string Filename => Path.Combine(Core.Economics.SaveDirPath, "Shop.json");
+    protected override string Filename => "Shop.json";
 
     [JsonProperty("最大显示页")]
     public int PageMax { get; set; } = 10;
