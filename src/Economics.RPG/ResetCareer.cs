@@ -8,13 +8,13 @@ namespace Economics.RPG;
 
 public class ResetCareer : BaseCommand
 {
-    public override string[] Alias => ["resetcareer", "重置职业"];
+    public override string[] Alias => ["resetrank", "重置职业"];
 
     public override List<string> Permissions => ["economics.rpg.reset"];
 
     public override string HelpText => GetString("重置RPG职业!");
 
-    public override string ErrorText => GetString("语法错误，请输入/resetcareer 重置职业");
+    public override string ErrorText => GetString("语法错误，请输入/resetrank 重置职业");
 
     public override void Invoke(CommandArgs args)
     {
