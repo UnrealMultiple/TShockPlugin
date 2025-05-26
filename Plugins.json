@@ -27,7 +27,7 @@
     "Version": "1.0.0.1",
     "Author": "少司命",
     "Description": {
-      "en-US": "翻译任意插件",
+      "en-US": "Translate any plugin",
       "de-DE": "翻译任意插件",
       "it-IT": "翻译任意插件",
       "fr-FR": "翻译任意插件",
@@ -1507,7 +1507,7 @@
     "Version": "1.0.0.6",
     "Author": "少司命",
     "Description": {
-      "en-US": "Lagrange.XocMat机器人适配插件",
+      "en-US": "Lagrange.XocMat Bot Adapter Plugin",
       "de-DE": "Lagrange.XocMat机器人适配插件",
       "it-IT": "Lagrange.XocMat机器人适配插件",
       "fr-FR": "Lagrange.XocMat机器人适配插件",
@@ -1526,7 +1526,7 @@
   },
   {
     "Name": "LazyAPI",
-    "Version": "1.0.0.9",
+    "Version": "1.0.1.0",
     "Author": "cc004 & members of UnrealMultiple",
     "Description": {
       "en-US": "None",
@@ -1979,7 +1979,7 @@
   },
   {
     "Name": "QRCoder",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "Jonesn，熙恩，Radix.",
     "Description": {
       "en-US": "生成二维码",
@@ -2122,7 +2122,7 @@
     "Version": "1.1.4",
     "Author": "TBC开发者团队,肝帝熙恩汉化",
     "Description": {
-      "en-US": "Added a regional boundary view to the area.",
+      "en-US": "Added a regional boundary view to the region.",
       "de-DE": "为地区添加区域边界视图。",
       "it-IT": "为地区添加区域边界视图。",
       "fr-FR": "为地区添加区域边界视图。",
@@ -2817,7 +2817,7 @@
     "Version": "1.0.9",
     "Author": "Cracker64 & Zaicon & Cai & 肝帝熙恩",
     "Description": {
-      "en-US": "Record grid operations.",
+      "en-US": "Record tiles history.",
       "de-DE": "记录图格操作.",
       "it-IT": "记录图格操作.",
       "fr-FR": "记录图格操作.",

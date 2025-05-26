@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-01-22 16:39:23+0000\n"
-"PO-Revision-Date: 2025-01-24 01:07\n"
+"PO-Revision-Date: 2025-05-21 01:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "You have been kicked out for resetting your level!"
 #: ../../Command.cs:17
 #: ../../Command.cs:106
 msgid "你必须登陆才能使用此命令!"
-msgstr "You must be logged in to use this command!"
+msgstr "You must use this command in-game!"
 
 #: ../../Command.cs:57
 #, csharp-format
@@ -49,7 +49,7 @@ msgstr "Upgrade Required {0}"
 #: ../../RPG.cs:86
 #, csharp-format
 msgid "升级职业: {0}"
-msgstr "Upgrade profession: {0}"
+msgstr "Upgrade rank: {0}"
 
 #: ../../Command.cs:39
 #: ../../Command.cs:74
@@ -64,7 +64,7 @@ msgstr "Already at maximum level, cannot continue to upgrade!"
 #: ../../RPG.cs:85
 #, csharp-format
 msgid "当前职业: {0}"
-msgstr "Current profession: {0}"
+msgstr "Current rank: {0}"
 
 #: ../../Command.cs:44
 #: ../../Command.cs:79
@@ -88,11 +88,11 @@ msgstr "Provides RPG gameplay!"
 
 #: ../../Command.cs:34
 msgid "此职业全服唯一，已经存在此职业无法升级。"
-msgstr "This profession is the only one in the server. This profession already exists and cannot be upgraded."
+msgstr "This rank is the only one in the server. This rank already exists and cannot be upgraded."
 
 #: ../../Command.cs:128
 msgid "玩家等级信息重置成功!"
-msgstr "Player level information reset successfully!"
+msgstr "Successfully reset player level!"
 
 #: ../../Command.cs:29
 #, csharp-format

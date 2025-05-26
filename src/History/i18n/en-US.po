@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-05-14 15:05:18+0000\n"
-"PO-Revision-Date: 2025-05-17 01:17\n"
+"PO-Revision-Date: 2025-05-20 01:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -108,62 +108,62 @@ msgstr "[History] Database clean-up failed"
 #: ../../Action.cs:497
 #, csharp-format
 msgid "{0} {1} 修改了告示牌文字. ({2})"
-msgstr "{0} {1} Modified the sign text. ({2})"
+msgstr "{0} {1} Modified sign text. ({2} ago)"
 
 #: ../../Action.cs:492
 #, csharp-format
 msgid "{0} {1} 改变图格形状. ({2})"
-msgstr "{0} {1} Modified the shape of the grid. ({2})"
+msgstr "{0} {1} Modified shape of the tiles. ({2} ago)"
 
 #: ../../Action.cs:489
 #, csharp-format
 msgid "{0} {1} 放置墙 {2}. ({3})"
-msgstr "{0} {1} Placed the wall {2}. ({3})"
+msgstr "{0} {1} Placed {2} wall. ({3} ago)"
 
 #: ../../Action.cs:495
 #, csharp-format
 msgid "{0} {1} 放置墙. ({2})"
-msgstr "{0} {1} Placed the wall. ({2})"
+msgstr "{0} {1} Placed the wall. ({2} ago)"
 
 #: ../../Action.cs:487
 #, csharp-format
 msgid "{0} {1} 放置方块 {2}. ({3})"
-msgstr "{0} {1} Placed the block {2}. ({3})"
+msgstr "{0} {1} Placed {2} block. ({3} ago)"
 
 #: ../../Action.cs:494
 #, csharp-format
 msgid "{0} {1} 放置物块 ({2})"
-msgstr "{0} {1} Placed the block ({2})"
+msgstr "{0} {1} Placed the block ({2} ago)"
 
 #: ../../Action.cs:490
 #, csharp-format
 msgid "{0} {1} 放置电线. ({2})"
-msgstr "{0} {1} Placed the wires. ({2})"
+msgstr "{0} {1} Placed the wires. ({2} ago)"
 
 #: ../../Action.cs:493
 #, csharp-format
 msgid "{0} {1} 放置致动器. ({2})"
-msgstr "{0} {1} Placed the actuator. ({2})"
+msgstr "{0} {1} Placed the actuator. ({2} ago)"
 
 #: ../../Action.cs:496
 #, csharp-format
 msgid "{0} {1} 涂漆物块/墙. ({2})"
-msgstr "{0} {1} Painted block/wall. ({2})"
+msgstr "{0} {1} Painted block/wall. ({2} ago)"
 
 #: ../../Action.cs:488
 #, csharp-format
 msgid "{0} {1} 破坏墙 {2}. ({3})"
-msgstr "{0} {1} Destroy the wall {2}. ({3})"
+msgstr "{0} {1} Destroy {2} wall. ({3} ago)"
 
 #: ../../Action.cs:486
 #, csharp-format
 msgid "{0} {1} 破坏方块 {2}. ({3})"
-msgstr "{0} {1} Destroy the block {2}. ({3})"
+msgstr "{0} {1} Destroy {2} block. ({3} ago)"
 
 #: ../../Action.cs:491
 #, csharp-format
 msgid "{0} {1} 破坏电线. ({2})"
-msgstr "{0} {1} Destroy the wire. ({2})"
+msgstr "{0} {1} Destroy wire. ({2} ago)"
 
 #: ../../Action.cs:477
 #, csharp-format
@@ -217,7 +217,7 @@ msgstr "An error occurred. Check the log for more details."
 #: ../../Commands/RollbackCommand.cs:105
 #, csharp-format
 msgid "回溯 {0} 个操作."
-msgstr "Back to {0} a operation."
+msgstr "Back to {0} operations."
 
 #: ../../Commands/HistoryCommand.cs:40
 msgid "图格历史记录 ({0}, {1}):"
@@ -276,10 +276,10 @@ msgstr "Invalid range."
 
 #: ../../History.cs:28
 msgid "记录图格操作."
-msgstr "Record grid operations."
+msgstr "Record tiles history."
 
 #: ../../Commands/RollbackCommand.cs:104
 #, csharp-format
 msgid "重现 {0} 个操作."
-msgstr "Reappear {0} a operation."
+msgstr "Reappear {0} operations."
 
