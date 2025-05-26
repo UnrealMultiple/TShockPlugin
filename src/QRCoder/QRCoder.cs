@@ -19,7 +19,7 @@ public class QRCoder : LazyPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Jonesn，熙恩，Radix.";
     public override string Description => "生成二维码";
-    public override Version Version => new Version(1, 0, 0, 1);
+    public override Version Version => new Version(1, 0, 0, 2);
 
     private readonly Dictionary<int, QRPosition> _playerPositions = new Dictionary<int, QRPosition>();
 
@@ -39,17 +39,22 @@ public class QRCoder : LazyPlugin
             HelpText = GetString("设置二维码位置，用法：/qrpos <tl|bl|tr|br>，tl=左上角，bl=左下角，tr=右上角，br=右下角")
         });
 
+        Commands.ChatCommands.Add(new Command("qr.add", this.SetQRConfig, "qrconf")
+        {
+            HelpText = GetString("设置二维码配置内容，用法：/qrconf <键> <值>")
+        });
+
         GetDataHandlers.TileEdit += this.OnTileEdit;
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
         TShock.RestApi.Register(new SecureRestCommand("/tool/qrcoder", this.QRtest, "tool.rest.qrcoder"));
     }
-
     protected override void Dispose(bool Disposing)
     {
         if (Disposing)
         {
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.QREncoder);
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.SetQRPosition);
+            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.SetQRConfig);
             AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
             GetDataHandlers.TileEdit -= this.OnTileEdit;
             ((List<RestCommand>) typeof(Rest)
@@ -59,6 +64,7 @@ public class QRCoder : LazyPlugin
         }
         base.Dispose(Disposing);
     }
+
     private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
     {
         var resourceName =
@@ -183,13 +189,33 @@ public class QRCoder : LazyPlugin
         // 生成二维码
         this.GenerateQRCode(player, content, position, size);
     }
+    public Ecc eccLevel = Ecc.Low;
+    public void QRErrorCorrectionLevel()
+    {
+        if(Config.Instance.QRLevel == 1)
+        {
+            this.eccLevel = Ecc.Low;
+        }
+        else if(Config.Instance.QRLevel == 2)
+        {
+            this.eccLevel = Ecc.Medium;
+        }
+        else if(Config.Instance.QRLevel == 3)
+        {
+            this.eccLevel = Ecc.Quartile;
+        }
+        else if(Config.Instance.QRLevel == 4)
+        {
+            this.eccLevel = Ecc.High;
+        }
+    }
 
     private void GenerateQRCode(TSPlayer player, string content, QRPosition position, int size)
     {
         var list = QrSegment.MakeSegments(content);
         var qrCode = size > 0
-            ? QrCode.EncodeSegments(list, Ecc.Low, size, size, -1, false)
-            : QrCode.EncodeSegments(list, Ecc.Low, 1, 40, -1, false);
+            ? QrCode.EncodeSegments(list, this.eccLevel, size, size, -1, false)
+            : QrCode.EncodeSegments(list, this.eccLevel, 1, 40, -1, false);
 
         // 根据选择的位置类型计算起始坐标
         int startX, startY;
@@ -279,5 +305,70 @@ public class QRCoder : LazyPlugin
         public int Y { get; set; } = -1;
         public string PositionType { get; set; } = "tl"; // 默认左上角
         public bool WaitingForSelection { get; set; } = false;
+    }
+    private void SetQRConfig(CommandArgs args)
+    {
+        if (args.Parameters.Count < 2)
+        {
+            args.Player.SendErrorMessage(GetString("用法：/qrconf <键> <值>"));
+            return;
+        }
+
+        var key = args.Parameters[0];
+        var value = args.Parameters[1];
+
+        try
+        {
+            switch (key)
+            {
+                case "BaseWall":
+                case "bw":
+                case "底墙":
+                    Config.Instance.BaseWall = Convert.ToInt32(value);
+                    break;
+                case "BaseColor":
+                case "bc":
+                case "底墙颜色":
+                    Config.Instance.BaseColor = Convert.ToInt32(value);
+                    break;
+                case "CodeWall":
+                case "cw":
+                case "码墙":
+                    Config.Instance.CodeWall = Convert.ToInt32(value);
+                    break;
+                case "CodeColor":
+                case "cc":
+                case "码墙颜色":
+                    Config.Instance.CodeColor = Convert.ToInt32(value);
+                    break;
+                case "IlluminantCoating":
+                case "ic":
+                case "夜明涂料":
+                    Config.Instance.isGlowPaintApplied = Convert.ToBoolean(value);
+                    break;
+                case "QRErrorCorrectionLevel":
+                case "qrlevel":
+                case "纠错等级":
+                    var level = Convert.ToInt32(value);
+                    if (level < 1 || level > 4)
+                    {
+                        args.Player.SendErrorMessage("纠错等级必须是 1 到 4 之间的整数。");
+                        return;
+                    }
+                    Config.Instance.QRLevel = level;
+                    break;
+                default:
+                    args.Player.SendErrorMessage($"未知的配置项：{key}");
+                    return;
+            }
+
+            Config.Save();
+
+            args.Player.SendSuccessMessage(GetString($"已设置二维码配置：{key}={value}"));
+        }
+        catch (Exception ex)
+        {
+            args.Player.SendErrorMessage("设置配置时发生错误：" + ex.Message);
+        }
     }
 }
