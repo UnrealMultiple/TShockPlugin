@@ -65,4 +65,4 @@ public class BaseCommand
     }
 }
 
-public record SubCommandExtra(MethodInfo Method, SubCommandAttribute SubCommand, OnlyPlayerAttribute? OnlyPlayer, CommandPermissionAttribute? CommandPermission, HelpTextAttribute HelpText);
+public record SubCommandExtra(MethodInfo Method, SubCommandAttribute SubCommand, OnlyPlayerAttribute? OnlyPlayer, CommandPermissionAttribute? CommandPermission, HelpTextAttribute? HelpText);
