@@ -11,6 +11,8 @@ internal class DummyPlayer
     public byte PlayerSlot { get; private set; }
     public string CurRelease = "Terraria279";
 
+    private readonly string UUID;
+
     private readonly SyncPlayer PlayerInfo;
     public bool IsPlaying { get; private set; }
 
@@ -18,7 +20,7 @@ internal class DummyPlayer
     public event Action<DummyPlayer, string>? OnMessage;
     public Func<bool> shouldExit = () => false;
 
-    private readonly Dictionary<Type, Action<Packet>> handlers = new();
+    private readonly Dictionary<Type, Action<Packet>> handlers = [];
 
     private readonly TrClient client;
 
@@ -28,9 +30,10 @@ internal class DummyPlayer
 
     private Timer _timer = null!;
 
-    public DummyPlayer(SyncPlayer playerInfo)
+    public DummyPlayer(SyncPlayer playerInfo, string uuid)
     {
         this.PlayerInfo = playerInfo;
+        this.UUID = uuid;
         this.client = new TrClient();
         this.InternalOn();
     }
@@ -75,8 +78,9 @@ internal class DummyPlayer
         });
     }
 
-    public void SendPlayer()
+    public void SendPlayer(string uuid)
     {
+        this.SendPacket(new ClientUUID() { UUID = uuid });
         this.SendPacket(this.PlayerInfo);
         this.SendPacket(new PlayerHealth { StatLifeMax = 100, StatLife = 100 });
         for (byte i = 0; i < 73; ++i)
@@ -123,7 +127,7 @@ internal class DummyPlayer
         this.On<LoadPlayer>(player =>
         {
             this.PlayerSlot = player.PlayerSlot;
-            this.SendPlayer();
+            this.SendPlayer(this.UUID);
             this.SendPacket(new RequestWorldInfo());
         });
         this.On<WorldData>(i =>
