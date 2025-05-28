@@ -971,7 +971,7 @@
   },
   {
     "Name": "Dummy",
-    "Version": "1.0.0.2",
+    "Version": "1.0.0.3",
     "Author": "少司命",
     "Description": {
       "en-US": "Place dummies in your server!",
@@ -2199,7 +2199,7 @@
   },
   {
     "Name": "RolesModifying",
-    "Version": "1.0.6",
+    "Version": "1.0.7",
     "Author": "少司命",
     "Description": {
       "en-US": "Copy and modify the inventory of other players",
@@ -2239,7 +2239,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.8.8",
+    "Version": "1.1.8.9",
     "Author": "少司命",
     "Description": {
       "en-US": "Server Utility",
