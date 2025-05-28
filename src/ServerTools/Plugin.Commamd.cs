@@ -134,6 +134,11 @@ public partial class Plugin
 
     private void Ghost(CommandArgs args)
     {
+        if (!args.Player.RealPlayer)
+        {
+            args.Player.SendErrorMessage(GetString("你必须在游戏中使用此命令!"));
+            return;
+        }
         args.Player.TPlayer.ghost = !args.Player.TPlayer.ghost;
         args.Player.SendData(PacketTypes.PlayerInfo, "", args.Player.Index);
         args.Player.SendData(PacketTypes.PlayerUpdate, "", args.Player.Index);
@@ -141,11 +146,21 @@ public partial class Plugin
 
     private void SelfKill(CommandArgs args)
     {
+        if (!args.Player.RealPlayer)
+        {
+            args.Player.SendErrorMessage(GetString("你必须在游戏中使用此命令!"));
+            return;
+        }
         args.Player.KillPlayer();
     }
 
     private void SelfKick(CommandArgs args)
     {
+        if (!args.Player.RealPlayer)
+        {
+            args.Player.SendErrorMessage(GetString("你必须在游戏中使用此命令!"));
+            return;
+        }
         args.Player.Disconnect(GetString("你要求被踢出！"));
     }
 

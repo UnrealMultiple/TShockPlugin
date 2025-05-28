@@ -1,11 +1,12 @@
-﻿using EconomicsAPI.Configured;
+﻿using Economics.Core.ConfigFiles;
 using Newtonsoft.Json;
 using TShockAPI;
 
 namespace Economics.Regain;
 
-public class Config
+public class Config : JsonConfigBase<Config>
 {
+    protected override string Filename => "Regain.json";
     public class RegainInfo
     {
         [JsonProperty("物品ID")]

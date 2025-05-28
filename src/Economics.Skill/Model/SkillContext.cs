@@ -1,7 +1,7 @@
 ﻿using Economics.Skill.JSInterpreter;
 using Economics.Skill.Model.Loop;
 using Economics.Skill.Model.Options;
-using EconomicsAPI.Configured;
+using Economics.Core.ConfigFiles;
 using Newtonsoft.Json;
 using TShockAPI;
 
@@ -46,18 +46,15 @@ public class SkillContext
     public string? ExecuteScript
     {
         get => this.JsScript?.FilePathOrUri;
-        set => this.JsScript = this.Set(value!);
+        set => this.JsScript = Set(value!);
     }
 
     [JsonIgnore]
     public JsScript? JsScript { get; set; }
 
-    public JsScript? Set(string path)
+    public static JsScript? Set(string path)
     {
-        var jistScript = new JsScript
-        {
-            FilePathOrUri = path
-        };
+        var jistScript = new JsScript(path);
         try
         {
             jistScript.Script = File.ReadAllText(Path.Combine(Interpreter.ScriptsDir, jistScript.FilePathOrUri));
@@ -70,7 +67,4 @@ public class SkillContext
         ScriptContainer.PreprocessRequires(jistScript);
         return jistScript;
     }
-
-    
-
 }

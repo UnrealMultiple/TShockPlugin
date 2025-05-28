@@ -25,6 +25,8 @@ public class DummyInfo
     [LocalizedPropertyName(CultureType.English, "LoginPassword")]
     public string Password { get; set; } = string.Empty;
 
+    public string UUID { get; set; } = Guid.NewGuid().ToString();
+
     [LocalizedPropertyName(CultureType.Chinese, "皮肤")]
     [LocalizedPropertyName(CultureType.English, "SkinVariant")]
     public byte SkinVariant { get; set; }

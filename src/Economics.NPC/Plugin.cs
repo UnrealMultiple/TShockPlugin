@@ -1,5 +1,5 @@
-﻿using EconomicsAPI.Configured;
-using EconomicsAPI.Extensions;
+﻿using Economics.Core.ConfigFiles;
+using Economics.Core.Extensions;
 using Microsoft.Xna.Framework;
 using System.Reflection;
 using Terraria;
@@ -16,11 +16,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => GetString("修改NPC掉落货币!");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 3);
-
-    internal static string PATH = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "NPC.json");
-
-    private static Config Config = new();
+    public override Version Version => new Version(2, 0, 0, 4);
 
     public Plugin(Main game) : base(game)
     {
@@ -28,40 +24,30 @@ public class Plugin : TerrariaPlugin
 
     public override void Initialize()
     {
-        this.LoadConfig();
-        EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc += this.OnPlayerKillNpc;
-        GeneralHooks.ReloadEvent += this.LoadConfig;
+        Config.Load();
+        Core.Events.PlayerHandler.OnPlayerKillNpc += this.OnPlayerKillNpc;
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
-            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
-            EconomicsAPI.Events.PlayerHandler.OnPlayerKillNpc -= this.OnPlayerKillNpc;
-            GeneralHooks.ReloadEvent -= this.LoadConfig;
+            Core.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            Core.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            Core.Events.PlayerHandler.OnPlayerKillNpc -= this.OnPlayerKillNpc;
+            Config.UnLoad();
         }
         base.Dispose(disposing);
     }
 
-    private void LoadConfig(ReloadEventArgs? args = null)
-    {
-        if (!File.Exists(PATH))
-        {
-            Config.NPCS.Add(new());
-        }
-        Config = ConfigHelper.LoadConfig(PATH, Config);
-    }
-
-    private void OnPlayerKillNpc(EconomicsAPI.EventArgs.PlayerEventArgs.PlayerKillNpcArgs args)
+    private void OnPlayerKillNpc(Core.EventArgs.PlayerEventArgs.PlayerKillNpcArgs args)
     {
         if (args.Npc == null || args.Player == null)
         {
             return;
         }
 
-        if (Config.AllocationRatio.TryGetValue(args.Npc.netID, out var ra) && ra != null)
+        if (Config.Instance.AllocationRatio.TryGetValue(args.Npc.netID, out var ra) && ra != null)
         {
             if (!args.Player.InProgress(ra.Progress))
             {
@@ -69,12 +55,12 @@ public class Plugin : TerrariaPlugin
             }
 
             double rw = args.Damage / args.Npc.lifeMax;
-            foreach (var option in EconomicsAPI.Economics.Setting.CustomizeCurrencys)
+            foreach (var option in Core.ConfigFiles.Setting.Instance.CustomizeCurrencys)
             {
-                if (option.CurrencyObtain.CurrencyObtainType == EconomicsAPI.Enumerates.CurrencyObtainType.KillNpc)
+                if (option.CurrencyObtain.CurrencyObtainType == Core.Enumerates.CurrencyObtainType.KillNpc)
                 {
                     var Curr = Convert.ToInt64(rw * ra.AllocationRatio);
-                    EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr, option.Name);
+                    Core.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr, option.Name);
                     args.Player.SendCombatMsg($"+{Curr}$", new Color(option.CombatMsgOption.Color[0], option.CombatMsgOption.Color[1], option.CombatMsgOption.Color[2]));
                 }
             }
@@ -82,7 +68,7 @@ public class Plugin : TerrariaPlugin
             return;
         }
 
-        var cfg = Config.NPCS.Find(f => f.ID == args.Npc.netID);
+        var cfg = Config.Instance.NPCS.Find(f => f.ID == args.Npc.netID);
         if (cfg != null)
         {
             if (cfg.DynamicPartition)
@@ -91,10 +77,10 @@ public class Plugin : TerrariaPlugin
                 foreach (var option in cfg.ExtraReward)
                 {
                     var Curr = Convert.ToInt64(Math.Round(rw * option.Number));
-                    EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr, option.CurrencyType);
-                    if (Config.Prompt)
+                    Core.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr, option.CurrencyType);
+                    if (Config.Instance.Prompt)
                     {
-                        args.Player.SendInfoMessage(Config.PromptText, args.Npc.GetFullNetName(), option.CurrencyType, Curr);
+                        args.Player.SendInfoMessage(Config.Instance.PromptText, args.Npc.GetFullNetName(), option.CurrencyType, Curr);
                     }
                 }
             }
@@ -102,10 +88,10 @@ public class Plugin : TerrariaPlugin
             {
                 foreach (var option in cfg.ExtraReward)
                 {
-                    EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, option);
-                    if (Config.Prompt)
+                    Core.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, option);
+                    if (Config.Instance.Prompt)
                     {
-                        args.Player.SendInfoMessage(Config.PromptText, args.Npc.GetFullNetName(), option.CurrencyType, option.Number);
+                        args.Player.SendInfoMessage(Config.Instance.PromptText, args.Npc.GetFullNetName(), option.CurrencyType, option.Number);
                     }
                 }
 
