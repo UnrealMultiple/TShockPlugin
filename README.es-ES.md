@@ -112,16 +112,16 @@
 | [Dummy](./src/Dummy/README.md) | 0.0% | Servidor de Pruebas (Ficticio) Para TEST | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 0.0% | Volcar las ID de Terraria |  |
 | [DwTP](./src/DwTP/README.md) | 0.0% | Teletransportación por posicionamiento |  |
-| [Economics.Deal](./src/Economics.Deal/README.md) | 0.0% | Plugin de comercio | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [Economics.NPC](./src/Economics.NPC/README.md) | 0.0% | Recompensas personalizadas de monstruos | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [Economics.Projectile](./src/Economics.Projectile/README.md) | 0.0% | Proyectiles personalizados | [EconomicsAPI](./src/EconomicsAPI/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Regain](./src/Economics.Regain/README.md) | 0.0% | Reciclaje de objetos | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [Economics.RPG](./src/Economics.RPG/README.md) | 0.0% | Plugin RPG | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [Economics.Shop](./src/Economics.Shop/README.md) | 0.0% | Plugin de tienda | [EconomicsAPI](./src/EconomicsAPI/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Skill](./src/Economics.Skill/README.md) | 0.0% | Plugin de habilidades | [EconomicsAPI](./src/EconomicsAPI/README.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Task](./src/Economics.Task/README.md) | 0.0% | Plugin de tareas | [EconomicsAPI](./src/EconomicsAPI/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 0.0% | Mejora de armas | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [EconomicsAPI](./src/EconomicsAPI/README.md) | 0.0% | Plugin económico |  |
+| [Economics.Core](./src/Economics.Core/README.md) | 0.0% | Plugin económico |  |
+| [Economics.Deal](./src/Economics.Deal/README.md) | 0.0% | Plugin de comercio | [EconomicsAPI]() |
+| [Economics.NPC](./src/Economics.NPC/README.md) | 0.0% | Recompensas personalizadas de monstruos | [EconomicsAPI]() |
+| [Economics.Projectile](./src/Economics.Projectile/README.md) | 0.0% | Proyectiles personalizados | [EconomicsAPI]() [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Regain](./src/Economics.Regain/README.md) | 0.0% | Reciclaje de objetos | [EconomicsAPI]() |
+| [Economics.RPG](./src/Economics.RPG/README.md) | 0.0% | Plugin RPG | [EconomicsAPI]() |
+| [Economics.Shop](./src/Economics.Shop/README.md) | 0.0% | Plugin de tienda | [EconomicsAPI]() [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Skill](./src/Economics.Skill/README.md) | 0.0% | Plugin de habilidades | [EconomicsAPI]() [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Task](./src/Economics.Task/README.md) | 0.0% | Plugin de tareas | [EconomicsAPI]() [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 0.0% | Mejora de armas | [EconomicsAPI]() |
 | [EndureBoost](./src/EndureBoost/README.md) | 0.0% | Otorga un buff específico cuando el jugador tiene una cantidad determinada de objetos |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.es-ES.md) | 99.2% | Comandos de gestión adicionales | [LazyAPI](./src/LazyAPI/README.md) |
 | [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos | [LazyAPI](./src/LazyAPI/README.md) |

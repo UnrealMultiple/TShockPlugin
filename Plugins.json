@@ -474,7 +474,7 @@
   },
   {
     "Name": "CaiBotLitePlugin",
-    "Version": "2025.5.18.2",
+    "Version": "2025.5.24.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot官方机器人的适配插件",
@@ -1033,8 +1033,28 @@
     "HotReload": true
   },
   {
+    "Name": "Economics.Core",
+    "Version": "2.0.0.8",
+    "Author": "少司命",
+    "Description": {
+      "en-US": "Provides economic system API",
+      "de-DE": "提供经济系统API",
+      "it-IT": "提供经济系统API",
+      "fr-FR": "提供经济系统API",
+      "es-ES": "提供经济系统API",
+      "ru-RU": "提供经济系统API",
+      "zh-CN": "提供经济系统API",
+      "pt-BR": "提供经济系统API",
+      "pl-PL": "提供经济系统API"
+    },
+    "AssemblyName": "Economics.Core",
+    "Path": "Economics.Core.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "Economics.Deal",
-    "Version": "2.0.0.4",
+    "Version": "2.0.0.5",
     "Author": "少司命",
     "Description": {
       "en-US": "Players can trade",
@@ -1050,13 +1070,13 @@
     "AssemblyName": "Economics.Deal",
     "Path": "Economics.Deal.dll",
     "Dependencies": [
-      "EconomicsAPI"
+      "Economics.Core"
     ],
     "HotReload": true
   },
   {
     "Name": "Economics.NPC",
-    "Version": "2.0.0.3",
+    "Version": "2.0.0.4",
     "Author": "少司命",
     "Description": {
       "en-US": "Modify the currency dropped by NPC!",
@@ -1072,13 +1092,13 @@
     "AssemblyName": "Economics.NPC",
     "Path": "Economics.NPC.dll",
     "Dependencies": [
-      "EconomicsAPI"
+      "Economics.Core"
     ],
     "HotReload": true
   },
   {
     "Name": "Economics.Regain",
-    "Version": "2.0.0.3",
+    "Version": "2.0.0.4",
     "Author": "少司命",
     "Description": {
       "en-US": "Recycle player items!",
@@ -1094,13 +1114,13 @@
     "AssemblyName": "Economics.Regain",
     "Path": "Economics.Regain.dll",
     "Dependencies": [
-      "EconomicsAPI"
+      "Economics.Core"
     ],
     "HotReload": true
   },
   {
     "Name": "Economics.RPG",
-    "Version": "2.0.0.5",
+    "Version": "2.0.0.6",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides RPG gameplay!",
@@ -1116,13 +1136,13 @@
     "AssemblyName": "Economics.RPG",
     "Path": "Economics.RPG.dll",
     "Dependencies": [
-      "EconomicsAPI"
+      "Economics.Core"
     ],
     "HotReload": true
   },
   {
     "Name": "Economics.Shop",
-    "Version": "2.0.0.3",
+    "Version": "2.0.0.4",
     "Author": "少司命",
     "Description": {
       "en-US": "Economy shop!",
@@ -1138,14 +1158,14 @@
     "AssemblyName": "Economics.Shop",
     "Path": "Economics.Shop.dll",
     "Dependencies": [
-      "EconomicsAPI",
+      "Economics.Core",
       "Economics.RPG"
     ],
     "HotReload": true
   },
   {
     "Name": "Economics.Skill",
-    "Version": "2.0.1.4",
+    "Version": "2.0.1.5",
     "Author": "少司命",
     "Description": {
       "en-US": "Let players have skills!",
@@ -1161,7 +1181,7 @@
     "AssemblyName": "Economics.Skill",
     "Path": "Economics.Skill.dll",
     "Dependencies": [
-      "EconomicsAPI",
+      "Economics.Core",
       "Jint",
       "Economics.RPG"
     ],
@@ -1169,7 +1189,7 @@
   },
   {
     "Name": "Economics.Task",
-    "Version": "2.0.0.4",
+    "Version": "2.0.0.5",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides task system!",
@@ -1185,14 +1205,14 @@
     "AssemblyName": "Economics.Task",
     "Path": "Economics.Task.dll",
     "Dependencies": [
-      "EconomicsAPI",
+      "Economics.Core",
       "Economics.RPG"
     ],
     "HotReload": true
   },
   {
     "Name": "Economics.WeaponPlus",
-    "Version": "2.0.0.6",
+    "Version": "2.0.0.7",
     "Author": "z枳 少司命",
     "Description": {
       "en-US": "Allow any weapon to be strengthened on basic attributes",
@@ -1208,28 +1228,8 @@
     "AssemblyName": "Economics.WeaponPlus",
     "Path": "Economics.WeaponPlus.dll",
     "Dependencies": [
-      "EconomicsAPI"
+      "Economics.Core"
     ],
-    "HotReload": true
-  },
-  {
-    "Name": "EconomicsAPI",
-    "Version": "2.0.0.7",
-    "Author": "少司命",
-    "Description": {
-      "en-US": "Provides economic system API",
-      "de-DE": "提供经济系统API",
-      "it-IT": "提供经济系统API",
-      "fr-FR": "提供经济系统API",
-      "es-ES": "提供经济系统API",
-      "ru-RU": "提供经济系统API",
-      "zh-CN": "提供经济系统API",
-      "pt-BR": "提供经济系统API",
-      "pl-PL": "提供经济系统API"
-    },
-    "AssemblyName": "EconomicsAPI",
-    "Path": "EconomicsAPI.dll",
-    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -2834,7 +2834,7 @@
   },
   {
     "Name": "Economics.Projectile",
-    "Version": "1.0.0.8",
+    "Version": "1.0.0.9",
     "Author": "少司命",
     "Description": {
       "en-US": "Enhanced weapon projectile!",
@@ -2850,7 +2850,7 @@
     "AssemblyName": "Economics.Projectile",
     "Path": "Economics.Projectile.dll",
     "Dependencies": [
-      "EconomicsAPI",
+      "Economics.Core",
       "Economics.RPG"
     ],
     "HotReload": true
