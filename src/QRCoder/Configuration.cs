@@ -27,4 +27,8 @@ internal class Config : JsonConfigBase<Config>
     [LocalizedPropertyName(CultureType.Chinese, "是否刷夜明漆")]
     [LocalizedPropertyName(CultureType.English, "IlluminantCoating")]
     public bool isGlowPaintApplied = true;
+
+    [LocalizedPropertyName(CultureType.Chinese, "二维码的纠错等级(1-4)")]
+    [LocalizedPropertyName(CultureType.English, "QRErrorCorrectionLevel(1-4)")]
+    public int QRLevel = 1;
 }
