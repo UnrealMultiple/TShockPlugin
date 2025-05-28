@@ -77,7 +77,8 @@ public class Plugin : TerrariaPlugin
 
     // 创建一个 Detour 对象，用于拦截 Chest.PutItemInNearbyChest 方法，并替换为自定义逻辑。
     private readonly ICoreDetour _detour = DetourFactory.Current.CreateDetour(
-        typeof(Chest).GetMethod(nameof(PutItemInNearbyChest)),
+        typeof(Chest).GetMethod(nameof(PutItemInNearbyChest))
+            ?? throw new InvalidOperationException($"找不到方法 {nameof(PutItemInNearbyChest)}"),
         new Func<Item, Vector2, int, Item>(PutItemInNearbyChest).Method,
         applyByDefault: false
     );
