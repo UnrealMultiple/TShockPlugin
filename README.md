@@ -62,6 +62,7 @@
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 广播盒功能强化 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.md) | 自动垃圾桶插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 自动广播 | [LazyAPI](./src/LazyAPI/README.md) |
+| [AutoClassificationQuickStack](./src/AutoClassificationQuickStack/README.md) | 便捷分类箱子 |  |
 | [AutoClear](./src/AutoClear/README.md) | 智能自动扫地 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoFish](./src/AutoFish/README.md) | 自动钓鱼 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoPluginManager](./src/AutoPluginManager/README.md) | 一键自动更新插件 |  |
@@ -106,15 +107,15 @@
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 输出 ID |  |
 | [DwTP](./src/DwTP/README.md) | 定位传送 |  |
 | [Economics.Core](./src/Economics.Core/README.md) | 经济插件前置 |  |
-| [Economics.Deal](./src/Economics.Deal/README.md) | 交易插件 | [EconomicsAPI]() |
-| [Economics.NPC](./src/Economics.NPC/README.md) | 自定义怪物奖励 | [EconomicsAPI]() |
-| [Economics.Projectile](./src/Economics.Projectile/README.md) | 自定义弹幕 | [EconomicsAPI]() [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Regain](./src/Economics.Regain/README.md) | 物品回收 | [EconomicsAPI]() |
-| [Economics.RPG](./src/Economics.RPG/README.md) | RPG | [EconomicsAPI]() |
-| [Economics.Shop](./src/Economics.Shop/README.md) | 商店插件 | [EconomicsAPI]() [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Skill](./src/Economics.Skill/README.md) | 技能插件 | [EconomicsAPI]() [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Task](./src/Economics.Task/README.md) | 任务插件 | [EconomicsAPI]() [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 强化武器 | [EconomicsAPI]() |
+| [Economics.Deal](./src/Economics.Deal/README.md) | 交易插件 | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.NPC](./src/Economics.NPC/README.md) | 自定义怪物奖励 | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.Projectile](./src/Economics.Projectile/README.md) | 自定义弹幕 | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Regain](./src/Economics.Regain/README.md) | 物品回收 | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.RPG](./src/Economics.RPG/README.md) | RPG | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.Shop](./src/Economics.Shop/README.md) | 商店插件 | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Skill](./src/Economics.Skill/README.md) | 技能插件 | [Economics.Core](./src/Economics.Core/README.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Task](./src/Economics.Task/README.md) | 任务插件 | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 强化武器 | [Economics.Core](./src/Economics.Core/README.md) |
 | [EndureBoost](./src/EndureBoost/README.md) | 拥有指定数量物品给指定buff |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.md) | 更多管理指令 | [LazyAPI](./src/LazyAPI/README.md) |
 | [Ezperm](./src/Ezperm/README.md) | 批量改权限 | [LazyAPI](./src/LazyAPI/README.md) |

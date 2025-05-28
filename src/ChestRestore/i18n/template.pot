@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ChestRestore\n"
-"POT-Creation-Date: 2025-01-08 18:22:55+0000\n"
-"PO-Revision-Date: 2025-01-08 18:22:55+0000\n"
+"POT-Creation-Date: 2025-05-28 13:42:55+0000\n"
+"PO-Revision-Date: 2025-05-28 13:42:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,12 +10,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../MainPlugin.cs:63
-#: ../../MainPlugin.cs:68
+#: ../../MainPlugin.cs:71
+#: ../../MainPlugin.cs:76
 msgid "你已进入箱子修改模式。"
 msgstr ""
 
-#: ../../MainPlugin.cs:63
+#: ../../MainPlugin.cs:71
 msgid "你已退出箱子修改模式。"
 msgstr ""
 

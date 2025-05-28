@@ -69,6 +69,7 @@
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 0.0% | Mejora la funcionalidad de la caja de anuncios | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.md) | 0.0% | Botes de basura automáticos | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 0.0% | Transmisión automática | [LazyAPI](./src/LazyAPI/README.md) |
+| [AutoClassificationQuickStack](./src/AutoClassificationQuickStack/README.md) | 0.0% | Clasificación Automática Quick Stack |  |
 | [AutoClear](./src/AutoClear/README.md) | 0.0% | Limpieza automática inteligente | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoFish](./src/AutoFish/README.md) | 0.0% | Pesca automática | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoPluginManager](./src/AutoPluginManager/README.es-ES.md) | 69.1% | Actualice los complementos automáticamente con una sola tecla |  |
@@ -113,15 +114,15 @@
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 0.0% | Volcar las ID de Terraria |  |
 | [DwTP](./src/DwTP/README.md) | 0.0% | Teletransportación por posicionamiento |  |
 | [Economics.Core](./src/Economics.Core/README.md) | 0.0% | Plugin económico |  |
-| [Economics.Deal](./src/Economics.Deal/README.md) | 0.0% | Plugin de comercio | [EconomicsAPI]() |
-| [Economics.NPC](./src/Economics.NPC/README.md) | 0.0% | Recompensas personalizadas de monstruos | [EconomicsAPI]() |
-| [Economics.Projectile](./src/Economics.Projectile/README.md) | 0.0% | Proyectiles personalizados | [EconomicsAPI]() [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Regain](./src/Economics.Regain/README.md) | 0.0% | Reciclaje de objetos | [EconomicsAPI]() |
-| [Economics.RPG](./src/Economics.RPG/README.md) | 0.0% | Plugin RPG | [EconomicsAPI]() |
-| [Economics.Shop](./src/Economics.Shop/README.md) | 0.0% | Plugin de tienda | [EconomicsAPI]() [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Skill](./src/Economics.Skill/README.md) | 0.0% | Plugin de habilidades | [EconomicsAPI]() [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Task](./src/Economics.Task/README.md) | 0.0% | Plugin de tareas | [EconomicsAPI]() [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 0.0% | Mejora de armas | [EconomicsAPI]() |
+| [Economics.Deal](./src/Economics.Deal/README.md) | 0.0% | Plugin de comercio | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.NPC](./src/Economics.NPC/README.md) | 0.0% | Recompensas personalizadas de monstruos | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.Projectile](./src/Economics.Projectile/README.md) | 0.0% | Proyectiles personalizados | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Regain](./src/Economics.Regain/README.md) | 0.0% | Reciclaje de objetos | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.RPG](./src/Economics.RPG/README.md) | 0.0% | Plugin RPG | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.Shop](./src/Economics.Shop/README.md) | 0.0% | Plugin de tienda | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Skill](./src/Economics.Skill/README.md) | 0.0% | Plugin de habilidades | [Economics.Core](./src/Economics.Core/README.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Task](./src/Economics.Task/README.md) | 0.0% | Plugin de tareas | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 0.0% | Mejora de armas | [Economics.Core](./src/Economics.Core/README.md) |
 | [EndureBoost](./src/EndureBoost/README.md) | 0.0% | Otorga un buff específico cuando el jugador tiene una cantidad determinada de objetos |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.es-ES.md) | 99.2% | Comandos de gestión adicionales | [LazyAPI](./src/LazyAPI/README.md) |
 | [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos | [LazyAPI](./src/LazyAPI/README.md) |
