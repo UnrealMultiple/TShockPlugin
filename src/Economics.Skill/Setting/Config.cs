@@ -1,11 +1,14 @@
-﻿using Economics.Skill.Model;
+﻿using Economics.Core.ConfigFiles;
+using Economics.Skill.Model;
 using Newtonsoft.Json;
 
 
 namespace Economics.Skill.Setting;
 
-public class Config
+public class Config : JsonConfigBase<Config>
 {
+    protected override string Filename => "Skill.json";
+
     [JsonProperty("绑定技能最大数量")]
     public int SkillMaxCount { get; set; }
 
@@ -23,6 +26,21 @@ public class Config
 
     [JsonProperty("技能列表")]
     public List<SkillContext> SkillContexts { get; set; } = new();
+
+    protected override void SetDefault()
+    {
+        this.SkillContexts = new()
+        {
+            new SkillContext()
+            {
+                LoopEvent = new()
+                {
+                    ProjectileLoops = []
+
+                }
+            }
+        };
+    }
 
     public SkillContext? GetSkill(int index)
     {

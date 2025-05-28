@@ -4,14 +4,6 @@ namespace Economics.Skill.JSInterpreter;
 
 public class ScriptContainer
 {
-    public static void PreprocessScript(JsScript script)
-    {
-        if (script != null && !string.IsNullOrEmpty(script.Script))
-        {
-            PreprocessRequires(script);
-        }
-    }
-
     public static void PreprocessRequires(JsScript script)
     {
         if (script == null || string.IsNullOrEmpty(script.Script) || !PreprocessorDirectives.requiresRegex.IsMatch(script.Script))

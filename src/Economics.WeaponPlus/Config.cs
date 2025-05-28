@@ -7,7 +7,7 @@ namespace TerrariaMap;
 public class Config
 {
     [JsonIgnore]
-    public static readonly string configPath = Path.Combine(EconomicsAPI.Economics.SaveDirPath, "WeaponPlus.json");
+    public static readonly string configPath = Path.Combine(Economics.Core.Economics.SaveDirPath, "WeaponPlus.json");
 
     [JsonProperty("启用英文", Order = -6)]
     public bool EnableEnglish = false;

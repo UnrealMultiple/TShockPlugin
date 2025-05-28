@@ -1,5 +1,5 @@
 ﻿using Economics.Task.Model;
-using EconomicsAPI.Extensions;
+using Economics.Core.Extensions;
 using Terraria;
 using TShockAPI;
 
@@ -10,7 +10,7 @@ public class UserTaskData
     private static readonly Dictionary<string, TaskContent> UserTask = new();
     public static bool Add(string Name, int TaskId)
     {
-        var task = Plugin.TaskConfig.GetTask(TaskId);
+        var task = Config.Instance.GetTask(TaskId);
         if (task == null)
         {
             return false;
@@ -40,7 +40,7 @@ public class UserTaskData
         return UserTask.ContainsKey(Name);
     }
 
-    public static Dictionary<int, Item> GetTaskFishingItem(TSPlayer player, List<EconomicsAPI.Model.Item> items)
+    public static Dictionary<int, Item> GetTaskFishingItem(TSPlayer player, List<Core.Model.Item> items)
     {
         var res = new Dictionary<int, Item>();
         foreach (var item in items)

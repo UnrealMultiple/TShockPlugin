@@ -1,4 +1,4 @@
-﻿using EconomicsAPI.Model;
+﻿using Economics.Core.Model;
 using Newtonsoft.Json;
 
 namespace Economics.Shop.Model;

@@ -1,16 +1,18 @@
-﻿using EconomicsAPI.Configured;
+﻿using Economics.Core.ConfigFiles;
 using Newtonsoft.Json;
 using TShockAPI;
 
 namespace Economics.Deal;
 
-public class Config
+public class Config : JsonConfigBase<Config>
 {
+    protected override string Filename => "Deal.json";
+
     [JsonProperty("最大显示页")]
     public int PageMax { get; set; } = 10;
 
     [JsonProperty("交易列表")]
-    public List<DealContext> DealContexts { get; set; } = new();
+    public List<DealContext> DealContexts { get; set; } = [];
 
     public void PushItem(TSPlayer player, long Cost, string type)
     {
@@ -26,13 +28,13 @@ public class Config
             }
         };
         this.DealContexts.Add(DealContext);
-        ConfigHelper.Write(Deal.PATH, this);
+        Save();
     }
 
     public void RemoveItem(int index)
     {
         this.DealContexts.RemoveAt(index);
-        ConfigHelper.Write(Deal.PATH, this);
+        Save();
     }
 
     public DealContext? GetDealContext(int index)

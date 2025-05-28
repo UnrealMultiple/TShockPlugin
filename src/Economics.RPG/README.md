@@ -13,7 +13,7 @@
 | 语法           |         权限          |  说明  |
 |--------------|:-------------------:|:----:|
 | /rank [职业名]  | economics.rpg.rank  |  升级  |
-| /重置等级        | economics.rpg.reset | 重置职业 |
+| /resetrank 或 /重置等级        | economics.rpg.reset | 重置职业 |
 | /level reset | economics.rpg.admin |  重置  |
 
 ## 进度限制

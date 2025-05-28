@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{C3AAED6E
 		template.targets = template.targets
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EconomicsAPI", "src\EconomicsAPI\EconomicsAPI.csproj", "{CB210D18-3DA3-46EC-9E49-72296871E2DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.Core", "src\Economics.Core\Economics.Core.csproj", "{CB210D18-3DA3-46EC-9E49-72296871E2DD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Economics.RPG", "src\Economics.RPG\Economics.RPG.csproj", "{F183C64E-9FC4-4938-8962-74A58B1E9232}"
 EndProject

@@ -1,5 +1,6 @@
-﻿using Economics.Skill.Attributes;
-using Economics.Skill.Internal;
+﻿using Economics.Core.Utility;
+using Economics.Core.Utils;
+using Economics.Skill.Attributes;
 using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
@@ -8,8 +9,8 @@ namespace Economics.Skill.JSInterpreter;
 
 public class JSFunctions
 {
-    [JavaScriptFunction("print")]
-    public static void JSPrint(string message)
+    [JavaScriptFunction("log")]
+    public static void JSPrint(object message)
     {
         Console.WriteLine(message);
     }
@@ -17,7 +18,7 @@ public class JSFunctions
     [JavaScriptFunction("SpawnProjtile")]
     public static int JSProj(TSPlayer ply, Vector2 pos, Vector2 vel, int type, int Damage, int KnockBack, int Owner, float ai0 = 0, float ai1 = 0, float ai2 = 0, int timeLeft = -1, string uuid = "")
     {
-        return EconomicsAPI.Utils.SpawnProjectile.NewProjectile(
+        return SpawnProjectile.NewProjectile(
                            //发射原无期
                            ply.TPlayer.GetProjectileSource_Item(ply.TPlayer.HeldItem),
                            //发射位置
@@ -55,8 +56,8 @@ public class JSFunctions
     }
 
     [JavaScriptFunction("Schedule")]
-    public static void Schedule(Action<object> action, int interval, object obj)
+    public static void Schedule(Action action, int interval)
     {
-        JobjManager.Delayed(interval, action, obj);
+        TimingUtils.Delayed(interval, action);
     }
 }

@@ -1,61 +1,47 @@
 ﻿using Economics.RPG.Setting;
-using EconomicsAPI.Configured;
-using EconomicsAPI.EventArgs.PlayerEventArgs;
-using EconomicsAPI.Events;
+using Economics.Core.ConfigFiles;
+using Economics.Core.EventArgs.PlayerEventArgs;
+using Economics.Core.Events;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
+using Newtonsoft.Json;
 
 namespace Economics.RPG;
 
 [ApiVersion(2, 1)]
-public class RPG : TerrariaPlugin
+public class RPG(Main game) : TerrariaPlugin(game)
 {
     public override string Author => "少司命";
 
     public override string Description => GetString("提供RPG玩法!");
 
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 5);
-
-    public static Config Config { get; set; } = new Config();
+    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(2, 0, 0, 6);
 
     public static PlayerLevelManager PlayerLevelManager { get; private set; } = null!;
 
-    private static string PATH => Path.Combine(EconomicsAPI.Economics.SaveDirPath, "RPG.json");
-
-    public RPG(Main game) : base(game)
-    {
-    }
-
     public override void Initialize()
     {
-        this.LoadConfig();
+        Config.Load();
         PlayerLevelManager = new();
         PlayerHooks.PlayerPermission += this.PlayerHooks_PlayerPermission;
         PlayerHooks.PlayerChat += this.PlayerHooks_PlayerChat;
         PlayerHandler.OnPlayerCountertop += this.OnCounterTop;
-        GeneralHooks.ReloadEvent += this.LoadConfig;
-    }
-
-    private void LoadConfig(ReloadEventArgs? args = null)
-    {
-        Config = ConfigHelper.LoadConfig(PATH, Config);
-        Config.Init();
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            EconomicsAPI.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
-            EconomicsAPI.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
+            Core.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
+            Core.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
             PlayerHooks.PlayerPermission -= this.PlayerHooks_PlayerPermission;
             PlayerHooks.PlayerChat -= this.PlayerHooks_PlayerChat;
             PlayerHandler.OnPlayerCountertop -= this.OnCounterTop;
-            GeneralHooks.ReloadEvent -= this.LoadConfig;
+            Config.UnLoad();
         }
         base.Dispose(disposing);
     }
@@ -91,7 +77,7 @@ public class RPG : TerrariaPlugin
         var level = PlayerLevelManager.GetLevel(e.Player.Name);
         if (!e.Player.HasPermission("economics.rpg.chat") && level != null && !string.IsNullOrEmpty(level.ChatFormat))
         {
-            TShock.Utils.Broadcast(EconomicsAPI.Utils.Helper.GetGradientText(string.Format(level.ChatFormat,
+            TShock.Utils.Broadcast(Core.Utils.Helper.GetGradientText(string.Format(level.ChatFormat,
                 e.Player.Group.Name, //{0} 组名
                 level.Name,          //{1} 职业名
                 level.ChatPrefix,    //{2} 聊天前缀
