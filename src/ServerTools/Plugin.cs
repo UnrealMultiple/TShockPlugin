@@ -448,7 +448,6 @@ public partial class Plugin : LazyPlugin
 
         if (Config.Instance.KeepOpenChest && args.MsgID == PacketTypes.ChestOpen)
         {
-
             using BinaryReader binaryReader5 = new(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length));
             var ChestId = binaryReader5.ReadInt16();
             if (ChestId != -1 && ply.ActiveChest != -1)
