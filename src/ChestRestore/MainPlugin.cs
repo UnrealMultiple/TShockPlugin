@@ -66,9 +66,9 @@ public class MainPlugin(Main game) : TerrariaPlugin(game)
             if (!this.IsPlayerInEditMode(tsplayer) || !tsplayer.HasPermission("chest.name"))
             {
                 using var br = new BinaryReader(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length));
-                var index = br.ReadInt16();
-                var x = br.ReadInt16();
-                var y = br.ReadInt16();
+                _ = br.ReadInt16();
+                _ = br.ReadInt16();
+                _ = br.ReadInt16();
                 var length = br.ReadByte();
                 if (length <= 0)
                 {
