@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-28 03:38:55+0000\n"
-"PO-Revision-Date: 2025-01-29 01:07\n"
+"POT-Creation-Date: 2025-05-28 02:28:52+0000\n"
+"PO-Revision-Date: 2025-05-29 01:20\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,15 @@ msgstr ""
 "X-Crowdin-File-ID: 1560\n"
 "Language: es_ES\n"
 
-#: ../../Plugin.cs:84
+#: ../../Plugin.cs:60
+msgid "你必须在游戏中使用此命令!"
+msgstr ""
+
+#: ../../Plugin.cs:89
 msgid "你没有对玩家的信息进行修改，无需保存！"
 msgstr ""
 
-#: ../../Plugin.cs:80
+#: ../../Plugin.cs:85
 msgid "修改保存成功！"
 msgstr ""
 
@@ -29,18 +33,18 @@ msgstr ""
 msgid "复制然后修改其他玩家的背包"
 msgstr ""
 
-#: ../../Plugin.cs:99
-#: ../../Plugin.cs:117
+#: ../../Plugin.cs:104
+#: ../../Plugin.cs:122
 msgid "正在查看{0}的人物信息，可以对背包进行修改，使用/rm save 进行保存。"
 msgstr ""
 
-#: ../../Plugin.cs:128
+#: ../../Plugin.cs:133
 msgid "用法:\n"
 "/rm <玩家名> - 查看玩家信息\n"
 "/rm save - 保存修改"
 msgstr ""
 
-#: ../../Plugin.cs:121
+#: ../../Plugin.cs:126
 msgid "目标玩家不存在!"
 msgstr ""
 

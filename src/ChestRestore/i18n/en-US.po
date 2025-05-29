@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 18:22:55+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-05-28 13:42:55+0000\n"
+"PO-Revision-Date: 2025-05-29 01:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,12 @@ msgstr ""
 "X-Crowdin-File-ID: 1134\n"
 "Language: en_US\n"
 
-#: ../../MainPlugin.cs:63
-#: ../../MainPlugin.cs:68
+#: ../../MainPlugin.cs:71
+#: ../../MainPlugin.cs:76
 msgid "你已进入箱子修改模式。"
 msgstr "You have entered the chest edit mode."
 
-#: ../../MainPlugin.cs:63
+#: ../../MainPlugin.cs:71
 msgid "你已退出箱子修改模式。"
 msgstr "You have exited the chest edit mode."
 

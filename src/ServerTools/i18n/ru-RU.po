@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-05-14 15:20:18+0000\n"
-"PO-Revision-Date: 2025-05-15 01:16\n"
+"POT-Creation-Date: 2025-05-28 02:28:53+0000\n"
+"PO-Revision-Date: 2025-05-29 01:20\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr ""
 msgid "仅允许软核进入!"
 msgstr ""
 
-#: ../../Plugin.Commamd.cs:194
+#: ../../Plugin.Commamd.cs:209
 msgid "你不能过于频繁的使用此指令!"
 msgstr ""
 
@@ -93,7 +93,13 @@ msgstr ""
 msgid "你将在{0}秒后被踢出!"
 msgstr ""
 
-#: ../../Plugin.Commamd.cs:149
+#: ../../Plugin.Commamd.cs:139
+#: ../../Plugin.Commamd.cs:151
+#: ../../Plugin.Commamd.cs:161
+msgid "你必须在游戏中使用此命令!"
+msgstr ""
+
+#: ../../Plugin.Commamd.cs:164
 msgid "你要求被踢出！"
 msgstr ""
 
@@ -101,7 +107,7 @@ msgstr ""
 msgid "在线排行 ({0}/{1})："
 msgstr ""
 
-#: ../../Plugin.Commamd.cs:189
+#: ../../Plugin.Commamd.cs:204
 msgid "已为你搜索到{0}个花苞，输入/warp list可以查看结果"
 msgstr ""
 
@@ -110,7 +116,7 @@ msgstr ""
 msgid "已为玩家{0}执行命令`{1}`"
 msgstr ""
 
-#: ../../Plugin.Commamd.cs:155
+#: ../../Plugin.Commamd.cs:170
 msgid "已移除所有花苞传送点!"
 msgstr ""
 
@@ -155,9 +161,9 @@ msgstr ""
 msgid "禁止双箱!"
 msgstr ""
 
-#: ../../Plugin.Commamd.cs:154
-#: ../../Plugin.Commamd.cs:180
-#: ../../Plugin.Commamd.cs:184
+#: ../../Plugin.Commamd.cs:169
+#: ../../Plugin.Commamd.cs:195
+#: ../../Plugin.Commamd.cs:199
 msgid "花苞"
 msgstr ""
 

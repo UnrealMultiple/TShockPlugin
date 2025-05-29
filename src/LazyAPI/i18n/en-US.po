@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-10 13:00:32+0000\n"
-"PO-Revision-Date: 2025-01-11 01:09\n"
+"POT-Creation-Date: 2025-05-21 03:27:02+0000\n"
+"PO-Revision-Date: 2025-05-29 01:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1184\n"
 "Language: en_US\n"
 
-#: ../../ConfigFiles/JsonConfigBase.cs:76
+#: ../../ConfigFiles/JsonConfigBase.cs:80
 #, csharp-format
 msgid "[{0}.{1}.json] config reloaded successfully!!!"
 msgstr "[{0}.{1}.json] config reloaded successfully!!!"
