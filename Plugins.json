@@ -685,7 +685,7 @@
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.1.0",
+    "Version": "1.2.0",
     "Author": "Cjx重构 ，肝帝熙恩简单修改",
     "Description": {
       "en-US": "Infinite treasure chest plugin",
@@ -2259,7 +2259,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.8.9",
+    "Version": "1.1.9.0",
     "Author": "少司命",
     "Description": {
       "en-US": "Server Utility",

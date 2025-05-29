@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ServerTools\n"
-"POT-Creation-Date: 2025-05-28 02:28:53+0000\n"
-"PO-Revision-Date: 2025-05-28 02:28:53+0000\n"
+"POT-Creation-Date: 2025-05-29 13:33:20+0000\n"
+"PO-Revision-Date: 2025-05-29 13:33:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr ""
 msgid "{0}清除了{1}范围内{2}个射弹!"
 msgstr ""
 
-#: ../../Plugin.cs:498
+#: ../../Plugin.cs:497
 msgid "仅允许软核进入!"
 msgstr ""
 
@@ -149,8 +149,8 @@ msgstr ""
 msgid "目标玩家不在线无法执行此命令!"
 msgstr ""
 
-#: ../../Plugin.cs:458
-#: ../../Plugin.cs:469
+#: ../../Plugin.cs:457
+#: ../../Plugin.cs:468
 msgid "禁止双箱!"
 msgstr ""
 
@@ -182,7 +182,7 @@ msgstr ""
 msgid "输入 {0}死亡排行 {{0}} 查看更多"
 msgstr ""
 
-#: ../../Plugin.cs:516
+#: ../../Plugin.cs:515
 #, csharp-format
 msgid ""
 "退出服务器时处于死亡状态！\n"
