@@ -1,7 +1,7 @@
 [
   {
     "Name": "CaiPacketDebug",
-    "Version": "2025.5.18.3",
+    "Version": "2025.5.20.1",
     "Author": "Cai",
     "Description": {
       "en-US": "Plugin for debugging data packets~",
@@ -188,6 +188,26 @@
     "Dependencies": [
       "LazyAPI"
     ],
+    "HotReload": true
+  },
+  {
+    "Name": "AutoClassificationQuickStack",
+    "Version": "1.1",
+    "Author": "xuyuwtu",
+    "Description": {
+      "en-US": "快速堆叠时根据配置放入箱子",
+      "de-DE": "快速堆叠时根据配置放入箱子",
+      "it-IT": "快速堆叠时根据配置放入箱子",
+      "fr-FR": "快速堆叠时根据配置放入箱子",
+      "es-ES": "快速堆叠时根据配置放入箱子",
+      "ru-RU": "快速堆叠时根据配置放入箱子",
+      "zh-CN": "快速堆叠时根据配置放入箱子",
+      "pt-BR": "快速堆叠时根据配置放入箱子",
+      "pl-PL": "快速堆叠时根据配置放入箱子"
+    },
+    "AssemblyName": "AutoClassificationQuickStack",
+    "Path": "AutoClassificationQuickStack.dll",
+    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -665,7 +685,7 @@
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.0.10",
+    "Version": "1.1.0",
     "Author": "Cjx重构 ，肝帝熙恩简单修改",
     "Description": {
       "en-US": "Infinite treasure chest plugin",
@@ -1756,7 +1776,7 @@
     "Version": "1.0.7",
     "Author": "羽学 少司命",
     "Description": {
-      "en-US": "拦截指定玩家的数据包",
+      "en-US": "Intercept data packets of the specified player",
       "de-DE": "拦截指定玩家的数据包",
       "it-IT": "拦截指定玩家的数据包",
       "fr-FR": "拦截指定玩家的数据包",
@@ -1979,7 +1999,7 @@
   },
   {
     "Name": "QRCoder",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "Jonesn，熙恩，Radix.",
     "Description": {
       "en-US": "生成二维码",

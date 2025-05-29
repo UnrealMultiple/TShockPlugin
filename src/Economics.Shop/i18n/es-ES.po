@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:53+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-05-28 03:22:29+0000\n"
+"PO-Revision-Date: 2025-05-29 01:20\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,71 +17,75 @@ msgstr ""
 "X-Crowdin-File-ID: 1164\n"
 "Language: es_ES\n"
 
-#: ../../Command.cs:40
+#: ../../Command.cs:44
 #, csharp-format
 msgid "{0}:[{1}]  {2} 价格:{3})"
 msgstr ""
 
-#: ../../Command.cs:94
+#: ../../Command.cs:104
 msgid "/shop buy [序号] [数量]"
 msgstr ""
 
-#: ../../Command.cs:95
+#: ../../Command.cs:105
 msgid "/shop list [序号]"
 msgstr ""
 
-#: ../../Command.cs:81
+#: ../../Command.cs:89
 msgid "你的货币不足!"
 msgstr ""
 
-#: ../../Command.cs:55
+#: ../../Command.cs:63
 msgid "你输入的购买数量不正确!"
 msgstr ""
 
-#: ../../Command.cs:29
+#: ../../Command.cs:13
+msgid "售出一些商品!"
+msgstr ""
+
+#: ../../Command.cs:35
 msgid "商品列表 ({0}/{1})："
 msgstr ""
 
-#: ../../Command.cs:28
+#: ../../Command.cs:34
 msgid "当前商店没有商品"
 msgstr ""
 
-#: ../../Command.cs:61
+#: ../../Command.cs:69
 msgid "此商品不存在，请检查序号后重新输入!"
 msgstr ""
 
-#: ../../Shop.cs:16
+#: ../../Shop.cs:15
 msgid "经济商店!"
 msgstr ""
 
-#: ../../Command.cs:76
+#: ../../Command.cs:15
+msgid "语法错误，请输入/shop help查看正确使用方法!"
+msgstr ""
+
+#: ../../Command.cs:84
 #, csharp-format
 msgid "请满足物品条件: {0}"
 msgstr ""
 
-#: ../../Command.cs:49
+#: ../../Command.cs:57
 msgid "请输入正确的序号!"
 msgstr ""
 
-#: ../../Command.cs:90
+#: ../../Command.cs:98
 msgid "购买成功!"
 msgstr ""
 
-#: ../../Command.cs:66
+#: ../../Command.cs:74
 #, csharp-format
 msgid "购买此商品需满足进度条件: {0}"
 msgstr ""
 
-#: ../../Command.cs:71
+#: ../../Command.cs:79
 #, csharp-format
 msgid "购买此商品需达到以下等级之一: {0}"
 msgstr ""
 
-#: ../../Command.cs:30
+#: ../../Command.cs:36
 msgid "输入 {0}shop list {{0}} 查看更多"
-msgstr ""
-
-#: ../../Command.cs:99
-msgid "输入/shop help 查看指令帮助"
 msgstr ""
 
