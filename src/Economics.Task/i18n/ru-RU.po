@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:02:44+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"POT-Creation-Date: 2025-05-28 03:22:30+0000\n"
+"PO-Revision-Date: 2025-05-29 01:20\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "(未完成)"
 msgstr ""
 
-#: ../../Command.cs:49
+#: ../../Command.cs:58
 #, csharp-format
 msgid "{0}介绍: {1}"
 msgstr ""
@@ -35,35 +35,35 @@ msgstr ""
 msgid "{0}完成进度"
 msgstr ""
 
-#: ../../Command.cs:173
+#: ../../Command.cs:195
 msgid "/task del 移除任务"
 msgstr ""
 
-#: ../../Command.cs:169
+#: ../../Command.cs:191
 msgid "/task info <序号> 查看任务详情"
 msgstr ""
 
-#: ../../Command.cs:168
+#: ../../Command.cs:190
 msgid "/task list 查看任务列表"
 msgstr ""
 
-#: ../../Command.cs:170
+#: ../../Command.cs:192
 msgid "/task pick <序号> 接取一个任务"
 msgstr ""
 
-#: ../../Command.cs:172
+#: ../../Command.cs:194
 msgid "/task pr 提交任务"
 msgstr ""
 
-#: ../../Command.cs:171
+#: ../../Command.cs:193
 msgid "/task prog 查看任务完成进度"
 msgstr ""
 
-#: ../../Command.cs:174
+#: ../../Command.cs:196
 msgid "/task reset 清空完成任务"
 msgstr ""
 
-#: ../../Command.cs:45
+#: ../../Command.cs:54
 msgid "不存在此任务!"
 msgstr ""
 
@@ -72,49 +72,45 @@ msgstr ""
 msgid "与{0}进行对话{1}"
 msgstr ""
 
-#: ../../Command.cs:99
+#: ../../Command.cs:112
 msgid "任务不存在!"
 msgstr ""
 
-#: ../../Command.cs:95
+#: ../../Command.cs:108
 #, csharp-format
 msgid "任务介绍:{0}"
 msgstr ""
 
-#: ../../Command.cs:28
+#: ../../Command.cs:35
 msgid "任务列表 ({0}/{1})："
 msgstr ""
 
-#: ../../Command.cs:94
+#: ../../Command.cs:107
 #, csharp-format
 msgid "任务名称:{0}"
 msgstr ""
 
-#: ../../Command.cs:93
+#: ../../Command.cs:106
 msgid "任务接取成功!"
 msgstr ""
 
-#: ../../Command.cs:125
+#: ../../Command.cs:168
 msgid "你已放弃一个任务!!"
 msgstr ""
 
-#: ../../Command.cs:145
+#: ../../Command.cs:152
 msgid "你当前的任务还没有完成!"
 msgstr ""
 
-#: ../../Command.cs:157
-msgid "你没有使用该指令的权限!"
-msgstr ""
-
-#: ../../Command.cs:117
+#: ../../Command.cs:133
 msgid "你没有接取一个任务!"
 msgstr ""
 
-#: ../../Command.cs:129
+#: ../../Command.cs:172
 msgid "你还没有开始接任务!!"
 msgstr ""
 
-#: ../../Command.cs:150
+#: ../../Command.cs:157
 msgid "你还没有接一个任务!"
 msgstr ""
 
@@ -123,25 +119,25 @@ msgstr ""
 msgid "击杀怪物 {0} ({1}/{2})"
 msgstr ""
 
-#: ../../Command.cs:82
+#: ../../Command.cs:95
 #, csharp-format
 msgid "只有在{0} 以及符等级才能接取此任务"
 msgstr ""
 
-#: ../../Command.cs:164
+#: ../../Command.cs:184
 msgid "已清空完成任务!"
 msgstr ""
 
-#: ../../Command.cs:27
+#: ../../Command.cs:34
 msgid "当前没有任务"
 msgstr ""
 
-#: ../../Command.cs:77
+#: ../../Command.cs:90
 #, csharp-format
 msgid "必须完成任务 {0} 才能接此任务"
 msgstr ""
 
-#: ../../Command.cs:61
+#: ../../Command.cs:74
 msgid "您还有一个任务正在进行，不能接多个任务!"
 msgstr ""
 
@@ -155,44 +151,52 @@ msgstr ""
 msgid "拥有{0}{1} ({2}/{3})"
 msgstr ""
 
-#: ../../Plugin.cs:20
+#: ../../Command.cs:13
+msgid "提交任务接取任务!"
+msgstr ""
+
+#: ../../Plugin.cs:19
 msgid "提供任务系统!"
 msgstr ""
 
-#: ../../Plugin.cs:83
+#: ../../Plugin.cs:77
 msgid "查询成功"
 msgstr ""
 
-#: ../../Command.cs:72
+#: ../../Command.cs:85
 msgid "此任务你已经完成过了!"
 msgstr ""
 
-#: ../../Plugin.cs:73
+#: ../../Plugin.cs:67
 msgid "没有检测到任务ID"
 msgstr ""
 
-#: ../../Plugin.cs:68
+#: ../../Plugin.cs:62
 msgid "没有检测到玩家名称"
 msgstr ""
 
-#: ../../Command.cs:29
+#: ../../Command.cs:15
+msgid "语法错误，请输入/task help查看正确使用方法!"
+msgstr ""
+
+#: ../../Command.cs:36
 msgid "输入 {0}task list {{0}} 查看更多"
 msgstr ""
 
-#: ../../Command.cs:104
+#: ../../Command.cs:117
 msgid "输入了一个错误的序号!"
 msgstr ""
 
-#: ../../Command.cs:54
+#: ../../Command.cs:63
 msgid "错误的技能序号!"
 msgstr ""
 
-#: ../../Command.cs:87
+#: ../../Command.cs:100
 #, csharp-format
 msgid "需要满足进度{0}才能接取此任务"
 msgstr ""
 
-#: ../../Plugin.cs:78
+#: ../../Plugin.cs:72
 msgid "非法的任务ID"
 msgstr ""
 

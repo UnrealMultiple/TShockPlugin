@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-22 16:39:23+0000\n"
-"PO-Revision-Date: 2025-05-21 01:20\n"
+"POT-Creation-Date: 2025-05-28 03:22:28+0000\n"
+"PO-Revision-Date: 2025-05-29 01:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,98 +17,143 @@ msgstr ""
 "X-Crowdin-File-ID: 1160\n"
 "Language: en_US\n"
 
-#: ../../Setting/Config.cs:105
+#: ../../Setting/Config.cs:120
 #, csharp-format
 msgid "{0} 与 {1} 之间循环引用"
 msgstr "{0} has a circular reference with {1}"
 
-#: ../../Command.cs:65
+#: ../../RankCommand.cs:72
 #, csharp-format
 msgid "/rank {0}({1})"
 msgstr "/rank {0}({1})"
 
-#: ../../Command.cs:118
+#: ../../LevelCommand.cs:22
+msgid "level reset"
+msgstr "level reset"
+
+#: ../../LevelCommand.cs:21
+msgid "level set [玩家] [等级]"
+msgstr "level set [player] [level]"
+
+#: ../../LevelCommand.cs:20
+msgid "level set [等级]"
+msgstr "level set [level]"
+
+#: ../../LevelCommand.cs:19
+msgid "level帮助"
+msgstr "level help"
+
+#: ../../LevelCommand.cs:42
+msgid "为自己设置等级时，必须在游戏中使用此命令!"
+msgstr "You must use this command in the game when setting a level for yourself!"
+
+#: ../../ResetCareer.cs:35
 msgid "你因重置等级被踢出!"
 msgstr "You have been kicked out for resetting your level!"
 
-#: ../../Command.cs:17
-#: ../../Command.cs:106
+#: ../../RankCommand.cs:24
+#: ../../ResetCareer.cs:23
 msgid "你必须登陆才能使用此命令!"
 msgstr "You must use this command in-game!"
 
-#: ../../Command.cs:57
+#: ../../RankCommand.cs:64
 #, csharp-format
 msgid "升级所需 ({0})"
 msgstr "Upgrade Required ({0})"
 
-#: ../../Command.cs:92
+#: ../../RankCommand.cs:99
 #, csharp-format
 msgid "升级所需 {0}"
 msgstr "Upgrade Required {0}"
 
-#: ../../RPG.cs:86
+#: ../../RPG.cs:72
 #, csharp-format
 msgid "升级职业: {0}"
 msgstr "Upgrade rank: {0}"
 
-#: ../../Command.cs:39
-#: ../../Command.cs:74
+#: ../../RankCommand.cs:46
+#: ../../RankCommand.cs:81
 #, csharp-format
 msgid "升级至 {0} 需要手持武器{1}！ "
 msgstr "Upgrading to {0} requires holding weapon {1}!"
 
-#: ../../Command.cs:97
+#: ../../RankCommand.cs:104
 msgid "已经满级了，无法继续升级!"
 msgstr "Already at maximum level, cannot continue to upgrade!"
 
-#: ../../RPG.cs:85
+#: ../../RPG.cs:71
 #, csharp-format
 msgid "当前职业: {0}"
 msgstr "Current rank: {0}"
 
-#: ../../Command.cs:44
-#: ../../Command.cs:79
+#: ../../RankCommand.cs:51
+#: ../../RankCommand.cs:86
 #, csharp-format
 msgid "必须满足进度限制:{0}"
-msgstr "Must meet the progress limit: {0}"
+msgstr "Required progress condition: {0}"
 
-#: ../../Command.cs:110
+#: ../../ResetCareer.cs:27
 msgid "您已成功重置等级!"
 msgstr "You have successfully reset your level!"
 
-#: ../../Command.cs:49
-#: ../../Command.cs:84
+#: ../../RankCommand.cs:56
+#: ../../RankCommand.cs:91
 #, csharp-format
 msgid "成功升级至 {0}!"
 msgstr "Successfully upgraded to {0}!"
 
-#: ../../RPG.cs:18
+#: ../../RPG.cs:19
 msgid "提供RPG玩法!"
 msgstr "Provides RPG gameplay!"
 
-#: ../../Command.cs:34
+#: ../../RankCommand.cs:16
+msgid "提示RPG等级!"
+msgstr "Hint RPG level!"
+
+#: ../../RankCommand.cs:41
 msgid "此职业全服唯一，已经存在此职业无法升级。"
 msgstr "This rank is the only one in the server. This rank already exists and cannot be upgraded."
 
-#: ../../Command.cs:128
+#: ../../LevelCommand.cs:53
+#, csharp-format
+msgid "玩家 {0} 的等级被设置为 {1}。"
+msgstr "The level of player {0} is set to {1}."
+
+#: ../../LevelCommand.cs:29
 msgid "玩家等级信息重置成功!"
 msgstr "Successfully reset player level!"
 
-#: ../../Command.cs:29
+#: ../../LevelCommand.cs:12
+msgid "玩家等级管理!"
+msgstr "Player Level Manager!"
+
+#: ../../RankCommand.cs:36
 #, csharp-format
 msgid "等级 {0} 不存在！ "
 msgstr "Level {0} does not exist!"
 
-#: ../../Setting/Config.cs:36
+#: ../../Setting/Config.cs:51
 #, csharp-format
 msgid "等级 {0} 空引用等级 {1}"
 msgstr "Level {0} has a null reference to level {1}"
 
-#: ../../Command.cs:132
-msgid "语法错误，正确语法:"
-msgstr "Syntax error, correct syntax:"
+#: ../../LevelCommand.cs:14
+msgid "语法错误，请输入/level help查看正确使用方法!"
+msgstr "Invalid syntax, please enter /level help to view the correct syntax!"
 
-#: ../../Command.cs:62
+#: ../../RankCommand.cs:18
+msgid "语法错误，请输入/rank升级!"
+msgstr "Invalid syntax, please enter /rank to upgrade!"
+
+#: ../../ResetCareer.cs:17
+msgid "语法错误，请输入/resetrank 重置职业"
+msgstr "Invalid syntax, please enter /resetrank to reset rank"
+
+#: ../../RankCommand.cs:69
 msgid "请选择一个升级:"
 msgstr "Please select an upgrade:"
+
+#: ../../ResetCareer.cs:15
+msgid "重置RPG职业!"
+msgstr "Reset RPG Rank!"
 
