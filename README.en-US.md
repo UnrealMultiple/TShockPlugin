@@ -119,7 +119,7 @@
 | [Economics.Shop](./src/Economics.Shop/README.en-US.md) | 100.0% | Shop plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.Skill](./src/Economics.Skill/README.en-US.md) | 100.0% | Skill plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.Task](./src/Economics.Task/README.en-US.md) | 100.0% | Task plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
-| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 97.1% | Weapon enhancement | [Economics.Core](./src/Economics.Core/README.en-US.md) |
+| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [EndureBoost](./src/EndureBoost/README.en-US.md) | 100.0% | Grant specified buff when the player has a certain number of items |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | 100.0% | Additional management commands | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Ezperm](./src/Ezperm/README.en-US.md) | 100.0% | Batch change permissions | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -149,7 +149,7 @@
 | [NormalDropsBags](./src/NormalDropsBags/README.en-US.md) | 100.0% | Drop treasure bags at normal difficulty |  |
 | [NoteWall](./src/NoteWall/README.en-US.md) | 100.0% | Players can leave and view notes here. | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |
 | [OnlineGiftPackage](./src/OnlineGiftPackage/README.en-US.md) | 100.0% | Online gift package |  |
-| [PacketsStop](./src/PacketsStop/README.en-US.md) | 8.7% | Packet interception |  |
+| [PacketsStop](./src/PacketsStop/README.en-US.md) | 100.0% | Packet interception |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 100.0% | Permanent buff |  |
 | [PerPlayerLoot](./src/PerPlayerLoot/README.en-US.md) | 100.0% | Separate chest for player loot |  |
 | [PersonalPermission](./src/PersonalPermission/README.en-US.md) | 100.0% | Set permissions individually for players |  |

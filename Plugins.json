@@ -1776,7 +1776,7 @@
     "Version": "1.0.7",
     "Author": "羽学 少司命",
     "Description": {
-      "en-US": "拦截指定玩家的数据包",
+      "en-US": "Intercept data packets of the specified player",
       "de-DE": "拦截指定玩家的数据包",
       "it-IT": "拦截指定玩家的数据包",
       "fr-FR": "拦截指定玩家的数据包",
