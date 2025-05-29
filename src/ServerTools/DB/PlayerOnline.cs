@@ -9,6 +9,7 @@ namespace ServerTools.DB;
 public class PlayerOnline : RecordBase<PlayerOnline>
 {
     [PrimaryKey]
+    [NotNull]
     [Column("username")]
     public string Name { get; set; } = string.Empty;
 
