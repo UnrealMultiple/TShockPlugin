@@ -181,6 +181,8 @@ public class Plugin : TerrariaPlugin
                 "/caibotlite code 生成并且展示验证码", 
                 "/caibotlite info 显示CaiBot的一些信息",
                 "/caibotlite unbind 主动解除绑定",
+                "/caibotlite whitelist 开关白名单",
+                "/caibotlite group <群号> 设置踢出显示的群号",
                 "/caibotlite test Cai保留用于测试的命令, 乱用可能会爆掉"
             };
 
@@ -254,6 +256,33 @@ public class Plugin : TerrariaPlugin
                 GenBindCode(EventArgs.Empty);
                 plr.SendInfoMessage("[CaiBotLite]验证码已生成,请在后台查看喵~");
                 break;
+            case "白名单":
+            case "whitelist":
+                Config.Settings.WhiteList = !Config.Settings.WhiteList;
+                Config.Settings.Write();
+                WebSocket.Dispose();
+                plr.SendInfoMessage($"[CaiBotLite]白名单已{(Config.Settings.WhiteList?"开启":"关闭")}!");
+                break;
+            case "群号":
+            case "group":
+                if (args.Parameters.Count < 2)
+                {
+                    plr.SendErrorMessage($"格式错误!" +
+                                         $"正确格式: /caibotlite group <群号>");
+                    return;
+                }
+
+                if (!long.TryParse(args.Parameters[1], out Config.Settings.GroupNumber))
+                {
+                    plr.SendErrorMessage($"无效参数,群号必须是长整数!");
+                    return;
+                }
+                
+                Config.Settings.Write();
+                plr.SendInfoMessage($"[CaiBotLite]白名单提示群号已改为{Config.Settings.GroupNumber}");
+                break;
+                
+                
         }
     }
     
