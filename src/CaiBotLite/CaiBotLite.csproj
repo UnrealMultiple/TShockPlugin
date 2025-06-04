@@ -3,11 +3,11 @@
     <Import Project="..\..\template.targets" />
 
     <ItemGroup>
-        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.8" />
+        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.9" />
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="$(NuGetPackageRoot)sixlabors.imagesharp\3.1.8\lib\net6.0\SixLabors.ImageSharp.dll">
+        <EmbeddedResource Include="$(NuGetPackageRoot)sixlabors.imagesharp\3.1.9\lib\net6.0\SixLabors.ImageSharp.dll">
             <Link>SixLabors.ImageSharp.dll</Link>
         </EmbeddedResource>
     </ItemGroup>
