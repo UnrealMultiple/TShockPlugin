@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:02:50+0000\n"
-"PO-Revision-Date: 2025-02-04 01:07\n"
+"POT-Creation-Date: 2025-05-14 15:05:18+0000\n"
+"PO-Revision-Date: 2025-05-20 01:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -45,27 +45,27 @@ msgstr " Modify {0} wire,"
 #: ../../Commands/InfoCommand.cs:246
 #, csharp-format
 msgid " 修改 {0} 致动器,"
-msgstr " Modify {0} Crafter,"
+msgstr " Modify {0} crafting station,"
 
 #: ../../Commands/InfoCommand.cs:226
 #, csharp-format
 msgid " 放置 {0} 墙,"
-msgstr " Place {0} wall,"
+msgstr " Placed {0} wall,"
 
 #: ../../Commands/InfoCommand.cs:211
 #, csharp-format
 msgid " 放置 {0} 物块,"
-msgstr " Place {0} block,"
+msgstr " Placed {0} block,"
 
 #: ../../Commands/InfoCommand.cs:241
 #, csharp-format
 msgid " 放置 {0} 电线,"
-msgstr " Place {0} wire,"
+msgstr " Placed {0} wire,"
 
 #: ../../Commands/InfoCommand.cs:256
 #, csharp-format
 msgid " 放置 {0} 致动器,"
-msgstr " Place {0} Crafter,"
+msgstr " Placed {0} crafting station,"
 
 #: ../../Commands/InfoCommand.cs:261
 #, csharp-format
@@ -75,7 +75,7 @@ msgstr " Paint {0} block/wall,"
 #: ../../Commands/InfoCommand.cs:221
 #, csharp-format
 msgid " 破坏 {0} 墙,"
-msgstr " Destroy {0} Wall,"
+msgstr " Destroy {0} wall,"
 
 #: ../../Commands/InfoCommand.cs:236
 #, csharp-format
@@ -85,7 +85,7 @@ msgstr " Destroy {0} wire,"
 #: ../../Commands/InfoCommand.cs:251
 #, csharp-format
 msgid " 破坏 {0} 致动器,"
-msgstr " Destroy {0} Crafter,"
+msgstr " Destroy {0} crafting station,"
 
 #: ../../Commands/InfoCommand.cs:206
 #, csharp-format
@@ -105,9 +105,89 @@ msgstr "[History] Database has been successfully cleared by [{0}]"
 msgid "[History] 数据库清除失败"
 msgstr "[History] Database clean-up failed"
 
+#: ../../Action.cs:497
+#, csharp-format
+msgid "{0} {1} 修改了告示牌文字. ({2})"
+msgstr "{0} {1} Modified sign text. ({2} ago)"
+
+#: ../../Action.cs:492
+#, csharp-format
+msgid "{0} {1} 改变图格形状. ({2})"
+msgstr "{0} {1} Modified shape of the tiles. ({2} ago)"
+
+#: ../../Action.cs:489
+#, csharp-format
+msgid "{0} {1} 放置墙 {2}. ({3})"
+msgstr "{0} {1} Placed {2} wall. ({3} ago)"
+
+#: ../../Action.cs:495
+#, csharp-format
+msgid "{0} {1} 放置墙. ({2})"
+msgstr "{0} {1} Placed the wall. ({2} ago)"
+
+#: ../../Action.cs:487
+#, csharp-format
+msgid "{0} {1} 放置方块 {2}. ({3})"
+msgstr "{0} {1} Placed {2} block. ({3} ago)"
+
+#: ../../Action.cs:494
+#, csharp-format
+msgid "{0} {1} 放置物块 ({2})"
+msgstr "{0} {1} Placed the block ({2} ago)"
+
+#: ../../Action.cs:490
+#, csharp-format
+msgid "{0} {1} 放置电线. ({2})"
+msgstr "{0} {1} Placed the wires. ({2} ago)"
+
+#: ../../Action.cs:493
+#, csharp-format
+msgid "{0} {1} 放置致动器. ({2})"
+msgstr "{0} {1} Placed the actuator. ({2} ago)"
+
+#: ../../Action.cs:496
+#, csharp-format
+msgid "{0} {1} 涂漆物块/墙. ({2})"
+msgstr "{0} {1} Painted block/wall. ({2} ago)"
+
+#: ../../Action.cs:488
+#, csharp-format
+msgid "{0} {1} 破坏墙 {2}. ({3})"
+msgstr "{0} {1} Destroy {2} wall. ({3} ago)"
+
+#: ../../Action.cs:486
+#, csharp-format
+msgid "{0} {1} 破坏方块 {2}. ({3})"
+msgstr "{0} {1} Destroy {2} block. ({3} ago)"
+
+#: ../../Action.cs:491
+#, csharp-format
+msgid "{0} {1} 破坏电线. ({2})"
+msgstr "{0} {1} Destroy wire. ({2} ago)"
+
+#: ../../Action.cs:477
+#, csharp-format
+msgid "{0}分钟"
+msgstr "{0} minute"
+
 #: ../../Commands/InfoCommand.cs:62
 msgid "{0}在指定区域中未执行任何图格操作."
 msgstr "{0} No graphic operation is performed in the specified area."
+
+#: ../../Action.cs:469
+#, csharp-format
+msgid "{0}天"
+msgstr "{0} day"
+
+#: ../../Action.cs:473
+#, csharp-format
+msgid "{0}小时"
+msgstr "{0} hour"
+
+#: ../../Action.cs:481
+#, csharp-format
+msgid "{0}秒"
+msgstr "{0} second"
 
 #: ../../History.cs:1590
 #, csharp-format
@@ -137,7 +217,7 @@ msgstr "An error occurred. Check the log for more details."
 #: ../../Commands/RollbackCommand.cs:105
 #, csharp-format
 msgid "回溯 {0} 个操作."
-msgstr "Back to {0} a operation."
+msgstr "Back to {0} operations."
 
 #: ../../Commands/HistoryCommand.cs:40
 msgid "图格历史记录 ({0}, {1}):"
@@ -149,7 +229,7 @@ msgstr "Undo complete! {0} actions canceled."
 
 #: ../../History.cs:1505
 msgid "敲击(放置)一个方块查询这个坐标的历史记录."
-msgstr "Tap (Place) on a block to query the historical record of this coordinate."
+msgstr "Tap (Place) on a block to find the history record of this coordinate."
 
 #: ../../History.cs:1484
 #: ../../History.cs:1521
@@ -196,10 +276,10 @@ msgstr "Invalid range."
 
 #: ../../History.cs:28
 msgid "记录图格操作."
-msgstr "Record grid operations."
+msgstr "Record tiles history."
 
 #: ../../Commands/RollbackCommand.cs:104
 #, csharp-format
 msgid "重现 {0} 个操作."
-msgstr "Reappear {0} a operation."
+msgstr "Reappear {0} operations."
 

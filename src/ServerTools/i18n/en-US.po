@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:03:14+0000\n"
-"PO-Revision-Date: 2025-03-19 01:13\n"
+"POT-Creation-Date: 2025-05-28 02:28:53+0000\n"
+"PO-Revision-Date: 2025-05-29 01:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr "{0} Cleared {2} projectiles within {1} range!"
 msgid "仅允许软核进入!"
 msgstr "Only softcore character allowed!"
 
-#: ../../Plugin.Commamd.cs:194
+#: ../../Plugin.Commamd.cs:209
 msgid "你不能过于频繁的使用此指令!"
 msgstr "You cannot use this command too frequently!"
 
@@ -86,14 +86,20 @@ msgstr "You were kicked out because the number of sentries exceeded {0}"
 
 #: ../../Plugin.cs:364
 msgid "你因多鱼线被石化3秒钟!"
-msgstr "You will be petrified for 3 seconds because of too many fishing lines!"
+msgstr "You have been petrified for 3 seconds because of too many fishing lines!"
 
 #: ../../Plugin.cs:305
 #, csharp-format
 msgid "你将在{0}秒后被踢出!"
 msgstr "You will be kicked out in {0} seconds!"
 
-#: ../../Plugin.Commamd.cs:149
+#: ../../Plugin.Commamd.cs:139
+#: ../../Plugin.Commamd.cs:151
+#: ../../Plugin.Commamd.cs:161
+msgid "你必须在游戏中使用此命令!"
+msgstr "You must use this command in the game!"
+
+#: ../../Plugin.Commamd.cs:164
 msgid "你要求被踢出！"
 msgstr "You asked to be kicked out!"
 
@@ -101,18 +107,18 @@ msgstr "You asked to be kicked out!"
 msgid "在线排行 ({0}/{1})："
 msgstr "Online Rank ({0}/{1}):"
 
-#: ../../Plugin.Commamd.cs:189
+#: ../../Plugin.Commamd.cs:204
 msgid "已为你搜索到{0}个花苞，输入/warp list可以查看结果"
-msgstr "{0} Buds have been searched for you, enter /warp list to view the results"
+msgstr "{0} Plantera bulb have been searched for you, enter /warp list to view the results"
 
 #: ../../Plugin.Commamd.cs:30
 #, csharp-format
 msgid "已为玩家{0}执行命令`{1}`"
 msgstr "Command `{1}` has been executed for player {0}"
 
-#: ../../Plugin.Commamd.cs:155
+#: ../../Plugin.Commamd.cs:170
 msgid "已移除所有花苞传送点!"
-msgstr "All bud teleporter have been removed!"
+msgstr "All plantera bulb warp have been removed!"
 
 #: ../../Plugin.Commamd.cs:50
 msgid "当前没有玩家在线数据"
@@ -153,11 +159,11 @@ msgstr "This command cannot be executed if the target player is not online!"
 #: ../../Plugin.cs:458
 #: ../../Plugin.cs:469
 msgid "禁止双箱!"
-msgstr "No double boxes allowed!"
+msgstr "No double chest opened allowed!"
 
-#: ../../Plugin.Commamd.cs:154
-#: ../../Plugin.Commamd.cs:180
-#: ../../Plugin.Commamd.cs:184
+#: ../../Plugin.Commamd.cs:169
+#: ../../Plugin.Commamd.cs:195
+#: ../../Plugin.Commamd.cs:199
 msgid "花苞"
 msgstr "bud"
 
@@ -186,9 +192,9 @@ msgstr "Enter {0}Death Rank {{0}} to see more"
 #: ../../Plugin.cs:516
 #, csharp-format
 msgid "退出服务器时处于死亡状态！\n"
-"请等待死亡结束，还有{0}秒结束！"
+"请等待死亡结束，还有{0:0}秒结束！"
 msgstr "Dead state when exiting the server!\n"
-"Please wait for death to end, there are {0} seconds left!"
+"Please wait for death to end, there are {0:0} seconds left!"
 
 #: ../../Plugin.Commamd.cs:94
 msgid "错误的范围!"

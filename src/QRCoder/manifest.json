@@ -1,0 +1,12 @@
+{
+"Dependencies": [],
+  "README.en-US": {
+    "Description": "QR Code Generator"
+  },
+  "README.es-ES": {
+    "Description": "Generador de Códigos QR"
+  },
+  "README": {
+    "Description": "二维码生成器"
+  }
+}

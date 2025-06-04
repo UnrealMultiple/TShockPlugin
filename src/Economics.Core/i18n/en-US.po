@@ -1,0 +1,199 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-05-28 03:22:26+0000\n"
+"PO-Revision-Date: 2025-05-29 01:20\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/Economics.Core/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1600\n"
+"Language: en_US\n"
+
+#: ../../ConfigFiles/JsonConfigBase.cs:59
+#, csharp-format
+msgid "[{0}.json] config reloaded successfully!!!"
+msgstr "[{0}.json] config reloaded successfully!!!"
+
+#: ../../Command/BankCommand.cs:124
+#, csharp-format
+msgid "{0}.{1} 拥有 {2} {3}个。"
+msgstr "{0}.{1} has {2} {3}."
+
+#: ../../Command/BankCommand.cs:200
+msgid "/bank add <用户> <数量> <类型>"
+msgstr "/bank add <player> <amount> <currency>"
+
+#: ../../Command/BankCommand.cs:203
+msgid "/bank cash <目标货币> <数量>"
+msgstr "/bank cash <target currency> <amount>"
+
+#: ../../Command/BankCommand.cs:205
+msgid "/bank clear <用户>"
+msgstr "/bank clear <player>"
+
+#: ../../Command/BankCommand.cs:201
+msgid "/bank deduct <用户> <数量> <类型>"
+msgstr "/bank deduct <player> <amount> <currency>"
+
+#: ../../Command/BankCommand.cs:202
+msgid "/bank pay <用户> <数量> <类型>"
+msgstr "/bank pay <player> <amount> <currency>"
+
+#: ../../Command/BankCommand.cs:204
+msgid "/bank query [用户]"
+msgstr "/bank query [player]"
+
+#: ../../Command/BankCommand.cs:206
+msgid "/bank reset"
+msgstr "/bank reset"
+
+#: ../../Command/BankCommand.cs:199
+msgid "bank 指令"
+msgstr "bank command"
+
+#: ../../Extensions/TSPlayerExtension.cs:30
+#, csharp-format
+msgid "EconomicAPI 执行命令报错:{0}"
+msgstr "EconomicCore command execution error: {0}"
+
+#: ../../Command/BankCommand.cs:178
+msgid "Economics 已重置"
+msgstr "Economics has been reset"
+
+#: ../../Command/BankCommand.cs:36
+#, csharp-format
+msgid "不存在可兑换的货币类型:{0}"
+msgstr "No convertible currency type:{0}"
+
+#: ../../Command/BankCommand.cs:102
+#, csharp-format
+msgid "不存在的的货币类型`{0}`"
+msgstr "No existing currency type `{0}`"
+
+#: ../../Economics.cs:121
+#, csharp-format
+msgid "世界名称: {0}"
+msgstr "World name: {0}"
+
+#: ../../Command/BaseCommand.cs:51
+msgid "你只能在游戏中使用此命令!"
+msgstr "You can only use this command in the game!"
+
+#: ../../Economics.cs:134
+#, csharp-format
+msgid "你因死亡掉落{0:F0}个{1}!"
+msgstr "You dropped {0:F0} {1} upon death!"
+
+#: ../../Command/BankCommand.cs:45
+#, csharp-format
+msgid "你得货币不足以兑换{0}个{1}"
+msgstr "You have not enough currency to exchange{0}{1}"
+
+#: ../../Command/BaseCommand.cs:56
+msgid "你无权使用此命令!"
+msgstr "You do not have permission to use this command!"
+
+#: ../../Command/BankCommand.cs:71
+#, csharp-format
+msgid "你的{0}不足，无法转账!"
+msgstr "You do not have enough {0} to transfer!"
+
+#: ../../Command/BankCommand.cs:158
+msgid "在没有名字参数情况下，只能在游戏中使用此命令!"
+msgstr "This command can only be used in game without name parameters!"
+
+#: ../../Economics.cs:120
+#, csharp-format
+msgid "在线人数: {0}/{1}"
+msgstr "Online players: {0}/{1}"
+
+#: ../../Command/BankCommand.cs:138
+#, csharp-format
+msgid "已清空`{0}`的所有{1}"
+msgstr "All {1} ​​of `{0}` have been cleared"
+
+#: ../../Economics.cs:117
+#, csharp-format
+msgid "当前延迟: {0:F1}ms"
+msgstr "Current latency: {0:F1}ms"
+
+#: ../../Command/BankCommand.cs:116
+#, csharp-format
+msgid "当前无人用有{0}"
+msgstr "No one currently uses {0}"
+
+#: ../../Economics.cs:122
+#, csharp-format
+msgid "当前生命: {0}/{1}"
+msgstr "Current health: {0}/{1}"
+
+#: ../../Economics.cs:123
+#, csharp-format
+msgid "当前魔力: {0}/{1}"
+msgstr "Current mana: {0}/{1}"
+
+#: ../../Command/BankCommand.cs:192
+#, csharp-format
+msgid "成功为`{0}`添加 {1} 个{2}"
+msgstr "Successfully added {1} {2} to `{0}`"
+
+#: ../../Command/BankCommand.cs:49
+#, csharp-format
+msgid "成功兑换{0}{1}个!"
+msgstr "Successfully exchanged {0}{1}!"
+
+#: ../../Command/BankCommand.cs:88
+#, csharp-format
+msgid "成功减去`{0}`的 {1} 个{2}"
+msgstr "Successfully deducted {1} {2} from `{0}`"
+
+#: ../../Command/BankCommand.cs:66
+#, csharp-format
+msgid "成功转账给`{0}` {1} 个{2}"
+msgstr "Successfully transferred {1} {2} to `{0}`"
+
+#: ../../Economics.cs:25
+msgid "提供经济系统API"
+msgstr "Provides economic system API"
+
+#: ../../Economics.cs:118
+#, csharp-format
+msgid "玩家名称: {0}"
+msgstr "Player name: {0}"
+
+#: ../../Command/BankCommand.cs:91
+#, csharp-format
+msgid "用户`{0}`仅有{1}个{2}"
+msgstr "Player `{0}` only has {1} {2}"
+
+#: ../../Command/BaseCommand.cs:61
+#, csharp-format
+msgid "语法错误，正确语法:{0}"
+msgstr "Invalid syntax, correct syntax: {0}"
+
+#: ../../Command/BankCommand.cs:15
+msgid "语法错误，请输入/bank help查看正确使用方法!"
+msgstr "Invalid syntax, please enter /bank help to view the correct syntax!"
+
+#: ../../Command/BankCommand.cs:21
+msgid "请输入一个有效数值!"
+msgstr "Please enter a valid number!"
+
+#: ../../Command/BankCommand.cs:119
+#, csharp-format
+msgid "货币`{0}`排行榜:"
+msgstr "Currency `{0}` Rank:"
+
+#: ../../Economics.cs:119
+#, csharp-format
+msgid "货币数量: {0}{1}"
+msgstr "Currency amount: {0}{1}"
+

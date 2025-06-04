@@ -69,6 +69,7 @@
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 0.0% | Mejora la funcionalidad de la caja de anuncios | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.md) | 0.0% | Botes de basura automáticos | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 0.0% | Transmisión automática | [LazyAPI](./src/LazyAPI/README.md) |
+| [AutoClassificationQuickStack](./src/AutoClassificationQuickStack/README.md) | 0.0% | Clasificación Automática Quick Stack |  |
 | [AutoClear](./src/AutoClear/README.md) | 0.0% | Limpieza automática inteligente | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoFish](./src/AutoFish/README.md) | 0.0% | Pesca automática | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoPluginManager](./src/AutoPluginManager/README.es-ES.md) | 69.1% | Actualice los complementos automáticamente con una sola tecla |  |
@@ -112,16 +113,16 @@
 | [Dummy](./src/Dummy/README.md) | 0.0% | Servidor de Pruebas (Ficticio) Para TEST | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 0.0% | Volcar las ID de Terraria |  |
 | [DwTP](./src/DwTP/README.md) | 0.0% | Teletransportación por posicionamiento |  |
-| [Economics.Deal](./src/Economics.Deal/README.md) | 0.0% | Plugin de comercio | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [Economics.NPC](./src/Economics.NPC/README.md) | 0.0% | Recompensas personalizadas de monstruos | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [Economics.Projectile](./src/Economics.Projectile/README.md) | 0.0% | Proyectiles personalizados | [EconomicsAPI](./src/EconomicsAPI/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Regain](./src/Economics.Regain/README.md) | 0.0% | Reciclaje de objetos | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [Economics.RPG](./src/Economics.RPG/README.md) | 0.0% | Plugin RPG | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [Economics.Shop](./src/Economics.Shop/README.md) | 0.0% | Plugin de tienda | [EconomicsAPI](./src/EconomicsAPI/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Skill](./src/Economics.Skill/README.md) | 0.0% | Plugin de habilidades | [EconomicsAPI](./src/EconomicsAPI/README.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Task](./src/Economics.Task/README.md) | 0.0% | Plugin de tareas | [EconomicsAPI](./src/EconomicsAPI/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 0.0% | Mejora de armas | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [EconomicsAPI](./src/EconomicsAPI/README.md) | 0.0% | Plugin económico |  |
+| [Economics.Core](./src/Economics.Core/README.md) | 0.0% | Plugin económico |  |
+| [Economics.Deal](./src/Economics.Deal/README.md) | 0.0% | Plugin de comercio | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.NPC](./src/Economics.NPC/README.md) | 0.0% | Recompensas personalizadas de monstruos | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.Projectile](./src/Economics.Projectile/README.md) | 0.0% | Proyectiles personalizados | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Regain](./src/Economics.Regain/README.md) | 0.0% | Reciclaje de objetos | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.RPG](./src/Economics.RPG/README.md) | 0.0% | Plugin RPG | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.Shop](./src/Economics.Shop/README.md) | 0.0% | Plugin de tienda | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Skill](./src/Economics.Skill/README.md) | 0.0% | Plugin de habilidades | [Economics.Core](./src/Economics.Core/README.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Task](./src/Economics.Task/README.md) | 0.0% | Plugin de tareas | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 0.0% | Mejora de armas | [Economics.Core](./src/Economics.Core/README.md) |
 | [EndureBoost](./src/EndureBoost/README.md) | 0.0% | Otorga un buff específico cuando el jugador tiene una cantidad determinada de objetos |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.es-ES.md) | 99.2% | Comandos de gestión adicionales | [LazyAPI](./src/LazyAPI/README.md) |
 | [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos | [LazyAPI](./src/LazyAPI/README.md) |
@@ -138,7 +139,7 @@
 | [ItemDecoration](./src/ItemDecoration/README.es-ES.md) | 100.0% | Muestra el spryte y texto de info y damage del item seleccionado | [LazyAPI](./src/LazyAPI/README.md) |
 | [ItemPreserver](./src/ItemPreserver/README.md) | 50.0% | Conserva ítems específicos de la consumición |  |
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | 6.3% | Desbloquea ítems del modo Journey |  |
-| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | 100.0% | Plugin adaptador para el bot Lagrange.XocMat | [SixLabors.ImageSharp]() |
+| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | 0.0% | Plugin adaptador para el bot Lagrange.XocMat | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.md) | 0.0% | Biblioteca base para plugins | [linq2db]() |
 | [LifemaxExtra](./src/LifemaxExtra/README.md) | 0.0% | Comer más frutas/cristales de vida | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | 16.7% | Lista los plugins instalados |  |
@@ -164,6 +165,7 @@
 | [ProgressRestrict](./src/ProgressRestrict/README.md) | 0.0% | Detección de super progreso | [DataSync](./src/DataSync/README.md) |
 | [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 0.0% | Acepta conexiones de protocolo proxy |  |
 | [PvPer](./src/PvPer/README.md) | 0.0% | Sistema de duelos |  |
+| [QRCoder](./src/QRCoder/README.md) | 0.0% | Generador de Códigos QR |  |
 | [RainbowChat](./src/RainbowChat/README.md) | 0.0% | Colores aleatorios en el chat |  |
 | [RandomBroadcast](./src/RandomBroadcast/README.md) | 0.0% | Transmisión aleatoria |  |
 | [RandRespawn](./src/RandRespawn/README.md) | 0.0% | Punto de aparición aleatorio |  |
@@ -194,7 +196,7 @@
 | [TimeRate](./src/TimeRate/README.md) | 0.0% | Modifica la aceleración del tiempo usando comandos, y soporta el sueño de los jugadores para activar eventos |  |
 | [TimerKeeper](./src/TimerKeeper/README.md) | 0.0% | Guarda el estado del temporizador |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | 0.0% | Casa rápida de NPC |  |
-| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | 0.0% | Localización del idioma de configuración de TShock | [LazyAPI](./src/LazyAPI/README.md) |
+| [TransferPatch](./src/TransferPatch/README.md) | 0.0% | 翻译补丁 |  |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 0.0% | Permite que el servidor genere ítems "inobtenibles" |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Biblioteca base para plugins VBY |  |
 | [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Modificaciones personalizables para cierto contenido del juego (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
@@ -206,7 +208,7 @@
 | [WeaponPlus](./src/WeaponPlus/README.md) | 100.0% | Versión de monedas para mejorar armas |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 100.0% | Cargue el paquete de idioma wiki para el servidor. |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 0.0% | Editor del mundo, permite modificar la mayoría de los parámetros del mundo |  |
-| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | 62.9% | Plugin de gestión de jugadores de Zhi |  |
+| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | 62.1% | Plugin de gestión de jugadores de Zhi |  |
 
 </Details>
 

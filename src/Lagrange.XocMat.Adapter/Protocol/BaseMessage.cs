@@ -2,6 +2,7 @@
 using Lagrange.XocMat.Adapter.Protocol.Action;
 using Lagrange.XocMat.Adapter.Protocol.PlayerMessage;
 using Lagrange.XocMat.Adapter.Protocol.ServerMessage;
+using Lagrange.XocMat.Adapter.Setting;
 using ProtoBuf;
 
 namespace Lagrange.XocMat.Adapter.Protocol;
@@ -14,7 +15,7 @@ public class BaseMessage
 {
     [ProtoMember(1)] public PostMessageType MessageType { get; set; }
 
-    [ProtoMember(2)] public string ServerName { get; set; } = Plugin.Config.SocketConfig.ServerName;
+    [ProtoMember(2)] public string ServerName { get; set; } = Config.Instance.SocketConfig.ServerName;
 
-    [ProtoMember(3)] public string Token { get; set; } = Plugin.Config.SocketConfig.Token;
+    [ProtoMember(3)] public string Token { get; set; } = Config.Instance.SocketConfig.Token;
 }

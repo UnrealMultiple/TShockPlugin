@@ -1,9 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using Economics.Core.ConfigFiles;
+using Newtonsoft.Json;
 
 namespace Economics.NPC;
 
-public class Config
+public class Config : JsonConfigBase<Config>
 {
+    protected override string Filename => "NPC.json";
+
     public class NpcAllocationRatioOption
     {
         [JsonProperty("转换率")]
@@ -23,5 +26,5 @@ public class Config
     public List<NpcOption> NPCS = new();
 
     [JsonProperty("转换率更改")]
-    public Dictionary<int, NpcAllocationRatioOption> AllocationRatio = new();
+    public Dictionary<int, NpcAllocationRatioOption> AllocationRatio = [];
 }

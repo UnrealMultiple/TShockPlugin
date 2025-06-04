@@ -20,7 +20,7 @@ public class WeaponPlus : TerrariaPlugin
 
     public override string Description => GetString("允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes");
 
-    public override Version Version => new Version(2, 0, 0, 5);
+    public override Version Version => new Version(2, 0, 0, 7);
     #endregion
 
     #region 实例变量
@@ -86,7 +86,7 @@ public class WeaponPlus : TerrariaPlugin
         }
         wPlayers[args.Who] = new WPlayer(TShock.Players[args.Who])
         {
-            hasItems = DB.ReadDBGetWItemsFromOwner(TShock.Players[args.Who].Name).ToList()
+            hasItems = [.. DB.ReadDBGetWItemsFromOwner(TShock.Players[args.Who].Name)]
         };
         if (!config.WhetherToTurnOnAutomaticLoadWeaponsWhenEnteringTheGame || wPlayers.Length == 0)
         {
@@ -175,7 +175,7 @@ public class WeaponPlus : TerrariaPlugin
                     return;
                 }
                 var num = (long) (select.allCost * config.ResetTheWeaponReturnMultiple);
-                EconomicsAPI.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num, config.Currency);
+                Core.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num, config.Currency);
                 wPlayer.hasItems.RemoveAll((x) => x.id == firstItem!.netID);
                 DB.DeleteDB(args.Player.Name, firstItem!.netID);
                 ReplaceWeaponsInBackpack(args.Player.TPlayer, select, 1);
@@ -515,6 +515,7 @@ public class WeaponPlus : TerrariaPlugin
         {
             return;
         }
+        TShock.Log.Info(GetString($"{player.name} Modify Item {item.id} {item.ItemMess()}"));
         var whoAmI = player.whoAmI;
         for (var i = 0; i < NetItem.InventoryIndex.Item2; i++)
         {
@@ -572,10 +573,10 @@ public class WeaponPlus : TerrariaPlugin
             TShock.Players[whoAMI].SendMessage(GetString("当前该类型升级已达到上限，无法升级"), Color.Red);
             return false;
         }
-        if (EconomicsAPI.Economics.CurrencyManager.DeductUserCurrency(name, price, config.Currency))
+        if (Core.Economics.CurrencyManager.DeductUserCurrency(name, price, config.Currency))
         {
             WItem.allCost += price;
-            TShock.Players[whoAMI].SendMessage(GetString($"扣除{config.Currency}：{price}，当前剩余：{EconomicsAPI.Economics.CurrencyManager.GetUserCurrency(name, config.Currency).Number}"), new Color(99, 106, 255));
+            TShock.Players[whoAMI].SendMessage(GetString($"扣除{config.Currency}：{price}，当前剩余：{Core.Economics.CurrencyManager.GetUserCurrency(name, config.Currency).Number}"), new Color(99, 106, 255));
             return true;
         }
         TShock.Players[whoAMI].SendInfoMessage(GetString($"{config.Currency}不足！"));

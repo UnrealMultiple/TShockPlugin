@@ -1,6 +1,6 @@
 ﻿using Economics.Skill.DB;
 using Economics.Skill.Enumerates;
-using EconomicsAPI.Extensions;
+using Economics.Core.Extensions;
 using TShockAPI;
 
 namespace Economics.Skill.Events;

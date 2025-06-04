@@ -1,7 +1,7 @@
 [
   {
     "Name": "CaiPacketDebug",
-    "Version": "2025.5.18.3",
+    "Version": "2025.5.20.1",
     "Author": "Cai",
     "Description": {
       "en-US": "Plugin for debugging data packets~",
@@ -20,6 +20,26 @@
       "LazyAPI",
       "TrProtocol"
     ],
+    "HotReload": true
+  },
+  {
+    "Name": "TransferPatch",
+    "Version": "1.0.0.1",
+    "Author": "少司命",
+    "Description": {
+      "en-US": "Translate any plugin",
+      "de-DE": "翻译任意插件",
+      "it-IT": "翻译任意插件",
+      "fr-FR": "翻译任意插件",
+      "es-ES": "翻译任意插件",
+      "ru-RU": "翻译任意插件",
+      "zh-CN": "翻译任意插件",
+      "pt-BR": "翻译任意插件",
+      "pl-PL": "翻译任意插件"
+    },
+    "AssemblyName": "TransferPatch",
+    "Path": "TransferPatch.dll",
+    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -168,6 +188,26 @@
     "Dependencies": [
       "LazyAPI"
     ],
+    "HotReload": true
+  },
+  {
+    "Name": "AutoClassificationQuickStack",
+    "Version": "1.1",
+    "Author": "xuyuwtu",
+    "Description": {
+      "en-US": "快速堆叠时根据配置放入箱子",
+      "de-DE": "快速堆叠时根据配置放入箱子",
+      "it-IT": "快速堆叠时根据配置放入箱子",
+      "fr-FR": "快速堆叠时根据配置放入箱子",
+      "es-ES": "快速堆叠时根据配置放入箱子",
+      "ru-RU": "快速堆叠时根据配置放入箱子",
+      "zh-CN": "快速堆叠时根据配置放入箱子",
+      "pt-BR": "快速堆叠时根据配置放入箱子",
+      "pl-PL": "快速堆叠时根据配置放入箱子"
+    },
+    "AssemblyName": "AutoClassificationQuickStack",
+    "Path": "AutoClassificationQuickStack.dll",
+    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -454,7 +494,7 @@
   },
   {
     "Name": "CaiBotLitePlugin",
-    "Version": "2025.5.18.2",
+    "Version": "2025.5.24.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot官方机器人的适配插件",
@@ -645,7 +685,7 @@
   },
   {
     "Name": "ChestRestore",
-    "Version": "1.0.10",
+    "Version": "1.2.0",
     "Author": "Cjx重构 ，肝帝熙恩简单修改",
     "Description": {
       "en-US": "Infinite treasure chest plugin",
@@ -951,7 +991,7 @@
   },
   {
     "Name": "Dummy",
-    "Version": "1.0.0.2",
+    "Version": "1.0.0.3",
     "Author": "少司命",
     "Description": {
       "en-US": "Place dummies in your server!",
@@ -1013,8 +1053,28 @@
     "HotReload": true
   },
   {
+    "Name": "Economics.Core",
+    "Version": "2.0.0.8",
+    "Author": "少司命",
+    "Description": {
+      "en-US": "Provides economic system API",
+      "de-DE": "提供经济系统API",
+      "it-IT": "提供经济系统API",
+      "fr-FR": "提供经济系统API",
+      "es-ES": "提供经济系统API",
+      "ru-RU": "提供经济系统API",
+      "zh-CN": "提供经济系统API",
+      "pt-BR": "提供经济系统API",
+      "pl-PL": "提供经济系统API"
+    },
+    "AssemblyName": "Economics.Core",
+    "Path": "Economics.Core.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "Economics.Deal",
-    "Version": "2.0.0.4",
+    "Version": "2.0.0.5",
     "Author": "少司命",
     "Description": {
       "en-US": "Players can trade",
@@ -1030,13 +1090,13 @@
     "AssemblyName": "Economics.Deal",
     "Path": "Economics.Deal.dll",
     "Dependencies": [
-      "EconomicsAPI"
+      "Economics.Core"
     ],
     "HotReload": true
   },
   {
     "Name": "Economics.NPC",
-    "Version": "2.0.0.3",
+    "Version": "2.0.0.4",
     "Author": "少司命",
     "Description": {
       "en-US": "Modify the currency dropped by NPC!",
@@ -1052,13 +1112,13 @@
     "AssemblyName": "Economics.NPC",
     "Path": "Economics.NPC.dll",
     "Dependencies": [
-      "EconomicsAPI"
+      "Economics.Core"
     ],
     "HotReload": true
   },
   {
     "Name": "Economics.Regain",
-    "Version": "2.0.0.3",
+    "Version": "2.0.0.4",
     "Author": "少司命",
     "Description": {
       "en-US": "Recycle player items!",
@@ -1074,13 +1134,13 @@
     "AssemblyName": "Economics.Regain",
     "Path": "Economics.Regain.dll",
     "Dependencies": [
-      "EconomicsAPI"
+      "Economics.Core"
     ],
     "HotReload": true
   },
   {
     "Name": "Economics.RPG",
-    "Version": "2.0.0.5",
+    "Version": "2.0.0.6",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides RPG gameplay!",
@@ -1096,13 +1156,13 @@
     "AssemblyName": "Economics.RPG",
     "Path": "Economics.RPG.dll",
     "Dependencies": [
-      "EconomicsAPI"
+      "Economics.Core"
     ],
     "HotReload": true
   },
   {
     "Name": "Economics.Shop",
-    "Version": "2.0.0.3",
+    "Version": "2.0.0.4",
     "Author": "少司命",
     "Description": {
       "en-US": "Economy shop!",
@@ -1118,14 +1178,14 @@
     "AssemblyName": "Economics.Shop",
     "Path": "Economics.Shop.dll",
     "Dependencies": [
-      "EconomicsAPI",
+      "Economics.Core",
       "Economics.RPG"
     ],
     "HotReload": true
   },
   {
     "Name": "Economics.Skill",
-    "Version": "2.0.1.4",
+    "Version": "2.0.1.5",
     "Author": "少司命",
     "Description": {
       "en-US": "Let players have skills!",
@@ -1141,7 +1201,7 @@
     "AssemblyName": "Economics.Skill",
     "Path": "Economics.Skill.dll",
     "Dependencies": [
-      "EconomicsAPI",
+      "Economics.Core",
       "Jint",
       "Economics.RPG"
     ],
@@ -1149,7 +1209,7 @@
   },
   {
     "Name": "Economics.Task",
-    "Version": "2.0.0.4",
+    "Version": "2.0.0.5",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides task system!",
@@ -1165,14 +1225,14 @@
     "AssemblyName": "Economics.Task",
     "Path": "Economics.Task.dll",
     "Dependencies": [
-      "EconomicsAPI",
+      "Economics.Core",
       "Economics.RPG"
     ],
     "HotReload": true
   },
   {
     "Name": "Economics.WeaponPlus",
-    "Version": "2.0.0.5",
+    "Version": "2.0.0.7",
     "Author": "z枳 少司命",
     "Description": {
       "en-US": "Allow any weapon to be strengthened on basic attributes",
@@ -1188,28 +1248,8 @@
     "AssemblyName": "Economics.WeaponPlus",
     "Path": "Economics.WeaponPlus.dll",
     "Dependencies": [
-      "EconomicsAPI"
+      "Economics.Core"
     ],
-    "HotReload": true
-  },
-  {
-    "Name": "EconomicsAPI",
-    "Version": "2.0.0.7",
-    "Author": "少司命",
-    "Description": {
-      "en-US": "Provides economic system API",
-      "de-DE": "提供经济系统API",
-      "it-IT": "提供经济系统API",
-      "fr-FR": "提供经济系统API",
-      "es-ES": "提供经济系统API",
-      "ru-RU": "提供经济系统API",
-      "zh-CN": "提供经济系统API",
-      "pt-BR": "提供经济系统API",
-      "pl-PL": "提供经济系统API"
-    },
-    "AssemblyName": "EconomicsAPI",
-    "Path": "EconomicsAPI.dll",
-    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -1484,18 +1524,18 @@
   },
   {
     "Name": "Lagrange.XocMat.Adapter",
-    "Version": "1.0.0.5",
+    "Version": "1.0.0.6",
     "Author": "少司命",
     "Description": {
-      "en-US": "Adaptation plugin",
-      "de-DE": "适配插件",
-      "it-IT": "适配插件",
-      "fr-FR": "适配插件",
-      "es-ES": "Complemento de adaptación",
-      "ru-RU": "适配插件",
-      "zh-CN": "适配插件",
-      "pt-BR": "适配插件",
-      "pl-PL": "适配插件"
+      "en-US": "Lagrange.XocMat Bot Adapter Plugin",
+      "de-DE": "Lagrange.XocMat机器人适配插件",
+      "it-IT": "Lagrange.XocMat机器人适配插件",
+      "fr-FR": "Lagrange.XocMat机器人适配插件",
+      "es-ES": "Lagrange.XocMat机器人适配插件",
+      "ru-RU": "Lagrange.XocMat机器人适配插件",
+      "zh-CN": "Lagrange.XocMat机器人适配插件",
+      "pt-BR": "Lagrange.XocMat机器人适配插件",
+      "pl-PL": "Lagrange.XocMat机器人适配插件"
     },
     "AssemblyName": "Lagrange.XocMat.Adapter",
     "Path": "Lagrange.XocMat.Adapter.dll",
@@ -1506,7 +1546,7 @@
   },
   {
     "Name": "LazyAPI",
-    "Version": "1.0.0.9",
+    "Version": "1.0.1.0",
     "Author": "cc004 & members of UnrealMultiple",
     "Description": {
       "en-US": "None",
@@ -1693,7 +1733,7 @@
     "Version": "1.0.3",
     "Author": "肝帝熙恩",
     "Description": {
-      "en-US": "留言墙",
+      "en-US": "Note Wall",
       "de-DE": "留言墙",
       "it-IT": "留言墙",
       "fr-FR": "留言墙",
@@ -1736,7 +1776,7 @@
     "Version": "1.0.7",
     "Author": "羽学 少司命",
     "Description": {
-      "en-US": "拦截指定玩家的数据包",
+      "en-US": "Intercept data packets of the specified player",
       "de-DE": "拦截指定玩家的数据包",
       "it-IT": "拦截指定玩家的数据包",
       "fr-FR": "拦截指定玩家的数据包",
@@ -1958,6 +1998,26 @@
     "HotReload": true
   },
   {
+    "Name": "QRCoder",
+    "Version": "1.0.0.2",
+    "Author": "Jonesn，熙恩，Radix.",
+    "Description": {
+      "en-US": "生成二维码",
+      "de-DE": "生成二维码",
+      "it-IT": "生成二维码",
+      "fr-FR": "生成二维码",
+      "es-ES": "生成二维码",
+      "ru-RU": "生成二维码",
+      "zh-CN": "生成二维码",
+      "pt-BR": "生成二维码",
+      "pl-PL": "生成二维码"
+    },
+    "AssemblyName": "QRCoder",
+    "Path": "QRCoder.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "RainbowChat",
     "Version": "1.0.10",
     "Author": "Professor X 熙恩 羽学",
@@ -2082,7 +2142,7 @@
     "Version": "1.1.4",
     "Author": "TBC开发者团队,肝帝熙恩汉化",
     "Description": {
-      "en-US": "Added a regional boundary view to the area.",
+      "en-US": "Added a regional boundary view to the region.",
       "de-DE": "为地区添加区域边界视图。",
       "it-IT": "为地区添加区域边界视图。",
       "fr-FR": "为地区添加区域边界视图。",
@@ -2159,7 +2219,7 @@
   },
   {
     "Name": "RolesModifying",
-    "Version": "1.0.6",
+    "Version": "1.0.7",
     "Author": "少司命",
     "Description": {
       "en-US": "Copy and modify the inventory of other players",
@@ -2199,7 +2259,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.8.8",
+    "Version": "1.1.9.0",
     "Author": "少司命",
     "Description": {
       "en-US": "Server Utility",
@@ -2278,6 +2338,28 @@
     "AssemblyName": "SignInSign",
     "Path": "SignInSign.dll",
     "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "SimultaneousUseFix",
+    "Version": "1.0.11",
+    "Author": "熙恩，感谢恋恋",
+    "Description": {
+      "en-US": "Solve problems such as stuck double hammers and stuck star-spinning machine guns",
+      "de-DE": "解决卡双锤，卡星旋机枪之类的问题",
+      "it-IT": "解决卡双锤，卡星旋机枪之类的问题",
+      "fr-FR": "解决卡双锤，卡星旋机枪之类的问题",
+      "es-ES": "解决卡双锤，卡星旋机枪之类的问题",
+      "ru-RU": "解决卡双锤，卡星旋机枪之类的问题",
+      "zh-CN": "解决卡双锤，卡星旋机枪之类的问题",
+      "pt-BR": "解决卡双锤，卡星旋机枪之类的问题",
+      "pl-PL": "解决卡双锤，卡星旋机枪之类的问题"
+    },
+    "AssemblyName": "SimultaneousUseFix",
+    "Path": "SimultaneousUseFix.dll",
+    "Dependencies": [
+      "Chireiden.TShock.Omni"
+    ],
     "HotReload": true
   },
   {
@@ -2503,28 +2585,6 @@
     "HotReload": true
   },
   {
-    "Name": "TShockConfigMultiLang",
-    "Version": "1.0.4",
-    "Author": "肝帝熙恩，羽学",
-    "Description": {
-      "en-US": "Create a localized language config",
-      "de-DE": "创建一个本地化语言的config",
-      "it-IT": "创建一个本地化语言的config",
-      "fr-FR": "创建一个本地化语言的config",
-      "es-ES": "创建一个本地化语言的config",
-      "ru-RU": "创建一个本地化语言的config",
-      "zh-CN": "创建一个本地化语言的config",
-      "pt-BR": "创建一个本地化语言的config",
-      "pl-PL": "创建一个本地化语言的config"
-    },
-    "AssemblyName": "TShockConfigMultiLang",
-    "Path": "TShockConfigMultiLang.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
-    "HotReload": true
-  },
-  {
     "Name": "UnseenInventory",
     "Version": "1.0.4",
     "Author": "肝帝熙恩",
@@ -2712,7 +2772,7 @@
   },
   {
     "Name": "ZHIPlayerManager",
-    "Version": "1.0.2.7",
+    "Version": "1.0.2.9",
     "Author": "z枳",
     "Description": {
       "en-US": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
@@ -2777,7 +2837,7 @@
     "Version": "1.0.9",
     "Author": "Cracker64 & Zaicon & Cai & 肝帝熙恩",
     "Description": {
-      "en-US": "Record grid operations.",
+      "en-US": "Record tiles history.",
       "de-DE": "记录图格操作.",
       "it-IT": "记录图格操作.",
       "fr-FR": "记录图格操作.",
@@ -2794,7 +2854,7 @@
   },
   {
     "Name": "Economics.Projectile",
-    "Version": "1.0.0.8",
+    "Version": "1.0.0.9",
     "Author": "少司命",
     "Description": {
       "en-US": "Enhanced weapon projectile!",
@@ -2810,7 +2870,7 @@
     "AssemblyName": "Economics.Projectile",
     "Path": "Economics.Projectile.dll",
     "Dependencies": [
-      "EconomicsAPI",
+      "Economics.Core",
       "Economics.RPG"
     ],
     "HotReload": true

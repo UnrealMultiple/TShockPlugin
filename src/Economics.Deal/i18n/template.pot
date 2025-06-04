@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Deal\n"
-"POT-Creation-Date: 2025-01-08 13:15:50+0000\n"
-"PO-Revision-Date: 2025-01-08 13:15:50+0000\n"
+"POT-Creation-Date: 2025-05-28 03:22:26+0000\n"
+"PO-Revision-Date: 2025-05-28 03:22:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,77 +10,81 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Command.cs:63
+#: ../../Command.cs:45
 msgid "{0}：{1} 发布者：{2} 价格{3}"
 msgstr ""
 
-#: ../../Command.cs:123
+#: ../../Command.cs:60
 msgid "/deal buy [ID]"
 msgstr ""
 
-#: ../../Command.cs:125
+#: ../../Command.cs:62
 msgid "/deal list"
 msgstr ""
 
-#: ../../Command.cs:122
+#: ../../Command.cs:59
 msgid "/deal push [价格] [货币类型]"
 msgstr ""
 
-#: ../../Command.cs:124
+#: ../../Command.cs:61
 msgid "/deal recall [ID]"
 msgstr ""
 
-#: ../../Command.cs:83
-#: ../../Command.cs:107
+#: ../../Command.cs:58
+msgid "/deal命令帮助"
+msgstr ""
+
+#: ../../Command.cs:105
+#: ../../Command.cs:133
 msgid "不存在此交易!"
 msgstr ""
 
-#: ../../Command.cs:29
+#: ../../Command.cs:36
 msgid "交易列表 ({0}/{1})："
 msgstr ""
 
-#: ../../Command.cs:136
+#: ../../Command.cs:153
 msgid "交易已重置!"
 msgstr ""
 
-#: ../../Command.cs:93
+#: ../../Command.cs:115
 msgid "交易成功!"
 msgstr ""
 
-#: ../../Command.cs:38
+#: ../../Command.cs:72
 msgid "你手持物品为空!"
 msgstr ""
 
-#: ../../Command.cs:131
-msgid "你无权使用此命令!"
-msgstr ""
-
-#: ../../Command.cs:88
+#: ../../Command.cs:110
 #, csharp-format
 msgid "你的{0}不足，无法购买!"
 msgstr ""
 
-#: ../../Command.cs:52
+#: ../../Command.cs:86
 msgid "发布成功"
 msgstr ""
 
-#: ../../Command.cs:28
+#: ../../Command.cs:35
 msgid "当前没有交易物品"
 msgstr ""
 
-#: ../../Command.cs:115
+#: ../../Command.cs:141
 msgid "撤回成功!"
 msgstr ""
 
-#: ../../Command.cs:116
+#: ../../Command.cs:14
+msgid "此命令可以交易物品!"
+msgstr ""
+
+#: ../../Command.cs:142
 msgid "玩家{0}撤回了发布的物品{1}!"
 msgstr ""
 
-#: ../../Command.cs:94
+#: ../../Command.cs:116
 msgid "玩家{0}购买了{1}发布的物品{2}!"
 msgstr ""
 
-#: ../../Command.cs:53
+#: ../../Command.cs:87
 #, csharp-format
 msgid "玩家`{0}`发布了一个交易物品: [i/s{1}:{2}] 价格: {3}x{4}"
 msgstr ""
@@ -89,29 +93,29 @@ msgstr ""
 msgid "玩家可以进行交易"
 msgstr ""
 
-#: ../../Command.cs:112
+#: ../../Command.cs:138
 msgid "该交易不是你发布的无法撤回!"
 msgstr ""
 
-#: ../../Command.cs:77
-#: ../../Command.cs:101
+#: ../../Command.cs:16
+msgid "语法错误，请输入/deal help查看正确使用方法!"
+msgstr ""
+
+#: ../../Command.cs:99
+#: ../../Command.cs:127
 msgid "请输入一个正确的ID"
 msgstr ""
 
-#: ../../Command.cs:43
+#: ../../Command.cs:77
 msgid "请输入一个正确的价格!"
 msgstr ""
 
-#: ../../Command.cs:48
+#: ../../Command.cs:82
 #, csharp-format
 msgid "货币类型{0}不存在!"
 msgstr ""
 
-#: ../../Command.cs:30
+#: ../../Command.cs:37
 msgid "输入 {0}deal list {{0}} 查看更多"
-msgstr ""
-
-#: ../../Command.cs:140
-msgid "输入/deal help 查看命令使用方法"
 msgstr ""
 

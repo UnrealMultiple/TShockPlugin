@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-03-29 06:00:13+0000\n"
-"PO-Revision-Date: 2025-04-06 01:19\n"
+"PO-Revision-Date: 2025-05-29 01:20\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -23,74 +23,74 @@ msgstr "[PacketStop] Reload configuration completed."
 
 #: ../../Commands.cs:21
 msgid "/pksp add 玩家名字 ——将指定玩家添加到拦截名单\n"
-msgstr ""
+msgstr "/pksp add <player name> —— add the specified player to the intercept list\n"
 
 #: ../../Commands.cs:22
 msgid "/pksp del 玩家名字 ——将指定玩家从拦截名单移除\n"
-msgstr ""
+msgstr "/pksp del <player name> —— removes the specified player from the intercept list\n"
 
 #: ../../Commands.cs:20
 msgid "/pksp list ——列出拦截名单\n"
-msgstr ""
+msgstr "/pksp list —— List of interceptors\n"
 
 #: ../../Commands.cs:19
 msgid "/pksp off ——关闭数据包拦截\n"
-msgstr ""
+msgstr "/pksp off —— Turn off packet interception\n"
 
 #: ../../Commands.cs:18
 msgid "/pksp on ——开启数据包拦截\n"
-msgstr ""
+msgstr "/pksp on —— Turn on packet interception\n"
 
 #: ../../Commands.cs:23
 msgid "/pksp reset ——清空拦截名单"
-msgstr ""
+msgstr "/pksp reset —— Clear the intercept list"
 
 #: ../../Commands.cs:95
 #, csharp-format
 msgid "成功从拦截名单删除玩家: {0} "
-msgstr ""
+msgstr "Successfully deleted player from the intercepted list: {0} "
 
 #: ../../Commands.cs:70
 #, csharp-format
 msgid "成功添加玩家 {0} 进入拦截名单"
-msgstr ""
+msgstr "Successfully added player {0} to intercept list"
 
 #: ../../Commands.cs:123
 msgid "成功清空拦截名单"
-msgstr ""
+msgstr "Clear the intercept list successfully"
 
 #: ../../Commands.cs:31
 msgid "拦截功能:已关闭"
-msgstr ""
+msgstr "Intercept function: disabled"
 
 #: ../../Commands.cs:27
 msgid "拦截功能:已启用"
-msgstr ""
+msgstr "Intercept function: enabled"
 
 #: ../../Commands.cs:110
 #, csharp-format
 msgid "拦截名单：{0} "
-msgstr ""
+msgstr "Intercept list: {0} "
 
 #: ../../Commands.cs:114
 msgid "拦截名单：无"
-msgstr ""
+msgstr "Intercept list: None"
 
 #: ../../PacketsStop.cs:15
 msgid "拦截指定玩家的数据包"
-msgstr ""
+msgstr "Intercept data packets of the specified player"
 
 #: ../../Commands.cs:51
 msgid "数据包拦截 已关闭"
-msgstr ""
+msgstr "Packet Intercept Disabled"
 
 #: ../../Commands.cs:43
 msgid "数据包拦截 已启用"
-msgstr ""
+msgstr "Packet Intercept Enabled"
 
 #: ../../Commands.cs:17
 msgid "数据包拦截指令菜单\n"
-msgstr ""
+msgstr "Packet Intercept Command Menu\n"
 
 #: ../../PacketsStop.cs:124
 #, csharp-format
@@ -99,17 +99,17 @@ msgstr "Unrecognized packet type name: {0}"
 
 #: ../../Commands.cs:99
 msgid "该玩家不存在拦截名单中"
-msgstr ""
+msgstr "This player does not exist on the interception list"
 
 #: ../../Commands.cs:74
 msgid "该玩家已存在拦截名单中"
-msgstr ""
+msgstr "This player is already exist on the interception list"
 
 #: ../../Commands.cs:59
 msgid "请提供要添加的玩家名称。"
-msgstr ""
+msgstr "Please provide the name of the player to be added."
 
 #: ../../Commands.cs:84
 msgid "请提供要移除的玩家名称。"
-msgstr ""
+msgstr "Please provide the name of the player to be removed."
 

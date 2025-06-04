@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\template.targets" />
+
+    <ItemGroup>
+      <None Remove="Resources\TransferPatch.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\TransferPatch.json" />
+    </ItemGroup>
+
+</Project>

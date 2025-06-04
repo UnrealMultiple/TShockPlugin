@@ -62,6 +62,7 @@
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 广播盒功能强化 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.md) | 自动垃圾桶插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 自动广播 | [LazyAPI](./src/LazyAPI/README.md) |
+| [AutoClassificationQuickStack](./src/AutoClassificationQuickStack/README.md) | 便捷分类箱子 |  |
 | [AutoClear](./src/AutoClear/README.md) | 智能自动扫地 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoFish](./src/AutoFish/README.md) | 自动钓鱼 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoPluginManager](./src/AutoPluginManager/README.md) | 一键自动更新插件 |  |
@@ -105,16 +106,16 @@
 | [Dummy](./src/Dummy/README.md) | 服务器假人 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 输出 ID |  |
 | [DwTP](./src/DwTP/README.md) | 定位传送 |  |
-| [Economics.Deal](./src/Economics.Deal/README.md) | 交易插件 | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [Economics.NPC](./src/Economics.NPC/README.md) | 自定义怪物奖励 | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [Economics.Projectile](./src/Economics.Projectile/README.md) | 自定义弹幕 | [EconomicsAPI](./src/EconomicsAPI/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Regain](./src/Economics.Regain/README.md) | 物品回收 | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [Economics.RPG](./src/Economics.RPG/README.md) | RPG | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [Economics.Shop](./src/Economics.Shop/README.md) | 商店插件 | [EconomicsAPI](./src/EconomicsAPI/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Skill](./src/Economics.Skill/README.md) | 技能插件 | [EconomicsAPI](./src/EconomicsAPI/README.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Task](./src/Economics.Task/README.md) | 任务插件 | [EconomicsAPI](./src/EconomicsAPI/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 强化武器 | [EconomicsAPI](./src/EconomicsAPI/README.md) |
-| [EconomicsAPI](./src/EconomicsAPI/README.md) | 经济插件前置 |  |
+| [Economics.Core](./src/Economics.Core/README.md) | 经济插件前置 |  |
+| [Economics.Deal](./src/Economics.Deal/README.md) | 交易插件 | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.NPC](./src/Economics.NPC/README.md) | 自定义怪物奖励 | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.Projectile](./src/Economics.Projectile/README.md) | 自定义弹幕 | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Regain](./src/Economics.Regain/README.md) | 物品回收 | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.RPG](./src/Economics.RPG/README.md) | RPG | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.Shop](./src/Economics.Shop/README.md) | 商店插件 | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Skill](./src/Economics.Skill/README.md) | 技能插件 | [Economics.Core](./src/Economics.Core/README.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Task](./src/Economics.Task/README.md) | 任务插件 | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 强化武器 | [Economics.Core](./src/Economics.Core/README.md) |
 | [EndureBoost](./src/EndureBoost/README.md) | 拥有指定数量物品给指定buff |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.md) | 更多管理指令 | [LazyAPI](./src/LazyAPI/README.md) |
 | [Ezperm](./src/Ezperm/README.md) | 批量改权限 | [LazyAPI](./src/LazyAPI/README.md) |
@@ -157,6 +158,7 @@
 | [ProgressRestrict](./src/ProgressRestrict/README.md) | 超进度检测 | [DataSync](./src/DataSync/README.md) |
 | [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 接受 proxy protocol 协议 |  |
 | [PvPer](./src/PvPer/README.md) | 决斗系统 |  |
+| [QRCoder](./src/QRCoder/README.md) | 二维码生成器 |  |
 | [RainbowChat](./src/RainbowChat/README.md) | 每次说话颜色不一样 |  |
 | [RandomBroadcast](./src/RandomBroadcast/README.md) | 随机广播 |  |
 | [RandRespawn](./src/RandRespawn/README.md) | 随机出生点 |  |
@@ -187,7 +189,7 @@
 | [TimeRate](./src/TimeRate/README.md) | 时间加速插件 |  |
 | [TimerKeeper](./src/TimerKeeper/README.md) | 保存计时器状态 |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | NPC 快速回家 |  |
-| [TShockConfigMultiLang](./src/TShockConfigMultiLang/README.md) | TShock config文件语言本土化 | [LazyAPI](./src/LazyAPI/README.md) |
+| [TransferPatch](./src/TransferPatch/README.md) | 翻译补丁 |  |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 允许服务器端生成“无法获取”的物品 |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | VBY插件的基础库 |  |
 | [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 对一些游戏内容的可自定义修改 (超强) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |

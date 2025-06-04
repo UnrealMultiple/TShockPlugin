@@ -1,7 +1,8 @@
 ﻿using Economics.Skill.Model.Options;
-using EconomicsAPI.Extensions;
+using Economics.Core.Extensions;
 using Newtonsoft.Json;
 using TShockAPI;
+using Economics.Skill.Setting;
 
 namespace Economics.Skill.Model.Loop;
 public class RegionLoop : BaseLoop
@@ -71,12 +72,12 @@ public class RegionLoop : BaseLoop
     /// <param name="skill"></param>
     public void Spark(TSPlayer Player)
     {
-        Player.StrikeNpc(this.DamageNpc, this.Range * 16, Skill.Config.BanStrikeNpcs);
+        Player.StrikeNpc(this.DamageNpc, this.Range * 16, Config.Instance.BanStrikeNpcs);
         Player.ExecRangeCommands(this.Range * 16, this.Commands);
         Player.HealAllLife(this.Range * 16, this.HP);
         Player.HealAllMana(this.Range * 16, this.MP);
         Player.ClearProj(this.Range * 16);
-        Player.CollectNPC(this.Range, Skill.Config.BanPullNpcs, this.PullNpcX * 16, this.PullNpcY * 16);
+        Player.CollectNPC(this.Range, Config.Instance.BanPullNpcs, this.PullNpcX * 16, this.PullNpcY * 16);
         this.AddNpcBuff(Player);
         this.AddPlayerBuff(Player);
     }

@@ -9,6 +9,7 @@ namespace ServerTools.DB;
 public class PlayerDeath : RecordBase<PlayerDeath>
 {
     [PrimaryKey]
+    [NotNull]
     [Column("Name")]
     public string Name { get; set; } = string.Empty;
 
@@ -27,7 +28,7 @@ public class PlayerDeath : RecordBase<PlayerDeath>
 
     public static List<PlayerDeath> GetDeathRank()
     {
-        return Instance.Records.OrderByDescending(x => x.Count).ToList();
+        return [.. Instance.Records.OrderByDescending(x => x.Count)];
     }
 
     public static void Add(string name)

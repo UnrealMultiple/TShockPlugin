@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-04-08 12:30:21+0000\n"
-"PO-Revision-Date: 2025-04-11 15:17\n"
+"POT-Creation-Date: 2025-05-17 23:59:55+0000\n"
+"PO-Revision-Date: 2025-05-18 01:24\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1472\n"
 "Language: ru_RU\n"
 
-#: ../../Plugin.cs:28
-msgid "适配插件"
+#: ../../Plugin.cs:27
+msgid "Lagrange.XocMat机器人适配插件"
 msgstr ""
 

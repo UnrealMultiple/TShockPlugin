@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-04-23 02:41:23+0000\n"
-"PO-Revision-Date: 2025-04-27 01:21\n"
+"POT-Creation-Date: 2025-05-17 17:41:00+0000\n"
+"PO-Revision-Date: 2025-05-18 01:24\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,42 +17,42 @@ msgstr ""
 "X-Crowdin-File-ID: 1496\n"
 "Language: en_US\n"
 
-#: ../../PControl.Utils.cs:478
+#: ../../PControl.Utils.cs:475
 #, csharp-format
 msgid " [c/{0}:{1}] 分"
 msgstr ""
 
-#: ../../PControl.Utils.cs:473
+#: ../../PControl.Utils.cs:470
 #, csharp-format
 msgid " [c/{0}:{1}] 时"
 msgstr ""
 
-#: ../../PControl.Utils.cs:483
+#: ../../PControl.Utils.cs:480
 #, csharp-format
 msgid " [c/{0}:{1}] 秒"
 msgstr ""
 
-#: ../../PControl.Utils.cs:508
+#: ../../PControl.Utils.cs:505
 #, csharp-format
 msgid " [c/{0}:0] 秒"
 msgstr ""
 
-#: ../../PControl.Utils.cs:495
+#: ../../PControl.Utils.cs:492
 #, csharp-format
 msgid " {0} 分"
 msgstr ""
 
-#: ../../PControl.Utils.cs:490
+#: ../../PControl.Utils.cs:487
 #, csharp-format
 msgid " {0} 时"
 msgstr ""
 
-#: ../../PControl.Utils.cs:500
+#: ../../PControl.Utils.cs:497
 #, csharp-format
 msgid " {0} 秒"
 msgstr ""
 
-#: ../../PControl.Utils.cs:512
+#: ../../PControl.Utils.cs:509
 msgid " 0 秒"
 msgstr ""
 
@@ -93,33 +93,32 @@ msgstr ""
 
 #: ../../PControl.Initialize.cs:278
 #: ../../PControl.Initialize.cs:279
-#: ../../PControl.Utils.cs:121
-#: ../../PControl.Utils.cs:122
+#: ../../PControl.Utils.cs:120
 #, csharp-format
 msgid "{0} 删除成功"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1860
+#: ../../PControl.Initialize.cs:1813
 #, csharp-format
 msgid "{0} 地图不存在，第 {1} 次重置地图将自动生成一个\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1855
+#: ../../PControl.Initialize.cs:1808
 #, csharp-format
 msgid "{0} 地图存在，第 {1} 次重置地图将自动调用\n"
 msgstr ""
 
-#: ../../PControl.Utils.cs:344
+#: ../../PControl.Utils.cs:337
 #, csharp-format
 msgid "{0} 未到解锁时间，还剩{1}"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2133
+#: ../../PControl.Initialize.cs:2061
 #, csharp-format
 msgid "{0} 添加成功，该名称的地图不存在，重置时将生成一个"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2129
+#: ../../PControl.Initialize.cs:2057
 #, csharp-format
 msgid "{0} 添加成功，该名称的地图存在：{1}，重置时将直接读取"
 msgstr ""
@@ -188,7 +187,7 @@ msgstr ""
 msgid "NPC:{0} 已更新成功，将在从现在起{1}后解锁"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2495
+#: ../../PControl.Initialize.cs:2423
 #, csharp-format
 msgid "NPC:{0} 已被击杀 {1} 次，开始执行指令"
 msgstr ""
@@ -225,83 +224,53 @@ msgstr ""
 msgid "ProgressControl.json 反序列化失败，可能有填写错误或配置文件需要更新，已对配置文件作了更新处理"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1747
-#, csharp-format
-msgid "下次重启地图时的端口为：{0}"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:1734
-#, csharp-format
-msgid "下次重启地图的玩家上限成功修改为：{0}"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:1886
+#: ../../PControl.Initialize.cs:1839
 msgid "下次重置地图不会自动删掉当前地图"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1872
+#: ../../PControl.Initialize.cs:1825
 msgid "下次重置地图不会自动重置玩家数据"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1890
+#: ../../PControl.Initialize.cs:1843
 msgid "下次重置地图会自动删掉当前地图"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1876
+#: ../../PControl.Initialize.cs:1829
 msgid "下次重置地图会自动重置玩家数据"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2109
-#, csharp-format
-msgid "下次重置地图时的端口为：{0}"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:2042
+#: ../../PControl.Initialize.cs:1995
 msgid "下次重置地图的大小成功修改为：中"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2046
+#: ../../PControl.Initialize.cs:1999
 msgid "下次重置地图的大小成功修改为：大"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2038
+#: ../../PControl.Initialize.cs:1991
 msgid "下次重置地图的大小成功修改为：小"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2067
+#: ../../PControl.Initialize.cs:2020
 msgid "下次重置地图的模式成功修改为：专家"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2071
+#: ../../PControl.Initialize.cs:2024
 msgid "下次重置地图的模式成功修改为：大师"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2075
+#: ../../PControl.Initialize.cs:2028
 msgid "下次重置地图的模式成功修改为：旅途"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2063
+#: ../../PControl.Initialize.cs:2016
 msgid "下次重置地图的模式成功修改为：普通"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2096
-#, csharp-format
-msgid "下次重置地图的玩家上限成功修改为：{0}"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:2088
+#: ../../PControl.Initialize.cs:2041
 #, csharp-format
 msgid "下次重置地图的种子成功修改为：{0}"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:1753
-#: ../../PControl.Initialize.cs:2115
-msgid "下次重置服务器的密码修改成功"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:1604
-#: ../../PControl.Initialize.cs:1839
-msgid "下次重置服务器的密码已取消"
 msgstr ""
 
 #: ../../PControl.Initialize.cs:529
@@ -395,7 +364,7 @@ msgstr ""
 msgid "你没有指定要复制的文件或文件夹，请在配置文件中设置。"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1846
+#: ../../PControl.Initialize.cs:1799
 #, csharp-format
 msgid "你没有提供任何名字，服务器将按<自动重置后的地图名称>: {0} 生成地图"
 msgstr ""
@@ -410,13 +379,13 @@ msgstr ""
 msgid "你的权限不足以涵盖该指令：/{0}，请不要试图越权"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2025
+#: ../../PControl.Initialize.cs:1978
 #, csharp-format
 msgid "你输入的地图名称带有非法字符，已将非法字符过滤，改为：{0}"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2122
-#: ../../PControl.Initialize.cs:2148
+#: ../../PControl.Initialize.cs:2050
+#: ../../PControl.Initialize.cs:2076
 #, csharp-format
 msgid "你输入的地图名称带有非法字符或不必要的后缀，已过滤为：{0}"
 msgstr ""
@@ -424,7 +393,7 @@ msgstr ""
 #: ../../PControl.Initialize.cs:292
 #: ../../PControl.Initialize.cs:293
 #: ../../PControl.Initialize.cs:294
-#: ../../PControl.Utils.cs:133
+#: ../../PControl.Utils.cs:129
 #, csharp-format
 msgid "使用指令删除哪些文件发生错误：{0}"
 msgstr ""
@@ -446,12 +415,12 @@ msgstr ""
 msgid "修改失败，没有{0}的封禁计划"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2030
+#: ../../PControl.Initialize.cs:1983
 #, csharp-format
 msgid "修改成功，自动重置后的地图名称修改为：{0}"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2158
+#: ../../PControl.Initialize.cs:2086
 msgid "删除失败，该名称可能不存在"
 msgstr ""
 
@@ -460,7 +429,7 @@ msgstr ""
 msgid "删除失败，请检查是否存在该指令"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2153
+#: ../../PControl.Initialize.cs:2081
 msgid "删除成功"
 msgstr ""
 
@@ -485,8 +454,8 @@ msgstr ""
 
 #: ../../PControl.Initialize.cs:778
 #: ../../PControl.Initialize.cs:782
-#: ../../PControl.Utils.cs:364
-#: ../../PControl.Utils.cs:368
+#: ../../PControl.Utils.cs:359
+#: ../../PControl.Utils.cs:363
 #, csharp-format
 msgid "定位成功，{0}将{1}解锁"
 msgstr ""
@@ -519,7 +488,7 @@ msgstr ""
 msgid "已取消自动执行指令的计划"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1833
+#: ../../PControl.Initialize.cs:1792
 msgid "已将地图种子设为随机"
 msgstr ""
 
@@ -569,45 +538,45 @@ msgstr ""
 msgid "手动执行指令计划未开启，无需关闭"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1612
-#: ../../PControl.Initialize.cs:1722
+#: ../../PControl.Initialize.cs:1600
+#: ../../PControl.Initialize.cs:1710
 msgid "手动重启计划已关闭"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1689
-#: ../../PControl.Initialize.cs:1692
+#: ../../PControl.Initialize.cs:1677
+#: ../../PControl.Initialize.cs:1680
 #, csharp-format
 msgid "手动重启计划已重新开始，服务器将在{0}后重启"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1697
-#: ../../PControl.Initialize.cs:1700
+#: ../../PControl.Initialize.cs:1685
+#: ../../PControl.Initialize.cs:1688
 #, csharp-format
 msgid "手动重启计划开启，服务器将在{0}后重启"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1616
+#: ../../PControl.Initialize.cs:1604
 msgid "手动重启计划未开启，无需关闭"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1902
-#: ../../PControl.Initialize.cs:2012
+#: ../../PControl.Initialize.cs:1855
+#: ../../PControl.Initialize.cs:1965
 msgid "手动重置计划已关闭"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1979
-#: ../../PControl.Initialize.cs:1982
+#: ../../PControl.Initialize.cs:1932
+#: ../../PControl.Initialize.cs:1935
 #, csharp-format
 msgid "手动重置计划已重新开始，服务器将在{0}后重置"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1987
-#: ../../PControl.Initialize.cs:1990
+#: ../../PControl.Initialize.cs:1940
+#: ../../PControl.Initialize.cs:1943
 #, csharp-format
 msgid "手动重置计划开启，服务器将在{0}后重置"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1906
+#: ../../PControl.Initialize.cs:1859
 msgid "手动重置计划未开启，无需关闭"
 msgstr ""
 
@@ -631,14 +600,14 @@ msgstr ""
 #: ../../PControl.Initialize.cs:739
 #: ../../PControl.Initialize.cs:773
 #: ../../PControl.Initialize.cs:1256
-#: ../../PControl.Utils.cs:359
+#: ../../PControl.Utils.cs:352
 msgid "推迟"
 msgstr ""
 
 #: ../../PControl.Initialize.cs:740
 #: ../../PControl.Initialize.cs:774
 #: ../../PControl.Initialize.cs:1257
-#: ../../PControl.Utils.cs:360
+#: ../../PControl.Utils.cs:354
 msgid "提前"
 msgstr ""
 
@@ -661,14 +630,14 @@ msgstr ""
 msgid "时间不变"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1649
-#: ../../PControl.Initialize.cs:1653
+#: ../../PControl.Initialize.cs:1637
+#: ../../PControl.Initialize.cs:1641
 #, csharp-format
 msgid "时间已修改为 {0:0.00} 即从现在起{1}后开始重启"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1939
-#: ../../PControl.Initialize.cs:1943
+#: ../../PControl.Initialize.cs:1892
+#: ../../PControl.Initialize.cs:1896
 #, csharp-format
 msgid "时间已修改为 {0:0.00} 即从现在起{1}后开始重置"
 msgstr ""
@@ -761,30 +730,30 @@ msgstr ""
 msgid "服务器将在{0}秒后重置"
 msgstr ""
 
-#: ../../PControl.Utils.cs:320
+#: ../../PControl.Utils.cs:313
 msgid "服务器执行指令成功——来自插件：计划书ProgressControl"
 msgstr ""
 
-#: ../../PControl.Utils.cs:257
+#: ../../PControl.Utils.cs:248
 msgid "服务器正在重启"
 msgstr ""
 
-#: ../../PControl.Utils.cs:266
+#: ../../PControl.Utils.cs:252
 msgid "服务器正在重启——来自插件：计划书ProgressControl"
 msgstr ""
 
-#: ../../PControl.Utils.cs:33
-#: ../../PControl.Utils.cs:43
+#: ../../PControl.Utils.cs:34
+#: ../../PControl.Utils.cs:44
 msgid "服务器正在重置"
 msgstr ""
 
-#: ../../PControl.Utils.cs:135
+#: ../../PControl.Utils.cs:134
 msgid "服务器正在重置——来自插件：计划书ProgressControl"
 msgstr ""
 
 #: ../../PControl.Initialize.cs:1162
-#: ../../PControl.Utils.cs:321
-#: ../../PControl.Utils.cs:322
+#: ../../PControl.Utils.cs:314
+#: ../../PControl.Utils.cs:315
 msgid "服务器自动执行指令成功"
 msgstr ""
 
@@ -815,11 +784,11 @@ msgstr ""
 msgid "未开启手动执行指令计划"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1726
+#: ../../PControl.Initialize.cs:1714
 msgid "未开启手动重启计划"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2016
+#: ../../PControl.Initialize.cs:1969
 msgid "未开启手动重置计划"
 msgstr ""
 
@@ -839,7 +808,7 @@ msgstr ""
 #: ../../PControl.Initialize.cs:682
 #: ../../PControl.Initialize.cs:1032
 #: ../../PControl.Initialize.cs:1546
-#: ../../PControl.Initialize.cs:1766
+#: ../../PControl.Initialize.cs:1729
 #, csharp-format
 msgid "权限不足！[{0}]或[{1}]"
 msgstr ""
@@ -915,33 +884,33 @@ msgstr ""
 msgid "权限不足[{0}]，不能调整含有重置计划系列指令的计划"
 msgstr ""
 
-#: ../../PControl.Utils.cs:772
+#: ../../PControl.Utils.cs:783
 msgid "格式错误。H 必须为整数"
 msgstr ""
 
-#: ../../PControl.Utils.cs:751
+#: ../../PControl.Utils.cs:761
 msgid "格式错误。M 和 S 不能大于59，请自行进位"
 msgstr ""
 
-#: ../../PControl.Utils.cs:746
+#: ../../PControl.Utils.cs:755
 msgid "格式错误。M 和 S 不需要加负号，负号只需要填入 H 的前面即可"
 msgstr ""
 
-#: ../../PControl.Utils.cs:766
+#: ../../PControl.Utils.cs:777
 msgid "格式错误。M 必须为整数"
 msgstr ""
 
-#: ../../PControl.Utils.cs:760
+#: ../../PControl.Utils.cs:771
 msgid "格式错误。S 必须为整数"
 msgstr ""
 
-#: ../../PControl.Utils.cs:717
+#: ../../PControl.Utils.cs:726
 msgid "格式错误。应为[±num]或[±H:M:S]，num必须为整数或小数，H M S必须为整数或不填(不能为空格)，正号可以不加，冒号可用小数点代替但必须都要填"
 msgstr ""
 
 #: ../../PControl.Initialize.cs:740
 #: ../../PControl.Initialize.cs:774
-#: ../../PControl.Utils.cs:360
+#: ../../PControl.Utils.cs:355
 msgid "正常"
 msgstr ""
 
@@ -949,7 +918,7 @@ msgstr ""
 msgid "添加失败，不要添加空指令"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2140
+#: ../../PControl.Initialize.cs:2068
 msgid "添加失败，该名称已存在"
 msgstr ""
 
@@ -957,14 +926,14 @@ msgstr ""
 msgid "添加失败，请检查是否已添加过"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2179
+#: ../../PControl.Initialize.cs:2107
 #, csharp-format
 msgid "源目录不存在或找不到: {0}"
 msgstr ""
 
 #: ../../PControl.Initialize.cs:550
 #, csharp-format
-msgid "生成地图名称：{0}，地图大小：{1}，模式：{2}，种子：{3}，最多在线人数：{4}"
+msgid "生成地图名称：{0}，地图大小：{1}，模式：{2}，种子：{3}"
 msgstr ""
 
 #: ../../PControl.Initialize.cs:329
@@ -994,12 +963,12 @@ msgstr ""
 msgid "自动执行指令倒计时必须大于等于0，请使用指令 /pco com os 调整"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1104
 #: ../../PControl.cs:423
+#: ../../PControl.Initialize.cs:1104
 msgid "自动执行指令倒计时过短，可能即将开始自动执行指令"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2458
+#: ../../PControl.Initialize.cs:2386
 msgid "自动执行指令已过期，现已将上次执行指令的日期设定为现在，如果你不希望开启自动执行指令可以关闭，详情看ProgressControl.json配置文件（ProgressControl插件）"
 msgstr ""
 
@@ -1013,57 +982,57 @@ msgstr ""
 msgid "自动执行指令计划已启用，将在从现在起{0}后自动执行指令"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2452
+#: ../../PControl.Initialize.cs:2380
 msgid "自动重启已过期，现已将上次重启日期设定为现在，如果你不希望开启自动重启可以关闭，详情看ProgressControl.json配置文件（ProgressControl插件）"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1581
+#: ../../PControl.Initialize.cs:1575
 #, csharp-format
 msgid "自动重启服务器倒计时过短，需Time大于 {0:0.00} 来避免立刻重启(即上次重启时间{1}后才可自动执行)，避免产生错误，修改失败"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1658
+#: ../../PControl.Initialize.cs:1646
 msgid "自动重启计划已修改"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1574
+#: ../../PControl.Initialize.cs:1568
 msgid "自动重启计划已关闭"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1587
-#: ../../PControl.Initialize.cs:1590
+#: ../../PControl.Initialize.cs:1581
+#: ../../PControl.Initialize.cs:1584
 #, csharp-format
 msgid "自动重启计划已启用，将在从现在起{0}后自动重启"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1810
+#: ../../PControl.Initialize.cs:1769
 #, csharp-format
 msgid "自动重置世界倒计时过短，需大于 {0:0.00} 来避免立刻重置(即上次重置时间{1}后才可自动执行)，避免产生错误，修改失败"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2444
+#: ../../PControl.Initialize.cs:2372
 msgid "自动重置已过期，现已关闭自动重置并将开服日期设定为现在，详情看ProgressControl.json配置文件（ProgressControl插件）"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1948
+#: ../../PControl.Initialize.cs:1901
 msgid "自动重置计划已修改"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1801
+#: ../../PControl.Initialize.cs:1760
 msgid "自动重置计划已关闭"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1816
-#: ../../PControl.Initialize.cs:1819
+#: ../../PControl.Initialize.cs:1775
+#: ../../PControl.Initialize.cs:1778
 #, csharp-format
 msgid "自动重置计划已启用，将在从现在起{0}后自动重置"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1630
+#: ../../PControl.Initialize.cs:1618
 msgid "警告，并未开启自动重启计划，你的修改不会有任何效果"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1920
+#: ../../PControl.Initialize.cs:1873
 msgid "警告，并未开启自动重置计划，你的修改不会有任何效果"
 msgstr ""
 
@@ -1073,7 +1042,7 @@ msgstr ""
 
 #: ../../PControl.Initialize.cs:743
 #: ../../PControl.Initialize.cs:777
-#: ../../PControl.Utils.cs:363
+#: ../../PControl.Utils.cs:358
 msgid "警告，未开启自动控制NPC进度计划，你的修改不会有任何效果"
 msgstr ""
 
@@ -1085,7 +1054,7 @@ msgstr ""
 msgid "警告：当前存在手动重启计划，且时间小于你输入的数值，你的手动执行指令计划将不会生效！"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1969
+#: ../../PControl.Initialize.cs:1922
 msgid "警告：当前存在手动重启计划，且时间小于你输入的数值，你的手动重置计划将不会生效！"
 msgstr ""
 
@@ -1093,7 +1062,7 @@ msgstr ""
 msgid "警告：当前存在手动重置计划，且时间小于你输入的数值，你的手动执行指令计划将不会生效！"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1679
+#: ../../PControl.Initialize.cs:1667
 msgid "警告：当前存在手动重置计划，且时间小于你输入的数值，你的手动重启计划将不会生效！"
 msgstr ""
 
@@ -1101,7 +1070,7 @@ msgstr ""
 msgid "警告：当前存在自动重启计划，且时间小于你输入的数值，你的手动执行指令计划将不会生效！"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1973
+#: ../../PControl.Initialize.cs:1926
 msgid "警告：当前存在自动重启计划，且时间小于你输入的数值，你的手动重置计划将不会生效！"
 msgstr ""
 
@@ -1109,15 +1078,15 @@ msgstr ""
 msgid "警告：当前存在自动重置计划，且时间小于你输入的数值，你的手动执行指令计划将不会生效！"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1683
+#: ../../PControl.Initialize.cs:1671
 msgid "警告：当前存在自动重置计划，且时间小于你输入的数值，你的手动重启计划将不会生效！"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1675
+#: ../../PControl.Initialize.cs:1663
 msgid "警告：手动重启计划倒计时时间太长，已超过自动重启计划时间，如果突然使用stop指令中断，自动重启可能立刻开始生效，不建议这么做"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1965
+#: ../../PControl.Initialize.cs:1918
 msgid "警告：手动重置计划倒计时时间太长，已超过自动重置计划时间，如果突然使用stop指令中断，自动重置可能立刻开始生效，不建议这么做"
 msgstr ""
 
@@ -1126,29 +1095,24 @@ msgid "计划书"
 msgstr "Control the progress"
 
 #: ../../PControl.Initialize.cs:1373
-#: ../../PControl.Initialize.cs:1713
-#: ../../PControl.Initialize.cs:2003
+#: ../../PControl.Initialize.cs:1701
+#: ../../PControl.Initialize.cs:1956
 msgid "计划时机不恰当，请1秒后重试"
 msgstr ""
 
-#: ../../PControl.Utils.cs:305
-#: ../../PControl.Utils.cs:306
-#: ../../PControl.Utils.cs:307
+#: ../../PControl.Utils.cs:297
+#: ../../PControl.Utils.cs:298
+#: ../../PControl.Utils.cs:299
 #, csharp-format
 msgid "请不要对自动执行的指令进行套娃！[/{0}]"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2083
+#: ../../PControl.Initialize.cs:2036
 msgid "请输入数字0,1,2或3"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2054
+#: ../../PControl.Initialize.cs:2007
 msgid "请输入数字1,2或3"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:1740
-#: ../../PControl.Initialize.cs:2102
-msgid "请输入整数，不要输入负数，数字不要过大"
 msgstr ""
 
 #: ../../PControl.Initialize.cs:347
@@ -1213,9 +1177,9 @@ msgstr ""
 msgid "输入 /pco help   来获取该插件的帮助\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:670
-#: ../../PControl.Initialize.cs:2169
 #: ../../PControl.cs:348
+#: ../../PControl.Initialize.cs:670
+#: ../../PControl.Initialize.cs:2097
 msgid "输入 /pco help 来获取该插件的帮助"
 msgstr ""
 
@@ -1266,8 +1230,8 @@ msgstr ""
 msgid "输入 /pco reload hand <±num/±H:M:S>   手动重启服务器计划启用，在num时或H时M分S秒后开始重启，若不填则立刻重启，小于0则关闭当前存在的手动计划，其优先级大于自动重启\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1621
-#: ../../PControl.Initialize.cs:1757
+#: ../../PControl.Initialize.cs:1609
+#: ../../PControl.Initialize.cs:1720
 msgid "输入 /pco reload help   来查看指令计划的帮助指令"
 msgstr ""
 
@@ -1279,48 +1243,36 @@ msgstr ""
 msgid "输入 /pco reload help   来查看重启计划的帮助指令\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1561
-msgid "输入 /pco reload maxplayers <num>   来设置下次重启地图时的最多在线玩家\n"
-msgstr ""
-
 #: ../../PControl.Initialize.cs:1557
 msgid "输入 /pco reload os <±num/±H:M:S>   将自动重启服务器的时间推迟或提前num时或H时M分S秒，num可为小数\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1565
-msgid "输入 /pco reload password <string>   来设置下次重启地图时的密码\n"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:1563
-msgid "输入 /pco reload port <num>   来设置下次重启地图时的端口\n"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:1566
+#: ../../PControl.Initialize.cs:1560
 msgid "输入 /pco reload stop   关闭手动重启服务器计划"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1775
+#: ../../PControl.Initialize.cs:1738
 msgid "输入 /pco reset act   自动重置服务器计划启用，再次使用关闭\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1791
+#: ../../PControl.Initialize.cs:1750
 msgid "输入 /pco reset addname <string>   来添加你提供的用来重置的地图的名称\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1792
+#: ../../PControl.Initialize.cs:1751
 msgid "输入 /pco reset delname <string>   来删除你提供的用来重置的地图的名称\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1790
+#: ../../PControl.Initialize.cs:1749
 msgid "输入 /pco reset delworld   来设置下次重置地图时删除当前地图，再次使用取消\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1778
+#: ../../PControl.Initialize.cs:1741
 msgid "输入 /pco reset hand <±num/±H:M:S>   手动重置世界计划启用，在num时或H时M分S秒后开始重置，若不填则立刻重置，小于0则关闭当前存在的手动计划，其优先级大于自动重置\n"
 msgstr ""
 
 #: ../../PControl.Initialize.cs:666
-#: ../../PControl.Initialize.cs:1911
+#: ../../PControl.Initialize.cs:1864
 msgid "输入 /pco reset help   来查看重置计划的帮助指令"
 msgstr ""
 
@@ -1328,56 +1280,44 @@ msgstr ""
 msgid "输入 /pco reset help   来查看重置计划的帮助指令\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:2163
+#: ../../PControl.Initialize.cs:2091
 msgid "输入 /pco reset help 来获取该插件的帮助"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1794
+#: ../../PControl.Initialize.cs:1753
 msgid "输入 /pco reset listname   来列出你提供的所有地图名称\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1783
-msgid "输入 /pco reset maxplayers <num>   来设置下次重置地图时的最多在线玩家\n"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:1781
+#: ../../PControl.Initialize.cs:1744
 msgid "输入 /pco reset mode <普通0/专家1/大师2/旅途3(只填数字)>   来设置下次重置地图时的模式\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1779
+#: ../../PControl.Initialize.cs:1742
 msgid "输入 /pco reset name <string>   来设置自动重置地图的地图名字\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1776
+#: ../../PControl.Initialize.cs:1739
 msgid "输入 /pco reset os <±num/±H:M:S>   将自动重置世界的时间推迟或提前num时或H时M分S秒，num可为小数\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1788
-msgid "输入 /pco reset password <string>   来设置下次重置地图时的密码\n"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:1786
-msgid "输入 /pco reset port <num>   来设置下次重置地图时的端口\n"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:1785
+#: ../../PControl.Initialize.cs:1747
 msgid "输入 /pco reset resetplayers   来设置下次重置地图时清理玩家数据，再次使用取消\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1782
+#: ../../PControl.Initialize.cs:1745
 msgid "输入 /pco reset seed <string>   来设置下次重置地图时的地图种子，不填时设为随机\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1780
+#: ../../PControl.Initialize.cs:1743
 msgid "输入 /pco reset size <小1/中2/大3(只填数字)>   来设置下次重置时地图的大小\n"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1795
+#: ../../PControl.Initialize.cs:1754
 msgid "输入 /pco reset stop    关闭手动重置世界计划"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1641
 #: ../../PControl.cs:416
+#: ../../PControl.Initialize.cs:1629
 #, csharp-format
 msgid "重启服务器倒计时过短，需Time大于 {0:0.00} 来避免立刻重启(最短重启时间{1}分钟)，修改失败。若要立刻重启，请使用 /pco reload hand 指令"
 msgstr ""
@@ -1386,14 +1326,14 @@ msgstr ""
 msgid "重启计划："
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1931
 #: ../../PControl.cs:408
+#: ../../PControl.Initialize.cs:1884
 #, csharp-format
 msgid "重置世界倒计时过短，需Time大于 {0:0.00} 来避免立刻重置(最短重置时间5分钟)，修改失败。若要立刻重置，请使用 /pco reset hand 指令"
 msgstr ""
 
-#: ../../PControl.Utils.cs:131
-#: ../../PControl.Utils.cs:132
+#: ../../PControl.Utils.cs:127
+#: ../../PControl.Utils.cs:128
 #, csharp-format
 msgid "重置前删除哪些文件错误：{0}"
 msgstr ""

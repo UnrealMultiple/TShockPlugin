@@ -1,5 +1,6 @@
 ﻿using Rests;
 using ServerTools.DB;
+using System.Collections.Concurrent;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -7,9 +8,9 @@ namespace ServerTools;
 
 public partial class Plugin
 {
-    public static readonly List<TSPlayer> ActivePlayers = new();
+    public static readonly List<TSPlayer> ActivePlayers = [];
 
-    private object Queryduration(RestRequestArgs args)
+    private RestObject Queryduration(RestRequestArgs args)
     {
         var data = PlayerOnline.GetOnlineRank().Select(x => new { name = x.Name, duration = x.Duration });
         return new RestObject() { { "response", "查询成功" }, { "data", data } };
@@ -28,17 +29,17 @@ public partial class Plugin
             ActivePlayers.Add(ply);
             ply.RespawnTimer = 0;
         }
-
     }
 
     private void OnUpdatePlayerOnline(EventArgs args)
     {
-        ActivePlayers.ForEach(p =>
+        for (var i = ActivePlayers.Count - 1; i >= 0; i--)
         {
+            var p = ActivePlayers[i];
             if (p != null && p.Active)
             {
                 PlayerOnline.Add(p.Name, 1);
             }
-        });
+        } 
     }
 }

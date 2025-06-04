@@ -15,7 +15,7 @@ public partial class ZHIPM : TerrariaPlugin
     public override string Description => GetString("玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 2, 7);
+    public override Version Version => new Version(1, 0, 2, 9);
 
     #region 字段或属性
     /// <summary>

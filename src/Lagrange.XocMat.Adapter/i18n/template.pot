@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Lagrange.XocMat.Adapter\n"
-"POT-Creation-Date: 2025-04-08 12:31:19+0000\n"
-"PO-Revision-Date: 2025-04-08 12:31:20+0000\n"
+"POT-Creation-Date: 2025-05-18 00:01:58+0000\n"
+"PO-Revision-Date: 2025-05-18 00:01:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:28
-msgid "适配插件"
+#: ../../Plugin.cs:27
+msgid "Lagrange.XocMat机器人适配插件"
 msgstr ""
 

@@ -19,7 +19,7 @@ public partial class Plugin : LazyPlugin
     public override string Description => GetString("服务器工具");// 插件说明
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 8, 8);// 插件版本
+    public override Version Version => new Version(1, 1, 9, 0);// 插件版本
 
     private DateTime LastCommandUseTime = DateTime.Now;
 
@@ -68,13 +68,13 @@ public partial class Plugin : LazyPlugin
         GetDataHandlers.KillMe.Register(this.KillMe);
         GetDataHandlers.PlayerSpawn.Register(this.OnPlayerSpawn);
         GetDataHandlers.PlayerUpdate.Register(this.OnUpdate);
-        CmdHook = new Hook(typeof(TSRestPlayer).GetConstructor(new Type[] { typeof(string), typeof(TShockAPI.Group) }), RestPlayerCtor);
-        AccountInfoHook = new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static), ViewAccountInfo);
-        this.addRestCommands = new RestCommand[]
-        {
+        CmdHook = new Hook(typeof(TSRestPlayer).GetConstructor([typeof(string), typeof(TShockAPI.Group)])!, RestPlayerCtor);
+        AccountInfoHook = new Hook(typeof(Commands).GetMethod("ViewAccountInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)!, ViewAccountInfo);
+        this.addRestCommands =
+        [
             new RestCommand("/deathrank", this.DeadRank),
             new RestCommand("/onlineDuration", this.Queryduration)
-        };
+        ];
         foreach (var command in this.addRestCommands)
         {
             TShock.RestApi.Register(command);
@@ -448,7 +448,6 @@ public partial class Plugin : LazyPlugin
 
         if (Config.Instance.KeepOpenChest && args.MsgID == PacketTypes.ChestOpen)
         {
-
             using BinaryReader binaryReader5 = new(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length));
             var ChestId = binaryReader5.ReadInt16();
             if (ChestId != -1 && ply.ActiveChest != -1)

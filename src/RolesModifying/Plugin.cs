@@ -30,7 +30,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(1, 0, 6);
+    public override Version Version => new Version(1, 0, 7);
 
     private readonly Dictionary<TSPlayer, ModifyData> TempData = new();
     public Plugin(Main game) : base(game)
@@ -55,6 +55,11 @@ public class Plugin : TerrariaPlugin
 
     private void Roles(CommandArgs args)
     {
+        if (!args.Player.RealPlayer)
+        {
+            args.Player.SendErrorMessage(GetString("你必须在游戏中使用此命令!"));
+            return;
+        }
         if (args.Parameters.Count > 0 && args.Parameters[0].ToLower() == "save")
         {
             if (this.TempData.TryGetValue(args.Player, out var modify))

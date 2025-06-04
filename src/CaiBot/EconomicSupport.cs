@@ -29,7 +29,7 @@ public static class EconomicSupport
             {
                 var economicsType = pluginContainer.Plugin.GetType();
 
-                var settingProperty = economicsType.GetProperty(nameof(EconomicsAPI.Economics.Setting));
+                var settingProperty = economicsType.GetProperty(nameof(Economics.Core.ConfigFiles.Setting));
                 if (settingProperty is null)
                 {
                     break;
@@ -49,14 +49,14 @@ public static class EconomicSupport
                     iL.Emit(OpCodes.Ldfld, currencyNameField);
                     iL.Emit(OpCodes.Ret);
                     _getCurrencyNameFunc = func.CreateDelegate<Func<string>>();
-                    var currencyManagerProperty = economicsType.GetProperty(nameof(EconomicsAPI.Economics.CurrencyManager));
+                    var currencyManagerProperty = economicsType.GetProperty(nameof(Economics.Core.Economics.CurrencyManager));
                     if (currencyManagerProperty is null)
                     {
                         break;
                     }
 
                     var paramTypes = new[] { typeof(string) };
-                    var getUserCurrencyMethod = currencyManagerProperty.PropertyType.GetMethod(nameof(EconomicsAPI.Economics.CurrencyManager.GetUserCurrency), paramTypes);
+                    var getUserCurrencyMethod = currencyManagerProperty.PropertyType.GetMethod(nameof(Economics.Core.Economics.CurrencyManager.GetUserCurrency), paramTypes);
                     if (getUserCurrencyMethod is null)
                     {
                         break;
@@ -158,7 +158,7 @@ public static class EconomicSupport
 
     private static string GetNewCoins(string name)
     {
-        return string.Join('\n', EconomicsAPI.Economics.Setting.CustomizeCurrencys.Select(x => EconomicsAPI.Economics.CurrencyManager.GetUserCurrency(name, x.Name)).Select(static x => $"{x.CurrencyType}x{x.Number}"));
+        return string.Join('\n', Economics.Core.ConfigFiles.Setting.Instance.CustomizeCurrencys.Select(x => Economics.Core.Economics.CurrencyManager.GetUserCurrency(name, x.Name)).Select(static x => $"{x.CurrencyType}x{x.Number}"));
     }
 
     public static string GetLevelName(string name)
