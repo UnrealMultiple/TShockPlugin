@@ -17,7 +17,7 @@ namespace CaiBotLite;
 [ApiVersion(2, 1)]
 public class Plugin : TerrariaPlugin
 {
-    public static readonly Version VersionNum = new Version(2025, 05, 18, 2); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new Version(2025, 06, 04, 1); //日期+版本号(0,1,2...)
     internal static int InitCode = -1;
     public static bool DebugMode;
     private static bool _stopWebsocket;
@@ -148,14 +148,7 @@ public class Plugin : TerrariaPlugin
             catch (Exception ex)
             {
                 TShock.Log.ConsoleInfo("[CaiBotLite]CaiBot断开连接...");
-                if (DebugMode)
-                {
-                    TShock.Log.ConsoleError(ex.ToString());
-                }
-                else
-                {
-                    TShock.Log.ConsoleError("链接失败原因: " + ex.Message);
-                }
+                TShock.Log.ConsoleError(ex.ToString());
             }
 
             await Task.Delay(5000);
@@ -175,16 +168,16 @@ public class Plugin : TerrariaPlugin
                 return;
             }
 
-            List<string> lines = new () 
-            { 
-                "/caibotlite debug CaiBot调试开关", 
-                "/caibotlite code 生成并且展示验证码", 
+            List<string> lines =
+            [
+                "/caibotlite debug CaiBot调试开关",
+                "/caibotlite code 生成并且展示验证码",
                 "/caibotlite info 显示CaiBot的一些信息",
                 "/caibotlite unbind 主动解除绑定",
                 "/caibotlite whitelist 开关白名单",
                 "/caibotlite group <群号> 设置踢出显示的群号",
                 "/caibotlite test Cai保留用于测试的命令, 乱用可能会爆掉"
-            };
+            ];
 
             PaginationTools.SendPage(
                 plr, pageNumber, lines,

@@ -10,12 +10,14 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 
 ## 指令
 
-| 语法                     |      权限      |      说明      |
-|------------------------|:------------:|:------------:|
-| /caibotlite(cbl) debug | caibot.admin |    调试模式开关    |
-| /caibotlite(cbl) code	      | caibot.admin |    生成验证码     |
-| /caibotlite(cbl) info	      | caibot.admin | 显示CaiBot状态信息 |
-| /caibotlite(cbl) unbind	    | caibot.admin |   主动解除群绑定    |
+| 语法                           |      权限      |      说明      |
+|------------------------------|:------------:|:------------:|
+| /caibotlite(cbl) debug       | caibot.admin |    调试模式开关    |
+| /caibotlite(cbl) code	       | caibot.admin |    生成验证码     |
+| /caibotlite(cbl) info	       | caibot.admin | 显示CaiBot状态信息 |
+| /caibotlite(cbl) unbind	     | caibot.admin |   主动解除群绑定    |
+| /caibotlite(cbl) whitelist	  | caibot.admin |    开关白名单     |
+| /caibotlite(cbl) group <群号>	 | caibot.admin |  设置白名单提示群号   |
 
 ## 配置
 
@@ -32,6 +34,7 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 ## 更新日志
 
 ```
+v2025.06.04.1 添加命令`/cbl group <群号>`和`/cbl whitelist`方便配置插件,默认显示报错调用栈
 v2025.04.30.1 更新依赖SixLabors.ImageSharp
 v2025.04.26.1 修复无法正确处理登录包
 v2025.04.12.1 修复死亡后无法掉落钱币, 维度插件无法正常获取玩家IP
