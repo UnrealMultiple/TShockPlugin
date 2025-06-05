@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:32+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2025-06-05 00:17:57+0000\n"
+"PO-Revision-Date: 2025-06-05 01:20\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,17 @@ msgstr ""
 "X-Crowdin-File-ID: 1104\n"
 "Language: ru_RU\n"
 
-#: ../../BagPing.cs:16
-msgid "在小地图上标记掉落的宝藏袋"
+#: ../../BagPing.cs:57
+#, csharp-format
+msgid "[BagPing]报错: {0}"
 msgstr ""
 
-#: ../../BagPing.cs:49
+#: ../../BagPing.cs:42
 #, csharp-format
-msgid "宝藏袋掉落在坐标({0},{1}),已在小地图上标记!"
+msgid "{0}已掉落在坐标({1},{2}),已在小地图上标记!"
+msgstr ""
+
+#: ../../BagPing.cs:16
+msgid "在小地图上标记掉落的宝藏袋"
 msgstr ""
 
