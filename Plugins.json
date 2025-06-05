@@ -364,7 +364,7 @@
   },
   {
     "Name": "BagPing",
-    "Version": "1.0.6",
+    "Version": "2025.6.1",
     "Author": "Cai",
     "Description": {
       "en-US": "Mark dropped treasure bags on the minimap",
@@ -494,7 +494,7 @@
   },
   {
     "Name": "CaiBotLitePlugin",
-    "Version": "2025.5.24.1",
+    "Version": "2025.6.4.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot官方机器人的适配插件",
