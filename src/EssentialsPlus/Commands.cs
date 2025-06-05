@@ -638,8 +638,8 @@ public static class Commands
         {
             if (EssentialsPlus.TpAllows.ToggleTpAllow(e.Player))
             {
-                bool isEnabled = EssentialsPlus.TpAllows.IsTpAllowed(e.Player);
-                string status = isEnabled ? GetString("允许") : GetString("禁止");
+                var isEnabled = EssentialsPlus.TpAllows.IsTpAllowed(e.Player);
+                var status = isEnabled ? GetString("允许") : GetString("禁止");
                 e.Player.SendSuccessMessage(GetString("您的传送状态已切换为：{0}"), status);
             }
             else

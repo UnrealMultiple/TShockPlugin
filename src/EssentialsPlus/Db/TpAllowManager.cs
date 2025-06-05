@@ -131,7 +131,7 @@ public class TpAllowManager
             using var result = this.db.QueryReader("SELECT IsEnabled FROM TpAllows WHERE Name = @0", player.Name);
             if (result.Read())
             {
-                bool isEnabled = result.Get<bool>("IsEnabled");
+                var isEnabled = result.Get<bool>("IsEnabled");
                 this.TpAllows.Add(new TpAllow(player.Name, isEnabled));
                 player.TPAllow = isEnabled;
                 return isEnabled;
