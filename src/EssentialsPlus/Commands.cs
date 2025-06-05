@@ -632,6 +632,27 @@ public static class Commands
         }
     }
 
+    public static void TpAllow(CommandArgs e)
+    {
+        try
+        {
+            if (EssentialsPlus.TpAllows.ToggleTpAllow(e.Player))
+            {
+                var isEnabled = EssentialsPlus.TpAllows.IsTpAllowed(e.Player);
+                var status = isEnabled ? GetString("允许") : GetString("禁止");
+                e.Player.SendSuccessMessage(GetString("您的传送状态已切换为：{0}"), status);
+            }
+            else
+            {
+                e.Player.SendErrorMessage(GetString("无法切换传送状态，请查看日志获取更多信息。"));
+            }
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error($"TpAllow command error for {e.Player.Name}: {ex}");
+            e.Player.SendErrorMessage(GetString("命令执行失败，请稍后重试。"));
+        }
+    }
 
     public static void PvP(CommandArgs e)
     {
