@@ -23,6 +23,7 @@
   - **add** `<nombre> <tiempo>` -> Silencia al jugador `<nombre>` por el tiempo `<tiempo>`.
   - **delete** `<nombre>` -> Quita el silencio del jugador `<nombre>`.
   - **help** -> Muestra información del comando.
+- **/tpallow** -> Comando mejorado `/tpallow`.
 - **/pvpget** -> Activa o desactiva tu estado de PvP.
 - **/ruler** `[1|2]` -> Mide la distancia entre los puntos 1 y 2.
 - **/sudo** `[flag] <jugador> <comando>` -> Hace que `<jugador>` ejecute `<comando>`. Bandera válida: `-force` -> Obliga al jugador a ejecutar el comando, ignorando las verificaciones de permisos. Los jugadores con el permiso `essentials.sudo.super` pueden usar `/sudo` en cualquier persona.
@@ -43,6 +44,7 @@
 - `essentials.lastcommand` -> Permite el uso del comando `/=`.
 - `essentials.more` -> Permite el uso del comando `/more`.
 - `essentials.mute` -> Permite el uso del comando mejorado `/mute`.
+- `essentials.tpallow` -> Permite el uso del comando mejorado `/tpallow`.
 - `essentials.pvp` -> Permite el uso del comando `/pvpget`.
 - `essentials.ruler` -> Permite el uso del comando `/ruler`.
 - `essentials.send` -> Permite el uso del comando `/send`.

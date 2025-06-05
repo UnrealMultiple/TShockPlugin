@@ -11,6 +11,7 @@ public static class Permissions
     public static readonly string LastCommand = "essentials.lastcommand";
     public static readonly string More = "essentials.more";
     public static readonly string Mute = "essentials.mute";
+    public static readonly string TpAllow = "essentials.tpallow";
     public static readonly string PvP = "essentials.pvp";
     public static readonly string Ruler = "essentials.ruler";
     public static readonly string Send = "essentials.send";

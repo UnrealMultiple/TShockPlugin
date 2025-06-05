@@ -23,6 +23,7 @@
     - **add** `<名称> <时间>` -> 为名称为 `<名称>` 的用户添加静音，时间为 `<时间>`。
     - **delete** `<名称>` -> 删除名称为 `<名称>` 的用户的静音。
     - **help** 或 **帮助** -> 输出命令信息。
+- **/tpallow** -> 改进的 /tpallow 命令。
 - **/pvpget** 或 **/切换PvP状态** -> 切换您的 PvP 状态。
 - **/ruler** 或 **/测量工具** `[1|2]` -> 测量点 1 和点 2 之间的距离。
 - **/sudo** 或 **/代执行** `[flag] <玩家> <命令>` -> 让 `<玩家>` 执行 `<命令>`。有效标志：`-force` -> 强制执行命令，忽略 `<玩家>` 的权限限制。拥有 `essentials.sudo.super` 权限的玩家可以对任何人使用 /sudo。
@@ -43,6 +44,7 @@
 - `essentials.lastcommand` -> 授予访问 `/=` 命令的权限。
 - `essentials.more` -> 授予访问 `/more` 命令的权限。
 - `essentials.mute` -> 授予访问改进后的 `/mute` 命令的权限。
+- `essentials.tpallow` -> 授予访问改进后的 `/tpallow` 命令的权限。
 - `essentials.pvp` -> 授予访问 `/pvpget` 命令的权限。
 - `essentials.ruler` -> 授予访问 `/ruler` 命令的权限。
 - `essentials.send` -> 授予访问 `/send` 命令的权限。
@@ -74,6 +76,8 @@
 
 ## 更新日志
 ```
+1.0.9
+tpallow存起来
 1.0.7
 EssentialsPlus的config使用lazyapi，禁言判断uuid，名字，ip
 1.0.4
