@@ -8,7 +8,7 @@ using TShockAPI;
 namespace BagPing;
 
 [ApiVersion(2, 1)]
-public class BagPing : TerrariaPlugin
+public class BagPing(Main game) : TerrariaPlugin(game)
 {
 
     public override string Author => "Cai";
@@ -16,51 +16,45 @@ public class BagPing : TerrariaPlugin
     public override string Description => GetString("在小地图上标记掉落的宝藏袋");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 6);
-
-    public BagPing(Main game)
-    : base(game)
-    {
-    }
+    public override Version Version => new Version(2025, 6, 1);
 
     public override void Initialize()
     {
-        ServerApi.Hooks.NpcKilled.Register(this, this.OnNpcKilled);
+        ServerApi.Hooks.DropBossBag.Register(this, OnNpcKilled);
     }
-
-
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            ServerApi.Hooks.NpcKilled.Deregister(this, this.OnNpcKilled);
-
+            ServerApi.Hooks.DropBossBag.Deregister(this, OnNpcKilled);
         }
         base.Dispose(disposing);
     }
 
 
-    private void OnNpcKilled(NpcKilledEventArgs e)
+    private static async void OnNpcKilled(DropBossBagEventArgs e)
     {
-        if (e.npc.boss)
+        try
         {
-            TSPlayer.All.SendSuccessMessage(TShock.Utils.ItemTag(new Item() { netID = 3318, stack = 1, prefix = 0 })
-                + GetString($"宝藏袋掉落在坐标({(int) e.npc.position.X / 16},{(int) e.npc.position.Y / 16}),已在小地图上标记!"));
-            Task.Run(() =>
+            
+            TSPlayer.All.SendSuccessMessage(TShock.Utils.ItemTag(new Item { netID = e.ItemId, stack = e.Stack, prefix = (byte)e.Prefix })
+                                            + GetString($"{Lang.GetItemNameValue(e.ItemId)}已掉落在坐标({(int) e.Position.X / 16},{(int) e.Position.Y / 16}),已在小地图上标记!"));
+            for (var i = 0; i < 4; i++)
             {
-                for (var i = 0; i < 4; i++)
+                foreach (var player in TShock.Players)
                 {
-                    foreach (var player in TShock.Players)
+                    if (player is { Active: true })
                     {
-                        if (player != null && player.Active)
-                        {
-                            NetManager.Instance.SendToClient(NetPingModule.Serialize(new Vector2(e.npc.position.X / 16, e.npc.position.Y / 16)), player.Index);
-                        }
+                        NetManager.Instance.SendToClient(NetPingModule.Serialize(new Vector2(e.Position.X/ 16, e.Position.Y / 16)), player.Index);
                     }
-                    Task.Delay(15000).Wait();
                 }
-            });
+                await Task.Delay(15000);
+            }
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.ConsoleError(GetString($"[BagPing]报错: {ex}"));
         }
     }
 }
