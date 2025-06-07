@@ -30,7 +30,7 @@ public class Plugin(Main game) : TerrariaPlugin(game)
 
     private void ReaderCmd(CommandArgs args)
     {
-        if (args.Parameters.Count > 1)
+        if (args.Parameters.Count >= 1)
         {
             var path = Path.Combine(ReaderPath, args.Parameters[0]);
             if (!File.Exists(path))
@@ -51,7 +51,7 @@ public class Plugin(Main game) : TerrariaPlugin(game)
         else
         { 
             var files = Directory.GetFiles(ReaderPath);
-            if (files.Length < 0)
+            if (files.Length == 0)
             {
                 args.Player.SendErrorMessage(GetString("没有文件可以被读取!"));
                 return;
@@ -94,11 +94,10 @@ public class Plugin(Main game) : TerrariaPlugin(game)
         {
             return ac;
         }
-
-        var accounts = TShock.UserAccounts.GetUserAccounts().OrderBy(a => a.ID);
+        var accounts = TShock.UserAccounts.GetUserAccounts().OrderByDescending(a => a.ID);
         var tempac =  new UserAccount()
         {
-            ID = accounts.Any() ? accounts.First().ID + 1 : 1,
+            ID = accounts.First().ID + 1,
             Name = player.name,
             Group = TShock.Config.Settings.DefaultGuestGroupName
         };
