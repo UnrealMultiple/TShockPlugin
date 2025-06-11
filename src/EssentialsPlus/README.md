@@ -77,7 +77,7 @@
 ## 更新日志
 ```
 1.0.9
-tpallow存起来
+数据库记录玩家tpallow状态
 1.0.7
 EssentialsPlus的config使用lazyapi，禁言判断uuid，名字，ip
 1.0.4
