@@ -24,7 +24,7 @@
   },
   {
     "Name": "TransferPatch",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命",
     "Description": {
       "en-US": "Translate any plugin",
