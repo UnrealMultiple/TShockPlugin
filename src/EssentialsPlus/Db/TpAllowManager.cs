@@ -27,7 +27,7 @@ public class TpAllowManager
         this.db = db;
         var sqlCreator = new SqlTableCreator(db, db.GetSqlQueryBuilder());
         sqlCreator.EnsureTableStructure(new SqlTable("TpAllows",
-            new SqlColumn("Name", MySqlDbType.Text) { Primary = true },
+            new SqlColumn("Name", MySqlDbType.Text),
             new SqlColumn("IsEnabled", MySqlDbType.Int32)));
 
         using var result = db.QueryReader("SELECT * FROM TpAllows");
