@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-02-13 10:16:28+0000\n"
-"PO-Revision-Date: 2025-02-14 01:09\n"
+"POT-Creation-Date: 2025-06-11 03:15:06+0000\n"
+"PO-Revision-Date: 2025-06-12 01:20\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -22,8 +22,8 @@ msgstr ""
 msgid "-command: 查找命令."
 msgstr "-command: Buscar comand"
 
-#: ../../Commands.cs:716
-#: ../../Commands.cs:736
+#: ../../Commands.cs:737
+#: ../../Commands.cs:757
 msgid "-f, -force: 强制sudo，忽略权限限制。"
 msgstr "-f, -force: Forzar sudo, ignorando permisos"
 
@@ -41,8 +41,8 @@ msgstr "-nosave: Patadas sin guardar datos de SSC."
 msgid "-npc: 查找NPC."
 msgstr "Encuentra un NPC."
 
-#: ../../Commands.cs:794
-#: ../../Commands.cs:809
+#: ../../Commands.cs:815
+#: ../../Commands.cs:830
 msgid "-r, -repeat: 重复执行时间命令。"
 msgstr "-r, -repeat: Repite el comando de tiempo indefinidamente.."
 
@@ -56,19 +56,19 @@ msgstr "Encuentra un mosaico."
 msgid "-wall: 查找墙壁."
 msgstr "Encuentra una pared."
 
-#: ../../EssentialsPlus.cs:120
+#: ../../EssentialsPlus.cs:121
 msgid "[Essentials+] MySQL已启用，但未设置Essentials+ MySQL配置。"
 msgstr "[Essentials+] MySQL está habilitado, pero la configuración de Essentials+ MySQL tiene no ha sido configurado."
 
-#: ../../EssentialsPlus.cs:122
+#: ../../EssentialsPlus.cs:123
 msgid "[Essentials+] 此插件现在将禁用自身..."
 msgstr "[Essentials+] Este complemento ahora se desactivará solo..."
 
-#: ../../EssentialsPlus.cs:121
+#: ../../EssentialsPlus.cs:122
 msgid "[Essentials+] 请在essentials.json中配置您的MySQL服务器信息，然后重新启动服务器。"
 msgstr "[Essentials+] Configure la información de su servidor MySQL en lo esencial.json, luego reinicie el servidor."
 
-#: ../../EssentialsPlus.cs:63
+#: ../../EssentialsPlus.cs:64
 msgid "[EssentialsPlus] 重新加载配置和家!"
 msgstr "[EssentialsPlus] ¡Configuración y Home recargadas!"
 
@@ -80,7 +80,7 @@ msgstr "{0} (Permission: {1})"
 msgid "{0} 冻结了时间。"
 msgstr "{0} Forzar tiempo."
 
-#: ../../Commands.cs:765
+#: ../../Commands.cs:786
 msgid "{0} 强制您执行 {1}{2}。"
 msgstr "{0} te obligó a ejecutar {1}{2}."
 
@@ -106,31 +106,31 @@ msgstr "add <name> [time] - Mutear cuenta de jugador."
 msgid "del <名称> - 解除禁言玩家或账户。"
 msgstr "del <name> - Desmutear cuenta de jugador."
 
-#: ../../EssentialsPlus.cs:232
+#: ../../EssentialsPlus.cs:239
 msgid "以自定义颜色广播消息。"
 msgstr "mensaje Broadcast color personalizado."
 
-#: ../../Commands.cs:1107
+#: ../../Commands.cs:1128
 msgid "传送上 {0} 层."
 msgstr "Teletransportado arriba {0} bloque(s)."
 
-#: ../../Commands.cs:933
+#: ../../Commands.cs:954
 msgid "传送下 {0} 层."
 msgstr "Teletransportado abajo {0} bloques(s)."
 
-#: ../../EssentialsPlus.cs:193
+#: ../../EssentialsPlus.cs:195
 msgid "传送到您的一个家点。"
 msgstr "Teletransportarte a tu punto de Home"
 
-#: ../../Commands.cs:1049
+#: ../../Commands.cs:1070
 msgid "传送右 {0} 层."
 msgstr "Teletransportado derecha {0} bloque(s)."
 
-#: ../../Commands.cs:877
+#: ../../Commands.cs:898
 msgid "传送回 {0} 步."
 msgstr "Teletransportado atras {0} antes(s)"
 
-#: ../../Commands.cs:991
+#: ../../Commands.cs:1012
 msgid "传送左 {0} 层."
 msgstr "Teletransportado isquierda {0} bloques(s)."
 
@@ -138,61 +138,69 @@ msgstr "Teletransportado isquierda {0} bloques(s)."
 msgid "传送您到您的家 '{0}'。"
 msgstr "Teletransportado a tu Home '{0}'."
 
-#: ../../Commands.cs:666
+#: ../../Commands.cs:687
 msgid "修改一个方块以设置第一个尺规点。"
 msgstr "Modificar un bloque para establecer el primer punto de la regla."
 
-#: ../../Commands.cs:671
+#: ../../Commands.cs:692
 msgid "修改一个方块以设置第二个尺规点。"
 msgstr "Modificar un bloque para establecer el segundo punto de la regla."
 
-#: ../../EssentialsPlus.cs:237
+#: ../../Commands.cs:642
+msgid "允许"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:244
 msgid "允许您以其他用户的身份执行命令。"
 msgstr "Le permite ejecutar un comando como otro usuario."
 
-#: ../../EssentialsPlus.cs:227
+#: ../../EssentialsPlus.cs:234
 msgid "允许您测量两个方块之间的距离。"
 msgstr "Le permite medir las distancias entre dos bloques.."
 
-#: ../../EssentialsPlus.cs:203
+#: ../../EssentialsPlus.cs:205
 msgid "允许您重复上一条命令。"
 msgstr "Le permite repetir su último comando."
 
-#: ../../EssentialsPlus.cs:209
+#: ../../EssentialsPlus.cs:211
 msgid "最大化手持物品的堆叠。"
 msgstr "Maximiza la pila de elementos retenidos."
 
-#: ../../EssentialsPlus.cs:177
+#: ../../EssentialsPlus.cs:179
 msgid "切换冻结时间。"
 msgstr "Alterna congelar el tiempo."
 
-#: ../../EssentialsPlus.cs:221
+#: ../../EssentialsPlus.cs:228
 msgid "切换您的PvP状态。"
 msgstr "Cambia tu estado PvP."
 
-#: ../../EssentialsPlus.cs:183
+#: ../../EssentialsPlus.cs:185
 msgid "删除您的一个家点。"
 msgstr "Elimina uno de tus puntos de inicio.."
 
 #: ../../Commands.cs:530
 #: ../../Commands.cs:604
-#: ../../Commands.cs:751
+#: ../../Commands.cs:772
 msgid "匹配到多个玩家：{0}"
 msgstr "Más de un jugador emparejado: {0}"
 
-#: ../../Commands.cs:832
+#: ../../Commands.cs:853
 msgid "取消所有时间命令！"
 msgstr "Cancelados todos los comandos de tiempo.!"
 
-#: ../../EssentialsPlus.cs:89
+#: ../../Commands.cs:653
+msgid "命令执行失败，请稍后重试。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:90
 msgid "在PvP中无法使用该命令！"
 msgstr "Este comando está bloqueado en PvP.!"
 
-#: ../../EssentialsPlus.cs:248
+#: ../../EssentialsPlus.cs:255
 msgid "在死亡或传送后将您传送回之前的位置。"
 msgstr "Te teletransporta de regreso a tu posición anterior después de morir o teletransportarte.."
 
-#: ../../EssentialsPlus.cs:242
+#: ../../EssentialsPlus.cs:249
 msgid "在给定时间间隔后执行命令。"
 msgstr "Ejecuta un comando después de un intervalo de tiempo determinado.."
 
@@ -204,7 +212,7 @@ msgstr "Llenó todos tus artículos."
 msgid "增加了您的{0}的堆叠数量。"
 msgstr "Llena tu {0}."
 
-#: ../../EssentialsPlus.cs:23
+#: ../../EssentialsPlus.cs:24
 msgid "增强版Essentials"
 msgstr ""
 
@@ -212,16 +220,16 @@ msgstr ""
 msgid "家的列表: {0}"
 msgstr "Lista de homes/hogares: {0}"
 
-#: ../../Commands.cs:650
+#: ../../Commands.cs:671
 msgid "尺规未设置！"
 msgstr "Los puntos de la regla no están configurados!"
 
-#: ../../Commands.cs:822
-#: ../../Commands.cs:826
+#: ../../Commands.cs:843
+#: ../../Commands.cs:847
 msgid "已排队执行命令 '{0}{1}'。使用 /cancel 取消！"
 msgstr "Comando en cola '{0}{1}' indefinidamente. Utilice /cancelar para cancelar!"
 
-#: ../../Commands.cs:762
+#: ../../Commands.cs:783
 msgid "强制 {0} 执行 {1}{2}。"
 msgstr "Forzado {0} a ejecutar {1}{2}."
 
@@ -230,7 +238,7 @@ msgstr "Forzado {0} a ejecutar {1}{2}."
 msgid "您不能禁言 {0}！"
 msgstr "no puedes silenciar {0}!"
 
-#: ../../EssentialsPlus.cs:303
+#: ../../EssentialsPlus.cs:341
 msgid "您已被解除禁言。"
 msgstr "Has sido silenciado."
 
@@ -242,7 +250,7 @@ msgstr "Has sido silenciado."
 msgid "您已达到家的设置上限！"
 msgstr "Has alcanzado el límite de tu casa!"
 
-#: ../../Commands.cs:758
+#: ../../Commands.cs:779
 msgid "您无法强制 {0} 执行 {1}{2}！"
 msgstr "no puedes forzar {0} a ejecutar {1}{2}!"
 
@@ -254,13 +262,17 @@ msgstr "No tienes un último comando!"
 msgid "您没有设置家。"
 msgstr "No tienes casas establecidas."
 
-#: ../../Commands.cs:729
+#: ../../Commands.cs:750
 msgid "您没有访问 '-{0}' 参数的权限！"
 msgstr "No tienes acceso al interruptor. '-{0}'!"
 
 #: ../../Commands.cs:460
 msgid "您的{0}已经满了。"
 msgstr "Tu {0} Esta lleno."
+
+#: ../../Commands.cs:643
+msgid "您的传送状态已切换为：{0}"
+msgstr ""
 
 #: ../../Commands.cs:451
 msgid "您的物品栏已经满了。"
@@ -294,7 +306,7 @@ msgstr "Mosaicos encontrados: ({0}/{1}):"
 msgid "找到的物品 ({0}/{1}):"
 msgstr "Items encontrados: ({0}/{1}):"
 
-#: ../../EssentialsPlus.cs:152
+#: ../../EssentialsPlus.cs:153
 msgid "无效的存储类型！"
 msgstr "Tipo de almacenamiento no válido!"
 
@@ -303,14 +315,14 @@ msgstr "Tipo de almacenamiento no válido!"
 msgid "无效的家 '{0}'！"
 msgstr "Hogar invalido '{0}'!"
 
-#: ../../Commands.cs:893
-#: ../../Commands.cs:948
-#: ../../Commands.cs:1006
-#: ../../Commands.cs:1064
+#: ../../Commands.cs:914
+#: ../../Commands.cs:969
+#: ../../Commands.cs:1027
+#: ../../Commands.cs:1085
 msgid "无效的层数 '{0}'！"
 msgstr "Número de niveles no válido '{0}'!"
 
-#: ../../Commands.cs:816
+#: ../../Commands.cs:837
 msgid "无效的时间 '{0}'!"
 msgstr "Hora no válida '{0}'!"
 
@@ -318,11 +330,11 @@ msgstr "Hora no válida '{0}'!"
 msgid "无效的时间 '{0}'！"
 msgstr "Hora no válida '{0}'!"
 
-#: ../../Commands.cs:865
+#: ../../Commands.cs:886
 msgid "无效的步数 '{0}'！"
 msgstr "Número de pasos no válido '{0}'!"
 
-#: ../../Commands.cs:747
+#: ../../Commands.cs:768
 msgid "无效的玩家 '{0}'！"
 msgstr "Jugador invalido '{0}'!"
 
@@ -331,40 +343,40 @@ msgstr "Jugador invalido '{0}'!"
 msgid "无效的玩家或账户 '{0}'！"
 msgstr "Jugador o cuenta invalida '{0}'!"
 
-#: ../../Commands.cs:886
+#: ../../Commands.cs:907
 msgid "无效的语法！正确的语法是：{0}down [层数]"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}down [levels]"
 
-#: ../../Commands.cs:858
+#: ../../Commands.cs:879
 msgid "无效的语法！正确的语法是：{0}eback [步数]"
 msgstr "¡Sintaxis no válida! Sintaxis adecuada: {0}eback [steps]"
 
-#: ../../Commands.cs:941
+#: ../../Commands.cs:962
 msgid "无效的语法！正确的语法是：{0}left [层数]"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}left [levels]"
 
-#: ../../Commands.cs:999
+#: ../../Commands.cs:1020
 msgid "无效的语法！正确的语法是：{0}right [层数]"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}right [levels]"
 
-#: ../../Commands.cs:675
-#: ../../Commands.cs:680
+#: ../../Commands.cs:696
+#: ../../Commands.cs:701
 msgid "无效的语法！正确的语法是：{0}ruler [1/2]"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}ruler [1/2]"
 
-#: ../../Commands.cs:691
+#: ../../Commands.cs:712
 msgid "无效的语法！正确的语法是：{0}send [r,g,b] <文本...>"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}send [r,g,b] <text...>"
 
-#: ../../Commands.cs:714
+#: ../../Commands.cs:735
 msgid "无效的语法！正确的语法是：{0}sudo [-switches...] <玩家> <命令...>"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}sudo [-switches...] <player> <command...>"
 
-#: ../../Commands.cs:792
+#: ../../Commands.cs:813
 msgid "无效的语法！正确的语法是：{0}timecmd [-switches...] <时间> <命令...>"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}timecmd [-switches...] <time> <command...>"
 
-#: ../../Commands.cs:1057
+#: ../../Commands.cs:1078
 msgid "无效的语法！正确的语法是：{0}up [层数]"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}up [levels]"
 
@@ -380,29 +392,33 @@ msgstr "¡Sintaxis no válida! Sintaxis correcta: /mute del <name>"
 msgid "无效的页数 '{0}'！"
 msgstr "Pagina invalida '{0}'!"
 
-#: ../../Commands.cs:701
+#: ../../Commands.cs:722
 msgid "无效的颜色！"
 msgstr "color invalido!"
 
-#: ../../Commands.cs:1097
+#: ../../Commands.cs:1118
 msgid "无法传送上面！"
 msgstr "No se pudo teletransportar!"
 
-#: ../../Commands.cs:923
+#: ../../Commands.cs:944
 msgid "无法传送下去！"
 msgstr "No se pudo teletransportar hacia abajo!"
 
-#: ../../Commands.cs:1039
+#: ../../Commands.cs:1060
 msgid "无法传送右边！"
 msgstr "No se pudo teletransportar bien!"
 
-#: ../../Commands.cs:872
+#: ../../Commands.cs:893
 msgid "无法传送回上一个位置！"
 msgstr "No se pudo teletransportar de regreso!"
 
-#: ../../Commands.cs:981
+#: ../../Commands.cs:1002
 msgid "无法传送左边！"
 msgstr "No se pudo teletransportar a la izquierda!"
+
+#: ../../Commands.cs:647
+msgid "无法切换传送状态，请查看日志获取更多信息。"
+msgstr ""
 
 #: ../../Commands.cs:301
 msgid "无法删除家，请检查日志获取更多详细信息。"
@@ -442,13 +458,13 @@ msgstr "Valid {0}find switches:"
 msgid "有效的 {0}kickall 参数:"
 msgstr "Valid {0}kickall switches:"
 
-#: ../../Commands.cs:715
-#: ../../Commands.cs:735
+#: ../../Commands.cs:736
+#: ../../Commands.cs:756
 msgid "有效的 {0}sudo 参数："
 msgstr "Valid {0}sudo switches:"
 
-#: ../../Commands.cs:793
-#: ../../Commands.cs:808
+#: ../../Commands.cs:814
+#: ../../Commands.cs:829
 msgid "有效的 {0}timecmd 参数:"
 msgstr "Valid {0}timecmd switches:"
 
@@ -472,7 +488,7 @@ msgstr "No se encontraron mosaicos."
 msgid "未找到物品。"
 msgstr "No se encontraron artículos."
 
-#: ../../EssentialsPlus.cs:172
+#: ../../EssentialsPlus.cs:174
 msgid "查找具有指定名称的物品和/或NPC。"
 msgstr "Encuentra un elemento y/o NPC con el nombre especificado."
 
@@ -484,11 +500,19 @@ msgstr "¡Sintaxis no válida! Sintaxis adecuada: {0}find <-switch> <name...> [p
 msgid "没有原因。"
 msgstr "No reason."
 
+#: ../../Commands.cs:642
+msgid "禁止"
+msgstr ""
+
 #: ../../Commands.cs:626
 msgid "禁言子命令:"
 msgstr "Mute Sub-Commandos:"
 
-#: ../../EssentialsPlus.cs:215
+#: ../../EssentialsPlus.cs:222
+msgid "管理是否可被tp。"
+msgstr ""
+
+#: ../../EssentialsPlus.cs:217
 msgid "管理禁言。"
 msgstr "Gestiona mutes."
 
@@ -496,7 +520,7 @@ msgstr "Gestiona mutes."
 msgid "设置了您的家 '{0}'。"
 msgstr "Establecer hogar '{0}'."
 
-#: ../../EssentialsPlus.cs:188
+#: ../../EssentialsPlus.cs:190
 msgid "设置您的一个家点。"
 msgstr "Te establece un punto de hogar."
 
@@ -512,7 +536,7 @@ msgstr "¡Sintaxis no válida! Sintaxis adecuada: {0}myhome <home name>"
 msgid "语法错误！正确的语法是：{0}sethome <家的名称>"
 msgstr "¡Sintaxis no válida! Sintaxis adecuada: {0}sethome <home name>"
 
-#: ../../Commands.cs:659
+#: ../../Commands.cs:680
 msgid "距离：X轴：{0}，Y轴：{1}，直角距离：{2:N3}"
 msgstr "Distancia: X: {0}, Y: {1}, Cartesiano: {2:N3}"
 
@@ -520,7 +544,7 @@ msgstr "Distancia: X: {0}, Y: {1}, Cartesiano: {2:N3}"
 msgid "踢出原因: "
 msgstr "Expulsado: "
 
-#: ../../EssentialsPlus.cs:198
+#: ../../EssentialsPlus.cs:200
 msgid "踢出服务器上的所有人。"
 msgstr "Expulsar a todos de tu server."
 
@@ -544,19 +568,19 @@ msgstr "Type /find -tile {0} {{0}} Para mas"
 msgid "输入 /find -wall {0} {{0}} 查看更多"
 msgstr "Type /find -wall {0} {{0}} Para mas"
 
-#: ../../EssentialsPlus.cs:268
+#: ../../EssentialsPlus.cs:275
 msgid "通过一个方块层向上传送您。"
 msgstr "Te teletransporta a través de una capa de bloques."
 
-#: ../../EssentialsPlus.cs:253
+#: ../../EssentialsPlus.cs:260
 msgid "通过一个方块层向下传送您。"
 msgstr "Te teletransporta a través de una capa de bloques."
 
-#: ../../EssentialsPlus.cs:263
+#: ../../EssentialsPlus.cs:270
 msgid "通过一个方块层向右传送您。"
 msgstr "Te teletransporta a través de una capa de bloques."
 
-#: ../../EssentialsPlus.cs:258
+#: ../../EssentialsPlus.cs:265
 msgid "通过一个方块层向左传送您。"
 msgstr "Te teletransporta a través de una capa de bloques."
 
