@@ -74,7 +74,7 @@
 | [AutoStoreItems](./src/AutoStoreItems/README.en-US.md) | 100.0% | Automatic storage | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoTeam](./src/AutoTeam/README.en-US.md) | 100.0% | Automatic team formation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Back](./src/Back/README.en-US.md) | 100.0% | Return to the point of death | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [BagPing](./src/BagPing/README.en-US.md) | 100.0% | Mark treasure bags on the map |  |
+| [BagPing](./src/BagPing/README.en-US.md) | 33.3% | Mark treasure bags on the map |  |
 | [BanNpc](./src/BanNpc/README.en-US.md) | 100.0% | Prevent monster generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BedSet](./src/BedSet/README.en-US.md) | 100.0% | Set and record respawn points | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.en-US.md) | 100.0% | Whitelist plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -90,7 +90,7 @@
 | [Challenger](./src/Challenger/README.en-US.md) | 100.0% | Challenger mode |  |
 | [Chameleon](./src/Chameleon/README.en-US.md) | 100.0% | Login before entering the server | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ChattyBridge](./src/ChattyBridge/README.en-US.md) | 100.0% | Used for cross-server chat | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [ChestRestore](./src/ChestRestore/README.en-US.md) | 100.0% | Infinite items in resource servers |  |
+| [ChestRestore](./src/ChestRestore/README.en-US.md) | 80.0% | Infinite items in resource servers |  |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the core part |  |
 | [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the miscellaneous part | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [CNPCShop](./src/CNPCShop/README.en-US.md) | 100.0% | Custom NPC shop |  |
@@ -121,7 +121,7 @@
 | [Economics.Task](./src/Economics.Task/README.en-US.md) | 100.0% | Task plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [EndureBoost](./src/EndureBoost/README.en-US.md) | 100.0% | Grant specified buff when the player has a certain number of items |  |
-| [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | 100.0% | Additional management commands | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | 95.6% | Additional management commands | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Ezperm](./src/Ezperm/README.en-US.md) | 100.0% | Batch change permissions | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Fish shop |  |
 | [GenerateMap](./src/GenerateMap/README.en-US.md) | 100.0% | Generate map images | [CaiLib](./src/CaiLib/README.en-US.md) |
@@ -193,7 +193,7 @@
 | [TimeRate](./src/TimeRate/README.en-US.md) | 100.0% | modifying time acceleration using commands, and supporting player sleep to trigger events. |  |
 | [TimerKeeper](./src/TimerKeeper/README.en-US.md) | 100.0% | Save timer state |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.en-US.md) | 100.0% | NPC quick home |  |
-| [TransferPatch](./src/TransferPatch/README.en-US.md) | 100.0% | Transfer Plugin Config Patch |  |
+| [TransferPatch](./src/TransferPatch/README.en-US.md) | 50.0% | Transfer Plugin Config Patch |  |
 | [UnseenInventory](./src/UnseenInventory/README.en-US.md) | 100.0% | Allows the server to generate items that are normally 'unobtainable' |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Foundation library for VBY plugins |  |
 | [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Customizable modifications for certain game content (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
