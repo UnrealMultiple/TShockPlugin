@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-05-18 16:53:34+0000\n"
-"PO-Revision-Date: 2025-05-19 01:22\n"
+"POT-Creation-Date: 2025-06-11 08:39:30+0000\n"
+"PO-Revision-Date: 2025-06-12 01:20\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -23,15 +23,33 @@ msgstr ""
 msgid "[翻译补丁]: {0}.{1} => {2}"
 msgstr ""
 
+#: ../../Plugin.cs:57
+#, csharp-format
+msgid "已导出类型 {0} 的字段和属性到文件 {1}.dump"
+msgstr ""
+
 #: ../../ILTranslate.cs:114
 msgid "无法获取JsonPropertyAttribute"
+msgstr ""
+
+#: ../../Plugin.cs:55
+msgid "无法获取类型"
+msgstr ""
+
+#: ../../Plugin.cs:61
+#, csharp-format
+msgid "未找到插件 {0}"
 msgstr ""
 
 #: ../../ILTranslate.cs:23
 msgid "未找到目标类!"
 msgstr ""
 
-#: ../../Plugin.cs:11
+#: ../../Plugin.cs:45
+msgid "用法: /dump-config <pluginName> <class>"
+msgstr ""
+
+#: ../../Plugin.cs:13
 msgid "翻译任意插件"
 msgstr ""
 
