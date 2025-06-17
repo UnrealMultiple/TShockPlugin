@@ -153,7 +153,8 @@ public class Main : TerrariaPlugin
         switch (args.Parameters[0])
         {
             case "reset":
-                Data.Command("delete from CGive,Given");
+                Data.Command("DELETE FROM CGive");
+                Data.Command("DELETE FROM Given");
                 args.Player.SendSuccessMessage(GetString("成功删除所有数据"));
                 break;
             case "del":
