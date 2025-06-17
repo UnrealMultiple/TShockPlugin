@@ -143,7 +143,7 @@ public class Main : TerrariaPlugin
     {
         if (args.Parameters.Count == 0)
         {
-            args.Player.SendInfoMessage(GetString("/cgive personal [命令] [被执行者]"));
+            args.Player.SendInfoMessage(GetString("/cgive personal [被执行者] [命令]"));
             args.Player.SendInfoMessage(GetString("/cgive all [执行者] [命令]"));
             args.Player.SendInfoMessage(GetString("/cgive list,列出所有离线命令"));
             args.Player.SendInfoMessage(GetString("/cgive del [id],删除指定id的离线命令"));
@@ -186,7 +186,7 @@ public class Main : TerrariaPlugin
             case "all":
             {
                 var executer2 = args.Parameters[1];
-                var cmd2 = args.Parameters[2];
+                var cmd2 = string.Join(' ', args.Parameters[2..]);
                 var who2 = "-1";
                 var cGive3 = new CGive
                 {
@@ -200,8 +200,8 @@ public class Main : TerrariaPlugin
             case "personal":
             {
                 var executer = "Server";
-                var who = args.Parameters[2];
-                var cmd = args.Parameters[1];
+                var who = args.Parameters[1];
+                var cmd = string.Join(' ', args.Parameters[2..]);
                 var cGive = new CGive
                 {
                     Executer = executer,
