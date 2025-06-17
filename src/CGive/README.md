@@ -14,13 +14,13 @@
 
 ## 指令
 
-| 语法                        |     权限      |     说明      |
-|---------------------------|:-----------:|:-----------:|
-| /cgive personal [命令] [目标] | cgive.admin | 为某个玩家添加一条命令 |
-| /cgive all [执行者] [命令]     | cgive.admin |  所有玩家离线命令   |
-| /cgive list               | cgive.admin |   离线命令列表    |
-| /cgive del [id]           | cgive.admin |   删除离线命令    |
-| /cgive reset              | cgive.admin |   重置离线命令    |
+| 语法                    |     权限      |     说明      |
+|-----------------------|:-----------:|:-----------:|
+| /cgive personal [目标] [命令] | cgive.admin | 为某个玩家添加一条命令 |
+| /cgive all [执行者] [命令] | cgive.admin |  所有玩家离线命令   |
+| /cgive list           | cgive.admin |   离线命令列表    |
+| /cgive del [id]       | cgive.admin |   删除离线命令    |
+| /cgive reset          | cgive.admin |   重置离线命令    |
 
 ## 配置
 
@@ -31,6 +31,8 @@
 ## 更新日志
 
 ```
+v1.0.1.0
+- 修复在MySQL下重置报错，修复ID不自增，允许不使用引号包围命令
 v1.0.0.8
 - 修正 GetString
 v1.0.0.4

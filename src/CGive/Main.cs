@@ -12,7 +12,7 @@ public class Main : TerrariaPlugin
     public override string Description => GetString("离线give");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 9);
+    public override Version Version => new Version(1, 0, 1, 0);
 
     public Main(Terraria.Main game)
         : base(game)
@@ -22,8 +22,8 @@ public class Main : TerrariaPlugin
     public override void Initialize()
     {
         Commands.ChatCommands.Add(new Command("cgive.admin", this.cgive, "cgive"));
-        ServerApi.Hooks.GameInitialize.Register(this, this.OnGameInit);
-        ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);
+        ServerApi.Hooks.GameInitialize.Register(this, OnGameInit);
+        ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreetPlayer);
         TShock.RestApi.Register("/getWarehouse", this.getWarehouse);
     }
 
@@ -32,8 +32,8 @@ public class Main : TerrariaPlugin
         if (disposing)
         {
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.cgive);
-            ServerApi.Hooks.GameInitialize.Deregister(this, this.OnGameInit);
-            ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreetPlayer);
+            ServerApi.Hooks.GameInitialize.Deregister(this, OnGameInit);
+            ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);
             ((List<RestCommand>) typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
             .GetValue(TShock.RestApi)!)
             .RemoveAll(x => x.Name == "/getWarehouse");
@@ -107,7 +107,7 @@ public class Main : TerrariaPlugin
             };
     }
 
-    private void OnGreetPlayer(GreetPlayerEventArgs args)
+    private static void OnGreetPlayer(GreetPlayerEventArgs args)
     {
         foreach (var item in CGive.GetCGive())
         {
@@ -116,7 +116,7 @@ public class Main : TerrariaPlugin
                 var given = new Given
                 {
                     Name = TShock.Players[args.Who].Name,
-                    id = item.id
+                    Id = item.id
                 };
                 if (!given.IsGiven())
                 {
@@ -134,7 +134,7 @@ public class Main : TerrariaPlugin
         }
     }
 
-    private void OnGameInit(EventArgs args)
+    private static void OnGameInit(EventArgs args)
     {
         Data.Init();
     }
@@ -143,7 +143,7 @@ public class Main : TerrariaPlugin
     {
         if (args.Parameters.Count == 0)
         {
-            args.Player.SendInfoMessage(GetString("/cgive personal [命令] [被执行者]"));
+            args.Player.SendInfoMessage(GetString("/cgive personal [被执行者] [命令]"));
             args.Player.SendInfoMessage(GetString("/cgive all [执行者] [命令]"));
             args.Player.SendInfoMessage(GetString("/cgive list,列出所有离线命令"));
             args.Player.SendInfoMessage(GetString("/cgive del [id],删除指定id的离线命令"));
@@ -153,7 +153,8 @@ public class Main : TerrariaPlugin
         switch (args.Parameters[0])
         {
             case "reset":
-                Data.Command("delete from CGive,Given");
+                Data.Command("DELETE FROM CGive");
+                Data.Command("DELETE FROM Given");
                 args.Player.SendSuccessMessage(GetString("成功删除所有数据"));
                 break;
             case "del":
@@ -185,7 +186,7 @@ public class Main : TerrariaPlugin
             case "all":
             {
                 var executer2 = args.Parameters[1];
-                var cmd2 = args.Parameters[2];
+                var cmd2 = string.Join(' ', args.Parameters[2..]);
                 var who2 = "-1";
                 var cGive3 = new CGive
                 {
@@ -199,8 +200,8 @@ public class Main : TerrariaPlugin
             case "personal":
             {
                 var executer = "Server";
-                var who = args.Parameters[2];
-                var cmd = args.Parameters[1];
+                var who = args.Parameters[1];
+                var cmd = string.Join(' ', args.Parameters[2..]);
                 var cGive = new CGive
                 {
                     Executer = executer,

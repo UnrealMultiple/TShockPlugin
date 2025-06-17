@@ -1,3 +1,4 @@
+using MySql.Data.MySqlClient;
 using TShockAPI;
 using TShockAPI.DB;
 
@@ -7,8 +8,21 @@ public class Data
 {
     public static void Init()
     {
-        TShock.DB.Query("create table if not exists CGive(executer text,cmd text,who text,id int(32));" +
-            "create table if not exists Given(name text,id int(32))");
+        var cgiveTable = new SqlTable("CGive",
+            new SqlColumn("id", MySqlDbType.Int32) { Primary = true, AutoIncrement = true },
+            new SqlColumn("executer", MySqlDbType.Text),
+            new SqlColumn("cmd", MySqlDbType.Text),
+            new SqlColumn("who", MySqlDbType.Text)
+        );
+
+        var givenTable = new SqlTable("Given",
+            new SqlColumn("id", MySqlDbType.Int32) { Primary = true, AutoIncrement = true },
+            new SqlColumn("name", MySqlDbType.Text));
+
+
+        SqlTableCreator creator = new(TShock.DB, TShock.DB.GetSqlQueryBuilder());
+        creator.EnsureTableStructure(cgiveTable);
+        creator.EnsureTableStructure(givenTable);
     }
 
     public static void Command(string cmd, params object[] args)
