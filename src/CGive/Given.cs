@@ -11,7 +11,7 @@ public class Given
 
     public void Save()
     {
-        Data.Command($"INSERT INTO Given(name,id) VALUES (@0,@1)", this.Name, this.Id);
+        Data.Command($"INSERT INTO Given(name) VALUES (@0)", this.Name);
     }
 
     public void Del()

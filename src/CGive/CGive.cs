@@ -88,7 +88,7 @@ public class CGive
 
     public void Save()
     {
-        Data.Command($"INSERT INTO CGive(executer,cmd,who,id) VALUES (@0,@1,@2)", this.Executer, this.cmd, this.who);
+        Data.Command($"INSERT INTO CGive(executer,cmd,who) VALUES (@0,@1,@2)", this.Executer, this.cmd, this.who);
     }
 
     public void Del()
