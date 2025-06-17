@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using On.OTAPI;
 using CaiBot;
-using System.Globalization;
 using System.Net;
 using System.Net.WebSockets;
 using System.Reflection;
@@ -92,7 +91,6 @@ public class Plugin : TerrariaPlugin
                 {
                     var packetWriter = new PacketWriter();
                     packetWriter.SetType("HeartBeat")
-                        .Write("time", DateTime.Now.ToString(CultureInfo.InvariantCulture))
                         .Send();
                 }
             }
@@ -149,13 +147,6 @@ public class Plugin : TerrariaPlugin
             }
             catch (Exception ex)
             {
-                if (!string.IsNullOrEmpty(WebSocket.CloseStatusDescription) )
-                {
-                    TShock.Log.ConsoleInfo($"[CaiBotLite]CaiBot拒绝访问: [{WebSocket.CloseStatus}]{WebSocket.CloseStatusDescription}");
-                }
-                
-                
-                
                 TShock.Log.ConsoleInfo("[CaiBotLite]CaiBot断开连接...");
                 TShock.Log.ConsoleError(ex.ToString());
             }
@@ -203,10 +194,8 @@ public class Plugin : TerrariaPlugin
 
         switch (args.Parameters[0].ToLowerInvariant())
         {
-            
             case "test":
                 Console.WriteLine("你怎么知道Cai喜欢留一个测试命令?");
-                var a = 1;
                 break;
             // 帮助
             case "help":
