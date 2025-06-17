@@ -15,7 +15,7 @@ public class Data
             new SqlColumn("who", MySqlDbType.Text)
         );
 
-        var givenTable = new SqlTable("CGive",
+        var givenTable = new SqlTable("Given",
             new SqlColumn("id", MySqlDbType.Int32) { Primary = true, AutoIncrement = true },
             new SqlColumn("name", MySqlDbType.Text));
 
