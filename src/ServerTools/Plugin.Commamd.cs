@@ -7,6 +7,48 @@ namespace ServerTools;
 
 public partial class Plugin
 {
+    private void ReaderCmd(CommandArgs args)
+    {
+        var files = new List<string>();
+        string? name = null;
+        switch (args.Parameters.Count)
+        {
+            case 0:
+                files.AddRange(Directory.GetFiles(ReaderPath));
+                break;
+            case 1:
+                files.Add(Path.Combine(ReaderPath, args.Parameters[0]));
+                break;
+            case 2:
+                files.Add(Path.Combine(ReaderPath, args.Parameters[0]));
+                name = args.Parameters[1];
+                break;
+            default:
+                args.Player.SendErrorMessage(GetString("语法错误，正确语法:"));
+                args.Player.SendErrorMessage(GetString("/readplayer"));
+                args.Player.SendErrorMessage(GetString("/readplayer [文件名]"));
+                args.Player.SendErrorMessage(GetString("/readplayer [文件名] [目标角色]"));
+                return;
+        }
+        foreach (var file in files)
+        {
+            if (!File.Exists(file))
+            {
+                args.Player.SendErrorMessage(GetString($"角色文件{Path.GetFileName(file)}不存在无法读取!"));
+                return;
+            }
+            try
+            { 
+                ReadPlayerCopyCharacter(file, name);
+                args.Player.SendSuccessMessage(GetString($"{Path.GetFileName(file)} 读取成功，写入数据库!"));
+            }
+            catch (Exception ex)
+            {
+                TShock.Log.ConsoleError(GetString($"读取过程错误:{ex}"));
+            }
+        }
+    }
+
     private void OthersCmd(CommandArgs args)
     {
         if (args.Parameters.Count < 2)

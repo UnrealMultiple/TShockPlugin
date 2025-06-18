@@ -280,8 +280,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransferPatch", "src\Transf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoClassificationQuickStack", "src\AutoClassificationQuickStack\AutoClassificationQuickStack.csproj", "{A2ADDE91-FCB1-4014-814C-78756BFF1908}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerReader", "src\PlayerReader\PlayerReader.csproj", "{F46FEE5D-72CE-5CE0-2F95-523F1F3F83B9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1378,14 +1376,6 @@ Global
 		{A2ADDE91-FCB1-4014-814C-78756BFF1908}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A2ADDE91-FCB1-4014-814C-78756BFF1908}.Release|x64.ActiveCfg = Release|Any CPU
 		{A2ADDE91-FCB1-4014-814C-78756BFF1908}.Release|x64.Build.0 = Release|Any CPU
-		{F46FEE5D-72CE-5CE0-2F95-523F1F3F83B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F46FEE5D-72CE-5CE0-2F95-523F1F3F83B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F46FEE5D-72CE-5CE0-2F95-523F1F3F83B9}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{F46FEE5D-72CE-5CE0-2F95-523F1F3F83B9}.Debug|x64.Build.0 = Debug|Any CPU
-		{F46FEE5D-72CE-5CE0-2F95-523F1F3F83B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F46FEE5D-72CE-5CE0-2F95-523F1F3F83B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F46FEE5D-72CE-5CE0-2F95-523F1F3F83B9}.Release|x64.ActiveCfg = Release|Any CPU
-		{F46FEE5D-72CE-5CE0-2F95-523F1F3F83B9}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

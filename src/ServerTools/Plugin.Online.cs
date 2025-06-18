@@ -1,6 +1,5 @@
 ﻿using Rests;
 using ServerTools.DB;
-using System.Collections.Concurrent;
 using TerrariaApi.Server;
 using TShockAPI;
 

@@ -3,6 +3,7 @@
 - **作者**: 少司命
 - **出处**: 无
 - 该插件提供更多指令与功能方便管理服务器
+- 该插件会生成一个ReadPlayers文件夹，只有在使用`/readplayer`指令石会用到!
 
 ## 指令
 
@@ -19,6 +20,9 @@
 | /在线排行 或 /onlinerank                                                                                                 | servertool.user.online |      查询玩家在线排行       |
 | /死亡排行 或 /deadrank                                                                                                   |  servertool.user.dead  |      查询玩家死亡排行       |
 | /oc [玩家名称] [指令]                                                                                                    |  servertool.user.cmd  |      为指定玩家执行命令        |
+| /readplayer                   | servertool.readplayer.use | 读取并保存文件夹下所有存档到数据库				|
+| /readplayer [文件名]      | servertool.readplayer.use | 读取并保存文件夹下指定文存档到数据库            |
+| /readplayer [文件名] [角色名]   | servertool.readplayer.use | 读取存档到指定角色下             |
 
 ## REST API
 
@@ -162,6 +166,9 @@
 ## 更新日志
 
 ```
+v1.1.9.9
+添加命令/readplayer
+
 v1.1.8.7
 去掉 "请等待死亡结束，还有{respawn.TotalSeconds}秒结束！" 的小数
 

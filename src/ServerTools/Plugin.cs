@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.DB;
 
 namespace ServerTools;
 
@@ -33,9 +34,14 @@ public partial class Plugin : LazyPlugin
 
     public static Hook AccountInfoHook = null!;
 
+    private const string ReaderPath = "ReaderPlayers";
+
     public Plugin(Main game) : base(game)
     {
-
+        if (!Directory.Exists(ReaderPath))
+        {
+            Directory.CreateDirectory(ReaderPath);
+        }
     }
 
     private RestCommand[] addRestCommands = null!;
@@ -63,6 +69,7 @@ public partial class Plugin : LazyPlugin
         Commands.ChatCommands.Add(new Command("servertool.user.dead", this.DeathRank, "deadrank", "死亡排行"));
         Commands.ChatCommands.Add(new Command("servertool.user.online", this.OnlineRank, "onlinerank", "在线排行"));
         Commands.ChatCommands.Add(new Command("servertool.user.cmd", this.OthersCmd, "oc"));
+        Commands.ChatCommands.Add(new Command("servertool.readplayer.use", this.ReaderCmd, "readplayer"));
         GetDataHandlers.NewProjectile.Register(this.NewProj);
         GetDataHandlers.ItemDrop.Register(this.OnItemDrop);
         GetDataHandlers.KillMe.Register(this.KillMe);
@@ -469,6 +476,41 @@ public partial class Plugin : LazyPlugin
                 args.Handled = true;
             }
         }
+    }
+
+    private static void ReadPlayerCopyCharacter(string path, string? name = null)
+    {
+        var data = Player.LoadPlayer(path, false);
+        if (!string.IsNullOrEmpty(name))
+        { 
+            data.Player.name = name;
+        }
+        var tsPlayer = new TSPlayer(byte.MaxValue - 1);
+        //下面的的参数是必要设置的
+        typeof(TSPlayer).GetField("FakePlayer", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Default | System.Reflection.BindingFlags.Instance)?.SetValue(tsPlayer, data.Player);
+        tsPlayer.PlayerData = new();
+        tsPlayer.IsLoggedIn = true;
+        tsPlayer.State = 10;
+        tsPlayer.Account = GetOrGenerateAccount(data.Player);
+        //保存数据
+        tsPlayer.PlayerData.CopyCharacter(tsPlayer);
+        TShock.CharacterDB.InsertPlayerData(tsPlayer);
+    }
+
+    private static UserAccount GetOrGenerateAccount(Player player)
+    {
+        var ac = TShock.UserAccounts.GetUserAccountByName(player.name);
+        if (ac != null)
+        {
+            return ac;
+        }
+        TShock.UserAccounts.AddUserAccount(new UserAccount()
+        {
+            Name = player.name,
+            Group = TShock.Config.Settings.DefaultGuestGroupName
+        });
+        var tempAccount = TShock.UserAccounts.GetUserAccountByName(player.name);
+        return tempAccount;
     }
 
     private void OnInitialize(EventArgs args)
