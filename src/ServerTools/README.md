@@ -17,8 +17,7 @@
 | /自杀 或 /selfkill                                                                                                     |  servertool.user.kill  |        杀死自己         |
 | /ghost                                                                                                              | servertool.user.ghost  |    切换到幽灵状态再次使用复原    |
 | /旅途难度 [难度]`master` `journey` `normal` `expert` 或 /journeydiff [difficulty mode]`master` `journey` `normal` `expert` | servertool.set.journey |      设置旅途模式难度       |
-| /在线排行 或 /onlinerank                                                                                                 | servertool.user.online |      查询玩家在线排行       |
-| /死亡排行 或 /deadrank                                                                                                   |  servertool.user.dead  |      查询玩家死亡排行       |
+| /rank <online|dead> 或 /排行 <在线|死亡>                                                                                 | servertool.user.rank |      查询玩家排行       |
 | /oc [玩家名称] [指令]                                                                                                    |  servertool.user.cmd  |      为指定玩家执行命令        |
 | /readplayer                   | servertool.readplayer.use | 读取并保存文件夹下所有存档到数据库				|
 | /readplayer [文件名]      | servertool.readplayer.use | 读取并保存文件夹下指定文存档到数据库            |
@@ -166,7 +165,7 @@
 ## 更新日志
 
 ```
-v1.1.9.9
+v1.2.0.0
 添加命令/readplayer
 
 v1.1.8.7

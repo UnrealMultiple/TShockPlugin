@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using TShockAPI;
+using TShockAPI.DB;
 
 namespace LazyAPI.Commands;
 
@@ -54,6 +55,15 @@ internal static class CommandParser
         return false;
     }
 
+    private static bool TryParseAccount(string arg, out object obj)
+    {
+        var account = TryParseInt(arg, out var t) 
+            ? TShock.UserAccounts.GetUserAccountByID((int)t) 
+            : TShock.UserAccounts.GetUserAccountByName(arg);
+        obj = account;
+        return account != null;
+    }
+
     private static readonly Dictionary<Type, Parser> parsers = new()
     {
         [typeof(bool)] = TryParseBool,
@@ -61,7 +71,8 @@ internal static class CommandParser
         [typeof(long)] = TryParseLong,
         [typeof(string)] = TryParseString,
         [typeof(DateTime)] = TryParseDateTime,
-        [typeof(TSPlayer)] = TryParseTSPlayer
+        [typeof(TSPlayer)] = TryParseTSPlayer,
+        [typeof(UserAccount)] = TryParseAccount
     };
 
     private static readonly Dictionary<Type, string> friendlyName = new()
@@ -71,7 +82,8 @@ internal static class CommandParser
         [typeof(long)] = "long",
         [typeof(string)] = "str",
         [typeof(DateTime)] = "date",
-        [typeof(TSPlayer)] = "player"
+        [typeof(TSPlayer)] = "player",
+        [typeof(UserAccount)] = "account"
     };
 
     public static Parser GetParser(Type type)

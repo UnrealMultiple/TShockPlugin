@@ -1,16 +1,19 @@
 ﻿using MonoMod.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using TShockAPI;
 
 namespace LazyAPI.Commands;
-
-internal partial class SingleCommand : CommandBase
+internal class KindCommand : CommandBase
 {
     private readonly CommandParser.Parser[] argParsers;
     private readonly FastReflectionHelper.FastInvoker method;
 
-    public SingleCommand(MethodInfo method, string infoPrefix) : base(method)
+    public KindCommand(MethodInfo method, string infoPrefix) : base(method)
     {
         var param = method.GetParameters();
         var ap = new List<CommandParser.Parser>();
@@ -32,7 +35,7 @@ internal partial class SingleCommand : CommandBase
     {
         var p = args.Parameters;
         var n = this.argParsers.Length;
-        if (p.Count != n + current)
+        if (p.Count < n + current)
         {
             return this.GetResult(Math.Abs(n + current - p.Count));
         }

@@ -5,8 +5,8 @@ namespace LazyAPI.Commands;
 
 internal partial class Command : CommandBase
 {
-    private readonly Dictionary<string, List<CommandBase>> _dict = new();
-    private readonly List<CommandBase> _main = new();
+    private readonly Dictionary<string, List<CommandBase>> _dict = [];
+    private readonly List<CommandBase> _main = [];
     private readonly string _infoPrefix;
 
     public Command(MemberInfo type, string infoPrefix) : base(type)
@@ -33,10 +33,10 @@ internal partial class Command : CommandBase
         }
         else
         {
-            this._dict.Add(cmd, new List<CommandBase>
-                {
-                    sub
-                });
+            this._dict.Add(cmd,
+            [
+                sub
+            ]);
         }
     }
 
