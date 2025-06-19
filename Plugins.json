@@ -1546,7 +1546,7 @@
   },
   {
     "Name": "LazyAPI",
-    "Version": "1.0.1.0",
+    "Version": "1.0.2.0",
     "Author": "cc004 & members of UnrealMultiple",
     "Description": {
       "en-US": "None",
@@ -2259,7 +2259,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.9.0",
+    "Version": "1.2.0.0",
     "Author": "少司命",
     "Description": {
       "en-US": "Server Utility",
