@@ -6,7 +6,7 @@ using TShockAPI.DB;
 namespace ServerTools.Command;
 
 [Command("readplayer")]
-[Permissions("servertooo.readplayer.use")]
+[Permissions("servertool.readplayer.use")]
 public class ReaderPlayer
 {
     [Main]
@@ -68,9 +68,9 @@ public class ReaderPlayer
     public static void Help(CommandArgs args)
     {
         args.Player.SendInfoMessage(GetString($"使用方法:"));
-        args.Player.SendErrorMessage(GetString("/readplayer"));
-        args.Player.SendErrorMessage(GetString("/readplayer [文件名]"));
-        args.Player.SendErrorMessage(GetString("/readplayer [文件名] [目标角色]"));
+        args.Player.SendInfoMessage(GetString("/readplayer"));
+        args.Player.SendInfoMessage(GetString("/readplayer [文件名]"));
+        args.Player.SendInfoMessage(GetString("/readplayer [文件名] [目标角色]"));
     }
 
     private static void ReadPlayerCopyCharacter(string path, string? name = null)
