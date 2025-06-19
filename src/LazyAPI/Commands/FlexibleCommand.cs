@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using TShockAPI;
 
 namespace LazyAPI.Commands;
-internal class KindCommand : CommandBase
+internal class FlexibleCommand : CommandBase
 {
     private readonly CommandParser.Parser[] argParsers;
     private readonly FastReflectionHelper.FastInvoker method;
 
-    public KindCommand(MethodInfo method, string infoPrefix) : base(method)
+    public FlexibleCommand(MethodInfo method, string infoPrefix) : base(method)
     {
         var param = method.GetParameters();
         var ap = new List<CommandParser.Parser>();

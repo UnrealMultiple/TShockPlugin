@@ -67,13 +67,13 @@ public class TestCommand
 ### 其他Attribute
 `PermissionsAttribute`为指令附加了权限，如此一来便不需要再使用HasPermission(...)来进行判断<br>
 `RealPlayerAttribute`则是为了防止机器人或其他非玩家的用户执行指令，LazyAPI会自动判断并阻止执行。<br>
-`KindAttribute`的存在则是为了处理翻页Page的情况，后续将会提到。
+`FlexibleAttribute`的存在则是为了处理翻页Page的情况，后续将会提到。
 ```csharp
 [Command("test")]
 [Permissions("test")]
 public class TestCommand
 {
-	[Kind]
+	[Flexible]
 	[RealPlayer]
 	[Permissions("test.use")]
 	public static void Execute(CommandArgs args)
@@ -85,7 +85,7 @@ public class TestCommand
 ### 参数匹配
 LazyAPI的指令系统拥有参数匹配功能<br>
 以下示例中，方法多了一个`string`和`int`类型参数，LazyAPI在处理指令时，会从args.Parameters中找到这些参数并尝试转换。<br>
-并且在默认情况下，参数是严格匹配的，列如输入指令的参数和声明函数参数数量不同时不会执行，若参数转换失败同样如此。<br>
+并且在默认情况下，参数是严格匹配的，例如输入指令的参数和声明函数参数数量不同时不会执行，若参数转换失败同样如此。<br>
 可自动处理的参数类型:`int`，`long`，`TSPlayer`，`bool`，`string`，`UserAccount`，`DateTime`
 ```csharp
 [Command("test")]
@@ -99,14 +99,14 @@ public class TestCommand
 	}
 }
 ```
-### KindAttribute
-此标签是为了处理那些特殊指令，例如:`test list [页码]`，因为参数匹配限制，所以添加了这个Attribute，你只需给方法添加它，那么LazyAPI就不会那么严格要求参数数量，只要大于方法参数数量即可。
+### FlexibleAttribute
+为了处理那些特殊指令，例如:`test list [页码]`，因为参数匹配限制，所以添加了这个Attribute，你只需给方法添加它，那么LazyAPI就不会那么严格要求参数数量，只要大于方法参数数量即可。
 ```csharp
 [Command("test")]
 [Permissions("test")]
 public class TestCommand
 {
-	[Kind]
+	[Flexible]
 	[Permissions("test.list")]
 	public static void List(CommandArgs args)
 	{
