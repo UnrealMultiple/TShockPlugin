@@ -33,6 +33,7 @@ internal static class CommandHelper
     private static Command BuildTree(Type type, string prefix)
     {
         var result = new Command(type, prefix);
+
         foreach (var t in type.GetNestedTypes(BindingFlags.Public | BindingFlags.Static))
         {
             var al = GetAlias(t).ToArray();
@@ -52,7 +53,7 @@ internal static class CommandHelper
             else
             {
                 var al = GetAlias(func).ToArray();
-                var sub = new SingleCommand(func, prefix + AliasToString(al));
+                CommandBase sub = func.GetCustomAttribute<FlexibleAttribute>() != null ? new FlexibleCommand(func, prefix + AliasToString(al)) : new SingleCommand(func, prefix + AliasToString(al));
                 foreach (var alias in al)
                 {
                     result.Add(alias, sub);
@@ -101,9 +102,8 @@ internal static class CommandHelper
     {
         if (!(type.IsAbstract && type.IsSealed))
         {
-            TShock.Log.ConsoleWarn($"Command `{type.FullName}` should be static");
+            Console.WriteLine($"Command `{type.FullName}` should be static");
         }
-
         var names = GetCommandAlias(type).ToArray();
         var tree = BuildTree(type, AliasToString(names));
 

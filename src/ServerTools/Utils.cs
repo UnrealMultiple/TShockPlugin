@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Creative;
 using TShockAPI;
 
 namespace ServerTools;
@@ -18,8 +19,33 @@ internal class Utils
         }
     }
 
+    public static bool SetJourneyDiff(string diffName)
+    {
+        float diff;
+        switch (diffName.ToLower())
+        {
+            case "master":
+                diff = 1f;
+                break;
+            case "journey":
+                diff = 0f;
+                break;
+            case "normal":
+                diff = 0.33f;
+                break;
+            case "expert":
+                diff = 0.66f;
+                break;
+            default:
+                return false;
+        }
+        var power = CreativePowerManager.Instance.GetPower<CreativePowers.DifficultySliderPower>();
+        power._sliderCurrentValueCache = diff;
+        power.UpdateInfoFromSliderValueCache();
+        power.OnPlayerJoining(0);
+        return true;
+    }
 
-    #region 清理盔甲组逻辑
     public static void ClearItem(Item[] items, TSPlayer tSPlayer)
     {
         for (var i = 0; i < 10; i++)
@@ -34,5 +60,4 @@ internal class Utils
             }
         }
     }
-    #endregion
 }

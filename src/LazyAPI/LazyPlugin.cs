@@ -48,7 +48,7 @@ public abstract class LazyPlugin : TerrariaPlugin
             if (type.IsDefined(typeof(ConfigAttribute), false))
             {
                 var method = type.BaseType!.GetMethod("Load") ?? throw new MissingMethodException($"method 'Load()' is missing inside the lazy loaded config class '{this.Name}'");
-                var name = method.Invoke(null, Array.Empty<object>());
+                var name = method.Invoke(null, []);
                 Console.WriteLine(GetString($"[{this.Name}] config registered: {name}"));
             }
             else if (type.IsDefined(typeof(CommandAttribute), false))

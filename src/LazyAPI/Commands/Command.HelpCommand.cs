@@ -10,7 +10,7 @@ internal partial class Command
         public HelpCommand(Command parent, string infoPrefix)
         {
             this.parent = parent;
-            this.permissions = Array.Empty<string>();
+            this.permissions = [];
             this.info = infoPrefix + "help";
         }
 

@@ -6,20 +6,14 @@ namespace LazyAPI.Commands;
 
 internal abstract class CommandBase
 {
-    protected internal struct ParseResult
+    protected internal readonly struct ParseResult(CommandBase current, int num)
     {
-        public readonly int unmatched;
-        public readonly CommandBase current;
-
-        public ParseResult(CommandBase current, int num)
-        {
-            this.current = current;
-            this.unmatched = num;
-        }
+        public readonly int unmatched = num;
+        public readonly CommandBase current = current;
     }
 
-    private string NoPerm => GetString("You do not have access to this command.");
-    private string MustReal => GetString("You must use this command in-game.");
+    private static string NoPerm => GetString("You do not have access to this command.");
+    private static string MustReal => GetString("You must use this command in-game.");
 
     protected string[] permissions;
     private readonly bool _realPlayer;
@@ -33,8 +27,12 @@ internal abstract class CommandBase
 
     protected CommandBase(MemberInfo member)
     {
-        this.permissions = member.GetCustomAttributes<Permission>().Select(p => p.Name)
-            .Concat(member.GetCustomAttributes<PermissionsAttribute>().Select(p => p.perm)).ToArray();
+        this.permissions =
+        [
+            .. member.GetCustomAttributes<Permission>().Select(p => p.Name)
+,
+            .. member.GetCustomAttributes<PermissionsAttribute>().Select(p => p.perm),
+        ];
         if (member.GetCustomAttribute<RealPlayerAttribute>() != null)
         {
             this._realPlayer = true;
@@ -43,7 +41,7 @@ internal abstract class CommandBase
 
     protected CommandBase()
     {
-        this.permissions = Array.Empty<string>();
+        this.permissions = [];
     }
 
     public bool CanExec(TSPlayer plr)
@@ -55,11 +53,11 @@ internal abstract class CommandBase
     {
         if (this._realPlayer && !plr.RealPlayer)
         {
-            plr.SendErrorMessage(this.MustReal);
+            plr.SendErrorMessage(MustReal);
         }
         else if (this.permissions.Any(perm => !plr.HasPermission(perm)))
         {
-            plr.SendErrorMessage(this.NoPerm);
+            plr.SendErrorMessage(NoPerm);
         }
         else
         {

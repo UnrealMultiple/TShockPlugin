@@ -51,10 +51,14 @@ public static class RestHelper
             {
                 continue;
             }
-            TShock.RestApi.Register(new SecureRestCommand($"/{name}/{method.Name}", parser,
-                method.GetCustomAttributes<Permission>().Select(p => p.Name)
-                    .Concat(method.GetCustomAttributes<PermissionsAttribute>().Select(p => p.perm)).ToArray()));
-            Console.WriteLine(GetString($"[{plugin.Name}] rest endpoint registered: /{name}/{method.Name}"));
+            var sp = method.GetCustomAttribute<RestPathAttribute>() is RestPathAttribute path ? path.alias : method.Name;
+            TShock.RestApi.Register(new SecureRestCommand($"/{name}/{sp}", parser,
+                [
+                    .. method.GetCustomAttributes<Permission>().Select(p => p.Name)
+,
+                    .. method.GetCustomAttributes<PermissionsAttribute>().Select(p => p.perm),
+                ]));
+            Console.WriteLine(GetString($"[{plugin.Name}] rest endpoint registered: /{name}/{sp}"));
         }
     }
 }
