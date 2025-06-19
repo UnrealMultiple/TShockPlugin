@@ -53,7 +53,7 @@ internal static class CommandHelper
             else
             {
                 var al = GetAlias(func).ToArray();
-                CommandBase sub = func.GetCustomAttribute<KindAttribute>() != null ? new FlexibleCommand(func, prefix + AliasToString(al)) : new SingleCommand(func, prefix + AliasToString(al));
+                CommandBase sub = func.GetCustomAttribute<FlexibleAttribute>() != null ? new FlexibleCommand(func, prefix + AliasToString(al)) : new SingleCommand(func, prefix + AliasToString(al));
                 foreach (var alias in al)
                 {
                     result.Add(alias, sub);

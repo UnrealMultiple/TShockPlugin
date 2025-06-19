@@ -36,21 +36,16 @@ public class MainAttribute : Attribute
 }
 
 [AttributeUsage(AttributeTargets.Method)]
-public class KindAttribute : Attribute
+public class FlexibleAttribute : Attribute
 {
 
 }
 
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-public class PermissionsAttribute : Attribute
+public class PermissionsAttribute(string perm) : Attribute
 {
-    public string perm;
-
-    public PermissionsAttribute(string perm)
-    {
-        this.perm = perm;
-    }
+    public string perm = perm;
 }
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]

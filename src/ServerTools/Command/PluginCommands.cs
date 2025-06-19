@@ -103,7 +103,7 @@ public class OthersExecuteCommand
 public class PlayerRank
 {
     [Alias("online", "在线")]
-    [Kind]
+    [Flexible]
     public static void Online(CommandArgs args)
     {
         var OnlineInfo = PlayerOnline.GetOnlineRank().Select(online => GetString($"{online.Name} 在线时长: {Math.Ceiling(Convert.ToDouble(online.Duration * 1.0f / 60))}分钟").Color(TShockAPI.Utils.GreenHighlight)).ToList();
@@ -117,7 +117,7 @@ public class PlayerRank
     }
 
     [Alias("dead", "死亡")]
-    [Kind]
+    [Flexible]
     public static void Death(CommandArgs args)
     {
         var line = DB.PlayerDeath.GetDeathRank().Select(x => GetString($"[{x.Name}] => 死亡{x.Count}次"));
