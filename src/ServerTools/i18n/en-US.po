@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-05-29 13:33:20+0000\n"
-"PO-Revision-Date: 2025-05-30 01:18\n"
+"POT-Creation-Date: 2025-06-19 07:41:39+0000\n"
+"PO-Revision-Date: 2025-06-20 01:21\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,190 +17,216 @@ msgstr ""
 "X-Crowdin-File-ID: 1204\n"
 "Language: en_US\n"
 
-#: ../../Plugin.Commamd.cs:83
+#: ../../Command/PluginCommands.cs:123
 #, csharp-format
 msgid "[{0}] => 死亡{1}次"
 msgstr "[{0}] => Died {1} Times"
 
-#: ../../Plugin.cs:195
+#: ../../Plugin.Handler.cs:125
 #, csharp-format
 msgid "[ServerTools] {0} 被系统保护"
 msgstr "[ServerTools] {0} protected by the system"
 
-#: ../../Utils.cs:17
+#: ../../Utils.cs:18
 #, csharp-format
 msgid "[ServerTools] 世界未开启困难模式，禁止玩家 [{0}]使用恶魔心饰品栏"
 msgstr "[ServerTools] The world is not Hardmode, players [{0}] are prohibited from using the Demon heart"
 
-#: ../../Plugin.cs:142
+#: ../../Plugin.Handler.cs:72
 #, csharp-format
 msgid "[ServerTools] 玩家 [{0}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{1}]"
 msgstr "[ServerTools] Player [{0}] was frozen for 3 seconds due to multiple accessories, and the multi-accessory equipment was automatically cleared [i:{1}]"
 
-#: ../../Plugin.cs:245
+#: ../../Plugin.Handler.cs:175
 msgid "{0} 最后登录使用的IP为 {1}."
 msgstr "{0} Last IP used to log in is {1}."
 
-#: ../../Plugin.cs:234
+#: ../../Plugin.Handler.cs:164
 msgid "{0} 最后的登录时间为 {1} {2} UTC{3}."
 msgstr "{0} Last login time is {1} {2} UTC{3}."
 
-#: ../../Plugin.Commamd.cs:56
+#: ../../Command/PluginCommands.cs:109
 #, csharp-format
 msgid "{0} 在线时长: {1}分钟"
 msgstr "{0} Online time: {1} Minutes"
 
-#: ../../Plugin.cs:244
+#: ../../Plugin.Handler.cs:174
 msgid "{0} 权限组为 {1}."
 msgstr "{0} Permission group is {1}."
 
-#: ../../Plugin.cs:246
+#: ../../Plugin.Handler.cs:176
 msgid "{0} 注册时间为 {1} {2} UTC{3}."
 msgstr "{0} Registered at {1} {2} UTC{3}."
 
-#: ../../Plugin.cs:243
+#: ../../Command/ReaderPlayer.cs:42
+#: ../../Command/ReaderPlayer.cs:59
+#, csharp-format
+msgid "{0} 读取成功，写入数据库!"
+msgstr ""
+
+#: ../../Command/ReaderPlayer.cs:23
+#, csharp-format
+msgid "{0} 读取成功，写入角色{1}!"
+msgstr ""
+
+#: ../../Plugin.Handler.cs:173
 msgid "{0} 账户ID为 {1}."
 msgstr "{0} Account ID is {1}."
 
-#: ../../Plugin.Commamd.cs:111
+#: ../../Command/PluginCommands.cs:76
 msgid "{0}清除了{1}范围内{2}个射弹!"
 msgstr "{0} Cleared {2} projectiles within {1} range!"
 
-#: ../../Plugin.cs:497
+#: ../../Command/ReaderPlayer.cs:71
+msgid "/readplayer"
+msgstr ""
+
+#: ../../Command/ReaderPlayer.cs:72
+msgid "/readplayer [文件名]"
+msgstr ""
+
+#: ../../Command/ReaderPlayer.cs:73
+msgid "/readplayer [文件名] [目标角色]"
+msgstr ""
+
+#: ../../Plugin.Handler.cs:396
 msgid "仅允许软核进入!"
 msgstr "Only softcore character allowed!"
 
-#: ../../Plugin.Commamd.cs:209
+#: ../../Command/QueryPlant.cs:51
 msgid "你不能过于频繁的使用此指令!"
 msgstr "You cannot use this command too frequently!"
 
-#: ../../Plugin.cs:357
+#: ../../Plugin.Handler.cs:282
 #, csharp-format
 msgid "你因召唤物数量超过{0}被踢出"
 msgstr "You were kicked out because the number of summons exceeded {0}"
 
-#: ../../Plugin.cs:353
+#: ../../Plugin.Handler.cs:278
 #, csharp-format
 msgid "你因哨兵数量超过{0}被踢出"
 msgstr "You were kicked out because the number of sentries exceeded {0}"
 
-#: ../../Plugin.cs:364
+#: ../../Plugin.Handler.cs:289
 msgid "你因多鱼线被石化3秒钟!"
 msgstr "You have been petrified for 3 seconds because of too many fishing lines!"
 
-#: ../../Plugin.cs:305
+#: ../../Plugin.Handler.cs:230
 #, csharp-format
 msgid "你将在{0}秒后被踢出!"
 msgstr "You will be kicked out in {0} seconds!"
 
-#: ../../Plugin.Commamd.cs:139
-#: ../../Plugin.Commamd.cs:151
-#: ../../Plugin.Commamd.cs:161
-msgid "你必须在游戏中使用此命令!"
-msgstr "You must use this command in the game!"
-
-#: ../../Plugin.Commamd.cs:164
+#: ../../Command/PluginCommands.cs:17
 msgid "你要求被踢出！"
 msgstr "You asked to be kicked out!"
 
-#: ../../Plugin.Commamd.cs:51
+#: ../../Command/ReaderPlayer.cs:70
+msgid "使用方法:"
+msgstr ""
+
+#: ../../Command/PluginCommands.cs:114
 msgid "在线排行 ({0}/{1})："
 msgstr "Online Rank ({0}/{1}):"
 
-#: ../../Plugin.Commamd.cs:204
+#: ../../Command/QueryPlant.cs:46
 msgid "已为你搜索到{0}个花苞，输入/warp list可以查看结果"
 msgstr "{0} Plantera bulb have been searched for you, enter /warp list to view the results"
 
-#: ../../Plugin.Commamd.cs:30
+#: ../../Command/PluginCommands.cs:97
 #, csharp-format
 msgid "已为玩家{0}执行命令`{1}`"
 msgstr "Command `{1}` has been executed for player {0}"
 
-#: ../../Plugin.Commamd.cs:170
+#: ../../Command/QueryPlant.cs:65
 msgid "已移除所有花苞传送点!"
 msgstr "All plantera bulb warp have been removed!"
 
-#: ../../Plugin.Commamd.cs:50
+#: ../../Command/PluginCommands.cs:113
 msgid "当前没有玩家在线数据"
 msgstr "There is currently no player online data"
 
-#: ../../Plugin.Commamd.cs:120
+#: ../../Command/SetJourneyDiff.cs:17
 msgid "必须在旅途模式下才能设置难度！"
 msgstr "You must be in journey mode to set the difficulty!"
 
-#: ../../Plugin.Commamd.cs:131
+#: ../../Command/SetJourneyDiff.cs:27
 msgid "有效的难度模式: master，journey，normal，expert"
 msgstr "Valid difficulty modes: journey, normal, expert, master"
 
-#: ../../Plugin.cs:19
+#: ../../Plugin.cs:14
 msgid "服务器工具"
 msgstr "Server Utility"
 
-#: ../../Plugin.Commamd.cs:130
+#: ../../Command/SetJourneyDiff.cs:26
 msgid "正确语法: /旅途难度 <难度模式>"
 msgstr "Correct syntax: /journey <difficulty mode>"
 
-#: ../../Plugin.Commamd.cs:78
+#: ../../Command/PluginCommands.cs:128
 msgid "死亡排行 ({0}/{1})："
 msgstr "Death Rank ({0}/{1}):"
 
-#: ../../Plugin.Commamd.cs:77
+#: ../../Command/PluginCommands.cs:127
 msgid "没有死亡数据!"
 msgstr "No death data!"
 
-#: ../../Plugin.cs:251
+#: ../../Plugin.Handler.cs:181
 msgid "用户 {0} 不存在."
 msgstr "User {0} does not exist."
 
-#: ../../Plugin.Commamd.cs:22
-msgid "目标玩家不在线无法执行此命令!"
-msgstr "This command cannot be executed if the target player is not online!"
-
-#: ../../Plugin.cs:457
-#: ../../Plugin.cs:468
+#: ../../Plugin.Handler.cs:357
+#: ../../Plugin.Handler.cs:368
 msgid "禁止双箱!"
 msgstr "No double chest opened allowed!"
 
-#: ../../Plugin.Commamd.cs:169
-#: ../../Plugin.Commamd.cs:195
-#: ../../Plugin.Commamd.cs:199
+#: ../../Command/QueryPlant.cs:37
+#: ../../Command/QueryPlant.cs:41
+#: ../../Command/QueryPlant.cs:64
 msgid "花苞"
 msgstr "bud"
 
-#: ../../Plugin.cs:218
-#: ../../Plugin.cs:256
+#: ../../Command/ReaderPlayer.cs:17
+#: ../../Command/ReaderPlayer.cs:36
+#, csharp-format
+msgid "角色文件{0}不存在无法读取!"
+msgstr ""
+
+#: ../../Plugin.Handler.cs:148
+#: ../../Plugin.Handler.cs:186
 msgid "语法错误，正确语法: {0}accountinfo <username>."
 msgstr "Invalid Syntax, correct syntax: {0}accountinfo <username>."
 
-#: ../../Plugin.Commamd.cs:14
-msgid "语法错误，正确语法:/oc [玩家名称] [指令]"
-msgstr "Invalid syntax, correct syntax: /oc [player name] [command]"
-
-#: ../../Plugin.cs:301
-#: ../../Plugin.cs:309
+#: ../../Plugin.Handler.cs:226
+#: ../../Plugin.Handler.cs:234
 msgid "请在单人模式中结束死亡状态重新进入服务器!"
 msgstr "Please end the death state in single-player mode and re-enter the server!"
 
-#: ../../Plugin.Commamd.cs:52
+#: ../../Command/ReaderPlayer.cs:27
+#: ../../Command/ReaderPlayer.cs:46
+#: ../../Command/ReaderPlayer.cs:63
+#, csharp-format
+msgid "读取过程错误:{0}"
+msgstr ""
+
+#: ../../Command/PluginCommands.cs:115
 msgid "输入 {0}在线排行 {{0}} 查看更多"
 msgstr "Enter {0} online ranking {{0}} to see more"
 
-#: ../../Plugin.Commamd.cs:79
+#: ../../Command/PluginCommands.cs:129
 msgid "输入 {0}死亡排行 {{0}} 查看更多"
 msgstr "Enter {0}Death Rank {{0}} to see more"
 
-#: ../../Plugin.cs:515
+#: ../../Plugin.Handler.cs:413
 #, csharp-format
 msgid "退出服务器时处于死亡状态！\n"
 "请等待死亡结束，还有{0:0}秒结束！"
 msgstr "Dead state when exiting the server!\n"
 "Please wait for death to end, there are {0:0} seconds left!"
 
-#: ../../Plugin.Commamd.cs:94
+#: ../../Command/PluginCommands.cs:59
 msgid "错误的范围!"
 msgstr "Wrong range!"
 
-#: ../../Plugin.Commamd.cs:125
+#: ../../Command/SetJourneyDiff.cs:22
 msgid "难度成功设置为 {0}!"
 msgstr "Difficulty set to {0} successfully!"
 
