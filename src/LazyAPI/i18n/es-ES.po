@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-05-21 03:27:02+0000\n"
-"PO-Revision-Date: 2025-05-22 01:19\n"
+"POT-Creation-Date: 2025-06-19 07:41:18+0000\n"
+"PO-Revision-Date: 2025-06-20 01:21\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr ""
 msgid "[{0}] config registered: {1}"
 msgstr ""
 
-#: ../../Utility/RestHelper.cs:57
+#: ../../Utility/RestHelper.cs:61
 #, csharp-format
 msgid "[{0}] rest endpoint registered: /{1}/{2}"
 msgstr ""
@@ -41,20 +41,20 @@ msgstr ""
 msgid "available usage:"
 msgstr ""
 
-#: ../../Commands/CommandHelper.cs:76
+#: ../../Commands/CommandHelper.cs:77
 #, csharp-format
 msgid "most match: {0}"
 msgstr ""
 
-#: ../../Commands/CommandHelper.cs:77
+#: ../../Commands/CommandHelper.cs:78
 msgid "use subcommand `help` for more usage"
 msgstr ""
 
-#: ../../Commands/CommandBase.cs:21
+#: ../../Commands/CommandBase.cs:15
 msgid "You do not have access to this command."
 msgstr ""
 
-#: ../../Commands/CommandBase.cs:22
+#: ../../Commands/CommandBase.cs:16
 msgid "You must use this command in-game."
 msgstr ""
 
