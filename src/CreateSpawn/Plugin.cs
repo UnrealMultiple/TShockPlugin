@@ -1,169 +1,80 @@
 ﻿using LazyAPI;
+using System.Reflection;
 using Terraria;
+using Terraria.GameContent.Generation;
 using TerrariaApi.Server;
 using TShockAPI;
 
 namespace CreateSpawn;
 
 [ApiVersion(2, 1)]
-public class Plugin : LazyPlugin
+public class CreateSpawn(Main game) : LazyPlugin(game)
 {
-    public override string Author => "少司命";
+    public override string Name => "复制建筑";
 
-    public override string Description => GetString("出生建筑");
+    public override string Author => "少司命 羽学";
 
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 6);
+    public override Version Version => new(1, 0, 1, 0);
 
+    public override string Description => "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴";
 
-    private bool create = false;
-    public Plugin(Main game) : base(game)
-    {
-    }
+    public bool IsNewWorld;
 
     public override void Initialize()
     {
-        On.Terraria.WorldBuilding.GenerationProgress.End += this.GenerationProgress_End;
-        Commands.ChatCommands.Add(new Command("create.copy", this.copy, "cb"));
-        Commands.ChatCommands.Add(new Command("create.copy", this.CreateBuilding, "create"));
+        ExtractData();
         ServerApi.Hooks.GamePostInitialize.Register(this, this.GamePost);
+        On.Terraria.WorldGen.AddGenerationPass_string_WorldGenLegacyMethod += this.WorldGen_AddGenerationPass_string_WorldGenLegacyMethod;
     }
 
-    private void GamePost(EventArgs args)
+    private void WorldGen_AddGenerationPass_string_WorldGenLegacyMethod(On.Terraria.WorldGen.orig_AddGenerationPass_string_WorldGenLegacyMethod orig, string name, WorldGenLegacyMethod method)
     {
-        if (this.create)
-        {
-            this.SpawnBuilding();
-        }
-    }
-
-
-    private void GenerationProgress_End(On.Terraria.WorldBuilding.GenerationProgress.orig_End orig, Terraria.WorldBuilding.GenerationProgress self)
-    {
-        this.create = true;
+        orig(name, method);
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            On.Terraria.WorldBuilding.GenerationProgress.End -= this.GenerationProgress_End;
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.copy || x.CommandDelegate == this.CreateBuilding);
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.GamePost);
+            On.Terraria.WorldGen.AddGenerationPass_string_WorldGenLegacyMethod -= this.WorldGen_AddGenerationPass_string_WorldGenLegacyMethod;
         }
-
         base.Dispose(disposing);
     }
 
-    private void CreateBuilding(CommandArgs args)
-    {
-        this.SpawnBuilding();
-        args.Player.SendInfoMessage(GetString("建筑已创建!"));
-    }
 
-    private void copy(CommandArgs args)
+    private void GamePost(EventArgs args)
     {
-        if (args.Parameters.Count == 2 && args.Parameters[0].ToLower() == "set")
+        if (this.IsNewWorld)
         {
-            switch (args.Parameters[1])
+            var name = "DefaultBuild";
+            var clip = Map.LoadClip(name);
+            if (clip == null)
             {
-                case "1":
-                    args.Player.AwaitingTempPoint = 1;
-                    args.Player.SendInfoMessage(GetString("请选择复制区域的左上角"));
-                    break;
-                case "2":
-                    args.Player.AwaitingTempPoint = 2;
-                    args.Player.SendInfoMessage(GetString("请选择复制区域的右下角"));
-                    break;
-                default:
-                    args.Player.SendInfoMessage(GetString($"正确指令：/cb set <1/2> --选择复制的区域"));
-                    args.Player.SendInfoMessage("/cb save");
-                    break;
+                TShock.Utils.Broadcast($"未找到名为 {name} 的建筑!", 240, 250, 150);
+                return;
             }
-        }
-        else if (args.Parameters.Count == 1 && args.Parameters[0].ToLower() == "save")
-        {
-            if (args.Player.TempPoints[0].X == 0 || args.Player.TempPoints[1].X == 0)
-            {
-                args.Player.SendInfoMessage(GetString("您还没有选择复制的区域！"));
-            }
-            else
-            {
-                this.CopyBuilding(args.Player.TempPoints[0].X, args.Player.TempPoints[0].Y, args.Player.TempPoints[1].X, args.Player.TempPoints[1].Y);
-                args.Player.SendInfoMessage(GetString("保存成功!"));
-            }
-        }
-        else
-        {
-            args.Player.SendInfoMessage(GetString($"/cb set <1/2> --选择复制的区域"));
-            args.Player.SendInfoMessage("/cb save");
+
+            var spwx = Main.spawnTileX; // 出生点 X（单位是图格）
+            var spwy = Main.spawnTileY; // 出生点 Y
+            var startX = spwx - Config.Instance.CentreX + Config.Instance.AdjustX;
+            var startY = spwy - Config.Instance.CountY + Config.Instance.AdjustY;
+            Utils.SpawnBuilding(TSPlayer.Server, startX, startY, clip);
+            this.IsNewWorld = false;
         }
     }
 
-
-    private void CopyBuilding(int x1, int y1, int x2, int y2)
+    private static void ExtractData()
     {
-        var Building = new List<Building>();
-        Config.Instance.CentreX = (x2 - x1) / 2;
-        Config.Instance.CountY = y2 - y1;
-        for (var i = x1; i < x2; i++)
+        if (Directory.Exists(Map.Paths))
         {
-            for (var j = y1; j < y2; j++)
-            {
-                var t = Main.tile[i, j];
-                Building.Add(new Building()
-                {
-                    bTileHeader = t.bTileHeader,
-                    bTileHeader2 = t.bTileHeader2,
-                    bTileHeader3 = t.bTileHeader3,
-                    frameX = t.frameX,
-                    frameY = t.frameY,
-                    liquid = t.liquid,
-                    sTileHeader = t.sTileHeader,
-                    type = t.type,
-                    wall = t.wall
-                });
-            }
+            return;
         }
-        Map.SaveMap(Building);
-    }
-
-    public void SpawnBuilding()
-    {
-        Task.Run(() =>
-        {
-            var Building = Map.LoadMap();
-            //出生点X
-            var spwx = Main.spawnTileX;
-            //出生点Y
-            var spwy = Main.spawnTileY;
-            //计算左X
-            var x1 = spwx - Config.Instance.CentreX + Config.Instance.AdjustX;
-            //计算左Y
-            var y1 = spwy - Config.Instance.CountY + Config.Instance.AdjustY;
-            //计算右x
-            var x2 = Config.Instance.CentreX + spwx + Config.Instance.AdjustX;
-            //计算右y
-            var y2 = spwy + Config.Instance.AdjustY;
-            var n = 0;
-            for (var i = x1; i < x2; i++)
-            {
-                for (var j = y1; j < y2; j++)
-                {
-                    var t = Main.tile[i, j];
-                    t.bTileHeader = Building[n].bTileHeader;
-                    t.bTileHeader2 = Building[n].bTileHeader2;
-                    t.bTileHeader3 = Building[n].bTileHeader3;
-                    t.frameX = Building[n].frameX;
-                    t.frameY = Building[n].frameY;
-                    t.liquid = Building[n].liquid;
-                    t.sTileHeader = Building[n].sTileHeader;
-                    t.type = Building[n].type;
-                    t.wall = Building[n].wall;
-                    n++;
-                    TSPlayer.All.SendTileSquareCentered(i, j);
-                }
-            }
-        });
+        Directory.CreateDirectory(Map.Paths);
+        var assembly = Assembly.GetExecutingAssembly();
+        var resource = $"{assembly.GetName().Name}.Resources.DefaultBuild_cp.map";
+        using var stream = assembly.GetManifestResourceStream(resource);
+        using var fileStream = File.Create(Path.Combine(Map.Paths, "DefaultBuild_cp.map"));
+        stream?.CopyTo(fileStream);
     }
 }
