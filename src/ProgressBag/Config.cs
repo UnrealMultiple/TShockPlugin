@@ -49,11 +49,11 @@ public class Config : JsonConfigBase<Config>
 
     protected override void SetDefault()
     {
-        foreach (var (type, names) in GameProgressHelper.DefaultProgressTypes)
+        foreach (var (name, _) in GameProgress.DefaultProgressNames)
         {
             Bag bag = new();
-            bag.Limit.Add(names.First());
-            bag.Name = names.First() + "礼包";
+            bag.Limit.Add(name);
+            bag.Name = name + "礼包";
             bag.Award.Add(new Award());
             this.Bag.Add(bag);
         }

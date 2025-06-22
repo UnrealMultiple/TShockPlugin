@@ -31,26 +31,8 @@ public static class TSPlayerExtension
 
     public static Dictionary<string, bool> GetProgress(this TSPlayer Player)
     {
-        var progress = new Dictionary<string, bool>();
-        foreach (var field in typeof(ProgressType).GetFields().Where(f => f.FieldType == typeof(ProgressType)))
-        {
-            var state = false;
-            var map = field.GetCustomAttribute<ProgressMapAttribute>();
-            var progName = field.GetCustomAttribute<ProgressNameAttribute>();
-            state = map?.Target == typeof(NPC)
-                ? (ProgressType) field.GetValue(-1)! switch
-                {
-                    ProgressType.EvilBoss => GameProgressHelper.InBestiaryDB(Terraria.ID.NPCID.EaterofWorldsHead) && GameProgressHelper.CompareVlaue(map, null),
-                    ProgressType.Brainof => GameProgressHelper.InBestiaryDB(Terraria.ID.NPCID.BrainofCthulhu) && GameProgressHelper.CompareVlaue(map, null),
-                    _ => GameProgressHelper.CompareVlaue(map, null),
-                }
-                : map?.Target == typeof(Player) ? GameProgressHelper.CompareVlaue(map, Player.TPlayer) : GameProgressHelper.CompareVlaue(map, null);
-            foreach (var name in progName!.Names)
-            {
-                progress[name] = state;
-            }
-        }
-        return progress;
+        return GameProgress.DefaultProgressNames
+            .ToDictionary(p => p.Key, p => p.Value.GetStatus(Player.TPlayer));
     }
 
     public static bool InProgress(this TSPlayer Player, IEnumerable<string> names)
