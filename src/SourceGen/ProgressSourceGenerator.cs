@@ -9,37 +9,29 @@ using System.Text;
 namespace ProgressTypeGenerator;
 
 [Generator]
-public class ProgressSourceGenerator : ISourceGenerator
+public class ProgressSourceGenerator : IIncrementalGenerator
 {
-    public void Initialize(GeneratorInitializationContext context)
+    public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        context.RegisterForSyntaxNotifications(() => new ProgressTypeSyntaxReceiver());
+        var comp = context.SyntaxProvider.CreateSyntaxProvider(
+            predicate: static (node, _) => node is EnumDeclarationSyntax,
+            transform: static (ctx, _) => ctx.SemanticModel.GetDeclaredSymbol(ctx.Node) as INamedTypeSymbol)
+            .Where(symbol => symbol?.Name == "ProgressType");
+        context.RegisterImplementationSourceOutput(comp, (context, enumSymbol) =>
+        {
+            var metadata = this.GatherProgressTypeMetadata(enumSymbol);
+            var source = this.GenerateSourceCode(metadata);
+            context.AddSource("ProgressTypeHelper.g.cs", SourceText.From(source, Encoding.UTF8));
+        });
     }
 
-    public void Execute(GeneratorExecutionContext context)
-    {
-        if (context.SyntaxReceiver is not ProgressTypeSyntaxReceiver receiver || 
-            receiver.EnumDeclaration == null)
-        {
-            return;
-        }
-
-        if (context.Compilation
-            .GetSemanticModel(receiver.EnumDeclaration.SyntaxTree)
-            .GetDeclaredSymbol(receiver.EnumDeclaration) is not INamedTypeSymbol enumSymbol || enumSymbol.Name != "ProgressType")
-        {
-            return;
-        }
-
-        // 生成源代码
-        var metadata = this.GatherProgressTypeMetadata(enumSymbol);
-        var source = this.GenerateSourceCode(metadata);
-        context.AddSource("ProgressTypeHelper.g.cs", SourceText.From(source, Encoding.UTF8));
-    }
-
-    private List<EnumMemberMetadata> GatherProgressTypeMetadata(INamedTypeSymbol enumSymbol)
+    private List<EnumMemberMetadata> GatherProgressTypeMetadata(INamedTypeSymbol? enumSymbol)
     {
         var metadata = new List<EnumMemberMetadata>();
+        if (enumSymbol == null)
+        {
+            return metadata;
+        }
         foreach (var member in enumSymbol.GetMembers().OfType<IFieldSymbol>())
         {
             if (member.ConstantValue == null)
@@ -49,12 +41,12 @@ public class ProgressSourceGenerator : ISourceGenerator
             var memberMetadata = new EnumMemberMetadata
             {
                 MemberName = member.Name,
-                MemberValue = (int)member.ConstantValue
+                MemberValue = (int) member.ConstantValue
             };
 
-            foreach(var attr in member.GetAttributes())
+            foreach (var attr in member.GetAttributes())
             {
-                switch(attr.AttributeClass?.Name)
+                switch (attr.AttributeClass?.Name)
                 {
                     case "ProgressNameAttribute":
                         memberMetadata.ProgressNames = attr.ConstructorArguments[0].Values
@@ -70,7 +62,7 @@ public class ProgressSourceGenerator : ISourceGenerator
                         }
                         else
                         {
-                            memberMetadata.MapIDs.Add((int)attr.ConstructorArguments[0].Value!);
+                            memberMetadata.MapIDs.Add((int) attr.ConstructorArguments[0].Value!);
                         }
                         break;
                     case "ProgressMapAttribute":
@@ -139,11 +131,11 @@ public class ProgressSourceGenerator : ISourceGenerator
             sb.AppendLine("{");
             sb.AppendLine($"    public bool GetStatus(Player? ply = null)");
             sb.AppendLine("    {");
-            if(member.MemberName == "EvilBoss")
+            if (member.MemberName == "EvilBoss")
             {
                 sb.AppendLine($"        return GameProgress.InBestiaryDB(Terraria.ID.NPCID.EaterofWorldsHead);");
             }
-            else if(member.MemberName == "Brainof")
+            else if (member.MemberName == "Brainof")
             {
                 sb.AppendLine($"        return GameProgress.InBestiaryDB(Terraria.ID.NPCID.BrainofCthulhu);");
             }
@@ -182,19 +174,5 @@ public class ProgressSourceGenerator : ISourceGenerator
         public string TargetType { get; set; } = "";
 
         public string Value { get; set; } = "";
-    }
-}
-
-internal class ProgressTypeSyntaxReceiver : ISyntaxReceiver
-{
-    public EnumDeclarationSyntax? EnumDeclaration { get; private set; }
-
-    public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
-    {
-        if (syntaxNode is EnumDeclarationSyntax enumDecl && 
-            enumDecl.Identifier.ValueText == "ProgressType")
-        {
-            this.EnumDeclaration = enumDecl;
-        }
     }
 }
