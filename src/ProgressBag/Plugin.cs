@@ -34,7 +34,7 @@ public class Plugin : LazyPlugin
     }
     public bool ReceiveBag(TSPlayer Player, Bag bag, bool msg = true)
     {
-        if (!Player.InProgress(bag.Limit))
+        if (!Player.ProgressComplete(bag.Limit))
         {
             if (msg)
             {

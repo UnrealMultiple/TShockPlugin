@@ -134,7 +134,7 @@ public class ProgressSourceGenerator : ISourceGenerator
             """"");
         foreach (var member in metadata)
         {
-            sb.AppendLine($"[ProgressMatch(ProgressType.{member.MemberName}, {string.Join(",", member.ProgressNames.Select(n => $"\"{n}\""))})]");
+            sb.AppendLine($"[ProgressMatch(ProgressType.{member.MemberName}, {string.Join(", ", member.ProgressNames.Select(n => $"\"{n}\""))})]");
             sb.AppendLine($"internal class {member.MemberName}Map : IProgressMap");
             sb.AppendLine("{");
             sb.AppendLine($"    public bool GetStatus(Player? ply = null)");

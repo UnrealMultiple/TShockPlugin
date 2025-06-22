@@ -322,7 +322,7 @@ public enum ProgressType
     ZoneDirtLayerHeight,
 
     [ProgressName("地狱")]
-    [ProgressMap(nameof(Player.inferno), typeof(Player), true)]
+    [ProgressMap(nameof(Player.ZoneUnderworldHeight), typeof(Player), true)]
     Inferno,
 
     [ProgressName("地下沙漠")]
