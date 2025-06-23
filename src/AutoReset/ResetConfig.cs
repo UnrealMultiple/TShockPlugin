@@ -6,10 +6,6 @@ namespace AutoReset;
 [Config]
 public class ResetConfig : JsonConfigBase<ResetConfig>
 {
-    [LocalizedPropertyName(CultureType.Chinese, "CaiBot服务器令牌", Order = 8)]
-    [LocalizedPropertyName(CultureType.English, "CaiBotToken")]
-    public string CaiBotToken = "西江超级可爱喵";
-
     [LocalizedPropertyName(CultureType.Chinese, "替换文件", Order = 1)]
     [LocalizedPropertyName(CultureType.English, "ReplaceFiles")]
     public Dictionary<string, string>? Files;
