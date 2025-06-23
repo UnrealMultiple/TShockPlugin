@@ -83,6 +83,28 @@
     "HotReload": true
   },
   {
+    "Name": "复制建筑",
+    "Version": "1.0.1.0",
+    "Author": "少司命 羽学",
+    "Description": {
+      "en-US": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "de-DE": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "it-IT": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "fr-FR": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "es-ES": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "ru-RU": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "zh-CN": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "pt-BR": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "pl-PL": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴"
+    },
+    "AssemblyName": "CreateSpawn",
+    "Path": "CreateSpawn.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
     "Name": "AdditionalPylons",
     "Version": "1.0.8",
     "Author": "Stealownz,肝帝熙恩优化1449",
@@ -783,28 +805,6 @@
     "AssemblyName": "ConvertWorld",
     "Path": "ConvertWorld.dll",
     "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "CreateSpawn",
-    "Version": "1.0.0.6",
-    "Author": "少司命",
-    "Description": {
-      "en-US": "Birth building",
-      "de-DE": "出生建筑",
-      "it-IT": "出生建筑",
-      "fr-FR": "出生建筑",
-      "es-ES": "出生建筑",
-      "ru-RU": "Позволяет копировать структуры (для спавна)",
-      "zh-CN": "出生建筑",
-      "pt-BR": "出生建筑",
-      "pl-PL": "出生建筑"
-    },
-    "AssemblyName": "CreateSpawn",
-    "Path": "CreateSpawn.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
     "HotReload": true
   },
   {
