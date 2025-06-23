@@ -1,6 +1,7 @@
 ﻿using LazyAPI;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Events;
 using Terraria.GameContent.UI.States;
 using Terraria.IO;
 using Terraria.Utilities;
@@ -163,6 +164,9 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
             Main.eclipse = WorldFile._tempEclipse;
             Main.gameMenu = false;
             Main.worldName = worldName;
+            Main.invasionSize = 0;
+            LanternNight.WorldClear();
+            DD2Event.StopInvasion();
             try
             {
                 if (ResetConfig.Instance.SetWorld.Name != null)
