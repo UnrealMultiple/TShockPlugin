@@ -22,10 +22,6 @@ public class ResetConfig : JsonConfigBase<ResetConfig>
     [LocalizedPropertyName(CultureType.English, "BeforeResetCommand")]
     public string[]? PreResetCommands;
 
-    [LocalizedPropertyName(CultureType.Chinese, "重置提醒", Order = 7)]
-    [LocalizedPropertyName(CultureType.English, "CaiBotResetCaution")]
-    public bool ResetCaution;
-
     [LocalizedPropertyName(CultureType.Chinese, "地图预设", Order = 6)]
     [LocalizedPropertyName(CultureType.English, "WorldSetting")]
     public SetWorldConfig SetWorld = new();

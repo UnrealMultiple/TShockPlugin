@@ -243,7 +243,6 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
             case "info":
                 op.SendInfoMessage(GetString($"地图名: {ResetConfig.Instance.SetWorld.Name ?? Main.worldName}\n") +
                                    GetString($"种子: {ResetConfig.Instance.SetWorld.Seed ?? GetString("随机")}\n") +
-                                   GetString($"CaiBot重置提醒: {ResetConfig.Instance.ResetCaution}\n") +
                                    GetString($"击杀重置: {ResetConfig.Instance.KillToReset.Enable}\n") +
                                    GetString($"击杀Npc: {Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}({ResetConfig.Instance.KillToReset.NpcId})\n") +
                                    GetString($"目标击杀数: {ResetConfig.Instance.KillToReset.NeedKillCount}\n") +
