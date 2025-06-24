@@ -1,6 +1,7 @@
 ﻿using LazyAPI;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Events;
 using Terraria.GameContent.UI.States;
 using Terraria.IO;
 using Terraria.Utilities;
@@ -12,7 +13,8 @@ using TShockAPI.DB;
 namespace AutoReset;
 
 [ApiVersion(2, 1)]
-public class AutoResetPlugin : LazyPlugin
+// ReSharper disable once ClassNeverInstantiated.Global
+public class AutoResetPlugin(Main game) : LazyPlugin(game)
 {
     public static readonly string FolderName = "AutoReset";
 
@@ -22,12 +24,8 @@ public class AutoResetPlugin : LazyPlugin
 
     private GenerationProgress? _generationProgress;
 
-    public AutoResetPlugin(Main game) : base(game)
-    {
-    }
-
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2025, 05, 18, 4);
+    public override Version Version => new Version(2025, 06, 23, 0);
 
     public override string Author => "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩";
 
@@ -37,7 +35,7 @@ public class AutoResetPlugin : LazyPlugin
     {
         Commands.ChatCommands.Add(new Command("reset.admin", this.ResetCmd, "reset", "重置世界"));
         Commands.ChatCommands.Add(new Command("reset.admin", this.ResetDataCmd, "resetdata", "重置数据"));
-        Commands.ChatCommands.Add(new Command("", this.OnWho, "who", "playing", "online"));
+        Commands.ChatCommands.Add(new Command(this.OnWho, "who", "playing", "online"));
         Commands.ChatCommands.Add(new Command("reset.admin", this.ResetSetting, "rs", "重置设置"));
         ServerApi.Hooks.ServerJoin.Register(this, this.OnServerJoin, int.MaxValue);
         ServerApi.Hooks.WorldSave.Register(this, this.OnWorldSave, int.MaxValue);
@@ -166,6 +164,9 @@ public class AutoResetPlugin : LazyPlugin
             Main.eclipse = WorldFile._tempEclipse;
             Main.gameMenu = false;
             Main.worldName = worldName;
+            Main.invasionSize = 0;
+            LanternNight.WorldClear();
+            DD2Event.StopInvasion();
             try
             {
                 if (ResetConfig.Instance.SetWorld.Name != null)
@@ -180,7 +181,6 @@ public class AutoResetPlugin : LazyPlugin
             }
             finally
             {
-                Utils.CallApi();
                 this._generationProgress = null;
                 this._status = Status.Available;
             }
@@ -243,7 +243,6 @@ public class AutoResetPlugin : LazyPlugin
             case "info":
                 op.SendInfoMessage(GetString($"地图名: {ResetConfig.Instance.SetWorld.Name ?? Main.worldName}\n") +
                                    GetString($"种子: {ResetConfig.Instance.SetWorld.Seed ?? GetString("随机")}\n") +
-                                   GetString($"CaiBot重置提醒: {ResetConfig.Instance.ResetCaution}\n") +
                                    GetString($"击杀重置: {ResetConfig.Instance.KillToReset.Enable}\n") +
                                    GetString($"击杀Npc: {Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}({ResetConfig.Instance.KillToReset.NpcId})\n") +
                                    GetString($"目标击杀数: {ResetConfig.Instance.KillToReset.NeedKillCount}\n") +
@@ -303,7 +302,7 @@ public class AutoResetPlugin : LazyPlugin
         {
             try
             {
-                TShock.DB.Query(c, Array.Empty<object>());
+                TShock.DB.Query(c);
             }
             catch (Exception ex)
             {
@@ -350,6 +349,7 @@ public class AutoResetPlugin : LazyPlugin
         var plr = TShock.Players[args.Who];
 
         var status = this._status;
+        // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
         switch (status)
         {
             case Status.Cleaning:
