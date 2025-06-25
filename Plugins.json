@@ -1546,7 +1546,7 @@
   },
   {
     "Name": "LazyAPI",
-    "Version": "1.0.2.0",
+    "Version": "1.0.2.1",
     "Author": "cc004 & members of UnrealMultiple",
     "Description": {
       "en-US": "None",
@@ -2792,7 +2792,7 @@
   },
   {
     "Name": "ProgressBag",
-    "Version": "1.0.1.6",
+    "Version": "1.0.1.7",
     "Author": "少司命",
     "Description": {
       "en-US": "Progress Bag",
