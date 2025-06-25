@@ -14,7 +14,7 @@ public class Plugin : LazyPlugin
     public override string Description => GetString("进度礼包");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 1, 6);
+    public override Version Version => new Version(1, 0, 1, 7);
 
     public Plugin(Main game) : base(game)
     {
@@ -34,7 +34,7 @@ public class Plugin : LazyPlugin
     }
     public bool ReceiveBag(TSPlayer Player, Bag bag, bool msg = true)
     {
-        if (!Player.InProgress(bag.Limit))
+        if (!Player.ProgressComplete(bag.Limit))
         {
             if (msg)
             {
