@@ -19,9 +19,8 @@
 
 ## 更新日志
 
-```
-v2024.10.3 初次分离提交。
-```
+### v2024.10.3
+- 初次分离提交
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
