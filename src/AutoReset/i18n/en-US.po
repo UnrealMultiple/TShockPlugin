@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:30+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-06-24 01:05:25+0000\n"
+"PO-Revision-Date: 2025-06-24 01:22\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,19 +17,19 @@ msgstr ""
 "X-Crowdin-File-ID: 1096\n"
 "Language: en_US\n"
 
-#: ../../AutoResetPlugin.cs:117
+#: ../../AutoResetPlugin.cs:115
 msgid "[AutoReset][c/98FB98:{0}s]后[c/DC143C:关闭服务器]..."
 msgstr "[AutoReset] [c/DC143C:The server will shut down] in [c/98FB98:{0}s]..."
 
-#: ../../AutoResetPlugin.cs:114
+#: ../../AutoResetPlugin.cs:112
 msgid "[AutoReset]服务器即将[c/DC143C:开始重置]..."
 msgstr "[AutoReset] The server is about to [c/DC143C:reset]…"
 
-#: ../../AutoResetPlugin.cs:123
+#: ../../AutoResetPlugin.cs:121
 msgid "[AutoReset]服务器已开始重置..."
 msgstr "[AutoReset] The server has started resetting."
 
-#: ../../AutoResetPlugin.cs:51
+#: ../../AutoResetPlugin.cs:49
 msgid "[AutoReset]服务器数据重置成功~"
 msgstr "[AutoReset] Server data reset successfully ~"
 
@@ -37,7 +37,7 @@ msgstr "[AutoReset] Server data reset successfully ~"
 msgid "[AutoReset]生成地图中:\n"
 msgstr "[AutoReset] Generating map…\n"
 
-#: ../../AutoResetPlugin.cs:310
+#: ../../AutoResetPlugin.cs:309
 #, csharp-format
 msgid "[AutoReset]重置SQL({0})执行失败: {1}"
 msgstr "[AutoReset] Resetting SQL ({0}) failed: {1}"
@@ -46,22 +46,17 @@ msgstr "[AutoReset] Resetting SQL ({0}) failed: {1}"
 msgid "[AutoReset]重置数据中，请稍后..."
 msgstr "[AutoReset] Resetting data, please wait…"
 
-#: ../../AutoResetPlugin.cs:329
+#: ../../AutoResetPlugin.cs:328
 #, csharp-format
 msgid "[AutoReset]重置文件({0})替换失败: {1}"
 msgstr "[AutoReset] Resetting file ({0}) failed: {1}"
 
-#: ../../AutoResetPlugin.cs:72
+#: ../../AutoResetPlugin.cs:70
 #, csharp-format
 msgid "[i:3611]击杀自动重置:[c/DC143C:{0}] ([c/98FB98:{1}]/{2})"
 msgstr "[i:3611] Auto-reset on kill: [c/DC143C:{0}] ([c/98FB98:{1}]/{2})"
 
-#: ../../Utils.cs:25
-#, csharp-format
-msgid "[自动重置]调用API失败! (状态码: {0})"
-msgstr "[AutoReset] API call failed! (Status code: {0})"
-
-#: ../../AutoResetPlugin.cs:96
+#: ../../AutoResetPlugin.cs:94
 #, csharp-format
 msgid "[重置计数器]已经击杀[c/DC143C:{0}] ([c/98FB98:{1}]/{2})"
 msgstr "[Reset counter] Killed [c/DC143C:{0}] ([c/98FB98:{1}]/{2})"
@@ -82,38 +77,33 @@ msgstr "/rs name <map name>"
 msgid "/rs seed <种子>"
 msgstr "/rs seed <seed>"
 
-#: ../../AutoResetPlugin.cs:72
+#: ../../AutoResetPlugin.cs:70
 #, csharp-format
 msgid "📝击杀自动重置:{0}({1}/{2})"
 msgstr "📝 Auto-reset on kill: {0} ({1}/{2})"
 
-#: ../../AutoResetPlugin.cs:246
-#, csharp-format
-msgid "CaiBot重置提醒: {0}\n"
-msgstr "CaiBot reset reminder: {0}\n"
-
-#: ../../AutoResetPlugin.cs:264
+#: ../../AutoResetPlugin.cs:263
 msgid "世界名字已设置为 "
 msgstr "[AutoReset] The world name has been set to "
 
-#: ../../AutoResetPlugin.cs:258
+#: ../../AutoResetPlugin.cs:257
 msgid "世界名字已设置为跟随原世界"
 msgstr "The world name has been set to follow the original world"
 
-#: ../../AutoResetPlugin.cs:274
+#: ../../AutoResetPlugin.cs:273
 msgid "世界种子已设为随机"
 msgstr "The world seed has been set to random"
 
-#: ../../AutoResetPlugin.cs:293
+#: ../../AutoResetPlugin.cs:292
 msgid "世界种子已设置为:"
 msgstr "The world seed has been set to:"
 
-#: ../../AutoResetPlugin.cs:248
+#: ../../AutoResetPlugin.cs:247
 #, csharp-format
 msgid "击杀Npc: {0}({1})\n"
 msgstr "Kill NPC: {0}({1})\n"
 
-#: ../../AutoResetPlugin.cs:247
+#: ../../AutoResetPlugin.cs:246
 #, csharp-format
 msgid "击杀重置: {0}\n"
 msgstr "Kill Reset: {0}\n"
@@ -123,11 +113,11 @@ msgstr "Kill Reset: {0}\n"
 msgid "地图名: {0}\n"
 msgstr "Map name: {0}\n"
 
-#: ../../AutoResetPlugin.cs:34
+#: ../../AutoResetPlugin.cs:32
 msgid "完全自动重置插件"
 msgstr "Full automatic plugin reset"
 
-#: ../../AutoResetPlugin.cs:250
+#: ../../AutoResetPlugin.cs:249
 #, csharp-format
 msgid "已击杀数: {0}"
 msgstr "Number of Kills: {0}"
@@ -136,11 +126,11 @@ msgstr "Number of Kills: {0}"
 msgid "帮助 ({0}/{1})："
 msgstr "Help ({0}/{1})："
 
-#: ../../AutoResetPlugin.cs:82
+#: ../../AutoResetPlugin.cs:80
 msgid "生成地图中: "
 msgstr "Generating map… "
 
-#: ../../AutoResetPlugin.cs:249
+#: ../../AutoResetPlugin.cs:248
 #, csharp-format
 msgid "目标击杀数: {0}\n"
 msgstr "Target Kills: {0}\n"
@@ -154,7 +144,7 @@ msgstr "Seed: {0}\n"
 msgid "输入 {0}rs help {{0}} 查看更多"
 msgstr "Type {0}rs help {{0}} for more information"
 
-#: ../../AutoResetPlugin.cs:79
+#: ../../AutoResetPlugin.cs:77
 msgid "重置数据中, 请稍后..."
 msgstr "Resetting data, please wait…"
 
