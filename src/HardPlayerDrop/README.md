@@ -17,10 +17,8 @@
 
 ## 更新日志
 
-```
-v1.0.0 
-修复生命水晶掉不出来的问题
-```
+### v1.0.0 
+- 修复生命水晶掉不出来的问题
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

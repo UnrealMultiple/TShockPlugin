@@ -21,10 +21,9 @@
 
 ## 更新日志
 
-```
-v1.0.2
-完善卸载函数，简化代码
-```
+### v1.0.2
+- 完善卸载函数，简化代码
+
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

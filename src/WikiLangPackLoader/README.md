@@ -19,42 +19,43 @@
 暂无  
 ```
 
-----------
 ## 使用方法:
 
 **1.将插件安装在ServerPlugins/  
 2.重启服务器**  
 
+## 关于语言包：
+来源: **Steam创意工坊 (官方 Wiki 中文语言包)**  
+作者: **Wiki 中文编辑团队** (本插件作者不属于Wiki 中文编辑团队)
+
+> Includes translation fixes by our wiki editors  
+> for a better game experience.  
+> 由官方 Terraria Wiki 编辑团队制作维护的简体中文语言包，旨在修正翻译错误，提供更好游戏体验。  
+> 更多相关信息与问题报告，请移步：  
+> https://terraria.wiki.gg/zh/wiki/语言包  
+> Official Unofficial Translation   
+> Powered by Official Terraria Wiki Team  
+> For the players, by the players.
+
+感谢**Wiki 中文编辑团队**提供的翻译语言包
+
 
 ## 更新日志
 
-```
-v2025.4.26 更新语言包内容
-v2024.9.16 更新Wiki语言包,修复语言包加载失败的问题
-v1.2 修改语言时自动重载  
-```
+### v2025.4.26 
+- 更新语言包内容
+### v2024.9.16
+- 更新Wiki语言包
+- 修复语言包加载失败的问题
+### v1.2 
+- 修改语言时自动重载  
 
-----------
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079
 - 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
 
-----------
 
-## 关于语言包：
-来源: **Steam创意工坊 (官方 Wiki 中文语言包)**  
-作者: **Wiki 中文编辑团队** (本插件作者不属于Wiki 中文编辑团队)   
-  
-> Includes translation fixes by our wiki editors  
-> for a better game experience.  
-> 由官方 Terraria Wiki 编辑团队制作维护的简体中文语言包，旨在修正翻译错误，提供更好游戏体验。  
-> 更多相关信息与问题报告，请移步：  
-> https://terraria.wiki.gg/zh/wiki/语言包  
->Official Unofficial Translation   
-> Powered by Official Terraria Wiki Team  
-> For the players, by the players.  
-  
-感谢**Wiki 中文编辑团队**提供的翻译语言包
+
 

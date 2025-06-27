@@ -1,6 +1,6 @@
 # DataSync 进度同步插件
 
-- 作者: 恋恋
+- 作者: SGKoishi
 - 出处: github
 - 当两个服务端公用一个数据库时实现进度同步
 
@@ -72,13 +72,11 @@
   "Unreachable": false
 }
 ```
-
-```
-2025.1.29
-添加 GetString
-2024.07.29
-咋没版本，补全卸载函数
-```
+## 更新日志
+### v2025.1.29
+- 添加 GetString
+### v2024.07.29
+- 咋没版本，补全卸载函数
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

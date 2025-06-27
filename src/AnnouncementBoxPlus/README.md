@@ -67,13 +67,12 @@
 
 ## 更新日志
 
-```
-v1.0.5
-重构渔夫任务点提取逻辑
-添加 GetString
+### v1.0.5
+- 重构渔夫任务点提取逻辑
+- 添加 GetString
 
-v1.0.1 完善卸载函数
-```
+### v1.0.1 
+- 完善卸载函数
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

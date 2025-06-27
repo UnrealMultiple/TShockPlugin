@@ -127,35 +127,33 @@ public class TestCommand
 
 ## 更新日志
 
-```
-v1.0.2.0
-1.修复在构造函数阶段使用TShock.Log
-2.添加FindCommand
-3.添加RestPathAttribute，FindAttribute
-4.RestHelper可以自定义method路径
+### v1.0.2.0
+- 修复在构造函数阶段使用TShock.Log
+- 添加FindCommand
+- 添加RestPathAttribute，FindAttribute
+- RestHelper可以自定义method路径
 
-v1.0.1.0
-修复`TShockAPI.I18n.TranslationCultureInfo`为空时, 无法正确生成配置
+### v1.0.1.0
+- 修复`TShockAPI.I18n.TranslationCultureInfo`为空时, 无法正确生成配置
 
-v1.0.0.7
-添加游戏进度工具类
+### v1.0.0.7
+- 添加游戏进度工具类
 
-v1.0.0.6
-Database/DB.cs 工具集设置 tableName 为可选
-添加配置文件重载提示
+### v1.0.0.6
+- Database/DB.cs 工具集设置 tableName 为可选
+- 添加配置文件重载提示
 
-v1.0.0.4
-支持西班牙语，俄语
+### v1.0.0.4
+- 支持西班牙语，俄语
 
-V1.0.0.2
-支持生成默认配置，多语言更多操作的支持!
+### v1.0.0.2
+- 支持生成默认配置，多语言更多操作的支持!
 
-v1.0.0.1
-初步支持多语言配置文件
+### v1.0.0.1
+- 初步支持多语言配置文件
 
-v1.0.0.0
-初始上传
-```
+### v1.0.0.0
+- 初始上传
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

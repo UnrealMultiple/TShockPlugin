@@ -17,17 +17,15 @@
 
 ## 更新日志
 
-```
-v1.1.5
-适配tshock 5.2.3
-1.0.8
-适配net 6.0
-修复区域相关BUG
-删除一些无用的方法
-新增MiniPlayer.Godmode方法方便让玩家进入无敌模式
-新增MiniPlayer.Creative方法提供一个快速解锁（上锁）旅行全物品的方式
-修复ZombleMode中强制退出无法再进入服务器BUG
-```
+### v1.1.5
+- 适配TShock 5.2.3
+### v1.0.8
+- 适配.NET 6.0
+- 修复区域相关BUG
+- 删除一些无用的方法
+- 新增MiniPlayer.Godmode方法方便让玩家进入无敌模式
+- 新增MiniPlayer.Creative方法提供一个快速解锁（上锁）旅行全物品的方式
+- 修复ZombleMode中强制退出无法再进入服务器BUG
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

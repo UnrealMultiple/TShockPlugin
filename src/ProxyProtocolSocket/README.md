@@ -31,13 +31,12 @@
 
 ## 更新日志
 
-```
-v2.1
-重构 Parsers
+### v2.1
+- 重构 Parsers
 
-v2.0
-适配 TShock 5.2
-```
+### v2.0
+- 适配 TShock 5.2
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

@@ -120,10 +120,8 @@
 
 ## 更新日志
 
-```
-v1.0.1
-i18n预备
-```
+### v1.0.1
+- i18n预备
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
