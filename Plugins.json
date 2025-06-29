@@ -1054,7 +1054,7 @@
   },
   {
     "Name": "Economics.Core",
-    "Version": "2.0.0.8",
+    "Version": "2.0.0.9",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides economic system API",
@@ -1185,7 +1185,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "2.0.1.5",
+    "Version": "2.0.1.6",
     "Author": "少司命",
     "Description": {
       "en-US": "Let players have skills!",
