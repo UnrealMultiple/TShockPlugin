@@ -10,11 +10,12 @@ public class Configuration : JsonConfigBase<Configuration>
 
     [LocalizedPropertyName(CultureType.Chinese, "清理间隔")]
     [LocalizedPropertyName(CultureType.English, "Interval")]
-    public int detectionIntervalSeconds { get; set; } = 100;
+    public int DetectionIntervalSeconds { get; set; } = 100;
 
     [LocalizedPropertyName(CultureType.Chinese, "排除列表")]
     [LocalizedPropertyName(CultureType.English, "Exclude")]
-    public List<int> NonSweepableItemIDs { get; set; } = new List<int>();
+    // ReSharper disable once CollectionNeverUpdated.Global
+    public List<int> NonSweepableItemIDs { get; set; } = [];
 
     [LocalizedPropertyName(CultureType.Chinese, "清理阈值")]
     [LocalizedPropertyName(CultureType.English, "Threshold")]
@@ -37,7 +38,7 @@ public class Configuration : JsonConfigBase<Configuration>
     public bool SweepThrowable { get; set; } = true;
 
     [LocalizedPropertyName(CultureType.Chinese, "清扫普通物品")]
-    [LocalizedPropertyName(CultureType.English, "SweepRegaular")]
+    [LocalizedPropertyName(CultureType.English, "SweepRegular")]
     public bool SweepRegular { get; set; } = true;
 
     [LocalizedPropertyName(CultureType.Chinese, "清扫装备")]
