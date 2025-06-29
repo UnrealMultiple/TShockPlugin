@@ -4,8 +4,8 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using TShockAPI;
 
-namespace TrCDK
-{
+namespace TrCDK;
+
 	public static class TSPlayerExtensions
 	{
 		public static void SendMessageFormat(this TSPlayer Player, Color Colour, string MessageFormat, params object[] args)
@@ -56,4 +56,3 @@ namespace TrCDK
 			return true;
 		}
 	}
-}

@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using TShockAPI;
 
-namespace TrCDK
-{
+namespace TrCDK;
+
 	public static class TShockCommandExtensions
 	{
 		public static bool RunWithoutPermissions(this Command cmd, string msg, TSPlayer ply, List<string> parms, bool silent = false)
@@ -21,4 +21,3 @@ namespace TrCDK
 			return true;
 		}
 	}
-}
