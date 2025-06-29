@@ -48,30 +48,23 @@ public class TpAllowManager
 
             if (existing == null)
             {
-                newState = true;
+                // 默认允许
+                newState = false;
                 this.TpAllows.Add(new TpAllow(player.Name, newState));
-
-                if (this.db.Query("INSERT OR REPLACE INTO TpAllows VALUES (@0, @1)",
-                    player.Name, newState ? 1 : 0) > 0)
-                {
-                    player.TPAllow = newState;
-                    return true;
-                }
-                return false;
             }
             else
             {
                 newState = !existing.IsEnabled;
                 existing.IsEnabled = newState;
-
-                if (this.db.Query("UPDATE TpAllows SET IsEnabled = @0 WHERE Name = @1",
-                    newState ? 1 : 0, player.Name) > 0)
-                {
-                    player.TPAllow = newState;
-                    return true;
-                }
-                return false;
             }
+
+            if (this.db.Query("INSERT OR REPLACE INTO TpAllows VALUES (@0, @1)",
+                player.Name, newState ? 1 : 0) > 0)
+            {
+                player.TPAllow = newState;
+                return true;
+            }
+            return false;
         }
         catch (Exception ex)
         {
@@ -136,12 +129,22 @@ public class TpAllowManager
                 player.TPAllow = isEnabled;
                 return isEnabled;
             }
+
+            // 未找到记录时，默认允许传送并添加记录
+            var defaultAllowed = true;
+            this.TpAllows.Add(new TpAllow(player.Name, defaultAllowed));
+            this.db.Query("INSERT INTO TpAllows (Name, IsEnabled) VALUES (@0, @1)",
+                player.Name, defaultAllowed ? 1 : 0);
+            player.TPAllow = defaultAllowed;
+            return defaultAllowed;
         }
         catch (Exception ex)
         {
             TShock.Log.Error($"查询玩家 {player.Name} 的传送权限时发生错误: {ex}");
         }
-        player.TPAllow = false;
-        return false;
+
+        // 异常情况下保持默认允许（可选，根据需求决定）
+        player.TPAllow = true;
+        return true;
     }
 }
