@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-02-27 12:32:23+0000\n"
-"PO-Revision-Date: 2025-02-28 01:11\n"
+"POT-Creation-Date: 2025-06-27 01:19:34+0000\n"
+"PO-Revision-Date: 2025-06-27 01:22\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -30,8 +30,8 @@ msgstr "Your team has been switched to {0}."
 msgid "启用"
 msgstr "Enabled"
 
-#: ../../Configuration.cs:22
 #: ../../AutoTeamPlus.cs:111
+#: ../../Configuration.cs:22
 msgid "未配置"
 msgstr "Not configured"
 

@@ -151,6 +151,12 @@ SurvivalCrisis——生存危机
 - `Huneger*.sec` 建筑岛的预设，Hunger前缀是必须的，*为编号，生成时随机选择
 - `Light.sec` 灯笼预设，会在空洞层大量分布以辅助玩家移动
 - 除此之外的均为小号资源球的预设，`Vx`后缀是必须的，x为箱子等级，可以叠加多种等级的箱子
+
+## 更新日志
+
+### v1.0.0
+- 添加插件
+
 # 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079

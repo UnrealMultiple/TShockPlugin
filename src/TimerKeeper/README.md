@@ -16,9 +16,8 @@
 暂无
 ```
 ## 更新日志
-```
-v2024.9.8.1 添加英文翻译
-```
+### v2024.9.8.1
+- 添加英文翻译
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

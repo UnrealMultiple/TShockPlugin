@@ -234,7 +234,7 @@
   },
   {
     "Name": "AutoClear",
-    "Version": "1.0.9",
+    "Version": "1.1.0",
     "Author": "大豆子[Mute适配1447]，肝帝熙恩更新",
     "Description": {
       "en-US": "Smart sweeper",
@@ -2466,7 +2466,7 @@
   },
   {
     "Name": "SurvivalCrisis",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0",
     "Author": "TOFOUT",
     "Description": {
       "en-US": "a survival game",

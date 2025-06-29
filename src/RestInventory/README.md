@@ -18,10 +18,9 @@
 
 ## 更新日志
 
-```
-v1.0.0.2
+
+### v1.0.0.2
 完善rest卸载函数
-```
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

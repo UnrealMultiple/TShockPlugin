@@ -189,7 +189,7 @@ namespace SurvivalCrisis
 
         #endregion
         #region Plugin Infos
-        public override Version Version => typeof(SurvivalCrisis).Assembly.GetName().Version;
+        public override Version Version => new (1,0,0);
         public override string Author => "TOFOUT";
         public override string Name => nameof(SurvivalCrisis);
         public override string Description => "a survival game";

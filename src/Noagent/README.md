@@ -4,12 +4,6 @@
 - 出处: TShock中文官方群
 - 调用`https://blackbox.ipinfo.app/lookup/`进行检测，实测效果还行
 
-## 更新日志
-
-```
-暂无
-```
-
 ## 指令
 
 ```
@@ -21,6 +15,13 @@
 ```json5
 暂无
 ```
+
+## 更新日志
+
+### v1.0.0
+- 添加插件
+
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079
