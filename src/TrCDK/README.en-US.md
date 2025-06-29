@@ -3,6 +3,7 @@
 - Source: ARK Server  
 - Can return the player's last death location with customizable cooldown time.  
 - Administrators can create, delete, and update CDKs, and players can redeem (execute commands) rewards using valid CDKs.  
+- CDKs can set usage times, expiration time, group restrictions, and player restrictions.
 
 
 ## Commands  
