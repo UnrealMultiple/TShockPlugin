@@ -1,10 +1,8 @@
-﻿using Economics.Core.ConfigFiles;
-using Economics.Core.Extensions;
+﻿using Economics.Core.Extensions;
 using Microsoft.Xna.Framework;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
-using TShockAPI.Hooks;
 
 namespace Economics.NPC;
 
@@ -15,7 +13,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Description => GetString("修改NPC掉落货币!");
 
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(2, 0, 0, 4);
 
     public Plugin(Main game) : base(game)
