@@ -89,7 +89,7 @@ public class PlayerSKillManager
     public void Add(string Name, int bindItem, int index, int Level)
     {
         this.database.Query("INSERT INTO `Skill` (`Name`, `BindItem`, `ID`, `Level`) VALUES (@0, @1, @2, @3)", Name, bindItem, index, Level);
-        this.PlayerSkills.Add(new(index, Name, bindItem));
+        this.PlayerSkills.Add(new(index, Name, bindItem, Level));
     }
 
     public void Remove(string Name, int index)
@@ -113,7 +113,7 @@ public class PlayerSKillManager
 
     internal void UpdateLevel(PlayerSkill playerSkill)
     {
-        this.database.Query("UPDATE Skill SET Level = @0 WHERE Name = @1 AND ID = @2", playerSkill.Level, playerSkill.Name, playerSkill.ID);
         playerSkill.Level++;
+        this.database.Query("UPDATE Skill SET Level = @0 WHERE Name = @1 AND ID = @2", playerSkill.Level, playerSkill.Name, playerSkill.ID);
     }
 }
