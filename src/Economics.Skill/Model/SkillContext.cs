@@ -1,5 +1,4 @@
 ﻿using Economics.Skill.JSInterpreter;
-using Economics.Skill.Model.Loop;
 using Economics.Skill.Model.Options;
 using Economics.Core.ConfigFiles;
 using Newtonsoft.Json;
@@ -25,22 +24,22 @@ public class SkillContext
     public bool Hidden { get; set; }
 
     [JsonProperty("技能价格")]
-    public List<RedemptionRelationshipsOption> RedemptionRelationshipsOption { get; set; } = new();
+    public List<RedemptionRelationshipsOption> RedemptionRelationshipsOption { get; set; } = [];
 
     [JsonProperty("限制等级")]
-    public List<string> LimitLevel { get; set; } = new();
+    public List<string> LimitLevel { get; set; } = [];
 
     [JsonProperty("限制进度")]
-    public List<string> LimitProgress { get; set; } = new();
+    public List<string> LimitProgress { get; set; } = [];
 
     [JsonProperty("限制技能")]
-    public List<int> LimitSkill { get; set; } = new();
-
-    [JsonProperty("事件循环")]
-    public LoopEvent LoopEvent { get; set; } = new();
+    public List<int> LimitSkill { get; set; } = [];
 
     [JsonProperty("触发设置")]
     public SkillSparkOption SkillSpark { get; set; } = new();
+
+    [JsonProperty("技能等级设置")]
+    public Dictionary<int, List<RedemptionRelationshipsOption>> SkillLevelOptions { get; set; } = [];
 
     [JsonProperty("执行脚本")]
     public string? ExecuteScript

@@ -51,7 +51,7 @@ public class PlayerSparkSkillHandler
         {
             if (skill.Skill != null && IsSpark(Player, skill, skillSparkType))
             {
-                Utils.EmitSkill(Player, skill.Skill);
+                Utils.EmitSkill(Player, skill);
                 skill.ResetCD();
             }
 
@@ -66,7 +66,7 @@ public class PlayerSparkSkillHandler
         {
             if (skill.Skill != null && IsSpark(e.Player, skill, skillSparkType))
             {
-                Utils.EmitSkill(e, skill.Skill);
+                Utils.EmitSkill(e, skill);
                 skill.ResetCD();
             }
         }

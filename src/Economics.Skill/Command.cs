@@ -9,7 +9,7 @@ public class Command : BaseCommand
 {
     public override string[] Alias => ["skill"];
 
-    public override List<string> Permissions => ["Permission.SkillUse"];
+    public override List<string> Permissions => ["economics.skill.use"];
 
     public override string HelpText => GetString("你将拥有技能!");
 
@@ -33,7 +33,7 @@ public class Command : BaseCommand
                 args.Player.SendErrorMessage(GetString($"你的货币不足购买此技能!"));
                 return;
             }
-            Skill.PlayerSKillManager.Add(args.Player.Name, args.Player.SelectedItem.netID, index);
+            Skill.PlayerSKillManager.Add(args.Player.Name, args.Player.SelectedItem.netID, index, 1);
             args.Player.SendSuccessMessage(GetString("购买成功，技能已绑定!"));
             return;
         }
@@ -106,7 +106,7 @@ public class Command : BaseCommand
     public static void SkillMy(CommandArgs args)
     {
         var skills = Skill.PlayerSKillManager.QuerySkill(args.Player.Name);
-        if (!skills.Any())
+        if (skills.Count == 0)
         {
             args.Player.SendErrorMessage(GetString("你并未绑定技能!"));
             return;
@@ -176,6 +176,44 @@ public class Command : BaseCommand
         args.Player.SendSuccessMessage(GetString("技能重置成功!"));
     }
 
+    [SubCommand("up", 2)]
+    [HelpText("/skill up <id>")]
+    [OnlyPlayer]
+    public static void SkillUp(CommandArgs args)
+    {
+        if (!int.TryParse(args.Parameters[1], out var index))
+        {
+            args.Player.SendErrorMessage(GetString("请输入一个正确的序号!"));
+            return;
+        }
+        var skill = Config.Instance.GetSkill(index);
+        if (skill == null)
+        {
+            args.Player.SendErrorMessage(GetString("无效的技能序号!"));
+            return;
+        }
+        var playerSkills = Skill.PlayerSKillManager.QuerySkill(args.Player.Name).FirstOrDefault(x => x.ID == index);
+        if (playerSkills == null)
+        {
+            args.Player.SendErrorMessage(GetString("你未绑定此技能，无法升级!"));
+            return;
+        }
+        if(skill.SkillLevelOptions.TryGetValue(playerSkills.Level + 1, out var nextLevelCost) && nextLevelCost != null)
+        {
+            if (!Core.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, nextLevelCost))
+            {
+                args.Player.SendErrorMessage(GetString("你的货币不足以升级此技能!"));
+                return;
+            }
+            Skill.PlayerSKillManager.UpdateLevel(playerSkills);
+            args.Player.SendSuccessMessage(GetString($"技能 {skill.Name} 升级成功! 当前等级: {playerSkills.Level}"));
+        }
+        else
+        {
+            args.Player.SendErrorMessage(GetString("技能已达到最高等级，无法升级!"));
+        }
+    }   
+
     [SubCommand("give", 3)]
     [HelpText("/skill give <player> <id>")]
     [CommandPermission(Permission.SkillAdmin)]
@@ -193,7 +231,7 @@ public class Command : BaseCommand
             args.Player.SendErrorMessage(GetString("无效得技能序号!"));
             return;
         }
-        Skill.PlayerSKillManager.Add(player.Name, player.SelectedItem.netID, index);
+        Skill.PlayerSKillManager.Add(player.Name, player.SelectedItem.netID, index, 1);
         args.Player.SendSuccessMessage(GetString($"成功为 {player.Name} 添加了一个技能 {skill.Name}"));
         player.SendSuccessMessage(GetString($"{args.Player.Name} 为你添加了一个技能 {skill.Name}"));
     }

@@ -16,30 +16,23 @@ public class Config : JsonConfigBase<Config>
     public int WeapoeBindMaxCount { get; set; }
 
     [JsonProperty("禁止拉怪表")]
-    public HashSet<int> BanPullNpcs { get; set; } = new();
+    public HashSet<int> BanPullNpcs { get; set; } = [];
 
     [JsonProperty("禁止伤怪表")]
-    public HashSet<int> BanStrikeNpcs { get; set; } = new();
+    public HashSet<int> BanStrikeNpcs { get; set; } = [];
 
     [JsonProperty("最大显示页")]
     public int PageMax { get; set; } = 20;
 
     [JsonProperty("技能列表")]
-    public List<SkillContext> SkillContexts { get; set; } = new();
+    public List<SkillContext> SkillContexts { get; set; } = [];
 
     protected override void SetDefault()
     {
-        this.SkillContexts = new()
-        {
+        this.SkillContexts =
+        [
             new SkillContext()
-            {
-                LoopEvent = new()
-                {
-                    ProjectileLoops = []
-
-                }
-            }
-        };
+        ];
     }
 
     public SkillContext? GetSkill(int index)
