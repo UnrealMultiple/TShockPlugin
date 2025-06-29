@@ -31,6 +31,7 @@ public class TrCDK : TerrariaPlugin
     {
         if (Disposing)
         {
+            Data.Close();
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.UseCDK ||
                                                 c.CommandDelegate == this.LoadAllCDK ||
                                                 c.CommandDelegate == this.AddCDKCmd ||
