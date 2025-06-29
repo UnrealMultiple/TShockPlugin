@@ -11,7 +11,8 @@ public class AutoClear(Main game) : LazyPlugin(game)
 {
     public override string Author => "大豆子[Mute适配1447]，肝帝熙恩更新";
     public override string Description => GetString("智能扫地机");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 9);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 1, 0);
 
     private bool _sweepScheduled;
     private DateTime _sweepScheduledAt;
