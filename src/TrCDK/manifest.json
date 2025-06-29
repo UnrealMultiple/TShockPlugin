@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Enter redemption code (CDK) to execute commands"
+  },
+  "README.es-ES": {
+    "Description": "Introduce el código de canje (CDK) para ejecutar comandos"
+  },
+  "README": {
+    "Description": "输入兑换码执行指令"
+  }
+}
