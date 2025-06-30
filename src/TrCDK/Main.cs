@@ -4,11 +4,12 @@ using TerrariaApi.Server;
 using System.Globalization;
 using Microsoft.Xna.Framework;
 using LazyAPI.Extensions;
+using LazyAPI;
 
 namespace TrCDK;
 
 [ApiVersion(2, 1)]
-public class TrCDK : TerrariaPlugin
+public class TrCDK : LazyPlugin
 {
     public override string Author => "Jonesn";
     public override string Description => GetString("CDK系统");

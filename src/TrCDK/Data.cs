@@ -33,7 +33,7 @@ public class CDK : RecordBase<CDK>
 
     public static bool Insert(string CDKname, int Usetime, long Utiltime, string Grouplimit, string Playerlimit, string Cmds)
     {
-        _context.Records.Append(new CDK
+        return _context.Insert(new CDK
         {
             Name = CDKname,
             Usetime = Usetime,
@@ -42,8 +42,7 @@ public class CDK : RecordBase<CDK>
             Playerlimit = Playerlimit,
             Used = "",
             Cmds = Cmds
-        });
-        return true;
+        }) == 1;
     }
 
     public static void Update(string CDKname, int Usetime, long Utiltime, string Grouplimit, string Playerlimit, string Used, string Cmds)
