@@ -1,175 +1,84 @@
-﻿using System.Data;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using Microsoft.Data.Sqlite;
+﻿using Microsoft.Data.Sqlite;
+using LinqToDB.Mapping;
+using LazyAPI.Database;
+using LinqToDB;
 
 namespace TrCDK;
 
-public class CDK
+[Table("CDK")]
+public class CDK : RecordBase<CDK>
 {
-    public string Cdkname { get; set; } = "";
+    [Column("name"), PrimaryKey, NotNull]
+    public string Name { get; set; } = string.Empty;
+
+    [Column("usetime")]
     public int Usetime { get; set; }
+
+    [Column("utiltime")]
     public long Utiltime { get; set; }
-    public string Grouplimit { get; set; } = "";
-    public string Playerlimit { get; set; } = "";
-    public string Used { get; set; } = "";
-    public string Cmds { get; set; } = "";
-}
 
-internal class Data
-{
-    public static SqliteConnection? DB;
-    const string path = "tshock/TrCDK.sqlite";
+    [Column("grouplimit")]
+    public string Grouplimit { get; set; } = string.Empty;
 
-    public static void Init()
-    {
-        DB = new SqliteConnection($"Data Source={path};");
-        DB.Open();
+    [Column("playerlimit")]
+    public string Playerlimit { get; set; } = string.Empty;
 
-        // 使用参数化命令创建表
-        using var cmd = new SqliteCommand(
-            "CREATE TABLE IF NOT EXISTS Data(" +
-            "CDKname TEXT PRIMARY KEY, " +
-            "Usetime INTEGER, " +
-            "Utiltime INTEGER, " +
-            "Grouplimit TEXT, " +
-            "Playerlimit TEXT, " +
-            "Used TEXT, " +
-            "Cmds TEXT)", DB);
-        cmd.ExecuteNonQuery();
-    }
+    [Column("used")]
+    public string Used { get; set; } = string.Empty;
+
+    [Column("cmds")]
+    public string Cmds { get; set; } = string.Empty;
+
+    private static readonly Context _context = Db.Context<CDK>("CDK");
 
     public static bool Insert(string CDKname, int Usetime, long Utiltime, string Grouplimit, string Playerlimit, string Cmds)
     {
-        if (DB == null)
+        _context.Records.Append(new CDK
         {
-            throw new InvalidOperationException(GetString("数据库未初始化"));
-        }
-
-        // 使用参数化查询检查CDK是否已存在
-        using (var checkCmd = new SqliteCommand("SELECT COUNT(*) FROM Data WHERE CDKname = @cdkname", DB))
-        {
-            checkCmd.Parameters.AddWithValue("@cdkname", CDKname);
-            var count = Convert.ToInt32(checkCmd.ExecuteScalar());
-            if (count > 0)
-            {
-                return false; // CDK已存在
-            }
-        }
-
-        // 使用参数化查询插入新CDK
-        using var insertCmd = new SqliteCommand(
-            "INSERT INTO Data (CDKname, Usetime, Utiltime, Grouplimit, Playerlimit, Used, Cmds) " +
-            "VALUES (@cdkname, @usetime, @utiltime, @grouplimit, @playerlimit, @used, @cmds)", DB);
-
-        insertCmd.Parameters.AddWithValue("@cdkname", CDKname);
-        insertCmd.Parameters.AddWithValue("@usetime", Usetime);
-        insertCmd.Parameters.AddWithValue("@utiltime", Utiltime);
-        insertCmd.Parameters.AddWithValue("@grouplimit", Grouplimit);
-        insertCmd.Parameters.AddWithValue("@playerlimit", Playerlimit);
-        insertCmd.Parameters.AddWithValue("@used", "");
-        insertCmd.Parameters.AddWithValue("@cmds", Cmds);
-
-        insertCmd.ExecuteNonQuery();
+            Name = CDKname,
+            Usetime = Usetime,
+            Utiltime = Utiltime,
+            Grouplimit = Grouplimit,
+            Playerlimit = Playerlimit,
+            Used = "",
+            Cmds = Cmds
+        });
         return true;
     }
 
     public static void Update(string CDKname, int Usetime, long Utiltime, string Grouplimit, string Playerlimit, string Used, string Cmds)
     {
-        if (DB == null)
+        var cdk = _context.Records.FirstOrDefault(c => c.Name == CDKname);
+        if (cdk != null)
         {
-            throw new InvalidOperationException(GetString("数据库未初始化"));
+            cdk.Usetime = Usetime;
+            cdk.Utiltime = Utiltime;
+            cdk.Grouplimit = Grouplimit;
+            cdk.Playerlimit = Playerlimit;
+            cdk.Used = Used;
+            cdk.Cmds = Cmds;
+            _context.Update(cdk);
         }
-
-        using var updateCmd = new SqliteCommand(
-            "UPDATE Data SET Usetime = @usetime, Utiltime = @utiltime, Grouplimit = @grouplimit, " +
-            "Playerlimit = @playerlimit, Used = @used, Cmds = @cmds WHERE CDKname = @cdkname", DB);
-
-        updateCmd.Parameters.AddWithValue("@usetime", Usetime);
-        updateCmd.Parameters.AddWithValue("@utiltime", Utiltime);
-        updateCmd.Parameters.AddWithValue("@grouplimit", Grouplimit);
-        updateCmd.Parameters.AddWithValue("@playerlimit", Playerlimit);
-        updateCmd.Parameters.AddWithValue("@used", Used);
-        updateCmd.Parameters.AddWithValue("@cmds", Cmds);
-        updateCmd.Parameters.AddWithValue("@cdkname", CDKname);
-
-        updateCmd.ExecuteNonQuery();
     }
 
-    public static CDK GetData(string name)
+    public static CDK? GetData(string name)
     {
-        if (DB == null)
-        {
-            throw new InvalidOperationException(GetString("数据库未初始化"));
-        }
-
-        var result = new CDK();
-        using var cmd = new SqliteCommand("SELECT * FROM Data WHERE CDKname = @name", DB);
-        cmd.Parameters.AddWithValue("@name", name);
-
-        using var reader = cmd.ExecuteReader();
-        if (reader.Read())
-        {
-            result = new CDK()
-            {
-                Cdkname = reader.GetString(0),
-                Usetime = reader.GetInt32(1),
-                Utiltime = reader.GetInt64(2),
-                Grouplimit = reader.GetString(3),
-                Playerlimit = reader.GetString(4),
-                Used = reader.GetString(5),
-                Cmds = reader.GetString(6)
-            };
-        }
-        return result;
+        return _context.Records.FirstOrDefault(c => c.Name == name);
     }
 
     public static CDK[] GetAllData()
     {
-        if (DB == null)
-        {
-            throw new InvalidOperationException(GetString("数据库未初始化"));
-        }
-
-        var result = new List<CDK>();
-        using var cmd = new SqliteCommand("SELECT * FROM Data", DB);
-        using var reader = cmd.ExecuteReader();
-
-        while (reader.Read())
-        {
-            result.Add(new CDK()
-            {
-                Cdkname = reader.GetString(0),
-                Usetime = reader.GetInt32(1),
-                Utiltime = reader.GetInt64(2),
-                Grouplimit = reader.GetString(3),
-                Playerlimit = reader.GetString(4),
-                Used = reader.GetString(5),
-                Cmds = reader.GetString(6)
-            });
-        }
-        return result.ToArray();
+        return [.. _context.Records];
     }
 
     public static bool DelCDK(string name)
     {
-        if (DB == null)
+        var cdk = _context.Records.FirstOrDefault(c => c.Name == name);
+        if (cdk != null)
         {
-            throw new InvalidOperationException(GetString("数据库未初始化"));
+            _context.Delete(cdk);
+            return true;
         }
-
-        using var cmd = new SqliteCommand("DELETE FROM Data WHERE CDKname = @name", DB);
-        cmd.Parameters.AddWithValue("@name", name);
-        cmd.ExecuteNonQuery();
-        return true;
-    }
-
-    // 关闭数据库连接的
-    public static void Close()
-    {
-        DB?.Close();
-        DB?.Dispose();
-        DB = null;
+        return false;
     }
 }
