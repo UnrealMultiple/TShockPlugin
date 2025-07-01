@@ -1,35 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\template.targets" />
 
-  <ItemGroup>
-    <None Remove="protobuf-net.Core.dll" />
-    <None Remove="protobuf-net.dll" />
-    <None Remove="SixLabors.ImageSharp.dll" />
-    <None Remove="System.Collections.Immutable.dll" />
-  </ItemGroup>
+    <PropertyGroup>
+        <EmbedNuGetDlls>protobuf-net.dll;protobuf-net.Core.dll;SixLabors.ImageSharp.dll</EmbedNuGetDlls>
+    </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="lib\protobuf-net.Core.dll" />
-    <EmbeddedResource Include="lib\protobuf-net.dll" />
-    <EmbeddedResource Include="lib\SixLabors.ImageSharp.dll" />
-    <EmbeddedResource Include="lib\System.Collections.Immutable.dll" />
+    <PackageReference Include="protobuf-net" Version="3.2.52" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.10" />
   </ItemGroup>
-
-
-  <ItemGroup>
-    <Reference Include="protobuf-net">
-      <HintPath>lib\protobuf-net.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="protobuf-net.Core">
-      <HintPath>lib\protobuf-net.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SixLabors.ImageSharp">
-      <HintPath>lib\SixLabors.ImageSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-
 </Project>
