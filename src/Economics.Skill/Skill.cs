@@ -32,7 +32,7 @@ public class Skill : TerrariaPlugin
 
     private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
     {
-        var resourceName = $"{Assembly.GetExecutingAssembly().GetName().Name}.lib.{new AssemblyName(args.Name).Name}.dll";
+        var resourceName = $"embedded.{new AssemblyName(args.Name).Name}.dll";
         using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
         if (stream != null)
         {
