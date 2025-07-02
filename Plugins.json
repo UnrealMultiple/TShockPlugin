@@ -192,7 +192,7 @@
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.1.3",
+    "Version": "1.1.4",
     "Author": "Scavenger,Cai",
     "Description": {
       "en-US": "Automatic broadcast plugin",
@@ -593,9 +593,7 @@
     },
     "AssemblyName": "CaiLib",
     "Path": "CaiLib.dll",
-    "Dependencies": [
-      "SixLabors.ImageSharp"
-    ],
+    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -1539,9 +1537,7 @@
     },
     "AssemblyName": "Lagrange.XocMat.Adapter",
     "Path": "Lagrange.XocMat.Adapter.dll",
-    "Dependencies": [
-      "SixLabors.ImageSharp"
-    ],
+    "Dependencies": [],
     "HotReload": true
   },
   {
