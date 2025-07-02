@@ -19,7 +19,7 @@ public class AutoBroadcastConfig : JsonConfigBase<AutoBroadcastConfig>
             new Broadcast
             {
                 Name = "示例广播",
-                Enabled = true,
+                Enabled = false,
                 Messages = new [] { "/say Ciallo～(∠・ω< )⌒★", "自动广播执行了服务器指令/say Ciallo～(∠・ω< )⌒★" },
                 ColorRgb = new [] { 255, 234, 115 },
                 Interval = 600,
