@@ -58,7 +58,7 @@ public class TpAllowManager
                 existing.IsEnabled = newState;
             }
 
-            if (this.db.Query("INSERT OR REPLACE INTO TpAllows VALUES (@0, @1)",
+            if (this.db.Query("REPLACE INTO TpAllows VALUES (@0, @1);",
                 player.Name, newState ? 1 : 0) > 0)
             {
                 player.TPAllow = newState;
