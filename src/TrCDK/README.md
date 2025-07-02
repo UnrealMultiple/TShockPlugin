@@ -27,6 +27,7 @@
 
 ### v1.0.0.0
 初始版本发布。
+- 初始版本发布
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
