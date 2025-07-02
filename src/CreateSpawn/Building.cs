@@ -59,8 +59,10 @@ public class FPlatters
 
 public class DDolls
 {
+#nullable disable
     public NetItem[] Items;
     public NetItem[] Dyes;
+#nullable enable
     public Point Position { get; set; }
 }
 

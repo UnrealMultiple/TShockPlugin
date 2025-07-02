@@ -185,16 +185,13 @@ public class Plugin : TerrariaPlugin
 
     private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
     {
-        var resourceName = $"{Assembly.GetExecutingAssembly().GetName().Name}.lib.{new AssemblyName(args.Name).Name}.dll";
-        using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+        var resourceName = $"embedded.{new AssemblyName(args.Name).Name}.dll";
+        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+        if (stream != null)
         {
-            if (stream != null)
-            {
-                var assemblyData = new byte[stream.Length];
-                stream.ReadExactly(assemblyData);
-                return Assembly.Load(assemblyData);
-            }
-
+            var assemblyData = new byte[stream.Length];
+            stream.ReadExactly(assemblyData);
+            return Assembly.Load(assemblyData);
         }
         return null;
     }
