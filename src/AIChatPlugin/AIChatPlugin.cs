@@ -6,7 +6,6 @@ using System.Reflection;
 using static AIChatPlugin.Configuration;
 using static AIChatPlugin.Utils;
 
-1111 //模拟报错
 
 namespace AIChatPlugin;
 [ApiVersion(2, 1)]
