@@ -25,7 +25,7 @@ public class Economics : TerrariaPlugin
     public override string Description => GetString("提供经济系统API");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 8);
+    public override Version Version => new Version(2, 0, 0, 9);
 
     public readonly static List<TSPlayer> ServerPlayers = [];
 

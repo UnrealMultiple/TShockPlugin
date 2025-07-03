@@ -362,7 +362,7 @@ public class Plugin : TerrariaPlugin
     private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
     {
         var resourceName =
-            $"{Assembly.GetExecutingAssembly().GetName().Name}.{new AssemblyName(args.Name).Name}.dll";
+            $"embedded.{new AssemblyName(args.Name).Name}.dll";
         using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
         if (stream == null)
         {

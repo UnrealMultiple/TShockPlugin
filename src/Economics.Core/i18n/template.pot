@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Core\n"
-"POT-Creation-Date: 2025-05-28 03:22:26+0000\n"
-"PO-Revision-Date: 2025-05-28 03:22:26+0000\n"
+"POT-Creation-Date: 2025-06-30 14:56:14+0000\n"
+"PO-Revision-Date: 2025-06-30 14:56:14+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -61,6 +61,10 @@ msgstr ""
 msgid "Economics 已重置"
 msgstr ""
 
+#: ../../Enumerates/CurrencyObtainType.cs:6
+msgid "不可获取"
+msgstr ""
+
 #: ../../Command/BankCommand.cs:36
 #, csharp-format
 msgid "不存在可兑换的货币类型:{0}"
@@ -97,6 +101,10 @@ msgstr ""
 #: ../../Command/BankCommand.cs:71
 #, csharp-format
 msgid "你的{0}不足，无法转账!"
+msgstr ""
+
+#: ../../Enumerates/CurrencyObtainType.cs:9
+msgid "击杀怪物"
 msgstr ""
 
 #: ../../Command/BankCommand.cs:158
@@ -151,6 +159,10 @@ msgstr ""
 #: ../../Command/BankCommand.cs:66
 #, csharp-format
 msgid "成功转账给`{0}` {1} 个{2}"
+msgstr ""
+
+#: ../../Enumerates/CurrencyObtainType.cs:12
+msgid "挖掘矿物"
 msgstr ""
 
 #: ../../Economics.cs:25

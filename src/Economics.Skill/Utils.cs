@@ -1,12 +1,11 @@
 ﻿using Economics.Skill.Enumerates;
-using Economics.Skill.Internal;
 using Economics.Skill.JSInterpreter;
 using Economics.Skill.Model;
 using Economics.Core.Extensions;
-using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
 using Economics.Skill.Setting;
+using Economics.Skill.DB;
 
 namespace Economics.Skill;
 
@@ -48,27 +47,6 @@ public class Utils
             : context;
     }
 
-    /// <summary>
-    /// 技能触发器
-    /// </summary>
-    /// <param name="Player"></param>
-    /// <param name="skill"></param>
-    /// <param name="vel"></param>
-    /// <param name="pos"></param>
-    public static void SpawnSkillProjectile(TSPlayer Player, SkillContext skill, Vector2 vel, Vector2 pos, int Damage)
-    {
-        //var playerskill = new PlayerSkill(skill.LoopEvent, Player);
-        //foreach (var i in Enumerable.Range(0, skill.LoopEvent.LoopCount + 1))
-        //{
-        //    JobjManager.Delayed(skill.LoopEvent.Interval * i, (args) =>
-        //    {
-        //        if (args is PlayerSkill con)
-        //        {
-        //            con.Update(i, vel);
-        //        }
-        //    }, playerskill);
-        //}
-    }
 
 
     /// <summary>
@@ -76,23 +54,21 @@ public class Utils
     /// </summary>
     /// <param name="Player"></param>
     /// <param name="skill"></param>
-    public static void EmitSkill(TSPlayer Player, SkillContext skill)
+    public static void EmitSkill(TSPlayer Player, PlayerSKillManager.PlayerSkill skill)
     {
         //原始发射位置
         var pos = Player.TPlayer.Center + Player.TPlayer.ItemOffSet();
         //原始角度速度参数
         var vel = Player.TPlayer.ItemOffSet();
-        SpawnSkillProjectile(Player, skill, vel, pos, Player.SelectedItem.damage);
-        Interpreter.ExecuteScript(skill, Player, pos, vel);
+        Interpreter.ExecuteScript(skill.Skill!, Player, pos, vel, skill.Level);
     }
 
-    public static void EmitSkill(GetDataHandlers.NewProjectileEventArgs e, SkillContext skill)
+    public static void EmitSkill(GetDataHandlers.NewProjectileEventArgs e, PlayerSKillManager.PlayerSkill skill)
     {
         //原始发射位置
         var pos = e.Position;
         //原始角度速度参数
         var vel = e.Velocity;
-        SpawnSkillProjectile(e.Player, skill, vel, pos, e.Damage);
-        Interpreter.ExecuteScript(skill, e.Player, pos, vel, e.Index);
+        Interpreter.ExecuteScript(skill.Skill!, e.Player, pos, vel, skill.Level, e.Index);
     }
 }

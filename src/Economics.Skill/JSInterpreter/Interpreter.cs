@@ -30,13 +30,13 @@ public class Interpreter
             var func = method.GetCustomAttribute<JavaScriptFunction>();
             if (method.IsStatic && func != null)
             {
-                var tyep = Expression.GetDelegateType(method.GetParameters().Select(x => x.ParameterType).Append(method.ReturnType).ToArray());
+                var tyep = Expression.GetDelegateType([.. method.GetParameters().Select(x => x.ParameterType), method.ReturnType]);
                 engine.SetValue(func.Name, method.CreateDelegate(tyep, null));
             }
         }
     }
 
-    public static void ExecuteScript(SkillContext skill, TSPlayer player, Vector2 pos, Vector2 vel, int index = -1)
+    public static void ExecuteScript(SkillContext skill, TSPlayer player, Vector2 pos, Vector2 vel, int level, int index = -1)
     {
         if (skill.JsScript == null || string.IsNullOrEmpty(skill.JsScript.Script))
         {
@@ -61,7 +61,7 @@ public class Interpreter
         try
         { 
             engine.Evaluate(skill.JsScript.Script);
-            engine.Invoke("main", skill, player, pos, vel, index);
+            engine.Invoke("main", skill, player, pos, vel, level, index);
         }
         catch (Exception ex)
         {

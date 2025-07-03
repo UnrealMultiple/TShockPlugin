@@ -170,7 +170,7 @@ public class CurrencyManager
 
     public bool DeductUserCurrency(string name, IEnumerable<RedemptionRelationshipsOption> RedemptionRelationships, int count = 1)
     {
-        if(RedemptionRelationships.Any(r => this.GetUserCurrency(name, r.CurrencyType).Number * count < r.Number))
+        if(RedemptionRelationships.Any(r => this.GetUserCurrency(name, r.CurrencyType).Number < r.Number * count))
         {
             return false;
         }
