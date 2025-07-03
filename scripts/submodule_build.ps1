@@ -18,6 +18,7 @@ New-Item -Path $(Join-Repo-Root 'SubmoduleAssembly') -ItemType Directory -Force
 foreach($submodule in $jsonContent.submodules)
 {
     dotnet build $(Join-Repo-Root $submodule.project_path) -c $BuildType
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
     $assembly_path = $(Join-Repo-Root $submodule.assembly_path) -replace '{BuildType}', $BuildType -replace '{TargetFramework}', $TargetFramework
     $pdb = $assembly_path -replace '.dll', '.pdb'
     Copy-Item -Path $assembly_path -Destination $(Join-Repo-Root 'SubmoduleAssembly')
