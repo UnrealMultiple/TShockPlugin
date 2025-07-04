@@ -6,6 +6,7 @@ using System.Reflection;
 using static AIChatPlugin.Configuration;
 using static AIChatPlugin.Utils;
 
+
 namespace AIChatPlugin;
 [ApiVersion(2, 1)]
 public class AIChatPlugin : TerrariaPlugin
