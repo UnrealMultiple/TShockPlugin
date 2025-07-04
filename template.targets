@@ -33,7 +33,7 @@
             <EmbedNuGetDllsList Include="$(EmbedNuGetDlls.Split(';'))" />
             
             <DllsToEmbed Include="@(ReferencePath)" 
-                         Condition="$([System.String]::new(';$(EmbedNuGetDlls);').Contains(';%(FileName)%(Extension);'))" />
+                        Condition="$([System.String]::new(';$(EmbedNuGetDlls);').Contains(';%(FileName)%(Extension);'))" />
             
             <EmbeddedResource Include="@(DllsToEmbed)">
                 <LogicalName>embedded.%(FileName)%(Extension)</LogicalName>
@@ -44,23 +44,11 @@
             <ReferenceCopyLocalPaths Remove="@(DllsToEmbed)" />
         </ItemGroup>
         
-        <Message Text="Embedding @(DllsToEmbed->Count()) DLLs" Importance="high" />
-        <Message Text="@(EmbeddedDllLog)" Importance="high" />
-    </Target>
-
-    <Target Name="DeleteEmbeddedDlls" AfterTargets="CopyFilesToOutputDirectory">
-        <ItemGroup>
-            <EmbeddedOutputFiles Include="$(OutputPath)\%(EmbedNuGetDllsList.Identity)" />
-        </ItemGroup>
-        
-        <Message Text="Checking for embedded DLLs to delete: @(EmbeddedOutputFiles)" Importance="normal" />
-        
-        <Delete Files="@(EmbeddedOutputFiles)"
-                Condition="Exists('%(FullPath)')" />
-        
-        <Message Text="Deleted embedded DLLs: @(EmbeddedOutputFiles)" 
-                 Condition="'@(EmbeddedOutputFiles)' != ''"
-                 Importance="high" />
+        <Message Text="Embedding @(DllsToEmbed->Count()) DLLs" Importance="high" 
+                Condition="'@(DllsToEmbed->Count())' != '0'" />
+                
+        <Message Text="@(EmbeddedDllLog)" Importance="high" 
+                Condition="'@(DllsToEmbed->Count())' != '0'" />
     </Target>
     
 	<Target Name="CopySpecificNuGetDlls" AfterTargets="Build" Condition="'$(CopyAssemblyToOutDir)' != ''">

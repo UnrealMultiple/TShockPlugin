@@ -7,5 +7,9 @@
   },
   "README": {
     "Description": "技能插件"
-  }
+  },
+  "Dependencies": [
+      "Economics.Core",
+      "Economics.RPG"
+    ]
 }

@@ -29,7 +29,6 @@ jobs:
         with:
           dotnet-version: |
             9.x
-            6.x
       - name: 安装构建依赖
         shell: pwsh
         run: |
