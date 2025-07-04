@@ -79,7 +79,7 @@
 | [CaiBot](./src/CaiBot/README.md) | CaiBot 适配插件 |  |
 | [CaiBotLite](./src/CaiBotLite/README.md) | CaiBot 官方机器人适配插件 |  |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.md) | 自定义表情命令 | [LazyAPI](./src/LazyAPI/README.md) |
-| [CaiLib](./src/CaiLib/README.md) | Cai 的前置库 | [SixLabors.ImageSharp]() |
+| [CaiLib](./src/CaiLib/README.md) | Cai 的前置库 |  |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.md) | Cai数据包调试工具 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [CaiRewardChest](./src/CaiRewardChest/README.md) | 将自然生成的箱子变为所有人都可以领一次的奖励箱 | [linq2db]() [LazyAPI](./src/LazyAPI/README.md) |
 | [CGive](./src/CGive/README.md) | 离线命令 |  |
@@ -132,7 +132,7 @@
 | [ItemDecoration](./src/ItemDecoration/README.md) | 手持物品浮动消息显示 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ItemPreserver](./src/ItemPreserver/README.md) | 指定物品不消耗 |  |
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | 解锁旅途物品 |  |
-| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 | [SixLabors.ImageSharp]() |
+| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 |  |
 | [LazyAPI](./src/LazyAPI/README.md) | 插件基础库 | [linq2db]() |
 | [LifemaxExtra](./src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | 查已装插件 |  |

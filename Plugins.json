@@ -1200,7 +1200,6 @@
     "Path": "Economics.Skill.dll",
     "Dependencies": [
       "Economics.Core",
-      "Jint",
       "Economics.RPG"
     ],
     "HotReload": true

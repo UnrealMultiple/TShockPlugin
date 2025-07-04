@@ -86,7 +86,7 @@
 | [CaiBot](./src/CaiBot/README.md) | 0.0% | Plugin adaptador CaiBot (Only support QQ) |  |
 | [CaiBotLite](./src/CaiBotLite/README.md) | 0.0% | Plugin adaptador CaiBot (Only support QQ) |  |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.md) | 0.0% | Comando de emoji personalizado | [LazyAPI](./src/LazyAPI/README.md) |
-| [CaiLib](./src/CaiLib/README.md) | 0.0% | Biblioteca de precarga de Cai | [SixLabors.ImageSharp]() |
+| [CaiLib](./src/CaiLib/README.md) | 0.0% | Biblioteca de precarga de Cai |  |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.md) | 0.0% | Herramienta de depuración de paquetes Cai | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [CaiRewardChest](./src/CaiRewardChest/README.md) | 0.0% | Convierte cofres generados naturalmente en cofres de recompensa que todos pueden reclamar una vez | [linq2db]() [LazyAPI](./src/LazyAPI/README.md) |
 | [CGive](./src/CGive/README.md) | 0.0% | Comandos fuera de línea |  |
@@ -139,7 +139,7 @@
 | [ItemDecoration](./src/ItemDecoration/README.es-ES.md) | 100.0% | Muestra el spryte y texto de info y damage del item seleccionado | [LazyAPI](./src/LazyAPI/README.md) |
 | [ItemPreserver](./src/ItemPreserver/README.md) | 50.0% | Conserva ítems específicos de la consumición |  |
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | 6.3% | Desbloquea ítems del modo Journey |  |
-| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | 0.0% | Plugin adaptador para el bot Lagrange.XocMat | [SixLabors.ImageSharp]() |
+| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | 0.0% | Plugin adaptador para el bot Lagrange.XocMat |  |
 | [LazyAPI](./src/LazyAPI/README.md) | 0.0% | Biblioteca base para plugins | [linq2db]() |
 | [LifemaxExtra](./src/LifemaxExtra/README.md) | 0.0% | Comer más frutas/cristales de vida | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | 16.7% | Lista los plugins instalados |  |

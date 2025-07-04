@@ -83,7 +83,7 @@
 | [CaiBot](./src/CaiBot/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) |  |
 | [CaiBotLite](./src/CaiBotLite/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) |  |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.en-US.md) | 100.0% | Custom emoji command | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [CaiLib](./src/CaiLib/README.en-US.md) | 0.0% | Cai's preload library | [SixLabors.ImageSharp]() |
+| [CaiLib](./src/CaiLib/README.en-US.md) | 0.0% | Cai's preload library |  |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.en-US.md) | 100.0% | Cai Packet Debug Tool | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
 | [CaiRewardChest](./src/CaiRewardChest/README.en-US.md) | 100.0% | Convert naturally generated chests into reward chests that everyone can claim once | [linq2db]() [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CGive](./src/CGive/README.en-US.md) | 92.9% | Offline commands |  |
@@ -136,7 +136,7 @@
 | [ItemDecoration](./src/ItemDecoration/README.en-US.md) | 100.0% | Floating message display for held items | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ItemPreserver](./src/ItemPreserver/README.en-US.md) | 100.0% | Preserve specified items from consumption |  |
 | [JourneyUnlock](./src/JourneyUnlock/README.en-US.md) | 100.0% | Unlock journey items |  |
-| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.en-US.md) | 100.0% | Lagrange.XocMat Bot Adapter Plugin | [SixLabors.ImageSharp]() |
+| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.en-US.md) | 100.0% | Lagrange.XocMat Bot Adapter Plugin |  |
 | [LazyAPI](./src/LazyAPI/README.en-US.md) | 100.0% | Plugin base library | [linq2db]() |
 | [LifemaxExtra](./src/LifemaxExtra/README.en-US.md) | 100.0% | Eat more life fruits/crystals | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ListPlugins](./src/ListPlugins/README.en-US.md) | 100.0% | List installed plugins |  |
