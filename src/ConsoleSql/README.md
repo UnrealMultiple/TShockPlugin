@@ -8,13 +8,18 @@
 > 执行危险SQL语句(DELETE、DROP等)时，请仔细检查(条件等)，否则可能造成严重不可逆后果
 
 ## 示例
+
+- 列出TShock的数据表名：  
 ```
-列出Tshock的数据表名：  
 sql select name from sqlite_master where type='table'  
-查询“用户数据表”有什么：  
+```
+- 查询“用户数据表”有什么：  
+```
 sql select * from users  
-修改ID为2的用户角色名字为熙恩（帮强制开荒玩家换角色名）：  
-sql update users set username='熙恩' where id=2   
+```
+- 修改ID为2的用户角色名字为熙恩（帮强制开荒玩家换角色名）：  
+```
+sql update users set username='熙恩' where id=2
 ```
 
 ## 配置
@@ -31,10 +36,8 @@ sql update users set username='熙恩' where id=2
 
 ## 更新日志
 
-```
-v1.0.0
-i18n预备
-```
+### v1.0.0
+- i18n预备
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

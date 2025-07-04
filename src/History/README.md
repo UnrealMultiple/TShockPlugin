@@ -35,22 +35,20 @@
 
 ## 更新日志
 
-```
-v1.0.8
-添加遗漏的GetString
+### v1.0.8
+- 添加遗漏的GetString
 
-v1.0.4
-完善卸载函数
+### v1.0.4
+- 完善卸载函数
 
-v1.0.3
-修复了后台单独使用/history会报错的问题，现在无法在后台单独使用/history指令
+### v1.0.3
+- 修复了后台单独使用/history会报错的问题，现在无法在后台单独使用/history指令
 
-v1.0.2
-修改了初始化的优先级
+### v1.0.2
+- 修改了初始化的优先级
 
-v1.0.1
-加了hreset指令
-```
+### v1.0.1
+- 加了hreset指令
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

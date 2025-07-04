@@ -23,7 +23,7 @@ internal partial class SingleCommand : CommandBase
             sb.Append($"<{p.Name}: {CommandParser.GetFriendlyName(p.ParameterType)}> ");
         }
 
-        this.argParsers = ap.ToArray();
+        this.argParsers = [.. ap];
         this.info = sb.ToString();
         this.method = method.GetFastInvoker();
     }

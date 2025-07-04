@@ -18,7 +18,7 @@ public class Skill : TerrariaPlugin
     public override string Description => GetString("让玩家拥有技能!");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 1, 5);
+    public override Version Version => new Version(2, 0, 1, 6);
 
 
     public long TimerCount;
@@ -32,7 +32,7 @@ public class Skill : TerrariaPlugin
 
     private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
     {
-        var resourceName = $"{Assembly.GetExecutingAssembly().GetName().Name}.lib.{new AssemblyName(args.Name).Name}.dll";
+        var resourceName = $"embedded.{new AssemblyName(args.Name).Name}.dll";
         using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
         if (stream != null)
         {

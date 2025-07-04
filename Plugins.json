@@ -24,7 +24,7 @@
   },
   {
     "Name": "TransferPatch",
-    "Version": "1.0.0.1",
+    "Version": "1.0.0.2",
     "Author": "少司命",
     "Description": {
       "en-US": "Translate any plugin",
@@ -80,6 +80,28 @@
     "AssemblyName": "Crossplay",
     "Path": "Crossplay.dll",
     "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "复制建筑",
+    "Version": "1.0.1.0",
+    "Author": "少司命 羽学",
+    "Description": {
+      "en-US": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "de-DE": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "it-IT": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "fr-FR": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "es-ES": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "ru-RU": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "zh-CN": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "pt-BR": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
+      "pl-PL": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴"
+    },
+    "AssemblyName": "CreateSpawn",
+    "Path": "CreateSpawn.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {
@@ -170,7 +192,7 @@
   },
   {
     "Name": "AutoBroadcast",
-    "Version": "1.1.3",
+    "Version": "1.1.4",
     "Author": "Scavenger,Cai",
     "Description": {
       "en-US": "Automatic broadcast plugin",
@@ -212,7 +234,7 @@
   },
   {
     "Name": "AutoClear",
-    "Version": "1.0.9",
+    "Version": "1.1.0",
     "Author": "大豆子[Mute适配1447]，肝帝熙恩更新",
     "Description": {
       "en-US": "Smart sweeper",
@@ -276,7 +298,7 @@
   },
   {
     "Name": "AutoReset",
-    "Version": "2025.5.18.4",
+    "Version": "2025.6.23.0",
     "Author": "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩",
     "Description": {
       "en-US": "Full automatic plugin reset",
@@ -571,9 +593,7 @@
     },
     "AssemblyName": "CaiLib",
     "Path": "CaiLib.dll",
-    "Dependencies": [
-      "SixLabors.ImageSharp"
-    ],
+    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -601,7 +621,7 @@
   },
   {
     "Name": "CGive",
-    "Version": "1.0.0.9",
+    "Version": "1.0.1.0",
     "Author": "Leader",
     "Description": {
       "en-US": "Give offline",
@@ -783,28 +803,6 @@
     "AssemblyName": "ConvertWorld",
     "Path": "ConvertWorld.dll",
     "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "CreateSpawn",
-    "Version": "1.0.0.6",
-    "Author": "少司命",
-    "Description": {
-      "en-US": "Birth building",
-      "de-DE": "出生建筑",
-      "it-IT": "出生建筑",
-      "fr-FR": "出生建筑",
-      "es-ES": "出生建筑",
-      "ru-RU": "Позволяет копировать структуры (для спавна)",
-      "zh-CN": "出生建筑",
-      "pt-BR": "出生建筑",
-      "pl-PL": "出生建筑"
-    },
-    "AssemblyName": "CreateSpawn",
-    "Path": "CreateSpawn.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
     "HotReload": true
   },
   {
@@ -1054,7 +1052,7 @@
   },
   {
     "Name": "Economics.Core",
-    "Version": "2.0.0.8",
+    "Version": "2.0.0.9",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides economic system API",
@@ -1185,7 +1183,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "2.0.1.5",
+    "Version": "2.0.1.6",
     "Author": "少司命",
     "Description": {
       "en-US": "Let players have skills!",
@@ -1202,7 +1200,6 @@
     "Path": "Economics.Skill.dll",
     "Dependencies": [
       "Economics.Core",
-      "Jint",
       "Economics.RPG"
     ],
     "HotReload": true
@@ -1274,7 +1271,7 @@
   },
   {
     "Name": "EssentialsPlus",
-    "Version": "1.0.8",
+    "Version": "1.0.9",
     "Author": "WhiteX等人，Average,Cjx,肝帝熙恩翻译,Cai更新",
     "Description": {
       "en-US": "Enhanced version Essentials ",
@@ -1539,14 +1536,12 @@
     },
     "AssemblyName": "Lagrange.XocMat.Adapter",
     "Path": "Lagrange.XocMat.Adapter.dll",
-    "Dependencies": [
-      "SixLabors.ImageSharp"
-    ],
+    "Dependencies": [],
     "HotReload": true
   },
   {
     "Name": "LazyAPI",
-    "Version": "1.0.1.0",
+    "Version": "1.0.2.1",
     "Author": "cc004 & members of UnrealMultiple",
     "Description": {
       "en-US": "None",
@@ -2259,7 +2254,7 @@
   },
   {
     "Name": "ServerTools",
-    "Version": "1.1.9.0",
+    "Version": "1.2.0.0",
     "Author": "少司命",
     "Description": {
       "en-US": "Server Utility",
@@ -2466,7 +2461,7 @@
   },
   {
     "Name": "SurvivalCrisis",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0",
     "Author": "TOFOUT",
     "Description": {
       "en-US": "a survival game",
@@ -2792,7 +2787,7 @@
   },
   {
     "Name": "ProgressBag",
-    "Version": "1.0.1.6",
+    "Version": "1.0.1.7",
     "Author": "少司命",
     "Description": {
       "en-US": "Progress Bag",

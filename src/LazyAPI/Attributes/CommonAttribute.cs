@@ -1,25 +1,21 @@
 namespace LazyAPI.Attributes;
 
 [AttributeUsage(AttributeTargets.Class)]
-public class RestAttribute : Attribute
+public class RestAttribute(params string[] aliases) : Attribute
 {
-    public HashSet<string> alias;
+    public HashSet<string> alias = [.. aliases];
+}
 
-    public RestAttribute(params string[] aliases)
-    {
-        this.alias = new HashSet<string>(aliases);
-    }
+[AttributeUsage(AttributeTargets.Method)]
+public class RestPathAttribute(string alias) : Attribute
+{
+    public string alias = alias;
 }
 
 [AttributeUsage(AttributeTargets.Class)]
-public class CommandAttribute : Attribute
+public class CommandAttribute(params string[] aliases) : Attribute
 {
-    public HashSet<string> alias;
-
-    public CommandAttribute(params string[] aliases)
-    {
-        this.alias = new HashSet<string>(aliases);
-    }
+    public HashSet<string> alias = [.. aliases];
 }
 
 [AttributeUsage(AttributeTargets.Class)]
@@ -39,26 +35,23 @@ public class MainAttribute : Attribute
 
 }
 
-[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-public class PermissionsAttribute : Attribute
+[AttributeUsage(AttributeTargets.Method)]
+public class FlexibleAttribute : Attribute
 {
-    public string perm;
 
-    public PermissionsAttribute(string perm)
-    {
-        this.perm = perm;
-    }
+}
+
+
+[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
+public class PermissionsAttribute(string perm) : Attribute
+{
+    public string perm = perm;
 }
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-public class AliasAttribute : Attribute
+public class AliasAttribute(params string[] aliases) : Attribute
 {
-    public HashSet<string> alias;
-
-    public AliasAttribute(params string[] aliases)
-    {
-        this.alias = new HashSet<string>(aliases);
-    }
+    public HashSet<string> alias = [.. aliases];
 }
 
 

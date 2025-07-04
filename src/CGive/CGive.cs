@@ -25,20 +25,13 @@ public class CGive
                 var array = players;
                 foreach (var tSPlayer in array)
                 {
-                    if (tSPlayer != null && tSPlayer.Active)
+                    if (tSPlayer is { Active: true })
                     {
-                        if (this.Executer.ToLower() == "server")
-                        {
-                            Commands.HandleCommand(TSPlayer.Server, this.cmd.Replace("name", tSPlayer.Name));
-                        }
-                        else
-                        {
-                            Commands.HandleCommand(list[0], this.cmd.Replace("name", tSPlayer.Name));
-                        }
+                        Commands.HandleCommand(this.Executer.Equals("server", StringComparison.CurrentCultureIgnoreCase) ? TSPlayer.Server : list[0], this.cmd.Replace("name", tSPlayer.Name));
                         var given = new Given
                         {
                             Name = tSPlayer.Name,
-                            id = this.id
+                            Id = this.id
                         };
                         given.Save();
                     }
@@ -50,19 +43,11 @@ public class CGive
         var list2 = TSPlayer.FindByNameOrID(this.who);
         if (list2.Count > 0)
         {
-            if (list.Count > 0 || this.Executer.ToLower() == "server")
+            if (list.Count > 0 || this.Executer.Equals("server", StringComparison.CurrentCultureIgnoreCase))
             {
-                if (this.Executer.ToLower() == "server")
-                {
-                    Commands.HandleCommand(TSPlayer.Server, this.cmd.Replace("name", this.who));
-                }
-                else
-                {
-                    Commands.HandleCommand(list[0], this.cmd.Replace("name", this.who));
-                }
+                Commands.HandleCommand(this.Executer.Equals("server", StringComparison.CurrentCultureIgnoreCase) ? TSPlayer.Server : list[0], this.cmd.Replace("name", this.who));
                 return true;
             }
-            return false;
         }
         return false;
     }
@@ -70,7 +55,7 @@ public class CGive
     public static List<CGive> GetCGive(string who)
     {
         var list = new List<CGive>();
-        using (var queryResult = TShock.DB.QueryReader("select executer,cmd,who,id from CGive where who=@0 or who==@1", who, -1))
+        using (var queryResult = TShock.DB.QueryReader("SELECT executer,cmd,who,id FROM CGive WHERE who=@0 OR who==@1", who, -1))
         {
             while (queryResult.Read())
             {
@@ -88,7 +73,7 @@ public class CGive
 
     public static IEnumerable<CGive> GetCGive()
     {
-        using var re = TShock.DB.QueryReader("select executer,cmd,who,id from CGive");
+        using var re = TShock.DB.QueryReader("SELECT executer,cmd,who,id FROM CGive");
         while (re.Read())
         {
             yield return new CGive
@@ -103,11 +88,11 @@ public class CGive
 
     public void Save()
     {
-        Data.Command($"insert into CGive(executer,cmd,who,id)values(@0,@1,@2,@3)", this.Executer, this.cmd, this.who, this.id);
+        Data.Command($"INSERT INTO CGive(executer,cmd,who) VALUES (@0,@1,@2)", this.Executer, this.cmd, this.who);
     }
 
     public void Del()
     {
-        Data.Command($"delete from CGive where id=@0", this.id);
+        Data.Command($"DELETE FROM CGive WHERE id=@0", this.id);
     }
 }

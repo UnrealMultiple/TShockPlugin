@@ -17,13 +17,14 @@ public class EssentialsPlus : LazyPlugin
     public static IDbConnection Db { get; private set; } = null!;
     public static HomeManager Homes { get; private set; } = null!;
     public static MuteManager Mutes { get; private set; } = null!;
+    public static TpAllowManager TpAllows { get; private set; } = null!;
 
     public override string Author => "WhiteX等人，Average,Cjx,肝帝熙恩翻译,Cai更新";
 
     public override string Description => GetString("增强版Essentials");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 8);
+    public override Version Version => new Version(1, 0, 9);
 
 
     public EssentialsPlus(Main game)
@@ -153,6 +154,7 @@ public class EssentialsPlus : LazyPlugin
         }
 
         Mutes = new MuteManager(Db);
+        TpAllows = new TpAllowManager(Db);
 
         #endregion
 
@@ -213,6 +215,11 @@ public class EssentialsPlus : LazyPlugin
         Add(new Command(Permissions.Mute, Commands.Mute, "mute", "禁言管理")
         {
             HelpText = GetString("管理禁言。")
+        });
+
+        Add(new Command(Permissions.TpAllow, Commands.TpAllow, "tpallow", "tpallow管理")
+        {
+            HelpText = GetString("管理是否可被tp。")
         });
 
         Add(new Command(Permissions.PvP, Commands.PvP, "pvpget", "切换PvP状态")
@@ -278,6 +285,7 @@ public class EssentialsPlus : LazyPlugin
         Homes = new HomeManager(Db);
     }
 
+
     private async void OnJoin(JoinEventArgs e)
     {
         if (e.Handled)
@@ -291,20 +299,64 @@ public class EssentialsPlus : LazyPlugin
             return;
         }
 
-        var muteExpiration = Mutes.GetExpiration(player);
-
-        if (DateTime.UtcNow < muteExpiration)
+        try
         {
-            player.mute = true;
             try
             {
-                await Task.Delay(muteExpiration - DateTime.UtcNow, player.GetPlayerInfo().MuteToken);
-                player.mute = false;
-                player.SendInfoMessage(GetString("您已被解除禁言。"));
+                var tpAllow = EssentialsPlus.TpAllows.IsTpAllowed(player);
+                TShock.Log.Debug($"玩家 {player.Name} 加入，传送权限状态已加载: {(tpAllow ? "允许" : "禁止")}");
+                player.TPAllow = tpAllow;
             }
-            catch (TaskCanceledException)
+            catch (Exception tpEx)
             {
+                TShock.Log.Error($"加载玩家 {player.Name} 的传送权限状态时发生错误: {tpEx}");
             }
+
+            // 处理禁言状态
+            var muteExpiration = Mutes.GetExpiration(player);
+            if (DateTime.UtcNow < muteExpiration)
+            {
+                player.mute = true;
+
+                // 计算剩余禁言时间
+                var remainingTime = muteExpiration - DateTime.UtcNow;
+
+                // 获取或创建取消令牌
+                var playerInfo = player.GetPlayerInfo();
+                if (playerInfo?.MuteToken == null)
+                {
+                    TShock.Log.Warn($"玩家 {player.Name} 的 MuteToken 为 null，无法设置自动解除禁言");
+                    return;
+                }
+
+                try
+                {
+                    // 等待禁言时间结束或玩家离开
+                    await Task.Delay(remainingTime, playerInfo.MuteToken);
+
+                    // 检查玩家是否还在线
+                    if (player.Active && player.RealPlayer)
+                    {
+                        player.mute = false;
+                        player.SendInfoMessage(GetString("您已被解除禁言。"));
+                        TShock.Log.Info($"玩家 {player.Name} 的禁言已自动解除");
+                    }
+                }
+                catch (TaskCanceledException)
+                {
+                    // 玩家离开服务器或任务被取消，这是正常情况
+                    TShock.Log.Debug($"玩家 {player.Name} 的禁言解除任务被取消（玩家可能已离开）");
+                }
+                catch (ObjectDisposedException)
+                {
+                    // 取消令牌已被释放，玩家可能已离开
+                    TShock.Log.Debug($"玩家 {player.Name} 的取消令牌已被释放");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error($"处理玩家 {player?.Name ?? "Unknown"} 加入时的禁言状态时发生错误: {ex}");
         }
     }
 

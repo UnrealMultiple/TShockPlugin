@@ -2,33 +2,15 @@
 
 	<Import Project="..\..\template.targets" />
 
-	<ItemGroup>
-	  <Compile Remove="EventArgs\**" />
-	  <EmbeddedResource Remove="EventArgs\**" />
-	  <None Remove="EventArgs\**" />
-	</ItemGroup>
+    <PropertyGroup>
+        <EmbedNuGetDlls>Acornima.dll;Jint.dll</EmbedNuGetDlls>
+    </PropertyGroup>
 
-	<ItemGroup>
-	  <None Remove="lib\Acornima.dll" />
-	  <None Remove="lib\Jint.dll" />
-	</ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Jint" Version="4.3.0" />
+    </ItemGroup>
 
-	<ItemGroup>
-	  <EmbeddedResource Include="lib\Acornima.dll" />
-	  <EmbeddedResource Include="lib\Jint.dll" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
-		<ProjectReference Include="..\Economics.Core\Economics.Core.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Include="Acornima">
-	    <HintPath>lib\Acornima.dll</HintPath>
-	  </Reference>
-	  <Reference Include="Jint">
-	    <HintPath>lib\Jint.dll</HintPath>
-	  </Reference>
-	</ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
+    </ItemGroup>
 </Project>

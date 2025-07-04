@@ -89,7 +89,7 @@ public class Config : JsonConfigBase<Config>
 
     [LocalizedPropertyName(CultureType.Chinese, "未注册启动服务器执行命令")]
     [LocalizedPropertyName(CultureType.English, "BlockEntryExecCommands")]
-    public string[] ResetExecCommands = Array.Empty<string>();
+    public string[] ResetExecCommands = [];
 
     [JsonProperty("开启NPC保护", Order = 7)]
     [LocalizedPropertyName(CultureType.English, "EnableNpcProtect")]
@@ -97,7 +97,7 @@ public class Config : JsonConfigBase<Config>
 
     [JsonProperty("NPC保护表", Order = 7)]
     [LocalizedPropertyName(CultureType.English, "NpcProtects")]
-    public List<int> NpcProtectList = new();
+    public List<int> NpcProtectList = [];
 
     [JsonProperty("禁止多鱼线", Order = 8)]
     [LocalizedPropertyName(CultureType.English, "MultipleFishingRodsAreProhibited")]
@@ -105,14 +105,13 @@ public class Config : JsonConfigBase<Config>
 
     [JsonProperty("浮漂列表", Order = 8)]
     [LocalizedPropertyName(CultureType.English, "ForbiddenBuoys")]
-    public List<short> ForbiddenBuoys = new();
+    public List<short> ForbiddenBuoys = [];
 
     protected override string Filename => "ServerTools";
 
     protected override void SetDefault()
     {
-        this.ForbiddenBuoys = new List<short>() { 360, 361, 362, 363, 364, 365, 366, 381, 382, 760, 775, 986, 987, 988, 989, 990, 991, 992, 993 };
-        this.NpcProtectList = new List<int>() { 17, 18, 19, 20, 38, 105, 106, 107, 108, 160, 123, 124, 142, 207, 208, 227, 228, 229, 353, 354, 376, 441, 453, 550, 579, 588, 589, 633, 663, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 375, 442, 443, 539, 444, 445, 446, 447, 448, 605, 627, 601, 613 };
-
+        this.ForbiddenBuoys = [360, 361, 362, 363, 364, 365, 366, 381, 382, 760, 775, 986, 987, 988, 989, 990, 991, 992, 993];
+        this.NpcProtectList = [17, 18, 19, 20, 38, 105, 106, 107, 108, 160, 123, 124, 142, 207, 208, 227, 228, 229, 353, 354, 376, 441, 453, 550, 579, 588, 589, 633, 663, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 375, 442, 443, 539, 444, 445, 446, 447, 448, 605, 627, 601, 613];
     }
 }

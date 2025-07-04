@@ -9,13 +9,15 @@ namespace Economics.Skill.DB;
 
 public class PlayerSKillManager
 {
-    public class PlayerSkill
+    public class PlayerSkill(int id, string name, int binditem, int Level = 1)
     {
-        public int ID { get; }
+        public int ID { get; } = id;
 
-        public string Name { get; }
+        public string Name { get; } = name;
 
-        public int BindItem { get; }
+        public int BindItem { get; } = binditem;
+
+        public int Level { get; set; } = Level;
 
         public TSPlayer? Player => Core.Economics.ServerPlayers.Find(x => x.Name == this.Name);
 
@@ -27,25 +29,19 @@ public class PlayerSKillManager
         {
             this.SkillCD = this.Skill == null ? 100 : this.Skill.SkillSpark.CD;
         }
-
-        public PlayerSkill(int id, string name, int binditem)
-        {
-            this.ID = id;
-            this.Name = name;
-            this.BindItem = binditem;
-        }
     }
 
     private readonly IDbConnection database;
 
-    internal List<PlayerSkill> PlayerSkills = new();
+    internal List<PlayerSkill> PlayerSkills = [];
     public PlayerSKillManager()
     {
         this.database = TShock.DB;
         var Skeleton = new SqlTable("Skill",
             new SqlColumn("ID", MySqlDbType.Int32) { Length = 8 },
             new SqlColumn("Name", MySqlDbType.Text) { Length = 500 },
-            new SqlColumn("BindItem", MySqlDbType.Int32) { Length = 255 }
+            new SqlColumn("BindItem", MySqlDbType.Int32) { Length = 255 },
+            new SqlColumn("Level", MySqlDbType.Int32) { Length = 8 }
               );
         var List = new SqlTableCreator(this.database, this.database.GetSqlQueryBuilder());
         List.EnsureTableStructure(Skeleton);
@@ -60,7 +56,8 @@ public class PlayerSKillManager
             var username = reader.Get<string>("Name");
             var BindItem = reader.Get<int>("BindItem");
             var Index = reader.Get<int>("ID");
-            this.PlayerSkills.Add(new(Index, username, BindItem));
+            var Level = reader.Get<int>("Level");
+            this.PlayerSkills.Add(new(Index, username, BindItem, Level));
         }
     }
 
@@ -89,10 +86,10 @@ public class PlayerSKillManager
         return this.PlayerSkills.Any(x => x.ID == index);
     }
 
-    public void Add(string Name, int bindItem, int index)
+    public void Add(string Name, int bindItem, int index, int Level)
     {
-        this.database.Query("INSERT INTO `Skill` (`Name`, `BindItem`, `ID`) VALUES (@0, @1, @2)", Name, bindItem, index);
-        this.PlayerSkills.Add(new(index, Name, bindItem));
+        this.database.Query("INSERT INTO `Skill` (`Name`, `BindItem`, `ID`, `Level`) VALUES (@0, @1, @2, @3)", Name, bindItem, index, Level);
+        this.PlayerSkills.Add(new(index, Name, bindItem, Level));
     }
 
     public void Remove(string Name, int index)
@@ -112,5 +109,11 @@ public class PlayerSKillManager
             this.database.Query("TRUNCATE Table Skill");
         }
         this.PlayerSkills.Clear();
+    }
+
+    internal void UpdateLevel(PlayerSkill playerSkill)
+    {
+        playerSkill.Level++;
+        this.database.Query("UPDATE Skill SET Level = @0 WHERE Name = @1 AND ID = @2", playerSkill.Level, playerSkill.Name, playerSkill.ID);
     }
 }

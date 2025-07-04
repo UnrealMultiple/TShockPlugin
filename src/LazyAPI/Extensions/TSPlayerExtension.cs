@@ -1,9 +1,6 @@
-﻿using LazyAPI.Attributes;
-using LazyAPI.Enums;
+﻿using LazyAPI.Enums;
 using LazyAPI.Utility;
 using Microsoft.Xna.Framework;
-using System.Reflection;
-using Terraria;
 using TShockAPI;
 
 namespace LazyAPI.Extensions;
@@ -31,46 +28,59 @@ public static class TSPlayerExtension
 
     public static Dictionary<string, bool> GetProgress(this TSPlayer Player)
     {
-        var progress = new Dictionary<string, bool>();
-        foreach (var field in typeof(ProgressType).GetFields().Where(f => f.FieldType == typeof(ProgressType)))
-        {
-            var state = false;
-            var map = field.GetCustomAttribute<ProgressMapAttribute>();
-            var progName = field.GetCustomAttribute<ProgressNameAttribute>();
-            state = map?.Target == typeof(NPC)
-                ? (ProgressType) field.GetValue(-1)! switch
-                {
-                    ProgressType.EvilBoss => GameProgressHelper.InBestiaryDB(Terraria.ID.NPCID.EaterofWorldsHead) && GameProgressHelper.CompareVlaue(map, null),
-                    ProgressType.Brainof => GameProgressHelper.InBestiaryDB(Terraria.ID.NPCID.BrainofCthulhu) && GameProgressHelper.CompareVlaue(map, null),
-                    _ => GameProgressHelper.CompareVlaue(map, null),
-                }
-                : map?.Target == typeof(Player) ? GameProgressHelper.CompareVlaue(map, Player.TPlayer) : GameProgressHelper.CompareVlaue(map, null);
-            foreach (var name in progName!.Names)
-            {
-                progress[name] = state;
-            }
-        }
-        return progress;
+        return GameProgress.DefaultProgressNames
+            .ToDictionary(p => p.Key, p => p.Value.GetStatus(Player.TPlayer));
     }
 
-    public static bool InProgress(this TSPlayer Player, IEnumerable<string> names)
+    public static bool ProgressComplete(this TSPlayer Player, IEnumerable<string> names)
     {
-        var gameProgress = Player.GetProgress();
         foreach (var name in names)
         {
-            var anti = false;
-            var pn = name;
-            if (name.StartsWith('!'))
+            var orParts = name.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            var orResult = false;
+            foreach (var part in orParts)
             {
-                anti = true;
-                pn = name[1..];
-            }
-            if (gameProgress.TryGetValue(pn, out var code))
-            {
-                if (code == anti)
+                var trimmed = part.Trim();
+                var negate = trimmed.StartsWith('!');
+                var key = negate ? trimmed[1..] : trimmed;
+
+                if (GameProgress.DefaultProgressNames.TryGetValue(key, out var pm))
                 {
-                    return false;
+                    var status = pm.GetStatus(Player.TPlayer);
+                    orResult |= negate ? !status : status;
                 }
+            }
+            if (!orResult)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public static bool ProgressComplete(this TSPlayer Player, IEnumerable<ProgressType> progresses)
+    {
+        foreach (var progressGroup in progresses)
+        {
+            var matched = false;
+            foreach (var flag in Enum.GetValues<ProgressType>())
+            {
+                if (progressGroup.HasFlag(flag))
+                {
+                    if (GameProgress.DefaultProgressTypes.TryGetValue(flag, out var pm))
+                    {
+                        if (pm.GetStatus(Player.TPlayer))
+                        {
+                            matched = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (!matched)
+            {
+                return false;
             }
         }
         return true;

@@ -20,9 +20,8 @@
 
 ## 更新日志
 
-```
-适配.net 6.0
-```
+### v1.3.1.0
+- 适配.net 6.0
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

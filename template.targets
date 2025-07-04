@@ -3,6 +3,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     </PropertyGroup>
 
@@ -26,7 +27,30 @@
             <LogicalName>i18n.%(FileName).mo</LogicalName>
         </EmbeddedResource>
     </ItemGroup>
-
+    
+    <Target Name="EmbedNuGetDlls" AfterTargets="ResolveReferences">
+        <ItemGroup>
+            <EmbedNuGetDllsList Include="$(EmbedNuGetDlls.Split(';'))" />
+            
+            <DllsToEmbed Include="@(ReferencePath)" 
+                        Condition="$([System.String]::new(';$(EmbedNuGetDlls);').Contains(';%(FileName)%(Extension);'))" />
+            
+            <EmbeddedResource Include="@(DllsToEmbed)">
+                <LogicalName>embedded.%(FileName)%(Extension)</LogicalName>
+            </EmbeddedResource>
+            
+            <EmbeddedDllLog Include="Embedded DLL: %(DllsToEmbed.Filename)%(DllsToEmbed.Extension) as embedded.%(DllsToEmbed.Filename)%(DllsToEmbed.Extension)" />
+            
+            <ReferenceCopyLocalPaths Remove="@(DllsToEmbed)" />
+        </ItemGroup>
+        
+        <Message Text="Embedding @(DllsToEmbed->Count()) DLLs" Importance="high" 
+                Condition="'@(DllsToEmbed->Count())' != '0'" />
+                
+        <Message Text="@(EmbeddedDllLog)" Importance="high" 
+                Condition="'@(DllsToEmbed->Count())' != '0'" />
+    </Target>
+    
 	<Target Name="CopySpecificNuGetDlls" AfterTargets="Build" Condition="'$(CopyAssemblyToOutDir)' != ''">
 		<ItemGroup>
 			<AllAssemblies Include="@(ReferencePath)" />

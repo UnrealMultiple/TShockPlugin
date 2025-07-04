@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CGive\n"
-"POT-Creation-Date: 2025-01-29 16:02:28+0000\n"
-"PO-Revision-Date: 2025-01-29 16:02:29+0000\n"
+"POT-Creation-Date: 2025-06-17 17:24:41+0000\n"
+"PO-Revision-Date: 2025-06-17 17:24:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,34 +23,34 @@ msgid "/cgive list,列出所有离线命令"
 msgstr ""
 
 #: ../../Main.cs:146
-msgid "/cgive personal [命令] [被执行者]"
+msgid "/cgive personal [被执行者] [命令]"
 msgstr ""
 
 #: ../../Main.cs:150
 msgid "/cgive reset,重置所有数据"
 msgstr ""
 
-#: ../../Main.cs:172
+#: ../../Main.cs:173
 msgid "ID输入错误!"
 msgstr ""
 
-#: ../../Main.cs:212
+#: ../../Main.cs:213
 msgid "命令已保存"
 msgstr ""
 
-#: ../../Main.cs:217
+#: ../../Main.cs:218
 msgid "命令执行成功！"
 msgstr ""
 
-#: ../../Main.cs:168
+#: ../../Main.cs:169
 msgid "已执行删除"
 msgstr ""
 
-#: ../../Main.cs:157
+#: ../../Main.cs:158
 msgid "成功删除所有数据"
 msgstr ""
 
-#: ../../Main.cs:181
+#: ../../Main.cs:182
 #, csharp-format
 msgid "执行者:{0} 被执行者:{1} 命令:{2} id:{3}"
 msgstr ""

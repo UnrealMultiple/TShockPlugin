@@ -33,12 +33,10 @@
 
 ## 更新日志
 
-```
-v1.0.2
-适配.Net 6.0
-将复活币的物品ID从整数改为数组（支持更多物品作为复活币）
-将复活币权限名改为：RebirthCoin
-```
+### v1.0.2
+- 适配.NET 6.0
+- 将复活币的物品ID从整数改为数组（支持更多物品作为复活币）
+- 将复活币权限名改为：RebirthCoin
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

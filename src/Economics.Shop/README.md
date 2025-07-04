@@ -81,13 +81,11 @@ Economics文档：[进度限制值](../EconomicsAPI/README.md)
 
 ## 更新日志
 
-```
-V2.0.0.0
-适配多货币
+### v2.0.0.0
+- 适配多货币
 
-V1.0.0.3
-适配新 EconomicsAPI
-```
+### v1.0.0.3
+- 适配新 EconomicsAPI
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

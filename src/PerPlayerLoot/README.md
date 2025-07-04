@@ -23,14 +23,12 @@
 
 ## 更新日志
 
-```
-v2.0.3
-完成i18n和README_EN.md
-v2.0.2
-修复：初始箱子都保存的问题
-v2.0.1
-完善卸载函数
-```
+### v2.0.3
+- 完成i18n和README_EN.md
+### v2.0.2
+- 修复：初始箱子都保存的问题
+### v2.0.1
+- 完善卸载函数
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

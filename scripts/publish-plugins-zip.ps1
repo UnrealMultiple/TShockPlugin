@@ -27,10 +27,11 @@ Set-Location $PSScriptRoot/..
 
 # Build plugins
 if (-not $NoBuild) {
-    Remove-Item ./out/$BuildType -Recurse -Force -ProgressAction SilentlyContinue -ErrorAction Ignore
-    Remove-Item ./SubmoduleAssembly -Recurse -Force -ProgressAction SilentlyContinue -ErrorAction Ignore
-    & $PSScriptRoot/submodule_build.ps1 -BuildType $BuildType
+    Remove-Item ./out/$BuildType -Recurse -Force -ErrorAction SilentlyContinue
+    Remove-Item ./SubmoduleAssembly -Recurse -Force -ErrorAction SilentlyContinue
+    & $PSScriptRoot/submodule_build.ps1 -BuildType $BuildType -ErrorAction Stop
     dotnet build Plugin.sln -c $BuildType
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
 New-Item -Name ./cache -ItemType Directory -Force

@@ -7,26 +7,22 @@ public class Given
 {
     public string Name { get; set; } = "";
 
-    public int id { get; set; }
+    public int Id { get; set; }
 
     public void Save()
     {
-        Data.Command($"insert into Given(name,id)values(@0,@1)", this.Name, this.id);
+        Data.Command($"INSERT INTO Given(name) VALUES (@0)", this.Name);
     }
 
     public void Del()
     {
-        Data.Command($"delete from Given where name=@0 and id=@1", this.Name, this.id);
+        Data.Command($"DELETE FROM Given WHERE name=@0 and id=@1", this.Name, this.Id);
     }
 
     public bool IsGiven()
     {
-        var result = false;
         var dB = TShock.DB;
-        using (var queryResult = dB.QueryReader($"select * from Given where name=@0 and id=@1", this.Name, this.id))
-        {
-            result = queryResult.Read();
-        }
-        return result;
+        using var queryResult = dB.QueryReader($"SELECT * FROM Given WHERE name=@0 and id=@1", this.Name, this.Id);
+        return  queryResult.Read();
     }
 }

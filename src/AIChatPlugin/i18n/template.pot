@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AIChatPlugin\n"
-"POT-Creation-Date: 2025-03-09 10:33:38+0000\n"
-"PO-Revision-Date: 2025-03-09 10:33:39+0000\n"
+"POT-Creation-Date: 2025-07-04 01:08:04+0000\n"
+"PO-Revision-Date: 2025-07-04 01:08:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../AIChatPlugin.cs:49
+#: ../../AIChatPlugin.cs:50
 msgid ""
 "  [i:1344]AIChatPlugin帮助信息[i:1344]\n"
 "[i:1344]/ab                   - 向AI提问\n"
@@ -72,11 +72,11 @@ msgstr ""
 msgid "[c/A9A9A9:============================]"
 msgstr ""
 
-#: ../../AIChatPlugin.cs:93
+#: ../../AIChatPlugin.cs:94
 msgid "[i:1344]您当前没有上下文记录！[i:1344]"
 msgstr ""
 
-#: ../../AIChatPlugin.cs:89
+#: ../../AIChatPlugin.cs:90
 msgid "[i:1344]您的上下文记录已重置！[i:1344]"
 msgstr ""
 
@@ -92,7 +92,7 @@ msgstr ""
 msgid "[i:1344]正在处理您的请求，请稍候...[i:1344]"
 msgstr ""
 
-#: ../../AIChatPlugin.cs:68
+#: ../../AIChatPlugin.cs:69
 msgid "[i:1344]请输入您想询问的内容！[i:1344]"
 msgstr ""
 
@@ -128,7 +128,7 @@ msgid ""
 "[i:1344]超出字数限制 {0} 已截断！[i:1344]"
 msgstr ""
 
-#: ../../AIChatPlugin.cs:16
+#: ../../AIChatPlugin.cs:17
 msgid "一个提供AI对话的插件"
 msgstr ""
 

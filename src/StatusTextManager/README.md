@@ -138,17 +138,15 @@ public class Plugin : TerrariaPlugin
 
 ## 更新日志
 
-```
-v1.1.3
-重构渔夫任务点提取逻辑
+### v1.1.3
+- 重构渔夫任务点提取逻辑
 
-v1.1.0
-添加 DynamicText 类
-可插值
+### v1.1.0
+- 添加 DynamicText 类
+- 可插值
 
-v1.0.0
-初次添加插件
-```
+### v1.0.0
+- 初次添加插件
 
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin

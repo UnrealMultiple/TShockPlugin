@@ -1,32 +1,28 @@
 ﻿using LazyAPI;
 using Terraria;
+using Terraria.GameContent.Events;
 using TerrariaApi.Server;
 using TShockAPI;
 
 namespace AutoClear;
 
 [ApiVersion(2, 1)]
-public class Autoclear : LazyPlugin
+public class AutoClear(Main game) : LazyPlugin(game)
 {
     public override string Author => "大豆子[Mute适配1447]，肝帝熙恩更新";
     public override string Description => GetString("智能扫地机");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 9);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new Version(1, 1, 0);
 
-    private bool _sweepScheduled = false;
+    private bool _sweepScheduled;
     private DateTime _sweepScheduledAt;
     private long _updateCounter;
-
-    public Autoclear(Main game) : base(game)
-    {
-    }
 
     public override void Initialize()
     {
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
     }
-
-
-
+    
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -40,28 +36,64 @@ public class Autoclear : LazyPlugin
     {
         this._updateCounter++;
 
-        if (this._updateCounter % (60 * Configuration.Instance.detectionIntervalSeconds) == 0)
+        if (this._updateCounter % (60 * Configuration.Instance.DetectionIntervalSeconds) != 0)
         {
-            if (Main.item.Where(i => i != null && i.active && !Configuration.Instance.NonSweepableItemIDs.Contains(i.type)).Count() < Configuration.Instance.SmartSweepThreshold)
+            return;
+        }
+
+        if (Main.item.Count(i => i is { active: true } && !Configuration.Instance.NonSweepableItemIDs.Contains(i.type)) < Configuration.Instance.SmartSweepThreshold)
+        {
+            return;
+        }
+        
+        if (!this._sweepScheduled)
+        {
+            this._sweepScheduled = true;
+            this._sweepScheduledAt = DateTime.UtcNow.AddSeconds(Configuration.Instance.DelayedSweepTimeoutSeconds);
+            TSPlayer.All.SendSuccessMessage($"{Configuration.Instance.DelayedSweepCustomMessage}");
+        }
+        
+        if (this._sweepScheduled && DateTime.UtcNow >= this._sweepScheduledAt)
+        {
+            // 到达清扫时间，执行清扫任务
+            this._sweepScheduled = false;
+            if (CanSweep())
             {
-                return;
+                PerformSmartSweep();
             }
-            if (!this._sweepScheduled)
+            else
             {
-                this._sweepScheduled = true;
-                this._sweepScheduledAt = DateTime.UtcNow.AddSeconds(Configuration.Instance.DelayedSweepTimeoutSeconds);
-                TSPlayer.All.SendSuccessMessage($"{Configuration.Instance.DelayedSweepCustomMessage}");
+                TSPlayer.All.SendSuccessMessage(GetString($"智能扫地机: 由于存在事件或BOSS，已跳过自动清理"));
             }
-            if (this._sweepScheduled && DateTime.UtcNow >= this._sweepScheduledAt)
-            {
-                // 到达清扫时间，执行清扫任务
-                this._sweepScheduled = false;
-                this.PerformSmartSweep();
-            }
+            
         }
     }
 
-    private void PerformSmartSweep()
+    private static bool CanSweep()
+    {
+        // 入侵
+        if (Main.invasionType != 0 && Main.invasionSize != 0)
+        {
+            return false;
+        }
+
+        // 血月 | 旧日军团 | 日食
+        if (Main.bloodMoon || DD2Event.Ongoing || Main.eclipse)
+        {
+            return false;
+        }
+
+        // BOSS
+        if (Main.npc.Any(npc => npc is { active: true, boss: true }))
+        {
+            return false;
+        }
+        
+        return true;
+
+    }
+
+    private static void PerformSmartSweep()
     {
 
         var totalItems = 0;
@@ -88,7 +120,7 @@ public class Autoclear : LazyPlugin
                     (Configuration.Instance.SweepVanity && isVanity))
                 {
                     Main.item[i].active = false;
-                    TSPlayer.All.SendData(PacketTypes.ItemDrop, " ", i, 0f, 0f, 0f, 0);
+                    TSPlayer.All.SendData(PacketTypes.ItemDrop, null, i);
                     totalItems++;
 
                     if (isThrowable)
