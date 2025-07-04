@@ -25,7 +25,7 @@ public class Economics : TerrariaPlugin
     public override string Description => GetString("提供经济系统API");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 9);
+    public override Version Version => new Version(2, 0, 0, 10);
 
     public readonly static List<TSPlayer> ServerPlayers = [];
 
@@ -244,7 +244,7 @@ public class Economics : TerrariaPlugin
                 CurrencyManager.AddUserCurrency(player.name, num, currency.Name);
                 if (currency.CombatMsgOption.Enable)
                 {
-                    player.SendCombatMsg(currency.CombatMsgOption.CombatMsg, new Color(currency.CombatMsgOption.Color[0], currency.CombatMsgOption.Color[1], currency.CombatMsgOption.Color[2]));
+                    player.SendCombatMsg(string.Format(currency.CombatMsgOption.CombatMsg, num), new Color(currency.CombatMsgOption.Color[0], currency.CombatMsgOption.Color[1], currency.CombatMsgOption.Color[2]));
                 }
             }
         }
