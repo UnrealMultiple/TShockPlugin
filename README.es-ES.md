@@ -120,7 +120,7 @@
 | [Economics.Regain](./src/Economics.Regain/README.md) | 0.0% | Reciclaje de objetos | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.RPG](./src/Economics.RPG/README.md) | 0.0% | Plugin RPG | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.Shop](./src/Economics.Shop/README.md) | 0.0% | Plugin de tienda | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Skill](./src/Economics.Skill/README.md) | 0.0% | Plugin de habilidades | [Economics.Core](./src/Economics.Core/README.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Skill](./src/Economics.Skill/README.md) | 0.0% | Plugin de habilidades | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
 | [Economics.Task](./src/Economics.Task/README.md) | 0.0% | Plugin de tareas | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 0.0% | Mejora de armas | [Economics.Core](./src/Economics.Core/README.md) |
 | [EndureBoost](./src/EndureBoost/README.md) | 0.0% | Otorga un buff específico cuando el jugador tiene una cantidad determinada de objetos |  |

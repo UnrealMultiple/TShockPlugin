@@ -117,7 +117,7 @@
 | [Economics.Regain](./src/Economics.Regain/README.en-US.md) | 100.0% | Item recycling | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [Economics.RPG](./src/Economics.RPG/README.en-US.md) | 100.0% | RPG plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [Economics.Shop](./src/Economics.Shop/README.en-US.md) | 100.0% | Shop plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
-| [Economics.Skill](./src/Economics.Skill/README.en-US.md) | 100.0% | Skill plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
+| [Economics.Skill](./src/Economics.Skill/README.en-US.md) | 100.0% | Skill plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.Task](./src/Economics.Task/README.en-US.md) | 100.0% | Task plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [EndureBoost](./src/EndureBoost/README.en-US.md) | 100.0% | Grant specified buff when the player has a certain number of items |  |
