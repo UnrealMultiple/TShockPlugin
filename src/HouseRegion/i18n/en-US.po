@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-06-27 01:20:05+0000\n"
-"PO-Revision-Date: 2025-06-27 01:22\n"
+"POT-Creation-Date: 2025-06-30 14:56:22+0000\n"
+"PO-Revision-Date: 2025-07-01 01:40\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -239,8 +239,8 @@ msgstr "Because your house is less than the minimum limit of {0} blocks."
 msgid "因为您的房屋高度小于最小限制 {0} 格块。"
 msgstr "Because your house height is less than the minimum limit of {0} blocks."
 
-#: ../../Plugin.cs:650
 #: ../../PacketReceive.cs:216
+#: ../../Plugin.cs:650
 msgid "已上锁"
 msgstr "Locked"
 
@@ -334,10 +334,10 @@ msgid "房屋插件错误调用事件时出错:"
 msgstr "House plugin error, an error occurred while calling the event:"
 
 #: ../../Utils.cs:90
+#: ../../PacketReceive.cs:215
 #: ../../Plugin.cs:635
 #: ../../Plugin.cs:640
 #: ../../Plugin.cs:646
-#: ../../PacketReceive.cs:215
 msgid "房屋插件错误超标错误:"
 msgstr "House plugin error, exceeds standard error:"
 
@@ -444,8 +444,8 @@ msgstr "Unable to use because server prohibits owner from modifying users."
 msgid "无法使用，因为服务器禁止了所有者分享使用者功能。"
 msgstr "Unable to use because server prohibits owner sharing user function."
 
-#: ../../Plugin.cs:650
 #: ../../PacketReceive.cs:216
+#: ../../Plugin.cs:650
 msgid "未上锁"
 msgstr "Unlocked"
 

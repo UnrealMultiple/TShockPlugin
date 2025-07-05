@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-05-28 03:22:26+0000\n"
-"PO-Revision-Date: 2025-05-29 01:20\n"
+"POT-Creation-Date: 2025-06-30 14:56:14+0000\n"
+"PO-Revision-Date: 2025-07-01 01:40\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -68,6 +68,10 @@ msgstr "EconomicCore command execution error: {0}"
 msgid "Economics 已重置"
 msgstr "Economics has been reset"
 
+#: ../../Enumerates/CurrencyObtainType.cs:6
+msgid "不可获取"
+msgstr ""
+
 #: ../../Command/BankCommand.cs:36
 #, csharp-format
 msgid "不存在可兑换的货币类型:{0}"
@@ -105,6 +109,10 @@ msgstr "You do not have permission to use this command!"
 #, csharp-format
 msgid "你的{0}不足，无法转账!"
 msgstr "You do not have enough {0} to transfer!"
+
+#: ../../Enumerates/CurrencyObtainType.cs:9
+msgid "击杀怪物"
+msgstr ""
 
 #: ../../Command/BankCommand.cs:158
 msgid "在没有名字参数情况下，只能在游戏中使用此命令!"
@@ -159,6 +167,10 @@ msgstr "Successfully deducted {1} {2} from `{0}`"
 #, csharp-format
 msgid "成功转账给`{0}` {1} 个{2}"
 msgstr "Successfully transferred {1} {2} to `{0}`"
+
+#: ../../Enumerates/CurrencyObtainType.cs:12
+msgid "挖掘矿物"
+msgstr ""
 
 #: ../../Economics.cs:25
 msgid "提供经济系统API"

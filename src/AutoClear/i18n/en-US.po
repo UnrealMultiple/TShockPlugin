@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:29+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2025-06-29 04:14:02+0000\n"
+"PO-Revision-Date: 2025-06-30 01:26\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,16 +17,20 @@ msgstr ""
 "X-Crowdin-File-ID: 1090\n"
 "Language: en_US\n"
 
-#: ../../AutoClear.cs:132
+#: ../../AutoClear.cs:164
 #, csharp-format
 msgid "包含：【投掷武器[c/FFFFFF:{0}]】-【挥动武器[c/FFFFFF:{1}]】-【普通物品[c/FFFFFF:{2}]】-【装备[c/FFFFFF:{3}]】-【时装[c/FFFFFF:{4}]】"
 msgstr "Including:【Consumable[c/FFFFFF:{0}]】-【Melee Weapon[c/FFFFFF:{1}]】-【Common Items[c/FFFFFF:{2}]】-【Armor[c/FFFFFF:{3}]】-【Vanity[c/FFFFFF:{4}]】"
 
-#: ../../AutoClear.cs:12
+#: ../../AutoClear.cs:13
 msgid "智能扫地机"
 msgstr "Smart sweeper"
 
-#: ../../AutoClear.cs:131
+#: ../../AutoClear.cs:66
+msgid "智能扫地机: 由于存在事件或BOSS，已跳过自动清理"
+msgstr ""
+
+#: ../../AutoClear.cs:163
 #, csharp-format
 msgid "智能扫地机已清扫：[c/FFFFFF:{0}]种物品"
 msgstr "Autoclear has cleaned: [c/FFFFFF:{0}]  types of items."
