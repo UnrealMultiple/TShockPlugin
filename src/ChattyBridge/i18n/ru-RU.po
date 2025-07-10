@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-02-02 04:38:32+0000\n"
-"PO-Revision-Date: 2025-04-12 01:13\n"
+"POT-Creation-Date: 2025-06-30 14:56:06+0000\n"
+"PO-Revision-Date: 2025-07-01 01:40\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -28,4 +28,20 @@ msgstr "[ChattyBridge] Не удалось переслать сообщение
 #, csharp-format
 msgid "[聊天桥] 接收到未知类型:{0}"
 msgstr "[ChattyBridge] Неизвестный тип: {0}"
+
+#: ../../MsgType.cs:10
+msgid "player_chat"
+msgstr ""
+
+#: ../../MsgType.cs:16
+msgid "player_join"
+msgstr ""
+
+#: ../../MsgType.cs:13
+msgid "player_leave"
+msgstr ""
+
+#: ../../MsgType.cs:7
+msgid "unknown"
+msgstr ""
 
