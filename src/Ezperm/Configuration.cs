@@ -45,6 +45,9 @@ internal class Configuration : JsonConfigBase<Configuration>
                 AddPermissions = new List<string>
                 {
                     "tshock.world.movenpc",
+                    "tshock.world.worldupgrades",
+                    "tshock.specialeffects.*",
+                    "tshock.world.time.usemoondial",
                     "tshock.world.time.usesundial",
                     "tshock.tp.pylon",
                     "tshock.tp.demonconch",
