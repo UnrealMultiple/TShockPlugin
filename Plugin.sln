@@ -282,6 +282,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoClassificationQuickStac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceGen", "src\SourceGen\SourceGen.csproj", "{E5E60819-4B13-4982-B345-358A4DBE9D3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrCDK", "src\TrCDK\TrCDK.csproj", "{D06CC8C7-7B77-428B-B5BA-A690C17DE382}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1386,6 +1388,14 @@ Global
 		{E5E60819-4B13-4982-B345-358A4DBE9D3B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E5E60819-4B13-4982-B345-358A4DBE9D3B}.Release|x64.ActiveCfg = Release|Any CPU
 		{E5E60819-4B13-4982-B345-358A4DBE9D3B}.Release|x64.Build.0 = Release|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Debug|x64.Build.0 = Debug|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Release|x64.ActiveCfg = Release|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
