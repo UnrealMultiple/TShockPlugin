@@ -29,160 +29,28 @@ public class HelpPlus : TerrariaPlugin
     public override string Description => GetString("更好的Help");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2025, 05, 18, 5);
+    public override Version Version => new (2025, 05, 18, 5);
 
     public override void Initialize()
     {
-        GeneralHooks.ReloadEvent += this.GeneralHooks_ReloadEvent;
-        Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
+        GeneralHooks.ReloadEvent += GeneralHooks_ReloadEvent;
         Commands.ChatCommands.RemoveAll(x => x.Name == "help");
         Commands.ChatCommands.Add(this.Command);
         Config.Read();
     }
 
-    private void GeneralHooks_ReloadEvent(ReloadEventArgs e)
+    private static void GeneralHooks_ReloadEvent(ReloadEventArgs e)
     {
         Config.Read();
         e.Player.SendSuccessMessage(GetString("[HelpPlus]插件配置已重载！"));
     }
 
-    private static bool IsWhiteSpace(char c)
-    {
-        return c == ' ' || c == '\t' || c == '\n';
-    }
-
-    private static List<string> ParseParameters(string str)
-    {
-        var ret = new List<string>();
-        var sb = new StringBuilder();
-        var instr = false;
-        for (var i = 0; i < str.Length; i++)
-        {
-            var c = str[i];
-
-            if (c == '\\' && ++i < str.Length)
-            {
-                if (str[i] != '"' && str[i] != ' ' && str[i] != '\\')
-                {
-                    sb.Append('\\');
-                }
-
-                sb.Append(str[i]);
-            }
-            else if (c == '"')
-            {
-                instr = !instr;
-                if (!instr)
-                {
-                    ret.Add(sb.ToString());
-                    sb.Clear();
-                }
-                else if (sb.Length > 0)
-                {
-                    ret.Add(sb.ToString());
-                    sb.Clear();
-                }
-            }
-            else if (IsWhiteSpace(c) && !instr)
-            {
-                if (sb.Length > 0)
-                {
-                    ret.Add(sb.ToString());
-                    sb.Clear();
-                }
-            }
-            else
-            {
-                sb.Append(c);
-            }
-        }
-
-        if (sb.Length > 0)
-        {
-            ret.Add(sb.ToString());
-        }
-
-        return ret;
-    }
-
-    private bool MessageBuffer_InvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance,
-        ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
-    {
-        if (messageType == 82)
-        {
-            instance.ResetReader();
-            instance.reader.BaseStream.Position = start + 1;
-
-            var moduleId = instance.reader.ReadUInt16();
-            if (moduleId == NetManager.Instance.GetId<NetTextModule>())
-            {
-                var msg = ChatMessage.Deserialize(instance.reader);
-                switch (msg.CommandId._name)
-                {
-                    case "Help":
-                        var player = TShock.Players[instance.whoAmI];
-                        var text = "/help " + msg.Text;
-                        var cmdText = text.Remove(0, 1);
-                        var index = -1;
-                        for (var i = 0; i < cmdText.Length; i++)
-                        {
-                            if (IsWhiteSpace(cmdText[i]))
-                            {
-                                index = i;
-                                break;
-                            }
-                        }
-
-                        string cmdName;
-                        cmdName = index < 0 ? cmdText.ToLower() : cmdText[..index].ToLower();
-
-                        List<string> args;
-                        args = index < 0 ? new List<string>() : ParseParameters(cmdText[index..]);
-
-                        if (cmdName == "help")
-                        {
-                            Help(new CommandArgs(null, false, player, args));
-                            TShock.Utils.SendLogs(GetString($"{player.Name}执行了/{cmdText}。"), Color.PaleVioletRed, player);
-                            return false;
-                        }
-                        break;
-                    case "AllDeath":
-                        var allDeathCommand = new AllDeathCommand();
-                        allDeathCommand.ProcessIncomingMessage("", (byte) instance.whoAmI);
-                        return false;
-                    case "AllPVPDeath":
-                        var allPvpDeathCommand = new AllPVPDeathCommand();
-                        allPvpDeathCommand.ProcessIncomingMessage("", (byte) instance.whoAmI);
-                        return false;
-                    case "Death":
-                        var deathCommand = new DeathCommand();
-                        deathCommand.ProcessIncomingMessage("", (byte) instance.whoAmI);
-                        return false;
-                    case "PVPDeath":
-                        var pvpDeathCommand = new PVPDeathCommand();
-                        pvpDeathCommand.ProcessIncomingMessage("", (byte) instance.whoAmI);
-                        return false;
-                    case "Roll":
-                        var rollCommand = new RollCommand();
-                        rollCommand.ProcessIncomingMessage("", (byte) instance.whoAmI);
-                        return false;
-                    default:
-                        return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType,
-                            maxPackets);
-                }
-            }
-        }
-
-
-        return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
-    }
-
     private static void Help(CommandArgs args)
     {
-        var Specifier = TShock.Config.Settings.CommandSpecifier;
+        var specifier = TShock.Config.Settings.CommandSpecifier;
         if (args.Parameters.Count > 1)
         {
-            args.Player.SendErrorMessage(GetString("无效用法.正确用法: {0}help <命令/页码>", Specifier));
+            args.Player.SendErrorMessage(GetString("无效用法.正确用法: {0}help <命令/页码>", specifier));
             return;
         }
 
@@ -195,19 +63,19 @@ public class HelpPlus : TerrariaPlugin
 
             var cmdNames = from cmd in Commands.ChatCommands
                            where cmd.CanRun(args.Player) && (cmd.Name != "setup" || TShock.SetupToken != 0)
-                           select Specifier + cmd.Name + GetShort(cmd.Name);
+                           select specifier + cmd.Name + GetShort(cmd.Name);
 
             PaginationTools.SendPage(args.Player, pageNumber, PaginationTools.BuildLinesFromTerms(cmdNames),
                 new PaginationTools.Settings
                 {
                     HeaderFormat = GetString("命令列表 ({0}/{1}):"),
-                    FooterFormat = GetString("输入 {0}help {{0}} 翻页.", Specifier)
+                    FooterFormat = GetString("输入 {0}help {{0}} 翻页.", specifier)
                 });
         }
         else
         {
             var commandName = args.Parameters[0].ToLower();
-            if (commandName.StartsWith(Specifier))
+            if (commandName.StartsWith(specifier))
             {
                 commandName = commandName[1..];
             }
@@ -225,7 +93,7 @@ public class HelpPlus : TerrariaPlugin
                 return;
             }
 
-            args.Player.SendSuccessMessage(GetString("{0}{1}的帮助:", Specifier, command.Name));
+            args.Player.SendSuccessMessage(GetString("{0}{1}的帮助:", specifier, command.Name));
             if (command.HelpDesc == null)
             {
                 args.Player.SendWarningMessage(command.HelpText);
@@ -272,8 +140,7 @@ public class HelpPlus : TerrariaPlugin
     {
         if (disposing)
         {
-            Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
-            GeneralHooks.ReloadEvent -= this.GeneralHooks_ReloadEvent;
+            GeneralHooks.ReloadEvent -= GeneralHooks_ReloadEvent;
         }
 
         base.Dispose(disposing);
