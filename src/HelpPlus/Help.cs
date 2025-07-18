@@ -16,198 +16,106 @@ namespace UserCheck;
 [ApiVersion(2, 1)]
 public class HelpPlus : TerrariaPlugin
 {
-    private readonly Command Command = new(Help, "help");
+    private readonly Command _command = new(Help, "help");
 
     public HelpPlus(Main game)
         : base(game)
     {
-        this.Order = int.MaxValue;
     }
 
-    public override string Author => "Cai";
+    public override string Author => "Cai, 羽学";
 
     public override string Description => GetString("更好的Help");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2025, 05, 18, 5);
+    public override Version Version => new (2025, 7, 19, 0);
 
     public override void Initialize()
     {
-        GeneralHooks.ReloadEvent += this.GeneralHooks_ReloadEvent;
-        Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
+        GeneralHooks.ReloadEvent += GeneralHooks_ReloadEvent;
         Commands.ChatCommands.RemoveAll(x => x.Name == "help");
-        Commands.ChatCommands.Add(this.Command);
+        Commands.ChatCommands.Add(this._command);
         Config.Read();
     }
 
-    private void GeneralHooks_ReloadEvent(ReloadEventArgs e)
+    private static void GeneralHooks_ReloadEvent(ReloadEventArgs e)
     {
         Config.Read();
         e.Player.SendSuccessMessage(GetString("[HelpPlus]插件配置已重载！"));
     }
 
-    private static bool IsWhiteSpace(char c)
-    {
-        return c == ' ' || c == '\t' || c == '\n';
-    }
-
-    private static List<string> ParseParameters(string str)
-    {
-        var ret = new List<string>();
-        var sb = new StringBuilder();
-        var instr = false;
-        for (var i = 0; i < str.Length; i++)
-        {
-            var c = str[i];
-
-            if (c == '\\' && ++i < str.Length)
-            {
-                if (str[i] != '"' && str[i] != ' ' && str[i] != '\\')
-                {
-                    sb.Append('\\');
-                }
-
-                sb.Append(str[i]);
-            }
-            else if (c == '"')
-            {
-                instr = !instr;
-                if (!instr)
-                {
-                    ret.Add(sb.ToString());
-                    sb.Clear();
-                }
-                else if (sb.Length > 0)
-                {
-                    ret.Add(sb.ToString());
-                    sb.Clear();
-                }
-            }
-            else if (IsWhiteSpace(c) && !instr)
-            {
-                if (sb.Length > 0)
-                {
-                    ret.Add(sb.ToString());
-                    sb.Clear();
-                }
-            }
-            else
-            {
-                sb.Append(c);
-            }
-        }
-
-        if (sb.Length > 0)
-        {
-            ret.Add(sb.ToString());
-        }
-
-        return ret;
-    }
-
-    private bool MessageBuffer_InvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance,
-        ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
-    {
-        if (messageType == 82)
-        {
-            instance.ResetReader();
-            instance.reader.BaseStream.Position = start + 1;
-
-            var moduleId = instance.reader.ReadUInt16();
-            if (moduleId == NetManager.Instance.GetId<NetTextModule>())
-            {
-                var msg = ChatMessage.Deserialize(instance.reader);
-                switch (msg.CommandId._name)
-                {
-                    case "Help":
-                        var player = TShock.Players[instance.whoAmI];
-                        var text = "/help " + msg.Text;
-                        var cmdText = text.Remove(0, 1);
-                        var index = -1;
-                        for (var i = 0; i < cmdText.Length; i++)
-                        {
-                            if (IsWhiteSpace(cmdText[i]))
-                            {
-                                index = i;
-                                break;
-                            }
-                        }
-
-                        string cmdName;
-                        cmdName = index < 0 ? cmdText.ToLower() : cmdText[..index].ToLower();
-
-                        List<string> args;
-                        args = index < 0 ? new List<string>() : ParseParameters(cmdText[index..]);
-
-                        if (cmdName == "help")
-                        {
-                            Help(new CommandArgs(null, false, player, args));
-                            TShock.Utils.SendLogs(GetString($"{player.Name}执行了/{cmdText}。"), Color.PaleVioletRed, player);
-                            return false;
-                        }
-                        break;
-                    case "AllDeath":
-                        var allDeathCommand = new AllDeathCommand();
-                        allDeathCommand.ProcessIncomingMessage("", (byte) instance.whoAmI);
-                        return false;
-                    case "AllPVPDeath":
-                        var allPvpDeathCommand = new AllPVPDeathCommand();
-                        allPvpDeathCommand.ProcessIncomingMessage("", (byte) instance.whoAmI);
-                        return false;
-                    case "Death":
-                        var deathCommand = new DeathCommand();
-                        deathCommand.ProcessIncomingMessage("", (byte) instance.whoAmI);
-                        return false;
-                    case "PVPDeath":
-                        var pvpDeathCommand = new PVPDeathCommand();
-                        pvpDeathCommand.ProcessIncomingMessage("", (byte) instance.whoAmI);
-                        return false;
-                    case "Roll":
-                        var rollCommand = new RollCommand();
-                        rollCommand.ProcessIncomingMessage("", (byte) instance.whoAmI);
-                        return false;
-                    default:
-                        return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType,
-                            maxPackets);
-                }
-            }
-        }
-
-
-        return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
-    }
-
     private static void Help(CommandArgs args)
     {
-        var Specifier = TShock.Config.Settings.CommandSpecifier;
+        var specifier = TShock.Config.Settings.CommandSpecifier;
         if (args.Parameters.Count > 1)
         {
-            args.Player.SendErrorMessage(GetString("无效用法.正确用法: {0}help <命令/页码>", Specifier));
+            args.Player.SendErrorMessage(GetString("无效用法。正确用法: {0}help <命令/页码>", specifier));
             return;
         }
 
-        if (args.Parameters.Count == 0 || int.TryParse(args.Parameters[0], out var pageNumber))
+        if (args.Parameters.Count == 0 || int.TryParse(args.Parameters[0], out var page))
         {
-            if (!PaginationTools.TryParsePageNumber(args.Parameters, 0, args.Player, out pageNumber))
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 0, args.Player, out page))
             {
                 return;
             }
 
-            var cmdNames = from cmd in Commands.ChatCommands
-                           where cmd.CanRun(args.Player) && (cmd.Name != "setup" || TShock.SetupToken != 0)
-                           select Specifier + cmd.Name + GetShort(cmd.Name);
+            var pageSize = Config.Settings.PageSize;
+            
+            var cmdNames = Commands.ChatCommands
+                .Where(cmd => cmd.CanRun(args.Player) && (cmd.Name != "setup" || TShock.SetupToken != 0));
 
-            PaginationTools.SendPage(args.Player, pageNumber, PaginationTools.BuildLinesFromTerms(cmdNames),
-                new PaginationTools.Settings
+            var cmdNamesOrder = Config.Settings.OrderByLetter 
+                ? cmdNames.OrderBy(cmd => cmd.Name).ToList() 
+                : cmdNames.ToList();
+
+            var count = cmdNamesOrder.Count;
+            var pages = (int)Math.Ceiling(count / (double)pageSize);
+
+            if (page > pages)
+            {
+                page = pages;
+            }
+
+            var start = (page - 1) * pageSize;
+            var pagedCommands = cmdNamesOrder
+                .Skip(start)
+                .Take(pageSize)
+                .Select(cmd => $"[c/60D6D0:{specifier}][c/F1D06C:{cmd.Name}]{GetShort(cmd.Name)}")
+                .ToList();
+
+            var stringBuilder = new StringBuilder();
+            var currentLine = new StringBuilder();
+
+            stringBuilder.AppendLine(GetString($"[c/FE727D:命令列表] ([c/68A7E8:{page}]/[c/EC6AC9:{pages}]):"));
+            
+            foreach (var cmdWithSpace in pagedCommands.Select(cmd => $"{cmd} "))
+            {
+                if (currentLine.Length + cmdWithSpace.Length > Config.Settings.WithSize)
                 {
-                    HeaderFormat = GetString("命令列表 ({0}/{1}):"),
-                    FooterFormat = GetString("输入 {0}help {{0}} 翻页.", Specifier)
-                });
+                    stringBuilder.AppendLine(currentLine.ToString().Trim());
+                    currentLine.Clear();
+                }
+                currentLine.Append(cmdWithSpace);
+            }
+
+            if (currentLine.Length > 0)
+            {
+                stringBuilder.AppendLine(currentLine.ToString().Trim());
+            }
+            
+            if (page < pages)
+            {
+                stringBuilder.AppendLine(GetString($"请输入[c/68A7E8:/help {page + 1}]查看更多"));
+            }
+
+            args.Player.SendMessage(stringBuilder.ToString(), 
+                255, 244, 150);
         }
         else
         {
             var commandName = args.Parameters[0].ToLower();
-            if (commandName.StartsWith(Specifier))
+            if (commandName.StartsWith(specifier))
             {
                 commandName = commandName[1..];
             }
@@ -215,17 +123,17 @@ public class HelpPlus : TerrariaPlugin
             var command = Commands.ChatCommands.Find(c => c.Names.Contains(commandName));
             if (command == null)
             {
-                args.Player.SendErrorMessage(GetString("无效命令."));
+                args.Player.SendErrorMessage(GetString("无效命令。"));
                 return;
             }
 
             if (!command.CanRun(args.Player))
             {
-                args.Player.SendErrorMessage(GetString("你没有权限查询此命令."));
+                args.Player.SendErrorMessage(GetString("你没有权限查询此命令。"));
                 return;
             }
 
-            args.Player.SendSuccessMessage(GetString("{0}{1}的帮助:", Specifier, command.Name));
+            args.Player.SendSuccessMessage(GetString("{0}{1}的帮助:", specifier, command.Name));
             if (command.HelpDesc == null)
             {
                 args.Player.SendWarningMessage(command.HelpText);
@@ -240,13 +148,14 @@ public class HelpPlus : TerrariaPlugin
 
             if (command.Names.Count > 1)
             {
+                // ReSharper disable once StringLiteralTypo
                 args.Player.SendInfoMessage(GetString($"别名: [c/00ffff:{string.Join(',', command.Names)}]"));
             }
 
             args.Player.SendInfoMessage(
-                GetString($"权限: {(command.Permissions.Count == 0 || command.Permissions.Count(i => i == "") == command.Permissions.Count ? GetString("[c/c2ff39:无权限限制]") : $"[c/bf0705:{string.Join(',', command.Permissions)}]")}"));
+                GetString($"权限: {(command.Permissions.Count == 0 || command.Permissions.Count(i => i == "") == command.Permissions.Count ? GetString("[c/c2ff39:无权限限制]") : "[c/bf0705:" + string.Join(',', command.Permissions) + "]")}"));
             args.Player.SendInfoMessage(
-                GetString($"来源插件: [c/8500ff:{command.CommandDelegate.Method.DeclaringType!.Assembly.FullName!.Split(',').First()}]"));
+                $"来源插件: [c/8500ff:{command.CommandDelegate.Method.DeclaringType!.Assembly.FullName!.Split(',').First()}]");
             if (!command.AllowServer)
             {
                 args.Player.SendInfoMessage(GetString("*此命令只能游戏内执行"));
@@ -261,10 +170,10 @@ public class HelpPlus : TerrariaPlugin
         }
     }
 
-    public static string GetShort(string str)
+    private static string GetShort(string str)
     {
-        return Config.config.DisPlayShort && Config.config.ShortCommands.ContainsKey(str)
-            ? $"({Config.config.ShortCommands[str].Color(Utils.BoldHighlight)})"
+        return Config.Settings.DisPlayShort && Config.Settings.ShortCommands.TryGetValue(str, out var value)
+            ? $"[c/FF5260:@]{value.Color(Utils.BoldHighlight)}"
             : "";
     }
 
@@ -272,8 +181,7 @@ public class HelpPlus : TerrariaPlugin
     {
         if (disposing)
         {
-            Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
-            GeneralHooks.ReloadEvent -= this.GeneralHooks_ReloadEvent;
+            GeneralHooks.ReloadEvent -= GeneralHooks_ReloadEvent;
         }
 
         base.Dispose(disposing);
