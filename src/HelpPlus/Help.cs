@@ -16,7 +16,7 @@ namespace UserCheck;
 [ApiVersion(2, 1)]
 public class HelpPlus : TerrariaPlugin
 {
-    private readonly Command Command = new(Help, "help");
+    private readonly Command _command = new(Help, "help");
 
     public HelpPlus(Main game)
         : base(game)
@@ -24,18 +24,18 @@ public class HelpPlus : TerrariaPlugin
         this.Order = int.MaxValue;
     }
 
-    public override string Author => "Cai";
+    public override string Author => "Cai, 羽学";
 
     public override string Description => GetString("更好的Help");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new (2025, 05, 18, 5);
+    public override Version Version => new (2025, 7, 19, 0);
 
     public override void Initialize()
     {
         GeneralHooks.ReloadEvent += GeneralHooks_ReloadEvent;
         Commands.ChatCommands.RemoveAll(x => x.Name == "help");
-        Commands.ChatCommands.Add(this.Command);
+        Commands.ChatCommands.Add(this._command);
         Config.Read();
     }
 
@@ -50,27 +50,68 @@ public class HelpPlus : TerrariaPlugin
         var specifier = TShock.Config.Settings.CommandSpecifier;
         if (args.Parameters.Count > 1)
         {
-            args.Player.SendErrorMessage(GetString("无效用法.正确用法: {0}help <命令/页码>", specifier));
+            args.Player.SendErrorMessage("无效用法。正确用法: {0}help <命令/页码>", specifier);
             return;
         }
 
-        if (args.Parameters.Count == 0 || int.TryParse(args.Parameters[0], out var pageNumber))
+        if (args.Parameters.Count == 0 || int.TryParse(args.Parameters[0], out var page))
         {
-            if (!PaginationTools.TryParsePageNumber(args.Parameters, 0, args.Player, out pageNumber))
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 0, args.Player, out page))
             {
                 return;
             }
 
-            var cmdNames = from cmd in Commands.ChatCommands
-                           where cmd.CanRun(args.Player) && (cmd.Name != "setup" || TShock.SetupToken != 0)
-                           select specifier + cmd.Name + GetShort(cmd.Name);
+            var pageSize = Config.Settings.PageSize;
+            
+            var cmdNames = Commands.ChatCommands
+                .Where(cmd => cmd.CanRun(args.Player) && (cmd.Name != "setup" || TShock.SetupToken != 0));
 
-            PaginationTools.SendPage(args.Player, pageNumber, PaginationTools.BuildLinesFromTerms(cmdNames),
-                new PaginationTools.Settings
+            var cmdNamesOrder = Config.Settings.OrderByLetter 
+                ? cmdNames.OrderBy(cmd => cmd.Name).ToList() 
+                : cmdNames.ToList();
+
+            var count = cmdNamesOrder.Count;
+            var pages = (int)Math.Ceiling(count / (double)pageSize);
+
+            if (page > pages)
+            {
+                page = pages;
+            }
+
+            var start = (page - 1) * pageSize;
+            var pagedCommands = cmdNamesOrder
+                .Skip(start)
+                .Take(pageSize)
+                .Select(cmd => $"[c/60D6D0:{specifier}][c/F1D06C:{cmd.Name}]{GetShort(cmd.Name)}")
+                .ToList();
+
+            var stringBuilder = new StringBuilder();
+            var currentLine = new StringBuilder();
+
+            stringBuilder.AppendLine($"[c/FE727D:命令列表] ([c/68A7E8:{page}]/[c/EC6AC9:{pages}]):");
+            
+            foreach (var cmdWithSpace in pagedCommands.Select(cmd => $"{cmd} "))
+            {
+                if (currentLine.Length + cmdWithSpace.Length > Config.Settings.WithSize)
                 {
-                    HeaderFormat = GetString("命令列表 ({0}/{1}):"),
-                    FooterFormat = GetString("输入 {0}help {{0}} 翻页.", specifier)
-                });
+                    stringBuilder.AppendLine(currentLine.ToString().Trim());
+                    currentLine.Clear();
+                }
+                currentLine.Append(cmdWithSpace);
+            }
+
+            if (currentLine.Length > 0)
+            {
+                stringBuilder.AppendLine(currentLine.ToString().Trim());
+            }
+            
+            if (page < pages)
+            {
+                stringBuilder.AppendLine($"请输入[c/68A7E8:/help {page + 1}]查看更多");
+            }
+
+            args.Player.SendMessage(stringBuilder.ToString(), 
+                255, 244, 150);
         }
         else
         {
@@ -83,17 +124,17 @@ public class HelpPlus : TerrariaPlugin
             var command = Commands.ChatCommands.Find(c => c.Names.Contains(commandName));
             if (command == null)
             {
-                args.Player.SendErrorMessage(GetString("无效命令."));
+                args.Player.SendErrorMessage("无效命令。");
                 return;
             }
 
             if (!command.CanRun(args.Player))
             {
-                args.Player.SendErrorMessage(GetString("你没有权限查询此命令."));
+                args.Player.SendErrorMessage("你没有权限查询此命令。");
                 return;
             }
 
-            args.Player.SendSuccessMessage(GetString("{0}{1}的帮助:", specifier, command.Name));
+            args.Player.SendSuccessMessage("{0}{1}的帮助:", specifier, command.Name);
             if (command.HelpDesc == null)
             {
                 args.Player.SendWarningMessage(command.HelpText);
@@ -108,31 +149,32 @@ public class HelpPlus : TerrariaPlugin
 
             if (command.Names.Count > 1)
             {
-                args.Player.SendInfoMessage(GetString($"别名: [c/00ffff:{string.Join(',', command.Names)}]"));
+                // ReSharper disable once StringLiteralTypo
+                args.Player.SendInfoMessage($"别名: [c/00ffff:{string.Join(',', command.Names)}]");
             }
 
             args.Player.SendInfoMessage(
-                GetString($"权限: {(command.Permissions.Count == 0 || command.Permissions.Count(i => i == "") == command.Permissions.Count ? GetString("[c/c2ff39:无权限限制]") : $"[c/bf0705:{string.Join(',', command.Permissions)}]")}"));
+                $"权限: {(command.Permissions.Count == 0 || command.Permissions.Count(i => i == "") == command.Permissions.Count ? "[c/c2ff39:无权限限制]" : "[c/bf0705:" + string.Join(',', command.Permissions) + "]")}");
             args.Player.SendInfoMessage(
-                GetString($"来源插件: [c/8500ff:{command.CommandDelegate.Method.DeclaringType!.Assembly.FullName!.Split(',').First()}]"));
+                $"来源插件: [c/8500ff:{command.CommandDelegate.Method.DeclaringType!.Assembly.FullName!.Split(',').First()}]");
             if (!command.AllowServer)
             {
-                args.Player.SendInfoMessage(GetString("*此命令只能游戏内执行"));
+                args.Player.SendInfoMessage("*此命令只能游戏内执行");
             }
 
             if (!command.DoLog)
             {
-                args.Player.SendInfoMessage(GetString("*此命令不记录命令参数"));
+                args.Player.SendInfoMessage("*此命令不记录命令参数");
             }
 
-            args.Player.SendInfoMessage(GetString("*本插件只能查询主命令权限，详细权限请使用/whynot查看!"));
+            args.Player.SendInfoMessage("*本插件只能查询主命令权限，详细权限请使用/whynot查看!");
         }
     }
 
-    public static string GetShort(string str)
+    private static string GetShort(string str)
     {
-        return Config.config.DisPlayShort && Config.config.ShortCommands.ContainsKey(str)
-            ? $"({Config.config.ShortCommands[str].Color(Utils.BoldHighlight)})"
+        return Config.Settings.DisPlayShort && Config.Settings.ShortCommands.TryGetValue(str, out var value)
+            ? $"[c/FF5260:@]{value.Color(Utils.BoldHighlight)}"
             : "";
     }
 
