@@ -30,7 +30,7 @@ public class WikiLangPackLoader : TerrariaPlugin
     public override string Description => GetString("加载Wiki语言包");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new (2025, 05, 18, 2);
+    public override Version Version => new (2025, 07, 19, 0);
 
     private readonly Hook _langHook = new (typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
         "TranslationCultureInfo",
@@ -95,6 +95,7 @@ public class WikiLangPackLoader : TerrariaPlugin
     {
         if (disposing)
         {
+            this._langHook.Dispose();
             GeneralHooks.ReloadEvent -= this.GeneralHooks_ReloadEvent;
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.OnGamePostInitialize);
         }
