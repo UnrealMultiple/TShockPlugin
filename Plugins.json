@@ -1293,7 +1293,7 @@
   },
   {
     "Name": "Ezperm",
-    "Version": "1.2.10",
+    "Version": "1.3.0",
     "Author": "大豆子,肝帝熙恩优化1449",
     "Description": {
       "en-US": "A command to help beginners add missing permissions to the initial server and also allows for batch addition and deletion of permissions",
