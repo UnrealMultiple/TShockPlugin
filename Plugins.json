@@ -2640,6 +2640,92 @@
     "HotReload": true
   },
   {
+    "Name": "VBY.GameContentModify",
+    "Version": "1.11.1.0",
+    "Author": "yu",
+    "Description": {
+      "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
+      "de-DE": "一些游戏内容的修改 For Terraria v1.4.4.9",
+      "it-IT": "一些游戏内容的修改 For Terraria v1.4.4.9",
+      "fr-FR": "一些游戏内容的修改 For Terraria v1.4.4.9",
+      "es-ES": "一些游戏内容的修改 For Terraria v1.4.4.9",
+      "ru-RU": "一些游戏内容的修改 For Terraria v1.4.4.9",
+      "zh-CN": "一些游戏内容的修改 For Terraria v1.4.4.9",
+      "pt-BR": "一些游戏内容的修改 For Terraria v1.4.4.9",
+      "pl-PL": "一些游戏内容的修改 For Terraria v1.4.4.9"
+    },
+    "AssemblyName": "VBY.GameContentModify",
+    "Path": "VBY.GameContentModify.dll",
+    "Dependencies": [
+      "VBY.Common"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "VBY.OtherCommand",
+    "Version": "1.1.1.1",
+    "Author": "yu",
+    "Description": {
+      "en-US": "一些其他的辅助命令",
+      "de-DE": "一些其他的辅助命令",
+      "it-IT": "一些其他的辅助命令",
+      "fr-FR": "一些其他的辅助命令",
+      "es-ES": "一些其他的辅助命令",
+      "ru-RU": "一些其他的辅助命令",
+      "zh-CN": "一些其他的辅助命令",
+      "pt-BR": "一些其他的辅助命令",
+      "pl-PL": "一些其他的辅助命令"
+    },
+    "AssemblyName": "VBY.OtherCommand",
+    "Path": "VBY.OtherCommand.dll",
+    "Dependencies": [
+      "VBY.Common"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "VBY.PluginLoader",
+    "Version": "1.0",
+    "Author": "yu",
+    "Description": {
+      "en-US": "None",
+      "de-DE": "None",
+      "it-IT": "None",
+      "fr-FR": "None",
+      "es-ES": "None",
+      "ru-RU": "None",
+      "zh-CN": "None",
+      "pt-BR": "None",
+      "pl-PL": "None"
+    },
+    "AssemblyName": "VBY.PluginLoader",
+    "Path": "VBY.PluginLoader.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "VBY.PluginLoaderAutoReload",
+    "Version": "1.0",
+    "Author": "None",
+    "Description": {
+      "en-US": "检测PluginLoader文件夹更改后自动重载",
+      "de-DE": "检测PluginLoader文件夹更改后自动重载",
+      "it-IT": "检测PluginLoader文件夹更改后自动重载",
+      "fr-FR": "检测PluginLoader文件夹更改后自动重载",
+      "es-ES": "检测PluginLoader文件夹更改后自动重载",
+      "ru-RU": "检测PluginLoader文件夹更改后自动重载",
+      "zh-CN": "检测PluginLoader文件夹更改后自动重载",
+      "pt-BR": "检测PluginLoader文件夹更改后自动重载",
+      "pl-PL": "检测PluginLoader文件夹更改后自动重载"
+    },
+    "AssemblyName": "VBY.PluginLoaderAutoReload",
+    "Path": "VBY.PluginLoaderAutoReload.dll",
+    "Dependencies": [
+      "VBY.PluginLoader"
+    ],
+    "HotReload": true
+  },
+  {
     "Name": "VeinMiner",
     "Version": "1.6.1.1",
     "Author": "Megghy, YSpoof, Maxthegreat99, 肝帝熙恩, Cai",
