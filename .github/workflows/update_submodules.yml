@@ -24,7 +24,7 @@ jobs:
           git submodule update --init
           git submodule update --remote
           
-          changed_submodules=$(git submodule foreach --quiet 'git diff --quiet --exit-code || echo $name')
+          changed_submodules=$(git diff --cached --name-only | grep -oP 'src/Submodules/\K[^/]+' | sort -u)
           
           git add .
           if git diff --staged --quiet; then
