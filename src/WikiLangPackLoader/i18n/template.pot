@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WikiLangPackLoader\n"
-"POT-Creation-Date: 2025-01-08 13:16:34+0000\n"
-"PO-Revision-Date: 2025-01-08 13:16:34+0000\n"
+"POT-Creation-Date: 2025-07-18 18:12:31+0000\n"
+"PO-Revision-Date: 2025-07-18 18:12:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:25
+#: ../../Plugin.cs:30
 msgid "加载Wiki语言包"
 msgstr ""
 

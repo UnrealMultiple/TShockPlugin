@@ -72,7 +72,7 @@
 | [AutoClassificationQuickStack](./src/AutoClassificationQuickStack/README.md) | 0.0% | Clasificación Automática Quick Stack |  |
 | [AutoClear](./src/AutoClear/README.md) | 0.0% | Limpieza automática inteligente | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoFish](./src/AutoFish/README.md) | 0.0% | Pesca automática | [LazyAPI](./src/LazyAPI/README.md) |
-| [AutoPluginManager](./src/AutoPluginManager/README.es-ES.md) | 69.1% | Actualice los complementos automáticamente con una sola tecla |  |
+| [AutoPluginManager](./src/AutoPluginManager/README.es-ES.md) | 64.4% | Actualice los complementos automáticamente con una sola tecla |  |
 | [AutoReset](./src/AutoReset/README.md) | 0.0% | Reinicio completamente automático | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoStoreItems](./src/AutoStoreItems/README.md) | 0.0% | Almacenamiento automático | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoTeam](./src/AutoTeam/README.md) | 0.0% | Formación automática de equipos | [LazyAPI](./src/LazyAPI/README.md) |
@@ -120,7 +120,7 @@
 | [Economics.Regain](./src/Economics.Regain/README.md) | 0.0% | Reciclaje de objetos | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.RPG](./src/Economics.RPG/README.md) | 0.0% | Plugin RPG | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.Shop](./src/Economics.Shop/README.md) | 0.0% | Plugin de tienda | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Skill](./src/Economics.Skill/README.md) | 0.0% | Plugin de habilidades | [Economics.Core](./src/Economics.Core/README.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Skill](./src/Economics.Skill/README.md) | 0.0% | Plugin de habilidades | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
 | [Economics.Task](./src/Economics.Task/README.md) | 0.0% | Plugin de tareas | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 0.0% | Mejora de armas | [Economics.Core](./src/Economics.Core/README.md) |
 | [EndureBoost](./src/EndureBoost/README.md) | 0.0% | Otorga un buff específico cuando el jugador tiene una cantidad determinada de objetos |  |
@@ -199,10 +199,10 @@
 | [TransferPatch](./src/TransferPatch/README.md) | 0.0% | 翻译补丁 |  |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 0.0% | Permite que el servidor genere ítems "inobtenibles" |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Biblioteca base para plugins VBY |  |
-| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Modificaciones personalizables para cierto contenido del juego (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
-| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Proveer algunos otros comandos auxiliares | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Modificaciones personalizables para cierto contenido del juego (super) |  |
+| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Proveer algunos otros comandos auxiliares |  |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 0.0% | Un cargador de plugins que permite la recarga en caliente |  |
-| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) |
+| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 |  |
 | [VeinMiner](./src/VeinMiner/README.md) | 0.0% | Minado en cadena |  |
 | [VotePlus](./src/VotePlus/README.md) | 96.1% | Votación multifuncional |  |
 | [WeaponPlus](./src/WeaponPlus/README.md) | 100.0% | Versión de monedas para mejorar armas |  |

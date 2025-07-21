@@ -1,13 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <Import Project="..\..\template.targets" />
     <ItemGroup>
-      <PackageReference Include="Net.Codecrete.QrCodeGenerator" Version="2.0.6" />
+      <PackageReference Include="Net.Codecrete.QrCodeGenerator" Version="2.0.7" />
     </ItemGroup>
-    <ItemGroup>
-        <EmbeddedResource Include="$(NuGetPackageRoot)net.codecrete.qrcodegenerator\2.0.6\lib\net6.0\QrCodeGenerator.dll">
-            <Link>QrCodeGenerator.dll</Link>
-        </EmbeddedResource>
-    </ItemGroup>
+    <PropertyGroup>
+        <EmbedNuGetDlls>QrCodeGenerator.dll</EmbedNuGetDlls>
+    </PropertyGroup>
     <ItemGroup>
       <ProjectReference Include="..\LazyAPI\LazyAPI.csproj" />
     </ItemGroup>

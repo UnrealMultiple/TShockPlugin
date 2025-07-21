@@ -67,9 +67,9 @@
 | [AutoAirItem](./src/AutoAirItem/README.en-US.md) | 100.0% | Automatic trash cans | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.en-US.md) | 100.0% | Automatic broadcast | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoClassificationQuickStack](./src/AutoClassificationQuickStack/README.md) | 0.0% | Auto Classification Quick Stack |  |
-| [AutoClear](./src/AutoClear/README.en-US.md) | 100.0% | Intelligent automatic cleaning | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [AutoClear](./src/AutoClear/README.en-US.md) | 75.0% | Intelligent automatic cleaning | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoFish](./src/AutoFish/README.en-US.md) | 100.0% | Automatic fishing | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [AutoPluginManager](./src/AutoPluginManager/README.en-US.md) | 100.0% | Update plugins automatically in one key |  |
+| [AutoPluginManager](./src/AutoPluginManager/README.en-US.md) | 93.2% | Update plugins automatically in one key |  |
 | [AutoReset](./src/AutoReset/README.en-US.md) | 100.0% | Fully automatic reset | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoStoreItems](./src/AutoStoreItems/README.en-US.md) | 100.0% | Automatic storage | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoTeam](./src/AutoTeam/README.en-US.md) | 100.0% | Automatic team formation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -89,7 +89,7 @@
 | [CGive](./src/CGive/README.en-US.md) | 92.9% | Offline commands |  |
 | [Challenger](./src/Challenger/README.en-US.md) | 100.0% | Challenger mode |  |
 | [Chameleon](./src/Chameleon/README.en-US.md) | 100.0% | Login before entering the server | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [ChattyBridge](./src/ChattyBridge/README.en-US.md) | 100.0% | Used for cross-server chat | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [ChattyBridge](./src/ChattyBridge/README.en-US.md) | 33.3% | Used for cross-server chat | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ChestRestore](./src/ChestRestore/README.en-US.md) | 80.0% | Infinite items in resource servers |  |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the core part |  |
 | [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the miscellaneous part | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
@@ -110,14 +110,14 @@
 | [Dummy](./src/Dummy/README.en-US.md) | 100.0% | Dummy client | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.en-US.md) | 100.0% | Dump Terraria IDs |  |
 | [DwTP](./src/DwTP/README.en-US.md) | 100.0% | Positioning Teleport |  |
-| [Economics.Core](./src/Economics.Core/README.en-US.md) | 100.0% | Economic plugin prerequisite |  |
+| [Economics.Core](./src/Economics.Core/README.en-US.md) | 92.9% | Economic plugin prerequisite |  |
 | [Economics.Deal](./src/Economics.Deal/README.en-US.md) | 100.0% | Trading plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [Economics.NPC](./src/Economics.NPC/README.en-US.md) | 100.0% | Custom monster rewards | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [Economics.Projectile](./src/Economics.Projectile/README.en-US.md) | 100.0% | Custom projectiles | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.Regain](./src/Economics.Regain/README.en-US.md) | 100.0% | Item recycling | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [Economics.RPG](./src/Economics.RPG/README.en-US.md) | 100.0% | RPG plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [Economics.Shop](./src/Economics.Shop/README.en-US.md) | 100.0% | Shop plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
-| [Economics.Skill](./src/Economics.Skill/README.en-US.md) | 100.0% | Skill plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
+| [Economics.Skill](./src/Economics.Skill/README.en-US.md) | 72.5% | Skill plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.Task](./src/Economics.Task/README.en-US.md) | 100.0% | Task plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [EndureBoost](./src/EndureBoost/README.en-US.md) | 100.0% | Grant specified buff when the player has a certain number of items |  |
@@ -196,10 +196,10 @@
 | [TransferPatch](./src/TransferPatch/README.en-US.md) | 50.0% | Transfer Plugin Config Patch |  |
 | [UnseenInventory](./src/UnseenInventory/README.en-US.md) | 100.0% | Allows the server to generate items that are normally 'unobtainable' |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Foundation library for VBY plugins |  |
-| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Customizable modifications for certain game content (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
-| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Provide some other auxiliary commands | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Customizable modifications for certain game content (super) |  |
+| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Provide some other auxiliary commands |  |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 0.0% | A plugin loader that allows hot reloading |  |
-| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) |
+| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 |  |
 | [VeinMiner](./src/VeinMiner/README.en-US.md) | 100.0% | Chain mining |  |
 | [VotePlus](./src/VotePlus/README.en-US.md) | 100.0% | Multi-function voting |  |
 | [WeaponPlus](./src/WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement coin version |  |

@@ -23,10 +23,18 @@ jobs:
           git pull
           git submodule update --init
           git submodule update --remote
+          
+          changed_submodules=$(git diff --cached --name-only | grep -oP 'src/Submodules/\K[^/]+' | sort -u)
+          
           git add .
           if git diff --staged --quiet; then
             echo "跳过更新：子模块没有变化"
           else
-            git commit -m "自动更新子模块 [skip ci]"
+            if [ -n "$changed_submodules" ]; then
+              submodule_list=$(echo "$changed_submodules" | sort -u | tr '\n' ',' | sed 's/,$//')
+              git commit -m "chore: 自动更新子模块$submodule_list"
+            else
+              git commit -m "chore: 自动更新子模块"
+            fi
             git push
           fi

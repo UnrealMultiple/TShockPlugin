@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-06-27 01:20:20+0000\n"
-"PO-Revision-Date: 2025-06-27 01:22\n"
+"POT-Creation-Date: 2025-06-30 14:56:33+0000\n"
+"PO-Revision-Date: 2025-07-01 01:40\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -91,9 +91,9 @@ msgstr ""
 msgid "[计划书]重新加载配置完毕。"
 msgstr ""
 
+#: ../../PControl.Utils.cs:120
 #: ../../PControl.Initialize.cs:278
 #: ../../PControl.Initialize.cs:279
-#: ../../PControl.Utils.cs:120
 #, csharp-format
 msgid "{0} 删除成功"
 msgstr ""
@@ -390,10 +390,10 @@ msgstr ""
 msgid "你输入的地图名称带有非法字符或不必要的后缀，已过滤为：{0}"
 msgstr ""
 
+#: ../../PControl.Utils.cs:129
 #: ../../PControl.Initialize.cs:292
 #: ../../PControl.Initialize.cs:293
 #: ../../PControl.Initialize.cs:294
-#: ../../PControl.Utils.cs:129
 #, csharp-format
 msgid "使用指令删除哪些文件发生错误：{0}"
 msgstr ""
@@ -452,10 +452,10 @@ msgstr ""
 msgid "大师"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:778
-#: ../../PControl.Initialize.cs:782
 #: ../../PControl.Utils.cs:359
 #: ../../PControl.Utils.cs:363
+#: ../../PControl.Initialize.cs:778
+#: ../../PControl.Initialize.cs:782
 #, csharp-format
 msgid "定位成功，{0}将{1}解锁"
 msgstr ""
@@ -597,17 +597,17 @@ msgstr ""
 msgid "指令计划："
 msgstr ""
 
+#: ../../PControl.Utils.cs:352
 #: ../../PControl.Initialize.cs:739
 #: ../../PControl.Initialize.cs:773
 #: ../../PControl.Initialize.cs:1256
-#: ../../PControl.Utils.cs:352
 msgid "推迟"
 msgstr ""
 
+#: ../../PControl.Utils.cs:354
 #: ../../PControl.Initialize.cs:740
 #: ../../PControl.Initialize.cs:774
 #: ../../PControl.Initialize.cs:1257
-#: ../../PControl.Utils.cs:354
 msgid "提前"
 msgstr ""
 
@@ -751,9 +751,9 @@ msgstr ""
 msgid "服务器正在重置——来自插件：计划书ProgressControl"
 msgstr ""
 
-#: ../../PControl.Initialize.cs:1162
 #: ../../PControl.Utils.cs:314
 #: ../../PControl.Utils.cs:315
+#: ../../PControl.Initialize.cs:1162
 msgid "服务器自动执行指令成功"
 msgstr ""
 
@@ -908,9 +908,9 @@ msgstr ""
 msgid "格式错误。应为[±num]或[±H:M:S]，num必须为整数或小数，H M S必须为整数或不填(不能为空格)，正号可以不加，冒号可用小数点代替但必须都要填"
 msgstr ""
 
+#: ../../PControl.Utils.cs:355
 #: ../../PControl.Initialize.cs:740
 #: ../../PControl.Initialize.cs:774
-#: ../../PControl.Utils.cs:355
 msgid "正常"
 msgstr ""
 
@@ -1040,9 +1040,9 @@ msgstr ""
 msgid "警告，未开启自动执行指令的计划，你的修改不会有任何效果"
 msgstr ""
 
+#: ../../PControl.Utils.cs:358
 #: ../../PControl.Initialize.cs:743
 #: ../../PControl.Initialize.cs:777
-#: ../../PControl.Utils.cs:358
 msgid "警告，未开启自动控制NPC进度计划，你的修改不会有任何效果"
 msgstr ""
 
