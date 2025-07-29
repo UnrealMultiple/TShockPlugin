@@ -1,8 +1,6 @@
 using MonoMod.RuntimeDetour;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using System;
-using System.IO;
 using Terraria;
 using Terraria.IO;
 using Terraria.Map;

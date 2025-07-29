@@ -1,16 +1,8 @@
 ﻿using CaiBotLite.Enums;
-using CaiBotLite.Moulds;
 using Economics.RPG;
-using Economics.RPG.Model;
-using Economics.Skill.DB;
-using System;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
+using Economics.Skill;
 using System.Runtime.CompilerServices;
 using TerrariaApi.Server;
-using Economics;
-using Economics.Skill;
 
 namespace CaiBotLite.Services;
 
