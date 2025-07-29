@@ -21,7 +21,7 @@ public class PlayerLevelManager
             new SqlColumn("UserName", MySqlDbType.Text) { Length = 500 },
             new SqlColumn("Level", MySqlDbType.Text) { Length = 255 }
               );
-        var List = new SqlTableCreator(this.database, this.database.GetSqlQueryBuilder());
+        var List = new SqlTableCreator(this.database, null);
         List.EnsureTableStructure(Skeleton);
         this.Levels = this.GetPlayerLevel();
     }

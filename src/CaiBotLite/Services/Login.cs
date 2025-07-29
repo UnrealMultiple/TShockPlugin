@@ -110,7 +110,7 @@ internal static class Login
             return;
         }
 
-        if (player.State < (int)ConnectionState.Complete
+        if (player.State < 10
             && type > PacketTypes.PlayerSpawn 
             && type != PacketTypes.PlayerMana
             && type != PacketTypes.PlayerHp
@@ -128,7 +128,7 @@ internal static class Login
         {
             if (type == PacketTypes.ContinueConnecting2)
             {
-                player.DataWhenJoined = new PlayerData();
+                player.DataWhenJoined = new PlayerData(player);
                 player.DataWhenJoined.CopyCharacter(player);
                 args.Handled = true;
             }
@@ -237,9 +237,9 @@ internal static class Login
             player.RequiresPassword = false;
             player.PlayerData = TShock.CharacterDB.GetPlayerData(player, account.ID);
 
-            if (player.State == (int)ConnectionState.AssigningPlayerSlot)
+            if (player.State == 1)
             {
-                player.State = (int)ConnectionState.AwaitingPlayerInfo;
+                player.State = 2;
             }
             
 
@@ -300,9 +300,9 @@ internal static class Login
             TShock.Log.ConsoleInfo("玩家{0}注册了新账户：{1}", player.Name, account.Name);
             player.PlayerData = TShock.CharacterDB.GetPlayerData(player, account.ID);
 
-            if (player.State == (int)ConnectionState.AssigningPlayerSlot)
+            if (player.State == 1)
             {
-                player.State = (int)ConnectionState.AwaitingPlayerInfo;
+                player.State = 2;
             }
 
             NetMessage.SendData((int) PacketTypes.WorldInfo, player.Index);

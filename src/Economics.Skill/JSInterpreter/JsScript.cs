@@ -1,6 +1,5 @@
 ﻿using Economics.Skill.Attributes;
 using Economics.Skill.Model;
-using HookEvents.Terraria;
 using Jint;
 using Microsoft.Xna.Framework;
 using System.Linq.Expressions;

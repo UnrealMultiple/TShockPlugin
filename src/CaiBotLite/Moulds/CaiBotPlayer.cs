@@ -34,7 +34,7 @@ public partial class CaiBotPlayer : TSPlayer
             result1 += item.Text;
         }
 
-        var regex = MyRegex();
+        var regex = new Regex(@"\[i(tem)?(?:\/s(?<Stack>\d{1,4}))?(?:\/p(?<Prefix>\d{1,3}))?:(?<NetID>-?\d{1,4})\]");
 
         var result = regex.Replace(result1, m =>
         {
@@ -80,7 +80,4 @@ public partial class CaiBotPlayer : TSPlayer
     {
         return this._commandOutput;
     }
-
-    [GeneratedRegex(@"\[i(tem)?(?:\/s(?<Stack>\d{1,4}))?(?:\/p(?<Prefix>\d{1,3}))?:(?<NetID>-?\d{1,4})\]")]
-    private static partial Regex MyRegex();
 }

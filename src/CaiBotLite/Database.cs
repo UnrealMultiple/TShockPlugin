@@ -24,7 +24,6 @@ public static class Database
         {
             SqlType.Mysql => ProviderName.MySql,
             SqlType.Sqlite => ProviderName.SQLiteMS,
-            SqlType.Postgres => ProviderName.PostgreSQL,
             _ => ""
         };
     }

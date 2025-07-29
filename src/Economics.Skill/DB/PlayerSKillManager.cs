@@ -43,7 +43,7 @@ public class PlayerSKillManager
             new SqlColumn("BindItem", MySqlDbType.Int32) { Length = 255 },
             new SqlColumn("Level", MySqlDbType.Int32) { Length = 8 }
               );
-        var List = new SqlTableCreator(this.database, this.database.GetSqlQueryBuilder());
+        var List = new SqlTableCreator(this.database, null);
         List.EnsureTableStructure(Skeleton);
         this.ReadAll();
     }

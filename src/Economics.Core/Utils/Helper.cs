@@ -15,7 +15,7 @@ namespace Economics.Core.Utils;
 
 public partial class Helper
 {
-    private static readonly Regex Regex = ChatRegex();
+    private static readonly Regex Regex = new Regex(@"\[(?<type>[^\]]+):(?<id>\d+)\]");
 
     /// <summary>
     /// 生成渐变色消息
@@ -89,7 +89,5 @@ public partial class Helper
         args.Messages.OrderBy(x => x.Order).ForEach(x => sb.AppendLine(GetGradientText(x.Message) + Left));
         args.Player?.SendData(PacketTypes.Status, sb.ToString(), 0, 1);
     }
-
-    [GeneratedRegex(@"\[(?<type>[^\]]+):(?<id>\d+)\]")]
-    public static partial Regex ChatRegex();
+    
 }
