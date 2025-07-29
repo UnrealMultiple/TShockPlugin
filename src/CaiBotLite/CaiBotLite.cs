@@ -15,7 +15,7 @@ namespace CaiBotLite;
 // ReSharper disable once ClassNeverInstantiated.Global
 public class CaiBotLite(Main game) : TerrariaPlugin(game)
 {
-    public static readonly Version VersionNum = new (2025, 06, 04, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new (2025, 07, 29, 2); //日期+版本号(0,1,2...)
     internal static int InitCode = -1;
     internal static bool DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
     private const string CharacterInfoKey = "CaiBotLite.CharacterInfo";
@@ -78,9 +78,6 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             {
                 var characterInfo = player.GetData<CaiCharacterInfo>(CharacterInfoKey);
                 characterInfo?.CreatOrUpdate();
-                // TODO: 移除测试语句
-                player.SendSuccessMessage("[CaiBotLite] 统计数据已保存!"); 
-                player.SendSuccessMessage(JsonConvert.SerializeObject(characterInfo));
             }
 
             _timer = 0;
@@ -151,8 +148,6 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             {
                 bossInfo.KillCounts++;
             }
-
-            player.SendSuccessMessage(JsonConvert.SerializeObject(characterInfo));
         }
     }
     

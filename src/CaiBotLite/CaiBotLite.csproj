@@ -9,7 +9,6 @@
 
     <PropertyGroup>
         <EmbedNuGetDlls>SixLabors.ImageSharp.dll</EmbedNuGetDlls>
-        <EmbedNuGetDlls>linq2db.dll</EmbedNuGetDlls>
     </PropertyGroup>
     
     <ItemGroup>

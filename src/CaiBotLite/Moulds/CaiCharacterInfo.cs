@@ -37,7 +37,6 @@ public class CaiCharacterInfo
             .ToList();
 
         characterInfo.BossKills = bossInfo;
-        Console.WriteLine(JsonConvert.SerializeObject(characterInfo));
         return characterInfo;
     }
 
