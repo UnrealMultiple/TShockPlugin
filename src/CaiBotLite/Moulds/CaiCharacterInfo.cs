@@ -50,10 +50,18 @@ public class CaiCharacterInfo
 
         foreach (var bossKill in this.BossKills)
         {
-            var affected = db.Update(bossKill);
-            if (affected == 0)
+            var result = db.GetTable<BossKillInfo>().FirstOrDefault(x => 
+                x.AccountName == bossKill.AccountName && x.BossId == bossKill.BossId
+            );
+
+            if (result is null)
             {
                 db.Insert(bossKill);
+            }
+            else
+            {
+                result.KillCounts = bossKill.KillCounts;
+                db.Update(result);
             }
         }
     }
