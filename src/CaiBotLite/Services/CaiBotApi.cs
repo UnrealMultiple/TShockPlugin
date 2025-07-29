@@ -48,7 +48,7 @@ internal static class CaiBotApi
                         .Write("player_list", TShock.Players.Where(x => x is { Active: true }).Select(x => x.Name))
                         .Write("current_online", TShock.Utils.GetActivePlayerCount())
                         .Write("max_online", TShock.Config.Settings.MaxSlots)
-                        .Write("process", Utils.GetWorldProcess())
+                        .Write("process",Config.Settings.ShowProcessInPlayerList?Utils.GetWorldProcess():"")
                         .Send();
                     break;
                 case PackageType.Progress:
