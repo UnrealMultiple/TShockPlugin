@@ -1,11 +1,12 @@
 {
+  "Dependencies": [],
   "README.en-US": {
-    "Description": "Generate map images"
+    "Description": "Generate map"
   },
   "README.es-ES": {
-    "Description": "Generar imágenes de mapas"
+    "Description": "Generar mapas"
   },
   "README": {
-    "Description": "生成地图图片"
+    "Description": "生成地图"
   }
 }
