@@ -8,6 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="protobuf-net" Version="3.2.52" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.10" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.11" />
   </ItemGroup>
 </Project>
