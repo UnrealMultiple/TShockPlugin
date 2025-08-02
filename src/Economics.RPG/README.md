@@ -17,7 +17,7 @@
 | /level reset | economics.rpg.admin |  重置  |
 
 ## 进度限制
-Economics文档：[进度限制值](../EconomicsAPI/README.md)
+Economics文档：[进度限制值](../Economics.Core/README.md)
 
 ## 配置
 > 配置文件位置：tshock/Economics/RPG.json
