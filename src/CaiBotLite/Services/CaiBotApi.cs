@@ -56,6 +56,7 @@ internal static class CaiBotApi
                         .Write("is_text", false)
                         .Write("process", Utils.GetProcessList())
                         .Write("kill_counts", Utils.GetKillCountList())
+                        .Write("boss_lock", BossLockSupport.Support?BossLockSupport.GetLockBosses(): new Dictionary<string, string>())
                         .Write("world_name", Main.worldName)
                         .Write("drunk_world", Main.drunkWorld)
                         .Write("zenith_world", Main.zenithWorld)

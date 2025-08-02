@@ -43,8 +43,9 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         GetDataHandlers.KillMe += KillMe;
         MapGenerator.Init();
         EconomicSupport.Init();
+        BossLockSupport.Init();
         WebsocketManager.Init();
-        Commands.ChatCommands.Add(new Command("caibotlite.admin", this.CaiBotCommand, "caibotlite", "cbl"));
+        Commands.ChatCommands.Add(new Command("caibotlite.admin", CaiBotCommand, "caibotlite", "cbl"));
     }
 
     protected override void Dispose(bool disposing)
@@ -157,34 +158,9 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         e.Player.SendSuccessMessage("[CaiBotLite]配置文件已重载 :)");
     }
     
-    private void CaiBotCommand(CommandArgs args)
+    private static void CaiBotCommand(CommandArgs args)
     {
         var plr = args.Player;
-
-        void ShowHelpText()
-        {
-            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, plr, out var pageNumber))
-            {
-                return;
-            }
-
-            List<string> lines =
-            [
-                "/cbl debug CaiBot调试开关",
-                "/cbl reset 重置数据统计",
-                "/cbl code 生成并且展示验证码",
-                "/cbl info 显示CaiBot的一些信息",
-                "/cbl unbind 主动解除绑定",
-                "/cbl whitelist 开关白名单",
-                "/cbl group <群号> 设置踢出显示的群号",
-                "/cbl test Cai保留用于测试的命令, 乱用可能会爆掉"
-            ];
-
-            PaginationTools.SendPage(
-                plr, pageNumber, lines,
-                new PaginationTools.Settings { HeaderFormat = GetString("帮助 ({0}/{1})："), FooterFormat = GetString("输入 {0}caibotlite help {{0}} 查看更多").SFormat(Commands.Specifier) }
-            );
-        }
 
         if (args.Parameters.Count == 0)
         {
@@ -282,6 +258,33 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
                 break;
                 
                 
+        }
+
+        return;
+
+        void ShowHelpText()
+        {
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, plr, out var pageNumber))
+            {
+                return;
+            }
+
+            List<string> lines =
+            [
+                "/cbl debug CaiBot调试开关",
+                "/cbl reset 重置数据统计",
+                "/cbl code 生成并且展示验证码",
+                "/cbl info 显示CaiBot的一些信息",
+                "/cbl unbind 主动解除绑定",
+                "/cbl whitelist 开关白名单",
+                "/cbl group <群号> 设置踢出显示的群号",
+                "/cbl test Cai保留用于测试的命令, 乱用可能会爆掉"
+            ];
+
+            PaginationTools.SendPage(
+                plr, pageNumber, lines,
+                new PaginationTools.Settings { HeaderFormat = GetString("帮助 ({0}/{1})："), FooterFormat = GetString("输入 {0}caibotlite help {{0}} 查看更多").SFormat(Commands.Specifier) }
+            );
         }
     }
 
