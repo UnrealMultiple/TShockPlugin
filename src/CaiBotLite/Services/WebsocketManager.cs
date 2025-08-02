@@ -12,11 +12,11 @@ namespace CaiBotLite.Services;
 
 public static class WebsocketManager
 {
-    public static ClientWebSocket WebSocket = null!;
+    public static ClientWebSocket? WebSocket;
 
     private const string BotServerUrl = "api.terraria.ink:22338";
     //private const string BotServerUrl = "127.0.0.1:8080";
-    internal static bool IsWebsocketConnected => WebSocket.State == WebSocketState.Open;
+    internal static bool IsWebsocketConnected => WebSocket?.State == WebSocketState.Open;
     private static bool _isStopWebsocket;
 
     public static void Init()
@@ -29,7 +29,7 @@ public static class WebsocketManager
     public static void StopWebsocket()
     {
         _isStopWebsocket = true;
-        WebSocket.Dispose();
+        WebSocket?.Dispose();
     }
 
     private static async Task? StartHeartBeat()
@@ -39,7 +39,7 @@ public static class WebsocketManager
             await Task.Delay(TimeSpan.FromSeconds(60));
             try
             {
-                if (WebSocket.State == WebSocketState.Open)
+                if (WebSocket?.State == WebSocketState.Open)
                 {
                     var packetWriter = new PackageWriter(PackageType.Heartbeat, false, null);
                     packetWriter.Send();

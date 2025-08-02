@@ -28,7 +28,7 @@ internal static class CaiBotApi
                     Config.Settings.Token = string.Empty;
                     Config.Settings.Write();
                     CaiBotLite.GenBindCode(EventArgs.Empty);
-                    WebsocketManager.WebSocket.Dispose();
+                    WebsocketManager.WebSocket?.Dispose();
                     break;
                 case PackageType.CallCommand:
                     var command = package.Read<string>("command");

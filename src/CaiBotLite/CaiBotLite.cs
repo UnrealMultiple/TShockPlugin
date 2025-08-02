@@ -216,7 +216,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             case "info":
                 plr.SendInfoMessage($"[CaiBot信息]\n" +
                                     $"插件版本: v{VersionNum}\n" +
-                                    $"WebSocket状态: {WebsocketManager.WebSocket.State}\n" +
+                                    $"WebSocket状态: {WebsocketManager.WebSocket?.State}\n" +
                                     $"设置QQ群: {(Config.Settings.GroupNumber == 0L ? "未设置" : Config.Settings.GroupNumber)}\n" +
                                     $"绑定状态: {Config.Settings.Token != ""}\n" +
                                     $"Debug模式: {DebugMode}\n" +
@@ -251,7 +251,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
                 }
                 Config.Settings.Token = string.Empty;
                 Config.Settings.Write();
-                WebsocketManager.WebSocket.Dispose();
+                WebsocketManager.WebSocket?.Dispose();
                 GenBindCode(EventArgs.Empty);
                 plr.SendInfoMessage("[CaiBotLite]验证码已生成,请在后台查看喵~");
                 break;
@@ -259,7 +259,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             case "whitelist":
                 Config.Settings.WhiteList = !Config.Settings.WhiteList;
                 Config.Settings.Write();
-                WebsocketManager.WebSocket.Dispose();
+                WebsocketManager.WebSocket?.Dispose();
                 plr.SendInfoMessage($"[CaiBotLite]白名单已{(Config.Settings.WhiteList?"开启":"关闭")}!");
                 break;
             case "群号":
