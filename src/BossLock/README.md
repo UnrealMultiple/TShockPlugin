@@ -12,7 +12,7 @@
 | `/bl`        | `bosslock`  | 显示帮助信息     |
 | `/bl list`   | `bosslock`  | 列出所有定时进度配置 |
 | `/bl reset`  | `bosslock`  | 重置进度配置     |
-| `/bl edit`   | `bbosslock` | 修改进度配置     |
+| `/bl edit`   | `bosslock`  | 修改进度配置     |
 | `/bl unlock` | `bosslock`  | 解锁进度       |
 | `locklist`   | 无           | 进度列表       |
 
