@@ -19,7 +19,7 @@ public class QRCoder : LazyPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Jonesn，熙恩，Radix.";
     public override string Description => "生成二维码";
-    public override Version Version => new Version(1, 0, 0, 2);
+    public override Version Version => new Version(1, 0, 0, 3);
 
     private readonly Dictionary<int, QRPosition> _playerPositions = new Dictionary<int, QRPosition>();
 
@@ -58,9 +58,9 @@ public class QRCoder : LazyPlugin
             AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
             GetDataHandlers.TileEdit -= this.OnTileEdit;
             ((List<RestCommand>) typeof(Rest)
-                .GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+                .GetField("commands", BindingFlags.NonPublic | BindingFlags.Instance)!
                 .GetValue(TShock.RestApi)!)
-                .RemoveAll(x => x.Name == "/tool/qrcoder");
+                .RemoveAll(x => x.UriTemplate == "/tool/qrcoder");
         }
         base.Dispose(Disposing);
     }
