@@ -33,6 +33,15 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 
 ## 更新日志
 
+### v2025.08.03.0
+- 修复在线排行数据错误，优化Websocket处理，适配BossLock
+
+### v2025.07.31.0
+- 修复依赖失效
+
+### v2025.07.30.0
+- 适配CaiBotLite2，添加排行榜功能
+
 ### v2025.06.04.1 
 - 添加命令`/cbl group <群号>`和`/cbl whitelist`方便配置插件
 - 默认显示报错调用栈
