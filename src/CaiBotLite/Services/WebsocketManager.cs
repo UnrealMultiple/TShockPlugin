@@ -101,7 +101,15 @@ public static class WebsocketManager
                 while (true)
                 {
                     var buffer = new byte[1024];
-                    var result = await WebSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                    var memoryStream = new MemoryStream();
+
+                    WebSocketReceiveResult result;
+                    do 
+                    {
+                        result = await WebSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                        await memoryStream.WriteAsync(buffer.AsMemory(0, result.Count));
+                    } 
+                    while (!result.EndOfMessage);
 
                     if (result.MessageType == WebSocketMessageType.Close)
                     {
