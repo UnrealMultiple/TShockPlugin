@@ -491,6 +491,26 @@
     "HotReload": true
   },
   {
+    "Name": "BossLock",
+    "Version": "2.0.0.0",
+    "Author": "Cai",
+    "Description": {
+      "en-US": "进度锁",
+      "de-DE": "进度锁",
+      "it-IT": "进度锁",
+      "fr-FR": "进度锁",
+      "es-ES": "进度锁",
+      "ru-RU": "进度锁",
+      "zh-CN": "进度锁",
+      "pt-BR": "进度锁",
+      "pl-PL": "进度锁"
+    },
+    "AssemblyName": "BossLock",
+    "Path": "BossLock.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "BridgeBuilder",
     "Version": "1.1.4",
     "Author": "Soofa，肝帝熙恩汉化1449",
@@ -536,7 +556,7 @@
   },
   {
     "Name": "CaiBotLitePlugin",
-    "Version": "2025.6.4.1",
+    "Version": "2025.8.3.0",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot官方机器人的适配插件",
@@ -551,27 +571,9 @@
     },
     "AssemblyName": "CaiBotLite",
     "Path": "CaiBotLite.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "CaiBotPlugin",
-    "Version": "2025.5.18.2",
-    "Author": "Cai,羽学,西江",
-    "Description": {
-      "en-US": "CaiBot机器人的适配插件",
-      "de-DE": "CaiBot机器人的适配插件",
-      "it-IT": "CaiBot机器人的适配插件",
-      "fr-FR": "CaiBot机器人的适配插件",
-      "es-ES": "CaiBot机器人的适配插件",
-      "ru-RU": "CaiBot机器人的适配插件",
-      "zh-CN": "CaiBot机器人的适配插件",
-      "pt-BR": "CaiBot机器人的适配插件",
-      "pl-PL": "CaiBot机器人的适配插件"
-    },
-    "AssemblyName": "CaiBot",
-    "Path": "CaiBot.dll",
-    "Dependencies": [],
+    "Dependencies": [
+      "linq2db"
+    ],
     "HotReload": true
   },
   {
@@ -594,26 +596,6 @@
     "Dependencies": [
       "LazyAPI"
     ],
-    "HotReload": true
-  },
-  {
-    "Name": "CaiLib",
-    "Version": "2025.5.18.5",
-    "Author": "Cai",
-    "Description": {
-      "en-US": "CaiLib",
-      "de-DE": "CaiLib",
-      "it-IT": "CaiLib",
-      "fr-FR": "CaiLib",
-      "es-ES": "CaiLib",
-      "ru-RU": "CaiLib",
-      "zh-CN": "CaiLib",
-      "pt-BR": "CaiLib",
-      "pl-PL": "CaiLib"
-    },
-    "AssemblyName": "CaiLib",
-    "Path": "CaiLib.dll",
-    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -641,7 +623,7 @@
   },
   {
     "Name": "CGive",
-    "Version": "1.0.1.0",
+    "Version": "1.0.1.1",
     "Author": "Leader",
     "Description": {
       "en-US": "Give offline",
@@ -703,7 +685,7 @@
   },
   {
     "Name": "ChattyBridge",
-    "Version": "1.0.1.4",
+    "Version": "1.0.1.5",
     "Author": "少司命",
     "Description": {
       "en-US": "ChattyBridge",
@@ -907,7 +889,7 @@
   },
   {
     "Name": "DataSync",
-    "Version": "2025.5.18",
+    "Version": "2025.8.2",
     "Author": "None",
     "Description": {
       "en-US": "None",
@@ -1355,8 +1337,8 @@
   },
   {
     "Name": "GenerateMap",
-    "Version": "1.0.5",
-    "Author": "少司命",
+    "Version": "2.0.0",
+    "Author": "少司命, Cai",
     "Description": {
       "en-US": "Generate map image",
       "de-DE": "生成地图图片",
@@ -1370,9 +1352,7 @@
     },
     "AssemblyName": "GenerateMap",
     "Path": "GenerateMap.dll",
-    "Dependencies": [
-      "CaiLib"
-    ],
+    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -2034,7 +2014,7 @@
   },
   {
     "Name": "QRCoder",
-    "Version": "1.0.0.2",
+    "Version": "1.1.0.0",
     "Author": "Jonesn，熙恩，Radix.",
     "Description": {
       "en-US": "生成二维码",
@@ -2214,7 +2194,7 @@
   },
   {
     "Name": "RestInventory",
-    "Version": "1.0.0.6",
+    "Version": "1.0.0.7",
     "Author": "少司命",
     "Description": {
       "en-US": "rest query inventory",
@@ -2637,92 +2617,6 @@
     "AssemblyName": "UnseenInventory",
     "Path": "UnseenInventory.dll",
     "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "VBY.GameContentModify",
-    "Version": "1.11.1.0",
-    "Author": "yu",
-    "Description": {
-      "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "de-DE": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "it-IT": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "fr-FR": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "es-ES": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "ru-RU": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "zh-CN": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "pt-BR": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "pl-PL": "一些游戏内容的修改 For Terraria v1.4.4.9"
-    },
-    "AssemblyName": "VBY.GameContentModify",
-    "Path": "VBY.GameContentModify.dll",
-    "Dependencies": [
-      "VBY.Common"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "VBY.OtherCommand",
-    "Version": "1.1.1.1",
-    "Author": "yu",
-    "Description": {
-      "en-US": "一些其他的辅助命令",
-      "de-DE": "一些其他的辅助命令",
-      "it-IT": "一些其他的辅助命令",
-      "fr-FR": "一些其他的辅助命令",
-      "es-ES": "一些其他的辅助命令",
-      "ru-RU": "一些其他的辅助命令",
-      "zh-CN": "一些其他的辅助命令",
-      "pt-BR": "一些其他的辅助命令",
-      "pl-PL": "一些其他的辅助命令"
-    },
-    "AssemblyName": "VBY.OtherCommand",
-    "Path": "VBY.OtherCommand.dll",
-    "Dependencies": [
-      "VBY.Common"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "VBY.PluginLoader",
-    "Version": "1.0",
-    "Author": "yu",
-    "Description": {
-      "en-US": "None",
-      "de-DE": "None",
-      "it-IT": "None",
-      "fr-FR": "None",
-      "es-ES": "None",
-      "ru-RU": "None",
-      "zh-CN": "None",
-      "pt-BR": "None",
-      "pl-PL": "None"
-    },
-    "AssemblyName": "VBY.PluginLoader",
-    "Path": "VBY.PluginLoader.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "VBY.PluginLoaderAutoReload",
-    "Version": "1.0",
-    "Author": "None",
-    "Description": {
-      "en-US": "检测PluginLoader文件夹更改后自动重载",
-      "de-DE": "检测PluginLoader文件夹更改后自动重载",
-      "it-IT": "检测PluginLoader文件夹更改后自动重载",
-      "fr-FR": "检测PluginLoader文件夹更改后自动重载",
-      "es-ES": "检测PluginLoader文件夹更改后自动重载",
-      "ru-RU": "检测PluginLoader文件夹更改后自动重载",
-      "zh-CN": "检测PluginLoader文件夹更改后自动重载",
-      "pt-BR": "检测PluginLoader文件夹更改后自动重载",
-      "pl-PL": "检测PluginLoader文件夹更改后自动重载"
-    },
-    "AssemblyName": "VBY.PluginLoaderAutoReload",
-    "Path": "VBY.PluginLoaderAutoReload.dll",
-    "Dependencies": [
-      "VBY.PluginLoader"
-    ],
     "HotReload": true
   },
   {
