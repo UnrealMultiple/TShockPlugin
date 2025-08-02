@@ -14,37 +14,33 @@ using LazyAPI;
 namespace QRCoder;
 
 [ApiVersion(2, 1)]
-public class QRCoder : LazyPlugin
+public class QRCoder(Main game) : LazyPlugin(game)
 {
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Jonesn，熙恩，Radix.";
     public override string Description => "生成二维码";
-    public override Version Version => new Version(1, 0, 0, 2);
+    public override Version Version => new (1, 1, 0, 0);
 
-    private readonly Dictionary<int, QRPosition> _playerPositions = new Dictionary<int, QRPosition>();
-
-    public QRCoder(Main game) : base(game)
-    {
-    }
+    private readonly Dictionary<int, QRPosition> _playerPositions = new ();
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("qr.add", this.QREncoder, "qr")
+        Commands.ChatCommands.Add(new ("qr.add", this.QREncoder, "qr")
         {
             HelpText = GetString("生成二维码，用法：/qr <内容> [尺寸(不指定则为自适应)]")
         });
 
-        Commands.ChatCommands.Add(new Command("qr.add", this.SetQRPosition, "qrpos")
+        Commands.ChatCommands.Add(new ("qr.add", this.SetQRPosition, "qrpos")
         {
             HelpText = GetString("设置二维码位置，用法：/qrpos <tl|bl|tr|br>，tl=左上角，bl=左下角，tr=右上角，br=右下角")
         });
 
-        Commands.ChatCommands.Add(new Command("qr.add", this.SetQRConfig, "qrconf")
+        Commands.ChatCommands.Add(new ("qr.add", this.SetQRConfig, "qrconf")
         {
             HelpText = GetString("设置二维码配置内容，用法：/qrconf <键> <值>")
         });
 
-        GetDataHandlers.TileEdit += this.OnTileEdit;
+        TileEdit += this.OnTileEdit;
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
         TShock.RestApi.Register(new SecureRestCommand("/tool/qrcoder", this.QRtest, "tool.rest.qrcoder"));
     }
@@ -56,11 +52,11 @@ public class QRCoder : LazyPlugin
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.SetQRPosition);
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.SetQRConfig);
             AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
-            GetDataHandlers.TileEdit -= this.OnTileEdit;
+            TileEdit -= this.OnTileEdit;
             ((List<RestCommand>) typeof(Rest)
-                .GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+                .GetField("commands", BindingFlags.NonPublic | BindingFlags.Instance)!
                 .GetValue(TShock.RestApi)!)
-                .RemoveAll(x => x.Name == "/tool/qrcoder");
+                .RemoveAll(x => x.UriTemplate == "/tool/qrcoder");
         }
         base.Dispose(Disposing);
     }
@@ -68,7 +64,7 @@ public class QRCoder : LazyPlugin
     private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
     {
         var resourceName =
-            $"{Assembly.GetExecutingAssembly().GetName().Name}.{new AssemblyName(args.Name).Name}.dll";
+            $"embedded.{new AssemblyName(args.Name).Name}.dll";
         using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
         if (stream == null)
         {
@@ -127,7 +123,7 @@ public class QRCoder : LazyPlugin
 
         if (!this._playerPositions.TryGetValue(player.Index, out var position))
         {
-            position = new QRPosition();
+            position = new ();
             this._playerPositions[player.Index] = position;
         }
 

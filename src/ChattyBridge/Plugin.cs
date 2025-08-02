@@ -16,7 +16,7 @@ public class Plugin : LazyPlugin
     public override string Author => "少司命";
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 1, 4);
+    public override Version Version => new Version(1, 0, 1, 5);
 
     private readonly HttpClient _client  = new ();
 
@@ -36,9 +36,9 @@ public class Plugin : LazyPlugin
     {
         if (disposing)
         {
-            ((List<RestCommand>) typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+            ((List<RestCommand>) typeof(Rest).GetField("commands", BindingFlags.NonPublic | BindingFlags.Instance)!
             .GetValue(TShock.RestApi)!)
-            .RemoveAll(x => x.Name == "/chat");
+            .RemoveAll(x => x.UriTemplate == "/chat");
             ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreet);
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
