@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Challenger\n"
-"POT-Creation-Date: 2025-07-18 13:13:59+0000\n"
-"PO-Revision-Date: 2025-07-18 13:13:59+0000\n"
+"POT-Creation-Date: 2025-08-03 02:24:58+0000\n"
+"PO-Revision-Date: 2025-08-03 02:24:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -403,8 +403,8 @@ msgstr ""
 msgid "冲刺类饰品冷却完成"
 msgstr ""
 
-#: ../../Challenger.CNPCs/EaterofWorldsHead.cs:39
 #: ../../Challenger.CNPCs/Skeletron.cs:164
+#: ../../Challenger.CNPCs/EaterofWorldsHead.cs:39
 msgid "创死你"
 msgstr ""
 
