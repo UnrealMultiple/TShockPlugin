@@ -1,40 +1,63 @@
-﻿using LazyAPI.Attributes;
-using LazyAPI.ConfigFiles;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using TShockAPI;
 
 namespace Ezperm;
 
-[Config]
-internal class Configuration : JsonConfigBase<Configuration>
+public class Configuration
 {
-    protected override string Filename => "ezperm";
-    internal class GroupInfo
+    public const string Path = "tshock/ezperm.json";
+
+    public static Configuration Instance = new();
+
+    public void Write()
     {
-        [LocalizedPropertyName(CultureType.Chinese, "组名字")]
-        [LocalizedPropertyName(CultureType.English, "Name")]
+        var value = JsonConvert.SerializeObject(this, Formatting.Indented);
+        File.WriteAllText(Path, value);
+    }
+
+    public static void Read()
+    {
+        if (!File.Exists(Path))
+        {
+            Instance = new Configuration();
+            Instance.Write();
+        }
+        else
+        {
+            try
+            {
+                var content = File.ReadAllText(Path);
+                var deserializedInstance = JsonConvert.DeserializeObject<Configuration>(content) ?? throw new Exception("配置内容为空或无法解析");
+                Instance = deserializedInstance;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"加载配置文件失败: {ex.Message}");
+            }
+        }
+    }
+
+    public class GroupInfo
+    {
+        [JsonProperty("组名字")]
         public string Name { get; set; } = "";
 
-        [LocalizedPropertyName(CultureType.Chinese, "父组")]
-        [LocalizedPropertyName(CultureType.English, "Parent")]
+        [JsonProperty("父组")]
         public string Parent { get; set; } = "";
 
-        [LocalizedPropertyName(CultureType.Chinese, "添加的权限")]
-        [LocalizedPropertyName(CultureType.English, "AddPermissions")]
+        [JsonProperty("添加的权限")]
         public List<string> AddPermissions { get; set; } = new List<string>();
 
-        [LocalizedPropertyName(CultureType.Chinese, "删除的权限")]
-        [LocalizedPropertyName(CultureType.English, "DelPermissions")]
+        [JsonProperty("删除的权限")]
         public List<string> DelPermissions { get; set; } = new List<string>();
     }
 
-    [LocalizedPropertyName(CultureType.Chinese, "组列表", Order = -3)]
-    [LocalizedPropertyName(CultureType.English, "Groups", Order = -3)]
+    [JsonProperty("组列表")]
     public List<GroupInfo> Groups { get; set; } = new List<GroupInfo>();
 
-    protected override void SetDefault()
+    public Configuration()
     {
         this.Groups = new List<GroupInfo>
         {
