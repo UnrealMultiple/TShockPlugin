@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CaiBotLite\n"
-"POT-Creation-Date: 2025-08-02 19:13:09+0000\n"
-"PO-Revision-Date: 2025-08-02 19:13:09+0000\n"
+"POT-Creation-Date: 2025-08-05 16:22:35+0000\n"
+"PO-Revision-Date: 2025-08-05 16:22:36+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,11 +10,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../CaiBotLite.cs:286
+#: ../../CaiBotLite.cs:288
 msgid "帮助 ({0}/{1})："
 msgstr ""
 
-#: ../../CaiBotLite.cs:286
+#: ../../CaiBotLite.cs:288
 msgid "输入 {0}caibotlite help {{0}} 查看更多"
 msgstr ""
 
