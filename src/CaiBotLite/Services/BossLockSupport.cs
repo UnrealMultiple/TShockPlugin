@@ -35,7 +35,7 @@ public static class BossLockSupport
             { NPCID.BrainofCthulhu, "Brain of Cthulhu" },
             { NPCID.QueenBee, "Queen Bee" },
             { NPCID.Deerclops, "Deerclops" },
-            { NPCID.SkeletronHead, "Skeletron" },
+            { NPCID.SkeletronHand, "Skeletron" },
             { NPCID.WallofFlesh, "Wall of Flesh" },
             { NPCID.QueenSlimeBoss, "Queen Slime" },
             { NPCID.Retinazer, "The Twins" },
