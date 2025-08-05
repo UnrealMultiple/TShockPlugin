@@ -33,6 +33,9 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 
 ## 更新日志
 
+### v2025.08.05.0
+- 提高KillMe优先级，以正常记录死亡次数
+- 修复无法正确识别骷髅王的问题
 ### v2025.08.03.0
 - 修复在线排行数据错误，优化Websocket处理，适配BossLock
 
