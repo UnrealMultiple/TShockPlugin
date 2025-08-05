@@ -64,7 +64,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.203.0",
+    "Version": "0.0.206.0",
     "Author": "SGKoishi",
     "Description": {
       "en-US": "Yet another misc plugin for TShock",
@@ -727,7 +727,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.203.0",
+    "Version": "0.0.206.0",
     "Author": "SGKoishi",
     "Description": {
       "en-US": "Yet another misc plugin for TShock - the miscellaneous part",
