@@ -1,6 +1,6 @@
 [submodule "src/Submodules/Yaaiomni"]
 	path = src/Submodules/Yaaiomni
-	url = https://github.com/sgkoishi/yaaiomni.git
+	url = https://github.com/UnrealMultiple/yaaiomni.git
 [submodule "src/Submodules/Crossplay"]
 	path = src/Submodules/Crossplay
 	url = https://github.com/UnrealMultiple/Crossplay.git
