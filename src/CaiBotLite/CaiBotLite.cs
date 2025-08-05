@@ -61,7 +61,9 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
             ServerApi.Hooks.GamePostUpdate.Deregister(this, OnGameUpdate);
             Hooks.MessageBuffer.InvokeGetData -= Login.MessageBuffer_InvokeGetData;
+            GeneralHooks.ReloadEvent -= GeneralHooksOnReloadEvent;
             PlayerHooks.PlayerPostLogin -= PlayerHooksOnPlayerPostLogin;
+            GetDataHandlers.KillMe.UnRegister(KillMe);
             MapGenerator.Dispose();
             WebsocketManager.StopWebsocket();
         }
