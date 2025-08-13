@@ -474,14 +474,14 @@
     "Author": "豆沙，肝帝熙恩、Cai修改",
     "Description": {
       "en-US": "Whitelist players by checking the name of the player",
-      "de-DE": "通过检查玩家姓名的玩家白名单",
-      "it-IT": "通过检查玩家姓名的玩家白名单",
-      "fr-FR": "通过检查玩家姓名的玩家白名单",
-      "es-ES": "通过检查玩家姓名的玩家白名单",
-      "ru-RU": "通过检查玩家姓名的玩家白名单",
-      "zh-CN": "通过检查玩家姓名的玩家白名单",
-      "pt-BR": "通过检查玩家姓名的玩家白名单",
-      "pl-PL": "通过检查玩家姓名的玩家白名单"
+      "de-DE": "Whitelist players by checking the name of the player",
+      "it-IT": "Whitelist players by checking the name of the player",
+      "fr-FR": "Whitelist players by checking the name of the player",
+      "es-ES": "Whitelist players by checking the name of the player",
+      "ru-RU": "Whitelist players by checking the name of the player",
+      "zh-CN": "Whitelist players by checking the name of the player",
+      "pt-BR": "Whitelist players by checking the name of the player",
+      "pl-PL": "Whitelist players by checking the name of the player"
     },
     "AssemblyName": "BetterWhitelist",
     "Path": "BetterWhitelist.dll",
