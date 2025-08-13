@@ -63,46 +63,6 @@
     "HotReload": true
   },
   {
-    "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.206.0",
-    "Author": "SGKoishi",
-    "Description": {
-      "en-US": "Yet another misc plugin for TShock",
-      "de-DE": "Yet another misc plugin for TShock",
-      "it-IT": "Yet another misc plugin for TShock",
-      "fr-FR": "Yet another misc plugin for TShock",
-      "es-ES": "Yet another misc plugin for TShock",
-      "ru-RU": "Yet another misc plugin for TShock",
-      "zh-CN": "Yet another misc plugin for TShock",
-      "pt-BR": "Yet another misc plugin for TShock",
-      "pl-PL": "Yet another misc plugin for TShock"
-    },
-    "AssemblyName": "Chireiden.TShock.Omni",
-    "Path": "Chireiden.TShock.Omni.dll",
-    "Dependencies": [],
-    "HotReload": false
-  },
-  {
-    "Name": "Crossplay",
-    "Version": "2.3",
-    "Author": "Moneylover3246",
-    "Description": {
-      "en-US": "Enables crossplay for terraria",
-      "de-DE": "Enables crossplay for terraria",
-      "it-IT": "Enables crossplay for terraria",
-      "fr-FR": "Enables crossplay for terraria",
-      "es-ES": "Enables crossplay for terraria",
-      "ru-RU": "Enables crossplay for terraria",
-      "zh-CN": "Enables crossplay for terraria",
-      "pt-BR": "Enables crossplay for terraria",
-      "pl-PL": "Enables crossplay for terraria"
-    },
-    "AssemblyName": "Crossplay",
-    "Path": "Crossplay.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
     "Name": "复制建筑",
     "Version": "1.0.1.0",
     "Author": "少司命 羽学",
@@ -726,28 +686,6 @@
     "HotReload": true
   },
   {
-    "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.206.0",
-    "Author": "SGKoishi",
-    "Description": {
-      "en-US": "Yet another misc plugin for TShock - the miscellaneous part",
-      "de-DE": "Yet another misc plugin for TShock - the miscellaneous part",
-      "it-IT": "Yet another misc plugin for TShock - the miscellaneous part",
-      "fr-FR": "Yet another misc plugin for TShock - the miscellaneous part",
-      "es-ES": "Yet another misc plugin for TShock - the miscellaneous part",
-      "ru-RU": "Yet another misc plugin for TShock - the miscellaneous part",
-      "zh-CN": "Yet another misc plugin for TShock - the miscellaneous part",
-      "pt-BR": "Yet another misc plugin for TShock - the miscellaneous part",
-      "pl-PL": "Yet another misc plugin for TShock - the miscellaneous part"
-    },
-    "AssemblyName": "Chireiden.TShock.Omni.Misc",
-    "Path": "Chireiden.TShock.Omni.Misc.dll",
-    "Dependencies": [
-      "Chireiden.TShock.Omni"
-    ],
-    "HotReload": false
-  },
-  {
     "Name": "CNPCShop",
     "Version": "1.0.5",
     "Author": "Megghy，肝帝熙恩更新1449",
@@ -1314,26 +1252,6 @@
     "HotReload": true
   },
   {
-    "Name": "FishShop",
-    "Version": "1.4.4.0",
-    "Author": "hufang360",
-    "Description": {
-      "en-US": "鱼店",
-      "de-DE": "鱼店",
-      "it-IT": "鱼店",
-      "fr-FR": "鱼店",
-      "es-ES": "鱼店",
-      "ru-RU": "鱼店",
-      "zh-CN": "鱼店",
-      "pt-BR": "鱼店",
-      "pl-PL": "鱼店"
-    },
-    "AssemblyName": "FishShop",
-    "Path": "FishShop.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
     "Name": "GenerateMap",
     "Version": "2.0.0",
     "Author": "少司命, Cai",
@@ -1885,26 +1803,6 @@
     "HotReload": true
   },
   {
-    "Name": "PlayerManager",
-    "Version": "1.3.4.0",
-    "Author": "hufang360",
-    "Description": {
-      "en-US": "玩家管理",
-      "de-DE": "玩家管理",
-      "it-IT": "玩家管理",
-      "fr-FR": "玩家管理",
-      "es-ES": "玩家管理",
-      "ru-RU": "玩家管理",
-      "zh-CN": "玩家管理",
-      "pt-BR": "玩家管理",
-      "pl-PL": "玩家管理"
-    },
-    "AssemblyName": "PlayerManager",
-    "Path": "PlayerManager.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
     "Name": "PlayerRandomSwapper",
     "Version": "1.0.8",
     "Author": "肝帝熙恩,少司命",
@@ -2370,9 +2268,7 @@
     },
     "AssemblyName": "SimultaneousUseFix",
     "Path": "SimultaneousUseFix.dll",
-    "Dependencies": [
-      "Chireiden.TShock.Omni"
-    ],
+    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -2618,92 +2514,6 @@
     "HotReload": true
   },
   {
-    "Name": "VBY.GameContentModify",
-    "Version": "1.11.1.0",
-    "Author": "yu",
-    "Description": {
-      "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "de-DE": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "it-IT": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "fr-FR": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "es-ES": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "ru-RU": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "zh-CN": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "pt-BR": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "pl-PL": "一些游戏内容的修改 For Terraria v1.4.4.9"
-    },
-    "AssemblyName": "VBY.GameContentModify",
-    "Path": "VBY.GameContentModify.dll",
-    "Dependencies": [
-      "VBY.Common"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "VBY.OtherCommand",
-    "Version": "1.1.1.1",
-    "Author": "yu",
-    "Description": {
-      "en-US": "一些其他的辅助命令",
-      "de-DE": "一些其他的辅助命令",
-      "it-IT": "一些其他的辅助命令",
-      "fr-FR": "一些其他的辅助命令",
-      "es-ES": "一些其他的辅助命令",
-      "ru-RU": "一些其他的辅助命令",
-      "zh-CN": "一些其他的辅助命令",
-      "pt-BR": "一些其他的辅助命令",
-      "pl-PL": "一些其他的辅助命令"
-    },
-    "AssemblyName": "VBY.OtherCommand",
-    "Path": "VBY.OtherCommand.dll",
-    "Dependencies": [
-      "VBY.Common"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "VBY.PluginLoader",
-    "Version": "1.0",
-    "Author": "yu",
-    "Description": {
-      "en-US": "None",
-      "de-DE": "None",
-      "it-IT": "None",
-      "fr-FR": "None",
-      "es-ES": "None",
-      "ru-RU": "None",
-      "zh-CN": "None",
-      "pt-BR": "None",
-      "pl-PL": "None"
-    },
-    "AssemblyName": "VBY.PluginLoader",
-    "Path": "VBY.PluginLoader.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "VBY.PluginLoaderAutoReload",
-    "Version": "1.0",
-    "Author": "None",
-    "Description": {
-      "en-US": "检测PluginLoader文件夹更改后自动重载",
-      "de-DE": "检测PluginLoader文件夹更改后自动重载",
-      "it-IT": "检测PluginLoader文件夹更改后自动重载",
-      "fr-FR": "检测PluginLoader文件夹更改后自动重载",
-      "es-ES": "检测PluginLoader文件夹更改后自动重载",
-      "ru-RU": "检测PluginLoader文件夹更改后自动重载",
-      "zh-CN": "检测PluginLoader文件夹更改后自动重载",
-      "pt-BR": "检测PluginLoader文件夹更改后自动重载",
-      "pl-PL": "检测PluginLoader文件夹更改后自动重载"
-    },
-    "AssemblyName": "VBY.PluginLoaderAutoReload",
-    "Path": "VBY.PluginLoaderAutoReload.dll",
-    "Dependencies": [
-      "VBY.PluginLoader"
-    ],
-    "HotReload": true
-  },
-  {
     "Name": "VeinMiner",
     "Version": "1.6.1.1",
     "Author": "Megghy, YSpoof, Maxthegreat99, 肝帝熙恩, Cai",
@@ -2760,26 +2570,6 @@
     },
     "AssemblyName": "WeaponPlus",
     "Path": "WeaponPlus.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "WorldModify",
-    "Version": "1.0.0.0",
-    "Author": "hufang360",
-    "Description": {
-      "en-US": "简易的世界修改器",
-      "de-DE": "简易的世界修改器",
-      "it-IT": "简易的世界修改器",
-      "fr-FR": "简易的世界修改器",
-      "es-ES": "简易的世界修改器",
-      "ru-RU": "简易的世界修改器",
-      "zh-CN": "简易的世界修改器",
-      "pt-BR": "简易的世界修改器",
-      "pl-PL": "简易的世界修改器"
-    },
-    "AssemblyName": "WorldModify",
-    "Path": "WorldModify.dll",
     "Dependencies": [],
     "HotReload": true
   },
