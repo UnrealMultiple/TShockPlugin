@@ -74,12 +74,11 @@
 | [BanNpc](./src/BanNpc/README.md) | 阻止怪物生成 | [LazyAPI](./src/LazyAPI/README.md) |
 | [BedSet](./src/BedSet/README.md) | 设置并记录重生点 | [LazyAPI](./src/LazyAPI/README.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.md) | 白名单插件 | [LazyAPI](./src/LazyAPI/README.md) |
+| [BossLock](./src/BossLock/README.md) | 进度锁插件 |  |
 | [BridgeBuilder](./src/BridgeBuilder/README.md) | 快速铺桥 | [LazyAPI](./src/LazyAPI/README.md) |
 | [BuildMaster](./src/BuildMaster/README.md) | 豆沙小游戏·建筑大师模式 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
-| [CaiBot](./src/CaiBot/README.md) | CaiBot 适配插件 |  |
-| [CaiBotLite](./src/CaiBotLite/README.md) | CaiBot 官方机器人适配插件 |  |
+| [CaiBotLite](./src/CaiBotLite/README.md) | CaiBot 官方机器人适配插件 | [linq2db]() |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.md) | 自定义表情命令 | [LazyAPI](./src/LazyAPI/README.md) |
-| [CaiLib](./src/CaiLib/README.md) | Cai 的前置库 |  |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.md) | Cai数据包调试工具 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [CaiRewardChest](./src/CaiRewardChest/README.md) | 将自然生成的箱子变为所有人都可以领一次的奖励箱 | [linq2db]() [LazyAPI](./src/LazyAPI/README.md) |
 | [CGive](./src/CGive/README.md) | 离线命令 |  |
@@ -88,7 +87,7 @@
 | [ChattyBridge](./src/ChattyBridge/README.md) | 用于跨服聊天 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ChestRestore](./src/ChestRestore/README.md) | 资源服无限物品 |  |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 恋恋工具箱核心,用于修复各种TShock问题 (建议安装) |  |
-| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 恋恋工具箱扩展 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
+| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 恋恋工具箱扩展 |  |
 | [CNPCShop](./src/CNPCShop/README.md) | 自定义NPC商店 |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | 允许你在控制台执行SQL语句 |  |
 | [ConvertWorld](./src/ConvertWorld/README.md) | 击败怪物转换世界物品 |  |
@@ -118,9 +117,9 @@
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 强化武器 | [Economics.Core](./src/Economics.Core/README.md) |
 | [EndureBoost](./src/EndureBoost/README.md) | 拥有指定数量物品给指定buff |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.md) | 更多管理指令 | [LazyAPI](./src/LazyAPI/README.md) |
-| [Ezperm](./src/Ezperm/README.md) | 批量改权限 | [LazyAPI](./src/LazyAPI/README.md) |
+| [Ezperm](./src/Ezperm/README.md) | 批量改权限 |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 鱼店 |  |
-| [GenerateMap](./src/GenerateMap/README.md) | 生成地图图片 | [CaiLib](./src/CaiLib/README.md) |
+| [GenerateMap](./src/GenerateMap/README.md) | 生成地图 |  |
 | [GolfRewards](./src/GolfRewards/README.md) | 高尔夫奖励 |  |
 | [GoodNight](./src/GoodNight/README.md) | 宵禁 |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 硬核死亡掉生命水晶 |  |
@@ -177,7 +176,7 @@
 | [ShortCommand](./src/ShortCommand/README.md) | 简短指令 |  |
 | [ShowArmors](./src/ShowArmors/README.md) | 展示装备栏 |  |
 | [SignInSign](./src/SignInSign/README.md) | 告示牌登录插件 |  |
-| [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 解决卡双锤卡星旋机枪之类的问题 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
+| [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 解决卡双锤卡星旋机枪之类的问题 |  |
 | [SmartRegions](./src/SmartRegions/README.md) | 智能区域 |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 生成基础建设 |  |
 | [SpclPerm](./src/SpclPerm/README.md) | 服主特权 |  |

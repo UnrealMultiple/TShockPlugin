@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-05-28 13:43:32+0000\n"
-"PO-Revision-Date: 2025-05-29 01:20\n"
+"POT-Creation-Date: 2025-08-02 19:13:41+0000\n"
+"PO-Revision-Date: 2025-08-03 01:44\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,87 +17,87 @@ msgstr ""
 "X-Crowdin-File-ID: 1594\n"
 "Language: en_US\n"
 
-#: ../../QRCoder.cs:291
+#: ../../QRCoder.cs:287
 #, csharp-format
 msgid "二维码已生成! 内容: {0}"
 msgstr "QR code has been generated! Content: {0}"
 
-#: ../../QRCoder.cs:124
+#: ../../QRCoder.cs:120
 msgid "位置参数无效。请使用：tl(左上角)、bl(左下角)、tr(右上角)、br(右下角)"
 msgstr "Invalid position parameter. Use：tl (upper left corner), bl(lower left corner), tr(upper right corner), br(lower right corner)"
 
-#: ../../QRCoder.cs:102
+#: ../../QRCoder.cs:98
 #, csharp-format
 msgid "位置已确认: X={0} Y={1}"
 msgstr "Location confirmed: X={0} Y={1}"
 
-#: ../../QRCoder.cs:105
+#: ../../QRCoder.cs:101
 msgid "位置已设置完成，现在可以使用 /qr <内容> 生成二维码了"
 msgstr "Location has been set, and can now be used /qr <content> to generate QR code"
 
-#: ../../QRCoder.cs:146
+#: ../../QRCoder.cs:142
 msgid "右上角"
 msgstr "Upper right corner"
 
-#: ../../QRCoder.cs:147
+#: ../../QRCoder.cs:143
 msgid "右下角"
 msgstr "Lower right corner"
 
-#: ../../QRCoder.cs:144
+#: ../../QRCoder.cs:140
 msgid "左上角"
 msgstr "Upper left corner"
 
-#: ../../QRCoder.cs:145
+#: ../../QRCoder.cs:141
 msgid "左下角"
 msgstr "Lower left corner"
 
-#: ../../QRCoder.cs:360
+#: ../../QRCoder.cs:356
 #, csharp-format
 msgid "已设置二维码配置：{0}={1}"
 msgstr "QR code configuration has been set: {0}={1}"
 
-#: ../../QRCoder.cs:148
+#: ../../QRCoder.cs:144
 msgid "未知"
 msgstr "Unknown"
 
-#: ../../QRCoder.cs:241
+#: ../../QRCoder.cs:237
 #, csharp-format
 msgid "正在 X={0}, Y={1} 生成二维码，大小: {2}x{3}"
 msgstr "Generate QR codes at X={0}, Y={1}, Size: {2}x{3}"
 
-#: ../../QRCoder.cs:34
+#: ../../QRCoder.cs:30
 msgid "生成二维码，用法：/qr <内容> [尺寸(不指定则为自适应)]"
 msgstr "Generate QR code, using: /qr <content> [Size (if not specified, it is adaptive)]"
 
-#: ../../QRCoder.cs:163
+#: ../../QRCoder.cs:159
 msgid "用法：/qr <内容> [尺寸(不指定则为自适应)]"
 msgstr "Usage: /qr <content> [Size (if not specified, it is adaptive)]"
 
-#: ../../QRCoder.cs:306
+#: ../../QRCoder.cs:302
 msgid "用法：/qrconf <键> <值>"
 msgstr "Usage: /qrconf <key> <value>"
 
-#: ../../QRCoder.cs:117
+#: ../../QRCoder.cs:113
 msgid "用法：/qrpos <tl|bl|tr|br> - tl=左上角，bl=左下角，tr=右上角，br=右下角"
 msgstr "Usage: /qrpos <tl|bl|tr|br> - tl=upper left corner, bl=lower left corner, tr=upper right corner, br=lower right corner"
 
-#: ../../QRCoder.cs:39
+#: ../../QRCoder.cs:35
 msgid "设置二维码位置，用法：/qrpos <tl|bl|tr|br>，tl=左上角，bl=左下角，tr=右上角，br=右下角"
 msgstr "Set the QR code position, usage: /qrpos <tl|bl|tr|br>, tl=upper left corner, bl=lower left corner, tr=upper right corner, br=lower right corner"
 
-#: ../../QRCoder.cs:44
+#: ../../QRCoder.cs:40
 msgid "设置二维码配置内容，用法：/qrconf <键> <值>"
 msgstr "Set the QR code configuration content, using: /qrconf <key> <value>"
 
-#: ../../QRCoder.cs:178
+#: ../../QRCoder.cs:174
 msgid "请先使用 /qrpos <tl|bl|tr|br> 设置二维码位置！"
 msgstr "Please use /qrpos <tl|bl|tr|br> to set the QR code location first!"
 
-#: ../../QRCoder.cs:185
+#: ../../QRCoder.cs:181
 msgid "请先点击一个方块确认位置，然后再次输入 /qr 命令生成二维码。"
 msgstr "Please click on a block to confirm the position, and then enter the /qr command again to generate a QR code."
 
-#: ../../QRCoder.cs:137
+#: ../../QRCoder.cs:133
 #, csharp-format
 msgid "请点击一个方块来设置二维码的{0}位置！"
 msgstr "Please click on a block to set the {0} position of the QR code!"

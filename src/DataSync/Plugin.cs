@@ -14,7 +14,7 @@ namespace DataSync;
 public class Plugin : TerrariaPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2025, 05, 18);
+    public override Version Version => new Version(2025, 08, 02);
     internal static Dictionary<int, List<ProgressType>> _idmatch = new Dictionary<int, List<ProgressType>>();
     internal static Dictionary<ProgressType, Func<bool?, bool>> _flagaccessors = new Dictionary<ProgressType, Func<bool?, bool>>();
     public Plugin(Main game) : base(game)
@@ -101,11 +101,11 @@ public class Plugin : TerrariaPlugin
         this._reloadHandler = (_) => this.Reload();
         ServerApi.Hooks.NpcKilled.Register(this, this.NpcKilled);
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
-        GeneralHooks.ReloadEvent += this._reloadHandler;
         ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitualize);
+        GeneralHooks.ReloadEvent += this._reloadHandler;
         Commands.ChatCommands.Add(new Command("DataSync", this.ClearProgress, "重置进度同步"));
-        TShock.RestApi.Register(new SecureRestCommand("/DataSync", ProgressRest, "DataSync"));
         Commands.ChatCommands.Add(new Command("DataSync", ProgressCommand, "进度", "progress"));
+        TShock.RestApi.Register(new SecureRestCommand("/DataSync", ProgressRest, "DataSync"));
     }
 
     private void OnUpdate(EventArgs args)
@@ -130,9 +130,9 @@ public class Plugin : TerrariaPlugin
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
             GeneralHooks.ReloadEvent -= this._reloadHandler;
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.PostInitualize);
-            ((List<RestCommand>) typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+            ((List<RestCommand>) typeof(Rest).GetField("commands", BindingFlags.NonPublic | BindingFlags.Instance)!
             .GetValue(TShock.RestApi)!)
-            .RemoveAll(x => x.Name == "/DataSync");
+            .RemoveAll(x => x.UriTemplate == "/DataSync");
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.ClearProgress || x.CommandDelegate == ProgressCommand);
         }
 

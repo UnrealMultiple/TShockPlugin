@@ -78,12 +78,11 @@
 | [BanNpc](./src/BanNpc/README.en-US.md) | 100.0% | Prevent monster generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BedSet](./src/BedSet/README.en-US.md) | 100.0% | Set and record respawn points | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.en-US.md) | 100.0% | Whitelist plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [BossLock](./src/BossLock/README.md) | 0.0% | 进度锁插件 |  |
 | [BridgeBuilder](./src/BridgeBuilder/README.en-US.md) | 100.0% | Quick bridge building | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BuildMaster](./src/BuildMaster/README.en-US.md) | 100.0% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) |
-| [CaiBot](./src/CaiBot/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) |  |
-| [CaiBotLite](./src/CaiBotLite/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) |  |
+| [CaiBotLite](./src/CaiBotLite/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) | [linq2db]() |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.en-US.md) | 100.0% | Custom emoji command | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [CaiLib](./src/CaiLib/README.en-US.md) | 0.0% | Cai's preload library |  |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.en-US.md) | 100.0% | Cai Packet Debug Tool | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
 | [CaiRewardChest](./src/CaiRewardChest/README.en-US.md) | 100.0% | Convert naturally generated chests into reward chests that everyone can claim once | [linq2db]() [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CGive](./src/CGive/README.en-US.md) | 92.9% | Offline commands |  |
@@ -92,7 +91,7 @@
 | [ChattyBridge](./src/ChattyBridge/README.en-US.md) | 33.3% | Used for cross-server chat | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ChestRestore](./src/ChestRestore/README.en-US.md) | 80.0% | Infinite items in resource servers |  |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the core part |  |
-| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the miscellaneous part | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
+| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the miscellaneous part |  |
 | [CNPCShop](./src/CNPCShop/README.en-US.md) | 100.0% | Custom NPC shop |  |
 | [ConsoleSql](./src/ConsoleSql/README.en-US.md) | 100.0% | Execute SQL statements in the console |  |
 | [ConvertWorld](./src/ConvertWorld/README.en-US.md) | 100.0% | Convert world items by defeating monsters |  |
@@ -122,13 +121,13 @@
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [EndureBoost](./src/EndureBoost/README.en-US.md) | 100.0% | Grant specified buff when the player has a certain number of items |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | 95.6% | Additional management commands | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [Ezperm](./src/Ezperm/README.en-US.md) | 100.0% | Batch change permissions | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [Ezperm](./src/Ezperm/README.en-US.md) | 100.0% | Batch change permissions |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Fish shop |  |
-| [GenerateMap](./src/GenerateMap/README.en-US.md) | 100.0% | Generate map images | [CaiLib](./src/CaiLib/README.en-US.md) |
+| [GenerateMap](./src/GenerateMap/README.en-US.md) | 11.1% | Generate map |  |
 | [GolfRewards](./src/GolfRewards/README.en-US.md) | 100.0% | Golf rewards |  |
 | [GoodNight](./src/GoodNight/README.md) | 4.9% | Curfew |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.en-US.md) | 100.0% | Hardcore death drops life crystals |  |
-| [HelpPlus](./src/HelpPlus/README.en-US.md) | 100.0% | Fix and enhance the Help command |  |
+| [HelpPlus](./src/HelpPlus/README.en-US.md) | 64.3% | Fix and enhance the Help command |  |
 | [History](./src/History/README.en-US.md) | 100.0% | History grid record |  |
 | [HouseRegion](./src/HouseRegion/README.en-US.md) | 100.0% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Invincibility](./src/Invincibility/README.en-US.md) | 100.0% | Time-limited invincibility |  |
@@ -181,7 +180,7 @@
 | [ShortCommand](./src/ShortCommand/README.en-US.md) | 100.0% | Short command |  |
 | [ShowArmors](./src/ShowArmors/README.en-US.md) | 100.0% | Display equipment bar |  |
 | [SignInSign](./src/SignInSign/README.en-US.md) | 100.0% | Signboard login plugin |  |
-| [SimultaneousUseFix](./src/SimultaneousUseFix/README.en-US.md) | 100.0% | Solve problems like stuck double hammer and star spin machine gun | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
+| [SimultaneousUseFix](./src/SimultaneousUseFix/README.en-US.md) | 100.0% | Solve problems like stuck double hammer and star spin machine gun |  |
 | [SmartRegions](./src/SmartRegions/README.en-US.md) | 100.0% | Smart regions |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 100.0% | Generate basic infrastructure |  |
 | [SpclPerm](./src/SpclPerm/README.en-US.md) | 100.0% | Server owner privileges |  |

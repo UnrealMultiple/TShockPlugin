@@ -12,7 +12,7 @@ public class Main : TerrariaPlugin
     public override string Description => GetString("离线give");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 1, 0);
+    public override Version Version => new Version(1, 0, 1, 1);
 
     public Main(Terraria.Main game)
         : base(game)
@@ -36,7 +36,7 @@ public class Main : TerrariaPlugin
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);
             ((List<RestCommand>) typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
             .GetValue(TShock.RestApi)!)
-            .RemoveAll(x => x.Name == "/getWarehouse");
+            .RemoveAll(x => x.UriTemplate == "/getWarehouse");
         }
         base.Dispose(disposing);
     }

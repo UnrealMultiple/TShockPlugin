@@ -64,7 +64,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.203.0",
+    "Version": "0.0.209.0",
     "Author": "SGKoishi",
     "Description": {
       "en-US": "Yet another misc plugin for TShock",
@@ -474,20 +474,40 @@
     "Author": "豆沙，肝帝熙恩、Cai修改",
     "Description": {
       "en-US": "Whitelist players by checking the name of the player",
-      "de-DE": "通过检查玩家姓名的玩家白名单",
-      "it-IT": "通过检查玩家姓名的玩家白名单",
-      "fr-FR": "通过检查玩家姓名的玩家白名单",
-      "es-ES": "通过检查玩家姓名的玩家白名单",
-      "ru-RU": "通过检查玩家姓名的玩家白名单",
-      "zh-CN": "通过检查玩家姓名的玩家白名单",
-      "pt-BR": "通过检查玩家姓名的玩家白名单",
-      "pl-PL": "通过检查玩家姓名的玩家白名单"
+      "de-DE": "Whitelist players by checking the name of the player",
+      "it-IT": "Whitelist players by checking the name of the player",
+      "fr-FR": "Whitelist players by checking the name of the player",
+      "es-ES": "Whitelist players by checking the name of the player",
+      "ru-RU": "Whitelist players by checking the name of the player",
+      "zh-CN": "Whitelist players by checking the name of the player",
+      "pt-BR": "Whitelist players by checking the name of the player",
+      "pl-PL": "Whitelist players by checking the name of the player"
     },
     "AssemblyName": "BetterWhitelist",
     "Path": "BetterWhitelist.dll",
     "Dependencies": [
       "LazyAPI"
     ],
+    "HotReload": true
+  },
+  {
+    "Name": "BossLock",
+    "Version": "2.0.0.0",
+    "Author": "Cai",
+    "Description": {
+      "en-US": "进度锁",
+      "de-DE": "进度锁",
+      "it-IT": "进度锁",
+      "fr-FR": "进度锁",
+      "es-ES": "进度锁",
+      "ru-RU": "进度锁",
+      "zh-CN": "进度锁",
+      "pt-BR": "进度锁",
+      "pl-PL": "进度锁"
+    },
+    "AssemblyName": "BossLock",
+    "Path": "BossLock.dll",
+    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -536,7 +556,7 @@
   },
   {
     "Name": "CaiBotLitePlugin",
-    "Version": "2025.6.4.1",
+    "Version": "2025.8.5.0",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot官方机器人的适配插件",
@@ -551,27 +571,9 @@
     },
     "AssemblyName": "CaiBotLite",
     "Path": "CaiBotLite.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "CaiBotPlugin",
-    "Version": "2025.5.18.2",
-    "Author": "Cai,羽学,西江",
-    "Description": {
-      "en-US": "CaiBot机器人的适配插件",
-      "de-DE": "CaiBot机器人的适配插件",
-      "it-IT": "CaiBot机器人的适配插件",
-      "fr-FR": "CaiBot机器人的适配插件",
-      "es-ES": "CaiBot机器人的适配插件",
-      "ru-RU": "CaiBot机器人的适配插件",
-      "zh-CN": "CaiBot机器人的适配插件",
-      "pt-BR": "CaiBot机器人的适配插件",
-      "pl-PL": "CaiBot机器人的适配插件"
-    },
-    "AssemblyName": "CaiBot",
-    "Path": "CaiBot.dll",
-    "Dependencies": [],
+    "Dependencies": [
+      "linq2db"
+    ],
     "HotReload": true
   },
   {
@@ -594,26 +596,6 @@
     "Dependencies": [
       "LazyAPI"
     ],
-    "HotReload": true
-  },
-  {
-    "Name": "CaiLib",
-    "Version": "2025.5.18.5",
-    "Author": "Cai",
-    "Description": {
-      "en-US": "CaiLib",
-      "de-DE": "CaiLib",
-      "it-IT": "CaiLib",
-      "fr-FR": "CaiLib",
-      "es-ES": "CaiLib",
-      "ru-RU": "CaiLib",
-      "zh-CN": "CaiLib",
-      "pt-BR": "CaiLib",
-      "pl-PL": "CaiLib"
-    },
-    "AssemblyName": "CaiLib",
-    "Path": "CaiLib.dll",
-    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -641,7 +623,7 @@
   },
   {
     "Name": "CGive",
-    "Version": "1.0.1.0",
+    "Version": "1.0.1.1",
     "Author": "Leader",
     "Description": {
       "en-US": "Give offline",
@@ -703,7 +685,7 @@
   },
   {
     "Name": "ChattyBridge",
-    "Version": "1.0.1.4",
+    "Version": "1.0.1.5",
     "Author": "少司命",
     "Description": {
       "en-US": "ChattyBridge",
@@ -745,7 +727,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.203.0",
+    "Version": "0.0.209.0",
     "Author": "SGKoishi",
     "Description": {
       "en-US": "Yet another misc plugin for TShock - the miscellaneous part",
@@ -907,7 +889,7 @@
   },
   {
     "Name": "DataSync",
-    "Version": "2025.5.18",
+    "Version": "2025.8.2",
     "Author": "None",
     "Description": {
       "en-US": "None",
@@ -1313,7 +1295,7 @@
   },
   {
     "Name": "Ezperm",
-    "Version": "1.3.0",
+    "Version": "1.3.1",
     "Author": "大豆子,肝帝熙恩优化1449",
     "Description": {
       "en-US": "A command to help beginners add missing permissions to the initial server and also allows for batch addition and deletion of permissions",
@@ -1328,9 +1310,7 @@
     },
     "AssemblyName": "Ezperm",
     "Path": "Ezperm.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
+    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -1355,8 +1335,8 @@
   },
   {
     "Name": "GenerateMap",
-    "Version": "1.0.5",
-    "Author": "少司命",
+    "Version": "2.0.0",
+    "Author": "少司命, Cai",
     "Description": {
       "en-US": "Generate map image",
       "de-DE": "生成地图图片",
@@ -1370,9 +1350,7 @@
     },
     "AssemblyName": "GenerateMap",
     "Path": "GenerateMap.dll",
-    "Dependencies": [
-      "CaiLib"
-    ],
+    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -2034,7 +2012,7 @@
   },
   {
     "Name": "QRCoder",
-    "Version": "1.0.0.2",
+    "Version": "1.1.0.0",
     "Author": "Jonesn，熙恩，Radix.",
     "Description": {
       "en-US": "生成二维码",
@@ -2214,7 +2192,7 @@
   },
   {
     "Name": "RestInventory",
-    "Version": "1.0.0.6",
+    "Version": "1.0.0.7",
     "Author": "少司命",
     "Description": {
       "en-US": "rest query inventory",

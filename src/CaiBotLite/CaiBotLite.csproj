@@ -3,7 +3,8 @@
     <Import Project="..\..\template.targets" />
 
     <ItemGroup>
-        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.10" />
+        <PackageReference Include="linq2db" Version="5.4.1"/>
+        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.11" />
     </ItemGroup>
 
     <PropertyGroup>
@@ -11,36 +12,10 @@
     </PropertyGroup>
     
     <ItemGroup>
+        <ProjectReference Include="..\BossLock\BossLock.csproj" />
         <ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
         <ProjectReference Include="..\Economics.Skill\Economics.Skill.csproj" />
         <ProjectReference Include="..\Economics.Core\Economics.Core.csproj" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <Compile Include="..\CaiBot\CaiBotPlayer.cs">
-        <Link>CaiBotPlayer.cs</Link>
-      </Compile>
-      <Compile Include="..\CaiBot\EconomicData.cs">
-        <Link>EconomicData.cs</Link>
-      </Compile>
-      <Compile Include="..\CaiBot\EconomicSupport.cs">
-        <Link>EconomicSupport.cs</Link>
-      </Compile>
-      <Compile Include="..\CaiBot\LookBag.cs">
-        <Link>LookBag.cs</Link>
-      </Compile>
-      <Compile Include="..\CaiBot\MapGenerator.cs">
-        <Link>MapGenerator.cs</Link>
-      </Compile>
-      <Compile Include="..\CaiBot\PacketWriter.cs">
-        <Link>PacketWriter.cs</Link>
-      </Compile>
-      <Compile Include="..\CaiBot\PluginInfo.cs">
-        <Link>PluginInfo.cs</Link>
-      </Compile>
-      <Compile Include="..\CaiBot\Utils.cs">
-        <Link>Utils.cs</Link>
-      </Compile>
     </ItemGroup>
 
 </Project>

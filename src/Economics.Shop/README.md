@@ -17,7 +17,7 @@
 | /shop list [页码] | economics.shop | 查看商品列表 |
 
 ## 进度限制
-Economics文档：[进度限制值](../EconomicsAPI/README.md)
+Economics文档：[进度限制值](../Economics.Core/README.md)
 
 
 ## 配置

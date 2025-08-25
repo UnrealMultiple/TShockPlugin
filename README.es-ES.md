@@ -81,12 +81,11 @@
 | [BanNpc](./src/BanNpc/README.md) | 0.0% | Previene la generación de monstruos | [LazyAPI](./src/LazyAPI/README.md) |
 | [BedSet](./src/BedSet/README.md) | 0.0% | Establecer y registrar puntos de resurrección | [LazyAPI](./src/LazyAPI/README.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.md) | 0.0% | Plugin de lista blanca | [LazyAPI](./src/LazyAPI/README.md) |
+| [BossLock](./src/BossLock/README.md) | 0.0% | 进度锁插件 |  |
 | [BridgeBuilder](./src/BridgeBuilder/README.md) | 0.0% | Construcción rápida de puentes | [LazyAPI](./src/LazyAPI/README.md) |
 | [BuildMaster](./src/BuildMaster/README.md) | 0.0% | Modo Maestro Constructor para el Mini Juego Red Bean | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
-| [CaiBot](./src/CaiBot/README.md) | 0.0% | Plugin adaptador CaiBot (Only support QQ) |  |
-| [CaiBotLite](./src/CaiBotLite/README.md) | 0.0% | Plugin adaptador CaiBot (Only support QQ) |  |
+| [CaiBotLite](./src/CaiBotLite/README.md) | 0.0% | Plugin adaptador CaiBot (Only support QQ) | [linq2db]() |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.md) | 0.0% | Comando de emoji personalizado | [LazyAPI](./src/LazyAPI/README.md) |
-| [CaiLib](./src/CaiLib/README.md) | 0.0% | Biblioteca de precarga de Cai |  |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.md) | 0.0% | Herramienta de depuración de paquetes Cai | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [CaiRewardChest](./src/CaiRewardChest/README.md) | 0.0% | Convierte cofres generados naturalmente en cofres de recompensa que todos pueden reclamar una vez | [linq2db]() [LazyAPI](./src/LazyAPI/README.md) |
 | [CGive](./src/CGive/README.md) | 0.0% | Comandos fuera de línea |  |
@@ -95,7 +94,7 @@
 | [ChattyBridge](./src/ChattyBridge/README.md) | 0.0% | Usado para el chat entre servidores | [LazyAPI](./src/LazyAPI/README.md) |
 | [ChestRestore](./src/ChestRestore/README.md) | 0.0% | Objetos infinitos en servidores de recursos |  |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Otro plugin misceláneo para TShock - la parte central |  |
-| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Otro plugin misceláneo para TShock - la parte miscelánea | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
+| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Otro plugin misceláneo para TShock - la parte miscelánea |  |
 | [CNPCShop](./src/CNPCShop/README.md) | 0.0% | Tienda personalizada de NPC |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | 0.0% | Ejecutar sentencias SQL en la consola |  |
 | [ConvertWorld](./src/ConvertWorld/README.md) | 0.0% | Convertir objetos del mundo al derrotar monstruos |  |
@@ -125,9 +124,9 @@
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 0.0% | Mejora de armas | [Economics.Core](./src/Economics.Core/README.md) |
 | [EndureBoost](./src/EndureBoost/README.md) | 0.0% | Otorga un buff específico cuando el jugador tiene una cantidad determinada de objetos |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.es-ES.md) | 94.9% | Comandos de gestión adicionales | [LazyAPI](./src/LazyAPI/README.md) |
-| [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos | [LazyAPI](./src/LazyAPI/README.md) |
+| [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Tienda de peces |  |
-| [GenerateMap](./src/GenerateMap/README.md) | 0.0% | Generar imágenes de mapas | [CaiLib](./src/CaiLib/README.md) |
+| [GenerateMap](./src/GenerateMap/README.md) | 0.0% | Generar mapas |  |
 | [GolfRewards](./src/GolfRewards/README.md) | 0.0% | Recompensas de golf |  |
 | [GoodNight](./src/GoodNight/README.md) | 0.0% | Toque de queda |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 0.0% | Los jugadores en modo Hardcore sueltan corazones de vida al morir |  |
@@ -184,7 +183,7 @@
 | [ShortCommand](./src/ShortCommand/README.md) | 0.0% | Comando corto |  |
 | [ShowArmors](./src/ShowArmors/README.md) | 0.0% | Muestra la barra de equipo |  |
 | [SignInSign](./src/SignInSign/README.md) | 0.0% | Plugin de inicio de sesión con cartel |  |
-| [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 0.0% | Resuelve problemas como el martillo doble atascado y la metralleta de estrellas | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
+| [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 0.0% | Resuelve problemas como el martillo doble atascado y la metralleta de estrellas |  |
 | [SmartRegions](./src/SmartRegions/README.md) | 0.0% | Regiones inteligentes |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 0.0% | Genera infraestructura básica |  |
 | [SpclPerm](./src/SpclPerm/README.md) | 0.0% | Privilegios del propietario del servidor |  |
