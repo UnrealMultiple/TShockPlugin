@@ -26,6 +26,27 @@ public static class TSPlayerExtension
         player.SendData(PacketTypes.PlayerSlot, "", slot);
     }
 
+    public static void ExecCommand(this TSPlayer player, string cmd)
+    {
+        try
+        {
+            player.tempGroup = new SuperAdminGroup();
+            TShockAPI.Commands.HandleCommand(player, cmd.SFormat(player.Name));
+        }
+        finally
+        {
+            player.tempGroup = null;
+        }
+    }
+
+    public static void ExecCommand(this TSPlayer player, IEnumerable<string> cmds)
+    {
+        foreach (var cmd in cmds)
+        {
+            player.ExecCommand(cmd);
+        }
+    }
+
     public static Dictionary<string, bool> GetProgress(this TSPlayer Player)
     {
         return GameProgress.DefaultProgressNames
