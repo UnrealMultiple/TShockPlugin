@@ -11,7 +11,7 @@ internal partial class Command : CommandBase
 
     public Command(MemberInfo type, string infoPrefix) : base(type)
     {
-        this.info = $"{infoPrefix} <...>";
+        this.usage = CommandHelper.GetCommandUsage(type) ?? $"{infoPrefix} <...>";
         this._infoPrefix = infoPrefix;
     }
 

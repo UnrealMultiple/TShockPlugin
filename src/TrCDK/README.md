@@ -6,14 +6,14 @@
 - CDK可以设置使用次数、过期时间、组限制、玩家限制。
 
 ## 指令
-| 语法 | 权限 | 说明 |
-| --- | --- | --- |
-| /cdk `<CDK兑换码>` | cdk.use | 玩家兑换 CDK 礼包 |
-| /cdkloadall | cdk.admin.loadall | 显示所有 CDK 列表 |
-| /cdkadd `<CDK名称>` `<使用次数>` `<过期时间>` `<组限制>` `<玩家限制>` `<指令>` | cdk.admin.add | 添加新 CDK |
-| /cdkdel `<CDK名称>` | cdk.admin.del | 删除指定 CDK |
-| /cdkupdate `<CDK名称>` `<使用次数>` `<过期时间>` `<组限制>` `<玩家限制>` `<已使用玩家>` `<指令>` | cdk.admin.update | 更新 CDK 信息 |
-| /cdkgive `<玩家名>` `<指令列表>` | cdk.admin.give | 给玩家 CDK 奖励 |
+| 语法                                                          | 权限                | 说明          |
+|-------------------------------------------------------------|-------------------|-------------|
+| /cdk use <CDK兑换码>                                           | cdk.use           | 玩家兑换 CDK 礼包 |
+| /cdk list                                                   | cdk.admin.loadall | 显示所有 CDK 列表 |
+| /cdk add `<CDK名称>` `<使用次数>` `<过期时间>` `<指令>` `[组限制]` `[玩家限制]` | cdk.admin.add     | 添加新 CDK     |
+| /cdk del `<CDK名称>`                                          | cdk.admin.del     | 删除指定 CDK    |
+| /cdk update `<CDK名称>` `<使用次数>` `<过期时间>` `<指令>` `[组限制]` `[玩家限制]`         | cdk.admin.update  | 更新 CDK 信息   |
+| /cdk give `<玩家名>` `<指令列表>`                                  | cdk.admin.give    | 给玩家 CDK 奖励  |
 
 ### 注意事项
 - **/cdkadd 和 /cdkupdate**：过期时间格式 `yyyy-MM-ddThh:mm`，如 `2024-12-31T23:59`。组和玩家限制用逗号分隔，不限制填 `none`。

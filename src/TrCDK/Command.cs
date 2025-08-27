@@ -1,20 +1,18 @@
 ﻿using LazyAPI.Attributes;
 using LazyAPI.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using TShockAPI;
 
 namespace TrCDK;
 
 [Command("cdk")]
 [Permissions("cdk.use")]
+[HelpText("CDK系统主命令")]
 public class Command
 {
     [Alias("give")]
     [Permissions("cdk.give")]
+    [Usage("cdk give <玩家名> <指令列表> - 给玩家CDK奖励")]
     public static void Give(CommandArgs args, TSPlayer? player, string cmd)
     {
         if(player == null)
@@ -37,7 +35,8 @@ public class Command
     [Alias("update")]
     [Flexible]
     [Permissions("cdk.update")]
-    public static void Update(CommandArgs args, string cdkname, int usetime, long utiltime, string grouplimit = "", string playerlimit = "", string cmds = "")
+    [Usage("cdk update <CDK名称> <使用次数> <过期时间> <指令> [组限制] [玩家限制] --- 更新CDK信息")]
+    public static void Update(CommandArgs args, string cdkname, int usetime, long utiltime, string cmds = "" ,string grouplimit = "", string playerlimit = "")
     {
         var cdkData = CDK.GetData(cdkname);
         if (cdkData == null)
@@ -51,6 +50,7 @@ public class Command
 
     [Alias("del")]
     [Permissions("cdk.del")]
+    [Usage("cdk del <CDK名称> - 删除指定CDK")]
     public static void Delete(CommandArgs args, string cdkname)
     {
         if (CDK.GetData(cdkname) == null)
@@ -65,6 +65,7 @@ public class Command
     [Alias("add")]
     [Flexible]
     [Permissions("cdk.add")]
+    [Usage("cdk add <CDK名称> <使用次数> <过期时间> <指令> [组限制] [玩家限制] - 添加新CDK")]
     public static void Add(CommandArgs args, string cdkname, int usetime, long utiltime, string cmds, string grouplimit = "", string playerlimit = "")
     {
         if (CDK.Insert(cdkname, usetime, utiltime, grouplimit, playerlimit, cmds))
@@ -79,6 +80,7 @@ public class Command
 
     [Alias("list")]
     [Permissions("cdk.list")]
+    [Usage("cdk list - 列出所有CDK")]
     public static void List(CommandArgs args)
     {
         var cdkList = CDK.GetAllData();
@@ -115,6 +117,7 @@ public class Command
 
     [Alias("use")]
     [RealPlayer]
+    [Usage("cdk use <CDK兑换码> - 兑换CDK礼包")]
     public static void Use(CommandArgs args, string cdk)
     {
         var cdkData = CDK.GetData(cdk);

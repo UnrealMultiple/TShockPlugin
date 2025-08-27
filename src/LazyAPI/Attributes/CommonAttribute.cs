@@ -60,3 +60,8 @@ public class HelpTextAttribute(string helpText) : Attribute
     public string helpText = helpText;
 }
 
+[AttributeUsage(AttributeTargets.Method)]
+public class UsageAttribute(string usage) : Attribute
+{
+    public string usage = usage;
+}

@@ -24,7 +24,7 @@ internal partial class SingleCommand : CommandBase
         }
 
         this.argParsers = [.. ap];
-        this.info = sb.ToString();
+        this.usage = CommandHelper.GetCommandUsage(method) ?? sb.ToString();
         this.method = method.GetFastInvoker();
     }
 

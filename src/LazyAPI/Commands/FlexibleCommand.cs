@@ -33,7 +33,7 @@ internal class FlexibleCommand : CommandBase
         }
         this.argParsers = [.. ap];
         this.defaultParsers = [.. dp];
-        this.info = sb.ToString();
+        this.usage = CommandHelper.GetCommandUsage(method) ?? sb.ToString();
         this.method = method.GetFastInvoker();
     }
 
