@@ -96,6 +96,11 @@ internal static class CommandHelper
 
         yield return info.Name.ToLower();
     }
+    
+    private static string GetCommandHelpText(MemberInfo info)
+    {
+        return info.GetCustomAttributes<HelpTextAttribute>().Select(a => a.helpText).FirstOrDefault() ?? GetString("No help available.");
+    }
 
 
     internal static string[] Register(Type type)
@@ -105,10 +110,14 @@ internal static class CommandHelper
             Console.WriteLine($"Command `{type.FullName}` should be static");
         }
         var names = GetCommandAlias(type).ToArray();
+        var helpText = GetCommandHelpText(type);
         var tree = BuildTree(type, AliasToString(names));
-
+        
         TShockAPI.Commands.ChatCommands.Add(new TShockAPI.Command(args => ParseCommand(tree, args),
-            names));
+            names)
+        {
+            HelpText = helpText
+        });
 
         return names;
     }
