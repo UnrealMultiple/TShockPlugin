@@ -91,7 +91,7 @@
 | [ChattyBridge](./src/ChattyBridge/README.en-US.md) | 33.3% | Used for cross-server chat | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ChestRestore](./src/ChestRestore/README.en-US.md) | 80.0% | Infinite items in resource servers |  |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the core part |  |
-| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the miscellaneous part |  |
+| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the miscellaneous part | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [CNPCShop](./src/CNPCShop/README.en-US.md) | 100.0% | Custom NPC shop |  |
 | [ConsoleSql](./src/ConsoleSql/README.en-US.md) | 100.0% | Execute SQL statements in the console |  |
 | [ConvertWorld](./src/ConvertWorld/README.en-US.md) | 100.0% | Convert world items by defeating monsters |  |
@@ -180,7 +180,7 @@
 | [ShortCommand](./src/ShortCommand/README.en-US.md) | 100.0% | Short command |  |
 | [ShowArmors](./src/ShowArmors/README.en-US.md) | 100.0% | Display equipment bar |  |
 | [SignInSign](./src/SignInSign/README.en-US.md) | 100.0% | Signboard login plugin |  |
-| [SimultaneousUseFix](./src/SimultaneousUseFix/README.en-US.md) | 100.0% | Solve problems like stuck double hammer and star spin machine gun |  |
+| [SimultaneousUseFix](./src/SimultaneousUseFix/README.en-US.md) | 100.0% | Solve problems like stuck double hammer and star spin machine gun | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [SmartRegions](./src/SmartRegions/README.en-US.md) | 100.0% | Smart regions |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 100.0% | Generate basic infrastructure |  |
 | [SpclPerm](./src/SpclPerm/README.en-US.md) | 100.0% | Server owner privileges |  |
@@ -195,10 +195,10 @@
 | [TransferPatch](./src/TransferPatch/README.en-US.md) | 50.0% | Transfer Plugin Config Patch |  |
 | [UnseenInventory](./src/UnseenInventory/README.en-US.md) | 100.0% | Allows the server to generate items that are normally 'unobtainable' |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Foundation library for VBY plugins |  |
-| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Customizable modifications for certain game content (super) |  |
-| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Provide some other auxiliary commands |  |
+| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Customizable modifications for certain game content (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Provide some other auxiliary commands | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 0.0% | A plugin loader that allows hot reloading |  |
-| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 |  |
+| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) |
 | [VeinMiner](./src/VeinMiner/README.en-US.md) | 100.0% | Chain mining |  |
 | [VotePlus](./src/VotePlus/README.en-US.md) | 100.0% | Multi-function voting |  |
 | [WeaponPlus](./src/WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement coin version |  |
