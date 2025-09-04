@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-31 16:21:48+0000\n"
-"PO-Revision-Date: 2025-02-04 01:07\n"
+"POT-Creation-Date: 2025-08-04 17:04:49+0000\n"
+"PO-Revision-Date: 2025-08-05 01:40\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,26 +17,30 @@ msgstr ""
 "X-Crowdin-File-ID: 1178\n"
 "Language: en_US\n"
 
-#: ../../Ezperm.cs:15
+#: ../../Ezperm.cs:30
+msgid "[Ezperm]插件配置已重载~"
+msgstr ""
+
+#: ../../Ezperm.cs:14
 msgid "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限"
 msgstr "A command to help beginners add missing permissions to the initial server and also allows for batch addition and deletion of permissions"
 
-#: ../../Ezperm.cs:106
+#: ../../Ezperm.cs:115
 #, csharp-format
 msgid "成功为组 {0} 删除权限: {1}"
 msgstr "Success as group {0} Deleter permissions: {1}"
 
-#: ../../Ezperm.cs:89
+#: ../../Ezperm.cs:98
 #, csharp-format
 msgid "成功为组 {0} 添加权限: {1}"
 msgstr "Successfully added permissions for group {0}: {1}"
 
-#: ../../Ezperm.cs:72
+#: ../../Ezperm.cs:81
 #, csharp-format
 msgid "成功将组 {0} 的父组设置为 {1}。"
 msgstr "Successfully set parent of group {0} to {1}."
 
-#: ../../Ezperm.cs:48
+#: ../../Ezperm.cs:57
 #, csharp-format
 msgid "组 {0} 不存在，已创建该组。"
 msgstr "Group {0} does not exist and has been created."
