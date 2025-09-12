@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CaiBotLite\n"
-"POT-Creation-Date: 2025-08-05 16:22:35+0000\n"
-"PO-Revision-Date: 2025-08-05 16:22:36+0000\n"
+"POT-Creation-Date: 2025-09-12 10:51:54+0000\n"
+"PO-Revision-Date: 2025-09-12 10:51:54+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,11 +10,77 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../CaiBotLite.cs:288
+#: ../../Services/ProgressControlSupport.cs:124
+msgid "M月d日HH:mm"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:133
+msgid "一"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:135
+msgid "三"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:120
+#, csharp-format
+msgid "下周{0}HH:mm"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:134
+msgid "二"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:137
+msgid "五"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:102
+msgid "今天HH:mm"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:138
+msgid "六"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:111
+msgid "前天HH:mm"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:106
+msgid "后天HH:mm"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:114
+#, csharp-format
+msgid "周{0}HH:mm"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:136
+msgid "四"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:85
+msgid "已锁定"
+msgstr ""
+
+#: ../../CaiBotLite.cs:289
 msgid "帮助 ({0}/{1})："
 msgstr ""
 
-#: ../../CaiBotLite.cs:288
+#: ../../Services/ProgressControlSupport.cs:132
+msgid "日"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:104
+msgid "明天HH:mm"
+msgstr ""
+
+#: ../../Services/ProgressControlSupport.cs:109
+msgid "昨天HH:mm"
+msgstr ""
+
+#: ../../CaiBotLite.cs:289
 msgid "输入 {0}caibotlite help {{0}} 查看更多"
 msgstr ""
 
