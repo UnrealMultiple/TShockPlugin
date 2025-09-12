@@ -1,0 +1,269 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-08-02 19:13:08+0000\n"
+"PO-Revision-Date: 2025-08-03 01:44\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/BossLock/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1606\n"
+"Language: es_ES\n"
+
+#: ../../BossLock.cs:145
+#, csharp-format
+msgid "[BossLock]初始化完成!开服时间设为:{0}"
+msgstr ""
+
+#: ../../BossLock.cs:88
+msgid "[BossLock]定时进度已重载!"
+msgstr ""
+
+#: ../../BossLock.cs:128
+#, csharp-format
+msgid "[BossLock]检测到重复配置: {0} ({1})"
+msgstr ""
+
+#: ../../Database.cs:77
+msgid "[BossLock列表]"
+msgstr ""
+
+#: ../../Database.cs:104
+#: ../../Database.cs:106
+#, csharp-format
+msgid "[c/32FF82:{0}] [c/FFFFFF:(/locklist 查看详细)]"
+msgstr ""
+
+#: ../../Database.cs:105
+#, csharp-format
+msgid "[c/AF4BFF:{0}]已解锁! [c/AF4BFF:{1}]的解锁时间为:"
+msgstr ""
+
+#: ../../Database.cs:103
+#, csharp-format
+msgid "[c/AF4BFF:{0}]的解锁时间为:"
+msgstr ""
+
+#: ../../BossLock.cs:80
+#, csharp-format
+msgid "[i:1370]当前进度: [c/AF4BFF:{0}]"
+msgstr ""
+
+#: ../../BossLock.cs:246
+#, csharp-format
+msgid "[i:43][c/AF4BFF:{0}]还没到解锁时间, 被禁止生成!"
+msgstr ""
+
+#: ../../BossLock.cs:95
+msgid "[i:43]有效子命令列表:\n"
+msgstr ""
+
+#: ../../BossLock.cs:180
+msgid "[i:50]日期格式错误!正确格式: yyyy-MM-dd-HH:mm:ss\n"
+msgstr ""
+
+#: ../../BossLock.cs:191
+msgid "[i:50]格式错误!正确格式:/bl unlock <NPC ID>"
+msgstr ""
+
+#: ../../BossLock.cs:164
+#, csharp-format
+msgid "[i:50]没有关于{0}({1})的限制配置!"
+msgstr ""
+
+#: ../../BossLock.cs:170
+#: ../../BossLock.cs:210
+msgid "[i:50]请输入正确ID!"
+msgstr ""
+
+#: ../../BossLock.cs:214
+#, csharp-format
+msgid "{0}({1})已解锁!"
+msgstr ""
+
+#: ../../BossLock.cs:185
+#, csharp-format
+msgid "{0}({1})的开打时间已设为{2:yyyy-MM-dd HH:mm:ss}"
+msgstr ""
+
+#: ../../Database.cs:44
+#, csharp-format
+msgid "{0}({1})解锁时间为:[c/32FF82:{2}]"
+msgstr ""
+
+#: ../../Utils.cs:100
+#, csharp-format
+msgid "{0}前"
+msgstr ""
+
+#: ../../BossLock.cs:98
+msgid "/bl edit 修改进度配置\n"
+msgstr ""
+
+#: ../../BossLock.cs:96
+msgid "/bl list 列出所有定时进度配置\n"
+msgstr ""
+
+#: ../../BossLock.cs:97
+msgid "/bl reset 重置进度配置\n"
+msgstr ""
+
+#: ../../BossLock.cs:99
+msgid "/bl unlock 解锁进度"
+msgstr ""
+
+#: ../../Database.cs:41
+msgid "BossLock配置列表:"
+msgstr ""
+
+#: ../../Utils.cs:57
+msgid "M月d日HH:mm"
+msgstr ""
+
+#: ../../Utils.cs:66
+msgid "一"
+msgstr ""
+
+#: ../../Utils.cs:68
+msgid "三"
+msgstr ""
+
+#: ../../Utils.cs:53
+#, csharp-format
+msgid "下周{0}HH:mm"
+msgstr ""
+
+#: ../../Utils.cs:87
+msgid "世吞"
+msgstr ""
+
+#: ../../Utils.cs:87
+msgid "世吞/克脑"
+msgstr ""
+
+#: ../../Utils.cs:91
+msgid "世花"
+msgstr ""
+
+#: ../../Utils.cs:67
+msgid "二"
+msgstr ""
+
+#: ../../Utils.cs:70
+msgid "五"
+msgstr ""
+
+#: ../../Utils.cs:35
+msgid "今天HH:mm"
+msgstr ""
+
+#: ../../BossLock.cs:117
+#: ../../BossLock.cs:181
+msgid "例如: 2007-05-24-23:59:59"
+msgstr ""
+
+#: ../../Utils.cs:86
+msgid "克眼"
+msgstr ""
+
+#: ../../Utils.cs:87
+msgid "克脑"
+msgstr ""
+
+#: ../../Utils.cs:71
+msgid "六"
+msgstr ""
+
+#: ../../Utils.cs:44
+msgid "前天HH:mm"
+msgstr ""
+
+#: ../../Utils.cs:85
+msgid "史王"
+msgstr ""
+
+#: ../../Utils.cs:39
+msgid "后天HH:mm"
+msgstr ""
+
+#: ../../Utils.cs:47
+#, csharp-format
+msgid "周{0}HH:mm"
+msgstr ""
+
+#: ../../Utils.cs:69
+msgid "四"
+msgstr ""
+
+#: ../../Utils.cs:94
+msgid "四柱"
+msgstr ""
+
+#: ../../Utils.cs:100
+msgid "已毕业"
+msgstr ""
+
+#: ../../Utils.cs:18
+msgid "已锁定"
+msgstr ""
+
+#: ../../Utils.cs:93
+msgid "拜月教徒"
+msgstr ""
+
+#: ../../Utils.cs:90
+msgid "新三王"
+msgstr ""
+
+#: ../../Utils.cs:65
+msgid "日"
+msgstr ""
+
+#: ../../BossLock.cs:116
+msgid "日期格式错误!正确格式: yyyy-MM-dd-HH:mm:ss\n"
+msgstr ""
+
+#: ../../Utils.cs:37
+msgid "明天HH:mm"
+msgstr ""
+
+#: ../../Utils.cs:42
+msgid "昨天HH:mm"
+msgstr ""
+
+#: ../../Utils.cs:95
+msgid "月总"
+msgstr ""
+
+#: ../../BossLock.cs:156
+msgid "格式错误!正确格式:/bl edit <NPC ID> <预定日期>"
+msgstr ""
+
+#: ../../Utils.cs:92
+msgid "石巨人"
+msgstr ""
+
+#: ../../Utils.cs:90
+msgid "美杜莎"
+msgstr ""
+
+#: ../../Utils.cs:89
+msgid "血肉墙"
+msgstr ""
+
+#: ../../BossLock.cs:247
+#, csharp-format
+msgid "解锁时间: [c/32FF82:{0}] [c/FFFFFF:({1}秒)]"
+msgstr ""
+
+#: ../../Utils.cs:88
+msgid "骷髅王"
+msgstr ""
+

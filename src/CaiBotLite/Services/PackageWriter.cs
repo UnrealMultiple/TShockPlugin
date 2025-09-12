@@ -29,7 +29,7 @@ public class PackageWriter(PackageType packageType, bool isRequest, string? requ
             }
 
             var messageBytes = Encoding.UTF8.GetBytes(message);
-            _ = WebsocketManager.WebSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true,
+            _ = WebsocketManager.WebSocket?.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true,
                 CancellationToken.None);
         }
         catch (Exception e)

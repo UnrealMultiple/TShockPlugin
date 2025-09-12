@@ -28,7 +28,7 @@ internal static class CaiBotApi
                     Config.Settings.Token = string.Empty;
                     Config.Settings.Write();
                     CaiBotLite.GenBindCode(EventArgs.Empty);
-                    WebsocketManager.WebSocket.Dispose();
+                    WebsocketManager.WebSocket?.Dispose();
                     break;
                 case PackageType.CallCommand:
                     var command = package.Read<string>("command");
@@ -48,14 +48,30 @@ internal static class CaiBotApi
                         .Write("player_list", TShock.Players.Where(x => x is { Active: true }).Select(x => x.Name))
                         .Write("current_online", TShock.Utils.GetActivePlayerCount())
                         .Write("max_online", TShock.Config.Settings.MaxSlots)
-                        .Write("process", Config.Settings.ShowProcessInPlayerList?Utils.GetWorldProcess():"")
+                        .Write("process",Config.Settings.ShowProcessInPlayerList?Utils.GetWorldProcess():"")
                         .Send();
                     break;
                 case PackageType.Progress:
+
+                    var bossLock = new Dictionary<string, string>();
+                    
+                    
+                    if (BossLockSupport.Support)
+                    {
+                        bossLock = BossLockSupport.GetLockBosses();
+                    }
+
+                    if (ProgressControlSupport.Support)
+                    {
+                        var progressControlBosses = ProgressControlSupport.GetLockBosses();
+                        bossLock = bossLock.Count < progressControlBosses.Count ? progressControlBosses : bossLock;
+                    }
+                    
                     packetWriter
                         .Write("is_text", false)
                         .Write("process", Utils.GetProcessList())
                         .Write("kill_counts", Utils.GetKillCountList())
+                        .Write("boss_lock", bossLock)
                         .Write("world_name", Main.worldName)
                         .Write("drunk_world", Main.drunkWorld)
                         .Write("zenith_world", Main.zenithWorld)

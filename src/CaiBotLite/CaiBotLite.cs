@@ -15,7 +15,7 @@ namespace CaiBotLite;
 // ReSharper disable once ClassNeverInstantiated.Global
 public class CaiBotLite(Main game) : TerrariaPlugin(game)
 {
-    public static readonly Version VersionNum = new (2025, 07, 30, 0); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new (2025, 09, 12, 0); //日期+版本号(0,1,2...)
     internal static int InitCode = -1;
     internal static bool DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
     private const string CharacterInfoKey = "CaiBotLite.CharacterInfo";
@@ -40,11 +40,13 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         Hooks.MessageBuffer.InvokeGetData += Login.MessageBuffer_InvokeGetData; 
         GeneralHooks.ReloadEvent += GeneralHooksOnReloadEvent;
         PlayerHooks.PlayerPostLogin += PlayerHooksOnPlayerPostLogin;
-        GetDataHandlers.KillMe += KillMe;
+        GetDataHandlers.KillMe.Register(KillMe, HandlerPriority.Highest);
         MapGenerator.Init();
         EconomicSupport.Init();
+        BossLockSupport.Init();
+        ProgressControlSupport.Init();
         WebsocketManager.Init();
-        Commands.ChatCommands.Add(new Command("caibotlite.admin", this.CaiBotCommand, "caibotlite", "cbl"));
+        Commands.ChatCommands.Add(new Command("caibotlite.admin", CaiBotCommand, "caibotlite", "cbl"));
     }
 
     protected override void Dispose(bool disposing)
@@ -60,7 +62,9 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
             ServerApi.Hooks.GamePostUpdate.Deregister(this, OnGameUpdate);
             Hooks.MessageBuffer.InvokeGetData -= Login.MessageBuffer_InvokeGetData;
+            GeneralHooks.ReloadEvent -= GeneralHooksOnReloadEvent;
             PlayerHooks.PlayerPostLogin -= PlayerHooksOnPlayerPostLogin;
+            GetDataHandlers.KillMe.UnRegister(KillMe);
             MapGenerator.Dispose();
             WebsocketManager.StopWebsocket();
         }
@@ -157,34 +161,9 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         e.Player.SendSuccessMessage("[CaiBotLite]配置文件已重载 :)");
     }
     
-    private void CaiBotCommand(CommandArgs args)
+    private static void CaiBotCommand(CommandArgs args)
     {
         var plr = args.Player;
-
-        void ShowHelpText()
-        {
-            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, plr, out var pageNumber))
-            {
-                return;
-            }
-
-            List<string> lines =
-            [
-                "/cbl debug CaiBot调试开关",
-                "/cbl reset 重置数据统计",
-                "/cbl code 生成并且展示验证码",
-                "/cbl info 显示CaiBot的一些信息",
-                "/cbl unbind 主动解除绑定",
-                "/cbl whitelist 开关白名单",
-                "/cbl group <群号> 设置踢出显示的群号",
-                "/cbl test Cai保留用于测试的命令, 乱用可能会爆掉"
-            ];
-
-            PaginationTools.SendPage(
-                plr, pageNumber, lines,
-                new PaginationTools.Settings { HeaderFormat = GetString("帮助 ({0}/{1})："), FooterFormat = GetString("输入 {0}caibotlite help {{0}} 查看更多").SFormat(Commands.Specifier) }
-            );
-        }
 
         if (args.Parameters.Count == 0)
         {
@@ -216,7 +195,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             case "info":
                 plr.SendInfoMessage($"[CaiBot信息]\n" +
                                     $"插件版本: v{VersionNum}\n" +
-                                    $"WebSocket状态: {WebsocketManager.WebSocket.State}\n" +
+                                    $"WebSocket状态: {WebsocketManager.WebSocket?.State}\n" +
                                     $"设置QQ群: {(Config.Settings.GroupNumber == 0L ? "未设置" : Config.Settings.GroupNumber)}\n" +
                                     $"绑定状态: {Config.Settings.Token != ""}\n" +
                                     $"Debug模式: {DebugMode}\n" +
@@ -251,7 +230,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
                 }
                 Config.Settings.Token = string.Empty;
                 Config.Settings.Write();
-                WebsocketManager.WebSocket.Dispose();
+                WebsocketManager.WebSocket?.Dispose();
                 GenBindCode(EventArgs.Empty);
                 plr.SendInfoMessage("[CaiBotLite]验证码已生成,请在后台查看喵~");
                 break;
@@ -259,7 +238,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             case "whitelist":
                 Config.Settings.WhiteList = !Config.Settings.WhiteList;
                 Config.Settings.Write();
-                WebsocketManager.WebSocket.Dispose();
+                WebsocketManager.WebSocket?.Dispose();
                 plr.SendInfoMessage($"[CaiBotLite]白名单已{(Config.Settings.WhiteList?"开启":"关闭")}!");
                 break;
             case "群号":
@@ -282,6 +261,33 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
                 break;
                 
                 
+        }
+
+        return;
+
+        void ShowHelpText()
+        {
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, plr, out var pageNumber))
+            {
+                return;
+            }
+
+            List<string> lines =
+            [
+                "/cbl debug CaiBot调试开关",
+                "/cbl reset 重置数据统计",
+                "/cbl code 生成并且展示验证码",
+                "/cbl info 显示CaiBot的一些信息",
+                "/cbl unbind 主动解除绑定",
+                "/cbl whitelist 开关白名单",
+                "/cbl group <群号> 设置踢出显示的群号",
+                "/cbl test Cai保留用于测试的命令, 乱用可能会爆掉"
+            ];
+
+            PaginationTools.SendPage(
+                plr, pageNumber, lines,
+                new PaginationTools.Settings { HeaderFormat = GetString("帮助 ({0}/{1})："), FooterFormat = GetString("输入 {0}caibotlite help {{0}} 查看更多").SFormat(Commands.Specifier) }
+            );
         }
     }
 

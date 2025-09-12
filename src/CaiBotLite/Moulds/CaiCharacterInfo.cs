@@ -1,5 +1,6 @@
 ﻿using LinqToDB;
 using LinqToDB.Mapping;
+using Newtonsoft.Json;
 
 namespace CaiBotLite.Moulds;
 

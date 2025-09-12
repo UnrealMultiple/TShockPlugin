@@ -278,6 +278,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoClassificationQuickStac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceGen", "src\SourceGen\SourceGen.csproj", "{E5E60819-4B13-4982-B345-358A4DBE9D3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BossLock", "src\BossLock\BossLock.csproj", "{B187D161-5031-4A1D-A7FD-88F5B20F440D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1366,6 +1368,14 @@ Global
 		{E5E60819-4B13-4982-B345-358A4DBE9D3B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E5E60819-4B13-4982-B345-358A4DBE9D3B}.Release|x64.ActiveCfg = Release|Any CPU
 		{E5E60819-4B13-4982-B345-358A4DBE9D3B}.Release|x64.Build.0 = Release|Any CPU
+		{B187D161-5031-4A1D-A7FD-88F5B20F440D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B187D161-5031-4A1D-A7FD-88F5B20F440D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B187D161-5031-4A1D-A7FD-88F5B20F440D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B187D161-5031-4A1D-A7FD-88F5B20F440D}.Debug|x64.Build.0 = Debug|Any CPU
+		{B187D161-5031-4A1D-A7FD-88F5B20F440D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B187D161-5031-4A1D-A7FD-88F5B20F440D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B187D161-5031-4A1D-A7FD-88F5B20F440D}.Release|x64.ActiveCfg = Release|Any CPU
+		{B187D161-5031-4A1D-A7FD-88F5B20F440D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

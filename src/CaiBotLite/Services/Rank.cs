@@ -59,8 +59,8 @@ public class Rank(string title, Dictionary<string, string> rankLines)
     {
         using var db = Database.Db;
         return new Rank("在线排行", db.GetTable<CaiCharacterInfo>()
-            .OrderByDescending(x => x.Death)
-            .ToDictionary(x => x.AccountName, x=> x.Death + "分钟"));
+            .OrderByDescending(x => x.OnlineMinute)
+            .ToDictionary(x => x.AccountName, x=> x.OnlineMinute + "分钟"));
     } 
     
     public static Rank GetBossRank(NPC npc)
