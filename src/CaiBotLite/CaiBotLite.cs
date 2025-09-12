@@ -44,6 +44,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         MapGenerator.Init();
         EconomicSupport.Init();
         BossLockSupport.Init();
+        ProgressControlSupport.Init();
         WebsocketManager.Init();
         Commands.ChatCommands.Add(new Command("caibotlite.admin", CaiBotCommand, "caibotlite", "cbl"));
     }

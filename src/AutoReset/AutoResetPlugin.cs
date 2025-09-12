@@ -152,6 +152,10 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
 
             this._status = Status.Cleaning;
             Main.rand = new UnifiedRandom((int) DateTime.Now.Ticks);
+            // Main.wo = Main.ActiveWorldFileData.UniqueId;
+            //
+            // MessageBuffer
+            
             WorldFile.LoadWorld(false);
             Main.dayTime = WorldFile._tempDayTime;
             Main.time = WorldFile._tempTime;
@@ -181,6 +185,7 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
             }
             finally
             {
+                Console.WriteLine("WorldID: "+ Main.worldID);
                 this._generationProgress = null;
                 this._status = Status.Available;
             }

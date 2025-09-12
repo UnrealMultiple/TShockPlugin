@@ -52,11 +52,26 @@ internal static class CaiBotApi
                         .Send();
                     break;
                 case PackageType.Progress:
+
+                    var bossLock = new Dictionary<string, string>();
+                    
+                    
+                    if (BossLockSupport.Support)
+                    {
+                        bossLock = BossLockSupport.GetLockBosses();
+                    }
+
+                    if (ProgressControlSupport.Support)
+                    {
+                        var progressControlBosses = ProgressControlSupport.GetLockBosses();
+                        bossLock = bossLock.Count < progressControlBosses.Count ? progressControlBosses : bossLock;
+                    }
+                    
                     packetWriter
                         .Write("is_text", false)
                         .Write("process", Utils.GetProcessList())
                         .Write("kill_counts", Utils.GetKillCountList())
-                        .Write("boss_lock", BossLockSupport.Support?BossLockSupport.GetLockBosses(): new Dictionary<string, string>())
+                        .Write("boss_lock", bossLock)
                         .Write("world_name", Main.worldName)
                         .Write("drunk_world", Main.drunkWorld)
                         .Write("zenith_world", Main.zenithWorld)
