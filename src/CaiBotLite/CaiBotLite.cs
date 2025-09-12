@@ -15,7 +15,7 @@ namespace CaiBotLite;
 // ReSharper disable once ClassNeverInstantiated.Global
 public class CaiBotLite(Main game) : TerrariaPlugin(game)
 {
-    public static readonly Version VersionNum = new (2025, 08, 5, 0); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new (2025, 09, 12, 0); //日期+版本号(0,1,2...)
     internal static int InitCode = -1;
     internal static bool DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
     private const string CharacterInfoKey = "CaiBotLite.CharacterInfo";
@@ -44,6 +44,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         MapGenerator.Init();
         EconomicSupport.Init();
         BossLockSupport.Init();
+        ProgressControlSupport.Init();
         WebsocketManager.Init();
         Commands.ChatCommands.Add(new Command("caibotlite.admin", CaiBotCommand, "caibotlite", "cbl"));
     }
