@@ -33,6 +33,9 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 
 ## 更新日志
 
+### v2025.09.12.0
+- 进度查询支持显示ProgressControl进度锁
+
 ### v2025.08.05.0
 - 提高KillMe优先级，以正常记录死亡次数
 - 修复无法正确识别骷髅王的问题
