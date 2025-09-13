@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-06-24 01:05:25+0000\n"
-"PO-Revision-Date: 2025-06-24 01:22\n"
+"POT-Creation-Date: 2025-09-12 10:51:49+0000\n"
+"PO-Revision-Date: 2025-09-13 01:08\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -33,20 +33,20 @@ msgstr ""
 msgid "[AutoReset]服务器数据重置成功~"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:360
+#: ../../AutoResetPlugin.cs:365
 msgid "[AutoReset]生成地图中:\n"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:309
+#: ../../AutoResetPlugin.cs:314
 #, csharp-format
 msgid "[AutoReset]重置SQL({0})执行失败: {1}"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:356
+#: ../../AutoResetPlugin.cs:361
 msgid "[AutoReset]重置数据中，请稍后..."
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:328
+#: ../../AutoResetPlugin.cs:333
 #, csharp-format
 msgid "[AutoReset]重置文件({0})替换失败: {1}"
 msgstr ""
@@ -61,19 +61,19 @@ msgstr ""
 msgid "[重置计数器]已经击杀[c/DC143C:{0}] ([c/98FB98:{1}]/{2})"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:209
+#: ../../AutoResetPlugin.cs:214
 msgid "/reset 重置世界"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:210
+#: ../../AutoResetPlugin.cs:215
 msgid "/resetdata 重置数据"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:207
+#: ../../AutoResetPlugin.cs:212
 msgid "/rs name <地图名>"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:208
+#: ../../AutoResetPlugin.cs:213
 msgid "/rs seed <种子>"
 msgstr ""
 
@@ -82,33 +82,33 @@ msgstr ""
 msgid "📝击杀自动重置:{0}({1}/{2})"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:263
+#: ../../AutoResetPlugin.cs:268
 msgid "世界名字已设置为 "
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:257
+#: ../../AutoResetPlugin.cs:262
 msgid "世界名字已设置为跟随原世界"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:273
+#: ../../AutoResetPlugin.cs:278
 msgid "世界种子已设为随机"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:292
+#: ../../AutoResetPlugin.cs:297
 msgid "世界种子已设置为:"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:247
+#: ../../AutoResetPlugin.cs:252
 #, csharp-format
 msgid "击杀Npc: {0}({1})\n"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:246
+#: ../../AutoResetPlugin.cs:251
 #, csharp-format
 msgid "击杀重置: {0}\n"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:244
+#: ../../AutoResetPlugin.cs:249
 #, csharp-format
 msgid "地图名: {0}\n"
 msgstr ""
@@ -117,12 +117,12 @@ msgstr ""
 msgid "完全自动重置插件"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:249
+#: ../../AutoResetPlugin.cs:254
 #, csharp-format
 msgid "已击杀数: {0}"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:217
+#: ../../AutoResetPlugin.cs:222
 msgid "帮助 ({0}/{1})："
 msgstr ""
 
@@ -130,17 +130,17 @@ msgstr ""
 msgid "生成地图中: "
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:248
+#: ../../AutoResetPlugin.cs:253
 #, csharp-format
 msgid "目标击杀数: {0}\n"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:245
+#: ../../AutoResetPlugin.cs:250
 #, csharp-format
 msgid "种子: {0}\n"
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:218
+#: ../../AutoResetPlugin.cs:223
 msgid "输入 {0}rs help {{0}} 查看更多"
 msgstr ""
 
@@ -148,7 +148,7 @@ msgstr ""
 msgid "重置数据中, 请稍后..."
 msgstr ""
 
-#: ../../AutoResetPlugin.cs:245
+#: ../../AutoResetPlugin.cs:250
 msgid "随机"
 msgstr ""
 
