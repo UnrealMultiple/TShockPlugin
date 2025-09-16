@@ -94,7 +94,7 @@
 | [ChattyBridge](./src/ChattyBridge/README.md) | 0.0% | Usado para el chat entre servidores | [LazyAPI](./src/LazyAPI/README.md) |
 | [ChestRestore](./src/ChestRestore/README.md) | 0.0% | Objetos infinitos en servidores de recursos |  |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Otro plugin misceláneo para TShock - la parte central |  |
-| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Otro plugin misceláneo para TShock - la parte miscelánea |  |
+| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Otro plugin misceláneo para TShock - la parte miscelánea | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [CNPCShop](./src/CNPCShop/README.md) | 0.0% | Tienda personalizada de NPC |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | 0.0% | Ejecutar sentencias SQL en la consola |  |
 | [ConvertWorld](./src/ConvertWorld/README.md) | 0.0% | Convertir objetos del mundo al derrotar monstruos |  |
@@ -183,7 +183,7 @@
 | [ShortCommand](./src/ShortCommand/README.md) | 0.0% | Comando corto |  |
 | [ShowArmors](./src/ShowArmors/README.md) | 0.0% | Muestra la barra de equipo |  |
 | [SignInSign](./src/SignInSign/README.md) | 0.0% | Plugin de inicio de sesión con cartel |  |
-| [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 0.0% | Resuelve problemas como el martillo doble atascado y la metralleta de estrellas |  |
+| [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 0.0% | Resuelve problemas como el martillo doble atascado y la metralleta de estrellas | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [SmartRegions](./src/SmartRegions/README.md) | 0.0% | Regiones inteligentes |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 0.0% | Genera infraestructura básica |  |
 | [SpclPerm](./src/SpclPerm/README.md) | 0.0% | Privilegios del propietario del servidor |  |
@@ -198,10 +198,10 @@
 | [TransferPatch](./src/TransferPatch/README.md) | 0.0% | 翻译补丁 |  |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 0.0% | Permite que el servidor genere ítems "inobtenibles" |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Biblioteca base para plugins VBY |  |
-| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Modificaciones personalizables para cierto contenido del juego (super) |  |
-| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Proveer algunos otros comandos auxiliares |  |
+| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Modificaciones personalizables para cierto contenido del juego (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Proveer algunos otros comandos auxiliares | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 0.0% | Un cargador de plugins que permite la recarga en caliente |  |
-| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 |  |
+| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) |
 | [VeinMiner](./src/VeinMiner/README.md) | 0.0% | Minado en cadena |  |
 | [VotePlus](./src/VotePlus/README.md) | 96.1% | Votación multifuncional |  |
 | [WeaponPlus](./src/WeaponPlus/README.md) | 100.0% | Versión de monedas para mejorar armas |  |

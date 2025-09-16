@@ -16,6 +16,7 @@
         <ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
         <ProjectReference Include="..\Economics.Skill\Economics.Skill.csproj" />
         <ProjectReference Include="..\Economics.Core\Economics.Core.csproj" />
+        <ProjectReference Include="..\ProgressControls\ProgressControls.csproj" />
     </ItemGroup>
 
 </Project>
