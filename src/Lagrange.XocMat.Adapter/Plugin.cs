@@ -27,7 +27,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => GetString("Lagrange.XocMat机器人适配插件");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 6);
+    public override Version Version => new Version(1, 0, 0, 7);
 
     internal static readonly List<TSPlayer> ServerPlayers = new();
 
@@ -39,20 +39,20 @@ public class Plugin : TerrariaPlugin
 
     internal static readonly Dictionary<int, KillNpc> DamageBoss = [];
 
-    #nullable disable
+#nullable disable
     internal static WebSocketServices Services;
 
     internal static PlayerOnline Onlines;
 
     internal static PlayerDeath Deaths;
-    #nullable enable
+#nullable enable
     public Plugin(Main game) : base(game)
     {
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
     }
 
     public override void Initialize()
-    {   
+    {
         if (!Directory.Exists("world"))
         {
             Directory.CreateDirectory("world");
@@ -261,7 +261,8 @@ public class Plugin : TerrariaPlugin
     private void OnChat(ServerChatEventArgs args)
     {
         var player = TShock.Players[args.Who];
-        if (player != null)
+        if (player != null && player.Active)
+
         {
             if (args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier)
                 || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier))
