@@ -8,11 +8,11 @@ using TShockAPI;
 namespace GhostView;
 
 [ApiVersion(2, 1)]
-public class GhostSpecter : TerrariaPlugin
+public class GhostView : TerrariaPlugin
 {
     private RespawnManager? _manager;
 
-    public GhostSpecter(Main game) : base(game) { }
+    public GhostView(Main game) : base(game) { }
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Eustia";
