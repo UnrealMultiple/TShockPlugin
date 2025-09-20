@@ -1,5 +1,4 @@
-﻿using GhostView.Constants;
-using GhostView.Models;
+﻿using GhostView.Models;
 using GhostView.Utils;
 using Microsoft.Xna.Framework;
 using TShockAPI;
@@ -28,7 +27,7 @@ public class RespawnService
 
     public void SetGhost(string playerName, double? totalSeconds = null)
     {
-        var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
+        var player = TShock.Players.ToList().Find(p => p != null && p.Name == playerName);
         if (player?.TPlayer is null)
         {
             return;
@@ -44,7 +43,7 @@ public class RespawnService
         {
             var remaining = totalSeconds ?? this._respawnCountdown.GetRemainingSeconds(playerName);
             player.SendMessage(
-                string.Format(DeathMessages.DeathWarningMessage, remaining),
+                string.Format(GetString("你已死亡，剩余 {0:F1}s 后复活"), remaining),
                 Color.Yellow
             );
         }
@@ -54,7 +53,7 @@ public class RespawnService
 
     public void RevivePlayer(string playerName)
     {
-        var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
+        var player = TShock.Players.ToList().Find(p => p != null && p.Name == playerName);
         if (player?.TPlayer is null)
         {
             return;
@@ -76,10 +75,10 @@ public class RespawnService
 
     public void NotifyReconnect(string playerName, double remainSeconds)
     {
-        var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
+        var player = TShock.Players.ToList().Find(p => p != null && p.Name == playerName);
 
         player?.SendMessage(
-            string.Format(DeathMessages.ReconnectWarningMessage, remainSeconds),
+            string.Format(GetString("你在离线期间仍未结束复活冷却，剩余 {0:F1}s"), remainSeconds),
             Color.Yellow
         );
     }

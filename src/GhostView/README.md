@@ -1,4 +1,4 @@
-﻿# GhostView
+﻿# GhostView 鬼魂观战
 
 - 作者: Eustia
 - 出处: 无
@@ -10,8 +10,16 @@
 无
 ```
 ## 配置
-```
-无
+> 配置文件位置：tshock/config.json
+```json5
+{
+  "Settings": {
+    // ... 其他配置项 ...
+    "RespawnSeconds": 5,
+    "RespawnBossSeconds": 20,
+    // ... 其他配置项 ...
+  }
+}
 ```
 
 ## 反馈

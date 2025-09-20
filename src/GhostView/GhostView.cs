@@ -1,6 +1,7 @@
 using GhostView.Managers;
 using GhostView.Models;
 using GhostView.Service;
+using GhostView.Utils;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -16,7 +17,7 @@ public class GhostView : TerrariaPlugin
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Eustia";
-    public override string Description => "死亡后能在鬼魂状态下观战，重连不刷新复活cd";
+    public override string Description => GetString("死亡后能在鬼魂状态下观战，重连不刷新复活cd");
     public override Version Version => new (1, 0, 0);
 
     public override void Initialize()
@@ -25,7 +26,7 @@ public class GhostView : TerrariaPlugin
         var respawnCountdown = new RespawnCountdown();
 
         this._manager = new RespawnManager(respawnService, respawnCountdown);
-
+        RespawnConfigFixer.EnsureRespawnSettings();
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
         GetDataHandlers.PlayerSpawn.Register(this.OnPlayerSpawn);

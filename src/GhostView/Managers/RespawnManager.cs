@@ -9,7 +9,7 @@ public class RespawnManager(RespawnService respawnService, RespawnCountdown resp
 {
     public void OnPlayerSpawn(string playerName)
     {
-        var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
+        var player = TShock.Players.ToList().Find(p => p != null && p.Name == playerName);
         if (player?.TPlayer is null)
         {
             return;
@@ -35,7 +35,7 @@ public class RespawnManager(RespawnService respawnService, RespawnCountdown resp
 
     public void OnGreetPlayer(string playerName)
     {
-        var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
+        var player = TShock.Players.ToList().Find(p => p != null && p.Name == playerName);
         if (!respawnCountdown.IsFinished(playerName))
         {
             respawnService.SetGhost(playerName);
@@ -50,13 +50,13 @@ public class RespawnManager(RespawnService respawnService, RespawnCountdown resp
 
     public void OnKillMe(string playerName)
     {
-        var tsPlayer = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
-        if (tsPlayer is null)
+        var player = TShock.Players.ToList().Find(p => p != null && p.Name == playerName);
+        if (player is null)
         {
             return;
         }
-
-        var isBossAlive = BossCheckUtil.IsBossNearPlayer(tsPlayer);
+        
+        var isBossAlive = BossCheckUtil.IsBossNearPlayer(player);
 
         var totalSeconds = respawnCountdown.StartCountdown(
             playerName,

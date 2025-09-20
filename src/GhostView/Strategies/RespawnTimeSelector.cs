@@ -1,17 +1,12 @@
-﻿using GhostView.Constants;
-using TShockAPI;
+﻿using TShockAPI;
 
 namespace GhostView.Strategies;
 
 public class RespawnTimeSelector
 {
-    private readonly double _normalSeconds = TShock.Config.Settings.RespawnSeconds > 0
-        ? TShock.Config.Settings.RespawnSeconds
-        : RespawnSettings.DefaultRespawnSeconds;
+    private readonly double _normalSeconds = TShock.Config.Settings.RespawnSeconds;
 
-    private readonly double _bossSeconds = TShock.Config.Settings.RespawnBossSeconds > 0
-        ? TShock.Config.Settings.RespawnBossSeconds
-        : RespawnSettings.DefaultRespawnBossSeconds;
+    private readonly double _bossSeconds = TShock.Config.Settings.RespawnBossSeconds;
 
     public double GetRespawnSeconds(bool isBossAlive)
     {
