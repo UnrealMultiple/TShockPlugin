@@ -1,18 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-6qmf-mmc7-6c2p"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="UnrealMultiple.TShock-Beta" Version="6.0.0"/>
-    </ItemGroup>
+	<Import Project="..\..\template.targets" />
 
 </Project>
