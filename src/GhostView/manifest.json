@@ -1,0 +1,11 @@
+﻿{
+  "README.en-US": {
+    "Description": "spectate in ghost mode after death, reconnect does not reset respawn cooldown"
+  },
+  "README.es-ES": {
+    "Description": "espectar en modo fantasma tras la muerte, la reconexión no reinicia el tiempo de reaparición"
+  },
+  "README": {
+    "Description": "死亡后能在鬼魂状态下观战，重连不刷新复活cd"
+  }
+}

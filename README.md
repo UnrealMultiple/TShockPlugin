@@ -120,6 +120,7 @@
 | [Ezperm](./src/Ezperm/README.md) | 批量改权限 |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 鱼店 |  |
 | [GenerateMap](./src/GenerateMap/README.md) | 生成地图 |  |
+| [GhostView](./src/GhostView/README.md) | 死亡后能在鬼魂状态下观战，重连不刷新复活cd |  |
 | [GolfRewards](./src/GolfRewards/README.md) | 高尔夫奖励 |  |
 | [GoodNight](./src/GoodNight/README.md) | 宵禁 |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 硬核死亡掉生命水晶 |  |
