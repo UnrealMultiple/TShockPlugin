@@ -1,0 +1,86 @@
+﻿using GhostView.Constants;
+using GhostView.Models;
+using GhostView.Utils;
+using Microsoft.Xna.Framework;
+using TShockAPI;
+
+namespace GhostView.Service;
+
+public class RespawnService
+{
+    private readonly RespawnCountdown _respawnCountdown = new ();
+    private readonly HashSet<string> _reconnectPlayers = new ();
+
+    public void MarkReconnect(string playerName)
+    {
+        this._reconnectPlayers.Add(playerName);
+    }
+
+    private void UnmarkReconnect(string playerName)
+    {
+        this._reconnectPlayers.Remove(playerName);
+    }
+
+    public bool IsReconnectPlayer(string playerName)
+    {
+        return this._reconnectPlayers.Contains(playerName);
+    }
+
+    public void SetGhost(string playerName, double? totalSeconds = null)
+    {
+        var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
+        if (player?.TPlayer is null)
+        {
+            return;
+        }
+
+        player.TPlayer.ghost = true;
+        if (this.IsReconnectPlayer(playerName))
+        {
+            player.TPlayer.active = false;
+        }
+
+        if (!this.IsReconnectPlayer(playerName))
+        {
+            var remaining = totalSeconds ?? this._respawnCountdown.GetRemainingSeconds(playerName);
+            player.SendMessage(
+                string.Format(DeathMessages.DeathWarningMessage, remaining),
+                Color.Yellow
+            );
+        }
+
+        TSPlayer.All.SendData(PacketTypes.PlayerUpdate, "", player.Index);
+    }
+
+    public void RevivePlayer(string playerName)
+    {
+        var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
+        if (player?.TPlayer is null)
+        {
+            return;
+        }
+
+        player.TPlayer.ghost = false;
+        player.TPlayer.active = true;
+        TSPlayer.All.SendData(PacketTypes.PlayerUpdate, "", player.Index);
+        BuffUtils.ClearDebuffs(player);
+        TSPlayer.All.SendData(PacketTypes.PlayerBuff, "", player.Index);
+        if (this.IsReconnectPlayer(playerName))
+        {
+            player.TPlayer.statLife = Math.Max(100, player.TPlayer.statLife / 2);
+            player.SendData(PacketTypes.PlayerHp, "", player.Index);
+        }
+
+        this.UnmarkReconnect(playerName);
+    }
+
+    public void NotifyReconnect(string playerName, double remainSeconds)
+    {
+        var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
+
+        player?.SendMessage(
+            string.Format(DeathMessages.ReconnectWarningMessage, remainSeconds),
+            Color.Yellow
+        );
+    }
+}
