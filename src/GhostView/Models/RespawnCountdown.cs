@@ -1,5 +1,7 @@
 ﻿using GhostView.Strategies;
+using System.Collections;
 using System.Collections.Concurrent;
+using Terraria;
 
 namespace GhostView.Models;
 
@@ -7,12 +9,12 @@ public class RespawnCountdown : IDisposable
 {
     private readonly RespawnTimeSelector _selector = new ();
 
-    private readonly ConcurrentDictionary<string, (double totalSeconds, DateTime startedAt, bool finished)>
+    private readonly ConcurrentDictionary<string, (int totalSeconds, DateTime startedAt, bool finished)>
         _timers = new ();
 
     private bool _disposed;
 
-    public double StartCountdown(string playerName, bool isBossAlive, Action<string>? onFinished)
+    public double StartCountdown(string playerName, bool isBossAlive, Action<string> onFinished)
     {
         if (this._disposed)
         {
@@ -26,26 +28,19 @@ public class RespawnCountdown : IDisposable
 
         var totalSeconds = this._selector.GetRespawnSeconds(isBossAlive);
         this._timers[playerName] = (totalSeconds, DateTime.UtcNow, false);
-
-        _ = Task.Run(async () =>
-        {
-            try
-            {
-                await Task.Delay(TimeSpan.FromSeconds(totalSeconds));
-                if (!this._disposed && this._timers.TryGetValue(playerName, out var info) && !info.finished)
-                {
-                    this._timers[playerName] = (info.totalSeconds, info.startedAt, true);
-                    onFinished?.Invoke(playerName);
-                }
-            }
-            finally
-            {
-                this._timers.TryRemove(playerName, out _);
-            }
-        });
-
+        Main.DelayedProcesses.Add(this.GetDelayedTimer(totalSeconds, playerName,onFinished));
         return totalSeconds;
     }
+
+    private IEnumerator GetDelayedTimer(int totalSeconds, string playerName, Action<string> onFinished)
+    {
+        for (var i = 0; i < 60 * totalSeconds; i++)
+        {
+            yield return null;
+        }
+        this._timers.Remove(playerName, out _);
+        onFinished.Invoke(playerName);
+    }  
 
     public double GetRemainingSeconds(string playerName)
     {

@@ -43,7 +43,7 @@ public class RespawnService
         {
             var remaining = totalSeconds ?? this._respawnCountdown.GetRemainingSeconds(playerName);
             player.SendMessage(
-                string.Format(GetString("你已死亡，剩余 {0:F1}s 后复活"), remaining),
+                string.Format(GetString("你已死亡，剩余{0:F1}s后复活"), remaining),
                 Color.Yellow
             );
         }
@@ -78,8 +78,9 @@ public class RespawnService
         var player = TShock.Players.ToList().Find(p => p != null && p.Name == playerName);
 
         player?.SendMessage(
-            string.Format(GetString("你在离线期间仍未结束复活冷却，剩余 {0:F1}s"), remainSeconds),
+            string.Format(GetString("你在离线期间仍未结束复活冷却，剩余{0:F1}s"), remainSeconds),
             Color.Yellow
         );
     }
+    
 }
