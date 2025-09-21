@@ -4,12 +4,12 @@ namespace GhostView.Strategies;
 
 public class RespawnTimeSelector
 {
-    private readonly int _normalSeconds = TShock.Config.Settings.RespawnSeconds;
+    private static int NormalSeconds => TShock.Config.Settings.RespawnSeconds;
 
-    private readonly int _bossSeconds = TShock.Config.Settings.RespawnBossSeconds;
+    private static int BossSeconds => TShock.Config.Settings.RespawnBossSeconds;
 
-    public int GetRespawnSeconds(bool isBossAlive)
+    public static int GetRespawnSeconds(bool isBossAlive)
     {
-        return isBossAlive ? this._bossSeconds : this._normalSeconds;
+        return isBossAlive ? BossSeconds : NormalSeconds;
     }
 }

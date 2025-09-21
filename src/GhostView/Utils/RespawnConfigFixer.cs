@@ -17,5 +17,6 @@ public static class RespawnConfigFixer
         {
             settings.RespawnBossSeconds = DefaultRespawnBossSeconds;
         }
+        
     }
 }

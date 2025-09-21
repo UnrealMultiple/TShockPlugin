@@ -26,7 +26,7 @@ public class RespawnCountdown : IDisposable
             return this.GetRemainingSeconds(playerName);
         }
 
-        var totalSeconds = this._selector.GetRespawnSeconds(isBossAlive);
+        var totalSeconds = RespawnTimeSelector.GetRespawnSeconds(isBossAlive);
         this._timers[playerName] = (totalSeconds, DateTime.UtcNow, false);
         Main.DelayedProcesses.Add(this.GetDelayedTimer(totalSeconds, playerName,onFinished));
         return totalSeconds;

@@ -30,7 +30,6 @@ public class GhostView(Main game) : TerrariaPlugin(game)
         var respawnCountdown = new RespawnCountdown();
 
         this._manager = new RespawnManager(respawnService, respawnCountdown);
-        RespawnConfigFixer.EnsureRespawnSettings();
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
         GetDataHandlers.PlayerSpawn.Register(this.OnPlayerSpawn);
@@ -67,6 +66,7 @@ public class GhostView(Main game) : TerrariaPlugin(game)
 
     private void OnKillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
     {
+        RespawnConfigFixer.EnsureRespawnSettings();
         WithPlayer(e.PlayerId, name => this._manager?.OnKillMe(name));
     }
 
