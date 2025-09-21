@@ -195,11 +195,6 @@ public static class GetDataHandlers
         int action = args.Data.ReadInt8();//类型
         int x = args.Data.ReadInt16();
         int y = args.Data.ReadInt16();
-        var tile = Main.tile[x, y];
-        if (Main.tileCut[tile.type])
-        {
-            return false;//如果是草不阻止破坏
-        }
 
         var house = Utils.InAreaHouse(x, y);//直接读出敲的房子
         if (HousingPlugin.LPlayers[args.Player.Index]!.Look)//敲击砖块确认房屋名
@@ -297,19 +292,7 @@ public static class GetDataHandlers
         {
             return false;//腐化血腥的生成好像都是1
         }
-
-        var tile = Main.tile[tileX, tileY];
-        if (Main.tileCut[tile.type])
-        {
-            return false;//如果是草不阻止破坏
-        }
-
-        var newtile = new NetTile(args.Data);//新瓷砖
-        if (Main.tileCut[newtile.Type])
-        {
-            return false;//如果是草不阻止生成
-        }
-
+        
         var house = Utils.InAreaHouse(tileX, tileY);//确定是否保护区
         if (house == null)
         {
