@@ -20,6 +20,11 @@ public class GhostView(Main game) : TerrariaPlugin(game)
 
     public override void Initialize()
     {
+        if (!TShock.ServerSideCharacterConfig.Settings.Enabled)
+        {
+            TShock.Log.ConsoleWarn(GetString("[GhostView]SSC未开启，可能会导致插件失效!"));
+        }
+        
         var respawnService = new RespawnService();
         var respawnCountdown = new RespawnCountdown();
 
