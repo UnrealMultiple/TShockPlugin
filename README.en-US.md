@@ -124,6 +124,7 @@
 | [Ezperm](./src/Ezperm/README.en-US.md) | 100.0% | Batch change permissions |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Fish shop |  |
 | [GenerateMap](./src/GenerateMap/README.en-US.md) | 11.1% | Generate map |  |
+| [GhostView](./src/GhostView/README.md) | 0.0% | spectate in ghost mode after death, reconnect does not reset respawn cooldown |  |
 | [GolfRewards](./src/GolfRewards/README.en-US.md) | 100.0% | Golf rewards |  |
 | [GoodNight](./src/GoodNight/README.md) | 4.9% | Curfew |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.en-US.md) | 100.0% | Hardcore death drops life crystals |  |

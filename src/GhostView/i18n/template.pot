@@ -1,0 +1,28 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GhostView\n"
+"POT-Creation-Date: 2025-09-21 16:10:23+0000\n"
+"PO-Revision-Date: 2025-09-21 16:10:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+
+#: ../../GhostView.cs:25
+msgid "[GhostView]SSC未开启，插件已自动关闭!"
+msgstr ""
+
+#: ../../Service/RespawnService.cs:81
+msgid "你在离线期间仍未结束复活冷却，剩余{0:F1}s"
+msgstr ""
+
+#: ../../Service/RespawnService.cs:46
+msgid "你已死亡，剩余{0:F1}s后复活"
+msgstr ""
+
+#: ../../GhostView.cs:18
+msgid "死亡后能在鬼魂状态下观战，重连不刷新复活cd"
+msgstr ""
+

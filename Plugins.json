@@ -1354,6 +1354,26 @@
     "HotReload": true
   },
   {
+    "Name": "GhostView",
+    "Version": "1.0.0",
+    "Author": "Eustia",
+    "Description": {
+      "en-US": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "de-DE": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "it-IT": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "fr-FR": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "es-ES": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "ru-RU": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "zh-CN": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "pt-BR": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "pl-PL": "死亡后能在鬼魂状态下观战，重连不刷新复活cd"
+    },
+    "AssemblyName": "GhostView",
+    "Path": "GhostView.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "GoodNight",
     "Version": "2.7.7",
     "Author": "Jonesn 羽学 少司命",
