@@ -9,11 +9,9 @@ using TShockAPI;
 namespace GhostView;
 
 [ApiVersion(2, 1)]
-public class GhostView : TerrariaPlugin
+public class GhostView(Main game) : TerrariaPlugin(game)
 {
     private RespawnManager? _manager;
-
-    public GhostView(Main game) : base(game) { }
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Eustia";
@@ -48,25 +46,25 @@ public class GhostView : TerrariaPlugin
 
     private void OnPlayerSpawn(object? sender, GetDataHandlers.SpawnEventArgs e)
     {
-        this.WithPlayer(e.PlayerId, name => this._manager?.OnPlayerSpawn(name));
+        WithPlayer(e.PlayerId, name => this._manager?.OnPlayerSpawn(name));
     }
 
     private void OnGreetPlayer(GreetPlayerEventArgs e)
     {
-        this.WithPlayer(e.Who, name => this._manager?.OnGreetPlayer(name));
+        WithPlayer(e.Who, name => this._manager?.OnGreetPlayer(name));
     }
 
     private void OnLeave(LeaveEventArgs e)
     {
-        this.WithPlayer(e.Who, name => this._manager?.OnLeave(name));
+        WithPlayer(e.Who, name => this._manager?.OnLeave(name));
     }
 
     private void OnKillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
     {
-        this.WithPlayer(e.PlayerId, name => this._manager?.OnKillMe(name));
+        WithPlayer(e.PlayerId, name => this._manager?.OnKillMe(name));
     }
 
-    private void WithPlayer(int playerIndex, Action<string> action)
+    private static void WithPlayer(int playerIndex, Action<string> action)
     {
         var player = TShock.Players[playerIndex];
         if (player != null)
