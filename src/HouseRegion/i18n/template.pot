@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: HouseRegion\n"
-"POT-Creation-Date: 2025-09-22 02:26:41+0000\n"
-"PO-Revision-Date: 2025-09-22 02:26:41+0000\n"
+"POT-Creation-Date: 2025-09-22 13:59:48+0000\n"
+"PO-Revision-Date: 2025-09-22 13:59:48+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -217,7 +217,6 @@ msgid ""
 msgstr ""
 
 #: ../../Plugin.cs:244
-#: ../../Plugin.cs:254
 #: ../../Plugin.cs:592
 #, csharp-format
 msgid "因为您的房子总面积超过了最大限制 {0} 格块。"
@@ -229,6 +228,7 @@ msgstr ""
 msgid "因为您的房屋宽度小于最小限制 {0} 格块。"
 msgstr ""
 
+#: ../../Plugin.cs:254
 #: ../../Plugin.cs:602
 #, csharp-format
 msgid "因为您的房屋高度小于最小限制 {0} 格块。"

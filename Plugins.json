@@ -234,7 +234,7 @@
   },
   {
     "Name": "AutoClassificationQuickStack",
-    "Version": "1.1",
+    "Version": "1.2",
     "Author": "xuyuwtu",
     "Description": {
       "en-US": "快速堆叠时根据配置放入箱子",
@@ -1435,7 +1435,7 @@
   },
   {
     "Name": "HouseRegion",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Author": "GK 阁下 改良",
     "Description": {
       "en-US": "Plugin for protecting houses.",
