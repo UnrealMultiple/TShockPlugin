@@ -1435,7 +1435,7 @@
   },
   {
     "Name": "HouseRegion",
-    "Version": "1.0.0.10",
+    "Version": "1.0.1",
     "Author": "GK 阁下 改良",
     "Description": {
       "en-US": "Plugin for protecting houses.",

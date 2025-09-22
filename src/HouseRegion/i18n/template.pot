@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: HouseRegion\n"
-"POT-Creation-Date: 2025-06-30 14:56:22+0000\n"
-"PO-Revision-Date: 2025-06-30 14:56:22+0000\n"
+"POT-Creation-Date: 2025-09-22 02:26:41+0000\n"
+"PO-Revision-Date: 2025-09-22 02:26:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -78,20 +78,20 @@ msgstr ""
 msgid "你必须登录才能使用房子插件。"
 msgstr ""
 
-#: ../../PacketReceive.cs:578
-#: ../../PacketReceive.cs:602
+#: ../../PacketReceive.cs:561
+#: ../../PacketReceive.cs:585
 msgid "你没有权力修改被房子保护的地区。"
 msgstr ""
 
-#: ../../PacketReceive.cs:466
+#: ../../PacketReceive.cs:449
 msgid "你没有权力修改被房子保护的地区的标牌。"
 msgstr ""
 
-#: ../../PacketReceive.cs:410
+#: ../../PacketReceive.cs:393
 msgid "你没有权力修改被房子保护的地区的箱子。"
 msgstr ""
 
-#: ../../PacketReceive.cs:285
+#: ../../PacketReceive.cs:280
 msgid "你没有权力修改被房子保护的地区的门。"
 msgstr ""
 
@@ -99,7 +99,7 @@ msgstr ""
 #: ../../PacketReceive.cs:103
 #: ../../PacketReceive.cs:134
 #: ../../PacketReceive.cs:175
-#: ../../PacketReceive.cs:628
+#: ../../PacketReceive.cs:611
 msgid "你没有权力修改被房子保护的物品。"
 msgstr ""
 
@@ -120,31 +120,31 @@ msgstr ""
 msgid "你没有权力删除这个房子!"
 msgstr ""
 
-#: ../../PacketReceive.cs:490
+#: ../../PacketReceive.cs:473
 msgid "你没有权力在被房子保护的地区放水。"
 msgstr ""
 
-#: ../../PacketReceive.cs:545
+#: ../../PacketReceive.cs:528
 msgid "你没有权力在被房子保护的地区油漆墙。"
 msgstr ""
 
-#: ../../PacketReceive.cs:521
+#: ../../PacketReceive.cs:504
 msgid "你没有权力在被房子保护的地区油漆砖。"
 msgstr ""
 
-#: ../../PacketReceive.cs:352
+#: ../../PacketReceive.cs:335
 msgid "你没有权力打开被房子保护的地区的箱子。"
 msgstr ""
 
-#: ../../PacketReceive.cs:255
+#: ../../PacketReceive.cs:250
 msgid "你没有权力损坏被房子保护的地区。"
 msgstr ""
 
-#: ../../PacketReceive.cs:434
+#: ../../PacketReceive.cs:417
 msgid "你没有权力放置被房子保护的地区的家具。"
 msgstr ""
 
-#: ../../PacketReceive.cs:381
+#: ../../PacketReceive.cs:364
 msgid "你没有权力更新被房子保护的地区的箱子。"
 msgstr ""
 
@@ -157,7 +157,7 @@ msgstr ""
 msgid "你没有权力管理这个房子!"
 msgstr ""
 
-#: ../../PacketReceive.cs:662
+#: ../../PacketReceive.cs:645
 msgid "你没有权力触发被房子保护的宝石锁。"
 msgstr ""
 
@@ -198,11 +198,11 @@ msgstr ""
 msgid "使用者: "
 msgstr ""
 
-#: ../../PacketReceive.cs:233
+#: ../../PacketReceive.cs:228
 msgid "保护区右下角已设置!"
 msgstr ""
 
-#: ../../PacketReceive.cs:228
+#: ../../PacketReceive.cs:223
 msgid "保护区左上角已设置!"
 msgstr ""
 
@@ -234,7 +234,7 @@ msgstr ""
 msgid "因为您的房屋高度小于最小限制 {0} 格块。"
 msgstr ""
 
-#: ../../PacketReceive.cs:216
+#: ../../PacketReceive.cs:211
 #: ../../Plugin.cs:650
 msgid "已上锁"
 msgstr ""
@@ -329,7 +329,7 @@ msgid "房屋插件错误调用事件时出错:"
 msgstr ""
 
 #: ../../Utils.cs:90
-#: ../../PacketReceive.cs:215
+#: ../../PacketReceive.cs:210
 #: ../../Plugin.cs:635
 #: ../../Plugin.cs:640
 #: ../../Plugin.cs:646
@@ -352,11 +352,11 @@ msgstr ""
 msgid "指令错误! 正确指令: /house set [1/2]"
 msgstr ""
 
-#: ../../PacketReceive.cs:209
+#: ../../PacketReceive.cs:204
 msgid "敲击处不属于任何房子。"
 msgstr ""
 
-#: ../../PacketReceive.cs:216
+#: ../../PacketReceive.cs:211
 #, csharp-format
 msgid "敲击处为 {0} 的房子: {1} 状态: {2}"
 msgstr ""
@@ -365,9 +365,9 @@ msgstr ""
 msgid "无效页码 ({0})"
 msgstr ""
 
-#: ../../PacketReceive.cs:252
-#: ../../PacketReceive.cs:575
-#: ../../PacketReceive.cs:599
+#: ../../PacketReceive.cs:247
+#: ../../PacketReceive.cs:558
+#: ../../PacketReceive.cs:582
 msgid "无权修改房子保护!"
 msgstr ""
 
@@ -375,47 +375,47 @@ msgstr ""
 #: ../../PacketReceive.cs:100
 #: ../../PacketReceive.cs:132
 #: ../../PacketReceive.cs:172
-#: ../../PacketReceive.cs:625
+#: ../../PacketReceive.cs:608
 msgid "无权修改房子保护的物品!"
 msgstr ""
 
-#: ../../PacketReceive.cs:463
+#: ../../PacketReceive.cs:446
 msgid "无权修改标牌!"
 msgstr ""
 
-#: ../../PacketReceive.cs:407
+#: ../../PacketReceive.cs:390
 msgid "无权修改箱子!"
 msgstr ""
 
-#: ../../PacketReceive.cs:282
+#: ../../PacketReceive.cs:277
 msgid "无权修改门!"
 msgstr ""
 
-#: ../../PacketReceive.cs:349
+#: ../../PacketReceive.cs:332
 msgid "无权打开箱子!"
 msgstr ""
 
-#: ../../PacketReceive.cs:487
+#: ../../PacketReceive.cs:470
 msgid "无权放水!"
 msgstr ""
 
-#: ../../PacketReceive.cs:431
+#: ../../PacketReceive.cs:414
 msgid "无权放置家具!"
 msgstr ""
 
-#: ../../PacketReceive.cs:378
+#: ../../PacketReceive.cs:361
 msgid "无权更新箱子!"
 msgstr ""
 
-#: ../../PacketReceive.cs:542
+#: ../../PacketReceive.cs:525
 msgid "无权油漆墙!"
 msgstr ""
 
-#: ../../PacketReceive.cs:518
+#: ../../PacketReceive.cs:501
 msgid "无权油漆砖!"
 msgstr ""
 
-#: ../../PacketReceive.cs:659
+#: ../../PacketReceive.cs:642
 msgid "无权触发房子保护的宝石锁!"
 msgstr ""
 
@@ -439,7 +439,7 @@ msgstr ""
 msgid "无法使用，因为服务器禁止了所有者分享使用者功能。"
 msgstr ""
 
-#: ../../PacketReceive.cs:216
+#: ../../PacketReceive.cs:211
 #: ../../Plugin.cs:650
 msgid "未上锁"
 msgstr ""
