@@ -251,7 +251,7 @@ public class HousingPlugin : LazyPlugin
 
                                 if (height < Config.Instance.MinHeight)
                                 {
-                                    args.Player.SendErrorMessage(GetString($"因为您的房子总面积超过了最大限制 {Config.Instance.MinHeight} 格块。"));
+                                    args.Player.SendErrorMessage(GetString($"因为您的房屋高度小于最小限制 {Config.Instance.MinHeight} 格块。"));
                                 }
                             }
                         }
