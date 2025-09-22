@@ -15,7 +15,7 @@ public class Plugin : TerrariaPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "xuyuwtu";
     public override string Description => GetString("快速堆叠时根据配置放入箱子");
-    public override Version Version => new Version(1, 1);
+    public override Version Version => new Version(1, 2);
     #endregion
 
     #region 注册重载释放
