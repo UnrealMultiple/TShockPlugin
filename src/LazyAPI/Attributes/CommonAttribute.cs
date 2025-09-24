@@ -54,4 +54,14 @@ public class AliasAttribute(params string[] aliases) : Attribute
     public HashSet<string> alias = [.. aliases];
 }
 
+[AttributeUsage(AttributeTargets.Class)]
+public class HelpTextAttribute(string helpText) : Attribute
+{
+    public string helpText = helpText;
+}
 
+[AttributeUsage(AttributeTargets.Method)]
+public class UsageAttribute(string usage) : Attribute
+{
+    public string usage = usage;
+}
