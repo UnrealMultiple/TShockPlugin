@@ -2639,7 +2639,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.11.2.0",
+    "Version": "1.11.3.0",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
