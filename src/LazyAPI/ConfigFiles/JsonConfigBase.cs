@@ -14,6 +14,8 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
 
     private static CultureInfo cultureInfo = null!;
 
+    internal static GeneralHooks.ReloadEventD? ReloadEvent { get; set; }
+
     protected virtual string Filename => typeof(T).Namespace ?? typeof(T).Name;
 
     protected virtual void SetDefault()
@@ -89,11 +91,12 @@ public abstract class JsonConfigBase<T> where T : JsonConfigBase<T>, new()
     // .cctor is lazy load
     public static string Load()
     {
-        GeneralHooks.ReloadEvent += args =>
+        ReloadEvent = args =>
         {
             _instance = GetConfig();
             _instance.Reload(args);
         };
+        GeneralHooks.ReloadEvent += ReloadEvent;
         return Instance.Filename;
     }
 

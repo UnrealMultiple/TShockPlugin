@@ -23,20 +23,20 @@ public class NoteWall : LazyPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("notewall.user.add", this.AddNote, "addnote"));
-        Commands.ChatCommands.Add(new Command("notewall.user.view", this.ViewNote, "viewnote","vinote"));
-        Commands.ChatCommands.Add(new Command("notewall.user.page", this.ViewNotesPage,"notewall"));
-        Commands.ChatCommands.Add(new Command("notewall.user.random", this.RandomNote, "randomnote","rdnote"));
-        Commands.ChatCommands.Add(new Command("notewall.user.update", this.UpdateNote, "updatenote","upnote"));
-        Commands.ChatCommands.Add(new Command("notewall.admin.delete", this.DeleteNote, "deletenote","delnote"));
-        Commands.ChatCommands.Add(new Command("notewall.user.my", this.MyNotes, "mynote"));
+        this.addCommands.Add(new Command("notewall.user.add", this.AddNote, "addnote"));
+        this.addCommands.Add(new Command("notewall.user.view", this.ViewNote, "viewnote","vinote"));
+        this.addCommands.Add(new Command("notewall.user.page", this.ViewNotesPage,"notewall"));
+        this.addCommands.Add(new Command("notewall.user.random", this.RandomNote, "randomnote","rdnote"));
+        this.addCommands.Add(new Command("notewall.user.update", this.UpdateNote, "updatenote","upnote"));
+        this.addCommands.Add(new Command("notewall.admin.delete", this.DeleteNote, "deletenote","delnote"));
+        this.addCommands.Add(new Command("notewall.user.my", this.MyNotes, "mynote"));
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.AddNote || x.CommandDelegate == this.ViewNote || x.CommandDelegate == this.ViewNotesPage || x.CommandDelegate == this.RandomNote || x.CommandDelegate == this.UpdateNote || x.CommandDelegate == this.DeleteNote || x.CommandDelegate == this.MyNotes);
         }
         base.Dispose(disposing);
     }

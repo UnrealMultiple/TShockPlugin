@@ -74,11 +74,12 @@ public class HousingPlugin : LazyPlugin
     {
         this.RD();
         GetDataHandlers.InitGetDataHandler();//初始化配置值，RH要放在服务器开成后再读不然世界ID读不出
-        Commands.ChatCommands.Add(new Command("house.use", this.HCommands, "house") { HelpText = GetString("输入/house help可以显示与房子相关的操作提示。") });
+        this.addCommands.Add(new Command("house.use", this.HCommands, "house") { HelpText = GetString("输入/house help可以显示与房子相关的操作提示。") });
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);//玩家进入服务器
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);//玩家退出服务器
         ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitialize);//地图读入后
         Hooks.MessageBuffer.InvokeGetData += this.MessageBufferOnInvokeGetData;
+        base.Initialize();
     }
 
     private bool MessageBufferOnInvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
@@ -103,7 +104,6 @@ public class HousingPlugin : LazyPlugin
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.HCommands);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreetPlayer);//玩家进入服务器
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);//玩家退出服务器
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.PostInitialize);//地图读入后

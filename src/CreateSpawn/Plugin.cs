@@ -25,6 +25,7 @@ public class CreateSpawn(Main game) : LazyPlugin(game)
         ExtractData();
         ServerApi.Hooks.GamePostInitialize.Register(this, this.GamePost);
         On.Terraria.WorldGen.AddGenerationPass_string_WorldGenLegacyMethod += this.WorldGen_AddGenerationPass_string_WorldGenLegacyMethod;
+        base.Initialize();
     }
 
     private void WorldGen_AddGenerationPass_string_WorldGenLegacyMethod(On.Terraria.WorldGen.orig_AddGenerationPass_string_WorldGenLegacyMethod orig, string name, WorldGenLegacyMethod method)
