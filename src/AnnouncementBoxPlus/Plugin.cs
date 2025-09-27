@@ -1,4 +1,5 @@
 ﻿using LazyAPI;
+using LazyAPI.Hooks;
 using Microsoft.Xna.Framework;
 using On.OTAPI;
 using System.Globalization;
@@ -36,22 +37,10 @@ public class AnnouncementBoxPlus : LazyPlugin
     //插件加载时执行的代码
     public override void Initialize()
     {
+        this.addHooks.Add(new ActionHook(() => On.OTAPI.Hooks.Wiring.InvokeAnnouncementBox += this.OnAnnouncementBox));
+        this.addHooks.Add(GetDataHandlers.SignRead.GetHook(this.OnSignRead));
+        this.addHooks.Add(GetDataHandlers.Sign.GetHook(this.OnSign));
         base.Initialize();
-        On.OTAPI.Hooks.Wiring.InvokeAnnouncementBox += this.OnAnnouncementBox;
-        GetDataHandlers.SignRead.Register(this.OnSignRead);
-        GetDataHandlers.Sign.Register(this.OnSign);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            GetDataHandlers.SignRead.UnRegister(this.OnSignRead);
-            GetDataHandlers.Sign.UnRegister(this.OnSign);
-            On.OTAPI.Hooks.Wiring.InvokeAnnouncementBox -= this.OnAnnouncementBox;
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnSign(object? sender, GetDataHandlers.SignEventArgs e)
