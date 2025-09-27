@@ -1,6 +1,7 @@
 using LazyAPI.Attributes;
 using LazyAPI.Commands;
 using LazyAPI.ConfigFiles;
+using LazyAPI.Hooks;
 using LazyAPI.Utility;
 using Rests;
 using System.Reflection;
@@ -15,6 +16,7 @@ public abstract class LazyPlugin : TerrariaPlugin
     private readonly List<GeneralHooks.ReloadEventD> addReloadEvents = new();
     protected readonly List<TShockAPI.Command> addCommands = new();
     protected readonly List<RestCommand> addRestCommands = new();
+    protected readonly List<HookBase> addHooks = new();
     public override string Name
     {
         get
@@ -37,6 +39,13 @@ public abstract class LazyPlugin : TerrariaPlugin
         foreach (var cmd in this.addRestCommands)
         {
             TShockAPI.TShock.RestApi.Register(cmd);
+        }
+        foreach(var hook in this.addHooks)
+        {
+            if(hook.LoadType == HookLoadType.Auto)
+            {
+                hook.Register();
+            }
         }
         this.AutoLoad();
         if (this.restToLoad.Count > 0)
