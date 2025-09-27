@@ -1,6 +1,6 @@
 # HouseRegion house protection plugin
 
-- author: GK
+- author: GK Eustia Updated
 - Source: None
 - House Protection Plugin
 
@@ -20,6 +20,8 @@
 | /house redefine [house name]      | none  | `house.use` `house.admin` | Redefining the house  |
 | /house info [house name]          | none  | `house.use` `house.admin` |  Housing information   |
 | /house lock [house name]          | none  | `house.use` `house.admin` |   House lock   |
+| /house show [house]          | None  |         house.use         |  Show the boundary of a specific house  |
+| /house showall               | None  |         house.use         |  Show the boundaries of all houses      |
 
 ## Configuration
 	Configuration file location: tshock/HouseRegion.en-US.json
@@ -45,6 +47,15 @@
 ## Change log
 
 ```
+v1.0.3
+Added new feature - Display housing region boundaries
+
+v1.0.2
+Fixed incorrect message prompts when creating housing regions
+
+v1.0.1
+Fixed issue where herbs were not being protected
+
 v1.0.0.4
 Improve the uninstall function
 ```

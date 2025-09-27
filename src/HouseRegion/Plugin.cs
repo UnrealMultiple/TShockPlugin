@@ -14,10 +14,10 @@ namespace HouseRegion;
 [ApiVersion(2, 1)]//api版本
 public class HousingPlugin : LazyPlugin
 {
-    public override string Author => "GK 阁下 改良";
+    public override string Author => "GK 阁下 改良 Eustia 更新";
     public override string Description => GetString("一个著名的用于保护房屋的插件。");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 2);
+    public override Version Version => new Version(1, 0, 3);
     public HousingPlugin(Main game) : base(game)
     {
     }
@@ -128,6 +128,7 @@ public class HousingPlugin : LazyPlugin
                 LPlayers[e.Who] = null;
             }
         }
+        GetDataHandlers.ClearPlayerDisplays(e.Who);
     }
     public void PostInitialize(EventArgs e)
     {
@@ -470,20 +471,22 @@ public class HousingPlugin : LazyPlugin
                             args.Player.SendErrorMessage(GetString("房屋删除失败!"));
                             return;
                         }
+            
+                        GetDataHandlers.OnHouseDeleted(house.HouseArea);
+            
                         Houses.Remove(house);
                         args.Player.SendMessage(GetString($"房屋:{house.Name} 删除成功!"), Color.Yellow);
                         TShock.Log.ConsoleInfo(GetString("{0} 删除房屋: {1}"), args.Player.Account.Name, house.Name);
                     }
                     else
                     {
-                        args.Player.SendErrorMessage(GetString("你没有权力删除这个房子!"));//只有房子的作者可以
+                        args.Player.SendErrorMessage(GetString("你没有权力删除这个房子!"));
                     }
                 }
                 else
                 {
                     args.Player.SendErrorMessage(GetString("语法错误! 正确语法: /house delete [屋名]"));
                 }
-
                 break;
             }
             case "clear":
@@ -695,6 +698,29 @@ public class HousingPlugin : LazyPlugin
 
                 break;
             }
+            case "show":
+            {
+                if (args.Parameters.Count > 1)
+                {
+                    var houseName = args.Parameters[1];
+                    var house = Houses.FirstOrDefault(h => h.Name.Equals(houseName, StringComparison.OrdinalIgnoreCase));
+                    if (house == null)
+                    {
+                        args.Player.SendErrorMessage(GetString($"未找到房屋 {houseName}"));
+                        return;
+                    }
+
+                    GetDataHandlers.ToggleHouseDisplay(args.Player, house);
+                }
+            }
+                break;
+
+            case "showall":
+            {
+                GetDataHandlers.ToggleAllDisplays(args.Player, Houses);
+            }
+                break;
+
             default:
             {
                 args.Player.SendMessage(GetString("要创建房屋，请使用以下命令:"), Color.Lime);
