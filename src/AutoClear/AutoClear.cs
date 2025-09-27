@@ -20,6 +20,7 @@ public class AutoClear(Main game) : LazyPlugin(game)
 
     public override void Initialize()
     {
+        base.Initialize();
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
     }
     

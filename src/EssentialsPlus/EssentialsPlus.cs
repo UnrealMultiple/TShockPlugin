@@ -56,6 +56,7 @@ public class EssentialsPlus : LazyPlugin
         ServerApi.Hooks.GamePostInitialize.Register(this, this.OnPostInitialize);
         ServerApi.Hooks.NetGetData.Register(this, this.OnGetData);
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
+        base.Initialize();
     }
 
     private void OnReload(ReloadEventArgs e)

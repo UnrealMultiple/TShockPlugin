@@ -22,8 +22,9 @@ public class AutoStoreItems : LazyPlugin
     {
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
-        TShockAPI.Commands.ChatCommands.Add(new Command("AutoStore.use", Commands.Ast, "ast", "自存"));
-        TShockAPI.Commands.ChatCommands.Add(new Command("AutoStore.admin", Commands.Reset, "astreset", "重置自存"));
+        this.addCommands.Add(new Command("AutoStore.use", Commands.Ast, "ast", "自存"));
+        this.addCommands.Add(new Command("AutoStore.admin", Commands.Reset, "astreset", "重置自存"));
+        base.Initialize();
     }
 
 
@@ -33,8 +34,6 @@ public class AutoStoreItems : LazyPlugin
         {
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
-            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Ast);
-            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Reset);
         }
         base.Dispose(disposing);
     }

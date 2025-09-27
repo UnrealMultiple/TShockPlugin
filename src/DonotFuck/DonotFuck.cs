@@ -20,7 +20,8 @@ public class Plugin : LazyPlugin
     public override void Initialize()
     {
         ServerApi.Hooks.ServerChat.Register(this, this.OnChat);
-        TShockAPI.Commands.ChatCommands.Add(new Command("DonotFuck", Commands.DFCmd, "df"));
+        this.addCommands.Add(new Command("DonotFuck", Commands.DFCmd, "df"));
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)
@@ -28,7 +29,6 @@ public class Plugin : LazyPlugin
         if (disposing)
         {
             ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
-            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.DFCmd);
         }
         base.Dispose(disposing);
     }

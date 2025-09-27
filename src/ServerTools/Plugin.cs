@@ -49,6 +49,7 @@ public partial class Plugin : LazyPlugin
         OnTimer += this.OnUpdatePlayerOnline;
         On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
         HandleCommandLine(Environment.GetCommandLineArgs());
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)

@@ -36,6 +36,7 @@ public class AnnouncementBoxPlus : LazyPlugin
     //插件加载时执行的代码
     public override void Initialize()
     {
+        base.Initialize();
         On.OTAPI.Hooks.Wiring.InvokeAnnouncementBox += this.OnAnnouncementBox;
         GetDataHandlers.SignRead.Register(this.OnSignRead);
         GetDataHandlers.Sign.Register(this.OnSign);

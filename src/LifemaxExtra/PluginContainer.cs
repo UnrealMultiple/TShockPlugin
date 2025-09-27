@@ -25,11 +25,12 @@ public class LifemaxExtra : LazyPlugin
     {
         GeneralHooks.ReloadEvent += this.ReloadConfig;
         this.SaveMPandHP();
-        Commands.ChatCommands.Add(new Command("lifemaxextra.use", this.HP, "hp"));
-        Commands.ChatCommands.Add(new Command("lifemaxextra.use", this.Mana, "mp"));
+        this.addCommands.Add(new Command("lifemaxextra.use", this.HP, "hp"));
+        this.addCommands.Add(new Command("lifemaxextra.use", this.Mana, "mp"));
         GetDataHandlers.PlayerUpdate += this.OnPlayerUpdate;
         GetDataHandlers.PlayerHP += this.OnHP;
         GetDataHandlers.PlayerMana += this.OnMana;
+        base.Initialize();
     }
 
 
@@ -38,7 +39,6 @@ public class LifemaxExtra : LazyPlugin
         if (disposing)
         {
             GeneralHooks.ReloadEvent -= this.ReloadConfig;
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.HP || x.CommandDelegate == this.Mana);
             GetDataHandlers.PlayerUpdate -= this.OnPlayerUpdate;
             GetDataHandlers.PlayerHP -= this.OnHP;
             GetDataHandlers.PlayerMana -= this.OnMana;

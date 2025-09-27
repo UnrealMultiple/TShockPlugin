@@ -19,7 +19,8 @@ public class Plugin : LazyPlugin
     public override void Initialize()
     {
         GetDataHandlers.PlayerSpawn.Register(this.OnSpawn);
-        Commands.ChatCommands.Add(new("bed.spawn.set", this.CBed, "家", "shome"));
+        this.addCommands.Add(new("bed.spawn.set", this.CBed, "家", "shome"));
+        base.Initialize();
     }
 
     private void CBed(CommandArgs args)
@@ -54,7 +55,6 @@ public class Plugin : LazyPlugin
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.CBed);
             GetDataHandlers.PlayerSpawn.UnRegister(this.OnSpawn);
         }
         base.Dispose(disposing);

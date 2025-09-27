@@ -23,7 +23,8 @@ public class AutoTeam : LazyPlugin
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnJoin);
         PlayerHooks.PlayerPostLogin += this.OnLogin;
         GetDataHandlers.PlayerTeam += this.Team;
-        Commands.ChatCommands.Add(new Command("autoteam.toggle", this.TogglePlugin, "autoteam", "at"));
+        this.addCommands.Add(new Command("autoteam.toggle", this.TogglePlugin, "autoteam", "at"));
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)
@@ -33,7 +34,6 @@ public class AutoTeam : LazyPlugin
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnJoin);
             PlayerHooks.PlayerPostLogin -= this.OnLogin;
             GetDataHandlers.PlayerTeam -= this.Team;
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.TogglePlugin);
         }
         base.Dispose(disposing);
     }

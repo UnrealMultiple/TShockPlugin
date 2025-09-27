@@ -28,7 +28,8 @@ public class AutoFish : LazyPlugin
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
         ServerApi.Hooks.ProjectileAIUpdate.Register(this, this.ProjectAiUpdate);
-        TShockAPI.Commands.ChatCommands.Add(new Command("autofish", Commands.Afs, "af", "autofish"));
+        this.addCommands.Add(new Command("autofish", Commands.Afs, "af", "autofish"));
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)
@@ -40,7 +41,6 @@ public class AutoFish : LazyPlugin
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             ServerApi.Hooks.ProjectileAIUpdate.Deregister(this, this.ProjectAiUpdate);
-            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Afs);
         }
         base.Dispose(disposing);
     }

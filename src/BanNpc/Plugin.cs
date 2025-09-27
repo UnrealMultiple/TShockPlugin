@@ -22,15 +22,15 @@ public class Plugin : LazyPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("bannpc.use", this.BanCommand, "bm"));
+        this.addCommands.Add(new Command("bannpc.use", this.BanCommand, "bm"));
         ServerApi.Hooks.NpcSpawn.Register(this, this.OnSpawn);
         ServerApi.Hooks.NpcTransform.Register(this, this.OnTransform);
+        base.Initialize();
     }
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.BanCommand);
             ServerApi.Hooks.NpcSpawn.Deregister(this, this.OnSpawn);
             ServerApi.Hooks.NpcTransform.Deregister(this, this.OnTransform);
         }

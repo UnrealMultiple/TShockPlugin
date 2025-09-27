@@ -34,6 +34,7 @@ public class AdditionalPylonsPlugin : LazyPlugin
     #region Plugin Overrides
     public override void Initialize()
     {
+        base.Initialize();
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
         GetDataHandlers.PlaceTileEntity.Register(this.OnPlaceTileEntity, HandlerPriority.High);
         GetDataHandlers.SendTileRect.Register(this.OnSendTileRect, HandlerPriority.High);

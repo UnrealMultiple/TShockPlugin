@@ -21,6 +21,7 @@ public class AutoBroadcast : LazyPlugin
 
     public override void Initialize()
     {
+        base.Initialize();
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
         ServerApi.Hooks.ServerChat.Register(this, OnChat, int.MinValue); //最低优先级，这样不需要处理命令
     }

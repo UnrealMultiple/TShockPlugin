@@ -22,13 +22,14 @@ public class Plugin : LazyPlugin
     }
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("bag.use", this.GiftBag, "礼包", "bag"));
+        this.addCommands.Add(new Command("bag.use", this.GiftBag, "礼包", "bag"));
+        base.Initialize();
     }
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(f => f.CommandDelegate == this.GiftBag);
+            
         }
         base.Dispose(disposing);
     }
