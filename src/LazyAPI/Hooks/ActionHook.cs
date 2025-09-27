@@ -34,9 +34,9 @@ public sealed class ActionHook : HookBase
             throw new Exception("MSIL is not [ldftn, newobj]");
         }
         var targetOpCode = instructions[instructions.IndexOf(ldftnIns) - 1].OpCode;
-        if (targetOpCode is not ILOpCode.Ldnull or ILOpCode.Ldarg_0)
+        if (targetOpCode is not (ILOpCode.Ldnull or ILOpCode.Ldarg_0))
         {
-            throw new Exception($"methodName: [{registerMethod.DeclaringType!.FullName}.{registerMethod.Name}] first instruction is not Ldnull or Ldarg_0");
+            throw new Exception($"methodName: [{registerMethod.DeclaringType!.FullName}.{registerMethod.Name}] first instruction is '{targetOpCode}' not Ldnull or Ldarg_0");
         }
         var callIns = instructions.Single(x => x.OpCode == ILOpCode.Call);
         var callMethod = module.ResolveMethod((int) callIns.Operand!)!;

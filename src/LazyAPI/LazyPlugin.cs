@@ -40,9 +40,9 @@ public abstract class LazyPlugin : TerrariaPlugin
         {
             TShockAPI.TShock.RestApi.Register(cmd);
         }
-        foreach(var hook in this.addHooks)
+        foreach (var hook in this.addHooks)
         {
-            if(hook.LoadType == HookLoadType.Auto)
+            if (hook.LoadType == HookLoadType.Auto)
             {
                 hook.Register();
             }
@@ -63,17 +63,21 @@ public abstract class LazyPlugin : TerrariaPlugin
     {
         if (disposing)
         {
-            foreach(var handler in this.addReloadEvents)
+            foreach (var handler in this.addReloadEvents)
             {
                 GeneralHooks.ReloadEvent -= handler;
             }
-            foreach(var cmd in this.addCommands)
+            foreach (var cmd in this.addCommands)
             {
-                TShockAPI.Commands.ChatCommands.Remove(cmd);    
+                TShockAPI.Commands.ChatCommands.Remove(cmd);
             }
             foreach (var cmd in this.addRestCommands)
             {
                 Utility.Utils.Unregister(TShockAPI.TShock.RestApi, cmd);
+            }
+            foreach (var hook in this.addHooks)
+            {
+                hook.Unregister();
             }
         }
         base.Dispose(disposing);
@@ -89,7 +93,7 @@ public abstract class LazyPlugin : TerrariaPlugin
             {
                 var method = type.BaseType!.GetMethod(nameof(JsonConfigBase<SimpleJsonConfig>.Load)) ?? throw new MissingMethodException($"method 'Load()' is missing inside the lazy loaded config class '{this.Name}'");
                 var name = method.Invoke(null, Array.Empty<object>());
-                if(type.GetProperty(nameof(JsonConfigBase<SimpleJsonConfig>.ReloadEvent))?.GetValue(null) is GeneralHooks.ReloadEventD reloadEvent)
+                if (type.GetProperty(nameof(JsonConfigBase<SimpleJsonConfig>.ReloadEvent))?.GetValue(null) is GeneralHooks.ReloadEventD reloadEvent)
                 {
                     this.addReloadEvents.Add(reloadEvent);
                 }
