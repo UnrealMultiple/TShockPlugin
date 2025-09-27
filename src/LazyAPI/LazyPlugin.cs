@@ -26,18 +26,27 @@ public abstract class LazyPlugin : TerrariaPlugin
 
     protected LazyPlugin(Main game) : base(game)
     {
+    }
+
+    public override void Initialize()
+    {
+        foreach (var cmd in this.addCommands)
+        {
+            TShockAPI.Commands.ChatCommands.Add(cmd);
+        }
+        foreach (var cmd in this.addRestCommands)
+        {
+            TShockAPI.TShock.RestApi.Register(cmd);
+        }
         this.AutoLoad();
         if (this.restToLoad.Count > 0)
         {
-            ServerApi.Hooks.GameInitialize.Register(this, args =>
+            foreach (var (type, name) in this.restToLoad.SelectMany(type => type.GetCustomAttributes<RestAttribute>(false).SelectMany(attr => attr.alias).Select(name => (type, name))))
             {
-                foreach (var (type, name) in this.restToLoad.SelectMany(type => type.GetCustomAttributes<RestAttribute>(false).SelectMany(attr => attr.alias).Select(name => (type, name))))
-                {
-                    this.addRestCommands.AddRange(RestHelper.Register(type, name, this));
-                }
+                this.addRestCommands.AddRange(RestHelper.Register(type, name, this));
+            }
 
-                this.restToLoad.Clear();
-            });
+            this.restToLoad.Clear();
         }
     }
 
