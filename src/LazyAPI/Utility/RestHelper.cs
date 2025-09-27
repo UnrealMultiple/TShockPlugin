@@ -42,8 +42,9 @@ public static class RestHelper
         };
     }
 
-    internal static void Register(Type type, string name, LazyPlugin plugin)
+    internal static List<RestCommand> Register(Type type, string name, LazyPlugin plugin)
     {
+        var result = new List<RestCommand>();
         foreach (var method in type.GetMethods(BindingFlags.Static | BindingFlags.Public))
         {
             var parser = ParseCommand(method);
@@ -52,13 +53,16 @@ public static class RestHelper
                 continue;
             }
             var sp = method.GetCustomAttribute<RestPathAttribute>() is RestPathAttribute path ? path.alias : method.Name;
-            TShock.RestApi.Register(new SecureRestCommand($"/{name}/{sp}", parser,
+            var cmd = new SecureRestCommand($"/{name}/{sp}", parser,
                 [
                     .. method.GetCustomAttributes<Permission>().Select(p => p.Name)
 ,
                     .. method.GetCustomAttributes<PermissionsAttribute>().Select(p => p.perm),
-                ]));
+                ]);
+            TShock.RestApi.Register(cmd);
+            result.Add(cmd);
             Console.WriteLine(GetString($"[{plugin.Name}] rest endpoint registered: /{name}/{sp}"));
         }
+        return result;
     }
 }

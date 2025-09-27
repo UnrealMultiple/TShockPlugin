@@ -98,18 +98,19 @@ internal static class CommandHelper
     }
 
 
-    internal static string[] Register(Type type)
+    internal static TShockAPI.Command Register(Type type)
     {
         if (!(type.IsAbstract && type.IsSealed))
         {
-            Console.WriteLine($"Command `{type.FullName}` should be static");
+            TShock.Log.ConsoleWarn($"Command `{type.FullName}` should be static");
         }
+
         var names = GetCommandAlias(type).ToArray();
         var tree = BuildTree(type, AliasToString(names));
 
-        TShockAPI.Commands.ChatCommands.Add(new TShockAPI.Command(args => ParseCommand(tree, args),
-            names));
-
-        return names;
+        var cmd = new TShockAPI.Command(args => ParseCommand(tree, args),
+            names);
+        TShockAPI.Commands.ChatCommands.Add(cmd);
+        return cmd;
     }
 }
