@@ -723,14 +723,25 @@ public static class GetDataHandlers
                        PlayerRefreshFlags.ContainsKey(playerIndex) && 
                        PlayerRefreshFlags[playerIndex])
                 {
-                    for (var i = 0; i < 60 * RefreshIntervalSeconds; i++)
+                    var player = TShock.Players[playerIndex];
+            
+                    if (player is not { ConnectionAlive: true })
                     {
-                        yield return true;
+                        yield break;
                     }
 
-                    var player = TShock.Players[playerIndex];
-                    if (player is { ConnectionAlive: true } && 
-                        PlayerActiveHouses.TryGetValue(playerIndex, out var list))
+                    for (var i = 0; i < 60 * RefreshIntervalSeconds; i++)
+                    {
+                        yield return null;
+                
+                        player = TShock.Players[playerIndex];
+                        if (player == null || !player.ConnectionAlive)
+                        {
+                            yield break;
+                        }
+                    }
+
+                    if (PlayerActiveHouses.TryGetValue(playerIndex, out var list))
                     {
                         foreach (var rect in list)
                         {
@@ -744,7 +755,6 @@ public static class GetDataHandlers
                 PlayerRefreshFlags.Remove(playerIndex);
             }
         }
-
         public static void ToggleAllDisplays(TSPlayer player, List<House> houses)
         {
             if (!PlayerActiveHouses.TryGetValue(player.Index, out var list))
@@ -785,18 +795,20 @@ public static class GetDataHandlers
             }
         }
 
-        private static void ShowRegion(TSPlayer ts, Rectangle rect)
+        private static void ShowRegion(TSPlayer ts, Rectangle rect) 
         {
-            var step = 1; 
-            int projType = ProjectileID.TopazBolt; 
-
-            for (var x = rect.Left; x <= rect.Right; x += step)
+            var maxSide = Math.Max(rect.Width, rect.Height);
+            var step = maxSide <= 30 ? 1 : Math.Clamp(maxSide / 30, 1, 10);
+    
+            int projType = ProjectileID.TopazBolt;
+    
+            for (var x = rect.Left; x <= rect.Right; x += step) 
             {
                 CreateProjectile(ts, x, rect.Top, projType);
                 CreateProjectile(ts, x, rect.Bottom, projType);
             }
-
-            for (var y = rect.Top; y <= rect.Bottom; y += step)
+            
+            for (var y = rect.Top; y <= rect.Bottom; y += step) 
             {
                 CreateProjectile(ts, rect.Left, y, projType);
                 CreateProjectile(ts, rect.Right, y, projType);
@@ -863,6 +875,7 @@ public static class GetDataHandlers
                 {
                     ClearRegionProjectiles(player, rect);
                 }
+                PlayerRefreshFlags.Remove(player.Index);
             }
             PlayerActiveHouses.Remove(playerIndex);
         }
