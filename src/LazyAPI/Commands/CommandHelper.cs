@@ -54,6 +54,7 @@ internal static class CommandHelper
             {
                 var al = GetAlias(func).ToArray();
                 CommandBase sub = func.GetCustomAttribute<FlexibleAttribute>() != null ? new FlexibleCommand(func, prefix + AliasToString(al)) : new SingleCommand(func, prefix + AliasToString(al));
+                
                 foreach (var alias in al)
                 {
                     result.Add(alias, sub);
@@ -68,6 +69,11 @@ internal static class CommandHelper
 
     private static void ParseCommand(Command tree, CommandArgs args)
     {
+        if (args.Parameters.Count == 0)
+        {
+            args.Parameters.Add("help");
+        }
+        
         var result = tree.TryParse(args, 0);
         if (result.unmatched == 0)
         {
@@ -96,6 +102,16 @@ internal static class CommandHelper
 
         yield return info.Name.ToLower();
     }
+    
+    internal static string? GetCommandUsage(MemberInfo info)
+    {
+        return info.GetCustomAttributes<UsageAttribute>().Select(a => a.usage).FirstOrDefault();
+    }
+    
+    private static string GetCommandHelpText(MemberInfo info)
+    {
+        return info.GetCustomAttributes<HelpTextAttribute>().Select(a => a.helpText).FirstOrDefault() ?? GetString("No help available.");
+    }
 
 
     internal static string[] Register(Type type)
@@ -105,10 +121,14 @@ internal static class CommandHelper
             Console.WriteLine($"Command `{type.FullName}` should be static");
         }
         var names = GetCommandAlias(type).ToArray();
+        var helpText = GetCommandHelpText(type);
         var tree = BuildTree(type, AliasToString(names));
-
+        
         TShockAPI.Commands.ChatCommands.Add(new TShockAPI.Command(args => ParseCommand(tree, args),
-            names));
+            names)
+        {
+            HelpText = helpText
+        });
 
         return names;
     }
