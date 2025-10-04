@@ -901,5 +901,9 @@ public static class GetDataHandlers
                 }
             }
         }
-
+        
+        public static bool IsPlayerShowingHouse(int playerIndex, Rectangle houseArea)
+        {
+            return PlayerActiveHouses.TryGetValue(playerIndex, out var list) && list.Contains(houseArea);
+        }
 }

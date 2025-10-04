@@ -7,7 +7,7 @@
 ## instruction
 
 | Command                        | Alias |            Permissions             |   Description    |
-|---------------------------|:--:|:-------------------------:|:-------:|
+|---------------------------|:-----:|:-------------------------:|:-------:|
 | /house set 1              | none  |         house.use         |  Tap the top left corner  |
 | /house set 2              | none  |         house.use         |  Tap the bottom right corner  |
 | /house clear              | none  |         house.use         | Reset temporary hit points |
@@ -22,7 +22,7 @@
 | /house lock [house name]          | none  | `house.use` `house.admin` |   House lock   |
 | /house show [house]          | None  |         house.use         |  Show the boundary of a specific house  |
 | /house showall               | None  |         house.use         |  Show the boundaries of all houses      |
-
+| /house auto               | None  |         house.use         | Automatically display the area upon entering |
 ## Configuration
 	Configuration file location: tshock/HouseRegion.en-US.json
 > HouseRegion.json

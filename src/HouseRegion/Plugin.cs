@@ -25,6 +25,7 @@ public class HousingPlugin : LazyPlugin
     public static List<House> Houses = new();
     static readonly System.Timers.Timer Update = new(1100);//创建一个1.1秒的时钟
     public static bool ULock = false;
+    private static readonly HashSet<int> AutoShowPlayers = new();
 
 
     private void RD()//读取
@@ -129,6 +130,7 @@ public class HousingPlugin : LazyPlugin
             }
         }
         GetDataHandlers.ClearPlayerDisplays(e.Who);
+        AutoShowPlayers.Remove(e.Who);
     }
     public void PostInitialize(EventArgs e)
     {
@@ -720,6 +722,21 @@ public class HousingPlugin : LazyPlugin
                 GetDataHandlers.ToggleAllDisplays(args.Player, Houses);
             }
                 break;
+            case "auto":
+            {
+                var playerIndex = args.Player.Index;
+
+                if (!AutoShowPlayers.Add(playerIndex))
+                {
+                    AutoShowPlayers.Remove(playerIndex);
+                    args.Player.SendSuccessMessage(GetString("已关闭自动显示房屋区域。"));
+                }
+                else
+                {
+                    args.Player.SendSuccessMessage(GetString("已开启自动显示房屋区域。进入房子时会自动显示边界。"));
+                }
+            }
+                break;
 
             default:
             {
@@ -727,7 +744,7 @@ public class HousingPlugin : LazyPlugin
                 args.Player.SendMessage(GetString("/house set 1"), Color.Lime);
                 args.Player.SendMessage(GetString("/house set 2"), Color.Lime);
                 args.Player.SendMessage(GetString("/house add 房屋名字"), Color.Lime);
-                args.Player.SendMessage(GetString("其他命令: list, allow, disallow, redefine, name, delete, clear, info, adduser, deluser, lock"), Color.Lime);
+                args.Player.SendMessage(GetString("其他命令: list, allow, disallow, redefine, name, delete, clear, info, adduser, deluser, lock, show, showall, auto"), Color.Lime);
                 break;
             }
         }//循环的括号
@@ -778,6 +795,11 @@ public class HousingPlugin : LazyPlugin
                     {
                         player.SendMessage(GetString("你进入了房子: ") + house.Name, Color.LightSeaGreen);
                     }
+
+                    if (AutoShowPlayers.Contains(player.Index))
+                    {
+                        GetDataHandlers.ToggleHouseDisplay(player, house);
+                    }
                 }
                 else if (Lhouse != null && house == null)//此乃离开了房子
                 {
@@ -788,6 +810,14 @@ public class HousingPlugin : LazyPlugin
                     else
                     {
                         player.SendMessage(GetString("你离开了房子: ") + Lhouse.Name, Color.LightSeaGreen);
+                    }
+
+                    if (AutoShowPlayers.Contains(player.Index))
+                    {
+                        if (GetDataHandlers.IsPlayerShowingHouse(player.Index, Lhouse.HouseArea))
+                        {
+                            GetDataHandlers.ToggleHouseDisplay(player, Lhouse);
+                        }
                     }
                 }
                 else//此乃离开了一个房子又进入另外一个房子
@@ -804,6 +834,12 @@ public class HousingPlugin : LazyPlugin
                     else
                     {
                         player.SendMessage(GetString("你进入了房子: ") + house.Name, Color.LightSeaGreen);
+                    }
+
+                    if (AutoShowPlayers.Contains(player.Index))
+                    {
+                        GetDataHandlers.ToggleHouseDisplay(player, Lhouse); 
+                        GetDataHandlers.ToggleHouseDisplay(player, house);  
                     }
                 }
             }
