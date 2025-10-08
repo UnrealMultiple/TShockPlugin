@@ -282,6 +282,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BossLock", "src\BossLock\Bo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostView", "src\GhostView\GhostView.csproj", "{6ABEAB06-DC01-48AE-8119-9E25213C9949}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadApplePlayer", "src\BadApplePlayer\BadApplePlayer.csproj", "{378D7032-C8A8-4AC8-A529-8462D7372BB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1386,6 +1388,14 @@ Global
 		{6ABEAB06-DC01-48AE-8119-9E25213C9949}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6ABEAB06-DC01-48AE-8119-9E25213C9949}.Release|x64.ActiveCfg = Release|Any CPU
 		{6ABEAB06-DC01-48AE-8119-9E25213C9949}.Release|x64.Build.0 = Release|Any CPU
+		{378D7032-C8A8-4AC8-A529-8462D7372BB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{378D7032-C8A8-4AC8-A529-8462D7372BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{378D7032-C8A8-4AC8-A529-8462D7372BB8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{378D7032-C8A8-4AC8-A529-8462D7372BB8}.Debug|x64.Build.0 = Debug|Any CPU
+		{378D7032-C8A8-4AC8-A529-8462D7372BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{378D7032-C8A8-4AC8-A529-8462D7372BB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{378D7032-C8A8-4AC8-A529-8462D7372BB8}.Release|x64.ActiveCfg = Release|Any CPU
+		{378D7032-C8A8-4AC8-A529-8462D7372BB8}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

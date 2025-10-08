@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\template.targets"/>
+    
+    <ItemGroup>
+        <EmbeddedResource Include="Resources\badapple.dat">
+            <LogicalName>BadApplePlayer.Resources.badapple.dat</LogicalName>
+        </EmbeddedResource>
+    </ItemGroup>
+</Project>

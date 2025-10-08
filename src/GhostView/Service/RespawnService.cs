@@ -1,6 +1,7 @@
 ﻿using GhostView.Models;
 using GhostView.Utils;
 using Microsoft.Xna.Framework;
+using Terraria;
 using TShockAPI;
 
 namespace GhostView.Service;
@@ -82,5 +83,28 @@ public class RespawnService
             Color.Yellow
         );
     }
+
+    public void TeleportToSpawn(TSPlayer player)
+    {
+        if (player.TPlayer == null)
+        {
+            return;
+        }
+
+        var spawnX = player.TPlayer.SpawnX;
+        var spawnY = player.TPlayer.SpawnY;
+
+        if (spawnX < 0 || spawnY < 0)
+        {
+            spawnX = Main.spawnTileX;
+            spawnY = Main.spawnTileY;
+        }
+
+        float worldX = (spawnX * 16) + 8;
+        float worldY = (spawnY * 16) + 8;
+
+        player.Teleport(worldX, worldY);
+    }
+
     
 }

@@ -22,6 +22,7 @@ public class RespawnManager(RespawnService respawnService, RespawnCountdown resp
         else if (player.TPlayer.dead)
         {
             respawnService.RevivePlayer(playerName);
+            respawnService.TeleportToSpawn(player);
         }
     }
 
