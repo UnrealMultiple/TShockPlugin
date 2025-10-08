@@ -77,6 +77,7 @@
 | [AutoStoreItems](./src/AutoStoreItems/README.md) | 0.0% | Almacenamiento automático | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoTeam](./src/AutoTeam/README.md) | 0.0% | Formación automática de equipos | [LazyAPI](./src/LazyAPI/README.md) |
 | [Back](./src/Back/README.md) | 0.0% | Regresar al punto de muerte | [LazyAPI](./src/LazyAPI/README.md) |
+| [BadApplePlayer](./src/BadApplePlayer/README.md) | 0.0% | Reproductor BadApple |  |
 | [BagPing](./src/BagPing/README.md) | 0.0% | Marcar las bolsas de tesoro en el mapa |  |
 | [BanNpc](./src/BanNpc/README.md) | 0.0% | Previene la generación de monstruos | [LazyAPI](./src/LazyAPI/README.md) |
 | [BedSet](./src/BedSet/README.md) | 0.0% | Establecer y registrar puntos de resurrección | [LazyAPI](./src/LazyAPI/README.md) |

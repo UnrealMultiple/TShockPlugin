@@ -70,6 +70,7 @@
 | [AutoStoreItems](./src/AutoStoreItems/README.md) | 自动储存 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoTeam](./src/AutoTeam/README.md) | 自动队伍 | [LazyAPI](./src/LazyAPI/README.md) |
 | [Back](./src/Back/README.md) | 死亡回溯 | [LazyAPI](./src/LazyAPI/README.md) |
+| [BadApplePlayer](./src/BadApplePlayer/README.md) | BadApple播放器 |  |
 | [BagPing](./src/BagPing/README.md) | 地图上标记宝藏袋 |  |
 | [BanNpc](./src/BanNpc/README.md) | 阻止怪物生成 | [LazyAPI](./src/LazyAPI/README.md) |
 | [BedSet](./src/BedSet/README.md) | 设置并记录重生点 | [LazyAPI](./src/LazyAPI/README.md) |

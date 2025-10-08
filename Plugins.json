@@ -405,6 +405,26 @@
     "HotReload": true
   },
   {
+    "Name": "BadApplePlayer",
+    "Version": "1.0.0.0",
+    "Author": "Eustia",
+    "Description": {
+      "en-US": "BadApple播放器",
+      "de-DE": "BadApple播放器",
+      "it-IT": "BadApple播放器",
+      "fr-FR": "BadApple播放器",
+      "es-ES": "BadApple播放器",
+      "ru-RU": "BadApple播放器",
+      "zh-CN": "BadApple播放器",
+      "pt-BR": "BadApple播放器",
+      "pl-PL": "BadApple播放器"
+    },
+    "AssemblyName": "BadApplePlayer",
+    "Path": "BadApplePlayer.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "BagPing",
     "Version": "2025.6.1",
     "Author": "Cai",

@@ -74,6 +74,7 @@
 | [AutoStoreItems](./src/AutoStoreItems/README.en-US.md) | 100.0% | Automatic storage | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoTeam](./src/AutoTeam/README.en-US.md) | 100.0% | Automatic team formation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Back](./src/Back/README.en-US.md) | 100.0% | Return to the point of death | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [BadApplePlayer](./src/BadApplePlayer/README.en-US.md) | 0.0% | BadApple Player |  |
 | [BagPing](./src/BagPing/README.en-US.md) | 33.3% | Mark treasure bags on the map |  |
 | [BanNpc](./src/BanNpc/README.en-US.md) | 100.0% | Prevent monster generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BedSet](./src/BedSet/README.en-US.md) | 100.0% | Set and record respawn points | [LazyAPI](./src/LazyAPI/README.en-US.md) |
