@@ -158,7 +158,6 @@ public class BadApplePlayer : TerrariaPlugin
         File.WriteAllText(PositionDataPath, JsonConvert.SerializeObject(_positionData, Formatting.Indented));
     }
 
-    // 内部访问方法供CommandHandler使用
     internal Dictionary<string, PlaybackSession> GetPlaybackSessions()
     {
         return this._playbackSessions;
@@ -195,7 +194,7 @@ public class BadApplePlayer : TerrariaPlugin
             return;
         }
 
-        var frameDelay = 1000 / video.Fps;
+        var frameDelay = video.Fps > 0 ? 1000 / video.Fps : 60;
         var currentFrameState = new bool[video.Width, video.Height];
         var startTime = DateTime.Now;
 
@@ -294,7 +293,9 @@ public class BadApplePlayer : TerrariaPlugin
             }
         }
     }
-
+    /// <summary>
+    /// 增量渲染
+    /// </summary>
     private void RenderDeltaFrame(int startX, int startY,
         List<(int x, int y, bool isWhite)> changes, bool[,] stateBuffer)
     {
@@ -459,7 +460,6 @@ public class BadApplePlayer : TerrariaPlugin
         {
             return;
         }
-
         Main.tile[x, y].wall = (ushort) (isWhite ? BaseWall : CodeWall);
         WorldGen.paintWall(x, y, (byte) (isWhite ? BaseColor : CodeColor), true);
         WorldGen.paintCoatWall(x, y, IsGlowPaintApplied ? (byte) 1 : (byte) 0, true);

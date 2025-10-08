@@ -165,7 +165,18 @@ public class CommandHandler(BadApplePlayer plugin)
         var session = new PlaybackSession(name, position, video, loop, player.Name);
         sessions[name] = session;
 
-        Task.Run(async () => await plugin.PlayVideoAsync(session));
+        Task.Run(async () =>
+        {
+            try
+            {
+                await plugin.PlayVideoAsync(session);
+            }
+            catch (Exception ex)
+            {
+                TShock.Log.Error(GetString($"Exception in PlayVideoAsync for session '{name}': {ex}"));
+                player.SendErrorMessage(GetString($"播放BadApple视频时发生错误: {ex.Message}"));
+            }
+        });
 
         player.SendSuccessMessage(GetString($"开始在位置 '{name}' 播放BadApple视频{(loop ? " (循环模式)" : "")}！"));
         player.SendInfoMessage(GetString($"控制命令: /badapple pause {name} | /badapple resume {name} | /badapple stop {name}"));

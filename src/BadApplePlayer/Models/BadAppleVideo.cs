@@ -1,4 +1,5 @@
 using System.IO.Compression;
+using TShockAPI;
 
 namespace BadApplePlayer.Models;
 
@@ -38,6 +39,12 @@ public class BadAppleVideo
     public List<(int x, int y, bool isWhite)> GetFrameChanges(int frameIndex, bool[,]? previousFrame)
     {
         var changes = new List<(int x, int y, bool isWhite)>();
+    
+        if (frameIndex < 0 || frameIndex >= this.FrameCount)
+        {
+            return changes;
+        }
+    
         var frameData = this.FramesData[frameIndex];
 
         if (frameData.Length < 2)
@@ -58,6 +65,7 @@ public class BadAppleVideo
                 {
                     var x = reader.ReadByte();
                     var y = reader.ReadByte();
+                    
                     if (x < this.Width && y < this.Height)
                     {
                         changes.Add((x, y, true));
@@ -71,6 +79,7 @@ public class BadAppleVideo
                     var x = reader.ReadByte();
                     var y = reader.ReadByte();
                     var value = reader.ReadByte();
+                    
                     if (x < this.Width && y < this.Height)
                     {
                         if (previousFrame[x, y] != (value == 1))
@@ -81,8 +90,8 @@ public class BadAppleVideo
                 }
             }
         }
-        catch (EndOfStreamException) { }
-
+        catch (EndOfStreamException) {     
+            TShock.Log.Warn(GetString("[BadApplePlayer]: 数据读取异常"));
+        }
         return changes;
-    }
-}
+    }}
