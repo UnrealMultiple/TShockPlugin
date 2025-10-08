@@ -32,6 +32,7 @@ public class BadApplePlayer : TerrariaPlugin
     private static readonly string PositionDataPath = Path.Combine(PluginDataDir, "positions.json");
 
     private readonly CommandHandler.CommandHandler _commandHandler;
+    private static readonly Lock TileLock = new ();
 
     public BadApplePlayer(Main game) : base(game)
     {
@@ -373,35 +374,36 @@ public class BadApplePlayer : TerrariaPlugin
 
     private void InitializePlaybackArea(int startX, int startY, int width, int height)
     {
-        for (var x = 0; x < width; x++)
+        lock (TileLock)
         {
-            for (var y = 0; y < height; y++)
+            for (var x = 0; x < width; x++)
             {
-                var tileX = startX + x;
-                var tileY = startY + y;
-
-                if (tileX >= 0 && tileX < Main.maxTilesX && tileY >= 0 && tileY < Main.maxTilesY)
+                for (var y = 0; y < height; y++)
                 {
-                    Main.tile[tileX, tileY].wall = (ushort) BaseWall;
-                    WorldGen.paintWall(tileX, tileY, (byte) BaseColor, true);
-                    WorldGen.paintCoatWall(tileX, tileY, IsGlowPaintApplied ? (byte) 1 : (byte) 0, true);
+                    var tileX = startX + x;
+                    var tileY = startY + y;
+                    if (tileX >= 0 && tileX < Main.maxTilesX && tileY >= 0 && tileY < Main.maxTilesY)
+                    {
+                        Main.tile[tileX, tileY].wall = BaseWall;
+                        WorldGen.paintWall(tileX, tileY, BaseColor, true);
+                        WorldGen.paintCoatWall(tileX, tileY, 1, true);
+                    }
                 }
             }
         }
-
-        const int CHUNK_SIZE = 25;
-        for (var cx = 0; cx < width; cx += CHUNK_SIZE)
+    
+        const int chunkSize = 25;
+        for (var cx = 0; cx < width; cx += chunkSize)
         {
-            for (var cy = 0; cy < height; cy += CHUNK_SIZE)
+            for (var cy = 0; cy < height; cy += chunkSize)
             {
-                var chunkWidth = Math.Min(CHUNK_SIZE, width - cx);
-                var chunkHeight = Math.Min(CHUNK_SIZE, height - cy);
+                var chunkWidth = Math.Min(chunkSize, width - cx);
+                var chunkHeight = Math.Min(chunkSize, height - cy);
                 var size = Math.Max(chunkWidth, chunkHeight);
-
                 TSPlayer.All.SendTileSquareCentered(
                     startX + cx + (chunkWidth / 2),
                     startY + cy + (chunkHeight / 2),
-                    (byte) size);
+                    (byte)size);
             }
         }
     }
@@ -410,34 +412,35 @@ public class BadApplePlayer : TerrariaPlugin
     {
         var position = session.Position;
         var (startX, startY) = this.CalculateStartPosition(position, session.Video.Width, session.Video.Height);
-
-        for (var x = 0; x < session.Video.Width; x++)
+    
+        lock (TileLock)
         {
-            for (var y = 0; y < session.Video.Height; y++)
+            for (var x = 0; x < session.Video.Width; x++)
             {
-                var tileX = startX + x;
-                var tileY = startY + y;
-
-                if (tileX >= 0 && tileX < Main.maxTilesX && tileY >= 0 && tileY < Main.maxTilesY)
+                for (var y = 0; y < session.Video.Height; y++)
                 {
-                    Main.tile[tileX, tileY].wall = 0;
+                    var tileX = startX + x;
+                    var tileY = startY + y;
+                    if (tileX >= 0 && tileX < Main.maxTilesX && tileY >= 0 && tileY < Main.maxTilesY)
+                    {
+                        Main.tile[tileX, tileY].wall = 0;
+                    }
                 }
             }
         }
-
-        const int CHUNK_SIZE = 25;
-        for (var cx = 0; cx < session.Video.Width; cx += CHUNK_SIZE)
+    
+        const int chunkSize = 25;
+        for (var cx = 0; cx < session.Video.Width; cx += chunkSize)
         {
-            for (var cy = 0; cy < session.Video.Height; cy += CHUNK_SIZE)
+            for (var cy = 0; cy < session.Video.Height; cy += chunkSize)
             {
-                var chunkWidth = Math.Min(CHUNK_SIZE, session.Video.Width - cx);
-                var chunkHeight = Math.Min(CHUNK_SIZE, session.Video.Height - cy);
+                var chunkWidth = Math.Min(chunkSize, session.Video.Width - cx);
+                var chunkHeight = Math.Min(chunkSize, session.Video.Height - cy);
                 var size = Math.Max(chunkWidth, chunkHeight);
-
                 TSPlayer.All.SendTileSquareCentered(
                     startX + cx + (chunkWidth / 2),
                     startY + cy + (chunkHeight / 2),
-                    (byte) size);
+                    (byte)size);
             }
         }
     }
@@ -460,9 +463,13 @@ public class BadApplePlayer : TerrariaPlugin
         {
             return;
         }
-        Main.tile[x, y].wall = (ushort) (isWhite ? BaseWall : CodeWall);
-        WorldGen.paintWall(x, y, (byte) (isWhite ? BaseColor : CodeColor), true);
-        WorldGen.paintCoatWall(x, y, IsGlowPaintApplied ? (byte) 1 : (byte) 0, true);
+    
+        lock (TileLock)
+        {
+            Main.tile[x, y].wall = (ushort)(isWhite ? BaseWall : CodeWall);
+            WorldGen.paintWall(x, y, (byte)(isWhite ? BaseColor : CodeColor), true);
+            WorldGen.paintCoatWall(x, y, IsGlowPaintApplied ? (byte)1 : (byte)0, true);
+        }
     }
 
     internal string GetPositionName(string posType)
