@@ -33,14 +33,15 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("reset.admin", this.ResetCmd, "reset", "重置世界"));
-        Commands.ChatCommands.Add(new Command("reset.admin", this.ResetDataCmd, "resetdata", "重置数据"));
-        Commands.ChatCommands.Add(new Command(this.OnWho, "who", "playing", "online"));
-        Commands.ChatCommands.Add(new Command("reset.admin", this.ResetSetting, "rs", "重置设置"));
+        this.addCommands.Add(new Command("reset.admin", this.ResetCmd, "reset", "重置世界"));
+        this.addCommands.Add(new Command("reset.admin", this.ResetDataCmd, "resetdata", "重置数据"));
+        this.addCommands.Add(new Command(this.OnWho, "who", "playing", "online"));
+        this.addCommands.Add(new Command("reset.admin", this.ResetSetting, "rs", "重置设置"));
         ServerApi.Hooks.ServerJoin.Register(this, this.OnServerJoin, int.MaxValue);
         ServerApi.Hooks.WorldSave.Register(this, this.OnWorldSave, int.MaxValue);
         ServerApi.Hooks.NpcKilled.Register(this, this.CountKill);
         Terraria.Utils.TryCreatingDirectory(this._replaceFilePath);
+        base.Initialize();
     }
 
     private void ResetDataCmd(CommandArgs args)
@@ -53,7 +54,6 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.ResetCmd || c.CommandDelegate == this.OnWho || c.CommandDelegate == this.ResetSetting);
             ServerApi.Hooks.NpcKilled.Deregister(this, this.CountKill);
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnServerJoin);
             ServerApi.Hooks.WorldSave.Deregister(this, this.OnWorldSave);

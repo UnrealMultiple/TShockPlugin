@@ -32,6 +32,7 @@ public class Plugin : LazyPlugin
     {
         ServerApi.Hooks.ServerChat.Register(this, this.OnServerChat);
         Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
+        base.Initialize();
     }
     
 

@@ -26,7 +26,8 @@ public class Plugin : LazyPlugin
         ServerApi.Hooks.ServerChat.Register(this, this.OnChat);
         GetDataHandlers.ChestItemChange.Register(this.OnChestItemChange);
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);
-        TShockAPI.Commands.ChatCommands.Add(new Command("mw.use", Commands.CMD, "mw", "修改武器"));
+        this.addCommands.Add(new Command("mw.use", Commands.CMD, "mw", "修改武器"));
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)
@@ -38,7 +39,6 @@ public class Plugin : LazyPlugin
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             GetDataHandlers.ChestItemChange.UnRegister(this.OnChestItemChange);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreetPlayer);
-            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.CMD);
         }
         base.Dispose(disposing);
     }

@@ -36,10 +36,11 @@ public class CaiPacketDebug : LazyPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("CaiPacketDebug.Use", this.CpdCmd, "cpd"));
+        this.addCommands.Add(new Command("CaiPacketDebug.Use", this.CpdCmd, "cpd"));
         Hooks.MessageBuffer.InvokeGetData += this.MessageBufferOnInvokeGetData;
         Hooks.NetMessage.InvokeSendBytes += this.NetMessageOnInvokeSendBytes;
         NetManager.SendData += this.NetManagerOnSendData;
+        base.Initialize();
     }
     
     protected override void Dispose(bool disposing)
@@ -49,7 +50,6 @@ public class CaiPacketDebug : LazyPlugin
             Hooks.MessageBuffer.InvokeGetData -= this.MessageBufferOnInvokeGetData;
             Hooks.NetMessage.InvokeSendBytes -= this.NetMessageOnInvokeSendBytes;
             NetManager.SendData -= this.NetManagerOnSendData;
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.CpdCmd);
         }
 
         base.Dispose(disposing);

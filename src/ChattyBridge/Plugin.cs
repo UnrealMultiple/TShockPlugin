@@ -26,19 +26,17 @@ public class Plugin : LazyPlugin
 
     public override void Initialize()
     {
-        TShock.RestApi.Register("/chat", HandleMsg);
+        this.addRestCommands.Add(new RestCommand("/chat", HandleMsg));
         ServerApi.Hooks.ServerChat.Register(this, this.OnChat);
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreet);
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            ((List<RestCommand>) typeof(Rest).GetField("commands", BindingFlags.NonPublic | BindingFlags.Instance)!
-            .GetValue(TShock.RestApi)!)
-            .RemoveAll(x => x.UriTemplate == "/chat");
             ServerApi.Hooks.ServerChat.Deregister(this, this.OnChat);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreet);
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);

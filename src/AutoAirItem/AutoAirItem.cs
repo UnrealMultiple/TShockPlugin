@@ -28,8 +28,9 @@ public class AutoAirItem : LazyPlugin
         }
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);
-        TShockAPI.Commands.ChatCommands.Add(new Command("AutoAir.use", Commands.AirCmd, "air", "垃圾"));
-        TShockAPI.Commands.ChatCommands.Add(new Command("AutoAir.admin", Commands.Reset, "airreset", "重置垃圾桶"));
+        this.addCommands.Add(new Command("AutoAir.use", Commands.AirCmd, "air", "垃圾"));
+        this.addCommands.Add(new Command("AutoAir.admin", Commands.Reset, "airreset", "重置垃圾桶"));
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)
@@ -38,8 +39,6 @@ public class AutoAirItem : LazyPlugin
         {
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreetPlayer);
-            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.AirCmd);
-            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Reset);
         }
         base.Dispose(disposing);
     }
