@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+      <RootNamespace>Maze</RootNamespace>
+    </PropertyGroup>
+
+    <Import Project="..\..\template.targets" />
+
+
+</Project>
