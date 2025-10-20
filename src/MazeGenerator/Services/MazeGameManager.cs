@@ -1,0 +1,295 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Terraria;
+using TShockAPI;
+using MazeGenerator.Models;
+
+namespace MazeGenerator.Services;
+
+public class MazeGameManager : IDisposable
+{
+    private readonly Dictionary<string, PlayerGameData> _activePlayers = new ();
+    private readonly Dictionary<string, List<string>> _waitingQueues = new ();
+    private readonly object _lock = new ();
+
+    public void Dispose()
+    {
+        lock (this._lock)
+        {
+            this._activePlayers.Clear();
+            this._waitingQueues.Clear();
+        }
+    }
+
+    public void Update()
+    {
+        this.CheckPlayerBoundaries();
+    }
+
+    public void HandlePlayerUpdate(GetDataHandlers.PlayerUpdateEventArgs args)
+    {
+        var player = TShock.Players[args.PlayerId];
+        if (player == null)
+        {
+            return;
+        }
+
+        this.CheckPlayerGameStatus(player);
+    }
+
+    public void HandlePlayerLeave(string playerName)
+    {
+        lock (this._lock)
+        {
+            if (this._activePlayers.ContainsKey(playerName))
+            {
+                this._activePlayers.Remove(playerName);
+                TShock.Log.ConsoleInfo($"[MazeGenerator] 玩家 {playerName} 离开服务器，已从游戏管理中移除");
+            }
+
+            foreach (var queue in this._waitingQueues)
+            {
+                if (queue.Value.Contains(playerName))
+                {
+                    queue.Value.Remove(playerName);
+                    TShock.Log.ConsoleInfo($"[MazeGenerator] 玩家 {playerName} 离开服务器，已从等待队列 {queue.Key} 中移除");
+                }
+            }
+        }
+    }
+
+    public bool JoinGame(TSPlayer player, string mazeName, MazeSession session)
+    {
+        lock (this._lock)
+        {
+            if (this._activePlayers.ContainsKey(player.Name))
+            {
+                player.SendErrorMessage("你已经在游戏中！");
+                return false;
+            }
+
+            if (session.IsGenerating)
+            {
+                if (!this._waitingQueues.ContainsKey(mazeName))
+                {
+                    this._waitingQueues[mazeName] = new List<string>();
+                }
+
+                this._waitingQueues[mazeName].Add(player.Name);
+                player.SendInfoMessage($"迷宫正在生成中，你已被添加到等待队列。当前位置: {this._waitingQueues[mazeName].Count}");
+                return true;
+            }
+
+            return this.StartGameForPlayer(player, mazeName, session);
+        }
+    }
+
+    private bool StartGameForPlayer(TSPlayer player, string mazeName, MazeSession session)
+    {
+        var gameData = new PlayerGameData
+        {
+            PlayerName = player.Name,
+            MazeName = mazeName,
+            JoinTime = DateTime.Now,
+            IsPlaying = true,
+            HasStarted = false,
+            SpawnPoint = ((session.Entrance.startX * 16) + 8, (session.Entrance.startY * 16) + 8)
+        };
+
+        this._activePlayers[player.Name] = gameData;
+
+        this.TeleportToMazeStart(player, session);
+        player.SendSuccessMessage($"已加入迷宫游戏 '{mazeName}'！找到出口即可完成游戏。");
+        player.SendInfoMessage("使用 /maze leave 可以退出游戏。");
+
+        return true;
+    }
+
+    public void NotifyMazeReady(string mazeName, MazeSession session)
+    {
+        lock (this._lock)
+        {
+            if (this._waitingQueues.TryGetValue(mazeName, out var queue) && queue.Count > 0)
+            {
+                foreach (var playerName in queue.ToList())
+                {
+                    var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
+                    if (player != null)
+                    {
+                        this.StartGameForPlayer(player, mazeName, session);
+                        queue.Remove(playerName);
+                    }
+                }
+            }
+        }
+    }
+
+    public void LeaveGame(TSPlayer player)
+    {
+        lock (this._lock)
+        {
+            if (this._activePlayers.TryGetValue(player.Name, out var gameData))
+            {
+                this._activePlayers.Remove(player.Name);
+                this.TeleportToSpawn(player);
+                player.SendSuccessMessage("已退出迷宫游戏。");
+            }
+            else
+            {
+                player.SendErrorMessage("你不在游戏中！");
+            }
+        }
+    }
+
+    public void CheckPlayerCompletion(TSPlayer player, int x, int y)
+    {
+        lock (this._lock)
+        {
+            if (this._activePlayers.TryGetValue(player.Name, out var gameData) && gameData.IsPlaying)
+            {
+                var session = MazeGenerator.Instance.MazeBuilder.GetSession(gameData.MazeName);
+                if (session != null && this.IsAtExit(x, y, session.Exit))
+                {
+                    this.CompleteGame(player, gameData, session);
+                }
+            }
+        }
+    }
+
+    private void CompleteGame(TSPlayer player, PlayerGameData gameData, MazeSession session)
+    {
+        gameData.IsPlaying = false;
+        gameData.FinishTime = DateTime.Now;
+
+        var duration = gameData.Duration.GetValueOrDefault();
+        player.SendSuccessMessage($"恭喜！你完成了迷宫 '{gameData.MazeName}'！");
+        player.SendSuccessMessage($"用时: {duration:mm\\:ss\\.ff}");
+
+        MazeGenerator.Instance.Leaderboard.AddRecord(new LeaderboardEntry
+        {
+            PlayerName = player.Name,
+            MazeName = gameData.MazeName,
+            Duration = duration,
+            RecordDate = DateTime.Now,
+            MazeSize = session.Size
+        });
+
+        this._activePlayers.Remove(player.Name);
+    }
+
+    private void CheckPlayerBoundaries()
+    {
+        lock (this._lock)
+        {
+            foreach (var kvp in this._activePlayers.ToList())
+            {
+                var playerName = kvp.Key;
+                var gameData = kvp.Value;
+
+                var player = TShock.Players.First(p => p?.Name == playerName);
+                if (player == null || !player.Active)
+                {
+                    this._activePlayers.Remove(playerName);
+                    continue;
+                }
+
+                var session = MazeGenerator.Instance.MazeBuilder.GetSession(gameData.MazeName);
+                if (session == null)
+                {
+                    continue;
+                }
+
+                if (this.IsOutsideMazeArea((int) (player.TPlayer.position.X / 16), (int) (player.TPlayer.position.Y / 16), session))
+                {
+                    this.TeleportToMazeStart(player, session);
+                    player.SendWarningMessage("你已离开迷宫区域，已被传送回起点！");
+                }
+            }
+        }
+    }
+
+    private void CheckPlayerGameStatus(TSPlayer player)
+    {
+        lock (this._lock)
+        {
+            if (this._activePlayers.TryGetValue(player.Name, out var gameData) && gameData.IsPlaying)
+            {
+                var x = (int) (player.X / 16);
+                var y = (int) (player.Y / 16);
+
+                this.CheckPlayerCompletion(player, x, y);
+
+                if (!gameData.HasStarted && this.IsInMazeArea(x, y, gameData.MazeName))
+                {
+                    gameData.HasStarted = true;
+                    gameData.JoinTime = DateTime.Now;
+                    player.SendInfoMessage("计时开始！");
+                }
+            }
+        }
+    }
+
+    private bool IsInMazeArea(int x, int y, string mazeName)
+    {
+        var session = MazeGenerator.Instance.MazeBuilder.GetSession(mazeName);
+        if (session == null)
+        {
+            return false;
+        }
+
+        return x >= session.StartX && x < session.StartX + (session.Size * session.CellSize) &&
+               y >= session.StartY && y < session.StartY + (session.Size * session.CellSize);
+    }
+
+    private bool IsOutsideMazeArea(int x, int y, MazeSession session)
+    {
+        var config = Config.Instance;
+        return x < session.StartX - config.BoundaryCheckRange ||
+               x >= session.StartX + (session.Size * session.CellSize) + config.BoundaryCheckRange ||
+               y < session.StartY - config.BoundaryCheckRange ||
+               y >= session.StartY + (session.Size * session.CellSize) + config.BoundaryCheckRange;
+    }
+
+    private bool IsAtExit(int x, int y, (int endX, int endY) exit)
+    {
+        return Math.Abs(x - exit.endX) <= 2 && Math.Abs(y - exit.endY) <= 2;
+    }
+
+    private void TeleportToMazeStart(TSPlayer player, MazeSession session)
+    {
+        var worldX = (session.Entrance.startX * 16) + 8;
+        var worldY = (session.Entrance.startY * 16) + 8;
+        player.Teleport(worldX, worldY);
+    }
+
+    public void TeleportToSpawn(TSPlayer player)
+    {
+        if (player.TPlayer == null)
+        {
+            return;
+        }
+
+        var spawnX = player.TPlayer.SpawnX;
+        var spawnY = player.TPlayer.SpawnY;
+
+        if (spawnX < 0 || spawnY < 0)
+        {
+            spawnX = Main.spawnTileX;
+            spawnY = Main.spawnTileY;
+        }
+
+        float worldX = (spawnX * 16) + 8;
+        float worldY = (spawnY * 16) + 8;
+
+        player.Teleport(worldX, worldY);
+    }
+
+    public PlayerGameData? GetPlayerGameData(string playerName)
+    {
+        lock (this._lock)
+        {
+            return this._activePlayers.TryGetValue(playerName, out var data) ? data : null;
+        }
+    }
+}

@@ -1,0 +1,392 @@
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using TShockAPI;
+using TShockAPI.Hooks;
+using MazeGenerator.Models;
+
+namespace MazeGenerator.Commands;
+
+public class MazeCommandHandler : IDisposable
+{
+    public void Initialize()
+    {
+        TShockAPI.Commands.ChatCommands.Add(new Command("maze.generate", this.MazeCommand, "maze") { HelpText = "迷宫生成器命令，输入 /maze help 查看帮助" });
+    }
+
+    public void Dispose()
+    {
+        TShockAPI.Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.MazeCommand);
+    }
+
+    public void HandleTileEdit(GetDataHandlers.TileEditEventArgs args)
+    {
+        if (args.Handled)
+        {
+            return;
+        }
+
+        var player = args.Player;
+        if (player == null)
+        {
+            return;
+        }
+
+        if (MazeGenerator.Instance.MazeBuilder.HandleTileEdit(player.Name, args.X, args.Y))
+        {
+            player.SendSuccessMessage($"迷宫位置已设置: X={args.X} Y={args.Y}");
+            player.SendSuccessMessage("现在可以使用 /maze build <名称> [大小] 生成迷宫了");
+            args.Handled = true;
+        }
+    }
+
+    private void MazeCommand(CommandArgs args)
+    {
+        var player = args.Player;
+
+        if (args.Parameters.Count == 0)
+        {
+            this.ShowHelp(player);
+            return;
+        }
+
+        var subCommand = args.Parameters[0].ToLower();
+
+        switch (subCommand)
+        {
+            case "help":
+                this.ShowHelp(player);
+                break;
+            case "pos":
+            case "position":
+                if (!player.HasPermission("maze.admin"))
+                {
+                    player.SendErrorMessage("你没有管理员权限！");
+                    return;
+                }
+
+                this.HandleSetPosition(args);
+                break;
+            case "build":
+            case "generate":
+                this.HandleBuildMaze(args);
+                break;
+            case "join":
+                this.HandleJoinGame(args);
+                break;
+            case "leave":
+                this.HandleLeaveGame(args);
+                break;
+            case "reset":
+                this.HandleResetMaze(args);
+                break;
+            case "list":
+                this.HandleListPositions(args);
+                break;
+            case "leaderboard":
+            case "rank":
+                this.HandleLeaderboard(args);
+                break;
+            case "del":
+            case "delete":
+                if (!player.HasPermission("maze.admin"))
+                {
+                    player.SendErrorMessage("你没有管理员权限！");
+                    return;
+                }
+
+                this.HandleDeletePosition(args);
+                break;
+            case "config":
+                if (!player.HasPermission("maze.admin"))
+                {
+                    player.SendErrorMessage("你没有管理员权限！");
+                    return;
+                }
+
+                this.HandleConfig(args);
+                break;
+            default:
+                player.SendErrorMessage($"未知的子命令: {subCommand}");
+                player.SendInfoMessage("输入 /maze help 查看帮助");
+                break;
+        }
+    }
+
+    private void ShowHelp(TSPlayer player)
+    {
+        var config = Config.Instance;
+        player.SendInfoMessage("=== 迷宫生成器 ===");
+        player.SendInfoMessage("/maze build <名称> [大小] - 生成迷宫");
+        player.SendInfoMessage("/maze join <名称> - 加入迷宫游戏");
+        player.SendInfoMessage("/maze leave - 退出游戏");
+        player.SendInfoMessage("/maze reset <名称> - 重置迷宫");
+        player.SendInfoMessage("/maze list - 列出所有位置");
+        player.SendInfoMessage("/maze leaderboard [页码] - 查看排行榜");
+
+        if (player.HasPermission("maze.admin"))
+        {
+            player.SendInfoMessage("/maze pos <名称> <tl|bl|tr|br> - 设置迷宫位置");
+            player.SendInfoMessage("/maze del <名称> - 删除位置和清除方块");
+            player.SendInfoMessage("/maze config <键> <值> - 设置配置");
+        }
+
+        player.SendInfoMessage($"最小迷宫大小: {config.MinSize}, 最大迷宫大小: {config.MaxSize}");
+        player.SendInfoMessage($"单元格大小: {config.CellSize}x{config.CellSize} 格");
+    }
+
+    private void HandleSetPosition(CommandArgs args)
+    {
+        var player = args.Player;
+
+        if (args.Parameters.Count < 3)
+        {
+            player.SendErrorMessage("用法：/maze pos <名称> <tl|bl|tr|br>");
+            player.SendErrorMessage("对齐方式: tl=左上角, bl=左下角, tr=右上角, br=右下角");
+            return;
+        }
+
+        var name = args.Parameters[1];
+        var posType = args.Parameters[2].ToLower();
+
+        if (posType != "tl" && posType != "bl" && posType != "tr" && posType != "br")
+        {
+            player.SendErrorMessage("位置参数无效。请使用：tl(左上角)、bl(左下角)、tr(右上角)、br(右下角)");
+            return;
+        }
+
+        if (MazeGenerator.Instance.MazeBuilder.SetPosition(player.Name, name, posType))
+        {
+            player.SendSuccessMessage($"请使用稿子点击一个方块来设置 '{name}' 的位置！");
+        }
+        else
+        {
+            player.SendErrorMessage($"位置名称 '{name}' 已存在！");
+        }
+    }
+
+    private void HandleBuildMaze(CommandArgs args)
+    {
+        var player = args.Player;
+
+        if (args.Parameters.Count < 2)
+        {
+            player.SendErrorMessage("用法：/maze build <名称> [大小]");
+            return;
+        }
+
+        var name = args.Parameters[1];
+        var config = Config.Instance;
+        var size = config.DefaultSize;
+
+        if (args.Parameters.Count >= 3)
+        {
+            if (!int.TryParse(args.Parameters[2], out size) || size < config.MinSize || size > config.MaxSize)
+            {
+                player.SendErrorMessage($"大小必须是{config.MinSize}到{config.MaxSize}之间的整数！");
+                return;
+            }
+        }
+
+        Task.Run(async () =>
+        {
+            if (await MazeGenerator.Instance.MazeBuilder.BuildMaze(player, name, size))
+            {
+                // 移除了自动加入游戏的代码
+                player.SendSuccessMessage($"迷宫 '{name}' 生成完成！现在可以使用 /maze join {name} 加入游戏");
+            }
+            else
+            {
+                player.SendErrorMessage($"未找到位置 '{name}'，请先使用 /maze pos 设置位置");
+            }
+        });
+    }
+    private void HandleJoinGame(CommandArgs args)
+    {
+        var player = args.Player;
+
+        if (args.Parameters.Count < 2)
+        {
+            player.SendErrorMessage("用法：/maze join <名称>");
+            return;
+        }
+
+        var name = args.Parameters[1];
+        var session = MazeGenerator.Instance.MazeBuilder.GetSession(name);
+
+        if (session == null)
+        {
+            player.SendErrorMessage($"未找到迷宫 '{name}'，请先使用 /maze build 生成迷宫");
+            return;
+        }
+
+        if (!MazeGenerator.Instance.GameManager.JoinGame(player, name, session))
+        {
+            player.SendErrorMessage("无法加入游戏！");
+        }
+    }
+
+    private void HandleLeaveGame(CommandArgs args)
+    {
+        var player = args.Player;
+        MazeGenerator.Instance.GameManager.LeaveGame(player);
+    }
+
+    private void HandleResetMaze(CommandArgs args)
+    {
+        var player = args.Player;
+
+        if (args.Parameters.Count < 2)
+        {
+            player.SendErrorMessage("用法：/maze reset <名称>");
+            return;
+        }
+
+        var name = args.Parameters[1];
+        var session = MazeGenerator.Instance.MazeBuilder.GetSession(name);
+
+        if (session == null)
+        {
+            player.SendErrorMessage($"未找到迷宫 '{name}'");
+            return;
+        }
+
+        player.SendInfoMessage($"正在重置迷宫 '{name}'...");
+        Task.Run(async () =>
+        {
+            await MazeGenerator.Instance.MazeBuilder.BuildMaze(player, name, session.Size);
+        });
+    }
+
+    private void HandleListPositions(CommandArgs args)
+    {
+        var player = args.Player;
+        var positions = MazeGenerator.Instance.MazeBuilder.GetPositions();
+
+        if (positions.Count == 0)
+        {
+            player.SendInfoMessage("没有保存的迷宫位置。");
+            return;
+        }
+
+        player.SendInfoMessage("=== 已保存的迷宫位置 ===");
+        foreach (var (name, pos) in positions)
+        {
+            var session = MazeGenerator.Instance.MazeBuilder.GetSession(name);
+            var hasMaze = session != null ? " [已生成]" : "";
+            player.SendInfoMessage($"- {name}: X={pos.X}, Y={pos.Y}, 对齐={pos.PositionType}{hasMaze}");
+        }
+    }
+
+    private void HandleLeaderboard(CommandArgs args)
+    {
+        var player = args.Player;
+        var page = 1;
+
+        if (args.Parameters.Count >= 2)
+        {
+            if (!int.TryParse(args.Parameters[1], out page) || page < 1)
+            {
+                player.SendErrorMessage("页码必须是正整数！");
+                return;
+            }
+        }
+
+        var (records, totalPages, playerRank) = MazeGenerator.Instance.Leaderboard.GetLeaderboardPage(page, player.Name);
+
+        if (records.Count == 0)
+        {
+            player.SendInfoMessage("排行榜为空。");
+            return;
+        }
+
+        player.SendInfoMessage($"=== 迷宫排行榜 (第 {page}/{totalPages} 页) ===");
+        for (var i = 0; i < records.Count; i++)
+        {
+            var record = records[i];
+            var rank = ((page - 1) * Config.Instance.LeaderboardPageSize) + i + 1;
+            player.SendInfoMessage($"{rank}. {record.PlayerName} - {record.MazeName} - {record.Duration:mm\\:ss\\.ff}");
+        }
+
+        if (playerRank > 0)
+        {
+            player.SendInfoMessage($"你的排名: 第 {playerRank} 名");
+        }
+    }
+
+    private void HandleDeletePosition(CommandArgs args)
+    {
+        var player = args.Player;
+
+        if (args.Parameters.Count < 2)
+        {
+            player.SendErrorMessage("用法：/maze del <名称>");
+            return;
+        }
+
+        var name = args.Parameters[1];
+
+        if (MazeGenerator.Instance.MazeBuilder.DeletePosition(name))
+        {
+            player.SendSuccessMessage($"已删除位置 '{name}' 并清除相关方块");
+        }
+        else
+        {
+            player.SendErrorMessage($"未找到位置 '{name}'");
+        }
+    }
+
+    private void HandleConfig(CommandArgs args)
+    {
+        var player = args.Player;
+
+        if (args.Parameters.Count < 3)
+        {
+            player.SendErrorMessage("用法：/maze config <键> <值>");
+            player.SendInfoMessage("可用键: defaultsize, minsize, maxsize, cellsize, framedelay, boundarycheckrange, leaderboardpagesize");
+            return;
+        }
+
+        var key = args.Parameters[1].ToLower();
+        var value = args.Parameters[2];
+        var config = Config.Instance;
+
+        try
+        {
+            switch (key)
+            {
+                case "defaultsize":
+                    config.DefaultSize = Math.Max(config.MinSize, Math.Min(Convert.ToInt32(value), config.MaxSize));
+                    break;
+                case "minsize":
+                    config.MinSize = Math.Max(5, Convert.ToInt32(value));
+                    break;
+                case "maxsize":
+                    config.MaxSize = Math.Max(config.MinSize, Convert.ToInt32(value));
+                    break;
+                case "cellsize":
+                    config.CellSize = Math.Max(3, Math.Min(Convert.ToInt32(value), 10));
+                    break;
+                case "framedelay":
+                    config.FrameDelay = Math.Max(50, Math.Min(Convert.ToInt32(value), 2000));
+                    break;
+                case "boundarycheckrange":
+                    config.BoundaryCheckRange = Math.Max(10, Convert.ToInt32(value));
+                    break;
+                case "leaderboardpagesize":
+                    config.LeaderboardPageSize = Math.Max(5, Convert.ToInt32(value));
+                    break;
+                default:
+                    player.SendErrorMessage($"未知的配置项：{key}");
+                    return;
+            }
+
+            Config.Save();
+            player.SendSuccessMessage($"已设置配置：{key}={value}");
+        }
+        catch (Exception ex)
+        {
+            player.SendErrorMessage("设置配置时发生错误：" + ex.Message);
+        }
+    }
+}

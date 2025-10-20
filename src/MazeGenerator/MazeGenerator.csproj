@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-      <RootNamespace>Maze</RootNamespace>
-    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\LazyAPI\LazyAPI.csproj"/>
+    </ItemGroup>
 
-    <Import Project="..\..\template.targets" />
+    <Import Project="..\..\template.targets"/>
 
 
 </Project>
