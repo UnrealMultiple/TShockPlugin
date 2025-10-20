@@ -33,6 +33,8 @@
 ```
 /badapple play spawn
 ```
+### v1.0.1
+- Fixed tile clearing issue after server restart
 
 ## Feedback
 
