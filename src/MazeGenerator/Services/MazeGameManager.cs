@@ -4,6 +4,7 @@ using System.Linq;
 using Terraria;
 using TShockAPI;
 using MazeGenerator.Models;
+using Microsoft.Xna.Framework;
 
 namespace MazeGenerator.Services;
 
@@ -59,13 +60,65 @@ public class MazeGameManager : IDisposable
         }
     }
 
+    public void LeaveAllPlayersFromMaze(string mazeName)
+    {
+        lock (this._lock)
+        {
+            var playersToRemove = this._activePlayers
+                .Where(kvp => kvp.Value.MazeName == mazeName)
+                .Select(kvp => kvp.Key)
+                .ToList();
+
+            foreach (var playerName in playersToRemove)
+            {
+                var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
+                if (player != null)
+                {
+                    player.SendInfoMessage($"迷宫 '{mazeName}' 正在重置，你已自动退出游戏");
+                }
+
+                this._activePlayers.Remove(playerName);
+            }
+
+            // 同时清空该迷宫的等待队列
+            if (this._waitingQueues.ContainsKey(mazeName))
+            {
+                this._waitingQueues.Remove(mazeName);
+            }
+        }
+    }
+
     public bool JoinGame(TSPlayer player, string mazeName, MazeSession session)
     {
         lock (this._lock)
         {
             if (this._activePlayers.ContainsKey(player.Name))
             {
-                player.SendErrorMessage("你已经在游戏中！");
+                var currentGame = this._activePlayers[player.Name];
+                if (currentGame.MazeName == mazeName)
+                {
+                    player.SendErrorMessage($"你已经加入了迷宫 '{mazeName}' 的游戏！");
+                }
+                else
+                {
+                    player.SendErrorMessage($"你已经在迷宫 '{currentGame.MazeName}' 的游戏中，请先使用 /maze leave 退出当前游戏！");
+                }
+
+                return false;
+            }
+
+            var currentQueue = this.GetPlayerQueue(player.Name);
+            if (!string.IsNullOrEmpty(currentQueue))
+            {
+                if (currentQueue == mazeName)
+                {
+                    player.SendErrorMessage($"你已经在迷宫 '{mazeName}' 的等待队列中！");
+                }
+                else
+                {
+                    player.SendErrorMessage($"你已经在迷宫 '{currentQueue}' 的等待队列中，请先退出当前队列！");
+                }
+
                 return false;
             }
 
@@ -85,8 +138,24 @@ public class MazeGameManager : IDisposable
         }
     }
 
+    private string GetPlayerQueue(string playerName)
+    {
+        foreach (var queue in this._waitingQueues)
+        {
+            if (queue.Value.Contains(playerName))
+            {
+                return queue.Key;
+            }
+        }
+
+        return string.Empty;
+    }
+
     private bool StartGameForPlayer(TSPlayer player, string mazeName, MazeSession session)
     {
+        var spawnX = session.Entrance.startX;
+        var spawnY = session.Entrance.startY;
+
         var gameData = new PlayerGameData
         {
             PlayerName = player.Name,
@@ -94,7 +163,7 @@ public class MazeGameManager : IDisposable
             JoinTime = DateTime.Now,
             IsPlaying = true,
             HasStarted = false,
-            SpawnPoint = ((session.Entrance.startX * 16) + 8, (session.Entrance.startY * 16) + 8)
+            SpawnPoint = (spawnX, spawnY)
         };
 
         this._activePlayers[player.Name] = gameData;
@@ -117,7 +186,11 @@ public class MazeGameManager : IDisposable
                     var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
                     if (player != null)
                     {
-                        this.StartGameForPlayer(player, mazeName, session);
+                        if (!this._activePlayers.ContainsKey(playerName))
+                        {
+                            this.StartGameForPlayer(player, mazeName, session);
+                        }
+
                         queue.Remove(playerName);
                     }
                 }
@@ -129,15 +202,30 @@ public class MazeGameManager : IDisposable
     {
         lock (this._lock)
         {
+            var leftGame = false;
+
             if (this._activePlayers.TryGetValue(player.Name, out var gameData))
             {
                 this._activePlayers.Remove(player.Name);
                 this.TeleportToSpawn(player);
-                player.SendSuccessMessage("已退出迷宫游戏。");
+                player.SendSuccessMessage($"已退出迷宫游戏 '{gameData.MazeName}'。");
+                leftGame = true;
             }
-            else
+
+            var queueName = this.GetPlayerQueue(player.Name);
+            if (!string.IsNullOrEmpty(queueName))
             {
-                player.SendErrorMessage("你不在游戏中！");
+                if (this._waitingQueues.TryGetValue(queueName, out var queue))
+                {
+                    queue.Remove(player.Name);
+                    player.SendSuccessMessage($"已从迷宫 '{queueName}' 的等待队列中移除。");
+                    leftGame = true;
+                }
+            }
+
+            if (!leftGame)
+            {
+                player.SendErrorMessage("你不在任何迷宫游戏或等待队列中！");
             }
         }
     }
@@ -187,7 +275,7 @@ public class MazeGameManager : IDisposable
                 var playerName = kvp.Key;
                 var gameData = kvp.Value;
 
-                var player = TShock.Players.First(p => p?.Name == playerName);
+                var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
                 if (player == null || !player.Active)
                 {
                     this._activePlayers.Remove(playerName);
@@ -258,9 +346,13 @@ public class MazeGameManager : IDisposable
 
     private void TeleportToMazeStart(TSPlayer player, MazeSession session)
     {
-        var worldX = (session.Entrance.startX * 16) + 8;
-        var worldY = (session.Entrance.startY * 16) + 8;
+        var worldX = session.Entrance.startX * 16f;
+        var worldY = session.Entrance.startY * 16f;
+
         player.Teleport(worldX, worldY);
+        player.TPlayer.velocity = Vector2.Zero;
+
+        TShock.Log.ConsoleInfo($"[MazeGenerator] 传送玩家 {player.Name} 到迷宫入口 ({worldX}, {worldY})");
     }
 
     public void TeleportToSpawn(TSPlayer player)
@@ -283,13 +375,6 @@ public class MazeGameManager : IDisposable
         float worldY = (spawnY * 16) + 8;
 
         player.Teleport(worldX, worldY);
-    }
-
-    public PlayerGameData? GetPlayerGameData(string playerName)
-    {
-        lock (this._lock)
-        {
-            return this._activePlayers.TryGetValue(playerName, out var data) ? data : null;
-        }
+        player.TPlayer.velocity = Vector2.Zero;
     }
 }

@@ -14,4 +14,5 @@ public class MazeSession
     public bool IsGenerating { get; set; }
     public (int startX, int startY) Entrance { get; set; }
     public (int endX, int endY) Exit { get; set; }
+    public int[,]? MazeData { get; set; }
 }

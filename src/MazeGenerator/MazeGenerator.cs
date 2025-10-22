@@ -14,7 +14,7 @@ public class MazeGenerator : TerrariaPlugin
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Eustia";
     public override string Description => "迷宫生成器";
-    public override Version Version => new (2, 0, 0, 0);
+    public override Version Version => new (1, 0, 0, 0);
 
     public static MazeGenerator Instance { get; private set; } = null!;
     public MazeGameManager GameManager { get; private set; } = null!;
@@ -89,8 +89,10 @@ public class MazeGenerator : TerrariaPlugin
     private void OnServerLeave(LeaveEventArgs args)
     {
         if (args.Who < 0 || args.Who >= TShock.Players.Length)
+        {
             return;
-            
+        }
+
         var player = TShock.Players[args.Who];
         if (player != null && !string.IsNullOrEmpty(player.Name))
         {

@@ -25,21 +25,21 @@ public class Config : JsonConfigBase<Config>
     [LocalizedPropertyName(CultureType.English, "Cell Size")]
     public int CellSize { get; set; } = 5;
 
-    [LocalizedPropertyName(CultureType.Chinese, "动画帧延迟(毫秒)")]
-    [LocalizedPropertyName(CultureType.English, "Frame Delay (ms)")]
-    public int FrameDelay { get; set; } = 150;
-
     [LocalizedPropertyName(CultureType.Chinese, "迷宫墙壁图格ID")]
     [LocalizedPropertyName(CultureType.English, "Maze Wall Tile ID")]
-    public int MazeWallTile { get; set; } =  TileID.DiamondGemspark; 
+    public int MazeWallTile { get; set; } = TileID.DiamondGemspark;
 
     [LocalizedPropertyName(CultureType.Chinese, "背景墙壁ID")]
     [LocalizedPropertyName(CultureType.English, "Background Wall ID")]
-    public int BackgroundWall { get; set; } = WallID.Stone; 
+    public int BackgroundWall { get; set; } = WallID.DiamondGemspark;
 
     [LocalizedPropertyName(CultureType.Chinese, "背景油漆ID")]
     [LocalizedPropertyName(CultureType.English, "Background Paint ID")]
-    public int BackgroundPaint { get; set; } = PaintID.BlackPaint; 
+    public int BackgroundPaint { get; set; } = PaintID.BlackPaint;
+
+    [LocalizedPropertyName(CultureType.Chinese, "路径显示油漆ID")]
+    [LocalizedPropertyName(CultureType.English, "Path Paint ID")]
+    public int PathPaint { get; set; } = PaintID.DeepRedPaint;
 
     [LocalizedPropertyName(CultureType.Chinese, "游戏区域边界检查范围")]
     [LocalizedPropertyName(CultureType.English, "Game Area Boundary Check Range")]
