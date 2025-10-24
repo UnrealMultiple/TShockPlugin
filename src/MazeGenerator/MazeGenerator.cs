@@ -1,4 +1,5 @@
 ﻿using MazeGenerator.Commands;
+using MazeGenerator.Models;
 using MazeGenerator.Services;
 using System.Reflection;
 using Terraria;
@@ -71,8 +72,9 @@ public class MazeGenerator : TerrariaPlugin
 
     private void OnReload(ReloadEventArgs e)
     {
-        this.MazeBuilder.Reload();
-        this.Leaderboard.Reload();
+            Config.Load();
+            this.MazeBuilder.Reload();
+            this.Leaderboard.Reload();
     }
 
     private void OnGameUpdate(EventArgs args)
