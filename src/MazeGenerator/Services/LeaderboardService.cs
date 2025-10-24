@@ -82,6 +82,16 @@ public class LeaderboardService : IDisposable
         this.SaveLeaderboard();
     }
 
+    public void ClearMazeRecords(string mazeName)
+    {
+        var removedCount = this._leaderboard.RemoveAll(x => x.MazeName == mazeName);
+        if (removedCount > 0)
+        {
+            this.SaveLeaderboard();
+            TShock.Log.ConsoleInfo($"[MazeGenerator] 已清除迷宫 '{mazeName}' 的 {removedCount} 条排行榜记录");
+        }
+    }
+
     public (List<LeaderboardEntry> page, int totalPages, int playerRank) GetLeaderboardPage(int page, string? playerName = null)
     {
         var config = Config.Instance;

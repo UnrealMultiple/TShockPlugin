@@ -321,11 +321,12 @@ public class MazeCommandHandler : IDisposable
 
         if (MazeGenerator.Instance.MazeBuilder.DeletePosition(name))
         {
-            player.SendSuccessMessage($"已删除位置 '{name}' 并清除相关方块");
+            MazeGenerator.Instance.Leaderboard.ClearMazeRecords(name);
+            player.SendSuccessMessage($"已删除位置 '{name}' 并清除相关方块和排行榜记录");
         }
         else
         {
             player.SendErrorMessage($"未找到位置 '{name}'");
         }
     }
-    }
+}
