@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MazeGenerator.Models;
+﻿namespace MazeGenerator.Models;
 
 public class LeaderboardEntry
 {

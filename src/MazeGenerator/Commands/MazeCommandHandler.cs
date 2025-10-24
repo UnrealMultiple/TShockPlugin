@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using TShockAPI;
-using TShockAPI.Hooks;
+﻿using TShockAPI;
 using MazeGenerator.Models;
 
 namespace MazeGenerator.Commands;
@@ -75,6 +72,12 @@ public class MazeCommandHandler : IDisposable
                 this.HandleLeaveGame(args);
                 break;
             case "reset":
+                if (!player.HasPermission("maze.admin"))
+                {
+                    player.SendErrorMessage("你没有管理员权限！");
+                    return;
+                }
+
                 this.HandleResetMaze(args);
                 break;
             case "list":
@@ -91,15 +94,6 @@ public class MazeCommandHandler : IDisposable
                 }
 
                 this.HandleDeletePosition(args);
-                break;
-            case "config":
-                if (!player.HasPermission("maze.admin"))
-                {
-                    player.SendErrorMessage("你没有管理员权限！");
-                    return;
-                }
-
-                this.HandleConfig(args);
                 break;
             case "path":
                 this.HandleShowPath(args);
@@ -242,7 +236,6 @@ public class MazeCommandHandler : IDisposable
         MazeGenerator.Instance.GameManager.LeaveGame(player);
     }
 
-    // 修改：直接调用协程版本
     private void HandleResetMaze(CommandArgs args)
     {
         var player = args.Player;
@@ -335,58 +328,4 @@ public class MazeCommandHandler : IDisposable
             player.SendErrorMessage($"未找到位置 '{name}'");
         }
     }
-
-    private void HandleConfig(CommandArgs args)
-    {
-        var player = args.Player;
-
-        if (args.Parameters.Count < 3)
-        {
-            player.SendErrorMessage("用法：/maze config <键> <值>");
-            player.SendInfoMessage("可用键: defaultsize, minsize, maxsize, cellsize, boundarycheckrange, leaderboardpagesize");
-            return;
-        }
-
-        var key = args.Parameters[1].ToLower();
-        var value = args.Parameters[2];
-        var config = Config.Instance;
-
-        try
-        {
-            switch (key)
-            {
-                case "defaultsize":
-                    config.DefaultSize = Math.Max(config.MinSize, Math.Min(Convert.ToInt32(value), config.MaxSize));
-                    break;
-                case "minsize":
-                    config.MinSize = Math.Max(5, Convert.ToInt32(value));
-                    break;
-                case "maxsize":
-                    config.MaxSize = Math.Max(config.MinSize, Convert.ToInt32(value));
-                    break;
-                case "cellsize":
-                    config.CellSize = Math.Max(3, Math.Min(Convert.ToInt32(value), 10));
-                    break;
-                // case "framedelay":
-                //     config.FrameDelay = Math.Max(50, Math.Min(Convert.ToInt32(value), 2000));
-                //     break;
-                case "boundarycheckrange":
-                    config.BoundaryCheckRange = Math.Max(10, Convert.ToInt32(value));
-                    break;
-                case "leaderboardpagesize":
-                    config.LeaderboardPageSize = Math.Max(5, Convert.ToInt32(value));
-                    break;
-                default:
-                    player.SendErrorMessage($"未知的配置项：{key}");
-                    return;
-            }
-
-            Config.Save();
-            player.SendSuccessMessage($"已设置配置：{key}={value}");
-        }
-        catch (Exception ex)
-        {
-            player.SendErrorMessage("设置配置时发生错误：" + ex.Message);
-        }
     }
-}

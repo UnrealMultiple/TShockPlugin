@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Terraria;
+﻿using Terraria;
 using TShockAPI;
 using MazeGenerator.Models;
 using Microsoft.Xna.Framework;
@@ -12,7 +9,7 @@ public class MazeGameManager : IDisposable
 {
     private readonly Dictionary<string, PlayerGameData> _activePlayers = new ();
     private readonly Dictionary<string, List<string>> _waitingQueues = new ();
-    private readonly object _lock = new ();
+    private readonly Lock _lock = new ();
 
     public void Dispose()
     {
@@ -43,18 +40,13 @@ public class MazeGameManager : IDisposable
     {
         lock (this._lock)
         {
-            if (this._activePlayers.ContainsKey(playerName))
-            {
-                this._activePlayers.Remove(playerName);
-                TShock.Log.ConsoleInfo($"[MazeGenerator] 玩家 {playerName} 离开服务器，已从游戏管理中移除");
-            }
+            this._activePlayers.Remove(playerName);
 
             foreach (var queue in this._waitingQueues)
             {
                 if (queue.Value.Contains(playerName))
                 {
                     queue.Value.Remove(playerName);
-                    TShock.Log.ConsoleInfo($"[MazeGenerator] 玩家 {playerName} 离开服务器，已从等待队列 {queue.Key} 中移除");
                 }
             }
         }
@@ -230,7 +222,7 @@ public class MazeGameManager : IDisposable
         }
     }
 
-    public void CheckPlayerCompletion(TSPlayer player, int x, int y)
+    private void CheckPlayerCompletion(TSPlayer player, int x, int y)
     {
         lock (this._lock)
         {
@@ -355,7 +347,7 @@ public class MazeGameManager : IDisposable
         TShock.Log.ConsoleInfo($"[MazeGenerator] 传送玩家 {player.Name} 到迷宫入口 ({worldX}, {worldY})");
     }
 
-    public void TeleportToSpawn(TSPlayer player)
+    private void TeleportToSpawn(TSPlayer player)
     {
         if (player.TPlayer == null)
         {

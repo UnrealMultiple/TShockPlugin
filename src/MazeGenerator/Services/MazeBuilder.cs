@@ -81,8 +81,6 @@ public class MazeBuilder : IDisposable
                     session.Value.IsGenerating = false;
                     this._mazeSessions[session.Key] = session.Value;
                 }
-
-                TShock.Log.ConsoleInfo($"[MazeGenerator] 已加载 {sessions.Count} 个迷宫会话");
             }
             catch (Exception ex)
             {
@@ -200,13 +198,6 @@ public class MazeBuilder : IDisposable
         this.DrawBackground(startX, startY, totalWidth, totalHeight);
 
         var mazeData = this.GenerateMazeData(size);
-        if (mazeData == null)
-        {
-            player.SendErrorMessage("迷宫数据生成失败");
-            session.IsGenerating = false;
-            this.SaveSessionData();
-            yield break;
-        }
 
         session.MazeData = mazeData;
 
@@ -228,7 +219,7 @@ public class MazeBuilder : IDisposable
         MazeGenerator.Instance.GameManager.NotifyMazeReady(name, session);
     }
 
-    private int[,] GenerateMazeData(int size)
+    private int[,]? GenerateMazeData(int size)
     {
         try
         {
@@ -298,32 +289,74 @@ public class MazeBuilder : IDisposable
         }
     }
 
-    private IEnumerator DrawMazeCoroutine(TSPlayer player, MazeSession session, int[,] maze)
+    private IEnumerator DrawMazeCoroutine(TSPlayer player, MazeSession session, int[,]? maze)
     {
         var steps = 0;
         var totalCells = session.Size * session.Size;
         var reportInterval = Math.Max(1, totalCells / 10);
+        
+        var maxCellsPerYield = session.Size < 20 ? int.MaxValue :
+            session.Size < 50 ? 800 :
+            session.Size < 80 ? 400 :
+            200;
+
+
+        var batchRects = new List<(int x, int y, int w, int h)>();
+        if (batchRects == null)
+        {
+            throw new ArgumentNullException(nameof(batchRects));
+        }
+
+        var cellsInBatch = 0;
+        int batchStartCellX = -1, batchStartCellY = -1, batchEndCellX = -1, batchEndCellY = -1;
 
         for (var x = 0; x < session.Size; x++)
         {
             for (var y = 0; y < session.Size; y++)
             {
-                this.DrawCell(session.StartX, session.StartY, x, y, session.CellSize, maze[x, y] == 1);
+                this.DrawCell(session.StartX, session.StartY, x, y, session.CellSize, maze != null && maze[x, y] == 1);
                 steps++;
+                cellsInBatch++;
 
-                if (steps % reportInterval == 0)
+                batchStartCellX = batchStartCellX == -1 ? x : batchStartCellX;
+                batchStartCellY = batchStartCellY == -1 ? y : batchStartCellY;
+                batchEndCellX = Math.Max(batchEndCellX, x);
+                batchEndCellY = Math.Max(batchEndCellY, y);
+
+
+                if (cellsInBatch >= maxCellsPerYield || (x == session.Size - 1 && y == session.Size - 1))
                 {
-                    var progress = steps * 100 / totalCells;
-                    player.SendInfoMessage($"迷宫绘制进度: {progress}%");
-                    yield return null;
+                    var rectX = session.StartX + (batchStartCellX * session.CellSize);
+                    var rectY = session.StartY + (batchStartCellY * session.CellSize);
+                    var rectW = (batchEndCellX - batchStartCellX + 1) * session.CellSize;
+                    var rectH = (batchEndCellY - batchStartCellY + 1) * session.CellSize;
+
+                    this.UpdateRegion(rectX, rectY, rectW, rectH);
+
+                    batchRects.Clear();
+                    cellsInBatch = 0;
+                    batchStartCellX = batchStartCellY = batchEndCellX = batchEndCellY = -1;
+                    
+                    if (steps % reportInterval == 0)
+                    {
+                        var progress = steps * 100 / totalCells;
+                        player.SendInfoMessage($"迷宫绘制进度: {progress}%");
+                    }
+                    
+                    if (maxCellsPerYield != int.MaxValue)
+                    {
+                        yield return null;
+                    }
                 }
             }
         }
+
 
         this.UpdateRegion(session.StartX, session.StartY,
             session.Size * session.CellSize,
             session.Size * session.CellSize);
     }
+
 
     public void TogglePathCommand(TSPlayer player, string name)
     {
@@ -379,10 +412,13 @@ public class MazeBuilder : IDisposable
         else
         {
             player.SendInfoMessage($"显示路径中...");
-            var showCoroutine = this.ShowPathCoroutine(player, session, session.MazeData);
-            while (showCoroutine.MoveNext())
+            if (session.MazeData != null)
             {
-                yield return showCoroutine.Current;
+                var showCoroutine = this.ShowPathCoroutine(player, session, session.MazeData);
+                while (showCoroutine.MoveNext())
+                {
+                    yield return showCoroutine.Current;
+                }
             }
 
             this._pathVisible[name] = true;
@@ -406,33 +442,48 @@ public class MazeBuilder : IDisposable
             yield break;
         }
 
-        player.SendInfoMessage($"显示路径中 ({path.Count} 步)...");
 
         this._pathCells[session.Name] = new List<(int x, int y)>();
+
+        var batchSize = path.Count < 200 ? 200 :
+            path.Count < 800 ? 300 :
+            path.Count < 2000 ? 600 :
+            800;
+
+        var paintedInBatch = 0;
+        int batchStartCellX = -1, batchStartCellY = -1, batchEndCellX = -1, batchEndCellY = -1;
 
         for (var i = 0; i < path.Count; i++)
         {
             var cell = path[i];
 
             this._pathCells[session.Name].Add((cell.x, cell.y));
-
             this.PaintPathCell(session, cell.x, cell.y, config.PathPaint);
 
-            if (i % 5 == 0 || i == path.Count - 1)
-            {
-                this.UpdateRegion(session.StartX, session.StartY,
-                    session.Size * session.CellSize,
-                    session.Size * session.CellSize);
-            }
+            batchStartCellX = batchStartCellX == -1 ? cell.x : batchStartCellX;
+            batchStartCellY = batchStartCellY == -1 ? cell.y : batchStartCellY;
+            batchEndCellX = Math.Max(batchEndCellX, cell.x);
+            batchEndCellY = Math.Max(batchEndCellY, cell.y);
 
-            if (i % 10 == 0)
+
+            paintedInBatch++;
+
+            if (paintedInBatch >= batchSize || i == path.Count - 1)
             {
+                if (batchStartCellX != -1)
+                {
+                    this.UpdateRegion(
+                        session.StartX + (batchStartCellX * session.CellSize),
+                        session.StartY + (batchStartCellY * session.CellSize),
+                        (batchEndCellX - batchStartCellX + 1) * session.CellSize,
+                        (batchEndCellY - batchStartCellY + 1) * session.CellSize
+                    );
+                }
+    
+                paintedInBatch = 0;
+                batchStartCellX = batchStartCellY = batchEndCellX = batchEndCellY = -1;
+    
                 yield return null;
-            }
-
-            if (i % 20 == 0 || i == path.Count - 1)
-            {
-                player.SendInfoMessage($"路径显示进度: {i + 1}/{path.Count} ({(i + 1) * 100 / path.Count}%)");
             }
         }
 
@@ -452,7 +503,16 @@ public class MazeBuilder : IDisposable
         }
 
         var pathCells = this._pathCells[session.Name];
-        player.SendInfoMessage($"正在隐藏 {pathCells.Count} 个路径单元格...");
+
+        var total = pathCells.Count;
+        var batchSize = total < 200 ? 400 :
+            total < 800 ? 600 :
+            total < 2000 ? 800 :
+            1200;
+
+
+        var restoredInBatch = 0;
+        int batchStartCellX = -1, batchStartCellY = -1, batchEndCellX = -1, batchEndCellY = -1;
 
         for (var i = 0; i < pathCells.Count; i++)
         {
@@ -460,22 +520,33 @@ public class MazeBuilder : IDisposable
 
             this.PaintPathCell(session, cell.x, cell.y, config.BackgroundPaint);
 
-            if (i % 10 == 0 || i == pathCells.Count - 1)
+            if (batchStartCellX == -1)
             {
-                this.UpdateRegion(session.StartX, session.StartY,
-                    session.Size * session.CellSize,
-                    session.Size * session.CellSize);
+                batchStartCellX = batchEndCellX = cell.x;
+                batchStartCellY = batchEndCellY = cell.y;
+            }
+            else
+            {
+                batchEndCellX = Math.Max(batchEndCellX, cell.x);
+                batchEndCellY = Math.Max(batchEndCellY, cell.y);
             }
 
-            if (i % 50 == 0)
+            restoredInBatch++;
+
+            if (restoredInBatch >= batchSize || i == pathCells.Count - 1)
             {
+                this.UpdateRegion(
+                    session.StartX + (batchStartCellX * session.CellSize),
+                    session.StartY + (batchStartCellY * session.CellSize),
+                    (batchEndCellX - batchStartCellX + 1) * session.CellSize,
+                    (batchEndCellY - batchStartCellY + 1) * session.CellSize
+                );
+
+                restoredInBatch = 0;
+                batchStartCellX = batchStartCellY = batchEndCellX = batchEndCellY = -1;
                 yield return null;
             }
 
-            if (i % 100 == 0 || i == pathCells.Count - 1)
-            {
-                player.SendInfoMessage($"隐藏进度: {i + 1}/{pathCells.Count} ({(i + 1) * 100 / pathCells.Count}%)");
-            }
         }
 
         this._pathCells.Remove(session.Name);
@@ -498,7 +569,6 @@ public class MazeBuilder : IDisposable
 
                     if (tileX >= 0 && tileX < Main.maxTilesX && tileY >= 0 && tileY < Main.maxTilesY)
                     {
-                        // 关键：严格按照旧代码，只在非激活图格上刷油漆
                         if (!Main.tile[tileX, tileY].active())
                         {
                             WorldGen.paintWall(tileX, tileY, (byte) paintId, true);
@@ -529,9 +599,8 @@ public class MazeBuilder : IDisposable
             this._pathCells.Remove(name);
         }
 
-        if (this._positionData.TryGetValue(name, out var position))
+        if (this._positionData.TryGetValue(name, out _))
         {
-            // 重新生成迷宫
             this.BuildMaze(player, name, session.Size);
         }
     }
@@ -656,7 +725,7 @@ public class MazeBuilder : IDisposable
 
     public MazeSession? GetSession(string name)
     {
-        return this._mazeSessions.TryGetValue(name, out var session) ? session : null;
+        return this._mazeSessions.GetValueOrDefault(name);
     }
 
     public Dictionary<string, PositionData> GetPositions()

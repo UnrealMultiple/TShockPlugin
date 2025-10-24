@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using MazeGenerator.Models;
 using TShockAPI;
 
@@ -106,11 +102,5 @@ public class LeaderboardService : IDisposable
         }
 
         return (pageRecords, totalPages, playerRank);
-    }
-
-    public void ClearLeaderboard()
-    {
-        this._leaderboard.Clear();
-        this.SaveLeaderboard();
     }
 }

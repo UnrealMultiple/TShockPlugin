@@ -55,10 +55,10 @@ public class MazeGenerator : TerrariaPlugin
             GetDataHandlers.PlayerUpdate -= this.OnPlayerUpdate;
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnServerLeave);
 
-            this.GameManager?.Dispose();
-            this.MazeBuilder?.Dispose();
-            this.Leaderboard?.Dispose();
-            this._commandHandler?.Dispose();
+            this.GameManager.Dispose();
+            this.MazeBuilder.Dispose();
+            this.Leaderboard.Dispose();
+            this._commandHandler.Dispose();
         }
 
         base.Dispose(disposing);
@@ -73,7 +73,6 @@ public class MazeGenerator : TerrariaPlugin
     {
         this.MazeBuilder.Reload();
         this.Leaderboard.Reload();
-        e.Player.SendSuccessMessage("[MazeGenerator] 插件已重新加载!");
     }
 
     private void OnGameUpdate(EventArgs args)
