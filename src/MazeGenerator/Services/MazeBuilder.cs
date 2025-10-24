@@ -79,6 +79,12 @@ public class MazeBuilder : IDisposable
                 foreach (var session in sessions)
                 {
                     session.Value.IsGenerating = false;
+
+                    if (!string.IsNullOrEmpty(session.Value.MazeDataBase64))
+                    {
+                        session.Value.MazeData = this.DecompressMazeData(session.Value.MazeDataBase64, session.Value.Size);
+                    }
+
                     this._mazeSessions[session.Key] = session.Value;
                 }
             }
@@ -93,7 +99,28 @@ public class MazeBuilder : IDisposable
     {
         try
         {
-            File.WriteAllText(SessionDataPath, JsonConvert.SerializeObject(this._mazeSessions, Formatting.Indented));
+            var sessionsToSave = new Dictionary<string, MazeSession>();
+            foreach (var session in this._mazeSessions)
+            {
+                var sessionCopy = new MazeSession
+                {
+                    Name = session.Value.Name,
+                    StartX = session.Value.StartX,
+                    StartY = session.Value.StartY,
+                    Size = session.Value.Size,
+                    CellSize = session.Value.CellSize,
+                    GeneratedTime = session.Value.GeneratedTime,
+                    GeneratedBy = session.Value.GeneratedBy,
+                    IsGenerating = session.Value.IsGenerating,
+                    Entrance = session.Value.Entrance,
+                    Exit = session.Value.Exit,
+                    MazeData = session.Value.MazeData,
+                    MazeDataBase64 = session.Value.MazeData != null ? this.CompressMazeData(session.Value.MazeData, session.Value.Size) : null
+                };
+                sessionsToSave[session.Key] = sessionCopy;
+            }
+
+            File.WriteAllText(SessionDataPath, JsonConvert.SerializeObject(sessionsToSave, Formatting.Indented));
         }
         catch (Exception ex)
         {
@@ -110,6 +137,75 @@ public class MazeBuilder : IDisposable
         catch (Exception ex)
         {
             TShock.Log.ConsoleError($"[MazeGenerator] 保存位置数据失败: {ex.Message}");
+        }
+    }
+
+
+    private string CompressMazeData(int[,] mazeData, int size)
+    {
+        try
+        {
+            
+            var byteCount = ((size * size) + 7) / 8;
+            var bitmap = new byte[byteCount];
+
+            for (var x = 0; x < size; x++)
+            {
+                for (var y = 0; y < size; y++)
+                {
+                    var index = (y * size) + x;
+                    var byteIndex = index / 8;
+                    var bitIndex = index % 8;
+
+                    if (mazeData[x, y] == 1) 
+                    {
+                        bitmap[byteIndex] |= (byte) (1 << bitIndex);
+                    }
+                }
+            }
+
+            return Convert.ToBase64String(bitmap);
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error($"[MazeGenerator] 压缩迷宫数据失败: {ex}");
+            return string.Empty;
+        }
+    }
+
+
+    private int[,]? DecompressMazeData(string base64Data, int size)
+    {
+        try
+        {
+            var bitmap = Convert.FromBase64String(base64Data);
+            var mazeData = new int[size, size];
+
+            for (var x = 0; x < size; x++)
+            {
+                for (var y = 0; y < size; y++)
+                {
+                    var index = (y * size) + x;
+                    var byteIndex = index / 8;
+                    var bitIndex = index % 8;
+
+                    if (byteIndex < bitmap.Length && (bitmap[byteIndex] & (1 << bitIndex)) != 0)
+                    {
+                        mazeData[x, y] = 1; // 墙
+                    }
+                    else
+                    {
+                        mazeData[x, y] = 0; // 路
+                    }
+                }
+            }
+
+            return mazeData;
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error($"[MazeGenerator] 解压缩迷宫数据失败: {ex}");
+            return null;
         }
     }
 
@@ -294,12 +390,11 @@ public class MazeBuilder : IDisposable
         var steps = 0;
         var totalCells = session.Size * session.Size;
         var reportInterval = Math.Max(1, totalCells / 10);
-        
+
         var maxCellsPerYield = session.Size < 20 ? int.MaxValue :
             session.Size < 50 ? 800 :
             session.Size < 80 ? 400 :
             200;
-
 
         var batchRects = new List<(int x, int y, int w, int h)>();
         if (batchRects == null)
@@ -323,7 +418,6 @@ public class MazeBuilder : IDisposable
                 batchEndCellX = Math.Max(batchEndCellX, x);
                 batchEndCellY = Math.Max(batchEndCellY, y);
 
-
                 if (cellsInBatch >= maxCellsPerYield || (x == session.Size - 1 && y == session.Size - 1))
                 {
                     var rectX = session.StartX + (batchStartCellX * session.CellSize);
@@ -336,13 +430,13 @@ public class MazeBuilder : IDisposable
                     batchRects.Clear();
                     cellsInBatch = 0;
                     batchStartCellX = batchStartCellY = batchEndCellX = batchEndCellY = -1;
-                    
+
                     if (steps % reportInterval == 0)
                     {
                         var progress = steps * 100 / totalCells;
                         player.SendInfoMessage($"迷宫绘制进度: {progress}%");
                     }
-                    
+
                     if (maxCellsPerYield != int.MaxValue)
                     {
                         yield return null;
@@ -351,12 +445,10 @@ public class MazeBuilder : IDisposable
             }
         }
 
-
         this.UpdateRegion(session.StartX, session.StartY,
             session.Size * session.CellSize,
             session.Size * session.CellSize);
     }
-
 
     public void TogglePathCommand(TSPlayer player, string name)
     {
@@ -442,7 +534,6 @@ public class MazeBuilder : IDisposable
             yield break;
         }
 
-
         this._pathCells[session.Name] = new List<(int x, int y)>();
 
         var batchSize = path.Count < 200 ? 200 :
@@ -465,7 +556,6 @@ public class MazeBuilder : IDisposable
             batchEndCellX = Math.Max(batchEndCellX, cell.x);
             batchEndCellY = Math.Max(batchEndCellY, cell.y);
 
-
             paintedInBatch++;
 
             if (paintedInBatch >= batchSize || i == path.Count - 1)
@@ -479,10 +569,10 @@ public class MazeBuilder : IDisposable
                         (batchEndCellY - batchStartCellY + 1) * session.CellSize
                     );
                 }
-    
+
                 paintedInBatch = 0;
                 batchStartCellX = batchStartCellY = batchEndCellX = batchEndCellY = -1;
-    
+
                 yield return null;
             }
         }
@@ -509,7 +599,6 @@ public class MazeBuilder : IDisposable
             total < 800 ? 600 :
             total < 2000 ? 800 :
             1200;
-
 
         var restoredInBatch = 0;
         int batchStartCellX = -1, batchStartCellY = -1, batchEndCellX = -1, batchEndCellY = -1;
@@ -546,7 +635,6 @@ public class MazeBuilder : IDisposable
                 batchStartCellX = batchStartCellY = batchEndCellX = batchEndCellY = -1;
                 yield return null;
             }
-
         }
 
         this._pathCells.Remove(session.Name);

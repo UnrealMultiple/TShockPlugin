@@ -1,4 +1,6 @@
-﻿namespace MazeGenerator.Models;
+﻿using Newtonsoft.Json;
+
+namespace MazeGenerator.Models;
 
 public class MazeSession
 {
@@ -12,5 +14,8 @@ public class MazeSession
     public bool IsGenerating { get; set; }
     public (int startX, int startY) Entrance { get; set; }
     public (int endX, int endY) Exit { get; set; }
-    public int[,]? MazeData { get; set; }
+
+    [JsonIgnore] public int[,]? MazeData { get; set; }
+
+    [JsonProperty("MazeData")] public string? MazeDataBase64 { get; set; }
 }
