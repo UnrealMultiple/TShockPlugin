@@ -993,9 +993,11 @@ public class MazeBuilder : IDisposable
             if (this._positionData.TryGetValue(name, out var position))
             {
                 var config = Config.Instance;
-                var estimatedSize = config.MaxSize;
-                var totalWidth = estimatedSize * config.CellSize;
-                var totalHeight = estimatedSize * config.CellSize;
+
+                var sizeToClear = session?.Size ?? config.DefaultSize;
+            
+                var totalWidth = sizeToClear * config.CellSize;
+                var totalHeight = sizeToClear * config.CellSize;
 
                 var (startX, startY) = this.CalculateStartPosition(position, totalWidth, totalHeight);
                 this.ClearArea(startX, startY, totalWidth, totalHeight);

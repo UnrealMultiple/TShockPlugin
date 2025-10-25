@@ -27,14 +27,14 @@
 > Configuration file location: tshock/MazeGenerator/MazeConfig.json
 ```json5
 {
-  "DefaultMazeSize": 30,
-  "MinMazeSize": 5,
-  "MaxMazeSize": 60,
+  "DefaultSize": 30,
+  "MiniSize": 5,
+  "MaxiSize": 60,
   "CellSize": 5,
-  "MazeWallTileID": 267,
-  "BackgroundWallID": 155,
-  "BackgroundPaintID": 25,
-  "PathPaintID": 13,
+  "MazeWallTile": 267,
+  "BackgroundWall": 155,
+  "BackgroundPaint": 25,
+  "PathPaint": 13,
   "BoundaryCheckRange": 50,
   "LeaderboardPageSize": 10
 }
