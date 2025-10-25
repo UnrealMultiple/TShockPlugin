@@ -72,7 +72,6 @@ public class MazeGameManager : IDisposable
                 this._activePlayers.Remove(playerName);
             }
 
-            // 同时清空该迷宫的等待队列
             if (this._waitingQueues.ContainsKey(mazeName))
             {
                 this._waitingQueues.Remove(mazeName);

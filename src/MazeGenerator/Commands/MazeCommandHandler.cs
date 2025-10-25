@@ -7,7 +7,7 @@ public class MazeCommandHandler : IDisposable
 {
     public void Initialize()
     {
-        TShockAPI.Commands.ChatCommands.Add(new Command("maze.generate", this.MazeCommand, "maze") { HelpText = "迷宫生成器命令，输入 /maze help 查看帮助" });
+        TShockAPI.Commands.ChatCommands.Add(new Command("maze.generate", this.MazeCommand, "maze") { HelpText = GetString("迷宫生成器命令，输入 /maze help 查看帮助") });
     }
 
     public void Dispose()
@@ -30,8 +30,8 @@ public class MazeCommandHandler : IDisposable
 
         if (MazeGenerator.Instance.MazeBuilder.HandleTileEdit(player.Name, args.X, args.Y))
         {
-            player.SendSuccessMessage($"迷宫位置已设置: X={args.X} Y={args.Y}");
-            player.SendSuccessMessage("现在可以使用 /maze build <名称> [大小] 生成迷宫了");
+            player.SendSuccessMessage(GetString($"迷宫位置已设置: X={args.X} Y={args.Y}"));
+            player.SendSuccessMessage(GetString("现在可以使用 /maze build <名称> [大小] 生成迷宫了"));
             args.Handled = true;
         }
     }
@@ -56,7 +56,7 @@ public class MazeCommandHandler : IDisposable
             case "pos":
                 if (!player.HasPermission("maze.admin"))
                 {
-                    player.SendErrorMessage("你没有管理员权限！");
+                    player.SendErrorMessage(GetString("你没有管理员权限！"));
                     return;
                 }
 
@@ -74,7 +74,7 @@ public class MazeCommandHandler : IDisposable
             case "reset":
                 if (!player.HasPermission("maze.admin"))
                 {
-                    player.SendErrorMessage("你没有管理员权限！");
+                    player.SendErrorMessage(GetString("你没有管理员权限！"));
                     return;
                 }
 
@@ -89,7 +89,7 @@ public class MazeCommandHandler : IDisposable
             case "del":
                 if (!player.HasPermission("maze.admin"))
                 {
-                    player.SendErrorMessage("你没有管理员权限！");
+                    player.SendErrorMessage(GetString("你没有管理员权限！"));
                     return;
                 }
 
@@ -99,8 +99,8 @@ public class MazeCommandHandler : IDisposable
                 this.HandleShowPath(args);
                 break;
             default:
-                player.SendErrorMessage($"未知的子命令: {subCommand}");
-                player.SendInfoMessage("输入 /maze help 查看帮助");
+                player.SendErrorMessage(GetString($"未知的子命令: {subCommand}"));
+                player.SendInfoMessage(GetString("输入 /maze help 查看帮助"));
                 break;
         }
     }
@@ -108,24 +108,23 @@ public class MazeCommandHandler : IDisposable
     private void ShowHelp(TSPlayer player)
     {
         var config = Config.Instance;
-        player.SendInfoMessage("=== 迷宫生成器 ===");
-        player.SendInfoMessage("/maze build <名称> [大小] - 生成迷宫");
-        player.SendInfoMessage("/maze join <名称> - 加入迷宫游戏");
-        player.SendInfoMessage("/maze leave - 退出游戏");
-        player.SendInfoMessage("/maze reset <名称> - 重置迷宫");
-        player.SendInfoMessage("/maze list - 列出所有位置");
-        player.SendInfoMessage("/maze leaderboard [页码] - 查看排行榜");
+        player.SendInfoMessage(GetString("=== 迷宫生成器 ==="));
+        player.SendInfoMessage(GetString("/maze build <名称> [大小] - 生成迷宫"));
+        player.SendInfoMessage(GetString("/maze join <名称> - 加入迷宫游戏"));
+        player.SendInfoMessage(GetString("/maze leave - 退出游戏"));
+        player.SendInfoMessage(GetString("/maze reset <名称> - 重置迷宫"));
+        player.SendInfoMessage(GetString("/maze list - 列出所有位置"));
+        player.SendInfoMessage(GetString("/maze rank [页码] - 查看排行榜"));
 
         if (player.HasPermission("maze.admin"))
         {
-            player.SendInfoMessage("/maze pos <名称> <tl|bl|tr|br> - 设置迷宫位置");
-            player.SendInfoMessage("/maze del <名称> - 删除位置和清除方块");
-            player.SendInfoMessage("/maze config <键> <值> - 设置配置");
-            player.SendInfoMessage("/maze path <名称> - 显示/隐藏迷宫路径");
+            player.SendInfoMessage(GetString("/maze pos <名称> <tl|bl|tr|br> - 设置迷宫位置"));
+            player.SendInfoMessage(GetString("/maze del <名称> - 删除位置和清除方块"));
+            player.SendInfoMessage(GetString("/maze path <名称> - 显示/隐藏迷宫路径"));
         }
 
-        player.SendInfoMessage($"最小迷宫大小: {config.MinSize}, 最大迷宫大小: {config.MaxSize}");
-        player.SendInfoMessage($"单元格大小: {config.CellSize}x{config.CellSize} 格");
+        player.SendInfoMessage(GetString($"最小迷宫大小: {config.MinSize}, 最大迷宫大小: {config.MaxSize}"));
+        player.SendInfoMessage(GetString($"单元格大小: {config.CellSize}x{config.CellSize} 格"));
     }
 
     private void HandleShowPath(CommandArgs args)
@@ -134,13 +133,13 @@ public class MazeCommandHandler : IDisposable
 
         if (!player.HasPermission("maze.admin"))
         {
-            player.SendErrorMessage("你没有管理员权限！");
+            player.SendErrorMessage(GetString("你没有管理员权限！"));
             return;
         }
 
         if (args.Parameters.Count < 2)
         {
-            player.SendErrorMessage("用法：/maze path <名称>");
+            player.SendErrorMessage(GetString("用法：/maze path <名称>"));
             return;
         }
 
@@ -155,8 +154,8 @@ public class MazeCommandHandler : IDisposable
 
         if (args.Parameters.Count < 3)
         {
-            player.SendErrorMessage("用法：/maze pos <名称> <tl|bl|tr|br>");
-            player.SendErrorMessage("对齐方式: tl=左上角, bl=左下角, tr=右上角, br=右下角");
+            player.SendErrorMessage(GetString("用法：/maze pos <名称> <tl|bl|tr|br>"));
+            player.SendErrorMessage(GetString("对齐方式: tl=左上角, bl=左下角, tr=右上角, br=右下角"));
             return;
         }
 
@@ -165,17 +164,17 @@ public class MazeCommandHandler : IDisposable
 
         if (posType != "tl" && posType != "bl" && posType != "tr" && posType != "br")
         {
-            player.SendErrorMessage("位置参数无效。请使用：tl(左上角)、bl(左下角)、tr(右上角)、br(右下角)");
+            player.SendErrorMessage(GetString("位置参数无效。请使用：tl(左上角)、bl(左下角)、tr(右上角)、br(右下角)"));
             return;
         }
 
         if (MazeGenerator.Instance.MazeBuilder.SetPosition(player.Name, name, posType))
         {
-            player.SendSuccessMessage($"请使用稿子点击一个方块来设置 '{name}' 的位置！");
+            player.SendSuccessMessage(GetString($"请使用稿子点击一个方块来设置 '{name}' 的位置！"));
         }
         else
         {
-            player.SendErrorMessage($"位置名称 '{name}' 已存在！");
+            player.SendErrorMessage(GetString($"位置名称 '{name}' 已存在！"));
         }
     }
 
@@ -185,7 +184,7 @@ public class MazeCommandHandler : IDisposable
 
         if (args.Parameters.Count < 2)
         {
-            player.SendErrorMessage("用法：/maze build <名称> [大小]");
+            player.SendErrorMessage(GetString("用法：/maze build <名称> [大小]"));
             return;
         }
 
@@ -197,7 +196,7 @@ public class MazeCommandHandler : IDisposable
         {
             if (!int.TryParse(args.Parameters[2], out size) || size < config.MinSize || size > config.MaxSize)
             {
-                player.SendErrorMessage($"大小必须是{config.MinSize}到{config.MaxSize}之间的整数！");
+                player.SendErrorMessage(GetString($"大小必须是{config.MinSize}到{config.MaxSize}之间的整数！"));
                 return;
             }
         }
@@ -211,7 +210,7 @@ public class MazeCommandHandler : IDisposable
 
         if (args.Parameters.Count < 2)
         {
-            player.SendErrorMessage("用法：/maze join <名称>");
+            player.SendErrorMessage(GetString("用法：/maze join <名称>"));
             return;
         }
 
@@ -220,13 +219,13 @@ public class MazeCommandHandler : IDisposable
 
         if (session == null)
         {
-            player.SendErrorMessage($"未找到迷宫 '{name}'，请先使用 /maze build 生成迷宫");
+            player.SendErrorMessage(GetString($"未找到迷宫 '{name}'，请先使用 /maze build 生成迷宫"));
             return;
         }
 
         if (!MazeGenerator.Instance.GameManager.JoinGame(player, name, session))
         {
-            player.SendErrorMessage("无法加入游戏！");
+            player.SendErrorMessage(GetString("无法加入游戏！"));
         }
     }
 
@@ -242,7 +241,7 @@ public class MazeCommandHandler : IDisposable
 
         if (args.Parameters.Count < 2)
         {
-            player.SendErrorMessage("用法：/maze reset <名称>");
+            player.SendErrorMessage(GetString("用法：/maze reset <名称>"));
             return;
         }
 
@@ -258,16 +257,16 @@ public class MazeCommandHandler : IDisposable
 
         if (positions.Count == 0)
         {
-            player.SendInfoMessage("没有保存的迷宫位置。");
+            player.SendInfoMessage(GetString("没有保存的迷宫位置。"));
             return;
         }
 
-        player.SendInfoMessage("=== 已保存的迷宫位置 ===");
+        player.SendInfoMessage(GetString("=== 已保存的迷宫位置 ==="));
         foreach (var (name, pos) in positions)
         {
             var session = MazeGenerator.Instance.MazeBuilder.GetSession(name);
-            var hasMaze = session != null ? " [已生成]" : "";
-            player.SendInfoMessage($"- {name}: X={pos.X}, Y={pos.Y}, 对齐={pos.PositionType}{hasMaze}");
+            var hasMaze = session != null ? GetString(" [已生成]") : "";
+            player.SendInfoMessage(GetString($"- {name}: X={pos.X}, Y={pos.Y}, 对齐={pos.PositionType}{hasMaze}"));
         }
     }
 
@@ -280,7 +279,7 @@ public class MazeCommandHandler : IDisposable
         {
             if (!int.TryParse(args.Parameters[1], out page) || page < 1)
             {
-                player.SendErrorMessage("页码必须是正整数！");
+                player.SendErrorMessage(GetString("页码必须是正整数！"));
                 return;
             }
         }
@@ -289,21 +288,21 @@ public class MazeCommandHandler : IDisposable
 
         if (records.Count == 0)
         {
-            player.SendInfoMessage("排行榜为空。");
+            player.SendInfoMessage(GetString("排行榜为空。"));
             return;
         }
 
-        player.SendInfoMessage($"=== 迷宫排行榜 (第 {page}/{totalPages} 页) ===");
+        player.SendInfoMessage(GetString($"=== 迷宫排行榜 (第 {page}/{totalPages} 页) ==="));
         for (var i = 0; i < records.Count; i++)
         {
             var record = records[i];
             var rank = ((page - 1) * Config.Instance.LeaderboardPageSize) + i + 1;
-            player.SendInfoMessage($"{rank}. {record.PlayerName} - {record.MazeName} - {record.Duration:mm\\:ss\\.ff}");
+            player.SendInfoMessage(GetString($"{rank}. {record.PlayerName} - {record.MazeName} - {record.Duration:mm\\:ss\\.ff}"));
         }
 
         if (playerRank > 0)
         {
-            player.SendInfoMessage($"你的排名: 第 {playerRank} 名");
+            player.SendInfoMessage(GetString($"你的排名: 第 {playerRank} 名"));
         }
     }
 
@@ -313,7 +312,7 @@ public class MazeCommandHandler : IDisposable
 
         if (args.Parameters.Count < 2)
         {
-            player.SendErrorMessage("用法：/maze del <名称>");
+            player.SendErrorMessage(GetString("用法：/maze del <名称>"));
             return;
         }
 
@@ -322,11 +321,11 @@ public class MazeCommandHandler : IDisposable
         if (MazeGenerator.Instance.MazeBuilder.DeletePosition(name))
         {
             MazeGenerator.Instance.Leaderboard.ClearMazeRecords(name);
-            player.SendSuccessMessage($"已删除位置 '{name}' 并清除相关方块和排行榜记录");
+            player.SendSuccessMessage(GetString($"已删除位置 '{name}' 并清除相关方块和排行榜记录"));
         }
         else
         {
-            player.SendErrorMessage($"未找到位置 '{name}'");
+            player.SendErrorMessage(GetString($"未找到位置 '{name}'"));
         }
     }
 }

@@ -8,20 +8,23 @@ namespace MazeGenerator.Services;
 
 public class MazeBuilder : IDisposable
 {
-    private readonly Dictionary<string, MazeSession> _mazeSessions = new ();
-    private Dictionary<string, PositionData> _positionData = new ();
-    private readonly Dictionary<string, (string name, string positionType, string creator)> _tempPositionData = new ();
-    private readonly PathFinder _pathFinder = new ();
+    private readonly Dictionary<string, MazeSession> _mazeSessions = new();
+    private Dictionary<string, PositionData> _positionData = new();
+    private readonly Dictionary<string, (string name, string positionType, string creator)> _tempPositionData = new();
+    private readonly PathFinder _pathFinder = new();
 
-    private readonly Dictionary<string, bool> _pathDisplayInProgress = new ();
-    private readonly Dictionary<string, bool> _pathVisible = new ();
-    private readonly Dictionary<string, List<(int x, int y)>> _pathCells = new ();
+    private readonly Dictionary<string, bool> _pathDisplayInProgress = new();
+    private readonly Dictionary<string, bool> _pathVisible = new();
+    private readonly Dictionary<string, List<(int x, int y)>> _pathCells = new();
 
     private static readonly string PluginDataDir = Path.Combine(TShock.SavePath, "MazeGenerator");
     private static readonly string PositionDataPath = Path.Combine(PluginDataDir, "positions.json");
     private static readonly string SessionDataPath = Path.Combine(PluginDataDir, "sessions.json");
-    private static readonly Lock TileLock = new ();
-    private readonly Lock _lock = new ();
+    private static readonly Lock TileLock = new();
+    
+    private readonly Lock _sessionLock = new ();
+    private readonly Lock _positionLock = new ();
+    private readonly Lock _pathLock = new ();
 
     public void Initialize()
     {
@@ -32,9 +35,13 @@ public class MazeBuilder : IDisposable
 
     public void Dispose()
     {
-        lock (this._lock)
+        lock (this._sessionLock)
+        lock (this._positionLock)
+        lock (this._pathLock)
         {
             this.SaveSessionData();
+            this.SavePositionData();
+
             this._mazeSessions.Clear();
             this._positionData.Clear();
             this._tempPositionData.Clear();
@@ -56,13 +63,19 @@ public class MazeBuilder : IDisposable
         {
             try
             {
-                this._positionData = JsonConvert.DeserializeObject<Dictionary<string, PositionData>>(
-                    File.ReadAllText(PositionDataPath)) ?? new Dictionary<string, PositionData>();
+                lock (this._positionLock)
+                {
+                    this._positionData = JsonConvert.DeserializeObject<Dictionary<string, PositionData>>(
+                        File.ReadAllText(PositionDataPath)) ?? new Dictionary<string, PositionData>();
+                }
             }
             catch (Exception ex)
             {
-                TShock.Log.ConsoleError($"[MazeGenerator] 加载位置数据失败: {ex.Message}");
-                this._positionData = new Dictionary<string, PositionData>();
+                TShock.Log.ConsoleError(GetString($"[MazeGenerator] 加载位置数据失败: {ex.Message}"));
+                lock (this._positionLock)
+                {
+                    this._positionData = new Dictionary<string, PositionData>();
+                }
             }
         }
     }
@@ -76,21 +89,24 @@ public class MazeBuilder : IDisposable
                 var sessions = JsonConvert.DeserializeObject<Dictionary<string, MazeSession>>(
                     File.ReadAllText(SessionDataPath)) ?? new Dictionary<string, MazeSession>();
 
-                foreach (var session in sessions)
+                lock (this._sessionLock)
                 {
-                    session.Value.IsGenerating = false;
-
-                    if (!string.IsNullOrEmpty(session.Value.MazeDataBase64))
+                    foreach (var session in sessions)
                     {
-                        session.Value.MazeData = this.DecompressMazeData(session.Value.MazeDataBase64, session.Value.Size);
-                    }
+                        session.Value.IsGenerating = false;
 
-                    this._mazeSessions[session.Key] = session.Value;
+                        if (!string.IsNullOrEmpty(session.Value.MazeDataBase64))
+                        {
+                            session.Value.MazeData = this.DecompressMazeData(session.Value.MazeDataBase64, session.Value.Size);
+                        }
+
+                        this._mazeSessions[session.Key] = session.Value;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                TShock.Log.ConsoleError($"[MazeGenerator] 加载会话数据失败: {ex.Message}");
+                TShock.Log.ConsoleError(GetString($"[MazeGenerator] 加载会话数据失败: {ex.Message}"));
             }
         }
     }
@@ -99,32 +115,37 @@ public class MazeBuilder : IDisposable
     {
         try
         {
-            var sessionsToSave = new Dictionary<string, MazeSession>();
-            foreach (var session in this._mazeSessions)
+            Dictionary<string, MazeSession> sessionsToSave;
+
+            lock (this._sessionLock)
             {
-                var sessionCopy = new MazeSession
+                sessionsToSave = new Dictionary<string, MazeSession>();
+                foreach (var session in this._mazeSessions)
                 {
-                    Name = session.Value.Name,
-                    StartX = session.Value.StartX,
-                    StartY = session.Value.StartY,
-                    Size = session.Value.Size,
-                    CellSize = session.Value.CellSize,
-                    GeneratedTime = session.Value.GeneratedTime,
-                    GeneratedBy = session.Value.GeneratedBy,
-                    IsGenerating = session.Value.IsGenerating,
-                    Entrance = session.Value.Entrance,
-                    Exit = session.Value.Exit,
-                    MazeData = session.Value.MazeData,
-                    MazeDataBase64 = session.Value.MazeData != null ? this.CompressMazeData(session.Value.MazeData, session.Value.Size) : null
-                };
-                sessionsToSave[session.Key] = sessionCopy;
+                    var sessionCopy = new MazeSession
+                    {
+                        Name = session.Value.Name,
+                        StartX = session.Value.StartX,
+                        StartY = session.Value.StartY,
+                        Size = session.Value.Size,
+                        CellSize = session.Value.CellSize,
+                        GeneratedTime = session.Value.GeneratedTime,
+                        GeneratedBy = session.Value.GeneratedBy,
+                        IsGenerating = session.Value.IsGenerating,
+                        Entrance = session.Value.Entrance,
+                        Exit = session.Value.Exit,
+                        MazeData = session.Value.MazeData,
+                        MazeDataBase64 = session.Value.MazeData != null ? this.CompressMazeData(session.Value.MazeData, session.Value.Size) : null
+                    };
+                    sessionsToSave[session.Key] = sessionCopy;
+                }
             }
 
             File.WriteAllText(SessionDataPath, JsonConvert.SerializeObject(sessionsToSave, Formatting.Indented));
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError($"[MazeGenerator] 保存会话数据失败: {ex.Message}");
+            TShock.Log.ConsoleError(GetString($"[MazeGenerator] 保存会话数据失败: {ex.Message}"));
         }
     }
 
@@ -132,20 +153,25 @@ public class MazeBuilder : IDisposable
     {
         try
         {
-            File.WriteAllText(PositionDataPath, JsonConvert.SerializeObject(this._positionData, Formatting.Indented));
+            Dictionary<string, PositionData> positionsToSave;
+
+            lock (this._positionLock)
+            {
+                positionsToSave = new Dictionary<string, PositionData>(this._positionData);
+            }
+
+            File.WriteAllText(PositionDataPath, JsonConvert.SerializeObject(positionsToSave, Formatting.Indented));
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError($"[MazeGenerator] 保存位置数据失败: {ex.Message}");
+            TShock.Log.ConsoleError(GetString($"[MazeGenerator] 保存位置数据失败: {ex.Message}"));
         }
     }
-
 
     private string CompressMazeData(int[,] mazeData, int size)
     {
         try
         {
-            
             var byteCount = ((size * size) + 7) / 8;
             var bitmap = new byte[byteCount];
 
@@ -157,9 +183,9 @@ public class MazeBuilder : IDisposable
                     var byteIndex = index / 8;
                     var bitIndex = index % 8;
 
-                    if (mazeData[x, y] == 1) 
+                    if (mazeData[x, y] == 1)
                     {
-                        bitmap[byteIndex] |= (byte) (1 << bitIndex);
+                        bitmap[byteIndex] |= (byte)(1 << bitIndex);
                     }
                 }
             }
@@ -168,11 +194,10 @@ public class MazeBuilder : IDisposable
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[MazeGenerator] 压缩迷宫数据失败: {ex}");
+            TShock.Log.Error(GetString($"[MazeGenerator] 压缩迷宫数据失败: {ex}"));
             return string.Empty;
         }
     }
-
 
     private int[,]? DecompressMazeData(string base64Data, int size)
     {
@@ -191,11 +216,11 @@ public class MazeBuilder : IDisposable
 
                     if (byteIndex < bitmap.Length && (bitmap[byteIndex] & (1 << bitIndex)) != 0)
                     {
-                        mazeData[x, y] = 1; // 墙
+                        mazeData[x, y] = 1;
                     }
                     else
                     {
-                        mazeData[x, y] = 0; // 路
+                        mazeData[x, y] = 0;
                     }
                 }
             }
@@ -204,16 +229,19 @@ public class MazeBuilder : IDisposable
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[MazeGenerator] 解压缩迷宫数据失败: {ex}");
+            TShock.Log.Error(GetString($"[MazeGenerator] 解压缩迷宫数据失败: {ex}"));
             return null;
         }
     }
 
     public bool SetPosition(string playerName, string name, string positionType)
     {
-        if (this._positionData.ContainsKey(name))
+        lock (this._positionLock)
         {
-            return false;
+            if (this._positionData.ContainsKey(name))
+            {
+                return false;
+            }
         }
 
         this._tempPositionData[playerName] = (name, positionType, playerName);
@@ -227,7 +255,11 @@ public class MazeBuilder : IDisposable
             var (name, positionType, creator) = tempData;
             var position = new PositionData { X = x, Y = y, PositionType = positionType, Creator = creator };
 
-            this._positionData[name] = position;
+            lock (this._positionLock)
+            {
+                this._positionData[name] = position;
+            }
+
             this._tempPositionData.Remove(playerName);
             this.SavePositionData();
             return true;
@@ -238,10 +270,15 @@ public class MazeBuilder : IDisposable
 
     public void BuildMaze(TSPlayer player, string name, int size)
     {
-        if (!this._positionData.TryGetValue(name, out var position))
+        PositionData position;
+    
+        lock (this._positionLock)
         {
-            player.SendErrorMessage($"未找到位置 '{name}'");
-            return;
+            if (!this._positionData.TryGetValue(name, out position))
+            {
+                player.SendErrorMessage(GetString($"未找到位置 '{name}'"));
+                return;
+            }
         }
 
         if (size % 2 == 0)
@@ -251,66 +288,117 @@ public class MazeBuilder : IDisposable
 
         var config = Config.Instance;
 
-        if (this._mazeSessions.ContainsKey(name))
+        lock (this._sessionLock)
         {
-            this.ClearMazeArea(this._mazeSessions[name]);
-            this._mazeSessions.Remove(name);
+            if (this._mazeSessions.ContainsKey(name))
+            {
+                this.ClearMazeArea(this._mazeSessions[name]);
+                this._mazeSessions.Remove(name);
+            }
 
-            lock (this._lock)
+            lock (this._pathLock)
             {
                 this._pathVisible.Remove(name);
                 this._pathDisplayInProgress.Remove(name);
                 this._pathCells.Remove(name);
             }
+
+            var session = new MazeSession
+            {
+                Name = name,
+                Size = size,
+                CellSize = config.CellSize,
+                GeneratedTime = DateTime.Now,
+                GeneratedBy = player.Name,
+                IsGenerating = true
+            };
+
+            this._mazeSessions[name] = session;
+
+            Main.DelayedProcesses.Add(this.GenerateMazeCoroutine(player, name, position, size, session));
         }
-
-        var session = new MazeSession
-        {
-            Name = name,
-            Size = size,
-            CellSize = config.CellSize,
-            GeneratedTime = DateTime.Now,
-            GeneratedBy = player.Name,
-            IsGenerating = true
-        };
-
-        this._mazeSessions[name] = session;
-
-        Main.DelayedProcesses.Add(this.GenerateMazeCoroutine(player, name, position, size, session));
     }
 
     private IEnumerator GenerateMazeCoroutine(TSPlayer player, string name, PositionData position, int size, MazeSession session)
     {
-        player.SendInfoMessage($"正在生成 {size}x{size} 的迷宫...");
+        return this.GenerateMazeCoroutineInternal(player, name, position, size, session);
+    }
+
+    private IEnumerator GenerateMazeCoroutineInternal(TSPlayer player, string name, PositionData position, int size, MazeSession session)
+    {
+        player.SendInfoMessage(GetString($"正在生成 {size}x{size} 的迷宫..."));
 
         var totalWidth = size * session.CellSize;
         var totalHeight = size * session.CellSize;
         var (startX, startY) = this.CalculateStartPosition(position, totalWidth, totalHeight);
 
-        session.StartX = startX;
-        session.StartY = startY;
+        lock (this._sessionLock)
+        {
+            if (!this._mazeSessions.ContainsKey(name))
+            {
+                player.SendErrorMessage(GetString("迷宫生成被取消"));
+                yield break;
+            }
+
+            session.StartX = startX;
+            session.StartY = startY;
+        }
 
         this.ClearArea(startX, startY, totalWidth, totalHeight);
         this.DrawBackground(startX, startY, totalWidth, totalHeight);
 
-        var mazeData = this.GenerateMazeData(size);
+        int[,]? mazeData;
+        try
+        {
+            mazeData = this.GenerateMazeData(size);
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.ConsoleError(GetString($"[MazeGenerator] 生成迷宫数据时发生错误: {ex}"));
+            player.SendErrorMessage(GetString("生成迷宫数据失败，请稍后重试"));
+            yield break;
+        }
 
-        session.MazeData = mazeData;
+        if (mazeData == null)
+        {
+            player.SendErrorMessage(GetString("生成迷宫数据失败"));
+            yield break;
+        }
 
-        var drawCoroutine = this.DrawMazeCoroutine(player, session, mazeData);
+        lock (this._sessionLock)
+        {
+            if (!this._mazeSessions.ContainsKey(name))
+            {
+                player.SendErrorMessage(GetString("迷宫生成被取消"));
+                yield break;
+            }
+
+            session.MazeData = mazeData;
+        }
+
+        var drawCoroutine = this.DrawMazeCoroutineSafe(player, session, mazeData);
         while (drawCoroutine.MoveNext())
         {
             yield return drawCoroutine.Current;
         }
 
-        session.Entrance = (session.StartX + session.CellSize, session.StartY);
-        session.Exit = (session.StartX + ((size - 2) * session.CellSize), session.StartY + ((size - 1) * session.CellSize));
-        session.IsGenerating = false;
+        lock (this._sessionLock)
+        {
+            if (!this._mazeSessions.ContainsKey(name))
+            {
+                player.SendErrorMessage(GetString("迷宫生成被取消"));
+                yield break;
+            }
+
+            session.Entrance = (session.StartX + session.CellSize, session.StartY);
+            session.Exit = (session.StartX + ((size - 2) * session.CellSize), session.StartY + ((size - 1) * session.CellSize));
+            session.IsGenerating = false;
+        }
 
         this.SaveSessionData();
 
-        player.SendSuccessMessage($"迷宫 '{name}' 生成完成！");
-        player.SendInfoMessage($"入口位置: ({session.Entrance.startX}, {session.Entrance.startY})");
+        player.SendSuccessMessage(GetString($"迷宫 '{name}' 生成完成！"));
+        player.SendInfoMessage(GetString($"入口位置: ({session.Entrance.startX}, {session.Entrance.startY})"));
 
         MazeGenerator.Instance.GameManager.NotifyMazeReady(name, session);
     }
@@ -323,10 +411,10 @@ public class MazeBuilder : IDisposable
             var random = new Random(Guid.NewGuid().GetHashCode());
 
             for (var x = 0; x < size; x++)
-            for (var y = 0; y < size; y++)
-            {
-                maze[x, y] = 1;
-            }
+                for (var y = 0; y < size; y++)
+                {
+                    maze[x, y] = 1;
+                }
 
             var stack = new Stack<(int x, int y)>();
 
@@ -380,12 +468,12 @@ public class MazeBuilder : IDisposable
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[MazeGenerator] 生成迷宫数据错误: {ex}");
+            TShock.Log.Error(GetString($"[MazeGenerator] 生成迷宫数据错误: {ex}"));
             return null;
         }
     }
 
-    private IEnumerator DrawMazeCoroutine(TSPlayer player, MazeSession session, int[,]? maze)
+    private IEnumerator DrawMazeCoroutineSafe(TSPlayer player, MazeSession session, int[,]? maze)
     {
         var steps = 0;
         var totalCells = session.Size * session.Size;
@@ -396,12 +484,6 @@ public class MazeBuilder : IDisposable
             session.Size < 80 ? 400 :
             200;
 
-        var batchRects = new List<(int x, int y, int w, int h)>();
-        if (batchRects == null)
-        {
-            throw new ArgumentNullException(nameof(batchRects));
-        }
-
         var cellsInBatch = 0;
         int batchStartCellX = -1, batchStartCellY = -1, batchEndCellX = -1, batchEndCellY = -1;
 
@@ -409,7 +491,15 @@ public class MazeBuilder : IDisposable
         {
             for (var y = 0; y < session.Size; y++)
             {
-                this.DrawCell(session.StartX, session.StartY, x, y, session.CellSize, maze != null && maze[x, y] == 1);
+                try
+                {
+                    this.DrawCell(session.StartX, session.StartY, x, y, session.CellSize, maze != null && maze[x, y] == 1);
+                }
+                catch (Exception ex)
+                {
+                    TShock.Log.Error(GetString($"[MazeGenerator] 绘制单元格时发生错误: {ex}"));
+                }
+
                 steps++;
                 cellsInBatch++;
 
@@ -427,14 +517,13 @@ public class MazeBuilder : IDisposable
 
                     this.UpdateRegion(rectX, rectY, rectW, rectH);
 
-                    batchRects.Clear();
                     cellsInBatch = 0;
                     batchStartCellX = batchStartCellY = batchEndCellX = batchEndCellY = -1;
 
                     if (steps % reportInterval == 0)
                     {
                         var progress = steps * 100 / totalCells;
-                        player.SendInfoMessage($"迷宫绘制进度: {progress}%");
+                        player.SendInfoMessage(GetString($"迷宫绘制进度: {progress}%"));
                     }
 
                     if (maxCellsPerYield != int.MaxValue)
@@ -455,27 +544,27 @@ public class MazeBuilder : IDisposable
         var session = this.GetSession(name);
         if (session == null)
         {
-            player.SendErrorMessage($"未找到迷宫 '{name}'");
+            player.SendErrorMessage(GetString($"未找到迷宫 '{name}'"));
             return;
         }
 
         if (session.IsGenerating)
         {
-            player.SendErrorMessage($"迷宫 '{name}' 正在生成中");
+            player.SendErrorMessage(GetString($"迷宫 '{name}' 正在生成中"));
             return;
         }
 
         if (session.MazeData == null)
         {
-            player.SendErrorMessage($"无法获取迷宫数据，请重新生成迷宫 '{name}'");
+            player.SendErrorMessage(GetString($"无法获取迷宫数据，请重新生成迷宫 '{name}'"));
             return;
         }
 
-        lock (this._lock)
+        lock (this._pathLock)
         {
             if (this._pathDisplayInProgress.ContainsKey(name) && this._pathDisplayInProgress[name])
             {
-                player.SendErrorMessage($"路径操作进行中，请稍候");
+                player.SendErrorMessage(GetString($"路径操作进行中，请稍候"));
                 return;
             }
 
@@ -487,23 +576,37 @@ public class MazeBuilder : IDisposable
 
     private IEnumerator TogglePathCoroutine(TSPlayer player, string name, MazeSession session)
     {
-        var isPathVisible = this._pathVisible.ContainsKey(name) && this._pathVisible[name];
+        return this.TogglePathCoroutineSafe(player, name, session);
+    }
+
+    private IEnumerator TogglePathCoroutineSafe(TSPlayer player, string name, MazeSession session)
+    {
+        bool isPathVisible;
+
+        lock (this._pathLock)
+        {
+            isPathVisible = this._pathVisible.ContainsKey(name) && this._pathVisible[name];
+        }
 
         if (isPathVisible)
         {
-            player.SendInfoMessage($"隐藏路径中...");
+            player.SendInfoMessage(GetString($"隐藏路径中..."));
             var hideCoroutine = this.HidePathCoroutine(player, session);
             while (hideCoroutine.MoveNext())
             {
                 yield return hideCoroutine.Current;
             }
 
-            this._pathVisible[name] = false;
-            player.SendSuccessMessage($"路径已隐藏");
+            lock (this._pathLock)
+            {
+                this._pathVisible[name] = false;
+            }
+
+            player.SendSuccessMessage(GetString($"路径已隐藏"));
         }
         else
         {
-            player.SendInfoMessage($"显示路径中...");
+            player.SendInfoMessage(GetString($"显示路径中..."));
             if (session.MazeData != null)
             {
                 var showCoroutine = this.ShowPathCoroutine(player, session, session.MazeData);
@@ -513,11 +616,15 @@ public class MazeBuilder : IDisposable
                 }
             }
 
-            this._pathVisible[name] = true;
-            player.SendSuccessMessage($"路径显示完成");
+            lock (this._pathLock)
+            {
+                this._pathVisible[name] = true;
+            }
+
+            player.SendSuccessMessage(GetString($"路径显示完成"));
         }
 
-        lock (this._lock)
+        lock (this._pathLock)
         {
             this._pathDisplayInProgress[name] = false;
         }
@@ -525,16 +632,30 @@ public class MazeBuilder : IDisposable
 
     private IEnumerator ShowPathCoroutine(TSPlayer player, MazeSession session, int[,] maze)
     {
-        var path = this._pathFinder.FindPath(session, maze);
+        List<(int x, int y)> path;
+        try
+        {
+            path = this._pathFinder.FindPath(session, maze);
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error(GetString($"[MazeGenerator] 查找路径时发生错误: {ex}"));
+            player.SendErrorMessage(GetString("查找路径失败"));
+            yield break;
+        }
+
         var config = Config.Instance;
 
         if (path.Count == 0)
         {
-            player.SendErrorMessage("找不到路径");
+            player.SendErrorMessage(GetString("找不到路径"));
             yield break;
         }
 
-        this._pathCells[session.Name] = new List<(int x, int y)>();
+        lock (this._pathLock)
+        {
+            this._pathCells[session.Name] = new List<(int x, int y)>();
+        }
 
         var batchSize = path.Count < 200 ? 200 :
             path.Count < 800 ? 300 :
@@ -548,8 +669,19 @@ public class MazeBuilder : IDisposable
         {
             var cell = path[i];
 
-            this._pathCells[session.Name].Add((cell.x, cell.y));
-            this.PaintPathCell(session, cell.x, cell.y, config.PathPaint);
+            lock (this._pathLock)
+            {
+                this._pathCells[session.Name].Add((cell.x, cell.y));
+            }
+
+            try
+            {
+                this.PaintPathCell(session, cell.x, cell.y, config.PathPaint);
+            }
+            catch (Exception ex)
+            {
+                TShock.Log.Error(GetString($"[MazeGenerator] 绘制路径单元格时发生错误: {ex}"));
+            }
 
             batchStartCellX = batchStartCellX == -1 ? cell.x : batchStartCellX;
             batchStartCellY = batchStartCellY == -1 ? cell.y : batchStartCellY;
@@ -586,13 +718,16 @@ public class MazeBuilder : IDisposable
     {
         var config = Config.Instance;
 
-        if (!this._pathCells.ContainsKey(session.Name))
+        List<(int x, int y)> pathCells;
+        lock (this._pathLock)
         {
-            player.SendErrorMessage("没有找到路径记录，无法隐藏");
-            yield break;
+            if (!this._pathCells.ContainsKey(session.Name))
+            {
+                player.SendErrorMessage(GetString("没有找到路径记录，无法隐藏"));
+                yield break;
+            }
+            pathCells = this._pathCells[session.Name];
         }
-
-        var pathCells = this._pathCells[session.Name];
 
         var total = pathCells.Count;
         var batchSize = total < 200 ? 400 :
@@ -607,7 +742,14 @@ public class MazeBuilder : IDisposable
         {
             var cell = pathCells[i];
 
-            this.PaintPathCell(session, cell.x, cell.y, config.BackgroundPaint);
+            try
+            {
+                this.PaintPathCell(session, cell.x, cell.y, config.BackgroundPaint);
+            }
+            catch (Exception ex)
+            {
+                TShock.Log.Error(GetString($"[MazeGenerator] 恢复路径单元格时发生错误: {ex}"));
+            }
 
             if (batchStartCellX == -1)
             {
@@ -637,7 +779,10 @@ public class MazeBuilder : IDisposable
             }
         }
 
-        this._pathCells.Remove(session.Name);
+        lock (this._pathLock)
+        {
+            this._pathCells.Remove(session.Name);
+        }
 
         this.UpdateRegion(session.StartX, session.StartY,
             session.Size * session.CellSize,
@@ -659,7 +804,7 @@ public class MazeBuilder : IDisposable
                     {
                         if (!Main.tile[tileX, tileY].active())
                         {
-                            WorldGen.paintWall(tileX, tileY, (byte) paintId, true);
+                            WorldGen.paintWall(tileX, tileY, (byte)paintId, true);
                         }
                     }
                 }
@@ -672,24 +817,27 @@ public class MazeBuilder : IDisposable
         var session = this.GetSession(name);
         if (session == null)
         {
-            player.SendErrorMessage($"未找到迷宫 '{name}'");
+            player.SendErrorMessage(GetString($"未找到迷宫 '{name}'"));
             return;
         }
 
-        player.SendInfoMessage($"正在重置迷宫 '{name}'...");
+        player.SendInfoMessage(GetString($"正在重置迷宫 '{name}'..."));
 
         MazeGenerator.Instance.GameManager.LeaveAllPlayersFromMaze(name);
 
-        lock (this._lock)
+        lock (this._pathLock)
         {
             this._pathVisible.Remove(name);
             this._pathDisplayInProgress.Remove(name);
             this._pathCells.Remove(name);
         }
 
-        if (this._positionData.TryGetValue(name, out _))
+        lock (this._positionLock)
         {
-            this.BuildMaze(player, name, session.Size);
+            if (this._positionData.TryGetValue(name, out _))
+            {
+                this.BuildMaze(player, name, session.Size);
+            }
         }
     }
 
@@ -707,10 +855,10 @@ public class MazeBuilder : IDisposable
 
                     if (tileX >= 0 && tileX < Main.maxTilesX && tileY >= 0 && tileY < Main.maxTilesY)
                     {
-                        Main.tile[tileX, tileY].wall = (ushort) config.BackgroundWall;
-                        WorldGen.paintWall(tileX, tileY, (byte) config.BackgroundPaint, true);
+                        Main.tile[tileX, tileY].wall = (ushort)config.BackgroundWall;
+                        WorldGen.paintWall(tileX, tileY, (byte)config.BackgroundPaint, true);
                         Main.tile[tileX, tileY].active(true);
-                        Main.tile[tileX, tileY].type = (ushort) config.MazeWallTile;
+                        Main.tile[tileX, tileY].type = (ushort)config.MazeWallTile;
                     }
                 }
             }
@@ -736,7 +884,7 @@ public class MazeBuilder : IDisposable
                         if (isWall)
                         {
                             Main.tile[tileX, tileY].active(true);
-                            Main.tile[tileX, tileY].type = (ushort) config.MazeWallTile;
+                            Main.tile[tileX, tileY].type = (ushort)config.MazeWallTile;
                         }
                         else
                         {
@@ -776,7 +924,7 @@ public class MazeBuilder : IDisposable
                 TSPlayer.All.SendTileSquareCentered(
                     x + cx + (chunkWidth / 2),
                     y + cy + (chunkHeight / 2),
-                    (byte) size);
+                    (byte)size);
             }
         }
     }
@@ -813,20 +961,28 @@ public class MazeBuilder : IDisposable
 
     public MazeSession? GetSession(string name)
     {
-        return this._mazeSessions.GetValueOrDefault(name);
+        lock (this._sessionLock)
+        {
+            return this._mazeSessions.GetValueOrDefault(name);
+        }
     }
 
     public Dictionary<string, PositionData> GetPositions()
     {
-        return new Dictionary<string, PositionData>(this._positionData);
+        lock (this._positionLock)
+        {
+            return new Dictionary<string, PositionData>(this._positionData);
+        }
     }
 
     public bool DeletePosition(string name)
     {
-        lock (this._lock)
-        {
-            var found = false;
+        var found = false;
 
+        lock (this._sessionLock)
+        lock (this._positionLock)
+        lock (this._pathLock)
+        {
             if (this._mazeSessions.TryGetValue(name, out var session))
             {
                 this.ClearMazeArea(session);
