@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Maze Generator Plugin"
+  },
+  "README.es-ES": {
+    "Description": "Plugin Generador de Laberintos"
+  },
+  "README": {
+    "Description": "迷宫生成器插件"
+  }
+}
