@@ -15,6 +15,7 @@ public class PathFinder
     private List<(int x, int y)> AStarSearch(int[,] maze, (int x, int y) start, (int x, int y) end, int size)
     {
         var openSet = new PriorityQueue<Node, int>();
+        var openSetPositions = new HashSet<(int x, int y)>();
         var closedSet = new HashSet<(int x, int y)>();
         var cameFrom = new Dictionary<(int x, int y), (int x, int y)>();
         var gScore = new Dictionary<(int x, int y), int>();
@@ -23,11 +24,13 @@ public class PathFinder
         gScore[start] = 0;
         fScore[start] = this.Heuristic(start, end);
         openSet.Enqueue(new Node(start.x, start.y, fScore[start]), fScore[start]);
+        openSetPositions.Add(start);
 
         while (openSet.Count > 0)
         {
             var current = openSet.Dequeue();
             var currentPos = (current.X, current.Y);
+            openSetPositions.Remove(currentPos);
 
             if (currentPos.Equals(end))
             {
@@ -51,9 +54,10 @@ public class PathFinder
                     gScore[neighbor] = tentativeGScore;
                     fScore[neighbor] = tentativeGScore + this.Heuristic(neighbor, end);
 
-                    if (!openSet.UnorderedItems.Any(x => x.Element.X == neighbor.x && x.Element.Y == neighbor.y))
+                    if (!openSetPositions.Contains(neighbor))
                     {
                         openSet.Enqueue(new Node(neighbor.x, neighbor.y, fScore[neighbor]), fScore[neighbor]);
+                        openSetPositions.Add(neighbor);
                     }
                 }
             }
