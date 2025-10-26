@@ -21,7 +21,7 @@
 | /maze del <名称> | 无 | maze.admin | 删除位置和清除方块    |
 | /maze path <名称> | 无 | maze.admin | 显示/隐藏迷宫路径    |
 | /maze reset <名称> | 无 | maze.admin | 重置指定迷宫       |
-| /maze pos <名称> <tl\|bl\|tr\|br> | 无 | maze.admin | 设置迷宫位置       |
+| /maze pos <名称> <tl\|bl\|tr\|br> | 无 | maze.admin | 设置迷宫位置（左上角、右上角、左下角、右下角）       |
 
 ## 配置
 > 配置文件位置：tshock/MazeGenerator/MazeConfig.zh-CN.json

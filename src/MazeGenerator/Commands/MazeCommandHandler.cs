@@ -118,7 +118,7 @@ public class MazeCommandHandler : IDisposable
 
         if (player.HasPermission("maze.admin"))
         {
-            player.SendInfoMessage(GetString("/maze pos <名称> <tl|bl|tr|br> - 设置迷宫位置"));
+            player.SendInfoMessage(GetString("/maze pos <名称> <tl|bl|tr|br> - 设置迷宫位置（左上角、右上角、左下角、右下角）"));
             player.SendInfoMessage(GetString("/maze del <名称> - 删除位置和清除方块"));
             player.SendInfoMessage(GetString("/maze path <名称> - 显示/隐藏迷宫路径"));
         }
