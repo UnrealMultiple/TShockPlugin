@@ -21,7 +21,7 @@
 | /maze del <name> | none | maze.admin | Delete position and clear blocks |
 | /maze path <name> | none | maze.admin | Show/hide maze path |
 | /maze reset <name> | none | maze.admin | Reset specified maze |
-| /maze pos <name> <tl\|bl\|tr\|br> | none | maze.admin | Set maze position |
+| /maze pos <name> <tl\|bl\|tr\|br> | none | maze.admin | Set maze position（top-left、top-right、bottom-left、bottom-right） |
 
 ## Configuration
 > Configuration file location: tshock/MazeGenerator/MazeConfig.json
@@ -39,7 +39,7 @@
   "LeaderboardPageSize": 10
 }
 ```
-## 反馈
-- 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
-- 次优先：TShock官方群：816771079
-- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
+## Feedback
+- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
+- TShock QQ Group: 816771079
+- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
