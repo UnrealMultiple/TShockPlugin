@@ -6,8 +6,8 @@ public class PathFinder
 {
     public List<(int x, int y)> FindPath(MazeSession session, int[,] maze)
     {
-        var startCell = (1, 0);
-        var endCell = (session.Size - 2, session.Size - 1);
+        var startCell = (0, 1);        
+        var endCell = (session.Size - 1, session.Size - 2);  
 
         return this.AStarSearch(maze, startCell, endCell, session.Size);
     }

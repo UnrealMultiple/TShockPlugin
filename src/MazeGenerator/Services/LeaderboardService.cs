@@ -65,11 +65,9 @@ public class LeaderboardService : IDisposable
             {
                 this._leaderboard.Remove(existingRecord);
                 this._leaderboard.Add(entry);
-                TShock.Log.ConsoleInfo(GetString($"[MazeGenerator] 更新记录: {entry.PlayerName} 在 {entry.MazeName} 的新时间 {entry.Duration} 替换了旧时间 {existingRecord.Duration}"));
             }
             else
             {
-                TShock.Log.ConsoleInfo(GetString($"[MazeGenerator] 忽略较慢记录: {entry.PlayerName} 在 {entry.MazeName} 的时间 {entry.Duration} 比现有记录 {existingRecord.Duration} 慢"));
                 return;
             }
         }

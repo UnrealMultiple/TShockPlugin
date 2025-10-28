@@ -390,8 +390,8 @@ public class MazeBuilder : IDisposable
                 yield break;
             }
 
-            session.Entrance = (session.StartX + session.CellSize, session.StartY);
-            session.Exit = (session.StartX + ((size - 2) * session.CellSize), session.StartY + ((size - 1) * session.CellSize));
+            session.Entrance = (session.StartX, session.StartY + session.CellSize); 
+            session.Exit = (session.StartX + ((size - 1) * session.CellSize), session.StartY + ((size - 2) * session.CellSize)); 
             session.IsGenerating = false;
         }
 
@@ -461,8 +461,8 @@ public class MazeBuilder : IDisposable
                 }
             }
 
-            maze[1, 0] = 0;
-            maze[size - 2, size - 1] = 0;
+            maze[0, 1] = 0; 
+            maze[size - 1, size - 2] = 0; 
 
             return maze;
         }

@@ -22,7 +22,10 @@
 | /maze path <name> | none | maze.admin | Show/hide maze path |
 | /maze reset <name> | none | maze.admin | Reset specified maze |
 | /maze pos <name> <tl\|bl\|tr\|br> | none | maze.admin | Set maze position（top-left、top-right、bottom-left、bottom-right） |
-
+## Notes
+The input "maze size" is measured in cells.
+The actual occupied area = (maze size × cell size)².
+Make sure the generation area has enough space and follows the minimum/maximum limits.
 ## Configuration
 > Configuration file location: tshock/MazeGenerator/MazeConfig.json
 ```json5
