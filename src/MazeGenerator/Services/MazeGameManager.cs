@@ -66,7 +66,7 @@ public class MazeGameManager : IDisposable
                 var player = TShock.Players.FirstOrDefault(p => p?.Name == playerName);
                 if (player != null)
                 {
-                    player.SendInfoMessage($"迷宫 '{mazeName}' 正在重置，你已自动退出游戏");
+                    player.SendInfoMessage(GetString($"迷宫 '{mazeName}' 正在重置，你已自动退出游戏"));
                 }
 
                 this._activePlayers.Remove(playerName);
@@ -88,11 +88,11 @@ public class MazeGameManager : IDisposable
                 var currentGame = this._activePlayers[player.Name];
                 if (currentGame.MazeName == mazeName)
                 {
-                    player.SendErrorMessage($"你已经加入了迷宫 '{mazeName}' 的游戏！");
+                    player.SendErrorMessage(GetString($"你已经加入了迷宫 '{mazeName}' 的游戏！"));
                 }
                 else
                 {
-                    player.SendErrorMessage($"你已经在迷宫 '{currentGame.MazeName}' 的游戏中，请先使用 /maze leave 退出当前游戏！");
+                    player.SendErrorMessage(GetString($"你已经在迷宫 '{currentGame.MazeName}' 的游戏中，请先使用 /maze leave 退出当前游戏！"));
                 }
 
                 return false;
@@ -103,11 +103,11 @@ public class MazeGameManager : IDisposable
             {
                 if (currentQueue == mazeName)
                 {
-                    player.SendErrorMessage($"你已经在迷宫 '{mazeName}' 的等待队列中！");
+                    player.SendErrorMessage(GetString($"你已经在迷宫 '{mazeName}' 的等待队列中！"));
                 }
                 else
                 {
-                    player.SendErrorMessage($"你已经在迷宫 '{currentQueue}' 的等待队列中，请先退出当前队列！");
+                    player.SendErrorMessage(GetString($"你已经在迷宫 '{currentQueue}' 的等待队列中，请先退出当前队列！"));
                 }
 
                 return false;
@@ -121,7 +121,7 @@ public class MazeGameManager : IDisposable
                 }
 
                 this._waitingQueues[mazeName].Add(player.Name);
-                player.SendInfoMessage($"迷宫正在生成中，你已被添加到等待队列。当前位置: {this._waitingQueues[mazeName].Count}");
+                player.SendInfoMessage(GetString($"迷宫正在生成中，你已被添加到等待队列。当前位置: {this._waitingQueues[mazeName].Count}"));
                 return true;
             }
 
@@ -160,8 +160,8 @@ public class MazeGameManager : IDisposable
         this._activePlayers[player.Name] = gameData;
 
         this.TeleportToMazeStart(player, session);
-        player.SendSuccessMessage($"已加入迷宫游戏 '{mazeName}'！找到出口即可完成游戏。");
-        player.SendInfoMessage("使用 /maze leave 可以退出游戏。");
+        player.SendSuccessMessage(GetString($"已加入迷宫游戏 '{mazeName}'！找到出口即可完成游戏。"));
+        player.SendInfoMessage(GetString("使用 /maze leave 可以退出游戏。"));
 
         return true;
     }
@@ -199,7 +199,7 @@ public class MazeGameManager : IDisposable
             {
                 this._activePlayers.Remove(player.Name);
                 this.TeleportToSpawn(player);
-                player.SendSuccessMessage($"已退出迷宫游戏 '{gameData.MazeName}'。");
+                player.SendSuccessMessage(GetString($"已退出迷宫游戏 '{gameData.MazeName}'。"));
                 leftGame = true;
             }
 
@@ -209,14 +209,14 @@ public class MazeGameManager : IDisposable
                 if (this._waitingQueues.TryGetValue(queueName, out var queue))
                 {
                     queue.Remove(player.Name);
-                    player.SendSuccessMessage($"已从迷宫 '{queueName}' 的等待队列中移除。");
+                    player.SendSuccessMessage(GetString($"已从迷宫 '{queueName}' 的等待队列中移除。"));
                     leftGame = true;
                 }
             }
 
             if (!leftGame)
             {
-                player.SendErrorMessage("你不在任何迷宫游戏或等待队列中！");
+                player.SendErrorMessage(GetString("你不在任何迷宫游戏或等待队列中！"));
             }
         }
     }
@@ -242,8 +242,8 @@ public class MazeGameManager : IDisposable
         gameData.FinishTime = DateTime.Now;
 
         var duration = gameData.Duration.GetValueOrDefault();
-        player.SendSuccessMessage($"恭喜！你完成了迷宫 '{gameData.MazeName}'！");
-        player.SendSuccessMessage($"用时: {duration:mm\\:ss\\.ff}");
+        player.SendSuccessMessage(GetString($"恭喜！你完成了迷宫 '{gameData.MazeName}'！"));
+        player.SendSuccessMessage(GetString($"用时: {duration:mm\\:ss\\.ff}"));
 
         MazeGenerator.Instance.Leaderboard.AddRecord(new LeaderboardEntry
         {
@@ -282,7 +282,7 @@ public class MazeGameManager : IDisposable
                 if (this.IsOutsideMazeArea((int) (player.TPlayer.position.X / 16), (int) (player.TPlayer.position.Y / 16), session))
                 {
                     this.TeleportToMazeStart(player, session);
-                    player.SendWarningMessage("你已离开迷宫区域，已被传送回起点！");
+                    player.SendWarningMessage(GetString("你已离开迷宫区域，已被传送回起点！"));
                 }
             }
         }
@@ -303,7 +303,7 @@ public class MazeGameManager : IDisposable
                 {
                     gameData.HasStarted = true;
                     gameData.JoinTime = DateTime.Now;
-                    player.SendInfoMessage("计时开始！");
+                    player.SendInfoMessage(GetString("计时开始！"));
                 }
             }
         }
@@ -343,7 +343,6 @@ public class MazeGameManager : IDisposable
         player.Teleport(worldX, worldY);
         player.TPlayer.velocity = Vector2.Zero;
 
-        TShock.Log.ConsoleInfo($"[MazeGenerator] 传送玩家 {player.Name} 到迷宫入口 ({worldX}, {worldY})");
     }
 
     private void TeleportToSpawn(TSPlayer player)
