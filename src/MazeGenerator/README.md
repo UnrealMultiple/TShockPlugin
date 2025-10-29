@@ -20,7 +20,7 @@
 | 语法 | 别名 | 权限 | 说明           |
 |------|------|------|--------------|
 | /maze help | 无 | maze.generate | 显示帮助信息       |
-| /maze build <名称> [大小] | 无 | maze.generate | 生成指定大小的迷宫    |
+| /maze build <名称> [大小] | 无 | maze.generate | 生成指定大小的迷宫(迷宫边长=大小x单元格)    |
 | /maze join <名称> | 无 | maze.generate | 加入迷宫游戏       |
 | /maze leave | 无 | maze.generate | 退出当前迷宫游戏     |
 | /maze list | 无 | maze.generate | 列出所有已保存的迷宫位置 |

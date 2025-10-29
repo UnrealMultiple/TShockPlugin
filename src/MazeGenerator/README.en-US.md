@@ -13,7 +13,7 @@
 | Syntax | Alias | Permission | Description |
 |--------|-------|------------|-------------|
 | /maze help | none | maze.generate | Show help information |
-| /maze build <name> [size] | none | maze.generate | Generate a maze with specified size |
+| /maze build <name> [size] | None | maze.generate | Generate a maze of specified size (maze side length = size x cell) |
 | /maze join <name> | none | maze.generate | Join a maze game |
 | /maze leave | none | maze.generate | Leave current maze game |
 | /maze list | none | maze.generate | List all saved maze locations |
@@ -31,8 +31,8 @@ Make sure the generation area has enough space and follows the minimum/maximum l
 ```json5
 {
   "DefaultSize": 30,
-  "MiniSize": 5,
-  "MaxiSize": 60,
+  "MinSize": 5,
+  "MaxSize": 60,
   "CellSize": 5,
   "MazeWallTile": 267,
   "BackgroundWall": 155,

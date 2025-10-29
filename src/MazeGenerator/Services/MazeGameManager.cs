@@ -42,12 +42,9 @@ public class MazeGameManager : IDisposable
         {
             this._activePlayers.Remove(playerName);
 
-            foreach (var queue in this._waitingQueues)
+            foreach (var queue in this._waitingQueues.Where(q => q.Value.Contains(playerName)))
             {
-                if (queue.Value.Contains(playerName))
-                {
-                    queue.Value.Remove(playerName);
-                }
+                queue.Value.Remove(playerName);
             }
         }
     }

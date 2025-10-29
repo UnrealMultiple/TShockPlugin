@@ -14,11 +14,11 @@ public class Config : JsonConfigBase<Config>
     public int DefaultSize { get; set; } = 30;
 
     [LocalizedPropertyName(CultureType.Chinese, "最小迷宫大小")]
-    [LocalizedPropertyName(CultureType.English, "MiniSize")]
+    [LocalizedPropertyName(CultureType.English, "MinSize")]
     public int MinSize { get; set; } = 5;
 
     [LocalizedPropertyName(CultureType.Chinese, "最大迷宫大小")]
-    [LocalizedPropertyName(CultureType.English, "MaxiSize")]
+    [LocalizedPropertyName(CultureType.English, "MaxSize")]
     public int MaxSize { get; set; } = 60;
 
     [LocalizedPropertyName(CultureType.Chinese, "单元格大小")]

@@ -3,25 +3,26 @@ using Newtonsoft.Json;
 using Terraria;
 using TShockAPI;
 using MazeGenerator.Models;
+using Terraria.ID;
 
 namespace MazeGenerator.Services;
 
 public class MazeBuilder : IDisposable
 {
-    private readonly Dictionary<string, MazeSession> _mazeSessions = new();
-    private Dictionary<string, PositionData> _positionData = new();
-    private readonly Dictionary<string, (string name, string positionType, string creator)> _tempPositionData = new();
-    private readonly PathFinder _pathFinder = new();
+    private readonly Dictionary<string, MazeSession> _mazeSessions = new ();
+    private Dictionary<string, PositionData> _positionData = new ();
+    private readonly Dictionary<string, (string name, string positionType, string creator)> _tempPositionData = new ();
+    private readonly PathFinder _pathFinder = new ();
 
-    private readonly Dictionary<string, bool> _pathDisplayInProgress = new();
-    private readonly Dictionary<string, bool> _pathVisible = new();
-    private readonly Dictionary<string, List<(int x, int y)>> _pathCells = new();
+    private readonly Dictionary<string, bool> _pathDisplayInProgress = new ();
+    private readonly Dictionary<string, bool> _pathVisible = new ();
+    private readonly Dictionary<string, List<(int x, int y)>> _pathCells = new ();
 
     private static readonly string PluginDataDir = Path.Combine(TShock.SavePath, "MazeGenerator");
     private static readonly string PositionDataPath = Path.Combine(PluginDataDir, "positions.json");
     private static readonly string SessionDataPath = Path.Combine(PluginDataDir, "sessions.json");
-    private static readonly Lock TileLock = new();
-    
+    private static readonly Lock TileLock = new ();
+
     private readonly Lock _sessionLock = new ();
     private readonly Lock _positionLock = new ();
     private readonly Lock _pathLock = new ();
@@ -36,18 +37,21 @@ public class MazeBuilder : IDisposable
     public void Dispose()
     {
         lock (this._sessionLock)
-        lock (this._positionLock)
-        lock (this._pathLock)
         {
-            this.SaveSessionData();
-            this.SavePositionData();
-
-            this._mazeSessions.Clear();
-            this._positionData.Clear();
-            this._tempPositionData.Clear();
-            this._pathDisplayInProgress.Clear();
-            this._pathVisible.Clear();
-            this._pathCells.Clear();
+            lock (this._positionLock)
+            {
+                lock (this._pathLock)
+                {
+                    this.SaveSessionData();
+                    this.SavePositionData();
+                    this._mazeSessions.Clear();
+                    this._positionData.Clear();
+                    this._tempPositionData.Clear();
+                    this._pathDisplayInProgress.Clear();
+                    this._pathVisible.Clear();
+                    this._pathCells.Clear();
+                }
+            }
         }
     }
 
@@ -185,7 +189,7 @@ public class MazeBuilder : IDisposable
 
                     if (mazeData[x, y] == 1)
                     {
-                        bitmap[byteIndex] |= (byte)(1 << bitIndex);
+                        bitmap[byteIndex] |= (byte) (1 << bitIndex);
                     }
                 }
             }
@@ -214,14 +218,7 @@ public class MazeBuilder : IDisposable
                     var byteIndex = index / 8;
                     var bitIndex = index % 8;
 
-                    if (byteIndex < bitmap.Length && (bitmap[byteIndex] & (1 << bitIndex)) != 0)
-                    {
-                        mazeData[x, y] = 1;
-                    }
-                    else
-                    {
-                        mazeData[x, y] = 0;
-                    }
+                    mazeData[x, y] = (byteIndex < bitmap.Length && (bitmap[byteIndex] & (1 << bitIndex)) != 0) ? 1 : 0;
                 }
             }
 
@@ -271,7 +268,7 @@ public class MazeBuilder : IDisposable
     public void BuildMaze(TSPlayer player, string name, int size)
     {
         PositionData position;
-    
+
         lock (this._positionLock)
         {
             if (!this._positionData.TryGetValue(name, out position))
@@ -284,6 +281,7 @@ public class MazeBuilder : IDisposable
         if (size % 2 == 0)
         {
             size++;
+            player.SendInfoMessage(GetString($"你输入的迷宫尺寸为偶数，已自动调整为最近的奇数：{size}"));
         }
 
         var config = Config.Instance;
@@ -382,6 +380,8 @@ public class MazeBuilder : IDisposable
             yield return drawCoroutine.Current;
         }
 
+        this.SealMazeExit(session);
+
         lock (this._sessionLock)
         {
             if (!this._mazeSessions.ContainsKey(name))
@@ -390,8 +390,8 @@ public class MazeBuilder : IDisposable
                 yield break;
             }
 
-            session.Entrance = (session.StartX, session.StartY + session.CellSize); 
-            session.Exit = (session.StartX + ((size - 1) * session.CellSize), session.StartY + ((size - 2) * session.CellSize)); 
+            session.Entrance = (session.StartX, session.StartY + session.CellSize);
+            session.Exit = (session.StartX + ((size - 1) * session.CellSize), session.StartY + ((size - 2) * session.CellSize));
             session.IsGenerating = false;
         }
 
@@ -403,6 +403,34 @@ public class MazeBuilder : IDisposable
         MazeGenerator.Instance.GameManager.NotifyMazeReady(name, session);
     }
 
+    private void SealMazeExit(MazeSession session)
+    {
+        var exitCellX = session.Size - 1;
+        var exitCellY = session.Size - 2;
+    
+        var exitWorldX = session.StartX + (exitCellX * session.CellSize);
+        var exitWorldY = session.StartY + (exitCellY * session.CellSize);
+    
+
+        lock (TileLock)
+        {
+            for (var x = 0; x < session.CellSize; x++)
+            {
+                var tileX = exitWorldX + x;
+                var tileY = exitWorldY + session.CellSize;
+            
+                if (tileX >= 0 && tileX < Main.maxTilesX && tileY >= 0 && tileY < Main.maxTilesY)
+                {
+                    Main.tile[tileX, tileY] = new Tile();
+                
+                    Main.tile[tileX, tileY].active(true);
+                    Main.tile[tileX, tileY].type = TileID.Spikes; 
+                }
+            }
+        }
+    
+        this.UpdateRegion(exitWorldX, exitWorldY + session.CellSize, session.CellSize, 1);
+    }
     private int[,]? GenerateMazeData(int size)
     {
         try
@@ -411,10 +439,10 @@ public class MazeBuilder : IDisposable
             var random = new Random(Guid.NewGuid().GetHashCode());
 
             for (var x = 0; x < size; x++)
-                for (var y = 0; y < size; y++)
-                {
-                    maze[x, y] = 1;
-                }
+            for (var y = 0; y < size; y++)
+            {
+                maze[x, y] = 1;
+            }
 
             var stack = new Stack<(int x, int y)>();
 
@@ -461,8 +489,8 @@ public class MazeBuilder : IDisposable
                 }
             }
 
-            maze[0, 1] = 0; 
-            maze[size - 1, size - 2] = 0; 
+            maze[0, 1] = 0;
+            maze[size - 1, size - 2] = 0;
 
             return maze;
         }
@@ -495,10 +523,15 @@ public class MazeBuilder : IDisposable
                 {
                     this.DrawCell(session.StartX, session.StartY, x, y, session.CellSize, maze != null && maze[x, y] == 1);
                 }
-                catch (Exception ex)
+                catch (Exception ex) when (
+                    !(ex is OutOfMemoryException) &&
+                    !(ex is StackOverflowException) &&
+                    !(ex is ThreadAbortException)
+                )
                 {
-                    TShock.Log.Error(GetString($"[MazeGenerator] 绘制单元格时发生错误: {ex}"));
+                    TShock.Log.Error(GetString($"[MazeGenerator] 绘制单元格时发生错误: {ex}"));                
                 }
+
 
                 steps++;
                 cellsInBatch++;
@@ -804,7 +837,7 @@ public class MazeBuilder : IDisposable
                     {
                         if (!Main.tile[tileX, tileY].active())
                         {
-                            WorldGen.paintWall(tileX, tileY, (byte)paintId, true);
+                            WorldGen.paintWall(tileX, tileY, (byte) paintId, true);
                         }
                     }
                 }
@@ -855,10 +888,10 @@ public class MazeBuilder : IDisposable
 
                     if (tileX >= 0 && tileX < Main.maxTilesX && tileY >= 0 && tileY < Main.maxTilesY)
                     {
-                        Main.tile[tileX, tileY].wall = (ushort)config.BackgroundWall;
-                        WorldGen.paintWall(tileX, tileY, (byte)config.BackgroundPaint, true);
+                        Main.tile[tileX, tileY].wall = (ushort) config.BackgroundWall;
+                        WorldGen.paintWall(tileX, tileY, (byte) config.BackgroundPaint, true);
                         Main.tile[tileX, tileY].active(true);
-                        Main.tile[tileX, tileY].type = (ushort)config.MazeWallTile;
+                        Main.tile[tileX, tileY].type = (ushort) config.MazeWallTile;
                     }
                 }
             }
@@ -884,7 +917,7 @@ public class MazeBuilder : IDisposable
                         if (isWall)
                         {
                             Main.tile[tileX, tileY].active(true);
-                            Main.tile[tileX, tileY].type = (ushort)config.MazeWallTile;
+                            Main.tile[tileX, tileY].type = (ushort) config.MazeWallTile;
                         }
                         else
                         {
@@ -894,8 +927,6 @@ public class MazeBuilder : IDisposable
                 }
             }
         }
-
-        this.UpdateRegion(startX + (cellX * cellSize), startY + (cellY * cellSize), cellSize, cellSize);
     }
 
     private (int startX, int startY) CalculateStartPosition(PositionData position, int width, int height)
@@ -924,7 +955,7 @@ public class MazeBuilder : IDisposable
                 TSPlayer.All.SendTileSquareCentered(
                     x + cx + (chunkWidth / 2),
                     y + cy + (chunkHeight / 2),
-                    (byte)size);
+                    (byte) size);
             }
         }
     }
@@ -949,8 +980,7 @@ public class MazeBuilder : IDisposable
 
                     if (tileX >= 0 && tileX < Main.maxTilesX && tileY >= 0 && tileY < Main.maxTilesY)
                     {
-                        Main.tile[tileX, tileY].active(false);
-                        Main.tile[tileX, tileY].wall = 0;
+                        Main.tile[tileX, tileY] = new Tile();
                     }
                 }
             }
@@ -995,7 +1025,7 @@ public class MazeBuilder : IDisposable
                 var config = Config.Instance;
 
                 var sizeToClear = session?.Size ?? config.DefaultSize;
-            
+
                 var totalWidth = sizeToClear * config.CellSize;
                 var totalHeight = sizeToClear * config.CellSize;
 
