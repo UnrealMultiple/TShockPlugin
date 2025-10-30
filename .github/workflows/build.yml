@@ -74,7 +74,7 @@ jobs:
       - name: 获取更新日志
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         id: external_changelog_second
-        uses: mikepenz/release-changelog-builder-action@v5
+        uses: mikepenz/release-changelog-builder-action@v6
         with:
           configuration: ".config/log_config.json"
 
