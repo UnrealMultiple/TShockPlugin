@@ -23,6 +23,7 @@ public class SurfaceBlock : LazyPlugin
         GetDataHandlers.NewProjectile += this.ProjectNew!;
         GetDataHandlers.PlayerUpdate += this.OnPlayerUpdate!;
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)

@@ -25,11 +25,12 @@ public class BackPlugin : LazyPlugin
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnPlayerJoin);
         GetDataHandlers.KillMe += this.OnDead;
 
-        Commands.ChatCommands.Add(new Command("back", this.Back, "back")
+        this.addCommands.Add(new Command("back", this.Back, "back")
         {
             HelpText = GetString("返回最后一次死亡的位置"),
             AllowServer = false
         });
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)
@@ -39,7 +40,6 @@ public class BackPlugin : LazyPlugin
             ServerApi.Hooks.ServerLeave.Deregister(this, this.ResetPos);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnPlayerJoin);
             GetDataHandlers.KillMe -= this.OnDead;
-            Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.Back);
         }
 
         base.Dispose(disposing);

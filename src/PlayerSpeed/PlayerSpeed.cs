@@ -23,7 +23,8 @@ public class PlayerSpeed : LazyPlugin
         ServerApi.Hooks.NpcKilled.Register(this, this.NpcKilled);
         GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);
-        TShockAPI.Commands.ChatCommands.Add(new Command("vel.use", Commands.vel, "vel", "速度"));
+        this.addCommands.Add(new Command("vel.use", Commands.vel, "vel", "速度"));
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)
@@ -33,7 +34,6 @@ public class PlayerSpeed : LazyPlugin
             ServerApi.Hooks.NpcKilled.Deregister(this, this.NpcKilled);
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, this.OnGreetPlayer);
-            TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.vel);
         }
         base.Dispose(disposing);
     }

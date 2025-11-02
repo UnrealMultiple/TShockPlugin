@@ -1,4 +1,5 @@
 ﻿using LazyAPI;
+using LazyAPI.Hooks;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.NetModules;
@@ -34,9 +35,10 @@ public class AdditionalPylonsPlugin : LazyPlugin
     #region Plugin Overrides
     public override void Initialize()
     {
-        GetDataHandlers.PlayerUpdate.Register(this.OnPlayerUpdate);
-        GetDataHandlers.PlaceTileEntity.Register(this.OnPlaceTileEntity, HandlerPriority.High);
-        GetDataHandlers.SendTileRect.Register(this.OnSendTileRect, HandlerPriority.High);
+        this.addHooks.Add(GetDataHandlers.PlayerUpdate.GetHook(this.OnPlayerUpdate));
+        this.addHooks.Add(GetDataHandlers.PlaceTileEntity.GetHook(this.OnPlaceTileEntity, HandlerPriority.High));
+        this.addHooks.Add(GetDataHandlers.SendTileRect.GetHook(this.OnSendTileRect, HandlerPriority.High));
+        base.Initialize();
     }
     #endregion
     #region [IDisposable Implementation]
@@ -52,9 +54,6 @@ public class AdditionalPylonsPlugin : LazyPlugin
 
         if (isDisposing)
         {
-            GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
-            GetDataHandlers.PlaceTileEntity.UnRegister(this.OnPlaceTileEntity);
-            GetDataHandlers.SendTileRect.UnRegister(this.OnSendTileRect);
         }
 
         base.Dispose(isDisposing);
