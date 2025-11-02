@@ -344,13 +344,19 @@ public class CommandHandler(BadApplePlayer plugin)
         var positionData = BadApplePlayer.GetPositionData();
         var tempData = BadApplePlayer.GetTempPositionData();
         var sessions = plugin.GetPlaybackSessions();
+        var video = BadApplePlayer.GetVideo();
 
+        List<KeyValuePair<string, (string name, string positionType, string creator)>>? tempEntries;
         if (!positionData.ContainsKey(name))
         {
-            var tempEntry = tempData.FirstOrDefault(x => x.Value.name == name);
-            if (!string.IsNullOrEmpty(tempEntry.Value.name))
+            tempEntries = tempData.Where(x => x.Value.name == name).ToList();
+            if (tempEntries.Count > 0)
             {
-                tempData.Remove(tempEntry.Key);
+                foreach (var entry in tempEntries)
+                {
+                    tempData.Remove(entry.Key);
+                }
+
                 player.SendSuccessMessage(GetString($"已删除未完成的位置设置 '{name}'"));
             }
             else
@@ -361,16 +367,48 @@ public class CommandHandler(BadApplePlayer plugin)
             return;
         }
 
+        var found = false;
+
         if (sessions.TryGetValue(name, out var session))
         {
             session.Stop();
             plugin.ClearPlaybackArea(session);
             sessions.Remove(name);
             TSPlayer.All.SendWarningMessage(GetString($"[BadApple] 位置 '{name}' 已被删除，播放已停止"));
+            found = true;
+        }
+        
+        else if (video != null && positionData.TryGetValue(name, out var position))
+        {
+            plugin.ClearAreaByPosition(position, video.Width, video.Height);
+            found = true;
         }
 
-        positionData.Remove(name);
-        plugin.SavePositionData();
-        player.SendSuccessMessage(GetString($"已删除位置 '{name}'"));
+        tempEntries = tempData.Where(x => x.Value.name == name).ToList();
+        if (tempEntries.Count > 0)
+        {
+            foreach (var entry in tempEntries)
+            {
+                tempData.Remove(entry.Key);
+            }
+
+            found = true;
+        }
+
+        if (positionData.ContainsKey(name))
+        {
+            positionData.Remove(name);
+            plugin.SavePositionData();
+            found = true;
+        }
+
+        if (found)
+        {
+            player.SendSuccessMessage(GetString($"已删除位置 '{name}' 并清除相关方块"));
+        }
+        else
+        {
+            player.SendErrorMessage(GetString($"未找到位置 '{name}'"));
+        }
     }
 }
