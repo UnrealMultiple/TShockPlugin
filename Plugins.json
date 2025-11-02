@@ -406,7 +406,7 @@
   },
   {
     "Name": "BadApplePlayer",
-    "Version": "1.0.0.0",
+    "Version": "1.0.0.1",
     "Author": "Eustia",
     "Description": {
       "en-US": "BadApple播放器",
@@ -1657,6 +1657,28 @@
     "AssemblyName": "MapTp",
     "Path": "MapTp.dll",
     "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "MazeGenerator",
+    "Version": "1.0.0.0",
+    "Author": "Eustia",
+    "Description": {
+      "en-US": "迷宫生成器",
+      "de-DE": "迷宫生成器",
+      "it-IT": "迷宫生成器",
+      "fr-FR": "迷宫生成器",
+      "es-ES": "迷宫生成器",
+      "ru-RU": "迷宫生成器",
+      "zh-CN": "迷宫生成器",
+      "pt-BR": "迷宫生成器",
+      "pl-PL": "迷宫生成器"
+    },
+    "AssemblyName": "MazeGenerator",
+    "Path": "MazeGenerator.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {

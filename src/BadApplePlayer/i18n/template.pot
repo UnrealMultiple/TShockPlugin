@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BadApplePlayer\n"
-"POT-Creation-Date: 2025-10-08 12:25:16+0000\n"
-"PO-Revision-Date: 2025-10-08 12:25:16+0000\n"
+"POT-Creation-Date: 2025-11-02 14:04:40+0000\n"
+"PO-Revision-Date: 2025-11-02 14:04:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "[BadApple] {0} 继续了 '{1}' 的播放"
 msgstr ""
 
-#: ../../CommandHandler/BadAppleCommandHandler.cs:369
+#: ../../CommandHandler/BadAppleCommandHandler.cs:377
 #, csharp-format
 msgid "[BadApple] 位置 '{0}' 已被删除，播放已停止"
 msgstr ""
@@ -214,11 +214,11 @@ msgstr ""
 msgid "使用 /badapple pos <名称> <tl|bl|tr|br> 创建新位置"
 msgstr ""
 
-#: ../../BadApplePlayer.cs:481
+#: ../../BadApplePlayer.cs:486
 msgid "右上角"
 msgstr ""
 
-#: ../../BadApplePlayer.cs:482
+#: ../../BadApplePlayer.cs:487
 msgid "右下角"
 msgstr ""
 
@@ -226,11 +226,11 @@ msgstr ""
 msgid "对齐方式: tl=左上角, bl=左下角, tr=右上角, br=右下角"
 msgstr ""
 
-#: ../../BadApplePlayer.cs:479
+#: ../../BadApplePlayer.cs:484
 msgid "左上角"
 msgstr ""
 
-#: ../../BadApplePlayer.cs:480
+#: ../../BadApplePlayer.cs:485
 msgid "左下角"
 msgstr ""
 
@@ -239,12 +239,12 @@ msgstr ""
 msgid "已停止位置 '{0}' 的播放"
 msgstr ""
 
-#: ../../CommandHandler/BadAppleCommandHandler.cs:374
+#: ../../CommandHandler/BadAppleCommandHandler.cs:407
 #, csharp-format
-msgid "已删除位置 '{0}'"
+msgid "已删除位置 '{0}' 并清除相关方块"
 msgstr ""
 
-#: ../../CommandHandler/BadAppleCommandHandler.cs:354
+#: ../../CommandHandler/BadAppleCommandHandler.cs:360
 #, csharp-format
 msgid "已删除未完成的位置设置 '{0}'"
 msgstr ""
@@ -291,7 +291,8 @@ msgstr ""
 msgid "播放中"
 msgstr ""
 
-#: ../../CommandHandler/BadAppleCommandHandler.cs:358
+#: ../../CommandHandler/BadAppleCommandHandler.cs:364
+#: ../../CommandHandler/BadAppleCommandHandler.cs:411
 #, csharp-format
 msgid "未找到位置 '{0}'"
 msgstr ""
@@ -301,7 +302,7 @@ msgstr ""
 msgid "未找到位置 '{0}'，请先使用 /badapple pos 设置位置"
 msgstr ""
 
-#: ../../BadApplePlayer.cs:483
+#: ../../BadApplePlayer.cs:488
 msgid "未知"
 msgstr ""
 
