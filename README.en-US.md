@@ -142,7 +142,7 @@
 | [LifemaxExtra](./src/LifemaxExtra/README.en-US.md) | 100.0% | Eat more life fruits/crystals | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ListPlugins](./src/ListPlugins/README.en-US.md) | 100.0% | List installed plugins |  |
 | [MapTp](./src/MapTp/README.en-US.md) | 100.0% | Double-click on the map to teleport |  |
-| [MazeGenerator](./src/MazeGenerator/README.en-US.md) | 0.0% | Maze Generator Plugin |  |
+| [MazeGenerator](./src/MazeGenerator/README.en-US.md) | 0.0% | Maze Generator Plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) | 100.0% | Bean paste mini-game API |  |
 | [ModifyWeapons](./src/ModifyWeapons/README.en-US.md) | 100.0% | ModifyWeapons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [MonsterRegen](./src/MonsterRegen/README.md) | 100.0% | Monster progress regeneration |  |

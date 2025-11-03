@@ -138,7 +138,7 @@
 | [LifemaxExtra](./src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | 查已装插件 |  |
 | [MapTp](./src/MapTp/README.md) | 双击大地图传送 |  |
-| [MazeGenerator](./src/MazeGenerator/README.md) | 迷宫生成器插件 |  |
+| [MazeGenerator](./src/MazeGenerator/README.md) | 迷宫生成器插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) | 豆沙小游戏 API |  |
 | [ModifyWeapons](./src/ModifyWeapons/README.md) | 修改武器 | [LazyAPI](./src/LazyAPI/README.md) |
 | [MonsterRegen](./src/MonsterRegen/README.md) | 怪物进度回血 |  |
