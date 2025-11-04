@@ -50,7 +50,7 @@ jobs:
           ./scripts/publish-plugins-zip.ps1 -GithubToken ${{ secrets.GITHUB_TOKEN }} -NoCache -BuildType Release
 
       - name: 上传临时插件包
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Plugins
           path: out/Target/*
