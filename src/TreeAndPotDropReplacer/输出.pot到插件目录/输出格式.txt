@@ -1,1 +1,0 @@
-d:\游戏\Terraria\服务器\插件源码\Tshock插件开源库\src\插件名\插件名.csproj
