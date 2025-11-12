@@ -38,7 +38,7 @@ namespace XiuXianShouYuan
         // 在线时长追踪
         private readonly Dictionary<string, DateTime> _playerLoginTime = new Dictionary<string, DateTime>();
 
-        public override string Name => "修仙星宿系统";
+        public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
         public override string Author => "泷白";
         public override Version Version => new Version(1, 2, 3);
         public override string Description => "独立境界职业修仙系统，包含完整事件命座功能和丰富的突破奖励";

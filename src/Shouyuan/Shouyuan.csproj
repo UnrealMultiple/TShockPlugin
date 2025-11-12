@@ -1,33 +1,3 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="C:\Users\羽学\.nuget\packages\tshock\5.2.0\contentFiles\any\net6.0\Database.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-6qmf-mmc7-6c2p" />
-    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-68w7-72jg-6qpp" />
-    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-447r-wph3-92pm" />
-    <PackageReference Include="TShock" Version="5.2.1" />
-  </ItemGroup>
-  <PropertyGroup>
-    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
-  </PropertyGroup>
-  <PropertyGroup>
-    <LangVersion>
-    </LangVersion>
-  </PropertyGroup>
-  <PropertyGroup>
-    <UseMauiEssentials>false</UseMauiEssentials>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-  </PropertyGroup>
+    <Import Project="..\..\template.targets" />
 </Project>

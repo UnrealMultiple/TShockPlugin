@@ -15,7 +15,7 @@ namespace CustomDropPlugin
     [ApiVersion(2, 1)]
     public class TreeAndPotDropReplacer : TerrariaPlugin
     {
-        public override string Name => "额外的掉落物 - 支持自定义物品";
+        public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
         public override Version Version => new Version(1, 0, 2);
         public override string Author => "泷白";
         public override string Description => "额外的掉落物 - 支持自定义物品";

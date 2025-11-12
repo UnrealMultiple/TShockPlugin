@@ -59,7 +59,7 @@ namespace XiuXianEconomy
             }
         }
 
-        public override string Name => "修仙经济系统";
+        public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
         public override string Author => "泷白";
         public override Version Version => new Version(1, 0, 1);
         public override string Description => "修仙插件经济附属系统，包含星晶货币、拍卖行、交易行和商店 - 需要XiuXianShouYuan前置";
