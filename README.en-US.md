@@ -74,6 +74,7 @@
 | [AutoStoreItems](./src/AutoStoreItems/README.en-US.md) | 100.0% | Automatic storage | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoTeam](./src/AutoTeam/README.en-US.md) | 100.0% | Automatic team formation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Back](./src/Back/README.en-US.md) | 100.0% | Return to the point of death | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [BadApplePlayer](./src/BadApplePlayer/README.en-US.md) | 0.0% | BadApple Player |  |
 | [BagPing](./src/BagPing/README.en-US.md) | 33.3% | Mark treasure bags on the map |  |
 | [BanNpc](./src/BanNpc/README.en-US.md) | 100.0% | Prevent monster generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BedSet](./src/BedSet/README.en-US.md) | 100.0% | Set and record respawn points | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -81,7 +82,7 @@
 | [BossLock](./src/BossLock/README.md) | 0.0% | 进度锁插件 |  |
 | [BridgeBuilder](./src/BridgeBuilder/README.en-US.md) | 100.0% | Quick bridge building | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BuildMaster](./src/BuildMaster/README.en-US.md) | 100.0% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) |
-| [CaiBotLite](./src/CaiBotLite/README.md) | 100.0% | CaiBot adapter plugin (Only support QQ) | [linq2db]() |
+| [CaiBotLite](./src/CaiBotLite/README.md) | 11.1% | CaiBot adapter plugin (Only support QQ) | [linq2db]() |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.en-US.md) | 100.0% | Custom emoji command | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.en-US.md) | 100.0% | Cai Packet Debug Tool | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
 | [CaiRewardChest](./src/CaiRewardChest/README.en-US.md) | 100.0% | Convert naturally generated chests into reward chests that everyone can claim once | [linq2db]() [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -121,15 +122,16 @@
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [EndureBoost](./src/EndureBoost/README.en-US.md) | 100.0% | Grant specified buff when the player has a certain number of items |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | 95.6% | Additional management commands | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [Ezperm](./src/Ezperm/README.en-US.md) | 100.0% | Batch change permissions |  |
+| [Ezperm](./src/Ezperm/README.en-US.md) | 83.3% | Batch change permissions |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Fish shop |  |
 | [GenerateMap](./src/GenerateMap/README.en-US.md) | 11.1% | Generate map |  |
+| [GhostView](./src/GhostView/README.md) | 0.0% | spectate in ghost mode after death, reconnect does not reset respawn cooldown |  |
 | [GolfRewards](./src/GolfRewards/README.en-US.md) | 100.0% | Golf rewards |  |
 | [GoodNight](./src/GoodNight/README.md) | 4.9% | Curfew |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.en-US.md) | 100.0% | Hardcore death drops life crystals |  |
 | [HelpPlus](./src/HelpPlus/README.en-US.md) | 64.3% | Fix and enhance the Help command |  |
 | [History](./src/History/README.en-US.md) | 100.0% | History grid record |  |
-| [HouseRegion](./src/HouseRegion/README.en-US.md) | 100.0% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [HouseRegion](./src/HouseRegion/README.en-US.md) | 93.9% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Invincibility](./src/Invincibility/README.en-US.md) | 100.0% | Time-limited invincibility |  |
 | [ItemBox](./src/ItemBox/README.en-US.md) | 100.0% | Off-line inventory |  |
 | [ItemDecoration](./src/ItemDecoration/README.en-US.md) | 100.0% | Floating message display for held items | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -140,6 +142,7 @@
 | [LifemaxExtra](./src/LifemaxExtra/README.en-US.md) | 100.0% | Eat more life fruits/crystals | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ListPlugins](./src/ListPlugins/README.en-US.md) | 100.0% | List installed plugins |  |
 | [MapTp](./src/MapTp/README.en-US.md) | 100.0% | Double-click on the map to teleport |  |
+| [MazeGenerator](./src/MazeGenerator/README.en-US.md) | 0.0% | Maze Generator Plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) | 100.0% | Bean paste mini-game API |  |
 | [ModifyWeapons](./src/ModifyWeapons/README.en-US.md) | 100.0% | ModifyWeapons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [MonsterRegen](./src/MonsterRegen/README.md) | 100.0% | Monster progress regeneration |  |

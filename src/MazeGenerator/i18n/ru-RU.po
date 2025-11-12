@@ -1,0 +1,447 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-11-02 14:05:10+0000\n"
+"PO-Revision-Date: 2025-11-03 01:21\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /master/src/MazeGenerator/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1630\n"
+"Language: ru_RU\n"
+
+#: ../../Commands/MazeCommandHandler.cs:268
+msgid " [已生成]"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:269
+#, csharp-format
+msgid "- {0}: X={1}, Y={2}, 对齐={3}{4}"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:152
+#, csharp-format
+msgid "[MazeGenerator] 保存会话数据失败: {0}"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:171
+#, csharp-format
+msgid "[MazeGenerator] 保存位置数据失败: {0}"
+msgstr ""
+
+#: ../../Services/LeaderboardService.cs:53
+#, csharp-format
+msgid "[MazeGenerator] 保存排行榜失败: {0}"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:113
+#, csharp-format
+msgid "[MazeGenerator] 加载会话数据失败: {0}"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:78
+#, csharp-format
+msgid "[MazeGenerator] 加载位置数据失败: {0}"
+msgstr ""
+
+#: ../../Services/LeaderboardService.cs:39
+#, csharp-format
+msgid "[MazeGenerator] 加载排行榜失败: {0}"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:201
+#, csharp-format
+msgid "[MazeGenerator] 压缩迷宫数据失败: {0}"
+msgstr ""
+
+#: ../../Services/LeaderboardService.cs:89
+#, csharp-format
+msgid "[MazeGenerator] 已清除迷宫 '{0}' 的 {1} 条排行榜记录"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:784
+#, csharp-format
+msgid "[MazeGenerator] 恢复路径单元格时发生错误: {0}"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:675
+#, csharp-format
+msgid "[MazeGenerator] 查找路径时发生错误: {0}"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:355
+#, csharp-format
+msgid "[MazeGenerator] 生成迷宫数据时发生错误: {0}"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:499
+#, csharp-format
+msgid "[MazeGenerator] 生成迷宫数据错误: {0}"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:532
+#, csharp-format
+msgid "[MazeGenerator] 绘制单元格时发生错误: {0}"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:716
+#, csharp-format
+msgid "[MazeGenerator] 绘制路径单元格时发生错误: {0}"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:229
+#, csharp-format
+msgid "[MazeGenerator] 解压缩迷宫数据失败: {0}"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:300
+#, csharp-format
+msgid "{0}. {1} - {2} - {3:mm\\:ss\\.ff}"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:112
+msgid "/maze build <名称> [大小] - 生成迷宫"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:122
+msgid "/maze del <名称> - 删除位置和清除方块"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:113
+msgid "/maze join <名称> - 加入迷宫游戏"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:114
+msgid "/maze leave - 退出游戏"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:116
+msgid "/maze list - 列出所有位置"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:123
+msgid "/maze path <名称> - 显示/隐藏迷宫路径"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:121
+msgid "/maze pos <名称> <tl|bl|tr|br> - 设置迷宫位置（左上角、左下角、右上角、右下角）"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:117
+msgid "/maze rank [页码] - 查看排行榜"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:115
+msgid "/maze reset <名称> - 重置迷宫"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:264
+msgid "=== 已保存的迷宫位置 ==="
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:295
+#, csharp-format
+msgid "=== 迷宫排行榜 (第 {0}/{1} 页) ==="
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:111
+msgid "=== 迷宫生成器 ==="
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:167
+msgid "位置参数无效。请使用：tl(左上角)、bl(左下角)、tr(右上角)、br(右下角)"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:177
+#, csharp-format
+msgid "位置名称 '{0}' 已存在！"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:216
+msgid "你不在任何迷宫游戏或等待队列中！"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:282
+msgid "你已离开迷宫区域，已被传送回起点！"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:88
+#, csharp-format
+msgid "你已经加入了迷宫 '{0}' 的游戏！"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:92
+#, csharp-format
+msgid "你已经在迷宫 '{0}' 的游戏中，请先使用 /maze leave 退出当前游戏！"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:107
+#, csharp-format
+msgid "你已经在迷宫 '{0}' 的等待队列中，请先退出当前队列！"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:103
+#, csharp-format
+msgid "你已经在迷宫 '{0}' 的等待队列中！"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:59
+#: ../../Commands/MazeCommandHandler.cs:77
+#: ../../Commands/MazeCommandHandler.cs:92
+#: ../../Commands/MazeCommandHandler.cs:136
+msgid "你没有管理员权限！"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:305
+#, csharp-format
+msgid "你的排名: 第 {0} 名"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:284
+#, csharp-format
+msgid "你输入的迷宫尺寸为偶数，已自动调整为最近的奇数：{0}"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:161
+msgid "使用 /maze leave 可以退出游戏。"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:401
+#, csharp-format
+msgid "入口位置: ({0}, {1})"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:126
+#, csharp-format
+msgid "最小迷宫大小: {0}, 最大迷宫大小: {1}"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:127
+#, csharp-format
+msgid "单元格大小: {0}x{1} 格"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:199
+#, csharp-format
+msgid "大小必须是{0}到{1}之间的整数！"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:158
+msgid "对齐方式: tl=左上角, bl=左下角, tr=右上角, br=右下角"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:209
+#, csharp-format
+msgid "已从迷宫 '{0}' 的等待队列中移除。"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:324
+#, csharp-format
+msgid "已删除位置 '{0}' 并清除相关方块和排行榜记录"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:160
+#, csharp-format
+msgid "已加入迷宫游戏 '{0}'！找到出口即可完成游戏。"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:199
+#, csharp-format
+msgid "已退出迷宫游戏 '{0}'。"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:242
+#, csharp-format
+msgid "恭喜！你完成了迷宫 '{0}'！"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:684
+msgid "找不到路径"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:291
+msgid "排行榜为空。"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:228
+msgid "无法加入游戏！"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:592
+#, csharp-format
+msgid "无法获取迷宫数据，请重新生成迷宫 '{0}'"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:642
+msgid "显示路径中..."
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:276
+#: ../../Commands/MazeCommandHandler.cs:328
+#, csharp-format
+msgid "未找到位置 '{0}'"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:580
+#: ../../Services/MazeBuilder.cs:853
+#, csharp-format
+msgid "未找到迷宫 '{0}'"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:222
+#, csharp-format
+msgid "未找到迷宫 '{0}'，请先使用 /maze build 生成迷宫"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:102
+#, csharp-format
+msgid "未知的子命令: {0}"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:676
+msgid "查找路径失败"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:327
+#, csharp-format
+msgid "正在生成 {0}x{1} 的迷宫..."
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:857
+#, csharp-format
+msgid "正在重置迷宫 '{0}'..."
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:260
+msgid "没有保存的迷宫位置。"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:759
+msgid "没有找到路径记录，无法隐藏"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:34
+msgid "现在可以使用 /maze build <名称> [大小] 生成迷宫了"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:362
+msgid "生成迷宫数据失败"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:356
+msgid "生成迷宫数据失败，请稍后重试"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:243
+#, csharp-format
+msgid "用时: {0:mm\\:ss\\.ff}"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:187
+msgid "用法：/maze build <名称> [大小]"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:315
+msgid "用法：/maze del <名称>"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:213
+msgid "用法：/maze join <名称>"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:142
+msgid "用法：/maze path <名称>"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:157
+msgid "用法：/maze pos <名称> <tl|bl|tr|br>"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:244
+msgid "用法：/maze reset <名称>"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:303
+msgid "计时开始！"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:173
+#, csharp-format
+msgid "请使用稿子点击一个方块来设置 '{0}' 的位置！"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:638
+msgid "路径已隐藏"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:600
+msgid "路径操作进行中，请稍候"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:657
+msgid "路径显示完成"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:103
+msgid "输入 /maze help 查看帮助"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:586
+#, csharp-format
+msgid "迷宫 '{0}' 正在生成中"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:66
+#, csharp-format
+msgid "迷宫 '{0}' 正在重置，你已自动退出游戏"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:400
+#, csharp-format
+msgid "迷宫 '{0}' 生成完成！"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:33
+#, csharp-format
+msgid "迷宫位置已设置: X={0} Y={1}"
+msgstr ""
+
+#: ../../Services/MazeGameManager.cs:121
+#, csharp-format
+msgid "迷宫正在生成中，你已被添加到等待队列。当前位置: {0}"
+msgstr ""
+
+#: ../../MazeGenerator.cs:17
+msgid "迷宫生成器"
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:10
+msgid "迷宫生成器命令，输入 /maze help 查看帮助"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:337
+#: ../../Services/MazeBuilder.cs:370
+#: ../../Services/MazeBuilder.cs:389
+msgid "迷宫生成被取消"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:559
+#, csharp-format
+msgid "迷宫绘制进度: {0}%"
+msgstr ""
+
+#: ../../Services/MazeBuilder.cs:626
+msgid "隐藏路径中..."
+msgstr ""
+
+#: ../../Commands/MazeCommandHandler.cs:282
+msgid "页码必须是正整数！"
+msgstr ""
+

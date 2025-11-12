@@ -14,8 +14,8 @@ public class Plugin : TerrariaPlugin
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "xuyuwtu";
-    public override string Description => "快速堆叠时根据配置放入箱子";
-    public override Version Version => new Version(1, 1);
+    public override string Description => GetString("快速堆叠时根据配置放入箱子");
+    public override Version Version => new Version(1, 2);
     #endregion
 
     #region 注册重载释放
@@ -61,7 +61,7 @@ public class Plugin : TerrariaPlugin
         // 获取最新的配置信息。
         var config = Configuration.GetConfig();
         // 如果有玩家发送了重载命令，则向该玩家发送成功消息。
-        e?.Player.SendSuccessMessage($"[{nameof(AutoClassificationQuickStack)}]重载完成");
+        e?.Player.SendSuccessMessage($"[{nameof(AutoClassificationQuickStack)}]{GetString("重载完成")}");
 
         // 清空当前的分类信息，并从新配置中重新填充。
         ClassificationInfos.Clear();
@@ -78,7 +78,7 @@ public class Plugin : TerrariaPlugin
     // 创建一个 Detour 对象，用于拦截 Chest.PutItemInNearbyChest 方法，并替换为自定义逻辑。
     private readonly ICoreDetour _detour = DetourFactory.Current.CreateDetour(
         typeof(Chest).GetMethod(nameof(PutItemInNearbyChest))
-            ?? throw new InvalidOperationException($"找不到方法 {nameof(PutItemInNearbyChest)}"),
+            ?? throw new InvalidOperationException($"{GetString("找不到方法")} {nameof(PutItemInNearbyChest)}"),
         new Func<Item, Vector2, int, Item>(PutItemInNearbyChest).Method,
         applyByDefault: false
     );

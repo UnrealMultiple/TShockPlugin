@@ -70,6 +70,7 @@
 | [AutoStoreItems](./src/AutoStoreItems/README.md) | 自动储存 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoTeam](./src/AutoTeam/README.md) | 自动队伍 | [LazyAPI](./src/LazyAPI/README.md) |
 | [Back](./src/Back/README.md) | 死亡回溯 | [LazyAPI](./src/LazyAPI/README.md) |
+| [BadApplePlayer](./src/BadApplePlayer/README.md) | BadApple播放器 |  |
 | [BagPing](./src/BagPing/README.md) | 地图上标记宝藏袋 |  |
 | [BanNpc](./src/BanNpc/README.md) | 阻止怪物生成 | [LazyAPI](./src/LazyAPI/README.md) |
 | [BedSet](./src/BedSet/README.md) | 设置并记录重生点 | [LazyAPI](./src/LazyAPI/README.md) |
@@ -120,6 +121,7 @@
 | [Ezperm](./src/Ezperm/README.md) | 批量改权限 |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 鱼店 |  |
 | [GenerateMap](./src/GenerateMap/README.md) | 生成地图 |  |
+| [GhostView](./src/GhostView/README.md) | 死亡后能在鬼魂状态下观战，重连不刷新复活cd |  |
 | [GolfRewards](./src/GolfRewards/README.md) | 高尔夫奖励 |  |
 | [GoodNight](./src/GoodNight/README.md) | 宵禁 |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 硬核死亡掉生命水晶 |  |
@@ -136,6 +138,7 @@
 | [LifemaxExtra](./src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | 查已装插件 |  |
 | [MapTp](./src/MapTp/README.md) | 双击大地图传送 |  |
+| [MazeGenerator](./src/MazeGenerator/README.md) | 迷宫生成器插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) | 豆沙小游戏 API |  |
 | [ModifyWeapons](./src/ModifyWeapons/README.md) | 修改武器 | [LazyAPI](./src/LazyAPI/README.md) |
 | [MonsterRegen](./src/MonsterRegen/README.md) | 怪物进度回血 |  |

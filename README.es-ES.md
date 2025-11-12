@@ -77,6 +77,7 @@
 | [AutoStoreItems](./src/AutoStoreItems/README.md) | 0.0% | Almacenamiento automático | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoTeam](./src/AutoTeam/README.md) | 0.0% | Formación automática de equipos | [LazyAPI](./src/LazyAPI/README.md) |
 | [Back](./src/Back/README.md) | 0.0% | Regresar al punto de muerte | [LazyAPI](./src/LazyAPI/README.md) |
+| [BadApplePlayer](./src/BadApplePlayer/README.md) | 0.0% | Reproductor BadApple |  |
 | [BagPing](./src/BagPing/README.md) | 0.0% | Marcar las bolsas de tesoro en el mapa |  |
 | [BanNpc](./src/BanNpc/README.md) | 0.0% | Previene la generación de monstruos | [LazyAPI](./src/LazyAPI/README.md) |
 | [BedSet](./src/BedSet/README.md) | 0.0% | Establecer y registrar puntos de resurrección | [LazyAPI](./src/LazyAPI/README.md) |
@@ -127,6 +128,7 @@
 | [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Tienda de peces |  |
 | [GenerateMap](./src/GenerateMap/README.md) | 0.0% | Generar mapas |  |
+| [GhostView](./src/GhostView/README.md) | 0.0% | espectar en modo fantasma tras la muerte, la reconexión no reinicia el tiempo de reaparición |  |
 | [GolfRewards](./src/GolfRewards/README.md) | 0.0% | Recompensas de golf |  |
 | [GoodNight](./src/GoodNight/README.md) | 0.0% | Toque de queda |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 0.0% | Los jugadores en modo Hardcore sueltan corazones de vida al morir |  |
@@ -143,6 +145,7 @@
 | [LifemaxExtra](./src/LifemaxExtra/README.md) | 0.0% | Comer más frutas/cristales de vida | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | 16.7% | Lista los plugins instalados |  |
 | [MapTp](./src/MapTp/README.md) | 100.0% | Teletransportarse con doble clic en el mapa |  |
+| [MazeGenerator](./src/MazeGenerator/README.md) | 0.0% | Plugin Generador de Laberintos | [LazyAPI](./src/LazyAPI/README.md) |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) | 0.0% | API para el mini-juego de pasta de frijol |  |
 | [ModifyWeapons](./src/ModifyWeapons/README.md) | 0.0% | Deje que los jugadores realicen dos Sprint | [LazyAPI](./src/LazyAPI/README.md) |
 | [MonsterRegen](./src/MonsterRegen/README.md) | 0.0% | Regeneración de progreso de monstruos |  |

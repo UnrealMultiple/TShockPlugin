@@ -64,7 +64,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.209.0",
+    "Version": "0.0.212.0",
     "Author": "SGKoishi",
     "Description": {
       "en-US": "Yet another misc plugin for TShock",
@@ -234,7 +234,7 @@
   },
   {
     "Name": "AutoClassificationQuickStack",
-    "Version": "1.1",
+    "Version": "1.2",
     "Author": "xuyuwtu",
     "Description": {
       "en-US": "快速堆叠时根据配置放入箱子",
@@ -402,6 +402,26 @@
     "Dependencies": [
       "LazyAPI"
     ],
+    "HotReload": true
+  },
+  {
+    "Name": "BadApplePlayer",
+    "Version": "1.0.0.1",
+    "Author": "Eustia",
+    "Description": {
+      "en-US": "BadApple播放器",
+      "de-DE": "BadApple播放器",
+      "it-IT": "BadApple播放器",
+      "fr-FR": "BadApple播放器",
+      "es-ES": "BadApple播放器",
+      "ru-RU": "BadApple播放器",
+      "zh-CN": "BadApple播放器",
+      "pt-BR": "BadApple播放器",
+      "pl-PL": "BadApple播放器"
+    },
+    "AssemblyName": "BadApplePlayer",
+    "Path": "BadApplePlayer.dll",
+    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -727,7 +747,7 @@
   },
   {
     "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.209.0",
+    "Version": "0.0.212.0",
     "Author": "SGKoishi",
     "Description": {
       "en-US": "Yet another misc plugin for TShock - the miscellaneous part",
@@ -1354,6 +1374,26 @@
     "HotReload": true
   },
   {
+    "Name": "GhostView",
+    "Version": "1.0.0",
+    "Author": "Eustia",
+    "Description": {
+      "en-US": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "de-DE": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "it-IT": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "fr-FR": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "es-ES": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "ru-RU": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "zh-CN": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "pt-BR": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "pl-PL": "死亡后能在鬼魂状态下观战，重连不刷新复活cd"
+    },
+    "AssemblyName": "GhostView",
+    "Path": "GhostView.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "GoodNight",
     "Version": "2.7.7",
     "Author": "Jonesn 羽学 少司命",
@@ -1415,8 +1455,8 @@
   },
   {
     "Name": "HouseRegion",
-    "Version": "1.0.0.10",
-    "Author": "GK 阁下 改良",
+    "Version": "1.0.3",
+    "Author": "GK 阁下 改良 Eustia 更新",
     "Description": {
       "en-US": "Plugin for protecting houses.",
       "de-DE": "一个著名的用于保护房屋的插件。",
@@ -1539,7 +1579,7 @@
   },
   {
     "Name": "Lagrange.XocMat.Adapter",
-    "Version": "1.0.0.6",
+    "Version": "1.0.0.7",
     "Author": "少司命",
     "Description": {
       "en-US": "Lagrange.XocMat Bot Adapter Plugin",
@@ -1617,6 +1657,28 @@
     "AssemblyName": "MapTp",
     "Path": "MapTp.dll",
     "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "MazeGenerator",
+    "Version": "1.0.0.0",
+    "Author": "Eustia",
+    "Description": {
+      "en-US": "迷宫生成器",
+      "de-DE": "迷宫生成器",
+      "it-IT": "迷宫生成器",
+      "fr-FR": "迷宫生成器",
+      "es-ES": "迷宫生成器",
+      "ru-RU": "迷宫生成器",
+      "zh-CN": "迷宫生成器",
+      "pt-BR": "迷宫生成器",
+      "pl-PL": "迷宫生成器"
+    },
+    "AssemblyName": "MazeGenerator",
+    "Path": "MazeGenerator.dll",
+    "Dependencies": [
+      "LazyAPI"
+    ],
     "HotReload": true
   },
   {
@@ -2619,7 +2681,7 @@
   },
   {
     "Name": "VBY.GameContentModify",
-    "Version": "1.11.1.0",
+    "Version": "1.11.3.0",
     "Author": "yu",
     "Description": {
       "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",

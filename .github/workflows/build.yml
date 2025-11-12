@@ -50,7 +50,7 @@ jobs:
           ./scripts/publish-plugins-zip.ps1 -GithubToken ${{ secrets.GITHUB_TOKEN }} -NoCache -BuildType Release
 
       - name: 上传临时插件包
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Plugins
           path: out/Target/*
@@ -74,7 +74,7 @@ jobs:
       - name: 获取更新日志
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         id: external_changelog_second
-        uses: mikepenz/release-changelog-builder-action@v5
+        uses: mikepenz/release-changelog-builder-action@v6
         with:
           configuration: ".config/log_config.json"
 

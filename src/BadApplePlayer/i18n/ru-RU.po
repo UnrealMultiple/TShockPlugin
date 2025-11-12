@@ -1,0 +1,366 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2025-11-02 14:04:40+0000\n"
+"PO-Revision-Date: 2025-11-03 01:21\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /master/src/BadApplePlayer/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1624\n"
+"Language: ru_RU\n"
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:320
+msgid " [循环]"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:299
+msgid " [播放中]"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:323
+#, csharp-format
+msgid "- {0}: {1} | 进度:{2}{3} | 发起人:{4}"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:300
+#, csharp-format
+msgid "- {0}: X={1}, Y={2}, 对齐={3}, 创建者={4}{5}"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:280
+#, csharp-format
+msgid "[BadApple] {0} 停止了 '{1}' 的播放"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:183
+#, csharp-format
+msgid "[BadApple] {0} 开始在 '{1}' 播放视频"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:219
+#, csharp-format
+msgid "[BadApple] {0} 暂停了 '{1}' 的播放"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:255
+#, csharp-format
+msgid "[BadApple] {0} 继续了 '{1}' 的播放"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:377
+#, csharp-format
+msgid "[BadApple] 位置 '{0}' 已被删除，播放已停止"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:257
+#, csharp-format
+msgid "[BadApple] 位置 '{0}' 播放出错"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:194
+#, csharp-format
+msgid "[BadApple] 位置 '{0}' 播放失败：超出世界边界"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:251
+#, csharp-format
+msgid "[BadApple] 位置 '{0}' 播放完成！总时长: {1:F2}秒"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:191
+#, csharp-format
+msgid "[BadApplePlayer] 位置 '{0}' 超出世界边界！"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:153
+#, csharp-format
+msgid "[BadApplePlayer] 已加载 {0} 个位置"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:114
+msgid "[BadApplePlayer] 插件已重新加载!"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:256
+#, csharp-format
+msgid "[BadApplePlayer] 播放错误: {0}"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:81
+msgid "[BadApplePlayer] 未找到嵌入的视频资源！"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:91
+#, csharp-format
+msgid "[BadApplePlayer] 视频加载失败: {0}"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:87
+#, csharp-format
+msgid "[BadApplePlayer] 视频加载成功! 尺寸: {0}x{1}, FPS: {2}, 帧数: {3}"
+msgstr ""
+
+#: ../../Models/BadAppleVideo.cs:94
+msgid "[BadApplePlayer]: 数据读取异常"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:80
+msgid "/badapple del <名称> - 删除位置（管理员）"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:74
+msgid "/badapple list - 列出所有位置"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:71
+msgid "/badapple pause <名称> - 暂停播放"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:70
+msgid "/badapple play <名称> [loop] - 播放视频"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:75
+msgid "/badapple playing - 查看播放中的会话"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:79
+msgid "/badapple pos <名称> <tl|bl|tr|br> - 设置播放位置"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:72
+msgid "/badapple resume <名称> - 继续播放"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:73
+msgid "/badapple stop <名称> - 停止播放"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:69
+msgid "=== BadApple 视频播放器 ==="
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:296
+msgid "=== 已保存的BadApple位置 ==="
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:313
+#, csharp-format
+msgid "=== 正在播放的会话 ({0}) ==="
+msgstr ""
+
+#: ../../BadApplePlayer.cs:17
+msgid "BadApple播放器"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:97
+msgid "BadApple视频播放器命令，输入 /badapple help 查看帮助"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:176
+#, csharp-format
+msgid "Exception in PlayVideoAsync for session '{0}': {1}"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:155
+#, csharp-format
+msgid "位置 '{0}' 已经在播放中！"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:141
+#, csharp-format
+msgid "位置 '{0}' 已设置: X={1} Y={2} (对齐方式: {3})"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:201
+#: ../../CommandHandler/BadAppleCommandHandler.cs:237
+#: ../../CommandHandler/BadAppleCommandHandler.cs:273
+#, csharp-format
+msgid "位置 '{0}' 没有正在播放的视频"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:249
+#, csharp-format
+msgid "位置 '{0}' 的播放已经在进行中"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:213
+#, csharp-format
+msgid "位置 '{0}' 的播放已经处于暂停状态"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:207
+#: ../../CommandHandler/BadAppleCommandHandler.cs:243
+#, csharp-format
+msgid "位置 '{0}' 的播放已结束"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:106
+msgid "位置参数无效。请使用：tl(左上角)、bl(左下角)、tr(右上角)、br(右下角)"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:113
+#, csharp-format
+msgid "位置名称 '{0}' 已存在！"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:90
+#: ../../CommandHandler/BadAppleCommandHandler.cs:333
+msgid "你没有权限使用此命令！"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:292
+msgid "使用 /badapple pos <名称> <tl|bl|tr|br> 创建新位置"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:486
+msgid "右上角"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:487
+msgid "右下角"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:97
+msgid "对齐方式: tl=左上角, bl=左下角, tr=右上角, br=右下角"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:484
+msgid "左上角"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:485
+msgid "左下角"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:279
+#, csharp-format
+msgid "已停止位置 '{0}' 的播放"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:407
+#, csharp-format
+msgid "已删除位置 '{0}' 并清除相关方块"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:360
+#, csharp-format
+msgid "已删除未完成的位置设置 '{0}'"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:318
+msgid "已暂停"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:218
+#, csharp-format
+msgid "已暂停位置 '{0}' 的播放 (进度: {1}/{2})"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:254
+#, csharp-format
+msgid "已继续位置 '{0}' 的播放"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:181
+#, csharp-format
+msgid "开始在位置 '{0}' 播放BadApple视频{1}！"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:309
+msgid "当前没有正在播放的BadApple视频"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:156
+#, csharp-format
+msgid "当前进度: {0}/{1}"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:182
+#, csharp-format
+msgid "控制命令: /badapple pause {0} | /badapple resume {1} | /badapple stop {2}"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:177
+#, csharp-format
+msgid "播放BadApple视频时发生错误: {0}"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:318
+msgid "播放中"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:364
+#: ../../CommandHandler/BadAppleCommandHandler.cs:411
+#, csharp-format
+msgid "未找到位置 '{0}'"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:146
+#, csharp-format
+msgid "未找到位置 '{0}'，请先使用 /badapple pos 设置位置"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:488
+msgid "未知"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:61
+#, csharp-format
+msgid "未知的子命令: {0}"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:291
+msgid "没有保存的BadApple位置。"
+msgstr ""
+
+#: ../../BadApplePlayer.cs:142
+#, csharp-format
+msgid "现在可以使用 /badapple play {0} 播放视频了"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:339
+msgid "用法：/badapple del <名称>"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:192
+msgid "用法：/badapple pause <名称>"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:136
+msgid "用法：/badapple play <名称> [loop]"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:96
+msgid "用法：/badapple pos <名称> <tl|bl|tr|br>"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:228
+msgid "用法：/badapple resume <名称>"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:264
+msgid "用法：/badapple stop <名称>"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:130
+msgid "视频数据未加载，无法播放！"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:120
+#, csharp-format
+msgid "请使用稿子点击一个方块来设置 '{0}' 的{1}位置！"
+msgstr ""
+
+#: ../../CommandHandler/BadAppleCommandHandler.cs:62
+msgid "输入 /badapple help 查看帮助"
+msgstr ""
+
