@@ -17,12 +17,12 @@ internal abstract class CommandBase
 
     protected string[] permissions;
     private readonly bool _realPlayer;
-    protected string? info;
+    internal string? usage;
 
     public abstract ParseResult TryParse(CommandArgs args, int current);
     public override string? ToString()
     {
-        return this.info;
+        return this.usage;
     }
 
     protected CommandBase(MemberInfo member)
@@ -68,6 +68,6 @@ internal abstract class CommandBase
     }
     protected ParseResult GetResult(int num)
     {
-        return new(this, num);
+        return new ParseResult(this, num);
     }
 }

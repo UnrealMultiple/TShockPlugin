@@ -77,13 +77,13 @@ internal static class CommandParser
 
     private static readonly Dictionary<Type, string> friendlyName = new()
     {
-        [typeof(bool)] = "bool",
-        [typeof(int)] = "int",
-        [typeof(long)] = "long",
-        [typeof(string)] = "str",
-        [typeof(DateTime)] = "date",
-        [typeof(TSPlayer)] = "player",
-        [typeof(UserAccount)] = "account"
+        [typeof(bool)] = GetString("bool"),
+        [typeof(int)] = GetString("int"),
+        [typeof(long)] = GetString("long"),
+        [typeof(string)] = GetString("str"),
+        [typeof(DateTime)] = GetString("date"),
+        [typeof(TSPlayer)] = GetString("player"),
+        [typeof(UserAccount)] = GetString("account")
     };
 
     public static Parser GetParser(Type type)
