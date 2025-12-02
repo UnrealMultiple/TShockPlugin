@@ -20,7 +20,8 @@ public class BetterWhitelist : LazyPlugin
     public override void Initialize()
     {
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
-        Commands.ChatCommands.Add(new Command("bwl.use", this.BetterWhitelistCommand, "bwl"));
+        this.addCommands.Add(new Command("bwl.use", this.BetterWhitelistCommand, "bwl"));
+        base.Initialize();
     }
 
     private void OnJoin(JoinEventArgs args)
@@ -42,7 +43,6 @@ public class BetterWhitelist : LazyPlugin
         if (disposing)
         {
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);
-            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.BetterWhitelistCommand);
         }
 
         base.Dispose(disposing);

@@ -28,7 +28,8 @@ public class Plugin : LazyPlugin
     {
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
         On.Terraria.Netplay.OpenPort += this.Netplay_OpenPort;
-        Commands.ChatCommands.Add(new("dummy.client.use", CommandAdapter.Adapter, "dummy"));
+        this.addCommands.Add(new("dummy.client.use", CommandAdapter.Adapter, "dummy"));
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)
@@ -37,7 +38,6 @@ public class Plugin : LazyPlugin
         {
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
             On.Terraria.Netplay.OpenPort -= this.Netplay_OpenPort;
-            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == CommandAdapter.Adapter);
         }
         base.Dispose(disposing);
     }

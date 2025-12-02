@@ -16,8 +16,16 @@ public class PluginContainer : LazyPlugin
     public override void Initialize()
     {
         ServerApi.Hooks.GamePostUpdate.Register(this, this.PostUpdate);
+        base.Initialize();
     }
-
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            ServerApi.Hooks.GamePostUpdate.Deregister(this, this.PostUpdate);
+        }
+        base.Dispose(disposing);
+    }
     private void PostUpdate(EventArgs _)
     {
         ++TimingUtils.Timer;

@@ -21,6 +21,7 @@ public class CaiCustomEmojiCommand : LazyPlugin
     public override void Initialize()
     {
         GetDataHandlers.Emoji.Register(this.OnGetEmoji);
+        base.Initialize();
     }
 
 

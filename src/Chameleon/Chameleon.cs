@@ -34,6 +34,7 @@ public class Chameleon : LazyPlugin
     {
         ServerApi.Hooks.NetGetData.Register(this, OnGetData, int.MaxValue);
         ServerApi.Hooks.GamePostInitialize.Register(this, OnPostInit, int.MaxValue);
+        base.Initialize();
 
     }
 

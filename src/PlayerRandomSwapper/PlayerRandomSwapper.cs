@@ -21,9 +21,10 @@ public class PlayerRandomSwapper : LazyPlugin
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new Command("swapplugin.toggle", this.SwapToggle, "swaptoggle", GetString("随机互换")));
+        this.addCommands.Add(new Command("swapplugin.toggle", this.SwapToggle, "swaptoggle", GetString("随机互换")));
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
         this.RandomSwapTime();
+        base.Initialize();
     }
 
     protected override void Dispose(bool disposing)
@@ -31,7 +32,6 @@ public class PlayerRandomSwapper : LazyPlugin
         if (disposing)
         {
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
-            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.SwapToggle);
         }
         base.Dispose(disposing);
     }

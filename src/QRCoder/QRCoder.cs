@@ -25,38 +25,32 @@ public class QRCoder(Main game) : LazyPlugin(game)
 
     public override void Initialize()
     {
-        Commands.ChatCommands.Add(new ("qr.add", this.QREncoder, "qr")
+        this.addCommands.Add(new ("qr.add", this.QREncoder, "qr")
         {
             HelpText = GetString("生成二维码，用法：/qr <内容> [尺寸(不指定则为自适应)]")
         });
 
-        Commands.ChatCommands.Add(new ("qr.add", this.SetQRPosition, "qrpos")
+        this.addCommands.Add(new ("qr.add", this.SetQRPosition, "qrpos")
         {
             HelpText = GetString("设置二维码位置，用法：/qrpos <tl|bl|tr|br>，tl=左上角，bl=左下角，tr=右上角，br=右下角")
         });
 
-        Commands.ChatCommands.Add(new ("qr.add", this.SetQRConfig, "qrconf")
+        this.addCommands.Add(new ("qr.add", this.SetQRConfig, "qrconf")
         {
             HelpText = GetString("设置二维码配置内容，用法：/qrconf <键> <值>")
         });
 
         TileEdit += this.OnTileEdit;
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
-        TShock.RestApi.Register(new SecureRestCommand("/tool/qrcoder", this.QRtest, "tool.rest.qrcoder"));
+        this.addRestCommands.Add(new SecureRestCommand("/tool/qrcoder", this.QRtest, "tool.rest.qrcoder"));
+        base.Initialize();
     }
     protected override void Dispose(bool Disposing)
     {
         if (Disposing)
         {
-            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.QREncoder);
-            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.SetQRPosition);
-            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.SetQRConfig);
             AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
             TileEdit -= this.OnTileEdit;
-            ((List<RestCommand>) typeof(Rest)
-                .GetField("commands", BindingFlags.NonPublic | BindingFlags.Instance)!
-                .GetValue(TShock.RestApi)!)
-                .RemoveAll(x => x.UriTemplate == "/tool/qrcoder");
         }
         base.Dispose(Disposing);
     }
