@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
@@ -278,6 +277,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoClassificationQuickStac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceGen", "src\SourceGen\SourceGen.csproj", "{E5E60819-4B13-4982-B345-358A4DBE9D3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrCDK", "src\TrCDK\TrCDK.csproj", "{D06CC8C7-7B77-428B-B5BA-A690C17DE382}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BossLock", "src\BossLock\BossLock.csproj", "{80ACB7F0-2820-44D5-B0CA-CC73444D880E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostView", "src\GhostView\GhostView.csproj", "{6ABEAB06-DC01-48AE-8119-9E25213C9949}"
@@ -1374,6 +1374,14 @@ Global
 		{E5E60819-4B13-4982-B345-358A4DBE9D3B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E5E60819-4B13-4982-B345-358A4DBE9D3B}.Release|x64.ActiveCfg = Release|Any CPU
 		{E5E60819-4B13-4982-B345-358A4DBE9D3B}.Release|x64.Build.0 = Release|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Debug|x64.Build.0 = Debug|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Release|x64.ActiveCfg = Release|Any CPU
+		{D06CC8C7-7B77-428B-B5BA-A690C17DE382}.Release|x64.Build.0 = Release|Any CPU
 		{80ACB7F0-2820-44D5-B0CA-CC73444D880E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{80ACB7F0-2820-44D5-B0CA-CC73444D880E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80ACB7F0-2820-44D5-B0CA-CC73444D880E}.Debug|x64.ActiveCfg = Debug|Any CPU

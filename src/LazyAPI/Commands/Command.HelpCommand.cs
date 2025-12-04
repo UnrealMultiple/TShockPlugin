@@ -11,7 +11,7 @@ internal partial class Command
         {
             this.parent = parent;
             this.permissions = [];
-            this.info = infoPrefix + "help";
+            this.usage = GetString($"{infoPrefix}help - list available usages");
         }
 
         public override ParseResult TryParse(CommandArgs args, int current)
@@ -27,7 +27,9 @@ internal partial class Command
             }
 
             args.Player.SendInfoMessage(GetString("available usage:"));
-            foreach (var sub in this.parent._dict.Values.SelectMany(subs => subs).Concat(this.parent._main).Distinct()
+            foreach (var sub in this.parent._dict.Values
+                         .SelectMany(subs => subs)
+                         .Concat(this.parent._main).Distinct()
                          .Where(sub => sub.CanExec(args.Player)))
             {
                 args.Player.SendInfoMessage(sub.ToString());
