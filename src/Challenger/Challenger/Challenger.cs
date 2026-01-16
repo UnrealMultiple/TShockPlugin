@@ -1216,17 +1216,19 @@ public class Challenger : TerrariaPlugin
         foreach (var effect in config.WormScarfSetBuff) { TShock.Players[player.whoAmI].SetBuff(effect, 180, false); }
     }
 
-    public void VolatileGelatin(NpcStrikeEventArgs args)
+    private static void VolatileGelatin(NpcStrikeEventArgs args)
     {
-        if (args.Npc.CanBeChasedBy(null, false) && !args.Npc.SpawnedFromStatue)
+        if (config.VolatileGelatin.Length == 0 || !args.Npc.CanBeChasedBy() || args.Npc.SpawnedFromStatue)
         {
-            // 直接从配置的Config数组中随机选择一个物品ID
-            var randomIndex = Main.rand.Next(config.VolatileGelatin.Length);
-            var itemId = config.VolatileGelatin[randomIndex];
-
-            // 创建掉落物，使用随机选中的itemId
-            Item.NewItem(null, args.Npc.Center, new Vector2(20f, 20f), itemId, 1, false, 0, false, false);
+            return;
         }
+
+        // 直接从配置的Config数组中随机选择一个物品ID
+        var randomIndex = Main.rand.Next(config.VolatileGelatin.Length);
+        var itemId = config.VolatileGelatin[randomIndex];
+
+        // 创建掉落物，使用随机选中的itemId
+        Item.NewItem(null, args.Npc.Center, new Vector2(20f, 20f), itemId);
     }
 
 
@@ -1676,7 +1678,7 @@ public class Challenger : TerrariaPlugin
             var num = type;
             if (num == 4987)
             {
-                this.VolatileGelatin(args);
+                VolatileGelatin(args);
             }
         }
         if (Collect.cnpcs[args.Npc.whoAmI] != null && Collect.cnpcs[args.Npc.whoAmI].isActive)
