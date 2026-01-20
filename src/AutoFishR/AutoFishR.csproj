@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\..\template.targets" />
+    <ItemGroup>
+        <PackageReference Include="YamlDotNet" Version="16.3.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="resource\\config\\zh-cn.yml" />
+        <EmbeddedResource Include="resource\\config\\en-us.yml" />
+        <EmbeddedResource Include="resource\\lang\\zh-cn.yml" />
+        <EmbeddedResource Include="resource\\lang\\en-us.yml" />
+    </ItemGroup>
+</Project>
