@@ -1,0 +1,93 @@
+# AutoFishR 配置模板
+# 路径：tshock/config/AutoFish/config.yml（缺失时插件会从 DLL 导出此模板）
+# 约定：全局* 控制服务器是否允许该功能；默认* 仅在“新玩家数据”创建时赋值，之后玩家可用指令自行切换；权限与负权限仍然生效。
+# 重新生成：删除该文件后 /reload 即可写入默认模板。
+
+# 语言：对应 resource/lang/{culture}.yml，例如 zh-cn、en-us。
+language: zh-cn
+
+# 插件总开关：关闭后所有逻辑与命令短路返回。
+pluginEnabled: true
+
+# 自动钓鱼：global 控制是否允许自动收杆；default 为新玩家初始值（需 autofish.fish）。
+globalAutoFishFeatureEnabled: true
+defaultAutoFishEnabled: false
+
+# 自动 Buff：global 控制是否允许自动上 Buff；default 为新玩家初始值；具体 Buff 清单见 buffDurations。
+globalBuffFeatureEnabled: true
+defaultBuffEnabled: false
+
+# 多钩：global 控制是否允许多线；maxNum 为全局上限；default 为新玩家是否启用（玩家可 /af hook 设置不超过上限）。
+globalMultiHookFeatureEnabled: true
+globalMultiHookMaxNum: 5
+defaultMultiHookEnabled: false
+
+# 消耗模式：需同时开启 global 与玩家个人开关且有剩余时长才会自动钓鱼/多钩。
+# 时长获取：消耗 baitItemIds 列表中的物品，每次消耗 baitConsumeCount 个，换取 rewardDurationMinutes 分钟。
+globalConsumptionModeEnabled: false
+defaultConsumptionEnabled: false
+baitConsumeCount: 10
+rewardDurationMinutes: 12
+# 可用于兑换时长的鱼饵 ID
+baitItemIds:
+  - 2002 # 天界蜻蜓
+  - 2675 # 魔金虫
+  - 2676 # 火焰苍蝇
+  - 3191 # 魔煞虫
+  - 3194 # 恶魔心
+
+# 过滤不可堆叠渔获：开启后丢弃 maxStack==1 的掉落，重新判定。
+globalSkipNonStackableLoot: true
+defaultSkipNonStackableLoot: true
+
+# 不钓怪物：catchId<0 时丢弃重新判定。
+globalBlockMonsterCatch: true
+defaultBlockMonsterCatch: true
+
+# 跳过钓鱼动画：收杆后直接销毁鱼漂以缩短等待。
+globalSkipFishingAnimation: true
+defaultSkipFishingAnimation: true
+
+# 保护贵重鱼饵：尝试把贵重鱼饵交换到背包尾部以避免被消耗。
+globalProtectValuableBaitEnabled: true
+defaultProtectValuableBaitEnabled: true
+valuableBaitItemIds:
+  - 2673 # 松露虫
+  - 1999 # 帛斑蝶
+  - 2436 # 蓝水母
+  - 2437 # 绿水母
+  - 2438 # 粉水母
+  - 2891 # 金蝴蝶
+  - 4340 # 金蜻蜓
+  - 2893 # 金蚱蜢
+  - 4362 # 金瓢虫
+  - 4419 # 金水黾
+  - 2895 # 金蠕虫
+
+# 额外渔获/随机渔获：原判定无收获时生效；randomLootEnabled=true 则随机任意物品 ID，false 则从 extraCatchItemIds 中抽取。
+randomLootEnabled: false
+extraCatchItemIds:
+  - 5    # 蘑菇
+  - 72   # 银币
+  - 75   # 坠落之星
+  - 276  # 仙人掌
+  - 3093 # 草药袋
+  - 4345 # 蠕虫罐头
+
+# Buff 表：键为 Buff ID，值为持续秒数；为空则不施加 Buff。
+buffDurations: {}
+
+# 禁用的发射物 ID：多线模式下屏蔽衍生弹幕。
+disabledProjectileIds:
+  - 623
+  - 625
+  - 626
+  - 627
+  - 628
+  - 831
+  - 832
+  - 833
+  - 834
+  - 835
+  - 963
+  - 970
