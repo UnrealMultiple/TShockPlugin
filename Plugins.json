@@ -125,6 +125,28 @@
     "HotReload": true
   },
   {
+    "Name": "自动钓鱼R",
+    "Version": "1.4.3",
+    "Author": "ksqeib 羽学 少司命",
+    "Description": {
+      "en-US": "青山常伴绿水，燕雀已是南飞",
+      "de-DE": "青山常伴绿水，燕雀已是南飞",
+      "it-IT": "青山常伴绿水，燕雀已是南飞",
+      "fr-FR": "青山常伴绿水，燕雀已是南飞",
+      "es-ES": "青山常伴绿水，燕雀已是南飞",
+      "ru-RU": "青山常伴绿水，燕雀已是南飞",
+      "zh-CN": "青山常伴绿水，燕雀已是南飞",
+      "pt-BR": "青山常伴绿水，燕雀已是南飞",
+      "pl-PL": "青山常伴绿水，燕雀已是南飞"
+    },
+    "AssemblyName": "AutoFishR",
+    "Path": "AutoFishR.dll",
+    "Dependencies": [
+      "YamlDotNet"
+    ],
+    "HotReload": true
+  },
+  {
     "Name": "AdditionalPylons",
     "Version": "1.0.8",
     "Author": "Stealownz,肝帝熙恩优化1449",
