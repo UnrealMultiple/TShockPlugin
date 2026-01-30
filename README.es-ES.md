@@ -72,6 +72,7 @@
 | [AutoClassificationQuickStack](./src/AutoClassificationQuickStack/README.md) | 0.0% | Clasificación Automática Quick Stack |  |
 | [AutoClear](./src/AutoClear/README.md) | 0.0% | Limpieza automática inteligente | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoFish](./src/AutoFish/README.md) | 0.0% | Pesca automática | [LazyAPI](./src/LazyAPI/README.md) |
+| [AutoFishR](./src/AutoFishR/README.md) | 0.0% | 自动钓鱼重置版 |  |
 | [AutoPluginManager](./src/AutoPluginManager/README.es-ES.md) | 64.4% | Actualice los complementos automáticamente con una sola tecla |  |
 | [AutoReset](./src/AutoReset/README.md) | 0.0% | Reinicio completamente automático | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoStoreItems](./src/AutoStoreItems/README.md) | 0.0% | Almacenamiento automático | [LazyAPI](./src/LazyAPI/README.md) |

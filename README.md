@@ -65,6 +65,7 @@
 | [AutoClassificationQuickStack](./src/AutoClassificationQuickStack/README.md) | 便捷分类箱子 |  |
 | [AutoClear](./src/AutoClear/README.md) | 智能自动扫地 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoFish](./src/AutoFish/README.md) | 自动钓鱼 | [LazyAPI](./src/LazyAPI/README.md) |
+| [AutoFishR](./src/AutoFishR/README.md) | 自动钓鱼重置版 |  |
 | [AutoPluginManager](./src/AutoPluginManager/README.md) | 一键自动更新插件 |  |
 | [AutoReset](./src/AutoReset/README.md) | 完全自动重置 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoStoreItems](./src/AutoStoreItems/README.md) | 自动储存 | [LazyAPI](./src/LazyAPI/README.md) |
