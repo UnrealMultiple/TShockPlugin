@@ -5,7 +5,7 @@ using TShockAPI;
 namespace AutoFish.AFMain;
 
 /// <summary>
-///     玩家侧指令处理�?
+///     玩家侧指令处理
 /// </summary>
 public partial class Commands
 {

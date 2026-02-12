@@ -4,7 +4,7 @@ using TShockAPI;
 namespace AutoFish.AFMain;
 
 /// <summary>
-///     管理员侧指令处理�?
+///     管理员侧指令处理
 /// </summary>
 public partial class Commands
 {
@@ -170,7 +170,7 @@ public partial class Commands
                 case "set":
                     if (!int.TryParse(args.Parameters[2], out var count) || count < 1)
                     {
-                        caller.SendErrorMessage("数量必须是大�?0 的整数！");
+                        caller.SendErrorMessage("数量必须是大于 0 的整数！");
                         return true;
                     }
 
