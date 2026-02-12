@@ -119,7 +119,7 @@ internal class CommandPlayer
             return;
         }
         var msg = Configuration.Instance.BaitRewards
-            .OrderByDescending(b => b.Value)
+            .OrderByDescending(b => b.Value.Minutes)
             .Select(b => $"[i:{b.Key}]x{b.Value.Count} 时长:{b.Value.Minutes}");
         args.Player.SendInfoMessage(GetString($"消耗模式指定物品:"));
         args.Player.SendInfoMessage(string.Join("\n", msg));
@@ -136,7 +136,7 @@ internal class CommandPlayer
         }
         var playerData = Plugin.PlayerData.GetOrCreatePlayerData(args.Player.Name, Plugin.CreateDefaultPlayerData);
         playerData.ProtectValuableBaitEnabled = !playerData.ProtectValuableBaitEnabled;
-        args.Player.SendSuccessMessage(GetString($"你已[c/92C5EC:{(playerData.SkipFishingAnimation ? "开启" : "关闭")}]保护贵重鱼饵。"));
+        args.Player.SendSuccessMessage(GetString($"你已[c/92C5EC:{(playerData.ProtectValuableBaitEnabled ? "开启" : "关闭")}]保护贵重鱼饵。"));
     }
 
     [Alias("baitlist")]

@@ -11,8 +11,8 @@ internal class CommandAdmin
     [Alias("fish")]
     public static void ToggleAutoFish(CommandArgs args)
     {
-        Configuration.Instance.GlobalMultiHookFeatureEnabled = !Configuration.Instance.GlobalMultiHookFeatureEnabled;
-        args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{(Configuration.Instance.GlobalMultiHookFeatureEnabled ? "开启" : "关闭")}]自动钓鱼功能。"));
+        Configuration.Instance.GlobalAutoFishFeatureEnabled = !Configuration.Instance.GlobalAutoFishFeatureEnabled;
+        args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{(Configuration.Instance.GlobalAutoFishFeatureEnabled ? "开启" : "关闭")}]自动钓鱼功能。"));
         Configuration.Instance.SaveTo();
     }
 
@@ -20,14 +20,14 @@ internal class CommandAdmin
     public static void ToggleAutoFishBuff(CommandArgs args)
     {
         Configuration.Instance.GlobalBuffFeatureEnabled = !Configuration.Instance.GlobalBuffFeatureEnabled;
-        args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{(Configuration.Instance.GlobalMultiHookFeatureEnabled ? "开启" : "关闭")}]自动钓鱼BUFF。"));
+        args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{(Configuration.Instance.GlobalBuffFeatureEnabled ? "开启" : "关闭")}]自动钓鱼BUFF。"));
         Configuration.Instance.SaveTo();
     }
 
     [Alias("multi")]
     public static void ToggleAutoFishMulti(CommandArgs args)
     {
-        Configuration.Instance.GlobalConsumptionModeEnabled = !Configuration.Instance.GlobalConsumptionModeEnabled;
+        Configuration.Instance.GlobalMultiHookFeatureEnabled = !Configuration.Instance.GlobalMultiHookFeatureEnabled;
         args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{(Configuration.Instance.GlobalMultiHookFeatureEnabled ? "开启" : "关闭")}]多钩功能。"));
         Configuration.Instance.SaveTo();
     }
@@ -36,7 +36,7 @@ internal class CommandAdmin
     public static void ToggleAutoFishMod(CommandArgs args)
     {
         Configuration.Instance.GlobalConsumptionModeEnabled = !Configuration.Instance.GlobalConsumptionModeEnabled;
-        args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{(Configuration.Instance.GlobalMultiHookFeatureEnabled ? "开启" : "关闭")}]消耗模式。"));
+        args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{(Configuration.Instance.GlobalConsumptionModeEnabled ? "开启" : "关闭")}]消耗模式。"));
         Configuration.Instance.SaveTo();
     }
 
@@ -44,7 +44,7 @@ internal class CommandAdmin
     public static void ToggleAutoFishMonster(CommandArgs args)
     {
         Configuration.Instance.GlobalBlockMonsterCatch = !Configuration.Instance.GlobalBlockMonsterCatch;
-        args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{(Configuration.Instance.GlobalMultiHookFeatureEnabled ? "开启" : "关闭")}]不钓怪物。"));
+        args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{(Configuration.Instance.GlobalBlockMonsterCatch ? "开启" : "关闭")}]不钓怪物。"));
         Configuration.Instance.SaveTo();
     }
 
@@ -52,7 +52,7 @@ internal class CommandAdmin
     public static void ToggleAutoFishAnim(CommandArgs args)
     {
         Configuration.Instance.GlobalSkipFishingAnimation = !Configuration.Instance.GlobalSkipFishingAnimation;
-        args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{(Configuration.Instance.GlobalMultiHookFeatureEnabled ? "开启" : "关闭")}]跳过上鱼动画。"));
+        args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{(Configuration.Instance.GlobalSkipFishingAnimation ? "开启" : "关闭")}]跳过上鱼动画。"));
         Configuration.Instance.SaveTo();
     }
 
@@ -61,7 +61,7 @@ internal class CommandAdmin
     public static void ToggleAutoFishDebug(CommandArgs args)
     {
         Plugin.DebugMode = !Plugin.DebugMode;
-        args.Player.SendSuccessMessage(GetString($"玩家 [{args.Player.Name}] 已[c/92C5EC:{(Configuration.Instance.GlobalMultiHookFeatureEnabled ? "开启" : "关闭")}]debug模式。"));
+        args.Player.SendSuccessMessage(GetString($"已[c/92C5EC:{(Plugin.DebugMode ? "开启" : "关闭")}]debug模式。"));
         Configuration.Instance.SaveTo();
     }
     #endregion
@@ -75,7 +75,7 @@ internal class CommandAdmin
             return;
         }
         var msg = Configuration.Instance.BaitRewards.Remove(selectItem.type)
-            ? GetString($"已成功从指定鱼饵表移出物品 : [c / 92C5EC:{selectItem.Name}]!")
+            ? GetString($"已成功从指定鱼饵表移出物品 : [i:{selectItem.type}]!")
             : GetString("物品 {0} 不在指定鱼饵表中!");
         args.Player.SendInfoMessage(msg);
         Configuration.Instance.SaveTo();
@@ -103,7 +103,7 @@ internal class CommandAdmin
             Minutes = (int) minutes
         };
         Configuration.Instance.SaveTo();
-        args.Player.SendSuccessMessage(GetString($"已设置鱼饵 [c/92C5EC:{selectItem.Name}] 的兑换规则：每{count}个 => {minutes}分钟"));
+        args.Player.SendSuccessMessage(GetString($"已设置鱼饵 [i:{selectItem.type}] 的兑换规则：每{count}个 => {minutes}分钟"));
     }
 
     [Alias("time")]
@@ -118,7 +118,7 @@ internal class CommandAdmin
         var bait = Configuration.Instance.BaitRewards[selectItem.type];
         bait.Minutes = (int) minutes;
         Configuration.Instance.SaveTo();
-        args.Player.SendSuccessMessage(GetString($"已设置鱼饵 [c/92C5EC:{selectItem.Name}] 的兑换规则：每{bait.Count}个 => {minutes}分钟"));
+        args.Player.SendSuccessMessage(GetString($"已设置鱼饵 [i:{selectItem.type}] 的兑换规则：每{bait.Count}个 => {minutes}分钟"));
     }
 
     public static void Help(CommandArgs args)
@@ -143,7 +143,7 @@ internal class CommandAdmin
     private static Terraria.Item? SelectItem(TSPlayer player, string type)
     {
         var items = TShock.Utils.GetItemByIdOrName(type);
-        if (items.Count > 0)
+        if (items.Count > 1)
         {
             player.SendMultipleMatchError(items.Select(i => i.Name));
             return null;
@@ -153,6 +153,6 @@ internal class CommandAdmin
             player.SendErrorMessage(GetString("不存在该物品！"));
             return null;
         }
-        return items.First();
+        return items[0];
     }
 }
