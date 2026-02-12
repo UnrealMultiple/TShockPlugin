@@ -1,5 +1,4 @@
-﻿using AutoFishR;
-using LazyAPI;
+﻿using LazyAPI;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;

@@ -1,4 +1,3 @@
-using AutoFishR;
 using System.Text;
 using Terraria.ID;
 using TShockAPI;

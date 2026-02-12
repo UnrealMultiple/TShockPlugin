@@ -1,9 +1,8 @@
-﻿using AutoFish;
-using AutoFish.Utils;
+﻿using AutoFish.Utils;
 using LazyAPI.Attributes;
 using TShockAPI;
 
-namespace AutoFishR;
+namespace AutoFish;
 
 [Command("af")]
 [Permissions("autofish")]

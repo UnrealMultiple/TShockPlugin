@@ -1,4 +1,4 @@
-﻿namespace AutoFishR;
+﻿namespace AutoFish;
 
 public class AFPlayerData
 {
