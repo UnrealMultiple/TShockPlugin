@@ -12,7 +12,10 @@
       "ru-RU": "用于调试数据包的插件捏~",
       "zh-CN": "用于调试数据包的插件捏~",
       "pt-BR": "用于调试数据包的插件捏~",
-      "pl-PL": "用于调试数据包的插件捏~"
+      "pl-PL": "用于调试数据包的插件捏~",
+      "ja-JP": "用于调试数据包的插件捏~",
+      "ko-KR": "用于调试数据包的插件捏~",
+      "zh-Hant": "用于调试数据包的插件捏~"
     },
     "AssemblyName": "CaiPacketDebug",
     "Path": "CaiPacketDebug.dll",
@@ -35,7 +38,10 @@
       "ru-RU": "翻译任意插件",
       "zh-CN": "翻译任意插件",
       "pt-BR": "翻译任意插件",
-      "pl-PL": "翻译任意插件"
+      "pl-PL": "翻译任意插件",
+      "ja-JP": "翻译任意插件",
+      "ko-KR": "翻译任意插件",
+      "zh-Hant": "翻译任意插件"
     },
     "AssemblyName": "TransferPatch",
     "Path": "TransferPatch.dll",
@@ -55,7 +61,10 @@
       "ru-RU": "加载Wiki语言包",
       "zh-CN": "加载Wiki语言包",
       "pt-BR": "加载Wiki语言包",
-      "pl-PL": "加载Wiki语言包"
+      "pl-PL": "加载Wiki语言包",
+      "ja-JP": "加载Wiki语言包",
+      "ko-KR": "加载Wiki语言包",
+      "zh-Hant": "加载Wiki语言包"
     },
     "AssemblyName": "WikiLangPackLoader",
     "Path": "WikiLangPackLoader.dll",
@@ -63,70 +72,8 @@
     "HotReload": true
   },
   {
-    "Name": "Chireiden.TShock.Omni",
-    "Version": "0.0.212.0",
-    "Author": "SGKoishi",
-    "Description": {
-      "en-US": "Yet another misc plugin for TShock",
-      "de-DE": "Yet another misc plugin for TShock",
-      "it-IT": "Yet another misc plugin for TShock",
-      "fr-FR": "Yet another misc plugin for TShock",
-      "es-ES": "Yet another misc plugin for TShock",
-      "ru-RU": "Yet another misc plugin for TShock",
-      "zh-CN": "Yet another misc plugin for TShock",
-      "pt-BR": "Yet another misc plugin for TShock",
-      "pl-PL": "Yet another misc plugin for TShock"
-    },
-    "AssemblyName": "Chireiden.TShock.Omni",
-    "Path": "Chireiden.TShock.Omni.dll",
-    "Dependencies": [],
-    "HotReload": false
-  },
-  {
-    "Name": "Crossplay",
-    "Version": "2.3",
-    "Author": "Moneylover3246",
-    "Description": {
-      "en-US": "Enables crossplay for terraria",
-      "de-DE": "Enables crossplay for terraria",
-      "it-IT": "Enables crossplay for terraria",
-      "fr-FR": "Enables crossplay for terraria",
-      "es-ES": "Enables crossplay for terraria",
-      "ru-RU": "Enables crossplay for terraria",
-      "zh-CN": "Enables crossplay for terraria",
-      "pt-BR": "Enables crossplay for terraria",
-      "pl-PL": "Enables crossplay for terraria"
-    },
-    "AssemblyName": "Crossplay",
-    "Path": "Crossplay.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "复制建筑",
-    "Version": "1.0.1.0",
-    "Author": "少司命 羽学",
-    "Description": {
-      "en-US": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
-      "de-DE": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
-      "it-IT": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
-      "fr-FR": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
-      "es-ES": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
-      "ru-RU": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
-      "zh-CN": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
-      "pt-BR": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴",
-      "pl-PL": "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴"
-    },
-    "AssemblyName": "CreateSpawn",
-    "Path": "CreateSpawn.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
-    "HotReload": true
-  },
-  {
     "Name": "自动钓鱼R",
-    "Version": "1.4.3",
+    "Version": "1.4.9.1",
     "Author": "ksqeib 羽学 少司命",
     "Description": {
       "en-US": "青山常伴绿水，燕雀已是南飞",
@@ -137,7 +84,10 @@
       "ru-RU": "青山常伴绿水，燕雀已是南飞",
       "zh-CN": "青山常伴绿水，燕雀已是南飞",
       "pt-BR": "青山常伴绿水，燕雀已是南飞",
-      "pl-PL": "青山常伴绿水，燕雀已是南飞"
+      "pl-PL": "青山常伴绿水，燕雀已是南飞",
+      "ja-JP": "青山常伴绿水，燕雀已是南飞",
+      "ko-KR": "青山常伴绿水，燕雀已是南飞",
+      "zh-Hant": "青山常伴绿水，燕雀已是南飞"
     },
     "AssemblyName": "AutoFishR",
     "Path": "AutoFishR.dll",
@@ -159,7 +109,10 @@
       "ru-RU": "Позволяет установить макс. кол-во возможных пилонов каждого типа, игнорирующие место нахождения (биома)",
       "zh-CN": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
       "pt-BR": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
-      "pl-PL": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境"
+      "pl-PL": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
+      "ja-JP": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
+      "ko-KR": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境",
+      "zh-Hant": "自定义晶塔可放置的数量，至少为一个，且所有晶塔都无视环境"
     },
     "AssemblyName": "AdditionalPylons",
     "Path": "AdditionalPylons.dll",
@@ -181,7 +134,10 @@
       "ru-RU": "一个提供AI对话的插件",
       "zh-CN": "一个提供AI对话的插件",
       "pt-BR": "一个提供AI对话的插件",
-      "pl-PL": "一个提供AI对话的插件"
+      "pl-PL": "一个提供AI对话的插件",
+      "ja-JP": "一个提供AI对话的插件",
+      "ko-KR": "一个提供AI对话的插件",
+      "zh-Hant": "一个提供AI对话的插件"
     },
     "AssemblyName": "AIChatPlugin",
     "Path": "AIChatPlugin.dll",
@@ -201,7 +157,10 @@
       "ru-RU": "优化广播盒",
       "zh-CN": "优化广播盒",
       "pt-BR": "优化广播盒",
-      "pl-PL": "优化广播盒"
+      "pl-PL": "优化广播盒",
+      "ja-JP": "优化广播盒",
+      "ko-KR": "优化广播盒",
+      "zh-Hant": "优化广播盒"
     },
     "AssemblyName": "AnnouncementBoxPlus",
     "Path": "AnnouncementBoxPlus.dll",
@@ -223,7 +182,10 @@
       "ru-RU": "自动垃圾桶帮助玩家清理自身垃圾",
       "zh-CN": "自动垃圾桶帮助玩家清理自身垃圾",
       "pt-BR": "自动垃圾桶帮助玩家清理自身垃圾",
-      "pl-PL": "自动垃圾桶帮助玩家清理自身垃圾"
+      "pl-PL": "自动垃圾桶帮助玩家清理自身垃圾",
+      "ja-JP": "自动垃圾桶帮助玩家清理自身垃圾",
+      "ko-KR": "自动垃圾桶帮助玩家清理自身垃圾",
+      "zh-Hant": "自动垃圾桶帮助玩家清理自身垃圾"
     },
     "AssemblyName": "AutoAirItem",
     "Path": "AutoAirItem.dll",
@@ -245,33 +207,16 @@
       "ru-RU": "自动广播插件",
       "zh-CN": "自动广播插件",
       "pt-BR": "自动广播插件",
-      "pl-PL": "自动广播插件"
+      "pl-PL": "自动广播插件",
+      "ja-JP": "自动广播插件",
+      "ko-KR": "自动广播插件",
+      "zh-Hant": "自动广播插件"
     },
     "AssemblyName": "AutoBroadcast",
     "Path": "AutoBroadcast.dll",
     "Dependencies": [
       "LazyAPI"
     ],
-    "HotReload": true
-  },
-  {
-    "Name": "AutoClassificationQuickStack",
-    "Version": "1.2",
-    "Author": "xuyuwtu",
-    "Description": {
-      "en-US": "快速堆叠时根据配置放入箱子",
-      "de-DE": "快速堆叠时根据配置放入箱子",
-      "it-IT": "快速堆叠时根据配置放入箱子",
-      "fr-FR": "快速堆叠时根据配置放入箱子",
-      "es-ES": "快速堆叠时根据配置放入箱子",
-      "ru-RU": "快速堆叠时根据配置放入箱子",
-      "zh-CN": "快速堆叠时根据配置放入箱子",
-      "pt-BR": "快速堆叠时根据配置放入箱子",
-      "pl-PL": "快速堆叠时根据配置放入箱子"
-    },
-    "AssemblyName": "AutoClassificationQuickStack",
-    "Path": "AutoClassificationQuickStack.dll",
-    "Dependencies": [],
     "HotReload": true
   },
   {
@@ -287,32 +232,13 @@
       "ru-RU": "智能扫地机",
       "zh-CN": "智能扫地机",
       "pt-BR": "智能扫地机",
-      "pl-PL": "智能扫地机"
+      "pl-PL": "智能扫地机",
+      "ja-JP": "智能扫地机",
+      "ko-KR": "智能扫地机",
+      "zh-Hant": "智能扫地机"
     },
     "AssemblyName": "AutoClear",
     "Path": "AutoClear.dll",
-    "Dependencies": [
-      "LazyAPI"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "AutoFish",
-    "Version": "1.3.8",
-    "Author": "羽学 少司命",
-    "Description": {
-      "en-US": "Auto Fishing",
-      "de-DE": "自动钓鱼",
-      "it-IT": "自动钓鱼",
-      "fr-FR": "自动钓鱼",
-      "es-ES": "自动钓鱼",
-      "ru-RU": "自动钓鱼",
-      "zh-CN": "自动钓鱼",
-      "pt-BR": "自动钓鱼",
-      "pl-PL": "自动钓鱼"
-    },
-    "AssemblyName": "AutoFish",
-    "Path": "AutoFish.dll",
     "Dependencies": [
       "LazyAPI"
     ],
@@ -331,7 +257,10 @@
       "ru-RU": "自动更新你的插件！",
       "zh-CN": "自动更新你的插件！",
       "pt-BR": "自动更新你的插件！",
-      "pl-PL": "自动更新你的插件！"
+      "pl-PL": "自动更新你的插件！",
+      "ja-JP": "自动更新你的插件！",
+      "ko-KR": "自动更新你的插件！",
+      "zh-Hant": "自动更新你的插件！"
     },
     "AssemblyName": "AutoPluginManager",
     "Path": "AutoPluginManager.dll",
@@ -340,7 +269,7 @@
   },
   {
     "Name": "AutoReset",
-    "Version": "2025.6.23.0",
+    "Version": "2026.2.12.0",
     "Author": "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩",
     "Description": {
       "en-US": "Full automatic plugin reset",
@@ -351,7 +280,10 @@
       "ru-RU": "完全自动重置插件",
       "zh-CN": "完全自动重置插件",
       "pt-BR": "完全自动重置插件",
-      "pl-PL": "完全自动重置插件"
+      "pl-PL": "完全自动重置插件",
+      "ja-JP": "完全自动重置插件",
+      "ko-KR": "完全自动重置插件",
+      "zh-Hant": "完全自动重置插件"
     },
     "AssemblyName": "AutoReset",
     "Path": "AutoReset.dll",
@@ -373,7 +305,10 @@
       "ru-RU": "持有指定物品根据配置物品ID自动存入存储空间",
       "zh-CN": "持有指定物品根据配置物品ID自动存入存储空间",
       "pt-BR": "持有指定物品根据配置物品ID自动存入存储空间",
-      "pl-PL": "持有指定物品根据配置物品ID自动存入存储空间"
+      "pl-PL": "持有指定物品根据配置物品ID自动存入存储空间",
+      "ja-JP": "持有指定物品根据配置物品ID自动存入存储空间",
+      "ko-KR": "持有指定物品根据配置物品ID自动存入存储空间",
+      "zh-Hant": "持有指定物品根据配置物品ID自动存入存储空间"
     },
     "AssemblyName": "AutoStoreItems",
     "Path": "AutoStoreItems.dll",
@@ -395,7 +330,10 @@
       "ru-RU": "自动分配一个组的玩家到特定队伍",
       "zh-CN": "自动分配一个组的玩家到特定队伍",
       "pt-BR": "自动分配一个组的玩家到特定队伍",
-      "pl-PL": "自动分配一个组的玩家到特定队伍"
+      "pl-PL": "自动分配一个组的玩家到特定队伍",
+      "ja-JP": "自动分配一个组的玩家到特定队伍",
+      "ko-KR": "自动分配一个组的玩家到特定队伍",
+      "zh-Hant": "自动分配一个组的玩家到特定队伍"
     },
     "AssemblyName": "AutoTeam",
     "Path": "AutoTeam.dll",
@@ -417,7 +355,10 @@
       "ru-RU": "Позволяет игрокам телепортироваться к последней точке смерти.",
       "zh-CN": "允许玩家传送回死亡地点",
       "pt-BR": "允许玩家传送回死亡地点",
-      "pl-PL": "允许玩家传送回死亡地点"
+      "pl-PL": "允许玩家传送回死亡地点",
+      "ja-JP": "允许玩家传送回死亡地点",
+      "ko-KR": "允许玩家传送回死亡地点",
+      "zh-Hant": "允许玩家传送回死亡地点"
     },
     "AssemblyName": "Back",
     "Path": "Back.dll",
@@ -439,30 +380,13 @@
       "ru-RU": "BadApple播放器",
       "zh-CN": "BadApple播放器",
       "pt-BR": "BadApple播放器",
-      "pl-PL": "BadApple播放器"
+      "pl-PL": "BadApple播放器",
+      "ja-JP": "BadApple播放器",
+      "ko-KR": "BadApple播放器",
+      "zh-Hant": "BadApple播放器"
     },
     "AssemblyName": "BadApplePlayer",
     "Path": "BadApplePlayer.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "BagPing",
-    "Version": "2025.6.1",
-    "Author": "Cai",
-    "Description": {
-      "en-US": "Mark dropped treasure bags on the minimap",
-      "de-DE": "在小地图上标记掉落的宝藏袋",
-      "it-IT": "在小地图上标记掉落的宝藏袋",
-      "fr-FR": "在小地图上标记掉落的宝藏袋",
-      "es-ES": "在小地图上标记掉落的宝藏袋",
-      "ru-RU": "在小地图上标记掉落的宝藏袋",
-      "zh-CN": "在小地图上标记掉落的宝藏袋",
-      "pt-BR": "在小地图上标记掉落的宝藏袋",
-      "pl-PL": "在小地图上标记掉落的宝藏袋"
-    },
-    "AssemblyName": "BagPing",
-    "Path": "BagPing.dll",
     "Dependencies": [],
     "HotReload": true
   },
@@ -479,7 +403,10 @@
       "ru-RU": "禁止指定怪物的出没",
       "zh-CN": "禁止指定怪物的出没",
       "pt-BR": "禁止指定怪物的出没",
-      "pl-PL": "禁止指定怪物的出没"
+      "pl-PL": "禁止指定怪物的出没",
+      "ja-JP": "禁止指定怪物的出没",
+      "ko-KR": "禁止指定怪物的出没",
+      "zh-Hant": "禁止指定怪物的出没"
     },
     "AssemblyName": "BanNpc",
     "Path": "BanNpc.dll",
@@ -501,7 +428,10 @@
       "ru-RU": "",
       "zh-CN": "",
       "pt-BR": "",
-      "pl-PL": ""
+      "pl-PL": "",
+      "ja-JP": "",
+      "ko-KR": "",
+      "zh-Hant": ""
     },
     "AssemblyName": "BedSet",
     "Path": "BedSet.dll",
@@ -523,7 +453,10 @@
       "ru-RU": "通过检查玩家姓名的玩家白名单",
       "zh-CN": "通过检查玩家姓名的玩家白名单",
       "pt-BR": "通过检查玩家姓名的玩家白名单",
-      "pl-PL": "通过检查玩家姓名的玩家白名单"
+      "pl-PL": "通过检查玩家姓名的玩家白名单",
+      "ja-JP": "通过检查玩家姓名的玩家白名单",
+      "ko-KR": "通过检查玩家姓名的玩家白名单",
+      "zh-Hant": "通过检查玩家姓名的玩家白名单"
     },
     "AssemblyName": "BetterWhitelist",
     "Path": "BetterWhitelist.dll",
@@ -545,7 +478,10 @@
       "ru-RU": "进度锁",
       "zh-CN": "进度锁",
       "pt-BR": "进度锁",
-      "pl-PL": "进度锁"
+      "pl-PL": "进度锁",
+      "ja-JP": "进度锁",
+      "ko-KR": "进度锁",
+      "zh-Hant": "进度锁"
     },
     "AssemblyName": "BossLock",
     "Path": "BossLock.dll",
@@ -565,7 +501,10 @@
       "ru-RU": "Позволяет строить мосты!",
       "zh-CN": "铺桥!",
       "pt-BR": "铺桥!",
-      "pl-PL": "铺桥!"
+      "pl-PL": "铺桥!",
+      "ja-JP": "铺桥!",
+      "ko-KR": "铺桥!",
+      "zh-Hant": "铺桥!"
     },
     "AssemblyName": "BridgeBuilder",
     "Path": "BridgeBuilder.dll",
@@ -587,7 +526,10 @@
       "ru-RU": "A minigame that is named BuildMaster",
       "zh-CN": "A minigame that is named BuildMaster",
       "pt-BR": "A minigame that is named BuildMaster",
-      "pl-PL": "A minigame that is named BuildMaster"
+      "pl-PL": "A minigame that is named BuildMaster",
+      "ja-JP": "A minigame that is named BuildMaster",
+      "ko-KR": "A minigame that is named BuildMaster",
+      "zh-Hant": "A minigame that is named BuildMaster"
     },
     "AssemblyName": "BuildMaster",
     "Path": "BuildMaster.dll",
@@ -598,7 +540,7 @@
   },
   {
     "Name": "CaiBotLitePlugin",
-    "Version": "2025.9.12.0",
+    "Version": "2026.2.12.1",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot官方机器人的适配插件",
@@ -609,7 +551,10 @@
       "ru-RU": "CaiBot官方机器人的适配插件",
       "zh-CN": "CaiBot官方机器人的适配插件",
       "pt-BR": "CaiBot官方机器人的适配插件",
-      "pl-PL": "CaiBot官方机器人的适配插件"
+      "pl-PL": "CaiBot官方机器人的适配插件",
+      "ja-JP": "CaiBot官方机器人的适配插件",
+      "ko-KR": "CaiBot官方机器人的适配插件",
+      "zh-Hant": "CaiBot官方机器人的适配插件"
     },
     "AssemblyName": "CaiBotLite",
     "Path": "CaiBotLite.dll",
@@ -631,7 +576,10 @@
       "ru-RU": "自定义Emoji表情执行命令",
       "zh-CN": "自定义Emoji表情执行命令",
       "pt-BR": "自定义Emoji表情执行命令",
-      "pl-PL": "自定义Emoji表情执行命令"
+      "pl-PL": "自定义Emoji表情执行命令",
+      "ja-JP": "自定义Emoji表情执行命令",
+      "ko-KR": "自定义Emoji表情执行命令",
+      "zh-Hant": "自定义Emoji表情执行命令"
     },
     "AssemblyName": "CaiCustomEmojiCommand",
     "Path": "CaiCustomEmojiCommand.dll",
@@ -653,7 +601,10 @@
       "ru-RU": "奖励箱！！",
       "zh-CN": "奖励箱！！",
       "pt-BR": "奖励箱！！",
-      "pl-PL": "奖励箱！！"
+      "pl-PL": "奖励箱！！",
+      "ja-JP": "奖励箱！！",
+      "ko-KR": "奖励箱！！",
+      "zh-Hant": "奖励箱！！"
     },
     "AssemblyName": "CaiRewardChest",
     "Path": "CaiRewardChest.dll",
@@ -676,7 +627,10 @@
       "ru-RU": "离线give",
       "zh-CN": "离线give",
       "pt-BR": "离线give",
-      "pl-PL": "离线give"
+      "pl-PL": "离线give",
+      "ja-JP": "离线give",
+      "ko-KR": "离线give",
+      "zh-Hant": "离线give"
     },
     "AssemblyName": "CGive",
     "Path": "CGive.dll",
@@ -696,7 +650,10 @@
       "ru-RU": "增强游戏难度，更好的游戏体验",
       "zh-CN": "增强游戏难度，更好的游戏体验",
       "pt-BR": "增强游戏难度，更好的游戏体验",
-      "pl-PL": "增强游戏难度，更好的游戏体验"
+      "pl-PL": "增强游戏难度，更好的游戏体验",
+      "ja-JP": "增强游戏难度，更好的游戏体验",
+      "ko-KR": "增强游戏难度，更好的游戏体验",
+      "zh-Hant": "增强游戏难度，更好的游戏体验"
     },
     "AssemblyName": "Challenger",
     "Path": "Challenger.dll",
@@ -716,7 +673,10 @@
       "ru-RU": "账户系统交互替换方案",
       "zh-CN": "账户系统交互替换方案",
       "pt-BR": "账户系统交互替换方案",
-      "pl-PL": "账户系统交互替换方案"
+      "pl-PL": "账户系统交互替换方案",
+      "ja-JP": "账户系统交互替换方案",
+      "ko-KR": "账户系统交互替换方案",
+      "zh-Hant": "账户系统交互替换方案"
     },
     "AssemblyName": "Chameleon",
     "Path": "Chameleon.dll",
@@ -738,7 +698,10 @@
       "ru-RU": "ChattyBridge",
       "zh-CN": "ChattyBridge",
       "pt-BR": "ChattyBridge",
-      "pl-PL": "ChattyBridge"
+      "pl-PL": "ChattyBridge",
+      "ja-JP": "ChattyBridge",
+      "ko-KR": "ChattyBridge",
+      "zh-Hant": "ChattyBridge"
     },
     "AssemblyName": "ChattyBridge",
     "Path": "ChattyBridge.dll",
@@ -760,34 +723,15 @@
       "ru-RU": "Позволяет делать неисчерпаемые сундуки",
       "zh-CN": "无限宝箱插件",
       "pt-BR": "无限宝箱插件",
-      "pl-PL": "无限宝箱插件"
+      "pl-PL": "无限宝箱插件",
+      "ja-JP": "无限宝箱插件",
+      "ko-KR": "无限宝箱插件",
+      "zh-Hant": "无限宝箱插件"
     },
     "AssemblyName": "ChestRestore",
     "Path": "ChestRestore.dll",
     "Dependencies": [],
     "HotReload": true
-  },
-  {
-    "Name": "Chireiden.TShock.Omni.Misc",
-    "Version": "0.0.212.0",
-    "Author": "SGKoishi",
-    "Description": {
-      "en-US": "Yet another misc plugin for TShock - the miscellaneous part",
-      "de-DE": "Yet another misc plugin for TShock - the miscellaneous part",
-      "it-IT": "Yet another misc plugin for TShock - the miscellaneous part",
-      "fr-FR": "Yet another misc plugin for TShock - the miscellaneous part",
-      "es-ES": "Yet another misc plugin for TShock - the miscellaneous part",
-      "ru-RU": "Yet another misc plugin for TShock - the miscellaneous part",
-      "zh-CN": "Yet another misc plugin for TShock - the miscellaneous part",
-      "pt-BR": "Yet another misc plugin for TShock - the miscellaneous part",
-      "pl-PL": "Yet another misc plugin for TShock - the miscellaneous part"
-    },
-    "AssemblyName": "Chireiden.TShock.Omni.Misc",
-    "Path": "Chireiden.TShock.Omni.Misc.dll",
-    "Dependencies": [
-      "Chireiden.TShock.Omni"
-    ],
-    "HotReload": false
   },
   {
     "Name": "CNPCShop",
@@ -802,7 +746,10 @@
       "ru-RU": "Позволяет настраивать продажи NPC",
       "zh-CN": "自定义NPC商店出售的物品",
       "pt-BR": "自定义NPC商店出售的物品",
-      "pl-PL": "自定义NPC商店出售的物品"
+      "pl-PL": "自定义NPC商店出售的物品",
+      "ja-JP": "自定义NPC商店出售的物品",
+      "ko-KR": "自定义NPC商店出售的物品",
+      "zh-Hant": "自定义NPC商店出售的物品"
     },
     "AssemblyName": "CNPCShop",
     "Path": "CNPCShop.dll",
@@ -822,7 +769,10 @@
       "ru-RU": "让控制台可以执行SQL操作数据库",
       "zh-CN": "让控制台可以执行SQL操作数据库",
       "pt-BR": "让控制台可以执行SQL操作数据库",
-      "pl-PL": "让控制台可以执行SQL操作数据库"
+      "pl-PL": "让控制台可以执行SQL操作数据库",
+      "ja-JP": "让控制台可以执行SQL操作数据库",
+      "ko-KR": "让控制台可以执行SQL操作数据库",
+      "zh-Hant": "让控制台可以执行SQL操作数据库"
     },
     "AssemblyName": "ConsoleSql",
     "Path": "ConsoleSql.dll",
@@ -842,7 +792,10 @@
       "ru-RU": "Позволяет изменять в мире тайлы или предметы в сундуках, после убийства указанных NPC",
       "zh-CN": "击败指定怪物替换世界指定图格与所有箱子内物品",
       "pt-BR": "击败指定怪物替换世界指定图格与所有箱子内物品",
-      "pl-PL": "击败指定怪物替换世界指定图格与所有箱子内物品"
+      "pl-PL": "击败指定怪物替换世界指定图格与所有箱子内物品",
+      "ja-JP": "击败指定怪物替换世界指定图格与所有箱子内物品",
+      "ko-KR": "击败指定怪物替换世界指定图格与所有箱子内物品",
+      "zh-Hant": "击败指定怪物替换世界指定图格与所有箱子内物品"
     },
     "AssemblyName": "ConvertWorld",
     "Path": "ConvertWorld.dll",
@@ -862,30 +815,13 @@
       "ru-RU": "Отображает \"плавающий\" текст, когда наносится критический урон",
       "zh-CN": "提供攻击NPC跳出浮动文字效果",
       "pt-BR": "提供攻击NPC跳出浮动文字效果",
-      "pl-PL": "提供攻击NPC跳出浮动文字效果"
+      "pl-PL": "提供攻击NPC跳出浮动文字效果",
+      "ja-JP": "提供攻击NPC跳出浮动文字效果",
+      "ko-KR": "提供攻击NPC跳出浮动文字效果",
+      "zh-Hant": "提供攻击NPC跳出浮动文字效果"
     },
     "AssemblyName": "CriticalHit",
     "Path": "CriticalHit.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "CustomMonster",
-    "Version": "1.0.4.42",
-    "Author": "GK 阁下 羽学",
-    "Description": {
-      "en-US": "Customize the health volume when monsters appear, of course it’s more than that!",
-      "de-DE": "自定义怪物出没时的血量,当然不止这些！",
-      "it-IT": "自定义怪物出没时的血量,当然不止这些！",
-      "fr-FR": "自定义怪物出没时的血量,当然不止这些！",
-      "es-ES": "自定义怪物出没时的血量,当然不止这些！",
-      "ru-RU": "自定义怪物出没时的血量,当然不止这些！",
-      "zh-CN": "自定义怪物出没时的血量,当然不止这些！",
-      "pt-BR": "自定义怪物出没时的血量,当然不止这些！",
-      "pl-PL": "自定义怪物出没时的血量,当然不止这些！"
-    },
-    "AssemblyName": "CustomMonster",
-    "Path": "CustomMonster.dll",
     "Dependencies": [],
     "HotReload": true
   },
@@ -902,7 +838,10 @@
       "ru-RU": "Позволяет отображать нанесённый урон по NPC, настраивать получение сокровищ, таблица лидеров",
       "zh-CN": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
       "pt-BR": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
-      "pl-PL": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理"
+      "pl-PL": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
+      "ja-JP": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
+      "ko-KR": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理",
+      "zh-Hant": "根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理"
     },
     "AssemblyName": "DamageRuleLoot",
     "Path": "DamageRuleLoot.dll",
@@ -922,7 +861,10 @@
       "ru-RU": "Отображает кол-во нанесённого игроками урона по боссам",
       "zh-CN": "在每次 Boss 战后显示每个玩家造成的伤害。",
       "pt-BR": "在每次 Boss 战后显示每个玩家造成的伤害。",
-      "pl-PL": "在每次 Boss 战后显示每个玩家造成的伤害。"
+      "pl-PL": "在每次 Boss 战后显示每个玩家造成的伤害。",
+      "ja-JP": "在每次 Boss 战后显示每个玩家造成的伤害。",
+      "ko-KR": "在每次 Boss 战后显示每个玩家造成的伤害。",
+      "zh-Hant": "在每次 Boss 战后显示每个玩家造成的伤害。"
     },
     "AssemblyName": "DamageStatistic",
     "Path": "DamageStatistic.dll",
@@ -942,7 +884,10 @@
       "ru-RU": "None",
       "zh-CN": "None",
       "pt-BR": "None",
-      "pl-PL": "None"
+      "pl-PL": "None",
+      "ja-JP": "None",
+      "ko-KR": "None",
+      "zh-Hant": "None"
     },
     "AssemblyName": "DataSync",
     "Path": "DataSync.dll",
@@ -962,7 +907,10 @@
       "ru-RU": "Позволяет настраивать случайный дроп с убийства NPC",
       "zh-CN": "怪物死亡随机和自定义掉落物品",
       "pt-BR": "怪物死亡随机和自定义掉落物品",
-      "pl-PL": "怪物死亡随机和自定义掉落物品"
+      "pl-PL": "怪物死亡随机和自定义掉落物品",
+      "ja-JP": "怪物死亡随机和自定义掉落物品",
+      "ko-KR": "怪物死亡随机和自定义掉落物品",
+      "zh-Hant": "怪物死亡随机和自定义掉落物品"
     },
     "AssemblyName": "DeathDrop",
     "Path": "DeathDrop.dll",
@@ -982,7 +930,10 @@
       "ru-RU": "清理怪物身边掉落物",
       "zh-CN": "清理怪物身边掉落物",
       "pt-BR": "清理怪物身边掉落物",
-      "pl-PL": "清理怪物身边掉落物"
+      "pl-PL": "清理怪物身边掉落物",
+      "ja-JP": "清理怪物身边掉落物",
+      "ko-KR": "清理怪物身边掉落物",
+      "zh-Hant": "清理怪物身边掉落物"
     },
     "AssemblyName": "DisableMonsLoot",
     "Path": "DisableMonsLoot.dll",
@@ -1002,7 +953,10 @@
       "ru-RU": "当玩家聊天有敏感词时用*号代替该词",
       "zh-CN": "当玩家聊天有敏感词时用*号代替该词",
       "pt-BR": "当玩家聊天有敏感词时用*号代替该词",
-      "pl-PL": "当玩家聊天有敏感词时用*号代替该词"
+      "pl-PL": "当玩家聊天有敏感词时用*号代替该词",
+      "ja-JP": "当玩家聊天有敏感词时用*号代替该词",
+      "ko-KR": "当玩家聊天有敏感词时用*号代替该词",
+      "zh-Hant": "当玩家聊天有敏感词时用*号代替该词"
     },
     "AssemblyName": "DonotFuck",
     "Path": "DonotFuck.dll",
@@ -1024,7 +978,10 @@
       "ru-RU": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
       "zh-CN": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
       "pt-BR": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
-      "pl-PL": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙"
+      "pl-PL": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+      "ja-JP": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+      "ko-KR": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙",
+      "zh-Hant": "阻止玩家在击败骷髅王/世纪之花前进入地牢/神庙"
     },
     "AssemblyName": "DTEntryBlock",
     "Path": "DTEntryBlock.dll",
@@ -1044,7 +1001,10 @@
       "ru-RU": "Позволяет создавать манекенов-игроков!",
       "zh-CN": "在你的服务器中放置假人！",
       "pt-BR": "在你的服务器中放置假人！",
-      "pl-PL": "在你的服务器中放置假人！"
+      "pl-PL": "在你的服务器中放置假人！",
+      "ja-JP": "在你的服务器中放置假人！",
+      "ko-KR": "在你的服务器中放置假人！",
+      "zh-Hant": "在你的服务器中放置假人！"
     },
     "AssemblyName": "Dummy",
     "Path": "Dummy.dll",
@@ -1067,7 +1027,10 @@
       "ru-RU": "DumpID",
       "zh-CN": "DumpID",
       "pt-BR": "DumpID",
-      "pl-PL": "DumpID"
+      "pl-PL": "DumpID",
+      "ja-JP": "DumpID",
+      "ko-KR": "DumpID",
+      "zh-Hant": "DumpID"
     },
     "AssemblyName": "DumpTerrariaID",
     "Path": "DumpTerrariaID.dll",
@@ -1087,7 +1050,10 @@
       "ru-RU": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
       "zh-CN": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
       "pt-BR": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
-      "pl-PL": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置"
+      "pl-PL": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
+      "ja-JP": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
+      "ko-KR": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置",
+      "zh-Hant": "用/dw命令传送到微光湖、地牢、神庙、花苞、宝藏袋位置"
     },
     "AssemblyName": "DwTP",
     "Path": "DwTP.dll",
@@ -1107,7 +1073,10 @@
       "ru-RU": "提供经济系统API",
       "zh-CN": "提供经济系统API",
       "pt-BR": "提供经济系统API",
-      "pl-PL": "提供经济系统API"
+      "pl-PL": "提供经济系统API",
+      "ja-JP": "提供经济系统API",
+      "ko-KR": "提供经济系统API",
+      "zh-Hant": "提供经济系统API"
     },
     "AssemblyName": "Economics.Core",
     "Path": "Economics.Core.dll",
@@ -1127,7 +1096,10 @@
       "ru-RU": "玩家可以进行交易",
       "zh-CN": "玩家可以进行交易",
       "pt-BR": "玩家可以进行交易",
-      "pl-PL": "玩家可以进行交易"
+      "pl-PL": "玩家可以进行交易",
+      "ja-JP": "玩家可以进行交易",
+      "ko-KR": "玩家可以进行交易",
+      "zh-Hant": "玩家可以进行交易"
     },
     "AssemblyName": "Economics.Deal",
     "Path": "Economics.Deal.dll",
@@ -1149,7 +1121,10 @@
       "ru-RU": "修改NPC掉落货币!",
       "zh-CN": "修改NPC掉落货币!",
       "pt-BR": "修改NPC掉落货币!",
-      "pl-PL": "修改NPC掉落货币!"
+      "pl-PL": "修改NPC掉落货币!",
+      "ja-JP": "修改NPC掉落货币!",
+      "ko-KR": "修改NPC掉落货币!",
+      "zh-Hant": "修改NPC掉落货币!"
     },
     "AssemblyName": "Economics.NPC",
     "Path": "Economics.NPC.dll",
@@ -1171,7 +1146,10 @@
       "ru-RU": "对玩家的物品进行回收!",
       "zh-CN": "对玩家的物品进行回收!",
       "pt-BR": "对玩家的物品进行回收!",
-      "pl-PL": "对玩家的物品进行回收!"
+      "pl-PL": "对玩家的物品进行回收!",
+      "ja-JP": "对玩家的物品进行回收!",
+      "ko-KR": "对玩家的物品进行回收!",
+      "zh-Hant": "对玩家的物品进行回收!"
     },
     "AssemblyName": "Economics.Regain",
     "Path": "Economics.Regain.dll",
@@ -1193,7 +1171,10 @@
       "ru-RU": "提供RPG玩法!",
       "zh-CN": "提供RPG玩法!",
       "pt-BR": "提供RPG玩法!",
-      "pl-PL": "提供RPG玩法!"
+      "pl-PL": "提供RPG玩法!",
+      "ja-JP": "提供RPG玩法!",
+      "ko-KR": "提供RPG玩法!",
+      "zh-Hant": "提供RPG玩法!"
     },
     "AssemblyName": "Economics.RPG",
     "Path": "Economics.RPG.dll",
@@ -1215,7 +1196,10 @@
       "ru-RU": "经济商店!",
       "zh-CN": "经济商店!",
       "pt-BR": "经济商店!",
-      "pl-PL": "经济商店!"
+      "pl-PL": "经济商店!",
+      "ja-JP": "经济商店!",
+      "ko-KR": "经济商店!",
+      "zh-Hant": "经济商店!"
     },
     "AssemblyName": "Economics.Shop",
     "Path": "Economics.Shop.dll",
@@ -1238,7 +1222,10 @@
       "ru-RU": "让玩家拥有技能!",
       "zh-CN": "让玩家拥有技能!",
       "pt-BR": "让玩家拥有技能!",
-      "pl-PL": "让玩家拥有技能!"
+      "pl-PL": "让玩家拥有技能!",
+      "ja-JP": "让玩家拥有技能!",
+      "ko-KR": "让玩家拥有技能!",
+      "zh-Hant": "让玩家拥有技能!"
     },
     "AssemblyName": "Economics.Skill",
     "Path": "Economics.Skill.dll",
@@ -1261,7 +1248,10 @@
       "ru-RU": "提供任务系统!",
       "zh-CN": "提供任务系统!",
       "pt-BR": "提供任务系统!",
-      "pl-PL": "提供任务系统!"
+      "pl-PL": "提供任务系统!",
+      "ja-JP": "提供任务系统!",
+      "ko-KR": "提供任务系统!",
+      "zh-Hant": "提供任务系统!"
     },
     "AssemblyName": "Economics.Task",
     "Path": "Economics.Task.dll",
@@ -1284,7 +1274,10 @@
       "ru-RU": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "zh-CN": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "pt-BR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
-      "pl-PL": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes"
+      "pl-PL": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+      "ja-JP": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+      "ko-KR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+      "zh-Hant": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes"
     },
     "AssemblyName": "Economics.WeaponPlus",
     "Path": "Economics.WeaponPlus.dll",
@@ -1306,7 +1299,10 @@
       "ru-RU": "拥有指定数量物品给指定buff",
       "zh-CN": "拥有指定数量物品给指定buff",
       "pt-BR": "拥有指定数量物品给指定buff",
-      "pl-PL": "拥有指定数量物品给指定buff"
+      "pl-PL": "拥有指定数量物品给指定buff",
+      "ja-JP": "拥有指定数量物品给指定buff",
+      "ko-KR": "拥有指定数量物品给指定buff",
+      "zh-Hant": "拥有指定数量物品给指定buff"
     },
     "AssemblyName": "EndureBoost",
     "Path": "EndureBoost.dll",
@@ -1326,7 +1322,10 @@
       "ru-RU": "增强版Essentials",
       "zh-CN": "增强版Essentials",
       "pt-BR": "增强版Essentials",
-      "pl-PL": "增强版Essentials"
+      "pl-PL": "增强版Essentials",
+      "ja-JP": "增强版Essentials",
+      "ko-KR": "增强版Essentials",
+      "zh-Hant": "增强版Essentials"
     },
     "AssemblyName": "EssentialsPlus",
     "Path": "EssentialsPlus.dll",
@@ -1348,7 +1347,10 @@
       "ru-RU": "Позволяет облегчить работу с добавлением/удалением прав (permissions) для групп через команду /inperms",
       "zh-CN": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
       "pt-BR": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
-      "pl-PL": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限"
+      "pl-PL": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
+      "ja-JP": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
+      "ko-KR": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限",
+      "zh-Hant": "一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限"
     },
     "AssemblyName": "Ezperm",
     "Path": "Ezperm.dll",
@@ -1357,7 +1359,7 @@
   },
   {
     "Name": "FishShop",
-    "Version": "1.4.5.0",
+    "Version": "1.4.6.0",
     "Author": "hufang360",
     "Description": {
       "en-US": "鱼店",
@@ -1368,7 +1370,10 @@
       "ru-RU": "鱼店",
       "zh-CN": "鱼店",
       "pt-BR": "鱼店",
-      "pl-PL": "鱼店"
+      "pl-PL": "鱼店",
+      "ja-JP": "鱼店",
+      "ko-KR": "鱼店",
+      "zh-Hant": "鱼店"
     },
     "AssemblyName": "FishShop",
     "Path": "FishShop.dll",
@@ -1388,7 +1393,10 @@
       "ru-RU": "Позволяет генерировать изображение карты.",
       "zh-CN": "生成地图图片",
       "pt-BR": "生成地图图片",
-      "pl-PL": "生成地图图片"
+      "pl-PL": "生成地图图片",
+      "ja-JP": "生成地图图片",
+      "ko-KR": "生成地图图片",
+      "zh-Hant": "生成地图图片"
     },
     "AssemblyName": "GenerateMap",
     "Path": "GenerateMap.dll",
@@ -1408,7 +1416,10 @@
       "ru-RU": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
       "zh-CN": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
       "pt-BR": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
-      "pl-PL": "死亡后能在鬼魂状态下观战，重连不刷新复活cd"
+      "pl-PL": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "ja-JP": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "ko-KR": "死亡后能在鬼魂状态下观战，重连不刷新复活cd",
+      "zh-Hant": "死亡后能在鬼魂状态下观战，重连不刷新复活cd"
     },
     "AssemblyName": "GhostView",
     "Path": "GhostView.dll",
@@ -1428,7 +1439,10 @@
       "ru-RU": "设置服务器无法进入或禁止生成怪物的时段",
       "zh-CN": "设置服务器无法进入或禁止生成怪物的时段",
       "pt-BR": "设置服务器无法进入或禁止生成怪物的时段",
-      "pl-PL": "设置服务器无法进入或禁止生成怪物的时段"
+      "pl-PL": "设置服务器无法进入或禁止生成怪物的时段",
+      "ja-JP": "设置服务器无法进入或禁止生成怪物的时段",
+      "ko-KR": "设置服务器无法进入或禁止生成怪物的时段",
+      "zh-Hant": "设置服务器无法进入或禁止生成怪物的时段"
     },
     "AssemblyName": "GoodNight",
     "Path": "GoodNight.dll",
@@ -1448,7 +1462,10 @@
       "ru-RU": "Позволяет рассчитать кол-во выпавших кристаллов жизни после смерти игрока пропорционально от его HP",
       "zh-CN": "根据玩家血量计算死亡后会掉落多少生命水晶",
       "pt-BR": "根据玩家血量计算死亡后会掉落多少生命水晶",
-      "pl-PL": "根据玩家血量计算死亡后会掉落多少生命水晶"
+      "pl-PL": "根据玩家血量计算死亡后会掉落多少生命水晶",
+      "ja-JP": "根据玩家血量计算死亡后会掉落多少生命水晶",
+      "ko-KR": "根据玩家血量计算死亡后会掉落多少生命水晶",
+      "zh-Hant": "根据玩家血量计算死亡后会掉落多少生命水晶"
     },
     "AssemblyName": "HardPlayerDrop",
     "Path": "HardPlayerDrop.dll",
@@ -1468,7 +1485,10 @@
       "ru-RU": "Улучшенная команда /help",
       "zh-CN": "更好的Help",
       "pt-BR": "更好的Help",
-      "pl-PL": "更好的Help"
+      "pl-PL": "更好的Help",
+      "ja-JP": "更好的Help",
+      "ko-KR": "更好的Help",
+      "zh-Hant": "更好的Help"
     },
     "AssemblyName": "HelpPlus",
     "Path": "HelpPlus.dll",
@@ -1488,7 +1508,10 @@
       "ru-RU": "一个著名的用于保护房屋的插件。",
       "zh-CN": "一个著名的用于保护房屋的插件。",
       "pt-BR": "一个著名的用于保护房屋的插件。",
-      "pl-PL": "一个著名的用于保护房屋的插件。"
+      "pl-PL": "一个著名的用于保护房屋的插件。",
+      "ja-JP": "一个著名的用于保护房屋的插件。",
+      "ko-KR": "一个著名的用于保护房屋的插件。",
+      "zh-Hant": "一个著名的用于保护房屋的插件。"
     },
     "AssemblyName": "HouseRegion",
     "Path": "HouseRegion.dll",
@@ -1510,7 +1533,10 @@
       "ru-RU": "在命令中给予玩家一段时间的无敌状态。",
       "zh-CN": "在命令中给予玩家一段时间的无敌状态。",
       "pt-BR": "在命令中给予玩家一段时间的无敌状态。",
-      "pl-PL": "在命令中给予玩家一段时间的无敌状态。"
+      "pl-PL": "在命令中给予玩家一段时间的无敌状态。",
+      "ja-JP": "在命令中给予玩家一段时间的无敌状态。",
+      "ko-KR": "在命令中给予玩家一段时间的无敌状态。",
+      "zh-Hant": "在命令中给予玩家一段时间的无敌状态。"
     },
     "AssemblyName": "Invincibility",
     "Path": "Invincibility.dll",
@@ -1530,7 +1556,10 @@
       "ru-RU": "离线物品盒子系统.",
       "zh-CN": "离线物品盒子系统.",
       "pt-BR": "离线物品盒子系统.",
-      "pl-PL": "离线物品盒子系统."
+      "pl-PL": "离线物品盒子系统.",
+      "ja-JP": "离线物品盒子系统.",
+      "ko-KR": "离线物品盒子系统.",
+      "zh-Hant": "离线物品盒子系统."
     },
     "AssemblyName": "ItemBox",
     "Path": "ItemBox.dll",
@@ -1550,7 +1579,10 @@
       "ru-RU": "Show Item Decoration and More!!!",
       "zh-CN": "Show Item Decoration and More!!!",
       "pt-BR": "Show Item Decoration and More!!!",
-      "pl-PL": "Show Item Decoration and More!!!"
+      "pl-PL": "Show Item Decoration and More!!!",
+      "ja-JP": "Show Item Decoration and More!!!",
+      "ko-KR": "Show Item Decoration and More!!!",
+      "zh-Hant": "Show Item Decoration and More!!!"
     },
     "AssemblyName": "ItemDecoration",
     "Path": "ItemDecoration.dll",
@@ -1572,7 +1604,10 @@
       "ru-RU": "指定物品不消耗",
       "zh-CN": "指定物品不消耗",
       "pt-BR": "指定物品不消耗",
-      "pl-PL": "指定物品不消耗"
+      "pl-PL": "指定物品不消耗",
+      "ja-JP": "指定物品不消耗",
+      "ko-KR": "指定物品不消耗",
+      "zh-Hant": "指定物品不消耗"
     },
     "AssemblyName": "ItemPreserver",
     "Path": "ItemPreserver.dll",
@@ -1592,7 +1627,10 @@
       "ru-RU": "允许您为旅途中的角色解锁所有或特定物品",
       "zh-CN": "允许您为旅途中的角色解锁所有或特定物品",
       "pt-BR": "允许您为旅途中的角色解锁所有或特定物品",
-      "pl-PL": "允许您为旅途中的角色解锁所有或特定物品"
+      "pl-PL": "允许您为旅途中的角色解锁所有或特定物品",
+      "ja-JP": "允许您为旅途中的角色解锁所有或特定物品",
+      "ko-KR": "允许您为旅途中的角色解锁所有或特定物品",
+      "zh-Hant": "允许您为旅途中的角色解锁所有或特定物品"
     },
     "AssemblyName": "JourneyUnlock",
     "Path": "JourneyUnlock.dll",
@@ -1612,7 +1650,10 @@
       "ru-RU": "Lagrange.XocMat机器人适配插件",
       "zh-CN": "Lagrange.XocMat机器人适配插件",
       "pt-BR": "Lagrange.XocMat机器人适配插件",
-      "pl-PL": "Lagrange.XocMat机器人适配插件"
+      "pl-PL": "Lagrange.XocMat机器人适配插件",
+      "ja-JP": "Lagrange.XocMat机器人适配插件",
+      "ko-KR": "Lagrange.XocMat机器人适配插件",
+      "zh-Hant": "Lagrange.XocMat机器人适配插件"
     },
     "AssemblyName": "Lagrange.XocMat.Adapter",
     "Path": "Lagrange.XocMat.Adapter.dll",
@@ -1632,7 +1673,10 @@
       "ru-RU": "None",
       "zh-CN": "None",
       "pt-BR": "None",
-      "pl-PL": "None"
+      "pl-PL": "None",
+      "ja-JP": "None",
+      "ko-KR": "None",
+      "zh-Hant": "None"
     },
     "AssemblyName": "LazyAPI",
     "Path": "LazyAPI.dll",
@@ -1654,7 +1698,10 @@
       "ru-RU": "用指令查已装插件",
       "zh-CN": "用指令查已装插件",
       "pt-BR": "用指令查已装插件",
-      "pl-PL": "用指令查已装插件"
+      "pl-PL": "用指令查已装插件",
+      "ja-JP": "用指令查已装插件",
+      "ko-KR": "用指令查已装插件",
+      "zh-Hant": "用指令查已装插件"
     },
     "AssemblyName": "ListPlugins",
     "Path": "ListPlugins.dll",
@@ -1674,7 +1721,10 @@
       "ru-RU": "允许玩家传送到地图上的选定位置.",
       "zh-CN": "允许玩家传送到地图上的选定位置.",
       "pt-BR": "允许玩家传送到地图上的选定位置.",
-      "pl-PL": "允许玩家传送到地图上的选定位置."
+      "pl-PL": "允许玩家传送到地图上的选定位置.",
+      "ja-JP": "允许玩家传送到地图上的选定位置.",
+      "ko-KR": "允许玩家传送到地图上的选定位置.",
+      "zh-Hant": "允许玩家传送到地图上的选定位置."
     },
     "AssemblyName": "MapTp",
     "Path": "MapTp.dll",
@@ -1694,7 +1744,10 @@
       "ru-RU": "迷宫生成器",
       "zh-CN": "迷宫生成器",
       "pt-BR": "迷宫生成器",
-      "pl-PL": "迷宫生成器"
+      "pl-PL": "迷宫生成器",
+      "ja-JP": "迷宫生成器",
+      "ko-KR": "迷宫生成器",
+      "zh-Hant": "迷宫生成器"
     },
     "AssemblyName": "MazeGenerator",
     "Path": "MazeGenerator.dll",
@@ -1716,7 +1769,10 @@
       "ru-RU": "小游戏框架API",
       "zh-CN": "小游戏框架API",
       "pt-BR": "小游戏框架API",
-      "pl-PL": "小游戏框架API"
+      "pl-PL": "小游戏框架API",
+      "ja-JP": "小游戏框架API",
+      "ko-KR": "小游戏框架API",
+      "zh-Hant": "小游戏框架API"
     },
     "AssemblyName": "MiniGamesAPI",
     "Path": "MiniGamesAPI.dll",
@@ -1736,7 +1792,10 @@
       "ru-RU": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
       "zh-CN": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
       "pt-BR": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
-      "pl-PL": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品"
+      "pl-PL": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
+      "ja-JP": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
+      "ko-KR": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品",
+      "zh-Hant": "修改玩家物品数据并自动储存重读,可使用/mw指令给予玩家指定属性的物品"
     },
     "AssemblyName": "ModifyWeapons",
     "Path": "ModifyWeapons.dll",
@@ -1758,7 +1817,10 @@
       "ru-RU": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
       "zh-CN": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
       "pt-BR": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
-      "pl-PL": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔"
+      "pl-PL": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+      "ja-JP": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+      "ko-KR": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔",
+      "zh-Hant": "通过击杀指定BOSS来提升回复怪物血量阶级数，可自定义回复间隔"
     },
     "AssemblyName": "MonsterRegen",
     "Path": "MonsterRegen.dll",
@@ -1778,7 +1840,10 @@
       "ru-RU": "一个简单的音乐播放插件.",
       "zh-CN": "一个简单的音乐播放插件.",
       "pt-BR": "一个简单的音乐播放插件.",
-      "pl-PL": "一个简单的音乐播放插件."
+      "pl-PL": "一个简单的音乐播放插件.",
+      "ja-JP": "一个简单的音乐播放插件.",
+      "ko-KR": "一个简单的音乐播放插件.",
+      "zh-Hant": "一个简单的音乐播放插件."
     },
     "AssemblyName": "MusicPlayer",
     "Path": "MusicPlayer.dll",
@@ -1798,7 +1863,10 @@
       "ru-RU": "禁止代理登录",
       "zh-CN": "禁止代理登录",
       "pt-BR": "禁止代理登录",
-      "pl-PL": "禁止代理登录"
+      "pl-PL": "禁止代理登录",
+      "ja-JP": "禁止代理登录",
+      "ko-KR": "禁止代理登录",
+      "zh-Hant": "禁止代理登录"
     },
     "AssemblyName": "Noagent",
     "Path": "Noagent.dll",
@@ -1818,7 +1886,10 @@
       "ru-RU": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
       "zh-CN": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
       "pt-BR": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
-      "pl-PL": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。"
+      "pl-PL": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+      "ja-JP": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+      "ko-KR": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。",
+      "zh-Hant": "让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。"
     },
     "AssemblyName": "NormalDropsBags",
     "Path": "NormalDropsBags.dll",
@@ -1838,7 +1909,10 @@
       "ru-RU": "留言墙",
       "zh-CN": "留言墙",
       "pt-BR": "留言墙",
-      "pl-PL": "留言墙"
+      "pl-PL": "留言墙",
+      "ja-JP": "留言墙",
+      "ko-KR": "留言墙",
+      "zh-Hant": "留言墙"
     },
     "AssemblyName": "NoteWall",
     "Path": "NoteWall.dll",
@@ -1861,7 +1935,10 @@
       "ru-RU": "在线礼包插件 ",
       "zh-CN": "在线礼包插件 ",
       "pt-BR": "在线礼包插件 ",
-      "pl-PL": "在线礼包插件 "
+      "pl-PL": "在线礼包插件 ",
+      "ja-JP": "在线礼包插件 ",
+      "ko-KR": "在线礼包插件 ",
+      "zh-Hant": "在线礼包插件 "
     },
     "AssemblyName": "OnlineGiftPackage",
     "Path": "OnlineGiftPackage.dll",
@@ -1881,7 +1958,10 @@
       "ru-RU": "拦截指定玩家的数据包",
       "zh-CN": "拦截指定玩家的数据包",
       "pt-BR": "拦截指定玩家的数据包",
-      "pl-PL": "拦截指定玩家的数据包"
+      "pl-PL": "拦截指定玩家的数据包",
+      "ja-JP": "拦截指定玩家的数据包",
+      "ko-KR": "拦截指定玩家的数据包",
+      "zh-Hant": "拦截指定玩家的数据包"
     },
     "AssemblyName": "PacketsStop",
     "Path": "PacketsStop.dll",
@@ -1901,7 +1981,10 @@
       "ru-RU": "PermaBuff",
       "zh-CN": "PermaBuff",
       "pt-BR": "PermaBuff",
-      "pl-PL": "PermaBuff"
+      "pl-PL": "PermaBuff",
+      "ja-JP": "PermaBuff",
+      "ko-KR": "PermaBuff",
+      "zh-Hant": "PermaBuff"
     },
     "AssemblyName": "PermaBuff",
     "Path": "PermaBuff.dll",
@@ -1921,7 +2004,10 @@
       "ru-RU": "玩家战利品单独箱子.",
       "zh-CN": "玩家战利品单独箱子.",
       "pt-BR": "玩家战利品单独箱子.",
-      "pl-PL": "玩家战利品单独箱子."
+      "pl-PL": "玩家战利品单独箱子.",
+      "ja-JP": "玩家战利品单独箱子.",
+      "ko-KR": "玩家战利品单独箱子.",
+      "zh-Hant": "玩家战利品单独箱子."
     },
     "AssemblyName": "PerPlayerLoot",
     "Path": "PerPlayerLoot.dll",
@@ -1941,7 +2027,10 @@
       "ru-RU": "允许为玩家单独设置权限.",
       "zh-CN": "允许为玩家单独设置权限.",
       "pt-BR": "允许为玩家单独设置权限.",
-      "pl-PL": "允许为玩家单独设置权限."
+      "pl-PL": "允许为玩家单独设置权限.",
+      "ja-JP": "允许为玩家单独设置权限.",
+      "ko-KR": "允许为玩家单独设置权限.",
+      "zh-Hant": "允许为玩家单独设置权限."
     },
     "AssemblyName": "PersonalPermission",
     "Path": "PersonalPermission.dll",
@@ -1961,7 +2050,10 @@
       "ru-RU": "判断玩家设备",
       "zh-CN": "判断玩家设备",
       "pt-BR": "判断玩家设备",
-      "pl-PL": "判断玩家设备"
+      "pl-PL": "判断玩家设备",
+      "ja-JP": "判断玩家设备",
+      "ko-KR": "判断玩家设备",
+      "zh-Hant": "判断玩家设备"
     },
     "AssemblyName": "Platform",
     "Path": "Platform.dll",
@@ -1970,7 +2062,7 @@
   },
   {
     "Name": "PlayerManager",
-    "Version": "1.3.4.0",
+    "Version": "1.3.5.0",
     "Author": "hufang360",
     "Description": {
       "en-US": "玩家管理",
@@ -1981,7 +2073,10 @@
       "ru-RU": "玩家管理",
       "zh-CN": "玩家管理",
       "pt-BR": "玩家管理",
-      "pl-PL": "玩家管理"
+      "pl-PL": "玩家管理",
+      "ja-JP": "玩家管理",
+      "ko-KR": "玩家管理",
+      "zh-Hant": "玩家管理"
     },
     "AssemblyName": "PlayerManager",
     "Path": "PlayerManager.dll",
@@ -2001,7 +2096,10 @@
       "ru-RU": "一个插件，用于在指定时间后随机交换玩家位置。",
       "zh-CN": "一个插件，用于在指定时间后随机交换玩家位置。",
       "pt-BR": "一个插件，用于在指定时间后随机交换玩家位置。",
-      "pl-PL": "一个插件，用于在指定时间后随机交换玩家位置。"
+      "pl-PL": "一个插件，用于在指定时间后随机交换玩家位置。",
+      "ja-JP": "一个插件，用于在指定时间后随机交换玩家位置。",
+      "ko-KR": "一个插件，用于在指定时间后随机交换玩家位置。",
+      "zh-Hant": "一个插件，用于在指定时间后随机交换玩家位置。"
     },
     "AssemblyName": "PlayerRandomSwapper",
     "Path": "PlayerRandomSwapper.dll",
@@ -2023,7 +2121,10 @@
       "ru-RU": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
       "zh-CN": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
       "pt-BR": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
-      "pl-PL": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发"
+      "pl-PL": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
+      "ja-JP": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
+      "ko-KR": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发",
+      "zh-Hant": "使用指令设置玩家移动速度 并在冲刺或穿上自定义装备跳跃时触发"
     },
     "AssemblyName": "PlayerSpeed",
     "Path": "PlayerSpeed.dll",
@@ -2045,7 +2146,10 @@
       "ru-RU": "计划书",
       "zh-CN": "计划书",
       "pt-BR": "计划书",
-      "pl-PL": "计划书"
+      "pl-PL": "计划书",
+      "ja-JP": "计划书",
+      "ko-KR": "计划书",
+      "zh-Hant": "计划书"
     },
     "AssemblyName": "ProgressControls",
     "Path": "ProgressControls.dll",
@@ -2065,7 +2169,10 @@
       "ru-RU": "根据进度限制",
       "zh-CN": "根据进度限制",
       "pt-BR": "根据进度限制",
-      "pl-PL": "根据进度限制"
+      "pl-PL": "根据进度限制",
+      "ja-JP": "根据进度限制",
+      "ko-KR": "根据进度限制",
+      "zh-Hant": "根据进度限制"
     },
     "AssemblyName": "ProgressRestrict",
     "Path": "ProgressRestrict.dll",
@@ -2087,7 +2194,10 @@
       "ru-RU": "不是你死就是我活系列",
       "zh-CN": "不是你死就是我活系列",
       "pt-BR": "不是你死就是我活系列",
-      "pl-PL": "不是你死就是我活系列"
+      "pl-PL": "不是你死就是我活系列",
+      "ja-JP": "不是你死就是我活系列",
+      "ko-KR": "不是你死就是我活系列",
+      "zh-Hant": "不是你死就是我活系列"
     },
     "AssemblyName": "PvPer",
     "Path": "PvPer.dll",
@@ -2107,7 +2217,10 @@
       "ru-RU": "生成二维码",
       "zh-CN": "生成二维码",
       "pt-BR": "生成二维码",
-      "pl-PL": "生成二维码"
+      "pl-PL": "生成二维码",
+      "ja-JP": "生成二维码",
+      "ko-KR": "生成二维码",
+      "zh-Hant": "生成二维码"
     },
     "AssemblyName": "QRCoder",
     "Path": "QRCoder.dll",
@@ -2127,7 +2240,10 @@
       "ru-RU": "Позволяет сделать отправляемые в чат сообщения разноцветными.",
       "zh-CN": "使玩家每次说话的颜色不一样.",
       "pt-BR": "使玩家每次说话的颜色不一样.",
-      "pl-PL": "使玩家每次说话的颜色不一样."
+      "pl-PL": "使玩家每次说话的颜色不一样.",
+      "ja-JP": "使玩家每次说话的颜色不一样.",
+      "ko-KR": "使玩家每次说话的颜色不一样.",
+      "zh-Hant": "使玩家每次说话的颜色不一样."
     },
     "AssemblyName": "RainbowChat",
     "Path": "RainbowChat.dll",
@@ -2147,7 +2263,10 @@
       "ru-RU": "Позволяет настраивать команды, которые будет отправлять сервер случайно",
       "zh-CN": "定时随机发送一条广播内容",
       "pt-BR": "定时随机发送一条广播内容",
-      "pl-PL": "定时随机发送一条广播内容"
+      "pl-PL": "定时随机发送一条广播内容",
+      "ja-JP": "定时随机发送一条广播内容",
+      "ko-KR": "定时随机发送一条广播内容",
+      "zh-Hant": "定时随机发送一条广播内容"
     },
     "AssemblyName": "RandomBroadcast",
     "Path": "RandomBroadcast.dll",
@@ -2167,7 +2286,10 @@
       "ru-RU": "Случайная точка спавна. При использовании предметов для возвращения на точку спавна телепортирует в случайные места",
       "zh-CN": "随机出生点，任何回到出生点的操作都会被随机传送",
       "pt-BR": "随机出生点，任何回到出生点的操作都会被随机传送",
-      "pl-PL": "随机出生点，任何回到出生点的操作都会被随机传送"
+      "pl-PL": "随机出生点，任何回到出生点的操作都会被随机传送",
+      "ja-JP": "随机出生点，任何回到出生点的操作都会被随机传送",
+      "ko-KR": "随机出生点，任何回到出生点的操作都会被随机传送",
+      "zh-Hant": "随机出生点，任何回到出生点的操作都会被随机传送"
     },
     "AssemblyName": "RandRespawn",
     "Path": "RandRespawn.dll",
@@ -2187,7 +2309,10 @@
       "ru-RU": "Синхронизация с реальным временем",
       "zh-CN": "同步现实时间",
       "pt-BR": "同步现实时间",
-      "pl-PL": "同步现实时间"
+      "pl-PL": "同步现实时间",
+      "ja-JP": "同步现实时间",
+      "ko-KR": "同步现实时间",
+      "zh-Hant": "同步现实时间"
     },
     "AssemblyName": "RealTime",
     "Path": "RealTime.dll",
@@ -2207,7 +2332,10 @@
       "ru-RU": "Позволяет узнать рецепт предмета командой.",
       "zh-CN": "通过指令获取物品合成表",
       "pt-BR": "通过指令获取物品合成表",
-      "pl-PL": "通过指令获取物品合成表"
+      "pl-PL": "通过指令获取物品合成表",
+      "ja-JP": "通过指令获取物品合成表",
+      "ko-KR": "通过指令获取物品合成表",
+      "zh-Hant": "通过指令获取物品合成表"
     },
     "AssemblyName": "RecipesBrowser",
     "Path": "RecipesBrowser.dll",
@@ -2227,7 +2355,10 @@
       "ru-RU": "Позволяет выполнять задания рыбака без ожидания следующего дня.",
       "zh-CN": "当你完成渔夫任务时可无限接渔夫任务",
       "pt-BR": "当你完成渔夫任务时可无限接渔夫任务",
-      "pl-PL": "当你完成渔夫任务时可无限接渔夫任务"
+      "pl-PL": "当你完成渔夫任务时可无限接渔夫任务",
+      "ja-JP": "当你完成渔夫任务时可无限接渔夫任务",
+      "ko-KR": "当你完成渔夫任务时可无限接渔夫任务",
+      "zh-Hant": "当你完成渔夫任务时可无限接渔夫任务"
     },
     "AssemblyName": "ReFishTask",
     "Path": "ReFishTask.dll",
@@ -2247,7 +2378,10 @@
       "ru-RU": "Добавлена возможность просмотра границ привата.",
       "zh-CN": "为地区添加区域边界视图。",
       "pt-BR": "为地区添加区域边界视图。",
-      "pl-PL": "为地区添加区域边界视图。"
+      "pl-PL": "为地区添加区域边界视图。",
+      "ja-JP": "为地区添加区域边界视图。",
+      "ko-KR": "为地区添加区域边界视图。",
+      "zh-Hant": "为地区添加区域边界视图。"
     },
     "AssemblyName": "RegionView",
     "Path": "RegionView.dll",
@@ -2267,7 +2401,10 @@
       "ru-RU": "При воскрешении возвращает на точку смерти.",
       "zh-CN": "原地复活",
       "pt-BR": "原地复活",
-      "pl-PL": "原地复活"
+      "pl-PL": "原地复活",
+      "ja-JP": "原地复活",
+      "ko-KR": "原地复活",
+      "zh-Hant": "原地复活"
     },
     "AssemblyName": "Respawn",
     "Path": "Respawn.dll",
@@ -2287,7 +2424,10 @@
       "ru-RU": "Добавляет запросы REST на инвентарь",
       "zh-CN": "rest查询背包",
       "pt-BR": "rest查询背包",
-      "pl-PL": "rest查询背包"
+      "pl-PL": "rest查询背包",
+      "ja-JP": "rest查询背包",
+      "ko-KR": "rest查询背包",
+      "zh-Hant": "rest查询背包"
     },
     "AssemblyName": "RestInventory",
     "Path": "RestInventory.dll",
@@ -2307,7 +2447,10 @@
       "ru-RU": "None",
       "zh-CN": "None",
       "pt-BR": "None",
-      "pl-PL": "None"
+      "pl-PL": "None",
+      "ja-JP": "None",
+      "ko-KR": "None",
+      "zh-Hant": "None"
     },
     "AssemblyName": "ReverseWorld",
     "Path": "ReverseWorld.dll",
@@ -2327,7 +2470,10 @@
       "ru-RU": "复制然后修改其他玩家的背包",
       "zh-CN": "复制然后修改其他玩家的背包",
       "pt-BR": "复制然后修改其他玩家的背包",
-      "pl-PL": "复制然后修改其他玩家的背包"
+      "pl-PL": "复制然后修改其他玩家的背包",
+      "ja-JP": "复制然后修改其他玩家的背包",
+      "ko-KR": "复制然后修改其他玩家的背包",
+      "zh-Hant": "复制然后修改其他玩家的背包"
     },
     "AssemblyName": "RolesModifying",
     "Path": "RolesModifying.dll",
@@ -2347,7 +2493,10 @@
       "ru-RU": "使用指令切换沙尘暴",
       "zh-CN": "使用指令切换沙尘暴",
       "pt-BR": "使用指令切换沙尘暴",
-      "pl-PL": "使用指令切换沙尘暴"
+      "pl-PL": "使用指令切换沙尘暴",
+      "ja-JP": "使用指令切换沙尘暴",
+      "ko-KR": "使用指令切换沙尘暴",
+      "zh-Hant": "使用指令切换沙尘暴"
     },
     "AssemblyName": "Sandstorm",
     "Path": "Sandstorm.dll",
@@ -2367,7 +2516,10 @@
       "ru-RU": "服务器工具",
       "zh-CN": "服务器工具",
       "pt-BR": "服务器工具",
-      "pl-PL": "服务器工具"
+      "pl-PL": "服务器工具",
+      "ja-JP": "服务器工具",
+      "ko-KR": "服务器工具",
+      "zh-Hant": "服务器工具"
     },
     "AssemblyName": "ServerTools",
     "Path": "ServerTools.dll",
@@ -2390,7 +2542,10 @@
       "ru-RU": "处理长时间不发送数据包的玩家",
       "zh-CN": "处理长时间不发送数据包的玩家",
       "pt-BR": "处理长时间不发送数据包的玩家",
-      "pl-PL": "处理长时间不发送数据包的玩家"
+      "pl-PL": "处理长时间不发送数据包的玩家",
+      "ja-JP": "处理长时间不发送数据包的玩家",
+      "ko-KR": "处理长时间不发送数据包的玩家",
+      "zh-Hant": "处理长时间不发送数据包的玩家"
     },
     "AssemblyName": "SessionSentinel",
     "Path": "SessionSentinel.dll",
@@ -2410,7 +2565,10 @@
       "ru-RU": "展示装备栏",
       "zh-CN": "展示装备栏",
       "pt-BR": "展示装备栏",
-      "pl-PL": "展示装备栏"
+      "pl-PL": "展示装备栏",
+      "ja-JP": "展示装备栏",
+      "ko-KR": "展示装备栏",
+      "zh-Hant": "展示装备栏"
     },
     "AssemblyName": "ShowArmors",
     "Path": "ShowArmors.dll",
@@ -2430,33 +2588,14 @@
       "ru-RU": "告示牌登录交互插件 支持进服弹窗！",
       "zh-CN": "告示牌登录交互插件 支持进服弹窗！",
       "pt-BR": "告示牌登录交互插件 支持进服弹窗！",
-      "pl-PL": "告示牌登录交互插件 支持进服弹窗！"
+      "pl-PL": "告示牌登录交互插件 支持进服弹窗！",
+      "ja-JP": "告示牌登录交互插件 支持进服弹窗！",
+      "ko-KR": "告示牌登录交互插件 支持进服弹窗！",
+      "zh-Hant": "告示牌登录交互插件 支持进服弹窗！"
     },
     "AssemblyName": "SignInSign",
     "Path": "SignInSign.dll",
     "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "SimultaneousUseFix",
-    "Version": "1.0.11",
-    "Author": "熙恩，感谢恋恋",
-    "Description": {
-      "en-US": "Solve problems such as stuck double hammers and stuck star-spinning machine guns",
-      "de-DE": "解决卡双锤，卡星旋机枪之类的问题",
-      "it-IT": "解决卡双锤，卡星旋机枪之类的问题",
-      "fr-FR": "解决卡双锤，卡星旋机枪之类的问题",
-      "es-ES": "解决卡双锤，卡星旋机枪之类的问题",
-      "ru-RU": "解决卡双锤，卡星旋机枪之类的问题",
-      "zh-CN": "解决卡双锤，卡星旋机枪之类的问题",
-      "pt-BR": "解决卡双锤，卡星旋机枪之类的问题",
-      "pl-PL": "解决卡双锤，卡星旋机枪之类的问题"
-    },
-    "AssemblyName": "SimultaneousUseFix",
-    "Path": "SimultaneousUseFix.dll",
-    "Dependencies": [
-      "Chireiden.TShock.Omni"
-    ],
     "HotReload": true
   },
   {
@@ -2472,7 +2611,10 @@
       "ru-RU": "当玩家进入区域时运行命令。",
       "zh-CN": "当玩家进入区域时运行命令。",
       "pt-BR": "当玩家进入区域时运行命令。",
-      "pl-PL": "当玩家进入区域时运行命令。"
+      "pl-PL": "当玩家进入区域时运行命令。",
+      "ja-JP": "当玩家进入区域时运行命令。",
+      "ko-KR": "当玩家进入区域时运行命令。",
+      "zh-Hant": "当玩家进入区域时运行命令。"
     },
     "AssemblyName": "SmartRegions",
     "Path": "SmartRegions.dll",
@@ -2492,7 +2634,10 @@
       "ru-RU": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
       "zh-CN": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
       "pt-BR": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
-      "pl-PL": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）"
+      "pl-PL": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+      "ja-JP": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+      "ko-KR": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）",
+      "zh-Hant": "给新世界创建NPC住房、仓库、洞穴刷怪场、地狱/微光直通车、地表和地狱世界级平台（轨道）"
     },
     "AssemblyName": "SpawnInfra",
     "Path": "SpawnInfra.dll",
@@ -2512,7 +2657,10 @@
       "ru-RU": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
       "zh-CN": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
       "pt-BR": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
-      "pl-PL": "服主自动执行：无敌、BUFF、物品、命令、设置背包"
+      "pl-PL": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
+      "ja-JP": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
+      "ko-KR": "服主自动执行：无敌、BUFF、物品、命令、设置背包",
+      "zh-Hant": "服主自动执行：无敌、BUFF、物品、命令、设置背包"
     },
     "AssemblyName": "SpclPerm",
     "Path": "SpclPerm.dll",
@@ -2532,7 +2680,10 @@
       "ru-RU": "Manage status text of different plugins",
       "zh-CN": "Manage status text of different plugins",
       "pt-BR": "Manage status text of different plugins",
-      "pl-PL": "Manage status text of different plugins"
+      "pl-PL": "Manage status text of different plugins",
+      "ja-JP": "Manage status text of different plugins",
+      "ko-KR": "Manage status text of different plugins",
+      "zh-Hant": "Manage status text of different plugins"
     },
     "AssemblyName": "StatusTextManager",
     "Path": "StatusTextManager.dll",
@@ -2552,7 +2703,10 @@
       "ru-RU": "禁止特定弹幕在地表产生",
       "zh-CN": "禁止特定弹幕在地表产生",
       "pt-BR": "禁止特定弹幕在地表产生",
-      "pl-PL": "禁止特定弹幕在地表产生"
+      "pl-PL": "禁止特定弹幕在地表产生",
+      "ja-JP": "禁止特定弹幕在地表产生",
+      "ko-KR": "禁止特定弹幕在地表产生",
+      "zh-Hant": "禁止特定弹幕在地表产生"
     },
     "AssemblyName": "SurfaceBlock",
     "Path": "SurfaceBlock.dll",
@@ -2574,7 +2728,10 @@
       "ru-RU": "a survival game",
       "zh-CN": "a survival game",
       "pt-BR": "a survival game",
-      "pl-PL": "a survival game"
+      "pl-PL": "a survival game",
+      "ja-JP": "a survival game",
+      "ko-KR": "a survival game",
+      "zh-Hant": "a survival game"
     },
     "AssemblyName": "SurvivalCrisis",
     "Path": "SurvivalCrisis.dll",
@@ -2594,7 +2751,10 @@
       "ru-RU": "触发开关可以执行指令",
       "zh-CN": "触发开关可以执行指令",
       "pt-BR": "触发开关可以执行指令",
-      "pl-PL": "触发开关可以执行指令"
+      "pl-PL": "触发开关可以执行指令",
+      "ja-JP": "触发开关可以执行指令",
+      "ko-KR": "触发开关可以执行指令",
+      "zh-Hant": "触发开关可以执行指令"
     },
     "AssemblyName": "SwitchCommands",
     "Path": "SwitchCommands.dll",
@@ -2614,7 +2774,10 @@
       "ru-RU": "传送前需要被传送者接受或拒绝请求",
       "zh-CN": "传送前需要被传送者接受或拒绝请求",
       "pt-BR": "传送前需要被传送者接受或拒绝请求",
-      "pl-PL": "传送前需要被传送者接受或拒绝请求"
+      "pl-PL": "传送前需要被传送者接受或拒绝请求",
+      "ja-JP": "传送前需要被传送者接受或拒绝请求",
+      "ko-KR": "传送前需要被传送者接受或拒绝请求",
+      "zh-Hant": "传送前需要被传送者接受或拒绝请求"
     },
     "AssemblyName": "TeleportRequest",
     "Path": "TeleportRequest.dll",
@@ -2634,7 +2797,10 @@
       "ru-RU": "使用指令修改时间加速",
       "zh-CN": "使用指令修改时间加速",
       "pt-BR": "使用指令修改时间加速",
-      "pl-PL": "使用指令修改时间加速"
+      "pl-PL": "使用指令修改时间加速",
+      "ja-JP": "使用指令修改时间加速",
+      "ko-KR": "使用指令修改时间加速",
+      "zh-Hant": "使用指令修改时间加速"
     },
     "AssemblyName": "TimeRate",
     "Path": "TimeRate.dll",
@@ -2654,7 +2820,10 @@
       "ru-RU": "保存计时器",
       "zh-CN": "保存计时器",
       "pt-BR": "保存计时器",
-      "pl-PL": "保存计时器"
+      "pl-PL": "保存计时器",
+      "ja-JP": "保存计时器",
+      "ko-KR": "保存计时器",
+      "zh-Hant": "保存计时器"
     },
     "AssemblyName": "TimerKeeper",
     "Path": "TimerKeeper.dll",
@@ -2674,7 +2843,10 @@
       "ru-RU": "None",
       "zh-CN": "None",
       "pt-BR": "None",
-      "pl-PL": "None"
+      "pl-PL": "None",
+      "ja-JP": "None",
+      "ko-KR": "None",
+      "zh-Hant": "None"
     },
     "AssemblyName": "TownNPCHomes",
     "Path": "TownNPCHomes.dll",
@@ -2694,97 +2866,14 @@
       "ru-RU": "允许服务器端生成“无法获取”的物品",
       "zh-CN": "允许服务器端生成“无法获取”的物品",
       "pt-BR": "允许服务器端生成“无法获取”的物品",
-      "pl-PL": "允许服务器端生成“无法获取”的物品"
+      "pl-PL": "允许服务器端生成“无法获取”的物品",
+      "ja-JP": "允许服务器端生成“无法获取”的物品",
+      "ko-KR": "允许服务器端生成“无法获取”的物品",
+      "zh-Hant": "允许服务器端生成“无法获取”的物品"
     },
     "AssemblyName": "UnseenInventory",
     "Path": "UnseenInventory.dll",
     "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "VBY.GameContentModify",
-    "Version": "1.11.3.0",
-    "Author": "yu",
-    "Description": {
-      "en-US": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "de-DE": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "it-IT": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "fr-FR": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "es-ES": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "ru-RU": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "zh-CN": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "pt-BR": "一些游戏内容的修改 For Terraria v1.4.4.9",
-      "pl-PL": "一些游戏内容的修改 For Terraria v1.4.4.9"
-    },
-    "AssemblyName": "VBY.GameContentModify",
-    "Path": "VBY.GameContentModify.dll",
-    "Dependencies": [
-      "VBY.Common"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "VBY.OtherCommand",
-    "Version": "1.1.1.1",
-    "Author": "yu",
-    "Description": {
-      "en-US": "一些其他的辅助命令",
-      "de-DE": "一些其他的辅助命令",
-      "it-IT": "一些其他的辅助命令",
-      "fr-FR": "一些其他的辅助命令",
-      "es-ES": "一些其他的辅助命令",
-      "ru-RU": "一些其他的辅助命令",
-      "zh-CN": "一些其他的辅助命令",
-      "pt-BR": "一些其他的辅助命令",
-      "pl-PL": "一些其他的辅助命令"
-    },
-    "AssemblyName": "VBY.OtherCommand",
-    "Path": "VBY.OtherCommand.dll",
-    "Dependencies": [
-      "VBY.Common"
-    ],
-    "HotReload": true
-  },
-  {
-    "Name": "VBY.PluginLoader",
-    "Version": "1.0",
-    "Author": "yu",
-    "Description": {
-      "en-US": "None",
-      "de-DE": "None",
-      "it-IT": "None",
-      "fr-FR": "None",
-      "es-ES": "None",
-      "ru-RU": "None",
-      "zh-CN": "None",
-      "pt-BR": "None",
-      "pl-PL": "None"
-    },
-    "AssemblyName": "VBY.PluginLoader",
-    "Path": "VBY.PluginLoader.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "VBY.PluginLoaderAutoReload",
-    "Version": "1.0",
-    "Author": "None",
-    "Description": {
-      "en-US": "检测PluginLoader文件夹更改后自动重载",
-      "de-DE": "检测PluginLoader文件夹更改后自动重载",
-      "it-IT": "检测PluginLoader文件夹更改后自动重载",
-      "fr-FR": "检测PluginLoader文件夹更改后自动重载",
-      "es-ES": "检测PluginLoader文件夹更改后自动重载",
-      "ru-RU": "检测PluginLoader文件夹更改后自动重载",
-      "zh-CN": "检测PluginLoader文件夹更改后自动重载",
-      "pt-BR": "检测PluginLoader文件夹更改后自动重载",
-      "pl-PL": "检测PluginLoader文件夹更改后自动重载"
-    },
-    "AssemblyName": "VBY.PluginLoaderAutoReload",
-    "Path": "VBY.PluginLoaderAutoReload.dll",
-    "Dependencies": [
-      "VBY.PluginLoader"
-    ],
     "HotReload": true
   },
   {
@@ -2800,7 +2889,10 @@
       "ru-RU": "连锁挖矿插件！",
       "zh-CN": "连锁挖矿插件！",
       "pt-BR": "连锁挖矿插件！",
-      "pl-PL": "连锁挖矿插件！"
+      "pl-PL": "连锁挖矿插件！",
+      "ja-JP": "连锁挖矿插件！",
+      "ko-KR": "连锁挖矿插件！",
+      "zh-Hant": "连锁挖矿插件！"
     },
     "AssemblyName": "VeinMiner",
     "Path": "VeinMiner.dll",
@@ -2820,7 +2912,10 @@
       "ru-RU": "投票插件",
       "zh-CN": "投票插件",
       "pt-BR": "投票插件",
-      "pl-PL": "投票插件"
+      "pl-PL": "投票插件",
+      "ja-JP": "投票插件",
+      "ko-KR": "投票插件",
+      "zh-Hant": "投票插件"
     },
     "AssemblyName": "VotePlus",
     "Path": "VotePlus.dll",
@@ -2840,7 +2935,10 @@
       "ru-RU": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "zh-CN": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
       "pt-BR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
-      "pl-PL": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes"
+      "pl-PL": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+      "ja-JP": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+      "ko-KR": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes",
+      "zh-Hant": "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes"
     },
     "AssemblyName": "WeaponPlus",
     "Path": "WeaponPlus.dll",
@@ -2849,41 +2947,24 @@
   },
   {
     "Name": "WorldModify",
-    "Version": "1.0.0.0",
+    "Version": "1.6.0.0",
     "Author": "hufang360",
     "Description": {
-      "en-US": "简易的世界修改器",
-      "de-DE": "简易的世界修改器",
-      "it-IT": "简易的世界修改器",
-      "fr-FR": "简易的世界修改器",
-      "es-ES": "简易的世界修改器",
-      "ru-RU": "简易的世界修改器",
-      "zh-CN": "简易的世界修改器",
-      "pt-BR": "简易的世界修改器",
-      "pl-PL": "简易的世界修改器"
+      "en-US": "简易的世界修改器（测试版本：V20230305）",
+      "de-DE": "简易的世界修改器（测试版本：V20230305）",
+      "it-IT": "简易的世界修改器（测试版本：V20230305）",
+      "fr-FR": "简易的世界修改器（测试版本：V20230305）",
+      "es-ES": "简易的世界修改器（测试版本：V20230305）",
+      "ru-RU": "简易的世界修改器（测试版本：V20230305）",
+      "zh-CN": "简易的世界修改器（测试版本：V20230305）",
+      "pt-BR": "简易的世界修改器（测试版本：V20230305）",
+      "pl-PL": "简易的世界修改器（测试版本：V20230305）",
+      "ja-JP": "简易的世界修改器（测试版本：V20230305）",
+      "ko-KR": "简易的世界修改器（测试版本：V20230305）",
+      "zh-Hant": "简易的世界修改器（测试版本：V20230305）"
     },
     "AssemblyName": "WorldModify",
     "Path": "WorldModify.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "ZHIPlayerManager",
-    "Version": "1.0.2.9",
-    "Author": "z枳",
-    "Description": {
-      "en-US": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
-      "de-DE": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
-      "it-IT": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
-      "fr-FR": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
-      "es-ES": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
-      "ru-RU": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
-      "zh-CN": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
-      "pt-BR": "Player management, provides to modify any player information, allows players to back up, roll back, etc.",
-      "pl-PL": "Player management, provides to modify any player information, allows players to back up, roll back, etc."
-    },
-    "AssemblyName": "ZHIPlayerManager",
-    "Path": "ZHIPlayerManager.dll",
     "Dependencies": [],
     "HotReload": true
   },
@@ -2900,7 +2981,10 @@
       "ru-RU": "进度礼包",
       "zh-CN": "进度礼包",
       "pt-BR": "进度礼包",
-      "pl-PL": "进度礼包"
+      "pl-PL": "进度礼包",
+      "ja-JP": "进度礼包",
+      "ko-KR": "进度礼包",
+      "zh-Hant": "进度礼包"
     },
     "AssemblyName": "ProgressBag",
     "Path": "ProgressBag.dll",
@@ -2922,7 +3006,10 @@
       "ru-RU": "Позволяет редактировать награды за игру в гольф.",
       "zh-CN": "将高尔夫打入球洞会得到奖励.",
       "pt-BR": "将高尔夫打入球洞会得到奖励.",
-      "pl-PL": "将高尔夫打入球洞会得到奖励."
+      "pl-PL": "将高尔夫打入球洞会得到奖励.",
+      "ja-JP": "将高尔夫打入球洞会得到奖励.",
+      "ko-KR": "将高尔夫打入球洞会得到奖励.",
+      "zh-Hant": "将高尔夫打入球洞会得到奖励."
     },
     "AssemblyName": "GolfRewards",
     "Path": "GolfRewards.dll",
@@ -2942,7 +3029,10 @@
       "ru-RU": "记录图格操作.",
       "zh-CN": "记录图格操作.",
       "pt-BR": "记录图格操作.",
-      "pl-PL": "记录图格操作."
+      "pl-PL": "记录图格操作.",
+      "ja-JP": "记录图格操作.",
+      "ko-KR": "记录图格操作.",
+      "zh-Hant": "记录图格操作."
     },
     "AssemblyName": "History",
     "Path": "History.dll",
@@ -2962,7 +3052,10 @@
       "ru-RU": "增强玩家武器弹幕!",
       "zh-CN": "增强玩家武器弹幕!",
       "pt-BR": "增强玩家武器弹幕!",
-      "pl-PL": "增强玩家武器弹幕!"
+      "pl-PL": "增强玩家武器弹幕!",
+      "ja-JP": "增强玩家武器弹幕!",
+      "ko-KR": "增强玩家武器弹幕!",
+      "zh-Hant": "增强玩家武器弹幕!"
     },
     "AssemblyName": "Economics.Projectile",
     "Path": "Economics.Projectile.dll",
@@ -2985,7 +3078,10 @@
       "ru-RU": "Позволяет игрокам моментально воскрешаться после смерти!",
       "zh-CN": "让死者瞬间原地复活的神奇力量！",
       "pt-BR": "让死者瞬间原地复活的神奇力量！",
-      "pl-PL": "让死者瞬间原地复活的神奇力量！"
+      "pl-PL": "让死者瞬间原地复活的神奇力量！",
+      "ja-JP": "让死者瞬间原地复活的神奇力量！",
+      "ko-KR": "让死者瞬间原地复活的神奇力量！",
+      "zh-Hant": "让死者瞬间原地复活的神奇力量！"
     },
     "AssemblyName": "RebirthCoin",
     "Path": "RebirthCoin.dll",
@@ -3005,7 +3101,10 @@
       "ru-RU": "Proxy Protocol on TShock",
       "zh-CN": "Proxy Protocol on TShock",
       "pt-BR": "Proxy Protocol on TShock",
-      "pl-PL": "Proxy Protocol on TShock"
+      "pl-PL": "Proxy Protocol on TShock",
+      "ja-JP": "Proxy Protocol on TShock",
+      "ko-KR": "Proxy Protocol on TShock",
+      "zh-Hant": "Proxy Protocol on TShock"
     },
     "AssemblyName": "ProxyProtocolSocket",
     "Path": "ProxyProtocolSocket.dll",
@@ -3025,7 +3124,10 @@
       "ru-RU": "提升生命值上限",
       "zh-CN": "提升生命值上限",
       "pt-BR": "提升生命值上限",
-      "pl-PL": "提升生命值上限"
+      "pl-PL": "提升生命值上限",
+      "ja-JP": "提升生命值上限",
+      "ko-KR": "提升生命值上限",
+      "zh-Hant": "提升生命值上限"
     },
     "AssemblyName": "LifemaxExtra",
     "Path": "LifemaxExtra.dll",
@@ -3047,7 +3149,10 @@
       "ru-RU": "由GK改良的简短指令插件！",
       "zh-CN": "由GK改良的简短指令插件！",
       "pt-BR": "由GK改良的简短指令插件！",
-      "pl-PL": "由GK改良的简短指令插件！"
+      "pl-PL": "由GK改良的简短指令插件！",
+      "ja-JP": "由GK改良的简短指令插件！",
+      "ko-KR": "由GK改良的简短指令插件！",
+      "zh-Hant": "由GK改良的简短指令插件！"
     },
     "AssemblyName": "ShortCommand",
     "Path": "ShortCommand.dll",
