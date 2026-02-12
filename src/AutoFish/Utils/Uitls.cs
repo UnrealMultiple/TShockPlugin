@@ -1,11 +1,10 @@
 ﻿using System.Globalization;
 using System.Text;
-using Terraria;
 using TShockAPI;
 
 namespace AutoFish.Utils;
 
-public class Tools
+public class Uitls
 {
     /// <summary>
     ///     将当前使用的贵重鱼饵与背包中最末尾的可用鱼饵交换，以避免消耗贵重鱼饵。
@@ -63,10 +62,10 @@ public class Tools
         var sbMsg = new StringBuilder(len * 12);
         for (var i = 0; i < len; i++)
         {
-            var t = len <= 1 ? 0f : (float)i / (len - 1);
-            var r = (int)MathF.Round(sr + (er - sr) * t);
-            var g = (int)MathF.Round(sg + (eg - sg) * t);
-            var b = (int)MathF.Round(sb + (eb - sb) * t);
+            var t = len <= 1 ? 0f : (float) i / (len - 1);
+            var r = (int) MathF.Round(sr + ((er - sr) * t));
+            var g = (int) MathF.Round(sg + ((eg - sg) * t));
+            var b = (int) MathF.Round(sb + ((eb - sb) * t));
             sbMsg.Append("[c/");
             sbMsg.Append(r.ToString("X2"));
             sbMsg.Append(g.ToString("X2"));

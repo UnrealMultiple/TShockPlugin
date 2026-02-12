@@ -1,11 +1,11 @@
+using AutoFishR;
 using System.Text;
-using AutoFish.Data;
 using Terraria.ID;
 using TShockAPI;
 
-namespace AutoFish.AFMain;
+namespace AutoFish;
 
-public partial class AutoFish
+public partial class Plugin
 {
     private static bool CanConsumeFish(TSPlayer player, AFPlayerData.ItemData playerData)
     {
@@ -23,17 +23,17 @@ public partial class AutoFish
     /// </summary>
     private static bool ConsumeBaitAndEnableMode(TSPlayer player, AFPlayerData.ItemData playerData)
     {
-        if (!Config.BaitRewards.Any()) return false;
+        if (!Configuration.Instance.BaitRewards.Any()) return false;
 
         // 查找背包中可以消耗的鱼饵（优先选择能兑换时长最多的）
-        var availableBaits = new List<(int itemId, int slot, int stack, BaitReward reward)>();
+        var availableBaits = new List<(int itemId, int slot, int stack, Configuration.BaitReward reward)>();
 
         for (var i = 0; i < player.TPlayer.inventory.Length; i++)
         {
             var slot = player.TPlayer.inventory[i];
             if (slot.type == player.TPlayer.inventory[player.TPlayer.selectedItem].type) continue; // 跳过手持物品
 
-            if (Config.BaitRewards.TryGetValue(slot.type, out var reward))
+            if (Configuration.Instance.BaitRewards.TryGetValue(slot.type, out var reward))
                 if (slot.stack >= reward.Count)
                     availableBaits.Add((slot.type, i, slot.stack, reward));
         }
@@ -61,8 +61,7 @@ public partial class AutoFish
         // 构建消耗信息
         var itemName = TShock.Utils.GetItemById(bestBait.itemId).Name;
         var consumedMessage = $" [c/F25156:{itemName}]([c/AECDD1:{consumedCount}])";
-
-        player.SendMessage(Lang.T("consumption.enabled", player.Name, consumedMessage), 247, 244, 150);
+        player.SendMessage(GetString($"玩家 [c/46C2D4:{player.Name}] 已开启[c/F5F251:自动钓鱼] 消耗物品为:{consumedMessage}"), 247, 244, 150);
 
         if (playerData.ConsumeStartTime == default)
             playerData.ConsumeStartTime = DateTime.Now;
@@ -79,17 +78,16 @@ public partial class AutoFish
         if (playerData.ConsumeStartTime == default) return;
 
         var expiredMessage = new StringBuilder();
-        expiredMessage.AppendLine(Lang.T("consumption.expired.title"));
+        expiredMessage.AppendLine(GetString("[i:3455][c/AD89D5:自][c/D68ACA:动][c/DF909A:钓][c/E5A894:鱼][i:3454]"));
 
         // 计算经过的时间（分和秒）
         var timeElapsed = DateTime.Now - playerData.ConsumeStartTime;
-        var minutes = (int)timeElapsed.TotalMinutes;
+        var minutes = (int) timeElapsed.TotalMinutes;
         var seconds = timeElapsed.Seconds;
         playerData.ConsumeStartTime = default;
 
-        expiredMessage.AppendLine(Lang.T("consumption.expired.body"));
-        expiredMessage.AppendFormat(Lang.T("consumption.expired.line"), playerData.Name,
-            minutes, seconds);
+        expiredMessage.AppendLine(GetString("以下玩家已关闭[c/76D5B4:自动钓鱼]权限："));
+        expiredMessage.AppendFormat(GetString("[c/A7DDF0:{0}]:[c/74F3C9:{1}分{2}秒]"), playerData.Name, minutes, seconds);
 
         player.SendMessage(expiredMessage.ToString(), 247, 244, 150);
     }

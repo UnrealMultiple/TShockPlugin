@@ -1,18 +1,17 @@
 using AutoFish.Utils;
 using Terraria;
-using Terraria.GameContent.FishDropRules;
 using Terraria.ID;
 using TShockAPI;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
-namespace AutoFish.AFMain;
+namespace AutoFish;
 
-public partial class AutoFish
+public partial class Plugin
 {
     private void OnAI_061_FishingBobber(Projectile projectile,
         HookEvents.Terraria.Projectile.AI_061_FishingBobberEventArgs args)
     {
-        HookUpdate(projectile);
+        this.HookUpdate(projectile);
         args.ContinueExecution = false;
     }
 
@@ -50,13 +49,13 @@ public partial class AutoFish
             return;
         }
 
-        if (!Config.PluginEnabled)
+        if (!Configuration.Instance.Enabled)
         {
             if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] Plugin not enabled");
             return;
         }
 
-        if (!Config.GlobalAutoFishFeatureEnabled)
+        if (!Configuration.Instance.GlobalAutoFishFeatureEnabled)
         {
             if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] Global auto fish feature not enabled");
             return;
@@ -75,13 +74,13 @@ public partial class AutoFish
             return;
         }
 
-        var blockMonsterCatch = Config.GlobalBlockMonsterCatch &&
+        var blockMonsterCatch = Configuration.Instance.GlobalBlockMonsterCatch &&
                                 HasFeaturePermission(player, "filter.monster");
-        var skipFishingAnimation = Config.GlobalSkipFishingAnimation &&
+        var skipFishingAnimation = Configuration.Instance.GlobalSkipFishingAnimation &&
                                    HasFeaturePermission(player, "skipanimation");
-        var blockQuestFish = Config.GlobalBlockQuestFish &&
+        var blockQuestFish = Configuration.Instance.GlobalBlockQuestFish &&
                              HasFeaturePermission(player, "filter.quest");
-        var protectValuableBait = Config.GlobalProtectValuableBaitEnabled &&
+        var protectValuableBait = Configuration.Instance.GlobalProtectValuableBaitEnabled &&
                                   HasFeaturePermission(player, "bait.protect");
 
         // 从数据表中获取与玩家名字匹配的配置项
@@ -102,7 +101,7 @@ public partial class AutoFish
             }
 
             playerData.FirstFishHintShown = true;
-            player.SendInfoMessage(Lang.T("firstFishHint"));
+            player.SendInfoMessage(GetString("检测到你正在钓鱼，可使用 /af fish 开启自动钓鱼。"));
             return;
         }
 
@@ -121,30 +120,30 @@ public partial class AutoFish
         player.TPlayer.Fishing_GetBait(out var baitPower, out var baitType);
         if (baitType == 0) //没有鱼饵，不要继续
         {
-            player.SendErrorMessage(Lang.T("error.noBait"));
-            player.SendInfoMessage(Lang.T("error.autoFishStopped"));
+            player.SendErrorMessage(GetString("没有鱼饵了！"));
+            player.SendInfoMessage(GetString("自动钓鱼已停止，请补充鱼饵后重新抛竿。"));
             ResetHook(hook);
             return;
         }
 
         // 保护贵重鱼饵：将其移到背包末尾以避免被消耗
-        if (protectValuableBait && Config.ValuableBaitItemIds.Contains(baitType))
-            if (Tools.TrySwapValuableBaitToBack(player, baitType, Config.ValuableBaitItemIds,
+        if (protectValuableBait && Configuration.Instance.ValuableBaitItemIds.Contains(baitType))
+            if (Uitls.TrySwapValuableBaitToBack(player, baitType, Configuration.Instance.ValuableBaitItemIds,
                     out var fromSlot, out var toSlot, out var fromType, out var toType))
             {
                 player.SendData(PacketTypes.PlayerSlot, "", player.Index, fromSlot);
                 player.SendData(PacketTypes.PlayerSlot, "", player.Index, toSlot);
                 var fromName = TShock.Utils.GetItemById(fromType).Name;
                 var toName = TShock.Utils.GetItemById(toType).Name;
-                Tools.SendGradientMessage(player,
-                    Lang.T("protectBait.swap", fromName, toName, fromSlot, toSlot));
+                Uitls.SendGradientMessage(player,
+                    "检测到贵重鱼饵，已与背包末尾鱼饵交换：{0} -> {1} (槽位 {2} ↔ {3})".SFormat(fromName, toName, fromSlot, toSlot));
                 ResetHook(hook);
                 return;
             }
             else //就剩下一个了
             {
                 var baitName = TShock.Utils.GetItemById(baitType).Name;
-                Tools.SendGradientMessage(player, Lang.T("protectBait.lastOne", baitName));
+                Uitls.SendGradientMessage(player, "已保护贵重鱼饵 [{0}]，这是最后一个，已停止钓鱼。".SFormat(baitName));
                 ResetHook(hook);
                 player.SendData(PacketTypes.ProjectileDestroy, "", hook.whoAmI);
                 return;
@@ -152,11 +151,11 @@ public partial class AutoFish
 
 
         // 正常状态下与消耗模式下启用自动钓鱼
-        if (Config.GlobalConsumptionModeEnabled)
+        if (Configuration.Instance.GlobalConsumptionModeEnabled)
             //消耗模式判定
             if (!CanConsumeFish(player, playerData))
             {
-                player.SendInfoMessage(Lang.T("consumption.lackItem"));
+                player.SendInfoMessage("服务器已开启消耗模式，你缺少指定物品无法自动钓鱼！使用 /af list 查看需要的物品。");
                 ResetHook(hook);
                 player.SendData(PacketTypes.ProjectileDestroy, "", hook.whoAmI);
                 return;
@@ -166,7 +165,7 @@ public partial class AutoFish
         //获得钓鱼物品方法
         var noCatch = true;
         var activePlayerCount = TShock.Players.Count(p => p != null && p.Active && p.IsLoggedIn);
-        var dropLimit = Tools.GetLimit(activePlayerCount); //根据人数动态调整Limit
+        var dropLimit = Uitls.GetLimit(activePlayerCount); //根据人数动态调整Limit
         var catchMonster = false;
         for (var count = 0; noCatch && count < dropLimit; count++)
         {
@@ -214,7 +213,7 @@ public partial class AutoFish
         //设置为收杆状态
         hook.ai[0] = 1.0f;
 
-        var nowBaitType = (int)hook.localAI[2];
+        var nowBaitType = (int) hook.localAI[2];
 
         // 让服务器扣饵料
         var locate = LocateBait(player, nowBaitType);
@@ -247,7 +246,7 @@ public partial class AutoFish
         {
             SpawnHook(player, hook, origPos);
             //多钩钓鱼代码
-            AddMultiHook(player, hook, origPos);
+            this.AddMultiHook(player, hook, origPos);
         }
 
         // 原版给东西的代码，在kill函数，会把ai[1]给玩家
@@ -298,8 +297,8 @@ public partial class AutoFish
 
     private static void BuffUpdate(TSPlayer player)
     {
-        if (!Config.GlobalBuffFeatureEnabled) return;
-        foreach (var buff in Config.BuffDurations)
+        if (!Configuration.Instance.GlobalBuffFeatureEnabled) return;
+        foreach (var buff in Configuration.Instance.BuffDurations)
             player.SetBuff(buff.Key, buff.Value);
     }
 }

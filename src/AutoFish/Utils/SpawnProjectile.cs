@@ -24,11 +24,13 @@ public class SpawnProjectile
 
         var num = 1000;
         for (var i = 999; i > 0; i--)
+        {
             if (!Main.projectile[i].active)
             {
                 num = i;
                 break;
             }
+        }
 
         if (num == 1000) num = Projectile.FindOldestProjectile();
 
@@ -62,7 +64,7 @@ public class SpawnProjectile
 
             if (ProjectileID.Sets.StardustDragon[Type])
             {
-                var num2 = Main.projectile[(int)projectile.ai[0]].projUUID;
+                var num2 = Main.projectile[(int) projectile.ai[0]].projUUID;
                 if (num2 >= 0) projectile.ai[0] = num2;
             }
         }
