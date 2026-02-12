@@ -1,10 +1,15 @@
-﻿using CaiBotLite.Enums;
-using CaiBotLite.Moulds;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using CaiBotLite.Enums;
 using Newtonsoft.Json.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.WebSockets;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Terraria;
 using TShockAPI;
 
@@ -64,7 +69,6 @@ public static class WebsocketManager
                     await Task.Delay(TimeSpan.FromSeconds(10));
                     HttpClient client = new ();
                     client.Timeout = TimeSpan.FromSeconds(5.0);
-                    //var response = client.GetAsync($"https://{BotServerUrl}/server/token/{CaiBotLite.InitCode}").Result;
                     var response = await client.GetAsync($"https://{BotServerUrl}/server/token/{CaiBotLite.InitCode}");
                     if (response.StatusCode != HttpStatusCode.OK || Config.Settings.Token != "")
                     {
@@ -82,7 +86,6 @@ public static class WebsocketManager
                 }
 
                 WebSocket.Options.SetRequestHeader("authorization", $"Bearer {Config.Settings.Token}");
-                // await WebSocket.ConnectAsync(new Uri($"wss://{BotServerUrl}/server/ws/{Config.Settings.GroupOpenId}/tshock/{Config.Settings.Token}/"), CancellationToken.None);
                 await WebSocket.ConnectAsync(new Uri($"wss://{BotServerUrl}/server/ws/{Config.Settings.GroupOpenId}/tshock/"), CancellationToken.None);
 
 

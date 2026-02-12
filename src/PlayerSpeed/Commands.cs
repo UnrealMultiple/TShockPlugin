@@ -191,7 +191,7 @@ public class Commands
                         return;
                     }
 
-                    var newItemId = add[0].netID;
+                    var newItemId = add[0].type;
                     if (!UpdateItem.Contains(newItemId))
                     {
                         UpdateItem.Add(newItemId);
@@ -223,7 +223,7 @@ public class Commands
                         }
 
                         var del = ToRemove[0];
-                        prop = UpdateItem.Remove(del.netID) ? GetString("移除物品") : GetString("物品不存在");
+                        prop = UpdateItem.Remove(del.type) ? GetString("移除物品") : GetString("物品不存在");
                     }
                     break;
                 default:

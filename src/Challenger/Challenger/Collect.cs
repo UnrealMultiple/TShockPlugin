@@ -58,7 +58,7 @@ internal static class Collect
         val.honeyWet = Collision.honey;
         val.shimmerWet = Collision.shimmer;
         Main.projectileIdentity[Owner, num] = num;
-        Projectile.FindBannerToAssociateTo(spawnSource, val);
+        val.FindBannerToAssociateTo(spawnSource);
         if (val.aiStyle == 1)
         {
             while (val.velocity.X >= 16f || val.velocity.X <= -16f || val.velocity.Y >= 16f || val.velocity.Y < -16f)
@@ -113,7 +113,7 @@ internal static class Collect
 
     public static int MyNewItem(IEntitySource? source, int X, int Y, int Width, int Height, int Type, int Stack = 1, bool noBroadcast = false, int pfix = 0, bool noGrabDelay = false, bool reverseLookup = false)
     {
-        if (WorldGen.gen)
+        if (WorldGen.generatingWorld)
         {
             return 0;
         }
@@ -156,14 +156,14 @@ internal static class Collect
             Item.cachedItemSpawnsByType[Type] += Stack;
             return 400;
         }
-        Main.item[400] = new Item();
+        Main.item[400] = new WorldItem();
         var num = 400;
         if (Main.netMode != 1)
         {
-            num = Item.PickAnItemSlotToSpawnItemOn(reverseLookup, num);
+            num = Item.PickAnItemSlotToSpawnItemOn();
         }
         Main.timeItemSlotCannotBeReusedFor[num] = 0;
-        Main.item[num] = new Item();
+        Main.item[num] = new WorldItem();
         var val = Main.item[num];
         val.SetDefaults(Type);
         val.Prefix(pfix);
@@ -182,9 +182,7 @@ internal static class Collect
             val.velocity.X = Main.rand.Next(-30, 31) * 0.1f;
             val.velocity.Y = Main.rand.Next(-30, 31) * 0.1f;
         }
-        val.active = true;
         val.timeSinceItemSpawned = ItemID.Sets.OverflowProtectionTimeOffset[val.type];
-        Item.numberOfNewItems++;
         if (Options.HighlightNewItems && val.type >= 0 && !ItemID.Sets.NeverAppearsAsNewInInventory[val.type])
         {
             val.newAndShiny = true;

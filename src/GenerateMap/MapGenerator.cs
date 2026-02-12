@@ -57,7 +57,7 @@ internal static class MapGenerator
             for (var y = 0; y < Main.maxTilesY; y++)
             {
                 var tile = Main.Map[x, y];
-                var col = MapHelper.GetMapTileXnaColor(ref tile);
+                var col = MapHelper.GetMapTileXnaColor(tile);
                 image[x, y] = new Rgba32(col.R, col.G, col.B, col.A);
             }
         }

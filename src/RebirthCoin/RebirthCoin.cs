@@ -175,7 +175,7 @@ public class TestPlugin : TerrariaPlugin
             for (var i = 0; i < 50; i++)
             {
                 //如果背包格子出现这个数组里的ID 则选择这个格子的索引值
-                if (Config.ItemID.Contains(plr.TPlayer.inventory[i].netID))
+                if (Config.ItemID.Contains(plr.TPlayer.inventory[i].type))
                 {
                     slot = i;
                     break;

@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
 using TShockAPI;
 
 namespace Challenger;
@@ -92,7 +94,18 @@ public class CProjectile
             Main.projectile[index].timeLeft = 0;
             if (Main.getGoodWorld && Main.projectile[index].aiStyle == 16)
             {
-                Main.projectile[index].TryGettingHitByOtherPlayersExplosives();
+                Main.projectile[index].PrepareBombToBlow();
+                var projRectangle = Main.projectile[index].Damage_GetHitbox();
+    
+                if (Main.projectile[index].hostile)
+                {
+                    Main.projectile[index].Damage_EVP(projRectangle);
+                }
+                else if (Main.projectile[index].friendly && !Main.projectile[index].npcProj && !ProjectileID.Sets.RocketsSkipDamageForPlayers[Main.projectile[index].type] 
+                         && (Main.projectile[index].owner == Main.myPlayer || Main.getGoodWorld))
+                {
+                    Main.projectile[index].BombsHurtPlayers(projRectangle); 
+                }
             }
             Main.projectile[index].active = false;
             TSPlayer.All.SendData((PacketTypes) 29, "", Main.projectile[index].identity, Main.projectile[index].owner, 0f, 0f, 0);
@@ -109,9 +122,20 @@ public class CProjectile
         {
             Main.projectileIdentity[this.proj.owner, this.proj.identity] = -1;
             this.proj.timeLeft = 0;
-            if (Main.getGoodWorld && this.proj.aiStyle == 16)
+            if (Main.getGoodWorld && Main.projectile[index].aiStyle == 16)
             {
-                this.proj.TryGettingHitByOtherPlayersExplosives();
+                Main.projectile[index].PrepareBombToBlow();
+                var projRectangle = Main.projectile[index].Damage_GetHitbox();
+    
+                if (Main.projectile[index].hostile)
+                {
+                    Main.projectile[index].Damage_EVP(projRectangle);
+                }
+                else if (Main.projectile[index].friendly && !Main.projectile[index].npcProj && !ProjectileID.Sets.RocketsSkipDamageForPlayers[type] 
+                         && (Main.projectile[index].owner == Main.myPlayer || Main.getGoodWorld))
+                {
+                    Main.projectile[index].BombsHurtPlayers(projRectangle); 
+                }
             }
             this.proj.active = false;
             TSPlayer.All.SendData((PacketTypes) 29, "", this.proj.identity, this.proj.owner, 0f, 0f, 0);

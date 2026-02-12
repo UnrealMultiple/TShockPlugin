@@ -23,22 +23,26 @@ globalMultiHookMaxNum: 5
 defaultMultiHookEnabled: false
 
 # 消耗模式：需同时开启 global 与玩家个人开关且有剩余时长才会自动钓鱼/多钩。
-# 时长获取：消耗 baitItemIds 列表中的物品，每次消耗 baitConsumeCount 个，换取 rewardDurationMinutes 分钟。
+# 时长获取：消耗 baitRewards 中配置的鱼饵，每种鱼饵有不同的消耗数量和兑换时长。
 globalConsumptionModeEnabled: false
-defaultConsumptionEnabled: false
-baitConsumeCount: 10
-rewardDurationMinutes: 12
-# 可用于兑换时长的鱼饵 ID
-baitItemIds:
-  - 2002 # 天界蜻蜓
-  - 2675 # 魔金虫
-  - 2676 # 火焰苍蝇
-  - 3191 # 魔煞虫
-  - 3194 # 恶魔心
 
-# 过滤不可堆叠渔获：开启后丢弃 maxStack==1 的掉落，重新判定。
-globalSkipNonStackableLoot: true
-defaultSkipNonStackableLoot: true
+# 鱼饵兑换配置：每种鱼饵可配置 count（每次消耗数量）和 minutes（兑换分钟数）
+baitRewards:
+  2002:  # 蠣虫
+    count: 1
+    minutes: 1
+  2675:  # 熟手诱饵
+    count: 1
+    minutes: 5
+  2676:  # 大师诱饵
+    count: 1
+    minutes: 10
+  3191:  # 附魔夜行者
+    count: 1
+    minutes: 8
+  3194:  # 蚜虫
+    count: 1
+    minutes: 5
 
 # 不钓怪物：catchId<0 时丢弃重新判定。
 globalBlockMonsterCatch: true
@@ -46,7 +50,11 @@ defaultBlockMonsterCatch: true
 
 # 跳过钓鱼动画：收杆后直接销毁鱼漂以缩短等待。
 globalSkipFishingAnimation: true
-defaultSkipFishingAnimation: true
+defaultSkipFishingAnimation: false
+
+# 屏蔽任务鱼：设置 questFish=-1 避免钓到当日任务鱼。
+globalBlockQuestFish: true
+defaultBlockQuestFish: false
 
 # 保护贵重鱼饵：尝试把贵重鱼饵交换到背包尾部以避免被消耗。
 globalProtectValuableBaitEnabled: true
@@ -64,30 +72,5 @@ valuableBaitItemIds:
   - 4419 # 金水黾
   - 2895 # 金蠕虫
 
-# 额外渔获/随机渔获：原判定无收获时生效；randomLootEnabled=true 则随机任意物品 ID，false 则从 extraCatchItemIds 中抽取。
-randomLootEnabled: false
-extraCatchItemIds:
-  - 5    # 蘑菇
-  - 72   # 银币
-  - 75   # 坠落之星
-  - 276  # 仙人掌
-  - 3093 # 草药袋
-  - 4345 # 蠕虫罐头
-
 # Buff 表：键为 Buff ID，值为持续秒数；为空则不施加 Buff。
 buffDurations: {}
-
-# 禁用的发射物 ID：多线模式下屏蔽衍生弹幕。
-disabledProjectileIds:
-  - 623
-  - 625
-  - 626
-  - 627
-  - 628
-  - 831
-  - 832
-  - 833
-  - 834
-  - 835
-  - 963
-  - 970

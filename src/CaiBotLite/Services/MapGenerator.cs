@@ -1,8 +1,6 @@
-using MonoMod.RuntimeDetour;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using System;
-using System.IO;
+using MonoMod.RuntimeDetour;
 using Terraria;
 using Terraria.IO;
 using Terraria.Map;
@@ -31,16 +29,30 @@ internal static class MapGenerator
 
     private static MapTile NewWorldMapIndexer(Func<WorldMap, int, int, MapTile> orig, WorldMap self, int x, int y)
     {
+        //Console.WriteLine($"self._tiles[x, y] {Main.Map._tiles.GetLength(0)} {Main.Map._tiles.GetLength(1)}");
+        if (self._tiles == null || x < 0 || y < 0 || x >= self._tiles.GetLength(0) || y >= self._tiles.GetLength(1))
+        {
+            // 如果越界了，返回一个默认的空瓦片，而不是崩溃
+            return new MapTile();  
+        }
         return self._tiles[x, y];
     }
 
     private static void LightWholeMap()
     {
-        Main.Map = new WorldMap(Main.maxTilesX, Main.maxTilesY) { _tiles = new MapTile[Main.maxTilesX, Main.maxTilesY] };
+        Main.Map = new WorldMap(Main.maxTilesX, Main.maxTilesY)
+        {
+            _tiles = new MapTile[Main.maxTilesX, Main.maxTilesY]
+        };
+        // Console.WriteLine($"Main.maxTilesX {Main.maxTilesX} {Main.maxTilesY}");
+        // Console.WriteLine($"Main.Map._tiles[x, y] {Main.Map._tiles.GetLength(0)} {Main.Map._tiles.GetLength(1)}");
+        
         for (var x = 0; x < Main.maxTilesX; x++)
         {
             for (var y = 0; y < Main.maxTilesY; y++)
             {
+                // Console.WriteLine($"{x}, {y}");
+                // Console.WriteLine($"Main.Map._tiles[x, y] {Main.Map._tiles.GetLength(0)} {Main.Map._tiles.GetLength(1)}");
                 Main.Map._tiles[x, y] = MapHelper.CreateMapTile(x, y, byte.MaxValue);
             }
         }
@@ -55,7 +67,7 @@ internal static class MapGenerator
             for (var y = 0; y < Main.maxTilesY; y++)
             {
                 var tile = Main.Map[x, y];
-                var col = MapHelper.GetMapTileXnaColor(ref tile);
+                var col = MapHelper.GetMapTileXnaColor(tile);
                 image[x, y] = new Rgba32(col.R, col.G, col.B, col.A);
             }
         }

@@ -54,7 +54,7 @@ public class Main : TerrariaPlugin
 
         foreach (var item in list)
         {
-            text += $"[i/s{item.stack}:{item.netID}]";
+            text += $"[i/s{item.stack}:{item.type}]";
         }
 
         tSPlayer.SendInfoMessage(GetString($"[i:4131]检测到你的邮箱里面有物品：{text}\n[i:4131]快输入/cbox领取吧 :)"));
@@ -96,7 +96,7 @@ public class Main : TerrariaPlugin
                 return;
             }
 
-            var netId = itemByIdOrName[0].netID;
+            var netId = itemByIdOrName[0].type;
             var num = int.Parse(args.Parameters[2]);
             if (num <= 0)
             {
@@ -112,7 +112,7 @@ public class Main : TerrariaPlugin
             for (var i = 1; i <= num3; i++)
             {
                 var item = new Item();
-                item.netID = netId;
+                item.type = netId;
                 item.prefix = (byte) num4;
                 item.stack = maxStack;
                 list.Add(item);
@@ -121,7 +121,7 @@ public class Main : TerrariaPlugin
             if (num2 != 0)
             {
                 var item = new Item();
-                item.netID = netId;
+                item.type = netId;
                 item.prefix = (byte) num4;
                 item.stack = maxStack;
                 item.stack = num2;
@@ -168,8 +168,8 @@ public class Main : TerrariaPlugin
 
         foreach (var item in list)
         {
-            text += $"[i/s{item.stack}:{item.netID}]";
-            args.Player.GiveItem(item.netID, item.stack, item.prefix);
+            text += $"[i/s{item.stack}:{item.type}]";
+            args.Player.GiveItem(item.type, item.stack, item.prefix);
         }
 
         DB.ClearPlayerInventory(args.Player.Account.ID);

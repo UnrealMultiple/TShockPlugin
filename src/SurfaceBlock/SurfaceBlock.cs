@@ -181,10 +181,10 @@ public class SurfaceBlock : LazyPlugin
         var item = TShock.Utils.GetItemById(plr.SelectedItem.type);
         var stack = plr.SelectedItem.stack;
         var MyItem = Item.NewItem(null, (int) plr.X, (int) plr.Y, item.width, item.height, item.type, stack);
-        item.wet = Collision.WetCollision(item.position, item.width, item.height);
         if (MyItem >= 0 && MyItem < Main.item.Length)
         {
             var newItem = Main.item[MyItem];
+            newItem.wet = Collision.WetCollision(newItem.position, item.width, item.height);
             newItem.playerIndexTheItemIsReservedFor = plr.Index;
             if (plr.TPlayer.selectedItem >= 0 && plr.TPlayer.selectedItem < plr.TPlayer.inventory.Length)
             {

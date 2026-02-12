@@ -23,22 +23,26 @@ globalMultiHookMaxNum: 5
 defaultMultiHookEnabled: false
 
 # Consumption mode: requires both global and personal toggles plus remaining time to auto fish / multi-hook.
-# Duration gain: consume items in baitItemIds, each use consumes baitConsumeCount items for rewardDurationMinutes minutes.
+# Duration gain: consume bait configured in baitRewards, each bait type has different count and minutes.
 globalConsumptionModeEnabled: false
-defaultConsumptionEnabled: false
-baitConsumeCount: 10
-rewardDurationMinutes: 12
-# Bait IDs that can be exchanged for time
-baitItemIds:
-  - 2002 # Heavenfly
-  - 2675 # Golden Delight Bug
-  - 2676 # Firefly
-  - 3191 # Brimstone Bug
-  - 3194 # Demonic Heart Bug
 
-# Filter non-stackable loot: drop items with maxStack==1 and re-roll the catch.
-globalSkipNonStackableLoot: true
-defaultSkipNonStackableLoot: true
+# Bait reward configuration: each bait can configure count (consume amount per use) and minutes (reward minutes)
+baitRewards:
+  2002:  # Worm
+    count: 1
+    minutes: 1
+  2675:  # Journeyman Bait
+    count: 1
+    minutes: 5
+  2676:  # Master Bait
+    count: 1
+    minutes: 10
+  3191:  # Enchanted Nightcrawler
+    count: 1
+    minutes: 8
+  3194:  # Aphid
+    count: 1
+    minutes: 5
 
 # Block monsters: when catchId<0 drop and re-roll.
 globalBlockMonsterCatch: true
@@ -46,7 +50,11 @@ defaultBlockMonsterCatch: true
 
 # Skip fishing animation: destroy the bobber immediately after reeling to shorten wait time.
 globalSkipFishingAnimation: true
-defaultSkipFishingAnimation: true
+defaultSkipFishingAnimation: false
+
+# Block quest fish: set questFish=-1 to avoid catching the daily quest fish.
+globalBlockQuestFish: true
+defaultBlockQuestFish: false
 
 # Protect valuable bait: try to move valuable bait to the end of the inventory to avoid consumption.
 globalProtectValuableBaitEnabled: true
@@ -63,31 +71,6 @@ valuableBaitItemIds:
   - 4362 # Gold Ladybug
   - 4419 # Gold Water Strider
   - 2895 # Gold Worm
-
-# Extra/random loot: triggers when base roll fails; randomLootEnabled=true picks any item ID, false draws from extraCatchItemIds.
-randomLootEnabled: false
-extraCatchItemIds:
-  - 5    # Mushroom
-  - 72   # Silver Coin
-  - 75   # Fallen Star
-  - 276  # Cactus
-  - 3093 # Herb Bag
-  - 4345 # Worm Can
-
+  - 
 # Buff table: key = Buff ID, value = duration in seconds; empty means no buff.
 buffDurations: {}
-
-# Disabled projectile IDs: block spawned projectiles in multi-line mode.
-disabledProjectileIds:
-  - 623
-  - 625
-  - 626
-  - 627
-  - 628
-  - 831
-  - 832
-  - 833
-  - 834
-  - 835
-  - 963
-  - 970

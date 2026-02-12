@@ -50,7 +50,7 @@ public class UserTaskData
                 for (var i = 0; i < player.TPlayer.inventory.Length; i++)
                 {
                     var bgitem = player.TPlayer.inventory[i];
-                    if (bgitem.netID == item.netID)
+                    if (bgitem.type == item.netID)
                     {
                         res.Add(i, bgitem);
                     }
@@ -61,7 +61,7 @@ public class UserTaskData
                 for (var i = 0; i < player.TPlayer.inventory.Length; i++)
                 {
                     var bgitem = player.TPlayer.inventory[i];
-                    if (bgitem.netID == item.netID && bgitem.prefix == item.Prefix)
+                    if (bgitem.type == item.netID && bgitem.prefix == item.Prefix)
                     {
                         res.Add(i, bgitem);
                     }
@@ -97,7 +97,7 @@ public class UserTaskData
                 var stack = 0;
                 if (x.Prefix == 0)
                 {
-                    var items = ply.TPlayer.inventory.Where(f => f.netID == x.netID);
+                    var items = ply.TPlayer.inventory.Where(f => f.type == x.netID);
                     if (items.Any())
                     {
                         items.ForEach(n => stack += n.stack);
@@ -106,7 +106,7 @@ public class UserTaskData
                 }
                 else
                 {
-                    var items = ply.TPlayer.inventory.Where(f => f.netID == x.netID && f.prefix == x.Prefix);
+                    var items = ply.TPlayer.inventory.Where(f => f.type == x.netID && f.prefix == x.Prefix);
                     if (items.Any())
                     {
                         items.ForEach(n => stack += n.stack);
@@ -135,7 +135,7 @@ public class UserTaskData
                     var item = player.TPlayer.inventory[i];
                     if (x.Prefix == 0)
                     {
-                        if (item.netID == x.netID)
+                        if (item.type == x.netID)
                         {
                             if (item.stack >= stack)
                             {
@@ -153,7 +153,7 @@ public class UserTaskData
                     }
                     else
                     {
-                        if (item.netID == x.netID && item.prefix == x.Prefix)
+                        if (item.type == x.netID && item.prefix == x.Prefix)
                         {
                             if (item.stack >= stack)
                             {
@@ -200,7 +200,7 @@ public class UserTaskData
             {
                 if (f.Prefix > 0)
                 {
-                    var items = player.TPlayer.inventory.Where(x => x.netID == f.netID && x.prefix == f.Prefix);
+                    var items = player.TPlayer.inventory.Where(x => x.type == f.netID && x.prefix == f.Prefix);
                     var stack = 0;
                     items.ForEach(x => stack += x.stack);
                     if (stack < f.Stack)
@@ -210,7 +210,7 @@ public class UserTaskData
                 }
                 else
                 {
-                    var items = player.TPlayer.inventory.Where(x => x.netID == f.netID);
+                    var items = player.TPlayer.inventory.Where(x => x.type == f.netID);
                     var stack = 0;
                     items.ForEach(x => stack += x.stack);
                     if (stack < f.Stack)

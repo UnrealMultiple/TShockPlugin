@@ -61,15 +61,15 @@ public partial class Plugin
 
         var ArmorGroup = e.Player.TPlayer.armor
             .Take(10)
-            .Where(x => x.netID != 0)
-            .GroupBy(x => x.netID)
+            .Where(x => x.type != 0)
+            .GroupBy(x => x.type)
             .Where(x => x.Count() > 1)
             .Select(x => x.First());
 
         foreach (var keepArmor in ArmorGroup)
         {
             e.Player.SetBuff(156, 180, true);
-            TShock.Utils.Broadcast(GetString($"[ServerTools] 玩家 [{e.Player.Name}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{keepArmor.netID}]"), Color.DarkRed);
+            TShock.Utils.Broadcast(GetString($"[ServerTools] 玩家 [{e.Player.Name}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{keepArmor.type}]"), Color.DarkRed);
         }
         if (TShock.ServerSideCharacterConfig.Settings.Enabled)
         {
@@ -210,7 +210,7 @@ public partial class Plugin
     {
         if (e.Player != null && e.Player.Dead && Config.Instance.ClearDrop)
         {
-            Main.item[e.ID].active = false;
+            Main.item[e.ID].TurnToAir();
             e.Handled = true;
             NetMessage.SendData(21, -1, -1, null, e.ID, 0, 0);
         }
@@ -319,7 +319,7 @@ public partial class Plugin
             }
         }
         //旅途难度
-        if (Main._currentGameModeInfo.IsJourneyMode && Config.Instance.SetJourneyDifficult)
+        if (Main.IsJourneyMode && Config.Instance.SetJourneyDifficult)
         {
             Utils.SetJourneyDiff(Config.Instance.JourneyMode);
         }

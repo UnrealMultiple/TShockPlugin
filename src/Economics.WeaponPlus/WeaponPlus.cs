@@ -147,15 +147,15 @@ public class WeaponPlus : TerrariaPlugin
         }
         var wPlayer = wPlayers[args.Player.Index];
         var firstItem = args.Player.TPlayer.inventory[0];
-        var select = wPlayer.hasItems.Find((x) => x.id == firstItem.netID);
-        select ??= new WItem(firstItem.netID, args.Player.Name);
-        if ((firstItem == null || firstItem.IsAir || TShock.Utils.GetItemById(firstItem.type).damage <= 0 || firstItem.accessory || firstItem.netID == 0) && (args.Parameters.Count != 1 || !args.Parameters[0].Equals("load", StringComparison.OrdinalIgnoreCase)))
+        var select = wPlayer.hasItems.Find((x) => x.id == firstItem.type);
+        select ??= new WItem(firstItem.type, args.Player.Name);
+        if ((firstItem == null || firstItem.IsAir || TShock.Utils.GetItemById(firstItem.type).damage <= 0 || firstItem.accessory || firstItem.type == 0) && (args.Parameters.Count != 1 || !args.Parameters[0].Equals("load", StringComparison.OrdinalIgnoreCase)))
         {
             args.Player.SendInfoMessage(GetString("请在第一个物品栏内放入武器而不是其他什么东西或空"));
         }
         else if (args.Parameters.Count == 0)
         {
-            args.Player.SendMessage(GetString($"当前物品：[i:{firstItem!.netID}]   共计消耗：{select.allCost}\n{select.ItemMess()}"), this.getRandColor());
+            args.Player.SendMessage(GetString($"当前物品：[i:{firstItem!.type}]   共计消耗：{select.allCost}\n{select.ItemMess()}"), this.getRandColor());
         }
         else if (args.Parameters.Count == 1)
         {
@@ -176,8 +176,8 @@ public class WeaponPlus : TerrariaPlugin
                 }
                 var num = (long) (select.allCost * config.ResetTheWeaponReturnMultiple);
                 Core.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num, config.Currency);
-                wPlayer.hasItems.RemoveAll((x) => x.id == firstItem!.netID);
-                DB.DeleteDB(args.Player.Name, firstItem!.netID);
+                wPlayer.hasItems.RemoveAll((x) => x.id == firstItem!.type);
+                DB.DeleteDB(args.Player.Name, firstItem!.type);
                 ReplaceWeaponsInBackpack(args.Player.TPlayer, select, 1);
                 args.Player.SendMessage(GetString($"完全重置成功！{config.Currency}回收：{num}"), new Color(0, 255, 0));
             }
@@ -421,10 +421,12 @@ public class WeaponPlus : TerrariaPlugin
     {
         return MyNewItem(source, (int) pos.X, (int) pos.Y, (int) randomBox.X, (int) randomBox.Y, Type, Stack, noBroadcast, prefixGiven, noGrabDelay, reverseLookup);
     }
+    
+    // TODO: 可能需要更新
 
     public static int MyNewItem(IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack = 1, bool noBroadcast = false, int pfix = 0, bool noGrabDelay = false, bool reverseLookup = false)
     {
-        if (WorldGen.gen)
+        if (WorldGen.generatingWorld)
         {
             return 0;
         }
@@ -467,14 +469,14 @@ public class WeaponPlus : TerrariaPlugin
             Item.cachedItemSpawnsByType[Type] += Stack;
             return 400;
         }
-        Main.item[400] = new Item();
+        Main.item[400] = new WorldItem();
         var num = 400;
         if (Main.netMode != 1)
         {
-            num = Item.PickAnItemSlotToSpawnItemOn(reverseLookup, num);
+            num = Item.PickAnItemSlotToSpawnItemOn();
         }
         Main.timeItemSlotCannotBeReusedFor[num] = 0;
-        Main.item[num] = new Item();
+        Main.item[num] = new WorldItem();
         var val = Main.item[num];
         val.SetDefaults(Type);
         val.Prefix(pfix);
@@ -493,9 +495,7 @@ public class WeaponPlus : TerrariaPlugin
             val.velocity.X = Main.rand.Next(-30, 31) * 0.1f;
             val.velocity.Y = Main.rand.Next(-30, 31) * 0.1f;
         }
-        val.active = true;
         val.timeSinceItemSpawned = ItemID.Sets.OverflowProtectionTimeOffset[val.type];
-        Item.numberOfNewItems++;
         if (ItemSlot.Options.HighlightNewItems && val.type >= 0 && !ItemID.Sets.NeverAppearsAsNewInInventory[val.type])
         {
             val.newAndShiny = true;
@@ -519,7 +519,7 @@ public class WeaponPlus : TerrariaPlugin
         var whoAmI = player.whoAmI;
         for (var i = 0; i < NetItem.InventoryIndex.Item2; i++)
         {
-            if (player.inventory[i].netID == item.id)
+            if (player.inventory[i].type == item.id)
             {
                 var stack = player.inventory[i].stack;
                 var prefix = player.inventory[i].prefix;
@@ -531,19 +531,19 @@ public class WeaponPlus : TerrariaPlugin
                     {
                         var num2 = MyNewItem(null!, player.Center, new Vector2(1f, 1f), item.id, stack);
                         Main.item[num2].playerIndexTheItemIsReservedFor = whoAmI;
-                        Main.item[num2].prefix = prefix;
+                        Main.item[num2].inner.prefix = prefix;
                         var num3 = (int) (item.orig_damage * 0.05f * item.damage_level);
                         num3 = (num3 < item.damage_level) ? item.damage_level : num3;
                         var obj = Main.item[num2];
-                        obj.damage += num3;
+                        obj.inner.damage += num3;
                         var obj2 = Main.item[num2];
-                        obj2.scale += item.orig_scale * 0.05f * item.scale_level;
+                        obj2.inner.scale += item.orig_scale * 0.05f * item.scale_level;
                         var obj3 = Main.item[num2];
-                        obj3.knockBack += item.orig_knockBack * 0.05f * item.knockBack_level;
-                        Main.item[num2].useAnimation = item.orig_useAnimation - item.useSpeed_level;
-                        Main.item[num2].useTime = (int) (item.orig_useTime * 1f / item.orig_useAnimation * Main.item[num2].useAnimation);
+                        obj3.inner.knockBack += item.orig_knockBack * 0.05f * item.knockBack_level;
+                        Main.item[num2].inner.useAnimation = item.orig_useAnimation - item.useSpeed_level;
+                        Main.item[num2].inner.useTime = (int) (item.orig_useTime * 1f / item.orig_useAnimation * Main.item[num2].useAnimation);
                         var obj4 = Main.item[num2];
-                        obj4.shootSpeed += item.orig_shootSpeed * 0.05f * item.shootSpeed_level;
+                        obj4.inner.shootSpeed += item.orig_shootSpeed * 0.05f * item.shootSpeed_level;
                         TShock.Players[whoAmI].SendData((PacketTypes) 21, null, num2);
                         TShock.Players[whoAmI].SendData((PacketTypes) 22, null, num2);
                         TShock.Players[whoAmI].SendData((PacketTypes) 88, null, num2, 255f, 63f);
@@ -553,7 +553,7 @@ public class WeaponPlus : TerrariaPlugin
                     {
                         var num = MyNewItem(null!, player.Center, new Vector2(1f, 1f), item.id, stack);
                         Main.item[num].playerIndexTheItemIsReservedFor = whoAmI;
-                        Main.item[num].prefix = prefix;
+                        Main.item[num].inner.prefix = prefix;
                         TShock.Players[whoAmI].SendData((PacketTypes) 21, null, num);
                         TShock.Players[whoAmI].SendData((PacketTypes) 22, null, num);
                         break;

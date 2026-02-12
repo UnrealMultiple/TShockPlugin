@@ -421,85 +421,85 @@ public class MiniPack
         for (var i = 0; i < 59; i++)
         {
             var val = plr.inventory[i];
-            if (val.netID != 0)
+            if (val.type != 0)
             {
-                var item = new MiniItem(i, val.prefix, val.netID, val.stack);
+                var item = new MiniItem(i, val.prefix, val.type, val.stack);
                 this.Items.Add(item);
             }
         }
         for (var j = 0; j < NetItem.ArmorSlots; j++)
         {
             var val2 = plr.armor[j];
-            if (val2.netID != 0)
+            if (val2.type != 0)
             {
-                var item2 = new MiniItem(j + 59, val2.prefix, val2.netID, val2.stack);
+                var item2 = new MiniItem(j + 59, val2.prefix, val2.type, val2.stack);
                 this.Items.Add(item2);
             }
         }
         for (var k = 0; k < NetItem.DyeSlots; k++)
         {
             var val3 = plr.dye[k];
-            if (val3.netID != 0)
+            if (val3.type != 0)
             {
-                var item3 = new MiniItem(k + 79, val3.prefix, val3.netID, val3.stack);
+                var item3 = new MiniItem(k + 79, val3.prefix, val3.type, val3.stack);
                 this.Items.Add(item3);
             }
         }
         for (var l = 0; l < NetItem.MiscEquipSlots; l++)
         {
             var val4 = plr.miscEquips[l];
-            if (val4.netID != 0)
+            if (val4.type != 0)
             {
-                var item4 = new MiniItem(l + 89, val4.prefix, val4.netID, val4.stack);
+                var item4 = new MiniItem(l + 89, val4.prefix, val4.type, val4.stack);
                 this.Items.Add(item4);
             }
         }
         for (var m = 0; m < NetItem.MiscDyeSlots; m++)
         {
             var val5 = plr.miscDyes[m];
-            if (val5.netID != 0)
+            if (val5.type != 0)
             {
-                var item5 = new MiniItem(m + 94, val5.prefix, val5.netID, val5.stack);
+                var item5 = new MiniItem(m + 94, val5.prefix, val5.type, val5.stack);
                 this.Items.Add(item5);
             }
         }
         for (var n = 0; n < NetItem.PiggySlots; n++)
         {
             var val6 = plr.bank.item[n];
-            if (val6.netID != 0)
+            if (val6.type != 0)
             {
-                var item6 = new MiniItem(n + 99, val6.prefix, val6.netID, val6.stack);
+                var item6 = new MiniItem(n + 99, val6.prefix, val6.type, val6.stack);
                 this.Items.Add(item6);
             }
         }
         for (var num = 0; num < NetItem.SafeSlots; num++)
         {
             var val7 = plr.bank2.item[num];
-            if (val7.netID != 0)
+            if (val7.type != 0)
             {
-                var item7 = new MiniItem(num + 139, val7.prefix, val7.netID, val7.stack);
+                var item7 = new MiniItem(num + 139, val7.prefix, val7.type, val7.stack);
                 this.Items.Add(item7);
             }
         }
         for (var num2 = 0; num2 < NetItem.ForgeSlots; num2++)
         {
             var val8 = plr.bank3.item[num2];
-            if (val8.netID != 0)
+            if (val8.type != 0)
             {
-                var item8 = new MiniItem(num2 + 180, val8.prefix, val8.netID, val8.stack);
+                var item8 = new MiniItem(num2 + 180, val8.prefix, val8.type, val8.stack);
                 this.Items.Add(item8);
             }
         }
         for (var num3 = 0; num3 < NetItem.VoidSlots; num3++)
         {
             var val9 = plr.bank4.item[num3];
-            if (val9.netID != 0)
+            if (val9.type != 0)
             {
-                var item9 = new MiniItem(num3 + 220, val9.prefix, val9.netID, val9.stack);
+                var item9 = new MiniItem(num3 + 220, val9.prefix, val9.type, val9.stack);
                 this.Items.Add(item9);
             }
         }
-        this.Items.Add(new MiniItem(179, plr.trashItem.prefix, plr.trashItem.netID, plr.trashItem.stack));
+        this.Items.Add(new MiniItem(179, plr.trashItem.prefix, plr.trashItem.type, plr.trashItem.stack));
     }
 
     public void RestoreCharacter(MiniPlayer plr)

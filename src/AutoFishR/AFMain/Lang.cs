@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Reflection;
+using TShockAPI;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
-using TShockAPI;
 
 namespace AutoFish.AFMain;
 
@@ -62,9 +62,7 @@ internal static class Lang
 
         if (!culture.Equals(DefaultCulture, StringComparison.OrdinalIgnoreCase) &&
             TryExportEmbeddedLang(DefaultCulture, path))
-        {
             return;
-        }
 
         File.WriteAllText(path, $"common.enabled: 启用\ncommon.disabled: 禁用\n# missing language for {culture}\n");
     }

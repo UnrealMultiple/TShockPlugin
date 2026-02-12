@@ -24,7 +24,7 @@ public class Deerclops : CNPC
         {
             var obj = this.npc;
             obj.life += 2;
-            this.npc.StrikeNPC(0, 0f, 0, false, false, false, null);
+            this.npc.StrikeNPC(0, 0f, 0, false, false, false, 255,null);
         }
         this.SetState();
         switch (this.state)

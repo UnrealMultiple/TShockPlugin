@@ -155,7 +155,7 @@ public class PlayerSpeed : LazyPlugin
         var now = DateTime.UtcNow;
         var CRight = tplr.controlRight && tplr.direction == 1;
         var CLeft = tplr.controlLeft && tplr.direction == -1;
-        var armor = tplr.armor.Take(20).Any(x => Configuration.Instance.ArmorItem != null && Configuration.Instance.ArmorItem.Contains(x.netID));
+        var armor = tplr.armor.Take(20).Any(x => Configuration.Instance.ArmorItem != null && Configuration.Instance.ArmorItem.Contains(x.type));
         if (data == null)
         {
             return;

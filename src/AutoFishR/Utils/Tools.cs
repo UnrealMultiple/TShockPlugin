@@ -8,14 +8,6 @@ namespace AutoFish.Utils;
 public class Tools
 {
     /// <summary>
-    ///     检查指定玩家是否有任意活跃的浮漂。
-    /// </summary>
-    public static bool BobbersActive(int whoAmI)
-    {
-        return Main.projectile.Any(p => p.active && p.owner == whoAmI && p.bobber);
-    }
-
-    /// <summary>
     ///     将当前使用的贵重鱼饵与背包中最末尾的可用鱼饵交换，以避免消耗贵重鱼饵。
     /// </summary>
     /// <returns>是否发生交换。</returns>
@@ -40,7 +32,7 @@ public class Tools
 
         if (currentSlot == -1) return false;
 
-        // 优先选择末尾的非贵重鱼饵，找不到时才回退到任何末尾鱼饵。
+        // 仅选择末尾的非贵重鱼饵，找不到则返回 false，避免反复交换贵重鱼饵。
         for (var i = inv.Length - 1; i >= 0; i--)
         {
             if (inv[i].bait <= 0) continue;
@@ -49,15 +41,6 @@ public class Tools
             targetItemType = inv[i].type;
             break;
         }
-
-        if (targetSlot == -1)
-            for (var i = inv.Length - 1; i >= 0; i--)
-            {
-                if (inv[i].bait <= 0 || i == currentSlot) continue;
-                targetSlot = i;
-                targetItemType = inv[i].type;
-                break;
-            }
 
         if (targetSlot == -1 || targetSlot == currentSlot) return false;
 

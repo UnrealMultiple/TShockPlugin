@@ -16,7 +16,7 @@ public class PlayerInventory
         var text = "";
         foreach (var item in this.Inventory)
         {
-            text = text + item.netID + "-" + item.prefix + "-" + item.stack + ",";
+            text = text + item.type + "-" + item.prefix + "-" + item.stack + ",";
         }
 
         return text;
@@ -29,7 +29,7 @@ public class PlayerInventory
         {
             var array2 = text.Split("-");
             var item = new Item();
-            item.netID = int.Parse(array2[0]);
+            item.type = int.Parse(array2[0]);
             item.prefix = byte.Parse(array2[1]);
             item.stack = byte.Parse(array2[2]);
             this.Inventory.Add(item);
@@ -51,7 +51,7 @@ public class PlayerInventory
         {
             var array2 = text.Split("-");
             var item = new Item();
-            item.netID = int.Parse(array2[0]);
+            item.type = int.Parse(array2[0]);
             item.prefix = byte.Parse(array2[1]);
             item.stack = int.Parse(array2[2]);
             list.Add(item);
@@ -65,7 +65,7 @@ public class PlayerInventory
         var text = "";
         foreach (var item in items)
         {
-            text = text + item.netID + "-" + item.prefix + "-" + item.stack + ",";
+            text = text + item.type + "-" + item.prefix + "-" + item.stack + ",";
         }
 
         return text.Substring(0, text.Length - 1);

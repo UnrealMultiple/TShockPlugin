@@ -1,4 +1,5 @@
-﻿using LinqToDB.Common;
+﻿using System.Collections.Generic;
+using LinqToDB.Common;
 using Newtonsoft.Json;
 
 namespace CaiBotLite;

@@ -7,103 +7,90 @@ namespace AutoFish.AFMain;
 
 public partial class AutoFish
 {
-    /// <summary>需要关闭钓鱼权限的玩家计数。</summary>
-    private static int ClearCount; //需要关闭钓鱼权限的玩家计数
+    private static bool CanConsumeFish(TSPlayer player, AFPlayerData.ItemData playerData)
+    {
+        if (playerData.CanConsume()) return true;
+        //没有，尝试续费
+        if (ConsumeBaitAndEnableMode(player, playerData)) return true;
+
+        //续费不了
+        ExitTip(player, playerData);
+        return false;
+    }
 
     /// <summary>
-    ///     消耗模式下根据玩家物品开启或关闭自动钓鱼。
+    ///     消耗鱼饵并启用消耗模式。
     /// </summary>
-    private void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs args)
+    private static bool ConsumeBaitAndEnableMode(TSPlayer player, AFPlayerData.ItemData playerData)
     {
-        var player = args.Player;
-        if (!Config.PluginEnabled) return;
-        if (!Config.GlobalConsumptionModeEnabled) return;
-        if (player == null) return;
-        if (!player.IsLoggedIn) return;
-        if (!player.Active) return;
+        if (!Config.BaitRewards.Any()) return false;
 
-        var playerData = PlayerData.GetOrCreatePlayerData(player.Name, CreateDefaultPlayerData);
-        if (!playerData.AutoFishEnabled) return;
+        // 查找背包中可以消耗的鱼饵（优先选择能兑换时长最多的）
+        var availableBaits = new List<(int itemId, int slot, int stack, BaitReward reward)>();
 
-        // 播报玩家消耗鱼饵用的
-        var consumedItemsMessage = new StringBuilder();
-        if (playerData.ConsumptionEnabled) //当消费模式开关已开启时
+        for (var i = 0; i < player.TPlayer.inventory.Length; i++)
         {
-            //由它判断关闭自动钓鱼
-            ExitMod(player, playerData);
-            return;
+            var slot = player.TPlayer.inventory[i];
+            if (slot.type == player.TPlayer.inventory[player.TPlayer.selectedItem].type) continue; // 跳过手持物品
+
+            if (Config.BaitRewards.TryGetValue(slot.type, out var reward))
+                if (slot.stack >= reward.Count)
+                    availableBaits.Add((slot.type, i, slot.stack, reward));
         }
 
-        //当玩家的自动钓鱼没开启时
-        //初始化一个消耗值
-        var requiredBait = Config.BaitConsumeCount;
+        if (!availableBaits.Any()) return false;
 
-        // 统计背包中指定鱼饵的总数量(不包含手上物品)
-        var totalBait = player.TPlayer.inventory.Sum(slot =>
-            Config.BaitItemIds.Contains(slot.type) &&
-            slot.type != player.TPlayer.inventory[player.TPlayer.selectedItem].type
-                ? slot.stack
-                : 0);
+        // 选择能兑换最长时间的鱼饵
+        var bestBait = availableBaits.OrderByDescending(b => b.reward.Minutes).First();
+        var consumedCount = bestBait.reward.Count;
+        var rewardMinutes = bestBait.reward.Minutes;
 
-        // 如果背包中有足够的鱼饵数量 和消耗值相等
-        if (totalBait < requiredBait) return;
-        // 遍历背包58格
-        for (var i = 0; i < player.TPlayer.inventory.Length && requiredBait > 0; i++)
-        {
-            var inventorySlot = player.TPlayer.inventory[i];
+        // 扣除鱼饵
+        var inventorySlot = player.TPlayer.inventory[bestBait.slot];
+        inventorySlot.stack -= consumedCount;
 
-            // 是Config里指定的鱼饵,不是手上的物品
-            if (!Config.BaitItemIds.Contains(inventorySlot.type)) continue;
-            var consumedCount = Math.Min(requiredBait, inventorySlot.stack); // 计算需要消耗的鱼饵数量
+        if (inventorySlot.stack < 1)
+            inventorySlot.TurnToAir();
 
-            inventorySlot.stack -= consumedCount; // 从背包中扣除鱼饵
-            requiredBait -= consumedCount; // 减少消耗值
+        // 同步背包
+        player.SendData(PacketTypes.PlayerSlot, "", player.Index, PlayerItemSlotID.Inventory0 + bestBait.slot);
 
-            // 记录消耗的鱼饵数量到播报
-            consumedItemsMessage.AppendFormat(" [c/F25156:{0}]([c/AECDD1:{1}]) ",
-                TShock.Utils.GetItemById(inventorySlot.type).Name,
-                consumedCount);
+        // 更新时间
+        playerData.ConsumeOverTime = DateTime.Now.AddMinutes(rewardMinutes);
 
-            // 如果背包中的鱼饵数量为0，清空该格子
-            if (inventorySlot.stack < 1) inventorySlot.TurnToAir();
+        // 构建消耗信息
+        var itemName = TShock.Utils.GetItemById(bestBait.itemId).Name;
+        var consumedMessage = $" [c/F25156:{itemName}]([c/AECDD1:{consumedCount}])";
 
-            // 发包给背包里对应格子的鱼饵
-            player.SendData(PacketTypes.PlayerSlot, "", player.Index, PlayerItemSlotID.Inventory0 + i);
-        }
+        player.SendMessage(Lang.T("consumption.enabled", player.Name, consumedMessage), 247, 244, 150);
 
-        // 消耗值清空时，开启自动钓鱼开关
-        if (requiredBait > 0) return;
-        playerData.ConsumptionEnabled = true;
-        playerData.LogTime = DateTime.Now;
-        player.SendMessage(Lang.T("consumption.enabled", player.Name, consumedItemsMessage.ToString()), 247, 244,
-            150);
+        if (playerData.ConsumeStartTime == default)
+            playerData.ConsumeStartTime = DateTime.Now;
+
+        return true;
     }
 
     /// <summary>
     ///     消耗模式下检测超时并关闭自动钓鱼权限。
     /// </summary>
-    private static void ExitMod(TSPlayer player, AFPlayerData.ItemData playerData)
+    private static void ExitTip(TSPlayer player, AFPlayerData.ItemData playerData)
     {
+        //没开启过 不要提示
+        if (playerData.ConsumeStartTime == default) return;
+
         var expiredMessage = new StringBuilder();
         expiredMessage.AppendLine(Lang.T("consumption.expired.title"));
-        expiredMessage.AppendLine(Lang.T("consumption.expired.body", Config.RewardDurationMinutes));
 
-        // 只显示分钟
-        var minutesElapsed = (DateTime.Now - playerData.LogTime).TotalMinutes;
+        // 计算经过的时间（分和秒）
+        var timeElapsed = DateTime.Now - playerData.ConsumeStartTime;
+        var minutes = (int)timeElapsed.TotalMinutes;
+        var seconds = timeElapsed.Seconds;
+        playerData.ConsumeStartTime = default;
 
-        // 时间过期 关闭自动钓鱼权限
-        if (minutesElapsed >= Config.RewardDurationMinutes)
-        {
-            ClearCount++;
-            playerData.ConsumptionEnabled = false;
-            playerData.LogTime = default; // 清空记录时间
-            expiredMessage.AppendFormat(Lang.T("consumption.expired.line"), playerData.Name,
-                Math.Floor(minutesElapsed));
-        }
+        expiredMessage.AppendLine(Lang.T("consumption.expired.body"));
+        expiredMessage.AppendFormat(Lang.T("consumption.expired.line"), playerData.Name,
+            minutes, seconds);
 
-        // 确保有一个玩家计数，只播报一次
-        if (ClearCount <= 0 || expiredMessage.Length <= 0) return;
         player.SendMessage(expiredMessage.ToString(), 247, 244, 150);
-        ClearCount = 0;
     }
 }

@@ -161,9 +161,9 @@ public class MiniPlayer
     {
         var num = this.Player.TPlayer.FindItem(itemID);
         var val = this.Player.TPlayer.inventory[num];
-        var num2 = Item.NewItem(new EntitySource_DebugCommand(), this.Player.TPlayer.position, this.Player.TPlayer.width, this.Player.TPlayer.height, val.type, val.stack, true, val.prefix, false, false);
+        var num2 = Item.NewItem(new EntitySource_DebugCommand(), this.Player.TPlayer.position, this.Player.TPlayer.width, this.Player.TPlayer.height, val.type, val.stack, true, val.prefix, false);
         TSPlayer.All.SendData((PacketTypes) 21, "", num2, 0f, 0f, 0f, 0);
-        val.netID = 0;
+        val.type = 0;
         TSPlayer.All.SendData((PacketTypes) 5, val.Name, this.Player.Index, num, val.prefix, 0f, 0);
     }
 

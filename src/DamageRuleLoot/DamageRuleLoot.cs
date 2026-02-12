@@ -61,9 +61,9 @@ public class DamageRuleLoot : TerrariaPlugin
     #endregion
 
     #region 伤怪建表法+暴击计数法
-    private double OnStrikeNPC(On.Terraria.NPC.orig_StrikeNPC orig, NPC self, int Damage, float knockBack, int hitDirection, bool crit, bool noEffect, bool fromNet, Entity entity)
+    private double OnStrikeNPC(On.Terraria.NPC.orig_StrikeNPC orig, NPC self, int Damage, float knockBack, int hitDirection, bool crit, bool noEffect, bool fromNet,int owner, Entity entity)
     {
-        var damage = orig(self, Damage, knockBack, hitDirection, crit, noEffect, fromNet, entity);
+        var damage = orig(self, Damage, knockBack, hitDirection, crit, noEffect, fromNet, owner, entity);
         var strike = StrikeNPC.strikeNPC.Find(x => x.npcIndex == self.whoAmI && x.npcID == self.netID);
 
         if (fromNet && entity is Player plr)
@@ -116,9 +116,9 @@ public class DamageRuleLoot : TerrariaPlugin
     #endregion
 
     #region 打怪伤BOSS法
-    private double AddDamage(On.Terraria.NPC.orig_StrikeNPC orig, NPC self, int Damage, float knockBack, int hitDirection, bool crit, bool noEffect, bool fromNet, Entity entity)
+    private double AddDamage(On.Terraria.NPC.orig_StrikeNPC orig, NPC self, int Damage, float knockBack, int hitDirection, bool crit, bool noEffect, bool fromNet,int owner, Entity entity)
     {
-        var damage = orig(self, Damage, knockBack, hitDirection, crit, noEffect, fromNet, entity);
+        var damage = orig(self, Damage, knockBack, hitDirection, crit, noEffect, fromNet, owner,entity);
         if (fromNet && entity is Player plr)
         {
             //不是雕像怪
