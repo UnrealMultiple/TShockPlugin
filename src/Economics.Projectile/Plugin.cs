@@ -77,7 +77,7 @@ public class Plugin : TerrariaPlugin
         orig(self, i);
     }
 
-    private void Projectile_Minion_FindTargetInRange(On.Terraria.Projectile.orig_Minion_FindTargetInRange orig, Terraria.Projectile self, int startAttackRange, ref int attackTarget, bool skipIfCannotHitWithOwnBody, Func<Entity, int, bool> customEliminationCheck)
+    private void Projectile_Minion_FindTargetInRange(On.Terraria.Projectile.orig_Minion_FindTargetInRange orig, Terraria.Projectile self, int startAttackRange, ref int attackTarget, bool skipIfCannotHitWithOwnBody, Func<Entity, int, bool> customEliminationCheck, bool respectOwnerTarget)
     {
         if (Config.Instance.ProjectileReplace.TryGetValue(self.type, out var data) && data != null)
         {
@@ -141,7 +141,8 @@ public class Plugin : TerrariaPlugin
                 }
             }
         }
-        orig(self, startAttackRange, ref attackTarget, skipIfCannotHitWithOwnBody, customEliminationCheck);
+
+        orig(self, startAttackRange, ref attackTarget, skipIfCannotHitWithOwnBody, customEliminationCheck, respectOwnerTarget);
     }
 
     private void Onupdate(EventArgs args)
@@ -176,7 +177,7 @@ public class Plugin : TerrariaPlugin
             && !e.Player.Dead
             && e.Player.TPlayer.controlUseItem
             && this.useCD[e.PlayerId] == 0
-            && Config.Instance.ItemReplace.TryGetValue(e.Player.TPlayer.HeldItem.netID, out var data)
+            && Config.Instance.ItemReplace.TryGetValue(e.Player.TPlayer.HeldItem.type, out var data)
             && data != null)
         {
             if (data.UseAmmo)
@@ -196,7 +197,7 @@ public class Plugin : TerrariaPlugin
                     //速度
                     var speed = e.Player.TPlayer.ItemOffSet().ToLenOf(proj.Speed);
                     var guid = Guid.NewGuid().ToString();
-                    var index = Core.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Player.TPlayer.position, speed, proj.ID, (int) damage, knockback, e.PlayerId, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft, guid);
+                    var index = Core.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.type), e.Player.TPlayer.position, speed, proj.ID, (int) damage, knockback, e.PlayerId, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft, guid);
                     TSPlayer.All.SendData(PacketTypes.ProjectileNew, null, index);
                     this.useCD[e.Player.Index] += e.Player.SelectedItem.useTime;
                     if (proj.AutoFollow)
@@ -218,7 +219,7 @@ public class Plugin : TerrariaPlugin
 
         if (e.Player.TPlayer.controlUseItem && e.Player.SelectedItem.useAmmo != 0)
         {
-            if (Config.Instance.ItemReplace.TryGetValue(e.Player.SelectedItem.netID, out var pr) && pr != null)
+            if (Config.Instance.ItemReplace.TryGetValue(e.Player.SelectedItem.type, out var pr) && pr != null)
             {
                 if (pr.UseAmmo)
                 {
@@ -268,7 +269,7 @@ public class Plugin : TerrariaPlugin
 
                                 var guid = Guid.NewGuid().ToString();
 
-                                var index = Core.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.netID), e.Position, speed, proj.ID, (int) damage, knockback, e.Owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft, guid);
+                                var index = Core.Utils.SpawnProjectile.NewProjectile(e.Player.TPlayer.GetItemSource_OpenItem(e.Player.SelectedItem.type), e.Position, speed, proj.ID, (int) damage, knockback, e.Owner, proj.AI[0], proj.AI[1], proj.AI[2], proj.TimeLeft, guid);
 
                                 e.Player.SendData(PacketTypes.ProjectileNew, "", index);
 

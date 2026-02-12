@@ -5,7 +5,7 @@ using TShockAPI;
 namespace AutoFish.AFMain;
 
 /// <summary>
-///     玩家侧指令处理。
+///     玩家侧指令处理
 /// </summary>
 public partial class Commands
 {
@@ -28,10 +28,6 @@ public partial class Commands
             helpMessage.Append('\n').Append(Lang.T("help.player.hook"));
         }
 
-        if (AutoFish.Config.GlobalSkipNonStackableLoot &&
-            AutoFish.HasFeaturePermission(player, "filter.unstackable"))
-            helpMessage.Append('\n').Append(Lang.T("help.player.stack"));
-
         if (AutoFish.Config.GlobalBlockMonsterCatch && AutoFish.HasFeaturePermission(player, "filter.monster"))
             helpMessage.Append('\n').Append(Lang.T("help.player.monster"));
 
@@ -39,11 +35,11 @@ public partial class Commands
             AutoFish.HasFeaturePermission(player, "skipanimation"))
             helpMessage.Append('\n').Append(Lang.T("help.player.anim"));
 
+        if (AutoFish.Config.GlobalBlockQuestFish && AutoFish.HasFeaturePermission(player, "filter.quest"))
+            helpMessage.Append('\n').Append(Lang.T("help.player.quest"));
+
         if (AutoFish.Config.GlobalConsumptionModeEnabled)
             helpMessage.Append('\n').Append(Lang.T("help.player.list"));
-
-        if (AutoFish.Config.ExtraCatchItemIds.Count != 0)
-            helpMessage.Append('\n').Append(Lang.T("help.player.loot"));
 
         if (AutoFish.Config.GlobalProtectValuableBaitEnabled &&
             AutoFish.HasFeaturePermission(player, "bait.protect"))
@@ -53,7 +49,7 @@ public partial class Commands
         }
     }
 
-    private static bool HandlePlayerCommand(CommandArgs args, AFPlayerData.ItemData playerData, double remainingMinutes)
+    private static bool HandlePlayerCommand(CommandArgs args, AFPlayerData.ItemData playerData)
     {
         var player = args.Player;
         var sub = args.Parameters[0].ToLower();
@@ -109,26 +105,7 @@ public partial class Commands
                     args.Player.SendSuccessMessage(Lang.T("success.toggle.multi", args.Player.Name, multiVerb));
                     return true;
                 case "status":
-                    SendStatus(args.Player, playerData, remainingMinutes);
-                    return true;
-                case "stack":
-                    if (!AutoFish.Config.GlobalSkipNonStackableLoot)
-                    {
-                        args.Player.SendWarningMessage(Lang.T("warn.stackDisabled"));
-                        return true;
-                    }
-
-                    if (!AutoFish.HasFeaturePermission(player, "filter.unstackable"))
-                    {
-                        args.Player.SendErrorMessage(Lang.T("error.noPermission.stack"));
-                        return true;
-                    }
-
-                    playerData.SkipNonStackableLoot = !playerData.SkipNonStackableLoot;
-                    var stackVerb = Lang.T(playerData.SkipNonStackableLoot
-                        ? "common.enabledVerb"
-                        : "common.disabledVerb");
-                    args.Player.SendSuccessMessage(Lang.T("success.toggle.stack", args.Player.Name, stackVerb));
+                    SendStatus(args.Player, playerData);
                     return true;
                 case "monster":
                     if (!AutoFish.Config.GlobalBlockMonsterCatch)
@@ -168,6 +145,25 @@ public partial class Commands
                         : "common.disabledVerb");
                     args.Player.SendSuccessMessage(Lang.T("success.toggle.anim", args.Player.Name, animVerb));
                     return true;
+                case "quest":
+                    if (!AutoFish.Config.GlobalBlockQuestFish)
+                    {
+                        args.Player.SendWarningMessage(Lang.T("warn.questDisabled"));
+                        return true;
+                    }
+
+                    if (!AutoFish.HasFeaturePermission(player, "filter.quest"))
+                    {
+                        args.Player.SendErrorMessage(Lang.T("error.noPermission.quest"));
+                        return true;
+                    }
+
+                    playerData.BlockQuestFish = !playerData.BlockQuestFish;
+                    var questVerb = Lang.T(playerData.BlockQuestFish
+                        ? "common.enabledVerb"
+                        : "common.disabledVerb");
+                    args.Player.SendSuccessMessage(Lang.T("success.toggle.quest", args.Player.Name, questVerb));
+                    return true;
                 case "bait":
                     if (!AutoFish.Config.GlobalProtectValuableBaitEnabled)
                     {
@@ -204,17 +200,19 @@ public partial class Commands
                         AutoFish.Config.ValuableBaitItemIds.Select(x =>
                             TShock.Utils.GetItemById(x).Name + "([c/92C5EC:{0}])".SFormat(x))));
                     return true;
-                case "list" when AutoFish.Config.BaitItemIds.Any():
-                    args.Player.SendInfoMessage(Lang.T("info.consumeListHeader") + string.Join(", ",
-                        AutoFish.Config.BaitItemIds.Select(x =>
-                            TShock.Utils.GetItemById(x).Name + "([c/92C5EC:{0}])".SFormat(x))));
-                    args.Player.SendSuccessMessage(Lang.T("info.exchangeRule", AutoFish.Config.BaitConsumeCount,
-                        AutoFish.Config.RewardDurationMinutes));
-                    return true;
-                case "loot" when AutoFish.Config.ExtraCatchItemIds.Any():
-                    args.Player.SendInfoMessage(Lang.T("info.extraLootHeader") + string.Join(", ",
-                        AutoFish.Config.ExtraCatchItemIds.Select(x =>
-                            TShock.Utils.GetItemById(x).Name + "([c/92C5EC:{0}])".SFormat(x))));
+                case "list" when AutoFish.Config.BaitRewards.Any():
+                    var sb = new StringBuilder();
+                    sb.Append(Lang.T("info.consumeListHeader"));
+                    foreach (var kvp in AutoFish.Config.BaitRewards.OrderByDescending(x => x.Value.Minutes))
+                    {
+                        var itemName = TShock.Utils.GetItemById(kvp.Key).Name;
+                        sb.AppendFormat(Lang.T("info.baitReward"),
+                            $"[c/92C5EC:{itemName}]([c/AECDD1:{kvp.Key}])",
+                            kvp.Value.Count,
+                            kvp.Value.Minutes);
+                    }
+
+                    args.Player.SendInfoMessage(sb.ToString());
                     return true;
                 default:
                     return false;
@@ -250,7 +248,8 @@ public partial class Commands
 
                     if (personalMax > AutoFish.Config.GlobalMultiHookMaxNum)
                     {
-                        args.Player.SendWarningMessage(Lang.T("warn.hookLimited", AutoFish.Config.GlobalMultiHookMaxNum));
+                        args.Player.SendWarningMessage(
+                            Lang.T("warn.hookLimited", AutoFish.Config.GlobalMultiHookMaxNum));
                         personalMax = AutoFish.Config.GlobalMultiHookMaxNum;
                     }
 

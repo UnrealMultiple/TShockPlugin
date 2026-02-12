@@ -35,32 +35,55 @@ public class AFPlayerData
     /// </summary>
     public class ItemData
     {
-        public ItemData(string name = "", bool autoFishEnabled = true, bool consumptionEnabled = true,
+        public ItemData(string name = "", bool autoFishEnabled = true,
             bool buffEnabled = false, int hookMaxNum = 3, bool multiHookEnabled = false,
-            bool firstFishHintShown = false, bool skipNonStackableLoot = true, bool blockMonsterCatch = false,
-            bool skipFishingAnimation = true, bool protectValuableBaitEnabled = true)
+            bool firstFishHintShown = false, bool blockMonsterCatch = false,
+            bool skipFishingAnimation = true, bool protectValuableBaitEnabled = true, bool blockQuestFish = true)
         {
             Name = name ?? "";
             AutoFishEnabled = autoFishEnabled;
-            ConsumptionEnabled = consumptionEnabled;
             BuffEnabled = buffEnabled;
             HookMaxNum = hookMaxNum;
             MultiHookEnabled = multiHookEnabled;
             FirstFishHintShown = firstFishHintShown;
-            SkipNonStackableLoot = skipNonStackableLoot;
             BlockMonsterCatch = blockMonsterCatch;
             SkipFishingAnimation = skipFishingAnimation;
             ProtectValuableBaitEnabled = protectValuableBaitEnabled;
+            BlockQuestFish = blockQuestFish;
+            ConsumeOverTime = DateTime.Now;
+            ConsumeStartTime = default;
         }
+
+        public bool CanConsume()
+        {
+            if (GetRemainTimeInMinute() <= 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public double GetRemainTimeInMinute()
+        {
+            var minutesHave = (ConsumeOverTime - DateTime.Now).TotalMinutes;
+            return minutesHave;
+        }
+
+        public (int minutes, int seconds) GetRemainTime()
+        {
+            var timeSpan = ConsumeOverTime - DateTime.Now;
+            if (timeSpan.TotalSeconds <= 0)
+                return (0, 0);
+            return ((int)timeSpan.TotalMinutes, timeSpan.Seconds);
+        }
+
 
         //玩家名字
         public string Name { get; set; }
 
         //总开关
         public bool AutoFishEnabled { get; set; }
-
-        //消耗模式开关
-        public bool ConsumptionEnabled { get; set; }
 
         //BUFF开关
         public bool BuffEnabled { get; set; }
@@ -74,19 +97,22 @@ public class AFPlayerData
         //是否已提示自动钓鱼
         public bool FirstFishHintShown { get; set; }
 
-        //过滤不可堆叠物品
-        public bool SkipNonStackableLoot { get; set; } = true;
-
         //不钓怪物
         public bool BlockMonsterCatch { get; set; }
 
         //跳过上鱼动画
         public bool SkipFishingAnimation { get; set; } = true;
 
+        //屏蔽任务鱼
+        public bool BlockQuestFish { get; set; } = true;
+
         //保护贵重鱼饵
         public bool ProtectValuableBaitEnabled { get; set; } = true;
 
-        //记录时间
-        public DateTime LogTime { get; set; }
+        //记录时间，用于判定
+        public DateTime ConsumeOverTime { get; set; }
+
+        //记录时间，仅用于提示
+        public DateTime ConsumeStartTime { get; set; }
     }
 }

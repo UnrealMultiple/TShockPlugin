@@ -47,7 +47,7 @@ public class MainPlugin(Main game) : TerrariaPlugin(game)
                 }
 
                 item.stack = item.maxStack; // 设置物品堆叠数为最大值
-                args.Player.SendData(PacketTypes.ChestItem, "", i, j, item.netID, item.prefix);
+                args.Player.SendData(PacketTypes.ChestItem, "", i, j, item.type, item.prefix);
             }
         }
     }

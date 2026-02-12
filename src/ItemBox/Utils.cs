@@ -9,7 +9,7 @@ internal class Utils
         List<Item> list;
         list = DB.GetUserInfo(acId);
         var item = new Item();
-        item.netID = itemId;
+        item.type = itemId;
         item.prefix = (byte) prefix;
         item.stack = stack;
         list.Add(item);

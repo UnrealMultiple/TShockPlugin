@@ -42,12 +42,12 @@ public class PluginContainer : TerrariaPlugin
 
     public static void ReverseWorld(bool nokick = true)
     {
-        var chestList = new List<Chest>(Main.chest);
-        foreach (var chest in chestList)
+        for (var i = 0; i < Main.chest.Length; i++)
         {
+            var chest = Main.chest[i];
             if (chest != null)
             {
-                ReverseChest(chest);
+                Main.chest[i] = ReverseChest(chest);
             }
         }
 
@@ -112,7 +112,7 @@ public class PluginContainer : TerrariaPlugin
     }
 
 
-    private static void ReverseChest(Chest chest)
+    private static Chest ReverseChest(Chest chest)
     {
         var maxX = Main.maxTilesX - 1;
         var maxY = Main.maxTilesY - 1;
@@ -121,8 +121,12 @@ public class PluginContainer : TerrariaPlugin
         if (chest.x >= 0 && chest.x < maxX && chest.y >= 0 && chest.y < maxY)
         {
             // 反转 chest 的位置
-            chest.y = Main.UnderworldLayer - 1 - chest.y - 1;
+            var newChest = new Chest(chest.index, chest.x, Main.UnderworldLayer - 1 - chest.y - 1) { item = chest.item, maxItems = chest.maxItems };
+            return newChest;
         }
+
+        return chest;
+
     }
 
     public static void Method(CommandArgs args)

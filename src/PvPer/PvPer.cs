@@ -466,7 +466,7 @@ public class PvPer : TerrariaPlugin
         {
             foreach (var inventoryItem in plr.TPlayer.inventory)
             {
-                if (inventoryItem.netID == ammo && inventoryItem.prefix != 0)
+                if (inventoryItem.type == ammo && inventoryItem.prefix != 0)
                 {
                     this.DisableAndSendErrorMessage(plr, GetString("使用了前缀弹药"), GetString($"请移除PvP中的前缀弹药：{inventoryItem.Name}"));
                     break;
@@ -492,21 +492,21 @@ public class PvPer : TerrariaPlugin
         var duplicateItems = new Dictionary<int, bool>();
         foreach (var equippedItem in plr.TPlayer.armor)
         {
-            if (duplicateItems.ContainsKey(equippedItem.netID))
+            if (duplicateItems.ContainsKey(equippedItem.type))
             {
                 this.DisableAndSendErrorMessage(plr, GetString("使用了重复饰品"), GetString($"请移除PvP中的重复饰品：{equippedItem.Name}"));
                 break;
             }
-            else if (equippedItem.netID != 0)
+            else if (equippedItem.type != 0)
             {
-                duplicateItems.Add(equippedItem.netID, true);
+                duplicateItems.Add(equippedItem.type, true);
             }
         }
     }
 
     public void Check7AccsSlot(TSPlayer plr)
     {
-        if (Config.Check7 || plr.TPlayer.armor[9].netID != 0)
+        if (Config.Check7 || plr.TPlayer.armor[9].type != 0)
         {
             this.DisableAndSendErrorMessage(plr, GetString("使用了第七个饰品槽"), GetString("PvP中不允许使用第七个饰品槽"));
         }

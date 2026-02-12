@@ -62,7 +62,7 @@ public class Shop : TerrariaPlugin
             for (var j = 0; j < player.TPlayer.inventory.Length; j++)
             {
                 var item = player.TPlayer.inventory[j];
-                if (item.netID == term.netID)
+                if (item.type == term.netID)
                 {
                     if (item.stack >= stack)
                     {

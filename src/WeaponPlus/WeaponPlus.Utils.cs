@@ -17,9 +17,10 @@ public partial class WeaponPlus : TerrariaPlugin
         return MyNewItem(source, (int) pos.X, (int) pos.Y, (int) randomBox.X, (int) randomBox.Y, Type, Stack, noBroadcast, prefixGiven, noGrabDelay, reverseLookup);
     }
 
+    // TODO: 需要更新
     public static int MyNewItem(IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack = 1, bool noBroadcast = false, int pfix = 0, bool noGrabDelay = false, bool reverseLookup = false)
     {
-        if (WorldGen.gen)
+        if (WorldGen.generatingWorld)
         {
             return 0;
         }
@@ -62,14 +63,14 @@ public partial class WeaponPlus : TerrariaPlugin
             Item.cachedItemSpawnsByType[Type] += Stack;
             return 400;
         }
-        Main.item[400] = new Item();
+        Main.item[400] = new WorldItem();
         var num = 400;
         if (Main.netMode != 1)
         {
-            num = Item.PickAnItemSlotToSpawnItemOn(reverseLookup, num);
+            num = Item.PickAnItemSlotToSpawnItemOn();
         }
         Main.timeItemSlotCannotBeReusedFor[num] = 0;
-        Main.item[num] = new Item();
+        Main.item[num] = new WorldItem();
         var val = Main.item[num];
         val.SetDefaults(Type);
         val.Prefix(pfix);
@@ -88,9 +89,8 @@ public partial class WeaponPlus : TerrariaPlugin
             val.velocity.X = Main.rand.Next(-30, 31) * 0.1f;
             val.velocity.Y = Main.rand.Next(-30, 31) * 0.1f;
         }
-        val.active = true;
+        val.TurnToAir();
         val.timeSinceItemSpawned = ItemID.Sets.OverflowProtectionTimeOffset[val.type];
-        Item.numberOfNewItems++;
         if (ItemSlot.Options.HighlightNewItems && val.type >= 0 && !ItemID.Sets.NeverAppearsAsNewInInventory[val.type])
         {
             val.newAndShiny = true;
@@ -113,7 +113,7 @@ public partial class WeaponPlus : TerrariaPlugin
         var whoAmI = player.whoAmI;
         for (var i = 0; i < NetItem.InventoryIndex.Item2; i++)
         {
-            if (player.inventory[i].netID == item.id)
+            if (player.inventory[i].type == item.id)
             {
                 var stack = player.inventory[i].stack;
                 var prefix = player.inventory[i].prefix;
@@ -125,19 +125,19 @@ public partial class WeaponPlus : TerrariaPlugin
                     {
                         var num2 = MyNewItem(null!, player.Center, new Vector2(1f, 1f), item.id, stack);
                         Main.item[num2].playerIndexTheItemIsReservedFor = whoAmI;
-                        Main.item[num2].prefix = prefix;
+                        Main.item[num2].inner.prefix = prefix;
                         var num3 = (int) (item.orig_damage * 0.05f * item.damage_level);
                         num3 = (num3 < item.damage_level) ? item.damage_level : num3;
                         var obj = Main.item[num2];
-                        obj.damage += num3;
+                        obj.inner.damage += num3;
                         var obj2 = Main.item[num2];
-                        obj2.scale += item.orig_scale * 0.05f * item.scale_level;
+                        obj2.inner.scale += item.orig_scale * 0.05f * item.scale_level;
                         var obj3 = Main.item[num2];
-                        obj3.knockBack += item.orig_knockBack * 0.05f * item.knockBack_level;
-                        Main.item[num2].useAnimation = item.orig_useAnimation - item.useSpeed_level;
-                        Main.item[num2].useTime = (int) (item.orig_useTime * 1f / item.orig_useAnimation * Main.item[num2].useAnimation);
+                        obj3.inner.knockBack += item.orig_knockBack * 0.05f * item.knockBack_level;
+                        Main.item[num2].inner.useAnimation = item.orig_useAnimation - item.useSpeed_level;
+                        Main.item[num2].inner.useTime = (int) (item.orig_useTime * 1f / item.orig_useAnimation * Main.item[num2].useAnimation);
                         var obj4 = Main.item[num2];
-                        obj4.shootSpeed += item.orig_shootSpeed * 0.05f * item.shootSpeed_level;
+                        obj4.inner.shootSpeed += item.orig_shootSpeed * 0.05f * item.shootSpeed_level;
                         TShock.Players[whoAmI].SendData((PacketTypes) 21, null, num2);
                         TShock.Players[whoAmI].SendData((PacketTypes) 22, null, num2);
                         TShock.Players[whoAmI].SendData((PacketTypes) 88, null, num2, 255f, 63f);
@@ -147,7 +147,7 @@ public partial class WeaponPlus : TerrariaPlugin
                     {
                         var num = MyNewItem(null!, player.Center, new Vector2(1f, 1f), item.id, stack);
                         Main.item[num].playerIndexTheItemIsReservedFor = whoAmI;
-                        Main.item[num].prefix = prefix;
+                        Main.item[num].inner.prefix = prefix;
                         TShock.Players[whoAmI].SendData((PacketTypes) 21, null, num);
                         TShock.Players[whoAmI].SendData((PacketTypes) 22, null, num);
                         break;
@@ -406,7 +406,7 @@ public partial class WeaponPlus : TerrariaPlugin
         {
             foreach (var item in items)
             {
-                var num24 = Item.NewItem(new EntitySource_DebugCommand(), one.TPlayer.Center, new Vector2(5f, 5f), item.type, item.stack, true, 0, true, false);
+                var num24 = Item.NewItem(new EntitySource_DebugCommand(), one.TPlayer.Center, new Vector2(5f, 5f), item.type, item.stack, true, 0, true);
                 Main.item[num24].playerIndexTheItemIsReservedFor = one.Index;
                 one.SendData((PacketTypes) 21, "", num24, 1f);
                 one.SendData((PacketTypes) 22, null, num24);

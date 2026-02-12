@@ -1,14 +1,26 @@
 # AutoFishR (Auto Fishing Remastered)
 
-- Authors: ksqeib / 羽学 / 少司命
-- Description: Auto fishing plugin for TShock servers. Supports auto reel-in, multi-hook, Buffs, extra loot, consumption mode, etc. Commands can be shown/hidden dynamically via permissions and global switches.
+## Authors
+- **少司命 (Shao Si Ming)**: Core code contributor
+- **羽学 (Yu Xue)**: Creative design and initial implementation
+- **ksqeib**: Current maintainer
+
+## Important Notice
+- For any issues with this plugin, please contact **ksqeib**
+- Contact QQ (only): **2388990095**
+- **DO NOT mention developers in group chat**. For inquiries, add on QQ for private chat.
+- **Warning: Disturbing other developers by mentioning them in group chat will be at your own risk!**
+
+## Description
+Auto fishing plugin for TShock servers. Supports auto reel-in, multi-hook, Buffs, extra loot, consumption mode, etc. Commands can be shown/hidden dynamically via permissions and global switches.
+
 - Legacy repo: https://github.com/ksqeib/AutoFish-old
 
 ## Permission Model (Important)
 
 - Admin bypass: `autofish.admin`.
 - Common whitelist: `autofish.common`; owning it grants all player commands (still affected by global toggles and negative permissions).
-- Feature permissions: `autofish.<feature>`; examples: `autofish.fish`, `autofish.multihook`, `autofish.filter.unstackable`, etc.
+- Feature permissions: `autofish.<feature>`; examples: `autofish.fish`, `autofish.multihook`, etc.
 - Negative permissions: `autofish.no.<feature>`; owning it forces denial (except admin). Examples: `autofish.no.fish`.
 - `/af` itself needs `autofish`; `autofish.common` is equivalent to all player commands.
 
@@ -25,7 +37,6 @@ Example:
 | /af buff | Toggle fishing Buffs | autofish.buff | Global Buff enabled |
 | /af multi | Toggle multi-hook | autofish.multihook | Global multi-hook enabled |
 | /af hook <number> | Set personal hook cap | autofish.multihook | Global multi-hook enabled; value ≤ global cap |
-| /af stack | Toggle filtering unstackable loot | autofish.filter.unstackable | Global filter enabled |
 | /af monster | Toggle avoid fishing monsters | autofish.filter.monster | Global anti-monster enabled |
 | /af anim | Toggle skip catch animation | autofish.skipanimation | Global animation skip enabled |
 | /af list | View consumption-mode items | autofish | Global consumption mode enabled |
@@ -52,7 +63,6 @@ All require `autofish.admin`.
 | /afa del <item> | Remove allowed bait (visible when consumption mode is on) |
 | /afa addloot <item> | Add extra loot |
 | /afa delloot <item> | Remove extra loot |
-| /afa stack | Toggle global filtering unstackable loot |
 | /afa monster | Toggle global avoid fishing monsters |
 | /afa anim | Toggle global skip catch animation |
 
@@ -65,15 +75,26 @@ See [resource/config/zh-cn.yml](resource/config/zh-cn.yml) or [resource/config/e
 
 - Simplest setup for `/af` for regular players: give group `autofish.common`. To disable a specific feature, additionally grant `autofish.no.<feature>`.
 - With consumption mode on, players must have personal duration; the plugin returns early if bait is missing.
-- Multi-hook/filter/anti-monster/skip-animation all honor "global switch + personal switch + permission" simultaneously.
+- Multi-hook/anti-monster/skip-animation all honor "global switch + personal switch + permission" simultaneously.
+
+## Troubleshooting Guide
+
+1. **Check plugin master switch**: ensure `pluginEnabled` is `true` in config.
+2. **Check global feature switch**: ensure `globalAutoFishFeatureEnabled` is `true`.
+3. **Check permissions**: player needs `autofish` and the feature permission (or `autofish.common`). `autofish.no.<feature>` forces denial.
+4. **Check consumption mode**: if enabled, make sure exchange rules exist and the player has remaining duration.
+5. **Check valuable bait protection**: it swaps bait to protect it. If issues occur, try disabling it with `/af bait`.
+6. **Check bait**: without bait, auto fishing stops; refill and recast.
+7. **Ensure SSC is enabled**: the plugin requires ServerSideCharacter to work properly.
+8. **Enable debug**: admins run `/afa debug` to toggle debug mode.
+9. **Reproduce and capture**: reproduce the fishing issue and keep screenshots of chat hints and console output for reporting.
 
 ## Mechanics (Behavior and Key Logic)
 
-- Auto fishing: during bobber AI update, detect `bobber.ai[1] < 0` (caught), consume bait, call vanilla reel logic, then re-send projectile. If extra loot/monster filtering/unstackable filtering is enabled, filter/replace before drops spawn.
+- Auto fishing: during bobber AI update, detect `bobber.ai[1] < 0` (caught), consume bait, call vanilla reel logic, then re-send projectile. If extra loot/monster filtering is enabled, filter/replace before drops spawn.
 - Multi-hook: when spawning fishing line projectiles, count current bobbers; if under cap, duplicate a fishing line projectile for the player, enabling parallel fishing. Also gated by consumption mode and player multi-hook toggle.
 - Skip catch animation: after reeling, send `ProjectileDestroy` to the client to skip the animation.
 - Avoid fishing monsters: if result is a monster (catchId < 0) and feature is on, discard and retry.
-- Filter unstackable: if drop `maxStack == 1` and filtering is on, discard and retry.
 - Protect precious bait: check current bait against precious list; if matched, swap with bait at the end of inventory and sync slots to prevent consumption.
 - Consumption mode: when globally on, player must enable personally and have remaining duration to run auto fishing/multi-hook. Duration is exchanged via consuming specified items (commands and logic follow config fields).
 - Buffs: when player has a fishing line and global/personal Buff is on, apply configured Buff list (ID + duration).

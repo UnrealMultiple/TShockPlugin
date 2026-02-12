@@ -88,7 +88,7 @@ public class MainPlugin : TerrariaPlugin
                 };
         }
         //垃圾桶
-        this.retObject.trashItem = new InventoryData[1] { new InventoryData(tsplayer.trashItem.netID, tsplayer.trashItem.prefix, tsplayer.trashItem.stack) };
+        this.retObject.trashItem = new InventoryData[1] { new InventoryData(tsplayer.trashItem.type, tsplayer.trashItem.prefix, tsplayer.trashItem.stack) };
         //猪猪存钱罐
         this.retObject.Piggiy = Utils.GetInventoryData(tsplayer.bank.item, NetItem.PiggySlots);
         //保险箱

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using MiniGamesAPI;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.GameContent.NetModules;
+using Terraria.ID;
 using Terraria.Net;
 using TShockAPI;
 
@@ -89,10 +91,13 @@ public class BuildPlayer : MiniPlayer, IComparable<BuildPlayer>
     {
         if (ConfigUtils.config.UnlockAll)
         {
-            for (var i = 1; i <= 5042; i++)
+            for (var i = 1; i < ItemID.Count; i++)
             {
-                var val = NetCreativeUnlocksModule.SerializeItemSacrifice(i, 999);
-                NetManager.Instance.SendToClient(val, this.Player.Index);
+                CreativeItemSacrificesCatalog.Instance.TryGetSacrificeCountCapToUnlockInfiniteItems(i, out var amountNeeded);
+                Main.LocalPlayerCreativeTracker.ItemSacrifices.RegisterItemSacrifice(i, amountNeeded);
+                NetManager.Instance.Broadcast(
+                    NetCreativeUnlocksPlayerReportModule.SerializeSacrificeRequest(255, i, amountNeeded)
+                );
             }
             return;
         }
@@ -100,18 +105,23 @@ public class BuildPlayer : MiniPlayer, IComparable<BuildPlayer>
         {
             for (var j = key; j < ConfigUtils.config.Range[key]; j++)
             {
-                var val2 = NetCreativeUnlocksModule.SerializeItemSacrifice(j, 999);
-                NetManager.Instance.SendToClient(val2, this.Player.Index);
+                CreativeItemSacrificesCatalog.Instance.TryGetSacrificeCountCapToUnlockInfiniteItems(j, out var amountNeeded);
+                Main.LocalPlayerCreativeTracker.ItemSacrifices.RegisterItemSacrifice(j, amountNeeded);
+                NetManager.Instance.Broadcast(
+                    NetCreativeUnlocksPlayerReportModule.SerializeSacrificeRequest(255, j, amountNeeded)
+                );
             }
         }
     }
 
     public void UnCreative()
     {
-        for (var i = 1; i <= 5042; i++)
+        for (var i = 1; i < ItemID.Count; i++)
         {
-            var val = NetCreativeUnlocksModule.SerializeItemSacrifice(i, 0);
-            NetManager.Instance.SendToClient(val, this.Player.Index);
+            Main.LocalPlayerCreativeTracker.ItemSacrifices.Reset();
+            NetManager.Instance.Broadcast(
+                NetCreativeUnlocksPlayerReportModule.SerializeSacrificeRequest(255, i, 0)
+            );
         }
     }
 }

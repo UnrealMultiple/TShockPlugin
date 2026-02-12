@@ -93,10 +93,10 @@ internal class Rest
             }
         }
         //垃圾桶
-        retObject.trashItem = new Item[1]
-        {
-            new(tsplayer.trashItem.netID, tsplayer.trashItem.prefix, tsplayer.trashItem.stack)
-        };
+        retObject.trashItem =
+        [
+            new Item(tsplayer.trashItem.type, tsplayer.trashItem.prefix, tsplayer.trashItem.stack)
+        ];
         //猪猪存钱罐
         retObject.Piggiy = Utils.GetInventoryData(tsplayer.bank.item, NetItem.PiggySlots);
         //保险箱

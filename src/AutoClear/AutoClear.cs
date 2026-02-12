@@ -119,7 +119,7 @@ public class AutoClear(Main game) : LazyPlugin(game)
                     (Configuration.Instance.SweepEquipment && isEquipment) ||
                     (Configuration.Instance.SweepVanity && isVanity))
                 {
-                    Main.item[i].active = false;
+                    Main.item[i].TurnToAir();
                     TSPlayer.All.SendData(PacketTypes.ItemDrop, null, i);
                     totalItems++;
 

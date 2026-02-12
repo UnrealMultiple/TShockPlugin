@@ -1,7 +1,7 @@
 using AutoFish.Utils;
 using Terraria;
+using Terraria.GameContent.FishDropRules;
 using Terraria.ID;
-using TerrariaApi.Server;
 using TShockAPI;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
@@ -9,49 +9,123 @@ namespace AutoFish.AFMain;
 
 public partial class AutoFish
 {
+    private void OnAI_061_FishingBobber(Projectile projectile,
+        HookEvents.Terraria.Projectile.AI_061_FishingBobberEventArgs args)
+    {
+        HookUpdate(projectile);
+        args.ContinueExecution = false;
+    }
+
     /// <summary>
     ///     触发自动钓鱼，处理浮漂 AI 更新与收杆逻辑。原理：每次AI更新后尝试为玩家把鱼钓起来，并生成一个新的同样的弹射物
     /// </summary>
-    private void ProjectAiUpdate(ProjectileAiUpdateEventArgs args)
+    private void HookUpdate(Projectile hook)
     {
-        var hook = args.Projectile;
-        if (hook.owner < 0) return;
-        if (hook.owner > Main.maxPlayers) return;
-        if (!hook.active) return;
-        if (!hook.bobber) return;
-        if (!Config.PluginEnabled) return;
-        if (!Config.GlobalAutoFishFeatureEnabled) return;
+
+        if (hook.ai[0] >= 1f)
+        {//正在收杆的
+            return;
+        }
+        if (hook.owner < 0)
+        {
+            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] hook.owner < 0");
+            return;
+        }
+
+        if (hook.owner > Main.maxPlayers)
+        {
+            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] hook.owner > Main.maxPlayers");
+            return;
+        }
+
+        if (!hook.active)
+        {
+            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] hook is not active");
+            return;
+        }
+
+        if (!hook.bobber)
+        {
+            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] hook is not bobber");
+            return;
+        }
+
+        if (!Config.PluginEnabled)
+        {
+            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] Plugin not enabled");
+            return;
+        }
+
+        if (!Config.GlobalAutoFishFeatureEnabled)
+        {
+            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] Global auto fish feature not enabled");
+            return;
+        }
 
         var player = TShock.Players[hook.owner];
-        if (player == null) return;
-        if (!player.Active) return;
+        if (player == null)
+        {
+            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] Player is null (owner: {hook.owner})");
+            return;
+        }
 
-        var skipNonStackableLoot = Config.GlobalSkipNonStackableLoot &&
-                       HasFeaturePermission(player, "filter.unstackable");
+        if (!player.Active)
+        {
+            if (DebugMode) player.SendInfoMessage($"[DEBUG] Player not active");
+            return;
+        }
+
         var blockMonsterCatch = Config.GlobalBlockMonsterCatch &&
-                    HasFeaturePermission(player, "filter.monster");
+                                HasFeaturePermission(player, "filter.monster");
         var skipFishingAnimation = Config.GlobalSkipFishingAnimation &&
-                       HasFeaturePermission(player, "skipanimation");
+                                   HasFeaturePermission(player, "skipanimation");
+        var blockQuestFish = Config.GlobalBlockQuestFish &&
+                             HasFeaturePermission(player, "filter.quest");
         var protectValuableBait = Config.GlobalProtectValuableBaitEnabled &&
-                      HasFeaturePermission(player, "bait.protect");
+                                  HasFeaturePermission(player, "bait.protect");
 
         // 从数据表中获取与玩家名字匹配的配置项
         var playerData = PlayerData.GetOrCreatePlayerData(player.Name, CreateDefaultPlayerData);
-        if (!playerData.AutoFishEnabled) return;
+        //初次钓鱼提醒和未开启返回
+        if (!playerData.AutoFishEnabled)
+        {
+            if (!HasFeaturePermission(player, "fish"))
+            {
+                if (DebugMode) player.SendInfoMessage($"[DEBUG] No permission for fish feature");
+                return;
+            }
 
-        skipNonStackableLoot &= playerData.SkipNonStackableLoot;
+            if (playerData.FirstFishHintShown)
+            {
+                if (DebugMode) player.SendInfoMessage($"[DEBUG] First fish hint already shown, auto fish not enabled");
+                return;
+            }
+
+            playerData.FirstFishHintShown = true;
+            player.SendInfoMessage(Lang.T("firstFishHint"));
+            return;
+        }
+
         blockMonsterCatch &= playerData.BlockMonsterCatch;
         skipFishingAnimation &= playerData.SkipFishingAnimation;
+        blockQuestFish &= playerData.BlockQuestFish;
         protectValuableBait &= playerData.ProtectValuableBaitEnabled;
 
-        // 正常状态下与消耗模式下启用自动钓鱼
-        if (Config.GlobalConsumptionModeEnabled && !playerData.ConsumptionEnabled) return;
-
         //负数时候为咬钩倒计时，说明上鱼了
-        if (!(hook.ai[1] < 0)) return;
+        if (!(hook.ai[1] < 0))
+        {
+            // if (DebugMode) player.SendInfoMessage($"[DEBUG] Fish not hooked yet (ai[1]: {hook.ai[1]:F2})");
+            return;
+        }
 
         player.TPlayer.Fishing_GetBait(out var baitPower, out var baitType);
-        if (baitType == 0) return; //没有鱼饵，不要继续
+        if (baitType == 0) //没有鱼饵，不要继续
+        {
+            player.SendErrorMessage(Lang.T("error.noBait"));
+            player.SendInfoMessage(Lang.T("error.autoFishStopped"));
+            ResetHook(hook);
+            return;
+        }
 
         // 保护贵重鱼饵：将其移到背包末尾以避免被消耗
         if (protectValuableBait && Config.ValuableBaitItemIds.Contains(baitType))
@@ -64,7 +138,27 @@ public partial class AutoFish
                 var toName = TShock.Utils.GetItemById(toType).Name;
                 Tools.SendGradientMessage(player,
                     Lang.T("protectBait.swap", fromName, toName, fromSlot, toSlot));
-                resetHook(hook);
+                ResetHook(hook);
+                return;
+            }
+            else //就剩下一个了
+            {
+                var baitName = TShock.Utils.GetItemById(baitType).Name;
+                Tools.SendGradientMessage(player, Lang.T("protectBait.lastOne", baitName));
+                ResetHook(hook);
+                player.SendData(PacketTypes.ProjectileDestroy, "", hook.whoAmI);
+                return;
+            }
+
+
+        // 正常状态下与消耗模式下启用自动钓鱼
+        if (Config.GlobalConsumptionModeEnabled)
+            //消耗模式判定
+            if (!CanConsumeFish(player, playerData))
+            {
+                player.SendInfoMessage(Lang.T("consumption.lackItem"));
+                ResetHook(hook);
+                player.SendData(PacketTypes.ProjectileDestroy, "", hook.whoAmI);
                 return;
             }
 
@@ -73,39 +167,38 @@ public partial class AutoFish
         var noCatch = true;
         var activePlayerCount = TShock.Players.Count(p => p != null && p.Active && p.IsLoggedIn);
         var dropLimit = Tools.GetLimit(activePlayerCount); //根据人数动态调整Limit
-        var caughtMonster = false;
+        var catchMonster = false;
         for (var count = 0; noCatch && count < dropLimit; count++)
         {
-            //原版方法，获取物品啥的
-            hook.FishingCheck();
+            var catchItem = false;
+
+            var context = Projectile._context;
+            if (hook.TryBuildFishingContext(context))
+            {
+                //屏蔽任务鱼
+                if (blockQuestFish) context.Fisher.questFish = -1;
+
+                hook.SetFishingCheckResults(ref context.Fisher);
+            }
+
 
             var catchId = hook.localAI[1];
 
-            if (Config.RandomLootEnabled) catchId = Random.Shared.Next(1, ItemID.Count);
-
-            // 如果额外渔获有任何1个物品ID，则参与AI[1]
-            if (catchId == 0) //钓不到就给额外的
-                if (Config.ExtraCatchItemIds.Any())
-                    catchId = Config.ExtraCatchItemIds[Main.rand.Next(Config.ExtraCatchItemIds.Count)];
-            //想给额外渔获加点怪物
-
-            if (catchId < 0) //抓到怪物
+            if (context.Fisher.rolledEnemySpawn > 0) //抓到怪物
             {
                 if (blockMonsterCatch) continue; //不想抓怪物
-                caughtMonster = true;
+                catchMonster = true;
+                noCatch = false;
             }
 
             // 怪物生成使用localAI[1]，而物品则使用ai[1]，小于0情况无需处理，是刷血月怪
-            if (catchId > 0) //抓到物品
-                if (skipNonStackableLoot) //不想抓不可堆叠堆叠物品
-                {
-                    var item = new Item();
-                    item.SetDefaults((int)catchId);
-                    if (item.maxStack == 1) continue;
-                }
+            if (context.Fisher.rolledItemDrop > 0)
+            {
+                catchItem = true;
+                noCatch = false;
+            }
 
-            noCatch = catchId == 0; //是否空军
-            if (noCatch) continue;
+            if (noCatch) continue; //真没抓到
 
             hook.localAI[1] = catchId; //数值置回
             break; //抓到就不应该继续判断
@@ -113,44 +206,73 @@ public partial class AutoFish
 
         if (noCatch)
         {
-            resetHook(hook);
+            if (DebugMode) player.SendInfoMessage($"[DEBUG] No catch after {dropLimit} attempts");
+            ResetHook(hook);
             return; //没抓到，不抬杆
         }
 
         //设置为收杆状态
         hook.ai[0] = 1.0f;
 
+        var nowBaitType = (int)hook.localAI[2];
+
         // 让服务器扣饵料
-        var locate = LocateBait(player, baitType);
-        player.TPlayer.ItemCheck_CheckFishingBobber_PickAndConsumeBait(hook, out var pull,
+        var locate = LocateBait(player, nowBaitType);
+        var pull = player.TPlayer.ItemCheck_CheckFishingBobber_ConsumeBait(hook,
             out var baitUsed);
-        if (!pull) return; //说明鱼饵没了，不能继续，否则可能会卡bug
-        //原版收杆函数，这里会使得  bobber.ai[1] = bobber.localAI[1];，必须调用此函数，否则杆子会爆一堆弹幕，并且鱼饵会全不见
+        if (nowBaitType != baitUsed)
+        {
+            if (DebugMode) player.SendInfoMessage($"[DEBUG] Bait mismatch: now={nowBaitType}, used={baitUsed}");
+            player.SendMessage("鱼饵不一致", Colors.CurrentLiquidColor);
+            return;
+        }
+
+        if (!pull)
+        {
+            if (DebugMode) player.SendInfoMessage($"[DEBUG] Cannot pull, bait may be depleted");
+            return; //说明鱼饵没了，不能继续，否则可能会卡bug
+        }
+
+        //Buff更新
+        if (playerData.BuffEnabled)
+            BuffUpdate(player);
+
+        //原版收杆函数，这里会使得  bobber.ai[1] = bobber.localAI[1];，必须调用此函数，否则杆子会爆一堆弹幕，并且鱼饵会全不见，也是刷怪的函数
         player.TPlayer.ItemCheck_CheckFishingBobber_PullBobber(hook, baitUsed);
         // 同步玩家背包
         player.SendData(PacketTypes.PlayerSlot, "", player.Index, locate);
 
+        var origPos = hook.position;
+        if (!catchMonster) //抓到怪物触发会导致刷鱼漂，这里是重新设置溅射物
+        {
+            SpawnHook(player, hook, origPos);
+            //多钩钓鱼代码
+            AddMultiHook(player, hook, origPos);
+        }
+
         // 原版给东西的代码，在kill函数，会把ai[1]给玩家
         // 这里发的是连续弹幕 避免线断 因为弹幕是不需要玩家物理点击来触发收杆的，但是服务端和客户端概率测算不一样，会导致服务器扣了饵料，但是客户端没扣
         player.SendData(PacketTypes.ProjectileNew, "", hook.whoAmI);
+        //服务器的netMod为2
 
-        if (!caughtMonster) //抓到怪物触发会导致刷鱼漂，这里是重新设置溅射物
+        if (skipFishingAnimation) //跳过上鱼动画
         {
-            var velocity = new Vector2(0, 0);
-            var pos = new Vector2(hook.position.X, hook.position.Y + 3);
-            var index = SpawnProjectile.NewProjectile(
-                Main.projectile[hook.whoAmI].GetProjectileSource_FromThis(),
-                pos, velocity, hook.type, 0, 0,
-                hook.owner);
-            player.SendData(PacketTypes.ProjectileNew, "", index);
-        }
-
-        if (skipFishingAnimation)
-            //跳过上鱼动画
             player.SendData(PacketTypes.ProjectileDestroy, "", hook.whoAmI);
+        }
     }
 
-    public static void resetHook(Projectile projectile)
+    private static void SpawnHook(TSPlayer player, Projectile hook, Vector2 pos, string uuid = "")
+    {
+        var velocity = new Vector2(0, 0);
+        // var pos = new Vector2(hook.position.X, hook.position.Y + 3);
+        var index = SpawnProjectile.NewProjectile(
+            hook.GetProjectileSource_FromThis(),
+            pos, velocity, hook.type, 0, 0,
+            player.Index, 0, 0, 0, -1, uuid);
+        player.SendData(PacketTypes.ProjectileNew, "", index);
+    }
+
+    private static void ResetHook(Projectile projectile)
     {
         //设置成没上鱼，无状态
         projectile.ai[1] = 0;
@@ -172,5 +294,12 @@ public partial class AutoFish
         }
 
         return 0;
+    }
+
+    private static void BuffUpdate(TSPlayer player)
+    {
+        if (!Config.GlobalBuffFeatureEnabled) return;
+        foreach (var buff in Config.BuffDurations)
+            player.SetBuff(buff.Key, buff.Value);
     }
 }

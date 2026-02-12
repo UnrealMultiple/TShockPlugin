@@ -97,7 +97,7 @@ public partial class VeinMiner : TerrariaPlugin
                 {
                     if (e.Item.Count <= plr.GetBlankSlot())
                     {
-                        if (plr.IsSpaceEnough(item.netID, mineCount))
+                        if (plr.IsSpaceEnough(item.type, mineCount))
                         {
                             e.Item.ForEach(ex => plr.GiveItem(ex.Key, ex.Value));
                             if (e.OnlyGiveItem)
@@ -134,11 +134,12 @@ public partial class VeinMiner : TerrariaPlugin
                 }
                 if (Config.PutIntoInventory)
                 {
-                    if (plr.IsSpaceEnough(item.netID, mineCount))
+                    if (plr.IsSpaceEnough(item.type, mineCount))
                     {
                         mineCount = KillTileAndSend(list, true);
-                        plr.GiveItem(item.netID, mineCount);
+                        plr.GiveItem(item.type, mineCount);
                         plr.SendMessage(GetString($"[c/95CFA6:<VeinMiner>] 挖掘了[c/95CFA6:{mineCount}块{(item.type == 0 ? GetString("未知") : item.Name)}]."), Color.White);
+                        TShock.Log.Info(GetString($"[c/95CFA6:<VeinMiner>] {plr.Name} 挖掘了[c/95CFA6:{mineCount}块{(item.type == 0 ? GetString("未知") : item.Name)}]."), Color.White);
 
                     }
                     else

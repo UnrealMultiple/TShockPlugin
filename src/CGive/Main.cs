@@ -77,12 +77,12 @@ public class Main : TerrariaPlugin
             var item = itemByIdOrName[0];
             if (array.Length == 3)
             {
-                list.Add(new Warehouse(item.maxStack, item.netID));
+                list.Add(new Warehouse(item.maxStack, item.type));
                 continue;
             }
             if (array.Length == 4)
             {
-                list.Add(new Warehouse(result, item.netID));
+                list.Add(new Warehouse(result, item.type));
                 continue;
             }
             if (array.Length == 5)
@@ -90,7 +90,7 @@ public class Main : TerrariaPlugin
                 var prefixByIdOrName = TShock.Utils.GetPrefixByIdOrName(array[4]);
                 if (prefixByIdOrName.Count != 0)
                 {
-                    list.Add(new Warehouse(result, item.netID, prefixByIdOrName[0]));
+                    list.Add(new Warehouse(result, item.type, prefixByIdOrName[0]));
                 }
             }
 

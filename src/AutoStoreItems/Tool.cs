@@ -249,7 +249,7 @@ internal class Tool
         for (var i2 = 0; i2 < 40; i2++)
         {
             bankItem = plr.bank.item[i2];
-            if (bankItem.IsAir || bankItem.netID == coin)
+            if (bankItem.IsAir || bankItem.type == coin)
             {
                 bankSolt = i2;
                 break;
@@ -261,12 +261,12 @@ internal class Tool
             for (var i = 50; i < 54; i++)
             {
                 var invItem = plr.inventory[i];
-                if (invItem.netID == coin)
+                if (invItem.type == coin)
                 {
-                    invItem.netID = 0;
+                    invItem.type = 0;
                     tplr.SendData(PacketTypes.PlayerSlot, "", tplr.Index, i);
 
-                    bankItem.netID = coin;
+                    bankItem.type = coin;
                     bankItem.type = invItem.type;
                     bankItem.stack += invItem.stack;
 

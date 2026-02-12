@@ -214,7 +214,7 @@ public class MainPlugin : TerrariaPlugin
                 return;
             }
             var control = args.Control;
-            if (control.IsUsingItem && args.Player.TPlayer.HeldItem.netID == 75)
+            if (control.IsUsingItem && args.Player.TPlayer.HeldItem.type == 75)
             {
                 if (!playerByName.Marked)
                 {
@@ -243,7 +243,7 @@ public class MainPlugin : TerrariaPlugin
                     playerByName.SendInfoMessage(GetString("你已经评分过了"));
                 }
             }
-            else if (ConfigUtils.config.BanItem.Contains(args.Player.TPlayer.HeldItem.netID))
+            else if (ConfigUtils.config.BanItem.Contains(args.Player.TPlayer.HeldItem.type))
             {
                 playerByName.SetBuff(156, 600, false);
             }

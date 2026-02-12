@@ -114,13 +114,9 @@ public class Plugin : TerrariaPlugin
         result.AppendLine();
         
         result.Append(GetString("合成站："));
-        foreach (var item2 in recipe.requiredTile.Where(i => i >= 0))
+        if (recipe.requiredTile != -1)
         {
-            result.Append($"{Lang._mapLegendCache[MapHelper.tileLookup[item2]]} ");
-        }
-        if (recipe.requiredTile.Length==0)
-        {
-            result.AppendLine(GetString("[i:3258]徒手 "));
+            result.Append($"{Lang._mapLegendCache[MapHelper.tileLookup[recipe.requiredTile]]} ");
         }
         if (recipe.needHoney)
         {
@@ -139,7 +135,7 @@ public class Plugin : TerrariaPlugin
         {
             result.AppendLine(GetString("[i:593]雪原群系 "));
         }
-        if (recipe.needEverythingSeed)
+        if (recipe.needMechdusa)
         {
             result.AppendLine(GetString("[i:4956]天顶种子 "));
         }

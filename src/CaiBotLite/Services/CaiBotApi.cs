@@ -1,4 +1,9 @@
-﻿using CaiBotLite.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using CaiBotLite.Enums;
 using CaiBotLite.Moulds;
 using Microsoft.Xna.Framework;
 using SixLabors.ImageSharp.Formats.Png;
@@ -10,8 +15,6 @@ namespace CaiBotLite.Services;
 
 internal static class CaiBotApi
 {
-    internal static readonly Dictionary<string, (DateTime, WhiteListResult)> WhiteListCaches = new ();
-
     internal static async Task HandleMessageAsync(string receivedData)
     {
         try
@@ -40,7 +43,6 @@ internal static class CaiBotApi
                     packetWriter
                         .Write("output", tr.GetCommandOutput())
                         .Send();
-                    
                     break;
                 case PackageType.PlayerList:
                     packetWriter
@@ -82,15 +84,14 @@ internal static class CaiBotApi
                     var name = package.Read<string>("player_name");
                     var whitelistResult = package.Read<WhiteListResult>("whitelist_result");
 
-                    WhiteListCaches[name] = (DateTime.Now, whitelistResult);
-
-                    if (Login.CheckWhitelist(name, whitelistResult))
+                    var player = TShock.Players.FirstOrDefault(x => x?.Name == name && x.State != (int)ConnectionState.Complete);
+                    if (player == null)
                     {
-                        var plr = TShock.Players.FirstOrDefault(x => x?.Name == name);
-                        if (plr != null)
-                        {
-                            Login.HandleLogin(plr);
-                        }
+                        return;
+                    }
+                    if (LoginHelper.CheckWhitelist(player, whitelistResult))
+                    {
+                        LoginHelper.HandleLogin(player);
                     }
                 
                     break;
@@ -319,6 +320,11 @@ internal static class CaiBotApi
                         mail.Items = package.Read<List<MailItem>>("commands");
                     }
                     mail.CreatOrUpdate();
+                    break;
+                case PackageType.Hello:
+                case PackageType.Heartbeat:
+                case PackageType.Unknown:
+                default:
                     break;
             }
         }

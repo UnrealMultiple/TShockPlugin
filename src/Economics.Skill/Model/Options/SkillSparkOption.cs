@@ -61,7 +61,7 @@ public class SkillSparkOption
         {
             if (item.Inventory)
             {
-                var inv = player.TPlayer.inventory.Where(x => x.netID == item.netID);
+                var inv = player.TPlayer.inventory.Where(x => x.type == item.netID);
                 if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
                 {
                     return false;
@@ -69,7 +69,7 @@ public class SkillSparkOption
             }
             if (item.Armory)
             {
-                var inv = player.TPlayer.armor.Take(10).Where(x => x.netID == item.netID);
+                var inv = player.TPlayer.armor.Take(10).Where(x => x.type == item.netID);
                 if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
                 {
                     return false;
@@ -77,7 +77,7 @@ public class SkillSparkOption
             }
             if (item.Misc)
             {
-                var inv = player.TPlayer.armor.Skip(10).Where(x => x.netID == item.netID);
+                var inv = player.TPlayer.armor.Skip(10).Where(x => x.type == item.netID);
                 if (!inv.Any() || inv.Sum(x => x.stack) < item.Stack)
                 {
                     return false;
@@ -85,7 +85,7 @@ public class SkillSparkOption
             }
             if (item.HeldItem)
             {
-                if (player.SelectedItem.netID != item.netID)
+                if (player.SelectedItem.type != item.netID)
                 {
                     return false;
                 }
@@ -103,7 +103,7 @@ public class SkillSparkOption
             for (var j = 0; j < player.TPlayer.inventory.Length; j++)
             {
                 var item = player.TPlayer.inventory[j];
-                if (item.netID == term.netID && term.Consume)
+                if (item.type == term.netID && term.Consume)
                 {
                     if (item.stack >= stack)
                     {

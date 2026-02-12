@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using AutoFish.Data;
+﻿using AutoFish.Data;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
+using Projectile = HookEvents.Terraria.Projectile;
 
 namespace AutoFish.AFMain;
 
@@ -14,6 +14,9 @@ public partial class AutoFish : TerrariaPlugin
     public const string AdminPermission = $"{PermissionPrefix}admin";
     public const string CommonPermission = $"{PermissionPrefix}common";
     public const string DenyPermissionPrefix = $"{PermissionPrefix}no.";
+
+    /// <summary>DEBUG 模式开关。</summary>
+    internal static bool DebugMode = false;
 
     /// <summary>全局配置实例。</summary>
     internal static Configuration Config = new();
@@ -35,7 +38,7 @@ public partial class AutoFish : TerrariaPlugin
     public override string Author => "ksqeib 羽学 少司命";
 
     /// <summary>插件版本。</summary>
-    public override Version Version => new(1, 4, 3);
+    public override Version Version => new(1, 4, 9,1);
 
     /// <summary>插件描述。</summary>
     public override string Description => "青山常伴绿水，燕雀已是南飞";
@@ -52,21 +55,20 @@ public partial class AutoFish : TerrariaPlugin
         var canBuff = HasFeaturePermission(player, "buff");
         var canMulti = HasFeaturePermission(player, "multihook");
         var canFish = HasFeaturePermission(player, "fish");
-        var canSkipNonStackable = HasFeaturePermission(player, "filter.unstackable");
         var canBlockMonster = HasFeaturePermission(player, "filter.monster");
         var canSkipAnimation = HasFeaturePermission(player, "skipanimation");
+        var canBlockQuestFish = HasFeaturePermission(player, "filter.quest");
         var canProtectBait = HasFeaturePermission(player, "bait.protect");
 
         var defaultAutoFish = Config.DefaultAutoFishEnabled && canFish;
         var defaultBuff = Config.DefaultBuffEnabled && canBuff;
         var defaultMulti = Config.DefaultMultiHookEnabled && canMulti;
-        var defaultConsumption = Config.DefaultConsumptionEnabled;
-        var defaultSkipNonStackable = Config.GlobalSkipNonStackableLoot && Config.DefaultSkipNonStackableLoot &&
-                                      canSkipNonStackable;
         var defaultBlockMonster = Config.GlobalBlockMonsterCatch && Config.DefaultBlockMonsterCatch &&
                                   canBlockMonster;
         var defaultSkipAnimation = Config.GlobalSkipFishingAnimation && Config.DefaultSkipFishingAnimation &&
                                    canSkipAnimation;
+        var defaultBlockQuestFish = Config.GlobalBlockQuestFish && Config.DefaultBlockQuestFish &&
+                                    canBlockQuestFish;
         var defaultProtectBait = Config.GlobalProtectValuableBaitEnabled && Config.DefaultProtectValuableBaitEnabled &&
                                  canProtectBait;
 
@@ -75,12 +77,11 @@ public partial class AutoFish : TerrariaPlugin
             Name = playerName,
             AutoFishEnabled = defaultAutoFish,
             BuffEnabled = defaultBuff,
-            ConsumptionEnabled = defaultConsumption,
             HookMaxNum = Config.GlobalMultiHookMaxNum,
             MultiHookEnabled = defaultMulti,
-            SkipNonStackableLoot = defaultSkipNonStackable,
             BlockMonsterCatch = defaultBlockMonster,
             SkipFishingAnimation = defaultSkipAnimation,
+            BlockQuestFish = defaultBlockQuestFish,
             ProtectValuableBaitEnabled = defaultProtectBait,
             FirstFishHintShown = false
         };
@@ -109,14 +110,51 @@ public partial class AutoFish : TerrariaPlugin
     {
         LoadConfig();
         GeneralHooks.ReloadEvent += ReloadConfig;
-        GetDataHandlers.NewProjectile += ProjectNew!;
-        GetDataHandlers.NewProjectile += BuffUpdate!;
-        GetDataHandlers.NewProjectile += FirstFishHint!;
-        GetDataHandlers.PlayerUpdate.Register(OnPlayerUpdate);
-        ServerApi.Hooks.ProjectileAIUpdate.Register(this, ProjectAiUpdate);
+        ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize);
+        //容易出bug，还是OTAPI精准打击吧
+        // ServerApi.Hooks.ProjectileAIUpdate.Register(this, ProjectAiUpdate);
+        Projectile.AI_061_FishingBobber += OnAI_061_FishingBobber;
         TShockAPI.Commands.ChatCommands.Add(new Command(new List<string> { "autofish", CommonPermission },
             Commands.Afs, "af", "autofish"));
         TShockAPI.Commands.ChatCommands.Add(new Command(AdminPermission, Commands.Afa, "afa", "autofishadmin"));
+    }
+
+    /// <summary>
+    ///     服务器初始化后显示插件状态信息。
+    /// </summary>
+    private void OnGamePostInitialize(EventArgs args)
+    {
+        // 检查 SSC 是否开启
+        if (!Main.ServerSideCharacter)
+        {
+            TShock.Log.ConsoleError("========================================");
+            TShock.Log.ConsoleError("[AutoFishR] 严重错误：SSC 未开启！");
+            TShock.Log.ConsoleError("[AutoFishR] 本插件需要 ServerSideCharacter 才能正常运行");
+            TShock.Log.ConsoleError("[AutoFishR] 请在 tshock/sscconfig.json 中启用 SSC");
+            TShock.Log.ConsoleError("[AutoFishR] 若将此错误截图到群里，请群友代开发者问候截图者");
+            TShock.Log.ConsoleError("[AutoFishR] 插件已自动禁用");
+            TShock.Log.ConsoleError("========================================");
+
+            // 注销所有钩子和命令，禁用插件
+            Dispose(true);
+            return;
+        }
+
+        if (!Configuration.IsFirstInstall) return;
+
+        TShock.Log.ConsoleInfo("========================================");
+        TShock.Log.ConsoleInfo($"[AutoFishR] 插件已成功加载 v{Version}");
+        TShock.Log.ConsoleInfo("[AutoFishR] 当前状态：正常运行");
+        TShock.Log.ConsoleInfo("========================================");
+        TShock.Log.ConsoleInfo("[AutoFishR] 遇到 BUG 或问题？");
+        TShock.Log.ConsoleInfo("[AutoFishR] 1. 请先查看 README 文档");
+        TShock.Log.ConsoleInfo("[AutoFishR] 2. 无法解决再联系开发者");
+        TShock.Log.ConsoleInfo("[AutoFishR] GitHub: https://github.com/ksqeib/AutoFishR");
+        TShock.Log.ConsoleInfo("[AutoFishR] Star 很重要，是支持开发者持续开发的动力，欢迎点个 Star！");
+        TShock.Log.ConsoleInfo("[AutoFishR] 本插件为免费开源插件，如有任何付费购买行为，说明您被骗了。");
+        TShock.Log.ConsoleInfo("[AutoFishR] 联系方式：QQ 2388990095 (ksqeib)");
+        TShock.Log.ConsoleInfo("[AutoFishR] 警告：请勿在群内艾特开发者！");
+        TShock.Log.ConsoleInfo("========================================");
     }
 
     /// <summary>
@@ -127,11 +165,9 @@ public partial class AutoFish : TerrariaPlugin
         if (disposing)
         {
             GeneralHooks.ReloadEvent -= ReloadConfig;
-            GetDataHandlers.NewProjectile -= ProjectNew!;
-            GetDataHandlers.NewProjectile -= BuffUpdate!;
-            GetDataHandlers.NewProjectile -= FirstFishHint!;
-            GetDataHandlers.PlayerUpdate.UnRegister(OnPlayerUpdate);
-            ServerApi.Hooks.ProjectileAIUpdate.Deregister(this, ProjectAiUpdate);
+            ServerApi.Hooks.GamePostInitialize.Deregister(this, OnGamePostInitialize);
+            // ServerApi.Hooks.ProjectileAIUpdate.Deregister(this, ProjectAiUpdate);
+            Projectile.AI_061_FishingBobber -= OnAI_061_FishingBobber;
             TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Afs);
             TShockAPI.Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Commands.Afa);
         }
@@ -156,4 +192,5 @@ public partial class AutoFish : TerrariaPlugin
         Config = Configuration.Read();
         Lang.Load(Config.Language);
     }
+
 }

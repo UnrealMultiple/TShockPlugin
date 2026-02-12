@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using System.Reflection;
+using TShockAPI;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
-using TShockAPI;
 
 namespace AutoFish.AFMain;
 
@@ -16,6 +16,9 @@ internal class Configuration
 
     /// <summary>配置文件路径。</summary>
     public static readonly string FilePath = Path.Combine(ConfigDirectory, "config.yml");
+
+    /// <summary>是否首次生成配置文件（仅本次运行内有效）。</summary>
+    internal static bool IsFirstInstall { get; private set; }
 
     private static readonly IDeserializer Deserializer = new DeserializerBuilder()
         .WithNamingConvention(CamelCaseNamingConvention.Instance)
@@ -57,30 +60,19 @@ internal class Configuration
     /// <summary>全局启用消耗模式。</summary>
     public bool GlobalConsumptionModeEnabled { get; set; }
 
-    /// <summary>玩家默认是否开启消耗模式。</summary>
-    public bool DefaultConsumptionEnabled { get; set; }
-
-    /// <summary>奖励消耗的鱼饵数量。</summary>
-    public int BaitConsumeCount { get; set; } = 10;
-
-    /// <summary>奖励 Buff 持续分钟数。</summary>
-    public int RewardDurationMinutes { get; set; } = 12;
-
-    /// <summary>消耗模式允许的鱼饵 ID 列表。</summary>
-    public List<int> BaitItemIds { get; set; } = new()
+    /// <summary>
+    ///     消耗模式鱼饵配置。
+    ///     键：鱼饵物品ID
+    ///     值：Tuple<每次消耗数量, 兑换分钟数>
+    /// </summary>
+    public Dictionary<int, BaitReward> BaitRewards { get; set; } = new()
     {
-        2002, // 天界蜻蜓
-        2675, // 魔金虫
-        2676, // 火焰苍蝇
-        3191, // 魔煞虫
-        3194  // 恶魔心
+        { 2002, new BaitReward { Count = 1, Minutes = 1 } }, // 蠣虫
+        { 2675, new BaitReward { Count = 1, Minutes = 5 } }, // 熟手诱饵
+        { 2676, new BaitReward { Count = 1, Minutes = 10 } }, // 大师诱饵
+        { 3191, new BaitReward { Count = 1, Minutes = 8 } }, // 附魔夜行者
+        { 3194, new BaitReward { Count = 1, Minutes = 5 } } // 蝗虫
     };
-
-    /// <summary>全局跳过不可堆叠渔获。</summary>
-    public bool GlobalSkipNonStackableLoot { get; set; } = true;
-
-    /// <summary>玩家默认是否跳过不可堆叠渔获。</summary>
-    public bool DefaultSkipNonStackableLoot { get; set; } = true;
 
     /// <summary>全局禁止钓上怪物。</summary>
     public bool GlobalBlockMonsterCatch { get; set; } = true;
@@ -92,7 +84,13 @@ internal class Configuration
     public bool GlobalSkipFishingAnimation { get; set; } = true;
 
     /// <summary>玩家默认是否跳过钓鱼动画。</summary>
-    public bool DefaultSkipFishingAnimation { get; set; } = true;
+    public bool DefaultSkipFishingAnimation { get; set; } = false;
+
+    /// <summary>全局屏蔽任务鱼。</summary>
+    public bool GlobalBlockQuestFish { get; set; } = true;
+
+    /// <summary>玩家默认是否屏蔽任务鱼。</summary>
+    public bool DefaultBlockQuestFish { get; set; } = false;
 
     /// <summary>全局保护贵重鱼饵。</summary>
     public bool GlobalProtectValuableBaitEnabled { get; set; } = true;
@@ -113,31 +111,12 @@ internal class Configuration
         2893, // 金蚱蜢
         4362, // 金瓢虫
         4419, // 金水黾
-        2895  // 金蠕虫
-    };
-
-    /// <summary>随机渔获功能开关。</summary>
-    public bool RandomLootEnabled { get; set; }
-
-    /// <summary>额外掉落的物品 ID 列表。</summary>
-    public List<int> ExtraCatchItemIds { get; set; } = new()
-    {
-        5,    // 蘑菇
-        72,   // 银币
-        75,   // 坠落之星
-        276,  // 仙人掌
-        3093, // 草药袋
-        4345  // 蠕虫罐头
+        2895 // 金蠕虫
     };
 
     /// <summary>Buff ID 与持续秒数映射。</summary>
     public Dictionary<int, int> BuffDurations { get; set; } = new();
 
-    /// <summary>禁用发射物 ID 列表。</summary>
-    public int[] DisabledProjectileIds { get; set; } =
-    {
-        623, 625, 626, 627, 628, 831, 832, 833, 834, 835, 963, 970
-    };
 
     /// <summary>
     ///     将当前配置写入磁盘。
@@ -157,7 +136,7 @@ internal class Configuration
         EnsureConfigFileExists();
 
         var yamlContent = File.ReadAllText(FilePath);
-        var config = Deserializer.Deserialize<Configuration>(yamlContent) ?? new Configuration();
+        var config = Deserializer.Deserialize<Configuration>(yamlContent);
         config.Normalize();
         return config;
     }
@@ -165,24 +144,6 @@ internal class Configuration
     private void Normalize()
     {
         Language = string.IsNullOrWhiteSpace(Language) ? "zh-cn" : Language.ToLowerInvariant();
-        BaitItemIds ??= new List<int> { 2002, 2675, 2676, 3191, 3194 };
-        ValuableBaitItemIds ??= new List<int>
-        {
-            2673,
-            1999,
-            2436,
-            2437,
-            2438,
-            2891,
-            4340,
-            2893,
-            4362,
-            4419,
-            2895
-        };
-        ExtraCatchItemIds ??= new List<int> { 5, 72, 75, 276, 3093, 4345 };
-        BuffDurations ??= new Dictionary<int, int>();
-        DisabledProjectileIds ??= new[] { 623, 625, 626, 627, 628, 831, 832, 833, 834, 835, 963, 970 };
     }
 
     private static void EnsureConfigFileExists()
@@ -194,6 +155,8 @@ internal class Configuration
             Console.WriteLine("[AutoFish]配置文件成功找到并加载");
             return;
         }
+
+        IsFirstInstall = true;
 
         var preferredCulture = ResolvePreferredConfigCulture();
         if (TryExportEmbeddedConfig(preferredCulture))
@@ -227,16 +190,10 @@ internal class Configuration
         var resourceName = assembly.GetManifestResourceNames()
             .FirstOrDefault(n => n.EndsWith($"{culture}.yml", StringComparison.OrdinalIgnoreCase));
 
-        if (resourceName == null)
-        {
-            return false;
-        }
+        if (resourceName == null) return false;
 
         using var resourceStream = assembly.GetManifestResourceStream(resourceName);
-        if (resourceStream == null)
-        {
-            return false;
-        }
+        if (resourceStream == null) return false;
 
         using var reader = new StreamReader(resourceStream);
         var content = reader.ReadToEnd();
@@ -249,16 +206,22 @@ internal class Configuration
         var uiCulture = CultureInfo.CurrentUICulture;
         var name = uiCulture.Name.ToLowerInvariant();
 
-        if (name.StartsWith("zh"))
-        {
-            return "zh-cn";
-        }
+        if (name.StartsWith("zh")) return "zh-cn";
 
-        if (name.StartsWith("en"))
-        {
-            return "en-us";
-        }
+        if (name.StartsWith("en")) return "en-us";
 
         return "en-us";
     }
+}
+
+/// <summary>
+///     鱼饵奖励配置。
+/// </summary>
+public class BaitReward
+{
+    /// <summary>每次消耗的鱼饵数量。</summary>
+    public int Count { get; set; }
+
+    /// <summary>兑换的时长（分钟）。</summary>
+    public int Minutes { get; set; }
 }

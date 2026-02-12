@@ -41,7 +41,7 @@ public class RankCommand : BaseCommand
                     args.Player.SendErrorMessage(GetString("此职业全服唯一，已经存在此职业无法升级。"));
                     return;
                 }
-                if (ranklevel.SelectedWeapon.Count > 0 && !ranklevel.SelectedWeapon.Contains(args.Player.SelectedItem.netID))
+                if (ranklevel.SelectedWeapon.Count > 0 && !ranklevel.SelectedWeapon.Contains(args.Player.SelectedItem.type))
                 {
                     args.Player.SendErrorMessage(GetString($"升级至 {args.Parameters[0]} 需要手持武器{string.Join(",", ranklevel.SelectedWeapon.Select(i => TShock.Utils.GetItemById(i).Name))}！ "));
                     return;
@@ -76,7 +76,7 @@ public class RankCommand : BaseCommand
         else if (level.RankLevels.Count == 1)
         {
             var ranklevel = level.RankLevels[0];
-            if (ranklevel.SelectedWeapon.Count > 0 && !ranklevel.SelectedWeapon.Contains(args.Player.SelectedItem.netID))
+            if (ranklevel.SelectedWeapon.Count > 0 && !ranklevel.SelectedWeapon.Contains(args.Player.SelectedItem.type))
             {
                 args.Player.SendErrorMessage(GetString($"升级至 {ranklevel} 需要手持武器{string.Join(",", ranklevel.SelectedWeapon.Select(i => TShock.Utils.GetItemById(i).Name))}！ "));
                 return;

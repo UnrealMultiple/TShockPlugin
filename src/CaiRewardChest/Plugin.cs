@@ -130,7 +130,7 @@ public class CaiRewardChest : TerrariaPlugin
             if (chest2.HasOpenPlayer.Contains(e.Player.Account.ID))
             {
                 e.Player.SendWarningMessage(
-                    GetString($"[i:{WorldGen.GetChestItemDrop(chest2.X, chest2.Y, Main.tile[chest2.X, chest2.Y].type)}]你已经领取过这个奖励箱啦!"));
+                    GetString($"[i:{WorldGen.GetItemDrop_Chests(chest2.X, chest2.Y, Main.tile[chest2.X, chest2.Y].type)}]你已经领取过这个奖励箱啦!"));
                 e.Handled = true;
                 return;
             }

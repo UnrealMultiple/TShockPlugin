@@ -25,7 +25,7 @@ public class PlayerSparkSkillHandler
                     SkillSparkType.CD => skill.SkillCD <= 0,    
                     SkillSparkType.Armor => skill.Skill!.SkillSpark.HasItem(Player),
                     SkillSparkType.Death => Player.Dead,
-                    SkillSparkType.Take => skillSparkType == SkillSparkType.Take && skill.BindItem == Player.SelectedItem.netID,
+                    SkillSparkType.Take => skillSparkType == SkillSparkType.Take && skill.BindItem == Player.SelectedItem.type,
                     SkillSparkType.Kill => skillSparkType == SkillSparkType.Kill,
                     SkillSparkType.Strike => skillSparkType == SkillSparkType.Strike,
                     SkillSparkType.Struck => skillSparkType == SkillSparkType.Struck,

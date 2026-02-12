@@ -72,7 +72,7 @@ public class ShowArmors : TerrariaPlugin
             {
                 target = players[0];
                 armors = target.TPlayer.armor;
-                str = GetString($"{target.Name} : 拿着 [i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]{(ItemPrefix) target.SelectedItem.prefix}");
+                str = GetString($"{target.Name} : 拿着 [i/p{target.SelectedItem.prefix}:{target.SelectedItem.type}]{Lang.prefix[target.SelectedItem.prefix].Value}");
             }
         }
         if (target is null || armors is null)
@@ -83,18 +83,18 @@ public class ShowArmors : TerrariaPlugin
         {
             var isArmor = i < 3;
             var isAccessories = i < MAX_SLOTS_NUMBER;
-            if (armors[i] == null || armors[i].netID == 0)
+            if (armors[i] == null || armors[i].type == 0)
             {
                 continue;
             }
             else if (isArmor)
             {
-                str += $"[i:{armors[i].netID}]";
+                str += $"[i:{armors[i].type}]";
                 continue;
             }
             else if (isAccessories)
             {
-                str += $"[i/p{armors[i].prefix}:{armors[i].netID}]" + $"{(ItemPrefix) armors[i].prefix}" + " ";
+                str += $"[i/p{armors[i].prefix}:{armors[i].type}]" + $"{Lang.prefix[armors[i].prefix].Value}" + " ";
             }
             else
             {
@@ -107,121 +107,26 @@ public class ShowArmors : TerrariaPlugin
         {
             if (nothingEquipped)
             {
-                TShock.Utils.Broadcast(GetString($"{target.Name}这家伙啥都没装备。只拿着: [i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]{(ItemPrefix) target.SelectedItem.prefix}"), Microsoft.Xna.Framework.Color.Green);
+                TShock.Utils.Broadcast(GetString($"{target.Name}这家伙啥都没装备。只拿着: [i/p{target.SelectedItem.prefix}:{target.SelectedItem.type}]{Lang.prefix[target.SelectedItem.prefix].Value}"), Microsoft.Xna.Framework.Color.Green);
             }
             else
             {
-                TShock.Utils.Broadcast(str += GetString($" 拿着: [i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]{(ItemPrefix) target.SelectedItem.prefix}"), Microsoft.Xna.Framework.Color.Green);
+                TShock.Utils.Broadcast(str += GetString($" 拿着: [i/p{target.SelectedItem.prefix}:{target.SelectedItem.type}]{Lang.prefix[target.SelectedItem.prefix].Value}"), Microsoft.Xna.Framework.Color.Green);
             }
         }
         else if (argsCount == 1)
         {
             if (nothingEquipped)
             {
-                args.Player.SendSuccessMessage(GetString($"{target.Name}这家伙啥都没装备，只拿着 [i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]{(ItemPrefix) target.SelectedItem.prefix}"));
+                args.Player.SendSuccessMessage(GetString($"{target.Name}这家伙啥都没装备，只拿着 [i/p{target.SelectedItem.prefix}:{target.SelectedItem.type}]{Lang.prefix[target.SelectedItem.prefix].Value}"));
             }
             else
             {
-                args.Player.SendSuccessMessage(str += GetString($" 拿着: [i/p{target.SelectedItem.prefix}:{target.SelectedItem.netID}]{(ItemPrefix) target.SelectedItem.prefix}"));
+                args.Player.SendSuccessMessage(str += GetString($" 拿着: [i/p{target.SelectedItem.prefix}:{target.SelectedItem.type}]{Lang.prefix[target.SelectedItem.prefix].Value}"));
             }
         }
 
     }
-
-    public enum ItemPrefix
-    {
-        无附魔,
-        大,
-        巨大,
-        危险,
-        凶残,
-
-        锋利,
-        尖锐,
-        微小,
-        可怕,
-
-        小,
-        钝,
-        倒霉,
-        笨重,
-
-        可耻,
-        重,
-        轻,
-        精准,
-
-        迅速,
-        急速远程,
-        恐怖,
-        致命远程,
-
-        可靠,
-        可畏,
-        无力,
-        粗笨,
-
-        强大,
-        神秘,
-        精巧,
-        精湛,
-
-        笨拙,
-        无知,
-        错乱,
-        威猛,
-
-        禁忌,
-        天界,
-        狂怒,
-        锐利,
-        高端,
-        强力,
-        碎裂,
-        破损,
-        粗劣,
-        迅捷魔法,
-        致命,
-        灵活,
-        灵巧,
-        残暴,
-        缓慢,
-        迟钝,
-        呆滞,
-        惹恼,
-        凶险,
-        狂躁,
-        致伤,
-        强劲,
-        粗鲁,
-        虚弱,
-        无情,
-        暴怒,
-        神级,
-        恶魔,
-        狂热,
-        坚硬,
-        守护,
-        装甲,
-        护佑,
-        奥秘,
-        精确,
-        幸运,
-        锯齿,
-        尖刺,
-        愤怒,
-        险恶,
-        轻快,
-        快速,
-        急速,
-        迅捷,
-        狂野,
-        鲁莽,
-        勇猛,
-        暴力,
-        传奇,
-        虚幻,
-        神话
-    }
+    
 
 }

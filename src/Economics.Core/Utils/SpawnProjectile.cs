@@ -51,7 +51,7 @@ public class SpawnProjectile
         projectile.honeyWet = Collision.honey;
         projectile.shimmerWet = Collision.shimmer;
         Main.projectileIdentity[Owner, num] = num;
-        Terraria.Projectile.FindBannerToAssociateTo(spawnSource, projectile);
+        projectile.FindBannerToAssociateTo(spawnSource);
         if (projectile.aiStyle == 1)
         {
             while (projectile.velocity.X >= 16f || projectile.velocity.X <= -16f || projectile.velocity.Y >= 16f || projectile.velocity.Y < -16f)

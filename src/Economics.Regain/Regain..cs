@@ -66,12 +66,12 @@ public class Regain : TerrariaPlugin
         }
         bool Verify(out Config.RegainInfo? regain)
         {
-            if (!Config.TryGetRegain(args.Player.SelectedItem.netID, out regain) || regain == null)
+            if (!Config.TryGetRegain(args.Player.SelectedItem.type, out regain) || regain == null)
             {
                 args.Player.SendErrorMessage(GetString("该物品暂时无法回收!"));
                 return false;
             }
-            if (args.Player.SelectedItem.stack == 0 || args.Player.SelectedItem.netID == 0)
+            if (args.Player.SelectedItem.stack == 0 || args.Player.SelectedItem.type == 0)
             {
                 args.Player.SendErrorMessage(GetString("请手持一个有效物品!"));
                 return false;

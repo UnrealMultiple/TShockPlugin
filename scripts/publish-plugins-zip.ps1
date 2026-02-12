@@ -73,7 +73,7 @@ function Get-TShockZip {
 
     $rid = if ([System.Environment]::OSVersion.Platform -Match "Unix") { "linux-(x64|amd64)" } else { "win-(x64|amd64)" }
     Invoke-GitHubRequest -Uri ( `
-            Invoke-GitHubRequest -Uri 'https://api.github.com/repos/Pryaxis/TShock/releases' | `
+            Invoke-GitHubRequest -Uri 'https://api.github.com/repos/WindFrost-CSFT/TShock/releases' | `
             ConvertFrom-Json | `
             Select-Object -First 1 -ExpandProperty assets | `
             Where-Object browser_download_url -Match $rid | `

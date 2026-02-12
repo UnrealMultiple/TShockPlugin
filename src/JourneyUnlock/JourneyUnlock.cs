@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.GameContent.NetModules;
 using Terraria.ID;
 using Terraria.Net;
@@ -8,7 +9,7 @@ using TShockAPI;
 namespace JourneyUnlock;
 
 [ApiVersion(2, 1)]
-public class JourneyUnlock : TerrariaPlugin
+public class JourneyUnlock(Main game) : TerrariaPlugin(game)
 {
     public override string Author => "Maxthegreat99，肝帝熙恩汉化";
 
@@ -16,10 +17,6 @@ public class JourneyUnlock : TerrariaPlugin
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override Version Version => new Version(1, 0, 1, 6);
-
-    public JourneyUnlock(Main game) : base(game)
-    {
-    }
 
     public override void Initialize()
     {
@@ -46,9 +43,11 @@ public class JourneyUnlock : TerrariaPlugin
         {
             for (var i = 0; i < ItemID.Count; i++)
             {
-                tplayer.creativeTracker.ItemSacrifices.RegisterItemSacrifice(i, 999);
-                var _response = NetCreativeUnlocksModule.SerializeItemSacrifice(i, 999);
-                NetManager.Instance.SendToClient(_response, tplayer.whoAmI);
+                CreativeItemSacrificesCatalog.Instance.TryGetSacrificeCountCapToUnlockInfiniteItems(i, out var amountNeeded);
+                Main.LocalPlayerCreativeTracker.ItemSacrifices.RegisterItemSacrifice(i, amountNeeded);
+                NetManager.Instance.Broadcast(
+                    NetCreativeUnlocksPlayerReportModule.SerializeSacrificeRequest(255, i, amountNeeded)
+                );
             }
             if (!isSelf)
             {
@@ -66,9 +65,11 @@ public class JourneyUnlock : TerrariaPlugin
         //Case: unlock a specific item via id
         if (int.TryParse(parameter, out var itemid) && TShock.Utils.GetItemById(itemid) != null)
         {
-            tplayer.creativeTracker.ItemSacrifices.RegisterItemSacrifice(itemid, 999);
-            var _response = NetCreativeUnlocksModule.SerializeItemSacrifice(itemid, 999);
-            NetManager.Instance.SendToClient(_response, tplayer.whoAmI);
+            CreativeItemSacrificesCatalog.Instance.TryGetSacrificeCountCapToUnlockInfiniteItems(itemid, out var amountNeeded);
+            Main.LocalPlayerCreativeTracker.ItemSacrifices.RegisterItemSacrifice(itemid, amountNeeded);
+            NetManager.Instance.Broadcast(
+                NetCreativeUnlocksPlayerReportModule.SerializeSacrificeRequest(255, itemid, amountNeeded)
+            );
 
             if (!isSelf)
             {
@@ -103,11 +104,13 @@ public class JourneyUnlock : TerrariaPlugin
             return;
         }
 
-        itemid = TShock.Utils.GetItemByName(itemname)[0].netID;
+        itemid = TShock.Utils.GetItemByName(itemname)[0].type;
 
-        tplayer.creativeTracker.ItemSacrifices.RegisterItemSacrifice(itemid, 999);
-        var response = NetCreativeUnlocksModule.SerializeItemSacrifice(itemid, 999);
-        NetManager.Instance.SendToClient(response, tplayer.whoAmI);
+        CreativeItemSacrificesCatalog.Instance.TryGetSacrificeCountCapToUnlockInfiniteItems(itemid, out var amountNeeded2);
+        Main.LocalPlayerCreativeTracker.ItemSacrifices.RegisterItemSacrifice(itemid, amountNeeded2);
+        NetManager.Instance.Broadcast(
+            NetCreativeUnlocksPlayerReportModule.SerializeSacrificeRequest(255, itemid, amountNeeded2)
+        );
 
         if (!isSelf)
         {
