@@ -90,7 +90,7 @@
 | [ChattyBridge](./src/ChattyBridge/README.en-US.md) | 33.3% | Used for cross-server chat | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ChestRestore](./src/ChestRestore/README.en-US.md) | 80.0% | Infinite items in resource servers |  |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the core part |  |
-| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the miscellaneous part | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
+| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Yet another misc plugin for TShock - the miscellaneous part |  |
 | [CNPCShop](./src/CNPCShop/README.en-US.md) | 100.0% | Custom NPC shop |  |
 | [ConsoleSql](./src/ConsoleSql/README.en-US.md) | 100.0% | Execute SQL statements in the console |  |
 | [ConvertWorld](./src/ConvertWorld/README.en-US.md) | 100.0% | Convert world items by defeating monsters |  |
@@ -193,10 +193,10 @@
 | [TransferPatch](./src/TransferPatch/README.en-US.md) | 50.0% | Transfer Plugin Config Patch |  |
 | [UnseenInventory](./src/UnseenInventory/README.en-US.md) | 100.0% | Allows the server to generate items that are normally 'unobtainable' |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Foundation library for VBY plugins |  |
-| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Customizable modifications for certain game content (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
-| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Provide some other auxiliary commands | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Customizable modifications for certain game content (super) |  |
+| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Provide some other auxiliary commands |  |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 0.0% | A plugin loader that allows hot reloading |  |
-| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) |
+| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 |  |
 | [VeinMiner](./src/VeinMiner/README.en-US.md) | 100.0% | Chain mining |  |
 | [VotePlus](./src/VotePlus/README.en-US.md) | 100.0% | Multi-function voting |  |
 | [WeaponPlus](./src/WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement coin version |  |

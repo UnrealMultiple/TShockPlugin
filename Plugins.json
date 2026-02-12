@@ -1497,7 +1497,7 @@
   },
   {
     "Name": "HouseRegion",
-    "Version": "1.0.3",
+    "Version": "1.0.4",
     "Author": "GK 阁下 改良 Eustia 更新",
     "Description": {
       "en-US": "Plugin for protecting houses.",
