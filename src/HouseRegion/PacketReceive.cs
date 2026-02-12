@@ -21,7 +21,7 @@ public class GetDataHandlerArgs : EventArgs//要让这个数据在数据的基�
 }
 public static class GetDataHandlers
 {
-    static readonly string EditHouse = "house.edit";
+    internal static readonly string EditHouse = "house.edit";
     private static Dictionary<PacketTypes, GetDataHandlerDelegate> GetDataHandlerDelegates = null!;//创建词典
     private static readonly Dictionary<int, List<Rectangle>> PlayerActiveHouses = new();
     private static readonly Dictionary<int, bool> PlayerRefreshFlags = new();

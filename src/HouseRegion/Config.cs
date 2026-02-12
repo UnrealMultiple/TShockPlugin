@@ -16,15 +16,15 @@ public class Config : JsonConfigBase<Config>
 
     [LocalizedPropertyName(CultureType.Chinese, "房屋最小宽度")]
     [LocalizedPropertyName(CultureType.English, "MinWidth")]
-    public int MinWidth = 30;
+    public int MinWidth = 15;
 
     [LocalizedPropertyName(CultureType.Chinese, "房屋最小高度")]
     [LocalizedPropertyName(CultureType.English, "MinHeight")]
-    public int MinHeight = 30;
+    public int MinHeight = 10;
 
     [LocalizedPropertyName(CultureType.Chinese, "房屋最大数量")]
     [LocalizedPropertyName(CultureType.English, "HouseMaxNumber")]
-    public int HouseMaxNumber = 1;
+    public int HouseMaxNumber = 2;
 
     [LocalizedPropertyName(CultureType.Chinese, "禁止锁房屋")]
     [LocalizedPropertyName(CultureType.English, "ProhibitLockHouse")]

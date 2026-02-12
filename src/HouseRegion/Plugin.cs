@@ -1,12 +1,14 @@
 ﻿using LazyAPI;
 using Microsoft.Xna.Framework;
 using MySql.Data.MySqlClient;
-using On.OTAPI;
+using On.Terraria.GameContent;
+using OTAPI;
 using System.Timers;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
+using Hooks = On.OTAPI.Hooks;
 
 
 namespace HouseRegion;
@@ -17,7 +19,7 @@ public class HousingPlugin : LazyPlugin
     public override string Author => "GK 阁下 改良 Eustia 更新";
     public override string Description => GetString("一个著名的用于保护房屋的插件。");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 4);
     public HousingPlugin(Main game) : base(game)
     {
     }
@@ -79,10 +81,79 @@ public class HousingPlugin : LazyPlugin
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);//玩家进入服务器
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);//玩家退出服务器
         ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitialize);//地图读入后
-        Hooks.MessageBuffer.InvokeGetData += this.MessageBufferOnInvokeGetData;
+        OTAPI.Hooks.Chest.QuickStack += ChestOnQuickStack;
+        CraftingRequests.CanCraftFromChest += CraftingRequestsOnCanCraftFromChest;
+        Hooks.MessageBuffer.InvokeGetData += MessageBufferOnInvokeGetData;
     }
 
-    private bool MessageBufferOnInvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
+    private static bool CraftingRequestsOnCanCraftFromChest(CraftingRequests.orig_CanCraftFromChest orig, Chest chest, int whoAmI)
+    {
+        var plr = TShock.Players[whoAmI];
+        
+        var house = Utils.InAreaHouse(chest.x, chest.y);
+        if (house == null)
+        {
+            return orig(chest, whoAmI);
+        }
+        
+        if ((!house.Locked || Config.Instance.LimitLockHouse) && !Config.Instance.ProtectiveChest)
+        {
+            return orig(chest, whoAmI);
+        }
+
+        if (plr.Group.HasPermission(GetDataHandlers.EditHouse) || 
+            plr.Account.ID.ToString() == house.Author ||
+            Utils.OwnsHouse(plr.Account.ID.ToString(), house) ||
+            Utils.CanUseHouse(plr.Account.ID.ToString(), house))
+        {
+            return orig(chest, whoAmI);
+        }
+
+        if (Config.Instance.WarningSpoiler)
+        {
+            plr.Disable(GetString("无权使用被房子保护的地区箱子合成物品!"));
+        }
+
+        plr.SendErrorMessage(GetString("你没有权力使用被房子保护的地区的箱子合成物品。"));
+        return false;
+    }
+
+    private static void ChestOnQuickStack(object? sender, OTAPI.Hooks.Chest.QuickStackEventArgs e)
+    {
+        var plr = TShock.Players[e.PlayerId];
+
+        var chest = Main.chest[e.ChestIndex];
+        
+        var house = Utils.InAreaHouse(chest.x, chest.y);
+        if (house == null)
+        {
+            return;
+        }
+        
+        if ((!house.Locked || Config.Instance.LimitLockHouse) && !Config.Instance.ProtectiveChest)
+        {
+            return;
+        }
+
+        if (plr.Group.HasPermission(GetDataHandlers.EditHouse) ||
+            plr.Account.ID.ToString() == house.Author ||
+            Utils.OwnsHouse(plr.Account.ID.ToString(), house) ||
+            Utils.CanUseHouse(plr.Account.ID.ToString(), house))
+        {
+            return;
+        }
+
+        if (Config.Instance.WarningSpoiler)
+        {
+            plr.Disable(GetString("无权快速堆叠箱子!"));
+        }
+
+        
+        plr.SendErrorMessage(GetString("你没有权力快速堆叠箱被房子保护的地区的箱子。"));
+        e.Result = HookResult.Cancel;
+    }
+
+    private static bool MessageBufferOnInvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
     {
         var user = TShock.Players[instance.whoAmI];
         using (var data = new MemoryStream(instance.readBuffer, readOffset, length))
@@ -94,7 +165,7 @@ public class HousingPlugin : LazyPlugin
                     return false;
                 }
             }
-            catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误传递时出错:") + ex.ToString()); }
+            catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误传递时出错:") + ex); }
         }
         return orig.Invoke(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType,
         maxPackets);
@@ -109,7 +180,9 @@ public class HousingPlugin : LazyPlugin
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);//玩家退出服务器
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.PostInitialize);//地图读入后
             Update.Elapsed -= this.OnUpdate; Update.Stop();//销毁时钟
-            Hooks.MessageBuffer.InvokeGetData -= this.MessageBufferOnInvokeGetData;
+            OTAPI.Hooks.Chest.QuickStack -= ChestOnQuickStack;
+            CraftingRequests.CanCraftFromChest -= CraftingRequestsOnCanCraftFromChest;
+            Hooks.MessageBuffer.InvokeGetData -= MessageBufferOnInvokeGetData;
         }
         base.Dispose(disposing);
     }
