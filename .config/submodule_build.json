@@ -42,12 +42,12 @@
             "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.Common.dll",
             "readme": "src/Submodules/VBY.Plugins/docs/VBY.Common.md"
         },
-        {
-            "name": "VBY.GameContentModify",
-            "project_path": "src/Submodules/VBY.Plugins/src/VBY/GameContentModify/GameContentModify.csproj",
-            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.GameContentModify.dll",
-            "readme": "src/Submodules/VBY.Plugins/docs/VBY.GameContentModify.md"
-        },
+//        {
+//            "name": "VBY.GameContentModify",
+//            "project_path": "src/Submodules/VBY.Plugins/src/VBY/GameContentModify/GameContentModify.csproj",
+//            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.GameContentModify.dll",
+//            "readme": "src/Submodules/VBY.Plugins/docs/VBY.GameContentModify.md"
+//        },
         {
             "name": "VBY.PluginLoader",
             "project_path": "src/Submodules/VBY.Plugins/src/VBY/PluginLoader/PluginLoader.csproj",
