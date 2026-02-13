@@ -1,0 +1,342 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AutoFish\n"
+"POT-Creation-Date: 2026-02-13 05:58:13+0000\n"
+"PO-Revision-Date: 2026-02-13 05:58:13+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+
+#: ../../Features/AutoFish.Consumption.cs:97
+msgid "[c/A7DDF0:{0}]:[c/74F3C9:{1}分{2}秒]"
+msgstr ""
+
+#: ../../CommandPlayer.cs:13
+#: ../../CommandAdmin.cs:126
+#: ../../Features/AutoFish.Consumption.cs:90
+msgid "[i:3455][c/AD89D5:自][c/D68ACA:动][c/DF909A:钓][c/E5A894:鱼][i:3454]"
+msgstr ""
+
+#: ../../CommandAdmin.cs:135
+msgid "[全局] /afa add 物品名 数量 分钟 -- 添加指定鱼饵"
+msgstr ""
+
+#: ../../CommandAdmin.cs:138
+msgid "[全局] /afa anim -- 开启丨关闭跳过上鱼动画"
+msgstr ""
+
+#: ../../CommandAdmin.cs:129
+msgid "[全局] /afa buff -- 开启丨关闭全局钓鱼BUFF"
+msgstr ""
+
+#: ../../CommandAdmin.cs:136
+msgid "[全局] /afa del 物品名 -- 移除指定鱼饵"
+msgstr ""
+
+#: ../../CommandAdmin.cs:131
+msgid "[全局] /afa duo 数字 -- 设置多线的钩子数量上限"
+msgstr ""
+
+#: ../../CommandAdmin.cs:132
+msgid "[全局] /afa mod -- 开启丨关闭消耗模式"
+msgstr ""
+
+#: ../../CommandAdmin.cs:137
+msgid "[全局] /afa monster -- 开启丨关闭不钓怪物"
+msgstr ""
+
+#: ../../CommandAdmin.cs:130
+msgid "[全局] /afa multi -- 开启丨关闭多线模式"
+msgstr ""
+
+#: ../../CommandAdmin.cs:133
+msgid "[全局] /afa set 物品名 数量 分钟 -- 设置鱼饵兑换规则"
+msgstr ""
+
+#: ../../CommandAdmin.cs:134
+msgid "[全局] /afa time 物品名 分钟 -- 修改鱼饵兑换时长"
+msgstr ""
+
+#: ../../CommandAdmin.cs:140
+msgid "[导出] /afa export -- 导出游戏钓鱼规则到 export.yml 文件"
+msgstr ""
+
+#: ../../CommandAdmin.cs:139
+msgid "[导出] /afa exportstats -- 查看导出统计信息"
+msgstr ""
+
+#: ../../CommandAdmin.cs:128
+msgid "[自动钓鱼 - 管理员命令]"
+msgstr ""
+
+#: ../../CommandPlayer.cs:20
+msgid "/af anim -- 开启丨关闭[c/8EC4F4:跳过上鱼动画]"
+msgstr ""
+
+#: ../../CommandPlayer.cs:24
+msgid "/af bait -- 开启丨关闭[c/92C5EC:保护贵重鱼饵]"
+msgstr ""
+
+#: ../../CommandPlayer.cs:25
+msgid "/af baitlist -- 查看贵重鱼饵列表"
+msgstr ""
+
+#: ../../CommandPlayer.cs:17
+msgid "/af buff -- 开启丨关闭[c/F6B152:钓鱼BUFF]"
+msgstr ""
+
+#: ../../CommandPlayer.cs:16
+msgid "/af fish -- 开启丨关闭[c/4686D4:自动钓鱼]功能"
+msgstr ""
+
+#: ../../CommandPlayer.cs:14
+msgid "/af help -- 查看自动钓鱼菜单"
+msgstr ""
+
+#: ../../CommandPlayer.cs:19
+msgid "/af hook 数字 -- 设置个人钩子上限 (<= 全局上限)"
+msgstr ""
+
+#: ../../CommandPlayer.cs:22
+msgid "/af list -- 列出消耗模式[c/F5F251:指定物品表]"
+msgstr ""
+
+#: ../../CommandPlayer.cs:18
+msgid "/af multi -- 开启丨关闭[c/87DF86:多钩功能]"
+msgstr ""
+
+#: ../../CommandPlayer.cs:21
+msgid "/af quest -- 开启丨关闭[c/F4D58D:屏蔽任务鱼]"
+msgstr ""
+
+#: ../../CommandPlayer.cs:23
+msgid "/af rules [页码] -- 查看[c/F9D77E:自定义钓鱼规则]"
+msgstr ""
+
+#: ../../CommandPlayer.cs:15
+msgid "/af status -- 查看个人状态"
+msgstr ""
+
+#: ../../CommandPlayer.cs:34
+#, csharp-format
+msgid "BUFF：{0}"
+msgstr ""
+
+#: ../../CommandAdmin.cs:153
+msgid "不存在该物品！"
+msgstr ""
+
+#: ../../CommandPlayer.cs:36
+#, csharp-format
+msgid "不钓怪物：{0}"
+msgstr ""
+
+#: ../../Features/AutoFish.Consumption.cs:96
+msgid "以下玩家已关闭[c/76D5B4:自动钓鱼]权限："
+msgstr ""
+
+#: ../../CommandPlayer.cs:139
+#, csharp-format
+msgid "你已[c/92C5EC:{0}]保护贵重鱼饵。"
+msgstr ""
+
+#: ../../CommandPlayer.cs:79
+#, csharp-format
+msgid "你已[c/92C5EC:{0}]多钩。"
+msgstr ""
+
+#: ../../CommandPlayer.cs:64
+#, csharp-format
+msgid "你已[c/92C5EC:{0}]自动钓鱼BUFF。"
+msgstr ""
+
+#: ../../CommandPlayer.cs:54
+#, csharp-format
+msgid "你已[c/92C5EC:{0}]自动钓鱼功能。"
+msgstr ""
+
+#: ../../CommandPlayer.cs:94
+#, csharp-format
+msgid "你已[c/92C5EC:{0}]钓起怪物。"
+msgstr ""
+
+#: ../../CommandPlayer.cs:109
+#, csharp-format
+msgid "你已[c/92C5EC:{0}]钓鱼动画。"
+msgstr ""
+
+#: ../../CommandPlayer.cs:39
+#, csharp-format
+msgid "保护贵重鱼饵：{0}"
+msgstr ""
+
+#: ../../CommandPlayer.cs:174
+#, csharp-format
+msgid "最大数量不能大于{0}"
+msgstr ""
+
+#: ../../CommandPlayer.cs:169
+msgid "最大数量不能小于1！"
+msgstr ""
+
+#: ../../CommandPlayer.cs:33
+#, csharp-format
+msgid "功能：{0}"
+msgstr ""
+
+#: ../../CommandPlayer.cs:35
+#, csharp-format
+msgid "多钩：{0}, 钩子上限：{1}"
+msgstr ""
+
+#: ../../CommandPlayer.cs:38
+#, csharp-format
+msgid "屏蔽任务鱼：{0}"
+msgstr ""
+
+#: ../../CommandAdmin.cs:64
+#, csharp-format
+msgid "已[c/92C5EC:{0}]debug模式。"
+msgstr ""
+
+#: ../../Features/AutoFish.Fishing.cs:152
+msgid "已保护贵重鱼饵 [{0}]，这是最后一个，已停止钓鱼。"
+msgstr ""
+
+#: ../../CommandPlayer.cs:180
+#, csharp-format
+msgid "已将个人钩子上限设置为：{0} (全局上限 {1})"
+msgstr ""
+
+#: ../../CommandAdmin.cs:78
+#, csharp-format
+msgid "已成功从指定鱼饵表移出物品 : [i:{0}]!"
+msgstr ""
+
+#: ../../CommandAdmin.cs:89
+#, csharp-format
+msgid "已成功将多钓数量上限设置为: [c/92C5EC:{0}] 个！"
+msgstr ""
+
+#: ../../CommandAdmin.cs:106
+#: ../../CommandAdmin.cs:121
+#, csharp-format
+msgid "已设置鱼饵 [i:{0}] 的兑换规则：每{1}个 => {2}分钟"
+msgstr ""
+
+#: ../../Features/AutoFish.Fishing.cs:166
+msgid "服务器已开启消耗模式，你缺少指定物品无法自动钓鱼！使用 /af list 查看需要的物品。"
+msgstr ""
+
+#: ../../Features/AutoFish.Fishing.cs:109
+msgid "检测到你正在钓鱼，可使用 /af fish 开启自动钓鱼。"
+msgstr ""
+
+#: ../../Features/AutoFish.Fishing.cs:145
+msgid "检测到贵重鱼饵，已与背包末尾鱼饵交换：{0} -> {1} (槽位 {2} ↔ {3})"
+msgstr ""
+
+#: ../../Features/AutoFish.Fishing.cs:128
+msgid "没有鱼饵了！"
+msgstr ""
+
+#: ../../CommandPlayer.cs:43
+#, csharp-format
+msgid "消耗模式：开启，剩余：{0}分{1}秒"
+msgstr ""
+
+#: ../../CommandPlayer.cs:124
+msgid "消耗模式指定物品:"
+msgstr ""
+
+#: ../../CommandAdmin.cs:79
+msgid "物品 {0} 不在指定鱼饵表中!"
+msgstr ""
+
+#: ../../CommandAdmin.cs:47
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:{1}]不钓怪物。"
+msgstr ""
+
+#: ../../CommandAdmin.cs:31
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:{1}]多钩功能。"
+msgstr ""
+
+#: ../../CommandAdmin.cs:39
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:{1}]消耗模式。"
+msgstr ""
+
+#: ../../CommandAdmin.cs:23
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:{1}]自动钓鱼BUFF。"
+msgstr ""
+
+#: ../../CommandAdmin.cs:15
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:{1}]自动钓鱼功能。"
+msgstr ""
+
+#: ../../CommandAdmin.cs:55
+#, csharp-format
+msgid "玩家 [{0}] 已[c/92C5EC:{1}]跳过上鱼动画。"
+msgstr ""
+
+#: ../../Features/AutoFish.Consumption.cs:69
+#, csharp-format
+msgid "玩家 [c/46C2D4:{0}] 已开启[c/F5F251:自动钓鱼] 消耗物品为:[i:{1}x{2}]"
+msgstr ""
+
+#: ../../CommandPlayer.cs:104
+msgid "管理员未允许跳过钓鱼动画！"
+msgstr ""
+
+#: ../../CommandPlayer.cs:74
+msgid "管理员未开启多钩"
+msgstr ""
+
+#: ../../CommandPlayer.cs:164
+msgid "管理员未开启多钩功能！"
+msgstr ""
+
+#: ../../CommandPlayer.cs:134
+msgid "管理员未添加指定消耗物品！"
+msgstr ""
+
+#: ../../CommandPlayer.cs:148
+msgid "管理员未添加贵重鱼饵！"
+msgstr ""
+
+#: ../../CommandPlayer.cs:89
+msgid "管理员未禁止钓起怪物"
+msgstr ""
+
+#: ../../CommandPlayer.cs:118
+msgid "管理员添加消耗模式指定物品！"
+msgstr ""
+
+#: ../../Features/AutoFish.Fishing.cs:129
+msgid "自动钓鱼已停止，请补充鱼饵后重新抛竿。"
+msgstr ""
+
+#: ../../CommandAdmin.cs:127
+msgid "请使用 /afa 进行管理员命令。"
+msgstr ""
+
+#: ../../CommandPlayer.cs:152
+msgid "贵重鱼饵列表:"
+msgstr ""
+
+#: ../../CommandPlayer.cs:37
+#, csharp-format
+msgid "跳过上鱼动画：{0}"
+msgstr ""
+
+#: ../../Features/AutoFish.Fishing.cs:245
+msgid "鱼饵不一致"
+msgstr ""
+

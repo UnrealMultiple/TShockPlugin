@@ -89,10 +89,10 @@
       "ko-KR": "青山常伴绿水，燕雀已是南飞",
       "zh-Hant": "青山常伴绿水，燕雀已是南飞"
     },
-    "AssemblyName": "AutoFishR",
-    "Path": "AutoFishR.dll",
+    "AssemblyName": "AutoFish",
+    "Path": "AutoFish.dll",
     "Dependencies": [
-      "YamlDotNet"
+      "LazyAPI"
     ],
     "HotReload": true
   },
