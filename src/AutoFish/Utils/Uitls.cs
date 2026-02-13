@@ -1,12 +1,19 @@
 ﻿using System.Globalization;
 using System.Text;
-using Terraria;
 using TShockAPI;
 
 namespace AutoFish.Utils;
 
-public class Tools
+public class Uitls
 {
+    public static void DebugInfoLog(string message)
+    {
+        if(Plugin.DebugMode)
+        {
+            TShock.Log.ConsoleInfo(message);
+        }
+    }
+
     /// <summary>
     ///     将当前使用的贵重鱼饵与背包中最末尾的可用鱼饵交换，以避免消耗贵重鱼饵。
     /// </summary>
@@ -19,20 +26,28 @@ public class Tools
         currentItemType = 0;
         targetItemType = 0;
 
-        if (player?.TPlayer?.inventory is null) return false;
+        if (player?.TPlayer?.inventory is null)
+        {
+            return false;
+        }
+
         var inv = player.TPlayer.inventory;
 
         for (var i = 0; i < inv.Length; i++)
         {
-            if (inv[i].bait <= 0 || inv[i].type != baitType) continue;
+            if (inv[i].bait <= 0 || inv[i].type != baitType)
+            {
+                continue;
+            }
             currentSlot = i;
             currentItemType = inv[i].type;
             break;
         }
 
-        if (currentSlot == -1) return false;
-
-        // 仅选择末尾的非贵重鱼饵，找不到则返回 false，避免反复交换贵重鱼饵。
+        if (currentSlot == -1)
+        {
+            return false;
+        }
         for (var i = inv.Length - 1; i >= 0; i--)
         {
             if (inv[i].bait <= 0) continue;
@@ -42,7 +57,10 @@ public class Tools
             break;
         }
 
-        if (targetSlot == -1 || targetSlot == currentSlot) return false;
+        if (targetSlot == -1 || targetSlot == currentSlot)
+        {
+            return false;
+        }
 
         (inv[currentSlot], inv[targetSlot]) = (inv[targetSlot], inv[currentSlot]);
         return true;
@@ -63,15 +81,15 @@ public class Tools
         var sbMsg = new StringBuilder(len * 12);
         for (var i = 0; i < len; i++)
         {
-            var t = len <= 1 ? 0f : (float)i / (len - 1);
-            var r = (int)MathF.Round(sr + (er - sr) * t);
-            var g = (int)MathF.Round(sg + (eg - sg) * t);
-            var b = (int)MathF.Round(sb + (eb - sb) * t);
+            var t = len <= 1 ? 0f : (float) i / (len - 1);
+            var r = (int) MathF.Round(sr + ((er - sr) * t));
+            var g = (int) MathF.Round(sg + ((eg - sg) * t));
+            var b = (int) MathF.Round(sb + ((eb - sb) * t));
             sbMsg.Append("[c/");
             sbMsg.Append(r.ToString("X2"));
             sbMsg.Append(g.ToString("X2"));
             sbMsg.Append(b.ToString("X2"));
-            sbMsg.Append(":");
+            sbMsg.Append(':');
             sbMsg.Append(text[i]);
             sbMsg.Append(']');
         }
