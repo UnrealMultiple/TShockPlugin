@@ -22,57 +22,58 @@ public partial class Plugin
     {
 
         if (hook.ai[0] >= 1f)
-        {//正在收杆的
+        {
             return;
         }
         if (hook.owner < 0)
         {
-            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] hook.owner < 0");
+            Uitls.DebugInfoLog($"[AutoFishR-DEBUG] hook.owner < 0");
             return;
         }
 
         if (hook.owner > Main.maxPlayers)
         {
-            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] hook.owner > Main.maxPlayers");
+            Uitls.DebugInfoLog($"[AutoFishR-DEBUG] hook.owner > Main.maxPlayers");
             return;
         }
 
         if (!hook.active)
         {
-            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] hook is not active");
+            
+           Uitls.DebugInfoLog($"[AutoFishR-DEBUG] hook is not active");
             return;
         }
 
         if (!hook.bobber)
         {
-            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] hook is not bobber");
+            Uitls.DebugInfoLog($"[AutoFishR-DEBUG] hook is not bobber");
             return;
         }
 
         if (!Configuration.Instance.Enabled)
         {
-            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] Plugin not enabled");
+            Uitls.DebugInfoLog($"[AutoFishR-DEBUG] Plugin not enabled");
             return;
         }
 
         if (!Configuration.Instance.GlobalAutoFishFeatureEnabled)
         {
-            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] Global auto fish feature not enabled");
+            Uitls.DebugInfoLog($"[AutoFishR-DEBUG] Global auto fish feature not enabled");
             return;
         }
 
         var player = TShock.Players[hook.owner];
         if (player == null)
         {
-            if (DebugMode) TShock.Log.ConsoleInfo($"[AutoFishR-DEBUG] Player is null (owner: {hook.owner})");
+            Uitls.DebugInfoLog($"[AutoFishR-DEBUG] Player is null (owner: {hook.owner})");
             return;
         }
 
-        if (!player.Active)
-        {
-            if (DebugMode) player.SendInfoMessage($"[DEBUG] Player not active");
-            return;
-        }
+        //if (!player.Active)
+        //{
+        //    if (DebugMode) player.SendInfoMessage($"[DEBUG] Player not active");
+        //    return;
+        //}
 
         var blockMonsterCatch = Configuration.Instance.GlobalBlockMonsterCatch &&
                                 HasFeaturePermission(player, "filter.monster");
@@ -83,20 +84,24 @@ public partial class Plugin
         var protectValuableBait = Configuration.Instance.GlobalProtectValuableBaitEnabled &&
                                   HasFeaturePermission(player, "bait.protect");
 
-        // 从数据表中获取与玩家名字匹配的配置项
         var playerData = PlayerData.GetOrCreatePlayerData(player.Name, CreateDefaultPlayerData);
-        //初次钓鱼提醒和未开启返回
         if (!playerData.AutoFishEnabled)
         {
             if (!HasFeaturePermission(player, "fish"))
             {
-                if (DebugMode) player.SendInfoMessage($"[DEBUG] No permission for fish feature");
+                if (DebugMode)
+                {
+                    player.SendInfoMessage($"[DEBUG] No permission for fish feature");
+                }
                 return;
             }
 
             if (playerData.FirstFishHintShown)
             {
-                if (DebugMode) player.SendInfoMessage($"[DEBUG] First fish hint already shown, auto fish not enabled");
+                if (DebugMode)
+                {
+                    player.SendInfoMessage($"[DEBUG] First fish hint already shown, auto fish not enabled");
+                }
                 return;
             }
 
@@ -128,6 +133,7 @@ public partial class Plugin
 
         // 保护贵重鱼饵：将其移到背包末尾以避免被消耗
         if (protectValuableBait && Configuration.Instance.ValuableBaitItemIds.Contains(baitType))
+        {
             if (Uitls.TrySwapValuableBaitToBack(player, baitType, Configuration.Instance.ValuableBaitItemIds,
                     out var fromSlot, out var toSlot, out var fromType, out var toType))
             {
@@ -136,30 +142,33 @@ public partial class Plugin
                 var fromName = TShock.Utils.GetItemById(fromType).Name;
                 var toName = TShock.Utils.GetItemById(toType).Name;
                 Uitls.SendGradientMessage(player,
-                    "检测到贵重鱼饵，已与背包末尾鱼饵交换：{0} -> {1} (槽位 {2} ↔ {3})".SFormat(fromName, toName, fromSlot, toSlot));
+                    GetString("检测到贵重鱼饵，已与背包末尾鱼饵交换：{0} -> {1} (槽位 {2} ↔ {3})").SFormat(fromName, toName, fromSlot, toSlot));
                 ResetHook(hook);
                 return;
             }
             else //就剩下一个了
             {
                 var baitName = TShock.Utils.GetItemById(baitType).Name;
-                Uitls.SendGradientMessage(player, "已保护贵重鱼饵 [{0}]，这是最后一个，已停止钓鱼。".SFormat(baitName));
+                Uitls.SendGradientMessage(player, GetString("已保护贵重鱼饵 [{0}]，这是最后一个，已停止钓鱼。").SFormat(baitName));
                 ResetHook(hook);
                 player.SendData(PacketTypes.ProjectileDestroy, "", hook.whoAmI);
                 return;
             }
+        }
 
 
         // 正常状态下与消耗模式下启用自动钓鱼
         if (Configuration.Instance.GlobalConsumptionModeEnabled)
+        {
             //消耗模式判定
             if (!CanConsumeFish(player, playerData))
             {
-                player.SendInfoMessage("服务器已开启消耗模式，你缺少指定物品无法自动钓鱼！使用 /af list 查看需要的物品。");
+                player.SendInfoMessage(GetString("服务器已开启消耗模式，你缺少指定物品无法自动钓鱼！使用 /af list 查看需要的物品。"));
                 ResetHook(hook);
                 player.SendData(PacketTypes.ProjectileDestroy, "", hook.whoAmI);
                 return;
             }
+        }
 
         //修改钓鱼得到的东西
         //获得钓鱼物品方法
@@ -169,13 +178,14 @@ public partial class Plugin
         var catchMonster = false;
         for (var count = 0; noCatch && count < dropLimit; count++)
         {
-            var catchItem = false;
-
             var context = Projectile._context;
             if (hook.TryBuildFishingContext(context))
             {
                 //屏蔽任务鱼
-                if (blockQuestFish) context.Fisher.questFish = -1;
+                if (blockQuestFish)
+                {
+                    context.Fisher.questFish = -1;
+                }
 
                 hook.SetFishingCheckResults(ref context.Fisher);
             }
@@ -185,7 +195,11 @@ public partial class Plugin
 
             if (context.Fisher.rolledEnemySpawn > 0) //抓到怪物
             {
-                if (blockMonsterCatch) continue; //不想抓怪物
+                if (blockMonsterCatch)
+                {
+                    continue; //不想抓怪物
+                }
+
                 catchMonster = true;
                 noCatch = false;
             }
@@ -193,11 +207,13 @@ public partial class Plugin
             // 怪物生成使用localAI[1]，而物品则使用ai[1]，小于0情况无需处理，是刷血月怪
             if (context.Fisher.rolledItemDrop > 0)
             {
-                catchItem = true;
                 noCatch = false;
             }
 
-            if (noCatch) continue; //真没抓到
+            if (noCatch)
+            {
+                continue; //真没抓到
+            }
 
             hook.localAI[1] = catchId; //数值置回
             break; //抓到就不应该继续判断
@@ -205,7 +221,11 @@ public partial class Plugin
 
         if (noCatch)
         {
-            if (DebugMode) player.SendInfoMessage($"[DEBUG] No catch after {dropLimit} attempts");
+            if (DebugMode)
+            {
+                player.SendInfoMessage($"[DEBUG] No catch after {dropLimit} attempts");
+            }
+
             ResetHook(hook);
             return; //没抓到，不抬杆
         }
@@ -222,7 +242,7 @@ public partial class Plugin
         if (nowBaitType != baitUsed)
         {
             if (DebugMode) player.SendInfoMessage($"[DEBUG] Bait mismatch: now={nowBaitType}, used={baitUsed}");
-            player.SendMessage("鱼饵不一致", Colors.CurrentLiquidColor);
+            player.SendMessage(GetString("鱼饵不一致"), Colors.CurrentLiquidColor);
             return;
         }
 
@@ -234,7 +254,9 @@ public partial class Plugin
 
         //Buff更新
         if (playerData.BuffEnabled)
+        {
             BuffUpdate(player);
+        }
 
         //原版收杆函数，这里会使得  bobber.ai[1] = bobber.localAI[1];，必须调用此函数，否则杆子会爆一堆弹幕，并且鱼饵会全不见，也是刷怪的函数
         player.TPlayer.ItemCheck_CheckFishingBobber_PullBobber(hook, baitUsed);
@@ -288,17 +310,25 @@ public partial class Plugin
         {
             var inventorySlot = player.TPlayer.inventory[i];
             // 玩家饵料（指的是你手上鱼竿上的那个数字），使用的饵料是背包里的物品
-            if (inventorySlot.bait <= 0 || baitUsed != inventorySlot.type) continue;
+            if (inventorySlot.bait <= 0 || baitUsed != inventorySlot.type)
+            {
+                continue;
+            }
             return i;
         }
-
         return 0;
     }
 
     private static void BuffUpdate(TSPlayer player)
     {
-        if (!Configuration.Instance.GlobalBuffFeatureEnabled) return;
+        if (!Configuration.Instance.GlobalBuffFeatureEnabled)
+        {
+            return;
+        }
+
         foreach (var buff in Configuration.Instance.BuffDurations)
+        {
             player.SetBuff(buff.Key, buff.Value);
+        }
     }
 }

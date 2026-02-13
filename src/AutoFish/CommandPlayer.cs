@@ -179,6 +179,4 @@ internal class CommandPlayer
         playerData.HookMaxNum = (int) max;
         args.Player.SendSuccessMessage(GetString($"已将个人钩子上限设置为：{max} (全局上限 {Configuration.Instance.GlobalMultiHookMaxNum})"));
     }
-
-
 }

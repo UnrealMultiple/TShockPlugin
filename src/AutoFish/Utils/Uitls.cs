@@ -6,6 +6,14 @@ namespace AutoFish.Utils;
 
 public class Uitls
 {
+    public static void DebugInfoLog(string message)
+    {
+        if(Plugin.DebugMode)
+        {
+            TShock.Log.ConsoleInfo(message);
+        }
+    }
+
     /// <summary>
     ///     将当前使用的贵重鱼饵与背包中最末尾的可用鱼饵交换，以避免消耗贵重鱼饵。
     /// </summary>
@@ -18,20 +26,28 @@ public class Uitls
         currentItemType = 0;
         targetItemType = 0;
 
-        if (player?.TPlayer?.inventory is null) return false;
+        if (player?.TPlayer?.inventory is null)
+        {
+            return false;
+        }
+
         var inv = player.TPlayer.inventory;
 
         for (var i = 0; i < inv.Length; i++)
         {
-            if (inv[i].bait <= 0 || inv[i].type != baitType) continue;
+            if (inv[i].bait <= 0 || inv[i].type != baitType)
+            {
+                continue;
+            }
             currentSlot = i;
             currentItemType = inv[i].type;
             break;
         }
 
-        if (currentSlot == -1) return false;
-
-        // 仅选择末尾的非贵重鱼饵，找不到则返回 false，避免反复交换贵重鱼饵。
+        if (currentSlot == -1)
+        {
+            return false;
+        }
         for (var i = inv.Length - 1; i >= 0; i--)
         {
             if (inv[i].bait <= 0) continue;
@@ -41,7 +57,10 @@ public class Uitls
             break;
         }
 
-        if (targetSlot == -1 || targetSlot == currentSlot) return false;
+        if (targetSlot == -1 || targetSlot == currentSlot)
+        {
+            return false;
+        }
 
         (inv[currentSlot], inv[targetSlot]) = (inv[targetSlot], inv[currentSlot]);
         return true;
@@ -70,7 +89,7 @@ public class Uitls
             sbMsg.Append(r.ToString("X2"));
             sbMsg.Append(g.ToString("X2"));
             sbMsg.Append(b.ToString("X2"));
-            sbMsg.Append(":");
+            sbMsg.Append(':');
             sbMsg.Append(text[i]);
             sbMsg.Append(']');
         }

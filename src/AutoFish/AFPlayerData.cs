@@ -7,15 +7,16 @@ public class AFPlayerData
 
     internal ItemData GetOrCreatePlayerData(string name, Func<string, ItemData> factory)
     {
-        if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Player name is required.", nameof(name));
-        if (factory == null) throw new ArgumentNullException(nameof(factory));
-
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            throw new ArgumentException("Player name is required.", nameof(name));
+        }
+        ArgumentNullException.ThrowIfNull(factory);
         if (!this.Items.TryGetValue(name, out var data) || data == null)
         {
             data = factory(name);
             this.Items[name] = data;
         }
-
         return data;
     }
 
@@ -26,12 +27,7 @@ public class AFPlayerData
     {
         public bool CanConsume()
         {
-            if (this.GetRemainTimeInMinute() <= 0)
-            {
-                return false;
-            }
-
-            return true;
+            return this.GetRemainTimeInMinute() > 0;
         }
 
         public double GetRemainTimeInMinute()
@@ -43,9 +39,7 @@ public class AFPlayerData
         public (int minutes, int seconds) GetRemainTime()
         {
             var timeSpan = this.ConsumeOverTime - DateTime.Now;
-            if (timeSpan.TotalSeconds <= 0)
-                return (0, 0);
-            return ((int) timeSpan.TotalMinutes, timeSpan.Seconds);
+            return ((int) Math.Max(timeSpan.TotalMinutes, 0), Math.Max(timeSpan.Seconds, 0));
         }
 
 

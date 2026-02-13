@@ -7,7 +7,7 @@ namespace AutoFish;
 [Permissions("autofish.admin")]
 internal class CommandAdmin
 {
-    #region toggle list
+    #region toggle
     [Alias("fish")]
     public static void ToggleAutoFish(CommandArgs args)
     {
