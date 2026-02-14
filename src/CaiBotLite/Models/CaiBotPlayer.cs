@@ -1,13 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.UI.Chat;
 using TShockAPI;
 using TShockAPI.DB;
 
-namespace CaiBotLite.Moulds;
+namespace CaiBotLite.Models;
 
 public partial class CaiBotPlayer : TSPlayer
 {
@@ -18,7 +16,7 @@ public partial class CaiBotPlayer : TSPlayer
     {
         this.Group = new SuperAdminGroup();
         this.AwaitingResponse = new Dictionary<string, Action<object>>();
-        this.Account = new UserAccount { Name = "CaiBot",ID = -1 };
+        this.Account = new UserAccount { Name = "CaiBot", ID = -1 };
     }
 
     public override void SendMessage(string msg, Color color)

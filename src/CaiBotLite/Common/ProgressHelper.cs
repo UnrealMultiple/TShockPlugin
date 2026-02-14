@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CaiBotLite.Attributes;
+﻿using CaiBotLite.Attributes;
 using CaiBotLite.Enums;
 using System.Reflection;
 using Terraria;
 using Terraria.GameContent.Events;
 
-namespace CaiBotLite.Services;
+namespace CaiBotLite.Common;
 
 public static class ProgressHelper
 {
@@ -16,7 +13,7 @@ public static class ProgressHelper
     {
         var result = new List<ProgressType>();
         var type = typeof(ProgressType);
-        
+
         foreach (ProgressType progress in Enum.GetValues(type))
         {
             if (IsConditionMet(progress))
@@ -24,7 +21,7 @@ public static class ProgressHelper
                 result.Add(progress);
             }
         }
-        
+
         return result;
     }
 
@@ -36,7 +33,7 @@ public static class ProgressHelper
     public static List<ProgressType> CheckProgresses(IEnumerable<ProgressType> requiredProgresses)
     {
         var unmetProgresses = new List<ProgressType>();
-    
+
         foreach (var progress in requiredProgresses)
         {
             if (!IsConditionMet(progress))
@@ -44,23 +41,23 @@ public static class ProgressHelper
                 unmetProgresses.Add(progress);
             }
         }
-    
+
         return unmetProgresses;
     }
-    
+
     private static bool IsConditionMet(ProgressType progress)
     {
         var fieldInfo = typeof(ProgressType).GetField(progress.ToString());
         var mapAttribute = fieldInfo!.GetCustomAttribute<ProgressMapAttribute>();
-        
+
         if (mapAttribute == null)
         {
             return false;
         }
-        
+
         var fieldParts = mapAttribute.FieldName.Split('.');
         object? currentObj = null;
-        
+
         foreach (var part in fieldParts)
         {
             if (currentObj == null)
@@ -82,7 +79,7 @@ public static class ProgressHelper
             {
                 var type = currentObj.GetType();
                 var member = type.GetMember(part, BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic).FirstOrDefault();
-                
+
                 if (member is FieldInfo fi)
                 {
                     currentObj = fi.GetValue(currentObj);
@@ -98,7 +95,7 @@ public static class ProgressHelper
                 return false;
             }
         }
-        
+
         if (currentObj is bool boolValue && mapAttribute.ExpectedValue is bool expectedBool)
         {
             return boolValue == expectedBool;
@@ -119,25 +116,25 @@ public static class ProgressHelper
         {
             return typeof(Main);
         }
-        
+
         // 检查Terraria.NPC中的成员
         if (typeof(NPC).GetMember(memberName, BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic).Length != 0)
         {
             return typeof(NPC);
         }
-        
+
         // 检查Terraria.Player中的成员
         if (typeof(Player).GetMember(memberName, BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic).Length != 0)
         {
             return typeof(Player);
         }
-        
+
         // 检查Terraria.GameContent.Events.DD2Event中的成员
         if (typeof(DD2Event).GetMember(memberName, BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic).Length != 0)
         {
             return typeof(DD2Event);
         }
-        
+
         // 检查BirthdayParty中的成员
         if (typeof(BirthdayParty).GetMember(memberName, BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic).Length != 0)
         {
@@ -152,7 +149,7 @@ public static class ProgressHelper
     {
         var fieldInfo = typeof(ProgressType).GetField(progress.ToString());
         var nameAttribute = fieldInfo!.GetCustomAttribute<ProgressNameAttribute>();
-        
+
         return nameAttribute?.Names ?? new[] { progress.ToString() };
     }
 }

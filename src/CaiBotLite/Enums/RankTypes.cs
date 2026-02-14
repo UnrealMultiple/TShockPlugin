@@ -7,6 +7,7 @@ public enum RankTypes
     Online,
     Fishing,
     EconomicCoin,
+
     // EconomicLevel,
     Unknown
 }

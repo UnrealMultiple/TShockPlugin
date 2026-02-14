@@ -6,7 +6,6 @@ namespace CaiBotLite.Enums;
 
 public enum ProgressType
 {
-
     [ProgressName("克眼", "克苏鲁之眼")]
     [ProgressMap(nameof(NPC.downedBoss1), true)]
     EyeOfCthulhu,
@@ -207,7 +206,7 @@ public enum ProgressType
     [ProgressMap(nameof(Main.noTrapsWorld), true)]
     NoTrapsWorld,
 
-    
+
     [ProgressName("森林")]
     [ProgressMap(nameof(Player.ShoppingZone_Forest), true)]
     ShoppingZone_Forest,
@@ -323,9 +322,8 @@ public enum ProgressType
     [ProgressName("盈凸月")]
     [ProgressMap(nameof(Main.moonType), 7)]
     WaxingGibbous,
-    
+
     [ProgressName("U")]
     [ProgressMap(nameof(Main.dedServ), true)]
-    Unknown,
-    
+    Unknown
 }

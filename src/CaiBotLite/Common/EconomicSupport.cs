@@ -1,19 +1,10 @@
 ﻿using CaiBotLite.Enums;
-using CaiBotLite.Moulds;
-// using Economics.RPG;
-// using Economics.RPG.Model;
-// using Economics.Skill.DB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
+using Economics.RPG;
+using Economics.Skill;
 using System.Runtime.CompilerServices;
 using TerrariaApi.Server;
-// using Economics;
-// using Economics.Skill;
 
-namespace CaiBotLite.Services;
+namespace CaiBotLite.Common;
 
 public static class EconomicSupport
 {
@@ -26,26 +17,25 @@ public static class EconomicSupport
         var pluginContainer = ServerApi.Plugins.FirstOrDefault(x => x.Plugin.Name == "Economics.Core");
         if (pluginContainer is not null)
         {
-             GetCoinsSupport = true;
+            GetCoinsSupport = true;
         }
 
         pluginContainer = ServerApi.Plugins.FirstOrDefault(x => x.Plugin.Name == "Economics.RPG");
         if (pluginContainer is not null)
         {
-           GetLevelNameSupport = true;
+            GetLevelNameSupport = true;
         }
 
         pluginContainer = ServerApi.Plugins.FirstOrDefault(x => x.Plugin.Name == "Economics.Skill");
         if (pluginContainer is not null)
         {
-           GetSkillSupport = true;
+            GetSkillSupport = true;
         }
 
         if (GetCoinsSupport)
         {
             Rank.RankTypeMappings.Add("货币", RankTypes.EconomicCoin);
         }
-        
     }
 
     public static bool IsSupported(string feature)
@@ -72,45 +62,40 @@ public static class EconomicSupport
         get
         {
             ThrowIfNotSupported();
-            return new List<string>();
-            // return Economics.Core.ConfigFiles.Setting.Instance.CustomizeCurrencys
-            //     .Select(x => x.Name)
-            //     .ToList();
+            return Economics.Core.ConfigFiles.Setting.Instance.CustomizeCurrencys
+                .Select(x => x.Name)
+                .ToList();
         }
     }
 
     public static Rank GetCoinRank(string type)
     {
         ThrowIfNotSupported();
-        // return new Rank($"{type}排行" ,
-        //     Economics.Core.Economics.CurrencyManager.GetCurrencies()
-        //     .Where(c => c.CurrencyType == type)
-        //     .OrderByDescending(c => c.Number)
-        //     .ToDictionary(x => x.PlayerName, x => x.Number + x.CurrencyType));
-        return new Rank("111", new Dictionary<string, string>());
+        return new Rank($"{type}排行",
+            Economics.Core.Economics.CurrencyManager.GetCurrencies()
+                .Where(c => c.CurrencyType == type)
+                .OrderByDescending(c => c.Number)
+                .ToDictionary(x => x.PlayerName, x => x.Number + x.CurrencyType));
     }
 
     private static string GetNewCoins(string name)
     {
-        return "";
-        //return string.Join('\n', Economics.Core.ConfigFiles.Setting.Instance.CustomizeCurrencys.Select(x => Economics.Core.Economics.CurrencyManager.GetUserCurrency(name, x.Name)).Select(static x => $"{x.CurrencyType}x{x.Number}"));
+        return string.Join('\n', Economics.Core.ConfigFiles.Setting.Instance.CustomizeCurrencys.Select(x => Economics.Core.Economics.CurrencyManager.GetUserCurrency(name, x.Name)).Select(static x => $"{x.CurrencyType}x{x.Number}"));
     }
 
     public static string GetLevelName(string name)
     {
         ThrowIfNotSupported();
-        return "";
-        //var levelName = RPG.PlayerLevelManager.GetLevel(name).Name;
-        //return $"职业:{(string.IsNullOrEmpty(levelName) ? "无" : levelName)}";
+        var levelName = RPG.PlayerLevelManager.GetLevel(name).Name;
+        return $"职业:{(string.IsNullOrEmpty(levelName) ? "无" : levelName)}";
     }
 
     public static string GetSkill(string name)
     {
         ThrowIfNotSupported();
-        return "";
-    //     var manager = Skill.PlayerSKillManager;
-    //     var skills = manager.QuerySkill(name);
-    //     return !skills.Any() ? "技能:无" : string.Join(',', skills.Select(obj => obj.Skill is null ? "无效技能" : obj.Skill.Name));
+        var manager = Skill.PlayerSKillManager;
+        var skills = manager.QuerySkill(name);
+        return skills.Count == 0 ? "技能:无" : string.Join(',', skills.Select(obj => obj.Skill is null ? "无效技能" : obj.Skill.Name));
     }
 
     private static void ThrowIfNotSupported([CallerMemberName] string memberName = "")

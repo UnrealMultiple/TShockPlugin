@@ -1,19 +1,23 @@
 ﻿using LinqToDB;
 using LinqToDB.Mapping;
-using Newtonsoft.Json;
 
-namespace CaiBotLite.Moulds;
+namespace CaiBotLite.Models;
 
 [Table("cai_statistic")]
 public class CaiCharacterInfo
 {
-    [PrimaryKey] [Column("account_name")] public string AccountName = null!;
+    [PrimaryKey]
+    [Column("account_name")]
+    public string AccountName = null!;
 
-    [Column("online_minute")] public int OnlineMinute; // 在线时间
+    [Column("online_minute")]
+    public int OnlineMinute; // 在线时间
 
-    [Column("death")] public int Death; // 死亡次数
+    [Column("death")]
+    public int Death; // 死亡次数
 
-    [NotColumn] private DateTime _lastUpdate = DateTime.Now;
+    [NotColumn]
+    private DateTime _lastUpdate = DateTime.Now;
 
     [NotColumn] public List<BossKillInfo> BossKills { get; private set; } = [];
 
@@ -50,7 +54,7 @@ public class CaiCharacterInfo
 
         foreach (var bossKill in this.BossKills)
         {
-            var result = db.GetTable<BossKillInfo>().FirstOrDefault(x => 
+            var result = db.GetTable<BossKillInfo>().FirstOrDefault(x =>
                 x.AccountName == bossKill.AccountName && x.BossId == bossKill.BossId
             );
 

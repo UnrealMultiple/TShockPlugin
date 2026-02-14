@@ -1,6 +1,8 @@
-﻿using CaiBotLite.Moulds;
+﻿using CaiBotLite.Models;
 using LinqToDB;
+using LinqToDB.Common;
 using LinqToDB.Data;
+using Newtonsoft.Json;
 using TShockAPI;
 using TShockAPI.DB;
 using SqlType = TShockAPI.DB.SqlType;
@@ -29,3 +31,7 @@ public static class Database
         };
     }
 }
+
+public class JsonConverter<T>() : ValueConverter<List<T>, string>(v => JsonConvert.SerializeObject(v),
+    s => JsonConvert.DeserializeObject<List<T>>(s) ?? new List<T>(),
+    true);

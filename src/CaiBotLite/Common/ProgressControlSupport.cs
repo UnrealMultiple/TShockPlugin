@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using TerrariaApi.Server;
+﻿using TerrariaApi.Server;
 
-
-namespace CaiBotLite.Services;
+namespace CaiBotLite.Common;
 
 public static class ProgressControlSupport
 {
@@ -17,7 +13,6 @@ public static class ProgressControlSupport
         {
             Support = true;
         }
-        
     }
 
     public static Dictionary<string, string> GetLockBosses()
@@ -76,12 +71,12 @@ public static class ProgressControlSupport
         //
         // return result;
     }
-    
+
     public static string TimeFormat(DateTime dateTime)
     {
         var today = DateTime.Today;
         var inputDateWithoutTime = dateTime.Date;
-    
+
         var daysDifference = (inputDateWithoutTime - today).Days;
 
         if (daysDifference > 365)
@@ -90,7 +85,7 @@ public static class ProgressControlSupport
         }
 
         // 获取本周的开始日期(周一)
-        var startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+        var startOfWeek = today.AddDays(-(int) today.DayOfWeek + (int) DayOfWeek.Monday);
         if (today.DayOfWeek == DayOfWeek.Sunday)
         {
             startOfWeek = today.AddDays(-6);
@@ -98,7 +93,7 @@ public static class ProgressControlSupport
 
         // 获取下周的开始日期
         var startOfNextWeek = startOfWeek.AddDays(7);
-        
+
         switch (daysDifference)
         {
             // 今天/明天/后天
@@ -143,5 +138,4 @@ public static class ProgressControlSupport
             _ => throw new ArgumentOutOfRangeException()
         };
     }
-    
 }

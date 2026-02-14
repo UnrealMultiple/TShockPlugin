@@ -1,21 +1,18 @@
-﻿using System;
-using System.IO;
-using CaiBotLite.Enums;
+﻿using CaiBotLite.Enums;
 using Terraria;
-using Terraria.Net;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
 using TShockAPI.Hooks;
 
-namespace CaiBotLite.Services;
+namespace CaiBotLite.Common;
 
 internal static class LoginHelper
 {
     internal static void On_MessageBufferOnGetData(On.Terraria.MessageBuffer.orig_GetData orig, MessageBuffer self,
         int start, int length, out int messageType)
     {
-        BinaryReader reader = new(self.readerStream);
+        BinaryReader reader = new (self.readerStream);
         reader.BaseStream.Position = start;
         var player = TShock.Players[self.whoAmI];
         messageType = reader.ReadByte();
@@ -28,7 +25,7 @@ internal static class LoginHelper
 
         try
         {
-            if (messageType == (byte)PacketTypes.ClientUUID)
+            if (messageType == (byte) PacketTypes.ClientUUID)
             {
                 var uuid = reader.ReadString();
                 if (string.IsNullOrEmpty(player.Name))
@@ -71,22 +68,25 @@ internal static class LoginHelper
         var type = args.MsgID;
         var player = TShock.Players[args.Msg.whoAmI];
         if (player is not { ConnectionAlive: true } ||
-            player.State < (int)ConnectionState.Complete
-            && type > PacketTypes.PlayerSpawn
-            && type != PacketTypes.PlayerMana
-            && type != PacketTypes.PlayerHp
-            && type != PacketTypes.PlayerBuff
-            && type != PacketTypes.ItemOwner
-            && type != PacketTypes.SyncLoadout
-            && type != PacketTypes.Placeholder
-            && type != PacketTypes.LoadNetModule
+            (player.State < (int) ConnectionState.Complete
+             && type > PacketTypes.PlayerSpawn
+             && type != PacketTypes.PlayerMana
+             && type != PacketTypes.PlayerHp
+             && type != PacketTypes.PlayerBuff
+             && type != PacketTypes.ItemOwner
+             && type != PacketTypes.SyncLoadout
+             && type != PacketTypes.Placeholder
+             && type != PacketTypes.LoadNetModule)
            )
         {
             args.Handled = true;
             return;
         }
 
-        if (type != PacketTypes.ContinueConnecting2) return;
+        if (type != PacketTypes.ContinueConnecting2)
+        {
+            return;
+        }
 
         player.DataWhenJoined = new PlayerData();
         player.DataWhenJoined.CopyCharacter(player);
@@ -100,7 +100,9 @@ internal static class LoginHelper
         var group = TShock.Groups.GetGroupByName(account.Group);
 
         if (!TShock.Groups.AssertGroupValid(player, group, true))
+        {
             return;
+        }
 
         player.PlayerData = TShock.CharacterDB.GetPlayerData(player, account.ID);
 
@@ -124,10 +126,14 @@ internal static class LoginHelper
         player.LoginFailsBySsi = false;
 
         if (player.HasPermission(Permissions.ignorestackhackdetection))
+        {
             player.IsDisabledForStackDetection = false;
+        }
 
         if (player.HasPermission(Permissions.usebanneditem))
+        {
             player.IsDisabledForBannedWearable = false;
+        }
 
         player.SendSuccessMessage($"[CaiBotLite]已经验证{account.Name}登录完毕。");
         TShock.Log.ConsoleInfo(player.Name + "成功验证登录。");
@@ -137,12 +143,7 @@ internal static class LoginHelper
 
     private static UserAccount Register(TSPlayer player)
     {
-        var account = new UserAccount
-        {
-            Name = player.Name,
-            Group = TShock.Config.Settings.DefaultRegistrationGroupName,
-            UUID = player.UUID
-        };
+        var account = new UserAccount { Name = player.Name, Group = TShock.Config.Settings.DefaultRegistrationGroupName, UUID = player.UUID };
         account.CreateBCryptHash(Guid.NewGuid().ToString());
         TShock.UserAccounts.AddUserAccount(account);
         player.SendSuccessMessage("[CaiBotLite]账户{0}注册成功。", account.Name);
@@ -158,12 +159,12 @@ internal static class LoginHelper
             return;
         }
 
-        if (player.State == (int)ConnectionState.AssigningPlayerSlot)
+        if (player.State == (int) ConnectionState.AssigningPlayerSlot)
         {
-            player.State = (int)ConnectionState.AwaitingPlayerInfo;
+            player.State = (int) ConnectionState.AwaitingPlayerInfo;
         }
 
-        NetMessage.SendData((int)PacketTypes.WorldInfo, player.Index);
+        NetMessage.SendData((int) PacketTypes.WorldInfo, player.Index);
         Main.SyncAnInvasion(player.Index);
 
         var account = TShock.UserAccounts.GetUserAccountByName(player.Name);

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CaiBotLite.Moulds;
-using CaiBotLite.Services;
+﻿using CaiBotLite.Common;
+using CaiBotLite.Models;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
@@ -16,7 +13,7 @@ namespace CaiBotLite;
 // ReSharper disable once ClassNeverInstantiated.Global
 public class CaiBotLite(Main game) : TerrariaPlugin(game)
 {
-    public static readonly Version VersionNum = new (2026, 02, 12, 1); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new (2026, 02, 14, 0); //日期+版本号(0,1,2...)
     internal static int InitCode = -1;
     internal static bool DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
     private const string CharacterInfoKey = "CaiBotLite.CharacterInfo";
@@ -28,7 +25,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
 
 
     public override void Initialize()
-    { 
+    {
         AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
         Config.Settings.Read();
         Config.Settings.Write();
@@ -114,6 +111,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         var characterInfo = CaiCharacterInfo.GetByName(e.Player.Account.Name)
                             // ReSharper disable once ArrangeObjectCreationWhenTypeNotEvident
                             ?? new () { AccountName = e.Player.Account.Name };
+        e.Player.RemoveData(CharacterInfoKey);
         e.Player.SetData(CharacterInfoKey, characterInfo);
     }
 
@@ -175,6 +173,9 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
 
         switch (args.Parameters[0].ToLowerInvariant())
         {
+            default:
+                ShowHelpText();
+                break;
             case "test":
                 _timer = 60 * 60 * 5;
                 Console.WriteLine("你怎么知道Cai喜欢留一个测试命令?");
@@ -187,11 +188,6 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             case "help":
                 ShowHelpText();
                 return;
-
-            default:
-                ShowHelpText();
-                break;
-
             case "信息":
             case "info":
                 plr.SendInfoMessage($"[CaiBot信息]\n" +
@@ -229,6 +225,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
                     plr.SendInfoMessage("[CaiBotLite]服务器没有绑定任何群哦!");
                     return;
                 }
+
                 Config.Settings.Token = string.Empty;
                 Config.Settings.Write();
                 WebsocketManager.WebSocket?.Dispose();

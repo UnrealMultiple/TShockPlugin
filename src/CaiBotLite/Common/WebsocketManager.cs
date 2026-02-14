@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using CaiBotLite.Enums;
+﻿using CaiBotLite.Enums;
 using Newtonsoft.Json.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Net.WebSockets;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Terraria;
 using TShockAPI;
 
-namespace CaiBotLite.Services;
+namespace CaiBotLite.Common;
 
 public static class WebsocketManager
 {
     public static ClientWebSocket? WebSocket;
 
     private const string BotServerUrl = "api.terraria.ink:22338";
+
     //private const string BotServerUrl = "127.0.0.1:8080";
     internal static bool IsWebsocketConnected => WebSocket?.State == WebSocketState.Open;
     private static bool _isStopWebsocket;
@@ -107,12 +102,11 @@ public static class WebsocketManager
                     var memoryStream = new MemoryStream();
 
                     WebSocketReceiveResult result;
-                    do 
+                    do
                     {
                         result = await WebSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
                         await memoryStream.WriteAsync(buffer.AsMemory(0, result.Count));
-                    } 
-                    while (!result.EndOfMessage);
+                    } while (!result.EndOfMessage);
 
                     if (result.MessageType == WebSocketMessageType.Close)
                     {

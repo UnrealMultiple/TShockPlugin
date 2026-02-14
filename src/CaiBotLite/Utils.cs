@@ -13,62 +13,64 @@ namespace CaiBotLite;
 
 internal static class Utils
 {
-
-    
     internal static string GetWorldIconName()
     {
         var data = Main.ActiveWorldFileData;
-        
-        static string GetSeedIcon(string seed)
-        {
-            return "Icon" + (Main.ActiveWorldFileData.IsHardMode ? "Hallow" : "") + (Main.ActiveWorldFileData.HasCorruption ? "Corruption" : "Crimson") + seed;
-        }
-        
+
+        static string GetSeedIcon(string seed) => "Icon" + (Main.ActiveWorldFileData.IsHardMode ? "Hallow" : "") + (Main.ActiveWorldFileData.HasCorruption ? "Corruption" : "Crimson") + seed;
+
         if (data.ZenithWorld)
         {
             return "Icon" + (data.IsHardMode ? "Hallow" : "") + "Everything";
         }
+
         if (data.DrunkWorld)
         {
             return "Icon" + (data.IsHardMode ? "Hallow" : "") + "CorruptionCrimson";
         }
+
         if (data.ForTheWorthy)
         {
             return GetSeedIcon("FTW");
         }
+
         if (data.NotTheBees)
         {
             return GetSeedIcon("NotTheBees");
         }
+
         if (data.Anniversary)
         {
             return GetSeedIcon("Anniversary");
         }
+
         if (data.DontStarve)
         {
             return GetSeedIcon("DontStarve");
         }
+
         if (data.RemixWorld)
         {
             return GetSeedIcon("Remix");
         }
+
         if (data.NoTrapsWorld)
         {
             return GetSeedIcon("Traps");
         }
+
         return "Icon" + (data.IsHardMode ? "Hallow" : "") + (data.HasCorruption ? "Corruption" : "Crimson");
     }
-    
-    internal static Dictionary<string,bool> GetProcessList()
+
+    internal static Dictionary<string, bool> GetProcessList()
     {
-        
         // ReSharper disable once UseObjectOrCollectionInitializer
-        Dictionary<string, bool> processList = new();
+        Dictionary<string, bool> processList = new ();
         processList.Add("King Slime", NPC.downedSlimeKing);
         processList.Add("Eye of Cthulhu", NPC.downedBoss1);
         processList.Add("Eater of Worlds or Brain of Cthulhu", NPC.downedBoss2);
-        processList.Add("Eater of Worlds", Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPCID.EaterofWorldsHead])>0);
-        processList.Add("Brain of Cthulhu", Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPCID.BrainofCthulhu])>0);
+        processList.Add("Eater of Worlds", Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPCID.EaterofWorldsHead]) > 0);
+        processList.Add("Brain of Cthulhu", Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPCID.BrainofCthulhu]) > 0);
         processList.Add("Queen Bee", NPC.downedQueenBee);
         processList.Add("Deerclops", NPC.downedDeerclops);
         processList.Add("Skeletron", NPC.downedBoss3);
@@ -82,14 +84,14 @@ internal static class Utils
         processList.Add("Duke Fishron", NPC.downedFishron);
         processList.Add("Empress of Light", NPC.downedEmpressOfLight);
         processList.Add("Lunatic Cultist", NPC.downedAncientCultist);
-        
+
         processList.Add("Tower Solar", NPC.downedTowerSolar);
         processList.Add("Tower Nebula", NPC.downedTowerNebula);
         processList.Add("Tower Vortex", NPC.downedTowerVortex);
         processList.Add("Tower Stardust", NPC.downedTowerStardust);
-        
+
         processList.Add("Moon Lord", NPC.downedMoonlord);
-        processList.Add("Pillars", NPC.downedTowerSolar && NPC.downedTowerNebula && NPC.downedTowerVortex &&  NPC.downedTowerStardust);
+        processList.Add("Pillars", NPC.downedTowerSolar && NPC.downedTowerNebula && NPC.downedTowerVortex && NPC.downedTowerStardust);
         processList.Add("Goblins", NPC.downedGoblins);
         processList.Add("Pirates", NPC.downedPirates);
         processList.Add("Frost", NPC.downedFrost);
@@ -101,15 +103,12 @@ internal static class Utils
         processList.Add("DD2InvasionT3", DD2Event.DownedInvasionT3);
         return processList;
     }
-    
-    internal static Dictionary<string,int> GetKillCountList()
+
+    internal static Dictionary<string, int> GetKillCountList()
     {
-        int GetKillCount(int id)
-        {
-           return Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[id]);
-        }
+        int GetKillCount(int id) => Main.BestiaryTracker.Kills.GetKillCount(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[id]);
         // ReSharper disable once UseObjectOrCollectionInitializer
-        Dictionary<string, int> killCountList = new();
+        Dictionary<string, int> killCountList = new ();
         killCountList.Add("King Slime", GetKillCount(NPCID.KingSlime));
         killCountList.Add("Eye of Cthulhu", GetKillCount(NPCID.EyeofCthulhu));
         killCountList.Add("Eater of Worlds", GetKillCount(NPCID.EaterofWorldsHead));
@@ -119,7 +118,7 @@ internal static class Utils
         killCountList.Add("Skeletron", GetKillCount(NPCID.SkeletronHead));
         killCountList.Add("Wall of Flesh", GetKillCount(NPCID.WallofFlesh));
         killCountList.Add("Queen Slime", GetKillCount(NPCID.QueenSlimeBoss));
-        killCountList.Add("The Twins", Math.Min(GetKillCount(NPCID.Retinazer),GetKillCount(NPCID.Spazmatism)));
+        killCountList.Add("The Twins", Math.Min(GetKillCount(NPCID.Retinazer), GetKillCount(NPCID.Spazmatism)));
         killCountList.Add("The Destroyer", GetKillCount(NPCID.TheDestroyer));
         killCountList.Add("Skeletron Prime", GetKillCount(NPCID.SkeletronPrime));
         killCountList.Add("Plantera", GetKillCount(NPCID.Plantera));
@@ -217,7 +216,6 @@ internal static class Utils
         }
 
         return "史王前";
-
     }
 
     internal static string FileToBase64String(string path)
