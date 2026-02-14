@@ -1,74 +1,65 @@
-using Microsoft.Xna.Framework;
-using System.Text;
+﻿using System.Text;
 using Terraria;
+using Terraria.GameContent;
 using TerrariaApi.Server;
 using TShockAPI;
 
 namespace DamageStatistic;
 
 [ApiVersion(2, 1)]
-public class DamageStatistic : TerrariaPlugin
+// ReSharper disable once UnusedType.Global
+public class DamageStatistic(Main game) : TerrariaPlugin(game)
 {
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 4);
-    public override string Author => "Megghy";
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
+    public override Version Version => new (1, 1, 0);
+    public override string Author => "Megghy, Cai";
     public override string Description => GetString("在每次 Boss 战后显示每个玩家造成的伤害。");
-    public DamageStatistic(Main game) : base(game)
-    {
 
-    }
     public override void Initialize()
     {
-        ServerApi.Hooks.NpcSpawn.Register(this, this.OnNpcSpawn);
-        ServerApi.Hooks.NpcStrike.Register(this, this.OnStrike);
-        ServerApi.Hooks.NpcKilled.Register(this, this.OnNpcKill);
+        On.Terraria.GameContent.BossDamageTracker.OnBossKilled += BossDamageTrackerOnOnBossKilled;
     }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            ServerApi.Hooks.NpcSpawn.Deregister(this, this.OnNpcSpawn);
-            ServerApi.Hooks.NpcStrike.Deregister(this, this.OnStrike);
-            ServerApi.Hooks.NpcKilled.Deregister(this, this.OnNpcKill);
-            this.DamageList.Clear();
+            On.Terraria.GameContent.BossDamageTracker.OnBossKilled -= BossDamageTrackerOnOnBossKilled;
         }
+
         base.Dispose(disposing);
     }
 
-    private readonly Dictionary<NPC, Dictionary<string, double>> DamageList = new Dictionary<NPC, Dictionary<string, double>>();
-
-    private void OnNpcSpawn(NpcSpawnEventArgs args)
+    private static void BossDamageTrackerOnOnBossKilled(On.Terraria.GameContent.BossDamageTracker.orig_OnBossKilled orig, BossDamageTracker self, NPC npc)
     {
-        var npc = Main.npc[args.NpcId];
-        if (npc.boss)
-        {
-            this.DamageList.Add(npc, new Dictionary<string, double>());
-        }
-    }
+        orig(self, npc);
 
-    private void OnStrike(NpcStrikeEventArgs args)
-    {
-        if (this.DamageList.ContainsKey(args.Npc))
-        {
-            if (!this.DamageList[args.Npc].ContainsKey(args.Player.name))
+        TShock.Players
+            .Where(x => x is { Active: true })
+            .ForEach(x =>
             {
-                this.DamageList[args.Npc].Add(args.Player.name, 0);
-            }
-
-            this.DamageList[args.Npc][args.Player.name] += args.Damage;
-        }
+                SendReport(x, self, npc);
+            });
     }
 
-    private void OnNpcKill(NpcKilledEventArgs args)
+    private static void SendReport(TSPlayer player, BossDamageTracker tracker, NPC npc)
     {
-        if (this.DamageList.ContainsKey(args.npc) && this.DamageList[args.npc].Any())
+        var report = new StringBuilder();
+        var playerCount = tracker._list.Count(x => x is NPCDamageTracker.PlayerCreditEntry);
+        tracker._list.Sort();
+        var damagePercentages = NPCDamageTracker.CalculatePercentages(tracker._list.Select(x => x.Damage).ToArray());
+        var duration = TimeSpan.FromSeconds(tracker.Duration / 60.0);
+        for (var i = 0; i < tracker._list.Count; i++)
         {
-            var data = this.DamageList[args.npc];
-            double npcLifeMax = 0;
-            data.ForEach(p => npcLifeMax += data[p.Key]);
-            var text = new StringBuilder();
-            data.Keys.ForEach(p => text.AppendLine($"{p}: [c/74F3C9:{data[p]}] <{data[p] / npcLifeMax:0.00%}>, "));
-            TShock.Utils.Broadcast(GetString($"[c/74F3C9:{data.Count}] 位玩家击败了 [c/74F3C9:{args.npc.FullName}]\n{text}"), new Color(247, 244, 150));
-            this.DamageList.Remove(args.npc);
+            var creditEntry = tracker._list[i];
+            var isSelf = creditEntry is NPCDamageTracker.PlayerCreditEntry entry && entry.PlayerName == player.Name;
+            var nameDisplay = isSelf ? $"[c/FFAF00:{creditEntry.Name}]" : creditEntry.Name.ToString();
+            report.AppendLine($"{nameDisplay}: [c/74F3C9:{creditEntry.Damage}] <{damagePercentages[i]}%>");
         }
+
+        player.SendInfoMessage(
+            GetString($"[c/74F3C9:{playerCount}]位玩家耗时[c/74F3C9:{(int) duration.TotalMinutes}分{duration.Seconds:00}秒]击败了[c/74F3C9:{tracker.Name.ToString()}]\n") +
+            $"{report.ToString().TrimEnd()}"
+        );
     }
 }
