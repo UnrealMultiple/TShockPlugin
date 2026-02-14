@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-31 12:03:02+0000\n"
-"PO-Revision-Date: 2025-02-01 01:11\n"
+"POT-Creation-Date: 2026-02-12 14:55:16+0000\n"
+"PO-Revision-Date: 2026-02-13 02:02\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,11 @@ msgstr ""
 msgid "[c/95CFA6:<VeinMiner> 挖矿消息已{0}]."
 msgstr ""
 
+#: ../../VeinMiner.cs:142
+#, csharp-format
+msgid "[c/95CFA6:<VeinMiner>] {0} 挖掘了[c/95CFA6:{1}块{2}]."
+msgstr ""
+
 #: ../../VeinMiner.cs:112
 msgid "[c/95CFA6:<VeinMiner>] 已给予奖励物品"
 msgstr ""
@@ -36,7 +41,7 @@ msgstr ""
 msgid "[c/95CFA6:<VeinMiner>] 挖掘了[c/95CFA6:{0}块{1}]."
 msgstr ""
 
-#: ../../VeinMiner.cs:158
+#: ../../VeinMiner.cs:159
 msgid "[c/95CFA6:<VeinMiner>] 无法挖取矿石, 可能是因为矿石上方有不可破坏的物体."
 msgstr ""
 
@@ -50,7 +55,7 @@ msgstr ""
 msgid "[c/95CFA6:<VeinMiner>] 背包已满, 还需空位：[c/95CFA6:{0}]."
 msgstr ""
 
-#: ../../VeinMiner.cs:147
+#: ../../VeinMiner.cs:148
 #, csharp-format
 msgid "[c/95CFA6:<VeinMiner>] 背包已满, 需要[c/95CFA6:{0}]个空位以放入[c/95CFA6:{1}]."
 msgstr ""
@@ -78,6 +83,7 @@ msgstr ""
 
 #: ../../VeinMiner.cs:133
 #: ../../VeinMiner.cs:141
+#: ../../VeinMiner.cs:142
 msgid "未知"
 msgstr ""
 
