@@ -3,7 +3,7 @@ using Terraria.WorldBuilding;
 
 namespace AutoReset;
 
-public class WorldGenerationOptionsHelper
+public static class WorldGenerationOptionsHelper
 {
     public static long WorldGenerationOptionsToFlag()
     {
@@ -45,7 +45,7 @@ public class WorldGenerationOptionsHelper
         const string disabledMarker = "[ ]";
 
         return string.Join("\n", generationOptions.Select((option, index) => 
-            $"<{index + 1,-2}> {(option.Enabled ? enabledMarker : disabledMarker)} {option.Title.Value}"
+            $"<{index + 1}> {(option.Enabled ? enabledMarker : disabledMarker)} {option.Title.Value}"
         ));
     }
     
@@ -59,7 +59,7 @@ public class WorldGenerationOptionsHelper
         const string enabledMarker = "[x]";
 
         return string.Join("\n", generationOptions.Where(x=>x.Enabled).Select((option, index) => 
-            $"<{index + 1,-2}> {enabledMarker} {option.Title.Value}"
+            $"<{index + 1}> {enabledMarker} {option.Title.Value}"
         ));
     }
     

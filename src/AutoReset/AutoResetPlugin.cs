@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Events;
-using Terraria.GameContent.UI.States;
 using Terraria.IO;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
@@ -107,8 +106,8 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
                     TShock.Utils.Broadcast(string.Format(GetString("[AutoReset][c/98FB98:{0}s]后[c/DC143C:关闭服务器]..."), i), Color.Orange);
                     Thread.Sleep(1000);
                 }
-                this._status = Status.Cleaning;
             }
+            this._status = Status.Cleaning;
             
             TShock.Players.ForEach(delegate (TSPlayer? p)
             {
@@ -298,6 +297,7 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
                 "/rs info",
                 GetString("/rs name <地图名>"),
                 GetString("/rs seed <种子>"),
+                GetString("/rs special <特殊种子序号>"),
                 GetString("/reset 重置世界"),
                 GetString("/resetdata 重置数据")
             ];
