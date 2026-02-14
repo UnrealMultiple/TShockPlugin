@@ -63,7 +63,7 @@
 | [AutoAirItem](./src/AutoAirItem/README.md) | 自动垃圾桶插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 自动广播 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoClear](./src/AutoClear/README.md) | 智能自动扫地 | [LazyAPI](./src/LazyAPI/README.md) |
-| [AutoFish](./src/AutoFish/README.md) | 自动钓鱼重置版 |  |
+| [AutoFish](./src/AutoFish/README.md) | 自动钓鱼重置版 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoPluginManager](./src/AutoPluginManager/README.md) | 一键自动更新插件 |  |
 | [AutoReset](./src/AutoReset/README.md) | 完全自动重置 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoStoreItems](./src/AutoStoreItems/README.md) | 自动储存 | [LazyAPI](./src/LazyAPI/README.md) |

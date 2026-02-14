@@ -850,8 +850,8 @@
   },
   {
     "Name": "DamageStatistic",
-    "Version": "1.0.4",
-    "Author": "Megghy",
+    "Version": "1.1.0",
+    "Author": "Megghy, Cai",
     "Description": {
       "en-US": "Displays the damage done by each player after each boss fight",
       "de-DE": "在每次 Boss 战后显示每个玩家造成的伤害。",
