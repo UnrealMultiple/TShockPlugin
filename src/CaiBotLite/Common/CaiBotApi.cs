@@ -1,27 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using CaiBotLite.Enums;
-using CaiBotLite.Moulds;
+﻿using CaiBotLite.Enums;
+using CaiBotLite.Models;
 using Microsoft.Xna.Framework;
 using SixLabors.ImageSharp.Formats.Png;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using CaiBotPlayer = CaiBotLite.Models.CaiBotPlayer;
 
-namespace CaiBotLite.Services;
+namespace CaiBotLite.Common;
 
 internal static class CaiBotApi
 {
     internal static async Task HandleMessageAsync(string receivedData)
     {
+        var package = Package.Parse(receivedData);
+        var packetWriter = new PackageWriter(package.Type, package.IsRequest, package.RequestId);
         try
         {
-            var package = Package.Parse(receivedData);
-
-            var packetWriter = new PackageWriter(package.Type, package.IsRequest, package.RequestId);
             switch (package.Type)
             {
                 case PackageType.UnbindServer:
@@ -36,7 +31,7 @@ internal static class CaiBotApi
                 case PackageType.CallCommand:
                     var command = package.Read<string>("command");
                     var userOpenId = package.Read<string>("user_open_id");
-                    var groupOpenId = package.Read<string>("group_open_id"); 
+                    var groupOpenId = package.Read<string>("group_open_id");
                     CaiBotPlayer tr = new ();
                     Commands.HandleCommand(tr, command);
                     TShock.Utils.SendLogs($"[CaiBotLite] \"{userOpenId}\"来自群\"{groupOpenId}\"执行了: {command}", Color.PaleVioletRed);
@@ -50,14 +45,14 @@ internal static class CaiBotApi
                         .Write("player_list", TShock.Players.Where(x => x is { Active: true }).Select(x => x.Name))
                         .Write("current_online", TShock.Utils.GetActivePlayerCount())
                         .Write("max_online", TShock.Config.Settings.MaxSlots)
-                        .Write("process",Config.Settings.ShowProcessInPlayerList?Utils.GetWorldProcess():"")
+                        .Write("process", Config.Settings.ShowProcessInPlayerList ? Utils.GetWorldProcess() : "")
                         .Send();
                     break;
                 case PackageType.Progress:
 
                     var bossLock = new Dictionary<string, string>();
-                    
-                    
+
+
                     if (BossLockSupport.Support)
                     {
                         bossLock = BossLockSupport.GetLockBosses();
@@ -68,7 +63,7 @@ internal static class CaiBotApi
                         var progressControlBosses = ProgressControlSupport.GetLockBosses();
                         bossLock = bossLock.Count < progressControlBosses.Count ? progressControlBosses : bossLock;
                     }
-                    
+
                     packetWriter
                         .Write("is_text", false)
                         .Write("process", Utils.GetProcessList())
@@ -84,16 +79,19 @@ internal static class CaiBotApi
                     var name = package.Read<string>("player_name");
                     var whitelistResult = package.Read<WhiteListResult>("whitelist_result");
 
-                    var player = TShock.Players.FirstOrDefault(x => x?.Name == name && x.State != (int)ConnectionState.Complete);
+                    var player = TShock.Players.FirstOrDefault(x =>
+                        x?.Name == name && x is { State: (int) ConnectionState.AssigningPlayerSlot});
+
                     if (player == null)
                     {
                         return;
                     }
+
                     if (LoginHelper.CheckWhitelist(player, whitelistResult))
                     {
                         LoginHelper.HandleLogin(player);
                     }
-                
+
                     break;
                 case PackageType.SelfKick:
                     var selfKickName = package.Read<string>("name");
@@ -138,7 +136,7 @@ internal static class CaiBotApi
                                 .Send();
                             return;
                         }
-                
+
                         var data = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), acc.ID);
                         if (data == null)
                         {
@@ -147,19 +145,20 @@ internal static class CaiBotApi
                                 .Send();
                             return;
                         }
-                
+
                         var lookOnlineResult = LookBag.LookOffline(acc, data);
                         packetWriter
                             .Write("exist", true)
-                                .Write("life", $"{lookOnlineResult.Health}/{lookOnlineResult.MaxHealth}")
-                                .Write("mana", $"{lookOnlineResult.Mana}/{lookOnlineResult.MaxMana}")
-                                .Write("quests_completed", lookOnlineResult.QuestsCompleted)
-                                .Write("inventory", lookOnlineResult.ItemList)
-                                .Write("buffs", lookOnlineResult.Buffs)
-                                .Write("enhances", lookOnlineResult.Enhances )
-                                .Write("economic", EconomicData.GetEconomicData(lookOnlineResult.Name))
-                                .Send();
+                            .Write("life", $"{lookOnlineResult.Health}/{lookOnlineResult.MaxHealth}")
+                            .Write("mana", $"{lookOnlineResult.Mana}/{lookOnlineResult.MaxMana}")
+                            .Write("quests_completed", lookOnlineResult.QuestsCompleted)
+                            .Write("inventory", lookOnlineResult.ItemList)
+                            .Write("buffs", lookOnlineResult.Buffs)
+                            .Write("enhances", lookOnlineResult.Enhances)
+                            .Write("economic", EconomicData.GetEconomicData(lookOnlineResult.Name))
+                            .Send();
                     }
+
                     break;
                 case PackageType.MapImage:
                     var bitmap = MapGenerator.CreateMapImg();
@@ -172,6 +171,7 @@ internal static class CaiBotApi
                             .Write("base64", Utils.CompressBase64(base64))
                             .Send();
                     }
+
                     break;
                 case PackageType.MapFile:
                     var mapFile = MapGenerator.CreateMapFile();
@@ -179,14 +179,14 @@ internal static class CaiBotApi
                         .Write("name", mapFile.Item2)
                         .Write("base64", Utils.CompressBase64(mapFile.Item1))
                         .Send();
-                    
+
                     break;
                 case PackageType.WorldFile:
                     packetWriter
                         .Write("name", Path.GetFileName(Main.worldPathName))
-                        .Write("base64", Utils.CompressBase64(Utils.FileToBase64String(Main.worldPathName)) )
+                        .Write("base64", Utils.CompressBase64(Utils.FileToBase64String(Main.worldPathName)))
                         .Send();
-                    
+
                     break;
                 case PackageType.PluginList:
                     var pluginList = ServerApi.Plugins.Select(p => new PluginInfo(p.Plugin.Name, p.Plugin.Description, p.Plugin.Author, p.Plugin.Version)).ToList();
@@ -235,6 +235,7 @@ internal static class CaiBotApi
                                         .Send();
                                     break;
                             }
+
                             break;
                         case RankTypes.EconomicCoin:
                             if (string.IsNullOrEmpty(arg))
@@ -248,7 +249,7 @@ internal static class CaiBotApi
                                     .Send();
                                 return;
                             }
-                            
+
                             if (!EconomicSupport.SupportCoins.Contains(arg))
                             {
                                 packetWriter
@@ -260,14 +261,14 @@ internal static class CaiBotApi
                                     .Send();
                                 return;
                             }
-                            
+
                             packetWriter
                                 .Write("rank_type_support", true)
                                 .Write("need_arg", true)
                                 .Write("arg_support", true)
                                 .Write("rank", EconomicSupport.GetCoinRank(arg))
                                 .Send();
-                            
+
 
                             break;
                         case RankTypes.Death:
@@ -298,6 +299,7 @@ internal static class CaiBotApi
                                 .Send();
                             break;
                     }
+
                     break;
                 case PackageType.ShopCondition:
                     var itemConditions = package.Read<List<ProgressType>>("item_conditions");
@@ -319,11 +321,13 @@ internal static class CaiBotApi
                         mail.IsCommand = false;
                         mail.Items = package.Read<List<MailItem>>("commands");
                     }
+
                     mail.CreatOrUpdate();
                     break;
                 case PackageType.Hello:
                 case PackageType.Heartbeat:
                 case PackageType.Unknown:
+                case PackageType.Error:
                 default:
                     break;
             }
@@ -333,8 +337,10 @@ internal static class CaiBotApi
             TShock.Log.ConsoleError($"[CaiBotLite] 处理BOT数据包时出错:\n" +
                                     $"{ex}\n" +
                                     $"源数据包: {receivedData}");
+
+            packetWriter.Package.Type = PackageType.Error;
+            packetWriter.Write("error", ex)
+                .Send();
         }
     }
-    
-        
 }

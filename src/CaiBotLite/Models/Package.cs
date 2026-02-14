@@ -1,14 +1,9 @@
 ﻿using CaiBotLite.Enums;
-using CaiBotLite.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using On.Terraria.IO;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 
-namespace CaiBotLite.Moulds;
+namespace CaiBotLite.Models;
 
 [Serializable]
 public class Package(Direction direction, PackageType type, bool isRequest, string? requestId)
@@ -26,15 +21,20 @@ public class Package(Direction direction, PackageType type, bool isRequest, stri
 
     [JsonProperty("version")] public Version Version => this.Type.GetVersion();
 
-    [JsonProperty("direction")] public Direction Direction = direction;
+    [JsonProperty("direction")]
+    public Direction Direction = direction;
 
-    [JsonProperty("type")] public PackageType Type = type;
+    [JsonProperty("type")]
+    public PackageType Type = type;
 
-    [JsonProperty("is_request")] public bool IsRequest = isRequest;
+    [JsonProperty("is_request")]
+    public bool IsRequest = isRequest;
 
-    [JsonProperty("request_id")] public string? RequestId = requestId;
+    [JsonProperty("request_id")]
+    public string? RequestId = requestId;
 
-    [JsonProperty("payload")] public Payload Payload = new ();
+    [JsonProperty("payload")]
+    public Payload Payload = new ();
 
     public T Read<T>(string key)
     {
@@ -81,7 +81,7 @@ public class Package(Direction direction, PackageType type, bool isRequest, stri
         return targetValue;
     }
 
-// 处理枚举转换
+    // 处理枚举转换
     private static T HandleEnumConversion<T>(string stringValue)
     {
         try
@@ -99,7 +99,7 @@ public class Package(Direction direction, PackageType type, bool isRequest, stri
         }
     }
 
-// 处理 List<Enum> 转换
+    // 处理 List<Enum> 转换
     private static T HandleListOfEnumConversion<T>(Type enumType, Newtonsoft.Json.Linq.JArray jArray)
     {
         try
@@ -128,7 +128,7 @@ public class Package(Direction direction, PackageType type, bool isRequest, stri
         }
     }
 
-// 检查是否是 List<Enum> 类型
+    // 检查是否是 List<Enum> 类型
     private static bool IsListOfEnum(Type type, out Type enumType)
     {
         enumType = null!;
@@ -163,8 +163,11 @@ public class Package(Direction direction, PackageType type, bool isRequest, stri
 
 public enum Direction
 {
-    [JsonProperty("to_server")] ToServer,
-    [JsonProperty("to_bot")] ToBot
+    [JsonProperty("to_server")]
+    ToServer,
+
+    [JsonProperty("to_bot")]
+    ToBot
 }
 
 public class Payload : Dictionary<string, object>

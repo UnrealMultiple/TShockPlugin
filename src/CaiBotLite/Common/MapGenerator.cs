@@ -1,12 +1,12 @@
+using MonoMod.RuntimeDetour;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using MonoMod.RuntimeDetour;
 using Terraria;
 using Terraria.IO;
 using Terraria.Map;
 using Image = SixLabors.ImageSharp.Image;
 
-namespace CaiBotLite.Services;
+namespace CaiBotLite.Common;
 
 internal static class MapGenerator
 {
@@ -29,30 +29,23 @@ internal static class MapGenerator
 
     private static MapTile NewWorldMapIndexer(Func<WorldMap, int, int, MapTile> orig, WorldMap self, int x, int y)
     {
-        //Console.WriteLine($"self._tiles[x, y] {Main.Map._tiles.GetLength(0)} {Main.Map._tiles.GetLength(1)}");
-        if (self._tiles == null || x < 0 || y < 0 || x >= self._tiles.GetLength(0) || y >= self._tiles.GetLength(1))
+        try
         {
-            // 如果越界了，返回一个默认的空瓦片，而不是崩溃
-            return new MapTile();  
+            return self._tiles[x, y];
         }
-        return self._tiles[x, y];
+        catch (IndexOutOfRangeException)
+        {
+            return new MapTile();
+        }
     }
 
     private static void LightWholeMap()
     {
-        Main.Map = new WorldMap(Main.maxTilesX, Main.maxTilesY)
-        {
-            _tiles = new MapTile[Main.maxTilesX, Main.maxTilesY]
-        };
-        // Console.WriteLine($"Main.maxTilesX {Main.maxTilesX} {Main.maxTilesY}");
-        // Console.WriteLine($"Main.Map._tiles[x, y] {Main.Map._tiles.GetLength(0)} {Main.Map._tiles.GetLength(1)}");
-        
+        Main.Map = new WorldMap(Main.maxTilesX, Main.maxTilesY) { _tiles = new MapTile[Main.maxTilesX, Main.maxTilesY] };
         for (var x = 0; x < Main.maxTilesX; x++)
         {
             for (var y = 0; y < Main.maxTilesY; y++)
             {
-                // Console.WriteLine($"{x}, {y}");
-                // Console.WriteLine($"Main.Map._tiles[x, y] {Main.Map._tiles.GetLength(0)} {Main.Map._tiles.GetLength(1)}");
                 Main.Map._tiles[x, y] = MapHelper.CreateMapTile(x, y, byte.MaxValue);
             }
         }

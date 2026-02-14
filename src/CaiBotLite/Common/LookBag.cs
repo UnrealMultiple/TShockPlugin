@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Terraria;
+﻿using Terraria;
 using TShockAPI;
 using TShockAPI.DB;
 
-namespace CaiBotLite.Services;
+namespace CaiBotLite.Common;
 
 internal class LookBag
 {

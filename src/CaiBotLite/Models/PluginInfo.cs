@@ -1,6 +1,6 @@
-﻿using System;
+﻿// ReSharper disable UnusedMember.Global
 
-namespace CaiBotLite.Moulds;
+namespace CaiBotLite.Models;
 
 internal class PluginInfo(string name, string description, string author, Version version)
 {

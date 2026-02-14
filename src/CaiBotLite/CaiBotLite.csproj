@@ -1,22 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\..\template.targets" />
+    <Import Project="..\..\template.targets"/>
 
     <ItemGroup>
         <PackageReference Include="linq2db" Version="5.4.1"/>
-        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12"/>
     </ItemGroup>
 
     <PropertyGroup>
         <EmbedNuGetDlls>SixLabors.ImageSharp.dll</EmbedNuGetDlls>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <ProjectReference Include="..\BossLock\BossLock.csproj" />
-        <ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
-        <ProjectReference Include="..\Economics.Skill\Economics.Skill.csproj" />
-        <ProjectReference Include="..\Economics.Core\Economics.Core.csproj" />
-        <ProjectReference Include="..\ProgressControls\ProgressControls.csproj" />
+        <ProjectReference Include="..\BossLock\BossLock.csproj"/>
+        <ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj"/>
+        <ProjectReference Include="..\Economics.Skill\Economics.Skill.csproj"/>
+        <ProjectReference Include="..\Economics.Core\Economics.Core.csproj"/>
+        <ProjectReference Include="..\ProgressControls\ProgressControls.csproj"/>
     </ItemGroup>
 
 </Project>

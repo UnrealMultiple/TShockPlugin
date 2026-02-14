@@ -2,30 +2,37 @@
 using LinqToDB.Mapping;
 using Newtonsoft.Json;
 
-namespace CaiBotLite.Moulds;
+namespace CaiBotLite.Models;
 
 [Table("cai_mail")]
 public class Mail
 {
-    [PrimaryKey] [Identity] [Column("id")] public int Id;
-    [Column("account_name")] public string AccountName = null!;
+    [PrimaryKey]
+    [Identity]
+    [Column("id")]
+    public int Id;
 
-    [Column("name")] public string Name = "";
+    [Column("account_name")]
+    public string AccountName = null!;
 
-    [Column("hasReceived")] public bool HasReceived;
+    [Column("name")]
+    public string Name = "";
 
-    [Column("is_command")] public bool IsCommand;
-    
-    
+    [Column("hasReceived")]
+    public bool HasReceived;
+
+    [Column("is_command")]
+    public bool IsCommand;
+
 
     [Column("commands", DataType = DataType.NVarChar)]
     [ValueConverter(ConverterType = typeof(JsonConverter<List<string>>))]
     public List<string> Commands = [];
-    
+
     [Column("items", DataType = DataType.NVarChar)]
     [ValueConverter(ConverterType = typeof(JsonConverter<List<MailItem>>))]
     public List<MailItem> Items = [];
-    
+
     public static List<Mail> GetByPlayerName(string name)
     {
         using var db = Database.Db;
@@ -49,8 +56,6 @@ public class Mail
         using var db = Database.Db;
         db.GetTable<Mail>().Delete();
     }
-    
-    
 }
 
 [Serializable]
@@ -58,8 +63,10 @@ public class MailItem
 {
     [JsonProperty("type")]
     public int Type;
+
     [JsonProperty("stack")]
     public int Stack;
+
     [JsonProperty("prefix")]
     public int Prefix;
 }

@@ -1,15 +1,18 @@
-﻿using CaiBotLite.Services;
+﻿using CaiBotLite.Common;
 using System.Text.Json.Serialization;
 
-namespace CaiBotLite.Moulds;
+namespace CaiBotLite.Models;
 
 public class EconomicData
 {
-    [JsonPropertyOrder(1)] public string Coins = "";
+    [JsonPropertyOrder(1)]
+    public string Coins = "";
 
-    [JsonPropertyOrder(2)] public string LevelName = "";
+    [JsonPropertyOrder(2)]
+    public string LevelName = "";
 
-    [JsonPropertyOrder(3)] public string Skill = "";
+    [JsonPropertyOrder(3)]
+    public string Skill = "";
 
     public static EconomicData GetEconomicData(string name)
     {

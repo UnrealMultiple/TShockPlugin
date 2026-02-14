@@ -38,11 +38,11 @@ public class DamageStatistic(Main game) : TerrariaPlugin(game)
             .Where(x => x is { Active: true })
             .ForEach(x =>
             {
-                SendReport(x, self, npc);
+                SendReport(x, self);
             });
     }
 
-    private static void SendReport(TSPlayer player, BossDamageTracker tracker, NPC npc)
+    private static void SendReport(TSPlayer player, BossDamageTracker tracker)
     {
         var report = new StringBuilder();
         var playerCount = tracker._list.Count(x => x is NPCDamageTracker.PlayerCreditEntry);
