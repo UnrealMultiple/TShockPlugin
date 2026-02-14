@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:16:11+0000\n"
-"PO-Revision-Date: 2025-01-10 01:11\n"
+"POT-Creation-Date: 2026-02-12 14:54:56+0000\n"
+"PO-Revision-Date: 2026-02-13 02:02\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,12 @@ msgstr ""
 "X-Crowdin-File-ID: 1192\n"
 "Language: en_US\n"
 
-#: ../../FakeChestDatabase.cs:230
+#: ../../FakeChestDatabase.cs:227
 #, csharp-format
 msgid "保存了 {0} 个战利品宝箱库存, {1} 玩家放置的宝箱."
 msgstr "Saved {0} loot chest inventories, {1} player-placed chests."
 
-#: ../../FakeChestDatabase.cs:67
+#: ../../FakeChestDatabase.cs:65
 msgid "加载每个玩家的战利品宝箱库存..."
 msgstr "Loading per-player loot chest inventories..."
 
@@ -38,7 +38,7 @@ msgstr "Individual chests for player loot."
 msgid "现在启用了每个玩家单独的宝箱!"
 msgstr "Per player loot is now enabled!"
 
-#: ../../FakeChestDatabase.cs:36
+#: ../../FakeChestDatabase.cs:34
 msgid "设置每个玩家的宝箱数据库..."
 msgstr "Setting up per-player chests database..."
 
