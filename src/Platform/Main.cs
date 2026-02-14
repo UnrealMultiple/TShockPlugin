@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System.Diagnostics.CodeAnalysis;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
@@ -6,7 +7,8 @@ using TShockAPI.Hooks;
 namespace Platform;
 
 [ApiVersion(2, 1)]
-public class Platform : TerrariaPlugin
+// ReSharper disable once ClassNeverInstantiated.Global
+public class Platform(Main game) : TerrariaPlugin(game)
 {
 
     public override string Author => "Cai";
@@ -14,20 +16,20 @@ public class Platform : TerrariaPlugin
     public override string Description => GetString("判断玩家设备");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2025, 05, 18, 2);
+    public override Version Version => new (2026, 02, 15, 0);
 
-    public Platform(Main game)
-    : base(game)
-    {
-    }
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public enum PlatformType : byte
     {
         PE = 0,
         Stadia = 1,
-        XBOX = 2,
+        XBO = 2,
         PSN = 3,
         Editor = 4,
-        Switch = 5,
+        Nintendo = 5,
+        Steam = 6,
+        GameCenter = 7,
         PC = 10
     }
     public static readonly PlatformType[] Platforms  = new PlatformType[Main.maxPlayers];
@@ -85,7 +87,7 @@ public class Platform : TerrariaPlugin
             case (int)PacketTypes.ConnectRequest:
                 Platforms[instance.whoAmI] = PlatformType.PC;
                 break;
-            case 150: //PE Device Info
+            case (int)PacketTypes.PlayerPlatformInfo:
             {
                 instance.ResetReader();
                 instance.reader.BaseStream.Position = start + 1;
