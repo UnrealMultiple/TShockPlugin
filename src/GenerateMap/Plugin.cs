@@ -71,27 +71,33 @@ public class Plugin(Main game) : TerrariaPlugin(game)
         switch (args.Parameters[0])
         {
             case "img":
-                try
+                Task.Run(() =>
                 {
-                    var fileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.png";
-                    var path = MapGenerator.SaveMapImg(fileName);
-                    args.Player.SendSuccessMessage(GetString($"[GenerateMap]地图图片已保存到: {path}"));
-                }
-                catch (Exception ex)
-                {
-                    TShock.Log.ConsoleError( GetString("[GenerateMap]生成地图出错: ") + ex);
-                }
+                    try
+                    {
+                        var fileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.png";
+                        var path = MapGenerator.SaveMapImg(fileName);
+                        args.Player.SendSuccessMessage(GetString($"[GenerateMap]地图图片已保存到: {path}"));
+                    }
+                    catch (Exception ex)
+                    {
+                        TShock.Log.ConsoleError( GetString("[GenerateMap]生成地图出错: ") + ex);
+                    }
+                });
                 break;
             case "file":
-                try
+                Task.Run(() =>
                 {
-                    var path = MapGenerator.SaveMapFile();
-                    args.Player.SendSuccessMessage(GetString($"[GenerateMap]地图文件已保存到: {path}"));
-                }
-                catch (Exception ex)
-                {
-                    TShock.Log.ConsoleError( GetString("[GenerateMap]生成地图出错: ") + ex);
-                }
+                    try
+                    {
+                        var path = MapGenerator.SaveMapFile();
+                        args.Player.SendSuccessMessage(GetString($"[GenerateMap]地图文件已保存到: {path}"));
+                    }
+                    catch (Exception ex)
+                    {
+                        TShock.Log.ConsoleError( GetString("[GenerateMap]生成地图出错: ") + ex);
+                    }
+                });
                 break;
             default:
                 ShowHelp();
