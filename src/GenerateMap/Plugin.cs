@@ -71,34 +71,27 @@ public class Plugin(Main game) : TerrariaPlugin(game)
         switch (args.Parameters[0])
         {
             case "img":
-                Task.Run(() =>
+                try
                 {
-                    try
-                    {
-                        var fileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.png";
-                        var path = MapGenerator.SaveMapImg(fileName);
-                        args.Player.SendSuccessMessage(GetString($"[GenerateMap]地图图片已保存到: {path}"));
-                    }
-                    catch (Exception ex)
-                    {
-                        TShock.Log.ConsoleError( GetString("[GenerateMap]生成地图出错: ") + ex);
-                    }
-                    
-                });
+                    var fileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.png";
+                    var path = MapGenerator.SaveMapImg(fileName);
+                    args.Player.SendSuccessMessage(GetString($"[GenerateMap]地图图片已保存到: {path}"));
+                }
+                catch (Exception ex)
+                {
+                    TShock.Log.ConsoleError( GetString("[GenerateMap]生成地图出错: ") + ex);
+                }
                 break;
             case "file":
-                Task.Run(() =>
+                try
                 {
-                    try
-                    {
-                        var path = MapGenerator.SaveMapFile();
-                        args.Player.SendSuccessMessage(GetString($"[GenerateMap]地图文件已保存到: {path}"));
-                    }
-                    catch (Exception ex)
-                    {
-                        TShock.Log.ConsoleError( GetString("[GenerateMap]生成地图出错: ") + ex);
-                    }
-                });
+                    var path = MapGenerator.SaveMapFile();
+                    args.Player.SendSuccessMessage(GetString($"[GenerateMap]地图文件已保存到: {path}"));
+                }
+                catch (Exception ex)
+                {
+                    TShock.Log.ConsoleError( GetString("[GenerateMap]生成地图出错: ") + ex);
+                }
                 break;
             default:
                 ShowHelp();
