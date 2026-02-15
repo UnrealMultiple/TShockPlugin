@@ -39,12 +39,26 @@ internal static class MapGenerator
     {
         Main.Map = CreateWorkingMap();
         var edge = WorldMap.BlackEdgeWidth;
+        var width = Main.Map._tiles.GetLength(0);
+        var height = Main.Map._tiles.GetLength(1);
         for (var x = 0; x < Main.maxTilesX; x++)
         {
             for (var y = 0; y < Main.maxTilesY; y++)
             {
                 var tile = MapHelper.CreateMapTile(x, y, byte.MaxValue);
-                Main.Map._tiles[x + edge, y + edge] = tile;
+
+                // 1.4.5+ on different runtimes may read either raw or edge-offset coordinates during save.
+                if ((uint) x < (uint) width && (uint) y < (uint) height)
+                {
+                    Main.Map._tiles[x, y] = tile;
+                }
+
+                var rawX = x + edge;
+                var rawY = y + edge;
+                if ((uint) rawX < (uint) width && (uint) rawY < (uint) height)
+                {
+                    Main.Map._tiles[rawX, rawY] = tile;
+                }
             }
         }
     }
@@ -69,16 +83,15 @@ internal static class MapGenerator
 
     internal static byte[] CreatMapImgBytes()
     {
-        return File.ReadAllBytes(CreatMapFile());
-    }
-    
-    internal static byte[] CreatMapFileBytes()
-    {
         var image = CreateMapImg();
         using var stream = new MemoryStream();
         image.SaveAsPng(stream);
         return stream.ToArray();
-
+    }
+    
+    internal static byte[] CreatMapFileBytes()
+    {
+        return File.ReadAllBytes(GetWorldFilePath());
     }
 
     internal static string SaveMapImg(string fileName)
@@ -89,21 +102,30 @@ internal static class MapGenerator
         return path;
     }
 
-    private static string CreatMapFile()
+    private static string GetWorldFilePath()
     {
-        LightUpWholeMap();
-        MapHelper.SaveMap();
-        var playerPath = Main.playerPathName[..^4] + Path.DirectorySeparatorChar;
-        var mapFileName = !Main.ActiveWorldFileData.UseGuidAsMapName ? Main.worldID + ".map" : Main.ActiveWorldFileData.UniqueId + ".map";
-        var mapFilePath = Path.Combine(playerPath, mapFileName);
-        return mapFilePath;
+        var worldFilePath = Main.worldPathName;
+        if (string.IsNullOrWhiteSpace(worldFilePath) || !File.Exists(worldFilePath))
+        {
+            throw new FileNotFoundException("World file not found.", worldFilePath);
+        }
+
+        return worldFilePath;
     }
 
     internal static string SaveMapFile()
     {
-        var mapPath = CreatMapFile();
-        var path = Path.Combine(ImagesPath, Path.GetFileName(mapPath));
-        File.Copy(mapPath, path);
+        var worldPath = GetWorldFilePath();
+        var worldName = Path.GetFileNameWithoutExtension(worldPath);
+        var ext = Path.GetExtension(worldPath);
+        if (string.IsNullOrWhiteSpace(ext))
+        {
+            ext = ".wld";
+        }
+
+        var fileName = $"{worldName}_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}{ext}";
+        var path = Path.Combine(MapsPath, fileName);
+        File.Copy(worldPath, path, true);
         return path;
     }
 }
