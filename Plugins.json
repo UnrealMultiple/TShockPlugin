@@ -2039,7 +2039,7 @@
   },
   {
     "Name": "Platform",
-    "Version": "2025.5.18.2",
+    "Version": "2026.2.15.0",
     "Author": "Cai",
     "Description": {
       "en-US": "Determine player device",
