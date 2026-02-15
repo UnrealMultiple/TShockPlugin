@@ -1,4 +1,3 @@
-using MonoMod.RuntimeDetour;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using System.IO.Streams;
@@ -10,13 +9,10 @@ namespace GenerateMap;
 
 internal static class MapGenerator
 {
-    private static readonly Hook WorldMapIndexerHook = new (typeof(WorldMap).GetMethod("get_Item")!, NewWorldMapIndexer);
-
     private const string MapsPath = @"GenerateMap";
     private const string ImagesPath = @"GenerateMap\Images";
     internal static void Init()
     {
-        WorldMapIndexerHook.Apply();
         MapHelper.Initialize();
         Main.mapEnabled = true;
         Main.Map = CreateWorkingMap();
@@ -28,7 +24,6 @@ internal static class MapGenerator
 
     internal static void Dispose()
     {
-        WorldMapIndexerHook.Dispose();
     }
 
     private static WorldMap CreateWorkingMap()
@@ -38,24 +33,6 @@ internal static class MapGenerator
         {
             _tiles = new MapTile[Main.maxTilesX + edge * 2, Main.maxTilesY + edge * 2]
         };
-    }
-
-    private static MapTile NewWorldMapIndexer(Func<WorldMap, int, int, MapTile> _, WorldMap self, int x, int y)
-    {
-        if (self._tiles == null)
-        {
-            return default;
-        }
-
-        var edge = WorldMap.BlackEdgeWidth;
-        var rawX = x + edge;
-        var rawY = y + edge;
-        if ((uint) rawX >= (uint) self._tiles.GetLength(0) || (uint) rawY >= (uint) self._tiles.GetLength(1))
-        {
-            return default;
-        }
-
-        return self._tiles[rawX, rawY];
     }
 
     private static void LightUpWholeMap()
