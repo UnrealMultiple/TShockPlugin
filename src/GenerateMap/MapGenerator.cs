@@ -93,7 +93,7 @@ internal static class MapGenerator
     
     internal static byte[] CreatMapFileBytes()
     {
-        return File.ReadAllBytes(GetWorldFilePath());
+        return File.ReadAllBytes(CreateMapFile());
     }
 
     internal static string SaveMapImg(string fileName)
@@ -104,30 +104,31 @@ internal static class MapGenerator
         return path;
     }
 
-    private static string GetWorldFilePath()
+    private static string CreateMapFile()
     {
-        var worldFilePath = Main.worldPathName;
-        if (string.IsNullOrWhiteSpace(worldFilePath) || !File.Exists(worldFilePath))
+        LightUpWholeMap();
+        MapHelper.SaveMap();
+
+        var playerPath = Main.playerPathName[..^4] + Path.DirectorySeparatorChar;
+        var mapFileName = !Main.ActiveWorldFileData.UseGuidAsMapName
+            ? Main.worldID + ".map"
+            : Main.ActiveWorldFileData.UniqueId + ".map";
+        var mapFilePath = Path.Combine(playerPath, mapFileName);
+        if (!File.Exists(mapFilePath))
         {
-            throw new FileNotFoundException("World file not found.", worldFilePath);
+            throw new FileNotFoundException("Map file not found.", mapFilePath);
         }
 
-        return worldFilePath;
+        return mapFilePath;
     }
 
     internal static string SaveMapFile()
     {
-        var worldPath = GetWorldFilePath();
-        var worldName = Path.GetFileNameWithoutExtension(worldPath);
-        var ext = Path.GetExtension(worldPath);
-        if (string.IsNullOrWhiteSpace(ext))
-        {
-            ext = ".wld";
-        }
-
-        var fileName = $"{worldName}_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}{ext}";
+        var mapPath = CreateMapFile();
+        var mapName = Path.GetFileNameWithoutExtension(mapPath);
+        var fileName = $"{mapName}_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.map";
         var path = Path.Combine(MapsPath, fileName);
-        File.Copy(worldPath, path, true);
+        File.Copy(mapPath, path, true);
         return path;
     }
 }

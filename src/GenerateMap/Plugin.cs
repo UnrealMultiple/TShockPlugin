@@ -110,7 +110,7 @@ public class Plugin(Main game) : TerrariaPlugin(game)
         void ShowHelp()
         {
             args.Player.SendSuccessMessage(GetString("GenerateMap帮助: "));
-            args.Player.SendSuccessMessage(GetString("/map file --- 导出世界文件(.wld)"));
+            args.Player.SendSuccessMessage(GetString("/map file --- 生成地图文件(.map)"));
             args.Player.SendSuccessMessage(GetString("/map img --- 生成地图图片"));
         }
     }
