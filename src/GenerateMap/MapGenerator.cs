@@ -9,8 +9,9 @@ namespace GenerateMap;
 
 internal static class MapGenerator
 {
-    private const string MapsPath = @"GenerateMap";
-    private const string ImagesPath = @"GenerateMap\Images";
+    private const string BasePath = "GenerateMap";
+    private static readonly string MapsPath = Path.Combine(BasePath, "Maps");
+    private static readonly string ImagesPath = Path.Combine(BasePath, "Images");
     internal static void Init()
     {
         MapHelper.Initialize();
@@ -18,6 +19,7 @@ internal static class MapGenerator
         Main.Map = CreateWorkingMap();
         Main.ActivePlayerFileData = new PlayerFileData { Name = "GenerateMap", _path = Main.GetPlayerPathFromName("GenerateMap", false) };
         Main.MapFileMetadata = FileMetadata.FromCurrentSettings(FileType.Map);
+        Utils.TryCreatingDirectory(BasePath);
         Utils.TryCreatingDirectory(MapsPath);
         Utils.TryCreatingDirectory(ImagesPath);
     }
