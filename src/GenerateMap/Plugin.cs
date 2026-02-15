@@ -9,7 +9,7 @@ namespace GenerateMap;
 [ApiVersion(2, 1)]
 public class Plugin(Main game) : TerrariaPlugin(game)
 {
-    public override string Author => "少司命, Cai，千亦";
+    public override string Author => "少司命, Cai, 千亦";
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Description => GetString("生成地图图片");
