@@ -24,10 +24,6 @@ internal static class MapGenerator
         Utils.TryCreatingDirectory(ImagesPath);
     }
 
-    internal static void Dispose()
-    {
-    }
-
     private static WorldMap CreateWorkingMap()
     {
         var edge = WorldMap.BlackEdgeWidth;

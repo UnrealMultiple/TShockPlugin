@@ -30,7 +30,6 @@ public class Plugin(Main game) : TerrariaPlugin(game)
     {
         if (disposing)
         {
-            MapGenerator.Dispose();
             ((List<RestCommand>) typeof(Rest)
                 .GetField("commands", BindingFlags.NonPublic | BindingFlags.Instance)!
                 .GetValue(TShock.RestApi)!)
