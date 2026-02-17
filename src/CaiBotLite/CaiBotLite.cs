@@ -39,7 +39,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         GeneralHooks.ReloadEvent += GeneralHooksOnReloadEvent;
         PlayerHooks.PlayerPostLogin += PlayerHooksOnPlayerPostLogin;
         GetDataHandlers.KillMe.Register(KillMe, HandlerPriority.Highest);
-        MapGenerator.Init();
+        MapGeneratorSupport.Init();
         EconomicSupport.Init();
         BossLockSupport.Init();
         ProgressControlSupport.Init();
@@ -63,7 +63,6 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             GeneralHooks.ReloadEvent -= GeneralHooksOnReloadEvent;
             PlayerHooks.PlayerPostLogin -= PlayerHooksOnPlayerPostLogin;
             GetDataHandlers.KillMe.UnRegister(KillMe);
-            MapGenerator.Dispose();
             WebsocketManager.StopWebsocket();
         }
 

@@ -1,7 +1,6 @@
 ﻿using CaiBotLite.Enums;
 using CaiBotLite.Models;
 using Microsoft.Xna.Framework;
-using SixLabors.ImageSharp.Formats.Png;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -11,7 +10,7 @@ namespace CaiBotLite.Common;
 
 internal static class CaiBotApi
 {
-    internal static async Task HandleMessageAsync(string receivedData)
+    internal static void HandleMessage(string receivedData)
     {
         var package = Package.Parse(receivedData);
         var packetWriter = new PackageWriter(package.Type, package.IsRequest, package.RequestId);
@@ -161,23 +160,18 @@ internal static class CaiBotApi
 
                     break;
                 case PackageType.MapImage:
-                    var bitmap = MapGenerator.CreateMapImg();
-                    using (MemoryStream ms = new ())
-                    {
-                        await bitmap.SaveAsync(ms, new PngEncoder());
-                        var imageBytes = ms.ToArray();
-                        var base64 = Convert.ToBase64String(imageBytes);
-                        packetWriter
-                            .Write("base64", Utils.CompressBase64(base64))
-                            .Send();
-                    }
+                    var imageBytes = MapGeneratorSupport.CreatMapImgBytes();
+                    packetWriter
+                        .Write("base64", Utils.CompressBase64(Convert.ToBase64String(imageBytes)))
+                        .Send();
+                    
 
                     break;
                 case PackageType.MapFile:
-                    var mapFile = MapGenerator.CreateMapFile();
+                    var mapFile = MapGeneratorSupport.CreateMapFile();
                     packetWriter
                         .Write("name", mapFile.Item2)
-                        .Write("base64", Utils.CompressBase64(mapFile.Item1))
+                        .Write("base64", Utils.CompressBase64(Convert.ToBase64String(mapFile.Item1)))
                         .Send();
 
                     break;
@@ -339,7 +333,7 @@ internal static class CaiBotApi
                                     $"源数据包: {receivedData}");
 
             packetWriter.Package.Type = PackageType.Error;
-            packetWriter.Write("error", ex)
+            packetWriter.Write("error", ex.ToString())
                 .Send();
         }
     }

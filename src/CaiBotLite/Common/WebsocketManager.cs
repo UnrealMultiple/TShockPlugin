@@ -14,8 +14,7 @@ public static class WebsocketManager
     public static ClientWebSocket? WebSocket;
 
     private const string BotServerUrl = "api.terraria.ink:22338";
-
-    //private const string BotServerUrl = "127.0.0.1:8080";
+    
     internal static bool IsWebsocketConnected => WebSocket?.State == WebSocketState.Open;
     private static bool _isStopWebsocket;
 
@@ -137,7 +136,21 @@ public static class WebsocketManager
                         TShock.Log.ConsoleInfo($"[CaiBotLite]收到BOT数据包: {receivedData}");
                     }
 
-                    await CaiBotApi.HandleMessageAsync(receivedData);
+                    _ = Task.Run(() =>
+                    {
+                        try
+                        {
+                            CaiBotApi.HandleMessage(receivedData);
+                        }
+                        catch (Exception e)
+                        {
+                            TShock.Log.ConsoleError("[CaiBotLite]处理消息时发生错误: \n" +
+                                                   $"{e}");
+                        }
+                       
+                    });
+
+
                 }
             }
             catch (Exception ex)

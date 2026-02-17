@@ -45,7 +45,14 @@ public class Plugin(Main game) : TerrariaPlugin(game)
 
     private static RestObject RestGenerateMapFile(RestRequestArgs args)
     {
-        return new RestObject("200") { { "response", GetString("生成地图文件成功") }, { "base64", Convert.ToBase64String(MapGenerator.CreatMapFileBytes()) } };
+       var mapFile = MapGenerator.CreatMapFile();
+        
+        return new RestObject("200")
+        {
+            { "response", GetString("生成地图文件成功") },
+            { "map_name", mapFile.Name },
+            { "base64", Convert.ToBase64String(mapFile.File) }
+        };
     }
 
     private static RestObject RestGenerateMapImg(RestRequestArgs args)

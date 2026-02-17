@@ -7,7 +7,7 @@ using Terraria.Map;
 
 namespace GenerateMap;
 
-internal static class MapGenerator
+public static class MapGenerator
 {
     private const string BasePath = "GenerateMap";
     private static readonly string MapsPath = Path.Combine(BasePath, "Maps");
@@ -75,17 +75,25 @@ internal static class MapGenerator
         return image;
     }
 
-    internal static byte[] CreatMapImgBytes()
+    public static byte[] CreatMapImgBytes()
     {
         var image = CreateMapImg();
         using var stream = new MemoryStream();
         image.SaveAsPng(stream);
         return stream.ToArray();
     }
-
-    internal static byte[] CreatMapFileBytes()
+    
+    public class MapFile(byte[] file, string name)
     {
-        return File.ReadAllBytes(CreateMapFile());
+        public readonly byte[] File = file;
+        public readonly string Name = name;
+    }
+
+    public static MapFile CreatMapFile()
+    {
+        var mapFilePath = CreateMapFile();
+        var mapFile = new MapFile(File.ReadAllBytes(mapFilePath), Path.GetFileName(mapFilePath));
+        return mapFile;
     }
 
     internal static string SaveMapImg(string fileName)
