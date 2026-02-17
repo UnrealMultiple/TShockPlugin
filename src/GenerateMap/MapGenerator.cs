@@ -113,8 +113,10 @@ internal static class MapGenerator
     {
         var mapPath = CreateMapFile();
         var mapName = Path.GetFileNameWithoutExtension(mapPath);
-        var fileName = $"{mapName}_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.map";
-        var path = Path.Combine(MapsPath, fileName);
+        var fileName = $"{mapName}.map";
+        var mapPathWithTime = Path.Combine(MapsPath, $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}");
+        Utils.TryCreatingDirectory(mapPathWithTime);
+        var path = Path.Combine(mapPathWithTime, fileName);
         File.Copy(mapPath, path, true);
         return path;
     }
