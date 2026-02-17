@@ -540,7 +540,7 @@
   },
   {
     "Name": "CaiBotLitePlugin",
-    "Version": "2026.2.14.0",
+    "Version": "2026.2.17.0",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot官方机器人的适配插件",
@@ -1382,8 +1382,8 @@
   },
   {
     "Name": "GenerateMap",
-    "Version": "2.0.0",
-    "Author": "少司命, Cai",
+    "Version": "2.1.0",
+    "Author": "少司命, Cai, 千亦",
     "Description": {
       "en-US": "Generate map image",
       "de-DE": "生成地图图片",
@@ -1657,7 +1657,9 @@
     },
     "AssemblyName": "Lagrange.XocMat.Adapter",
     "Path": "Lagrange.XocMat.Adapter.dll",
-    "Dependencies": [],
+    "Dependencies": [
+      "SixLabors.ImageSharp"
+    ],
     "HotReload": true
   },
   {
