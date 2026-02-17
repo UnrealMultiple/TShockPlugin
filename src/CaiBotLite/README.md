@@ -33,6 +33,10 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 
 ## 更新日志
 
+### v2026.02.17.0
+
+- 改用GenerateMap生成地图，异步处理数据包
+
 ### v2026.02.15.0
 
 - 适配Terraria 1.4.5
