@@ -12,6 +12,8 @@ internal static class MapGenerator
     private const string BasePath = "GenerateMap";
     private static readonly string MapsPath = Path.Combine(BasePath, "Maps");
     private static readonly string ImagesPath = Path.Combine(BasePath, "Images");
+    private const int Edge = WorldMap.BlackEdgeWidth;
+
     internal static void Init()
     {
         MapHelper.Initialize();
@@ -26,17 +28,12 @@ internal static class MapGenerator
 
     private static WorldMap CreateWorkingMap()
     {
-        var edge = WorldMap.BlackEdgeWidth;
-        return new WorldMap(Main.maxTilesX, Main.maxTilesY)
-        {
-            _tiles = new MapTile[Main.maxTilesX + edge * 2, Main.maxTilesY + edge * 2]
-        };
+        return new WorldMap(Main.maxTilesX, Main.maxTilesY) { _tiles = new MapTile[Main.maxTilesX + (Edge * 2), Main.maxTilesY + (Edge * 2)] };
     }
 
     private static void LightUpWholeMap()
     {
         Main.Map = CreateWorkingMap();
-        var edge = WorldMap.BlackEdgeWidth;
         var width = Main.Map._tiles.GetLength(0);
         var height = Main.Map._tiles.GetLength(1);
         for (var x = 0; x < Main.maxTilesX; x++)
@@ -51,8 +48,8 @@ internal static class MapGenerator
                     Main.Map._tiles[x, y] = tile;
                 }
 
-                var rawX = x + edge;
-                var rawY = y + edge;
+                var rawX = x + Edge;
+                var rawY = y + Edge;
                 if ((uint) rawX < (uint) width && (uint) rawY < (uint) height)
                 {
                     Main.Map._tiles[rawX, rawY] = tile;
@@ -61,16 +58,15 @@ internal static class MapGenerator
         }
     }
 
-    private static Image CreateMapImg()
+    private static Image<Rgba32> CreateMapImg()
     {
         Image<Rgba32> image = new (Main.maxTilesX, Main.maxTilesY);
         LightUpWholeMap();
-        var edge = WorldMap.BlackEdgeWidth;
         for (var x = 0; x < Main.maxTilesX; x++)
         {
             for (var y = 0; y < Main.maxTilesY; y++)
             {
-                var tile = Main.Map._tiles[x + edge, y + edge];
+                var tile = Main.Map._tiles[x + Edge, y + Edge];
                 var col = MapHelper.GetMapTileXnaColor(tile);
                 image[x, y] = new Rgba32(col.R, col.G, col.B, col.A);
             }
@@ -86,7 +82,7 @@ internal static class MapGenerator
         image.SaveAsPng(stream);
         return stream.ToArray();
     }
-    
+
     internal static byte[] CreatMapFileBytes()
     {
         return File.ReadAllBytes(CreateMapFile());
@@ -110,12 +106,7 @@ internal static class MapGenerator
             ? Main.worldID + ".map"
             : Main.ActiveWorldFileData.UniqueId + ".map";
         var mapFilePath = Path.Combine(playerPath, mapFileName);
-        if (!File.Exists(mapFilePath))
-        {
-            throw new FileNotFoundException("Map file not found.", mapFilePath);
-        }
-
-        return mapFilePath;
+        return !File.Exists(mapFilePath) ? throw new FileNotFoundException("Map file not found.", mapFilePath) : mapFilePath;
     }
 
     internal static string SaveMapFile()
