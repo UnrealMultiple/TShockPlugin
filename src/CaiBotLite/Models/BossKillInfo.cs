@@ -7,6 +7,7 @@ public class BossKillInfo
 {
     [PrimaryKey]
     [Identity]
+    [NotNull]
     [Column("id")]
     public int Id;
 

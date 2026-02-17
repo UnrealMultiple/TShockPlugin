@@ -7,6 +7,7 @@ namespace CaiBotLite.Models;
 public class CaiCharacterInfo
 {
     [PrimaryKey]
+    [NotNull]
     [Column("account_name")]
     public string AccountName = null!;
 

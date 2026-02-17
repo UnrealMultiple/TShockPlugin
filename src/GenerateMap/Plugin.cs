@@ -7,14 +7,15 @@ using TShockAPI;
 namespace GenerateMap;
 
 [ApiVersion(2, 1)]
+// ReSharper disable once UnusedType.Global
 public class Plugin(Main game) : TerrariaPlugin(game)
 {
-    public override string Author => "少司命, Cai";
+    public override string Author => "少司命, Cai, 千亦";
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Description => GetString("生成地图图片");
 
-    public override Version Version => new (2, 0, 0);
+    public override Version Version => new (2, 1, 0);
 
     public override void Initialize()
     {
@@ -25,39 +26,38 @@ public class Plugin(Main game) : TerrariaPlugin(game)
         TShock.RestApi.RegisterRedirect("/generatemap", "/generatemap/img");
         Commands.ChatCommands.Add(new Command("generatemap", Generate, "map", "生成地图", "generatemap"));
     }
-    
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            MapGenerator.Dispose();
             ((List<RestCommand>) typeof(Rest)
-                .GetField("commands", BindingFlags.NonPublic | BindingFlags.Instance)!
-                .GetValue(TShock.RestApi)!)
+                    .GetField("commands", BindingFlags.NonPublic | BindingFlags.Instance)!
+                    .GetValue(TShock.RestApi)!)
                 .RemoveAll(x => x.UriTemplate.Contains("generatemap"));
-            
+
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == Generate);
             AppDomain.CurrentDomain.AssemblyResolve -= this.CurrentDomain_AssemblyResolve;
         }
+
         base.Dispose(disposing);
     }
-    
+
     private static RestObject RestGenerateMapFile(RestRequestArgs args)
     {
+       var mapFile = MapGenerator.CreatMapFile();
+        
         return new RestObject("200")
         {
             { "response", GetString("生成地图文件成功") },
-            { "base64", Convert.ToBase64String(MapGenerator.CreatMapFileBytes()) }
+            { "map_name", mapFile.Name },
+            { "base64", Convert.ToBase64String(mapFile.File) }
         };
     }
 
     private static RestObject RestGenerateMapImg(RestRequestArgs args)
     {
-        return new RestObject("200")
-        {
-            { "response", GetString("生成地图图片成功") },
-            { "base64", Convert.ToBase64String(MapGenerator.CreatMapImgBytes()) }
-        };
+        return new RestObject("200") { { "response", GetString("生成地图图片成功") }, { "base64", Convert.ToBase64String(MapGenerator.CreatMapImgBytes()) } };
     }
 
     private static void Generate(CommandArgs args)
@@ -67,7 +67,7 @@ public class Plugin(Main game) : TerrariaPlugin(game)
             ShowHelp();
             return;
         }
-        
+
         switch (args.Parameters[0])
         {
             case "img":
@@ -81,9 +81,8 @@ public class Plugin(Main game) : TerrariaPlugin(game)
                     }
                     catch (Exception ex)
                     {
-                        TShock.Log.ConsoleError( GetString("[GenerateMap]生成地图出错: ") + ex);
+                        TShock.Log.ConsoleError(GetString("[GenerateMap]生成地图出错: ") + ex);
                     }
-                    
                 });
                 break;
             case "file":
@@ -96,7 +95,7 @@ public class Plugin(Main game) : TerrariaPlugin(game)
                     }
                     catch (Exception ex)
                     {
-                        TShock.Log.ConsoleError( GetString("[GenerateMap]生成地图出错: ") + ex);
+                        TShock.Log.ConsoleError(GetString("[GenerateMap]生成地图出错: ") + ex);
                     }
                 });
                 break;
@@ -111,11 +110,11 @@ public class Plugin(Main game) : TerrariaPlugin(game)
         void ShowHelp()
         {
             args.Player.SendSuccessMessage(GetString("GenerateMap帮助: "));
-            args.Player.SendSuccessMessage(GetString("/map file --- 生成地图文件"));
+            args.Player.SendSuccessMessage(GetString("/map file --- 生成地图文件(.map)"));
             args.Player.SendSuccessMessage(GetString("/map img --- 生成地图图片"));
         }
     }
-    
+
     #region 加载前置
 
     private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)

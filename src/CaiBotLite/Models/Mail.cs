@@ -9,6 +9,7 @@ public class Mail
 {
     [PrimaryKey]
     [Identity]
+    [NotNull]
     [Column("id")]
     public int Id;
 
