@@ -129,7 +129,7 @@
 | [ItemDecoration](./src/ItemDecoration/README.md) | 手持物品浮动消息显示 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ItemPreserver](./src/ItemPreserver/README.md) | 指定物品不消耗 |  |
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | 解锁旅途物品 |  |
-| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 |  |
+| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.md) | 插件基础库 | [linq2db]() |
 | [LifemaxExtra](./src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | 查已装插件 |  |

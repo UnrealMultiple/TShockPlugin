@@ -67,9 +67,9 @@
 | [AutoAirItem](./src/AutoAirItem/README.en-US.md) | 100.0% | Automatic trash cans | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.en-US.md) | 100.0% | Automatic broadcast | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoClear](./src/AutoClear/README.en-US.md) | 75.0% | Intelligent automatic cleaning | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [AutoFish](./src/AutoFish/README.en-US.md) | 0.0% | Automatic fishing Reload | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [AutoFish](./src/AutoFish/README.en-US.md) | 4.0% | Automatic fishing Reload | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoPluginManager](./src/AutoPluginManager/README.en-US.md) | 93.2% | Update plugins automatically in one key |  |
-| [AutoReset](./src/AutoReset/README.en-US.md) | 100.0% | Fully automatic reset | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [AutoReset](./src/AutoReset/README.en-US.md) | 86.7% | Fully automatic reset | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoStoreItems](./src/AutoStoreItems/README.en-US.md) | 100.0% | Automatic storage | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoTeam](./src/AutoTeam/README.en-US.md) | 100.0% | Automatic team formation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Back](./src/Back/README.en-US.md) | 100.0% | Return to the point of death | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -97,7 +97,7 @@
 | [CriticalHit](./src/CriticalHit/README.en-US.md) | 100.0% | Critical hit prompt |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Allows for cross-platform play |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.en-US.md) | 100.0% | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation |  |
-| [DamageStatistic](./src/DamageStatistic/README.en-US.md) | 100.0% | Display damage caused by each player after each boss fight |  |
+| [DamageStatistic](./src/DamageStatistic/README.en-US.md) | 50.0% | Display damage caused by each player after each boss fight |  |
 | [DataSync](./src/DataSync/README.en-US.md) | 100.0% | Progress synchronization |  |
 | [DeathDrop](./src/DeathDrop/README.en-US.md) | 100.0% | Random and custom loot upon monster death |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.en-US.md) | 100.0% | Prohibit monster loot |  |
@@ -127,13 +127,13 @@
 | [HardPlayerDrop](./src/HardPlayerDrop/README.en-US.md) | 100.0% | Hardcore death drops life crystals |  |
 | [HelpPlus](./src/HelpPlus/README.en-US.md) | 64.3% | Fix and enhance the Help command |  |
 | [History](./src/History/README.en-US.md) | 100.0% | History grid record |  |
-| [HouseRegion](./src/HouseRegion/README.en-US.md) | 93.9% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [HouseRegion](./src/HouseRegion/README.en-US.md) | 91.2% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Invincibility](./src/Invincibility/README.en-US.md) | 100.0% | Time-limited invincibility |  |
 | [ItemBox](./src/ItemBox/README.en-US.md) | 100.0% | Off-line inventory |  |
 | [ItemDecoration](./src/ItemDecoration/README.en-US.md) | 100.0% | Floating message display for held items | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ItemPreserver](./src/ItemPreserver/README.en-US.md) | 100.0% | Preserve specified items from consumption |  |
 | [JourneyUnlock](./src/JourneyUnlock/README.en-US.md) | 100.0% | Unlock journey items |  |
-| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.en-US.md) | 100.0% | Lagrange.XocMat Bot Adapter Plugin |  |
+| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.en-US.md) | 100.0% | Lagrange.XocMat Bot Adapter Plugin | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.en-US.md) | 100.0% | Plugin base library | [linq2db]() |
 | [LifemaxExtra](./src/LifemaxExtra/README.en-US.md) | 100.0% | Eat more life fruits/crystals | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [ListPlugins](./src/ListPlugins/README.en-US.md) | 100.0% | List installed plugins |  |
@@ -197,7 +197,7 @@
 | [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Provide some other auxiliary commands |  |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 0.0% | A plugin loader that allows hot reloading |  |
 | [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 |  |
-| [VeinMiner](./src/VeinMiner/README.en-US.md) | 100.0% | Chain mining |  |
+| [VeinMiner](./src/VeinMiner/README.en-US.md) | 93.8% | Chain mining |  |
 | [VotePlus](./src/VotePlus/README.en-US.md) | 100.0% | Multi-function voting |  |
 | [WeaponPlus](./src/WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement coin version |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.en-US.md) | 100.0% | Load Chinese Wiki language pack for server |  |
