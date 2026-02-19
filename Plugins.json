@@ -540,7 +540,7 @@
   },
   {
     "Name": "CaiBotLitePlugin",
-    "Version": "2026.2.17.0",
+    "Version": "2026.2.19.0",
     "Author": "Cai,羽学,西江",
     "Description": {
       "en-US": "CaiBot官方机器人的适配插件",
@@ -1664,7 +1664,7 @@
   },
   {
     "Name": "LazyAPI",
-    "Version": "1.0.2.1",
+    "Version": "1.0.3.0",
     "Author": "cc004 & members of UnrealMultiple",
     "Description": {
       "en-US": "None",
