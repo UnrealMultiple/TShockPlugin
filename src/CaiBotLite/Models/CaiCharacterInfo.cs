@@ -12,10 +12,10 @@ public class CaiCharacterInfo
     public string AccountName = null!;
 
     [Column("online_minute")]
-    public int OnlineMinute; // 在线时间
+    public int OnlineMinute;
 
     [Column("death")]
-    public int Death; // 死亡次数
+    public int Death;
 
     [NotColumn]
     private DateTime _lastUpdate = DateTime.Now;

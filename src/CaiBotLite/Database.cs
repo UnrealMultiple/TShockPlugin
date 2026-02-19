@@ -2,6 +2,7 @@
 using LinqToDB;
 using LinqToDB.Common;
 using LinqToDB.Data;
+using LinqToDB.Mapping;
 using Newtonsoft.Json;
 using TShockAPI;
 using TShockAPI.DB;
@@ -11,13 +12,14 @@ namespace CaiBotLite;
 
 public static class Database
 {
-    public static DataConnection Db => new (GetProvider(), TShock.DB.ConnectionString.Replace(",Version=3", ""));
+    public static DataConnection Db => new (new DataOptions().UseConnectionString(GetProvider(), TShock.DB.ConnectionString.Replace(",Version=3", "")));
 
     public static void Init()
     {
-        Db.CreateTable<BossKillInfo>(tableOptions: TableOptions.CreateIfNotExists);
-        Db.CreateTable<CaiCharacterInfo>(tableOptions: TableOptions.CreateIfNotExists);
-        Db.CreateTable<Mail>(tableOptions: TableOptions.CreateIfNotExists);
+        using var db = Db;
+        db.CreateTable<BossKillInfo>(tableOptions: TableOptions.CreateIfNotExists);
+        db.CreateTable<CaiCharacterInfo>(tableOptions: TableOptions.CreateIfNotExists);
+        db.CreateTable<Mail>(tableOptions: TableOptions.CreateIfNotExists);
     }
 
     private static string GetProvider()
