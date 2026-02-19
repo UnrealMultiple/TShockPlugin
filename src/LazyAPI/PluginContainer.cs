@@ -6,19 +6,18 @@ namespace LazyAPI;
 
 [ApiVersion(2, 1)]
 // ReSharper disable once UnusedType.Global
-public class PluginContainer : LazyPlugin
+public class PluginContainer(Main game) : LazyPlugin(game)
 {
     public override string Author => "cc004 & members of UnrealMultiple";
 
-    public override Version Version => new Version(1, 0, 2, 1);
+    public override Version Version => new Version(1, 0, 3, 0);
 
-    public PluginContainer(Main game) : base(game) { }
     public override void Initialize()
     {
-        ServerApi.Hooks.GamePostUpdate.Register(this, this.PostUpdate);
+        ServerApi.Hooks.GamePostUpdate.Register(this, PostUpdate);
     }
 
-    private void PostUpdate(EventArgs _)
+    private static void PostUpdate(EventArgs _)
     {
         ++TimingUtils.Timer;
 
