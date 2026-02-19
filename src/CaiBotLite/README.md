@@ -33,6 +33,11 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 
 ## 更新日志
 
+### v2026.02.19.0
+
+- 升级Linq2db -> v6
+- 适配空岛图标
+
 ### v2026.02.17.0
 
 - 改用GenerateMap生成地图，异步处理数据包
