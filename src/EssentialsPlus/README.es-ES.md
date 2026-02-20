@@ -17,8 +17,9 @@
 - **/myhome** `<nombre_casa>` -> Te teletransporta a tu casa llamada `<nombre_casa>`.
 - **/kickall** `<flag> <razón>` -> Expulsa a todos los jugadores por `<razón>`. Bandera válida: `-nosave` -> La expulsión no guarda el inventario SSC.
 - **/=** -> Repite el último comando ingresado (excluyendo otros usos de /=).
-- **/more** -> Maximiza la pila del ítem sostenido. Incluye subcomandos:
-  - **-all** -> Maximiza todos los ítems apilables en el inventario del jugador.
+- **/more** o **/stack** -> Maximiza la pila del ítem sostenido (incluyendo ítems con sufijos). Incluye subcomandos:
+  - **all**  -> Maximiza todos los ítems en el inventario del jugador (solo ítems sin sufijos).
+  - **fall** -> Maximiza todos los ítems en el inventario del jugador (incluyendo ítems con sufijos).
 - **/mute** -> Sobrescribe el comando `/mute` de TShock. Incluye subcomandos:
   - **add** `<nombre> <tiempo>` -> Silencia al jugador `<nombre>` por el tiempo `<tiempo>`.
   - **delete** `<nombre>` -> Quita el silencio del jugador `<nombre>`.

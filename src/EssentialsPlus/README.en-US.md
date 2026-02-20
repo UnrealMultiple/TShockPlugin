@@ -18,8 +18,9 @@
 - **/myhome** `<home name>` -> Teleports you to your home named `<home name>`.
 - **/kickall** `<flag> <reason>` -> Kicks every player for `<reason>`. Valid flag: `-nosave` -> The kick doesn't save SSC inventory.
 - **/=** -> Repeats your last entered command (not including other instances of /=).
-- **/more** -> Maximizes the item stack of the held item. Includes subcommands:
-    - **-all** -> Maximizes all stackable items in the player's inventory.
+- **/more** or **/stack** -> Maximizes the stack of the held item (including items with affixes). Includes subcommands:
+    - **all**  -> Maximizes all items in the player's inventory (affix-free items only).
+    - **fall** -> Maximizes all items in the player's inventory (including items with affixes).
 - **/mute** -> Overwrites TShock's /mute. Includes subcommands:
     - **add** `<name> <time>` -> Mutes the player `<name>` for the duration `<time>`.
     - **delete** `<name>` -> Removes the mute for the player `<name>`.
