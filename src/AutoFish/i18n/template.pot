@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AutoFish\n"
-"POT-Creation-Date: 2026-02-15 05:24:18+0000\n"
-"PO-Revision-Date: 2026-02-15 05:24:18+0000\n"
+"POT-Creation-Date: 2026-02-20 16:52:01+0000\n"
+"PO-Revision-Date: 2026-02-20 16:52:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,8 +15,8 @@ msgid "[c/A7DDF0:{0}]:[c/74F3C9:{1}分{2}秒]"
 msgstr ""
 
 #: ../../CommandPlayer.cs:13
-#: ../../CommandAdmin.cs:126
 #: ../../Features/AutoFish.Consumption.cs:90
+#: ../../CommandAdmin.cs:126
 msgid "[i:3455][c/AD89D5:自][c/D68ACA:动][c/DF909A:钓][c/E5A894:鱼][i:3454]"
 msgstr ""
 
