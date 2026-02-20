@@ -430,7 +430,7 @@ public static class Commands
                 var full = true;
                 foreach (var item in e.TPlayer.inventory)
                 {
-                    if (item == null || item.stack == 0 || item.Name.ToLower().Contains("coin"))
+                    if (item == null || item.stack == 0 || item.IsACoin)
                     {
                         continue;
                     }
@@ -457,7 +457,7 @@ public static class Commands
                 var full = true;
                 foreach (var item in e.TPlayer.inventory)
                 {
-                    if (item == null || item.stack == 0 || item.Name.ToLower().Contains("coin"))
+                    if (item == null || item.stack == 0 || item.IsACoin)
                     {
                         continue;
                     }
@@ -481,7 +481,7 @@ public static class Commands
             }
             else
             {
-                var item = e.Player.TPlayer.inventory[e.TPlayer.selectedItem];            
+                var item = e.Player.TPlayer.inventory[e.TPlayer.selectedItem];
                 var amtToAdd = item.maxStack - item.stack;
                 if (amtToAdd == 0)
                 {
@@ -489,7 +489,6 @@ public static class Commands
                 }
                 else if (amtToAdd > 0)
                 {
-                    // 使用GiveItem并带上prefix参数，保留词条
                     e.Player.GiveItem(item.type, amtToAdd, item.prefix);
                     e.Player.SendSuccessMessage(GetString("增加了您的{0}的堆叠数量。"), item.Name);
                 }
