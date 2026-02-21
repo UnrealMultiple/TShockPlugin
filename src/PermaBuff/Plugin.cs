@@ -209,6 +209,11 @@ public class Plugin : TerrariaPlugin
         this.TimerCount++;
         var intervalTicks = (long)(this.config.RefreshIntervalSeconds * 60.0);
 
+        if (intervalTicks <= 0)
+        {
+            intervalTicks = 1;
+        }
+
         if (this.TimerCount % intervalTicks == 0)
         {
             this.UpBuffs();
