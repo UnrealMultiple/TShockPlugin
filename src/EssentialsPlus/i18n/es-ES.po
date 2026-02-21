@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-06-11 03:15:06+0000\n"
-"PO-Revision-Date: 2025-06-12 01:20\n"
+"POT-Creation-Date: 2026-02-20 16:52:22+0000\n"
+"PO-Revision-Date: 2026-02-21 01:48\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -22,8 +22,8 @@ msgstr ""
 msgid "-command: 查找命令."
 msgstr "-command: Buscar comand"
 
-#: ../../Commands.cs:737
-#: ../../Commands.cs:757
+#: ../../Commands.cs:764
+#: ../../Commands.cs:784
 msgid "-f, -force: 强制sudo，忽略权限限制。"
 msgstr "-f, -force: Forzar sudo, ignorando permisos"
 
@@ -41,8 +41,8 @@ msgstr "-nosave: Patadas sin guardar datos de SSC."
 msgid "-npc: 查找NPC."
 msgstr "Encuentra un NPC."
 
-#: ../../Commands.cs:815
-#: ../../Commands.cs:830
+#: ../../Commands.cs:842
+#: ../../Commands.cs:857
 msgid "-r, -repeat: 重复执行时间命令。"
 msgstr "-r, -repeat: Repite el comando de tiempo indefinidamente.."
 
@@ -80,17 +80,17 @@ msgstr "{0} (Permission: {1})"
 msgid "{0} 冻结了时间。"
 msgstr "{0} Forzar tiempo."
 
-#: ../../Commands.cs:786
+#: ../../Commands.cs:813
 msgid "{0} 强制您执行 {1}{2}。"
 msgstr "{0} te obligó a ejecutar {1}{2}."
 
-#: ../../Commands.cs:520
-#: ../../Commands.cs:543
+#: ../../Commands.cs:547
+#: ../../Commands.cs:570
 msgid "{0} 禁言了 {1}。"
 msgstr "{0} Muteo {1}."
 
-#: ../../Commands.cs:594
-#: ../../Commands.cs:611
+#: ../../Commands.cs:621
+#: ../../Commands.cs:638
 msgid "{0} 解除了 {1} 的禁言。"
 msgstr "{0} Desmuteo {1}."
 
@@ -98,11 +98,11 @@ msgstr "{0} Desmuteo {1}."
 msgid "{0} 解除了时间冻结。"
 msgstr "{0} Desforzar Tiempo."
 
-#: ../../Commands.cs:627
+#: ../../Commands.cs:654
 msgid "add <名称> [时间] - 禁言玩家或账户。"
 msgstr "add <name> [time] - Mutear cuenta de jugador."
 
-#: ../../Commands.cs:628
+#: ../../Commands.cs:655
 msgid "del <名称> - 解除禁言玩家或账户。"
 msgstr "del <name> - Desmutear cuenta de jugador."
 
@@ -110,11 +110,11 @@ msgstr "del <name> - Desmutear cuenta de jugador."
 msgid "以自定义颜色广播消息。"
 msgstr "mensaje Broadcast color personalizado."
 
-#: ../../Commands.cs:1128
+#: ../../Commands.cs:1155
 msgid "传送上 {0} 层."
 msgstr "Teletransportado arriba {0} bloque(s)."
 
-#: ../../Commands.cs:954
+#: ../../Commands.cs:981
 msgid "传送下 {0} 层."
 msgstr "Teletransportado abajo {0} bloques(s)."
 
@@ -122,15 +122,15 @@ msgstr "Teletransportado abajo {0} bloques(s)."
 msgid "传送到您的一个家点。"
 msgstr "Teletransportarte a tu punto de Home"
 
-#: ../../Commands.cs:1070
+#: ../../Commands.cs:1097
 msgid "传送右 {0} 层."
 msgstr "Teletransportado derecha {0} bloque(s)."
 
-#: ../../Commands.cs:898
+#: ../../Commands.cs:925
 msgid "传送回 {0} 步."
 msgstr "Teletransportado atras {0} antes(s)"
 
-#: ../../Commands.cs:1012
+#: ../../Commands.cs:1039
 msgid "传送左 {0} 层."
 msgstr "Teletransportado isquierda {0} bloques(s)."
 
@@ -138,15 +138,15 @@ msgstr "Teletransportado isquierda {0} bloques(s)."
 msgid "传送您到您的家 '{0}'。"
 msgstr "Teletransportado a tu Home '{0}'."
 
-#: ../../Commands.cs:687
+#: ../../Commands.cs:714
 msgid "修改一个方块以设置第一个尺规点。"
 msgstr "Modificar un bloque para establecer el primer punto de la regla."
 
-#: ../../Commands.cs:692
+#: ../../Commands.cs:719
 msgid "修改一个方块以设置第二个尺规点。"
 msgstr "Modificar un bloque para establecer el segundo punto de la regla."
 
-#: ../../Commands.cs:642
+#: ../../Commands.cs:669
 msgid "允许"
 msgstr ""
 
@@ -178,17 +178,17 @@ msgstr "Cambia tu estado PvP."
 msgid "删除您的一个家点。"
 msgstr "Elimina uno de tus puntos de inicio.."
 
-#: ../../Commands.cs:530
-#: ../../Commands.cs:604
-#: ../../Commands.cs:772
+#: ../../Commands.cs:557
+#: ../../Commands.cs:631
+#: ../../Commands.cs:799
 msgid "匹配到多个玩家：{0}"
 msgstr "Más de un jugador emparejado: {0}"
 
-#: ../../Commands.cs:853
+#: ../../Commands.cs:880
 msgid "取消所有时间命令！"
 msgstr "Cancelados todos los comandos de tiempo.!"
 
-#: ../../Commands.cs:653
+#: ../../Commands.cs:680
 msgid "命令执行失败，请稍后重试。"
 msgstr ""
 
@@ -204,11 +204,15 @@ msgstr "Te teletransporta de regreso a tu posición anterior después de morir o
 msgid "在给定时间间隔后执行命令。"
 msgstr "Ejecuta un comando después de un intervalo de tiempo determinado.."
 
-#: ../../Commands.cs:447
+#: ../../Commands.cs:448
 msgid "填满了您的物品栏。"
 msgstr "Llenó todos tus artículos."
 
-#: ../../Commands.cs:467
+#: ../../Commands.cs:475
+msgid "填满了您的物品栏（包括带词条的物品）。"
+msgstr ""
+
+#: ../../Commands.cs:493
 msgid "增加了您的{0}的堆叠数量。"
 msgstr "Llena tu {0}."
 
@@ -220,21 +224,21 @@ msgstr ""
 msgid "家的列表: {0}"
 msgstr "Lista de homes/hogares: {0}"
 
-#: ../../Commands.cs:671
+#: ../../Commands.cs:698
 msgid "尺规未设置！"
 msgstr "Los puntos de la regla no están configurados!"
 
-#: ../../Commands.cs:843
-#: ../../Commands.cs:847
+#: ../../Commands.cs:870
+#: ../../Commands.cs:874
 msgid "已排队执行命令 '{0}{1}'。使用 /cancel 取消！"
 msgstr "Comando en cola '{0}{1}' indefinidamente. Utilice /cancelar para cancelar!"
 
-#: ../../Commands.cs:783
+#: ../../Commands.cs:810
 msgid "强制 {0} 执行 {1}{2}。"
 msgstr "Forzado {0} a ejecutar {1}{2}."
 
-#: ../../Commands.cs:514
-#: ../../Commands.cs:537
+#: ../../Commands.cs:541
+#: ../../Commands.cs:564
 msgid "您不能禁言 {0}！"
 msgstr "no puedes silenciar {0}!"
 
@@ -242,7 +246,7 @@ msgstr "no puedes silenciar {0}!"
 msgid "您已被解除禁言。"
 msgstr "Has sido silenciado."
 
-#: ../../Commands.cs:550
+#: ../../Commands.cs:577
 msgid "您已解除禁言。"
 msgstr "Has sido silenciado."
 
@@ -250,7 +254,7 @@ msgstr "Has sido silenciado."
 msgid "您已达到家的设置上限！"
 msgstr "Has alcanzado el límite de tu casa!"
 
-#: ../../Commands.cs:779
+#: ../../Commands.cs:806
 msgid "您无法强制 {0} 执行 {1}{2}！"
 msgstr "no puedes forzar {0} a ejecutar {1}{2}!"
 
@@ -262,19 +266,20 @@ msgstr "No tienes un último comando!"
 msgid "您没有设置家。"
 msgstr "No tienes casas establecidas."
 
-#: ../../Commands.cs:750
+#: ../../Commands.cs:777
 msgid "您没有访问 '-{0}' 参数的权限！"
 msgstr "No tienes acceso al interruptor. '-{0}'!"
 
-#: ../../Commands.cs:460
+#: ../../Commands.cs:488
 msgid "您的{0}已经满了。"
 msgstr "Tu {0} Esta lleno."
 
-#: ../../Commands.cs:643
+#: ../../Commands.cs:670
 msgid "您的传送状态已切换为：{0}"
 msgstr ""
 
-#: ../../Commands.cs:451
+#: ../../Commands.cs:452
+#: ../../Commands.cs:479
 msgid "您的物品栏已经满了。"
 msgstr "Tu inventario esta lleno."
 
@@ -315,76 +320,76 @@ msgstr "Tipo de almacenamiento no válido!"
 msgid "无效的家 '{0}'！"
 msgstr "Hogar invalido '{0}'!"
 
-#: ../../Commands.cs:914
-#: ../../Commands.cs:969
-#: ../../Commands.cs:1027
-#: ../../Commands.cs:1085
+#: ../../Commands.cs:941
+#: ../../Commands.cs:996
+#: ../../Commands.cs:1054
+#: ../../Commands.cs:1112
 msgid "无效的层数 '{0}'！"
 msgstr "Número de niveles no válido '{0}'!"
 
-#: ../../Commands.cs:837
+#: ../../Commands.cs:864
 msgid "无效的时间 '{0}'!"
 msgstr "Hora no válida '{0}'!"
 
-#: ../../Commands.cs:494
+#: ../../Commands.cs:521
 msgid "无效的时间 '{0}'！"
 msgstr "Hora no válida '{0}'!"
 
-#: ../../Commands.cs:886
+#: ../../Commands.cs:913
 msgid "无效的步数 '{0}'！"
 msgstr "Número de pasos no válido '{0}'!"
 
-#: ../../Commands.cs:768
+#: ../../Commands.cs:795
 msgid "无效的玩家 '{0}'！"
 msgstr "Jugador invalido '{0}'!"
 
-#: ../../Commands.cs:507
-#: ../../Commands.cs:588
+#: ../../Commands.cs:534
+#: ../../Commands.cs:615
 msgid "无效的玩家或账户 '{0}'！"
 msgstr "Jugador o cuenta invalida '{0}'!"
 
-#: ../../Commands.cs:907
+#: ../../Commands.cs:934
 msgid "无效的语法！正确的语法是：{0}down [层数]"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}down [levels]"
 
-#: ../../Commands.cs:879
+#: ../../Commands.cs:906
 msgid "无效的语法！正确的语法是：{0}eback [步数]"
 msgstr "¡Sintaxis no válida! Sintaxis adecuada: {0}eback [steps]"
 
-#: ../../Commands.cs:962
+#: ../../Commands.cs:989
 msgid "无效的语法！正确的语法是：{0}left [层数]"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}left [levels]"
 
-#: ../../Commands.cs:1020
+#: ../../Commands.cs:1047
 msgid "无效的语法！正确的语法是：{0}right [层数]"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}right [levels]"
 
-#: ../../Commands.cs:696
-#: ../../Commands.cs:701
+#: ../../Commands.cs:723
+#: ../../Commands.cs:728
 msgid "无效的语法！正确的语法是：{0}ruler [1/2]"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}ruler [1/2]"
 
-#: ../../Commands.cs:712
+#: ../../Commands.cs:739
 msgid "无效的语法！正确的语法是：{0}send [r,g,b] <文本...>"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}send [r,g,b] <text...>"
 
-#: ../../Commands.cs:735
+#: ../../Commands.cs:762
 msgid "无效的语法！正确的语法是：{0}sudo [-switches...] <玩家> <命令...>"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}sudo [-switches...] <player> <command...>"
 
-#: ../../Commands.cs:813
+#: ../../Commands.cs:840
 msgid "无效的语法！正确的语法是：{0}timecmd [-switches...] <时间> <命令...>"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}timecmd [-switches...] <time> <command...>"
 
-#: ../../Commands.cs:1078
+#: ../../Commands.cs:1105
 msgid "无效的语法！正确的语法是：{0}up [层数]"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: {0}up [levels]"
 
-#: ../../Commands.cs:485
+#: ../../Commands.cs:512
 msgid "无效的语法！正确的语法是：/mute add <名称> [时间]"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: /mute add <name> [time]"
 
-#: ../../Commands.cs:575
+#: ../../Commands.cs:602
 msgid "无效的语法！正确的语法是：/mute del <名称>"
 msgstr "¡Sintaxis no válida! Sintaxis correcta: /mute del <name>"
 
@@ -392,31 +397,31 @@ msgstr "¡Sintaxis no válida! Sintaxis correcta: /mute del <name>"
 msgid "无效的页数 '{0}'！"
 msgstr "Pagina invalida '{0}'!"
 
-#: ../../Commands.cs:722
+#: ../../Commands.cs:749
 msgid "无效的颜色！"
 msgstr "color invalido!"
 
-#: ../../Commands.cs:1118
+#: ../../Commands.cs:1145
 msgid "无法传送上面！"
 msgstr "No se pudo teletransportar!"
 
-#: ../../Commands.cs:944
+#: ../../Commands.cs:971
 msgid "无法传送下去！"
 msgstr "No se pudo teletransportar hacia abajo!"
 
-#: ../../Commands.cs:1060
+#: ../../Commands.cs:1087
 msgid "无法传送右边！"
 msgstr "No se pudo teletransportar bien!"
 
-#: ../../Commands.cs:893
+#: ../../Commands.cs:920
 msgid "无法传送回上一个位置！"
 msgstr "No se pudo teletransportar de regreso!"
 
-#: ../../Commands.cs:1002
+#: ../../Commands.cs:1029
 msgid "无法传送左边！"
 msgstr "No se pudo teletransportar a la izquierda!"
 
-#: ../../Commands.cs:647
+#: ../../Commands.cs:674
 msgid "无法切换传送状态，请查看日志获取更多信息。"
 msgstr ""
 
@@ -428,13 +433,13 @@ msgstr "No se pudo eliminar la casa; consulte los registros para obtener más de
 msgid "无法更新家，请检查日志获取更多详细信息。"
 msgstr "No se pudo actualizar la página de inicio. Consulte los registros para obtener más detalles.."
 
-#: ../../Commands.cs:524
-#: ../../Commands.cs:558
+#: ../../Commands.cs:551
+#: ../../Commands.cs:585
 msgid "无法禁言，请查看日志获取更多信息。"
 msgstr "No se pudo silenciar; consulte los registros para obtener más detalles.."
 
-#: ../../Commands.cs:598
-#: ../../Commands.cs:615
+#: ../../Commands.cs:625
+#: ../../Commands.cs:642
 msgid "无法解除禁言，请查看日志获取更多信息。"
 msgstr "No se pudo reactivar el sonido. Consulte los registros para obtener más detalles.."
 
@@ -458,13 +463,13 @@ msgstr "Valid {0}find switches:"
 msgid "有效的 {0}kickall 参数:"
 msgstr "Valid {0}kickall switches:"
 
-#: ../../Commands.cs:736
-#: ../../Commands.cs:756
+#: ../../Commands.cs:763
+#: ../../Commands.cs:783
 msgid "有效的 {0}sudo 参数："
 msgstr "Valid {0}sudo switches:"
 
-#: ../../Commands.cs:814
-#: ../../Commands.cs:829
+#: ../../Commands.cs:841
+#: ../../Commands.cs:856
 msgid "有效的 {0}timecmd 参数:"
 msgstr "Valid {0}timecmd switches:"
 
@@ -500,11 +505,11 @@ msgstr "¡Sintaxis no válida! Sintaxis adecuada: {0}find <-switch> <name...> [p
 msgid "没有原因。"
 msgstr "No reason."
 
-#: ../../Commands.cs:642
+#: ../../Commands.cs:669
 msgid "禁止"
 msgstr ""
 
-#: ../../Commands.cs:626
+#: ../../Commands.cs:653
 msgid "禁言子命令:"
 msgstr "Mute Sub-Commandos:"
 
@@ -536,7 +541,7 @@ msgstr "¡Sintaxis no válida! Sintaxis adecuada: {0}myhome <home name>"
 msgid "语法错误！正确的语法是：{0}sethome <家的名称>"
 msgstr "¡Sintaxis no válida! Sintaxis adecuada: {0}sethome <home name>"
 
-#: ../../Commands.cs:680
+#: ../../Commands.cs:707
 msgid "距离：X轴：{0}，Y轴：{1}，直角距离：{2:N3}"
 msgstr "Distancia: X: {0}, Y: {1}, Cartesiano: {2:N3}"
 
