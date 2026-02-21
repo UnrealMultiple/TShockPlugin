@@ -26,10 +26,10 @@ public class HousingPlugin : LazyPlugin
     }
 
     public static LPlayer?[] LPlayers { get; set; } = new LPlayer[256]; //L表示local本地的意思
-    public static List<House> Houses = new ();
-    static readonly System.Timers.Timer Update = new (1100); //创建一个1.1秒的时钟
+    public static List<House> Houses = new();
+    static readonly System.Timers.Timer Update = new(1100); //创建一个1.1秒的时钟
     public static bool ULock = false;
-    private static readonly HashSet<int> AutoShowPlayers = new ();
+    private static readonly HashSet<int> AutoShowPlayers = new();
 
 
     private void RD() //读取
@@ -937,7 +937,7 @@ public class HousingPlugin : LazyPlugin
                     GetDataHandlers.ToggleHouseDisplay(args.Player, house);
                 }
             }
-                break;
+            break;
 
             case "showall":
             {
@@ -960,7 +960,7 @@ public class HousingPlugin : LazyPlugin
                 }
                 break;
             }
-                
+
             case "tp":
             {
                 if (Config.Instance.ProhibitTPHouse && !args.Player.Group.HasPermission(AdminHouse))
@@ -1060,7 +1060,18 @@ public class HousingPlugin : LazyPlugin
                     }
                     else
                     {
-                        player.SendMessage(GetString("你进入了房子: ") + house.Name, Color.LightSeaGreen);
+                        bool isRight = player.TPlayer.direction != -1;
+                        if (player.Group.HasPermission("house.admin")) player.SendMessage(GetString("你已进入房子" + house.Name), Color.LightSeaGreen);
+                        else if (isRight)
+                        {
+                            player.Teleport((house.HouseArea.Left - 4) * 16, (house.HouseArea.Top - 5) * 16, (byte) 1);
+                            player.SendMessage(GetString("你不能进入房子" + house.Name), Color.Red);
+                        }
+                        else
+                        {
+                            player.Teleport((house.HouseArea.Right + 4) * 16, (house.HouseArea.Top - 5) * 16, (byte) 1);
+                            player.SendMessage(GetString("你不能进入房子" + house.Name), Color.Red);
+                        }
                     }
 
                     if (AutoShowPlayers.Contains(player.Index))
