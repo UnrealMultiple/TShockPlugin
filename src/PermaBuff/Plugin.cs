@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 6);
+    public override Version Version => new Version(1, 0, 7);
 
     private readonly string PATH = Path.Combine(TShock.SavePath, "permbuff.json");
 
@@ -67,6 +67,14 @@ public class Plugin : TerrariaPlugin
                 TShock.Log.Error(GetString($"permabuff.json 读取错误:{ex}"));
             }
         }
+
+        if (this.config.RefreshIntervalSeconds <= 0)
+        {
+            TShock.Log.Error(GetString(
+                $"[PermaBuff] 配置项 刷新间隔(秒) 为非正数({this.config.RefreshIntervalSeconds})，已回退到默认5秒。"));
+            this.config.RefreshIntervalSeconds = 5.0;
+        }
+
         this.config.Write(this.PATH);
     }
 
@@ -131,14 +139,14 @@ public class Plugin : TerrariaPlugin
                 var playerbuffs = Playerbuffs.GetBuffs(ply.Name);
                 if (playerbuffs.Contains(buffid))
                 {
-                    Playerbuffs.DelBuff(args.Player.Name, buffid);
-                    args.Player.SendSuccessMessage(GetString($"移除一个永久buff {TShock.Utils.GetBuffName(buffid)}!"));
+                    Playerbuffs.DelBuff(ply.Name, buffid);
+                    args.Player.SendSuccessMessage(GetString($"成功为 {ply.Name}移除一个永久buff {TShock.Utils.GetBuffName(buffid)}!"));
                     ply.SendSuccessMessage(GetString($"{args.Player.Name} 移除了你的一个永久buff {TShock.Utils.GetBuffName(buffid)}"));
                 }
                 else
                 {
-                    Playerbuffs.AddBuff(args.Player.Name, buffid);
-                    args.Player.SendSuccessMessage(GetString($"成功为添加一个永久buff {TShock.Utils.GetBuffName(buffid)}!"));
+                    Playerbuffs.AddBuff(ply.Name, buffid);
+                    args.Player.SendSuccessMessage(GetString($"成功为 {ply.Name} 添加一个永久buff {TShock.Utils.GetBuffName(buffid)}!"));
                     ply.SendSuccessMessage(GetString($"{args.Player.Name} 为你添加一个永久buff {TShock.Utils.GetBuffName(buffid)}"));
                 }
             }
@@ -199,7 +207,9 @@ public class Plugin : TerrariaPlugin
     private void Update(EventArgs args)
     {
         this.TimerCount++;
-        if (this.TimerCount % 300 == 0)
+        var intervalTicks = (long)(this.config.RefreshIntervalSeconds * 60.0);
+
+        if (this.TimerCount % intervalTicks == 0)
         {
             this.UpBuffs();
         }

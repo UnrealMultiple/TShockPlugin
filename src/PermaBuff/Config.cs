@@ -6,6 +6,9 @@ public class Config
 {
     [JsonProperty("不可添加buff")]
     public HashSet<int> LimitBuffs = new HashSet<int>();
+
+    [JsonProperty("刷新间隔(秒)")]
+    public double RefreshIntervalSeconds { get; set; } = 5.0;
     /// <summary>
     /// 读取配置文件内容
     /// </summary>
