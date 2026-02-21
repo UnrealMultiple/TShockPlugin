@@ -10,7 +10,7 @@ public class MainPlugin : TerrariaPlugin
 {
 
     public MainPlugin(Main game) : base(game) { }
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 6);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 7);
     public override string Author => "少司命";
     public override string Description => GetString("rest查询背包");
     public RetObject retObject = new RetObject();
@@ -24,7 +24,7 @@ public class MainPlugin : TerrariaPlugin
         {
             ((List<RestCommand>) typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
             .GetValue(TShock.RestApi)!)
-            .RemoveAll(x => x.Name == "/beanInvsee");
+            .RemoveAll(x => x.UriTemplate == "/beanInvsee");
         }
         base.Dispose(disposing);
     }
@@ -88,7 +88,7 @@ public class MainPlugin : TerrariaPlugin
                 };
         }
         //垃圾桶
-        this.retObject.trashItem = new InventoryData[1] { new InventoryData(tsplayer.trashItem.netID, tsplayer.trashItem.prefix, tsplayer.trashItem.stack) };
+        this.retObject.trashItem = new InventoryData[1] { new InventoryData(tsplayer.trashItem.type, tsplayer.trashItem.prefix, tsplayer.trashItem.stack) };
         //猪猪存钱罐
         this.retObject.Piggiy = Utils.GetInventoryData(tsplayer.bank.item, NetItem.PiggySlots);
         //保险箱

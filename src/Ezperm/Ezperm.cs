@@ -1,5 +1,4 @@
-﻿using LazyAPI;
-using Terraria;
+﻿using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
@@ -8,25 +7,35 @@ using TShockAPI.Hooks;
 namespace Ezperm;
 
 [ApiVersion(2, 1)]
-public class Ezperm : LazyPlugin
+public class Ezperm : TerrariaPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "大豆子,肝帝熙恩优化1449";
     public override string Description => GetString("一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限");
-    public override Version Version => new Version(1, 2, 10);
+    public override Version Version => new Version(1, 3, 1);
     public Ezperm(Main game) : base(game)
     {
 
     }
     public override void Initialize()
     {
+        Configuration.Read();
         Commands.ChatCommands.Add(new Command("inperms.admin", this.Cmd, "inperms", "批量改权限"));
+        GeneralHooks.ReloadEvent += this.GeneralHooksOnReloadEvent;
     }
+
+    private void GeneralHooksOnReloadEvent(ReloadEventArgs e)
+    {
+        Configuration.Read();
+        e.Player.SendSuccessMessage(GetString("[Ezperm]插件配置已重载~"));
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
             Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == this.Cmd);
+            GeneralHooks.ReloadEvent -= this.GeneralHooksOnReloadEvent;
         }
         base.Dispose(disposing);
     }

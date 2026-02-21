@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.IO;
 
 namespace CaiBotLite;
 
@@ -7,16 +8,23 @@ public class Config
     private const string ConfigPath = "tshock/CaiBotLite.json";
     public static Config Settings = new ();
 
-    [JsonProperty("白名单开关", Order = 1)] 
+    [JsonProperty("白名单开关")]
     public bool WhiteList = true;
-    
-    [JsonProperty("密钥", Order = 2)] 
+
+    [JsonProperty("密钥")]
     public string Token = "";
 
-    [JsonProperty("白名单拦截提示的群号", Order = 3)]
+    [JsonProperty("群OpenID")]
+    public string GroupOpenId = "114514";
+
+    [JsonProperty("在线显示进度")]
+    public bool ShowProcessInPlayerList = true;
+
+    [JsonProperty("商店分组标签")]
+    public string ShopTag = "生存服";
+
+    [JsonProperty("白名单拦截提示的群号")]
     public long GroupNumber;
-    
-    
 
 
     /// <summary>

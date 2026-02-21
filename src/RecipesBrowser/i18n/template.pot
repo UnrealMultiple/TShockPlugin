@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RecipesBrowser\n"
-"POT-Creation-Date: 2025-01-11 17:28:21+0000\n"
-"PO-Revision-Date: 2025-01-11 17:28:21+0000\n"
+"POT-Creation-Date: 2026-02-12 14:55:03+0000\n"
+"PO-Revision-Date: 2026-02-12 14:55:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,31 +10,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../RecipesBrowser.cs:127
+#: ../../RecipesBrowser.cs:123
 msgid "[i:1134]蜂蜜 "
 msgstr ""
 
-#: ../../RecipesBrowser.cs:131
+#: ../../RecipesBrowser.cs:127
 msgid "[i:126]水 "
 msgstr ""
 
-#: ../../RecipesBrowser.cs:149
+#: ../../RecipesBrowser.cs:145
 msgid "[i:321]墓地 "
 msgstr ""
 
-#: ../../RecipesBrowser.cs:123
-msgid "[i:3258]徒手 "
-msgstr ""
-
-#: ../../RecipesBrowser.cs:135
+#: ../../RecipesBrowser.cs:131
 msgid "[i:4825]岩浆 "
 msgstr ""
 
-#: ../../RecipesBrowser.cs:144
+#: ../../RecipesBrowser.cs:140
 msgid "[i:4956]天顶种子 "
 msgstr ""
 
-#: ../../RecipesBrowser.cs:140
+#: ../../RecipesBrowser.cs:136
 msgid "[i:593]雪原群系 "
 msgstr ""
 
@@ -43,7 +39,7 @@ msgstr ""
 msgid "{0}配方{1}:"
 msgstr ""
 
-#: ../../RecipesBrowser.cs:157
+#: ../../RecipesBrowser.cs:153
 msgid ""
 "可合成的物品:\n"
 msgstr ""

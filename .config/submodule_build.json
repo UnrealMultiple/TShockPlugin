@@ -1,17 +1,17 @@
 {
     "submodules": [
-        {
-            "name": "Chireiden.TShock.Omni",
-            "project_path": "src/Submodules/Yaaiomni/Core/Plugin.csproj",
-            "assembly_path": "src/Submodules/Yaaiomni/Core/bin/{BuildType}/{TargetFramework}/Chireiden.TShock.Omni.dll",
-            "readme": "src/Submodules/Yaaiomni/README.md"
-        },
-        {
-            "name": "Chireiden.TShock.Omni.Misc",
-            "project_path": "src/Submodules/Yaaiomni/Misc/Misc.csproj",
-            "assembly_path": "src/Submodules/Yaaiomni/Misc/bin/{BuildType}/{TargetFramework}/Chireiden.TShock.Omni.Misc.dll",
-            "readme": ""
-        },
+//        {
+//            "name": "Chireiden.TShock.Omni",
+//            "project_path": "src/Submodules/Yaaiomni/Core/Plugin.csproj",
+//            "assembly_path": "src/Submodules/Yaaiomni/Core/bin/{BuildType}/{TargetFramework}/Chireiden.TShock.Omni.dll",
+//            "readme": "src/Submodules/Yaaiomni/README.md"
+//        },
+//        {
+//            "name": "Chireiden.TShock.Omni.Misc",
+//            "project_path": "src/Submodules/Yaaiomni/Misc/Misc.csproj",
+//            "assembly_path": "src/Submodules/Yaaiomni/Misc/bin/{BuildType}/{TargetFramework}/Chireiden.TShock.Omni.Misc.dll",
+//            "readme": ""
+//        },
         {
             "name": "FishShop",
             "project_path": "src/Submodules/TShockFishShop/TShockFishShop/FishShop.csproj",
@@ -29,42 +29,42 @@
             "project_path": "src/Submodules/TShockWorldModify/WorldModify/WorldModify.csproj",
             "assembly_path": "src/Submodules/TShockWorldModify/WorldModify/bin/{BuildType}/{TargetFramework}/WorldModify.dll",
             "readme": "src/Submodules/TShockWorldModify/README.md"
-        },
-        {
-            "name": "Crossplay",
-            "project_path": "src/Submodules/Crossplay/Crossplay/Crossplay.csproj",
-            "assembly_path": "src/Submodules/Crossplay/Crossplay/bin/{BuildType}/{TargetFramework}/Crossplay.dll",
-            "readme": "src/Submodules/Crossplay/README.md"
-        },
-        {
-            "name": "VBY.Common",
-            "project_path": "src/Submodules/VBY.Plugins/src/VBY/Common/Common.csproj",
-            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.Common.dll",
-            "readme": "src/Submodules/VBY.Plugins/docs/VBY.Common.md"
-        },
-        {
-            "name": "VBY.GameContentModify",
-            "project_path": "src/Submodules/VBY.Plugins/src/VBY/GameContentModify/GameContentModify.csproj",
-            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.GameContentModify.dll",
-            "readme": "src/Submodules/VBY.Plugins/docs/VBY.GameContentModify.md"
-        },
-        {
-            "name": "VBY.PluginLoader",
-            "project_path": "src/Submodules/VBY.Plugins/src/VBY/PluginLoader/PluginLoader.csproj",
-            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.PluginLoader.dll",
-            "readme": "src/Submodules/VBY.Plugins/docs/VBY.PluginLoader.md"
-        },
-        {
-            "name": "VBY.OtherCommand",
-            "project_path": "src/Submodules/VBY.Plugins/src/VBY/OtherCommand/OtherCommand.csproj",
-            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.OtherCommand.dll",
-            "readme": "src/Submodules/VBY.Plugins/docs/VBY.OtherCommand.md"
-        },
-        {
-            "name": "VBY.PluginLoaderAutoReload",
-            "project_path": "src/Submodules/VBY.Plugins/src/VBY/PluginLoaderAutoReload/PluginLoaderAutoReload.csproj",
-            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.PluginLoaderAutoReload.dll",
-            "readme": "src/Submodules/VBY.Plugins/docs/VBY.PluginLoaderAutoReload.md"
         }
+//      {
+//            "name": "Crossplay",
+//            "project_path": "src/Submodules/Crossplay/Crossplay/Crossplay.csproj",
+//            "assembly_path": "src/Submodules/Crossplay/Crossplay/bin/{BuildType}/{TargetFramework}/Crossplay.dll",
+//            "readme": "src/Submodules/Crossplay/README.md"
+//        },
+//        {
+//            "name": "VBY.Common",
+//            "project_path": "src/Submodules/VBY.Plugins/src/VBY/Common/Common.csproj",
+//            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.Common.dll",
+//            "readme": "src/Submodules/VBY.Plugins/docs/VBY.Common.md"
+//        },
+//        {
+//            "name": "VBY.GameContentModify",
+//            "project_path": "src/Submodules/VBY.Plugins/src/VBY/GameContentModify/GameContentModify.csproj",
+//            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.GameContentModify.dll",
+//            "readme": "src/Submodules/VBY.Plugins/docs/VBY.GameContentModify.md"
+//        },
+//        {
+//            "name": "VBY.PluginLoader",
+//            "project_path": "src/Submodules/VBY.Plugins/src/VBY/PluginLoader/PluginLoader.csproj",
+//            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.PluginLoader.dll",
+//            "readme": "src/Submodules/VBY.Plugins/docs/VBY.PluginLoader.md"
+//        },
+//        {
+//            "name": "VBY.OtherCommand",
+//            "project_path": "src/Submodules/VBY.Plugins/src/VBY/OtherCommand/OtherCommand.csproj",
+//            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.OtherCommand.dll",
+//            "readme": "src/Submodules/VBY.Plugins/docs/VBY.OtherCommand.md"
+//        },
+//        {
+//            "name": "VBY.PluginLoaderAutoReload",
+//            "project_path": "src/Submodules/VBY.Plugins/src/VBY/PluginLoaderAutoReload/PluginLoaderAutoReload.csproj",
+//            "assembly_path": "src/Submodules/VBY.Plugins/out/{BuildType}/VBY.PluginLoaderAutoReload.dll",
+//            "readme": "src/Submodules/VBY.Plugins/docs/VBY.PluginLoaderAutoReload.md"
+//        }
     ]
 }

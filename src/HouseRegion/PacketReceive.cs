@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections;
 using System.IO.Streams;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Tile_Entities;
+using Terraria.ID;
 using Terraria.Localization;
 using TShockAPI;
-using TShockAPI.Net;
+
 
 namespace HouseRegion;
 
@@ -19,8 +21,11 @@ public class GetDataHandlerArgs : EventArgs//要让这个数据在数据的基�
 }
 public static class GetDataHandlers
 {
-    static readonly string EditHouse = "house.edit";
+    internal static readonly string EditHouse = "house.edit";
     private static Dictionary<PacketTypes, GetDataHandlerDelegate> GetDataHandlerDelegates = null!;//创建词典
+    private static readonly Dictionary<int, List<Rectangle>> PlayerActiveHouses = new();
+    private static readonly Dictionary<int, bool> PlayerRefreshFlags = new();
+    private const int RefreshIntervalSeconds = 20;
     public static void InitGetDataHandler()
     {
         GetDataHandlerDelegates = new Dictionary<PacketTypes, GetDataHandlerDelegate>
@@ -195,11 +200,6 @@ public static class GetDataHandlers
         int action = args.Data.ReadInt8();//类型
         int x = args.Data.ReadInt16();
         int y = args.Data.ReadInt16();
-        var tile = Main.tile[x, y];
-        if (Main.tileCut[tile.type])
-        {
-            return false;//如果是草不阻止破坏
-        }
 
         var house = Utils.InAreaHouse(x, y);//直接读出敲的房子
         if (HousingPlugin.LPlayers[args.Player.Index]!.Look)//敲击砖块确认房屋名
@@ -297,19 +297,7 @@ public static class GetDataHandlers
         {
             return false;//腐化血腥的生成好像都是1
         }
-
-        var tile = Main.tile[tileX, tileY];
-        if (Main.tileCut[tile.type])
-        {
-            return false;//如果是草不阻止破坏
-        }
-
-        var newtile = new NetTile(args.Data);//新瓷砖
-        if (Main.tileCut[newtile.Type])
-        {
-            return false;//如果是草不阻止生成
-        }
-
+        
         var house = Utils.InAreaHouse(tileX, tileY);//确定是否保护区
         if (house == null)
         {
@@ -687,4 +675,235 @@ public static class GetDataHandlers
         }
         return false;
     }
+    public static void ToggleHouseDisplay(TSPlayer player, House house)
+    {
+        if (!PlayerActiveHouses.TryGetValue(player.Index, out var list))
+        {
+            list = new List<Rectangle>();
+            PlayerActiveHouses[player.Index] = list;
+        
+            StartRefreshCycle(player.Index);
+        }
+
+        if (list.Contains(house.HouseArea))
+        {
+            list.Remove(house.HouseArea);
+            ClearRegionProjectiles(player, house.HouseArea); 
+            player.SendSuccessMessage(GetString($"已隐藏房屋 {house.Name} 的边界。"));
+        
+            if (list.Count == 0)
+            {
+                PlayerRefreshFlags.Remove(player.Index); 
+            }
+        }
+        else
+        {
+            list.Add(house.HouseArea);
+            ShowRegion(player, house.HouseArea);
+            player.SendSuccessMessage(GetString($"已显示房屋 {house.Name} 的边界。"));
+        }
+    }
+
+        private static void StartRefreshCycle(int playerIndex)
+        {
+            if (PlayerRefreshFlags.ContainsKey(playerIndex) && PlayerRefreshFlags[playerIndex])
+            {
+                return;
+            }
+
+            PlayerRefreshFlags[playerIndex] = true;
+            Main.DelayedProcesses.Add(GetRefreshEnumerator(playerIndex));
+        }
+
+        private static IEnumerator GetRefreshEnumerator(int playerIndex)
+        {
+            try
+            {
+                while (PlayerActiveHouses.ContainsKey(playerIndex) && 
+                       PlayerRefreshFlags.ContainsKey(playerIndex) && 
+                       PlayerRefreshFlags[playerIndex])
+                {
+                    var player = TShock.Players[playerIndex];
+            
+                    if (player is not { ConnectionAlive: true })
+                    {
+                        yield break;
+                    }
+
+                    for (var i = 0; i < 60 * RefreshIntervalSeconds; i++)
+                    {
+                        yield return null;
+                
+                        player = TShock.Players[playerIndex];
+                        if (player == null || !player.ConnectionAlive)
+                        {
+                            yield break;
+                        }
+                    }
+
+                    if (PlayerActiveHouses.TryGetValue(playerIndex, out var list))
+                    {
+                        foreach (var rect in list)
+                        {
+                            ShowRegion(player, rect);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                PlayerRefreshFlags.Remove(playerIndex);
+            }
+        }
+        public static void ToggleAllDisplays(TSPlayer player, List<House> houses)
+        {
+            if (!PlayerActiveHouses.TryGetValue(player.Index, out var list))
+            {
+                list = new List<Rectangle>();
+                PlayerActiveHouses[player.Index] = list;
+                StartRefreshCycle(player.Index);
+            }
+
+            var anyHidden = false;
+            foreach (var house in houses)
+            {
+                if (!list.Contains(house.HouseArea))
+                {
+                    anyHidden = true;
+                    break;
+                }
+            }
+            if (anyHidden)
+            {
+                list.Clear();
+                foreach (var house in houses)
+                {
+                    list.Add(house.HouseArea);
+                    ShowRegion(player, house.HouseArea);
+                }
+                player.SendSuccessMessage(GetString("已显示所有房屋的边界。"));
+            }
+            else
+            {
+                foreach (var rect in list)
+                    ClearRegionProjectiles(player, rect);
+
+                list.Clear();
+                player.SendSuccessMessage(GetString("已隐藏所有房屋的边界。"));
+        
+                PlayerRefreshFlags.Remove(player.Index);
+            }
+        }
+
+        private static void ShowRegion(TSPlayer ts, Rectangle rect) 
+        {
+            var maxSide = Math.Max(rect.Width, rect.Height);
+            var step = maxSide <= 30 ? 1 : Math.Clamp(maxSide / 30, 1, 10);
+    
+            int projType = ProjectileID.TopazBolt;
+    
+            for (var x = rect.Left; x <= rect.Right; x += step) 
+            {
+                CreateProjectile(ts, x, rect.Top, projType);
+                CreateProjectile(ts, x, rect.Bottom, projType);
+            }
+            
+            for (var y = rect.Top; y <= rect.Bottom; y += step) 
+            {
+                CreateProjectile(ts, rect.Left, y, projType);
+                CreateProjectile(ts, rect.Right, y, projType);
+            }
+        }
+
+        private static void CreateProjectile(TSPlayer ts, int tileX, int tileY, int projType)
+        {
+            var pos = new Vector2((tileX * 16) + 8, (tileY * 16) + 8);
+
+            var identity = Projectile.NewProjectile(
+                null,
+                pos.X, pos.Y,
+                0f, 0f,
+                projType,
+                0,
+                0f,
+                ts.Index
+            );
+
+            NetMessage.SendData(
+                (int)PacketTypes.ProjectileNew,
+                ts.Index,
+                -1,
+                null,
+                identity
+            );
+        }
+
+        private static void ClearRegionProjectiles(TSPlayer ts, Rectangle rect)
+        {
+            for (var i = 0; i < Main.projectile.Length; i++)
+            {
+                var proj = Main.projectile[i];
+                if (proj is not { active: true } || proj.type != ProjectileID.TopazBolt)
+                {
+                    continue;
+                }
+
+                var projTileX = (int)(proj.position.X + (proj.width / 2f)) / 16;
+                var projTileY = (int)(proj.position.Y + (proj.height / 2f)) / 16;
+
+                if (projTileX < rect.Left || projTileX > rect.Right ||
+                    projTileY < rect.Top || projTileY > rect.Bottom)
+                {
+                    continue;
+                }
+
+                proj.Kill();
+                NetMessage.SendData((int)PacketTypes.ProjectileDestroy, ts.Index, -1, null, i);
+            }
+        }
+        public static void ClearPlayerDisplays(int playerIndex)
+        {
+            if (!PlayerActiveHouses.TryGetValue(playerIndex, out var list))
+            {
+                return;
+            }
+
+            var player = TShock.Players[playerIndex];
+            if (player != null)
+            {
+                foreach (var rect in list)
+                {
+                    ClearRegionProjectiles(player, rect);
+                }
+                PlayerRefreshFlags.Remove(player.Index);
+            }
+            PlayerActiveHouses.Remove(playerIndex);
+        }
+        public static void OnHouseDeleted(Rectangle houseArea)
+        {
+            foreach (var player in TShock.Players)
+            {
+                if (player is not { ConnectionAlive: true })
+                {
+                    continue;
+                }
+
+                if (PlayerActiveHouses.TryGetValue(player.Index, out var list) && list.Contains(houseArea))
+                {
+                    list.Remove(houseArea);
+            
+                    ClearRegionProjectiles(player, houseArea);
+                    
+                    if (list.Count == 0)
+                    {
+                        PlayerActiveHouses.Remove(player.Index);
+                    }
+                }
+            }
+        }
+        
+        public static bool IsPlayerShowingHouse(int playerIndex, Rectangle houseArea)
+        {
+            return PlayerActiveHouses.TryGetValue(playerIndex, out var list) && list.Contains(houseArea);
+        }
 }

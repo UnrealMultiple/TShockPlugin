@@ -92,15 +92,15 @@ public partial class WeaponPlus : TerrariaPlugin
         }
         var wPlayer = wPlayers[args.Player.Index];
         var firstItem = args.Player.TPlayer.inventory[0];
-        var select = wPlayer.hasItems.Find((WItem x) => x.id == firstItem.netID)!;
-        select ??= new WItem(firstItem.netID, args.Player.Name);
-        if ((firstItem == null || firstItem.IsAir || TShock.Utils.GetItemById(firstItem.type).damage <= 0 || firstItem.accessory || firstItem.netID == 0) && (args.Parameters.Count != 1 || !args.Parameters[0].Equals("load", StringComparison.OrdinalIgnoreCase)))
+        var select = wPlayer.hasItems.Find((WItem x) => x.id == firstItem.type)!;
+        select ??= new WItem(firstItem.type, args.Player.Name);
+        if ((firstItem == null || firstItem.IsAir || TShock.Utils.GetItemById(firstItem.type).damage <= 0 || firstItem.accessory || firstItem.type == 0) && (args.Parameters.Count != 1 || !args.Parameters[0].Equals("load", StringComparison.OrdinalIgnoreCase)))
         {
             args.Player.SendInfoMessage(LangTipsGet("请在第一个物品栏内放入武器而不是其他什么东西或空"));
         }
         else if (args.Parameters.Count == 0)
         {
-            args.Player.SendMessage($"{LangTipsGet("当前物品：")}[i:{firstItem!.netID}]   {LangTipsGet("共计消耗：")}{cointostring(select.allCost, out var _)}\n{select.ItemMess()}", this.getRandColor());
+            args.Player.SendMessage($"{LangTipsGet("当前物品：")}[i:{firstItem!.type}]   {LangTipsGet("共计消耗：")}{cointostring(select.allCost, out var _)}\n{select.ItemMess()}", this.getRandColor());
         }
         else if (args.Parameters.Count == 1)
         {
@@ -122,13 +122,13 @@ public partial class WeaponPlus : TerrariaPlugin
                 var text3 = cointostring((long) (select.allCost * config.ResetTheWeaponReturnMultiple), out var items2);
                 foreach (var item in items2)
                 {
-                    var num = Item.NewItem(new EntitySource_DebugCommand(), args.Player.TPlayer.Center, new Vector2(5f, 5f), item.type, item.stack, true, 0, true, false);
+                    var num = Item.NewItem(new EntitySource_DebugCommand(), args.Player.TPlayer.Center, new Vector2(5f, 5f), item.type, item.stack, true, 0, true);
                     Main.item[num].playerIndexTheItemIsReservedFor = args.Player.Index;
                     args.Player.SendData((PacketTypes) 21, "", num, 1f);
                     args.Player.SendData((PacketTypes) 22, null, num);
                 }
-                wPlayer.hasItems.RemoveAll((WItem x) => x.id == firstItem!.netID);
-                DB.DeleteDB(args.Player.Name, firstItem!.netID);
+                wPlayer.hasItems.RemoveAll((WItem x) => x.id == firstItem!.type);
+                DB.DeleteDB(args.Player.Name, firstItem!.type);
                 ReplaceWeaponsInBackpack(args.Player.TPlayer, select, 1);
                 select = null!;
                 args.Player.SendMessage(LangTipsGet("完全重置成功！钱币回收：") + text3, new Color(0, 255, 0));

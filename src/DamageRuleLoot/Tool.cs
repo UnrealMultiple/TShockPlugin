@@ -368,8 +368,8 @@ public static class Tool
                             {
                                 if (Terraria.Main.timeItemSlotCannotBeReusedFor[i] == 54000)
                                 {
-                                    Terraria.Main.item[i].active = false;
-                                    plr.SendData(PacketTypes.ItemDrop, "", i);
+                                    Main.item[i].TurnToAir();
+                                    plr.SendData(PacketTypes.SyncItemDespawn, "", i);
                                 }
                             }
                         }

@@ -15,6 +15,13 @@ internal static class CommandParser
         return result;
     }
 
+    private static bool TryParseUint(string arg, out object obj)
+    {
+        var result = uint.TryParse(arg, out var t);
+        obj = t;
+        return result;
+    }
+
     private static bool TryParseInt(string arg, out object obj)
     {
         var result = int.TryParse(arg, out var t);
@@ -67,6 +74,7 @@ internal static class CommandParser
     private static readonly Dictionary<Type, Parser> parsers = new()
     {
         [typeof(bool)] = TryParseBool,
+        [typeof(uint)] = TryParseUint,
         [typeof(int)] = TryParseInt,
         [typeof(long)] = TryParseLong,
         [typeof(string)] = TryParseString,
@@ -78,6 +86,7 @@ internal static class CommandParser
     private static readonly Dictionary<Type, string> friendlyName = new()
     {
         [typeof(bool)] = "bool",
+        [typeof(uint)] = "uint",
         [typeof(int)] = "int",
         [typeof(long)] = "long",
         [typeof(string)] = "str",

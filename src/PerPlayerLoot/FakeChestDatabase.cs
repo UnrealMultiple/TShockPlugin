@@ -19,11 +19,9 @@ public class FakeChestDatabase
     public static Dictionary<string, Dictionary<int, Chest>> fakeChestsMap = new Dictionary<string, Dictionary<int, Chest>> { };
 
     // 玩家放置的宝箱位置集合 (x, y)
-    public static HashSet<(int, int)> playerPlacedChests = new HashSet<(int, int)>();
+    public static HashSet<(int, int)> playerPlacedChests = [];
 
     private static readonly string connString = "Data Source=tshock/perplayerloot.sqlite";
-
-    public FakeChestDatabase() { }
 
     public void Initialize()
     {
@@ -110,13 +108,12 @@ public class FakeChestDatabase
                     }
 
                     // 构建一个宝箱
-                    var chest = new Chest
+                    var chest = new Chest(x: Convert.ToInt32(reader["x"]),
+                        y: Convert.ToInt32(reader["y"]))
                     {
-                        x = Convert.ToInt32(reader["x"]),
-                        y = Convert.ToInt32(reader["y"]),
-                        item = items.ToArray()
+                        item = items.ToArray(),
                     };
-
+                    
                     // 保存到假宝箱映射中
                     var playerChests = fakeChestsMap!.GetValueOrDefault(playerUuid, new Dictionary<int, Chest>());
                     fakeChestsMap[playerUuid] = playerChests;
@@ -241,13 +238,7 @@ public class FakeChestDatabase
             var realChest = Main.chest[chestId];
 
             // 从真实宝箱复制数据
-            var fakeChest = new Chest
-            {
-                x = realChest.x,
-                y = realChest.y
-            };
-            realChest.item.CopyTo(fakeChest.item, 0);
-
+            var fakeChest = realChest.CloneWithSeparateItems(); 
             // 保存到假宝箱列表中
             fakeChestsMap[playerUuid][chestId] = fakeChest;
 

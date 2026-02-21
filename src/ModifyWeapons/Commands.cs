@@ -689,7 +689,7 @@ public class Commands
             plr.SendData(PacketTypes.ItemOwner, null, MyItem);
             plr.SendData(PacketTypes.TweakItem, null, MyItem, 255f, 63f);
 
-            SaveItem(plr.Name, data, newItem.type, newItem.stack, newItem.prefix, damage, scale, knockBack, useTime, useAnimation, shoot, shootSpeed, ammo, useAmmo, color);
+            SaveItem(plr.Name, data, newItem.type, newItem.stack, newItem.inner.prefix, damage, scale, knockBack, useTime, useAnimation, shoot, shootSpeed, ammo, useAmmo, color);
         }
 
         // 保存修改后的物品数据
@@ -792,23 +792,23 @@ public class Commands
     #endregion
 
     #region 新物品属性
-    public static void MyNewItem(TSPlayer plr, Item item, Item newItem, int damage, int stack, byte prefix, float scale, float knockBack, int useTime, int useAnimation,
+    public static void MyNewItem(TSPlayer plr, Item item, WorldItem newItem, int damage, int stack, byte prefix, float scale, float knockBack, int useTime, int useAnimation,
         int shoot, float shootSpeed, int ammo, int useAmmo)
     {
         newItem.playerIndexTheItemIsReservedFor = plr.Index;
 
-        newItem.prefix = plr.SelectedItem.type == item.type ? plr.SelectedItem.prefix : prefix;
+        newItem.inner.prefix = plr.SelectedItem.type == item.type ? plr.SelectedItem.prefix : prefix;
 
-        newItem.damage = damage;
-        newItem.stack = stack;
-        newItem.scale = scale;
-        newItem.knockBack = knockBack;
-        newItem.useTime = useTime;
-        newItem.useAnimation = useAnimation;
-        newItem.shoot = shoot;
-        newItem.shootSpeed = shootSpeed;
-        newItem.ammo = ammo;
-        newItem.useAmmo = useAmmo;
+        newItem.inner.damage = damage;
+        newItem.inner.stack = stack;
+        newItem.inner.scale = scale;
+        newItem.inner.knockBack = knockBack;
+        newItem.inner.useTime = useTime;
+        newItem.inner.useAnimation = useAnimation;
+        newItem.inner.shoot = shoot;
+        newItem.inner.shootSpeed = shootSpeed;
+        newItem.inner.ammo = ammo;
+        newItem.inner.useAmmo = useAmmo;
     }
     #endregion
 

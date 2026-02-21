@@ -1,25 +1,28 @@
 # HouseRegion 圈地插件
 
-- 作者: GK
+- 作者: GK Eustia更新
 - 出处: 无
 - 更好的圈地插件
 
 ## 指令
 
-| 语法                        | 别名 |            权限             |   说明    |
-|---------------------------|:--:|:-------------------------:|:-------:|
-| /house set 1              | 无  |         house.use         |  敲击左上角  |
-| /house set 2              | 无  |         house.use         |  敲击右下角  |
-| /house clear              | 无  |         house.use         | 重置临时敲击点 |
-| /house allow [玩家] [房屋]    | 无  | `house.use` `house.admin` |  添加所有者  |
-| /house disallow [玩家] [房屋] | 无  | `house.use` `house.admin` |  移除所有者  |
-| /house adduser [玩家] [房屋]  | 无  | `house.use` `house.admin` |  添加使用者  |
-| /house deluser [玩家] [房屋]  | 无  | `house.use` `house.admin` |  删除使用者  |
-| /house delete [屋名]        | 无  | `house.use` `house.admin` |  删除房屋   |
-| /house list [页码]          | 无  | `house.use` `house.admin` | 查看房屋列表  |
-| /house redefine [屋名]      | 无  | `house.use` `house.admin` | 重新定义房屋  |
-| /house info [屋名]          | 无  | `house.use` `house.admin` |  房屋信息   |
-| /house lock [屋名]          | 无  | `house.use` `house.admin` |   房屋锁   |
+| 语法                        | 别名 |            权限             |     说明      |
+|---------------------------|:--:|:-------------------------:|:-----------:|
+| /house set 1              | 无  |         house.use         |    敲击左上角    |
+| /house set 2              | 无  |         house.use         |    敲击右下角    |
+| /house clear              | 无  |         house.use         |   重置临时敲击点   |
+| /house allow [玩家] [房屋]    | 无  | `house.use` `house.admin` |    添加所有者    |
+| /house disallow [玩家] [房屋] | 无  | `house.use` `house.admin` |    移除所有者    |
+| /house adduser [玩家] [房屋]  | 无  | `house.use` `house.admin` |    添加使用者    |
+| /house deluser [玩家] [房屋]  | 无  | `house.use` `house.admin` |    删除使用者    |
+| /house delete [屋名]        | 无  | `house.use` `house.admin` |    删除房屋     |
+| /house list [页码]          | 无  | `house.use` `house.admin` |   查看房屋列表    |
+| /house redefine [屋名]      | 无  | `house.use` `house.admin` |   重新定义房屋    |
+| /house info [屋名]          | 无  | `house.use` `house.admin` |    房屋信息     |
+| /house lock [屋名]          | 无  | `house.use` `house.admin` |     房屋锁     |
+| /house show [屋名]          | 无  |         house.use         |   房屋区域查看    |
+| /house showall            | 无  |         house.use         |  查看所有房屋区域   |
+| /house auto               | 无  |         house.use         | 进入区域后自动显示区域 |
 
 ## 配置
 	配置文件位置：tshock/HouseRegion.json
@@ -43,6 +46,18 @@
 ```
 
 ## 更新日志
+
+### v1.0.4
+- 支持快速堆叠和附近合成防护
+
+### v1.0.3
+- 添加新功能-显示圈地区域
+
+### v1.0.2
+- 修正圈地消息提示错误的问题
+
+### v1.0.1
+- 修复草药不被保护的问题
 
 ### v1.0.0.4
 - 完善卸载函数

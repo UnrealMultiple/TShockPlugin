@@ -1,68 +1,111 @@
-# AutoFish
+# AutoFishR (Auto Fishing Remastered)
 
-- Authors: 羽学 & 少司命
-- Source: 无
-- AutoFish is an automatic fishing plugin designed for Tshock servers. 
-- It allows players to automate their fishing activities, enhancing the gameplay experience by adding extra items to the fishing pool and providing various customization options.
-- Extra Items: In addition to items that already exist in the environment, you can configure extra items to be caught through fishing.
-- Multi-Hook Fishing: Adjust the number of hooks per cast via the configuration file to increase fishing efficiency.
-- Consumption Mode: Consume specific items to exchange for plugin usage duration.
-- Fishing Buffs: Players can enable or disable fishing buffs that trigger when a catch is made.
-- Blood Moon Restriction: No NPCs can be fished during a Blood Moon. A relevant prompt will appear when using the /af command during a Blood Moon.
-- Complete Command System: Some features will not display related commands if they are not enabled or the user does not have permission.
+## Authors
+- **少司命 (Shao Si Ming)**: Core code contributor
+- **羽学 (Yu Xue)**: Creative design and initial implementation
+- **ksqeib**: Current maintainer
 
-## Commands
+## Important Notice
+- For any issues with this plugin, please contact **ksqeib**
+- Contact QQ (only): **2388990095**
+- **DO NOT mention developers in group chat**. For inquiries, add on QQ for private chat.
+- **Warning: Disturbing other developers by mentioning them in group chat will be at your own risk!**
 
-| Command Syntax	     |           Alias           |    Permission     |                        Description                        |
-|---------------------|:-------------------------:|:-----------------:|:---------------------------------------------------------:|
-| /af                 |         /autofish         |     autofish      | Command menu (check remaining automatic fishing duration) |
-| /af on              |       /autofish on        |     autofish      |          Enable automatic fishing for the player          |
-| /af off             |       /autofish off       |     autofish      |         Disable automatic fishing for the player          |
-| /af list            |      /autofish list       |     autofish      |         List items specified for consumption mode         |
-| /af loot            |      /autofish loot       |     autofish      |                  List extra catch items                   |
-| /af buff            |      /autofish buff       |     autofish      |             Toggle the player's fishing buff              |
-| /af more            |      /autofish more       |  autofish.admin   |             Enable or disable multi-hook mode             |
-| /af duo <number>    |       /autofish duo       |  autofish.admin   |        Set the number of hooks for multi-hook mode        |
-| /af + <item name>   |  /autofish + <item name>  |  autofish.admin   |            Add an item to the extra catch list            |
-| /af - <item name>   |  /autofish - <item name>  |  autofish.admin   |         Remove an item from the extra catch list          |
-| /af mod             |       /autofish mod       |  autofish.admin   |            Enable or disable consumption mode             |
-| /af set <number>    |  /autofish set <number>   |  autofish.admin   |  Set the required quantity of items for consumption mode  |
-| /af time <number>   |  /autofish time <minute>  |  autofish.admin   |     Set the duration of automatic fishing in minutes      |
-| /af add <item name> | /autofish add <item name> |  autofish.admin   |         Add a specified item for consumption mode         |
-| /af del <item name> | /autofish del <item name> |  autofish.admin   |       Remove a specified item from consumption mode       |
-| /reload             |             无             | tshock.cfg.reload |               Reload the configuration file               |
+## Description
+Auto fishing plugin for TShock servers. Supports auto reel-in, multi-hook, Buffs, extra loot, consumption mode, etc. Commands can be shown/hidden dynamically via permissions and global switches.
 
-## Configuration
-> Configuration file location： tshock/AutoFish.en-US.json
-```json5
-{
-  "AdditionalCatches": [
-    29,
-    3093,
-    4345
-  ], // Extra catch items in addition to those that exist in the environment
-  "Enable": true, // Global plugin switch
-  "MultipleFishFloats": true, // Enable multi-hook mode for automatic fishing to increase efficiency
-  "RandCatches": false, // Randomly fish out any item
-  "MultipleFishFloatsLimit": 5, // Define the maximum number of hooks that can fish simultaneously
-  "SetBuffs": {
-    "80": 10, // 80 is the buff ID, 10 is the duration in frames (60 frames = 1 second)
-    "122": 240
-  },
-  "ConsumeBait": false, // Consume items to exchange for automatic fishing usage duration
-  "ConsumeBaitNum": 10, // Item quantity requirement in consumption mode (e.g., 6 of item A + 4 of item B = 10)
-  "Time": 24, // Duration of automatic fishing granted to players in consumption mode, in minutes
-  "ConsumeItem": [
-    2002, // Specified items for consumption mode
-    2675,
-    2676,
-    3191,
-    3194
-  ]
-}
-```
+- Legacy repo: https://github.com/ksqeib/AutoFish-old
 
-## FeedBack
-- Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin
-- TShock QQ Group: 816771079
-- China Terraria Forum: trhub.cn, bbstr.net, tr.monika.love
+## Permission Model (Important)
+
+- Admin bypass: `autofish.admin`.
+- Common whitelist: `autofish.common`; owning it grants all player commands (still affected by global toggles and negative permissions).
+- Feature permissions: `autofish.<feature>`; examples: `autofish.fish`, `autofish.multihook`, etc.
+- Negative permissions: `autofish.no.<feature>`; owning it forces denial (except admin). Examples: `autofish.no.fish`.
+- `/af` itself needs `autofish`; `autofish.common` is equivalent to all player commands.
+
+Example:
+- If you want the default group to use everything except auto fishing, give group `autofish.common` and also `autofish.no.fish`. Players can use Buff/Multi-hook, etc., but cannot enable auto fishing.
+
+## Player Commands (/af, /autofish)
+
+| Command | Description | Permission | Prerequisite |
+| --- | --- | --- | --- |
+| /af | Show menu/help | autofish | Plugin enabled |
+| /af status | Show personal status | autofish |  |
+| /af fish | Toggle auto fishing | autofish.fish | Global auto fishing enabled |
+| /af buff | Toggle fishing Buffs | autofish.buff | Global Buff enabled |
+| /af multi | Toggle multi-hook | autofish.multihook | Global multi-hook enabled |
+| /af hook <number> | Set personal hook cap | autofish.multihook | Global multi-hook enabled; value ≤ global cap |
+| /af monster | Toggle avoid fishing monsters | autofish.filter.monster | Global anti-monster enabled |
+| /af anim | Toggle skip catch animation | autofish.skipanimation | Global animation skip enabled |
+| /af list | View consumption-mode items | autofish | Global consumption mode enabled |
+| /af loot | View extra loot table | autofish | Extra loot list configured and non-empty |
+| /af bait | Toggle precious bait protection | autofish.bait.protect | Global precious bait protection enabled |
+| /af baitlist | View precious bait list | autofish.bait.protect | Same as above |
+
+> Negative permissions win: with `autofish.no.<feature>`, everyone except admin is treated as no-permission.
+
+## Admin Commands (/afa, /autofishadmin)
+
+All require `autofish.admin`.
+
+| Command | Description |
+| --- | --- |
+| /afa | Show admin help menu |
+| /afa buff | Toggle global fishing Buff |
+| /afa multi | Toggle global multi-line mode |
+| /afa duo <number> | Set global multi-hook cap |
+| /afa mod | Toggle global consumption mode |
+| /afa set <amount> | Set consumption item quantity (when consumption mode is on) |
+| /afa time <minutes> | Set reward duration in minutes (when consumption mode is on) |
+| /afa add <item> | Add allowed bait (visible when consumption mode is on) |
+| /afa del <item> | Remove allowed bait (visible when consumption mode is on) |
+| /afa addloot <item> | Add extra loot |
+| /afa delloot <item> | Remove extra loot |
+| /afa monster | Toggle global avoid fishing monsters |
+| /afa anim | Toggle global skip catch animation |
+
+Others: `/reload` (tshock.cfg.reload) to reload config.
+
+## Config
+See [resource/config/zh-cn.yml](resource/config/zh-cn.yml) or [resource/config/en-us.yml](resource/config/en-us.yml). When missing, the plugin writes a default template based on system language.
+
+## Notes
+
+- Simplest setup for `/af` for regular players: give group `autofish.common`. To disable a specific feature, additionally grant `autofish.no.<feature>`.
+- With consumption mode on, players must have personal duration; the plugin returns early if bait is missing.
+- Multi-hook/anti-monster/skip-animation all honor "global switch + personal switch + permission" simultaneously.
+
+## Troubleshooting Guide
+
+1. **Check plugin master switch**: ensure `pluginEnabled` is `true` in config.
+2. **Check global feature switch**: ensure `globalAutoFishFeatureEnabled` is `true`.
+3. **Check permissions**: player needs `autofish` and the feature permission (or `autofish.common`). `autofish.no.<feature>` forces denial.
+4. **Check consumption mode**: if enabled, make sure exchange rules exist and the player has remaining duration.
+5. **Check valuable bait protection**: it swaps bait to protect it. If issues occur, try disabling it with `/af bait`.
+6. **Check bait**: without bait, auto fishing stops; refill and recast.
+7. **Ensure SSC is enabled**: the plugin requires ServerSideCharacter to work properly.
+8. **Enable debug**: admins run `/afa debug` to toggle debug mode.
+9. **Reproduce and capture**: reproduce the fishing issue and keep screenshots of chat hints and console output for reporting.
+
+## Mechanics (Behavior and Key Logic)
+
+- Auto fishing: during bobber AI update, detect `bobber.ai[1] < 0` (caught), consume bait, call vanilla reel logic, then re-send projectile. If extra loot/monster filtering is enabled, filter/replace before drops spawn.
+- Multi-hook: when spawning fishing line projectiles, count current bobbers; if under cap, duplicate a fishing line projectile for the player, enabling parallel fishing. Also gated by consumption mode and player multi-hook toggle.
+- Skip catch animation: after reeling, send `ProjectileDestroy` to the client to skip the animation.
+- Avoid fishing monsters: if result is a monster (catchId < 0) and feature is on, discard and retry.
+- Protect precious bait: check current bait against precious list; if matched, swap with bait at the end of inventory and sync slots to prevent consumption.
+- Consumption mode: when globally on, player must enable personally and have remaining duration to run auto fishing/multi-hook. Duration is exchanged via consuming specified items (commands and logic follow config fields).
+- Buffs: when player has a fishing line and global/personal Buff is on, apply configured Buff list (ID + duration).
+- Hint and first-fish: on first cast, prompt player that `/af fish` can enable auto fishing (once only).
+
+## Feedback
+
+- Issues: https://github.com/UnrealMultiple/TShockPlugin
+- QQ: 816771079
+- Community: trhub.cn / bbstr.net / tr.monika.love
+
+## Changelog
+
+- See CHANGELOG.md

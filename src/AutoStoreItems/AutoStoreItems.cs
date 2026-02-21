@@ -96,9 +96,9 @@ public class AutoStoreItems : LazyPlugin
         if (list.AutoMode && !list.HandMode && !list.ArmorMode)
         {
             //遍历背包前50格内是否存在储物类的道具
-            var inv = plr.TPlayer.inventory.Take(50).Any(x => Configuration.Instance.BankItems.Contains(x.netID));
+            var inv = plr.TPlayer.inventory.Take(50).Any(x => Configuration.Instance.BankItems.Contains(x.type));
             //遍历工具栏第一格是否存在储物类道具（纯粹是为了方便装备上 眼骨）
-            var miscEquips = plr.TPlayer.miscEquips.Take(1).Any(x => Configuration.Instance.BankItems.Contains(x.netID));
+            var miscEquips = plr.TPlayer.miscEquips.Take(1).Any(x => Configuration.Instance.BankItems.Contains(x.type));
 
             //如果存在则触发自动存储逻辑
             if (inv || miscEquips)
@@ -135,10 +135,10 @@ public class AutoStoreItems : LazyPlugin
         if (list.ArmorMode && !list.HandMode && !list.AutoMode)
         {
             //遍历盔甲3格+饰品7格，是否存在储物类的道具
-            var armor = plr.TPlayer.armor.Take(10).Any(x => Configuration.Instance.ArmorItem.Contains(x.netID));
+            var armor = plr.TPlayer.armor.Take(10).Any(x => Configuration.Instance.ArmorItem.Contains(x.type));
 
             //遍历宠物栏（方便眼骨）
-            var miscEquips = plr.TPlayer.miscEquips.Take(1).Any(x => Configuration.Instance.ArmorItem.Contains(x.netID));
+            var miscEquips = plr.TPlayer.miscEquips.Take(1).Any(x => Configuration.Instance.ArmorItem.Contains(x.type));
 
             if (armor || miscEquips)
             {

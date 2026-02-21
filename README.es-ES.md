@@ -69,24 +69,22 @@
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 0.0% | Mejora la funcionalidad de la caja de anuncios | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.md) | 0.0% | Botes de basura automáticos | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 0.0% | Transmisión automática | [LazyAPI](./src/LazyAPI/README.md) |
-| [AutoClassificationQuickStack](./src/AutoClassificationQuickStack/README.md) | 0.0% | Clasificación Automática Quick Stack |  |
 | [AutoClear](./src/AutoClear/README.md) | 0.0% | Limpieza automática inteligente | [LazyAPI](./src/LazyAPI/README.md) |
-| [AutoFish](./src/AutoFish/README.md) | 0.0% | Pesca automática | [LazyAPI](./src/LazyAPI/README.md) |
-| [AutoPluginManager](./src/AutoPluginManager/README.es-ES.md) | 69.1% | Actualice los complementos automáticamente con una sola tecla |  |
+| [AutoFish](./src/AutoFish/README.md) | 0.0% | 自动钓鱼重置版 | [LazyAPI](./src/LazyAPI/README.md) |
+| [AutoPluginManager](./src/AutoPluginManager/README.es-ES.md) | 64.4% | Actualice los complementos automáticamente con una sola tecla |  |
 | [AutoReset](./src/AutoReset/README.md) | 0.0% | Reinicio completamente automático | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoStoreItems](./src/AutoStoreItems/README.md) | 0.0% | Almacenamiento automático | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoTeam](./src/AutoTeam/README.md) | 0.0% | Formación automática de equipos | [LazyAPI](./src/LazyAPI/README.md) |
 | [Back](./src/Back/README.md) | 0.0% | Regresar al punto de muerte | [LazyAPI](./src/LazyAPI/README.md) |
-| [BagPing](./src/BagPing/README.md) | 0.0% | Marcar las bolsas de tesoro en el mapa |  |
+| [BadApplePlayer](./src/BadApplePlayer/README.md) | 0.0% | Reproductor BadApple |  |
 | [BanNpc](./src/BanNpc/README.md) | 0.0% | Previene la generación de monstruos | [LazyAPI](./src/LazyAPI/README.md) |
 | [BedSet](./src/BedSet/README.md) | 0.0% | Establecer y registrar puntos de resurrección | [LazyAPI](./src/LazyAPI/README.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.md) | 0.0% | Plugin de lista blanca | [LazyAPI](./src/LazyAPI/README.md) |
+| [BossLock](./src/BossLock/README.md) | 0.0% | 进度锁插件 |  |
 | [BridgeBuilder](./src/BridgeBuilder/README.md) | 0.0% | Construcción rápida de puentes | [LazyAPI](./src/LazyAPI/README.md) |
 | [BuildMaster](./src/BuildMaster/README.md) | 0.0% | Modo Maestro Constructor para el Mini Juego Red Bean | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
-| [CaiBot](./src/CaiBot/README.md) | 0.0% | Plugin adaptador CaiBot (Only support QQ) |  |
-| [CaiBotLite](./src/CaiBotLite/README.md) | 0.0% | Plugin adaptador CaiBot (Only support QQ) |  |
+| [CaiBotLite](./src/CaiBotLite/README.md) | 0.0% | Plugin adaptador CaiBot (Only support QQ) | [linq2db]() |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.md) | 0.0% | Comando de emoji personalizado | [LazyAPI](./src/LazyAPI/README.md) |
-| [CaiLib](./src/CaiLib/README.md) | 0.0% | Biblioteca de precarga de Cai |  |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.md) | 0.0% | Herramienta de depuración de paquetes Cai | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [CaiRewardChest](./src/CaiRewardChest/README.md) | 0.0% | Convierte cofres generados naturalmente en cofres de recompensa que todos pueden reclamar una vez | [linq2db]() [LazyAPI](./src/LazyAPI/README.md) |
 | [CGive](./src/CGive/README.md) | 0.0% | Comandos fuera de línea |  |
@@ -95,16 +93,14 @@
 | [ChattyBridge](./src/ChattyBridge/README.md) | 0.0% | Usado para el chat entre servidores | [LazyAPI](./src/LazyAPI/README.md) |
 | [ChestRestore](./src/ChestRestore/README.md) | 0.0% | Objetos infinitos en servidores de recursos |  |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Otro plugin misceláneo para TShock - la parte central |  |
-| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Otro plugin misceláneo para TShock - la parte miscelánea | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
+| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 0.0% | Otro plugin misceláneo para TShock - la parte miscelánea |  |
 | [CNPCShop](./src/CNPCShop/README.md) | 0.0% | Tienda personalizada de NPC |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | 0.0% | Ejecutar sentencias SQL en la consola |  |
 | [ConvertWorld](./src/ConvertWorld/README.md) | 0.0% | Convertir objetos del mundo al derrotar monstruos |  |
-| [CreateSpawn](./src/CreateSpawn/README.md) | 0.0% | Generación de puntos de aparición | [LazyAPI](./src/LazyAPI/README.md) |
 | [CriticalHit](./src/CriticalHit/README.md) | 0.0% | Indicación de golpe crítico |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Permite el juego multiplataforma |  |
-| [CustomMonster](./src/CustomMonster/README.md) | 0.0% | Personalizar, modificar y generar monstruos y jefes  |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 0.0% | Determinar la bolsa de tesoro caída basada en la relación de daño y transferir el cálculo de daño |  |
-| [DamageStatistic](./src/DamageStatistic/README.md) | 100.0% | Mostrar el daño causado por cada jugador después de cada pelea de jefe |  |
+| [DamageStatistic](./src/DamageStatistic/README.md) | 50.0% | Mostrar el daño causado por cada jugador después de cada pelea de jefe |  |
 | [DataSync](./src/DataSync/README.md) | 0.0% | Sincronización de progreso |  |
 | [DeathDrop](./src/DeathDrop/README.md) | 100.0% | Botín aleatorio y personalizado al morir un monstruo |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 11.1% | Prohibir el botín de monstruos |  |
@@ -120,14 +116,15 @@
 | [Economics.Regain](./src/Economics.Regain/README.md) | 0.0% | Reciclaje de objetos | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.RPG](./src/Economics.RPG/README.md) | 0.0% | Plugin RPG | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.Shop](./src/Economics.Shop/README.md) | 0.0% | Plugin de tienda | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Skill](./src/Economics.Skill/README.md) | 0.0% | Plugin de habilidades | [Economics.Core](./src/Economics.Core/README.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Skill](./src/Economics.Skill/README.md) | 0.0% | Plugin de habilidades | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
 | [Economics.Task](./src/Economics.Task/README.md) | 0.0% | Plugin de tareas | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 0.0% | Mejora de armas | [Economics.Core](./src/Economics.Core/README.md) |
 | [EndureBoost](./src/EndureBoost/README.md) | 0.0% | Otorga un buff específico cuando el jugador tiene una cantidad determinada de objetos |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.es-ES.md) | 94.9% | Comandos de gestión adicionales | [LazyAPI](./src/LazyAPI/README.md) |
-| [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos | [LazyAPI](./src/LazyAPI/README.md) |
+| [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Tienda de peces |  |
-| [GenerateMap](./src/GenerateMap/README.md) | 0.0% | Generar imágenes de mapas | [CaiLib](./src/CaiLib/README.md) |
+| [GenerateMap](./src/GenerateMap/README.md) | 0.0% | Generar mapas |  |
+| [GhostView](./src/GhostView/README.md) | 0.0% | espectar en modo fantasma tras la muerte, la reconexión no reinicia el tiempo de reaparición |  |
 | [GolfRewards](./src/GolfRewards/README.md) | 0.0% | Recompensas de golf |  |
 | [GoodNight](./src/GoodNight/README.md) | 0.0% | Toque de queda |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 0.0% | Los jugadores en modo Hardcore sueltan corazones de vida al morir |  |
@@ -139,11 +136,12 @@
 | [ItemDecoration](./src/ItemDecoration/README.es-ES.md) | 100.0% | Muestra el spryte y texto de info y damage del item seleccionado | [LazyAPI](./src/LazyAPI/README.md) |
 | [ItemPreserver](./src/ItemPreserver/README.md) | 50.0% | Conserva ítems específicos de la consumición |  |
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | 6.3% | Desbloquea ítems del modo Journey |  |
-| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | 0.0% | Plugin adaptador para el bot Lagrange.XocMat |  |
+| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | 0.0% | Plugin adaptador para el bot Lagrange.XocMat | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.md) | 0.0% | Biblioteca base para plugins | [linq2db]() |
 | [LifemaxExtra](./src/LifemaxExtra/README.md) | 0.0% | Comer más frutas/cristales de vida | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | 16.7% | Lista los plugins instalados |  |
 | [MapTp](./src/MapTp/README.md) | 100.0% | Teletransportarse con doble clic en el mapa |  |
+| [MazeGenerator](./src/MazeGenerator/README.md) | 0.0% | Plugin Generador de Laberintos | [LazyAPI](./src/LazyAPI/README.md) |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) | 0.0% | API para el mini-juego de pasta de frijol |  |
 | [ModifyWeapons](./src/ModifyWeapons/README.md) | 0.0% | Deje que los jugadores realicen dos Sprint | [LazyAPI](./src/LazyAPI/README.md) |
 | [MonsterRegen](./src/MonsterRegen/README.md) | 0.0% | Regeneración de progreso de monstruos |  |
@@ -184,7 +182,6 @@
 | [ShortCommand](./src/ShortCommand/README.md) | 0.0% | Comando corto |  |
 | [ShowArmors](./src/ShowArmors/README.md) | 0.0% | Muestra la barra de equipo |  |
 | [SignInSign](./src/SignInSign/README.md) | 0.0% | Plugin de inicio de sesión con cartel |  |
-| [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 0.0% | Resuelve problemas como el martillo doble atascado y la metralleta de estrellas | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [SmartRegions](./src/SmartRegions/README.md) | 0.0% | Regiones inteligentes |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 0.0% | Genera infraestructura básica |  |
 | [SpclPerm](./src/SpclPerm/README.md) | 0.0% | Privilegios del propietario del servidor |  |
@@ -199,16 +196,15 @@
 | [TransferPatch](./src/TransferPatch/README.md) | 0.0% | 翻译补丁 |  |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 0.0% | Permite que el servidor genere ítems "inobtenibles" |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | 0.0% | Biblioteca base para plugins VBY |  |
-| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Modificaciones personalizables para cierto contenido del juego (super) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
-| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Proveer algunos otros comandos auxiliares | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 0.0% | Modificaciones personalizables para cierto contenido del juego (super) |  |
+| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 0.0% | Proveer algunos otros comandos auxiliares |  |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 0.0% | Un cargador de plugins que permite la recarga en caliente |  |
-| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) |
+| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | 0.0% | VBY.PluginLoader的扩展, 自动热重载插件 |  |
 | [VeinMiner](./src/VeinMiner/README.md) | 0.0% | Minado en cadena |  |
 | [VotePlus](./src/VotePlus/README.md) | 96.1% | Votación multifuncional |  |
 | [WeaponPlus](./src/WeaponPlus/README.md) | 100.0% | Versión de monedas para mejorar armas |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 100.0% | Cargue el paquete de idioma wiki para el servidor. |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 0.0% | Editor del mundo, permite modificar la mayoría de los parámetros del mundo |  |
-| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | 62.1% | Plugin de gestión de jugadores de Zhi |  |
 
 </Details>
 

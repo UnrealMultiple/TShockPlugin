@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-04-03 14:41:15+0000\n"
-"PO-Revision-Date: 2025-04-04 01:14\n"
+"POT-Creation-Date: 2026-02-15 05:24:55+0000\n"
+"PO-Revision-Date: 2026-02-16 01:57\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,29 +17,29 @@ msgstr ""
 "X-Crowdin-File-ID: 1492\n"
 "Language: es_ES\n"
 
-#: ../../Main.cs:76
+#: ../../Main.cs:78
 #, csharp-format
 msgid "[Platform]玩家{0}游玩平台:{1}"
 msgstr ""
 
-#: ../../Main.cs:66
+#: ../../Main.cs:68
 msgid "/platform <玩家名字/序号id>"
 msgstr ""
 
-#: ../../Main.cs:14
+#: ../../Main.cs:16
 msgid "判断玩家设备"
 msgstr ""
 
-#: ../../Main.cs:56
+#: ../../Main.cs:58
 #, csharp-format
 msgid "玩家 `{0}` 的设备是: {1}"
 msgstr ""
 
-#: ../../Main.cs:60
+#: ../../Main.cs:62
 msgid "目标玩家不在线!"
 msgstr ""
 
-#: ../../Main.cs:65
+#: ../../Main.cs:67
 msgid "语法错误"
 msgstr ""
 

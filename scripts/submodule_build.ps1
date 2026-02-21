@@ -2,7 +2,7 @@
 
 param(
     [string]$BuildType = 'Debug',
-    [string]$TargetFramework = 'net6.0'
+    [string]$TargetFramework = 'net9.0'
 )
 
 function Join-Repo-Root {

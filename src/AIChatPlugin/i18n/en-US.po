@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-03-09 10:33:38+0000\n"
-"PO-Revision-Date: 2025-03-14 11:40\n"
+"POT-Creation-Date: 2025-07-04 01:08:04+0000\n"
+"PO-Revision-Date: 2025-07-04 01:21\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1554\n"
 "Language: en_US\n"
 
-#: ../../AIChatPlugin.cs:49
+#: ../../AIChatPlugin.cs:50
 msgid "  [i:1344]AIChatPlugin帮助信息[i:1344]\n"
 "[i:1344]/ab                   - 向AI提问\n"
 "[i:1344]/bcz                  - 清除您的上下文\n"
@@ -82,11 +82,11 @@ msgstr "[AIChatPlugin] Request timed out!"
 msgid "[c/A9A9A9:============================]"
 msgstr "[c/A9A9A9:============================]"
 
-#: ../../AIChatPlugin.cs:93
+#: ../../AIChatPlugin.cs:94
 msgid "[i:1344]您当前没有上下文记录！[i:1344]"
 msgstr "[i:1344]You do not currently have a context record![i:1344]"
 
-#: ../../AIChatPlugin.cs:89
+#: ../../AIChatPlugin.cs:90
 msgid "[i:1344]您的上下文记录已重置！[i:1344]"
 msgstr "[i:1344]Your context record has been reset![i:1344]"
 
@@ -102,7 +102,7 @@ msgstr "[i:1344]Other players are asking questions, please queue[i:1344]"
 msgid "[i:1344]正在处理您的请求，请稍候...[i:1344]"
 msgstr "[i:1344]Your request is being processed, please wait...[i:1344]"
 
-#: ../../AIChatPlugin.cs:68
+#: ../../AIChatPlugin.cs:69
 msgid "[i:1344]请输入您想询问的内容！[i:1344]"
 msgstr "[i:1344]Please enter what you want to ask! [i:1344]"
 
@@ -133,7 +133,7 @@ msgid "\n\n"
 msgstr "\n\n"
 "[i:1344]Word limit {0} exceeds! Truncated![i:1344]"
 
-#: ../../AIChatPlugin.cs:16
+#: ../../AIChatPlugin.cs:17
 msgid "一个提供AI对话的插件"
 msgstr "A plugin provides Ai chat"
 

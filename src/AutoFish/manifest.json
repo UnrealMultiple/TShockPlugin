@@ -1,11 +1,8 @@
 {
   "README.en-US": {
-    "Description": "Automatic fishing"
-  },
-  "README.es-ES": {
-    "Description": "Pesca automática"
+    "Description": "Automatic fishing Reload"
   },
   "README": {
-    "Description": "自动钓鱼"
+    "Description": "自动钓鱼重置版"
   }
 }

@@ -16,7 +16,7 @@ public static class Utils
     public static int DropItem(float x, float y, int netid, int stack, byte prefix)
     {
         var itemById = TShock.Utils.GetItemById(netid);
-        var num = Item.NewItem(new EntitySource_DebugCommand(), (int) x, (int) y, itemById.width, itemById.height, netid, stack, false, prefix, false, false);
+        var num = Item.NewItem(new EntitySource_DebugCommand(), (int) x, (int) y, itemById.width, itemById.height, netid, stack, false, prefix, false);
         TSPlayer.All.SendData((PacketTypes) 21, "", num, 0f, 0f, 0f, 0);
         return num;
     }
@@ -56,7 +56,7 @@ public static class Utils
 
     public static void ClearItem(int id)
     {
-        Main.item[id].active = false;
+        Main.item[id].TurnToAir();
         NetMessage.SendData(21, -1, -1, null, id, 0f, 0f, 0f, 0, 0, 0);
     }
 
@@ -72,9 +72,9 @@ public static class Utils
             var val = Main.item[i];
             var num = val.position.X - position.X;
             var num2 = val.position.Y - position.Y;
-            if (val.active && val.netID == id && (num * num) + (num2 * num2) <= radius * radius * 256f)
+            if (val.active && val.type == id && (num * num) + (num2 * num2) <= radius * radius * 256f)
             {
-                Main.item[i].active = false;
+                Main.item[i].TurnToAir();
                 TSPlayer.All.SendData((PacketTypes) 21, "", i, 0f, 0f, 0f, 0);
             }
         }

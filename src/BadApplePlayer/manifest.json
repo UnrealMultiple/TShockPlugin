@@ -1,0 +1,11 @@
+﻿{
+  "README.en-US": {
+    "Description": "BadApple Player"
+  },
+  "README.es-ES": {
+    "Description": "Reproductor BadApple"
+  },
+  "README": {
+    "Description": "BadApple播放器"
+  }
+}

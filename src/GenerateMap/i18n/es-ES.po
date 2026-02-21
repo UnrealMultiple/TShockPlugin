@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:57+0000\n"
-"PO-Revision-Date: 2025-01-10 09:18\n"
+"POT-Creation-Date: 2026-02-17 12:53:19+0000\n"
+"PO-Revision-Date: 2026-02-18 01:59\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,42 @@ msgstr ""
 "X-Crowdin-File-ID: 1180\n"
 "Language: es_ES\n"
 
-#: ../../Plugin.cs:59
+#: ../../Plugin.cs:80
 #, csharp-format
-msgid "地图已生成保存在{0}文件"
+msgid "[GenerateMap]地图图片已保存到: {0}"
 msgstr ""
 
-#: ../../Plugin.cs:15
+#: ../../Plugin.cs:94
+#, csharp-format
+msgid "[GenerateMap]地图文件已保存到: {0}"
+msgstr ""
+
+#: ../../Plugin.cs:84
+#: ../../Plugin.cs:98
+msgid "[GenerateMap]生成地图出错: "
+msgstr ""
+
+#: ../../Plugin.cs:113
+msgid "/map file --- 生成地图文件(.map)"
+msgstr ""
+
+#: ../../Plugin.cs:114
+msgid "/map img --- 生成地图图片"
+msgstr ""
+
+#: ../../Plugin.cs:112
+msgid "GenerateMap帮助: "
+msgstr ""
+
+#: ../../Plugin.cs:16
 msgid "生成地图图片"
+msgstr ""
+
+#: ../../Plugin.cs:60
+msgid "生成地图图片成功"
+msgstr ""
+
+#: ../../Plugin.cs:52
+msgid "生成地图文件成功"
 msgstr ""
 

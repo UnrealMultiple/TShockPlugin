@@ -12,7 +12,7 @@ public class SetJourneyDiff
     [Main]
     public static void SetDiff(CommandArgs args, string diff)
     {
-        if (!Main._currentGameModeInfo.IsJourneyMode)
+        if (!Main.IsJourneyMode)
         {
             args.Player.SendErrorMessage(GetString("必须在旅途模式下才能设置难度！"));
             return;

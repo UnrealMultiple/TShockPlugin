@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Events;
-using Terraria.GameContent.UI.States;
 using Terraria.IO;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
@@ -16,7 +15,7 @@ namespace AutoReset;
 // ReSharper disable once ClassNeverInstantiated.Global
 public class AutoResetPlugin(Main game) : LazyPlugin(game)
 {
-    public static readonly string FolderName = "AutoReset";
+    public const string FolderName = "AutoReset";
 
     private readonly string _replaceFilePath = Path.Combine(TShock.SavePath, FolderName, "ReplaceFiles");
 
@@ -25,7 +24,7 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
     private GenerationProgress? _generationProgress;
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2025, 06, 23, 0);
+    public override Version Version => new (2026, 02, 12, 0);
 
     public override string Author => "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩";
 
@@ -35,12 +34,22 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
     {
         Commands.ChatCommands.Add(new Command("reset.admin", this.ResetCmd, "reset", "重置世界"));
         Commands.ChatCommands.Add(new Command("reset.admin", this.ResetDataCmd, "resetdata", "重置数据"));
-        Commands.ChatCommands.Add(new Command(this.OnWho, "who", "playing", "online"));
         Commands.ChatCommands.Add(new Command("reset.admin", this.ResetSetting, "rs", "重置设置"));
         ServerApi.Hooks.ServerJoin.Register(this, this.OnServerJoin, int.MaxValue);
         ServerApi.Hooks.WorldSave.Register(this, this.OnWorldSave, int.MaxValue);
         ServerApi.Hooks.NpcKilled.Register(this, this.CountKill);
         Terraria.Utils.TryCreatingDirectory(this._replaceFilePath);
+    }
+
+    private void ResetCmd(CommandArgs args)
+    {
+        var seed = string.Join(' ', args.Parameters);
+
+        if (string.IsNullOrWhiteSpace(seed))
+        {
+            seed = ResetConfig.Instance.WorldSetting.Seed;
+        }
+        this.Reset(seed);
     }
 
     private void ResetDataCmd(CommandArgs args)
@@ -53,7 +62,7 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
     {
         if (disposing)
         {
-            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.ResetCmd || c.CommandDelegate == this.OnWho || c.CommandDelegate == this.ResetSetting);
+            Commands.ChatCommands.RemoveAll(c => c.CommandDelegate == this.ResetCmd || c.CommandDelegate == this.ResetSetting);
             ServerApi.Hooks.NpcKilled.Deregister(this, this.CountKill);
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnServerJoin);
             ServerApi.Hooks.WorldSave.Deregister(this, this.OnWorldSave);
@@ -61,28 +70,7 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
 
         base.Dispose(disposing);
     }
-
-    private void OnWho(CommandArgs args)
-    {
-        if (ResetConfig.Instance.KillToReset.KillCount != 0 && ResetConfig.Instance.KillToReset.KillCount != ResetConfig.Instance.KillToReset.NeedKillCount)
-        {
-            args.Player.SendInfoMessage(
-                args.Player.RealPlayer ? GetString($"[i:3611]击杀自动重置:[c/DC143C:{Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}] ([c/98FB98:{ResetConfig.Instance.KillToReset.KillCount}]/{ResetConfig.Instance.KillToReset.NeedKillCount})") : GetString($"📝击杀自动重置:{Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}({ResetConfig.Instance.KillToReset.KillCount}/{ResetConfig.Instance.KillToReset.NeedKillCount})"));
-        }
-
-        var status = this._status;
-        switch (status)
-        {
-            case Status.Cleaning:
-                args.Player.SendInfoMessage(GetString("重置数据中, 请稍后..."));
-                break;
-            case Status.Generating:
-                args.Player.SendInfoMessage(GetString("生成地图中: ") + this.GetProgress());
-                break;
-            case Status.Available:
-                break;
-        }
-    }
+    
 
     private void CountKill(NpcKilledEventArgs args)
     {
@@ -94,12 +82,12 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
             TShock.Utils.Broadcast(GetString($"[重置计数器]已经击杀[c/DC143C:{Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}] ([c/98FB98:{ResetConfig.Instance.KillToReset.KillCount}]/{ResetConfig.Instance.KillToReset.NeedKillCount})"), Color.Gold);
             if (ResetConfig.Instance.KillToReset.NeedKillCount <= ResetConfig.Instance.KillToReset.KillCount)
             {
-                this.ResetCmd(null);
+                this.Reset(ResetConfig.Instance.WorldSetting.Seed, false);
             }
         }
     }
 
-    private void ResetCmd(CommandArgs? e)
+    private void Reset(string seed = "", bool immediately = true)
     {
         if (this._status != Status.Available)
         {
@@ -109,13 +97,18 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
         Task.Run(delegate
         {
             var worldName = Main.worldName;
-            TShock.Utils.Broadcast(GetString("[AutoReset]服务器即将[c/DC143C:开始重置]..."), Color.Orange);
-            for (var i = 60; i >= 0; i--)
+            
+            if (!immediately)
             {
-                TShock.Utils.Broadcast(string.Format(GetString("[AutoReset][c/98FB98:{0}s]后[c/DC143C:关闭服务器]..."), i), Color.Orange);
-                Thread.Sleep(1000);
+                TShock.Utils.Broadcast(GetString("[AutoReset]服务器即将[c/DC143C:开始重置]..."), Color.Orange);
+                for (var i = 60; i >= 0; i--)
+                {
+                    TShock.Utils.Broadcast(string.Format(GetString("[AutoReset][c/98FB98:{0}s]后[c/DC143C:关闭服务器]..."), i), Color.Orange);
+                    Thread.Sleep(1000);
+                }
             }
             this._status = Status.Cleaning;
+            
             TShock.Players.ForEach(delegate (TSPlayer? p)
             {
                 p?.Kick(GetString("[AutoReset]服务器已开始重置..."), true, true);
@@ -125,18 +118,26 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
             ResetConfig.Instance.PreResetCommands.ForEach(delegate (string c) { Commands.HandleCommand(TSPlayer.Server, c); });
             Main.WorldFileMetadata = null;
             Main.gameMenu = true;
-            var seed = !string.IsNullOrEmpty(ResetConfig.Instance.SetWorld.Seed) ? ResetConfig.Instance.SetWorld.Seed : "";
             seed = seed.Trim();
-            if (string.IsNullOrEmpty(seed))
+            
+            if (WorldFileData.TryApplyingCopiedSeed(seed, playSound: true, out _, out var seedTextIncludingSecrets, out _))
             {
-                Main.ActiveWorldFileData.SetSeedToRandom();
+                Main.ActiveWorldFileData.SetSeed(seedTextIncludingSecrets);
             }
             else
             {
-                Main.ActiveWorldFileData.SetSeed(seed);
+                var optionFromSeedText = WorldGenerationOptions.GetOptionFromSeedText(seed);
+                WorldGenerationOptions.SelectOption(optionFromSeedText);
+                if (optionFromSeedText != null || string.IsNullOrWhiteSpace(seed))
+                {
+                    Main.ActiveWorldFileData.SetSeedToRandomWithCurrentEvents();
+                }
+                else
+                {
+                    Main.ActiveWorldFileData.SetSeed(seed);
+                }
             }
-
-            UIWorldCreation.ProcessSpecialWorldSeeds(seed);
+            WorldGenerationOptionsHelper.FlagToWorldGenerationOptions(ResetConfig.Instance.WorldSetting.GenerationOptionsFlag);
             WorldGen.generatingWorld = true;
             Main.rand = new UnifiedRandom(Main.ActiveWorldFileData.Seed);
             Main.menuMode = 10;
@@ -152,7 +153,8 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
 
             this._status = Status.Cleaning;
             Main.rand = new UnifiedRandom((int) DateTime.Now.Ticks);
-            WorldFile.LoadWorld(false);
+            
+            WorldFile.LoadWorld();
             Main.dayTime = WorldFile._tempDayTime;
             Main.time = WorldFile._tempTime;
             Main.raining = WorldFile._tempRaining;
@@ -169,14 +171,14 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
             DD2Event.StopInvasion();
             try
             {
-                if (ResetConfig.Instance.SetWorld.Name != null)
+                if (ResetConfig.Instance.WorldSetting.Name != null)
                 {
-                    Main.worldName = ResetConfig.Instance.SetWorld.Name;
+                    Main.worldName = ResetConfig.Instance.WorldSetting.Name;
                 }
 
                 this.PostReset();
                 ResetConfig.Instance.KillToReset.KillCount = 0;
-                ResetConfig.Instance.SetWorld = new ResetConfig.SetWorldConfig();
+                ResetConfig.Instance.WorldSetting = new ResetConfig.SetWorldConfig();
                 ResetConfig.Instance.SaveTo();
             }
             finally
@@ -194,32 +196,6 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
 
         #region help
 
-        void ShowHelpText()
-        {
-            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, op, out var pageNumber))
-            {
-                return;
-            }
-
-            List<string> lines = new()
-            {
-                "/rs info",
-                GetString("/rs name <地图名>"),
-                GetString("/rs seed <种子>"),
-                GetString("/reset 重置世界"),
-                GetString("/resetdata 重置数据")
-            };
-
-            PaginationTools.SendPage(
-                op, pageNumber, lines,
-                new PaginationTools.Settings
-                {
-                    HeaderFormat = GetString("帮助 ({0}/{1})："),
-                    FooterFormat = GetString("输入 {0}rs help {{0}} 查看更多").SFormat(Commands.Specifier)
-                }
-            );
-        }
-
         if (args.Parameters.Count == 0)
         {
             ShowHelpText();
@@ -229,7 +205,6 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
 
         switch (args.Parameters[0].ToLowerInvariant())
         {
-            // 帮助
             case "help":
                 ShowHelpText();
                 return;
@@ -237,28 +212,31 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
             default:
                 ShowHelpText();
                 break;
-
-            // 世界信息
+            
             case "信息":
             case "info":
-                op.SendInfoMessage(GetString($"地图名: {ResetConfig.Instance.SetWorld.Name ?? Main.worldName}\n") +
-                                   GetString($"种子: {ResetConfig.Instance.SetWorld.Seed ?? GetString("随机")}\n") +
+                WorldGenerationOptionsHelper.FlagToWorldGenerationOptions(ResetConfig.Instance.WorldSetting.GenerationOptionsFlag);
+                op.SendInfoMessage(GetString($"地图名: {ResetConfig.Instance.WorldSetting.Name ?? Main.worldName}\n") +
+                                   GetString($"种子: {(string.IsNullOrWhiteSpace(ResetConfig.Instance.WorldSetting.Seed)?GetString("随机"):ResetConfig.Instance.WorldSetting.Seed)}\n") +
                                    GetString($"击杀重置: {ResetConfig.Instance.KillToReset.Enable}\n") +
                                    GetString($"击杀Npc: {Lang.GetNPCName(ResetConfig.Instance.KillToReset.NpcId)}({ResetConfig.Instance.KillToReset.NpcId})\n") +
                                    GetString($"目标击杀数: {ResetConfig.Instance.KillToReset.NeedKillCount}\n") +
-                                   GetString($"已击杀数: {ResetConfig.Instance.KillToReset.KillCount}"));
+                                   GetString($"已击杀数: {ResetConfig.Instance.KillToReset.KillCount}\n") +
+                                   GetString($"特殊种子:\n")+
+                                   WorldGenerationOptionsHelper.BuildWorldGenerationEnableOptions()
+                                   );
                 break;
             case "名字":
             case "name":
                 if (args.Parameters.Count < 2)
                 {
-                    ResetConfig.Instance.SetWorld.Name = null;
+                    ResetConfig.Instance.WorldSetting.Name = null;
                     ResetConfig.Instance.SaveTo();
                     op.SendSuccessMessage(GetString("世界名字已设置为跟随原世界"));
                 }
                 else
                 {
-                    ResetConfig.Instance.SetWorld.Name = args.Parameters[1];
+                    ResetConfig.Instance.WorldSetting.Name = args.Parameters[1];
                     ResetConfig.Instance.SaveTo();
                     op.SendSuccessMessage(GetString("世界名字已设置为 ") + args.Parameters[1]);
                 }
@@ -268,31 +246,70 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
             case "seed":
                 if (args.Parameters.Count < 2)
                 {
-                    ResetConfig.Instance.SetWorld.Seed = null;
+                    ResetConfig.Instance.WorldSetting.Seed = "";
                     ResetConfig.Instance.SaveTo();
                     op.SendSuccessMessage(GetString("世界种子已设为随机"));
                 }
                 else
                 {
-                    var flag = true;
-                    List<string> seedParts = new();
-                    foreach (var i in args.Parameters)
-                    {
-                        if (flag)
-                        {
-                            flag = false;
-                            continue;
-                        }
-
-                        seedParts.Add(i);
-                    }
-
-                    ResetConfig.Instance.SetWorld.Seed = string.Join(" ", seedParts);
+                    
+                    ResetConfig.Instance.WorldSetting.Seed = string.Join(" ", args.Parameters[1..]);
                     ResetConfig.Instance.SaveTo();
-                    op.SendSuccessMessage(GetString("世界种子已设置为:") + ResetConfig.Instance.SetWorld.Seed);
+                    op.SendSuccessMessage(GetString("世界种子已设置为:") + ResetConfig.Instance.WorldSetting.Seed);
                 }
 
                 break;
+            case "special":
+                if (args.Parameters.Count < 2)
+                {
+                    op.SendSuccessMessage(WorldGenerationOptionsHelper.BuildWorldGenerationOptions());
+                    break;
+                }
+
+                if (!int.TryParse(args.Parameters[1], out var index))
+                {
+                    op.SendErrorMessage(GetString("请输入有效索引!"));
+                }
+
+                if (index > WorldGenerationOptions._options.Count || index < 1 )
+                {
+                    op.SendErrorMessage(GetString("请输入有效索引!"));
+                }
+                
+                WorldGenerationOptionsHelper.SetWorldGenerationOptions(index);
+                ResetConfig.Instance.WorldSetting.GenerationOptionsFlag = WorldGenerationOptionsHelper.WorldGenerationOptionsToFlag();
+                ResetConfig.Instance.SaveTo();
+                op.SendSuccessMessage(WorldGenerationOptionsHelper.BuildWorldGenerationOptions());
+                break;
+        }
+
+        return;
+
+        void ShowHelpText()
+        {
+            if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, op, out var pageNumber))
+            {
+                return;
+            }
+
+            List<string> lines =
+            [
+                "/rs info",
+                GetString("/rs name <地图名>"),
+                GetString("/rs seed <种子>"),
+                GetString("/rs special <特殊种子序号>"),
+                GetString("/reset 重置世界"),
+                GetString("/resetdata 重置数据")
+            ];
+
+            PaginationTools.SendPage(
+                op, pageNumber, lines,
+                new PaginationTools.Settings
+                {
+                    HeaderFormat = GetString("帮助 ({0}/{1})："),
+                    FooterFormat = GetString("输入 {0}rs help {{0}} 查看更多").SFormat(Commands.Specifier)
+                }
+            );
         }
     }
 

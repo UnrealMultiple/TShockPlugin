@@ -3,13 +3,15 @@
 - 作者: 大豆子,肝帝熙恩优化1449
 - 出处: TShock中文官方群
 - 一个指令帮助小白给初始服务器添加缺失的权限，还可以批量添删权限
-- 其实你也可以直接/group addperm 组名字 权限1 权限2 权限3
+
+> [!NOTE]
+> 使用命令`/inperms`后权限才会生效
 
 ## 指令
 
 | 语法                |      权限       |  说明   |
 |-------------------|:-------------:|:-----:|
-| /inperms 或 /批量改权限 | inperms.admin | 批量改权限 |
+| /inperms (/批量改权限) | inperms.admin | 应用配置文件的组权限 |
 
 ## 配置
 > 配置文件位置：tshock/ezperm.json
@@ -21,6 +23,9 @@
       "父组": "guest",
       "添加的权限": [
         "tshock.world.movenpc",
+        "tshock.world.worldupgrades",
+        "tshock.specialeffects.*",
+        "tshock.world.time.usemoondial",
         "tshock.world.time.usesundial",
         "tshock.tp.pylon",
         "tshock.tp.demonconch",
@@ -43,7 +48,10 @@
 ```
 
 ## 更新日志
-
+### v1.3.1
+- 作为基础插件，不再依赖LazyAPI
+### v1.3.0
+- 添加三个默认权限
 ### v1.2.9
 - 使用lazyapi，添加父组预设
 ### v1.2.8

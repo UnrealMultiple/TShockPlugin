@@ -1,74 +1,114 @@
 ﻿using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
+using TShockAPI.Hooks;
 
 namespace AutoFish;
 
 [Config]
 internal class Configuration : JsonConfigBase<Configuration>
 {
-    #region 实例变量
-    [LocalizedPropertyName(CultureType.Chinese, "插件开关")]
-    [LocalizedPropertyName(CultureType.English, "Enable")]
+    public class BaitReward
+    {
+        [LocalizedPropertyName(CultureType.Chinese, "数量")]
+        public int Count { get; set; }
+
+        [LocalizedPropertyName(CultureType.Chinese, "时长")]
+        public int Minutes { get; set; }
+    }
+
+    [LocalizedPropertyName(CultureType.Chinese, "启用")]
     public bool Enabled { get; set; } = true;
 
-    [LocalizedPropertyName(CultureType.Chinese, "多钩钓鱼", Order = -12)]
-    [LocalizedPropertyName(CultureType.English, "MultipleFishFloats")]
-    public bool MoreHook { get; set; } = true;
+    [LocalizedPropertyName(CultureType.Chinese, "启用自动钓鱼")]
+    public bool GlobalAutoFishFeatureEnabled { get; set; } = true;
 
-    [LocalizedPropertyName(CultureType.Chinese, "随机物品", Order = -11)]
-    [LocalizedPropertyName(CultureType.English, "RandCatches")]
-    public bool Random { get; set; } = false;
+    [LocalizedPropertyName(CultureType.Chinese, "玩家默认开启自动钓鱼")]
+    public bool DefaultAutoFishEnabled { get; set; }
 
-    [LocalizedPropertyName(CultureType.Chinese, "多钩上限", Order = -10)]
-    [LocalizedPropertyName(CultureType.English, "MultipleFishFloatsLimit")]
-    public int HookMax { get; set; } = 5;
+    [LocalizedPropertyName(CultureType.Chinese, "启用BUFF")]
+    public bool GlobalBuffFeatureEnabled { get; set; } = true;
 
-    [LocalizedPropertyName(CultureType.Chinese, "Buff表", Order = -6)]
-    [LocalizedPropertyName(CultureType.English, "SetBuffs")]
-    public Dictionary<int, int> BuffID { get; set; } = new Dictionary<int, int>();
+    [LocalizedPropertyName(CultureType.Chinese, "玩家默认开启自动BUFF")]
+    public bool DefaultBuffEnabled { get; set; }
 
-    [LocalizedPropertyName(CultureType.Chinese, "消耗模式", Order = -5)]
-    [LocalizedPropertyName(CultureType.English, "ConsumeBait")]
-    public bool ConMod { get; set; } = false;
+    [LocalizedPropertyName(CultureType.Chinese, "启动多钩")]
+    public bool GlobalMultiHookFeatureEnabled { get; set; } = true;
 
-    [LocalizedPropertyName(CultureType.Chinese, "消耗数量", Order = -4)]
-    [LocalizedPropertyName(CultureType.English, "ConsumeBaitNum")]
-    public int BaitStack { get; set; } = 10;
+    [LocalizedPropertyName(CultureType.Chinese, "多钩数量阈值")]
+    public int GlobalMultiHookMaxNum { get; set; } = 5;
 
-    [LocalizedPropertyName(CultureType.Chinese, "自动时长", Order = -3)]
-    [LocalizedPropertyName(CultureType.English, "Time")]
-    public int timer { get; set; } = 24;
+    [LocalizedPropertyName(CultureType.Chinese, "玩家默认开启多钩")]
+    public bool DefaultMultiHookEnabled { get; set; }
 
-    [LocalizedPropertyName(CultureType.Chinese, "消耗物品", Order = -2)]
-    [LocalizedPropertyName(CultureType.English, "ConsumeItem")]
-    public List<int> BaitType { get; set; } = new();
+    [LocalizedPropertyName(CultureType.Chinese, "忽略敌怪")]
+    public bool GlobalBlockMonsterCatch { get; set; } = true;
 
-    [LocalizedPropertyName(CultureType.Chinese, "额外渔获", Order = -1)]
-    [LocalizedPropertyName(CultureType.English, "AdditionalCatches")]
-    public List<int> DoorItems = new();
-    #endregion
+    [LocalizedPropertyName(CultureType.Chinese, "玩家默认忽略敌怪")]
+    public bool DefaultBlockMonsterCatch { get; set; } = true;
+
+    [LocalizedPropertyName(CultureType.Chinese, "跳过动画")]
+    public bool GlobalSkipFishingAnimation { get; set; } = true;
+
+    [LocalizedPropertyName(CultureType.Chinese, "玩家默认跳过动画")]
+    public bool DefaultSkipFishingAnimation { get; set; } = false;
+
+    [LocalizedPropertyName(CultureType.Chinese, "忽略任务鱼")]
+    public bool GlobalBlockQuestFish { get; set; } = true;
+
+    [LocalizedPropertyName(CultureType.Chinese, "玩家默认忽略任务鱼")]
+    public bool DefaultBlockQuestFish { get; set; } = false;
+
+    [LocalizedPropertyName(CultureType.Chinese, "保护鱼饵")]
+    public bool GlobalProtectValuableBaitEnabled { get; set; } = true;
+
+    [LocalizedPropertyName(CultureType.Chinese, "玩家默认保护鱼饵")]
+    public bool DefaultProtectValuableBaitEnabled { get; set; } = true;
+
+    [LocalizedPropertyName(CultureType.Chinese, "消耗模式")]
+    public bool GlobalConsumptionModeEnabled { get; set; }
+
+    [LocalizedPropertyName(CultureType.Chinese, "消耗配置")]
+    public Dictionary<int, BaitReward> BaitRewards { get; set; } = [];
+
+    [LocalizedPropertyName(CultureType.Chinese, "保护鱼饵列表")]
+    public List<int> ValuableBaitItemIds { get; set; } = [];
+
+    [LocalizedPropertyName(CultureType.Chinese, "BUFF配置")]
+    public Dictionary<int, int> BuffDurations { get; set; } = [];
 
     protected override string Filename => "AutoFish";
 
-    #region 预设参数方法
     protected override void SetDefault()
     {
-        this.BuffID = new Dictionary<int, int>()
+        this.BaitRewards = new Dictionary<int, BaitReward>()
         {
-            { 80,10 },
-            { 122,240 }
+            { 2002, new BaitReward { Count = 1, Minutes = 1 } }, // 蠣虫
+            { 2675, new BaitReward { Count = 1, Minutes = 5 } }, // 熟手诱饵
+            { 2676, new BaitReward { Count = 1, Minutes = 10 } }, // 大师诱饵
+            { 3191, new BaitReward { Count = 1, Minutes = 8 } }, // 附魔夜行者
+            { 3194, new BaitReward { Count = 1, Minutes = 5 } } // 蝗虫
         };
 
-        this.BaitType = new List<int>
-        {
-            2002, 2675, 2676, 3191, 3194
-        };
+        this.ValuableBaitItemIds =
+        [
+             2673, // 松露虫
+             1999, // 帛斑蝶
+             2436, // 蓝水母
+             2437, // 绿水母
+             2438, // 粉水母
+             2891, // 金蝴蝶
+             4340, // 金蜻蜓
+             2893, // 金蚱蜢
+             4362, // 金瓢虫
+             4419, // 金水黾
+             2895 // 金蠕虫
+        ];
 
-        this.DoorItems = new List<int>
-        {
-            29,3093,4345
-        };
+        this.BuffDurations.Add(114, 1);
     }
-    #endregion
 
+    protected override void Reload(ReloadEventArgs args)
+    {
+        args.Player.SendSuccessMessage("[自动钓鱼] 配置重读成功");
+    }
 }

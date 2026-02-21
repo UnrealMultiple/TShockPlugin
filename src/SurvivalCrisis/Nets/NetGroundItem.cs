@@ -22,18 +22,18 @@ namespace SurvivalCrisis.Nets
 			set => noAutoUpdate = !value;
 		}
 
-		public Item Item
-		{
-			get => Main.item[Index];
-		}
+		public Item Item => Main.item[Index].inner;
 
-		public bool Active
+        public bool Active
 		{
 			get => Item.active && Stack > 0 && ID > 0;
 			set 
 			{
 				value &= Stack > 0 && ID > 0;
-				Item.active = value;
+                if (!value)
+                {
+                    Item.TurnToAir();
+                }
 				if (AutoUpdate)
 				{
 					UpdateToClient();
@@ -59,7 +59,7 @@ namespace SurvivalCrisis.Nets
 			set
 			{
 				Item.stack = value;
-				Item.active = value > 0;
+                Active = value > 0;
 				if (AutoUpdate)
 				{
 					UpdateToClient();

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-06-11 03:14:43+0000\n"
-"PO-Revision-Date: 2025-06-12 01:20\n"
+"POT-Creation-Date: 2026-02-12 14:54:26+0000\n"
+"PO-Revision-Date: 2026-02-13 02:02\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1114\n"
 "Language: es_ES\n"
 
-#: ../../BuildPlayer.cs:56
+#: ../../BuildPlayer.cs:58
 msgid " 加入了房间"
 msgstr ""
 
@@ -25,7 +25,7 @@ msgstr ""
 msgid " 的作品"
 msgstr ""
 
-#: ../../BuildPlayer.cs:78
+#: ../../BuildPlayer.cs:80
 msgid " 离开了房间"
 msgstr ""
 
@@ -318,7 +318,7 @@ msgstr ""
 msgid "成功设置房间(id:{0}) 的评分时间为{1}秒"
 msgstr ""
 
-#: ../../BuildPlayer.cs:69
+#: ../../BuildPlayer.cs:71
 #: ../../MainPlugin.cs:353
 #: ../../MainPlugin.cs:378
 #: ../../MainPlugin.cs:403
@@ -426,7 +426,7 @@ msgstr ""
 msgid "此房支持的主题"
 msgstr ""
 
-#: ../../BuildPlayer.cs:42
+#: ../../BuildPlayer.cs:44
 msgid "此房间满人了"
 msgstr ""
 
@@ -447,8 +447,8 @@ msgstr ""
 msgid "点未选取完毕"
 msgstr ""
 
-#: ../../BuildPlayer.cs:56
-#: ../../BuildPlayer.cs:78
+#: ../../BuildPlayer.cs:58
+#: ../../BuildPlayer.cs:80
 msgid "玩家 "
 msgstr ""
 
@@ -493,11 +493,11 @@ msgstr ""
 msgid "该房间不存在此主题"
 msgstr ""
 
-#: ../../BuildPlayer.cs:47
+#: ../../BuildPlayer.cs:49
 msgid "该房间状态无法加入游戏"
 msgstr ""
 
-#: ../../BuildPlayer.cs:74
+#: ../../BuildPlayer.cs:76
 msgid "该房间状态无法离开游戏"
 msgstr ""
 

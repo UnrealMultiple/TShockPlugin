@@ -69,7 +69,7 @@ public static class Utils
         var info = new InventoryData[slots];
         for (var i = 0; i < slots; i++)
         {
-            info[i] = new InventoryData(items[i].netID, items[i].prefix, items[i].stack);
+            info[i] = new InventoryData(items[i].type, items[i].prefix, items[i].stack);
         }
         return info;
     }
@@ -84,6 +84,7 @@ public static class Utils
     //    return info;
     //}
 
+    // TODO: 可能需要更改
     public static Player ModifyData(string name, PlayerData data)
     {
         var player = new Player();
@@ -101,7 +102,7 @@ public static class Utils
             player.statManaMax = data.maxMana;
             player.extraAccessory = data.extraSlot == 1;
 
-            player.difficulty = (byte) Main.GameModeInfo.Id;
+            player.difficulty = (byte) Main.GameMode;
 
             // 火把神
             player.unlockedBiomeTorches = data.unlockedBiomeTorches == 1;
@@ -212,7 +213,7 @@ public static class Utils
     {
         var item = new Item
         {
-            netID = netItem.NetId,
+            type = netItem.NetId,
             stack = netItem.Stack,
             prefix = netItem.PrefixId
         };

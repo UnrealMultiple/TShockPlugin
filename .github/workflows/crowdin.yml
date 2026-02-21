@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
           ssh-key: ${{ secrets.DEPLOY_KEY }}
@@ -49,7 +49,7 @@ jobs:
           }
   
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: 'New Crowdin translations [skip actions]'
           committer: 'Crowdin Bot <support+bot@crowdin.com>'

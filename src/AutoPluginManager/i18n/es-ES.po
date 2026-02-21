@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-05-17 17:40:14+0000\n"
-"PO-Revision-Date: 2025-05-18 01:24\n"
+"POT-Creation-Date: 2025-06-30 14:55:57+0000\n"
+"PO-Revision-Date: 2025-07-01 01:40\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -106,6 +106,22 @@ msgstr "* ¡La recarga en caliente está desactivada y el complemento entrará e
 #: ../../Internal/CommandAdapter.cs:416
 msgid "*热重载已启用,安装的插件已生效!"
 msgstr "*¡La recarga en caliente está habilitada y los complementos instalados han entrado en vigor!"
+
+#: ../../Internal/PluginAPIType.cs:15
+msgid "/plugin/get_all_plugins"
+msgstr ""
+
+#: ../../Internal/PluginAPIType.cs:6
+msgid "/plugin/get_plugin_list"
+msgstr ""
+
+#: ../../Internal/PluginAPIType.cs:9
+msgid "/plugin/get_plugin_manifest/"
+msgstr ""
+
+#: ../../Internal/PluginAPIType.cs:12
+msgid "/plugin/get_plugin_zip"
+msgstr ""
 
 #: ../../Internal/CommandAdapter.cs:39
 msgid "apm b [插件名字] 更新时跳过指定插件"

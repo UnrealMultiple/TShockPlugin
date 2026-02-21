@@ -131,7 +131,7 @@ public class PPLPlugin : TerrariaPlugin
         packetWriter.Write((short) chestId);
         packetWriter.Write((byte) slot);
 
-        var netId = (short) item.netID;
+        var netId = (short) item.type;
         if (item.Name == null)
         {
             netId = 0;
@@ -198,7 +198,7 @@ public class PPLPlugin : TerrariaPlugin
         e.Player.SendInfoMessage(GetString("这个箱子里的战利品是每个玩家单独的!"));
 
         // 伪造宝箱槽位
-        for (var slot = 0; slot < Chest.maxItems; slot++)
+        for (var slot = 0; slot < fakeChest.maxItems; slot++)
         {
             // 获取假宝箱中的物品
             var item = fakeChest.item[slot];
@@ -236,7 +236,7 @@ public class PPLPlugin : TerrariaPlugin
             if (chestId != -1)
             {
                 // 清空现有宝箱物品
-                Main.chest[chestId].item = new Item[Chest.maxItems];
+                Main.chest[chestId].item = new Item[Main.chest[chestId].maxItems];
             }
         }
 

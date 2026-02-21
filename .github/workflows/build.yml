@@ -16,14 +16,14 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
           fetch-depth: 0
           ssh-key: ${{ secrets.DEPLOY_KEY }}
 
       - name: 初始化.NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         env:
           DOTNET_CLI_UI_LANGUAGE: zh-CN
         with:
@@ -50,7 +50,7 @@ jobs:
           ./scripts/publish-plugins-zip.ps1 -GithubToken ${{ secrets.GITHUB_TOKEN }} -NoCache -BuildType Release
 
       - name: 上传临时插件包
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Plugins
           path: out/Target/*
@@ -74,7 +74,7 @@ jobs:
       - name: 获取更新日志
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         id: external_changelog_second
-        uses: mikepenz/release-changelog-builder-action@v5
+        uses: mikepenz/release-changelog-builder-action@v6
         with:
           configuration: ".config/log_config.json"
 

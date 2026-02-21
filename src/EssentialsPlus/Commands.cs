@@ -430,13 +430,14 @@ public static class Commands
                 var full = true;
                 foreach (var item in e.TPlayer.inventory)
                 {
-                    if (item == null || item.stack == 0)
+                    if (item == null || item.stack == 0 || item.IsACoin)
                     {
                         continue;
                     }
 
                     var amtToAdd = item.maxStack - item.stack;
-                    if (amtToAdd > 0 && item.stack > 0 && !item.Name.ToLower().Contains("coin"))
+                    // 检查物品是否有词条（前缀），如果有词条则跳过
+                    if (amtToAdd > 0 && item.prefix == 0)
                     {
                         full = false;
                         e.Player.GiveItem(item.type, amtToAdd);
@@ -451,6 +452,33 @@ public static class Commands
                     e.Player.SendErrorMessage(GetString("您的物品栏已经满了。"));
                 }
             }
+            else if (e.Parameters.Count > 0 && e.Parameters[0].ToLower() == "fall")
+            {
+                var full = true;
+                foreach (var item in e.TPlayer.inventory)
+                {
+                    if (item == null || item.stack == 0 || item.IsACoin)
+                    {
+                        continue;
+                    }
+
+                    var amtToAdd = item.maxStack - item.stack;
+                    // fall模式不检查词条，所有物品都补充
+                    if (amtToAdd > 0)
+                    {
+                        full = false;
+                        e.Player.GiveItem(item.type, amtToAdd, item.prefix);
+                    }
+                }
+                if (!full)
+                {
+                    e.Player.SendSuccessMessage(GetString("填满了您的物品栏（包括带词条的物品）。"));
+                }
+                else
+                {
+                    e.Player.SendErrorMessage(GetString("您的物品栏已经满了。"));
+                }
+            }
             else
             {
                 var item = e.Player.TPlayer.inventory[e.TPlayer.selectedItem];
@@ -459,12 +487,11 @@ public static class Commands
                 {
                     e.Player.SendErrorMessage(GetString("您的{0}已经满了。"), item.Name);
                 }
-                else if (amtToAdd > 0 && item.stack > 0)
+                else if (amtToAdd > 0)
                 {
-                    e.Player.GiveItem(item.type, amtToAdd);
+                    e.Player.GiveItem(item.type, amtToAdd, item.prefix);
+                    e.Player.SendSuccessMessage(GetString("增加了您的{0}的堆叠数量。"), item.Name);
                 }
-
-                e.Player.SendSuccessMessage(GetString("增加了您的{0}的堆叠数量。"), item.Name);
             }
         });
     }

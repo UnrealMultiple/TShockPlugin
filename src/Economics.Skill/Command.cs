@@ -33,7 +33,7 @@ public class Command : BaseCommand
                 args.Player.SendErrorMessage(GetString($"你的货币不足购买此技能!"));
                 return;
             }
-            Skill.PlayerSKillManager.Add(args.Player.Name, args.Player.SelectedItem.netID, index, 1);
+            Skill.PlayerSKillManager.Add(args.Player.Name, args.Player.SelectedItem.type, index, 1);
             args.Player.SendSuccessMessage(GetString("购买成功，技能已绑定!"));
             return;
         }
@@ -73,7 +73,7 @@ public class Command : BaseCommand
                 args.Player.SendErrorMessage(GetString("请输入一个正确的序号!"));
                 return;
             }
-            if (!Skill.PlayerSKillManager.HasSkill(args.Player.Name, args.Player.SelectedItem.netID, index)
+            if (!Skill.PlayerSKillManager.HasSkill(args.Player.Name, args.Player.SelectedItem.type, index)
                             && !Skill.PlayerSKillManager.HasSkill(args.Player.Name, index))
             {
                 args.Player.SendErrorMessage(GetString("你未绑定此技能，无需删除！"));
@@ -131,7 +131,7 @@ public class Command : BaseCommand
     [OnlyPlayer]
     public static void SkillRemoveAll(CommandArgs args)
     {
-        var skills = Skill.PlayerSKillManager.QuerySkillByItem(args.Player.Name, args.Player.SelectedItem.netID);
+        var skills = Skill.PlayerSKillManager.QuerySkillByItem(args.Player.Name, args.Player.SelectedItem.type);
         if (!skills.Any())
         {
             args.Player.SendErrorMessage(GetString("手持物品并未绑定技能!"));
@@ -231,7 +231,7 @@ public class Command : BaseCommand
             args.Player.SendErrorMessage(GetString("无效得技能序号!"));
             return;
         }
-        Skill.PlayerSKillManager.Add(player.Name, player.SelectedItem.netID, index, 1);
+        Skill.PlayerSKillManager.Add(player.Name, player.SelectedItem.type, index, 1);
         args.Player.SendSuccessMessage(GetString($"成功为 {player.Name} 添加了一个技能 {skill.Name}"));
         player.SendSuccessMessage(GetString($"{args.Player.Name} 为你添加了一个技能 {skill.Name}"));
     }

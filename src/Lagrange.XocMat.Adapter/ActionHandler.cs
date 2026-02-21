@@ -235,7 +235,7 @@ public class ActionHandler
             WorldName = Main.worldName,
             WorldID = Main.worldID,
             WorldMode = Main.GameMode,
-            WorldSeed = WorldGen.currentWorldSeed,
+            WorldSeed = Main.ActiveWorldFileData.SeedText,
             Plugins = ServerApi.Plugins.Select(x => new PluginInfo()
             {
                 Name = x.Plugin.Name,

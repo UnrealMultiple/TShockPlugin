@@ -4,14 +4,23 @@ namespace UserCheck;
 
 public class Config
 {
-    public const string Path = "tshock/HelpPlus.json";
+    private const string ConfigPath = "tshock/HelpPlus.json";
 
-    public static Config config = new();
+    public static Config Settings = new();
+    
+    [JsonProperty("每页行数")] 
+    public int PageSize = 30;
 
+    [JsonProperty("每行字数")] 
+    public int WithSize = 120;
+    
+    [JsonProperty("按照字母顺序")] 
+    public bool OrderByLetter;
+    
     [JsonProperty("简短提示开关")] public bool DisPlayShort = true;
-
-    [JsonProperty("简短提示对应")] public Dictionary<string, string> ShortCommands = new();
-
+    
+    [JsonProperty("简短提示对应")]
+    public Dictionary<string, string> ShortCommands;
     public Config()
     {
         this.ShortCommands = new Dictionary<string, string>
@@ -201,52 +210,36 @@ public class Config
         };
     }
 
-    public void Write(string path = Path)
+    /// <summary>
+    /// 将配置文件写入硬盘
+    /// </summary>
+    internal void Write()
     {
-        using (FileStream fileStream = new(path, FileMode.Create, FileAccess.Write, FileShare.Write))
-        {
-            this.Write(fileStream);
-        }
+        using FileStream fileStream = new (ConfigPath, FileMode.Create, FileAccess.Write, FileShare.Write);
+        using StreamWriter streamWriter = new (fileStream);
+        streamWriter.Write(JsonConvert.SerializeObject(this, JsonSettings));
     }
 
-    public void Write(Stream stream)
+    /// <summary>
+    /// 从硬盘读取配置文件
+    /// </summary>
+    internal static void Read()
     {
-        var value = JsonConvert.SerializeObject(this, Formatting.Indented);
-        using (StreamWriter streamWriter = new(stream))
-        {
-            streamWriter.Write(value);
-        }
-    }
-
-    public static Config Read(string path = Path)
-    {
-        var flag = !File.Exists(path);
         Config result;
-        if (flag)
+        if (!File.Exists(ConfigPath))
         {
             result = new Config();
-            result.Write(path);
+            result.Write();
         }
         else
         {
-            using (FileStream fileStream = new(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                result = Read(fileStream);
-            }
+            using FileStream fileStream = new (ConfigPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            using StreamReader streamReader = new (fileStream);
+            result = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd(), JsonSettings)!;
         }
 
-        config = result;
-        return result;
+        Settings = result;
     }
 
-    public static Config Read(Stream stream)
-    {
-        Config result;
-        using (StreamReader streamReader = new(stream))
-        {
-            result = JsonConvert.DeserializeObject<Config>(streamReader.ReadToEnd())!;
-        }
-
-        return result;
-    }
+    private static readonly JsonSerializerSettings JsonSettings = new () { Formatting = Formatting.Indented, ObjectCreationHandling = ObjectCreationHandling.Replace };
 }

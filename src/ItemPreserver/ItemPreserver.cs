@@ -52,7 +52,7 @@ public class ItemPreserver : TerrariaPlugin
                 }
                 for (var i = 0; i < ply.TPlayer.inventory.Length; i++)
                 {
-                    this.ItemUse[ply][i] = new(ply.TPlayer.inventory[i].netID, ply.TPlayer.inventory[i].stack);
+                    this.ItemUse[ply][i] = new(ply.TPlayer.inventory[i].type, ply.TPlayer.inventory[i].stack);
                 }
             }
         }

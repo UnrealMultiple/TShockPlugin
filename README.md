@@ -62,24 +62,22 @@
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 广播盒功能强化 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.md) | 自动垃圾桶插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 自动广播 | [LazyAPI](./src/LazyAPI/README.md) |
-| [AutoClassificationQuickStack](./src/AutoClassificationQuickStack/README.md) | 便捷分类箱子 |  |
 | [AutoClear](./src/AutoClear/README.md) | 智能自动扫地 | [LazyAPI](./src/LazyAPI/README.md) |
-| [AutoFish](./src/AutoFish/README.md) | 自动钓鱼 | [LazyAPI](./src/LazyAPI/README.md) |
+| [AutoFish](./src/AutoFish/README.md) | 自动钓鱼重置版 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoPluginManager](./src/AutoPluginManager/README.md) | 一键自动更新插件 |  |
 | [AutoReset](./src/AutoReset/README.md) | 完全自动重置 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoStoreItems](./src/AutoStoreItems/README.md) | 自动储存 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoTeam](./src/AutoTeam/README.md) | 自动队伍 | [LazyAPI](./src/LazyAPI/README.md) |
 | [Back](./src/Back/README.md) | 死亡回溯 | [LazyAPI](./src/LazyAPI/README.md) |
-| [BagPing](./src/BagPing/README.md) | 地图上标记宝藏袋 |  |
+| [BadApplePlayer](./src/BadApplePlayer/README.md) | BadApple播放器 |  |
 | [BanNpc](./src/BanNpc/README.md) | 阻止怪物生成 | [LazyAPI](./src/LazyAPI/README.md) |
 | [BedSet](./src/BedSet/README.md) | 设置并记录重生点 | [LazyAPI](./src/LazyAPI/README.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.md) | 白名单插件 | [LazyAPI](./src/LazyAPI/README.md) |
+| [BossLock](./src/BossLock/README.md) | 进度锁插件 |  |
 | [BridgeBuilder](./src/BridgeBuilder/README.md) | 快速铺桥 | [LazyAPI](./src/LazyAPI/README.md) |
 | [BuildMaster](./src/BuildMaster/README.md) | 豆沙小游戏·建筑大师模式 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
-| [CaiBot](./src/CaiBot/README.md) | CaiBot 适配插件 |  |
-| [CaiBotLite](./src/CaiBotLite/README.md) | CaiBot 官方机器人适配插件 |  |
+| [CaiBotLite](./src/CaiBotLite/README.md) | CaiBot 官方机器人适配插件 | [linq2db]() |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.md) | 自定义表情命令 | [LazyAPI](./src/LazyAPI/README.md) |
-| [CaiLib](./src/CaiLib/README.md) | Cai 的前置库 |  |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.md) | Cai数据包调试工具 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
 | [CaiRewardChest](./src/CaiRewardChest/README.md) | 将自然生成的箱子变为所有人都可以领一次的奖励箱 | [linq2db]() [LazyAPI](./src/LazyAPI/README.md) |
 | [CGive](./src/CGive/README.md) | 离线命令 |  |
@@ -88,14 +86,12 @@
 | [ChattyBridge](./src/ChattyBridge/README.md) | 用于跨服聊天 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ChestRestore](./src/ChestRestore/README.md) | 资源服无限物品 |  |
 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 恋恋工具箱核心,用于修复各种TShock问题 (建议安装) |  |
-| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 恋恋工具箱扩展 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
+| [Chireiden.TShock.Omni.Misc](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) | 恋恋工具箱扩展 |  |
 | [CNPCShop](./src/CNPCShop/README.md) | 自定义NPC商店 |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | 允许你在控制台执行SQL语句 |  |
 | [ConvertWorld](./src/ConvertWorld/README.md) | 击败怪物转换世界物品 |  |
-| [CreateSpawn](./src/CreateSpawn/README.md) | 出生点建筑生成 | [LazyAPI](./src/LazyAPI/README.md) |
 | [CriticalHit](./src/CriticalHit/README.md) | 击打提示 |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 跨版本游玩 |  |
-| [CustomMonster](./src/CustomMonster/README.md) | 自定义怪物插件 |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 伤害规则掉落 |  |
 | [DamageStatistic](./src/DamageStatistic/README.md) | 在每次 Boss 战后显示每个玩家造成的伤害 |  |
 | [DataSync](./src/DataSync/README.md) | 进度同步 |  |
@@ -113,14 +109,15 @@
 | [Economics.Regain](./src/Economics.Regain/README.md) | 物品回收 | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.RPG](./src/Economics.RPG/README.md) | RPG | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.Shop](./src/Economics.Shop/README.md) | 商店插件 | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
-| [Economics.Skill](./src/Economics.Skill/README.md) | 技能插件 | [Economics.Core](./src/Economics.Core/README.md) [Jint]() [Economics.RPG](./src/Economics.RPG/README.md) |
+| [Economics.Skill](./src/Economics.Skill/README.md) | 技能插件 | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
 | [Economics.Task](./src/Economics.Task/README.md) | 任务插件 | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 强化武器 | [Economics.Core](./src/Economics.Core/README.md) |
 | [EndureBoost](./src/EndureBoost/README.md) | 拥有指定数量物品给指定buff |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.md) | 更多管理指令 | [LazyAPI](./src/LazyAPI/README.md) |
-| [Ezperm](./src/Ezperm/README.md) | 批量改权限 | [LazyAPI](./src/LazyAPI/README.md) |
+| [Ezperm](./src/Ezperm/README.md) | 批量改权限 |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 鱼店 |  |
-| [GenerateMap](./src/GenerateMap/README.md) | 生成地图图片 | [CaiLib](./src/CaiLib/README.md) |
+| [GenerateMap](./src/GenerateMap/README.md) | 生成地图 |  |
+| [GhostView](./src/GhostView/README.md) | 死亡后能在鬼魂状态下观战，重连不刷新复活cd |  |
 | [GolfRewards](./src/GolfRewards/README.md) | 高尔夫奖励 |  |
 | [GoodNight](./src/GoodNight/README.md) | 宵禁 |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 硬核死亡掉生命水晶 |  |
@@ -132,11 +129,12 @@
 | [ItemDecoration](./src/ItemDecoration/README.md) | 手持物品浮动消息显示 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ItemPreserver](./src/ItemPreserver/README.md) | 指定物品不消耗 |  |
 | [JourneyUnlock](./src/JourneyUnlock/README.md) | 解锁旅途物品 |  |
-| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 |  |
+| [Lagrange.XocMat.Adapter](./src/Lagrange.XocMat.Adapter/README.md) | Lagrange.XocMat的适配插件 | [SixLabors.ImageSharp]() |
 | [LazyAPI](./src/LazyAPI/README.md) | 插件基础库 | [linq2db]() |
 | [LifemaxExtra](./src/LifemaxExtra/README.md) | 吃更多生命果/水晶 | [LazyAPI](./src/LazyAPI/README.md) |
 | [ListPlugins](./src/ListPlugins/README.md) | 查已装插件 |  |
 | [MapTp](./src/MapTp/README.md) | 双击大地图传送 |  |
+| [MazeGenerator](./src/MazeGenerator/README.md) | 迷宫生成器插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) | 豆沙小游戏 API |  |
 | [ModifyWeapons](./src/ModifyWeapons/README.md) | 修改武器 | [LazyAPI](./src/LazyAPI/README.md) |
 | [MonsterRegen](./src/MonsterRegen/README.md) | 怪物进度回血 |  |
@@ -177,7 +175,6 @@
 | [ShortCommand](./src/ShortCommand/README.md) | 简短指令 |  |
 | [ShowArmors](./src/ShowArmors/README.md) | 展示装备栏 |  |
 | [SignInSign](./src/SignInSign/README.md) | 告示牌登录插件 |  |
-| [SimultaneousUseFix](./src/SimultaneousUseFix/README.md) | 解决卡双锤卡星旋机枪之类的问题 | [Chireiden.TShock.Omni](https://github.com/sgkoishi/yaaiomni/blob/master/README.md) |
 | [SmartRegions](./src/SmartRegions/README.md) | 智能区域 |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 生成基础建设 |  |
 | [SpclPerm](./src/SpclPerm/README.md) | 服主特权 |  |
@@ -192,16 +189,15 @@
 | [TransferPatch](./src/TransferPatch/README.md) | 翻译补丁 |  |
 | [UnseenInventory](./src/UnseenInventory/README.md) | 允许服务器端生成“无法获取”的物品 |  |
 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) | VBY插件的基础库 |  |
-| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 对一些游戏内容的可自定义修改 (超强) | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
-| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 提供一些其他的辅助命令 | [VBY.Common](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.Common.md) |
+| [VBY.GameContentModify](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.GameContentModify.md) | 对一些游戏内容的可自定义修改 (超强) |  |
+| [VBY.OtherCommand](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.OtherCommand.md) | 提供一些其他的辅助命令 |  |
 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) | 一个允许热重载的插件加载器 |  |
-| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | VBY.PluginLoader的扩展, 自动热重载插件 | [VBY.PluginLoader](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoader.md) |
+| [VBY.PluginLoaderAutoReload](https://github.com/UnrealMultiple/MyPlugin/blob/master/docs/VBY.PluginLoaderAutoReload.md) | VBY.PluginLoader的扩展, 自动热重载插件 |  |
 | [VeinMiner](./src/VeinMiner/README.md) | 连锁挖矿 |  |
 | [VotePlus](./src/VotePlus/README.md) | 多功能投票 |  |
 | [WeaponPlus](./src/WeaponPlus/README.md) | 武器强化钱币版 |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.md) | 为服务器加载 Wiki 语言包 |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 世界编辑器,可以修改大部分的世界参数 |  |
-| [ZHIPlayerManager](./src/ZHIPlayerManager/README.md) | zhi的玩家管理插件 |  |
 
 </Details>
 

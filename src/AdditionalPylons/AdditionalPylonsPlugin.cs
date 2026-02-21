@@ -121,7 +121,7 @@ public class AdditionalPylonsPlugin : LazyPlugin
             return;
         }
 
-        var holdingItem = e.Player.TPlayer.inventory[e.SelectedItem].netID;
+        var holdingItem = e.Player.TPlayer.inventory[e.SelectedItem].type;
         var alreadyHoldingPylon = this.playersHoldingPylon.Contains(e.PlayerId);
         var isHoldingPylon = this.pylonItemIDList.Contains(holdingItem);
 

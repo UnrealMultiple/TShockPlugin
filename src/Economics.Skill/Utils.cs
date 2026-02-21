@@ -14,7 +14,7 @@ public class Utils
     public static SkillContext VerifyBindSkill(TSPlayer Player, int index)
     {
         var context = Config.Instance.GetSkill(index) ?? throw new NullReferenceException(GetString($"技能序号{index} 不存在！"));
-        if (context.SkillSpark.SparkMethod.Contains(SkillSparkType.Take) && (Player.SelectedItem.netID == 0 || Player.SelectedItem.stack == 0))
+        if (context.SkillSpark.SparkMethod.Contains(SkillSparkType.Take) && (Player.SelectedItem.type == 0 || Player.SelectedItem.stack == 0))
         {
             throw new Exception(GetString("绑定此技能需要手持一个武器!"));
         }
@@ -35,7 +35,7 @@ public class Utils
         {
             throw new Exception(GetString($"你当前等级无法购买此技能，限制必须购买技能:{string.Join(", ", context.LimitSkill)}"));
         }
-        var bind = Skill.PlayerSKillManager.QuerySkillByItem(Player.Name, Player.SelectedItem.netID).Where(s => s.Skill != null && !s.Skill.Hidden);
+        var bind = Skill.PlayerSKillManager.QuerySkillByItem(Player.Name, Player.SelectedItem.type).Where(s => s.Skill != null && !s.Skill.Hidden);
         return context.SkillUnique && Skill.PlayerSKillManager.HasSkill(Player.Name, index)
             ? throw new Exception(GetString("此技能是唯一的不能重复绑定!"))
             : context.SkillUniqueAll && Skill.PlayerSKillManager.HasSkill(index)

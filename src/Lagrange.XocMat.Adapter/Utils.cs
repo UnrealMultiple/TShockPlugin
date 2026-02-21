@@ -204,7 +204,7 @@ internal class Utils
         var info = new Protocol.Internet.Item[slots];
         for (var i = 0; i < slots; i++)
         {
-            info[i] = new Protocol.Internet.Item(items[i].netID, items[i].prefix, items[i].stack);
+            info[i] = new Protocol.Internet.Item(items[i].type, items[i].prefix, items[i].stack);
         }
         return info;
     }
@@ -273,7 +273,7 @@ internal class Utils
         //垃圾桶
         retObject.trashItem = new Protocol.Internet.Item[1]
         {
-            new(tsplayer.trashItem.netID, tsplayer.trashItem.prefix, tsplayer.trashItem.stack)
+            new(tsplayer.trashItem.type, tsplayer.trashItem.prefix, tsplayer.trashItem.stack)
         };
         //猪猪存钱罐
         retObject.Piggiy = GetInventoryData(tsplayer.bank.item, NetItem.PiggySlots);
@@ -690,7 +690,7 @@ internal class Utils
     {
         var item = new Terraria.Item
         {
-            netID = netItem.NetId,
+            type = netItem.NetId,
             stack = netItem.Stack,
             prefix = netItem.PrefixId
         };
@@ -714,7 +714,7 @@ internal class Utils
             for (var y = 0; y < Main.maxTilesY; y++)
             {
                 var tile = MapHelper.CreateMapTile(x, y, byte.MaxValue);
-                var col = MapHelper.GetMapTileXnaColor(ref tile);
+                var col = MapHelper.GetMapTileXnaColor(tile);
                 image[x, y] = new Rgba32(col.R, col.G, col.B, col.A);
             }
         }

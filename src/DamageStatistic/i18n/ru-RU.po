@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-08 13:15:45+0000\n"
-"PO-Revision-Date: 2025-04-12 01:13\n"
+"POT-Creation-Date: 2026-02-14 09:48:32+0000\n"
+"PO-Revision-Date: 2026-02-15 02:01\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,14 +17,12 @@ msgstr ""
 "X-Crowdin-File-ID: 1148\n"
 "Language: ru_RU\n"
 
-#: ../../DamageStatistic.cs:70
+#: ../../DamageStatistic.cs:61
 #, csharp-format
-msgid "[c/74F3C9:{0}] 位玩家击败了 [c/74F3C9:{1}]\n"
-"{2}"
-msgstr "[c/74F3C9:{0}] Игрок(а/ов) убил(и) [c/74F3C9:{1}]\n"
-"{2}"
+msgid "[c/74F3C9:{0}]位玩家耗时[c/74F3C9:{1}分{2:00}秒]击败了[c/74F3C9:{3}]\n"
+msgstr ""
 
-#: ../../DamageStatistic.cs:14
+#: ../../DamageStatistic.cs:16
 msgid "在每次 Boss 战后显示每个玩家造成的伤害。"
 msgstr "Отображает кол-во нанесённого игроками урона по боссам"
 

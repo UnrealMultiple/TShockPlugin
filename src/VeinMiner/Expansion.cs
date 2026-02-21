@@ -8,7 +8,7 @@ public static class Expansion
     public static int GetBlankSlot(this TSPlayer tsp)
     {
         var num = 0;
-        tsp.TPlayer.inventory.ForEach(s => { if (s.netID == 0) { num++; } });
+        tsp.TPlayer.inventory.ForEach(s => { if (s.type == 0) { num++; } });
         return num;
     }
 
@@ -23,11 +23,11 @@ public static class Expansion
             s = tsp.TPlayer.inventory[i];
             if (available < stack)
             {
-                if (s.netID == id)
+                if (s.type == id)
                 {
                     available += s.maxStack - s.stack;
                 }
-                else if (s.netID == 0)
+                else if (s.type == 0)
                 {
                     available += item.maxStack;
                 }

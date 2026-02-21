@@ -155,7 +155,7 @@ public class Plugin : LazyPlugin
             // Agregar el ítem si está habilitado
             if (Setting.Instance.ItemChatConfig.ShowName)
             {
-                stringBuilder.Append($"[i:{selectedItem.netID}]");
+                stringBuilder.Append($"[i:{selectedItem.type}]");
             }
 
             // Agregar el daño si está habilitado

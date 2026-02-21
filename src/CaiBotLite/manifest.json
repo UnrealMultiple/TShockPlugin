@@ -1,5 +1,7 @@
 {
-  "Dependencies": [],
+  "Dependencies": [
+    "linq2db"
+  ],
   "README.en-US": {
     "Description": "CaiBot adapter plugin (Only support QQ)"
   },

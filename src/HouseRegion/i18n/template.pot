@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: HouseRegion\n"
-"POT-Creation-Date: 2025-06-30 14:56:22+0000\n"
-"PO-Revision-Date: 2025-06-30 14:56:22+0000\n"
+"POT-Creation-Date: 2026-02-12 15:50:59+0000\n"
+"PO-Revision-Date: 2026-02-12 15:50:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,84 +10,88 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../Plugin.cs:679
+#: ../../Plugin.cs:757
 msgid "{0} 修改锁状态: {1}"
 msgstr ""
 
-#: ../../Plugin.cs:475
+#: ../../Plugin.cs:554
 msgid "{0} 删除房屋: {1}"
 msgstr ""
 
-#: ../../Plugin.cs:235
+#: ../../Plugin.cs:311
 msgid "{0} 建了新房子: {1}"
 msgstr ""
 
-#: ../../Plugin.cs:384
+#: ../../Plugin.cs:460
 msgid "{0} 添加 {1} 为房屋 {2} 的使用者。"
 msgstr ""
 
-#: ../../Plugin.cs:296
+#: ../../Plugin.cs:372
 msgid "{0} 添加 {1} 为房屋 {2} 的拥有者。"
 msgstr ""
 
-#: ../../Plugin.cs:430
+#: ../../Plugin.cs:506
 msgid "{0} 移除 {1} 的房屋 {2} 的使用者。"
 msgstr ""
 
-#: ../../Plugin.cs:340
+#: ../../Plugin.cs:416
 msgid "{0} 移除 {1} 的房屋 {2} 的拥有者。"
 msgstr ""
 
-#: ../../Plugin.cs:583
+#: ../../Plugin.cs:661
 msgid "{0} 重新定义的房子: {1}"
 msgstr ""
 
-#: ../../Plugin.cs:703
+#: ../../Plugin.cs:819
 msgid "/house add 房屋名字"
 msgstr ""
 
-#: ../../Plugin.cs:701
+#: ../../Plugin.cs:817
 msgid "/house set 1"
 msgstr ""
 
-#: ../../Plugin.cs:702
+#: ../../Plugin.cs:818
 msgid "/house set 2"
 msgstr ""
 
-#: ../../Plugin.cs:18
+#: ../../Plugin.cs:20
 msgid "一个著名的用于保护房屋的插件。"
 msgstr ""
 
-#: ../../Plugin.cs:678
+#: ../../Plugin.cs:756
 msgid "上锁"
 msgstr ""
 
-#: ../../Plugin.cs:494
+#: ../../Plugin.cs:572
 msgid "临时敲击点清除完毕!"
 msgstr ""
 
-#: ../../Plugin.cs:649
+#: ../../Plugin.cs:727
 msgid "作者: "
 msgstr ""
 
-#: ../../Plugin.cs:234
+#: ../../Plugin.cs:310
 msgid "你建造了新房子 "
 msgstr ""
 
-#: ../../Plugin.cs:142
+#: ../../Plugin.cs:218
 msgid "你必须登录才能使用房子插件。"
 msgstr ""
 
-#: ../../PacketReceive.cs:578
-#: ../../PacketReceive.cs:602
+#: ../../Plugin.cs:117
+msgid "你没有权力使用被房子保护的地区的箱子合成物品。"
+msgstr ""
+
+#: ../../PacketReceive.cs:566
+#: ../../PacketReceive.cs:590
 msgid "你没有权力修改被房子保护的地区。"
 msgstr ""
 
-#: ../../PacketReceive.cs:466
+#: ../../PacketReceive.cs:454
 msgid "你没有权力修改被房子保护的地区的标牌。"
 msgstr ""
 
-#: ../../PacketReceive.cs:410
+#: ../../PacketReceive.cs:398
 msgid "你没有权力修改被房子保护的地区的箱子。"
 msgstr ""
 
@@ -95,44 +99,48 @@ msgstr ""
 msgid "你没有权力修改被房子保护的地区的门。"
 msgstr ""
 
-#: ../../PacketReceive.cs:76
-#: ../../PacketReceive.cs:103
-#: ../../PacketReceive.cs:134
-#: ../../PacketReceive.cs:175
-#: ../../PacketReceive.cs:628
+#: ../../PacketReceive.cs:81
+#: ../../PacketReceive.cs:108
+#: ../../PacketReceive.cs:139
+#: ../../PacketReceive.cs:180
+#: ../../PacketReceive.cs:616
 msgid "你没有权力修改被房子保护的物品。"
 msgstr ""
 
-#: ../../Plugin.cs:608
+#: ../../Plugin.cs:686
 msgid "你没有权力修改这个房子!"
 msgstr ""
 
-#: ../../Plugin.cs:688
+#: ../../Plugin.cs:766
 msgid "你没有权力修改这个房子的锁!"
 msgstr ""
 
-#: ../../Plugin.cs:315
-#: ../../Plugin.cs:403
+#: ../../Plugin.cs:391
+#: ../../Plugin.cs:479
 msgid "你没有权力分享这个房子!"
 msgstr ""
 
-#: ../../Plugin.cs:479
+#: ../../Plugin.cs:558
 msgid "你没有权力删除这个房子!"
 msgstr ""
 
-#: ../../PacketReceive.cs:490
+#: ../../PacketReceive.cs:478
 msgid "你没有权力在被房子保护的地区放水。"
 msgstr ""
 
-#: ../../PacketReceive.cs:545
+#: ../../PacketReceive.cs:533
 msgid "你没有权力在被房子保护的地区油漆墙。"
 msgstr ""
 
-#: ../../PacketReceive.cs:521
+#: ../../PacketReceive.cs:509
 msgid "你没有权力在被房子保护的地区油漆砖。"
 msgstr ""
 
-#: ../../PacketReceive.cs:352
+#: ../../Plugin.cs:152
+msgid "你没有权力快速堆叠箱被房子保护的地区的箱子。"
+msgstr ""
+
+#: ../../PacketReceive.cs:340
 msgid "你没有权力打开被房子保护的地区的箱子。"
 msgstr ""
 
@@ -140,61 +148,61 @@ msgstr ""
 msgid "你没有权力损坏被房子保护的地区。"
 msgstr ""
 
-#: ../../PacketReceive.cs:434
+#: ../../PacketReceive.cs:422
 msgid "你没有权力放置被房子保护的地区的家具。"
 msgstr ""
 
-#: ../../PacketReceive.cs:381
+#: ../../PacketReceive.cs:369
 msgid "你没有权力更新被房子保护的地区的箱子。"
 msgstr ""
 
-#: ../../Plugin.cs:656
+#: ../../Plugin.cs:734
 msgid "你没有权力查看这个房子的信息!"
 msgstr ""
 
-#: ../../Plugin.cs:354
-#: ../../Plugin.cs:444
+#: ../../Plugin.cs:430
+#: ../../Plugin.cs:520
 msgid "你没有权力管理这个房子!"
 msgstr ""
 
-#: ../../PacketReceive.cs:662
+#: ../../PacketReceive.cs:650
 msgid "你没有权力触发被房子保护的宝石锁。"
 msgstr ""
 
-#: ../../Plugin.cs:760
+#: ../../Plugin.cs:881
 msgid "你离开了你的房子: "
 msgstr ""
 
-#: ../../Plugin.cs:764
+#: ../../Plugin.cs:885
 msgid "你离开了房子: "
 msgstr ""
 
-#: ../../Plugin.cs:749
-#: ../../Plugin.cs:776
+#: ../../Plugin.cs:865
+#: ../../Plugin.cs:905
 msgid "你进入了你的房子: "
 msgstr ""
 
-#: ../../Plugin.cs:753
-#: ../../Plugin.cs:780
+#: ../../Plugin.cs:869
+#: ../../Plugin.cs:909
 msgid "你进入了房子: "
 msgstr ""
 
-#: ../../Plugin.cs:228
-#: ../../Plugin.cs:576
+#: ../../Plugin.cs:304
+#: ../../Plugin.cs:654
 msgid "你选择的区域与Tshock区域 {0} 重叠，这是不允许的。"
 msgstr ""
 
-#: ../../Plugin.cs:213
-#: ../../Plugin.cs:561
+#: ../../Plugin.cs:289
+#: ../../Plugin.cs:639
 msgid "你选择的区域与其他房子存在重叠，这是不允许的。"
 msgstr ""
 
-#: ../../Plugin.cs:220
-#: ../../Plugin.cs:568
+#: ../../Plugin.cs:296
+#: ../../Plugin.cs:646
 msgid "你选择的区域与出生保护范围重叠，这是不允许的。"
 msgstr ""
 
-#: ../../Plugin.cs:652
+#: ../../Plugin.cs:730
 msgid "使用者: "
 msgstr ""
 
@@ -206,101 +214,127 @@ msgstr ""
 msgid "保护区左上角已设置!"
 msgstr ""
 
-#: ../../Plugin.cs:683
+#: ../../Plugin.cs:761
 msgid "修改房屋锁失败!"
 msgstr ""
 
-#: ../../Plugin.cs:704
+#: ../../Plugin.cs:820
 msgid ""
 "其他命令: list, allow, disallow, redefine, name, delete, clear, info, adduser, "
-"deluser, lock"
+"deluser, lock, show, showall, auto"
 msgstr ""
 
-#: ../../Plugin.cs:244
-#: ../../Plugin.cs:254
-#: ../../Plugin.cs:592
+#: ../../Plugin.cs:320
+#: ../../Plugin.cs:670
 #, csharp-format
 msgid "因为您的房子总面积超过了最大限制 {0} 格块。"
 msgstr ""
 
-#: ../../Plugin.cs:249
-#: ../../Plugin.cs:597
+#: ../../Plugin.cs:325
+#: ../../Plugin.cs:675
 #, csharp-format
 msgid "因为您的房屋宽度小于最小限制 {0} 格块。"
 msgstr ""
 
-#: ../../Plugin.cs:602
+#: ../../Plugin.cs:330
+#: ../../Plugin.cs:680
 #, csharp-format
 msgid "因为您的房屋高度小于最小限制 {0} 格块。"
 msgstr ""
 
 #: ../../PacketReceive.cs:216
-#: ../../Plugin.cs:650
+#: ../../Plugin.cs:728
 msgid "已上锁"
 msgstr ""
 
-#: ../../Plugin.cs:678
+#: ../../Plugin.cs:805
+msgid "已关闭自动显示房屋区域。"
+msgstr ""
+
+#: ../../Plugin.cs:809
+msgid "已开启自动显示房屋区域。进入房子时会自动显示边界。"
+msgstr ""
+
+#: ../../PacketReceive.cs:703
+#, csharp-format
+msgid "已显示房屋 {0} 的边界。"
+msgstr ""
+
+#: ../../PacketReceive.cs:784
+msgid "已显示所有房屋的边界。"
+msgstr ""
+
+#: ../../PacketReceive.cs:692
+#, csharp-format
+msgid "已隐藏房屋 {0} 的边界。"
+msgstr ""
+
+#: ../../PacketReceive.cs:792
+msgid "已隐藏所有房屋的边界。"
+msgstr ""
+
+#: ../../Plugin.cs:756
 msgid "开锁"
 msgstr ""
 
-#: ../../Plugin.cs:514
+#: ../../Plugin.cs:592
 msgid "您目前还没有已定义房屋。"
 msgstr ""
 
-#: ../../Plugin.cs:241
-#: ../../Plugin.cs:589
+#: ../../Plugin.cs:317
+#: ../../Plugin.cs:667
 msgid "您设置的房屋宽:{0} 高:{1} 面积:{2} 需重新设置。"
 msgstr ""
 
-#: ../../Plugin.cs:295
+#: ../../Plugin.cs:371
 #, csharp-format
 msgid "成功为 {0} 添加房屋 {1} 的拥有权!"
 msgstr ""
 
-#: ../../Plugin.cs:429
+#: ../../Plugin.cs:505
 #, csharp-format
 msgid "成功移除 {0} 的房屋 {1} 的使用权!"
 msgstr ""
 
-#: ../../Plugin.cs:339
-#: ../../Plugin.cs:383
+#: ../../Plugin.cs:415
+#: ../../Plugin.cs:459
 #, csharp-format
 msgid "成功移除 {0} 的房屋 {1} 的拥有权!"
 msgstr ""
 
-#: ../../Plugin.cs:237
+#: ../../Plugin.cs:313
 #, csharp-format
 msgid "房子 {0} 已存在!"
 msgstr ""
 
-#: ../../Plugin.cs:678
+#: ../../Plugin.cs:756
 #, csharp-format
 msgid "房子: {0} {1}"
 msgstr ""
 
-#: ../../Plugin.cs:795
+#: ../../Plugin.cs:930
 msgid "房子插件提示处理超时,已抛弃部分提示!"
 msgstr ""
 
-#: ../../Plugin.cs:648
+#: ../../Plugin.cs:726
 #, csharp-format
 msgid "房屋 {0} 的信息:"
 msgstr ""
 
-#: ../../Plugin.cs:474
+#: ../../Plugin.cs:553
 #, csharp-format
 msgid "房屋:{0} 删除成功!"
 msgstr ""
 
-#: ../../Plugin.cs:470
+#: ../../Plugin.cs:546
 msgid "房屋删除失败!"
 msgstr ""
 
-#: ../../Plugin.cs:199
+#: ../../Plugin.cs:275
 msgid "房屋名称不能为空。"
 msgstr ""
 
-#: ../../Plugin.cs:96
+#: ../../Plugin.cs:168
 msgid "房屋插件错误传递时出错:"
 msgstr ""
 
@@ -308,7 +342,7 @@ msgstr ""
 msgid "房屋插件错误修改锁房屋时出错:"
 msgstr ""
 
-#: ../../Plugin.cs:469
+#: ../../Plugin.cs:545
 msgid "房屋插件错误删除错误"
 msgstr ""
 
@@ -324,15 +358,15 @@ msgstr ""
 msgid "房屋插件错误数据库写入错误:"
 msgstr ""
 
-#: ../../PacketReceive.cs:189
+#: ../../PacketReceive.cs:194
 msgid "房屋插件错误调用事件时出错:"
 msgstr ""
 
 #: ../../Utils.cs:90
 #: ../../PacketReceive.cs:215
-#: ../../Plugin.cs:635
-#: ../../Plugin.cs:640
-#: ../../Plugin.cs:646
+#: ../../Plugin.cs:713
+#: ../../Plugin.cs:718
+#: ../../Plugin.cs:724
 msgid "房屋插件错误超标错误:"
 msgstr ""
 
@@ -340,15 +374,15 @@ msgstr ""
 msgid "房屋插件错误重新定义房屋时出错:"
 msgstr ""
 
-#: ../../Plugin.cs:265
+#: ../../Plugin.cs:341
 msgid "房屋添加失败:您只能添加{0}个房屋!"
 msgstr ""
 
-#: ../../Plugin.cs:651
+#: ../../Plugin.cs:729
 msgid "拥有者: "
 msgstr ""
 
-#: ../../Plugin.cs:177
+#: ../../Plugin.cs:253
 msgid "指令错误! 正确指令: /house set [1/2]"
 msgstr ""
 
@@ -361,29 +395,33 @@ msgstr ""
 msgid "敲击处为 {0} 的房子: {1} 状态: {2}"
 msgstr ""
 
-#: ../../Plugin.cs:503
+#: ../../Plugin.cs:581
 msgid "无效页码 ({0})"
 msgstr ""
 
+#: ../../Plugin.cs:114
+msgid "无权使用被房子保护的地区箱子合成物品!"
+msgstr ""
+
 #: ../../PacketReceive.cs:252
-#: ../../PacketReceive.cs:575
-#: ../../PacketReceive.cs:599
+#: ../../PacketReceive.cs:563
+#: ../../PacketReceive.cs:587
 msgid "无权修改房子保护!"
 msgstr ""
 
-#: ../../PacketReceive.cs:74
-#: ../../PacketReceive.cs:100
-#: ../../PacketReceive.cs:132
-#: ../../PacketReceive.cs:172
-#: ../../PacketReceive.cs:625
+#: ../../PacketReceive.cs:79
+#: ../../PacketReceive.cs:105
+#: ../../PacketReceive.cs:137
+#: ../../PacketReceive.cs:177
+#: ../../PacketReceive.cs:613
 msgid "无权修改房子保护的物品!"
 msgstr ""
 
-#: ../../PacketReceive.cs:463
+#: ../../PacketReceive.cs:451
 msgid "无权修改标牌!"
 msgstr ""
 
-#: ../../PacketReceive.cs:407
+#: ../../PacketReceive.cs:395
 msgid "无权修改箱子!"
 msgstr ""
 
@@ -391,184 +429,193 @@ msgstr ""
 msgid "无权修改门!"
 msgstr ""
 
-#: ../../PacketReceive.cs:349
+#: ../../Plugin.cs:148
+msgid "无权快速堆叠箱子!"
+msgstr ""
+
+#: ../../PacketReceive.cs:337
 msgid "无权打开箱子!"
 msgstr ""
 
-#: ../../PacketReceive.cs:487
+#: ../../PacketReceive.cs:475
 msgid "无权放水!"
 msgstr ""
 
-#: ../../PacketReceive.cs:431
+#: ../../PacketReceive.cs:419
 msgid "无权放置家具!"
 msgstr ""
 
-#: ../../PacketReceive.cs:378
+#: ../../PacketReceive.cs:366
 msgid "无权更新箱子!"
 msgstr ""
 
-#: ../../PacketReceive.cs:542
+#: ../../PacketReceive.cs:530
 msgid "无权油漆墙!"
 msgstr ""
 
-#: ../../PacketReceive.cs:518
+#: ../../PacketReceive.cs:506
 msgid "无权油漆砖!"
 msgstr ""
 
-#: ../../PacketReceive.cs:659
+#: ../../PacketReceive.cs:647
 msgid "无权触发房子保护的宝石锁!"
 msgstr ""
 
-#: ../../Plugin.cs:673
+#: ../../Plugin.cs:751
 msgid "无法使用，因为服务器关闭了锁房屋功能。"
 msgstr ""
 
-#: ../../Plugin.cs:378
+#: ../../Plugin.cs:454
 msgid "无法使用，因为服务器禁止了分享使用者功能。"
 msgstr ""
 
-#: ../../Plugin.cs:290
+#: ../../Plugin.cs:366
 msgid "无法使用，因为服务器禁止了分享所有者功能。"
 msgstr ""
 
-#: ../../Plugin.cs:423
+#: ../../Plugin.cs:499
 msgid "无法使用，因为服务器禁止了所有者修改使用者功能。"
 msgstr ""
 
-#: ../../Plugin.cs:375
+#: ../../Plugin.cs:451
 msgid "无法使用，因为服务器禁止了所有者分享使用者功能。"
 msgstr ""
 
 #: ../../PacketReceive.cs:216
-#: ../../Plugin.cs:650
+#: ../../Plugin.cs:728
 msgid "未上锁"
 msgstr ""
 
-#: ../../Plugin.cs:260
-#: ../../Plugin.cs:613
+#: ../../Plugin.cs:784
+#, csharp-format
+msgid "未找到房屋 {0}"
+msgstr ""
+
+#: ../../Plugin.cs:336
+#: ../../Plugin.cs:691
 msgid "未设置完整的房屋点,建议先使用指令: /house help"
 msgstr ""
 
-#: ../../Plugin.cs:285
-#: ../../Plugin.cs:331
-#: ../../Plugin.cs:371
-#: ../../Plugin.cs:419
-#: ../../Plugin.cs:460
-#: ../../Plugin.cs:545
-#: ../../Plugin.cs:630
-#: ../../Plugin.cs:672
+#: ../../Plugin.cs:361
+#: ../../Plugin.cs:407
+#: ../../Plugin.cs:447
+#: ../../Plugin.cs:495
+#: ../../Plugin.cs:536
+#: ../../Plugin.cs:623
+#: ../../Plugin.cs:708
+#: ../../Plugin.cs:750
 msgid "没有找到这个房子!"
 msgstr ""
 
-#: ../../Plugin.cs:300
-#: ../../Plugin.cs:388
+#: ../../Plugin.cs:376
+#: ../../Plugin.cs:464
 msgid "添加用户权力失败。"
 msgstr ""
 
-#: ../../Plugin.cs:650
+#: ../../Plugin.cs:728
 msgid "状态: "
 msgstr ""
 
-#: ../../Plugin.cs:170
+#: ../../Plugin.cs:246
 msgid "现在请敲击要保护的区域的右下角。"
 msgstr ""
 
-#: ../../Plugin.cs:165
+#: ../../Plugin.cs:241
 msgid "现在请敲击要保护的区域的左上角。"
 msgstr ""
 
-#: ../../Plugin.cs:310
-#: ../../Plugin.cs:349
-#: ../../Plugin.cs:398
-#: ../../Plugin.cs:439
+#: ../../Plugin.cs:386
+#: ../../Plugin.cs:425
+#: ../../Plugin.cs:474
+#: ../../Plugin.cs:515
 #, csharp-format
 msgid "用户 {0} 不存在。"
 msgstr ""
 
-#: ../../Plugin.cs:305
-#: ../../Plugin.cs:393
+#: ../../Plugin.cs:381
+#: ../../Plugin.cs:469
 #, csharp-format
 msgid "用户 {0} 已拥有此房屋权限。"
 msgstr ""
 
-#: ../../Plugin.cs:517
+#: ../../Plugin.cs:595
 msgid "目前的房屋 ({0}/{1}) 页:"
 msgstr ""
 
-#: ../../Plugin.cs:426
+#: ../../Plugin.cs:502
 msgid "目标非此房屋使用者。"
 msgstr ""
 
-#: ../../Plugin.cs:336
+#: ../../Plugin.cs:412
 msgid "目标非此房屋拥有者。"
 msgstr ""
 
-#: ../../Plugin.cs:344
-#: ../../Plugin.cs:434
+#: ../../Plugin.cs:420
+#: ../../Plugin.cs:510
 msgid "移除用户权力失败。"
 msgstr ""
 
-#: ../../Plugin.cs:700
+#: ../../Plugin.cs:816
 msgid "要创建房屋，请使用以下命令:"
 msgstr ""
 
-#: ../../Plugin.cs:272
+#: ../../Plugin.cs:348
 msgid "语法错误! 正确语法: /house add [屋名]"
 msgstr ""
 
-#: ../../Plugin.cs:408
+#: ../../Plugin.cs:484
 msgid "语法错误! 正确语法: /house adduser [名字] [屋名]"
 msgstr ""
 
-#: ../../Plugin.cs:320
+#: ../../Plugin.cs:396
 msgid "语法错误! 正确语法: /house allow [名字] [屋名]"
 msgstr ""
 
-#: ../../Plugin.cs:484
+#: ../../Plugin.cs:563
 msgid "语法错误! 正确语法: /house delete [屋名]"
 msgstr ""
 
-#: ../../Plugin.cs:449
+#: ../../Plugin.cs:525
 msgid "语法错误! 正确语法: /house deluser [名字] [屋名]"
 msgstr ""
 
-#: ../../Plugin.cs:359
+#: ../../Plugin.cs:435
 msgid "语法错误! 正确语法: /house disallow [名字] [屋名]"
 msgstr ""
 
-#: ../../Plugin.cs:661
+#: ../../Plugin.cs:739
 msgid "语法错误! 正确语法: /house info [屋名]"
 msgstr ""
 
-#: ../../Plugin.cs:693
+#: ../../Plugin.cs:771
 msgid "语法错误! 正确语法: /house lock [屋名]"
 msgstr ""
 
-#: ../../Plugin.cs:620
+#: ../../Plugin.cs:698
 msgid "语法错误! 正确语法: /house redefine [屋名]"
 msgstr ""
 
-#: ../../Plugin.cs:154
+#: ../../Plugin.cs:230
 msgid "请敲击一个块查看它属于哪个房子。"
 msgstr ""
 
-#: ../../Plugin.cs:532
+#: ../../Plugin.cs:610
 msgid "输入 /house list {0} 查看更多房屋。"
 msgstr ""
 
-#: ../../Plugin.cs:77
+#: ../../Plugin.cs:80
 msgid "输入/house help可以显示与房子相关的操作提示。"
 msgstr ""
 
-#: ../../Plugin.cs:582
+#: ../../Plugin.cs:660
 msgid "重新定义了房子 "
 msgstr ""
 
-#: ../../Plugin.cs:585
+#: ../../Plugin.cs:663
 msgid "重新定义房屋时出错!"
 msgstr ""
 
-#: ../../Plugin.cs:516
+#: ../../Plugin.cs:594
 msgid "页码超过最大页数 ({0}/{1})"
 msgstr ""
 

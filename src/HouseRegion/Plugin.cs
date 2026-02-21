@@ -1,12 +1,14 @@
 ﻿using LazyAPI;
 using Microsoft.Xna.Framework;
 using MySql.Data.MySqlClient;
-using On.OTAPI;
+using On.Terraria.GameContent;
+using OTAPI;
 using System.Timers;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.DB;
+using Hooks = On.OTAPI.Hooks;
 
 
 namespace HouseRegion;
@@ -14,10 +16,10 @@ namespace HouseRegion;
 [ApiVersion(2, 1)]//api版本
 public class HousingPlugin : LazyPlugin
 {
-    public override string Author => "GK 阁下 改良";
+    public override string Author => "GK 阁下 改良 Eustia 更新";
     public override string Description => GetString("一个著名的用于保护房屋的插件。");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 10);
+    public override Version Version => new Version(1, 0, 4);
     public HousingPlugin(Main game) : base(game)
     {
     }
@@ -25,6 +27,7 @@ public class HousingPlugin : LazyPlugin
     public static List<House> Houses = new();
     static readonly System.Timers.Timer Update = new(1100);//创建一个1.1秒的时钟
     public static bool ULock = false;
+    private static readonly HashSet<int> AutoShowPlayers = new();
 
 
     private void RD()//读取
@@ -78,10 +81,79 @@ public class HousingPlugin : LazyPlugin
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreetPlayer);//玩家进入服务器
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);//玩家退出服务器
         ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitialize);//地图读入后
-        Hooks.MessageBuffer.InvokeGetData += this.MessageBufferOnInvokeGetData;
+        OTAPI.Hooks.Chest.QuickStack += ChestOnQuickStack;
+        CraftingRequests.CanCraftFromChest += CraftingRequestsOnCanCraftFromChest;
+        Hooks.MessageBuffer.InvokeGetData += MessageBufferOnInvokeGetData;
     }
 
-    private bool MessageBufferOnInvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
+    private static bool CraftingRequestsOnCanCraftFromChest(CraftingRequests.orig_CanCraftFromChest orig, Chest chest, int whoAmI)
+    {
+        var plr = TShock.Players[whoAmI];
+        
+        var house = Utils.InAreaHouse(chest.x, chest.y);
+        if (house == null)
+        {
+            return orig(chest, whoAmI);
+        }
+        
+        if ((!house.Locked || Config.Instance.LimitLockHouse) && !Config.Instance.ProtectiveChest)
+        {
+            return orig(chest, whoAmI);
+        }
+
+        if (plr.Group.HasPermission(GetDataHandlers.EditHouse) || 
+            plr.Account.ID.ToString() == house.Author ||
+            Utils.OwnsHouse(plr.Account.ID.ToString(), house) ||
+            Utils.CanUseHouse(plr.Account.ID.ToString(), house))
+        {
+            return orig(chest, whoAmI);
+        }
+
+        if (Config.Instance.WarningSpoiler)
+        {
+            plr.Disable(GetString("无权使用被房子保护的地区箱子合成物品!"));
+        }
+
+        plr.SendErrorMessage(GetString("你没有权力使用被房子保护的地区的箱子合成物品。"));
+        return false;
+    }
+
+    private static void ChestOnQuickStack(object? sender, OTAPI.Hooks.Chest.QuickStackEventArgs e)
+    {
+        var plr = TShock.Players[e.PlayerId];
+
+        var chest = Main.chest[e.ChestIndex];
+        
+        var house = Utils.InAreaHouse(chest.x, chest.y);
+        if (house == null)
+        {
+            return;
+        }
+        
+        if ((!house.Locked || Config.Instance.LimitLockHouse) && !Config.Instance.ProtectiveChest)
+        {
+            return;
+        }
+
+        if (plr.Group.HasPermission(GetDataHandlers.EditHouse) ||
+            plr.Account.ID.ToString() == house.Author ||
+            Utils.OwnsHouse(plr.Account.ID.ToString(), house) ||
+            Utils.CanUseHouse(plr.Account.ID.ToString(), house))
+        {
+            return;
+        }
+
+        if (Config.Instance.WarningSpoiler)
+        {
+            plr.Disable(GetString("无权快速堆叠箱子!"));
+        }
+
+        
+        plr.SendErrorMessage(GetString("你没有权力快速堆叠箱被房子保护的地区的箱子。"));
+        e.Result = HookResult.Cancel;
+    }
+
+    private static bool MessageBufferOnInvokeGetData(Hooks.MessageBuffer.orig_InvokeGetData orig, MessageBuffer instance, ref byte packetId, ref int readOffset, ref int start, ref int length, ref int messageType, int maxPackets)
     {
         var user = TShock.Players[instance.whoAmI];
         using (var data = new MemoryStream(instance.readBuffer, readOffset, length))
@@ -93,7 +165,7 @@ public class HousingPlugin : LazyPlugin
                     return false;
                 }
             }
-            catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误传递时出错:") + ex.ToString()); }
+            catch (Exception ex) { TShock.Log.Error(GetString("房屋插件错误传递时出错:") + ex); }
         }
         return orig.Invoke(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType,
         maxPackets);
@@ -108,7 +180,9 @@ public class HousingPlugin : LazyPlugin
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);//玩家退出服务器
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.PostInitialize);//地图读入后
             Update.Elapsed -= this.OnUpdate; Update.Stop();//销毁时钟
-            Hooks.MessageBuffer.InvokeGetData -= this.MessageBufferOnInvokeGetData;
+            OTAPI.Hooks.Chest.QuickStack -= ChestOnQuickStack;
+            CraftingRequests.CanCraftFromChest -= CraftingRequestsOnCanCraftFromChest;
+            Hooks.MessageBuffer.InvokeGetData -= MessageBufferOnInvokeGetData;
         }
         base.Dispose(disposing);
     }
@@ -128,6 +202,8 @@ public class HousingPlugin : LazyPlugin
                 LPlayers[e.Who] = null;
             }
         }
+        GetDataHandlers.ClearPlayerDisplays(e.Who);
+        AutoShowPlayers.Remove(e.Who);
     }
     public void PostInitialize(EventArgs e)
     {
@@ -251,7 +327,7 @@ public class HousingPlugin : LazyPlugin
 
                                 if (height < Config.Instance.MinHeight)
                                 {
-                                    args.Player.SendErrorMessage(GetString($"因为您的房子总面积超过了最大限制 {Config.Instance.MinHeight} 格块。"));
+                                    args.Player.SendErrorMessage(GetString($"因为您的房屋高度小于最小限制 {Config.Instance.MinHeight} 格块。"));
                                 }
                             }
                         }
@@ -470,20 +546,22 @@ public class HousingPlugin : LazyPlugin
                             args.Player.SendErrorMessage(GetString("房屋删除失败!"));
                             return;
                         }
+            
+                        GetDataHandlers.OnHouseDeleted(house.HouseArea);
+            
                         Houses.Remove(house);
                         args.Player.SendMessage(GetString($"房屋:{house.Name} 删除成功!"), Color.Yellow);
                         TShock.Log.ConsoleInfo(GetString("{0} 删除房屋: {1}"), args.Player.Account.Name, house.Name);
                     }
                     else
                     {
-                        args.Player.SendErrorMessage(GetString("你没有权力删除这个房子!"));//只有房子的作者可以
+                        args.Player.SendErrorMessage(GetString("你没有权力删除这个房子!"));
                     }
                 }
                 else
                 {
                     args.Player.SendErrorMessage(GetString("语法错误! 正确语法: /house delete [屋名]"));
                 }
-
                 break;
             }
             case "clear":
@@ -695,13 +773,51 @@ public class HousingPlugin : LazyPlugin
 
                 break;
             }
+            case "show":
+            {
+                if (args.Parameters.Count > 1)
+                {
+                    var houseName = args.Parameters[1];
+                    var house = Houses.FirstOrDefault(h => h.Name.Equals(houseName, StringComparison.OrdinalIgnoreCase));
+                    if (house == null)
+                    {
+                        args.Player.SendErrorMessage(GetString($"未找到房屋 {houseName}"));
+                        return;
+                    }
+
+                    GetDataHandlers.ToggleHouseDisplay(args.Player, house);
+                }
+            }
+                break;
+
+            case "showall":
+            {
+                GetDataHandlers.ToggleAllDisplays(args.Player, Houses);
+            }
+                break;
+            case "auto":
+            {
+                var playerIndex = args.Player.Index;
+
+                if (!AutoShowPlayers.Add(playerIndex))
+                {
+                    AutoShowPlayers.Remove(playerIndex);
+                    args.Player.SendSuccessMessage(GetString("已关闭自动显示房屋区域。"));
+                }
+                else
+                {
+                    args.Player.SendSuccessMessage(GetString("已开启自动显示房屋区域。进入房子时会自动显示边界。"));
+                }
+            }
+                break;
+
             default:
             {
                 args.Player.SendMessage(GetString("要创建房屋，请使用以下命令:"), Color.Lime);
                 args.Player.SendMessage(GetString("/house set 1"), Color.Lime);
                 args.Player.SendMessage(GetString("/house set 2"), Color.Lime);
                 args.Player.SendMessage(GetString("/house add 房屋名字"), Color.Lime);
-                args.Player.SendMessage(GetString("其他命令: list, allow, disallow, redefine, name, delete, clear, info, adduser, deluser, lock"), Color.Lime);
+                args.Player.SendMessage(GetString("其他命令: list, allow, disallow, redefine, name, delete, clear, info, adduser, deluser, lock, show, showall, auto"), Color.Lime);
                 break;
             }
         }//循环的括号
@@ -752,6 +868,11 @@ public class HousingPlugin : LazyPlugin
                     {
                         player.SendMessage(GetString("你进入了房子: ") + house.Name, Color.LightSeaGreen);
                     }
+
+                    if (AutoShowPlayers.Contains(player.Index))
+                    {
+                        GetDataHandlers.ToggleHouseDisplay(player, house);
+                    }
                 }
                 else if (Lhouse != null && house == null)//此乃离开了房子
                 {
@@ -762,6 +883,14 @@ public class HousingPlugin : LazyPlugin
                     else
                     {
                         player.SendMessage(GetString("你离开了房子: ") + Lhouse.Name, Color.LightSeaGreen);
+                    }
+
+                    if (AutoShowPlayers.Contains(player.Index))
+                    {
+                        if (GetDataHandlers.IsPlayerShowingHouse(player.Index, Lhouse.HouseArea))
+                        {
+                            GetDataHandlers.ToggleHouseDisplay(player, Lhouse);
+                        }
                     }
                 }
                 else//此乃离开了一个房子又进入另外一个房子
@@ -778,6 +907,12 @@ public class HousingPlugin : LazyPlugin
                     else
                     {
                         player.SendMessage(GetString("你进入了房子: ") + house.Name, Color.LightSeaGreen);
+                    }
+
+                    if (AutoShowPlayers.Contains(player.Index))
+                    {
+                        GetDataHandlers.ToggleHouseDisplay(player, Lhouse); 
+                        GetDataHandlers.ToggleHouseDisplay(player, house);  
                     }
                 }
             }

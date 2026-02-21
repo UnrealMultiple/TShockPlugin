@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-05-28 03:22:30+0000\n"
-"PO-Revision-Date: 2025-05-29 01:20\n"
+"POT-Creation-Date: 2025-06-30 14:56:17+0000\n"
+"PO-Revision-Date: 2025-07-01 01:40\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr ""
 msgid "[{0}] 被动技能 {1}"
 msgstr ""
 
-#: ../../Command.cs:198
+#: ../../Command.cs:236
 #, csharp-format
 msgid "{0} 为你添加了一个技能 {1}"
 msgstr ""
@@ -37,45 +37,57 @@ msgstr ""
 msgid "{0} 删除了你的一个技能 "
 msgstr ""
 
-#: ../../Command.cs:227
+#: ../../Command.cs:265
 #, csharp-format
 msgid "{0}. {1}  价格 {2})"
 msgstr ""
 
-#: ../../Command.cs:236
+#: ../../Command.cs:274
 msgid "/skill buy [技能ID]"
 msgstr ""
 
-#: ../../Command.cs:243
+#: ../../Command.cs:281
 msgid "/skill clear"
 msgstr ""
 
-#: ../../Command.cs:240
+#: ../../Command.cs:278
 msgid "/skill clearh [玩家]"
 msgstr ""
 
-#: ../../Command.cs:237
+#: ../../Command.cs:275
 msgid "/skill del [技能ID]"
 msgstr ""
 
-#: ../../Command.cs:241
+#: ../../Command.cs:279
 msgid "/skill del [玩家] [序号]"
 msgstr ""
 
-#: ../../Command.cs:239
+#: ../../Command.cs:277
 msgid "/skill give [玩家] [技能序号]"
 msgstr ""
 
-#: ../../Command.cs:238
+#: ../../Command.cs:276
 msgid "/skill list [页码]"
 msgstr ""
 
-#: ../../Command.cs:242
+#: ../../Command.cs:280
 msgid "/skill removeall"
 msgstr ""
 
-#: ../../Command.cs:244
+#: ../../Command.cs:282
 msgid "/skill reset"
+msgstr ""
+
+#: ../../Enumerates/SkillSparkType.cs:44
+msgid "BUFF"
+msgstr ""
+
+#: ../../Enumerates/SkillSparkType.cs:20
+msgid "CD"
+msgstr ""
+
+#: ../../Enumerates/SkillSparkType.cs:11
+msgid "主动"
 msgstr ""
 
 #: ../../Command.cs:14
@@ -87,38 +99,62 @@ msgstr ""
 msgid "你并未绑定技能!"
 msgstr ""
 
-#: ../../Utils.cs:37
+#: ../../Utils.cs:36
 #, csharp-format
 msgid "你当前等级无法购买此技能，限制必须购买技能:{0}"
 msgstr ""
 
-#: ../../Utils.cs:28
+#: ../../Utils.cs:27
 #, csharp-format
 msgid "你当前等级无法购买此技能，限制等级:{0}"
+msgstr ""
+
+#: ../../Command.cs:198
+msgid "你未绑定此技能，无法升级!"
 msgstr ""
 
 #: ../../Command.cs:79
 msgid "你未绑定此技能，无需删除！"
 msgstr ""
 
+#: ../../Command.cs:205
+msgid "你的货币不足以升级此技能!"
+msgstr ""
+
 #: ../../Command.cs:33
 msgid "你的货币不足购买此技能!"
+msgstr ""
+
+#: ../../Enumerates/SkillSparkType.cs:32
+msgid "冲刺"
+msgstr ""
+
+#: ../../Enumerates/SkillSparkType.cs:29
+msgid "击打"
+msgstr ""
+
+#: ../../Enumerates/SkillSparkType.cs:26
+msgid "击杀"
+msgstr ""
+
+#: ../../Enumerates/SkillSparkType.cs:41
+msgid "受击"
 msgstr ""
 
 #: ../../Command.cs:101
 msgid "已清除目标玩家绑定的隐藏技能!"
 msgstr ""
 
-#: ../../Command.cs:218
+#: ../../Command.cs:256
 msgid "当前技能列表空空如也"
 msgstr ""
 
-#: ../../Utils.cs:33
+#: ../../Utils.cs:32
 #, csharp-format
 msgid "当前进度无法购买此技能，限制进度:{0}"
 msgstr ""
 
-#: ../../Command.cs:197
+#: ../../Command.cs:235
 #, csharp-format
 msgid "成功为 {0} 添加了一个技能 {1}"
 msgstr ""
@@ -140,15 +176,28 @@ msgstr ""
 msgid "手持物品并未绑定技能!"
 msgstr ""
 
-#: ../../Command.cs:219
+#: ../../Enumerates/SkillSparkType.cs:50
+msgid "技能"
+msgstr ""
+
+#: ../../Command.cs:209
+#, csharp-format
+msgid "技能 {0} 升级成功! 当前等级: {1}"
+msgstr ""
+
+#: ../../Command.cs:257
 msgid "技能列表 ({0}/{1})："
 msgstr ""
 
-#: ../../Utils.cs:45
+#: ../../Utils.cs:44
 msgid "技能已超过规定的最大绑定数量!"
 msgstr ""
 
-#: ../../Utils.cs:17
+#: ../../Command.cs:213
+msgid "技能已达到最高等级，无法升级!"
+msgstr ""
+
+#: ../../Utils.cs:16
 #, csharp-format
 msgid "技能序号{0} 不存在！"
 msgstr ""
@@ -166,12 +215,16 @@ msgid "无"
 msgstr ""
 
 #: ../../Command.cs:62
-#: ../../Command.cs:193
+#: ../../Command.cs:231
 msgid "无效得技能序号!"
 msgstr ""
 
 #: ../../Skill.cs:100
 msgid "无效技能"
+msgstr ""
+
+#: ../../Command.cs:192
+msgid "无效的技能序号!"
 msgstr ""
 
 #: ../../Command.cs:125
@@ -183,24 +236,32 @@ msgstr ""
 msgid "查询成功!"
 msgstr ""
 
-#: ../../Utils.cs:43
+#: ../../Utils.cs:42
 msgid "此技能全服唯一已经有其他人绑定了此技能!"
 msgstr ""
 
-#: ../../Utils.cs:24
+#: ../../Utils.cs:23
 msgid "此技能无法被购买!"
 msgstr ""
 
-#: ../../Utils.cs:41
+#: ../../Utils.cs:40
 msgid "此技能是唯一的不能重复绑定!"
 msgstr ""
 
-#: ../../Utils.cs:47
+#: ../../Utils.cs:46
 msgid "此武器已超过规定的最大绑定数量!"
 msgstr ""
 
+#: ../../Enumerates/SkillSparkType.cs:23
+msgid "死亡"
+msgstr ""
+
+#: ../../Enumerates/SkillSparkType.cs:47
+msgid "环境"
+msgstr ""
+
 #: ../../Command.cs:56
-#: ../../Command.cs:187
+#: ../../Command.cs:225
 msgid "目标玩家不存在或不在线!"
 msgstr ""
 
@@ -209,8 +270,20 @@ msgstr ""
 msgid "绑定技能: {0}"
 msgstr ""
 
-#: ../../Utils.cs:20
+#: ../../Utils.cs:19
 msgid "绑定此技能需要手持一个武器!"
+msgstr ""
+
+#: ../../Enumerates/SkillSparkType.cs:17
+msgid "蓝量"
+msgstr ""
+
+#: ../../Enumerates/SkillSparkType.cs:14
+msgid "血量"
+msgstr ""
+
+#: ../../Enumerates/SkillSparkType.cs:35
+msgid "装备"
 msgstr ""
 
 #: ../../Skill.cs:18
@@ -223,6 +296,7 @@ msgstr ""
 
 #: ../../Command.cs:25
 #: ../../Command.cs:73
+#: ../../Command.cs:186
 msgid "请输入一个正确的序号!"
 msgstr ""
 
@@ -230,7 +304,11 @@ msgstr ""
 msgid "购买成功，技能已绑定!"
 msgstr ""
 
-#: ../../Command.cs:220
+#: ../../Enumerates/SkillSparkType.cs:38
+msgid "跳跃"
+msgstr ""
+
+#: ../../Command.cs:258
 msgid "输入 {0}skill list {{0}} 查看更多"
 msgstr ""
 

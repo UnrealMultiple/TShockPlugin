@@ -677,12 +677,12 @@ public class RegionView : TerrariaPlugin
 
         for (var i = 1; i <= Terraria.ID.ItemID.Count; i++)
         {
-            item.SetDefaults(i, true);
+            item.SetDefaults(i);
             if (item.createTile == e.EditData && item.placeStyle == e.Style)
             {
                 if (item.tileWand != -1)
                 {
-                    item.SetDefaults(item.tileWand, true);
+                    item.SetDefaults(item.tileWand);
                 }
 
                 found = true;
@@ -701,7 +701,7 @@ public class RegionView : TerrariaPlugin
         var item = new Item(); var found = false;
         for (var i = 1; i <= Terraria.ID.ItemID.Count; i++)
         {
-            item.SetDefaults(i, true);
+            item.SetDefaults(i);
             if (item.createWall == e.EditData)
             {
                 found = true;

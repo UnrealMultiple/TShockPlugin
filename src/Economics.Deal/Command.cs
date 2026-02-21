@@ -84,7 +84,7 @@ public class Command : BaseCommand
         }
         Config.Instance.PushItem(args.Player, cost, args.Parameters[2]);
         args.Player.SendSuccessMessage(GetString("发布成功"));
-        TShock.Utils.Broadcast(GetString($"玩家`{args.Player.Name}`发布了一个交易物品: [i/s{args.Player.SelectedItem.stack}:{args.Player.SelectedItem.netID}] 价格: {args.Parameters[2]}x{cost}"), Color.DarkGreen);
+        TShock.Utils.Broadcast(GetString($"玩家`{args.Player.Name}`发布了一个交易物品: [i/s{args.Player.SelectedItem.stack}:{args.Player.SelectedItem.type}] 价格: {args.Parameters[2]}x{cost}"), Color.DarkGreen);
         args.Player.SelectedItem.stack = 0;
         args.Player.SendData(PacketTypes.PlayerSlot, "", args.Player.Index, args.Player.TPlayer.selectedItem);
     }

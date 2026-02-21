@@ -7,7 +7,7 @@ class Utils
 {
     public static Item GetItemFromTile(int x, int y)
     {
-        WorldGen.KillTile_GetItemDrops(x, y, Main.tile[x, y], out var id, out var stack, out _, out _);
+        WorldGen.KillTile_GetItemDrops(x, y, Main.tile[x, y], out var id, out var stack, out _, out _, out _);
         Item item = new();
         item.SetDefaults(id);
         item.stack = stack;
@@ -20,7 +20,7 @@ public static class Expansion
     public static int GetBlankSlot(this TSPlayer tsp)
     {
         var num = 0;
-        tsp.TPlayer.inventory.ForEach(s => { if (s.netID == 0) { num++; } });
+        tsp.TPlayer.inventory.ForEach(s => { if (s.type == 0) { num++; } });
         return num;
     }
 
@@ -35,11 +35,11 @@ public static class Expansion
             s = tsp.TPlayer.inventory[i];
             if (available < stack)
             {
-                if (s.netID == id)
+                if (s.type == id)
                 {
                     available += s.maxStack - s.stack;
                 }
-                else if (s.netID == 0)
+                else if (s.type == 0)
                 {
                     available += item.maxStack;
                 }

@@ -31,7 +31,7 @@ public class Challenger : TerrariaPlugin
     public override string Description => GetString("增强游戏难度，更好的游戏体验");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 1, 10);
+    public override Version Version => new (1, 1, 8);
 
     public Challenger(Main game)
         : base(game)
@@ -265,7 +265,7 @@ public class Challenger : TerrariaPlugin
         var any4 = config.ShadowArmorEffect_4;
 
         var armor = args.Player.armor;
-        if ((armor[0].netID == 102 || armor[0].netID == 956) && (armor[1].netID == 101 || armor[1].netID == 957) && (armor[2].netID == 100 || armor[2].netID == 958) && args.Critical && Timer - Collect.cplayers[args.Player.whoAmI].ShadowArmorEffectTimer >= any4)
+        if ((armor[0].type == 102 || armor[0].type == 956) && (armor[1].type == 101 || armor[1].type == 957) && (armor[2].type == 100 || armor[2].type == 958) && args.Critical && Timer - Collect.cplayers[args.Player.whoAmI].ShadowArmorEffectTimer >= any4)
         {
             var num = Main.rand.Next(2, 6);
             for (var i = 0; i < num; i++)
@@ -284,7 +284,7 @@ public class Challenger : TerrariaPlugin
         if (args != null)
         {
             var armor = args.Player.armor;
-            if (armor[0].netID == 123 && armor[1].netID == 124 && armor[2].netID == 125 && args.Critical && args.Npc.CanBeChasedBy(null, false))
+            if (armor[0].type == 123 && armor[1].type == 124 && armor[2].type == 125 && args.Critical && args.Npc.CanBeChasedBy(null, false))
             {
                 var player2 = args.Player;
                 player2.statMana += 3;
@@ -309,7 +309,7 @@ public class Challenger : TerrariaPlugin
             if (config.MeteorArmorEffect)
             {
                 var armor2 = player.armor;
-                if (armor2[0].netID == 123 && armor2[1].netID == 124 && armor2[2].netID == 125 && Timer % any4 == 0)
+                if (armor2[0].type == 123 && armor2[1].type == 124 && armor2[2].type == 125 && Timer % any4 == 0)
                 {
                     var index = Collect.MyNewProjectile(null, player.Center + new Vector2(Main.rand.Next(-860, 861), -600f), Terraria.Utils.RotateRandom(Vector2.UnitY, 0.3) * any3, any, any2, 0f, player.whoAmI);
                     CProjectile.Update(index);
@@ -521,9 +521,9 @@ public class Challenger : TerrariaPlugin
         var list = GetVein(new List<Point>(), x, y, type);
         var count = list.Count;
         var item = Utils.GetItemFromTile(x, y);
-        if (plr.IsSpaceEnough(item.netID, count))
+        if (plr.IsSpaceEnough(item.type, count))
         {
-            plr.GiveItem(item.netID, count);
+            plr.GiveItem(item.type, count);
             KillTileAndSend(list, true);
             plr.SendMessage(GetString("[c/95CFA6:<挑战者:挖矿套>] 连锁挖掘了 [c/95CFA6: {0} {1}].", count, item.type == 0 ? "未知" : item.Name), Color.White);
         }
@@ -1166,7 +1166,7 @@ public class Challenger : TerrariaPlugin
 
                 if (Timer % config.RoyalGel_Timer == 0)
                 {
-                    var num = Item.NewItem(null, player.Center + new Vector2(Main.rand.Next(-860, 861), -600f), new Vector2(36f, 36f), list, 1, false, 0, false, false);
+                    var num = Item.NewItem(null, player.Center + new Vector2(Main.rand.Next(-860, 861), -600f), new Vector2(36f, 36f), list, 1, false, 0, false);
                     Main.item[num].color = new Color(Main.rand.Next(256), Main.rand.Next(256), Main.rand.Next(256));
                     TSPlayer.All.SendData((PacketTypes) 88, null, num, 1f, 0f, 0f, 0);
                 }
@@ -1216,17 +1216,19 @@ public class Challenger : TerrariaPlugin
         foreach (var effect in config.WormScarfSetBuff) { TShock.Players[player.whoAmI].SetBuff(effect, 180, false); }
     }
 
-    public void VolatileGelatin(NpcStrikeEventArgs args)
+    private static void VolatileGelatin(NpcStrikeEventArgs args)
     {
-        if (args.Npc.CanBeChasedBy(null, false) && !args.Npc.SpawnedFromStatue)
+        if (config.VolatileGelatin.Length == 0 || !args.Npc.CanBeChasedBy() || args.Npc.SpawnedFromStatue)
         {
-            // 直接从配置的Config数组中随机选择一个物品ID
-            var randomIndex = Main.rand.Next(config.VolatileGelatin.Length);
-            var itemId = config.VolatileGelatin[randomIndex];
-
-            // 创建掉落物，使用随机选中的itemId
-            Item.NewItem(null, args.Npc.Center, new Vector2(20f, 20f), itemId, 1, false, 0, false, false);
+            return;
         }
+
+        // 直接从配置的Config数组中随机选择一个物品ID
+        var randomIndex = Main.rand.Next(config.VolatileGelatin.Length);
+        var itemId = config.VolatileGelatin[randomIndex];
+
+        // 创建掉落物，使用随机选中的itemId
+        Item.NewItem(null, args.Npc.Center, new Vector2(20f, 20f), itemId);
     }
 
 
@@ -1676,7 +1678,7 @@ public class Challenger : TerrariaPlugin
             var num = type;
             if (num == 4987)
             {
-                this.VolatileGelatin(args);
+                VolatileGelatin(args);
             }
         }
         if (Collect.cnpcs[args.Npc.whoAmI] != null && Collect.cnpcs[args.Npc.whoAmI].isActive)
@@ -1707,7 +1709,7 @@ public class Challenger : TerrariaPlugin
         {
             if (Collect.cnpcs[args.Npc.whoAmI] == null || !Collect.cnpcs[args.Npc.whoAmI].isActive)
             {
-                if (args.Npc.lifeMax > 5 && !Collect.noneedlifeNPC.Contains(args.Npc.netID))
+                if (args.Npc.lifeMax > 5 && !Collect.noneedlifeNPC.Contains(args.Npc.type))
                 {
                     args.Npc.lifeMax = (int) (args.Npc.lifeMax * config.lifeXnum);
                     args.Npc.life = args.Npc.lifeMax + 1;
@@ -1717,7 +1719,7 @@ public class Challenger : TerrariaPlugin
                     args.Npc.lifeMax = 100;
                     args.Npc.life = 101;
                 }
-                Collect.cnpcs[args.Npc.whoAmI] = args.Npc.netID switch
+                Collect.cnpcs[args.Npc.whoAmI] = args.Npc.type switch
                 {
                     50 => new SlimeKing(args.Npc),
                     4 => new EyeofCthulhu(args.Npc),

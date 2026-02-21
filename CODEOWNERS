@@ -1,0 +1,7 @@
+* @UnrealMultiple/dev
+
+/.github/workflows/    @ACaiCat @LaoSparrow
+
+/src/CaiBotLite/       @ACaiCat
+/src/AutoPluginManager/ @ACaiCat @LaoSparrow @Controllerdestiny
+/src/LazyAPI/          @sgkoishi @LaoSparrow @Controllerdestiny

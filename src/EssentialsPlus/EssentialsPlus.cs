@@ -24,7 +24,7 @@ public class EssentialsPlus : LazyPlugin
     public override string Description => GetString("增强版Essentials");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 9);
+    public override Version Version => new Version(1, 1, 0);
 
 
     public EssentialsPlus(Main game)
@@ -205,7 +205,7 @@ public class EssentialsPlus : LazyPlugin
             HelpText = GetString("允许您重复上一条命令。")
         });
 
-        Add(new Command(Permissions.More, Commands.More, "more", "最大化堆叠")
+        Add(new Command(Permissions.More, Commands.More, "more", "堆叠")
         {
             AllowServer = false,
             HelpText = GetString("最大化手持物品的堆叠。")

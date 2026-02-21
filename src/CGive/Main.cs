@@ -12,7 +12,7 @@ public class Main : TerrariaPlugin
     public override string Description => GetString("离线give");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 1, 0);
+    public override Version Version => new Version(1, 0, 1, 1);
 
     public Main(Terraria.Main game)
         : base(game)
@@ -36,7 +36,7 @@ public class Main : TerrariaPlugin
             ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);
             ((List<RestCommand>) typeof(Rest).GetField("commands", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
             .GetValue(TShock.RestApi)!)
-            .RemoveAll(x => x.Name == "/getWarehouse");
+            .RemoveAll(x => x.UriTemplate == "/getWarehouse");
         }
         base.Dispose(disposing);
     }
@@ -77,12 +77,12 @@ public class Main : TerrariaPlugin
             var item = itemByIdOrName[0];
             if (array.Length == 3)
             {
-                list.Add(new Warehouse(item.maxStack, item.netID));
+                list.Add(new Warehouse(item.maxStack, item.type));
                 continue;
             }
             if (array.Length == 4)
             {
-                list.Add(new Warehouse(result, item.netID));
+                list.Add(new Warehouse(result, item.type));
                 continue;
             }
             if (array.Length == 5)
@@ -90,7 +90,7 @@ public class Main : TerrariaPlugin
                 var prefixByIdOrName = TShock.Utils.GetPrefixByIdOrName(array[4]);
                 if (prefixByIdOrName.Count != 0)
                 {
-                    list.Add(new Warehouse(result, item.netID, prefixByIdOrName[0]));
+                    list.Add(new Warehouse(result, item.type, prefixByIdOrName[0]));
                 }
             }
 

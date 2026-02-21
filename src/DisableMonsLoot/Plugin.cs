@@ -148,10 +148,10 @@ public class Plugin : TerrariaPlugin
 
             if (item.active && Distance <= radius * radius * 256f)
             {
-                if (ItemIDs.Contains(item.netID))
+                if (ItemIDs.Contains(item.type))
                 {
-                    Terraria.Main.item[i].active = false;
-                    TSPlayer.All.SendData(PacketTypes.ItemDrop, "", i);
+                    Main.item[i].TurnToAir();
+                    TSPlayer.All.SendData(PacketTypes.SyncItemDespawn, "", i);
                 }
             }
         }

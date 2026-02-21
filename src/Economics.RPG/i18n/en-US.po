@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-06-27 01:19:57+0000\n"
-"PO-Revision-Date: 2025-06-27 01:22\n"
+"POT-Creation-Date: 2026-02-17 12:53:16+0000\n"
+"PO-Revision-Date: 2026-02-18 01:59\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -51,8 +51,8 @@ msgstr "You must use this command in the game when setting a level for yourself!
 msgid "你因重置等级被踢出!"
 msgstr "You have been kicked out for resetting your level!"
 
-#: ../../ResetCareer.cs:23
 #: ../../RankCommand.cs:24
+#: ../../ResetCareer.cs:23
 msgid "你必须登陆才能使用此命令!"
 msgstr "You must use this command in-game!"
 

@@ -24,7 +24,7 @@ public class ResetConfig : JsonConfigBase<ResetConfig>
 
     [LocalizedPropertyName(CultureType.Chinese, "地图预设", Order = 6)]
     [LocalizedPropertyName(CultureType.English, "WorldSetting")]
-    public SetWorldConfig SetWorld = new();
+    public SetWorldConfig WorldSetting = new();
 
     [LocalizedPropertyName(CultureType.Chinese, "重置后SQL命令", Order = 5)]
     [LocalizedPropertyName(CultureType.English, "AfterResetSQL")]
@@ -35,17 +35,17 @@ public class ResetConfig : JsonConfigBase<ResetConfig>
     protected override void SetDefault()
     {
         this.KillToReset = new AutoReset();
-        this.SetWorld = new SetWorldConfig();
-        this.PreResetCommands = Array.Empty<string>();
-        this.PostResetCommands = Array.Empty<string>();
-        this.SqLs = new[]
-        {
-                "DELETE FROM tsCharacter"
-        };
+        this.WorldSetting = new SetWorldConfig();
+        this.PreResetCommands = [];
+        this.PostResetCommands = new string[] { };
+        this.SqLs =
+        [
+            "DELETE FROM tsCharacter"
+        ];
         this.Files = new Dictionary<string, string>()
         {
             {"/tshock/原神.json","原神.json"},
-            {"/tshock/XSB数据缓存.json",""}
+            {"/tshock/XSB.json",""}
         };
     }
 
@@ -57,7 +57,11 @@ public class ResetConfig : JsonConfigBase<ResetConfig>
 
         [LocalizedPropertyName(CultureType.Chinese, "地图种子", Order = 1)]
         [LocalizedPropertyName(CultureType.English, "WorldSeed")]
-        public string? Seed;
+        public string Seed = "";
+        
+        [LocalizedPropertyName(CultureType.Chinese, "特殊种子", Order = 1)]
+        [LocalizedPropertyName(CultureType.English, "SpecialSeed")]
+        public long GenerationOptionsFlag;
     }
 
     public class AutoReset

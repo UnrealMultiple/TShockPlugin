@@ -22,7 +22,7 @@ public class Config : JsonConfigBase<Config>
             RedemptionRelationships = new() { CurrencyType = type, Number = Cost },
             Item = new()
             {
-                netID = player.SelectedItem.netID,
+                netID = player.SelectedItem.type,
                 Stack = player.SelectedItem.stack,
                 Prefix = player.SelectedItem.prefix
             }

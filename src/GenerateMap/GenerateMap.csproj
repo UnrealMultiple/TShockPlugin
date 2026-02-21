@@ -3,8 +3,12 @@
 	<Import Project="..\..\template.targets" />
 
 	<ItemGroup>
-	  <ProjectReference Include="..\CaiLib\CaiLib.csproj" />
+	  <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
 	</ItemGroup>
+
+    <PropertyGroup>
+        <EmbedNuGetDlls>SixLabors.ImageSharp.dll</EmbedNuGetDlls>
+    </PropertyGroup>
 
 </Project>
 
