@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.9.34622.214
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11505.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChattyBridge", "src\ChattyBridge\ChattyBridge.csproj", "{8281F41F-6AEE-4A08-B1FD-7BDC126BD06A}"
 EndProject
@@ -225,6 +225,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LazyAPI", "src\LazyAPI\LazyAPI.csproj", "{FDA7A806-41DA-469F-8290-347ACF613837}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RebirthCoin", "src\RebirthCoin\RebirthCoin.csproj", "{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrProtocol", "src\Submodules\TrProtocol\TrProtocol\TrProtocol.csproj", "{E8AF3139-343C-4A0B-95F5-855C1A30189F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaiPacketDebug", "src\CaiPacketDebug\CaiPacketDebug.csproj", "{D6970958-D990-422B-B117-04B7C04C342E}"
 EndProject
@@ -1152,6 +1154,14 @@ Global
 		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Release|x64.ActiveCfg = Release|Any CPU
 		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Release|x64.Build.0 = Release|Any CPU
+		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Debug|x64.Build.0 = Debug|Any CPU
+		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Release|x64.ActiveCfg = Release|Any CPU
+		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Release|x64.Build.0 = Release|Any CPU
 		{D6970958-D990-422B-B117-04B7C04C342E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D6970958-D990-422B-B117-04B7C04C342E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6970958-D990-422B-B117-04B7C04C342E}.Debug|x64.ActiveCfg = Debug|Any CPU
