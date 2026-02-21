@@ -53,4 +53,8 @@ public class Config : JsonConfigBase<Config>
     [LocalizedPropertyName(CultureType.Chinese, "禁止所有者修改使用者")]
     [LocalizedPropertyName(CultureType.English, "ProhibitOwnerModifyingUser")]
     public bool ProhibitOwnerModifyingUser = true;
+    
+    [LocalizedPropertyName(CultureType.Chinese, "禁止TP房屋")]
+    [LocalizedPropertyName(CultureType.English, "ProhibitTPHouse")]
+    public bool ProhibitTPHouse = false;
 }
