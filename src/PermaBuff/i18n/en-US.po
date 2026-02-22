@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:03:01+0000\n"
-"PO-Revision-Date: 2025-04-06 01:19\n"
+"POT-Creation-Date: 2026-02-21 19:29:17+0000\n"
+"PO-Revision-Date: 2026-02-22 01:56\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,17 @@ msgstr ""
 "X-Crowdin-File-ID: 1572\n"
 "Language: en_US\n"
 
-#: ../../Plugin.cs:142
+#: ../../Plugin.cs:74
+#, csharp-format
+msgid "[PermaBuff] 配置项 刷新间隔(秒) 为非正数({0})，已回退到默认5秒。"
+msgstr ""
+
+#: ../../Plugin.cs:150
 #, csharp-format
 msgid "{0} 为你添加一个永久buff {1}"
 msgstr "{0} Add a permanent buff for you {1}"
 
-#: ../../Plugin.cs:136
+#: ../../Plugin.cs:144
 #, csharp-format
 msgid "{0} 移除了你的一个永久buff {1}"
 msgstr "{0} Removed your permanent buffs {1}"
@@ -32,61 +37,65 @@ msgstr "{0} Removed your permanent buffs {1}"
 msgid "permabuff.json 读取错误:{0}"
 msgstr "permabuff.json read error: {0}"
 
-#: ../../Plugin.cs:86
+#: ../../Plugin.cs:94
 msgid "已清空所有永久buff"
 msgstr "All permanent buff has been cleared"
 
-#: ../../Plugin.cs:97
+#: ../../Plugin.cs:105
 msgid "已清空所有玩家永久buff"
 msgstr "All players permanent buffs has been cleared"
 
-#: ../../Plugin.cs:141
+#: ../../Plugin.cs:149
 #, csharp-format
-msgid "成功为添加一个永久buff {0}!"
-msgstr "Successfully added a permanent buff {0}!"
+msgid "成功为 {0} 添加一个永久buff {1}!"
+msgstr ""
 
-#: ../../Plugin.cs:176
+#: ../../Plugin.cs:143
+#, csharp-format
+msgid "成功为 {0}移除一个永久buff {1}!"
+msgstr ""
+
+#: ../../Plugin.cs:184
 #, csharp-format
 msgid "成功为自己添加一个永久buff {0}!"
 msgstr "Successfully added a permanent buff {0} for yourself!"
 
-#: ../../Plugin.cs:147
-#: ../../Plugin.cs:181
+#: ../../Plugin.cs:155
+#: ../../Plugin.cs:189
 msgid "无效的buffid"
 msgstr "Invalid buff ID"
 
-#: ../../Plugin.cs:110
+#: ../../Plugin.cs:118
 msgid "未知参数，请使用 '/clearbuffs' 或 '/cbuff all'"
 msgstr "Unknown parameters, please use '/clearbuffs' or '/cbuff all'"
 
-#: ../../Plugin.cs:105
+#: ../../Plugin.cs:113
 msgid "权限不足，无法执行此命令"
 msgstr "Insufficient permissions, this command cannot be executed"
 
-#: ../../Plugin.cs:128
-#: ../../Plugin.cs:164
+#: ../../Plugin.cs:136
+#: ../../Plugin.cs:172
 msgid "此buff不可被添加!"
 msgstr "This buff cannot be added!"
 
-#: ../../Plugin.cs:80
+#: ../../Plugin.cs:88
 msgid "没有永久buff，无需清空"
 msgstr "No permanent buff, no need to clear"
 
-#: ../../Plugin.cs:121
+#: ../../Plugin.cs:129
 msgid "玩家不存在或玩家不在线!"
 msgstr "Player does not exist or player is not online!"
 
-#: ../../Plugin.cs:135
-#: ../../Plugin.cs:171
+#: ../../Plugin.cs:179
 #, csharp-format
 msgid "移除一个永久buff {0}!"
 msgstr "Remove a permanent buff {0}!"
 
-#: ../../Plugin.cs:152
+#: ../../Plugin.cs:160
 msgid "语法错误! 请输入/gpermabuff <buffid> <玩家名>"
 msgstr "Invalid syntax! Please enter /gpermabuff <buffid> <player name>"
 
-#: ../../Plugin.cs:186
+#: ../../Plugin.cs:194
 msgid "语法错误! 请输入/permabuff <buffid>"
 msgstr "Invalid syntax! Please enter /permabuff <buffid>"
 
