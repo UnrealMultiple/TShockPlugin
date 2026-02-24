@@ -33,6 +33,11 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 
 ## 更新日志
 
+### v2026.02.25.0
+
+- 修复ProgressControl集成
+- /cbl info可以显示更多插件支持情况
+
 ### v2026.02.19.0
 
 - 升级Linq2db -> v6
