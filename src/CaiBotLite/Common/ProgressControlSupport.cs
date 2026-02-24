@@ -61,7 +61,14 @@ public static class ProgressControlSupport
             {
                 continue;
             }
-            result[bossName] = TimeFormat(initDate + TimeSpan.FromHours(lockedBoss.Value));
+
+            var unlockTime = initDate + TimeSpan.FromHours(lockedBoss.Value);
+            if (unlockTime <= DateTime.Now)
+            {
+                continue;
+            }
+            
+            result[bossName] = TimeFormat(unlockTime);
         }
         
         return result;

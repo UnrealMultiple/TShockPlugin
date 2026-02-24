@@ -33,6 +33,10 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 
 ## 更新日志
 
+### v2026.02.25.1
+
+- 修复ProgressControl错误显示已解锁的Boss
+
 ### v2026.02.25.0
 
 - 修复ProgressControl集成
