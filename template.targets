@@ -16,7 +16,7 @@
 
     <ItemGroup>
         <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-6qmf-mmc7-6c2p"/>
-        <PackageReference Include="UnrealMultiple.TShock-Beta" Version="6.0.1">
+        <PackageReference Include="UnrealMultiple.TShock-Beta" Version="6.0.2">
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>
