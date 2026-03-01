@@ -15,75 +15,124 @@ public class CGive
 
     public bool Execute()
     {
-        var list = TSPlayer.FindByNameOrID(this.Executer);
         if (this.who == "-1")
         {
+            TSPlayer? executer = this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
+                ? TSPlayer.Server
+                : TShock.Players.FirstOrDefault(p => p != null && p.Active &&
+                      p.Name.Equals(this.Executer, StringComparison.OrdinalIgnoreCase));
+            if (executer == null) return false;
+
             this.Save();
-            if (list.Count > 0 || this.Executer.ToLower() == "server")
+            using (var re = Data.QueryReader(
+                "SELECT id FROM CGive WHERE executer=@0 AND cmd=@1 AND who=@2 ORDER BY id DESC LIMIT 1",
+                this.Executer, this.cmd, this.who))
             {
-                var players = TShock.Players;
-                var array = players;
-                foreach (var tSPlayer in array)
-                {
-                    if (tSPlayer is { Active: true })
-                    {
-                        Commands.HandleCommand(this.Executer.Equals("server", StringComparison.CurrentCultureIgnoreCase) ? TSPlayer.Server : list[0], this.cmd.Replace("name", tSPlayer.Name));
-                        var given = new Given
-                        {
-                            Name = tSPlayer.Name,
-                            Id = this.id
-                        };
-                        given.Save();
-                    }
-                }
-                return true;
+                if (re.Read())
+                    this.id = re.Reader.GetInt32(0);
             }
-            return false;
-        }
-        var list2 = TSPlayer.FindByNameOrID(this.who);
-        if (list2.Count > 0)
-        {
-            if (list.Count > 0 || this.Executer.Equals("server", StringComparison.CurrentCultureIgnoreCase))
+            foreach (var tSPlayer in TShock.Players)
             {
-                Commands.HandleCommand(this.Executer.Equals("server", StringComparison.CurrentCultureIgnoreCase) ? TSPlayer.Server : list[0], this.cmd.Replace("name", this.who));
+                if (tSPlayer is { Active: true })
+                {
+                    Commands.HandleCommand(executer, this.cmd.Replace("{name}", tSPlayer.Name));
+                    new Given { Name = tSPlayer.Name, Id = this.id }.Save();
+                }
+            }
+            return true;
+        }
+
+        // personal 模式：精确匹配在线玩家
+        var target = TShock.Players.FirstOrDefault(p =>
+            p != null && p.Active && p.Name.Equals(this.who, StringComparison.OrdinalIgnoreCase));
+        if (target != null)
+        {
+            TSPlayer? executer = this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
+                ? TSPlayer.Server
+                : TShock.Players.FirstOrDefault(p => p != null && p.Active &&
+                      p.Name.Equals(this.Executer, StringComparison.OrdinalIgnoreCase));
+            if (executer != null)
+            {
+                Commands.HandleCommand(executer, this.cmd.Replace("{name}", target.Name));
                 return true;
             }
         }
         return false;
     }
 
-    public static List<CGive> GetCGive(string who)
+    /// <summary>
+    /// 登录时执行：直接对已登录的玩家执行命令，不检查 Active，不写库，不遍历其他玩家。
+    /// </summary>
+    public bool ExecuteOnLogin(TSPlayer target)
+    {
+        TSPlayer executer = this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
+            ? TSPlayer.Server
+            : TShock.Players.FirstOrDefault(p => p != null && p.Active &&
+                  p.Name.Equals(this.Executer, StringComparison.OrdinalIgnoreCase))!;
+        if (executer == null) return false;
+        Commands.HandleCommand(executer, this.cmd.Replace("{name}", target.Name));
+        return true;
+    }
+
+    public static IEnumerable<CGive> GetCGive()
     {
         var list = new List<CGive>();
-        using (var queryResult = TShock.DB.QueryReader("SELECT executer,cmd,who,id FROM CGive WHERE who=@0 OR who==@1", who, -1))
+        using (var re = Data.QueryReader("SELECT executer,cmd,who,id FROM CGive"))
         {
-            while (queryResult.Read())
+            while (re.Read())
             {
                 list.Add(new CGive
                 {
-                    Executer = queryResult.Reader.GetString(0),
-                    cmd = queryResult.Reader.GetString(1),
-                    who = who,
-                    id = queryResult.Reader.GetInt32(3)
+                    Executer = re.Reader.GetString(0),
+                    cmd = re.Reader.GetString(1),
+                    who = re.Reader.GetString(2),
+                    id = re.Reader.GetInt32(3)
                 });
             }
         }
         return list;
     }
 
-    public static IEnumerable<CGive> GetCGive()
+    /// <summary>
+    /// 只查询与指定玩家名相关的记录（personal 模式）和全体模式（who='-1'），避免全表扫描
+    /// </summary>
+    public static IEnumerable<CGive> GetCGiveForPlayer(string playerName)
     {
-        using var re = TShock.DB.QueryReader("SELECT executer,cmd,who,id FROM CGive");
+        var list = new List<CGive>();
+        using var re = Data.QueryReader(
+            "SELECT executer,cmd,who,id FROM CGive WHERE who=@0 OR who='-1'", playerName);
         while (re.Read())
         {
-            yield return new CGive
+            list.Add(new CGive
             {
                 Executer = re.Reader.GetString(0),
                 cmd = re.Reader.GetString(1),
                 who = re.Reader.GetString(2),
                 id = re.Reader.GetInt32(3)
-            };
+            });
         }
+        return list;
+    }
+
+    /// <summary>
+    /// 只查询指定玩家名的 personal 模式记录，用于 REST 接口等精确查询场景。
+    /// </summary>
+    public static IEnumerable<CGive> GetCGiveByWho(string who)
+    {
+        var list = new List<CGive>();
+        using var re = Data.QueryReader(
+            "SELECT executer,cmd,who,id FROM CGive WHERE who=@0", who);
+        while (re.Read())
+        {
+            list.Add(new CGive
+            {
+                Executer = re.Reader.GetString(0),
+                cmd = re.Reader.GetString(1),
+                who = re.Reader.GetString(2),
+                id = re.Reader.GetInt32(3)
+            });
+        }
+        return list;
     }
 
     public void Save()
