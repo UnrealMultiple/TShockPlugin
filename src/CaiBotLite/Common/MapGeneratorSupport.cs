@@ -4,7 +4,7 @@ namespace CaiBotLite.Common;
 
 internal static class MapGeneratorSupport
 {
-    private static bool Support { get; set; }
+    public static bool Support { get; set; }
     internal static void Init()
     {
         var pluginContainer = ServerApi.Plugins.FirstOrDefault(x => x.Plugin.Name == "GenerateMap");

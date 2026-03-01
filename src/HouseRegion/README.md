@@ -23,6 +23,7 @@
 | /house show [屋名]          | 无  |         house.use         |   房屋区域查看    |
 | /house showall            | 无  |         house.use         |  查看所有房屋区域   |
 | /house auto               | 无  |         house.use         | 进入区域后自动显示区域 |
+| /house tp  [屋名]              | 无  |         house.use         |    传送到房屋    |
 
 ## 配置
 	配置文件位置：tshock/HouseRegion.json
@@ -46,6 +47,9 @@
 ```
 
 ## 更新日志
+
+### v1.0.5
+- 添加传送房屋
 
 ### v1.0.4
 - 支持快速堆叠和附近合成防护

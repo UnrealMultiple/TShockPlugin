@@ -21,55 +21,57 @@ public static class ProgressControlSupport
         {
             throw new NotSupportedException("没有安装ProgressControls插件!");
         }
+        
+        var enable = ProgressControl.PControl.config.OpenAutoControlProgressLock;
+        var lockedBosses = ProgressControl.PControl.config.ProgressLockTimeForStartServerDate;
+        var initDate = ProgressControl.PControl.config.StartServerDate;
+        var result = new Dictionary<string, string>();
+        
+        if (!enable)
+        {
+            return result;
+        }
+        
+        var bossIdNameToIdentity = new Dictionary<string, string>
+        {
+            { "史莱姆王", "King Slime" },
+            { "克苏鲁之眼", "Eye of Cthulhu" },
+            { "世界吞噬者", "Eater of Worlds" },
+            { "克苏鲁之脑", "Brain of Cthulhu" },
+            { "蜂后", "Queen Bee" },
+            { "巨鹿", "Deerclops" },
+            { "骷髅王", "Skeletron" },
+            { "血肉墙", "Wall of Flesh" },
+            { "史莱姆皇后", "Queen Slime" },
+            { "双子魔眼", "The Twins" },
+            { "毁灭者", "The Destroyer" },
+            { "机械骷髅王", "Skeletron Prime" },
+            { "世纪之花", "Plantera" },
+            { "石巨人", "Golem" },
+            { "猪龙鱼公爵", "Duke Fishron" },
+            { "光之女皇", "Empress of Light" },
+            { "拜月教教徒", "Lunatic Cultist" },
+            { "月亮领主", "Moon Lord" }
+        };
+        
+        
+        foreach (var lockedBoss in lockedBosses)
+        {
+            if (!bossIdNameToIdentity.TryGetValue(lockedBoss.Key, out var bossName))
+            {
+                continue;
+            }
 
-        return new Dictionary<string, string>();
-        // var enable = ProgressControl.PControl.config.OpenAutoControlProgressLock;
-        // var lockedBosses = ProgressControl.PControl.config.ProgressLockTimeForStartServerDate;
-        // var initDate = ProgressControl.PControl.config.StartServerDate;
-        // var result = new Dictionary<string, string>();
-        //
-        // if (!enable)
-        // {
-        //     return result;
-        // }
-        //
-        // var bossIdNameToIdentity = new Dictionary<string, string>
-        // {
-        //     { "史莱姆王", "King Slime" },
-        //     { "克苏鲁之眼", "Eye of Cthulhu" },
-        //     { "世界吞噬者", "Eater of Worlds" },
-        //     { "克苏鲁之脑", "Brain of Cthulhu" },
-        //     { "蜂后", "Queen Bee" },
-        //     { "巨鹿", "Deerclops" },
-        //     { "骷髅王", "Skeletron" },
-        //     { "血肉墙", "Wall of Flesh" },
-        //     { "史莱姆皇后", "Queen Slime" },
-        //     { "双子魔眼", "The Twins" },
-        //     { "毁灭者", "The Destroyer" },
-        //     { "机械骷髅王", "Skeletron Prime" },
-        //     { "世纪之花", "Plantera" },
-        //     { "石巨人", "Golem" },
-        //     { "猪龙鱼公爵", "Duke Fishron" },
-        //     { "光之女皇", "Empress of Light" },
-        //     { "拜月教教徒", "Lunatic Cultist" },
-        //     { "月亮领主", "Moon Lord" }
-        // };
-        //
-        //
-        // foreach (var lockedBoss in lockedBosses)
-        // {
-        //     if (!bossIdNameToIdentity.TryGetValue(lockedBoss.Key, out var bossName))
-        //     {
-        //         continue;
-        //     }
-        //     
-        //     
-        //     
-        //
-        //     result[bossName] = TimeFormat(initDate + TimeSpan.FromHours(lockedBoss.Value));
-        // }
-        //
-        // return result;
+            var unlockTime = initDate + TimeSpan.FromHours(lockedBoss.Value);
+            if (unlockTime <= DateTime.Now)
+            {
+                continue;
+            }
+            
+            result[bossName] = TimeFormat(unlockTime);
+        }
+        
+        return result;
     }
 
     public static string TimeFormat(DateTime dateTime)

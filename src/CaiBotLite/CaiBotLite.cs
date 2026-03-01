@@ -13,7 +13,7 @@ namespace CaiBotLite;
 // ReSharper disable once ClassNeverInstantiated.Global
 public class CaiBotLite(Main game) : TerrariaPlugin(game)
 {
-    public static readonly Version VersionNum = new (2026, 02, 17, 0); //日期+版本号(0,1,2...)
+    public static readonly Version VersionNum = new (2026, 02, 25, 1);
     internal static int InitCode = -1;
     internal static bool DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
     private const string CharacterInfoKey = "CaiBotLite.CharacterInfo";
@@ -195,6 +195,9 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
                                     $"设置QQ群: {(Config.Settings.GroupNumber == 0L ? "未设置" : Config.Settings.GroupNumber)}\n" +
                                     $"绑定状态: {Config.Settings.Token != ""}\n" +
                                     $"Debug模式: {DebugMode}\n" +
+                                    $"MapGenerator支持: {MapGeneratorSupport.Support}\n" +
+                                    $"ProgressControl支持: {ProgressControlSupport.Support}\n" +
+                                    $"BossLockSupport支持: {BossLockSupport.Support}\n" +
                                     $"Economic API支持: {EconomicSupport.GetCoinsSupport}\n" +
                                     $"Economic RPG支持: {EconomicSupport.GetLevelNameSupport}\n" +
                                     $"Economic Skill支持: {EconomicSupport.GetSkillSupport}\n"
