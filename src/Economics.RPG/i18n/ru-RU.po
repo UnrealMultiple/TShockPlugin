@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-02-20 16:52:19+0000\n"
-"PO-Revision-Date: 2026-02-21 01:48\n"
+"POT-Creation-Date: 2026-02-28 09:35:12+0000\n"
+"PO-Revision-Date: 2026-03-01 02:03\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -51,8 +51,8 @@ msgstr ""
 msgid "你因重置等级被踢出!"
 msgstr ""
 
-#: ../../RankCommand.cs:24
 #: ../../ResetCareer.cs:23
+#: ../../RankCommand.cs:24
 msgid "你必须登陆才能使用此命令!"
 msgstr ""
 
