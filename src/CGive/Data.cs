@@ -42,4 +42,13 @@ public class Data
     {
         return _db!.QueryReader(query, args);
     }
+
+    public static int GetLastInsertId()
+    {
+        var sql = TShock.Config.Settings.StorageType.Equals("mysql", StringComparison.OrdinalIgnoreCase)
+            ? "SELECT LAST_INSERT_ID()"
+            : "SELECT last_insert_rowid()";
+        using var re = _db!.QueryReader(sql);
+        return re.Read() ? re.Reader.GetInt32(0) : 0;
+    }
 }

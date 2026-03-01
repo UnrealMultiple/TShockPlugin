@@ -15,32 +15,25 @@ public class CGive
 
     public bool Execute()
     {
-        var list = TSPlayer.FindByNameOrID(this.Executer);
         if (this.who == "-1")
         {
-            if (list.Count > 0 || this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase))
+            if (this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
+                || TShock.Players.Any(p => p != null && p.Active && p.Name.Equals(this.Executer, StringComparison.OrdinalIgnoreCase)))
             {
                 this.Save();
-                using (var re = Data.QueryReader(
-                    "SELECT id FROM CGive WHERE executer=@0 AND cmd=@1 AND who=@2 ORDER BY id DESC LIMIT 1",
-                    this.Executer, this.cmd, this.who))
-                {
-                    if (re.Read())
-                    {
-                        this.id = re.Reader.GetInt32(0);
-                    }
-                }
+                this.id = Data.GetLastInsertId();
+
+                var executer = this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
+                    ? TSPlayer.Server
+                    : (TSPlayer?) TShock.Players.FirstOrDefault(p => p != null && p.Active
+                        && p.Name.Equals(this.Executer, StringComparison.OrdinalIgnoreCase));
+
                 foreach (var tSPlayer in TShock.Players)
                 {
                     if (tSPlayer is { Active: true })
                     {
-                        Commands.HandleCommand(
-                            this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
-                                ? TSPlayer.Server
-                                : list[0],
-                            this.cmd.Replace("{name}", tSPlayer.Name));
-                        var given = new Given { Name = tSPlayer.Name, Id = this.id };
-                        given.Save();
+                        Commands.HandleCommand(executer!, this.cmd.Replace("{name}", tSPlayer.Name));
+                        new Given { Name = tSPlayer.Name, Id = this.id }.Save();
                     }
                 }
                 return true;
@@ -48,17 +41,18 @@ public class CGive
             return false;
         }
 
-        // personal 模式：精确匹配在线玩家
+        // personal 模式：大小写不敏感精确匹配
         var target = TShock.Players.FirstOrDefault(p =>
-            p != null && p.Active && p.Name == this.who);
+            p != null && p.Active && p.Name.Equals(this.who, StringComparison.OrdinalIgnoreCase));
         if (target != null)
         {
             var executer = this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
                 ? TSPlayer.Server
-                : TShock.Players.FirstOrDefault(p => p != null && p.Active && p.Name == this.Executer);
+                : (TSPlayer?) TShock.Players.FirstOrDefault(p => p != null && p.Active
+                    && p.Name.Equals(this.Executer, StringComparison.OrdinalIgnoreCase));
             if (executer != null)
             {
-                Commands.HandleCommand(executer, this.cmd.Replace("{name}", this.who));
+                Commands.HandleCommand(executer, this.cmd.Replace("{name}", target.Name));
                 return true;
             }
         }
@@ -68,18 +62,37 @@ public class CGive
     public static IEnumerable<CGive> GetCGive()
     {
         var list = new List<CGive>();
-        using (var re = Data.QueryReader("SELECT executer,cmd,who,id FROM CGive"))
+        using var re = Data.QueryReader("SELECT executer,cmd,who,id FROM CGive");
+        while (re.Read())
         {
-            while (re.Read())
+            list.Add(new CGive
             {
-                list.Add(new CGive
-                {
-                    Executer = re.Reader.GetString(0),
-                    cmd = re.Reader.GetString(1),
-                    who = re.Reader.GetString(2),
-                    id = re.Reader.GetInt32(3)
-                });
-            }
+                Executer = re.Reader.GetString(0),
+                cmd = re.Reader.GetString(1),
+                who = re.Reader.GetString(2),
+                id = re.Reader.GetInt32(3)
+            });
+        }
+        return list;
+    }
+
+    /// <summary>
+    /// 只查询与指定玩家名相关的记录（personal 模式）和 all 模式记录，减少全表扫描
+    /// </summary>
+    public static IEnumerable<CGive> GetCGiveForPlayer(string playerName)
+    {
+        var list = new List<CGive>();
+        using var re = Data.QueryReader(
+            "SELECT executer,cmd,who,id FROM CGive WHERE who=@0 OR who='-1'", playerName);
+        while (re.Read())
+        {
+            list.Add(new CGive
+            {
+                Executer = re.Reader.GetString(0),
+                cmd = re.Reader.GetString(1),
+                who = re.Reader.GetString(2),
+                id = re.Reader.GetInt32(3)
+            });
         }
         return list;
     }

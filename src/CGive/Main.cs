@@ -119,15 +119,11 @@ public class Main : TerrariaPlugin
 
     private static void ExecuteForPlayer(TSPlayer player)
     {
-        foreach (var item in CGive.GetCGive())
+        foreach (var item in CGive.GetCGiveForPlayer(player.Name))
         {
             if (item.who == "-1")
             {
-                var given = new Given
-                {
-                    Name = player.Name,
-                    Id = item.id
-                };
+                var given = new Given { Name = player.Name, Id = item.id };
                 if (!given.IsGiven())
                 {
                     var temp = new CGive
