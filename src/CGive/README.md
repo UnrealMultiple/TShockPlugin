@@ -47,7 +47,7 @@
 
 ### v1.0.1.1
 - 修复 SQLite database is locked 错误
-- 合并 personal/all 子命令为统一的 add 子命令，保留旧命令兼容
+- 合并 personal/all 子命令为统一的 add 子命令
 ### v1.0.1.0
 - 修复在MySQL下重置报错，修复ID不自增，允许不使用引号包围命令
 ### v1.0.0.8
