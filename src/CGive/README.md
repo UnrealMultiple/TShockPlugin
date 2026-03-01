@@ -34,7 +34,7 @@
 /cgive add server leader /kill {name}
 
 # 任意玩家上线就kill他一次（包括未来登录的玩家，每人只一次）
-/cgive add server -1 /give {name} 4956
+/cgive add server -1 /kill {name}
 ```
 
 ## 配置

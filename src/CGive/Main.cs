@@ -128,7 +128,7 @@ public class Main : TerrariaPlugin
                 {
                     var temp = new CGive
                     {
-                        Executer = "Server",
+                        Executer = item.Executer,
                         who = player.Name,
                         cmd = item.cmd,
                         id = item.id
