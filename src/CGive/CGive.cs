@@ -41,7 +41,7 @@ public class CGive
             return false;
         }
 
-        // personal Ä£Ê½£º´óĞ¡Ğ´²»Ãô¸Ğ¾«È·Æ¥Åä
+        // personal æ¨¡å¼ï¼šå¤§å°å†™ä¸æ•æ„Ÿç²¾ç¡®åŒ¹é…
         var target = TShock.Players.FirstOrDefault(p =>
             p != null && p.Active && p.Name.Equals(this.who, StringComparison.OrdinalIgnoreCase));
         if (target != null)
@@ -77,13 +77,13 @@ public class CGive
     }
 
     /// <summary>
-    /// Ö»²éÑ¯ÓëÖ¸¶¨Íæ¼ÒÃûÏà¹ØµÄ¼ÇÂ¼£¨personal Ä£Ê½£©ºÍ all Ä£Ê½¼ÇÂ¼£¬¼õÉÙÈ«±íÉ¨Ãè
+    /// åªæŸ¥è¯¢ä¸æŒ‡å®šç©å®¶åç›¸å…³çš„è®°å½•ï¼ˆpersonal æ¨¡å¼ï¼‰å’Œ all æ¨¡å¼è®°å½•ï¼Œå‡å°‘å…¨è¡¨æ‰«æ
     /// </summary>
     public static IEnumerable<CGive> GetCGiveForPlayer(string playerName)
     {
         var list = new List<CGive>();
         using var re = Data.QueryReader(
-            "SELECT executer,cmd,who,id FROM CGive WHERE who=@0 OR who='-1'", playerName);
+            "SELECT executer,cmd,who,id FROM CGive WHERE who=@0 COLLATE NOCASE OR who='-1'", playerName);
         while (re.Read())
         {
             list.Add(new CGive
