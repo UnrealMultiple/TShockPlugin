@@ -1,3 +1,5 @@
+using System.Data;
+using Microsoft.Data.Sqlite;
 using MySql.Data.MySqlClient;
 using TShockAPI;
 using TShockAPI.DB;
@@ -6,8 +8,14 @@ namespace CGive;
 
 public class Data
 {
+    private static IDbConnection? _db;
+
     public static void Init()
     {
+        _db = TShock.Config.Settings.StorageType.Equals("mysql", StringComparison.OrdinalIgnoreCase)
+            ? new MySqlConnection(TShock.Config.Settings.MySqlConnectionString)
+            : new SqliteConnection("Data Source=" + Path.Combine(TShock.SavePath, "CGive.sqlite"));
+
         var cgiveTable = new SqlTable("CGive",
             new SqlColumn("id", MySqlDbType.Int32) { Primary = true, AutoIncrement = true },
             new SqlColumn("executer", MySqlDbType.Text),
@@ -16,17 +24,31 @@ public class Data
         );
 
         var givenTable = new SqlTable("Given",
-            new SqlColumn("id", MySqlDbType.Int32) { Primary = true, AutoIncrement = true },
-            new SqlColumn("name", MySqlDbType.Text));
+            new SqlColumn("name", MySqlDbType.Text),
+            new SqlColumn("id", MySqlDbType.Int32)
+        );
 
-
-        SqlTableCreator creator = new(TShock.DB, TShock.DB.GetSqlQueryBuilder());
+        var creator = new SqlTableCreator(_db, _db.GetSqlQueryBuilder());
         creator.EnsureTableStructure(cgiveTable);
         creator.EnsureTableStructure(givenTable);
     }
 
     public static void Command(string cmd, params object[] args)
     {
-        TShock.DB.Query(cmd, args);
+        _db!.Query(cmd, args);
+    }
+
+    public static QueryResult QueryReader(string query, params object[] args)
+    {
+        return _db!.QueryReader(query, args);
+    }
+
+    public static int GetLastInsertId()
+    {
+        var sql = TShock.Config.Settings.StorageType.Equals("mysql", StringComparison.OrdinalIgnoreCase)
+            ? "SELECT LAST_INSERT_ID()"
+            : "SELECT last_insert_rowid()";
+        using var re = _db!.QueryReader(sql);
+        return re.Read() ? re.Reader.GetInt32(0) : 0;
     }
 }
