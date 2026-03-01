@@ -18,21 +18,28 @@ public class CGive
         var list = TSPlayer.FindByNameOrID(this.Executer);
         if (this.who == "-1")
         {
-            this.Save();
-            if (list.Count > 0 || this.Executer.ToLower() == "server")
+            if (list.Count > 0 || this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase))
             {
-                var players = TShock.Players;
-                var array = players;
-                foreach (var tSPlayer in array)
+                this.Save();
+                using (var re = Data.QueryReader(
+                    "SELECT id FROM CGive WHERE executer=@0 AND cmd=@1 AND who=@2 ORDER BY id DESC LIMIT 1",
+                    this.Executer, this.cmd, this.who))
+                {
+                    if (re.Read())
+                    {
+                        this.id = re.Reader.GetInt32(0);
+                    }
+                }
+                foreach (var tSPlayer in TShock.Players)
                 {
                     if (tSPlayer is { Active: true })
                     {
-                        Commands.HandleCommand(this.Executer.Equals("server", StringComparison.CurrentCultureIgnoreCase) ? TSPlayer.Server : list[0], this.cmd.Replace("name", tSPlayer.Name));
-                        var given = new Given
-                        {
-                            Name = tSPlayer.Name,
-                            Id = this.id
-                        };
+                        Commands.HandleCommand(
+                            this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
+                                ? TSPlayer.Server
+                                : list[0],
+                            this.cmd.Replace("{name}", tSPlayer.Name));
+                        var given = new Given { Name = tSPlayer.Name, Id = this.id };
                         given.Save();
                     }
                 }
@@ -40,50 +47,41 @@ public class CGive
             }
             return false;
         }
-        var list2 = TSPlayer.FindByNameOrID(this.who);
-        if (list2.Count > 0)
+
+        // personal 模式：精确匹配在线玩家
+        var target = TShock.Players.FirstOrDefault(p =>
+            p != null && p.Active && p.Name == this.who);
+        if (target != null)
         {
-            if (list.Count > 0 || this.Executer.Equals("server", StringComparison.CurrentCultureIgnoreCase))
+            var executer = this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
+                ? TSPlayer.Server
+                : TShock.Players.FirstOrDefault(p => p != null && p.Active && p.Name == this.Executer);
+            if (executer != null)
             {
-                Commands.HandleCommand(this.Executer.Equals("server", StringComparison.CurrentCultureIgnoreCase) ? TSPlayer.Server : list[0], this.cmd.Replace("name", this.who));
+                Commands.HandleCommand(executer, this.cmd.Replace("{name}", this.who));
                 return true;
             }
         }
         return false;
     }
 
-    public static List<CGive> GetCGive(string who)
+    public static IEnumerable<CGive> GetCGive()
     {
         var list = new List<CGive>();
-        using (var queryResult = TShock.DB.QueryReader("SELECT executer,cmd,who,id FROM CGive WHERE who=@0 OR who==@1", who, -1))
+        using (var re = Data.QueryReader("SELECT executer,cmd,who,id FROM CGive"))
         {
-            while (queryResult.Read())
+            while (re.Read())
             {
                 list.Add(new CGive
                 {
-                    Executer = queryResult.Reader.GetString(0),
-                    cmd = queryResult.Reader.GetString(1),
-                    who = who,
-                    id = queryResult.Reader.GetInt32(3)
+                    Executer = re.Reader.GetString(0),
+                    cmd = re.Reader.GetString(1),
+                    who = re.Reader.GetString(2),
+                    id = re.Reader.GetInt32(3)
                 });
             }
         }
         return list;
-    }
-
-    public static IEnumerable<CGive> GetCGive()
-    {
-        using var re = TShock.DB.QueryReader("SELECT executer,cmd,who,id FROM CGive");
-        while (re.Read())
-        {
-            yield return new CGive
-            {
-                Executer = re.Reader.GetString(0),
-                cmd = re.Reader.GetString(1),
-                who = re.Reader.GetString(2),
-                id = re.Reader.GetInt32(3)
-            };
-        }
     }
 
     public void Save()

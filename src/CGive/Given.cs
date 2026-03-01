@@ -1,5 +1,4 @@
 using TShockAPI;
-using TShockAPI.DB;
 
 namespace CGive;
 
@@ -11,18 +10,17 @@ public class Given
 
     public void Save()
     {
-        Data.Command($"INSERT INTO Given(name) VALUES (@0)", this.Name);
+        Data.Command("INSERT INTO Given(name, id) VALUES (@0, @1)", this.Name, this.Id);
     }
 
     public void Del()
     {
-        Data.Command($"DELETE FROM Given WHERE name=@0 and id=@1", this.Name, this.Id);
+        Data.Command("DELETE FROM Given WHERE name=@0 AND id=@1", this.Name, this.Id);
     }
 
     public bool IsGiven()
     {
-        var dB = TShock.DB;
-        using var queryResult = dB.QueryReader($"SELECT * FROM Given WHERE name=@0 and id=@1", this.Name, this.Id);
-        return  queryResult.Read();
+        using var queryResult = Data.QueryReader("SELECT * FROM Given WHERE name=@0 AND id=@1", this.Name, this.Id);
+        return queryResult.Read();
     }
 }

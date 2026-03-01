@@ -7,7 +7,7 @@ namespace CGive;
 [ApiVersion(2, 1)]
 public class Main : TerrariaPlugin
 {
-    public override string Author => "Leader";
+    public override string Author => "Leader，肝帝熙恩";
 
     public override string Description => GetString("离线give");
 
@@ -109,25 +109,42 @@ public class Main : TerrariaPlugin
 
     private static void OnGreetPlayer(GreetPlayerEventArgs args)
     {
+        var player = TShock.Players[args.Who];
+        if (player == null)
+        {
+            return;
+        }
+        ExecuteForPlayer(player);
+    }
+
+    private static void ExecuteForPlayer(TSPlayer player)
+    {
         foreach (var item in CGive.GetCGive())
         {
             if (item.who == "-1")
             {
                 var given = new Given
                 {
-                    Name = TShock.Players[args.Who].Name,
+                    Name = player.Name,
                     Id = item.id
                 };
                 if (!given.IsGiven())
                 {
-                    item.who = given.Name;
-                    if (item.Execute())
+                    var temp = new CGive
+                    {
+                        Executer = "Server",
+                        who = player.Name,
+                        cmd = item.cmd,
+                        id = item.id
+                    };
+                    if (temp.Execute())
                     {
                         given.Save();
                     }
                 }
             }
-            else if (item.Execute())
+            else if (item.who.Equals(player.Name, StringComparison.OrdinalIgnoreCase)
+                     && item.Execute())
             {
                 item.Del();
             }
@@ -143,11 +160,12 @@ public class Main : TerrariaPlugin
     {
         if (args.Parameters.Count == 0)
         {
-            args.Player.SendInfoMessage(GetString("/cgive personal [被执行者] [命令]"));
-            args.Player.SendInfoMessage(GetString("/cgive all [执行者] [命令]"));
-            args.Player.SendInfoMessage(GetString("/cgive list,列出所有离线命令"));
-            args.Player.SendInfoMessage(GetString("/cgive del [id],删除指定id的离线命令"));
-            args.Player.SendInfoMessage(GetString("/cgive reset,重置所有数据"));
+            args.Player.SendInfoMessage(GetString("/cgive add [执行者] [被执行者] [命令]"));
+            args.Player.SendInfoMessage(GetString("  执行者: Server 或 玩家名"));
+            args.Player.SendInfoMessage(GetString("  被执行者: 玩家名 或 -1(所有玩家)"));
+            args.Player.SendInfoMessage(GetString("/cgive list - 列出所有离线命令"));
+            args.Player.SendInfoMessage(GetString("/cgive del [id] - 删除指定id的离线命令"));
+            args.Player.SendInfoMessage(GetString("/cgive reset - 重置所有数据"));
             return;
         }
         switch (args.Parameters[0])
@@ -159,13 +177,16 @@ public class Main : TerrariaPlugin
                 break;
             case "del":
             {
+                if (args.Parameters.Count < 2)
+                {
+                    args.Player.SendErrorMessage(GetString("用法: /cgive del [id]"));
+                    break;
+                }
                 if (int.TryParse(args.Parameters[1], out var netID))
                 {
-                    var cGive2 = new CGive
-                    {
-                        id = netID
-                    };
+                    var cGive2 = new CGive { id = netID };
                     cGive2.Del();
+                    Data.Command("DELETE FROM Given WHERE id=@0", netID);
                     args.Player.SendSuccessMessage(GetString("已执行删除"));
                 }
                 else
@@ -178,30 +199,20 @@ public class Main : TerrariaPlugin
             {
                 foreach (var item in CGive.GetCGive())
                 {
-                    var player = args.Player;
-                    player.SendInfoMessage(GetString($"执行者:{item.Executer} 被执行者:{item.who} 命令:{item.cmd} id:{item.id}"));
+                    args.Player.SendInfoMessage(GetString($"执行者:{item.Executer} 被执行者:{item.who} 命令:{item.cmd} id:{item.id}"));
                 }
                 break;
             }
-            case "all":
+            case "add":
             {
-                var executer2 = args.Parameters[1];
-                var cmd2 = string.Join(' ', args.Parameters[2..]);
-                var who2 = "-1";
-                var cGive3 = new CGive
+                if (args.Parameters.Count < 4)
                 {
-                    who = who2,
-                    Executer = executer2,
-                    cmd = cmd2
-                };
-                cGive3.Execute();
-                break;
-            }
-            case "personal":
-            {
-                var executer = "Server";
-                var who = args.Parameters[1];
-                var cmd = string.Join(' ', args.Parameters[2..]);
+                    args.Player.SendErrorMessage(GetString("用法: /cgive add [执行者] [被执行者] [命令]"));
+                    break;
+                }
+                var executer = args.Parameters[1];
+                var who = args.Parameters[2];
+                var cmd = string.Join(' ', args.Parameters[3..]);
                 var cGive = new CGive
                 {
                     Executer = executer,
@@ -219,6 +230,9 @@ public class Main : TerrariaPlugin
                 }
                 break;
             }
+            default:
+                args.Player.SendErrorMessage(GetString($"未知子命令: {args.Parameters[0]}，输入 /cgive 查看帮助"));
+                break;
         }
     }
 }
