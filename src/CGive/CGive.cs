@@ -17,39 +17,40 @@ public class CGive
     {
         if (this.who == "-1")
         {
-            if (this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
-                || TShock.Players.Any(p => p != null && p.Active && p.Name.Equals(this.Executer, StringComparison.OrdinalIgnoreCase)))
+            TSPlayer? executer = this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
+                ? TSPlayer.Server
+                : TShock.Players.FirstOrDefault(p => p != null && p.Active &&
+                      p.Name.Equals(this.Executer, StringComparison.OrdinalIgnoreCase));
+            if (executer == null) return false;
+
+            this.Save();
+            using (var re = Data.QueryReader(
+                "SELECT id FROM CGive WHERE executer=@0 AND cmd=@1 AND who=@2 ORDER BY id DESC LIMIT 1",
+                this.Executer, this.cmd, this.who))
             {
-                this.Save();
-                this.id = Data.GetLastInsertId();
-
-                var executer = this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
-                    ? TSPlayer.Server
-                    : (TSPlayer?) TShock.Players.FirstOrDefault(p => p != null && p.Active
-                        && p.Name.Equals(this.Executer, StringComparison.OrdinalIgnoreCase));
-
-                foreach (var tSPlayer in TShock.Players)
-                {
-                    if (tSPlayer is { Active: true })
-                    {
-                        Commands.HandleCommand(executer!, this.cmd.Replace("{name}", tSPlayer.Name));
-                        new Given { Name = tSPlayer.Name, Id = this.id }.Save();
-                    }
-                }
-                return true;
+                if (re.Read())
+                    this.id = re.Reader.GetInt32(0);
             }
-            return false;
+            foreach (var tSPlayer in TShock.Players)
+            {
+                if (tSPlayer is { Active: true })
+                {
+                    Commands.HandleCommand(executer, this.cmd.Replace("{name}", tSPlayer.Name));
+                    new Given { Name = tSPlayer.Name, Id = this.id }.Save();
+                }
+            }
+            return true;
         }
 
-        // personal æ¨¡å¼ï¼šå¤§å°å†™ä¸æ•æ„Ÿç²¾ç¡®åŒ¹é…
+        // personal Ä£Ê½£º¾«È·Æ¥ÅäÔÚÏßÍæ¼Ò
         var target = TShock.Players.FirstOrDefault(p =>
             p != null && p.Active && p.Name.Equals(this.who, StringComparison.OrdinalIgnoreCase));
         if (target != null)
         {
-            var executer = this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
+            TSPlayer? executer = this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
                 ? TSPlayer.Server
-                : (TSPlayer?) TShock.Players.FirstOrDefault(p => p != null && p.Active
-                    && p.Name.Equals(this.Executer, StringComparison.OrdinalIgnoreCase));
+                : TShock.Players.FirstOrDefault(p => p != null && p.Active &&
+                      p.Name.Equals(this.Executer, StringComparison.OrdinalIgnoreCase));
             if (executer != null)
             {
                 Commands.HandleCommand(executer, this.cmd.Replace("{name}", target.Name));
@@ -59,10 +60,47 @@ public class CGive
         return false;
     }
 
+    /// <summary>
+    /// µÇÂ¼Ê±Ö´ĞĞ£ºÖ±½Ó¶ÔÒÑµÇÂ¼µÄÍæ¼ÒÖ´ĞĞÃüÁî£¬²»¼ì²é Active£¬²»Ğ´¿â£¬²»±éÀúÆäËûÍæ¼Ò¡£
+    /// </summary>
+    public bool ExecuteOnLogin(TSPlayer target)
+    {
+        TSPlayer executer = this.Executer.Equals("server", StringComparison.OrdinalIgnoreCase)
+            ? TSPlayer.Server
+            : TShock.Players.FirstOrDefault(p => p != null && p.Active &&
+                  p.Name.Equals(this.Executer, StringComparison.OrdinalIgnoreCase))!;
+        if (executer == null) return false;
+        Commands.HandleCommand(executer, this.cmd.Replace("{name}", target.Name));
+        return true;
+    }
+
     public static IEnumerable<CGive> GetCGive()
     {
         var list = new List<CGive>();
-        using var re = Data.QueryReader("SELECT executer,cmd,who,id FROM CGive");
+        using (var re = Data.QueryReader("SELECT executer,cmd,who,id FROM CGive"))
+        {
+            while (re.Read())
+            {
+                list.Add(new CGive
+                {
+                    Executer = re.Reader.GetString(0),
+                    cmd = re.Reader.GetString(1),
+                    who = re.Reader.GetString(2),
+                    id = re.Reader.GetInt32(3)
+                });
+            }
+        }
+        return list;
+    }
+
+    /// <summary>
+    /// Ö»²éÑ¯ÓëÖ¸¶¨Íæ¼ÒÃûÏà¹ØµÄ¼ÇÂ¼£¨personal Ä£Ê½£©ºÍÈ«ÌåÄ£Ê½£¨who='-1'£©£¬±ÜÃâÈ«±íÉ¨Ãè
+    /// </summary>
+    public static IEnumerable<CGive> GetCGiveForPlayer(string playerName)
+    {
+        var list = new List<CGive>();
+        using var re = Data.QueryReader(
+            "SELECT executer,cmd,who,id FROM CGive WHERE who=@0 OR who='-1'", playerName);
         while (re.Read())
         {
             list.Add(new CGive
@@ -77,13 +115,13 @@ public class CGive
     }
 
     /// <summary>
-    /// åªæŸ¥è¯¢ä¸æŒ‡å®šç©å®¶åç›¸å…³çš„è®°å½•ï¼ˆpersonal æ¨¡å¼ï¼‰å’Œ all æ¨¡å¼è®°å½•ï¼Œå‡å°‘å…¨è¡¨æ‰«æ
+    /// Ö»²éÑ¯Ö¸¶¨Íæ¼ÒÃûµÄ personal Ä£Ê½¼ÇÂ¼£¬ÓÃÓÚ REST ½Ó¿ÚµÈ¾«È·²éÑ¯³¡¾°¡£
     /// </summary>
-    public static IEnumerable<CGive> GetCGiveForPlayer(string playerName)
+    public static IEnumerable<CGive> GetCGiveByWho(string who)
     {
         var list = new List<CGive>();
         using var re = Data.QueryReader(
-            "SELECT executer,cmd,who,id FROM CGive WHERE who=@0 COLLATE NOCASE OR who='-1'", playerName);
+            "SELECT executer,cmd,who,id FROM CGive WHERE who=@0", who);
         while (re.Read())
         {
             list.Add(new CGive

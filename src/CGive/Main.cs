@@ -53,12 +53,8 @@ public class Main : TerrariaPlugin
             };
         }
         var list = new List<Warehouse>();
-        foreach (var item2 in CGive.GetCGive())
+        foreach (var item2 in CGive.GetCGiveByWho(text))
         {
-            if (item2.who != text)
-            {
-                continue;
-            }
             var array = item2.cmd.Split(' ');
             if (array.Length < 3 || (array[0].ToLower() != specifier + "give" && array[0].ToLower() != specifier + "g"))
             {
@@ -110,10 +106,8 @@ public class Main : TerrariaPlugin
     private static void OnGreetPlayer(GreetPlayerEventArgs args)
     {
         var player = TShock.Players[args.Who];
-        if (player == null)
-        {
+        if (player == null || !player.IsLoggedIn)
             return;
-        }
         ExecuteForPlayer(player);
     }
 
@@ -124,23 +118,13 @@ public class Main : TerrariaPlugin
             if (item.who == "-1")
             {
                 var given = new Given { Name = player.Name, Id = item.id };
-                if (!given.IsGiven())
+                if (!given.IsGiven() && item.ExecuteOnLogin(player))
                 {
-                    var temp = new CGive
-                    {
-                        Executer = item.Executer,
-                        who = player.Name,
-                        cmd = item.cmd,
-                        id = item.id
-                    };
-                    if (temp.Execute())
-                    {
-                        given.Save();
-                    }
+                    given.Save();
                 }
             }
             else if (item.who.Equals(player.Name, StringComparison.OrdinalIgnoreCase)
-                     && item.Execute())
+                     && item.ExecuteOnLogin(player))
             {
                 item.Del();
             }
