@@ -58,6 +58,11 @@ internal static class Utils
         {
             return GetSeedIcon("Traps");
         }
+        
+        if (data.SkyblockWorld)
+        {
+            return GetSeedIcon("Skyblock");
+        }
 
         return "Icon" + (data.IsHardMode ? "Hallow" : "") + (data.HasCorruption ? "Corruption" : "Crimson");
     }

@@ -127,6 +127,9 @@ public class TestCommand
 
 ## 更新日志
 
+### v1.0.3.0
+- 升级Linq2db -> v6
+
 ### v1.0.2.0
 - 修复在构造函数阶段使用TShock.Log
 - 添加FindCommand
