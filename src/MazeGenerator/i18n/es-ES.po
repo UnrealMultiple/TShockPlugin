@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-02-20 16:52:31+0000\n"
-"PO-Revision-Date: 2026-02-21 01:48\n"
+"POT-Creation-Date: 2026-02-27 02:43:41+0000\n"
+"PO-Revision-Date: 2026-02-28 01:43\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -283,8 +283,8 @@ msgstr ""
 msgid "显示路径中..."
 msgstr ""
 
-#: ../../Services/MazeBuilder.cs:276
 #: ../../Commands/MazeCommandHandler.cs:328
+#: ../../Services/MazeBuilder.cs:276
 #, csharp-format
 msgid "未找到位置 '{0}'"
 msgstr ""
