@@ -77,7 +77,7 @@ public class WikiLangPackLoader : TerrariaPlugin
         }
 
         Utils.TryCreatingDirectory(System.IO.Path.Combine(TShock.SavePath, @"LangResourcePack/"));
-        ZipFile.ExtractToDirectory(filePath, System.IO.Path.Combine(TShock.SavePath, @"LangResourcePack/", true));
+        ZipFile.ExtractToDirectory(filePath, System.IO.Path.Combine(TShock.SavePath, @"LangResourcePack/"), true);
         File.Delete(filePath);
         var pack = new ResourcePack(services, System.IO.Path.Combine(TShock.SavePath, "LangResourcePack/"));
         var list = new List<IContentSource> { pack.GetContentSource() };
