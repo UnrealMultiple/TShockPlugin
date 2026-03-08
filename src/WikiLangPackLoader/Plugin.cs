@@ -69,17 +69,17 @@ public class WikiLangPackLoader : TerrariaPlugin
         var assembly = Assembly.GetExecutingAssembly();
         var services = new GameServiceContainer();
         const string resourceName = "WikiLangPackLoader.ResourcePack.zip";
-        const string filePath = @"tshock/LangResourcePack.zip";
+        const string filePath = Path.Combine(TShock.SavePath, "LangResourcePack.zip");
         using (var resourceStream = assembly.GetManifestResourceStream(resourceName)!)
         using (var fileStream = new FileStream(filePath, FileMode.Create))
         {
             resourceStream.CopyTo(fileStream);
         }
 
-        Utils.TryCreatingDirectory(@"tshock/LangResourcePack/");
-        ZipFile.ExtractToDirectory(filePath, @"tshock/LangResourcePack/", true);
+        Utils.TryCreatingDirectory(Path.Combine(TShock.SavePath, @"LangResourcePack/"));
+        ZipFile.ExtractToDirectory(filePath, Path.Combine(TShock.SavePath, @"LangResourcePack/", true));
         File.Delete(filePath);
-        var pack = new ResourcePack(services, @"tshock/LangResourcePack/");
+        var pack = new ResourcePack(services, Path.Combine(TShock.SavePath, "LangResourcePack/"));
         var list = new List<IContentSource> { pack.GetContentSource() };
         Terraria.Localization.LanguageManager.Instance.UseSources(list);
 

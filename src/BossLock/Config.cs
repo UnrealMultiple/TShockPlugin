@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
-
+using TShockAPI;
 namespace BossLock;
 
 public class Config
 {
-    private const string ConfigPath= "tshock/BossLock.json";
+    private const string ConfigPath= Path.Combine(TShock.SavePath, "BossLock.json");
 
     internal static Config Settings = new ();
     

@@ -7,7 +7,7 @@ namespace Ezperm;
 
 public class Configuration
 {
-    public const string Path = "tshock/ezperm.json";
+    public const string Path = Path.Combine(TShock.SavePath, "ezperm.json");
 
     public static Configuration Instance = new();
 

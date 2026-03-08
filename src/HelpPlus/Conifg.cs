@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
-
+using TShockAPI;
 namespace UserCheck;
 
 public class Config
 {
-    private const string ConfigPath = "tshock/HelpPlus.json";
+    private const string ConfigPath = Path.Combine(TShock.SavePath, "HelpPlus.json");
 
     public static Config Settings = new();
     
