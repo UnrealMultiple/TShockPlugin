@@ -4,7 +4,7 @@ namespace BossLock;
 
 public class Config
 {
-    private const string ConfigPath= Path.Combine(TShock.SavePath, "BossLock.json");
+    private static string ConfigPath= Path.Combine(TShock.SavePath, "BossLock.json");
 
     internal static Config Settings = new ();
     
