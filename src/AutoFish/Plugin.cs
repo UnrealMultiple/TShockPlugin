@@ -26,7 +26,7 @@ public partial class Plugin(Main game) : LazyPlugin(game)
     public override string Author => "ksqeib 羽学 少司命";
 
     /// <summary>插件版本。</summary>
-    public override Version Version => new(1, 4, 9, 1);
+    public override Version Version => new(1, 4, 9, 2);
 
     /// <summary>插件描述。</summary>
     public override string Description => "青山常伴绿水，燕雀已是南飞";

@@ -24,7 +24,7 @@ public class AutoResetPlugin(Main game) : LazyPlugin(game)
     private GenerationProgress? _generationProgress;
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new (2026, 02, 12, 0);
+    public override Version Version => new (2026, 03, 08, 0);
 
     public override string Author => "cc04 & Leader & 棱镜 & Cai & 肝帝熙恩";
 

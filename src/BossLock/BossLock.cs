@@ -16,7 +16,7 @@ public class BossLock(Main game) : TerrariaPlugin(game)
 
     public override string Name => "BossLock";
 
-    public override Version Version => new (2, 0, 0, 0);
+    public override Version Version => new (2, 0, 0, 1);
     
 
     public override void Initialize()
