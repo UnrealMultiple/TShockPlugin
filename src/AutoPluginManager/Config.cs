@@ -4,7 +4,7 @@ namespace AutoPluginManager;
 
 public class Config
 {
-    public const string Path = Path.Combine(TShock.SavePath, "AutoPluginManager.json");
+    public static string Path = Path.Combine(TShock.SavePath, "AutoPluginManager.json");
 
     public static Config Instance = new();
 

@@ -4,7 +4,7 @@ namespace UserCheck;
 
 public class Config
 {
-    private const string ConfigPath = Path.Combine(TShock.SavePath, "HelpPlus.json");
+    private static string ConfigPath = Path.Combine(TShock.SavePath, "HelpPlus.json");
 
     public static Config Settings = new();
     
