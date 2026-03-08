@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.IO;
 using TShockAPI;
 
 namespace Ezperm;
 
 public class Configuration
 {
-    public static string Path = Path.Combine(TShock.SavePath, "ezperm.json");
+    public static string Path = System.IO.Path.Combine(TShock.SavePath, "ezperm.json");
 
     public static Configuration Instance = new();
 
