@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
-
+using TShockAPI;
 namespace CaiBotLite;
 
 public class Config
 {
-    private const string ConfigPath = "tshock/CaiBotLite.json";
+    private static string ConfigPath = Path.Combine(TShock.SavePath, "CaiBotLite.json");
     public static Config Settings = new ();
 
     [JsonProperty("白名单开关")]

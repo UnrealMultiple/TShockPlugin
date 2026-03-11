@@ -33,6 +33,9 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 
 ## 更新日志
 
+### v2026.3.8
+- 支持动态识别配置路径
+
 ### v2026.02.25.1
 
 - 修复ProgressControl错误显示已解锁的Boss

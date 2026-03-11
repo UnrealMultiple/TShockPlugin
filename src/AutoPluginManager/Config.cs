@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
-
+using TShockAPI;
 namespace AutoPluginManager;
 
 public class Config
 {
-    public const string Path = "tshock/AutoPluginManager.json";
+    public static string Path = System.IO.Path.Combine(TShock.SavePath, "AutoPluginManager.json");
 
-    public static Config Instance = new();
+    public static Config Instance = new();  
 
     public void Write()
     {

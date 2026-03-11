@@ -6,6 +6,7 @@ using System.Text;
 using System.Timers;
 using TerrariaApi.Server;
 using TShockAPI;
+using System.IO;
 
 namespace AutoPluginManager.Internal;
 

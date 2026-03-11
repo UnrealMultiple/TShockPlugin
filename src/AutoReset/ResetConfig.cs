@@ -1,5 +1,7 @@
 ﻿using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
+using TShockAPI;
+using System.IO;
 
 namespace AutoReset;
 
@@ -30,7 +32,7 @@ public class ResetConfig : JsonConfigBase<ResetConfig>
     [LocalizedPropertyName(CultureType.English, "AfterResetSQL")]
     public string[]? SqLs;
 
-    protected override string Filename => Path.Combine(AutoResetPlugin.FolderName, "AutoReset");
+    protected override string Filename => Path.Combine(TShock.SavePath, AutoResetPlugin.FolderName, "AutoReset");
 
     protected override void SetDefault()
     {

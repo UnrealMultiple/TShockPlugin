@@ -30,7 +30,7 @@ public class WikiLangPackLoader : TerrariaPlugin
     public override string Description => GetString("加载Wiki语言包");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new (2025, 07, 19, 0);
+    public override Version Version => new (2026, 03, 08, 0);
 
     private readonly Hook _langHook = new (typeof(TShock).Assembly.GetType("TShockAPI.I18n")!.GetProperty(
         "TranslationCultureInfo",
@@ -69,17 +69,17 @@ public class WikiLangPackLoader : TerrariaPlugin
         var assembly = Assembly.GetExecutingAssembly();
         var services = new GameServiceContainer();
         const string resourceName = "WikiLangPackLoader.ResourcePack.zip";
-        const string filePath = @"tshock/LangResourcePack.zip";
+        string filePath = System.IO.Path.Combine(TShock.SavePath, "LangResourcePack.zip");
         using (var resourceStream = assembly.GetManifestResourceStream(resourceName)!)
         using (var fileStream = new FileStream(filePath, FileMode.Create))
         {
             resourceStream.CopyTo(fileStream);
         }
 
-        Utils.TryCreatingDirectory(@"tshock/LangResourcePack/");
-        ZipFile.ExtractToDirectory(filePath, @"tshock/LangResourcePack/", true);
+        Utils.TryCreatingDirectory(System.IO.Path.Combine(TShock.SavePath, @"LangResourcePack/"));
+        ZipFile.ExtractToDirectory(filePath, System.IO.Path.Combine(TShock.SavePath, @"LangResourcePack/"), true);
         File.Delete(filePath);
-        var pack = new ResourcePack(services, @"tshock/LangResourcePack/");
+        var pack = new ResourcePack(services, System.IO.Path.Combine(TShock.SavePath, "LangResourcePack/"));
         var list = new List<IContentSource> { pack.GetContentSource() };
         Terraria.Localization.LanguageManager.Instance.UseSources(list);
 
