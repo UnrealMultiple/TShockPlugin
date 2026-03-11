@@ -120,6 +120,8 @@ internal static class LoginHelper
                 TShock.CharacterDB.InsertPlayerData(player);
             }
 
+            // 调用两次以确保SSC角色数据稳定还原
+            player.PlayerData.RestoreCharacter(player);
             player.PlayerData.RestoreCharacter(player);
         }
 

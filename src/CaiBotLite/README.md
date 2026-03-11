@@ -33,6 +33,9 @@ https://docs.terraria.ink/zh/caibot/CaiBotLite.html
 
 ## 更新日志
 
+### v2026.3.11
+- 将SSC登录还原改为重复两次以提升稳定性
+
 ### v2026.3.8
 - 支持动态识别配置路径
 
