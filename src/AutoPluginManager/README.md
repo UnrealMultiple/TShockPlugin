@@ -20,7 +20,7 @@
 | /apm -lb | AutoUpdatePlugin   | 列出排除更新的插件 |
 | /apm -il | AutoUpdatePlugin   | 列出已安装插件列表与启用状态 |
 | /apm -on [序号] | AutoUpdatePlugin   | 启用某个插件 |
-| /apm -off [序号] | AutoUpdatePlugin   | 关闭某个插件 |
+| /apm -off [序号] <-d> | AutoUpdatePlugin   | 关闭某个插件(-d 参数会删除目标插件) |
 ## 配置
 
 > 配置文件位置：tshock/AutoPluginManager.json
