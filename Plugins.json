@@ -246,7 +246,7 @@
   },
   {
     "Name": "AutoPluginManager",
-    "Version": "2.1.0.1",
+    "Version": "2.1.0.2",
     "Author": "少司命,Cai,LaoSparrow,2409",
     "Description": {
       "en-US": "Automatically update your plugins!",
