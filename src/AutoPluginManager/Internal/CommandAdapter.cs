@@ -73,7 +73,7 @@ internal class CommandAdapter
 
     private static void OffPlugin(CommandArgs args)
     {
-        if (args.Parameters.Count != 2)
+        if (args.Parameters.Count < 2)
         {
             args.Player.SendInfoMessage(GetString("语法错误，正确语法:/apm off [序号]"));
             return;
@@ -89,7 +89,7 @@ internal class CommandAdapter
             .Where(i => i > 0 && i <= availablePlugins.Length && cloudAssemblys.Contains(availablePlugins[i - 1].AssemblyName))
             .Select(i => availablePlugins[i - 1])
             .ToList();
-        if (!pendingPlugins.Any())
+        if (pendingPlugins.Count == 0)
         {
             args.Player.SendErrorMessage(GetString("序号无效，请附带需要关闭插件的选择项!"));
             return;
@@ -99,14 +99,19 @@ internal class CommandAdapter
             .GetField("plugins", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)?
             .GetValue(null)!;
         foreach (var plugin in plugins)
-        {
-            if (pendingPlugins.Any(i => i.AssemblyName == plugin.Plugin.GetType().Assembly.GetName().Name))
+        { 
+            var matchPlugin = pendingPlugins.FirstOrDefault(p => p.AssemblyName == plugin.Plugin.GetType().Assembly.GetName().Name);
+            if (matchPlugin != null)
             {
                 if (plugin.Initialized)
                 {
                     plugin.Dispose();
                     plugin.DeInitialize();
                     args.Player.SendSuccessMessage(GetString($"{plugin.Plugin.Name} v{plugin.Plugin.Version} (by {plugin.Plugin.Author}) 关闭成功!"));
+                    if(args.Parameters.Count > 2 && args.Parameters[2].Equals("-d", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        File.Delete(Path.Combine("ServerPlugins", matchPlugin.FileName));
+                    }
                 }
                 else
                 {
