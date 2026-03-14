@@ -36,7 +36,7 @@ public class ModifyClientDetect
                 TShockAPI.TShock.Utils.Broadcast(text, Microsoft.Xna.Framework.Color.Red);
                 if(Config.Instance.KickCheater)
                 {
-                    player.Kick("使用了修改后的客户端！");
+                    player.Kick(Config.Instance.KickCheaterText);
                 }
             }
         }

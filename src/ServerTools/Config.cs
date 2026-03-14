@@ -15,6 +15,10 @@ public class Config : JsonConfigBase<Config>
     [LocalizedPropertyName(CultureType.English, "KickCheater")]
     public bool KickCheater = true;
 
+    [LocalizedPropertyName(CultureType.Chinese, "提出作弊提示")]
+    [LocalizedPropertyName(CultureType.English, "KickCheaterText")]
+    public string KickCheaterText = "禁止使用外挂进入服务器！";
+
     [LocalizedPropertyName(CultureType.Chinese, "限制哨兵数量")]
     [LocalizedPropertyName(CultureType.English, "SentryLimit")]
     public int sentryLimit = 20;
