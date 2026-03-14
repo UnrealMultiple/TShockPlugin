@@ -1,14 +1,15 @@
 {
   "Dependencies": [
-    "linq2db"
+    "linq2db",
+    "GenerateMap"
   ],
   "README.en-US": {
-    "Description": "CaiBot adapter plugin (Only support QQ)"
+    "Description": "CaiBotLite adapter plugin (Only support QQ)"
   },
   "README.es-ES": {
-    "Description": "Plugin adaptador CaiBot (Only support QQ)"
+    "Description": "Plugin adaptador CaiBotLite (Only support QQ)"
   },
   "README": {
-    "Description": "CaiBot 官方机器人适配插件"
+    "Description": "CaiBotLite 官方机器人适配插件"
   }
 }
