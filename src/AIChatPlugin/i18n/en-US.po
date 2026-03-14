@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-07-04 01:08:04+0000\n"
-"PO-Revision-Date: 2025-07-04 01:21\n"
+"POT-Creation-Date: 2026-03-11 01:44:13+0000\n"
+"PO-Revision-Date: 2026-03-11 01:49\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "[AIChatPlugin] An error occurred! Details: {0}"
 msgid "[AIChatPlugin] 出现错误！详细信息请查看日志"
 msgstr "[AIChatPlugin] An error occurred! Please check the log for details"
 
-#: ../../AIConfig.cs:42
+#: ../../AIConfig.cs:43
 #, csharp-format
 msgid "[AIChatPlugin] 加载配置时发生错误：{0}"
 msgstr "[AIChatPlugin] An error occurred while loading configuration: {0}"
