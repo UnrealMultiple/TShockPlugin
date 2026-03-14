@@ -559,7 +559,8 @@
     "AssemblyName": "CaiBotLite",
     "Path": "CaiBotLite.dll",
     "Dependencies": [
-      "linq2db"
+      "linq2db",
+      "GenerateMap"
     ],
     "HotReload": true
   },
@@ -1831,8 +1832,8 @@
   },
   {
     "Name": "MusicPlayer",
-    "Version": "1.0.7",
-    "Author": "Olink，Cjx适配，肝帝熙恩修改, yu大改",
+    "Version": "1.0.8",
+    "Author": "Olink，Cjx适配，肝帝熙恩修改, yu大改, 星梦优化",
     "Description": {
       "en-US": "A simple music player plugin.",
       "de-DE": "一个简单的音乐播放插件.",
