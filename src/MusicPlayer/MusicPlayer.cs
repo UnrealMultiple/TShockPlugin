@@ -9,12 +9,12 @@ namespace MusicPlayer;
 [ApiVersion(2, 1)]
 public class MusicPlayer : TerrariaPlugin
 {
-    public override string Author => "Olink，Cjx适配，肝帝熙恩修改, yu大改";
+    public override string Author => "Olink，Cjx适配，肝帝熙恩修改, yu大改, 星梦优化";
 
     public override string Description => GetString("一个简单的音乐播放插件.");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 7);
+    public override Version Version => new Version(1, 0, 8);
 
     public string songPath = Path.Combine(TShock.SavePath, "Songs");
 
@@ -63,7 +63,7 @@ public class MusicPlayer : TerrariaPlugin
     private void OnJoin(GreetPlayerEventArgs args)
     {
         var who = args.Who;
-        SongPlayers[who] = new SongPlayer(TShock.Players[who]); // 创建新的 SongPlayer 对象
+        SongPlayers[who] = new SongPlayer(TShock.Players[who]); 
     }
 
     private void OnLeave(LeaveEventArgs args)
@@ -95,6 +95,56 @@ public class MusicPlayer : TerrariaPlugin
             songPlayer.CurrentSong.Update(i);
         }
     }
+
+    private bool TryResolveSong(string search, out string? filePath, out string? songName, out string errorMessage)
+    {
+        filePath = null;
+        songName = null;
+        errorMessage = string.Empty;
+        if (!Directory.Exists(this.songPath))
+        {
+            errorMessage = GetString("歌曲目录不存在，请联系管理员");
+            return false;
+        }
+
+        var txtFiles = Directory.GetFiles(this.songPath, "*.txt");
+        if (txtFiles.Length == 0)
+        {
+            errorMessage = GetString("歌曲目录中没有找到任何 .txt 文件");
+            return false;
+        }
+
+        Array.Sort(txtFiles);
+
+        if (int.TryParse(search, out int index))
+        {
+            if (index < 1 || index > txtFiles.Length)
+            {
+                errorMessage = GetString("索引号超出范围，当前共有 {0} 首歌曲", txtFiles.Length);
+                return false;
+            }
+            filePath = txtFiles[index - 1];
+            songName = Path.GetFileName(filePath);
+            return true;
+        }
+        else
+        {
+            var targetPath = Path.Combine(this.songPath, search);
+            if (!File.Exists(targetPath))
+            {
+                targetPath = Path.Combine(this.songPath, search + ".txt");
+                if (!File.Exists(targetPath))
+                {
+                    errorMessage = GetString("未找到歌曲: '{0}'，请使用 /songlist 查看可用歌曲", search);
+                    return false;
+                }
+            }
+            filePath = targetPath;
+            songName = Path.GetFileName(filePath);
+            return true;
+        }
+    }
+
     public void PlaySong(CommandArgs args)
     {
         if (!args.Player.RealPlayer)
@@ -107,9 +157,7 @@ public class MusicPlayer : TerrariaPlugin
         {
             return;
         }
-        var invalidUsageMessage = GetString("方式: /song <歌曲名称> [演奏乐器]\n演奏乐器: harp, theaxe, bell，默认为 harp");
-        var stopPlaybackMessage = GetString("使用 /song 来停止播放.");
-
+        
         if (args.Parameters.Count == 0)
         {
             if (songPlayer.Listening)
@@ -119,66 +167,61 @@ public class MusicPlayer : TerrariaPlugin
             }
             else
             {
-                args.Player.SendInfoMessage(invalidUsageMessage);
-                args.Player.SendInfoMessage(stopPlaybackMessage);
+                args.Player.SendInfoMessage(GetString("方式: /song <歌曲名称/索引号> [演奏乐器]\n演奏乐器: harp, theaxe, bell，默认为 harp"));
+                args.Player.SendInfoMessage(GetString("使用 /song 来停止播放."));
+                args.Player.SendInfoMessage(GetString("使用 /songlist 查看歌曲索引."));
             }
         }
         else
         {
-            var songName = args.Parameters[0];
-            var filePath = Path.Combine(this.songPath, songName);
+            var search = args.Parameters[0];
+            
+            if (!TryResolveSong(search, out var filePath, out var songName, out var errorMessage))
+            {
+                args.Player.SendErrorMessage(errorMessage);
+                return;
+            }
 
-            if (File.Exists(filePath))
-            {
-                var notes = NoteFileParser.Read(filePath, out var tempo);
-                isNoOneListening = false;
-                var performer = VirtualPerformer.GetPerformer(args.Parameters.ElementAtOrDefault(1));
-                performer.Create(songPlayer.Player.Index);
-                songPlayer.StartSong(new PlaySongInfo(notes, tempo, performer));
-                args.Player.SendInfoMessage(GetString("正在播放: {0}"), songName); // 添加这条消息来提示正在播放
-            }
-            else
-            {
-                args.Player.SendErrorMessage(GetString("加载歌曲失败: '{0}'"), songName);
-            }
+            var notes = NoteFileParser.Read(filePath!, out var tempo);
+            isNoOneListening = false;
+            var performer = VirtualPerformer.GetPerformer(args.Parameters.ElementAtOrDefault(1));
+            performer.Create(songPlayer.Player.Index);
+            songPlayer.StartSong(new PlaySongInfo(notes, tempo, performer));
+            args.Player.SendInfoMessage(GetString("正在播放: {0}"), songName);
         }
     }
-
 
     public void PlaySongAll(CommandArgs args)
     {
         if (args.Parameters.Any())
         {
-            var songName = args.Parameters[0];
-            var filePath = Path.Combine(this.songPath, songName);
-
-            if (File.Exists(filePath))
+            var search = args.Parameters[0];
+            
+            if (!TryResolveSong(search, out var filePath, out var songName, out var errorMessage))
             {
-                var notes = NoteFileParser.Read(filePath, out var tempo);
-                isNoOneListening = false;
-                for (var i = 0; i < SongPlayers.Length; i++)
+                args.Player.SendErrorMessage(errorMessage);
+                return;
+            }
+
+            var notes = NoteFileParser.Read(filePath!, out var tempo);
+            isNoOneListening = false;
+            for (var i = 0; i < SongPlayers.Length; i++)
+            {
+                var songPlayer = SongPlayers[i];
+                if (songPlayer is not null)
                 {
-                    var songPlayer = SongPlayers[i];
-                    if (songPlayer is not null)
+                    var performer = VirtualPerformer.GetPerformer(args.Parameters.ElementAtOrDefault(1));
+                    performer.Create(i);
+                    songPlayer.StartSong(new PlaySongInfo(notes, tempo, performer));
+                    if (TShock.Players[i].Active)
                     {
-                        var performer = VirtualPerformer.GetPerformer(args.Parameters.ElementAtOrDefault(1));
-                        performer.Create(i);
-                        songPlayer.StartSong(new PlaySongInfo(notes, tempo, performer));
-                        if (TShock.Players[i].Active)
-                        {
-                            TShock.Players[i].SendInfoMessage(GetString("正在给您播放: {0}，使用/song停止播放"), songName);
-                        }
+                        TShock.Players[i].SendInfoMessage(GetString("正在给您播放: {0}，使用/song停止播放"), songName);
                     }
                 }
-            }
-            else
-            {
-                args.Player.SendErrorMessage(GetString("加载歌曲失败: '{0}'"), songName);
             }
         }
         else
         {
-            // 如果没有提供歌曲名称，则停止所有玩家正在播放的歌曲
             foreach (var songPlayer in SongPlayers)
             {
                 if (songPlayer != null && songPlayer.Listening)
@@ -191,30 +234,62 @@ public class MusicPlayer : TerrariaPlugin
         }
     }
 
-
     private void ListFiles(CommandArgs args)
     {
         var targetFolder = Path.Combine(TShock.SavePath, "Songs");
+        
         if (!Directory.Exists(targetFolder))
         {
-            args.Player.SendErrorMessage(GetString("目录不存在: {0}"), targetFolder);
+            args.Player.SendErrorMessage(GetString("歌曲目录不存在: {0}"), targetFolder);
             return;
         }
 
-        var files = Directory.GetFiles(targetFolder);
-
-        // 如果没有文件
+        var files = Directory.GetFiles(targetFolder, "*.txt");
+        
         if (files.Length == 0)
         {
-            args.Player.SendSuccessMessage(GetString("没有任何歌曲: {0}"), targetFolder);
+            args.Player.SendSuccessMessage(GetString("没有任何歌曲文件: {0}"), targetFolder);
             return;
         }
 
-        // 发送文件列表到聊天
-        var fileListMessage = new StringBuilder(GetString("本服务器有以下歌曲:\n"));
-        foreach (var file in files)
+        Array.Sort(files);
+        
+        int page = 1;
+        const int pageSize = 10;
+        
+        if (args.Parameters.Count > 0 && int.TryParse(args.Parameters[0], out int parsedPage))
         {
-            fileListMessage.Append(Path.GetFileName(file)).AppendLine();
+            page = parsedPage;
+        }
+        
+        if (page < 1)
+        {
+            page = 1;
+        }
+        
+        int totalPages = (files.Length + pageSize - 1) / pageSize;
+        
+        if (page > totalPages)
+        {
+            page = totalPages;
+        }
+        
+        int startIndex = (page - 1) * pageSize;
+        int endIndex = Math.Min(startIndex + pageSize, files.Length);
+        
+        var fileListMessage = new StringBuilder();
+        fileListMessage.AppendLine(GetString("=== 歌曲列表 (第 {0}/{1} 页) ===", page, totalPages));
+        
+        for (int i = startIndex; i < endIndex; i++)
+        {
+            fileListMessage.AppendLine($"[{i + 1}] {Path.GetFileName(files[i])}");
+        }
+        
+        fileListMessage.AppendLine(GetString("共 {0} 首歌曲，使用 /song <索引号> 或 /song <文件名> 播放", files.Length));
+        
+        if (totalPages > 1)
+        {
+            fileListMessage.Append(GetString("翻页指令: /songlist {0}", page < totalPages ? page + 1 : 1));
         }
 
         args.Player.SendMessage(fileListMessage.ToString(), Microsoft.Xna.Framework.Color.Yellow);
