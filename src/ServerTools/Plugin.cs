@@ -1,10 +1,8 @@
 using LazyAPI;
-using MonoMod.Cil;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using static ServerTools.ModifyClientDetect;
 
 namespace ServerTools;
 
@@ -17,7 +15,7 @@ public partial class Plugin : LazyPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(1, 2, 0, 0);
+    public override Version Version => new Version(1, 3, 0, 0);
 
     public const string ReaderPath = "ReaderPlayers";
 
@@ -52,26 +50,6 @@ public partial class Plugin : LazyPlugin
         On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
         IL.Terraria.MessageBuffer.GetData += this.MessageBuffer_GetData;
         HandleCommandLine(Environment.GetCommandLineArgs());
-    }
-
-    private void MessageBuffer_GetData(ILContext il)
-    {
-        var cursor = new ILCursor(il);
-
-        if (cursor.TryGotoNext(MoveType.Before,
-            instr => instr.MatchLdarg(0),
-            instr => instr.MatchLdfld(typeof(MessageBuffer).GetField("readBuffer", BindingFlags.Instance | BindingFlags.Public)!),
-            instr => instr.MatchLdarg(1),
-            instr => instr.MatchLdelemU1(),
-            instr => instr.MatchStloc(0)
-        ))
-        {
-            cursor.Index += 5;
-            cursor.EmitLdarg(0);
-            cursor.EmitLdloc(0);
-            cursor.EmitConvI4();
-            cursor.EmitCall(typeof(HiddenChecker).GetMethod("CheckModify")!);
-        }
     }
 
     protected override void Dispose(bool disposing)
