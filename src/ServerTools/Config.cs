@@ -11,6 +11,10 @@ public class Config : JsonConfigBase<Config>
     [LocalizedPropertyName(CultureType.English, "DeathLast")]
     public bool DeathLast = true;
 
+    [LocalizedPropertyName(CultureType.Chinese, "踢出作弊者")]
+    [LocalizedPropertyName(CultureType.English, "KickCheater")]
+    public bool KickCheater = true;
+
     [LocalizedPropertyName(CultureType.Chinese, "限制哨兵数量")]
     [LocalizedPropertyName(CultureType.English, "SentryLimit")]
     public int sentryLimit = 20;
