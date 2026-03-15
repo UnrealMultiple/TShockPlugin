@@ -12,6 +12,7 @@ internal class PlaySongInfo
     private int delta;
     private DateTime lastUpdate;
     private int noteIndex;
+    public event Action<int>? OnCompleted;
     public PlaySongInfo(List<List<float>> notes, int tempo, VirtualPerformer performer)
     {
         this.Notes = notes;
@@ -27,8 +28,7 @@ internal class PlaySongInfo
         if (this.noteIndex == this.Notes.Count)
         {
             this.PlayCompleted = true;
-            var songPlayer = MusicPlayer.SongPlayers[index];
-            songPlayer?.EndSong();
+            this.OnCompleted?.Invoke(index);
             return;
         }
         this.delta += (int) (DateTime.Now - this.lastUpdate).TotalMilliseconds;
@@ -39,7 +39,6 @@ internal class PlaySongInfo
             {
                 if (noteValue >= -1f && noteValue <= 1f)
                 {
-                    //PlayNote(index, noteValue);
                     this.Performer.PlayNote(index, noteValue);
                 }
             }
