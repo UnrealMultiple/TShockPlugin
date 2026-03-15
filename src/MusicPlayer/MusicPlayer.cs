@@ -14,7 +14,7 @@ public class MusicPlayer : TerrariaPlugin
     public override string Description => GetString("一个简单的音乐播放插件.");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 8);
+    public override Version Version => new Version(1, 0, 9);
 
     public string songPath = Path.Combine(TShock.SavePath, "Songs");
 
@@ -30,7 +30,8 @@ public class MusicPlayer : TerrariaPlugin
         {
             new ("song", this.PlaySong, "song"),
             new ("songall", this.PlaySongAll, "songall"),
-            new ("songlist", this.ListFiles, "songlist")
+            new ("songlist", this.ListFiles, "songlist"),
+            new ("songqueue", this.SongQueueCommand, "songqueue")
         };
     }
 
@@ -68,7 +69,7 @@ public class MusicPlayer : TerrariaPlugin
 
     private void OnLeave(LeaveEventArgs args)
     {
-        SongPlayers[args.Who] = null; // 移除对应的 SongPlayer 对象
+        SongPlayers[args.Who] = null;
         ListeningCheck();
     }
     public static void ListeningCheck()
@@ -170,6 +171,7 @@ public class MusicPlayer : TerrariaPlugin
                 args.Player.SendInfoMessage(GetString("方式: /song <歌曲名称/索引号> [演奏乐器]\n演奏乐器: harp, theaxe, bell，默认为 harp"));
                 args.Player.SendInfoMessage(GetString("使用 /song 来停止播放."));
                 args.Player.SendInfoMessage(GetString("使用 /songlist 查看歌曲索引."));
+                args.Player.SendInfoMessage(GetString("使用 /songqueue 管理点歌队列."));
             }
         }
         else
@@ -185,7 +187,6 @@ public class MusicPlayer : TerrariaPlugin
             var notes = NoteFileParser.Read(filePath!, out var tempo);
             isNoOneListening = false;
             var performer = VirtualPerformer.GetPerformer(args.Parameters.ElementAtOrDefault(1));
-            performer.Create(songPlayer.Player.Index);
             songPlayer.StartSong(new PlaySongInfo(notes, tempo, performer));
             args.Player.SendInfoMessage(GetString("正在播放: {0}"), songName);
         }
@@ -211,7 +212,6 @@ public class MusicPlayer : TerrariaPlugin
                 if (songPlayer is not null)
                 {
                     var performer = VirtualPerformer.GetPerformer(args.Parameters.ElementAtOrDefault(1));
-                    performer.Create(i);
                     songPlayer.StartSong(new PlaySongInfo(notes, tempo, performer));
                     if (TShock.Players[i].Active)
                     {
@@ -231,6 +231,125 @@ public class MusicPlayer : TerrariaPlugin
                 }
             }
             args.Player.SendInfoMessage(GetString("已经为所有玩家停止播放"));
+        }
+    }
+
+    private void SongQueueCommand(CommandArgs args)
+    {
+        var songPlayer = SongPlayers[args.Player.Index];
+        if (songPlayer is null) return;
+
+        if (args.Parameters.Count == 0 || args.Parameters[0].ToLower() == "list")
+        {
+            if (songPlayer.SongQueue.Count == 0)
+            {
+                args.Player.SendInfoMessage(GetString("当前点歌队列为空"));
+                return;
+            }
+            var sb = new StringBuilder();
+            sb.AppendLine(GetString("=== 点歌队列 ({0}首) ===", songPlayer.SongQueue.Count));
+            int i = 1;
+            foreach (var song in songPlayer.SongQueue)
+            {
+                sb.AppendLine(GetString("{0}. {1}音符", i, song.Notes.Count));
+                i++;
+            }
+            args.Player.SendMessage(sb.ToString(), Microsoft.Xna.Framework.Color.Yellow);
+            return;
+        }
+
+        if (args.Parameters[0].ToLower() == "clear")
+        {
+            songPlayer.SongQueue.Clear();
+            args.Player.SendSuccessMessage(GetString("已清空点歌队列"));
+            return;
+        }
+
+        if (args.Parameters[0].ToLower() == "play")
+        {
+            if (songPlayer.Listening)
+            {
+                args.Player.SendInfoMessage(GetString("已经在播放中..."));
+                return;
+            }
+            if (songPlayer.SongQueue.Count == 0)
+            {
+                args.Player.SendErrorMessage(GetString("队列为空，无法播放"));
+                return;
+            }
+            songPlayer.PlayNext();
+            return;
+        }
+
+        if (args.Parameters[0].ToLower() == "skip")
+        {
+            if (!songPlayer.Listening)
+            {
+                args.Player.SendErrorMessage(GetString("当前没有正在播放的歌曲"));
+                return;
+            }
+            songPlayer.EndSong(false);
+            args.Player.SendSuccessMessage(GetString("已跳过当前歌曲"));
+            return;
+        }
+
+        if (args.Parameters[0].ToLower() == "global")
+        {
+            if (args.Parameters.Count < 2)
+            {
+                args.Player.SendInfoMessage(GetString("用法: /songqueue global <歌曲名/索引> [instrument]"));
+                return;
+            }
+            var search = args.Parameters[1];
+            var instrument = args.Parameters.ElementAtOrDefault(2);
+            
+            if (!TryResolveSong(search, out var filePath, out var songName, out var errorMessage))
+            {
+                args.Player.SendErrorMessage(errorMessage);
+                return;
+            }
+            
+            var notes = NoteFileParser.Read(filePath!, out var tempo);
+            var performer = VirtualPerformer.GetPerformer(instrument);
+            
+            int count = 0;
+            for (int i = 0; i < SongPlayers.Length; i++)
+            {
+                var sp = SongPlayers[i];
+                if (sp != null)
+                {
+                    var songInfo = new PlaySongInfo(notes, tempo, performer);
+                    sp.EnqueueSong(songInfo);
+                    count++;
+                    if (TShock.Players[i]?.Active == true)
+                    {
+                        TShock.Players[i].SendInfoMessage(GetString("全局点歌: {0} 已加入您的队列", songName));
+                    }
+                }
+            }
+            args.Player.SendSuccessMessage(GetString("已为 {0} 位在线玩家添加歌曲到队列", count));
+            return;
+        }
+
+        var searchTerm = args.Parameters[0];
+        var inst = args.Parameters.ElementAtOrDefault(1);
+        
+        if (!TryResolveSong(searchTerm, out var fp, out var sn, out var em))
+        {
+            args.Player.SendErrorMessage(em);
+            return;
+        }
+        
+        var nts = NoteFileParser.Read(fp!, out var tmp);
+        var perf = VirtualPerformer.GetPerformer(inst);
+        
+        var newSong = new PlaySongInfo(nts, tmp, perf);
+        songPlayer.EnqueueSong(newSong);
+        args.Player.SendSuccessMessage(GetString("已将 {0} 加入点歌队列 (当前队列: {1}首)", sn, songPlayer.SongQueue.Count));
+        
+        if (!songPlayer.Listening)
+        {
+            args.Player.SendInfoMessage(GetString("使用 /songqueue play 开始播放队列"));
         }
     }
 
