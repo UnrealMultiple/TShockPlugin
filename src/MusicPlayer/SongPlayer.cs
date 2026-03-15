@@ -30,10 +30,12 @@ internal class SongPlayer
             this.CurrentSong.Play();
             return true;
         }
+        
         if (!fromQueue)
         {
             this.SongQueue.Clear();
         }
+        
         this.CurrentSong = playSongInfo;
         playSongInfo.Performer.Create(this.Player.Index);
         playSongInfo.Play();
@@ -43,7 +45,15 @@ internal class SongPlayer
 
     private void OnSongFinished(int index)
     {
-        EndSong(false);
+        if (SongQueue.Count > 0)
+        {
+            PlayNext();
+        }
+        else
+        {
+            this.Listening = false;
+            MusicPlayer.ListeningCheck();
+        }
     }
 
     public void PlayNext()
@@ -52,7 +62,7 @@ internal class SongPlayer
         {
             var nextSong = SongQueue.Dequeue();
             StartSong(nextSong, true);
-            this.Player.SendInfoMessage(GetString("正在播放队列中的下一首歌曲..."));
+            this.Player.SendInfoMessage(GetString("正在播放队列中的下一首: {0}", nextSong.SongName ?? "未知歌曲"));
         }
         else
         {
@@ -73,16 +83,15 @@ internal class SongPlayer
         {
             return false;
         }
+        
         this.CurrentSong.Stop();
         this.CurrentSong.OnCompleted -= OnSongFinished;
+        
         if (manual)
         {
             this.SongQueue.Clear();
         }
-        else
-        {
-            PlayNext();
-        }
+        
         MusicPlayer.ListeningCheck();
         return true;
     }
