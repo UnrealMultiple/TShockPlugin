@@ -31,7 +31,7 @@ public class ModifyClientDetect
             var player = TShockAPI.TShock.Players[instance.whoAmI];
             if (CheckPacket(value) && player != null)
             {
-                var text = $"[警告]玩家 {player.Name} 使用修改后的客户端进入服务器！";
+                var text = GetString($"[警告]玩家 {player.Name} 使用修改后的客户端进入服务器！");
                 TShockAPI.TShock.Log.ConsoleWarn(text);
                 TShockAPI.TShock.Utils.Broadcast(text, Microsoft.Xna.Framework.Color.Red);
                 if(Config.Instance.KickCheater)
