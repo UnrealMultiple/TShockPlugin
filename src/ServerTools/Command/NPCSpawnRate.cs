@@ -56,8 +56,8 @@ public class NPCSpawnRate
     {
         args.Player.SendInfoMessage(GetString("/spawnrate on 启用生成率修改"));
         args.Player.SendInfoMessage(GetString("/spawnrate off 关闭生成率修改"));
-        args.Player.SendInfoMessage(GetString("/spawnrate rate [生成率] 设置怪物生成速率（越小越快）"));
-        args.Player.SendInfoMessage(GetString("/spawnrate max [数量] 设置每次生成最大可生成数量）"));
+        args.Player.SendInfoMessage(GetString("/spawnrate rate [生成率] 设置NPC生成速率（越小越快）"));
+        args.Player.SendInfoMessage(GetString("/spawnrate max [数量] 设置每次生成最大可生成数量"));
     }
 
     private static Plugin.PlayerSpawnRate GetPlayerSpawnItem(Player player)
