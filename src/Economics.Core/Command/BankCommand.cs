@@ -141,7 +141,7 @@ public class BankCommand : BaseCommand
 
     [SubCommand("query")]
     [CommandPermission(EconomicsPerm.QueryCurrency, EconomicsPerm.CurrencyAdmin)]
-    [HelpText("/bank query or /bank quer <player>")]
+    [HelpText("/bank query or /bank query <player>")]
     public static void BankQuery(CommandArgs args)
     {
         var sb = new StringBuilder();
@@ -149,7 +149,6 @@ public class BankCommand : BaseCommand
         if (args.Parameters.Count > 1)
         {
             name = args.Parameters[1];
-            return;
         }
         else
         {
