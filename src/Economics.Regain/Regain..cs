@@ -11,12 +11,12 @@ namespace Economics.Regain;
 [ApiVersion(2, 1)]
 public class Regain : TerrariaPlugin
 {
-    public override string Author => "少司命";
+    public override string Author => "少司命，千亦（修复 bug）";
 
     public override string Description => GetString("对玩家的物品进行回收!");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 4);
+    public override Version Version => new Version(2, 0, 0, 5);
 
     public Regain(Main game) : base(game)
     {
