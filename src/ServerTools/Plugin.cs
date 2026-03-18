@@ -75,6 +75,8 @@ public partial class Plugin : LazyPlugin
             GetDataHandlers.PlayerSpawn.UnRegister(this.OnPlayerSpawn);
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnUpdate);
             On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
+            On.Terraria.NPC.Spawner.GetSpawnRate -= this.Spawner_GetSpawnRate;
+            IL.Terraria.MessageBuffer.GetData -= this.MessageBuffer_GetData;
             OnTimer -= this.OnUpdatePlayerOnline;
         }
         base.Dispose(disposing);

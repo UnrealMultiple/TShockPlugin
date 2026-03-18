@@ -1,9 +1,4 @@
 ﻿using LazyAPI.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using TShockAPI;
 
@@ -17,7 +12,7 @@ public class NPCSpawnRate
     [RealPlayer]
     public static void Enable(CommandArgs args)
     {
-        var rate = GetPlayerSpawnItem(args.Player.TPlayer);
+        var rate = GetPlayerSpawnRate(args.Player.TPlayer);
         rate.Enable = true;
         args.Player.SendInfoMessage(GetString($"开启怪物生成率，当前生成率{{spawnRate: {rate.spawnRate}, maxSpawn: {rate.maxSpawns}}}"));
     }
@@ -37,7 +32,7 @@ public class NPCSpawnRate
     [RealPlayer]
     public static void ModifySpawnRate(CommandArgs args, int num)
     {
-        var rate = GetPlayerSpawnItem(args.Player.TPlayer);
+        var rate = GetPlayerSpawnRate(args.Player.TPlayer);
         rate.spawnRate = num;
         args.Player.SendInfoMessage(GetString($"设置生成速率{{spawnRate: {rate.spawnRate}, maxSpawn: {rate.maxSpawns}}}"));
     }
@@ -46,7 +41,7 @@ public class NPCSpawnRate
     [RealPlayer]
     public static void ModifySpawnMax(CommandArgs args, int max)
     {
-        var rate = GetPlayerSpawnItem(args.Player.TPlayer);
+        var rate = GetPlayerSpawnRate(args.Player.TPlayer);
         rate.maxSpawns = max;
         args.Player.SendInfoMessage(GetString($"设置最大生成数量{{spawnRate: {rate.spawnRate}, maxSpawn: {rate.maxSpawns}}}"));
     }
@@ -60,7 +55,7 @@ public class NPCSpawnRate
         args.Player.SendInfoMessage(GetString("/spawnrate max [数量] 设置每次生成最大可生成数量"));
     }
 
-    private static Plugin.PlayerSpawnRate GetPlayerSpawnItem(Player player)
+    private static Plugin.PlayerSpawnRate GetPlayerSpawnRate(Player player)
     {
         if(Plugin.PlayerSpawnRates.TryGetValue(player, out var item))
         {
