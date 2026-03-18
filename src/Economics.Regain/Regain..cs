@@ -11,18 +11,16 @@ namespace Economics.Regain;
 [ApiVersion(2, 1)]
 public class Regain : TerrariaPlugin
 {
-    public override string Author => "少司命";
+    public override string Author => "少司命，千亦（修复 bug）";
 
     public override string Description => GetString("对玩家的物品进行回收!");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 4);
+    public override Version Version => new Version(2, 0, 0, 5);
 
     public Regain(Main game) : base(game)
     {
     }
-
-    internal static Config Config { get; set; } = new();
 
     public override void Initialize()
     {
@@ -57,7 +55,7 @@ public class Regain : TerrariaPlugin
                     line,
                     new PaginationTools.Settings
                     {
-                        MaxLinesPerPage = Config.PageMax,
+                        MaxLinesPerPage = Config.Instance.PageMax,
                         NothingToDisplayString = GetString("当前可回收物品"),
                         HeaderFormat = GetString("回收物品列表 ({0}/{1})："),
                         FooterFormat = GetString("输入 {0}regain list {{0}} 查看更多").SFormat(Commands.Specifier)
@@ -66,7 +64,7 @@ public class Regain : TerrariaPlugin
         }
         bool Verify(out Config.RegainInfo? regain)
         {
-            if (!Config.TryGetRegain(args.Player.SelectedItem.type, out regain) || regain == null)
+            if (!Config.Instance.TryGetRegain(args.Player.SelectedItem.type, out regain) || regain == null)
             {
                 args.Player.SendErrorMessage(GetString("该物品暂时无法回收!"));
                 return false;
@@ -109,7 +107,7 @@ public class Regain : TerrariaPlugin
             {
                 if (args.Parameters[0].ToLower() == "list")
                 {
-                    var line = Config.Regains.Select(x => x.ToString()).ToList();
+                    var line = Config.Instance.Regains.Select(x => x.ToString()).ToList();
                     Show(line);
                     return;
                 }
