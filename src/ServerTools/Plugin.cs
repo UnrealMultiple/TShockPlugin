@@ -15,7 +15,7 @@ public partial class Plugin : LazyPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(1, 3, 0, 0);
+    public override Version Version => new Version(1, 3, 0, 1);
 
     public const string ReaderPath = "ReaderPlayers";
 
@@ -44,6 +44,7 @@ public partial class Plugin : LazyPlugin
         GetDataHandlers.KillMe.Register(this.KillMe);
         GetDataHandlers.PlayerSpawn.Register(this.OnPlayerSpawn);
         GetDataHandlers.PlayerUpdate.Register(this.OnUpdate);
+        On.Terraria.NPC.Spawner.GetSpawnRate += this.Spawner_GetSpawnRate;
         HookManager.Add(typeof(TSRestPlayer).GetConstructor([typeof(string), typeof(TShockAPI.Group)])!, RestPlayerCtor);
         HookManager.Add(typeof(Commands).GetMethod("ViewAccountInfo", BindingFlags.NonPublic | BindingFlags.Static)!, ViewAccountInfo);
         OnTimer += this.OnUpdatePlayerOnline;
@@ -74,6 +75,8 @@ public partial class Plugin : LazyPlugin
             GetDataHandlers.PlayerSpawn.UnRegister(this.OnPlayerSpawn);
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnUpdate);
             On.OTAPI.Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
+            On.Terraria.NPC.Spawner.GetSpawnRate -= this.Spawner_GetSpawnRate;
+            IL.Terraria.MessageBuffer.GetData -= this.MessageBuffer_GetData;
             OnTimer -= this.OnUpdatePlayerOnline;
         }
         base.Dispose(disposing);

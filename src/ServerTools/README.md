@@ -22,6 +22,10 @@
 | /readplayer                   | servertool.readplayer.use | 读取并保存文件夹下所有存档到数据库				|
 | /readplayer [文件名]      | servertool.readplayer.use | 读取并保存文件夹下指定文存档到数据库            |
 | /readplayer [文件名] [角色名]   | servertool.readplayer.use | 读取存档到指定角色下             |
+| /birthrate on   | server.tool.npcspawn | 启用生成率修改          |
+| /birthrate off  | server.tool.npcspawn | 关闭生成率修改          |
+| /birthrate rate [速率] | server.tool.npcspawn | 修改生成速率              |
+| /birthrate max [数量] | server.tool.npcspawn | 修改生成数量               |
 
 ## REST API
 
@@ -163,6 +167,9 @@
 | `浮漂列表`         |  `array<int>`   |           检测多鱼线浮漂列表            |                  空                   |
 
 ## 更新日志
+
+### v1.3.0.1
+- 添加修改NPC生成速率
 
 ### v1.3.0.0
 — 检测作弊者

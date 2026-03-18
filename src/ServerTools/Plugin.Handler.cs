@@ -12,6 +12,13 @@ using static ServerTools.ModifyClientDetect;
 namespace ServerTools;
 public partial class Plugin
 {
+    internal class PlayerSpawnRate
+    {
+        public int spawnRate = 600;
+        public int maxSpawns = 5;
+        public bool Enable = false;
+    }
+
     private static long TimerCount = 0;
 
     private readonly Dictionary<string, DateTime> PlayerDeath = [];
@@ -21,6 +28,19 @@ public partial class Plugin
     public static readonly List<TSPlayer> Deads = [];
 
     public static readonly List<TSPlayer> ActivePlayers = [];
+
+    internal static readonly Dictionary<Player, PlayerSpawnRate> PlayerSpawnRates = [];
+
+    private void Spawner_GetSpawnRate(On.Terraria.NPC.Spawner.orig_GetSpawnRate orig, NPC.Spawner self, Player player, out int spawnRate, out int maxSpawns)
+    {
+        if(PlayerSpawnRates.TryGetValue(player, out var inner) && inner.Enable)
+        {
+            spawnRate = inner.spawnRate;
+            maxSpawns = inner.maxSpawns;
+            return;
+        }
+        orig(self, player, out spawnRate, out maxSpawns);
+    }
 
     private void OnGreet(GreetPlayerEventArgs args)
     {
