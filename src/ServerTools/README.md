@@ -22,10 +22,10 @@
 | /readplayer                   | servertool.readplayer.use | 读取并保存文件夹下所有存档到数据库				|
 | /readplayer [文件名]      | servertool.readplayer.use | 读取并保存文件夹下指定文存档到数据库            |
 | /readplayer [文件名] [角色名]   | servertool.readplayer.use | 读取存档到指定角色下             |
-| /spawnrate on   | server.tool.npcspawn | 启用生成率修改          |
-| /spawnrate off  | server.tool.npcspawn | 关闭生成率修改          |
-| /spawnrate rate [速率] | server.tool.npcspawn | 修改生成速率              |
-| /spawnrate max [数量] | server.tool.npcspawn | 修改生成数量               |
+| /birthrate on   | server.tool.npcspawn | 启用生成率修改          |
+| /birthrate off  | server.tool.npcspawn | 关闭生成率修改          |
+| /birthrate rate [速率] | server.tool.npcspawn | 修改生成速率              |
+| /birthrate max [数量] | server.tool.npcspawn | 修改生成数量               |
 
 ## REST API
 

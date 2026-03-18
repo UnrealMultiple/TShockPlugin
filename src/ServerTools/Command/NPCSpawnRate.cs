@@ -4,7 +4,7 @@ using TShockAPI;
 
 namespace ServerTools.Command;
 
-[Command("spawnrate", "sr")]
+[Command("birthrate", "br")]
 [Permissions("server.tool.npcspawn")]
 public class NPCSpawnRate
 {
