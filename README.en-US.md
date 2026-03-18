@@ -80,7 +80,7 @@
 | [BossLock](./src/BossLock/README.md) | 0.0% | 进度锁插件 |  |
 | [BridgeBuilder](./src/BridgeBuilder/README.en-US.md) | 100.0% | Quick bridge building | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BuildMaster](./src/BuildMaster/README.en-US.md) | 100.0% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) |
-| [CaiBotLite](./src/CaiBotLite/README.md) | 11.1% | CaiBotLite adapter plugin (Only support QQ) | [linq2db]() |
+| [CaiBotLite](./src/CaiBotLite/README.md) | 11.1% | CaiBotLite adapter plugin (Only support QQ) | [linq2db]() [GenerateMap](./src/GenerateMap/README.en-US.md) |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.en-US.md) | 100.0% | Custom emoji command | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CaiPacketDebug](./src/CaiPacketDebug/README.en-US.md) | 100.0% | Cai Packet Debug Tool | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
 | [CaiRewardChest](./src/CaiRewardChest/README.en-US.md) | 100.0% | Convert naturally generated chests into reward chests that everyone can claim once | [linq2db]() [LazyAPI](./src/LazyAPI/README.en-US.md) |
