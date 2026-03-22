@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Core\n"
-"POT-Creation-Date: 2025-06-30 14:56:14+0000\n"
-"PO-Revision-Date: 2025-06-30 14:56:14+0000\n"
+"POT-Creation-Date: 2026-03-22 12:30:56+0000\n"
+"PO-Revision-Date: 2026-03-22 12:30:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,35 +20,35 @@ msgstr ""
 msgid "{0}.{1} 拥有 {2} {3}个。"
 msgstr ""
 
-#: ../../Command/BankCommand.cs:200
+#: ../../Command/BankCommand.cs:199
 msgid "/bank add <用户> <数量> <类型>"
 msgstr ""
 
-#: ../../Command/BankCommand.cs:203
+#: ../../Command/BankCommand.cs:202
 msgid "/bank cash <目标货币> <数量>"
 msgstr ""
 
-#: ../../Command/BankCommand.cs:205
+#: ../../Command/BankCommand.cs:204
 msgid "/bank clear <用户>"
 msgstr ""
 
-#: ../../Command/BankCommand.cs:201
+#: ../../Command/BankCommand.cs:200
 msgid "/bank deduct <用户> <数量> <类型>"
 msgstr ""
 
-#: ../../Command/BankCommand.cs:202
+#: ../../Command/BankCommand.cs:201
 msgid "/bank pay <用户> <数量> <类型>"
 msgstr ""
 
-#: ../../Command/BankCommand.cs:204
+#: ../../Command/BankCommand.cs:203
 msgid "/bank query [用户]"
 msgstr ""
 
-#: ../../Command/BankCommand.cs:206
+#: ../../Command/BankCommand.cs:205
 msgid "/bank reset"
 msgstr ""
 
-#: ../../Command/BankCommand.cs:199
+#: ../../Command/BankCommand.cs:198
 msgid "bank 指令"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgstr ""
 msgid "EconomicAPI 执行命令报错:{0}"
 msgstr ""
 
-#: ../../Command/BankCommand.cs:178
+#: ../../Command/BankCommand.cs:177
 msgid "Economics 已重置"
 msgstr ""
 
@@ -107,7 +107,7 @@ msgstr ""
 msgid "击杀怪物"
 msgstr ""
 
-#: ../../Command/BankCommand.cs:158
+#: ../../Command/BankCommand.cs:157
 msgid "在没有名字参数情况下，只能在游戏中使用此命令!"
 msgstr ""
 
@@ -141,7 +141,7 @@ msgstr ""
 msgid "当前魔力: {0}/{1}"
 msgstr ""
 
-#: ../../Command/BankCommand.cs:192
+#: ../../Command/BankCommand.cs:191
 #, csharp-format
 msgid "成功为`{0}`添加 {1} 个{2}"
 msgstr ""
