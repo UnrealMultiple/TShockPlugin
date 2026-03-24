@@ -142,7 +142,7 @@
 | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) | 100.0% | Bean paste mini-game API |  |
 | [ModifyWeapons](./src/ModifyWeapons/README.en-US.md) | 100.0% | ModifyWeapons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [MonsterRegen](./src/MonsterRegen/README.md) | 100.0% | Monster progress regeneration |  |
-| [MusicPlayer](./src/MusicPlayer/README.en-US.md) | 100.0% | Simple music player |  |
+| [MusicPlayer](./src/MusicPlayer/README.en-US.md) | 42.1% | Simple music player |  |
 | [Noagent](./src/Noagent/README.en-US.md) | 100.0% | Prohibit proxy IP from entering |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.en-US.md) | 100.0% | Drop treasure bags at normal difficulty |  |
 | [NoteWall](./src/NoteWall/README.en-US.md) | 100.0% | Players can leave and view notes here. | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |
@@ -174,7 +174,7 @@
 | [ReverseWorld](./src/ReverseWorld/README.en-US.md) | 100.0% | World Reversal and Landmine Placement |  |
 | [RolesModifying](./src/RolesModifying/README.en-US.md) | 100.0% | Modify player backpack |  |
 | [Sandstorm](./src/Sandstorm/README.en-US.md) | 100.0% | Toggle sandstorm |  |
-| [ServerTools](./src/ServerTools/README.en-US.md) | 83.0% | Server management tools | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |
+| [ServerTools](./src/ServerTools/README.en-US.md) | 69.6% | Server management tools | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |
 | [SessionSentinel](./src/SessionSentinel/README.en-US.md) | 100.0% | Handle players not sending data packets for a long time |  |
 | [ShortCommand](./src/ShortCommand/README.en-US.md) | 100.0% | Short command |  |
 | [ShowArmors](./src/ShowArmors/README.en-US.md) | 100.0% | Display equipment bar |  |
