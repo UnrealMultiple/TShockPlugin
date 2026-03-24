@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-06-30 14:56:14+0000\n"
-"PO-Revision-Date: 2025-07-01 01:40\n"
+"POT-Creation-Date: 2026-03-22 12:30:56+0000\n"
+"PO-Revision-Date: 2026-03-23 02:01\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -27,35 +27,35 @@ msgstr "[{0}.json] config reloaded successfully!!!"
 msgid "{0}.{1} 拥有 {2} {3}个。"
 msgstr "{0}.{1} has {2} {3}."
 
-#: ../../Command/BankCommand.cs:200
+#: ../../Command/BankCommand.cs:199
 msgid "/bank add <用户> <数量> <类型>"
 msgstr "/bank add <player> <amount> <currency>"
 
-#: ../../Command/BankCommand.cs:203
+#: ../../Command/BankCommand.cs:202
 msgid "/bank cash <目标货币> <数量>"
 msgstr "/bank cash <target currency> <amount>"
 
-#: ../../Command/BankCommand.cs:205
+#: ../../Command/BankCommand.cs:204
 msgid "/bank clear <用户>"
 msgstr "/bank clear <player>"
 
-#: ../../Command/BankCommand.cs:201
+#: ../../Command/BankCommand.cs:200
 msgid "/bank deduct <用户> <数量> <类型>"
 msgstr "/bank deduct <player> <amount> <currency>"
 
-#: ../../Command/BankCommand.cs:202
+#: ../../Command/BankCommand.cs:201
 msgid "/bank pay <用户> <数量> <类型>"
 msgstr "/bank pay <player> <amount> <currency>"
 
-#: ../../Command/BankCommand.cs:204
+#: ../../Command/BankCommand.cs:203
 msgid "/bank query [用户]"
 msgstr "/bank query [player]"
 
-#: ../../Command/BankCommand.cs:206
+#: ../../Command/BankCommand.cs:205
 msgid "/bank reset"
 msgstr "/bank reset"
 
-#: ../../Command/BankCommand.cs:199
+#: ../../Command/BankCommand.cs:198
 msgid "bank 指令"
 msgstr "bank command"
 
@@ -64,7 +64,7 @@ msgstr "bank command"
 msgid "EconomicAPI 执行命令报错:{0}"
 msgstr "EconomicCore command execution error: {0}"
 
-#: ../../Command/BankCommand.cs:178
+#: ../../Command/BankCommand.cs:177
 msgid "Economics 已重置"
 msgstr "Economics has been reset"
 
@@ -114,7 +114,7 @@ msgstr "You do not have enough {0} to transfer!"
 msgid "击杀怪物"
 msgstr ""
 
-#: ../../Command/BankCommand.cs:158
+#: ../../Command/BankCommand.cs:157
 msgid "在没有名字参数情况下，只能在游戏中使用此命令!"
 msgstr "This command can only be used in game without name parameters!"
 
@@ -148,7 +148,7 @@ msgstr "Current health: {0}/{1}"
 msgid "当前魔力: {0}/{1}"
 msgstr "Current mana: {0}/{1}"
 
-#: ../../Command/BankCommand.cs:192
+#: ../../Command/BankCommand.cs:191
 #, csharp-format
 msgid "成功为`{0}`添加 {1} 个{2}"
 msgstr "Successfully added {1} {2} to `{0}`"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:02:59+0000\n"
-"PO-Revision-Date: 2025-01-30 01:06\n"
+"POT-Creation-Date: 2026-03-14 14:11:17+0000\n"
+"PO-Revision-Date: 2026-03-15 02:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,59 +17,87 @@ msgstr ""
 "X-Crowdin-File-ID: 1480\n"
 "Language: es_ES\n"
 
+#: ../../MusicPlayer.cs:281
+#, csharp-format
+msgid "=== 歌曲列表 (第 {0}/{1} 页) ==="
+msgstr ""
+
 #: ../../MusicPlayer.cs:14
 msgid "一个简单的音乐播放插件."
 msgstr ""
 
-#: ../../MusicPlayer.cs:111
+#: ../../MusicPlayer.cs:171
 msgid "使用 /song 来停止播放."
 msgstr ""
 
-#: ../../MusicPlayer.cs:142
-#: ../../MusicPlayer.cs:176
-msgid "加载歌曲失败: '{0}'"
+#: ../../MusicPlayer.cs:172
+msgid "使用 /songlist 查看歌曲索引."
 msgstr ""
 
-#: ../../MusicPlayer.cs:118
-#: ../../MusicPlayer.cs:187
+#: ../../MusicPlayer.cs:288
+#, csharp-format
+msgid "共 {0} 首歌曲，使用 /song <索引号> 或 /song <文件名> 播放"
+msgstr ""
+
+#: ../../MusicPlayer.cs:166
+#: ../../MusicPlayer.cs:230
 msgid "已经为你停止播放"
 msgstr ""
 
-#: ../../MusicPlayer.cs:190
+#: ../../MusicPlayer.cs:233
 msgid "已经为所有玩家停止播放"
 msgstr ""
 
-#: ../../MusicPlayer.cs:110
-msgid "方式: /song <歌曲名称> [演奏乐器]\n"
+#: ../../MusicPlayer.cs:170
+msgid "方式: /song <歌曲名称/索引号> [演奏乐器]\n"
 "演奏乐器: harp, theaxe, bell，默认为 harp"
 msgstr ""
 
-#: ../../MusicPlayer.cs:214
-msgid "本服务器有以下歌曲:\n"
+#: ../../MusicPlayer.cs:138
+#, csharp-format
+msgid "未找到歌曲: '{0}'，请使用 /songlist 查看可用歌曲"
 msgstr ""
 
-#: ../../MusicPlayer.cs:138
+#: ../../MusicPlayer.cs:106
+msgid "歌曲目录不存在，请联系管理员"
+msgstr ""
+
+#: ../../MusicPlayer.cs:243
+msgid "歌曲目录不存在: {0}"
+msgstr ""
+
+#: ../../MusicPlayer.cs:113
+msgid "歌曲目录中没有找到任何 .txt 文件"
+msgstr ""
+
+#: ../../MusicPlayer.cs:190
 msgid "正在播放: {0}"
 msgstr ""
 
-#: ../../MusicPlayer.cs:169
+#: ../../MusicPlayer.cs:218
 msgid "正在给您播放: {0}，使用/song停止播放"
 msgstr ""
 
-#: ../../MusicPlayer.cs:102
+#: ../../MusicPlayer.cs:152
 msgid "此命令要求在游戏内使用"
 msgstr ""
 
-#: ../../MusicPlayer.cs:209
-msgid "没有任何歌曲: {0}"
+#: ../../MusicPlayer.cs:251
+msgid "没有任何歌曲文件: {0}"
 msgstr ""
 
-#: ../../MusicPlayer.cs:200
-msgid "目录不存在: {0}"
+#: ../../MusicPlayer.cs:123
+#, csharp-format
+msgid "索引号超出范围，当前共有 {0} 首歌曲"
 msgstr ""
 
 #: ../../NoteName.cs:15
 #, csharp-format
 msgid "给与的名称不是一个音符. 数值: [{0}]"
+msgstr ""
+
+#: ../../MusicPlayer.cs:292
+#, csharp-format
+msgid "翻页指令: /songlist {0}"
 msgstr ""
 
