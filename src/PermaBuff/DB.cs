@@ -9,15 +9,7 @@ public class DB
     private static IDbConnection database = null!;
     public static void Init()
     {
-        //database = TShock.DB;
-        //var Skeleton = new SqlTable("Permabuff",
-        //    new SqlColumn("buffid", MySqlDbType.Int32) { Length = 255, Unique = true },
-        //    new SqlColumn("Name", MySqlDbType.VarChar) { Length = 255, Unique = true }
-        //      );
-        //var List = new SqlTableCreator(database, database.GetSqlQueryBuilder());
-        //List.EnsureTableStructure(Skeleton);
         database = TShock.DB;
-        // 创建表，联合唯一约束 (Name, buffid)
         string sql = @"
         CREATE TABLE IF NOT EXISTS Permabuff (
             Name TEXT NOT NULL,
