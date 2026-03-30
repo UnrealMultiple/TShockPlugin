@@ -9,13 +9,22 @@ public class DB
     private static IDbConnection database = null!;
     public static void Init()
     {
+        //database = TShock.DB;
+        //var Skeleton = new SqlTable("Permabuff",
+        //    new SqlColumn("buffid", MySqlDbType.Int32) { Length = 255, Unique = true },
+        //    new SqlColumn("Name", MySqlDbType.VarChar) { Length = 255, Unique = true }
+        //      );
+        //var List = new SqlTableCreator(database, database.GetSqlQueryBuilder());
+        //List.EnsureTableStructure(Skeleton);
         database = TShock.DB;
-        var Skeleton = new SqlTable("Permabuff",
-            new SqlColumn("buffid", MySqlDbType.Int32) { Length = 255, Unique = true },
-            new SqlColumn("Name", MySqlDbType.VarChar) { Length = 255, Unique = true }
-              );
-        var List = new SqlTableCreator(database, database.GetSqlQueryBuilder());
-        List.EnsureTableStructure(Skeleton);
+        // 创建表，联合唯一约束 (Name, buffid)
+        string sql = @"
+        CREATE TABLE IF NOT EXISTS Permabuff (
+            Name TEXT NOT NULL,
+            buffid INTEGER NOT NULL,
+            UNIQUE(Name, buffid)
+        )";
+        database.Query(sql);
     }
 
     public static void ReadAll()
@@ -44,5 +53,9 @@ public class DB
     public static void ClearTable()
     {
         database.Query("DELETE FROM Permabuff");
+    }
+    public static void ClearPlayerBuffs(string name)
+    {
+        database.Query("DELETE FROM Permabuff WHERE Name = @0", name);
     }
 }

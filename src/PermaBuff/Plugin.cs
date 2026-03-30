@@ -89,12 +89,32 @@ public class Plugin : TerrariaPlugin
             }
             else
             {
+                // 1. 删除数据库中该玩家的所有记录
+                DB.ClearPlayerBuffs(args.Player.Name);
+                //database.Query("DELETE FROM Permabuff WHERE Name = @0", args.Player.Name);
+                // 2. 清空内存中的记录
                 buffs.Clear();
                 buffs.TrimExcess();
-                args.Player.SendSuccessMessage(GetString("已清空所有永久buff"));
+                // 4. 同步客户端显示
                 args.Player.SendData(PacketTypes.PlayerBuff, null, args.Player.Index);
+                args.Player.SendSuccessMessage(GetString("已清空所有永久buff"));
             }
         }
+        //if (args.Parameters.Count == 0)
+        //{
+        //    var buffs = Playerbuffs.GetBuffs(args.Player.Name);
+        //    if (buffs.Count == 0)
+        //    {
+        //        args.Player.SendSuccessMessage(GetString("没有永久buff，无需清空"));
+        //    }
+        //    else
+        //    {
+        //        buffs.Clear();
+        //        buffs.TrimExcess();
+        //        args.Player.SendSuccessMessage(GetString("已清空所有永久buff"));
+        //        args.Player.SendData(PacketTypes.PlayerBuff, null, args.Player.Index);
+        //    }
+        //}
 
         else if (args.Parameters.Count >= 1 && args.Parameters[0].ToLower() == "all")
         {
