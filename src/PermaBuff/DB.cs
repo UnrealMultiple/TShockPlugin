@@ -41,6 +41,11 @@ public class DB
         database.Query("DELETE FROM Permabuff WHERE Name = @0 and buffid = @1", Name, buffid);
     }
 
+    public static void DelAllBuffs(string Name)
+    {
+        database.Query("DELETE FROM Permabuff WHERE Name = @0", Name);
+    }
+
     public static void ClearTable()
     {
         database.Query("DELETE FROM Permabuff");
