@@ -14,9 +14,9 @@ public class Plugin : TerrariaPlugin
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 7);
+    public override Version Version => new Version(1, 0, 8);
 
-    private readonly string PATH = Path.Combine(TShock.SavePath, "permbuff.json");
+    private readonly string PATH = Path.Combine(TShock.SavePath, "PermaBuff.json");
 
     private Config config = new();
 
@@ -91,6 +91,7 @@ public class Plugin : TerrariaPlugin
             {
                 buffs.Clear();
                 buffs.TrimExcess();
+                DB.DelAllBuffs(args.Player.Name);
                 args.Player.SendSuccessMessage(GetString("已清空所有永久buff"));
                 args.Player.SendData(PacketTypes.PlayerBuff, null, args.Player.Index);
             }
