@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ServerTools\n"
-"POT-Creation-Date: 2026-03-18 10:15:28+0000\n"
-"PO-Revision-Date: 2026-03-18 10:15:28+0000\n"
+"POT-Creation-Date: 2026-04-02 19:06:03+0000\n"
+"PO-Revision-Date: 2026-04-02 19:06:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,11 +28,6 @@ msgstr ""
 #: ../../Plugin.Handler.cs:95
 #, csharp-format
 msgid "[ServerTools] 玩家 [{0}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{1}]"
-msgstr ""
-
-#: ../../ModifyClientDetect.cs:34
-#, csharp-format
-msgid "[警告]玩家 {0} 使用修改后的客户端进入服务器！"
 msgstr ""
 
 #: ../../Plugin.Handler.cs:198
@@ -103,7 +98,7 @@ msgstr ""
 msgid "/spawnrate rate [生成率] 设置NPC生成速率（越小越快）"
 msgstr ""
 
-#: ../../Plugin.Handler.cs:439
+#: ../../Plugin.Handler.cs:441
 msgid "仅允许软核进入!"
 msgstr ""
 
@@ -111,17 +106,17 @@ msgstr ""
 msgid "你不能过于频繁的使用此指令!"
 msgstr ""
 
-#: ../../Plugin.Handler.cs:325
+#: ../../Plugin.Handler.cs:327
 #, csharp-format
 msgid "你因召唤物数量超过{0}被踢出"
 msgstr ""
 
-#: ../../Plugin.Handler.cs:321
+#: ../../Plugin.Handler.cs:323
 #, csharp-format
 msgid "你因哨兵数量超过{0}被踢出"
 msgstr ""
 
-#: ../../Plugin.Handler.cs:332
+#: ../../Plugin.Handler.cs:334
 msgid "你因多鱼线被石化3秒钟!"
 msgstr ""
 
@@ -196,8 +191,8 @@ msgstr ""
 msgid "用户 {0} 不存在."
 msgstr ""
 
-#: ../../Plugin.Handler.cs:400
-#: ../../Plugin.Handler.cs:411
+#: ../../Plugin.Handler.cs:402
+#: ../../Plugin.Handler.cs:413
 msgid "禁止双箱!"
 msgstr ""
 
@@ -248,7 +243,7 @@ msgstr ""
 msgid "输入 {0}死亡排行 {{0}} 查看更多"
 msgstr ""
 
-#: ../../Plugin.Handler.cs:456
+#: ../../Plugin.Handler.cs:458
 #, csharp-format
 msgid ""
 "退出服务器时处于死亡状态！\n"
