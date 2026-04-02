@@ -19,7 +19,7 @@ public class QRCoder(Main game) : LazyPlugin(game)
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Jonesn，熙恩，Radix.";
     public override string Description => "生成二维码";
-    public override Version Version => new (1, 1, 0, 0);
+    public override Version Version => new (1, 1, 0, 1);
 
     private readonly Dictionary<int, QRPosition> _playerPositions = new ();
 
