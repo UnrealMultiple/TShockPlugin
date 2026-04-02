@@ -15,7 +15,7 @@ public partial class Plugin : LazyPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(1, 3, 0, 1);
+    public override Version Version => new Version(1, 3, 0, 2);
 
     public const string ReaderPath = "ReaderPlayers";
 

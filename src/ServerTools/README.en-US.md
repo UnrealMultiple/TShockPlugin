@@ -20,6 +20,32 @@
 | /在线排行 or /onlinerank                                                                                                           | `servertool.user.online` |    Check the online players' leaderboard.     |
 | /死亡排行 or /deadrank                                                                                                             |  `servertool.user.dead`  |         Check the death leaderboard.          |
 | /oc [playerName] [cmd]                                                                                                            |  servertool.user.cmd     |    Execute commands for the specified player   |
+| /kickcheater on | servertool.admin.cheater | Enable modified client detection and kick cheaters |
+| /kickcheater off | servertool.admin.cheater | Disable modified client detection |
+
+## Modified Client Detection
+
+This plugin includes a modified client detection feature that can identify and handle players using modified clients to join the server.
+
+### How It Works
+
+The plugin identifies modified clients by detecting specific network packet signature values:
+- Detects abnormal control packet coordinate values
+- Uses byte array XOR operations to hide real detection values, preventing easy bypassing
+- Automatically kicks detected cheaters and broadcasts warnings
+
+### Configuration
+
+```json5
+{
+  "KickCheater": true,  // Whether to kick detected cheaters
+  "KickCheaterText": "Using modified client"  // Reason displayed when kicking
+}
+```
+
+### Permissions
+
+- `servertool.admin.cheater` - Allows using `/kickcheater` command to toggle detection
 
 ## REST API  
 
@@ -137,30 +163,107 @@
 
 | Field          |      Type       |                                          Description                                           |                         Possible Values                         |
 |----------------|:---------------:|:----------------------------------------------------------------------------------------------:|:---------------------------------------------------------------:|
-| `死亡延续`         |     `bool`      |         Players who log out while dead must wait until the death state ends to rejoin.         |                              Empty                              |
-| `限制哨兵数量`       |     `int32`     |                       Limits the number of sentries a player can summon.                       |                              Empty                              |
-| `限制召唤物数量`      |     `int32`     |                       Limits the number of summons a player can summon.                        |                              Empty                              |
-| `仅允许软核进入`      |     `bool`      |                             Only allows softcore players to join.                              |                              Empty                              |
-| `是否设置世界模式`     |     `bool`      |                      If set to `true`, the world mode will be configured.                      |                              Empty                              |
-| `设置世界模式`       |     `int32`     |                             Specifies the world difficulty level.                              | `0` for Journey, `1` for Normal, `2` for Expert, `3` for Master |
-| `限制发言长度`       |     `int32`     |                   Restricts the maximum length of messages players can send.                   |                              Empty                              |
-| `设置旅途模式难度`     |     `bool`      |                  Enables setting the difficulty for Journey mode when `true`.                  |                              Empty                              |
-| `旅途模式难度`       |    `string`     |                         Defines the difficulty level for Journey mode.                         |             `master`, `journey`, `normal`, `expert`             |
-| `阻止未注册进入`      |     `bool`      |                     Prevents unregistered players from joining the server.                     |                              Empty                              |
-| `禁止怪物捡钱`       |     `bool`      |                  Prevents monsters from picking up coins dropped by players.                   |                              Empty                              |
-| `清理掉落物`        |     `bool`      |                         Removes items dropped after a player's death.                          |                              Empty                              |
-| `阻止死亡角色进入`     |     `bool`      | Prevents players in a death state from joining the server until revived in single-player mode. |                              Empty                              |
-| `死亡倒计时`        |     `bool`      |                          Enables a countdown timer for player deaths.                          |                              Empty                              |
-| `禁止双箱`         |     `bool`      |                    Prevents players from opening two chests simultaneously.                    |                              Empty                              |
-| `禁止双饰品`        |     `bool`      |                           Prevents equipping duplicate accessories.                            |                              Empty                              |
-| `禁止肉前第七格饰品`    |     `bool`      |              Prohibits having a seventh accessory slot before entering Hardmode.               |                              Empty                              |
-| `死亡倒计时格式`      |    `string`     |                             Format for the death countdown timer.                              |                      `{0}` remaining time                       |
-| `未注册阻止语句`      |    `string`     |                   Message displayed to unregistered players trying to join.                    |                              Empty                              |
-| `未注册启动服务器执行命令` | `array<string>` |           Commands executed at server startup when there are no registered players.            |                              Empty                              |
-| `开启NPC保护`      |     `bool`      |                                    Enables NPC protection.                                     |                              Empty                              |
-| `NPC保护表`       |  `array<int>`   |                             List of NPCs protected by the server.                              |                              Empty                              |
-| `禁止多鱼线`        |     `bool`      |                  Prevents players from exploiting the multi-fishing line bug.                  |                              Empty                              |
-| `浮漂列表`         |  `array<int>`   |                   List of bobbers used to detect multi-fishing line issues.                    |                              Empty                              |
+| `DeathLast` | `bool` | Players who log out while dead must wait until the death state ends to rejoin | `true` or `false` |
+| `KickCheater` | `bool` | Whether to kick players using modified clients | `true` or `false` |
+| `KickCheaterText` | `string` | Reason displayed when kicking cheaters | Any text, e.g., `"Using modified client is not allowed!"` |
+| `SentryLimit` | `int32` | Limits the number of sentries a player can summon | Number, default `20` |
+| `SummonLimit` | `int32` | Limits the number of summons a player can summon | Number, default `11` |
+| `OnlySoftCoresAreAllowed` | `bool` | Only allows softcore players to join | `true` or `false` |
+| `SetWorldMode` | `bool` | Whether to force set the world mode | `true` or `false` |
+| `WorldMode` | `int32` | Specifies the world difficulty level | `0`=Journey, `1`=Normal, `2`=Expert, `3`=Master |
+| `ChatLength` | `int32` | Restricts the maximum length of chat messages | Number, default `50` |
+| `SetJourneyDifficult` | `bool` | Enables setting the difficulty for Journey mode | `true` or `false` |
+| `JourneyDifficult` | `string` | Defines the difficulty level for Journey mode | `master`, `journey`, `normal`, `expert` |
+| `BlockUnregisteredEntry` | `bool` | Prevents unregistered players from joining the server | `true` or `false` |
+| `MonsterPickUpMoney` | `bool` | Prevents monsters from picking up coins dropped by players | `true` or `false` |
+| `ClearDrop` | `bool` | Removes items dropped after a player's death | `true` or `false` |
+| `PreventsDeath` | `bool` | Prevents players in a death state from joining the server | `true` or `false` |
+| `DeadTimer` | `bool` | Enables a countdown timer for player deaths | `true` or `false` |
+| `DeadFormat` | `string` | Format for the death countdown timer | Use `{0}` as time placeholder, e.g., `"You will respawn in {0} seconds!"` |
+| `KeepOpenChest` | `bool` | Prevents players from opening multiple chests simultaneously | `true` or `false` |
+| `KeepArmor` | `bool` | Prevents equipping duplicate accessories | `true` or `false` |
+| `KeepArmor2` | `bool` | Prohibits having a seventh accessory slot before Hardmode | `true` or `false` |
+| `BlockEntryStatement` | `string` | Message displayed to unregistered players trying to join | Any text, e.g., `"Unregistered players cannot join"` |
+| `BlockEntryExecCommands` | `array<string>` | Commands executed at server startup when there are no registered players | Command array, e.g., `["/worldmode 2"]` |
+| `EnableNpcProtect` | `bool` | Enables NPC protection feature | `true` or `false` |
+| `NpcProtects` | `array<int>` | List of NPC IDs protected by the server | Array of NPC IDs |
+| `MultipleFishingRodsAreProhibited` | `bool` | Prevents players from exploiting the multi-fishing line bug | `true` or `false` |
+| `ForbiddenBuoys` | `array<int>` | List of Projectile IDs used to detect multi-fishing line issues | Array of Projectile IDs |
+
+
+## Changelog
+
+### v1.3.1.0
+- Fixed byte array calculation logic for modified client detection
+- Optimized detection value hiding using XOR operations
+
+### v1.3.0.1
+- Added NPC spawn rate modification
+
+### v1.3.0.0
+- Added modified client detection feature to detect and kick cheaters
+
+### v1.2.0.0
+- Added /readplayer command
+
+### v1.1.8.7
+- Removed decimals from death countdown message
+
+### v1.1.8.6
+- Prioritized English commands
+
+### v1.1.8.5
+- Fixed configuration hot-reload issues
+
+### v1.1.7.9
+- Fixed hook errors
+
+### v1.1.7.8
+- Improved accessory detection and handling
+
+### v1.1.7.7
+- Fixed summon and sentry detection issues
+
+### v1.1.7.6
+- Fixed default values and documentation
+
+### v1.1.7.5
+- Added summon limit configuration
+
+### v1.1.7.4
+- Improved unload function
+
+### v1.1.7.0
+- Fixed Demon Heart slot issues for mobile players
+
+### v1.1.6.0
+- Added NPC protection
+- Added pre-Hardmode 7th accessory slot prevention
+
+### v1.1.5.0
+- Improved duplicate accessory handling
+
+### v1.1.4.0
+- Added accessory whitelist permission
+
+### v1.1.3.0
+- Added duplicate accessory prevention
+- Added shorthand commands
+
+### v1.1.2.0
+- Enhanced /ai command with account ID lookup
+
+### v1.1.1.0
+- Fixed monster coin pickup prevention
+
+### v1.1.0.0
+- Added dual chest prevention
+
+### v1.0.0.4
+- Fixed REST API ban command issues
+
+### v1.0.0.3
+- Fixed death rank database errors
 
 
 ## FeedBack
