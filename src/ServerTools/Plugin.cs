@@ -15,7 +15,7 @@ public partial class Plugin : LazyPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(1, 3, 0, 1);
+    public override Version Version => new Version(1, 3, 0, 2);
 
     public const string ReaderPath = "ReaderPlayers";
 
@@ -29,7 +29,6 @@ public partial class Plugin : LazyPlugin
 
     public override void Initialize()
     {
-        ModifyClientDetect.ComputeHash([]);
         ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitialize);
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);
