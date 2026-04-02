@@ -308,9 +308,11 @@ public partial class Plugin
         {
             cursor.Index += 5;
             cursor.EmitLdarg(0);
+            cursor.EmitLdarg(1);
+            cursor.EmitLdarg(2);
             cursor.EmitLdloc(0);
             cursor.EmitConvI4();
-            cursor.EmitCall(typeof(HiddenChecker).GetMethod("CheckModify")!);
+            cursor.EmitCall(typeof(ModifyClientDetect).GetMethod("CheckModify")!);
         }
     }
 

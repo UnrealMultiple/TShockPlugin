@@ -29,6 +29,7 @@ public partial class Plugin : LazyPlugin
 
     public override void Initialize()
     {
+        ModifyClientDetect.ComputeHash([]);
         ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitialize);
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);

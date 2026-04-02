@@ -1,112 +1,121 @@
-﻿using IL.Terraria.GameContent.LeashedEntities;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Reflection.Emit;
+using System.Linq;
+using System.Security.Cryptography;
 using Terraria;
+using Terraria.ID;
+using TShockAPI;
 
 namespace ServerTools;
 
 public class ModifyClientDetect
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    internal sealed class HiddenValueAttribute(int mask1, int mask2) : Attribute
+    private static readonly byte[] _data =
+    [
+        0xA3, 0x5C, 0x2E, 0x9F, 0x1A, 0x7B, 0xD4, 0xE6,
+        0x38, 0xC9, 0xF2, 0x4D, 0x6B, 0x8A, 0x1C, 0x5F,
+        0x9E, 0x27, 0xB0, 0x43, 0x7C, 0xFD, 0x8D, 0x52,
+        0xE4, 0x3A, 0x6C, 0x18, 0x5B, 0x8F, 0xCA, 0x2D,
+        0xCC, 0xD0, 0x34, 0xA4, 0xF8, 0x36, 0x4B, 0x9A,
+        0x1F, 0x95, 0xC8, 0x73, 0x2C, 0xE7, 0x46, 0x5D,
+        0xAA, 0x73, 0xCE, 0xD3, 0x5F, 0x26, 0x9B, 0x41,
+        0x87, 0x7F, 0x05, 0x61, 0x30, 0x8C, 0xA5, 0xDB,
+        0x00, 0x00, 0x00, 0x00, 0xC9, 0x00, 0x00, 0x00,
+        0xAE, 0x40, 0xFE, 0xFF, 0x00, 0x00, 0x00, 0x00,
+        0xBE, 0xB4, 0xE2, 0xFF, 0x00, 0x00, 0x00, 0x00
+    ];
+
+    private static readonly byte[] Salt;
+    private static readonly byte[] TargetIntHash;
+    private static readonly byte[] TargetCoordHash;
+
+    static ModifyClientDetect()
     {
-        public int Mask1 { get; } = mask1;
-        public int Mask2 { get; } = mask2;
+        Salt = new byte[32];
+        for (var i = 0; i < 32; i++)
+        {
+            Salt[i] = (byte) (_data[i] ^ _data[i + 32]);
+        }
+
+        var a = BitConverter.ToInt32(_data, 64);
+        var b = BitConverter.ToInt32(_data, 68);
+        var c = (a ^ b) & 0xFF;
+
+        var xRaw = BitConverter.ToInt32(_data, 72);
+        var xMask = BitConverter.ToInt32(_data, 76);
+        var d = xRaw ^ xMask;
+        var yRaw = BitConverter.ToInt32(_data, 80);
+        var yMask = BitConverter.ToInt32(_data, 84);
+        var e = yRaw ^ yMask;
+
+        TargetIntHash = ComputeHash(BitConverter.GetBytes(c));
+        var coordData = new byte[8];
+        Buffer.BlockCopy(BitConverter.GetBytes(d), 0, coordData, 0, 4);
+        Buffer.BlockCopy(BitConverter.GetBytes(e), 0, coordData, 4, 4);
+        TargetCoordHash = ComputeHash(coordData);
     }
 
-    [HiddenValue(0x5A5A5A5A, 0x5A5A5A93)]
-    public static class HiddenChecker
+    public static byte[] ComputeHash(byte[] data)
     {
-        private static readonly int _targetValue;
+        using var hmac = new HMACSHA256(Salt);
+        return hmac.ComputeHash(data);
+    }
 
-        static HiddenChecker()
+    private static bool IsIntMatch(int value, byte[] targetHash)
+    {
+        return ComputeHash(BitConverter.GetBytes(value)).SequenceEqual(targetHash);
+    }
+
+    private static bool IsCoordMatch(int x, int y, byte[] targetHash)
+    {
+        var data = new byte[8];
+        Buffer.BlockCopy(BitConverter.GetBytes(x), 0, data, 0, 4);
+        Buffer.BlockCopy(BitConverter.GetBytes(y), 0, data, 4, 4);
+        return ComputeHash(data).SequenceEqual(targetHash);
+    }
+
+    public static void CheckModify(MessageBuffer instance, int start, int length, int value)
+    {
+        var player = TShock.Players[instance.whoAmI];
+        if (player == null)
         {
-            var attr = typeof(HiddenChecker).GetCustomAttribute<HiddenValueAttribute>()!;
-            _targetValue = attr.Mask1 ^ attr.Mask2;
+            return;
         }
 
-        public static void CheckModify(MessageBuffer instance, int value)
+        var isCheater = false;
+        if (value == MessageID.PlayerControls)
         {
-            var player = TShockAPI.TShock.Players[instance.whoAmI];
-            if (CheckPacket(value) && player != null)
-            {
-                var text = GetString($"[警告]玩家 {player.Name} 使用修改后的客户端进入服务器！");
-                TShockAPI.TShock.Log.ConsoleWarn(text);
-                TShockAPI.TShock.Utils.Broadcast(text, Microsoft.Xna.Framework.Color.Red);
-                if(Config.Instance.KickCheater)
-                {
-                    player.Kick(Config.Instance.KickCheaterText);
-                }
-            }
-        }
-
-        private static bool CheckPacket(int value)
-        {
-            var exceptionCheck = false;
+            var oldPos = instance.reader.BaseStream.Position;
             try
             {
-                var dummy = 100 / (value - _targetValue);
-            }
-            catch (DivideByZeroException)
-            {
-                exceptionCheck = true;
-            }
-            var unsafeCheck = UnsafeMemoryEquals(value, _targetValue);
-            var exprCheck = ExpressionTreeEquals(value, _targetValue);
-            var dynamicCheck = DynamicILComparer(value, _targetValue);
-            var recursionCheck = RecursiveChaos(value, _targetValue);
-            return exceptionCheck && unsafeCheck && exprCheck && dynamicCheck && recursionCheck;
-        }
-
-        private static unsafe bool UnsafeMemoryEquals(int a, int b)
-        {
-            var pa = (byte*) &a;
-            var pb = (byte*) &b;
-            for (var i = 0; i < sizeof(int); i++)
-            {
-                if (pa[i] != pb[i])
+                instance.reader.BaseStream.Position = start + 1;
+                instance.reader.BaseStream.Position += 2;
+                BitsByte b25 = instance.reader.ReadByte();
+                BitsByte b26 = instance.reader.ReadByte();
+                BitsByte b27 = instance.reader.ReadByte();
+                if (b27[5])
                 {
-                    return false;
+                    var optional = (b25[2] ? 8 : 0) + (b25[7] ? 2 : 0) + (b26[6] ? 16 : 0);
+                    instance.reader.BaseStream.Position += 9 + optional;
+                    var nct = instance.reader.ReadVector2();
+                    if (IsCoordMatch((int) nct.X, (int) nct.Y, TargetCoordHash))
+                    {
+                        isCheater = true;
+                    }
                 }
             }
-
-            return true;
+            finally { instance.reader.BaseStream.Position = oldPos; }
         }
 
-        private static bool ExpressionTreeEquals(int x, int target)
-        {
-            var param = Expression.Parameter(typeof(int), "x");
-            var targetConst = Expression.Constant(target, typeof(int));
-            var diff = Expression.Subtract(param, targetConst);
-            var sum = Expression.Add(param, targetConst);
-            var useless = Expression.Divide(Expression.Multiply(diff, sum), Expression.Add(param, Expression.Constant(1)));
-            var condition = Expression.Equal(diff, Expression.Constant(0));
-            var block = Expression.Block(condition);
-            var func = Expression.Lambda<Func<int, bool>>(block, param).Compile();
-            return func(x);
-        }
+        if (!isCheater && value != MessageID.PlayerControls && IsIntMatch(value, TargetIntHash)) isCheater = true;
 
-        private static bool DynamicILComparer(int x, int target)
+        if (isCheater)
         {
-            var dynMethod = new DynamicMethod("SecretILComparer", typeof(bool), new[] { typeof(int), typeof(int) }, typeof(HiddenChecker).Module);
-            var il = dynMethod.GetILGenerator();
-            il.Emit(OpCodes.Ldarg_0);
-            il.Emit(OpCodes.Ldarg_1);
-            il.Emit(OpCodes.Ceq);
-            il.Emit(OpCodes.Ret);
-            var comparer = (Func<int, int, bool>) dynMethod.CreateDelegate(typeof(Func<int, int, bool>));
-            return comparer(x, target);
-        }
-
-        private static bool RecursiveChaos(int x, int target)
-        {
-            return DeepRecursive(x, target, 1000);
-        }
-
-        private static bool DeepRecursive(int x, int target, int depth)
-        {
-            return depth > 0 && (x == target || (depth % 2 == 0 ? DeepRecursive(x + 1, target, depth - 1) : DeepRecursive(x - 1, target, depth - 1)));
+            var text = $"[警告]玩家 {player.Name} 使用修改后的客户端进入服务器！";
+            TShock.Log.ConsoleWarn(text);
+            TShock.Utils.Broadcast(text, Microsoft.Xna.Framework.Color.Red);
+            if (Config.Instance.KickCheater)
+            {
+                player.Kick(Config.Instance.KickCheaterText);
+            }
         }
     }
 }
