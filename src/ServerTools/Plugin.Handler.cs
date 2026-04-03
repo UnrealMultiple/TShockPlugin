@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Newtonsoft.Json;
 using ServerTools.DB;
@@ -7,7 +8,6 @@ using System.Text.RegularExpressions;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using static ServerTools.ModifyClientDetect;
 
 namespace ServerTools;
 public partial class Plugin
@@ -292,6 +292,19 @@ public partial class Plugin
         {
             this.PlayerDeath[ply.Name] = DateTime.Now.AddSeconds(ply.RespawnTimer);
         }
+    }
+    private void Projectile_AI_067_FreakingPirates_HitIntention(ILContext il)
+    {
+        var cursor = new ILCursor(il);
+        var ownerField = typeof(Projectile).GetField("owner");
+        var myPlayerField = typeof(Main).GetField("myPlayer");
+        cursor.Goto(0);
+        cursor.Emit(OpCodes.Ldarg_0);
+        cursor.Emit(OpCodes.Ldfld, ownerField!);
+        cursor.Emit(OpCodes.Ldsfld, myPlayerField!);
+        cursor.Emit(OpCodes.Beq, cursor.Next!);
+        cursor.Emit(OpCodes.Ret);
+
     }
 
     private void MessageBuffer_GetData(ILContext il)

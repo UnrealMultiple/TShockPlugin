@@ -15,7 +15,7 @@ public partial class Plugin : LazyPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(1, 3, 0, 2);
+    public override Version Version => new Version(1, 3, 0, 3);
 
     public const string ReaderPath = "ReaderPlayers";
 
@@ -50,6 +50,7 @@ public partial class Plugin : LazyPlugin
         OnTimer += this.OnUpdatePlayerOnline;
         On.OTAPI.Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
         IL.Terraria.MessageBuffer.GetData += this.MessageBuffer_GetData;
+        IL.Terraria.Projectile.AI_067_FreakingPirates_HitIntention += this.Projectile_AI_067_FreakingPirates_HitIntention;;
         HandleCommandLine(Environment.GetCommandLineArgs());
     }
 
