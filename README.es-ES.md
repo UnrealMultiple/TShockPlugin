@@ -163,7 +163,7 @@
 | [ProgressRestrict](./src/ProgressRestrict/README.md) | 0.0% | Detección de super progreso | [DataSync](./src/DataSync/README.md) |
 | [ProxyProtocolSocket](./src/ProxyProtocolSocket/README.md) | 0.0% | Acepta conexiones de protocolo proxy |  |
 | [PvPer](./src/PvPer/README.md) | 0.0% | Sistema de duelos |  |
-| [QRCoder](./src/QRCoder/README.md) | 0.0% | Generador de Códigos QR |  |
+| [QRCoder](./src/QRCoder/README.md) | 0.0% | Generador de Códigos QR | [LazyAPI](./src/LazyAPI/README.md) |
 | [RainbowChat](./src/RainbowChat/README.md) | 0.0% | Colores aleatorios en el chat |  |
 | [RandomBroadcast](./src/RandomBroadcast/README.md) | 0.0% | Transmisión aleatoria |  |
 | [RandRespawn](./src/RandRespawn/README.md) | 0.0% | Punto de aparición aleatorio |  |
