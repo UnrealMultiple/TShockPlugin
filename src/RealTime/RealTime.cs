@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using MonoMod.RuntimeDetour;
+using System.Reflection;
+using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -11,7 +13,9 @@ public class RealTime : TerrariaPlugin
     public override string Author => "十七";
     public override string Description => GetString("同步现实时间");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 6, 0, 5);
+    public override Version Version => new Version(2, 7, 0, 0);
+    private Hook? unspawnHook;
+    private static readonly Random rand = new Random();
     public RealTime(Main game) : base(game)
     {
     }
@@ -20,6 +24,11 @@ public class RealTime : TerrariaPlugin
         ServerApi.Hooks.GameUpdate.Register(this, this.OnGameUpdate);
         On.Terraria.Main.UpdateTime += this.NPCS;
         GetDataHandlers.PlayerTeam += this.Team;
+        var method = typeof(WorldGen).GetMethod("UnspawnTravelNPC",
+                BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+
+        if (method != null)
+            unspawnHook = new Hook(method, BlockUnspawn);
     }
 
     protected override void Dispose(bool disposing)
@@ -29,10 +38,14 @@ public class RealTime : TerrariaPlugin
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnGameUpdate);
             On.Terraria.Main.UpdateTime -= this.NPCS;
             GetDataHandlers.PlayerTeam -= this.Team;
+            unspawnHook?.Dispose();
         }
         base.Dispose(disposing);
     }
-
+    public static void BlockUnspawn(Action orig)//拦截旅商被删除的函数，旅商永久驻留
+    {
+        return;
+    }
     private void Team(object? o, GetDataHandlers.PlayerTeamEventArgs args)//队伍判断
     {
         if (Main.bloodMoon == true || Main.eclipse == true || Main.pumpkinMoon == true || Main.snowMoon == true)
@@ -205,7 +218,7 @@ public class RealTime : TerrariaPlugin
         }
         #endregion
         #region npc生成、月相、天气、渔夫任务刷新
-        this.y++; this.q++;
+        this.y++; 
         if (this.y == 86400)//npc生成 月相、天气、渔夫任务刷新
         {
             var AllNPCS = Main.npc.Where(n => n != null);
@@ -236,67 +249,90 @@ public class RealTime : TerrariaPlugin
             NetMessage.SendData(72);
             Main.AnglerQuestSwap();//更换渔夫任务
             TSPlayer.All.SendInfoMessage(GetString("渔夫任务和旅商商品已更换"));
-            if ((DateTime.Now.Hour >= 19 && DateTime.Now.Hour <= 24) || (0 <= DateTime.Now.Hour && DateTime.Now.Hour <= 4))
+            if (DateTime.Now.Hour >= 19 || DateTime.Now.Hour <= 4)
             {
-                if (0 <= Main.moonPhase + 1 && Main.moonPhase + 1 <= 7)
-                {
-                    var msg = this.GetMoon(Main.moonPhase);
-                    Main.moonPhase += 1;
-                    NetMessage.SendData(7);//发月相包
-                    TSPlayer.All.SendInfoMessage(GetString($"月相已更换为：{msg}"));
-                }
-                else
-                {
-                    Main.moonPhase = 0;
-                    NetMessage.SendData(7);//发月相包
-                    TSPlayer.All.SendInfoMessage(GetString("月相已更换为：满月"));
-                }
-            }
-            else
-            {
-                var ran = new Random();
-                var num = ran.Next(1, 50); //1-50随机数
-                ChangeCloud[] arr =
-                {
-                    ()=>Main.cloudBGActive=num,
-                    ()=>Main.cloudBGActive=0,
-                    ()=>Main.numClouds=0,
-                    ()=>Main.numClouds=10,
-                    ()=>Main.numClouds=95,
-                    ()=>Main.numClouds=60,
-                    ()=>Main.StartRain(), //下雨
-                    ()=>Main.StopRain(), //雨停止
-                    ()=>Main.windSpeedCurrent=num,//风速
-                    ()=>Main.windSpeedTarget = num,
-                    ()=>Main.maxRaining=0.3f,
-                    ()=>Main.maxRaining=1,
-                    ()=>Main.maxRaining=0.1f,
-                    ()=>Terraria.GameContent.Events.Sandstorm.StartSandstorm(),//开始沙尘暴
-                    ()=>Terraria.GameContent.Events.Sandstorm.StopSandstorm() //停止沙尘暴                       
-                    };
-                this.GetRandom(arr)();
+                int nextMoon = (Main.moonPhase + 1) % 8;
+                var msg = this.GetMoon(nextMoon);
+                Main.moonPhase = nextMoon;
                 NetMessage.SendData(7);
-                TSPlayer.All.SendInfoMessage(GetString("天气已变更"));
+                TSPlayer.All.SendInfoMessage(GetString($"月相已更换为：{msg}"));
             }
             this.y = 0;
         }
         #endregion
-    }
-
-    private string GetMoon(int index)
-    {
-        var arr = new[]
+        #region 天气刷新
+        this.q++;
+        if (this.q == 36000)//天气刷新
         {
-            GetString("亏凸月"),
-            GetString("下弦月"),
-            GetString("残月"),
-            GetString("新月"),
-            GetString("娥眉月"),
-            GetString("上弦月"),
-            GetString("盈凸月")
-        };
-        return index == -1 || index + 1 > arr.Length
-            ? GetString("[c/FF66FF:未知]")
-            : arr[index];
+            // 先清空所有天气
+            Main.StopRain();
+            Terraria.GameContent.Events.Sandstorm.StopSandstorm();
+            Main.StopSlimeRain();
+            // 风归零
+            Main.windSpeedTarget = 0f;
+            Main.windSpeedCurrent = 0f;
+            int r = rand.Next(100); // 权重随机
+            string weatherName = "";
+            if (r < 35)
+            {
+                Main.numClouds = 0;
+                weatherName = GetString("晴天");
+            }
+            else if (r < 60)
+            {
+                Main.numClouds = 60;
+                Main.windSpeedTarget = 0.2f;
+                weatherName = GetString("多云");
+            }
+            else if (r < 75)
+            {
+                Main.StartRain();
+                Main.maxRaining = 0.3f;
+                Main.numClouds = rand.Next(60, 100);
+                weatherName = GetString("小雨");
+            }
+            else if (r < 88)
+            {
+                Main.StartRain();
+                Main.maxRaining = 0.6f;
+                Main.numClouds = 70;
+                weatherName = GetString("中雨");
+            }
+            else if (r < 96)
+            {
+                Main.StartRain();
+                Main.maxRaining = 1.0f;
+                Main.windSpeedTarget = 0.8f;
+                Main.windSpeedCurrent = 0.8f;
+                Main.numClouds = rand.Next(80, 100);
+                weatherName = GetString("暴雨/雷暴");
+            }
+            else
+            {
+                Terraria.GameContent.Events.Sandstorm.StartSandstorm();
+                Main.windSpeedTarget = 0.7f;
+                Main.windSpeedCurrent = 0.7f;
+                weatherName = GetString("沙尘暴");
+            }
+            NetMessage.SendData(7);
+            TSPlayer.All.SendInfoMessage(GetString($"当前天气：{weatherName}"));
+            this.q = 0;
+        }
+        #endregion
+    }
+    private string GetMoon(int phase)
+    {
+        switch (phase)
+        {
+            case 0: return GetString("满月");
+            case 1: return GetString("亏凸月");
+            case 2: return GetString("下弦月");
+            case 3: return GetString("残月");
+            case 4: return GetString("新月");
+            case 5: return GetString("娥眉月");
+            case 6: return GetString("上弦月");
+            case 7: return GetString("盈凸月");
+            default: return GetString("未知");
+        }
     }
 }
