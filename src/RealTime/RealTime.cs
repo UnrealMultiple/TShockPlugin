@@ -276,27 +276,27 @@ public class RealTime : TerrariaPlugin
             if (r < 35)
             {
                 Main.numClouds = 0;
-                weatherName = "晴天";
+                weatherName = GetString("晴天");
             }
             else if (r < 60)
             {
                 Main.numClouds = 60;
                 Main.windSpeedTarget = 0.2f;
-                weatherName = "多云";
+                weatherName = GetString("多云");
             }
             else if (r < 75)
             {
                 Main.StartRain();
                 Main.maxRaining = 0.3f;
                 Main.numClouds = rand.Next(60, 100);
-                weatherName = "小雨";
+                weatherName = GetString("小雨");
             }
             else if (r < 88)
             {
                 Main.StartRain();
                 Main.maxRaining = 0.6f;
                 Main.numClouds = 70;
-                weatherName = "中雨";
+                weatherName = GetString("中雨");
             }
             else if (r < 96)
             {
@@ -305,17 +305,17 @@ public class RealTime : TerrariaPlugin
                 Main.windSpeedTarget = 0.8f;
                 Main.windSpeedCurrent = 0.8f;
                 Main.numClouds = rand.Next(80, 100);
-                weatherName = "暴雨/雷暴";
+                weatherName = GetString("暴雨/雷暴");
             }
             else
             {
                 Terraria.GameContent.Events.Sandstorm.StartSandstorm();
                 Main.windSpeedTarget = 0.7f;
                 Main.windSpeedCurrent = 0.7f;
-                weatherName = "沙尘暴";
+                weatherName = GetString("沙尘暴");
             }
             NetMessage.SendData(7);
-            TSPlayer.All.SendInfoMessage($"当前天气：{weatherName}");
+            TSPlayer.All.SendInfoMessage(GetString($"当前天气：{weatherName}"));
             this.q = 0;
         }
         #endregion
@@ -324,15 +324,15 @@ public class RealTime : TerrariaPlugin
     {
         switch (phase)
         {
-            case 0: return "满月";
-            case 1: return "亏凸月";
-            case 2: return "下弦月";
-            case 3: return "残月";
-            case 4: return "新月";
-            case 5: return "娥眉月";
-            case 6: return "上弦月";
-            case 7: return "盈凸月";
-            default: return "未知";
+            case 0: return GetString("满月");
+            case 1: return GetString("亏凸月");
+            case 2: return GetString("下弦月");
+            case 3: return GetString("残月");
+            case 4: return GetString("新月");
+            case 5: return GetString("娥眉月");
+            case 6: return GetString("上弦月");
+            case 7: return GetString("盈凸月");
+            default: return GetString("未知");
         }
     }
 }
