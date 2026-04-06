@@ -262,7 +262,7 @@ public class RealTime : TerrariaPlugin
         #endregion
         #region 天气刷新
         this.q++;
-        if (this.y == 36000)//天气刷新
+        if (this.q == 36000)//天气刷新
         {
             // 先清空所有天气
             Main.StopRain();
