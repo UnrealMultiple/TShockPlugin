@@ -226,8 +226,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LazyAPI", "src\LazyAPI\Lazy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RebirthCoin", "src\RebirthCoin\RebirthCoin.csproj", "{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrProtocol", "src\Submodules\TrProtocol\TrProtocol\TrProtocol.csproj", "{E8AF3139-343C-4A0B-95F5-855C1A30189F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemDecoration", "src\ItemDecoration\ItemDecoration.csproj", "{C4A6D861-D53D-447E-9948-A23A797E2C1C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DwTP", "src\DwTP\DwTP.csproj", "{2003D2E7-0A1C-4557-A0EE-F4E06B766B78}"
@@ -269,6 +267,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeGenerator", "src\MazeGenerator\MazeGenerator.csproj", "{0647C951-DADB-47C7-9C71-7EAC4904A055}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFish", "src\AutoFish\AutoFish.csproj", "{371BFAE9-AD0E-7D16-0027-EDD69398B523}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrProtocol", "src\Submodules\TrProtocol\src\TrProtocol\TrProtocol.csproj", "{8A88C9CD-66B4-C494-F64D-166B3732AD2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrProtocol.SerializerGenerator", "src\Submodules\TrProtocol\src\TrProtocol.SerializerGenerator\TrProtocol.SerializerGenerator.csproj", "{1159E950-7B1D-DB16-A76F-AA50B063B16F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1150,14 +1152,6 @@ Global
 		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Release|x64.ActiveCfg = Release|Any CPU
 		{87D2DF3A-5F8C-42A4-BA29-9D142E49572B}.Release|x64.Build.0 = Release|Any CPU
-		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Debug|x64.Build.0 = Debug|Any CPU
-		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Release|x64.ActiveCfg = Release|Any CPU
-		{E8AF3139-343C-4A0B-95F5-855C1A30189F}.Release|x64.Build.0 = Release|Any CPU
 		{C4A6D861-D53D-447E-9948-A23A797E2C1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C4A6D861-D53D-447E-9948-A23A797E2C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4A6D861-D53D-447E-9948-A23A797E2C1C}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1326,11 +1320,31 @@ Global
 		{371BFAE9-AD0E-7D16-0027-EDD69398B523}.Release|Any CPU.Build.0 = Release|Any CPU
 		{371BFAE9-AD0E-7D16-0027-EDD69398B523}.Release|x64.ActiveCfg = Release|Any CPU
 		{371BFAE9-AD0E-7D16-0027-EDD69398B523}.Release|x64.Build.0 = Release|Any CPU
+		{8A88C9CD-66B4-C494-F64D-166B3732AD2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A88C9CD-66B4-C494-F64D-166B3732AD2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A88C9CD-66B4-C494-F64D-166B3732AD2F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8A88C9CD-66B4-C494-F64D-166B3732AD2F}.Debug|x64.Build.0 = Debug|Any CPU
+		{8A88C9CD-66B4-C494-F64D-166B3732AD2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A88C9CD-66B4-C494-F64D-166B3732AD2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A88C9CD-66B4-C494-F64D-166B3732AD2F}.Release|x64.ActiveCfg = Release|Any CPU
+		{8A88C9CD-66B4-C494-F64D-166B3732AD2F}.Release|x64.Build.0 = Release|Any CPU
+		{1159E950-7B1D-DB16-A76F-AA50B063B16F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1159E950-7B1D-DB16-A76F-AA50B063B16F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1159E950-7B1D-DB16-A76F-AA50B063B16F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1159E950-7B1D-DB16-A76F-AA50B063B16F}.Debug|x64.Build.0 = Debug|Any CPU
+		{1159E950-7B1D-DB16-A76F-AA50B063B16F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1159E950-7B1D-DB16-A76F-AA50B063B16F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1159E950-7B1D-DB16-A76F-AA50B063B16F}.Release|x64.ActiveCfg = Release|Any CPU
+		{1159E950-7B1D-DB16-A76F-AA50B063B16F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0029F58-63FA-4445-ABC2-C334EB5B99B5}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\Submodules\TrProtocol\src\TrProtocol.Shared\TrProtocol.Shared.projitems*{1159e950-7b1d-db16-a76f-aa50b063b16f}*SharedItemsImports = 5
+		src\Submodules\TrProtocol\src\TrProtocol.Shared\TrProtocol.Shared.projitems*{8a88c9cd-66b4-c494-f64d-166b3732ad2f}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
