@@ -13,8 +13,8 @@ public class RealTime : TerrariaPlugin
     public override string Author => "十七";
     public override string Description => GetString("同步现实时间");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 7, 0, 0);
-    private Hook? unspawnHook;
+    public override Version Version => new Version(2, 7, 0, 5);
+    //private Hook? unspawnHook;
     private static readonly Random rand = new Random();
     public RealTime(Main game) : base(game)
     {
@@ -24,13 +24,8 @@ public class RealTime : TerrariaPlugin
         ServerApi.Hooks.GameUpdate.Register(this, this.OnGameUpdate);
         On.Terraria.Main.UpdateTime += this.NPCS;
         GetDataHandlers.PlayerTeam += this.Team;
-        var method = typeof(WorldGen).GetMethod("UnspawnTravelNPC",
-                BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-
-        if (method != null)
-            unspawnHook = new Hook(method, BlockUnspawn);
+        On.Terraria.WorldGen.UnspawnTravelNPC += this.BlockUnspawn;
     }
-
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -38,14 +33,16 @@ public class RealTime : TerrariaPlugin
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnGameUpdate);
             On.Terraria.Main.UpdateTime -= this.NPCS;
             GetDataHandlers.PlayerTeam -= this.Team;
-            unspawnHook?.Dispose();
+            On.Terraria.WorldGen.UnspawnTravelNPC -= this.BlockUnspawn;
         }
         base.Dispose(disposing);
     }
-    public static void BlockUnspawn(Action orig)//拦截旅商被删除的函数，旅商永久驻留
+
+    private void BlockUnspawn(On.Terraria.WorldGen.orig_UnspawnTravelNPC orig)//拦截旅商被删除的函数，旅商永久驻留
     {
         return;
     }
+
     private void Team(object? o, GetDataHandlers.PlayerTeamEventArgs args)//队伍判断
     {
         if (Main.bloodMoon == true || Main.eclipse == true || Main.pumpkinMoon == true || Main.snowMoon == true)
