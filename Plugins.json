@@ -1,31 +1,5 @@
 [
   {
-    "Name": "CaiPacketDebug",
-    "Version": "2025.5.20.1",
-    "Author": "Cai",
-    "Description": {
-      "en-US": "Plugin for debugging data packets~",
-      "de-DE": "用于调试数据包的插件捏~",
-      "it-IT": "用于调试数据包的插件捏~",
-      "fr-FR": "用于调试数据包的插件捏~",
-      "es-ES": "用于调试数据包的插件捏~",
-      "ru-RU": "用于调试数据包的插件捏~",
-      "zh-CN": "用于调试数据包的插件捏~",
-      "pt-BR": "用于调试数据包的插件捏~",
-      "pl-PL": "用于调试数据包的插件捏~",
-      "ja-JP": "用于调试数据包的插件捏~",
-      "ko-KR": "用于调试数据包的插件捏~",
-      "zh-Hant": "用于调试数据包的插件捏~"
-    },
-    "AssemblyName": "CaiPacketDebug",
-    "Path": "CaiPacketDebug.dll",
-    "Dependencies": [
-      "LazyAPI",
-      "TrProtocol"
-    ],
-    "HotReload": true
-  },
-  {
     "Name": "TransferPatch",
     "Version": "1.0.0.2",
     "Author": "少司命",
@@ -987,32 +961,6 @@
     "AssemblyName": "DTEntryBlock",
     "Path": "DTEntryBlock.dll",
     "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "Dummy",
-    "Version": "1.0.0.3",
-    "Author": "少司命",
-    "Description": {
-      "en-US": "Place dummies in your server!",
-      "de-DE": "在你的服务器中放置假人！",
-      "it-IT": "在你的服务器中放置假人！",
-      "fr-FR": "在你的服务器中放置假人！",
-      "es-ES": "在你的服务器中放置假人！",
-      "ru-RU": "Позволяет создавать манекенов-игроков!",
-      "zh-CN": "在你的服务器中放置假人！",
-      "pt-BR": "在你的服务器中放置假人！",
-      "pl-PL": "在你的服务器中放置假人！",
-      "ja-JP": "在你的服务器中放置假人！",
-      "ko-KR": "在你的服务器中放置假人！",
-      "zh-Hant": "在你的服务器中放置假人！"
-    },
-    "AssemblyName": "Dummy",
-    "Path": "Dummy.dll",
-    "Dependencies": [
-      "LazyAPI",
-      "TrProtocol"
-    ],
     "HotReload": true
   },
   {
