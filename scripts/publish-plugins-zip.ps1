@@ -30,7 +30,7 @@ if (-not $NoBuild) {
     Remove-Item ./out/$BuildType -Recurse -Force -ErrorAction SilentlyContinue
     Remove-Item ./SubmoduleAssembly -Recurse -Force -ErrorAction SilentlyContinue
     & $PSScriptRoot/submodule_build.ps1 -BuildType $BuildType -ErrorAction Stop
-    dotnet build Plugin.sln -c $BuildType
+    dotnet build Plugin.slnx -c $BuildType
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
