@@ -78,7 +78,7 @@
 | [BuildMaster](./src/BuildMaster/README.md) | 豆沙小游戏·建筑大师模式 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
 | [CaiBotLite](./src/CaiBotLite/README.md) | CaiBotLite 官方机器人适配插件 | [linq2db]() [GenerateMap](./src/GenerateMap/README.md) |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.md) | 自定义表情命令 | [LazyAPI](./src/LazyAPI/README.md) |
-| [CaiPacketDebug](./src/CaiPacketDebug/README.md) | Cai数据包调试工具 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
+| [CaiPacketDebug](./src/CaiPacketDebug/README.md) | Cai数据包调试工具 |  |
 | [CaiRewardChest](./src/CaiRewardChest/README.md) | 将自然生成的箱子变为所有人都可以领一次的奖励箱 | [linq2db]() [LazyAPI](./src/LazyAPI/README.md) |
 | [CGive](./src/CGive/README.md) | 离线命令 |  |
 | [Challenger](./src/Challenger/README.md) | 挑战者模式 |  |
@@ -99,7 +99,7 @@
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 禁怪物掉落 |  |
 | [DonotFuck](./src/DonotFuck/README.md) | 禁止脏话 | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 阻止进入地牢或神庙 |  |
-| [Dummy](./src/Dummy/README.md) | 服务器假人 | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
+| [Dummy](./src/Dummy/README.md) | 服务器假人 |  |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 输出 ID |  |
 | [DwTP](./src/DwTP/README.md) | 定位传送 |  |
 | [Economics.Core](./src/Economics.Core/README.md) | 经济插件前置 |  |

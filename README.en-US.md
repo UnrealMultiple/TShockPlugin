@@ -82,7 +82,7 @@
 | [BuildMaster](./src/BuildMaster/README.en-US.md) | 100.0% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) |
 | [CaiBotLite](./src/CaiBotLite/README.md) | 11.1% | CaiBotLite adapter plugin (Only support QQ) | [linq2db]() [GenerateMap](./src/GenerateMap/README.en-US.md) |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.en-US.md) | 100.0% | Custom emoji command | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [CaiPacketDebug](./src/CaiPacketDebug/README.en-US.md) | 100.0% | Cai Packet Debug Tool | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
+| [CaiPacketDebug](./src/CaiPacketDebug/README.en-US.md) | 100.0% | Cai Packet Debug Tool |  |
 | [CaiRewardChest](./src/CaiRewardChest/README.en-US.md) | 100.0% | Convert naturally generated chests into reward chests that everyone can claim once | [linq2db]() [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CGive](./src/CGive/README.en-US.md) | 50.0% | Offline commands |  |
 | [Challenger](./src/Challenger/README.en-US.md) | 100.0% | Challenger mode |  |
@@ -103,7 +103,7 @@
 | [DisableMonsLoot](./src/DisableMonsLoot/README.en-US.md) | 100.0% | Prohibit monster loot |  |
 | [DonotFuck](./src/DonotFuck/README.en-US.md) | 100.0% | Prevent swearing | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.en-US.md) | 100.0% | Prevent entry into dungeons or temples |  |
-| [Dummy](./src/Dummy/README.en-US.md) | 100.0% | Dummy client | [LazyAPI](./src/LazyAPI/README.en-US.md) [TrProtocol]() |
+| [Dummy](./src/Dummy/README.en-US.md) | 100.0% | Dummy client |  |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.en-US.md) | 100.0% | Dump Terraria IDs |  |
 | [DwTP](./src/DwTP/README.en-US.md) | 100.0% | Positioning Teleport |  |
 | [Economics.Core](./src/Economics.Core/README.en-US.md) | 92.9% | Economic plugin prerequisite |  |

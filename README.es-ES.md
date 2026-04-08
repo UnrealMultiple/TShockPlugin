@@ -85,7 +85,7 @@
 | [BuildMaster](./src/BuildMaster/README.md) | 0.0% | Modo Maestro Constructor para el Mini Juego Red Bean | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
 | [CaiBotLite](./src/CaiBotLite/README.md) | 0.0% | Plugin adaptador CaiBotLite (Only support QQ) | [linq2db]() [GenerateMap](./src/GenerateMap/README.md) |
 | [CaiCustomEmojiCommand](./src/CaiCustomEmojiCommand/README.md) | 0.0% | Comando de emoji personalizado | [LazyAPI](./src/LazyAPI/README.md) |
-| [CaiPacketDebug](./src/CaiPacketDebug/README.md) | 0.0% | Herramienta de depuración de paquetes Cai | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
+| [CaiPacketDebug](./src/CaiPacketDebug/README.md) | 0.0% | Herramienta de depuración de paquetes Cai |  |
 | [CaiRewardChest](./src/CaiRewardChest/README.md) | 0.0% | Convierte cofres generados naturalmente en cofres de recompensa que todos pueden reclamar una vez | [linq2db]() [LazyAPI](./src/LazyAPI/README.md) |
 | [CGive](./src/CGive/README.md) | 0.0% | Comandos fuera de línea |  |
 | [Challenger](./src/Challenger/README.md) | 100.0% | Modo Challenger |  |
@@ -106,7 +106,7 @@
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 11.1% | Prohibir el botín de monstruos |  |
 | [DonotFuck](./src/DonotFuck/README.md) | 15.0% | Prevenir groserías | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 0.0% | Prevenir la entrada a mazmorras o templos |  |
-| [Dummy](./src/Dummy/README.md) | 0.0% | Servidor de Pruebas (Ficticio) Para TEST | [LazyAPI](./src/LazyAPI/README.md) [TrProtocol]() |
+| [Dummy](./src/Dummy/README.md) | 0.0% | Servidor de Pruebas (Ficticio) Para TEST |  |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.md) | 0.0% | Volcar las ID de Terraria |  |
 | [DwTP](./src/DwTP/README.md) | 0.0% | Teletransportación por posicionamiento |  |
 | [Economics.Core](./src/Economics.Core/README.md) | 0.0% | Plugin económico |  |
