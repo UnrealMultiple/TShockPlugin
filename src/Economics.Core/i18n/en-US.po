@@ -79,7 +79,7 @@ msgstr "No convertible currency type:{0}"
 
 #: ../../Command/BankCommand.cs:102
 #, csharp-format
-msgid "不存在的的货币类型`{0}`"
+msgid "不存在的货币类型`{0}`"
 msgstr "No existing currency type `{0}`"
 
 #: ../../Economics.cs:121

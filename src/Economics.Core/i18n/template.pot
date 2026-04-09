@@ -72,7 +72,7 @@ msgstr ""
 
 #: ../../Command/BankCommand.cs:102
 #, csharp-format
-msgid "不存在的的货币类型`{0}`"
+msgid "不存在的货币类型`{0}`"
 msgstr ""
 
 #: ../../Economics.cs:121

@@ -97,9 +97,9 @@ public class BankCommand : BaseCommand
     [HelpText("/bank lb <currency> <count>")]
     public static void BankLeaderBoard(CommandArgs args)
     {
-        if (Setting.Instance.HasCustomizeCurrency(args.Parameters[1]))
+        if (!Setting.Instance.HasCustomizeCurrency(args.Parameters[1]))
         {
-            args.Player.SendErrorMessage(GetString($"不存在的的货币类型`{args.Parameters[1]}`"));
+            args.Player.SendErrorMessage(GetString($"不存在的货币类型`{args.Parameters[1]}`"));
             return;
         }
         if (NumberValidator(args, out var count))
