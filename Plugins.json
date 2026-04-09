@@ -420,17 +420,17 @@
     "Author": "豆沙，肝帝熙恩、Cai修改",
     "Description": {
       "en-US": "Whitelist players by checking the name of the player",
-      "de-DE": "Whitelist players by checking the name of the player",
-      "it-IT": "Whitelist players by checking the name of the player",
-      "fr-FR": "Whitelist players by checking the name of the player",
-      "es-ES": "Whitelist players by checking the name of the player",
-      "ru-RU": "Whitelist players by checking the name of the player",
-      "zh-CN": "Whitelist players by checking the name of the player",
-      "pt-BR": "Whitelist players by checking the name of the player",
-      "pl-PL": "Whitelist players by checking the name of the player",
-      "ja-JP": "Whitelist players by checking the name of the player",
-      "ko-KR": "Whitelist players by checking the name of the player",
-      "zh-Hant": "Whitelist players by checking the name of the player"
+      "de-DE": "通过检查玩家姓名的玩家白名单",
+      "it-IT": "通过检查玩家姓名的玩家白名单",
+      "fr-FR": "通过检查玩家姓名的玩家白名单",
+      "es-ES": "通过检查玩家姓名的玩家白名单",
+      "ru-RU": "通过检查玩家姓名的玩家白名单",
+      "zh-CN": "通过检查玩家姓名的玩家白名单",
+      "pt-BR": "通过检查玩家姓名的玩家白名单",
+      "pl-PL": "通过检查玩家姓名的玩家白名单",
+      "ja-JP": "通过检查玩家姓名的玩家白名单",
+      "ko-KR": "通过检查玩家姓名的玩家白名单",
+      "zh-Hant": "通过检查玩家姓名的玩家白名单"
     },
     "AssemblyName": "BetterWhitelist",
     "Path": "BetterWhitelist.dll",
@@ -1011,7 +1011,7 @@
   },
   {
     "Name": "Economics.Core",
-    "Version": "2.0.0.11",
+    "Version": "2.0.0.12",
     "Author": "少司命, 千亦(修复 bug)",
     "Description": {
       "en-US": "Provides economic system API",
