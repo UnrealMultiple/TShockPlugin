@@ -99,7 +99,7 @@ public class BankCommand : BaseCommand
     {
         if (!Setting.Instance.HasCustomizeCurrency(args.Parameters[1]))
         {
-            args.Player.SendErrorMessage(GetString($"不存在的的货币类型`{args.Parameters[1]}`"));
+            args.Player.SendErrorMessage(GetString($"不存在的货币类型`{args.Parameters[1]}`"));
             return;
         }
         if (NumberValidator(args, out var count))
