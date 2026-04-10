@@ -1,6 +1,6 @@
 # Economics.Deal 交易插件
 
-- 作者: 少司命
+- 作者: 少司命，千亦
 - 出处: 无
 - 交易物品插件
 
@@ -11,11 +11,12 @@
 
 | 语法                |          权限          |    说明    |
 |-------------------|:--------------------:|:--------:|
-| /deal push [价格]   |  economics.deal.use  |  发布手持物品  |
-| /deal list [页码]   |  economics.deal.use  | 查看交易物品列表 |
-| /deal buy [ID]    |  economics.deal.use  |  购买交易物品  |
-| /deal recall [ID] |  economics.deal.use  |  撤回发布物品  |
-| /deal reset       | economics.deal.reset |   重置交易   |
+| /deal push [价格] [货币类型]  |  economics.deal.use  |  发布手持物品  |
+| /deal list [页码]            |  economics.deal.use  | 查看交易物品列表 |
+| /deal search [物品名称]      |  economics.deal.use  | 搜索交易物品  |
+| /deal buy [ID]              |  economics.deal.use  |  购买交易物品  |
+| /deal recall [ID]           |  economics.deal.use  |  撤回发布物品  |
+| /deal reset                 | economics.deal.reset |   重置交易   |
 
 ## 配置
 > 配置文件位置：tshock/Economics/Deal.json
@@ -27,6 +28,9 @@
 ```
 
 ## 更新日志
+
+### v2.1.0.0
+- 新增 `/deal search` 命令，支持通过物品中文名称搜索已发布的交易
 
 ### v2.0.0.0
 - 适配多货币

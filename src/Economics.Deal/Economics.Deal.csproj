@@ -6,4 +6,14 @@
     <ProjectReference Include="..\Economics.Core\Economics.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Economics.Core">
+      <HintPath>..\..\out\Debug\Economics.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="item.json" />
+  </ItemGroup>
+
 </Project>

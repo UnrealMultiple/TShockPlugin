@@ -9,16 +9,17 @@ namespace Economics.Deal;
 [ApiVersion(2, 1)]
 public class Deal(Main game) : TerrariaPlugin(game)
 {
-    public override string Author => "少司命";
+    public override string Author => "少司命，千亦";
 
     public override string Description => GetString("玩家可以进行交易");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 5);
+    public override Version Version => new Version(2, 1, 0, 0);
 
     public override void Initialize()
     {
         Config.Load();
+        ItemNameMapper.Load();
     }
 
     protected override void Dispose(bool disposing)

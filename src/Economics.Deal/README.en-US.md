@@ -1,6 +1,6 @@
 # Economics.Deal
 
-- Author: Shaosimin
+- Author: Shaosimin, Arispex
 - Origin: None
 - Deal plugin
 
@@ -12,11 +12,12 @@
 
 | Syntax                   |      Permission      |        Description        |
 |--------------------------|:--------------------:|:-------------------------:|
-| /deal push [price]       |  economics.deal.use  |  Publish Handheld Items   |
-| /deal list [page number] |  economics.deal.use  | View list of traded items |
-| /deal buy [ID]           |  economics.deal.use  |      Buy trade items      |
-| /deal recall [ID]        |  economics.deal.use  |  Withdraw a posted item   |
-| /deal reset              | economics.deal.reset |        reset deal         |
+| /deal push [price] [currency] |  economics.deal.use  |  Publish Handheld Items   |
+| /deal list [page number]      |  economics.deal.use  | View list of traded items |
+| /deal search [item name]      |  economics.deal.use  | Search for traded items   |
+| /deal buy [ID]                |  economics.deal.use  |      Buy trade items      |
+| /deal recall [ID]             |  economics.deal.use  |  Withdraw a posted item   |
+| /deal reset                   | economics.deal.reset |        reset deal         |
 
 ##  Configuration
 >  configuration file location: tshock/Economics/Deal.json
