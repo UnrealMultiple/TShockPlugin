@@ -52,6 +52,55 @@ public class Command : BaseCommand
         Show(lines);
     }
 
+    [SubCommand("search", 2)]
+    [HelpText("/deal search <物品名称>")]
+    public static void DealSearch(CommandArgs args)
+    {
+        var keyword = args.Parameters[1];
+
+        var lines = new List<string>();
+        var dealContexts = Config.Instance.DealContexts;
+        for (var i = 0; i < dealContexts.Count; i++)
+        {
+            var dealContext = dealContexts[i];
+            var itemName = Terraria.Lang.GetItemNameValue(dealContext.Item.netID);
+            if (!itemName.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            var index = i + 1;
+            lines.Add(string.Format(GetString("{0}：{1} 发布者：{2} 价格{3}")
+                , index.Color(Utils.RedHighlight)
+                , dealContext.Item.ToString()
+                , dealContext.Publisher.Color(Utils.PinkHighlight)
+                , dealContext.RedemptionRelationships.ToString().Color(Utils.GreenHighlight)));
+        }
+
+        if (lines.Count == 0)
+        {
+            args.Player.SendErrorMessage(GetString($"没有找到包含\"{keyword}\"的交易物品!"));
+            return;
+        }
+
+        if (!PaginationTools.TryParsePageNumber(args.Parameters, 2, args.Player, out var pageNumber))
+        {
+            return;
+        }
+
+        PaginationTools.SendPage(
+            args.Player,
+            pageNumber,
+            lines,
+            new PaginationTools.Settings
+            {
+                MaxLinesPerPage = Config.Instance.PageMax,
+                NothingToDisplayString = GetString($"没有找到包含\"{keyword}\"的交易物品"),
+                HeaderFormat = GetString($"搜索\"{keyword}\"的结果 ({{0}}/{{1}})："),
+                FooterFormat = GetString($"输入 {Commands.Specifier}deal search {keyword} {{0}} 查看更多")
+            });
+    }
+
     [SubCommand("help")]
     public static void DealHelp(CommandArgs args)
     {
@@ -59,6 +108,7 @@ public class Command : BaseCommand
         args.Player.SendInfoMessage(GetString("/deal push [价格] [货币类型]"));
         args.Player.SendInfoMessage(GetString("/deal buy [ID]"));
         args.Player.SendInfoMessage(GetString("/deal recall [ID]"));
+        args.Player.SendInfoMessage(GetString("/deal search [物品名称]"));
         args.Player.SendInfoMessage(GetString("/deal list"));
     }
 

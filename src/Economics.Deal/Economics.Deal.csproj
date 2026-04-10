@@ -6,4 +6,5 @@
     <ProjectReference Include="..\Economics.Core\Economics.Core.csproj" />
   </ItemGroup>
 
+
 </Project>
