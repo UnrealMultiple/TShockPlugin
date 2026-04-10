@@ -19,7 +19,6 @@ public class Deal(Main game) : TerrariaPlugin(game)
     public override void Initialize()
     {
         Config.Load();
-        ItemNameMapper.Load();
     }
 
     protected override void Dispose(bool disposing)

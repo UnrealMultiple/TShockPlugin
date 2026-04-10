@@ -12,8 +12,5 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="item.json" />
-  </ItemGroup>
 
 </Project>

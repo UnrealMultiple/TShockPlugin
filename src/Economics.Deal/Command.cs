@@ -57,20 +57,14 @@ public class Command : BaseCommand
     public static void DealSearch(CommandArgs args)
     {
         var keyword = args.Parameters[1];
-        var matchedIds = ItemNameMapper.SearchIds(keyword);
-
-        if (matchedIds.Count == 0)
-        {
-            args.Player.SendErrorMessage(GetString($"没有找到名称包含\"{keyword}\"的物品!"));
-            return;
-        }
 
         var lines = new List<string>();
         var dealContexts = Config.Instance.DealContexts;
         for (var i = 0; i < dealContexts.Count; i++)
         {
             var dealContext = dealContexts[i];
-            if (!matchedIds.Contains(dealContext.Item.netID))
+            var itemName = Terraria.Lang.GetItemNameValue(dealContext.Item.netID);
+            if (!itemName.Contains(keyword, StringComparison.OrdinalIgnoreCase))
             {
                 continue;
             }
