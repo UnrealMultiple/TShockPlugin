@@ -1034,8 +1034,8 @@
   },
   {
     "Name": "Economics.Deal",
-    "Version": "2.0.0.5",
-    "Author": "少司命",
+    "Version": "2.1.0.0",
+    "Author": "少司命，千亦",
     "Description": {
       "en-US": "Players can trade",
       "de-DE": "玩家可以进行交易",
