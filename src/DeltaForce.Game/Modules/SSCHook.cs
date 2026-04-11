@@ -7,16 +7,16 @@ namespace DeltaForce.Game.Modules;
 
 public class SSCHook
 {
-    private readonly List<Hook> _hooks = [];
-    private bool _isInitialized = false;
+    private static readonly List<Hook> _hooks = [];
+    private static bool _isInitialized = false;
 
     public SSCHook()
     {
     }
 
-    public void Initialize()
+    public static void Initialize()
     {
-        if (this._isInitialized) return;
+        if (_isInitialized) return;
 
         try
         {
@@ -72,7 +72,7 @@ public class SSCHook
                 TShock.Log.ConsoleInfo("[三角洲SSC] 已Hook CharacterManager.InsertSpecificPlayerData");
             }
 
-            this._isInitialized = true;
+            _isInitialized = true;
             TShock.Log.ConsoleInfo("[三角洲SSC] 所有Hook已初始化完成");
         }
         catch (Exception ex)
@@ -84,12 +84,12 @@ public class SSCHook
 
     public void Dispose()
     {
-        foreach (var hook in this._hooks)
+        foreach (var hook in _hooks)
         {
             hook.Dispose();
         }
-        this._hooks.Clear();
-        this._isInitialized = false;
+        _hooks.Clear();
+        _isInitialized = false;
         TShock.Log.ConsoleInfo("[三角洲SSC] 所有Hook已卸载");
     }
 
@@ -156,7 +156,7 @@ public class SSCHook
         return true;
     }
 
-    private PlayerData OnGetPlayerData(Func<CharacterManager, TSPlayer, int, PlayerData> orig, CharacterManager self, TSPlayer player, int accid)
+    private static PlayerData OnGetPlayerData(Func<CharacterManager, TSPlayer, int, PlayerData> orig, CharacterManager self, TSPlayer player, int accid)
     {
         try
         {
@@ -165,7 +165,7 @@ public class SSCHook
                 return new PlayerData(false);
             }
 
-            var inventoryData = this.RequestInventoryFromCore(player).GetAwaiter().GetResult();
+            var inventoryData = RequestInventoryFromCore(player).GetAwaiter().GetResult();
 
             if (inventoryData != null)
             {
@@ -182,7 +182,7 @@ public class SSCHook
         }
     }
 
-    private async Task<PlayerData?> RequestInventoryFromCore(TSPlayer player)
+    private static async Task<PlayerData?> RequestInventoryFromCore(TSPlayer player)
     {
         try
         {

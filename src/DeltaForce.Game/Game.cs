@@ -22,6 +22,7 @@ public class Game(Main game) : LazyPlugin(game)
 
     public override void Initialize()
     {
+        SSCHook.Initialize();
         Main.ServerSideCharacter = true;
         TimingUtils.Schedule(60, GameManager.GameLoop);
         Task.Run(() => Client.ConnectAsync(Config.Instance.SocketOption.Address, Config.Instance.SocketOption.Port));
