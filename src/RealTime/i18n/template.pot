@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RealTime\n"
-"POT-Creation-Date: 2026-04-07 04:06:26+0000\n"
-"PO-Revision-Date: 2026-04-07 04:06:26+0000\n"
+"POT-Creation-Date: 2026-04-11 07:04:24+0000\n"
+"PO-Revision-Date: 2026-04-11 07:04:24+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,101 +10,101 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../RealTime.cs:158
+#: ../../RealTime.cs:159
 msgid "万圣节的邪恶影响会阻止你的PvP关闭。"
 msgstr ""
 
-#: ../../RealTime.cs:329
+#: ../../RealTime.cs:320
 msgid "上弦月"
 msgstr ""
 
-#: ../../RealTime.cs:325
+#: ../../RealTime.cs:316
 msgid "下弦月"
 msgstr ""
 
-#: ../../RealTime.cs:295
+#: ../../RealTime.cs:282
 msgid "中雨"
 msgstr ""
 
-#: ../../RealTime.cs:51
+#: ../../RealTime.cs:73
 msgid "事件禁止切换队伍。"
 msgstr ""
 
-#: ../../RealTime.cs:324
+#: ../../RealTime.cs:315
 msgid "亏凸月"
 msgstr ""
 
-#: ../../RealTime.cs:14
+#: ../../RealTime.cs:15
 msgid "同步现实时间"
 msgstr ""
 
-#: ../../RealTime.cs:281
+#: ../../RealTime.cs:268
 msgid "多云"
 msgstr ""
 
-#: ../../RealTime.cs:328
+#: ../../RealTime.cs:319
 msgid "娥眉月"
 msgstr ""
 
-#: ../../RealTime.cs:288
+#: ../../RealTime.cs:275
 msgid "小雨"
 msgstr ""
 
-#: ../../RealTime.cs:314
+#: ../../RealTime.cs:302
 #, csharp-format
 msgid "当前天气：{0}"
 msgstr ""
 
-#: ../../RealTime.cs:327
+#: ../../RealTime.cs:318
 msgid "新月"
 msgstr ""
 
-#: ../../RealTime.cs:128
+#: ../../RealTime.cs:141
 msgid "日食的邪恶影响会阻止你的PvP关闭。"
 msgstr ""
 
-#: ../../RealTime.cs:275
+#: ../../RealTime.cs:262
 msgid "晴天"
 msgstr ""
 
-#: ../../RealTime.cs:304
+#: ../../RealTime.cs:291
 msgid "暴雨/雷暴"
 msgstr ""
 
-#: ../../RealTime.cs:254
+#: ../../RealTime.cs:239
 #, csharp-format
 msgid "月相已更换为：{0}"
 msgstr ""
 
-#: ../../RealTime.cs:331
+#: ../../RealTime.cs:322
 msgid "未知"
 msgstr ""
 
-#: ../../RealTime.cs:326
+#: ../../RealTime.cs:317
 msgid "残月"
 msgstr ""
 
-#: ../../RealTime.cs:311
+#: ../../RealTime.cs:298
 msgid "沙尘暴"
 msgstr ""
 
-#: ../../RealTime.cs:247
+#: ../../RealTime.cs:231
 msgid "渔夫任务和旅商商品已更换"
 msgstr ""
 
-#: ../../RealTime.cs:323
+#: ../../RealTime.cs:314
 msgid "满月"
 msgstr ""
 
-#: ../../RealTime.cs:330
+#: ../../RealTime.cs:321
 msgid "盈凸月"
 msgstr ""
 
-#: ../../RealTime.cs:100
+#: ../../RealTime.cs:123
 msgid "血月的邪恶影响会阻止你的PvP关闭。"
 msgstr ""
 
-#: ../../RealTime.cs:186
+#: ../../RealTime.cs:177
 msgid "霜月的邪恶影响会阻止你的PvP关闭。"
 msgstr ""
 
