@@ -281,4 +281,205 @@ public class PlayerInventory : PlayerRecordBase<PlayerInventory>
             existing.HairColor = TShock.Utils.EncodeColor(player.TPlayer.hairColor);
             existing.PantsColor = TShock.Utils.EncodeColor(player.TPlayer.pantsColor);
             existing.ShirtColor = TShock.Utils.EncodeColor(player.TPlayer.shirtColor);
-            existing.Under
+            existing.UnderShirtColor = TShock.Utils.EncodeColor(player.TPlayer.underShirtColor);
+            existing.ShoeColor = TShock.Utils.EncodeColor(player.TPlayer.shoeColor);
+            existing.HideVisuals = TShock.Utils.EncodeBoolArray(player.TPlayer.hideVisibleAccessory);
+            existing.SkinColor = TShock.Utils.EncodeColor(player.TPlayer.skinColor);
+            existing.EyeColor = TShock.Utils.EncodeColor(player.TPlayer.eyeColor);
+            existing.VoiceVariant = player.TPlayer.voiceVariant;
+            existing.VoicePitchOffset = player.TPlayer.voicePitchOffset;
+            existing.Team = player.TPlayer.team;
+            existing.UpdatedAt = DateTime.Now;
+
+            context.Update(existing);
+            TShock.Log.ConsoleInfo(GetString($"[三角洲背包] 已更新玩家 {account.Name} 的外观数据"));
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error(GetString($"[三角洲背包] 更新玩家外观时发生错误: {ex}"));
+            throw;
+        }
+    }
+
+    public static PlayerData LoadPlayerData(TSPlayer player)
+    {
+        try
+        {
+            using var context = Db.PlayerContext<PlayerInventory>();
+            var savedData = context.Get(player.Name).FirstOrDefault();
+
+            if (savedData == null)
+            {
+                return new PlayerData(false);
+            }
+
+            return CreatePlayerDataFromInventory(savedData);
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error(GetString($"[三角洲背包] 加载玩家 {player.Name} 数据时发生错误: {ex}"));
+            return new PlayerData(false);
+        }
+    }
+
+    public static PlayerData CreateEmptyPlayerData()
+    {
+        return new PlayerData(false)
+        {
+            exists = true,
+            health = TShock.ServerSideCharacterConfig.Settings.StartingHealth,
+            maxHealth = TShock.ServerSideCharacterConfig.Settings.StartingHealth,
+            mana = TShock.ServerSideCharacterConfig.Settings.StartingMana,
+            maxMana = TShock.ServerSideCharacterConfig.Settings.StartingMana
+        };
+    }
+
+    private static PlayerInventory CreatePlayerInventoryFromData(int accountId, PlayerData playerData)
+    {
+        return new PlayerInventory
+        {
+            AccountID = accountId,
+            Inventory = string.Join("~", playerData.inventory),
+            Health = playerData.health,
+            MaxHealth = playerData.maxHealth,
+            Mana = playerData.mana,
+            MaxMana = playerData.maxMana,
+            UpdatedAt = DateTime.Now,
+            SpawnX = playerData.spawnX,
+            SpawnY = playerData.spawnY,
+            SkinVariant = playerData.skinVariant ?? 0,
+            Hair = playerData.hair ?? 0,
+            HairDye = playerData.hairDye,
+            HairColor = TShock.Utils.EncodeColor(playerData.hairColor),
+            PantsColor = TShock.Utils.EncodeColor(playerData.pantsColor),
+            ShirtColor = TShock.Utils.EncodeColor(playerData.shirtColor),
+            UnderShirtColor = TShock.Utils.EncodeColor(playerData.underShirtColor),
+            ShoeColor = TShock.Utils.EncodeColor(playerData.shoeColor),
+            HideVisuals = TShock.Utils.EncodeBoolArray(playerData.hideVisuals),
+            SkinColor = TShock.Utils.EncodeColor(playerData.skinColor),
+            EyeColor = TShock.Utils.EncodeColor(playerData.eyeColor),
+            QuestsCompleted = playerData.questsCompleted,
+            UsingBiomeTorches = playerData.usingBiomeTorches,
+            HappyFunTorchTime = playerData.happyFunTorchTime,
+            UnlockedBiomeTorches = playerData.unlockedBiomeTorches,
+            CurrentLoadoutIndex = playerData.currentLoadoutIndex,
+            AteArtisanBread = playerData.ateArtisanBread,
+            UsedAegisCrystal = playerData.usedAegisCrystal,
+            UsedAegisFruit = playerData.usedAegisFruit,
+            UsedArcaneCrystal = playerData.usedArcaneCrystal,
+            UsedGalaxyPearl = playerData.usedGalaxyPearl,
+            UsedGummyWorm = playerData.usedGummyWorm,
+            UsedAmbrosia = playerData.usedAmbrosia,
+            UnlockedSuperCart = playerData.unlockedSuperCart,
+            EnabledSuperCart = playerData.enabledSuperCart,
+            DeathsPVE = playerData.deathsPVE,
+            DeathsPVP = playerData.deathsPVP,
+            VoiceVariant = playerData.voiceVariant ?? 0,
+            VoicePitchOffset = playerData.voicePitchOffset ?? 0,
+            Team = playerData.team
+        };
+    }
+
+    private static void UpdatePlayerInventoryFromData(PlayerInventory existing, PlayerData playerData)
+    {
+        existing.Inventory = string.Join("~", playerData.inventory);
+        existing.Health = playerData.health;
+        existing.MaxHealth = playerData.maxHealth;
+        existing.Mana = playerData.mana;
+        existing.MaxMana = playerData.maxMana;
+        existing.UpdatedAt = DateTime.Now;
+        existing.SpawnX = playerData.spawnX;
+        existing.SpawnY = playerData.spawnY;
+        existing.SkinVariant = playerData.skinVariant ?? 0;
+        existing.Hair = playerData.hair ?? 0;
+        existing.HairDye = playerData.hairDye;
+        existing.HairColor = TShock.Utils.EncodeColor(playerData.hairColor);
+        existing.PantsColor = TShock.Utils.EncodeColor(playerData.pantsColor);
+        existing.ShirtColor = TShock.Utils.EncodeColor(playerData.shirtColor);
+        existing.UnderShirtColor = TShock.Utils.EncodeColor(playerData.underShirtColor);
+        existing.ShoeColor = TShock.Utils.EncodeColor(playerData.shoeColor);
+        existing.HideVisuals = TShock.Utils.EncodeBoolArray(playerData.hideVisuals);
+        existing.SkinColor = TShock.Utils.EncodeColor(playerData.skinColor);
+        existing.EyeColor = TShock.Utils.EncodeColor(playerData.eyeColor);
+        existing.QuestsCompleted = playerData.questsCompleted;
+        existing.UsingBiomeTorches = playerData.usingBiomeTorches;
+        existing.HappyFunTorchTime = playerData.happyFunTorchTime;
+        existing.UnlockedBiomeTorches = playerData.unlockedBiomeTorches;
+        existing.CurrentLoadoutIndex = playerData.currentLoadoutIndex;
+        existing.AteArtisanBread = playerData.ateArtisanBread;
+        existing.UsedAegisCrystal = playerData.usedAegisCrystal;
+        existing.UsedAegisFruit = playerData.usedAegisFruit;
+        existing.UsedArcaneCrystal = playerData.usedArcaneCrystal;
+        existing.UsedGalaxyPearl = playerData.usedGalaxyPearl;
+        existing.UsedGummyWorm = playerData.usedGummyWorm;
+        existing.UsedAmbrosia = playerData.usedAmbrosia;
+        existing.UnlockedSuperCart = playerData.unlockedSuperCart;
+        existing.EnabledSuperCart = playerData.enabledSuperCart;
+        existing.DeathsPVE = playerData.deathsPVE;
+        existing.DeathsPVP = playerData.deathsPVP;
+        existing.VoiceVariant = playerData.voiceVariant ?? 0;
+        existing.VoicePitchOffset = playerData.voicePitchOffset ?? 0;
+        existing.Team = playerData.team;
+    }
+
+    private static PlayerData CreatePlayerDataFromInventory(PlayerInventory savedData)
+    {
+        var playerData = new PlayerData(false)
+        {
+            exists = true,
+            health = savedData.Health,
+            maxHealth = savedData.MaxHealth,
+            mana = savedData.Mana,
+            maxMana = savedData.MaxMana,
+        };
+
+        if (!string.IsNullOrEmpty(savedData.Inventory))
+        {
+            var inventory = savedData.Inventory.Split('~').Select(NetItem.Parse).ToList();
+            if (inventory.Count < NetItem.MaxInventory)
+            {
+                inventory.InsertRange(67, new NetItem[2]);
+                inventory.InsertRange(77, new NetItem[2]);
+                inventory.InsertRange(87, new NetItem[2]);
+                inventory.AddRange(new NetItem[NetItem.MaxInventory - inventory.Count]);
+            }
+            playerData.inventory = [.. inventory];
+        }
+
+        playerData.extraSlot = savedData.ExtraSlot ?? 0;
+        playerData.spawnX = savedData.SpawnX == 0 ? -1 : savedData.SpawnX;
+        playerData.spawnY = savedData.SpawnY == 0 ? -1 : savedData.SpawnY;
+        playerData.skinVariant = savedData.SkinVariant;
+        playerData.hair = savedData.Hair;
+        playerData.hairDye = (byte)savedData.HairDye;
+        playerData.hairColor = TShock.Utils.DecodeColor(savedData.HairColor);
+        playerData.pantsColor = TShock.Utils.DecodeColor(savedData.PantsColor);
+        playerData.shirtColor = TShock.Utils.DecodeColor(savedData.ShirtColor);
+        playerData.underShirtColor = TShock.Utils.DecodeColor(savedData.UnderShirtColor);
+        playerData.shoeColor = TShock.Utils.DecodeColor(savedData.ShoeColor);
+        playerData.hideVisuals = TShock.Utils.DecodeBoolArray(savedData.HideVisuals);
+        playerData.skinColor = TShock.Utils.DecodeColor(savedData.SkinColor);
+        playerData.eyeColor = TShock.Utils.DecodeColor(savedData.EyeColor);
+        playerData.questsCompleted = savedData.QuestsCompleted;
+        playerData.usingBiomeTorches = savedData.UsingBiomeTorches;
+        playerData.happyFunTorchTime = savedData.HappyFunTorchTime;
+        playerData.unlockedBiomeTorches = savedData.UnlockedBiomeTorches;
+        playerData.currentLoadoutIndex = savedData.CurrentLoadoutIndex;
+        playerData.ateArtisanBread = savedData.AteArtisanBread;
+        playerData.usedAegisCrystal = savedData.UsedAegisCrystal;
+        playerData.usedAegisFruit = savedData.UsedAegisFruit;
+        playerData.usedArcaneCrystal = savedData.UsedArcaneCrystal;
+        playerData.usedGalaxyPearl = savedData.UsedGalaxyPearl;
+        playerData.usedGummyWorm = savedData.UsedGummyWorm;
+        playerData.usedAmbrosia = savedData.UsedAmbrosia;
+        playerData.unlockedSuperCart = savedData.UnlockedSuperCart;
+        playerData.enabledSuperCart = savedData.EnabledSuperCart;
+        playerData.deathsPVE = savedData.DeathsPVE;
+        playerData.deathsPVP = savedData.DeathsPVP;
+        playerData.voiceVariant = savedData.VoiceVariant;
+        playerData.voicePitchOffset = savedData.VoicePitchOffset;
+        playerData.team = savedData.Team;
+
+        return playerData;
+    }
+}
