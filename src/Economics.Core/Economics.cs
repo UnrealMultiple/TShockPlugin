@@ -185,22 +185,29 @@ public class Economics : TerrariaPlugin
 
     private void OnStrike(NpcStrikeEventArgs args)
     {
+        // 裁剪溢出伤害：本次只计入实际能扣掉的血量，避免一击秒杀低血怪时按武器原始伤害结算
+        var effectiveDamage = Math.Min(args.Damage, Math.Max(0, args.Npc.life));
+        if (effectiveDamage <= 0)
+        {
+            return;
+        }
+
         if (this.Strike.TryGetValue(args.Npc, out var data) && data != null)
         {
             if (data.TryGetValue(args.Player, out _))
             {
-                this.Strike[args.Npc][args.Player] += args.Damage;
+                this.Strike[args.Npc][args.Player] += effectiveDamage;
             }
             else
             {
-                this.Strike[args.Npc][args.Player] = args.Damage;
+                this.Strike[args.Npc][args.Player] = effectiveDamage;
             }
         }
         else
         {
             this.Strike[args.Npc] = new()
             {
-                { args.Player, args.Damage }
+                { args.Player, effectiveDamage }
             };
         }
     }
