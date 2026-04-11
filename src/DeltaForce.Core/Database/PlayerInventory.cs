@@ -267,4 +267,18 @@ public class PlayerInventory : PlayerRecordBase<PlayerInventory>
     {
         try
         {
-            using
+            using var context = Db.PlayerContext<PlayerInventory>();
+            var existing = context.Get(account.Name).FirstOrDefault();
+
+            if (existing == null)
+            {
+                return;
+            }
+
+            existing.SkinVariant = player.TPlayer.skinVariant;
+            existing.Hair = player.TPlayer.hair;
+            existing.HairDye = player.TPlayer.hairDye;
+            existing.HairColor = TShock.Utils.EncodeColor(player.TPlayer.hairColor);
+            existing.PantsColor = TShock.Utils.EncodeColor(player.TPlayer.pantsColor);
+            existing.ShirtColor = TShock.Utils.EncodeColor(player.TPlayer.shirtColor);
+            existing.Under
