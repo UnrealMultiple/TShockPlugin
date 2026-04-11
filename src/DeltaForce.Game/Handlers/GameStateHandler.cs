@@ -1,6 +1,7 @@
 using DeltaForce.Game.Modules;
 using DeltaForce.Protocol.Packets;
 using DeltaForce.Protocol.Processing;
+using LazyAPI.Utility;
 
 namespace DeltaForce.Game.Handlers;
 
@@ -30,7 +31,7 @@ public class GameStateHandler : RequestHandlerBase<GameStatePacket, GameStateRes
         {
             RequestId = packet.RequestId,
             Success = true,
-            Message = "游戏状态处理成功",
+            Message = GetString("游戏状态处理成功"),
             IsGameActive = GameManager._isGame,
             GameMode = packet.GameMode,
             GameTime = packet.GameTime

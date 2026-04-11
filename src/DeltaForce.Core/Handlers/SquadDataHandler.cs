@@ -1,6 +1,7 @@
 using DeltaForce.Core.Modules;
 using DeltaForce.Protocol.Packets;
 using DeltaForce.Protocol.Processing;
+using LazyAPI.Utility;
 
 namespace DeltaForce.Core.Handlers;
 
@@ -28,7 +29,7 @@ public class SquadDataHandler : RequestHandlerBase<SquadDataRequestPacket, Squad
             });
         }
 
-        var response = CreateSuccessResponse(request, "Success");
+        var response = CreateSuccessResponse(request, GetString("Success"));
         response.Squads = [.. squadInfos];
 
         return response;

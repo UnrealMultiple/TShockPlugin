@@ -2,6 +2,7 @@ using DeltaForce.Protocol.Interfaces;
 using DeltaForce.Protocol.Packets;
 using DeltaForce.Protocol.Processing;
 using DeltaForce.Protocol.Serialization;
+using LazyAPI.Utility;
 using System.Net.Sockets;
 using System.Reflection;
 using TShockAPI;
@@ -67,11 +68,11 @@ public class Client
             await SendClientIdentityAsync();
 
             IsConnected = true;
-            Console.WriteLine($"[Client] 已连接到服务器 {_serverAddress}:{_serverPort}");
+            Console.WriteLine(GetString($"[Client] 已连接到服务器 {_serverAddress}:{_serverPort}"));
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[Client] 连接失败: {ex.Message}");
+            Console.WriteLine(GetString($"[Client] 连接失败: {ex.Message}"));
             IsConnected = false;
             _ = StartReconnectAsync();
         }
@@ -85,7 +86,7 @@ public class Client
         while (!IsConnected && attempt < MaxReconnectAttempts)
         {
             attempt++;
-            Console.WriteLine($"[Client] 第 {attempt} 次尝试重连... ({delay}ms 后)");
+            Console.WriteLine(GetString($"[Client] 第 {attempt} 次尝试重连... ({delay}ms 后)"));
 
             await Task.Delay(delay);
 
@@ -111,12 +112,12 @@ public class Client
                 await SendClientIdentityAsync();
 
                 IsConnected = true;
-                Console.WriteLine($"[Client] 重连成功！已连接到服务器 {_serverAddress}:{_serverPort}");
+                Console.WriteLine(GetString($"[Client] 重连成功！已连接到服务器 {_serverAddress}:{_serverPort}"));
                 return;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[Client] 重连失败: {ex.Message}");
+                Console.WriteLine(GetString($"[Client] 重连失败: {ex.Message}"));
                 IsConnected = false;
 
                 delay = Math.Min(delay * 2, MaxReconnectDelayMs);
@@ -125,7 +126,7 @@ public class Client
 
         if (!IsConnected)
         {
-            Console.WriteLine($"[Client] 重连失败，已达到最大尝试次数 ({MaxReconnectAttempts})");
+            Console.WriteLine(GetString($"[Client] 重连失败，已达到最大尝试次数 ({MaxReconnectAttempts})"));
         }
     }
 
@@ -138,7 +139,7 @@ public class Client
         };
 
         await SendPacketAsync(identityPacket);
-        Console.WriteLine($"[Client] 已发送身份验证: {ClientName} ({ClientId})");
+        Console.WriteLine(GetString($"[Client] 已发送身份验证: {ClientName} ({ClientId})"));
     }
 
     private async Task ReceiveLoopAsync(CancellationToken cancellationToken)
@@ -153,7 +154,7 @@ public class Client
                 int read = await _stream!.ReadAsync(lengthBytes.AsMemory(0, 2), cancellationToken);
                 if (read < 2)
                 {
-                    Console.WriteLine("[Client] 连接已断开，读取长度失败");
+                    Console.WriteLine(GetString("[Client] 连接已断开，读取长度失败"));
                     break;
                 }
 
@@ -169,7 +170,7 @@ public class Client
                     read = await _stream.ReadAsync(data.AsMemory(totalRead, length - totalRead), cancellationToken);
                     if (read == 0)
                     {
-                        Console.WriteLine("[Client] 连接已断开，读取数据失败");
+                        Console.WriteLine(GetString("[Client] 连接已断开，读取数据失败"));
                         break;
                     }
                     totalRead += read;
@@ -183,28 +184,28 @@ public class Client
 
                 if (packet == null) continue;
 
-                Console.WriteLine($"[Client] 收到数据包: {packet.PacketID}");
+                Console.WriteLine(GetString($"[Client] 收到数据包: {packet.PacketID}"));
 
                 var response = _processor.Process(packet);
                 if (response != null)
                 {
                     await SendPacketAsync(response);
-                    Console.WriteLine($"[Client] 发送响应: {response.PacketID}");
+                    Console.WriteLine(GetString($"[Client] 发送响应: {response.PacketID}"));
                 }
             }
         }
         catch (OperationCanceledException)
         {
-            Console.WriteLine("[Client] 接收循环已取消");
+            Console.WriteLine(GetString("[Client] 接收循环已取消"));
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[Client] 接收错误: {ex.Message}");
+            Console.WriteLine(GetString($"[Client] 接收错误: {ex.Message}"));
         }
         finally
         {
             IsConnected = false;
-            Console.WriteLine("[Client] 连接已断开，启动重连机制...");
+            Console.WriteLine(GetString("[Client] 连接已断开，启动重连机制..."));
             _ = StartReconnectAsync();
         }
     }
@@ -217,7 +218,7 @@ public class Client
             {
                 if (!IsConnected || _stream == null)
                 {
-                    Console.WriteLine("[Client] 无法发送数据包，未连接到服务器");
+                    Console.WriteLine(GetString("[Client] 无法发送数据包，未连接到服务器"));
                     return;
                 }
             }
@@ -227,7 +228,7 @@ public class Client
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[Client] 发送数据包失败: {ex.Message}");
+            Console.WriteLine(GetString($"[Client] 发送数据包失败: {ex.Message}"));
             IsConnected = false;
             _ = StartReconnectAsync();
         }
@@ -239,7 +240,7 @@ public class Client
     {
         if (!IsConnected)
         {
-            Console.WriteLine("[Client] 无法发送请求，未连接到服务器");
+            Console.WriteLine(GetString("[Client] 无法发送请求，未连接到服务器"));
             return null;
         }
 
@@ -254,7 +255,7 @@ public class Client
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[Client] 请求失败: {ex.Message}");
+            Console.WriteLine(GetString($"[Client] 请求失败: {ex.Message}"));
             return null;
         }
     }
@@ -265,6 +266,6 @@ public class Client
         _stream?.Close();
         _client.Close();
         IsConnected = false;
-        Console.WriteLine("[Client] 已断开连接");
+        Console.WriteLine(GetString("[Client] 已断开连接"));
     }
 }

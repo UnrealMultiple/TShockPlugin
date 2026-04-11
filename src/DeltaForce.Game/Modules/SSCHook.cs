@@ -1,3 +1,4 @@
+using LazyAPI.Utility;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
 using TShockAPI;
@@ -33,52 +34,52 @@ public class SSCHook
             if (getPlayerDataMethod != null)
             {
                 _hooks.Add(new Hook(getPlayerDataMethod, OnGetPlayerData));
-                TShock.Log.ConsoleInfo("[三角洲SSC] 已Hook CharacterManager.GetPlayerData");
+                TShock.Log.ConsoleInfo(GetString("[三角洲SSC] 已Hook CharacterManager.GetPlayerData"));
             }
 
             if (insertPlayerDataMethod != null)
             {
                 _hooks.Add(new Hook(insertPlayerDataMethod, OnInsertPlayerData));
-                TShock.Log.ConsoleInfo("[三角洲SSC] 已Hook CharacterManager.InsertPlayerData");
+                TShock.Log.ConsoleInfo(GetString("[三角洲SSC] 已Hook CharacterManager.InsertPlayerData"));
             }
 
             if (seedInitialDataMethod != null)
             {
                 _hooks.Add(new Hook(seedInitialDataMethod, OnSeedInitialData));
-                TShock.Log.ConsoleInfo("[三角洲SSC] 已Hook CharacterManager.SeedInitialData");
+                TShock.Log.ConsoleInfo(GetString("[三角洲SSC] 已Hook CharacterManager.SeedInitialData"));
             }
 
             if (isSeededAppearanceMissingMethod != null)
             {
                 _hooks.Add(new Hook(isSeededAppearanceMissingMethod, OnIsSeededAppearanceMissing));
-                TShock.Log.ConsoleInfo("[三角洲SSC] 已Hook CharacterManager.IsSeededAppearanceMissing");
+                TShock.Log.ConsoleInfo(GetString("[三角洲SSC] 已Hook CharacterManager.IsSeededAppearanceMissing"));
             }
 
             if (syncSeededAppearanceMethod != null)
             {
                 _hooks.Add(new Hook(syncSeededAppearanceMethod, OnSyncSeededAppearance));
-                TShock.Log.ConsoleInfo("[三角洲SSC] 已Hook CharacterManager.SyncSeededAppearance");
+                TShock.Log.ConsoleInfo(GetString("[三角洲SSC] 已Hook CharacterManager.SyncSeededAppearance"));
             }
 
             if (removePlayerMethod != null)
             {
                 _hooks.Add(new Hook(removePlayerMethod, OnRemovePlayer));
-                TShock.Log.ConsoleInfo("[三角洲SSC] 已Hook CharacterManager.RemovePlayer");
+                TShock.Log.ConsoleInfo(GetString("[三角洲SSC] 已Hook CharacterManager.RemovePlayer"));
             }
 
             if (insertSpecificPlayerDataMethod != null)
             {
                 _hooks.Add(new Hook(insertSpecificPlayerDataMethod, OnInsertSpecificPlayerData));
-                TShock.Log.ConsoleInfo("[三角洲SSC] 已Hook CharacterManager.InsertSpecificPlayerData");
+                TShock.Log.ConsoleInfo(GetString("[三角洲SSC] 已Hook CharacterManager.InsertSpecificPlayerData"));
             }
 
             _isInitialized = true;
-            TShock.Log.ConsoleInfo("[三角洲SSC] 所有Hook已初始化完成");
+            TShock.Log.ConsoleInfo(GetString("[三角洲SSC] 所有Hook已初始化完成"));
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError($"[三角洲SSC] Hook初始化失败: {ex.Message}");
-            TShock.Log.ConsoleError($"[三角洲SSC] 堆栈: {ex.StackTrace}");
+            TShock.Log.ConsoleError(GetString($"[三角洲SSC] Hook初始化失败: {ex.Message}"));
+            TShock.Log.ConsoleError(GetString($"[三角洲SSC] 堆栈: {ex.StackTrace}"));
         }
     }
 
@@ -90,7 +91,7 @@ public class SSCHook
         }
         _hooks.Clear();
         _isInitialized = false;
-        TShock.Log.ConsoleInfo("[三角洲SSC] 所有Hook已卸载");
+        TShock.Log.ConsoleInfo(GetString("[三角洲SSC] 所有Hook已卸载"));
     }
 
     private static bool OnIsSeededAppearanceMissing(Func<CharacterManager, PlayerData, bool> orig, CharacterManager self, PlayerData data)
@@ -169,15 +170,15 @@ public class SSCHook
 
             if (inventoryData != null)
             {
-                TShock.Log.ConsoleInfo($"[三角洲SSC] 玩家 {player.Name} 数据已从Core服务器加载");
+                TShock.Log.ConsoleInfo(GetString($"[三角洲SSC] 玩家 {player.Name} 数据已从Core服务器加载"));
                 return inventoryData;
             }
-            TShock.Log.ConsoleWarn($"[三角洲SSC] 无法从Core服务器获取玩家 {player.Name} 数据，返回空数据");
+            TShock.Log.ConsoleWarn(GetString($"[三角洲SSC] 无法从Core服务器获取玩家 {player.Name} 数据，返回空数据"));
             return CreateEmptyPlayerData();
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲SSC] 加载玩家数据失败: {ex}");
+            TShock.Log.Error(GetString($"[三角洲SSC] 加载玩家数据失败: {ex}"));
             return CreateEmptyPlayerData();
         }
     }
@@ -250,7 +251,7 @@ public class SSCHook
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲SSC] 从Core请求背包数据失败: {ex}");
+            TShock.Log.Error(GetString($"[三角洲SSC] 从Core请求背包数据失败: {ex}"));
             return null;
         }
     }

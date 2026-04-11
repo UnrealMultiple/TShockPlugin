@@ -1,5 +1,6 @@
 using DeltaForce.Core.Enitys;
 using DeltaForce.Core.Enums;
+using LazyAPI.Utility;
 using Microsoft.Xna.Framework;
 using TShockAPI;
 
@@ -28,7 +29,7 @@ public class SquadMatchManager
     {
         if (squads.Values.Any(s => s.Members.Contains(player)))
         {
-            player.SendErrorMessage("You are already in a squad.");
+            player.SendErrorMessage(GetString("You are already in a squad."));
             return;
         }
         SquadEnity? targetSquad = squads.Values
@@ -42,7 +43,7 @@ public class SquadMatchManager
 
         var currentSquadCount = squads.Values.Count(s => s.Members.Count > 0);
         var totalPlayers = squads.Values.Sum(s => s.Members.Count);
-        player.SendSuccessMessage($"已进入匹配队列！当前 {currentSquadCount} 个小队，共 {totalPlayers} 名玩家正在匹配...");
+        player.SendSuccessMessage(GetString($"已进入匹配队列！当前 {currentSquadCount} 个小队，共 {totalPlayers} 名玩家正在匹配..."));
     }
 
     public static void RemovePlayerFromSquad(TSPlayer player) => squads.Values.FirstOrDefault(x => x.Members.Contains(player)).Members.Remove(player);
@@ -67,7 +68,7 @@ public class SquadMatchManager
             {
                 _matchCount = 0;
                 _lastNotifiedSecond = -1;
-                TShock.Utils.Broadcast("没有足够的玩家匹配，无法进入对局，匹配结束！", Color.Red);
+                TShock.Utils.Broadcast(GetString("没有足够的玩家匹配，无法进入对局，匹配结束！"), Color.Red);
                 ResetMatch();
                 return;
             }
@@ -88,7 +89,7 @@ public class SquadMatchManager
         {
             _lastNotifiedSecond = remainingSeconds;
 
-            var message = $"[匹配倒计时] 还有 {remainingSeconds} 秒开始游戏！当前 {currentSquadCount} 个小队，共 {totalPlayers} 名玩家";
+            var message = GetString($"[匹配倒计时] 还有 {remainingSeconds} 秒开始游戏！当前 {currentSquadCount} 个小队，共 {totalPlayers} 名玩家");
             var color = remainingSeconds <= 5 ? Color.OrangeRed : Color.Yellow;
 
             BroadcastToMatchingPlayers(message, color);
@@ -96,13 +97,13 @@ public class SquadMatchManager
         else if (remainingSeconds == 30 && remainingSeconds != _lastNotifiedSecond)
         {
             _lastNotifiedSecond = remainingSeconds;
-            var message = $"[匹配提示] 还有 30 秒开始游戏！当前 {currentSquadCount} 个小队，共 {totalPlayers} 名玩家";
+            var message = GetString($"[匹配提示] 还有 30 秒开始游戏！当前 {currentSquadCount} 个小队，共 {totalPlayers} 名玩家");
             BroadcastToMatchingPlayers(message, Color.LightGreen);
         }
         else if (remainingSeconds == 60 && remainingSeconds != _lastNotifiedSecond)
         {
             _lastNotifiedSecond = remainingSeconds;
-            var message = $"[匹配提示] 还有 60 秒开始游戏！当前 {currentSquadCount} 个小队，共 {totalPlayers} 名玩家";
+            var message = GetString($"[匹配提示] 还有 60 秒开始游戏！当前 {currentSquadCount} 个小队，共 {totalPlayers} 名玩家");
             BroadcastToMatchingPlayers(message, Color.LightGreen);
         }
     }
@@ -120,7 +121,7 @@ public class SquadMatchManager
             }
         }
 
-        TShock.Log.ConsoleInfo($"[SquadMatchManager] {message}");
+        TShock.Log.ConsoleInfo(GetString($"[SquadMatchManager] {message}"));
     }
 
     private static void ResetMatch()

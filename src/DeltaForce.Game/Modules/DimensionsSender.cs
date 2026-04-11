@@ -1,6 +1,7 @@
-﻿using System.Net.Sockets;
+using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
+using LazyAPI.Utility;
 using Terraria;
 using TShockAPI;
 
@@ -31,7 +32,7 @@ public static class DimensionsSender
         var socket = Netplay.Clients[playerId].Socket;
         if (socket == null)
         {
-            TShock.Log.ConsoleError($"[DimensionsSender] 玩家 {playerId} 的Socket为空");
+            TShock.Log.ConsoleError(GetString($"[DimensionsSender] 玩家 {playerId} 的Socket为空"));
             return;
         }
 
@@ -77,17 +78,17 @@ public static class DimensionsSender
             {
                 if (sendResult is SocketError error && error != SocketError.Success)
                 {
-                    TShock.Log.ConsoleError($"[DimensionsSender] 发送数据包失败: {error}");
+                    TShock.Log.ConsoleError(GetString($"[DimensionsSender] 发送数据包失败: {error}"));
                 }
                 else
                 {
-                    TShock.Log.ConsoleInfo($"[DimensionsSender] 已发送切换指令到玩家 {playerId}: {content}:{port}");
+                    TShock.Log.ConsoleInfo(GetString($"[DimensionsSender] 已发送切换指令到玩家 {playerId}: {content}:{port}"));
                 }
             });
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError($"[DimensionsSender] 发送数据包异常: {ex.Message}");
+            TShock.Log.ConsoleError(GetString($"[DimensionsSender] 发送数据包异常: {ex.Message}"));
         }
     }
 

@@ -1,5 +1,6 @@
 using DeltaForce.Protocol.Packets;
 using DeltaForce.Protocol.Processing;
+using LazyAPI.Utility;
 
 namespace DeltaForce.Core.Handlers;
 
@@ -11,7 +12,7 @@ public class HeartbeatHandler : RequestHandlerBase<HeartbeatPacket, HeartbeatRes
         {
             RequestId = request.RequestId,
             Success = true,
-            Message = "Heartbeat OK",
+            Message = GetString("Heartbeat OK"),
             ServerTimestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
             SequenceNumber = request.SequenceNumber
         };

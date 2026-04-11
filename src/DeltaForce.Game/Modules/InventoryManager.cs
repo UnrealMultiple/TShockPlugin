@@ -1,4 +1,5 @@
 using DeltaForce.Protocol.Packets;
+using LazyAPI.Utility;
 using TShockAPI;
 using TShockAPI.DB;
 
@@ -12,7 +13,7 @@ public static class InventoryManager
         {
             if (!player.IsLoggedIn || player.Account == null)
             {
-                Console.WriteLine($"[InventoryManager] 玩家 {player.Name} 未登录，无法保存背包");
+                Console.WriteLine(GetString($"[InventoryManager] 玩家 {player.Name} 未登录，无法保存背包"));
                 return null;
             }
 
@@ -69,18 +70,18 @@ public static class InventoryManager
 
             if (response?.Success == true)
             {
-                Console.WriteLine($"[InventoryManager] 玩家 {player.Name} 背包保存成功");
+                Console.WriteLine(GetString($"[InventoryManager] 玩家 {player.Name} 背包保存成功"));
             }
             else
             {
-                Console.WriteLine($"[InventoryManager] 玩家 {player.Name} 背包保存失败: {response?.Message}");
+                Console.WriteLine(GetString($"[InventoryManager] 玩家 {player.Name} 背包保存失败: {response?.Message}"));
             }
 
             return response;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[InventoryManager] 保存玩家 {player.Name} 背包时发生错误: {ex.Message}");
+            Console.WriteLine(GetString($"[InventoryManager] 保存玩家 {player.Name} 背包时发生错误: {ex.Message}"));
             return null;
         }
     }
@@ -99,6 +100,6 @@ public static class InventoryManager
             await SavePlayerInventoryAsync(player);
         }
 
-        Console.WriteLine($"[InventoryManager] 已保存 {activePlayers.Count} 名玩家的背包数据");
+        Console.WriteLine(GetString($"[InventoryManager] 已保存 {activePlayers.Count} 名玩家的背包数据"));
     }
 }

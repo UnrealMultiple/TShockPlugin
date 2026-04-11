@@ -1,6 +1,7 @@
 using DeltaForce.Core.Database;
 using DeltaForce.Protocol.Packets;
 using DeltaForce.Protocol.Processing;
+using LazyAPI.Utility;
 
 namespace DeltaForce.Core.Handlers;
 
@@ -12,10 +13,10 @@ public class PlayerInventoryHandler : RequestHandlerBase<PlayerInventoryRequestP
 
         if (inventory == null)
         {
-            return CreateFailureResponse(request, $"Player {request.PlayerName} not found");
+            return CreateFailureResponse(request, GetString($"Player {request.PlayerName} not found"));
         }
 
-        var response = CreateSuccessResponse(request, "Success");
+        var response = CreateSuccessResponse(request, GetString("Success"));
         response.PlayerName = request.PlayerName;
         response.AccountID = inventory.AccountID;
         response.Inventory = inventory.Inventory;

@@ -1,5 +1,6 @@
 using DeltaForce.Core.Database;
 using LazyAPI.Attributes;
+using LazyAPI.Utility;
 using Microsoft.Xna.Framework;
 using TShockAPI;
 using TShockAPI.DB;
@@ -16,7 +17,7 @@ public class MarketCommand
     {
         var player = args.Player;
         var havco = PlayerCurrency.GetHavco(player.Name);
-        player.SendSuccessMessage($"[哈夫币] 你当前拥有 {havco:N0} 哈夫币");
+        player.SendSuccessMessage(GetString($"[哈夫币] 你当前拥有 {havco:N0} 哈夫币"));
     }
 
     [Alias("list", "ls")]
@@ -37,20 +38,20 @@ public class MarketCommand
 
         if (items.Count == 0)
         {
-            player.SendInfoMessage("[交易行] 当前没有上架的物品");
+            player.SendInfoMessage(GetString("[交易行] 当前没有上架的物品"));
             return;
         }
 
         var pageItems = items.Skip((page - 1) * itemsPerPage).Take(itemsPerPage).ToList();
 
-        player.SendInfoMessage($"[交易行] 上架物品列表 (第 {page}/{totalPages} 页，共 {items.Count} 件)");
-        player.SendInfoMessage("使用 /market buy <ID> 购买物品");
+        player.SendInfoMessage(GetString($"[交易行] 上架物品列表 (第 {page}/{totalPages} 页，共 {items.Count} 件)"));
+        player.SendInfoMessage(GetString("使用 /market buy <ID> 购买物品"));
         player.SendMessage("", Color.White);
 
         foreach (var item in pageItems)
         {
             var prefixText = item.Prefix > 0 ? $"[{GetPrefixName(item.Prefix)}] " : "";
-            player.SendInfoMessage($"  ID:{item.Id} | {prefixText}{item.ItemName} x{item.Stack} | 价格: {item.Price:N0} 哈夫币 | 卖家: {item.SellerName}");
+            player.SendInfoMessage(GetString($"  ID:{item.Id} | {prefixText}{item.ItemName} x{item.Stack} | 价格: {item.Price:N0} 哈夫币 | 卖家: {item.SellerName}"));
         }
     }
 
@@ -62,14 +63,14 @@ public class MarketCommand
 
         if (args.Parameters.Count < 2)
         {
-            player.SendErrorMessage("用法: /market sell <价格> [数量]");
-            player.SendInfoMessage("将手持物品上架到交易行");
+            player.SendErrorMessage(GetString("用法: /market sell <价格> [数量]"));
+            player.SendInfoMessage(GetString("将手持物品上架到交易行"));
             return;
         }
 
         if (!long.TryParse(args.Parameters[1], out var price) || price <= 0)
         {
-            player.SendErrorMessage("价格必须是正整数！");
+            player.SendErrorMessage(GetString("价格必须是正整数！"));
             return;
         }
 
@@ -82,13 +83,13 @@ public class MarketCommand
         var heldItem = player.TPlayer.inventory[player.TPlayer.selectedItem];
         if (heldItem.IsAir)
         {
-            player.SendErrorMessage("你必须手持一个物品才能上架！");
+            player.SendErrorMessage(GetString("你必须手持一个物品才能上架！"));
             return;
         }
 
         if (heldItem.stack < stack)
         {
-            player.SendErrorMessage($"手持物品数量不足！当前: {heldItem.stack}，需要: {stack}");
+            player.SendErrorMessage(GetString($"手持物品数量不足！当前: {heldItem.stack}，需要: {stack}"));
             return;
         }
 
@@ -101,12 +102,12 @@ public class MarketCommand
             }
 
             player.SendData(PacketTypes.PlayerSlot, "", player.Index, player.TPlayer.selectedItem);
-            player.SendSuccessMessage($"[交易行] 成功上架 {heldItem.Name} x{stack}，价格: {price:N0} 哈夫币");
-            TShock.Utils.Broadcast($"[交易行] {player.Name} 上架了 {heldItem.Name} x{stack}，价格: {price:N0} 哈夫币", Color.LightGreen);
+            player.SendSuccessMessage(GetString($"[交易行] 成功上架 {heldItem.Name} x{stack}，价格: {price:N0} 哈夫币"));
+            TShock.Utils.Broadcast(GetString($"[交易行] {player.Name} 上架了 {heldItem.Name} x{stack}，价格: {price:N0} 哈夫币"), Color.LightGreen);
         }
         else
         {
-            player.SendErrorMessage("上架失败，请稍后重试！");
+            player.SendErrorMessage(GetString("上架失败，请稍后重试！"));
         }
     }
 
@@ -125,20 +126,20 @@ public class MarketCommand
         var heldItem = player.TPlayer.inventory[player.TPlayer.selectedItem];
         if (heldItem.IsAir)
         {
-            player.SendErrorMessage("你必须手持一个物品才能出售！");
+            player.SendErrorMessage(GetString("你必须手持一个物品才能出售！"));
             return;
         }
 
         if (heldItem.stack < stack)
         {
-            player.SendErrorMessage($"手持物品数量不足！当前: {heldItem.stack}，需要: {stack}");
+            player.SendErrorMessage(GetString($"手持物品数量不足！当前: {heldItem.stack}，需要: {stack}"));
             return;
         }
 
         var configItem = Config.Instance.Items.FirstOrDefault(i => i.Type == heldItem.type);
         if (configItem.Value <= 0)
         {
-            player.SendErrorMessage("该物品无法出售给系统！");
+            player.SendErrorMessage(GetString("该物品无法出售给系统！"));
             return;
         }
 
@@ -153,12 +154,12 @@ public class MarketCommand
 
         if (PlayerCurrency.AddHavco(player.Name, totalValue))
         {
-            player.SendSuccessMessage($"[交易行] 成功出售 {heldItem.Name} x{stack}，获得 {totalValue:N0} 哈夫币");
-            TShock.Log.ConsoleInfo($"[交易行] {player.Name} 出售了 {heldItem.Name} x{stack}，获得 {totalValue} 哈夫币");
+            player.SendSuccessMessage(GetString($"[交易行] 成功出售 {heldItem.Name} x{stack}，获得 {totalValue:N0} 哈夫币"));
+            TShock.Log.ConsoleInfo(GetString($"[交易行] {player.Name} 出售了 {heldItem.Name} x{stack}，获得 {totalValue} 哈夫币"));
         }
         else
         {
-            player.SendErrorMessage("出售失败，请稍后重试！");
+            player.SendErrorMessage(GetString("出售失败，请稍后重试！"));
         }
     }
 
@@ -170,44 +171,44 @@ public class MarketCommand
 
         if (args.Parameters.Count < 2 || !int.TryParse(args.Parameters[1], out var itemId))
         {
-            player.SendErrorMessage("用法: /market buy <物品ID>");
-            player.SendInfoMessage("使用 /market list 查看物品ID");
+            player.SendErrorMessage(GetString("用法: /market buy <物品ID>"));
+            player.SendInfoMessage(GetString("使用 /market list 查看物品ID"));
             return;
         }
 
         var item = MarketplaceItem.GetListingById(itemId);
         if (item == null)
         {
-            player.SendErrorMessage("该物品不存在或已被购买！");
+            player.SendErrorMessage(GetString("该物品不存在或已被购买！"));
             return;
         }
 
         if (item.SellerName == player.Name)
         {
-            player.SendErrorMessage("你不能购买自己上架的物品！使用 /market cancel <ID> 取消上架。");
+            player.SendErrorMessage(GetString("你不能购买自己上架的物品！使用 /market cancel <ID> 取消上架。"));
             return;
         }
 
         var balance = PlayerCurrency.GetHavco(player.Name);
         if (balance < item.Price)
         {
-            player.SendErrorMessage($"哈夫币不足！需要: {item.Price:N0}，你拥有: {balance:N0}");
+            player.SendErrorMessage(GetString($"哈夫币不足！需要: {item.Price:N0}，你拥有: {balance:N0}"));
             return;
         }
 
         if (MarketplaceItem.BuyItem(itemId, player.Name))
         {
             var prefixText = item.Prefix > 0 ? $"[{GetPrefixName(item.Prefix)}] " : "";
-            player.SendSuccessMessage($"[交易行] 成功购买 {prefixText}{item.ItemName} x{item.Stack}，花费: {item.Price:N0} 哈夫币");
+            player.SendSuccessMessage(GetString($"[交易行] 成功购买 {prefixText}{item.ItemName} x{item.Stack}，花费: {item.Price:N0} 哈夫币"));
 
             var seller = TShock.Players.FirstOrDefault(p => p?.Name == item.SellerName && p?.Active == true);
-            seller?.SendSuccessMessage($"[交易行] 你的 {item.ItemName} x{item.Stack} 已被 {player.Name} 购买，获得: {item.Price:N0} 哈夫币");
+            seller?.SendSuccessMessage(GetString($"[交易行] 你的 {item.ItemName} x{item.Stack} 已被 {player.Name} 购买，获得: {item.Price:N0} 哈夫币"));
 
-            TShock.Log.ConsoleInfo($"[交易行] {player.Name} 购买了 {item.SellerName} 的 {item.ItemName}");
+            TShock.Log.ConsoleInfo(GetString($"[交易行] {player.Name} 购买了 {item.SellerName} 的 {item.ItemName}"));
         }
         else
         {
-            player.SendErrorMessage("购买失败！可能是哈夫币不足或物品已被购买。");
+            player.SendErrorMessage(GetString("购买失败！可能是哈夫币不足或物品已被购买。"));
         }
     }
 
@@ -219,21 +220,21 @@ public class MarketCommand
 
         if (args.Parameters.Count < 2 || !int.TryParse(args.Parameters[1], out var itemId))
         {
-            player.SendErrorMessage("用法: /market cancel <物品ID>");
-            player.SendInfoMessage("使用 /market my 查看你上架的物品ID");
+            player.SendErrorMessage(GetString("用法: /market cancel <物品ID>"));
+            player.SendInfoMessage(GetString("使用 /market my 查看你上架的物品ID"));
             return;
         }
 
         var item = MarketplaceItem.GetListingById(itemId);
         if (item == null)
         {
-            player.SendErrorMessage("该物品不存在或已被购买！");
+            player.SendErrorMessage(GetString("该物品不存在或已被购买！"));
             return;
         }
 
         if (item.SellerName != player.Name)
         {
-            player.SendErrorMessage("你只能取消自己上架的物品！");
+            player.SendErrorMessage(GetString("你只能取消自己上架的物品！"));
             return;
         }
 
@@ -244,11 +245,11 @@ public class MarketCommand
             newItem.prefix = item.Prefix;
 
             player.GiveItem(newItem.type, newItem.stack, newItem.prefix);
-            player.SendSuccessMessage($"[交易行] 成功取消上架 {item.ItemName} x{item.Stack}");
+            player.SendSuccessMessage(GetString($"[交易行] 成功取消上架 {item.ItemName} x{item.Stack}"));
         }
         else
         {
-            player.SendErrorMessage("取消上架失败，请稍后重试！");
+            player.SendErrorMessage(GetString("取消上架失败，请稍后重试！"));
         }
     }
 
@@ -261,15 +262,15 @@ public class MarketCommand
 
         if (items.Count == 0)
         {
-            player.SendInfoMessage("[交易行] 你没有上架任何物品");
+            player.SendInfoMessage(GetString("[交易行] 你没有上架任何物品"));
             return;
         }
 
-        player.SendInfoMessage($"[交易行] 你上架的物品 ({items.Count} 件):");
+        player.SendInfoMessage(GetString($"[交易行] 你上架的物品 ({items.Count} 件):"));
         foreach (var item in items)
         {
             var prefixText = item.Prefix > 0 ? $"[{GetPrefixName(item.Prefix)}] " : "";
-            player.SendInfoMessage($"  ID:{item.Id} | {prefixText}{item.ItemName} x{item.Stack} | 价格: {item.Price:N0} 哈夫币");
+            player.SendInfoMessage(GetString($"  ID:{item.Id} | {prefixText}{item.ItemName} x{item.Stack} | 价格: {item.Price:N0} 哈夫币"));
         }
     }
 
@@ -281,7 +282,7 @@ public class MarketCommand
 
         if (args.Parameters.Count < 2)
         {
-            player.SendErrorMessage("用法: /market search <关键词>");
+            player.SendErrorMessage(GetString("用法: /market search <关键词>"));
             return;
         }
 
@@ -290,20 +291,20 @@ public class MarketCommand
 
         if (items.Count == 0)
         {
-            player.SendInfoMessage($"[交易行] 没有找到包含 \"{keyword}\" 的物品");
+            player.SendInfoMessage(GetString($"[交易行] 没有找到包含 \"{keyword}\" 的物品"));
             return;
         }
 
-        player.SendInfoMessage($"[交易行] 搜索 \"{keyword}\" 的结果 ({items.Count} 件):");
+        player.SendInfoMessage(GetString($"[交易行] 搜索 \"{keyword}\" 的结果 ({items.Count} 件):"));
         foreach (var item in items.Take(10))
         {
             var prefixText = item.Prefix > 0 ? $"[{GetPrefixName(item.Prefix)}] " : "";
-            player.SendInfoMessage($"  ID:{item.Id} | {prefixText}{item.ItemName} x{item.Stack} | 价格: {item.Price:N0} 哈夫币 | 卖家: {item.SellerName}");
+            player.SendInfoMessage(GetString($"  ID:{item.Id} | {prefixText}{item.ItemName} x{item.Stack} | 价格: {item.Price:N0} 哈夫币 | 卖家: {item.SellerName}"));
         }
 
         if (items.Count > 10)
         {
-            player.SendInfoMessage($"  ... 还有 {items.Count - 10} 件物品");
+            player.SendInfoMessage(GetString($"  ... 还有 {items.Count - 10} 件物品"));
         }
     }
 
@@ -315,49 +316,49 @@ public class MarketCommand
 
         if (args.Parameters.Count < 3)
         {
-            player.SendErrorMessage("用法: /market pay <玩家名> <金额>");
+            player.SendErrorMessage(GetString("用法: /market pay <玩家名> <金额>"));
             return;
         }
 
         var targetName = args.Parameters[1];
         if (!long.TryParse(args.Parameters[2], out var amount) || amount <= 0)
         {
-            player.SendErrorMessage("金额必须是正整数！");
+            player.SendErrorMessage(GetString("金额必须是正整数！"));
             return;
         }
 
         if (targetName == player.Name)
         {
-            player.SendErrorMessage("你不能给自己转账！");
+            player.SendErrorMessage(GetString("你不能给自己转账！"));
             return;
         }
 
         var target = TShock.UserAccounts.GetUserAccountByName(targetName);
         if (target == null)
         {
-            player.SendErrorMessage($"玩家 {targetName} 不存在！");
+            player.SendErrorMessage(GetString($"玩家 {targetName} 不存在！"));
             return;
         }
 
         var balance = PlayerCurrency.GetHavco(player.Name);
         if (balance < amount)
         {
-            player.SendErrorMessage($"哈夫币不足！需要: {amount:N0}，你拥有: {balance:N0}");
+            player.SendErrorMessage(GetString($"哈夫币不足！需要: {amount:N0}，你拥有: {balance:N0}"));
             return;
         }
 
         if (PlayerCurrency.TransferHavco(player.Name, targetName, amount))
         {
-            player.SendSuccessMessage($"[哈夫币] 成功转账 {amount:N0} 哈夫币给 {targetName}");
+            player.SendSuccessMessage(GetString($"[哈夫币] 成功转账 {amount:N0} 哈夫币给 {targetName}"));
 
             var targetPlayer = TShock.Players.FirstOrDefault(p => p?.Name == targetName && p?.Active == true);
-            targetPlayer?.SendSuccessMessage($"[哈夫币] 你收到了来自 {player.Name} 的 {amount:N0} 哈夫币");
+            targetPlayer?.SendSuccessMessage(GetString($"[哈夫币] 你收到了来自 {player.Name} 的 {amount:N0} 哈夫币"));
 
-            TShock.Log.ConsoleInfo($"[哈夫币] {player.Name} 转账 {amount} 哈夫币给 {targetName}");
+            TShock.Log.ConsoleInfo(GetString($"[哈夫币] {player.Name} 转账 {amount} 哈夫币给 {targetName}"));
         }
         else
         {
-            player.SendErrorMessage("转账失败！请检查哈夫币余额。");
+            player.SendErrorMessage(GetString("转账失败！请检查哈夫币余额。"));
         }
     }
 
@@ -365,16 +366,16 @@ public class MarketCommand
     public static void ShowHelp(CommandArgs args)
     {
         var player = args.Player;
-        player.SendInfoMessage("[交易行] 指令列表:");
-        player.SendInfoMessage("  /market balance - 查看哈夫币余额");
-        player.SendInfoMessage("  /market list [页码] - 查看上架物品列表");
-        player.SendInfoMessage("  /market sell <价格> [数量] - 上架手持物品到交易行");
-        player.SendInfoMessage("  /market sellnpc [数量] - 直接出售手持物品给系统（根据配置价值）");
-        player.SendInfoMessage("  /market buy <ID> - 购买物品");
-        player.SendInfoMessage("  /market cancel <ID> - 取消自己上架的物品");
-        player.SendInfoMessage("  /market my - 查看自己上架的物品");
-        player.SendInfoMessage("  /market search <关键词> - 搜索物品");
-        player.SendInfoMessage("  /market pay <玩家> <金额> - 转账哈夫币给其他玩家");
+        player.SendInfoMessage(GetString("[交易行] 指令列表:"));
+        player.SendInfoMessage(GetString("  /market balance - 查看哈夫币余额"));
+        player.SendInfoMessage(GetString("  /market list [页码] - 查看上架物品列表"));
+        player.SendInfoMessage(GetString("  /market sell <价格> [数量] - 上架手持物品到交易行"));
+        player.SendInfoMessage(GetString("  /market sellnpc [数量] - 直接出售手持物品给系统（根据配置价值）"));
+        player.SendInfoMessage(GetString("  /market buy <ID> - 购买物品"));
+        player.SendInfoMessage(GetString("  /market cancel <ID> - 取消自己上架的物品"));
+        player.SendInfoMessage(GetString("  /market my - 查看自己上架的物品"));
+        player.SendInfoMessage(GetString("  /market search <关键词> - 搜索物品"));
+        player.SendInfoMessage(GetString("  /market pay <玩家> <金额> - 转账哈夫币给其他玩家"));
     }
 
     private static string GetPrefixName(byte prefixId)
@@ -400,6 +401,6 @@ public class MarketCommand
             { 81, "守护" }, { 82, "奥术" }
         };
 
-        return prefixNames.TryGetValue(prefixId, out var name) ? name : $"前缀{prefixId}";
+        return prefixNames.TryGetValue(prefixId, out var name) ? name : GetString($"前缀{prefixId}");
     }
 }

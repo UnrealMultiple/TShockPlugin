@@ -2,6 +2,7 @@ using DeltaForce.Core.Database;
 using DeltaForce.Protocol.Packets;
 using DeltaForce.Protocol.Processing;
 using LinqToDB;
+using LazyAPI.Utility;
 using TShockAPI;
 using TShockAPI.DB;
 
@@ -16,7 +17,7 @@ public class SaveInventoryHandler : RequestHandlerBase<SaveInventoryRequestPacke
             var account = TShock.UserAccounts.GetUserAccountByName(request.PlayerName);
             if (account == null)
             {
-                return CreateFailureResponse(request, $"玩家 {request.PlayerName} 不存在");
+                return CreateFailureResponse(request, GetString($"玩家 {request.PlayerName} 不存在"));
             }
 
             var existing = PlayerInventory.GetPlayerInventory(request.PlayerName);
@@ -77,17 +78,17 @@ public class SaveInventoryHandler : RequestHandlerBase<SaveInventoryRequestPacke
                 context.Update(playerInventory);
             }
 
-            TShock.Log.ConsoleInfo($"[三角洲Core] 已保存玩家 {request.PlayerName} 的背包数据");
+            TShock.Log.ConsoleInfo(GetString($"[三角洲Core] 已保存玩家 {request.PlayerName} 的背包数据"));
 
-            var response = CreateSuccessResponse(request, "背包数据保存成功");
+            var response = CreateSuccessResponse(request, GetString("背包数据保存成功"));
             response.PlayerName = request.PlayerName;
             response.SavedAt = DateTime.Now;
             return response;
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲Core] 保存玩家 {request.PlayerName} 背包数据失败: {ex}");
-            return CreateFailureResponse(request, $"保存失败: {ex.Message}");
+            TShock.Log.Error(GetString($"[三角洲Core] 保存玩家 {request.PlayerName} 背包数据失败: {ex}"));
+            return CreateFailureResponse(request, GetString($"保存失败: {ex.Message}"));
         }
     }
 }

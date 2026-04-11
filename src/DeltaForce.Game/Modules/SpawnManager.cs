@@ -1,4 +1,5 @@
 using DeltaForce.Protocol.Packets;
+using LazyAPI.Utility;
 using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
@@ -18,7 +19,7 @@ public static class SpawnManager
 
         if (availableSpawnPoints.Count == 0)
         {
-            Console.WriteLine("[SpawnManager] 警告: 配置文件中没有定义出生点");
+            Console.WriteLine(GetString("[SpawnManager] 警告: 配置文件中没有定义出生点"));
             return;
         }
 
@@ -76,9 +77,9 @@ public static class SpawnManager
             targetY = Math.Clamp(targetY, 1, Main.maxTilesY - 1);
 
             player.Teleport(targetX * 16, targetY * 16);
-            player.SendSuccessMessage($"你已传送到出生点: {spawnPoint.Name}");
+            player.SendSuccessMessage(GetString($"你已传送到出生点: {spawnPoint.Name}"));
 
-            Console.WriteLine($"[SpawnManager] 玩家 {member.PlayerName} (小队 {squad.SquadId}) 传送到 {spawnPoint.Name} ({targetX}, {targetY})");
+            Console.WriteLine(GetString($"[SpawnManager] 玩家 {member.PlayerName} (小队 {squad.SquadId}) 传送到 {spawnPoint.Name} ({targetX}, {targetY})"));
         }
     }
 

@@ -1,4 +1,5 @@
 using DeltaForce.Core.Database;
+using LazyAPI.Utility;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
 using TShockAPI;
@@ -28,7 +29,7 @@ public static class SSCHook
         _hooks.Add(new Hook(remove_player, OnRemovePlayer));
         _hooks.Add(new Hook(insert_specific_player_data, OnInsertSpecificPlayerData));
 
-        TShock.Log.ConsoleInfo("[三角洲SSC] 所有Hook已加载");
+        TShock.Log.ConsoleInfo(GetString("[三角洲SSC] 所有Hook已加载"));
     }
 
     private static bool OnIsSeededAppearanceMissing(Func<CharacterManager, PlayerData, bool> orig, CharacterManager self, PlayerData data)
@@ -62,7 +63,7 @@ public static class SSCHook
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲SSC] 同步玩家外观失败: {ex}");
+            TShock.Log.Error(GetString($"[三角洲SSC] 同步玩家外观失败: {ex}"));
             return false;
         }
     }
@@ -76,7 +77,7 @@ public static class SSCHook
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲SSC] 初始化玩家数据失败: {ex}");
+            TShock.Log.Error(GetString($"[三角洲SSC] 初始化玩家数据失败: {ex}"));
             return false;
         }
     }
@@ -90,7 +91,7 @@ public static class SSCHook
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲SSC] 删除玩家数据失败: {ex}");
+            TShock.Log.Error(GetString($"[三角洲SSC] 删除玩家数据失败: {ex}"));
             return false;
         }
     }
@@ -107,7 +108,7 @@ public static class SSCHook
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲SSC] 保存指定玩家数据失败: {ex}");
+            TShock.Log.Error(GetString($"[三角洲SSC] 保存指定玩家数据失败: {ex}"));
             return false;
         }
     }
@@ -127,7 +128,7 @@ public static class SSCHook
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲SSC] 保存玩家数据失败: {ex}");
+            TShock.Log.Error(GetString($"[三角洲SSC] 保存玩家数据失败: {ex}"));
             return false;
         }
     }
@@ -146,7 +147,7 @@ public static class SSCHook
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲SSC] 加载玩家数据失败: {ex}");
+            TShock.Log.Error(GetString($"[三角洲SSC] 加载玩家数据失败: {ex}"));
             return new PlayerData(false);
         }
     }
@@ -158,6 +159,6 @@ public static class SSCHook
             hook.Dispose();
         }
         _hooks.Clear();
-        TShock.Log.ConsoleInfo("[三角洲SSC] 所有Hook已卸载");
+        TShock.Log.ConsoleInfo(GetString("[三角洲SSC] 所有Hook已卸载"));
     }
 }

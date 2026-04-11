@@ -1,4 +1,5 @@
 using DeltaForce.Protocol.Packets;
+using LazyAPI.Utility;
 using Terraria;
 using Terraria.ID;
 
@@ -27,7 +28,7 @@ public class ChestLootManager
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[ChestLootManager] 请求物品列表失败: {ex.Message}");
+            Console.WriteLine(GetString($"[ChestLootManager] 请求物品列表失败: {ex.Message}"));
         }
     }
 
@@ -35,7 +36,7 @@ public class ChestLootManager
     {
         if (_availableItems == null || _availableItems.Count == 0)
         {
-            Console.WriteLine("[ChestLootManager] 没有可用的物品配置");
+            Console.WriteLine(GetString("[ChestLootManager] 没有可用的物品配置"));
             return;
         }
 
@@ -53,7 +54,7 @@ public class ChestLootManager
             }
         }
 
-        Console.WriteLine($"[ChestLootManager] 已重置 {chestCount} 个箱子的物品");
+        Console.WriteLine(GetString($"[ChestLootManager] 已重置 {chestCount} 个箱子的物品"));
     }
 
     private static bool IsValidLootChest(Chest chest)

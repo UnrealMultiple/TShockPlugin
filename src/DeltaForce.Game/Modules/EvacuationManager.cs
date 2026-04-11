@@ -1,3 +1,4 @@
+using LazyAPI.Utility;
 using Microsoft.Xna.Framework;
 using Terraria;
 using TShockAPI;
@@ -13,7 +14,7 @@ public static class EvacuationManager
     {
         if (Config.Instance.EvacuationPoints.Count == 0)
         {
-            Console.WriteLine("[EvacuationManager] 警告: 配置文件中没有定义撤离点");
+            Console.WriteLine(GetString("[EvacuationManager] 警告: 配置文件中没有定义撤离点"));
         }
     }
 
@@ -49,13 +50,13 @@ public static class EvacuationManager
                 StartTime = DateTime.Now
             };
             _evacuationProgress[player.Name] = progress;
-            player.SendInfoMessage($"开始撤离... 请保持在撤离点范围内 {Config.Instance.EvacuationTimeSeconds} 秒");
+            player.SendInfoMessage(GetString($"开始撤离... 请保持在撤离点范围内 {Config.Instance.EvacuationTimeSeconds} 秒"));
         }
 
         if (!IsPlayerInEvacuationPoint(player, evacuationPoint))
         {
             ResetPlayerEvacuation(player.Name);
-            player.SendErrorMessage("你已离开撤离点，撤离取消！");
+            player.SendErrorMessage(GetString("你已离开撤离点，撤离取消！"));
             return;
         }
 
@@ -65,7 +66,7 @@ public static class EvacuationManager
         if (remainingSeconds > 0 && remainingSeconds != progress.LastNotifiedSecond)
         {
             progress.LastNotifiedSecond = remainingSeconds;
-            player.SendInfoMessage($"撤离倒计时: {remainingSeconds} 秒");
+            player.SendInfoMessage(GetString($"撤离倒计时: {remainingSeconds} 秒"));
         }
 
         if (elapsedSeconds >= Config.Instance.EvacuationTimeSeconds)
@@ -120,8 +121,8 @@ public static class EvacuationManager
     {
         ResetPlayerEvacuation(player.Name);
 
-        player.SendSuccessMessage($"撤离成功！你从 {point.Name} 成功撤离！");
-        Console.WriteLine($"[EvacuationManager] 玩家 {player.Name} 从 {point.Name} 成功撤离");
+        player.SendSuccessMessage(GetString($"撤离成功！你从 {point.Name} 成功撤离！"));
+        Console.WriteLine(GetString($"[EvacuationManager] 玩家 {player.Name} 从 {point.Name} 成功撤离"));
 
         SavePlayerInventoryAndTeleport(player);
     }
@@ -134,13 +135,13 @@ public static class EvacuationManager
 
             if (response?.Success == true)
             {
-                player.SendSuccessMessage("装备已保存，正在返回特勤处...");
-                Console.WriteLine($"[EvacuationManager] 玩家 {player.Name} 装备保存成功");
+                player.SendSuccessMessage(GetString("装备已保存，正在返回特勤处..."));
+                Console.WriteLine(GetString($"[EvacuationManager] 玩家 {player.Name} 装备保存成功"));
             }
             else
             {
-                player.SendWarningMessage("装备保存可能失败，但仍将返回特勤处");
-                Console.WriteLine($"[EvacuationManager] 玩家 {player.Name} 装备保存失败: {response?.Message}");
+                player.SendWarningMessage(GetString("装备保存可能失败，但仍将返回特勤处"));
+                Console.WriteLine(GetString($"[EvacuationManager] 玩家 {player.Name} 装备保存失败: {response?.Message}"));
             }
 
             DimensionsSender.SendPlayerToCustomServer(
@@ -151,8 +152,8 @@ public static class EvacuationManager
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[EvacuationManager] 保存玩家 {player.Name} 装备失败: {ex.Message}");
-            player.SendErrorMessage("装备保存失败，但你可以返回特勤处");
+            Console.WriteLine(GetString($"[EvacuationManager] 保存玩家 {player.Name} 装备失败: {ex.Message}"));
+            player.SendErrorMessage(GetString("装备保存失败，但你可以返回特勤处"));
 
             DimensionsSender.SendPlayerToCustomServer(
                 player,

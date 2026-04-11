@@ -1,5 +1,6 @@
 using DeltaForce.Protocol.Packets;
 using DeltaForce.Protocol.Processing;
+using LazyAPI.Utility;
 
 namespace DeltaForce.Core.Handlers;
 
@@ -17,7 +18,7 @@ public class ItemListHandler : RequestHandlerBase<ItemListRequestPacket, ItemLis
             Value = item.Value
         }).ToArray();
 
-        var response = CreateSuccessResponse(request, "Success");
+        var response = CreateSuccessResponse(request, GetString("Success"));
         response.Items = items;
         response.TotalCount = items.Length;
 

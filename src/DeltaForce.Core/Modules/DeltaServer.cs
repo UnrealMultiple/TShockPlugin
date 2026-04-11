@@ -6,6 +6,7 @@ using DeltaForce.Protocol.Packets;
 using DeltaForce.Protocol.Processing;
 using DeltaForce.Protocol.Serialization;
 using DeltaForce.Core.Enitys;
+using LazyAPI.Utility;
 using TShockAPI;
 
 namespace DeltaForce.Core.Modules;
@@ -34,7 +35,7 @@ public class DeltaServer(ServerEnity option)
     {
         _processor.RegisterHandlersFromAssembly(Assembly.GetExecutingAssembly());
         _listener.Start();
-        TShock.Log.ConsoleInfo($"[DeltaServer] Started on port {option.Port}");
+        TShock.Log.ConsoleInfo(GetString($"[DeltaServer] Started on port {option.Port}"));
 
         while (true)
         {
@@ -46,7 +47,7 @@ public class DeltaServer(ServerEnity option)
     private async Task HandleClientAsync(TcpClient tcpClient)
     {
         var endpoint = tcpClient.Client.RemoteEndPoint?.ToString() ?? "Unknown";
-        TShock.Log.ConsoleInfo($"[DeltaServer] Client {endpoint} Connected");
+        TShock.Log.ConsoleInfo(GetString($"[DeltaServer] Client {endpoint} Connected"));
         
         using var stream = tcpClient.GetStream();
         ClientConnection? clientInfo = null;
@@ -88,20 +89,20 @@ public class DeltaServer(ServerEnity option)
                 }
 
                 var clientId = clientInfo?.ClientId ?? Guid.Empty;
-                TShock.Log.ConsoleInfo($"[DeltaServer] Received {packet.PacketID} from Client {clientId}");
+                TShock.Log.ConsoleInfo(GetString($"[DeltaServer] Received {packet.PacketID} from Client {clientId}"));
 
                 var response = _processor.Process(packet);
 
                 if (response != null)
                 {
                     await SendPacketAsync(stream, response);
-                    TShock.Log.ConsoleInfo($"[DeltaServer] Sent {response.PacketID} to Client {clientId}");
+                    TShock.Log.ConsoleInfo(GetString($"[DeltaServer] Sent {response.PacketID} to Client {clientId}"));
                 }
             }
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError($"[DeltaServer] Client {clientInfo?.ClientId} Disconnected: {ex.Message}");
+            TShock.Log.ConsoleError(GetString($"[DeltaServer] Client {clientInfo?.ClientId} Disconnected: {ex.Message}"));
         }
         finally
         {
@@ -129,7 +130,7 @@ public class DeltaServer(ServerEnity option)
         _clientsById[packet.ClientId] = clientInfo;
         _sessionToClientId[sessionId] = packet.ClientId;
 
-        TShock.Log.ConsoleInfo($"[DeltaServer] Client registered: {packet.ClientName} ({packet.ClientId}), Session: {sessionId}");
+        TShock.Log.ConsoleInfo(GetString($"[DeltaServer] Client registered: {packet.ClientName} ({packet.ClientId}), Session: {sessionId}"));
 
         var response = new ClientIdentityResponsePacket
         {
@@ -167,19 +168,19 @@ public class DeltaServer(ServerEnity option)
     {
         if (!_clientsById.TryGetValue(clientId, out var client))
         {
-            TShock.Log.ConsoleWarn($"[DeltaServer] Client {clientId} not found for push");
+            TShock.Log.ConsoleWarn(GetString($"[DeltaServer] Client {clientId} not found for push"));
             return false;
         }
 
         try
         {
             await SendPacketAsync(client.Stream, packet);
-            TShock.Log.ConsoleInfo($"[DeltaServer] Pushed {packet.PacketID} to Client {clientId}");
+            TShock.Log.ConsoleInfo(GetString($"[DeltaServer] Pushed {packet.PacketID} to Client {clientId}"));
             return true;
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError($"[DeltaServer] Failed to push to Client {clientId}: {ex.Message}");
+            TShock.Log.ConsoleError(GetString($"[DeltaServer] Failed to push to Client {clientId}: {ex.Message}"));
             return false;
         }
     }
@@ -188,7 +189,7 @@ public class DeltaServer(ServerEnity option)
     {
         if (!_sessionToClientId.TryGetValue(sessionId, out var clientId))
         {
-            TShock.Log.ConsoleWarn($"[DeltaServer] Session {sessionId} not found for push");
+            TShock.Log.ConsoleWarn(GetString($"[DeltaServer] Session {sessionId} not found for push"));
             return false;
         }
 
