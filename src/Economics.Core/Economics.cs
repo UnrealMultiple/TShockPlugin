@@ -185,14 +185,26 @@ public class Economics : TerrariaPlugin
 
     private void OnStrike(NpcStrikeEventArgs args)
     {
-        // 裁剪溢出伤害：本次只计入实际能扣掉的血量，避免一击秒杀低血怪时按武器原始伤害结算
-        var effectiveDamage = Math.Min(args.Damage, Math.Max(0, args.Npc.life));
+        if (args.Damage <= 0)
+        {
+            return;
+        }
+
+        this.Strike.TryGetValue(args.Npc, out var data);
+
+        // 裁剪溢出伤害：以"已累计伤害 + 本次伤害不得超过 NPC 最大血量"作为上界，
+        // 避免武器原始伤害大于 NPC 剩余血量时按原始值结算。不能直接用 args.Npc.life
+        // 作为上界，因为 NpcStrike hook 触发时 life 已经是扣血后的值，致命一击时为 0
+        // 或负数，会导致最后一击的有效伤害被整个丢掉。
+        var alreadyDealt = data?.Values.Sum() ?? 0f;
+        var remaining = args.Npc.lifeMax - alreadyDealt;
+        var effectiveDamage = Math.Min(args.Damage, Math.Max(0, remaining));
         if (effectiveDamage <= 0)
         {
             return;
         }
 
-        if (this.Strike.TryGetValue(args.Npc, out var data) && data != null)
+        if (data != null)
         {
             if (data.TryGetValue(args.Player, out _))
             {
