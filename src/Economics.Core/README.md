@@ -175,12 +175,8 @@
 
 ## 更新日志
 
-### v2.0.0.15
-- 重写伤害追踪：`OnStrike` 改为订阅 TShock 的 `GetDataHandlers.NPCStrike`（攻前触发），使用 `Main.CalculateDamageNPCsTake` + Ichor + 暴击换算实际掉血，并以攻前 `npc.life` 作为裁剪上界。解决 solo 击杀时因 raw / actual 伤害不一致以及最后一击时机被 `ServerApi.Hooks.NpcStrike` 吞掉的问题
-- 修复按输出瓜分奖励时因 debuff DoT / 环境伤害等非 `NpcStrike` 路径掉血未被累计，导致击杀 Boss 拿不到满额的问题；`OnKillNpc` 现在会把 `Strike` 累加器按 `lifeMax` 做比例校正
-
-### v2.0.0.14
-- 修复击杀 Boss 时因最后一击被整个丢弃，导致按输出瓜分的奖励始终拿不到满额的问题
+### v2.1.0.0
+- 修复按输出瓜分的货币奖励在击杀 Boss 时拿不到满额的问题：此前受最后一击伤害丢失、武器伤害与实际扣血不一致、以及中毒 / 灼烧等持续伤害未被统计等因素影响，实际到账常少于配置值；现在 solo 击杀能稳定拿到完整奖励，多人击杀按各自对 Boss 造成的伤害占比瓜分
 
 ### v2.0.0.13
 - 修复击杀低血怪时按武器原始伤害结算货币的问题，现在溢出伤害会被裁剪到 NPC 实际剩余血量
