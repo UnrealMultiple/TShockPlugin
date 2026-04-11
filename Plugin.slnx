@@ -45,6 +45,9 @@
   <Project Path="src/DamageStatistic/DamageStatistic.csproj" />
   <Project Path="src/DataSync/DataSync.csproj" />
   <Project Path="src/DeathDrop/DeathDrop.csproj" />
+  <Project Path="src/DeltaForce.Core/DeltaForce.Core.csproj" />
+  <Project Path="src/DeltaForce.Game/DeltaForce.Game.csproj" />
+  <Project Path="src/DeltaForce.Protocol/DeltaForce.Protocol.csproj" />
   <Project Path="src/DisableMonsLoot/DisableMonsLoot.csproj" />
   <Project Path="src/DonotFuck/DonotFuck.csproj" />
   <Project Path="src/DTEntryBlock/DTEntryBlock.csproj" />
