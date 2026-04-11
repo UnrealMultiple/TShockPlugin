@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ProgressControls\n"
-"POT-Creation-Date: 2025-06-30 14:56:33+0000\n"
-"PO-Revision-Date: 2025-06-30 14:56:33+0000\n"
+"POT-Creation-Date: 2026-04-11 21:38:39+0000\n"
+"PO-Revision-Date: 2026-04-11 21:38:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -599,15 +599,15 @@ msgstr ""
 msgid "指令计划："
 msgstr ""
 
-#: ../../PControl.Utils.cs:352
 #: ../../PControl.Initialize.cs:739
+#: ../../PControl.Utils.cs:352
 #: ../../PControl.Initialize.cs:773
 #: ../../PControl.Initialize.cs:1256
 msgid "推迟"
 msgstr ""
 
-#: ../../PControl.Utils.cs:354
 #: ../../PControl.Initialize.cs:740
+#: ../../PControl.Utils.cs:354
 #: ../../PControl.Initialize.cs:774
 #: ../../PControl.Initialize.cs:1257
 msgid "提前"
@@ -917,8 +917,8 @@ msgid ""
 "S必须为整数或不填(不能为空格)，正号可以不加，冒号可用小数点代替但必须都要填"
 msgstr ""
 
-#: ../../PControl.Utils.cs:355
 #: ../../PControl.Initialize.cs:740
+#: ../../PControl.Utils.cs:355
 #: ../../PControl.Initialize.cs:774
 msgid "正常"
 msgstr ""
@@ -1053,8 +1053,8 @@ msgstr ""
 msgid "警告，未开启自动执行指令的计划，你的修改不会有任何效果"
 msgstr ""
 
-#: ../../PControl.Utils.cs:358
 #: ../../PControl.Initialize.cs:743
+#: ../../PControl.Utils.cs:358
 #: ../../PControl.Initialize.cs:777
 msgid "警告，未开启自动控制NPC进度计划，你的修改不会有任何效果"
 msgstr ""
