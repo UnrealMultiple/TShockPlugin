@@ -1,4 +1,5 @@
 using LazyAPI.Database;
+using LazyAPI.Utility;
 using LinqToDB;
 using LinqToDB.Mapping;
 using TShockAPI;
@@ -26,7 +27,7 @@ public class PlayerCurrency : PlayerRecordBase<PlayerCurrency>
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲货币] 获取玩家 {playerName} 哈夫币时发生错误: {ex}");
+            TShock.Log.Error(GetString($"[三角洲货币] 获取玩家 {playerName} 哈夫币时发生错误: {ex}"));
             return null;
         }
     }
@@ -69,7 +70,7 @@ public class PlayerCurrency : PlayerRecordBase<PlayerCurrency>
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲货币] 给玩家 {playerName} 添加哈夫币时发生错误: {ex}");
+            TShock.Log.Error(GetString($"[三角洲货币] 给玩家 {playerName} 添加哈夫币时发生错误: {ex}"));
             return false;
         }
     }
@@ -94,7 +95,7 @@ public class PlayerCurrency : PlayerRecordBase<PlayerCurrency>
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲货币] 扣除玩家 {playerName} 哈夫币时发生错误: {ex}");
+            TShock.Log.Error(GetString($"[三角洲货币] 扣除玩家 {playerName} 哈夫币时发生错误: {ex}"));
             return false;
         }
     }
@@ -143,11 +144,11 @@ public class PlayerCurrency : PlayerRecordBase<PlayerCurrency>
                 UpdatedAt = DateTime.Now
             };
             context.Insert(newCurrency);
-            TShock.Log.ConsoleInfo($"[三角洲货币] 已初始化玩家 {playerName} 的哈夫币，初始金额: 1000");
+            TShock.Log.ConsoleInfo(GetString($"[三角洲货币] 已初始化玩家 {playerName} 的哈夫币，初始金额: 1000"));
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲货币] 初始化玩家 {playerName} 哈夫币时发生错误: {ex}");
+            TShock.Log.Error(GetString($"[三角洲货币] 初始化玩家 {playerName} 哈夫币时发生错误: {ex}"));
         }
     }
 }

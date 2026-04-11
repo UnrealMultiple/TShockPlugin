@@ -1,4 +1,5 @@
 using LazyAPI.Database;
+using LazyAPI.Utility;
 using LinqToDB;
 using LinqToDB.Mapping;
 using TShockAPI;
@@ -51,7 +52,7 @@ public class MarketplaceItem : RecordBase<MarketplaceItem>
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲交易行] 获取上架物品时发生错误: {ex}");
+            TShock.Log.Error(GetString($"[三角洲交易行] 获取上架物品时发生错误: {ex}"));
             return [];
         }
     }
@@ -65,7 +66,7 @@ public class MarketplaceItem : RecordBase<MarketplaceItem>
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲交易行] 获取玩家 {playerName} 的上架物品时发生错误: {ex}");
+            TShock.Log.Error(GetString($"[三角洲交易行] 获取玩家 {playerName} 的上架物品时发生错误: {ex}"));
             return [];
         }
     }
@@ -79,7 +80,7 @@ public class MarketplaceItem : RecordBase<MarketplaceItem>
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲交易行] 获取物品 {id} 时发生错误: {ex}");
+            TShock.Log.Error(GetString($"[三角洲交易行] 获取物品 {id} 时发生错误: {ex}"));
             return null;
         }
     }
@@ -105,7 +106,7 @@ public class MarketplaceItem : RecordBase<MarketplaceItem>
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲交易行] 上架物品时发生错误: {ex}");
+            TShock.Log.Error(GetString($"[三角洲交易行] 上架物品时发生错误: {ex}"));
             return false;
         }
     }
@@ -143,12 +144,12 @@ public class MarketplaceItem : RecordBase<MarketplaceItem>
             item.SoldAt = DateTime.Now;
             db.Update(item);
 
-            TShock.Log.ConsoleInfo($"[三角洲交易行] {buyerName} 购买了 {item.SellerName} 的 {item.ItemName} x{item.Stack}，价格: {item.Price} 哈夫币");
+            TShock.Log.ConsoleInfo(GetString($"[三角洲交易行] {buyerName} 购买了 {item.SellerName} 的 {item.ItemName} x{item.Stack}，价格: {item.Price} 哈夫币"));
             return true;
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲交易行] 购买物品 {itemId} 时发生错误: {ex}");
+            TShock.Log.Error(GetString($"[三角洲交易行] 购买物品 {itemId} 时发生错误: {ex}"));
             return false;
         }
     }
@@ -166,12 +167,12 @@ public class MarketplaceItem : RecordBase<MarketplaceItem>
             }
 
             db.Delete(item);
-            TShock.Log.ConsoleInfo($"[三角洲交易行] {sellerName} 取消了 {item.ItemName} x{item.Stack} 的上架");
+            TShock.Log.ConsoleInfo(GetString($"[三角洲交易行] {sellerName} 取消了 {item.ItemName} x{item.Stack} 的上架"));
             return true;
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲交易行] 取消上架 {itemId} 时发生错误: {ex}");
+            TShock.Log.Error(GetString($"[三角洲交易行] 取消上架 {itemId} 时发生错误: {ex}"));
             return false;
         }
     }
@@ -187,7 +188,7 @@ public class MarketplaceItem : RecordBase<MarketplaceItem>
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[三角洲交易行] 搜索物品时发生错误: {ex}");
+            TShock.Log.Error(GetString($"[三角洲交易行] 搜索物品时发生错误: {ex}"));
             return [];
         }
     }
