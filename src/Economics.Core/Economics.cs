@@ -25,7 +25,7 @@ public class Economics : TerrariaPlugin
     public override string Description => GetString("提供经济系统API");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 14);
+    public override Version Version => new Version(2, 0, 0, 15);
 
     public readonly static List<TSPlayer> ServerPlayers = [];
 
@@ -61,10 +61,10 @@ public class Economics : TerrariaPlugin
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
             ServerApi.Hooks.NpcKilled.Deregister(this, this.OnKillNpc);
             ServerApi.Hooks.NpcSpawn.Deregister(this, this.OnNpcSpawn);
-            ServerApi.Hooks.NpcStrike.Deregister(this, this.OnStrike);
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
             GetDataHandlers.TileEdit.Register(this.OnTileEdit);
             GetDataHandlers.KillMe.UnRegister(this.OnKillMe);
+            GetDataHandlers.NPCStrike.UnRegister(this.OnNpcStrikeData);
             PlayerHandler.OnPlayerCountertop -= this.PlayerHandler_OnPlayerCountertop;
         }
         base.Dispose(disposing);
@@ -105,9 +105,9 @@ public class Economics : TerrariaPlugin
         ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
         ServerApi.Hooks.NpcKilled.Register(this, this.OnKillNpc);
         ServerApi.Hooks.NpcSpawn.Register(this, this.OnNpcSpawn);
-        ServerApi.Hooks.NpcStrike.Register(this, this.OnStrike);
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
         GetDataHandlers.KillMe.Register(this.OnKillMe);
+        GetDataHandlers.NPCStrike.Register(this.OnNpcStrikeData);
         PlayerHandler.OnPlayerCountertop += this.PlayerHandler_OnPlayerCountertop;
     }
 
@@ -183,43 +183,68 @@ public class Economics : TerrariaPlugin
         }
     }
 
-    private void OnStrike(NpcStrikeEventArgs args)
+    private void OnNpcStrikeData(object? sender, GetDataHandlers.NPCStrikeEventArgs e)
     {
-        if (args.Damage <= 0)
+        // 改走 GetDataHandlers.NPCStrike（TShock 在处理客户端 NpcStrike 包的阶段触发），
+        // 而不是 ServerApi.Hooks.NpcStrike。区别在于：
+        //   1. 前者触发时 npc.life 仍是攻前的剩余血量，可以直接用作裁剪上界，不会像
+        //      ServerApi.Hooks.NpcStrike 那样因为 life 已被扣到 ≤0 而把最后一击丢掉。
+        //   2. 前者拿到的 Damage 是客户端上报的 raw 武器伤害，再经由 Main.CalculateDamageNPCsTake
+        //      + 防御 + Ichor + 暴击换算成实际掉血，避免 raw 与 actual 不一致带来的漂移。
+        // 参考 Quinci135/SEconomy 的 WorldEconomy.NetHooks_GetData + AddNPCDamage 实现。
+        if (e.Handled || e.Player == null || e.Damage <= 0)
         {
             return;
         }
 
-        this.Strike.TryGetValue(args.Npc, out var data);
-
-        // 裁剪溢出伤害：以"已累计伤害 + 本次伤害不得超过 NPC 最大血量"作为上界，
-        // 避免武器原始伤害大于 NPC 剩余血量时按原始值结算。不能直接用 args.Npc.life
-        // 作为上界，因为 NpcStrike hook 触发时 life 已经是扣血后的值，致命一击时为 0
-        // 或负数，会导致最后一击的有效伤害被整个丢掉。
-        var alreadyDealt = data?.Values.Sum() ?? 0f;
-        var remaining = args.Npc.lifeMax - alreadyDealt;
-        var effectiveDamage = Math.Min(args.Damage, Math.Max(0, remaining));
-        if (effectiveDamage <= 0)
+        if (e.ID < 0 || e.ID >= Main.npc.Length)
         {
             return;
         }
 
-        if (data != null)
+        var npc = Main.npc[e.ID];
+        if (npc == null || !npc.active || npc.life <= 0)
         {
-            if (data.TryGetValue(args.Player, out _))
+            return;
+        }
+
+        var tPlayer = e.Player.TPlayer;
+        if (tPlayer == null)
+        {
+            return;
+        }
+
+        // Ichor 降 20 点防御；Critical 为 0 / 1，暴击翻倍
+        var defense = npc.ichor ? Math.Max(0, npc.defense - 20) : npc.defense;
+        var multiplier = e.Critical > 0 ? 2.0 : 1.0;
+        var actual = (float) (multiplier * Main.CalculateDamageNPCsTake(e.Damage, defense));
+
+        // 上界为攻前剩余血量——此时 npc.life 还没被本次攻击扣除
+        if (actual > npc.life)
+        {
+            actual = npc.life;
+        }
+        if (actual <= 0)
+        {
+            return;
+        }
+
+        if (this.Strike.TryGetValue(npc, out var data) && data != null)
+        {
+            if (data.ContainsKey(tPlayer))
             {
-                this.Strike[args.Npc][args.Player] += effectiveDamage;
+                data[tPlayer] += actual;
             }
             else
             {
-                this.Strike[args.Npc][args.Player] = effectiveDamage;
+                data[tPlayer] = actual;
             }
         }
         else
         {
-            this.Strike[args.Npc] = new()
+            this.Strike[npc] = new()
             {
-                { args.Player, effectiveDamage }
+                { tPlayer, actual }
             };
         }
     }
@@ -243,6 +268,23 @@ public class Economics : TerrariaPlugin
         {
             return;
         }
+
+        // 按 lifeMax 对累计伤害做比例校正：
+        // NpcStrike hook 并不覆盖全部掉血路径——debuff DoT（着火、冰冻灼烧、中毒等）和
+        // 环境伤害（岩浆、陷阱）都是直接修改 npc.life，不会触发 NpcStrike，所以 Strike
+        // 累加器拿到的总伤害会小于 lifeMax。这里把每个玩家的累计伤害按比例放大到总和等于
+        // lifeMax，让"按输出瓜分"的玩家在 solo 或多人瓜分时都能拿到完整的奖励池，而不会
+        // 因为 DoT/环境伤害吃掉若干血量导致 rw < 1。
+        var totalTracked = result.Values.Sum();
+        if (totalTracked > 0)
+        {
+            var scale = args.npc.lifeMax / totalTracked;
+            foreach (var kv in result.ToList())
+            {
+                result[kv.Key] = kv.Value * scale;
+            }
+        }
+
         foreach (var (player, damage) in result)
         {
             if (PlayerHandler.PlayerKillNpc(new PlayerKillNpcArgs(player, args.npc, damage)))
