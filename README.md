@@ -96,6 +96,9 @@
 | [DamageStatistic](./src/DamageStatistic/README.md) | 在每次 Boss 战后显示每个玩家造成的伤害 |  |
 | [DataSync](./src/DataSync/README.md) | 进度同步 |  |
 | [DeathDrop](./src/DeathDrop/README.md) | 怪物死亡随机和自定义掉落物品 |  |
+| [DeltaForce.Core](./src/DeltaForce.Core/README.md) | 三角洲行动玩法插件的特勤处 |  |
+| [DeltaForce.Game](./src/DeltaForce.Game/README.md) | 三角洲行动玩法游戏插件 |  |
+| [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) | 三角洲行动的通信协议库 |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 禁怪物掉落 |  |
 | [DonotFuck](./src/DonotFuck/README.md) | 禁止脏话 | [LazyAPI](./src/LazyAPI/README.md) |
 | [DTEntryBlock](./src/DTEntryBlock/README.md) | 阻止进入地牢或神庙 |  |

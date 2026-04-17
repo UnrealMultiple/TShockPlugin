@@ -46,6 +46,59 @@
     "HotReload": true
   },
   {
+    "Name": "三角洲行动",
+    "Version": "1.0.0.0",
+    "Author": "少司命",
+    "Description": {
+      "en-US": "三角洲游戏服务器",
+      "de-DE": "三角洲游戏服务器",
+      "it-IT": "三角洲游戏服务器",
+      "fr-FR": "三角洲游戏服务器",
+      "es-ES": "三角洲游戏服务器",
+      "ru-RU": "三角洲游戏服务器",
+      "zh-CN": "三角洲游戏服务器",
+      "pt-BR": "三角洲游戏服务器",
+      "pl-PL": "三角洲游戏服务器",
+      "ja-JP": "三角洲游戏服务器",
+      "ko-KR": "三角洲游戏服务器",
+      "zh-Hant": "三角洲游戏服务器"
+    },
+    "AssemblyName": "DeltaForce.Game",
+    "Path": "DeltaForce.Game.dll",
+    "Dependencies": [
+      "DeltaForce.Protocol",
+      "LazyAPI"
+    ],
+    "HotReload": true
+  },
+  {
+    "Name": "三角洲行动",
+    "Version": "1.0.0.0",
+    "Author": "少司命",
+    "Description": {
+      "en-US": "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。",
+      "de-DE": "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。",
+      "it-IT": "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。",
+      "fr-FR": "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。",
+      "es-ES": "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。",
+      "ru-RU": "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。",
+      "zh-CN": "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。",
+      "pt-BR": "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。",
+      "pl-PL": "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。",
+      "ja-JP": "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。",
+      "ko-KR": "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。",
+      "zh-Hant": "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。"
+    },
+    "AssemblyName": "DeltaForce.Core",
+    "Path": "DeltaForce.Core.dll",
+    "Dependencies": [
+      "LazyAPI",
+      "DeltaForce.Protocol",
+      "linq2db"
+    ],
+    "HotReload": true
+  },
+  {
     "Name": "自动钓鱼R",
     "Version": "1.4.9.2",
     "Author": "ksqeib 羽学 少司命",
@@ -1011,7 +1064,7 @@
   },
   {
     "Name": "Economics.Core",
-    "Version": "2.0.0.12",
+    "Version": "2.1.0.0",
     "Author": "少司命, 千亦(修复 bug)",
     "Description": {
       "en-US": "Provides economic system API",
@@ -1059,8 +1112,8 @@
   },
   {
     "Name": "Economics.NPC",
-    "Version": "2.0.0.4",
-    "Author": "少司命",
+    "Version": "2.1.0.0",
+    "Author": "少司命，千亦",
     "Description": {
       "en-US": "Modify the currency dropped by NPC!",
       "de-DE": "修改NPC掉落货币!",
@@ -2251,7 +2304,7 @@
   },
   {
     "Name": "RealTime",
-    "Version": "2.7.0.5",
+    "Version": "2.7.0.7",
     "Author": "十七",
     "Description": {
       "en-US": "Synchronize real time",
