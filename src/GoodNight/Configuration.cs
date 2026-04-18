@@ -15,7 +15,7 @@ internal class Configuration
 {
     public static readonly string FilePath = Path.Combine(TShock.SavePath, "宵禁.json");
 
-    [JsonProperty("是否关闭宵禁", Order = -15)]
+    [JsonProperty("是否开启宵禁", Order = -15)]
     public bool Enabled { get; set; } = true;
     [JsonProperty("宵禁时间设置(禁怪/断连)", Order = -14)]
     public TimeRange Time { get; set; } = new TimeRange()
