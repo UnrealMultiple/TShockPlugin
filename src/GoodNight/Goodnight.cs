@@ -12,7 +12,7 @@ public class Goodnight : TerrariaPlugin
 {
     #region 变量与插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "Jonesn 羽学 少司命";
-    public override Version Version => new Version(2, 7, 7);
+    public override Version Version => new Version(2, 7, 8);
     public override string Description => GetString("设置服务器无法进入或禁止生成怪物的时段");
     internal static Configuration Config = null!;
     #endregion
@@ -70,7 +70,7 @@ public class Goodnight : TerrariaPlugin
         }
 
         var plr = TShock.Players[args.Who];
-        if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.Stop)
+        if (IsCurfewTime())
         {
             if (Config.DiscPlayers)
             {
@@ -89,7 +89,7 @@ public class Goodnight : TerrariaPlugin
             return;
         }
 
-        if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.Stop)
+        if (IsCurfewTime())
         {
             if (Config.DiscPlayers)
             {
@@ -121,7 +121,7 @@ public class Goodnight : TerrariaPlugin
         var BcstDefault = Config.BcstSwitch;
         var BcstSwitchOFF = Config.BcstSwitchOff;
 
-        if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.Stop)
+        if (IsCurfewTime())
         {
             if (NoPlr)
             {
@@ -272,7 +272,7 @@ public class Goodnight : TerrariaPlugin
         {
             return;
         }
-        else if (DateTime.Now.TimeOfDay >= Config.Time.Start && DateTime.Now.TimeOfDay < Config.Time.Stop)
+        else if (IsCurfewTime())
         {
             if (NoPlr)
             {
@@ -367,7 +367,7 @@ public class Goodnight : TerrariaPlugin
                     TShock.Utils.Broadcast(
                         GetString($"\n因击杀次数达到[c/E2FA75:{Config.DeadCount}次] 将不再播报计数\n") +
                         GetString($"已计入《允许召唤表》：\n[c/6EABE9:{NpcListInfo}]\n") +
-                        GetString($"宵禁时段：[c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]"), Color.AntiqueWhite);
+                        GetString($"[c/338AE1:宵禁时段]：[c/DF95EC:{Config.Time.Start}] — [c/FF9187:{Config.Time.Stop}]"), Color.AntiqueWhite);
                     KillCounters[KillNpc] = 0;
                 }
             }
@@ -428,6 +428,26 @@ public class Goodnight : TerrariaPlugin
     private bool IsNotBoss(NpcSpawnEventArgs args)
     {
         return !this.IsBoss(args);
+    }
+
+    private static bool IsCurfewTime()
+    {
+        return IsCurfewTime(DateTime.Now.TimeOfDay);
+    }
+
+    private static bool IsCurfewTime(TimeSpan now)
+    {
+        var start = Config.Time.Start;
+        var stop = Config.Time.Stop;
+
+        if (start == stop)
+        {
+            return false;
+        }
+
+        return start < stop
+            ? now >= start && now < stop
+            : now >= start || now < stop;
     }
     #endregion
 }
