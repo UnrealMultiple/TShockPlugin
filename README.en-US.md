@@ -100,8 +100,8 @@
 | [DamageStatistic](./src/DamageStatistic/README.en-US.md) | 50.0% | Display damage caused by each player after each boss fight |  |
 | [DataSync](./src/DataSync/README.en-US.md) | 100.0% | Progress synchronization |  |
 | [DeathDrop](./src/DeathDrop/README.en-US.md) | 100.0% | Random and custom loot upon monster death |  |
-| [DeltaForce.Core](./src/DeltaForce.Core/README.md) | 0.0% | The Special Activities Division of the Delta Operation Gameplay Mod |  |
-| [DeltaForce.Game](./src/DeltaForce.Game/README.md) | 0.0% | Delta Operation Gameplay Game Plugin |  |
+| [DeltaForce.Core](./src/DeltaForce.Core/README.md) | 0.0% | The Special Activities Division of the Delta Operation Gameplay Mod | [LazyAPI](./src/LazyAPI/README.en-US.md) [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) [linq2db]() |
+| [DeltaForce.Game](./src/DeltaForce.Game/README.md) | 0.0% | Delta Operation Gameplay Game Plugin | [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) | 0.0% | Delta Operation Communication Protocol Library |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.en-US.md) | 100.0% | Prohibit monster loot |  |
 | [DonotFuck](./src/DonotFuck/README.en-US.md) | 100.0% | Prevent swearing | [LazyAPI](./src/LazyAPI/README.en-US.md) |
