@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2026-03-22 12:30:56+0000\n"
-"PO-Revision-Date: 2026-03-23 02:01\n"
+"PO-Revision-Date: 2026-04-10 02:13\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "No convertible currency type:{0}"
 #: ../../Command/BankCommand.cs:102
 #, csharp-format
 msgid "不存在的货币类型`{0}`"
-msgstr "No existing currency type `{0}`"
+msgstr ""
 
 #: ../../Economics.cs:121
 #, csharp-format
