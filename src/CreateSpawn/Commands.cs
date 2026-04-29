@@ -117,8 +117,10 @@ public class Commands
     }
 
     [Alias("auto")]
-    public static void AutoSpawn(CommandArgs args, string action, string? name = null)
+    [Flexible]
+    public static void AutoSpawn(CommandArgs args, string action)
     {
+        var name = args.Parameters.Count > 2 ? string.Join(" ", args.Parameters.Skip(2)) : null;
         action = action.ToLowerInvariant();
         var list = Config.Instance.AutoSpawnBuilds;
         switch (action)
