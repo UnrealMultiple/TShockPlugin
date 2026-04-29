@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using LazyAPI;
 using Terraria;
+using Terraria.WorldBuilding;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -16,13 +17,16 @@ public class CreateSpawn(Main game) : LazyPlugin(game)
     public override Version Version => new (1, 0, 1, 1);
 
     public override string Description => "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴";
+    
+    private bool _isCreatingWorld;
 
-    public bool IsNewWorld;
+    private bool _pendingSpawnAfterReset;
 
     public override void Initialize()
     {
         ServerApi.Hooks.GamePostInitialize.Register(this, this.GamePost);
-        On.Terraria.WorldBuilding.GenerationProgress.End += this.GenerationProgress_End;
+        On.Terraria.WorldGen.CreateNewWorld += this.WorldGen_CreateNewWorld;
+        On.Terraria.IO.WorldFile.LoadWorld += this.WorldFile_LoadWorld;
     }
 
     protected override void Dispose(bool disposing)
@@ -30,26 +34,53 @@ public class CreateSpawn(Main game) : LazyPlugin(game)
         if (disposing)
         {
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.GamePost);
-            On.Terraria.WorldBuilding.GenerationProgress.End -= this.GenerationProgress_End;
+            On.Terraria.WorldGen.CreateNewWorld -= this.WorldGen_CreateNewWorld;
+            On.Terraria.IO.WorldFile.LoadWorld -= this.WorldFile_LoadWorld;
         }
 
         base.Dispose(disposing);
     }
+    
 
-    private void GenerationProgress_End(On.Terraria.WorldBuilding.GenerationProgress.orig_End orig, Terraria.WorldBuilding.GenerationProgress self)
+    private Task WorldGen_CreateNewWorld(On.Terraria.WorldGen.orig_CreateNewWorld orig, GenerationProgress? progress, WorldGenerator.Controller? controller, WorldGen.WorldGenerationFinishCallback? afterGeneration)
     {
-        orig(self);
-        this.IsNewWorld = true;
+        this._isCreatingWorld = true;
+        return orig(progress, controller, afterGeneration);
+    }
+
+    private void WorldFile_LoadWorld(On.Terraria.IO.WorldFile.orig_LoadWorld orig)
+    {
+        orig();
+        if (!this._isCreatingWorld)
+        {
+            return;
+        }
+
+        this._isCreatingWorld = false;
+        this._pendingSpawnAfterReset = true;
+        this.TryAutoSpawn();
     }
 
 
     private void GamePost(EventArgs args)
     {
-        if (this.IsNewWorld)
+        if (this._pendingSpawnAfterReset)
+        {
+            this.TryAutoSpawn();
+        }
+    }
+
+    private void TryAutoSpawn()
+    {
+        if (!this._pendingSpawnAfterReset)
+        {
+            return;
+        }
+
+        try
         {
             if (Config.Instance.AutoSpawnBuilds.Count == 0)
             {
-                this.IsNewWorld = false;
                 return;
             }
 
@@ -57,7 +88,6 @@ public class CreateSpawn(Main game) : LazyPlugin(game)
             var spwy = Main.spawnTileY;
             var startX = spwx - Config.Instance.CentreX + Config.Instance.AdjustX;
             var startY = spwy - Config.Instance.CountY + Config.Instance.AdjustY;
-
             foreach (var name in Config.Instance.AutoSpawnBuilds.Distinct(StringComparer.OrdinalIgnoreCase))
             {
                 var clip = Map.LoadClip(name);
@@ -69,8 +99,10 @@ public class CreateSpawn(Main game) : LazyPlugin(game)
 
                 Utils.SpawnBuilding(TSPlayer.Server, startX, startY, clip);
             }
-
-            this.IsNewWorld = false;
+        }
+        finally
+        {
+            this._pendingSpawnAfterReset = false;
         }
     }
 }
