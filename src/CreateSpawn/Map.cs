@@ -32,14 +32,27 @@ public class Map
         }
 
         var stack = new Stack<Building>();
-        using (var fs = GZipRead(filePath))
-        using (var reader = new BinaryReader(fs))
+        try
         {
+            using var fs = GZipRead(filePath);
+            using var reader = new BinaryReader(fs);
             var count = reader.ReadInt32();
+
+            var list = new List<Building>(count);
             for (var i = 0; i < count; i++)
             {
-                stack.Push(LoadBuilding(reader));
+                list.Add(LoadBuilding(reader));
             }
+
+            for (var i = list.Count - 1; i >= 0; i--)
+            {
+                stack.Push(list[i]);
+            }
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.ConsoleWarn(GetString($"读取撤销记录失败: {ex.Message}"));
+            return new Stack<Building>();
         }
 
         return stack;
@@ -124,7 +137,6 @@ public class Map
                 writer.Write(data.Position.X);
                 writer.Write(data.Position.Y);
                 writer.Write(data.Slot);
-                writer.Write(data.Item?.type ?? 0);
                 writer.Write(data.Item?.type ?? 0);
                 writer.Write(data.Item?.stack ?? 0);
                 writer.Write(data.Item?.prefix ?? 0);
@@ -287,13 +299,11 @@ public class Map
             var posY = reader.ReadInt32();
             var slot = reader.ReadInt32();
             var type = reader.ReadInt32();
-            var netId = reader.ReadInt32();
             var stack = reader.ReadInt32();
             var prefix = reader.ReadByte();
 
             var item = new Item();
             item.SetDefaults(type);
-            item.type = netId;
             item.stack = stack;
             item.prefix = prefix;
 
@@ -475,7 +485,7 @@ public class Map
             // 创建临时备份文件夹
             Directory.CreateDirectory(backupFolder);
 
-            // 将所有 .dat 文件复制到备份文件夹
+            // 将所有 .map 文件复制到备份文件夹
             foreach (var file in Directory.GetFiles(Paths, "*_cp.map"))
             {
                 var destFile = Path.Combine(backupFolder, Path.GetFileName(file));
@@ -490,7 +500,7 @@ public class Map
 
             TShock.Log.ConsoleInfo(GetString($"已成功备份所有 .map 文件，压缩包保存于:\n {zipFilePath}"));
 
-            // 删除原始 .dat 文件
+            // 删除原始 .map 文件
             foreach (var file in Directory.GetFiles(Paths, "*.map"))
             {
                 try
