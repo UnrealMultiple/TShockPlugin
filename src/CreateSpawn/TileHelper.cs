@@ -38,22 +38,18 @@ internal class TileHelper
 
     public static void InformPlayers()
     {
-        var players = TShock.Players;
-        foreach (var tSPlayer in players)
+        for (var j = 0; j < 255; j++)
         {
-            if (tSPlayer == null || !tSPlayer.Active)
+            if (!Netplay.Clients[j].IsActive)
             {
                 continue;
             }
 
-            for (var j = 0; j < 255; j++)
+            for (var k = 0; k < Main.maxSectionsX; k++)
             {
-                for (var k = 0; k < Main.maxSectionsX; k++)
+                for (var l = 0; l < Main.maxSectionsY; l++)
                 {
-                    for (var l = 0; l < Main.maxSectionsY; l++)
-                    {
-                        Netplay.Clients[j].TileSections[k, l] = false;
-                    }
+                    Netplay.Clients[j].TileSections[k, l] = false;
                 }
             }
         }
