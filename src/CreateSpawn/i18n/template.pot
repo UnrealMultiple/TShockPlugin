@@ -1,0 +1,211 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CreateSpawn\n"
+"POT-Creation-Date: 2026-04-29 08:55:25+0000\n"
+"PO-Revision-Date: 2026-04-29 08:55:25+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+
+#: ../../Commands.cs:211
+msgid "/cb auto add 名字 ——加入新世界自动生成列表"
+msgstr ""
+
+#: ../../Commands.cs:214
+msgid "/cb auto clear ——清空自动生成列表"
+msgstr ""
+
+#: ../../Commands.cs:213
+msgid "/cb auto list ——查看自动生成列表"
+msgstr ""
+
+#: ../../Commands.cs:212
+msgid "/cb auto remove 名字 ——移除自动生成列表"
+msgstr ""
+
+#: ../../Commands.cs:208
+msgid "/cb back ——还原图格"
+msgstr ""
+
+#: ../../Commands.cs:209
+msgid "/cb list —-文件列表"
+msgstr ""
+
+#: ../../Commands.cs:206
+msgid "/cb save 名字 ——添加建筑"
+msgstr ""
+
+#: ../../Commands.cs:204
+msgid "/cb set 1 ——敲击或放置一个方块到左上角"
+msgstr ""
+
+#: ../../Commands.cs:205
+msgid "/cb set 2 ——敲击或放置一个方块到右下角"
+msgstr ""
+
+#: ../../Commands.cs:207
+msgid "/cb spawn 名字 ——生成建筑"
+msgstr ""
+
+#: ../../Commands.cs:210
+msgid "/cb zip ——清空建筑并备份为zip"
+msgstr ""
+
+#: ../../Commands.cs:75
+#, csharp-format
+msgid ""
+"\n"
+"当前可用的复制建筑 [c/64E0DA:{0}个]:"
+msgstr ""
+
+#: ../../Commands.cs:93
+msgid "使用方法: /cb set 1 选择左上角"
+msgstr ""
+
+#: ../../Commands.cs:94
+msgid "使用方法: /cb set 2 选择右下角"
+msgstr ""
+
+#: ../../Map.cs:512
+#, csharp-format
+msgid "删除文件失败: {0}, 错误: {1}"
+msgstr ""
+
+#: ../../Commands.cs:23
+msgid "剪贴板为空或未找到指定建筑!"
+msgstr ""
+
+#: ../../TileHelper.cs:26
+msgid "另一个创建任务正在执行，请稍后再操作"
+msgstr ""
+
+#: ../../Commands.cs:82
+msgid "可使用指定粘贴指令:[c/D0AFEB:/cb spawn 名字]"
+msgstr ""
+
+#: ../../Map.cs:520
+#, csharp-format
+msgid "备份和删除过程中出错: {0}"
+msgstr ""
+
+#: ../../Commands.cs:203
+msgid "复制建筑指令菜单"
+msgstr ""
+
+#: ../../Commands.cs:116
+msgid "已备份并清空所有建筑数据文件。"
+msgstr ""
+
+#: ../../Commands.cs:102
+#, csharp-format
+msgid "已复制区域 ({0}x{1})"
+msgstr ""
+
+#: ../../Utils.cs:981
+#, csharp-format
+msgid "已将选区还原，用时{0}秒。"
+msgstr ""
+
+#: ../../Map.cs:516
+msgid "已成功删除所有 .map 文件"
+msgstr ""
+
+#: ../../Map.cs:501
+#, csharp-format
+msgid ""
+"已成功备份所有 .map 文件，压缩包保存于:\n"
+" {0}"
+msgstr ""
+
+#: ../../Commands.cs:149
+#, csharp-format
+msgid "已添加自动生成建筑: {0}"
+msgstr ""
+
+#: ../../Commands.cs:188
+msgid "已清空自动生成建筑列表。"
+msgstr ""
+
+#: ../../Commands.cs:167
+#, csharp-format
+msgid "已移除自动生成建筑: {0}"
+msgstr ""
+
+#: ../../Utils.cs:954
+#, csharp-format
+msgid "已粘贴区域 ({0} x {1})，用时{2}秒。"
+msgstr ""
+
+#: ../../Commands.cs:137
+#, csharp-format
+msgid "建筑 {0} 已在自动生成列表中。"
+msgstr ""
+
+#: ../../Commands.cs:71
+msgid "当前[c/64E0DA:没有可用]的复制建筑。"
+msgstr ""
+
+#: ../../Commands.cs:92
+msgid "您还没有选择区域！"
+msgstr ""
+
+#: ../../Commands.cs:143
+#, csharp-format
+msgid "未找到建筑: {0}"
+msgstr ""
+
+#: ../../Commands.cs:59
+msgid "正确指令：/cb set <1/2> --选择复制的区域"
+msgstr ""
+
+#: ../../Utils.cs:43
+msgid "没有可还原的图格"
+msgstr ""
+
+#: ../../Commands.cs:192
+msgid "用法: /cb auto <add/remove/list/clear> [建筑名]"
+msgstr ""
+
+#: ../../Commands.cs:131
+msgid "用法: /cb auto add <建筑名>"
+msgstr ""
+
+#: ../../Commands.cs:155
+msgid "用法: /cb auto remove <建筑名>"
+msgstr ""
+
+#: ../../Commands.cs:162
+#, csharp-format
+msgid "自动生成列表中不存在: {0}"
+msgstr ""
+
+#: ../../Commands.cs:177
+#, csharp-format
+msgid "自动生成建筑列表 ({0})："
+msgstr ""
+
+#: ../../Commands.cs:173
+msgid "自动生成建筑列表为空。"
+msgstr ""
+
+#: ../../Commands.cs:56
+msgid "请选择复制区域的右下角"
+msgstr ""
+
+#: ../../Commands.cs:52
+msgid "请选择复制区域的左上角"
+msgstr ""
+
+#: ../../Map.cs:54
+#, csharp-format
+msgid "读取撤销记录失败: {0}"
+msgstr ""
+
+#: ../../Utils.cs:247
+#, csharp-format
+msgid "还原箱子物品出错 @ {0}: {1}"
+msgstr ""
+

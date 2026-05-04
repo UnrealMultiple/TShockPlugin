@@ -90,14 +90,15 @@
 | [CNPCShop](./src/CNPCShop/README.md) | 自定义NPC商店 |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | 允许你在控制台执行SQL语句 |  |
 | [ConvertWorld](./src/ConvertWorld/README.md) | 击败怪物转换世界物品 |  |
+| [CreateSpawn](./src/CreateSpawn/README.md) | 出生点建筑生成 |  |
 | [CriticalHit](./src/CriticalHit/README.md) | 击打提示 |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 跨版本游玩 |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 伤害规则掉落 |  |
 | [DamageStatistic](./src/DamageStatistic/README.md) | 在每次 Boss 战后显示每个玩家造成的伤害 |  |
 | [DataSync](./src/DataSync/README.md) | 进度同步 |  |
 | [DeathDrop](./src/DeathDrop/README.md) | 怪物死亡随机和自定义掉落物品 |  |
-| [DeltaForce.Core](./src/DeltaForce.Core/README.md) | 三角洲行动玩法插件的特勤处 |  |
-| [DeltaForce.Game](./src/DeltaForce.Game/README.md) | 三角洲行动玩法游戏插件 |  |
+| [DeltaForce.Core](./src/DeltaForce.Core/README.md) | 三角洲行动玩法插件的特勤处 | [LazyAPI](./src/LazyAPI/README.md) [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) [linq2db]() |
+| [DeltaForce.Game](./src/DeltaForce.Game/README.md) | 三角洲行动玩法游戏插件 | [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) [LazyAPI](./src/LazyAPI/README.md) |
 | [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) | 三角洲行动的通信协议库 |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 禁怪物掉落 |  |
 | [DonotFuck](./src/DonotFuck/README.md) | 禁止脏话 | [LazyAPI](./src/LazyAPI/README.md) |

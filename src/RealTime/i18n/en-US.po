@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:03:09+0000\n"
-"PO-Revision-Date: 2025-03-19 01:13\n"
+"POT-Creation-Date: 2026-04-11 06:59:39+0000\n"
+"PO-Revision-Date: 2026-04-12 02:23\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,72 +17,97 @@ msgstr ""
 "X-Crowdin-File-ID: 1508\n"
 "Language: en_US\n"
 
-#: ../../RealTime.cs:299
-msgid "[c/FF66FF:未知]"
-msgstr "[c/FF66FF:Unknown]"
-
-#: ../../RealTime.cs:149
+#: ../../RealTime.cs:159
 msgid "万圣节的邪恶影响会阻止你的PvP关闭。"
 msgstr "The evil effects of Halloween will prevent your PvP from shutting down."
 
-#: ../../RealTime.cs:295
+#: ../../RealTime.cs:320
 msgid "上弦月"
 msgstr "First Quarter"
 
-#: ../../RealTime.cs:291
+#: ../../RealTime.cs:316
 msgid "下弦月"
 msgstr "Third Quarter"
 
-#: ../../RealTime.cs:42
+#: ../../RealTime.cs:282
+msgid "中雨"
+msgstr ""
+
+#: ../../RealTime.cs:73
 msgid "事件禁止切换队伍。"
 msgstr "Switching teams is prohibited from happening."
 
-#: ../../RealTime.cs:290
+#: ../../RealTime.cs:315
 msgid "亏凸月"
 msgstr "Waning Gibbous"
 
-#: ../../RealTime.cs:12
+#: ../../RealTime.cs:15
 msgid "同步现实时间"
 msgstr "Synchronize real time"
 
-#: ../../RealTime.cs:279
-msgid "天气已变更"
-msgstr "Weather Changed"
+#: ../../RealTime.cs:268
+msgid "多云"
+msgstr ""
 
-#: ../../RealTime.cs:294
+#: ../../RealTime.cs:319
 msgid "娥眉月"
 msgstr "Waxing Crescent"
 
-#: ../../RealTime.cs:293
+#: ../../RealTime.cs:275
+msgid "小雨"
+msgstr ""
+
+#: ../../RealTime.cs:302
+#, csharp-format
+msgid "当前天气：{0}"
+msgstr ""
+
+#: ../../RealTime.cs:318
 msgid "新月"
 msgstr "New Moon"
 
-#: ../../RealTime.cs:119
+#: ../../RealTime.cs:141
 msgid "日食的邪恶影响会阻止你的PvP关闭。"
 msgstr "The evil effects of solar eclipse will prevent your PvP from shutting down."
 
-#: ../../RealTime.cs:246
+#: ../../RealTime.cs:262
+msgid "晴天"
+msgstr ""
+
+#: ../../RealTime.cs:291
+msgid "暴雨/雷暴"
+msgstr ""
+
+#: ../../RealTime.cs:239
 #, csharp-format
 msgid "月相已更换为：{0}"
 msgstr "Moon phase changed to: {0}"
 
-#: ../../RealTime.cs:252
-msgid "月相已更换为：满月"
-msgstr "Moon phase has been changed to: Full Moon"
+#: ../../RealTime.cs:322
+msgid "未知"
+msgstr ""
 
-#: ../../RealTime.cs:292
+#: ../../RealTime.cs:317
 msgid "残月"
 msgstr "Waning Crescent"
 
-#: ../../RealTime.cs:238
+#: ../../RealTime.cs:298
+msgid "沙尘暴"
+msgstr ""
+
+#: ../../RealTime.cs:231
 msgid "渔夫任务和旅商商品已更换"
 msgstr "Angler quest and traveling merchant have been replaced"
 
-#: ../../RealTime.cs:296
+#: ../../RealTime.cs:314
+msgid "满月"
+msgstr ""
+
+#: ../../RealTime.cs:321
 msgid "盈凸月"
 msgstr "Waxing Gibbous"
 
-#: ../../RealTime.cs:91
+#: ../../RealTime.cs:123
 msgid "血月的邪恶影响会阻止你的PvP关闭。"
 msgstr "The evil effects of Blood Moon will prevent your PvP from shutting down."
 

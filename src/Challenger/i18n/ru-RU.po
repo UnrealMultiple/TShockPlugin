@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-02-12 07:33:37+0000\n"
-"PO-Revision-Date: 2026-02-13 02:02\n"
+"POT-Creation-Date: 2026-03-30 16:50:48+0000\n"
+"PO-Revision-Date: 2026-03-31 02:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -376,8 +376,8 @@ msgstr ""
 msgid "冲刺类饰品冷却完成"
 msgstr ""
 
-#: ../../Challenger.CNPCs/Skeletron.cs:164
 #: ../../Challenger.CNPCs/EaterofWorldsHead.cs:39
+#: ../../Challenger.CNPCs/Skeletron.cs:164
 msgid "创死你"
 msgstr ""
 

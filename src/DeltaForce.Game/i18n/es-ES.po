@@ -1,0 +1,431 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2026-04-11 07:29:59+0000\n"
+"PO-Revision-Date: 2026-04-12 02:23\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/DeltaForce.Game/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1636\n"
+"Language: es_ES\n"
+
+#: ../../Commands/GameCommand.cs:126
+#, csharp-format
+msgid "  - {0}: 坐标 ({1}, {2}), 范围 {3} 格"
+msgstr ""
+
+#: ../../Modules/ChestLootManager.cs:57
+#, csharp-format
+msgid "[ChestLootManager] 已重置 {0} 个箱子的物品"
+msgstr ""
+
+#: ../../Modules/ChestLootManager.cs:39
+msgid "[ChestLootManager] 没有可用的物品配置"
+msgstr ""
+
+#: ../../Modules/ChestLootManager.cs:31
+#, csharp-format
+msgid "[ChestLootManager] 请求物品列表失败: {0}"
+msgstr ""
+
+#: ../../Client.cs:193
+#, csharp-format
+msgid "[Client] 发送响应: {0}"
+msgstr ""
+
+#: ../../Client.cs:231
+#, csharp-format
+msgid "[Client] 发送数据包失败: {0}"
+msgstr ""
+
+#: ../../Client.cs:142
+#, csharp-format
+msgid "[Client] 已发送身份验证: {0} ({1})"
+msgstr ""
+
+#: ../../Client.cs:269
+msgid "[Client] 已断开连接"
+msgstr ""
+
+#: ../../Client.cs:71
+#, csharp-format
+msgid "[Client] 已连接到服务器 {0}:{1}"
+msgstr ""
+
+#: ../../Client.cs:199
+msgid "[Client] 接收循环已取消"
+msgstr ""
+
+#: ../../Client.cs:203
+#, csharp-format
+msgid "[Client] 接收错误: {0}"
+msgstr ""
+
+#: ../../Client.cs:187
+#, csharp-format
+msgid "[Client] 收到数据包: {0}"
+msgstr ""
+
+#: ../../Client.cs:221
+msgid "[Client] 无法发送数据包，未连接到服务器"
+msgstr ""
+
+#: ../../Client.cs:243
+msgid "[Client] 无法发送请求，未连接到服务器"
+msgstr ""
+
+#: ../../Client.cs:89
+#, csharp-format
+msgid "[Client] 第 {0} 次尝试重连... ({1}ms 后)"
+msgstr ""
+
+#: ../../Client.cs:258
+#, csharp-format
+msgid "[Client] 请求失败: {0}"
+msgstr ""
+
+#: ../../Client.cs:75
+#, csharp-format
+msgid "[Client] 连接失败: {0}"
+msgstr ""
+
+#: ../../Client.cs:208
+msgid "[Client] 连接已断开，启动重连机制..."
+msgstr ""
+
+#: ../../Client.cs:173
+msgid "[Client] 连接已断开，读取数据失败"
+msgstr ""
+
+#: ../../Client.cs:157
+msgid "[Client] 连接已断开，读取长度失败"
+msgstr ""
+
+#: ../../Client.cs:129
+#, csharp-format
+msgid "[Client] 重连失败，已达到最大尝试次数 ({0})"
+msgstr ""
+
+#: ../../Client.cs:120
+#, csharp-format
+msgid "[Client] 重连失败: {0}"
+msgstr ""
+
+#: ../../Client.cs:115
+#, csharp-format
+msgid "[Client] 重连成功！已连接到服务器 {0}:{1}"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:57
+#, csharp-format
+msgid "[DeltaForce] {0} 主动撤离并丢弃所有装备返回特勤处"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:61
+#, csharp-format
+msgid "[DeltaForce] {0} 返回特勤处"
+msgstr ""
+
+#: ../../Modules/DimensionsSender.cs:81
+#, csharp-format
+msgid "[DimensionsSender] 发送数据包失败: {0}"
+msgstr ""
+
+#: ../../Modules/DimensionsSender.cs:91
+#, csharp-format
+msgid "[DimensionsSender] 发送数据包异常: {0}"
+msgstr ""
+
+#: ../../Modules/DimensionsSender.cs:85
+#, csharp-format
+msgid "[DimensionsSender] 已发送切换指令到玩家 {0}: {1}:{2}"
+msgstr ""
+
+#: ../../Modules/DimensionsSender.cs:35
+#, csharp-format
+msgid "[DimensionsSender] 玩家 {0} 的Socket为空"
+msgstr ""
+
+#: ../../Modules/EvacuationManager.cs:155
+#, csharp-format
+msgid "[EvacuationManager] 保存玩家 {0} 装备失败: {1}"
+msgstr ""
+
+#: ../../Modules/EvacuationManager.cs:125
+#, csharp-format
+msgid "[EvacuationManager] 玩家 {0} 从 {1} 成功撤离"
+msgstr ""
+
+#: ../../Modules/EvacuationManager.cs:144
+#, csharp-format
+msgid "[EvacuationManager] 玩家 {0} 装备保存失败: {1}"
+msgstr ""
+
+#: ../../Modules/EvacuationManager.cs:139
+#, csharp-format
+msgid "[EvacuationManager] 玩家 {0} 装备保存成功"
+msgstr ""
+
+#: ../../Modules/EvacuationManager.cs:17
+msgid "[EvacuationManager] 警告: 配置文件中没有定义撤离点"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:47
+#, csharp-format
+msgid "[GameCommand] 玩家 {0} 主动离开游戏，数据已同步"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:52
+#, csharp-format
+msgid "[GameCommand] 玩家 {0} 数据同步失败: {1}"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:77
+#, csharp-format
+msgid "[GameCommand] 玩家 {0} 离开游戏时发生错误: {1}"
+msgstr ""
+
+#: ../../Modules/GameManager.cs:102
+#, csharp-format
+msgid "[GameManager] {0}"
+msgstr ""
+
+#: ../../Modules/GameManager.cs:111
+msgid "[GameManager] 所有玩家已离开服务器，重置游戏状态"
+msgstr ""
+
+#: ../../Modules/GameManager.cs:125
+msgid "[GameManager] 游戏状态已重置，等待下一局游戏开始"
+msgstr ""
+
+#: ../../Modules/InventoryManager.cs:84
+#, csharp-format
+msgid "[InventoryManager] 保存玩家 {0} 背包时发生错误: {1}"
+msgstr ""
+
+#: ../../Modules/InventoryManager.cs:103
+#, csharp-format
+msgid "[InventoryManager] 已保存 {0} 名玩家的背包数据"
+msgstr ""
+
+#: ../../Modules/InventoryManager.cs:16
+#, csharp-format
+msgid "[InventoryManager] 玩家 {0} 未登录，无法保存背包"
+msgstr ""
+
+#: ../../Modules/InventoryManager.cs:77
+#, csharp-format
+msgid "[InventoryManager] 玩家 {0} 背包保存失败: {1}"
+msgstr ""
+
+#: ../../Modules/InventoryManager.cs:73
+#, csharp-format
+msgid "[InventoryManager] 玩家 {0} 背包保存成功"
+msgstr ""
+
+#: ../../Modules/SpawnManager.cs:82
+#, csharp-format
+msgid "[SpawnManager] 玩家 {0} (小队 {1}) 传送到 {2} ({3}, {4})"
+msgstr ""
+
+#: ../../Modules/SpawnManager.cs:22
+msgid "[SpawnManager] 警告: 配置文件中没有定义出生点"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:81
+#, csharp-format
+msgid "[三角洲SSC] Hook初始化失败: {0}"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:254
+#, csharp-format
+msgid "[三角洲SSC] 从Core请求背包数据失败: {0}"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:181
+#, csharp-format
+msgid "[三角洲SSC] 加载玩家数据失败: {0}"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:82
+#, csharp-format
+msgid "[三角洲SSC] 堆栈: {0}"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:37
+msgid "[三角洲SSC] 已Hook CharacterManager.GetPlayerData"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:43
+msgid "[三角洲SSC] 已Hook CharacterManager.InsertPlayerData"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:73
+msgid "[三角洲SSC] 已Hook CharacterManager.InsertSpecificPlayerData"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:55
+msgid "[三角洲SSC] 已Hook CharacterManager.IsSeededAppearanceMissing"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:67
+msgid "[三角洲SSC] 已Hook CharacterManager.RemovePlayer"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:49
+msgid "[三角洲SSC] 已Hook CharacterManager.SeedInitialData"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:61
+msgid "[三角洲SSC] 已Hook CharacterManager.SyncSeededAppearance"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:77
+msgid "[三角洲SSC] 所有Hook已初始化完成"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:94
+msgid "[三角洲SSC] 所有Hook已卸载"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:176
+#, csharp-format
+msgid "[三角洲SSC] 无法从Core服务器获取玩家 {0} 数据，返回空数据"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:173
+#, csharp-format
+msgid "[三角洲SSC] 玩家 {0} 数据已从Core服务器加载"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:123
+msgid "[撤离点列表]"
+msgstr ""
+
+#: ../../Modules/GameManager.cs:73
+msgid "[游戏提示] 还有 1 分钟游戏结束！"
+msgstr ""
+
+#: ../../Modules/GameManager.cs:88
+msgid "[游戏提示] 还有 1 分钟游戏结束！请尽快撤离！"
+msgstr ""
+
+#: ../../Modules/GameManager.cs:83
+msgid "[游戏提示] 还有 3 分钟游戏结束！"
+msgstr ""
+
+#: ../../Modules/GameManager.cs:68
+msgid "[游戏提示] 还有 30 秒游戏结束！请尽快撤离！"
+msgstr ""
+
+#: ../../Modules/GameManager.cs:78
+msgid "[游戏提示] 还有 5 分钟游戏结束！"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:97
+#, csharp-format
+msgid "[游戏时间] 还剩 {0} 分 {1} 秒"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:101
+#, csharp-format
+msgid "[游戏时间] 还剩 {0} 秒！请尽快撤离！"
+msgstr ""
+
+#: ../../Modules/GameManager.cs:62
+#, csharp-format
+msgid "[游戏结束倒计时] 还有 {0} 秒！"
+msgstr ""
+
+#: ../../Modules/SpawnManager.cs:80
+#, csharp-format
+msgid "你已传送到出生点: {0}"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:37
+msgid "你已死亡，正在同步数据并返回特勤处..."
+msgstr ""
+
+#: ../../Modules/EvacuationManager.cs:59
+msgid "你已离开撤离点，撤离取消！"
+msgstr ""
+
+#: ../../Modules/GameManager.cs:141
+msgid "你未能撤离成功！已丢失所有装备物品！"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:29
+msgid "你选择了主动撤离，正在丢弃所有装备..."
+msgstr ""
+
+#: ../../Modules/EvacuationManager.cs:53
+#, csharp-format
+msgid "开始撤离... 请保持在撤离点范围内 {0} 秒"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:119
+msgid "当前没有可用的撤离点！"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:21
+#: ../../Commands/GameCommand.cs:87
+#: ../../Commands/GameCommand.cs:111
+msgid "当前没有进行中的游戏！"
+msgstr ""
+
+#: ../../Modules/EvacuationManager.cs:69
+#, csharp-format
+msgid "撤离倒计时: {0} 秒"
+msgstr ""
+
+#: ../../Modules/EvacuationManager.cs:124
+#, csharp-format
+msgid "撤离成功！你从 {0} 成功撤离！"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:51
+#, csharp-format
+msgid "数据同步可能失败: {0}，但仍将返回特勤处"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:46
+msgid "数据已同步！"
+msgstr ""
+
+#: ../../Handlers/GameStateHandler.cs:34
+msgid "游戏状态处理成功"
+msgstr ""
+
+#: ../../Modules/GameManager.cs:140
+msgid "游戏结束了！"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:76
+#, csharp-format
+msgid "离开游戏时发生错误: {0}"
+msgstr ""
+
+#: ../../Modules/EvacuationManager.cs:143
+msgid "装备保存可能失败，但仍将返回特勤处"
+msgstr ""
+
+#: ../../Modules/EvacuationManager.cs:156
+msgid "装备保存失败，但你可以返回特勤处"
+msgstr ""
+
+#: ../../Commands/GameCommand.cs:33
+msgid "装备已丢弃，正在同步数据..."
+msgstr ""
+
+#: ../../Modules/EvacuationManager.cs:138
+msgid "装备已保存，正在返回特勤处..."
+msgstr ""
+

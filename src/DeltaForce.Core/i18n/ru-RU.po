@@ -1,0 +1,588 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2026-04-11 07:29:59+0000\n"
+"PO-Revision-Date: 2026-04-12 02:23\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /master/src/DeltaForce.Core/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1642\n"
+"Language: ru_RU\n"
+
+#: ../../Commands/MarketCommand.cs:307
+#, csharp-format
+msgid "  ... 还有 {0} 件物品"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:370
+msgid "  /market balance - 查看哈夫币余额"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:374
+msgid "  /market buy <ID> - 购买物品"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:375
+msgid "  /market cancel <ID> - 取消自己上架的物品"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:371
+msgid "  /market list [页码] - 查看上架物品列表"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:376
+msgid "  /market my - 查看自己上架的物品"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:378
+msgid "  /market pay <玩家> <金额> - 转账哈夫币给其他玩家"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:377
+msgid "  /market search <关键词> - 搜索物品"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:372
+msgid "  /market sell <价格> [数量] - 上架手持物品到交易行"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:373
+msgid "  /market sellnpc [数量] - 直接出售手持物品给系统（根据配置价值）"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:273
+#, csharp-format
+msgid "  ID:{0} | {1}{2} x{3} | 价格: {4:N0} 哈夫币"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:54
+#: ../../Commands/MarketCommand.cs:302
+#, csharp-format
+msgid "  ID:{0} | {1}{2} x{3} | 价格: {4:N0} 哈夫币 | 卖家: {5}"
+msgstr ""
+
+#: ../../Commands/SquadMatchCommand.cs:16
+#, csharp-format
+msgid "[DeltaForce] {0} 加入了匹配队伍"
+msgstr ""
+
+#: ../../Commands/SquadMatchCommand.cs:23
+#, csharp-format
+msgid "[DeltaForce] {0} 离开了匹配队伍"
+msgstr ""
+
+#: ../../Modules/DeltaServer.cs:50
+#, csharp-format
+msgid "[DeltaServer] Client {0} Connected"
+msgstr ""
+
+#: ../../Modules/DeltaServer.cs:105
+#, csharp-format
+msgid "[DeltaServer] Client {0} Disconnected: {1}"
+msgstr ""
+
+#: ../../Modules/DeltaServer.cs:171
+#, csharp-format
+msgid "[DeltaServer] Client {0} not found for push"
+msgstr ""
+
+#: ../../Modules/DeltaServer.cs:133
+#, csharp-format
+msgid "[DeltaServer] Client registered: {0} ({1}), Session: {2}"
+msgstr ""
+
+#: ../../Modules/DeltaServer.cs:183
+#, csharp-format
+msgid "[DeltaServer] Failed to push to Client {0}: {1}"
+msgstr ""
+
+#: ../../Modules/DeltaServer.cs:178
+#, csharp-format
+msgid "[DeltaServer] Pushed {0} to Client {1}"
+msgstr ""
+
+#: ../../Modules/DeltaServer.cs:92
+#, csharp-format
+msgid "[DeltaServer] Received {0} from Client {1}"
+msgstr ""
+
+#: ../../Modules/DeltaServer.cs:99
+#, csharp-format
+msgid "[DeltaServer] Sent {0} to Client {1}"
+msgstr ""
+
+#: ../../Modules/DeltaServer.cs:192
+#, csharp-format
+msgid "[DeltaServer] Session {0} not found for push"
+msgstr ""
+
+#: ../../Modules/DeltaServer.cs:38
+#, csharp-format
+msgid "[DeltaServer] Started on port {0}"
+msgstr ""
+
+#: ../../Modules/DimensionsSender.cs:81
+#, csharp-format
+msgid "[DimensionsSender] 发送数据包失败: {0}"
+msgstr ""
+
+#: ../../Modules/DimensionsSender.cs:91
+#, csharp-format
+msgid "[DimensionsSender] 发送数据包异常: {0}"
+msgstr ""
+
+#: ../../Modules/DimensionsSender.cs:85
+#, csharp-format
+msgid "[DimensionsSender] 已发送切换指令到玩家 {0}: {1}:{2}"
+msgstr ""
+
+#: ../../Modules/DimensionsSender.cs:35
+#, csharp-format
+msgid "[DimensionsSender] 玩家 {0} 的Socket为空"
+msgstr ""
+
+#: ../../Modules/SquadMatchManager.cs:124
+#, csharp-format
+msgid "[SquadMatchManager] {0}"
+msgstr ""
+
+#: ../../Handlers/SaveInventoryHandler.cs:90
+#, csharp-format
+msgid "[三角洲Core] 保存玩家 {0} 背包数据失败: {1}"
+msgstr ""
+
+#: ../../Handlers/SaveInventoryHandler.cs:81
+#, csharp-format
+msgid "[三角洲Core] 已保存玩家 {0} 的背包数据"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:111
+#, csharp-format
+msgid "[三角洲SSC] 保存指定玩家数据失败: {0}"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:131
+#, csharp-format
+msgid "[三角洲SSC] 保存玩家数据失败: {0}"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:80
+#, csharp-format
+msgid "[三角洲SSC] 初始化玩家数据失败: {0}"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:94
+#, csharp-format
+msgid "[三角洲SSC] 删除玩家数据失败: {0}"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:150
+#, csharp-format
+msgid "[三角洲SSC] 加载玩家数据失败: {0}"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:66
+#, csharp-format
+msgid "[三角洲SSC] 同步玩家外观失败: {0}"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:32
+msgid "[三角洲SSC] 所有Hook已加载"
+msgstr ""
+
+#: ../../Modules/SSCHook.cs:162
+msgid "[三角洲SSC] 所有Hook已卸载"
+msgstr ""
+
+#: ../../Database/MarketplaceItem.cs:170
+#, csharp-format
+msgid "[三角洲交易行] {0} 取消了 {1} x{2} 的上架"
+msgstr ""
+
+#: ../../Database/MarketplaceItem.cs:147
+#, csharp-format
+msgid "[三角洲交易行] {0} 购买了 {1} 的 {2} x{3}，价格: {4} 哈夫币"
+msgstr ""
+
+#: ../../Database/MarketplaceItem.cs:109
+#, csharp-format
+msgid "[三角洲交易行] 上架物品时发生错误: {0}"
+msgstr ""
+
+#: ../../Database/MarketplaceItem.cs:175
+#, csharp-format
+msgid "[三角洲交易行] 取消上架 {0} 时发生错误: {1}"
+msgstr ""
+
+#: ../../Database/MarketplaceItem.cs:191
+#, csharp-format
+msgid "[三角洲交易行] 搜索物品时发生错误: {0}"
+msgstr ""
+
+#: ../../Database/MarketplaceItem.cs:55
+#, csharp-format
+msgid "[三角洲交易行] 获取上架物品时发生错误: {0}"
+msgstr ""
+
+#: ../../Database/MarketplaceItem.cs:83
+#, csharp-format
+msgid "[三角洲交易行] 获取物品 {0} 时发生错误: {1}"
+msgstr ""
+
+#: ../../Database/MarketplaceItem.cs:69
+#, csharp-format
+msgid "[三角洲交易行] 获取玩家 {0} 的上架物品时发生错误: {1}"
+msgstr ""
+
+#: ../../Database/MarketplaceItem.cs:152
+#, csharp-format
+msgid "[三角洲交易行] 购买物品 {0} 时发生错误: {1}"
+msgstr ""
+
+#: ../../Database/PlayerInventory.cs:196
+#, csharp-format
+msgid "[三角洲背包] 保存指定玩家数据时发生错误: {0}"
+msgstr ""
+
+#: ../../Database/PlayerInventory.cs:170
+#, csharp-format
+msgid "[三角洲背包] 保存玩家 {0} 数据时发生错误: {1}"
+msgstr ""
+
+#: ../../Database/PlayerInventory.cs:236
+#, csharp-format
+msgid "[三角洲背包] 初始化玩家数据时发生错误: {0}"
+msgstr ""
+
+#: ../../Database/PlayerInventory.cs:261
+#, csharp-format
+msgid "[三角洲背包] 删除玩家数据时发生错误: {0}"
+msgstr ""
+
+#: ../../Database/PlayerInventory.cs:320
+#, csharp-format
+msgid "[三角洲背包] 加载玩家 {0} 数据时发生错误: {1}"
+msgstr ""
+
+#: ../../Database/PlayerInventory.cs:232
+#, csharp-format
+msgid "[三角洲背包] 已初始化玩家 {0} 的空背包数据"
+msgstr ""
+
+#: ../../Database/PlayerInventory.cs:256
+#, csharp-format
+msgid "[三角洲背包] 已删除玩家 {0} 的背包数据"
+msgstr ""
+
+#: ../../Database/PlayerInventory.cs:295
+#, csharp-format
+msgid "[三角洲背包] 已更新玩家 {0} 的外观数据"
+msgstr ""
+
+#: ../../Database/PlayerInventory.cs:299
+#, csharp-format
+msgid "[三角洲背包] 更新玩家外观时发生错误: {0}"
+msgstr ""
+
+#: ../../Database/PlayerInventory.cs:142
+#, csharp-format
+msgid "[三角洲背包] 获取玩家 {0} 数据时发生错误: {1}"
+msgstr ""
+
+#: ../../Database/PlayerCurrency.cs:151
+#, csharp-format
+msgid "[三角洲货币] 初始化玩家 {0} 哈夫币时发生错误: {1}"
+msgstr ""
+
+#: ../../Database/PlayerCurrency.cs:147
+#, csharp-format
+msgid "[三角洲货币] 已初始化玩家 {0} 的哈夫币，初始金额: 1000"
+msgstr ""
+
+#: ../../Database/PlayerCurrency.cs:98
+#, csharp-format
+msgid "[三角洲货币] 扣除玩家 {0} 哈夫币时发生错误: {1}"
+msgstr ""
+
+#: ../../Database/PlayerCurrency.cs:73
+#, csharp-format
+msgid "[三角洲货币] 给玩家 {0} 添加哈夫币时发生错误: {1}"
+msgstr ""
+
+#: ../../Database/PlayerCurrency.cs:30
+#, csharp-format
+msgid "[三角洲货币] 获取玩家 {0} 哈夫币时发生错误: {1}"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:106
+#, csharp-format
+msgid "[交易行] {0} 上架了 {1} x{2}，价格: {3:N0} 哈夫币"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:158
+#, csharp-format
+msgid "[交易行] {0} 出售了 {1} x{2}，获得 {3} 哈夫币"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:207
+#, csharp-format
+msgid "[交易行] {0} 购买了 {1} 的 {2}"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:47
+#, csharp-format
+msgid "[交易行] 上架物品列表 (第 {0}/{1} 页，共 {2} 件)"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:269
+#, csharp-format
+msgid "[交易行] 你上架的物品 ({0} 件):"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:265
+msgid "[交易行] 你没有上架任何物品"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:205
+#, csharp-format
+msgid "[交易行] 你的 {0} x{1} 已被 {2} 购买，获得: {3:N0} 哈夫币"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:41
+msgid "[交易行] 当前没有上架的物品"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:105
+#, csharp-format
+msgid "[交易行] 成功上架 {0} x{1}，价格: {2:N0} 哈夫币"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:157
+#, csharp-format
+msgid "[交易行] 成功出售 {0} x{1}，获得 {2:N0} 哈夫币"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:248
+#, csharp-format
+msgid "[交易行] 成功取消上架 {0} x{1}"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:202
+#, csharp-format
+msgid "[交易行] 成功购买 {0}{1} x{2}，花费: {3:N0} 哈夫币"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:369
+msgid "[交易行] 指令列表:"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:298
+#, csharp-format
+msgid "[交易行] 搜索 \"{0}\" 的结果 ({1} 件):"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:294
+#, csharp-format
+msgid "[交易行] 没有找到包含 \"{0}\" 的物品"
+msgstr ""
+
+#: ../../Modules/SquadMatchManager.cs:92
+#, csharp-format
+msgid "[匹配倒计时] 还有 {0} 秒开始游戏！当前 {1} 个小队，共 {2} 名玩家"
+msgstr ""
+
+#: ../../Modules/SquadMatchManager.cs:100
+#, csharp-format
+msgid "[匹配提示] 还有 30 秒开始游戏！当前 {0} 个小队，共 {1} 名玩家"
+msgstr ""
+
+#: ../../Modules/SquadMatchManager.cs:106
+#, csharp-format
+msgid "[匹配提示] 还有 60 秒开始游戏！当前 {0} 个小队，共 {1} 名玩家"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:357
+#, csharp-format
+msgid "[哈夫币] {0} 转账 {1} 哈夫币给 {2}"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:20
+#, csharp-format
+msgid "[哈夫币] 你当前拥有 {0:N0} 哈夫币"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:355
+#, csharp-format
+msgid "[哈夫币] 你收到了来自 {0} 的 {1:N0} 哈夫币"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:352
+#, csharp-format
+msgid "[哈夫币] 成功转账 {0:N0} 哈夫币给 {1}"
+msgstr ""
+
+#: ../../Handlers/HeartbeatHandler.cs:15
+msgid "Heartbeat OK"
+msgstr ""
+
+#: ../../Handlers/PlayerInventoryHandler.cs:16
+#, csharp-format
+msgid "Player {0} not found"
+msgstr ""
+
+#: ../../Handlers/ItemListHandler.cs:21
+#: ../../Handlers/PlayerInventoryHandler.cs:19
+#: ../../Handlers/SquadDataHandler.cs:32
+msgid "Success"
+msgstr ""
+
+#: ../../Modules/SquadMatchManager.cs:32
+msgid "You are already in a squad."
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:110
+msgid "上架失败，请稍后重试！"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:73
+msgid "价格必须是正整数！"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:332
+msgid "你不能给自己转账！"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:188
+msgid "你不能购买自己上架的物品！使用 /market cancel <ID> 取消上架。"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:237
+msgid "你只能取消自己上架的物品！"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:86
+msgid "你必须手持一个物品才能上架！"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:129
+msgid "你必须手持一个物品才能出售！"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:48
+msgid "使用 /market buy <ID> 购买物品"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:175
+msgid "使用 /market list 查看物品ID"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:224
+msgid "使用 /market my 查看你上架的物品ID"
+msgstr ""
+
+#: ../../Handlers/SaveInventoryHandler.cs:91
+#, csharp-format
+msgid "保存失败: {0}"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:162
+msgid "出售失败，请稍后重试！"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:404
+#, csharp-format
+msgid "前缀{0}"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:252
+msgid "取消上架失败，请稍后重试！"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:195
+#: ../../Commands/MarketCommand.cs:346
+#, csharp-format
+msgid "哈夫币不足！需要: {0:N0}，你拥有: {1:N0}"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:67
+msgid "将手持物品上架到交易行"
+msgstr ""
+
+#: ../../Modules/SquadMatchManager.cs:46
+#, csharp-format
+msgid "已进入匹配队列！当前 {0} 个小队，共 {1} 名玩家正在匹配..."
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:92
+#: ../../Commands/MarketCommand.cs:135
+#, csharp-format
+msgid "手持物品数量不足！当前: {0}，需要: {1}"
+msgstr ""
+
+#: ../../Modules/SquadMatchManager.cs:71
+msgid "没有足够的玩家匹配，无法进入对局，匹配结束！"
+msgstr ""
+
+#: ../../Handlers/SaveInventoryHandler.cs:20
+#, csharp-format
+msgid "玩家 {0} 不存在"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:339
+#, csharp-format
+msgid "玩家 {0} 不存在！"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:174
+msgid "用法: /market buy <物品ID>"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:223
+msgid "用法: /market cancel <物品ID>"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:319
+msgid "用法: /market pay <玩家名> <金额>"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:285
+msgid "用法: /market search <关键词>"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:66
+msgid "用法: /market sell <价格> [数量]"
+msgstr ""
+
+#: ../../Handlers/SaveInventoryHandler.cs:83
+msgid "背包数据保存成功"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:182
+#: ../../Commands/MarketCommand.cs:231
+msgid "该物品不存在或已被购买！"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:142
+msgid "该物品无法出售给系统！"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:211
+msgid "购买失败！可能是哈夫币不足或物品已被购买。"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:361
+msgid "转账失败！请检查哈夫币余额。"
+msgstr ""
+
+#: ../../Commands/MarketCommand.cs:326
+msgid "金额必须是正整数！"
+msgstr ""
+

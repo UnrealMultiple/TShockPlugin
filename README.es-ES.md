@@ -97,14 +97,15 @@
 | [CNPCShop](./src/CNPCShop/README.md) | 0.0% | Tienda personalizada de NPC |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | 0.0% | Ejecutar sentencias SQL en la consola |  |
 | [ConvertWorld](./src/ConvertWorld/README.md) | 0.0% | Convertir objetos del mundo al derrotar monstruos |  |
+| [CreateSpawn](./src/CreateSpawn/README.md) | 0.0% | Generación de puntos de aparición |  |
 | [CriticalHit](./src/CriticalHit/README.md) | 0.0% | Indicación de golpe crítico |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Permite el juego multiplataforma |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 0.0% | Determinar la bolsa de tesoro caída basada en la relación de daño y transferir el cálculo de daño |  |
 | [DamageStatistic](./src/DamageStatistic/README.md) | 50.0% | Mostrar el daño causado por cada jugador después de cada pelea de jefe |  |
 | [DataSync](./src/DataSync/README.md) | 0.0% | Sincronización de progreso |  |
 | [DeathDrop](./src/DeathDrop/README.md) | 100.0% | Botín aleatorio y personalizado al morir un monstruo |  |
-| [DeltaForce.Core](./src/DeltaForce.Core/README.md) | 0.0% | 三角洲行动玩法插件的特勤处 |  |
-| [DeltaForce.Game](./src/DeltaForce.Game/README.md) | 0.0% | 三角洲行动玩法游戏插件 |  |
+| [DeltaForce.Core](./src/DeltaForce.Core/README.md) | 0.0% | 三角洲行动玩法插件的特勤处 | [LazyAPI](./src/LazyAPI/README.md) [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) [linq2db]() |
+| [DeltaForce.Game](./src/DeltaForce.Game/README.md) | 0.0% | 三角洲行动玩法游戏插件 | [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) [LazyAPI](./src/LazyAPI/README.md) |
 | [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) | 0.0% | 三角洲行动的通信协议库 |  |
 | [DisableMonsLoot](./src/DisableMonsLoot/README.md) | 11.1% | Prohibir el botín de monstruos |  |
 | [DonotFuck](./src/DonotFuck/README.md) | 15.0% | Prevenir groserías | [LazyAPI](./src/LazyAPI/README.md) |
