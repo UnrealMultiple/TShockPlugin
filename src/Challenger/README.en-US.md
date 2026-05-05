@@ -43,6 +43,7 @@ Melee weapon damage is doubled when Paladin Shield or its superior compound is e
 - Magic Quiver: Gives a permanent buff and enables unlimited ammunition
 
 - [Current problem]: The damage caused by the added effect will not be counted as caused by the player, but monsters can still be killed.
+- Added version 1.4.5 whip adaptation for Challenger
 
 
 
