@@ -31,7 +31,7 @@ public class Challenger : TerrariaPlugin
     public override string Description => GetString("增强游戏难度，更好的游戏体验");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new (1, 1, 8);
+    public override Version Version => new(1, 1, 9);
 
     public Challenger(Main game)
         : base(game)
@@ -1777,13 +1777,21 @@ public class Challenger : TerrariaPlugin
             case 913:
             case 914:
             case 952:
-                this.TikiArmorEffect(null, args);
-                this.SpookyArmorEffect(args);
-                break;
+            case 1028:  // 蛛网鞭
+            case 1029:  // 魂笞
+            case 1030:  // 脉管
+            case 1031:  // 星坠
+            case 1032:  // 花儿的粗暴展示
+            case 1033:  // 电鳗
+            case 1034:  // 星座
+            case 1035:  // 支配之鞭
+            case 1104:  // 史莱姆鞭
             case 847:
             case 848:
             case 849:
             case 915:
+                this.TikiArmorEffect(null, args);
+                this.SpookyArmorEffect(args);
                 this.TikiArmorEffect(null, args, 1);
                 this.SpookyArmorEffect(args, 1);
                 break;
