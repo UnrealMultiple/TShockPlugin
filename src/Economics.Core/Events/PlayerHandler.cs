@@ -11,18 +11,6 @@ public class PlayerHandler
 
     public static event EventCallBack<PlayerCountertopArgs>? OnPlayerCountertop;
 
-    public static event EventCallBack<PlayerCurrencyUpdateArgs>? OnPlayerCurrencyUpdate;
-
-    internal static bool PlayerCurrencyUpdate(PlayerCurrencyUpdateArgs args)
-    {
-        if (OnPlayerCurrencyUpdate != null)
-        {
-            OnPlayerCurrencyUpdate(args);
-            return args.Handler;
-        }
-        return false;
-    }
-
     internal static bool PlayerKillNpc(PlayerKillNpcArgs args)
     {
         if (OnPlayerKillNpc != null)
