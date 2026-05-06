@@ -1,4 +1,4 @@
-﻿using CaiBotLite.Enums;
+using CaiBotLite.Enums;
 using Economics.RPG;
 using Economics.Skill;
 using System.Runtime.CompilerServices;
@@ -62,7 +62,7 @@ public static class EconomicSupport
         get
         {
             ThrowIfNotSupported();
-            return Economics.Core.ConfigFiles.Setting.Instance.CustomizeCurrencys
+            return Economics.Core.ConfigFiles.Setting.Instance.Currencies
                 .Select(x => x.Name)
                 .ToList();
         }
@@ -72,7 +72,7 @@ public static class EconomicSupport
     {
         ThrowIfNotSupported();
         return new Rank($"{type}排行",
-            Economics.Core.Economics.CurrencyManager.GetCurrencies()
+            Economics.Core.Economics.CurrencyService.GetAllCurrencyRecords()
                 .Where(c => c.CurrencyType == type)
                 .OrderByDescending(c => c.Number)
                 .ToDictionary(x => x.PlayerName, x => x.Number + x.CurrencyType));
@@ -80,7 +80,12 @@ public static class EconomicSupport
 
     private static string GetNewCoins(string name)
     {
-        return string.Join('\n', Economics.Core.ConfigFiles.Setting.Instance.CustomizeCurrencys.Select(x => Economics.Core.Economics.CurrencyManager.GetUserCurrency(name, x.Name)).Select(static x => $"{x.CurrencyType}x{x.Number}"));
+        return string.Join('\n', Economics.Core.ConfigFiles.Setting.Instance.Currencies.Select(x =>
+        {
+            var balanceResult = Economics.Core.Economics.CurrencyService.GetBalance(name, x.Name);
+            var balance = balanceResult.IsSuccess ? balanceResult.Value : 0;
+            return $"{x.Name}x{balance}";
+        }));
     }
 
     public static string GetLevelName(string name)

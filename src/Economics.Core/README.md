@@ -99,17 +99,20 @@
 
 ## 指令
 
-| 语法                            |            权限            |         说明         |
-|-------------------------------|:------------------------:|:------------------:|
-| /bank add <玩家名称> <数量> <货币>    |      economics.bank      |        增加货币        |
-| /bank deduct <玩家名称> <数量> <货币> |      economics.bank      |        扣除货币        |
-| /bank pay <玩家名称> <数量> <货币>    |    economics.bank.pay    |        转账货币        |
-| /bank query [玩家名称]            |   economics.bank.query   |        查询货币        |
-| /bank clear <玩家名称>            |      economics.bank      |        清除货币        |
-| /bank reset                   |      economics.bank      |       全局重置货币       |
-| /bank cash <目标货币> <数量>        |   economics.bank.cash    |        转换货币        |
-| /bank lb <目标货币> <条目数量>        |   economics.bank.query   |      查看货币排行榜       |
-| /查询                           | economics.currency.query | 查询货币(废弃, 将在未来版本移除) |
+| 语法                                       |            权限            |         说明         |
+|------------------------------------------|:------------------------:|:------------------:|
+| /bank add <玩家名称> <数量> <货币>             |      economics.bank      |        增加货币        |
+| /bank deduct <玩家名称> <数量> <货币>          |      economics.bank      |        扣除货币        |
+| /bank pay <玩家名称> <数量> <货币>             |    economics.bank.pay    |        转账货币        |
+| /bank query [玩家名称]                       |   economics.bank.query   |        查询货币        |
+| /bank clear <玩家名称>                       |      economics.bank      |        清除货币        |
+| /bank reset                              |      economics.bank      |       全局重置货币       |
+| /bank exchange <源货币> <目标货币> <数量>      |   economics.bank.cash    |        兑换货币        |
+| /bank preview <源货币> <目标货币> <数量>       |   economics.bank.cash    |       预览兑换结果       |
+| /bank rates [货币]                         |   economics.bank.query   |       查看汇率关系       |
+| /bank cycles                             |   economics.bank.admin   |      查看兑换循环检测      |
+| /bank lb <货币> <数量>                       |   economics.bank.query   |      查看货币排行榜       |
+| /查询                                      | economics.currency.query | 查询货币(废弃, 将在未来版本移除) |
 
 ## 配置
 > 配置文件位置：tshock/Economics/Economics.json
@@ -142,38 +145,93 @@
   "货币配置": [
     {
       "查询提示": "[c/FFA500: 当前拥有{0}{1}个]",
-      "货币名称": "魂力",
-      "兑换关系": [   //使用/bank cash 指令兑换货币
-       {
-          "数量": 0, //兑换此货币需要目标货币数量
-          "货币类型": "魂力" //目标货币
-        }
-      ],
+      "货币名称": "金币",
+      "货币描述": "基础货币，通过击杀怪物获得",
+      // 可兑换为: 配置此货币可以兑换成哪些其他货币
+      // 例如: "银币": 100 表示 1金币 = 100银币
+      "可兑换为": {
+        "银币": 100,
+        "铜币": 10000
+      },
       "获取关系": {
-        "获取方式": 0, //0 无法获取 1击杀怪物获取 2挖矿获取
+        "获取方式": 1, // 0: 无法获取 1: 击杀怪物获取 2: 挖掘图格获取
         "给予数量": 0,
-        "比例": 1.0,
-        "指定ID":[50] //图格或npcid
+        "比例": 0.5,  // 每点伤害获得0.5个货币
+        "指定ID": []  // 指定的NPC或图格ID，空数组表示所有
       },
       "死亡掉落": {
         "启用": false,
         "掉落比例": 0.1
       },
       "悬浮文本": {
-        "启用": false,
+        "启用": true,
         "提示文本": "+{0}$",
-        "Color": [
-          255,
-          255,
-          255
-        ]
+        "Color": [255, 255, 255]
+      }
+    },
+    {
+      "查询提示": "[c/C0C0C0: 银币: {1}]",
+      "货币名称": "银币",
+      "货币描述": "次级货币，可由金币兑换",
+      "可兑换为": {
+        "铜币": 100
+      },
+      "获取关系": {
+        "获取方式": 0  // 无法通过游戏行为获取，只能兑换
+      }
+    },
+    {
+      "查询提示": "[c/B87333: 铜币: {1}]",
+      "货币名称": "铜币",
+      "货币描述": "最低级货币，无法继续兑换",
+      "可兑换为": {},  // 空对象表示无法兑换为其他货币
+      "获取关系": {
+        "获取方式": 0
       }
     }
   ]
 }
 ```
 
+## 其他插件API调用示例
+
+```csharp
+// 查询余额
+var balanceResult = Core.Economics.CurrencyService.GetBalance("玩家名", "金币");
+if (balanceResult.IsSuccess)
+{
+    long balance = balanceResult.Value;
+}
+
+// 增加货币
+Core.Economics.CurrencyService.AddCurrency("玩家名", "金币", 100);
+
+// 扣除货币（带结果检查）
+var result = Core.Economics.CurrencyService.DeductCurrency("玩家名", "金币", 50);
+if (result.IsSuccess) { /* 成功 */ }
+
+// 兑换货币
+var exchangeResult = Core.Economics.ExchangeService.ExecuteExchange(
+    "玩家名", "金币", "钻石", 10);
+
+// 重置所有货币
+var resetResult = Core.Economics.CurrencyService.ResetAllCurrencies();
+```
+
 ## 更新日志
+
+### v3.0.0.0
+- **重大架构重构**: 重新设计货币系统，提供更清晰的 API 接口
+- **新增货币兑换系统**: 支持任意货币之间的兑换，自动检测并阻止套利循环
+- **新增服务层**: 引入 `ICurrencyService` 和 `IExchangeService` 接口，便于其他插件调用
+- **新增兑换命令**:
+  - `/bank exchange <源货币> <目标货币> <数量>` - 执行货币兑换
+  - `/bank preview <源货币> <目标货币> <数量>` - 预览兑换结果
+  - `/bank rates [货币]` - 查看汇率关系
+  - `/bank cycles` - 查看检测到的兑换循环
+- **移除废弃 API**: `CurrencyManager` 不再对外暴露，请使用 `Economics.CurrencyService`
+- **配置变更**: `CustomizeCurrencys` 更名为 `Currencies`，配置结构更加清晰
+- **代码优化**: 精简 CurrencyManager，统一使用 PlayerCurrencyInfo 模型
 
 ### v2.1.0.0
 - 修复按输出瓜分的货币奖励在击杀 Boss 时拿不到满额的问题：此前受最后一击伤害丢失、武器伤害与实际扣血不一致、以及中毒 / 灼烧等持续伤害未被统计等因素影响，实际到账常少于配置值；现在 solo 击杀能稳定拿到完整奖励，多人击杀按各自对 Boss 造成的伤害占比瓜分

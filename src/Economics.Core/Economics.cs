@@ -4,6 +4,7 @@ using Economics.Core.EventArgs.PlayerEventArgs;
 using Economics.Core.Events;
 using Economics.Core.Extensions;
 using Economics.Core.Model;
+using Economics.Core.Services;
 using Economics.Core.Utility;
 using Economics.Core.Utils;
 using Microsoft.Xna.Framework;
@@ -13,7 +14,6 @@ using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Economics.Core;
 
@@ -25,7 +25,7 @@ public class Economics : TerrariaPlugin
     public override string Description => GetString("提供经济系统API");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 1, 0, 0);
+    public override Version Version => new Version(3, 0, 0, 0);
 
     public readonly static List<TSPlayer> ServerPlayers = [];
 
@@ -34,7 +34,8 @@ public class Economics : TerrariaPlugin
     public static string SaveDirPath => Path.Combine(TShock.SavePath, "Economics");
 
     #nullable disable
-    public static CurrencyManager CurrencyManager { get; private set; }
+    public static ICurrencyService CurrencyService { get; private set; }
+    public static IExchangeService ExchangeService { get; private set; }
     #nullable enable
 
     private long TimerCount;
@@ -76,7 +77,7 @@ public class Economics : TerrariaPlugin
         {
             return;
         }
-        foreach (var currency in Setting.Instance.CustomizeCurrencys)
+        foreach (var currency in Setting.Instance.Currencies)
         {
             if (currency.CurrencyObtain.CurrencyObtainType != Enumerates.CurrencyObtainType.KillTiile)
             {
@@ -87,7 +88,7 @@ public class Economics : TerrariaPlugin
                 continue;
             }
             var num = Convert.ToInt64(currency.CurrencyObtain.GiveCurrency * currency.CurrencyObtain.ConversionRate);
-            CurrencyManager.AddUserCurrency(e.Player.Name, num, currency.Name);
+            CurrencyService.AddCurrency(e.Player.Name, currency.Name, num);
             if (currency.CombatMsgOption.Enable)
             {
                 e.Player.SendCombatMsg(currency.CombatMsgOption.CombatMsg, new Color(currency.CombatMsgOption.Color[0], currency.CombatMsgOption.Color[1], currency.CombatMsgOption.Color[2]));
@@ -98,7 +99,10 @@ public class Economics : TerrariaPlugin
     public override void Initialize()
     {
         Setting.Load();
-        CurrencyManager = new CurrencyManager();
+        var currencyManager = new CurrencyManager();
+        CurrencyService = new CurrencyService(currencyManager);
+        ExchangeService = new ExchangeService(CurrencyService);
+
         Helper.InitCommand();
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreet);
         ServerApi.Hooks.NetGetData.Register(this, this.OnGetData);
@@ -113,7 +117,7 @@ public class Economics : TerrariaPlugin
 
     private void PlayerHandler_OnPlayerCountertop(PlayerCountertopArgs args)
     {
-        var playerCurrencys = CurrencyManager.GetPlayerCurrencies(args.Player!.Name);
+        var playerCurrencys = CurrencyService.GetPlayerCurrencyRecords(args.Player!.Name);
         args.Messages.Add(new(GetString($"当前延迟: {args.Ping.GetPing():F1}ms"), 7));
         args.Messages.Add(new(GetString($"玩家名称: {args.Player!.Name}"), 1));
         args.Messages.Add(new(GetString($"货币数量: {string.Join(", ", playerCurrencys.Take(5).Select(c => c.ToString()))}{(playerCurrencys.Length > 5 ? "..." : string.Empty)}"), 3));
@@ -125,12 +129,14 @@ public class Economics : TerrariaPlugin
 
     private void OnKillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
     {
-        foreach (var currency in Setting.Instance.CustomizeCurrencys)
+        foreach (var currency in Setting.Instance.Currencies)
         {
             if (currency.DeathFallOption.Enable)
             {
-                var drop = CurrencyManager.GetUserCurrency(e.Player.Name, currency.Name).Number * currency.DeathFallOption.DropRate;
-                CurrencyManager.DeductUserCurrency(e.Player.Name, Convert.ToInt64(drop), currency.Name);
+                var balanceResult = CurrencyService.GetBalance(e.Player.Name, currency.Name);
+                var balance = balanceResult.IsSuccess ? balanceResult.Value : 0;
+                var drop = balance * currency.DeathFallOption.DropRate;
+                CurrencyService.DeductCurrency(e.Player.Name, currency.Name, Convert.ToInt64(drop));
                 e.Player.SendErrorMessage(GetString($"你因死亡掉落{drop:F0}个{currency.Name}!"));
             }
         }
@@ -175,7 +181,7 @@ public class Economics : TerrariaPlugin
         }
         if (this.TimerCount % (60 * Setting.Instance.SaveTime) == 0)
         {
-            CurrencyManager.UpdataAll();
+            // 数据保存由 CurrencyManager 内部处理，无需显式调用
             foreach (var (npc, _) in this.Strike.Where(x => x.Key == null || !x.Key.active).ToList())
             {
                 this.Strike.Remove(npc, out var _);
@@ -291,7 +297,7 @@ public class Economics : TerrariaPlugin
             {
                 continue;
             }
-            foreach (var currency in Setting.Instance.CustomizeCurrencys)
+            foreach (var currency in Setting.Instance.Currencies)
             {
                 if (currency.CurrencyObtain.CurrencyObtainType != Enumerates.CurrencyObtainType.KillNpc)
                 {
@@ -302,7 +308,7 @@ public class Economics : TerrariaPlugin
                     continue;
                 }
                 var num = Convert.ToInt64(damage * currency.CurrencyObtain.ConversionRate);
-                CurrencyManager.AddUserCurrency(player.name, num, currency.Name);
+                CurrencyService.AddCurrency(player.name, currency.Name, num);
                 if (currency.CombatMsgOption.Enable)
                 {
                     player.SendCombatMsg(string.Format(currency.CombatMsgOption.CombatMsg, num), new Color(currency.CombatMsgOption.Color[0], currency.CombatMsgOption.Color[1], currency.CombatMsgOption.Color[2]));

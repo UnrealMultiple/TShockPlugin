@@ -1,4 +1,5 @@
-﻿using Economics.Core.Command;
+using Economics.Core;
+using Economics.Core.Command;
 using Economics.Core.ConfigFiles;
 using Microsoft.Xna.Framework;
 using TShockAPI;
@@ -127,7 +128,7 @@ public class Command : BaseCommand
             args.Player.SendErrorMessage(GetString("请输入一个正确的价格!"));
             return;
         }
-        if (!Core.ConfigFiles.Setting.Instance.HasCustomizeCurrency(args.Parameters[2]))
+        if (!Core.ConfigFiles.Setting.Instance.HasCurrency(args.Parameters[2]))
         {
             args.Player.SendErrorMessage(GetString($"货币类型{args.Parameters[2]}不存在!"));
             return;
@@ -155,12 +156,13 @@ public class Command : BaseCommand
             args.Player.SendErrorMessage(GetString("不存在此交易!"));
             return;
         }
-        if (!Core.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, context.RedemptionRelationships))
+        var deductResult = Core.Economics.CurrencyService.DeductCurrency(args.Player.Name, context.RedemptionRelationships.CurrencyType, context.RedemptionRelationships.Number);
+        if (deductResult.IsFailure)
         {
             args.Player.SendErrorMessage(GetString($"你的{context.RedemptionRelationships.CurrencyType}不足，无法购买!"));
             return;
         }
-        Core.Economics.CurrencyManager.AddUserCurrency(context.Publisher, context.RedemptionRelationships);
+        Core.Economics.CurrencyService.AddCurrency(context.Publisher, context.RedemptionRelationships.CurrencyType, context.RedemptionRelationships.Number);
         args.Player.GiveItem(context.Item.netID, context.Item.Stack, context.Item.Prefix);
         args.Player.SendSuccessMessage(GetString("交易成功!"));
         TShock.Utils.Broadcast(string.Format(GetString("玩家{0}购买了{1}发布的物品{2}!"), args.Player.Name, context.Publisher, context.Item.ToString()), Color.OrangeRed);

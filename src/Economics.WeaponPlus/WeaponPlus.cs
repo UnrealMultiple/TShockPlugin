@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Economics.Core;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -20,7 +21,7 @@ public class WeaponPlus : TerrariaPlugin
 
     public override string Description => GetString("允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes");
 
-    public override Version Version => new Version(2, 0, 0, 7);
+    public override Version Version => new Version(3, 0, 0, 0);
     #endregion
 
     #region 实例变量
@@ -175,7 +176,7 @@ public class WeaponPlus : TerrariaPlugin
                     return;
                 }
                 var num = (long) (select.allCost * config.ResetTheWeaponReturnMultiple);
-                Core.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num, config.Currency);
+                Core.Economics.CurrencyService.AddCurrency(args.Player.Name, config.Currency, num);
                 wPlayer.hasItems.RemoveAll((x) => x.id == firstItem!.type);
                 DB.DeleteDB(args.Player.Name, firstItem!.type);
                 ReplaceWeaponsInBackpack(args.Player.TPlayer, select, 1);
@@ -573,10 +574,13 @@ public class WeaponPlus : TerrariaPlugin
             TShock.Players[whoAMI].SendMessage(GetString("当前该类型升级已达到上限，无法升级"), Color.Red);
             return false;
         }
-        if (Core.Economics.CurrencyManager.DeductUserCurrency(name, price, config.Currency))
+        var deductResult = Core.Economics.CurrencyService.DeductCurrency(name, config.Currency, price);
+        if (deductResult.IsSuccess)
         {
             WItem.allCost += price;
-            TShock.Players[whoAMI].SendMessage(GetString($"扣除{config.Currency}：{price}，当前剩余：{Core.Economics.CurrencyManager.GetUserCurrency(name, config.Currency).Number}"), new Color(99, 106, 255));
+            var balanceResult = Core.Economics.CurrencyService.GetBalance(name, config.Currency);
+            var balance = balanceResult.IsSuccess ? balanceResult.Value : 0;
+            TShock.Players[whoAMI].SendMessage(GetString($"扣除{config.Currency}：{price}，当前剩余：{balance}"), new Color(99, 106, 255));
             return true;
         }
         TShock.Players[whoAMI].SendInfoMessage(GetString($"{config.Currency}不足！"));

@@ -1,4 +1,5 @@
-﻿using Economics.RPG.Extensions;
+using Economics.Core;
+using Economics.RPG.Extensions;
 using Economics.Core.Extensions;
 using TShockAPI;
 using Economics.Core.Command;
@@ -84,9 +85,10 @@ public class Command : BaseCommand
             args.Player.SendErrorMessage(GetString($"请满足物品条件: {string.Join(",", product.ItemTerm.Select(x => x.ToString()))}"));
             return;
         }
-        if (!Core.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, product.RedemptionRelationshipsOption, count))
+        var deductResult = Core.Economics.CurrencyService.DeductMultipleCurrencies(args.Player.Name, product.RedemptionRelationshipsOption, count);
+        if (deductResult.IsFailure)
         {
-            args.Player.SendErrorMessage(GetString($"你的货币不足!"));
+            args.Player.SendErrorMessage(GetString($"你的货币不足: {deductResult.Error}"));
             return;
         }
         for (var i = 0; i < count; i++)

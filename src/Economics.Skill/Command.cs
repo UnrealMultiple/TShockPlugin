@@ -1,4 +1,5 @@
-﻿using Economics.Core.Command;
+﻿using Economics.Core;
+using Economics.Core.Command;
 using Economics.Skill.Model;
 using Economics.Skill.Setting;
 using TShockAPI;
@@ -28,9 +29,10 @@ public class Command : BaseCommand
         try
         {
             var skill = Utils.VerifyBindSkill(args.Player, index);
-            if (!Core.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, skill.RedemptionRelationshipsOption))
+            var deductResult = Core.Economics.CurrencyService.DeductMultipleCurrencies(args.Player.Name, skill.RedemptionRelationshipsOption);
+            if (deductResult.IsFailure)
             {
-                args.Player.SendErrorMessage(GetString($"你的货币不足购买此技能!"));
+                args.Player.SendErrorMessage(GetString($"你的货币不足购买此技能: {deductResult.Error}"));
                 return;
             }
             Skill.PlayerSKillManager.Add(args.Player.Name, args.Player.SelectedItem.type, index, 1);
@@ -200,9 +202,10 @@ public class Command : BaseCommand
         }
         if(skill.SkillLevelOptions.TryGetValue(playerSkills.Level + 1, out var nextLevelCost) && nextLevelCost != null)
         {
-            if (!Core.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, nextLevelCost))
+            var deductResult = Core.Economics.CurrencyService.DeductMultipleCurrencies(args.Player.Name, nextLevelCost);
+            if (deductResult.IsFailure)
             {
-                args.Player.SendErrorMessage(GetString("你的货币不足以升级此技能!"));
+                args.Player.SendErrorMessage(GetString($"你的货币不足以升级此技能: {deductResult.Error}"));
                 return;
             }
             Skill.PlayerSKillManager.UpdateLevel(playerSkills);

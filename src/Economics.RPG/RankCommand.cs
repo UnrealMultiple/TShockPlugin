@@ -1,4 +1,5 @@
-﻿using Economics.Core.Attributes;
+using Economics.Core;
+using Economics.Core.Attributes;
 using Economics.Core.Command;
 using Economics.Core.Extensions;
 using Microsoft.Xna.Framework;
@@ -51,7 +52,8 @@ public class RankCommand : BaseCommand
                     args.Player.SendErrorMessage(GetString($"必须满足进度限制:{string.Join(",", ranklevel.Limit)}"));
                     return;
                 }
-                if (Core.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, ranklevel.RedemptionRelationshipsOption))
+                var deductResult = Core.Economics.CurrencyService.DeductMultipleCurrencies(args.Player.Name, ranklevel.RedemptionRelationshipsOption);
+                if (deductResult.IsSuccess)
                 {
                     args.Player.SendSuccessMessage(GetString($"成功升级至 {ranklevel.Name}!"));
                     TShock.Utils.Broadcast(string.Format(ranklevel.RankBroadcast, args.Player.Name, ranklevel.Name), Color.Green);
@@ -61,7 +63,7 @@ public class RankCommand : BaseCommand
                 }
                 else
                 {
-                    args.Player.SendErrorMessage(GetString($"升级所需 ({string.Join(" ", ranklevel.RedemptionRelationshipsOption.Select(x => $"{x.CurrencyType}x{x.Number}"))})"));
+                    args.Player.SendErrorMessage(GetString($"升级所需 ({string.Join(" ", ranklevel.RedemptionRelationshipsOption.Select(x => $"{x.CurrencyType}x{x.Number}"))}): {deductResult.Error}"));
                 }
             }
             else
@@ -86,7 +88,8 @@ public class RankCommand : BaseCommand
                 args.Player.SendErrorMessage(GetString($"必须满足进度限制:{string.Join(",", ranklevel.Limit)}"));
                 return;
             }
-            if (Core.Economics.CurrencyManager.DeductUserCurrency(args.Player.Name, ranklevel.RedemptionRelationshipsOption))
+            var deductResult = Core.Economics.CurrencyService.DeductMultipleCurrencies(args.Player.Name, ranklevel.RedemptionRelationshipsOption);
+            if (deductResult.IsSuccess)
             {
                 args.Player.SendSuccessMessage(GetString($"成功升级至 {ranklevel.Name}!"));
                 TShock.Utils.Broadcast(string.Format(ranklevel.RankBroadcast, args.Player.Name, ranklevel.Name), Color.Green);
@@ -96,7 +99,7 @@ public class RankCommand : BaseCommand
             }
             else
             {
-                args.Player.SendErrorMessage(GetString($"升级所需 {string.Join(" ", ranklevel.RedemptionRelationshipsOption.Select(x => $"{x.CurrencyType}x{x.Number}"))}"));
+                args.Player.SendErrorMessage(GetString($"升级所需 {string.Join(" ", ranklevel.RedemptionRelationshipsOption.Select(x => $"{x.CurrencyType}x{x.Number}"))}: {deductResult.Error}"));
             }
         }
         else
