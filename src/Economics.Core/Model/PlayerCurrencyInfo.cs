@@ -5,6 +5,7 @@ public class PlayerCurrencyInfo
     public long Number { get; set; }
     public string CurrencyType { get; set; } = "";
     public string PlayerName { get; set; } = "";
+    public int Id { get; internal set; }
 
     public override string ToString()
     {

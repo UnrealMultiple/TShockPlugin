@@ -26,4 +26,8 @@ public interface ICurrencyService
     Result AddMultipleCurrencies(string playerName, IEnumerable<RedemptionRelationshipsOption> options, long multiplier = 1);
 
     Result ResetAllCurrencies();
+
+    Result SaveAllCurrencies();
+
+    Result SavePlayerCurrencies(string playerName);
 }

@@ -20,8 +20,8 @@ internal class CurrencyService(CurrencyManager currencyManager) : ICurrencyServi
             return Result.Failure<long>(GetString("货币名称不能为空"));
         }
 
-        var currency = this._currencyManager.GetUserCurrency(playerName, currencyName);
-        return Result.Success(currency.Number);
+        var balance = this._currencyManager.GetBalance(playerName, currencyName);
+        return Result.Success(balance);
     }
 
     public Result<Dictionary<string, long>> GetAllBalances(string playerName)
@@ -45,7 +45,7 @@ internal class CurrencyService(CurrencyManager currencyManager) : ICurrencyServi
             return validation;
         }
 
-        this._currencyManager.AddUserCurrency(playerName, amount, currencyName);
+        this._currencyManager.AddCurrency(playerName, amount, currencyName);
         return Result.Success();
     }
 
@@ -57,11 +57,16 @@ internal class CurrencyService(CurrencyManager currencyManager) : ICurrencyServi
             return validation;
         }
 
-        var success = this._currencyManager.DeductUserCurrency(playerName, amount, currencyName);
+        var currentBalance = this._currencyManager.GetBalance(playerName, currencyName);
+        if (currentBalance < amount)
+        {
+            return Result.Failure(GetString($"余额不足: 需要 {amount}, 拥有 {currentBalance}"));
+        }
+
+        var success = this._currencyManager.DeductCurrency(playerName, amount, currencyName);
         if (!success)
         {
-            var currentBalance = this._currencyManager.GetUserCurrency(playerName, currencyName).Number;
-            return Result.Failure(GetString($"余额不足: 需要 {amount}, 拥有 {currentBalance}"));
+            return Result.Failure(GetString("扣除货币失败"));
         }
 
         return Result.Success();
@@ -95,7 +100,7 @@ internal class CurrencyService(CurrencyManager currencyManager) : ICurrencyServi
         {
             return Result.Failure(GetString($"转账失败: {deductResult.Error}"));
         }
-        this._currencyManager.AddUserCurrency(toPlayer, amount, currencyName);
+        this._currencyManager.AddCurrency(toPlayer, amount, currencyName);
         return Result.Success();
     }
 
@@ -106,17 +111,14 @@ internal class CurrencyService(CurrencyManager currencyManager) : ICurrencyServi
             return Result.Failure(GetString("玩家名称不能为空"));
         }
 
-        foreach (var currency in Setting.Instance.Currencies)
-        {
-            this._currencyManager.ClearUserCurrency(playerName, currency.Name);
-        }
+        this._currencyManager.ClearAllCurrencies(playerName);
 
         return Result.Success();
     }
 
     public List<PlayerCurrencyInfo> GetAllCurrencyRecords()
     {
-        return this._currencyManager.GetCurrencies();
+        return [.. this._currencyManager.GetAllCurrencies()];
     }
 
     public PlayerCurrencyInfo[] GetPlayerCurrencyRecords(string playerName)
@@ -175,7 +177,9 @@ internal class CurrencyService(CurrencyManager currencyManager) : ICurrencyServi
         {
             var result = this.AddCurrency(playerName, option.CurrencyType, option.Number * multiplier);
             if (result.IsFailure)
+            {
                 return Result.Failure(GetString($"增加 {option.CurrencyType} 失败: {result.Error}"));
+            }
         }
 
         return Result.Success();
@@ -184,6 +188,23 @@ internal class CurrencyService(CurrencyManager currencyManager) : ICurrencyServi
     public Result ResetAllCurrencies()
     {
         this._currencyManager.Reset();
+        return Result.Success();
+    }
+
+    public Result SaveAllCurrencies()
+    {
+        this._currencyManager.SaveAll();
+        return Result.Success();
+    }
+
+    public Result SavePlayerCurrencies(string playerName)
+    {
+        if (string.IsNullOrWhiteSpace(playerName))
+        {
+            return Result.Failure(GetString("玩家名称不能为空"));
+        }
+
+        this._currencyManager.SavePlayerCurrencies(playerName);
         return Result.Success();
     }
 

@@ -6,7 +6,7 @@ using TShockAPI.DB;
 
 namespace Economics.Core.DB;
 
-internal class CurrencyManager
+internal sealed class CurrencyManager
 {
     private readonly List<PlayerCurrencyInfo> _currencies = [];
     private readonly IDbConnection _database;
@@ -31,72 +31,203 @@ internal class CurrencyManager
 
     private void LoadCurrencies()
     {
-        using var reader = this._database.QueryReader("SELECT * FROM economics");
-        while (reader.Read())
+        try
         {
-            this._currencies.Add(new PlayerCurrencyInfo
+            using var reader = this._database.QueryReader("SELECT * FROM economics");
+            while (reader.Read())
             {
-                Number = reader.Get<long>("currency"),
-                PlayerName = reader.Get<string>("username"),
-                CurrencyType = reader.Get<string>("type")
-            });
+                this._currencies.Add(new PlayerCurrencyInfo
+                {
+                    Id = reader.Get<int>("id"),
+                    Number = reader.Get<long>("currency"),
+                    PlayerName = reader.Get<string>("username"),
+                    CurrencyType = reader.Get<string>("type")
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error(GetString($"加载货币数据失败: {ex.Message}"));
+            throw;
         }
     }
 
-    public List<PlayerCurrencyInfo> GetCurrencies()
+    internal IReadOnlyList<PlayerCurrencyInfo> GetAllCurrencies()
     {
-        return this._currencies;
+        return this._currencies.AsReadOnly();
     }
 
-    public PlayerCurrencyInfo[] GetPlayerCurrencies(string name)
+    internal PlayerCurrencyInfo[] GetPlayerCurrencies(string playerName)
     {
-        return [.. this._currencies.FindAll(x => x.PlayerName == name)];
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+        return [.. this._currencies.FindAll(x => x.PlayerName == playerName)];
     }
 
-    public PlayerCurrencyInfo GetUserCurrency(string name, string type)
+    internal long GetBalance(string playerName, string currencyType)
     {
-        return this._currencies.Find(x => x.PlayerName == name && x.CurrencyType == type)
-        ?? new PlayerCurrencyInfo { Number = 0, PlayerName = name, CurrencyType = type };
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+        ArgumentException.ThrowIfNullOrEmpty(currencyType);
+
+        var currency = this._currencies.Find(x => x.PlayerName == playerName && x.CurrencyType == currencyType);
+        return currency?.Number ?? 0;
     }
 
-    public void AddUserCurrency(string name, long amount, string type)
+    internal void AddCurrency(string playerName, long amount, string currencyType)
     {
-        var currency = this._currencies.Find(x => x.PlayerName == name && x.CurrencyType == type);
-        if (currency is null)
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+        ArgumentException.ThrowIfNullOrEmpty(currencyType);
+        ArgumentOutOfRangeException.ThrowIfNegative(amount);
+
+        if (amount == 0) return;
+
+        var currency = this._currencies.Find(x => x.PlayerName == playerName && x.CurrencyType == currencyType);
+        if (currency == null)
         {
-            currency = new PlayerCurrencyInfo { Number = amount, PlayerName = name, CurrencyType = type };
+            currency = new PlayerCurrencyInfo
+            {
+                Number = amount,
+                PlayerName = playerName,
+                CurrencyType = currencyType
+            };
             this._currencies.Add(currency);
+            this.InsertCurrency(currency);
         }
         else
         {
             currency.Number += amount;
+            this.UpdateCurrency(currency);
         }
     }
 
-    public bool DeductUserCurrency(string name, long amount, string type)
+    internal bool DeductCurrency(string playerName, long amount, string currencyType)
     {
-        if (amount == 0)
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+        ArgumentException.ThrowIfNullOrEmpty(currencyType);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(amount);
+
+        var currency = this._currencies.Find(x => x.PlayerName == playerName && x.CurrencyType == currencyType);
+        if (currency == null || currency.Number < amount)
         {
-            return true;
+            return false;
         }
 
-        var currency = this.GetUserCurrency(name, type);
-        if (currency.Number >= amount)
+        currency.Number -= amount;
+        this.UpdateCurrency(currency);
+        return true;
+    }
+
+    internal void ClearCurrency(string playerName, string currencyType)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+        ArgumentException.ThrowIfNullOrEmpty(currencyType);
+
+        var currency = this._currencies.Find(x => x.PlayerName == playerName && x.CurrencyType == currencyType);
+        if (currency == null)
         {
-            currency.Number -= amount;
-            return true;
+            return;
         }
-        return false;
+
+        currency.Number = 0;
+        this.UpdateCurrency(currency);
     }
 
-    public void ClearUserCurrency(string name, string type)
+    internal void ClearAllCurrencies(string playerName)
     {
-        GetUserCurrency(name, type).Number = 0;
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+
+        var playerCurrencies = this._currencies.FindAll(x => x.PlayerName == playerName);
+        foreach (var currency in playerCurrencies)
+        {
+            currency.Number = 0;
+            this.UpdateCurrency(currency);
+        }
     }
 
-    public void Reset()
+    internal void Reset()
     {
-        _database.Query("DELETE FROM economics");
-        _currencies.Clear();
+        try
+        {
+            this._database.Query("DELETE FROM economics");
+            this._currencies.Clear();
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error(GetString($"重置货币数据失败: {ex.Message}"));
+            throw;
+        }
+    }
+
+    internal void SaveAll()
+    {
+        foreach (var currency in this._currencies)
+        {
+            if (currency.Id > 0)
+            {
+                this.UpdateCurrency(currency);
+            }
+            else
+            {
+                this.InsertCurrency(currency);
+            }
+        }
+    }
+
+    internal void SavePlayerCurrencies(string playerName)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+
+        var playerCurrencies = this._currencies.FindAll(x => x.PlayerName == playerName);
+        foreach (var currency in playerCurrencies)
+        {
+            if (currency.Id > 0)
+            {
+                this.UpdateCurrency(currency);
+            }
+            else
+            {
+                this.InsertCurrency(currency);
+            }
+        }
+    }
+
+    private void InsertCurrency(PlayerCurrencyInfo currency)
+    {
+        ArgumentNullException.ThrowIfNull(currency);
+
+        try
+        {
+            this._database.Query(
+                "INSERT INTO economics (username, currency, type) VALUES (@0, @1, @2)",
+                currency.PlayerName, currency.Number, currency.CurrencyType);
+
+            currency.Id = this._database.QueryScalar<int>("SELECT last_insert_rowid()");
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error(GetString($"插入货币数据失败 [{currency.PlayerName}, {currency.CurrencyType}]: {ex.Message}"));
+            throw;
+        }
+    }
+
+    private void UpdateCurrency(PlayerCurrencyInfo currency)
+    {
+        ArgumentNullException.ThrowIfNull(currency);
+
+        if (currency.Id <= 0)
+        {
+            throw new InvalidOperationException(GetString($"无法更新货币数据：Id 无效 [{currency.PlayerName}, {currency.CurrencyType}]"));
+        }
+
+        try
+        {
+            this._database.Query(
+                "UPDATE economics SET currency = @0 WHERE id = @1",
+                currency.Number, currency.Id);
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error(GetString($"更新货币数据失败 [{currency.PlayerName}, {currency.CurrencyType}]: {ex.Message}"));
+            throw;
+        }
     }
 }
