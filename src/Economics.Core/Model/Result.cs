@@ -67,3 +67,25 @@ public class FailureResult : Result
         this.IsSuccess = false;
     }
 }
+
+public readonly struct DeductResult
+{
+    public bool IsSuccess { get; }
+    public long BalanceAfter { get; }
+
+    private DeductResult(bool isSuccess, long balanceAfter)
+    {
+        this.IsSuccess = isSuccess;
+        this.BalanceAfter = balanceAfter;
+    }
+
+    public static DeductResult Success(long balanceAfter)
+    {
+        return new(true, balanceAfter);
+    }
+
+    public static DeductResult Failure(long currentBalance)
+    {
+        return new(false, currentBalance);
+    }
+}

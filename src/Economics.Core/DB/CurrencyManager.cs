@@ -101,19 +101,30 @@ internal sealed class CurrencyManager
 
     internal bool DeductCurrency(string playerName, long amount, string currencyType)
     {
+        var result = this.TryDeductCurrency(playerName, amount, currencyType);
+        return result.IsSuccess;
+    }
+
+    internal DeductResult TryDeductCurrency(string playerName, long amount, string currencyType)
+    {
         ArgumentException.ThrowIfNullOrEmpty(playerName);
         ArgumentException.ThrowIfNullOrEmpty(currencyType);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(amount);
 
         var currency = this._currencies.Find(x => x.PlayerName == playerName && x.CurrencyType == currencyType);
-        if (currency == null || currency.Number < amount)
+        if (currency == null)
         {
-            return false;
+            return DeductResult.Failure(0);
+        }
+
+        if (currency.Number < amount)
+        {
+            return DeductResult.Failure(currency.Number);
         }
 
         currency.Number -= amount;
         this.UpdateCurrency(currency);
-        return true;
+        return DeductResult.Success(currency.Number);
     }
 
     internal void ClearCurrency(string playerName, string currencyType)
@@ -159,16 +170,19 @@ internal sealed class CurrencyManager
 
     internal void SaveAll()
     {
-        foreach (var currency in this._currencies)
+        using var transaction = this._database.BeginTransaction();
+        try
         {
-            if (currency.Id > 0)
+            foreach (var currency in this._currencies)
             {
-                this.UpdateCurrency(currency);
+                this.UpsertCurrency(currency);
             }
-            else
-            {
-                this.InsertCurrency(currency);
-            }
+            transaction.Commit();
+        }
+        catch
+        {
+            transaction.Rollback();
+            throw;
         }
     }
 
@@ -177,16 +191,33 @@ internal sealed class CurrencyManager
         ArgumentException.ThrowIfNullOrEmpty(playerName);
 
         var playerCurrencies = this._currencies.FindAll(x => x.PlayerName == playerName);
-        foreach (var currency in playerCurrencies)
+        using var transaction = this._database.BeginTransaction();
+        try
         {
-            if (currency.Id > 0)
+            foreach (var currency in playerCurrencies)
             {
-                this.UpdateCurrency(currency);
+                this.UpsertCurrency(currency);
             }
-            else
-            {
-                this.InsertCurrency(currency);
-            }
+            transaction.Commit();
+        }
+        catch
+        {
+            transaction.Rollback();
+            throw;
+        }
+    }
+
+    private void UpsertCurrency(PlayerCurrencyInfo currency)
+    {
+        ArgumentNullException.ThrowIfNull(currency);
+
+        if (currency.Id > 0)
+        {
+            this.UpdateCurrency(currency);
+        }
+        else
+        {
+            this.InsertCurrency(currency);
         }
     }
 

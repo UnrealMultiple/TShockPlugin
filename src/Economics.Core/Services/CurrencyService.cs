@@ -57,16 +57,10 @@ internal class CurrencyService(CurrencyManager currencyManager) : ICurrencyServi
             return validation;
         }
 
-        var currentBalance = this._currencyManager.GetBalance(playerName, currencyName);
-        if (currentBalance < amount)
+        var result = this._currencyManager.TryDeductCurrency(playerName, amount, currencyName);
+        if (!result.IsSuccess)
         {
-            return Result.Failure(GetString($"余额不足: 需要 {amount}, 拥有 {currentBalance}"));
-        }
-
-        var success = this._currencyManager.DeductCurrency(playerName, amount, currencyName);
-        if (!success)
-        {
-            return Result.Failure(GetString("扣除货币失败"));
+            return Result.Failure(GetString($"余额不足: 需要 {amount}, 拥有 {result.BalanceAfter}"));
         }
 
         return Result.Success();
