@@ -19,9 +19,14 @@ public class BankCommand : BaseCommand
         if (!long.TryParse(args.Parameters[2], out num))
         {
             args.Player.SendErrorMessage(GetString("请输入一个有效数值!"));
-            return true;
+            return false;
         }
-        return false;
+        if(num <  0)
+        {
+            args.Player.SendErrorMessage(GetString("数值必须为正数!"));
+            return false;
+        }
+        return true;
     }
 
     [SubCommand("cash", 3)]
