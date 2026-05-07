@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-05-18 19:37:03+0000\n"
-"PO-Revision-Date: 2025-05-19 01:22\n"
+"POT-Creation-Date: 2026-05-06 05:28:08+0000\n"
+"PO-Revision-Date: 2026-05-07 02:38\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,41 +17,41 @@ msgstr ""
 "X-Crowdin-File-ID: 1170\n"
 "Language: es_ES\n"
 
-#: ../../WeaponPlus.cs:245
-#: ../../WeaponPlus.cs:276
-#: ../../WeaponPlus.cs:307
-#: ../../WeaponPlus.cs:338
-#: ../../WeaponPlus.cs:369
+#: ../../WeaponPlus.cs:246
+#: ../../WeaponPlus.cs:277
+#: ../../WeaponPlus.cs:308
+#: ../../WeaponPlus.cs:339
+#: ../../WeaponPlus.cs:370
 #, csharp-format
 msgid "[i:{0}]  降级成功  共计消耗：{1}\n"
 "{2}"
 msgstr ""
 
-#: ../../WeaponPlus.cs:232
-#: ../../WeaponPlus.cs:263
-#: ../../WeaponPlus.cs:294
-#: ../../WeaponPlus.cs:325
-#: ../../WeaponPlus.cs:356
+#: ../../WeaponPlus.cs:233
+#: ../../WeaponPlus.cs:264
+#: ../../WeaponPlus.cs:295
+#: ../../WeaponPlus.cs:326
+#: ../../WeaponPlus.cs:357
 #, csharp-format
 msgid "[i:{0}] 升级成功   共计消耗：{1}\n"
 "{2}"
 msgstr ""
 
-#: ../../WeaponPlus.cs:75
+#: ../../WeaponPlus.cs:76
 msgid "[武器强化EC版]重新加载配置完毕。"
 msgstr ""
 
-#: ../../WeaponPlus.cs:518
+#: ../../WeaponPlus.cs:519
 #, csharp-format
 msgid "{0} Modify Item {1} {2}"
 msgstr ""
 
-#: ../../WeaponPlus.cs:582
+#: ../../WeaponPlus.cs:586
 #, csharp-format
 msgid "{0}不足！"
 msgstr ""
 
-#: ../../WeaponPlus.cs:145
+#: ../../WeaponPlus.cs:146
 msgid "SSC 未开启"
 msgstr ""
 
@@ -60,11 +60,11 @@ msgstr ""
 msgid "伤害升至下一级需：{0}"
 msgstr ""
 
-#: ../../WeaponPlus.cs:21
+#: ../../WeaponPlus.cs:22
 msgid "允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes"
 msgstr ""
 
-#: ../../WeaponPlus.cs:125
+#: ../../WeaponPlus.cs:126
 msgid "几乎所有的武器和弹药都能强化，但是强化结果会无效化词缀，作为补偿，前三次强化价格降低 80%\n"
 "强化绑定一类武器，即同 ID 武器，而不是单独的一个物品。强化与人物绑定，不可分享，扔出即失效，只在背包，猪猪等个人私有库存内起效。\n"
 "当你不小心扔出或其他原因导致强化无效，请使用指令 /plus load 来重新获取。每次重新获取都会从当前背包中查找并强制拿出来重给，请注意捡取避免丢失。\n"
@@ -82,7 +82,7 @@ msgstr ""
 msgid "大小升至下一级需：{0}"
 msgstr ""
 
-#: ../../WeaponPlus.cs:182
+#: ../../WeaponPlus.cs:183
 #, csharp-format
 msgid "完全重置成功！{0}回收：{1}"
 msgstr ""
@@ -96,7 +96,7 @@ msgstr ""
 msgid "已达到最大武器总等级"
 msgstr ""
 
-#: ../../WeaponPlus.cs:409
+#: ../../WeaponPlus.cs:410
 msgid "强化数据清理失败！！!"
 msgstr ""
 
@@ -113,11 +113,11 @@ msgstr ""
 msgid "当前总等级：{0}   剩余强化次数：{1} 次    伤害等级：{2}, 大小等级：{3}, 击退等级：{4}, 攻速等级：{5}, 射弹飞行速度等级：{6}"
 msgstr ""
 
-#: ../../WeaponPlus.cs:174
+#: ../../WeaponPlus.cs:175
 msgid "当前武器没有任何等级，不用回炉重做"
 msgstr ""
 
-#: ../../WeaponPlus.cs:158
+#: ../../WeaponPlus.cs:159
 #, csharp-format
 msgid "当前物品：[i:{0}]   共计消耗：{1}\n"
 "{2}"
@@ -128,19 +128,19 @@ msgstr ""
 msgid "当前状态：伤害 +{0:0.00%}，大小 +{1:0.00%}，击退 +{2:0.00%}，攻速 +{3:0.00%}，射弹飞速 +{4:0.00%}"
 msgstr ""
 
-#: ../../WeaponPlus.cs:573
+#: ../../WeaponPlus.cs:574
 msgid "当前该类型升级已达到上限，无法升级"
 msgstr ""
 
-#: ../../WeaponPlus.cs:168
+#: ../../WeaponPlus.cs:169
 msgid "您当前的升级武器已重新读取"
 msgstr ""
 
-#: ../../WeaponPlus.cs:405
+#: ../../WeaponPlus.cs:406
 msgid "所有玩家的所有强化数据全部清理成功！"
 msgstr ""
 
-#: ../../WeaponPlus.cs:579
+#: ../../WeaponPlus.cs:583
 #, csharp-format
 msgid "扣除{0}：{1}，当前剩余：{2}"
 msgstr ""
@@ -154,39 +154,39 @@ msgstr ""
 msgid "未升级过，无任何加成"
 msgstr ""
 
-#: ../../WeaponPlus.cs:238
-#: ../../WeaponPlus.cs:269
-#: ../../WeaponPlus.cs:300
-#: ../../WeaponPlus.cs:331
-#: ../../WeaponPlus.cs:362
+#: ../../WeaponPlus.cs:239
+#: ../../WeaponPlus.cs:270
+#: ../../WeaponPlus.cs:301
+#: ../../WeaponPlus.cs:332
+#: ../../WeaponPlus.cs:363
 msgid "等级过低"
 msgstr ""
 
-#: ../../WeaponPlus.cs:140
+#: ../../WeaponPlus.cs:141
 msgid "该指令必须在游戏内使用"
 msgstr ""
 
-#: ../../WeaponPlus.cs:154
+#: ../../WeaponPlus.cs:155
 msgid "请在第一个物品栏内放入武器而不是其他什么东西或空"
 msgstr ""
 
-#: ../../WeaponPlus.cs:201
+#: ../../WeaponPlus.cs:202
 msgid "请输入正整数"
 msgstr ""
 
-#: ../../WeaponPlus.cs:52
+#: ../../WeaponPlus.cs:53
 msgid "输入 /clearallplayersplus    将数据库中所有玩家的所有强化物品全部清理，管理员专属"
 msgstr ""
 
-#: ../../WeaponPlus.cs:414
+#: ../../WeaponPlus.cs:415
 msgid "输入 /clearallplayersplus   将数据库中强化物品全部清理"
 msgstr ""
 
-#: ../../WeaponPlus.cs:48
+#: ../../WeaponPlus.cs:49
 msgid "输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料"
 msgstr ""
 
-#: ../../WeaponPlus.cs:126
+#: ../../WeaponPlus.cs:127
 msgid "输入 /plus    查看当前该武器的等级状态和升至下一级需要多少材料\n"
 "输入 /plus load    将当前身上所有已升级的武器重新获取\n"
 "输入 /plus <damage/da/伤害> <up/down> <num>   升级/降级当前武器的伤害等级\n"
@@ -198,11 +198,11 @@ msgid "输入 /plus    查看当前该武器的等级状态和升至下一级需
 "输入 /clearallplayersplus    将数据库中所有玩家的所有强化物品全部清理，管理员专属"
 msgstr ""
 
-#: ../../WeaponPlus.cs:186
-#: ../../WeaponPlus.cs:196
-#: ../../WeaponPlus.cs:216
-#: ../../WeaponPlus.cs:375
-#: ../../WeaponPlus.cs:380
+#: ../../WeaponPlus.cs:187
+#: ../../WeaponPlus.cs:197
+#: ../../WeaponPlus.cs:217
+#: ../../WeaponPlus.cs:376
+#: ../../WeaponPlus.cs:381
 msgid "输入 /plus help    查看 plus 系列指令帮助"
 msgstr ""
 
