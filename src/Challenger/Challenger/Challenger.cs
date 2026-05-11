@@ -753,7 +753,7 @@ public class Challenger : TerrariaPlugin
         var Any = config.ChlorophyteArmorEffect;
 
         var armor = player.armor;
-        var flag = (armor[0].type == 1001 || armor[0].type == 1002 || armor[0].type == 1003) && armor[1].type == 1004 && armor[2].type == 1005;
+        var flag = (armor[0].type == 1001 || armor[0].type == 1002 || armor[0].type == 1003) && armor[1].type == 1004 && armor[2].type == 1005 || armor[0].type == 5524;
         if (flag && !Collect.cplayers[player.whoAmI].ChlorophyteArmorEffectLife)
         {
             player.statLifeMax += Any;
@@ -1344,6 +1344,7 @@ public class Challenger : TerrariaPlugin
             case 1003:
             case 1004:
             case 1005:
+            case 5524:
                 SendPlayerText(tsplayer, GetString("【叶绿套装】\n挑战模式奖励：释放不精确的叶绿水晶矢，丛林之\n力给你更高的生命上限"), new Color(103, 209, 0), Main.player[tsplayer.Index].Center + new Vector2(0f, -24f));
                 break;
             case 1316:

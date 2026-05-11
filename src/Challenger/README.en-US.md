@@ -44,6 +44,7 @@ Melee weapon damage is doubled when Paladin Shield or its superior compound is e
 
 - [Current problem]: The damage caused by the added effect will not be counted as caused by the player, but monsters can still be killed.
 - Added version 1.4.5 whip adaptation for Challenger
+- Added chlorophyll mask effect
 
 
 
