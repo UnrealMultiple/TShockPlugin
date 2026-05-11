@@ -31,7 +31,7 @@ public class Challenger : TerrariaPlugin
     public override string Description => GetString("增强游戏难度，更好的游戏体验");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new(1, 1, 9);
+    public override Version Version => new(1, 2, 0);
 
     public Challenger(Main game)
         : base(game)
