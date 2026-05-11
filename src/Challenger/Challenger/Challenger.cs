@@ -753,7 +753,7 @@ public class Challenger : TerrariaPlugin
         var Any = config.ChlorophyteArmorEffect;
 
         var armor = player.armor;
-        var flag = (armor[0].type == 1001 || armor[0].type == 1002 || armor[0].type == 1003) && armor[1].type == 1004 && armor[2].type == 1005 || armor[0].type == 5524;
+        var flag = (armor[0].type == 1001 || armor[0].type == 1002 || armor[0].type == 1003 || armor[0].type == 5524) && armor[1].type == 1004 && armor[2].type == 1005;
         if (flag && !Collect.cplayers[player.whoAmI].ChlorophyteArmorEffectLife)
         {
             player.statLifeMax += Any;
