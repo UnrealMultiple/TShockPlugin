@@ -1,4 +1,4 @@
-﻿using Economics.Core.ConfigFiles;
+using Economics.Core.ConfigFiles;
 using Newtonsoft.Json;
 
 namespace Economics.Core.ConfigFiles;
@@ -27,7 +27,7 @@ public class Setting : JsonConfigBase<Setting>
     public List<string> GradientColor = [];
 
     [JsonProperty("货币配置")]
-    public List<CustomizeCurrency> CustomizeCurrencys = [];
+    public List<CurrencyDefinition> Currencies = [];
 
     protected override string Filename => "Economics.json";
 
@@ -52,15 +52,60 @@ public class Setting : JsonConfigBase<Setting>
             "[c/00ffbf:{0}]",
             "[c/1aecb8:{0}]"
         ];
+
+        // 设置默认货币配置示例 - 展示灵活的兑换关系
+        this.Currencies =
+        [
+            new CurrencyDefinition
+            {
+                Name = "金币",
+                Description = "基础货币，通过击杀怪物获得",
+                QueryFormat = "[c/FFD700: 金币: {1}]",
+                ExchangeRates = new Dictionary<string, long>
+                {
+                    { "银币", 100 },
+                    { "铜币", 10000 }
+                },
+                CurrencyObtain = new CurrencyObtainOption
+                {
+                    CurrencyObtainType = Enumerates.CurrencyObtainType.KillNpc,
+                    ConversionRate = 0.5f
+                }
+            },
+            new CurrencyDefinition
+            {
+                Name = "银币",
+                Description = "次级货币，可由金币兑换",
+                QueryFormat = "[c/C0C0C0: 银币: {1}]",
+                ExchangeRates = new Dictionary<string, long>
+                {
+                    { "铜币", 100 }
+                }
+            },
+            new CurrencyDefinition
+            {
+                Name = "铜币",
+                Description = "最低级货币，无法继续兑换",
+                QueryFormat = "[c/B87333: 铜币: {1}]",
+                ExchangeRates = new Dictionary<string, long>()
+            },
+            new CurrencyDefinition
+            {
+                Name = "钻石",
+                Description = "高级货币，只能通过金币兑换",
+                QueryFormat = "[c/00CED1: 钻石: {1}]",
+                ExchangeRates = new Dictionary<string, long>()
+            }
+        ];
     }
 
-    public CustomizeCurrency? GetCurrencyOption(string name)
+    public CurrencyDefinition? GetCurrency(string name)
     {
-        return this.CustomizeCurrencys.Find(x => x.Name == name);
+        return this.Currencies.Find(x => x.Name == name);
     }
 
-    public bool HasCustomizeCurrency(string type)
+    public bool HasCurrency(string type)
     {
-        return this.CustomizeCurrencys.Any(x => x.Name == type);
+        return this.Currencies.Any(x => x.Name == type);
     }
 }

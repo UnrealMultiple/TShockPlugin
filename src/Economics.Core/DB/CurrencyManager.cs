@@ -1,7 +1,4 @@
-﻿using Economics.Core.ConfigFiles;
-using Economics.Core.Enumerates;
-using Economics.Core.EventArgs.PlayerEventArgs;
-using Economics.Core.Events;
+﻿using Economics.Core.Model;
 using MySql.Data.MySqlClient;
 using System.Data;
 using TShockAPI;
@@ -9,216 +6,259 @@ using TShockAPI.DB;
 
 namespace Economics.Core.DB;
 
-public class CurrencyManager
+internal sealed class CurrencyManager
 {
-    public class PlayerCurrency(long num, string player, string type)
-    {
-        public long Number { get; set; } = num;
-
-        public string CurrencyType { get; set; } = type;
-
-        public string PlayerName { get; set; } = player;
-
-        // 添加 ToString 方法，使其在字符串上下文中直接返回 Number 值
-        public override string ToString()
-        {
-            return $"{this.CurrencyType}x{this.Number}";
-        }
-
-    }
-    private readonly List<PlayerCurrency> Currencys = [];
-
-    public IDbConnection database;
+    private readonly List<PlayerCurrencyInfo> _currencies = [];
+    private readonly IDbConnection _database;
 
     internal CurrencyManager()
     {
-        this.database = TShock.DB;
-        var Skeleton = new SqlTable("economics",
+        this._database = TShock.DB;
+        this.InitializeDatabase();
+        this.LoadCurrencies();
+    }
+
+    private void InitializeDatabase()
+    {
+        var table = new SqlTable("economics",
             new SqlColumn("id", MySqlDbType.Int32) { Length = 8, Primary = true, Unique = true, AutoIncrement = true },
             new SqlColumn("username", MySqlDbType.Text) { Length = 500 },
             new SqlColumn("currency", MySqlDbType.Int64) { Length = 255 },
             new SqlColumn("type", MySqlDbType.Text) { Length = 255 });
-        var List = new SqlTableCreator(this.database, this.database.GetSqlQueryBuilder());
-        List.EnsureTableStructure(Skeleton);
-        using (var reader = this.database.QueryReader("SELECT * FROM economics"))
+        var creator = new SqlTableCreator(this._database, this._database.GetSqlQueryBuilder());
+        creator.EnsureTableStructure(table);
+    }
+
+    private void LoadCurrencies()
+    {
+        try
         {
+            using var reader = this._database.QueryReader("SELECT * FROM economics");
             while (reader.Read())
             {
-                var username = reader.Get<string>("username");
-                var currency = reader.Get<long>("currency");
-                var type = reader.Get<string>("type");
-                this.Currencys.Add(new PlayerCurrency(currency, username, type));
+                this._currencies.Add(new PlayerCurrencyInfo
+                {
+                    Id = reader.Get<int>("id"),
+                    Number = reader.Get<long>("currency"),
+                    PlayerName = reader.Get<string>("username"),
+                    CurrencyType = reader.Get<string>("type")
+                });
             }
         }
-    }
-
-    public void UpdataAll()
-    {
-        foreach (var curr in this.Currencys)
+        catch (Exception ex)
         {
-            if (!this.Update(curr))
-            {
-                this.Write(curr);
-            }
+            TShock.Log.Error(GetString($"加载货币数据失败: {ex.Message}"));
+            throw;
         }
     }
 
-    public List<PlayerCurrency> GetCurrencies()
+    internal IReadOnlyList<PlayerCurrencyInfo> GetAllCurrencies()
     {
-        return this.Currencys;
+        return this._currencies.AsReadOnly();
     }
 
-    public bool Update(string UserName, string type)
+    internal PlayerCurrencyInfo[] GetPlayerCurrencies(string playerName)
     {
-        return this.database.Query("UPDATE `economics` SET `currency` = @0 WHERE `economics`.`username` = @1 AND `economics`.`type` = @2", this.GetUserCurrency(UserName, type).Number, UserName, type) == 1;
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+        return [.. this._currencies.FindAll(x => x.PlayerName == playerName)];
     }
 
-    public bool Update(PlayerCurrency currency)
+    internal long GetBalance(string playerName, string currencyType)
     {
-        return this.Update(currency.PlayerName, currency.CurrencyType);
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+        ArgumentException.ThrowIfNullOrEmpty(currencyType);
+
+        var currency = this._currencies.Find(x => x.PlayerName == playerName && x.CurrencyType == currencyType);
+        return currency?.Number ?? 0;
     }
 
-    public bool Write(string UserName, string type)
+    internal void AddCurrency(string playerName, long amount, string currencyType)
     {
-        return this.database.Query("INSERT INTO `economics` (`id`, `username`, `currency`, `type`) VALUES (NULL, @0, @1, @2)", UserName, this.GetUserCurrency(UserName, type).Number, type) == 1;
-    }
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+        ArgumentException.ThrowIfNullOrEmpty(currencyType);
+        ArgumentOutOfRangeException.ThrowIfNegative(amount);
 
-    public bool Write(PlayerCurrency currency)
-    {
-        return this.Write(currency.PlayerName, currency.CurrencyType);
-    }
+        if (amount == 0) return;
 
-    public PlayerCurrency GetUserCurrency(string name, string type)
-    {
-        return this.Currencys.Find(x => x.PlayerName == name && x.CurrencyType == type) ?? new(0, name, type);
-    }
-
-    public PlayerCurrency[] GetPlayerCurrencies(string name)
-    {
-        return this.Currencys.FindAll(x => x.PlayerName == name).ToArray();
-    }
-
-    public void AddUserCurrency(string name, params RedemptionRelationshipsOption[] options)
-    {
-        foreach (var option in options)
+        var currency = this._currencies.Find(x => x.PlayerName == playerName && x.CurrencyType == currencyType);
+        if (currency == null)
         {
-            this.AddUserCurrency(name, option.Number, option.CurrencyType);
-        }
-    }
-
-    public void AddUserCurrency(string name, long amount, string type)
-    {
-        var player = Economics.ServerPlayers.Find(x => x.Name == name && x.Active);
-        if (player != null)
-        {
-            var args = new PlayerCurrencyUpdateArgs()
+            currency = new PlayerCurrencyInfo
             {
-                Change = amount,
-                CurrentType = CurrencyUpdateType.Added,
-                Player = player,
-                Current = this.GetUserCurrency(name, type).Number
+                Number = amount,
+                PlayerName = playerName,
+                CurrencyType = currencyType
             };
-            if (PlayerHandler.PlayerCurrencyUpdate(args))
-            {
-                return;
-            }
-
-            amount = args.Change;
-        }
-        this.Add(name, amount, type);
-    }
-
-    private void Add(string name, long amount, string type)
-    {
-        var playercurr = this.Currencys.Find(x => x.PlayerName == name && x.CurrencyType == type);
-        if (playercurr is null)
-        {
-            playercurr = new PlayerCurrency(amount, name, type);
-            this.Currencys.Add(playercurr);
+            this._currencies.Add(currency);
+            this.InsertCurrency(currency);
         }
         else
         {
-            playercurr.Number += amount;
+            currency.Number += amount;
+            this.UpdateCurrency(currency);
         }
     }
 
-    public void ClearUserCurrency(string name, string type)
+    internal bool DeductCurrency(string playerName, long amount, string currencyType)
     {
-        this.GetUserCurrency(name, type).Number = 0;
+        var result = this.TryDeductCurrency(playerName, amount, currencyType);
+        return result.IsSuccess;
     }
 
-    private bool Deduct(string name, long amount, string type)
+    internal DeductResult TryDeductCurrency(string playerName, long amount, string currencyType)
     {
-        if (amount == 0)
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+        ArgumentException.ThrowIfNullOrEmpty(currencyType);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(amount);
+
+        var currency = this._currencies.Find(x => x.PlayerName == playerName && x.CurrencyType == currencyType);
+        if (currency == null)
         {
-            return true;
+            return DeductResult.Failure(0);
         }
-        var playerCurrency = this.GetUserCurrency(name, type);
-        if (playerCurrency.Number >= amount)
+
+        if (currency.Number < amount)
         {
-            playerCurrency.Number -= amount;
-            return true;
+            return DeductResult.Failure(currency.Number);
         }
-        return false;
+
+        currency.Number -= amount;
+        this.UpdateCurrency(currency);
+        return DeductResult.Success(currency.Number);
     }
 
-    [Obsolete("use DeductUserCurrency instead")]
-    public bool DelUserCurrency(string name, long amount, string type)
+    internal void ClearCurrency(string playerName, string currencyType)
     {
-        return this.DeductUserCurrency(name, amount, type);
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+        ArgumentException.ThrowIfNullOrEmpty(currencyType);
+
+        var currency = this._currencies.Find(x => x.PlayerName == playerName && x.CurrencyType == currencyType);
+        if (currency == null)
+        {
+            return;
+        }
+
+        currency.Number = 0;
+        this.UpdateCurrency(currency);
     }
 
-    public bool DeductUserCurrency(string name, IEnumerable<RedemptionRelationshipsOption> RedemptionRelationships, int count = 1)
+    internal void ClearAllCurrencies(string playerName)
     {
-        if(RedemptionRelationships.Any(r => this.GetUserCurrency(name, r.CurrencyType).Number < r.Number * count))
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+
+        var playerCurrencies = this._currencies.FindAll(x => x.PlayerName == playerName);
+        foreach (var currency in playerCurrencies)
         {
-            return false;
+            currency.Number = 0;
+            this.UpdateCurrency(currency);
         }
-        foreach (var option in RedemptionRelationships)
-        {
-            this.DeductUserCurrency(name, option.Number * count, option.CurrencyType);
-        }
-        return true;
     }
 
-    public bool DeductUserCurrency(string name, params RedemptionRelationshipsOption[] options)
+    internal void Reset()
     {
-        if (options.Any(r => this.GetUserCurrency(name, r.CurrencyType).Number < r.Number))
+        try
         {
-            return false;
+            this._database.Query("DELETE FROM economics");
+            this._currencies.Clear();
         }
-        foreach (var option in options)
+        catch (Exception ex)
         {
-            this.DeductUserCurrency(name, option.Number, option.CurrencyType);
+            TShock.Log.Error(GetString($"重置货币数据失败: {ex.Message}"));
+            throw;
         }
-        return true;
     }
 
-    public bool DeductUserCurrency(string name, long amount, string type)
+    internal void SaveAll()
     {
-        var player = Economics.ServerPlayers.Find(x => x.Name == name && x.Active);
-        if (player != null)
+        using var transaction = this._database.BeginTransaction();
+        try
         {
-            var args = new PlayerCurrencyUpdateArgs()
+            foreach (var currency in this._currencies)
             {
-                Change = amount,
-                CurrentType = CurrencyUpdateType.Delete,
-                Player = player,
-                Current = this.GetUserCurrency(name, type).Number
-            };
-            if (PlayerHandler.PlayerCurrencyUpdate(args))
-            {
-                return true;
+                this.UpsertCurrency(currency);
             }
-
-            amount = args.Change;
+            transaction.Commit();
         }
-        return this.Deduct(name, amount, type);
+        catch
+        {
+            transaction.Rollback();
+            throw;
+        }
     }
 
-    public void Reset()
+    internal void SavePlayerCurrencies(string playerName)
     {
-        this.database.Query("delete from Economics");
-        this.Currencys.Clear();
+        ArgumentException.ThrowIfNullOrEmpty(playerName);
+
+        var playerCurrencies = this._currencies.FindAll(x => x.PlayerName == playerName);
+        using var transaction = this._database.BeginTransaction();
+        try
+        {
+            foreach (var currency in playerCurrencies)
+            {
+                this.UpsertCurrency(currency);
+            }
+            transaction.Commit();
+        }
+        catch
+        {
+            transaction.Rollback();
+            throw;
+        }
+    }
+
+    private void UpsertCurrency(PlayerCurrencyInfo currency)
+    {
+        ArgumentNullException.ThrowIfNull(currency);
+
+        if (currency.Id > 0)
+        {
+            this.UpdateCurrency(currency);
+        }
+        else
+        {
+            this.InsertCurrency(currency);
+        }
+    }
+
+    private void InsertCurrency(PlayerCurrencyInfo currency)
+    {
+        ArgumentNullException.ThrowIfNull(currency);
+
+        try
+        {
+            this._database.Query(
+                "INSERT INTO economics (username, currency, type) VALUES (@0, @1, @2)",
+                currency.PlayerName, currency.Number, currency.CurrencyType);
+
+            currency.Id = this._database.QueryScalar<int>("SELECT last_insert_rowid()");
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error(GetString($"插入货币数据失败 [{currency.PlayerName}, {currency.CurrencyType}]: {ex.Message}"));
+            throw;
+        }
+    }
+
+    private void UpdateCurrency(PlayerCurrencyInfo currency)
+    {
+        ArgumentNullException.ThrowIfNull(currency);
+
+        if (currency.Id <= 0)
+        {
+            throw new InvalidOperationException(GetString($"无法更新货币数据：Id 无效 [{currency.PlayerName}, {currency.CurrencyType}]"));
+        }
+
+        try
+        {
+            this._database.Query(
+                "UPDATE economics SET currency = @0 WHERE id = @1",
+                currency.Number, currency.Id);
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.Error(GetString($"更新货币数据失败 [{currency.PlayerName}, {currency.CurrencyType}]: {ex.Message}"));
+            throw;
+        }
     }
 }

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-04-18 12:26:35+0000\n"
-"PO-Revision-Date: 2026-04-19 02:28\n"
+"POT-Creation-Date: 2026-05-06 06:37:46+0000\n"
+"PO-Revision-Date: 2026-05-07 02:38\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "{0} 与 {1} 之间循环引用"
 msgstr "{0} has a circular reference with {1}"
 
-#: ../../RankCommand.cs:72
+#: ../../RankCommand.cs:74
 #, csharp-format
 msgid "/rank {0}({1})"
 msgstr "/rank {0}({1})"
@@ -51,33 +51,33 @@ msgstr "You must use this command in the game when setting a level for yourself!
 msgid "你因重置等级被踢出!"
 msgstr "You have been kicked out for resetting your level!"
 
+#: ../../RankCommand.cs:25
 #: ../../ResetCareer.cs:23
-#: ../../RankCommand.cs:24
 msgid "你必须登陆才能使用此命令!"
 msgstr "You must use this command in-game!"
 
-#: ../../RankCommand.cs:64
+#: ../../RankCommand.cs:66
 #, csharp-format
-msgid "升级所需 ({0})"
-msgstr "Upgrade Required ({0})"
+msgid "升级所需 ({0}): {1}"
+msgstr ""
 
-#: ../../RankCommand.cs:99
+#: ../../RankCommand.cs:102
 #, csharp-format
-msgid "升级所需 {0}"
-msgstr "Upgrade Required {0}"
+msgid "升级所需 {0}: {1}"
+msgstr ""
 
 #: ../../RPG.cs:72
 #, csharp-format
 msgid "升级职业: {0}"
 msgstr "Upgrade rank: {0}"
 
-#: ../../RankCommand.cs:46
-#: ../../RankCommand.cs:81
+#: ../../RankCommand.cs:47
+#: ../../RankCommand.cs:83
 #, csharp-format
 msgid "升级至 {0} 需要手持武器{1}！ "
 msgstr "Upgrading to {0} requires holding weapon {1}!"
 
-#: ../../RankCommand.cs:104
+#: ../../RankCommand.cs:107
 msgid "已经满级了，无法继续升级!"
 msgstr "Already at maximum level, cannot continue to upgrade!"
 
@@ -86,8 +86,8 @@ msgstr "Already at maximum level, cannot continue to upgrade!"
 msgid "当前职业: {0}"
 msgstr "Current rank: {0}"
 
-#: ../../RankCommand.cs:51
-#: ../../RankCommand.cs:86
+#: ../../RankCommand.cs:52
+#: ../../RankCommand.cs:88
 #, csharp-format
 msgid "必须满足进度限制:{0}"
 msgstr "Required progress condition: {0}"
@@ -96,8 +96,8 @@ msgstr "Required progress condition: {0}"
 msgid "您已成功重置等级!"
 msgstr "You have successfully reset your level!"
 
-#: ../../RankCommand.cs:56
-#: ../../RankCommand.cs:91
+#: ../../RankCommand.cs:58
+#: ../../RankCommand.cs:94
 #, csharp-format
 msgid "成功升级至 {0}!"
 msgstr "Successfully upgraded to {0}!"
@@ -106,11 +106,11 @@ msgstr "Successfully upgraded to {0}!"
 msgid "提供RPG玩法!"
 msgstr "Provides RPG gameplay!"
 
-#: ../../RankCommand.cs:16
+#: ../../RankCommand.cs:17
 msgid "提示RPG等级!"
 msgstr "Hint RPG level!"
 
-#: ../../RankCommand.cs:41
+#: ../../RankCommand.cs:42
 msgid "此职业全服唯一，已经存在此职业无法升级。"
 msgstr "This rank is the only one in the server. This rank already exists and cannot be upgraded."
 
@@ -127,7 +127,7 @@ msgstr "Successfully reset player level!"
 msgid "玩家等级管理!"
 msgstr "Player Level Manager!"
 
-#: ../../RankCommand.cs:36
+#: ../../RankCommand.cs:37
 #, csharp-format
 msgid "等级 {0} 不存在！ "
 msgstr "Level {0} does not exist!"
@@ -141,7 +141,7 @@ msgstr "Level {0} has a null reference to level {1}"
 msgid "语法错误，请输入/level help查看正确使用方法!"
 msgstr "Invalid syntax, please enter /level help to view the correct syntax!"
 
-#: ../../RankCommand.cs:18
+#: ../../RankCommand.cs:19
 msgid "语法错误，请输入/rank升级!"
 msgstr "Invalid syntax, please enter /rank to upgrade!"
 
@@ -149,7 +149,7 @@ msgstr "Invalid syntax, please enter /rank to upgrade!"
 msgid "语法错误，请输入/resetrank 重置职业"
 msgstr "Invalid syntax, please enter /resetrank to reset rank"
 
-#: ../../RankCommand.cs:69
+#: ../../RankCommand.cs:71
 msgid "请选择一个升级:"
 msgstr "Please select an upgrade:"
 

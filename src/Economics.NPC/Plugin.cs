@@ -1,4 +1,5 @@
-﻿using Economics.Core.Extensions;
+using Economics.Core;
+using Economics.Core.Extensions;
 using Microsoft.Xna.Framework;
 using System.Reflection;
 using Terraria;
@@ -14,7 +15,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => GetString("修改NPC掉落货币!");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 1, 0, 0);
+    public override Version Version => new Version(3, 0, 0, 0);
 
     public Plugin(Main game) : base(game)
     {
@@ -52,7 +53,7 @@ public class Plugin : TerrariaPlugin
             && ra != null
             && args.Player.InProgress(ra.Progress))
         {
-            foreach (var currency in Core.ConfigFiles.Setting.Instance.CustomizeCurrencys)
+            foreach (var currency in Core.ConfigFiles.Setting.Instance.Currencies)
             {
                 if (currency.CurrencyObtain.CurrencyObtainType != Core.Enumerates.CurrencyObtainType.KillNpc)
                 {
@@ -65,7 +66,7 @@ public class Plugin : TerrariaPlugin
                 }
 
                 var num = Convert.ToInt64(args.Damage * currency.CurrencyObtain.ConversionRate * ra.AllocationRatio);
-                Core.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num, currency.Name);
+                Core.Economics.CurrencyService.AddCurrency(args.Player.Name, currency.Name, num);
 
                 if (currency.CombatMsgOption.Enable)
                 {
@@ -87,7 +88,7 @@ public class Plugin : TerrariaPlugin
                 foreach (var option in cfg.ExtraReward)
                 {
                     var Curr = Convert.ToInt64(Math.Round(rw * option.Number));
-                    Core.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, Curr, option.CurrencyType);
+                    Core.Economics.CurrencyService.AddCurrency(args.Player.Name, option.CurrencyType, Curr);
                     if (Config.Instance.Prompt)
                     {
                         args.Player.SendInfoMessage(Config.Instance.PromptText, args.Npc.GetFullNetName(), option.CurrencyType, Curr);
@@ -98,7 +99,7 @@ public class Plugin : TerrariaPlugin
             {
                 foreach (var option in cfg.ExtraReward)
                 {
-                    Core.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, option);
+                    Core.Economics.CurrencyService.AddCurrency(args.Player.Name, option.CurrencyType, option.Number);
                     if (Config.Instance.Prompt)
                     {
                         args.Player.SendInfoMessage(Config.Instance.PromptText, args.Npc.GetFullNetName(), option.CurrencyType, option.Number);

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-03-30 16:50:48+0000\n"
-"PO-Revision-Date: 2026-03-31 02:06\n"
+"POT-Creation-Date: 2026-05-05 15:25:22+0000\n"
+"PO-Revision-Date: 2026-05-06 02:36\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -31,72 +31,72 @@ msgstr ""
 msgid "[挑战者模式]重新加载配置完毕。"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1979
+#: ../../Challenger/Challenger.cs:1987
 #, csharp-format
 msgid "{0} 发动了混乱之脑迷惑，成功迷惑了附近 {1}个敌人"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2053
+#: ../../Challenger/Challenger.cs:2061
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}有流星"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2037
+#: ../../Challenger/Challenger.cs:2045
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}满月"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2049
+#: ../../Challenger/Challenger.cs:2057
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}灯笼夜"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2041
+#: ../../Challenger/Challenger.cs:2049
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}血月"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2045
+#: ../../Challenger/Challenger.cs:2053
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：明天日食"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2000
+#: ../../Challenger/Challenger.cs:2008
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会下雨"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2027
+#: ../../Challenger/Challenger.cs:2035
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会有沙尘暴"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2007
+#: ../../Challenger/Challenger.cs:2015
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会有风"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1994
+#: ../../Challenger/Challenger.cs:2002
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将下雨"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2032
+#: ../../Challenger/Challenger.cs:2040
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将刮起沙尘暴"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2020
+#: ../../Challenger/Challenger.cs:2028
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起狂风"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2014
+#: ../../Challenger/Challenger.cs:2022
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起风"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2057
+#: ../../Challenger/Challenger.cs:2065
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：顺其自然，不会发生任何事件"
 msgstr ""
@@ -465,16 +465,16 @@ msgstr ""
 msgid "拆掉拆掉！"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1929
+#: ../../Challenger/Challenger.cs:1937
 #, csharp-format
 msgid "挑战模式启用，祝您愉快。[操作来自：{0}]"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1863
+#: ../../Challenger/Challenger.cs:1871
 msgid "挑战模式已关闭，无法开启文字提示"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1916
+#: ../../Challenger/Challenger.cs:1924
 #, csharp-format
 msgid "挑战模式已取消，您觉得太难了？[操作来自：{0}]"
 msgstr ""
@@ -484,11 +484,11 @@ msgstr ""
 msgid "敌怪治疗 + {0}"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1868
+#: ../../Challenger/Challenger.cs:1876
 msgid "文字提示已取消"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1873
+#: ../../Challenger/Challenger.cs:1881
 msgid "文字提示已启用"
 msgstr ""
 
@@ -496,7 +496,7 @@ msgstr ""
 msgid "有毒的鳞甲炸裂开来"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1936
+#: ../../Challenger/Challenger.cs:1944
 msgid "未启用挑战模式！"
 msgstr ""
 
@@ -508,12 +508,12 @@ msgstr ""
 msgid "毒牙咬击"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1957
-#: ../../Challenger/Challenger.cs:1958
+#: ../../Challenger/Challenger.cs:1965
+#: ../../Challenger/Challenger.cs:1966
 msgid "永夜剑辉已启用"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2064
+#: ../../Challenger/Challenger.cs:2072
 msgid "没有套装效果启用"
 msgstr ""
 
@@ -521,7 +521,7 @@ msgstr ""
 msgid "燃烧！无法熄灭的火焰"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2068
+#: ../../Challenger/Challenger.cs:2076
 #, csharp-format
 msgid "状态异常，使用失败: {0}"
 msgstr ""
@@ -569,8 +569,8 @@ msgstr ""
 msgid "看我创死你"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1952
-#: ../../Challenger/Challenger.cs:1953
+#: ../../Challenger/Challenger.cs:1960
+#: ../../Challenger/Challenger.cs:1961
 msgid "神圣剑辉已启用"
 msgstr ""
 
@@ -608,7 +608,7 @@ msgstr ""
 msgid "诅咒开始应验"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1941
+#: ../../Challenger/Challenger.cs:1949
 msgid "请在游戏里使用该指令"
 msgstr ""
 
@@ -624,7 +624,7 @@ msgstr ""
 msgid "输入 /cenable  来启用挑战模式，再次使用取消"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1881
+#: ../../Challenger/Challenger.cs:1889
 msgid "输入 /cenable 来启用挑战模式，再次使用取消"
 msgstr ""
 
@@ -636,7 +636,7 @@ msgstr ""
 msgid "输入 /ctip  来启用内容提示，如各种物品的强化文字提示，再次使用取消"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1859
+#: ../../Challenger/Challenger.cs:1867
 msgid "输入 /ctip 来启用内容提示，如各种物品装备的修改文字提示，再次使用取消"
 msgstr ""
 

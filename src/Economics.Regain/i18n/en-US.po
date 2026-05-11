@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-03-22 12:30:58+0000\n"
-"PO-Revision-Date: 2026-03-23 02:01\n"
+"POT-Creation-Date: 2026-05-06 05:28:06+0000\n"
+"PO-Revision-Date: 2026-05-07 02:38\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -22,58 +22,58 @@ msgstr ""
 msgid "[i:{0}] {1} 价格:{2}"
 msgstr "[i:{0}] {1} Price:{2}"
 
-#: ../../Regain..cs:139
+#: ../../Regain..cs:140
 msgid "/regain"
 msgstr "/regain"
 
-#: ../../Regain..cs:140
+#: ../../Regain..cs:141
 msgid "/regain [数量]"
 msgstr "/regain [num]"
 
-#: ../../Regain..cs:141
+#: ../../Regain..cs:142
 msgid "/regain list"
 msgstr "/regain list"
 
-#: ../../Regain..cs:138
+#: ../../Regain..cs:139
 msgid "/regain 语法"
 msgstr "/regain syntax"
 
-#: ../../Regain..cs:81
+#: ../../Regain..cs:82
 msgid "你必须登录游戏使用此命令!"
 msgstr "You must be logged into the game to use this command!"
 
-#: ../../Regain..cs:116
+#: ../../Regain..cs:117
 #, csharp-format
 msgid "值{0}无效!"
 msgstr "Value {0} is invalid!"
 
-#: ../../Regain..cs:60
+#: ../../Regain..cs:61
 msgid "回收物品列表 ({0}/{1})："
 msgstr "Recyclable Item List ({0}/{1}):"
 
-#: ../../Regain..cs:16
+#: ../../Regain..cs:17
 msgid "对玩家的物品进行回收!"
 msgstr "Recycle player items!"
 
-#: ../../Regain..cs:59
+#: ../../Regain..cs:60
 msgid "当前可回收物品"
 msgstr "Current recyclable items"
 
-#: ../../Regain..cs:102
-#: ../../Regain..cs:134
+#: ../../Regain..cs:103
+#: ../../Regain..cs:135
 #, csharp-format
 msgid "成功兑换{0}"
 msgstr "Successfully redeemed {0}"
 
-#: ../../Regain..cs:69
+#: ../../Regain..cs:70
 msgid "该物品暂时无法回收!"
 msgstr "This item is temporarily not recyclable!"
 
-#: ../../Regain..cs:74
+#: ../../Regain..cs:75
 msgid "请手持一个有效物品!"
 msgstr "Please hold a valid item!"
 
-#: ../../Regain..cs:61
+#: ../../Regain..cs:62
 msgid "输入 {0}regain list {{0}} 查看更多"
 msgstr "Type {0}regain list to view more"
 

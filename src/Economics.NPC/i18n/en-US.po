@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-06-29 23:53:53+0000\n"
-"PO-Revision-Date: 2025-06-30 01:26\n"
+"POT-Creation-Date: 2026-05-06 05:28:05+0000\n"
+"PO-Revision-Date: 2026-05-07 02:38\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1448\n"
 "Language: en_US\n"
 
-#: ../../Plugin.cs:14
+#: ../../Plugin.cs:15
 msgid "修改NPC掉落货币!"
 msgstr "Modify the currency dropped by NPC!"
 

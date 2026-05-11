@@ -90,7 +90,7 @@
 | [CNPCShop](./src/CNPCShop/README.md) | 自定义NPC商店 |  |
 | [ConsoleSql](./src/ConsoleSql/README.md) | 允许你在控制台执行SQL语句 |  |
 | [ConvertWorld](./src/ConvertWorld/README.md) | 击败怪物转换世界物品 |  |
-| [CreateSpawn](./src/CreateSpawn/README.md) | 出生点建筑生成 |  |
+| [CreateSpawn](./src/CreateSpawn/README.md) | 出生点建筑生成 | [LazyAPI](./src/LazyAPI/README.md) |
 | [CriticalHit](./src/CriticalHit/README.md) | 击打提示 |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 跨版本游玩 |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 伤害规则掉落 |  |

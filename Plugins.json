@@ -667,7 +667,7 @@
   },
   {
     "Name": "Challenger",
-    "Version": "1.1.8",
+    "Version": "1.1.9",
     "Author": "z枳 星夜神花 羽学",
     "Description": {
       "en-US": "Increase the difficulty of the game for better gaming experience",
@@ -1089,7 +1089,7 @@
   },
   {
     "Name": "Economics.Core",
-    "Version": "2.1.0.0",
+    "Version": "3.0.0.0",
     "Author": "少司命, 千亦(修复 bug)",
     "Description": {
       "en-US": "Provides economic system API",
@@ -1112,7 +1112,7 @@
   },
   {
     "Name": "Economics.Deal",
-    "Version": "2.1.0.0",
+    "Version": "3.0.0.0",
     "Author": "少司命，千亦",
     "Description": {
       "en-US": "Players can trade",
@@ -1137,7 +1137,7 @@
   },
   {
     "Name": "Economics.NPC",
-    "Version": "2.1.0.0",
+    "Version": "3.0.0.0",
     "Author": "少司命，千亦",
     "Description": {
       "en-US": "Modify the currency dropped by NPC!",
@@ -1162,7 +1162,7 @@
   },
   {
     "Name": "Economics.Regain",
-    "Version": "2.0.0.5",
+    "Version": "3.0.0.0",
     "Author": "少司命，千亦（修复 bug）",
     "Description": {
       "en-US": "Recycle player items!",
@@ -1187,7 +1187,7 @@
   },
   {
     "Name": "Economics.RPG",
-    "Version": "2.0.0.6",
+    "Version": "3.0.0.0",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides RPG gameplay!",
@@ -1212,7 +1212,7 @@
   },
   {
     "Name": "Economics.Shop",
-    "Version": "2.0.0.4",
+    "Version": "3.0.0.0",
     "Author": "少司命",
     "Description": {
       "en-US": "Economy shop!",
@@ -1238,7 +1238,7 @@
   },
   {
     "Name": "Economics.Skill",
-    "Version": "2.0.1.6",
+    "Version": "3.0.0.0",
     "Author": "少司命",
     "Description": {
       "en-US": "Let players have skills!",
@@ -1264,7 +1264,7 @@
   },
   {
     "Name": "Economics.Task",
-    "Version": "2.0.0.5",
+    "Version": "3.0.0.0",
     "Author": "少司命",
     "Description": {
       "en-US": "Provides task system!",
@@ -1290,7 +1290,7 @@
   },
   {
     "Name": "Economics.WeaponPlus",
-    "Version": "2.0.0.7",
+    "Version": "3.0.0.0",
     "Author": "z枳 少司命",
     "Description": {
       "en-US": "Allow any weapon to be strengthened on basic attributes",

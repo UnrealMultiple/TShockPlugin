@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-03-30 16:50:48+0000\n"
-"PO-Revision-Date: 2026-03-31 02:06\n"
+"POT-Creation-Date: 2026-05-05 15:25:22+0000\n"
+"PO-Revision-Date: 2026-05-06 02:36\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -31,72 +31,72 @@ msgstr "[c/95CFA6:<Challenger: Mining Set>] Vein Miner [c/95CFA6: {0} {1}]."
 msgid "[挑战者模式]重新加载配置完毕。"
 msgstr "[Challenger] Configuration reloaded successfully."
 
-#: ../../Challenger/Challenger.cs:1979
+#: ../../Challenger/Challenger.cs:1987
 #, csharp-format
 msgid "{0} 发动了混乱之脑迷惑，成功迷惑了附近 {1}个敌人"
 msgstr "{0} Activated the Brain of Confusion, successfully confusing {1} nearby enemies."
 
-#: ../../Challenger/Challenger.cs:2053
+#: ../../Challenger/Challenger.cs:2061
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}有流星"
 msgstr "{0} Listened to the World Prophet broadcast from {1}: There will be a meteor shower at {2}."
 
-#: ../../Challenger/Challenger.cs:2037
+#: ../../Challenger/Challenger.cs:2045
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}满月"
 msgstr "{0} Listened to the World Prophet broadcast from {1}: It's a full moon at {2}."
 
-#: ../../Challenger/Challenger.cs:2049
+#: ../../Challenger/Challenger.cs:2057
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}灯笼夜"
 msgstr "{0} Listened to the World Prophet broadcast from {1}: It's Lantern Night at {2}."
 
-#: ../../Challenger/Challenger.cs:2041
+#: ../../Challenger/Challenger.cs:2049
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}血月"
 msgstr "{0} Listened to the World Prophet broadcast from {1}: It's a Blood Moon at {2}."
 
-#: ../../Challenger/Challenger.cs:2045
+#: ../../Challenger/Challenger.cs:2053
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：明天日食"
 msgstr "{0} Listened to the World Prophet broadcast from {1}: There will be a solar eclipse tomorrow."
 
-#: ../../Challenger/Challenger.cs:2000
+#: ../../Challenger/Challenger.cs:2008
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会下雨"
 msgstr "{0} Listened to the weather forecast broadcast from {1}: It won't rain."
 
-#: ../../Challenger/Challenger.cs:2027
+#: ../../Challenger/Challenger.cs:2035
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会有沙尘暴"
 msgstr "{0} Listened to the weather forecast broadcast from {1}: There will be no sandstorm."
 
-#: ../../Challenger/Challenger.cs:2007
+#: ../../Challenger/Challenger.cs:2015
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会有风"
 msgstr "{0} Listened to the weather forecast broadcast from {1}: There will be no wind."
 
-#: ../../Challenger/Challenger.cs:1994
+#: ../../Challenger/Challenger.cs:2002
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将下雨"
 msgstr "{0} Listened to the weather forecast broadcast from {1}: Rain is coming soon."
 
-#: ../../Challenger/Challenger.cs:2032
+#: ../../Challenger/Challenger.cs:2040
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将刮起沙尘暴"
 msgstr "{0} Listened to the weather forecast broadcast from {1}: A sandstorm is coming soon."
 
-#: ../../Challenger/Challenger.cs:2020
+#: ../../Challenger/Challenger.cs:2028
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起狂风"
 msgstr "{0} Listened to the weather forecast broadcast from {1}: Winds are coming soon."
 
-#: ../../Challenger/Challenger.cs:2014
+#: ../../Challenger/Challenger.cs:2022
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起风"
 msgstr "{0} Listened to the weather forecast broadcast from {1}: Wind is coming soon."
 
-#: ../../Challenger/Challenger.cs:2057
+#: ../../Challenger/Challenger.cs:2065
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：顺其自然，不会发生任何事件"
 msgstr "{0} Listened to the weather forecast broadcast from {1}: All will be calm; no events will occur."
@@ -549,16 +549,16 @@ msgstr "Wanna get cozy again?"
 msgid "拆掉拆掉！"
 msgstr "Tear it down! Tear it down!"
 
-#: ../../Challenger/Challenger.cs:1929
+#: ../../Challenger/Challenger.cs:1937
 #, csharp-format
 msgid "挑战模式启用，祝您愉快。[操作来自：{0}]"
 msgstr "Challenge Mode activated. Have fun! [Action by: {0}]"
 
-#: ../../Challenger/Challenger.cs:1863
+#: ../../Challenger/Challenger.cs:1871
 msgid "挑战模式已关闭，无法开启文字提示"
 msgstr "Challenge Mode disabled. Text hints cannot be enabled."
 
-#: ../../Challenger/Challenger.cs:1916
+#: ../../Challenger/Challenger.cs:1924
 #, csharp-format
 msgid "挑战模式已取消，您觉得太难了？[操作来自：{0}]"
 msgstr "Challenge Mode canceled. Think you're too good for this? [Action by: {0}]"
@@ -568,11 +568,11 @@ msgstr "Challenge Mode canceled. Think you're too good for this? [Action by: {0}
 msgid "敌怪治疗 + {0}"
 msgstr "Enemy healing + {0}"
 
-#: ../../Challenger/Challenger.cs:1868
+#: ../../Challenger/Challenger.cs:1876
 msgid "文字提示已取消"
 msgstr "Text hints disabled."
 
-#: ../../Challenger/Challenger.cs:1873
+#: ../../Challenger/Challenger.cs:1881
 msgid "文字提示已启用"
 msgstr "Text hints enabled."
 
@@ -580,7 +580,7 @@ msgstr "Text hints enabled."
 msgid "有毒的鳞甲炸裂开来"
 msgstr "Poisonous scales explode!"
 
-#: ../../Challenger/Challenger.cs:1936
+#: ../../Challenger/Challenger.cs:1944
 msgid "未启用挑战模式！"
 msgstr "Challenge Mode not activated!"
 
@@ -592,12 +592,12 @@ msgstr "Poisonous spines shoot in your face!"
 msgid "毒牙咬击"
 msgstr "Poisonous fang bite!"
 
-#: ../../Challenger/Challenger.cs:1957
-#: ../../Challenger/Challenger.cs:1958
+#: ../../Challenger/Challenger.cs:1965
+#: ../../Challenger/Challenger.cs:1966
 msgid "永夜剑辉已启用"
 msgstr "Eternal Night Blade activated!"
 
-#: ../../Challenger/Challenger.cs:2064
+#: ../../Challenger/Challenger.cs:2072
 msgid "没有套装效果启用"
 msgstr "No set bonuses activated."
 
@@ -605,7 +605,7 @@ msgstr "No set bonuses activated."
 msgid "燃烧！无法熄灭的火焰"
 msgstr "Burning! Unquenchable flames!"
 
-#: ../../Challenger/Challenger.cs:2068
+#: ../../Challenger/Challenger.cs:2076
 #, csharp-format
 msgid "状态异常，使用失败: {0}"
 msgstr "Status abnormal, usage failed: {0}"
@@ -653,8 +653,8 @@ msgstr "Take this slap!"
 msgid "看我创死你"
 msgstr "I'm gonna wreck you!"
 
-#: ../../Challenger/Challenger.cs:1952
-#: ../../Challenger/Challenger.cs:1953
+#: ../../Challenger/Challenger.cs:1960
+#: ../../Challenger/Challenger.cs:1961
 msgid "神圣剑辉已启用"
 msgstr "Holy Blade activated!"
 
@@ -692,7 +692,7 @@ msgstr "The sealed Skeletron awakens!"
 msgid "诅咒开始应验"
 msgstr "The curse begins!"
 
-#: ../../Challenger/Challenger.cs:1941
+#: ../../Challenger/Challenger.cs:1949
 msgid "请在游戏里使用该指令"
 msgstr "Please use this command in game"
 
@@ -708,7 +708,7 @@ msgstr "Your movement is so bad!"
 msgid "输入 /cenable  来启用挑战模式，再次使用取消"
 msgstr "Type in /cenable to enable challenge mode, use again to cancel."
 
-#: ../../Challenger/Challenger.cs:1881
+#: ../../Challenger/Challenger.cs:1889
 msgid "输入 /cenable 来启用挑战模式，再次使用取消"
 msgstr "Type in /cenable to enable challenge mode, use again to cancel."
 
@@ -720,7 +720,7 @@ msgstr "Type in /cf to switch some skills or status."
 msgid "输入 /ctip  来启用内容提示，如各种物品的强化文字提示，再次使用取消"
 msgstr "Type in /ctip to enable content tips, such as enhanced text tips for various items, use again to cancel."
 
-#: ../../Challenger/Challenger.cs:1859
+#: ../../Challenger/Challenger.cs:1867
 msgid "输入 /ctip 来启用内容提示，如各种物品装备的修改文字提示，再次使用取消"
 msgstr "Type in /ctip to enable content tips, such as enhanced text tips for various items and equipment, use again to cancel."
 

@@ -1,4 +1,5 @@
-﻿using Economics.Core.ConfigFiles;
+using Economics.Core;
+using Economics.Core.ConfigFiles;
 using System.Reflection;
 using System.Text;
 using Terraria;
@@ -16,7 +17,7 @@ public class Regain : TerrariaPlugin
     public override string Description => GetString("对玩家的物品进行回收!");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 0, 0, 5);
+    public override Version Version => new Version(3, 0, 0, 0);
 
     public Regain(Main game) : base(game)
     {
@@ -94,7 +95,7 @@ public class Regain : TerrariaPlugin
                 foreach (var rro in regain.RedemptionRelationshipsOption)
                 {
                     var num = args.Player.SelectedItem.stack * rro.Number;
-                    Core.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num, rro.CurrencyType);
+                    Core.Economics.CurrencyService.AddCurrency(args.Player.Name, rro.CurrencyType, num);
                     sb.Append($"{rro.CurrencyType}x{num} ");
                 }
                 args.Player.SelectedItem.stack = 0;
@@ -126,7 +127,7 @@ public class Regain : TerrariaPlugin
                 foreach (var rro in regain.RedemptionRelationshipsOption)
                 {
                     var num = count * rro.Number;
-                    Core.Economics.CurrencyManager.AddUserCurrency(args.Player.Name, num, rro.CurrencyType);
+                    Core.Economics.CurrencyService.AddCurrency(args.Player.Name, rro.CurrencyType, num);
                     sb.Append($"{rro.CurrencyType}x{num} ");
                 }
                 args.Player.SelectedItem.stack -= count;
