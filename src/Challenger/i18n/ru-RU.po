@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-05-05 15:25:22+0000\n"
-"PO-Revision-Date: 2026-05-06 02:36\n"
+"POT-Creation-Date: 2026-05-11 08:59:00+0000\n"
+"PO-Revision-Date: 2026-05-12 02:44\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -31,72 +31,72 @@ msgstr ""
 msgid "[挑战者模式]重新加载配置完毕。"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1987
+#: ../../Challenger/Challenger.cs:1988
 #, csharp-format
 msgid "{0} 发动了混乱之脑迷惑，成功迷惑了附近 {1}个敌人"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2061
+#: ../../Challenger/Challenger.cs:2062
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}有流星"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2045
+#: ../../Challenger/Challenger.cs:2046
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}满月"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2057
+#: ../../Challenger/Challenger.cs:2058
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}灯笼夜"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2049
+#: ../../Challenger/Challenger.cs:2050
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：{2}血月"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2053
+#: ../../Challenger/Challenger.cs:2054
 #, csharp-format
 msgid "{0} 收听了 {1} 世界先知广播：明天日食"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2008
+#: ../../Challenger/Challenger.cs:2009
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会下雨"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2035
+#: ../../Challenger/Challenger.cs:2036
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会有沙尘暴"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2015
+#: ../../Challenger/Challenger.cs:2016
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：不会有风"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2002
+#: ../../Challenger/Challenger.cs:2003
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将下雨"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2040
+#: ../../Challenger/Challenger.cs:2041
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将刮起沙尘暴"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2028
+#: ../../Challenger/Challenger.cs:2029
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起狂风"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2022
+#: ../../Challenger/Challenger.cs:2023
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：即将挂起风"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2065
+#: ../../Challenger/Challenger.cs:2066
 #, csharp-format
 msgid "{0} 收听了 {1} 天气预报收音广播：顺其自然，不会发生任何事件"
 msgstr ""
@@ -106,14 +106,14 @@ msgid "【丛林套装】\n"
 "挑战模式奖励：间歇地从玩家周围生成伤害性的孢子"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1387
+#: ../../Challenger/Challenger.cs:1388
 #, csharp-format
 msgid "【克苏鲁之盾】\n"
 "挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n"
 "{0}秒"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1390
+#: ../../Challenger/Challenger.cs:1391
 #, csharp-format
 msgid "【分趾袜】\n"
 "挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n"
@@ -126,7 +126,7 @@ msgid "【化石套装】\n"
 "抛出极快的闪电矢"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1347
+#: ../../Challenger/Challenger.cs:1348
 msgid "【叶绿套装】\n"
 "挑战模式奖励：释放不精确的叶绿水晶矢，丛林之\n"
 "力给你更高的生命上限"
@@ -143,13 +143,13 @@ msgid "【寒霜套装】\n"
 "挑战模式奖励：你周围开始下雪"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1376
+#: ../../Challenger/Challenger.cs:1377
 msgid "【幽魂套装】\n"
 "挑战模式奖励：根据头饰选择增加40血上限或80魔\n"
 "力上限；召唤 2个幽魂诅咒环绕玩家，向附近敌人攻击"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1393
+#: ../../Challenger/Challenger.cs:1394
 #, csharp-format
 msgid "【忍者大师装备】\n"
 "挑战模式奖励：冲刺时获得一小段无敌时间，冷却\n"
@@ -168,19 +168,19 @@ msgid "【挖矿套装】\n"
 "启用连锁挖矿能力"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1413
+#: ../../Challenger/Challenger.cs:1414
 msgid "【挥发明胶】\n"
 "挑战模式奖励：击中敌人有概率掉落碎魔晶，珍珠\n"
 "石，凝胶等"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1357
+#: ../../Challenger/Challenger.cs:1358
 msgid "【提基套装】\n"
 "挑战模式奖励：增加20血上限，在鞭子的轨迹上留\n"
 "下孢子"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1402
+#: ../../Challenger/Challenger.cs:1403
 msgid "【收音机零件】\n"
 "挑战模式奖励：输入“/cf”收听天气预报，在困难\n"
 "模式中可以收听世界先知预报"
@@ -204,13 +204,13 @@ msgid "【水晶刺客套装】\n"
 "晶碎片；若玩家被击中，释放出更强大的碎片"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1352
+#: ../../Challenger/Challenger.cs:1353
 msgid "【海龟套装】\n"
 "挑战模式奖励：增加60血上限，自动在附近释放爆\n"
 "炸碎片"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1396
+#: ../../Challenger/Challenger.cs:1397
 msgid "【混乱之脑】\n"
 "挑战模式奖励：输入“/cf”混乱周围所有敌怪"
 msgstr ""
@@ -226,14 +226,14 @@ msgid "【猩红套装】\n"
 "血量随着敌怪数目增多吸血量-1，冷却 5秒"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1363
+#: ../../Challenger/Challenger.cs:1364
 msgid "【甲虫套装】\n"
 "挑战模式奖励：增加60血上限，敌人的伤害的一部\n"
 "分会治疗周围的队友并给予buff；当装备帕拉丁盾\n"
 "或其上级合成物时，帕拉丁之锤伤害翻倍"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1384
+#: ../../Challenger/Challenger.cs:1385
 msgid "【皇家凝胶】\n"
 "挑战模式奖励：天空开始下凝胶小雨"
 msgstr ""
@@ -250,12 +250,12 @@ msgid "【禁戒套装】\n"
 "敌人"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1410
+#: ../../Challenger/Challenger.cs:1411
 msgid "【箭袋】\n"
 "挑战模式奖励：无限补充弹药，额外获得BUFF"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1370
+#: ../../Challenger/Challenger.cs:1371
 msgid "【蘑菇套装】\n"
 "挑战模式奖励：射弹会不稳定地留下蘑菇"
 msgstr ""
@@ -273,18 +273,18 @@ msgid "【蜜蜂套装】\n"
 "益；对玩家自身的治疗量略低于对其他玩家"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1405
+#: ../../Challenger/Challenger.cs:1406
 msgid "【蜜蜂背包】\n"
 "挑战模式奖励：不间断地向四周扔出毒蜂罐，爆炸\n"
 "后释放一只蜜蜂"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1399
+#: ../../Challenger/Challenger.cs:1400
 msgid "【蠕虫围巾】\n"
 "挑战模式奖励：免疫寒冷，霜火，灵液和咒火"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1381
+#: ../../Challenger/Challenger.cs:1382
 msgid "【阴森套装】\n"
 "挑战模式奖励：使用鞭子时，甩出蝙蝠或南\n"
 "瓜头"
@@ -302,8 +302,8 @@ msgid "【黑曜石套装】\n"
 "(仅对非boss生物和非高血量怪物有效)"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1468
 #: ../../Challenger/Challenger.cs:1469
+#: ../../Challenger/Challenger.cs:1470
 msgid "Challenger.OnServerLeave异常3："
 msgstr ""
 
@@ -317,11 +317,11 @@ msgstr ""
 msgid "不许抢我的蜂蜜"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1430
+#: ../../Challenger/Challenger.cs:1431
 msgid "世界已关闭挑战模式，快乐游玩吧"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1426
+#: ../../Challenger/Challenger.cs:1427
 msgid "世界已开启挑战模式，祝您好运！"
 msgstr ""
 
@@ -465,16 +465,16 @@ msgstr ""
 msgid "拆掉拆掉！"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1937
+#: ../../Challenger/Challenger.cs:1938
 #, csharp-format
 msgid "挑战模式启用，祝您愉快。[操作来自：{0}]"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1871
+#: ../../Challenger/Challenger.cs:1872
 msgid "挑战模式已关闭，无法开启文字提示"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1924
+#: ../../Challenger/Challenger.cs:1925
 #, csharp-format
 msgid "挑战模式已取消，您觉得太难了？[操作来自：{0}]"
 msgstr ""
@@ -484,11 +484,11 @@ msgstr ""
 msgid "敌怪治疗 + {0}"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1876
+#: ../../Challenger/Challenger.cs:1877
 msgid "文字提示已取消"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1881
+#: ../../Challenger/Challenger.cs:1882
 msgid "文字提示已启用"
 msgstr ""
 
@@ -496,7 +496,7 @@ msgstr ""
 msgid "有毒的鳞甲炸裂开来"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1944
+#: ../../Challenger/Challenger.cs:1945
 msgid "未启用挑战模式！"
 msgstr ""
 
@@ -508,12 +508,12 @@ msgstr ""
 msgid "毒牙咬击"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1965
 #: ../../Challenger/Challenger.cs:1966
+#: ../../Challenger/Challenger.cs:1967
 msgid "永夜剑辉已启用"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2072
+#: ../../Challenger/Challenger.cs:2073
 msgid "没有套装效果启用"
 msgstr ""
 
@@ -521,7 +521,7 @@ msgstr ""
 msgid "燃烧！无法熄灭的火焰"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:2076
+#: ../../Challenger/Challenger.cs:2077
 #, csharp-format
 msgid "状态异常，使用失败: {0}"
 msgstr ""
@@ -569,8 +569,8 @@ msgstr ""
 msgid "看我创死你"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1960
 #: ../../Challenger/Challenger.cs:1961
+#: ../../Challenger/Challenger.cs:1962
 msgid "神圣剑辉已启用"
 msgstr ""
 
@@ -608,7 +608,7 @@ msgstr ""
 msgid "诅咒开始应验"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1949
+#: ../../Challenger/Challenger.cs:1950
 msgid "请在游戏里使用该指令"
 msgstr ""
 
@@ -624,7 +624,7 @@ msgstr ""
 msgid "输入 /cenable  来启用挑战模式，再次使用取消"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1889
+#: ../../Challenger/Challenger.cs:1890
 msgid "输入 /cenable 来启用挑战模式，再次使用取消"
 msgstr ""
 
@@ -636,7 +636,7 @@ msgstr ""
 msgid "输入 /ctip  来启用内容提示，如各种物品的强化文字提示，再次使用取消"
 msgstr ""
 
-#: ../../Challenger/Challenger.cs:1867
+#: ../../Challenger/Challenger.cs:1868
 msgid "输入 /ctip 来启用内容提示，如各种物品装备的修改文字提示，再次使用取消"
 msgstr ""
 

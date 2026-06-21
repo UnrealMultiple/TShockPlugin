@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2025-08-02 19:13:08+0000\n"
-"PO-Revision-Date: 2025-08-03 01:44\n"
+"PO-Revision-Date: 2026-05-15 02:55\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: ../../BossLock.cs:145
 #, csharp-format
 msgid "[BossLock]初始化完成!开服时间设为:{0}"
-msgstr ""
+msgstr "初始化完成!开服时间设为:{0}\n"
 
 #: ../../BossLock.cs:88
 msgid "[BossLock]定时进度已重载!"
