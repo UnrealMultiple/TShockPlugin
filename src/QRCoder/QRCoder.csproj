@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <Import Project="..\..\template.targets" />
     <ItemGroup>
-      <PackageReference Include="Net.Codecrete.QrCodeGenerator" Version="2.1.0" />
+      <PackageReference Include="Net.Codecrete.QrCodeGenerator" Version="3.0.0" />
     </ItemGroup>
     <PropertyGroup>
         <EmbedNuGetDlls>QrCodeGenerator.dll</EmbedNuGetDlls>
