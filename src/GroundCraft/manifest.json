@@ -1,0 +1,8 @@
+{
+  "README.en-US": {
+    "Description": "Craft items by dropping ingredients together, with JSON recipes and conditions"
+  },
+  "README": {
+    "Description": "把掉落物丢在一起自动合成，支持 JSON 配方与条件"
+  }
+}

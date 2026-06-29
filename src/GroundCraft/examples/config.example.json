@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "scanIntervalTicks": 45,
+  "requiredStableScans": 2,
+  "clusterRadiusTiles": 3,
+  "stillVelocitySquared": 0.02,
+  "stationSearchRadiusTiles": 7,
+  "environmentSearchRadiusTiles": 8,
+  "biomePlayerProbeRadiusTiles": 40,
+  "maxCraftsPerClusterPerScan": 1,
+  "notifyRadiusTiles": 24,
+  "notifyPlayers": true,
+  "notifyConsumedItems": true,
+  "clearClientGhostItems": true,
+  "allowSingleIngredientTypeRecipes": false,
+  "allowCoinRecipes": false,
+  "allowInputOutputSameItem": false,
+  "playerPermission": "tshock.canchat",
+  "adminPermission": "groundcraft.admin"
+}
