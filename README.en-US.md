@@ -128,6 +128,7 @@
 | [GhostView](./src/GhostView/README.md) | 0.0% | spectate in ghost mode after death, reconnect does not reset respawn cooldown |  |
 | [GolfRewards](./src/GolfRewards/README.en-US.md) | 100.0% | Golf rewards |  |
 | [GoodNight](./src/GoodNight/README.md) | 4.9% | Curfew |  |
+| [GroundCraft](./src/GroundCraft/README.en-US.md) | 0.0% | Craft items by dropping ingredients together, with JSON recipes and conditions |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.en-US.md) | 100.0% | Hardcore death drops life crystals |  |
 | [HelpPlus](./src/HelpPlus/README.en-US.md) | 64.3% | Fix and enhance the Help command |  |
 | [History](./src/History/README.en-US.md) | 100.0% | History grid record |  |

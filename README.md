@@ -124,6 +124,7 @@
 | [GhostView](./src/GhostView/README.md) | 死亡后能在鬼魂状态下观战，重连不刷新复活cd |  |
 | [GolfRewards](./src/GolfRewards/README.md) | 高尔夫奖励 |  |
 | [GoodNight](./src/GoodNight/README.md) | 宵禁 |  |
+| [GroundCraft](./src/GroundCraft/README.md) | 把掉落物丢在一起自动合成，支持 JSON 配方与条件 |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 硬核死亡掉生命水晶 |  |
 | [HelpPlus](./src/HelpPlus/README.md) | 修复和增强 Help 命令 |  |
 | [History](./src/History/README.md) | 历史图格记录 |  |
