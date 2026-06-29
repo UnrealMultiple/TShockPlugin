@@ -71,6 +71,7 @@
   <Project Path="src/GhostView/GhostView.csproj" />
   <Project Path="src/GolfRewards/GolfRewards.csproj" />
   <Project Path="src/GoodNight/GoodNight.csproj" />
+  <Project Path="src/GroundCraft/GroundCraft.csproj" />
   <Project Path="src/HardPlayerDrop/HardPlayerDrop.csproj" />
   <Project Path="src/HelpPlus/HelpPlus.csproj" />
   <Project Path="src/History/History.csproj" />

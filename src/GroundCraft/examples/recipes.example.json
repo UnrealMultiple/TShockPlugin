@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "recipes": [
+    {
+      "id": "cloud_in_sky",
+      "enabled": true,
+      "output": { "id": 751, "stack": 8, "name": "Cloud" },
+      "ingredients": [
+        { "id": 151, "stack": 1, "name": "Feather" },
+        { "id": 126, "stack": 1, "name": "Bottled Water" }
+      ],
+      "requiredTiles": [],
+      "conditions": {
+        "layers": [ "Sky" ],
+        "biomes": [],
+        "liquids": [],
+        "anyLiquids": [],
+        "bossProgress": {}
+      }
+    },
+    {
+      "id": "suspicious_eye_before_eye",
+      "enabled": true,
+      "output": { "id": 43, "stack": 1, "name": "Suspicious Looking Eye" },
+      "ingredients": [
+        { "id": 38, "stack": 6, "name": "Lens" },
+        { "id": 75, "stack": 2, "name": "Fallen Star" }
+      ],
+      "requiredTiles": [],
+      "conditions": {
+        "bossProgress": {
+          "noneDowned": [ "EyeOfCthulhu" ]
+        }
+      }
+    },
+    {
+      "id": "disabled_example_after_any_mech",
+      "enabled": false,
+      "output": { "id": 502, "stack": 2, "name": "Crystal Shard" },
+      "ingredients": [
+        { "id": 549, "stack": 4, "name": "Pixie Dust" },
+        { "id": 75, "stack": 1, "name": "Fallen Star" }
+      ],
+      "requiredTiles": [],
+      "conditions": {
+        "bossProgress": {
+          "hardmode": true,
+          "allDowned": [ "MechBossAny" ]
+        }
+      }
+    }
+  ]
+}
