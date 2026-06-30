@@ -13,7 +13,7 @@ public sealed partial class GroundCraft
 {
     private sealed record DropRef(int Index, WorldItem Item, Vector2 Center);
 
-    private sealed record IngredientTake(DropRef Drop, int Stack);
+    private sealed record IngredientTake(DropRef Drop, int Type, int Stack);
 
     private sealed record AnimatedIngredient(int Index, int Type, int Stack, Vector2 StartCenter, int Width, int Height);
 

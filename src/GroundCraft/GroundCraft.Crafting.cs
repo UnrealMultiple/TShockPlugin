@@ -135,39 +135,20 @@ public sealed partial class GroundCraft
     {
         Vector2 center = AverageCenter(cluster);
         EnvironmentSnapshot snapshot = ProbeEnvironment(center);
-        Dictionary<int, int> available = CountItems(cluster);
         bool rejectedForExtraTypes = false;
 
-        foreach (DropRecipe recipe in _recipes)
+        if (_config.AnimateConsumedItems)
         {
-            if (!HasIngredients(available, recipe))
-                continue;
+            Dictionary<int, int> available = CountItems(cluster);
+            if (available.Count == 0)
+                return false;
 
-            if (_config.RequireExactIngredientTypes && !HasExactIngredientTypes(available, recipe))
+            foreach (DropRecipe recipe in _recipes)
             {
-                rejectedForExtraTypes = true;
-                continue;
-            }
+                if (!RecipeCanCraft(recipe, available, snapshot, center, ref rejectedForExtraTypes, out Vector2 stationCenter, out int craftCount))
+                    continue;
 
-            if (!ConditionsMatch(recipe, snapshot))
-            {
-                _runtime.ConditionMisses++;
-                continue;
-            }
-
-            if (!TryGetCraftingStationCenter(recipe, center, out Vector2 stationCenter))
-            {
-                _runtime.StationMisses++;
-                continue;
-            }
-
-            Vector2 craftCenter = IsZenithRecipe(recipe) ? stationCenter : center;
-            int craftCount = GetCraftCount(available, recipe);
-            if (craftCount <= 0)
-                continue;
-
-            if (_config.AnimateConsumedItems)
-            {
+                Vector2 craftCenter = IsZenithRecipe(recipe) ? stationCenter : center;
                 if (!TryStartCraftAnimation(cluster, recipe, craftCount, craftCenter, out _))
                 {
                     _runtime.ConsumeFailures++;
@@ -179,31 +160,101 @@ public sealed partial class GroundCraft
                 return true;
             }
 
-            if (!ConsumeIngredients(cluster, recipe, craftCount, out Dictionary<int, int> consumedStacks))
+            if (rejectedForExtraTypes)
+                _runtime.ExtraItemTypeRejects++;
+
+            return false;
+        }
+
+        bool craftedAny = false;
+        int maxRecipePasses = Math.Max(1, _recipes.Count);
+        HashSet<string> craftedRecipeSignatures = new(StringComparer.Ordinal);
+
+        for (int pass = 0; pass < maxRecipePasses; pass++)
+        {
+            Dictionary<int, int> available = CountItems(cluster);
+            if (available.Count == 0)
+                break;
+
+            bool craftedThisPass = false;
+            foreach (DropRecipe recipe in _recipes)
             {
-                _runtime.ConsumeFailures++;
-                return false;
+                if (craftedRecipeSignatures.Contains(recipe.Signature))
+                    continue;
+
+                if (!RecipeCanCraft(recipe, available, snapshot, center, ref rejectedForExtraTypes, out Vector2 stationCenter, out int craftCount))
+                    continue;
+
+                Vector2 craftCenter = IsZenithRecipe(recipe) ? stationCenter : center;
+                if (!ConsumeIngredients(cluster, recipe, craftCount, out Dictionary<int, int> consumedStacks))
+                {
+                    _runtime.ConsumeFailures++;
+                    return craftedAny;
+                }
+
+                int outputStack = recipe.OutputStack * craftCount;
+                SpawnItem(recipe.OutputType, outputStack, craftCenter);
+                if (IsZenithRecipe(recipe))
+                    SpawnZenithFinale(craftCenter);
+                else
+                    SpawnCraftEffect(craftCenter);
+
+                _runtime.CraftBatches++;
+                _runtime.Crafts += craftCount;
+
+                TShock.Log.ConsoleInfo(GetString($"[GroundCraft] {recipe.Id} 在 {craftCenter.X / 16f:0}, {craftCenter.Y / 16f:0} 合成 {ItemName(recipe.OutputType)} x{outputStack}。"));
+                NotifyNearby(craftCenter, recipe, outputStack, consumedStacks);
+                craftedRecipeSignatures.Add(recipe.Signature);
+                craftedAny = true;
+                craftedThisPass = true;
+                break;
             }
 
-            int immediateOutputStack = recipe.OutputStack * craftCount;
-            SpawnItem(recipe.OutputType, immediateOutputStack, craftCenter);
-            if (IsZenithRecipe(recipe))
-                SpawnZenithFinale(craftCenter);
-            else
-                SpawnCraftEffect(craftCenter);
-
-            _runtime.CraftBatches++;
-            _runtime.Crafts += craftCount;
-
-            TShock.Log.ConsoleInfo(GetString($"[GroundCraft] {recipe.Id} 在 {craftCenter.X / 16f:0}, {craftCenter.Y / 16f:0} 合成 {ItemName(recipe.OutputType)} x{immediateOutputStack}。"));
-            NotifyNearby(craftCenter, recipe, immediateOutputStack, consumedStacks);
-            return true;
+            if (!craftedThisPass)
+                break;
         }
 
         if (rejectedForExtraTypes)
             _runtime.ExtraItemTypeRejects++;
 
-        return false;
+        return craftedAny;
+    }
+
+    private bool RecipeCanCraft(
+        DropRecipe recipe,
+        IReadOnlyDictionary<int, int> available,
+        EnvironmentSnapshot snapshot,
+        Vector2 center,
+        ref bool rejectedForExtraTypes,
+        out Vector2 stationCenter,
+        out int craftCount)
+    {
+        stationCenter = center;
+        craftCount = 0;
+
+        if (!HasIngredients(available, recipe))
+            return false;
+
+        if (_config.RequireExactIngredientTypes && !HasExactIngredientTypes(available, recipe))
+        {
+            rejectedForExtraTypes = true;
+            return false;
+        }
+
+        if (!ConditionsMatch(recipe, snapshot))
+        {
+            _runtime.ConditionMisses++;
+            return false;
+        }
+
+        if (!TryGetCraftingStationCenter(recipe, center, out stationCenter))
+        {
+            _runtime.StationMisses++;
+            return false;
+        }
+
+        craftCount = GetCraftCount(available, recipe);
+        return craftCount > 0;
     }
 
     private static Dictionary<int, int> CountItems(IEnumerable<DropRef> cluster)
@@ -279,10 +330,10 @@ public sealed partial class GroundCraft
 
             int taken = Math.Min(item.stack, needed);
             remaining[item.type] = needed - taken;
-            plan.Add(new IngredientTake(drop, taken));
+            plan.Add(new IngredientTake(drop, item.type, taken));
         }
 
-        if (remaining.Values.Any(v => v > 0) || plan.Count == 0)
+        if (remaining.Values.Any(v => v > 0) || plan.Count == 0 || !AnimationPlanStillValid(plan))
             return false;
 
         List<AnimatedIngredient> animatedIngredients = new();
@@ -290,13 +341,10 @@ public sealed partial class GroundCraft
         foreach (IngredientTake take in plan)
         {
             DropRef drop = take.Drop;
-            WorldItem item = drop.Item;
-            if (!item.active || item.type <= 0 || item.stack < take.Stack)
-                return false;
+            WorldItem item = Main.item[drop.Index];
+            AddCount(consumedStacks, take.Type, take.Stack);
 
-            AddCount(consumedStacks, item.type, take.Stack);
-
-            int itemType = item.type;
+            int itemType = take.Type;
             int leftoverStack = item.stack - take.Stack;
             Vector2 respawnCenter = drop.Center;
             int width = item.width;
@@ -313,6 +361,22 @@ public sealed partial class GroundCraft
         }
 
         _craftAnimations.Add(new CraftAnimation(recipe, center, recipe.OutputStack * craftCount, craftCount, IsZenithRecipe(recipe), consumedStacks, animatedIngredients, deferredLeftovers));
+        return true;
+    }
+
+    private static bool AnimationPlanStillValid(IEnumerable<IngredientTake> plan)
+    {
+        foreach (IngredientTake take in plan)
+        {
+            int index = take.Drop.Index;
+            if (index < 0 || index >= Main.item.Length || index >= Main.maxItems)
+                return false;
+
+            WorldItem item = Main.item[index];
+            if (!item.active || item.type != take.Type || item.stack < take.Stack || item.width <= 0 || item.height <= 0)
+                return false;
+        }
+
         return true;
     }
 
@@ -417,11 +481,6 @@ public sealed partial class GroundCraft
         NetMessage.SendData(MessageID.SyncItem, -1, -1, null, index);
         NetMessage.SendData(MessageID.SyncItemDespawn, -1, -1, null, index);
         NetMessage.SendData(MessageID.SyncItem, -1, -1, null, index);
-    }
-
-    private bool HasRequiredStation(DropRecipe recipe, Vector2 center)
-    {
-        return TryGetCraftingStationCenter(recipe, center, out _);
     }
 
     private bool TryGetCraftingStationCenter(DropRecipe recipe, Vector2 center, out Vector2 stationCenter)

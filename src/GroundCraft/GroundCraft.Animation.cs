@@ -216,10 +216,9 @@ public sealed partial class GroundCraft
 
     private void OnGetData(GetDataEventArgs args)
     {
-        if (args.Handled || !IsLockedItemPacket(args))
+        if (args.Handled || !TryReadLockedItemIndex(args, out int index))
             return;
 
-        int index = BitConverter.ToInt16(args.Msg.readBuffer, args.Index);
         if (!_lockedItemIndexes.Contains(index))
             return;
 
@@ -227,16 +226,29 @@ public sealed partial class GroundCraft
         ReassertLockedItem(index);
     }
 
-    private static bool IsLockedItemPacket(GetDataEventArgs args)
+    private static bool TryReadLockedItemIndex(GetDataEventArgs args, out int index)
     {
+        index = -1;
         int msgId = (int)args.MsgID;
-        if (args.Length < 2)
+        return msgId switch
+        {
+            MessageID.SyncItem => TryReadItemIndexAt(args, 0, out index),
+            MessageID.ItemOwner => TryReadItemIndexAt(args, 0, out index),
+            MessageID.ReleaseItemOwnership => TryReadItemIndexAt(args, 0, out index),
+            MessageID.SyncItemDespawn => TryReadItemIndexAt(args, 0, out index),
+            _ => false
+        };
+    }
+
+    private static bool TryReadItemIndexAt(GetDataEventArgs args, int payloadOffset, out int index)
+    {
+        index = -1;
+        const int itemIndexSize = sizeof(short);
+        if (payloadOffset < 0 || args.Length < payloadOffset + itemIndexSize || args.Index + payloadOffset + itemIndexSize > args.Msg.readBuffer.Length)
             return false;
 
-        return msgId == MessageID.SyncItem
-            || msgId == MessageID.ItemOwner
-            || msgId == MessageID.ReleaseItemOwnership
-            || msgId == MessageID.SyncItemDespawn;
+        index = BitConverter.ToInt16(args.Msg.readBuffer, args.Index + payloadOffset);
+        return index >= 0 && index < Main.maxItems && index < Main.item.Length;
     }
 
     private static void LockAnimatedItem(int index)

@@ -24,7 +24,7 @@ Files are generated under `tshock/GroundCraft/`.
 
 Use `/gcreload` to reload both JSON files without restarting the server.
 
-`requireExactIngredientTypes` is enabled by default. Extra dropped item types in the same cluster will prevent a similar recipe from firing accidentally. `animateConsumedItems` is also enabled by default: consumed drops are locked as unpickable visual items, spiral upward, and only then turn into the output. Zenith recipes use a taller and wider dedicated animation.
+`requireExactIngredientTypes` is enabled by default. Extra dropped item types in the same cluster will prevent a similar recipe from firing accidentally. `animateConsumedItems` is also enabled by default: consumed drops are locked as unpickable visual items, spiral upward, and only then turn into the output. Zenith recipes use a taller and wider dedicated animation. In animation mode, each item cluster starts at most one craft animation per scan, and `maxCraftsPerClusterPerScan` limits the batch count inside that animation. If animation is disabled, the plugin continues trying other matching recipes during the same scan.
 
 ## Recipe Conditions
 
