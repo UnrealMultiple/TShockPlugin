@@ -3212,5 +3212,28 @@
     "Path": "ShortCommand.dll",
     "Dependencies": [],
     "HotReload": true
+  },
+  {
+    "Name": "GroundCraft",
+    "Version": "1.1.0.0",
+    "Author": "愚蠢",
+    "Description": {
+      "en-US": "Craft items by dropping ingredients together, with JSON recipes, conditions, exact matching and spiral animations",
+      "de-DE": "通过把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画",
+      "it-IT": "通过把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画",
+      "fr-FR": "通过把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画",
+      "es-ES": "通过把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画",
+      "ru-RU": "通过把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画",
+      "zh-CN": "把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画",
+      "pt-BR": "通过把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画",
+      "pl-PL": "通过把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画",
+      "ja-JP": "通过把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画",
+      "ko-KR": "通过把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画",
+      "zh-Hant": "把掉落物丟在一起自動合成，支援 JSON 配方、條件、精確匹配和螺旋動畫"
+    },
+    "AssemblyName": "GroundCraft",
+    "Path": "GroundCraft.dll",
+    "Dependencies": [],
+    "HotReload": true
   }
 ]
