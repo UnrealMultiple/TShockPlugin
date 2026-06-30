@@ -131,7 +131,7 @@
 | [GhostView](./src/GhostView/README.md) | 0.0% | espectar en modo fantasma tras la muerte, la reconexión no reinicia el tiempo de reaparición |  |
 | [GolfRewards](./src/GolfRewards/README.md) | 0.0% | Recompensas de golf |  |
 | [GoodNight](./src/GoodNight/README.md) | 0.0% | Toque de queda |  |
-| [GroundCraft](./src/GroundCraft/README.md) | 0.0% | 把掉落物丢在一起自动合成，支持 JSON 配方与条件 |  |
+| [GroundCraft](./src/GroundCraft/README.md) | 0.0% | 把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画 |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 0.0% | Los jugadores en modo Hardcore sueltan corazones de vida al morir |  |
 | [HelpPlus](./src/HelpPlus/README.md) | 0.0% | Corrige y mejora el comando de ayuda |  |
 | [History](./src/History/README.md) | 0.0% | Registra un historial en formato de tabla |  |

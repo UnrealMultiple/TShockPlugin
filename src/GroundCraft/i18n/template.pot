@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GroundCraft\n"
-"POT-Creation-Date: 2026-06-29 15:20:13+0000\n"
-"PO-Revision-Date: 2026-06-29 15:20:13+0000\n"
+"POT-Creation-Date: 2026-06-30 08:14:21+0000\n"
+"PO-Revision-Date: 2026-06-30 08:14:22+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,22 +10,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../GroundCraft.Commands.cs:58
+#: ../../GroundCraft.Commands.cs:63
 #, csharp-format
 msgid "，搜索“{0}”"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:158
+#: ../../GroundCraft.Commands.cs:163
 #, csharp-format
 msgid "[{0}]"
 msgstr ""
 
-#: ../../GroundCraft.Crafting.cs:176
+#: ../../GroundCraft.Crafting.cs:205
 #, csharp-format
 msgid "[GroundCraft] {0} 在 {1:0}, {2:0} 合成 {3} x{4}。"
 msgstr ""
 
-#: ../../GroundCraft.Crafting.cs:34
+#: ../../GroundCraft.Crafting.cs:159
+#, csharp-format
+msgid "[GroundCraft] {0} 在 {1:0}, {2:0} 开始合成 {3} x{4}。"
+msgstr ""
+
+#: ../../GroundCraft.Crafting.cs:36
 #, csharp-format
 msgid "[GroundCraft] 扫描掉落物失败：{0}"
 msgstr ""
@@ -35,8 +40,13 @@ msgstr ""
 msgid "[GroundCraft] 拒绝原因：导入={0}；安全={1}"
 msgstr ""
 
-#: ../../GroundCraft.cs:96
+#: ../../GroundCraft.cs:122
 msgid "[GroundCraft] 插件已卸载。"
+msgstr ""
+
+#: ../../GroundCraft.Animation.cs:164
+#, csharp-format
+msgid "[GroundCraft] 螺旋融合完成：{0} x{1}。"
 msgstr ""
 
 #: ../../GroundCraft.Recipes.cs:46
@@ -49,206 +59,206 @@ msgstr ""
 msgid "[GroundCraft] 配方审核完成：{0}。配置目录：{1}"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:118
+#: ../../GroundCraft.Commands.cs:123
 #, csharp-format
 msgid "{0}: {1} => {2} x{3} @ {4} {5}"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:174
+#: ../../GroundCraft.Commands.cs:179
 #, csharp-format
 msgid "{0}：{1}"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:170
+#: ../../GroundCraft.Commands.cs:175
 #, csharp-format
 msgid "{0}：无。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:88
+#: ../../GroundCraft.Commands.cs:93
 #, csharp-format
 msgid "Boss 进度示例：困难模式={0}，任意机械Boss={1}。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:98
+#: ../../GroundCraft.Commands.cs:103
 #, csharp-format
 msgid "GroundCraft 已热重载：启用配方 {0} 条。无需重启服务器。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:199
+#: ../../GroundCraft.Commands.cs:204
 msgid "产物超过最大堆叠"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:189
+#: ../../GroundCraft.Commands.cs:194
 msgid "产物非法"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:154
+#: ../../GroundCraft.Commands.cs:159
 #, csharp-format
 msgid "任一液体={0}"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:124
+#: ../../GroundCraft.Commands.cs:129
 msgid "任意地点"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:200
+#: ../../GroundCraft.Commands.cs:205
 msgid "同材料同条件多结果歧义"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:32
+#: ../../GroundCraft.Commands.cs:37
 msgid "命令：/gcrecipes [页码|搜索]、/gcenv、/gcaudit、/gcreload。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:140
+#: ../../GroundCraft.Commands.cs:145
 #, csharp-format
 msgid "图块 {0}"
 msgstr ""
 
-#: ../../GroundCraft.Crafting.cs:295
+#: ../../GroundCraft.Crafting.cs:444
 #, csharp-format
 msgid "地上合成：{0} x{1}"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:30
+#: ../../GroundCraft.Commands.cs:34
 #, csharp-format
 msgid "地上合成：{0}，启用配方 {1} 条。"
 msgstr ""
 
-#: ../../GroundCraft.cs:41
+#: ../../GroundCraft.cs:58
 msgid "地上合成：把掉落物丢在一起，根据 JSON 配方和环境/进度条件自动合成。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:59
+#: ../../GroundCraft.Commands.cs:64
 #, csharp-format
 msgid "地上合成配方{0}：第 {1}/{2} 页，共 {3} 条。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:150
+#: ../../GroundCraft.Commands.cs:155
 #, csharp-format
 msgid "地形={0}"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:130
+#: ../../GroundCraft.Commands.cs:135
 msgid "地狱熔炉"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:107
+#: ../../GroundCraft.Commands.cs:112
 msgid "安全拒绝"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:106
+#: ../../GroundCraft.Commands.cs:111
 msgid "导入拒绝"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:148
+#: ../../GroundCraft.Commands.cs:153
 #, csharp-format
 msgid "层级={0}"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:128
+#: ../../GroundCraft.Commands.cs:133
 msgid "工作台"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:137
+#: ../../GroundCraft.Commands.cs:142
 msgid "工匠作坊"
 msgstr ""
 
-#: ../../GroundCraft.Crafting.cs:309
+#: ../../GroundCraft.Crafting.cs:458
 #, csharp-format
 msgid "已清除被消耗的掉落物：{0}。如果你还看到旧材料，那是客户端残影，实际已经不存在。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:85
+#: ../../GroundCraft.Commands.cs:90
 #, csharp-format
 msgid "当前层级：{0}。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:86
+#: ../../GroundCraft.Commands.cs:91
 #, csharp-format
 msgid "当前生物群系：{0}。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:138
+#: ../../GroundCraft.Commands.cs:143
 msgid "提炼机"
 msgstr ""
 
 #: ../../GroundCraft.Utilities.cs:33
-#: ../../GroundCraft.Commands.cs:163
-#: ../../GroundCraft.Commands.cs:180
+#: ../../GroundCraft.Commands.cs:168
+#: ../../GroundCraft.Commands.cs:185
 msgid "无"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:195
+#: ../../GroundCraft.Commands.cs:200
 msgid "未知Boss进度"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:193
+#: ../../GroundCraft.Commands.cs:198
 msgid "未知地形"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:192
+#: ../../GroundCraft.Commands.cs:197
 msgid "未知层级"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:194
+#: ../../GroundCraft.Commands.cs:199
 msgid "未知液体"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:31
+#: ../../GroundCraft.Commands.cs:35
 #, csharp-format
 msgid "材料丢在 {0:0.##} 格内，静止 {1} 次扫描后尝试合成；每堆每次最多合成 {2} 批。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:198
+#: ../../GroundCraft.Commands.cs:203
 msgid "材料和产物相同"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:196
+#: ../../GroundCraft.Commands.cs:201
 msgid "材料种类不足"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:191
+#: ../../GroundCraft.Commands.cs:196
 msgid "材料非法"
 msgstr ""
 
-#: ../../GroundCraft.cs:75
+#: ../../GroundCraft.cs:92
 msgid "查看 GroundCraft 配方审核结果。"
 msgstr ""
 
-#: ../../GroundCraft.cs:59
+#: ../../GroundCraft.cs:76
 msgid "查看地上合成状态。"
 msgstr ""
 
-#: ../../GroundCraft.cs:63
+#: ../../GroundCraft.cs:80
 msgid "查看地上合成配方。用法：/gcrecipes [页码|搜索]"
 msgstr ""
 
-#: ../../GroundCraft.cs:67
+#: ../../GroundCraft.cs:84
 msgid "查看当前位置可用于地上合成的环境标签。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:190
+#: ../../GroundCraft.Commands.cs:195
 msgid "没有材料"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:197
+#: ../../GroundCraft.Commands.cs:202
 msgid "涉及钱币"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:152
+#: ../../GroundCraft.Commands.cs:157
 #, csharp-format
 msgid "液体={0}"
 msgstr ""
 
-#: ../../GroundCraft.cs:71
+#: ../../GroundCraft.cs:88
 msgid "热重载 GroundCraft 的 config.json 和 recipes.json。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:136
+#: ../../GroundCraft.Commands.cs:141
 msgid "烹饪锅"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:129
+#: ../../GroundCraft.Commands.cs:134
 msgid "熔炉"
 msgstr ""
 
@@ -257,19 +267,24 @@ msgstr ""
 msgid "物品 {0}"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:135
+#: ../../GroundCraft.Commands.cs:140
 msgid "瓶子/炼药桌"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:139
+#: ../../GroundCraft.Commands.cs:144
 msgid "秘银砧/山铜砧"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:133
+#: ../../GroundCraft.Commands.cs:36
+#, csharp-format
+msgid "精确材料匹配={0}，螺旋动画={1}。"
+msgstr ""
+
+#: ../../GroundCraft.Commands.cs:138
 msgid "织布机"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:77
+#: ../../GroundCraft.Commands.cs:82
 msgid "该命令需要玩家在游戏内执行。"
 msgstr ""
 
@@ -278,38 +293,38 @@ msgstr ""
 msgid "读取={0}，禁用={1}，格式通过={2}，安全通过={3}，启用={4}"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:105
+#: ../../GroundCraft.Commands.cs:110
 #, csharp-format
 msgid "读取={0}，禁用={1}，格式通过={2}，安全通过={3}，启用={4}。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:108
+#: ../../GroundCraft.Commands.cs:113
 #, csharp-format
-msgid "运行统计：扫描={0}，材料堆={1}，合成批次={2}，合成次数={3}，未匹配={4}，条件不符={5}。"
+msgid "运行统计：扫描={0}，材料堆={1}，合成批次={2}，合成次数={3}，未匹配={4}，额外材料拒绝={5}，条件不符={6}。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:156
+#: ../../GroundCraft.Commands.cs:161
 msgid "进度条件"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:33
+#: ../../GroundCraft.Commands.cs:38
 #, csharp-format
 msgid "配置：{0}；配方：{1}。"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:134
+#: ../../GroundCraft.Commands.cs:139
 msgid "酒桶"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:131
+#: ../../GroundCraft.Commands.cs:136
 msgid "铁砧/铅砧"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:132
+#: ../../GroundCraft.Commands.cs:137
 msgid "锯木机"
 msgstr ""
 
-#: ../../GroundCraft.Commands.cs:87
+#: ../../GroundCraft.Commands.cs:92
 #, csharp-format
 msgid "附近液体：{0}。"
 msgstr ""
