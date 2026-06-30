@@ -24,6 +24,8 @@ Files are generated under `tshock/GroundCraft/`.
 
 Use `/gcreload` to reload both JSON files without restarting the server.
 
+`requireExactIngredientTypes` is enabled by default. Extra dropped item types in the same cluster will prevent a similar recipe from firing accidentally. `animateConsumedItems` is also enabled by default: consumed drops are locked as unpickable visual items, spiral upward, and only then turn into the output. Zenith recipes use a taller and wider dedicated animation.
+
 ## Recipe Conditions
 
 Supported condition groups:
@@ -40,9 +42,18 @@ Supported condition groups:
 - Coin recipes are rejected by default.
 - Input-output self loops are rejected by default.
 - Ambiguous recipes with the same inputs, stations and conditions but different outputs are rejected.
+- Exact ingredient type matching is enabled by default to avoid accidental similar-recipe crafts.
 - Consumed world items are cleared and synchronized to avoid stale client-side ghost drops.
 
 ## Changelog
+
+### v1.1.0
+
+- Added a spiral fusion animation. Consumed drops are locked while animating and the output is spawned at completion.
+- Added a taller, wider dedicated Zenith animation around a Mythril/Orichalcum Anvil.
+- Added default recipe examples for Water Candle, Life Crystal, Wormhole Potion, Bloody Tear and Zenith.
+- Enabled exact ingredient type matching by default to reduce similar-recipe mistakes.
+- Increased the default batch limit to 25 crafts per cluster per scan.
 
 ### v1.0.0
 

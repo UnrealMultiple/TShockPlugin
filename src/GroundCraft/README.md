@@ -34,7 +34,9 @@
   "stationSearchRadiusTiles": 7,
   "environmentSearchRadiusTiles": 8,
   "biomePlayerProbeRadiusTiles": 40,
-  "maxCraftsPerClusterPerScan": 1,
+  "maxCraftsPerClusterPerScan": 25,
+  "requireExactIngredientTypes": true,
+  "animateConsumedItems": true,
   "notifyRadiusTiles": 24,
   "notifyPlayers": true,
   "notifyConsumedItems": true,
@@ -46,6 +48,8 @@
   "adminPermission": "groundcraft.admin"
 }
 ```
+
+`requireExactIngredientTypes` 默认开启。材料堆中如果混入配方外物品，不会触发相似配方，避免掉落物合成错乱。`animateConsumedItems` 默认开启，被消耗的真实掉落物会在不可拾取状态下螺旋上升，动画完成后才生成产物；天顶剑配方会使用更高、更大的专属环绕动画。
 
 ## 配方 JSON
 
@@ -92,9 +96,18 @@
 - 默认拒绝钱币配方。
 - 默认拒绝材料和产物相同的循环配方。
 - 同材料、同工作站、同条件但产物不同的配方会被拒绝，避免歧义。
+- 默认要求材料堆的物品种类与配方完全一致，避免相似配方误触发。
 - 合成时会清除被消耗的掉落物并同步消失包；若客户端仍短暂显示旧材料，会提示玩家那是残影，实际已不存在。
 
 ## 更新日志
+
+### v1.1.0
+
+- 新增螺旋融合动画：合成材料动画期间不可拾取，完成后生成产物并清理客户端残影。
+- 天顶剑默认配方使用秘银/山铜砧，并带有更高、更大的专属环绕动画和最终 Fairy 收束。
+- 默认配方补充水蜡烛、生命水晶、虫洞药水、血泪和天顶剑示例。
+- 默认开启精确材料种类匹配，减少相似配方导致的误合成。
+- 默认批量合成上限调整为每堆每轮 25 批。
 
 ### v1.0.0
 

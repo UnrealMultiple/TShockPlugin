@@ -18,6 +18,8 @@ public sealed partial class GroundCraft
         float clusterRadiusTiles;
         int requiredStableScans;
         int maxCraftsPerClusterPerScan;
+        bool requireExactIngredientTypes;
+        bool animateConsumedItems;
         lock (_stateLock)
         {
             enabled = _config.Enabled;
@@ -25,10 +27,13 @@ public sealed partial class GroundCraft
             clusterRadiusTiles = _config.ClusterRadiusTiles;
             requiredStableScans = _config.RequiredStableScans;
             maxCraftsPerClusterPerScan = _config.MaxCraftsPerClusterPerScan;
+            requireExactIngredientTypes = _config.RequireExactIngredientTypes;
+            animateConsumedItems = _config.AnimateConsumedItems;
         }
 
         args.Player.SendInfoMessage(GetString($"地上合成：{(enabled ? "已启用" : "已关闭")}，启用配方 {recipeCount} 条。"));
         args.Player.SendInfoMessage(GetString($"材料丢在 {clusterRadiusTiles:0.##} 格内，静止 {requiredStableScans} 次扫描后尝试合成；每堆每次最多合成 {maxCraftsPerClusterPerScan} 批。"));
+        args.Player.SendInfoMessage(GetString($"精确材料匹配={(requireExactIngredientTypes ? "开启" : "关闭")}，螺旋动画={(animateConsumedItems ? "开启" : "关闭")}。"));
         args.Player.SendInfoMessage(GetString("命令：/gcrecipes [页码|搜索]、/gcenv、/gcaudit、/gcreload。"));
         args.Player.SendInfoMessage(GetString($"配置：{ConfigPath}；配方：{RecipesPath}。"));
     }
@@ -105,7 +110,7 @@ public sealed partial class GroundCraft
             args.Player.SendInfoMessage(GetString($"读取={_audit.Seen}，禁用={_audit.Disabled}，格式通过={_audit.ImportAccepted}，安全通过={_audit.SafetyAccepted}，启用={_audit.ActiveRecipes}。"));
             SendReasons(args.Player, GetString("导入拒绝"), _audit.ImportRejects);
             SendReasons(args.Player, GetString("安全拒绝"), _audit.SafetyRejects);
-            args.Player.SendInfoMessage(GetString($"运行统计：扫描={_runtime.Scans}，材料堆={_runtime.Clusters}，合成批次={_runtime.CraftBatches}，合成次数={_runtime.Crafts}，未匹配={_runtime.NoMatches}，条件不符={_runtime.ConditionMisses}。"));
+            args.Player.SendInfoMessage(GetString($"运行统计：扫描={_runtime.Scans}，材料堆={_runtime.Clusters}，合成批次={_runtime.CraftBatches}，合成次数={_runtime.Crafts}，未匹配={_runtime.NoMatches}，额外材料拒绝={_runtime.ExtraItemTypeRejects}，条件不符={_runtime.ConditionMisses}。"));
         }
     }
 
