@@ -45,10 +45,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         ProgressControlSupport.Init();
         WebsocketManager.Init();
         Commands.ChatCommands.Add(new Command("caibotlite.admin", CaiBotCommand, "caibotlite", "cbl"));
-        foreach (var player in TShock.Players.Where(x => x is { Active: true }))
-        {
-            player.RemoveData(CharacterInfoKey);
-        }
+        ClearCharacterInfoForActivePlayers();
     }
 
     protected override void Dispose(bool disposing)
@@ -68,10 +65,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             PlayerHooks.PlayerPostLogin -= PlayerHooksOnPlayerPostLogin;
             GetDataHandlers.KillMe.UnRegister(KillMe);
             WebsocketManager.StopWebsocket();
-            foreach (var player in TShock.Players.Where(x => x is { Active: true }))
-            {
-                player.RemoveData(CharacterInfoKey);
-            }
+            ClearCharacterInfoForActivePlayers();
         }
 
         base.Dispose(disposing);
@@ -308,6 +302,14 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
 
         InitCode = new Random().Next(10000000, 99999999);
         TShock.Log.ConsoleError($"[CaiBotLite]您的服务器绑定码为: {InitCode}");
+    }
+    
+    private static void ClearCharacterInfoForActivePlayers()
+    {
+        foreach (var player in TShock.Players.Where(x => x is { Active: true }))
+        {
+            player.RemoveData(CharacterInfoKey);
+        }
     }
 
 

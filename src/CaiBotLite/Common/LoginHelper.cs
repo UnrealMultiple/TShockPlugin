@@ -20,10 +20,9 @@ internal static class LoginHelper
     // 在主线程调用
     internal static void ProcessLoginQueue()
     {
-        while (!LoginQueue.IsEmpty)
+        while (LoginQueue.TryDequeue(out var player))
         {
-            var player = LoginQueue.TryDequeue(out var p) ? p : null;
-            if (player is null || !player.ConnectionAlive)
+            if (!player.ConnectionAlive)
             {
                 continue;
             }
