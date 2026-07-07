@@ -83,6 +83,17 @@ internal static class LoginHelper
             return;
         }
 
+        if (type == PacketTypes.LoadNetModule)
+        {
+            var moduleId = (GetDataHandlers.NetModuleType)args.Msg.reader.ReadUInt16();
+            // 客户端疑似异常发送 CreativePowers
+            if (moduleId != GetDataHandlers.NetModuleType.CreativePowers)
+            {
+                args.Handled = true;
+                return;
+            }
+        }
+
         if (type != PacketTypes.ContinueConnecting2)
         {
             return;
