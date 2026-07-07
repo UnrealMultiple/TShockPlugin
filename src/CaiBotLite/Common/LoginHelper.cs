@@ -1,4 +1,5 @@
 ﻿using CaiBotLite.Enums;
+using System.Collections.Concurrent;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -9,6 +10,27 @@ namespace CaiBotLite.Common;
 
 internal static class LoginHelper
 {
+    private static readonly ConcurrentQueue<TSPlayer> LoginQueue = new ();
+
+    internal static void PostLoginQueue(TSPlayer player)
+    {
+        LoginQueue.Enqueue(player);
+    }
+    
+    // 在主线程调用
+    internal static void ProcessLoginQueue()
+    {
+        while (!LoginQueue.IsEmpty)
+        {
+            var player = LoginQueue.TryDequeue(out var p) ? p : null;
+            if (player is null || !player.ConnectionAlive)
+            {
+                continue;
+            }
+            HandleLogin(player);
+        }
+    }
+    
     internal static void On_MessageBufferOnGetData(On.Terraria.MessageBuffer.orig_GetData orig, MessageBuffer self,
         int start, int length, out int messageType)
     {
@@ -164,7 +186,7 @@ internal static class LoginHelper
         return account;
     }
 
-    internal static void HandleLogin(TSPlayer player)
+    private static void HandleLogin(TSPlayer player)
     {
         if (player.Name == TSServerPlayer.AccountName)
         {

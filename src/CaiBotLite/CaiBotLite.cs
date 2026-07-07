@@ -85,6 +85,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         }
 
         _timer++;
+        LoginHelper.ProcessLoginQueue();
     }
 
     private static void KillMe(object? sender, GetDataHandlers.KillMeEventArgs e)

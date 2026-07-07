@@ -88,7 +88,7 @@ internal static class CaiBotApi
 
                     if (LoginHelper.CheckWhitelist(player, whitelistResult))
                     {
-                        LoginHelper.HandleLogin(player);
+                        LoginHelper.PostLoginQueue(player);
                     }
 
                     break;
