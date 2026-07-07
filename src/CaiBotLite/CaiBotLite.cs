@@ -13,7 +13,7 @@ namespace CaiBotLite;
 // ReSharper disable once ClassNeverInstantiated.Global
 public class CaiBotLite(Main game) : TerrariaPlugin(game)
 {
-    public static readonly Version VersionNum = new (2026, 06, 21, 0);
+    public static readonly Version VersionNum = new (2026, 07, 7, 0);
     internal static int InitCode = -1;
     internal static bool DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
     private const string CharacterInfoKey = "CaiBotLite.CharacterInfo";
@@ -45,6 +45,10 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         ProgressControlSupport.Init();
         WebsocketManager.Init();
         Commands.ChatCommands.Add(new Command("caibotlite.admin", CaiBotCommand, "caibotlite", "cbl"));
+        foreach (var player in TShock.Players.Where(x => x is { Active: true }))
+        {
+            player.RemoveData(CharacterInfoKey);
+        }
     }
 
     protected override void Dispose(bool disposing)
@@ -64,6 +68,10 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             PlayerHooks.PlayerPostLogin -= PlayerHooksOnPlayerPostLogin;
             GetDataHandlers.KillMe.UnRegister(KillMe);
             WebsocketManager.StopWebsocket();
+            foreach (var player in TShock.Players.Where(x => x is { Active: true }))
+            {
+                player.RemoveData(CharacterInfoKey);
+            }
         }
 
         base.Dispose(disposing);
