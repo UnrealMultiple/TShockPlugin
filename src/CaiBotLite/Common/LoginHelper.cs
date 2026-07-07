@@ -104,7 +104,7 @@ internal static class LoginHelper
             return;
         }
 
-        if (type == PacketTypes.LoadNetModule)
+        if (player.State < (int) ConnectionState.Complete && type == PacketTypes.LoadNetModule)
         {
             var moduleId = (GetDataHandlers.NetModuleType)args.Msg.reader.ReadUInt16();
             // 客户端疑似异常发送 CreativePowers
