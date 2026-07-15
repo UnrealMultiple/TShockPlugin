@@ -24,7 +24,7 @@ namespace AutoClear
         }
 
         public override string Name => "AutoClear";
-        public override string Author => "大豆子, Mute, 肝帝熙恩; TOFOUT & Clover";
+        public override string Author => "大豆子, Mute, 肝帝熙恩";
         public override string Description => "Safely paces manual and automatic world-item cleanup.";
         public override Version Version => Assembly.GetExecutingAssembly().GetName().Version;
 
