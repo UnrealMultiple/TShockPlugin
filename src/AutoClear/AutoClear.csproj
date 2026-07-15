@@ -1,9 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AutoClear</RootNamespace>
+    <ImplicitUsings>false</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+  </PropertyGroup>
 
-	<Import Project="..\..\template.targets" />
-
-	<ItemGroup>
-	  <ProjectReference Include="..\LazyAPI\LazyAPI.csproj" />
-	</ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="TShock" Version="6.1.0" />
+  </ItemGroup>
 </Project>
