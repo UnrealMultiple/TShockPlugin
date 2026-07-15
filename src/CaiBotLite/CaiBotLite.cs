@@ -13,7 +13,7 @@ namespace CaiBotLite;
 // ReSharper disable once ClassNeverInstantiated.Global
 public class CaiBotLite(Main game) : TerrariaPlugin(game)
 {
-    public static readonly Version VersionNum = new (2026, 06, 21, 0);
+    public static readonly Version VersionNum = new (2026, 07, 7, 1);
     internal static int InitCode = -1;
     internal static bool DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
     private const string CharacterInfoKey = "CaiBotLite.CharacterInfo";
@@ -45,6 +45,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         ProgressControlSupport.Init();
         WebsocketManager.Init();
         Commands.ChatCommands.Add(new Command("caibotlite.admin", CaiBotCommand, "caibotlite", "cbl"));
+        ClearCharacterInfoForActivePlayers();
     }
 
     protected override void Dispose(bool disposing)
@@ -64,6 +65,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             PlayerHooks.PlayerPostLogin -= PlayerHooksOnPlayerPostLogin;
             GetDataHandlers.KillMe.UnRegister(KillMe);
             WebsocketManager.StopWebsocket();
+            ClearCharacterInfoForActivePlayers();
         }
 
         base.Dispose(disposing);
@@ -85,6 +87,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         }
 
         _timer++;
+        LoginHelper.ProcessLoginQueue();
     }
 
     private static void KillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
@@ -299,6 +302,14 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
 
         InitCode = new Random().Next(10000000, 99999999);
         TShock.Log.ConsoleError($"[CaiBotLite]您的服务器绑定码为: {InitCode}");
+    }
+    
+    private static void ClearCharacterInfoForActivePlayers()
+    {
+        foreach (var player in TShock.Players.Where(x => x is { Active: true }))
+        {
+            player.RemoveData(CharacterInfoKey);
+        }
     }
 
 
