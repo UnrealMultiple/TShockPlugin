@@ -206,6 +206,36 @@ internal static class Utils
     }
 
 
+    /// <summary>
+    /// 计算两个字符串之间的编辑距离(Levenshtein Distance)，用于模糊搜索插件
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
+    public static int LevenshteinDistance(string a, string b)
+    {
+        var lenA = a.Length;
+        var lenB = b.Length;
+        var dp = new int[lenA + 1, lenB + 1];
+        for (var i = 0; i <= lenA; i++)
+        {
+            dp[i, 0] = i;
+        }
+        for (var j = 0; j <= lenB; j++)
+        {
+            dp[0, j] = j;
+        }
+        for (var i = 1; i <= lenA; i++)
+        {
+            for (var j = 1; j <= lenB; j++)
+            {
+                var cost = a[i - 1] == b[j - 1] ? 0 : 1;
+                dp[i, j] = Math.Min(Math.Min(dp[i - 1, j] + 1, dp[i, j - 1] + 1), dp[i - 1, j - 1] + cost);
+            }
+        }
+        return dp[lenA, lenB];
+    }
+
     public static void SendFormattedServerPluginsModifications(this TSPlayer player, (PluginUpdateInfo[] plugins, string[] externalDlls) success)
     {
         if (success.plugins.Any(p => p.Current is null))
