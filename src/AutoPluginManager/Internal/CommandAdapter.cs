@@ -10,6 +10,7 @@ internal class CommandAdapter
         { "c", CheckUpdate },
         { "u", Update },
         { "l", CloudPlugins },
+        { "s", SearchPlugins },
         { "b", SkipUpdate },
         { "r", Repeat },
         { "i", InstallPlugin },
@@ -35,7 +36,8 @@ internal class CommandAdapter
         args.Player.SendInfoMessage(GetString("apm c 检测已安装插件更新"));
         args.Player.SendInfoMessage(GetString("apm u [插件名] 更新所有插件或指定插件"));
         args.Player.SendInfoMessage(GetString("apm i [序号] 安装指定插件"));
-        args.Player.SendInfoMessage(GetString("apm l 查看可安装插件表"));
+        args.Player.SendInfoMessage(GetString("apm l [页码] 查看可安装插件表"));
+        args.Player.SendInfoMessage(GetString("apm s [关键词] 搜索可安装插件"));
         args.Player.SendInfoMessage(GetString("apm b [插件名字] 更新时跳过指定插件"));
         args.Player.SendInfoMessage(GetString("apm rb [插件名字] 取消更新排除"));
         args.Player.SendInfoMessage(GetString("apm lb 查看更新排除列表"));
@@ -336,22 +338,79 @@ internal class CommandAdapter
     }
 
     /// <summary>
+    /// 格式化插件展示的一行文本，保留插件的原始序号
+    /// </summary>
+    private static string FormatPluginLine(int index, PluginVersionInfo plugin)
+    {
+        var cultureName = PluginManagementContext.Instance.CultureInfo.Name;
+        if (!plugin.Description.ContainsKey(cultureName))
+        {
+            cultureName = "zh-CN";
+        }
+        return $"{index}.{plugin.Name.Color("1E90FF")} v{plugin.Version} - {plugin.Description[cultureName].Color("32CD32")} (by {plugin.Author})";
+    }
+
+    /// <summary>
     /// 插件列表
     /// </summary>
     /// <param name="args"></param>
     /// <exception cref="NotImplementedException"></exception>
     private static void CloudPlugins(CommandArgs args)
     {
-        var manifest = PluginManagementContext.Instance.ClouldPluginManifests.Values.ToArray();
-        args.Player.SendInfoMessage(GetString("可安装插件列表:"));
-        for (var i = 0; i < manifest.Length; i++)
+        if (!PaginationTools.TryParsePageNumber(args.Parameters, 1, args.Player, out var pageNumber))
         {
-            var cultureName = PluginManagementContext.Instance.CultureInfo.Name;
-            if (!manifest[i].Description.ContainsKey(cultureName))
+            return;
+        }
+
+        var manifest = PluginManagementContext.Instance.ClouldPluginManifests.Values.ToArray();
+        var lines = manifest
+            .Select((plugin, index) => FormatPluginLine(index + 1, plugin))
+            .ToList();
+
+        PaginationTools.SendPage(
+            args.Player,
+            pageNumber,
+            lines,
+            new PaginationTools.Settings
             {
-                cultureName = "zh-CN";
+                MaxLinesPerPage = 30,
+                NothingToDisplayString = GetString("当前没有可安装的插件~"),
+                HeaderFormat = GetString("可安装插件列表 ({0}/{1})："),
+                FooterFormat = GetString("输入 /apm l {0} 查看更多, 使用 /apm -i <序号> 即可安装哦~")
             }
-            args.Player.SendInfoMessage($"{i + 1}.{manifest[i].Name.Color("1E90FF")} v{manifest[i].Version} - {manifest[i].Description[cultureName].Color("32CD32")} (by {manifest[i].Author})");
+        );
+    }
+
+    /// <summary>
+    /// 搜索插件，匹配最相近的10个插件
+    /// </summary>
+    /// <param name="args"></param>
+    private static void SearchPlugins(CommandArgs args)
+    {
+        if (args.Parameters.Count < 2)
+        {
+            args.Player.SendInfoMessage(GetString("语法错误，正确语法:/apm s [关键词]"));
+            return;
+        }
+
+        var keyword = string.Join(" ", args.Parameters.Skip(1)).ToLower();
+        var manifest = PluginManagementContext.Instance.ClouldPluginManifests.Values.ToArray();
+        var matches = manifest
+            .Select((plugin, index) => (Plugin: plugin, Index: index + 1, Distance: Utils.LevenshteinDistance(keyword, plugin.Name.ToLower())))
+            .OrderBy(x => x.Distance)
+            .Take(10)
+            .ToArray();
+
+        if (!matches.Any())
+        {
+            args.Player.SendErrorMessage(GetString("没有找到匹配的插件!"));
+            return;
+        }
+
+        args.Player.SendInfoMessage(GetString($"[{keyword}] 的搜索结果:"));
+        foreach (var match in matches)
+        {
+            args.Player.SendInfoMessage(FormatPluginLine(match.Index, match.Plugin));
         }
         args.Player.SendInfoMessage(GetString("*使用/apm -i <序号> 即可安装哦~"));
     }

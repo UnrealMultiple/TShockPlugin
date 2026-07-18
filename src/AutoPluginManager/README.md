@@ -12,7 +12,8 @@
 | -------------- | :-----------------: | :------: |
 | /apm -c | AutoUpdatePlugin   | 检查插件更新|
 | /apm -u [插件名] | AutoUpdatePlugin   | 一键升级插件，需要重启服务器，插件名可多选`英文逗号隔开`|
-| /apm -l | AutoUpdatePlugin   | 查看仓库插件列表 |
+| /apm -l [页码] | AutoUpdatePlugin   | 查看仓库插件列表, 每页30个, 可翻页 |
+| /apm -s [关键词] | AutoUpdatePlugin   | 搜索插件，匹配最相近的10个插件 |
 | /apm -i [插件序号] | AutoUpdatePlugin   | 安装插件，需重启服务器，插件序号多选`英文逗号隔开`配合`/apm -i`指令使用 |
 | /apm -b [插件名] | AutoUpdatePlugin   | 将插件排除更新 |
 | /apm -r | AutoUpdatePlugin   | 检查重复安装的插件 |
@@ -34,6 +35,9 @@
 ```
 
 ## 更新日志
+### v2.1.0.3
+- `apm l` 增加分页，每页显示30个插件
+- 新增 `apm s [关键词]` 指令，用于搜索插件，匹配最相近的10个插件
 ### v2.1.0.1
 - 支持动态识别配置路径
 ### v2.1.0.0

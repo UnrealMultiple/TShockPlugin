@@ -11,7 +11,8 @@
 | -------------- | :-----------------: | :------: |
 | /apm c | AutoUpdatePlugin   | Check for plugin updates|
 | /apm u [Plugin name] | AutoUpdatePlugin   | To update the plugin with one click, you need to restart the server. You can select multiple plugin names separated by English commas.|
-| /apm l | AutoUpdatePlugin   | View the list of repository plugins |
+| /apm l [page number] | AutoUpdatePlugin   | View the list of repository plugins, 30 per page, paginated |
+| /apm s [keyword] | AutoUpdatePlugin   | Search plugins, showing the 10 closest matches |
 | /apm i [list number] | AutoUpdatePlugin   | To install the plugin, you need to restart the server. Select the plugin list number separated by commas and use it with the `/apm -i` command. |
 | /apm b [Plugin name] | AutoUpdatePlugin   | Exclude plugins from updates |
 | /apm r | AutoUpdatePlugin   | Check for duplicate installed plugins |
