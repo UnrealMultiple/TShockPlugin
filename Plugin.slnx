@@ -147,6 +147,7 @@
   <Project Path="src/VeinMiner/VeinMiner.csproj" />
   <Project Path="src/VotePlus/VotePlus.csproj" />
   <Project Path="src/WeaponPlus/WeaponPlus.csproj" />
+  <Project Path="src/WorldEdit/WorldEdit.csproj" />
   <Project Path="src/WikiLangPackLoader/WikiLangPackLoader.csproj" />
   <Project Path="src/CreateSpawn/CreateSpawn.csproj" />
 </Solution>

@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Add commands for batch editing blocks"
+  },
+  "README": {
+    "Description": "添加用于批量编辑方块的命令"
+  },
+  "README.es-ES": {
+    "Description": "Agregue comandos para editar bloques en lote."
+  }
+}
