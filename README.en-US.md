@@ -206,6 +206,7 @@
 | [VotePlus](./src/VotePlus/README.en-US.md) | 100.0% | Multi-function voting |  |
 | [WeaponPlus](./src/WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement coin version |  |
 | [WikiLangPackLoader](./src/WikiLangPackLoader/README.en-US.md) | 100.0% | Load Chinese Wiki language pack for server |  |
+| [WorldEdit](./src/WorldEdit/README.md) | 0.0% | Add commands for batch editing blocks |  |
 | [WorldModify](https://github.com/UnrealMultiple/TShockWorldModify/blob/master/README.md) | 0.0% | World editor, can modify most of the world parameters |  |
 
 </Details>

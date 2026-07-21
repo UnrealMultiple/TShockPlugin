@@ -2977,6 +2977,29 @@
     "HotReload": true
   },
   {
+    "Name": "WorldEdit",
+    "Version": "2026.7.20",
+    "Author": "Nyx Studios, massive upgrade by Anzhelika，肝帝熙恩适配1456",
+    "Description": {
+      "en-US": "Adds commands for mass editing of blocks.",
+      "de-DE": "Adds commands for mass editing of blocks.",
+      "it-IT": "Adds commands for mass editing of blocks.",
+      "fr-FR": "Adds commands for mass editing of blocks.",
+      "es-ES": "Adds commands for mass editing of blocks.",
+      "ru-RU": "Adds commands for mass editing of blocks.",
+      "zh-CN": "Adds commands for mass editing of blocks.",
+      "pt-BR": "Adds commands for mass editing of blocks.",
+      "pl-PL": "Adds commands for mass editing of blocks.",
+      "ja-JP": "Adds commands for mass editing of blocks.",
+      "ko-KR": "Adds commands for mass editing of blocks.",
+      "zh-Hant": "Adds commands for mass editing of blocks."
+    },
+    "AssemblyName": "WorldEdit",
+    "Path": "WorldEdit.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "WorldModify",
     "Version": "1.6.0.0",
     "Author": "hufang360",

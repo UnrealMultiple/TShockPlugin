@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DeltaForce.Core\n"
-"POT-Creation-Date: 2026-07-16 16:05:47+0000\n"
-"PO-Revision-Date: 2026-07-16 16:05:47+0000\n"
+"POT-Creation-Date: 2026-07-21 09:19:17+0000\n"
+"PO-Revision-Date: 2026-07-21 09:19:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -431,8 +431,8 @@ msgstr ""
 msgid "Player {0} not found"
 msgstr ""
 
-#: ../../Handlers/ItemListHandler.cs:21
 #: ../../Handlers/SquadDataHandler.cs:32
+#: ../../Handlers/ItemListHandler.cs:21
 #: ../../Handlers/PlayerInventoryHandler.cs:19
 msgid "Success"
 msgstr ""
