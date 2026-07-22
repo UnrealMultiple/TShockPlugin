@@ -56,4 +56,5 @@ public class Configuration : JsonConfigBase<Configuration>
     [LocalizedPropertyName(CultureType.Chinese, "清理提示")]
     [LocalizedPropertyName(CultureType.English, "SweepTip")]
     public bool SpecificMessage { get; set; } = true;
+
 }
